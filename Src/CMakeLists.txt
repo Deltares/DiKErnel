@@ -9,8 +9,11 @@ set(LIBNAME DiKErnel)
 
 # Sources
 set (SOURCES
-	Main.cpp
+	DiKErnel.h
+	DiKErnel.cpp
 )
 
 # Build library
-add_library(${LIBNAME} SHARED ${SOURCES})
+add_library(${LIBNAME} STATIC ${SOURCES})
+
+target_include_directories (${LIBNAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})

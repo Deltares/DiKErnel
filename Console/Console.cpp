@@ -1,6 +1,9 @@
 #include <iostream>
 
+#include "DiKErnel.h"
+
 int main()
 {
-  std::cout << "Hello World!";
+	DiKErnel::Run();
+	return 0;
 }
