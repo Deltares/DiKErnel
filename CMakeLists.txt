@@ -9,3 +9,4 @@ project (DiKErnel)
 ###########
 add_subdirectory(Src)
 add_subdirectory(Test)
+add_subdirectory(Console)
