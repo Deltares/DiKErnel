@@ -16,4 +16,4 @@ set (SOURCES
 add_executable(${EXENAME} ${SOURCES})
 
 # Link library
-target_link_libraries(Console LINK_PUBLIC DiKErnel)
+target_link_libraries(${EXENAME} LINK_PUBLIC DiKErnel)
