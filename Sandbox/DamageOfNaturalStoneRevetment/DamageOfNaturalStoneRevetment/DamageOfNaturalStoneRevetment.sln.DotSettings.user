@@ -1,6 +1,17 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=ffc41960_002D7850_002D4c98_002Da877_002Dfb8f1f515c58/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="TestName" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=7085f97e_002Df03e_002D4725_002D8101_002D6b68a40c553b/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="TestName #3" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
     &lt;TestId&gt;GTest::25CFF1DE-3F6C-4CEB-AD69-A6C37ED510EC::.NETFramework,Version=v4.0::TestCaseName.TestName&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=d9eee108_002Dfaa0_002D4f05_002Da896_002D46a36020f5c2/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="TestName #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;GTest::25CFF1DE-3F6C-4CEB-AD69-A6C37ED510EC::.NETFramework,Version=v4.0::TestCaseName.TestName&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=ffc41960_002D7850_002D4c98_002Da877_002Dfb8f1f515c58/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="TestName" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;GTest::25CFF1DE-3F6C-4CEB-AD69-A6C37ED510EC::.NETFramework,Version=v4.0::TestCaseName.TestName&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;GTest::25CFF1DE-3F6C-4CEB-AD69-A6C37ED510EC::.NETFramework,Version=v4.0::TestCaseName.SurfSimilarityParameter&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
