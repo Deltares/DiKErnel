@@ -2,7 +2,7 @@
 
 #include "../DamageOfNaturalStoneRevetment/Calculator.h"
 
-TEST(TestCaseName, TestName) {
+TEST(TestCaseName, DamageOfNaturalStoneRevetment) {
 
 	// Call
 	double damage = Calculator::DamageOfNaturalStoneRevetment(0.1, 0.3);
