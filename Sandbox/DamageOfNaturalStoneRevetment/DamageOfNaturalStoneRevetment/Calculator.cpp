@@ -25,3 +25,8 @@ double Calculator::ResistanceOfNaturalStoneRevetment(double relativeDensity, dou
 {
 	return relativeDensity * thicknessTopLayer;	
 }
+
+double Calculator::IncrementOfTime(double initialTime, double currentTime)
+{
+	return currentTime - initialTime;
+}
