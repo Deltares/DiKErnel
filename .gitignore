@@ -1,1 +1,5 @@
-/Build
+# Ignore Visual Studio folder
+Development/Visual Studio
+
+# But not the DotSettings
+!Development/Visual Studio/DiKErnel.DotSettings
