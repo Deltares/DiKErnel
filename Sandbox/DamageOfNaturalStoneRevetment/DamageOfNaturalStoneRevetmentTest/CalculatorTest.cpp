@@ -26,7 +26,7 @@ TEST(TestCaseName, ResistanceOfNaturalStoneRevetment)
 	double surfSimilarityParameter = Calculator::ResistanceOfNaturalStoneRevetment(0.8, 0.4);
 
 	// Assert
-	EXPECT_EQ(surfSimilarityParameter, 20.355326326151559);
+	EXPECT_EQ(surfSimilarityParameter, 0.32000000000000006);
 }
 
 TEST(TestCaseName, IncrementOfTime)
