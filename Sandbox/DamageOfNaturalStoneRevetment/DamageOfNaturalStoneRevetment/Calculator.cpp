@@ -20,3 +20,8 @@ double Calculator::SurfSimilarityParameter(double slopeAngle, double spectralWav
 
 	return surfSimilarityParameter;
 }
+
+double Calculator::ResistanceOfNaturalStoneRevetment(double relativeDensity, double thicknessTopLayer)
+{
+	return relativeDensity * thicknessTopLayer;	
+}

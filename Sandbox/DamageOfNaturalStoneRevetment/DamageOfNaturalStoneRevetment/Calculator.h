@@ -20,18 +20,30 @@ public:
 	/// Calculates the surf similarity parameter.
 	/// </summary>
 	/// <param name="slopeAngle">The slope angle [°] at the current location.</param>
-	/// <param name="spectralWaveHeight">The spectral wave height [m] between t??? and t?.</param>
-	/// <param name="spectralWavePeriod">The spectral wave period [s] between t??? and t?.</param>
+	/// <param name="spectralWaveHeight">The spectral wave height [m] between ti-1 and ti.</param>
+	/// <param name="spectralWavePeriod">The spectral wave period [s] between ti-1 and ti.</param>
 	/// <returns>The surf similarity parameter at the current time and place.</returns>
 	static double SurfSimilarityParameter(double slopeAngle, double spectralWaveHeight, double spectralWavePeriod);
 
-	void ResitanceofNaturalStoneRevetment();
+	/// <summary>
+	/// Calculates the resistance of natural stone revetment.
+	/// </summary>
+	/// <param name="relativeDensity">The relative density [-] at the current location.</param>
+	/// <param name="thicknessTopLayer">The thickness of the top layer [m] at the current location.</param>
+	/// <returns>The resistance of natural stone revetment.</returns>
+	static double ResistanceOfNaturalStoneRevetment(double relativeDensity, double thicknessTopLayer);
 
 	void IncrementDegradationOfNaturalStoneRevetment();
 
 	void DegradationOfNaturalStoneRevetment();
 
-	void IncrementOfTime();
+	/// <summary>
+	/// Calculates the elapsed time in this timestep.
+	/// </summary>
+	/// <param name="initialTime">The start of the timestep [s].</param>
+	/// <param name="currentTime">The end of the timestep [s].</param>
+	/// <returns>The elapsed time of the timestep.</returns>
+	static double IncrementOfTime(double initialTime, double currentTime);
 
 	void ReferenceTimeDegradationOfNaturalStoneRevetment();
 
