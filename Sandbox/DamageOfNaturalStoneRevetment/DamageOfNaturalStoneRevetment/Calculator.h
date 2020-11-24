@@ -10,11 +10,24 @@ public:
 	/// <returns>The total damage of natural stone revetment, a value between 0 and 1.</returns>
 	static double DamageOfNaturalStoneRevetment(double initialDamage, double damageOverTime);
 
-	void IncrementDamageOfNaturalStoneRevetment();
+	/// <summary>
+	/// Calculates the incremented damage of natural stone revetment.
+	/// </summary>
+	/// <returns>The incremented damage at the current time and place.</returns>
+	static double IncrementDamageOfNaturalStoneRevetment();
 
-	void HydraulicLoadOnNaturalStoneRevetment();
+	/// <summary>
+	/// Calculates the hydraulic load on natural stone revetment.
+	/// </summary>
+	/// <param name="spectralWaveHeight">The spectral wave height [m] between ti-1 and ti.</param>
+	/// <returns>The hydraulic load on natural stone revetment at the current time and place.</returns>
+	static double HydraulicLoadOnNaturalStoneRevetment(double spectralWaveHeight);
 
-	void HeavisideFunction();
+	/// <summary>
+	/// Calculates the heave side.
+	/// </summary>
+	/// <returns>The heave side, which is 0 or 1.</returns>
+	static int HeavisideFunction();
 
 	/// <summary>
 	/// Calculates the surf similarity parameter.
@@ -33,9 +46,18 @@ public:
 	/// <returns>The resistance of natural stone revetment.</returns>
 	static double ResistanceOfNaturalStoneRevetment(double relativeDensity, double thicknessTopLayer);
 
-	void IncrementDegradationOfNaturalStoneRevetment();
+	/// <summary>
+	/// Calculates the increment of degradation of natural stone revetment at the current time and location.
+	/// </summary>
+	/// <returns>The increment of degradation of natural stone revetment at the current time and location.</returns>
+	static double IncrementDegradationOfNaturalStoneRevetment();
 
-	void DegradationOfNaturalStoneRevetment();
+	/// <summary>
+	/// Calculates the degradation of natural stone revetment.
+	/// </summary>
+	/// <param name="spectralWavePeriod">The spectral wave period [s] between ti-1 and ti.</param>
+	/// <returns>The total degradation at the current time.</returns>
+	static double DegradationOfNaturalStoneRevetment(double spectralWavePeriod);
 
 	/// <summary>
 	/// Calculates the elapsed time in this timestep.
@@ -45,9 +67,24 @@ public:
 	/// <returns>The elapsed time of the timestep.</returns>
 	static double IncrementOfTime(double initialTime, double currentTime);
 
-	void ReferenceTimeDegradationOfNaturalStoneRevetment();
+	/// <summary>
+	/// Calculates the reference time degradation of natural stone revetment.
+	/// </summary>
+	/// <param name="spectralWavePeriod">The spectral wave period [s] between ti-1 and ti.</param>
+	/// <returns>The surf similarity parameter at the current time and place.</returns>
+	static double ReferenceTimeDegradationOfNaturalStoneRevetment(double spectralWavePeriod);
 
-	void ReferenceDegradationOfNaturalStoneRevetment();
+	/// <summary>
+	/// Calculates the reference degradation of natural stone revetment.
+	/// </summary>
+	/// <returns>The reference degradation of natural stone revetment at the current time and place.</returns>
+	static double ReferenceDegradationOfNaturalStoneRevetment();
 
-	void WaveAngleImpactOnNaturalStoneRevetment();	
+	/// <summary>
+	/// Calculates the wave angle impact of natural stone revetment.
+	/// </summary>
+	/// <param name="waveAngle">The incoming wave handle [°] relative to the normal line
+	/// between ti-1 and ti.</param>
+	/// <returns>The wave angle impact at the current time.</returns>
+	static double WaveAngleImpactOnNaturalStoneRevetment(double waveAngle);
 };
