@@ -27,7 +27,7 @@ public:
 	/// Calculates the heave side.
 	/// </summary>
 	/// <returns>The heave side, which is 0 or 1.</returns>
-	static int HeavisideFunction();
+	static int HeavisideFunction(int theta);
 
 	/// <summary>
 	/// Calculates the surf similarity parameter.
