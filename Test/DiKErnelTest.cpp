@@ -1,4 +1,10 @@
-int main()
+#define CATCH_CONFIG_MAIN
+#include "catch2/catch.hpp"
+
+TEST_CASE("Our first test case")
 {
-	return 0;
+    SECTION("Our first test")
+    {
+        REQUIRE(true == true);
+    }
 }
