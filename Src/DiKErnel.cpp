@@ -2,7 +2,10 @@
 
 #include <iostream>
 
-void DiKErnel::Run()
+namespace Application
 {
-	std::cout << "Run the DiKErnel!";
+	void DiKErnel::Run()
+	{
+		std::cout << "Run the DiKErnel!";
+	}
 }

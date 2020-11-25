@@ -1,6 +1,10 @@
 #pragma once
-class DiKErnel
+
+namespace Application
 {
-public:
-	static void Run();
-};
+	class DiKErnel
+	{
+		public:
+			static void Run();
+	};
+}
