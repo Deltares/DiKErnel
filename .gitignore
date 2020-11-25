@@ -2,4 +2,4 @@
 Development/Visual Studio
 
 # But not the DotSettings
-!Development/Visual Studio/DiKErnel.DotSettings
+!Development/Visual Studio/DiKErnel.sln.DotSettings
