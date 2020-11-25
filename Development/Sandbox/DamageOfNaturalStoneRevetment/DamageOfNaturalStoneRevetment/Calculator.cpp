@@ -3,17 +3,19 @@
 #include <cmath>
 #include <iostream>
 
-double Calculator::DamageOfNaturalStoneRevetment(double initialDamage, double damageOverTime)
+double Calculator::DamageOfNaturalStoneRevetment(double initialDamage, double slopeAngle, double spectralWaveHeight, double spectralWavePeriod, double relativeDensity, double thicknessTopLayer, double tau, double waveAngle)
 {
-	return initialDamage + damageOverTime;	
+	return initialDamage + IncrementDamageOfNaturalStoneRevetment(slopeAngle, spectralWaveHeight, spectralWavePeriod, relativeDensity, thicknessTopLayer, tau, waveAngle);
 }
 
-double Calculator::IncrementDamageOfNaturalStoneRevetment()
+double Calculator::IncrementDamageOfNaturalStoneRevetment(double slopeAngle, double spectralWaveHeight, double spectralWavePeriod, double relativeDensity, double thicknessTopLayer, double tau, double waveAngle)
 {
-	return HydraulicLoadOnNaturalStoneRevetment(1)/ResistanceOfNaturalStoneRevetment(1,2) * IncrementDegradationOfNaturalStoneRevetment() * WaveAngleImpactOnNaturalStoneRevetment(1);	
+	return HydraulicLoadOnNaturalStoneRevetment(slopeAngle, spectralWaveHeight, spectralWavePeriod)/ResistanceOfNaturalStoneRevetment(relativeDensity, thicknessTopLayer)
+	* IncrementDegradationOfNaturalStoneRevetment(tau, spectralWavePeriod)
+	* WaveAngleImpactOnNaturalStoneRevetment(waveAngle);
 }
 
-double Calculator::HydraulicLoadOnNaturalStoneRevetment(double spectralWaveHeight)
+double Calculator::HydraulicLoadOnNaturalStoneRevetment(double slopeAngle, double spectralWaveHeight, double spectralWavePeriod)
 {
 	int theta = HeavisideFunction(1);
 	double xiFactor = 2.0;
@@ -22,7 +24,7 @@ double Calculator::HydraulicLoadOnNaturalStoneRevetment(double spectralWaveHeigh
 	double coefficientCP = 5.0;
 	double coefficientNP = 2.0;
 	
-	double surfSimilarityParameter = SurfSimilarityParameter(2.0, spectralWaveHeight, 5.0);
+	double surfSimilarityParameter = SurfSimilarityParameter(slopeAngle, spectralWaveHeight, spectralWavePeriod);
 	double partialQuotation = (coefficientAS * pow(surfSimilarityParameter, coefficientNP) + (coefficientBP * surfSimilarityParameter) + coefficientCP);
 	
 	double firstPart = theta * (xiFactor - surfSimilarityParameter) * partialQuotation;
@@ -64,9 +66,9 @@ double Calculator::ResistanceOfNaturalStoneRevetment(double relativeDensity, dou
 	return relativeDensity * thicknessTopLayer;	
 }
 
-double Calculator::IncrementDegradationOfNaturalStoneRevetment()
+double Calculator::IncrementDegradationOfNaturalStoneRevetment(double tau, double spectralWavePeriod)
 {
-	double fDegratation = DegradationOfNaturalStoneRevetment(1,2.0);
+	double fDegratation = DegradationOfNaturalStoneRevetment(tau, spectralWavePeriod);
 
 	return fDegratation + 2.0 - fDegratation;
 }
@@ -84,21 +86,21 @@ double Calculator::IncrementOfTime(double initialTime, double currentTime)
 	return currentTime - initialTime;
 }
 
-double Calculator::ReferenceTimeDegradationOfNaturalStoneRevetment(double spectralWavePeriod)
+double Calculator::ReferenceTimeDegradationOfNaturalStoneRevetment(double relativeDensity, double thicknessTopLayer, double spectralWaveHeight, double waveAngle, double spectralWavePeriod)
 {
-	return 1000 * spectralWavePeriod * pow(ReferenceDegradationOfNaturalStoneRevetment(), 10.0);	
+	return 1000 * spectralWavePeriod * pow(ReferenceDegradationOfNaturalStoneRevetment(relativeDensity, thicknessTopLayer, spectralWaveHeight, waveAngle), 10.0);
 }
 
-double Calculator::ReferenceDegradationOfNaturalStoneRevetment()
+double Calculator::ReferenceDegradationOfNaturalStoneRevetment(double relativeDensity, double thicknessTopLayer, double spectralWaveHeight, double waveAngle)
 {
-	return (ResistanceOfNaturalStoneRevetment(1,2) / HydraulicLoadOnNaturalStoneRevetment(1)) * (1 / WaveAngleImpactOnNaturalStoneRevetment(1));	
+	return (ResistanceOfNaturalStoneRevetment(relativeDensity, thicknessTopLayer) / HydraulicLoadOnNaturalStoneRevetment(spectralWaveHeight)) * (1 / WaveAngleImpactOnNaturalStoneRevetment(waveAngle));
 }
 
 double Calculator::WaveAngleImpactOnNaturalStoneRevetment(double waveAngle)
 {
 	if (waveAngle > 90 || waveAngle < -90)
 	{
-		std::cout << "Input not between -90 % 90 degrees.";
+		std::cout << "Wave angle not between -90 % 90 degrees.";
 		return 0.0;
 	}
 

@@ -79,10 +79,10 @@ TEST_CASE("IncrementOfTime")
 TEST_CASE("ReferenceTimeDegradationOfNaturalStoneRevetment")
 {
 	// Call
-	double surfSimilarityParameter = Calculator::ReferenceTimeDegradationOfNaturalStoneRevetment(7.0);
+	double referenceTimeDegradationOfNaturalStoneRevetment = Calculator::ReferenceTimeDegradationOfNaturalStoneRevetment(7.0);
 
 	// Assert
-	REQUIRE(surfSimilarityParameter == 0.0);
+	REQUIRE(referenceTimeDegradationOfNaturalStoneRevetment == 0.0);
 }
 
 TEST_CASE("WaveAngleImpactOnNaturalStoneRevetmentPositiveAngle")
