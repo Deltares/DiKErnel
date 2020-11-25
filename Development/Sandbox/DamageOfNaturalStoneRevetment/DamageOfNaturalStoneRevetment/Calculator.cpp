@@ -86,7 +86,7 @@ double Calculator::IncrementOfTime(double initialTime, double currentTime)
 
 double Calculator::ReferenceTimeDegradationOfNaturalStoneRevetment(double spectralWavePeriod)
 {
-	return 1000 * spectralWavePeriod * pow(ReferenceDegradationOfNaturalStoneRevetment(), 10);	
+	return 1000 * spectralWavePeriod * pow(ReferenceDegradationOfNaturalStoneRevetment(), 10.0);	
 }
 
 double Calculator::ReferenceDegradationOfNaturalStoneRevetment()

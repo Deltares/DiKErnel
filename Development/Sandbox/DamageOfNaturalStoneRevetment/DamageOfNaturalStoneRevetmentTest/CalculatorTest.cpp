@@ -13,6 +13,24 @@ TEST_CASE("DamageOfNaturalStoneRevetment")
 	REQUIRE(damage == 0.4);
 }
 
+TEST_CASE("HeavisideFunctionNegative")
+{
+	// Call
+	int heavyside = Calculator::HeavisideFunction(-5);
+
+	// Assert
+	REQUIRE(heavyside == 0);
+}
+
+TEST_CASE("HeavisideFunctionPositive")
+{
+	// Call
+	int heavyside = Calculator::HeavisideFunction(5);
+
+	// Assert
+	REQUIRE(heavyside == 1);
+}
+
 TEST_CASE("SurfSimilarityParameter")
 {
 	// Call
@@ -31,13 +49,13 @@ TEST_CASE("ResistanceOfNaturalStoneRevetment")
 	REQUIRE(surfSimilarityParameter == 0.32000000000000006);
 }
 
-TEST_CASE("IncrementOfTime")
+TEST_CASE("IncrementDegradationOfNaturalStoneRevetment")
 {
 	// Call
-	double surfSimilarityParameter = Calculator::IncrementOfTime(16, 20);
+	double incrementDegradationOfNaturalStoneRevetment = Calculator::IncrementDegradationOfNaturalStoneRevetment();
 
 	// Assert
-	REQUIRE(surfSimilarityParameter == 4);
+	REQUIRE(incrementDegradationOfNaturalStoneRevetment == 2.0);
 }
 
 TEST_CASE("DegradationOfNaturalStoneRevetment")
@@ -47,6 +65,24 @@ TEST_CASE("DegradationOfNaturalStoneRevetment")
 
 	// Assert
 	REQUIRE(degradationOfNaturalStoneRevetment == 0.41256292359026653);
+}
+
+TEST_CASE("IncrementOfTime")
+{
+	// Call
+	double surfSimilarityParameter = Calculator::IncrementOfTime(16, 20);
+
+	// Assert
+	REQUIRE(surfSimilarityParameter == 4);
+}
+
+TEST_CASE("ReferenceTimeDegradationOfNaturalStoneRevetment")
+{
+	// Call
+	double surfSimilarityParameter = Calculator::ReferenceTimeDegradationOfNaturalStoneRevetment(7.0);
+
+	// Assert
+	REQUIRE(surfSimilarityParameter == 0.0);
 }
 
 TEST_CASE("WaveAngleImpactOnNaturalStoneRevetmentPositiveAngle")
