@@ -48,3 +48,21 @@ TEST_CASE("DegradationOfNaturalStoneRevetment")
 	// Assert
 	REQUIRE(degradationOfNaturalStoneRevetment == 0.41256292359026653);
 }
+
+TEST_CASE("WaveAngleImpactOnNaturalStoneRevetmentPositiveAngle")
+{
+	// Call
+	double degradationOfNaturalStoneRevetment = Calculator::WaveAngleImpactOnNaturalStoneRevetment(60);
+
+	// Assert
+	REQUIRE(degradationOfNaturalStoneRevetment == 0.62996052494743671);
+}
+
+TEST_CASE("WaveAngleImpactOnNaturalStoneRevetmentNegativeAngle")
+{
+	// Call
+	double degradationOfNaturalStoneRevetment = Calculator::WaveAngleImpactOnNaturalStoneRevetment(-60);
+
+	// Assert
+	REQUIRE(degradationOfNaturalStoneRevetment == 0.62996052494743671);
+}

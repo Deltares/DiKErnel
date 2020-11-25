@@ -102,7 +102,14 @@ double Calculator::WaveAngleImpactOnNaturalStoneRevetment(double waveAngle)
 		return 0.0;
 	}
 
-	return pow(cos(fabs(waveAngle)), (2 / 3));	
+	double smallestAngle = std::min(78.0, waveAngle);
+	
+	double waveAngleRadians = ConvertToRadians(smallestAngle);
+	double absoluteWaveAngleRadians = fabs(waveAngleRadians);
+	double cosinus = cos(absoluteWaveAngleRadians);
+	double exponent = (2.0 / 3);
+	
+	return pow(cosinus, exponent);
 }
 
 double Calculator::ConvertToRadians(double degrees)
