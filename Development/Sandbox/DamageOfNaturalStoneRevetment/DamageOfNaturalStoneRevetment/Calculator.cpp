@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "Calculator.h"
 #include <cmath>
+#include <iostream>
 
 double Calculator::DamageOfNaturalStoneRevetment(double initialDamage, double damageOverTime)
 {
@@ -14,12 +15,28 @@ double Calculator::IncrementDamageOfNaturalStoneRevetment()
 
 double Calculator::HydraulicLoadOnNaturalStoneRevetment(double spectralWaveHeight)
 {
-	return 2.0;
+	int theta = HeavisideFunction(1);
+	double xiFactor = 2.0;
+	double coefficientAS = 3.0;
+	double coefficientBP = 4.0;
+	double coefficientCP = 5.0;
+	double coefficientNP = 2.0;
+	
+	double surfSimilarityParameter = SurfSimilarityParameter(2.0, spectralWaveHeight, 5.0);
+	double partialQuotation = (coefficientAS * pow(surfSimilarityParameter, coefficientNP) + (coefficientBP * surfSimilarityParameter) + coefficientCP);
+	
+	double firstPart = theta * (xiFactor - surfSimilarityParameter) * partialQuotation;
+
+	double secondPart = theta * (surfSimilarityParameter - xiFactor) * partialQuotation;
+	
+	double denominator = firstPart + secondPart;
+
+	return spectralWaveHeight / denominator;
 }
 
-int Calculator::HeavisideFunction(int theta)
+int Calculator::HeavisideFunction(int xValue)
 {
-	if (theta < 0)
+	if (xValue < 0)
 	{
 		return 0;
 	}
@@ -29,12 +46,13 @@ int Calculator::HeavisideFunction(int theta)
 
 double Calculator::SurfSimilarityParameter(double slopeAngle, double spectralWaveHeight, double spectralWavePeriod)
 {
-	double pi = 2 * acos(0.0);
+	const double pi = 2 * acos(0.0);
 	double spectralWaveHeightRelatedValue = 2 * pi * spectralWaveHeight;
 	double spectralWavePeriodRelatedValue = 9.81 * spectralWavePeriod;
 
 	double denominator = sqrt(spectralWaveHeightRelatedValue / spectralWavePeriodRelatedValue);
-	double numerator = tan(slopeAngle);
+	double slopeAngleRadians = ConvertToRadians(slopeAngle);
+	double numerator = tan(slopeAngleRadians);
 	
 	double surfSimilarityParameter = numerator / denominator;
 
@@ -48,16 +66,17 @@ double Calculator::ResistanceOfNaturalStoneRevetment(double relativeDensity, dou
 
 double Calculator::IncrementDegradationOfNaturalStoneRevetment()
 {
-	return 2.0;
+	double fDegratation = DegradationOfNaturalStoneRevetment(1,2.0);
+
+	return fDegratation + 2.0 - fDegratation;
 }
 
-double Calculator::DegradationOfNaturalStoneRevetment(double spectralWavePeriod)
+double Calculator::DegradationOfNaturalStoneRevetment(double tau, double spectralWavePeriod)
 {
-	// The tau value needs to filled.
-	double numerator = 5 / spectralWavePeriod;
+	double numerator = tau / spectralWavePeriod;
 	int denominator = 1000;
 
-	return pow(numerator / denominator, 0.1);	
+	return pow(numerator / denominator, 0.1);
 }
 
 double Calculator::IncrementOfTime(double initialTime, double currentTime)
@@ -77,8 +96,22 @@ double Calculator::ReferenceDegradationOfNaturalStoneRevetment()
 
 double Calculator::WaveAngleImpactOnNaturalStoneRevetment(double waveAngle)
 {
-	return 2.0;
+	if (waveAngle > 90 || waveAngle < -90)
+	{
+		std::cout << "Input not between -90 % 90 degrees.";
+		return 0.0;
+	}
+
+	return pow(cos(fabs(waveAngle)), (2 / 3));	
 }
+
+double Calculator::ConvertToRadians(double degrees)
+{
+	const double pi = 2 * acos(0.0);
+	return degrees * (pi / 180);	
+}
+
+
 
 
 

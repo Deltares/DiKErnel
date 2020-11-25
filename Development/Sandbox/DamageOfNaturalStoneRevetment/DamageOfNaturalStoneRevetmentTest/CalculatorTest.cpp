@@ -1,40 +1,50 @@
 #include "pch.h"
+#define CATCH_CONFIG_MAIN
+#include "catch.hpp"
 
 #include "../DamageOfNaturalStoneRevetment/Calculator.h"
 
-TEST(TestCaseName, DamageOfNaturalStoneRevetment) {
-
+TEST_CASE("DamageOfNaturalStoneRevetment")
+{
 	// Call
 	double damage = Calculator::DamageOfNaturalStoneRevetment(0.1, 0.3);
 
 	// Assert
-	EXPECT_EQ(damage, 0.4);
+	REQUIRE(damage == 0.4);
 }
 
-TEST(TestCaseName, SurfSimilarityParameter)
+TEST_CASE("SurfSimilarityParameter")
 {
 	// Call
-	double surfSimilarityParameter = Calculator::SurfSimilarityParameter(17, 2.3, 50);
+	double surfSimilarityParameter = Calculator::SurfSimilarityParameter(15, 4, 7);
 
 	// Assert
-	EXPECT_EQ(surfSimilarityParameter, 20.355326326151559);
+	REQUIRE(surfSimilarityParameter == 0.44291057156446628);
 }
 
-TEST(TestCaseName, ResistanceOfNaturalStoneRevetment)
+TEST_CASE("ResistanceOfNaturalStoneRevetment")
 {
 	// Call
 	double surfSimilarityParameter = Calculator::ResistanceOfNaturalStoneRevetment(0.8, 0.4);
 
 	// Assert
-	EXPECT_EQ(surfSimilarityParameter, 0.32000000000000006);
+	REQUIRE(surfSimilarityParameter == 0.32000000000000006);
 }
 
-TEST(TestCaseName, IncrementOfTime)
+TEST_CASE("IncrementOfTime")
 {
 	// Call
 	double surfSimilarityParameter = Calculator::IncrementOfTime(16, 20);
 
 	// Assert
-	EXPECT_EQ(surfSimilarityParameter, 4);
+	REQUIRE(surfSimilarityParameter == 4);
 }
 
+TEST_CASE("DegradationOfNaturalStoneRevetment")
+{
+	// Call
+	double degradationOfNaturalStoneRevetment = Calculator::DegradationOfNaturalStoneRevetment(1, 7);
+
+	// Assert
+	REQUIRE(degradationOfNaturalStoneRevetment == 0.41256292359026653);
+}

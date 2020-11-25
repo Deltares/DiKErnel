@@ -2,4 +2,7 @@
 Development/Visual Studio
 
 # But not the DotSettings
-!Development/Visual Studio/DiKErnel.sln.DotSettings
+!Development/Visual Studio/DiKErnel.DotSettings
+Development/Sandbox/DamageOfNaturalStoneRevetment/DamageOfNaturalStoneRevetment.sln.DotSettings.user
+Development/Sandbox/DamageOfNaturalStoneRevetment/DamageOfNaturalStoneRevetment/DamageOfNaturalStoneRevetment.vcxproj.user
+Development/Sandbox/DamageOfNaturalStoneRevetment/DamageOfNaturalStoneRevetmentTest/DamageOfNaturalStoneRevetmentTest.vcxproj.user

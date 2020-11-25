@@ -27,7 +27,7 @@ public:
 	/// Calculates the heave side.
 	/// </summary>
 	/// <returns>The heave side, which is 0 or 1.</returns>
-	static int HeavisideFunction(int theta);
+	static int HeavisideFunction(int xValue);
 
 	/// <summary>
 	/// Calculates the surf similarity parameter.
@@ -55,9 +55,10 @@ public:
 	/// <summary>
 	/// Calculates the degradation of natural stone revetment.
 	/// </summary>
+	/// <param name="tau">The tau value to use.</param>
 	/// <param name="spectralWavePeriod">The spectral wave period [s] between ti-1 and ti.</param>
 	/// <returns>The total degradation at the current time.</returns>
-	static double DegradationOfNaturalStoneRevetment(double spectralWavePeriod);
+	static double DegradationOfNaturalStoneRevetment(double tau, double spectralWavePeriod);
 
 	/// <summary>
 	/// Calculates the elapsed time in this timestep.
@@ -87,4 +88,11 @@ public:
 	/// between ti-1 and ti.</param>
 	/// <returns>The wave angle impact at the current time.</returns>
 	static double WaveAngleImpactOnNaturalStoneRevetment(double waveAngle);
+
+	/// <summary>
+	/// Converts a value in degrees to a value in radians.
+	/// </summary>
+	/// <param name="degrees">The amount of degrees.</param>
+	/// <returns>The amount of radians.</returns>
+	static double ConvertToRadians(double degrees);
 };
