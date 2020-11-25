@@ -1,8 +1,10 @@
-# Ignore Visual Studio folder
-Development/Visual Studio
+# Ignore VisualStudio folder
+Development/VisualStudio
 
 # But not the DotSettings
-!Development/Visual Studio/DiKErnel.DotSettings
+!Development/VisualStudio/DiKErnel.DotSettings
+
+# Remove
 Development/Sandbox/DamageOfNaturalStoneRevetment/DamageOfNaturalStoneRevetment.sln.DotSettings.user
 Development/Sandbox/DamageOfNaturalStoneRevetment/DamageOfNaturalStoneRevetment/DamageOfNaturalStoneRevetment.vcxproj.user
 Development/Sandbox/DamageOfNaturalStoneRevetment/DamageOfNaturalStoneRevetmentTest/DamageOfNaturalStoneRevetmentTest.vcxproj.user
