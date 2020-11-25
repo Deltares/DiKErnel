@@ -19,7 +19,7 @@ SCENARIO("Scenario 2")
 {
     SECTION("Section 1")
     {
-        REQUIRE(true == true);
+        REQUIRE(false == true);
     }
 
     SECTION("Section 2")
