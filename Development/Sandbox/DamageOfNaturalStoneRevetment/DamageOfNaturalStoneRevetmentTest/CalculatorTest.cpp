@@ -7,7 +7,7 @@
 TEST_CASE("DamageOfNaturalStoneRevetment")
 {
 	// Call
-	double damage = Calculator::DamageOfNaturalStoneRevetment(0.1, 0.3);
+	double damage = Calculator::DamageOfNaturalStoneRevetment(1,2,3,4,5,6,7,8);
 
 	// Assert
 	REQUIRE(damage == 0.4);
@@ -52,7 +52,7 @@ TEST_CASE("ResistanceOfNaturalStoneRevetment")
 TEST_CASE("IncrementDegradationOfNaturalStoneRevetment")
 {
 	// Call
-	double incrementDegradationOfNaturalStoneRevetment = Calculator::IncrementDegradationOfNaturalStoneRevetment();
+	double incrementDegradationOfNaturalStoneRevetment = Calculator::IncrementDegradationOfNaturalStoneRevetment(1,2);
 
 	// Assert
 	REQUIRE(incrementDegradationOfNaturalStoneRevetment == 2.0);
@@ -79,7 +79,7 @@ TEST_CASE("IncrementOfTime")
 TEST_CASE("ReferenceTimeDegradationOfNaturalStoneRevetment")
 {
 	// Call
-	double referenceTimeDegradationOfNaturalStoneRevetment = Calculator::ReferenceTimeDegradationOfNaturalStoneRevetment(7.0);
+	double referenceTimeDegradationOfNaturalStoneRevetment = Calculator::ReferenceTimeDegradationOfNaturalStoneRevetment(1,2,3,4,5,6);
 
 	// Assert
 	REQUIRE(referenceTimeDegradationOfNaturalStoneRevetment == 0.0);

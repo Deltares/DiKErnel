@@ -7,13 +7,13 @@ public:
 	/// </summary>
 	/// <param name="initialDamage">The initial damage at the start of the calculation.</param>
 	/// <returns>The total damage of natural stone revetment, a value between 0 and 1.</returns>
-	static double DamageOfNaturalStoneRevetment(double initialDamage);
+	static double DamageOfNaturalStoneRevetment(double initialDamage, double slopeAngle, double spectralWaveHeight, double spectralWavePeriod, double relativeDensity, double thicknessTopLayer, double tau, double waveAngle);
 
 	/// <summary>
 	/// Calculates the incremented damage of natural stone revetment.
 	/// </summary>
 	/// <returns>The incremented damage at the current time and place.</returns>
-	static double IncrementDamageOfNaturalStoneRevetment();
+	static double IncrementDamageOfNaturalStoneRevetment(double slopeAngle, double spectralWaveHeight, double spectralWavePeriod, double relativeDensity, double thicknessTopLayer, double tau, double waveAngle);
 
 	/// <summary>
 	/// Calculates the hydraulic load on natural stone revetment.
@@ -79,7 +79,7 @@ public:
 	/// <param name="waveAngle">The incoming wave handle [°] relative to the normal line
 	/// between ti-1 and ti.</param>
 	/// <returns>The surf similarity parameter at the current time and place.</returns>
-	static double ReferenceTimeDegradationOfNaturalStoneRevetment(double relativeDensity, double thicknessTopLayer, double spectralWaveHeight, double waveAngle, double spectralWavePeriod);
+	static double ReferenceTimeDegradationOfNaturalStoneRevetment(double relativeDensity, double thicknessTopLayer, double spectralWaveHeight, double waveAngle, double slopeAngle, double spectralWavePeriod);
 
 	/// <summary>
 	/// Calculates the reference degradation of natural stone revetment.
@@ -90,7 +90,7 @@ public:
 	/// <param name="waveAngle">The incoming wave handle [°] relative to the normal line
 	/// between ti-1 and ti.</param>
 	/// <returns>The reference degradation of natural stone revetment at the current time and place.</returns>
-	static double ReferenceDegradationOfNaturalStoneRevetment(double relativeDensity, double thicknessTopLayer, double spectralWaveHeight, double waveAngle);
+	static double ReferenceDegradationOfNaturalStoneRevetment(double relativeDensity, double thicknessTopLayer, double spectralWaveHeight, double waveAngle, double slopeAngle, double spectralWavePeriod);
 
 	/// <summary>
 	/// Calculates the wave angle impact of natural stone revetment.
