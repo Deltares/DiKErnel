@@ -2,7 +2,7 @@
 #include "catch2/catch.hpp"
 #include "catch2/catch_reporter_teamcity.hpp"
 
-TEST_CASE("Test case 1")
+SCENARIO()
 {
     SECTION("Section 1")
     {
@@ -15,7 +15,7 @@ TEST_CASE("Test case 1")
     }
 }
 
-TEST_CASE("Test case 2")
+SCENARIO()
 {
     SECTION("Section 1")
     {
