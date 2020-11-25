@@ -17,33 +17,39 @@ double Calculator::IncrementDamageOfNaturalStoneRevetment(double slopeAngle, dou
 
 double Calculator::HydraulicLoadOnNaturalStoneRevetment(double slopeAngle, double spectralWaveHeight, double spectralWavePeriod)
 {
-	int theta = HeavisideFunction(1);
-	double xiFactor = 2.0;
-	double coefficientAS = 3.0;
-	double coefficientBP = 4.0;
-	double coefficientCP = 5.0;
-	double coefficientNP = 2.0;
-	
+	double xiFactor = 2.9;
 	double surfSimilarityParameter = SurfSimilarityParameter(slopeAngle, spectralWaveHeight, spectralWavePeriod);
-	double partialQuotation = (coefficientAS * pow(surfSimilarityParameter, coefficientNP) + (coefficientBP * surfSimilarityParameter) + coefficientCP);
-	
-	double firstPart = theta * (xiFactor - surfSimilarityParameter) * partialQuotation;
+	std::tuple<int,int> theta = HeavisideFunction(xiFactor, surfSimilarityParameter);
+	double coefficientAP = 4.0;
+	double coefficientNP = -0.9;
+	double coefficientBP = 0.0;
+	double coefficientCP = 0.0;
 
-	double secondPart = theta * (surfSimilarityParameter - xiFactor) * partialQuotation;
+	double coefficientAS = 0.8;
+	double coefficientNS = 0.6;
+	double coefficientBS = 0.0;
+	double coefficientCS = 0.0;
+
+	double firstPartialQuotation = (coefficientAP * pow(surfSimilarityParameter, coefficientNP) + (coefficientBP * surfSimilarityParameter) + coefficientCP);
+	double secondPartialQuotation = (coefficientAS * pow(surfSimilarityParameter, coefficientNS) + (coefficientBS * surfSimilarityParameter) + coefficientCS);
+	
+	double firstPart = std::get<0>(theta) * firstPartialQuotation;
+
+	double secondPart = std::get<1>(theta) * secondPartialQuotation;
 	
 	double denominator = firstPart + secondPart;
 
 	return spectralWaveHeight / denominator;
 }
 
-int Calculator::HeavisideFunction(int xValue)
+std::tuple<int,int> Calculator::HeavisideFunction(double xiFactor, double surfSimilarityParameter)
 {
-	if (xValue < 0)
+	if (xiFactor > surfSimilarityParameter)
 	{
-		return 0;
+		return std::tuple<int, int>{1, 0};
 	}
 
-	return 1;
+	return std::tuple<int, int>{0, 1};
 }
 
 double Calculator::SurfSimilarityParameter(double slopeAngle, double spectralWaveHeight, double spectralWavePeriod)
@@ -93,7 +99,11 @@ double Calculator::ReferenceTimeDegradationOfNaturalStoneRevetment(double relati
 
 double Calculator::ReferenceDegradationOfNaturalStoneRevetment(double relativeDensity, double thicknessTopLayer, double spectralWaveHeight, double waveAngle, double slopeAngle, double spectralWavePeriod)
 {
-	return (ResistanceOfNaturalStoneRevetment(relativeDensity, thicknessTopLayer) / HydraulicLoadOnNaturalStoneRevetment(slopeAngle, spectralWaveHeight, spectralWavePeriod)) * (1 / WaveAngleImpactOnNaturalStoneRevetment(waveAngle));
+	double resistanceOfNaturalStoneRevetment = ResistanceOfNaturalStoneRevetment(relativeDensity, thicknessTopLayer);
+	double hydraulicLoadOnNaturalStoneRevetment = HydraulicLoadOnNaturalStoneRevetment(slopeAngle, spectralWaveHeight, spectralWavePeriod);
+	double waveAngleImpactOnNaturalStoneRevetment = WaveAngleImpactOnNaturalStoneRevetment(waveAngle);
+
+	return (resistanceOfNaturalStoneRevetment / hydraulicLoadOnNaturalStoneRevetment) * (1 / waveAngleImpactOnNaturalStoneRevetment);
 }
 
 double Calculator::WaveAngleImpactOnNaturalStoneRevetment(double waveAngle)

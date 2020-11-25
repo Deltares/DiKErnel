@@ -1,4 +1,6 @@
 #pragma once
+#include <tuple>
+
 class Calculator
 {
 public:
@@ -25,10 +27,10 @@ public:
 	static double HydraulicLoadOnNaturalStoneRevetment(double slopeAngle, double spectralWaveHeight, double spectralWavePeriod);
 
 	/// <summary>
-	/// Calculates the heave side.
+	/// Calculates the heaviside.
 	/// </summary>
-	/// <returns>The heave side, which is 0 or 1.</returns>
-	static int HeavisideFunction(int xValue);
+	/// <returns>The heaviside, which is 0 or 1.</returns>
+	static std::tuple<int,int> HeavisideFunction(double xiFactor, double surfSimilarityParameter);
 
 	/// <summary>
 	/// Calculates the surf similarity parameter.
