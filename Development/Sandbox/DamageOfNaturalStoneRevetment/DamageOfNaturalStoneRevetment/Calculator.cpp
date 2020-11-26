@@ -30,12 +30,12 @@ double Calculator::HydraulicLoadOnNaturalStoneRevetment(double slopeAngle, doubl
 	double coefficientBS = 0.0;
 	double coefficientCS = 0.0;
 
-	double firstPartialQuotation = (coefficientAP * pow(surfSimilarityParameter, coefficientNP) + (coefficientBP * surfSimilarityParameter) + coefficientCP);
-	double secondPartialQuotation = (coefficientAS * pow(surfSimilarityParameter, coefficientNS) + (coefficientBS * surfSimilarityParameter) + coefficientCS);
+	double firstPartialDenominator = (coefficientAP * pow(surfSimilarityParameter, coefficientNP) + (coefficientBP * surfSimilarityParameter) + coefficientCP);
+	double secondPartialDenominator = (coefficientAS * pow(surfSimilarityParameter, coefficientNS) + (coefficientBS * surfSimilarityParameter) + coefficientCS);
 	
-	double firstPart = std::get<0>(theta) * firstPartialQuotation;
+	double firstPart = std::get<0>(theta) * firstPartialDenominator;
 
-	double secondPart = std::get<1>(theta) * secondPartialQuotation;
+	double secondPart = std::get<1>(theta) * secondPartialDenominator;
 	
 	double denominator = firstPart + secondPart;
 
