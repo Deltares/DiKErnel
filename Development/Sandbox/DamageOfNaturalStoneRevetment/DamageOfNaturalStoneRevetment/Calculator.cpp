@@ -2,6 +2,7 @@
 #include "Calculator.h"
 #include <cmath>
 #include <iostream>
+using namespace DamageOfNaturalStoneRevetmentCalculator;
 
 double Calculator::DamageOfNaturalStoneRevetment(const double initialDamage, const double slopeAngle, const double spectralWaveHeight, const double spectralWavePeriod, const double relativeDensity, const double thicknessTopLayer, const double tau, const double waveAngle)
 {
@@ -104,7 +105,7 @@ double Calculator::IncrementOfTime(const double initialTime, const double curren
     return currentTime - initialTime;
 }
 
-double Calculator::ReferenceTimeDegradationOfNaturalStoneRevetment(const double relativeDensity, const double thicknessTopLayer, const double spectralWaveHeight, const double waveAngle, const double slopeAngle, const double spectralWavePeriod)
+double Calculator::ReferenceTimeDegradationOfNaturalStoneRevetment(const double relativeDensity, const double thicknessTopLayer, const double spectralWaveHeight, const double spectralWavePeriod, const double waveAngle, const double slopeAngle)
 {
     const auto referenceDegradationOfNaturalStoneRevetment = ReferenceDegradationOfNaturalStoneRevetment(relativeDensity, thicknessTopLayer, spectralWaveHeight, waveAngle, slopeAngle, spectralWavePeriod);
 

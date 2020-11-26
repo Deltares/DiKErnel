@@ -1,8 +1,8 @@
 #include "pch.h"
 #define CATCH_CONFIG_MAIN
 #include "catch.hpp"
-
 #include "../DamageOfNaturalStoneRevetment/Calculator.h"
+using namespace DamageOfNaturalStoneRevetmentCalculator;
 
 double initialDamage = 0.0;
 double waveAngle = 60.0;
@@ -97,7 +97,7 @@ TEST_CASE("IncrementOfTime")
 TEST_CASE("ReferenceTimeDegradationOfNaturalStoneRevetment")
 {
     // Call
-    double referenceTimeDegradationOfNaturalStoneRevetment = Calculator::ReferenceTimeDegradationOfNaturalStoneRevetment(relativeDensity, thicknessTopLayer, spectralWaveHeight, waveAngle, slopeAngle, spectralWavePeriod);
+    double referenceTimeDegradationOfNaturalStoneRevetment = Calculator::ReferenceTimeDegradationOfNaturalStoneRevetment(relativeDensity, thicknessTopLayer, spectralWaveHeight, spectralWavePeriod, waveAngle, slopeAngle);
 
     // Assert
     REQUIRE(referenceTimeDegradationOfNaturalStoneRevetment == Approx(12207.311985307844));
