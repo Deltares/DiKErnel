@@ -108,12 +108,12 @@ namespace DamageOfNaturalStoneRevetmentCalculator
             /// <param name="relativeDensity">The relative density [-] at the current location.</param>
             /// <param name="thicknessTopLayer">The thickness of the top layer [m] at the current location.</param>
             /// <param name="spectralWaveHeight">The spectral wave height [m] between ti-1 and ti.</param>
+                        /// <param name="spectralWavePeriod">The spectral wave period [s] between ti-1 and ti.</param>
             /// <param name="waveAngle">The incoming wave handle [°] relative to the normal line
             /// between ti-1 and ti.</param>
             /// <param name="slopeAngle">The slope angle [°] at the current location.</param>
-            /// <param name="spectralWavePeriod">The spectral wave period [s] between ti-1 and ti.</param>
             /// <returns>The reference degradation of natural stone revetment at the current time and place.</returns>
-            static double ReferenceDegradationOfNaturalStoneRevetment(double relativeDensity, double thicknessTopLayer, double spectralWaveHeight, double waveAngle, double slopeAngle, double spectralWavePeriod);
+            static double ReferenceDegradationOfNaturalStoneRevetment(double relativeDensity, double thicknessTopLayer, double spectralWaveHeight, double spectralWavePeriod, double waveAngle, double slopeAngle);
 
             /// <summary>
             /// Calculates the wave angle impact of natural stone revetment.
