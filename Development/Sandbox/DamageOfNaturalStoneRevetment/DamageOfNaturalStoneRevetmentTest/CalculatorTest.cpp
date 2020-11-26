@@ -16,7 +16,7 @@ double thicknessTopLayer = 0.2;
 TEST_CASE("DamageOfNaturalStoneRevetment")
 {
     // Call
-    double damage = Calculator::DamageOfNaturalStoneRevetment(initialDamage, slopeAngle, spectralWaveHeight, spectralWavePeriod, relativeDensity, thicknessTopLayer, tau, waveAngle);
+    double damage = Calculator::DamageOfNaturalStoneRevetment(initialDamage, slopeAngle, relativeDensity, thicknessTopLayer, spectralWaveHeight, spectralWavePeriod, tau, waveAngle);
 
     // Assert
     REQUIRE(damage == Approx(1.8918112130009428));
@@ -25,7 +25,7 @@ TEST_CASE("DamageOfNaturalStoneRevetment")
 TEST_CASE("IncrementDamageOfNaturalStoneRevetment")
 {
     // Call
-    double damage = Calculator::IncrementDamageOfNaturalStoneRevetment(slopeAngle, spectralWaveHeight, spectralWavePeriod, relativeDensity, thicknessTopLayer, tau, waveAngle);
+    double damage = Calculator::IncrementDamageOfNaturalStoneRevetment(slopeAngle, relativeDensity, thicknessTopLayer, spectralWaveHeight, spectralWavePeriod, tau, waveAngle);
 
     // Assert
     REQUIRE(damage == Approx(1.8918112130009428));

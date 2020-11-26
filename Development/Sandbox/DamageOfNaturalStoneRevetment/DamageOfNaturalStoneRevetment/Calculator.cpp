@@ -4,14 +4,14 @@
 #include <iostream>
 using namespace DamageOfNaturalStoneRevetmentCalculator;
 
-double Calculator::DamageOfNaturalStoneRevetment(const double initialDamage, const double slopeAngle, const double spectralWaveHeight, const double spectralWavePeriod, const double relativeDensity, const double thicknessTopLayer, const double tau, const double waveAngle)
+double Calculator::DamageOfNaturalStoneRevetment(const double initialDamage, const double slopeAngle, const double relativeDensity, const double thicknessTopLayer, const double spectralWaveHeight, const double spectralWavePeriod, const double tau, const double waveAngle)
 {
-    const auto incrementDamageOfNaturalStoneRevetment = IncrementDamageOfNaturalStoneRevetment(slopeAngle, spectralWaveHeight, spectralWavePeriod, relativeDensity, thicknessTopLayer, tau, waveAngle);
+    const auto incrementDamageOfNaturalStoneRevetment = IncrementDamageOfNaturalStoneRevetment(slopeAngle, relativeDensity, thicknessTopLayer, spectralWaveHeight, spectralWavePeriod, tau, waveAngle);
 
     return initialDamage + incrementDamageOfNaturalStoneRevetment;
 }
 
-double Calculator::IncrementDamageOfNaturalStoneRevetment(const double slopeAngle, const double spectralWaveHeight, const double spectralWavePeriod, const double relativeDensity, const double thicknessTopLayer, const double tau, const double waveAngle)
+double Calculator::IncrementDamageOfNaturalStoneRevetment(const double slopeAngle, const double relativeDensity, const double thicknessTopLayer, const double spectralWaveHeight, const double spectralWavePeriod, const double tau, const double waveAngle)
 {
     const auto hydraulicLoadOnNaturalStoneRevetment = HydraulicLoadOnNaturalStoneRevetment(slopeAngle, spectralWaveHeight, spectralWavePeriod) / ResistanceOfNaturalStoneRevetment(relativeDensity, thicknessTopLayer);
     const auto incrementDegradationOfNaturalStoneRevetment = IncrementDegradationOfNaturalStoneRevetment(tau, spectralWavePeriod);
