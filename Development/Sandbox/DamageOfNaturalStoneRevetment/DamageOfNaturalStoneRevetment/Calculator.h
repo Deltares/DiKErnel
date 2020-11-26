@@ -8,12 +8,22 @@ public:
 	/// Calculates the total natural stone revetment.
 	/// </summary>
 	/// <param name="initialDamage">The initial damage at the start of the calculation.</param>
+	/// <param name="slopeAngle">The slope angle [°] at the current location.</param>
+	/// <param name="spectralWaveHeight">The spectral wave height [m] between ti-1 and ti.</param>
+	/// <param name="spectralWavePeriod">The spectral wave period [s] between ti-1 and ti.</param>
+	/// <param name="relativeDensity"></param>
+	/// <param name="thicknessTopLayer"></param>
+	/// <param name="tau"></param>
+	/// <param name="waveAngle"></param>
 	/// <returns>The total damage of natural stone revetment, a value between 0 and 1.</returns>
 	static double DamageOfNaturalStoneRevetment(double initialDamage, double slopeAngle, double spectralWaveHeight, double spectralWavePeriod, double relativeDensity, double thicknessTopLayer, double tau, double waveAngle);
 
 	/// <summary>
 	/// Calculates the incremented damage of natural stone revetment.
 	/// </summary>
+	/// <param name="slopeAngle">The slope angle [°] at the current location.</param>
+	/// <param name="spectralWaveHeight">The spectral wave height [m] between ti-1 and ti.</param>
+	/// <param name="spectralWavePeriod">The spectral wave period [s] between ti-1 and ti.</param>
 	/// <returns>The incremented damage at the current time and place.</returns>
 	static double IncrementDamageOfNaturalStoneRevetment(double slopeAngle, double spectralWaveHeight, double spectralWavePeriod, double relativeDensity, double thicknessTopLayer, double tau, double waveAngle);
 
