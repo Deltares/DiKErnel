@@ -3,14 +3,14 @@
 #include <cmath>
 #include <iostream>
 
-double Calculator::DamageOfNaturalStoneRevetment(double initialDamage, double slopeAngle, double spectralWaveHeight, double spectralWavePeriod, double relativeDensity, double thicknessTopLayer, double tau, double waveAngle)
+double Calculator::DamageOfNaturalStoneRevetment(const double initialDamage, const double slopeAngle, const double spectralWaveHeight, const double spectralWavePeriod, const double relativeDensity, const double thicknessTopLayer, const double tau, const double waveAngle)
 {
     const auto incrementDamageOfNaturalStoneRevetment = IncrementDamageOfNaturalStoneRevetment(slopeAngle, spectralWaveHeight, spectralWavePeriod, relativeDensity, thicknessTopLayer, tau, waveAngle);
 
     return initialDamage + incrementDamageOfNaturalStoneRevetment;
 }
 
-double Calculator::IncrementDamageOfNaturalStoneRevetment(double slopeAngle, double spectralWaveHeight, double spectralWavePeriod, double relativeDensity, double thicknessTopLayer, double tau, double waveAngle)
+double Calculator::IncrementDamageOfNaturalStoneRevetment(const double slopeAngle, const double spectralWaveHeight, const double spectralWavePeriod, const double relativeDensity, const double thicknessTopLayer, const double tau, const double waveAngle)
 {
     const auto hydraulicLoadOnNaturalStoneRevetment = HydraulicLoadOnNaturalStoneRevetment(slopeAngle, spectralWaveHeight, spectralWavePeriod) / ResistanceOfNaturalStoneRevetment(relativeDensity, thicknessTopLayer);
     const auto incrementDegradationOfNaturalStoneRevetment = IncrementDegradationOfNaturalStoneRevetment(tau, spectralWavePeriod);
@@ -19,7 +19,7 @@ double Calculator::IncrementDamageOfNaturalStoneRevetment(double slopeAngle, dou
     return hydraulicLoadOnNaturalStoneRevetment * incrementDegradationOfNaturalStoneRevetment * waveAngleImpactOnNaturalStoneRevetment;
 }
 
-double Calculator::HydraulicLoadOnNaturalStoneRevetment(double slopeAngle, double spectralWaveHeight, double spectralWavePeriod)
+double Calculator::HydraulicLoadOnNaturalStoneRevetment(const double slopeAngle, const double spectralWaveHeight, const double spectralWavePeriod)
 {
     const auto xiFactor = 2.9;
     const auto surfSimilarityParameter = SurfSimilarityParameter(slopeAngle, spectralWaveHeight, spectralWavePeriod);
@@ -46,7 +46,7 @@ double Calculator::HydraulicLoadOnNaturalStoneRevetment(double slopeAngle, doubl
     return spectralWaveHeight / denominator;
 }
 
-std::tuple<int, int> Calculator::HeavisideFunction(double xiFactor, double surfSimilarityParameter)
+std::tuple<int, int> Calculator::HeavisideFunction(const double xiFactor, const double surfSimilarityParameter)
 {
     if (xiFactor > surfSimilarityParameter)
     {
@@ -64,7 +64,7 @@ std::tuple<int, int> Calculator::HeavisideFunction(double xiFactor, double surfS
     };
 }
 
-double Calculator::SurfSimilarityParameter(double slopeAngle, double spectralWaveHeight, double spectralWavePeriod)
+double Calculator::SurfSimilarityParameter(const double slopeAngle, const double spectralWaveHeight, const double spectralWavePeriod)
 {
     const auto pi = 2 * acos(0.0);
     const auto spectralWaveHeightRelatedValue = 2 * pi * spectralWaveHeight;
@@ -79,7 +79,7 @@ double Calculator::SurfSimilarityParameter(double slopeAngle, double spectralWav
     return surfSimilarityParameter;
 }
 
-double Calculator::ResistanceOfNaturalStoneRevetment(double relativeDensity, double thicknessTopLayer)
+double Calculator::ResistanceOfNaturalStoneRevetment(const double relativeDensity, const double thicknessTopLayer)
 {
     return relativeDensity * thicknessTopLayer;
 }
@@ -91,7 +91,7 @@ double Calculator::IncrementDegradationOfNaturalStoneRevetment(double tau, doubl
     return degradation + 2.0 - degradation;
 }
 
-double Calculator::DegradationOfNaturalStoneRevetment(double tau, double spectralWavePeriod)
+double Calculator::DegradationOfNaturalStoneRevetment(const double tau, const double spectralWavePeriod)
 {
     const auto numerator = tau / spectralWavePeriod;
     const int denominator = 1000.0;
@@ -99,19 +99,19 @@ double Calculator::DegradationOfNaturalStoneRevetment(double tau, double spectra
     return pow(numerator / denominator, 0.1);
 }
 
-double Calculator::IncrementOfTime(double initialTime, double currentTime)
+double Calculator::IncrementOfTime(const double initialTime, const double currentTime)
 {
     return currentTime - initialTime;
 }
 
-double Calculator::ReferenceTimeDegradationOfNaturalStoneRevetment(double relativeDensity, double thicknessTopLayer, double spectralWaveHeight, double waveAngle, double slopeAngle, double spectralWavePeriod)
+double Calculator::ReferenceTimeDegradationOfNaturalStoneRevetment(const double relativeDensity, const double thicknessTopLayer, const double spectralWaveHeight, const double waveAngle, const double slopeAngle, const double spectralWavePeriod)
 {
     const auto referenceDegradationOfNaturalStoneRevetment = ReferenceDegradationOfNaturalStoneRevetment(relativeDensity, thicknessTopLayer, spectralWaveHeight, waveAngle, slopeAngle, spectralWavePeriod);
 
     return 1000.0 * spectralWavePeriod * pow(referenceDegradationOfNaturalStoneRevetment, 10.0);
 }
 
-double Calculator::ReferenceDegradationOfNaturalStoneRevetment(double relativeDensity, double thicknessTopLayer, double spectralWaveHeight, double waveAngle, double slopeAngle, double spectralWavePeriod)
+double Calculator::ReferenceDegradationOfNaturalStoneRevetment(const double relativeDensity, const double thicknessTopLayer, const double spectralWaveHeight, const double waveAngle, const double slopeAngle, const double spectralWavePeriod)
 {
     const auto resistanceOfNaturalStoneRevetment = ResistanceOfNaturalStoneRevetment(relativeDensity, thicknessTopLayer);
     const auto hydraulicLoadOnNaturalStoneRevetment = HydraulicLoadOnNaturalStoneRevetment(slopeAngle, spectralWaveHeight, spectralWavePeriod);
@@ -120,7 +120,7 @@ double Calculator::ReferenceDegradationOfNaturalStoneRevetment(double relativeDe
     return resistanceOfNaturalStoneRevetment / hydraulicLoadOnNaturalStoneRevetment * (1.0 / waveAngleImpactOnNaturalStoneRevetment);
 }
 
-double Calculator::WaveAngleImpactOnNaturalStoneRevetment(double waveAngle)
+double Calculator::WaveAngleImpactOnNaturalStoneRevetment(const double waveAngle)
 {
     if (waveAngle > 90 || waveAngle < -90)
     {
@@ -132,13 +132,13 @@ double Calculator::WaveAngleImpactOnNaturalStoneRevetment(double waveAngle)
 
     const auto waveAngleRadians = ConvertToRadians(smallestAngle);
     const auto absoluteWaveAngleRadians = fabs(waveAngleRadians);
-    const auto cosinus = cos(absoluteWaveAngleRadians);
+    const auto cosine = cos(absoluteWaveAngleRadians);
     const auto exponent = 2.0 / 3;
 
-    return pow(cosinus, exponent);
+    return pow(cosine, exponent);
 }
 
-double Calculator::ConvertToRadians(double degrees)
+double Calculator::ConvertToRadians(const double degrees)
 {
     const auto pi = 2.0 * acos(0.0);
 
