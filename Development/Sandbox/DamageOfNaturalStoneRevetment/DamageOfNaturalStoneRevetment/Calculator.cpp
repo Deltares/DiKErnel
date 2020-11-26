@@ -82,7 +82,7 @@ double Calculator::IncrementDegradationOfNaturalStoneRevetment(double tau, doubl
 double Calculator::DegradationOfNaturalStoneRevetment(double tau, double spectralWavePeriod)
 {
 	double numerator = tau / spectralWavePeriod;
-	int denominator = 1000;
+	int denominator = 1000.0;
 
 	return pow(numerator / denominator, 0.1);
 }
@@ -94,7 +94,7 @@ double Calculator::IncrementOfTime(double initialTime, double currentTime)
 
 double Calculator::ReferenceTimeDegradationOfNaturalStoneRevetment(double relativeDensity, double thicknessTopLayer, double spectralWaveHeight, double waveAngle, double slopeAngle, double spectralWavePeriod)
 {
-	return 1000 * spectralWavePeriod * pow(ReferenceDegradationOfNaturalStoneRevetment(relativeDensity, thicknessTopLayer, spectralWaveHeight, waveAngle, slopeAngle, spectralWavePeriod), 10.0);
+	return 1000.0 * spectralWavePeriod * pow(ReferenceDegradationOfNaturalStoneRevetment(relativeDensity, thicknessTopLayer, spectralWaveHeight, waveAngle, slopeAngle, spectralWavePeriod), 10.0);
 }
 
 double Calculator::ReferenceDegradationOfNaturalStoneRevetment(double relativeDensity, double thicknessTopLayer, double spectralWaveHeight, double waveAngle, double slopeAngle, double spectralWavePeriod)
@@ -103,7 +103,7 @@ double Calculator::ReferenceDegradationOfNaturalStoneRevetment(double relativeDe
 	double hydraulicLoadOnNaturalStoneRevetment = HydraulicLoadOnNaturalStoneRevetment(slopeAngle, spectralWaveHeight, spectralWavePeriod);
 	double waveAngleImpactOnNaturalStoneRevetment = WaveAngleImpactOnNaturalStoneRevetment(waveAngle);
 
-	return (resistanceOfNaturalStoneRevetment / hydraulicLoadOnNaturalStoneRevetment) * (1 / waveAngleImpactOnNaturalStoneRevetment);
+	return (resistanceOfNaturalStoneRevetment / hydraulicLoadOnNaturalStoneRevetment) * (1.0 / waveAngleImpactOnNaturalStoneRevetment);
 }
 
 double Calculator::WaveAngleImpactOnNaturalStoneRevetment(double waveAngle)
