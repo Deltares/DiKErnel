@@ -3,8 +3,3 @@ Development/VisualStudio
 
 # But not the DotSettings
 !Development/VisualStudio/DiKErnel.DotSettings
-
-# Remove
-Development/Sandbox/DamageOfNaturalStoneRevetment/DamageOfNaturalStoneRevetment.sln.DotSettings.user
-Development/Sandbox/DamageOfNaturalStoneRevetment/DamageOfNaturalStoneRevetment/DamageOfNaturalStoneRevetment.vcxproj.user
-Development/Sandbox/DamageOfNaturalStoneRevetment/DamageOfNaturalStoneRevetmentTest/DamageOfNaturalStoneRevetmentTest.vcxproj.user
