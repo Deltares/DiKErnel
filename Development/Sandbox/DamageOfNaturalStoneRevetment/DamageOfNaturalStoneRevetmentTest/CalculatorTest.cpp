@@ -97,7 +97,7 @@ TEST_CASE("IncrementOfTime")
 TEST_CASE("ReferenceTimeDegradationOfNaturalStoneRevetment")
 {
     // Call
-    double referenceTimeDegradationOfNaturalStoneRevetment = Calculator::ReferenceTimeDegradationOfNaturalStoneRevetment(relativeDensity, thicknessTopLayer, spectralWaveHeight, spectralWavePeriod, waveAngle, slopeAngle);
+    double referenceTimeDegradationOfNaturalStoneRevetment = Calculator::ReferenceTimeDegradationOfNaturalStoneRevetment(slopeAngle, relativeDensity, thicknessTopLayer, spectralWaveHeight, spectralWavePeriod, waveAngle);
 
     // Assert
     REQUIRE(referenceTimeDegradationOfNaturalStoneRevetment == Approx(12207.311985307844));
@@ -106,7 +106,7 @@ TEST_CASE("ReferenceTimeDegradationOfNaturalStoneRevetment")
 TEST_CASE("ReferenceDegradationOfNaturalStoneRevetment")
 {
     // Call
-    double referenceDegradationOfNaturalStoneRevetment = Calculator::ReferenceDegradationOfNaturalStoneRevetment(relativeDensity, thicknessTopLayer, spectralWaveHeight, spectralWavePeriod, waveAngle, slopeAngle);
+    double referenceDegradationOfNaturalStoneRevetment = Calculator::ReferenceDegradationOfNaturalStoneRevetment(slopeAngle, relativeDensity, thicknessTopLayer, spectralWaveHeight, spectralWavePeriod, waveAngle);
 
     // Assert
     REQUIRE(referenceDegradationOfNaturalStoneRevetment == Approx(1.0571879404538673));
