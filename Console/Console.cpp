@@ -1,9 +1,11 @@
+#include <iostream>
+
 #include "DiKErnel.h"
 
 using namespace Application;
 
 int main()
 {
-	DiKErnel::Run();
+	std::cout << DiKErnel::Run();
 	return 0;
 }

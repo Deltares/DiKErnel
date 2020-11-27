@@ -1,29 +1,11 @@
 #define CATCH_CONFIG_MAIN
 #include "catch2/catch.hpp"
-#include "catch2/catch_reporter_teamcity.hpp"
 
-SCENARIO("Scenario 1")
+#include "DiKErnel.h"
+
+using namespace Application;
+
+SCENARIO("Test DiKErnel")
 {
-    SECTION("Section 1")
-    {
-        REQUIRE(true == true);
-    }
-
-    SECTION("Section 2")
-    {
-        REQUIRE(true == true);
-    }
-}
-
-SCENARIO("Scenario 2")
-{
-    SECTION("Section 1")
-    {
-        REQUIRE(true == true);
-    }
-
-    SECTION("Section 2")
-    {
-        REQUIRE(true == true);
-    }
+    REQUIRE(DiKErnel::Run() == "Run the DiKErnel!");
 }

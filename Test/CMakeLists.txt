@@ -7,6 +7,9 @@ set(LIBNAME DiKErnel.Test)
 # Targets #
 ###########
 
+set(CMAKE_CXX_FLAGS "-g -O0 -Wall -fprofile-arcs -ftest-coverage")
+set(CMAKE_CXX_OUTPUT_EXTENSION_REPLACE 1)
+
 # Sources
 set (SOURCES
 	DiKErnelTest.cpp
@@ -28,4 +31,4 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(Catch2)
 
 # Link Catch to the executable
-target_link_libraries(${LIBNAME} Catch2::Catch2)
+target_link_libraries(${LIBNAME} Catch2::Catch2 DiKErnel)

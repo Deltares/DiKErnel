@@ -1,10 +1,11 @@
 #pragma once
+#include <string>
 
 namespace Application
 {
 	class DiKErnel
 	{
-		public:
-			static void Run();
+	    public:
+	        static std::string Run();
 	};
 }

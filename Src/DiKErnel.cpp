@@ -4,8 +4,8 @@
 
 namespace Application
 {
-	void DiKErnel::Run()
-	{
-		std::cout << "Run the DiKErnel!";
-	}
+    std::string DiKErnel::Run()
+    {
+        return "Run the DiKErnel!";
+    }
 }
