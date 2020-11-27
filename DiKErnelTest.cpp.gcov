@@ -1,7 +1,8 @@
         -:    0:Source:D:/Development/DiKErnel/Test/DiKErnelTest.cpp
-        -:    0:Graph:Test\CMakeFiles\DiKErnel.Test.dir\DiKErnelTest.gcno
-        -:    0:Data:-
-        -:    0:Runs:0
+        -:    0:Graph:CMakeFiles\DiKErnel.Test.dir\DiKErnelTest.gcno
+        -:    0:Data:CMakeFiles\DiKErnel.Test.dir\DiKErnelTest.gcda
+        -:    0:Runs:1
+        -:    0:Source is newer than graph
         -:    1:#define CATCH_CONFIG_MAIN
         -:    2:#include "catch2/catch.hpp"
         -:    3:
@@ -9,7 +10,7 @@
         -:    5:
         -:    6:using namespace Application;
         -:    7:
-    #####:    8:SCENARIO("Test DiKErnel")
+        1:    8:SCENARIO("Test DiKErnel")
         -:    9:{
-    #####:   10:    REQUIRE(DiKErnel::Run() == "Run the DiKErnel!");
-    #####:   11:}
+        1:   10:    REQUIRE(DiKErnel::Run() == "Run the DiKErnel!");
+        1:   11:}
