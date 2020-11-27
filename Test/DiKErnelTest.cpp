@@ -14,6 +14,6 @@
 
 int main()
 {
-	std::cout << "Tast";
+	std::cout << "Tast;
 	return 0;
 }
