@@ -30,5 +30,5 @@ FetchContent_Declare(
 
 FetchContent_MakeAvailable(Catch2)
 
-# Link Catch to the executable
-target_link_libraries(${LIBNAME} Catch2::Catch2)
+# Link dependencies to the executable
+target_link_libraries(${LIBNAME} Catch2::Catch2 DiKErnel)
