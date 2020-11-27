@@ -12,6 +12,8 @@
 //    REQUIRE(true == true);
 //}
 
+#include <iostream>
+
 int main()
 {
 	std::cout << "Tast";
