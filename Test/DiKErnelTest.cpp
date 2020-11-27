@@ -1,3 +1,6 @@
+#define CATCH_CONFIG_MAIN
+#include "catch2/catch.hpp"
+
 // #include "DiKErnel.h"
 
 // using namespace Application;
@@ -7,13 +10,7 @@
 //     REQUIRE(DiKErnel::Run() == "Run the DiKErnel!");
 // }
 
-//SCENARIO("SOME TEST")
-//{
-//    REQUIRE(true == true);
-//}
-
-int main()
+SCENARIO("SOME TEST")
 {
-	std::cout << "Tast;
-	return 0;
+    REQUIRE(true == true);
 }
