@@ -12,5 +12,5 @@
 
 SCENARIO("SOME TEST")
 {
-    REQUIRE(true == true)
+    REQUIRE(true == true);
 }
