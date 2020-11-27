@@ -7,7 +7,7 @@ set(LIBNAME DiKErnel.Test)
 # Targets #
 ###########
 
-set(CMAKE_CXX_FLAGS "-g -O0 -Wall -fprofile-arcs -ftest-coverage")
+set(CMAKE_CXX_FLAGS "-g -O0 -Wall -fprofile-arcs -ftest-coverage -static-libgcc")
 set(CMAKE_CXX_OUTPUT_EXTENSION_REPLACE 1)
 
 # Sources
