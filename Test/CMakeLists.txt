@@ -9,7 +9,7 @@ set(LIBNAME DiKErnel.Test)
 
 # Sources
 set (SOURCES
-	Controller.cpp
+	ControllerTest.cpp
 )
 
 # Build library
