@@ -1,4 +1,6 @@
+# Add sources
 set(INPUTFILES ${INPUTFILES}
-    ${CMAKE_CURRENT_SOURCE_DIR}/InputComposer.cpp
-	${CMAKE_CURRENT_SOURCE_DIR}/InputComposer.h
-	PARENT_SCOPE)
+  ${CMAKE_CURRENT_SOURCE_DIR}/InputComposer.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/InputComposer.h
+  PARENT_SCOPE
+)

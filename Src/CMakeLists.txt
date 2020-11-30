@@ -12,7 +12,11 @@ add_subdirectory(Input)
 add_subdirectory(Output)
 
 # Add library
-add_library(${LIBNAME} STATIC ${COREFILES} ${INPUTFILES} ${OUTPUTFILES})
+add_library(${LIBNAME} STATIC
+  ${COREFILES}
+  ${INPUTFILES}
+  ${OUTPUTFILES}
+)
 
 # Create folder structure
 source_group(Core FILES ${COREFILES})
