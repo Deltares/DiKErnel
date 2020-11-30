@@ -9,8 +9,8 @@ set(LIBNAME DiKErnel)
 
 # Sources
 set (SOURCES
-	DiKErnel.h
-	DiKErnel.cpp
+	Controller.h
+	Controller.cpp
 )
 
 # Build library
