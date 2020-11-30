@@ -11,6 +11,8 @@ set(LIBNAME DiKErnel)
 set (SOURCES
 	Controller.h
 	Controller.cpp
+	InputComposer.h
+	InputComposer.cpp
 )
 
 # Build library

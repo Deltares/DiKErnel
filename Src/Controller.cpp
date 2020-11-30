@@ -1,5 +1,3 @@
 #include "Controller.h"
 
-namespace DiKErnel
-{
-}
+namespace DiKErnel {}
