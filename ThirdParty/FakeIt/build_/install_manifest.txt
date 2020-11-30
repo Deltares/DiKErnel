@@ -1,0 +1,3 @@
+D:/Development/DiKErnel/ThirdParty/FakeIt/install/include/fakeit.hpp
+D:/Development/DiKErnel/ThirdParty/FakeIt/install/lib/cmake/FakeIt/FakeItConfig.cmake
+D:/Development/DiKErnel/ThirdParty/FakeIt/install/lib/cmake/FakeIt/FakeItConfigVersion.cmake
