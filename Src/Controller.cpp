@@ -1,5 +1,5 @@
 #include "Controller.h"
 
-namespace Application
+namespace DiKErnel
 {
 }

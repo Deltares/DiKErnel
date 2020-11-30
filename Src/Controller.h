@@ -1,6 +1,6 @@
 #pragma once
 
-namespace Application
+namespace DiKErnel
 {
     class Controller { };
 }

@@ -2,7 +2,7 @@
 #include "catch2/catch.hpp"
 #include "Controller.h"
 
-using namespace Application;
+using namespace DiKErnel;
 
 SCENARIO("SOME TEST")
 {
