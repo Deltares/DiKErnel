@@ -1,0 +1,6 @@
+set(COREFILES ${COREFILES}
+    ${CMAKE_CURRENT_SOURCE_DIR}/Calculator.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/Calculator.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Controller.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/Controller.h
+	PARENT_SCOPE)
