@@ -9,10 +9,14 @@ set(LIBNAME DiKErnel)
 
 # Sources
 set (SOURCES
+	Calculator.h
+	Calculator.cpp
 	Controller.h
 	Controller.cpp
 	InputComposer.h
 	InputComposer.cpp
+	OutputComposer.h
+	OutputComposer.cpp
 )
 
 # Build library
