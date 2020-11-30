@@ -27,5 +27,8 @@ FetchContent_Declare(
 
 FetchContent_MakeAvailable(Catch2)
 
+set(CMAKE_PREFIX_PATH "${PROJECT_SOURCE_DIR}/ThirdParty/FakeIt/install/lib/cmake/")
+find_package(FakeIt REQUIRED)
+
 # Link dependencies to the executable
-target_link_libraries(${LIBNAME} Catch2::Catch2 DiKErnel)
+target_link_libraries(${LIBNAME} Catch2::Catch2 FakeIt::FakeIt DiKErnel)
