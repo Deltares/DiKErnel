@@ -1,19 +1,15 @@
-###########
-# Project #
-###########
-set(EXENAME DiKErnelConsole)
+# Set executable name
+set(EXENAME DiKErnel.Console)
 
-###########
-# Targets #
-###########
-
-# Sources
+# Add sources
 set (SOURCES
-	Console.cpp
+  Console.cpp
 )
 
-# Build executable
+# Add executable
 add_executable(${EXENAME} ${SOURCES})
 
-# Link library
-target_link_libraries(${EXENAME} LINK_PUBLIC DiKErnel)
+# Link dependencies
+target_link_libraries(${EXENAME}
+  DiKErnel
+)

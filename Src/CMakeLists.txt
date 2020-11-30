@@ -1,31 +1,25 @@
-﻿###########
-# Project #
-###########
+﻿# Set library name
 set(LIBNAME DiKErnel)
 
-###########
-# Targets #
-###########
-
+# Define sources
 set(COREFILES "")
-add_subdirectory(Core)
-
 set(INPUTFILES "")
-add_subdirectory(Input)
-
 set(OUTPUTFILES "")
+
+# Add sources
+add_subdirectory(Core)
+add_subdirectory(Input)
 add_subdirectory(Output)
 
 # Add library
 add_library(${LIBNAME} STATIC ${COREFILES} ${INPUTFILES} ${OUTPUTFILES})
 
-# Add folder
+# Create folder structure
 source_group(Core FILES ${COREFILES})
 source_group(Input FILES ${INPUTFILES})
 source_group(Output FILES ${OUTPUTFILES})
 
-# Make sure the compiler can find include files
-
+# Set include directories
 target_include_directories(${LIBNAME} PUBLIC Core)
 target_include_directories(${LIBNAME} PUBLIC Input)
 target_include_directories(${LIBNAME} PUBLIC Output)

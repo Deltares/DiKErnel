@@ -1,31 +1,27 @@
-###########
-# Project #
-###########
-set(LIBNAME DiKErnel.Test)
+# Set executable name
+set(EXENAME DiKErnel.Test)
 
-###########
-# Targets #
-###########
-
-# Sources
+# Add sources
 set (SOURCES
-	ControllerTest.cpp
+  ControllerTest.cpp
 )
 
-# Build library
-add_executable(${LIBNAME} ${SOURCES})
+# Add executable
+add_executable(${EXENAME} ${SOURCES})
 
-###############
-# Third Party #
-###############
+# Fetch third party libraries
 Include(FetchContent)
 
 FetchContent_Declare(
   Catch2
   GIT_REPOSITORY https://github.com/catchorg/Catch2.git
-  GIT_TAG        v2.13.3)
+  GIT_TAG v2.13.3
+)
 
 FetchContent_MakeAvailable(Catch2)
 
-# Link dependencies to the executable
-target_link_libraries(${LIBNAME} Catch2::Catch2 DiKErnel)
+# Link dependencies
+target_link_libraries(${EXENAME}
+  Catch2::Catch2
+  DiKErnel
+)
