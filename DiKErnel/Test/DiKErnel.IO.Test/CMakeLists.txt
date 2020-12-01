@@ -1,10 +1,10 @@
 # Set executable name
-set(EXENAME DiKErnel.Core.Test)
+set(EXENAME DiKErnel.IO.Test)
 
 # Define sources
 set(SOURCEFILES
-  CalculatorTest.cpp
-  ControllerTest.cpp
+  InputComposerTest.cpp
+  OutputComposerTest.cpp
 )
 
 # Add executable
