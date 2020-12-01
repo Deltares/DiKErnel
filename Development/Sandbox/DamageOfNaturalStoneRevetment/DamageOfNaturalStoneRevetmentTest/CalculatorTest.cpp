@@ -12,11 +12,13 @@ double spectralWavePeriod = 4.0;
 double exampleReferenceTimeDegradationOfNaturalStoneRevetment = 7.0;
 double relativeDensity = 1.65;
 double thicknessTopLayer = 0.3;
+double initialTime = 0.0;
+double currentTime = 36.0;
 
 TEST_CASE("DamageOfNaturalStoneRevetment")
 {
     // Call
-    double damage = Calculator::DamageOfNaturalStoneRevetment(initialDamage, slopeAngle, relativeDensity, thicknessTopLayer, spectralWaveHeight, spectralWavePeriod, waveAngle);
+    double damage = Calculator::DamageOfNaturalStoneRevetment(initialDamage, slopeAngle, relativeDensity, thicknessTopLayer, spectralWaveHeight, spectralWavePeriod, waveAngle, initialTime, currentTime);
 
     // Assert
     REQUIRE(damage == Approx(0.33458768058794083));
@@ -25,7 +27,7 @@ TEST_CASE("DamageOfNaturalStoneRevetment")
 TEST_CASE("IncrementDamageOfNaturalStoneRevetment")
 {
     // Call
-    double damage = Calculator::IncrementDamageOfNaturalStoneRevetment(slopeAngle, relativeDensity, thicknessTopLayer, spectralWaveHeight, spectralWavePeriod, waveAngle);
+    double damage = Calculator::IncrementDamageOfNaturalStoneRevetment(slopeAngle, relativeDensity, thicknessTopLayer, spectralWaveHeight, spectralWavePeriod, waveAngle, initialTime, currentTime);
 
     // Assert
     REQUIRE(damage == Approx(0.23458768058794083));
@@ -88,7 +90,7 @@ TEST_CASE("DegradationOfNaturalStoneRevetment")
 TEST_CASE("IncrementOfTime")
 {
     // Call
-    double surfSimilarityParameter = Calculator::IncrementOfTime(0, 36);
+    double surfSimilarityParameter = Calculator::IncrementOfTime(initialTime, currentTime);
 
     // Assert
     REQUIRE(surfSimilarityParameter == 36);

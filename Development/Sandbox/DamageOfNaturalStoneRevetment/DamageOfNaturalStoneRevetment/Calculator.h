@@ -15,9 +15,11 @@ namespace DamageOfNaturalStoneRevetmentCalculator
              * @param spectralWaveHeight The spectral wave height [m] between ti-1 and ti.
              * @param spectralWavePeriod The spectral wave period [s] between ti-1 and ti.
              * @param waveAngle The incoming wave angle [°] relative to the normal line between ti-1 and ti.
+             * @param initialTime The start of the timestep [s].
+             * @param currentTime The end of the timestep [s].
              * @return The total damage of natural stone revetment, a value between 0 and 1.
             */
-            static double DamageOfNaturalStoneRevetment(double initialDamage, double slopeAngle, double relativeDensity, double thicknessTopLayer, double spectralWaveHeight, double spectralWavePeriod, double waveAngle);
+            static double DamageOfNaturalStoneRevetment(double initialDamage, double slopeAngle, double relativeDensity, double thicknessTopLayer, double spectralWaveHeight, double spectralWavePeriod, double waveAngle, double initialTime, double currentTime);
 
             /**
              * @brief Calculates the incremented damage of natural stone revetment.
@@ -27,9 +29,11 @@ namespace DamageOfNaturalStoneRevetmentCalculator
              * @param spectralWaveHeight The spectral wave height [m] between ti-1 and ti.
              * @param spectralWavePeriod The spectral wave period [s] between ti-1 and ti.
              * @param waveAngle The incoming wave angle [°] relative to the normal line between ti-1 and ti.
+             * @param initialTime The start of the timestep [s].
+             * @param currentTime The end of the timestep [s].
              * @return The incremented damage at the current time and place.
             */
-            static double IncrementDamageOfNaturalStoneRevetment(double slopeAngle, double relativeDensity, double thicknessTopLayer, double spectralWaveHeight, double spectralWavePeriod, double waveAngle);
+            static double IncrementDamageOfNaturalStoneRevetment(double slopeAngle, double relativeDensity, double thicknessTopLayer, double spectralWaveHeight, double spectralWavePeriod, double waveAngle, double initialTime, double currentTime);
 
             /**
              * @brief Calculates the hydraulic load on natural stone revetment.
