@@ -5,10 +5,10 @@ cmake_minimum_required (VERSION 3.8)
 set(CMAKE_CXX_STANDARD 17)
 
 # Set conditional compiler flags
-if(CMAKE_COMPILER_IS_GNUCXX)
+if(MINGW)
   set(CMAKE_CXX_FLAGS "-g -O0 -Wall -fprofile-arcs -ftest-coverage -static-libgcc -static-libstdc++")
   set(CMAKE_CXX_OUTPUT_EXTENSION_REPLACE 1)
-endif()
+endif(MINGW)
 
 # Define project
 project (DiKErnel)
