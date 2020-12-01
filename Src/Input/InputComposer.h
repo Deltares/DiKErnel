@@ -1,6 +1,6 @@
 #pragma once
 
-namespace DiKErnel
+namespace DiKErnel::Input
 {
     class InputComposer { };
 }

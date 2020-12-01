@@ -1,6 +1,6 @@
 #include "Controller.h"
 
-using namespace DiKErnel;
+using namespace DiKErnel::Core;
 
 int main()
 {

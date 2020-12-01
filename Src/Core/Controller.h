@@ -1,6 +1,6 @@
 #pragma once
 
-namespace DiKErnel
+namespace DiKErnel::Core
 {
     class Controller { };
 }
