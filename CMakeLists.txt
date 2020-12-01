@@ -9,11 +9,11 @@ project (DiKErnel)
 
 # Set conditional compiler flags
 if(CMAKE_COMPILER_IS_GNUCXX)
-  message("Building with code coverage.")
+  message("++ Building with code coverage")
   set(CMAKE_CXX_FLAGS "-g -O0 -Wall -fprofile-arcs -ftest-coverage -static-libgcc -static-libstdc++")
   set(CMAKE_CXX_OUTPUT_EXTENSION_REPLACE 1)
 else()
-  message("Building without code coverage.")
+  message("++ Building without code coverage")
 endif()
 
 # Add sources
