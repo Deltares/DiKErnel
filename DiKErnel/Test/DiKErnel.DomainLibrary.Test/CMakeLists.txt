@@ -4,6 +4,7 @@ set(EXENAME DiKErnel.DomainLibrary.Test)
 # Define sources
 set(SOURCEFILES
   DummyTest.cpp
+  Main.cpp
 )
 
 # Add executable

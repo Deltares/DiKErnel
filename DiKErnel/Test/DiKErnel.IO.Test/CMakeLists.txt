@@ -4,6 +4,7 @@ set(EXENAME DiKErnel.IO.Test)
 # Define sources
 set(SOURCEFILES
   InputComposerTest.cpp
+  Main.cpp
   OutputComposerTest.cpp
 )
 

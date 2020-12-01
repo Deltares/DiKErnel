@@ -5,6 +5,7 @@ set(EXENAME DiKErnel.Core.Test)
 set(SOURCEFILES
   CalculatorTest.cpp
   ControllerTest.cpp
+  Main.cpp
 )
 
 # Add executable
