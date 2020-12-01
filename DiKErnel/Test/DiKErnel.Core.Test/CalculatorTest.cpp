@@ -1,6 +1,14 @@
 #include "catch2/catch.hpp"
 
-SCENARIO("CalculatorTest")
+#include "Calculator.h"
+
+using namespace DiKErnel::Core;
+
+TEST_CASE("CalculatorTest")
 {
-    REQUIRE(true == true);
+    SECTION("Constructor_ExpectedValues")
+    {
+        Calculator calculator;
+        REQUIRE(calculator.created == true);
+    }
 }

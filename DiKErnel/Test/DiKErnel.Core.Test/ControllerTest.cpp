@@ -1,6 +1,14 @@
 #include "catch2/catch.hpp"
 
-SCENARIO("ControllerTest")
+#include "Controller.h"
+
+using namespace DiKErnel::Core;
+
+TEST_CASE("ControllerTest")
 {
-    REQUIRE(true == true);
+    SECTION("Constructor_ExpectedValues")
+    {
+        Controller controller;
+        REQUIRE(controller.created == true);
+    }
 }
