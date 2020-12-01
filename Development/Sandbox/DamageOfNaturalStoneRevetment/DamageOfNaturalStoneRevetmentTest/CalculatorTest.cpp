@@ -19,7 +19,7 @@ TEST_CASE("DamageOfNaturalStoneRevetment")
     double damage = Calculator::DamageOfNaturalStoneRevetment(initialDamage, slopeAngle, relativeDensity, thicknessTopLayer, spectralWaveHeight, spectralWavePeriod, tau, waveAngle);
 
     // Assert
-    REQUIRE(damage == Approx(1.8918112130009428));
+    REQUIRE(damage == Approx(0.33458768058794083));
 }
 
 TEST_CASE("IncrementDamageOfNaturalStoneRevetment")
@@ -28,7 +28,7 @@ TEST_CASE("IncrementDamageOfNaturalStoneRevetment")
     double damage = Calculator::IncrementDamageOfNaturalStoneRevetment(slopeAngle, relativeDensity, thicknessTopLayer, spectralWaveHeight, spectralWavePeriod, tau, waveAngle);
 
     // Assert
-    REQUIRE(damage == Approx(1.8918112130009428));
+    REQUIRE(damage == Approx(0.23458768058794083));
 }
 
 TEST_CASE("HydraulicLoadOnNaturalStoneRevetment")
@@ -73,7 +73,7 @@ TEST_CASE("IncrementDegradationOfNaturalStoneRevetment")
     double incrementDegradationOfNaturalStoneRevetment = Calculator::IncrementDegradationOfNaturalStoneRevetment(slopeAngle,relativeDensity, thicknessTopLayer, spectralWaveHeight, spectralWavePeriod, waveAngle, tau, 0.0, 36.0);
 
     // Assert
-    REQUIRE(incrementDegradationOfNaturalStoneRevetment == Approx(1.9999999999999998));
+    REQUIRE(incrementDegradationOfNaturalStoneRevetment == Approx(0.43774354728651044));
 }
 
 TEST_CASE("DegradationOfNaturalStoneRevetment")
@@ -82,7 +82,7 @@ TEST_CASE("DegradationOfNaturalStoneRevetment")
     double degradationOfNaturalStoneRevetment = Calculator::DegradationOfNaturalStoneRevetment(tau, spectralWavePeriod);
 
     // Assert
-    REQUIRE(degradationOfNaturalStoneRevetment == Approx(0.50118723362727224));
+    REQUIRE(degradationOfNaturalStoneRevetment == Approx(0.53003409246204658));
 }
 
 TEST_CASE("IncrementOfTime")

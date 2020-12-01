@@ -88,10 +88,13 @@ double Calculator::ResistanceOfNaturalStoneRevetment(const double relativeDensit
 double Calculator::IncrementDegradationOfNaturalStoneRevetment(const double slopeAngle, const double relativeDensity, const double thicknessTopLayer, const double spectralWaveHeight, const double spectralWavePeriod, const double waveAngle, const double tau, double initialTime, double currentTime)
 {
     const auto degradation = DegradationOfNaturalStoneRevetment(tau, spectralWavePeriod);
-    const auto timeStep = IncrementOfTime(0, 36);
+    const auto timeStep = IncrementOfTime(initialTime, currentTime);
     const auto referenceTimeDegradationOfNaturalStoneRevetment = ReferenceTimeDegradationOfNaturalStoneRevetment(slopeAngle, relativeDensity, thicknessTopLayer, spectralWaveHeight, spectralWavePeriod, waveAngle);
 
-    return degradation*(referenceTimeDegradationOfNaturalStoneRevetment + timeStep) - degradation*(referenceTimeDegradationOfNaturalStoneRevetment);
+    const auto incrementDegradationOfNaturalStoneRevetment = pow((referenceTimeDegradationOfNaturalStoneRevetment + timeStep) / spectralWavePeriod / 1000.0, 0.1) -
+        pow(referenceTimeDegradationOfNaturalStoneRevetment / spectralWavePeriod / 1000.0, 0.1);
+
+    return incrementDegradationOfNaturalStoneRevetment;
 }
 
 double Calculator::DegradationOfNaturalStoneRevetment(const double tau, const double spectralWavePeriod)
