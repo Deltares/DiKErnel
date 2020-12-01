@@ -4,17 +4,17 @@
 #include <iostream>
 using namespace DamageOfNaturalStoneRevetmentCalculator;
 
-double Calculator::DamageOfNaturalStoneRevetment(const double initialDamage, const double slopeAngle, const double relativeDensity, const double thicknessTopLayer, const double spectralWaveHeight, const double spectralWavePeriod, const double tau, const double waveAngle)
+double Calculator::DamageOfNaturalStoneRevetment(const double initialDamage, const double slopeAngle, const double relativeDensity, const double thicknessTopLayer, const double spectralWaveHeight, const double spectralWavePeriod, const double waveAngle)
 {
-    const auto incrementDamageOfNaturalStoneRevetment = IncrementDamageOfNaturalStoneRevetment(slopeAngle, relativeDensity, thicknessTopLayer, spectralWaveHeight, spectralWavePeriod, tau, waveAngle);
+    const auto incrementDamageOfNaturalStoneRevetment = IncrementDamageOfNaturalStoneRevetment(slopeAngle, relativeDensity, thicknessTopLayer, spectralWaveHeight, spectralWavePeriod, waveAngle);
 
     return initialDamage + incrementDamageOfNaturalStoneRevetment;
 }
 
-double Calculator::IncrementDamageOfNaturalStoneRevetment(const double slopeAngle, const double relativeDensity, const double thicknessTopLayer, const double spectralWaveHeight, const double spectralWavePeriod, const double tau, const double waveAngle)
+double Calculator::IncrementDamageOfNaturalStoneRevetment(const double slopeAngle, const double relativeDensity, const double thicknessTopLayer, const double spectralWaveHeight, const double spectralWavePeriod, const double waveAngle)
 {
     const auto hydraulicLoadOnNaturalStoneRevetment = HydraulicLoadOnNaturalStoneRevetment(slopeAngle, spectralWaveHeight, spectralWavePeriod) / ResistanceOfNaturalStoneRevetment(relativeDensity, thicknessTopLayer);
-    const auto incrementDegradationOfNaturalStoneRevetment = IncrementDegradationOfNaturalStoneRevetment(slopeAngle,relativeDensity, thicknessTopLayer, spectralWaveHeight, spectralWavePeriod, waveAngle,tau, 0.0, 36.0);
+    const auto incrementDegradationOfNaturalStoneRevetment = IncrementDegradationOfNaturalStoneRevetment(slopeAngle,relativeDensity, thicknessTopLayer, spectralWaveHeight, spectralWavePeriod, waveAngle,0.0, 36.0);
     const auto waveAngleImpactOnNaturalStoneRevetment = WaveAngleImpactOnNaturalStoneRevetment(waveAngle);
 
     return hydraulicLoadOnNaturalStoneRevetment * incrementDegradationOfNaturalStoneRevetment * waveAngleImpactOnNaturalStoneRevetment;
@@ -85,21 +85,22 @@ double Calculator::ResistanceOfNaturalStoneRevetment(const double relativeDensit
     return relativeDensity * thicknessTopLayer;
 }
 
-double Calculator::IncrementDegradationOfNaturalStoneRevetment(const double slopeAngle, const double relativeDensity, const double thicknessTopLayer, const double spectralWaveHeight, const double spectralWavePeriod, const double waveAngle, const double tau, double initialTime, double currentTime)
+double Calculator::IncrementDegradationOfNaturalStoneRevetment(const double slopeAngle, const double relativeDensity, const double thicknessTopLayer, const double spectralWaveHeight, const double spectralWavePeriod, const double waveAngle, const double initialTime, const double currentTime)
 {
-    const auto degradation = DegradationOfNaturalStoneRevetment(tau, spectralWavePeriod);
     const auto timeStep = IncrementOfTime(initialTime, currentTime);
     const auto referenceTimeDegradationOfNaturalStoneRevetment = ReferenceTimeDegradationOfNaturalStoneRevetment(slopeAngle, relativeDensity, thicknessTopLayer, spectralWaveHeight, spectralWavePeriod, waveAngle);
 
-    const auto incrementDegradationOfNaturalStoneRevetment = pow((referenceTimeDegradationOfNaturalStoneRevetment + timeStep) / spectralWavePeriod / 1000.0, 0.1) -
-        pow(referenceTimeDegradationOfNaturalStoneRevetment / spectralWavePeriod / 1000.0, 0.1);
+    const auto degradation = DegradationOfNaturalStoneRevetment(referenceTimeDegradationOfNaturalStoneRevetment + timeStep, spectralWavePeriod);
+    const auto previousDegradation = DegradationOfNaturalStoneRevetment(referenceTimeDegradationOfNaturalStoneRevetment, spectralWavePeriod);
+
+    const auto incrementDegradationOfNaturalStoneRevetment = degradation - previousDegradation;
 
     return incrementDegradationOfNaturalStoneRevetment;
 }
 
-double Calculator::DegradationOfNaturalStoneRevetment(const double tau, const double spectralWavePeriod)
+double Calculator::DegradationOfNaturalStoneRevetment(const double referenceTimeDegradationOfNaturalStoneRevetment, const double spectralWavePeriod)
 {
-    const auto numerator = tau / spectralWavePeriod;
+    const auto numerator = referenceTimeDegradationOfNaturalStoneRevetment / spectralWavePeriod;
     const int denominator = 1000.0;
 
     return pow(numerator / denominator, 0.1);

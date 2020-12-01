@@ -14,11 +14,10 @@ namespace DamageOfNaturalStoneRevetmentCalculator
              * @param thicknessTopLayer The thickness of the top layer [m] at the current location.
              * @param spectralWaveHeight The spectral wave height [m] between ti-1 and ti.
              * @param spectralWavePeriod The spectral wave period [s] between ti-1 and ti.
-             * @param tau The tau value to use.
              * @param waveAngle The incoming wave angle [°] relative to the normal line between ti-1 and ti.
              * @return The total damage of natural stone revetment, a value between 0 and 1.
             */
-            static double DamageOfNaturalStoneRevetment(double initialDamage, double slopeAngle, double relativeDensity, double thicknessTopLayer, double spectralWaveHeight, double spectralWavePeriod, double tau, double waveAngle);
+            static double DamageOfNaturalStoneRevetment(double initialDamage, double slopeAngle, double relativeDensity, double thicknessTopLayer, double spectralWaveHeight, double spectralWavePeriod, double waveAngle);
 
             /**
              * @brief Calculates the incremented damage of natural stone revetment.
@@ -27,11 +26,10 @@ namespace DamageOfNaturalStoneRevetmentCalculator
              * @param thicknessTopLayer The thickness of the top layer [m] at the current location.
              * @param spectralWaveHeight The spectral wave height [m] between ti-1 and ti.
              * @param spectralWavePeriod The spectral wave period [s] between ti-1 and ti.
-             * @param tau The tau value to use.
              * @param waveAngle The incoming wave angle [°] relative to the normal line between ti-1 and ti.
              * @return The incremented damage at the current time and place.
             */
-            static double IncrementDamageOfNaturalStoneRevetment(double slopeAngle, double relativeDensity, double thicknessTopLayer, double spectralWaveHeight, double spectralWavePeriod, double tau, double waveAngle);
+            static double IncrementDamageOfNaturalStoneRevetment(double slopeAngle, double relativeDensity, double thicknessTopLayer, double spectralWaveHeight, double spectralWavePeriod, double waveAngle);
 
             /**
              * @brief Calculates the hydraulic load on natural stone revetment.
@@ -69,19 +67,25 @@ namespace DamageOfNaturalStoneRevetmentCalculator
 
             /**
              * @brief Calculates the increment degradation of natural stone revetment at the current time and location.
-             * @param tau The tau value to use.
-             * @param spectralWavePeriod The spectral wave period [s] between ti-1 and ti.         
+             * @param slopeAngle The slope angle [°] at the current location.
+             * @param relativeDensity The relative density [-] at the current location.
+             * @param thicknessTopLayer The thickness of the top layer [m] at the current location.
+             * @param spectralWaveHeight The spectral wave height [m] between ti-1 and ti.
+             * @param spectralWavePeriod The spectral wave period [s] between ti-1 and ti.
+             * @param waveAngle The incoming wave angle [°] relative to the normal line between ti-1 and ti.
+             * @param initialTime The start of the timestep [s].
+             * @param currentTime The end of the timestep [s].
              * @return The increment of degradation of natural stone revetment at the current time and location.
             */
-            static double IncrementDegradationOfNaturalStoneRevetment(double slopeAngle, double relativeDensity, double thicknessTopLayer, double spectralWaveHeight, double spectralWavePeriod, double waveAngle, double tau, double initialTime, double currentTime);
+            static double IncrementDegradationOfNaturalStoneRevetment(double slopeAngle, double relativeDensity, double thicknessTopLayer, double spectralWaveHeight, double spectralWavePeriod, double waveAngle, double initialTime, double currentTime);
 
             /**
              * @brief Calculates the degradation of natural stone revetment.
-             * @param tau The tau value to use.
+             * @param referenceTimeDegradationOfNaturalStoneRevetment The calculated reference time degradation of natural stone revetment value to use.
              * @param spectralWavePeriod The spectral wave period [s] between ti-1 and ti.
              * @return The total degradation at the current time.
             */
-            static double DegradationOfNaturalStoneRevetment(double tau, double spectralWavePeriod);
+            static double DegradationOfNaturalStoneRevetment(double referenceTimeDegradationOfNaturalStoneRevetment, double spectralWavePeriod);
 
             /**
              * @brief Calculates the elapsed time in this timestep.
