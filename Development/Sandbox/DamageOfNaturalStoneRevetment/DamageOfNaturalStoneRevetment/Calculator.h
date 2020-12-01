@@ -73,7 +73,7 @@ namespace DamageOfNaturalStoneRevetmentCalculator
              * @param spectralWavePeriod The spectral wave period [s] between ti-1 and ti.         
              * @return The increment of degradation of natural stone revetment at the current time and location.
             */
-            static double IncrementDegradationOfNaturalStoneRevetment(double tau, double spectralWavePeriod);
+            static double IncrementDegradationOfNaturalStoneRevetment(double slopeAngle, double relativeDensity, double thicknessTopLayer, double spectralWaveHeight, double spectralWavePeriod, double waveAngle, double tau, double initialTime, double currentTime);
 
             /**
              * @brief Calculates the degradation of natural stone revetment.
@@ -105,6 +105,7 @@ namespace DamageOfNaturalStoneRevetmentCalculator
 
             /**
              * @brief Calculates the reference degradation of natural stone revetment.
+             * @param damagePreviousTimeStep The total damage from the previous timestep.
              * @param slopeAngle The slope angle [°] at the current location.
              * @param relativeDensity The relative density [-] at the current location.
              * @param thicknessTopLayer The thickness of the top layer [m] at the current location.
@@ -113,7 +114,7 @@ namespace DamageOfNaturalStoneRevetmentCalculator
              * @param waveAngle The incoming wave angle [°] relative to the normal line between ti-1 and ti.
              * @return The reference degradation of natural stone revetment at the current time and place.
             */
-            static double ReferenceDegradationOfNaturalStoneRevetment(double slopeAngle, double relativeDensity, double thicknessTopLayer, double spectralWaveHeight, double spectralWavePeriod, double waveAngle);
+            static double ReferenceDegradationOfNaturalStoneRevetment(double damagePreviousTimeStep, double slopeAngle, double relativeDensity, double thicknessTopLayer, double spectralWaveHeight, double spectralWavePeriod, double waveAngle);
 
             /**
              * @brief Calculates the wave angle impact of natural stone revetment.
