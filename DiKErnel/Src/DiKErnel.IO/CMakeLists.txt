@@ -1,12 +1,12 @@
 # Set library name
-set(LIBNAME DiKErnel.Core)
+set(LIBNAME DiKErnel.IO)
 
 # Define sources
 set(SOURCEFILES
-  Calculator.cpp
-  Calculator.h
-  Controller.cpp
-  Controller.h
+  InputComposer.cpp
+  InputComposer.h
+  OutputComposer.cpp
+  OutputComposer.h
 )
 
 # Add library
