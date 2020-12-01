@@ -1,13 +1,12 @@
 ﻿# Set CMake variables
 cmake_minimum_required (VERSION 3.8)
 
-# Set compiler flags
-set(CMAKE_CXX_STANDARD 17)
-
 # Define project
 project (DiKErnel)
 
-# Set conditional compiler flags
+# Set compiler flags
+set(CMAKE_CXX_STANDARD 17)
+
 if(CMAKE_COMPILER_IS_GNUCXX)
   message("++ Building with code coverage")
   set(CMAKE_CXX_FLAGS "-g -O0 -Wall -fprofile-arcs -ftest-coverage -static-libgcc -static-libstdc++")
@@ -16,7 +15,9 @@ else()
   message("++ Building without code coverage")
 endif()
 
-# Add sources
+# Set global properties
+set_property(GLOBAL PROPERTY USE_FOLDERS ON)
+
+# Add directories
 add_subdirectory(Src)
 add_subdirectory(Test)
-add_subdirectory(Console)
