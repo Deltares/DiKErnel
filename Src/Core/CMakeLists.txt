@@ -1,4 +1,4 @@
-# Add sources
+# Add sources to parent scope
 set(COREFILES ${COREFILES}
   ${CMAKE_CURRENT_SOURCE_DIR}/Calculator.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/Calculator.h
