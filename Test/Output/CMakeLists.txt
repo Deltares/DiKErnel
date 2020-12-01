@@ -1,0 +1,5 @@
+# Add sources
+set(OUTPUTTESTFILES ${OUTPUTTESTFILES}
+  ${CMAKE_CURRENT_SOURCE_DIR}/OutputComposerTest.cpp
+  PARENT_SCOPE
+)
