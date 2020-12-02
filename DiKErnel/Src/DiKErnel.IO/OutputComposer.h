@@ -7,9 +7,6 @@ namespace DiKErnel::IO
         public:
             bool created;
 
-            OutputComposer()
-            {
-                created = true;
-            }
+            OutputComposer();
     };
 }

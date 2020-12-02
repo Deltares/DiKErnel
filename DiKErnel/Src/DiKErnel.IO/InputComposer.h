@@ -7,9 +7,6 @@ namespace DiKErnel::IO
         public:
             bool created;
 
-            InputComposer()
-            {
-                created = true;
-            }
+            InputComposer();
     };
 }

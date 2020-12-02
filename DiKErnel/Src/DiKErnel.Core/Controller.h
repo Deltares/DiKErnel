@@ -7,9 +7,6 @@ namespace DiKErnel::Core
         public:
             bool created;
 
-            Controller()
-            {
-                created = true;
-            }
+            Controller();
     };
 }

@@ -7,9 +7,6 @@ namespace DiKErnel::FunctionLibrary
         public:
             bool created;
 
-            Dummy()
-            {
-                created = true;
-            }
+            Dummy();
     };
 }

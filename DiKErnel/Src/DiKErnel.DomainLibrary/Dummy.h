@@ -7,9 +7,6 @@ namespace DiKErnel::DomainLibrary
         public:
             bool created;
 
-            Dummy()
-            {
-                created = true;
-            }
+            Dummy();
     };
 }
