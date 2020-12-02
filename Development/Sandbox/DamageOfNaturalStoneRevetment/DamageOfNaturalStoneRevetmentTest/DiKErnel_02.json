@@ -1,0 +1,137 @@
+{
+	"MetaDataDiKErnel": [
+		{
+			"NaamRekensessie": "DiKErnel 20.1.1 Proof of Concept #1"
+		}
+	],
+	"ProcesInstellingenDiKErnel": [
+		{
+			"ValideerInvoerdata": false
+		},
+		{
+			"GenereerBerichten": false
+		},
+		{
+			"InteractieRekensessie": [
+				{
+					"OnderbreekRekensessie": false
+				},
+				{
+					"BerichtenRekensessie": false
+				}
+			]
+		},
+		{
+			"Exportdata": [
+				{
+					"ExportMetadata": true
+				},
+				{
+					"ExportInvoerdata": false
+				},
+				{
+					"ExportBerichten": false
+				},
+				{
+					"ExportVoortgang": false
+				},
+				{
+					"ExportRekenresultaten": "0"
+				}
+			]
+		}
+	],
+	"Domeinparameters": [
+		{
+			"AantalTijdstappen": 5
+		},
+		{
+			"AantalLocaties": 2
+		},
+		[
+			{
+				"Tijd": 0,
+				"Tijd": 100,
+				"Tijd": 500,
+				"Tijd": 800,
+				"Tijd": 1200,
+				"Tijd": 2000
+			}
+		],
+		[
+			{
+				"Locaties": "LocatieZwak",
+				"Locaties": "LocatieSterk"
+			}
+		]
+	],
+	"HydraulischeBelastingen": [
+		{
+			"Tijdstap": 1,
+			"GolfhoogteHm0": 0.5,
+			"GolfperiodeTm10": 2,
+			"Golfhoek": -10
+		},
+		{
+			"Tijdstap": 2,
+			"GolfhoogteHm0": 0.8,
+			"GolfperiodeTm10": 6,
+			"Golfhoek": -5
+		},
+		{
+			"Tijdstap": 3,
+			"GolfhoogteHm0": 1.2,
+			"GolfperiodeTm10": 6,
+			"Golfhoek": 0
+		},
+		{
+			"Tijdstap": 4,
+			"GolfhoogteHm0": 1.5,
+			"GolfperiodeTm10": 7,
+			"Golfhoek": 7
+		},
+		{
+			"Tijdstap": 5,
+			"GolfhoogteHm0": 0.5,
+			"GolfperiodeTm10": 4,
+			"Golfhoek": 8
+		},
+		{
+			"GolfhoekMaximum": 78
+		}
+	],
+	"DataDijkerosie": [
+		{
+			"Locatie": "LocatieZwak",
+			"TypeToplaag": "Noorse Steen",
+			"RelatieveDichtheid": 1.6,
+			"DikteToplaag": 0.3,
+			"BeginSchade": 0,
+			"BrekerIndexGrenswaarde": 2.9,
+			"CoefficientPlungingAp": 4,
+			"CoefficientPlungingBp": 0.8,
+			"CoefficientPlungingCp": 0,
+			"CoefficientPlungingNp": 0,
+			"CoefficientSurgingAs": 0,
+			"CoefficientSurgingBs": 0,
+			"CoefficientSurgingCs": -0.9,
+			"CoefficientSurgingNs": 0.6
+		},
+		{
+			"Locatie": "LocatieSterk",
+			"TypeToplaag": "Noorse Steen",
+			"RelatieveDichtheid": 1.6,
+			"DikteToplaag": 0.7,
+			"BeginSchade": 0,
+			"BrekerIndexGrenswaarde": 2.9,
+			"CoefficientPlungingAp": 4,
+			"CoefficientPlungingBp": 0.8,
+			"CoefficientPlungingCp": 0,
+			"CoefficientPlungingNp": 0,
+			"CoefficientSurgingAs": 0,
+			"CoefficientSurgingBs": 0,
+			"CoefficientSurgingCs": -0.9,
+			"CoefficientSurgingNs": 0.6
+		}
+	]
+}
