@@ -8,7 +8,10 @@ TEST_CASE("DummyTest")
 {
     SECTION("Constructor_ExpectedValues")
     {
+        // Call
         Dummy dummy;
+
+        // Assert
         REQUIRE(dummy.created == true);
     }
 }

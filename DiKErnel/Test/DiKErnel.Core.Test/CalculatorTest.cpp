@@ -8,7 +8,10 @@ TEST_CASE("CalculatorTest")
 {
     SECTION("Constructor_ExpectedValues")
     {
+        // Call
         Calculator calculator;
+
+        // Assert
         REQUIRE(calculator.created == true);
     }
 }

@@ -8,7 +8,10 @@ TEST_CASE("ControllerTest")
 {
     SECTION("Constructor_ExpectedValues")
     {
+        // Call
         Controller controller;
+
+        // Assert
         REQUIRE(controller.created == true);
     }
 }

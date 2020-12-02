@@ -16,5 +16,5 @@ add_library(${LIBNAME} STATIC ${SOURCEFILES})
 set_target_properties(${LIBNAME} PROPERTIES FOLDER Src)
 source_group("Sources" FILES ${SOURCEFILES})
 
-# Include directories
+# Expose header files
 target_include_directories(${LIBNAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
