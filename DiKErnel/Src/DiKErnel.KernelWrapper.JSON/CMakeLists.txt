@@ -1,5 +1,5 @@
 # Set library name
-set(LIBNAME DiKErnel.IO)
+set(LIBNAME DiKErnel.KernelWrapper.JSON)
 
 # Define sources
 set(SOURCEFILES

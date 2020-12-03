@@ -1,5 +1,5 @@
 # Set executable name
-set(EXENAME DiKErnel.IO.Test)
+set(EXENAME DiKErnel.KernelWrapper.JSON.Test)
 
 # Define sources
 set(SOURCEFILES
@@ -16,4 +16,4 @@ set_target_properties(${EXENAME} PROPERTIES FOLDER Test)
 source_group("Sources" FILES ${SOURCEFILES})
 
 # Link dependencies
-target_link_libraries(${EXENAME} Catch2::Catch2 DiKErnel.IO)
+target_link_libraries(${EXENAME} Catch2::Catch2 DiKErnel.KernelWrapper.JSON)

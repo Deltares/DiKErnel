@@ -1,6 +1,6 @@
 #pragma once
 
-namespace DiKErnel::IO
+namespace DiKErnel::KernelWrapper::JSON
 {
     class InputComposer
     {

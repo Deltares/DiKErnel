@@ -1,6 +1,6 @@
 #include "OutputComposer.h"
 
-namespace DiKErnel::IO
+namespace DiKErnel::KernelWrapper::JSON
 {
     OutputComposer::OutputComposer()
     {
