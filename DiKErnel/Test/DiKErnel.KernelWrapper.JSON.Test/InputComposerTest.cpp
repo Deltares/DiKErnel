@@ -2,7 +2,7 @@
 
 #include "InputComposer.h"
 
-using namespace DiKErnel::KernelWrapper::JSON;
+using namespace DiKErnel::KernelWrapper::Json;
 
 TEST_CASE("InputComposerTest")
 {

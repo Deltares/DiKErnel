@@ -2,7 +2,7 @@
 
 #include "OutputComposer.h"
 
-using namespace DiKErnel::KernelWrapper::JSON;
+using namespace DiKErnel::KernelWrapper::Json;
 
 TEST_CASE("OutputComposerTest")
 {

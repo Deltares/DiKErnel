@@ -1,6 +1,6 @@
 #include "InputComposer.h"
 
-namespace DiKErnel::KernelWrapper::JSON
+namespace DiKErnel::KernelWrapper::Json
 {
     InputComposer::InputComposer()
     {

@@ -1,6 +1,6 @@
 #pragma once
 
-namespace DiKErnel::KernelWrapper::JSON
+namespace DiKErnel::KernelWrapper::Json
 {
     class OutputComposer
     {
