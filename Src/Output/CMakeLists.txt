@@ -1,6 +1,0 @@
-# Add sources to parent scope
-set(OUTPUTFILES ${OUTPUTFILES}
-  ${CMAKE_CURRENT_SOURCE_DIR}/OutputComposer.cpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/OutputComposer.h
-  PARENT_SCOPE
-)
