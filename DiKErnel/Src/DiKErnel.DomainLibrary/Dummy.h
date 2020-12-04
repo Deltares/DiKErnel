@@ -3,7 +3,7 @@
 namespace DiKErnel::DomainLibrary
 {
     /*!
-     * Dummy class.
+     * \brief Dummy class.
      */
     class Dummy
     {

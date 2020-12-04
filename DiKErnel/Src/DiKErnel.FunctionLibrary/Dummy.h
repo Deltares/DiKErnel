@@ -3,7 +3,7 @@
 namespace DiKErnel::FunctionLibrary
 {
     /*!
-     * Dummy class.
+     * \brief Dummy class.
      */
     class Dummy
     {

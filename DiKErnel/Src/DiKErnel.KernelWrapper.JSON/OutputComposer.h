@@ -3,7 +3,7 @@
 namespace DiKErnel::KernelWrapper::Json
 {
     /*!
-     * Class responsible for generating Json output.
+     * \brief Class responsible for generating Json output.
      */
     class OutputComposer
     {
