@@ -16,11 +16,14 @@ namespace DamageOfNaturalStoneRevetmentCalculator
 
     double Calculator::IncrementDamageOfNaturalStoneRevetment(const double slopeAngle, const double relativeDensity, const double thicknessTopLayer, const double spectralWaveHeight, const double spectralWavePeriod, const double waveAngle, const double initialTime, const double currentTime)
     {
-        const auto hydraulicLoadOnNaturalStoneRevetment = HydraulicLoadOnNaturalStoneRevetment(slopeAngle, spectralWaveHeight, spectralWavePeriod) / ResistanceOfNaturalStoneRevetment(relativeDensity, thicknessTopLayer);
+        const auto hydraulicLoadOnNaturalStoneRevetment = HydraulicLoadOnNaturalStoneRevetment(slopeAngle, spectralWaveHeight, spectralWavePeriod);
+        const auto resistanceOfNaturalStoneRevetment = ResistanceOfNaturalStoneRevetment(relativeDensity, thicknessTopLayer);
+        const auto loadResistanceCalculatedValue = hydraulicLoadOnNaturalStoneRevetment / resistanceOfNaturalStoneRevetment;
+
         const auto incrementDegradationOfNaturalStoneRevetment = IncrementDegradationOfNaturalStoneRevetment(slopeAngle, relativeDensity, thicknessTopLayer, spectralWaveHeight, spectralWavePeriod, waveAngle, initialTime, currentTime);
         const auto waveAngleImpactOnNaturalStoneRevetment = WaveAngleImpactOnNaturalStoneRevetment(waveAngle);
 
-        return hydraulicLoadOnNaturalStoneRevetment * incrementDegradationOfNaturalStoneRevetment * waveAngleImpactOnNaturalStoneRevetment;
+        return loadResistanceCalculatedValue * incrementDegradationOfNaturalStoneRevetment * waveAngleImpactOnNaturalStoneRevetment;
     }
 
     double Calculator::HydraulicLoadOnNaturalStoneRevetment(const double slopeAngle, const double spectralWaveHeight, const double spectralWavePeriod)
@@ -122,12 +125,6 @@ namespace DamageOfNaturalStoneRevetmentCalculator
 
     double Calculator::WaveAngleImpactOnNaturalStoneRevetment(const double waveAngle)
     {
-        if (waveAngle > 90 || waveAngle < -90)
-        {
-            std::cout << "Wave angle not between -90 % 90 degrees.";
-            return 0.0;
-        }
-
         const auto smallestAngle = std::min(78.0, waveAngle);
 
         const auto waveAngleRadians = ConvertToRadians(smallestAngle);
