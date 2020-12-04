@@ -2,6 +2,9 @@
 
 namespace DiKErnel::FunctionLibrary
 {
+    /*!
+     * \brief Creates a new instance.
+     */
     Dummy::Dummy()
     {
         created = true;
