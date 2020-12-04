@@ -2,16 +2,17 @@
 
 #include "Controller.h"
 
-using namespace DiKErnel::Core;
-
-TEST_CASE("ControllerTest")
+namespace DiKErnel::Core::Test
 {
-    SECTION("Constructor_ExpectedValues")
+    TEST_CASE("ControllerTest")
     {
-        // Call
-        Controller controller;
+        SECTION("Constructor_ExpectedValues")
+        {
+            // Call
+            Controller controller;
 
-        // Assert
-        REQUIRE(controller.created == true);
+            // Assert
+            REQUIRE(controller.created == true);
+        }
     }
 }

@@ -2,16 +2,17 @@
 
 #include "Dummy.h"
 
-using namespace DiKErnel::DomainLibrary;
-
-TEST_CASE("DummyTest")
+namespace DiKErnel::DomainLibrary::Test
 {
-    SECTION("Constructor_ExpectedValues")
+    TEST_CASE("DummyTest")
     {
-        // Call
-        Dummy dummy;
+        SECTION("Constructor_ExpectedValues")
+        {
+            // Call
+            Dummy dummy;
 
-        // Assert
-        REQUIRE(dummy.created == true);
+            // Assert
+            REQUIRE(dummy.created == true);
+        }
     }
 }

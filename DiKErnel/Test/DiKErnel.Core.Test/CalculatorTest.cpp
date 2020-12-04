@@ -2,16 +2,17 @@
 
 #include "Calculator.h"
 
-using namespace DiKErnel::Core;
-
-TEST_CASE("CalculatorTest")
+namespace DiKErnel::Core::Test
 {
-    SECTION("Constructor_ExpectedValues")
+    TEST_CASE("CalculatorTest")
     {
-        // Call
-        Calculator calculator;
+        SECTION("Constructor_ExpectedValues")
+        {
+            // Call
+            Calculator calculator;
 
-        // Assert
-        REQUIRE(calculator.created == true);
+            // Assert
+            REQUIRE(calculator.created == true);
+        }
     }
 }

@@ -2,16 +2,17 @@
 
 #include "InputComposer.h"
 
-using namespace DiKErnel::KernelWrapper::Json;
-
-TEST_CASE("InputComposerTest")
+namespace DiKErnel::KernelWrapper::Json::Test
 {
-    SECTION("Constructor_ExpectedValues")
+    TEST_CASE("InputComposerTest")
     {
-        // Call
-        InputComposer inputComposer;
+        SECTION("Constructor_ExpectedValues")
+        {
+            // Call
+            InputComposer inputComposer;
 
-        // Assert
-        REQUIRE(inputComposer.created == true);
+            // Assert
+            REQUIRE(inputComposer.created == true);
+        }
     }
 }

@@ -2,16 +2,17 @@
 
 #include "OutputComposer.h"
 
-using namespace DiKErnel::KernelWrapper::Json;
-
-TEST_CASE("OutputComposerTest")
+namespace DiKErnel::KernelWrapper::Json::Test
 {
-    SECTION("Constructor_ExpectedValues")
+    TEST_CASE("OutputComposerTest")
     {
-        // Call
-        OutputComposer outputComposer;
+        SECTION("Constructor_ExpectedValues")
+        {
+            // Call
+            OutputComposer outputComposer;
 
-        // Assert
-        REQUIRE(outputComposer.created == true);
+            // Assert
+            REQUIRE(outputComposer.created == true);
+        }
     }
 }
