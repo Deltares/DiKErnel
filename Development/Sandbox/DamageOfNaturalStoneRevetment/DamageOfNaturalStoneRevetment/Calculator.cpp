@@ -41,14 +41,30 @@ namespace DamageOfNaturalStoneRevetmentCalculator
         const double initialTime,
         const double currentTime)
     {
-        const auto hydraulicLoadOnNaturalStoneRevetment = CalculateHydraulicLoadOnNaturalStoneRevetment(slopeAngle, spectralWaveHeight, spectralWavePeriod);
-        const auto resistanceOfNaturalStoneRevetment = CalculateResistanceOfNaturalStoneRevetment(relativeDensity, thicknessTopLayer);
-        const auto loadResistanceCalculatedValue = hydraulicLoadOnNaturalStoneRevetment / resistanceOfNaturalStoneRevetment;
+        const auto hydraulicLoadOnNaturalStoneRevetment = CalculateHydraulicLoadOnNaturalStoneRevetment(
+            slopeAngle,
+            spectralWaveHeight,
+            spectralWavePeriod);
+        const auto resistanceOfNaturalStoneRevetment = CalculateResistanceOfNaturalStoneRevetment(
+            relativeDensity,
+            thicknessTopLayer);
+        const auto loadResistanceCalculatedValue = hydraulicLoadOnNaturalStoneRevetment /
+                resistanceOfNaturalStoneRevetment;
 
-        const auto incrementDegradationOfNaturalStoneRevetment = CalculateIncrementDegradationOfNaturalStoneRevetment(slopeAngle, relativeDensity, thicknessTopLayer, spectralWaveHeight, spectralWavePeriod, waveAngle, initialTime, currentTime);
-        const auto waveAngleImpactOnNaturalStoneRevetment = CalculateWaveAngleImpactOnNaturalStoneRevetment(waveAngle);
+        const auto incrementDegradationOfNaturalStoneRevetment = CalculateIncrementDegradationOfNaturalStoneRevetment(
+            slopeAngle,
+            relativeDensity,
+            thicknessTopLayer,
+            spectralWaveHeight,
+            spectralWavePeriod,
+            waveAngle,
+            initialTime,
+            currentTime);
+        const auto waveAngleImpactOnNaturalStoneRevetment = CalculateWaveAngleImpactOnNaturalStoneRevetment(
+            waveAngle);
 
-        return loadResistanceCalculatedValue * incrementDegradationOfNaturalStoneRevetment * waveAngleImpactOnNaturalStoneRevetment;
+        return loadResistanceCalculatedValue * incrementDegradationOfNaturalStoneRevetment *
+                waveAngleImpactOnNaturalStoneRevetment;
     }
 
     double Calculator::CalculateHydraulicLoadOnNaturalStoneRevetment(
@@ -57,7 +73,10 @@ namespace DamageOfNaturalStoneRevetmentCalculator
         const double spectralWavePeriod)
     {
         const auto xiFactor = 2.9;
-        const auto surfSimilarityParameter = CalculateSurfSimilarityParameter(slopeAngle, spectralWaveHeight, spectralWavePeriod);
+        const auto surfSimilarityParameter = CalculateSurfSimilarityParameter(
+            slopeAngle,
+            spectralWaveHeight,
+            spectralWavePeriod);
         const auto ap = 4.0;
         const auto np = -0.9;
         const auto bp = 0.0;
@@ -84,7 +103,8 @@ namespace DamageOfNaturalStoneRevetmentCalculator
         const auto spectralWavePeriodRelatedValue = 9.81 * pow(spectralWavePeriod, 2.0);
 
         const auto denominator = sqrt(spectralWaveHeightRelatedValue / spectralWavePeriodRelatedValue);
-        const auto slopeAngleRadians = ConvertDegreesToRadians(slopeAngle);
+        const auto slopeAngleRadians = ConvertDegreesToRadians(
+            slopeAngle);
         const auto numerator = tan(slopeAngleRadians);
 
         return numerator / denominator;
@@ -107,11 +127,25 @@ namespace DamageOfNaturalStoneRevetmentCalculator
         const double initialTime,
         const double currentTime)
     {
-        const auto timeStep = CalculateIncrementOfTime(initialTime, currentTime);
-        const auto referenceTimeDegradationOfNaturalStoneRevetment = CalculateReferenceTimeDegradationOfNaturalStoneRevetment(slopeAngle, relativeDensity, thicknessTopLayer, spectralWaveHeight, spectralWavePeriod, waveAngle);
+        const auto timeStep = CalculateIncrementOfTime(
+            initialTime,
+            currentTime);
+        const auto referenceTimeDegradationOfNaturalStoneRevetment =
+                CalculateReferenceTimeDegradationOfNaturalStoneRevetment(
+                    slopeAngle,
+                    relativeDensity,
+                    thicknessTopLayer,
+                    spectralWaveHeight,
+                    spectralWavePeriod,
+                    waveAngle);
 
-        const auto degradation = CalculateDegradationOfNaturalStoneRevetment(referenceTimeDegradationOfNaturalStoneRevetment + timeStep, spectralWavePeriod);
-        const auto previousDegradation = CalculateDegradationOfNaturalStoneRevetment(referenceTimeDegradationOfNaturalStoneRevetment, spectralWavePeriod);
+        const auto degradation = CalculateDegradationOfNaturalStoneRevetment(
+            referenceTimeDegradationOfNaturalStoneRevetment + timeStep,
+            spectralWavePeriod);
+
+        const auto previousDegradation = CalculateDegradationOfNaturalStoneRevetment(
+            referenceTimeDegradationOfNaturalStoneRevetment,
+            spectralWavePeriod);
 
         return degradation - previousDegradation;
     }
@@ -141,7 +175,14 @@ namespace DamageOfNaturalStoneRevetmentCalculator
         const double spectralWavePeriod,
         const double waveAngle)
     {
-        const auto referenceDegradationOfNaturalStoneRevetment = CalculateReferenceDegradationOfNaturalStoneRevetment(0.1, slopeAngle, relativeDensity, thicknessTopLayer, spectralWaveHeight, spectralWavePeriod, waveAngle);
+        const auto referenceDegradationOfNaturalStoneRevetment = CalculateReferenceDegradationOfNaturalStoneRevetment(
+            0.1,
+            slopeAngle,
+            relativeDensity,
+            thicknessTopLayer,
+            spectralWaveHeight,
+            spectralWavePeriod,
+            waveAngle);
 
         return 1000.0 * spectralWavePeriod * pow(referenceDegradationOfNaturalStoneRevetment, 10.0);
     }
@@ -155,11 +196,18 @@ namespace DamageOfNaturalStoneRevetmentCalculator
         const double spectralWavePeriod,
         const double waveAngle)
     {
-        const auto resistanceOfNaturalStoneRevetment = CalculateResistanceOfNaturalStoneRevetment(relativeDensity, thicknessTopLayer);
-        const auto hydraulicLoadOnNaturalStoneRevetment = CalculateHydraulicLoadOnNaturalStoneRevetment(slopeAngle, spectralWaveHeight, spectralWavePeriod);
-        const auto waveAngleImpactOnNaturalStoneRevetment = CalculateWaveAngleImpactOnNaturalStoneRevetment(waveAngle);
+        const auto resistanceOfNaturalStoneRevetment = CalculateResistanceOfNaturalStoneRevetment(
+            relativeDensity,
+            thicknessTopLayer);
+        const auto hydraulicLoadOnNaturalStoneRevetment = CalculateHydraulicLoadOnNaturalStoneRevetment(
+            slopeAngle,
+            spectralWaveHeight,
+            spectralWavePeriod);
+        const auto waveAngleImpactOnNaturalStoneRevetment = CalculateWaveAngleImpactOnNaturalStoneRevetment(
+            waveAngle);
 
-        return damagePreviousTimeStep * resistanceOfNaturalStoneRevetment / hydraulicLoadOnNaturalStoneRevetment * (1.0 / waveAngleImpactOnNaturalStoneRevetment);
+        return damagePreviousTimeStep * resistanceOfNaturalStoneRevetment / hydraulicLoadOnNaturalStoneRevetment * (1.0
+            / waveAngleImpactOnNaturalStoneRevetment);
     }
 
     double Calculator::CalculateWaveAngleImpactOnNaturalStoneRevetment(
@@ -167,7 +215,8 @@ namespace DamageOfNaturalStoneRevetmentCalculator
     {
         const auto smallestAngle = std::min(78.0, waveAngle);
 
-        const auto waveAngleRadians = ConvertDegreesToRadians(smallestAngle);
+        const auto waveAngleRadians = ConvertDegreesToRadians(
+            smallestAngle);
         const auto absoluteWaveAngleRadians = fabs(waveAngleRadians);
         const auto cosine = cos(absoluteWaveAngleRadians);
         const auto exponent = 2.0 / 3;
