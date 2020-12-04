@@ -21,7 +21,16 @@ namespace DamageOfNaturalStoneRevetmentCalculator
         TEST_CASE("CalculateDamageOfNaturalStoneRevetment")
         {
             // Call
-            auto damage = Calculator::CalculateDamageOfNaturalStoneRevetment(initialDamage, slopeAngle, relativeDensity, thicknessTopLayer, spectralWaveHeight, spectralWavePeriod, waveAngle, initialTime, currentTime);
+            auto damage = Calculator::CalculateDamageOfNaturalStoneRevetment(
+                initialDamage,
+                slopeAngle,
+                relativeDensity,
+                thicknessTopLayer,
+                spectralWaveHeight,
+                spectralWavePeriod,
+                waveAngle,
+                initialTime,
+                currentTime);
 
             // Assert
             REQUIRE(damage == Approx(0.33458768058794083));
