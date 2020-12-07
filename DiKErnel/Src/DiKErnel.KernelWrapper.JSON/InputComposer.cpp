@@ -2,6 +2,8 @@
 
 #include <fstream>
 
+
+#include "InputData.h"
 #include "nlohmann/json.hpp"
 
 namespace DiKErnel::KernelWrapper::Json
@@ -10,7 +12,10 @@ namespace DiKErnel::KernelWrapper::Json
     {
         auto json = ParseJson(filePath);
 
-        return json["Domeinparameters"]["Tijd"].get<std::vector<int>>();
+        InputData inputData;
+
+        inputData.calculationData.time = json["RekenData"]["Tijd"].get<std::vector<int>>();
+
     }
 
     nlohmann::json InputComposer::ParseJson(const std::string filePath) const

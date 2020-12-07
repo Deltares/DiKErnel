@@ -8,7 +8,7 @@
 namespace DiKErnel::KernelWrapper::Json
 {
     /*!
-     * Class responsible for serving as data model for input data.
+     * \brief Class responsible for serving as data model for input data.
      */
     class InputData
     {

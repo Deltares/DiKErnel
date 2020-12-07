@@ -3,7 +3,7 @@
 namespace DiKErnel::KernelWrapper::Json
 {
     /*!
-     * Class responsible for serving as data model for a profile schematization.
+     * \brief Class responsible for serving as data model for a profile schematization.
      */
     class ProfileSchematization
     {
