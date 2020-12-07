@@ -1,4 +1,5 @@
 #pragma once
+#include <vector>
 
 namespace DiKErnel::KernelWrapper::Json
 {
@@ -8,5 +9,6 @@ namespace DiKErnel::KernelWrapper::Json
     class CalculationData
     {
         public:
+            std::vector<int> time;
         };
 }

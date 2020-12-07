@@ -13,7 +13,7 @@ namespace DiKErnel::KernelWrapper::Json
     class InputData
     {
         public:
-            CalculationData domainParameters;
+            CalculationData calculationData;
             HydraulicLoads hydraulicLoads;
             std::vector<CalculationLocation> locations;
         };
