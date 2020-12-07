@@ -7,15 +7,6 @@
 
 namespace DiKErnel::KernelWrapper::Json::Test
 {
-    static std::filesystem::path GetRoot(std::filesystem::path currentPath)
-    {
-        while (currentPath.filename() != "DiKErnel")
-        {
-            currentPath = GetRoot(currentPath.parent_path());
-        }
-        return currentPath;
-    }
-
     TEST_CASE("InputComposerTest")
     {
         InputComposer inputComposer;
@@ -29,8 +20,14 @@ namespace DiKErnel::KernelWrapper::Json::Test
         SECTION("GetDomainParametersFromJson_Always_ReturnsTimes")
         {
             // Setup
-            const auto rootPath = GetRoot(std::filesystem::current_path());
-            const auto testDataPath = rootPath.string() + "\\DiKErnel\\Test\\DiKErnel.KernelWrapper.Json.Test\\test-data";
+            auto currentPath = std::filesystem::current_path();
+
+            while (currentPath.filename() != "DiKErnel")
+            {
+                currentPath = currentPath.parent_path();
+            }
+
+            const auto testDataPath = currentPath.string() + "\\DiKErnel\\Test\\DiKErnel.KernelWrapper.Json.Test\\test-data";
             
             // Call
             const auto times = inputComposer.GetDomainParametersFromJson(testDataPath + "\\calculation.json");
