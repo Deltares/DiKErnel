@@ -1,9 +1,21 @@
+#include <iostream>
+#include <filesystem>
+
 #include "catch2/catch.hpp"
 
 #include "InputComposer.h"
 
 namespace DiKErnel::KernelWrapper::Json::Test
 {
+    static std::filesystem::path GetRoot(std::filesystem::path currentPath)
+    {
+        while (currentPath.filename() != "DiKErnel")
+        {
+            currentPath = GetRoot(currentPath.parent_path());
+        }
+        return currentPath;
+    }
+
     TEST_CASE("InputComposerTest")
     {
         InputComposer inputComposer;
@@ -14,10 +26,14 @@ namespace DiKErnel::KernelWrapper::Json::Test
             REQUIRE(inputComposer.created == true);
         }
 
-        SECTION("Json_test")
+        SECTION("GetDomainParametersFromJson_Always_ReturnsTimes")
         {
+            // Setup
+            const auto rootPath = GetRoot(std::filesystem::current_path());
+            const auto testDataPath = rootPath.string() + "\\DiKErnel\\Test\\DiKErnel.KernelWrapper.Json.Test\\test-data";
+            
             // Call
-            const auto times = inputComposer.GetDomainParametersFromJson("D:\\Development\\DiKErnel\\DiKErnel\\Test\\DiKErnel.KernelWrapper.Json.Test\\test-data\\calculation.json");
+            const auto times = inputComposer.GetDomainParametersFromJson(testDataPath + "\\calculation.json");
 
             // Assert
             REQUIRE_THAT(times, Catch::Equals<int>({0, 100, 500, 800, 1200, 2000 }));
