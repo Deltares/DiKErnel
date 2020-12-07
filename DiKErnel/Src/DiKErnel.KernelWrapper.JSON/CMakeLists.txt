@@ -3,6 +3,12 @@ set(LIBNAME DiKErnel.KernelWrapper.Json)
 
 # Define sources
 set(SOURCEFILES
+  CalculationData.cpp
+  CalculationData.h
+  CalculationLocation.cpp
+  CalculationLocation.h
+  HydraulicLoads.cpp
+  HydraulicLoads.h
   InputComposer.cpp
   InputComposer.h
   InputData.cpp
