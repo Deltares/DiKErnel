@@ -5,6 +5,8 @@ set(LIBNAME DiKErnel.KernelWrapper.Json)
 set(SOURCEFILES
   InputComposer.cpp
   InputComposer.h
+  InputData.cpp
+  InputData.h
   OutputComposer.cpp
   OutputComposer.h
 )
