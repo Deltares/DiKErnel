@@ -24,7 +24,8 @@
 	<s:String x:Key="/Default/CodeStyle/CodeFormatting/CppFormatting/WRAP_BASE_CLAUSE_STYLE/@EntryValue">CHOP_IF_LONG</s:String>
 	<s:String x:Key="/Default/CodeStyle/CodeFormatting/CppFormatting/WRAP_BRACED_INIT_LIST_STYLE/@EntryValue">CHOP_ALWAYS</s:String>
 	<s:String x:Key="/Default/CodeStyle/CodeFormatting/CppFormatting/WRAP_ENUMERATION_STYLE/@EntryValue">CHOP_ALWAYS</s:String>
-	<s:Boolean x:Key="/Default/CodeStyle/CodeFormatting/CppFormatting/WRAP_LINES/@EntryValue">False</s:Boolean>
+	<s:Int64 x:Key="/Default/CodeStyle/CodeFormatting/CppFormatting/WRAP_LIMIT/@EntryValue">200</s:Int64>
+	
 	<s:String x:Key="/Default/CodeStyle/Naming/CppNaming/Rules/=Class_0020and_0020struct_0020fields/@EntryIndexedValue"></s:String>
 	<s:Boolean x:Key="/Default/CodeStyle/Naming/CppNaming/Rules/=Class_0020and_0020struct_0020fields/@EntryIndexRemoved">True</s:Boolean>
 	<s:String x:Key="/Default/CodeStyle/Naming/CppNaming/Rules/=Class_0020and_0020struct_0020methods/@EntryIndexedValue"></s:String>
