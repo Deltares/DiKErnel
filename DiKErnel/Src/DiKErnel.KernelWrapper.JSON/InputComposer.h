@@ -6,7 +6,7 @@ namespace DiKErnel::KernelWrapper::Json
 {
     class InputData;
     /*!
-     * Class responsible for parsing Json input.
+     * \brief Class responsible for parsing Json input.
      */
     class InputComposer
     {
