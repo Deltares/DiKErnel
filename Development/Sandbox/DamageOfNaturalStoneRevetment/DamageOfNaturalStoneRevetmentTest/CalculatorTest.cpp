@@ -39,8 +39,7 @@ namespace DamageOfNaturalStoneRevetmentCalculator
         TEST_CASE("CalculateIncrementDamageOfNaturalStoneRevetment")
         {
             // Call
-            auto damage = Calculator::CalculateIncrementDamageOfNaturalStoneRevetment(slopeAngle, relativeDensity, thicknessTopLayer, spectralWaveHeight, spectralWavePeriod, waveAngle, initialTime,
-                                                                                      currentTime);
+            auto damage = Calculator::CalculateIncrementDamageOfNaturalStoneRevetment(slopeAngle, relativeDensity, thicknessTopLayer, spectralWaveHeight, spectralWavePeriod, waveAngle, initialTime, currentTime);
 
             // Assert
             REQUIRE(damage == Approx(0.23458768058794083));
@@ -76,8 +75,7 @@ namespace DamageOfNaturalStoneRevetmentCalculator
         TEST_CASE("CalculateIncrementDegradationOfNaturalStoneRevetment")
         {
             // Call
-            auto incrementDegradationOfNaturalStoneRevetment = Calculator::CalculateIncrementDegradationOfNaturalStoneRevetment(
-                slopeAngle, relativeDensity, thicknessTopLayer, spectralWaveHeight, spectralWavePeriod, waveAngle, 0.0, 36.0);
+            auto incrementDegradationOfNaturalStoneRevetment = Calculator::CalculateIncrementDegradationOfNaturalStoneRevetment(slopeAngle, relativeDensity, thicknessTopLayer, spectralWaveHeight, spectralWavePeriod, waveAngle, 0.0, 36.0);
 
             // Assert
             REQUIRE(incrementDegradationOfNaturalStoneRevetment == Approx(0.43774354728651044));
@@ -104,8 +102,7 @@ namespace DamageOfNaturalStoneRevetmentCalculator
         TEST_CASE("CalculateReferenceTimeDegradationOfNaturalStoneRevetment")
         {
             // Call
-            auto referenceTimeDegradationOfNaturalStoneRevetment = Calculator::CalculateReferenceTimeDegradationOfNaturalStoneRevetment(
-                slopeAngle, relativeDensity, thicknessTopLayer, spectralWaveHeight, spectralWavePeriod, waveAngle);
+            auto referenceTimeDegradationOfNaturalStoneRevetment = Calculator::CalculateReferenceTimeDegradationOfNaturalStoneRevetment(slopeAngle, relativeDensity, thicknessTopLayer, spectralWaveHeight, spectralWavePeriod, waveAngle);
 
             // Assert
             REQUIRE(referenceTimeDegradationOfNaturalStoneRevetment == Approx(0.00020474132396956532));
@@ -114,8 +111,7 @@ namespace DamageOfNaturalStoneRevetmentCalculator
         TEST_CASE("CalculateReferenceDegradationOfNaturalStoneRevetment")
         {
             // Call
-            auto referenceDegradationOfNaturalStoneRevetment = Calculator::CalculateReferenceDegradationOfNaturalStoneRevetment(
-                initialDamage, slopeAngle, relativeDensity, thicknessTopLayer, spectralWaveHeight, spectralWavePeriod, waveAngle);
+            auto referenceDegradationOfNaturalStoneRevetment = Calculator::CalculateReferenceDegradationOfNaturalStoneRevetment(initialDamage, slopeAngle, relativeDensity, thicknessTopLayer, spectralWaveHeight, spectralWavePeriod, waveAngle);
 
             // Assert
             REQUIRE(referenceDegradationOfNaturalStoneRevetment == Approx(0.18660125126324004));
