@@ -18,6 +18,10 @@ namespace DiKErnel::KernelWrapper::Json
              */
             void GetDomainParametersFromJson(std::string filePath) const;
 
+            static void ReadCalculationData(nlohmann::json json, InputData& inputData);
+            static void ReadHydraulicLoads(nlohmann::json json, InputData& inputData);
+            static void ReadLocations(nlohmann::json json, InputData& inputData);
+
         private:
             nlohmann::json ParseJson(std::string filePath) const;
     };

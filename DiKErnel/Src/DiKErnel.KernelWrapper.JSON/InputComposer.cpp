@@ -13,10 +13,20 @@ namespace DiKErnel::KernelWrapper::Json
 
         InputData inputData;
 
-        // CalculationData
-        inputData.calculationData.time = json["RekenData"]["Tijd"].get<std::vector<int>>();
+        ReadCalculationData(json, inputData);
 
-        // HydraulicLoads
+        ReadHydraulicLoads(json, inputData);
+
+        ReadLocations(json, inputData);
+    }
+
+    void InputComposer::ReadCalculationData(nlohmann::json json, InputData& inputData)
+    {
+        inputData.calculationData.time = json["RekenData"]["Tijd"].get<std::vector<int>>();
+    }
+
+    void InputComposer::ReadHydraulicLoads(nlohmann::json json, InputData& inputData)
+    {
         inputData.hydraulicLoads.waveAngleMaximum = json["HydraulischeBelastingen"]["GolfhoekMaximum"].get<int>();
 
         for (auto i = 0; i < json["HydraulischeBelastingen"]["RandvoorwaardenPerTijdstap"].size(); i++)
@@ -25,8 +35,10 @@ namespace DiKErnel::KernelWrapper::Json
             inputData.hydraulicLoads.boundaryConditionsPerTimeStep[i].wavePeriodTm10 = json["HydraulischeBelastingen"]["RandvoorwaardenPerTijdstap"][i]["GolfperiodeTm10"].get<double>();
             inputData.hydraulicLoads.boundaryConditionsPerTimeStep[i].waveAngle = json["HydraulischeBelastingen"]["RandvoorwaardenPerTijdstap"][i]["Golfhoek"].get<double>();
         }
+    }
 
-        // Locations
+    void InputComposer::ReadLocations(nlohmann::json json, InputData& inputData)
+    {
         for (auto i = 0; i < json["Locaties"].size(); i++)
         {
             inputData.locations[i].name = json["Locaties"][i]["Naam"].get<std::string>();
