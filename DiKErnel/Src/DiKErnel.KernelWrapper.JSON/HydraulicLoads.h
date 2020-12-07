@@ -1,4 +1,7 @@
 #pragma once
+#include <vector>
+
+#include "BoundaryConditionsPerTimeStep.h"
 
 namespace DiKErnel::KernelWrapper::Json
 {
@@ -8,5 +11,7 @@ namespace DiKErnel::KernelWrapper::Json
     class HydraulicLoads
     {
         public:
+            int waveAngleMaximum;
+            std::vector<BoundaryConditionsPerTimeStep> boundaryConditionsPerTimeStep;
     };
 }

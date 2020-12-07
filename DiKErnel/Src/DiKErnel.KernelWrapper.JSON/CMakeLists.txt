@@ -3,6 +3,8 @@ set(LIBNAME DiKErnel.KernelWrapper.Json)
 
 # Define sources
 set(SOURCEFILES
+  BoundaryConditionsPerTimeStep.cpp
+  BoundaryConditionsPerTimeStep.h
   CalculationData.cpp
   CalculationData.h
   CalculationLocation.cpp
