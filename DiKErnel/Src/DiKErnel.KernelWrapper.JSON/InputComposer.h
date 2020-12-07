@@ -10,13 +10,6 @@ namespace DiKErnel::KernelWrapper::Json
     class InputComposer
     {
         public:
-            bool created;
-
-            /*!
-             * \brief Creates a new instance.
-             */
-            InputComposer();
-
             /*!
              * \brief Gets the domain parameters from the given json.
              * \param filePath

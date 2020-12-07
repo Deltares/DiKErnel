@@ -6,11 +6,6 @@
 
 namespace DiKErnel::KernelWrapper::Json
 {
-    InputComposer::InputComposer()
-    {
-        created = true;
-    }
-
     std::vector<int> InputComposer::GetDomainParametersFromJson(const std::string filePath) const
     {
         auto json = ParseJson(filePath);
