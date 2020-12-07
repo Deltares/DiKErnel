@@ -17,6 +17,10 @@ set(SOURCEFILES
   InputData.h
   OutputComposer.cpp
   OutputComposer.h
+  ProfileSchematization.cpp
+  ProfileSchematization.h
+  Revetment.cpp
+  Revetment.h
 )
 
 # Add library

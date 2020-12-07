@@ -1,4 +1,8 @@
 #pragma once
+#include <string>
+#include <Revetment.h>
+
+#include "ProfileSchematization.h"
 
 namespace DiKErnel::KernelWrapper::Json
 {
@@ -8,5 +12,8 @@ namespace DiKErnel::KernelWrapper::Json
     class CalculationLocation
     {
         public:
-        };
+            std::string name;
+            Revetment revetment;
+            ProfileSchematization profileSchematization;
+    };
 }
