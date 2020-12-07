@@ -4,6 +4,7 @@
 
 namespace DiKErnel::KernelWrapper::Json
 {
+    class InputData;
     /*!
      * Class responsible for parsing Json input.
      */
@@ -14,9 +15,8 @@ namespace DiKErnel::KernelWrapper::Json
              * \brief Gets the domain parameters from the given json.
              * \param filePath
              *        The path to the json file.
-             * \return The times from the domain parameters.
              */
-            std::vector<int> GetDomainParametersFromJson(std::string filePath) const;
+            void GetDomainParametersFromJson(std::string filePath) const;
 
         private:
             nlohmann::json ParseJson(std::string filePath) const;
