@@ -2,6 +2,9 @@
 
 namespace DamageOfNaturalStoneRevetmentCalculator
 {
+    /*!
+     * \brief Calculator for calculating natural stone revetment.
+     */
     class Calculator
     {
         public:
@@ -293,14 +296,9 @@ namespace DamageOfNaturalStoneRevetmentCalculator
             static double CalculateWaveAngleImpactOnNaturalStoneRevetment(
                 double waveAngle);
 
-            /*!
-             * \brief Converts a value in degrees to a value in radians.
-             * \param degrees
-             *        The amount of degrees.
-             *        Unit = [°]
-             * \return The amount of radians.
-             *         Unit = [rad]
-             */
+        private:
+            static double pi;
+
             static double ConvertDegreesToRadians(
                 double degrees);
     };
