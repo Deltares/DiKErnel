@@ -1,5 +1,9 @@
 #pragma once
 
+#include "CalculationData.h"
+#include "CalculationLocation.h"
+#include "HydraulicLoads.h"
+#include "InputComposer.h"
 #include "nlohmann/json.hpp"
 
 namespace DiKErnel::KernelWrapper::Json
@@ -18,9 +22,26 @@ namespace DiKErnel::KernelWrapper::Json
              */
             void GetDomainParametersFromJson(std::string filePath) const;
 
-            static void ReadCalculationData(nlohmann::json json, InputData& inputData);
-            static void ReadHydraulicLoads(nlohmann::json json, InputData& inputData);
-            static void ReadLocations(nlohmann::json json, InputData& inputData);
+            /*!
+             * \brief Reads the calculation data from the given json object. 
+             * \param json The json object to read from.
+             * \return The calculation data.
+             */
+            static CalculationData ReadCalculationData(nlohmann::json json);
+
+            /*!
+             * \brief Reads the hydraulic loads data from the given json object.
+             * \param json The json object to read from.
+             * \return The hydraulic loads data.
+             */
+            static HydraulicLoads ReadHydraulicLoads(nlohmann::json json);
+
+            /*!
+            * \brief Reads the calculation location data from the given json object.
+            * \param json The json object to read from.
+            * \return The calculation location data.
+            */
+            static std::vector<CalculationLocation> ReadLocations(nlohmann::json json);
 
         private:
             nlohmann::json ParseJson(std::string filePath) const;
