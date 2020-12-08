@@ -7,12 +7,7 @@ namespace DiKErnel::FunctionLibrary
      */
     class NaturalStoneRevetment
     {
-        public:
-            bool created;
-
-            /*!
-             * \brief Creates a new instance.
-             */
-            NaturalStoneRevetment();
+        private:
+            static double pi;
     };
 }

@@ -1,9 +1,8 @@
 #include "NaturalStoneRevetment.h"
 
+#include <cmath>
+
 namespace DiKErnel::FunctionLibrary
 {
-    NaturalStoneRevetment::NaturalStoneRevetment()
-    {
-        created = true;
-    }
+    double NaturalStoneRevetment::pi = 2 * acos(0.0);
 }
