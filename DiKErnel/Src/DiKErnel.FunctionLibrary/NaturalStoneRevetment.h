@@ -3,7 +3,7 @@
 namespace DiKErnel::FunctionLibrary
 {
     /*!
-     * \brief NaturalStoneRevetment class.
+     * \brief Class that holds all methods to perform a calculation with natural stone revetment.
      */
     class NaturalStoneRevetment
     {
