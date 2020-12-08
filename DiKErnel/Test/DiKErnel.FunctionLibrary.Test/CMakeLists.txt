@@ -3,8 +3,8 @@ set(EXENAME DiKErnel.FunctionLibrary.Test)
 
 # Define sources
 set(SOURCEFILES
-  DummyTest.cpp
   Main.cpp
+  NaturalStoneRevetmentTest.cpp
 )
 
 # Add executable

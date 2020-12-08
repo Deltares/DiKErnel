@@ -3,8 +3,8 @@ set(LIBNAME DiKErnel.FunctionLibrary)
 
 # Define sources
 set(SOURCEFILES
-  Dummy.cpp
-  Dummy.h
+  NaturalStoneRevetment.cpp
+  NaturalStoneRevetment.h
 )
 
 # Add library

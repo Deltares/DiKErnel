@@ -3,9 +3,9 @@
 namespace DiKErnel::FunctionLibrary
 {
     /*!
-     * \brief Dummy class.
+     * \brief NaturalStoneRevetment class.
      */
-    class Dummy
+    class NaturalStoneRevetment
     {
         public:
             bool created;
@@ -13,6 +13,6 @@ namespace DiKErnel::FunctionLibrary
             /*!
              * \brief Creates a new instance.
              */
-            Dummy();
+            NaturalStoneRevetment();
     };
 }
