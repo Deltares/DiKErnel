@@ -84,11 +84,10 @@ namespace DiKErnel::KernelWrapper::Json::Test
     {
         // Given
         const auto filePath = TestUtil::TestDataHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Test") / "calculation.json";
+        InputComposer inputComposer;
 
         SECTION("WhenGetDomainParametersFromJson_ThenCorrectDataSet")
         {
-            InputComposer inputComposer;
-
             // When
             InputData inputData = inputComposer.GetDomainParametersFromJson(filePath.u8string());
 
@@ -104,8 +103,6 @@ namespace DiKErnel::KernelWrapper::Json::Test
 
         SECTION("WhenReadCalculationDataFromJson_ThenCorrectDataSet")
         {
-            InputComposer inputComposer;
-
             std::ifstream ifs(filePath);
             nlohmann::json json = nlohmann::json::parse(ifs);
 
@@ -118,8 +115,6 @@ namespace DiKErnel::KernelWrapper::Json::Test
 
         SECTION("WhenReadHydraulicLoadsFromJson_ThenCorrectDataSet")
         {
-            InputComposer inputComposer;
-
             std::ifstream ifs(filePath);
             nlohmann::json json = nlohmann::json::parse(ifs);
 
@@ -132,8 +127,6 @@ namespace DiKErnel::KernelWrapper::Json::Test
 
         SECTION("WhenReadLocationsFromJson_ThenCorrectDataSet")
         {
-            InputComposer inputComposer;
-
             std::ifstream ifs(filePath);
             nlohmann::json json = nlohmann::json::parse(ifs);
 
