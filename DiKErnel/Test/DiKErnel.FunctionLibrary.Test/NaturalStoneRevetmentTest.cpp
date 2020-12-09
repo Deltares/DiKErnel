@@ -14,8 +14,8 @@ namespace DiKErnel::FunctionLibrary::Test::NaturalStoneRevetmentTest
         const auto spectralWavePeriod = 4.0;
         const auto relativeDensity = 1.65;
         const auto thicknessTopLayer = 0.3;
-        const auto initialTime = 0.0;
-        const auto currentTime = 36.0;
+        const auto startTime = 0.0;
+        const auto endTime = 36.0;
 
         SECTION("WhenCalculateDamage_ThenExpectedResult")
         {
@@ -28,8 +28,8 @@ namespace DiKErnel::FunctionLibrary::Test::NaturalStoneRevetmentTest
                 spectralWaveHeight,
                 spectralWavePeriod,
                 waveAngle,
-                initialTime,
-                currentTime);
+                startTime,
+                endTime);
 
             // Then
             REQUIRE(damage == Approx(0.33458768058794083));
@@ -45,8 +45,8 @@ namespace DiKErnel::FunctionLibrary::Test::NaturalStoneRevetmentTest
                 spectralWaveHeight,
                 spectralWavePeriod,
                 waveAngle,
-                initialTime,
-                currentTime);
+                startTime,
+                endTime);
 
             // Then
             REQUIRE(incrementDamage == Approx(0.23458768058794083));
@@ -63,7 +63,6 @@ namespace DiKErnel::FunctionLibrary::Test::NaturalStoneRevetmentTest
             // Then
             REQUIRE(hydraulicLoad == Approx(0.42109231069183717));
         }
-
 
         SECTION("WhenCalculateHydraulicLoadWithSurfSimilarityParameterBiggerThanXiFactory_ThenExpectedResult")
         {
