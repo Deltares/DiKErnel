@@ -37,7 +37,7 @@ namespace DiKErnel::FunctionLibrary::Test::NaturalStoneRevetmentTest
 
         SECTION("WhenCalculateIncrementDamage_ThenExpectedResult")
         {
-            // Call
+            // When
             auto incrementDamage = NaturalStoneRevetment::CalculateIncrementDamage(
                 slopeAngle,
                 relativeDensity,
@@ -48,48 +48,61 @@ namespace DiKErnel::FunctionLibrary::Test::NaturalStoneRevetmentTest
                 initialTime,
                 currentTime);
 
-            // Assert
+            // Then
             REQUIRE(incrementDamage == Approx(0.23458768058794083));
         }
 
-        SECTION("WhenCalculateHydraulicLoad_ThenExpectedResult")
+        SECTION("WhenCalculateHydraulicLoadWithSurfSimilarityParameterSmallerThanXiFactory_ThenExpectedResult")
         {
-            // Call
+            // When
             auto hydraulicLoad = NaturalStoneRevetment::CalculateHydraulicLoad(
                 slopeAngle,
                 spectralWaveHeight,
                 spectralWavePeriod);
 
-            // Assert
+            // Then
             REQUIRE(hydraulicLoad == Approx(0.42109231069183717));
+        }
+
+
+        SECTION("WhenCalculateHydraulicLoadWithSurfSimilarityParameterBiggerThanXiFactory_ThenExpectedResult")
+        {
+            // When
+            auto hydraulicLoad = NaturalStoneRevetment::CalculateHydraulicLoad(
+                slopeAngle * 4,
+                spectralWaveHeight / 4,
+                spectralWavePeriod / 4);
+
+            // Then
+            REQUIRE(hydraulicLoad == Approx(0.23900384271534394));
         }
 
         SECTION("WhenCalculateSurfSimilarityParameter_ThenExpectedResult")
         {
-            // Call
+            // When
             auto surfSimilarityParameter = NaturalStoneRevetment::CalculateSurfSimilarityParameter(
                 slopeAngle,
                 spectralWaveHeight,
                 spectralWavePeriod);
 
-            // Assert
+            // Then
             REQUIRE(surfSimilarityParameter == Approx(1.0587587730209971));
         }
 
         SECTION("WhenCalculateResistance_ThenExpectedResult")
         {
-            // Call
+            // When
             auto resistance = NaturalStoneRevetment::CalculateResistance(
                 relativeDensity,
                 thicknessTopLayer);
 
-            // Assert
+            // Then
             REQUIRE(resistance == Approx(0.49499999999999994));
         }
 
         SECTION("WhenCalculateIncrementDegradation_ThenExpectedResult")
         {
-            // Call
+            // When
             auto incrementDegradation = NaturalStoneRevetment::CalculateIncrementDegradation(
                 slopeAngle,
                 relativeDensity,
@@ -100,22 +113,22 @@ namespace DiKErnel::FunctionLibrary::Test::NaturalStoneRevetmentTest
                 0.0,
                 36.0);
 
-            // Assert
+            // Then
             REQUIRE(incrementDegradation == Approx(0.43774354728651044));
         }
 
         SECTION("WhenCalculateDegradation_ThenExpectedResult")
         {
-            // Call
+            // When
             auto degradation = NaturalStoneRevetment::CalculateDegradation(7.0, spectralWavePeriod);
 
-            // Assert
+            // Then
             REQUIRE(degradation == Approx(0.53003409246204658));
         }
 
         SECTION("WhenCalculateReferenceTimeDegradation_ThenExpectedResult")
         {
-            // Call
+            // When
             auto referenceTimeDegradation = NaturalStoneRevetment::CalculateReferenceTimeDegradation(
                 slopeAngle,
                 relativeDensity,
@@ -124,13 +137,13 @@ namespace DiKErnel::FunctionLibrary::Test::NaturalStoneRevetmentTest
                 spectralWavePeriod,
                 waveAngle);
 
-            // Assert
+            // Then
             REQUIRE(referenceTimeDegradation == Approx(0.00020474132396956532));
         }
 
         SECTION("WhenCalculateReferenceDegradation_ThenExpectedResult")
         {
-            // Call
+            // When
             auto referenceDegradation = NaturalStoneRevetment::CalculateReferenceDegradation(
                 initialDamage,
                 slopeAngle,
@@ -140,25 +153,25 @@ namespace DiKErnel::FunctionLibrary::Test::NaturalStoneRevetmentTest
                 spectralWavePeriod,
                 waveAngle);
 
-            // Assert
+            // Then
             REQUIRE(referenceDegradation == Approx(0.18660125126324004));
         }
 
         SECTION("WhenCalculateWaveAngleImpactWithPositiveWaveAngle_ThenExpectedResult")
         {
-            // Call
+            // When
             auto waveAngleImpact = NaturalStoneRevetment::CalculateWaveAngleImpact(waveAngle);
 
-            // Assert
+            // Then
             REQUIRE(waveAngleImpact == Approx(0.62996052494743671));
         }
 
         SECTION("WhenCalculateWaveAngleImpactWithNegativeWaveAngle_ThenExpectedResult")
         {
-            // Call
+            // When
             auto waveAngleImpact = NaturalStoneRevetment::CalculateWaveAngleImpact(-waveAngle);
 
-            // Assert
+            // Then
             REQUIRE(waveAngleImpact == Approx(0.62996052494743671));
         }
     }
