@@ -80,16 +80,16 @@ namespace DiKErnel::KernelWrapper::Json::Test
         REQUIRE(calculationLocations[1].profileSchematization.tanA == 0.3);
     }
 
-    TEST_CASE("InputComposerTest")
+    TEST_CASE("GivenFilePath")
     {
-        SECTION("ReadCalculationData_Always_ReturnsCalculationData")
-        {
-            // Setup
-            const auto filePath = TestUtil::TestDataHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Test") / "calculation.json";
+        // Given
+        const auto filePath = TestUtil::TestDataHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Test") / "calculation.json";
 
+        SECTION("WhenGetDomainParametersFromJson_ThenCorrectDataSet")
+        {
             InputComposer inputComposer;
 
-            // Call
+            // When
             InputData inputData = inputComposer.GetDomainParametersFromJson(filePath.u8string());
 
             // Assert
@@ -102,54 +102,45 @@ namespace DiKErnel::KernelWrapper::Json::Test
             AssertCalculationLocations(inputData.locations);
         }
 
-        SECTION("ReadCalculationData_Always_ReturnsCalculationData")
+        SECTION("WhenReadCalculationDataFromJson_ThenCorrectDataSet")
         {
-            // Setup
-            const auto filePath = TestUtil::TestDataHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Test") / "calculation.json";
-
             InputComposer inputComposer;
 
             std::ifstream ifs(filePath);
             nlohmann::json json = nlohmann::json::parse(ifs);
 
-            // Call
+            // When
             CalculationData calculationData = inputComposer.ReadCalculationData(json);
 
-            // Assert
+            // Then
             AssertCalculationData(calculationData);
         }
 
-        SECTION("ReadHydraulicLoads_Always_ReturnsHydraulicLoads")
+        SECTION("WhenReadHydraulicLoadsFromJson_ThenCorrectDataSet")
         {
-            // Setup
-            const auto filePath = TestUtil::TestDataHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Test") / "calculation.json";
-
             InputComposer inputComposer;
 
             std::ifstream ifs(filePath);
             nlohmann::json json = nlohmann::json::parse(ifs);
 
-            // Call
+            // When
             HydraulicLoads hydraulicLoads = inputComposer.ReadHydraulicLoads(json);
 
-            // Assert
+            // Then
             AssertHydraulicLoads(hydraulicLoads);
         }
 
-        SECTION("ReadLocations_Always_ReturnsCalculationLocations")
+        SECTION("WhenReadLocationsFromJson_ThenCorrectDataSet")
         {
-            // Setup
-            const auto filePath = TestUtil::TestDataHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Test") / "calculation.json";
-
             InputComposer inputComposer;
 
             std::ifstream ifs(filePath);
             nlohmann::json json = nlohmann::json::parse(ifs);
 
-            // Call
+            // When
             std::vector<CalculationLocation> calculationLocations = inputComposer.ReadLocations(json);
 
-            // Assert
+            // Then
             AssertCalculationLocations(calculationLocations);
         }
     }
