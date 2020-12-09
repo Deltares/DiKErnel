@@ -15,6 +15,8 @@ set(SOURCEFILES
   InputComposer.h
   InputData.cpp
   InputData.h
+  JsonDefinitions.cpp
+  JsonDefinitions.h
   OutputComposer.cpp
   OutputComposer.h
   ProfileSchematization.cpp
