@@ -80,7 +80,7 @@ namespace DiKErnel::KernelWrapper::Json::Test
         REQUIRE(calculationLocations[1].profileSchematization.tanA == 0.3);
     }
 
-    TEST_CASE("GivenFilePath")
+    TEST_CASE("GivenFilePathAndInputComposer")
     {
         // Given
         const auto filePath = TestUtil::TestDataHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Test") / "calculation.json";
@@ -95,8 +95,6 @@ namespace DiKErnel::KernelWrapper::Json::Test
             AssertCalculationData(inputData.calculationData);
 
             AssertHydraulicLoads(inputData.hydraulicLoads);
-
-            AssertCalculationLocations(inputData.locations);
 
             AssertCalculationLocations(inputData.locations);
         }
