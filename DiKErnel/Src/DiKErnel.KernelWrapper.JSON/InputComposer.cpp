@@ -8,8 +8,8 @@
 
 namespace DiKErnel::KernelWrapper::Json
 {
-    void InputComposer::GetDomainParametersFromJson(
-        const std::string filePath) const
+    InputData InputComposer::GetDomainParametersFromJson(
+        const std::string filePath)
     {
         const auto json = ParseJson(filePath);
 
@@ -20,6 +20,8 @@ namespace DiKErnel::KernelWrapper::Json
         inputData.hydraulicLoads = ReadHydraulicLoads(json);
 
         inputData.locations = ReadLocations(json);
+
+        return inputData;
     }
 
     CalculationData InputComposer::ReadCalculationData(
@@ -70,33 +72,32 @@ namespace DiKErnel::KernelWrapper::Json
 
             calculationLocations.at(i).name = json[JsonDefinitions::locations][i][JsonDefinitions::name].get<std::string>();
 
-            calculationLocations.at(i).revetment.typeTopLayer = json[JsonDefinitions::locations][i][JsonDefinitions::revetment][
-                JsonDefinitions::typeTopLayer].get<std::string>();
-            calculationLocations.at(i).revetment.relativeDensity = json[JsonDefinitions::locations][i][JsonDefinitions::revetment][
-                JsonDefinitions::relativeDensity].get<double>();
-            calculationLocations.at(i).revetment.thicknessTopLayer = json[JsonDefinitions::locations][i][JsonDefinitions::revetment][
-                JsonDefinitions::thicknessTopLayer].get<double>();
-            calculationLocations.at(i).revetment.initialDamage = json[JsonDefinitions::locations][i][JsonDefinitions::revetment][
-                JsonDefinitions::initialDamage].get<double>();
+            calculationLocations.at(i).revetment.typeTopLayer = json[JsonDefinitions::locations][i][JsonDefinitions::revetment]
+                    [JsonDefinitions::typeTopLayer].get<std::string>();
+            calculationLocations.at(i).revetment.relativeDensity = json[JsonDefinitions::locations][i][JsonDefinitions::revetment]
+                    [JsonDefinitions::relativeDensity].get<double>();
+            calculationLocations.at(i).revetment.thicknessTopLayer = json[JsonDefinitions::locations][i][JsonDefinitions::revetment]
+                    [JsonDefinitions::thicknessTopLayer].get<double>();
+            calculationLocations.at(i).revetment.initialDamage = json[JsonDefinitions::locations][i][JsonDefinitions::revetment]
+                    [JsonDefinitions::initialDamage].get<double>();
             calculationLocations.at(i).revetment.similarityParameterThreshold =
                     json[JsonDefinitions::locations][i][JsonDefinitions::revetment][JsonDefinitions::similarityParameterThreshold].get<double>();
-            calculationLocations.at(i).revetment.coefficientPlungingAp = json[JsonDefinitions::locations][i][JsonDefinitions::revetment][
-                JsonDefinitions::coefficientPlungingAp].get<double>();
-            calculationLocations.at(i).revetment.coefficientPlungingBp = json[JsonDefinitions::locations][i][JsonDefinitions::revetment][
-                JsonDefinitions::coefficientPlungingBp].get<double>();
-            calculationLocations.at(i).revetment.coefficientPlungingCp = json[JsonDefinitions::locations][i][JsonDefinitions::revetment][
-                JsonDefinitions::coefficientPlungingCp].get<double>();
-            calculationLocations.at(i).revetment.coefficientPlungingNp = json[JsonDefinitions::locations][i][JsonDefinitions::revetment][
-                JsonDefinitions::coefficientPlungingNp].get<double>();
-            calculationLocations.at(i).revetment.coefficientSurgingAs = json[JsonDefinitions::locations][i][JsonDefinitions::revetment][
-                JsonDefinitions::coefficientSurgingAs].get<double>();
-            calculationLocations.at(i).revetment.coefficientSurgingBs = json[JsonDefinitions::locations][i][JsonDefinitions::revetment][
-                JsonDefinitions::coefficientSurgingBs].get<double>();
-            calculationLocations.at(i).revetment.coefficientSurgingCs = json[JsonDefinitions::locations][i][JsonDefinitions::revetment][
-                JsonDefinitions::coefficientSurgingCs].get<double>();
-            calculationLocations.at(i).revetment.coefficientSurgingNs = json[JsonDefinitions::locations][i][JsonDefinitions::revetment][
-                JsonDefinitions::coefficientSurgingNs].get<double>();
-
+            calculationLocations.at(i).revetment.coefficientPlungingAp = json[JsonDefinitions::locations][i][JsonDefinitions::revetment]
+                    [JsonDefinitions::coefficientPlungingAp].get<double>();
+            calculationLocations.at(i).revetment.coefficientPlungingBp = json[JsonDefinitions::locations][i][JsonDefinitions::revetment]
+                    [JsonDefinitions::coefficientPlungingBp].get<double>();
+            calculationLocations.at(i).revetment.coefficientPlungingCp = json[JsonDefinitions::locations][i][JsonDefinitions::revetment]
+                    [JsonDefinitions::coefficientPlungingCp].get<double>();
+            calculationLocations.at(i).revetment.coefficientPlungingNp = json[JsonDefinitions::locations][i][JsonDefinitions::revetment]
+                    [JsonDefinitions::coefficientPlungingNp].get<double>();
+            calculationLocations.at(i).revetment.coefficientSurgingAs = json[JsonDefinitions::locations][i][JsonDefinitions::revetment]
+                    [JsonDefinitions::coefficientSurgingAs].get<double>();
+            calculationLocations.at(i).revetment.coefficientSurgingBs = json[JsonDefinitions::locations][i][JsonDefinitions::revetment]
+                    [JsonDefinitions::coefficientSurgingBs].get<double>();
+            calculationLocations.at(i).revetment.coefficientSurgingCs = json[JsonDefinitions::locations][i][JsonDefinitions::revetment]
+                    [JsonDefinitions::coefficientSurgingCs].get<double>();
+            calculationLocations.at(i).revetment.coefficientSurgingNs = json[JsonDefinitions::locations][i][JsonDefinitions::revetment]
+                    [JsonDefinitions::coefficientSurgingNs].get<double>();
             calculationLocations.at(i).profileSchematization.tanA = json[JsonDefinitions::locations][i][JsonDefinitions::profileSchematisation]
                     [JsonDefinitions::tanA].get<double>();
         }
@@ -105,7 +106,7 @@ namespace DiKErnel::KernelWrapper::Json
     }
 
     nlohmann::json InputComposer::ParseJson(
-        const std::string filePath) const
+        const std::string filePath)
     {
         std::ifstream ifs(filePath);
         return nlohmann::json::parse(ifs);

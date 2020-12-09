@@ -19,31 +19,35 @@ namespace DiKErnel::KernelWrapper::Json
              * \brief Gets the domain parameters from the given json.
              * \param filePath
              *        The path to the json file.
+             * \return The input data object.
              */
-            void GetDomainParametersFromJson(std::string filePath) const;
+            static InputData GetDomainParametersFromJson(std::string filePath);
 
             /*!
              * \brief Reads the calculation data from the given json object. 
-             * \param json The json object to read from.
+             * \param json
+             *        The json object to read from.
              * \return The calculation data.
              */
             static CalculationData ReadCalculationData(nlohmann::json json);
 
             /*!
              * \brief Reads the hydraulic loads data from the given json object.
-             * \param json The json object to read from.
+             * \param json
+             *        The json object to read from.
              * \return The hydraulic loads data.
              */
             static HydraulicLoads ReadHydraulicLoads(nlohmann::json json);
 
             /*!
             * \brief Reads the calculation location data from the given json object.
-            * \param json The json object to read from.
+            * \param json
+            *        The json object to read from.
             * \return The calculation location data.
             */
             static std::vector<CalculationLocation> ReadLocations(nlohmann::json json);
 
         private:
-            nlohmann::json ParseJson(std::string filePath) const;
+            static nlohmann::json ParseJson(std::string filePath);
     };
 }

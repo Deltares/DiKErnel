@@ -4,12 +4,84 @@
 #include "catch2/catch.hpp"
 
 #include "InputComposer.h"
+#include "InputData.h"
 #include "TestDataHelper.h"
 
 namespace DiKErnel::KernelWrapper::Json::Test
 {
     TEST_CASE("InputComposerTest")
     {
+        SECTION("ReadCalculationData_Always_ReturnsCalculationData")
+        {
+            // Setup
+            const auto filePath = TestUtil::TestDataHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Test") / "calculation.json";
+
+            InputComposer inputComposer;
+
+            // Call
+            InputData inputData = inputComposer.GetDomainParametersFromJson(filePath.u8string());
+
+            // Assert
+            REQUIRE_THAT(inputData.calculationData.time, Catch::Equals<int>({ 0, 100, 500, 800, 1200, 2000 }));
+
+            REQUIRE(inputData.hydraulicLoads.waveAngleMaximum == 78);
+            REQUIRE(inputData.hydraulicLoads.boundaryConditionsPerTimeStep[0].waveHeightHm0 == 0.5);
+            REQUIRE(inputData.hydraulicLoads.boundaryConditionsPerTimeStep[0].wavePeriodTm10 == 2.0);
+            REQUIRE(inputData.hydraulicLoads.boundaryConditionsPerTimeStep[0].waveAngle == -10.0);
+
+            REQUIRE(inputData.hydraulicLoads.boundaryConditionsPerTimeStep[1].waveHeightHm0 == 0.8);
+            REQUIRE(inputData.hydraulicLoads.boundaryConditionsPerTimeStep[1].wavePeriodTm10 == 6.0);
+            REQUIRE(inputData.hydraulicLoads.boundaryConditionsPerTimeStep[1].waveAngle == -5.0);
+
+            REQUIRE(inputData.hydraulicLoads.boundaryConditionsPerTimeStep[2].waveHeightHm0 == 1.2);
+            REQUIRE(inputData.hydraulicLoads.boundaryConditionsPerTimeStep[2].wavePeriodTm10 == 6.0);
+            REQUIRE(inputData.hydraulicLoads.boundaryConditionsPerTimeStep[2].waveAngle == 0.0);
+
+            REQUIRE(inputData.hydraulicLoads.boundaryConditionsPerTimeStep[3].waveHeightHm0 == 1.5);
+            REQUIRE(inputData.hydraulicLoads.boundaryConditionsPerTimeStep[3].wavePeriodTm10 == 7.0);
+            REQUIRE(inputData.hydraulicLoads.boundaryConditionsPerTimeStep[3].waveAngle == 7);
+
+            REQUIRE(inputData.hydraulicLoads.boundaryConditionsPerTimeStep[4].waveHeightHm0 == 0.5);
+            REQUIRE(inputData.hydraulicLoads.boundaryConditionsPerTimeStep[4].wavePeriodTm10 == 4.0);
+            REQUIRE(inputData.hydraulicLoads.boundaryConditionsPerTimeStep[4].waveAngle == 8.0);
+
+            REQUIRE(inputData.locations[0].name == "LocatieZwak");
+
+            REQUIRE(inputData.locations[0].revetment.typeTopLayer == "Noorse Steen");
+            REQUIRE(inputData.locations[0].revetment.relativeDensity == 1.6);
+            REQUIRE(inputData.locations[0].revetment.thicknessTopLayer == 0.3);
+            REQUIRE(inputData.locations[0].revetment.initialDamage == 0.0);
+            REQUIRE(inputData.locations[0].revetment.similarityParameterThreshold == 2.9);
+            REQUIRE(inputData.locations[0].revetment.coefficientPlungingAp == 4);
+            REQUIRE(inputData.locations[0].revetment.coefficientPlungingBp == 0.8);
+            REQUIRE(inputData.locations[0].revetment.coefficientPlungingCp == 0.0);
+            REQUIRE(inputData.locations[0].revetment.coefficientPlungingNp == 0.0);
+            REQUIRE(inputData.locations[0].revetment.coefficientSurgingAs == 0.0);
+            REQUIRE(inputData.locations[0].revetment.coefficientSurgingBs == 0.0);
+            REQUIRE(inputData.locations[0].revetment.coefficientSurgingCs == -0.9);
+            REQUIRE(inputData.locations[0].revetment.coefficientSurgingNs == 0.6);
+
+            REQUIRE(inputData.locations[0].profileSchematization.tanA == 0.3);
+
+            REQUIRE(inputData.locations[1].name == "LocatieSterk");
+
+            REQUIRE(inputData.locations[1].revetment.typeTopLayer == "Noorse Steen");
+            REQUIRE(inputData.locations[1].revetment.relativeDensity == 1.6);
+            REQUIRE(inputData.locations[1].revetment.thicknessTopLayer == 0.7);
+            REQUIRE(inputData.locations[1].revetment.initialDamage == 0.0);
+            REQUIRE(inputData.locations[1].revetment.similarityParameterThreshold == 2.9);
+            REQUIRE(inputData.locations[1].revetment.coefficientPlungingAp == 4.0);
+            REQUIRE(inputData.locations[1].revetment.coefficientPlungingBp == 0.8);
+            REQUIRE(inputData.locations[1].revetment.coefficientPlungingCp == 0.0);
+            REQUIRE(inputData.locations[1].revetment.coefficientPlungingNp == 0.0);
+            REQUIRE(inputData.locations[1].revetment.coefficientSurgingAs == 0.0);
+            REQUIRE(inputData.locations[1].revetment.coefficientSurgingBs == 0.0);
+            REQUIRE(inputData.locations[1].revetment.coefficientSurgingCs == -0.9);
+            REQUIRE(inputData.locations[1].revetment.coefficientSurgingNs == 0.6);
+
+            REQUIRE(inputData.locations[1].profileSchematization.tanA == 0.3);
+        }
+
         SECTION("ReadCalculationData_Always_ReturnsCalculationData")
         {
             // Setup
