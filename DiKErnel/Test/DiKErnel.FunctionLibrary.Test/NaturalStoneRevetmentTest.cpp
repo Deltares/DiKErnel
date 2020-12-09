@@ -2,10 +2,11 @@
 
 #include "NaturalStoneRevetment.h"
 
-namespace DiKErnel::FunctionLibrary::Test
+namespace DiKErnel::FunctionLibrary::Test::NaturalStoneRevetmentTest
 {
-    TEST_CASE("NaturalStoneRevetmentTest")
+    TEST_CASE("GivenInput")
     {
+        // Given
         const auto initialDamage = 0.1;
         const auto waveAngle = 60.0;
         const auto slopeAngle = 15.0;
@@ -16,9 +17,9 @@ namespace DiKErnel::FunctionLibrary::Test
         const auto initialTime = 0.0;
         const auto currentTime = 36.0;
 
-        SECTION("CalculateDamage_Always_ReturnsDamage")
+        SECTION("WhenCalculateDamage_ThenExpectedResult")
         {
-            // Call
+            // When
             auto damage = NaturalStoneRevetment::CalculateDamage(
                 initialDamage,
                 slopeAngle,
@@ -30,11 +31,11 @@ namespace DiKErnel::FunctionLibrary::Test
                 initialTime,
                 currentTime);
 
-            // Assert
+            // Then
             REQUIRE(damage == Approx(0.33458768058794083));
         }
 
-        SECTION("CalculateIncrementDamage_Always_ReturnsIncrementDamage")
+        SECTION("WhenCalculateIncrementDamage_ThenExpectedResult")
         {
             // Call
             auto incrementDamage = NaturalStoneRevetment::CalculateIncrementDamage(
@@ -51,7 +52,7 @@ namespace DiKErnel::FunctionLibrary::Test
             REQUIRE(incrementDamage == Approx(0.23458768058794083));
         }
 
-        SECTION("CalculateHydraulicLoad_Always_ReturnsHydraulicLoad")
+        SECTION("WhenCalculateHydraulicLoad_ThenExpectedResult")
         {
             // Call
             auto hydraulicLoad = NaturalStoneRevetment::CalculateHydraulicLoad(
@@ -63,7 +64,7 @@ namespace DiKErnel::FunctionLibrary::Test
             REQUIRE(hydraulicLoad == Approx(0.42109231069183717));
         }
 
-        SECTION("CalculateSurfSimilarityParameter_Always_ReturnsSurfSimilarityParameter")
+        SECTION("WhenCalculateSurfSimilarityParameter_ThenExpectedResult")
         {
             // Call
             auto surfSimilarityParameter = NaturalStoneRevetment::CalculateSurfSimilarityParameter(
@@ -75,7 +76,7 @@ namespace DiKErnel::FunctionLibrary::Test
             REQUIRE(surfSimilarityParameter == Approx(1.0587587730209971));
         }
 
-        SECTION("CalculateResistance_Always_ReturnsResistance")
+        SECTION("WhenCalculateResistance_ThenExpectedResult")
         {
             // Call
             auto resistance = NaturalStoneRevetment::CalculateResistance(
@@ -86,7 +87,7 @@ namespace DiKErnel::FunctionLibrary::Test
             REQUIRE(resistance == Approx(0.49499999999999994));
         }
 
-        SECTION("CalculateIncrementDegradation_Always_ReturnsIncrementDegradation")
+        SECTION("WhenCalculateIncrementDegradation_ThenExpectedResult")
         {
             // Call
             auto incrementDegradation = NaturalStoneRevetment::CalculateIncrementDegradation(
@@ -103,7 +104,7 @@ namespace DiKErnel::FunctionLibrary::Test
             REQUIRE(incrementDegradation == Approx(0.43774354728651044));
         }
 
-        SECTION("CalculateDegradation_Always_ReturnsDegradation")
+        SECTION("WhenCalculateDegradation_ThenExpectedResult")
         {
             // Call
             auto degradation = NaturalStoneRevetment::CalculateDegradation(7.0, spectralWavePeriod);
@@ -112,7 +113,7 @@ namespace DiKErnel::FunctionLibrary::Test
             REQUIRE(degradation == Approx(0.53003409246204658));
         }
 
-        SECTION("CalculateReferenceTimeDegradation_Always_ReturnsReferenceTimeDegradation")
+        SECTION("WhenCalculateReferenceTimeDegradation_ThenExpectedResult")
         {
             // Call
             auto referenceTimeDegradation = NaturalStoneRevetment::CalculateReferenceTimeDegradation(
@@ -127,7 +128,7 @@ namespace DiKErnel::FunctionLibrary::Test
             REQUIRE(referenceTimeDegradation == Approx(0.00020474132396956532));
         }
 
-        SECTION("CalculateReferenceDegradation_Always_ReturnsReferenceDegradation")
+        SECTION("WhenCalculateReferenceDegradation_ThenExpectedResult")
         {
             // Call
             auto referenceDegradation = NaturalStoneRevetment::CalculateReferenceDegradation(
@@ -143,7 +144,7 @@ namespace DiKErnel::FunctionLibrary::Test
             REQUIRE(referenceDegradation == Approx(0.18660125126324004));
         }
 
-        SECTION("CalculateWaveAngleImpact_WithPositiveAngle_ReturnsWaveAngleImpact")
+        SECTION("WhenCalculateWaveAngleImpactWithPositiveWaveAngle_ThenExpectedResult")
         {
             // Call
             auto waveAngleImpact = NaturalStoneRevetment::CalculateWaveAngleImpact(waveAngle);
@@ -152,7 +153,7 @@ namespace DiKErnel::FunctionLibrary::Test
             REQUIRE(waveAngleImpact == Approx(0.62996052494743671));
         }
 
-        SECTION("CalculateWaveAngleImpact_WithNegativeAngle_ReturnsWaveAngleImpact")
+        SECTION("WhenCalculateWaveAngleImpactWithNegativeWaveAngle_ThenExpectedResult")
         {
             // Call
             auto waveAngleImpact = NaturalStoneRevetment::CalculateWaveAngleImpact(-waveAngle);
