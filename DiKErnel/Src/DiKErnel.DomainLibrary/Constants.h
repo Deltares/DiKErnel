@@ -3,9 +3,9 @@
 namespace DiKErnel::DomainLibrary
 {
     /*!
-     * \brief Dummy class.
+     * \brief Class that contains all constants.
      */
-    class Dummy
+    class Constants
     {
         public:
             bool created;
@@ -13,6 +13,6 @@ namespace DiKErnel::DomainLibrary
             /*!
              * \brief Creates a new instance.
              */
-            Dummy();
+            Constants();
     };
 }

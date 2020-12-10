@@ -3,7 +3,7 @@ set(EXENAME DiKErnel.DomainLibrary.Test)
 
 # Define sources
 set(SOURCEFILES
-  DummyTest.cpp
+  ConstantsTest.cpp
   Main.cpp
 )
 

@@ -3,8 +3,8 @@ set(LIBNAME DiKErnel.DomainLibrary)
 
 # Define sources
 set(SOURCEFILES
-  Dummy.cpp
-  Dummy.h
+  Constants.cpp
+  Constants.h
 )
 
 # Add library

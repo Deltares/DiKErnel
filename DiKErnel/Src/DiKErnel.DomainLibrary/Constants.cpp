@@ -1,8 +1,8 @@
-#include "Dummy.h"
+#include "Constants.h"
 
 namespace DiKErnel::DomainLibrary
 {
-    Dummy::Dummy()
+    Constants::Constants()
     {
         created = true;
     }

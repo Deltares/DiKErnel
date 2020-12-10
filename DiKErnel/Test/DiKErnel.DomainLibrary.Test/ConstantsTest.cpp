@@ -1,6 +1,6 @@
 #include "catch2/catch.hpp"
 
-#include "Dummy.h"
+#include "Constants.h"
 
 namespace DiKErnel::DomainLibrary::Test
 {
@@ -9,7 +9,7 @@ namespace DiKErnel::DomainLibrary::Test
         SECTION("Constructor_ExpectedValues")
         {
             // Call
-            Dummy dummy;
+            Constants dummy;
 
             // Assert
             REQUIRE(dummy.created == true);
