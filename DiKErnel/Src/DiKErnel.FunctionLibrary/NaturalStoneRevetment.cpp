@@ -92,8 +92,8 @@ namespace DiKErnel::FunctionLibrary
         const double spectralWaveHeight,
         const double spectralWavePeriod)
     {
-        const auto spectralWaveHeightRelatedValue = 2.0 * Constants::Pi * spectralWaveHeight;
-        const auto spectralWavePeriodRelatedValue = 9.81 * pow(spectralWavePeriod, 2.0);
+        const auto spectralWaveHeightRelatedValue = 2.0 * Constants::PI * spectralWaveHeight;
+        const auto spectralWavePeriodRelatedValue = Constants::GRAVITY * pow(spectralWavePeriod, 2.0);
 
         const auto denominator = sqrt(spectralWaveHeightRelatedValue / spectralWavePeriodRelatedValue);
         const auto slopeAngleRadians = ConvertDegreesToRadians(slopeAngle);
@@ -208,6 +208,6 @@ namespace DiKErnel::FunctionLibrary
     double NaturalStoneRevetment::ConvertDegreesToRadians(
         const double degrees)
     {
-        return degrees * (Constants::Pi / 180);
+        return degrees * (Constants::PI / 180);
     }
 }

@@ -8,6 +8,14 @@ namespace DiKErnel::DomainLibrary
     class Constants
     {
         public:
-            static const double Pi;
+            /*!
+             * \brief The value of pi.
+             */
+            static const double PI;
+
+            /*!
+             * \brief The value of gravity.
+             */
+            static const double GRAVITY;
     };
 }

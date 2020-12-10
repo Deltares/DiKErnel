@@ -9,7 +9,12 @@ namespace DiKErnel::DomainLibrary::Test::ConstantsTest
         SECTION("WhenPi_ThenExpectedValue")
         {
             const auto pi = 2 * acos(0.0);
-            REQUIRE(Constants::Pi == Approx(pi));
+            REQUIRE(Constants::PI == Approx(pi));
+        }
+
+        SECTION("WhenGravity_ThenExpectedValue")
+        {
+            REQUIRE(Constants::GRAVITY == Approx(9.81));
         }
     }
 }
