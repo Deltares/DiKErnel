@@ -5,6 +5,7 @@ set(EXENAME DiKErnel.DomainLibrary.Test)
 set(SOURCEFILES
   ConstantsTest.cpp
   Main.cpp
+  NaturalStoneRevetmentDefaultsTest.cpp
 )
 
 # Add executable
