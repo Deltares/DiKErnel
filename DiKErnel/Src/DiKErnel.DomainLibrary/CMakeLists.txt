@@ -5,6 +5,8 @@ set(LIBNAME DiKErnel.DomainLibrary)
 set(SOURCEFILES
   Constants.cpp
   Constants.h
+  HydraulicLoadsDefaults.cpp
+  HydraulicLoadsDefaults.h
   NaturalStoneRevetmentDefaults.cpp
   NaturalStoneRevetmentDefaults.h
 )

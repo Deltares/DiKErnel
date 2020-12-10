@@ -4,6 +4,7 @@ set(EXENAME DiKErnel.DomainLibrary.Test)
 # Define sources
 set(SOURCEFILES
   ConstantsTest.cpp
+  HydraulicLoadsDefaultsTest.cpp
   Main.cpp
   NaturalStoneRevetmentDefaultsTest.cpp
 )
