@@ -16,3 +16,6 @@ source_group("Sources" FILES ${SOURCEFILES})
 
 # Expose header files
 target_include_directories(${LIBNAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+
+# Link dependencies
+target_link_libraries(${LIBNAME} DiKErnel.DomainLibrary)

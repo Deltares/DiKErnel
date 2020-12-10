@@ -3,10 +3,12 @@
 #include <algorithm>
 #include <cmath>
 
+#include "Constants.h"
+
+using namespace DiKErnel::DomainLibrary;
+
 namespace DiKErnel::FunctionLibrary
 {
-    double NaturalStoneRevetment::pi = 2 * acos(0.0);
-
     double NaturalStoneRevetment::CalculateDamage(
         const double initialDamage,
         const double slopeAngle,
@@ -90,7 +92,7 @@ namespace DiKErnel::FunctionLibrary
         const double spectralWaveHeight,
         const double spectralWavePeriod)
     {
-        const auto spectralWaveHeightRelatedValue = 2.0 * pi * spectralWaveHeight;
+        const auto spectralWaveHeightRelatedValue = 2.0 * Constants::Pi * spectralWaveHeight;
         const auto spectralWavePeriodRelatedValue = 9.81 * pow(spectralWavePeriod, 2.0);
 
         const auto denominator = sqrt(spectralWaveHeightRelatedValue / spectralWavePeriodRelatedValue);
@@ -206,6 +208,6 @@ namespace DiKErnel::FunctionLibrary
     double NaturalStoneRevetment::ConvertDegreesToRadians(
         const double degrees)
     {
-        return degrees * (pi / 180);
+        return degrees * (Constants::Pi / 180);
     }
 }

@@ -277,8 +277,6 @@ namespace DiKErnel::FunctionLibrary
                 double waveAngle);
 
         private:
-            static double pi;
-
             static double CalculateIncrementOfTime(
                 double startTime,
                 double endTime);
