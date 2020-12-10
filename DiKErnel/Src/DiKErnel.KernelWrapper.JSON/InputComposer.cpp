@@ -8,18 +8,18 @@
 
 namespace DiKErnel::KernelWrapper::Json
 {
-    InputData InputComposer::GetDomainParametersFromJson(
+    InputData* InputComposer::GetDomainParametersFromJson(
         const std::string& filePath)
     {
         auto json = ParseJson(filePath);
 
-        InputData inputData;
+        auto* inputData(new InputData());
 
-        inputData.calculationData = ReadCalculationData(&json);
+        inputData->calculationData = ReadCalculationData(&json);
 
-        inputData.hydraulicLoads = ReadHydraulicLoads(&json);
+        inputData->hydraulicLoads = ReadHydraulicLoads(&json);
 
-        inputData.locations = ReadLocations(&json);
+        inputData->locations = ReadLocations(&json);
 
         return inputData;
     }

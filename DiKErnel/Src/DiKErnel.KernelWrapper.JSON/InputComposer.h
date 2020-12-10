@@ -21,7 +21,7 @@ namespace DiKErnel::KernelWrapper::Json
              *        The reference path to the json file.
              * \return The input data object.
              */
-            static InputData GetDomainParametersFromJson(
+            static InputData* GetDomainParametersFromJson(
                 const std::string& filePath);
 
             /*!

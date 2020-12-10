@@ -10,13 +10,13 @@
 namespace DiKErnel::KernelWrapper::Json::Test
 {
     void AssertCalculationData(
-        CalculationData calculationData)
+        const CalculationData& calculationData)
     {
         REQUIRE_THAT(calculationData.time, Catch::Equals<int>({ 0, 100, 500, 800, 1200, 2000 }));
     }
 
     void AssertHydraulicLoads(
-        HydraulicLoads hydraulicLoads)
+       const HydraulicLoads& hydraulicLoads)
     {
         REQUIRE(hydraulicLoads.waveAngleMaximum == 78);
         REQUIRE(hydraulicLoads.boundaryConditionsPerTimeStep[0].waveHeightHm0 == 0.5);
@@ -41,7 +41,7 @@ namespace DiKErnel::KernelWrapper::Json::Test
     }
 
     void AssertCalculationLocations(
-        std::vector<CalculationLocation> calculationLocations)
+        std::vector<CalculationLocation>& calculationLocations)
     {
         REQUIRE(calculationLocations[0].name == "LocatieZwak");
 
@@ -89,14 +89,14 @@ namespace DiKErnel::KernelWrapper::Json::Test
         SECTION("WhenGetDomainParametersFromJson_ThenCorrectDataSet")
         {
             // When
-            InputData inputData = inputComposer.GetDomainParametersFromJson(filePath.u8string());
+            InputData* inputData = inputComposer.GetDomainParametersFromJson(filePath.u8string());
 
             // Assert
-            AssertCalculationData(inputData.calculationData);
+            AssertCalculationData(inputData->calculationData);
 
-            AssertHydraulicLoads(inputData.hydraulicLoads);
+            AssertHydraulicLoads(inputData->hydraulicLoads);
 
-            AssertCalculationLocations(inputData.locations);
+            AssertCalculationLocations(inputData->locations);
         }
 
         SECTION("WhenReadCalculationDataFromJson_ThenCorrectDataSet")
