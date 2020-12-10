@@ -2,17 +2,14 @@
 
 #include "Constants.h"
 
-namespace DiKErnel::DomainLibrary::Test
+namespace DiKErnel::DomainLibrary::Test::ConstantsTest
 {
-    TEST_CASE("DummyTest")
+    TEST_CASE("GivenConstants")
     {
-        SECTION("Constructor_ExpectedValues")
+        SECTION("WhenPi_ThenExpectedValue")
         {
-            // Call
-            Constants dummy;
-
-            // Assert
-            REQUIRE(dummy.created == true);
+            const auto pi = 2 * acos(0.0);
+            REQUIRE(Constants::Pi == Approx(pi));
         }
     }
 }

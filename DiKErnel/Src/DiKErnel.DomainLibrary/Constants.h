@@ -8,11 +8,6 @@ namespace DiKErnel::DomainLibrary
     class Constants
     {
         public:
-            bool created;
-
-            /*!
-             * \brief Creates a new instance.
-             */
-            Constants();
+            static const double Pi;
     };
 }
