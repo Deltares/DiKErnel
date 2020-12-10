@@ -9,7 +9,7 @@
 namespace DiKErnel::KernelWrapper::Json
 {
     InputData InputComposer::GetDomainParametersFromJson(
-        const std::string filePath)
+        const std::string& filePath)
     {
         const auto json = ParseJson(filePath);
 
