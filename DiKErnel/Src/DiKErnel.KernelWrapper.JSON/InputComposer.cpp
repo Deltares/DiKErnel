@@ -65,7 +65,9 @@ namespace DiKErnel::KernelWrapper::Json
     {
         std::vector<CalculationLocation> calculationLocations;
 
-        for (auto i = 0; i < json[JsonDefinitions::locations].size(); i++)
+        const auto arraySize = json[JsonDefinitions::locations].size();
+
+        for (auto i = 0; i < arraySize; i++)
         {
             CalculationLocation location;
             calculationLocations.push_back(location);
@@ -106,7 +108,7 @@ namespace DiKErnel::KernelWrapper::Json
     }
 
     nlohmann::json InputComposer::ParseJson(
-        const std::string filePath)
+        const std::string& filePath)
     {
         std::ifstream ifs(filePath);
         return nlohmann::json::parse(ifs);

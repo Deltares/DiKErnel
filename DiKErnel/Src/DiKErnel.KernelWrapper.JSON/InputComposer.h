@@ -53,6 +53,6 @@ namespace DiKErnel::KernelWrapper::Json
 
         private:
             static nlohmann::json ParseJson(
-                std::string filePath);
+                const std::string& filePath);
     };
 }
