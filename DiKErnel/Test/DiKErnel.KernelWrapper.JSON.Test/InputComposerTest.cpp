@@ -105,7 +105,7 @@ namespace DiKErnel::KernelWrapper::Json::Test
             nlohmann::json json = nlohmann::json::parse(ifs);
 
             // When
-            CalculationData calculationData = inputComposer.ReadCalculationData(json);
+            CalculationData calculationData = inputComposer.ReadCalculationData(&json);
 
             // Then
             AssertCalculationData(calculationData);

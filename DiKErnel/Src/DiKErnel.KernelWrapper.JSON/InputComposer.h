@@ -18,7 +18,7 @@ namespace DiKErnel::KernelWrapper::Json
             /*!
              * \brief Gets the domain parameters from the given json.
              * \param filePath
-             *        The path to the json file.
+             *        The reference path to the json file.
              * \return The input data object.
              */
             static InputData GetDomainParametersFromJson(
@@ -27,11 +27,11 @@ namespace DiKErnel::KernelWrapper::Json
             /*!
              * \brief Reads the calculation data from the given json object. 
              * \param json
-             *        The json object to read from.
+             *        The pointer to the json object to read from.
              * \return The calculation data.
              */
             static CalculationData ReadCalculationData(
-                nlohmann::json json);
+                nlohmann::json* json);
 
             /*!
              * \brief Reads the hydraulic loads data from the given json object.

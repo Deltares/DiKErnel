@@ -11,11 +11,11 @@ namespace DiKErnel::KernelWrapper::Json
     InputData InputComposer::GetDomainParametersFromJson(
         const std::string& filePath)
     {
-        const auto json = ParseJson(filePath);
+        auto json = ParseJson(filePath);
 
         InputData inputData;
 
-        inputData.calculationData = ReadCalculationData(json);
+        inputData.calculationData = ReadCalculationData(&json);
 
         inputData.hydraulicLoads = ReadHydraulicLoads(json);
 
@@ -25,10 +25,10 @@ namespace DiKErnel::KernelWrapper::Json
     }
 
     CalculationData InputComposer::ReadCalculationData(
-        nlohmann::json json)
+        nlohmann::json* json)
     {
         CalculationData calculationData;
-        calculationData.time = json[JsonDefinitions::calculationData][JsonDefinitions::time].get<std::vector<int>>();
+        calculationData.time = (*json)[JsonDefinitions::calculationData][JsonDefinitions::time].get<std::vector<int>>();
 
         return calculationData;
     }
