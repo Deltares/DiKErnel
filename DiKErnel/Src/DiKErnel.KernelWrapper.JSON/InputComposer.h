@@ -36,20 +36,20 @@ namespace DiKErnel::KernelWrapper::Json
             /*!
              * \brief Reads the hydraulic loads data from the given json object.
              * \param json
-             *        The json object to read from.
+             *        The pointer to the json object to read from.
              * \return The hydraulic loads data.
              */
             static HydraulicLoads ReadHydraulicLoads(
-                nlohmann::json json);
+                nlohmann::json* json);
 
             /*!
             * \brief Reads the calculation location data from the given json object.
             * \param json
-            *        The json object to read from.
+            *        The pointer to the json object to read from.
             * \return The calculation location data.
             */
             static std::vector<CalculationLocation> ReadLocations(
-                nlohmann::json json);
+                nlohmann::json* json);
 
         private:
             static nlohmann::json ParseJson(

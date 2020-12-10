@@ -117,7 +117,7 @@ namespace DiKErnel::KernelWrapper::Json::Test
             nlohmann::json json = nlohmann::json::parse(ifs);
 
             // When
-            HydraulicLoads hydraulicLoads = inputComposer.ReadHydraulicLoads(json);
+            HydraulicLoads hydraulicLoads = inputComposer.ReadHydraulicLoads(&json);
 
             // Then
             AssertHydraulicLoads(hydraulicLoads);
@@ -129,7 +129,7 @@ namespace DiKErnel::KernelWrapper::Json::Test
             nlohmann::json json = nlohmann::json::parse(ifs);
 
             // When
-            std::vector<CalculationLocation> calculationLocations = inputComposer.ReadLocations(json);
+            std::vector<CalculationLocation> calculationLocations = inputComposer.ReadLocations(&json);
 
             // Then
             AssertCalculationLocations(calculationLocations);
