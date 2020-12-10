@@ -22,7 +22,7 @@ namespace DiKErnel::KernelWrapper::Json
              * \return The input data object.
              */
             static InputData GetDomainParametersFromJson(
-                std::string filePath);
+                const std::string& filePath);
 
             /*!
              * \brief Reads the calculation data from the given json object. 
