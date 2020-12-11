@@ -19,7 +19,7 @@
 // All rights reserved.
 
 #include <gtest/gtest.h>
-
+#include <cmath>
 #include "Constants.h"
 
 namespace DiKErnel::DomainLibrary::Test::ConstantsTest
