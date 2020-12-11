@@ -29,6 +29,76 @@
 
 namespace DiKErnel::KernelWrapper::Json::Test
 {
+    #pragma region Forward declarations
+
+    void AssertCalculationData(
+        const CalculationData& calculationData);
+
+    void AssertHydraulicLoads(
+        const HydraulicLoads& hydraulicLoads);
+
+    void AssertCalculationLocations(
+        std::vector<CalculationLocation>& calculationLocations);
+
+    #pragma endregion
+
+    TEST_CASE("GivenFilePathAndInputComposer")
+    {
+        // Given
+        const auto filePath = TestUtil::TestDataHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Test") / "calculation.json";
+
+        SECTION("WhenGetDomainParametersFromJson_ThenCorrectDataSet")
+        {
+            // When
+            InputData* inputData = InputComposer::GetDomainParametersFromJson(filePath.u8string());
+
+            // Assert
+            AssertCalculationData(inputData->GetCalculationData());
+
+            AssertHydraulicLoads(inputData->GetHydraulicLoads());
+
+            AssertCalculationLocations(inputData->GetLocations());
+        }
+
+        SECTION("WhenReadCalculationDataFromJson_ThenCorrectDataSet")
+        {
+            std::ifstream ifs(filePath);
+            nlohmann::json json = nlohmann::json::parse(ifs);
+
+            // When
+            CalculationData calculationData = InputComposer::ReadCalculationData(&json);
+
+            // Then
+            AssertCalculationData(calculationData);
+        }
+
+        SECTION("WhenReadHydraulicLoadsFromJson_ThenCorrectDataSet")
+        {
+            std::ifstream ifs(filePath);
+            nlohmann::json json = nlohmann::json::parse(ifs);
+
+            // When
+            HydraulicLoads hydraulicLoads = InputComposer::ReadHydraulicLoads(&json);
+
+            // Then
+            AssertHydraulicLoads(hydraulicLoads);
+        }
+
+        SECTION("WhenReadLocationsFromJson_ThenCorrectDataSet")
+        {
+            std::ifstream ifs(filePath);
+            nlohmann::json json = nlohmann::json::parse(ifs);
+
+            // When
+            std::vector<CalculationLocation> calculationLocations = InputComposer::ReadLocations(&json);
+
+            // Then
+            AssertCalculationLocations(calculationLocations);
+        }
+    }
+
+    #pragma region Helper methods
+
     void AssertCalculationData(
         const CalculationData& calculationData)
     {
@@ -108,59 +178,5 @@ namespace DiKErnel::KernelWrapper::Json::Test
         REQUIRE(calculationLocation.GetProfileSchematization().GetTanA() == 0.3);
     }
 
-    TEST_CASE("GivenFilePathAndInputComposer")
-    {
-        // Given
-        const auto filePath = TestUtil::TestDataHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Test") / "calculation.json";
-        InputComposer inputComposer;
-
-        SECTION("WhenGetDomainParametersFromJson_ThenCorrectDataSet")
-        {
-            // When
-            InputData* inputData = inputComposer.GetDomainParametersFromJson(filePath.u8string());
-
-            // Assert
-            AssertCalculationData(inputData->GetCalculationData());
-
-            AssertHydraulicLoads(inputData->GetHydraulicLoads());
-
-            AssertCalculationLocations(inputData->GetLocations());
-        }
-
-        SECTION("WhenReadCalculationDataFromJson_ThenCorrectDataSet")
-        {
-            std::ifstream ifs(filePath);
-            nlohmann::json json = nlohmann::json::parse(ifs);
-
-            // When
-            CalculationData calculationData = inputComposer.ReadCalculationData(&json);
-
-            // Then
-            AssertCalculationData(calculationData);
-        }
-
-        SECTION("WhenReadHydraulicLoadsFromJson_ThenCorrectDataSet")
-        {
-            std::ifstream ifs(filePath);
-            nlohmann::json json = nlohmann::json::parse(ifs);
-
-            // When
-            HydraulicLoads hydraulicLoads = inputComposer.ReadHydraulicLoads(&json);
-
-            // Then
-            AssertHydraulicLoads(hydraulicLoads);
-        }
-
-        SECTION("WhenReadLocationsFromJson_ThenCorrectDataSet")
-        {
-            std::ifstream ifs(filePath);
-            nlohmann::json json = nlohmann::json::parse(ifs);
-
-            // When
-            std::vector<CalculationLocation> calculationLocations = inputComposer.ReadLocations(&json);
-
-            // Then
-            AssertCalculationLocations(calculationLocations);
-        }
-    }
+    #pragma endregion
 }
