@@ -18,3 +18,32 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
+#include "BoundaryConditionsPerTimeStep.h"
+
+namespace DiKErnel::KernelWrapper::Json
+{
+    BoundaryConditionsPerTimeStep::BoundaryConditionsPerTimeStep(
+        double waveHeightHm0,
+        double wavePeriodTm10,
+        double waveAngle)
+    {
+        this->waveHeightHm0 = waveHeightHm0;
+        this->wavePeriodTm10 = wavePeriodTm10;
+        this->waveAngle = waveAngle;
+    }
+
+    double BoundaryConditionsPerTimeStep::GetWaveHeightHm0() const
+    {
+        return waveHeightHm0;
+    }
+
+    double BoundaryConditionsPerTimeStep::GetWavePeriodTm10() const
+    {
+        return wavePeriodTm10;
+    }
+
+    double BoundaryConditionsPerTimeStep::GetWaveAngle() const
+    {
+        return waveAngle;
+    }
+}
