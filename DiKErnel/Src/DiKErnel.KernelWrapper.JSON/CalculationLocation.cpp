@@ -24,8 +24,8 @@ namespace DiKErnel::KernelWrapper::Json
 {
     CalculationLocation::CalculationLocation(
         std::string name,
-        Revetment revetment,
-        ProfileSchematization profileSchematization)
+        Revetment* revetment,
+        ProfileSchematization* profileSchematization)
     {
         this->name = name;
         this->revetment = revetment;
@@ -37,13 +37,19 @@ namespace DiKErnel::KernelWrapper::Json
         return name;
     }
 
-    Revetment CalculationLocation::GetRevetment() const
+    Revetment* CalculationLocation::GetRevetment() const
     {
         return revetment;
     }
 
-    ProfileSchematization CalculationLocation::GetProfileSchematization() const
+    ProfileSchematization* CalculationLocation::GetProfileSchematization() const
     {
         return profileSchematization;
+    }
+
+    CalculationLocation::~CalculationLocation()
+    {
+        delete revetment;
+        delete profileSchematization;
     }
 }

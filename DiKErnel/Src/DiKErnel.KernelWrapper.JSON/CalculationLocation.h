@@ -33,19 +33,21 @@ namespace DiKErnel::KernelWrapper::Json
     class CalculationLocation
     {
         std::string name;
-        Revetment revetment;
-        ProfileSchematization profileSchematization;
+        Revetment* revetment;
+        ProfileSchematization* profileSchematization;
 
         public:
         CalculationLocation(
             std::string name,
-            Revetment revetment,
-            ProfileSchematization profileSchematization);
+            Revetment* revetment,
+            ProfileSchematization* profileSchematization);
 
         std::string GetName() const;
 
-        Revetment GetRevetment() const;
+        Revetment* GetRevetment() const;
 
-        ProfileSchematization GetProfileSchematization() const;
+        ProfileSchematization* GetProfileSchematization() const;
+
+        ~CalculationLocation();
     };
 }
