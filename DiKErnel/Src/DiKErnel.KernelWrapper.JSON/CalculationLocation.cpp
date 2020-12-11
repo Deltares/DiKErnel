@@ -18,3 +18,32 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
+#include "CalculationLocation.h"
+
+namespace DiKErnel::KernelWrapper::Json
+{
+    CalculationLocation::CalculationLocation(
+        std::string name,
+        Revetment revetment,
+        ProfileSchematization profileSchematization)
+    {
+        this->name = name;
+        this->revetment = revetment;
+        this->profileSchematization = profileSchematization;
+    }
+
+    std::string CalculationLocation::GetName() const
+    {
+        return name;
+    }
+
+    Revetment CalculationLocation::GetRevetment() const
+    {
+        return revetment;
+    }
+
+    ProfileSchematization CalculationLocation::GetProfileSchematization() const
+    {
+        return profileSchematization;
+    }
+}
