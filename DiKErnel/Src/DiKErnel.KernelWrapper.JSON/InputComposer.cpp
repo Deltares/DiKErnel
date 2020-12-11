@@ -86,23 +86,24 @@ namespace DiKErnel::KernelWrapper::Json
             auto readRevetment = readLocation[JsonDefinitions::revetment];
             auto readProfileSchematization = readLocation[JsonDefinitions::profileSchematisation];
 
-            Revetment revetment;
-            revetment.typeTopLayer = readRevetment[JsonDefinitions::typeTopLayer].get<std::string>();
-            revetment.relativeDensity = readRevetment[JsonDefinitions::relativeDensity].get<double>();
-            revetment.thicknessTopLayer = readRevetment[JsonDefinitions::thicknessTopLayer].get<double>();
-            revetment.initialDamage = readRevetment[JsonDefinitions::initialDamage].get<double>();
-            revetment.similarityParameterThreshold = readRevetment[JsonDefinitions::similarityParameterThreshold].get<double>();
-            revetment.coefficientPlungingAp = readRevetment[JsonDefinitions::coefficientPlungingAp].get<double>();
-            revetment.coefficientPlungingBp = readRevetment[JsonDefinitions::coefficientPlungingBp].get<double>();
-            revetment.coefficientPlungingCp = readRevetment[JsonDefinitions::coefficientPlungingCp].get<double>();
-            revetment.coefficientPlungingNp = readRevetment[JsonDefinitions::coefficientPlungingNp].get<double>();
-            revetment.coefficientSurgingAs = readRevetment[JsonDefinitions::coefficientSurgingAs].get<double>();
-            revetment.coefficientSurgingBs = readRevetment[JsonDefinitions::coefficientSurgingBs].get<double>();
-            revetment.coefficientSurgingCs = readRevetment[JsonDefinitions::coefficientSurgingCs].get<double>();
-            revetment.coefficientSurgingNs = readRevetment[JsonDefinitions::coefficientSurgingNs].get<double>();
+            Revetment revetment(
+                readRevetment[JsonDefinitions::typeTopLayer].get<std::string>(),
+                readRevetment[JsonDefinitions::relativeDensity].get<double>(),
+                readRevetment[JsonDefinitions::thicknessTopLayer].get<double>(),
+                readRevetment[JsonDefinitions::initialDamage].get<double>(),
+                readRevetment[JsonDefinitions::similarityParameterThreshold].get<double>(),
+                readRevetment[JsonDefinitions::coefficientPlungingAp].get<double>(),
+                readRevetment[JsonDefinitions::coefficientPlungingBp].get<double>(),
+                readRevetment[JsonDefinitions::coefficientPlungingCp].get<double>(),
+                readRevetment[JsonDefinitions::coefficientPlungingNp].get<double>(),
+                readRevetment[JsonDefinitions::coefficientSurgingAs].get<double>(),
+                readRevetment[JsonDefinitions::coefficientSurgingBs].get<double>(),
+                readRevetment[JsonDefinitions::coefficientSurgingCs].get<double>(),
+                readRevetment[JsonDefinitions::coefficientSurgingNs].get<double>());
 
-            ProfileSchematization profileSchematization;
-            profileSchematization.tanA = readProfileSchematization[JsonDefinitions::tanA].get<double>();
+            ProfileSchematization profileSchematization(
+                readProfileSchematization[JsonDefinitions::tanA].get<double>()
+            );
 
             calculationLocations.push_back(CalculationLocation(
                 readLocation[JsonDefinitions::name].get<std::string>(),
