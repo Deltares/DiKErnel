@@ -18,3 +18,32 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
+#include "InputData.h"
+
+namespace DiKErnel::KernelWrapper::Json
+{
+    InputData::InputData(
+        CalculationData calculationData,
+        HydraulicLoads hydraulicLoads,
+        std::vector<CalculationLocation> locations)
+    {
+        this->calculationData = calculationData;
+        this->hydraulicLoads = hydraulicLoads;
+        this->locations = locations;
+    }
+
+    CalculationData InputData::GetCalculationData() const
+    {
+        return calculationData;
+    }
+
+    HydraulicLoads InputData::GetHydraulicLoads() const
+    {
+        return hydraulicLoads;
+    }
+
+    std::vector<CalculationLocation> InputData::GetLocations() const
+    {
+        return locations;
+    }
+}

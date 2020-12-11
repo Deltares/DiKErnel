@@ -19,6 +19,7 @@
 // All rights reserved.
 
 #pragma once
+
 #include <string>
 #include <Revetment.h>
 
