@@ -19,6 +19,7 @@
 // All rights reserved.
 
 #pragma once
+
 #include <string>
 
 namespace DiKErnel::KernelWrapper::Json

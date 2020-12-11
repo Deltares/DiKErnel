@@ -20,11 +20,12 @@
 
 #pragma once
 
+#include "nlohmann/json.hpp"
+
 #include "CalculationData.h"
 #include "CalculationLocation.h"
 #include "HydraulicLoads.h"
 #include "InputComposer.h"
-#include "nlohmann/json.hpp"
 
 namespace DiKErnel::KernelWrapper::Json
 {
