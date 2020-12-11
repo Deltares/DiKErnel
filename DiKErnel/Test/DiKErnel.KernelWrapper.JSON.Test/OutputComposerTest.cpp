@@ -18,21 +18,18 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include "catch2/catch.hpp"
+#include <gtest/gtest.h>
 
 #include "OutputComposer.h"
 
 namespace DiKErnel::KernelWrapper::Json::Test
 {
-    TEST_CASE("OutputComposerTest")
+    TEST(OutputComposerTest, Constructor_ExpectedValues)
     {
-        SECTION("Constructor_ExpectedValues")
-        {
-            // Call
-            OutputComposer outputComposer;
+        // Call
+        OutputComposer outputComposer;
 
-            // Assert
-            REQUIRE(outputComposer.created == true);
-        }
+        // Assert
+        ASSERT_EQ(outputComposer.created, true);
     }
 }
