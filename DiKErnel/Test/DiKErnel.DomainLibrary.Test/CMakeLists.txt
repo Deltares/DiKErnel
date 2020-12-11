@@ -17,4 +17,4 @@ set_target_properties(${EXENAME} PROPERTIES FOLDER Test)
 source_group("Sources" FILES ${SOURCEFILES})
 
 # Link dependencies
-target_link_libraries(${EXENAME} Catch2::Catch2 DiKErnel.DomainLibrary)
+target_link_libraries(${EXENAME} Catch2::Catch2 gtest DiKErnel.DomainLibrary)
