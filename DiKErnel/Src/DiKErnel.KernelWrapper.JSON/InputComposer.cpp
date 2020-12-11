@@ -56,25 +56,26 @@ namespace DiKErnel::KernelWrapper::Json
     HydraulicLoads InputComposer::ReadHydraulicLoads(
         nlohmann::json* json)
     {
+        std::vector<BoundaryConditionsPerTimeStep> boundaryConditionsPerTimeStep;
+
         auto readHydraulicLoads = (*json)[JsonDefinitions::hydraulicLoads];
-
-        HydraulicLoads hydraulicLoads;
-        hydraulicLoads.waveAngleMaximum = readHydraulicLoads[JsonDefinitions::maximumWaveAngle].get<int>();
-
         auto readBoundaryConditionsPerTimeStep = readHydraulicLoads[JsonDefinitions::boundaryConditionsPerTimeStep];
 
         for (auto i = 0; i < readBoundaryConditionsPerTimeStep.size(); i++)
         {
             auto readBoundaryConditionsForTimestep = readBoundaryConditionsPerTimeStep[i];
 
-            hydraulicLoads.boundaryConditionsPerTimeStep.push_back(BoundaryConditionsPerTimeStep(
+            boundaryConditionsPerTimeStep.push_back(BoundaryConditionsPerTimeStep(
                 readBoundaryConditionsForTimestep[JsonDefinitions::waveHeightHm0].get<double>(),
                 readBoundaryConditionsForTimestep[JsonDefinitions::wavePeriodTm10].get<double>(),
                 readBoundaryConditionsForTimestep[JsonDefinitions::waveAngle].get<double>()
             ));
         }
 
-        return hydraulicLoads;
+        return HydraulicLoads(
+            readHydraulicLoads[JsonDefinitions::maximumWaveAngle].get<int>(),
+            boundaryConditionsPerTimeStep
+        );
     }
 
     std::vector<CalculationLocation> InputComposer::ReadLocations(

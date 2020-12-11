@@ -38,29 +38,31 @@ namespace DiKErnel::KernelWrapper::Json::Test
     void AssertHydraulicLoads(
         const HydraulicLoads& hydraulicLoads)
     {
-        REQUIRE(hydraulicLoads.waveAngleMaximum == 78);
+        REQUIRE(hydraulicLoads.GetWaveAngleMaximum() == 78);
 
-        auto boundaryConditionsForTimeStep = hydraulicLoads.boundaryConditionsPerTimeStep[0];
+        auto boundaryConditionsPerTimeStep = hydraulicLoads.GetBoundaryConditionsPerTimeStep();
+
+        auto boundaryConditionsForTimeStep = boundaryConditionsPerTimeStep[0];
         REQUIRE(boundaryConditionsForTimeStep.GetWaveHeightHm0() == 0.5);
         REQUIRE(boundaryConditionsForTimeStep.GetWavePeriodTm10() == 2.0);
         REQUIRE(boundaryConditionsForTimeStep.GetWaveAngle() == -10.0);
 
-        boundaryConditionsForTimeStep = hydraulicLoads.boundaryConditionsPerTimeStep[1];
+        boundaryConditionsForTimeStep = boundaryConditionsPerTimeStep[1];
         REQUIRE(boundaryConditionsForTimeStep.GetWaveHeightHm0() == 0.8);
         REQUIRE(boundaryConditionsForTimeStep.GetWavePeriodTm10() == 6.0);
         REQUIRE(boundaryConditionsForTimeStep.GetWaveAngle() == -5.0);
 
-        boundaryConditionsForTimeStep = hydraulicLoads.boundaryConditionsPerTimeStep[2];
+        boundaryConditionsForTimeStep = boundaryConditionsPerTimeStep[2];
         REQUIRE(boundaryConditionsForTimeStep.GetWaveHeightHm0() == 1.2);
         REQUIRE(boundaryConditionsForTimeStep.GetWavePeriodTm10() == 6.0);
         REQUIRE(boundaryConditionsForTimeStep.GetWaveAngle() == 0.0);
 
-        boundaryConditionsForTimeStep = hydraulicLoads.boundaryConditionsPerTimeStep[3];
+        boundaryConditionsForTimeStep = boundaryConditionsPerTimeStep[3];
         REQUIRE(boundaryConditionsForTimeStep.GetWaveHeightHm0() == 1.5);
         REQUIRE(boundaryConditionsForTimeStep.GetWavePeriodTm10() == 7.0);
         REQUIRE(boundaryConditionsForTimeStep.GetWaveAngle() == 7);
 
-        boundaryConditionsForTimeStep = hydraulicLoads.boundaryConditionsPerTimeStep[4];
+        boundaryConditionsForTimeStep = boundaryConditionsPerTimeStep[4];
         REQUIRE(boundaryConditionsForTimeStep.GetWaveHeightHm0() == 0.5);
         REQUIRE(boundaryConditionsForTimeStep.GetWavePeriodTm10() == 4.0);
         REQUIRE(boundaryConditionsForTimeStep.GetWaveAngle() == 8.0);
