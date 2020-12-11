@@ -36,28 +36,34 @@ namespace DiKErnel::KernelWrapper::Json::Test
     }
 
     void AssertHydraulicLoads(
-       const HydraulicLoads& hydraulicLoads)
+        const HydraulicLoads& hydraulicLoads)
     {
         REQUIRE(hydraulicLoads.waveAngleMaximum == 78);
-        REQUIRE(hydraulicLoads.boundaryConditionsPerTimeStep[0].waveHeightHm0 == 0.5);
-        REQUIRE(hydraulicLoads.boundaryConditionsPerTimeStep[0].wavePeriodTm10 == 2.0);
-        REQUIRE(hydraulicLoads.boundaryConditionsPerTimeStep[0].waveAngle == -10.0);
 
-        REQUIRE(hydraulicLoads.boundaryConditionsPerTimeStep[1].waveHeightHm0 == 0.8);
-        REQUIRE(hydraulicLoads.boundaryConditionsPerTimeStep[1].wavePeriodTm10 == 6.0);
-        REQUIRE(hydraulicLoads.boundaryConditionsPerTimeStep[1].waveAngle == -5.0);
+        auto boundaryConditionsForTimeStep = hydraulicLoads.boundaryConditionsPerTimeStep[0];
+        REQUIRE(boundaryConditionsForTimeStep.GetWaveHeightHm0() == 0.5);
+        REQUIRE(boundaryConditionsForTimeStep.GetWavePeriodTm10() == 2.0);
+        REQUIRE(boundaryConditionsForTimeStep.GetWaveAngle() == -10.0);
 
-        REQUIRE(hydraulicLoads.boundaryConditionsPerTimeStep[2].waveHeightHm0 == 1.2);
-        REQUIRE(hydraulicLoads.boundaryConditionsPerTimeStep[2].wavePeriodTm10 == 6.0);
-        REQUIRE(hydraulicLoads.boundaryConditionsPerTimeStep[2].waveAngle == 0.0);
+        boundaryConditionsForTimeStep = hydraulicLoads.boundaryConditionsPerTimeStep[1];
+        REQUIRE(boundaryConditionsForTimeStep.GetWaveHeightHm0() == 0.8);
+        REQUIRE(boundaryConditionsForTimeStep.GetWavePeriodTm10() == 6.0);
+        REQUIRE(boundaryConditionsForTimeStep.GetWaveAngle() == -5.0);
 
-        REQUIRE(hydraulicLoads.boundaryConditionsPerTimeStep[3].waveHeightHm0 == 1.5);
-        REQUIRE(hydraulicLoads.boundaryConditionsPerTimeStep[3].wavePeriodTm10 == 7.0);
-        REQUIRE(hydraulicLoads.boundaryConditionsPerTimeStep[3].waveAngle == 7);
+        boundaryConditionsForTimeStep = hydraulicLoads.boundaryConditionsPerTimeStep[2];
+        REQUIRE(boundaryConditionsForTimeStep.GetWaveHeightHm0() == 1.2);
+        REQUIRE(boundaryConditionsForTimeStep.GetWavePeriodTm10() == 6.0);
+        REQUIRE(boundaryConditionsForTimeStep.GetWaveAngle() == 0.0);
 
-        REQUIRE(hydraulicLoads.boundaryConditionsPerTimeStep[4].waveHeightHm0 == 0.5);
-        REQUIRE(hydraulicLoads.boundaryConditionsPerTimeStep[4].wavePeriodTm10 == 4.0);
-        REQUIRE(hydraulicLoads.boundaryConditionsPerTimeStep[4].waveAngle == 8.0);
+        boundaryConditionsForTimeStep = hydraulicLoads.boundaryConditionsPerTimeStep[3];
+        REQUIRE(boundaryConditionsForTimeStep.GetWaveHeightHm0() == 1.5);
+        REQUIRE(boundaryConditionsForTimeStep.GetWavePeriodTm10() == 7.0);
+        REQUIRE(boundaryConditionsForTimeStep.GetWaveAngle() == 7);
+
+        boundaryConditionsForTimeStep = hydraulicLoads.boundaryConditionsPerTimeStep[4];
+        REQUIRE(boundaryConditionsForTimeStep.GetWaveHeightHm0() == 0.5);
+        REQUIRE(boundaryConditionsForTimeStep.GetWavePeriodTm10() == 4.0);
+        REQUIRE(boundaryConditionsForTimeStep.GetWaveAngle() == 8.0);
     }
 
     void AssertCalculationLocations(
