@@ -120,11 +120,11 @@ namespace DiKErnel::KernelWrapper::Json::Test
             InputData* inputData = inputComposer.GetDomainParametersFromJson(filePath.u8string());
 
             // Assert
-            AssertCalculationData(inputData->calculationData);
+            AssertCalculationData(inputData->GetCalculationData());
 
-            AssertHydraulicLoads(inputData->hydraulicLoads);
+            AssertHydraulicLoads(inputData->GetHydraulicLoads());
 
-            AssertCalculationLocations(inputData->locations);
+            AssertCalculationLocations(inputData->GetLocations());
         }
 
         SECTION("WhenReadCalculationDataFromJson_ThenCorrectDataSet")
