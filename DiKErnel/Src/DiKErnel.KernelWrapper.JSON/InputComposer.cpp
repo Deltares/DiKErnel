@@ -57,15 +57,14 @@ namespace DiKErnel::KernelWrapper::Json
 
         std::vector<BoundaryConditionsPerTimeStep*> boundaryConditionsPerTimeStep;
 
-        for (auto i = 0; i < readBoundaryConditionsPerTimeStep.size(); i++)
+        for (auto readBoundaryConditionsForTimeStep : readBoundaryConditionsPerTimeStep)
         {
-            auto readBoundaryConditionsForTimestep = readBoundaryConditionsPerTimeStep[i];
-
-            boundaryConditionsPerTimeStep.push_back(new BoundaryConditionsPerTimeStep(
-                readBoundaryConditionsForTimestep[JsonDefinitions::waveHeightHm0].get<double>(),
-                readBoundaryConditionsForTimestep[JsonDefinitions::wavePeriodTm10].get<double>(),
-                readBoundaryConditionsForTimestep[JsonDefinitions::waveAngle].get<double>()
-            ));
+            boundaryConditionsPerTimeStep.push_back(
+                new BoundaryConditionsPerTimeStep(
+                    readBoundaryConditionsForTimeStep[JsonDefinitions::waveHeightHm0].get<double>(),
+                    readBoundaryConditionsForTimeStep[JsonDefinitions::wavePeriodTm10].get<double>(),
+                    readBoundaryConditionsForTimeStep[JsonDefinitions::waveAngle].get<double>()
+                ));
         }
 
         return new HydraulicLoads(
