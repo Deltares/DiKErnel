@@ -69,41 +69,41 @@ namespace DiKErnel::KernelWrapper::Json::Test
     void AssertCalculationLocations(
         std::vector<CalculationLocation>& calculationLocations)
     {
-        REQUIRE(calculationLocations[0].name == "LocatieZwak");
+        auto calculationLocation = calculationLocations[0];
+        auto revetment = calculationLocation.GetRevetment();
+        REQUIRE(calculationLocation.GetName() == "LocatieZwak");
+        REQUIRE(revetment.typeTopLayer == "Noorse Steen");
+        REQUIRE(revetment.relativeDensity == 1.6);
+        REQUIRE(revetment.thicknessTopLayer == 0.3);
+        REQUIRE(revetment.initialDamage == 0.0);
+        REQUIRE(revetment.similarityParameterThreshold == 2.9);
+        REQUIRE(revetment.coefficientPlungingAp == 4);
+        REQUIRE(revetment.coefficientPlungingBp == 0.8);
+        REQUIRE(revetment.coefficientPlungingCp == 0.0);
+        REQUIRE(revetment.coefficientPlungingNp == 0.0);
+        REQUIRE(revetment.coefficientSurgingAs == 0.0);
+        REQUIRE(revetment.coefficientSurgingBs == 0.0);
+        REQUIRE(revetment.coefficientSurgingCs == -0.9);
+        REQUIRE(revetment.coefficientSurgingNs == 0.6);
+        REQUIRE(calculationLocation.GetProfileSchematization().tanA == 0.3);
 
-        REQUIRE(calculationLocations[0].revetment.typeTopLayer == "Noorse Steen");
-        REQUIRE(calculationLocations[0].revetment.relativeDensity == 1.6);
-        REQUIRE(calculationLocations[0].revetment.thicknessTopLayer == 0.3);
-        REQUIRE(calculationLocations[0].revetment.initialDamage == 0.0);
-        REQUIRE(calculationLocations[0].revetment.similarityParameterThreshold == 2.9);
-        REQUIRE(calculationLocations[0].revetment.coefficientPlungingAp == 4);
-        REQUIRE(calculationLocations[0].revetment.coefficientPlungingBp == 0.8);
-        REQUIRE(calculationLocations[0].revetment.coefficientPlungingCp == 0.0);
-        REQUIRE(calculationLocations[0].revetment.coefficientPlungingNp == 0.0);
-        REQUIRE(calculationLocations[0].revetment.coefficientSurgingAs == 0.0);
-        REQUIRE(calculationLocations[0].revetment.coefficientSurgingBs == 0.0);
-        REQUIRE(calculationLocations[0].revetment.coefficientSurgingCs == -0.9);
-        REQUIRE(calculationLocations[0].revetment.coefficientSurgingNs == 0.6);
-
-        REQUIRE(calculationLocations[0].profileSchematization.tanA == 0.3);
-
-        REQUIRE(calculationLocations[1].name == "LocatieSterk");
-
-        REQUIRE(calculationLocations[1].revetment.typeTopLayer == "Noorse Steen");
-        REQUIRE(calculationLocations[1].revetment.relativeDensity == 1.6);
-        REQUIRE(calculationLocations[1].revetment.thicknessTopLayer == 0.7);
-        REQUIRE(calculationLocations[1].revetment.initialDamage == 0.0);
-        REQUIRE(calculationLocations[1].revetment.similarityParameterThreshold == 2.9);
-        REQUIRE(calculationLocations[1].revetment.coefficientPlungingAp == 4.0);
-        REQUIRE(calculationLocations[1].revetment.coefficientPlungingBp == 0.8);
-        REQUIRE(calculationLocations[1].revetment.coefficientPlungingCp == 0.0);
-        REQUIRE(calculationLocations[1].revetment.coefficientPlungingNp == 0.0);
-        REQUIRE(calculationLocations[1].revetment.coefficientSurgingAs == 0.0);
-        REQUIRE(calculationLocations[1].revetment.coefficientSurgingBs == 0.0);
-        REQUIRE(calculationLocations[1].revetment.coefficientSurgingCs == -0.9);
-        REQUIRE(calculationLocations[1].revetment.coefficientSurgingNs == 0.6);
-
-        REQUIRE(calculationLocations[1].profileSchematization.tanA == 0.3);
+        calculationLocation = calculationLocations[1];
+        revetment = calculationLocation.GetRevetment();
+        REQUIRE(calculationLocation.GetName() == "LocatieSterk");
+        REQUIRE(revetment.typeTopLayer == "Noorse Steen");
+        REQUIRE(revetment.relativeDensity == 1.6);
+        REQUIRE(revetment.thicknessTopLayer == 0.7);
+        REQUIRE(revetment.initialDamage == 0.0);
+        REQUIRE(revetment.similarityParameterThreshold == 2.9);
+        REQUIRE(revetment.coefficientPlungingAp == 4.0);
+        REQUIRE(revetment.coefficientPlungingBp == 0.8);
+        REQUIRE(revetment.coefficientPlungingCp == 0.0);
+        REQUIRE(revetment.coefficientPlungingNp == 0.0);
+        REQUIRE(revetment.coefficientSurgingAs == 0.0);
+        REQUIRE(revetment.coefficientSurgingBs == 0.0);
+        REQUIRE(revetment.coefficientSurgingCs == -0.9);
+        REQUIRE(revetment.coefficientSurgingNs == 0.6);
+        REQUIRE(calculationLocation.GetProfileSchematization().tanA == 0.3);
     }
 
     TEST_CASE("GivenFilePathAndInputComposer")
