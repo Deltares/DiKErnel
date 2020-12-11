@@ -33,95 +33,80 @@ namespace DiKErnel::KernelWrapper::Json
     {
         auto json = ParseJson(filePath);
 
-        auto* inputData(new InputData());
-
-        inputData->calculationData = ReadCalculationData(&json);
-
-        inputData->hydraulicLoads = ReadHydraulicLoads(&json);
-
-        inputData->locations = ReadLocations(&json);
-
-        return inputData;
+        return new InputData(
+            ReadCalculationData(&json),
+            ReadHydraulicLoads(&json),
+            ReadLocations(&json));
     }
 
-    CalculationData InputComposer::ReadCalculationData(
+    CalculationData* InputComposer::ReadCalculationData(
         nlohmann::json* json)
     {
-        CalculationData calculationData;
-        calculationData.time = (*json)[JsonDefinitions::calculationData][JsonDefinitions::time].get<std::vector<int>>();
+        auto readCalculationData = (*json)[JsonDefinitions::calculationData];
 
-        return calculationData;
+        return new CalculationData(
+            readCalculationData[JsonDefinitions::time].get<std::vector<int>>()
+        );
     }
 
-    HydraulicLoads InputComposer::ReadHydraulicLoads(
+    HydraulicLoads* InputComposer::ReadHydraulicLoads(
         nlohmann::json* json)
     {
-        HydraulicLoads hydraulicLoads;
+        auto readHydraulicLoads = (*json)[JsonDefinitions::hydraulicLoads];
+        auto readBoundaryConditionsPerTimeStep = readHydraulicLoads[JsonDefinitions::boundaryConditionsPerTimeStep];
 
-        hydraulicLoads.waveAngleMaximum = (*json)[JsonDefinitions::hydraulicLoads][JsonDefinitions::maximumWaveAngle].get<int>();
+        std::vector<BoundaryConditionsPerTimeStep*> boundaryConditionsPerTimeStep;
 
-        const auto arraySize = (*json)[JsonDefinitions::hydraulicLoads][JsonDefinitions::boundaryConditionsPerTimeStep].size();
-
-        for (auto i = 0; i < arraySize; i++)
+        for (auto i = 0; i < readBoundaryConditionsPerTimeStep.size(); i++)
         {
-            BoundaryConditionsPerTimeStep boundaryConditionsPerTimeStep;
-            hydraulicLoads.boundaryConditionsPerTimeStep.push_back(boundaryConditionsPerTimeStep);
-            hydraulicLoads.boundaryConditionsPerTimeStep.at(i).waveHeightHm0 =
-                (*json)[JsonDefinitions::hydraulicLoads][JsonDefinitions::boundaryConditionsPerTimeStep][i][JsonDefinitions::waveHeightHm0]
-                    .get<double>();
-            hydraulicLoads.boundaryConditionsPerTimeStep.at(i).wavePeriodTm10 =
-                (*json)[JsonDefinitions::hydraulicLoads][JsonDefinitions::boundaryConditionsPerTimeStep][i][JsonDefinitions::wavePeriodTm10]
-                    .get<double>();
-            hydraulicLoads.boundaryConditionsPerTimeStep.at(i).waveAngle =
-                (*json)[JsonDefinitions::hydraulicLoads][JsonDefinitions::boundaryConditionsPerTimeStep][i][JsonDefinitions::waveAngle]
-                    .get<double>();
+            auto readBoundaryConditionsForTimestep = readBoundaryConditionsPerTimeStep[i];
+
+            boundaryConditionsPerTimeStep.push_back(new BoundaryConditionsPerTimeStep(
+                readBoundaryConditionsForTimestep[JsonDefinitions::waveHeightHm0].get<double>(),
+                readBoundaryConditionsForTimestep[JsonDefinitions::wavePeriodTm10].get<double>(),
+                readBoundaryConditionsForTimestep[JsonDefinitions::waveAngle].get<double>()
+            ));
         }
 
-        return hydraulicLoads;
+        return new HydraulicLoads(
+            readHydraulicLoads[JsonDefinitions::maximumWaveAngle].get<int>(),
+            boundaryConditionsPerTimeStep
+        );
     }
 
-    std::vector<CalculationLocation> InputComposer::ReadLocations(
+    std::vector<CalculationLocation*> InputComposer::ReadLocations(
         nlohmann::json* json)
     {
-        std::vector<CalculationLocation> calculationLocations;
+        std::vector<CalculationLocation*> calculationLocations;
 
-        const auto arraySize = (*json)[JsonDefinitions::locations].size();
+        auto readLocations = (*json)[JsonDefinitions::locations];
 
-        for (auto i = 0; i < arraySize; i++)
+        for (auto i = 0; i < readLocations.size(); i++)
         {
-            CalculationLocation location;
-            calculationLocations.push_back(location);
+            auto readLocation = readLocations[i];
+            auto readRevetment = readLocation[JsonDefinitions::revetment];
+            auto readProfileSchematization = readLocation[JsonDefinitions::profileSchematisation];
 
-            calculationLocations.at(i).name = (*json)[JsonDefinitions::locations][i][JsonDefinitions::name].get<std::string>();
-
-            calculationLocations.at(i).revetment.typeTopLayer = (*json)[JsonDefinitions::locations][i][JsonDefinitions::revetment]
-                    [JsonDefinitions::typeTopLayer].get<std::string>();
-            calculationLocations.at(i).revetment.relativeDensity = (*json)[JsonDefinitions::locations][i][JsonDefinitions::revetment]
-                    [JsonDefinitions::relativeDensity].get<double>();
-            calculationLocations.at(i).revetment.thicknessTopLayer = (*json)[JsonDefinitions::locations][i][JsonDefinitions::revetment]
-                    [JsonDefinitions::thicknessTopLayer].get<double>();
-            calculationLocations.at(i).revetment.initialDamage = (*json)[JsonDefinitions::locations][i][JsonDefinitions::revetment]
-                    [JsonDefinitions::initialDamage].get<double>();
-            calculationLocations.at(i).revetment.similarityParameterThreshold =
-                    (*json)[JsonDefinitions::locations][i][JsonDefinitions::revetment][JsonDefinitions::similarityParameterThreshold].get<double>();
-            calculationLocations.at(i).revetment.coefficientPlungingAp = (*json)[JsonDefinitions::locations][i][JsonDefinitions::revetment]
-                    [JsonDefinitions::coefficientPlungingAp].get<double>();
-            calculationLocations.at(i).revetment.coefficientPlungingBp = (*json)[JsonDefinitions::locations][i][JsonDefinitions::revetment]
-                    [JsonDefinitions::coefficientPlungingBp].get<double>();
-            calculationLocations.at(i).revetment.coefficientPlungingCp = (*json)[JsonDefinitions::locations][i][JsonDefinitions::revetment]
-                    [JsonDefinitions::coefficientPlungingCp].get<double>();
-            calculationLocations.at(i).revetment.coefficientPlungingNp = (*json)[JsonDefinitions::locations][i][JsonDefinitions::revetment]
-                    [JsonDefinitions::coefficientPlungingNp].get<double>();
-            calculationLocations.at(i).revetment.coefficientSurgingAs = (*json)[JsonDefinitions::locations][i][JsonDefinitions::revetment]
-                    [JsonDefinitions::coefficientSurgingAs].get<double>();
-            calculationLocations.at(i).revetment.coefficientSurgingBs = (*json)[JsonDefinitions::locations][i][JsonDefinitions::revetment]
-                    [JsonDefinitions::coefficientSurgingBs].get<double>();
-            calculationLocations.at(i).revetment.coefficientSurgingCs = (*json)[JsonDefinitions::locations][i][JsonDefinitions::revetment]
-                    [JsonDefinitions::coefficientSurgingCs].get<double>();
-            calculationLocations.at(i).revetment.coefficientSurgingNs = (*json)[JsonDefinitions::locations][i][JsonDefinitions::revetment]
-                    [JsonDefinitions::coefficientSurgingNs].get<double>();
-            calculationLocations.at(i).profileSchematization.tanA = (*json)[JsonDefinitions::locations][i][JsonDefinitions::profileSchematisation]
-                    [JsonDefinitions::tanA].get<double>();
+            calculationLocations.push_back(new CalculationLocation(
+                readLocation[JsonDefinitions::name].get<std::string>(),
+                new Revetment(
+                    readRevetment[JsonDefinitions::typeTopLayer].get<std::string>(),
+                    readRevetment[JsonDefinitions::relativeDensity].get<double>(),
+                    readRevetment[JsonDefinitions::thicknessTopLayer].get<double>(),
+                    readRevetment[JsonDefinitions::initialDamage].get<double>(),
+                    readRevetment[JsonDefinitions::similarityParameterThreshold].get<double>(),
+                    readRevetment[JsonDefinitions::coefficientPlungingAp].get<double>(),
+                    readRevetment[JsonDefinitions::coefficientPlungingBp].get<double>(),
+                    readRevetment[JsonDefinitions::coefficientPlungingCp].get<double>(),
+                    readRevetment[JsonDefinitions::coefficientPlungingNp].get<double>(),
+                    readRevetment[JsonDefinitions::coefficientSurgingAs].get<double>(),
+                    readRevetment[JsonDefinitions::coefficientSurgingBs].get<double>(),
+                    readRevetment[JsonDefinitions::coefficientSurgingCs].get<double>(),
+                    readRevetment[JsonDefinitions::coefficientSurgingNs].get<double>()),
+                new ProfileSchematization(
+                    readProfileSchematization[JsonDefinitions::tanA].get<double>()
+                )
+            ));
         }
 
         return calculationLocations;

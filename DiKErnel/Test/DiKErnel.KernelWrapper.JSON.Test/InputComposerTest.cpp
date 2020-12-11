@@ -29,94 +29,36 @@
 
 namespace DiKErnel::KernelWrapper::Json::Test
 {
+    #pragma region Forward declarations
+
     void AssertCalculationData(
-        const CalculationData& calculationData)
-    {
-        REQUIRE_THAT(calculationData.time, Catch::Equals<int>({ 0, 100, 500, 800, 1200, 2000 }));
-    }
+        CalculationData* calculationData);
 
     void AssertHydraulicLoads(
-       const HydraulicLoads& hydraulicLoads)
-    {
-        REQUIRE(hydraulicLoads.waveAngleMaximum == 78);
-        REQUIRE(hydraulicLoads.boundaryConditionsPerTimeStep[0].waveHeightHm0 == 0.5);
-        REQUIRE(hydraulicLoads.boundaryConditionsPerTimeStep[0].wavePeriodTm10 == 2.0);
-        REQUIRE(hydraulicLoads.boundaryConditionsPerTimeStep[0].waveAngle == -10.0);
-
-        REQUIRE(hydraulicLoads.boundaryConditionsPerTimeStep[1].waveHeightHm0 == 0.8);
-        REQUIRE(hydraulicLoads.boundaryConditionsPerTimeStep[1].wavePeriodTm10 == 6.0);
-        REQUIRE(hydraulicLoads.boundaryConditionsPerTimeStep[1].waveAngle == -5.0);
-
-        REQUIRE(hydraulicLoads.boundaryConditionsPerTimeStep[2].waveHeightHm0 == 1.2);
-        REQUIRE(hydraulicLoads.boundaryConditionsPerTimeStep[2].wavePeriodTm10 == 6.0);
-        REQUIRE(hydraulicLoads.boundaryConditionsPerTimeStep[2].waveAngle == 0.0);
-
-        REQUIRE(hydraulicLoads.boundaryConditionsPerTimeStep[3].waveHeightHm0 == 1.5);
-        REQUIRE(hydraulicLoads.boundaryConditionsPerTimeStep[3].wavePeriodTm10 == 7.0);
-        REQUIRE(hydraulicLoads.boundaryConditionsPerTimeStep[3].waveAngle == 7);
-
-        REQUIRE(hydraulicLoads.boundaryConditionsPerTimeStep[4].waveHeightHm0 == 0.5);
-        REQUIRE(hydraulicLoads.boundaryConditionsPerTimeStep[4].wavePeriodTm10 == 4.0);
-        REQUIRE(hydraulicLoads.boundaryConditionsPerTimeStep[4].waveAngle == 8.0);
-    }
+        HydraulicLoads* hydraulicLoads);
 
     void AssertCalculationLocations(
-        std::vector<CalculationLocation>& calculationLocations)
-    {
-        REQUIRE(calculationLocations[0].name == "LocatieZwak");
+        std::vector<CalculationLocation*> calculationLocations);
 
-        REQUIRE(calculationLocations[0].revetment.typeTopLayer == "Noorse Steen");
-        REQUIRE(calculationLocations[0].revetment.relativeDensity == 1.6);
-        REQUIRE(calculationLocations[0].revetment.thicknessTopLayer == 0.3);
-        REQUIRE(calculationLocations[0].revetment.initialDamage == 0.0);
-        REQUIRE(calculationLocations[0].revetment.similarityParameterThreshold == 2.9);
-        REQUIRE(calculationLocations[0].revetment.coefficientPlungingAp == 4);
-        REQUIRE(calculationLocations[0].revetment.coefficientPlungingBp == 0.8);
-        REQUIRE(calculationLocations[0].revetment.coefficientPlungingCp == 0.0);
-        REQUIRE(calculationLocations[0].revetment.coefficientPlungingNp == 0.0);
-        REQUIRE(calculationLocations[0].revetment.coefficientSurgingAs == 0.0);
-        REQUIRE(calculationLocations[0].revetment.coefficientSurgingBs == 0.0);
-        REQUIRE(calculationLocations[0].revetment.coefficientSurgingCs == -0.9);
-        REQUIRE(calculationLocations[0].revetment.coefficientSurgingNs == 0.6);
-
-        REQUIRE(calculationLocations[0].profileSchematization.tanA == 0.3);
-
-        REQUIRE(calculationLocations[1].name == "LocatieSterk");
-
-        REQUIRE(calculationLocations[1].revetment.typeTopLayer == "Noorse Steen");
-        REQUIRE(calculationLocations[1].revetment.relativeDensity == 1.6);
-        REQUIRE(calculationLocations[1].revetment.thicknessTopLayer == 0.7);
-        REQUIRE(calculationLocations[1].revetment.initialDamage == 0.0);
-        REQUIRE(calculationLocations[1].revetment.similarityParameterThreshold == 2.9);
-        REQUIRE(calculationLocations[1].revetment.coefficientPlungingAp == 4.0);
-        REQUIRE(calculationLocations[1].revetment.coefficientPlungingBp == 0.8);
-        REQUIRE(calculationLocations[1].revetment.coefficientPlungingCp == 0.0);
-        REQUIRE(calculationLocations[1].revetment.coefficientPlungingNp == 0.0);
-        REQUIRE(calculationLocations[1].revetment.coefficientSurgingAs == 0.0);
-        REQUIRE(calculationLocations[1].revetment.coefficientSurgingBs == 0.0);
-        REQUIRE(calculationLocations[1].revetment.coefficientSurgingCs == -0.9);
-        REQUIRE(calculationLocations[1].revetment.coefficientSurgingNs == 0.6);
-
-        REQUIRE(calculationLocations[1].profileSchematization.tanA == 0.3);
-    }
+    #pragma endregion
 
     TEST_CASE("GivenFilePathAndInputComposer")
     {
         // Given
         const auto filePath = TestUtil::TestDataHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Test") / "calculation.json";
-        InputComposer inputComposer;
 
         SECTION("WhenGetDomainParametersFromJson_ThenCorrectDataSet")
         {
             // When
-            InputData* inputData = inputComposer.GetDomainParametersFromJson(filePath.u8string());
+            auto inputData = InputComposer::GetDomainParametersFromJson(filePath.u8string());
 
             // Assert
-            AssertCalculationData(inputData->calculationData);
+            AssertCalculationData(inputData->GetCalculationData());
+            AssertHydraulicLoads(inputData->GetHydraulicLoads());
+            AssertCalculationLocations(inputData->GetLocations());
 
-            AssertHydraulicLoads(inputData->hydraulicLoads);
-
-            AssertCalculationLocations(inputData->locations);
+            // Cleanup
+            delete inputData;
         }
 
         SECTION("WhenReadCalculationDataFromJson_ThenCorrectDataSet")
@@ -125,10 +67,13 @@ namespace DiKErnel::KernelWrapper::Json::Test
             nlohmann::json json = nlohmann::json::parse(ifs);
 
             // When
-            CalculationData calculationData = inputComposer.ReadCalculationData(&json);
+            auto calculationData = InputComposer::ReadCalculationData(&json);
 
             // Then
             AssertCalculationData(calculationData);
+
+            // Cleanup
+            delete calculationData;
         }
 
         SECTION("WhenReadHydraulicLoadsFromJson_ThenCorrectDataSet")
@@ -137,10 +82,13 @@ namespace DiKErnel::KernelWrapper::Json::Test
             nlohmann::json json = nlohmann::json::parse(ifs);
 
             // When
-            HydraulicLoads hydraulicLoads = inputComposer.ReadHydraulicLoads(&json);
+            auto hydraulicLoads = InputComposer::ReadHydraulicLoads(&json);
 
             // Then
             AssertHydraulicLoads(hydraulicLoads);
+
+            // Cleanup
+            delete hydraulicLoads;
         }
 
         SECTION("WhenReadLocationsFromJson_ThenCorrectDataSet")
@@ -149,10 +97,99 @@ namespace DiKErnel::KernelWrapper::Json::Test
             nlohmann::json json = nlohmann::json::parse(ifs);
 
             // When
-            std::vector<CalculationLocation> calculationLocations = inputComposer.ReadLocations(&json);
+            auto calculationLocations = InputComposer::ReadLocations(&json);
 
             // Then
             AssertCalculationLocations(calculationLocations);
+
+            // Cleanup
+            for (auto i = 0; i < calculationLocations.size(); i++)
+            {
+                delete calculationLocations[i];
+            }
         }
     }
+
+    #pragma region Helper methods
+
+    void AssertCalculationData(
+        CalculationData* calculationData)
+    {
+        REQUIRE_THAT(calculationData->GetTimes(), Catch::Equals<int>({ 0, 100, 500, 800, 1200, 2000 }));
+    }
+
+    void AssertHydraulicLoads(
+        HydraulicLoads* hydraulicLoads)
+    {
+        REQUIRE(hydraulicLoads->GetWaveAngleMaximum() == 78);
+
+        auto boundaryConditionsPerTimeStep = hydraulicLoads->GetBoundaryConditionsPerTimeStep();
+
+        auto boundaryConditionsForTimeStep = boundaryConditionsPerTimeStep[0];
+        REQUIRE(boundaryConditionsForTimeStep->GetWaveHeightHm0() == 0.5);
+        REQUIRE(boundaryConditionsForTimeStep->GetWavePeriodTm10() == 2.0);
+        REQUIRE(boundaryConditionsForTimeStep->GetWaveAngle() == -10.0);
+
+        boundaryConditionsForTimeStep = boundaryConditionsPerTimeStep[1];
+        REQUIRE(boundaryConditionsForTimeStep->GetWaveHeightHm0() == 0.8);
+        REQUIRE(boundaryConditionsForTimeStep->GetWavePeriodTm10() == 6.0);
+        REQUIRE(boundaryConditionsForTimeStep->GetWaveAngle() == -5.0);
+
+        boundaryConditionsForTimeStep = boundaryConditionsPerTimeStep[2];
+        REQUIRE(boundaryConditionsForTimeStep->GetWaveHeightHm0() == 1.2);
+        REQUIRE(boundaryConditionsForTimeStep->GetWavePeriodTm10() == 6.0);
+        REQUIRE(boundaryConditionsForTimeStep->GetWaveAngle() == 0.0);
+
+        boundaryConditionsForTimeStep = boundaryConditionsPerTimeStep[3];
+        REQUIRE(boundaryConditionsForTimeStep->GetWaveHeightHm0() == 1.5);
+        REQUIRE(boundaryConditionsForTimeStep->GetWavePeriodTm10() == 7.0);
+        REQUIRE(boundaryConditionsForTimeStep->GetWaveAngle() == 7);
+
+        boundaryConditionsForTimeStep = boundaryConditionsPerTimeStep[4];
+        REQUIRE(boundaryConditionsForTimeStep->GetWaveHeightHm0() == 0.5);
+        REQUIRE(boundaryConditionsForTimeStep->GetWavePeriodTm10() == 4.0);
+        REQUIRE(boundaryConditionsForTimeStep->GetWaveAngle() == 8.0);
+    }
+
+    void AssertCalculationLocations(
+        std::vector<CalculationLocation*> calculationLocations)
+    {
+        auto calculationLocation = calculationLocations[0];
+        auto revetment = calculationLocation->GetRevetment();
+        REQUIRE(calculationLocation->GetName() == "LocatieZwak");
+        REQUIRE(revetment->GetTypeTopLayer() == "Noorse Steen");
+        REQUIRE(revetment->GetRelativeDensity() == 1.6);
+        REQUIRE(revetment->GetThicknessTopLayer() == 0.3);
+        REQUIRE(revetment->GetInitialDamage() == 0.0);
+        REQUIRE(revetment->GetSimilarityParameterThreshold() == 2.9);
+        REQUIRE(revetment->GetCoefficientPlungingAp() == 4);
+        REQUIRE(revetment->GetCoefficientPlungingBp() == 0.8);
+        REQUIRE(revetment->GetCoefficientPlungingCp() == 0.0);
+        REQUIRE(revetment->GetCoefficientPlungingNp() == 0.0);
+        REQUIRE(revetment->GetCoefficientSurgingAs() == 0.0);
+        REQUIRE(revetment->GetCoefficientSurgingBs() == 0.0);
+        REQUIRE(revetment->GetCoefficientSurgingCs() == -0.9);
+        REQUIRE(revetment->GetCoefficientSurgingNs() == 0.6);
+        REQUIRE(calculationLocation->GetProfileSchematization()->GetTanA() == 0.3);
+
+        calculationLocation = calculationLocations[1];
+        revetment = calculationLocation->GetRevetment();
+        REQUIRE(calculationLocation->GetName() == "LocatieSterk");
+        REQUIRE(revetment->GetTypeTopLayer() == "Noorse Steen");
+        REQUIRE(revetment->GetRelativeDensity() == 1.6);
+        REQUIRE(revetment->GetThicknessTopLayer() == 0.7);
+        REQUIRE(revetment->GetInitialDamage() == 0.0);
+        REQUIRE(revetment->GetSimilarityParameterThreshold() == 2.9);
+        REQUIRE(revetment->GetCoefficientPlungingAp() == 4.0);
+        REQUIRE(revetment->GetCoefficientPlungingBp() == 0.8);
+        REQUIRE(revetment->GetCoefficientPlungingCp() == 0.0);
+        REQUIRE(revetment->GetCoefficientPlungingNp() == 0.0);
+        REQUIRE(revetment->GetCoefficientSurgingAs() == 0.0);
+        REQUIRE(revetment->GetCoefficientSurgingBs() == 0.0);
+        REQUIRE(revetment->GetCoefficientSurgingCs() == -0.9);
+        REQUIRE(revetment->GetCoefficientSurgingNs() == 0.6);
+        REQUIRE(calculationLocation->GetProfileSchematization()->GetTanA() == 0.3);
+    }
+
+    #pragma endregion
 }

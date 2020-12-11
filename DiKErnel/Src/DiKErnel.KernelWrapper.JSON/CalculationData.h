@@ -19,16 +19,23 @@
 // All rights reserved.
 
 #pragma once
+
 #include <vector>
 
 namespace DiKErnel::KernelWrapper::Json
 {
     /*!
-     * \brief Class responsible for serving as data model for calculation data.
+     * \brief Container for calculation data.
      */
     class CalculationData
     {
+        std::vector<int> times;
+
         public:
-            std::vector<int> time;
-        };
+        CalculationData(
+            std::vector<int> times
+        );
+
+        std::vector<int> GetTimes() const;
+    };
 }

@@ -18,3 +18,18 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
+#include "ProfileSchematization.h"
+
+namespace DiKErnel::KernelWrapper::Json
+{
+    ProfileSchematization::ProfileSchematization(
+        double tanA)
+    {
+        this->tanA = tanA;
+    }
+
+    double ProfileSchematization::GetTanA() const
+    {
+        return tanA;
+    }
+}

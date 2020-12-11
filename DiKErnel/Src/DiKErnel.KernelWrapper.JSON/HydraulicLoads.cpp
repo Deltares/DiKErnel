@@ -18,3 +18,33 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
+#include "HydraulicLoads.h"
+
+namespace DiKErnel::KernelWrapper::Json
+{
+    HydraulicLoads::HydraulicLoads(
+        int waveAngleMaximum,
+        std::vector<BoundaryConditionsPerTimeStep*> boundaryConditionsPerTimeStep)
+    {
+        this->waveAngleMaximum = waveAngleMaximum;
+        this->boundaryConditionsPerTimeStep = boundaryConditionsPerTimeStep;
+    }
+
+    int HydraulicLoads::GetWaveAngleMaximum() const
+    {
+        return waveAngleMaximum;
+    }
+
+    std::vector<BoundaryConditionsPerTimeStep*> HydraulicLoads::GetBoundaryConditionsPerTimeStep() const
+    {
+        return boundaryConditionsPerTimeStep;
+    }
+
+    HydraulicLoads::~HydraulicLoads()
+    {
+        for (auto i = 0; i < boundaryConditionsPerTimeStep.size(); i++)
+        {
+            delete boundaryConditionsPerTimeStep[i];
+        }
+    }
+}

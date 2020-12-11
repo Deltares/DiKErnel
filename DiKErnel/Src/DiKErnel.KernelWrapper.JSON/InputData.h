@@ -19,6 +19,7 @@
 // All rights reserved.
 
 #pragma once
+
 #include <vector>
 
 #include "CalculationData.h"
@@ -28,13 +29,27 @@
 namespace DiKErnel::KernelWrapper::Json
 {
     /*!
-     * \brief Class responsible for serving as data model for input data.
+     * \brief Container for all calculation input data.
      */
     class InputData
     {
+        CalculationData* calculationData;
+        HydraulicLoads* hydraulicLoads;
+        std::vector<CalculationLocation*> locations;
+
         public:
-            CalculationData calculationData;
-            HydraulicLoads hydraulicLoads;
-            std::vector<CalculationLocation> locations;
-        };
+        InputData(
+            CalculationData* calculationData,
+            HydraulicLoads* hydraulicLoads,
+            std::vector<CalculationLocation*> locations
+        );
+
+        CalculationData* GetCalculationData() const;
+
+        HydraulicLoads* GetHydraulicLoads() const;
+
+        std::vector<CalculationLocation*> GetLocations() const;
+
+        ~InputData();
+    };
 }

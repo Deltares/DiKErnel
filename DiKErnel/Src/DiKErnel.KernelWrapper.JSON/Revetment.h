@@ -20,6 +20,8 @@
 
 #pragma once
 
+#include <string>
+
 namespace DiKErnel::KernelWrapper::Json
 {
     /*!
@@ -27,19 +29,61 @@ namespace DiKErnel::KernelWrapper::Json
      */
     class Revetment
     {
+        std::string typeTopLayer;
+        double relativeDensity;
+        double thicknessTopLayer;
+        double initialDamage;
+        double similarityParameterThreshold;
+        double coefficientPlungingAp;
+        double coefficientPlungingBp;
+        double coefficientPlungingCp;
+        double coefficientPlungingNp;
+        double coefficientSurgingAs;
+        double coefficientSurgingBs;
+        double coefficientSurgingCs;
+        double coefficientSurgingNs;
+
         public:
-            std::string typeTopLayer;
-            double relativeDensity;
-            double thicknessTopLayer;
-            double initialDamage;
-            double similarityParameterThreshold;
-            double coefficientPlungingAp;
-            double coefficientPlungingBp;
-            double coefficientPlungingCp;
-            double coefficientPlungingNp;
-            double coefficientSurgingAs;
-            double coefficientSurgingBs;
-            double coefficientSurgingCs;
-            double coefficientSurgingNs;
-        };
+        Revetment(
+            std::string typeTopLayer,
+            double relativeDensity,
+            double thicknessTopLayer,
+            double initialDamage,
+            double similarityParameterThreshold,
+            double coefficientPlungingAp,
+            double coefficientPlungingBp,
+            double coefficientPlungingCp,
+            double coefficientPlungingNp,
+            double coefficientSurgingAs,
+            double coefficientSurgingBs,
+            double coefficientSurgingCs,
+            double coefficientSurgingNs
+        );
+
+        std::string GetTypeTopLayer() const;
+
+        double GetRelativeDensity() const;
+
+        double GetThicknessTopLayer() const;
+
+        double GetInitialDamage() const;
+
+        double GetSimilarityParameterThreshold() const;
+
+        double GetCoefficientPlungingAp() const;
+
+        double GetCoefficientPlungingBp() const;
+
+        double GetCoefficientPlungingCp() const;
+
+        double GetCoefficientPlungingNp() const;
+
+        double GetCoefficientSurgingAs() const;
+
+        double GetCoefficientSurgingBs() const;
+
+        double GetCoefficientSurgingCs() const;
+
+        double GetCoefficientSurgingNs() const;
+    };
 }

@@ -19,6 +19,7 @@
 // All rights reserved.
 
 #pragma once
+
 #include <string>
 #include <Revetment.h>
 
@@ -27,13 +28,26 @@
 namespace DiKErnel::KernelWrapper::Json
 {
     /*!
-     * \brief Class responsible for serving as data model for a calculation location.
+     * \brief Container for location data.
      */
     class CalculationLocation
     {
+        std::string name;
+        Revetment* revetment;
+        ProfileSchematization* profileSchematization;
+
         public:
-            std::string name;
-            Revetment revetment;
-            ProfileSchematization profileSchematization;
+        CalculationLocation(
+            std::string name,
+            Revetment* revetment,
+            ProfileSchematization* profileSchematization);
+
+        std::string GetName() const;
+
+        Revetment* GetRevetment() const;
+
+        ProfileSchematization* GetProfileSchematization() const;
+
+        ~CalculationLocation();
     };
 }

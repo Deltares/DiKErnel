@@ -23,13 +23,24 @@
 namespace DiKErnel::KernelWrapper::Json
 {
     /*!
-     * \brief Class responsible for serving as data model for input data.
+     * \brief Container for boundary conditions data on a per timestep basis.
      */
     class BoundaryConditionsPerTimeStep
     {
+        double waveHeightHm0;
+        double wavePeriodTm10;
+        double waveAngle;
+
         public:
-            double waveHeightHm0;
-            double wavePeriodTm10;
-            double waveAngle;
-        };
+        BoundaryConditionsPerTimeStep(
+            double waveHeightHm0,
+            double wavePeriodTm10,
+            double waveAngle);
+
+        double GetWaveHeightHm0() const;
+
+        double GetWavePeriodTm10() const;
+
+        double GetWaveAngle() const;
+    };
 }
