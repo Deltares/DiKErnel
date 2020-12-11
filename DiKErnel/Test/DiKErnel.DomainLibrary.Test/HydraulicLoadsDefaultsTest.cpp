@@ -18,22 +18,21 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include "catch2/catch.hpp"
+#include <gtest/gtest.h>
 
 #include "HydraulicLoadsDefaults.h"
 
 namespace DiKErnel::DomainLibrary::Test::HydraulicLoadsDefaultsTest
 {
-    TEST_CASE("GivenDefaults")
+    TEST(HydraulicLoadsDefaultsTest, GivenDefaults_WhenMaximumWaveAngle_ThenExpectedValue)
     {
-        SECTION("WhenMaximumWaveAngle_ThenExpectedValue")
-        {
-            REQUIRE(HydraulicLoadsDefaults::MAXIMUM_WAVE_ANGLE == Approx(78));
-        }
 
-        SECTION("WhenWaveAngle_ThenExpectedValue")
-        {
-            REQUIRE(HydraulicLoadsDefaults::WAVE_ANGLE == Approx(0));
-        }
+        ASSERT_EQ(HydraulicLoadsDefaults::MAXIMUM_WAVE_ANGLE, 78);
+    }
+
+    TEST(HydraulicLoadsDefaultsTest, GivenDefaults_WhenWaveAngle_ThenExpectedValue)
+    {
+
+        ASSERT_EQ(HydraulicLoadsDefaults::WAVE_ANGLE, 0);
     }
 }

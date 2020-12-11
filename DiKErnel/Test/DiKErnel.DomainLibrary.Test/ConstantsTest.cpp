@@ -18,23 +18,20 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include "catch2/catch.hpp"
+#include <gtest/gtest.h>
 
 #include "Constants.h"
 
 namespace DiKErnel::DomainLibrary::Test::ConstantsTest
 {
-    TEST_CASE("GivenConstants")
+    TEST(ConstantsTest, GivenConstants_WhenPi_ThenExpectedValue)
     {
-        SECTION("WhenPi_ThenExpectedValue")
-        {
-            const auto pi = 2 * acos(0.0);
-            REQUIRE(Constants::PI == Approx(pi));
-        }
+        const auto pi = 2 * acos(0.0);
+        ASSERT_DOUBLE_EQ(Constants::PI, pi);
+    }
 
-        SECTION("WhenGravity_ThenExpectedValue")
-        {
-            REQUIRE(Constants::GRAVITY == Approx(9.81));
-        }
+    TEST(ConstantsTest, GivenConstants_WhenGravity_ThenExpectedValue)
+    {
+        ASSERT_DOUBLE_EQ(Constants::GRAVITY, 9.81);
     }
 }
