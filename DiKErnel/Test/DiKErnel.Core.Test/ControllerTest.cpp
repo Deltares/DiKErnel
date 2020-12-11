@@ -18,21 +18,18 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include "catch2/catch.hpp"
+#include <gtest/gtest.h>
 
 #include "Controller.h"
 
 namespace DiKErnel::Core::Test
 {
-    TEST_CASE("ControllerTest")
+    TEST(ControllerTest, Constructor_ExpectedValues)
     {
-        SECTION("Constructor_ExpectedValues")
-        {
-            // Call
-            Controller controller;
+        // Call
+        const Controller controller;
 
-            // Assert
-            REQUIRE(controller.created == true);
-        }
+        // Assert
+        ASSERT_TRUE(controller.created);
     }
 }

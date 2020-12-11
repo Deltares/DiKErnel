@@ -18,21 +18,18 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include "catch2/catch.hpp"
+#include <gtest/gtest.h>
 
 #include "Calculator.h"
 
 namespace DiKErnel::Core::Test
 {
-    TEST_CASE("CalculatorTest")
+    TEST(CalculatorTest, Constructor_ExpectedValues)
     {
-        SECTION("Constructor_ExpectedValues")
-        {
-            // Call
-            Calculator calculator;
+        // Call
+        const Calculator calculator;
 
-            // Assert
-            REQUIRE(calculator.created == true);
-        }
+        // Assert
+        ASSERT_TRUE(calculator.created);
     }
 }
