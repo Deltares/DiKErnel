@@ -24,9 +24,7 @@ namespace DiKErnel::KernelWrapper::Json
 {
     CalculationData::CalculationData(
         std::vector<int> times)
-    {
-        this->times = times;
-    }
+        : times(times) { }
 
     std::vector<int> CalculationData::GetTimes() const
     {

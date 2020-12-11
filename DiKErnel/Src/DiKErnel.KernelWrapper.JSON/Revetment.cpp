@@ -36,21 +36,19 @@ namespace DiKErnel::KernelWrapper::Json
         double coefficientSurgingBs,
         double coefficientSurgingCs,
         double coefficientSurgingNs)
-    {
-        this->typeTopLayer = typeTopLayer;
-        this->relativeDensity = relativeDensity;
-        this->thicknessTopLayer = thicknessTopLayer;
-        this->initialDamage = initialDamage;
-        this->similarityParameterThreshold = similarityParameterThreshold;
-        this->coefficientPlungingAp = coefficientPlungingAp;
-        this->coefficientPlungingBp = coefficientPlungingBp;
-        this->coefficientPlungingCp = coefficientPlungingCp;
-        this->coefficientPlungingNp = coefficientPlungingNp;
-        this->coefficientSurgingAs = coefficientSurgingAs;
-        this->coefficientSurgingBs = coefficientSurgingBs;
-        this->coefficientSurgingCs = coefficientSurgingCs;
-        this->coefficientSurgingNs = coefficientSurgingNs;
-    }
+        : typeTopLayer(typeTopLayer),
+          relativeDensity(relativeDensity),
+          thicknessTopLayer(thicknessTopLayer),
+          initialDamage(initialDamage),
+          similarityParameterThreshold(similarityParameterThreshold),
+          coefficientPlungingAp(coefficientPlungingAp),
+          coefficientPlungingBp(coefficientPlungingBp),
+          coefficientPlungingCp(coefficientPlungingCp),
+          coefficientPlungingNp(coefficientPlungingNp),
+          coefficientSurgingAs(coefficientSurgingAs),
+          coefficientSurgingBs(coefficientSurgingBs),
+          coefficientSurgingCs(coefficientSurgingCs),
+          coefficientSurgingNs(coefficientSurgingNs) { }
 
     std::string Revetment::GetTypeTopLayer() const
     {

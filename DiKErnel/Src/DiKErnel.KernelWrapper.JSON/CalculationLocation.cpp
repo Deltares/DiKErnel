@@ -26,11 +26,9 @@ namespace DiKErnel::KernelWrapper::Json
         std::string name,
         Revetment* revetment,
         ProfileSchematization* profileSchematization)
-    {
-        this->name = name;
-        this->revetment = revetment;
-        this->profileSchematization = profileSchematization;
-    }
+        : name(name),
+          revetment(revetment),
+          profileSchematization(profileSchematization) { }
 
     std::string CalculationLocation::GetName() const
     {

@@ -26,11 +26,9 @@ namespace DiKErnel::KernelWrapper::Json
         CalculationData* calculationData,
         HydraulicLoads* hydraulicLoads,
         std::vector<CalculationLocation*> locations)
-    {
-        this->calculationData = calculationData;
-        this->hydraulicLoads = hydraulicLoads;
-        this->locations = locations;
-    }
+        : calculationData(calculationData),
+          hydraulicLoads(hydraulicLoads),
+          locations(locations) { }
 
     CalculationData* InputData::GetCalculationData() const
     {

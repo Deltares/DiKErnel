@@ -24,9 +24,7 @@ namespace DiKErnel::KernelWrapper::Json
 {
     ProfileSchematization::ProfileSchematization(
         double tanA)
-    {
-        this->tanA = tanA;
-    }
+        : tanA(tanA) { }
 
     double ProfileSchematization::GetTanA() const
     {
