@@ -42,11 +42,11 @@ namespace DiKErnel::KernelWrapper::Json
     CalculationData* InputComposer::ReadCalculationData(
         nlohmann::json* json)
     {
-        auto calculationData = new CalculationData();
+        auto readCalculationData = (*json)[JsonDefinitions::calculationData];
 
-        calculationData->time = (*json)[JsonDefinitions::calculationData][JsonDefinitions::time].get<std::vector<int>>();
-
-        return calculationData;
+        return new CalculationData(
+            readCalculationData[JsonDefinitions::time].get<std::vector<int>>()
+        );
     }
 
     HydraulicLoads* InputComposer::ReadHydraulicLoads(

@@ -115,7 +115,7 @@ namespace DiKErnel::KernelWrapper::Json::Test
     void AssertCalculationData(
         CalculationData* calculationData)
     {
-        REQUIRE_THAT(calculationData->time, Catch::Equals<int>({ 0, 100, 500, 800, 1200, 2000 }));
+        REQUIRE_THAT(calculationData->GetTimes(), Catch::Equals<int>({ 0, 100, 500, 800, 1200, 2000 }));
     }
 
     void AssertHydraulicLoads(
