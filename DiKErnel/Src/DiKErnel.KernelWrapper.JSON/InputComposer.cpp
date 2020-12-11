@@ -33,15 +33,10 @@ namespace DiKErnel::KernelWrapper::Json
     {
         auto json = ParseJson(filePath);
 
-        auto* inputData(new InputData());
-
-        inputData->calculationData = ReadCalculationData(&json);
-
-        inputData->hydraulicLoads = ReadHydraulicLoads(&json);
-
-        inputData->locations = ReadLocations(&json);
-
-        return inputData;
+        return new InputData(
+            ReadCalculationData(&json),
+            ReadHydraulicLoads(&json),
+            ReadLocations(&json));
     }
 
     CalculationData InputComposer::ReadCalculationData(
