@@ -21,7 +21,6 @@
 #include "NaturalStoneRevetment.h"
 
 #include <algorithm>
-#include <cmath>
 
 #include "Constants.h"
 
