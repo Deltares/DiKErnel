@@ -23,11 +23,17 @@
 namespace DiKErnel::KernelWrapper::Json
 {
     /*!
-     * \brief Class responsible for serving as data model for a profile schematization.
+     * \brief Container for profile schematization data.
      */
     class ProfileSchematization
     {
+        double tanA;
+
         public:
-            double tanA;
-        };
+        ProfileSchematization(
+            double tanA
+        );
+
+        double GetTanA() const;
+    };
 }
