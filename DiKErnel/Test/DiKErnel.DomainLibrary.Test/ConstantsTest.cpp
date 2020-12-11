@@ -27,11 +27,11 @@ namespace DiKErnel::DomainLibrary::Test::ConstantsTest
     TEST(ConstantsTest, GivenConstants_WhenPi_ThenExpectedValue)
     {
         const auto pi = 2 * acos(0.0);
-        ASSERT_DOUBLE_EQ(Constants::PI, pi);
+        ASSERT_EQ(Constants::PI, pi);
     }
 
     TEST(ConstantsTest, GivenConstants_WhenGravity_ThenExpectedValue)
     {
-        ASSERT_DOUBLE_EQ(Constants::GRAVITY, 9.81);
+        ASSERT_EQ(Constants::GRAVITY, 9.81);
     }
 }
