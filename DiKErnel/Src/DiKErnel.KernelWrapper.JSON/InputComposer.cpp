@@ -86,7 +86,7 @@ namespace DiKErnel::KernelWrapper::Json
             auto readRevetment = readLocation[JsonDefinitions::revetment];
             auto readProfileSchematization = readLocation[JsonDefinitions::profileSchematisation];
 
-            Revetment revetment(
+            const Revetment revetment(
                 readRevetment[JsonDefinitions::typeTopLayer].get<std::string>(),
                 readRevetment[JsonDefinitions::relativeDensity].get<double>(),
                 readRevetment[JsonDefinitions::thicknessTopLayer].get<double>(),
@@ -101,7 +101,7 @@ namespace DiKErnel::KernelWrapper::Json
                 readRevetment[JsonDefinitions::coefficientSurgingCs].get<double>(),
                 readRevetment[JsonDefinitions::coefficientSurgingNs].get<double>());
 
-            ProfileSchematization profileSchematization(
+            const ProfileSchematization profileSchematization(
                 readProfileSchematization[JsonDefinitions::tanA].get<double>()
             );
 
