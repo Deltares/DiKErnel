@@ -6,8 +6,6 @@ project (DiKErnel)
 
 # Set compiler flags
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /MT")
-set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /MTd")
 
 if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
   message("Building with code coverage")
@@ -15,6 +13,8 @@ if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
   set(CMAKE_CXX_OUTPUT_EXTENSION_REPLACE 1)
 else()
   message("Building without code coverage")
+  set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /MT")
+  set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /MTd")
 endif()
 
 # Set global properties
