@@ -23,7 +23,5 @@
 namespace DiKErnel::Core
 {
     Controller::Controller()
-    {
-        created = true;
-    }
+        : created(true) { }
 }

@@ -23,7 +23,5 @@
 namespace DiKErnel::Core
 {
     Calculator::Calculator()
-    {
-        created = true;
-    }
+        : created(true) { }
 }

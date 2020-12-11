@@ -47,7 +47,7 @@ namespace DiKErnel::KernelWrapper::Json::Test
     TEST(InputComposerTest, GivenFilePathAndInputComposer_WhenGetDomainParametersFromJson_ThenCorrectDataSet)
     {
         // When
-        auto inputData = InputComposer::GetDomainParametersFromJson(filePath.u8string());
+        const auto inputData = InputComposer::GetDomainParametersFromJson(filePath.u8string());
 
         // Assert
         AssertCalculationData(inputData->GetCalculationData());
@@ -64,7 +64,7 @@ namespace DiKErnel::KernelWrapper::Json::Test
         nlohmann::json json = nlohmann::json::parse(ifs);
 
         // When
-        auto calculationData = InputComposer::ReadCalculationData(&json);
+        const auto calculationData = InputComposer::ReadCalculationData(&json);
 
         // Then
         AssertCalculationData(calculationData);
@@ -79,7 +79,7 @@ namespace DiKErnel::KernelWrapper::Json::Test
         nlohmann::json json = nlohmann::json::parse(ifs);
 
         // When
-        auto hydraulicLoads = InputComposer::ReadHydraulicLoads(&json);
+        const auto hydraulicLoads = InputComposer::ReadHydraulicLoads(&json);
 
         // Then
         AssertHydraulicLoads(hydraulicLoads);
