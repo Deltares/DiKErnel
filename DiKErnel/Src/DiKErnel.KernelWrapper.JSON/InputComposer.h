@@ -50,7 +50,7 @@ namespace DiKErnel::KernelWrapper::Json
              *        The pointer to the json object to read from.
              * \return The calculation data.
              */
-            static CalculationData ReadCalculationData(
+            static CalculationData* ReadCalculationData(
                 nlohmann::json* json);
 
             /*!
@@ -59,7 +59,7 @@ namespace DiKErnel::KernelWrapper::Json
              *        The pointer to the json object to read from.
              * \return The hydraulic loads data.
              */
-            static HydraulicLoads ReadHydraulicLoads(
+            static HydraulicLoads* ReadHydraulicLoads(
                 nlohmann::json* json);
 
             /*!
