@@ -56,25 +56,22 @@ namespace DiKErnel::KernelWrapper::Json
     HydraulicLoads InputComposer::ReadHydraulicLoads(
         nlohmann::json* json)
     {
+        auto readHydraulicLoads = (*json)[JsonDefinitions::hydraulicLoads];
+
         HydraulicLoads hydraulicLoads;
+        hydraulicLoads.waveAngleMaximum = readHydraulicLoads[JsonDefinitions::maximumWaveAngle].get<int>();
 
-        hydraulicLoads.waveAngleMaximum = (*json)[JsonDefinitions::hydraulicLoads][JsonDefinitions::maximumWaveAngle].get<int>();
+        auto readBoundaryConditionsPerTimeStep = readHydraulicLoads[JsonDefinitions::boundaryConditionsPerTimeStep];
 
-        const auto arraySize = (*json)[JsonDefinitions::hydraulicLoads][JsonDefinitions::boundaryConditionsPerTimeStep].size();
-
-        for (auto i = 0; i < arraySize; i++)
+        for (auto i = 0; i < readBoundaryConditionsPerTimeStep.size(); i++)
         {
-            BoundaryConditionsPerTimeStep boundaryConditionsPerTimeStep;
-            hydraulicLoads.boundaryConditionsPerTimeStep.push_back(boundaryConditionsPerTimeStep);
-            hydraulicLoads.boundaryConditionsPerTimeStep.at(i).waveHeightHm0 =
-                (*json)[JsonDefinitions::hydraulicLoads][JsonDefinitions::boundaryConditionsPerTimeStep][i][JsonDefinitions::waveHeightHm0]
-                    .get<double>();
-            hydraulicLoads.boundaryConditionsPerTimeStep.at(i).wavePeriodTm10 =
-                (*json)[JsonDefinitions::hydraulicLoads][JsonDefinitions::boundaryConditionsPerTimeStep][i][JsonDefinitions::wavePeriodTm10]
-                    .get<double>();
-            hydraulicLoads.boundaryConditionsPerTimeStep.at(i).waveAngle =
-                (*json)[JsonDefinitions::hydraulicLoads][JsonDefinitions::boundaryConditionsPerTimeStep][i][JsonDefinitions::waveAngle]
-                    .get<double>();
+            auto readBoundaryConditionsForTimestep = readBoundaryConditionsPerTimeStep[i];
+
+            hydraulicLoads.boundaryConditionsPerTimeStep.push_back(BoundaryConditionsPerTimeStep(
+                readBoundaryConditionsForTimestep[JsonDefinitions::waveHeightHm0].get<double>(),
+                readBoundaryConditionsForTimestep[JsonDefinitions::wavePeriodTm10].get<double>(),
+                readBoundaryConditionsForTimestep[JsonDefinitions::waveAngle].get<double>()
+            ));
         }
 
         return hydraulicLoads;
