@@ -37,7 +37,7 @@ namespace DiKErnel::KernelWrapper::Json::Test
         HydraulicLoads* hydraulicLoads);
 
     void AssertCalculationLocations(
-        std::vector<CalculationLocation*> calculationLocations);
+        std::vector<std::unique_ptr<CalculationLocation>> calculationLocations);
 
     #pragma endregion
 
@@ -53,9 +53,6 @@ namespace DiKErnel::KernelWrapper::Json::Test
         AssertCalculationData(inputData->GetCalculationData());
         AssertHydraulicLoads(inputData->GetHydraulicLoads());
         AssertCalculationLocations(inputData->GetLocations());
-
-        // Cleanup
-        delete inputData;
     }
 
     TEST(InputComposerTest, GivenFilePathAndInputComposer_WhenReadCalculationDataFromJson_ThenCorrectDataSet)
@@ -67,10 +64,7 @@ namespace DiKErnel::KernelWrapper::Json::Test
         const auto calculationData = InputComposer::ReadCalculationData(&json);
 
         // Then
-        AssertCalculationData(calculationData);
-
-        // Cleanup
-        delete calculationData;
+        AssertCalculationData(calculationData.get());
     }
 
     TEST(InputComposerTest, GivenFilePathAndInputComposer_WhenReadHydraulicLoadsFromJson_ThenCorrectDataSet)
@@ -82,10 +76,7 @@ namespace DiKErnel::KernelWrapper::Json::Test
         const auto hydraulicLoads = InputComposer::ReadHydraulicLoads(&json);
 
         // Then
-        AssertHydraulicLoads(hydraulicLoads);
-
-        // Cleanup
-        delete hydraulicLoads;
+        AssertHydraulicLoads(hydraulicLoads.get());
     }
 
     TEST(InputComposerTest, GivenFilePathAndInputComposer_WhenReadLocationsFromJson_ThenCorrectDataSet)
@@ -98,12 +89,6 @@ namespace DiKErnel::KernelWrapper::Json::Test
 
         // Then
         AssertCalculationLocations(calculationLocations);
-
-        // Cleanup
-        for (auto i = 0; i < calculationLocations.size(); i++)
-        {
-            delete calculationLocations[i];
-        }
     }
 
     #pragma region Helper methods
@@ -130,36 +115,36 @@ namespace DiKErnel::KernelWrapper::Json::Test
 
         auto boundaryConditionsPerTimeStep = hydraulicLoads->GetBoundaryConditionsPerTimeStep();
 
-        auto boundaryConditionsForTimeStep = boundaryConditionsPerTimeStep[0];
+        auto boundaryConditionsForTimeStep = boundaryConditionsPerTimeStep[0].get();
         ASSERT_EQ(boundaryConditionsForTimeStep->GetWaveHeightHm0(), 0.5);
         ASSERT_EQ(boundaryConditionsForTimeStep->GetWavePeriodTm10(), 2.0);
         ASSERT_EQ(boundaryConditionsForTimeStep->GetWaveAngle(), -10.0);
 
-        boundaryConditionsForTimeStep = boundaryConditionsPerTimeStep[1];
+        boundaryConditionsForTimeStep = boundaryConditionsPerTimeStep[1].get();
         ASSERT_EQ(boundaryConditionsForTimeStep->GetWaveHeightHm0(), 0.8);
         ASSERT_EQ(boundaryConditionsForTimeStep->GetWavePeriodTm10(), 6.0);
         ASSERT_EQ(boundaryConditionsForTimeStep->GetWaveAngle(), -5.0);
 
-        boundaryConditionsForTimeStep = boundaryConditionsPerTimeStep[2];
+        boundaryConditionsForTimeStep = boundaryConditionsPerTimeStep[2].get();
         ASSERT_EQ(boundaryConditionsForTimeStep->GetWaveHeightHm0(), 1.2);
         ASSERT_EQ(boundaryConditionsForTimeStep->GetWavePeriodTm10(), 6.0);
         ASSERT_EQ(boundaryConditionsForTimeStep->GetWaveAngle(), 0.0);
 
-        boundaryConditionsForTimeStep = boundaryConditionsPerTimeStep[3];
+        boundaryConditionsForTimeStep = boundaryConditionsPerTimeStep[3].get();
         ASSERT_EQ(boundaryConditionsForTimeStep->GetWaveHeightHm0(), 1.5);
         ASSERT_EQ(boundaryConditionsForTimeStep->GetWavePeriodTm10(), 7.0);
         ASSERT_EQ(boundaryConditionsForTimeStep->GetWaveAngle(), 7);
 
-        boundaryConditionsForTimeStep = boundaryConditionsPerTimeStep[4];
+        boundaryConditionsForTimeStep = boundaryConditionsPerTimeStep[4].get();
         ASSERT_EQ(boundaryConditionsForTimeStep->GetWaveHeightHm0(), 0.5);
         ASSERT_EQ(boundaryConditionsForTimeStep->GetWavePeriodTm10(), 4.0);
         ASSERT_EQ(boundaryConditionsForTimeStep->GetWaveAngle(), 8.0);
     }
 
     void AssertCalculationLocations(
-        std::vector<CalculationLocation*> calculationLocations)
+        std::vector<std::unique_ptr<CalculationLocation>> calculationLocations)
     {
-        auto calculationLocation = calculationLocations[0];
+        auto calculationLocation = calculationLocations[0].get();
         auto revetment = calculationLocation->GetRevetment();
         ASSERT_EQ(calculationLocation->GetName(), "LocatieZwak");
         ASSERT_EQ(revetment->GetTypeTopLayer(), "Noorse Steen");
@@ -177,7 +162,7 @@ namespace DiKErnel::KernelWrapper::Json::Test
         ASSERT_EQ(revetment->GetCoefficientSurgingNs(), 0.6);
         ASSERT_EQ(calculationLocation->GetProfileSchematization()->GetTanA(), 0.3);
 
-        calculationLocation = calculationLocations[1];
+        calculationLocation = calculationLocations[1].get();
         revetment = calculationLocation->GetRevetment();
         ASSERT_EQ(calculationLocation->GetName(), "LocatieSterk");
         ASSERT_EQ(revetment->GetTypeTopLayer(), "Noorse Steen");
