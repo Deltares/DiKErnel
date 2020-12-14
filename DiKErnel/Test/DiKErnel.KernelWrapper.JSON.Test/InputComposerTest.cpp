@@ -31,19 +31,35 @@ namespace DiKErnel::KernelWrapper::Json::Test
     #pragma region Forward declarations
 
     void AssertCalculationData(
-        CalculationData* calculationData);
+        CalculationData*);
 
     void AssertHydraulicLoads(
-        HydraulicLoads* hydraulicLoads);
+        HydraulicLoads*);
 
     void AssertBoundaryConditionsForTimeStep(
-        BoundaryConditionsPerTimeStep* boundaryConditionsForTimeStep,
-        double expectedWaveHeightHm0,
-        double expectedWavePeriodTm10,
-        double expectedWaveAngle);
+        BoundaryConditionsPerTimeStep*,
+        double,
+        double,
+        double);
 
     void AssertCalculationLocations(
-        std::vector<CalculationLocation*> calculationLocations);
+        std::vector<CalculationLocation*>);
+
+    void AssertRevetment(
+        Revetment*,
+        const char*,
+        double,
+        double,
+        double,
+        double,
+        double,
+        double,
+        double,
+        double,
+        double,
+        double,
+        double,
+        double);
 
     #pragma endregion
 
@@ -150,40 +166,45 @@ namespace DiKErnel::KernelWrapper::Json::Test
         std::vector<CalculationLocation*> calculationLocations)
     {
         auto calculationLocation = calculationLocations[0];
-        auto revetment = calculationLocation->GetRevetment();
         ASSERT_EQ(calculationLocation->GetName(), "LocatieZwak");
-        ASSERT_EQ(revetment->GetTypeTopLayer(), "Noorse Steen");
-        ASSERT_EQ(revetment->GetRelativeDensity(), 1.6);
-        ASSERT_EQ(revetment->GetThicknessTopLayer(), 0.3);
-        ASSERT_EQ(revetment->GetInitialDamage(), 0.0);
-        ASSERT_EQ(revetment->GetSimilarityParameterThreshold(), 2.9);
-        ASSERT_EQ(revetment->GetCoefficientPlungingAp(), 4);
-        ASSERT_EQ(revetment->GetCoefficientPlungingBp(), 0.8);
-        ASSERT_EQ(revetment->GetCoefficientPlungingCp(), 0.0);
-        ASSERT_EQ(revetment->GetCoefficientPlungingNp(), 0.0);
-        ASSERT_EQ(revetment->GetCoefficientSurgingAs(), 0.0);
-        ASSERT_EQ(revetment->GetCoefficientSurgingBs(), 0.0);
-        ASSERT_EQ(revetment->GetCoefficientSurgingCs(), -0.9);
-        ASSERT_EQ(revetment->GetCoefficientSurgingNs(), 0.6);
+        AssertRevetment(calculationLocation->GetRevetment(), "Noorse Steen", 1.6, 0.3, 0.0, 2.9, 4.0, 0.8, 0.0, 0.0, 0.0, 0.0, -0.9, 0.6);
         ASSERT_EQ(calculationLocation->GetProfileSchematization()->GetTanA(), 0.3);
 
         calculationLocation = calculationLocations[1];
-        revetment = calculationLocation->GetRevetment();
         ASSERT_EQ(calculationLocation->GetName(), "LocatieSterk");
-        ASSERT_EQ(revetment->GetTypeTopLayer(), "Noorse Steen");
-        ASSERT_EQ(revetment->GetRelativeDensity(), 1.6);
-        ASSERT_EQ(revetment->GetThicknessTopLayer(), 0.7);
-        ASSERT_EQ(revetment->GetInitialDamage(), 0.0);
-        ASSERT_EQ(revetment->GetSimilarityParameterThreshold(), 2.9);
-        ASSERT_EQ(revetment->GetCoefficientPlungingAp(), 4.0);
-        ASSERT_EQ(revetment->GetCoefficientPlungingBp(), 0.8);
-        ASSERT_EQ(revetment->GetCoefficientPlungingCp(), 0.0);
-        ASSERT_EQ(revetment->GetCoefficientPlungingNp(), 0.0);
-        ASSERT_EQ(revetment->GetCoefficientSurgingAs(), 0.0);
-        ASSERT_EQ(revetment->GetCoefficientSurgingBs(), 0.0);
-        ASSERT_EQ(revetment->GetCoefficientSurgingCs(), -0.9);
-        ASSERT_EQ(revetment->GetCoefficientSurgingNs(), 0.6);
+        AssertRevetment(calculationLocation->GetRevetment(), "Noorse Steen", 1.6, 0.7, 0.0, 2.9, 4.0, 0.8, 0.0, 0.0, 0.0, 0.0, -0.9, 0.6);
         ASSERT_EQ(calculationLocation->GetProfileSchematization()->GetTanA(), 0.3);
+    }
+
+    void AssertRevetment(
+        Revetment* revetment,
+        const char* expectedTypeTopLayer,
+        double expectedRelativeDensity,
+        double expectedThicknessTopLayer,
+        double expectedInitialDamage,
+        double expectedSimilarityParameterThreshold,
+        double expectedCoefficientPlungingAp,
+        double expectedCoefficientPlungingBp,
+        double expectedCoefficientPlungingCp,
+        double expectedCoefficientPlungingNp,
+        double expectedCoefficientSurgingAs,
+        double expectedCoefficientSurgingBs,
+        double expectedCoefficientSurgingCs,
+        double expectedCoefficientSurgingNs)
+    {
+        ASSERT_EQ(revetment->GetTypeTopLayer(), expectedTypeTopLayer);
+        ASSERT_EQ(revetment->GetRelativeDensity(), expectedRelativeDensity);
+        ASSERT_EQ(revetment->GetThicknessTopLayer(), expectedThicknessTopLayer);
+        ASSERT_EQ(revetment->GetInitialDamage(), expectedInitialDamage);
+        ASSERT_EQ(revetment->GetSimilarityParameterThreshold(), expectedSimilarityParameterThreshold);
+        ASSERT_EQ(revetment->GetCoefficientPlungingAp(), expectedCoefficientPlungingAp);
+        ASSERT_EQ(revetment->GetCoefficientPlungingBp(), expectedCoefficientPlungingBp);
+        ASSERT_EQ(revetment->GetCoefficientPlungingCp(), expectedCoefficientPlungingCp);
+        ASSERT_EQ(revetment->GetCoefficientPlungingNp(), expectedCoefficientPlungingNp);
+        ASSERT_EQ(revetment->GetCoefficientSurgingAs(), expectedCoefficientSurgingAs);
+        ASSERT_EQ(revetment->GetCoefficientSurgingBs(), expectedCoefficientSurgingBs);
+        ASSERT_EQ(revetment->GetCoefficientSurgingCs(), expectedCoefficientSurgingCs);
+        ASSERT_EQ(revetment->GetCoefficientSurgingNs(), expectedCoefficientSurgingNs);
     }
 
     #pragma endregion
