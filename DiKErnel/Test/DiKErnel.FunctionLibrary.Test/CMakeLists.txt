@@ -3,6 +3,7 @@ set(EXENAME DiKErnel.FunctionLibrary.Test)
 
 # Define sources
 set(SOURCEFILES
+  Main.cpp
   NaturalStoneRevetmentTest.cpp
 )
 
@@ -14,4 +15,4 @@ set_target_properties(${EXENAME} PROPERTIES FOLDER Test)
 source_group("Sources" FILES ${SOURCEFILES})
 
 # Link dependencies
-target_link_libraries(${EXENAME} gtest gtest_main DiKErnel.FunctionLibrary)
+target_link_libraries(${EXENAME} gtest DiKErnel.FunctionLibrary)

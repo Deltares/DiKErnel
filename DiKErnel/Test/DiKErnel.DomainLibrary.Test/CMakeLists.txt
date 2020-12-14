@@ -5,6 +5,7 @@ set(EXENAME DiKErnel.DomainLibrary.Test)
 set(SOURCEFILES
   ConstantsTest.cpp
   HydraulicLoadsDefaultsTest.cpp
+  Main.cpp
   NaturalStoneRevetmentDefaultsTest.cpp
 )
 
@@ -16,4 +17,4 @@ set_target_properties(${EXENAME} PROPERTIES FOLDER Test)
 source_group("Sources" FILES ${SOURCEFILES})
 
 # Link dependencies
-target_link_libraries(${EXENAME} gtest gtest_main DiKErnel.DomainLibrary)
+target_link_libraries(${EXENAME} gtest DiKErnel.DomainLibrary)

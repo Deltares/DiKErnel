@@ -5,6 +5,7 @@ set(EXENAME DiKErnel.Core.Test)
 set(SOURCEFILES
   CalculatorTest.cpp
   ControllerTest.cpp
+  Main.cpp
 )
 
 # Add executable
@@ -15,4 +16,4 @@ set_target_properties(${EXENAME} PROPERTIES FOLDER Test)
 source_group("Sources" FILES ${SOURCEFILES})
 
 # Link dependencies
-target_link_libraries(${EXENAME} gtest gtest_main DiKErnel.Core)
+target_link_libraries(${EXENAME} gtest DiKErnel.Core)

@@ -4,6 +4,7 @@ set(EXENAME DiKErnel.KernelWrapper.Json.Test)
 # Define sources
 set(SOURCEFILES
   InputComposerTest.cpp
+  Main.cpp
   OutputComposerTest.cpp
 )
 
@@ -15,4 +16,4 @@ set_target_properties(${EXENAME} PROPERTIES FOLDER Test)
 source_group("Sources" FILES ${SOURCEFILES})
 
 # Link dependencies
-target_link_libraries(${EXENAME} gtest gtest_main DiKErnel.TestUtil DiKErnel.KernelWrapper.Json)
+target_link_libraries(${EXENAME} gtest DiKErnel.TestUtil DiKErnel.KernelWrapper.Json)
