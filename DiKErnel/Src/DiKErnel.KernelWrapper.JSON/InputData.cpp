@@ -25,7 +25,7 @@ namespace DiKErnel::KernelWrapper::Json
     InputData::InputData(
         std::unique_ptr<CalculationData> calculationData,
         std::unique_ptr<HydraulicLoads> hydraulicLoads,
-        std::vector<std::unique_ptr<CalculationLocation>>& locations)
+        std::vector<std::unique_ptr<CalculationLocation>> locations)
         : calculationData(std::move(calculationData)),
           hydraulicLoads(std::move(hydraulicLoads)),
           locations(std::move(locations)) { }

@@ -41,7 +41,7 @@ namespace DiKErnel::KernelWrapper::Json
         InputData(
             std::unique_ptr<CalculationData> calculationData,
             std::unique_ptr<HydraulicLoads> hydraulicLoads,
-            std::vector<std::unique_ptr<CalculationLocation>>& locations
+            std::vector<std::unique_ptr<CalculationLocation>> locations
         );
 
         CalculationData* GetCalculationData() const;
