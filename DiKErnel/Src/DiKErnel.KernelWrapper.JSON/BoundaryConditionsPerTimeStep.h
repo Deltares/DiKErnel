@@ -23,7 +23,7 @@
 namespace DiKErnel::KernelWrapper::Json
 {
     /*!
-     * \brief Container for boundary conditions data on a per timestep basis.
+     * \brief Container for boundary conditions data on a per time step basis.
      */
     class BoundaryConditionsPerTimeStep
     {
