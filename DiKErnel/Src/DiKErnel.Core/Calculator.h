@@ -19,6 +19,8 @@
 // All rights reserved.
 
 #pragma once
+#include <atomic>
+#include <thread>
 
 namespace DiKErnel::Core
 {
@@ -28,11 +30,33 @@ namespace DiKErnel::Core
     class Calculator
     {
         public:
-            bool created;
+            explicit Calculator(
+                int numberOfLocations,
+                int numberOfTimeSteps,
+                void (*subCalculation)());
 
-            /*!
-             * \brief Creates a new instance.
-             */
-            Calculator();
+            void WaitForCompletion();
+
+            int GetProgress() const;
+
+            bool IsFinished() const;
+
+            void Cancel();
+
+            bool IsCancelled() const;
+
+        private:
+            std::thread thread;
+            std::atomic<int> progress = 0;
+            std::atomic<bool> cancelled = false;
+            std::atomic<bool> finished = false;
+
+            static void PerformCalculation(
+                int numberOfLocations,
+                int numberOfTimeSteps,
+                void (*subCalculation)(),
+                std::atomic<int>& progress,
+                std::atomic<bool>& finished,
+                std::atomic<bool>& cancelled);
     };
 }

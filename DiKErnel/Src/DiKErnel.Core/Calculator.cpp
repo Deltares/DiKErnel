@@ -19,9 +19,85 @@
 // All rights reserved.
 
 #include "Calculator.h"
+#include <atomic>
+#include <thread>
 
 namespace DiKErnel::Core
 {
-    Calculator::Calculator()
-        : created(true) { }
+    Calculator::Calculator(
+        int numberOfLocations,
+        int numberOfTimeSteps,
+        void (*subCalculation)())
+    {
+        thread = std::thread(
+            PerformCalculation,
+            numberOfLocations,
+            numberOfTimeSteps,
+            subCalculation,
+            std::ref(progress),
+            std::ref(finished),
+            std::ref(cancelled));
+    }
+
+    void Calculator::WaitForCompletion()
+    {
+        if (thread.joinable())
+        {
+            thread.join();
+        }
+    }
+
+    int Calculator::GetProgress() const
+    {
+        return progress;
+    }
+
+    bool Calculator::IsFinished() const
+    {
+        return finished;
+    }
+
+    void Calculator::Cancel()
+    {
+        cancelled = true;
+    }
+
+    bool Calculator::IsCancelled() const
+    {
+        return cancelled;
+    }
+
+    void Calculator::PerformCalculation(
+        const int numberOfLocations,
+        const int numberOfTimeSteps,
+        void (*subCalculation)(),
+        std::atomic<int>& progress,
+        std::atomic<bool>& finished,
+        std::atomic<bool>& cancelled)
+    {
+        const auto totalSteps = numberOfLocations * numberOfTimeSteps;
+
+        // Perform sub-calculation for all time steps
+        for (auto i = 0; i < numberOfLocations; i++)
+        {
+            // Perform sub-calculation for all locations
+            for (auto j = 0; j < numberOfTimeSteps; j++)
+            {
+                // Break from loop when cancelled
+                if (cancelled)
+                {
+                    break;
+                }
+
+                // Perform the actual sub-calculation
+                subCalculation();
+
+                // Update progress indicator
+                progress = ceil((i * numberOfTimeSteps + j + 1.0) / totalSteps * 100);
+            }
+        }
+
+        // Mark calculation as finished
+        finished = true;
+    }
 }

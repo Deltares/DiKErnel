@@ -24,12 +24,5 @@
 
 namespace DiKErnel::Core::Test
 {
-    TEST(CalculatorTest, Constructor_ExpectedValues)
-    {
-        // Call
-        const Calculator calculator;
 
-        // Assert
-        ASSERT_TRUE(calculator.created);
-    }
 }
