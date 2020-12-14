@@ -25,8 +25,8 @@
 namespace DiKErnel::Core
 {
     Calculator::Calculator(
-        int numberOfLocations,
-        int numberOfTimeSteps,
+        std::vector<CalculationLocation*> locations,
+        std::vector<int> times,
         double (*subCalculation)(double initialDamage,
             double slopeAngle,
             double relativeDensity,
@@ -39,8 +39,8 @@ namespace DiKErnel::Core
     {
         thread = std::thread(
             PerformCalculation,
-            numberOfLocations,
-            numberOfTimeSteps,
+            locations,
+            times,
             subCalculation,
             std::ref(progress),
             std::ref(finished),
@@ -76,8 +76,8 @@ namespace DiKErnel::Core
     }
 
     void Calculator::PerformCalculation(
-        const int numberOfLocations,
-        const int numberOfTimeSteps,
+        std::vector<CalculationLocation*> locations,
+        const std::vector<int> times,
         double (*subCalculation)(
             double initialDamage,
             double slopeAngle,
@@ -92,6 +92,9 @@ namespace DiKErnel::Core
         std::atomic<bool>& finished,
         std::atomic<bool>& cancelled)
     {
+        const auto numberOfLocations = locations.size();
+        const auto numberOfTimeSteps = times.size();
+
         const auto totalSteps = numberOfLocations * numberOfTimeSteps;
 
         // Perform sub-calculation for all time steps

@@ -21,6 +21,11 @@
 #pragma once
 #include <atomic>
 #include <thread>
+#include <vector>
+
+#include "CalculationLocation.h"
+
+using namespace DiKErnel::KernelWrapper::Json;
 
 namespace DiKErnel::Core
 {
@@ -31,8 +36,8 @@ namespace DiKErnel::Core
     {
         public:
             explicit Calculator(
-                int numberOfLocations,
-                int numberOfTimeSteps,
+                std::vector<CalculationLocation*> locations,
+                std::vector<int> times,
                 double (*subCalculation)(
                     double initialDamage,
                     double slopeAngle,
@@ -61,8 +66,8 @@ namespace DiKErnel::Core
             std::atomic<bool> finished = false;
 
             static void PerformCalculation(
-                int numberOfLocations,
-                int numberOfTimeSteps,
+                std::vector<CalculationLocation*> locations,
+                std::vector<int> times,
                 double (*subCalculation)(double initialDamage,
                     double slopeAngle,
                     double relativeDensity,

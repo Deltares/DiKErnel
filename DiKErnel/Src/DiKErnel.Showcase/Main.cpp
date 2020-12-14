@@ -84,8 +84,8 @@ int main()
     cout << "-> Enter 'c' to cancel the calculation" << endl << endl;
 
     Calculator calculator(
-        numberOfLocations,
-        numberOfTimeSteps,
+        locations,
+        times,
         NaturalStoneRevetment::CalculateDamage);
 
     thread inputThread(
