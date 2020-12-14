@@ -27,7 +27,15 @@ namespace DiKErnel::Core
     Calculator::Calculator(
         int numberOfLocations,
         int numberOfTimeSteps,
-        void (*subCalculation)())
+        double (*subCalculation)(double initialDamage,
+            double slopeAngle,
+            double relativeDensity,
+            double thicknessTopLayer,
+            double spectralWaveHeight,
+            double spectralWavePeriod,
+            double waveAngle,
+            double startTime,
+            double endTime))
     {
         thread = std::thread(
             PerformCalculation,
@@ -70,7 +78,16 @@ namespace DiKErnel::Core
     void Calculator::PerformCalculation(
         const int numberOfLocations,
         const int numberOfTimeSteps,
-        void (*subCalculation)(),
+        double (*subCalculation)(
+            double initialDamage,
+            double slopeAngle,
+            double relativeDensity,
+            double thicknessTopLayer,
+            double spectralWaveHeight,
+            double spectralWavePeriod,
+            double waveAngle,
+            double startTime,
+            double endTime),
         std::atomic<int>& progress,
         std::atomic<bool>& finished,
         std::atomic<bool>& cancelled)
@@ -90,7 +107,7 @@ namespace DiKErnel::Core
                 }
 
                 // Perform the actual sub-calculation
-                subCalculation();
+                auto result = subCalculation(0, 0, 0, 0, 0, 0, 0, 0 ,0);
 
                 // Update progress indicator
                 progress = ceil((i * numberOfTimeSteps + j + 1.0) / totalSteps * 100);

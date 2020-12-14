@@ -33,7 +33,16 @@ namespace DiKErnel::Core
             explicit Calculator(
                 int numberOfLocations,
                 int numberOfTimeSteps,
-                void (*subCalculation)());
+                double (*subCalculation)(
+                    double initialDamage,
+                    double slopeAngle,
+                    double relativeDensity,
+                    double thicknessTopLayer,
+                    double spectralWaveHeight,
+                    double spectralWavePeriod,
+                    double waveAngle,
+                    double startTime,
+                    double endTime));
 
             void WaitForCompletion();
 
@@ -54,7 +63,15 @@ namespace DiKErnel::Core
             static void PerformCalculation(
                 int numberOfLocations,
                 int numberOfTimeSteps,
-                void (*subCalculation)(),
+                double (*subCalculation)(double initialDamage,
+                    double slopeAngle,
+                    double relativeDensity,
+                    double thicknessTopLayer,
+                    double spectralWaveHeight,
+                    double spectralWavePeriod,
+                    double waveAngle,
+                    double startTime,
+                    double endTime),
                 std::atomic<int>& progress,
                 std::atomic<bool>& finished,
                 std::atomic<bool>& cancelled);

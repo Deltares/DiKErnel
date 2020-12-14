@@ -24,9 +24,11 @@
 #include "Calculator.h"
 #include "InputComposer.h"
 #include "InputData.h"
+#include "NaturalStoneRevetment.h"
 
 using namespace std;
 using namespace DiKErnel::Core;
+using namespace DiKErnel::FunctionLibrary;
 using namespace DiKErnel::KernelWrapper::Json;
 
 enum class UserInput
@@ -43,14 +45,6 @@ void InputMethod(
     atomic<UserInput>& userInput);
 
 #pragma endregion
-
-void SubCalculation()
-{
-    for (auto k = 0; k < 10000000; k++)
-    {
-        tanf(sqrt(k));
-    }
-}
 
 int main()
 {
@@ -92,7 +86,7 @@ int main()
     Calculator calculator(
         numberOfLocations,
         numberOfTimeSteps,
-        SubCalculation);
+        NaturalStoneRevetment::CalculateDamage);
 
     thread inputThread(
         InputMethod,
