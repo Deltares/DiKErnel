@@ -32,4 +32,9 @@ namespace DiKErnel::Core::Test
         // Assert
         ASSERT_TRUE(calculator.created);
     }
+
+    TEST(CalculatorTest, Failing_Test)
+    {
+        ASSERT_TRUE(false);
+    }
 }
