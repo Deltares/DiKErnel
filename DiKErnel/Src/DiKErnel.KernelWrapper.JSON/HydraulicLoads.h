@@ -20,6 +20,7 @@
 
 #pragma once
 
+#include <memory>
 #include <vector>
 
 #include "BoundaryConditionsPerTimeStep.h"
@@ -32,18 +33,16 @@ namespace DiKErnel::KernelWrapper::Json
     class HydraulicLoads
     {
         int waveAngleMaximum;
-        std::vector<BoundaryConditionsPerTimeStep*> boundaryConditionsPerTimeStep;
+        std::vector<std::unique_ptr<BoundaryConditionsPerTimeStep>> boundaryConditionsPerTimeStep;
 
         public:
         HydraulicLoads(
             int waveAngleMaximum,
-            std::vector<BoundaryConditionsPerTimeStep*> boundaryConditionsPerTimeStep
+            std::vector<std::unique_ptr<BoundaryConditionsPerTimeStep>> boundaryConditionsPerTimeStep
         );
 
         int GetWaveAngleMaximum() const;
 
-        std::vector<BoundaryConditionsPerTimeStep*> GetBoundaryConditionsPerTimeStep() const;
-
-        ~HydraulicLoads();
+        const std::vector<std::unique_ptr<BoundaryConditionsPerTimeStep>>& GetBoundaryConditionsPerTimeStep() const;
     };
 }

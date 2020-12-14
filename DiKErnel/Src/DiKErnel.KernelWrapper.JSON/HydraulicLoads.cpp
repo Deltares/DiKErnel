@@ -24,25 +24,17 @@ namespace DiKErnel::KernelWrapper::Json
 {
     HydraulicLoads::HydraulicLoads(
         int waveAngleMaximum,
-        std::vector<BoundaryConditionsPerTimeStep*> boundaryConditionsPerTimeStep)
+        std::vector<std::unique_ptr<BoundaryConditionsPerTimeStep>> boundaryConditionsPerTimeStep)
         : waveAngleMaximum(waveAngleMaximum),
-          boundaryConditionsPerTimeStep(boundaryConditionsPerTimeStep) { }
+          boundaryConditionsPerTimeStep(std::move(boundaryConditionsPerTimeStep)) { }
 
     int HydraulicLoads::GetWaveAngleMaximum() const
     {
         return waveAngleMaximum;
     }
 
-    std::vector<BoundaryConditionsPerTimeStep*> HydraulicLoads::GetBoundaryConditionsPerTimeStep() const
+    const std::vector<std::unique_ptr<BoundaryConditionsPerTimeStep>>& HydraulicLoads::GetBoundaryConditionsPerTimeStep() const
     {
         return boundaryConditionsPerTimeStep;
-    }
-
-    HydraulicLoads::~HydraulicLoads()
-    {
-        for (auto i = 0; i < boundaryConditionsPerTimeStep.size(); i++)
-        {
-            delete boundaryConditionsPerTimeStep[i];
-        }
     }
 }
