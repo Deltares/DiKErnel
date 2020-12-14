@@ -48,6 +48,6 @@ namespace DiKErnel::KernelWrapper::Json
 
         HydraulicLoads* GetHydraulicLoads() const;
 
-        const std::vector<std::unique_ptr<CalculationLocation>>& GetLocations() const;
+        std::vector<CalculationLocation*> GetLocations() const;
     };
 }

@@ -37,7 +37,7 @@ namespace DiKErnel::KernelWrapper::Json::Test
         HydraulicLoads* hydraulicLoads);
 
     void AssertCalculationLocations(
-        std::vector<std::unique_ptr<CalculationLocation>> calculationLocations);
+        std::vector<CalculationLocation*> calculationLocations);
 
     #pragma endregion
 
@@ -85,10 +85,17 @@ namespace DiKErnel::KernelWrapper::Json::Test
         nlohmann::json json = nlohmann::json::parse(ifs);
 
         // When
-        auto calculationLocations = InputComposer::ReadLocations(&json);
+        const auto calculationLocations = InputComposer::ReadLocations(&json);
 
         // Then
-        AssertCalculationLocations(calculationLocations);
+        std::vector<CalculationLocation*> locationPointers;
+
+        for (const auto& location : calculationLocations)
+        {
+            locationPointers.push_back(location.get());
+        }
+
+        AssertCalculationLocations(locationPointers);
     }
 
     #pragma region Helper methods
@@ -142,9 +149,9 @@ namespace DiKErnel::KernelWrapper::Json::Test
     }
 
     void AssertCalculationLocations(
-        std::vector<std::unique_ptr<CalculationLocation>> calculationLocations)
+        std::vector<CalculationLocation*> calculationLocations)
     {
-        auto calculationLocation = calculationLocations[0].get();
+        auto calculationLocation = calculationLocations[0];
         auto revetment = calculationLocation->GetRevetment();
         ASSERT_EQ(calculationLocation->GetName(), "LocatieZwak");
         ASSERT_EQ(revetment->GetTypeTopLayer(), "Noorse Steen");
@@ -162,7 +169,7 @@ namespace DiKErnel::KernelWrapper::Json::Test
         ASSERT_EQ(revetment->GetCoefficientSurgingNs(), 0.6);
         ASSERT_EQ(calculationLocation->GetProfileSchematization()->GetTanA(), 0.3);
 
-        calculationLocation = calculationLocations[1].get();
+        calculationLocation = calculationLocations[1];
         revetment = calculationLocation->GetRevetment();
         ASSERT_EQ(calculationLocation->GetName(), "LocatieSterk");
         ASSERT_EQ(revetment->GetTypeTopLayer(), "Noorse Steen");
@@ -180,5 +187,6 @@ namespace DiKErnel::KernelWrapper::Json::Test
         ASSERT_EQ(revetment->GetCoefficientSurgingNs(), 0.6);
         ASSERT_EQ(calculationLocation->GetProfileSchematization()->GetTanA(), 0.3);
     }
+
     #pragma endregion
 }

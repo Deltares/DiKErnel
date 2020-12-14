@@ -40,8 +40,15 @@ namespace DiKErnel::KernelWrapper::Json
         return hydraulicLoads.get();
     }
 
-    const std::vector<std::unique_ptr<CalculationLocation>>& InputData::GetLocations() const
+    std::vector<CalculationLocation*> InputData::GetLocations() const
     {
-        return locations;
+        std::vector<CalculationLocation*> locationPointers;
+
+        for (const auto& location : locations)
+        {
+            locationPointers.push_back(location.get());
+        }
+
+        return locationPointers;
     }
 }
