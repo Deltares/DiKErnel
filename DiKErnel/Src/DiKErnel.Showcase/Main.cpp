@@ -19,8 +19,8 @@
 // All rights reserved.
 
 #include <iostream>
-#include <thread>
 #include <string>
+#include <thread>
 #include "Calculator.h"
 
 using namespace std;
@@ -28,121 +28,129 @@ using namespace DiKErnel::Core;
 
 enum class UserInput
 {
-	None,
-	Cancel,
-	Progress
+    None,
+    Cancel,
+    Progress
 };
 
+#pragma region Forward declarations
+
 void InputMethod(
-	atomic<bool>& calculationFinished,
-	atomic<UserInput>& userInput)
-{
-	string input;
+    atomic<bool>& calculationFinished,
+    atomic<UserInput>& userInput);
 
-	while (!calculationFinished)
-	{
-		std::getline(std::cin, input);
-
-		if (input == "c")
-		{
-			userInput = UserInput::Cancel;
-		}
-
-		if (input == "p")
-		{
-			userInput = UserInput::Progress;
-		}
-	}
-}
+#pragma endregion
 
 void SubCalculation()
 {
-	for (auto k = 0; k < 10000000; k++)
-	{
-		tanf(sqrt(k));
-	}
+    for (auto k = 0; k < 10000000; k++)
+    {
+        tanf(sqrt(k));
+    }
 }
 
 int main()
 {
-	auto numberOfLocations = 0;
-	auto numberOfTimeSteps = 0;
-	std::atomic<bool> calculationFinished(false);
-	std::atomic<UserInput> userInput;
+    auto numberOfLocations = 0;
+    auto numberOfTimeSteps = 0;
+    std::atomic<bool> calculationFinished(false);
+    std::atomic<UserInput> userInput;
 
-	cout << "|===================|" << endl;
-	cout << "| Calculation input |" << endl;
-	cout << "|===================|" << endl;
-	cout << "-> Enter the number of locations: ";
-	cin >> numberOfLocations;
-	cout << "-> Enter the number of time steps: ";
-	cin >> numberOfTimeSteps;
-	cout << endl;
+    cout << "|===================|" << endl;
+    cout << "| Calculation input |" << endl;
+    cout << "|===================|" << endl;
+    cout << "-> Enter the number of locations: ";
+    cin >> numberOfLocations;
+    cout << "-> Enter the number of time steps: ";
+    cin >> numberOfTimeSteps;
+    cout << endl;
 
-	// Start stopwatch
-	const auto start = std::chrono::high_resolution_clock::now();
+    // Start stopwatch
+    const auto start = std::chrono::high_resolution_clock::now();
 
-	// Write start message
-	cout << "|=====================|" << endl;
-	cout << "| Calculation started |" << endl;
-	cout << "|=====================|" << endl;
-	cout << "-> Enter 'p' to show the current progress" << endl;
-	cout << "-> Enter 'c' to cancel the calculation" << endl << endl;
+    // Write start message
+    cout << "|=====================|" << endl;
+    cout << "| Calculation started |" << endl;
+    cout << "|=====================|" << endl;
+    cout << "-> Enter 'p' to show the current progress" << endl;
+    cout << "-> Enter 'c' to cancel the calculation" << endl << endl;
 
     Calculator calculator(
-		numberOfLocations,
-		numberOfTimeSteps,
-		SubCalculation);
+        numberOfLocations,
+        numberOfTimeSteps,
+        SubCalculation);
 
-	thread inputThread(
-		InputMethod,
-		ref(calculationFinished),
-		ref(userInput));
+    thread inputThread(
+        InputMethod,
+        ref(calculationFinished),
+        ref(userInput));
 
-	while (!calculator.IsFinished())
-	{
-		if (userInput == UserInput::Cancel)
-		{
-			calculator.Cancel();
-			userInput = UserInput::None;
-		}
+    while (!calculator.IsFinished())
+    {
+        if (userInput == UserInput::Cancel)
+        {
+            calculator.Cancel();
+            userInput = UserInput::None;
+        }
 
-		if (userInput == UserInput::Progress)
-		{
-			cout << "Current progress = " << calculator.GetProgress() << "%" << endl;
-			userInput = UserInput::None;
-		}
-	}
+        if (userInput == UserInput::Progress)
+        {
+            cout << "Current progress = " << calculator.GetProgress() << "%" << endl;
+            userInput = UserInput::None;
+        }
+    }
 
-	calculator.WaitForCompletion();
+    calculator.WaitForCompletion();
 
-	// Write end message
-	if (calculator.IsCancelled())
-	{
-		cout << endl;
-		cout << "|=======================|" << endl;
-		cout << "| Calculation cancelled |" << endl;
-		cout << "|=======================|" << endl;
-	}
-	else
-	{
-		cout << endl;
-		cout << "|========================|" << endl;
-		cout << "| Calculation successful |" << endl;
-		cout << "|========================|" << endl;
-	}
+    // Write end message
+    if (calculator.IsCancelled())
+    {
+        cout << endl;
+        cout << "|=======================|" << endl;
+        cout << "| Calculation cancelled |" << endl;
+        cout << "|=======================|" << endl;
+    }
+    else
+    {
+        cout << endl;
+        cout << "|========================|" << endl;
+        cout << "| Calculation successful |" << endl;
+        cout << "|========================|" << endl;
+    }
 
-	// End stopwatch
-	const auto end = std::chrono::high_resolution_clock::now();
-	const std::chrono::duration<double> elapsed = end - start;
-	cout << "=> Time elapsed: " << elapsed.count() << endl << endl;
+    // End stopwatch
+    const auto end = std::chrono::high_resolution_clock::now();
+    const std::chrono::duration<double> elapsed = end - start;
+    cout << "=> Time elapsed: " << elapsed.count() << endl << endl;
 
-	// Notify thread being finished
-	calculationFinished = true;
+    // Notify thread being finished
+    calculationFinished = true;
 
-	cout << endl << "Press 'Enter' to exit the application.";
+    cout << endl << "Press 'Enter' to exit the application.";
 
-	inputThread.join();
+    inputThread.join();
 
-	return 0;
+    return 0;
+}
+
+void InputMethod(
+    atomic<bool>& calculationFinished,
+    atomic<UserInput>& userInput)
+{
+    string input;
+
+    while (!calculationFinished)
+    {
+        std::getline(std::cin, input);
+
+        if (input == "c")
+        {
+            userInput = UserInput::Cancel;
+        }
+
+        if (input == "p")
+        {
+            userInput = UserInput::Progress;
+        }
+    }
 }
