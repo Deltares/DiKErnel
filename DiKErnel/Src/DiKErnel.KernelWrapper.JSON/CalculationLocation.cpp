@@ -23,7 +23,7 @@
 namespace DiKErnel::KernelWrapper::Json
 {
     CalculationLocation::CalculationLocation(
-        std::string name,
+        std::string& name,
         std::unique_ptr<Revetment> revetment,
         std::unique_ptr<ProfileSchematization> profileSchematization)
         : name(name),
