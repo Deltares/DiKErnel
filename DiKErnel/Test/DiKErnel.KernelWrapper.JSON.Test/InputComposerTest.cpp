@@ -85,7 +85,7 @@ namespace DiKErnel::KernelWrapper::Json::Test
         nlohmann::json json = nlohmann::json::parse(ifs);
 
         // When
-        const auto calculationLocations = std::move(InputComposer::ReadLocations(&json));
+        const auto calculationLocations = InputComposer::ReadLocations(&json);
 
         // Then
         std::vector<CalculationLocation*> locationPointers;

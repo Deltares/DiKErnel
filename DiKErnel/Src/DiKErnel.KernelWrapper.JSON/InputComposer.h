@@ -69,7 +69,7 @@ namespace DiKErnel::KernelWrapper::Json
             *        The pointer to the json object to read from.
             * \return The calculation location data.
             */
-            static std::vector<std::unique_ptr<CalculationLocation>>& ReadLocations(
+            static std::vector<std::unique_ptr<CalculationLocation>> ReadLocations(
                 nlohmann::json* json);
 
         private:
