@@ -42,7 +42,7 @@ namespace DiKErnel::KernelWrapper::Json
              *        The reference path to the json file.
              * \return The input data object.
              */
-            static InputData* GetDomainParametersFromJson(
+            static std::unique_ptr<InputData> GetDomainParametersFromJson(
                 const std::string& filePath);
 
             /*!
@@ -51,7 +51,7 @@ namespace DiKErnel::KernelWrapper::Json
              *        The pointer to the json object to read from.
              * \return The calculation data.
              */
-            static CalculationData* ReadCalculationData(
+            static std::unique_ptr<CalculationData> ReadCalculationData(
                 nlohmann::json* json);
 
             /*!
@@ -60,7 +60,7 @@ namespace DiKErnel::KernelWrapper::Json
              *        The pointer to the json object to read from.
              * \return The hydraulic loads data.
              */
-            static HydraulicLoads* ReadHydraulicLoads(
+            static std::unique_ptr<HydraulicLoads> ReadHydraulicLoads(
                 nlohmann::json* json);
 
             /*!
@@ -69,7 +69,7 @@ namespace DiKErnel::KernelWrapper::Json
             *        The pointer to the json object to read from.
             * \return The calculation location data.
             */
-            static std::vector<CalculationLocation*> ReadLocations(
+            static std::vector<std::unique_ptr<CalculationLocation>> ReadLocations(
                 nlohmann::json* json);
 
         private:

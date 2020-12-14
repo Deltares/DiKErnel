@@ -28,55 +28,55 @@
 
 namespace DiKErnel::KernelWrapper::Json
 {
-    InputData* InputComposer::GetDomainParametersFromJson(
+    std::unique_ptr<InputData> InputComposer::GetDomainParametersFromJson(
         const std::string& filePath)
     {
         auto json = ParseJson(filePath);
 
-        return new InputData(
+        return std::make_unique<InputData>(
             ReadCalculationData(&json),
             ReadHydraulicLoads(&json),
             ReadLocations(&json));
     }
 
-    CalculationData* InputComposer::ReadCalculationData(
+    std::unique_ptr<CalculationData> InputComposer::ReadCalculationData(
         nlohmann::json* json)
     {
         auto readCalculationData = (*json)[JsonDefinitions::calculationData];
 
-        return new CalculationData(
+        return std::make_unique<CalculationData>(
             readCalculationData[JsonDefinitions::time].get<std::vector<int>>()
         );
     }
 
-    HydraulicLoads* InputComposer::ReadHydraulicLoads(
+    std::unique_ptr<HydraulicLoads> InputComposer::ReadHydraulicLoads(
         nlohmann::json* json)
     {
         auto readHydraulicLoads = (*json)[JsonDefinitions::hydraulicLoads];
         auto readBoundaryConditionsPerTimeStep = readHydraulicLoads[JsonDefinitions::boundaryConditionsPerTimeStep];
 
-        std::vector<BoundaryConditionsPerTimeStep*> boundaryConditionsPerTimeStep;
+        std::vector<std::unique_ptr<BoundaryConditionsPerTimeStep>> boundaryConditionsPerTimeStep;
 
         for (auto readBoundaryConditionsForTimeStep : readBoundaryConditionsPerTimeStep)
         {
             boundaryConditionsPerTimeStep.push_back(
-                new BoundaryConditionsPerTimeStep(
+                std::make_unique<BoundaryConditionsPerTimeStep>(
                     readBoundaryConditionsForTimeStep[JsonDefinitions::waveHeightHm0].get<double>(),
                     readBoundaryConditionsForTimeStep[JsonDefinitions::wavePeriodTm10].get<double>(),
                     readBoundaryConditionsForTimeStep[JsonDefinitions::waveAngle].get<double>()
                 ));
         }
 
-        return new HydraulicLoads(
+        return std::make_unique<HydraulicLoads>(
             readHydraulicLoads[JsonDefinitions::maximumWaveAngle].get<int>(),
             boundaryConditionsPerTimeStep
         );
     }
 
-    std::vector<CalculationLocation*> InputComposer::ReadLocations(
+    std::vector<std::unique_ptr<CalculationLocation>> InputComposer::ReadLocations(
         nlohmann::json* json)
     {
-        std::vector<CalculationLocation*> calculationLocations;
+        std::vector<std::unique_ptr<CalculationLocation>> calculationLocations;
 
         auto readLocations = (*json)[JsonDefinitions::locations];
 
@@ -86,9 +86,9 @@ namespace DiKErnel::KernelWrapper::Json
             auto readRevetment = readLocation[JsonDefinitions::revetment];
             auto readProfileSchematization = readLocation[JsonDefinitions::profileSchematisation];
 
-            calculationLocations.push_back(new CalculationLocation(
+            calculationLocations.push_back(std::make_unique<CalculationLocation>(
                 readLocation[JsonDefinitions::name].get<std::string>(),
-                new Revetment(
+                std::make_unique<Revetment>(
                     readRevetment[JsonDefinitions::typeTopLayer].get<std::string>(),
                     readRevetment[JsonDefinitions::relativeDensity].get<double>(),
                     readRevetment[JsonDefinitions::thicknessTopLayer].get<double>(),
@@ -102,7 +102,7 @@ namespace DiKErnel::KernelWrapper::Json
                     readRevetment[JsonDefinitions::coefficientSurgingBs].get<double>(),
                     readRevetment[JsonDefinitions::coefficientSurgingCs].get<double>(),
                     readRevetment[JsonDefinitions::coefficientSurgingNs].get<double>()),
-                new ProfileSchematization(
+                std::make_unique<ProfileSchematization>(
                     readProfileSchematization[JsonDefinitions::tanA].get<double>()
                 )
             ));
