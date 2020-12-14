@@ -38,15 +38,15 @@ namespace DiKErnel::KernelWrapper::Json
         std::unique_ptr<ProfileSchematization> profileSchematization;
 
         public:
-        CalculationLocation(
-            std::string name,
-            std::unique_ptr<Revetment> revetment,
-            std::unique_ptr<ProfileSchematization> profileSchematization);
+            CalculationLocation(
+                std::string name,
+                std::unique_ptr<Revetment> revetment,
+                std::unique_ptr<ProfileSchematization> profileSchematization);
 
-        std::string GetName() const;
+            std::string GetName() const;
 
-        Revetment* GetRevetment() const;
+            Revetment* GetRevetment() const;
 
-        ProfileSchematization* GetProfileSchematization() const;
+            ProfileSchematization* GetProfileSchematization() const;
     };
 }

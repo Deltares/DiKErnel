@@ -38,16 +38,16 @@ namespace DiKErnel::KernelWrapper::Json
         std::vector<std::unique_ptr<CalculationLocation>> locations;
 
         public:
-        InputData(
-            std::unique_ptr<CalculationData> calculationData,
-            std::unique_ptr<HydraulicLoads> hydraulicLoads,
-            std::vector<std::unique_ptr<CalculationLocation>> locations
-        );
+            InputData(
+                std::unique_ptr<CalculationData> calculationData,
+                std::unique_ptr<HydraulicLoads> hydraulicLoads,
+                std::vector<std::unique_ptr<CalculationLocation>> locations
+            );
 
-        CalculationData* GetCalculationData() const;
+            CalculationData* GetCalculationData() const;
 
-        HydraulicLoads* GetHydraulicLoads() const;
+            HydraulicLoads* GetHydraulicLoads() const;
 
-        std::vector<CalculationLocation*> GetLocations() const;
+            std::vector<CalculationLocation*> GetLocations() const;
     };
 }

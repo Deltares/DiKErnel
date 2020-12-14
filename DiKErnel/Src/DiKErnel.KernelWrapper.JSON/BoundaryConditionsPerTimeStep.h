@@ -32,15 +32,15 @@ namespace DiKErnel::KernelWrapper::Json
         double waveAngle;
 
         public:
-        BoundaryConditionsPerTimeStep(
-            double waveHeightHm0,
-            double wavePeriodTm10,
-            double waveAngle);
+            BoundaryConditionsPerTimeStep(
+                double waveHeightHm0,
+                double wavePeriodTm10,
+                double waveAngle);
 
-        double GetWaveHeightHm0() const;
+            double GetWaveHeightHm0() const;
 
-        double GetWavePeriodTm10() const;
+            double GetWavePeriodTm10() const;
 
-        double GetWaveAngle() const;
+            double GetWaveAngle() const;
     };
 }
