@@ -33,9 +33,9 @@ namespace DiKErnel::KernelWrapper::Json
 
         public:
         CalculationData(
-            std::vector<int> times
+            std::vector<int>& times
         );
 
-        std::vector<int> GetTimes() const;
+        const std::vector<int>& GetTimes() const;
     };
 }
