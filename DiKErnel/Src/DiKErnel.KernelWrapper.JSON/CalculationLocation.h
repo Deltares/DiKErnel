@@ -20,10 +20,11 @@
 
 #pragma once
 
+#include <memory>
 #include <string>
-#include <Revetment.h>
 
 #include "ProfileSchematization.h"
+#include "Revetment.h"
 
 namespace DiKErnel::KernelWrapper::Json
 {
@@ -33,21 +34,19 @@ namespace DiKErnel::KernelWrapper::Json
     class CalculationLocation
     {
         std::string name;
-        Revetment* revetment;
-        ProfileSchematization* profileSchematization;
+        std::unique_ptr<Revetment> revetment;
+        std::unique_ptr<ProfileSchematization> profileSchematization;
 
         public:
         CalculationLocation(
             std::string name,
-            Revetment* revetment,
-            ProfileSchematization* profileSchematization);
+            std::unique_ptr<Revetment> revetment,
+            std::unique_ptr<ProfileSchematization> profileSchematization);
 
         std::string GetName() const;
 
         Revetment* GetRevetment() const;
 
         ProfileSchematization* GetProfileSchematization() const;
-
-        ~CalculationLocation();
     };
 }
