@@ -26,7 +26,7 @@
 using namespace std;
 using namespace DiKErnel::Core;
 
-enum UserInput
+enum class UserInput
 {
 	None,
 	Cancel,
@@ -45,12 +45,12 @@ void InputMethod(
 
 		if (input == "c")
 		{
-			userInput = Cancel;
+			userInput = UserInput::Cancel;
 		}
 
 		if (input == "p")
 		{
-			userInput = Progress;
+			userInput = UserInput::Progress;
 		}
 	}
 }
@@ -101,16 +101,16 @@ int main()
 
 	while (!calculator.IsFinished())
 	{
-		if (userInput == Cancel)
+		if (userInput == UserInput::Cancel)
 		{
 			calculator.Cancel();
-			userInput = None;
+			userInput = UserInput::None;
 		}
 
-		if (userInput == Progress)
+		if (userInput == UserInput::Progress)
 		{
 			cout << "Current progress = " << calculator.GetProgress() << "%" << endl;
-			userInput = None;
+			userInput = UserInput::None;
 		}
 	}
 
