@@ -13,6 +13,9 @@ add_executable(${EXENAME} ${SOURCEFILES})
 set_target_properties(${EXENAME} PROPERTIES FOLDER Src)
 source_group("Sources" FILES ${SOURCEFILES})
 
+# Link dependencies
+target_link_libraries(${EXENAME} DiKErnel.Core)
+
 # Set startup project in Visual Studio
 if (CMAKE_GENERATOR MATCHES "Visual Studio")
   set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT ${EXENAME})
