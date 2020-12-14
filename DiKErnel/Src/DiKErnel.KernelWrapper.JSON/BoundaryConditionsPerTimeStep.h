@@ -32,7 +32,7 @@ namespace DiKErnel::KernelWrapper::Json
         double waveAngle;
 
         public:
-            BoundaryConditionsPerTimeStep(
+            explicit BoundaryConditionsPerTimeStep(
                 double waveHeightHm0,
                 double wavePeriodTm10,
                 double waveAngle);

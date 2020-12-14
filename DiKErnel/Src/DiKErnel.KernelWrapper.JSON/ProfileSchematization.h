@@ -30,7 +30,7 @@ namespace DiKErnel::KernelWrapper::Json
         double tanA;
 
         public:
-            ProfileSchematization(
+            explicit ProfileSchematization(
                 double tanA
             );
 

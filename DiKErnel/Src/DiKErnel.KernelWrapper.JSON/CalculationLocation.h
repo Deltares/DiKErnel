@@ -38,7 +38,7 @@ namespace DiKErnel::KernelWrapper::Json
         std::unique_ptr<ProfileSchematization> profileSchematization;
 
         public:
-            CalculationLocation(
+            explicit CalculationLocation(
                 std::string name,
                 std::unique_ptr<Revetment> revetment,
                 std::unique_ptr<ProfileSchematization> profileSchematization);

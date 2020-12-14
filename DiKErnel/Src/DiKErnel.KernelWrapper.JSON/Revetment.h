@@ -44,7 +44,7 @@ namespace DiKErnel::KernelWrapper::Json
         double coefficientSurgingNs;
 
         public:
-            Revetment(
+            explicit Revetment(
                 std::string typeTopLayer,
                 double relativeDensity,
                 double thicknessTopLayer,

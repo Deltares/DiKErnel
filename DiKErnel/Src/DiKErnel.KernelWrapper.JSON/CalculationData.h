@@ -32,7 +32,7 @@ namespace DiKErnel::KernelWrapper::Json
         std::vector<int> times;
 
         public:
-            CalculationData(
+            explicit CalculationData(
                 std::vector<int> times
             );
 

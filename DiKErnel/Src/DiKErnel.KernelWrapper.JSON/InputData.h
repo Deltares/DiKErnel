@@ -38,7 +38,7 @@ namespace DiKErnel::KernelWrapper::Json
         std::vector<std::unique_ptr<CalculationLocation>> locations;
 
         public:
-            InputData(
+            explicit InputData(
                 std::unique_ptr<CalculationData> calculationData,
                 std::unique_ptr<HydraulicLoads> hydraulicLoads,
                 std::vector<std::unique_ptr<CalculationLocation>> locations
