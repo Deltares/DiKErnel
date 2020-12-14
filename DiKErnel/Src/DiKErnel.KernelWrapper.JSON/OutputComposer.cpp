@@ -30,7 +30,7 @@
 
 namespace DiKErnel::KernelWrapper::Json
 {
-    void OutputComposer::WriteParametersToJson(
+    std::string OutputComposer::WriteParametersToJson(
         std::filesystem::path filePath,
         OutputData outputData)
     {
@@ -65,7 +65,9 @@ namespace DiKErnel::KernelWrapper::Json
             }
 
             //std::ofstream o(filePath);
-            std::cout << std::setw(4) << json << std::endl;
+            return json.dump();
+
+            //std::cout << std::setw(4) << json << std::endl;
             //o.close();
         }
         catch (nlohmann::json::type_error& e)

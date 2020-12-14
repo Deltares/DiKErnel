@@ -28,22 +28,26 @@
 namespace DiKErnel::KernelWrapper::Json::Test
 {
     // // Given
-    // const auto filePath = TestUtil::TestDataHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Test") / "calculationTest.json";
-    //
-    // TEST(OutputComposerTest, GivenFilePathAndOutputData_WhenWriteParametersToJson_ThenCorrectDataWritten)
-    // {
-    //     // Given
-    //     OutputComposer outputComposer;
-    //     std::vector<CalculationLocationOutput*> locationsOutput;
-    //     RevetmentOutput revetmentOutput(0.15);
-    //     RevetmentOutput revetmentOutput2(0.253);
-    //     CalculationLocationOutput calculationLocationOutput("testName", &revetmentOutput);
-    //     CalculationLocationOutput calculationLocationOutput2("testName2", &revetmentOutput2);
-    //     locationsOutput.push_back(&calculationLocationOutput);
-    //     locationsOutput.push_back(&calculationLocationOutput2);
-    //     OutputData outputData(locationsOutput);
-    //     
-    //     // When
-    //     outputComposer.WriteParametersToJson(filePath, outputData);
-    // }
+    const auto filePath = TestUtil::TestDataHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Test") / "calculationTest.json";
+    
+    TEST(OutputComposerTest, GivenFilePathAndOutputData_WhenWriteParametersToJson_ThenCorrectDataWritten)
+    {
+        // Given
+        std::vector<CalculationLocationOutput*> locationsOutput;
+        RevetmentOutput revetmentOutput(0.15);
+        RevetmentOutput revetmentOutput2(0.253);
+        CalculationLocationOutput calculationLocationOutput("testName", &revetmentOutput);
+        CalculationLocationOutput calculationLocationOutput2("testName2", &revetmentOutput2);
+        locationsOutput.push_back(&calculationLocationOutput);
+        locationsOutput.push_back(&calculationLocationOutput2);
+        OutputData outputData(locationsOutput);
+
+        std::string expectedJson = R"({"Locaties":[{"Bekleding":{"Schade":0.15},"Naam":"testName"},{"Bekleding":{"Schade":0.253},"Naam":"testName2"}]})";
+
+        // When
+        auto json = OutputComposer::WriteParametersToJson(filePath, outputData);
+
+        // Then
+        ASSERT_EQ(expectedJson, json);
+    }
 }
