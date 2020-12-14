@@ -30,10 +30,10 @@ namespace DiKErnel::KernelWrapper::Json
         double tanA;
 
         public:
-        ProfileSchematization(
-            double tanA
-        );
+            ProfileSchematization(
+                double tanA
+            );
 
-        double GetTanA() const;
+            double GetTanA() const;
     };
 }

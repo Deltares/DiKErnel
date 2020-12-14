@@ -36,13 +36,13 @@ namespace DiKErnel::KernelWrapper::Json
         std::vector<std::unique_ptr<BoundaryConditionsPerTimeStep>> boundaryConditionsPerTimeStep;
 
         public:
-        HydraulicLoads(
-            int waveAngleMaximum,
-            std::vector<std::unique_ptr<BoundaryConditionsPerTimeStep>>& boundaryConditionsPerTimeStep
-        );
+            HydraulicLoads(
+                int waveAngleMaximum,
+                std::vector<std::unique_ptr<BoundaryConditionsPerTimeStep>>& boundaryConditionsPerTimeStep
+            );
 
-        int GetWaveAngleMaximum() const;
+            int GetWaveAngleMaximum() const;
 
-        std::vector<BoundaryConditionsPerTimeStep*> GetBoundaryConditionsPerTimeStep() const;
+            std::vector<BoundaryConditionsPerTimeStep*> GetBoundaryConditionsPerTimeStep() const;
     };
 }
