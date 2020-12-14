@@ -73,7 +73,7 @@ namespace DiKErnel::KernelWrapper::Json
         );
     }
 
-    std::vector<std::unique_ptr<CalculationLocation>> InputComposer::ReadLocations(
+    std::vector<std::unique_ptr<CalculationLocation>>& InputComposer::ReadLocations(
         nlohmann::json* json)
     {
         std::vector<std::unique_ptr<CalculationLocation>> calculationLocations;
