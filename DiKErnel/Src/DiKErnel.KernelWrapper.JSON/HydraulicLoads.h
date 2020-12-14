@@ -38,7 +38,7 @@ namespace DiKErnel::KernelWrapper::Json
         public:
         HydraulicLoads(
             int waveAngleMaximum,
-            std::vector<std::unique_ptr<BoundaryConditionsPerTimeStep>> boundaryConditionsPerTimeStep
+            std::vector<std::unique_ptr<BoundaryConditionsPerTimeStep>>& boundaryConditionsPerTimeStep
         );
 
         int GetWaveAngleMaximum() const;
