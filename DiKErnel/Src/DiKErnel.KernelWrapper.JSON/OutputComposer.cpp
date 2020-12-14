@@ -20,8 +20,27 @@
 
 #include "OutputComposer.h"
 
+#include <filesystem>
+#include <fstream>
+#include <ostream>
+#include <nlohmann/json.hpp>
+
+#include "OutputData.h"
+#include "RevetmentOutput.h"
+
 namespace DiKErnel::KernelWrapper::Json
 {
-    OutputComposer::OutputComposer()
-        : created(true) { }
+    void OutputComposer::WriteParametersToJson(
+        std::filesystem::path filePath,
+        OutputData outputData)
+    {
+        nlohmann::json json;
+
+        json["Locaties"]["Naam"] = (outputData.GetLocationsOutput().at(0)->GetName());
+        json["Locaties"]["Schade"] = (outputData.GetLocationsOutput().at(0)->GetRevetmentOutput()->GetDamage());
+
+        std::ofstream o(filePath);
+        o << std::setw(4) << json << std::endl;
+        o.close();
+    }
 }

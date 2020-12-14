@@ -21,15 +21,28 @@
 #include <gtest/gtest.h>
 
 #include "OutputComposer.h"
+#include "OutputData.h"
+#include "RevetmentOutput.h"
+#include "TestDataHelper.h"
 
 namespace DiKErnel::KernelWrapper::Json::Test
 {
-    TEST(OutputComposerTest, Constructor_ExpectedValues)
-    {
-        // Call
-        OutputComposer outputComposer;
-
-        // Assert
-        ASSERT_EQ(outputComposer.created, true);
-    }
+    // // Given
+    // const auto filePath = TestUtil::TestDataHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Test") / "calculationTest.json";
+    //
+    // TEST(OutputComposerTest, GivenFilePathAndOutputData_WriteParametersToJson_ThenCorrectDataWritten)
+    // {
+    //     // Call
+    //     OutputComposer outputComposer;
+    //     std::vector<CalculationLocationOutput*> locationsOutput;
+    //     RevetmentOutput revetmentOutput(0.15);
+    //     CalculationLocationOutput calculationLocationOutput("testName", &revetmentOutput);
+    //     CalculationLocationOutput calculationLocationOutput2("testName2", &revetmentOutput);
+    //     locationsOutput.push_back(&calculationLocationOutput);
+    //     locationsOutput.push_back(&calculationLocationOutput2);
+    //     OutputData outputData(locationsOutput);
+    //     
+    //     // Assert
+    //     outputComposer.WriteParametersToJson(filePath, outputData);
+    // }
 }

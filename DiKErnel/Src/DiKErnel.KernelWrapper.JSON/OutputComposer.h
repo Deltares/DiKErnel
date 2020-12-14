@@ -20,19 +20,26 @@
 
 #pragma once
 
+#include <filesystem>
+
 namespace DiKErnel::KernelWrapper::Json
 {
+    class OutputData;
     /*!
      * \brief Class responsible for generating Json output.
      */
     class OutputComposer
     {
         public:
-            bool created;
-
             /*!
-             * \brief Creates a new instance.
+             * \brief Writes the output parameters to the given json.
+             * \param filePath
+             *        The reference path to the json file.
+             * \param outputData
+             *        The output data to write
              */
-            OutputComposer();
+            static void WriteParametersToJson(
+                std::filesystem::path filePath,
+                OutputData outputData);
     };
 }

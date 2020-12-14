@@ -39,4 +39,6 @@ namespace DiKErnel::KernelWrapper::Json
     {
         return revetmentOutput;
     }
+
+    CalculationLocationOutput::~CalculationLocationOutput() {}
 }

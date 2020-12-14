@@ -33,9 +33,9 @@ namespace DiKErnel::KernelWrapper::Json
 
     OutputData::~OutputData()
     {
-        for (auto i = 0; i < locationsOutput.size(); i++)
-        {
-            delete locationsOutput[i];
-        }
+        // for (auto i = 0; i < locationsOutput.size(); i++)
+        // {
+        //     delete locationsOutput[i];
+        // }
     }
 }
