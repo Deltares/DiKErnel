@@ -21,10 +21,11 @@
 #include "OutputComposer.h"
 
 #include <filesystem>
-#include <fstream>
 #include <ostream>
 #include <nlohmann/json.hpp>
 
+#include <CalculationLocationOutput.cpp>
+#include <iostream>
 #include "OutputData.h"
 #include "RevetmentOutput.h"
 
@@ -36,11 +37,34 @@ namespace DiKErnel::KernelWrapper::Json
     {
         nlohmann::json json;
 
-        json["Locaties"]["Naam"] = (outputData.GetLocationsOutput().at(0)->GetName());
-        json["Locaties"]["Schade"] = (outputData.GetLocationsOutput().at(0)->GetRevetmentOutput()->GetDamage());
+        const auto amountOfOutputLocations = outputData.GetLocationsOutput().size();
 
-        std::ofstream o(filePath);
-        o << std::setw(4) << json << std::endl;
-        o.close();
+        try
+        {
+            json["Locaties"] = nlohmann::json::array();
+
+            for (auto i = 0; i < amountOfOutputLocations; i++)
+            {
+                auto location = nlohmann::json::object({
+                    {
+                        "Naam",
+                        outputData.GetLocationsOutput().at(i)->GetName()
+                    },
+                    {
+                        "Schade",
+                        outputData.GetLocationsOutput().at(i)->GetRevetmentOutput()->GetDamage()
+                    }
+                });
+
+                json["Locaties"].push_back(location);
+            }
+        }
+        catch (nlohmann::json::type_error& e)
+        {
+            std::cout << e.what() << '\n';
+        }
+        //std::ofstream o(filePath);
+        std::cout << std::setw(4) << json << std::endl;
+        //o.close();
     }
 }

@@ -30,19 +30,20 @@ namespace DiKErnel::KernelWrapper::Json::Test
     // // Given
     // const auto filePath = TestUtil::TestDataHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Test") / "calculationTest.json";
     //
-    // TEST(OutputComposerTest, GivenFilePathAndOutputData_WriteParametersToJson_ThenCorrectDataWritten)
+    // TEST(OutputComposerTest, GivenFilePathAndOutputData_WhenWriteParametersToJson_ThenCorrectDataWritten)
     // {
-    //     // Call
+    //     // Given
     //     OutputComposer outputComposer;
     //     std::vector<CalculationLocationOutput*> locationsOutput;
     //     RevetmentOutput revetmentOutput(0.15);
+    //     RevetmentOutput revetmentOutput2(0.253);
     //     CalculationLocationOutput calculationLocationOutput("testName", &revetmentOutput);
-    //     CalculationLocationOutput calculationLocationOutput2("testName2", &revetmentOutput);
+    //     CalculationLocationOutput calculationLocationOutput2("testName2", &revetmentOutput2);
     //     locationsOutput.push_back(&calculationLocationOutput);
     //     locationsOutput.push_back(&calculationLocationOutput2);
     //     OutputData outputData(locationsOutput);
     //     
-    //     // Assert
+    //     // When
     //     outputComposer.WriteParametersToJson(filePath, outputData);
     // }
 }
