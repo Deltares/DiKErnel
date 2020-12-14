@@ -36,7 +36,7 @@ namespace DiKErnel::KernelWrapper::Json
         double coefficientSurgingBs,
         double coefficientSurgingCs,
         double coefficientSurgingNs)
-        : typeTopLayer(typeTopLayer),
+        : name(typeTopLayer),
           relativeDensity(relativeDensity),
           thicknessTopLayer(thicknessTopLayer),
           initialDamage(initialDamage),
@@ -52,7 +52,7 @@ namespace DiKErnel::KernelWrapper::Json
 
     std::string Revetment::GetTypeTopLayer() const
     {
-        return typeTopLayer;
+        return name;
     }
 
     double Revetment::GetRelativeDensity() const

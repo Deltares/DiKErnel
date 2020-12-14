@@ -29,7 +29,7 @@ namespace DiKErnel::KernelWrapper::Json
      */
     class Revetment
     {
-        std::string typeTopLayer;
+        std::string name;
         double relativeDensity;
         double thicknessTopLayer;
         double initialDamage;

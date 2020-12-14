@@ -9,6 +9,8 @@ set(SOURCEFILES
   CalculationData.h
   CalculationLocation.cpp
   CalculationLocation.h
+  CalculationLocationOutput.cpp
+  CalculationLocationOutput.h
   HydraulicLoads.cpp
   HydraulicLoads.h
   InputComposer.cpp
@@ -19,10 +21,14 @@ set(SOURCEFILES
   JsonDefinitions.h
   OutputComposer.cpp
   OutputComposer.h
+  OutputData.cpp
+  OutputData.h
   ProfileSchematization.cpp
   ProfileSchematization.h
   Revetment.cpp
   Revetment.h
+  RevetmentOutput.cpp
+  RevetmentOutput.h
 )
 
 # Add library
