@@ -80,9 +80,8 @@ namespace DiKErnel::KernelWrapper::Json
 
         auto readLocations = (*json)[JsonDefinitions::locations];
 
-        for (auto i = 0; i < readLocations.size(); i++)
+        for (auto readLocation : readLocations)
         {
-            auto readLocation = readLocations[i];
             auto readRevetment = readLocation[JsonDefinitions::revetment];
             auto readProfileSchematization = readLocation[JsonDefinitions::profileSchematisation];
 
