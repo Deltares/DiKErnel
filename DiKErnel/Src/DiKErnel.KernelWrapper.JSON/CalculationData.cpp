@@ -23,7 +23,7 @@
 namespace DiKErnel::KernelWrapper::Json
 {
     CalculationData::CalculationData(
-        std::vector<int>& times)
+        std::vector<int> times)
         : times(times) { }
 
     const std::vector<int>& CalculationData::GetTimes() const
