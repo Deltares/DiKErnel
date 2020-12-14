@@ -21,8 +21,8 @@
 #include <filesystem>
 #include <fstream>
 
-#include "InputComposer.h"
 #include <gtest/gtest.h>
+#include "InputComposer.h"
 #include "InputData.h"
 #include "TestDataHelper.h"
 
@@ -35,6 +35,12 @@ namespace DiKErnel::KernelWrapper::Json::Test
 
     void AssertHydraulicLoads(
         HydraulicLoads* hydraulicLoads);
+
+    void AssertBoundaryConditionsForTimeStep(
+        BoundaryConditionsPerTimeStep* boundaryConditionsForTimeStep,
+        double expectedWaveHeightHm0,
+        double expectedWavePeriodTm10,
+        double expectedWaveAngle);
 
     void AssertCalculationLocations(
         std::vector<CalculationLocation*> calculationLocations);
@@ -58,7 +64,7 @@ namespace DiKErnel::KernelWrapper::Json::Test
     TEST(InputComposerTest, GivenFilePathAndInputComposer_WhenReadCalculationDataFromJson_ThenCorrectDataSet)
     {
         std::ifstream ifs(filePath);
-        nlohmann::json json = nlohmann::json::parse(ifs);
+        auto json = nlohmann::json::parse(ifs);
 
         // When
         const auto calculationData = InputComposer::ReadCalculationData(&json);
@@ -70,7 +76,7 @@ namespace DiKErnel::KernelWrapper::Json::Test
     TEST(InputComposerTest, GivenFilePathAndInputComposer_WhenReadHydraulicLoadsFromJson_ThenCorrectDataSet)
     {
         std::ifstream ifs(filePath);
-        nlohmann::json json = nlohmann::json::parse(ifs);
+        auto json = nlohmann::json::parse(ifs);
 
         // When
         const auto hydraulicLoads = InputComposer::ReadHydraulicLoads(&json);
@@ -82,7 +88,7 @@ namespace DiKErnel::KernelWrapper::Json::Test
     TEST(InputComposerTest, GivenFilePathAndInputComposer_WhenReadLocationsFromJson_ThenCorrectDataSet)
     {
         std::ifstream ifs(filePath);
-        nlohmann::json json = nlohmann::json::parse(ifs);
+        auto json = nlohmann::json::parse(ifs);
 
         // When
         const auto calculationLocations = InputComposer::ReadLocations(&json);
@@ -122,30 +128,22 @@ namespace DiKErnel::KernelWrapper::Json::Test
 
         auto boundaryConditionsPerTimeStep = hydraulicLoads->GetBoundaryConditionsPerTimeStep();
 
-        auto boundaryConditionsForTimeStep = boundaryConditionsPerTimeStep[0];
-        ASSERT_EQ(boundaryConditionsForTimeStep->GetWaveHeightHm0(), 0.5);
-        ASSERT_EQ(boundaryConditionsForTimeStep->GetWavePeriodTm10(), 2.0);
-        ASSERT_EQ(boundaryConditionsForTimeStep->GetWaveAngle(), -10.0);
+        AssertBoundaryConditionsForTimeStep(boundaryConditionsPerTimeStep[0], 0.5, 2.0, -10.0);
+        AssertBoundaryConditionsForTimeStep(boundaryConditionsPerTimeStep[1], 0.8, 6.0, -5.0);
+        AssertBoundaryConditionsForTimeStep(boundaryConditionsPerTimeStep[2], 1.2, 6.0, 0.0);
+        AssertBoundaryConditionsForTimeStep(boundaryConditionsPerTimeStep[3], 1.5, 7.0, 7.0);
+        AssertBoundaryConditionsForTimeStep(boundaryConditionsPerTimeStep[4], 0.5, 4.0, 8.0);
+    }
 
-        boundaryConditionsForTimeStep = boundaryConditionsPerTimeStep[1];
-        ASSERT_EQ(boundaryConditionsForTimeStep->GetWaveHeightHm0(), 0.8);
-        ASSERT_EQ(boundaryConditionsForTimeStep->GetWavePeriodTm10(), 6.0);
-        ASSERT_EQ(boundaryConditionsForTimeStep->GetWaveAngle(), -5.0);
-
-        boundaryConditionsForTimeStep = boundaryConditionsPerTimeStep[2];
-        ASSERT_EQ(boundaryConditionsForTimeStep->GetWaveHeightHm0(), 1.2);
-        ASSERT_EQ(boundaryConditionsForTimeStep->GetWavePeriodTm10(), 6.0);
-        ASSERT_EQ(boundaryConditionsForTimeStep->GetWaveAngle(), 0.0);
-
-        boundaryConditionsForTimeStep = boundaryConditionsPerTimeStep[3];
-        ASSERT_EQ(boundaryConditionsForTimeStep->GetWaveHeightHm0(), 1.5);
-        ASSERT_EQ(boundaryConditionsForTimeStep->GetWavePeriodTm10(), 7.0);
-        ASSERT_EQ(boundaryConditionsForTimeStep->GetWaveAngle(), 7);
-
-        boundaryConditionsForTimeStep = boundaryConditionsPerTimeStep[4];
-        ASSERT_EQ(boundaryConditionsForTimeStep->GetWaveHeightHm0(), 0.5);
-        ASSERT_EQ(boundaryConditionsForTimeStep->GetWavePeriodTm10(), 4.0);
-        ASSERT_EQ(boundaryConditionsForTimeStep->GetWaveAngle(), 8.0);
+    void AssertBoundaryConditionsForTimeStep(
+        BoundaryConditionsPerTimeStep* boundaryConditionsForTimeStep,
+        double expectedWaveHeightHm0,
+        double expectedWavePeriodTm10,
+        double expectedWaveAngle)
+    {
+        ASSERT_EQ(boundaryConditionsForTimeStep->GetWaveHeightHm0(), expectedWaveHeightHm0);
+        ASSERT_EQ(boundaryConditionsForTimeStep->GetWavePeriodTm10(), expectedWavePeriodTm10);
+        ASSERT_EQ(boundaryConditionsForTimeStep->GetWaveAngle(), expectedWaveAngle);
     }
 
     void AssertCalculationLocations(
