@@ -12,3 +12,8 @@ add_executable(${EXENAME} ${SOURCEFILES})
 # Configure folder structure
 set_target_properties(${EXENAME} PROPERTIES FOLDER Src)
 source_group("Sources" FILES ${SOURCEFILES})
+
+# Set startup project in Visual Studio
+if (CMAKE_GENERATOR MATCHES "Visual Studio")
+  set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT ${EXENAME})
+endif()
