@@ -68,7 +68,8 @@ namespace DiKErnel::Core
             static void PerformCalculation(
                 std::vector<CalculationLocation*> locations,
                 std::vector<int> times,
-                double (*subCalculation)(double initialDamage,
+                double (*subCalculation)(
+                    double initialDamage,
                     double slopeAngle,
                     double relativeDensity,
                     double thicknessTopLayer,

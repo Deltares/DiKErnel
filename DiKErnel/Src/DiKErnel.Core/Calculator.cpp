@@ -27,7 +27,8 @@ namespace DiKErnel::Core
     Calculator::Calculator(
         std::vector<CalculationLocation*> locations,
         std::vector<int> times,
-        double (*subCalculation)(double initialDamage,
+        double (*subCalculation)(
+            double initialDamage,
             double slopeAngle,
             double relativeDensity,
             double thicknessTopLayer,
@@ -93,15 +94,22 @@ namespace DiKErnel::Core
         std::atomic<bool>& cancelled)
     {
         const auto numberOfLocations = locations.size();
-        const auto numberOfTimeSteps = times.size();
+        const auto numberOfTimeSteps = times.size() - 1;
 
         const auto totalSteps = numberOfLocations * numberOfTimeSteps;
 
+        auto timeSteps = std::vector<std::tuple<int, int>>();
+
+        for (auto i = 0; i < times.size() - 1; i++)
+        {
+            timeSteps.emplace_back(times[i], times[i + 1]);
+        }
+
         // Perform sub-calculation for all time steps
-        for (auto i = 0; i < numberOfLocations; i++)
+        for (auto i = 0; i < timeSteps.size(); i++)
         {
             // Perform sub-calculation for all locations
-            for (auto j = 0; j < numberOfTimeSteps; j++)
+            for (auto j = 0; j < locations.size(); j++)
             {
                 // Break from loop when cancelled
                 if (cancelled)
@@ -109,8 +117,15 @@ namespace DiKErnel::Core
                     break;
                 }
 
-                // Perform the actual sub-calculation
-                auto result = subCalculation(0, 0, 0, 0, 0, 0, 0, 0 ,0);
+                auto* revetment = locations[j]->GetRevetment();
+                auto* profileSchematization = locations[j]->GetProfileSchematization();
+
+                auto result = subCalculation(
+                    revetment->GetInitialDamage(),
+                    profileSchematization->GetTanA(),
+                    revetment->GetRelativeDensity(),
+                    revetment->GetThicknessTopLayer(),
+                    0, 0, 0, std::get<0>(timeSteps[i]), std::get<1>(timeSteps[i]));
 
                 // Update progress indicator
                 progress = ceil((i * numberOfTimeSteps + j + 1.0) / totalSteps * 100);
