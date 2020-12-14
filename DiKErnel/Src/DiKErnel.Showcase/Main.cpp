@@ -22,9 +22,12 @@
 #include <string>
 #include <thread>
 #include "Calculator.h"
+#include "InputComposer.h"
+#include "InputData.h"
 
 using namespace std;
 using namespace DiKErnel::Core;
+using namespace DiKErnel::KernelWrapper::Json;
 
 enum class UserInput
 {
@@ -51,19 +54,30 @@ void SubCalculation()
 
 int main()
 {
-    auto numberOfLocations = 0;
-    auto numberOfTimeSteps = 0;
+    string jsonFilePath;
     std::atomic<bool> calculationFinished(false);
     std::atomic<UserInput> userInput;
 
     cout << "|===================|" << endl;
     cout << "| Calculation input |" << endl;
     cout << "|===================|" << endl;
-    cout << "-> Enter the number of locations: ";
-    cin >> numberOfLocations;
-    cout << "-> Enter the number of time steps: ";
-    cin >> numberOfTimeSteps;
+    cout << "-> Enter the the path to the JSON file: ";
+    getline(cin, jsonFilePath);
     cout << endl;
+
+    const auto inputData = InputComposer::GetDomainParametersFromJson(jsonFilePath);
+
+    const auto times = inputData->GetCalculationData()->GetTimes();
+    const auto locations = inputData->GetLocations();
+
+    const auto numberOfLocations = locations.size();
+    const auto numberOfTimeSteps = times.size() - 1;
+
+    cout << "|===========|" << endl;
+    cout << "| Read data |" << endl;
+    cout << "|===========|" << endl;
+    cout << "-> Number of time steps: " << numberOfTimeSteps << endl;
+    cout << "-> Number of locations: " << numberOfLocations << endl << endl;
 
     // Start stopwatch
     const auto start = std::chrono::high_resolution_clock::now();
