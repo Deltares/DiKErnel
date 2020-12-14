@@ -36,7 +36,7 @@ namespace DiKErnel::KernelWrapper::Json
              * \param filePath
              *        The reference path to the json file.
              * \param outputData
-             *        The output data to write
+             *        The output data to write.
              */
             static void WriteParametersToJson(
                 std::filesystem::path filePath,
