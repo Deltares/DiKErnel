@@ -43,6 +43,6 @@ namespace DiKErnel::KernelWrapper::Json
 
         int GetWaveAngleMaximum() const;
 
-        const std::vector<std::unique_ptr<BoundaryConditionsPerTimeStep>>& GetBoundaryConditionsPerTimeStep() const;
+        std::vector<BoundaryConditionsPerTimeStep*> GetBoundaryConditionsPerTimeStep() const;
     };
 }

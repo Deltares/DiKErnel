@@ -115,27 +115,27 @@ namespace DiKErnel::KernelWrapper::Json::Test
 
         auto boundaryConditionsPerTimeStep = hydraulicLoads->GetBoundaryConditionsPerTimeStep();
 
-        auto boundaryConditionsForTimeStep = boundaryConditionsPerTimeStep[0].get();
+        auto boundaryConditionsForTimeStep = boundaryConditionsPerTimeStep[0];
         ASSERT_EQ(boundaryConditionsForTimeStep->GetWaveHeightHm0(), 0.5);
         ASSERT_EQ(boundaryConditionsForTimeStep->GetWavePeriodTm10(), 2.0);
         ASSERT_EQ(boundaryConditionsForTimeStep->GetWaveAngle(), -10.0);
 
-        boundaryConditionsForTimeStep = boundaryConditionsPerTimeStep[1].get();
+        boundaryConditionsForTimeStep = boundaryConditionsPerTimeStep[1];
         ASSERT_EQ(boundaryConditionsForTimeStep->GetWaveHeightHm0(), 0.8);
         ASSERT_EQ(boundaryConditionsForTimeStep->GetWavePeriodTm10(), 6.0);
         ASSERT_EQ(boundaryConditionsForTimeStep->GetWaveAngle(), -5.0);
 
-        boundaryConditionsForTimeStep = boundaryConditionsPerTimeStep[2].get();
+        boundaryConditionsForTimeStep = boundaryConditionsPerTimeStep[2];
         ASSERT_EQ(boundaryConditionsForTimeStep->GetWaveHeightHm0(), 1.2);
         ASSERT_EQ(boundaryConditionsForTimeStep->GetWavePeriodTm10(), 6.0);
         ASSERT_EQ(boundaryConditionsForTimeStep->GetWaveAngle(), 0.0);
 
-        boundaryConditionsForTimeStep = boundaryConditionsPerTimeStep[3].get();
+        boundaryConditionsForTimeStep = boundaryConditionsPerTimeStep[3];
         ASSERT_EQ(boundaryConditionsForTimeStep->GetWaveHeightHm0(), 1.5);
         ASSERT_EQ(boundaryConditionsForTimeStep->GetWavePeriodTm10(), 7.0);
         ASSERT_EQ(boundaryConditionsForTimeStep->GetWaveAngle(), 7);
 
-        boundaryConditionsForTimeStep = boundaryConditionsPerTimeStep[4].get();
+        boundaryConditionsForTimeStep = boundaryConditionsPerTimeStep[4];
         ASSERT_EQ(boundaryConditionsForTimeStep->GetWaveHeightHm0(), 0.5);
         ASSERT_EQ(boundaryConditionsForTimeStep->GetWavePeriodTm10(), 4.0);
         ASSERT_EQ(boundaryConditionsForTimeStep->GetWaveAngle(), 8.0);
