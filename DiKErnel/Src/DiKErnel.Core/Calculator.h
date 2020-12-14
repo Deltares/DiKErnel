@@ -24,6 +24,7 @@
 #include <vector>
 
 #include "CalculationLocation.h"
+#include "HydraulicLoads.h"
 
 using namespace DiKErnel::KernelWrapper::Json;
 
@@ -37,7 +38,7 @@ namespace DiKErnel::Core
         public:
             explicit Calculator(
                 std::vector<CalculationLocation*> locations,
-                std::vector<int> times,
+                std::vector<std::tuple<int, int, BoundaryConditionsPerTimeStep*>> timeSteps,
                 double (*subCalculation)(
                     double initialDamage,
                     double slopeAngle,
@@ -67,7 +68,7 @@ namespace DiKErnel::Core
 
             static void PerformCalculation(
                 std::vector<CalculationLocation*> locations,
-                std::vector<int> times,
+                std::vector<std::tuple<int, int, BoundaryConditionsPerTimeStep*>> timeSteps,
                 double (*subCalculation)(
                     double initialDamage,
                     double slopeAngle,

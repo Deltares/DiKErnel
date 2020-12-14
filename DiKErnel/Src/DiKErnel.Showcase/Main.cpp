@@ -63,15 +63,21 @@ int main()
 
     const auto times = inputData->GetCalculationData()->GetTimes();
     const auto locations = inputData->GetLocations();
+    const auto hydraulicLoads = inputData->GetHydraulicLoads();
+    const auto boundariesPerTimeStep = hydraulicLoads->GetBoundaryConditionsPerTimeStep();
 
-    const auto numberOfLocations = locations.size();
-    const auto numberOfTimeSteps = times.size() - 1;
+    auto timeSteps = std::vector<std::tuple<int, int, BoundaryConditionsPerTimeStep*>>();
+
+    for (auto i = 0; i < times.size() - 1; i++)
+    {
+        timeSteps.emplace_back(times[i], times[i + 1], boundariesPerTimeStep[i]);
+    }
 
     cout << "|===========|" << endl;
     cout << "| Read data |" << endl;
     cout << "|===========|" << endl;
-    cout << "-> Number of time steps: " << numberOfTimeSteps << endl;
-    cout << "-> Number of locations: " << numberOfLocations << endl << endl;
+    cout << "-> Number of time steps: " << locations.size() << endl;
+    cout << "-> Number of locations: " << timeSteps.size() << endl << endl;
 
     // Start stopwatch
     const auto start = std::chrono::high_resolution_clock::now();
@@ -85,7 +91,7 @@ int main()
 
     Calculator calculator(
         locations,
-        times,
+        timeSteps,
         NaturalStoneRevetment::CalculateDamage);
 
     thread inputThread(

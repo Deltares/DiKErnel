@@ -26,7 +26,7 @@ namespace DiKErnel::Core
 {
     Calculator::Calculator(
         std::vector<CalculationLocation*> locations,
-        std::vector<int> times,
+        std::vector<std::tuple<int, int, BoundaryConditionsPerTimeStep*>> timeSteps,
         double (*subCalculation)(
             double initialDamage,
             double slopeAngle,
@@ -41,7 +41,7 @@ namespace DiKErnel::Core
         thread = std::thread(
             PerformCalculation,
             locations,
-            times,
+            timeSteps,
             subCalculation,
             std::ref(progress),
             std::ref(finished),
@@ -78,7 +78,7 @@ namespace DiKErnel::Core
 
     void Calculator::PerformCalculation(
         std::vector<CalculationLocation*> locations,
-        const std::vector<int> times,
+        std::vector<std::tuple<int, int, BoundaryConditionsPerTimeStep*>> timeSteps,
         double (*subCalculation)(
             double initialDamage,
             double slopeAngle,
@@ -93,17 +93,7 @@ namespace DiKErnel::Core
         std::atomic<bool>& finished,
         std::atomic<bool>& cancelled)
     {
-        const auto numberOfLocations = locations.size();
-        const auto numberOfTimeSteps = times.size() - 1;
-
-        const auto totalSteps = numberOfLocations * numberOfTimeSteps;
-
-        auto timeSteps = std::vector<std::tuple<int, int>>();
-
-        for (auto i = 0; i < times.size() - 1; i++)
-        {
-            timeSteps.emplace_back(times[i], times[i + 1]);
-        }
+        const auto totalSteps = locations.size() * timeSteps.size();
 
         // Perform sub-calculation for all time steps
         for (auto i = 0; i < timeSteps.size(); i++)
@@ -120,15 +110,21 @@ namespace DiKErnel::Core
                 auto* revetment = locations[j]->GetRevetment();
                 auto* profileSchematization = locations[j]->GetProfileSchematization();
 
+                auto* boundaryCondition = std::get<2>(timeSteps[i]);
+
                 auto result = subCalculation(
                     revetment->GetInitialDamage(),
                     profileSchematization->GetTanA(),
                     revetment->GetRelativeDensity(),
                     revetment->GetThicknessTopLayer(),
-                    0, 0, 0, std::get<0>(timeSteps[i]), std::get<1>(timeSteps[i]));
+                    boundaryCondition->GetWaveHeightHm0(),
+                    boundaryCondition->GetWavePeriodTm10(),
+                    boundaryCondition->GetWaveAngle(),
+                    std::get<0>(timeSteps[i]),
+                    std::get<1>(timeSteps[i]));
 
                 // Update progress indicator
-                progress = ceil((i * numberOfTimeSteps + j + 1.0) / totalSteps * 100);
+                progress = ceil((i * timeSteps.size() + j + 1.0) / totalSteps * 100);
             }
         }
 
