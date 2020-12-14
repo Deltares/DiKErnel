@@ -23,36 +23,25 @@
 namespace DiKErnel::KernelWrapper::Json
 {
     InputData::InputData(
-        CalculationData* calculationData,
-        HydraulicLoads* hydraulicLoads,
-        std::vector<CalculationLocation*> locations)
-        : calculationData(calculationData),
-          hydraulicLoads(hydraulicLoads),
-          locations(locations) { }
+        std::unique_ptr<CalculationData> calculationData,
+        std::unique_ptr<HydraulicLoads> hydraulicLoads,
+        std::vector<std::unique_ptr<CalculationLocation>> locations)
+        : calculationData(std::move(calculationData)),
+          hydraulicLoads(std::move(hydraulicLoads)),
+          locations(std::move(locations)) { }
 
     CalculationData* InputData::GetCalculationData() const
     {
-        return calculationData;
+        return calculationData.get();
     }
 
     HydraulicLoads* InputData::GetHydraulicLoads() const
     {
-        return hydraulicLoads;
+        return hydraulicLoads.get();
     }
 
-    std::vector<CalculationLocation*> InputData::GetLocations() const
+    const std::vector<std::unique_ptr<CalculationLocation>>& InputData::GetLocations() const
     {
         return locations;
-    }
-
-    InputData::~InputData()
-    {
-        delete calculationData;
-        delete hydraulicLoads;
-
-        for (auto i = 0; i < locations.size(); i++)
-        {
-            delete locations[i];
-        }
     }
 }
