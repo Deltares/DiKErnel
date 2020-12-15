@@ -76,8 +76,8 @@ int main()
     cout << "|===========|" << endl;
     cout << "| Read data |" << endl;
     cout << "|===========|" << endl;
-    cout << "-> Number of time steps: " << locations.size() << endl;
-    cout << "-> Number of locations: " << timeSteps.size() << endl << endl;
+    cout << "-> Number of time steps: " << timeSteps.size() << endl;
+    cout << "-> Number of locations: " << locations.size() << endl << endl;
 
     // Start stopwatch
     const auto start = std::chrono::high_resolution_clock::now();
