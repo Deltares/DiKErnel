@@ -57,7 +57,8 @@ namespace DiKErnel::Core
                     double as,
                     double ns,
                     double bs,
-                    double cs)>& subCalculation);
+                    double cs,
+                    double waveAngleMaximum)>& subCalculation);
 
             void WaitForCompletion();
 
@@ -95,7 +96,8 @@ namespace DiKErnel::Core
                     double as,
                     double ns,
                     double bs,
-                    double cs)>& subCalculation,
+                    double cs,
+                    double waveAngleMaximum)>& subCalculation,
                 std::atomic<int>& progress,
                 std::atomic<bool>& finished,
                 const std::atomic<bool>& cancelled);

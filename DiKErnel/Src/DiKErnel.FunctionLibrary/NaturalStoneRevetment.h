@@ -78,7 +78,8 @@ namespace DiKErnel::FunctionLibrary
                 const double as,
                 const double ns,
                 const double bs,
-                const double cs);
+                const double cs,
+                const double waveAngleMaximum);
 
             /*!
              * \brief Calculates the increment damage.
@@ -125,7 +126,8 @@ namespace DiKErnel::FunctionLibrary
                 const double as,
                 const double ns,
                 const double bs,
-                const double cs);
+                const double cs,
+                const double waveAngleMaximum);
 
             /*!
              * \brief Calculates the hydraulic load.
@@ -233,7 +235,8 @@ namespace DiKErnel::FunctionLibrary
                 const double as,
                 const double ns,
                 const double bs,
-                const double cs);
+                const double cs,
+                const double waveAngleMaximum);
 
             /*!
              * \brief Calculates the degradation.
@@ -288,7 +291,8 @@ namespace DiKErnel::FunctionLibrary
                 const double as,
                 const double ns,
                 const double bs,
-                const double cs);
+                const double cs,
+                const double waveAngleMaximum);
 
             /*!
              * \brief Calculates the reference degradation.
@@ -331,7 +335,8 @@ namespace DiKErnel::FunctionLibrary
                 const double as,
                 const double ns,
                 const double bs,
-                const double cs);
+                const double cs,
+                const double waveAngleMaximum);
 
             /*!
              * \brief Calculates the wave angle impact.
@@ -342,7 +347,8 @@ namespace DiKErnel::FunctionLibrary
              *         Unit = [-]
              */
             static double CalculateWaveAngleImpact(
-                double waveAngle);
+                const double waveAngle,
+                const double waveAngleMaximum);
 
         private:
             static double CalculateIncrementOfTime(

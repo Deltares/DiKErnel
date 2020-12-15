@@ -46,7 +46,8 @@ namespace DiKErnel::FunctionLibrary
         const double as,
         const double ns,
         const double bs,
-        const double cs
+        const double cs,
+        const double waveAngleMaximum
     )
     {
         const auto incrementDamageOfNaturalStoneRevetment = CalculateIncrementDamage(
@@ -65,7 +66,8 @@ namespace DiKErnel::FunctionLibrary
             as,
             ns,
             bs,
-            cs);
+            cs,
+            waveAngleMaximum);
 
         return initialDamage + incrementDamageOfNaturalStoneRevetment;
     }
@@ -86,7 +88,8 @@ namespace DiKErnel::FunctionLibrary
         const double as,
         const double ns,
         const double bs,
-        const double cs
+        const double cs,
+        const double waveAngleMaximum
     )
     {
         const auto hydraulicLoadOnNaturalStoneRevetment = CalculateHydraulicLoad(slopeAngle, spectralWaveHeight, spectralWavePeriod,
@@ -118,9 +121,10 @@ namespace DiKErnel::FunctionLibrary
             as,
             ns,
             bs,
-            cs);
+            cs,
+            waveAngleMaximum);
 
-        const auto waveAngleImpactOnNaturalStoneRevetment = CalculateWaveAngleImpact(waveAngle);
+        const auto waveAngleImpactOnNaturalStoneRevetment = CalculateWaveAngleImpact(waveAngle, waveAngleMaximum);
 
         return loadResistanceCalculatedValue * incrementDegradationOfNaturalStoneRevetment * waveAngleImpactOnNaturalStoneRevetment;
     }
@@ -187,7 +191,8 @@ namespace DiKErnel::FunctionLibrary
         const double as,
         const double ns,
         const double bs,
-        const double cs
+        const double cs,
+        const double waveAngleMaximum
     )
     {
         const auto timeStep = CalculateIncrementOfTime(startTime, endTime);
@@ -205,7 +210,8 @@ namespace DiKErnel::FunctionLibrary
             as,
             ns,
             bs,
-            cs);
+            cs,
+            waveAngleMaximum);
 
         const auto degradation = CalculateDegradation(
             referenceTimeDegradationOfNaturalStoneRevetment + timeStep,
@@ -242,7 +248,8 @@ namespace DiKErnel::FunctionLibrary
         const double as,
         const double ns,
         const double bs,
-        const double cs
+        const double cs,
+        const double waveAngleMaximum
     )
     {
         const auto referenceDegradationOfNaturalStoneRevetment = CalculateReferenceDegradation(
@@ -260,7 +267,8 @@ namespace DiKErnel::FunctionLibrary
             as,
             ns,
             bs,
-            cs);
+            cs,
+            waveAngleMaximum);
 
         return 1000.0 * spectralWavePeriod * pow(referenceDegradationOfNaturalStoneRevetment, 10.0);
     }
@@ -280,7 +288,8 @@ namespace DiKErnel::FunctionLibrary
         const double as,
         const double ns,
         const double bs,
-        const double cs
+        const double cs,
+        const double waveAngleMaximum
     )
     {
         const auto resistanceOfNaturalStoneRevetment = CalculateResistance(relativeDensity, thicknessTopLayer);
@@ -293,16 +302,17 @@ namespace DiKErnel::FunctionLibrary
                                                                                  ns,
                                                                                  bs,
                                                                                  cs);
-        const auto waveAngleImpactOnNaturalStoneRevetment = CalculateWaveAngleImpact(waveAngle);
+        const auto waveAngleImpactOnNaturalStoneRevetment = CalculateWaveAngleImpact(waveAngle, waveAngleMaximum);
 
         return damagePreviousTimeStep * resistanceOfNaturalStoneRevetment / hydraulicLoadOnNaturalStoneRevetment
                 * (1.0 / waveAngleImpactOnNaturalStoneRevetment);
     }
 
     double NaturalStoneRevetment::CalculateWaveAngleImpact(
-        const double waveAngle)
+        const double waveAngle,
+        const double waveAngleMaximum)
     {
-        const auto smallestAngle = std::min(78.0, waveAngle);
+        const auto smallestAngle = std::min(waveAngleMaximum, waveAngle);
         const auto waveAngleRadians = ConvertDegreesToRadians(smallestAngle);
         const auto absoluteWaveAngleRadians = fabs(waveAngleRadians);
         const auto cosine = cos(absoluteWaveAngleRadians);

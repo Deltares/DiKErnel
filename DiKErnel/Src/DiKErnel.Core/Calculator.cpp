@@ -49,7 +49,8 @@ namespace DiKErnel::Core
             double as,
             double ns,
             double bs,
-            double cs)>& subCalculation)
+            double cs,
+            double waveAngleMaximum)>& subCalculation)
     {
         thread = std::thread(
             PerformCalculation,
@@ -109,7 +110,8 @@ namespace DiKErnel::Core
             double as,
             double ns,
             double bs,
-            double cs)>& subCalculation,
+            double cs,
+            double waveAngleMaximum)>& subCalculation,
         std::atomic<int>& progress,
         std::atomic<bool>& finished,
         const std::atomic<bool>& cancelled)
@@ -138,7 +140,7 @@ namespace DiKErnel::Core
                 const auto* revetment = locations[j]->GetRevetment();
                 const auto* profileSchematization = locations[j]->GetProfileSchematization();
                 const auto* boundaryCondition = std::get<2>(timeSteps[i]);
-
+                
                 const auto result = subCalculation(
                     damageLookup[locations[j]],
                     profileSchematization->GetTanA(),
@@ -156,7 +158,8 @@ namespace DiKErnel::Core
                     revetment->GetCoefficientSurgingAs(),
                     revetment->GetCoefficientSurgingNs(),
                     revetment->GetCoefficientSurgingBs(),
-                    revetment->GetCoefficientSurgingCs());
+                    revetment->GetCoefficientSurgingCs(),
+                    78.0);
 
                 damageLookup[locations[j]] = result;
 

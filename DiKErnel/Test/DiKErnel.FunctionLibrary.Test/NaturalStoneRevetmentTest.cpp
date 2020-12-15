@@ -42,6 +42,7 @@ namespace DiKErnel::FunctionLibrary::Test::NaturalStoneRevetmentTest
     const auto ns = 0.6;
     const auto bs = 0.0;
     const auto cs = 0.0;
+    const auto waveAngleMaximum = 78.0;
 
     TEST(NaturalStoneRevetmentTest, GivenInput_WhenCalculateDamage_ThenExpectedResult)
     {
@@ -63,7 +64,8 @@ namespace DiKErnel::FunctionLibrary::Test::NaturalStoneRevetmentTest
             as,
             ns,
             bs,
-            cs);
+            cs,
+            waveAngleMaximum);
 
         // Then
         ASSERT_DOUBLE_EQ(damage, 0.33458768058794086);
@@ -88,7 +90,8 @@ namespace DiKErnel::FunctionLibrary::Test::NaturalStoneRevetmentTest
             as,
             ns,
             bs,
-            cs);
+            cs,
+            waveAngleMaximum);
 
         // Then
         ASSERT_DOUBLE_EQ(incrementDamage, 0.23458768058794083);
@@ -176,7 +179,8 @@ namespace DiKErnel::FunctionLibrary::Test::NaturalStoneRevetmentTest
             as,
             ns,
             bs,
-            cs);
+            cs,
+            waveAngleMaximum);
 
         // Then
         ASSERT_DOUBLE_EQ(incrementDegradation, 0.43774354728651044);
@@ -208,7 +212,8 @@ namespace DiKErnel::FunctionLibrary::Test::NaturalStoneRevetmentTest
             as,
             ns,
             bs,
-            cs);
+            cs,
+            waveAngleMaximum);
 
         // Then
         ASSERT_DOUBLE_EQ(referenceTimeDegradation, 0.00020474132396956532);
@@ -232,7 +237,8 @@ namespace DiKErnel::FunctionLibrary::Test::NaturalStoneRevetmentTest
             as,
             ns,
             bs,
-            cs);
+            cs,
+            waveAngleMaximum);
 
         // Then
         ASSERT_DOUBLE_EQ(referenceDegradation, 0.18660125126324004);
@@ -241,7 +247,7 @@ namespace DiKErnel::FunctionLibrary::Test::NaturalStoneRevetmentTest
     TEST(NaturalStoneRevetmentTest, GivenInput_WhenCalculateWaveAngleImpactWithPositiveWaveAngle_ThenExpectedResult)
     {
         // When
-        const auto waveAngleImpact = NaturalStoneRevetment::CalculateWaveAngleImpact(waveAngle);
+        const auto waveAngleImpact = NaturalStoneRevetment::CalculateWaveAngleImpact(waveAngle, waveAngleMaximum);
 
         // Then
         ASSERT_DOUBLE_EQ(waveAngleImpact, 0.62996052494743671);
@@ -250,7 +256,7 @@ namespace DiKErnel::FunctionLibrary::Test::NaturalStoneRevetmentTest
     TEST(NaturalStoneRevetmentTest, GivenInput_WhenCalculateWaveAngleImpactWithNegativeWaveAngle_ThenExpectedResult)
     {
         // When
-        const auto waveAngleImpact = NaturalStoneRevetment::CalculateWaveAngleImpact(-waveAngle);
+        const auto waveAngleImpact = NaturalStoneRevetment::CalculateWaveAngleImpact(-waveAngle, waveAngleMaximum);
 
         // Then
         ASSERT_DOUBLE_EQ(waveAngleImpact, 0.62996052494743671);
