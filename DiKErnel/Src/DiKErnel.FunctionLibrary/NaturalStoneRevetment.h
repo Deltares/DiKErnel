@@ -127,7 +127,8 @@ namespace DiKErnel::FunctionLibrary
                 const double ns,
                 const double bs,
                 const double cs,
-                const double waveAngleMaximum);
+                const double waveAngleMaximum,
+                const double initialDamage);
 
             /*!
              * \brief Calculates the hydraulic load.
@@ -236,7 +237,8 @@ namespace DiKErnel::FunctionLibrary
                 const double ns,
                 const double bs,
                 const double cs,
-                const double waveAngleMaximum);
+                const double waveAngleMaximum,
+                const double initialDamage);
 
             /*!
              * \brief Calculates the degradation.
@@ -292,7 +294,8 @@ namespace DiKErnel::FunctionLibrary
                 const double ns,
                 const double bs,
                 const double cs,
-                const double waveAngleMaximum);
+                const double waveAngleMaximum,
+                const double initialDamage);
 
             /*!
              * \brief Calculates the reference degradation.

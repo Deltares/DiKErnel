@@ -67,7 +67,8 @@ namespace DiKErnel::FunctionLibrary
             ns,
             bs,
             cs,
-            waveAngleMaximum);
+            waveAngleMaximum,
+            initialDamage);
 
         return initialDamage + incrementDamageOfNaturalStoneRevetment;
     }
@@ -89,7 +90,8 @@ namespace DiKErnel::FunctionLibrary
         const double ns,
         const double bs,
         const double cs,
-        const double waveAngleMaximum
+        const double waveAngleMaximum,
+        const double initialDamage
     )
     {
         const auto hydraulicLoadOnNaturalStoneRevetment = CalculateHydraulicLoad(slopeAngle, spectralWaveHeight, spectralWavePeriod,
@@ -122,7 +124,7 @@ namespace DiKErnel::FunctionLibrary
             ns,
             bs,
             cs,
-            waveAngleMaximum);
+            waveAngleMaximum, initialDamage);
 
         const auto waveAngleImpactOnNaturalStoneRevetment = CalculateWaveAngleImpact(waveAngle, waveAngleMaximum);
 
@@ -192,7 +194,8 @@ namespace DiKErnel::FunctionLibrary
         const double ns,
         const double bs,
         const double cs,
-        const double waveAngleMaximum
+        const double waveAngleMaximum,
+        const double initialDamage
     )
     {
         const auto timeStep = CalculateIncrementOfTime(startTime, endTime);
@@ -211,7 +214,7 @@ namespace DiKErnel::FunctionLibrary
             ns,
             bs,
             cs,
-            waveAngleMaximum);
+            waveAngleMaximum, initialDamage);
 
         const auto degradation = CalculateDegradation(
             referenceTimeDegradationOfNaturalStoneRevetment + timeStep,
@@ -249,11 +252,12 @@ namespace DiKErnel::FunctionLibrary
         const double ns,
         const double bs,
         const double cs,
-        const double waveAngleMaximum
+        const double waveAngleMaximum,
+        const double initialDamage
     )
     {
         const auto referenceDegradationOfNaturalStoneRevetment = CalculateReferenceDegradation(
-            0.1,
+            initialDamage,
             slopeAngle,
             relativeDensity,
             thicknessTopLayer,
