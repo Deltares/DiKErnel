@@ -26,6 +26,7 @@
 #include "Calculator.h"
 
 #include <functional>
+#include <iostream>
 
 namespace DiKErnel::Core
 {
@@ -118,11 +119,12 @@ namespace DiKErnel::Core
     {
         const auto totalSteps = locations.size() * timeSteps.size();
 
-        std::map<CalculationLocation*, double> damageLookup;
+        std::map<CalculationLocation*, std::vector<std::tuple<double, double>>> damageLookup;
 
         for (auto* location : locations)
         {
-            damageLookup[location] = location->GetRevetment()->GetInitialDamage();
+            damageLookup[location] = std::vector<std::tuple<double, double>>();
+            damageLookup[location].emplace_back(std::get<0>(timeSteps[0]), location->GetRevetment()->GetInitialDamage());
         }
 
         // Perform sub-calculation for all time steps
@@ -142,7 +144,7 @@ namespace DiKErnel::Core
                 const auto* boundaryCondition = std::get<2>(timeSteps[i]);
                 
                 const auto result = subCalculation(
-                    damageLookup[locations[j]],
+                    std::get<1>(damageLookup[locations[j]].back()),
                     profileSchematization->GetTanA(),
                     revetment->GetRelativeDensity(),
                     revetment->GetThicknessTopLayer(),
@@ -161,10 +163,22 @@ namespace DiKErnel::Core
                     revetment->GetCoefficientSurgingCs(),
                     78.0);
 
-                damageLookup[locations[j]] = result;
+                damageLookup[locations[j]].emplace_back(std::get<1>(timeSteps[i]), result);
 
                 // Update progress indicator
                 progress = std::ceil((i * timeSteps.size() + j + 1.0) / totalSteps * 100);
+            }
+        }
+
+        for (const auto& [location, damageLookup] : damageLookup)
+        {
+            std::cout << std::endl;
+            std::cout << "-> Location: " << location->GetName() << std::endl;
+            std::cout << "-> Damages: " << std::endl;
+
+            for (auto lookup : damageLookup)
+            {
+                std::cout << "\t -> Time: " << std::get<0>(lookup) << ", Damage: " << std::get<1>(lookup) << "." << std::endl;
             }
         }
 
