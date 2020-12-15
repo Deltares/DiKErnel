@@ -18,21 +18,21 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include <atomic>
-#include <cmath>
-#include <map>
-#include <thread>
-
 #include "Calculator.h"
 
+#include <atomic>
+#include <cmath>
 #include <functional>
 #include <iostream>
+#include <map>
+#include <thread>
 
 namespace DiKErnel::Core
 {
     Calculator::Calculator(
         const std::vector<CalculationLocation*>& locations,
         const std::vector<std::tuple<int, int, BoundaryConditionsPerTimeStep*>>& timeSteps,
+        const HydraulicLoads* hydraulicLoads,
         const std::function<double(
             double initialDamage,
             double slopeAngle,
@@ -57,6 +57,7 @@ namespace DiKErnel::Core
             PerformCalculation,
             locations,
             timeSteps,
+            hydraulicLoads,
             subCalculation,
             std::ref(progress),
             std::ref(finished),
@@ -94,6 +95,7 @@ namespace DiKErnel::Core
     void Calculator::PerformCalculation(
         const std::vector<CalculationLocation*>& locations,
         const std::vector<std::tuple<int, int, BoundaryConditionsPerTimeStep*>>& timeSteps,
+        const HydraulicLoads* hydraulicLoads,
         const std::function<double(
             double initialDamage,
             double slopeAngle,
@@ -142,7 +144,7 @@ namespace DiKErnel::Core
                 const auto* revetment = locations[j]->GetRevetment();
                 const auto* profileSchematization = locations[j]->GetProfileSchematization();
                 const auto* boundaryCondition = std::get<2>(timeSteps[i]);
-                
+
                 const auto result = subCalculation(
                     std::get<1>(damageLookup[locations[j]].back()),
                     profileSchematization->GetTanA(),
@@ -161,7 +163,7 @@ namespace DiKErnel::Core
                     revetment->GetCoefficientSurgingNs(),
                     revetment->GetCoefficientSurgingBs(),
                     revetment->GetCoefficientSurgingCs(),
-                    78.0);
+                    hydraulicLoads->GetWaveAngleMaximum());
 
                 damageLookup[locations[j]].emplace_back(std::get<1>(timeSteps[i]), result);
 

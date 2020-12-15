@@ -92,6 +92,7 @@ int main()
     Calculator calculator(
         locations,
         timeSteps,
+        hydraulicLoads,
         &NaturalStoneRevetment::CalculateDamage);
 
     thread inputThread(

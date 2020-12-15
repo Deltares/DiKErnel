@@ -40,6 +40,7 @@ namespace DiKErnel::Core
             explicit Calculator(
                 const std::vector<CalculationLocation*>& locations,
                 const std::vector<std::tuple<int, int, BoundaryConditionsPerTimeStep*>>& timeSteps,
+                const HydraulicLoads* hydraulicLoads,
                 const std::function<double(
                     double initialDamage,
                     double slopeAngle,
@@ -79,6 +80,7 @@ namespace DiKErnel::Core
             static void PerformCalculation(
                 const std::vector<CalculationLocation*>& locations,
                 const std::vector<std::tuple<int, int, BoundaryConditionsPerTimeStep*>>& timeSteps,
+                const HydraulicLoads* hydraulicLoads,
                 const std::function<double(
                     double initialDamage,
                     double slopeAngle,
