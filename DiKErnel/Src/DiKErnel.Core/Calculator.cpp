@@ -18,10 +18,12 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include "Calculator.h"
 #include <atomic>
+#include <cmath>
 #include <map>
 #include <thread>
+
+#include "Calculator.h"
 
 namespace DiKErnel::Core
 {
@@ -134,7 +136,7 @@ namespace DiKErnel::Core
                 damageLookup[locations[j]] = result;
 
                 // Update progress indicator
-                progress = ceil((i * timeSteps.size() + j + 1.0) / totalSteps * 100);
+                progress = std::ceil((i * timeSteps.size() + j + 1.0) / totalSteps * 100);
             }
         }
 
