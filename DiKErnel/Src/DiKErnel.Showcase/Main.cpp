@@ -55,7 +55,7 @@ int main()
     cout << "|===================|" << endl;
     cout << "| Calculation input |" << endl;
     cout << "|===================|" << endl;
-    cout << "-> Enter the the path to the JSON file: ";
+    cout << "-> Enter the path to the JSON file: ";
     getline(cin, jsonFilePath);
     cout << endl;
 
