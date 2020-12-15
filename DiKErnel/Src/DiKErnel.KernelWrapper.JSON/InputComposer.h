@@ -37,36 +37,37 @@ namespace DiKErnel::KernelWrapper::Json
     {
         public:
             /*!
-             * \brief Gets the domain parameters from the given json.
+             * \brief Gets the domain parameters from the Json file represented by the provided
+             *        file path.                                                                              
              * \param filePath
-             *        The reference path to the json file.
+             *        The path to the Json file.
              * \return The input data object.
              */
             static std::unique_ptr<InputData> GetDomainParametersFromJson(
                 const std::string& filePath);
 
             /*!
-             * \brief Reads the calculation data from the given json object. 
+             * \brief Reads the calculation data from the given Json object. 
              * \param json
-             *        The pointer to the json object to read from.
+             *        The Json object to read from.
              * \return The calculation data.
              */
             static std::unique_ptr<CalculationData> ReadCalculationData(
                 nlohmann::json* json);
 
             /*!
-             * \brief Reads the hydraulic loads data from the given json object.
+             * \brief Reads the hydraulic loads data from the given Json object.
              * \param json
-             *        The pointer to the json object to read from.
+             *        The Json object to read from.
              * \return The hydraulic loads data.
              */
             static std::unique_ptr<HydraulicLoads> ReadHydraulicLoads(
                 nlohmann::json* json);
 
             /*!
-            * \brief Reads the calculation location data from the given json object.
+            * \brief Reads the calculation location data from the given Json object.
             * \param json
-            *        The pointer to the json object to read from.
+            *        The Json object to read from.
             * \return The calculation location data.
             */
             static std::vector<std::unique_ptr<CalculationLocation>> ReadLocations(

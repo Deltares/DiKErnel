@@ -30,10 +30,19 @@ namespace DiKErnel::KernelWrapper::Json
         double tanA;
 
         public:
+            /*!
+             * \brief Creates a new instance.
+             * \param tanA
+             *        The value of tangent alpha.
+             */
             explicit ProfileSchematization(
                 double tanA
             );
 
+            /*!
+             * \brief Gets the value of tangent alpha.
+             * \return The value of tangent alpha.
+             */
             double GetTanA() const;
     };
 }

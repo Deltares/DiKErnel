@@ -38,15 +38,36 @@ namespace DiKErnel::KernelWrapper::Json
         std::unique_ptr<ProfileSchematization> profileSchematization;
 
         public:
+            /*!
+             * \brief Creates a new instance.
+             * \param name
+             *        The name of the location.
+             * \param revetment
+             *        The revetment definition.
+             * \param profileSchematization
+             *        The profile schematization.
+             */
             explicit CalculationLocation(
                 const std::string& name,
                 std::unique_ptr<Revetment> revetment,
                 std::unique_ptr<ProfileSchematization> profileSchematization);
 
+            /*!
+             * \brief Gets the name of the location.
+             * \return The name of the location.
+             */
             std::string GetName() const;
 
+            /*!
+             * \brief Gets the revetment definition.
+             * \return The revetment definition.
+             */
             Revetment* GetRevetment() const;
 
+            /*!
+             * \brief Gets the profile schematization.
+             * \return The profile schematization.
+             */
             ProfileSchematization* GetProfileSchematization() const;
     };
 }

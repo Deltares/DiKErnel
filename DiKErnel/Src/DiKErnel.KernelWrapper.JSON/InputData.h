@@ -38,16 +38,37 @@ namespace DiKErnel::KernelWrapper::Json
         std::vector<std::unique_ptr<CalculationLocation>> locations;
 
         public:
+            /*!
+             * \brief Creates a new instance.
+             * \param calculationData
+             *        The calculation data.
+             * \param hydraulicLoads
+             *        The hydraulic loads data.
+             * \param locations
+             *        The calculation locations.
+             */
             explicit InputData(
                 std::unique_ptr<CalculationData> calculationData,
                 std::unique_ptr<HydraulicLoads> hydraulicLoads,
                 std::vector<std::unique_ptr<CalculationLocation>> locations
             );
 
+            /*!
+             * \brief Gets the calculation data.
+             * \return The calculation data.
+             */
             CalculationData* GetCalculationData() const;
 
+            /*!
+             * \brief Gets the hydraulic loads data.
+             * \return The hydraulic loads data.
+             */
             HydraulicLoads* GetHydraulicLoads() const;
 
+            /*!
+             * \brief Gets the calculation locations.
+             * \return The calculation locations.
+             */
             std::vector<CalculationLocation*> GetLocations() const;
     };
 }
