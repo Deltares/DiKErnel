@@ -148,7 +148,7 @@ int main()
 }
 
 void InputMethod(
-    atomic<bool>& calculationFinished,
+    const atomic<bool>& calculationFinished,
     atomic<UserInput>& userInput)
 {
     string input;

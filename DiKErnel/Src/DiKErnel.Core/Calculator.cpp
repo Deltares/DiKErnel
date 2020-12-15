@@ -96,7 +96,7 @@ namespace DiKErnel::Core
             double endTime)>& subCalculation,
         std::atomic<int>& progress,
         std::atomic<bool>& finished,
-        std::atomic<bool>& cancelled)
+        const std::atomic<bool>& cancelled)
     {
         const auto totalSteps = locations.size() * timeSteps.size();
 
@@ -119,10 +119,9 @@ namespace DiKErnel::Core
                     break;
                 }
 
-                auto* revetment = locations[j]->GetRevetment();
-                auto* profileSchematization = locations[j]->GetProfileSchematization();
-
-                auto* boundaryCondition = std::get<2>(timeSteps[i]);
+                const auto* revetment = locations[j]->GetRevetment();
+                const auto* profileSchematization = locations[j]->GetProfileSchematization();
+                const auto* boundaryCondition = std::get<2>(timeSteps[i]);
 
                 const auto result = subCalculation(
                     damageLookup[locations[j]],

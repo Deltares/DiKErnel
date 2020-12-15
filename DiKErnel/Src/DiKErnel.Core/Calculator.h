@@ -27,10 +27,10 @@
 #include "CalculationLocation.h"
 #include "HydraulicLoads.h"
 
-using namespace DiKErnel::KernelWrapper::Json;
-
 namespace DiKErnel::Core
 {
+    using namespace KernelWrapper::Json;
+
     /*!
      * \brief Class responsible for performing calculations.
      */
@@ -82,6 +82,6 @@ namespace DiKErnel::Core
                     double endTime)>& subCalculation,
                 std::atomic<int>& progress,
                 std::atomic<bool>& finished,
-                std::atomic<bool>& cancelled);
+                const std::atomic<bool>& cancelled);
     };
 }
