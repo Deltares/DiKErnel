@@ -45,6 +45,24 @@ namespace DiKErnel::KernelWrapper::Json::Test
     void AssertCalculationLocations(
         std::vector<CalculationLocation*>);
 
+    void AssertCalculationLocation(
+        CalculationLocation* calculationLocation,
+        const char*,
+        const char*,
+        double,
+        double,
+        double,
+        double,
+        double,
+        double,
+        double,
+        double,
+        double,
+        double,
+        double,
+        double,
+        double);
+
     void AssertRevetment(
         Revetment*,
         const char*,
@@ -153,9 +171,9 @@ namespace DiKErnel::KernelWrapper::Json::Test
 
     void AssertBoundaryConditionsForTimeStep(
         BoundaryConditionsPerTimeStep* boundaryConditionsForTimeStep,
-        double expectedWaveHeightHm0,
-        double expectedWavePeriodTm10,
-        double expectedWaveAngle)
+        const double expectedWaveHeightHm0,
+        const double expectedWavePeriodTm10,
+        const double expectedWaveAngle)
     {
         ASSERT_EQ(boundaryConditionsForTimeStep->GetWaveHeightHm0(), expectedWaveHeightHm0);
         ASSERT_EQ(boundaryConditionsForTimeStep->GetWavePeriodTm10(), expectedWavePeriodTm10);
@@ -165,32 +183,64 @@ namespace DiKErnel::KernelWrapper::Json::Test
     void AssertCalculationLocations(
         std::vector<CalculationLocation*> calculationLocations)
     {
-        auto calculationLocation = calculationLocations[0];
-        ASSERT_EQ(calculationLocation->GetName(), "LocatieZwak");
-        AssertRevetment(calculationLocation->GetRevetment(), "Noorse Steen", 1.6, 0.3, 0.0, 2.9, 4.0, 0.8, 0.0, 0.0, 0.0, 0.0, -0.9, 0.6);
-        ASSERT_EQ(calculationLocation->GetProfileSchematization()->GetTanA(), 0.3);
+        AssertCalculationLocation(calculationLocations[0], "LocatieZwak", "Noorse Steen", 1.6, 0.3, 0.0, 2.9, 4.0, 0.8, 0.0, 0.0, 0.0, 0.0, -0.9,
+                                  0.6, 0.3);
+        AssertCalculationLocation(calculationLocations[1], "LocatieSterk", "Noorse Steen", 1.6, 0.7, 0.0, 2.9, 4.0, 0.8, 0.0, 0.0, 0.0, 0.0, -0.9,
+                                  0.6, 0.3);
+    }
 
-        calculationLocation = calculationLocations[1];
-        ASSERT_EQ(calculationLocation->GetName(), "LocatieSterk");
-        AssertRevetment(calculationLocation->GetRevetment(), "Noorse Steen", 1.6, 0.7, 0.0, 2.9, 4.0, 0.8, 0.0, 0.0, 0.0, 0.0, -0.9, 0.6);
-        ASSERT_EQ(calculationLocation->GetProfileSchematization()->GetTanA(), 0.3);
+    void AssertCalculationLocation(
+        CalculationLocation* calculationLocation,
+        const char* expectedName,
+        const char* expectedTypeTopLayer,
+        const double expectedRelativeDensity,
+        const double expectedThicknessTopLayer,
+        const double expectedInitialDamage,
+        const double expectedSimilarityParameterThreshold,
+        const double expectedCoefficientPlungingAp,
+        const double expectedCoefficientPlungingBp,
+        const double expectedCoefficientPlungingCp,
+        const double expectedCoefficientPlungingNp,
+        const double expectedCoefficientSurgingAs,
+        const double expectedCoefficientSurgingBs,
+        const double expectedCoefficientSurgingCs,
+        const double expectedCoefficientSurgingNs,
+        const double expectedTanA)
+    {
+        ASSERT_EQ(calculationLocation->GetName(), expectedName);
+        AssertRevetment(
+            calculationLocation->GetRevetment(),
+            expectedTypeTopLayer,
+            expectedRelativeDensity,
+            expectedThicknessTopLayer,
+            expectedInitialDamage,
+            expectedSimilarityParameterThreshold,
+            expectedCoefficientPlungingAp,
+            expectedCoefficientPlungingBp,
+            expectedCoefficientPlungingCp,
+            expectedCoefficientPlungingNp,
+            expectedCoefficientSurgingAs,
+            expectedCoefficientSurgingBs,
+            expectedCoefficientSurgingCs,
+            expectedCoefficientSurgingNs);
+        ASSERT_EQ(calculationLocation->GetProfileSchematization()->GetTanA(), expectedTanA);
     }
 
     void AssertRevetment(
         Revetment* revetment,
         const char* expectedTypeTopLayer,
-        double expectedRelativeDensity,
-        double expectedThicknessTopLayer,
-        double expectedInitialDamage,
-        double expectedSimilarityParameterThreshold,
-        double expectedCoefficientPlungingAp,
-        double expectedCoefficientPlungingBp,
-        double expectedCoefficientPlungingCp,
-        double expectedCoefficientPlungingNp,
-        double expectedCoefficientSurgingAs,
-        double expectedCoefficientSurgingBs,
-        double expectedCoefficientSurgingCs,
-        double expectedCoefficientSurgingNs)
+        const double expectedRelativeDensity,
+        const double expectedThicknessTopLayer,
+        const double expectedInitialDamage,
+        const double expectedSimilarityParameterThreshold,
+        const double expectedCoefficientPlungingAp,
+        const double expectedCoefficientPlungingBp,
+        const double expectedCoefficientPlungingCp,
+        const double expectedCoefficientPlungingNp,
+        const double expectedCoefficientSurgingAs,
+        const double expectedCoefficientSurgingBs,
+        const double expectedCoefficientSurgingCs,
+        const double expectedCoefficientSurgingNs)
     {
         ASSERT_EQ(revetment->GetTypeTopLayer(), expectedTypeTopLayer);
         ASSERT_EQ(revetment->GetRelativeDensity(), expectedRelativeDensity);
