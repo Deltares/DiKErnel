@@ -58,5 +58,7 @@ namespace DiKErnel::KernelWrapper::Json
             inline static std::string coefficientSurgingNs = "CoefficientSurgingNs";
             inline static std::string profileSchematisation = "Profielschematisatie";
             inline static std::string tanA = "TanA";
+
+            inline static std::string damage = "Schade";
     };
 }

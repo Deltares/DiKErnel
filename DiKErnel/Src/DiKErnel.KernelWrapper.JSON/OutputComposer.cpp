@@ -25,6 +25,8 @@
 #include <nlohmann/json.hpp>
 
 #include <iostream>
+
+#include "JsonDefinitions.h"
 #include "OutputData.h"
 #include "RevetmentOutput.h"
 
@@ -40,28 +42,28 @@ namespace DiKErnel::KernelWrapper::Json
 
         try
         {
-            json["Locaties"] = nlohmann::json::array();
+            json[JsonDefinitions::locations] = nlohmann::json::array();
 
             for (auto i = 0; i < amountOfOutputLocations; i++)
             {
                 auto location = nlohmann::json::object(
                     {
                         {
-                            "Naam",
+                            JsonDefinitions::name,
                             outputData.GetLocationsOutput().at(i)->GetName()
                         },
                         {
-                            "Bekleding",
+                            JsonDefinitions::revetment,
                             {
                                 {
-                                    "Schade",
+                                    JsonDefinitions::damage,
                                     outputData.GetLocationsOutput().at(i)->GetRevetmentOutput()->GetDamage()
                                 }
                             }
                         }
                     });
 
-                json["Locaties"].push_back(location);
+                json[JsonDefinitions::locations].push_back(location);
             }
 
             //std::ofstream o(filePath);

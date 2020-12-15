@@ -40,12 +40,12 @@ namespace DiKErnel::KernelWrapper::Json::Test
         CalculationLocationOutput calculationLocationOutput2("testName2", &revetmentOutput2);
         locationsOutput.push_back(&calculationLocationOutput);
         locationsOutput.push_back(&calculationLocationOutput2);
-        OutputData outputData(locationsOutput);
+        const OutputData outputData(locationsOutput);
 
-        std::string expectedJson = R"({"Locaties":[{"Bekleding":{"Schade":0.15},"Naam":"testName"},{"Bekleding":{"Schade":0.253},"Naam":"testName2"}]})";
+        const std::string expectedJson = R"({"Locaties":[{"Bekleding":{"Schade":0.15},"Naam":"testName"},{"Bekleding":{"Schade":0.253},"Naam":"testName2"}]})";
 
         // When
-        auto json = OutputComposer::WriteParametersToJson(filePath, outputData);
+        const auto json = OutputComposer::WriteParametersToJson(filePath, outputData);
 
         // Then
         ASSERT_EQ(expectedJson, json);
