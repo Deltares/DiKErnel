@@ -32,15 +32,36 @@ namespace DiKErnel::KernelWrapper::Json
         double waveAngle;
 
         public:
+            /*!
+             * \brief Creates a new instance.
+             * \param waveHeightHm0
+             *        The wave height.
+             * \param wavePeriodTm10
+             *        The wave period.
+             * \param waveAngle
+             *        The wave angle.
+             */
             explicit BoundaryConditionsPerTimeStep(
                 double waveHeightHm0,
                 double wavePeriodTm10,
                 double waveAngle);
 
+            /*!
+             * \brief Gets the wave height.
+             * \return The wave height.
+             */
             double GetWaveHeightHm0() const;
 
+            /*!
+             * \brief Gets the wave period.
+             * \return The wave period.
+             */
             double GetWavePeriodTm10() const;
 
+            /*!
+             * \brief Gets the wave angle.
+             * \return The wave angle.
+             */
             double GetWaveAngle() const;
     };
 }

@@ -32,10 +32,19 @@ namespace DiKErnel::KernelWrapper::Json
         std::vector<int> times;
 
         public:
+            /*!
+             * \brief Creates a new instance.
+             * \param times
+             *        The times for which to perform the calculations.
+             */
             explicit CalculationData(
                 std::vector<int> times
             );
 
+            /*!
+             * \brief Gets the times for which to perform the calculations.
+             * \return The times for which to perform the calculations.
+             */
             const std::vector<int>& GetTimes() const;
     };
 }
