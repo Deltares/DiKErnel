@@ -20,6 +20,7 @@
 
 #include "Calculator.h"
 #include <atomic>
+#include <map>
 #include <thread>
 
 namespace DiKErnel::Core
@@ -95,6 +96,13 @@ namespace DiKErnel::Core
     {
         const auto totalSteps = locations.size() * timeSteps.size();
 
+        std::map<CalculationLocation*, double> damageLookup;
+
+        for (auto* location : locations)
+        {
+            damageLookup[location] = location->GetRevetment()->GetInitialDamage();
+        }
+
         // Perform sub-calculation for all time steps
         for (auto i = 0; i < timeSteps.size(); i++)
         {
@@ -112,8 +120,8 @@ namespace DiKErnel::Core
 
                 auto* boundaryCondition = std::get<2>(timeSteps[i]);
 
-                auto result = subCalculation(
-                    revetment->GetInitialDamage(),
+                const auto result = subCalculation(
+                    damageLookup[locations[j]],
                     profileSchematization->GetTanA(),
                     revetment->GetRelativeDensity(),
                     revetment->GetThicknessTopLayer(),
@@ -122,6 +130,8 @@ namespace DiKErnel::Core
                     boundaryCondition->GetWaveAngle(),
                     std::get<0>(timeSteps[i]),
                     std::get<1>(timeSteps[i]));
+
+                damageLookup[locations[j]] = result;
 
                 // Update progress indicator
                 progress = ceil((i * timeSteps.size() + j + 1.0) / totalSteps * 100);
