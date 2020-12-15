@@ -28,8 +28,8 @@
 namespace DiKErnel::Core
 {
     Calculator::Calculator(
-        std::vector<CalculationLocation*> locations,
-        std::vector<std::tuple<int, int, BoundaryConditionsPerTimeStep*>> timeSteps,
+        const std::vector<CalculationLocation*>& locations,
+        const std::vector<std::tuple<int, int, BoundaryConditionsPerTimeStep*>>& timeSteps,
         double (*subCalculation)(
             double initialDamage,
             double slopeAngle,
@@ -80,8 +80,8 @@ namespace DiKErnel::Core
     }
 
     void Calculator::PerformCalculation(
-        std::vector<CalculationLocation*> locations,
-        std::vector<std::tuple<int, int, BoundaryConditionsPerTimeStep*>> timeSteps,
+        const std::vector<CalculationLocation*>& locations,
+        const std::vector<std::tuple<int, int, BoundaryConditionsPerTimeStep*>>& timeSteps,
         double (*subCalculation)(
             double initialDamage,
             double slopeAngle,

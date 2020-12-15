@@ -37,8 +37,8 @@ namespace DiKErnel::Core
     {
         public:
             explicit Calculator(
-                std::vector<CalculationLocation*> locations,
-                std::vector<std::tuple<int, int, BoundaryConditionsPerTimeStep*>> timeSteps,
+                const std::vector<CalculationLocation*>& locations,
+                const std::vector<std::tuple<int, int, BoundaryConditionsPerTimeStep*>>& timeSteps,
                 double (*subCalculation)(
                     double initialDamage,
                     double slopeAngle,
@@ -67,8 +67,8 @@ namespace DiKErnel::Core
             std::atomic<bool> finished = false;
 
             static void PerformCalculation(
-                std::vector<CalculationLocation*> locations,
-                std::vector<std::tuple<int, int, BoundaryConditionsPerTimeStep*>> timeSteps,
+                const std::vector<CalculationLocation*>& locations,
+                const std::vector<std::tuple<int, int, BoundaryConditionsPerTimeStep*>>& timeSteps,
                 double (*subCalculation)(
                     double initialDamage,
                     double slopeAngle,

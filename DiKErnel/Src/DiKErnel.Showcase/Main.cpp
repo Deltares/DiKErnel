@@ -63,7 +63,7 @@ int main()
 
     const auto times = inputData->GetCalculationData()->GetTimes();
     const auto locations = inputData->GetLocations();
-    const auto hydraulicLoads = inputData->GetHydraulicLoads();
+    const auto* hydraulicLoads = inputData->GetHydraulicLoads();
     const auto boundariesPerTimeStep = hydraulicLoads->GetBoundaryConditionsPerTimeStep();
 
     auto timeSteps = std::vector<std::tuple<int, int, BoundaryConditionsPerTimeStep*>>();
