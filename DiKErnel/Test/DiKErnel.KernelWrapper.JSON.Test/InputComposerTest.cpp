@@ -18,10 +18,11 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
+#include <gtest/gtest.h>
+
 #include <filesystem>
 #include <fstream>
 
-#include <gtest/gtest.h>
 #include "InputComposer.h"
 #include "InputData.h"
 #include "TestDataHelper.h"
