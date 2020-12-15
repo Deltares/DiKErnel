@@ -47,7 +47,8 @@ namespace DiKErnel::FunctionLibrary
         const double ns,
         const double bs,
         const double cs,
-        const double waveAngleMaximum
+        const double waveAngleMaximum,
+        const double damagePreviousTimestep
     )
     {
         const auto incrementDamageOfNaturalStoneRevetment = CalculateIncrementDamage(
@@ -67,7 +68,8 @@ namespace DiKErnel::FunctionLibrary
             ns,
             bs,
             cs,
-            waveAngleMaximum);
+            waveAngleMaximum,
+            damagePreviousTimestep);
 
         return initialDamage + incrementDamageOfNaturalStoneRevetment;
     }
@@ -89,7 +91,8 @@ namespace DiKErnel::FunctionLibrary
         const double ns,
         const double bs,
         const double cs,
-        const double waveAngleMaximum
+        const double waveAngleMaximum,
+        const double damagePreviousTimestep
     )
     {
         const auto hydraulicLoadOnNaturalStoneRevetment = CalculateHydraulicLoad(slopeAngle, spectralWaveHeight, spectralWavePeriod,
@@ -122,7 +125,8 @@ namespace DiKErnel::FunctionLibrary
             ns,
             bs,
             cs,
-            waveAngleMaximum);
+            waveAngleMaximum,
+            damagePreviousTimestep);
 
         const auto waveAngleImpactOnNaturalStoneRevetment = CalculateWaveAngleImpact(waveAngle, waveAngleMaximum);
 
@@ -192,7 +196,8 @@ namespace DiKErnel::FunctionLibrary
         const double ns,
         const double bs,
         const double cs,
-        const double waveAngleMaximum
+        const double waveAngleMaximum,
+        const double damagePreviousTimestep
     )
     {
         const auto timeStep = CalculateIncrementOfTime(startTime, endTime);
@@ -211,7 +216,8 @@ namespace DiKErnel::FunctionLibrary
             ns,
             bs,
             cs,
-            waveAngleMaximum);
+            waveAngleMaximum,
+            damagePreviousTimestep);
 
         const auto degradation = CalculateDegradation(
             referenceTimeDegradationOfNaturalStoneRevetment + timeStep,
@@ -249,11 +255,12 @@ namespace DiKErnel::FunctionLibrary
         const double ns,
         const double bs,
         const double cs,
-        const double waveAngleMaximum
+        const double waveAngleMaximum,
+        const double damagePreviousTimestep
     )
     {
         const auto referenceDegradationOfNaturalStoneRevetment = CalculateReferenceDegradation(
-            0.1,
+            damagePreviousTimestep,
             slopeAngle,
             relativeDensity,
             thicknessTopLayer,
