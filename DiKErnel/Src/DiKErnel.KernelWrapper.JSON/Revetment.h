@@ -45,7 +45,7 @@ namespace DiKErnel::KernelWrapper::Json
 
         public:
             explicit Revetment(
-                std::string& typeTopLayer,
+                const std::string& typeTopLayer,
                 double relativeDensity,
                 double thicknessTopLayer,
                 double initialDamage,
