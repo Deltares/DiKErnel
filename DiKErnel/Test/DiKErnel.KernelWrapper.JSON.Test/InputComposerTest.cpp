@@ -82,20 +82,23 @@ namespace DiKErnel::KernelWrapper::Json::Test
     #pragma endregion
 
     // Given
-    const auto filePath = TestUtil::TestDataHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Test") / "calculation.json";
+    struct InputComposerTest : testing::Test
+    {
+        const std::filesystem::path filePath = TestUtil::TestDataHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Test") / "calculation.json";
+    };
 
-    TEST(InputComposerTest, GivenFilePathAndInputComposer_WhenGetDomainParametersFromJson_ThenCorrectDataSet)
+    TEST_F(InputComposerTest, GivenFilePathAndInputComposer_WhenGetDomainParametersFromJson_ThenCorrectDataSet)
     {
         // When
         const auto inputData = InputComposer::GetDomainParametersFromJson(filePath.u8string());
 
-        // Assert
+        // Then
         AssertCalculationData(inputData->GetCalculationData());
         AssertHydraulicLoads(inputData->GetHydraulicLoads());
         AssertCalculationLocations(inputData->GetLocations());
     }
 
-    TEST(InputComposerTest, GivenFilePathAndInputComposer_WhenReadCalculationDataFromJson_ThenCorrectDataSet)
+    TEST_F(InputComposerTest, GivenFilePathAndInputComposer_WhenReadCalculationDataFromJson_ThenCorrectDataSet)
     {
         std::ifstream ifs(filePath);
         auto json = nlohmann::json::parse(ifs);
@@ -107,7 +110,7 @@ namespace DiKErnel::KernelWrapper::Json::Test
         AssertCalculationData(calculationData.get());
     }
 
-    TEST(InputComposerTest, GivenFilePathAndInputComposer_WhenReadHydraulicLoadsFromJson_ThenCorrectDataSet)
+    TEST_F(InputComposerTest, GivenFilePathAndInputComposer_WhenReadHydraulicLoadsFromJson_ThenCorrectDataSet)
     {
         std::ifstream ifs(filePath);
         auto json = nlohmann::json::parse(ifs);
@@ -119,7 +122,7 @@ namespace DiKErnel::KernelWrapper::Json::Test
         AssertHydraulicLoads(hydraulicLoads.get());
     }
 
-    TEST(InputComposerTest, GivenFilePathAndInputComposer_WhenReadLocationsFromJson_ThenCorrectDataSet)
+    TEST_F(InputComposerTest, GivenFilePathAndInputComposer_WhenReadLocationsFromJson_ThenCorrectDataSet)
     {
         std::ifstream ifs(filePath);
         auto json = nlohmann::json::parse(ifs);
