@@ -41,7 +41,7 @@ enum class UserInput
 #pragma region Forward declarations
 
 void InputMethod(
-    atomic<bool>& calculationFinished,
+    const atomic<bool>& calculationFinished,
     atomic<UserInput>& userInput);
 
 #pragma endregion
