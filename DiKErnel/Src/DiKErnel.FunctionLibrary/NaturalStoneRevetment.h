@@ -62,15 +62,23 @@ namespace DiKErnel::FunctionLibrary
              *         Range = [0, 1]
              */
             static double CalculateDamage(
-                double initialDamage,
-                double slopeAngle,
-                double relativeDensity,
-                double thicknessTopLayer,
-                double spectralWaveHeight,
-                double spectralWavePeriod,
-                double waveAngle,
-                double startTime,
-                double endTime);
+                const double initialDamage,
+                const double slopeAngle,
+                const double relativeDensity,
+                const double thicknessTopLayer,
+                const double spectralWaveHeight,
+                const double spectralWavePeriod,
+                const double waveAngle,
+                const double startTime,
+                const double endTime,
+                const double ap,
+                const double np,
+                const double bp,
+                const double cp,
+                const double as,
+                const double ns,
+                const double bs,
+                const double cs);
 
             /*!
              * \brief Calculates the increment damage.
@@ -102,14 +110,22 @@ namespace DiKErnel::FunctionLibrary
              *         Unit = [-]
              */
             static double CalculateIncrementDamage(
-                double slopeAngle,
-                double relativeDensity,
-                double thicknessTopLayer,
-                double spectralWaveHeight,
-                double spectralWavePeriod,
-                double waveAngle,
-                double startTime,
-                double endTime);
+                const double slopeAngle,
+                const double relativeDensity,
+                const double thicknessTopLayer,
+                const double spectralWaveHeight,
+                const double spectralWavePeriod,
+                const double waveAngle,
+                const double startTime,
+                const double endTime,
+                const double ap,
+                const double np,
+                const double bp,
+                const double cp,
+                const double as,
+                const double ns,
+                const double bs,
+                const double cs);
 
             /*!
              * \brief Calculates the hydraulic load.
@@ -126,9 +142,17 @@ namespace DiKErnel::FunctionLibrary
              *         Unit = [-]
              */
             static double CalculateHydraulicLoad(
-                double slopeAngle,
-                double spectralWaveHeight,
-                double spectralWavePeriod);
+                const double slopeAngle,
+                const double spectralWaveHeight,
+                const double spectralWavePeriod,
+                const double ap,
+                const double np,
+                const double bp,
+                const double cp,
+                const double as,
+                const double ns,
+                const double bs,
+                const double cs);
 
             /*!
              * \brief Calculates the surf similarity parameter.
@@ -194,14 +218,22 @@ namespace DiKErnel::FunctionLibrary
                  *         Unit = [-]
                  */
             static double CalculateIncrementDegradation(
-                double slopeAngle,
-                double relativeDensity,
-                double thicknessTopLayer,
-                double spectralWaveHeight,
-                double spectralWavePeriod,
-                double waveAngle,
-                double startTime,
-                double endTime);
+                const double slopeAngle,
+                const double relativeDensity,
+                const double thicknessTopLayer,
+                const double spectralWaveHeight,
+                const double spectralWavePeriod,
+                const double waveAngle,
+                const double startTime,
+                const double endTime,
+                const double ap,
+                const double np,
+                const double bp,
+                const double cp,
+                const double as,
+                const double ns,
+                const double bs,
+                const double cs);
 
             /*!
              * \brief Calculates the degradation.
@@ -243,12 +275,20 @@ namespace DiKErnel::FunctionLibrary
              *         Unit = [-]
              */
             static double CalculateReferenceTimeDegradation(
-                double slopeAngle,
-                double relativeDensity,
-                double thicknessTopLayer,
-                double spectralWaveHeight,
-                double spectralWavePeriod,
-                double waveAngle);
+                const double slopeAngle,
+                const double relativeDensity,
+                const double thicknessTopLayer,
+                const double spectralWaveHeight,
+                const double spectralWavePeriod,
+                const double waveAngle,
+                const double ap,
+                const double np,
+                const double bp,
+                const double cp,
+                const double as,
+                const double ns,
+                const double bs,
+                const double cs);
 
             /*!
              * \brief Calculates the reference degradation.
@@ -277,13 +317,21 @@ namespace DiKErnel::FunctionLibrary
              *         Unit = [-]
              */
             static double CalculateReferenceDegradation(
-                double damagePreviousTimeStep,
-                double slopeAngle,
-                double relativeDensity,
-                double thicknessTopLayer,
-                double spectralWaveHeight,
-                double spectralWavePeriod,
-                double waveAngle);
+                const double damagePreviousTimeStep,
+                const double slopeAngle,
+                const double relativeDensity,
+                const double thicknessTopLayer,
+                const double spectralWaveHeight,
+                const double spectralWavePeriod,
+                const double waveAngle,
+                const double ap,
+                const double np,
+                const double bp,
+                const double cp,
+                const double as,
+                const double ns,
+                const double bs,
+                const double cs);
 
             /*!
              * \brief Calculates the wave angle impact.

@@ -41,7 +41,15 @@ namespace DiKErnel::Core
             double spectralWavePeriod,
             double waveAngle,
             double startTime,
-            double endTime)>& subCalculation)
+            double endTime,
+            double ap,
+            double np,
+            double bp,
+            double cp,
+            double as,
+            double ns,
+            double bs,
+            double cs)>& subCalculation)
     {
         thread = std::thread(
             PerformCalculation,
@@ -93,7 +101,15 @@ namespace DiKErnel::Core
             double spectralWavePeriod,
             double waveAngle,
             double startTime,
-            double endTime)>& subCalculation,
+            double endTime,
+            double ap,
+            double np,
+            double bp,
+            double cp,
+            double as,
+            double ns,
+            double bs,
+            double cs)>& subCalculation,
         std::atomic<int>& progress,
         std::atomic<bool>& finished,
         const std::atomic<bool>& cancelled)
@@ -132,7 +148,15 @@ namespace DiKErnel::Core
                     boundaryCondition->GetWavePeriodTm10(),
                     boundaryCondition->GetWaveAngle(),
                     std::get<0>(timeSteps[i]),
-                    std::get<1>(timeSteps[i]));
+                    std::get<1>(timeSteps[i]),
+                    revetment->GetCoefficientPlungingAp(),
+                    revetment->GetCoefficientPlungingNp(),
+                    revetment->GetCoefficientPlungingBp(),
+                    revetment->GetCoefficientPlungingCp(),
+                    revetment->GetCoefficientSurgingAs(),
+                    revetment->GetCoefficientSurgingNs(),
+                    revetment->GetCoefficientSurgingBs(),
+                    revetment->GetCoefficientSurgingCs());
 
                 damageLookup[locations[j]] = result;
 

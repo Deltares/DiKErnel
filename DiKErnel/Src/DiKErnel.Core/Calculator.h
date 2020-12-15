@@ -49,7 +49,15 @@ namespace DiKErnel::Core
                     double spectralWavePeriod,
                     double waveAngle,
                     double startTime,
-                    double endTime)>& subCalculation);
+                    double endTime,
+                    double ap,
+                    double np,
+                    double bp,
+                    double cp,
+                    double as,
+                    double ns,
+                    double bs,
+                    double cs)>& subCalculation);
 
             void WaitForCompletion();
 
@@ -79,7 +87,15 @@ namespace DiKErnel::Core
                     double spectralWavePeriod,
                     double waveAngle,
                     double startTime,
-                    double endTime)>& subCalculation,
+                    double endTime,
+                    double ap,
+                    double np,
+                    double bp,
+                    double cp,
+                    double as,
+                    double ns,
+                    double bs,
+                    double cs)>& subCalculation,
                 std::atomic<int>& progress,
                 std::atomic<bool>& finished,
                 const std::atomic<bool>& cancelled);

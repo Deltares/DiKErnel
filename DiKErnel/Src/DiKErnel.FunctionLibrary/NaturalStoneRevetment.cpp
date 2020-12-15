@@ -38,7 +38,16 @@ namespace DiKErnel::FunctionLibrary
         const double spectralWavePeriod,
         const double waveAngle,
         const double startTime,
-        const double endTime)
+        const double endTime,
+        const double ap,
+        const double np,
+        const double bp,
+        const double cp,
+        const double as,
+        const double ns,
+        const double bs,
+        const double cs
+    )
     {
         const auto incrementDamageOfNaturalStoneRevetment = CalculateIncrementDamage(
             slopeAngle,
@@ -48,7 +57,15 @@ namespace DiKErnel::FunctionLibrary
             spectralWavePeriod,
             waveAngle,
             startTime,
-            endTime);
+            endTime,
+            ap,
+            np,
+            bp,
+            cp,
+            as,
+            ns,
+            bs,
+            cs);
 
         return initialDamage + incrementDamageOfNaturalStoneRevetment;
     }
@@ -61,9 +78,26 @@ namespace DiKErnel::FunctionLibrary
         const double spectralWavePeriod,
         const double waveAngle,
         const double startTime,
-        const double endTime)
+        const double endTime,
+        const double ap,
+        const double np,
+        const double bp,
+        const double cp,
+        const double as,
+        const double ns,
+        const double bs,
+        const double cs
+    )
     {
-        const auto hydraulicLoadOnNaturalStoneRevetment = CalculateHydraulicLoad(slopeAngle, spectralWaveHeight, spectralWavePeriod);
+        const auto hydraulicLoadOnNaturalStoneRevetment = CalculateHydraulicLoad(slopeAngle, spectralWaveHeight, spectralWavePeriod,
+                                                                                 ap,
+                                                                                 np,
+                                                                                 bp,
+                                                                                 cp,
+                                                                                 as,
+                                                                                 ns,
+                                                                                 bs,
+                                                                                 cs);
         const auto resistanceOfNaturalStoneRevetment = CalculateResistance(relativeDensity, thicknessTopLayer);
 
         const auto loadResistanceCalculatedValue = hydraulicLoadOnNaturalStoneRevetment / resistanceOfNaturalStoneRevetment;
@@ -76,7 +110,15 @@ namespace DiKErnel::FunctionLibrary
             spectralWavePeriod,
             waveAngle,
             startTime,
-            endTime);
+            endTime,
+            ap,
+            np,
+            bp,
+            cp,
+            as,
+            ns,
+            bs,
+            cs);
 
         const auto waveAngleImpactOnNaturalStoneRevetment = CalculateWaveAngleImpact(waveAngle);
 
@@ -86,19 +128,19 @@ namespace DiKErnel::FunctionLibrary
     double NaturalStoneRevetment::CalculateHydraulicLoad(
         const double slopeAngle,
         const double spectralWaveHeight,
-        const double spectralWavePeriod)
+        const double spectralWavePeriod,
+        const double ap,
+        const double np,
+        const double bp,
+        const double cp,
+        const double as,
+        const double ns,
+        const double bs,
+        const double cs
+    )
     {
         const auto xiFactor = 2.9;
         const auto surfSimilarityParameter = CalculateSurfSimilarityParameter(slopeAngle, spectralWaveHeight, spectralWavePeriod);
-        const auto ap = 4.0;
-        const auto np = -0.9;
-        const auto bp = 0.0;
-        const auto cp = 0.0;
-
-        const auto as = 0.8;
-        const auto ns = 0.6;
-        const auto bs = 0.0;
-        const auto cs = 0.0;
 
         const auto denominator = xiFactor > surfSimilarityParameter
                                      ? ap * pow(surfSimilarityParameter, np) + bp * surfSimilarityParameter + cp
@@ -137,7 +179,16 @@ namespace DiKErnel::FunctionLibrary
         const double spectralWavePeriod,
         const double waveAngle,
         const double startTime,
-        const double endTime)
+        const double endTime,
+        const double ap,
+        const double np,
+        const double bp,
+        const double cp,
+        const double as,
+        const double ns,
+        const double bs,
+        const double cs
+    )
     {
         const auto timeStep = CalculateIncrementOfTime(startTime, endTime);
         const auto referenceTimeDegradationOfNaturalStoneRevetment = CalculateReferenceTimeDegradation(
@@ -146,7 +197,15 @@ namespace DiKErnel::FunctionLibrary
             thicknessTopLayer,
             spectralWaveHeight,
             spectralWavePeriod,
-            waveAngle);
+            waveAngle,
+            ap,
+            np,
+            bp,
+            cp,
+            as,
+            ns,
+            bs,
+            cs);
 
         const auto degradation = CalculateDegradation(
             referenceTimeDegradationOfNaturalStoneRevetment + timeStep,
@@ -175,7 +234,16 @@ namespace DiKErnel::FunctionLibrary
         const double thicknessTopLayer,
         const double spectralWaveHeight,
         const double spectralWavePeriod,
-        const double waveAngle)
+        const double waveAngle,
+        const double ap,
+        const double np,
+        const double bp,
+        const double cp,
+        const double as,
+        const double ns,
+        const double bs,
+        const double cs
+    )
     {
         const auto referenceDegradationOfNaturalStoneRevetment = CalculateReferenceDegradation(
             0.1,
@@ -184,7 +252,15 @@ namespace DiKErnel::FunctionLibrary
             thicknessTopLayer,
             spectralWaveHeight,
             spectralWavePeriod,
-            waveAngle);
+            waveAngle,
+            ap,
+            np,
+            bp,
+            cp,
+            as,
+            ns,
+            bs,
+            cs);
 
         return 1000.0 * spectralWavePeriod * pow(referenceDegradationOfNaturalStoneRevetment, 10.0);
     }
@@ -196,10 +272,27 @@ namespace DiKErnel::FunctionLibrary
         const double thicknessTopLayer,
         const double spectralWaveHeight,
         const double spectralWavePeriod,
-        const double waveAngle)
+        const double waveAngle,
+        const double ap,
+        const double np,
+        const double bp,
+        const double cp,
+        const double as,
+        const double ns,
+        const double bs,
+        const double cs
+    )
     {
         const auto resistanceOfNaturalStoneRevetment = CalculateResistance(relativeDensity, thicknessTopLayer);
-        const auto hydraulicLoadOnNaturalStoneRevetment = CalculateHydraulicLoad(slopeAngle, spectralWaveHeight, spectralWavePeriod);
+        const auto hydraulicLoadOnNaturalStoneRevetment = CalculateHydraulicLoad(slopeAngle, spectralWaveHeight, spectralWavePeriod,
+                                                                                 ap,
+                                                                                 np,
+                                                                                 bp,
+                                                                                 cp,
+                                                                                 as,
+                                                                                 ns,
+                                                                                 bs,
+                                                                                 cs);
         const auto waveAngleImpactOnNaturalStoneRevetment = CalculateWaveAngleImpact(waveAngle);
 
         return damagePreviousTimeStep * resistanceOfNaturalStoneRevetment / hydraulicLoadOnNaturalStoneRevetment

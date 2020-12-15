@@ -34,6 +34,14 @@ namespace DiKErnel::FunctionLibrary::Test::NaturalStoneRevetmentTest
     const auto thicknessTopLayer = 0.3;
     const auto startTime = 0.0;
     const auto endTime = 36.0;
+    const auto ap = 4.0;
+    const auto np = -0.9;
+    const auto bp = 0.0;
+    const auto cp = 0.0;
+    const auto as = 0.8;
+    const auto ns = 0.6;
+    const auto bs = 0.0;
+    const auto cs = 0.0;
 
     TEST(NaturalStoneRevetmentTest, GivenInput_WhenCalculateDamage_ThenExpectedResult)
     {
@@ -47,7 +55,15 @@ namespace DiKErnel::FunctionLibrary::Test::NaturalStoneRevetmentTest
             spectralWavePeriod,
             waveAngle,
             startTime,
-            endTime);
+            endTime,
+            ap,
+            np,
+            bp,
+            cp,
+            as,
+            ns,
+            bs,
+            cs);
 
         // Then
         ASSERT_DOUBLE_EQ(damage, 0.33458768058794086);
@@ -64,7 +80,15 @@ namespace DiKErnel::FunctionLibrary::Test::NaturalStoneRevetmentTest
             spectralWavePeriod,
             waveAngle,
             startTime,
-            endTime);
+            endTime,
+            ap,
+            np,
+            bp,
+            cp,
+            as,
+            ns,
+            bs,
+            cs);
 
         // Then
         ASSERT_DOUBLE_EQ(incrementDamage, 0.23458768058794083);
@@ -76,7 +100,15 @@ namespace DiKErnel::FunctionLibrary::Test::NaturalStoneRevetmentTest
         const auto hydraulicLoad = NaturalStoneRevetment::CalculateHydraulicLoad(
             slopeAngle,
             spectralWaveHeight,
-            spectralWavePeriod);
+            spectralWavePeriod,
+            ap,
+            np,
+            bp,
+            cp,
+            as,
+            ns,
+            bs,
+            cs);
 
         // Then
         ASSERT_DOUBLE_EQ(hydraulicLoad, 0.42109231069183717);
@@ -88,7 +120,15 @@ namespace DiKErnel::FunctionLibrary::Test::NaturalStoneRevetmentTest
         const auto hydraulicLoad = NaturalStoneRevetment::CalculateHydraulicLoad(
             slopeAngle * 4,
             spectralWaveHeight / 4,
-            spectralWavePeriod / 4);
+            spectralWavePeriod / 4,
+            ap,
+            np,
+            bp,
+            cp,
+            as,
+            ns,
+            bs,
+            cs);
 
         // Then
         ASSERT_DOUBLE_EQ(hydraulicLoad, 0.23900384271534394);
@@ -128,7 +168,15 @@ namespace DiKErnel::FunctionLibrary::Test::NaturalStoneRevetmentTest
             spectralWavePeriod,
             waveAngle,
             0.0,
-            36.0);
+            36.0,
+            ap,
+            np,
+            bp,
+            cp,
+            as,
+            ns,
+            bs,
+            cs);
 
         // Then
         ASSERT_DOUBLE_EQ(incrementDegradation, 0.43774354728651044);
@@ -152,7 +200,15 @@ namespace DiKErnel::FunctionLibrary::Test::NaturalStoneRevetmentTest
             thicknessTopLayer,
             spectralWaveHeight,
             spectralWavePeriod,
-            waveAngle);
+            waveAngle,
+            ap,
+            np,
+            bp,
+            cp,
+            as,
+            ns,
+            bs,
+            cs);
 
         // Then
         ASSERT_DOUBLE_EQ(referenceTimeDegradation, 0.00020474132396956532);
@@ -168,7 +224,15 @@ namespace DiKErnel::FunctionLibrary::Test::NaturalStoneRevetmentTest
             thicknessTopLayer,
             spectralWaveHeight,
             spectralWavePeriod,
-            waveAngle);
+            waveAngle,
+            ap,
+            np,
+            bp,
+            cp,
+            as,
+            ns,
+            bs,
+            cs);
 
         // Then
         ASSERT_DOUBLE_EQ(referenceDegradation, 0.18660125126324004);
