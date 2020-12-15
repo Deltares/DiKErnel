@@ -25,12 +25,14 @@
 
 #include "Calculator.h"
 
+#include <functional>
+
 namespace DiKErnel::Core
 {
     Calculator::Calculator(
         const std::vector<CalculationLocation*>& locations,
         const std::vector<std::tuple<int, int, BoundaryConditionsPerTimeStep*>>& timeSteps,
-        double (*subCalculation)(
+        const std::function<double(
             double initialDamage,
             double slopeAngle,
             double relativeDensity,
@@ -39,7 +41,7 @@ namespace DiKErnel::Core
             double spectralWavePeriod,
             double waveAngle,
             double startTime,
-            double endTime))
+            double endTime)>& subCalculation)
     {
         thread = std::thread(
             PerformCalculation,
@@ -82,7 +84,7 @@ namespace DiKErnel::Core
     void Calculator::PerformCalculation(
         const std::vector<CalculationLocation*>& locations,
         const std::vector<std::tuple<int, int, BoundaryConditionsPerTimeStep*>>& timeSteps,
-        double (*subCalculation)(
+        const std::function<double(
             double initialDamage,
             double slopeAngle,
             double relativeDensity,
@@ -91,7 +93,7 @@ namespace DiKErnel::Core
             double spectralWavePeriod,
             double waveAngle,
             double startTime,
-            double endTime),
+            double endTime)>& subCalculation,
         std::atomic<int>& progress,
         std::atomic<bool>& finished,
         std::atomic<bool>& cancelled)

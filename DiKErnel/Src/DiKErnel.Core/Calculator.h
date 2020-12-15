@@ -20,6 +20,7 @@
 
 #pragma once
 #include <atomic>
+#include <functional>
 #include <thread>
 #include <vector>
 
@@ -39,7 +40,7 @@ namespace DiKErnel::Core
             explicit Calculator(
                 const std::vector<CalculationLocation*>& locations,
                 const std::vector<std::tuple<int, int, BoundaryConditionsPerTimeStep*>>& timeSteps,
-                double (*subCalculation)(
+                const std::function<double(
                     double initialDamage,
                     double slopeAngle,
                     double relativeDensity,
@@ -48,7 +49,7 @@ namespace DiKErnel::Core
                     double spectralWavePeriod,
                     double waveAngle,
                     double startTime,
-                    double endTime));
+                    double endTime)>& subCalculation);
 
             void WaitForCompletion();
 
@@ -69,7 +70,7 @@ namespace DiKErnel::Core
             static void PerformCalculation(
                 const std::vector<CalculationLocation*>& locations,
                 const std::vector<std::tuple<int, int, BoundaryConditionsPerTimeStep*>>& timeSteps,
-                double (*subCalculation)(
+                const std::function<double(
                     double initialDamage,
                     double slopeAngle,
                     double relativeDensity,
@@ -78,7 +79,7 @@ namespace DiKErnel::Core
                     double spectralWavePeriod,
                     double waveAngle,
                     double startTime,
-                    double endTime),
+                    double endTime)>& subCalculation,
                 std::atomic<int>& progress,
                 std::atomic<bool>& finished,
                 std::atomic<bool>& cancelled);

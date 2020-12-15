@@ -92,7 +92,7 @@ int main()
     Calculator calculator(
         locations,
         timeSteps,
-        NaturalStoneRevetment::CalculateDamage);
+        &NaturalStoneRevetment::CalculateDamage);
 
     thread inputThread(
         InputMethod,
