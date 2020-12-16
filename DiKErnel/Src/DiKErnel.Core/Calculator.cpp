@@ -88,7 +88,7 @@ namespace DiKErnel::Core
 
     int Calculator::GetProgress() const
     {
-        return std::ceil(progress * 100);
+        return static_cast<int>(std::ceil(progress * 100));
     }
 
     bool Calculator::IsFinished() const
@@ -153,7 +153,7 @@ namespace DiKErnel::Core
         const std::atomic<bool>& cancelled,
         std::map<CalculationLocation*, std::vector<std::tuple<double, double>>>& results)
     {
-        const auto percentagePerCalculation = 1.0 / timeSteps.size() / locations.size();
+        const auto percentagePerCalculation = 1.0 / static_cast<double>(timeSteps.size()) / static_cast<double>(locations.size());
 
         for (auto* location : locations)
         {
@@ -183,7 +183,6 @@ namespace DiKErnel::Core
             }
         }
 
-        // Mark calculation as finished
         finished = true;
     }
 
