@@ -46,7 +46,7 @@ namespace DiKErnel::KernelWrapper::Json::Test
     struct OutputComposerTest : testing::Test
     {
         const std::filesystem::path expectedOutputFilePath = TestUtil::TestDataHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Test") /
-                "calculationTest.json";
+                "expectedOutput.json";
 
         const std::filesystem::path temporaryOutputFilePath = TestUtil::TestDataHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Test") /
                 "calculationTest.json";
