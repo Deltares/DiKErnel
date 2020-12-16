@@ -29,14 +29,22 @@
 
 namespace DiKErnel::KernelWrapper::Json::Test
 {
-    // // Given
-    const auto filePath = TestUtil::TestDataHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Test") / "calculationTest.json";
+    #pragma region Forward declarations
 
     CalculationLocationOutput* CreateCalculationLocationOutput(
         const std::string& locationName,
         double damage);
 
-    TEST(OutputComposerTest, GivenFilePathAndOutputData_WhenWriteParametersToJson_ThenCorrectDataWritten)
+    #pragma endregion
+
+    // Given
+    struct OutputComposerTest : testing::Test
+    {
+        const std::filesystem::path filePath = TestUtil::TestDataHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Test") /
+                "calculationTest.json";
+    };
+
+    TEST_F(OutputComposerTest, GivenFilePathAndOutputData_WhenWriteParametersToJson_ThenCorrectDataWritten)
     {
         // Given
         std::vector<CalculationLocationOutput*> calculationLocationsOutput;
@@ -56,6 +64,8 @@ namespace DiKErnel::KernelWrapper::Json::Test
         ASSERT_EQ(expectedJson, json);
     }
 
+    #pragma region Helper methods
+
     CalculationLocationOutput* CreateCalculationLocationOutput(
         const std::string& locationName,
         double damage)
@@ -64,4 +74,6 @@ namespace DiKErnel::KernelWrapper::Json::Test
 
         return new CalculationLocationOutput(locationName, std::move(revetmentOutput));
     }
+
+    #pragma endregion
 }
