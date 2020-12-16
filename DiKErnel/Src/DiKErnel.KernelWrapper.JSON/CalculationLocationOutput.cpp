@@ -19,7 +19,6 @@
 // All rights reserved.
 
 #include "CalculationLocationOutput.h"
-
 #include "RevetmentOutput.h"
 
 namespace DiKErnel::KernelWrapper::Json

@@ -20,6 +20,8 @@
 
 #include <gtest/gtest.h>
 
+#include <memory>
+
 #include "OutputComposer.h"
 #include "OutputData.h"
 #include "RevetmentOutput.h"
@@ -29,25 +31,37 @@ namespace DiKErnel::KernelWrapper::Json::Test
 {
     // // Given
     const auto filePath = TestUtil::TestDataHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Test") / "calculationTest.json";
-    
+
+    CalculationLocationOutput* CreateCalculationLocationOutput(
+        const std::string& locationName,
+        double damage);
+
     TEST(OutputComposerTest, GivenFilePathAndOutputData_WhenWriteParametersToJson_ThenCorrectDataWritten)
     {
         // Given
-        std::vector<CalculationLocationOutput*> locationsOutput;
-        RevetmentOutput revetmentOutput(0.15);
-        RevetmentOutput revetmentOutput2(0.253);
-        CalculationLocationOutput calculationLocationOutput("testName", &revetmentOutput);
-        CalculationLocationOutput calculationLocationOutput2("testName2", &revetmentOutput2);
-        locationsOutput.push_back(&calculationLocationOutput);
-        locationsOutput.push_back(&calculationLocationOutput2);
-        const OutputData outputData(locationsOutput);
+        std::vector<CalculationLocationOutput*> calculationLocationsOutput;
 
-        const std::string expectedJson = R"({"Locaties":[{"Bekleding":{"Schade":0.15},"Naam":"testName"},{"Bekleding":{"Schade":0.253},"Naam":"testName2"}]})";
+        calculationLocationsOutput.push_back(CreateCalculationLocationOutput("testName1", 0.15));
+        calculationLocationsOutput.push_back(CreateCalculationLocationOutput("testName2", 0.253));
+
+        const OutputData outputData(calculationLocationsOutput);
+
+        const std::string expectedJson =
+                R"({"Locaties":[{"Bekleding":{"Schade":0.15},"Naam":"testName1"},{"Bekleding":{"Schade":0.253},"Naam":"testName2"}]})";
 
         // When
         const auto json = OutputComposer::WriteParametersToJson(filePath, outputData);
 
         // Then
         ASSERT_EQ(expectedJson, json);
+    }
+
+    CalculationLocationOutput* CreateCalculationLocationOutput(
+        const std::string& locationName,
+        double damage)
+    {
+        auto revetmentOutput = std::make_unique<RevetmentOutput>(damage);
+
+        return new CalculationLocationOutput(locationName, std::move(revetmentOutput));
     }
 }
