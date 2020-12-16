@@ -22,6 +22,7 @@
 #include <iostream>
 #include <string>
 #include <thread>
+
 #include "Calculator.h"
 #include "InputComposer.h"
 #include "InputData.h"
@@ -129,22 +130,17 @@ int main()
     }
     else
     {
-        cout << endl;
-        cout << "|=========|" << endl;
-        cout << "| Results |" << endl;
-        cout << "|=========|" << endl;
-
         std::vector<std::unique_ptr<CalculationLocationOutput>> calculationLocationsOutput;
-        
+
         for (const auto& [location, damageAtTimeSteps] : calculator.GetResults())
         {
             calculationLocationsOutput.push_back(
-                std::make_unique<CalculationLocationOutput>(location->GetName(),
-                std::make_unique<RevetmentOutput>(std::get<1>(damageAtTimeSteps.back()))));
+                std::make_unique<CalculationLocationOutput>(
+                    location->GetName(),
+                    std::make_unique<RevetmentOutput>(std::get<1>(damageAtTimeSteps.back()))));
         }
 
         const auto outputData = std::make_unique<OutputData>(std::move(calculationLocationsOutput));
-
 
         auto directory = std::filesystem::path(jsonFilePath).parent_path();
         const auto outputPath = directory / "output.json";
@@ -152,12 +148,10 @@ int main()
         OutputComposer::WriteParametersToJson(outputPath.u8string(), outputData.get());
 
         cout << endl;
-        cout << "-> Calculation output is written to: " << outputPath << endl;
-
-        cout << endl;
         cout << "|========================|" << endl;
         cout << "| Calculation successful |" << endl;
         cout << "|========================|" << endl;
+        cout << "=> Calculation output is written to: " << outputPath << endl;
     }
 
     // End stopwatch
