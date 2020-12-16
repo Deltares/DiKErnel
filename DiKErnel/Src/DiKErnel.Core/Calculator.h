@@ -79,7 +79,7 @@ namespace DiKErnel::Core
 
         private:
             std::thread thread;
-            std::atomic<int> progress = 0;
+            std::atomic<double> progress = 0;
             std::atomic<bool> cancelled = false;
             std::atomic<bool> finished = false;
             std::map<CalculationLocation*, std::vector<std::tuple<double, double>>> results;
@@ -108,7 +108,7 @@ namespace DiKErnel::Core
                     double ns,
                     double waveAngleMaximum,
                     double similarityParameterThreshold)>& subCalculation,
-                std::atomic<int>& progress,
+                std::atomic<double>& progress,
                 std::atomic<bool>& finished,
                 const std::atomic<bool>& cancelled,
                 std::map<CalculationLocation*, std::vector<std::tuple<double, double>>>& results);
@@ -138,12 +138,5 @@ namespace DiKErnel::Core
                     double waveAngleMaximum,
                     double similarityParameterThreshold)>& subCalculation,
                 std::map<CalculationLocation*, std::vector<std::tuple<double, double>>>& results);
-
-            static void UpdateProgress(
-                std::atomic<int>& progress,
-                unsigned long long totalSteps,
-                unsigned long long numberOfTimeSteps,
-                int currentTimeStepIndex,
-                int currentLocationIndex);
     };
 }

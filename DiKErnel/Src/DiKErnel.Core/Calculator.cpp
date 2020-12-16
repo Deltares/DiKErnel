@@ -88,7 +88,7 @@ namespace DiKErnel::Core
 
     int Calculator::GetProgress() const
     {
-        return progress;
+        return std::ceil(progress * 100);
     }
 
     bool Calculator::IsFinished() const
@@ -148,12 +148,12 @@ namespace DiKErnel::Core
             double ns,
             double waveAngleMaximum,
             double similarityParameterThreshold)>& subCalculation,
-        std::atomic<int>& progress,
+        std::atomic<double>& progress,
         std::atomic<bool>& finished,
         const std::atomic<bool>& cancelled,
         std::map<CalculationLocation*, std::vector<std::tuple<double, double>>>& results)
     {
-        const auto totalSteps = locations.size() * timeSteps.size();
+        const auto percentagePerCalculation = 1.0 / timeSteps.size() / locations.size();
 
         for (auto* location : locations)
         {
@@ -183,8 +183,7 @@ namespace DiKErnel::Core
 
                 PerformCalculationForLocationAndTimeStep(timeSteps[i], locations[j], hydraulicLoads, subCalculation, results);
 
-                // Update progress indicator
-                UpdateProgress(progress, totalSteps, timeSteps.size(), i, j);
+                progress = progress + percentagePerCalculation;
             }
         }
 
@@ -244,15 +243,5 @@ namespace DiKErnel::Core
             revetment->GetSimilarityParameterThreshold());
 
         results[currentLocation].emplace_back(std::get<1>(currentTimeStep), result);
-    }
-
-    void Calculator::UpdateProgress(
-        std::atomic<int>& progress,
-        const unsigned long long totalSteps,
-        const unsigned long long numberOfTimeSteps,
-        const int currentTimeStepIndex,
-        const int currentLocationIndex)
-    {
-        progress = std::ceil((currentTimeStepIndex * numberOfTimeSteps + currentLocationIndex + 1.0) / totalSteps * 100);
     }
 }
