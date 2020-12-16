@@ -37,26 +37,24 @@ namespace DiKErnel::KernelWrapper::Json
     {
         nlohmann::json json;
 
-        const auto amountOfOutputLocations = outputData->GetCalculationLocationsOutput().size();
-
         try
         {
             json[JsonDefinitions::locations] = nlohmann::json::array();
 
-            for (auto i = 0; i < amountOfOutputLocations; i++)
+            for (const auto& calculationLocationOutput : outputData->GetCalculationLocationsOutput())
             {
                 auto location = nlohmann::json::object(
                     {
                         {
                             JsonDefinitions::name,
-                            outputData->GetCalculationLocationsOutput().at(i)->GetName()
+                            calculationLocationOutput->GetName()
                         },
                         {
                             JsonDefinitions::revetment,
                             {
                                 {
                                     JsonDefinitions::damage,
-                                    outputData->GetCalculationLocationsOutput().at(i)->GetRevetmentOutput()->GetDamage()
+                                    calculationLocationOutput->GetRevetmentOutput()->GetDamage()
                                 }
                             }
                         }
