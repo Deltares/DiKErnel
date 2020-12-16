@@ -31,9 +31,9 @@ namespace DiKErnel::KernelWrapper::Json::Test
 {
     #pragma region Forward declarations
 
-    CalculationLocationOutput* CreateCalculationLocationOutput(
-        const std::string& locationName,
-        double damage);
+    std::unique_ptr<CalculationLocationOutput> CreateCalculationLocationOutput(
+        const std::string&,
+        double);
 
     #pragma endregion
 
@@ -47,7 +47,7 @@ namespace DiKErnel::KernelWrapper::Json::Test
     TEST_F(OutputComposerTest, GivenFilePathAndOutputData_WhenWriteParametersToJson_ThenCorrectDataWritten)
     {
         // Given
-        std::vector<CalculationLocationOutput*> calculationLocationsOutput;
+        std::vector<std::unique_ptr<CalculationLocationOutput>> calculationLocationsOutput;
 
         calculationLocationsOutput.push_back(CreateCalculationLocationOutput("testName1", 0.15));
         calculationLocationsOutput.push_back(CreateCalculationLocationOutput("testName2", 0.253));
@@ -66,13 +66,11 @@ namespace DiKErnel::KernelWrapper::Json::Test
 
     #pragma region Helper methods
 
-    CalculationLocationOutput* CreateCalculationLocationOutput(
+    std::unique_ptr<CalculationLocationOutput> CreateCalculationLocationOutput(
         const std::string& locationName,
         double damage)
     {
-        auto revetmentOutput = std::make_unique<RevetmentOutput>(damage);
-
-        return new CalculationLocationOutput(locationName, std::move(revetmentOutput));
+        return std::make_unique<CalculationLocationOutput>(locationName, std::make_unique<RevetmentOutput>(damage));
     }
 
     #pragma endregion
