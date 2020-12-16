@@ -20,6 +20,7 @@
 
 #include <nlohmann/json.hpp>
 
+#include <filesystem>
 #include <fstream>
 #include <iomanip>
 #include <iostream>

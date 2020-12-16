@@ -20,6 +20,8 @@
 
 #pragma once
 
+#include <filesystem>
+
 #include "OutputData.h"
 
 namespace DiKErnel::KernelWrapper::Json

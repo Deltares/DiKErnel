@@ -42,6 +42,11 @@ namespace DiKErnel::KernelWrapper::Json::Test
     {
         const std::filesystem::path filePath = TestUtil::TestDataHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Test") /
                 "calculationTest.json";
+
+        ~OutputComposerTest()
+        {
+            std::remove(filePath.string().c_str());
+        }
     };
 
     TEST_F(OutputComposerTest, GivenFilePathAndOutputData_WhenWriteParametersToJson_ThenCorrectDataWritten)
