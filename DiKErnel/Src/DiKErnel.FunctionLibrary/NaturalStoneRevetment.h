@@ -288,68 +288,68 @@ namespace DiKErnel::FunctionLibrary
                 double thicknessTopLayer);
 
             /*!
-                 * \brief Calculates the increment degradation.
-                 * \param slopeAngle
-                 *        The slope angle at the current location.
-                 *        Unit = [°]
-                 * \param relativeDensity
-                 *        The relative density at the current location.
-                 *        Unit = [-]
-                 * \param thicknessTopLayer
-                 *        The thickness of the top layer at the current location.
-                 *        Unit = [m]
-                 * \param spectralWaveHeight
-                 *        The spectral wave height between ti-1 and ti.
-                 *        Unit = [m]
-                 * \param spectralWavePeriod
-                 *        The spectral wave period between ti-1 and ti.
-                 *        Unit = [s]
-                 * \param waveAngle
-                 *        The incoming wave angle relative to the normal line between ti-1 and ti.
-                 *        Unit = [°]
-                 * \param startTime
-                 *        The start time.
-                 *        Unit = [s]
-                 * \param endTime
-                 *        The end time.
-                 *        Unit = [s]
-             * \param ap
-             *        The A coefficient for plunging.
-             *        Unit = [-]
-             * \param bp
-             *        The B coefficient for plunging.
-             *        Unit = [-]
-             * \param cp
-             *        The C coefficient for plunging.
-             *        Unit = [-]
-             * \param np
-             *        The N coefficient for plunging.
-             *        Unit = [-]
-             * \param as
-             *        The A coefficient for surging.
-             *        Unit = [-]
-             * \param bs
-             *        The B coefficient for surging.
-             *        Unit = [-]
-             * \param cs
-             *        The C coefficient for surging.
-             *        Unit = [-]
-             * \param ns
-             *        The N coefficient for surging.
-             *        Unit = [-]
-             * \param waveAngleMaximum
-             *        The maximum incoming wave angle.
-             *        Unit = [°]
-             * \param initialDamage
-             *        The cumulative damage from previous timestep.
-             *        Unit = [-]
-             * \param xiFactor
-             *        The similarity parameter threshold,
-             *        determines whether there is plunging or surging.
-             *        Unit = [-]
-                 * \return The calculated increment degradation.
-                 *         Unit = [-]
-                 */
+            * \brief Calculates the increment degradation.
+            * \param slopeAngle
+            *        The slope angle at the current location.
+            *        Unit = [°]
+            * \param relativeDensity
+            *        The relative density at the current location.
+            *        Unit = [-]
+            * \param thicknessTopLayer
+            *        The thickness of the top layer at the current location.
+            *        Unit = [m]
+            * \param spectralWaveHeight
+            *        The spectral wave height between ti-1 and ti.
+            *        Unit = [m]
+            * \param spectralWavePeriod
+            *        The spectral wave period between ti-1 and ti.
+            *        Unit = [s]
+            * \param waveAngle
+            *        The incoming wave angle relative to the normal line between ti-1 and ti.
+            *        Unit = [°]
+            * \param startTime
+            *        The start time.
+            *        Unit = [s]
+            * \param endTime
+            *        The end time.
+            *        Unit = [s]
+            * \param ap
+            *        The A coefficient for plunging.
+            *        Unit = [-]
+            * \param bp
+            *        The B coefficient for plunging.
+            *        Unit = [-]
+            * \param cp
+            *        The C coefficient for plunging.
+            *        Unit = [-]
+            * \param np
+            *        The N coefficient for plunging.
+            *        Unit = [-]
+            * \param as
+            *        The A coefficient for surging.
+            *        Unit = [-]
+            * \param bs
+            *        The B coefficient for surging.
+            *        Unit = [-]
+            * \param cs
+            *        The C coefficient for surging.
+            *        Unit = [-]
+            * \param ns
+            *        The N coefficient for surging.
+            *        Unit = [-]
+            * \param waveAngleMaximum
+            *        The maximum incoming wave angle.
+            *        Unit = [°]
+            * \param initialDamage
+            *        The cumulative damage from previous timestep.
+            *        Unit = [-]
+            * \param xiFactor
+            *        The similarity parameter threshold,
+            *        determines whether there is plunging or surging.
+            *        Unit = [-]
+            * \return The calculated increment degradation.
+            *         Unit = [-]
+            */
             static double CalculateIncrementDegradation(
                 double slopeAngle,
                 double relativeDensity,
