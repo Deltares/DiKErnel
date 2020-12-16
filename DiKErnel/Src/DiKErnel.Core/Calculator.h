@@ -34,6 +34,8 @@ namespace DiKErnel::Core
 {
     using namespace KernelWrapper::Json;
 
+    extern int waitTime;
+
     /*!
      * \brief Class responsible for performing calculations.
      */

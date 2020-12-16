@@ -60,6 +60,8 @@ int main()
     cout << "|===================|" << endl;
     cout << "-> Enter the path to the JSON file: ";
     getline(cin, jsonFilePath);
+    cout << "-> Enter the time to wait in seconds: ";
+    cin >> waitTime;
     cout << endl;
 
     const auto inputData = InputComposer::GetDomainParametersFromJson(jsonFilePath);
