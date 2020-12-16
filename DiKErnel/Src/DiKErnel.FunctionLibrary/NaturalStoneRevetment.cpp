@@ -47,7 +47,8 @@ namespace DiKErnel::FunctionLibrary
         const double ns,
         const double bs,
         const double cs,
-        const double waveAngleMaximum
+        const double waveAngleMaximum,
+        const double xiFactor
     )
     {
         const auto incrementDamageOfNaturalStoneRevetment = CalculateIncrementDamage(
@@ -68,7 +69,8 @@ namespace DiKErnel::FunctionLibrary
             bs,
             cs,
             waveAngleMaximum,
-            initialDamage);
+            initialDamage,
+            xiFactor);
 
         return initialDamage + incrementDamageOfNaturalStoneRevetment;
     }
@@ -91,7 +93,8 @@ namespace DiKErnel::FunctionLibrary
         const double bs,
         const double cs,
         const double waveAngleMaximum,
-        const double initialDamage
+        const double initialDamage,
+        const double xiFactor
     )
     {
         const auto hydraulicLoadOnNaturalStoneRevetment = CalculateHydraulicLoad(slopeAngle, spectralWaveHeight, spectralWavePeriod,
@@ -102,7 +105,8 @@ namespace DiKErnel::FunctionLibrary
                                                                                  as,
                                                                                  ns,
                                                                                  bs,
-                                                                                 cs);
+                                                                                 cs,
+                                                                                 xiFactor);
         const auto resistanceOfNaturalStoneRevetment = CalculateResistance(relativeDensity, thicknessTopLayer);
 
         const auto loadResistanceCalculatedValue = hydraulicLoadOnNaturalStoneRevetment / resistanceOfNaturalStoneRevetment;
@@ -124,7 +128,9 @@ namespace DiKErnel::FunctionLibrary
             ns,
             bs,
             cs,
-            waveAngleMaximum, initialDamage);
+            waveAngleMaximum,
+            initialDamage,
+            xiFactor);
 
         const auto waveAngleImpactOnNaturalStoneRevetment = CalculateWaveAngleImpact(waveAngle, waveAngleMaximum);
 
@@ -142,10 +148,10 @@ namespace DiKErnel::FunctionLibrary
         const double as,
         const double ns,
         const double bs,
-        const double cs
+        const double cs,
+        const double xiFactor
     )
     {
-        const auto xiFactor = 2.9;
         const auto surfSimilarityParameter = CalculateSurfSimilarityParameter(slopeAngle, spectralWaveHeight, spectralWavePeriod);
 
         const auto denominator = xiFactor > surfSimilarityParameter
@@ -193,7 +199,8 @@ namespace DiKErnel::FunctionLibrary
         const double bs,
         const double cs,
         const double waveAngleMaximum,
-        const double initialDamage
+        const double initialDamage,
+        const double xiFactor
     )
     {
         const auto timeStep = CalculateIncrementOfTime(startTime, endTime);
@@ -212,7 +219,9 @@ namespace DiKErnel::FunctionLibrary
             ns,
             bs,
             cs,
-            waveAngleMaximum, initialDamage);
+            waveAngleMaximum,
+            initialDamage,
+            xiFactor);
 
         const auto degradation = CalculateDegradation(
             referenceTimeDegradationOfNaturalStoneRevetment + timeStep,
@@ -251,7 +260,8 @@ namespace DiKErnel::FunctionLibrary
         const double bs,
         const double cs,
         const double waveAngleMaximum,
-        const double initialDamage
+        const double initialDamage,
+        const double xiFactor
     )
     {
         const auto referenceDegradationOfNaturalStoneRevetment = CalculateReferenceDegradation(
@@ -270,7 +280,8 @@ namespace DiKErnel::FunctionLibrary
             ns,
             bs,
             cs,
-            waveAngleMaximum);
+            waveAngleMaximum,
+            xiFactor);
 
         return 1000.0 * spectralWavePeriod * pow(referenceDegradationOfNaturalStoneRevetment, 10.0);
     }
@@ -291,7 +302,8 @@ namespace DiKErnel::FunctionLibrary
         const double ns,
         const double bs,
         const double cs,
-        const double waveAngleMaximum
+        const double waveAngleMaximum,
+        const double xiFactor
     )
     {
         const auto resistanceOfNaturalStoneRevetment = CalculateResistance(relativeDensity, thicknessTopLayer);
@@ -303,7 +315,8 @@ namespace DiKErnel::FunctionLibrary
                                                                                  as,
                                                                                  ns,
                                                                                  bs,
-                                                                                 cs);
+                                                                                 cs,
+                                                                                 xiFactor);
         const auto waveAngleImpactOnNaturalStoneRevetment = CalculateWaveAngleImpact(waveAngle, waveAngleMaximum);
 
         return damagePreviousTimeStep * resistanceOfNaturalStoneRevetment / hydraulicLoadOnNaturalStoneRevetment

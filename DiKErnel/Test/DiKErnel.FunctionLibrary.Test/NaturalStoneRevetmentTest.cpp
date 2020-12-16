@@ -43,6 +43,7 @@ namespace DiKErnel::FunctionLibrary::Test::NaturalStoneRevetmentTest
     const auto bs = 0.0;
     const auto cs = 0.0;
     const auto waveAngleMaximum = 78.0;
+    const auto xiFactor = 2.9;
 
     TEST(NaturalStoneRevetmentTest, GivenInput_WhenCalculateDamage_ThenExpectedResult)
     {
@@ -65,7 +66,8 @@ namespace DiKErnel::FunctionLibrary::Test::NaturalStoneRevetmentTest
             ns,
             bs,
             cs,
-            waveAngleMaximum);
+            waveAngleMaximum,
+            xiFactor);
 
         // Then
         ASSERT_DOUBLE_EQ(damage, 0.19527164721720683);
@@ -92,7 +94,8 @@ namespace DiKErnel::FunctionLibrary::Test::NaturalStoneRevetmentTest
             bs,
             cs,
             waveAngleMaximum,
-            initialDamage);
+            initialDamage,
+            xiFactor);
 
         // Then
         ASSERT_DOUBLE_EQ(incrementDamage, 0.19527164721720683);
@@ -112,7 +115,8 @@ namespace DiKErnel::FunctionLibrary::Test::NaturalStoneRevetmentTest
             as,
             ns,
             bs,
-            cs);
+            cs,
+            xiFactor);
 
         // Then
         ASSERT_DOUBLE_EQ(hydraulicLoad, 0.13175883584243872);
@@ -132,7 +136,8 @@ namespace DiKErnel::FunctionLibrary::Test::NaturalStoneRevetmentTest
             as,
             ns,
             bs,
-            cs);
+            cs,
+            xiFactor);
 
         // Then
         ASSERT_DOUBLE_EQ(hydraulicLoad, 0.061467670383738869);
@@ -182,7 +187,8 @@ namespace DiKErnel::FunctionLibrary::Test::NaturalStoneRevetmentTest
             bs,
             cs,
             waveAngleMaximum,
-            initialDamage);
+            initialDamage,
+            xiFactor);
 
         // Then
         ASSERT_DOUBLE_EQ(incrementDegradation, 0.7411344491069477);
@@ -216,7 +222,8 @@ namespace DiKErnel::FunctionLibrary::Test::NaturalStoneRevetmentTest
             bs,
             cs,
             waveAngleMaximum,
-            initialDamage);
+            initialDamage,
+            xiFactor);
 
         // Then
         ASSERT_DOUBLE_EQ(referenceTimeDegradation, 0.0);
@@ -241,7 +248,8 @@ namespace DiKErnel::FunctionLibrary::Test::NaturalStoneRevetmentTest
             ns,
             bs,
             cs,
-            waveAngleMaximum);
+            waveAngleMaximum,
+            xiFactor);
 
         // Then
         ASSERT_DOUBLE_EQ(referenceDegradation, 0.0);

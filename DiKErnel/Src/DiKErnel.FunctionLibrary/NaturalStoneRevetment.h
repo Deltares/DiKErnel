@@ -79,7 +79,8 @@ namespace DiKErnel::FunctionLibrary
                 const double ns,
                 const double bs,
                 const double cs,
-                const double waveAngleMaximum);
+                const double waveAngleMaximum,
+                const double xiFactor);
 
             /*!
              * \brief Calculates the increment damage.
@@ -128,7 +129,8 @@ namespace DiKErnel::FunctionLibrary
                 const double bs,
                 const double cs,
                 const double waveAngleMaximum,
-                const double initialDamage);
+                const double initialDamage,
+                const double xiFactor);
 
             /*!
              * \brief Calculates the hydraulic load.
@@ -155,7 +157,8 @@ namespace DiKErnel::FunctionLibrary
                 const double as,
                 const double ns,
                 const double bs,
-                const double cs);
+                const double cs,
+                const double xiFactor);
 
             /*!
              * \brief Calculates the surf similarity parameter.
@@ -238,7 +241,8 @@ namespace DiKErnel::FunctionLibrary
                 const double bs,
                 const double cs,
                 const double waveAngleMaximum,
-                const double initialDamage);
+                const double initialDamage,
+                const double xiFactor);
 
             /*!
              * \brief Calculates the degradation.
@@ -295,7 +299,8 @@ namespace DiKErnel::FunctionLibrary
                 const double bs,
                 const double cs,
                 const double waveAngleMaximum,
-                const double initialDamage);
+                const double initialDamage,
+                const double xiFactor);
 
             /*!
              * \brief Calculates the reference degradation.
@@ -339,7 +344,8 @@ namespace DiKErnel::FunctionLibrary
                 const double ns,
                 const double bs,
                 const double cs,
-                const double waveAngleMaximum);
+                const double waveAngleMaximum,
+                const double xiFactor);
 
             /*!
              * \brief Calculates the wave angle impact.

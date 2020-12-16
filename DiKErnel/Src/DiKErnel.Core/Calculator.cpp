@@ -51,7 +51,8 @@ namespace DiKErnel::Core
             double ns,
             double bs,
             double cs,
-            double waveAngleMaximum)>& subCalculation)
+            double waveAngleMaximum,
+            double xiFactor)>& subCalculation)
     {
         thread = std::thread(
             PerformCalculation,
@@ -114,7 +115,8 @@ namespace DiKErnel::Core
             double ns,
             double bs,
             double cs,
-            double waveAngleMaximum)>& subCalculation,
+            double waveAngleMaximum,
+            double xiFactor)>& subCalculation,
         std::atomic<int>& progress,
         std::atomic<bool>& finished,
         const std::atomic<bool>& cancelled)
@@ -163,7 +165,8 @@ namespace DiKErnel::Core
                     revetment->GetCoefficientSurgingNs(),
                     revetment->GetCoefficientSurgingBs(),
                     revetment->GetCoefficientSurgingCs(),
-                    hydraulicLoads->GetWaveAngleMaximum());
+                    hydraulicLoads->GetWaveAngleMaximum(),
+                    revetment->GetSimilarityParameterThreshold());
 
                 damageLookup[locations[j]].emplace_back(std::get<1>(timeSteps[i]), result);
 
