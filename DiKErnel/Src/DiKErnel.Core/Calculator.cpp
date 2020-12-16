@@ -18,9 +18,14 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
+#define DEMO
+
 #include "Calculator.h"
 
 #include <atomic>
+#ifdef DEMO
+#include <chrono>
+#endif
 #include <cmath>
 #include <functional>
 #include <map>
@@ -161,6 +166,12 @@ namespace DiKErnel::Core
         // Perform sub-calculation for all time steps
         for (auto i = 0; i < timeSteps.size(); i++)
         {
+            // Break from loop when cancelled
+            if (cancelled)
+            {
+                break;
+            }
+
             // Perform sub-calculation for all locations
             for (auto j = 0; j < locations.size(); j++)
             {
@@ -169,6 +180,10 @@ namespace DiKErnel::Core
                 {
                     break;
                 }
+
+                #ifdef DEMO
+                std::this_thread::sleep_for(std::chrono::seconds(2));
+                #endif
 
                 const auto* revetment = locations[j]->GetRevetment();
                 const auto* profileSchematization = locations[j]->GetProfileSchematization();
