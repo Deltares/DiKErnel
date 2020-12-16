@@ -18,14 +18,13 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include "OutputComposer.h"
-
-#include <filesystem>
-#include <ostream>
 #include <nlohmann/json.hpp>
 
+#include <filesystem>
 #include <iostream>
+#include <ostream>
 
+#include "OutputComposer.h"
 #include "JsonDefinitions.h"
 #include "OutputData.h"
 #include "RevetmentOutput.h"
@@ -33,12 +32,12 @@
 namespace DiKErnel::KernelWrapper::Json
 {
     std::string OutputComposer::WriteParametersToJson(
-        std::filesystem::path filePath,
-        OutputData outputData)
+        const std::filesystem::path& filePath,
+        OutputData* outputData)
     {
         nlohmann::json json;
 
-        const auto amountOfOutputLocations = outputData.GetLocationsOutput().size();
+        const auto amountOfOutputLocations = outputData->GetCalculationLocationsOutput().size();
 
         try
         {
@@ -50,14 +49,14 @@ namespace DiKErnel::KernelWrapper::Json
                     {
                         {
                             JsonDefinitions::name,
-                            outputData.GetLocationsOutput().at(i)->GetName()
+                            outputData->GetCalculationLocationsOutput().at(i)->GetName()
                         },
                         {
                             JsonDefinitions::revetment,
                             {
                                 {
                                     JsonDefinitions::damage,
-                                    outputData.GetLocationsOutput().at(i)->GetRevetmentOutput()->GetDamage()
+                                    outputData->GetCalculationLocationsOutput().at(i)->GetRevetmentOutput()->GetDamage()
                                 }
                             }
                         }

@@ -22,9 +22,10 @@
 
 #include <filesystem>
 
+#include "OutputData.h"
+
 namespace DiKErnel::KernelWrapper::Json
 {
-    class OutputData;
     /*!
      * \brief Class responsible for generating Json output.
      */
@@ -32,14 +33,15 @@ namespace DiKErnel::KernelWrapper::Json
     {
         public:
             /*!
-             * \brief Writes the output parameters to the given json.
+             * \brief Writes the output parameters to the Json file represented by the provided
+             *        file path.
              * \param filePath
-             *        The reference path to the json file.
+             *        The path to the Json file.
              * \param outputData
              *        The output data to write.
              */
             static std::string WriteParametersToJson(
-                std::filesystem::path filePath,
-                OutputData outputData);
+                const std::filesystem::path& filePath,
+                OutputData* outputData);
     };
 }
