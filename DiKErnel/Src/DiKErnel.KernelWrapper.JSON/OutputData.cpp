@@ -23,19 +23,18 @@
 namespace DiKErnel::KernelWrapper::Json
 {
     OutputData::OutputData(
-        std::vector<CalculationLocationOutput*> locationsOutput)
-        : locationsOutput(locationsOutput) { }
+        std::vector<std::unique_ptr<CalculationLocationOutput>> calculationLocationsOutput)
+        : calculationLocationsOutput(std::move(calculationLocationsOutput)) { }
 
-    std::vector<CalculationLocationOutput*> OutputData::GetLocationsOutput() const
+    std::vector<CalculationLocationOutput*> OutputData::GetCalculationLocationsOutput() const
     {
-        return locationsOutput;
-    }
+        std::vector<CalculationLocationOutput*> calculationLocationPointers;
 
-    OutputData::~OutputData()
-    {
-        // for (auto i = 0; i < locationsOutput.size(); i++)
-        // {
-        //     delete locationsOutput[i];
-        // }
+        for (const auto& calculationLocationOutput : calculationLocationsOutput)
+        {
+            calculationLocationPointers.push_back(calculationLocationOutput.get());
+        }
+
+        return calculationLocationPointers;
     }
 }

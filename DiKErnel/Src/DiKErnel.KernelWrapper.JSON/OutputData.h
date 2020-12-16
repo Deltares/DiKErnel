@@ -31,15 +31,13 @@ namespace DiKErnel::KernelWrapper::Json
      */
     class OutputData
     {
-        std::vector<CalculationLocationOutput*> locationsOutput;
+        std::vector<std::unique_ptr<CalculationLocationOutput>> calculationLocationsOutput;
 
         public:
-            OutputData(
-            std::vector<CalculationLocationOutput*> locationsOutput
-        );
+            explicit OutputData(
+                std::vector<std::unique_ptr<CalculationLocationOutput>> calculationLocationsOutput
+            );
 
-            std::vector<CalculationLocationOutput*> GetLocationsOutput() const;
-
-        ~OutputData();
+            std::vector<CalculationLocationOutput*> GetCalculationLocationsOutput() const;
     };
 }
