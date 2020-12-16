@@ -27,6 +27,7 @@
 
 #include "CalculationLocation.h"
 #include "HydraulicLoads.h"
+#include "InputData.h"
 
 namespace DiKErnel::Core
 {
@@ -39,9 +40,7 @@ namespace DiKErnel::Core
     {
         public:
             explicit Calculator(
-                const std::vector<CalculationLocation*>& locations,
-                const std::vector<std::tuple<int, int, BoundaryConditionsPerTimeStep*>>& timeSteps,
-                const HydraulicLoads* hydraulicLoads,
+                const InputData* inputData,
                 const std::function<double(
                     double initialDamage,
                     double slopeAngle,

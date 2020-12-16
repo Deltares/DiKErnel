@@ -29,9 +29,7 @@
 namespace DiKErnel::Core
 {
     Calculator::Calculator(
-        const std::vector<CalculationLocation*>& locations,
-        const std::vector<std::tuple<int, int, BoundaryConditionsPerTimeStep*>>& timeSteps,
-        const HydraulicLoads* hydraulicLoads,
+        const InputData* inputData,
         const std::function<double(
             double initialDamage,
             double slopeAngle,
@@ -53,6 +51,18 @@ namespace DiKErnel::Core
             double waveAngleMaximum,
             double similarityParameterThreshold)>& subCalculation)
     {
+        const auto locations = inputData->GetLocations();
+        const auto times = inputData->GetCalculationData()->GetTimes();
+        const auto* hydraulicLoads = inputData->GetHydraulicLoads();
+        const auto boundariesPerTimeStep = hydraulicLoads->GetBoundaryConditionsPerTimeStep();
+
+        auto timeSteps = std::vector<std::tuple<int, int, BoundaryConditionsPerTimeStep*>>();
+
+        for (auto i = 0; i < times.size() - 1; i++)
+        {
+            timeSteps.emplace_back(times[i], times[i + 1], boundariesPerTimeStep[i]);
+        }
+
         thread = std::thread(
             PerformCalculation,
             locations,
