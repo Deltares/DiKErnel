@@ -20,54 +20,51 @@
 
 #include <nlohmann/json.hpp>
 
-#include <filesystem>
+#include <fstream>
+#include <iomanip>
 #include <iostream>
-#include <ostream>
 
 #include "OutputComposer.h"
+
 #include "JsonDefinitions.h"
 #include "OutputData.h"
 #include "RevetmentOutput.h"
 
 namespace DiKErnel::KernelWrapper::Json
 {
-    std::string OutputComposer::WriteParametersToJson(
+    void OutputComposer::WriteParametersToJson(
         const std::filesystem::path& filePath,
         OutputData* outputData)
     {
-        nlohmann::json json;
-
         try
         {
+            nlohmann::json json;
+
             json[JsonDefinitions::locations] = nlohmann::json::array();
 
             for (const auto& calculationLocationOutput : outputData->GetCalculationLocationsOutput())
             {
-                auto location = nlohmann::json::object(
-                    {
+                json[JsonDefinitions::locations].push_back(
+                    nlohmann::json::object(
                         {
-                            JsonDefinitions::name,
-                            calculationLocationOutput->GetName()
-                        },
-                        {
-                            JsonDefinitions::revetment,
                             {
+                                JsonDefinitions::name,
+                                calculationLocationOutput->GetName()
+                            },
+                            {
+                                JsonDefinitions::revetment,
                                 {
-                                    JsonDefinitions::damage,
-                                    calculationLocationOutput->GetRevetmentOutput()->GetDamage()
+                                    {
+                                        JsonDefinitions::damage,
+                                        calculationLocationOutput->GetRevetmentOutput()->GetDamage()
+                                    }
                                 }
                             }
-                        }
-                    });
-
-                json[JsonDefinitions::locations].push_back(location);
+                        }));
             }
 
-            //std::ofstream o(filePath);
-            return json.dump();
-
-            //std::cout << std::setw(4) << json << std::endl;
-            //o.close();
+            std::ofstream outfile(filePath, std::ios::trunc);
+            outfile << std::setw(4) << json << std::endl;
         }
         catch (nlohmann::json::type_error& e)
         {

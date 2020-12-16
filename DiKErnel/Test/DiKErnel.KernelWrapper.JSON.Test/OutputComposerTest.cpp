@@ -58,10 +58,10 @@ namespace DiKErnel::KernelWrapper::Json::Test
                 R"({"Locaties":[{"Bekleding":{"Schade":0.15},"Naam":"testName1"},{"Bekleding":{"Schade":0.253},"Naam":"testName2"}]})";
 
         // When
-        const auto json = OutputComposer::WriteParametersToJson(filePath, outputData.get());
+        OutputComposer::WriteParametersToJson(filePath, outputData.get());
 
         // Then
-        ASSERT_EQ(expectedJson, json);
+        ASSERT_EQ(expectedJson, "");
     }
 
     #pragma region Helper methods

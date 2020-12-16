@@ -20,8 +20,6 @@
 
 #pragma once
 
-#include <filesystem>
-
 #include "OutputData.h"
 
 namespace DiKErnel::KernelWrapper::Json
@@ -39,8 +37,10 @@ namespace DiKErnel::KernelWrapper::Json
              *        The path to the Json file.
              * \param outputData
              *        The output data to write.
+             * \remarks When a file already exists at the provided file path, the original file
+             *          contents are discarded.
              */
-            static std::string WriteParametersToJson(
+            static void WriteParametersToJson(
                 const std::filesystem::path& filePath,
                 OutputData* outputData);
     };
