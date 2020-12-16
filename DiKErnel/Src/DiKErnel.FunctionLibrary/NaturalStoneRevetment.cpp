@@ -156,7 +156,7 @@ namespace DiKErnel::FunctionLibrary
     }
 
     double NaturalStoneRevetment::CalculateSurfSimilarityParameter(
-        const double slopeAngle,
+        const double slopeAngleRadians,
         const double spectralWaveHeight,
         const double spectralWavePeriod)
     {
@@ -164,10 +164,8 @@ namespace DiKErnel::FunctionLibrary
         const auto spectralWavePeriodRelatedValue = Constants::GRAVITY * pow(spectralWavePeriod, 2.0);
 
         const auto denominator = sqrt(spectralWaveHeightRelatedValue / spectralWavePeriodRelatedValue);
-        const auto slopeAngleRadians = ConvertDegreesToRadians(slopeAngle);
-        const auto numerator = tan(slopeAngleRadians);
 
-        return numerator / denominator;
+        return slopeAngleRadians / denominator;
     }
 
     double NaturalStoneRevetment::CalculateResistance(
