@@ -25,10 +25,10 @@
 namespace DiKErnel::KernelWrapper::Json
 {
     CalculationLocationOutput::CalculationLocationOutput(
-        std::string name,
-        RevetmentOutput* revetmentOutput)
+        const std::string& name,
+        std::unique_ptr<RevetmentOutput> revetmentOutput)
         : name(name),
-        revetmentOutput(revetmentOutput) { }
+          revetmentOutput(std::move(revetmentOutput)) { }
 
     std::string CalculationLocationOutput::GetName() const
     {
@@ -37,8 +37,6 @@ namespace DiKErnel::KernelWrapper::Json
 
     RevetmentOutput* CalculationLocationOutput::GetRevetmentOutput() const
     {
-        return revetmentOutput;
+        return revetmentOutput.get();
     }
-
-    CalculationLocationOutput::~CalculationLocationOutput() {}
 }

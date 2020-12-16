@@ -20,6 +20,7 @@
 
 #pragma once
 
+#include <memory>
 #include <string>
 
 #include "RevetmentOutput.h"
@@ -32,7 +33,7 @@ namespace DiKErnel::KernelWrapper::Json
     class CalculationLocationOutput
     {
         std::string name;
-        RevetmentOutput* revetmentOutput;
+        std::unique_ptr<RevetmentOutput> revetmentOutput;
 
         public:
             /*!
@@ -43,9 +44,8 @@ namespace DiKErnel::KernelWrapper::Json
              *        The revetment output.
              */
             explicit CalculationLocationOutput(
-                std::string name,
-                RevetmentOutput* revetmentOutput);
-
+                const std::string& name,
+                std::unique_ptr<RevetmentOutput> revetmentOutput);
 
             /*!
              * \brief Gets the name of the location.
@@ -58,7 +58,5 @@ namespace DiKErnel::KernelWrapper::Json
              * \return The revetment output.
              */
             RevetmentOutput* GetRevetmentOutput() const;
-
-            ~CalculationLocationOutput();
     };
 }
