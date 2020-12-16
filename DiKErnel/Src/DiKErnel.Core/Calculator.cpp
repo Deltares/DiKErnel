@@ -23,7 +23,6 @@
 #include <atomic>
 #include <cmath>
 #include <functional>
-#include <iostream>
 #include <map>
 #include <thread>
 
@@ -62,7 +61,8 @@ namespace DiKErnel::Core
             subCalculation,
             std::ref(progress),
             std::ref(finished),
-            std::ref(cancelled));
+            std::ref(cancelled),
+            std::ref(results));
     }
 
     void Calculator::WaitForCompletion()
@@ -93,6 +93,11 @@ namespace DiKErnel::Core
         return cancelled;
     }
 
+    std::map<CalculationLocation*, std::vector<std::tuple<double, double>>> Calculator::GetResults() const
+    {
+        return results;
+    }
+
     void Calculator::PerformCalculation(
         const std::vector<CalculationLocation*>& locations,
         const std::vector<std::tuple<int, int, BoundaryConditionsPerTimeStep*>>& timeSteps,
@@ -119,16 +124,15 @@ namespace DiKErnel::Core
             double xiFactor)>& subCalculation,
         std::atomic<int>& progress,
         std::atomic<bool>& finished,
-        const std::atomic<bool>& cancelled)
+        const std::atomic<bool>& cancelled,
+        std::map<CalculationLocation*, std::vector<std::tuple<double, double>>>& results)
     {
         const auto totalSteps = locations.size() * timeSteps.size();
 
-        std::map<CalculationLocation*, std::vector<std::tuple<double, double>>> damageLookup;
-
         for (auto* location : locations)
         {
-            damageLookup[location] = std::vector<std::tuple<double, double>>();
-            damageLookup[location].emplace_back(std::get<0>(timeSteps[0]), location->GetRevetment()->GetInitialDamage());
+            results[location] = std::vector<std::tuple<double, double>>();
+            results[location].emplace_back(std::get<0>(timeSteps[0]), location->GetRevetment()->GetInitialDamage());
         }
 
         // Perform sub-calculation for all time steps
@@ -148,7 +152,7 @@ namespace DiKErnel::Core
                 const auto* boundaryCondition = std::get<2>(timeSteps[i]);
 
                 const auto result = subCalculation(
-                    std::get<1>(damageLookup[locations[j]].back()),
+                    std::get<1>(results[locations[j]].back()),
                     profileSchematization->GetTanA(),
                     revetment->GetRelativeDensity(),
                     revetment->GetThicknessTopLayer(),
@@ -168,22 +172,10 @@ namespace DiKErnel::Core
                     hydraulicLoads->GetWaveAngleMaximum(),
                     revetment->GetSimilarityParameterThreshold());
 
-                damageLookup[locations[j]].emplace_back(std::get<1>(timeSteps[i]), result);
+                results[locations[j]].emplace_back(std::get<1>(timeSteps[i]), result);
 
                 // Update progress indicator
                 progress = std::ceil((i * timeSteps.size() + j + 1.0) / totalSteps * 100);
-            }
-        }
-
-        for (const auto& [location, damageLookup] : damageLookup)
-        {
-            std::cout << std::endl;
-            std::cout << "-> Location: " << location->GetName() << std::endl;
-            std::cout << "-> Damages: " << std::endl;
-
-            for (auto lookup : damageLookup)
-            {
-                std::cout << "\t -> Time: " << std::get<0>(lookup) << ", Damage: " << std::get<1>(lookup) << "." << std::endl;
             }
         }
 

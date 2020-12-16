@@ -21,6 +21,7 @@
 #pragma once
 #include <atomic>
 #include <functional>
+#include <map>
 #include <thread>
 #include <vector>
 
@@ -72,11 +73,14 @@ namespace DiKErnel::Core
 
             bool IsCancelled() const;
 
+            std::map<CalculationLocation*, std::vector<std::tuple<double, double>>> GetResults() const;
+
         private:
             std::thread thread;
             std::atomic<int> progress = 0;
             std::atomic<bool> cancelled = false;
             std::atomic<bool> finished = false;
+            std::map<CalculationLocation*, std::vector<std::tuple<double, double>>> results;
 
             static void PerformCalculation(
                 const std::vector<CalculationLocation*>& locations,
@@ -104,6 +108,7 @@ namespace DiKErnel::Core
                     double xiFactor)>& subCalculation,
                 std::atomic<int>& progress,
                 std::atomic<bool>& finished,
-                const std::atomic<bool>& cancelled);
+                const std::atomic<bool>& cancelled,
+                std::map<CalculationLocation*, std::vector<std::tuple<double, double>>>& results);
     };
 }

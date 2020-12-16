@@ -128,6 +128,23 @@ int main()
     else
     {
         cout << endl;
+        cout << "|=========|" << endl;
+        cout << "| Results |" << endl;
+        cout << "|=========|" << endl;
+
+        for (const auto& [location, damageAtTimeSteps] : calculator.GetResults())
+        {
+            std::cout << std::endl;
+            std::cout << "-> Location: " << location->GetName() << std::endl;
+            std::cout << "-> Damages: " << std::endl;
+        
+            for (const auto& [timeStep, damage] : damageAtTimeSteps)
+            {
+                std::cout << "\t -> Time: " << timeStep << ", Damage: " << damage << "." << std::endl;
+            }
+        }
+
+        cout << endl;
         cout << "|========================|" << endl;
         cout << "| Calculation successful |" << endl;
         cout << "|========================|" << endl;
