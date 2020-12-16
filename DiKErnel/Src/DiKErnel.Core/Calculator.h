@@ -113,7 +113,7 @@ namespace DiKErnel::Core
                 const std::atomic<bool>& cancelled,
                 std::map<CalculationLocation*, std::vector<std::tuple<double, double>>>& results);
 
-            static void PerformCalculationForLocationAndTimeStep(
+            static void PerformCalculationForTimeStepAndLocation(
                 std::tuple<int, int, BoundaryConditionsPerTimeStep*> currentTimeStep,
                 CalculationLocation* currentLocation,
                 const HydraulicLoads* hydraulicLoads,

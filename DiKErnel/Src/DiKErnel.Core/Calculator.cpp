@@ -161,19 +161,15 @@ namespace DiKErnel::Core
             results[location].emplace_back(std::get<0>(timeSteps[0]), location->GetRevetment()->GetInitialDamage());
         }
 
-        // Perform sub-calculation for all time steps
-        for (auto i = 0; i < timeSteps.size(); i++)
+        for (const auto& timeStep : timeSteps)
         {
-            // Break from loop when cancelled
             if (cancelled)
             {
                 break;
             }
 
-            // Perform sub-calculation for all locations
-            for (auto j = 0; j < locations.size(); j++)
+            for (auto* location : locations)
             {
-                // Break from loop when cancelled
                 if (cancelled)
                 {
                     break;
@@ -181,7 +177,7 @@ namespace DiKErnel::Core
 
                 std::this_thread::sleep_for(std::chrono::seconds(waitTime));
 
-                PerformCalculationForLocationAndTimeStep(timeSteps[i], locations[j], hydraulicLoads, subCalculation, results);
+                PerformCalculationForTimeStepAndLocation(timeStep, location, hydraulicLoads, subCalculation, results);
 
                 progress = progress + percentagePerCalculation;
             }
@@ -191,7 +187,7 @@ namespace DiKErnel::Core
         finished = true;
     }
 
-    void Calculator::PerformCalculationForLocationAndTimeStep(
+    void Calculator::PerformCalculationForTimeStepAndLocation(
         std::tuple<int, int, BoundaryConditionsPerTimeStep*> currentTimeStep,
         CalculationLocation* currentLocation,
         const HydraulicLoads* hydraulicLoads,
