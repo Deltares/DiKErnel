@@ -84,7 +84,7 @@ namespace DiKErnel::FunctionLibrary
              * \param waveAngleMaximum
              *        The maximum incoming wave angle.
              *        Unit = [°]
-             * \param xiFactor
+             * \param similarityParameterThreshold
              *        The similarity parameter threshold,
              *        determines whether there is plunging or surging.
              *        Unit = [-]
@@ -111,7 +111,7 @@ namespace DiKErnel::FunctionLibrary
                 double cs,
                 double ns,
                 double waveAngleMaximum,
-                double xiFactor);
+                double similarityParameterThreshold);
 
             /*!
              * \brief Calculates the increment damage.
@@ -169,7 +169,7 @@ namespace DiKErnel::FunctionLibrary
              * \param initialDamage
              *        The cumulative damage from previous timestep.
              *        Unit = [-]
-             * \param xiFactor
+             * \param similarityParameterThreshold
              *        The similarity parameter threshold,
              *        determines whether there is plunging or surging.
              *        Unit = [-]
@@ -195,7 +195,7 @@ namespace DiKErnel::FunctionLibrary
                 double ns,
                 double waveAngleMaximum,
                 double initialDamage,
-                double xiFactor);
+                double similarityParameterThreshold);
 
             /*!
              * \brief Calculates the hydraulic load.
@@ -232,7 +232,7 @@ namespace DiKErnel::FunctionLibrary
              * \param ns
              *        The N coefficient for surging.
              *        Unit = [-]
-             * \param xiFactor
+             * \param similarityParameterThreshold
              *        The similarity parameter threshold,
              *        determines whether there is plunging or surging.
              *        Unit = [-]
@@ -251,7 +251,7 @@ namespace DiKErnel::FunctionLibrary
                 double bs,
                 double cs,
                 double ns,
-                double xiFactor);
+                double similarityParameterThreshold);
 
             /*!
              * \brief Calculates the surf similarity parameter.
@@ -343,7 +343,7 @@ namespace DiKErnel::FunctionLibrary
             * \param initialDamage
             *        The cumulative damage from previous timestep.
             *        Unit = [-]
-            * \param xiFactor
+            * \param similarityParameterThreshold
             *        The similarity parameter threshold,
             *        determines whether there is plunging or surging.
             *        Unit = [-]
@@ -369,7 +369,7 @@ namespace DiKErnel::FunctionLibrary
                 double ns,
                 double waveAngleMaximum,
                 double initialDamage,
-                double xiFactor);
+                double similarityParameterThreshold);
 
             /*!
              * \brief Calculates the degradation.
@@ -437,7 +437,7 @@ namespace DiKErnel::FunctionLibrary
              * \param initialDamage
              *        The cumulative damage from previous timestep.
              *        Unit = [-]
-             * \param xiFactor
+             * \param similarityParameterThreshold
              *        The similarity parameter threshold,
              *        determines whether there is plunging or surging.
              *        Unit = [-]
@@ -461,7 +461,7 @@ namespace DiKErnel::FunctionLibrary
                 double ns,
                 double waveAngleMaximum,
                 double initialDamage,
-                double xiFactor);
+                double similarityParameterThreshold);
 
             /*!
              * \brief Calculates the reference degradation.
@@ -513,7 +513,7 @@ namespace DiKErnel::FunctionLibrary
              * \param waveAngleMaximum
              *        The maximum incoming wave angle.
              *        Unit = [°]
-             * \param xiFactor
+             * \param similarityParameterThreshold
              *        The similarity parameter threshold,
              *        determines whether there is plunging or surging.
              *        Unit = [-]
@@ -537,7 +537,7 @@ namespace DiKErnel::FunctionLibrary
                 double cs,
                 double ns,
                 double waveAngleMaximum,
-                double xiFactor);
+                double similarityParameterThreshold);
 
             /*!
              * \brief Calculates the wave angle impact.

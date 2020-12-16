@@ -61,7 +61,7 @@ namespace DiKErnel::Core
                     double cs,
                     double ns,
                     double waveAngleMaximum,
-                    double xiFactor)>& subCalculation);
+                    double similarityParameterThreshold)>& subCalculation);
 
             void WaitForCompletion();
 
@@ -105,7 +105,7 @@ namespace DiKErnel::Core
                     double cs,
                     double ns,
                     double waveAngleMaximum,
-                    double xiFactor)>& subCalculation,
+                    double similarityParameterThreshold)>& subCalculation,
                 std::atomic<int>& progress,
                 std::atomic<bool>& finished,
                 const std::atomic<bool>& cancelled,
