@@ -23,17 +23,26 @@
 namespace DiKErnel::KernelWrapper::Json
 {
     /*!
-     * \brief Class responsible for serving as data model for revetment output.
+     * \brief Container for revetment output data.
      */
     class RevetmentOutput
     {
         double damage;
 
         public:
-        RevetmentOutput(
-            double damage
-        );
+            /*!
+             * \brief Creates a new instance.
+             * \param damage
+             *        The damage.
+             */
+            explicit RevetmentOutput(
+                double damage
+            );
 
-        double GetDamage() const;
+            /*!
+             * \brief Gets the damage.
+             * \return The damage.
+             */
+            double GetDamage() const;
     };
 }
