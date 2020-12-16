@@ -38,7 +38,7 @@
 			},
 			{
 				"GolfhoogteHm0": 0.5,
-				"GolfperiodeTm10": 8,
+				"GolfperiodeTm10": 4,
 				"Golfhoek": 8
 			}
 		]
@@ -55,12 +55,12 @@
 				"BeginSchade": 0,
 				"BrekerIndexGrenswaarde": 2.9,
 				"CoefficientPlungingAp": 4,
-				"CoefficientPlungingBp": 0.8,
+				"CoefficientPlungingBp": 0,
 				"CoefficientPlungingCp": 0,
-				"CoefficientPlungingNp": 0,
-				"CoefficientSurgingAs": 0,
+				"CoefficientPlungingNp": -0.9,
+				"CoefficientSurgingAs": 0.8,
 				"CoefficientSurgingBs": 0,
-				"CoefficientSurgingCs": -0.9,
+				"CoefficientSurgingCs": 0,
 				"CoefficientSurgingNs": 0.6
 			},
 			"Profielschematisatie":
@@ -78,12 +78,12 @@
 				"BeginSchade": 0,
 				"BrekerIndexGrenswaarde": 2.9,
 				"CoefficientPlungingAp": 4,
-				"CoefficientPlungingBp": 0.8,
+				"CoefficientPlungingBp": 0,
 				"CoefficientPlungingCp": 0,
-				"CoefficientPlungingNp": 0,
-				"CoefficientSurgingAs": 0,
+				"CoefficientPlungingNp": -0.9,
+				"CoefficientSurgingAs": 0.8,
 				"CoefficientSurgingBs": 0,
-				"CoefficientSurgingCs": -0.9,
+				"CoefficientSurgingCs": 0,
 				"CoefficientSurgingNs": 0.6
 			},
 			"Profielschematisatie":

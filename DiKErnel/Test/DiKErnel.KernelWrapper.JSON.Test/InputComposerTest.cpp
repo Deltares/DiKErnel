@@ -173,7 +173,7 @@ namespace DiKErnel::KernelWrapper::Json::Test
         AssertBoundaryConditionsForTimeStep(boundaryConditionsPerTimeStep[1], 0.8, 6.0, -5.0);
         AssertBoundaryConditionsForTimeStep(boundaryConditionsPerTimeStep[2], 1.2, 6.0, 0.0);
         AssertBoundaryConditionsForTimeStep(boundaryConditionsPerTimeStep[3], 1.5, 7.0, 7.0);
-        AssertBoundaryConditionsForTimeStep(boundaryConditionsPerTimeStep[4], 0.5, 8.0, 8.0);
+        AssertBoundaryConditionsForTimeStep(boundaryConditionsPerTimeStep[4], 0.5, 4.0, 8.0);
     }
 
     void AssertBoundaryConditionsForTimeStep(
@@ -190,9 +190,9 @@ namespace DiKErnel::KernelWrapper::Json::Test
     void AssertCalculationLocations(
         std::vector<CalculationLocation*> calculationLocations)
     {
-        AssertCalculationLocation(calculationLocations[0], "LocatieZwak", "Noorse Steen", 1.65, 0.3, 0.0, 2.9, 4.0, 0.8, 0.0, 0.0, 0.0, 0.0, -0.9,
+        AssertCalculationLocation(calculationLocations[0], "LocatieZwak", "Noorse Steen", 1.65, 0.3, 0.0, 2.9, 4.0, 0.0, 0.0, -0.9, 0.8, 0.0, 0.0,
                                   0.6, 0.3);
-        AssertCalculationLocation(calculationLocations[1], "LocatieSterk", "Noorse Steen", 1.65, 0.7, 0.0, 2.9, 4.0, 0.8, 0.0, 0.0, 0.0, 0.0, -0.9,
+        AssertCalculationLocation(calculationLocations[1], "LocatieSterk", "Noorse Steen", 1.65, 0.7, 0.0, 2.9, 4.0, 0.0, 0.0, -0.9, 0.8, 0.0, 0.0,
                                   0.6, 0.3);
     }
 
