@@ -22,11 +22,12 @@
 
 #include <string>
 
+#include "RevetmentOutput.h"
+
 namespace DiKErnel::KernelWrapper::Json
 {
-    class RevetmentOutput;
     /*!
-     * \brief Container for location data output.
+     * \brief Container for location output data.
      */
     class CalculationLocationOutput
     {
@@ -34,14 +35,30 @@ namespace DiKErnel::KernelWrapper::Json
         RevetmentOutput* revetmentOutput;
 
         public:
-            CalculationLocationOutput(
-            std::string name,
-                RevetmentOutput* revetment);
+            /*!
+             * \brief Creates a new instance.
+             * \param name
+             *        The name of the location.
+             * \param revetmentOutput
+             *        The revetment output.
+             */
+            explicit CalculationLocationOutput(
+                std::string name,
+                RevetmentOutput* revetmentOutput);
 
-        std::string GetName() const;
 
-        RevetmentOutput* GetRevetmentOutput() const;
+            /*!
+             * \brief Gets the name of the location.
+             * \return The name of the location.
+             */
+            std::string GetName() const;
 
-        ~CalculationLocationOutput();
+            /*!
+             * \brief Gets the revetment output.
+             * \return The revetment output.
+             */
+            RevetmentOutput* GetRevetmentOutput() const;
+
+            ~CalculationLocationOutput();
     };
 }
