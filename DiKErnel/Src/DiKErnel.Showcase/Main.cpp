@@ -18,6 +18,7 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
+#include <filesystem>
 #include <iostream>
 #include <string>
 #include <thread>
@@ -25,6 +26,7 @@
 #include "InputComposer.h"
 #include "InputData.h"
 #include "NaturalStoneRevetment.h"
+#include "OutputComposer.h"
 
 using namespace std;
 using namespace DiKErnel::Core;
@@ -132,17 +134,25 @@ int main()
         cout << "| Results |" << endl;
         cout << "|=========|" << endl;
 
+        std::vector<std::unique_ptr<CalculationLocationOutput>> calculationLocationsOutput;
+        
         for (const auto& [location, damageAtTimeSteps] : calculator.GetResults())
         {
-            std::cout << std::endl;
-            std::cout << "-> Location: " << location->GetName() << std::endl;
-            std::cout << "-> Damages: " << std::endl;
-        
-            for (const auto& [timeStep, damage] : damageAtTimeSteps)
-            {
-                std::cout << "\t -> Time: " << timeStep << ", Damage: " << damage << "." << std::endl;
-            }
+            calculationLocationsOutput.push_back(
+                std::make_unique<CalculationLocationOutput>(location->GetName(),
+                std::make_unique<RevetmentOutput>(std::get<1>(damageAtTimeSteps.back()))));
         }
+
+        const auto outputData = std::make_unique<OutputData>(std::move(calculationLocationsOutput));
+
+
+        auto directory = std::filesystem::path(jsonFilePath).parent_path();
+        const auto outputPath = directory / "output.json";
+
+        OutputComposer::WriteParametersToJson(outputPath.u8string(), outputData.get());
+
+        cout << endl;
+        cout << "-> Calculation output is written to: " << outputPath << endl;
 
         cout << endl;
         cout << "|========================|" << endl;
