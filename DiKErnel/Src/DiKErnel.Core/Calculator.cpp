@@ -106,6 +106,18 @@ namespace DiKErnel::Core
     std::unique_ptr<OutputData> Calculator::GetOutputData() const
     {
         std::vector<std::unique_ptr<CalculationLocationOutput>> calculationLocationsOutput;
+
+        if (finished)
+        {
+            for (const auto& [location, damageAtTimeSteps] : results)
+            {
+                calculationLocationsOutput.push_back(
+                    std::make_unique<CalculationLocationOutput>(
+                        location->GetName(),
+                        std::make_unique<RevetmentOutput>(std::get<1>(damageAtTimeSteps.back()))));
+            }
+        }
+
         return std::make_unique<OutputData>(std::move(calculationLocationsOutput));
     }
 
