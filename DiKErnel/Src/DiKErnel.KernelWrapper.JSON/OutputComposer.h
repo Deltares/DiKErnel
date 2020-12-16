@@ -20,8 +20,6 @@
 
 #pragma once
 
-#include <filesystem>
-
 #include "OutputData.h"
 
 namespace DiKErnel::KernelWrapper::Json
@@ -43,7 +41,7 @@ namespace DiKErnel::KernelWrapper::Json
              *          contents are discarded.
              */
             static void WriteParametersToJson(
-                const std::filesystem::path& filePath,
+                const std::string& filePath,
                 OutputData* outputData);
     };
 }

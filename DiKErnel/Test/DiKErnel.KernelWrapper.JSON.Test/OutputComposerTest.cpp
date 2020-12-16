@@ -45,14 +45,17 @@ namespace DiKErnel::KernelWrapper::Json::Test
     // Given
     struct OutputComposerTest : testing::Test
     {
-        const std::filesystem::path expectedOutputFilePath = TestUtil::TestDataHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Test") /
-                "expectedOutput.json";
+        const std::string expectedOutputFilePath = 
+            (TestUtil::TestDataHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Test")
+                / "expectedOutput.json").string();
 
-        const std::filesystem::path actualOutputFilePath = std::filesystem::temp_directory_path() / "actualOutput.json";
+        const std::string actualOutputFilePath = 
+            (std::filesystem::temp_directory_path()
+                / "actualOutput.json").string();
 
         ~OutputComposerTest()
         {
-            std::remove(actualOutputFilePath.string().c_str());
+            std::remove(actualOutputFilePath.c_str());
         }
     };
 
@@ -70,7 +73,7 @@ namespace DiKErnel::KernelWrapper::Json::Test
         OutputComposer::WriteParametersToJson(actualOutputFilePath, outputData.get());
 
         // Then
-        AssertFileContents(expectedOutputFilePath.string(), actualOutputFilePath.string());
+        AssertFileContents(expectedOutputFilePath, actualOutputFilePath);
     }
 
     #pragma region Helper methods

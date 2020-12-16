@@ -20,21 +20,19 @@
 
 #include <nlohmann/json.hpp>
 
-#include <filesystem>
 #include <fstream>
 #include <iomanip>
 #include <iostream>
 
-#include "OutputComposer.h"
-
 #include "JsonDefinitions.h"
+#include "OutputComposer.h"
 #include "OutputData.h"
 #include "RevetmentOutput.h"
 
 namespace DiKErnel::KernelWrapper::Json
 {
     void OutputComposer::WriteParametersToJson(
-        const std::filesystem::path& filePath,
+        const std::string& filePath,
         OutputData* outputData)
     {
         try
