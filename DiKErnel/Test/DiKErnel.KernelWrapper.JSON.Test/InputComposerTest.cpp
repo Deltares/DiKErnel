@@ -85,13 +85,16 @@ namespace DiKErnel::KernelWrapper::Json::Test
     // Given
     struct InputComposerTest : testing::Test
     {
-        const std::filesystem::path filePath = TestUtil::TestDataHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Test") / "testInput.json";
+        const std::string filePath =
+        (TestUtil::TestDataHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Test")
+            / "InputComposerTest"
+            / "testInput.json").string();
     };
 
     TEST_F(InputComposerTest, GivenFilePathAndInputComposer_WhenGetDomainParametersFromJson_ThenCorrectDataSet)
     {
         // When
-        const auto inputData = InputComposer::GetDomainParametersFromJson(filePath.u8string());
+        const auto inputData = InputComposer::GetDomainParametersFromJson(filePath);
 
         // Then
         AssertCalculationData(inputData->GetCalculationData());

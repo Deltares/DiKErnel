@@ -47,6 +47,7 @@ namespace DiKErnel::KernelWrapper::Json::Test
     {
         const std::string expectedOutputFilePath = 
             (TestUtil::TestDataHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Test")
+                / "OutputComposerTest"
                 / "expectedOutput.json").string();
 
         const std::string actualOutputFilePath = 
