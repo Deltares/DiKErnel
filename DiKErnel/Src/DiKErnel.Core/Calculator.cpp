@@ -121,11 +121,6 @@ namespace DiKErnel::Core
         return std::make_unique<OutputData>(std::move(calculationLocationsOutput));
     }
 
-    std::map<CalculationLocation*, std::vector<std::tuple<double, double>>> Calculator::GetResults() const
-    {
-        return results;
-    }
-
     void Calculator::PerformCalculation(
         const std::vector<CalculationLocation*>& locations,
         const std::vector<std::tuple<int, int, BoundaryConditionsPerTimeStep*>>& timeSteps,

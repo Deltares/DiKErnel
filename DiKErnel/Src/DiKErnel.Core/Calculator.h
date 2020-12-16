@@ -75,8 +75,6 @@ namespace DiKErnel::Core
 
             std::unique_ptr<OutputData> GetOutputData() const;
 
-            std::map<CalculationLocation*, std::vector<std::tuple<double, double>>> GetResults() const;
-
         private:
             std::thread thread;
             std::atomic<int> progress = 0;

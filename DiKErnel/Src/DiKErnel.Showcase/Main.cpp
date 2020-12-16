@@ -116,24 +116,12 @@ int main()
     }
     else
     {
-        std::vector<std::unique_ptr<CalculationLocationOutput>> calculationLocationsOutput;
+        const auto outputData = calculator.GetOutputData();
 
-        for (const auto& [location, damageAtTimeSteps] : calculator.GetResults())
-        {
-            calculationLocationsOutput.push_back(
-                std::make_unique<CalculationLocationOutput>(
-                    location->GetName(),
-                    std::make_unique<RevetmentOutput>(std::get<1>(damageAtTimeSteps.back()))));
-        }
-
-        const auto outputData = std::make_unique<OutputData>(std::move(calculationLocationsOutput));
-
-        const auto output = calculator.GetOutputData();
-
-        auto directory = std::filesystem::path(jsonFilePath).parent_path();
+        const auto directory = std::filesystem::path(jsonFilePath).parent_path();
         const auto outputPath = directory / "output.json";
 
-        OutputComposer::WriteParametersToJson(outputPath.u8string(), output.get());
+        OutputComposer::WriteParametersToJson(outputPath.u8string(), outputData.get());
 
         cout << endl;
         cout << "|========================|" << endl;
