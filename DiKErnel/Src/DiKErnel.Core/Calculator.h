@@ -28,6 +28,7 @@
 #include "CalculationLocation.h"
 #include "HydraulicLoads.h"
 #include "InputData.h"
+#include "OutputData.h"
 
 namespace DiKErnel::Core
 {
@@ -71,6 +72,8 @@ namespace DiKErnel::Core
             void Cancel();
 
             bool IsCancelled() const;
+
+            std::unique_ptr<OutputData> GetOutputData() const;
 
             std::map<CalculationLocation*, std::vector<std::tuple<double, double>>> GetResults() const;
 

@@ -103,6 +103,12 @@ namespace DiKErnel::Core
         return cancelled;
     }
 
+    std::unique_ptr<OutputData> Calculator::GetOutputData() const
+    {
+        std::vector<std::unique_ptr<CalculationLocationOutput>> calculationLocationsOutput;
+        return std::make_unique<OutputData>(std::move(calculationLocationsOutput));
+    }
+
     std::map<CalculationLocation*, std::vector<std::tuple<double, double>>> Calculator::GetResults() const
     {
         return results;

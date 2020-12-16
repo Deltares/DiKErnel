@@ -128,10 +128,12 @@ int main()
 
         const auto outputData = std::make_unique<OutputData>(std::move(calculationLocationsOutput));
 
+        const auto output = calculator.GetOutputData();
+
         auto directory = std::filesystem::path(jsonFilePath).parent_path();
         const auto outputPath = directory / "output.json";
 
-        OutputComposer::WriteParametersToJson(outputPath.u8string(), outputData.get());
+        OutputComposer::WriteParametersToJson(outputPath.u8string(), output.get());
 
         cout << endl;
         cout << "|========================|" << endl;
