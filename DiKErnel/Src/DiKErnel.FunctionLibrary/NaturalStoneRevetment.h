@@ -57,30 +57,61 @@ namespace DiKErnel::FunctionLibrary
              * \param endTime
              *        The end time.
              *        Unit = [s]
+             * \param ap
+             *        The A coefficient for plunging.
+             *        Unit = [-]
+             * \param bp
+             *        The B coefficient for plunging.
+             *        Unit = [-]
+             * \param cp
+             *        The C coefficient for plunging.
+             *        Unit = [-]
+             * \param np
+             *        The N coefficient for plunging.
+             *        Unit = [-]
+             * \param as
+             *        The A coefficient for surging.
+             *        Unit = [-]
+             * \param bs
+             *        The B coefficient for surging.
+             *        Unit = [-]
+             * \param cs
+             *        The C coefficient for surging.
+             *        Unit = [-]
+             * \param ns
+             *        The N coefficient for surging.
+             *        Unit = [-]
+             * \param waveAngleMaximum
+             *        The maximum incoming wave angle.
+             *        Unit = [°]
+             * \param xiFactor
+             *        The similarity parameter threshold,
+             *        determines whether there is plunging or surging.
+             *        Unit = [-]
              * \return The calculated total damage.
              *         Unit = [-]
              *         Range = [0, 1]
              */
             static double CalculateDamage(
-                const double initialDamage,
-                const double slopeAngle,
-                const double relativeDensity,
-                const double thicknessTopLayer,
-                const double spectralWaveHeight,
-                const double spectralWavePeriod,
-                const double waveAngle,
-                const double startTime,
-                const double endTime,
-                const double ap,
-                const double bp,
-                const double cp,
-                const double np,
-                const double as,
-                const double bs,
-                const double cs,
-                const double ns,
-                const double waveAngleMaximum,
-                const double xiFactor);
+                double initialDamage,
+                double slopeAngle,
+                double relativeDensity,
+                double thicknessTopLayer,
+                double spectralWaveHeight,
+                double spectralWavePeriod,
+                double waveAngle,
+                double startTime,
+                double endTime,
+                double ap,
+                double bp,
+                double cp,
+                double np,
+                double as,
+                double bs,
+                double cs,
+                double ns,
+                double waveAngleMaximum,
+                double xiFactor);
 
             /*!
              * \brief Calculates the increment damage.
@@ -108,29 +139,63 @@ namespace DiKErnel::FunctionLibrary
              * \param endTime
              *        The end time.
              *        Unit = [s]
+             * \param ap
+             *        The A coefficient for plunging.
+             *        Unit = [-]
+             * \param bp
+             *        The B coefficient for plunging.
+             *        Unit = [-]
+             * \param cp
+             *        The C coefficient for plunging.
+             *        Unit = [-]
+             * \param np
+             *        The N coefficient for plunging.
+             *        Unit = [-]
+             * \param as
+             *        The A coefficient for surging.
+             *        Unit = [-]
+             * \param bs
+             *        The B coefficient for surging.
+             *        Unit = [-]
+             * \param cs
+             *        The C coefficient for surging.
+             *        Unit = [-]
+             * \param ns
+             *        The N coefficient for surging.
+             *        Unit = [-]
+             * \param waveAngleMaximum
+             *        The maximum incoming wave angle.
+             *        Unit = [°]
+             * \param initialDamage
+             *        The cumulative damage from previous timestep.
+             *        Unit = [-]
+             * \param xiFactor
+             *        The similarity parameter threshold,
+             *        determines whether there is plunging or surging.
+             *        Unit = [-]
              * \return The calculated increment damage.
              *         Unit = [-]
              */
             static double CalculateIncrementDamage(
-                const double slopeAngle,
-                const double relativeDensity,
-                const double thicknessTopLayer,
-                const double spectralWaveHeight,
-                const double spectralWavePeriod,
-                const double waveAngle,
-                const double startTime,
-                const double endTime,
-                const double ap,
-                const double bp,
-                const double cp,
-                const double np,
-                const double as,
-                const double bs,
-                const double cs,
-                const double ns,
-                const double waveAngleMaximum,
-                const double initialDamage,
-                const double xiFactor);
+                double slopeAngle,
+                double relativeDensity,
+                double thicknessTopLayer,
+                double spectralWaveHeight,
+                double spectralWavePeriod,
+                double waveAngle,
+                double startTime,
+                double endTime,
+                double ap,
+                double bp,
+                double cp,
+                double np,
+                double as,
+                double bs,
+                double cs,
+                double ns,
+                double waveAngleMaximum,
+                double initialDamage,
+                double xiFactor);
 
             /*!
              * \brief Calculates the hydraulic load.
@@ -143,22 +208,50 @@ namespace DiKErnel::FunctionLibrary
              * \param spectralWavePeriod
              *        The spectral wave period between ti-1 and ti.
              *        Unit = [s]
+             * \param ap
+             *        The A coefficient for plunging.
+             *        Unit = [-]
+             * \param bp
+             *        The B coefficient for plunging.
+             *        Unit = [-]
+             * \param cp
+             *        The C coefficient for plunging.
+             *        Unit = [-]
+             * \param np
+             *        The N coefficient for plunging.
+             *        Unit = [-]
+             * \param as
+             *        The A coefficient for surging.
+             *        Unit = [-]
+             * \param bs
+             *        The B coefficient for surging.
+             *        Unit = [-]
+             * \param cs
+             *        The C coefficient for surging.
+             *        Unit = [-]
+             * \param ns
+             *        The N coefficient for surging.
+             *        Unit = [-]
+             * \param xiFactor
+             *        The similarity parameter threshold,
+             *        determines whether there is plunging or surging.
+             *        Unit = [-]
              * \return The calculated hydraulic load.
              *         Unit = [-]
              */
             static double CalculateHydraulicLoad(
-                const double slopeAngle,
-                const double spectralWaveHeight,
-                const double spectralWavePeriod,
-                const double ap,
-                const double bp,
-                const double cp,
-                const double np,
-                const double as,
-                const double bs,
-                const double cs,
-                const double ns,
-                const double xiFactor);
+                double slopeAngle,
+                double spectralWaveHeight,
+                double spectralWavePeriod,
+                double ap,
+                double bp,
+                double cp,
+                double np,
+                double as,
+                double bs,
+                double cs,
+                double ns,
+                double xiFactor);
 
             /*!
              * \brief Calculates the surf similarity parameter.
@@ -220,29 +313,63 @@ namespace DiKErnel::FunctionLibrary
                  * \param endTime
                  *        The end time.
                  *        Unit = [s]
+             * \param ap
+             *        The A coefficient for plunging.
+             *        Unit = [-]
+             * \param bp
+             *        The B coefficient for plunging.
+             *        Unit = [-]
+             * \param cp
+             *        The C coefficient for plunging.
+             *        Unit = [-]
+             * \param np
+             *        The N coefficient for plunging.
+             *        Unit = [-]
+             * \param as
+             *        The A coefficient for surging.
+             *        Unit = [-]
+             * \param bs
+             *        The B coefficient for surging.
+             *        Unit = [-]
+             * \param cs
+             *        The C coefficient for surging.
+             *        Unit = [-]
+             * \param ns
+             *        The N coefficient for surging.
+             *        Unit = [-]
+             * \param waveAngleMaximum
+             *        The maximum incoming wave angle.
+             *        Unit = [°]
+             * \param initialDamage
+             *        The cumulative damage from previous timestep.
+             *        Unit = [-]
+             * \param xiFactor
+             *        The similarity parameter threshold,
+             *        determines whether there is plunging or surging.
+             *        Unit = [-]
                  * \return The calculated increment degradation.
                  *         Unit = [-]
                  */
             static double CalculateIncrementDegradation(
-                const double slopeAngle,
-                const double relativeDensity,
-                const double thicknessTopLayer,
-                const double spectralWaveHeight,
-                const double spectralWavePeriod,
-                const double waveAngle,
-                const double startTime,
-                const double endTime,
-                const double ap,
-                const double bp,
-                const double cp,
-                const double np,
-                const double as,
-                const double bs,
-                const double cs,
-                const double ns,
-                const double waveAngleMaximum,
-                const double initialDamage,
-                const double xiFactor);
+                double slopeAngle,
+                double relativeDensity,
+                double thicknessTopLayer,
+                double spectralWaveHeight,
+                double spectralWavePeriod,
+                double waveAngle,
+                double startTime,
+                double endTime,
+                double ap,
+                double bp,
+                double cp,
+                double np,
+                double as,
+                double bs,
+                double cs,
+                double ns,
+                double waveAngleMaximum,
+                double initialDamage,
+                double xiFactor);
 
             /*!
              * \brief Calculates the degradation.
@@ -280,27 +407,61 @@ namespace DiKErnel::FunctionLibrary
              *        The incoming wave angle relative to the normal line between
              *        ti-1 and ti.
              *        Unit = [°]
+             * \param ap
+             *        The A coefficient for plunging.
+             *        Unit = [-]
+             * \param bp
+             *        The B coefficient for plunging.
+             *        Unit = [-]
+             * \param cp
+             *        The C coefficient for plunging.
+             *        Unit = [-]
+             * \param np
+             *        The N coefficient for plunging.
+             *        Unit = [-]
+             * \param as
+             *        The A coefficient for surging.
+             *        Unit = [-]
+             * \param bs
+             *        The B coefficient for surging.
+             *        Unit = [-]
+             * \param cs
+             *        The C coefficient for surging.
+             *        Unit = [-]
+             * \param ns
+             *        The N coefficient for surging.
+             *        Unit = [-]
+             * \param waveAngleMaximum
+             *        The maximum incoming wave angle.
+             *        Unit = [°]
+             * \param initialDamage
+             *        The cumulative damage from previous timestep.
+             *        Unit = [-]
+             * \param xiFactor
+             *        The similarity parameter threshold,
+             *        determines whether there is plunging or surging.
+             *        Unit = [-]
              * \return The calculated reference time degradation.
              *         Unit = [-]
              */
             static double CalculateReferenceTimeDegradation(
-                const double slopeAngle,
-                const double relativeDensity,
-                const double thicknessTopLayer,
-                const double spectralWaveHeight,
-                const double spectralWavePeriod,
-                const double waveAngle,
-                const double ap,
-                const double bp,
-                const double cp,
-                const double np,
-                const double as,
-                const double bs,
-                const double cs,
-                const double ns,
-                const double waveAngleMaximum,
-                const double initialDamage,
-                const double xiFactor);
+                double slopeAngle,
+                double relativeDensity,
+                double thicknessTopLayer,
+                double spectralWaveHeight,
+                double spectralWavePeriod,
+                double waveAngle,
+                double ap,
+                double bp,
+                double cp,
+                double np,
+                double as,
+                double bs,
+                double cs,
+                double ns,
+                double waveAngleMaximum,
+                double initialDamage,
+                double xiFactor);
 
             /*!
              * \brief Calculates the reference degradation.
@@ -325,39 +486,73 @@ namespace DiKErnel::FunctionLibrary
              * \param waveAngle
              *        The incoming wave angle relative to the normal line between ti-1 and ti.
              *        Unit = [°]
+             * \param ap
+             *        The A coefficient for plunging.
+             *        Unit = [-]
+             * \param bp
+             *        The B coefficient for plunging.
+             *        Unit = [-]
+             * \param cp
+             *        The C coefficient for plunging.
+             *        Unit = [-]
+             * \param np
+             *        The N coefficient for plunging.
+             *        Unit = [-]
+             * \param as
+             *        The A coefficient for surging.
+             *        Unit = [-]
+             * \param bs
+             *        The B coefficient for surging.
+             *        Unit = [-]
+             * \param cs
+             *        The C coefficient for surging.
+             *        Unit = [-]
+             * \param ns
+             *        The N coefficient for surging.
+             *        Unit = [-]
+             * \param waveAngleMaximum
+             *        The maximum incoming wave angle.
+             *        Unit = [°]
+             * \param xiFactor
+             *        The similarity parameter threshold,
+             *        determines whether there is plunging or surging.
+             *        Unit = [-]
              * \return The calculated reference degradation.
              *         Unit = [-]
              */
             static double CalculateReferenceDegradation(
-                const double damagePreviousTimeStep,
-                const double slopeAngle,
-                const double relativeDensity,
-                const double thicknessTopLayer,
-                const double spectralWaveHeight,
-                const double spectralWavePeriod,
-                const double waveAngle,
-                const double ap,
-                const double bp,
-                const double cp,
-                const double np,
-                const double as,
-                const double bs,
-                const double cs,
-                const double ns,
-                const double waveAngleMaximum,
-                const double xiFactor);
+                double damagePreviousTimeStep,
+                double slopeAngle,
+                double relativeDensity,
+                double thicknessTopLayer,
+                double spectralWaveHeight,
+                double spectralWavePeriod,
+                double waveAngle,
+                double ap,
+                double bp,
+                double cp,
+                double np,
+                double as,
+                double bs,
+                double cs,
+                double ns,
+                double waveAngleMaximum,
+                double xiFactor);
 
             /*!
              * \brief Calculates the wave angle impact.
              * \param waveAngle
              *        The incoming wave angle relative to the normal line between ti-1 and ti.
              *        Unit = [°]
+             * \param waveAngleMaximum
+             *        The maximum incoming wave angle.
+             *        Unit = [°]
              * \return The calculated wave angle impact.
              *         Unit = [-]
              */
             static double CalculateWaveAngleImpact(
-                const double waveAngle,
-                const double waveAngleMaximum);
+                double waveAngle,
+                double waveAngleMaximum);
 
         private:
             static double CalculateIncrementOfTime(
