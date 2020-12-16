@@ -20,6 +20,7 @@
 
 #include <gtest/gtest.h>
 
+#include <fstream>
 #include <memory>
 
 #include "OutputComposer.h"
@@ -35,17 +36,24 @@ namespace DiKErnel::KernelWrapper::Json::Test
         const std::string&,
         double);
 
+    void AssertFileContents(
+        const std::string&,
+        const std::string&);
+
     #pragma endregion
 
     // Given
     struct OutputComposerTest : testing::Test
     {
-        const std::filesystem::path filePath = TestUtil::TestDataHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Test") /
+        const std::filesystem::path expectedOutputFilePath = TestUtil::TestDataHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Test") /
+                "calculationTest.json";
+
+        const std::filesystem::path temporaryOutputFilePath = TestUtil::TestDataHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Test") /
                 "calculationTest.json";
 
         ~OutputComposerTest()
         {
-            std::remove(filePath.string().c_str());
+            std::remove(temporaryOutputFilePath.string().c_str());
         }
     };
 
@@ -59,14 +67,11 @@ namespace DiKErnel::KernelWrapper::Json::Test
 
         const auto outputData = std::make_unique<OutputData>(std::move(calculationLocationsOutput));
 
-        const std::string expectedJson =
-                R"({"Locaties":[{"Bekleding":{"Schade":0.15},"Naam":"testName1"},{"Bekleding":{"Schade":0.253},"Naam":"testName2"}]})";
-
         // When
-        OutputComposer::WriteParametersToJson(filePath, outputData.get());
+        OutputComposer::WriteParametersToJson(temporaryOutputFilePath, outputData.get());
 
         // Then
-        ASSERT_EQ(expectedJson, "");
+        AssertFileContents(expectedOutputFilePath.string(), temporaryOutputFilePath.string());
     }
 
     #pragma region Helper methods
@@ -76,6 +81,21 @@ namespace DiKErnel::KernelWrapper::Json::Test
         double damage)
     {
         return std::make_unique<CalculationLocationOutput>(locationName, std::make_unique<RevetmentOutput>(damage));
+    }
+
+    void AssertFileContents(
+        const std::string& expectedOutputFilePath,
+        const std::string& actualOutputFilePath)
+    {
+        std::ifstream expectedOutput(expectedOutputFilePath);
+        std::stringstream expectedBuffer;
+        expectedBuffer << expectedOutput.rdbuf();
+
+        std::ifstream actualOutput(actualOutputFilePath);
+        std::stringstream actualBuffer;
+        actualBuffer << actualOutput.rdbuf();
+
+        ASSERT_EQ(expectedBuffer.str(), actualBuffer.str());
     }
 
     #pragma endregion
