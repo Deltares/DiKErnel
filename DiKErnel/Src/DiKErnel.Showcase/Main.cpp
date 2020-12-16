@@ -118,8 +118,11 @@ int main()
     {
         const auto outputData = calculator.GetOutputData();
 
+        const auto timeStamp = std::chrono::system_clock::now();
+        const auto milliSeconds = chrono::duration_cast<chrono::milliseconds>(timeStamp.time_since_epoch());
+
         const auto directory = std::filesystem::path(jsonFilePath).parent_path();
-        const auto outputPath = directory / "output.json";
+        const auto outputPath = directory / ("output-" + std::to_string(milliSeconds.count() % 1000) + ".json");
 
         OutputComposer::WriteParametersToJson(outputPath.u8string(), outputData.get());
 
