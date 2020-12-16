@@ -112,5 +112,38 @@ namespace DiKErnel::Core
                 std::atomic<bool>& finished,
                 const std::atomic<bool>& cancelled,
                 std::map<CalculationLocation*, std::vector<std::tuple<double, double>>>& results);
+
+            static void PerformCalculationForLocationAndTimeStep(
+                std::tuple<int, int, BoundaryConditionsPerTimeStep*> currentTimeStep,
+                CalculationLocation* currentLocation,
+                const HydraulicLoads* hydraulicLoads,
+                const std::function<double(
+                    double initialDamage,
+                    double slopeAngle,
+                    double relativeDensity,
+                    double thicknessTopLayer,
+                    double spectralWaveHeight,
+                    double spectralWavePeriod,
+                    double waveAngle,
+                    double startTime,
+                    double endTime,
+                    double ap,
+                    double bp,
+                    double cp,
+                    double np,
+                    double as,
+                    double bs,
+                    double cs,
+                    double ns,
+                    double waveAngleMaximum,
+                    double similarityParameterThreshold)>& subCalculation,
+                std::map<CalculationLocation*, std::vector<std::tuple<double, double>>>& results);
+
+            static void UpdateProgress(
+                std::atomic<int>& progress,
+                unsigned long long totalSteps,
+                unsigned long long numberOfTimeSteps,
+                int currentTimeStepIndex,
+                int currentLocationIndex);
     };
 }

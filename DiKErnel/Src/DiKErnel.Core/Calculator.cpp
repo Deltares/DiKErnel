@@ -181,39 +181,78 @@ namespace DiKErnel::Core
 
                 std::this_thread::sleep_for(std::chrono::seconds(waitTime));
 
-                const auto* revetment = locations[j]->GetRevetment();
-                const auto* profileSchematization = locations[j]->GetProfileSchematization();
-                const auto* boundaryCondition = std::get<2>(timeSteps[i]);
-
-                const auto result = subCalculation(
-                    std::get<1>(results[locations[j]].back()),
-                    profileSchematization->GetTanA(),
-                    revetment->GetRelativeDensity(),
-                    revetment->GetThicknessTopLayer(),
-                    boundaryCondition->GetWaveHeightHm0(),
-                    boundaryCondition->GetWavePeriodTm10(),
-                    boundaryCondition->GetWaveAngle(),
-                    std::get<0>(timeSteps[i]),
-                    std::get<1>(timeSteps[i]),
-                    revetment->GetCoefficientPlungingAp(),
-                    revetment->GetCoefficientPlungingBp(),
-                    revetment->GetCoefficientPlungingCp(),
-                    revetment->GetCoefficientPlungingNp(),
-                    revetment->GetCoefficientSurgingAs(),
-                    revetment->GetCoefficientSurgingBs(),
-                    revetment->GetCoefficientSurgingCs(),
-                    revetment->GetCoefficientSurgingNs(),
-                    hydraulicLoads->GetWaveAngleMaximum(),
-                    revetment->GetSimilarityParameterThreshold());
-
-                results[locations[j]].emplace_back(std::get<1>(timeSteps[i]), result);
+                PerformCalculationForLocationAndTimeStep(timeSteps[i], locations[j], hydraulicLoads, subCalculation, results);
 
                 // Update progress indicator
-                progress = std::ceil((i * timeSteps.size() + j + 1.0) / totalSteps * 100);
+                UpdateProgress(progress, totalSteps, timeSteps.size(), i, j);
             }
         }
 
         // Mark calculation as finished
         finished = true;
+    }
+
+    void Calculator::PerformCalculationForLocationAndTimeStep(
+        std::tuple<int, int, BoundaryConditionsPerTimeStep*> currentTimeStep,
+        CalculationLocation* currentLocation,
+        const HydraulicLoads* hydraulicLoads,
+        const std::function<double(
+            double initialDamage,
+            double slopeAngle,
+            double relativeDensity,
+            double thicknessTopLayer,
+            double spectralWaveHeight,
+            double spectralWavePeriod,
+            double waveAngle,
+            double startTime,
+            double endTime,
+            double ap,
+            double bp,
+            double cp,
+            double np,
+            double as,
+            double bs,
+            double cs,
+            double ns,
+            double waveAngleMaximum,
+            double similarityParameterThreshold)>& subCalculation,
+        std::map<CalculationLocation*, std::vector<std::tuple<double, double>>>& results)
+    {
+        const auto* revetment = currentLocation->GetRevetment();
+        const auto* profileSchematization = currentLocation->GetProfileSchematization();
+        const auto* boundaryCondition = std::get<2>(currentTimeStep);
+
+        const auto result = subCalculation(
+            std::get<1>(results[currentLocation].back()),
+            profileSchematization->GetTanA(),
+            revetment->GetRelativeDensity(),
+            revetment->GetThicknessTopLayer(),
+            boundaryCondition->GetWaveHeightHm0(),
+            boundaryCondition->GetWavePeriodTm10(),
+            boundaryCondition->GetWaveAngle(),
+            std::get<0>(currentTimeStep),
+            std::get<1>(currentTimeStep),
+            revetment->GetCoefficientPlungingAp(),
+            revetment->GetCoefficientPlungingBp(),
+            revetment->GetCoefficientPlungingCp(),
+            revetment->GetCoefficientPlungingNp(),
+            revetment->GetCoefficientSurgingAs(),
+            revetment->GetCoefficientSurgingBs(),
+            revetment->GetCoefficientSurgingCs(),
+            revetment->GetCoefficientSurgingNs(),
+            hydraulicLoads->GetWaveAngleMaximum(),
+            revetment->GetSimilarityParameterThreshold());
+
+        results[currentLocation].emplace_back(std::get<1>(currentTimeStep), result);
+    }
+
+    void Calculator::UpdateProgress(
+        std::atomic<int>& progress,
+        const unsigned long long totalSteps,
+        const unsigned long long numberOfTimeSteps,
+        const int currentTimeStepIndex,
+        const int currentLocationIndex)
+    {
+        progress = std::ceil((currentTimeStepIndex * numberOfTimeSteps + currentLocationIndex + 1.0) / totalSteps * 100);
     }
 }
