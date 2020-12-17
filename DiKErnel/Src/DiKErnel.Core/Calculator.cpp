@@ -31,6 +31,8 @@ namespace DiKErnel::Core
 {
     int waitTime = 0;
 
+    using namespace KernelWrapper::Json;
+
     Calculator::Calculator(
         const InputData* inputData,
         const std::function<double(
