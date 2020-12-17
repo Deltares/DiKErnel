@@ -19,6 +19,7 @@
 // All rights reserved.
 
 #pragma once
+
 #include <atomic>
 #include <functional>
 #include <map>
@@ -32,8 +33,6 @@
 
 namespace DiKErnel::Core
 {
-    using namespace KernelWrapper::Json;
-
     extern int waitTime;
 
     /*!
@@ -43,7 +42,7 @@ namespace DiKErnel::Core
     {
         public:
             explicit Calculator(
-                const InputData* inputData,
+                const KernelWrapper::Json::InputData* inputData,
                 const std::function<double(
                     double initialDamage,
                     double slopeAngle,
@@ -75,19 +74,19 @@ namespace DiKErnel::Core
 
             bool IsCancelled() const;
 
-            std::unique_ptr<OutputData> GetOutputData() const;
+            std::unique_ptr<KernelWrapper::Json::OutputData> GetOutputData() const;
 
         private:
             std::thread thread;
             std::atomic<double> progress = 0;
             std::atomic<bool> cancelled = false;
             std::atomic<bool> finished = false;
-            std::map<CalculationLocation*, std::vector<std::tuple<double, double>>> results;
+            std::map<KernelWrapper::Json::CalculationLocation*, std::vector<std::tuple<double, double>>> results;
 
             static void PerformCalculation(
-                const std::vector<CalculationLocation*>& locations,
-                const std::vector<std::tuple<int, int, BoundaryConditionsPerTimeStep*>>& timeSteps,
-                const HydraulicLoads* hydraulicLoads,
+                const std::vector<KernelWrapper::Json::CalculationLocation*>& locations,
+                const std::vector<std::tuple<int, int, KernelWrapper::Json::BoundaryConditionsPerTimeStep*>>& timeSteps,
+                const KernelWrapper::Json::HydraulicLoads* hydraulicLoads,
                 const std::function<double(
                     double initialDamage,
                     double slopeAngle,
@@ -111,12 +110,12 @@ namespace DiKErnel::Core
                 std::atomic<double>& progress,
                 std::atomic<bool>& finished,
                 const std::atomic<bool>& cancelled,
-                std::map<CalculationLocation*, std::vector<std::tuple<double, double>>>& results);
+                std::map<KernelWrapper::Json::CalculationLocation*, std::vector<std::tuple<double, double>>>& results);
 
             static void PerformCalculationForTimeStepAndLocation(
-                std::tuple<int, int, BoundaryConditionsPerTimeStep*> currentTimeStep,
-                CalculationLocation* currentLocation,
-                const HydraulicLoads* hydraulicLoads,
+                std::tuple<int, int, KernelWrapper::Json::BoundaryConditionsPerTimeStep*> currentTimeStep,
+                KernelWrapper::Json::CalculationLocation* currentLocation,
+                const KernelWrapper::Json::HydraulicLoads* hydraulicLoads,
                 const std::function<double(
                     double initialDamage,
                     double slopeAngle,
@@ -137,6 +136,6 @@ namespace DiKErnel::Core
                     double ns,
                     double waveAngleMaximum,
                     double similarityParameterThreshold)>& subCalculation,
-                std::map<CalculationLocation*, std::vector<std::tuple<double, double>>>& results);
+                std::map<KernelWrapper::Json::CalculationLocation*, std::vector<std::tuple<double, double>>>& results);
     };
 }
