@@ -42,6 +42,6 @@ namespace DiKErnel::KernelWrapper::Json
              */
             static void WriteParametersToJson(
                 const std::string& filePath,
-                OutputData* outputData);
+                const OutputData* outputData);
     };
 }

@@ -22,10 +22,9 @@
 
 #include <fstream>
 #include <iomanip>
-#include <iostream>
 
-#include "JsonDefinitions.h"
 #include "OutputComposer.h"
+#include "JsonDefinitions.h"
 #include "OutputData.h"
 #include "RevetmentOutput.h"
 
@@ -33,41 +32,34 @@ namespace DiKErnel::KernelWrapper::Json
 {
     void OutputComposer::WriteParametersToJson(
         const std::string& filePath,
-        OutputData* outputData)
+        const OutputData* outputData)
     {
-        try
+        nlohmann::json json;
+
+        json[JsonDefinitions::locations] = nlohmann::json::array();
+
+        for (const auto& calculationLocationOutput : outputData->GetCalculationLocationsOutput())
         {
-            nlohmann::json json;
-
-            json[JsonDefinitions::locations] = nlohmann::json::array();
-
-            for (const auto& calculationLocationOutput : outputData->GetCalculationLocationsOutput())
-            {
-                json[JsonDefinitions::locations].push_back(
-                    nlohmann::json::object(
+            json[JsonDefinitions::locations].push_back(
+                nlohmann::json::object(
+                    {
                         {
+                            JsonDefinitions::name,
+                            calculationLocationOutput->GetName()
+                        },
+                        {
+                            JsonDefinitions::revetment,
                             {
-                                JsonDefinitions::name,
-                                calculationLocationOutput->GetName()
-                            },
-                            {
-                                JsonDefinitions::revetment,
                                 {
-                                    {
-                                        JsonDefinitions::damage,
-                                        calculationLocationOutput->GetRevetmentOutput()->GetDamage()
-                                    }
+                                    JsonDefinitions::damage,
+                                    calculationLocationOutput->GetRevetmentOutput()->GetDamage()
                                 }
                             }
-                        }));
-            }
+                        }
+                    }));
+        }
 
-            std::ofstream outfile(filePath, std::ios::trunc);
-            outfile << std::setw(4) << json << std::endl;
-        }
-        catch (nlohmann::json::type_error& e)
-        {
-            std::cout << e.what() << '\n';
-        }
+        std::ofstream outfile(filePath, std::ios::trunc);
+        outfile << std::setw(4) << json << std::endl;
     }
 }
