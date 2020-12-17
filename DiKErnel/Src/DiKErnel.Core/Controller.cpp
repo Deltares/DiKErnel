@@ -22,6 +22,5 @@
 
 namespace DiKErnel::Core
 {
-    Controller::Controller()
-        : created(true) { }
+    Controller::Controller() = default;
 }

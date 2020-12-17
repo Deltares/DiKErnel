@@ -28,7 +28,7 @@ namespace DiKErnel::Core
     class Controller
     {
         public:
-            bool created;
+            bool created = true;
 
             /*!
              * \brief Creates a new instance.
