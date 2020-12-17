@@ -21,8 +21,37 @@
 #include <gtest/gtest.h>
 
 #include "Calculator.h"
+#include "InputComposer.h"
+#include "NaturalStoneRevetment.h"
+#include "TestDataHelper.h"
 
 namespace DiKErnel::Core::Test
 {
+    struct CalculatorTest : testing::Test
+    {
+        const std::string filePath =
+        (TestUtil::TestDataHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Test")
+            / "InputComposerTest"
+            / "testInput.json").string();
+    };
 
+    void CreateCalculation(
+        KernelWrapper::Json::InputData*);
+
+    TEST_F(CalculatorTest, Constructor_WithParameters_PerformsCalculation)
+    {
+        // Setup
+        const auto inputData = KernelWrapper::Json::InputComposer::GetDomainParametersFromJson(filePath);
+
+        // Call & Assert
+        ASSERT_NO_THROW(CreateCalculation(inputData.get()));
+    }
+
+    void CreateCalculation(
+        KernelWrapper::Json::InputData* inputData)
+    {
+        Calculator calculator(inputData, &FunctionLibrary::NaturalStoneRevetment::CalculateDamage);
+
+        calculator.WaitForCompletion();
+    }
 }
