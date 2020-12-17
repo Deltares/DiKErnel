@@ -126,9 +126,9 @@ namespace DiKErnel::FunctionLibrary::Test::NaturalStoneRevetmentTest
     {
         // When
         const auto hydraulicLoad = NaturalStoneRevetment::CalculateHydraulicLoad(
-            slopeAngle * 4,
-            spectralWaveHeight / 4,
-            spectralWavePeriod / 4,
+            slopeAngle,
+            spectralWaveHeight,
+            spectralWavePeriod,
             ap,
             bp,
             cp,
@@ -137,10 +137,10 @@ namespace DiKErnel::FunctionLibrary::Test::NaturalStoneRevetmentTest
             bs,
             cs,
             ns,
-            similarityParameterThreshold);
+            0.5);
 
         // Then
-        ASSERT_DOUBLE_EQ(hydraulicLoad, 0.061467670383738869);
+        ASSERT_DOUBLE_EQ(hydraulicLoad, 0.60343921078080642);
     }
 
     TEST(NaturalStoneRevetmentTest, GivenInput_WhenCalculateSurfSimilarityParameter_ThenExpectedResult)
