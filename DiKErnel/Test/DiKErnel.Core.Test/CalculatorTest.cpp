@@ -35,23 +35,23 @@ namespace DiKErnel::Core::Test
             / "testInput.json").string();
     };
 
-    void CreateCalculation(
-        KernelWrapper::Json::InputData*);
-
     TEST_F(CalculatorTest, Constructor_WithParameters_PerformsCalculation)
     {
         // Setup
         const auto inputData = KernelWrapper::Json::InputComposer::GetDomainParametersFromJson(filePath);
 
-        // Call & Assert
-        ASSERT_NO_THROW(CreateCalculation(inputData.get()));
-    }
-
-    void CreateCalculation(
-        KernelWrapper::Json::InputData* inputData)
-    {
-        Calculator calculator(inputData, &FunctionLibrary::NaturalStoneRevetment::CalculateDamage);
+        // Call
+        Calculator calculator(inputData.get(), &FunctionLibrary::NaturalStoneRevetment::CalculateDamage);
 
         calculator.WaitForCompletion();
+
+        // Assert
+        ASSERT_EQ(calculator.GetProgress(), 100);
+        ASSERT_EQ(calculator.IsFinished(), true);
+        ASSERT_EQ(calculator.IsCancelled(), false);
+
+        const auto outputData = calculator.GetOutputData();
+        const auto calculationLocationsOutput = outputData->GetCalculationLocationsOutput();
+        ASSERT_EQ(calculationLocationsOutput.size(), 2);
     }
 }
