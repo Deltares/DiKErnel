@@ -63,7 +63,7 @@ namespace DiKErnel::KernelWrapper::Json
              * \brief Gets the hydraulic loads data.
              * \return The hydraulic loads data.
              */
-            HydraulicLoads* GetHydraulicLoads() const;
+            const HydraulicLoads& GetHydraulicLoads() const;
 
             /*!
              * \brief Gets the calculation locations.

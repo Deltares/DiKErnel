@@ -35,9 +35,9 @@ namespace DiKErnel::KernelWrapper::Json
         return *calculationData;
     }
 
-    HydraulicLoads* InputData::GetHydraulicLoads() const
+    const HydraulicLoads& InputData::GetHydraulicLoads() const
     {
-        return hydraulicLoads.get();
+        return *hydraulicLoads;
     }
 
     std::vector<CalculationLocation*> InputData::GetLocations() const

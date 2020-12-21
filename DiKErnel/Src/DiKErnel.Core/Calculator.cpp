@@ -49,8 +49,8 @@ namespace DiKErnel::Core
     {
         const auto locations = inputData.GetLocations();
         const auto& times = inputData.GetCalculationData().GetTimes();
-        const auto* hydraulicLoads = inputData.GetHydraulicLoads();
-        const auto boundariesPerTimeStep = hydraulicLoads->GetBoundaryConditionsPerTimeStep();
+        const auto& hydraulicLoads = inputData.GetHydraulicLoads();
+        const auto boundariesPerTimeStep = hydraulicLoads.GetBoundaryConditionsPerTimeStep();
 
         auto timeSteps = std::vector<std::tuple<int, int, std::reference_wrapper<BoundaryConditionsPerTimeStep>>>();
 
@@ -63,7 +63,7 @@ namespace DiKErnel::Core
             PerformCalculation,
             locations,
             timeSteps,
-            hydraulicLoads,
+            std::ref(hydraulicLoads),
             subCalculation,
             std::ref(progress),
             std::ref(isFinished),
@@ -120,7 +120,7 @@ namespace DiKErnel::Core
     void Calculator::PerformCalculation(
         const std::vector<CalculationLocation*>& locations,
         const std::vector<std::tuple<int, int, std::reference_wrapper<BoundaryConditionsPerTimeStep>>>& timeSteps,
-        const HydraulicLoads* hydraulicLoads,
+        const HydraulicLoads& hydraulicLoads,
         const std::function<double(
             double initialDamage,
             double slopeAngle,
@@ -180,7 +180,7 @@ namespace DiKErnel::Core
     void Calculator::PerformCalculationForTimeStepAndLocation(
         std::tuple<int, int, std::reference_wrapper<BoundaryConditionsPerTimeStep>> currentTimeStep,
         CalculationLocation* currentLocation,
-        const HydraulicLoads* hydraulicLoads,
+        const HydraulicLoads& hydraulicLoads,
         const std::function<double(
             double initialDamage,
             double slopeAngle,
@@ -225,7 +225,7 @@ namespace DiKErnel::Core
             revetment.GetCoefficientSurgingBs(),
             revetment.GetCoefficientSurgingCs(),
             revetment.GetCoefficientSurgingNs(),
-            hydraulicLoads->GetWaveAngleMaximum(),
+            hydraulicLoads.GetWaveAngleMaximum(),
             revetment.GetSimilarityParameterThreshold());
 
         results[currentLocation].emplace_back(std::get<1>(currentTimeStep), result);

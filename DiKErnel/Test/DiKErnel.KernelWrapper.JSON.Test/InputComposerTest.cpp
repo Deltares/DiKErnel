@@ -35,7 +35,7 @@ namespace DiKErnel::KernelWrapper::Json::Test
         const CalculationData&);
 
     void AssertHydraulicLoads(
-        HydraulicLoads*);
+        const HydraulicLoads&);
 
     void AssertBoundaryConditionsForTimeStep(
         std::reference_wrapper<BoundaryConditionsPerTimeStep>,
@@ -123,7 +123,7 @@ namespace DiKErnel::KernelWrapper::Json::Test
         const auto hydraulicLoads = InputComposer::ReadHydraulicLoads(json);
 
         // Then
-        AssertHydraulicLoads(hydraulicLoads.get());
+        AssertHydraulicLoads(*hydraulicLoads);
     }
 
     TEST_F(InputComposerTest, GivenFilePathAndInputComposer_WhenReadLocationsFromJson_ThenCorrectDataSet)
@@ -163,11 +163,11 @@ namespace DiKErnel::KernelWrapper::Json::Test
     }
 
     void AssertHydraulicLoads(
-        HydraulicLoads* hydraulicLoads)
+        const HydraulicLoads& hydraulicLoads)
     {
-        ASSERT_EQ(hydraulicLoads->GetWaveAngleMaximum(), 78);
+        ASSERT_EQ(hydraulicLoads.GetWaveAngleMaximum(), 78);
 
-        auto boundaryConditionsPerTimeStep = hydraulicLoads->GetBoundaryConditionsPerTimeStep();
+        auto boundaryConditionsPerTimeStep = hydraulicLoads.GetBoundaryConditionsPerTimeStep();
 
         AssertBoundaryConditionsForTimeStep(boundaryConditionsPerTimeStep[0], 0.5, 2.0, -10.0);
         AssertBoundaryConditionsForTimeStep(boundaryConditionsPerTimeStep[1], 0.8, 6.0, -5.0);
