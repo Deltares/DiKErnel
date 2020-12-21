@@ -44,19 +44,19 @@ namespace DiKErnel::KernelWrapper::Json
              *        The revetment output.
              */
             explicit CalculationLocationOutput(
-                const std::string& name,
+                std::string name,
                 std::unique_ptr<RevetmentOutput> revetmentOutput);
 
             /*!
              * \brief Gets the name of the location.
              * \return The name of the location.
              */
-            std::string GetName() const;
+            const std::string& GetName() const;
 
             /*!
              * \brief Gets the revetment output.
              * \return The revetment output.
              */
-            RevetmentOutput* GetRevetmentOutput() const;
+            const RevetmentOutput& GetRevetmentOutput() const;
     };
 }

@@ -18,24 +18,26 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
+#include <utility>
+
 #include "CalculationLocationOutput.h"
 #include "RevetmentOutput.h"
 
 namespace DiKErnel::KernelWrapper::Json
 {
     CalculationLocationOutput::CalculationLocationOutput(
-        const std::string& name,
+        std::string name,
         std::unique_ptr<RevetmentOutput> revetmentOutput)
-        : name(name),
+        : name(std::move(name)),
           revetmentOutput(std::move(revetmentOutput)) { }
 
-    std::string CalculationLocationOutput::GetName() const
+    const std::string& CalculationLocationOutput::GetName() const
     {
         return name;
     }
 
-    RevetmentOutput* CalculationLocationOutput::GetRevetmentOutput() const
+    const RevetmentOutput& CalculationLocationOutput::GetRevetmentOutput() const
     {
-        return revetmentOutput.get();
+        return *revetmentOutput;
     }
 }

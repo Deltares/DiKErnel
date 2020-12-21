@@ -20,13 +20,15 @@
 
 #include "CalculationLocation.h"
 
+#include <utility>
+
 namespace DiKErnel::KernelWrapper::Json
 {
     CalculationLocation::CalculationLocation(
-        const std::string& name,
+        std::string name,
         std::unique_ptr<Revetment> revetment,
         std::unique_ptr<ProfileSchematization> profileSchematization)
-        : name(name),
+        : name(std::move(name)),
           revetment(std::move(revetment)),
           profileSchematization(std::move(profileSchematization)) { }
 

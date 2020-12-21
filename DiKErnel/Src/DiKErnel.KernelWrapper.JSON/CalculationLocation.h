@@ -48,7 +48,7 @@ namespace DiKErnel::KernelWrapper::Json
              *        The profile schematization.
              */
             explicit CalculationLocation(
-                const std::string& name,
+                std::string name,
                 std::unique_ptr<Revetment> revetment,
                 std::unique_ptr<ProfileSchematization> profileSchematization);
 

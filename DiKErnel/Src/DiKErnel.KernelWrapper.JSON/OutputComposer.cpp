@@ -52,7 +52,7 @@ namespace DiKErnel::KernelWrapper::Json
                             {
                                 {
                                     JsonDefinitions::damage,
-                                    calculationLocationOutput->GetRevetmentOutput()->GetDamage()
+                                    calculationLocationOutput->GetRevetmentOutput().GetDamage()
                                 }
                             }
                         }
