@@ -106,8 +106,8 @@ int main()
     cout << "-> Enter 'c' to cancel the calculation" << endl << endl;
 
     Calculator calculator(
-        inputData.get(),
-        &CalculateDamageWithDelay);
+        *inputData,
+        CalculateDamageWithDelay);
 
     thread inputThread(
         InputMethod,

@@ -25,7 +25,7 @@ namespace DiKErnel::Core
     using namespace KernelWrapper::Json;
 
     Calculator::Calculator(
-        const InputData* inputData,
+        const InputData& inputData,
         const std::function<double(
             double initialDamage,
             double slopeAngle,
@@ -47,9 +47,9 @@ namespace DiKErnel::Core
             double waveAngleMaximum,
             double similarityParameterThreshold)>& subCalculation)
     {
-        const auto locations = inputData->GetLocations();
-        const auto times = inputData->GetCalculationData()->GetTimes();
-        const auto* hydraulicLoads = inputData->GetHydraulicLoads();
+        const auto locations = inputData.GetLocations();
+        const auto times = inputData.GetCalculationData()->GetTimes();
+        const auto* hydraulicLoads = inputData.GetHydraulicLoads();
         const auto boundariesPerTimeStep = hydraulicLoads->GetBoundaryConditionsPerTimeStep();
 
         auto timeSteps = std::vector<std::tuple<int, int, BoundaryConditionsPerTimeStep*>>();

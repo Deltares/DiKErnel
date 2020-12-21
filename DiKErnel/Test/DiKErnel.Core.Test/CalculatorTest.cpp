@@ -41,7 +41,7 @@ namespace DiKErnel::Core::Test
         const auto inputData = KernelWrapper::Json::InputComposer::GetDomainParametersFromJson(filePath);
 
         // Call
-        Calculator calculator(inputData.get(), &FunctionLibrary::NaturalStoneRevetment::CalculateDamage);
+        Calculator calculator(*inputData, FunctionLibrary::NaturalStoneRevetment::CalculateDamage);
 
         // Wait
         calculator.WaitForCompletion();
@@ -60,7 +60,7 @@ namespace DiKErnel::Core::Test
         // Given
         const auto inputData = KernelWrapper::Json::InputComposer::GetDomainParametersFromJson(filePath);
 
-        Calculator calculator(inputData.get(), &FunctionLibrary::NaturalStoneRevetment::CalculateDamage);
+        Calculator calculator(*inputData, FunctionLibrary::NaturalStoneRevetment::CalculateDamage);
 
         // When
         calculator.Cancel();

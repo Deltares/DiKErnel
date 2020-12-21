@@ -47,7 +47,7 @@ namespace DiKErnel::Core
              *        The sub-calculation to perform.
              */
             explicit Calculator(
-                const KernelWrapper::Json::InputData* inputData,
+                const KernelWrapper::Json::InputData& inputData,
                 const std::function<double(
                     double initialDamage,
                     double slopeAngle,
