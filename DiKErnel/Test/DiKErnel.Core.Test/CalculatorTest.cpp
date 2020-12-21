@@ -43,6 +43,7 @@ namespace DiKErnel::Core::Test
         // Call
         Calculator calculator(inputData.get(), &FunctionLibrary::NaturalStoneRevetment::CalculateDamage);
 
+        // Wait
         calculator.WaitForCompletion();
 
         // Assert
@@ -51,7 +52,24 @@ namespace DiKErnel::Core::Test
         ASSERT_EQ(calculator.IsCancelled(), false);
 
         const auto outputData = calculator.GetOutputData();
-        const auto calculationLocationsOutput = outputData->GetCalculationLocationsOutput();
-        ASSERT_EQ(calculationLocationsOutput.size(), 2);
+        ASSERT_EQ(outputData->GetCalculationLocationsOutput().size(), 2);
+    }
+
+    TEST_F(CalculatorTest, GivenCalculator_WhenCancelCalled_ThenCalculationCancelled)
+    {
+        // Given
+        const auto inputData = KernelWrapper::Json::InputComposer::GetDomainParametersFromJson(filePath);
+
+        Calculator calculator(inputData.get(), &FunctionLibrary::NaturalStoneRevetment::CalculateDamage);
+
+        // When
+        calculator.Cancel();
+
+        // Wait
+        calculator.WaitForCompletion();
+
+        // Then
+        ASSERT_EQ(calculator.IsCancelled(), true);
+        ASSERT_FALSE(calculator.GetProgress() == 100);
     }
 }
