@@ -20,17 +20,8 @@
 
 #include "Calculator.h"
 
-#include <atomic>
-#include <chrono>
-#include <cmath>
-#include <functional>
-#include <map>
-#include <thread>
-
 namespace DiKErnel::Core
 {
-    int waitTime = 0;
-
     using namespace KernelWrapper::Json;
 
     Calculator::Calculator(
@@ -176,8 +167,6 @@ namespace DiKErnel::Core
                 {
                     break;
                 }
-
-                std::this_thread::sleep_for(std::chrono::seconds(waitTime));
 
                 PerformCalculationForTimeStepAndLocation(timeStep, location, hydraulicLoads, subCalculation, results);
 

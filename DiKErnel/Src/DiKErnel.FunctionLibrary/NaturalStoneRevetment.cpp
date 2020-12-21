@@ -18,12 +18,11 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include "NaturalStoneRevetment.h"
-
 #include <algorithm>
 #include <cmath>
 
 #include "Constants.h"
+#include "NaturalStoneRevetment.h"
 
 using namespace DiKErnel::DomainLibrary;
 
