@@ -107,16 +107,16 @@ namespace DiKErnel::Core
             std::unique_ptr<KernelWrapper::Json::OutputData> GetOutputData() const;
 
         private:
-            std::thread thread;
+            std::thread calculationThread;
             std::atomic<double> progress = 0;
-            std::atomic<bool> cancelled = false;
-            std::atomic<bool> finished = false;
-            std::map<KernelWrapper::Json::CalculationLocation*, std::vector<std::tuple<double, double>>> results;
+            std::atomic<bool> isCancelled = false;
+            std::atomic<bool> isFinished = false;
+            std::map<KernelWrapper::Json::CalculationLocation*, std::vector<std::tuple<double, double>>> outputData;
 
             static void PerformCalculation(
-                const std::vector<KernelWrapper::Json::CalculationLocation*>& locations,
-                const std::vector<std::tuple<int, int, KernelWrapper::Json::BoundaryConditionsPerTimeStep*>>& timeSteps,
-                const KernelWrapper::Json::HydraulicLoads* hydraulicLoads,
+                const std::vector<KernelWrapper::Json::CalculationLocation*>&,
+                const std::vector<std::tuple<int, int, KernelWrapper::Json::BoundaryConditionsPerTimeStep*>>&,
+                const KernelWrapper::Json::HydraulicLoads*,
                 const std::function<double(
                     double initialDamage,
                     double slopeAngle,
@@ -136,16 +136,16 @@ namespace DiKErnel::Core
                     double cs,
                     double ns,
                     double waveAngleMaximum,
-                    double similarityParameterThreshold)>& subCalculation,
-                std::atomic<double>& progress,
-                std::atomic<bool>& finished,
-                const std::atomic<bool>& cancelled,
-                std::map<KernelWrapper::Json::CalculationLocation*, std::vector<std::tuple<double, double>>>& results);
+                    double similarityParameterThreshold)>&,
+                std::atomic<double>&,
+                std::atomic<bool>&,
+                const std::atomic<bool>&,
+                std::map<KernelWrapper::Json::CalculationLocation*, std::vector<std::tuple<double, double>>>&);
 
             static void PerformCalculationForTimeStepAndLocation(
-                std::tuple<int, int, KernelWrapper::Json::BoundaryConditionsPerTimeStep*> currentTimeStep,
-                KernelWrapper::Json::CalculationLocation* currentLocation,
-                const KernelWrapper::Json::HydraulicLoads* hydraulicLoads,
+                std::tuple<int, int, KernelWrapper::Json::BoundaryConditionsPerTimeStep*>,
+                KernelWrapper::Json::CalculationLocation*,
+                const KernelWrapper::Json::HydraulicLoads*,
                 const std::function<double(
                     double initialDamage,
                     double slopeAngle,
@@ -165,7 +165,7 @@ namespace DiKErnel::Core
                     double cs,
                     double ns,
                     double waveAngleMaximum,
-                    double similarityParameterThreshold)>& subCalculation,
-                std::map<KernelWrapper::Json::CalculationLocation*, std::vector<std::tuple<double, double>>>& results);
+                    double similarityParameterThreshold)>&,
+                std::map<KernelWrapper::Json::CalculationLocation*, std::vector<std::tuple<double, double>>>&);
     };
 }

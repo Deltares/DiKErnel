@@ -59,23 +59,23 @@ namespace DiKErnel::Core
             timeSteps.emplace_back(times[i], times[i + 1], boundariesPerTimeStep[i]);
         }
 
-        thread = std::thread(
+        calculationThread = std::thread(
             PerformCalculation,
             locations,
             timeSteps,
             hydraulicLoads,
             subCalculation,
             std::ref(progress),
-            std::ref(finished),
-            std::ref(cancelled),
-            std::ref(results));
+            std::ref(isFinished),
+            std::ref(isCancelled),
+            std::ref(outputData));
     }
 
     void Calculator::WaitForCompletion()
     {
-        if (thread.joinable())
+        if (calculationThread.joinable())
         {
-            thread.join();
+            calculationThread.join();
         }
     }
 
@@ -86,26 +86,26 @@ namespace DiKErnel::Core
 
     bool Calculator::IsFinished() const
     {
-        return finished;
+        return isFinished;
     }
 
     void Calculator::Cancel()
     {
-        cancelled = true;
+        isCancelled = true;
     }
 
     bool Calculator::IsCancelled() const
     {
-        return cancelled;
+        return isCancelled;
     }
 
     std::unique_ptr<OutputData> Calculator::GetOutputData() const
     {
         std::vector<std::unique_ptr<CalculationLocationOutput>> calculationLocationsOutput;
 
-        if (finished)
+        if (isFinished)
         {
-            for (const auto& [location, damageAtTimeSteps] : results)
+            for (const auto& [location, damageAtTimeSteps] : outputData)
             {
                 calculationLocationsOutput.push_back(
                     std::make_unique<CalculationLocationOutput>(
