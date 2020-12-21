@@ -31,18 +31,18 @@ namespace DiKErnel::KernelWrapper::Json
     std::unique_ptr<InputData> InputComposer::GetDomainParametersFromJson(
         const std::string& filePath)
     {
-        auto json = ParseJson(filePath);
+        const auto json = ParseJson(filePath);
 
         return std::make_unique<InputData>(
-            ReadCalculationData(&json),
-            ReadHydraulicLoads(&json),
-            ReadLocations(&json));
+            ReadCalculationData(json),
+            ReadHydraulicLoads(json),
+            ReadLocations(json));
     }
 
     std::unique_ptr<CalculationData> InputComposer::ReadCalculationData(
-        nlohmann::json* json)
+        const nlohmann::json& json)
     {
-        auto readCalculationData = (*json)[JsonDefinitions::calculationData];
+        auto readCalculationData = json[JsonDefinitions::calculationData];
 
         return std::make_unique<CalculationData>(
             readCalculationData[JsonDefinitions::time].get<std::vector<int>>()
@@ -50,9 +50,9 @@ namespace DiKErnel::KernelWrapper::Json
     }
 
     std::unique_ptr<HydraulicLoads> InputComposer::ReadHydraulicLoads(
-        nlohmann::json* json)
+        const nlohmann::json& json)
     {
-        auto readHydraulicLoads = (*json)[JsonDefinitions::hydraulicLoads];
+        auto readHydraulicLoads = json[JsonDefinitions::hydraulicLoads];
         auto readBoundaryConditionsPerTimeStep = readHydraulicLoads[JsonDefinitions::boundaryConditionsPerTimeStep];
 
         std::vector<std::unique_ptr<BoundaryConditionsPerTimeStep>> boundaryConditionsPerTimeStep;
@@ -74,11 +74,11 @@ namespace DiKErnel::KernelWrapper::Json
     }
 
     std::vector<std::unique_ptr<CalculationLocation>> InputComposer::ReadLocations(
-        nlohmann::json* json)
+        const nlohmann::json& json)
     {
         std::vector<std::unique_ptr<CalculationLocation>> calculationLocations;
 
-        auto readLocations = (*json)[JsonDefinitions::locations];
+        auto readLocations = json[JsonDefinitions::locations];
 
         for (auto readLocation : readLocations)
         {

@@ -108,7 +108,7 @@ namespace DiKErnel::KernelWrapper::Json::Test
         auto json = nlohmann::json::parse(ifs);
 
         // When
-        const auto calculationData = InputComposer::ReadCalculationData(&json);
+        const auto calculationData = InputComposer::ReadCalculationData(json);
 
         // Then
         AssertCalculationData(calculationData.get());
@@ -120,7 +120,7 @@ namespace DiKErnel::KernelWrapper::Json::Test
         auto json = nlohmann::json::parse(ifs);
 
         // When
-        const auto hydraulicLoads = InputComposer::ReadHydraulicLoads(&json);
+        const auto hydraulicLoads = InputComposer::ReadHydraulicLoads(json);
 
         // Then
         AssertHydraulicLoads(hydraulicLoads.get());
@@ -132,7 +132,7 @@ namespace DiKErnel::KernelWrapper::Json::Test
         auto json = nlohmann::json::parse(ifs);
 
         // When
-        const auto calculationLocations = InputComposer::ReadLocations(&json);
+        const auto calculationLocations = InputComposer::ReadLocations(json);
 
         // Then
         std::vector<CalculationLocation*> locationPointers;
