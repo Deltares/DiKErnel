@@ -30,9 +30,9 @@ namespace DiKErnel::KernelWrapper::Json
           hydraulicLoads(std::move(hydraulicLoads)),
           locations(std::move(locations)) { }
 
-    CalculationData* InputData::GetCalculationData() const
+    const CalculationData& InputData::GetCalculationData() const
     {
-        return calculationData.get();
+        return *calculationData;
     }
 
     HydraulicLoads* InputData::GetHydraulicLoads() const

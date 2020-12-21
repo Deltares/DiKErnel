@@ -57,7 +57,7 @@ namespace DiKErnel::KernelWrapper::Json
              * \brief Gets the calculation data.
              * \return The calculation data.
              */
-            CalculationData* GetCalculationData() const;
+            const CalculationData& GetCalculationData() const;
 
             /*!
              * \brief Gets the hydraulic loads data.

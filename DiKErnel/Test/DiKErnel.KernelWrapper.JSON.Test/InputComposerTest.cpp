@@ -32,7 +32,7 @@ namespace DiKErnel::KernelWrapper::Json::Test
     #pragma region Forward declarations
 
     void AssertCalculationData(
-        CalculationData*);
+        const CalculationData&);
 
     void AssertHydraulicLoads(
         HydraulicLoads*);
@@ -111,7 +111,7 @@ namespace DiKErnel::KernelWrapper::Json::Test
         const auto calculationData = InputComposer::ReadCalculationData(json);
 
         // Then
-        AssertCalculationData(calculationData.get());
+        AssertCalculationData(*calculationData);
     }
 
     TEST_F(InputComposerTest, GivenFilePathAndInputComposer_WhenReadHydraulicLoadsFromJson_ThenCorrectDataSet)
@@ -148,7 +148,7 @@ namespace DiKErnel::KernelWrapper::Json::Test
     #pragma region Helper methods
 
     void AssertCalculationData(
-        CalculationData* calculationData)
+        const CalculationData& calculationData)
     {
         std::vector<int> expectedValues;
 
@@ -159,7 +159,7 @@ namespace DiKErnel::KernelWrapper::Json::Test
         expectedValues.push_back(1200);
         expectedValues.push_back(2000);
 
-        ASSERT_EQ(calculationData->GetTimes(), expectedValues);
+        ASSERT_EQ(calculationData.GetTimes(), expectedValues);
     }
 
     void AssertHydraulicLoads(

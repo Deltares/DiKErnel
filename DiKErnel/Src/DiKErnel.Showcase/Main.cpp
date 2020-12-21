@@ -92,7 +92,7 @@ int main()
     cout << "|===========|" << endl;
     cout << "| Read data |" << endl;
     cout << "|===========|" << endl;
-    cout << "-> Number of time steps: " << inputData->GetCalculationData()->GetTimes().size() - 1 << endl;
+    cout << "-> Number of time steps: " << inputData->GetCalculationData().GetTimes().size() - 1 << endl;
     cout << "-> Number of locations: " << inputData->GetLocations().size() << endl << endl;
 
     // Start stopwatch

@@ -48,7 +48,7 @@ namespace DiKErnel::Core
             double similarityParameterThreshold)>& subCalculation)
     {
         const auto locations = inputData.GetLocations();
-        const auto times = inputData.GetCalculationData()->GetTimes();
+        const auto& times = inputData.GetCalculationData().GetTimes();
         const auto* hydraulicLoads = inputData.GetHydraulicLoads();
         const auto boundariesPerTimeStep = hydraulicLoads->GetBoundaryConditionsPerTimeStep();
 
