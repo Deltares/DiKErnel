@@ -44,10 +44,10 @@ namespace DiKErnel::KernelWrapper::Json::Test
         double);
 
     void AssertCalculationLocations(
-        std::vector<CalculationLocation*>);
+        std::vector<std::reference_wrapper<CalculationLocation>>);
 
     void AssertCalculationLocation(
-        CalculationLocation* calculationLocation,
+        const CalculationLocation& calculationLocation,
         const char*,
         const char*,
         double,
@@ -135,14 +135,14 @@ namespace DiKErnel::KernelWrapper::Json::Test
         const auto calculationLocations = InputComposer::ReadLocations(json);
 
         // Then
-        std::vector<CalculationLocation*> locationPointers;
+        std::vector<std::reference_wrapper<CalculationLocation>> locationReferences;
 
         for (const auto& location : calculationLocations)
         {
-            locationPointers.push_back(location.get());
+            locationReferences.push_back(*location);
         }
 
-        AssertCalculationLocations(locationPointers);
+        AssertCalculationLocations(locationReferences);
     }
 
     #pragma region Helper methods
@@ -188,16 +188,16 @@ namespace DiKErnel::KernelWrapper::Json::Test
     }
 
     void AssertCalculationLocations(
-        std::vector<CalculationLocation*> calculationLocations)
+        std::vector<std::reference_wrapper<CalculationLocation>> calculationLocations)
     {
-        AssertCalculationLocation(calculationLocations[0], "LocatieZwak", "Noorse Steen", 1.65, 0.3, 0.0, 2.9, 4.0, 0.0, 0.0, -0.9, 0.8, 0.0, 0.0,
+        AssertCalculationLocation(calculationLocations[0].get(), "LocatieZwak", "Noorse Steen", 1.65, 0.3, 0.0, 2.9, 4.0, 0.0, 0.0, -0.9, 0.8, 0.0, 0.0,
                                   0.6, 0.3);
-        AssertCalculationLocation(calculationLocations[1], "LocatieSterk", "Noorse Steen", 1.65, 0.7, 0.0, 2.9, 4.0, 0.0, 0.0, -0.9, 0.8, 0.0, 0.0,
+        AssertCalculationLocation(calculationLocations[1].get(), "LocatieSterk", "Noorse Steen", 1.65, 0.7, 0.0, 2.9, 4.0, 0.0, 0.0, -0.9, 0.8, 0.0, 0.0,
                                   0.6, 0.3);
     }
 
     void AssertCalculationLocation(
-        CalculationLocation* calculationLocation,
+        const CalculationLocation& calculationLocation,
         const char* expectedName,
         const char* expectedTypeTopLayer,
         const double expectedRelativeDensity,
@@ -214,9 +214,9 @@ namespace DiKErnel::KernelWrapper::Json::Test
         const double expectedCoefficientSurgingNs,
         const double expectedTanA)
     {
-        ASSERT_EQ(calculationLocation->GetName(), expectedName);
+        ASSERT_EQ(calculationLocation.GetName(), expectedName);
         AssertRevetment(
-            calculationLocation->GetRevetment(),
+            calculationLocation.GetRevetment(),
             expectedTypeTopLayer,
             expectedRelativeDensity,
             expectedThicknessTopLayer,
@@ -230,7 +230,7 @@ namespace DiKErnel::KernelWrapper::Json::Test
             expectedCoefficientSurgingBs,
             expectedCoefficientSurgingCs,
             expectedCoefficientSurgingNs);
-        ASSERT_DOUBLE_EQ(calculationLocation->GetProfileSchematization().GetTanA(), expectedTanA);
+        ASSERT_DOUBLE_EQ(calculationLocation.GetProfileSchematization().GetTanA(), expectedTanA);
     }
 
     void AssertRevetment(
