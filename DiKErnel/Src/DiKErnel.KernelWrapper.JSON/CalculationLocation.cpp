@@ -35,9 +35,9 @@ namespace DiKErnel::KernelWrapper::Json
         return name;
     }
 
-    Revetment* CalculationLocation::GetRevetment() const
+    const Revetment& CalculationLocation::GetRevetment() const
     {
-        return revetment.get();
+        return *revetment;
     }
 
     ProfileSchematization* CalculationLocation::GetProfileSchematization() const

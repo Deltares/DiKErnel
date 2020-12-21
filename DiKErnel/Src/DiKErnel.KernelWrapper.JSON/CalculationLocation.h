@@ -62,7 +62,7 @@ namespace DiKErnel::KernelWrapper::Json
              * \brief Gets the revetment definition.
              * \return The revetment definition.
              */
-            Revetment* GetRevetment() const;
+            const Revetment& GetRevetment() const;
 
             /*!
              * \brief Gets the profile schematization.

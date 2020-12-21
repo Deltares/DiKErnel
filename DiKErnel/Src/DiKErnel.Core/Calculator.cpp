@@ -151,7 +151,7 @@ namespace DiKErnel::Core
         for (auto* location : locations)
         {
             results[location] = std::vector<std::tuple<double, double>>();
-            results[location].emplace_back(std::get<0>(timeSteps[0]), location->GetRevetment()->GetInitialDamage());
+            results[location].emplace_back(std::get<0>(timeSteps[0]), location->GetRevetment().GetInitialDamage());
         }
 
         for (const auto& timeStep : timeSteps)
@@ -203,30 +203,30 @@ namespace DiKErnel::Core
             double similarityParameterThreshold)>& subCalculation,
         std::map<CalculationLocation*, std::vector<std::tuple<double, double>>>& results)
     {
-        const auto* revetment = currentLocation->GetRevetment();
+        const auto& revetment = currentLocation->GetRevetment();
         const auto* profileSchematization = currentLocation->GetProfileSchematization();
         const auto* boundaryCondition = std::get<2>(currentTimeStep);
 
         const auto result = subCalculation(
             std::get<1>(results[currentLocation].back()),
             profileSchematization->GetTanA(),
-            revetment->GetRelativeDensity(),
-            revetment->GetThicknessTopLayer(),
+            revetment.GetRelativeDensity(),
+            revetment.GetThicknessTopLayer(),
             boundaryCondition->GetWaveHeightHm0(),
             boundaryCondition->GetWavePeriodTm10(),
             boundaryCondition->GetWaveAngle(),
             std::get<0>(currentTimeStep),
             std::get<1>(currentTimeStep),
-            revetment->GetCoefficientPlungingAp(),
-            revetment->GetCoefficientPlungingBp(),
-            revetment->GetCoefficientPlungingCp(),
-            revetment->GetCoefficientPlungingNp(),
-            revetment->GetCoefficientSurgingAs(),
-            revetment->GetCoefficientSurgingBs(),
-            revetment->GetCoefficientSurgingCs(),
-            revetment->GetCoefficientSurgingNs(),
+            revetment.GetCoefficientPlungingAp(),
+            revetment.GetCoefficientPlungingBp(),
+            revetment.GetCoefficientPlungingCp(),
+            revetment.GetCoefficientPlungingNp(),
+            revetment.GetCoefficientSurgingAs(),
+            revetment.GetCoefficientSurgingBs(),
+            revetment.GetCoefficientSurgingCs(),
+            revetment.GetCoefficientSurgingNs(),
             hydraulicLoads->GetWaveAngleMaximum(),
-            revetment->GetSimilarityParameterThreshold());
+            revetment.GetSimilarityParameterThreshold());
 
         results[currentLocation].emplace_back(std::get<1>(currentTimeStep), result);
     }
