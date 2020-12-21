@@ -68,6 +68,6 @@ namespace DiKErnel::KernelWrapper::Json
              * \brief Gets the profile schematization.
              * \return The profile schematization.
              */
-            ProfileSchematization* GetProfileSchematization() const;
+            const ProfileSchematization& GetProfileSchematization() const;
     };
 }

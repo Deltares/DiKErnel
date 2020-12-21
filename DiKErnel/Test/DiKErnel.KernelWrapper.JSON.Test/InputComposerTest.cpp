@@ -230,7 +230,7 @@ namespace DiKErnel::KernelWrapper::Json::Test
             expectedCoefficientSurgingBs,
             expectedCoefficientSurgingCs,
             expectedCoefficientSurgingNs);
-        ASSERT_DOUBLE_EQ(calculationLocation->GetProfileSchematization()->GetTanA(), expectedTanA);
+        ASSERT_DOUBLE_EQ(calculationLocation->GetProfileSchematization().GetTanA(), expectedTanA);
     }
 
     void AssertRevetment(

@@ -204,12 +204,12 @@ namespace DiKErnel::Core
         std::map<CalculationLocation*, std::vector<std::tuple<double, double>>>& results)
     {
         const auto& revetment = currentLocation->GetRevetment();
-        const auto* profileSchematization = currentLocation->GetProfileSchematization();
+        const auto& profileSchematization = currentLocation->GetProfileSchematization();
         const auto* boundaryCondition = std::get<2>(currentTimeStep);
 
         const auto result = subCalculation(
             std::get<1>(results[currentLocation].back()),
-            profileSchematization->GetTanA(),
+            profileSchematization.GetTanA(),
             revetment.GetRelativeDensity(),
             revetment.GetThicknessTopLayer(),
             boundaryCondition->GetWaveHeightHm0(),

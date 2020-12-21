@@ -40,8 +40,8 @@ namespace DiKErnel::KernelWrapper::Json
         return *revetment;
     }
 
-    ProfileSchematization* CalculationLocation::GetProfileSchematization() const
+    const ProfileSchematization& CalculationLocation::GetProfileSchematization() const
     {
-        return profileSchematization.get();
+        return *profileSchematization;
     }
 }
