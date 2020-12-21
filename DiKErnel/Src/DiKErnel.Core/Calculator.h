@@ -33,14 +33,19 @@
 
 namespace DiKErnel::Core
 {
-    extern int waitTime;
-
     /*!
-     * \brief Class responsible for performing calculations.
+     * \brief Class responsible for performing calculations on a separate thread.
      */
     class Calculator
     {
         public:
+            /*!
+             * \brief Creates a new instance.
+             * \param inputData
+             *        The input data of the calculation.
+             * \param subCalculation
+             *        The sub-calculation to perform.
+             */
             explicit Calculator(
                 const KernelWrapper::Json::InputData* inputData,
                 const std::function<double(
@@ -64,16 +69,41 @@ namespace DiKErnel::Core
                     double waveAngleMaximum,
                     double similarityParameterThreshold)>& subCalculation);
 
+            /*!
+             * \brief Handle that enables a calling instance to wait for the calculation to
+             *        complete.
+             */
             void WaitForCompletion();
 
+            /*!
+             * \brief Gets the current progress of the calculation.
+             * \return The current progress of the calculation.
+             *         Unit = [%]
+             */
             int GetProgress() const;
 
+            /*!
+             * \brief Gets whether or not the calculation is finished.
+             * \return Whether or not the calculation is finished.
+             */
             bool IsFinished() const;
 
+            /*!
+             * \brief Cancels the current calculation when it is not finished yet.
+             */
             void Cancel();
 
+            /*!
+             * \brief Gets whether or not the calculation is cancelled.
+             * \return Whether or not the calculation is cancelled.
+             */
             bool IsCancelled() const;
 
+            /*!
+             * \brief Gets the output data of the calculation.
+             * \return The output data of the calculation when the calculation is finished, null
+             *         otherwise.
+             */
             std::unique_ptr<KernelWrapper::Json::OutputData> GetOutputData() const;
 
         private:
