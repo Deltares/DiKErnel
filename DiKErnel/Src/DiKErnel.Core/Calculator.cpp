@@ -52,7 +52,7 @@ namespace DiKErnel::Core
         const auto* hydraulicLoads = inputData.GetHydraulicLoads();
         const auto boundariesPerTimeStep = hydraulicLoads->GetBoundaryConditionsPerTimeStep();
 
-        auto timeSteps = std::vector<std::tuple<int, int, BoundaryConditionsPerTimeStep*>>();
+        auto timeSteps = std::vector<std::tuple<int, int, std::reference_wrapper<BoundaryConditionsPerTimeStep>>>();
 
         for (auto i = 0; i < times.size() - 1; i++)
         {
@@ -119,7 +119,7 @@ namespace DiKErnel::Core
 
     void Calculator::PerformCalculation(
         const std::vector<CalculationLocation*>& locations,
-        const std::vector<std::tuple<int, int, BoundaryConditionsPerTimeStep*>>& timeSteps,
+        const std::vector<std::tuple<int, int, std::reference_wrapper<BoundaryConditionsPerTimeStep>>>& timeSteps,
         const HydraulicLoads* hydraulicLoads,
         const std::function<double(
             double initialDamage,
@@ -178,7 +178,7 @@ namespace DiKErnel::Core
     }
 
     void Calculator::PerformCalculationForTimeStepAndLocation(
-        std::tuple<int, int, BoundaryConditionsPerTimeStep*> currentTimeStep,
+        std::tuple<int, int, std::reference_wrapper<BoundaryConditionsPerTimeStep>> currentTimeStep,
         CalculationLocation* currentLocation,
         const HydraulicLoads* hydraulicLoads,
         const std::function<double(
@@ -205,16 +205,16 @@ namespace DiKErnel::Core
     {
         const auto& revetment = currentLocation->GetRevetment();
         const auto& profileSchematization = currentLocation->GetProfileSchematization();
-        const auto* boundaryCondition = std::get<2>(currentTimeStep);
+        const auto& boundaryCondition = std::get<2>(currentTimeStep).get();
 
         const auto result = subCalculation(
             std::get<1>(results[currentLocation].back()),
             profileSchematization.GetTanA(),
             revetment.GetRelativeDensity(),
             revetment.GetThicknessTopLayer(),
-            boundaryCondition->GetWaveHeightHm0(),
-            boundaryCondition->GetWavePeriodTm10(),
-            boundaryCondition->GetWaveAngle(),
+            boundaryCondition.GetWaveHeightHm0(),
+            boundaryCondition.GetWavePeriodTm10(),
+            boundaryCondition.GetWaveAngle(),
             std::get<0>(currentTimeStep),
             std::get<1>(currentTimeStep),
             revetment.GetCoefficientPlungingAp(),

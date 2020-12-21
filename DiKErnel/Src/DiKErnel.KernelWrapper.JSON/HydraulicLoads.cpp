@@ -33,15 +33,15 @@ namespace DiKErnel::KernelWrapper::Json
         return waveAngleMaximum;
     }
 
-    std::vector<BoundaryConditionsPerTimeStep*> HydraulicLoads::GetBoundaryConditionsPerTimeStep() const
+    std::vector<std::reference_wrapper<BoundaryConditionsPerTimeStep>> HydraulicLoads::GetBoundaryConditionsPerTimeStep() const
     {
-        std::vector<BoundaryConditionsPerTimeStep*> boundaryConditionsPerTimeStepPointers;
+        std::vector<std::reference_wrapper<BoundaryConditionsPerTimeStep>> boundaryConditionsPerTimeStepReferences;
 
         for (const auto& boundaryConditionForTimeStep : boundaryConditionsPerTimeStep)
         {
-            boundaryConditionsPerTimeStepPointers.push_back(boundaryConditionForTimeStep.get());
+            boundaryConditionsPerTimeStepReferences.emplace_back(*boundaryConditionForTimeStep);
         }
 
-        return boundaryConditionsPerTimeStepPointers;
+        return boundaryConditionsPerTimeStepReferences;
     }
 }

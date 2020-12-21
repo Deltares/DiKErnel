@@ -115,7 +115,7 @@ namespace DiKErnel::Core
 
             static void PerformCalculation(
                 const std::vector<KernelWrapper::Json::CalculationLocation*>&,
-                const std::vector<std::tuple<int, int, KernelWrapper::Json::BoundaryConditionsPerTimeStep*>>&,
+                const std::vector<std::tuple<int, int, std::reference_wrapper<KernelWrapper::Json::BoundaryConditionsPerTimeStep>>>&,
                 const KernelWrapper::Json::HydraulicLoads*,
                 const std::function<double(
                     double initialDamage,
@@ -143,7 +143,7 @@ namespace DiKErnel::Core
                 std::map<KernelWrapper::Json::CalculationLocation*, std::vector<std::tuple<double, double>>>&);
 
             static void PerformCalculationForTimeStepAndLocation(
-                std::tuple<int, int, KernelWrapper::Json::BoundaryConditionsPerTimeStep*>,
+                std::tuple<int, int, std::reference_wrapper<KernelWrapper::Json::BoundaryConditionsPerTimeStep>>,
                 KernelWrapper::Json::CalculationLocation*,
                 const KernelWrapper::Json::HydraulicLoads*,
                 const std::function<double(

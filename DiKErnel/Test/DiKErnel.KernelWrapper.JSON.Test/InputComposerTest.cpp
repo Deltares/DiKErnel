@@ -38,7 +38,7 @@ namespace DiKErnel::KernelWrapper::Json::Test
         HydraulicLoads*);
 
     void AssertBoundaryConditionsForTimeStep(
-        BoundaryConditionsPerTimeStep*,
+        std::reference_wrapper<BoundaryConditionsPerTimeStep>,
         double,
         double,
         double);
@@ -177,14 +177,14 @@ namespace DiKErnel::KernelWrapper::Json::Test
     }
 
     void AssertBoundaryConditionsForTimeStep(
-        BoundaryConditionsPerTimeStep* boundaryConditionsForTimeStep,
+        std::reference_wrapper<BoundaryConditionsPerTimeStep> boundaryConditionsForTimeStep,
         const double expectedWaveHeightHm0,
         const double expectedWavePeriodTm10,
         const double expectedWaveAngle)
     {
-        ASSERT_DOUBLE_EQ(boundaryConditionsForTimeStep->GetWaveHeightHm0(), expectedWaveHeightHm0);
-        ASSERT_DOUBLE_EQ(boundaryConditionsForTimeStep->GetWavePeriodTm10(), expectedWavePeriodTm10);
-        ASSERT_DOUBLE_EQ(boundaryConditionsForTimeStep->GetWaveAngle(), expectedWaveAngle);
+        ASSERT_DOUBLE_EQ(boundaryConditionsForTimeStep.get().GetWaveHeightHm0(), expectedWaveHeightHm0);
+        ASSERT_DOUBLE_EQ(boundaryConditionsForTimeStep.get().GetWavePeriodTm10(), expectedWavePeriodTm10);
+        ASSERT_DOUBLE_EQ(boundaryConditionsForTimeStep.get().GetWaveAngle(), expectedWaveAngle);
     }
 
     void AssertCalculationLocations(
