@@ -24,7 +24,8 @@
 
 namespace DiKErnel::TestUtil
 {
-    std::filesystem::path TestDataHelper::GetTestDataPath(const std::string currentNamespace)
+    std::filesystem::path TestDataHelper::GetTestDataPath(
+        const std::string currentNamespace)
     {
         auto currentPath = std::filesystem::current_path();
 

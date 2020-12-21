@@ -37,6 +37,7 @@ namespace DiKErnel::TestUtil
              *        The namespace of the test project. 
              * \return The path to the test data.
             */
-            static std::filesystem::path GetTestDataPath(std::string currentNamespace);
+            static std::filesystem::path GetTestDataPath(
+                std::string currentNamespace);
     };
 }
