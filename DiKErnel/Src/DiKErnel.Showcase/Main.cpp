@@ -34,6 +34,8 @@ using namespace DiKErnel::Core;
 using namespace DiKErnel::FunctionLibrary;
 using namespace DiKErnel::KernelWrapper::Json;
 
+int delay = 0;
+
 enum class UserInput
 {
     None,
@@ -42,6 +44,27 @@ enum class UserInput
 };
 
 #pragma region Forward declarations
+
+double CalculateDamageWithDelay(
+    double initialDamage,
+    double slopeAngle,
+    double relativeDensity,
+    double thicknessTopLayer,
+    double spectralWaveHeight,
+    double spectralWavePeriod,
+    double waveAngle,
+    double startTime,
+    double endTime,
+    double ap,
+    double bp,
+    double cp,
+    double np,
+    double as,
+    double bs,
+    double cs,
+    double ns,
+    double waveAngleMaximum,
+    double similarityParameterThreshold);
 
 void InputMethod(
     const atomic<bool>& calculationFinished,
@@ -61,7 +84,7 @@ int main()
     cout << "-> Enter the path to the JSON file: ";
     getline(cin, jsonFilePath);
     cout << "-> Enter the time to wait in seconds: ";
-    cin >> waitTime;
+    cin >> delay;
     cout << endl;
 
     const auto inputData = InputComposer::GetDomainParametersFromJson(jsonFilePath);
@@ -84,7 +107,7 @@ int main()
 
     Calculator calculator(
         inputData.get(),
-        &NaturalStoneRevetment::CalculateDamage);
+        &CalculateDamageWithDelay);
 
     thread inputThread(
         InputMethod,
@@ -148,6 +171,51 @@ int main()
     inputThread.join();
 
     return 0;
+}
+
+double CalculateDamageWithDelay(
+    const double initialDamage,
+    const double slopeAngle,
+    const double relativeDensity,
+    const double thicknessTopLayer,
+    const double spectralWaveHeight,
+    const double spectralWavePeriod,
+    const double waveAngle,
+    const double startTime,
+    const double endTime,
+    const double ap,
+    const double bp,
+    const double cp,
+    const double np,
+    const double as,
+    const double bs,
+    const double cs,
+    const double ns,
+    const double waveAngleMaximum,
+    const double similarityParameterThreshold)
+{
+    std::this_thread::sleep_for(std::chrono::seconds(delay));
+
+    return NaturalStoneRevetment::CalculateDamage(
+        initialDamage,
+        slopeAngle,
+        relativeDensity,
+        thicknessTopLayer,
+        spectralWaveHeight,
+        spectralWavePeriod,
+        waveAngle,
+        startTime,
+        endTime,
+        ap,
+        bp,
+        cp,
+        np,
+        as,
+        bs,
+        cs,
+        ns,
+        waveAngleMaximum,
+        similarityParameterThreshold);
 }
 
 void InputMethod(

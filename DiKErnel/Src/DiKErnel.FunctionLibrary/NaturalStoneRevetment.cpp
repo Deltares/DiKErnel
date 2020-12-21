@@ -48,8 +48,7 @@ namespace DiKErnel::FunctionLibrary
         const double cs,
         const double ns,
         const double waveAngleMaximum,
-        const double similarityParameterThreshold
-    )
+        const double similarityParameterThreshold)
     {
         const auto incrementDamageOfNaturalStoneRevetment = CalculateIncrementDamage(
             slopeAngle,
@@ -94,8 +93,7 @@ namespace DiKErnel::FunctionLibrary
         const double ns,
         const double waveAngleMaximum,
         const double initialDamage,
-        const double similarityParameterThreshold
-    )
+        const double similarityParameterThreshold)
     {
         const auto hydraulicLoadOnNaturalStoneRevetment = CalculateHydraulicLoad(slopeAngle, spectralWaveHeight, spectralWavePeriod,
                                                                                  ap,
@@ -149,8 +147,7 @@ namespace DiKErnel::FunctionLibrary
         const double bs,
         const double cs,
         const double ns,
-        const double similarityParameterThreshold
-    )
+        const double similarityParameterThreshold)
     {
         const auto surfSimilarityParameter = CalculateSurfSimilarityParameter(slopeAngle, spectralWaveHeight, spectralWavePeriod);
 
@@ -200,8 +197,7 @@ namespace DiKErnel::FunctionLibrary
         const double ns,
         const double waveAngleMaximum,
         const double initialDamage,
-        const double similarityParameterThreshold
-    )
+        const double similarityParameterThreshold)
     {
         const auto timeStep = CalculateIncrementOfTime(startTime, endTime);
         const auto referenceTimeDegradationOfNaturalStoneRevetment = CalculateReferenceTimeDegradation(
@@ -261,8 +257,7 @@ namespace DiKErnel::FunctionLibrary
         const double ns,
         const double waveAngleMaximum,
         const double initialDamage,
-        const double similarityParameterThreshold
-    )
+        const double similarityParameterThreshold)
     {
         const auto referenceDegradationOfNaturalStoneRevetment = CalculateReferenceDegradation(
             initialDamage,
@@ -303,8 +298,7 @@ namespace DiKErnel::FunctionLibrary
         const double cs,
         const double ns,
         const double waveAngleMaximum,
-        const double similarityParameterThreshold
-    )
+        const double similarityParameterThreshold)
     {
         const auto resistanceOfNaturalStoneRevetment = CalculateResistance(relativeDensity, thicknessTopLayer);
         const auto hydraulicLoadOnNaturalStoneRevetment = CalculateHydraulicLoad(slopeAngle, spectralWaveHeight, spectralWavePeriod,
