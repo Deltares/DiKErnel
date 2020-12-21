@@ -69,6 +69,6 @@ namespace DiKErnel::KernelWrapper::Json
              * \brief Gets the calculation locations.
              * \return The calculation locations.
              */
-            std::vector<CalculationLocation*> GetLocations() const;
+            std::vector<std::reference_wrapper<CalculationLocation>> GetLocations() const;
     };
 }
