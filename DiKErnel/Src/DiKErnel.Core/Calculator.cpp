@@ -168,7 +168,7 @@ namespace DiKErnel::Core
                     break;
                 }
 
-                PerformCalculationForTimeStepAndLocation(timeStep, &location.get(), hydraulicLoads, subCalculation, results);
+                PerformCalculationForTimeStepAndLocation(timeStep, location.get(), hydraulicLoads, subCalculation, results);
 
                 progress = progress + percentagePerCalculation;
             }
@@ -179,7 +179,7 @@ namespace DiKErnel::Core
 
     void Calculator::PerformCalculationForTimeStepAndLocation(
         std::tuple<int, int, std::reference_wrapper<BoundaryConditionsPerTimeStep>> currentTimeStep,
-        CalculationLocation* currentLocation,
+        CalculationLocation& currentLocation,
         const HydraulicLoads& hydraulicLoads,
         const std::function<double(
             double initialDamage,
@@ -203,12 +203,12 @@ namespace DiKErnel::Core
             double similarityParameterThreshold)>& subCalculation,
         std::map<CalculationLocation*, std::vector<std::tuple<double, double>>>& results)
     {
-        const auto& revetment = currentLocation->GetRevetment();
-        const auto& profileSchematization = currentLocation->GetProfileSchematization();
+        const auto& revetment = currentLocation.GetRevetment();
+        const auto& profileSchematization = currentLocation.GetProfileSchematization();
         const auto& boundaryCondition = std::get<2>(currentTimeStep).get();
 
         const auto result = subCalculation(
-            std::get<1>(results[currentLocation].back()),
+            std::get<1>(results[&currentLocation].back()),
             profileSchematization.GetTanA(),
             revetment.GetRelativeDensity(),
             revetment.GetThicknessTopLayer(),
@@ -228,6 +228,6 @@ namespace DiKErnel::Core
             hydraulicLoads.GetWaveAngleMaximum(),
             revetment.GetSimilarityParameterThreshold());
 
-        results[currentLocation].emplace_back(std::get<1>(currentTimeStep), result);
+        results[&currentLocation].emplace_back(std::get<1>(currentTimeStep), result);
     }
 }
