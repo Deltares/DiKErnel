@@ -144,14 +144,14 @@ namespace DiKErnel::Core
         std::atomic<double>& progress,
         std::atomic<bool>& finished,
         const std::atomic<bool>& cancelled,
-        std::map<CalculationLocation*, std::vector<std::tuple<double, double>>>& results)
+        std::map<CalculationLocation*, std::vector<std::tuple<double, double>>>& outputData)
     {
         const auto percentagePerCalculation = 1.0 / static_cast<double>(timeSteps.size()) / static_cast<double>(locations.size());
 
         for (const auto& location : locations)
         {
-            results[&location.get()] = std::vector<std::tuple<double, double>>();
-            results[&location.get()].emplace_back(std::get<0>(timeSteps[0]), location.get().GetRevetment().GetInitialDamage());
+            outputData[&location.get()] = std::vector<std::tuple<double, double>>();
+            outputData[&location.get()].emplace_back(std::get<0>(timeSteps[0]), location.get().GetRevetment().GetInitialDamage());
         }
 
         for (const auto& timeStep : timeSteps)
@@ -168,7 +168,7 @@ namespace DiKErnel::Core
                     break;
                 }
 
-                PerformCalculationForTimeStepAndLocation(timeStep, location.get(), hydraulicLoads, subCalculation, results);
+                PerformCalculationForTimeStepAndLocation(timeStep, location.get(), hydraulicLoads, subCalculation, outputData);
 
                 progress = progress + percentagePerCalculation;
             }
@@ -201,14 +201,14 @@ namespace DiKErnel::Core
             double ns,
             double waveAngleMaximum,
             double similarityParameterThreshold)>& subCalculation,
-        std::map<CalculationLocation*, std::vector<std::tuple<double, double>>>& results)
+        std::map<CalculationLocation*, std::vector<std::tuple<double, double>>>& outputData)
     {
         const auto& revetment = currentLocation.GetRevetment();
         const auto& profileSchematization = currentLocation.GetProfileSchematization();
         const auto& boundaryCondition = std::get<2>(currentTimeStep).get();
 
         const auto result = subCalculation(
-            std::get<1>(results[&currentLocation].back()),
+            std::get<1>(outputData[&currentLocation].back()),
             profileSchematization.GetTanA(),
             revetment.GetRelativeDensity(),
             revetment.GetThicknessTopLayer(),
@@ -228,6 +228,6 @@ namespace DiKErnel::Core
             hydraulicLoads.GetWaveAngleMaximum(),
             revetment.GetSimilarityParameterThreshold());
 
-        results[&currentLocation].emplace_back(std::get<1>(currentTimeStep), result);
+        outputData[&currentLocation].emplace_back(std::get<1>(currentTimeStep), result);
     }
 }
