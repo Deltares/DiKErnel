@@ -59,16 +59,16 @@ namespace DiKErnel::Core
             timeSteps.emplace_back(times[i], times[i + 1], boundariesPerTimeStep[i]);
         }
 
-        calculationThread = std::thread(
-            PerformCalculation,
-            locations,
-            timeSteps,
-            std::ref(hydraulicLoads),
-            subCalculation,
-            std::ref(progress),
-            std::ref(isFinished),
-            std::ref(isCancelled),
-            std::ref(outputData));
+        // calculationThread = std::thread(
+        //     PerformCalculation,
+        //     locations,
+        //     timeSteps,
+        //     std::ref(hydraulicLoads),
+        //     subCalculation,
+        //     std::ref(progress),
+        //     std::ref(isFinished),
+        //     std::ref(isCancelled),
+        //     std::ref(outputData));
     }
 
     void Calculator::WaitForCompletion()
@@ -118,7 +118,7 @@ namespace DiKErnel::Core
     }
 
     void Calculator::PerformCalculation(
-        const std::vector<CalculationLocation*>& locations,
+        const std::vector<std::reference_wrapper<CalculationLocation>>& locations,
         const std::vector<std::tuple<int, int, std::reference_wrapper<BoundaryConditionsPerTimeStep>>>& timeSteps,
         const HydraulicLoads& hydraulicLoads,
         const std::function<double(
@@ -148,10 +148,10 @@ namespace DiKErnel::Core
     {
         const auto percentagePerCalculation = 1.0 / static_cast<double>(timeSteps.size()) / static_cast<double>(locations.size());
 
-        for (auto* location : locations)
+        for (const auto& location : locations)
         {
-            results[location] = std::vector<std::tuple<double, double>>();
-            results[location].emplace_back(std::get<0>(timeSteps[0]), location->GetRevetment().GetInitialDamage());
+            results[&location.get()] = std::vector<std::tuple<double, double>>();
+            results[&location.get()].emplace_back(std::get<0>(timeSteps[0]), location.get().GetRevetment().GetInitialDamage());
         }
 
         for (const auto& timeStep : timeSteps)
@@ -161,14 +161,14 @@ namespace DiKErnel::Core
                 break;
             }
 
-            for (auto* location : locations)
+            for (const auto& location : locations)
             {
                 if (cancelled)
                 {
                     break;
                 }
 
-                PerformCalculationForTimeStepAndLocation(timeStep, location, hydraulicLoads, subCalculation, results);
+                PerformCalculationForTimeStepAndLocation(timeStep, &location.get(), hydraulicLoads, subCalculation, results);
 
                 progress = progress + percentagePerCalculation;
             }

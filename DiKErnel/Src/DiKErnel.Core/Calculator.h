@@ -114,7 +114,7 @@ namespace DiKErnel::Core
             std::map<KernelWrapper::Json::CalculationLocation*, std::vector<std::tuple<double, double>>> outputData;
 
             static void PerformCalculation(
-                const std::vector<KernelWrapper::Json::CalculationLocation*>&,
+                const std::vector< std::reference_wrapper<KernelWrapper::Json::CalculationLocation>>&,
                 const std::vector<std::tuple<int, int, std::reference_wrapper<KernelWrapper::Json::BoundaryConditionsPerTimeStep>>>&,
                 const KernelWrapper::Json::HydraulicLoads&,
                 const std::function<double(

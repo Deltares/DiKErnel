@@ -105,7 +105,7 @@ namespace DiKErnel::KernelWrapper::Json::Test
     TEST_F(InputComposerTest, GivenFilePathAndInputComposer_WhenReadCalculationDataFromJson_ThenCorrectDataSet)
     {
         std::ifstream ifs(filePath);
-        auto json = nlohmann::json::parse(ifs);
+        const auto json = nlohmann::json::parse(ifs);
 
         // When
         const auto calculationData = InputComposer::ReadCalculationData(json);
@@ -117,7 +117,7 @@ namespace DiKErnel::KernelWrapper::Json::Test
     TEST_F(InputComposerTest, GivenFilePathAndInputComposer_WhenReadHydraulicLoadsFromJson_ThenCorrectDataSet)
     {
         std::ifstream ifs(filePath);
-        auto json = nlohmann::json::parse(ifs);
+        const auto json = nlohmann::json::parse(ifs);
 
         // When
         const auto hydraulicLoads = InputComposer::ReadHydraulicLoads(json);
@@ -129,7 +129,7 @@ namespace DiKErnel::KernelWrapper::Json::Test
     TEST_F(InputComposerTest, GivenFilePathAndInputComposer_WhenReadLocationsFromJson_ThenCorrectDataSet)
     {
         std::ifstream ifs(filePath);
-        auto json = nlohmann::json::parse(ifs);
+        const auto json = nlohmann::json::parse(ifs);
 
         // When
         const auto calculationLocations = InputComposer::ReadLocations(json);
@@ -190,9 +190,11 @@ namespace DiKErnel::KernelWrapper::Json::Test
     void AssertCalculationLocations(
         std::vector<std::reference_wrapper<CalculationLocation>> calculationLocations)
     {
-        AssertCalculationLocation(calculationLocations[0].get(), "LocatieZwak", "Noorse Steen", 1.65, 0.3, 0.0, 2.9, 4.0, 0.0, 0.0, -0.9, 0.8, 0.0, 0.0,
+        AssertCalculationLocation(calculationLocations[0].get(), "LocatieZwak", "Noorse Steen", 1.65, 0.3, 0.0, 2.9, 4.0, 0.0, 0.0, -0.9, 0.8, 0.0,
+                                  0.0,
                                   0.6, 0.3);
-        AssertCalculationLocation(calculationLocations[1].get(), "LocatieSterk", "Noorse Steen", 1.65, 0.7, 0.0, 2.9, 4.0, 0.0, 0.0, -0.9, 0.8, 0.0, 0.0,
+        AssertCalculationLocation(calculationLocations[1].get(), "LocatieSterk", "Noorse Steen", 1.65, 0.7, 0.0, 2.9, 4.0, 0.0, 0.0, -0.9, 0.8, 0.0,
+                                  0.0,
                                   0.6, 0.3);
     }
 
