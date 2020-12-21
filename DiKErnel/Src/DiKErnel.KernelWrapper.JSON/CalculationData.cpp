@@ -18,13 +18,15 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
+#include <utility>
+
 #include "CalculationData.h"
 
 namespace DiKErnel::KernelWrapper::Json
 {
     CalculationData::CalculationData(
         std::vector<int> times)
-        : times(times) { }
+        : times(std::move(times)) { }
 
     const std::vector<int>& CalculationData::GetTimes() const
     {

@@ -56,7 +56,7 @@ namespace DiKErnel::KernelWrapper::Json
              * \brief Gets the name of the location.
              * \return The name of the location.
              */
-            std::string GetName() const;
+            const std::string& GetName() const;
 
             /*!
              * \brief Gets the revetment definition.

@@ -30,7 +30,7 @@ namespace DiKErnel::KernelWrapper::Json
           revetment(std::move(revetment)),
           profileSchematization(std::move(profileSchematization)) { }
 
-    std::string CalculationLocation::GetName() const
+    const std::string& CalculationLocation::GetName() const
     {
         return name;
     }
