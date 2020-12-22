@@ -22,9 +22,11 @@
 
 namespace DiKErnel::KernelWrapper::Json
 {
+    using namespace std;
+
     OutputData::OutputData(
-        std::vector<std::unique_ptr<CalculationLocationOutput>> calculationLocationsOutput)
-        : calculationLocationsOutput(std::move(calculationLocationsOutput))
+        vector<unique_ptr<CalculationLocationOutput>> calculationLocationsOutput)
+        : calculationLocationsOutput(move(calculationLocationsOutput))
     {
         for (const auto& calculationLocationOutput : this->calculationLocationsOutput)
         {
@@ -32,7 +34,7 @@ namespace DiKErnel::KernelWrapper::Json
         }
     }
 
-    const std::vector<std::reference_wrapper<CalculationLocationOutput>>& OutputData::GetCalculationLocationsOutput() const
+    const vector<reference_wrapper<CalculationLocationOutput>>& OutputData::GetCalculationLocationsOutput() const
     {
         return calculationLocationOutputReferences;
     }

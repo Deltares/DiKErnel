@@ -27,18 +27,19 @@
 namespace DiKErnel::KernelWrapper::Json
 {
     /*!
-     * \brief Container for all calculation output data.
+     * \brief Container for all calculation related output data.
      */
     class OutputData
     {
-        std::vector<std::unique_ptr<CalculationLocationOutput>> calculationLocationsOutput;
-        std::vector<std::reference_wrapper<CalculationLocationOutput>> calculationLocationOutputReferences;
-
         public:
             explicit OutputData(
                 std::vector<std::unique_ptr<CalculationLocationOutput>> calculationLocationsOutput
             );
 
             const std::vector<std::reference_wrapper<CalculationLocationOutput>>& GetCalculationLocationsOutput() const;
+
+        private:
+            std::vector<std::unique_ptr<CalculationLocationOutput>> calculationLocationsOutput;
+            std::vector<std::reference_wrapper<CalculationLocationOutput>> calculationLocationOutputReferences;
     };
 }
