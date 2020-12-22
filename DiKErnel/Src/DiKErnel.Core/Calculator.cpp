@@ -149,8 +149,8 @@ namespace DiKErnel::Core
             double waveAngleMaximum,
             double similarityParameterThreshold)>& subCalculation,
         atomic<double>& progress,
-        atomic<bool>& finished,
-        const atomic<bool>& cancelled,
+        atomic<bool>& isFinished,
+        const atomic<bool>& isCancelled,
         vector<vector<tuple<double, double>>>& outputData)
     {
         const auto percentagePerCalculation = 1.0 / static_cast<double>(timeSteps.size()) / static_cast<double>(locations.size());
@@ -166,14 +166,14 @@ namespace DiKErnel::Core
 
         for (const auto& timeStep : timeSteps)
         {
-            if (cancelled)
+            if (isCancelled)
             {
                 break;
             }
 
-            for (auto i = 0; i < locations.size(); i++)
+            for (auto i = 0; i < static_cast<int>(locations.size()); i++)
             {
-                if (cancelled)
+                if (isCancelled)
                 {
                     break;
                 }
@@ -184,7 +184,7 @@ namespace DiKErnel::Core
             }
         }
 
-        finished = true;
+        isFinished = true;
     }
 
     void Calculator::PerformCalculationForTimeStepAndLocation(
@@ -217,7 +217,7 @@ namespace DiKErnel::Core
         const auto& profileSchematization = currentLocation.GetProfileSchematization();
         const auto& boundaryCondition = get<2>(currentTimeStep).get();
 
-        const auto result = subCalculation(
+        const auto damage = subCalculation(
             get<1>(outputData.back()),
             profileSchematization.GetTanA(),
             revetment.GetRelativeDensity(),
@@ -238,6 +238,6 @@ namespace DiKErnel::Core
             hydraulicLoads.GetWaveAngleMaximum(),
             revetment.GetSimilarityParameterThreshold());
 
-        outputData.emplace_back(get<1>(currentTimeStep), result);
+        outputData.emplace_back(get<1>(currentTimeStep), damage);
     }
 }
