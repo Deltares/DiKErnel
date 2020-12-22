@@ -102,8 +102,8 @@ namespace DiKErnel::KernelWrapper::Json::Test
 
         void AssertCalculationLocation(
             const CalculationLocation& calculationLocation,
-            const char* expectedName,
-            const char* expectedTypeTopLayer,
+            const string& expectedName,
+            const string& expectedTypeTopLayer,
             const double expectedRelativeDensity,
             const double expectedThicknessTopLayer,
             const double expectedInitialDamage,
@@ -139,7 +139,7 @@ namespace DiKErnel::KernelWrapper::Json::Test
 
         void AssertRevetment(
             const Revetment& revetment,
-            const char* expectedTypeTopLayer,
+            const string& expectedTypeTopLayer,
             const double expectedRelativeDensity,
             const double expectedThicknessTopLayer,
             const double expectedInitialDamage,
