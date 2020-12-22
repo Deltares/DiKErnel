@@ -27,8 +27,6 @@ namespace DiKErnel::KernelWrapper::Json
      */
     class RevetmentOutput
     {
-        double damage;
-
         public:
             /*!
              * \brief Creates a new instance.
@@ -44,5 +42,8 @@ namespace DiKErnel::KernelWrapper::Json
              * \return The damage.
              */
             double GetDamage() const;
+
+        private:
+            double damage;
     };
 }

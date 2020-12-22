@@ -18,25 +18,29 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
+#include <utility>
+
 #include "Revetment.h"
 
 namespace DiKErnel::KernelWrapper::Json
 {
+    using namespace std;
+
     Revetment::Revetment(
-        const std::string& typeTopLayer,
-        double relativeDensity,
-        double thicknessTopLayer,
-        double initialDamage,
-        double similarityParameterThreshold,
-        double coefficientPlungingAp,
-        double coefficientPlungingBp,
-        double coefficientPlungingCp,
-        double coefficientPlungingNp,
-        double coefficientSurgingAs,
-        double coefficientSurgingBs,
-        double coefficientSurgingCs,
-        double coefficientSurgingNs)
-        : name(typeTopLayer),
+        string typeTopLayer,
+        const double relativeDensity,
+        const double thicknessTopLayer,
+        const double initialDamage,
+        const double similarityParameterThreshold,
+        const double coefficientPlungingAp,
+        const double coefficientPlungingBp,
+        const double coefficientPlungingCp,
+        const double coefficientPlungingNp,
+        const double coefficientSurgingAs,
+        const double coefficientSurgingBs,
+        const double coefficientSurgingCs,
+        const double coefficientSurgingNs)
+        : name(move(typeTopLayer)),
           relativeDensity(relativeDensity),
           thicknessTopLayer(thicknessTopLayer),
           initialDamage(initialDamage),
@@ -50,7 +54,7 @@ namespace DiKErnel::KernelWrapper::Json
           coefficientSurgingCs(coefficientSurgingCs),
           coefficientSurgingNs(coefficientSurgingNs) { }
 
-    std::string Revetment::GetTypeTopLayer() const
+    const string& Revetment::GetTypeTopLayer() const
     {
         return name;
     }

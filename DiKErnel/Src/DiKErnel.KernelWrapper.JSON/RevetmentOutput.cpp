@@ -23,7 +23,7 @@
 namespace DiKErnel::KernelWrapper::Json
 {
     RevetmentOutput::RevetmentOutput(
-        double damage)
+        const double damage)
         : damage(damage) { }
 
     double RevetmentOutput::GetDamage() const

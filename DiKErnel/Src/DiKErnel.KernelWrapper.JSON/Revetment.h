@@ -29,20 +29,6 @@ namespace DiKErnel::KernelWrapper::Json
      */
     class Revetment
     {
-        std::string name;
-        double relativeDensity;
-        double thicknessTopLayer;
-        double initialDamage;
-        double similarityParameterThreshold;
-        double coefficientPlungingAp;
-        double coefficientPlungingBp;
-        double coefficientPlungingCp;
-        double coefficientPlungingNp;
-        double coefficientSurgingAs;
-        double coefficientSurgingBs;
-        double coefficientSurgingCs;
-        double coefficientSurgingNs;
-
         public:
             /*! 
              * \brief Creates a new instance.
@@ -74,7 +60,7 @@ namespace DiKErnel::KernelWrapper::Json
              *        The N coefficient for surging.
              */
             explicit Revetment(
-                const std::string& typeTopLayer,
+                std::string typeTopLayer,
                 double relativeDensity,
                 double thicknessTopLayer,
                 double initialDamage,
@@ -93,7 +79,7 @@ namespace DiKErnel::KernelWrapper::Json
              * \brief Gets the type of top layer.
              * \return The type of top layer.
              */
-            std::string GetTypeTopLayer() const;
+            const std::string& GetTypeTopLayer() const;
 
             /*!
              * \brief Gets the relative density.
@@ -166,5 +152,20 @@ namespace DiKErnel::KernelWrapper::Json
              * \return The D coefficient for surging.
              */
             double GetCoefficientSurgingNs() const;
+
+        private:
+            std::string name;
+            double relativeDensity;
+            double thicknessTopLayer;
+            double initialDamage;
+            double similarityParameterThreshold;
+            double coefficientPlungingAp;
+            double coefficientPlungingBp;
+            double coefficientPlungingCp;
+            double coefficientPlungingNp;
+            double coefficientSurgingAs;
+            double coefficientSurgingBs;
+            double coefficientSurgingCs;
+            double coefficientSurgingNs;
     };
 }
