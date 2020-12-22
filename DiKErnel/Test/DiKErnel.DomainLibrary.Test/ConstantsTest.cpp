@@ -28,11 +28,13 @@ namespace DiKErnel::DomainLibrary::Test::ConstantsTest
 {
     TEST(ConstantsTest, Pi_ExpectedValue)
     {
+        // Call & Assert
         ASSERT_DOUBLE_EQ(2 * acos(0.0), Constants::PI);
     }
 
     TEST(ConstantsTest, GravitationalAcceleration_ExpectedValue)
     {
+        // Call & Assert
         ASSERT_DOUBLE_EQ(9.81, Constants::GRAVITATIONAL_ACCELERATION);
     }
 }

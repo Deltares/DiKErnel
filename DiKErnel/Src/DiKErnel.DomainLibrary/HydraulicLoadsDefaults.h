@@ -23,18 +23,20 @@
 namespace DiKErnel::DomainLibrary
 {
     /*!
-     * \brief Class that contains all default values for hydraulic loads.
+     * \brief Class that contains default values for hydraulic loads.
      */
     class HydraulicLoadsDefaults
     {
         public:
             /*!
-             * \brief The maximum wave angle.
+             * \brief The default value for the maximum wave angle.
+             *        Unit = [°]
              */
             static const double MAXIMUM_WAVE_ANGLE;
 
             /*!
-             * \brief The wave angle.
+             * \brief The default value for the wave angle.
+             *        Unit = [°]
              */
             static const double WAVE_ANGLE;
     };

@@ -23,7 +23,7 @@
 namespace DiKErnel::DomainLibrary
 {
     /*!
-     * \brief Class that contains all domain constants.
+     * \brief Class that contains domain constants.
      */
     class Constants
     {
