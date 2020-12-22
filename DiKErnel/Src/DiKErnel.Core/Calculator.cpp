@@ -94,7 +94,10 @@ namespace DiKErnel::Core
 
     void Calculator::Cancel()
     {
-        isCancelled = true;
+        if (!isFinished)
+        {
+            isCancelled = true;
+        }
     }
 
     bool Calculator::IsCancelled() const
@@ -108,7 +111,7 @@ namespace DiKErnel::Core
 
         if (isFinished)
         {
-            for (auto i = 0; i < locations.size(); i++)
+            for (auto i = 0; i < static_cast<int>(locations.size()); i++)
             {
                 calculationLocationsOutput.push_back(
                     make_unique<CalculationLocationOutput>(

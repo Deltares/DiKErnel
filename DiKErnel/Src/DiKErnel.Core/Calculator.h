@@ -79,6 +79,7 @@ namespace DiKErnel::Core
              * \brief Gets the current progress of the calculation.
              * \return The current progress of the calculation.
              *         Unit = [%]
+             * \remarks Also returns the current progress when the calculation is cancelled.
              */
             int GetProgress() const;
 
@@ -89,7 +90,8 @@ namespace DiKErnel::Core
             bool IsFinished() const;
 
             /*!
-             * \brief Cancels the calculation when it is not finished yet.
+             * \brief Cancels the calculation.
+             * \remarks A calculation can only be cancelled when it is not finished yet.
              */
             void Cancel();
 
