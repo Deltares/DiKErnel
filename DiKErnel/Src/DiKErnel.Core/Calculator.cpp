@@ -57,17 +57,17 @@ namespace DiKErnel::Core
 
         auto timeSteps = vector<tuple<int, int, reference_wrapper<BoundaryConditionsPerTimeStep>>>();
 
-        for (auto i = 0; i < times.size() - 1; i++)
+        for (auto i = 0; i < static_cast<int>(times.size()) - 1; i++)
         {
-            timeSteps.emplace_back(times[i], times[i + 1], boundariesPerTimeStep[i]);
+            timeSteps.emplace_back(times[i], times[static_cast<std::vector<int, std::allocator<int>>::size_type>(i) + 1], boundariesPerTimeStep[i]);
         }
 
         calculationThread = thread(
             PerformCalculation,
-            locations,
-            timeSteps,
+            ref(locations),
+            ref(timeSteps),
             ref(hydraulicLoads),
-            subCalculation,
+            ref(subCalculation),
             ref(progress),
             ref(isFinished),
             ref(isCancelled),
