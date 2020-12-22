@@ -18,25 +18,28 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#pragma once
+#include <gtest/gtest.h>
 
-#include <filesystem>
+#include <fstream>
+
+#include "FileHelper.h"
 
 namespace DiKErnel::TestUtil
 {
-    /*!
-     * \brief Helper class for test data path related logic.
-    */
-    class TestDataPathHelper
+    using namespace std;
+
+    void FileHelper::AssertFileContents(
+        const string& expectedOutputFilePath,
+        const string& actualOutputFilePath)
     {
-        public:
-            /*!
-             * \brief Gets the test data path.
-             * \param currentNamespace
-             *        The namespace of the current test project. 
-             * \return The path to the related test data.
-            */
-            static std::filesystem::path GetTestDataPath(
-                const std::string& currentNamespace);
-    };
+        ifstream expectedOutput(expectedOutputFilePath);
+        stringstream expectedBuffer;
+        expectedBuffer << expectedOutput.rdbuf();
+
+        ifstream actualOutput(actualOutputFilePath);
+        stringstream actualBuffer;
+        actualBuffer << actualOutput.rdbuf();
+
+        ASSERT_EQ(expectedBuffer.str(), actualBuffer.str());
+    }
 }

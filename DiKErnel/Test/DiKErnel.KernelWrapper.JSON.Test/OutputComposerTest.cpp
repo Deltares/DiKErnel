@@ -23,6 +23,7 @@
 #include <fstream>
 #include <memory>
 
+#include "FileHelper.h"
 #include "OutputComposer.h"
 #include "OutputData.h"
 #include "RevetmentOutput.h"
@@ -31,19 +32,12 @@
 namespace DiKErnel::KernelWrapper::Json::Test
 {
     using namespace std;
-
-    #pragma region Forward declarations
-
-    void AssertFileContents(
-        const string&,
-        const string&);
-
-    #pragma endregion
+    using namespace TestUtil;
 
     struct OutputComposerTest : testing::Test
     {
         const string expectedOutputFilePath =
-        (TestUtil::TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Test")
+        (TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Test")
             / "OutputComposerTest"
             / "expectedOutput.json").string();
 
@@ -78,25 +72,6 @@ namespace DiKErnel::KernelWrapper::Json::Test
         OutputComposer::WriteParametersToJson(actualOutputFilePath, *outputData);
 
         // Then
-        AssertFileContents(expectedOutputFilePath, actualOutputFilePath);
+        FileHelper::AssertFileContents(expectedOutputFilePath, actualOutputFilePath);
     }
-
-    #pragma region Helper methods
-
-    void AssertFileContents(
-        const string& expectedOutputFilePath,
-        const string& actualOutputFilePath)
-    {
-        ifstream expectedOutput(expectedOutputFilePath);
-        stringstream expectedBuffer;
-        expectedBuffer << expectedOutput.rdbuf();
-
-        ifstream actualOutput(actualOutputFilePath);
-        stringstream actualBuffer;
-        actualBuffer << actualOutput.rdbuf();
-
-        ASSERT_EQ(expectedBuffer.str(), actualBuffer.str());
-    }
-
-    #pragma endregion
 }

@@ -20,23 +20,18 @@
 
 #pragma once
 
-#include <filesystem>
+#include <string>
 
 namespace DiKErnel::TestUtil
 {
     /*!
-     * \brief Helper class for test data path related logic.
+     * \brief Helper class for file related logic.
     */
-    class TestDataPathHelper
+    class FileHelper
     {
         public:
-            /*!
-             * \brief Gets the test data path.
-             * \param currentNamespace
-             *        The namespace of the current test project. 
-             * \return The path to the related test data.
-            */
-            static std::filesystem::path GetTestDataPath(
-                const std::string& currentNamespace);
+            static void AssertFileContents(
+                const std::string& expectedOutputFilePath,
+                const std::string& actualOutputFilePath);
     };
 }
