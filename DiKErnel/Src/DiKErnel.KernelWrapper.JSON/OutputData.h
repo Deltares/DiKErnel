@@ -32,10 +32,19 @@ namespace DiKErnel::KernelWrapper::Json
     class OutputData
     {
         public:
+            /*!
+             * \brief Creates a new instance.
+             * \param calculationLocationsOutput
+             *        The output on a per calculation location basis.
+             */
             explicit OutputData(
                 std::vector<std::unique_ptr<CalculationLocationOutput>> calculationLocationsOutput
             );
 
+            /*!
+             * \brief Gets the output on a per calculation location basis.
+             * \return The output on a per calculation location basis.
+             */
             const std::vector<std::reference_wrapper<CalculationLocationOutput>>& GetCalculationLocationsOutput() const;
 
         private:
