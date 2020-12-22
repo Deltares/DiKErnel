@@ -32,10 +32,13 @@ namespace DiKErnel::Core::Test
 
     struct CalculatorTest : testing::Test
     {
-        const std::string filePath =
-        (TestUtil::TestDataHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Test")
-            / "InputComposerTest"
-            / "testInput.json").string();
+        const std::unique_ptr<InputData> inputData;
+
+        explicit CalculatorTest()
+            : inputData(InputComposer::GetDomainParametersFromJson(
+                (TestUtil::TestDataHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Test")
+                    / "InputComposerTest"
+                    / "testInput.json").string())) { }
 
         static void AssertCalculationLocationOutput(
             const CalculationLocationOutput& calculationLocationOutput,
@@ -49,13 +52,9 @@ namespace DiKErnel::Core::Test
 
     TEST_F(CalculatorTest, Constructor_WithParameters_PerformsCalculationWithExpectedOutput)
     {
-        // Setup
-        const auto inputData = InputComposer::GetDomainParametersFromJson(filePath);
-
         // Call
         Calculator calculator(*inputData, FunctionLibrary::NaturalStoneRevetment::CalculateDamage);
 
-        // Wait
         calculator.WaitForCompletion();
 
         // Assert
@@ -73,14 +72,11 @@ namespace DiKErnel::Core::Test
     TEST_F(CalculatorTest, GivenCalculatorWithRunningCalculation_WhenCancelCalled_ThenCalculationCancelled)
     {
         // Given
-        const auto inputData = InputComposer::GetDomainParametersFromJson(filePath);
-
         Calculator calculator(*inputData, FunctionLibrary::NaturalStoneRevetment::CalculateDamage);
 
         // When
         calculator.Cancel();
 
-        // Wait
         calculator.WaitForCompletion();
 
         // Then
@@ -92,11 +88,8 @@ namespace DiKErnel::Core::Test
     TEST_F(CalculatorTest, GivenCalculatorWithFinishedCalculation_WhenCancelCalled_ThenCalculationNotCancelled)
     {
         // Given
-        const auto inputData = InputComposer::GetDomainParametersFromJson(filePath);
-
         Calculator calculator(*inputData, FunctionLibrary::NaturalStoneRevetment::CalculateDamage);
 
-        // Wait
         calculator.WaitForCompletion();
 
         // When
@@ -111,14 +104,11 @@ namespace DiKErnel::Core::Test
     TEST_F(CalculatorTest, GivenCalculatorWithRunningCalculation_WhenGettingOutputData_ThenOutputDataEmpty)
     {
         // Given
-        const auto inputData = InputComposer::GetDomainParametersFromJson(filePath);
-
         Calculator calculator(*inputData, FunctionLibrary::NaturalStoneRevetment::CalculateDamage);
 
         // When
         const auto outputData = calculator.GetOutputData();
 
-        // Wait
         calculator.WaitForCompletion();
 
         // Then
@@ -128,13 +118,10 @@ namespace DiKErnel::Core::Test
     TEST_F(CalculatorTest, GivenCalculatorWithCancelledCalculation_WhenGettingOutputData_ThenOutputDataEmpty)
     {
         // Given
-        const auto inputData = InputComposer::GetDomainParametersFromJson(filePath);
-
         Calculator calculator(*inputData, FunctionLibrary::NaturalStoneRevetment::CalculateDamage);
 
         calculator.Cancel();
 
-        // Wait
         calculator.WaitForCompletion();
 
         // When
