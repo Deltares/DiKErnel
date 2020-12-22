@@ -30,52 +30,62 @@ namespace DiKErnel::DomainLibrary
         public:
             /*!
              * \brief The default value of the relative density.
+             *        Unit = [-]
              */
             static const double RELATIVE_DENSITY;
 
             /*!
              * \brief The default value of the similarity parameter threshold.
+             *        Unit = [-]
              */
             static const double SIMILARITY_PARAMETER_THRESHOLD;
 
             /*!
-             * \brief The default value of the coefficient plunging Ap.
+             * \brief The default value of the A coefficient for plunging.
+             *        Unit = [-]
              */
-            static const double COEFFICIENT_PLUNGING_AP;
+            static const double PLUNGING_COEFFICIENT_A;
 
             /*!
-             * \brief The default value of the coefficient plunging Bp.
+             * \brief The default value of the B coefficient for plunging.
+             *        Unit = [-]
              */
-            static const double COEFFICIENT_PLUNGING_BP;
+            static const double PLUNGING_COEFFICIENT_B;
 
             /*!
-             * \brief The default value of the coefficient plunging Cp.
+             * \brief The default value of the C coefficient for plunging.
+             *        Unit = [-]
              */
-            static const double COEFFICIENT_PLUNGING_CP;
+            static const double PLUNGING_COEFFICIENT_C;
 
             /*!
-             * \brief The default value of the coefficient plunging Np.
+             * \brief The default value of the N coefficient for plunging.
+             *        Unit = [-]
              */
-            static const double COEFFICIENT_PLUNGING_NP;
+            static const double PLUNGING_COEFFICIENT_N;
 
             /*!
-             * \brief The default value of the coefficient surging As.
+             * \brief The default value of the A coefficient for surging.
+             *        Unit = [-]
              */
-            static const double COEFFICIENT_SURGING_AS;
+            static const double SURGING_COEFFICIENT_A;
 
             /*!
-             * \brief The default value of the coefficient surging Bs.
+             * \brief The default value of the B coefficient for surging.
+             *        Unit = [-]
              */
-            static const double COEFFICIENT_SURGING_BS;
+            static const double SURGING_COEFFICIENT_B;
 
             /*!
-             * \brief The default value of the coefficient surging Cs.
+             * \brief The default value of the C coefficient for surging.
+             *        Unit = [-]
              */
-            static const double COEFFICIENT_SURGING_CS;
+            static const double SURGING_COEFFICIENT_C;
 
             /*!
-             * \brief The default value of the coefficient surging Ns.
+             * \brief The default value of the N coefficient for surging.
+             *        Unit = [-]
              */
-            static const double COEFFICIENT_SURGING_NS;
+            static const double SURGING_COEFFICIENT_N;
     };
 }

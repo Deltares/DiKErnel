@@ -27,12 +27,12 @@ namespace DiKErnel::DomainLibrary::Test::HydraulicLoadsDefaultsTest
     TEST(HydraulicLoadsDefaultsTest, MaximumWaveAngle_ExpectedValue)
     {
         // Call & Assert
-        ASSERT_DOUBLE_EQ(HydraulicLoadsDefaults::MAXIMUM_WAVE_ANGLE, 78);
+        ASSERT_DOUBLE_EQ(78, HydraulicLoadsDefaults::MAXIMUM_WAVE_ANGLE);
     }
 
     TEST(HydraulicLoadsDefaultsTest, WaveAngle_ExpectedValue)
     {
         // Call & Assert
-        ASSERT_DOUBLE_EQ(HydraulicLoadsDefaults::WAVE_ANGLE, 0);
+        ASSERT_DOUBLE_EQ(0, HydraulicLoadsDefaults::WAVE_ANGLE);
     }
 }

@@ -24,53 +24,63 @@
 
 namespace DiKErnel::DomainLibrary::Test::NaturalStoneRevetmentDefaultsTest
 {
-    TEST(NaturalStoneRevetmentDefaultsTest, GivenDefaults_whenRelativeDensity_ThenExpectedValue)
+    TEST(NaturalStoneRevetmentDefaultsTest, RelativeDensity_ExpectedValue)
     {
-        ASSERT_DOUBLE_EQ(NaturalStoneRevetmentDefaults::RELATIVE_DENSITY, 1.65);
+        // Call & Assert
+        ASSERT_DOUBLE_EQ(1.65, NaturalStoneRevetmentDefaults::RELATIVE_DENSITY);
     }
 
-    TEST(NaturalStoneRevetmentDefaultsTest, GivenDefaults_whenSimilarityParameterThreshold_ThenExpectedValue)
+    TEST(NaturalStoneRevetmentDefaultsTest, SimilarityParameterThreshold_ExpectedValue)
     {
-        ASSERT_DOUBLE_EQ(NaturalStoneRevetmentDefaults::SIMILARITY_PARAMETER_THRESHOLD, 2.9);
+        // Call & Assert
+        ASSERT_DOUBLE_EQ(2.9, NaturalStoneRevetmentDefaults::SIMILARITY_PARAMETER_THRESHOLD);
     }
 
-    TEST(NaturalStoneRevetmentDefaultsTest, GivenDefaults_whenCoefficientPlunginAp_ThenExpectedValue)
+    TEST(NaturalStoneRevetmentDefaultsTest, PlunginCoefficientA_ExpectedValue)
     {
-        ASSERT_DOUBLE_EQ(NaturalStoneRevetmentDefaults::COEFFICIENT_PLUNGING_AP, 4);
+        // Call & Assert
+        ASSERT_DOUBLE_EQ(4, NaturalStoneRevetmentDefaults::PLUNGING_COEFFICIENT_A);
     }
 
-    TEST(NaturalStoneRevetmentDefaultsTest, GivenDefaults_whenCoefficientPlunginBp_ThenExpectedValue)
+    TEST(NaturalStoneRevetmentDefaultsTest, PlunginCoefficientB_ExpectedValue)
     {
-        ASSERT_DOUBLE_EQ(NaturalStoneRevetmentDefaults::COEFFICIENT_PLUNGING_BP, 0.8);
+        // Call & Assert
+        ASSERT_DOUBLE_EQ(0.8, NaturalStoneRevetmentDefaults::PLUNGING_COEFFICIENT_B);
     }
 
-    TEST(NaturalStoneRevetmentDefaultsTest, GivenDefaults_whenCoefficientPlunginCp_ThenExpectedValue)
+    TEST(NaturalStoneRevetmentDefaultsTest, PlunginCoefficientC_ExpectedValue)
     {
-        ASSERT_DOUBLE_EQ(NaturalStoneRevetmentDefaults::COEFFICIENT_PLUNGING_CP, 0);
+        // Call & Assert
+        ASSERT_DOUBLE_EQ(0, NaturalStoneRevetmentDefaults::PLUNGING_COEFFICIENT_C);
     }
 
-    TEST(NaturalStoneRevetmentDefaultsTest, GivenDefaults_whenCoefficientPlunginNp_ThenExpectedValue)
+    TEST(NaturalStoneRevetmentDefaultsTest, PlunginCoefficientN_ExpectedValue)
     {
-        ASSERT_DOUBLE_EQ(NaturalStoneRevetmentDefaults::COEFFICIENT_PLUNGING_NP, 0);
+        // Call & Assert
+        ASSERT_DOUBLE_EQ(0, NaturalStoneRevetmentDefaults::PLUNGING_COEFFICIENT_N);
     }
 
-    TEST(NaturalStoneRevetmentDefaultsTest, GivenDefaults_whenCoefficientSurgingAs_ThenExpectedValue)
+    TEST(NaturalStoneRevetmentDefaultsTest, SurgingCoefficientA_ExpectedValue)
     {
-        ASSERT_DOUBLE_EQ(NaturalStoneRevetmentDefaults::COEFFICIENT_SURGING_AS, 0);
+        // Call & Assert
+        ASSERT_DOUBLE_EQ(0, NaturalStoneRevetmentDefaults::SURGING_COEFFICIENT_A);
     }
 
-    TEST(NaturalStoneRevetmentDefaultsTest, GivenDefaults_whenCoefficientSurgingBs_ThenExpectedValue)
+    TEST(NaturalStoneRevetmentDefaultsTest, SurgingCoefficientB_ExpectedValue)
     {
-        ASSERT_DOUBLE_EQ(NaturalStoneRevetmentDefaults::COEFFICIENT_SURGING_BS, 0);
+        // Call & Assert
+        ASSERT_DOUBLE_EQ(0, NaturalStoneRevetmentDefaults::SURGING_COEFFICIENT_B);
     }
 
-    TEST(NaturalStoneRevetmentDefaultsTest, GivenDefaults_whenCoefficientSurgingCs_ThenExpectedValue)
+    TEST(NaturalStoneRevetmentDefaultsTest, SurgingCoefficientC_ExpectedValue)
     {
-        ASSERT_DOUBLE_EQ(NaturalStoneRevetmentDefaults::COEFFICIENT_SURGING_CS, -0.9);
+        // Call & Assert
+        ASSERT_DOUBLE_EQ(-0.9, NaturalStoneRevetmentDefaults::SURGING_COEFFICIENT_C);
     }
 
-    TEST(NaturalStoneRevetmentDefaultsTest, GivenDefaults_whenCoefficientSurgingNs_ThenExpectedValue)
+    TEST(NaturalStoneRevetmentDefaultsTest, SurgingCoefficientN_ExpectedValue)
     {
-        ASSERT_DOUBLE_EQ(NaturalStoneRevetmentDefaults::COEFFICIENT_SURGING_NS, 0.6);
+        // Call & Assert
+        ASSERT_DOUBLE_EQ(0.6, NaturalStoneRevetmentDefaults::SURGING_COEFFICIENT_N);
     }
 }
