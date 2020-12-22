@@ -33,11 +33,6 @@ namespace DiKErnel::KernelWrapper::Json
      */
     class InputData
     {
-        std::unique_ptr<CalculationData> calculationData;
-        std::unique_ptr<HydraulicLoads> hydraulicLoads;
-        std::vector<std::unique_ptr<CalculationLocation>> locations;
-        std::vector<std::reference_wrapper<CalculationLocation>> locationReferences;
-
         public:
             /*!
              * \brief Creates a new instance.
@@ -71,5 +66,11 @@ namespace DiKErnel::KernelWrapper::Json
              * \return The calculation locations.
              */
             const std::vector<std::reference_wrapper<CalculationLocation>>& GetLocations() const;
+
+        private:
+            std::unique_ptr<CalculationData> calculationData;
+            std::unique_ptr<HydraulicLoads> hydraulicLoads;
+            std::vector<std::unique_ptr<CalculationLocation>> locations;
+            std::vector<std::reference_wrapper<CalculationLocation>> locationReferences;
     };
 }

@@ -36,22 +36,22 @@ namespace DiKErnel::KernelWrapper::Json
     {
         nlohmann::json json;
 
-        json[JsonDefinitions::locations] = nlohmann::json::array();
+        json[JsonDefinitions::LOCATIONS] = nlohmann::json::array();
 
         for (const auto& calculationLocationOutput : outputData.GetCalculationLocationsOutput())
         {
-            json[JsonDefinitions::locations].push_back(
+            json[JsonDefinitions::LOCATIONS].push_back(
                 nlohmann::json::object(
                     {
                         {
-                            JsonDefinitions::name,
+                            JsonDefinitions::NAME,
                             calculationLocationOutput.get().GetName()
                         },
                         {
-                            JsonDefinitions::revetment,
+                            JsonDefinitions::REVETMENT,
                             {
                                 {
-                                    JsonDefinitions::damage,
+                                    JsonDefinitions::DAMAGE,
                                     calculationLocationOutput.get().GetRevetmentOutput().GetDamage()
                                 }
                             }

@@ -44,18 +44,18 @@ namespace DiKErnel::KernelWrapper::Json
     unique_ptr<CalculationData> InputComposer::ReadCalculationData(
         const nlohmann::json& json)
     {
-        const auto& readCalculationData = json[JsonDefinitions::calculationData];
+        const auto& readCalculationData = json[JsonDefinitions::CALCULATION_DATA];
 
         return make_unique<CalculationData>(
-            readCalculationData[JsonDefinitions::time].get<vector<int>>()
+            readCalculationData[JsonDefinitions::TIME].get<vector<int>>()
         );
     }
 
     unique_ptr<HydraulicLoads> InputComposer::ReadHydraulicLoads(
         const nlohmann::json& json)
     {
-        const auto& readHydraulicLoads = json[JsonDefinitions::hydraulicLoads];
-        const auto& readBoundaryConditionsPerTimeStep = readHydraulicLoads[JsonDefinitions::boundaryConditionsPerTimeStep];
+        const auto& readHydraulicLoads = json[JsonDefinitions::HYDRAULIC_LOADS];
+        const auto& readBoundaryConditionsPerTimeStep = readHydraulicLoads[JsonDefinitions::BOUNDARY_CONDITIONS_PER_TIME_STEP];
 
         vector<unique_ptr<BoundaryConditionsPerTimeStep>> boundaryConditionsPerTimeStep;
 
@@ -63,14 +63,14 @@ namespace DiKErnel::KernelWrapper::Json
         {
             boundaryConditionsPerTimeStep.push_back(
                 make_unique<BoundaryConditionsPerTimeStep>(
-                    readBoundaryConditionsForTimeStep[JsonDefinitions::waveHeightHm0].get<double>(),
-                    readBoundaryConditionsForTimeStep[JsonDefinitions::wavePeriodTm10].get<double>(),
-                    readBoundaryConditionsForTimeStep[JsonDefinitions::waveAngle].get<double>()
+                    readBoundaryConditionsForTimeStep[JsonDefinitions::WAVE_HEIGHT_HM0].get<double>(),
+                    readBoundaryConditionsForTimeStep[JsonDefinitions::WAVE_PERIOD_TM10].get<double>(),
+                    readBoundaryConditionsForTimeStep[JsonDefinitions::WAVE_ANGLE].get<double>()
                 ));
         }
 
         return make_unique<HydraulicLoads>(
-            readHydraulicLoads[JsonDefinitions::maximumWaveAngle].get<int>(),
+            readHydraulicLoads[JsonDefinitions::MAXIMUM_WAVE_ANGLE].get<int>(),
             move(boundaryConditionsPerTimeStep)
         );
     }
@@ -80,31 +80,31 @@ namespace DiKErnel::KernelWrapper::Json
     {
         vector<unique_ptr<CalculationLocation>> calculationLocations;
 
-        const auto& readLocations = json[JsonDefinitions::locations];
+        const auto& readLocations = json[JsonDefinitions::LOCATIONS];
 
         for (const auto& readLocation : readLocations)
         {
-            const auto& readRevetment = readLocation[JsonDefinitions::revetment];
-            const auto& readProfileSchematization = readLocation[JsonDefinitions::profileSchematisation];
+            const auto& readRevetment = readLocation[JsonDefinitions::REVETMENT];
+            const auto& readProfileSchematization = readLocation[JsonDefinitions::PROFILE_SCHEMATIZATION];
 
             calculationLocations.push_back(make_unique<CalculationLocation>(
-                readLocation[JsonDefinitions::name].get<string>(),
+                readLocation[JsonDefinitions::NAME].get<string>(),
                 make_unique<Revetment>(
-                    readRevetment[JsonDefinitions::typeTopLayer].get<string>(),
-                    readRevetment[JsonDefinitions::relativeDensity].get<double>(),
-                    readRevetment[JsonDefinitions::thicknessTopLayer].get<double>(),
-                    readRevetment[JsonDefinitions::initialDamage].get<double>(),
-                    readRevetment[JsonDefinitions::similarityParameterThreshold].get<double>(),
-                    readRevetment[JsonDefinitions::coefficientPlungingAp].get<double>(),
-                    readRevetment[JsonDefinitions::coefficientPlungingBp].get<double>(),
-                    readRevetment[JsonDefinitions::coefficientPlungingCp].get<double>(),
-                    readRevetment[JsonDefinitions::coefficientPlungingNp].get<double>(),
-                    readRevetment[JsonDefinitions::coefficientSurgingAs].get<double>(),
-                    readRevetment[JsonDefinitions::coefficientSurgingBs].get<double>(),
-                    readRevetment[JsonDefinitions::coefficientSurgingCs].get<double>(),
-                    readRevetment[JsonDefinitions::coefficientSurgingNs].get<double>()),
+                    readRevetment[JsonDefinitions::TYPE_TOP_LAYER].get<string>(),
+                    readRevetment[JsonDefinitions::RELATIVE_DENSITY].get<double>(),
+                    readRevetment[JsonDefinitions::THICKNESS_TOP_LAYER].get<double>(),
+                    readRevetment[JsonDefinitions::INITIAL_DAMAGE].get<double>(),
+                    readRevetment[JsonDefinitions::SIMILARITY_PARAMETER_THRESHOLD].get<double>(),
+                    readRevetment[JsonDefinitions::COEFFICIENT_PLUNGING_AP].get<double>(),
+                    readRevetment[JsonDefinitions::COEFFICIENT_PLUNGING_BP].get<double>(),
+                    readRevetment[JsonDefinitions::COEFFICIENT_PLUNGING_CP].get<double>(),
+                    readRevetment[JsonDefinitions::COEFFICIENT_PLUNGING_NP].get<double>(),
+                    readRevetment[JsonDefinitions::COEFFICIENT_SURGING_AS].get<double>(),
+                    readRevetment[JsonDefinitions::COEFFICIENT_SURGING_BS].get<double>(),
+                    readRevetment[JsonDefinitions::COEFFICIENT_SURGING_CS].get<double>(),
+                    readRevetment[JsonDefinitions::COEFFICIENT_SURGING_NS].get<double>()),
                 make_unique<ProfileSchematization>(
-                    readProfileSchematization[JsonDefinitions::tanA].get<double>()
+                    readProfileSchematization[JsonDefinitions::TAN_A].get<double>()
                 )
             ));
         }

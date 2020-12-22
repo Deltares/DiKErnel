@@ -30,35 +30,35 @@ namespace DiKErnel::KernelWrapper::Json
     class JsonDefinitions
     {
         public:
-            inline static std::string calculationData = "Rekendata";
-            inline static std::string hydraulicLoads = "HydraulischeBelastingen";
-            inline static std::string locations = "Locaties";
+            static const std::string CALCULATION_DATA;
+            static const std::string HYDRAULIC_LOADS;
+            static const std::string LOCATIONS;
 
-            inline static std::string time = "Tijd";
-            inline static std::string maximumWaveAngle = "GolfhoekMaximum";
-            inline static std::string boundaryConditionsPerTimeStep = "RandvoorwaardenPerTijdstap";
-            inline static std::string waveHeightHm0 = "GolfhoogteHm0";
-            inline static std::string wavePeriodTm10 = "GolfperiodeTm10";
-            inline static std::string waveAngle = "Golfhoek";
+            static const std::string TIME;
+            static const std::string MAXIMUM_WAVE_ANGLE;
+            static const std::string BOUNDARY_CONDITIONS_PER_TIME_STEP;
+            static const std::string WAVE_HEIGHT_HM0;
+            static const std::string WAVE_PERIOD_TM10;
+            static const std::string WAVE_ANGLE;
 
-            inline static std::string name = "Naam";
-            inline static std::string revetment = "Bekleding";
-            inline static std::string typeTopLayer = "TypeToplaag";
-            inline static std::string relativeDensity = "RelatieveDichtheid";
-            inline static std::string thicknessTopLayer = "DikteToplaag";
-            inline static std::string initialDamage = "BeginSchade";
-            inline static std::string similarityParameterThreshold = "BrekerIndexGrenswaarde";
-            inline static std::string coefficientPlungingAp = "CoefficientPlungingAp";
-            inline static std::string coefficientPlungingBp = "CoefficientPlungingBp";
-            inline static std::string coefficientPlungingCp = "CoefficientPlungingCp";
-            inline static std::string coefficientPlungingNp = "CoefficientPlungingNp";
-            inline static std::string coefficientSurgingAs = "CoefficientSurgingAs";
-            inline static std::string coefficientSurgingBs = "CoefficientSurgingBs";
-            inline static std::string coefficientSurgingCs = "CoefficientSurgingCs";
-            inline static std::string coefficientSurgingNs = "CoefficientSurgingNs";
-            inline static std::string profileSchematisation = "Profielschematisatie";
-            inline static std::string tanA = "TanA";
+            static const std::string NAME;
+            static const std::string REVETMENT;
+            static const std::string TYPE_TOP_LAYER;
+            static const std::string RELATIVE_DENSITY;
+            static const std::string THICKNESS_TOP_LAYER;
+            static const std::string INITIAL_DAMAGE;
+            static const std::string SIMILARITY_PARAMETER_THRESHOLD;
+            static const std::string COEFFICIENT_PLUNGING_AP;
+            static const std::string COEFFICIENT_PLUNGING_BP;
+            static const std::string COEFFICIENT_PLUNGING_CP;
+            static const std::string COEFFICIENT_PLUNGING_NP;
+            static const std::string COEFFICIENT_SURGING_AS;
+            static const std::string COEFFICIENT_SURGING_BS;
+            static const std::string COEFFICIENT_SURGING_CS;
+            static const std::string COEFFICIENT_SURGING_NS;
+            static const std::string PROFILE_SCHEMATIZATION;
+            static const std::string TAN_A;
 
-            inline static std::string damage = "Schade";
+            static const std::string DAMAGE;
     };
 }
