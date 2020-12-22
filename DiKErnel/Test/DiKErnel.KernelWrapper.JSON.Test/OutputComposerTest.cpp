@@ -45,14 +45,14 @@ namespace DiKErnel::KernelWrapper::Json::Test
     // Given
     struct OutputComposerTest : testing::Test
     {
-        const std::string expectedOutputFilePath = 
-            (TestUtil::TestDataHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Test")
-                / "OutputComposerTest"
-                / "expectedOutput.json").string();
+        const std::string expectedOutputFilePath =
+        (TestUtil::TestDataHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Test")
+            / "OutputComposerTest"
+            / "expectedOutput.json").string();
 
-        const std::string actualOutputFilePath = 
-            (std::filesystem::temp_directory_path()
-                / "actualOutput.json").string();
+        const std::string actualOutputFilePath =
+        (std::filesystem::temp_directory_path()
+            / "actualOutput.json").string();
 
         ~OutputComposerTest()
         {
@@ -71,7 +71,7 @@ namespace DiKErnel::KernelWrapper::Json::Test
         const auto outputData = std::make_unique<OutputData>(std::move(calculationLocationsOutput));
 
         // When
-        OutputComposer::WriteParametersToJson(actualOutputFilePath, outputData.get());
+        OutputComposer::WriteParametersToJson(actualOutputFilePath, *outputData);
 
         // Then
         AssertFileContents(expectedOutputFilePath, actualOutputFilePath);

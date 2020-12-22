@@ -149,7 +149,7 @@ int main()
         const auto directory = std::filesystem::path(jsonFilePath).parent_path();
         const auto outputPath = directory / ("output-" + std::to_string(milliSeconds.count() % 1000) + ".json");
 
-        OutputComposer::WriteParametersToJson(outputPath.u8string(), outputData.get());
+        OutputComposer::WriteParametersToJson(outputPath.u8string(), *outputData);
 
         cout << endl;
         cout << "|========================|" << endl;

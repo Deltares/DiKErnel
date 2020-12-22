@@ -32,13 +32,13 @@ namespace DiKErnel::KernelWrapper::Json
 {
     void OutputComposer::WriteParametersToJson(
         const std::string& filePath,
-        const OutputData* outputData)
+        const OutputData& outputData)
     {
         nlohmann::json json;
 
         json[JsonDefinitions::locations] = nlohmann::json::array();
 
-        for (const auto& calculationLocationOutput : outputData->GetCalculationLocationsOutput())
+        for (const auto& calculationLocationOutput : outputData.GetCalculationLocationsOutput())
         {
             json[JsonDefinitions::locations].push_back(
                 nlohmann::json::object(
