@@ -47,7 +47,7 @@ namespace DiKErnel::Core
             double waveAngleMaximum,
             double similarityParameterThreshold)>& subCalculation)
     {
-        const auto locations = inputData.GetLocations();
+        locations = inputData.GetLocations();
         const auto& times = inputData.GetCalculationData().GetTimes();
         const auto& hydraulicLoads = inputData.GetHydraulicLoads();
         const auto boundariesPerTimeStep = hydraulicLoads.GetBoundaryConditionsPerTimeStep();
@@ -59,16 +59,16 @@ namespace DiKErnel::Core
             timeSteps.emplace_back(times[i], times[i + 1], boundariesPerTimeStep[i]);
         }
 
-        // calculationThread = std::thread(
-        //     PerformCalculation,
-        //     locations,
-        //     timeSteps,
-        //     std::ref(hydraulicLoads),
-        //     subCalculation,
-        //     std::ref(progress),
-        //     std::ref(isFinished),
-        //     std::ref(isCancelled),
-        //     std::ref(outputData));
+        calculationThread = std::thread(
+            PerformCalculation,
+            locations,
+            timeSteps,
+            std::ref(hydraulicLoads),
+            subCalculation,
+            std::ref(progress),
+            std::ref(isFinished),
+            std::ref(isCancelled),
+            std::ref(outputData));
     }
 
     void Calculator::WaitForCompletion()
@@ -105,13 +105,14 @@ namespace DiKErnel::Core
 
         if (isFinished)
         {
-            // for (const auto& [location, damageAtTimeSteps] : outputData)
-            // {
-            //     calculationLocationsOutput.push_back(
-            //         std::make_unique<CalculationLocationOutput>(
-            //             location.get().GetName(),
-            //             std::make_unique<RevetmentOutput>(std::get<1>(damageAtTimeSteps.back()))));
-            // }
+            for (auto i = 0; i < locations.size(); i++)
+            {
+                calculationLocationsOutput.push_back(
+                    std::make_unique<CalculationLocationOutput>(
+                        locations[i].get().GetName(),
+                        std::make_unique<RevetmentOutput>(
+                            std::get<1>(outputData[i].back()))));
+            }
         }
 
         return std::make_unique<OutputData>(std::move(calculationLocationsOutput));
