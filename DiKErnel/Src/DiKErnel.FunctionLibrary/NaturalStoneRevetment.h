@@ -23,7 +23,8 @@
 namespace DiKErnel::FunctionLibrary
 {
     /*!
-     * \brief Class that holds all methods to perform a calculation with natural stone revetment.
+     * \brief Class that holds all methods to perform calculations for natural stone based
+     *        revetments.
      */
     class NaturalStoneRevetment
     {
@@ -31,7 +32,7 @@ namespace DiKErnel::FunctionLibrary
             /*!
              * \brief Calculates the total damage.
              * \param initialDamage
-             *        The initial damage at the start of the calculation.
+             *        The damage at the start of the calculation.
              *        Unit = [-]
              * \param slopeAngle
              *        The slope angle at the current location.
@@ -57,36 +58,36 @@ namespace DiKErnel::FunctionLibrary
              * \param endTime
              *        The end time.
              *        Unit = [s]
-             * \param ap
+             * \param plungingCoefficientA
              *        The A coefficient for plunging.
              *        Unit = [-]
-             * \param bp
+             * \param plungingCoefficientB
              *        The B coefficient for plunging.
              *        Unit = [-]
-             * \param cp
+             * \param plungingCoefficientC
              *        The C coefficient for plunging.
              *        Unit = [-]
-             * \param np
+             * \param plungingCoefficientN
              *        The N coefficient for plunging.
              *        Unit = [-]
-             * \param as
+             * \param surgingCoefficientA
              *        The A coefficient for surging.
              *        Unit = [-]
-             * \param bs
+             * \param surgingCoefficientB
              *        The B coefficient for surging.
              *        Unit = [-]
-             * \param cs
+             * \param surgingCoefficientC
              *        The C coefficient for surging.
              *        Unit = [-]
-             * \param ns
+             * \param surgingCoefficientN
              *        The N coefficient for surging.
              *        Unit = [-]
              * \param waveAngleMaximum
              *        The maximum incoming wave angle.
              *        Unit = [°]
              * \param similarityParameterThreshold
-             *        The similarity parameter threshold,
-             *        determines whether there is plunging or surging.
+             *        The similarity parameter threshold, which determines whether there is
+             *        plunging or surging.
              *        Unit = [-]
              * \return The calculated total damage.
              *         Unit = [-]
@@ -102,19 +103,19 @@ namespace DiKErnel::FunctionLibrary
                 double waveAngle,
                 double startTime,
                 double endTime,
-                double ap,
-                double bp,
-                double cp,
-                double np,
-                double as,
-                double bs,
-                double cs,
-                double ns,
+                double plungingCoefficientA,
+                double plungingCoefficientB,
+                double plungingCoefficientC,
+                double plungingCoefficientN,
+                double surgingCoefficientA,
+                double surgingCoefficientB,
+                double surgingCoefficientC,
+                double surgingCoefficientN,
                 double waveAngleMaximum,
                 double similarityParameterThreshold);
 
             /*!
-             * \brief Calculates the increment damage.
+             * \brief Calculates the increment of damage.
              * \param slopeAngle
              *        The slope angle at the current location.
              *        Unit = [°]
@@ -139,41 +140,41 @@ namespace DiKErnel::FunctionLibrary
              * \param endTime
              *        The end time.
              *        Unit = [s]
-             * \param ap
+             * \param plungingCoefficientA
              *        The A coefficient for plunging.
              *        Unit = [-]
-             * \param bp
+             * \param plungingCoefficientB
              *        The B coefficient for plunging.
              *        Unit = [-]
-             * \param cp
+             * \param plungingCoefficientC
              *        The C coefficient for plunging.
              *        Unit = [-]
-             * \param np
+             * \param plungingCoefficientN
              *        The N coefficient for plunging.
              *        Unit = [-]
-             * \param as
+             * \param surgingCoefficientA
              *        The A coefficient for surging.
              *        Unit = [-]
-             * \param bs
+             * \param surgingCoefficientB
              *        The B coefficient for surging.
              *        Unit = [-]
-             * \param cs
+             * \param surgingCoefficientC
              *        The C coefficient for surging.
              *        Unit = [-]
-             * \param ns
+             * \param surgingCoefficientN
              *        The N coefficient for surging.
              *        Unit = [-]
              * \param waveAngleMaximum
              *        The maximum incoming wave angle.
              *        Unit = [°]
              * \param initialDamage
-             *        The cumulative damage from previous timestep.
+             *        The cumulative damage from the previous time step.
              *        Unit = [-]
              * \param similarityParameterThreshold
-             *        The similarity parameter threshold,
-             *        determines whether there is plunging or surging.
+             *        The similarity parameter threshold, which determines whether there is
+             *        plunging or surging.
              *        Unit = [-]
-             * \return The calculated increment damage.
+             * \return The calculated increment of damage.
              *         Unit = [-]
              */
             static double CalculateIncrementDamage(
@@ -185,14 +186,14 @@ namespace DiKErnel::FunctionLibrary
                 double waveAngle,
                 double startTime,
                 double endTime,
-                double ap,
-                double bp,
-                double cp,
-                double np,
-                double as,
-                double bs,
-                double cs,
-                double ns,
+                double plungingCoefficientA,
+                double plungingCoefficientB,
+                double plungingCoefficientC,
+                double plungingCoefficientN,
+                double surgingCoefficientA,
+                double surgingCoefficientB,
+                double surgingCoefficientC,
+                double surgingCoefficientN,
                 double waveAngleMaximum,
                 double initialDamage,
                 double similarityParameterThreshold);
@@ -208,33 +209,33 @@ namespace DiKErnel::FunctionLibrary
              * \param spectralWavePeriod
              *        The spectral wave period between ti-1 and ti.
              *        Unit = [s]
-             * \param ap
+             * \param plungingCoefficientA
              *        The A coefficient for plunging.
              *        Unit = [-]
-             * \param bp
+             * \param plungingCoefficientB
              *        The B coefficient for plunging.
              *        Unit = [-]
-             * \param cp
+             * \param plungingCoefficientC
              *        The C coefficient for plunging.
              *        Unit = [-]
-             * \param np
+             * \param plungingCoefficientN
              *        The N coefficient for plunging.
              *        Unit = [-]
-             * \param as
+             * \param surgingCoefficientA
              *        The A coefficient for surging.
              *        Unit = [-]
-             * \param bs
+             * \param surgingCoefficientB
              *        The B coefficient for surging.
              *        Unit = [-]
-             * \param cs
+             * \param surgingCoefficientC
              *        The C coefficient for surging.
              *        Unit = [-]
-             * \param ns
+             * \param surgingCoefficientN
              *        The N coefficient for surging.
              *        Unit = [-]
              * \param similarityParameterThreshold
-             *        The similarity parameter threshold,
-             *        determines whether there is plunging or surging.
+             *        The similarity parameter threshold, which determines whether there is
+             *        plunging or surging.
              *        Unit = [-]
              * \return The calculated hydraulic load.
              *         Unit = [-]
@@ -243,14 +244,14 @@ namespace DiKErnel::FunctionLibrary
                 double slopeAngle,
                 double spectralWaveHeight,
                 double spectralWavePeriod,
-                double ap,
-                double bp,
-                double cp,
-                double np,
-                double as,
-                double bs,
-                double cs,
-                double ns,
+                double plungingCoefficientA,
+                double plungingCoefficientB,
+                double plungingCoefficientC,
+                double plungingCoefficientN,
+                double surgingCoefficientA,
+                double surgingCoefficientB,
+                double surgingCoefficientC,
+                double surgingCoefficientN,
                 double similarityParameterThreshold);
 
             /*!
@@ -288,7 +289,7 @@ namespace DiKErnel::FunctionLibrary
                 double thicknessTopLayer);
 
             /*!
-            * \brief Calculates the increment degradation.
+            * \brief Calculates the increment of degradation.
             * \param slopeAngle
             *        The slope angle at the current location.
             *        Unit = [°]
@@ -313,41 +314,41 @@ namespace DiKErnel::FunctionLibrary
             * \param endTime
             *        The end time.
             *        Unit = [s]
-            * \param ap
+            * \param plungingCoefficientA
             *        The A coefficient for plunging.
             *        Unit = [-]
-            * \param bp
+            * \param plungingCoefficientB
             *        The B coefficient for plunging.
             *        Unit = [-]
-            * \param cp
+            * \param plungingCoefficientC
             *        The C coefficient for plunging.
             *        Unit = [-]
-            * \param np
+            * \param plungingCoefficientN
             *        The N coefficient for plunging.
             *        Unit = [-]
-            * \param as
+            * \param surgingCoefficientA
             *        The A coefficient for surging.
             *        Unit = [-]
-            * \param bs
+            * \param surgingCoefficientB
             *        The B coefficient for surging.
             *        Unit = [-]
-            * \param cs
+            * \param surgingCoefficientC
             *        The C coefficient for surging.
             *        Unit = [-]
-            * \param ns
+            * \param surgingCoefficientN
             *        The N coefficient for surging.
             *        Unit = [-]
             * \param waveAngleMaximum
             *        The maximum incoming wave angle.
             *        Unit = [°]
             * \param initialDamage
-            *        The cumulative damage from previous timestep.
+            *        The cumulative damage from the previous time step.
             *        Unit = [-]
             * \param similarityParameterThreshold
-            *        The similarity parameter threshold,
-            *        determines whether there is plunging or surging.
+            *        The similarity parameter threshold, which determines whether there is
+            *        plunging or surging.
             *        Unit = [-]
-            * \return The calculated increment degradation.
+            * \return The calculated increment of degradation.
             *         Unit = [-]
             */
             static double CalculateIncrementDegradation(
@@ -359,14 +360,14 @@ namespace DiKErnel::FunctionLibrary
                 double waveAngle,
                 double startTime,
                 double endTime,
-                double ap,
-                double bp,
-                double cp,
-                double np,
-                double as,
-                double bs,
-                double cs,
-                double ns,
+                double plungingCoefficientA,
+                double plungingCoefficientB,
+                double plungingCoefficientC,
+                double plungingCoefficientN,
+                double surgingCoefficientA,
+                double surgingCoefficientB,
+                double surgingCoefficientC,
+                double surgingCoefficientN,
                 double waveAngleMaximum,
                 double initialDamage,
                 double similarityParameterThreshold);
@@ -404,42 +405,41 @@ namespace DiKErnel::FunctionLibrary
              *        The spectral wave period between ti-1 and ti.
              *        Unit = [s]
              * \param waveAngle
-             *        The incoming wave angle relative to the normal line between
-             *        ti-1 and ti.
+             *        The incoming wave angle relative to the normal line between ti-1 and ti.
              *        Unit = [°]
-             * \param ap
+             * \param plungingCoefficientA
              *        The A coefficient for plunging.
              *        Unit = [-]
-             * \param bp
+             * \param plungingCoefficientB
              *        The B coefficient for plunging.
              *        Unit = [-]
-             * \param cp
+             * \param plungingCoefficientC
              *        The C coefficient for plunging.
              *        Unit = [-]
-             * \param np
+             * \param plungingCoefficientN
              *        The N coefficient for plunging.
              *        Unit = [-]
-             * \param as
+             * \param surgingCoefficientA
              *        The A coefficient for surging.
              *        Unit = [-]
-             * \param bs
+             * \param surgingCoefficientB
              *        The B coefficient for surging.
              *        Unit = [-]
-             * \param cs
+             * \param surgingCoefficientC
              *        The C coefficient for surging.
              *        Unit = [-]
-             * \param ns
+             * \param surgingCoefficientN
              *        The N coefficient for surging.
              *        Unit = [-]
              * \param waveAngleMaximum
              *        The maximum incoming wave angle.
              *        Unit = [°]
              * \param initialDamage
-             *        The cumulative damage from previous timestep.
+             *        The cumulative damage from the previous time step.
              *        Unit = [-]
              * \param similarityParameterThreshold
-             *        The similarity parameter threshold,
-             *        determines whether there is plunging or surging.
+             *        The similarity parameter threshold, which determines whether there is
+             *        plunging or surging.
              *        Unit = [-]
              * \return The calculated reference time degradation.
              *         Unit = [-]
@@ -451,14 +451,14 @@ namespace DiKErnel::FunctionLibrary
                 double spectralWaveHeight,
                 double spectralWavePeriod,
                 double waveAngle,
-                double ap,
-                double bp,
-                double cp,
-                double np,
-                double as,
-                double bs,
-                double cs,
-                double ns,
+                double plungingCoefficientA,
+                double plungingCoefficientB,
+                double plungingCoefficientC,
+                double plungingCoefficientN,
+                double surgingCoefficientA,
+                double surgingCoefficientB,
+                double surgingCoefficientC,
+                double surgingCoefficientN,
                 double waveAngleMaximum,
                 double initialDamage,
                 double similarityParameterThreshold);
@@ -486,36 +486,36 @@ namespace DiKErnel::FunctionLibrary
              * \param waveAngle
              *        The incoming wave angle relative to the normal line between ti-1 and ti.
              *        Unit = [°]
-             * \param ap
+             * \param plungingCoefficientA
              *        The A coefficient for plunging.
              *        Unit = [-]
-             * \param bp
+             * \param plungingCoefficientB
              *        The B coefficient for plunging.
              *        Unit = [-]
-             * \param cp
+             * \param plungingCoefficientC
              *        The C coefficient for plunging.
              *        Unit = [-]
-             * \param np
+             * \param plungingCoefficientN
              *        The N coefficient for plunging.
              *        Unit = [-]
-             * \param as
+             * \param surgingCoefficientA
              *        The A coefficient for surging.
              *        Unit = [-]
-             * \param bs
+             * \param surgingCoefficientB
              *        The B coefficient for surging.
              *        Unit = [-]
-             * \param cs
+             * \param surgingCoefficientC
              *        The C coefficient for surging.
              *        Unit = [-]
-             * \param ns
+             * \param surgingCoefficientN
              *        The N coefficient for surging.
              *        Unit = [-]
              * \param waveAngleMaximum
              *        The maximum incoming wave angle.
              *        Unit = [°]
              * \param similarityParameterThreshold
-             *        The similarity parameter threshold,
-             *        determines whether there is plunging or surging.
+             *        The similarity parameter threshold, which determines whether there is
+             *        plunging or surging.
              *        Unit = [-]
              * \return The calculated reference degradation.
              *         Unit = [-]
@@ -528,14 +528,14 @@ namespace DiKErnel::FunctionLibrary
                 double spectralWaveHeight,
                 double spectralWavePeriod,
                 double waveAngle,
-                double ap,
-                double bp,
-                double cp,
-                double np,
-                double as,
-                double bs,
-                double cs,
-                double ns,
+                double plungingCoefficientA,
+                double plungingCoefficientB,
+                double plungingCoefficientC,
+                double plungingCoefficientN,
+                double surgingCoefficientA,
+                double surgingCoefficientB,
+                double surgingCoefficientC,
+                double surgingCoefficientN,
                 double waveAngleMaximum,
                 double similarityParameterThreshold);
 
