@@ -33,10 +33,6 @@ namespace DiKErnel::KernelWrapper::Json
      */
     class CalculationLocation
     {
-        std::string name;
-        std::unique_ptr<Revetment> revetment;
-        std::unique_ptr<ProfileSchematization> profileSchematization;
-
         public:
             /*!
              * \brief Creates a new instance.
@@ -69,5 +65,10 @@ namespace DiKErnel::KernelWrapper::Json
              * \return The profile schematization.
              */
             const ProfileSchematization& GetProfileSchematization() const;
+
+        private:
+            std::string name;
+            std::unique_ptr<Revetment> revetment;
+            std::unique_ptr<ProfileSchematization> profileSchematization;
     };
 }
