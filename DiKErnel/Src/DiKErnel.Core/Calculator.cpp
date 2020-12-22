@@ -64,7 +64,7 @@ namespace DiKErnel::Core
 
         calculationThread = thread(
             PerformCalculation,
-            locations,
+            ref(locations),
             timeSteps,
             ref(hydraulicLoads),
             subCalculation,
