@@ -59,7 +59,7 @@ namespace DiKErnel::Core
 
         for (auto i = 0; i < static_cast<int>(times.size()) - 1; i++)
         {
-            timeSteps.emplace_back(times[i], times[static_cast<std::vector<int, std::allocator<int>>::size_type>(i) + 1], boundariesPerTimeStep[i]);
+            timeSteps.emplace_back(times[i], times[static_cast<vector<int, allocator<int>>::size_type>(i) + 1], boundariesPerTimeStep[i]);
         }
 
         calculationThread = thread(

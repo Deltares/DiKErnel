@@ -32,7 +32,7 @@ namespace DiKErnel::Core::Test
 
     struct CalculatorTest : testing::Test
     {
-        const std::unique_ptr<InputData> inputData;
+        const unique_ptr<InputData> inputData;
 
         explicit CalculatorTest()
             : inputData(InputComposer::GetDomainParametersFromJson(

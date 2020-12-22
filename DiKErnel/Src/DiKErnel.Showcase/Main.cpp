@@ -77,8 +77,8 @@ int main()
     try
     {
         string jsonFilePath;
-        std::atomic<UserInput> userInput;
-        std::atomic<bool> calculationFinished(false);
+        atomic<UserInput> userInput;
+        atomic<bool> calculationFinished(false);
 
         // Obtain user input
         cout << "|===================|" << endl;
@@ -101,7 +101,7 @@ int main()
         cout << "-> Number of read locations: " << inputData->GetLocations().size() << endl << endl;
 
         // Start stopwatch
-        const auto start = std::chrono::high_resolution_clock::now();
+        const auto start = chrono::high_resolution_clock::now();
 
         // Write start message for the calculation
         cout << "|=====================|" << endl;
@@ -151,10 +151,10 @@ int main()
         else
         {
             // Determine output file path
-            const auto timeStamp = std::chrono::system_clock::now();
+            const auto timeStamp = chrono::system_clock::now();
             const auto milliseconds = chrono::duration_cast<chrono::milliseconds>(timeStamp.time_since_epoch());
-            const auto outputDirectory = std::filesystem::path(jsonFilePath).parent_path();
-            const auto outputPath = outputDirectory / ("output-" + std::to_string(milliseconds.count() % 1000) + ".json");
+            const auto outputDirectory = filesystem::path(jsonFilePath).parent_path();
+            const auto outputPath = outputDirectory / ("output-" + to_string(milliseconds.count() % 1000) + ".json");
 
             // Write Json output to file
             const auto outputData = calculator.GetOutputData();
@@ -168,8 +168,8 @@ int main()
         }
 
         // End stopwatch and write the elapsed time since the start of the calculation
-        const auto end = std::chrono::high_resolution_clock::now();
-        const std::chrono::duration<double> elapsed = end - start;
+        const auto end = chrono::high_resolution_clock::now();
+        const chrono::duration<double> elapsed = end - start;
         cout << "=> Time elapsed: " << elapsed.count() << endl << endl;
 
         // Notify calculation thread being finished
@@ -210,7 +210,7 @@ double CalculateDamageWithDelay(
     const double maximumWaveAngle,
     const double similarityParameterThreshold)
 {
-    std::this_thread::sleep_for(std::chrono::seconds(subCalculationDelay));
+    this_thread::sleep_for(chrono::seconds(subCalculationDelay));
 
     return NaturalStoneRevetment::CalculateDamage(
         initialDamage,
@@ -242,7 +242,7 @@ void InputMethod(
 
     while (!calculationFinished)
     {
-        std::getline(std::cin, input);
+        getline(cin, input);
 
         if (input == "c")
         {
