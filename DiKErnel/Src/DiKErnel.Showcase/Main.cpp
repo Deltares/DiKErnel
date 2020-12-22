@@ -34,8 +34,6 @@ using namespace DiKErnel::FunctionLibrary;
 using namespace DiKErnel::KernelWrapper::Json;
 using namespace std;
 
-int subCalculationDelay = 0;
-
 enum class UserInput
 {
     None,
@@ -71,6 +69,8 @@ void InputMethod(
     atomic<UserInput>&);
 
 #pragma endregion
+
+int subCalculationDelay = 0;
 
 int main()
 {
@@ -148,14 +148,14 @@ int main()
     }
     else
     {
-        const auto outputData = calculator.GetOutputData();
-
+        // Determine output file path
         const auto timeStamp = std::chrono::system_clock::now();
-        const auto milliSeconds = chrono::duration_cast<chrono::milliseconds>(timeStamp.time_since_epoch());
+        const auto milliseconds = chrono::duration_cast<chrono::milliseconds>(timeStamp.time_since_epoch());
+        const auto outputDirectory = std::filesystem::path(jsonFilePath).parent_path();
+        const auto outputPath = outputDirectory / ("output-" + std::to_string(milliseconds.count() % 1000) + ".json");
 
-        const auto directory = std::filesystem::path(jsonFilePath).parent_path();
-        const auto outputPath = directory / ("output-" + std::to_string(milliSeconds.count() % 1000) + ".json");
-
+        // Write JSON output to file
+        const auto outputData = calculator.GetOutputData();
         OutputComposer::WriteParametersToJson(outputPath.u8string(), *outputData);
 
         cout << endl;
@@ -165,7 +165,7 @@ int main()
         cout << "=> Calculation output is written to: " << outputPath << endl;
     }
 
-    // End stopwatch
+    // End stopwatch and write the elapsed time since the start of the calculation
     const auto end = std::chrono::high_resolution_clock::now();
     const std::chrono::duration<double> elapsed = end - start;
     cout << "=> Time elapsed: " << elapsed.count() << endl << endl;
@@ -173,7 +173,7 @@ int main()
     // Notify calculation thread being finished
     calculationFinished = true;
 
-    // Write final message
+    // Write closing message
     cout << endl << "Press 'Enter' to exit the application.";
 
     // Wait for actual completion of the user input thread
@@ -192,15 +192,15 @@ double CalculateDamageWithDelay(
     const double waveAngle,
     const double startTime,
     const double endTime,
-    const double ap,
-    const double bp,
-    const double cp,
-    const double np,
-    const double as,
-    const double bs,
-    const double cs,
-    const double ns,
-    const double waveAngleMaximum,
+    const double coefficientPlungingA,
+    const double coefficientPlungingB,
+    const double coefficientPlungingC,
+    const double coefficientPlungingN,
+    const double coefficientSurgingA,
+    const double coefficientSurgingB,
+    const double coefficientSurgingC,
+    const double coefficientSurgingN,
+    const double maximumWaveAngle,
     const double similarityParameterThreshold)
 {
     std::this_thread::sleep_for(std::chrono::seconds(subCalculationDelay));
@@ -215,15 +215,15 @@ double CalculateDamageWithDelay(
         waveAngle,
         startTime,
         endTime,
-        ap,
-        bp,
-        cp,
-        np,
-        as,
-        bs,
-        cs,
-        ns,
-        waveAngleMaximum,
+        coefficientPlungingA,
+        coefficientPlungingB,
+        coefficientPlungingC,
+        coefficientPlungingN,
+        coefficientSurgingA,
+        coefficientSurgingB,
+        coefficientSurgingC,
+        coefficientSurgingN,
+        maximumWaveAngle,
         similarityParameterThreshold);
 }
 
