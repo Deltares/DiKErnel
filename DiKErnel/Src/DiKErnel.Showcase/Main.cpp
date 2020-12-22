@@ -207,7 +207,7 @@ double CalculateDamageWithDelay(
     const double coefficientSurgingB,
     const double coefficientSurgingC,
     const double coefficientSurgingN,
-    const double maximumWaveAngle,
+    const double waveAngleMaximum,
     const double similarityParameterThreshold)
 {
     this_thread::sleep_for(chrono::seconds(subCalculationDelay));
@@ -230,7 +230,7 @@ double CalculateDamageWithDelay(
         coefficientSurgingB,
         coefficientSurgingC,
         coefficientSurgingN,
-        maximumWaveAngle,
+        waveAngleMaximum,
         similarityParameterThreshold);
 }
 
