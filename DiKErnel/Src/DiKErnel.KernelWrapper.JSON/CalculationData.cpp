@@ -24,11 +24,13 @@
 
 namespace DiKErnel::KernelWrapper::Json
 {
-    CalculationData::CalculationData(
-        std::vector<int> times)
-        : times(std::move(times)) { }
+    using namespace std;
 
-    const std::vector<int>& CalculationData::GetTimes() const
+    CalculationData::CalculationData(
+        vector<int> times)
+        : times(move(times)) { }
+
+    const vector<int>& CalculationData::GetTimes() const
     {
         return times;
     }

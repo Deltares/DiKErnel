@@ -29,8 +29,6 @@ namespace DiKErnel::KernelWrapper::Json
      */
     class CalculationData
     {
-        std::vector<int> times;
-
         public:
             /*!
              * \brief Creates a new instance.
@@ -46,5 +44,8 @@ namespace DiKErnel::KernelWrapper::Json
              * \return The times for which to perform the calculations.
              */
             const std::vector<int>& GetTimes() const;
+
+        private:
+            std::vector<int> times;
     };
 }
