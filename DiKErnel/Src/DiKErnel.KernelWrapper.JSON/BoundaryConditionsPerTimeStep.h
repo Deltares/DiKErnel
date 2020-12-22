@@ -27,10 +27,6 @@ namespace DiKErnel::KernelWrapper::Json
      */
     class BoundaryConditionsPerTimeStep
     {
-        double waveHeightHm0;
-        double wavePeriodTm10;
-        double waveAngle;
-
         public:
             /*!
              * \brief Creates a new instance.
@@ -63,5 +59,10 @@ namespace DiKErnel::KernelWrapper::Json
              * \return The wave angle.
              */
             double GetWaveAngle() const;
+
+        private:
+            double waveHeightHm0;
+            double wavePeriodTm10;
+            double waveAngle;
     };
 }

@@ -23,9 +23,9 @@
 namespace DiKErnel::KernelWrapper::Json
 {
     BoundaryConditionsPerTimeStep::BoundaryConditionsPerTimeStep(
-        double waveHeightHm0,
-        double wavePeriodTm10,
-        double waveAngle)
+        const double waveHeightHm0,
+        const double wavePeriodTm10,
+        const double waveAngle)
         : waveHeightHm0(waveHeightHm0),
           wavePeriodTm10(wavePeriodTm10),
           waveAngle(waveAngle) { }
