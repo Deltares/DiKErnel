@@ -26,6 +26,7 @@
 
 namespace DiKErnel::FunctionLibrary
 {
+    using namespace std;
     using namespace DomainLibrary;
 
     double NaturalStoneRevetment::CalculateDamage(
@@ -94,16 +95,20 @@ namespace DiKErnel::FunctionLibrary
         const double initialDamage,
         const double similarityParameterThreshold)
     {
-        const auto hydraulicLoadOnNaturalStoneRevetment = CalculateHydraulicLoad(slopeAngle, spectralWaveHeight, spectralWavePeriod,
-                                                                                 plungingCoefficientA,
-                                                                                 plungingCoefficientB,
-                                                                                 plungingCoefficientC,
-                                                                                 plungingCoefficientN,
-                                                                                 surgingCoefficientA,
-                                                                                 surgingCoefficientB,
-                                                                                 surgingCoefficientC,
-                                                                                 surgingCoefficientN,
-                                                                                 similarityParameterThreshold);
+        const auto hydraulicLoadOnNaturalStoneRevetment = CalculateHydraulicLoad(
+            slopeAngle,
+            spectralWaveHeight,
+            spectralWavePeriod,
+            plungingCoefficientA,
+            plungingCoefficientB,
+            plungingCoefficientC,
+            plungingCoefficientN,
+            surgingCoefficientA,
+            surgingCoefficientB,
+            surgingCoefficientC,
+            surgingCoefficientN,
+            similarityParameterThreshold);
+
         const auto resistanceOfNaturalStoneRevetment = CalculateResistance(relativeDensity, thicknessTopLayer);
 
         const auto loadResistanceCalculatedValue = hydraulicLoadOnNaturalStoneRevetment / resistanceOfNaturalStoneRevetment;
@@ -150,26 +155,43 @@ namespace DiKErnel::FunctionLibrary
     {
         const auto surfSimilarityParameter = CalculateSurfSimilarityParameter(slopeAngle, spectralWaveHeight, spectralWavePeriod);
 
-        const auto denominator = similarityParameterThreshold > surfSimilarityParameter
-                                     ? plungingCoefficientA * pow(surfSimilarityParameter, plungingCoefficientN) + plungingCoefficientB *
-                                     surfSimilarityParameter + plungingCoefficientC
-                                     : surgingCoefficientA * pow(surfSimilarityParameter, surgingCoefficientN) + surgingCoefficientB *
-                                     surfSimilarityParameter + surgingCoefficientC;
+        double coefficientA;
+        double coefficientB;
+        double coefficientC;
+        double coefficientN;
+
+        if (similarityParameterThreshold > surfSimilarityParameter)
+        {
+            coefficientA = plungingCoefficientA;
+            coefficientB = plungingCoefficientB;
+            coefficientC = plungingCoefficientC;
+            coefficientN = plungingCoefficientN;
+        }
+        else
+        {
+            coefficientA = surgingCoefficientA;
+            coefficientB = surgingCoefficientB;
+            coefficientC = surgingCoefficientC;
+            coefficientN = surgingCoefficientN;
+        }
+
+        const auto denominator = coefficientA * pow(surfSimilarityParameter, coefficientN) + coefficientB * surfSimilarityParameter + coefficientC;
 
         return spectralWaveHeight / denominator;
     }
 
     double NaturalStoneRevetment::CalculateSurfSimilarityParameter(
-        const double slopeAngleRadians,
+        const double slopeAngle,
         const double spectralWaveHeight,
         const double spectralWavePeriod)
     {
         const auto spectralWaveHeightRelatedValue = 2.0 * Constants::PI * spectralWaveHeight;
+
         const auto spectralWavePeriodRelatedValue = Constants::GRAVITATIONAL_ACCELERATION * pow(spectralWavePeriod, 2.0);
 
         const auto denominator = sqrt(spectralWaveHeightRelatedValue / spectralWavePeriodRelatedValue);
 
-        return slopeAngleRadians / denominator;
+        return slopeAngle / denominator;
     }
 
     double NaturalStoneRevetment::CalculateResistance(
@@ -201,6 +223,7 @@ namespace DiKErnel::FunctionLibrary
         const double similarityParameterThreshold)
     {
         const auto timeStep = CalculateIncrementOfTime(startTime, endTime);
+
         const auto referenceTimeDegradationOfNaturalStoneRevetment = CalculateReferenceTimeDegradation(
             slopeAngle,
             relativeDensity,
@@ -236,6 +259,7 @@ namespace DiKErnel::FunctionLibrary
         const double spectralWavePeriod)
     {
         const auto numerator = referenceTimeDegradation / spectralWavePeriod;
+
         const int denominator = 1000.0;
 
         return pow(numerator / denominator, 0.1);
@@ -302,16 +326,21 @@ namespace DiKErnel::FunctionLibrary
         const double similarityParameterThreshold)
     {
         const auto resistanceOfNaturalStoneRevetment = CalculateResistance(relativeDensity, thicknessTopLayer);
-        const auto hydraulicLoadOnNaturalStoneRevetment = CalculateHydraulicLoad(slopeAngle, spectralWaveHeight, spectralWavePeriod,
-                                                                                 plungingCoefficientA,
-                                                                                 plungingCoefficientB,
-                                                                                 plungingCoefficientC,
-                                                                                 plungingCoefficientN,
-                                                                                 surgingCoefficientA,
-                                                                                 surgingCoefficientB,
-                                                                                 surgingCoefficientC,
-                                                                                 surgingCoefficientN,
-                                                                                 similarityParameterThreshold);
+
+        const auto hydraulicLoadOnNaturalStoneRevetment = CalculateHydraulicLoad(
+            slopeAngle,
+            spectralWaveHeight,
+            spectralWavePeriod,
+            plungingCoefficientA,
+            plungingCoefficientB,
+            plungingCoefficientC,
+            plungingCoefficientN,
+            surgingCoefficientA,
+            surgingCoefficientB,
+            surgingCoefficientC,
+            surgingCoefficientN,
+            similarityParameterThreshold);
+
         const auto waveAngleImpactOnNaturalStoneRevetment = CalculateWaveAngleImpact(waveAngle, waveAngleMaximum);
 
         return damagePreviousTimeStep * resistanceOfNaturalStoneRevetment / hydraulicLoadOnNaturalStoneRevetment
@@ -322,7 +351,7 @@ namespace DiKErnel::FunctionLibrary
         const double waveAngle,
         const double waveAngleMaximum)
     {
-        const auto smallestAngle = std::min(waveAngleMaximum, waveAngle);
+        const auto smallestAngle = min(waveAngleMaximum, waveAngle);
         const auto waveAngleRadians = ConvertDegreesToRadians(smallestAngle);
         const auto absoluteWaveAngleRadians = fabs(waveAngleRadians);
         const auto cosine = cos(absoluteWaveAngleRadians);

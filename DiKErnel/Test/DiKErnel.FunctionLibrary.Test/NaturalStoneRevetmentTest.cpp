@@ -34,14 +34,14 @@ namespace DiKErnel::FunctionLibrary::Test::NaturalStoneRevetmentTest
     const auto thicknessTopLayer = 0.3;
     const auto startTime = 0.0;
     const auto endTime = 100;
-    const auto ap = 4.0;
-    const auto np = -0.9;
-    const auto bp = 0.0;
-    const auto cp = 0.0;
-    const auto as = 0.8;
-    const auto ns = 0.6;
-    const auto bs = 0.0;
-    const auto cs = 0.0;
+    const auto plungingCoefficientA = 4.0;
+    const auto plungingCoefficientB = 0.0;
+    const auto plungingCoefficientC = 0.0;
+    const auto plungingCoefficientN = -0.9;
+    const auto surgingCoefficientA = 0.8;
+    const auto surgingCoefficientB = 0.0;
+    const auto surgingCoefficientC = 0.0;
+    const auto surgingCoefficientN = 0.6;
     const auto waveAngleMaximum = 78.0;
     const auto similarityParameterThreshold = 2.9;
 
@@ -58,19 +58,19 @@ namespace DiKErnel::FunctionLibrary::Test::NaturalStoneRevetmentTest
             waveAngle,
             startTime,
             endTime,
-            ap,
-            bp,
-            cp,
-            np,
-            as,
-            bs,
-            cs,
-            ns,
+            plungingCoefficientA,
+            plungingCoefficientB,
+            plungingCoefficientC,
+            plungingCoefficientN,
+            surgingCoefficientA,
+            surgingCoefficientB,
+            surgingCoefficientC,
+            surgingCoefficientN,
             waveAngleMaximum,
             similarityParameterThreshold);
 
         // Then
-        ASSERT_DOUBLE_EQ(damage, 0.19527164721720683);
+        ASSERT_DOUBLE_EQ(0.19527164721720683, damage);
     }
 
     TEST(NaturalStoneRevetmentTest, GivenInput_WhenCalculateIncrementDamage_ThenExpectedResult)
@@ -85,20 +85,20 @@ namespace DiKErnel::FunctionLibrary::Test::NaturalStoneRevetmentTest
             waveAngle,
             startTime,
             endTime,
-            ap,
-            bp,
-            cp,
-            np,
-            as,
-            bs,
-            cs,
-            ns,
+            plungingCoefficientA,
+            plungingCoefficientB,
+            plungingCoefficientC,
+            plungingCoefficientN,
+            surgingCoefficientA,
+            surgingCoefficientB,
+            surgingCoefficientC,
+            surgingCoefficientN,
             waveAngleMaximum,
             initialDamage,
             similarityParameterThreshold);
 
         // Then
-        ASSERT_DOUBLE_EQ(incrementDamage, 0.19527164721720683);
+        ASSERT_DOUBLE_EQ(0.19527164721720683, incrementDamage);
     }
 
     TEST(NaturalStoneRevetmentTest, GivenInput_WhenCalculateHydraulicLoadWithSurfSimilarityParameterSmallerThanThreshold_ThenExpectedResult)
@@ -108,18 +108,18 @@ namespace DiKErnel::FunctionLibrary::Test::NaturalStoneRevetmentTest
             slopeAngle,
             spectralWaveHeight,
             spectralWavePeriod,
-            ap,
-            bp,
-            cp,
-            np,
-            as,
-            bs,
-            cs,
-            ns,
+            plungingCoefficientA,
+            plungingCoefficientB,
+            plungingCoefficientC,
+            plungingCoefficientN,
+            surgingCoefficientA,
+            surgingCoefficientB,
+            surgingCoefficientC,
+            surgingCoefficientN,
             similarityParameterThreshold);
 
         // Then
-        ASSERT_DOUBLE_EQ(hydraulicLoad, 0.13175883584243872);
+        ASSERT_DOUBLE_EQ(0.13175883584243872, hydraulicLoad);
     }
 
     TEST(NaturalStoneRevetmentTest, GivenInput_WhenCalculateHydraulicLoadWithSurfSimilarityParameterBiggerThanThreshold_ThenExpectedResult)
@@ -129,18 +129,18 @@ namespace DiKErnel::FunctionLibrary::Test::NaturalStoneRevetmentTest
             slopeAngle,
             spectralWaveHeight,
             spectralWavePeriod,
-            ap,
-            bp,
-            cp,
-            np,
-            as,
-            bs,
-            cs,
-            ns,
+            plungingCoefficientA,
+            plungingCoefficientB,
+            plungingCoefficientC,
+            plungingCoefficientN,
+            surgingCoefficientA,
+            surgingCoefficientB,
+            surgingCoefficientC,
+            surgingCoefficientN,
             0.5);
 
         // Then
-        ASSERT_DOUBLE_EQ(hydraulicLoad, 0.60343921078080642);
+        ASSERT_DOUBLE_EQ(0.60343921078080642, hydraulicLoad);
     }
 
     TEST(NaturalStoneRevetmentTest, GivenInput_WhenCalculateSurfSimilarityParameter_ThenExpectedResult)
@@ -152,7 +152,7 @@ namespace DiKErnel::FunctionLibrary::Test::NaturalStoneRevetmentTest
             spectralWavePeriod);
 
         // Then
-        ASSERT_DOUBLE_EQ(surfSimilarityParameter, 1.0602561926471712);
+        ASSERT_DOUBLE_EQ(1.0602561926471712, surfSimilarityParameter);
     }
 
     TEST(NaturalStoneRevetmentTest, GivenInput_WhenCalculateResistance_ThenExpectedResult)
@@ -163,7 +163,7 @@ namespace DiKErnel::FunctionLibrary::Test::NaturalStoneRevetmentTest
             thicknessTopLayer);
 
         // Then
-        ASSERT_DOUBLE_EQ(resistance, 0.49499999999999994);
+        ASSERT_DOUBLE_EQ(0.49499999999999994, resistance);
     }
 
     TEST(NaturalStoneRevetmentTest, GivenInput_WhenCalculateIncrementDegradation_ThenExpectedResult)
@@ -178,20 +178,20 @@ namespace DiKErnel::FunctionLibrary::Test::NaturalStoneRevetmentTest
             waveAngle,
             startTime,
             endTime,
-            ap,
-            bp,
-            cp,
-            np,
-            as,
-            bs,
-            cs,
-            ns,
+            plungingCoefficientA,
+            plungingCoefficientB,
+            plungingCoefficientC,
+            plungingCoefficientN,
+            surgingCoefficientA,
+            surgingCoefficientB,
+            surgingCoefficientC,
+            surgingCoefficientN,
             waveAngleMaximum,
             initialDamage,
             similarityParameterThreshold);
 
         // Then
-        ASSERT_DOUBLE_EQ(incrementDegradation, 0.7411344491069477);
+        ASSERT_DOUBLE_EQ(0.7411344491069477, incrementDegradation);
     }
 
     TEST(NaturalStoneRevetmentTest, GivenInput_WhenCalculateDegradation_ThenExpectedResult)
@@ -200,7 +200,7 @@ namespace DiKErnel::FunctionLibrary::Test::NaturalStoneRevetmentTest
         const auto degradation = NaturalStoneRevetment::CalculateDegradation(endTime, spectralWavePeriod);
 
         // Then
-        ASSERT_DOUBLE_EQ(degradation, 0.7411344491069477);
+        ASSERT_DOUBLE_EQ(0.7411344491069477, degradation);
     }
 
     TEST(NaturalStoneRevetmentTest, GivenInput_WhenCalculateReferenceTimeDegradation_ThenExpectedResult)
@@ -213,20 +213,20 @@ namespace DiKErnel::FunctionLibrary::Test::NaturalStoneRevetmentTest
             spectralWaveHeight,
             spectralWavePeriod,
             waveAngle,
-            ap,
-            bp,
-            cp,
-            np,
-            as,
-            bs,
-            cs,
-            ns,
+            plungingCoefficientA,
+            plungingCoefficientB,
+            plungingCoefficientC,
+            plungingCoefficientN,
+            surgingCoefficientA,
+            surgingCoefficientB,
+            surgingCoefficientC,
+            surgingCoefficientN,
             waveAngleMaximum,
             initialDamage,
             similarityParameterThreshold);
 
         // Then
-        ASSERT_DOUBLE_EQ(referenceTimeDegradation, 0.0);
+        ASSERT_DOUBLE_EQ(0.0, referenceTimeDegradation);
     }
 
     TEST(NaturalStoneRevetmentTest, GivenInput_WhenCalculateReferenceDegradation_ThenExpectedResult)
@@ -240,19 +240,19 @@ namespace DiKErnel::FunctionLibrary::Test::NaturalStoneRevetmentTest
             spectralWaveHeight,
             spectralWavePeriod,
             waveAngle,
-            ap,
-            bp,
-            cp,
-            np,
-            as,
-            bs,
-            cs,
-            ns,
+            plungingCoefficientA,
+            plungingCoefficientB,
+            plungingCoefficientC,
+            plungingCoefficientN,
+            surgingCoefficientA,
+            surgingCoefficientB,
+            surgingCoefficientC,
+            surgingCoefficientN,
             waveAngleMaximum,
             similarityParameterThreshold);
 
         // Then
-        ASSERT_DOUBLE_EQ(referenceDegradation, 0.0);
+        ASSERT_DOUBLE_EQ(0.0, referenceDegradation);
     }
 
     TEST(NaturalStoneRevetmentTest, GivenInput_WhenCalculateWaveAngleImpactWithPositiveWaveAngle_ThenExpectedResult)
@@ -261,7 +261,7 @@ namespace DiKErnel::FunctionLibrary::Test::NaturalStoneRevetmentTest
         const auto waveAngleImpact = NaturalStoneRevetment::CalculateWaveAngleImpact(waveAngle, waveAngleMaximum);
 
         // Then
-        ASSERT_DOUBLE_EQ(waveAngleImpact, 0.98984601570399278);
+        ASSERT_DOUBLE_EQ(0.98984601570399278, waveAngleImpact);
     }
 
     TEST(NaturalStoneRevetmentTest, GivenInput_WhenCalculateWaveAngleImpactWithNegativeWaveAngle_ThenExpectedResult)
@@ -270,6 +270,6 @@ namespace DiKErnel::FunctionLibrary::Test::NaturalStoneRevetmentTest
         const auto waveAngleImpact = NaturalStoneRevetment::CalculateWaveAngleImpact(-waveAngle, waveAngleMaximum);
 
         // Then
-        ASSERT_DOUBLE_EQ(waveAngleImpact, 0.98984601570399278);
+        ASSERT_DOUBLE_EQ(0.98984601570399278, waveAngleImpact);
     }
 }
