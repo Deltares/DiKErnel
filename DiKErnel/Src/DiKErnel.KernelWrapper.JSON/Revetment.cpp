@@ -32,27 +32,27 @@ namespace DiKErnel::KernelWrapper::Json
         const double thicknessTopLayer,
         const double initialDamage,
         const double similarityParameterThreshold,
-        const double coefficientPlungingAp,
-        const double coefficientPlungingBp,
-        const double coefficientPlungingCp,
-        const double coefficientPlungingNp,
-        const double coefficientSurgingAs,
-        const double coefficientSurgingBs,
-        const double coefficientSurgingCs,
-        const double coefficientSurgingNs)
+        const double plungingCoefficientA,
+        const double plungingCoefficientB,
+        const double plungingCoefficientC,
+        const double plungingCoefficientN,
+        const double surgingCoefficientA,
+        const double surgingCoefficientB,
+        const double surgingCoefficientC,
+        const double surgingCoefficientN)
         : name(move(typeTopLayer)),
           relativeDensity(relativeDensity),
           thicknessTopLayer(thicknessTopLayer),
           initialDamage(initialDamage),
           similarityParameterThreshold(similarityParameterThreshold),
-          coefficientPlungingAp(coefficientPlungingAp),
-          coefficientPlungingBp(coefficientPlungingBp),
-          coefficientPlungingCp(coefficientPlungingCp),
-          coefficientPlungingNp(coefficientPlungingNp),
-          coefficientSurgingAs(coefficientSurgingAs),
-          coefficientSurgingBs(coefficientSurgingBs),
-          coefficientSurgingCs(coefficientSurgingCs),
-          coefficientSurgingNs(coefficientSurgingNs) { }
+          plungingCoefficientA(plungingCoefficientA),
+          plungingCoefficientB(plungingCoefficientB),
+          plungingCoefficientC(plungingCoefficientC),
+          plungingCoefficientN(plungingCoefficientN),
+          surgingCoefficientA(surgingCoefficientA),
+          surgingCoefficientB(surgingCoefficientB),
+          surgingCoefficientC(surgingCoefficientC),
+          surgingCoefficientN(surgingCoefficientN) { }
 
     const string& Revetment::GetTypeTopLayer() const
     {
@@ -79,43 +79,43 @@ namespace DiKErnel::KernelWrapper::Json
         return similarityParameterThreshold;
     }
 
-    double Revetment::GetCoefficientPlungingAp() const
+    double Revetment::GetPlungingCoefficientA() const
     {
-        return coefficientPlungingAp;
+        return plungingCoefficientA;
     }
 
-    double Revetment::GetCoefficientPlungingBp() const
+    double Revetment::GetPlungingCoefficientB() const
     {
-        return coefficientPlungingBp;
+        return plungingCoefficientB;
     }
 
-    double Revetment::GetCoefficientPlungingCp() const
+    double Revetment::GetPlungingCoefficientC() const
     {
-        return coefficientPlungingCp;
+        return plungingCoefficientC;
     }
 
-    double Revetment::GetCoefficientPlungingNp() const
+    double Revetment::GetPlungingCoefficientN() const
     {
-        return coefficientPlungingNp;
+        return plungingCoefficientN;
     }
 
-    double Revetment::GetCoefficientSurgingAs() const
+    double Revetment::GetSurgingCoefficientA() const
     {
-        return coefficientSurgingAs;
+        return surgingCoefficientA;
     }
 
-    double Revetment::GetCoefficientSurgingBs() const
+    double Revetment::GetSurgingCoefficientB() const
     {
-        return coefficientSurgingBs;
+        return surgingCoefficientB;
     }
 
-    double Revetment::GetCoefficientSurgingCs() const
+    double Revetment::GetSurgingCoefficientC() const
     {
-        return coefficientSurgingCs;
+        return surgingCoefficientC;
     }
 
-    double Revetment::GetCoefficientSurgingNs() const
+    double Revetment::GetSurgingCoefficientN() const
     {
-        return coefficientSurgingNs;
+        return surgingCoefficientN;
     }
 }

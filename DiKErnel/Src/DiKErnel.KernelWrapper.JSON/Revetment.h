@@ -42,21 +42,21 @@ namespace DiKErnel::KernelWrapper::Json
              *        The initial damage.
              * \param similarityParameterThreshold
              *        The similarity parameter threshold.
-             * \param coefficientPlungingAp
+             * \param plungingCoefficientA
              *        The A coefficient for plunging.
-             * \param coefficientPlungingBp
+             * \param plungingCoefficientB
              *        The B coefficient for plunging.
-             * \param coefficientPlungingCp
+             * \param plungingCoefficientC
              *        The C coefficient for plunging.
-             * \param coefficientPlungingNp
+             * \param plungingCoefficientN
              *        The N coefficient for plunging.
-             * \param coefficientSurgingAs
+             * \param surgingCoefficientA
              *        The A coefficient for surging.
-             * \param coefficientSurgingBs
+             * \param surgingCoefficientB
              *        The B coefficient for surging.
-             * \param coefficientSurgingCs
+             * \param surgingCoefficientC
              *        The C coefficient for surging.
-             * \param coefficientSurgingNs
+             * \param surgingCoefficientN
              *        The N coefficient for surging.
              */
             explicit Revetment(
@@ -65,14 +65,14 @@ namespace DiKErnel::KernelWrapper::Json
                 double thicknessTopLayer,
                 double initialDamage,
                 double similarityParameterThreshold,
-                double coefficientPlungingAp,
-                double coefficientPlungingBp,
-                double coefficientPlungingCp,
-                double coefficientPlungingNp,
-                double coefficientSurgingAs,
-                double coefficientSurgingBs,
-                double coefficientSurgingCs,
-                double coefficientSurgingNs
+                double plungingCoefficientA,
+                double plungingCoefficientB,
+                double plungingCoefficientC,
+                double plungingCoefficientN,
+                double surgingCoefficientA,
+                double surgingCoefficientB,
+                double surgingCoefficientC,
+                double surgingCoefficientN
             );
 
             /*!
@@ -109,49 +109,49 @@ namespace DiKErnel::KernelWrapper::Json
              * \brief Gets the A coefficient for plunging.
              * \return The A coefficient for plunging.
              */
-            double GetCoefficientPlungingAp() const;
+            double GetPlungingCoefficientA() const;
 
             /*!
              * \brief Gets the B coefficient for plunging.
              * \return The B coefficient for plunging.
              */
-            double GetCoefficientPlungingBp() const;
+            double GetPlungingCoefficientB() const;
 
             /*!
              * \brief Gets the C coefficient for plunging.
              * \return The C coefficient for plunging.
              */
-            double GetCoefficientPlungingCp() const;
+            double GetPlungingCoefficientC() const;
 
             /*!
              * \brief Gets the N coefficient for plunging.
              * \return The N coefficient for plunging.
              */
-            double GetCoefficientPlungingNp() const;
+            double GetPlungingCoefficientN() const;
 
             /*!
              * \brief Gets the A coefficient for surging.
              * \return The A coefficient for surging.
              */
-            double GetCoefficientSurgingAs() const;
+            double GetSurgingCoefficientA() const;
 
             /*!
              * \brief Gets the B coefficient for surging.
              * \return The B coefficient for surging.
              */
-            double GetCoefficientSurgingBs() const;
+            double GetSurgingCoefficientB() const;
 
             /*!
              * \brief Gets the C coefficient for surging.
              * \return The C coefficient for surging.
              */
-            double GetCoefficientSurgingCs() const;
+            double GetSurgingCoefficientC() const;
 
             /*!
              * \brief Gets the D coefficient for surging.
              * \return The D coefficient for surging.
              */
-            double GetCoefficientSurgingNs() const;
+            double GetSurgingCoefficientN() const;
 
         private:
             std::string name;
@@ -159,13 +159,13 @@ namespace DiKErnel::KernelWrapper::Json
             double thicknessTopLayer;
             double initialDamage;
             double similarityParameterThreshold;
-            double coefficientPlungingAp;
-            double coefficientPlungingBp;
-            double coefficientPlungingCp;
-            double coefficientPlungingNp;
-            double coefficientSurgingAs;
-            double coefficientSurgingBs;
-            double coefficientSurgingCs;
-            double coefficientSurgingNs;
+            double plungingCoefficientA;
+            double plungingCoefficientB;
+            double plungingCoefficientC;
+            double plungingCoefficientN;
+            double surgingCoefficientA;
+            double surgingCoefficientB;
+            double surgingCoefficientC;
+            double surgingCoefficientN;
     };
 }

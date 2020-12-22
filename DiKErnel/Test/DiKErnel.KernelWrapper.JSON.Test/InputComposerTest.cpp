@@ -108,17 +108,18 @@ namespace DiKErnel::KernelWrapper::Json::Test
             const double expectedThicknessTopLayer,
             const double expectedInitialDamage,
             const double expectedSimilarityParameterThreshold,
-            const double expectedCoefficientPlungingAp,
-            const double expectedCoefficientPlungingBp,
-            const double expectedCoefficientPlungingCp,
-            const double expectedCoefficientPlungingNp,
-            const double expectedCoefficientSurgingAs,
-            const double expectedCoefficientSurgingBs,
-            const double expectedCoefficientSurgingCs,
-            const double expectedCoefficientSurgingNs,
+            const double expectedPlungingCoefficientA,
+            const double expectedPlungingCoefficientB,
+            const double expectedPlungingCoefficientC,
+            const double expectedPlungingCoefficientN,
+            const double expectedSurgingCoefficientA,
+            const double expectedSurgingCoefficientB,
+            const double expectedSurgingCoefficientC,
+            const double expectedSurgingCoefficientN,
             const double expectedTanA) const
         {
             ASSERT_EQ(expectedName, calculationLocation.GetName());
+
             AssertRevetment(
                 calculationLocation.GetRevetment(),
                 expectedTypeTopLayer,
@@ -126,14 +127,15 @@ namespace DiKErnel::KernelWrapper::Json::Test
                 expectedThicknessTopLayer,
                 expectedInitialDamage,
                 expectedSimilarityParameterThreshold,
-                expectedCoefficientPlungingAp,
-                expectedCoefficientPlungingBp,
-                expectedCoefficientPlungingCp,
-                expectedCoefficientPlungingNp,
-                expectedCoefficientSurgingAs,
-                expectedCoefficientSurgingBs,
-                expectedCoefficientSurgingCs,
-                expectedCoefficientSurgingNs);
+                expectedPlungingCoefficientA,
+                expectedPlungingCoefficientB,
+                expectedPlungingCoefficientC,
+                expectedPlungingCoefficientN,
+                expectedSurgingCoefficientA,
+                expectedSurgingCoefficientB,
+                expectedSurgingCoefficientC,
+                expectedSurgingCoefficientN);
+
             ASSERT_DOUBLE_EQ(expectedTanA, calculationLocation.GetProfileSchematization().GetTanA());
         }
 
@@ -144,34 +146,34 @@ namespace DiKErnel::KernelWrapper::Json::Test
             const double expectedThicknessTopLayer,
             const double expectedInitialDamage,
             const double expectedSimilarityParameterThreshold,
-            const double expectedCoefficientPlungingAp,
-            const double expectedCoefficientPlungingBp,
-            const double expectedCoefficientPlungingCp,
-            const double expectedCoefficientPlungingNp,
-            const double expectedCoefficientSurgingAs,
-            const double expectedCoefficientSurgingBs,
-            const double expectedCoefficientSurgingCs,
-            const double expectedCoefficientSurgingNs) const
+            const double expectedPlungingCoefficientA,
+            const double expectedPlungingCoefficientB,
+            const double expectedPlungingCoefficientC,
+            const double expectedPlungingCoefficientN,
+            const double expectedSurgingCoefficientA,
+            const double expectedSurgingCoefficientB,
+            const double expectedSurgingCoefficientC,
+            const double expectedSurgingCoefficientN) const
         {
             ASSERT_EQ(expectedTypeTopLayer, revetment.GetTypeTopLayer());
             ASSERT_DOUBLE_EQ(expectedRelativeDensity, revetment.GetRelativeDensity());
             ASSERT_DOUBLE_EQ(expectedThicknessTopLayer, revetment.GetThicknessTopLayer());
             ASSERT_DOUBLE_EQ(expectedInitialDamage, revetment.GetInitialDamage());
             ASSERT_DOUBLE_EQ(expectedSimilarityParameterThreshold, revetment.GetSimilarityParameterThreshold());
-            ASSERT_DOUBLE_EQ(expectedCoefficientPlungingAp, revetment.GetCoefficientPlungingAp());
-            ASSERT_DOUBLE_EQ(expectedCoefficientPlungingBp, revetment.GetCoefficientPlungingBp());
-            ASSERT_DOUBLE_EQ(expectedCoefficientPlungingCp, revetment.GetCoefficientPlungingCp());
-            ASSERT_DOUBLE_EQ(expectedCoefficientPlungingNp, revetment.GetCoefficientPlungingNp());
-            ASSERT_DOUBLE_EQ(expectedCoefficientSurgingAs, revetment.GetCoefficientSurgingAs());
-            ASSERT_DOUBLE_EQ(expectedCoefficientSurgingBs, revetment.GetCoefficientSurgingBs());
-            ASSERT_DOUBLE_EQ(expectedCoefficientSurgingCs, revetment.GetCoefficientSurgingCs());
-            ASSERT_DOUBLE_EQ(expectedCoefficientSurgingNs, revetment.GetCoefficientSurgingNs());
+            ASSERT_DOUBLE_EQ(expectedPlungingCoefficientA, revetment.GetPlungingCoefficientA());
+            ASSERT_DOUBLE_EQ(expectedPlungingCoefficientB, revetment.GetPlungingCoefficientB());
+            ASSERT_DOUBLE_EQ(expectedPlungingCoefficientC, revetment.GetPlungingCoefficientC());
+            ASSERT_DOUBLE_EQ(expectedPlungingCoefficientN, revetment.GetPlungingCoefficientN());
+            ASSERT_DOUBLE_EQ(expectedSurgingCoefficientA, revetment.GetSurgingCoefficientA());
+            ASSERT_DOUBLE_EQ(expectedSurgingCoefficientB, revetment.GetSurgingCoefficientB());
+            ASSERT_DOUBLE_EQ(expectedSurgingCoefficientC, revetment.GetSurgingCoefficientC());
+            ASSERT_DOUBLE_EQ(expectedSurgingCoefficientN, revetment.GetSurgingCoefficientN());
         }
     };
 
     TEST_F(InputComposerTest, GivenFilePathAndInputComposer_WhenGetDomainParametersFromJson_ThenCorrectDataSet)
     {
-        // Given & When
+        // When
         const auto inputData = InputComposer::GetDomainParametersFromJson(filePath);
 
         // Then
