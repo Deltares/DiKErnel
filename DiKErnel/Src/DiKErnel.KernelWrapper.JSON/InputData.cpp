@@ -28,7 +28,13 @@ namespace DiKErnel::KernelWrapper::Json
         std::vector<std::unique_ptr<CalculationLocation>> locations)
         : calculationData(std::move(calculationData)),
           hydraulicLoads(std::move(hydraulicLoads)),
-          locations(std::move(locations)) { }
+          locations(std::move(locations))
+    {
+        for (const auto& location : this->locations)
+        {
+            locationReferences.emplace_back(*location);
+        }
+    }
 
     const CalculationData& InputData::GetCalculationData() const
     {
@@ -40,15 +46,8 @@ namespace DiKErnel::KernelWrapper::Json
         return *hydraulicLoads;
     }
 
-    std::vector<std::reference_wrapper<CalculationLocation>> InputData::GetLocations() const
+    const std::vector<std::reference_wrapper<CalculationLocation>>& InputData::GetLocations() const
     {
-        std::vector<std::reference_wrapper<CalculationLocation>> locationReferences;
-
-        for (const auto& location : locations)
-        {
-            locationReferences.emplace_back(*location);
-        }
-
         return locationReferences;
     }
 }

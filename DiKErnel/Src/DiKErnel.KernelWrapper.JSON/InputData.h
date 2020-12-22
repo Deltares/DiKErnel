@@ -36,6 +36,7 @@ namespace DiKErnel::KernelWrapper::Json
         std::unique_ptr<CalculationData> calculationData;
         std::unique_ptr<HydraulicLoads> hydraulicLoads;
         std::vector<std::unique_ptr<CalculationLocation>> locations;
+        std::vector<std::reference_wrapper<CalculationLocation>> locationReferences;
 
         public:
             /*!
@@ -69,6 +70,6 @@ namespace DiKErnel::KernelWrapper::Json
              * \brief Gets the calculation locations.
              * \return The calculation locations.
              */
-            std::vector<std::reference_wrapper<CalculationLocation>> GetLocations() const;
+            const std::vector<std::reference_wrapper<CalculationLocation>>& GetLocations() const;
     };
 }
