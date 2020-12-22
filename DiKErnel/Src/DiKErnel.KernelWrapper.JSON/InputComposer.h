@@ -26,10 +26,10 @@
 #include "CalculationLocation.h"
 #include "HydraulicLoads.h"
 #include "InputComposer.h"
+#include "InputData.h"
 
 namespace DiKErnel::KernelWrapper::Json
 {
-    class InputData;
     /*!
      * \brief Class responsible for parsing Json input.
      */
@@ -41,7 +41,7 @@ namespace DiKErnel::KernelWrapper::Json
              *        file path.                                                                              
              * \param filePath
              *        The path to the Json file.
-             * \return The input data object.
+             * \return The input data.
              */
             static std::unique_ptr<InputData> GetDomainParametersFromJson(
                 const std::string& filePath);

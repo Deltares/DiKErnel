@@ -18,9 +18,9 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include <fstream>
-
 #include "nlohmann/json.hpp"
+
+#include <fstream>
 
 #include "InputComposer.h"
 #include "InputData.h"
@@ -28,67 +28,69 @@
 
 namespace DiKErnel::KernelWrapper::Json
 {
-    std::unique_ptr<InputData> InputComposer::GetDomainParametersFromJson(
-        const std::string& filePath)
+    using namespace std;
+
+    unique_ptr<InputData> InputComposer::GetDomainParametersFromJson(
+        const string& filePath)
     {
         const auto json = ParseJson(filePath);
 
-        return std::make_unique<InputData>(
+        return make_unique<InputData>(
             ReadCalculationData(json),
             ReadHydraulicLoads(json),
             ReadLocations(json));
     }
 
-    std::unique_ptr<CalculationData> InputComposer::ReadCalculationData(
+    unique_ptr<CalculationData> InputComposer::ReadCalculationData(
         const nlohmann::json& json)
     {
-        auto readCalculationData = json[JsonDefinitions::calculationData];
+        const auto& readCalculationData = json[JsonDefinitions::calculationData];
 
-        return std::make_unique<CalculationData>(
-            readCalculationData[JsonDefinitions::time].get<std::vector<int>>()
+        return make_unique<CalculationData>(
+            readCalculationData[JsonDefinitions::time].get<vector<int>>()
         );
     }
 
-    std::unique_ptr<HydraulicLoads> InputComposer::ReadHydraulicLoads(
+    unique_ptr<HydraulicLoads> InputComposer::ReadHydraulicLoads(
         const nlohmann::json& json)
     {
-        auto readHydraulicLoads = json[JsonDefinitions::hydraulicLoads];
-        auto readBoundaryConditionsPerTimeStep = readHydraulicLoads[JsonDefinitions::boundaryConditionsPerTimeStep];
+        const auto& readHydraulicLoads = json[JsonDefinitions::hydraulicLoads];
+        const auto& readBoundaryConditionsPerTimeStep = readHydraulicLoads[JsonDefinitions::boundaryConditionsPerTimeStep];
 
-        std::vector<std::unique_ptr<BoundaryConditionsPerTimeStep>> boundaryConditionsPerTimeStep;
+        vector<unique_ptr<BoundaryConditionsPerTimeStep>> boundaryConditionsPerTimeStep;
 
-        for (auto readBoundaryConditionsForTimeStep : readBoundaryConditionsPerTimeStep)
+        for (const auto& readBoundaryConditionsForTimeStep : readBoundaryConditionsPerTimeStep)
         {
             boundaryConditionsPerTimeStep.push_back(
-                std::make_unique<BoundaryConditionsPerTimeStep>(
+                make_unique<BoundaryConditionsPerTimeStep>(
                     readBoundaryConditionsForTimeStep[JsonDefinitions::waveHeightHm0].get<double>(),
                     readBoundaryConditionsForTimeStep[JsonDefinitions::wavePeriodTm10].get<double>(),
                     readBoundaryConditionsForTimeStep[JsonDefinitions::waveAngle].get<double>()
                 ));
         }
 
-        return std::make_unique<HydraulicLoads>(
+        return make_unique<HydraulicLoads>(
             readHydraulicLoads[JsonDefinitions::maximumWaveAngle].get<int>(),
-            std::move(boundaryConditionsPerTimeStep)
+            move(boundaryConditionsPerTimeStep)
         );
     }
 
-    std::vector<std::unique_ptr<CalculationLocation>> InputComposer::ReadLocations(
+    vector<unique_ptr<CalculationLocation>> InputComposer::ReadLocations(
         const nlohmann::json& json)
     {
-        std::vector<std::unique_ptr<CalculationLocation>> calculationLocations;
+        vector<unique_ptr<CalculationLocation>> calculationLocations;
 
-        auto readLocations = json[JsonDefinitions::locations];
+        const auto& readLocations = json[JsonDefinitions::locations];
 
-        for (auto readLocation : readLocations)
+        for (const auto& readLocation : readLocations)
         {
-            auto readRevetment = readLocation[JsonDefinitions::revetment];
-            auto readProfileSchematization = readLocation[JsonDefinitions::profileSchematisation];
+            const auto& readRevetment = readLocation[JsonDefinitions::revetment];
+            const auto& readProfileSchematization = readLocation[JsonDefinitions::profileSchematisation];
 
-            calculationLocations.push_back(std::make_unique<CalculationLocation>(
-                readLocation[JsonDefinitions::name].get<std::string>(),
-                std::make_unique<Revetment>(
-                    readRevetment[JsonDefinitions::typeTopLayer].get<std::string>(),
+            calculationLocations.push_back(make_unique<CalculationLocation>(
+                readLocation[JsonDefinitions::name].get<string>(),
+                make_unique<Revetment>(
+                    readRevetment[JsonDefinitions::typeTopLayer].get<string>(),
                     readRevetment[JsonDefinitions::relativeDensity].get<double>(),
                     readRevetment[JsonDefinitions::thicknessTopLayer].get<double>(),
                     readRevetment[JsonDefinitions::initialDamage].get<double>(),
@@ -101,7 +103,7 @@ namespace DiKErnel::KernelWrapper::Json
                     readRevetment[JsonDefinitions::coefficientSurgingBs].get<double>(),
                     readRevetment[JsonDefinitions::coefficientSurgingCs].get<double>(),
                     readRevetment[JsonDefinitions::coefficientSurgingNs].get<double>()),
-                std::make_unique<ProfileSchematization>(
+                make_unique<ProfileSchematization>(
                     readProfileSchematization[JsonDefinitions::tanA].get<double>()
                 )
             ));
@@ -111,9 +113,9 @@ namespace DiKErnel::KernelWrapper::Json
     }
 
     nlohmann::json InputComposer::ParseJson(
-        const std::string& filePath)
+        const string& filePath)
     {
-        std::ifstream ifs(filePath);
+        ifstream ifs(filePath);
         return nlohmann::json::parse(ifs);
     }
 }

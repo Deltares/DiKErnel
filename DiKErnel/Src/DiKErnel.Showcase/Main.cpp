@@ -84,13 +84,13 @@ int main()
         cout << "|===================|" << endl;
         cout << "| Calculation input |" << endl;
         cout << "|===================|" << endl;
-        cout << "-> Enter the path to the JSON file: ";
+        cout << "-> Enter the path to the Json file: ";
         getline(cin, jsonFilePath);
         cout << "-> Enter any additional sub-calculation delay (in seconds): ";
         cin >> subCalculationDelay;
         cout << endl;
 
-        // Read input JSON file
+        // Read input Json file
         const auto inputData = InputComposer::GetDomainParametersFromJson(jsonFilePath);
 
         // Write user feedback
@@ -156,7 +156,7 @@ int main()
             const auto outputDirectory = std::filesystem::path(jsonFilePath).parent_path();
             const auto outputPath = outputDirectory / ("output-" + std::to_string(milliseconds.count() % 1000) + ".json");
 
-            // Write JSON output to file
+            // Write Json output to file
             const auto outputData = calculator.GetOutputData();
             OutputComposer::WriteParametersToJson(outputPath.u8string(), *outputData);
 
