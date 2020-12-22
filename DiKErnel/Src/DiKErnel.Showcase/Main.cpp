@@ -74,112 +74,119 @@ int subCalculationDelay = 0;
 
 int main()
 {
-    string jsonFilePath;
-    std::atomic<UserInput> userInput;
-    std::atomic<bool> calculationFinished(false);
-
-    // Obtain user input
-    cout << "|===================|" << endl;
-    cout << "| Calculation input |" << endl;
-    cout << "|===================|" << endl;
-    cout << "-> Enter the path to the JSON file: ";
-    getline(cin, jsonFilePath);
-    cout << "-> Enter any additional sub-calculation delay (in seconds): ";
-    cin >> subCalculationDelay;
-    cout << endl;
-
-    // Read input JSON file
-    const auto inputData = InputComposer::GetDomainParametersFromJson(jsonFilePath);
-
-    // Write user feedback
-    cout << "|===========|" << endl;
-    cout << "| Read data |" << endl;
-    cout << "|===========|" << endl;
-    cout << "-> Number of read time steps: " << inputData->GetCalculationData().GetTimes().size() - 1 << endl;
-    cout << "-> Number of read locations: " << inputData->GetLocations().size() << endl << endl;
-
-    // Start stopwatch
-    const auto start = std::chrono::high_resolution_clock::now();
-
-    // Write start message for the calculation
-    cout << "|=====================|" << endl;
-    cout << "| Calculation started |" << endl;
-    cout << "|=====================|" << endl;
-    cout << "-> Enter 'p' to show the current progress" << endl;
-    cout << "-> Enter 'c' to cancel the calculation" << endl << endl;
-
-    // Start calculation on separate thread
-    Calculator calculator(
-        *inputData,
-        CalculateDamageWithDelay);
-
-    // Start obtaining user input on separate thread
-    thread inputThread(
-        InputMethod,
-        ref(calculationFinished),
-        ref(userInput));
-
-    // Handle user input until the calculation is finished
-    while (!calculator.IsFinished())
+    try
     {
-        if (userInput == UserInput::Cancel)
+        string jsonFilePath;
+        std::atomic<UserInput> userInput;
+        std::atomic<bool> calculationFinished(false);
+
+        // Obtain user input
+        cout << "|===================|" << endl;
+        cout << "| Calculation input |" << endl;
+        cout << "|===================|" << endl;
+        cout << "-> Enter the path to the JSON file: ";
+        getline(cin, jsonFilePath);
+        cout << "-> Enter any additional sub-calculation delay (in seconds): ";
+        cin >> subCalculationDelay;
+        cout << endl;
+
+        // Read input JSON file
+        const auto inputData = InputComposer::GetDomainParametersFromJson(jsonFilePath);
+
+        // Write user feedback
+        cout << "|===========|" << endl;
+        cout << "| Read data |" << endl;
+        cout << "|===========|" << endl;
+        cout << "-> Number of read time steps: " << inputData->GetCalculationData().GetTimes().size() - 1 << endl;
+        cout << "-> Number of read locations: " << inputData->GetLocations().size() << endl << endl;
+
+        // Start stopwatch
+        const auto start = std::chrono::high_resolution_clock::now();
+
+        // Write start message for the calculation
+        cout << "|=====================|" << endl;
+        cout << "| Calculation started |" << endl;
+        cout << "|=====================|" << endl;
+        cout << "-> Enter 'p' to show the current progress" << endl;
+        cout << "-> Enter 'c' to cancel the calculation" << endl << endl;
+
+        // Start calculation on separate thread
+        Calculator calculator(
+            *inputData,
+            CalculateDamageWithDelay);
+
+        // Start obtaining user input on separate thread
+        thread inputThread(
+            InputMethod,
+            ref(calculationFinished),
+            ref(userInput));
+
+        // Handle user input until the calculation is finished
+        while (!calculator.IsFinished())
         {
-            calculator.Cancel();
-            userInput = UserInput::None;
+            if (userInput == UserInput::Cancel)
+            {
+                calculator.Cancel();
+                userInput = UserInput::None;
+            }
+
+            if (userInput == UserInput::Progress)
+            {
+                cout << "Current progress = " << calculator.GetProgress() << "%" << endl;
+                userInput = UserInput::None;
+            }
         }
 
-        if (userInput == UserInput::Progress)
+        // Wait for actual completion of the calculation thread
+        calculator.WaitForCompletion();
+
+        // Write end message for the calculation
+        if (calculator.IsCancelled())
         {
-            cout << "Current progress = " << calculator.GetProgress() << "%" << endl;
-            userInput = UserInput::None;
+            cout << endl;
+            cout << "|=======================|" << endl;
+            cout << "| Calculation cancelled |" << endl;
+            cout << "|=======================|" << endl;
         }
+        else
+        {
+            // Determine output file path
+            const auto timeStamp = std::chrono::system_clock::now();
+            const auto milliseconds = chrono::duration_cast<chrono::milliseconds>(timeStamp.time_since_epoch());
+            const auto outputDirectory = std::filesystem::path(jsonFilePath).parent_path();
+            const auto outputPath = outputDirectory / ("output-" + std::to_string(milliseconds.count() % 1000) + ".json");
+
+            // Write JSON output to file
+            const auto outputData = calculator.GetOutputData();
+            OutputComposer::WriteParametersToJson(outputPath.u8string(), *outputData);
+
+            cout << endl;
+            cout << "|========================|" << endl;
+            cout << "| Calculation successful |" << endl;
+            cout << "|========================|" << endl;
+            cout << "=> Calculation output is written to: " << outputPath << endl;
+        }
+
+        // End stopwatch and write the elapsed time since the start of the calculation
+        const auto end = std::chrono::high_resolution_clock::now();
+        const std::chrono::duration<double> elapsed = end - start;
+        cout << "=> Time elapsed: " << elapsed.count() << endl << endl;
+
+        // Notify calculation thread being finished
+        calculationFinished = true;
+
+        // Write closing message
+        cout << endl << "Press 'Enter' to exit the application.";
+
+        // Wait for actual completion of the user input thread
+        inputThread.join();
+
+        return 0;
     }
-
-    // Wait for actual completion of the calculation thread
-    calculator.WaitForCompletion();
-
-    // Write end message for the calculation
-    if (calculator.IsCancelled())
+    catch (...)
     {
-        cout << endl;
-        cout << "|=======================|" << endl;
-        cout << "| Calculation cancelled |" << endl;
-        cout << "|=======================|" << endl;
+        return -1;
     }
-    else
-    {
-        // Determine output file path
-        const auto timeStamp = std::chrono::system_clock::now();
-        const auto milliseconds = chrono::duration_cast<chrono::milliseconds>(timeStamp.time_since_epoch());
-        const auto outputDirectory = std::filesystem::path(jsonFilePath).parent_path();
-        const auto outputPath = outputDirectory / ("output-" + std::to_string(milliseconds.count() % 1000) + ".json");
-
-        // Write JSON output to file
-        const auto outputData = calculator.GetOutputData();
-        OutputComposer::WriteParametersToJson(outputPath.u8string(), *outputData);
-
-        cout << endl;
-        cout << "|========================|" << endl;
-        cout << "| Calculation successful |" << endl;
-        cout << "|========================|" << endl;
-        cout << "=> Calculation output is written to: " << outputPath << endl;
-    }
-
-    // End stopwatch and write the elapsed time since the start of the calculation
-    const auto end = std::chrono::high_resolution_clock::now();
-    const std::chrono::duration<double> elapsed = end - start;
-    cout << "=> Time elapsed: " << elapsed.count() << endl << endl;
-
-    // Notify calculation thread being finished
-    calculationFinished = true;
-
-    // Write closing message
-    cout << endl << "Press 'Enter' to exit the application.";
-
-    // Wait for actual completion of the user input thread
-    inputThread.join();
-
-    return 0;
 }
 
 double CalculateDamageWithDelay(

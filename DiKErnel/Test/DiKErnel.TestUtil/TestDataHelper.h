@@ -38,6 +38,6 @@ namespace DiKErnel::TestUtil
              * \return The path to the test data.
             */
             static std::filesystem::path GetTestDataPath(
-                std::string currentNamespace);
+                const std::string& currentNamespace);
     };
 }

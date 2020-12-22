@@ -24,10 +24,12 @@
 
 namespace DiKErnel::TestUtil
 {
+    using namespace std;
+
     std::filesystem::path TestDataHelper::GetTestDataPath(
-        const std::string currentNamespace)
+        const string& currentNamespace)
     {
-        auto currentPath = std::filesystem::current_path();
+        auto currentPath = filesystem::current_path();
 
         while (currentPath.filename() != "DiKErnel")
         {
