@@ -29,10 +29,10 @@
 #include "NaturalStoneRevetment.h"
 #include "OutputComposer.h"
 
-using namespace std;
 using namespace DiKErnel::Core;
 using namespace DiKErnel::FunctionLibrary;
 using namespace DiKErnel::KernelWrapper::Json;
+using namespace std;
 
 int delay = 0;
 

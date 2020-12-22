@@ -24,10 +24,10 @@
 #include "Constants.h"
 #include "NaturalStoneRevetment.h"
 
-using namespace DiKErnel::DomainLibrary;
-
 namespace DiKErnel::FunctionLibrary
 {
+    using namespace DomainLibrary;
+
     double NaturalStoneRevetment::CalculateDamage(
         const double initialDamage,
         const double slopeAngle,

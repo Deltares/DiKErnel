@@ -27,18 +27,30 @@
 
 namespace DiKErnel::Core::Test
 {
+    using namespace KernelWrapper::Json;
+    using namespace std;
+
     struct CalculatorTest : testing::Test
     {
         const std::string filePath =
         (TestUtil::TestDataHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Test")
             / "InputComposerTest"
             / "testInput.json").string();
+
+        static void AssertCalculationLocationOutput(
+            const CalculationLocationOutput& calculationLocationOutput,
+            const string& expectedLocationName,
+            const double expectedDamage)
+        {
+            ASSERT_EQ(expectedLocationName, calculationLocationOutput.GetName());
+            ASSERT_DOUBLE_EQ(expectedDamage, calculationLocationOutput.GetRevetmentOutput().GetDamage());
+        }
     };
 
-    TEST_F(CalculatorTest, Constructor_WithParameters_PerformsCalculation)
+    TEST_F(CalculatorTest, Constructor_WithParameters_PerformsCalculationWithExpectedOutput)
     {
         // Setup
-        const auto inputData = KernelWrapper::Json::InputComposer::GetDomainParametersFromJson(filePath);
+        const auto inputData = InputComposer::GetDomainParametersFromJson(filePath);
 
         // Call
         Calculator calculator(*inputData, FunctionLibrary::NaturalStoneRevetment::CalculateDamage);
@@ -47,18 +59,21 @@ namespace DiKErnel::Core::Test
         calculator.WaitForCompletion();
 
         // Assert
-        ASSERT_EQ(calculator.GetProgress(), 100);
-        ASSERT_EQ(calculator.IsFinished(), true);
-        ASSERT_EQ(calculator.IsCancelled(), false);
+        ASSERT_EQ(100, calculator.GetProgress());
+        ASSERT_TRUE(calculator.IsFinished());
+        ASSERT_FALSE(calculator.IsCancelled());
 
         const auto outputData = calculator.GetOutputData();
-        ASSERT_EQ(outputData->GetCalculationLocationsOutput().size(), 2);
+        const auto& calculationLocationsOutput = outputData->GetCalculationLocationsOutput();
+        ASSERT_EQ(2, calculationLocationsOutput.size());
+        AssertCalculationLocationOutput(calculationLocationsOutput[0].get(), "LocatieZwak", 1.132388020800255);
+        AssertCalculationLocationOutput(calculationLocationsOutput[1].get(), "LocatieSterk", 0.48530915177153788);
     }
 
-    TEST_F(CalculatorTest, GivenCalculator_WhenCancelCalled_ThenCalculationCancelled)
+    TEST_F(CalculatorTest, GivenCalculatorWithRunningCalculation_WhenCancelCalled_ThenCalculationCancelled)
     {
         // Given
-        const auto inputData = KernelWrapper::Json::InputComposer::GetDomainParametersFromJson(filePath);
+        const auto inputData = InputComposer::GetDomainParametersFromJson(filePath);
 
         Calculator calculator(*inputData, FunctionLibrary::NaturalStoneRevetment::CalculateDamage);
 
@@ -69,7 +84,63 @@ namespace DiKErnel::Core::Test
         calculator.WaitForCompletion();
 
         // Then
-        ASSERT_EQ(calculator.IsCancelled(), true);
+        ASSERT_TRUE(calculator.IsCancelled());
+        ASSERT_FALSE(calculator.IsFinished());
         ASSERT_FALSE(calculator.GetProgress() == 100);
+    }
+
+    TEST_F(CalculatorTest, GivenCalculatorWithFinishedCalculation_WhenCancelCalled_ThenCalculationNotCancelled)
+    {
+        // Given
+        const auto inputData = InputComposer::GetDomainParametersFromJson(filePath);
+
+        Calculator calculator(*inputData, FunctionLibrary::NaturalStoneRevetment::CalculateDamage);
+
+        // Wait
+        calculator.WaitForCompletion();
+
+        // When
+        calculator.Cancel();
+
+        // Then
+        ASSERT_FALSE(calculator.IsCancelled());
+        ASSERT_TRUE(calculator.IsFinished());
+        ASSERT_TRUE(calculator.GetProgress() == 100);
+    }
+
+    TEST_F(CalculatorTest, GivenCalculatorWithRunningCalculation_WhenGettingOutputData_ThenOutputDataEmpty)
+    {
+        // Given
+        const auto inputData = InputComposer::GetDomainParametersFromJson(filePath);
+
+        Calculator calculator(*inputData, FunctionLibrary::NaturalStoneRevetment::CalculateDamage);
+
+        // When
+        const auto outputData = calculator.GetOutputData();
+
+        // Wait
+        calculator.WaitForCompletion();
+
+        // Then
+        ASSERT_EQ(0, outputData->GetCalculationLocationsOutput().size());
+    }
+
+    TEST_F(CalculatorTest, GivenCalculatorWithCancelledCalculation_WhenGettingOutputData_ThenOutputDataEmpty)
+    {
+        // Given
+        const auto inputData = InputComposer::GetDomainParametersFromJson(filePath);
+
+        Calculator calculator(*inputData, FunctionLibrary::NaturalStoneRevetment::CalculateDamage);
+
+        calculator.Cancel();
+
+        // Wait
+        calculator.WaitForCompletion();
+
+        // When
+        const auto outputData = calculator.GetOutputData();
+
+        // Then
+        ASSERT_EQ(0, outputData->GetCalculationLocationsOutput().size());
     }
 }

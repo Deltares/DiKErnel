@@ -24,8 +24,8 @@
 
 namespace DiKErnel::Core
 {
-    using namespace std;
     using namespace KernelWrapper::Json;
+    using namespace std;
 
     Calculator::Calculator(
         const InputData& inputData,
@@ -184,7 +184,10 @@ namespace DiKErnel::Core
             }
         }
 
-        isFinished = true;
+        if (!isCancelled)
+        {
+            isFinished = true;
+        }
     }
 
     void Calculator::PerformCalculationForTimeStepAndLocation(

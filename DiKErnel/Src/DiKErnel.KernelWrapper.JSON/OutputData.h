@@ -32,12 +32,13 @@ namespace DiKErnel::KernelWrapper::Json
     class OutputData
     {
         std::vector<std::unique_ptr<CalculationLocationOutput>> calculationLocationsOutput;
+        std::vector<std::reference_wrapper<CalculationLocationOutput>> calculationLocationOutputReferences;
 
         public:
             explicit OutputData(
                 std::vector<std::unique_ptr<CalculationLocationOutput>> calculationLocationsOutput
             );
 
-            std::vector<std::reference_wrapper<CalculationLocationOutput>> GetCalculationLocationsOutput() const;
+            const std::vector<std::reference_wrapper<CalculationLocationOutput>>& GetCalculationLocationsOutput() const;
     };
 }

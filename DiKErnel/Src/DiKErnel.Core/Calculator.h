@@ -103,8 +103,9 @@ namespace DiKErnel::Core
 
             /*!
              * \brief Gets the output data of the calculation.
-             * \return The output data of the calculation when the calculation is finished, null
-             *         otherwise.
+             * \return The output data of the calculation.
+             * \remarks An empty output data container is returned when the calculation is still
+             *          running or when the calculation is cancelled.
              */
             std::unique_ptr<KernelWrapper::Json::OutputData> GetOutputData() const;
 
