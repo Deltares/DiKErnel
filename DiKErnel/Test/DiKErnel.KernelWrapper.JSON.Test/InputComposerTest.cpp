@@ -25,7 +25,7 @@
 
 #include "InputComposer.h"
 #include "InputData.h"
-#include "TestDataHelper.h"
+#include "TestDataPathHelper.h"
 
 namespace DiKErnel::KernelWrapper::Json::Test
 {
@@ -86,7 +86,7 @@ namespace DiKErnel::KernelWrapper::Json::Test
     struct InputComposerTest : testing::Test
     {
         const std::string filePath =
-        (TestUtil::TestDataHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Test")
+        (TestUtil::TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Test")
             / "InputComposerTest"
             / "testInput.json").string();
     };

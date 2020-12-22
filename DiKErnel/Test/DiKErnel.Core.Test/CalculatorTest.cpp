@@ -23,7 +23,7 @@
 #include "Calculator.h"
 #include "InputComposer.h"
 #include "NaturalStoneRevetment.h"
-#include "TestDataHelper.h"
+#include "TestDataPathHelper.h"
 
 namespace DiKErnel::Core::Test
 {
@@ -36,7 +36,7 @@ namespace DiKErnel::Core::Test
 
         explicit CalculatorTest()
             : inputData(InputComposer::GetDomainParametersFromJson(
-                (TestUtil::TestDataHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Test")
+                (TestUtil::TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Test")
                     / "InputComposerTest"
                     / "testInput.json").string())) { }
 

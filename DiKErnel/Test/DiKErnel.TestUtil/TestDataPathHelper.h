@@ -18,24 +18,25 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include "TestDataHelper.h"
+#pragma once
 
 #include <filesystem>
 
 namespace DiKErnel::TestUtil
 {
-    using namespace std;
-
-    std::filesystem::path TestDataHelper::GetTestDataPath(
-        const string& currentNamespace)
+    /*!
+     * \brief Helper class for getting test data paths.
+    */
+    class TestDataPathHelper
     {
-        auto currentPath = filesystem::current_path();
-
-        while (currentPath.filename() != "DiKErnel")
-        {
-            currentPath = currentPath.parent_path();
-        }
-
-        return currentPath / "DiKErnel" / "Test" / currentNamespace / "test-data";
-    }
+        public:
+            /*!
+             * \brief Gets the test data path.
+             * \param currentNamespace
+             *        The namespace of the current test project. 
+             * \return The path to the related test data.
+            */
+            static std::filesystem::path GetTestDataPath(
+                const std::string& currentNamespace);
+    };
 }

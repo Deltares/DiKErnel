@@ -3,8 +3,8 @@ set(LIBNAME DiKErnel.TestUtil)
 
 # Define sources
 set(SOURCEFILES
-  TestDataHelper.cpp
-  TestDataHelper.h
+  TestDataPathHelper.cpp
+  TestDataPathHelper.h
 )
 
 # Add executable

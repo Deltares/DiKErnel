@@ -26,7 +26,7 @@
 #include "OutputComposer.h"
 #include "OutputData.h"
 #include "RevetmentOutput.h"
-#include "TestDataHelper.h"
+#include "TestDataPathHelper.h"
 
 namespace DiKErnel::KernelWrapper::Json::Test
 {
@@ -46,7 +46,7 @@ namespace DiKErnel::KernelWrapper::Json::Test
     struct OutputComposerTest : testing::Test
     {
         const std::string expectedOutputFilePath =
-        (TestUtil::TestDataHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Test")
+        (TestUtil::TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Test")
             / "OutputComposerTest"
             / "expectedOutput.json").string();
 
