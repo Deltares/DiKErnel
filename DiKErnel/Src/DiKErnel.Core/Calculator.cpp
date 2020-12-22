@@ -105,13 +105,13 @@ namespace DiKErnel::Core
 
         if (isFinished)
         {
-            for (const auto& [location, damageAtTimeSteps] : outputData)
-            {
-                calculationLocationsOutput.push_back(
-                    std::make_unique<CalculationLocationOutput>(
-                        location.get().GetName(),
-                        std::make_unique<RevetmentOutput>(std::get<1>(damageAtTimeSteps.back()))));
-            }
+            // for (const auto& [location, damageAtTimeSteps] : outputData)
+            // {
+            //     calculationLocationsOutput.push_back(
+            //         std::make_unique<CalculationLocationOutput>(
+            //             location.get().GetName(),
+            //             std::make_unique<RevetmentOutput>(std::get<1>(damageAtTimeSteps.back()))));
+            // }
         }
 
         return std::make_unique<OutputData>(std::move(calculationLocationsOutput));
@@ -144,14 +144,17 @@ namespace DiKErnel::Core
         std::atomic<double>& progress,
         std::atomic<bool>& finished,
         const std::atomic<bool>& cancelled,
-        std::map<CalculationLocation*, std::vector<std::tuple<double, double>>>& outputData)
+        std::vector<std::vector<std::tuple<double, double>>>& outputData)
     {
         const auto percentagePerCalculation = 1.0 / static_cast<double>(timeSteps.size()) / static_cast<double>(locations.size());
 
         for (const auto& location : locations)
         {
-            outputData[&location.get()] = std::vector<std::tuple<double, double>>();
-            outputData[&location.get()].emplace_back(std::get<0>(timeSteps[0]), location.get().GetRevetment().GetInitialDamage());
+            std::vector<std::tuple<double, double>> damage;
+
+            damage.emplace_back(std::get<0>(timeSteps[0]), location.get().GetRevetment().GetInitialDamage());
+
+            outputData.emplace_back(damage);
         }
 
         for (const auto& timeStep : timeSteps)
@@ -161,14 +164,14 @@ namespace DiKErnel::Core
                 break;
             }
 
-            for (const auto& location : locations)
+            for (auto i = 0; i < locations.size(); i++)
             {
                 if (cancelled)
                 {
                     break;
                 }
 
-                PerformCalculationForTimeStepAndLocation(timeStep, location.get(), hydraulicLoads, subCalculation, outputData);
+                PerformCalculationForTimeStepAndLocation(timeStep, locations[i].get(), hydraulicLoads, subCalculation, outputData[i]);
 
                 progress = progress + percentagePerCalculation;
             }
@@ -179,7 +182,7 @@ namespace DiKErnel::Core
 
     void Calculator::PerformCalculationForTimeStepAndLocation(
         std::tuple<int, int, std::reference_wrapper<BoundaryConditionsPerTimeStep>> currentTimeStep,
-        CalculationLocation& currentLocation,
+        const CalculationLocation& currentLocation,
         const HydraulicLoads& hydraulicLoads,
         const std::function<double(
             double initialDamage,
@@ -201,14 +204,14 @@ namespace DiKErnel::Core
             double ns,
             double waveAngleMaximum,
             double similarityParameterThreshold)>& subCalculation,
-        std::map<CalculationLocation*, std::vector<std::tuple<double, double>>>& outputData)
+        std::vector<std::tuple<double, double>>& outputData)
     {
         const auto& revetment = currentLocation.GetRevetment();
         const auto& profileSchematization = currentLocation.GetProfileSchematization();
         const auto& boundaryCondition = std::get<2>(currentTimeStep).get();
 
         const auto result = subCalculation(
-            std::get<1>(outputData[&currentLocation].back()),
+            std::get<1>(outputData.back()),
             profileSchematization.GetTanA(),
             revetment.GetRelativeDensity(),
             revetment.GetThicknessTopLayer(),
@@ -228,6 +231,6 @@ namespace DiKErnel::Core
             hydraulicLoads.GetWaveAngleMaximum(),
             revetment.GetSimilarityParameterThreshold());
 
-        outputData[&currentLocation].emplace_back(std::get<1>(currentTimeStep), result);
+        outputData.emplace_back(std::get<1>(currentTimeStep), result);
     }
 }
