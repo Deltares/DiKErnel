@@ -59,16 +59,16 @@ namespace DiKErnel::Core
             timeSteps.emplace_back(times[i], times[i + 1], boundariesPerTimeStep[i]);
         }
 
-        calculationThread = std::thread(
-            PerformCalculation,
-            locations,
-            timeSteps,
-            std::ref(hydraulicLoads),
-            subCalculation,
-            std::ref(progress),
-            std::ref(isFinished),
-            std::ref(isCancelled),
-            std::ref(outputData));
+        // calculationThread = std::thread(
+        //     PerformCalculation,
+        //     locations,
+        //     timeSteps,
+        //     std::ref(hydraulicLoads),
+        //     subCalculation,
+        //     std::ref(progress),
+        //     std::ref(isFinished),
+        //     std::ref(isCancelled),
+        //     std::ref(outputData));
     }
 
     void Calculator::WaitForCompletion()
@@ -109,7 +109,7 @@ namespace DiKErnel::Core
             {
                 calculationLocationsOutput.push_back(
                     std::make_unique<CalculationLocationOutput>(
-                        location->GetName(),
+                        location.get().GetName(),
                         std::make_unique<RevetmentOutput>(std::get<1>(damageAtTimeSteps.back()))));
             }
         }
