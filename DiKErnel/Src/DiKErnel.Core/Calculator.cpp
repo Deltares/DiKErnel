@@ -84,7 +84,7 @@ namespace DiKErnel::Core
 
     int Calculator::GetProgress() const
     {
-        return static_cast<int>(ceil(progress * 100));
+        return static_cast<int>(round(progress * 100));
     }
 
     bool Calculator::IsFinished() const
