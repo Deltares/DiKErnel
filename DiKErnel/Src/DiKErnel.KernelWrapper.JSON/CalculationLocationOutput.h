@@ -32,9 +32,6 @@ namespace DiKErnel::KernelWrapper::Json
      */
     class CalculationLocationOutput
     {
-        std::string name;
-        std::unique_ptr<RevetmentOutput> revetmentOutput;
-
         public:
             /*!
              * \brief Creates a new instance.
@@ -58,5 +55,9 @@ namespace DiKErnel::KernelWrapper::Json
              * \return The revetment output.
              */
             const RevetmentOutput& GetRevetmentOutput() const;
+
+        private:
+            std::string name;
+            std::unique_ptr<RevetmentOutput> revetmentOutput;
     };
 }

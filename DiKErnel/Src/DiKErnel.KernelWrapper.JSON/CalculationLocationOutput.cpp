@@ -25,13 +25,15 @@
 
 namespace DiKErnel::KernelWrapper::Json
 {
-    CalculationLocationOutput::CalculationLocationOutput(
-        std::string name,
-        std::unique_ptr<RevetmentOutput> revetmentOutput)
-        : name(std::move(name)),
-          revetmentOutput(std::move(revetmentOutput)) { }
+    using namespace std;
 
-    const std::string& CalculationLocationOutput::GetName() const
+    CalculationLocationOutput::CalculationLocationOutput(
+        string name,
+        unique_ptr<RevetmentOutput> revetmentOutput)
+        : name(move(name)),
+          revetmentOutput(move(revetmentOutput)) { }
+
+    const string& CalculationLocationOutput::GetName() const
     {
         return name;
     }
