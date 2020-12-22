@@ -35,7 +35,7 @@ namespace DiKErnel::DomainLibrary
             static const double PI;
 
             /*!
-             * \brief The value of gravitational acceleration.
+             * \brief The value of the gravitational acceleration.
              *        Unit = [m/s²]
              */
             static const double GRAVITATIONAL_ACCELERATION;

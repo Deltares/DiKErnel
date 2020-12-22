@@ -29,13 +29,13 @@ namespace DiKErnel::DomainLibrary
     {
         public:
             /*!
-             * \brief The default value for the maximum wave angle.
+             * \brief The default value of the maximum wave angle.
              *        Unit = [°]
              */
             static const double MAXIMUM_WAVE_ANGLE;
 
             /*!
-             * \brief The default value for the wave angle.
+             * \brief The default value of the wave angle.
              *        Unit = [°]
              */
             static const double WAVE_ANGLE;
