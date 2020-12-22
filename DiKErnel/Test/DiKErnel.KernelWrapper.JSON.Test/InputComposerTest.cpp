@@ -60,22 +60,22 @@ namespace DiKErnel::KernelWrapper::Json::Test
 
             const auto& boundaryConditionsPerTimeStep = hydraulicLoads.GetBoundaryConditionsPerTimeStep();
 
-            AssertBoundaryConditionsForTimeStep(boundaryConditionsPerTimeStep[0], 0.5, 2.0, -10.0);
-            AssertBoundaryConditionsForTimeStep(boundaryConditionsPerTimeStep[1], 0.8, 6.0, -5.0);
-            AssertBoundaryConditionsForTimeStep(boundaryConditionsPerTimeStep[2], 1.2, 6.0, 0.0);
-            AssertBoundaryConditionsForTimeStep(boundaryConditionsPerTimeStep[3], 1.5, 7.0, 7.0);
-            AssertBoundaryConditionsForTimeStep(boundaryConditionsPerTimeStep[4], 0.5, 4.0, 8.0);
+            AssertBoundaryConditionsForTimeStep(boundaryConditionsPerTimeStep[0].get(), 0.5, 2.0, -10.0);
+            AssertBoundaryConditionsForTimeStep(boundaryConditionsPerTimeStep[1].get(), 0.8, 6.0, -5.0);
+            AssertBoundaryConditionsForTimeStep(boundaryConditionsPerTimeStep[2].get(), 1.2, 6.0, 0.0);
+            AssertBoundaryConditionsForTimeStep(boundaryConditionsPerTimeStep[3].get(), 1.5, 7.0, 7.0);
+            AssertBoundaryConditionsForTimeStep(boundaryConditionsPerTimeStep[4].get(), 0.5, 4.0, 8.0);
         }
 
         void AssertBoundaryConditionsForTimeStep(
-            const reference_wrapper<BoundaryConditionsPerTimeStep> boundaryConditionsForTimeStep,
+            const BoundaryConditionsPerTimeStep& boundaryConditionsForTimeStep,
             const double expectedWaveHeightHm0,
             const double expectedWavePeriodTm10,
             const double expectedWaveAngle) const
         {
-            ASSERT_DOUBLE_EQ(expectedWaveHeightHm0, boundaryConditionsForTimeStep.get().GetWaveHeightHm0());
-            ASSERT_DOUBLE_EQ(expectedWavePeriodTm10, boundaryConditionsForTimeStep.get().GetWavePeriodTm10());
-            ASSERT_DOUBLE_EQ(expectedWaveAngle, boundaryConditionsForTimeStep.get().GetWaveAngle());
+            ASSERT_DOUBLE_EQ(expectedWaveHeightHm0, boundaryConditionsForTimeStep.GetWaveHeightHm0());
+            ASSERT_DOUBLE_EQ(expectedWavePeriodTm10, boundaryConditionsForTimeStep.GetWavePeriodTm10());
+            ASSERT_DOUBLE_EQ(expectedWaveAngle, boundaryConditionsForTimeStep.GetWaveAngle());
         }
 
         void AssertCalculationLocations(
@@ -92,7 +92,7 @@ namespace DiKErnel::KernelWrapper::Json::Test
         }
 
         void AssertCalculationLocations(
-            vector<reference_wrapper<CalculationLocation>> calculationLocations) const
+            const vector<reference_wrapper<CalculationLocation>>& calculationLocations) const
         {
             AssertCalculationLocation(calculationLocations[0].get(), "LocatieZwak", "Noorse Steen", 1.65, 0.3, 0.0, 2.9, 4.0, 0.0, 0.0, -0.9, 0.8,
                                       0.0, 0.0, 0.6, 0.3);
