@@ -26,15 +26,15 @@ namespace DiKErnel::KernelWrapper::Json
         std::vector<std::unique_ptr<CalculationLocationOutput>> calculationLocationsOutput)
         : calculationLocationsOutput(std::move(calculationLocationsOutput)) { }
 
-    std::vector<CalculationLocationOutput*> OutputData::GetCalculationLocationsOutput() const
+    std::vector<std::reference_wrapper<CalculationLocationOutput>> OutputData::GetCalculationLocationsOutput() const
     {
-        std::vector<CalculationLocationOutput*> calculationLocationPointers;
+        std::vector<std::reference_wrapper<CalculationLocationOutput>> calculationLocationOutputReferences;
 
         for (const auto& calculationLocationOutput : calculationLocationsOutput)
         {
-            calculationLocationPointers.push_back(calculationLocationOutput.get());
+            calculationLocationOutputReferences.emplace_back(*calculationLocationOutput);
         }
 
-        return calculationLocationPointers;
+        return calculationLocationOutputReferences;
     }
 }

@@ -45,14 +45,14 @@ namespace DiKErnel::KernelWrapper::Json
                     {
                         {
                             JsonDefinitions::name,
-                            calculationLocationOutput->GetName()
+                            calculationLocationOutput.get().GetName()
                         },
                         {
                             JsonDefinitions::revetment,
                             {
                                 {
                                     JsonDefinitions::damage,
-                                    calculationLocationOutput->GetRevetmentOutput().GetDamage()
+                                    calculationLocationOutput.get().GetRevetmentOutput().GetDamage()
                                 }
                             }
                         }

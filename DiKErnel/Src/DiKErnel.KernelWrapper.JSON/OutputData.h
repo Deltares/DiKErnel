@@ -38,6 +38,6 @@ namespace DiKErnel::KernelWrapper::Json
                 std::vector<std::unique_ptr<CalculationLocationOutput>> calculationLocationsOutput
             );
 
-            std::vector<CalculationLocationOutput*> GetCalculationLocationsOutput() const;
+            std::vector<std::reference_wrapper<CalculationLocationOutput>> GetCalculationLocationsOutput() const;
     };
 }
