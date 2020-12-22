@@ -163,7 +163,7 @@ namespace DiKErnel::FunctionLibrary
         const double spectralWavePeriod)
     {
         const auto spectralWaveHeightRelatedValue = 2.0 * Constants::PI * spectralWaveHeight;
-        const auto spectralWavePeriodRelatedValue = Constants::GRAVITY * pow(spectralWavePeriod, 2.0);
+        const auto spectralWavePeriodRelatedValue = Constants::GRAVITATIONAL_ACCELERATION * pow(spectralWavePeriod, 2.0);
 
         const auto denominator = sqrt(spectralWaveHeightRelatedValue / spectralWavePeriodRelatedValue);
 

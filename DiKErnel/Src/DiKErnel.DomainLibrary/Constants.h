@@ -23,19 +23,21 @@
 namespace DiKErnel::DomainLibrary
 {
     /*!
-     * \brief Class that contains all constants.
+     * \brief Class that contains all domain constants.
      */
     class Constants
     {
         public:
             /*!
              * \brief The value of pi.
+             *        Unit = [-]
              */
             static const double PI;
 
             /*!
-             * \brief The value of gravity.
+             * \brief The value of gravitational acceleration.
+             *        Unit = [m/s²]
              */
-            static const double GRAVITY;
+            static const double GRAVITATIONAL_ACCELERATION;
     };
 }

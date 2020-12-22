@@ -18,12 +18,13 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include "Constants.h"
-
 #include <cmath>
+
+#include "Constants.h"
 
 namespace DiKErnel::DomainLibrary
 {
     const double Constants::PI = 2 * acos(0.0);
-    const double Constants::GRAVITY = 9.81;
+
+    const double Constants::GRAVITATIONAL_ACCELERATION = 9.81;
 }

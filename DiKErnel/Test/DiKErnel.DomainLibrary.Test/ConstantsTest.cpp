@@ -18,21 +18,21 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include <cmath>
 #include <gtest/gtest.h>
+
+#include <cmath>
 
 #include "Constants.h"
 
 namespace DiKErnel::DomainLibrary::Test::ConstantsTest
 {
-    TEST(ConstantsTest, GivenConstants_WhenPi_ThenExpectedValue)
+    TEST(ConstantsTest, Pi_ExpectedValue)
     {
-        const auto pi = 2 * acos(0.0);
-        ASSERT_DOUBLE_EQ(Constants::PI, pi);
+        ASSERT_DOUBLE_EQ(2 * acos(0.0), Constants::PI);
     }
 
-    TEST(ConstantsTest, GivenConstants_WhenGravity_ThenExpectedValue)
+    TEST(ConstantsTest, GravitationalAcceleration_ExpectedValue)
     {
-        ASSERT_DOUBLE_EQ(Constants::GRAVITY, 9.81);
+        ASSERT_DOUBLE_EQ(9.81, Constants::GRAVITATIONAL_ACCELERATION);
     }
 }
