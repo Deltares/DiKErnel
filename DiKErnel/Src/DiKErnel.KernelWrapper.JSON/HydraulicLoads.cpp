@@ -24,24 +24,23 @@ namespace DiKErnel::KernelWrapper::Json
 {
     HydraulicLoads::HydraulicLoads(
         int waveAngleMaximum,
-        std::vector<std::unique_ptr<BoundaryConditionsPerTimeStep>>& boundaryConditionsPerTimeStep)
+        std::vector<std::unique_ptr<BoundaryConditionsPerTimeStep>> boundaryConditionsPerTimeStep)
         : waveAngleMaximum(waveAngleMaximum),
-          boundaryConditionsPerTimeStep(std::move(boundaryConditionsPerTimeStep)) { }
+          boundaryConditionsPerTimeStep(std::move(boundaryConditionsPerTimeStep))
+    {
+        for (const auto& boundaryConditionForTimeStep : this->boundaryConditionsPerTimeStep)
+        {
+            boundaryConditionsPerTimeStepReferences.emplace_back(*boundaryConditionForTimeStep);
+        }
+    }
 
     int HydraulicLoads::GetWaveAngleMaximum() const
     {
         return waveAngleMaximum;
     }
 
-    std::vector<std::reference_wrapper<BoundaryConditionsPerTimeStep>> HydraulicLoads::GetBoundaryConditionsPerTimeStep() const
+    const std::vector<std::reference_wrapper<BoundaryConditionsPerTimeStep>>& HydraulicLoads::GetBoundaryConditionsPerTimeStep() const
     {
-        std::vector<std::reference_wrapper<BoundaryConditionsPerTimeStep>> boundaryConditionsPerTimeStepReferences;
-
-        for (const auto& boundaryConditionForTimeStep : boundaryConditionsPerTimeStep)
-        {
-            boundaryConditionsPerTimeStepReferences.emplace_back(*boundaryConditionForTimeStep);
-        }
-
         return boundaryConditionsPerTimeStepReferences;
     }
 }

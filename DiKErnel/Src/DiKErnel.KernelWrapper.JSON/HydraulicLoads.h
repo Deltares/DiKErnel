@@ -32,9 +32,6 @@ namespace DiKErnel::KernelWrapper::Json
      */
     class HydraulicLoads
     {
-        int waveAngleMaximum;
-        std::vector<std::unique_ptr<BoundaryConditionsPerTimeStep>> boundaryConditionsPerTimeStep;
-
         public:
             /*!
              * \brief Creates a new instance.
@@ -45,8 +42,7 @@ namespace DiKErnel::KernelWrapper::Json
              */
             explicit HydraulicLoads(
                 int waveAngleMaximum,
-                std::vector<std::unique_ptr<BoundaryConditionsPerTimeStep>>& boundaryConditionsPerTimeStep
-            );
+                std::vector<std::unique_ptr<BoundaryConditionsPerTimeStep>> boundaryConditionsPerTimeStep);
 
             /*!
              * \brief Gets the maximum wave angle.
@@ -58,6 +54,11 @@ namespace DiKErnel::KernelWrapper::Json
              * \brief Gets the boundary conditions on a per time step basis.
              * \return The boundary conditions on a per time step basis.
              */
-            std::vector<std::reference_wrapper<BoundaryConditionsPerTimeStep>> GetBoundaryConditionsPerTimeStep() const;
+            const std::vector<std::reference_wrapper<BoundaryConditionsPerTimeStep>>& GetBoundaryConditionsPerTimeStep() const;
+
+        private:
+            int waveAngleMaximum;
+            std::vector<std::unique_ptr<BoundaryConditionsPerTimeStep>> boundaryConditionsPerTimeStep;
+            std::vector<std::reference_wrapper<BoundaryConditionsPerTimeStep>> boundaryConditionsPerTimeStepReferences;
     };
 }

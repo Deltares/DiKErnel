@@ -167,7 +167,7 @@ namespace DiKErnel::KernelWrapper::Json::Test
     {
         ASSERT_EQ(hydraulicLoads.GetWaveAngleMaximum(), 78);
 
-        auto boundaryConditionsPerTimeStep = hydraulicLoads.GetBoundaryConditionsPerTimeStep();
+        const auto& boundaryConditionsPerTimeStep = hydraulicLoads.GetBoundaryConditionsPerTimeStep();
 
         AssertBoundaryConditionsForTimeStep(boundaryConditionsPerTimeStep[0], 0.5, 2.0, -10.0);
         AssertBoundaryConditionsForTimeStep(boundaryConditionsPerTimeStep[1], 0.8, 6.0, -5.0);

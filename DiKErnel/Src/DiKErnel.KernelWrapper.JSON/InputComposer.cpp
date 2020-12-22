@@ -69,7 +69,7 @@ namespace DiKErnel::KernelWrapper::Json
 
         return std::make_unique<HydraulicLoads>(
             readHydraulicLoads[JsonDefinitions::maximumWaveAngle].get<int>(),
-            boundaryConditionsPerTimeStep
+            std::move(boundaryConditionsPerTimeStep)
         );
     }
 
