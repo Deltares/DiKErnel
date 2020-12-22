@@ -5,8 +5,6 @@ set(LIBNAME DiKErnel.Core)
 set(SOURCEFILES
   Calculator.cpp
   Calculator.h
-  Controller.cpp
-  Controller.h
 )
 
 # Add library

@@ -4,7 +4,6 @@ set(EXENAME DiKErnel.Core.Test)
 # Define sources
 set(SOURCEFILES
   CalculatorTest.cpp
-  ControllerTest.cpp
   Main.cpp
 )
 

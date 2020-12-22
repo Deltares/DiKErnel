@@ -89,7 +89,7 @@ namespace DiKErnel::Core
             bool IsFinished() const;
 
             /*!
-             * \brief Cancels the current calculation when it is not finished yet.
+             * \brief Cancels the calculation when it is not finished yet.
              */
             void Cancel();
 
