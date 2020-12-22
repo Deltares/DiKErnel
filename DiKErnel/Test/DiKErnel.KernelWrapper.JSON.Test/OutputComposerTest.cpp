@@ -30,45 +30,49 @@
 
 namespace DiKErnel::KernelWrapper::Json::Test
 {
+    using namespace std;
+
     #pragma region Forward declarations
 
-    std::unique_ptr<CalculationLocationOutput> CreateCalculationLocationOutput(
-        const std::string&,
-        double);
-
     void AssertFileContents(
-        const std::string&,
-        const std::string&);
+        const string&,
+        const string&);
 
     #pragma endregion
 
-    // Given
     struct OutputComposerTest : testing::Test
     {
-        const std::string expectedOutputFilePath =
+        const string expectedOutputFilePath =
         (TestUtil::TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Test")
             / "OutputComposerTest"
             / "expectedOutput.json").string();
 
-        const std::string actualOutputFilePath =
-        (std::filesystem::temp_directory_path()
+        const string actualOutputFilePath =
+        (filesystem::temp_directory_path()
             / "actualOutput.json").string();
 
         ~OutputComposerTest()
         {
-            std::remove(actualOutputFilePath.c_str());
+            remove(actualOutputFilePath.c_str());
+        }
+
+        unique_ptr<CalculationLocationOutput> CreateCalculationLocationOutput(
+            const string& locationName,
+            double damage) const
+        {
+            return make_unique<CalculationLocationOutput>(locationName, make_unique<RevetmentOutput>(damage));
         }
     };
 
     TEST_F(OutputComposerTest, GivenFilePathAndOutputData_WhenWriteParametersToJson_ThenCorrectDataWritten)
     {
         // Given
-        std::vector<std::unique_ptr<CalculationLocationOutput>> calculationLocationsOutput;
+        vector<unique_ptr<CalculationLocationOutput>> calculationLocationsOutput;
 
         calculationLocationsOutput.push_back(CreateCalculationLocationOutput("testName1", 0.15));
         calculationLocationsOutput.push_back(CreateCalculationLocationOutput("testName2", 0.253));
 
-        const auto outputData = std::make_unique<OutputData>(std::move(calculationLocationsOutput));
+        const auto outputData = make_unique<OutputData>(move(calculationLocationsOutput));
 
         // When
         OutputComposer::WriteParametersToJson(actualOutputFilePath, *outputData);
@@ -79,23 +83,16 @@ namespace DiKErnel::KernelWrapper::Json::Test
 
     #pragma region Helper methods
 
-    std::unique_ptr<CalculationLocationOutput> CreateCalculationLocationOutput(
-        const std::string& locationName,
-        double damage)
-    {
-        return std::make_unique<CalculationLocationOutput>(locationName, std::make_unique<RevetmentOutput>(damage));
-    }
-
     void AssertFileContents(
-        const std::string& expectedOutputFilePath,
-        const std::string& actualOutputFilePath)
+        const string& expectedOutputFilePath,
+        const string& actualOutputFilePath)
     {
-        std::ifstream expectedOutput(expectedOutputFilePath);
-        std::stringstream expectedBuffer;
+        ifstream expectedOutput(expectedOutputFilePath);
+        stringstream expectedBuffer;
         expectedBuffer << expectedOutput.rdbuf();
 
-        std::ifstream actualOutput(actualOutputFilePath);
-        std::stringstream actualBuffer;
+        ifstream actualOutput(actualOutputFilePath);
+        stringstream actualBuffer;
         actualBuffer << actualOutput.rdbuf();
 
         ASSERT_EQ(expectedBuffer.str(), actualBuffer.str());
