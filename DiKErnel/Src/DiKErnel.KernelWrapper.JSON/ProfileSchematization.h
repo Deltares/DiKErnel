@@ -27,8 +27,6 @@ namespace DiKErnel::KernelWrapper::Json
      */
     class ProfileSchematization
     {
-        double tanA;
-
         public:
             /*!
              * \brief Creates a new instance.
@@ -44,5 +42,8 @@ namespace DiKErnel::KernelWrapper::Json
              * \return The value of tangent alpha.
              */
             double GetTanA() const;
+
+        private:
+            double tanA;
     };
 }
