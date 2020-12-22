@@ -50,13 +50,13 @@ namespace DiKErnel::KernelWrapper::Json::Test
             expectedValues.push_back(1200);
             expectedValues.push_back(2000);
 
-            ASSERT_EQ(calculationData.GetTimes(), expectedValues);
+            ASSERT_EQ(expectedValues, calculationData.GetTimes());
         }
 
         void AssertHydraulicLoads(
             const HydraulicLoads& hydraulicLoads) const
         {
-            ASSERT_EQ(hydraulicLoads.GetWaveAngleMaximum(), 78);
+            ASSERT_EQ(78, hydraulicLoads.GetWaveAngleMaximum());
 
             const auto& boundaryConditionsPerTimeStep = hydraulicLoads.GetBoundaryConditionsPerTimeStep();
 
@@ -73,9 +73,9 @@ namespace DiKErnel::KernelWrapper::Json::Test
             const double expectedWavePeriodTm10,
             const double expectedWaveAngle) const
         {
-            ASSERT_DOUBLE_EQ(boundaryConditionsForTimeStep.get().GetWaveHeightHm0(), expectedWaveHeightHm0);
-            ASSERT_DOUBLE_EQ(boundaryConditionsForTimeStep.get().GetWavePeriodTm10(), expectedWavePeriodTm10);
-            ASSERT_DOUBLE_EQ(boundaryConditionsForTimeStep.get().GetWaveAngle(), expectedWaveAngle);
+            ASSERT_DOUBLE_EQ(expectedWaveHeightHm0, boundaryConditionsForTimeStep.get().GetWaveHeightHm0());
+            ASSERT_DOUBLE_EQ(expectedWavePeriodTm10, boundaryConditionsForTimeStep.get().GetWavePeriodTm10());
+            ASSERT_DOUBLE_EQ(expectedWaveAngle, boundaryConditionsForTimeStep.get().GetWaveAngle());
         }
 
         void AssertCalculationLocations(
@@ -118,7 +118,7 @@ namespace DiKErnel::KernelWrapper::Json::Test
             const double expectedCoefficientSurgingNs,
             const double expectedTanA) const
         {
-            ASSERT_EQ(calculationLocation.GetName(), expectedName);
+            ASSERT_EQ(expectedName, calculationLocation.GetName());
             AssertRevetment(
                 calculationLocation.GetRevetment(),
                 expectedTypeTopLayer,
@@ -134,7 +134,7 @@ namespace DiKErnel::KernelWrapper::Json::Test
                 expectedCoefficientSurgingBs,
                 expectedCoefficientSurgingCs,
                 expectedCoefficientSurgingNs);
-            ASSERT_DOUBLE_EQ(calculationLocation.GetProfileSchematization().GetTanA(), expectedTanA);
+            ASSERT_DOUBLE_EQ(expectedTanA, calculationLocation.GetProfileSchematization().GetTanA());
         }
 
         void AssertRevetment(
@@ -153,19 +153,19 @@ namespace DiKErnel::KernelWrapper::Json::Test
             const double expectedCoefficientSurgingCs,
             const double expectedCoefficientSurgingNs) const
         {
-            ASSERT_EQ(revetment.GetTypeTopLayer(), expectedTypeTopLayer);
-            ASSERT_DOUBLE_EQ(revetment.GetRelativeDensity(), expectedRelativeDensity);
-            ASSERT_DOUBLE_EQ(revetment.GetThicknessTopLayer(), expectedThicknessTopLayer);
-            ASSERT_DOUBLE_EQ(revetment.GetInitialDamage(), expectedInitialDamage);
-            ASSERT_DOUBLE_EQ(revetment.GetSimilarityParameterThreshold(), expectedSimilarityParameterThreshold);
-            ASSERT_DOUBLE_EQ(revetment.GetCoefficientPlungingAp(), expectedCoefficientPlungingAp);
-            ASSERT_DOUBLE_EQ(revetment.GetCoefficientPlungingBp(), expectedCoefficientPlungingBp);
-            ASSERT_DOUBLE_EQ(revetment.GetCoefficientPlungingCp(), expectedCoefficientPlungingCp);
-            ASSERT_DOUBLE_EQ(revetment.GetCoefficientPlungingNp(), expectedCoefficientPlungingNp);
-            ASSERT_DOUBLE_EQ(revetment.GetCoefficientSurgingAs(), expectedCoefficientSurgingAs);
-            ASSERT_DOUBLE_EQ(revetment.GetCoefficientSurgingBs(), expectedCoefficientSurgingBs);
-            ASSERT_DOUBLE_EQ(revetment.GetCoefficientSurgingCs(), expectedCoefficientSurgingCs);
-            ASSERT_DOUBLE_EQ(revetment.GetCoefficientSurgingNs(), expectedCoefficientSurgingNs);
+            ASSERT_EQ(expectedTypeTopLayer, revetment.GetTypeTopLayer());
+            ASSERT_DOUBLE_EQ(expectedRelativeDensity, revetment.GetRelativeDensity());
+            ASSERT_DOUBLE_EQ(expectedThicknessTopLayer, revetment.GetThicknessTopLayer());
+            ASSERT_DOUBLE_EQ(expectedInitialDamage, revetment.GetInitialDamage());
+            ASSERT_DOUBLE_EQ(expectedSimilarityParameterThreshold, revetment.GetSimilarityParameterThreshold());
+            ASSERT_DOUBLE_EQ(expectedCoefficientPlungingAp, revetment.GetCoefficientPlungingAp());
+            ASSERT_DOUBLE_EQ(expectedCoefficientPlungingBp, revetment.GetCoefficientPlungingBp());
+            ASSERT_DOUBLE_EQ(expectedCoefficientPlungingCp, revetment.GetCoefficientPlungingCp());
+            ASSERT_DOUBLE_EQ(expectedCoefficientPlungingNp, revetment.GetCoefficientPlungingNp());
+            ASSERT_DOUBLE_EQ(expectedCoefficientSurgingAs, revetment.GetCoefficientSurgingAs());
+            ASSERT_DOUBLE_EQ(expectedCoefficientSurgingBs, revetment.GetCoefficientSurgingBs());
+            ASSERT_DOUBLE_EQ(expectedCoefficientSurgingCs, revetment.GetCoefficientSurgingCs());
+            ASSERT_DOUBLE_EQ(expectedCoefficientSurgingNs, revetment.GetCoefficientSurgingNs());
         }
     };
 
