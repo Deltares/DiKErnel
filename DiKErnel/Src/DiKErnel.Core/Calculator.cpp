@@ -24,11 +24,12 @@
 
 namespace DiKErnel::Core
 {
+    using namespace std;
     using namespace KernelWrapper::Json;
 
     Calculator::Calculator(
         const InputData& inputData,
-        const std::function<double(
+        const function<double(
             double initialDamage,
             double slopeAngle,
             double relativeDensity,
@@ -54,23 +55,23 @@ namespace DiKErnel::Core
         const auto& hydraulicLoads = inputData.GetHydraulicLoads();
         const auto boundariesPerTimeStep = hydraulicLoads.GetBoundaryConditionsPerTimeStep();
 
-        auto timeSteps = std::vector<std::tuple<int, int, std::reference_wrapper<BoundaryConditionsPerTimeStep>>>();
+        auto timeSteps = vector<tuple<int, int, reference_wrapper<BoundaryConditionsPerTimeStep>>>();
 
         for (auto i = 0; i < times.size() - 1; i++)
         {
             timeSteps.emplace_back(times[i], times[i + 1], boundariesPerTimeStep[i]);
         }
 
-        calculationThread = std::thread(
+        calculationThread = thread(
             PerformCalculation,
             locations,
             timeSteps,
-            std::ref(hydraulicLoads),
+            ref(hydraulicLoads),
             subCalculation,
-            std::ref(progress),
-            std::ref(isFinished),
-            std::ref(isCancelled),
-            std::ref(outputData));
+            ref(progress),
+            ref(isFinished),
+            ref(isCancelled),
+            ref(outputData));
     }
 
     void Calculator::WaitForCompletion()
@@ -83,7 +84,7 @@ namespace DiKErnel::Core
 
     int Calculator::GetProgress() const
     {
-        return static_cast<int>(std::ceil(progress * 100));
+        return static_cast<int>(ceil(progress * 100));
     }
 
     bool Calculator::IsFinished() const
@@ -101,30 +102,30 @@ namespace DiKErnel::Core
         return isCancelled;
     }
 
-    std::unique_ptr<OutputData> Calculator::GetOutputData() const
+    unique_ptr<OutputData> Calculator::GetOutputData() const
     {
-        std::vector<std::unique_ptr<CalculationLocationOutput>> calculationLocationsOutput;
+        vector<unique_ptr<CalculationLocationOutput>> calculationLocationsOutput;
 
         if (isFinished)
         {
             for (auto i = 0; i < locations.size(); i++)
             {
                 calculationLocationsOutput.push_back(
-                    std::make_unique<CalculationLocationOutput>(
+                    make_unique<CalculationLocationOutput>(
                         locations[i].get().GetName(),
-                        std::make_unique<RevetmentOutput>(
-                            std::get<1>(outputData[i].back()))));
+                        make_unique<RevetmentOutput>(
+                            get<1>(outputData[i].back()))));
             }
         }
 
-        return std::make_unique<OutputData>(std::move(calculationLocationsOutput));
+        return make_unique<OutputData>(move(calculationLocationsOutput));
     }
 
     void Calculator::PerformCalculation(
-        const std::vector<std::reference_wrapper<CalculationLocation>>& locations,
-        const std::vector<std::tuple<int, int, std::reference_wrapper<BoundaryConditionsPerTimeStep>>>& timeSteps,
+        const vector<reference_wrapper<CalculationLocation>>& locations,
+        const vector<tuple<int, int, reference_wrapper<BoundaryConditionsPerTimeStep>>>& timeSteps,
         const HydraulicLoads& hydraulicLoads,
-        const std::function<double(
+        const function<double(
             double initialDamage,
             double slopeAngle,
             double relativeDensity,
@@ -144,18 +145,18 @@ namespace DiKErnel::Core
             double ns,
             double waveAngleMaximum,
             double similarityParameterThreshold)>& subCalculation,
-        std::atomic<double>& progress,
-        std::atomic<bool>& finished,
-        const std::atomic<bool>& cancelled,
-        std::vector<std::vector<std::tuple<double, double>>>& outputData)
+        atomic<double>& progress,
+        atomic<bool>& finished,
+        const atomic<bool>& cancelled,
+        vector<vector<tuple<double, double>>>& outputData)
     {
         const auto percentagePerCalculation = 1.0 / static_cast<double>(timeSteps.size()) / static_cast<double>(locations.size());
 
         for (const auto& location : locations)
         {
-            std::vector<std::tuple<double, double>> damage;
+            vector<tuple<double, double>> damage;
 
-            damage.emplace_back(std::get<0>(timeSteps[0]), location.get().GetRevetment().GetInitialDamage());
+            damage.emplace_back(get<0>(timeSteps[0]), location.get().GetRevetment().GetInitialDamage());
 
             outputData.emplace_back(damage);
         }
@@ -184,10 +185,10 @@ namespace DiKErnel::Core
     }
 
     void Calculator::PerformCalculationForTimeStepAndLocation(
-        std::tuple<int, int, std::reference_wrapper<BoundaryConditionsPerTimeStep>> currentTimeStep,
+        const tuple<int, int, reference_wrapper<BoundaryConditionsPerTimeStep>>& currentTimeStep,
         const CalculationLocation& currentLocation,
         const HydraulicLoads& hydraulicLoads,
-        const std::function<double(
+        const function<double(
             double initialDamage,
             double slopeAngle,
             double relativeDensity,
@@ -207,22 +208,22 @@ namespace DiKErnel::Core
             double ns,
             double waveAngleMaximum,
             double similarityParameterThreshold)>& subCalculation,
-        std::vector<std::tuple<double, double>>& outputData)
+        vector<tuple<double, double>>& outputData)
     {
         const auto& revetment = currentLocation.GetRevetment();
         const auto& profileSchematization = currentLocation.GetProfileSchematization();
-        const auto& boundaryCondition = std::get<2>(currentTimeStep).get();
+        const auto& boundaryCondition = get<2>(currentTimeStep).get();
 
         const auto result = subCalculation(
-            std::get<1>(outputData.back()),
+            get<1>(outputData.back()),
             profileSchematization.GetTanA(),
             revetment.GetRelativeDensity(),
             revetment.GetThicknessTopLayer(),
             boundaryCondition.GetWaveHeightHm0(),
             boundaryCondition.GetWavePeriodTm10(),
             boundaryCondition.GetWaveAngle(),
-            std::get<0>(currentTimeStep),
-            std::get<1>(currentTimeStep),
+            get<0>(currentTimeStep),
+            get<1>(currentTimeStep),
             revetment.GetCoefficientPlungingAp(),
             revetment.GetCoefficientPlungingBp(),
             revetment.GetCoefficientPlungingCp(),
@@ -234,6 +235,6 @@ namespace DiKErnel::Core
             hydraulicLoads.GetWaveAngleMaximum(),
             revetment.GetSimilarityParameterThreshold());
 
-        outputData.emplace_back(std::get<1>(currentTimeStep), result);
+        outputData.emplace_back(get<1>(currentTimeStep), result);
     }
 }

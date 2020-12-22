@@ -144,7 +144,7 @@ namespace DiKErnel::Core
                 std::vector<std::vector<std::tuple<double, double>>>&);
 
             static void PerformCalculationForTimeStepAndLocation(
-                std::tuple<int, int, std::reference_wrapper<KernelWrapper::Json::BoundaryConditionsPerTimeStep>>,
+                const std::tuple<int, int, std::reference_wrapper<KernelWrapper::Json::BoundaryConditionsPerTimeStep>>&,
                 const KernelWrapper::Json::CalculationLocation&,
                 const KernelWrapper::Json::HydraulicLoads&,
                 const std::function<double(
