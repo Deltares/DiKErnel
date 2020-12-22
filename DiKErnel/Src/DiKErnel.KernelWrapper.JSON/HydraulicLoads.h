@@ -58,6 +58,6 @@ namespace DiKErnel::KernelWrapper::Json
              * \brief Gets the boundary conditions on a per time step basis.
              * \return The boundary conditions on a per time step basis.
              */
-            std::vector<std::reference_wrapper<BoundaryConditionsPerTimeStep>> GetBoundaryConditionsPerTimeStep() const;
+            const std::vector<std::reference_wrapper<BoundaryConditionsPerTimeStep>>& GetBoundaryConditionsPerTimeStep() const;
     };
 }

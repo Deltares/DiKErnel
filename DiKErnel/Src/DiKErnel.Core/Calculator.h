@@ -112,7 +112,7 @@ namespace DiKErnel::Core
             std::atomic<bool> isCancelled = false;
             std::atomic<bool> isFinished = false;
             std::vector<std::vector<std::tuple<double, double>>> outputData;
-            std::vector<std::reference_wrapper<KernelWrapper::Json::CalculationLocation>> locations;
+            const std::vector<std::reference_wrapper<KernelWrapper::Json::CalculationLocation>>& locations;
 
             static void PerformCalculation(
                 const std::vector<std::reference_wrapper<KernelWrapper::Json::CalculationLocation>>&,

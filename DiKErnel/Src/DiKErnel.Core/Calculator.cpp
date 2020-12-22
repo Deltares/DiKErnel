@@ -49,11 +49,11 @@ namespace DiKErnel::Core
             double ns,
             double waveAngleMaximum,
             double similarityParameterThreshold)>& subCalculation)
+        : locations(inputData.GetLocations())
     {
-        locations = inputData.GetLocations();
         const auto& times = inputData.GetCalculationData().GetTimes();
         const auto& hydraulicLoads = inputData.GetHydraulicLoads();
-        const auto boundariesPerTimeStep = hydraulicLoads.GetBoundaryConditionsPerTimeStep();
+        const auto& boundariesPerTimeStep = hydraulicLoads.GetBoundaryConditionsPerTimeStep();
 
         auto timeSteps = vector<tuple<int, int, reference_wrapper<BoundaryConditionsPerTimeStep>>>();
 
