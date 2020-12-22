@@ -21,6 +21,7 @@
 #pragma once
 
 #include <atomic>
+#include <chrono>
 #include <functional>
 #include <map>
 #include <thread>
