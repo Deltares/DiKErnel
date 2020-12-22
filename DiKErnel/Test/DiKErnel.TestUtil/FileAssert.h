@@ -18,28 +18,28 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include <gtest/gtest.h>
+#pragma once
 
-#include <fstream>
-
-#include "FileHelper.h"
+#include <string>
 
 namespace DiKErnel::TestUtil
 {
-    using namespace std;
-
-    void FileHelper::AssertFileContents(
-        const string& expectedOutputFilePath,
-        const string& actualOutputFilePath)
+    /*!
+     * \brief Helper class for file related assertion logic.
+    */
+    class FileAssert
     {
-        ifstream expectedOutput(expectedOutputFilePath);
-        stringstream expectedBuffer;
-        expectedBuffer << expectedOutput.rdbuf();
-
-        ifstream actualOutput(actualOutputFilePath);
-        stringstream actualBuffer;
-        actualBuffer << actualOutput.rdbuf();
-
-        ASSERT_EQ(expectedBuffer.str(), actualBuffer.str());
-    }
+        public:
+            /*!
+             * \brief Asserts whether or not the contents of the files represented by the provided
+             *        file paths are equal.
+             * \param expectedOutputFilePath
+             *        The path to the file with the expected contents.
+             * \param actualOutputFilePath
+             *        The path to the file with the actual contents.
+             */
+            static void AssertFileContents(
+                const std::string& expectedOutputFilePath,
+                const std::string& actualOutputFilePath);
+    };
 }

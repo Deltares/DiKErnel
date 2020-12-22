@@ -3,8 +3,8 @@ set(LIBNAME DiKErnel.TestUtil)
 
 # Define sources
 set(SOURCEFILES
-  FileHelper.cpp
-  FileHelper.h
+  FileAssert.cpp
+  FileAssert.h
   TestDataPathHelper.cpp
   TestDataPathHelper.h
 )

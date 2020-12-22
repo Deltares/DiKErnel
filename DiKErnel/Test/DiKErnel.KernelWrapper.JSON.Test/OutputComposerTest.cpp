@@ -23,7 +23,7 @@
 #include <fstream>
 #include <memory>
 
-#include "FileHelper.h"
+#include "FileAssert.h"
 #include "OutputComposer.h"
 #include "OutputData.h"
 #include "RevetmentOutput.h"
@@ -72,6 +72,6 @@ namespace DiKErnel::KernelWrapper::Json::Test
         OutputComposer::WriteParametersToJson(actualOutputFilePath, *outputData);
 
         // Then
-        FileHelper::AssertFileContents(expectedOutputFilePath, actualOutputFilePath);
+        FileAssert::AssertFileContents(expectedOutputFilePath, actualOutputFilePath);
     }
 }
