@@ -154,7 +154,7 @@ namespace DiKErnel::KernelWrapper::Json
             double GetSurgingCoefficientN() const;
 
         private:
-            std::string name;
+            std::string typeTopLayer;
             double relativeDensity;
             double thicknessTopLayer;
             double initialDamage;
