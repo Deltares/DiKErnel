@@ -108,20 +108,34 @@ namespace DiKErnel::Core
     unique_ptr<OutputData> Calculator::GetOutputData() const
     {
         vector<unique_ptr<CalculationLocationOutput>> calculationLocationsOutput;
+        vector<int> times;
 
         if (isFinished)
         {
+            for (auto i = 0; i < outputData.size(); i++)
+            {
+                auto time = get<0>(outputData[i].back());
+                times.insert(times.end(), time);
+            }
+
+            vector<double> damages;
+            for (auto i = 0; i < outputData.size(); i++)
+            {
+                auto damage = get<1>(outputData[i].back());
+                damages.insert(damages.end(), damage);
+            }
+
             for (auto i = 0; i < static_cast<int>(locations.size()); i++)
             {
                 calculationLocationsOutput.push_back(
                     make_unique<CalculationLocationOutput>(
                         locations[i].get().GetName(),
                         make_unique<RevetmentOutput>(
-                            get<1>(outputData[i].back()))));
+                            damages)));
             }
         }
 
-        return make_unique<OutputData>(move(calculationLocationsOutput));
+        return make_unique<OutputData>(times ,move(calculationLocationsOutput));
     }
 
     void Calculator::PerformCalculation(

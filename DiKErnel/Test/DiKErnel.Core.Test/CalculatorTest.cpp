@@ -43,15 +43,20 @@ namespace DiKErnel::Core::Test
         static void AssertCalculationLocationOutput(
             const CalculationLocationOutput& calculationLocationOutput,
             const string& expectedLocationName,
-            const double expectedDamage)
+            const vector<double> expectedDamages)
         {
             ASSERT_EQ(expectedLocationName, calculationLocationOutput.GetName());
-            ASSERT_DOUBLE_EQ(expectedDamage, calculationLocationOutput.GetRevetmentOutput().GetDamage());
+            ASSERT_EQ(expectedDamages, calculationLocationOutput.GetRevetmentOutput().GetDamages());
         }
     };
 
     TEST_F(CalculatorTest, Constructor_WithParameters_PerformsCalculationWithExpectedOutput)
     {
+        // Setup
+        vector<double> expectedDamages;
+        expectedDamages.push_back(1.132388020800255);
+        expectedDamages.push_back(0.48530915177153788);
+
         // Call
         Calculator calculator(*inputData, FunctionLibrary::NaturalStoneRevetment::CalculateDamage);
 
@@ -65,8 +70,8 @@ namespace DiKErnel::Core::Test
         const auto outputData = calculator.GetOutputData();
         const auto& calculationLocationsOutput = outputData->GetCalculationLocationsOutput();
         ASSERT_EQ(2, calculationLocationsOutput.size());
-        AssertCalculationLocationOutput(calculationLocationsOutput[0].get(), "LocatieZwak", 1.132388020800255);
-        AssertCalculationLocationOutput(calculationLocationsOutput[1].get(), "LocatieSterk", 0.48530915177153788);
+        AssertCalculationLocationOutput(calculationLocationsOutput[0].get(), "LocatieZwak", expectedDamages);
+        AssertCalculationLocationOutput(calculationLocationsOutput[1].get(), "LocatieSterk", expectedDamages);
     }
 
     TEST_F(CalculatorTest, GivenCalculatorWithRunningCalculation_WhenCancelCalled_ThenCalculationCancelled)

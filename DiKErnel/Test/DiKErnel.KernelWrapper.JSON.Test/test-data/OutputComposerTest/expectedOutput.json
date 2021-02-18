@@ -2,13 +2,19 @@
     "Locaties": [
         {
             "Bekleding": {
-                "Schade": 0.15
+                "Schade": [
+                    0.15,
+                    0.253
+                ]
             },
             "Naam": "testName1"
         },
         {
             "Bekleding": {
-                "Schade": 0.253
+                "Schade": [
+                    0.15,
+                    0.253
+                ]
             },
             "Naam": "testName2"
         }

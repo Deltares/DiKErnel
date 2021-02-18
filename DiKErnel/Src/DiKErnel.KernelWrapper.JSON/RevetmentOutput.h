@@ -19,6 +19,7 @@
 // All rights reserved.
 
 #pragma once
+#include <vector>
 
 namespace DiKErnel::KernelWrapper::Json
 {
@@ -30,20 +31,20 @@ namespace DiKErnel::KernelWrapper::Json
         public:
             /*!
              * \brief Creates a new instance.
-             * \param damage
+             * \param damages
              *        The damage.
              */
             explicit RevetmentOutput(
-                double damage
+                std::vector<double> damages
             );
 
             /*!
              * \brief Gets the damage.
              * \return The damage.
              */
-            double GetDamage() const;
+            std::vector<double> GetDamages() const;
 
         private:
-            double damage;
+            std::vector<double> damages;
     };
 }
