@@ -32,15 +32,15 @@ namespace DiKErnel::KernelWrapper::Json
             /*!
              * \brief Creates a new instance.
              * \param damages
-             *        The damage.
+             *        The damages of all timesteps.
              */
             explicit RevetmentOutput(
                 std::vector<double> damages
             );
 
             /*!
-             * \brief Gets the damage.
-             * \return The damage.
+             * \brief Gets the damages of all timesteps.
+             * \return The damages of all timesteps.
              */
             std::vector<double> GetDamages() const;
 

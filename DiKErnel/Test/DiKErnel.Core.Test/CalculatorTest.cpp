@@ -43,7 +43,7 @@ namespace DiKErnel::Core::Test
         static void AssertCalculationLocationOutput(
             const CalculationLocationOutput& calculationLocationOutput,
             const string& expectedLocationName,
-            const vector<double> expectedDamages)
+            const vector<double>& expectedDamages)
         {
             ASSERT_EQ(expectedLocationName, calculationLocationOutput.GetName());
             ASSERT_EQ(expectedDamages, calculationLocationOutput.GetRevetmentOutput().GetDamages());
