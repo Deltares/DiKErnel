@@ -135,7 +135,7 @@ namespace DiKErnel::Core
             }
         }
 
-        return make_unique<OutputData>(times ,move(calculationLocationsOutput));
+        return make_unique<OutputData>(move(calculationLocationsOutput));
     }
 
     void Calculator::PerformCalculation(

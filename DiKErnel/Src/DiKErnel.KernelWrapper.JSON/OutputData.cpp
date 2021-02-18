@@ -24,7 +24,7 @@ namespace DiKErnel::KernelWrapper::Json
 {
     using namespace std;
 
-    OutputData::OutputData(vector<int> times,
+    OutputData::OutputData(
         vector<unique_ptr<CalculationLocationOutput>> calculationLocationsOutput)
         : calculationLocationsOutput(move(calculationLocationsOutput))
     {

@@ -67,13 +67,10 @@ namespace DiKErnel::KernelWrapper::Json::Test
         damages.push_back(0.15);
         damages.push_back(0.253);
 
-        vector<int> times;
-        times.push_back(0);
-
         calculationLocationsOutput.push_back(CreateCalculationLocationOutput("testName1", damages));
         calculationLocationsOutput.push_back(CreateCalculationLocationOutput("testName2", damages));
 
-        const auto outputData = make_unique<OutputData>(times, move(calculationLocationsOutput));
+        const auto outputData = make_unique<OutputData>(move(calculationLocationsOutput));
 
         // When
         OutputComposer::WriteParametersToJson(actualOutputFilePath, *outputData);

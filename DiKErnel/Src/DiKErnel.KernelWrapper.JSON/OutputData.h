@@ -38,15 +38,8 @@ namespace DiKErnel::KernelWrapper::Json
              *        The output on a per calculation location basis.
              */
             explicit OutputData(
-                std::vector<int> times,
                 std::vector<std::unique_ptr<CalculationLocationOutput>> calculationLocationsOutput
             );
-
-            /*!
-             * \brief Gets the output on a per calculation location basis.
-             * \return The output on a per calculation location basis.
-             */
-            const std::vector<int>& GetTimes() const;
 
             /*!
              * \brief Gets the output on a per calculation location basis.
@@ -55,7 +48,6 @@ namespace DiKErnel::KernelWrapper::Json
             const std::vector<std::reference_wrapper<CalculationLocationOutput>>& GetCalculationLocationsOutput() const;
 
         private:
-            std::vector<int> times;
             std::vector<std::unique_ptr<CalculationLocationOutput>> calculationLocationsOutput;
             std::vector<std::reference_wrapper<CalculationLocationOutput>> calculationLocationOutputReferences;
     };
