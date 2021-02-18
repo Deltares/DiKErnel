@@ -67,13 +67,15 @@ namespace DiKErnel::KernelWrapper::Json::Test
         damages.push_back(0.15);
         damages.push_back(0.253);
 
+        const vector<int> times;
+
         calculationLocationsOutput.push_back(CreateCalculationLocationOutput("testName1", damages));
         calculationLocationsOutput.push_back(CreateCalculationLocationOutput("testName2", damages));
 
         const auto outputData = make_unique<OutputData>(move(calculationLocationsOutput));
 
         // When
-        OutputComposer::WriteParametersToJson(actualOutputFilePath, *outputData);
+        OutputComposer::WriteParametersToJson(actualOutputFilePath, *outputData, times);
 
         // Then
         FileAssert::AssertFileContents(expectedOutputFilePath, actualOutputFilePath);

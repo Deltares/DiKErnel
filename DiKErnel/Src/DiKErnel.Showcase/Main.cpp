@@ -158,7 +158,7 @@ int main()
 
             // Write Json output to file
             const auto outputData = calculator.GetOutputData();
-            OutputComposer::WriteParametersToJson(outputPath.u8string(), *outputData);
+            OutputComposer::WriteParametersToJson(outputPath.u8string(), *outputData, inputData->GetCalculationData().GetTimes());
 
             cout << endl;
             cout << "|========================|" << endl;

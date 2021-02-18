@@ -34,7 +34,8 @@ namespace DiKErnel::KernelWrapper::Json
 
     void OutputComposer::WriteParametersToJson(
         const string& filePath,
-        const OutputData& outputData)
+        const OutputData& outputData,
+        const vector<int>& times)
     {
         nlohmann::json json;
 
