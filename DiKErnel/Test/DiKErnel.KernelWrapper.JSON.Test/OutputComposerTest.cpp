@@ -67,7 +67,10 @@ namespace DiKErnel::KernelWrapper::Json::Test
         damages.push_back(0.15);
         damages.push_back(0.253);
 
-        const vector<int> times;
+        vector<int> times;
+        times.push_back(0);
+        times.push_back(10);
+        times.push_back(100);
 
         calculationLocationsOutput.push_back(CreateCalculationLocationOutput("testName1", damages));
         calculationLocationsOutput.push_back(CreateCalculationLocationOutput("testName2", damages));

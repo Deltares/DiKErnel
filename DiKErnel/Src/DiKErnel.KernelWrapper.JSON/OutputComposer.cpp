@@ -41,6 +41,16 @@ namespace DiKErnel::KernelWrapper::Json
 
         json[JsonDefinitions::LOCATIONS] = nlohmann::json::array();
 
+        json[JsonDefinitions::OUTPUTDATA] = nlohmann::json::array();
+
+        json[JsonDefinitions::OUTPUTDATA].push_back(
+            nlohmann::json::object(
+                {
+                    {
+                        JsonDefinitions::TIME,
+                        times
+                    } }));
+
         for (const auto& calculationLocationOutput : outputData.GetCalculationLocationsOutput())
         {
             json[JsonDefinitions::LOCATIONS].push_back(

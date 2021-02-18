@@ -18,5 +18,14 @@
             },
             "Naam": "testName2"
         }
+    ],
+    "Uitvoerdata": [
+        {
+            "Tijd": [
+                0,
+                10,
+                100
+            ]
+        }
     ]
 }

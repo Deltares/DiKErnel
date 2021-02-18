@@ -60,5 +60,7 @@ namespace DiKErnel::KernelWrapper::Json
             static const std::string TAN_A;
 
             static const std::string DAMAGE;
+
+            static const std::string OUTPUTDATA;
     };
 }

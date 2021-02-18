@@ -54,4 +54,6 @@ namespace DiKErnel::KernelWrapper::Json
     const string JsonDefinitions::TAN_A = "TanA";
 
     const string JsonDefinitions::DAMAGE = "Schade";
+
+    const string JsonDefinitions::OUTPUTDATA = "Uitvoerdata";
 }
