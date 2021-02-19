@@ -3,8 +3,11 @@ set(EXENAME DiKErnel.Core.Test)
 
 # Define sources
 set(SOURCEFILES
+  CalculationInputTest.cpp
+  CalculationOutputTest.cpp
   CalculatorTest.cpp
   DeprecatedCalculatorTest.cpp
+  ILocationCalculationInputTest.cpp
   Main.cpp
 )
 
