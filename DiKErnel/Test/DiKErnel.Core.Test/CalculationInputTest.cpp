@@ -18,4 +18,29 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-namespace DiKErnel::Core::Test {}
+#include <gtest/gtest.h>
+
+#include "CalculationInput.h"
+
+namespace DiKErnel::Core::Test
+{
+    using namespace std;
+
+    TEST(CalculationInputTest, Constructor_WithParameters_ExpectedValues)
+    {
+        // Setup
+        vector<unique_ptr<ILocationCalculationInput>> locations;
+        locations.push_back(make_unique<ILocationCalculationInput>());
+
+        vector<int> times;
+        times.push_back(0);
+        times.push_back(100);
+
+        // Call
+        const CalculationInput calculationInput(move(locations), times);
+
+        // Assert
+        ASSERT_EQ(1, calculationInput.GetLocations().size());
+        ASSERT_EQ(times, calculationInput.GetTimes());
+    }
+}

@@ -20,4 +20,29 @@
 
 #include "CalculationInput.h"
 
-namespace DiKErnel::Core {}
+namespace DiKErnel::Core
+{
+    using namespace std;
+
+    CalculationInput::CalculationInput(
+        vector<unique_ptr<ILocationCalculationInput>> locations,
+        vector<int> times)
+        : locations(move(locations)),
+          times(move(times))
+    {
+        for (const auto& location : this->locations)
+        {
+            locationsReferences.emplace_back(*location);
+        }
+    }
+
+    const vector<reference_wrapper<ILocationCalculationInput>>& CalculationInput::GetLocations() const
+    {
+        return locationsReferences;
+    }
+
+    const vector<int>& CalculationInput::GetTimes() const
+    {
+        return times;
+    }
+}

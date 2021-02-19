@@ -20,10 +20,46 @@
 
 #pragma once
 
+#include <memory>
+#include <vector>
+
+#include "ILocationCalculationInput.h"
+
 namespace DiKErnel::Core
 {
     /*!
      * \brief Class containing all data that is needed to perform a calculation.
      */
-    class CalculationInput { };
+    class CalculationInput
+    {
+        public:
+            /*!
+             * @brief Create a new instance.
+             * @param locations
+             *        The locations to perform the calculations for.
+             * @param times
+             *        The times to perform the calculations for.
+            */
+            explicit CalculationInput(
+                std::vector<std::unique_ptr<ILocationCalculationInput>> locations,
+                std::vector<int> times
+            );
+
+            /*!
+             * @brief Gets the locations to perform the calculations for.
+             * @return The locations to perform the calculations for.
+            */
+            const std::vector<std::reference_wrapper<ILocationCalculationInput>>& GetLocations() const;
+
+            /*!
+             * \brief Gets the times to perform the calculations for.
+             * \return The times to perform the calculations for.
+             */
+            const std::vector<int>& GetTimes() const;
+
+        private:
+            std::vector<std::unique_ptr<ILocationCalculationInput>> locations;
+            std::vector<std::reference_wrapper<ILocationCalculationInput>> locationsReferences;
+            std::vector<int> times;
+    };
 }
