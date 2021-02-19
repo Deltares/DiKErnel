@@ -36,7 +36,7 @@ namespace DiKErnel::Core
     /*!
      * \brief Class responsible for performing calculations on a separate thread.
      */
-    class Calculator
+    class DeprecatedCalculator
     {
         public:
             /*!
@@ -46,7 +46,7 @@ namespace DiKErnel::Core
              * \param subCalculation
              *        The sub-calculation to perform.
              */
-            explicit Calculator(
+            explicit DeprecatedCalculator(
                 const KernelWrapper::Json::InputData& inputData,
                 const std::function<double(
                     double initialDamage,

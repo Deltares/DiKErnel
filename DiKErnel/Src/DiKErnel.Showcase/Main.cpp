@@ -23,7 +23,7 @@
 #include <string>
 #include <thread>
 
-#include "Calculator.h"
+#include "DeprecatedCalculator.h"
 #include "InputComposer.h"
 #include "InputData.h"
 #include "NaturalStoneRevetment.h"
@@ -111,7 +111,7 @@ int main()
         cout << "-> Enter 'c' to cancel the calculation" << endl << endl;
 
         // Start calculation on separate thread
-        Calculator calculator(
+        DeprecatedCalculator calculator(
             *inputData,
             CalculateDamageWithDelay);
 

@@ -20,14 +20,14 @@
 
 #include "cmath"
 
-#include "Calculator.h"
+#include "DeprecatedCalculator.h"
 
 namespace DiKErnel::Core
 {
     using namespace KernelWrapper::Json;
     using namespace std;
 
-    Calculator::Calculator(
+    DeprecatedCalculator::DeprecatedCalculator(
         const InputData& inputData,
         const function<double(
             double initialDamage,
@@ -74,7 +74,7 @@ namespace DiKErnel::Core
             ref(outputData));
     }
 
-    void Calculator::WaitForCompletion()
+    void DeprecatedCalculator::WaitForCompletion()
     {
         if (calculationThread.joinable())
         {
@@ -82,17 +82,17 @@ namespace DiKErnel::Core
         }
     }
 
-    int Calculator::GetProgress() const
+    int DeprecatedCalculator::GetProgress() const
     {
         return static_cast<int>(round(progress * 100));
     }
 
-    bool Calculator::IsFinished() const
+    bool DeprecatedCalculator::IsFinished() const
     {
         return isFinished;
     }
 
-    void Calculator::Cancel()
+    void DeprecatedCalculator::Cancel()
     {
         if (!isFinished)
         {
@@ -100,12 +100,12 @@ namespace DiKErnel::Core
         }
     }
 
-    bool Calculator::IsCancelled() const
+    bool DeprecatedCalculator::IsCancelled() const
     {
         return isCancelled;
     }
 
-    unique_ptr<OutputData> Calculator::GetOutputData() const
+    unique_ptr<OutputData> DeprecatedCalculator::GetOutputData() const
     {
         vector<unique_ptr<CalculationLocationOutput>> calculationLocationsOutput;
 
@@ -131,7 +131,7 @@ namespace DiKErnel::Core
         return make_unique<OutputData>(move(calculationLocationsOutput));
     }
 
-    void Calculator::PerformCalculation(
+    void DeprecatedCalculator::PerformCalculation(
         const vector<reference_wrapper<CalculationLocation>>& locations,
         const vector<tuple<int, int, reference_wrapper<BoundaryConditionsPerTimeStep>>>& timeSteps,
         const HydraulicLoads& hydraulicLoads,
@@ -197,7 +197,7 @@ namespace DiKErnel::Core
         }
     }
 
-    void Calculator::PerformCalculationForTimeStepAndLocation(
+    void DeprecatedCalculator::PerformCalculationForTimeStepAndLocation(
         const tuple<int, int, reference_wrapper<BoundaryConditionsPerTimeStep>>& currentTimeStep,
         const CalculationLocation& currentLocation,
         const HydraulicLoads& hydraulicLoads,

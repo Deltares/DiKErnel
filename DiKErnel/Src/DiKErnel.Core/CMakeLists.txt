@@ -3,8 +3,8 @@ set(LIBNAME DiKErnel.Core)
 
 # Define sources
 set(SOURCEFILES
-  Calculator.cpp
-  Calculator.h
+  DeprecatedCalculator.cpp
+  DeprecatedCalculator.h
 )
 
 # Add library

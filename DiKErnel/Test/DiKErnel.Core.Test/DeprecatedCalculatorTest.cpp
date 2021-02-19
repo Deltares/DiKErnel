@@ -20,7 +20,7 @@
 
 #include <gtest/gtest.h>
 
-#include "Calculator.h"
+#include "DeprecatedCalculator.h"
 #include "InputComposer.h"
 #include "NaturalStoneRevetment.h"
 #include "TestDataPathHelper.h"
@@ -30,11 +30,11 @@ namespace DiKErnel::Core::Test
     using namespace KernelWrapper::Json;
     using namespace std;
 
-    struct CalculatorTest : testing::Test
+    struct DeprecatedCalculatorTest : testing::Test
     {
         const unique_ptr<InputData> inputData;
 
-        explicit CalculatorTest()
+        explicit DeprecatedCalculatorTest()
             : inputData(InputComposer::GetDomainParametersFromJson(
                 (TestUtil::TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Test")
                     / "InputComposerTest"
@@ -50,7 +50,7 @@ namespace DiKErnel::Core::Test
         }
     };
 
-    TEST_F(CalculatorTest, Constructor_WithParameters_PerformsCalculationWithExpectedOutput)
+    TEST_F(DeprecatedCalculatorTest, Constructor_WithParameters_PerformsCalculationWithExpectedOutput)
     {
         // Setup
         vector<double> expectedDamages;
@@ -58,7 +58,7 @@ namespace DiKErnel::Core::Test
         expectedDamages.push_back(0.48530915177153788);
 
         // Call
-        Calculator calculator(*inputData, FunctionLibrary::NaturalStoneRevetment::CalculateDamage);
+        DeprecatedCalculator calculator(*inputData, FunctionLibrary::NaturalStoneRevetment::CalculateDamage);
 
         calculator.WaitForCompletion();
 
@@ -74,10 +74,10 @@ namespace DiKErnel::Core::Test
         AssertCalculationLocationOutput(calculationLocationsOutput[1].get(), "LocatieSterk", expectedDamages);
     }
 
-    TEST_F(CalculatorTest, GivenCalculatorWithRunningCalculation_WhenCancelCalled_ThenCalculationCancelled)
+    TEST_F(DeprecatedCalculatorTest, GivenCalculatorWithRunningCalculation_WhenCancelCalled_ThenCalculationCancelled)
     {
         // Given
-        Calculator calculator(*inputData, FunctionLibrary::NaturalStoneRevetment::CalculateDamage);
+        DeprecatedCalculator calculator(*inputData, FunctionLibrary::NaturalStoneRevetment::CalculateDamage);
 
         // When
         calculator.Cancel();
@@ -90,10 +90,10 @@ namespace DiKErnel::Core::Test
         ASSERT_FALSE(calculator.GetProgress() == 100);
     }
 
-    TEST_F(CalculatorTest, GivenCalculatorWithFinishedCalculation_WhenCancelCalled_ThenCalculationNotCancelled)
+    TEST_F(DeprecatedCalculatorTest, GivenCalculatorWithFinishedCalculation_WhenCancelCalled_ThenCalculationNotCancelled)
     {
         // Given
-        Calculator calculator(*inputData, FunctionLibrary::NaturalStoneRevetment::CalculateDamage);
+        DeprecatedCalculator calculator(*inputData, FunctionLibrary::NaturalStoneRevetment::CalculateDamage);
 
         calculator.WaitForCompletion();
 
@@ -106,10 +106,10 @@ namespace DiKErnel::Core::Test
         ASSERT_TRUE(calculator.GetProgress() == 100);
     }
 
-    TEST_F(CalculatorTest, GivenCalculatorWithRunningCalculation_WhenGettingOutputData_ThenOutputDataEmpty)
+    TEST_F(DeprecatedCalculatorTest, GivenCalculatorWithRunningCalculation_WhenGettingOutputData_ThenOutputDataEmpty)
     {
         // Given
-        Calculator calculator(*inputData, FunctionLibrary::NaturalStoneRevetment::CalculateDamage);
+        DeprecatedCalculator calculator(*inputData, FunctionLibrary::NaturalStoneRevetment::CalculateDamage);
 
         // When
         const auto outputData = calculator.GetOutputData();
@@ -120,10 +120,10 @@ namespace DiKErnel::Core::Test
         ASSERT_EQ(0, outputData->GetCalculationLocationsOutput().size());
     }
 
-    TEST_F(CalculatorTest, GivenCalculatorWithCancelledCalculation_WhenGettingOutputData_ThenOutputDataEmpty)
+    TEST_F(DeprecatedCalculatorTest, GivenCalculatorWithCancelledCalculation_WhenGettingOutputData_ThenOutputDataEmpty)
     {
         // Given
-        Calculator calculator(*inputData, FunctionLibrary::NaturalStoneRevetment::CalculateDamage);
+        DeprecatedCalculator calculator(*inputData, FunctionLibrary::NaturalStoneRevetment::CalculateDamage);
 
         calculator.Cancel();
 
