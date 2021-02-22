@@ -111,20 +111,21 @@ namespace DiKErnel::Core
 
         if (isFinished)
         {
-            vector<double> damages;
-            for (auto i = 0; i < static_cast<int>(outputData.size()); i++)
-            {
-                auto damage = get<1>(outputData[i].back());
-                damages.insert(damages.end(), damage);
-            }
-
             for (auto i = 0; i < static_cast<int>(locations.size()); i++)
             {
+                const auto& outputDataForLocation = outputData[i];
+
+                vector<double> damagesForLocation;
+                for (const auto& damageAtPointInTime : outputDataForLocation)
+                {
+                    damagesForLocation.push_back(get<1>(damageAtPointInTime));
+                }
+
                 calculationLocationsOutput.push_back(
                     make_unique<CalculationLocationOutput>(
                         locations[i].get().GetName(),
                         make_unique<RevetmentOutput>(
-                            damages)));
+                            damagesForLocation)));
             }
         }
 
