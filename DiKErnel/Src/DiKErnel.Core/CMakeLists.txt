@@ -13,6 +13,8 @@ set(SOURCEFILES
   DeprecatedCalculator.h
   ILocationDependentData.cpp
   ILocationDependentData.h
+  InvalidCalculationDataException.cpp
+  InvalidCalculationDataException.h
   TimeDependentData.cpp
   TimeDependentData.h
 )

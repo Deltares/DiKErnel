@@ -8,6 +8,7 @@ set(SOURCEFILES
   CalculatorTest.cpp
   DeprecatedCalculatorTest.cpp
   ILocationDependentDataTest.cpp
+  InvalidCalculationDataExceptionTest.cpp
   Main.cpp
   TimeDependentDataTest.cpp
 )
