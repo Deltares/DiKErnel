@@ -32,15 +32,14 @@ namespace DiKErnel::Core::Test
         vector<unique_ptr<ILocationCalculationInput>> locations;
         locations.push_back(make_unique<ILocationCalculationInput>());
 
-        vector<int> times;
-        times.push_back(0);
-        times.push_back(100);
+        vector<unique_ptr<TimeStep>> timeSteps;
+        timeSteps.push_back(make_unique<TimeStep>(rand() % 100, rand() % 100));
 
         // Call
-        const CalculationInput calculationInput(move(locations), times);
+        const CalculationInput calculationInput(move(locations), move(timeSteps));
 
         // Assert
         ASSERT_EQ(1, calculationInput.GetLocations().size());
-        ASSERT_EQ(times, calculationInput.GetTimes());
+        ASSERT_EQ(1, calculationInput.GetTimeSteps().size());
     }
 }

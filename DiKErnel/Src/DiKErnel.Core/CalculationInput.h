@@ -24,6 +24,7 @@
 #include <vector>
 
 #include "ILocationCalculationInput.h"
+#include "TimeStep.h"
 
 namespace DiKErnel::Core
 {
@@ -37,12 +38,12 @@ namespace DiKErnel::Core
              * \brief Create a new instance.
              * \param locations
              *        The locations to perform the calculations for.
-             * \param times
-             *        The times to perform the calculations for.
+             * \param timeSteps
+             *        The time steps to perform the calculations for.
              */
             explicit CalculationInput(
                 std::vector<std::unique_ptr<ILocationCalculationInput>> locations,
-                std::vector<int> times
+                std::vector<std::unique_ptr<TimeStep>> timeSteps
             );
 
             /*!
@@ -52,14 +53,16 @@ namespace DiKErnel::Core
             const std::vector<std::reference_wrapper<ILocationCalculationInput>>& GetLocations() const;
 
             /*!
-             * \brief Gets the times to perform the calculations for.
-             * \return The times to perform the calculations for.
+             * \brief Gets the time steps to perform the calculations for.
+             * \return The time steps to perform the calculations for.
              */
-            const std::vector<int>& GetTimes() const;
+            const std::vector<std::reference_wrapper<TimeStep>>& GetTimeSteps() const;
 
         private:
             std::vector<std::unique_ptr<ILocationCalculationInput>> locations;
+            std::vector<std::unique_ptr<TimeStep>> timeSteps;
+
             std::vector<std::reference_wrapper<ILocationCalculationInput>> locationsReferences;
-            std::vector<int> times;
+            std::vector<std::reference_wrapper<TimeStep>> timeStepsReferences;
     };
 }

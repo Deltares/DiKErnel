@@ -26,13 +26,18 @@ namespace DiKErnel::Core
 
     CalculationInput::CalculationInput(
         vector<unique_ptr<ILocationCalculationInput>> locations,
-        vector<int> times)
+        vector<unique_ptr<TimeStep>> timeSteps)
         : locations(move(locations)),
-          times(move(times))
+          timeSteps(move(timeSteps))
     {
         for (const auto& location : this->locations)
         {
             locationsReferences.emplace_back(*location);
+        }
+
+        for (const auto& timeStep : this->timeSteps)
+        {
+            timeStepsReferences.emplace_back(*timeStep);
         }
     }
 
@@ -41,8 +46,8 @@ namespace DiKErnel::Core
         return locationsReferences;
     }
 
-    const vector<int>& CalculationInput::GetTimes() const
+    const std::vector<std::reference_wrapper<TimeStep>>& CalculationInput::GetTimeSteps() const
     {
-        return times;
+        return timeStepsReferences;
     }
 }
