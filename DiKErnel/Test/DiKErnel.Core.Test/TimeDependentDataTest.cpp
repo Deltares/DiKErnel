@@ -20,11 +20,16 @@
 
 #include <gtest/gtest.h>
 
+#include "InvalidCalculationDataException.h"
 #include "TimeDependentData.h"
 
 namespace DiKErnel::Core::Test
 {
-    TEST(TimeDependentData, Constructor_WithParameters_ExpectedValues)
+    using namespace std;
+
+    class TimeDependentDataTest : public testing::TestWithParam<int> { };
+
+    TEST(TimeDependentDataTest, Constructor_WithParameters_ExpectedValues)
     {
         // Setup
         const auto beginTime = rand() % 100;
@@ -43,4 +48,33 @@ namespace DiKErnel::Core::Test
         ASSERT_DOUBLE_EQ(wavePeriodTm10, timeDependentData.GetWavePeriodTm10());
         ASSERT_DOUBLE_EQ(waveAngle, timeDependentData.GetWaveAngle());
     }
+
+    TEST_P(TimeDependentDataTest, Constructor_EndTimeSmallerThanOrEqualToBeginTime_ThrowsInvalidCalculationDataException)
+    {
+        // Setup
+        const auto endTime = GetParam();
+
+        // Call & Assert
+        try
+        {
+            TimeDependentData(50, endTime, 0, 0, 0);
+            FAIL() << "Expected InvalidCalculationDataException";
+        }
+        catch (InvalidCalculationDataException& exception)
+        {
+            const string expectedMessage = "'beginTime' should be smaller than 'endTime'.";
+            ASSERT_TRUE(expectedMessage == exception.what());
+        }
+        catch (...)
+        {
+            FAIL() << "Expected InvalidCalculationDataException";
+        }
+    }
+
+    INSTANTIATE_TEST_SUITE_P(
+        Constructor_EndTimeSmallerThanOrEqualToBeginTime_ThrowsInvalidCalculationDataException,
+        TimeDependentDataTest,
+        ::testing::Values(
+            50, 30
+        ));
 }

@@ -20,6 +20,8 @@
 
 #include "TimeDependentData.h"
 
+#include "InvalidCalculationDataException.h"
+
 namespace DiKErnel::Core
 {
     TimeDependentData::TimeDependentData(
@@ -32,7 +34,13 @@ namespace DiKErnel::Core
           endTime(endTime),
           waveHeightHm0(waveHeightHm0),
           wavePeriodTm10(wavePeriodTm10),
-          waveAngle(waveAngle) {}
+          waveAngle(waveAngle)
+    {
+        if(this->endTime <= this->beginTime)
+        {
+            throw InvalidCalculationDataException("'beginTime' should be smaller than 'endTime'.");
+        }
+    }
 
     int TimeDependentData::GetBeginTime() const
     {
