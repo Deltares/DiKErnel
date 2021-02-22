@@ -1,5 +1,6 @@
-# Ignore VisualStudio folder
+# Ignore development folders
 Development/VisualStudio
+Development/MinGW
 
 # But not the DotSettings
 !Development/VisualStudio/DiKErnel.sln.DotSettings
