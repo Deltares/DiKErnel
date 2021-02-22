@@ -34,10 +34,19 @@ namespace DiKErnel::Core
              *        The begin time.
              * \param endTime
              *        The end time.
+             * \param waveHeightHm0
+             *        The wave height.
+             * \param wavePeriodTm10
+             *        The wave period.
+             * \param waveAngle
+             *        The wave angle.
              */
             explicit TimeDependentData(
                 int beginTime,
-                int endTime);
+                int endTime,
+                double waveHeightHm0,
+                double wavePeriodTm10,
+                double waveAngle);
 
             /*!
              * \brief Gets the begin time.
@@ -51,8 +60,29 @@ namespace DiKErnel::Core
              */
             int GetEndTime() const;
 
+            /*!
+             * \brief Gets the wave height.
+             * \return The wave height.
+             */
+            double GetWaveHeightHm0() const;
+
+            /*!
+             * \brief Gets the wave period.
+             * \return The wave period.
+             */
+            double GetWavePeriodTm10() const;
+
+            /*!
+             * \brief Gets the wave angle.
+             * \return The wave angle.
+             */
+            double GetWaveAngle() const;
+
         private:
             int beginTime;
             int endTime;
+            double waveHeightHm0;
+            double wavePeriodTm10;
+            double waveAngle;
     };
 }

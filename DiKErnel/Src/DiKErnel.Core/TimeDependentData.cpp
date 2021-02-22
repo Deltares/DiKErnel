@@ -24,9 +24,15 @@ namespace DiKErnel::Core
 {
     TimeDependentData::TimeDependentData(
         const int beginTime,
-        const int endTime)
+        const int endTime,
+        const double waveHeightHm0,
+        const double wavePeriodTm10,
+        const double waveAngle)
         : beginTime(beginTime),
-          endTime(endTime) {}
+          endTime(endTime),
+          waveHeightHm0(waveHeightHm0),
+          wavePeriodTm10(wavePeriodTm10),
+          waveAngle(waveAngle) {}
 
     int TimeDependentData::GetBeginTime() const
     {
@@ -36,5 +42,20 @@ namespace DiKErnel::Core
     int TimeDependentData::GetEndTime() const
     {
         return endTime;
+    }
+
+    double TimeDependentData::GetWaveHeightHm0() const
+    {
+        return waveHeightHm0;
+    }
+
+    double TimeDependentData::GetWavePeriodTm10() const
+    {
+        return wavePeriodTm10;
+    }
+
+    double TimeDependentData::GetWaveAngle() const
+    {
+        return waveAngle;
     }
 }

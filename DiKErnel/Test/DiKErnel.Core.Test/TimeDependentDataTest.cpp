@@ -29,12 +29,18 @@ namespace DiKErnel::Core::Test
         // Setup
         const auto beginTime = rand() % 100;
         const auto endTime = rand() % 100;
+        const auto waveHeightHm0 = 0.1;
+        const auto wavePeriodTm10 = 0.2;
+        const auto waveAngle = 0.3;
 
         // Call
-        const TimeDependentData timeDependentData(beginTime, endTime);
+        const TimeDependentData timeDependentData(beginTime, endTime, waveHeightHm0, wavePeriodTm10, waveAngle);
 
         // Assert
         ASSERT_EQ(beginTime, timeDependentData.GetBeginTime());
         ASSERT_EQ(endTime, timeDependentData.GetEndTime());
+        ASSERT_DOUBLE_EQ(waveHeightHm0, timeDependentData.GetWaveHeightHm0());
+        ASSERT_DOUBLE_EQ(wavePeriodTm10, timeDependentData.GetWavePeriodTm10());
+        ASSERT_DOUBLE_EQ(waveAngle, timeDependentData.GetWaveAngle());
     }
 }
