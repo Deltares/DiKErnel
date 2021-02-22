@@ -32,23 +32,24 @@ namespace DiKErnel::Core::Test
         vector<unique_ptr<ILocationDependentData>> locationDependentData;
         locationDependentData.push_back(make_unique<ILocationDependentData>());
 
-        auto beginTime = rand() % 100;
-        auto endTime = rand() % 100;
+        const auto beginTime = rand() % 100;
+        const auto endTime = rand() % 100;
         const auto waveHeightHm0 = 0.1;
         const auto wavePeriodTm10 = 0.2;
         const auto waveAngle = 0.3;
 
-
         vector<unique_ptr<TimeDependentData>> timeSteps;
         timeSteps.push_back(make_unique<TimeDependentData>(beginTime, endTime, waveHeightHm0, wavePeriodTm10, waveAngle));
 
+        const auto maximumWaveAngle = rand() % 100;
+
         // Call
-        const CalculationInput calculationInput(move(locationDependentData), move(timeSteps));
+        const CalculationInput calculationInput(move(locationDependentData), move(timeSteps), maximumWaveAngle);
 
         // Assert
-        const auto& actualTimeSteps = calculationInput.GetTimeDependentDataItems();
-
         ASSERT_EQ(1, calculationInput.GetLocationDependentDataItems().size());
+
+        const auto& actualTimeSteps = calculationInput.GetTimeDependentDataItems();
         ASSERT_EQ(1, actualTimeSteps.size());
 
         const auto& timeDependentData = actualTimeSteps[0].get();
@@ -57,5 +58,7 @@ namespace DiKErnel::Core::Test
         ASSERT_DOUBLE_EQ(waveHeightHm0, timeDependentData.GetWaveHeightHm0());
         ASSERT_DOUBLE_EQ(wavePeriodTm10, timeDependentData.GetWavePeriodTm10());
         ASSERT_DOUBLE_EQ(waveAngle, timeDependentData.GetWaveAngle());
+
+        ASSERT_EQ(maximumWaveAngle, calculationInput.GetMaximumWaveAngle());
     }
-    }
+}

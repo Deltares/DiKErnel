@@ -40,10 +40,13 @@ namespace DiKErnel::Core
              *        The location dependent data items to use in the calculation.
              * \param timeDependentDataItems
              *        The time dependent data items to use in the calculation.
+             * \param maximumWaveAngle
+             *        The maximum wave angle.
              */
             explicit CalculationInput(
                 std::vector<std::unique_ptr<ILocationDependentData>> locationDependentDataItems,
-                std::vector<std::unique_ptr<TimeDependentData>> timeDependentDataItems
+                std::vector<std::unique_ptr<TimeDependentData>> timeDependentDataItems,
+                int maximumWaveAngle
             );
 
             /*!
@@ -58,11 +61,19 @@ namespace DiKErnel::Core
              */
             const std::vector<std::reference_wrapper<TimeDependentData>>& GetTimeDependentDataItems() const;
 
+            /*!
+             * \brief Gets the maximum wave angle.
+             * \return The maximum wave angle.
+             */
+            int GetMaximumWaveAngle() const;
+
         private:
             std::vector<std::unique_ptr<ILocationDependentData>> locationDependentDataItems;
             std::vector<std::unique_ptr<TimeDependentData>> timeDependentDataItems;
 
             std::vector<std::reference_wrapper<ILocationDependentData>> locationDependentDataItemReferences;
             std::vector<std::reference_wrapper<TimeDependentData>> timeDependentDataItemReferences;
+
+            int maximumWaveAngle;
     };
 }
