@@ -46,7 +46,7 @@ namespace DiKErnel::Core
         return locationsReferences;
     }
 
-    const std::vector<std::reference_wrapper<TimeStep>>& CalculationInput::GetTimeSteps() const
+    const vector<reference_wrapper<TimeStep>>& CalculationInput::GetTimeSteps() const
     {
         return timeStepsReferences;
     }
