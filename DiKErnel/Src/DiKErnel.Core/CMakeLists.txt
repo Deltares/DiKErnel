@@ -11,8 +11,8 @@ set(SOURCEFILES
   Calculator.h
   DeprecatedCalculator.cpp
   DeprecatedCalculator.h
-  ILocationCalculationInput.cpp
-  ILocationCalculationInput.h
+  ILocationDependentData.cpp
+  ILocationDependentData.h
   TimeStep.cpp
   TimeStep.h
 )

@@ -25,14 +25,14 @@ namespace DiKErnel::Core
     using namespace std;
 
     CalculationInput::CalculationInput(
-        vector<unique_ptr<ILocationCalculationInput>> locations,
+        vector<unique_ptr<ILocationDependentData>> locationDependentDataItems,
         vector<unique_ptr<TimeStep>> timeSteps)
-        : locations(move(locations)),
+        : locationDependentDataItems(move(locationDependentDataItems)),
           timeSteps(move(timeSteps))
     {
-        for (const auto& location : this->locations)
+        for (const auto& locationDependentData : this->locationDependentDataItems)
         {
-            locationsReferences.emplace_back(*location);
+            locationDependentDataItemReferences.emplace_back(*locationDependentData);
         }
 
         for (const auto& timeStep : this->timeSteps)
@@ -41,9 +41,9 @@ namespace DiKErnel::Core
         }
     }
 
-    const vector<reference_wrapper<ILocationCalculationInput>>& CalculationInput::GetLocations() const
+    const vector<reference_wrapper<ILocationDependentData>>& CalculationInput::GetLocationDependentDataItems() const
     {
-        return locationsReferences;
+        return locationDependentDataItemReferences;
     }
 
     const vector<reference_wrapper<TimeStep>>& CalculationInput::GetTimeSteps() const

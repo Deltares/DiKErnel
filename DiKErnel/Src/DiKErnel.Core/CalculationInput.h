@@ -23,7 +23,7 @@
 #include <memory>
 #include <vector>
 
-#include "ILocationCalculationInput.h"
+#include "ILocationDependentData.h"
 #include "TimeStep.h"
 
 namespace DiKErnel::Core
@@ -36,21 +36,21 @@ namespace DiKErnel::Core
         public:
             /*!
              * \brief Create a new instance.
-             * \param locations
-             *        The locations to perform the calculations for.
+             * \param locationDependentDataItems
+             *        The location dependent data items to use in the calculation.
              * \param timeSteps
              *        The time steps to perform the calculations for.
              */
             explicit CalculationInput(
-                std::vector<std::unique_ptr<ILocationCalculationInput>> locations,
+                std::vector<std::unique_ptr<ILocationDependentData>> locationDependentDataItems,
                 std::vector<std::unique_ptr<TimeStep>> timeSteps
             );
 
             /*!
-             * \brief Gets the locations to perform the calculations for.
-             * \return The locations to perform the calculations for.
+             * \brief Gets the locations dependent data items to use in the calculation.
+             * \return The locations dependent data items to use in the calculation.
              */
-            const std::vector<std::reference_wrapper<ILocationCalculationInput>>& GetLocations() const;
+            const std::vector<std::reference_wrapper<ILocationDependentData>>& GetLocationDependentDataItems() const;
 
             /*!
              * \brief Gets the time steps to perform the calculations for.
@@ -59,10 +59,10 @@ namespace DiKErnel::Core
             const std::vector<std::reference_wrapper<TimeStep>>& GetTimeSteps() const;
 
         private:
-            std::vector<std::unique_ptr<ILocationCalculationInput>> locations;
+            std::vector<std::unique_ptr<ILocationDependentData>> locationDependentDataItems;
             std::vector<std::unique_ptr<TimeStep>> timeSteps;
 
-            std::vector<std::reference_wrapper<ILocationCalculationInput>> locationsReferences;
+            std::vector<std::reference_wrapper<ILocationDependentData>> locationDependentDataItemReferences;
             std::vector<std::reference_wrapper<TimeStep>> timeStepsReferences;
     };
 }

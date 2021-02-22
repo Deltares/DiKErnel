@@ -29,8 +29,8 @@ namespace DiKErnel::Core::Test
     TEST(CalculationInputTest, Constructor_WithParameters_ExpectedValues)
     {
         // Setup
-        vector<unique_ptr<ILocationCalculationInput>> locations;
-        locations.push_back(make_unique<ILocationCalculationInput>());
+        vector<unique_ptr<ILocationDependentData>> locationDependentData;
+        locationDependentData.push_back(make_unique<ILocationDependentData>());
 
         auto beginTime = rand() % 100;
         auto endTime = rand() % 100;
@@ -39,12 +39,12 @@ namespace DiKErnel::Core::Test
         timeSteps.push_back(make_unique<TimeStep>(beginTime, endTime));
 
         // Call
-        const CalculationInput calculationInput(move(locations), move(timeSteps));
+        const CalculationInput calculationInput(move(locationDependentData), move(timeSteps));
 
         // Assert
         const auto& actualTimeSteps = calculationInput.GetTimeSteps();
 
-        ASSERT_EQ(1, calculationInput.GetLocations().size());
+        ASSERT_EQ(1, calculationInput.GetLocationDependentDataItems().size());
         ASSERT_EQ(1, actualTimeSteps.size());
 
         ASSERT_EQ(beginTime, actualTimeSteps[0].get().GetBeginTime());

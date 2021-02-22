@@ -18,12 +18,6 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#pragma once
+#include "ILocationDependentData.h"
 
-namespace DiKErnel::Core
-{
-    /*!
-     * \brief Class containing all location related data to perform a calculation.
-     */
-    class ILocationCalculationInput { };
-}
+namespace DiKErnel::Core {}

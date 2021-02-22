@@ -7,7 +7,7 @@ set(SOURCEFILES
   CalculationOutputTest.cpp
   CalculatorTest.cpp
   DeprecatedCalculatorTest.cpp
-  ILocationCalculationInputTest.cpp
+  ILocationDependentDataTest.cpp
   Main.cpp
   TimeStepTest.cpp
 )
