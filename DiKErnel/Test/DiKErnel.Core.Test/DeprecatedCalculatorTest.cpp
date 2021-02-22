@@ -48,7 +48,7 @@ namespace DiKErnel::Core::Test
             const vector<double>& expectedDamages)
         {
             ASSERT_EQ(expectedLocationName, calculationLocationOutput.GetName());
-            AssertHelper::AssertDoubleCollection(expectedDamages, calculationLocationOutput.GetRevetmentOutput().GetDamages());
+            AssertHelper::AssertAreEqual(expectedDamages, calculationLocationOutput.GetRevetmentOutput().GetDamages());
         }
     };
 

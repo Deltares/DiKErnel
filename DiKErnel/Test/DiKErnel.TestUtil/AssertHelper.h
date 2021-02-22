@@ -31,13 +31,13 @@ namespace DiKErnel::TestUtil
     {
         public:
             /*!
-             * \brief Asserts whether the given collection of doubles are the same.
+             * \brief Asserts whether the given collections of doubles are equal.
              * \param expectedCollection
              *        The expected collection.
              * \param actualCollection
              *        The actual collection.
              */
-            static void AssertDoubleCollection(
+            static void AssertAreEqual(
                 const std::vector<double>& expectedCollection,
                 const std::vector<double>& actualCollection);
     };

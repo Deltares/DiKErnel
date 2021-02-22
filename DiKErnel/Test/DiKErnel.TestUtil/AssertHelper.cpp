@@ -26,9 +26,9 @@ namespace DiKErnel::TestUtil
 {
     using namespace std;
 
-    void AssertHelper::AssertDoubleCollection(
-        const std::vector<double>& expectedCollection,
-        const std::vector<double>& actualCollection)
+    void AssertHelper::AssertAreEqual(
+        const vector<double>& expectedCollection,
+        const vector<double>& actualCollection)
     {
         ASSERT_EQ(expectedCollection.size(), actualCollection.size());
 
