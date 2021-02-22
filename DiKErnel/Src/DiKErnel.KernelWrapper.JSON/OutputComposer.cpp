@@ -39,21 +39,13 @@ namespace DiKErnel::KernelWrapper::Json
     {
         nlohmann::json json;
 
-        json[JsonDefinitions::LOCATIONS] = nlohmann::json::array();
+        json[JsonDefinitions::OUTPUTDATA] = nlohmann::json::object();
 
-        json[JsonDefinitions::OUTPUTDATA] = nlohmann::json::array();
-
-        json[JsonDefinitions::OUTPUTDATA].push_back(
-            nlohmann::json::object(
-                {
-                    {
-                        JsonDefinitions::TIME,
-                        times
-                    } }));
+        json[JsonDefinitions::OUTPUTDATA][JsonDefinitions::TIME] = times;
 
         for (const auto& calculationLocationOutput : outputData.GetCalculationLocationsOutput())
         {
-            json[JsonDefinitions::LOCATIONS].push_back(
+            json[JsonDefinitions::OUTPUTDATA][JsonDefinitions::LOCATIONS].push_back(
                 nlohmann::json::object(
                     {
                         {

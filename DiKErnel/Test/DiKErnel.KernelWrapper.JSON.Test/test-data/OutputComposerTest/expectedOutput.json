@@ -1,31 +1,29 @@
 {
-    "Locaties": [
-        {
-            "Bekleding": {
-                "Schade": [
-                    0.15,
-                    0.253
-                ]
+    "Uitvoerdata": {
+        "Locaties": [
+            {
+                "Bekleding": {
+                    "Schade": [
+                        0.15,
+                        0.253
+                    ]
+                },
+                "Naam": "testName1"
             },
-            "Naam": "testName1"
-        },
-        {
-            "Bekleding": {
-                "Schade": [
-                    0.15,
-                    0.253
-                ]
-            },
-            "Naam": "testName2"
-        }
-    ],
-    "Uitvoerdata": [
-        {
-            "Tijd": [
-                0,
-                10,
-                100
-            ]
-        }
-    ]
+            {
+                "Bekleding": {
+                    "Schade": [
+                        0.15,
+                        0.253
+                    ]
+                },
+                "Naam": "testName2"
+            }
+        ],
+        "Tijd": [
+            0,
+            10,
+            100
+        ]
+    }
 }
