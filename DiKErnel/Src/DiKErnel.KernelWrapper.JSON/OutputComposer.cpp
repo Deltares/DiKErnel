@@ -37,7 +37,7 @@ namespace DiKErnel::KernelWrapper::Json
         const OutputData& outputData,
         const vector<int>& times)
     {
-        nlohmann::json json;
+        nlohmann::ordered_json json;
 
         json[JsonDefinitions::OUTPUTDATA] = nlohmann::json::object();
 
@@ -46,7 +46,7 @@ namespace DiKErnel::KernelWrapper::Json
         for (const auto& calculationLocationOutput : outputData.GetCalculationLocationsOutput())
         {
             json[JsonDefinitions::OUTPUTDATA][JsonDefinitions::LOCATIONS].push_back(
-                nlohmann::json::object(
+                nlohmann::ordered_json::object(
                     {
                         {
                             JsonDefinitions::NAME,

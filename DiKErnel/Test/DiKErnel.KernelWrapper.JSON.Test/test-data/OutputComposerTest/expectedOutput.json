@@ -1,29 +1,29 @@
 {
     "Uitvoerdata": {
-        "Locaties": [
-            {
-                "Bekleding": {
-                    "Schade": [
-                        0.15,
-                        0.253
-                    ]
-                },
-                "Naam": "testName1"
-            },
-            {
-                "Bekleding": {
-                    "Schade": [
-                        0.15,
-                        0.253
-                    ]
-                },
-                "Naam": "testName2"
-            }
-        ],
         "Tijd": [
             0,
             10,
             100
+        ],
+        "Locaties": [
+            {
+                "Naam": "testName1",
+                "Bekleding": {
+                    "Schade": [
+                        0.15,
+                        0.253
+                    ]
+                }
+            },
+            {
+                "Naam": "testName2",
+                "Bekleding": {
+                    "Schade": [
+                        0.15,
+                        0.253
+                    ]
+                }
+            }
         ]
     }
 }
