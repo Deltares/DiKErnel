@@ -18,23 +18,41 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include <gtest/gtest.h>
+#pragma once
 
-#include "TimeStep.h"
-
-namespace DiKErnel::Core::Test
+namespace DiKErnel::Core
 {
-    TEST(TimeStepTest, Constructor_WithParameters_ExpectedValues)
+    /*!
+     * \brief Class containing all time step that is needed to perform a calculation.
+     */
+    class TimeDependentData
     {
-        // Setup
-        const auto beginTime = rand() % 100;
-        const auto endTime = rand() % 100;
+        public:
+            /*!
+             * \brief Creates a new instance.
+             * \param beginTime
+             *        The begin time.
+             * \param endTime
+             *        The end time.
+             */
+            explicit TimeDependentData(
+                int beginTime,
+                int endTime);
 
-        // Call
-        const TimeStep timeStep(beginTime, endTime);
+            /*!
+             * \brief Gets the begin time.
+             * \return The begin time.
+            */
+            int GetBeginTime() const;
 
-        // Assert
-        ASSERT_EQ(beginTime, timeStep.GetBeginTime());
-        ASSERT_EQ(endTime, timeStep.GetEndTime());
-    }
+            /*!
+             * \brief Gets the end time.
+             * \return The end time.
+             */
+            int GetEndTime() const;
+
+        private:
+            int beginTime;
+            int endTime;
+    };
 }

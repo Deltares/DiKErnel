@@ -24,7 +24,7 @@
 #include <vector>
 
 #include "ILocationDependentData.h"
-#include "TimeStep.h"
+#include "TimeDependentData.h"
 
 namespace DiKErnel::Core
 {
@@ -38,12 +38,12 @@ namespace DiKErnel::Core
              * \brief Create a new instance.
              * \param locationDependentDataItems
              *        The location dependent data items to use in the calculation.
-             * \param timeSteps
-             *        The time steps to perform the calculations for.
+             * \param timeDependentDataItems
+             *        The time dependent data items to use in the calculation.
              */
             explicit CalculationInput(
                 std::vector<std::unique_ptr<ILocationDependentData>> locationDependentDataItems,
-                std::vector<std::unique_ptr<TimeStep>> timeSteps
+                std::vector<std::unique_ptr<TimeDependentData>> timeDependentDataItems
             );
 
             /*!
@@ -53,16 +53,16 @@ namespace DiKErnel::Core
             const std::vector<std::reference_wrapper<ILocationDependentData>>& GetLocationDependentDataItems() const;
 
             /*!
-             * \brief Gets the time steps to perform the calculations for.
-             * \return The time steps to perform the calculations for.
+             * \brief Gets the time dependent data items to use in the calculation.
+             * \return The time dependent data items to use in the calculation.
              */
-            const std::vector<std::reference_wrapper<TimeStep>>& GetTimeSteps() const;
+            const std::vector<std::reference_wrapper<TimeDependentData>>& GetTimeDependentDataItems() const;
 
         private:
             std::vector<std::unique_ptr<ILocationDependentData>> locationDependentDataItems;
-            std::vector<std::unique_ptr<TimeStep>> timeSteps;
+            std::vector<std::unique_ptr<TimeDependentData>> timeDependentDataItems;
 
             std::vector<std::reference_wrapper<ILocationDependentData>> locationDependentDataItemReferences;
-            std::vector<std::reference_wrapper<TimeStep>> timeStepsReferences;
+            std::vector<std::reference_wrapper<TimeDependentData>> timeDependentDataItemReferences;
     };
 }

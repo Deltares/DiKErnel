@@ -18,22 +18,22 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include "TimeStep.h"
+#include "TimeDependentData.h"
 
 namespace DiKErnel::Core
 {
-    TimeStep::TimeStep(
+    TimeDependentData::TimeDependentData(
         const int beginTime,
         const int endTime)
         : beginTime(beginTime),
           endTime(endTime) {}
 
-    int TimeStep::GetBeginTime() const
+    int TimeDependentData::GetBeginTime() const
     {
         return beginTime;
     }
 
-    int TimeStep::GetEndTime() const
+    int TimeDependentData::GetEndTime() const
     {
         return endTime;
     }

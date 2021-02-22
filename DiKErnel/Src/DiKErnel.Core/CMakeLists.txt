@@ -13,8 +13,8 @@ set(SOURCEFILES
   DeprecatedCalculator.h
   ILocationDependentData.cpp
   ILocationDependentData.h
-  TimeStep.cpp
-  TimeStep.h
+  TimeDependentData.cpp
+  TimeDependentData.h
 )
 
 # Add library

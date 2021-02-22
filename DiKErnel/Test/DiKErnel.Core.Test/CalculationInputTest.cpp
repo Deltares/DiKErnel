@@ -35,14 +35,14 @@ namespace DiKErnel::Core::Test
         auto beginTime = rand() % 100;
         auto endTime = rand() % 100;
 
-        vector<unique_ptr<TimeStep>> timeSteps;
-        timeSteps.push_back(make_unique<TimeStep>(beginTime, endTime));
+        vector<unique_ptr<TimeDependentData>> timeSteps;
+        timeSteps.push_back(make_unique<TimeDependentData>(beginTime, endTime));
 
         // Call
         const CalculationInput calculationInput(move(locationDependentData), move(timeSteps));
 
         // Assert
-        const auto& actualTimeSteps = calculationInput.GetTimeSteps();
+        const auto& actualTimeSteps = calculationInput.GetTimeDependentDataItems();
 
         ASSERT_EQ(1, calculationInput.GetLocationDependentDataItems().size());
         ASSERT_EQ(1, actualTimeSteps.size());
