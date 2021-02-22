@@ -54,11 +54,6 @@ namespace DiKErnel::Core::Test
 
     TEST_F(DeprecatedCalculatorTest, Constructor_WithParameters_PerformsCalculationWithExpectedOutput)
     {
-        // Setup
-        vector<double> expectedDamages;
-        expectedDamages.push_back(1.132388020800255);
-        expectedDamages.push_back(0.48530915177153788);
-
         // Call
         DeprecatedCalculator calculator(*inputData, FunctionLibrary::NaturalStoneRevetment::CalculateDamage);
 
@@ -72,8 +67,24 @@ namespace DiKErnel::Core::Test
         const auto outputData = calculator.GetOutputData();
         const auto& calculationLocationsOutput = outputData->GetCalculationLocationsOutput();
         ASSERT_EQ(2, calculationLocationsOutput.size());
-        AssertCalculationLocationOutput(calculationLocationsOutput[0].get(), "LocatieZwak", expectedDamages);
-        AssertCalculationLocationOutput(calculationLocationsOutput[1].get(), "LocatieSterk", expectedDamages);
+
+        vector<double> expectedDamagesLocation1;
+        expectedDamagesLocation1.push_back(0.0);
+        expectedDamagesLocation1.push_back(0.19527164721720683);
+        expectedDamagesLocation1.push_back(0.70491509411111852);
+        expectedDamagesLocation1.push_back(0.86951766024309207);
+        expectedDamagesLocation1.push_back(1.1323824260219246);
+        expectedDamagesLocation1.push_back(1.1323880208002550);
+        AssertCalculationLocationOutput(calculationLocationsOutput[0].get(), "LocatieZwak", expectedDamagesLocation1);
+
+        vector<double> expectedDamagesLocation2;
+        expectedDamagesLocation2.push_back(0.0);
+        expectedDamagesLocation2.push_back(0.083687848807374343);
+        expectedDamagesLocation2.push_back(0.30210646890476511);
+        expectedDamagesLocation2.push_back(0.37265042581846808);
+        expectedDamagesLocation2.push_back(0.48530675400939632);
+        expectedDamagesLocation2.push_back(0.48530915177153788);
+        AssertCalculationLocationOutput(calculationLocationsOutput[1].get(), "LocatieSterk", expectedDamagesLocation2);
     }
 
     TEST_F(DeprecatedCalculatorTest, GivenCalculatorWithRunningCalculation_WhenCancelCalled_ThenCalculationCancelled)
