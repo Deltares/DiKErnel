@@ -9,6 +9,7 @@ set(SOURCEFILES
   DeprecatedCalculatorTest.cpp
   ILocationCalculationInputTest.cpp
   Main.cpp
+  TimeStepTest.cpp
 )
 
 # Add executable
