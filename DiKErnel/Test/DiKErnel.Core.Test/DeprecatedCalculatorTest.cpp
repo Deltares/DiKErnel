@@ -20,6 +20,7 @@
 
 #include <gtest/gtest.h>
 
+#include "AssertHelper.h"
 #include "DeprecatedCalculator.h"
 #include "InputComposer.h"
 #include "NaturalStoneRevetment.h"
@@ -29,6 +30,7 @@ namespace DiKErnel::Core::Test
 {
     using namespace KernelWrapper::Json;
     using namespace std;
+    using namespace TestUtil;
 
     struct DeprecatedCalculatorTest : testing::Test
     {
@@ -36,7 +38,7 @@ namespace DiKErnel::Core::Test
 
         explicit DeprecatedCalculatorTest()
             : inputData(InputComposer::GetDomainParametersFromJson(
-                (TestUtil::TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Test")
+                (TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Test")
                     / "InputComposerTest"
                     / "testInput.json").string())) { }
 
@@ -46,7 +48,7 @@ namespace DiKErnel::Core::Test
             const vector<double>& expectedDamages)
         {
             ASSERT_EQ(expectedLocationName, calculationLocationOutput.GetName());
-            ASSERT_EQ(expectedDamages, calculationLocationOutput.GetRevetmentOutput().GetDamages());
+            AssertHelper::AssertDoubleCollection(expectedDamages, calculationLocationOutput.GetRevetmentOutput().GetDamages());
         }
     };
 
