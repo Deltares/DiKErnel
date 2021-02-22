@@ -20,13 +20,17 @@
 
 #include "RevetmentOutput.h"
 
+#include <utility>
+
 namespace DiKErnel::KernelWrapper::Json
 {
-    RevetmentOutput::RevetmentOutput(
-        const std::vector<double> damages)
-        : damages(damages) { }
+    using namespace std;
 
-    std::vector<double> RevetmentOutput::GetDamages() const
+    RevetmentOutput::RevetmentOutput(
+        vector<double> damages)
+        : damages(move(damages)) { }
+
+    const vector<double>& RevetmentOutput::GetDamages() const
     {
         return damages;
     }

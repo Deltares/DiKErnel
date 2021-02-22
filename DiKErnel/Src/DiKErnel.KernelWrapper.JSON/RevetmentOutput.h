@@ -19,6 +19,7 @@
 // All rights reserved.
 
 #pragma once
+
 #include <vector>
 
 namespace DiKErnel::KernelWrapper::Json
@@ -42,7 +43,7 @@ namespace DiKErnel::KernelWrapper::Json
              * \brief Gets the damages of all timesteps.
              * \return The damages of all timesteps.
              */
-            std::vector<double> GetDamages() const;
+            const std::vector<double>& GetDamages() const;
 
         private:
             std::vector<double> damages;
