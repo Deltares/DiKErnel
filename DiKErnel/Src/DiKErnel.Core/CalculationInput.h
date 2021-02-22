@@ -34,21 +34,21 @@ namespace DiKErnel::Core
     {
         public:
             /*!
-             * @brief Create a new instance.
-             * @param locations
+             * \brief Create a new instance.
+             * \param locations
              *        The locations to perform the calculations for.
-             * @param times
+             * \param times
              *        The times to perform the calculations for.
-            */
+             */
             explicit CalculationInput(
                 std::vector<std::unique_ptr<ILocationCalculationInput>> locations,
                 std::vector<int> times
             );
 
             /*!
-             * @brief Gets the locations to perform the calculations for.
-             * @return The locations to perform the calculations for.
-            */
+             * \brief Gets the locations to perform the calculations for.
+             * \return The locations to perform the calculations for.
+             */
             const std::vector<std::reference_wrapper<ILocationCalculationInput>>& GetLocations() const;
 
             /*!
