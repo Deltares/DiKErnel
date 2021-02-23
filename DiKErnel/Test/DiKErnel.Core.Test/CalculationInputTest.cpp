@@ -33,7 +33,7 @@ namespace DiKErnel::Core::Test
         locationDependentData.push_back(make_unique<ILocationDependentData>());
 
         const auto beginTime = rand() % 100;
-        const auto endTime = rand() % 100;
+        const auto endTime = rand() % 100 + 100;
         const auto waveHeightHm0 = 0.1;
         const auto wavePeriodTm10 = 0.2;
         const auto waveAngle = 0.3;
