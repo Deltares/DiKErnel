@@ -8,8 +8,8 @@
         "Locaties": [
             {
                 "Naam": "testName1",
-                "Bekleding": {
-                    "Schade": [
+                "Schade": {
+                    "SchadegetalPerTijd": [
                         0.15,
                         0.253
                     ]
@@ -17,8 +17,8 @@
             },
             {
                 "Naam": "testName2",
-                "Bekleding": {
-                    "Schade": [
+                "Schade": {
+                    "SchadegetalPerTijd": [
                         0.28,
                         0.512
                     ]

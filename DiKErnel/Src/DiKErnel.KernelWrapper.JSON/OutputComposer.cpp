@@ -39,13 +39,11 @@ namespace DiKErnel::KernelWrapper::Json
     {
         nlohmann::ordered_json json;
 
-        json[JsonDefinitions::OUTPUTDATA] = nlohmann::json::object();
-
-        json[JsonDefinitions::OUTPUTDATA][JsonDefinitions::TIME] = times;
+        json[JsonDefinitions::OUTPUT_DATA][JsonDefinitions::TIME] = times;
 
         for (const auto& calculationLocationOutput : outputData.GetCalculationLocationsOutput())
         {
-            json[JsonDefinitions::OUTPUTDATA][JsonDefinitions::LOCATIONS].push_back(
+            json[JsonDefinitions::OUTPUT_DATA][JsonDefinitions::LOCATIONS].push_back(
                 nlohmann::ordered_json::object(
                     {
                         {
@@ -53,10 +51,10 @@ namespace DiKErnel::KernelWrapper::Json
                             calculationLocationOutput.get().GetName()
                         },
                         {
-                            JsonDefinitions::REVETMENT,
+                            JsonDefinitions::DAMAGE,
                             {
                                 {
-                                    JsonDefinitions::DAMAGE,
+                                    JsonDefinitions::DAMAGE_OVER_TIME,
                                     calculationLocationOutput.get().GetRevetmentOutput().GetDamages()
                                 }
                             }

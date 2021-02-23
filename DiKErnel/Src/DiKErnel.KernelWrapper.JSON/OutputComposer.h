@@ -37,6 +37,8 @@ namespace DiKErnel::KernelWrapper::Json
              *        The path to the Json file.
              * \param outputData
              *        The output data to write.
+             * \param times
+             *        The collection of times used in the calculation.
              * \remarks When a file already exists at the provided file path, the original file
              *          contents are discarded.
              */
