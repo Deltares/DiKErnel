@@ -27,33 +27,33 @@ namespace DiKErnel::KernelWrapper::Json
      */
     class DamageVariables
     {
-    public:
-        /*!
-         * \brief Creates a new instance.
-         * \param initialDamageLevel
-         *        The initial damage level.
-         * \param criticalDamageLevel
-         *        The critical damage level.
-         */
-        explicit DamageVariables(
-            double initialDamageLevel,
-            double criticalDamageLevel
-        );
+        public:
+            /*!
+             * \brief Creates a new instance.
+             * \param initialDamageLevel
+             *        The initial damage level.
+             * \param criticalDamageLevel
+             *        The critical damage level.
+             */
+            explicit DamageVariables(
+                double initialDamageLevel,
+                double criticalDamageLevel
+            );
 
-        /*!
-         * \brief Gets the initial damage level.
-         * \return The initial damage level.
-         */
-        double GetInitialDamageLevel() const;
+            /*!
+             * \brief Gets the initial damage level.
+             * \return The initial damage level.
+             */
+            double GetInitialDamageLevel() const;
 
-        /*!
-         * \brief Gets the critical damage level.
-         * \return The critical damage level.
-         */
-        double GetCriticalDamageLevel() const;
+            /*!
+             * \brief Gets the critical damage level.
+             * \return The critical damage level.
+             */
+            double GetCriticalDamageLevel() const;
 
-    private:
-        double initialDamageLevel;
-        double criticalDamageLevel;
+        private:
+            double initialDamageLevel;
+            double criticalDamageLevel;
     };
 }

@@ -78,8 +78,8 @@ namespace DiKErnel::KernelWrapper::Json
 
         private:
             std::string name;
-            std::unique_ptr<Revetment> revetment;
             std::unique_ptr<DamageVariables> damageVariables;
+            std::unique_ptr<Revetment> revetment;
             std::unique_ptr<ProfileSchematization> profileSchematization;
     };
 }

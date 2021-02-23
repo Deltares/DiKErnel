@@ -26,7 +26,7 @@ namespace DiKErnel::KernelWrapper::Json
         const double initialDamageLevel,
         const double criticalDamageLevel)
         : initialDamageLevel(initialDamageLevel),
-        criticalDamageLevel(criticalDamageLevel) {}
+          criticalDamageLevel(criticalDamageLevel) {}
 
     double DamageVariables::GetInitialDamageLevel() const
     {
