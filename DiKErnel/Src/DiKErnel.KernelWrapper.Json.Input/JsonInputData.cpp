@@ -19,3 +19,5 @@
 // All rights reserved.
 
 #include "JsonInputData.h"
+
+namespace DiKErnel::KernelWrapper::Json::Input {}

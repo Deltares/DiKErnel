@@ -19,3 +19,5 @@
 // All rights reserved.
 
 #include "JsonInputParser.h"
+
+namespace DiKErnel::KernelWrapper::Json::Input {}

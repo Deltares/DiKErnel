@@ -20,4 +20,7 @@
 
 #pragma once
 
-class JsonInputComposer {};
+namespace DiKErnel::KernelWrapper::Json::Input
+{
+    class JsonInputComposer {};
+}

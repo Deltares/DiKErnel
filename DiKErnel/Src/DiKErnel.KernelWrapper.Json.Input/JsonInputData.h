@@ -20,4 +20,7 @@
 
 #pragma once
 
-class JsonInputData {};
+namespace DiKErnel::KernelWrapper::Json::Input
+{
+    class JsonInputData { };
+}

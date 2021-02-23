@@ -20,4 +20,7 @@
 
 #pragma once
 
-class JsonInputLocationData {};
+namespace DiKErnel::KernelWrapper::Json::Input
+{
+    class JsonInputLocationData {};
+}

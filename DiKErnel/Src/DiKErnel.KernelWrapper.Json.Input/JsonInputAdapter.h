@@ -20,4 +20,7 @@
 
 #pragma once
 
-class JsonInputAdapter {};
+namespace DiKErnel::KernelWrapper::Json::Input
+{
+    class JsonInputAdapter {};
+}

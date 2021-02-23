@@ -20,4 +20,7 @@
 
 #pragma once
 
-class NaturalStoneRevetmentJsonInputLocationData {};
+namespace DiKErnel::KernelWrapper::Json::Input
+{
+    class NaturalStoneRevetmentJsonInputLocationData {};
+}
