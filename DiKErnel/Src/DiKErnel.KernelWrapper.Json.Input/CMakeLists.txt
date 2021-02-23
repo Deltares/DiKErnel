@@ -5,6 +5,8 @@ set(LIBNAME DiKErnel.KernelWrapper.Json.Input)
 set(SOURCEFILES
   JsonInputAdapter.cpp
   JsonInputAdapter.h
+  JsonInputCalculationData.cpp
+  JsonInputCalculationData.h
   JsonInputComposer.cpp
   JsonInputComposer.h
   JsonInputData.cpp
