@@ -41,6 +41,7 @@ namespace DiKErnel::KernelWrapper::Json
     const string JsonDefinitions::RELATIVE_DENSITY = "RelatieveDichtheid";
     const string JsonDefinitions::THICKNESS_TOP_LAYER = "DikteToplaag";
     const string JsonDefinitions::INITIAL_DAMAGE = "BeginSchade";
+    const string JsonDefinitions::CRITICAL_DAMAGE = "Faalgetal";
     const string JsonDefinitions::SIMILARITY_PARAMETER_THRESHOLD = "BrekerIndexGrenswaarde";
     const string JsonDefinitions::COEFFICIENT_PLUNGING_AP = "CoefficientPlungingAp";
     const string JsonDefinitions::COEFFICIENT_PLUNGING_BP = "CoefficientPlungingBp";

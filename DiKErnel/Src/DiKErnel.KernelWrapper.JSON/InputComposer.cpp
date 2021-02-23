@@ -85,12 +85,15 @@ namespace DiKErnel::KernelWrapper::Json
         for (const auto& readLocation : readLocations)
         {
             const auto& readRevetment = readLocation[JsonDefinitions::REVETMENT];
+            const auto& readDamageVariables = readLocation[JsonDefinitions::DAMAGE];
             const auto& readProfileSchematization = readLocation[JsonDefinitions::PROFILE_SCHEMATIZATION];
 
             calculationLocations.push_back(make_unique<CalculationLocation>(
                 readLocation[JsonDefinitions::NAME].get<string>(),
-                make_unique<DamageVariables>(0.0, 1.0),
-                make_unique<Revetment>(
+                make_unique<DamageVariables>(
+                    readDamageVariables[JsonDefinitions::INITIAL_DAMAGE].get<double>(),
+                    readDamageVariables[JsonDefinitions::CRITICAL_DAMAGE].get<double>()),
+                    make_unique<Revetment>(
                     readRevetment[JsonDefinitions::TYPE_TOP_LAYER].get<string>(),
                     readRevetment[JsonDefinitions::RELATIVE_DENSITY].get<double>(),
                     readRevetment[JsonDefinitions::THICKNESS_TOP_LAYER].get<double>(),

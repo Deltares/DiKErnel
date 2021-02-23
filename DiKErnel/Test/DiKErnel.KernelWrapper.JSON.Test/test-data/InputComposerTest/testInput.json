@@ -47,6 +47,11 @@
 	[
 		{
 			"Naam": "LocatieZwak",
+			"Schade":
+			{
+				"BeginSchade": 0,
+				"Faalgetal": 1
+			},
 			"Bekleding":
 			{
 				"TypeToplaag": "Noorse Steen",
@@ -70,6 +75,11 @@
 		},
 		{
 			"Naam": "LocatieSterk",
+			"Schade":
+			{
+				"BeginSchade": 0.1,
+				"Faalgetal": 1.05
+			},
 			"Bekleding":
 			{
 				"TypeToplaag": "Noorse Steen",
