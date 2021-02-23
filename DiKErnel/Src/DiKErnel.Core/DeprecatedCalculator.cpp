@@ -116,9 +116,9 @@ namespace DiKErnel::Core
                 const auto& outputDataForLocation = outputData[i];
 
                 vector<double> damagesForLocation;
-                for (const auto& damageAtPointInTime : outputDataForLocation)
+                for (const auto& [time, damage] : outputDataForLocation)
                 {
-                    damagesForLocation.push_back(get<1>(damageAtPointInTime));
+                    damagesForLocation.push_back(damage);
                 }
 
                 calculationLocationsOutput.push_back(
