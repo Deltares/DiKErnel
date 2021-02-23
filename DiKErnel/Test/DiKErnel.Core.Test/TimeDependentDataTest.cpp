@@ -20,20 +20,49 @@
 
 #include <gtest/gtest.h>
 
+#include "AssertHelper.h"
 #include "InvalidCalculationDataException.h"
 #include "TimeDependentData.h"
 
 namespace DiKErnel::Core::Test
 {
     using namespace std;
+    using namespace TestUtil;
 
-    class TimeDependentDataTest : public testing::TestWithParam<int> { };
+    struct TimeDependentDataTest : testing::TestWithParam<int>
+    {
+        static void DoCall()
+        {
+            TimeDependentData(50, GetParam(), 0, 0, 0);
+        }
+
+        typedef void (*Action) ();
+        template <typename TException>
+        static void AssertThrowsWithMessage(
+            const Action action,
+            string expectedMessage)
+        {
+            try
+            {
+                action();
+                FAIL() << "Expected " << typeid(TException).name();
+            }
+            catch (TException& exception)
+            {
+                ASSERT_TRUE(expectedMessage == exception.what());
+            }
+            catch (...)
+            {
+                FAIL() << "Expected " << typeid(TException).name();
+            }
+        }
+    };
 
     TEST(TimeDependentDataTest, Constructor_WithParameters_ExpectedValues)
     {
         // Setup
         const auto beginTime = rand() % 100;
-        const auto endTime = rand() % 100;
+        const auto endTime = rand() % 100 + 100;
         const auto waveHeightHm0 = 0.1;
         const auto wavePeriodTm10 = 0.2;
         const auto waveAngle = 0.3;
@@ -51,30 +80,17 @@ namespace DiKErnel::Core::Test
 
     TEST_P(TimeDependentDataTest, Constructor_EndTimeSmallerThanOrEqualToBeginTime_ThrowsInvalidCalculationDataException)
     {
-        // Setup
-        const auto endTime = GetParam();
+        // Call
+        const auto action = &TimeDependentDataTest::DoCall;
 
-        // Call & Assert
-        try
-        {
-            TimeDependentData(50, endTime, 0, 0, 0);
-            FAIL() << "Expected InvalidCalculationDataException";
-        }
-        catch (InvalidCalculationDataException& exception)
-        {
-            const string expectedMessage = "'beginTime' should be smaller than 'endTime'.";
-            ASSERT_TRUE(expectedMessage == exception.what());
-        }
-        catch (...)
-        {
-            FAIL() << "Expected InvalidCalculationDataException";
-        }
+        // Assert
+        AssertThrowsWithMessage<InvalidCalculationDataException>(action, "'beginTime' should be smaller than 'endTime'.");
     }
 
     INSTANTIATE_TEST_SUITE_P(
         Constructor_EndTimeSmallerThanOrEqualToBeginTime_ThrowsInvalidCalculationDataException,
         TimeDependentDataTest,
         ::testing::Values(
-            50, 30
+            40, 50
         ));
 }
