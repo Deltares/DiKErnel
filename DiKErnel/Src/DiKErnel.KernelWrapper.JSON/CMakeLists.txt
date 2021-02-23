@@ -11,6 +11,8 @@ set(SOURCEFILES
   CalculationLocation.h
   CalculationLocationOutput.cpp
   CalculationLocationOutput.h
+  DamageVariables.cpp
+  DamageVariables.h
   HydraulicLoads.cpp
   HydraulicLoads.h
   InputComposer.cpp

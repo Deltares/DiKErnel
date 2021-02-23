@@ -18,41 +18,23 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include <utility>
-
-#include "CalculationLocation.h"
+#include "DamageVariables.h"
 
 namespace DiKErnel::KernelWrapper::Json
 {
-    using namespace std;
+    DamageVariables::DamageVariables(
+        const double initialDamageLevel,
+        const double criticalDamageLevel)
+        : initialDamageLevel(initialDamageLevel),
+        criticalDamageLevel(criticalDamageLevel) {}
 
-    CalculationLocation::CalculationLocation(
-        string name,
-        unique_ptr<DamageVariables> damageVariables,
-        unique_ptr<Revetment> revetment,
-        unique_ptr<ProfileSchematization> profileSchematization)
-        : name(move(name)),
-          damageVariables(move(damageVariables)),
-          revetment(move(revetment)),
-          profileSchematization(move(profileSchematization)) { }
-
-    const string& CalculationLocation::GetName() const
+    double DamageVariables::GetInitialDamageLevel() const
     {
-        return name;
+        return initialDamageLevel;
     }
 
-    const DamageVariables& CalculationLocation::GetDamageVariables() const
+    double DamageVariables::GetCriticalDamageLevel() const
     {
-        return *damageVariables;
-    }
-
-    const Revetment& CalculationLocation::GetRevetment() const
-    {
-        return *revetment;
-    }
-
-    const ProfileSchematization& CalculationLocation::GetProfileSchematization() const
-    {
-        return *profileSchematization;
+        return criticalDamageLevel;
     }
 }

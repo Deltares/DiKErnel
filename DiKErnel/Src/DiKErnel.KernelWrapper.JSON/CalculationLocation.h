@@ -23,6 +23,7 @@
 #include <memory>
 #include <string>
 
+#include "DamageVariables.h"
 #include "ProfileSchematization.h"
 #include "Revetment.h"
 
@@ -38,6 +39,8 @@ namespace DiKErnel::KernelWrapper::Json
              * \brief Creates a new instance.
              * \param name
              *        The name of the location.
+             * \param damageVariables
+             *        The damage variable definition.
              * \param revetment
              *        The revetment definition.
              * \param profileSchematization
@@ -45,6 +48,7 @@ namespace DiKErnel::KernelWrapper::Json
              */
             explicit CalculationLocation(
                 std::string name,
+                std::unique_ptr<DamageVariables> damageVariables,
                 std::unique_ptr<Revetment> revetment,
                 std::unique_ptr<ProfileSchematization> profileSchematization);
 
@@ -53,6 +57,12 @@ namespace DiKErnel::KernelWrapper::Json
              * \return The name of the location.
              */
             const std::string& GetName() const;
+
+            /*!
+             * \brief Gets the revetment definition.
+             * \return The revetment definition.
+             */
+            const DamageVariables& GetDamageVariables() const;
 
             /*!
              * \brief Gets the revetment definition.
@@ -69,6 +79,7 @@ namespace DiKErnel::KernelWrapper::Json
         private:
             std::string name;
             std::unique_ptr<Revetment> revetment;
+            std::unique_ptr<DamageVariables> damageVariables;
             std::unique_ptr<ProfileSchematization> profileSchematization;
     };
 }

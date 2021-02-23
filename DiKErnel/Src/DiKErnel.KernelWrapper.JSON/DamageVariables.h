@@ -18,41 +18,42 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include <utility>
-
-#include "CalculationLocation.h"
+#pragma once
 
 namespace DiKErnel::KernelWrapper::Json
 {
-    using namespace std;
-
-    CalculationLocation::CalculationLocation(
-        string name,
-        unique_ptr<DamageVariables> damageVariables,
-        unique_ptr<Revetment> revetment,
-        unique_ptr<ProfileSchematization> profileSchematization)
-        : name(move(name)),
-          damageVariables(move(damageVariables)),
-          revetment(move(revetment)),
-          profileSchematization(move(profileSchematization)) { }
-
-    const string& CalculationLocation::GetName() const
+    /*!
+     * \brief Container for damage variable data.
+     */
+    class DamageVariables
     {
-        return name;
-    }
+    public:
+        /*!
+         * \brief Creates a new instance.
+         * \param initialDamageLevel
+         *        The initial damage level.
+         * \param criticalDamageLevel
+         *        The critical damage level.
+         */
+        explicit DamageVariables(
+            double initialDamageLevel,
+            double criticalDamageLevel
+        );
 
-    const DamageVariables& CalculationLocation::GetDamageVariables() const
-    {
-        return *damageVariables;
-    }
+        /*!
+         * \brief Gets the initial damage level.
+         * \return The initial damage level.
+         */
+        double GetInitialDamageLevel() const;
 
-    const Revetment& CalculationLocation::GetRevetment() const
-    {
-        return *revetment;
-    }
+        /*!
+         * \brief Gets the critical damage level.
+         * \return The critical damage level.
+         */
+        double GetCriticalDamageLevel() const;
 
-    const ProfileSchematization& CalculationLocation::GetProfileSchematization() const
-    {
-        return *profileSchematization;
-    }
+    private:
+        double initialDamageLevel;
+        double criticalDamageLevel;
+    };
 }

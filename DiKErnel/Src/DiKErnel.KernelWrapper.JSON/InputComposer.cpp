@@ -89,6 +89,7 @@ namespace DiKErnel::KernelWrapper::Json
 
             calculationLocations.push_back(make_unique<CalculationLocation>(
                 readLocation[JsonDefinitions::NAME].get<string>(),
+                make_unique<DamageVariables>(0.0, 1.0),
                 make_unique<Revetment>(
                     readRevetment[JsonDefinitions::TYPE_TOP_LAYER].get<string>(),
                     readRevetment[JsonDefinitions::RELATIVE_DENSITY].get<double>(),
