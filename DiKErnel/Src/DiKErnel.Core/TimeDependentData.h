@@ -40,6 +40,8 @@ namespace DiKErnel::Core
              *        The wave period.
              * \param waveAngle
              *        The wave angle.
+             * \exception InvalidCalculationDataException
+             *            Thrown when endTime is equal to or larger than beginTime.
              */
             explicit TimeDependentData(
                 int beginTime,
