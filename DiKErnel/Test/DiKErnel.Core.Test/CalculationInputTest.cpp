@@ -20,17 +20,41 @@
 
 #include <gtest/gtest.h>
 
+#include "AssertHelper.h"
 #include "CalculationInput.h"
+#include "InvalidCalculationDataException.h"
 
 namespace DiKErnel::Core::Test
 {
     using namespace std;
+    using namespace TestUtil;
 
-    TEST(CalculationInputTest, Constructor_WithParameters_ExpectedValues)
+    struct CalculationInputTest : testing::Test
+    {
+        static void TimeDependentDataNotSubsequently()
+        {
+            vector<unique_ptr<TimeDependentData>> timeDependentDataItems;
+            timeDependentDataItems.push_back(make_unique<TimeDependentData>(0, 10, 0, 0, 0));
+            timeDependentDataItems.push_back(make_unique<TimeDependentData>(15, 20, 0, 0, 0));
+
+            CalculationInput(vector<unique_ptr<ILocationDependentData>>(), move(timeDependentDataItems), 0);
+        }
+
+        static void TimeDependentDataUnordered()
+        {
+            vector<unique_ptr<TimeDependentData>> timeDependentDataItems;
+            timeDependentDataItems.push_back(make_unique<TimeDependentData>(10, 20, 0, 0, 0));
+            timeDependentDataItems.push_back(make_unique<TimeDependentData>(0, 10, 0, 0, 0));
+
+            CalculationInput(vector<unique_ptr<ILocationDependentData>>(), move(timeDependentDataItems), 0);
+        }
+    };
+
+    TEST_F(CalculationInputTest, Constructor_WithParameters_ExpectedValues)
     {
         // Setup
-        vector<unique_ptr<ILocationDependentData>> locationDependentData;
-        locationDependentData.push_back(make_unique<ILocationDependentData>());
+        vector<unique_ptr<ILocationDependentData>> locationDependentDataItems;
+        locationDependentDataItems.push_back(make_unique<ILocationDependentData>());
 
         const auto beginTime = rand() % 100;
         const auto endTime = rand() % 100 + 100;
@@ -38,13 +62,13 @@ namespace DiKErnel::Core::Test
         const auto wavePeriodTm10 = 0.2;
         const auto waveAngle = 0.3;
 
-        vector<unique_ptr<TimeDependentData>> timeSteps;
-        timeSteps.push_back(make_unique<TimeDependentData>(beginTime, endTime, waveHeightHm0, wavePeriodTm10, waveAngle));
+        vector<unique_ptr<TimeDependentData>> timeDependentDataItems;
+        timeDependentDataItems.push_back(make_unique<TimeDependentData>(beginTime, endTime, waveHeightHm0, wavePeriodTm10, waveAngle));
 
         const auto maximumWaveAngle = rand() % 100;
 
         // Call
-        const CalculationInput calculationInput(move(locationDependentData), move(timeSteps), maximumWaveAngle);
+        const CalculationInput calculationInput(move(locationDependentDataItems), move(timeDependentDataItems), maximumWaveAngle);
 
         // Assert
         ASSERT_EQ(1, calculationInput.GetLocationDependentDataItems().size());
@@ -60,5 +84,25 @@ namespace DiKErnel::Core::Test
         ASSERT_DOUBLE_EQ(waveAngle, timeDependentData.GetWaveAngle());
 
         ASSERT_EQ(maximumWaveAngle, calculationInput.GetMaximumWaveAngle());
+    }
+
+    TEST_F(CalculationInputTest, Constructor_TimeDependentDataNotSubsequently_ThrowsInvalidCalculationDataException)
+    {
+        // Call
+        const auto action = &CalculationInputTest::TimeDependentDataNotSubsequently;
+
+        // Assert
+        AssertHelper::AssertThrowsWithMessage<InvalidCalculationDataException>(
+            action, "The begin time of an element must connect to the end time of the previous element.");
+    }
+
+    TEST_F(CalculationInputTest, Constructor_TimeDependentDataUnordered_ThrowsInvalidCalculationDataException)
+    {
+        // Call
+        const auto action = &CalculationInputTest::TimeDependentDataUnordered;
+
+        // Assert
+        AssertHelper::AssertThrowsWithMessage<InvalidCalculationDataException>(
+            action, "The begin time of an element must connect to the end time of the previous element.");
     }
 }

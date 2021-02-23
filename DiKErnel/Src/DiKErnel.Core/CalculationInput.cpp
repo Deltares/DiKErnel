@@ -19,6 +19,7 @@
 // All rights reserved.
 
 #include "CalculationInput.h"
+#include "InvalidCalculationDataException.h"
 
 namespace DiKErnel::Core
 {
@@ -32,14 +33,22 @@ namespace DiKErnel::Core
           timeDependentDataItems(move(timeDependentDataItems)),
           maximumWaveAngle(maximumWaveAngle)
     {
+        auto previousEndTime = INT_MIN;
+        for (const auto& timeDependentData : this->timeDependentDataItems)
+        {
+            if(previousEndTime != INT_MIN && timeDependentData->GetBeginTime() != previousEndTime)
+            {
+                throw InvalidCalculationDataException("The begin time of an element must connect to the end time of the previous element.");
+            }
+            previousEndTime = timeDependentData->GetEndTime();
+
+            timeDependentDataItemReferences.emplace_back(*timeDependentData);
+        }
+
+
         for (const auto& locationDependentData : this->locationDependentDataItems)
         {
             locationDependentDataItemReferences.emplace_back(*locationDependentData);
-        }
-
-        for (const auto& timeDependentData : this->timeDependentDataItems)
-        {
-            timeDependentDataItemReferences.emplace_back(*timeDependentData);
         }
     }
 

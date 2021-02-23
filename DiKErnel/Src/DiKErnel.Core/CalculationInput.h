@@ -42,6 +42,8 @@ namespace DiKErnel::Core
              *        The time dependent data items to use in the calculation.
              * \param maximumWaveAngle
              *        The maximum wave angle.
+             * \exception InvalidCalculationDataException
+             *            Thrown when timeDependentDataItems do not connect or are unordered.
              */
             explicit CalculationInput(
                 std::vector<std::unique_ptr<ILocationDependentData>> locationDependentDataItems,
