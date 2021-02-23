@@ -37,7 +37,7 @@ namespace DiKErnel::Core::Test
             timeDependentDataItems.push_back(make_unique<TimeDependentData>(0, 10, 0, 0, 0));
             timeDependentDataItems.push_back(make_unique<TimeDependentData>(15, 20, 0, 0, 0));
 
-            CalculationInput(vector<unique_ptr<ILocationDependentData>>(), move(timeDependentDataItems), 0);
+            const CalculationInput calculationInput(vector<unique_ptr<ILocationDependentData>>(), move(timeDependentDataItems), 0);
         }
 
         static void TimeDependentDataUnordered()
@@ -46,7 +46,7 @@ namespace DiKErnel::Core::Test
             timeDependentDataItems.push_back(make_unique<TimeDependentData>(10, 20, 0, 0, 0));
             timeDependentDataItems.push_back(make_unique<TimeDependentData>(0, 10, 0, 0, 0));
 
-            CalculationInput(vector<unique_ptr<ILocationDependentData>>(), move(timeDependentDataItems), 0);
+            const CalculationInput calculationInput(vector<unique_ptr<ILocationDependentData>>(), move(timeDependentDataItems), 0);
         }
     };
 
@@ -64,6 +64,7 @@ namespace DiKErnel::Core::Test
 
         vector<unique_ptr<TimeDependentData>> timeDependentDataItems;
         timeDependentDataItems.push_back(make_unique<TimeDependentData>(beginTime, endTime, waveHeightHm0, wavePeriodTm10, waveAngle));
+        timeDependentDataItems.push_back(make_unique<TimeDependentData>(endTime, endTime + 10, 0, 0, 0));
 
         const auto maximumWaveAngle = rand() % 100;
 
@@ -73,10 +74,10 @@ namespace DiKErnel::Core::Test
         // Assert
         ASSERT_EQ(1, calculationInput.GetLocationDependentDataItems().size());
 
-        const auto& actualTimeSteps = calculationInput.GetTimeDependentDataItems();
-        ASSERT_EQ(1, actualTimeSteps.size());
+        const auto& actualTimeDependentDataItems = calculationInput.GetTimeDependentDataItems();
+        ASSERT_EQ(2, actualTimeDependentDataItems.size());
 
-        const auto& timeDependentData = actualTimeSteps[0].get();
+        const auto& timeDependentData = actualTimeDependentDataItems[0].get();
         ASSERT_EQ(beginTime, timeDependentData.GetBeginTime());
         ASSERT_EQ(endTime, timeDependentData.GetEndTime());
         ASSERT_DOUBLE_EQ(waveHeightHm0, timeDependentData.GetWaveHeightHm0());
