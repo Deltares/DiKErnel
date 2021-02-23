@@ -35,27 +35,6 @@ namespace DiKErnel::Core::Test
         {
             TimeDependentData(50, GetParam(), 0, 0, 0);
         }
-
-        typedef void (*Action) ();
-        template <typename TException>
-        static void AssertThrowsWithMessage(
-            const Action action,
-            string expectedMessage)
-        {
-            try
-            {
-                action();
-                FAIL() << "Expected " << typeid(TException).name();
-            }
-            catch (TException& exception)
-            {
-                ASSERT_TRUE(expectedMessage == exception.what());
-            }
-            catch (...)
-            {
-                FAIL() << "Expected " << typeid(TException).name();
-            }
-        }
     };
 
     TEST(TimeDependentDataTest, Constructor_WithParameters_ExpectedValues)
@@ -84,7 +63,7 @@ namespace DiKErnel::Core::Test
         const auto action = &TimeDependentDataTest::DoCall;
 
         // Assert
-        AssertThrowsWithMessage<InvalidCalculationDataException>(action, "'beginTime' should be smaller than 'endTime'.");
+        AssertHelper::AssertThrowsWithMessage<InvalidCalculationDataException>(action, "'beginTime' should be smaller than 'endTime'.");
     }
 
     INSTANTIATE_TEST_SUITE_P(

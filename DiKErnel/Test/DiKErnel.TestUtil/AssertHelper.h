@@ -40,5 +40,39 @@ namespace DiKErnel::TestUtil
             static void AssertAreEqual(
                 const std::vector<double>& expectedCollection,
                 const std::vector<double>& actualCollection);
+
+            /*!
+             * \brief Function pointer to use as action.
+             */
+            typedef void (*Action) ();
+
+            /*!
+             * \brief Asserts whether an exception is thrown with an expected message.
+             * \tparam TException
+             *         The type of the exception.
+             * \param action
+             *        The action to perform.
+             * \param expectedMessage
+             *        The expected message in the exception.
+             */
+            template<typename TException>
+            static void AssertThrowsWithMessage(
+                const Action action,
+                std::string expectedMessage)
+            {
+                try
+                {
+                    action();
+                    FAIL() << "Expected " << typeid(TException).name();
+                }
+                catch (TException& exception)
+                {
+                    ASSERT_TRUE(expectedMessage == exception.what());
+                }
+                catch (...)
+                {
+                    FAIL() << "Expected " << typeid(TException).name();
+                }
+            }
     };
 }
