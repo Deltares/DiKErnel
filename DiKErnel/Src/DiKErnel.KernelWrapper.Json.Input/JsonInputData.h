@@ -20,7 +20,22 @@
 
 #pragma once
 
+#include <memory>
+
+#include "JsonInputCalculationData.h"
+
 namespace DiKErnel::KernelWrapper::Json::Input
 {
-    class JsonInputData { };
+    class JsonInputData
+    {
+        public:
+            explicit JsonInputData(
+                std::unique_ptr<JsonInputCalculationData> calculationData
+            );
+
+            const JsonInputCalculationData& GetCalculationData() const;
+
+        private:
+            std::unique_ptr<JsonInputCalculationData> calculationData;
+    };
 }
