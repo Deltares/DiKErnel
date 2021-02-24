@@ -31,7 +31,7 @@ namespace DiKErnel::Core::Test
     using namespace KernelWrapper::Json;
     using namespace std;
     using namespace TestUtil;
-
+    
     struct DeprecatedCalculatorTest : testing::Test
     {
         const unique_ptr<InputData> inputData;
