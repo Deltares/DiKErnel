@@ -20,7 +20,19 @@
 
 #pragma once
 
+#include <string>
+
 namespace DiKErnel::KernelWrapper::Json::Input
 {
-    class JsonInputLocationData {};
+    class JsonInputLocationData
+    {
+        public:
+            explicit JsonInputLocationData(
+                std::string name);
+
+            const std::string& GetName() const;
+
+        private:
+            std::string name;
+    };
 }

@@ -20,4 +20,16 @@
 
 #include "JsonInputLocationData.h"
 
-namespace DiKErnel::KernelWrapper::Json::Input {}
+namespace DiKErnel::KernelWrapper::Json::Input
+{
+    using namespace std;
+
+    JsonInputLocationData::JsonInputLocationData(
+        string name)
+        : name(move(name)) { }
+
+    const string& JsonInputLocationData::GetName() const
+    {
+        return name;
+    }
+}
