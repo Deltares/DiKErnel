@@ -9,6 +9,8 @@ set(SOURCEFILES
   JsonInputCalculationData.h
   JsonInputComposer.cpp
   JsonInputComposer.h
+  JsonInputDamageData.cpp
+  JsonInputDamageData.h
   JsonInputData.cpp
   JsonInputData.h
   JsonInputHydraulicData.cpp
