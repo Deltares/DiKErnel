@@ -30,7 +30,6 @@ namespace DiKErnel::KernelWrapper::Json
         string typeTopLayer,
         const double relativeDensity,
         const double thicknessTopLayer,
-        const double initialDamage,
         const double similarityParameterThreshold,
         const double plungingCoefficientA,
         const double plungingCoefficientB,
@@ -43,7 +42,6 @@ namespace DiKErnel::KernelWrapper::Json
         : typeTopLayer(move(typeTopLayer)),
           relativeDensity(relativeDensity),
           thicknessTopLayer(thicknessTopLayer),
-          initialDamage(initialDamage),
           similarityParameterThreshold(similarityParameterThreshold),
           plungingCoefficientA(plungingCoefficientA),
           plungingCoefficientB(plungingCoefficientB),
@@ -67,11 +65,6 @@ namespace DiKErnel::KernelWrapper::Json
     double Revetment::GetThicknessTopLayer() const
     {
         return thicknessTopLayer;
-    }
-
-    double Revetment::GetInitialDamage() const
-    {
-        return initialDamage;
     }
 
     double Revetment::GetSimilarityParameterThreshold() const

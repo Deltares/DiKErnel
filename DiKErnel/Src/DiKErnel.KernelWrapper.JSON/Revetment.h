@@ -38,8 +38,6 @@ namespace DiKErnel::KernelWrapper::Json
              *        The relative density.
              * \param thicknessTopLayer
              *        The thickness of the top layer.
-             * \param initialDamage
-             *        The initial damage.
              * \param similarityParameterThreshold
              *        The similarity parameter threshold.
              * \param plungingCoefficientA
@@ -63,7 +61,6 @@ namespace DiKErnel::KernelWrapper::Json
                 std::string typeTopLayer,
                 double relativeDensity,
                 double thicknessTopLayer,
-                double initialDamage,
                 double similarityParameterThreshold,
                 double plungingCoefficientA,
                 double plungingCoefficientB,
@@ -92,12 +89,6 @@ namespace DiKErnel::KernelWrapper::Json
              * \return The thickness of the top layer.
              */
             double GetThicknessTopLayer() const;
-
-            /*!
-             * \brief Gets the initial damage.
-             * \return The initial damage.
-             */
-            double GetInitialDamage() const;
 
             /*!
              * \brief Gets the similarity parameter threshold.
@@ -157,7 +148,6 @@ namespace DiKErnel::KernelWrapper::Json
             std::string typeTopLayer;
             double relativeDensity;
             double thicknessTopLayer;
-            double initialDamage;
             double similarityParameterThreshold;
             double plungingCoefficientA;
             double plungingCoefficientB;

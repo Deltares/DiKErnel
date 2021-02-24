@@ -97,7 +97,6 @@ namespace DiKErnel::KernelWrapper::Json
                     readRevetment[JsonDefinitions::TYPE_TOP_LAYER].get<string>(),
                     readRevetment[JsonDefinitions::RELATIVE_DENSITY].get<double>(),
                     readRevetment[JsonDefinitions::THICKNESS_TOP_LAYER].get<double>(),
-                    readRevetment[JsonDefinitions::INITIAL_DAMAGE].get<double>(),
                     readRevetment[JsonDefinitions::SIMILARITY_PARAMETER_THRESHOLD].get<double>(),
                     readRevetment[JsonDefinitions::COEFFICIENT_PLUNGING_AP].get<double>(),
                     readRevetment[JsonDefinitions::COEFFICIENT_PLUNGING_BP].get<double>(),
