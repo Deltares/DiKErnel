@@ -38,6 +38,10 @@ namespace DiKErnel::KernelWrapper::Json::Test
             / "InputComposerTest"
             / "testInput.json").string();
 
+        const string filePathMissingParameters = (TestUtil::TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Test")
+            / "InputComposerTest"
+            / "testInput_NoCriticalDamage.json").string();
+
         void AssertCalculationData(
             const CalculationData& calculationData) const
         {
@@ -88,18 +92,18 @@ namespace DiKErnel::KernelWrapper::Json::Test
                 locationReferences.emplace_back(*location);
             }
 
-            AssertCalculationLocations(locationReferences);
+            AssertCalculationLocations(locationReferences, 1.0, 1.05);
         }
 
         void AssertCalculationLocations(
-            const vector<reference_wrapper<CalculationLocation>>& calculationLocations) const
+            const vector<reference_wrapper<CalculationLocation>>& calculationLocations,
+            double expectedCriticalDamageLocation1,
+            double expectedCriticalDamageLocation2) const
         {
-            AssertCalculationLocation(calculationLocations[0].get(), "LocatieZwak", "Noorse Steen", 1.65, 0.3, 0.0, 1.0,
-                2.9, 4.0, 0.0, 0.0, -0.9, 0.8,
+            AssertCalculationLocation(calculationLocations[0].get(), "LocatieZwak", "Noorse Steen", 1.65, 0.3, 0.0, expectedCriticalDamageLocation1, 2.9, 4.0, 0.0, 0.0, -0.9, 0.8,
                                       0.0, 0.0, 0.6, 0.3);
-            AssertCalculationLocation(calculationLocations[1].get(), "LocatieSterk", "Noorse Steen", 1.65, 0.7, 0.1, 1.05,
-                2.9, 4.0, 0.0, 0.0, -0.9, 0.8,
-                                      0.0, 0.0, 0.6, 0.3);
+            AssertCalculationLocation(calculationLocations[1].get(), "LocatieSterk", "Noorse Steen", 1.65, 0.7, 0.1,
+                                      expectedCriticalDamageLocation2, 2.9, 4.0, 0.0, 0.0, -0.9, 0.8, 0.0, 0.0, 0.6, 0.3);
         }
 
         void AssertCalculationLocation(
@@ -193,7 +197,18 @@ namespace DiKErnel::KernelWrapper::Json::Test
         // Then
         AssertCalculationData(inputData->GetCalculationData());
         AssertHydraulicLoads(inputData->GetHydraulicLoads());
-        AssertCalculationLocations(inputData->GetLocations());
+        AssertCalculationLocations(inputData->GetLocations(), 1.0, 1.05);
+    }
+
+    TEST_F(InputComposerTest, GivenFilePathWithMissingParametersAndInputComposer_WhenGetDomainParametersFromJson_ThenCorrectDataSet)
+    {
+        // When
+        const auto inputData = InputComposer::GetDomainParametersFromJson(filePathMissingParameters);
+
+        // Then
+        AssertCalculationData(inputData->GetCalculationData());
+        AssertHydraulicLoads(inputData->GetHydraulicLoads());
+        AssertCalculationLocations(inputData->GetLocations(), 1.0, 1.0);
     }
 
     TEST_F(InputComposerTest, GivenFilePathAndInputComposer_WhenReadCalculationDataFromJson_ThenCorrectDataSet)

@@ -127,7 +127,7 @@ namespace DiKErnel::KernelWrapper::Json
     double InputComposer::GetCriticalDamage(
         const nlohmann::basic_json<>::value_type& readDamageVariables)
     {
-        if (readDamageVariables.contains(JsonDefinitions::INITIAL_DAMAGE))
+        if (readDamageVariables.contains(JsonDefinitions::CRITICAL_DAMAGE))
         {
             return readDamageVariables[JsonDefinitions::CRITICAL_DAMAGE].get<double>();
         }
