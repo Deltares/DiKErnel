@@ -1,5 +1,6 @@
 # Add directories
 add_subdirectory(DiKErnel.Core.Test)
+add_subdirectory(DiKErnel.Core.TestUtil)
 add_subdirectory(DiKErnel.DomainLibrary.Test)
 add_subdirectory(DiKErnel.FunctionLibrary.Test)
 add_subdirectory(DiKErnel.KernelWrapper.Json.Test)

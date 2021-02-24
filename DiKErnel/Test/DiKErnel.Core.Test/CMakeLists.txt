@@ -7,7 +7,6 @@ set(SOURCEFILES
   CalculationOutputTest.cpp
   CalculatorTest.cpp
   DeprecatedCalculatorTest.cpp
-  ILocationDependentDataTest.cpp
   InvalidCalculationDataExceptionTest.cpp
   Main.cpp
   TimeDependentDataTest.cpp
@@ -21,4 +20,4 @@ set_target_properties(${EXENAME} PROPERTIES FOLDER Test)
 source_group("Sources" FILES ${SOURCEFILES})
 
 # Link dependencies
-target_link_libraries(${EXENAME} gtest DiKErnel.TestUtil DiKErnel.FunctionLibrary DiKErnel.Core)
+target_link_libraries(${EXENAME} gtest DiKErnel.TestUtil DiKErnel.FunctionLibrary DiKErnel.Core DiKErnel.Core.TestUtil)

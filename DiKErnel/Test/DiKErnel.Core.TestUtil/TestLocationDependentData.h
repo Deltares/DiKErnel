@@ -18,4 +18,21 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-namespace DiKErnel::Core::Test {}
+#pragma once
+
+#include "ILocationDependentData.h"
+
+namespace DiKErnel::Core::TestUtil
+{
+    /*!
+     * \brief Implementation of ILocationDependentData that can be used in tests.
+     */
+    class TestLocationDependentData : public ILocationDependentData
+    {
+        public:
+            double Calculate(
+                double initialDamage,
+                TimeDependentData& timeDependentData,
+                double maximumWaveAngle) override;
+    };
+}

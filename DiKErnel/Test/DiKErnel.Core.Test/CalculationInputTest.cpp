@@ -23,6 +23,7 @@
 #include "AssertHelper.h"
 #include "CalculationInput.h"
 #include "InvalidCalculationDataException.h"
+#include "TestLocationDependentData.h"
 
 namespace DiKErnel::Core::Test
 {
@@ -54,7 +55,7 @@ namespace DiKErnel::Core::Test
     {
         // Setup
         vector<unique_ptr<ILocationDependentData>> locationDependentDataItems;
-        locationDependentDataItems.push_back(make_unique<ILocationDependentData>());
+        locationDependentDataItems.push_back(make_unique<TestLocationDependentData>());
 
         const auto beginTime = rand() % 100;
         const auto endTime = rand() % 100 + 100;
@@ -93,7 +94,7 @@ namespace DiKErnel::Core::Test
         const auto action = &CalculationInputTest::TimeDependentDataNotSubsequently;
 
         // Assert
-        AssertHelper::AssertThrowsWithMessage<InvalidCalculationDataException>(
+        DiKErnel::TestUtil::AssertHelper::AssertThrowsWithMessage<InvalidCalculationDataException>(
             action, "The begin time of an element must connect to the end time of the previous element.");
     }
 
@@ -103,7 +104,7 @@ namespace DiKErnel::Core::Test
         const auto action = &CalculationInputTest::TimeDependentDataUnordered;
 
         // Assert
-        AssertHelper::AssertThrowsWithMessage<InvalidCalculationDataException>(
+        DiKErnel::TestUtil::AssertHelper::AssertThrowsWithMessage<InvalidCalculationDataException>(
             action, "The begin time of an element must connect to the end time of the previous element.");
     }
 }
