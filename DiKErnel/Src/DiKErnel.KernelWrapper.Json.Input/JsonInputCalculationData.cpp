@@ -18,6 +18,20 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
+#include <utility>
+
 #include "JsonInputCalculationData.h"
 
-namespace DiKErnel::KernelWrapper::Json::Input {}
+namespace DiKErnel::KernelWrapper::Json::Input
+{
+    using namespace std;
+
+    JsonInputCalculationData::JsonInputCalculationData(
+        vector<int> times)
+        : times(move(times)) { }
+
+    const vector<int>& JsonInputCalculationData::GetTimes() const
+    {
+        return times;
+    }
+}

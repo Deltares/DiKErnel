@@ -20,7 +20,20 @@
 
 #pragma once
 
+#include <vector>
+
 namespace DiKErnel::KernelWrapper::Json::Input
 {
-    class JsonInputCalculationData { };
+    class JsonInputCalculationData
+    {
+        public:
+            explicit JsonInputCalculationData(
+                std::vector<int> times
+            );
+
+            const std::vector<int>& GetTimes() const;
+
+        private:
+            std::vector<int> times;
+    };
 }
