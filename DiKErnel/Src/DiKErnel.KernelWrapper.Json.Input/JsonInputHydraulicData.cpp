@@ -36,6 +36,11 @@ namespace DiKErnel::KernelWrapper::Json::Input
         }
     }
 
+    double JsonInputHydraulicData::GetWaveAngleMaximum() const
+    {
+        return waveAngleMaximum;
+    }
+
     const vector<reference_wrapper<JsonInputTimeDependentHydraulicData>>& JsonInputHydraulicData::GetTimeDependentHydraulicData() const
     {
         return timeDependentHydraulicDataReferences;

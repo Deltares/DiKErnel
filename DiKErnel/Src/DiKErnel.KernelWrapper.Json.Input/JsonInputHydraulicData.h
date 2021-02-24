@@ -35,6 +35,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 std::vector<std::unique_ptr<JsonInputTimeDependentHydraulicData>> timeDependentHydraulicData
             );
 
+            double GetWaveAngleMaximum() const;
+
             const std::vector<std::reference_wrapper<JsonInputTimeDependentHydraulicData>>& GetTimeDependentHydraulicData() const;
 
         private:
