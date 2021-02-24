@@ -25,11 +25,18 @@ namespace DiKErnel::KernelWrapper::Json::Input
     using namespace std;
 
     JsonInputLocationData::JsonInputLocationData(
-        string name)
-        : name(move(name)) { }
+        string name,
+        unique_ptr<JsonInputDamageData> damageData)
+        : name(move(name)),
+          damageData(move(damageData)) { }
 
     const string& JsonInputLocationData::GetName() const
     {
         return name;
+    }
+
+    const JsonInputDamageData& JsonInputLocationData::GetDamageData() const
+    {
+        return *damageData;
     }
 }

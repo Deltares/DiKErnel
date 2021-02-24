@@ -20,7 +20,10 @@
 
 #pragma once
 
+#include <memory>
 #include <string>
+
+#include "JsonInputDamageData.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
@@ -28,11 +31,16 @@ namespace DiKErnel::KernelWrapper::Json::Input
     {
         public:
             explicit JsonInputLocationData(
-                std::string name);
+                std::string name,
+                std::unique_ptr<JsonInputDamageData> damageData);
 
             const std::string& GetName() const;
 
+            const JsonInputDamageData& GetDamageData() const;
+
+
         private:
             std::string name;
+            std::unique_ptr<JsonInputDamageData> damageData;
     };
 }
