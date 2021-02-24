@@ -20,8 +20,6 @@
 
 #include "InvalidCalculationDataException.h"
 
-#include <string>
-
 namespace DiKErnel::Core
 {
     using namespace std;
