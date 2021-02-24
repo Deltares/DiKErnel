@@ -48,7 +48,7 @@ namespace DiKErnel::Core
             explicit CalculationInput(
                 std::vector<std::unique_ptr<ILocationDependentData>> locationDependentDataItems,
                 std::vector<std::unique_ptr<TimeDependentData>> timeDependentDataItems,
-                int maximumWaveAngle
+                double maximumWaveAngle
             );
 
             /*!
@@ -67,7 +67,7 @@ namespace DiKErnel::Core
              * \brief Gets the maximum wave angle.
              * \return The maximum wave angle.
              */
-            int GetMaximumWaveAngle() const;
+            double GetMaximumWaveAngle() const;
 
         private:
             std::vector<std::unique_ptr<ILocationDependentData>> locationDependentDataItems;
@@ -76,6 +76,6 @@ namespace DiKErnel::Core
             std::vector<std::reference_wrapper<ILocationDependentData>> locationDependentDataItemReferences;
             std::vector<std::reference_wrapper<TimeDependentData>> timeDependentDataItemReferences;
 
-            int maximumWaveAngle;
+            double maximumWaveAngle;
     };
 }

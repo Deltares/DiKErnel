@@ -67,7 +67,7 @@ namespace DiKErnel::Core::Test
         timeDependentDataItems.push_back(make_unique<TimeDependentData>(beginTime, endTime, waveHeightHm0, wavePeriodTm10, waveAngle));
         timeDependentDataItems.push_back(make_unique<TimeDependentData>(endTime, endTime + 10, 0, 0, 0));
 
-        const auto maximumWaveAngle = rand() % 100;
+        const auto maximumWaveAngle = 0.4;
 
         // Call
         const CalculationInput calculationInput(move(locationDependentDataItems), move(timeDependentDataItems), maximumWaveAngle);
