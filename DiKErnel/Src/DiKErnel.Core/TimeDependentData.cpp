@@ -27,11 +27,13 @@ namespace DiKErnel::Core
     TimeDependentData::TimeDependentData(
         const int beginTime,
         const int endTime,
+        const double waterLevel,
         const double waveHeightHm0,
         const double wavePeriodTm10,
         const double waveAngle)
         : beginTime(beginTime),
           endTime(endTime),
+          waterLevel(waterLevel),
           waveHeightHm0(waveHeightHm0),
           wavePeriodTm10(wavePeriodTm10),
           waveAngle(waveAngle)
@@ -50,6 +52,11 @@ namespace DiKErnel::Core
     int TimeDependentData::GetEndTime() const
     {
         return endTime;
+    }
+
+    double TimeDependentData::GetWaterLevel() const
+    {
+        return waterLevel;
     }
 
     double TimeDependentData::GetWaveHeightHm0() const

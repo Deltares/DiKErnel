@@ -35,8 +35,8 @@ namespace DiKErnel::Core::Test
         static void TimeDependentDataNotSubsequently()
         {
             vector<unique_ptr<TimeDependentData>> timeDependentDataItems;
-            timeDependentDataItems.push_back(make_unique<TimeDependentData>(0, 10, 0, 0, 0));
-            timeDependentDataItems.push_back(make_unique<TimeDependentData>(15, 20, 0, 0, 0));
+            timeDependentDataItems.push_back(make_unique<TimeDependentData>(0, 10, 0, 0, 0, 0));
+            timeDependentDataItems.push_back(make_unique<TimeDependentData>(15, 20, 0, 0, 0, 0));
 
             const CalculationInput calculationInput(vector<unique_ptr<ILocationDependentData>>(), move(timeDependentDataItems), 0);
         }
@@ -44,8 +44,8 @@ namespace DiKErnel::Core::Test
         static void TimeDependentDataUnordered()
         {
             vector<unique_ptr<TimeDependentData>> timeDependentDataItems;
-            timeDependentDataItems.push_back(make_unique<TimeDependentData>(10, 20, 0, 0, 0));
-            timeDependentDataItems.push_back(make_unique<TimeDependentData>(0, 10, 0, 0, 0));
+            timeDependentDataItems.push_back(make_unique<TimeDependentData>(10, 20, 0, 0, 0, 0));
+            timeDependentDataItems.push_back(make_unique<TimeDependentData>(0, 10, 0, 0, 0, 0));
 
             const CalculationInput calculationInput(vector<unique_ptr<ILocationDependentData>>(), move(timeDependentDataItems), 0);
         }
@@ -59,13 +59,14 @@ namespace DiKErnel::Core::Test
 
         const auto beginTime = rand() % 100;
         const auto endTime = rand() % 100 + 100;
-        const auto waveHeightHm0 = 0.1;
-        const auto wavePeriodTm10 = 0.2;
-        const auto waveAngle = 0.3;
+        const auto waterLevel = 0.1;
+        const auto waveHeightHm0 = 0.2;
+        const auto wavePeriodTm10 = 0.3;
+        const auto waveAngle = 0.4;
 
         vector<unique_ptr<TimeDependentData>> timeDependentDataItems;
-        timeDependentDataItems.push_back(make_unique<TimeDependentData>(beginTime, endTime, waveHeightHm0, wavePeriodTm10, waveAngle));
-        timeDependentDataItems.push_back(make_unique<TimeDependentData>(endTime, endTime + 10, 0, 0, 0));
+        timeDependentDataItems.push_back(make_unique<TimeDependentData>(beginTime, endTime, waterLevel, waveHeightHm0, wavePeriodTm10, waveAngle));
+        timeDependentDataItems.push_back(make_unique<TimeDependentData>(endTime, endTime + 10, 0, 0, 0, 0));
 
         const auto maximumWaveAngle = 0.4;
 
@@ -81,6 +82,7 @@ namespace DiKErnel::Core::Test
         const auto& timeDependentData = actualTimeDependentDataItems[0].get();
         ASSERT_EQ(beginTime, timeDependentData.GetBeginTime());
         ASSERT_EQ(endTime, timeDependentData.GetEndTime());
+        ASSERT_DOUBLE_EQ(waterLevel, timeDependentData.GetWaterLevel());
         ASSERT_DOUBLE_EQ(waveHeightHm0, timeDependentData.GetWaveHeightHm0());
         ASSERT_DOUBLE_EQ(wavePeriodTm10, timeDependentData.GetWavePeriodTm10());
         ASSERT_DOUBLE_EQ(waveAngle, timeDependentData.GetWaveAngle());

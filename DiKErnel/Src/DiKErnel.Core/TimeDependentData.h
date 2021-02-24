@@ -34,6 +34,8 @@ namespace DiKErnel::Core
              *        The begin time.
              * \param endTime
              *        The end time.
+             * \param waterLevel
+             *        The water level.
              * \param waveHeightHm0
              *        The wave height.
              * \param wavePeriodTm10
@@ -46,6 +48,7 @@ namespace DiKErnel::Core
             explicit TimeDependentData(
                 int beginTime,
                 int endTime,
+                double waterLevel,
                 double waveHeightHm0,
                 double wavePeriodTm10,
                 double waveAngle);
@@ -61,6 +64,12 @@ namespace DiKErnel::Core
              * \return The end time.
              */
             int GetEndTime() const;
+
+            /*!
+             * \brief Gets the water level.
+             * \return The water level.
+             */
+            double GetWaterLevel() const;
 
             /*!
              * \brief Gets the wave height.
@@ -83,6 +92,7 @@ namespace DiKErnel::Core
         private:
             int beginTime;
             int endTime;
+            double waterLevel;
             double waveHeightHm0;
             double wavePeriodTm10;
             double waveAngle;
