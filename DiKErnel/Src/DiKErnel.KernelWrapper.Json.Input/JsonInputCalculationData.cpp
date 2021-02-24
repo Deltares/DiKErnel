@@ -27,11 +27,25 @@ namespace DiKErnel::KernelWrapper::Json::Input
     using namespace std;
 
     JsonInputCalculationData::JsonInputCalculationData(
-        vector<int> times)
-        : times(move(times)) { }
+        vector<int> times,
+        unique_ptr<JsonInputHydraulicData> hydraulicData,
+        unique_ptr<JsonInputLocationData> locationData)
+        : times(move(times)),
+          hydraulicData(move(hydraulicData)),
+          locationData(move(locationData)) { }
 
     const vector<int>& JsonInputCalculationData::GetTimes() const
     {
         return times;
+    }
+
+    const JsonInputHydraulicData& JsonInputCalculationData::GetHydraulicData() const
+    {
+        return *hydraulicData;
+    }
+
+    const JsonInputLocationData& JsonInputCalculationData::GetLocationData() const
+    {
+        return *locationData;
     }
 }

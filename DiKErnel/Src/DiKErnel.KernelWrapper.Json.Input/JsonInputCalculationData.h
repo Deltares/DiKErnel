@@ -20,7 +20,11 @@
 
 #pragma once
 
+#include <memory>
 #include <vector>
+
+#include "JsonInputHydraulicData.h"
+#include "JsonInputLocationData.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
@@ -28,12 +32,20 @@ namespace DiKErnel::KernelWrapper::Json::Input
     {
         public:
             explicit JsonInputCalculationData(
-                std::vector<int> times
+                std::vector<int> times,
+                std::unique_ptr<JsonInputHydraulicData> hydraulicData,
+                std::unique_ptr<JsonInputLocationData> locationData
             );
 
             const std::vector<int>& GetTimes() const;
 
+            const JsonInputHydraulicData& GetHydraulicData() const;
+
+            const JsonInputLocationData& GetLocationData() const;
+
         private:
             std::vector<int> times;
+            std::unique_ptr<JsonInputHydraulicData> hydraulicData;
+            std::unique_ptr<JsonInputLocationData> locationData;
     };
 }
