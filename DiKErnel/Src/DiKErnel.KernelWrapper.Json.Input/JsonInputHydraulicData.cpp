@@ -20,4 +20,9 @@
 
 #include "JsonInputHydraulicData.h"
 
-namespace DiKErnel::KernelWrapper::Json::Input {}
+namespace DiKErnel::KernelWrapper::Json::Input
+{
+    JsonInputHydraulicData::JsonInputHydraulicData(
+        const int waveAngleMaximum)
+        : waveAngleMaximum(waveAngleMaximum) {}
+}

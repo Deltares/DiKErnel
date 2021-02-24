@@ -22,5 +22,14 @@
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
-    class JsonInputHydraulicData {};
+    class JsonInputHydraulicData
+    {
+        public:
+            explicit JsonInputHydraulicData(
+                int waveAngleMaximum
+            );
+
+        private:
+            int waveAngleMaximum;
+    };
 }
