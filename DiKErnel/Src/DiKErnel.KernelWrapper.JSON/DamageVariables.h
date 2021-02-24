@@ -30,30 +30,30 @@ namespace DiKErnel::KernelWrapper::Json
         public:
             /*!
              * \brief Creates a new instance.
-             * \param initialDamageLevel
-             *        The initial damage level.
-             * \param criticalDamageLevel
-             *        The critical damage level.
+             * \param initialDamage
+             *        The initial damage.
+             * \param criticalDamage
+             *        The critical damage.
              */
             explicit DamageVariables(
-                double initialDamageLevel,
-                double criticalDamageLevel
+                double initialDamage,
+                double criticalDamage
             );
 
             /*!
-             * \brief Gets the initial damage level.
-             * \return The initial damage level.
+             * \brief Gets the initial damage.
+             * \return The initial damage.
              */
-            double GetInitialDamageLevel() const;
+            double GetInitialDamage() const;
 
             /*!
-             * \brief Gets the critical damage level.
-             * \return The critical damage level.
+             * \brief Gets the critical damage.
+             * \return The critical damage.
              */
-            double GetCriticalDamageLevel() const;
+            double GetCriticalDamage() const;
 
         private:
-            double initialDamageLevel;
-            double criticalDamageLevel;
+            double initialDamage;
+            double criticalDamage;
     };
 }

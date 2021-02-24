@@ -157,8 +157,8 @@ namespace DiKErnel::KernelWrapper::Json::Test
             const double expectedCriticalDamage,
             const DamageVariables damageVariables) const
         {
-            ASSERT_DOUBLE_EQ(expectedInitialDamage, damageVariables.GetInitialDamageLevel());
-            ASSERT_DOUBLE_EQ(expectedCriticalDamage, damageVariables.GetCriticalDamageLevel());
+            ASSERT_DOUBLE_EQ(expectedInitialDamage, damageVariables.GetInitialDamage());
+            ASSERT_DOUBLE_EQ(expectedCriticalDamage, damageVariables.GetCriticalDamage());
         }
 
         void AssertRevetment(

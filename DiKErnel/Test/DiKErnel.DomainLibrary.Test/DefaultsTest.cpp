@@ -18,23 +18,15 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include "DamageVariables.h"
+#include <gtest/gtest.h>
 
-namespace DiKErnel::KernelWrapper::Json
+#include "Defaults.h"
+
+namespace DiKErnel::DomainLibrary::Test::DefaultsTest
 {
-    DamageVariables::DamageVariables(
-        const double initialDamage,
-        const double criticalDamage)
-        : initialDamage(initialDamage),
-          criticalDamage(criticalDamage) {}
-
-    double DamageVariables::GetInitialDamage() const
+    TEST(DefaultsTest, CriticalDamage_ExpectedValue)
     {
-        return initialDamage;
-    }
-
-    double DamageVariables::GetCriticalDamage() const
-    {
-        return criticalDamage;
+        // Call & Assert
+        ASSERT_DOUBLE_EQ(1.0, Defaults::CRITICAL_DAMAGE);
     }
 }

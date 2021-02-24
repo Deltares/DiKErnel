@@ -40,7 +40,7 @@ namespace DiKErnel::KernelWrapper::Json
              * \param name
              *        The name of the location.
              * \param damageVariables
-             *        The damage variable definition.
+             *        The damage variables.
              * \param revetment
              *        The revetment definition.
              * \param profileSchematization
@@ -59,8 +59,8 @@ namespace DiKErnel::KernelWrapper::Json
             const std::string& GetName() const;
 
             /*!
-             * \brief Gets the revetment definition.
-             * \return The revetment definition.
+             * \brief Gets the damage variables.
+             * \return The damage variables.
              */
             const DamageVariables& GetDamageVariables() const;
 

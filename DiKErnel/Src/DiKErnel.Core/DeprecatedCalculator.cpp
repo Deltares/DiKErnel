@@ -167,7 +167,7 @@ namespace DiKErnel::Core
         {
             vector<tuple<double, double>> damage;
 
-            damage.emplace_back(get<0>(timeSteps[0]), location.get().GetDamageVariables().GetInitialDamageLevel());
+            damage.emplace_back(get<0>(timeSteps[0]), location.get().GetDamageVariables().GetInitialDamage());
 
             outputData.emplace_back(damage);
         }
