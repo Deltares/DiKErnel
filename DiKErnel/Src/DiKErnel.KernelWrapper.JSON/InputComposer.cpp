@@ -23,12 +23,14 @@
 #include <fstream>
 
 #include "InputComposer.h"
+#include "Defaults.h"
 #include "InputData.h"
 #include "JsonDefinitions.h"
 
 namespace DiKErnel::KernelWrapper::Json
 {
     using namespace std;
+    using namespace DomainLibrary;
 
     unique_ptr<InputData> InputComposer::GetDomainParametersFromJson(
         const string& filePath)
@@ -92,8 +94,8 @@ namespace DiKErnel::KernelWrapper::Json
                 readLocation[JsonDefinitions::NAME].get<string>(),
                 make_unique<DamageVariables>(
                     readDamageVariables[JsonDefinitions::INITIAL_DAMAGE].get<double>(),
-                    readDamageVariables[JsonDefinitions::CRITICAL_DAMAGE].get<double>()),
-                    make_unique<Revetment>(
+                    GetCriticalDamage(readDamageVariables)),
+                make_unique<Revetment>(
                     readRevetment[JsonDefinitions::TYPE_TOP_LAYER].get<string>(),
                     readRevetment[JsonDefinitions::RELATIVE_DENSITY].get<double>(),
                     readRevetment[JsonDefinitions::THICKNESS_TOP_LAYER].get<double>(),
@@ -120,5 +122,16 @@ namespace DiKErnel::KernelWrapper::Json
     {
         ifstream ifs(filePath);
         return nlohmann::json::parse(ifs);
+    }
+
+    double InputComposer::GetCriticalDamage(
+        const nlohmann::basic_json<>::value_type& readDamageVariables)
+    {
+        if (readDamageVariables.contains(JsonDefinitions::INITIAL_DAMAGE))
+        {
+            return readDamageVariables[JsonDefinitions::CRITICAL_DAMAGE].get<double>();
+        }
+
+        return Defaults::CRITICAL_DAMAGE;
     }
 }
