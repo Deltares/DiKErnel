@@ -20,26 +20,29 @@
 
 #pragma once
 
-#include <memory>
-#include <vector>
-
-#include "JsonInputTimeDependentHydraulicData.h"
-
 namespace DiKErnel::KernelWrapper::Json::Input
 {
-    class JsonInputHydraulicData
+    class JsonInputTimeDependentHydraulicData
     {
         public:
-            explicit JsonInputHydraulicData(
-                double waveAngleMaximum,
-                std::vector<std::unique_ptr<JsonInputTimeDependentHydraulicData>> timeDependentHydraulicData
-            );
+            explicit JsonInputTimeDependentHydraulicData(
+                double waterLevel,
+                double waveHeightHm0,
+                double wavePeriodTm10,
+                double waveAngle);
 
-            const std::vector<std::reference_wrapper<JsonInputTimeDependentHydraulicData>>& GetTimeDependentHydraulicData() const;
+            double GetWaterLevel() const;
+
+            double GetWaveHeightHm0() const;
+
+            double GetWavePeriodTm10() const;
+
+            double GetWaveAngle() const;
 
         private:
-            double waveAngleMaximum;
-            std::vector<std::unique_ptr<JsonInputTimeDependentHydraulicData>> timeDependentHydraulicData;
-            std::vector<std::reference_wrapper<JsonInputTimeDependentHydraulicData>> timeDependentHydraulicDataReferences;
+            double waterLevel;
+            double waveHeightHm0;
+            double wavePeriodTm10;
+            double waveAngle;
     };
 }

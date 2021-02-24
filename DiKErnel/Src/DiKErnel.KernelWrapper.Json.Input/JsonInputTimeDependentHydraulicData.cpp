@@ -18,28 +18,37 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#pragma once
-
-#include <memory>
-#include <vector>
-
 #include "JsonInputTimeDependentHydraulicData.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
-    class JsonInputHydraulicData
+    JsonInputTimeDependentHydraulicData::JsonInputTimeDependentHydraulicData(
+        const double waterLevel,
+        const double waveHeightHm0,
+        const double wavePeriodTm10,
+        const double waveAngle)
+        : waterLevel(waterLevel),
+          waveHeightHm0(waveHeightHm0),
+          wavePeriodTm10(wavePeriodTm10),
+          waveAngle(waveAngle) { }
+
+    double JsonInputTimeDependentHydraulicData::GetWaterLevel() const
     {
-        public:
-            explicit JsonInputHydraulicData(
-                double waveAngleMaximum,
-                std::vector<std::unique_ptr<JsonInputTimeDependentHydraulicData>> timeDependentHydraulicData
-            );
+        return waterLevel;
+    }
 
-            const std::vector<std::reference_wrapper<JsonInputTimeDependentHydraulicData>>& GetTimeDependentHydraulicData() const;
+    double JsonInputTimeDependentHydraulicData::GetWaveHeightHm0() const
+    {
+        return waveHeightHm0;
+    }
 
-        private:
-            double waveAngleMaximum;
-            std::vector<std::unique_ptr<JsonInputTimeDependentHydraulicData>> timeDependentHydraulicData;
-            std::vector<std::reference_wrapper<JsonInputTimeDependentHydraulicData>> timeDependentHydraulicDataReferences;
-    };
+    double JsonInputTimeDependentHydraulicData::GetWavePeriodTm10() const
+    {
+        return wavePeriodTm10;
+    }
+
+    double JsonInputTimeDependentHydraulicData::GetWaveAngle() const
+    {
+        return waveAngle;
+    }
 }

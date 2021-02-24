@@ -56,7 +56,7 @@ if(NOT json_POPULATED)
 endif()
 
 # Link dependencies
-target_link_libraries(${LIBNAME} nlohmann_json::nlohmann_json)
+target_link_libraries(${LIBNAME} nlohmann_json::nlohmann_json DiKErnel.DomainLibrary)
 
 # Expose header files
 target_include_directories(${LIBNAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})

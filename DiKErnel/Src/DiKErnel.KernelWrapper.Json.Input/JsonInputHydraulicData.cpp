@@ -22,7 +22,22 @@
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
+    using namespace std;
+
     JsonInputHydraulicData::JsonInputHydraulicData(
-        const int waveAngleMaximum)
-        : waveAngleMaximum(waveAngleMaximum) {}
+        const double waveAngleMaximum,
+        vector<unique_ptr<JsonInputTimeDependentHydraulicData>> timeDependentHydraulicData)
+        : waveAngleMaximum(waveAngleMaximum),
+          timeDependentHydraulicData(move(timeDependentHydraulicData))
+    {
+        for (const auto& timeDependentHydraulicDataItem : this->timeDependentHydraulicData)
+        {
+            timeDependentHydraulicDataReferences.emplace_back(*timeDependentHydraulicDataItem);
+        }
+    }
+
+    const vector<reference_wrapper<JsonInputTimeDependentHydraulicData>>& JsonInputHydraulicData::GetTimeDependentHydraulicData() const
+    {
+        return timeDependentHydraulicDataReferences;
+    }
 }

@@ -1,0 +1,101 @@
+{
+	"Rekendata":
+	{
+		"Tijd":
+		[
+			0,
+			100,
+			500,
+			800,
+			1200,
+			2000
+		]
+	},
+	"HydraulischeBelastingen": 
+	{
+		"GolfhoekMaximum": 78,
+		"RandvoorwaardenPerTijdstap": 
+		[
+			{
+				"GolfhoogteHm0": 0.5,
+				"GolfperiodeTm10": 2,
+				"Golfhoek": -10
+			},
+			{
+				"GolfhoogteHm0": 0.8,
+				"GolfperiodeTm10": 6,
+				"Golfhoek": -5
+			},
+			{
+				"GolfhoogteHm0": 1.2,
+				"GolfperiodeTm10": 6,
+				"Golfhoek": 0
+			},
+			{
+				"GolfhoogteHm0": 1.5,
+				"GolfperiodeTm10": 7,
+				"Golfhoek": 7
+			},
+			{
+				"GolfhoogteHm0": 0.5,
+				"GolfperiodeTm10": 4,
+				"Golfhoek": 8
+			}
+		]
+	},
+	"Locaties":
+	[
+		{
+			"Naam": "LocatieZwak",
+			"Schade":
+			{
+				"BeginSchade": 0
+			},
+			"Bekleding":
+			{
+				"TypeToplaag": "Noorse Steen",
+				"RelatieveDichtheid": 1.65,
+				"DikteToplaag": 0.3,
+				"BrekerIndexGrenswaarde": 2.9,
+				"CoefficientPlungingAp": 4,
+				"CoefficientPlungingBp": 0,
+				"CoefficientPlungingCp": 0,
+				"CoefficientPlungingNp": -0.9,
+				"CoefficientSurgingAs": 0.8,
+				"CoefficientSurgingBs": 0,
+				"CoefficientSurgingCs": 0,
+				"CoefficientSurgingNs": 0.6
+			},
+			"Profielschematisatie":
+			{
+				"TanA": 0.3
+			}
+		},
+		{
+			"Naam": "LocatieSterk",
+			"Schade":
+			{
+				"BeginSchade": 0.1
+			},
+			"Bekleding":
+			{
+				"TypeToplaag": "Noorse Steen",
+				"RelatieveDichtheid": 1.65,
+				"DikteToplaag": 0.7,
+				"BrekerIndexGrenswaarde": 2.9,
+				"CoefficientPlungingAp": 4,
+				"CoefficientPlungingBp": 0,
+				"CoefficientPlungingCp": 0,
+				"CoefficientPlungingNp": -0.9,
+				"CoefficientSurgingAs": 0.8,
+				"CoefficientSurgingBs": 0,
+				"CoefficientSurgingCs": 0,
+				"CoefficientSurgingNs": 0.6
+			},
+			"Profielschematisatie":
+			{
+				"TanA": 0.3
+			}
+		}
+	]
+}
