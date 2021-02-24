@@ -97,13 +97,15 @@ namespace DiKErnel::KernelWrapper::Json::Test
 
         void AssertCalculationLocations(
             const vector<reference_wrapper<CalculationLocation>>& calculationLocations,
-            double expectedCriticalDamageLocation1,
-            double expectedCriticalDamageLocation2) const
+            const double expectedCriticalDamageLocation1,
+            const double expectedCriticalDamageLocation2) const
         {
-            AssertCalculationLocation(calculationLocations[0].get(), "LocatieZwak", "Noorse Steen", 1.65, 0.3, 0.0, expectedCriticalDamageLocation1, 2.9, 4.0, 0.0, 0.0, -0.9, 0.8,
-                                      0.0, 0.0, 0.6, 0.3);
-            AssertCalculationLocation(calculationLocations[1].get(), "LocatieSterk", "Noorse Steen", 1.65, 0.7, 0.1,
-                                      expectedCriticalDamageLocation2, 2.9, 4.0, 0.0, 0.0, -0.9, 0.8, 0.0, 0.0, 0.6, 0.3);
+            AssertCalculationLocation(calculationLocations[0].get(), "LocatieZwak", "Noorse Steen", 1.65, 0.3,
+                                      0.0, expectedCriticalDamageLocation1, 2.9, 4.0, 0.0,
+                                      0.0, -0.9, 0.8, 0.0, 0.0, 0.6, 0.3);
+            AssertCalculationLocation(calculationLocations[1].get(), "LocatieSterk", "Noorse Steen", 1.65, 0.7,
+                                      0.1, expectedCriticalDamageLocation2, 2.9, 4.0, 0.0,
+                                      0.0, -0.9, 0.8, 0.0, 0.0, 0.6, 0.3);
         }
 
         void AssertCalculationLocation(
