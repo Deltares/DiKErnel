@@ -18,18 +18,6 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#pragma once
+#include "JsonInputTimeDependentHydraulicData.h"
 
-namespace DiKErnel::KernelWrapper::Json::Input
-{
-    class JsonInputHydraulicData
-    {
-        public:
-            explicit JsonInputHydraulicData(
-                double waveAngleMaximum
-            );
-
-        private:
-            double waveAngleMaximum;
-    };
-}
+namespace DiKErnel::KernelWrapper::Json::Input {}

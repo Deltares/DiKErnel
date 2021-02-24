@@ -23,6 +23,6 @@
 namespace DiKErnel::KernelWrapper::Json::Input
 {
     JsonInputHydraulicData::JsonInputHydraulicData(
-        const int waveAngleMaximum)
+        const double waveAngleMaximum)
         : waveAngleMaximum(waveAngleMaximum) {}
 }
