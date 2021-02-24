@@ -22,5 +22,27 @@
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
-    class JsonInputTimeDependentHydraulicData {};
+    class JsonInputTimeDependentHydraulicData
+    {
+        public:
+            explicit JsonInputTimeDependentHydraulicData(
+                double waterLevel,
+                double waveHeightHm0,
+                double wavePeriodTm10,
+                double waveAngle);
+
+            double GetWaterLevel() const;
+
+            double GetWaveHeightHm0() const;
+
+            double GetWavePeriodTm10() const;
+
+            double GetWaveAngle() const;
+
+        private:
+            double waterLevel;
+            double waveHeightHm0;
+            double wavePeriodTm10;
+            double waveAngle;
+    };
 }

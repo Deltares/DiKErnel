@@ -20,4 +20,35 @@
 
 #include "JsonInputTimeDependentHydraulicData.h"
 
-namespace DiKErnel::KernelWrapper::Json::Input {}
+namespace DiKErnel::KernelWrapper::Json::Input
+{
+    JsonInputTimeDependentHydraulicData::JsonInputTimeDependentHydraulicData(
+        const double waterLevel,
+        const double waveHeightHm0,
+        const double wavePeriodTm10,
+        const double waveAngle)
+        : waterLevel(waterLevel),
+          waveHeightHm0(waveHeightHm0),
+          wavePeriodTm10(wavePeriodTm10),
+          waveAngle(waveAngle) { }
+
+    double JsonInputTimeDependentHydraulicData::GetWaterLevel() const
+    {
+        return waterLevel;
+    }
+
+    double JsonInputTimeDependentHydraulicData::GetWaveHeightHm0() const
+    {
+        return waveHeightHm0;
+    }
+
+    double JsonInputTimeDependentHydraulicData::GetWavePeriodTm10() const
+    {
+        return wavePeriodTm10;
+    }
+
+    double JsonInputTimeDependentHydraulicData::GetWaveAngle() const
+    {
+        return waveAngle;
+    }
+}
