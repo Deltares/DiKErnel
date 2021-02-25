@@ -20,6 +20,8 @@
 
 #pragma once
 
+#include <memory>
+
 namespace DiKErnel::KernelWrapper::Json::Input
 {
     class JsonInputDamageData
@@ -27,7 +29,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
         public:
             explicit JsonInputDamageData(
                 double initialDamage,
-                const double* criticalDamage);
+                std::unique_ptr<double> criticalDamage);
 
             double GetInitialDamage() const;
 
@@ -35,6 +37,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
         private:
             double initialDamage;
-            const double* criticalDamage;
+            std::unique_ptr<double> criticalDamage;
     };
 }
