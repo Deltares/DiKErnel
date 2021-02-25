@@ -22,12 +22,22 @@
 
 namespace DiKErnel::Core
 {
+    using namespace std;
+
     LocationDependentData::LocationDependentData(
         const double initialDamage)
-        : currentDamage(initialDamage) {}
+    {
+        allDamages = vector<double>();
+        allDamages.emplace_back(initialDamage);
+    }
 
     double LocationDependentData::GetCurrentDamage() const
     {
-        return currentDamage;
+        return allDamages.back();
+    }
+
+    vector<double> LocationDependentData::GetAllDamages() const
+    {
+        return allDamages;
     }
 }

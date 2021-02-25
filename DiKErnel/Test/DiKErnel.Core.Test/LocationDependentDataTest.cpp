@@ -18,28 +18,27 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#pragma once
+#include <gtest/gtest.h>
 
-#include "LocationDependentData.h"
+#include "TestLocationDependentData.h"
 
-namespace DiKErnel::Core::TestUtil
+namespace DiKErnel::Core::Test
 {
-    /*!
-     * \brief Implementation of LocationDependentData that can be used in tests.
-     */
-    class TestLocationDependentData : public LocationDependentData
-    {
-        public:
-            /*!
-             * \brief Creates a new instance.
-             * \param initialDamage
-             *        The initial damage of the location.
-             */
-            explicit TestLocationDependentData(
-                double initialDamage);
+    using namespace TestUtil;
 
-            void Calculate(
-                const TimeDependentData& timeDependentData,
-                double maximumWaveAngle) override;
-    };
+    TEST(LocationDependentDataTest, Constructor_WithParameters_ExpectedValues)
+    {
+        // Setup
+        const auto initialDamage = rand() % 10;
+
+        // Call
+         const TestLocationDependentData locationDependentData(initialDamage);
+    
+         // Assert
+         ASSERT_DOUBLE_EQ(initialDamage, locationDependentData.GetCurrentDamage());
+         const auto actualDamages = locationDependentData.GetAllDamages();
+    
+         ASSERT_EQ(1, actualDamages.size());
+         ASSERT_DOUBLE_EQ(initialDamage, actualDamages[0]);
+    }
 }

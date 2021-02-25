@@ -55,7 +55,7 @@ namespace DiKErnel::Core::Test
     {
         // Setup
         vector<unique_ptr<LocationDependentData>> locationDependentDataItems;
-        locationDependentDataItems.push_back(make_unique<TestLocationDependentData>());
+        locationDependentDataItems.push_back(make_unique<TestLocationDependentData>(0));
 
         const auto beginTime = rand() % 100;
         const auto endTime = rand() % 100 + 100;

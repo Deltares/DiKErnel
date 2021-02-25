@@ -20,6 +20,8 @@
 
 #pragma once
 
+#include <vector>
+
 #include "TimeDependentData.h"
 
 namespace DiKErnel::Core
@@ -30,9 +32,6 @@ namespace DiKErnel::Core
     class LocationDependentData
     {
         public:
-            explicit LocationDependentData(
-                double initialDamage);
-
             /*!
              * \brief Destructs the instance.
              */
@@ -44,9 +43,8 @@ namespace DiKErnel::Core
              *        The time dependent data to use in the calculation.
              * \param maximumWaveAngle
              *        The maximum wave angle.
-             * \return The calculated damage.
              */
-            virtual double Calculate(
+            virtual void Calculate(
                 const TimeDependentData& timeDependentData,
                 double maximumWaveAngle) = 0;
 
@@ -56,7 +54,22 @@ namespace DiKErnel::Core
              */
             double GetCurrentDamage() const;
 
+            /*!
+             * \brief Gets all the damages.
+             * \return All damages.
+             */
+            std::vector<double> GetAllDamages() const;
+
+        protected:
+            /*!
+             * \brief Creates a new instance.
+             * \param initialDamage
+             *        The initial damage of the location.
+             */
+            explicit LocationDependentData(
+                double initialDamage);
+
         private:
-            double currentDamage;
+            std::vector<double> allDamages;
     };
 }
