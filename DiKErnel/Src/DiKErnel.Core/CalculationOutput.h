@@ -44,7 +44,7 @@ namespace DiKErnel::Core
              * \brief Gets all location outputs.
              * \return All location outputs.
              */
-            std::vector<std::reference_wrapper<LocationOutput>> GetLocationOutputs() const;
+            const std::vector<std::reference_wrapper<LocationOutput>>& GetLocationOutputs() const;
 
         private:
             std::vector<std::unique_ptr<LocationOutput>> locationOutputs;

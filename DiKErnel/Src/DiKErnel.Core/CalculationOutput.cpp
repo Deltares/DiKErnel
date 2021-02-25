@@ -34,7 +34,7 @@ namespace DiKErnel::Core
         }
     }
 
-    std::vector<std::reference_wrapper<LocationOutput>> CalculationOutput::GetLocationOutputs() const
+    const vector<reference_wrapper<LocationOutput>>& CalculationOutput::GetLocationOutputs() const
     {
         return locationOutputReferences;
     }
