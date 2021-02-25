@@ -15,6 +15,8 @@ set(SOURCEFILES
   InvalidCalculationDataException.h
   LocationDependentData.cpp
   LocationDependentData.h
+  LocationOutput.cpp
+  LocationOutput.h
   TimeDependentData.cpp
   TimeDependentData.h
 )
