@@ -20,10 +20,34 @@
 
 #pragma once
 
+#include <memory>
+
+#include "LocationOutput.h"
+
 namespace DiKErnel::Core
 {
     /*!
      * \brief Class containing all output data of a calculation.
      */
-    class CalculationOutput { };
+    class CalculationOutput
+    {
+        public:
+            /*!
+             * \brief Creates a new instance.
+             * \param locationOutputs
+             *        All location outputs.
+             */
+            explicit CalculationOutput(
+                std::vector<std::unique_ptr<LocationOutput>> locationOutputs);
+
+            /*!
+             * \brief Gets all location outputs.
+             * \return All location outputs.
+             */
+            std::vector<std::reference_wrapper<LocationOutput>> GetLocationOutputs() const;
+
+        private:
+            std::vector<std::unique_ptr<LocationOutput>> locationOutputs;
+            std::vector<std::reference_wrapper<LocationOutput>> locationOutputReferences;
+    };
 }

@@ -20,4 +20,22 @@
 
 #include "CalculationOutput.h"
 
-namespace DiKErnel::Core {}
+namespace DiKErnel::Core
+{
+    using namespace std;
+
+    CalculationOutput::CalculationOutput(
+        vector<unique_ptr<LocationOutput>> locationOutputs)
+        : locationOutputs(move(locationOutputs))
+    {
+        for (const auto& locationOutput : this->locationOutputs)
+        {
+            locationOutputReferences.emplace_back(*locationOutput);
+        }
+    }
+
+    std::vector<std::reference_wrapper<LocationOutput>> CalculationOutput::GetLocationOutputs() const
+    {
+        return locationOutputReferences;
+    }
+}

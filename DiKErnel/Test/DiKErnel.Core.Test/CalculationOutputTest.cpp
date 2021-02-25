@@ -18,4 +18,26 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-namespace DiKErnel::Core::Test {}
+#include <gtest/gtest.h>
+
+#include "CalculationOutput.h"
+#include "LocationOutput.h"
+
+namespace DiKErnel::Core::Test
+{
+    using namespace std;
+
+    TEST(CalculationOutputTest, Constructor_WithParameters_ExpectedValues)
+    {
+        // Setup
+        auto locationOutputs = vector<unique_ptr<LocationOutput>>();
+        locationOutputs.push_back(make_unique<LocationOutput>());
+        locationOutputs.push_back(make_unique<LocationOutput>());
+
+        // Call
+        const CalculationOutput output(move(locationOutputs));
+
+        // Assert
+        ASSERT_EQ(2, output.GetLocationOutputs().size());
+    }
+}
