@@ -74,13 +74,13 @@ namespace DiKErnel::Core
     }
 
     void Calculator::PerformCalculation(
-        CalculationInput& calculationInput,
+        const CalculationInput& calculationInput,
         std::atomic<double>& progress,
         std::atomic<bool>& isFinished,
         const std::atomic<bool>& isCancelled)
     {
-        auto timeDependentDataItems = calculationInput.GetTimeDependentDataItems();
-        auto locationDependentDataItems = calculationInput.GetLocationDependentDataItems();
+        const auto& timeDependentDataItems = calculationInput.GetTimeDependentDataItems();
+        const auto& locationDependentDataItems = calculationInput.GetLocationDependentDataItems();
 
         const auto percentagePerCalculation = 1.0
                 / static_cast<double>(timeDependentDataItems.size())
@@ -93,7 +93,7 @@ namespace DiKErnel::Core
                 break;
             }
 
-            for (auto& location : locationDependentDataItems)
+            for (const auto& location : locationDependentDataItems)
             {
                 if (isCancelled)
                 {

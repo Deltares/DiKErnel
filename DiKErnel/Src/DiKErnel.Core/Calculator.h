@@ -88,7 +88,7 @@ namespace DiKErnel::Core
             std::unique_ptr<CalculationOutput> calculationOutput;
 
             static void PerformCalculation(
-                CalculationInput& calculationInput,
+                const CalculationInput& calculationInput,
                 std::atomic<double>& progress,
                 std::atomic<bool>& isFinished,
                 const std::atomic<bool>& isCancelled);
