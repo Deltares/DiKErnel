@@ -18,4 +18,78 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-namespace DiKErnel::Core::Test { }
+#include <gtest/gtest.h>
+
+#include "CalculationInput.h"
+#include "Calculator.h"
+#include "TestLocationDependentData.h"
+
+namespace DiKErnel::Core::Test
+{
+    using namespace std;
+    using namespace TestUtil;
+
+    struct CalculatorTest : testing::Test
+    {
+        unique_ptr<CalculationInput> calculationInput;
+
+        explicit CalculatorTest()
+        {
+            vector<unique_ptr<LocationDependentData>> locationDependentDataItems;
+            locationDependentDataItems.push_back(make_unique<TestLocationDependentData>(0));
+            locationDependentDataItems.push_back(make_unique<TestLocationDependentData>(0.1));
+            locationDependentDataItems.push_back(make_unique<TestLocationDependentData>(0.2));
+
+            vector<unique_ptr<TimeDependentData>> timeDependentDataItems;
+            timeDependentDataItems.push_back(make_unique<TimeDependentData>(0, 10, 0.1, 0.2, 0.3, 0.4));
+            timeDependentDataItems.push_back(make_unique<TimeDependentData>(10, 20, 0.1, 0.2, 0.3, 0.4));
+            timeDependentDataItems.push_back(make_unique<TimeDependentData>(20, 30, 0.1, 0.2, 0.3, 0.4));
+
+            calculationInput = make_unique<CalculationInput>(move(locationDependentDataItems), move(timeDependentDataItems), 0);
+        }
+    };
+
+    TEST_F(CalculatorTest, Constructor_WithParameters_PerformsCalculationWithExpectedOutput)
+    {
+        // Setup
+        Calculator calculator(*calculationInput);
+
+        // Call
+        calculator.WaitForCompletion();
+
+        // Assert
+        ASSERT_EQ(100, calculator.GetProgress());
+        ASSERT_TRUE(calculator.IsFinished());
+        ASSERT_FALSE(calculator.IsCancelled());
+    }
+
+    TEST_F(CalculatorTest, GivenCalculatorWithRunningCalculation_WhenCancelCalled_ThenCalculationCancelled)
+    {
+        // Given
+        Calculator calculator(*calculationInput);
+
+        // When
+        calculator.Cancel();
+        calculator.WaitForCompletion();
+
+        // Then
+        ASSERT_TRUE(calculator.IsCancelled());
+        ASSERT_FALSE(calculator.IsFinished());
+        ASSERT_FALSE(calculator.GetProgress() == 100);
+    }
+
+    TEST_F(CalculatorTest, GivenCalculatorWithFinishedCalculation_WhenCancelCalled_ThenCalculationNotCancelled)
+    {
+        // Given
+        Calculator calculator(*calculationInput);
+        calculator.WaitForCompletion();
+
+        // When
+        calculator.Cancel();
+
+        // Then
+        ASSERT_FALSE(calculator.IsCancelled());
+        ASSERT_TRUE(calculator.IsFinished());
+        ASSERT_TRUE(calculator.GetProgress() == 100);
+    }
+}

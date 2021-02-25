@@ -20,4 +20,93 @@
 
 #include "Calculator.h"
 
-namespace DiKErnel::Core {}
+namespace DiKErnel::Core
+{
+    using namespace std;
+
+    Calculator::Calculator(
+        CalculationInput& calculationInput)
+    {
+        calculationThread = thread(
+            PerformCalculation,
+            ref(calculationInput),
+            ref(progress),
+            ref(isFinished),
+            ref(isCancelled));
+    }
+
+    void Calculator::WaitForCompletion()
+    {
+        if (calculationThread.joinable())
+        {
+            calculationThread.join();
+        }
+    }
+
+    int Calculator::GetProgress() const
+    {
+        return static_cast<int>(round(progress * 100));
+    }
+
+    bool Calculator::IsFinished() const
+    {
+        return isFinished;
+    }
+
+    void Calculator::Cancel()
+    {
+        if (!isFinished)
+        {
+            isCancelled = true;
+        }
+    }
+
+    bool Calculator::IsCancelled() const
+    {
+        return isCancelled;
+    }
+
+    reference_wrapper<CalculationOutput> Calculator::GetCalculationOutput() const
+    {
+        return *calculationOutput;
+    }
+
+    void Calculator::PerformCalculation(
+        CalculationInput& calculationInput,
+        std::atomic<double>& progress,
+        std::atomic<bool>& isFinished,
+        const std::atomic<bool>& isCancelled)
+    {
+        auto timeDependentDataItems = calculationInput.GetTimeDependentDataItems();
+        auto locationDependentDataItems = calculationInput.GetLocationDependentDataItems();
+
+        const auto percentagePerCalculation = 1.0
+                / static_cast<double>(timeDependentDataItems.size())
+                / static_cast<double>(locationDependentDataItems.size());
+
+        for (const auto& timeDependentData : timeDependentDataItems)
+        {
+            if (isCancelled)
+            {
+                break;
+            }
+
+            for (auto& location : locationDependentDataItems)
+            {
+                if (isCancelled)
+                {
+                    break;
+                }
+
+                location.get().Calculate(timeDependentData.get(), calculationInput.GetMaximumWaveAngle());
+
+                progress = progress + percentagePerCalculation;
+            }
+        }
+
+        if (!isCancelled)
+        {
+            isFinished = true;
+        }
+    }
+}

@@ -20,10 +20,78 @@
 
 #pragma once
 
+#include <atomic>
+#include <thread>
+
+#include "CalculationInput.h"
+#include "CalculationOutput.h"
+
 namespace DiKErnel::Core
 {
     /*!
      * \brief Class responsible for performing calculations on a separate thread.
      */
-    class DeprecatedCalculator { };
+    class Calculator
+    {
+        public:
+            /*!
+             * \brief Create a new instance.
+             * \param calculationInput
+             *        The data used in the calculation.
+             */
+            explicit Calculator(
+                CalculationInput& calculationInput);
+
+            /*!
+             * \brief Handle that enables a calling instance to wait for the calculation to
+             *        complete.
+             */
+            void WaitForCompletion();
+
+            /*!
+             * \brief Gets the current progress of the calculation.
+             * \return The current progress of the calculation.
+             *         Unit = [%]
+             * \remarks Also returns the current progress when the calculation is cancelled.
+             */
+            int GetProgress() const;
+
+            /*!
+             * \brief Gets whether or not the calculation is finished.
+             * \return Whether or not the calculation is finished.
+             */
+            bool IsFinished() const;
+
+            /*!
+             * \brief Cancels the calculation.
+             * \remarks A calculation can only be cancelled when it is not finished yet.
+             */
+            void Cancel();
+
+            /*!
+             * \brief Gets whether or not the calculation is cancelled.
+             * \return Whether or not the calculation is cancelled.
+             */
+            bool IsCancelled() const;
+
+            /*!
+             * \brief Gets the output of the calculation.
+             * \return The output of the calculation.
+             */
+            std::reference_wrapper<CalculationOutput> GetCalculationOutput() const;
+
+        private:
+            std::thread calculationThread;
+            std::atomic<double> progress = 0;
+            std::atomic<bool> isCancelled = false;
+            std::atomic<bool> isFinished = false;
+            std::unique_ptr<CalculationOutput> calculationOutput;
+
+            static void PerformCalculation(
+                CalculationInput& calculationInput,
+                std::atomic<double>& progress,
+                std::atomic<bool>& isFinished,
+                const std::atomic<bool>& isCancelled);
+            
+    };
 }
