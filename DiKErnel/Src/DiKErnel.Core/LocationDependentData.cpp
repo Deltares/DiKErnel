@@ -26,18 +26,10 @@ namespace DiKErnel::Core
 
     LocationDependentData::LocationDependentData(
         const double initialDamage)
-    {
-        allDamages = vector<double>();
-        allDamages.emplace_back(initialDamage);
-    }
+        : initialDamage(initialDamage) { }
 
-    double LocationDependentData::GetCurrentDamage() const
+    double LocationDependentData::GetInitialDamage() const
     {
-        return allDamages.back();
-    }
-
-    vector<double> LocationDependentData::GetAllDamages() const
-    {
-        return allDamages;
+        return initialDamage;
     }
 }

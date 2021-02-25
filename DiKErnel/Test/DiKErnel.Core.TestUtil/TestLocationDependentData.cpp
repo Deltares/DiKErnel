@@ -26,7 +26,10 @@ namespace DiKErnel::Core::TestUtil
         const double initialDamage)
         : LocationDependentData(initialDamage) {}
 
-    void TestLocationDependentData::Calculate(
+    double TestLocationDependentData::Calculate(
         const TimeDependentData& timeDependentData,
-        double maximumWaveAngle) { }
+        const double maximumWaveAngle)
+    {
+        return 0;
+    }
 }

@@ -43,22 +43,17 @@ namespace DiKErnel::Core
              *        The time dependent data to use in the calculation.
              * \param maximumWaveAngle
              *        The maximum wave angle.
+             * \return The calculated damage.
              */
-            virtual void Calculate(
+            virtual double Calculate(
                 const TimeDependentData& timeDependentData,
                 double maximumWaveAngle) = 0;
 
             /*!
-             * \brief Gets the current damage.
-             * \return The current damage.
+             * \brief Gets the initial damage.
+             * \return The initial damage.
              */
-            double GetCurrentDamage() const;
-
-            /*!
-             * \brief Gets all the damages.
-             * \return All damages.
-             */
-            std::vector<double> GetAllDamages() const;
+            double GetInitialDamage() const;
 
         protected:
             /*!
@@ -70,6 +65,6 @@ namespace DiKErnel::Core
                 double initialDamage);
 
         private:
-            std::vector<double> allDamages;
+            double initialDamage;
     };
 }

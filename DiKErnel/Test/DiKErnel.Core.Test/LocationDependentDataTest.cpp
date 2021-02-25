@@ -35,10 +35,6 @@ namespace DiKErnel::Core::Test
          const TestLocationDependentData locationDependentData(initialDamage);
     
          // Assert
-         ASSERT_DOUBLE_EQ(initialDamage, locationDependentData.GetCurrentDamage());
-         const auto actualDamages = locationDependentData.GetAllDamages();
-    
-         ASSERT_EQ(1, actualDamages.size());
-         ASSERT_DOUBLE_EQ(initialDamage, actualDamages[0]);
+         ASSERT_DOUBLE_EQ(initialDamage, locationDependentData.GetInitialDamage());
     }
 }
