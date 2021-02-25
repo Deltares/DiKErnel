@@ -26,7 +26,7 @@ namespace DiKErnel::Core
     using namespace std;
 
     CalculationInput::CalculationInput(
-        vector<unique_ptr<ILocationDependentData>> locationDependentDataItems,
+        vector<unique_ptr<LocationDependentData>> locationDependentDataItems,
         vector<unique_ptr<TimeDependentData>> timeDependentDataItems,
         const double maximumWaveAngle)
         : locationDependentDataItems(move(locationDependentDataItems)),
@@ -52,7 +52,7 @@ namespace DiKErnel::Core
         }
     }
 
-    const vector<reference_wrapper<ILocationDependentData>>& CalculationInput::GetLocationDependentDataItems() const
+    const vector<reference_wrapper<LocationDependentData>>& CalculationInput::GetLocationDependentDataItems() const
     {
         return locationDependentDataItemReferences;
     }

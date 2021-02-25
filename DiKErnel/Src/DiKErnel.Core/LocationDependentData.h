@@ -27,18 +27,19 @@ namespace DiKErnel::Core
     /*!
      * \brief Class containing all location related data to perform a calculation.
      */
-    class ILocationDependentData
+    class LocationDependentData
     {
         public:
+            explicit LocationDependentData(
+                double initialDamage);
+
             /*!
              * \brief Destructs the instance.
              */
-            virtual ~ILocationDependentData() = default;
+            virtual ~LocationDependentData() = default;
 
             /*!
              * \brief Performs a calculation.
-             * \param initialDamage
-             *        The initial damage to start the calculation with.
              * \param timeDependentData
              *        The time dependent data to use in the calculation.
              * \param maximumWaveAngle
@@ -46,8 +47,16 @@ namespace DiKErnel::Core
              * \return The calculated damage.
              */
             virtual double Calculate(
-                double initialDamage,
-                TimeDependentData& timeDependentData,
+                const TimeDependentData& timeDependentData,
                 double maximumWaveAngle) = 0;
+
+            /*!
+             * \brief Gets the current damage.
+             * \return The current damage.
+             */
+            double GetCurrentDamage() const;
+
+        private:
+            double currentDamage;
     };
 }

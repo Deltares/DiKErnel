@@ -23,7 +23,7 @@
 #include <memory>
 #include <vector>
 
-#include "ILocationDependentData.h"
+#include "LocationDependentData.h"
 #include "TimeDependentData.h"
 
 namespace DiKErnel::Core
@@ -46,7 +46,7 @@ namespace DiKErnel::Core
              *            Thrown when timeDependentDataItems do not connect or are unordered.
              */
             explicit CalculationInput(
-                std::vector<std::unique_ptr<ILocationDependentData>> locationDependentDataItems,
+                std::vector<std::unique_ptr<LocationDependentData>> locationDependentDataItems,
                 std::vector<std::unique_ptr<TimeDependentData>> timeDependentDataItems,
                 double maximumWaveAngle
             );
@@ -55,7 +55,7 @@ namespace DiKErnel::Core
              * \brief Gets the locations dependent data items to use in the calculation.
              * \return The locations dependent data items to use in the calculation.
              */
-            const std::vector<std::reference_wrapper<ILocationDependentData>>& GetLocationDependentDataItems() const;
+            const std::vector<std::reference_wrapper<LocationDependentData>>& GetLocationDependentDataItems() const;
 
             /*!
              * \brief Gets the time dependent data items to use in the calculation.
@@ -70,10 +70,10 @@ namespace DiKErnel::Core
             double GetMaximumWaveAngle() const;
 
         private:
-            std::vector<std::unique_ptr<ILocationDependentData>> locationDependentDataItems;
+            std::vector<std::unique_ptr<LocationDependentData>> locationDependentDataItems;
             std::vector<std::unique_ptr<TimeDependentData>> timeDependentDataItems;
 
-            std::vector<std::reference_wrapper<ILocationDependentData>> locationDependentDataItemReferences;
+            std::vector<std::reference_wrapper<LocationDependentData>> locationDependentDataItemReferences;
             std::vector<std::reference_wrapper<TimeDependentData>> timeDependentDataItemReferences;
 
             double maximumWaveAngle;

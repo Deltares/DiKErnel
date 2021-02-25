@@ -38,7 +38,7 @@ namespace DiKErnel::Core::Test
             timeDependentDataItems.push_back(make_unique<TimeDependentData>(0, 10, 0, 0, 0, 0));
             timeDependentDataItems.push_back(make_unique<TimeDependentData>(15, 20, 0, 0, 0, 0));
 
-            const CalculationInput calculationInput(vector<unique_ptr<ILocationDependentData>>(), move(timeDependentDataItems), 0);
+            const CalculationInput calculationInput(vector<unique_ptr<LocationDependentData>>(), move(timeDependentDataItems), 0);
         }
 
         static void TimeDependentDataUnordered()
@@ -47,14 +47,14 @@ namespace DiKErnel::Core::Test
             timeDependentDataItems.push_back(make_unique<TimeDependentData>(10, 20, 0, 0, 0, 0));
             timeDependentDataItems.push_back(make_unique<TimeDependentData>(0, 10, 0, 0, 0, 0));
 
-            const CalculationInput calculationInput(vector<unique_ptr<ILocationDependentData>>(), move(timeDependentDataItems), 0);
+            const CalculationInput calculationInput(vector<unique_ptr<LocationDependentData>>(), move(timeDependentDataItems), 0);
         }
     };
 
     TEST_F(CalculationInputTest, Constructor_WithParameters_ExpectedValues)
     {
         // Setup
-        vector<unique_ptr<ILocationDependentData>> locationDependentDataItems;
+        vector<unique_ptr<LocationDependentData>> locationDependentDataItems;
         locationDependentDataItems.push_back(make_unique<TestLocationDependentData>());
 
         const auto beginTime = rand() % 100;
