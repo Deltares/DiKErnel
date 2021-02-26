@@ -19,6 +19,7 @@
 // All rights reserved.
 
 #include <cmath>
+
 #include <gtest/gtest.h>
 
 #include "Constants.h"

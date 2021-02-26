@@ -21,6 +21,7 @@
 #include "FileAssert.h"
 
 #include <fstream>
+
 #include <gtest/gtest.h>
 
 namespace DiKErnel::TestUtil

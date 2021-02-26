@@ -25,6 +25,7 @@
 #include "HydraulicLoads.h"
 #include "InputComposer.h"
 #include "InputData.h"
+
 #include "nlohmann/json.hpp"
 
 namespace DiKErnel::KernelWrapper::Json

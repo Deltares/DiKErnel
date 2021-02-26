@@ -21,6 +21,7 @@
 #include "InputComposer.h"
 
 #include <fstream>
+
 #include <nlohmann/json.hpp>
 
 #include "Defaults.h"
