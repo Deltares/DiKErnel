@@ -84,7 +84,9 @@ namespace DiKErnel::KernelWrapper::Json::Test
         }
 
         void AssertCalculationLocations(
-            const vector<unique_ptr<CalculationLocation>>& calculationLocations) const
+            const vector<unique_ptr<CalculationLocation>>& calculationLocations,
+            const double expectedCriticalDamageLocation1,
+            const double expectedCriticalDamageLocation2) const
         {
             vector<reference_wrapper<CalculationLocation>> locationReferences;
 
@@ -93,7 +95,7 @@ namespace DiKErnel::KernelWrapper::Json::Test
                 locationReferences.emplace_back(*location);
             }
 
-            AssertCalculationLocations(locationReferences, 1.0, 1.05);
+            AssertCalculationLocations(locationReferences, expectedCriticalDamageLocation1, expectedCriticalDamageLocation2);
         }
 
         void AssertCalculationLocations(
@@ -131,9 +133,9 @@ namespace DiKErnel::KernelWrapper::Json::Test
             ASSERT_EQ(expectedName, calculationLocation.GetName());
 
             AssertDamageVariables(
+                calculationLocation.GetDamageVariables(),
                 expectedInitialDamage,
-                expectedCriticalDamage,
-                calculationLocation.GetDamageVariables());
+                expectedCriticalDamage);
 
             AssertRevetment(
                 calculationLocation.GetRevetment(),
@@ -154,9 +156,10 @@ namespace DiKErnel::KernelWrapper::Json::Test
         }
 
         void AssertDamageVariables(
+            const DamageVariables& damageVariables,
             const double expectedInitialDamage,
-            const double expectedCriticalDamage,
-            const DamageVariables damageVariables) const
+            const double expectedCriticalDamage)
+             const
         {
             ASSERT_DOUBLE_EQ(expectedInitialDamage, damageVariables.GetInitialDamage());
             ASSERT_DOUBLE_EQ(expectedCriticalDamage, damageVariables.GetCriticalDamage());
@@ -192,7 +195,7 @@ namespace DiKErnel::KernelWrapper::Json::Test
         }
     };
 
-    TEST_F(InputComposerTest, GivenFilePathAndInputComposer_WhenGetDomainParametersFromJson_ThenCorrectDataSet)
+    TEST_F(InputComposerTest, GivenFileWithAllInputParametersAndInputComposer_WhenGetDomainParametersFromJson_ThenCorrectDataSet)
     {
         // When
         const auto inputData = InputComposer::GetDomainParametersFromJson(_filePathWithAllParameters);
@@ -203,7 +206,7 @@ namespace DiKErnel::KernelWrapper::Json::Test
         AssertCalculationLocations(inputData->GetLocations(), 1.0, 1.05);
     }
 
-    TEST_F(InputComposerTest, GivenFilePathWithMissingParametersAndInputComposer_WhenGetDomainParametersFromJson_ThenCorrectDataSet)
+    TEST_F(InputComposerTest, GivenFileWithMandatoryInputParametersAndInputComposer_WhenGetDomainParametersFromJson_ThenCorrectDataSet)
     {
         // When
         const auto inputData = InputComposer::GetDomainParametersFromJson(_filePathWithMandatoryParameters);
@@ -214,7 +217,7 @@ namespace DiKErnel::KernelWrapper::Json::Test
         AssertCalculationLocations(inputData->GetLocations(), 1.0, 1.0);
     }
 
-    TEST_F(InputComposerTest, GivenFilePathAndInputComposer_WhenReadCalculationDataFromJson_ThenCorrectDataSet)
+    TEST_F(InputComposerTest, GivenFileWithAllInputParametersAndInputComposer_WhenReadCalculationDataFromJson_ThenCorrectDataSet)
     {
         // Given
         ifstream ifs(_filePathWithAllParameters);
@@ -227,7 +230,7 @@ namespace DiKErnel::KernelWrapper::Json::Test
         AssertCalculationData(*calculationData);
     }
 
-    TEST_F(InputComposerTest, GivenFilePathAndInputComposer_WhenReadHydraulicLoadsFromJson_ThenCorrectDataSet)
+    TEST_F(InputComposerTest, GivenFileWithAllInputParametersAndInputComposer_WhenReadHydraulicLoadsFromJson_ThenCorrectDataSet)
     {
         // Given
         ifstream ifs(_filePathWithAllParameters);
@@ -240,7 +243,7 @@ namespace DiKErnel::KernelWrapper::Json::Test
         AssertHydraulicLoads(*hydraulicLoads);
     }
 
-    TEST_F(InputComposerTest, GivenFilePathAndInputComposer_WhenReadLocationsFromJson_ThenCorrectDataSet)
+    TEST_F(InputComposerTest, GivenFileWithAllInputParametersAndInputComposer_WhenReadLocationsFromJson_ThenCorrectDataSet)
     {
         // Given
         ifstream ifs(_filePathWithAllParameters);
@@ -250,6 +253,6 @@ namespace DiKErnel::KernelWrapper::Json::Test
         const auto calculationLocations = InputComposer::ReadLocations(json);
 
         // Then
-        AssertCalculationLocations(calculationLocations);
+        AssertCalculationLocations(calculationLocations, 1.0, 1.05);
     }
 }
