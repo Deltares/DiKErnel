@@ -18,10 +18,9 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include <gtest/gtest.h>
-
 #include <filesystem>
 #include <fstream>
+#include <gtest/gtest.h>
 
 #include "InputComposer.h"
 #include "InputData.h"
@@ -33,12 +32,13 @@ namespace DiKErnel::KernelWrapper::Json::Test
 
     struct InputComposerTest : testing::Test
     {
-        const string filePath =
+        const string filePathWithAllParameters =
         (TestUtil::TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Test")
             / "InputComposerTest"
             / "testInput.json").string();
 
-        const string filePathMissingParameters = (TestUtil::TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Test")
+        const string filePathWithMandatoryParameters =
+        (TestUtil::TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Test")
             / "InputComposerTest"
             / "testInput_NoCriticalDamage.json").string();
 
@@ -194,7 +194,7 @@ namespace DiKErnel::KernelWrapper::Json::Test
     TEST_F(InputComposerTest, GivenFilePathAndInputComposer_WhenGetDomainParametersFromJson_ThenCorrectDataSet)
     {
         // When
-        const auto inputData = InputComposer::GetDomainParametersFromJson(filePath);
+        const auto inputData = InputComposer::GetDomainParametersFromJson(filePathWithAllParameters);
 
         // Then
         AssertCalculationData(inputData->GetCalculationData());
@@ -205,7 +205,7 @@ namespace DiKErnel::KernelWrapper::Json::Test
     TEST_F(InputComposerTest, GivenFilePathWithMissingParametersAndInputComposer_WhenGetDomainParametersFromJson_ThenCorrectDataSet)
     {
         // When
-        const auto inputData = InputComposer::GetDomainParametersFromJson(filePathMissingParameters);
+        const auto inputData = InputComposer::GetDomainParametersFromJson(filePathWithMandatoryParameters);
 
         // Then
         AssertCalculationData(inputData->GetCalculationData());
@@ -216,7 +216,7 @@ namespace DiKErnel::KernelWrapper::Json::Test
     TEST_F(InputComposerTest, GivenFilePathAndInputComposer_WhenReadCalculationDataFromJson_ThenCorrectDataSet)
     {
         // Given
-        ifstream ifs(filePath);
+        ifstream ifs(filePathWithAllParameters);
         const auto json = nlohmann::json::parse(ifs);
 
         // When
@@ -229,7 +229,7 @@ namespace DiKErnel::KernelWrapper::Json::Test
     TEST_F(InputComposerTest, GivenFilePathAndInputComposer_WhenReadHydraulicLoadsFromJson_ThenCorrectDataSet)
     {
         // Given
-        ifstream ifs(filePath);
+        ifstream ifs(filePathWithAllParameters);
         const auto json = nlohmann::json::parse(ifs);
 
         // When
@@ -242,7 +242,7 @@ namespace DiKErnel::KernelWrapper::Json::Test
     TEST_F(InputComposerTest, GivenFilePathAndInputComposer_WhenReadLocationsFromJson_ThenCorrectDataSet)
     {
         // Given
-        ifstream ifs(filePath);
+        ifstream ifs(filePathWithAllParameters);
         const auto json = nlohmann::json::parse(ifs);
 
         // When

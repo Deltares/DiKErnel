@@ -18,11 +18,11 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include "nlohmann/json.hpp"
+#include "InputComposer.h"
 
 #include <fstream>
+#include <nlohmann/json.hpp>
 
-#include "InputComposer.h"
 #include "Defaults.h"
 #include "InputData.h"
 #include "JsonDefinitions.h"
