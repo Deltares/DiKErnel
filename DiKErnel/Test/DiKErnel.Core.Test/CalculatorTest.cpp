@@ -49,18 +49,30 @@ namespace DiKErnel::Core::Test
         }
     };
 
-    TEST_F(CalculatorTest, Constructor_WithParameters_PerformsCalculationWithExpectedOutput)
+    TEST_F(CalculatorTest, GivenCalculator_WhenWaitForCompletion_ThenCalculationPerformed)
     {
-        // Setup
+        // Given
         Calculator calculator(*calculationInput);
 
-        // Call
+        // When
         calculator.WaitForCompletion();
 
-        // Assert
+        // Then
         ASSERT_EQ(100, calculator.GetProgress());
         ASSERT_TRUE(calculator.IsFinished());
         ASSERT_FALSE(calculator.IsCancelled());
+
+        const auto output = calculator.GetCalculationOutput();
+        const auto& locationOutputs = output->GetLocationOutputs();
+        const auto numberOfTimes = calculationInput->GetTimeDependentDataItems().size();
+
+        ASSERT_EQ(calculationInput->GetLocationDependentDataItems().size(), locationOutputs.size());
+        for (const auto& locationOutputReference : locationOutputs)
+        {
+            auto locationOutput = locationOutputReference.get();
+            ASSERT_EQ(numberOfTimes, locationOutput.GetDamages().size());
+            ASSERT_EQ(nullptr, locationOutput.GetTimeOfFailure());
+        }
     }
 
     TEST_F(CalculatorTest, GivenCalculatorWithRunningCalculation_WhenCancelCalled_ThenCalculationCancelled)
@@ -91,5 +103,19 @@ namespace DiKErnel::Core::Test
         ASSERT_FALSE(calculator.IsCancelled());
         ASSERT_TRUE(calculator.IsFinished());
         ASSERT_TRUE(calculator.GetProgress() == 100);
+    }
+
+    TEST_F(CalculatorTest, GivenCalculatorWithUnfinishedCalculation_WhenGetCalculationOutput_ThenNullPtrReturned)
+    {
+        // Given
+        Calculator calculator(*calculationInput);
+        calculator.Cancel();
+        calculator.WaitForCompletion();
+
+        // When
+        const auto output = calculator.GetCalculationOutput();
+
+        // Then
+        ASSERT_EQ(nullptr, output);
     }
 }

@@ -71,6 +71,11 @@ namespace DiKErnel::Core
 
     shared_ptr<CalculationOutput> Calculator::GetCalculationOutput() const
     {
+        if (!isFinished)
+        {
+            return nullptr;
+        }
+
         return calculationOutput;
     }
 
@@ -96,14 +101,17 @@ namespace DiKErnel::Core
                 break;
             }
 
-            for (const auto& location : locationDependentDataItems)
+            for (auto i = 0; i < static_cast<int>(locationDependentDataItems.size()); ++i)
             {
                 if (isCancelled)
                 {
                     break;
                 }
 
-                location.get().Calculate(timeDependentData.get(), calculationInput.GetMaximumWaveAngle());
+                const auto damage = locationDependentDataItems[i].get().Calculate(timeDependentData.get(), calculationInput.GetMaximumWaveAngle());
+
+                auto& locationOutput = calculationOutput->GetLocationOutputs()[i].get();
+                locationOutput.AddDamage(damage);
 
                 progress = progress + percentagePerCalculation;
             }
