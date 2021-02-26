@@ -36,7 +36,7 @@ namespace DiKErnel::Core
         this->timeOfFailure = &timeOfFailure;
     }
 
-    vector<double> LocationOutput::GetDamages() const
+    const vector<double>& LocationOutput::GetDamages() const
     {
         return damages;
     }

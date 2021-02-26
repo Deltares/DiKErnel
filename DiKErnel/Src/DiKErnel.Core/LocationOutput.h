@@ -47,7 +47,7 @@ namespace DiKErnel::Core
              * \brief Gets all damages.
              * \return All damages.
              */
-            std::vector<double> GetDamages() const;
+            const std::vector<double>& GetDamages() const;
 
             /*!
              * \brief Gets the time of failure.
