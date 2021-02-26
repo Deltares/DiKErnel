@@ -19,6 +19,7 @@
 // All rights reserved.
 
 #include "CalculationInput.h"
+
 #include "InvalidCalculationDataException.h"
 
 namespace DiKErnel::Core
@@ -36,7 +37,7 @@ namespace DiKErnel::Core
         auto previousEndTime = INT_MIN;
         for (const auto& timeDependentData : this->_timeDependentDataItems)
         {
-            if(previousEndTime != INT_MIN && timeDependentData->GetBeginTime() != previousEndTime)
+            if (previousEndTime != INT_MIN && timeDependentData->GetBeginTime() != previousEndTime)
             {
                 throw InvalidCalculationDataException("The begin time of an element must connect to the end time of the previous element.");
             }
@@ -44,7 +45,6 @@ namespace DiKErnel::Core
 
             _timeDependentDataItemReferences.emplace_back(*timeDependentData);
         }
-
 
         for (const auto& locationDependentData : this->_locationDependentDataItems)
         {

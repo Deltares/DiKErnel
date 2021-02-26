@@ -18,10 +18,9 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include <gtest/gtest.h>
-
 #include <fstream>
 #include <memory>
+#include <gtest/gtest.h>
 
 #include "FileAssert.h"
 #include "OutputComposer.h"

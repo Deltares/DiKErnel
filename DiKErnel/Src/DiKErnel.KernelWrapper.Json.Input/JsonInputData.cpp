@@ -18,9 +18,9 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include <utility>
-
 #include "JsonInputData.h"
+
+#include <utility>
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {

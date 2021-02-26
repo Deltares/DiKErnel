@@ -34,14 +34,16 @@ namespace DiKErnel::Core
              * \param damage
              *        The damage to add.
              */
-            void AddDamage(double damage);
+            void AddDamage(
+                double damage);
 
             /*!
              * \brief Sets the time of failure.
              * \param timeOfFailure
              *        The time of failure.
              */
-            void SetTimeOfFailure(double timeOfFailure);
+            void SetTimeOfFailure(
+                double timeOfFailure);
 
             /*!
              * \brief Gets all damages.

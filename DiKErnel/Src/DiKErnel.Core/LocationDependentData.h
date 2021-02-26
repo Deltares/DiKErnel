@@ -20,8 +20,6 @@
 
 #pragma once
 
-#include <vector>
-
 #include "TimeDependentData.h"
 
 namespace DiKErnel::Core

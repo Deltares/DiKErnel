@@ -18,9 +18,10 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
+#include "CalculationLocationOutput.h"
+
 #include <utility>
 
-#include "CalculationLocationOutput.h"
 #include "RevetmentOutput.h"
 
 namespace DiKErnel::KernelWrapper::Json
