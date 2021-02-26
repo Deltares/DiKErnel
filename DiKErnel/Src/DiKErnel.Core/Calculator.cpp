@@ -30,7 +30,8 @@ namespace DiKErnel::Core
         CalculationInput& calculationInput)
     {
         calculationThread = thread(
-            PerformCalculation,
+            &Calculator::PerformCalculation,
+            this,
             ref(calculationInput),
             ref(progress),
             ref(isFinished),
@@ -68,9 +69,9 @@ namespace DiKErnel::Core
         return isCancelled;
     }
 
-    reference_wrapper<CalculationOutput> Calculator::GetCalculationOutput() const
+    shared_ptr<CalculationOutput> Calculator::GetCalculationOutput() const
     {
-        return *calculationOutput;
+        return calculationOutput;
     }
 
     void Calculator::PerformCalculation(
@@ -81,6 +82,8 @@ namespace DiKErnel::Core
     {
         const auto& timeDependentDataItems = calculationInput.GetTimeDependentDataItems();
         const auto& locationDependentDataItems = calculationInput.GetLocationDependentDataItems();
+
+        calculationOutput = InitializeOutput(locationDependentDataItems);
 
         const auto percentagePerCalculation = 1.0
                 / static_cast<double>(timeDependentDataItems.size())
@@ -110,5 +113,18 @@ namespace DiKErnel::Core
         {
             isFinished = true;
         }
+    }
+
+    shared_ptr<CalculationOutput> Calculator::InitializeOutput(
+        const vector<reference_wrapper<LocationDependentData>>& locationDependentDataItems) const
+    {
+        auto locationOutputs = vector<unique_ptr<LocationOutput>>();
+
+        for (const auto& _ : locationDependentDataItems)
+        {
+            locationOutputs.push_back(make_unique<LocationOutput>());
+        }
+
+        return make_shared<CalculationOutput>(move(locationOutputs));
     }
 }

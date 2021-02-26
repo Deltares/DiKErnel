@@ -78,20 +78,22 @@ namespace DiKErnel::Core
              * \brief Gets the output of the calculation.
              * \return The output of the calculation.
              */
-            std::reference_wrapper<CalculationOutput> GetCalculationOutput() const;
+            std::shared_ptr<CalculationOutput> GetCalculationOutput() const;
 
         private:
             std::thread calculationThread;
             std::atomic<double> progress = 0;
             std::atomic<bool> isCancelled = false;
             std::atomic<bool> isFinished = false;
-            std::unique_ptr<CalculationOutput> calculationOutput;
+            std::shared_ptr<CalculationOutput> calculationOutput;
 
-            static void PerformCalculation(
+            void PerformCalculation(
                 const CalculationInput& calculationInput,
                 std::atomic<double>& progress,
                 std::atomic<bool>& isFinished,
                 const std::atomic<bool>& isCancelled);
-            
+
+            std::shared_ptr<CalculationOutput> InitializeOutput(
+                const std::vector<std::reference_wrapper<LocationDependentData>>& locationDependentDataItems) const;
     };
 }
