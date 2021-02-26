@@ -44,6 +44,6 @@ namespace DiKErnel::KernelWrapper::Json
             double GetTanA() const;
 
         private:
-            double tanA;
+            double _tanA;
     };
 }

@@ -31,28 +31,28 @@ namespace DiKErnel::KernelWrapper::Json
         unique_ptr<DamageVariables> damageVariables,
         unique_ptr<Revetment> revetment,
         unique_ptr<ProfileSchematization> profileSchematization)
-        : name(move(name)),
-          damageVariables(move(damageVariables)),
-          revetment(move(revetment)),
-          profileSchematization(move(profileSchematization)) { }
+        : _name(move(name)),
+          _damageVariables(move(damageVariables)),
+          _revetment(move(revetment)),
+          _profileSchematization(move(profileSchematization)) { }
 
     const string& CalculationLocation::GetName() const
     {
-        return name;
+        return _name;
     }
 
     const DamageVariables& CalculationLocation::GetDamageVariables() const
     {
-        return *damageVariables;
+        return *_damageVariables;
     }
 
     const Revetment& CalculationLocation::GetRevetment() const
     {
-        return *revetment;
+        return *_revetment;
     }
 
     const ProfileSchematization& CalculationLocation::GetProfileSchematization() const
     {
-        return *profileSchematization;
+        return *_profileSchematization;
     }
 }

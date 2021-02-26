@@ -29,12 +29,12 @@ namespace DiKErnel::Core
         vector<unique_ptr<LocationDependentData>> locationDependentDataItems,
         vector<unique_ptr<TimeDependentData>> timeDependentDataItems,
         const double maximumWaveAngle)
-        : locationDependentDataItems(move(locationDependentDataItems)),
-          timeDependentDataItems(move(timeDependentDataItems)),
-          maximumWaveAngle(maximumWaveAngle)
+        : _locationDependentDataItems(move(locationDependentDataItems)),
+          _timeDependentDataItems(move(timeDependentDataItems)),
+          _maximumWaveAngle(maximumWaveAngle)
     {
         auto previousEndTime = INT_MIN;
-        for (const auto& timeDependentData : this->timeDependentDataItems)
+        for (const auto& timeDependentData : this->_timeDependentDataItems)
         {
             if(previousEndTime != INT_MIN && timeDependentData->GetBeginTime() != previousEndTime)
             {
@@ -42,28 +42,28 @@ namespace DiKErnel::Core
             }
             previousEndTime = timeDependentData->GetEndTime();
 
-            timeDependentDataItemReferences.emplace_back(*timeDependentData);
+            _timeDependentDataItemReferences.emplace_back(*timeDependentData);
         }
 
 
-        for (const auto& locationDependentData : this->locationDependentDataItems)
+        for (const auto& locationDependentData : this->_locationDependentDataItems)
         {
-            locationDependentDataItemReferences.emplace_back(*locationDependentData);
+            _locationDependentDataItemReferences.emplace_back(*locationDependentData);
         }
     }
 
     const vector<reference_wrapper<LocationDependentData>>& CalculationInput::GetLocationDependentDataItems() const
     {
-        return locationDependentDataItemReferences;
+        return _locationDependentDataItemReferences;
     }
 
     const vector<reference_wrapper<TimeDependentData>>& CalculationInput::GetTimeDependentDataItems() const
     {
-        return timeDependentDataItemReferences;
+        return _timeDependentDataItemReferences;
     }
 
     double CalculationInput::GetMaximumWaveAngle() const
     {
-        return maximumWaveAngle;
+        return _maximumWaveAngle;
     }
 }

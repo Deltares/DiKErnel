@@ -48,7 +48,7 @@ namespace DiKErnel::KernelWrapper::Json
             const std::vector<std::reference_wrapper<CalculationLocationOutput>>& GetCalculationLocationsOutput() const;
 
         private:
-            std::vector<std::unique_ptr<CalculationLocationOutput>> calculationLocationsOutput;
-            std::vector<std::reference_wrapper<CalculationLocationOutput>> calculationLocationOutputReferences;
+            std::vector<std::unique_ptr<CalculationLocationOutput>> _calculationLocationsOutput;
+            std::vector<std::reference_wrapper<CalculationLocationOutput>> _calculationLocationOutputReferences;
     };
 }

@@ -110,12 +110,12 @@ namespace DiKErnel::Core
             std::unique_ptr<KernelWrapper::Json::OutputData> GetOutputData() const;
 
         private:
-            std::thread calculationThread;
-            std::atomic<double> progress = 0;
-            std::atomic<bool> isCancelled = false;
-            std::atomic<bool> isFinished = false;
-            std::vector<std::vector<std::tuple<double, double>>> outputData;
-            const std::vector<std::reference_wrapper<KernelWrapper::Json::CalculationLocation>>& locations;
+            std::thread _calculationThread;
+            std::atomic<double> _progress = 0;
+            std::atomic<bool> _isCancelled = false;
+            std::atomic<bool> _isFinished = false;
+            std::vector<std::vector<std::tuple<double, double>>> _outputData;
+            const std::vector<std::reference_wrapper<KernelWrapper::Json::CalculationLocation>>& _locations;
 
             static void PerformCalculation(
                 const std::vector<std::reference_wrapper<KernelWrapper::Json::CalculationLocation>>&,

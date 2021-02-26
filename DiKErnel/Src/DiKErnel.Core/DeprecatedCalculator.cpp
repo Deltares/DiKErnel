@@ -49,7 +49,7 @@ namespace DiKErnel::Core
             double ns,
             double waveAngleMaximum,
             double similarityParameterThreshold)>& subCalculation)
-        : locations(inputData.GetLocations())
+        : _locations(inputData.GetLocations())
     {
         const auto& times = inputData.GetCalculationData().GetTimes();
         const auto& hydraulicLoads = inputData.GetHydraulicLoads();
@@ -62,58 +62,58 @@ namespace DiKErnel::Core
             timeSteps.emplace_back(times[i], times[static_cast<vector<int, allocator<int>>::size_type>(i) + 1], boundariesPerTimeStep[i]);
         }
 
-        calculationThread = thread(
+        _calculationThread = thread(
             PerformCalculation,
-            ref(locations),
+            ref(_locations),
             timeSteps,
             ref(hydraulicLoads),
             subCalculation,
-            ref(progress),
-            ref(isFinished),
-            ref(isCancelled),
-            ref(outputData));
+            ref(_progress),
+            ref(_isFinished),
+            ref(_isCancelled),
+            ref(_outputData));
     }
 
     void DeprecatedCalculator::WaitForCompletion()
     {
-        if (calculationThread.joinable())
+        if (_calculationThread.joinable())
         {
-            calculationThread.join();
+            _calculationThread.join();
         }
     }
 
     int DeprecatedCalculator::GetProgress() const
     {
-        return static_cast<int>(round(progress * 100));
+        return static_cast<int>(round(_progress * 100));
     }
 
     bool DeprecatedCalculator::IsFinished() const
     {
-        return isFinished;
+        return _isFinished;
     }
 
     void DeprecatedCalculator::Cancel()
     {
-        if (!isFinished)
+        if (!_isFinished)
         {
-            isCancelled = true;
+            _isCancelled = true;
         }
     }
 
     bool DeprecatedCalculator::IsCancelled() const
     {
-        return isCancelled;
+        return _isCancelled;
     }
 
     unique_ptr<OutputData> DeprecatedCalculator::GetOutputData() const
     {
         vector<unique_ptr<CalculationLocationOutput>> calculationLocationsOutput;
 
-        if (isFinished)
+        if (_isFinished)
         {
-            for (auto i = 0; i < static_cast<int>(locations.size()); i++)
+            for (auto i = 0; i < static_cast<int>(_locations.size()); i++)
             {
-                const auto& outputDataForLocation = outputData[i];
+                const auto& outputDataForLocation = _outputData[i];
 
                 vector<double> damagesForLocation;
                 for (const auto& [time, damage] : outputDataForLocation)
@@ -123,7 +123,7 @@ namespace DiKErnel::Core
 
                 calculationLocationsOutput.push_back(
                     make_unique<CalculationLocationOutput>(
-                        locations[i].get().GetName(),
+                        _locations[i].get().GetName(),
                         make_unique<RevetmentOutput>(
                             damagesForLocation)));
             }

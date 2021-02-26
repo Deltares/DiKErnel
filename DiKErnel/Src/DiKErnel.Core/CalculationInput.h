@@ -70,12 +70,12 @@ namespace DiKErnel::Core
             double GetMaximumWaveAngle() const;
 
         private:
-            std::vector<std::unique_ptr<LocationDependentData>> locationDependentDataItems;
-            std::vector<std::unique_ptr<TimeDependentData>> timeDependentDataItems;
+            std::vector<std::unique_ptr<LocationDependentData>> _locationDependentDataItems;
+            std::vector<std::unique_ptr<TimeDependentData>> _timeDependentDataItems;
 
-            std::vector<std::reference_wrapper<LocationDependentData>> locationDependentDataItemReferences;
-            std::vector<std::reference_wrapper<TimeDependentData>> timeDependentDataItemReferences;
+            std::vector<std::reference_wrapper<LocationDependentData>> _locationDependentDataItemReferences;
+            std::vector<std::reference_wrapper<TimeDependentData>> _timeDependentDataItemReferences;
 
-            double maximumWaveAngle;
+            double _maximumWaveAngle;
     };
 }

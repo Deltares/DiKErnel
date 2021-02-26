@@ -26,22 +26,22 @@ namespace DiKErnel::KernelWrapper::Json
         const double waveHeightHm0,
         const double wavePeriodTm10,
         const double waveAngle)
-        : waveHeightHm0(waveHeightHm0),
-          wavePeriodTm10(wavePeriodTm10),
-          waveAngle(waveAngle) { }
+        : _waveHeightHm0(waveHeightHm0),
+          _wavePeriodTm10(wavePeriodTm10),
+          _waveAngle(waveAngle) { }
 
     double BoundaryConditionsPerTimeStep::GetWaveHeightHm0() const
     {
-        return waveHeightHm0;
+        return _waveHeightHm0;
     }
 
     double BoundaryConditionsPerTimeStep::GetWavePeriodTm10() const
     {
-        return wavePeriodTm10;
+        return _wavePeriodTm10;
     }
 
     double BoundaryConditionsPerTimeStep::GetWaveAngle() const
     {
-        return waveAngle;
+        return _waveAngle;
     }
 }

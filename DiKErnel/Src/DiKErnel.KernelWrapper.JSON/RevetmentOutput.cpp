@@ -28,10 +28,10 @@ namespace DiKErnel::KernelWrapper::Json
 
     RevetmentOutput::RevetmentOutput(
         vector<double> damages)
-        : damages(move(damages)) { }
+        : _damages(move(damages)) { }
 
     const vector<double>& RevetmentOutput::GetDamages() const
     {
-        return damages;
+        return _damages;
     }
 }

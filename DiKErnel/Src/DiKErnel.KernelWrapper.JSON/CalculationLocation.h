@@ -77,9 +77,9 @@ namespace DiKErnel::KernelWrapper::Json
             const ProfileSchematization& GetProfileSchematization() const;
 
         private:
-            std::string name;
-            std::unique_ptr<DamageVariables> damageVariables;
-            std::unique_ptr<Revetment> revetment;
-            std::unique_ptr<ProfileSchematization> profileSchematization;
+            std::string _name;
+            std::unique_ptr<DamageVariables> _damageVariables;
+            std::unique_ptr<Revetment> _revetment;
+            std::unique_ptr<ProfileSchematization> _profileSchematization;
     };
 }

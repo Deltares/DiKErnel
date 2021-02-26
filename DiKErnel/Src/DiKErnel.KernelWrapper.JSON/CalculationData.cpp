@@ -28,10 +28,10 @@ namespace DiKErnel::KernelWrapper::Json
 
     CalculationData::CalculationData(
         vector<int> times)
-        : times(move(times)) { }
+        : _times(move(times)) { }
 
     const vector<int>& CalculationData::GetTimes() const
     {
-        return times;
+        return _times;
     }
 }

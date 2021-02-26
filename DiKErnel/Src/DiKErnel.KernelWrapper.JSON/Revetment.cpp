@@ -39,76 +39,76 @@ namespace DiKErnel::KernelWrapper::Json
         const double surgingCoefficientB,
         const double surgingCoefficientC,
         const double surgingCoefficientN)
-        : typeTopLayer(move(typeTopLayer)),
-          relativeDensity(relativeDensity),
-          thicknessTopLayer(thicknessTopLayer),
-          similarityParameterThreshold(similarityParameterThreshold),
-          plungingCoefficientA(plungingCoefficientA),
-          plungingCoefficientB(plungingCoefficientB),
-          plungingCoefficientC(plungingCoefficientC),
-          plungingCoefficientN(plungingCoefficientN),
-          surgingCoefficientA(surgingCoefficientA),
-          surgingCoefficientB(surgingCoefficientB),
-          surgingCoefficientC(surgingCoefficientC),
-          surgingCoefficientN(surgingCoefficientN) { }
+        : _typeTopLayer(move(typeTopLayer)),
+          _relativeDensity(relativeDensity),
+          _thicknessTopLayer(thicknessTopLayer),
+          _similarityParameterThreshold(similarityParameterThreshold),
+          _plungingCoefficientA(plungingCoefficientA),
+          _plungingCoefficientB(plungingCoefficientB),
+          _plungingCoefficientC(plungingCoefficientC),
+          _plungingCoefficientN(plungingCoefficientN),
+          _surgingCoefficientA(surgingCoefficientA),
+          _surgingCoefficientB(surgingCoefficientB),
+          _surgingCoefficientC(surgingCoefficientC),
+          _surgingCoefficientN(surgingCoefficientN) { }
 
     const string& Revetment::GetTypeTopLayer() const
     {
-        return typeTopLayer;
+        return _typeTopLayer;
     }
 
     double Revetment::GetRelativeDensity() const
     {
-        return relativeDensity;
+        return _relativeDensity;
     }
 
     double Revetment::GetThicknessTopLayer() const
     {
-        return thicknessTopLayer;
+        return _thicknessTopLayer;
     }
 
     double Revetment::GetSimilarityParameterThreshold() const
     {
-        return similarityParameterThreshold;
+        return _similarityParameterThreshold;
     }
 
     double Revetment::GetPlungingCoefficientA() const
     {
-        return plungingCoefficientA;
+        return _plungingCoefficientA;
     }
 
     double Revetment::GetPlungingCoefficientB() const
     {
-        return plungingCoefficientB;
+        return _plungingCoefficientB;
     }
 
     double Revetment::GetPlungingCoefficientC() const
     {
-        return plungingCoefficientC;
+        return _plungingCoefficientC;
     }
 
     double Revetment::GetPlungingCoefficientN() const
     {
-        return plungingCoefficientN;
+        return _plungingCoefficientN;
     }
 
     double Revetment::GetSurgingCoefficientA() const
     {
-        return surgingCoefficientA;
+        return _surgingCoefficientA;
     }
 
     double Revetment::GetSurgingCoefficientB() const
     {
-        return surgingCoefficientB;
+        return _surgingCoefficientB;
     }
 
     double Revetment::GetSurgingCoefficientC() const
     {
-        return surgingCoefficientC;
+        return _surgingCoefficientC;
     }
 
     double Revetment::GetSurgingCoefficientN() const
     {
-        return surgingCoefficientN;
+        return _surgingCoefficientN;
     }
 }

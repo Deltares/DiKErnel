@@ -29,54 +29,54 @@ namespace DiKErnel::Core
     Calculator::Calculator(
         CalculationInput& calculationInput)
     {
-        calculationThread = thread(
+        _calculationThread = thread(
             &Calculator::PerformCalculation,
             this,
             ref(calculationInput),
-            ref(progress),
-            ref(isFinished),
-            ref(isCancelled));
+            ref(_progress),
+            ref(_isFinished),
+            ref(_isCancelled));
     }
 
     void Calculator::WaitForCompletion()
     {
-        if (calculationThread.joinable())
+        if (_calculationThread.joinable())
         {
-            calculationThread.join();
+            _calculationThread.join();
         }
     }
 
     int Calculator::GetProgress() const
     {
-        return static_cast<int>(round(progress * 100));
+        return static_cast<int>(round(_progress * 100));
     }
 
     bool Calculator::IsFinished() const
     {
-        return isFinished;
+        return _isFinished;
     }
 
     void Calculator::Cancel()
     {
-        if (!isFinished)
+        if (!_isFinished)
         {
-            isCancelled = true;
+            _isCancelled = true;
         }
     }
 
     bool Calculator::IsCancelled() const
     {
-        return isCancelled;
+        return _isCancelled;
     }
 
     shared_ptr<CalculationOutput> Calculator::GetCalculationOutput() const
     {
-        if (!isFinished)
+        if (!_isFinished)
         {
             return nullptr;
         }
 
-        return calculationOutput;
+        return _calculationOutput;
     }
 
     void Calculator::PerformCalculation(
@@ -88,7 +88,7 @@ namespace DiKErnel::Core
         const auto& timeDependentDataItems = calculationInput.GetTimeDependentDataItems();
         const auto& locationDependentDataItems = calculationInput.GetLocationDependentDataItems();
 
-        calculationOutput = InitializeOutput(locationDependentDataItems);
+        _calculationOutput = InitializeOutput(locationDependentDataItems);
 
         const auto percentagePerCalculation = 1.0
                 / static_cast<double>(timeDependentDataItems.size())
@@ -109,7 +109,7 @@ namespace DiKErnel::Core
                 }
 
                 auto& location = locationDependentDataItems[i].get();
-                auto& locationOutput = calculationOutput->GetLocationOutputs()[i].get();
+                auto& locationOutput = _calculationOutput->GetLocationOutputs()[i].get();
                 const auto& calculatedLocationDamages = locationOutput.GetDamages();
 
                 const auto startDamage = calculatedLocationDamages.empty()

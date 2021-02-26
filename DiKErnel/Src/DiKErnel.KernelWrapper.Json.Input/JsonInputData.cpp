@@ -28,10 +28,10 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
     JsonInputData::JsonInputData(
         unique_ptr<JsonInputCalculationData> calculationData)
-        : calculationData(move(calculationData)) { }
+        : _calculationData(move(calculationData)) { }
 
     const JsonInputCalculationData& JsonInputData::GetCalculationData() const
     {
-        return *calculationData;
+        return *_calculationData;
     }
 }

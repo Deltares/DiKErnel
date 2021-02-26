@@ -57,7 +57,7 @@ namespace DiKErnel::KernelWrapper::Json
             const RevetmentOutput& GetRevetmentOutput() const;
 
         private:
-            std::string name;
-            std::unique_ptr<RevetmentOutput> revetmentOutput;
+            std::string _name;
+            std::unique_ptr<RevetmentOutput> _revetmentOutput;
     };
 }

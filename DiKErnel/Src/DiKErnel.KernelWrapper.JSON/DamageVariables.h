@@ -53,7 +53,7 @@ namespace DiKErnel::KernelWrapper::Json
             double GetCriticalDamage() const;
 
         private:
-            double initialDamage;
-            double criticalDamage;
+            double _initialDamage;
+            double _criticalDamage;
     };
 }

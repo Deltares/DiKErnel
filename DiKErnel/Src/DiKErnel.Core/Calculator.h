@@ -81,11 +81,11 @@ namespace DiKErnel::Core
             std::shared_ptr<CalculationOutput> GetCalculationOutput() const;
 
         private:
-            std::thread calculationThread;
-            std::atomic<double> progress = 0;
-            std::atomic<bool> isCancelled = false;
-            std::atomic<bool> isFinished = false;
-            std::shared_ptr<CalculationOutput> calculationOutput;
+            std::thread _calculationThread;
+            std::atomic<double> _progress = 0;
+            std::atomic<bool> _isCancelled = false;
+            std::atomic<bool> _isFinished = false;
+            std::shared_ptr<CalculationOutput> _calculationOutput;
 
             void PerformCalculation(
                 const CalculationInput& calculationInput,

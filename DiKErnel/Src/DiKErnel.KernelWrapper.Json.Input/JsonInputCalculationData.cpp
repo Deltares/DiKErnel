@@ -30,22 +30,22 @@ namespace DiKErnel::KernelWrapper::Json::Input
         vector<int> times,
         unique_ptr<JsonInputHydraulicData> hydraulicData,
         unique_ptr<JsonInputLocationData> locationData)
-        : times(move(times)),
-          hydraulicData(move(hydraulicData)),
-          locationData(move(locationData)) { }
+        : _times(move(times)),
+          _hydraulicData(move(hydraulicData)),
+          _locationData(move(locationData)) { }
 
     const vector<int>& JsonInputCalculationData::GetTimes() const
     {
-        return times;
+        return _times;
     }
 
     const JsonInputHydraulicData& JsonInputCalculationData::GetHydraulicData() const
     {
-        return *hydraulicData;
+        return *_hydraulicData;
     }
 
     const JsonInputLocationData& JsonInputCalculationData::GetLocationData() const
     {
-        return *locationData;
+        return *_locationData;
     }
 }

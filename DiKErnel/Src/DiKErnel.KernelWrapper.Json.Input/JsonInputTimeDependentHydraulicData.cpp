@@ -27,28 +27,28 @@ namespace DiKErnel::KernelWrapper::Json::Input
         const double waveHeightHm0,
         const double wavePeriodTm10,
         const double waveAngle)
-        : waterLevel(waterLevel),
-          waveHeightHm0(waveHeightHm0),
-          wavePeriodTm10(wavePeriodTm10),
-          waveAngle(waveAngle) { }
+        : _waterLevel(waterLevel),
+          _waveHeightHm0(waveHeightHm0),
+          _wavePeriodTm10(wavePeriodTm10),
+          _waveAngle(waveAngle) { }
 
     double JsonInputTimeDependentHydraulicData::GetWaterLevel() const
     {
-        return waterLevel;
+        return _waterLevel;
     }
 
     double JsonInputTimeDependentHydraulicData::GetWaveHeightHm0() const
     {
-        return waveHeightHm0;
+        return _waveHeightHm0;
     }
 
     double JsonInputTimeDependentHydraulicData::GetWavePeriodTm10() const
     {
-        return wavePeriodTm10;
+        return _wavePeriodTm10;
     }
 
     double JsonInputTimeDependentHydraulicData::GetWaveAngle() const
     {
-        return waveAngle;
+        return _waveAngle;
     }
 }

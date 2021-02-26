@@ -145,17 +145,17 @@ namespace DiKErnel::KernelWrapper::Json
             double GetSurgingCoefficientN() const;
 
         private:
-            std::string typeTopLayer;
-            double relativeDensity;
-            double thicknessTopLayer;
-            double similarityParameterThreshold;
-            double plungingCoefficientA;
-            double plungingCoefficientB;
-            double plungingCoefficientC;
-            double plungingCoefficientN;
-            double surgingCoefficientA;
-            double surgingCoefficientB;
-            double surgingCoefficientC;
-            double surgingCoefficientN;
+            std::string _typeTopLayer;
+            double _relativeDensity;
+            double _thicknessTopLayer;
+            double _similarityParameterThreshold;
+            double _plungingCoefficientA;
+            double _plungingCoefficientB;
+            double _plungingCoefficientC;
+            double _plungingCoefficientN;
+            double _surgingCoefficientA;
+            double _surgingCoefficientB;
+            double _surgingCoefficientC;
+            double _surgingCoefficientN;
     };
 }

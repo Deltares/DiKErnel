@@ -47,7 +47,7 @@ namespace DiKErnel::Core
             const std::vector<std::reference_wrapper<LocationOutput>>& GetLocationOutputs() const;
 
         private:
-            std::vector<std::unique_ptr<LocationOutput>> locationOutputs;
-            std::vector<std::reference_wrapper<LocationOutput>> locationOutputReferences;
+            std::vector<std::unique_ptr<LocationOutput>> _locationOutputs;
+            std::vector<std::reference_wrapper<LocationOutput>> _locationOutputReferences;
     };
 }

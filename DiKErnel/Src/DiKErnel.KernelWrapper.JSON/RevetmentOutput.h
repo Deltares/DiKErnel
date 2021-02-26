@@ -46,6 +46,6 @@ namespace DiKErnel::KernelWrapper::Json
             const std::vector<double>& GetDamages() const;
 
         private:
-            std::vector<double> damages;
+            std::vector<double> _damages;
     };
 }

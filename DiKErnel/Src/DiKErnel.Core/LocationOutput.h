@@ -56,7 +56,7 @@ namespace DiKErnel::Core
             double* GetTimeOfFailure() const;
 
         private:
-            std::vector<double> damages = std::vector<double>();
-            double* timeOfFailure = nullptr;
+            std::vector<double> _damages = std::vector<double>();
+            double* _timeOfFailure = nullptr;
     };
 }

@@ -26,16 +26,16 @@ namespace DiKErnel::KernelWrapper::Json
 
     OutputData::OutputData(
         vector<unique_ptr<CalculationLocationOutput>> calculationLocationsOutput)
-        : calculationLocationsOutput(move(calculationLocationsOutput))
+        : _calculationLocationsOutput(move(calculationLocationsOutput))
     {
-        for (const auto& calculationLocationOutput : this->calculationLocationsOutput)
+        for (const auto& calculationLocationOutput : this->_calculationLocationsOutput)
         {
-            calculationLocationOutputReferences.emplace_back(*calculationLocationOutput);
+            _calculationLocationOutputReferences.emplace_back(*calculationLocationOutput);
         }
     }
 
     const vector<reference_wrapper<CalculationLocationOutput>>& OutputData::GetCalculationLocationsOutput() const
     {
-        return calculationLocationOutputReferences;
+        return _calculationLocationOutputReferences;
     }
 }

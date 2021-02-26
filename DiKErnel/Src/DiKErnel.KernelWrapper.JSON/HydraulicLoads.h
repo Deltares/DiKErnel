@@ -57,8 +57,8 @@ namespace DiKErnel::KernelWrapper::Json
             const std::vector<std::reference_wrapper<BoundaryConditionsPerTimeStep>>& GetBoundaryConditionsPerTimeStep() const;
 
         private:
-            int waveAngleMaximum;
-            std::vector<std::unique_ptr<BoundaryConditionsPerTimeStep>> boundaryConditionsPerTimeStep;
-            std::vector<std::reference_wrapper<BoundaryConditionsPerTimeStep>> boundaryConditionsPerTimeStepReferences;
+            int _waveAngleMaximum;
+            std::vector<std::unique_ptr<BoundaryConditionsPerTimeStep>> _boundaryConditionsPerTimeStep;
+            std::vector<std::reference_wrapper<BoundaryConditionsPerTimeStep>> _boundaryConditionsPerTimeStepReferences;
     };
 }

@@ -25,16 +25,16 @@ namespace DiKErnel::KernelWrapper::Json
     DamageVariables::DamageVariables(
         const double initialDamage,
         const double criticalDamage)
-        : initialDamage(initialDamage),
-          criticalDamage(criticalDamage) {}
+        : _initialDamage(initialDamage),
+          _criticalDamage(criticalDamage) {}
 
     double DamageVariables::GetInitialDamage() const
     {
-        return initialDamage;
+        return _initialDamage;
     }
 
     double DamageVariables::GetCriticalDamage() const
     {
-        return criticalDamage;
+        return _criticalDamage;
     }
 }

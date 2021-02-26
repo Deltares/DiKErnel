@@ -28,28 +28,28 @@ namespace DiKErnel::KernelWrapper::Json
         unique_ptr<CalculationData> calculationData,
         unique_ptr<HydraulicLoads> hydraulicLoads,
         vector<unique_ptr<CalculationLocation>> locations)
-        : calculationData(move(calculationData)),
-          hydraulicLoads(move(hydraulicLoads)),
-          locations(move(locations))
+        : _calculationData(move(calculationData)),
+          _hydraulicLoads(move(hydraulicLoads)),
+          _locations(move(locations))
     {
-        for (const auto& location : this->locations)
+        for (const auto& location : this->_locations)
         {
-            locationReferences.emplace_back(*location);
+            _locationReferences.emplace_back(*location);
         }
     }
 
     const CalculationData& InputData::GetCalculationData() const
     {
-        return *calculationData;
+        return *_calculationData;
     }
 
     const HydraulicLoads& InputData::GetHydraulicLoads() const
     {
-        return *hydraulicLoads;
+        return *_hydraulicLoads;
     }
 
     const vector<reference_wrapper<CalculationLocation>>& InputData::GetLocations() const
     {
-        return locationReferences;
+        return _locationReferences;
     }
 }

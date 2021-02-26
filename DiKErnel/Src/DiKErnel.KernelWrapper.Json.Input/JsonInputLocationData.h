@@ -39,7 +39,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
             const JsonInputDamageData& GetDamageData() const;
 
         private:
-            std::string name;
-            std::unique_ptr<JsonInputDamageData> damageData;
+            std::string _name;
+            std::unique_ptr<JsonInputDamageData> _damageData;
     };
 }

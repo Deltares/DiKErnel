@@ -30,16 +30,16 @@ namespace DiKErnel::KernelWrapper::Json
     CalculationLocationOutput::CalculationLocationOutput(
         string name,
         unique_ptr<RevetmentOutput> revetmentOutput)
-        : name(move(name)),
-          revetmentOutput(move(revetmentOutput)) { }
+        : _name(move(name)),
+          _revetmentOutput(move(revetmentOutput)) { }
 
     const string& CalculationLocationOutput::GetName() const
     {
-        return name;
+        return _name;
     }
 
     const RevetmentOutput& CalculationLocationOutput::GetRevetmentOutput() const
     {
-        return *revetmentOutput;
+        return *_revetmentOutput;
     }
 }

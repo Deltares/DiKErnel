@@ -31,14 +31,14 @@ namespace DiKErnel::Core
         const double waveHeightHm0,
         const double wavePeriodTm10,
         const double waveAngle)
-        : beginTime(beginTime),
-          endTime(endTime),
-          waterLevel(waterLevel),
-          waveHeightHm0(waveHeightHm0),
-          wavePeriodTm10(wavePeriodTm10),
-          waveAngle(waveAngle)
+        : _beginTime(beginTime),
+          _endTime(endTime),
+          _waterLevel(waterLevel),
+          _waveHeightHm0(waveHeightHm0),
+          _wavePeriodTm10(wavePeriodTm10),
+          _waveAngle(waveAngle)
     {
-        if(this->endTime <= this->beginTime)
+        if(this->_endTime <= this->_beginTime)
         {
             throw InvalidCalculationDataException("'beginTime' should be smaller than 'endTime'.");
         }
@@ -46,31 +46,31 @@ namespace DiKErnel::Core
 
     int TimeDependentData::GetBeginTime() const
     {
-        return beginTime;
+        return _beginTime;
     }
 
     int TimeDependentData::GetEndTime() const
     {
-        return endTime;
+        return _endTime;
     }
 
     double TimeDependentData::GetWaterLevel() const
     {
-        return waterLevel;
+        return _waterLevel;
     }
 
     double TimeDependentData::GetWaveHeightHm0() const
     {
-        return waveHeightHm0;
+        return _waveHeightHm0;
     }
 
     double TimeDependentData::GetWavePeriodTm10() const
     {
-        return wavePeriodTm10;
+        return _wavePeriodTm10;
     }
 
     double TimeDependentData::GetWaveAngle() const
     {
-        return waveAngle;
+        return _waveAngle;
     }
 }

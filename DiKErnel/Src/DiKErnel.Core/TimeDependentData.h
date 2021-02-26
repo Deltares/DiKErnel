@@ -90,11 +90,11 @@ namespace DiKErnel::Core
             double GetWaveAngle() const;
 
         private:
-            int beginTime;
-            int endTime;
-            double waterLevel;
-            double waveHeightHm0;
-            double wavePeriodTm10;
-            double waveAngle;
+            int _beginTime;
+            int _endTime;
+            double _waterLevel;
+            double _waveHeightHm0;
+            double _wavePeriodTm10;
+            double _waveAngle;
     };
 }

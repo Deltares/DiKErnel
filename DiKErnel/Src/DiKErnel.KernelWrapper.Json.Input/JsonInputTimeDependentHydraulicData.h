@@ -40,9 +40,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
             double GetWaveAngle() const;
 
         private:
-            double waterLevel;
-            double waveHeightHm0;
-            double wavePeriodTm10;
-            double waveAngle;
+            double _waterLevel;
+            double _waveHeightHm0;
+            double _wavePeriodTm10;
+            double _waveAngle;
     };
 }

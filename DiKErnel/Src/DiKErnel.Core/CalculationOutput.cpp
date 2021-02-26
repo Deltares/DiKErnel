@@ -26,16 +26,16 @@ namespace DiKErnel::Core
 
     CalculationOutput::CalculationOutput(
         vector<unique_ptr<LocationOutput>> locationOutputs)
-        : locationOutputs(move(locationOutputs))
+        : _locationOutputs(move(locationOutputs))
     {
-        for (const auto& locationOutput : this->locationOutputs)
+        for (const auto& locationOutput : this->_locationOutputs)
         {
-            locationOutputReferences.emplace_back(*locationOutput);
+            _locationOutputReferences.emplace_back(*locationOutput);
         }
     }
 
     const vector<reference_wrapper<LocationOutput>>& CalculationOutput::GetLocationOutputs() const
     {
-        return locationOutputReferences;
+        return _locationOutputReferences;
     }
 }

@@ -68,6 +68,6 @@ namespace DiKErnel::Core
                 double initialDamage);
 
         private:
-            double initialDamage;
+            double _initialDamage;
     };
 }

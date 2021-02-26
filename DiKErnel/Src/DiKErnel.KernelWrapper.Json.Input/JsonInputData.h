@@ -36,6 +36,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
             const JsonInputCalculationData& GetCalculationData() const;
 
         private:
-            std::unique_ptr<JsonInputCalculationData> calculationData;
+            std::unique_ptr<JsonInputCalculationData> _calculationData;
     };
 }

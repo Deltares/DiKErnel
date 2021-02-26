@@ -41,6 +41,6 @@ namespace DiKErnel::Core
             const char* what() const throw () override;
 
         private:
-            std::string message;
+            std::string _message;
     };
 }

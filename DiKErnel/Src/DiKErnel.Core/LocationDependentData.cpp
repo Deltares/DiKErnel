@@ -26,10 +26,10 @@ namespace DiKErnel::Core
 
     LocationDependentData::LocationDependentData(
         const double initialDamage)
-        : initialDamage(initialDamage) { }
+        : _initialDamage(initialDamage) { }
 
     double LocationDependentData::GetInitialDamage() const
     {
-        return initialDamage;
+        return _initialDamage;
     }
 }

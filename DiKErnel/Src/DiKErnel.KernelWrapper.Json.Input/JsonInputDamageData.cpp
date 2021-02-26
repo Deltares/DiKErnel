@@ -27,16 +27,16 @@ namespace DiKErnel::KernelWrapper::Json::Input
     JsonInputDamageData::JsonInputDamageData(
         const double initialDamage,
         unique_ptr<double> criticalDamage)
-        : initialDamage(initialDamage),
-          criticalDamage(move(criticalDamage)) { }
+        : _initialDamage(initialDamage),
+          _criticalDamage(move(criticalDamage)) { }
 
     double JsonInputDamageData::GetInitialDamage() const
     {
-        return initialDamage;
+        return _initialDamage;
     }
 
     const double* JsonInputDamageData::GetCriticalDamage() const
     {
-        return criticalDamage.get();
+        return _criticalDamage.get();
     }
 }

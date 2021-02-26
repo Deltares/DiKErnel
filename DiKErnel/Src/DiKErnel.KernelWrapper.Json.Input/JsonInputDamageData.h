@@ -36,7 +36,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
             const double* GetCriticalDamage() const;
 
         private:
-            double initialDamage;
-            std::unique_ptr<double> criticalDamage;
+            double _initialDamage;
+            std::unique_ptr<double> _criticalDamage;
     };
 }

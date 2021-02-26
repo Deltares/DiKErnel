@@ -26,10 +26,10 @@ namespace DiKErnel::Core
 
     InvalidCalculationDataException::InvalidCalculationDataException(
         string message) :
-        message(move(message)) {}
+        _message(move(message)) {}
 
     const char* InvalidCalculationDataException::what() const throw()
     {
-        return message.c_str();
+        return _message.c_str();
     }
 }

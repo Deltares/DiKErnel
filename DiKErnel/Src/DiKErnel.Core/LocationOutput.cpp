@@ -27,22 +27,22 @@ namespace DiKErnel::Core
     void LocationOutput::AddDamage(
         double damage)
     {
-        damages.emplace_back(damage);
+        _damages.emplace_back(damage);
     }
 
     void LocationOutput::SetTimeOfFailure(
         double timeOfFailure)
     {
-        this->timeOfFailure = &timeOfFailure;
+        this->_timeOfFailure = &timeOfFailure;
     }
 
     const vector<double>& LocationOutput::GetDamages() const
     {
-        return damages;
+        return _damages;
     }
 
     double* LocationOutput::GetTimeOfFailure() const
     {
-        return timeOfFailure;
+        return _timeOfFailure;
     }
 }

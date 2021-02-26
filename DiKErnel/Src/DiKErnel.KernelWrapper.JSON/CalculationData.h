@@ -46,6 +46,6 @@ namespace DiKErnel::KernelWrapper::Json
             const std::vector<int>& GetTimes() const;
 
         private:
-            std::vector<int> times;
+            std::vector<int> _times;
     };
 }

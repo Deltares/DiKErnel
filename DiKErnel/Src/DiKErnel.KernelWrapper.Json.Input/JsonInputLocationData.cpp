@@ -27,16 +27,16 @@ namespace DiKErnel::KernelWrapper::Json::Input
     JsonInputLocationData::JsonInputLocationData(
         string name,
         unique_ptr<JsonInputDamageData> damageData)
-        : name(move(name)),
-          damageData(move(damageData)) { }
+        : _name(move(name)),
+          _damageData(move(damageData)) { }
 
     const string& JsonInputLocationData::GetName() const
     {
-        return name;
+        return _name;
     }
 
     const JsonInputDamageData& JsonInputLocationData::GetDamageData() const
     {
-        return *damageData;
+        return *_damageData;
     }
 }
