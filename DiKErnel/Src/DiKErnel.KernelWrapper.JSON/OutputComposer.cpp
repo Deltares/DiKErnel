@@ -54,6 +54,14 @@ namespace DiKErnel::KernelWrapper::Json
                             JsonDefinitions::DAMAGE,
                             {
                                 {
+                                    JsonDefinitions::FAILED,
+                                    true
+                                },
+                                {
+                                    JsonDefinitions::TIME_OF_FAILURE,
+                                    60
+                                },
+                                {
                                     JsonDefinitions::DAMAGE_OVER_TIME,
                                     calculationLocationOutput.get().GetRevetmentOutput().GetDamages()
                                 }

@@ -48,6 +48,8 @@ namespace DiKErnel::KernelWrapper::Json
             static const std::string THICKNESS_TOP_LAYER;
             static const std::string INITIAL_DAMAGE;
             static const std::string CRITICAL_DAMAGE;
+            static const std::string FAILED;
+            static const std::string TIME_OF_FAILURE;
             static const std::string SIMILARITY_PARAMETER_THRESHOLD;
             static const std::string COEFFICIENT_PLUNGING_AP;
             static const std::string COEFFICIENT_PLUNGING_BP;
