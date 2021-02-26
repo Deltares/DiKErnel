@@ -18,12 +18,12 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include <nlohmann/json.hpp>
+#include "OutputComposer.h"
 
 #include <fstream>
 #include <iomanip>
+#include <nlohmann/json.hpp>
 
-#include "OutputComposer.h"
 #include "JsonDefinitions.h"
 #include "OutputData.h"
 #include "RevetmentOutput.h"

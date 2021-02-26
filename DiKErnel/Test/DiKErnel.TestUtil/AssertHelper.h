@@ -44,7 +44,7 @@ namespace DiKErnel::TestUtil
             /*!
              * \brief Function pointer to use as action.
              */
-            typedef void (*Action) ();
+            typedef void (*Action)();
 
             /*!
              * \brief Asserts whether an exception is thrown with an expected message.
@@ -55,7 +55,7 @@ namespace DiKErnel::TestUtil
              * \param expectedMessage
              *        The expected message in the exception.
              */
-            template<typename TException>
+            template <typename TException>
             static void AssertThrowsWithMessage(
                 const Action action,
                 std::string expectedMessage)

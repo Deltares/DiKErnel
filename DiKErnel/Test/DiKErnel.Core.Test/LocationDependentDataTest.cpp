@@ -32,9 +32,9 @@ namespace DiKErnel::Core::Test
         const auto initialDamage = rand() % 10;
 
         // Call
-         const TestLocationDependentData locationDependentData(initialDamage);
-    
-         // Assert
-         ASSERT_DOUBLE_EQ(initialDamage, locationDependentData.GetInitialDamage());
+        const TestLocationDependentData locationDependentData(initialDamage);
+
+        // Assert
+        ASSERT_DOUBLE_EQ(initialDamage, locationDependentData.GetInitialDamage());
     }
 }

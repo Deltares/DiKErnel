@@ -18,9 +18,9 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include <cmath>
-
 #include "Constants.h"
+
+#include <cmath>
 
 namespace DiKErnel::DomainLibrary
 {

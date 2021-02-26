@@ -18,11 +18,10 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include <gtest/gtest.h>
+#include "FileAssert.h"
 
 #include <fstream>
-
-#include "FileAssert.h"
+#include <gtest/gtest.h>
 
 namespace DiKErnel::TestUtil
 {
