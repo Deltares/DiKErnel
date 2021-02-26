@@ -34,13 +34,13 @@ namespace DiKErnel::Core::Test
 
     struct DeprecatedCalculatorTest : testing::Test
     {
-        const unique_ptr<InputData> inputData;
+        const unique_ptr<InputData> _inputData;
 
         explicit DeprecatedCalculatorTest()
-            : inputData(InputComposer::GetDomainParametersFromJson(
+            : _inputData(InputComposer::GetDomainParametersFromJson(
                 (TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Test")
                     / "InputComposerTest"
-                    / "testInput.json").string())) { }
+                    / "inputWithAllParameters.json").string())) { }
 
         static void AssertCalculationLocationOutput(
             const CalculationLocationOutput& calculationLocationOutput,
@@ -55,7 +55,7 @@ namespace DiKErnel::Core::Test
     TEST_F(DeprecatedCalculatorTest, Constructor_WithParameters_PerformsCalculationWithExpectedOutput)
     {
         // Call
-        DeprecatedCalculator calculator(*inputData, FunctionLibrary::NaturalStoneRevetment::CalculateDamage);
+        DeprecatedCalculator calculator(*_inputData, FunctionLibrary::NaturalStoneRevetment::CalculateDamage);
 
         calculator.WaitForCompletion();
 
@@ -90,7 +90,7 @@ namespace DiKErnel::Core::Test
     TEST_F(DeprecatedCalculatorTest, GivenCalculatorWithRunningCalculation_WhenCancelCalled_ThenCalculationCancelled)
     {
         // Given
-        DeprecatedCalculator calculator(*inputData, FunctionLibrary::NaturalStoneRevetment::CalculateDamage);
+        DeprecatedCalculator calculator(*_inputData, FunctionLibrary::NaturalStoneRevetment::CalculateDamage);
 
         // When
         calculator.Cancel();
@@ -106,7 +106,7 @@ namespace DiKErnel::Core::Test
     TEST_F(DeprecatedCalculatorTest, GivenCalculatorWithFinishedCalculation_WhenCancelCalled_ThenCalculationNotCancelled)
     {
         // Given
-        DeprecatedCalculator calculator(*inputData, FunctionLibrary::NaturalStoneRevetment::CalculateDamage);
+        DeprecatedCalculator calculator(*_inputData, FunctionLibrary::NaturalStoneRevetment::CalculateDamage);
 
         calculator.WaitForCompletion();
 
@@ -122,7 +122,7 @@ namespace DiKErnel::Core::Test
     TEST_F(DeprecatedCalculatorTest, GivenCalculatorWithRunningCalculation_WhenGettingOutputData_ThenOutputDataEmpty)
     {
         // Given
-        DeprecatedCalculator calculator(*inputData, FunctionLibrary::NaturalStoneRevetment::CalculateDamage);
+        DeprecatedCalculator calculator(*_inputData, FunctionLibrary::NaturalStoneRevetment::CalculateDamage);
 
         // When
         const auto outputData = calculator.GetOutputData();
@@ -136,7 +136,7 @@ namespace DiKErnel::Core::Test
     TEST_F(DeprecatedCalculatorTest, GivenCalculatorWithCancelledCalculation_WhenGettingOutputData_ThenOutputDataEmpty)
     {
         // Given
-        DeprecatedCalculator calculator(*inputData, FunctionLibrary::NaturalStoneRevetment::CalculateDamage);
+        DeprecatedCalculator calculator(*_inputData, FunctionLibrary::NaturalStoneRevetment::CalculateDamage);
 
         calculator.Cancel();
 

@@ -31,7 +31,7 @@ namespace DiKErnel::Core::Test
 
     struct CalculatorTest : testing::Test
     {
-        unique_ptr<CalculationInput> calculationInput;
+        unique_ptr<CalculationInput> _calculationInput;
 
         explicit CalculatorTest()
         {
@@ -45,7 +45,7 @@ namespace DiKErnel::Core::Test
             timeDependentDataItems.push_back(make_unique<TimeDependentData>(10, 20, 0.7, 0.8, 0.9, 1.0));
             timeDependentDataItems.push_back(make_unique<TimeDependentData>(20, 30, 1.1, 1.2, 1.3, 1.4));
 
-            calculationInput = make_unique<CalculationInput>(move(locationDependentDataItems), move(timeDependentDataItems), 0);
+            _calculationInput = make_unique<CalculationInput>(move(locationDependentDataItems), move(timeDependentDataItems), 0);
         }
 
         static void AssertDamages(
@@ -65,7 +65,7 @@ namespace DiKErnel::Core::Test
     TEST_F(CalculatorTest, GivenCalculator_WhenWaitForCompletion_ThenCalculationPerformed)
     {
         // Given
-        Calculator calculator(*calculationInput);
+        Calculator calculator(*_calculationInput);
 
         // When
         calculator.WaitForCompletion();
@@ -77,8 +77,8 @@ namespace DiKErnel::Core::Test
 
         const auto output = calculator.GetCalculationOutput();
         const auto& locationOutputs = output->GetLocationOutputs();
-        const auto& locationInputs = calculationInput->GetLocationDependentDataItems();
-        const auto numberOfTimes = calculationInput->GetTimeDependentDataItems().size();
+        const auto& locationInputs = _calculationInput->GetLocationDependentDataItems();
+        const auto numberOfTimes = _calculationInput->GetTimeDependentDataItems().size();
 
         ASSERT_EQ(locationInputs.size(), locationOutputs.size());
 
@@ -93,7 +93,7 @@ namespace DiKErnel::Core::Test
     TEST_F(CalculatorTest, GivenCalculatorWithRunningCalculation_WhenCancelCalled_ThenCalculationCancelled)
     {
         // Given
-        Calculator calculator(*calculationInput);
+        Calculator calculator(*_calculationInput);
 
         // When
         calculator.Cancel();
@@ -108,7 +108,7 @@ namespace DiKErnel::Core::Test
     TEST_F(CalculatorTest, GivenCalculatorWithFinishedCalculation_WhenCancelCalled_ThenCalculationNotCancelled)
     {
         // Given
-        Calculator calculator(*calculationInput);
+        Calculator calculator(*_calculationInput);
         calculator.WaitForCompletion();
 
         // When
@@ -123,7 +123,7 @@ namespace DiKErnel::Core::Test
     TEST_F(CalculatorTest, GivenCalculatorWithUnfinishedCalculation_WhenGetCalculationOutput_ThenNullPtrReturned)
     {
         // Given
-        Calculator calculator(*calculationInput);
+        Calculator calculator(*_calculationInput);
         calculator.Cancel();
         calculator.WaitForCompletion();
 

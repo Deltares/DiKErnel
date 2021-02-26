@@ -29,8 +29,8 @@
 
 namespace DiKErnel::KernelWrapper::Json
 {
-    using namespace std;
     using namespace DomainLibrary;
+    using namespace std;
 
     unique_ptr<InputData> InputComposer::GetDomainParametersFromJson(
         const string& filePath)

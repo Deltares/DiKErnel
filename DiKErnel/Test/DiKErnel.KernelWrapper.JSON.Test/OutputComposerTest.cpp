@@ -20,7 +20,11 @@
 
 #include <fstream>
 #include <memory>
+#include <vector>
+
 #include <gtest/gtest.h>
+
+#include <nlohmann/json.hpp>
 
 #include "FileAssert.h"
 #include "OutputComposer.h"
@@ -35,18 +39,18 @@ namespace DiKErnel::KernelWrapper::Json::Test
 
     struct OutputComposerTest : testing::Test
     {
-        const string expectedOutputFilePath =
+        const string _expectedOutputFilePath =
         (TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Test")
             / "OutputComposerTest"
             / "expectedOutput.json").string();
 
-        const string actualOutputFilePath =
+        const string _actualOutputFilePath =
         (filesystem::temp_directory_path()
             / "actualOutput.json").string();
 
         ~OutputComposerTest()
         {
-            remove(actualOutputFilePath.c_str());
+            remove(_actualOutputFilePath.c_str());
         }
 
         unique_ptr<CalculationLocationOutput> CreateCalculationLocationOutput(
@@ -81,9 +85,9 @@ namespace DiKErnel::KernelWrapper::Json::Test
         const auto outputData = make_unique<OutputData>(move(calculationLocationsOutput));
 
         // When
-        OutputComposer::WriteParametersToJson(actualOutputFilePath, *outputData, times);
+        OutputComposer::WriteParametersToJson(_actualOutputFilePath, *outputData, times);
 
         // Then
-        FileAssert::AssertFileContents(expectedOutputFilePath, actualOutputFilePath);
+        FileAssert::AssertFileContents(_expectedOutputFilePath, _actualOutputFilePath);
     }
 }
