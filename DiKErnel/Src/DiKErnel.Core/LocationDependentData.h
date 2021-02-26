@@ -39,6 +39,8 @@ namespace DiKErnel::Core
 
             /*!
              * \brief Performs a calculation.
+             * \param startDamage
+             *        The damage at the start of the calculation.
              * \param timeDependentData
              *        The time dependent data to use in the calculation.
              * \param maximumWaveAngle
@@ -46,6 +48,7 @@ namespace DiKErnel::Core
              * \return The calculated damage.
              */
             virtual double Calculate(
+                double startDamage,
                 const TimeDependentData& timeDependentData,
                 double maximumWaveAngle) = 0;
 

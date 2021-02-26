@@ -41,11 +41,24 @@ namespace DiKErnel::Core::Test
             locationDependentDataItems.push_back(make_unique<TestLocationDependentData>(0.2));
 
             vector<unique_ptr<TimeDependentData>> timeDependentDataItems;
-            timeDependentDataItems.push_back(make_unique<TimeDependentData>(0, 10, 0.1, 0.2, 0.3, 0.4));
-            timeDependentDataItems.push_back(make_unique<TimeDependentData>(10, 20, 0.1, 0.2, 0.3, 0.4));
-            timeDependentDataItems.push_back(make_unique<TimeDependentData>(20, 30, 0.1, 0.2, 0.3, 0.4));
+            timeDependentDataItems.push_back(make_unique<TimeDependentData>(0, 10, 0.3, 0.4, 0.5, 0.6));
+            timeDependentDataItems.push_back(make_unique<TimeDependentData>(10, 20, 0.7, 0.8, 0.9, 1.0));
+            timeDependentDataItems.push_back(make_unique<TimeDependentData>(20, 30, 1.1, 1.2, 1.3, 1.4));
 
             calculationInput = make_unique<CalculationInput>(move(locationDependentDataItems), move(timeDependentDataItems), 0);
+        }
+
+        static void AssertDamages(
+            const double initialDamage,
+            const int numberOfTimes,
+            const vector<double>& actualDamages)
+        {
+            ASSERT_EQ(numberOfTimes, actualDamages.size());
+
+            for (auto i = 0; i < numberOfTimes; ++i)
+            {
+                ASSERT_EQ(initialDamage + i * 0.5 + 0.5, actualDamages[i]);
+            }
         }
     };
 
@@ -64,13 +77,15 @@ namespace DiKErnel::Core::Test
 
         const auto output = calculator.GetCalculationOutput();
         const auto& locationOutputs = output->GetLocationOutputs();
+        const auto& locationInputs = calculationInput->GetLocationDependentDataItems();
         const auto numberOfTimes = calculationInput->GetTimeDependentDataItems().size();
 
-        ASSERT_EQ(calculationInput->GetLocationDependentDataItems().size(), locationOutputs.size());
-        for (const auto& locationOutputReference : locationOutputs)
+        ASSERT_EQ(locationInputs.size(), locationOutputs.size());
+
+        for (auto i = 0; i < static_cast<int>(locationInputs.size()); ++i)
         {
-            auto locationOutput = locationOutputReference.get();
-            ASSERT_EQ(numberOfTimes, locationOutput.GetDamages().size());
+            auto locationOutput = locationOutputs[i].get();
+            AssertDamages(locationInputs[i].get().GetInitialDamage(), static_cast<int>(numberOfTimes), locationOutput.GetDamages());
             ASSERT_EQ(nullptr, locationOutput.GetTimeOfFailure());
         }
     }

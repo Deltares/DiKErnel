@@ -108,9 +108,16 @@ namespace DiKErnel::Core
                     break;
                 }
 
-                const auto damage = locationDependentDataItems[i].get().Calculate(timeDependentData.get(), calculationInput.GetMaximumWaveAngle());
-
+                auto& location = locationDependentDataItems[i].get();
                 auto& locationOutput = calculationOutput->GetLocationOutputs()[i].get();
+                const auto& calculatedLocationDamages = locationOutput.GetDamages();
+
+                const auto startDamage = calculatedLocationDamages.empty()
+                                             ? location.GetInitialDamage()
+                                             : calculatedLocationDamages.back();
+
+                const auto damage = location.Calculate(startDamage, timeDependentData.get(), calculationInput.GetMaximumWaveAngle());
+
                 locationOutput.AddDamage(damage);
 
                 progress = progress + percentagePerCalculation;

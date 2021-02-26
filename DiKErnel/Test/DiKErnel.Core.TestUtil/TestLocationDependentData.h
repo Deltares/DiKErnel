@@ -39,6 +39,7 @@ namespace DiKErnel::Core::TestUtil
                 double initialDamage);
 
             double Calculate(
+                double startDamage,
                 const TimeDependentData& timeDependentData,
                 double maximumWaveAngle) override;
     };
