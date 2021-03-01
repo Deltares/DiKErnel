@@ -23,11 +23,18 @@
 namespace DiKErnel::KernelWrapper::Json
 {
     ProfileSchematization::ProfileSchematization(
-        const double tanA)
-        : _tanA(tanA) { }
+        const double tanA,
+        const double positionZ)
+        : _tanA(tanA),
+          _positionZ(positionZ) { }
 
     double ProfileSchematization::GetTanA() const
     {
         return _tanA;
+    }
+
+    double ProfileSchematization::GetPositionZ() const
+    {
+        return _positionZ;
     }
 }

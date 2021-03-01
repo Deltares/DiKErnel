@@ -56,6 +56,7 @@ namespace DiKErnel::KernelWrapper::Json
     const string JsonDefinitions::COEFFICIENT_SURGING_NS = "CoefficientSurgingNs";
     const string JsonDefinitions::PROFILE_SCHEMATIZATION = "Profielschematisatie";
     const string JsonDefinitions::TAN_A = "TanA";
+    const string JsonDefinitions::POSITION_Z = "PositieZ";
 
     const string JsonDefinitions::DAMAGE = "Schade";
     const string JsonDefinitions::DAMAGE_OVER_TIME = "SchadegetalPerTijd";

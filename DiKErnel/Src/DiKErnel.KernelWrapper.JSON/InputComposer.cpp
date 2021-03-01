@@ -111,7 +111,8 @@ namespace DiKErnel::KernelWrapper::Json
                     readRevetment[JsonDefinitions::COEFFICIENT_SURGING_CS].get<double>(),
                     readRevetment[JsonDefinitions::COEFFICIENT_SURGING_NS].get<double>()),
                 make_unique<ProfileSchematization>(
-                    readProfileSchematization[JsonDefinitions::TAN_A].get<double>()
+                    readProfileSchematization[JsonDefinitions::TAN_A].get<double>(),
+                    readProfileSchematization[JsonDefinitions::POSITION_Z].get<double>()
                 )
             ));
         }

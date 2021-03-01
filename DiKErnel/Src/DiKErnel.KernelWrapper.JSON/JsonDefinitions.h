@@ -62,6 +62,7 @@ namespace DiKErnel::KernelWrapper::Json
             static const std::string COEFFICIENT_SURGING_NS;
             static const std::string PROFILE_SCHEMATIZATION;
             static const std::string TAN_A;
+            static const std::string POSITION_Z;
 
             static const std::string DAMAGE;
             static const std::string DAMAGE_OVER_TIME;

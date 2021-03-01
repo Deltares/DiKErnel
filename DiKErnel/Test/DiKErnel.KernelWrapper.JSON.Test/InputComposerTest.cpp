@@ -92,10 +92,10 @@ namespace DiKErnel::KernelWrapper::Json::Test
         {
             AssertCalculationLocation(calculationLocations[0].get(), "LocatieZwak", "Noorse Steen", 1.65, 0.3,
                                       0.0, expectedCriticalDamageLocation1, 2.9, 4.0, 0.0,
-                                      0.0, -0.9, 0.8, 0.0, 0.0, 0.6, 0.3);
+                                      0.0, -0.9, 0.8, 0.0, 0.0, 0.6, 0.3, 1.0);
             AssertCalculationLocation(calculationLocations[1].get(), "LocatieSterk", "Noorse Steen", 1.65, 0.7,
                                       0.1, expectedCriticalDamageLocation2, 2.9, 4.0, 0.0,
-                                      0.0, -0.9, 0.8, 0.0, 0.0, 0.6, 0.3);
+                                      0.0, -0.9, 0.8, 0.0, 0.0, 0.6, 0.3, 1.0);
         }
 
         void AssertCalculationLocation(
@@ -115,7 +115,8 @@ namespace DiKErnel::KernelWrapper::Json::Test
             const double expectedSurgingCoefficientB,
             const double expectedSurgingCoefficientC,
             const double expectedSurgingCoefficientN,
-            const double expectedTanA) const
+            const double expectedTanA,
+            const double expectedPositionZ) const
         {
             ASSERT_EQ(expectedName, calculationLocation.GetName());
 
@@ -140,6 +141,7 @@ namespace DiKErnel::KernelWrapper::Json::Test
                 expectedSurgingCoefficientN);
 
             ASSERT_DOUBLE_EQ(expectedTanA, calculationLocation.GetProfileSchematization().GetTanA());
+            ASSERT_DOUBLE_EQ(expectedPositionZ, calculationLocation.GetProfileSchematization().GetPositionZ());
         }
 
         void AssertDamageVariables(
