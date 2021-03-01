@@ -84,9 +84,8 @@ namespace DiKErnel::Core::Test
 
         for (auto i = 0; i < static_cast<int>(locationInputs.size()); ++i)
         {
-            auto locationOutput = locationOutputs[i].get();
-            AssertDamages(locationInputs[i].get().GetInitialDamage(), static_cast<int>(numberOfTimes), locationOutput.GetDamages());
-            ASSERT_EQ(nullptr, locationOutput.GetTimeOfFailure());
+            AssertDamages(locationInputs[i].get().GetInitialDamage(), static_cast<int>(numberOfTimes), locationOutputs[i].get().GetDamages());
+            ASSERT_EQ(nullptr, locationOutputs[i].get().GetTimeOfFailure());
         }
     }
 

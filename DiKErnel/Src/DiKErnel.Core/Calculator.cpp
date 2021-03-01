@@ -88,37 +88,37 @@ namespace DiKErnel::Core
         const auto& timeDependentDataItems = calculationInput.GetTimeDependentDataItems();
         const auto& locationDependentDataItems = calculationInput.GetLocationDependentDataItems();
 
-        _calculationOutput = InitializeOutput(locationDependentDataItems);
+        auto damages = vector<vector<double>>(locationDependentDataItems.size(), vector<double>());
 
         const auto percentagePerCalculation = 1.0
                 / static_cast<double>(timeDependentDataItems.size())
                 / static_cast<double>(locationDependentDataItems.size());
 
-        for (const auto& timeDependentData : timeDependentDataItems)
+        for (auto i = 0; i < static_cast<int>(timeDependentDataItems.size()); ++i)
         {
             if (isCancelled)
             {
                 break;
             }
 
-            for (auto i = 0; i < static_cast<int>(locationDependentDataItems.size()); ++i)
+            auto& timeDependentData = timeDependentDataItems[i].get();
+
+            for (auto j = 0; j < static_cast<int>(locationDependentDataItems.size()); ++j)
             {
                 if (isCancelled)
                 {
                     break;
                 }
 
-                auto& location = locationDependentDataItems[i].get();
-                auto& locationOutput = _calculationOutput->GetLocationOutputs()[i].get();
-                const auto& calculatedLocationDamages = locationOutput.GetDamages();
+                auto& location = locationDependentDataItems[j].get();
 
-                const auto startDamage = calculatedLocationDamages.empty()
+                const auto startDamage = i == 0
                                              ? location.GetInitialDamage()
-                                             : calculatedLocationDamages.back();
+                                             : damages[j].back();
 
-                const auto damage = location.Calculate(startDamage, timeDependentData.get(), calculationInput.GetMaximumWaveAngle());
+                const auto damage = location.Calculate(startDamage, timeDependentData, calculationInput.GetMaximumWaveAngle());
 
-                locationOutput.AddDamage(damage);
+                damages[j].push_back(damage);
 
                 progress = progress + percentagePerCalculation;
             }
@@ -126,20 +126,21 @@ namespace DiKErnel::Core
 
         if (!isCancelled)
         {
+            CreateOutput(damages);
             isFinished = true;
         }
     }
 
-    shared_ptr<CalculationOutput> Calculator::InitializeOutput(
-        const vector<reference_wrapper<LocationDependentData>>& locationDependentDataItems) const
+    void Calculator::CreateOutput(
+        const vector<vector<double>>& damages)
     {
         auto locationOutputs = vector<unique_ptr<LocationOutput>>();
 
-        for (const auto& _ : locationDependentDataItems)
+        for (const auto& locationDamages : damages)
         {
-            locationOutputs.push_back(make_unique<LocationOutput>());
+            locationOutputs.push_back(make_unique<LocationOutput>(locationDamages, nullptr));
         }
 
-        return make_shared<CalculationOutput>(move(locationOutputs));
+        _calculationOutput = make_shared<CalculationOutput>(move(locationOutputs));
     }
 }

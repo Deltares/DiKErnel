@@ -93,7 +93,7 @@ namespace DiKErnel::Core
                 std::atomic<bool>& isFinished,
                 const std::atomic<bool>& isCancelled);
 
-            std::shared_ptr<CalculationOutput> InitializeOutput(
-                const std::vector<std::reference_wrapper<LocationDependentData>>& locationDependentDataItems) const;
+            void CreateOutput(
+                const std::vector<std::vector<double>>& damages);
     };
 }
