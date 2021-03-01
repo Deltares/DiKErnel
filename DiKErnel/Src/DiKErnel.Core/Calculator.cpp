@@ -101,7 +101,7 @@ namespace DiKErnel::Core
                 break;
             }
 
-            auto& timeDependentData = timeDependentDataItems[i].get();
+            const auto& timeDependentData = timeDependentDataItems[i].get();
 
             for (auto j = 0; j < static_cast<int>(locationDependentDataItems.size()); ++j)
             {
