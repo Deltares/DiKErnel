@@ -19,6 +19,8 @@
 // All rights reserved.
 
 #pragma once
+
+#include <memory>
 #include <vector>
 
 namespace DiKErnel::Core
@@ -30,20 +32,15 @@ namespace DiKErnel::Core
     {
         public:
             /*!
-             * \brief Adds the given damage to the collection of all the damages.
-             * \param damage
-             *        The damage to add.
-             */
-            void AddDamage(
-                double damage);
-
-            /*!
-             * \brief Sets the time of failure.
+             * \brief Creates a new instance.
+             * \param damages
+             *        The damages of the location.
              * \param timeOfFailure
              *        The time of failure.
              */
-            void SetTimeOfFailure(
-                double timeOfFailure);
+            explicit LocationOutput(
+                std::vector<double> damages,
+                std::unique_ptr<double> timeOfFailure);
 
             /*!
              * \brief Gets all damages.
@@ -55,10 +52,10 @@ namespace DiKErnel::Core
              * \brief Gets the time of failure.
              * \return The time of failure.
              */
-            double* GetTimeOfFailure() const;
+            const double* GetTimeOfFailure() const;
 
         private:
-            std::vector<double> _damages = std::vector<double>();
-            double* _timeOfFailure = nullptr;
+            std::vector<double> _damages;
+            std::unique_ptr<double> _timeOfFailure;
     };
 }

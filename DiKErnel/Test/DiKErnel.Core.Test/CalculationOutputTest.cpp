@@ -31,8 +31,8 @@ namespace DiKErnel::Core::Test
     {
         // Setup
         auto locationOutputs = vector<unique_ptr<LocationOutput>>();
-        locationOutputs.push_back(make_unique<LocationOutput>());
-        locationOutputs.push_back(make_unique<LocationOutput>());
+        locationOutputs.push_back(make_unique<LocationOutput>(vector<double>(), nullptr));
+        locationOutputs.push_back(make_unique<LocationOutput>(vector<double>(), nullptr));
 
         // Call
         const CalculationOutput output(move(locationOutputs));

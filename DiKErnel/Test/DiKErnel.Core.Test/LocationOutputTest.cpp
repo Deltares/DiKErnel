@@ -24,42 +24,30 @@
 
 namespace DiKErnel::Core::Test
 {
-    TEST(LocationOutputTest, Constructor_ExpectedValues)
-    {
-        // Call
-        const LocationOutput locationOutput;
+    using namespace std;
 
-        // Assert
-        ASSERT_EQ(0, locationOutput.GetDamages().size());
-        ASSERT_EQ(nullptr, locationOutput.GetTimeOfFailure());
-    }
-
-    TEST(LocationOutputTest, AddDamage_Always_AddsDamageToTotal)
+    TEST(LocationOutputTest, Constructor_WithParameters_ExpectedValues)
     {
         // Setup
-        LocationOutput locationOutput;
+        auto damages = vector<double>();
+        damages.push_back(rand() % 10);
+
+        double timeOfFailure = rand() % 20;
 
         // Call
-        const auto damageToAdd = rand() % 100;
-        locationOutput.AddDamage(damageToAdd);
+        const LocationOutput locationOutput(move(damages), make_unique<double>(timeOfFailure));
 
         // Assert
         ASSERT_EQ(1, locationOutput.GetDamages().size());
-        ASSERT_DOUBLE_EQ(damageToAdd, locationOutput.GetDamages()[0]);
+        ASSERT_EQ(timeOfFailure, *locationOutput.GetTimeOfFailure());
     }
 
-    TEST(LocationOutputTest, GivenLocationOutputWithTimeOfFailureSet_WhenGetTimeOfFailure_ThenReturnsValue)
+    TEST(LocationOutputTest, Constructor_TimeOfFailureNullPtr_ExpectedValues)
     {
-        // Given
-        const auto timeOfFailure = rand() % 100;
-
-        LocationOutput locationOutput;
-        locationOutput.SetTimeOfFailure(timeOfFailure);
-
-        // When
-        auto* actualTimeOfFailure = locationOutput.GetTimeOfFailure();
+        // Call
+        const LocationOutput locationOutput((vector<double>()), nullptr);
 
         // Assert
-        ASSERT_DOUBLE_EQ(timeOfFailure, *actualTimeOfFailure);
+        ASSERT_EQ(nullptr, locationOutput.GetTimeOfFailure());
     }
 }

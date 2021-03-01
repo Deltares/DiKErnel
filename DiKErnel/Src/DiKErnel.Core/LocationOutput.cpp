@@ -24,25 +24,19 @@ namespace DiKErnel::Core
 {
     using namespace std;
 
-    void LocationOutput::AddDamage(
-        double damage)
-    {
-        _damages.emplace_back(damage);
-    }
-
-    void LocationOutput::SetTimeOfFailure(
-        double timeOfFailure)
-    {
-        this->_timeOfFailure = &timeOfFailure;
-    }
+    LocationOutput::LocationOutput(
+        vector<double> damages,
+        unique_ptr<double> timeOfFailure)
+        : _damages(move(damages)),
+          _timeOfFailure(move(timeOfFailure)) {}
 
     const vector<double>& LocationOutput::GetDamages() const
     {
         return _damages;
     }
 
-    double* LocationOutput::GetTimeOfFailure() const
+    const double* LocationOutput::GetTimeOfFailure() const
     {
-        return _timeOfFailure;
+        return _timeOfFailure.get();
     }
 }
