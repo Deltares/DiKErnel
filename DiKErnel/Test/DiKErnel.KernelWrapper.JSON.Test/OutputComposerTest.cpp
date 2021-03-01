@@ -24,8 +24,6 @@
 
 #include <gtest/gtest.h>
 
-#include <nlohmann/json.hpp>
-
 #include "FileAssert.h"
 #include "OutputComposer.h"
 #include "OutputData.h"
