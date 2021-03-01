@@ -37,6 +37,7 @@ namespace DiKErnel::KernelWrapper::Json
             static const std::string TIME;
             static const std::string MAXIMUM_WAVE_ANGLE;
             static const std::string BOUNDARY_CONDITIONS_PER_TIME_STEP;
+            static const std::string WATER_LEVEL;
             static const std::string WAVE_HEIGHT_HM0;
             static const std::string WAVE_PERIOD_TM10;
             static const std::string WAVE_ANGLE;

@@ -31,6 +31,7 @@ namespace DiKErnel::KernelWrapper::Json
     const string JsonDefinitions::TIME = "Tijd";
     const string JsonDefinitions::MAXIMUM_WAVE_ANGLE = "GolfhoekMaximum";
     const string JsonDefinitions::BOUNDARY_CONDITIONS_PER_TIME_STEP = "RandvoorwaardenPerTijdstap";
+    const string JsonDefinitions::WATER_LEVEL = "Waterstand";
     const string JsonDefinitions::WAVE_HEIGHT_HM0 = "GolfhoogteHm0";
     const string JsonDefinitions::WAVE_PERIOD_TM10 = "GolfperiodeTm10";
     const string JsonDefinitions::WAVE_ANGLE = "Golfhoek";

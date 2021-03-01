@@ -38,7 +38,7 @@ namespace DiKErnel::KernelWrapper::Json
         public:
             /*!
              * \brief Gets the domain parameters from the Json file represented by the provided
-             *        file path.                                                                              
+             *        file path.
              * \param filePath
              *        The path to the Json file.
              * \return The input data.

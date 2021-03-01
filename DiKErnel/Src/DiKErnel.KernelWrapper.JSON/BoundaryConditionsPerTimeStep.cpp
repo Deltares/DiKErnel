@@ -23,12 +23,19 @@
 namespace DiKErnel::KernelWrapper::Json
 {
     BoundaryConditionsPerTimeStep::BoundaryConditionsPerTimeStep(
+        const double waterLevel,
         const double waveHeightHm0,
         const double wavePeriodTm10,
         const double waveAngle)
-        : _waveHeightHm0(waveHeightHm0),
+        : _waterLevel(waterLevel),
+          _waveHeightHm0(waveHeightHm0),
           _wavePeriodTm10(wavePeriodTm10),
           _waveAngle(waveAngle) { }
+
+    double BoundaryConditionsPerTimeStep::GetWaterLevel() const
+    {
+        return _waterLevel;
+    }
 
     double BoundaryConditionsPerTimeStep::GetWaveHeightHm0() const
     {

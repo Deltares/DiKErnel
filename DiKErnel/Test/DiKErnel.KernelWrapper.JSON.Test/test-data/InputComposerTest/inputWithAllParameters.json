@@ -17,26 +17,31 @@
 		"RandvoorwaardenPerTijdstap": 
 		[
 			{
+				"Waterstand": 0.1,
 				"GolfhoogteHm0": 0.5,
 				"GolfperiodeTm10": 2,
 				"Golfhoek": -10
 			},
 			{
+				"Waterstand": 0.5,
 				"GolfhoogteHm0": 0.8,
 				"GolfperiodeTm10": 6,
 				"Golfhoek": -5
 			},
 			{
+				"Waterstand": 1.15,
 				"GolfhoogteHm0": 1.2,
 				"GolfperiodeTm10": 6,
 				"Golfhoek": 0
 			},
 			{
+				"Waterstand": 1.77,
 				"GolfhoogteHm0": 1.5,
 				"GolfperiodeTm10": 7,
 				"Golfhoek": 7
 			},
 			{
+				"Waterstand": 2.0,
 				"GolfhoogteHm0": 0.5,
 				"GolfperiodeTm10": 4,
 				"Golfhoek": 8

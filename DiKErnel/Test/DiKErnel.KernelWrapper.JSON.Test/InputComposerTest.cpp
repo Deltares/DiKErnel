@@ -65,37 +65,24 @@ namespace DiKErnel::KernelWrapper::Json::Test
 
             const auto& boundaryConditionsPerTimeStep = hydraulicLoads.GetBoundaryConditionsPerTimeStep();
 
-            AssertBoundaryConditionsForTimeStep(boundaryConditionsPerTimeStep[0].get(), 0.5, 2.0, -10.0);
-            AssertBoundaryConditionsForTimeStep(boundaryConditionsPerTimeStep[1].get(), 0.8, 6.0, -5.0);
-            AssertBoundaryConditionsForTimeStep(boundaryConditionsPerTimeStep[2].get(), 1.2, 6.0, 0.0);
-            AssertBoundaryConditionsForTimeStep(boundaryConditionsPerTimeStep[3].get(), 1.5, 7.0, 7.0);
-            AssertBoundaryConditionsForTimeStep(boundaryConditionsPerTimeStep[4].get(), 0.5, 4.0, 8.0);
+            AssertBoundaryConditionsForTimeStep(boundaryConditionsPerTimeStep[0].get(), 0.1, 0.5, 2.0, -10.0);
+            AssertBoundaryConditionsForTimeStep(boundaryConditionsPerTimeStep[1].get(), 0.5, 0.8, 6.0, -5.0);
+            AssertBoundaryConditionsForTimeStep(boundaryConditionsPerTimeStep[2].get(), 1.15, 1.2, 6.0, 0.0);
+            AssertBoundaryConditionsForTimeStep(boundaryConditionsPerTimeStep[3].get(), 1.77, 1.5, 7.0, 7.0);
+            AssertBoundaryConditionsForTimeStep(boundaryConditionsPerTimeStep[4].get(), 2.0, 0.5, 4.0, 8.0);
         }
 
         void AssertBoundaryConditionsForTimeStep(
             const BoundaryConditionsPerTimeStep& boundaryConditionsForTimeStep,
+            const double expectedWaterLevel,
             const double expectedWaveHeightHm0,
             const double expectedWavePeriodTm10,
             const double expectedWaveAngle) const
         {
+            ASSERT_DOUBLE_EQ(expectedWaterLevel, boundaryConditionsForTimeStep.GetWaterLevel());
             ASSERT_DOUBLE_EQ(expectedWaveHeightHm0, boundaryConditionsForTimeStep.GetWaveHeightHm0());
             ASSERT_DOUBLE_EQ(expectedWavePeriodTm10, boundaryConditionsForTimeStep.GetWavePeriodTm10());
             ASSERT_DOUBLE_EQ(expectedWaveAngle, boundaryConditionsForTimeStep.GetWaveAngle());
-        }
-
-        void AssertCalculationLocations(
-            const vector<unique_ptr<CalculationLocation>>& calculationLocations,
-            const double expectedCriticalDamageLocation1,
-            const double expectedCriticalDamageLocation2) const
-        {
-            vector<reference_wrapper<CalculationLocation>> locationReferences;
-
-            for (const auto& location : calculationLocations)
-            {
-                locationReferences.emplace_back(*location);
-            }
-
-            AssertCalculationLocations(locationReferences, expectedCriticalDamageLocation1, expectedCriticalDamageLocation2);
         }
 
         void AssertCalculationLocations(
@@ -159,7 +146,7 @@ namespace DiKErnel::KernelWrapper::Json::Test
             const DamageVariables& damageVariables,
             const double expectedInitialDamage,
             const double expectedCriticalDamage)
-             const
+        const
         {
             ASSERT_DOUBLE_EQ(expectedInitialDamage, damageVariables.GetInitialDamage());
             ASSERT_DOUBLE_EQ(expectedCriticalDamage, damageVariables.GetCriticalDamage());
@@ -215,44 +202,5 @@ namespace DiKErnel::KernelWrapper::Json::Test
         AssertCalculationData(inputData->GetCalculationData());
         AssertHydraulicLoads(inputData->GetHydraulicLoads());
         AssertCalculationLocations(inputData->GetLocations(), 1.0, 1.0);
-    }
-
-    TEST_F(InputComposerTest, GivenFileWithAllInputParametersAndInputComposer_WhenReadCalculationDataFromJson_ThenCorrectDataSet)
-    {
-        // Given
-        ifstream ifs(_filePathWithAllParameters);
-        const auto json = nlohmann::json::parse(ifs);
-
-        // When
-        const auto calculationData = InputComposer::ReadCalculationData(json);
-
-        // Then
-        AssertCalculationData(*calculationData);
-    }
-
-    TEST_F(InputComposerTest, GivenFileWithAllInputParametersAndInputComposer_WhenReadHydraulicLoadsFromJson_ThenCorrectDataSet)
-    {
-        // Given
-        ifstream ifs(_filePathWithAllParameters);
-        const auto json = nlohmann::json::parse(ifs);
-
-        // When
-        const auto hydraulicLoads = InputComposer::ReadHydraulicLoads(json);
-
-        // Then
-        AssertHydraulicLoads(*hydraulicLoads);
-    }
-
-    TEST_F(InputComposerTest, GivenFileWithAllInputParametersAndInputComposer_WhenReadLocationsFromJson_ThenCorrectDataSet)
-    {
-        // Given
-        ifstream ifs(_filePathWithAllParameters);
-        const auto json = nlohmann::json::parse(ifs);
-
-        // When
-        const auto calculationLocations = InputComposer::ReadLocations(json);
-
-        // Then
-        AssertCalculationLocations(calculationLocations, 1.0, 1.05);
     }
 }

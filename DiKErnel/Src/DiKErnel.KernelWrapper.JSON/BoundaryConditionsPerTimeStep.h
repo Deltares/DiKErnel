@@ -30,6 +30,8 @@ namespace DiKErnel::KernelWrapper::Json
         public:
             /*!
              * \brief Creates a new instance.
+             * \param waterLevel
+             *        The water level.
              * \param waveHeightHm0
              *        The wave height.
              * \param wavePeriodTm10
@@ -38,9 +40,16 @@ namespace DiKErnel::KernelWrapper::Json
              *        The wave angle.
              */
             explicit BoundaryConditionsPerTimeStep(
+                double waterLevel,
                 double waveHeightHm0,
                 double wavePeriodTm10,
                 double waveAngle);
+
+            /*!
+             * \brief Gets the water level.
+             * \return The water level.
+             */
+            double GetWaterLevel() const;
 
             /*!
              * \brief Gets the wave height.
@@ -61,6 +70,7 @@ namespace DiKErnel::KernelWrapper::Json
             double GetWaveAngle() const;
 
         private:
+            double _waterLevel;
             double _waveHeightHm0;
             double _wavePeriodTm10;
             double _waveAngle;

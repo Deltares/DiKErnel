@@ -66,6 +66,7 @@ namespace DiKErnel::KernelWrapper::Json
         {
             boundaryConditionsPerTimeStep.push_back(
                 make_unique<BoundaryConditionsPerTimeStep>(
+                    readBoundaryConditionsForTimeStep[JsonDefinitions::WATER_LEVEL].get<double>(),
                     readBoundaryConditionsForTimeStep[JsonDefinitions::WAVE_HEIGHT_HM0].get<double>(),
                     readBoundaryConditionsForTimeStep[JsonDefinitions::WAVE_PERIOD_TM10].get<double>(),
                     readBoundaryConditionsForTimeStep[JsonDefinitions::WAVE_ANGLE].get<double>()
