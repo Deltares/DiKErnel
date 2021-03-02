@@ -22,5 +22,5 @@
 
 namespace DiKErnel::Integration
 {
-    class NaturalStoneRevetmentLocationCalculationInput {};
+    class NaturalStoneRevetmentLocationDependentData { };
 }

@@ -3,8 +3,8 @@ set(LIBNAME DiKErnel.Integration)
 
 # Define sources
 set(SOURCEFILES
-  NaturalStoneRevetmentLocationCalculationInput.cpp
-  NaturalStoneRevetmentLocationCalculationInput.h
+  NaturalStoneRevetmentLocationDependentData.cpp
+  NaturalStoneRevetmentLocationDependentData.h
   RevetmentCalculationInputFactory.cpp
   RevetmentCalculationInputFactory.h
 )
@@ -20,4 +20,4 @@ source_group("Sources" FILES ${SOURCEFILES})
 target_include_directories(${LIBNAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
 # Link dependencies
-target_link_libraries(${LIBNAME} DiKErnel.Core)
+target_link_libraries(${LIBNAME} DiKErnel.Core DiKErnel.FunctionLibrary)
