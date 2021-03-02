@@ -24,9 +24,55 @@
 
 namespace DiKErnel::Integration
 {
+    /*!
+     * \brief Class containing all natural stone revetment location related data to perform a calculation.
+     */
     class NaturalStoneRevetmentLocationDependentData : public Core::LocationDependentData
     {
         public:
+            /*!
+             * \brief Creates a new instance.
+             * \param initialDamage
+             *        The damage at the start of the calculation.
+             *        Unit = [-]
+             * \param slopeAngle
+             *        The slope angle at the current location.
+             *        Unit = [°]
+             * \param relativeDensity
+             *        The relative density at the current location.
+             *        Unit = [-]
+             * \param thicknessTopLayer
+             *        The thickness of the top layer at the current location.
+             *        Unit = [m]
+             * \param plungingCoefficientA
+             *        The A coefficient for plunging.
+             *        Unit = [-]
+             * \param plungingCoefficientB
+             *        The B coefficient for plunging.
+             *        Unit = [-]
+             * \param plungingCoefficientC
+             *        The C coefficient for plunging.
+             *        Unit = [-]
+             * \param plungingCoefficientN
+             *        The N coefficient for plunging.
+             *        Unit = [-]
+             * \param surgingCoefficientA
+             *        The A coefficient for surging.
+             *        Unit = [-]
+             * \param surgingCoefficientB
+             *        The B coefficient for surging.
+             *        Unit = [-]
+             * \param surgingCoefficientC
+             *        The C coefficient for surging.
+             *        Unit = [-]
+             * \param surgingCoefficientN
+             *        The N coefficient for surging.
+             *        Unit = [-]
+             * \param similarityParameterThreshold
+             *        The similarity parameter threshold, which determines whether there is
+             *        plunging or surging.
+             *        Unit = [-]
+             */
             explicit NaturalStoneRevetmentLocationDependentData(
                 double initialDamage,
                 double slopeAngle,
@@ -42,6 +88,16 @@ namespace DiKErnel::Integration
                 double surgingCoefficientN,
                 double similarityParameterThreshold);
 
+            /*!
+             * \brief Performs a calculation.
+             * \param startDamage
+             *        The damage at the start of the calculation.
+             * \param timeDependentData
+             *        The time dependent data to use in the calculation.
+             * \param maximumWaveAngle
+             *        The maximum wave angle.
+             * \return The calculated damage.
+             */
             double Calculate(
                 double startDamage,
                 const Core::TimeDependentData& timeDependentData,
