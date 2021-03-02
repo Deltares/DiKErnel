@@ -5,8 +5,8 @@ set(LIBNAME DiKErnel.Integration)
 set(SOURCEFILES
   NaturalStoneRevetmentLocationDependentData.cpp
   NaturalStoneRevetmentLocationDependentData.h
-  RevetmentCalculationInputFactory.cpp
-  RevetmentCalculationInputFactory.h
+  RevetmentCalculationInputBuilder.cpp
+  RevetmentCalculationInputBuilder.h
 )
 
 # Add library

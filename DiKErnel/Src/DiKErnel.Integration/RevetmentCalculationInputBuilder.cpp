@@ -18,9 +18,6 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#pragma once
+#include "RevetmentCalculationInputBuilder.h"
 
-namespace DiKErnel::Integration
-{
-    class RevetmentCalculationInputFactory {};
-}
+namespace DiKErnel::Integration {}

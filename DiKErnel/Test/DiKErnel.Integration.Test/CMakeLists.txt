@@ -5,7 +5,7 @@ set(EXENAME DiKErnel.Integration.Test)
 set(SOURCEFILES
   Main.cpp
   NaturalStoneRevetmentLocationDependentDataTest.cpp
-  RevetmentCalculationInputFactoryTest.cpp
+  RevetmentCalculationInputBuilderTest.cpp
 )
 
 # Add executable
