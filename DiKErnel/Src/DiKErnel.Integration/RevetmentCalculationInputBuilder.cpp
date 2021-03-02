@@ -20,4 +20,19 @@
 
 #include "RevetmentCalculationInputBuilder.h"
 
-namespace DiKErnel::Integration {}
+namespace DiKErnel::Integration
+{
+    using namespace Core;
+    using namespace std;
+
+    RevetmentCalculationInputBuilder::RevetmentCalculationInputBuilder(
+        const double maximumWaveAngle)
+        : _maximumWaveAngle(maximumWaveAngle),
+          _timeSteps(vector<unique_ptr<TimeDependentData>>()),
+          _locations(vector<unique_ptr<LocationDependentData>>()) {}
+
+    unique_ptr<CalculationInput> RevetmentCalculationInputBuilder::Build()
+    {
+        return make_unique<CalculationInput>(move(_locations), move(_timeSteps), _maximumWaveAngle);
+    }
+}

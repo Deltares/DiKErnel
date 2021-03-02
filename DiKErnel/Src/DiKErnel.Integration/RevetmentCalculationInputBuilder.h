@@ -20,7 +20,33 @@
 
 #pragma once
 
+#include "CalculationInput.h"
+
 namespace DiKErnel::Integration
 {
-    class RevetmentCalculationInputBuilder { };
+    /*!
+     * \brief Builder to configure and create the CalculationInput.
+     */
+    class RevetmentCalculationInputBuilder
+    {
+        public:
+            /*!
+             * \brief Create a new instance.
+             * \param maximumWaveAngle
+             *        The maximum wave angle.
+             */
+            explicit RevetmentCalculationInputBuilder(
+                double maximumWaveAngle);
+
+            /*!
+             * \brief Builds the CalculationInput.
+             * \return The build CalculationInput.
+             */
+            std::unique_ptr<Core::CalculationInput> Build();
+
+        private:
+            double _maximumWaveAngle;
+            std::vector<std::unique_ptr<Core::TimeDependentData>> _timeSteps;
+            std::vector<std::unique_ptr<Core::LocationDependentData>> _locations;
+    };
 }

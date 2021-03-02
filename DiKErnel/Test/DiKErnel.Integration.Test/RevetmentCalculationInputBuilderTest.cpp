@@ -18,4 +18,24 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-namespace DiKErnel::Integration::Test {}
+#include <gtest/gtest.h>
+
+#include "RevetmentCalculationInputBuilder.h"
+
+namespace DiKErnel::Integration::Test
+{
+    TEST(RevetmentCalculationInputBuilderTest, GivenBuilderWithData_WhenBuild_ThenReturnsCalculationInput)
+    {
+        // Given
+        const auto maximumWaveAngle = rand() % 100;
+
+        // When
+        RevetmentCalculationInputBuilder builder(maximumWaveAngle);
+        const auto calculationInput = builder.Build();
+
+        // Then
+        ASSERT_DOUBLE_EQ(maximumWaveAngle, calculationInput->GetMaximumWaveAngle());
+        ASSERT_EQ(0, calculationInput->GetTimeDependentDataItems().size());
+        ASSERT_EQ(0, calculationInput->GetLocationDependentDataItems().size());
+    }
+}
