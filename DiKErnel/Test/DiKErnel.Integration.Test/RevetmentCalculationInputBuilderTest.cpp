@@ -24,18 +24,51 @@
 
 namespace DiKErnel::Integration::Test
 {
-    TEST(RevetmentCalculationInputBuilderTest, GivenBuilderWithData_WhenBuild_ThenReturnsCalculationInput)
+    using namespace Core;
+    using namespace std;
+
+    struct RevetmentCalculationInputBuilderTest : testing::Test
+    {
+        static void AssertTimeDependentDataItems(
+            const int expectedBeginTime,
+            const int expectedEndTime,
+            const double expectedWaterLevel,
+            const double expectedWaveHeightHm0,
+            const double expectedWavePeriodTm10,
+            const double expectedWaveAngle,
+            const vector<reference_wrapper<TimeDependentData>>& actualTimeDependentDataItems)
+        {
+            ASSERT_EQ(1, actualTimeDependentDataItems.size());
+            const auto& timeDependentDataItem = actualTimeDependentDataItems[0].get();
+            ASSERT_DOUBLE_EQ(expectedBeginTime, timeDependentDataItem.GetBeginTime());
+            ASSERT_DOUBLE_EQ(expectedEndTime, timeDependentDataItem.GetEndTime());
+            ASSERT_DOUBLE_EQ(expectedWaterLevel, timeDependentDataItem.GetWaterLevel());
+            ASSERT_DOUBLE_EQ(expectedWaveHeightHm0, timeDependentDataItem.GetWaveHeightHm0());
+            ASSERT_DOUBLE_EQ(expectedWavePeriodTm10, timeDependentDataItem.GetWavePeriodTm10());
+            ASSERT_DOUBLE_EQ(expectedWaveAngle, timeDependentDataItem.GetWaveAngle());
+        }
+    };
+
+    TEST_F(RevetmentCalculationInputBuilderTest, GivenBuilderWithData_WhenBuild_ThenReturnsCalculationInput)
     {
         // Given
         const auto maximumWaveAngle = rand() % 100;
+        const auto beginTime = rand() % 100;
+        const auto endTime = rand() % 100 + 100;
+        const auto waterLevel = 0.1;
+        const auto waveHeightHm0 = 0.2;
+        const auto wavePeriodTm10 = 0.3;
+        const auto waveAngle = 0.4;
 
         // When
         RevetmentCalculationInputBuilder builder(maximumWaveAngle);
+        builder.AddTimeStep(beginTime, endTime, waterLevel, waveHeightHm0, wavePeriodTm10, waveAngle);
         const auto calculationInput = builder.Build();
 
         // Then
         ASSERT_DOUBLE_EQ(maximumWaveAngle, calculationInput->GetMaximumWaveAngle());
-        ASSERT_EQ(0, calculationInput->GetTimeDependentDataItems().size());
+        AssertTimeDependentDataItems(beginTime, endTime, waterLevel, waveHeightHm0, wavePeriodTm10, waveAngle,
+                                     calculationInput->GetTimeDependentDataItems());
         ASSERT_EQ(0, calculationInput->GetLocationDependentDataItems().size());
     }
 }

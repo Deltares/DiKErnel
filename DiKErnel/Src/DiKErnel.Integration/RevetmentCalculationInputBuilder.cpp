@@ -31,6 +31,17 @@ namespace DiKErnel::Integration
           _timeSteps(vector<unique_ptr<TimeDependentData>>()),
           _locations(vector<unique_ptr<LocationDependentData>>()) {}
 
+    void RevetmentCalculationInputBuilder::AddTimeStep(
+        int beginTime,
+        int endTime,
+        double waterLevel,
+        double waveHeightHm0,
+        double wavePeriodTm10,
+        double waveAngle)
+    {
+        _timeSteps.push_back(make_unique<TimeDependentData>(beginTime, endTime, waterLevel, waveHeightHm0, wavePeriodTm10, waveAngle));
+    }
+
     unique_ptr<CalculationInput> RevetmentCalculationInputBuilder::Build()
     {
         return make_unique<CalculationInput>(move(_locations), move(_timeSteps), _maximumWaveAngle);

@@ -39,6 +39,31 @@ namespace DiKErnel::Integration
                 double maximumWaveAngle);
 
             /*!
+             * \brief Creates a new instance.
+             * \param beginTime
+             *        The begin time.
+             * \param endTime
+             *        The end time.
+             * \param waterLevel
+             *        The water level.
+             * \param waveHeightHm0
+             *        The wave height.
+             * \param wavePeriodTm10
+             *        The wave period.
+             * \param waveAngle
+             *        The wave angle.
+             * \exception InvalidCalculationDataException
+             *            Thrown when endTime is equal to or larger than beginTime.
+             */
+            void AddTimeStep(
+                int beginTime,
+                int endTime,
+                double waterLevel,
+                double waveHeightHm0,
+                double wavePeriodTm10,
+                double waveAngle);
+
+            /*!
              * \brief Builds the CalculationInput.
              * \return The build CalculationInput.
              */
