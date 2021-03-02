@@ -7,6 +7,8 @@ set(SOURCEFILES
   NaturalStoneRevetmentLocationDependentData.h
   RevetmentCalculationInputBuilder.cpp
   RevetmentCalculationInputBuilder.h
+  RevetmentCalculationInputBuilderException.cpp
+  RevetmentCalculationInputBuilderException.h
 )
 
 # Add library
