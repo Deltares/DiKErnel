@@ -20,7 +20,45 @@
 
 #pragma once
 
+#include "LocationDependentData.h"
+
 namespace DiKErnel::Integration
 {
-    class NaturalStoneRevetmentLocationDependentData { };
+    class NaturalStoneRevetmentLocationDependentData : public Core::LocationDependentData
+    {
+        public:
+            explicit NaturalStoneRevetmentLocationDependentData(
+                double initialDamage,
+                double slopeAngle,
+                double relativeDensity,
+                double thicknessTopLayer,
+                double plungingCoefficientA,
+                double plungingCoefficientB,
+                double plungingCoefficientC,
+                double plungingCoefficientN,
+                double surgingCoefficientA,
+                double surgingCoefficientB,
+                double surgingCoefficientC,
+                double surgingCoefficientN,
+                double similarityParameterThreshold);
+
+            double Calculate(
+                double startDamage,
+                const Core::TimeDependentData& timeDependentData,
+                double maximumWaveAngle) override;
+
+        private:
+            double _slopeAngle;
+            double _relativeDensity;
+            double _thicknessTopLayer;
+            double _plungingCoefficientA;
+            double _plungingCoefficientB;
+            double _plungingCoefficientC;
+            double _plungingCoefficientN;
+            double _surgingCoefficientA;
+            double _surgingCoefficientB;
+            double _surgingCoefficientC;
+            double _surgingCoefficientN;
+            double _similarityParameterThreshold;
+    };
 }

@@ -58,7 +58,7 @@ namespace DiKErnel::TestUtil
             template <typename TException>
             static void AssertThrowsWithMessage(
                 const Action action,
-                std::string expectedMessage)
+                const std::string& expectedMessage)
             {
                 try
                 {
@@ -73,6 +73,21 @@ namespace DiKErnel::TestUtil
                 {
                     FAIL() << "Expected " << typeid(TException).name();
                 }
+            }
+
+            /*!
+             * \brief Asserts whether TDerived is derived from TBase.
+             * \tparam TBase
+             *         The type of the base class.
+             * \tparam TDerived
+             *         The type of the class to assert.
+             * \param actual
+             *        The object to assert.
+             */
+            template <typename TBase, typename TDerived>
+            static void AssertIsInstanceOf(const TDerived *actual)
+            {
+                ASSERT_TRUE(dynamic_cast<const TBase*>(actual) != nullptr);
             }
     };
 }
