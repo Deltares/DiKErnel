@@ -20,19 +20,24 @@
 
 #include <gtest/gtest.h>
 
+#include "AssertHelper.h"
 #include "InvalidCalculationDataException.h"
 
 namespace DiKErnel::Core::Test
 {
+    using namespace std;
+    using namespace TestUtil;
+
     TEST(InvalidCalculationDataExceptionTest, Constructor_WithMessage_ExpectedValues)
     {
         // Setup
-        const std::string message = "Test message";
+        const string message = "Test message";
 
         // Call
-        const InvalidCalculationDataException exception(message);
+        const InvalidCalculationDataException actualException(message);
 
         // Assert
-        ASSERT_TRUE(message == exception.what());
+        AssertHelper::AssertIsInstanceOf<exception>(&actualException);
+        ASSERT_TRUE(message == actualException.what());
     }
 }

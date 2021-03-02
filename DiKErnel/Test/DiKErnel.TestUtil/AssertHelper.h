@@ -76,18 +76,19 @@ namespace DiKErnel::TestUtil
             }
 
             /*!
-             * \brief Asserts whether TDerived is derived from TBase.
-             * \tparam TBase
-             *         The type of the base class.
-             * \tparam TDerived
-             *         The type of the class to assert.
+             * \brief Asserts whether TActual is of type TExpected.
+             * \tparam TExpected
+             *         The expected type.
+             * \tparam TActual
+             *         The actual type.
              * \param actual
              *        The object to assert.
              */
-            template <typename TBase, typename TDerived>
-            static void AssertIsInstanceOf(const TDerived *actual)
+            template <typename TExpected, typename TActual>
+            static void AssertIsInstanceOf(
+                const TActual* actual)
             {
-                ASSERT_TRUE(dynamic_cast<const TBase*>(actual) != nullptr);
+                ASSERT_TRUE(dynamic_cast<const TExpected*>(actual) != nullptr);
             }
     };
 }
