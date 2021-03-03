@@ -20,6 +20,8 @@
 
 #pragma once
 
+#include <memory>
+
 #include "JsonInputRevetmentLocationData.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
@@ -34,43 +36,43 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 const std::string& typeTopLayer,
                 double relativeDensity,
                 double thicknessTopLayer,
-                double similarityParameterThreshold,
-                double plungingCoefficientA,
-                double plungingCoefficientB,
-                double plungingCoefficientC,
-                double plungingCoefficientN,
-                double surgingCoefficientA,
-                double surgingCoefficientB,
-                double surgingCoefficientC,
-                double surgingCoefficientN);
+                std::unique_ptr<double> similarityParameterThreshold,
+                std::unique_ptr<double> plungingCoefficientA,
+                std::unique_ptr<double> plungingCoefficientB,
+                std::unique_ptr<double> plungingCoefficientC,
+                std::unique_ptr<double> plungingCoefficientN,
+                std::unique_ptr<double> surgingCoefficientA,
+                std::unique_ptr<double> surgingCoefficientB,
+                std::unique_ptr<double> surgingCoefficientC,
+                std::unique_ptr<double> surgingCoefficientN);
 
-            double GetSimilarityParameterThreshold() const;
+            const double* GetSimilarityParameterThreshold() const;
 
-            double GetPlungingCoefficientA() const;
+            const double* GetPlungingCoefficientA() const;
 
-            double GetPlungingCoefficientB() const;
+            const double* GetPlungingCoefficientB() const;
 
-            double GetPlungingCoefficientC() const;
+            const double* GetPlungingCoefficientC() const;
 
-            double GetPlungingCoefficientN() const;
+            const double* GetPlungingCoefficientN() const;
 
-            double GetSurgingCoefficientA() const;
+            const double* GetSurgingCoefficientA() const;
 
-            double GetSurgingCoefficientB() const;
+            const double* GetSurgingCoefficientB() const;
 
-            double GetSurgingCoefficientC() const;
+            const double* GetSurgingCoefficientC() const;
 
-            double GetSurgingCoefficientN() const;
+            const double* GetSurgingCoefficientN() const;
 
         private:
-            double _similarityParameterThreshold;
-            double _plungingCoefficientA;
-            double _plungingCoefficientB;
-            double _plungingCoefficientC;
-            double _plungingCoefficientN;
-            double _surgingCoefficientA;
-            double _surgingCoefficientB;
-            double _surgingCoefficientC;
-            double _surgingCoefficientN;
+            std::unique_ptr<double> _similarityParameterThreshold;
+            std::unique_ptr<double> _plungingCoefficientA;
+            std::unique_ptr<double> _plungingCoefficientB;
+            std::unique_ptr<double> _plungingCoefficientC;
+            std::unique_ptr<double> _plungingCoefficientN;
+            std::unique_ptr<double> _surgingCoefficientA;
+            std::unique_ptr<double> _surgingCoefficientB;
+            std::unique_ptr<double> _surgingCoefficientC;
+            std::unique_ptr<double> _surgingCoefficientN;
     };
 }

@@ -22,75 +22,77 @@
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
+    using namespace std;
+
     JsonInputNaturalStoneRevetmentLocationData::JsonInputNaturalStoneRevetmentLocationData(
-        const std::string& typeTopLayer,
+        const string& typeTopLayer,
         const double relativeDensity,
         const double thicknessTopLayer,
-        const double similarityParameterThreshold,
-        const double plungingCoefficientA,
-        const double plungingCoefficientB,
-        const double plungingCoefficientC,
-        const double plungingCoefficientN,
-        const double surgingCoefficientA,
-        const double surgingCoefficientB,
-        const double surgingCoefficientC,
-        const double surgingCoefficientN)
+        unique_ptr<double> similarityParameterThreshold,
+        unique_ptr<double> plungingCoefficientA,
+        unique_ptr<double> plungingCoefficientB,
+        unique_ptr<double> plungingCoefficientC,
+        unique_ptr<double> plungingCoefficientN,
+        unique_ptr<double> surgingCoefficientA,
+        unique_ptr<double> surgingCoefficientB,
+        unique_ptr<double> surgingCoefficientC,
+        unique_ptr<double> surgingCoefficientN)
         : JsonInputRevetmentLocationData(
               typeTopLayer,
               relativeDensity,
               thicknessTopLayer),
-          _similarityParameterThreshold(similarityParameterThreshold),
-          _plungingCoefficientA(plungingCoefficientA),
-          _plungingCoefficientB(plungingCoefficientB),
-          _plungingCoefficientC(plungingCoefficientC),
-          _plungingCoefficientN(plungingCoefficientN),
-          _surgingCoefficientA(surgingCoefficientA),
-          _surgingCoefficientB(surgingCoefficientB),
-          _surgingCoefficientC(surgingCoefficientC),
-          _surgingCoefficientN(surgingCoefficientN) { }
+          _similarityParameterThreshold(move(similarityParameterThreshold)),
+          _plungingCoefficientA(move(plungingCoefficientA)),
+          _plungingCoefficientB(move(plungingCoefficientB)),
+          _plungingCoefficientC(move(plungingCoefficientC)),
+          _plungingCoefficientN(move(plungingCoefficientN)),
+          _surgingCoefficientA(move(surgingCoefficientA)),
+          _surgingCoefficientB(move(surgingCoefficientB)),
+          _surgingCoefficientC(move(surgingCoefficientC)),
+          _surgingCoefficientN(move(surgingCoefficientN)) { }
 
-    double JsonInputNaturalStoneRevetmentLocationData::GetSimilarityParameterThreshold() const
+    const double* JsonInputNaturalStoneRevetmentLocationData::GetSimilarityParameterThreshold() const
     {
-        return _similarityParameterThreshold;
+        return _similarityParameterThreshold.get();
     }
 
-    double JsonInputNaturalStoneRevetmentLocationData::GetPlungingCoefficientA() const
+    const double* JsonInputNaturalStoneRevetmentLocationData::GetPlungingCoefficientA() const
     {
-        return _plungingCoefficientA;
+        return _plungingCoefficientA.get();
     }
 
-    double JsonInputNaturalStoneRevetmentLocationData::GetPlungingCoefficientB() const
+    const double* JsonInputNaturalStoneRevetmentLocationData::GetPlungingCoefficientB() const
     {
-        return _plungingCoefficientB;
+        return _plungingCoefficientB.get();
     }
 
-    double JsonInputNaturalStoneRevetmentLocationData::GetPlungingCoefficientC() const
+    const double* JsonInputNaturalStoneRevetmentLocationData::GetPlungingCoefficientC() const
     {
-        return _plungingCoefficientC;
+        return _plungingCoefficientC.get();
     }
 
-    double JsonInputNaturalStoneRevetmentLocationData::GetPlungingCoefficientN() const
+    const double* JsonInputNaturalStoneRevetmentLocationData::GetPlungingCoefficientN() const
     {
-        return _plungingCoefficientN;
+        return _plungingCoefficientN.get();
     }
 
-    double JsonInputNaturalStoneRevetmentLocationData::GetSurgingCoefficientA() const
+    const double* JsonInputNaturalStoneRevetmentLocationData::GetSurgingCoefficientA() const
     {
-        return _surgingCoefficientA;
+        return _surgingCoefficientA.get();
     }
 
-    double JsonInputNaturalStoneRevetmentLocationData::GetSurgingCoefficientB() const
+    const double* JsonInputNaturalStoneRevetmentLocationData::GetSurgingCoefficientB() const
     {
-        return _surgingCoefficientB;
+        return _surgingCoefficientB.get();
     }
 
-    double JsonInputNaturalStoneRevetmentLocationData::GetSurgingCoefficientC() const
+    const double* JsonInputNaturalStoneRevetmentLocationData::GetSurgingCoefficientC() const
     {
-        return _surgingCoefficientC;
+        return _surgingCoefficientC.get();
     }
 
-    double JsonInputNaturalStoneRevetmentLocationData::GetSurgingCoefficientN() const
+    const double* JsonInputNaturalStoneRevetmentLocationData::GetSurgingCoefficientN() const
     {
-        return _surgingCoefficientN;
+        return _surgingCoefficientN.get();
     }
 }
