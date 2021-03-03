@@ -25,7 +25,7 @@
 namespace DiKErnel::TestUtil
 {
     using namespace std;
-    using namespace filesystem;
+    using namespace std::filesystem;
 
     path TestDataPathHelper::GetTestDataPath(
         const string& currentNamespace)
