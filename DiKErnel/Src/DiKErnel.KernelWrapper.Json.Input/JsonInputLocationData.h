@@ -28,6 +28,7 @@
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
+    template <typename TJsonInputRevetmentLocationData>
     class JsonInputLocationData
     {
         public:
