@@ -20,15 +20,25 @@
 
 #include <gtest/gtest.h>
 
+#include "AssertHelper.h"
+#include "InvalidCalculationDataException.h"
 #include "RevetmentCalculationInputBuilder.h"
+#include "RevetmentCalculationInputBuilderException.h"
 
 namespace DiKErnel::Integration::Test
 {
     using namespace Core;
     using namespace std;
+    using namespace TestUtil;
 
     struct RevetmentCalculationInputBuilderTest : testing::Test
     {
+        static void CreateBuilderAndAddInvalidTimeStep()
+        {
+            RevetmentCalculationInputBuilder builder(0);
+            builder.AddTimeStep(10, 5, 0, 0, 0, 0);
+        }
+
         static void AssertTimeDependentDataItems(
             const int expectedBeginTime,
             const int expectedEndTime,
@@ -70,5 +80,15 @@ namespace DiKErnel::Integration::Test
         AssertTimeDependentDataItems(beginTime, endTime, waterLevel, waveHeightHm0, wavePeriodTm10, waveAngle,
                                      calculationInput->GetTimeDependentDataItems());
         ASSERT_EQ(0, calculationInput->GetLocationDependentDataItems().size());
+    }
+
+    TEST_F(RevetmentCalculationInputBuilderTest, GivenBuilder_WhenAddTimeStepWithInvalidEndTime_ThenThrowsRevetmentCalculationInputBuilderException)
+    {
+        // Call
+        const auto action = &RevetmentCalculationInputBuilderTest::CreateBuilderAndAddInvalidTimeStep;
+
+        // Assert
+        AssertHelper::AssertThrowsWithMessageAndInnerException<RevetmentCalculationInputBuilderException, InvalidCalculationDataException>(
+            action, "Could not create TimeDependentData.", "'beginTime' should be smaller than 'endTime'.");
     }
 }

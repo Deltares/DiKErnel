@@ -76,6 +76,41 @@ namespace DiKErnel::TestUtil
             }
 
             /*!
+             * \brief Asserts whether an exception is thrown with an expected message.
+             * \tparam TException
+             *         The type of the exception.
+             * \tparam TInnerException
+             *         The type of the inner exception.
+             * \param action
+             *        The action to perform.
+             * \param expectedMessage
+             *        The expected message in the exception.
+             * \param expectedInnerExceptionMessage
+             *        The expected message of the inner exception.
+             */
+            template <typename TException, typename TInnerException>
+            static void AssertThrowsWithMessageAndInnerException(
+                const Action action,
+                const std::string& expectedMessage,
+                const std::string& expectedInnerExceptionMessage)
+            {
+                try
+                {
+                    action();
+                    FAIL() << "Expected " << typeid(TException).name();
+                }
+                catch (TException& exception)
+                {
+                    ASSERT_TRUE(expectedMessage == exception.what());
+                    AssertInnerException<TException, TInnerException>(exception, expectedInnerExceptionMessage);
+                }
+                catch (...)
+                {
+                    FAIL() << "Expected " << typeid(TException).name();
+                }
+            }
+
+            /*!
              * \brief Asserts whether TActual is of type TExpected.
              * \tparam TExpected
              *         The expected type.
@@ -89,6 +124,24 @@ namespace DiKErnel::TestUtil
                 const TActual* actual)
             {
                 ASSERT_TRUE(dynamic_cast<const TExpected*>(actual) != nullptr);
+            }
+        private:
+            template <typename TException, typename TInnerException>
+            static void AssertInnerException(TException& actualException, const std::string& expectedInnerExceptionMessage)
+            {
+                try
+                {
+                    std::rethrow_if_nested(actualException);
+                    FAIL() << "Expected " << typeid(TInnerException).name();
+                }
+                catch(TInnerException& exception)
+                {
+                    ASSERT_TRUE(expectedInnerExceptionMessage == exception.what());
+                }
+                catch(...)
+                {
+                    FAIL() << "Expected " << typeid(TInnerException).name();
+                }
             }
     };
 }

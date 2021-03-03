@@ -20,6 +20,9 @@
 
 #include "RevetmentCalculationInputBuilder.h"
 
+#include "InvalidCalculationDataException.h"
+#include "RevetmentCalculationInputBuilderException.h"
+
 namespace DiKErnel::Integration
 {
     using namespace Core;
@@ -39,7 +42,14 @@ namespace DiKErnel::Integration
         double wavePeriodTm10,
         double waveAngle)
     {
-        _timeSteps.push_back(make_unique<TimeDependentData>(beginTime, endTime, waterLevel, waveHeightHm0, wavePeriodTm10, waveAngle));
+        try
+        {
+            _timeSteps.push_back(make_unique<TimeDependentData>(beginTime, endTime, waterLevel, waveHeightHm0, wavePeriodTm10, waveAngle));
+        }
+        catch (InvalidCalculationDataException&)
+        {
+            throw_with_nested(RevetmentCalculationInputBuilderException("Could not create TimeDependentData."));
+        }
     }
 
     unique_ptr<CalculationInput> RevetmentCalculationInputBuilder::Build()

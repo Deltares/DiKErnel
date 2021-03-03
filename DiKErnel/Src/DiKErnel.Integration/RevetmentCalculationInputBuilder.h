@@ -52,7 +52,7 @@ namespace DiKErnel::Integration
              *        The wave period.
              * \param waveAngle
              *        The wave angle.
-             * \exception InvalidCalculationDataException
+             * \exception RevetmentCalculationInputBuilderException
              *            Thrown when endTime is equal to or larger than beginTime.
              */
             void AddTimeStep(
