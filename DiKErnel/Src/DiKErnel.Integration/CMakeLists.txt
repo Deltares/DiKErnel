@@ -3,6 +3,8 @@ set(LIBNAME DiKErnel.Integration)
 
 # Define sources
 set(SOURCEFILES
+  NaturalStoneRevetmentLocationConstructionProperties.cpp
+  NaturalStoneRevetmentLocationConstructionProperties.h
   NaturalStoneRevetmentLocationDependentData.cpp
   NaturalStoneRevetmentLocationDependentData.h
   RevetmentCalculationInputBuilder.cpp

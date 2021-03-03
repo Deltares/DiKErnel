@@ -4,6 +4,7 @@ set(EXENAME DiKErnel.Integration.Test)
 # Define sources
 set(SOURCEFILES
   Main.cpp
+  NaturalStoneRevetmentLocationConstructionPropertiesTest.cpp
   NaturalStoneRevetmentLocationDependentDataTest.cpp
   RevetmentCalculationInputBuilderExceptionTest.cpp
   RevetmentCalculationInputBuilderTest.cpp
