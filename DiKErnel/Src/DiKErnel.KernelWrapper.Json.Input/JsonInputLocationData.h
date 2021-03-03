@@ -35,17 +35,21 @@ namespace DiKErnel::KernelWrapper::Json::Input
             explicit JsonInputLocationData(
                 std::string name,
                 std::unique_ptr<JsonInputDamageData> damageData,
+                std::unique_ptr<TJsonInputRevetmentLocationData> revetmentLocationData,
                 std::unique_ptr<JsonInputProfileSchematizationData> profileSchematizationData);
 
             const std::string& GetName() const;
 
             const JsonInputDamageData& GetDamageData() const;
 
+            const TJsonInputRevetmentLocationData& GetRevetmentLocationData() const;
+
             const JsonInputProfileSchematizationData& GetProfileSchematizationData() const;
 
         private:
             std::string _name;
             std::unique_ptr<JsonInputDamageData> _damageData;
+            std::unique_ptr<TJsonInputRevetmentLocationData> _revetmentLocationData;
             std::unique_ptr<JsonInputProfileSchematizationData> _profileSchematizationData;
     };
 }
