@@ -19,12 +19,17 @@ set(SOURCEFILES
   InputComposer.h
   InputData.cpp
   InputData.h
+  InputJsonDefinitions.cpp
+  InputJsonDefinitions.h
   JsonDefinitions.cpp
   JsonDefinitions.h
   OutputComposer.cpp
   OutputComposer.h
   OutputData.cpp
   OutputData.h
+  OutputJsonDefinitions.cpp
+  OutputJsonDefinitions.h
+  InputJsonDefinitions.h
   ProfileSchematization.cpp
   ProfileSchematization.h
   Revetment.cpp
