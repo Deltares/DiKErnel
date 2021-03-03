@@ -24,37 +24,32 @@ namespace DiKErnel::KernelWrapper::Json::Input
 {
     using namespace std;
 
-    template <typename TJsonInputRevetmentLocationData>
-    JsonInputLocationData<TJsonInputRevetmentLocationData>::JsonInputLocationData(
+    JsonInputLocationData::JsonInputLocationData(
         string name,
         unique_ptr<JsonInputDamageData> damageData,
-        unique_ptr<TJsonInputRevetmentLocationData> revetmentLocationData,
+        unique_ptr<JsonInputRevetmentLocationData> revetmentLocationData,
         unique_ptr<JsonInputProfileSchematizationData> profileSchematizationData)
         : _name(move(name)),
           _damageData(move(damageData)),
           _revetmentLocationData(move(revetmentLocationData)),
           _profileSchematizationData(move(profileSchematizationData)) { }
 
-    template <typename TJsonInputRevetmentLocationData>
-    const string& JsonInputLocationData<TJsonInputRevetmentLocationData>::GetName() const
+    const string& JsonInputLocationData::GetName() const
     {
         return _name;
     }
 
-    template <typename TJsonInputRevetmentLocationData>
-    const JsonInputDamageData& JsonInputLocationData<TJsonInputRevetmentLocationData>::GetDamageData() const
+    const JsonInputDamageData& JsonInputLocationData::GetDamageData() const
     {
         return *_damageData;
     }
 
-    template <typename TJsonInputRevetmentLocationData>
-    const TJsonInputRevetmentLocationData& JsonInputLocationData<TJsonInputRevetmentLocationData>::GetRevetmentLocationData() const
+    const JsonInputRevetmentLocationData& JsonInputLocationData::GetRevetmentLocationData() const
     {
         return *_revetmentLocationData;
     }
 
-    template <typename TJsonInputRevetmentLocationData>
-    const JsonInputProfileSchematizationData& JsonInputLocationData<TJsonInputRevetmentLocationData>::GetProfileSchematizationData() const
+    const JsonInputProfileSchematizationData& JsonInputLocationData::GetProfileSchematizationData() const
     {
         return *_profileSchematizationData;
     }
