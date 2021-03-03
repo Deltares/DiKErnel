@@ -92,7 +92,7 @@ namespace DiKErnel::KernelWrapper::Json::Test
         {
             AssertCalculationLocation(calculationLocations[0].get(), "LocatieZwak", "Noorse Steen", 1.65, 0.3,
                                       0.0, expectedCriticalDamageLocation1, 2.9, 4.0, 0.0,
-                                      0.0, -0.9, 0.8, 0.0, 0.0, 0.6, 0.3, 1.0);
+                                      0.0, -0.9, 0.8, 0.0, 0.0, 0.6, 0.25, 0.9);
             AssertCalculationLocation(calculationLocations[1].get(), "LocatieSterk", "Noorse Steen", 1.65, 0.7,
                                       0.1, expectedCriticalDamageLocation2, 2.9, 4.0, 0.0,
                                       0.0, -0.9, 0.8, 0.0, 0.0, 0.6, 0.3, 1.0);
@@ -140,8 +140,10 @@ namespace DiKErnel::KernelWrapper::Json::Test
                 expectedSurgingCoefficientC,
                 expectedSurgingCoefficientN);
 
-            ASSERT_DOUBLE_EQ(expectedTanA, calculationLocation.GetProfileSchematization().GetTanA());
-            ASSERT_DOUBLE_EQ(expectedPositionZ, calculationLocation.GetProfileSchematization().GetPositionZ());
+            AssertProfileSchematization(
+                calculationLocation.GetProfileSchematization(),
+                expectedTanA,
+                expectedPositionZ);
         }
 
         void AssertDamageVariables(
@@ -181,6 +183,15 @@ namespace DiKErnel::KernelWrapper::Json::Test
             ASSERT_DOUBLE_EQ(expectedSurgingCoefficientB, revetment.GetSurgingCoefficientB());
             ASSERT_DOUBLE_EQ(expectedSurgingCoefficientC, revetment.GetSurgingCoefficientC());
             ASSERT_DOUBLE_EQ(expectedSurgingCoefficientN, revetment.GetSurgingCoefficientN());
+        }
+
+        void AssertProfileSchematization(
+            const ProfileSchematization& profileSchematization,
+            const double expectedTanA,
+            const double expectedPositionZ) const
+        {
+            ASSERT_DOUBLE_EQ(expectedTanA, profileSchematization.GetTanA());
+            ASSERT_DOUBLE_EQ(expectedPositionZ, profileSchematization.GetPositionZ());
         }
     };
 

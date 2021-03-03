@@ -33,7 +33,7 @@ namespace DiKErnel::KernelWrapper::Json
              * \param tanA
              *        The value of tangent alpha.
              * \param positionZ
-             *        The z position.
+             *        The value of position z.
              */
             explicit ProfileSchematization(
                 double tanA,
@@ -47,8 +47,8 @@ namespace DiKErnel::KernelWrapper::Json
             double GetTanA() const;
 
             /*!
-             * \brief Gets the value of the z position.
-             * \return The value of the z position.
+             * \brief Gets the value of position z.
+             * \return The value of position z.
              */
             double GetPositionZ() const;
 

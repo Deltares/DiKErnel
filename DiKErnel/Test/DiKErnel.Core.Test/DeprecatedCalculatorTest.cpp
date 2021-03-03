@@ -70,11 +70,11 @@ namespace DiKErnel::Core::Test
 
         vector<double> expectedDamagesLocation1;
         expectedDamagesLocation1.push_back(0.0);
-        expectedDamagesLocation1.push_back(0.19527164721720683);
-        expectedDamagesLocation1.push_back(0.70491509411111852);
-        expectedDamagesLocation1.push_back(0.86951766024309207);
-        expectedDamagesLocation1.push_back(1.1323824260219246);
-        expectedDamagesLocation1.push_back(1.1323880208002550);
+        expectedDamagesLocation1.push_back(0.16572043642100434);
+        expectedDamagesLocation1.push_back(0.59823757673282019);
+        expectedDamagesLocation1.push_back(0.73793020228365425);
+        expectedDamagesLocation1.push_back(0.96101463018381816);
+        expectedDamagesLocation1.push_back(0.96101937828278594);
         AssertCalculationLocationOutput(calculationLocationsOutput[0].get(), "LocatieZwak", expectedDamagesLocation1);
 
         vector<double> expectedDamagesLocation2;
