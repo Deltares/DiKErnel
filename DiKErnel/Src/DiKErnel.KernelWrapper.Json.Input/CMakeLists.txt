@@ -17,12 +17,12 @@ set(SOURCEFILES
   JsonInputHydraulicData.h
   JsonInputLocationData.cpp
   JsonInputLocationData.h
+  JsonInputNaturalStoneRevetmentLocationData.cpp
+  JsonInputNaturalStoneRevetmentLocationData.h
   JsonInputParser.cpp
   JsonInputParser.h
   JsonInputTimeDependentHydraulicData.cpp
   JsonInputTimeDependentHydraulicData.h
-  NaturalStoneRevetmentJsonInputLocationData.cpp
-  NaturalStoneRevetmentJsonInputLocationData.h
 )
 
 # Add library

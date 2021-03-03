@@ -18,9 +18,6 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#pragma once
+#include "JsonInputNaturalStoneRevetmentLocationData.h"
 
-namespace DiKErnel::KernelWrapper::Json::Input
-{
-    class NaturalStoneRevetmentJsonInputLocationData {};
-}
+namespace DiKErnel::KernelWrapper::Json::Input {}
