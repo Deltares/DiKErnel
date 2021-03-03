@@ -24,6 +24,9 @@
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
+    /*!
+     * \brief Container for damage data read from Json.
+     */
     class JsonInputDamageData
     {
         public:

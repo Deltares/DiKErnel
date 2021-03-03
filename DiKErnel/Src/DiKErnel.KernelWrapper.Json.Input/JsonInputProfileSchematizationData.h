@@ -22,6 +22,9 @@
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
+    /*!
+     * \brief Container for profile schematization data read from Json.
+     */
     class JsonInputProfileSchematizationData
     {
         public:

@@ -26,6 +26,9 @@
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
+    /*!
+     * \brief Container for all input data read from Json.
+     */
     class JsonInputData
     {
         public:

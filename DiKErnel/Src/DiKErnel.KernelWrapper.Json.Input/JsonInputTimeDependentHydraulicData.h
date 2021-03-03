@@ -22,6 +22,9 @@
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
+    /*!
+     * \brief Container for time dependent hydraulic data read from Json.
+     */
     class JsonInputTimeDependentHydraulicData
     {
         public:

@@ -24,6 +24,9 @@
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
+    /*!
+     * \brief Container for revetment specific location data read from Json.
+     */
     class JsonInputRevetmentLocationData
     {
         public:
