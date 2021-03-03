@@ -10,6 +10,7 @@ set(SOURCEFILES
 )
 
 set(SOURCEFILES_PARSER
+  JsonInputDefinitions.h
   JsonInputParser.cpp
   JsonInputParser.h
 )
