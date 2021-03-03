@@ -28,19 +28,7 @@ namespace DiKErnel::Integration
         const double thicknessTopLayer)
         : _initialDamage(initialDamage),
           _slopeAngle(slopeAngle),
-          _thicknessTopLayer(thicknessTopLayer)
-    {
-        _relativeDensityPtr = nullptr;
-        _plungingCoefficientAPtr = nullptr;
-        _plungingCoefficientBPtr = nullptr;
-        _plungingCoefficientCPtr = nullptr;
-        _plungingCoefficientNPtr = nullptr;
-        _surgingCoefficientAPtr = nullptr;
-        _surgingCoefficientBPtr = nullptr;
-        _surgingCoefficientCPtr = nullptr;
-        _surgingCoefficientNPtr = nullptr;
-        _similarityParameterThresholdPtr = nullptr;
-    }
+          _thicknessTopLayer(thicknessTopLayer) { }
 
     double NaturalStoneRevetmentLocationConstructionProperties::GetInitialDamage() const
     {

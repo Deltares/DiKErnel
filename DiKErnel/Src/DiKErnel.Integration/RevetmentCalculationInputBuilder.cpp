@@ -34,11 +34,7 @@ namespace DiKErnel::Integration
 
     RevetmentCalculationInputBuilder::RevetmentCalculationInputBuilder(
         const double maximumWaveAngle)
-        : _maximumWaveAngle(maximumWaveAngle)
-    {
-        _timeSteps = vector<unique_ptr<TimeDependentData>>();
-        _locations = vector<unique_ptr<LocationDependentData>>();
-    }
+        : _maximumWaveAngle(maximumWaveAngle) { }
 
     void RevetmentCalculationInputBuilder::AddTimeStep(
         int beginTime,

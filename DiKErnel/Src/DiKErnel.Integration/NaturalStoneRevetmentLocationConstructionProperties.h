@@ -65,52 +65,52 @@ namespace DiKErnel::Integration
             /*!
              * \brief The relative density of the location.
              */
-            std::unique_ptr<double> _relativeDensityPtr;
+            std::unique_ptr<double> _relativeDensityPtr = nullptr;
 
             /*!
              * \brief The plunging coefficient A of the location.
              */
-            std::unique_ptr<double> _plungingCoefficientAPtr;
+            std::unique_ptr<double> _plungingCoefficientAPtr = nullptr;
 
             /*!
              * \brief The plunging coefficient B of the location.
              */
-            std::unique_ptr<double> _plungingCoefficientBPtr;
+            std::unique_ptr<double> _plungingCoefficientBPtr = nullptr;
 
             /*!
              * \brief The plunging coefficient C of the location.
              */
-            std::unique_ptr<double> _plungingCoefficientCPtr;
+            std::unique_ptr<double> _plungingCoefficientCPtr = nullptr;
 
             /*!
              * \brief The plunging coefficient N of the location.
              */
-            std::unique_ptr<double> _plungingCoefficientNPtr;
+            std::unique_ptr<double> _plungingCoefficientNPtr = nullptr;
 
             /*!
              * \brief The surging coefficient A of the location.
              */
-            std::unique_ptr<double> _surgingCoefficientAPtr;
+            std::unique_ptr<double> _surgingCoefficientAPtr = nullptr;
 
             /*!
              * \brief The surging coefficient B of the location.
              */
-            std::unique_ptr<double> _surgingCoefficientBPtr;
+            std::unique_ptr<double> _surgingCoefficientBPtr = nullptr;
 
             /*!
              * \brief The surging coefficient C of the location.
              */
-            std::unique_ptr<double> _surgingCoefficientCPtr;
+            std::unique_ptr<double> _surgingCoefficientCPtr = nullptr;
 
             /*!
              * \brief The surging coefficient N of the location.
              */
-            std::unique_ptr<double> _surgingCoefficientNPtr;
+            std::unique_ptr<double> _surgingCoefficientNPtr = nullptr;
 
             /*!
              * \brief The similarity parameter threshold of the location.
              */
-            std::unique_ptr<double> _similarityParameterThresholdPtr;
+            std::unique_ptr<double> _similarityParameterThresholdPtr = nullptr;
 
         private:
             double _initialDamage;
