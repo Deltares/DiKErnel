@@ -18,4 +18,42 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-namespace DiKErnel::Integration {}
+#include "NaturalStoneRevetmentLocationConstructionProperties.h"
+
+namespace DiKErnel::Integration
+{
+    NaturalStoneRevetmentLocationConstructionProperties::NaturalStoneRevetmentLocationConstructionProperties(
+        const double initialDamage,
+        const double slopeAngle,
+        const double thicknessTopLayer)
+        : _initialDamage(initialDamage),
+          _slopeAngle(slopeAngle),
+          _thicknessTopLayer(thicknessTopLayer)
+    {
+        _relativeDensityPtr = nullptr;
+        _plungingCoefficientAPtr = nullptr;
+        _plungingCoefficientBPtr = nullptr;
+        _plungingCoefficientCPtr = nullptr;
+        _plungingCoefficientNPtr = nullptr;
+        _surgingCoefficientAPtr = nullptr;
+        _surgingCoefficientBPtr = nullptr;
+        _surgingCoefficientCPtr = nullptr;
+        _surgingCoefficientNPtr = nullptr;
+        _similarityParameterThresholdPtr = nullptr;
+    }
+
+    double NaturalStoneRevetmentLocationConstructionProperties::GetInitialDamage() const
+    {
+        return _initialDamage;
+    }
+
+    double NaturalStoneRevetmentLocationConstructionProperties::GetSlopeAngle() const
+    {
+        return _slopeAngle;
+    }
+
+    double NaturalStoneRevetmentLocationConstructionProperties::GetThicknessTopLayer() const
+    {
+        return _thicknessTopLayer;
+    }
+}
