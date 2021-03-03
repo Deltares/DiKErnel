@@ -34,18 +34,19 @@ namespace DiKErnel::KernelWrapper::Json::Input
             explicit JsonInputCalculationData(
                 std::vector<int> times,
                 std::unique_ptr<JsonInputHydraulicData> hydraulicData,
-                std::unique_ptr<JsonInputLocationData> locationData
+                std::vector<std::unique_ptr<JsonInputLocationData>> locationData
             );
 
             const std::vector<int>& GetTimes() const;
 
             const JsonInputHydraulicData& GetHydraulicData() const;
 
-            const JsonInputLocationData& GetLocationData() const;
+            const std::vector<std::reference_wrapper<JsonInputLocationData>>& GetLocationData() const;
 
         private:
             std::vector<int> _times;
             std::unique_ptr<JsonInputHydraulicData> _hydraulicData;
-            std::unique_ptr<JsonInputLocationData> _locationData;
+            std::vector<std::unique_ptr<JsonInputLocationData>> _locationData;
+            std::vector<std::reference_wrapper<JsonInputLocationData>> _locationDataReferences;
     };
 }
