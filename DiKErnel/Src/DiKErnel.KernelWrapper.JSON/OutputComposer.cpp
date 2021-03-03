@@ -25,7 +25,7 @@
 
 #include <nlohmann/json.hpp>
 
-#include "JsonDefinitions.h"
+#include "OutputJsonDefinitions.h"
 #include "OutputData.h"
 #include "RevetmentOutput.h"
 
@@ -40,30 +40,30 @@ namespace DiKErnel::KernelWrapper::Json
     {
         nlohmann::ordered_json json;
 
-        json[JsonDefinitions::OUTPUT_DATA][JsonDefinitions::TIME] = times;
+        json[OutputJsonDefinitions::OUTPUT_DATA][OutputJsonDefinitions::TIME] = times;
 
         for (const auto& calculationLocationOutput : outputData.GetCalculationLocationsOutput())
         {
-            json[JsonDefinitions::OUTPUT_DATA][JsonDefinitions::LOCATIONS].push_back(
+            json[OutputJsonDefinitions::OUTPUT_DATA][OutputJsonDefinitions::LOCATIONS].push_back(
                 nlohmann::ordered_json::object(
                     {
                         {
-                            JsonDefinitions::NAME,
+                            OutputJsonDefinitions::NAME,
                             calculationLocationOutput.get().GetName()
                         },
                         {
-                            JsonDefinitions::DAMAGE,
+                            OutputJsonDefinitions::DAMAGE,
                             {
                                 {
-                                    JsonDefinitions::FAILED,
+                                    OutputJsonDefinitions::FAILED,
                                     true
                                 },
                                 {
-                                    JsonDefinitions::TIME_OF_FAILURE,
+                                    OutputJsonDefinitions::TIME_OF_FAILURE,
                                     60
                                 },
                                 {
-                                    JsonDefinitions::DAMAGE_OVER_TIME,
+                                    OutputJsonDefinitions::DAMAGE_OVER_TIME,
                                     calculationLocationOutput.get().GetRevetmentOutput().GetDamages()
                                 }
                             }

@@ -43,8 +43,6 @@ namespace DiKErnel::KernelWrapper::Json
     const string InputJsonDefinitions::THICKNESS_TOP_LAYER = "DikteToplaag";
     const string InputJsonDefinitions::INITIAL_DAMAGE = "BeginSchade";
     const string InputJsonDefinitions::CRITICAL_DAMAGE = "Faalgetal";
-    const string InputJsonDefinitions::FAILED = "Faalgebeurtenis";
-    const string InputJsonDefinitions::TIME_OF_FAILURE = "Faaltijd";
     const string InputJsonDefinitions::SIMILARITY_PARAMETER_THRESHOLD = "BrekerIndexGrenswaarde";
     const string InputJsonDefinitions::COEFFICIENT_PLUNGING_AP = "CoefficientPlungingAp";
     const string InputJsonDefinitions::COEFFICIENT_PLUNGING_BP = "CoefficientPlungingBp";
@@ -60,6 +58,4 @@ namespace DiKErnel::KernelWrapper::Json
 
     const string InputJsonDefinitions::DAMAGE = "Schade";
     const string InputJsonDefinitions::DAMAGE_OVER_TIME = "SchadegetalPerTijd";
-
-    const string InputJsonDefinitions::OUTPUT_DATA = "Uitvoerdata";
 }
