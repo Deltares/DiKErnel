@@ -22,8 +22,6 @@
 
 #include <fstream>
 
-#include <nlohmann/json.hpp>
-
 #include "Defaults.h"
 #include "InputData.h"
 #include "JsonDefinitions.h"

@@ -27,8 +27,8 @@
 
 namespace DiKErnel::FunctionLibrary
 {
-    using namespace std;
     using namespace DomainLibrary;
+    using namespace std;
 
     double NaturalStoneRevetment::CalculateDamage(
         const double initialDamage,
