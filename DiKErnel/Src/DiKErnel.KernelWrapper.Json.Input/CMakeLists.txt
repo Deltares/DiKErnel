@@ -21,6 +21,8 @@ set(SOURCEFILES
   JsonInputNaturalStoneRevetmentLocationData.h
   JsonInputParser.cpp
   JsonInputParser.h
+  JsonInputProfileSchematizationData.cpp
+  JsonInputProfileSchematizationData.h
   JsonInputRevetmentLocationData.cpp
   JsonInputRevetmentLocationData.h
   JsonInputTimeDependentHydraulicData.cpp
