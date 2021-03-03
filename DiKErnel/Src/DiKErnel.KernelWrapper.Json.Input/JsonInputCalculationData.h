@@ -28,9 +28,6 @@
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
-    /*!
-     * \brief Container for calculation data read from Json.
-     */
     class JsonInputCalculationData
     {
         public:

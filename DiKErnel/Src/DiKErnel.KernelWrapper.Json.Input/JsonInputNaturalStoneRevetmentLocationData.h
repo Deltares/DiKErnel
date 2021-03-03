@@ -26,9 +26,6 @@
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
-    /*!
-     * \brief Container for natural stone revetment specific location data read from Json.
-     */
     class JsonInputNaturalStoneRevetmentLocationData : JsonInputRevetmentLocationData
     {
         public:

@@ -22,8 +22,5 @@
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
-    /*!
-     * \brief Class responsible for turning JsonInputData into CalculationInput.
-     */
     class JsonInputAdapter {};
 }

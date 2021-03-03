@@ -22,8 +22,5 @@
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
-    /*!
-     * \brief Class responsible for parsing Json input from a file and turning it into JsonInputData.
-     */
     class JsonInputParser {};
 }

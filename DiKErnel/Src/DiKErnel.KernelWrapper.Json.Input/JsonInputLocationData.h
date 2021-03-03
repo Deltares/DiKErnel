@@ -29,9 +29,6 @@
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
-    /*!
-     * \brief Container for location data read from Json.
-     */
     class JsonInputLocationData
     {
         public:
