@@ -40,7 +40,7 @@ namespace DiKErnel::Integration
                 double maximumWaveAngle);
 
             /*!
-             * \brief Creates a new instance.
+             * \brief Adds a time step.
              * \param beginTime
              *        The begin time.
              * \param endTime
@@ -64,6 +64,11 @@ namespace DiKErnel::Integration
                 double wavePeriodTm10,
                 double waveAngle);
 
+            /*!
+             * \brief Adds a natural stone location.
+             * \param constructionProperties
+             *        The properties to construct a natural stone location.
+             */
             void AddNaturalStoneLocation(
                 const NaturalStoneRevetmentLocationConstructionProperties& constructionProperties);
 
