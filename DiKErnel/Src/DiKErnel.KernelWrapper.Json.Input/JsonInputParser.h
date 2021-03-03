@@ -20,7 +20,21 @@
 
 #pragma once
 
+#include <memory>
+#include <string>
+
+#include <nlohmann/json.hpp>
+
+#include "JsonInputData.h"
+
 namespace DiKErnel::KernelWrapper::Json::Input
 {
-    class JsonInputParser {};
+    class JsonInputParser
+    {
+        static std::unique_ptr<JsonInputData> GetJsonInputData(
+            const std::string& filePath);
+
+        static nlohmann::json ReadJson(
+            const std::string& filePath);
+    };
 }

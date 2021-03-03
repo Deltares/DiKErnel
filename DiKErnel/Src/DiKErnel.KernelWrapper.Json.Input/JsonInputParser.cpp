@@ -20,4 +20,24 @@
 
 #include "JsonInputParser.h"
 
-namespace DiKErnel::KernelWrapper::Json::Input {}
+#include <fstream>
+
+namespace DiKErnel::KernelWrapper::Json::Input
+{
+    using namespace std;
+
+    unique_ptr<JsonInputData> JsonInputParser::GetJsonInputData(
+        const std::string& filePath)
+    {
+        const auto json = ReadJson(filePath);
+
+        return nullptr;
+    }
+
+    nlohmann::json JsonInputParser::ReadJson(
+        const string& filePath)
+    {
+        ifstream ifs(filePath);
+        return nlohmann::json::parse(ifs);
+    }
+}
