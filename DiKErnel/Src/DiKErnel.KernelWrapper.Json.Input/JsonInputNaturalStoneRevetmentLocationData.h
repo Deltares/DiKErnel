@@ -30,6 +30,44 @@ namespace DiKErnel::KernelWrapper::Json::Input
             JsonInputNaturalStoneRevetmentLocationData(
                 const std::string& typeTopLayer,
                 double relativeDensity,
-                double thicknessTopLayer);
+                double thicknessTopLayer,
+                double similarityParameterThreshold,
+                double plungingCoefficientA,
+                double plungingCoefficientB,
+                double plungingCoefficientC,
+                double plungingCoefficientN,
+                double surgingCoefficientA,
+                double surgingCoefficientB,
+                double surgingCoefficientC,
+                double surgingCoefficientN);
+
+            double GetSimilarityParameterThreshold() const;
+
+            double GetPlungingCoefficientA() const;
+
+            double GetPlungingCoefficientB() const;
+
+            double GetPlungingCoefficientC() const;
+
+            double GetPlungingCoefficientN() const;
+
+            double GetSurgingCoefficientA() const;
+
+            double GetSurgingCoefficientB() const;
+
+            double GetSurgingCoefficientC() const;
+
+            double GetSurgingCoefficientN() const;
+
+        private:
+            double _similarityParameterThreshold;
+            double _plungingCoefficientA;
+            double _plungingCoefficientB;
+            double _plungingCoefficientC;
+            double _plungingCoefficientN;
+            double _surgingCoefficientA;
+            double _surgingCoefficientB;
+            double _surgingCoefficientC;
+            double _surgingCoefficientN;
     };
 }
