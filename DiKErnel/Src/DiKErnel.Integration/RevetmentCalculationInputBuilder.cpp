@@ -34,9 +34,11 @@ namespace DiKErnel::Integration
 
     RevetmentCalculationInputBuilder::RevetmentCalculationInputBuilder(
         const double maximumWaveAngle)
-        : _maximumWaveAngle(maximumWaveAngle),
-          _timeSteps(vector<unique_ptr<TimeDependentData>>()),
-          _locations(vector<unique_ptr<LocationDependentData>>()) {}
+        : _maximumWaveAngle(maximumWaveAngle)
+    {
+        _timeSteps = vector<unique_ptr<TimeDependentData>>();
+        _locations = vector<unique_ptr<LocationDependentData>>();
+    }
 
     void RevetmentCalculationInputBuilder::AddTimeStep(
         int beginTime,
@@ -50,7 +52,7 @@ namespace DiKErnel::Integration
         {
             _timeSteps.push_back(make_unique<TimeDependentData>(beginTime, endTime, waterLevel, waveHeightHm0, wavePeriodTm10, waveAngle));
         }
-        catch (InvalidCalculationDataException&)
+        catch (const InvalidCalculationDataException&)
         {
             throw_with_nested(RevetmentCalculationInputBuilderException("Could not create TimeDependentData."));
         }
