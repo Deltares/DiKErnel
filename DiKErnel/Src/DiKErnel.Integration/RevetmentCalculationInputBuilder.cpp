@@ -54,7 +54,7 @@ namespace DiKErnel::Integration
         }
         catch (const InvalidCalculationDataException&)
         {
-            throw_with_nested(RevetmentCalculationInputBuilderException("Could not create TimeDependentData."));
+            ThrowWithMessage();
         }
     }
 
@@ -90,7 +90,14 @@ namespace DiKErnel::Integration
 
     unique_ptr<CalculationInput> RevetmentCalculationInputBuilder::Build()
     {
-        return make_unique<CalculationInput>(move(_locations), move(_timeSteps), _maximumWaveAngle);
+        try
+        {
+            return make_unique<CalculationInput>(move(_locations), move(_timeSteps), _maximumWaveAngle);
+        }
+        catch (const InvalidCalculationDataException&)
+        {
+            ThrowWithMessage();
+        }
     }
 
     double RevetmentCalculationInputBuilder::GetValue(
@@ -100,5 +107,10 @@ namespace DiKErnel::Integration
         return doublePtr != nullptr
                    ? *doublePtr
                    : defaultValue;
+    }
+
+    void RevetmentCalculationInputBuilder::ThrowWithMessage()
+    {
+        throw_with_nested(RevetmentCalculationInputBuilderException("Could not create TimeDependentData."));
     }
 }

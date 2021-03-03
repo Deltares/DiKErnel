@@ -43,6 +43,14 @@ namespace DiKErnel::Integration::Test
             builder.AddTimeStep(10, 5, 0, 0, 0, 0);
         }
 
+        static void CreateBuilderAndAddNotConnectingTimeStep()
+        {
+            RevetmentCalculationInputBuilder builder(0);
+            builder.AddTimeStep(0, 5, 0, 0, 0, 0);
+            builder.AddTimeStep(10, 20, 0, 0, 0, 0);
+            builder.Build();
+        }
+
         static void AssertTimeDependentDataItems(
             const int expectedBeginTime,
             const int expectedEndTime,
@@ -217,5 +225,15 @@ namespace DiKErnel::Integration::Test
         ASSERT_DOUBLE_EQ(NaturalStoneRevetmentDefaults::SURGING_COEFFICIENT_N, locationDependentDataItem.GetSurgingCoefficientN());
         ASSERT_DOUBLE_EQ(NaturalStoneRevetmentDefaults::SIMILARITY_PARAMETER_THRESHOLD,
                          locationDependentDataItem.GetSimilarityParameterThreshold());
+    }
+
+    TEST_F(RevetmentCalculationInputBuilderTest, GivenBuilderWithInvalidTimeSteps_WhenBuild_ThenThrowsRevetmentCalculationInputBuilderException)
+    {
+        // Call
+        const auto action = &RevetmentCalculationInputBuilderTest::CreateBuilderAndAddNotConnectingTimeStep;
+
+        // Assert
+        AssertHelper::AssertThrowsWithMessageAndInnerException<RevetmentCalculationInputBuilderException, InvalidCalculationDataException>(
+            action, "Could not create TimeDependentData.", "The begin time of an element must connect to the end time of the previous element.");
     }
 }

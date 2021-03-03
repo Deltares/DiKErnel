@@ -70,6 +70,8 @@ namespace DiKErnel::Integration
             /*!
              * \brief Builds the CalculationInput.
              * \return The build CalculationInput.
+             * \exception RevetmentCalculationInputBuilderException
+             *            Thrown when time steps do not connect or are unordered.
              */
             std::unique_ptr<Core::CalculationInput> Build();
 
@@ -81,5 +83,7 @@ namespace DiKErnel::Integration
             static double GetValue(
                 const double* doublePtr,
                 double defaultValue);
+
+            static void ThrowWithMessage();
     };
 }
