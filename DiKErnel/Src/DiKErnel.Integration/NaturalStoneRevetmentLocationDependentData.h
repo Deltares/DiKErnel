@@ -103,6 +103,78 @@ namespace DiKErnel::Integration
                 const Core::TimeDependentData& timeDependentData,
                 double maximumWaveAngle) override;
 
+            /*!
+             * \brief Gets the slope angle.
+             * \return The slope angle.
+             */
+            double GetSlopeAngle() const;
+
+            /*!
+             * \brief Gets the relative density.
+             * \return The relative density.
+             */
+            double GetRelativeDensity() const;
+
+            /*!
+             * \brief Gets the thickness top layer.
+             * \return The thickness top layer.
+             */
+            double GetThicknessTopLayer() const;
+
+            /*!
+             * \brief Gets the plunging coefficient a.
+             * \return The plunging coefficient a.
+             */
+            double GetPlungingCoefficientA() const;
+
+            /*!
+             * \brief Gets the plunging coefficient b.
+             * \return The plunging coefficient b.
+             */
+            double GetPlungingCoefficientB() const;
+
+            /*!
+             * \brief Gets the plunging coefficient c.
+             * \return The plunging coefficient c.
+             */
+            double GetPlungingCoefficientC() const;
+
+            /*!
+             * \brief Gets the plunging coefficient n.
+             * \return The plunging coefficient n.
+             */
+            double GetPlungingCoefficientN() const;
+
+            /*!
+             * \brief Gets the surging coefficient a.
+             * \return The surging coefficient a.
+             */
+            double GetSurgingCoefficientA() const;
+
+            /*!
+             * \brief Gets the surging coefficient b.
+             * \return The surging coefficient b.
+             */
+            double GetSurgingCoefficientB() const;
+
+            /*!
+             * \brief Gets the surging coefficient c.
+             * \return The surging coefficient c.
+             */
+            double GetSurgingCoefficientC() const;
+
+            /*!
+             * \brief Gets the surging coefficient n.
+             * \return The surging coefficient n.
+             */
+            double GetSurgingCoefficientN() const;
+
+            /*!
+             * \brief Gets the similarity parameter threshold.
+             * \return The similarity parameter threshold.
+             */
+            double GetSimilarityParameterThreshold() const;
+
         private:
             double _slopeAngle;
             double _relativeDensity;

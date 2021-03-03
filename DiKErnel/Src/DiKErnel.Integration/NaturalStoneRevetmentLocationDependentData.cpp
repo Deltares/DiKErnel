@@ -69,4 +69,64 @@ namespace DiKErnel::Integration
             _plungingCoefficientC, _plungingCoefficientN, _surgingCoefficientA, _surgingCoefficientB,
             _surgingCoefficientC, _surgingCoefficientN, maximumWaveAngle, _similarityParameterThreshold);
     }
+
+    double NaturalStoneRevetmentLocationDependentData::GetSlopeAngle() const
+    {
+        return _slopeAngle;
+    }
+
+    double NaturalStoneRevetmentLocationDependentData::GetRelativeDensity() const
+    {
+        return _relativeDensity;
+    }
+
+    double NaturalStoneRevetmentLocationDependentData::GetThicknessTopLayer() const
+    {
+        return _thicknessTopLayer;
+    }
+
+    double NaturalStoneRevetmentLocationDependentData::GetPlungingCoefficientA() const
+    {
+        return _plungingCoefficientA;
+    }
+
+    double NaturalStoneRevetmentLocationDependentData::GetPlungingCoefficientB() const
+    {
+        return _plungingCoefficientB;
+    }
+
+    double NaturalStoneRevetmentLocationDependentData::GetPlungingCoefficientC() const
+    {
+        return _plungingCoefficientC;
+    }
+
+    double NaturalStoneRevetmentLocationDependentData::GetPlungingCoefficientN() const
+    {
+        return _plungingCoefficientN;
+    }
+
+    double NaturalStoneRevetmentLocationDependentData::GetSurgingCoefficientA() const
+    {
+        return _surgingCoefficientA;
+    }
+
+    double NaturalStoneRevetmentLocationDependentData::GetSurgingCoefficientB() const
+    {
+        return _surgingCoefficientB;
+    }
+
+    double NaturalStoneRevetmentLocationDependentData::GetSurgingCoefficientC() const
+    {
+        return _surgingCoefficientC;
+    }
+
+    double NaturalStoneRevetmentLocationDependentData::GetSurgingCoefficientN() const
+    {
+        return _surgingCoefficientN;
+    }
+
+    double NaturalStoneRevetmentLocationDependentData::GetSimilarityParameterThreshold() const
+    {
+        return _similarityParameterThreshold;
+    }
 }

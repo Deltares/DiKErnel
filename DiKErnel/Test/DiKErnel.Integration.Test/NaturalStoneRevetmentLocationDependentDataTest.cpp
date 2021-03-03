@@ -31,14 +31,40 @@ namespace DiKErnel::Integration::Test
     TEST(NaturalStoneRevetmentLocationDependentDataTest, Constructor_ExpectedValues)
     {
         // Setup
-        const auto initialDamage = rand() & 5;
+        const auto initialDamage = 0.1;
+        const auto slopeAngle = 0.2;
+        const auto relativeDensity = 0.3;
+        const auto thicknessTopLayer = 0.4;
+        const auto plungingCoefficientA = 0.5;
+        const auto plungingCoefficientB = 0.6;
+        const auto plungingCoefficientC = 0.7;
+        const auto plungingCoefficientN = 0.8;
+        const auto surgingCoefficientA = 0.9;
+        const auto surgingCoefficientB = 1.0;
+        const auto surgingCoefficientC = 1.1;
+        const auto surgingCoefficientN = 1.2;
+        const auto similarityParameterThreshold = 1.3;
 
         // Call
-        const NaturalStoneRevetmentLocationDependentData locationDependentData(initialDamage, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+        const NaturalStoneRevetmentLocationDependentData locationDependentData(
+            initialDamage, slopeAngle, relativeDensity, thicknessTopLayer, plungingCoefficientA, plungingCoefficientB, plungingCoefficientC,
+            plungingCoefficientN, surgingCoefficientA, surgingCoefficientB, surgingCoefficientC, surgingCoefficientN, similarityParameterThreshold);
 
         // Assert
         AssertHelper::AssertIsInstanceOf<LocationDependentData>(&locationDependentData);
         ASSERT_DOUBLE_EQ(initialDamage, locationDependentData.GetInitialDamage());
+        ASSERT_DOUBLE_EQ(slopeAngle, locationDependentData.GetSlopeAngle());
+        ASSERT_DOUBLE_EQ(relativeDensity, locationDependentData. GetRelativeDensity());
+        ASSERT_DOUBLE_EQ(thicknessTopLayer, locationDependentData.GetThicknessTopLayer());
+        ASSERT_DOUBLE_EQ(plungingCoefficientA, locationDependentData. GetPlungingCoefficientA());
+        ASSERT_DOUBLE_EQ(plungingCoefficientB, locationDependentData. GetPlungingCoefficientB());
+        ASSERT_DOUBLE_EQ(plungingCoefficientC, locationDependentData. GetPlungingCoefficientC());
+        ASSERT_DOUBLE_EQ(plungingCoefficientN, locationDependentData. GetPlungingCoefficientN());
+        ASSERT_DOUBLE_EQ(surgingCoefficientA, locationDependentData. GetSurgingCoefficientA());
+        ASSERT_DOUBLE_EQ(surgingCoefficientB, locationDependentData. GetSurgingCoefficientB());
+        ASSERT_DOUBLE_EQ(surgingCoefficientC, locationDependentData. GetSurgingCoefficientC());
+        ASSERT_DOUBLE_EQ(surgingCoefficientN, locationDependentData. GetSurgingCoefficientN());
+        ASSERT_DOUBLE_EQ(similarityParameterThreshold, locationDependentData.GetSimilarityParameterThreshold());
     }
 
     TEST(NaturalStoneRevetmentLocationDependentDataTest, Calculate_Always_PerformsCalculation)
