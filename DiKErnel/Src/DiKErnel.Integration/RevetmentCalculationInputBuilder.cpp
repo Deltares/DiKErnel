@@ -22,6 +22,7 @@
 
 #include "InvalidCalculationDataException.h"
 #include "NaturalStoneRevetmentDefaults.h"
+#include "NaturalStoneRevetmentLocationConstructionProperties.h"
 #include "NaturalStoneRevetmentLocationDependentData.h"
 #include "RevetmentCalculationInputBuilderException.h"
 
@@ -56,34 +57,31 @@ namespace DiKErnel::Integration
     }
 
     void RevetmentCalculationInputBuilder::AddNaturalStoneLocation(
-        double initialDamage,
-        double slopeAngle,
-        const double* relativeDensityPtr,
-        double thicknessTopLayer,
-        const double* plungingCoefficientAPtr,
-        const double* plungingCoefficientBPtr,
-        const double* plungingCoefficientCPtr,
-        const double* plungingCoefficientNPtr,
-        const double* surgingCoefficientAPtr,
-        const double* surgingCoefficientBPtr,
-        const double* surgingCoefficientCPtr,
-        const double* surgingCoefficientNPtr,
-        const double* similarityParameterThresholdPtr)
+        const NaturalStoneRevetmentLocationConstructionProperties& constructionProperties)
     {
-        const auto relativeDensity = GetValue(relativeDensityPtr, NaturalStoneRevetmentDefaults::RELATIVE_DENSITY);
-        const auto plungingCoefficientA = GetValue(plungingCoefficientAPtr, NaturalStoneRevetmentDefaults::PLUNGING_COEFFICIENT_A);
-        const auto plungingCoefficientB = GetValue(plungingCoefficientBPtr, NaturalStoneRevetmentDefaults::PLUNGING_COEFFICIENT_B);
-        const auto plungingCoefficientC = GetValue(plungingCoefficientCPtr, NaturalStoneRevetmentDefaults::PLUNGING_COEFFICIENT_C);
-        const auto plungingCoefficientN = GetValue(plungingCoefficientNPtr, NaturalStoneRevetmentDefaults::PLUNGING_COEFFICIENT_N);
-        const auto surgingCoefficientA = GetValue(surgingCoefficientAPtr, NaturalStoneRevetmentDefaults::SURGING_COEFFICIENT_A);
-        const auto surgingCoefficientB = GetValue(surgingCoefficientBPtr, NaturalStoneRevetmentDefaults::SURGING_COEFFICIENT_B);
-        const auto surgingCoefficientC = GetValue(surgingCoefficientCPtr, NaturalStoneRevetmentDefaults::SURGING_COEFFICIENT_C);
-        const auto surgingCoefficientN = GetValue(surgingCoefficientNPtr, NaturalStoneRevetmentDefaults::SURGING_COEFFICIENT_N);
-        const auto similarityParameterThreshold = GetValue(
-            similarityParameterThresholdPtr, NaturalStoneRevetmentDefaults::SIMILARITY_PARAMETER_THRESHOLD);
+        const auto relativeDensity = GetValue(constructionProperties._relativeDensityPtr.get(), NaturalStoneRevetmentDefaults::RELATIVE_DENSITY);
+        const auto plungingCoefficientA = GetValue(constructionProperties._plungingCoefficientAPtr.get(),
+                                                   NaturalStoneRevetmentDefaults::PLUNGING_COEFFICIENT_A);
+        const auto plungingCoefficientB = GetValue(constructionProperties._plungingCoefficientBPtr.get(),
+                                                   NaturalStoneRevetmentDefaults::PLUNGING_COEFFICIENT_B);
+        const auto plungingCoefficientC = GetValue(constructionProperties._plungingCoefficientCPtr.get(),
+                                                   NaturalStoneRevetmentDefaults::PLUNGING_COEFFICIENT_C);
+        const auto plungingCoefficientN = GetValue(constructionProperties._plungingCoefficientNPtr.get(),
+                                                   NaturalStoneRevetmentDefaults::PLUNGING_COEFFICIENT_N);
+        const auto surgingCoefficientA = GetValue(constructionProperties._surgingCoefficientAPtr.get(),
+                                                  NaturalStoneRevetmentDefaults::SURGING_COEFFICIENT_A);
+        const auto surgingCoefficientB = GetValue(constructionProperties._surgingCoefficientBPtr.get(),
+                                                  NaturalStoneRevetmentDefaults::SURGING_COEFFICIENT_B);
+        const auto surgingCoefficientC = GetValue(constructionProperties._surgingCoefficientCPtr.get(),
+                                                  NaturalStoneRevetmentDefaults::SURGING_COEFFICIENT_C);
+        const auto surgingCoefficientN = GetValue(constructionProperties._surgingCoefficientNPtr.get(),
+                                                  NaturalStoneRevetmentDefaults::SURGING_COEFFICIENT_N);
+        const auto similarityParameterThreshold = GetValue(constructionProperties._similarityParameterThresholdPtr.get(),
+                                                           NaturalStoneRevetmentDefaults::SIMILARITY_PARAMETER_THRESHOLD);
 
         _locations.push_back(make_unique<NaturalStoneRevetmentLocationDependentData>(
-            initialDamage, slopeAngle, relativeDensity, thicknessTopLayer, plungingCoefficientA,
+            constructionProperties.GetInitialDamage(), constructionProperties.GetSlopeAngle(), relativeDensity,
+            constructionProperties.GetThicknessTopLayer(), plungingCoefficientA,
             plungingCoefficientB, plungingCoefficientC, plungingCoefficientN, surgingCoefficientA,
             surgingCoefficientB, surgingCoefficientC, surgingCoefficientN, similarityParameterThreshold));
     }

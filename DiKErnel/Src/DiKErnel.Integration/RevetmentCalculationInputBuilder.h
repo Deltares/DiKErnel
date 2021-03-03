@@ -24,6 +24,7 @@
 
 namespace DiKErnel::Integration
 {
+    class NaturalStoneRevetmentLocationConstructionProperties;
     /*!
      * \brief Builder to configure and create the CalculationInput.
      */
@@ -64,19 +65,7 @@ namespace DiKErnel::Integration
                 double waveAngle);
 
             void AddNaturalStoneLocation(
-                double initialDamage,
-                double slopeAngle,
-                const double* relativeDensityPtr,
-                double thicknessTopLayer,
-                const double* plungingCoefficientAPtr,
-                const double* plungingCoefficientBPtr,
-                const double* plungingCoefficientCPtr,
-                const double* plungingCoefficientNPtr,
-                const double* surgingCoefficientAPtr,
-                const double* surgingCoefficientBPtr,
-                const double* surgingCoefficientCPtr,
-                const double* surgingCoefficientNPtr,
-                const double* similarityParameterThresholdPtr);
+                const NaturalStoneRevetmentLocationConstructionProperties& constructionProperties);
 
             /*!
              * \brief Builds the CalculationInput.
