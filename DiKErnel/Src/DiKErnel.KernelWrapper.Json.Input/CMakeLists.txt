@@ -5,10 +5,18 @@ set(LIBNAME DiKErnel.KernelWrapper.Json.Input)
 set(SOURCEFILES
   JsonInputAdapter.cpp
   JsonInputAdapter.h
-  JsonInputCalculationData.cpp
-  JsonInputCalculationData.h
   JsonInputComposer.cpp
   JsonInputComposer.h
+)
+
+set(SOURCEFILES_PARSER
+  JsonInputParser.cpp
+  JsonInputParser.h
+)
+
+set(SOURCEFILES_PARSER_DATA_BASE
+  JsonInputCalculationData.cpp
+  JsonInputCalculationData.h
   JsonInputDamageData.cpp
   JsonInputDamageData.h
   JsonInputData.cpp
@@ -17,10 +25,6 @@ set(SOURCEFILES
   JsonInputHydraulicData.h
   JsonInputLocationData.cpp
   JsonInputLocationData.h
-  JsonInputNaturalStoneRevetmentLocationData.cpp
-  JsonInputNaturalStoneRevetmentLocationData.h
-  JsonInputParser.cpp
-  JsonInputParser.h
   JsonInputProfileSchematizationData.cpp
   JsonInputProfileSchematizationData.h
   JsonInputRevetmentLocationData.cpp
@@ -29,12 +33,20 @@ set(SOURCEFILES
   JsonInputTimeDependentHydraulicData.h
 )
 
+set(SOURCEFILES_PARSER_DATA_REVETMENT
+  JsonInputNaturalStoneRevetmentLocationData.cpp
+  JsonInputNaturalStoneRevetmentLocationData.h
+)
+
 # Add library
-add_library(${LIBNAME} STATIC ${SOURCEFILES})
+add_library(${LIBNAME} STATIC ${SOURCEFILES} ${SOURCEFILES_PARSER} ${SOURCEFILES_PARSER_DATA_BASE} ${SOURCEFILES_PARSER_DATA_REVETMENT})
 
 # Configure folder structure
 set_target_properties(${LIBNAME} PROPERTIES FOLDER Src)
 source_group("Sources" FILES ${SOURCEFILES})
+source_group("Sources/Parser" FILES ${SOURCEFILES_PARSER})
+source_group("Sources/Parser/Data/Base" FILES ${SOURCEFILES_PARSER_DATA_BASE})
+source_group("Sources/Parser/Data/Revetment" FILES ${SOURCEFILES_PARSER_DATA_REVETMENT})
 
 # Fetch third party libraries
 include(FetchContent)
