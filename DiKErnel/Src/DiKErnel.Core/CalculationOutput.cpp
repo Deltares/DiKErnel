@@ -28,7 +28,7 @@ namespace DiKErnel::Core
         vector<unique_ptr<LocationOutput>> locationOutputs)
         : _locationOutputs(move(locationOutputs))
     {
-        for (const auto& locationOutput : this->_locationOutputs)
+        for (const auto& locationOutput : _locationOutputs)
         {
             _locationOutputReferences.emplace_back(*locationOutput);
         }

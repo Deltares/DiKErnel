@@ -30,7 +30,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
         : _waveAngleMaximum(waveAngleMaximum),
           _timeDependentHydraulicData(move(timeDependentHydraulicData))
     {
-        for (const auto& timeDependentHydraulicDataItem : this->_timeDependentHydraulicData)
+        for (const auto& timeDependentHydraulicDataItem : _timeDependentHydraulicData)
         {
             _timeDependentHydraulicDataReferences.emplace_back(*timeDependentHydraulicDataItem);
         }

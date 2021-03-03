@@ -30,7 +30,7 @@ namespace DiKErnel::KernelWrapper::Json
         : _waveAngleMaximum(waveAngleMaximum),
           _boundaryConditionsPerTimeStep(move(boundaryConditionsPerTimeStep))
     {
-        for (const auto& boundaryConditionForTimeStep : this->_boundaryConditionsPerTimeStep)
+        for (const auto& boundaryConditionForTimeStep : _boundaryConditionsPerTimeStep)
         {
             _boundaryConditionsPerTimeStepReferences.emplace_back(*boundaryConditionForTimeStep);
         }

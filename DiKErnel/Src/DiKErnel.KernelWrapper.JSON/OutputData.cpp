@@ -28,7 +28,7 @@ namespace DiKErnel::KernelWrapper::Json
         vector<unique_ptr<CalculationLocationOutput>> calculationLocationsOutput)
         : _calculationLocationsOutput(move(calculationLocationsOutput))
     {
-        for (const auto& calculationLocationOutput : this->_calculationLocationsOutput)
+        for (const auto& calculationLocationOutput : _calculationLocationsOutput)
         {
             _calculationLocationOutputReferences.emplace_back(*calculationLocationOutput);
         }

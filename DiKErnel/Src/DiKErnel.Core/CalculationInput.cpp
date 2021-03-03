@@ -35,7 +35,7 @@ namespace DiKErnel::Core
           _maximumWaveAngle(maximumWaveAngle)
     {
         auto previousEndTime = INT_MIN;
-        for (const auto& timeDependentData : this->_timeDependentDataItems)
+        for (const auto& timeDependentData : _timeDependentDataItems)
         {
             if (previousEndTime != INT_MIN && timeDependentData->GetBeginTime() != previousEndTime)
             {
@@ -46,7 +46,7 @@ namespace DiKErnel::Core
             _timeDependentDataItemReferences.emplace_back(*timeDependentData);
         }
 
-        for (const auto& locationDependentData : this->_locationDependentDataItems)
+        for (const auto& locationDependentData : _locationDependentDataItems)
         {
             _locationDependentDataItemReferences.emplace_back(*locationDependentData);
         }

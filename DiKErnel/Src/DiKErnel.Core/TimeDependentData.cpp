@@ -38,7 +38,7 @@ namespace DiKErnel::Core
           _wavePeriodTm10(wavePeriodTm10),
           _waveAngle(waveAngle)
     {
-        if (this->_endTime <= this->_beginTime)
+        if (_endTime <= _beginTime)
         {
             throw InvalidCalculationDataException("'beginTime' should be smaller than 'endTime'.");
         }

@@ -32,7 +32,7 @@ namespace DiKErnel::KernelWrapper::Json
           _hydraulicLoads(move(hydraulicLoads)),
           _locations(move(locations))
     {
-        for (const auto& location : this->_locations)
+        for (const auto& location : _locations)
         {
             _locationReferences.emplace_back(*location);
         }
