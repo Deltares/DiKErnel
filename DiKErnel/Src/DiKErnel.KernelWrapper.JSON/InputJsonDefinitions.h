@@ -25,9 +25,9 @@
 namespace DiKErnel::KernelWrapper::Json
 {
     /*!
-     * \brief Class containing Json related constants.
+     * \brief Class containing input Json related constants.
      */
-    class JsonDefinitions
+    class InputJsonDefinitions
     {
         public:
             static const std::string CALCULATION_DATA;

@@ -18,48 +18,48 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include "JsonDefinitions.h"
+#include "InputJsonDefinitions.h"
 
 namespace DiKErnel::KernelWrapper::Json
 {
     using namespace std;
 
-    const string JsonDefinitions::CALCULATION_DATA = "Rekendata";
-    const string JsonDefinitions::HYDRAULIC_LOADS = "HydraulischeBelastingen";
-    const string JsonDefinitions::LOCATIONS = "Locaties";
+    const string InputJsonDefinitions::CALCULATION_DATA = "Rekendata";
+    const string InputJsonDefinitions::HYDRAULIC_LOADS = "HydraulischeBelastingen";
+    const string InputJsonDefinitions::LOCATIONS = "Locaties";
 
-    const string JsonDefinitions::TIME = "Tijd";
-    const string JsonDefinitions::MAXIMUM_WAVE_ANGLE = "GolfhoekMaximum";
-    const string JsonDefinitions::BOUNDARY_CONDITIONS_PER_TIME_STEP = "RandvoorwaardenPerTijdstap";
-    const string JsonDefinitions::WATER_LEVEL = "Waterstand";
-    const string JsonDefinitions::WAVE_HEIGHT_HM0 = "GolfhoogteHm0";
-    const string JsonDefinitions::WAVE_PERIOD_TM10 = "GolfperiodeTm10";
-    const string JsonDefinitions::WAVE_ANGLE = "Golfhoek";
+    const string InputJsonDefinitions::TIME = "Tijd";
+    const string InputJsonDefinitions::MAXIMUM_WAVE_ANGLE = "GolfhoekMaximum";
+    const string InputJsonDefinitions::BOUNDARY_CONDITIONS_PER_TIME_STEP = "RandvoorwaardenPerTijdstap";
+    const string InputJsonDefinitions::WATER_LEVEL = "Waterstand";
+    const string InputJsonDefinitions::WAVE_HEIGHT_HM0 = "GolfhoogteHm0";
+    const string InputJsonDefinitions::WAVE_PERIOD_TM10 = "GolfperiodeTm10";
+    const string InputJsonDefinitions::WAVE_ANGLE = "Golfhoek";
 
-    const string JsonDefinitions::NAME = "Naam";
-    const string JsonDefinitions::REVETMENT = "Bekleding";
-    const string JsonDefinitions::TYPE_TOP_LAYER = "TypeToplaag";
-    const string JsonDefinitions::RELATIVE_DENSITY = "RelatieveDichtheid";
-    const string JsonDefinitions::THICKNESS_TOP_LAYER = "DikteToplaag";
-    const string JsonDefinitions::INITIAL_DAMAGE = "BeginSchade";
-    const string JsonDefinitions::CRITICAL_DAMAGE = "Faalgetal";
-    const string JsonDefinitions::FAILED = "Faalgebeurtenis";
-    const string JsonDefinitions::TIME_OF_FAILURE = "Faaltijd";
-    const string JsonDefinitions::SIMILARITY_PARAMETER_THRESHOLD = "BrekerIndexGrenswaarde";
-    const string JsonDefinitions::COEFFICIENT_PLUNGING_AP = "CoefficientPlungingAp";
-    const string JsonDefinitions::COEFFICIENT_PLUNGING_BP = "CoefficientPlungingBp";
-    const string JsonDefinitions::COEFFICIENT_PLUNGING_CP = "CoefficientPlungingCp";
-    const string JsonDefinitions::COEFFICIENT_PLUNGING_NP = "CoefficientPlungingNp";
-    const string JsonDefinitions::COEFFICIENT_SURGING_AS = "CoefficientSurgingAs";
-    const string JsonDefinitions::COEFFICIENT_SURGING_BS = "CoefficientSurgingBs";
-    const string JsonDefinitions::COEFFICIENT_SURGING_CS = "CoefficientSurgingCs";
-    const string JsonDefinitions::COEFFICIENT_SURGING_NS = "CoefficientSurgingNs";
-    const string JsonDefinitions::PROFILE_SCHEMATIZATION = "Profielschematisatie";
-    const string JsonDefinitions::TAN_A = "TanA";
-    const string JsonDefinitions::POSITION_Z = "PositieZ";
+    const string InputJsonDefinitions::NAME = "Naam";
+    const string InputJsonDefinitions::REVETMENT = "Bekleding";
+    const string InputJsonDefinitions::TYPE_TOP_LAYER = "TypeToplaag";
+    const string InputJsonDefinitions::RELATIVE_DENSITY = "RelatieveDichtheid";
+    const string InputJsonDefinitions::THICKNESS_TOP_LAYER = "DikteToplaag";
+    const string InputJsonDefinitions::INITIAL_DAMAGE = "BeginSchade";
+    const string InputJsonDefinitions::CRITICAL_DAMAGE = "Faalgetal";
+    const string InputJsonDefinitions::FAILED = "Faalgebeurtenis";
+    const string InputJsonDefinitions::TIME_OF_FAILURE = "Faaltijd";
+    const string InputJsonDefinitions::SIMILARITY_PARAMETER_THRESHOLD = "BrekerIndexGrenswaarde";
+    const string InputJsonDefinitions::COEFFICIENT_PLUNGING_AP = "CoefficientPlungingAp";
+    const string InputJsonDefinitions::COEFFICIENT_PLUNGING_BP = "CoefficientPlungingBp";
+    const string InputJsonDefinitions::COEFFICIENT_PLUNGING_CP = "CoefficientPlungingCp";
+    const string InputJsonDefinitions::COEFFICIENT_PLUNGING_NP = "CoefficientPlungingNp";
+    const string InputJsonDefinitions::COEFFICIENT_SURGING_AS = "CoefficientSurgingAs";
+    const string InputJsonDefinitions::COEFFICIENT_SURGING_BS = "CoefficientSurgingBs";
+    const string InputJsonDefinitions::COEFFICIENT_SURGING_CS = "CoefficientSurgingCs";
+    const string InputJsonDefinitions::COEFFICIENT_SURGING_NS = "CoefficientSurgingNs";
+    const string InputJsonDefinitions::PROFILE_SCHEMATIZATION = "Profielschematisatie";
+    const string InputJsonDefinitions::TAN_A = "TanA";
+    const string InputJsonDefinitions::POSITION_Z = "PositieZ";
 
-    const string JsonDefinitions::DAMAGE = "Schade";
-    const string JsonDefinitions::DAMAGE_OVER_TIME = "SchadegetalPerTijd";
+    const string InputJsonDefinitions::DAMAGE = "Schade";
+    const string InputJsonDefinitions::DAMAGE_OVER_TIME = "SchadegetalPerTijd";
 
-    const string JsonDefinitions::OUTPUT_DATA = "Uitvoerdata";
+    const string InputJsonDefinitions::OUTPUT_DATA = "Uitvoerdata";
 }
