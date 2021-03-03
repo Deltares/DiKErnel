@@ -63,6 +63,21 @@ namespace DiKErnel::Integration
                 double wavePeriodTm10,
                 double waveAngle);
 
+            void AddNaturalStoneLocation(
+                double initialDamage,
+                double slopeAngle,
+                const double* relativeDensityPtr,
+                double thicknessTopLayer,
+                const double* plungingCoefficientAPtr,
+                const double* plungingCoefficientBPtr,
+                const double* plungingCoefficientCPtr,
+                const double* plungingCoefficientNPtr,
+                const double* surgingCoefficientAPtr,
+                const double* surgingCoefficientBPtr,
+                const double* surgingCoefficientCPtr,
+                const double* surgingCoefficientNPtr,
+                const double* similarityParameterThresholdPtr);
+
             /*!
              * \brief Builds the CalculationInput.
              * \return The build CalculationInput.
@@ -73,5 +88,9 @@ namespace DiKErnel::Integration
             double _maximumWaveAngle;
             std::vector<std::unique_ptr<Core::TimeDependentData>> _timeSteps;
             std::vector<std::unique_ptr<Core::LocationDependentData>> _locations;
+
+            static double GetValue(
+                const double* doublePtr,
+                double defaultValue);
     };
 }
