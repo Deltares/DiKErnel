@@ -20,4 +20,14 @@
 
 #include "JsonInputNaturalStoneRevetmentLocationData.h"
 
-namespace DiKErnel::KernelWrapper::Json::Input {}
+namespace DiKErnel::KernelWrapper::Json::Input
+{
+    JsonInputNaturalStoneRevetmentLocationData::JsonInputNaturalStoneRevetmentLocationData(
+        const std::string& typeTopLayer,
+        const double relativeDensity,
+        const double thicknessTopLayer)
+        : JsonInputRevetmentLocationData(
+            typeTopLayer,
+            relativeDensity,
+            thicknessTopLayer) {}
+}

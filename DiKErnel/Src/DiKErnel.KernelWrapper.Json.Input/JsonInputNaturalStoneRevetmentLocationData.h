@@ -20,7 +20,16 @@
 
 #pragma once
 
+#include "JsonInputRevetmentLocationData.h"
+
 namespace DiKErnel::KernelWrapper::Json::Input
 {
-    class JsonInputNaturalStoneRevetmentLocationData {};
+    class JsonInputNaturalStoneRevetmentLocationData : JsonInputRevetmentLocationData
+    {
+        public:
+            JsonInputNaturalStoneRevetmentLocationData(
+                const std::string& typeTopLayer,
+                double relativeDensity,
+                double thicknessTopLayer);
+    };
 }
