@@ -2,10 +2,7 @@
 set(LIBNAME DiKErnel.KernelWrapper.Json.Input)
 
 # Define sources
-set(SOURCEFILES_PUBLIC
-  JsonInputComposer.cpp
-  JsonInputComposer.h
-)
+set(SOURCEFILES_PUBLIC "")
 
 set(SOURCEFILES_INTERNAL
   JsonInputDefinitions.h
@@ -36,6 +33,9 @@ set(SOURCEFILES_INTERNAL_DATA_REVETMENT
   JsonInputNaturalStoneRevetmentLocationData.cpp
   JsonInputNaturalStoneRevetmentLocationData.h
 )
+
+# Add subdirectories
+add_subdirectory(Public)
 
 # Add library
 add_library(${LIBNAME} STATIC
