@@ -3,12 +3,7 @@ set(LIBNAME DiKErnel.KernelWrapper.Json.Input)
 
 # Define sources
 set(SOURCEFILES_PUBLIC "")
-
-set(SOURCEFILES_INTERNAL
-  JsonInputDefinitions.h
-  JsonInputParser.cpp
-  JsonInputParser.h
-)
+set(SOURCEFILES_INTERNAL "")
 
 set(SOURCEFILES_INTERNAL_DATA_GENERIC
   JsonInputCalculationData.cpp
@@ -36,6 +31,7 @@ set(SOURCEFILES_INTERNAL_DATA_REVETMENT
 
 # Add subdirectories
 add_subdirectory(Public)
+add_subdirectory(Internal)
 
 # Add library
 add_library(${LIBNAME} STATIC
