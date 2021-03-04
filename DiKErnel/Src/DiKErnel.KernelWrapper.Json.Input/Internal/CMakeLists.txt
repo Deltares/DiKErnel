@@ -1,6 +1,5 @@
 # Define sources
 set(SOURCEFILES_INTERNAL
-  ${SOURCEFILES_INTERNAL}
   ${CMAKE_CURRENT_SOURCE_DIR}/JsonInputDefinitions.h
   ${CMAKE_CURRENT_SOURCE_DIR}/JsonInputParser.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/JsonInputParser.h
