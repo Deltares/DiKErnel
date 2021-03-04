@@ -2,36 +2,39 @@
 set(LIBNAME DiKErnel.KernelWrapper.Json.Input)
 
 # Define sources
-set(SOURCEFILES_PUBLIC "")
-set(SOURCEFILES_INTERNAL "")
+set(SOURCEFILES_PUBLIC
+  Public/JsonInputComposer.cpp
+  Public/JsonInputComposer.h
+)
+set(SOURCEFILES_INTERNAL
+  Internal/JsonInputDefinitions.h
+  Internal/JsonInputParser.cpp
+  Internal/JsonInputParser.h
+)
 
 set(SOURCEFILES_INTERNAL_DATA_GENERIC
-  JsonInputCalculationData.cpp
-  JsonInputCalculationData.h
-  JsonInputDamageData.cpp
-  JsonInputDamageData.h
-  JsonInputData.cpp
-  JsonInputData.h
-  JsonInputHydraulicData.cpp
-  JsonInputHydraulicData.h
-  JsonInputLocationData.cpp
-  JsonInputLocationData.h
-  JsonInputProfileSchematizationData.cpp
-  JsonInputProfileSchematizationData.h
-  JsonInputRevetmentLocationData.cpp
-  JsonInputRevetmentLocationData.h
-  JsonInputTimeDependentHydraulicData.cpp
-  JsonInputTimeDependentHydraulicData.h
+  Internal/Data/Generic/JsonInputCalculationData.cpp
+  Internal/Data/Generic/JsonInputCalculationData.h
+  Internal/Data/Generic/JsonInputDamageData.cpp
+  Internal/Data/Generic/JsonInputDamageData.h
+  Internal/Data/Generic/JsonInputData.cpp
+  Internal/Data/Generic/JsonInputData.h
+  Internal/Data/Generic/JsonInputHydraulicData.cpp
+  Internal/Data/Generic/JsonInputHydraulicData.h
+  Internal/Data/Generic/JsonInputLocationData.cpp
+  Internal/Data/Generic/JsonInputLocationData.h
+  Internal/Data/Generic/JsonInputProfileSchematizationData.cpp
+  Internal/Data/Generic/JsonInputProfileSchematizationData.h
+  Internal/Data/Generic/JsonInputRevetmentLocationData.cpp
+  Internal/Data/Generic/JsonInputRevetmentLocationData.h
+  Internal/Data/Generic/JsonInputTimeDependentHydraulicData.cpp
+  Internal/Data/Generic/JsonInputTimeDependentHydraulicData.h
 )
 
 set(SOURCEFILES_INTERNAL_DATA_REVETMENT
-  JsonInputNaturalStoneRevetmentLocationData.cpp
-  JsonInputNaturalStoneRevetmentLocationData.h
+  Internal/Data/Revetment/JsonInputNaturalStoneRevetmentLocationData.cpp
+  Internal/Data/Revetment/JsonInputNaturalStoneRevetmentLocationData.h
 )
-
-# Add subdirectories
-add_subdirectory(Public)
-add_subdirectory(Internal)
 
 # Add library
 add_library(${LIBNAME} STATIC
