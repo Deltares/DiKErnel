@@ -33,20 +33,14 @@ namespace DiKErnel::KernelWrapper::Json
         public:
             /*!
              * \brief Creates a new instance.
-             * \param damages
-             *        The damages of all timesteps.
              * \param timeOfFailure
              *        The time of failure.
+             * \param damages
+             *        The damages of all timesteps.
              */
             explicit RevetmentOutput(
-                std::vector<double> damages,
-                std::unique_ptr<double> timeOfFailure);
-
-            /*!
-             * \brief Gets all damages.
-             * \return All damages.
-             */
-            const std::vector<double>& GetDamages() const;
+                std::unique_ptr<double> timeOfFailure,
+                std::vector<double> damages);
 
             /*!
              * \brief Gets the time of failure.
@@ -54,8 +48,14 @@ namespace DiKErnel::KernelWrapper::Json
              */
             const double* GetTimeOfFailure() const;
 
+            /*!
+             * \brief Gets all damages.
+             * \return All damages.
+             */
+            const std::vector<double>& GetDamages() const;
+
         private:
-            std::vector<double> _damages;
             std::unique_ptr<double> _timeOfFailure;
+            std::vector<double> _damages;
     };
 }

@@ -28,18 +28,19 @@ namespace DiKErnel::KernelWrapper::Json
     using namespace std;
 
     RevetmentOutput::RevetmentOutput(
-        vector<double> damages,
-        unique_ptr<double> timeOfFailure)
-        : _damages(move(damages)),
-          _timeOfFailure(move(timeOfFailure)) {}
-
-    const vector<double>& RevetmentOutput::GetDamages() const
-    {
-        return _damages;
-    }
+        unique_ptr<double> timeOfFailure,
+        vector<double> damages)
+        : _timeOfFailure(move(timeOfFailure)),
+          _damages(move(damages)
+          ) {}
 
     const double* RevetmentOutput::GetTimeOfFailure() const
     {
         return _timeOfFailure.get();
+    }
+
+    const vector<double>& RevetmentOutput::GetDamages() const
+    {
+        return _damages;
     }
 }
