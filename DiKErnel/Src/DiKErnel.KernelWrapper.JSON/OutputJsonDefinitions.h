@@ -29,18 +29,19 @@ namespace DiKErnel::KernelWrapper::Json
      */
     class OutputJsonDefinitions
     {
-        public:
-            static const std::string LOCATIONS;
+        friend class OutputComposer;
 
-            static const std::string TIME;
+        static const std::string LOCATIONS;
 
-            static const std::string NAME;
-            static const std::string FAILED;
-            static const std::string TIME_OF_FAILURE;
+        static const std::string TIME;
 
-            static const std::string DAMAGE;
-            static const std::string DAMAGE_OVER_TIME;
+        static const std::string NAME;
+        static const std::string FAILED;
+        static const std::string TIME_OF_FAILURE;
 
-            static const std::string OUTPUT_DATA;
+        static const std::string DAMAGE;
+        static const std::string DAMAGE_OVER_TIME;
+
+        static const std::string OUTPUT_DATA;
     };
 }

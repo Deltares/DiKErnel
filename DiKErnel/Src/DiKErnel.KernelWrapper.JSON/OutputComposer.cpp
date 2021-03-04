@@ -25,8 +25,8 @@
 
 #include <nlohmann/json.hpp>
 
-#include "OutputJsonDefinitions.h"
 #include "OutputData.h"
+#include "OutputJsonDefinitions.h"
 #include "RevetmentOutput.h"
 
 namespace DiKErnel::KernelWrapper::Json
