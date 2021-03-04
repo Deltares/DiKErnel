@@ -22,7 +22,7 @@
 
 #include <memory>
 
-#include "Internal/Data/Generic/JsonInputRevetmentLocationData.h"
+#include "JsonInputRevetmentLocationData.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {

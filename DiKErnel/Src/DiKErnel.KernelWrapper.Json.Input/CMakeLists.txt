@@ -75,4 +75,9 @@ endif()
 target_link_libraries(${LIBNAME} nlohmann_json::nlohmann_json)
 
 # Expose header files
-target_include_directories(${LIBNAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+target_include_directories(${LIBNAME}
+  PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/${INTERNAL_FOLDER}
+  PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/${INTERNAL_DATA_GENERIC_FOLDER}
+  PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/${INTERNAL_DATA_REVETMENT_FOLDER}
+  PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/${PUBLIC_FOLDER}
+)
