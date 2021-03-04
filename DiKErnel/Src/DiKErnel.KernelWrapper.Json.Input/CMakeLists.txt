@@ -1,39 +1,45 @@
 # Set library name
 set(LIBNAME DiKErnel.KernelWrapper.Json.Input)
 
+# Set folder names
+set(PUBLIC_FOLDER Public)
+set(INTERNAL_FOLDER Internal)
+set(INTERNAL_DATA_GENERIC_FOLDER ${INTERNAL_FOLDER}/Data/Generic)
+set(INTERNAL_DATA_REVETMENT_FOLDER ${INTERNAL_FOLDER}/Data/Revetment)
+
 # Define sources
 set(SOURCEFILES_PUBLIC
-  Public/JsonInputComposer.cpp
-  Public/JsonInputComposer.h
+  ${PUBLIC_FOLDER}/JsonInputComposer.cpp
+  ${PUBLIC_FOLDER}/JsonInputComposer.h
 )
 set(SOURCEFILES_INTERNAL
-  Internal/JsonInputDefinitions.h
-  Internal/JsonInputParser.cpp
-  Internal/JsonInputParser.h
+  ${INTERNAL_FOLDER}/JsonInputDefinitions.h
+  ${INTERNAL_FOLDER}/JsonInputParser.cpp
+  ${INTERNAL_FOLDER}/JsonInputParser.h
 )
 
 set(SOURCEFILES_INTERNAL_DATA_GENERIC
-  Internal/Data/Generic/JsonInputCalculationData.cpp
-  Internal/Data/Generic/JsonInputCalculationData.h
-  Internal/Data/Generic/JsonInputDamageData.cpp
-  Internal/Data/Generic/JsonInputDamageData.h
-  Internal/Data/Generic/JsonInputData.cpp
-  Internal/Data/Generic/JsonInputData.h
-  Internal/Data/Generic/JsonInputHydraulicData.cpp
-  Internal/Data/Generic/JsonInputHydraulicData.h
-  Internal/Data/Generic/JsonInputLocationData.cpp
-  Internal/Data/Generic/JsonInputLocationData.h
-  Internal/Data/Generic/JsonInputProfileSchematizationData.cpp
-  Internal/Data/Generic/JsonInputProfileSchematizationData.h
-  Internal/Data/Generic/JsonInputRevetmentLocationData.cpp
-  Internal/Data/Generic/JsonInputRevetmentLocationData.h
-  Internal/Data/Generic/JsonInputTimeDependentHydraulicData.cpp
-  Internal/Data/Generic/JsonInputTimeDependentHydraulicData.h
+  ${INTERNAL_DATA_GENERIC_FOLDER}/JsonInputCalculationData.cpp
+  ${INTERNAL_DATA_GENERIC_FOLDER}/JsonInputCalculationData.h
+  ${INTERNAL_DATA_GENERIC_FOLDER}/JsonInputDamageData.cpp
+  ${INTERNAL_DATA_GENERIC_FOLDER}/JsonInputDamageData.h
+  ${INTERNAL_DATA_GENERIC_FOLDER}/JsonInputData.cpp
+  ${INTERNAL_DATA_GENERIC_FOLDER}/JsonInputData.h
+  ${INTERNAL_DATA_GENERIC_FOLDER}/JsonInputHydraulicData.cpp
+  ${INTERNAL_DATA_GENERIC_FOLDER}/JsonInputHydraulicData.h
+  ${INTERNAL_DATA_GENERIC_FOLDER}/JsonInputLocationData.cpp
+  ${INTERNAL_DATA_GENERIC_FOLDER}/JsonInputLocationData.h
+  ${INTERNAL_DATA_GENERIC_FOLDER}/JsonInputProfileSchematizationData.cpp
+  ${INTERNAL_DATA_GENERIC_FOLDER}/JsonInputProfileSchematizationData.h
+  ${INTERNAL_DATA_GENERIC_FOLDER}/JsonInputRevetmentLocationData.cpp
+  ${INTERNAL_DATA_GENERIC_FOLDER}/JsonInputRevetmentLocationData.h
+  ${INTERNAL_DATA_GENERIC_FOLDER}/JsonInputTimeDependentHydraulicData.cpp
+  ${INTERNAL_DATA_GENERIC_FOLDER}/JsonInputTimeDependentHydraulicData.h
 )
 
 set(SOURCEFILES_INTERNAL_DATA_REVETMENT
-  Internal/Data/Revetment/JsonInputNaturalStoneRevetmentLocationData.cpp
-  Internal/Data/Revetment/JsonInputNaturalStoneRevetmentLocationData.h
+  ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputNaturalStoneRevetmentLocationData.cpp
+  ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputNaturalStoneRevetmentLocationData.h
 )
 
 # Add library
@@ -45,10 +51,10 @@ add_library(${LIBNAME} STATIC
 
 # Configure folder structure
 set_target_properties(${LIBNAME} PROPERTIES FOLDER Src)
-source_group("Public" FILES ${SOURCEFILES_PUBLIC})
-source_group("Internal" FILES ${SOURCEFILES_INTERNAL})
-source_group("Internal/Data/Generic" FILES ${SOURCEFILES_INTERNAL_DATA_GENERIC})
-source_group("Internal/Data/Revetment" FILES ${SOURCEFILES_INTERNAL_DATA_REVETMENT})
+source_group(${PUBLIC_FOLDER} FILES ${SOURCEFILES_PUBLIC})
+source_group(${INTERNAL_FOLDER} FILES ${SOURCEFILES_INTERNAL})
+source_group(${INTERNAL_DATA_GENERIC_FOLDER} FILES ${SOURCEFILES_INTERNAL_DATA_GENERIC})
+source_group(${INTERNAL_DATA_REVETMENT_FOLDER} FILES ${SOURCEFILES_INTERNAL_DATA_REVETMENT})
 
 # Fetch third party libraries
 include(FetchContent)
