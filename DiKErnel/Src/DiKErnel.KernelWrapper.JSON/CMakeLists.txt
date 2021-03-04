@@ -21,8 +21,6 @@ set(SOURCEFILES
   InputData.h
   InputJsonDefinitions.cpp
   InputJsonDefinitions.h
-  JsonDefinitions.cpp
-  JsonDefinitions.h
   OutputComposer.cpp
   OutputComposer.h
   OutputData.cpp
