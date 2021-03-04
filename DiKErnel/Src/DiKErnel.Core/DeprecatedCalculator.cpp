@@ -125,7 +125,8 @@ namespace DiKErnel::Core
                     make_unique<CalculationLocationOutput>(
                         _locations[i].get().GetName(),
                         make_unique<RevetmentOutput>(
-                            damagesForLocation)));
+                           damagesForLocation,
+                            make_unique<double>(60.0))));
             }
         }
 

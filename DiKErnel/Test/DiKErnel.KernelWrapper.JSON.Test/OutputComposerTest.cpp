@@ -54,7 +54,7 @@ namespace DiKErnel::KernelWrapper::Json::Test
             const string& locationName,
             const vector<double>& damages) const
         {
-            return make_unique<CalculationLocationOutput>(locationName, make_unique<RevetmentOutput>(damages));
+            return make_unique<CalculationLocationOutput>(locationName, make_unique<RevetmentOutput>(damages, make_unique<double>(60.0)));
         }
     };
 

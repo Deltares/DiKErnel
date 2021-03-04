@@ -20,6 +20,7 @@
 
 #pragma once
 
+#include <memory>
 #include <vector>
 
 namespace DiKErnel::KernelWrapper::Json
@@ -34,18 +35,27 @@ namespace DiKErnel::KernelWrapper::Json
              * \brief Creates a new instance.
              * \param damages
              *        The damages of all timesteps.
+             * \param timeOfFailure
+             *        The time of failure.
              */
             explicit RevetmentOutput(
-                std::vector<double> damages
-            );
+                std::vector<double> damages,
+                std::unique_ptr<double> timeOfFailure);
 
             /*!
-             * \brief Gets the damages of all timesteps.
-             * \return The damages of all timesteps.
+             * \brief Gets all damages.
+             * \return All damages.
              */
             const std::vector<double>& GetDamages() const;
 
+            /*!
+             * \brief Gets the time of failure.
+             * \return The time of failure.
+             */
+            const double* GetTimeOfFailure() const;
+
         private:
             std::vector<double> _damages;
+            std::unique_ptr<double> _timeOfFailure;
     };
 }

@@ -20,6 +20,7 @@
 
 #include "RevetmentOutput.h"
 
+#include <memory>
 #include <utility>
 
 namespace DiKErnel::KernelWrapper::Json
@@ -27,11 +28,18 @@ namespace DiKErnel::KernelWrapper::Json
     using namespace std;
 
     RevetmentOutput::RevetmentOutput(
-        vector<double> damages)
-        : _damages(move(damages)) { }
+        vector<double> damages,
+        unique_ptr<double> timeOfFailure)
+        : _damages(move(damages)),
+          _timeOfFailure(move(timeOfFailure)) {}
 
     const vector<double>& RevetmentOutput::GetDamages() const
     {
         return _damages;
+    }
+
+    const double* RevetmentOutput::GetTimeOfFailure() const
+    {
+        return _timeOfFailure.get();
     }
 }

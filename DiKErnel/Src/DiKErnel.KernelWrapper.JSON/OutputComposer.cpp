@@ -44,6 +44,8 @@ namespace DiKErnel::KernelWrapper::Json
 
         for (const auto& calculationLocationOutput : outputData.GetCalculationLocationsOutput())
         {
+            auto failed = calculationLocationOutput.get().GetRevetmentOutput().GetTimeOfFailure() == nullptr ? false : true;
+
             json[OutputJsonDefinitions::OUTPUT_DATA][OutputJsonDefinitions::LOCATIONS].push_back(
                 nlohmann::ordered_json::object(
                     {
@@ -56,11 +58,11 @@ namespace DiKErnel::KernelWrapper::Json
                             {
                                 {
                                     OutputJsonDefinitions::FAILED,
-                                    true
+                                    failed
                                 },
                                 {
                                     OutputJsonDefinitions::TIME_OF_FAILURE,
-                                    60
+                                    *calculationLocationOutput.get().GetRevetmentOutput().GetTimeOfFailure()
                                 },
                                 {
                                     OutputJsonDefinitions::DAMAGE_OVER_TIME,
