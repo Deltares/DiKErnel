@@ -31,10 +31,12 @@ namespace DiKErnel::KernelWrapper::Json::Input
 {
     class JsonInputParser
     {
-        static std::unique_ptr<JsonInputData> GetJsonInputData(
-            const std::string& filePath);
+        public:
+            static std::unique_ptr<JsonInputData> GetJsonInputData(
+                const std::string& filePath);
 
-        static nlohmann::json ReadJson(
-            const std::string& filePath);
+        private:
+            static nlohmann::json ReadJson(
+                const std::string& filePath);
     };
 }
