@@ -44,33 +44,40 @@ namespace DiKErnel::KernelWrapper::Json
 
         for (const auto& calculationLocationOutput : outputData.GetCalculationLocationsOutput())
         {
-            auto failed = calculationLocationOutput.get().GetRevetmentOutput().GetTimeOfFailure() == nullptr ? false : true;
-
-            json[OutputJsonDefinitions::OUTPUT_DATA][OutputJsonDefinitions::LOCATIONS].push_back(
-                nlohmann::ordered_json::object(
+            auto locationJson = nlohmann::ordered_json::object(
+                {
                     {
+                        OutputJsonDefinitions::NAME,
+                        calculationLocationOutput.get().GetName()
+                    },
+                    {
+                        OutputJsonDefinitions::DAMAGE,
                         {
-                            OutputJsonDefinitions::NAME,
-                            calculationLocationOutput.get().GetName()
-                        },
-                        {
-                            OutputJsonDefinitions::DAMAGE,
                             {
-                                {
-                                    OutputJsonDefinitions::FAILED,
-                                    failed
-                                },
-                                {
-                                    OutputJsonDefinitions::TIME_OF_FAILURE,
-                                    *calculationLocationOutput.get().GetRevetmentOutput().GetTimeOfFailure()
-                                },
-                                {
-                                    OutputJsonDefinitions::DAMAGE_OVER_TIME,
-                                    calculationLocationOutput.get().GetRevetmentOutput().GetDamages()
-                                }
+                                OutputJsonDefinitions::FAILED,
+                                false
+                            },
+                            {
+                                OutputJsonDefinitions::TIME_OF_FAILURE,
+                                nullptr
+                            },
+                            {
+                                OutputJsonDefinitions::DAMAGE_OVER_TIME,
+                                calculationLocationOutput.get().GetRevetmentOutput().GetDamages()
                             }
                         }
-                    }));
+                    }
+                });
+
+            const auto* const timeOfFailure = calculationLocationOutput.get().GetRevetmentOutput().GetTimeOfFailure();
+            if (timeOfFailure != nullptr)
+            {
+                locationJson[OutputJsonDefinitions::DAMAGE][OutputJsonDefinitions::FAILED] = true;
+                locationJson[OutputJsonDefinitions::DAMAGE][OutputJsonDefinitions::TIME_OF_FAILURE] = *timeOfFailure;
+            }
+
+            json[OutputJsonDefinitions::OUTPUT_DATA][OutputJsonDefinitions::LOCATIONS].push_back(
+                locationJson);
         }
 
         ofstream outfile(filePath, ios::trunc);

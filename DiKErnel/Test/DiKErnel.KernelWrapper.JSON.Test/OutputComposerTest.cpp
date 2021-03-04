@@ -52,9 +52,10 @@ namespace DiKErnel::KernelWrapper::Json::Test
 
         unique_ptr<CalculationLocationOutput> CreateCalculationLocationOutput(
             const string& locationName,
+            unique_ptr<double> timeOfFailure,
             const vector<double>& damages) const
         {
-            return make_unique<CalculationLocationOutput>(locationName, make_unique<RevetmentOutput>(make_unique<double>(60.0), damages));
+            return make_unique<CalculationLocationOutput>(locationName, make_unique<RevetmentOutput>(move(timeOfFailure), damages));
         }
     };
 
@@ -76,8 +77,8 @@ namespace DiKErnel::KernelWrapper::Json::Test
         times.push_back(10);
         times.push_back(100);
 
-        calculationLocationsOutput.push_back(CreateCalculationLocationOutput("testName1", damagesLocation1));
-        calculationLocationsOutput.push_back(CreateCalculationLocationOutput("testName2", damagesLocation2));
+        calculationLocationsOutput.push_back(CreateCalculationLocationOutput("testName1", make_unique<double>(60.0), damagesLocation1));
+        calculationLocationsOutput.push_back(CreateCalculationLocationOutput("testName2", nullptr, damagesLocation2));
 
         const auto outputData = make_unique<OutputData>(move(calculationLocationsOutput));
 
