@@ -30,21 +30,23 @@ namespace DiKErnel::KernelWrapper::Json::Input
 {
     class JsonInputCalculationData
     {
-        explicit JsonInputCalculationData(
-            std::vector<int> times,
-            std::unique_ptr<JsonInputHydraulicData> hydraulicData,
-            std::vector<std::unique_ptr<JsonInputLocationData>> locationData
-        );
+        public:
+            explicit JsonInputCalculationData(
+                std::vector<int> times,
+                std::unique_ptr<JsonInputHydraulicData> hydraulicData,
+                std::vector<std::unique_ptr<JsonInputLocationData>> locationData
+            );
 
-        const std::vector<int>& GetTimes() const;
+            const std::vector<int>& GetTimes() const;
 
-        const JsonInputHydraulicData& GetHydraulicData() const;
+            const JsonInputHydraulicData& GetHydraulicData() const;
 
-        const std::vector<std::reference_wrapper<JsonInputLocationData>>& GetLocationData() const;
+            const std::vector<std::reference_wrapper<JsonInputLocationData>>& GetLocationData() const;
 
-        std::vector<int> _times;
-        std::unique_ptr<JsonInputHydraulicData> _hydraulicData;
-        std::vector<std::unique_ptr<JsonInputLocationData>> _locationData;
-        std::vector<std::reference_wrapper<JsonInputLocationData>> _locationDataReferences;
+        private:
+            std::vector<int> _times;
+            std::unique_ptr<JsonInputHydraulicData> _hydraulicData;
+            std::vector<std::unique_ptr<JsonInputLocationData>> _locationData;
+            std::vector<std::reference_wrapper<JsonInputLocationData>> _locationDataReferences;
     };
 }

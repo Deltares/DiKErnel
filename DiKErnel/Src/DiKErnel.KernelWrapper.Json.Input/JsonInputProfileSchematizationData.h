@@ -24,16 +24,18 @@ namespace DiKErnel::KernelWrapper::Json::Input
 {
     class JsonInputProfileSchematizationData
     {
-        explicit JsonInputProfileSchematizationData(
-            double tanA,
-            double positionZ
-        );
+        public:
+            explicit JsonInputProfileSchematizationData(
+                double tanA,
+                double positionZ
+            );
 
-        double GetTanA() const;
+            double GetTanA() const;
 
-        double GetPositionZ() const;
+            double GetPositionZ() const;
 
-        double _tanA;
-        double _positionZ;
+        private:
+            double _tanA;
+            double _positionZ;
     };
 }

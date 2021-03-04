@@ -26,15 +26,17 @@ namespace DiKErnel::KernelWrapper::Json::Input
 {
     class JsonInputDamageData
     {
-        explicit JsonInputDamageData(
-            double initialDamage,
-            std::unique_ptr<double> criticalDamage);
+        public:
+            explicit JsonInputDamageData(
+                double initialDamage,
+                std::unique_ptr<double> criticalDamage);
 
-        double GetInitialDamage() const;
+            double GetInitialDamage() const;
 
-        const double* GetCriticalDamage() const;
+            const double* GetCriticalDamage() const;
 
-        double _initialDamage;
-        std::unique_ptr<double> _criticalDamage;
+        private:
+            double _initialDamage;
+            std::unique_ptr<double> _criticalDamage;
     };
 }

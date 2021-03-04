@@ -31,23 +31,25 @@ namespace DiKErnel::KernelWrapper::Json::Input
 {
     class JsonInputLocationData
     {
-        explicit JsonInputLocationData(
-            std::string name,
-            std::unique_ptr<JsonInputDamageData> damageData,
-            std::unique_ptr<JsonInputRevetmentLocationData> revetmentLocationData,
-            std::unique_ptr<JsonInputProfileSchematizationData> profileSchematizationData);
+        public:
+            explicit JsonInputLocationData(
+                std::string name,
+                std::unique_ptr<JsonInputDamageData> damageData,
+                std::unique_ptr<JsonInputRevetmentLocationData> revetmentLocationData,
+                std::unique_ptr<JsonInputProfileSchematizationData> profileSchematizationData);
 
-        const std::string& GetName() const;
+            const std::string& GetName() const;
 
-        const JsonInputDamageData& GetDamageData() const;
+            const JsonInputDamageData& GetDamageData() const;
 
-        const JsonInputRevetmentLocationData& GetRevetmentLocationData() const;
+            const JsonInputRevetmentLocationData& GetRevetmentLocationData() const;
 
-        const JsonInputProfileSchematizationData& GetProfileSchematizationData() const;
+            const JsonInputProfileSchematizationData& GetProfileSchematizationData() const;
 
-        std::string _name;
-        std::unique_ptr<JsonInputDamageData> _damageData;
-        std::unique_ptr<JsonInputRevetmentLocationData> _revetmentLocationData;
-        std::unique_ptr<JsonInputProfileSchematizationData> _profileSchematizationData;
+        private:
+            std::string _name;
+            std::unique_ptr<JsonInputDamageData> _damageData;
+            std::unique_ptr<JsonInputRevetmentLocationData> _revetmentLocationData;
+            std::unique_ptr<JsonInputProfileSchematizationData> _profileSchematizationData;
     };
 }

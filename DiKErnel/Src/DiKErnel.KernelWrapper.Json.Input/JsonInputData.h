@@ -28,12 +28,14 @@ namespace DiKErnel::KernelWrapper::Json::Input
 {
     class JsonInputData
     {
-        explicit JsonInputData(
-            std::unique_ptr<JsonInputCalculationData> calculationData
-        );
+        public:
+            explicit JsonInputData(
+                std::unique_ptr<JsonInputCalculationData> calculationData
+            );
 
-        const JsonInputCalculationData& GetCalculationData() const;
+            const JsonInputCalculationData& GetCalculationData() const;
 
-        std::unique_ptr<JsonInputCalculationData> _calculationData;
+        private:
+            std::unique_ptr<JsonInputCalculationData> _calculationData;
     };
 }
