@@ -3,8 +3,6 @@ set(LIBNAME DiKErnel.Core)
 
 # Define sources
 set(SOURCEFILES
-  CalculationInput.cpp
-  CalculationInput.h
   CalculationOutput.cpp
   CalculationOutput.h
   Calculator.cpp

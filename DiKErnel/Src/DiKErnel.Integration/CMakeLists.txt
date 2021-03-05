@@ -3,6 +3,8 @@ set(LIBNAME DiKErnel.Integration)
 
 # Define sources
 set(SOURCEFILES
+  CalculationInput.cpp
+  CalculationInput.h
   LocationDependentData.cpp
   LocationDependentData.h
   NaturalStoneRevetmentLocationConstructionProperties.cpp
