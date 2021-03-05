@@ -23,7 +23,7 @@
 #include "AssertHelper.h"
 #include "InvalidCalculationDataException.h"
 
-namespace DiKErnel::Core::Test
+namespace DiKErnel::Integration::Test
 {
     using namespace std;
     using namespace TestUtil;

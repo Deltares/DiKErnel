@@ -40,7 +40,7 @@ namespace DiKErnel::Integration
     {
         if (_endTime <= _beginTime)
         {
-            throw Core::InvalidCalculationDataException("'beginTime' should be smaller than 'endTime'.");
+            throw InvalidCalculationDataException("'beginTime' should be smaller than 'endTime'.");
         }
     }
 

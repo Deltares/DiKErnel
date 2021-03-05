@@ -40,7 +40,7 @@ namespace DiKErnel::Integration
         {
             if (previousEndTime != INT_MIN && timeDependentData->GetBeginTime() != previousEndTime)
             {
-                throw Core::InvalidCalculationDataException("The begin time of an element must connect to the end time of the previous element.");
+                throw InvalidCalculationDataException("The begin time of an element must connect to the end time of the previous element.");
             }
             previousEndTime = timeDependentData->GetEndTime();
 

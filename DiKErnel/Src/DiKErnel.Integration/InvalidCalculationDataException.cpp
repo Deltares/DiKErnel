@@ -20,7 +20,7 @@
 
 #include "InvalidCalculationDataException.h"
 
-namespace DiKErnel::Core
+namespace DiKErnel::Integration
 {
     using namespace std;
 
