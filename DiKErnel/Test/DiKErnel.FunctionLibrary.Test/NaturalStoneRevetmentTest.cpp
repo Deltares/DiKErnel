@@ -24,7 +24,9 @@
 
 namespace DiKErnel::FunctionLibrary::Test::NaturalStoneRevetmentTest
 {
-    struct NaturalStoneRevetmentTest : testing::Test
+    using namespace testing;
+
+    struct NaturalStoneRevetmentTest : Test
     {
         const double _initialDamage = 0.0;
         const double _waveAngle = -10.0;

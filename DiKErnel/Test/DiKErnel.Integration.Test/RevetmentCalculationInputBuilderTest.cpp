@@ -33,9 +33,10 @@ namespace DiKErnel::Integration::Test
     using namespace Core;
     using namespace DomainLibrary;
     using namespace std;
+    using namespace testing;
     using namespace TestUtil;
 
-    struct RevetmentCalculationInputBuilderTest : testing::Test
+    struct RevetmentCalculationInputBuilderTest : Test
     {
         static void CreateBuilderAndAddInvalidTimeStep()
         {

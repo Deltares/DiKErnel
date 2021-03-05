@@ -28,11 +28,12 @@
 namespace DiKErnel::Integration::Test
 {
     using namespace Core;
+    using namespace DiKErnel::TestUtil;
     using namespace std;
     using namespace testing;
     using namespace TestUtil;
 
-    struct CalculationInputTest : testing::Test
+    struct CalculationInputTest : Test
     {
         static void TimeDependentDataNotSubsequently()
         {
@@ -76,6 +77,7 @@ namespace DiKErnel::Integration::Test
         const CalculationInput calculationInput(move(locationDependentDataItems), move(timeDependentDataItems), maximumWaveAngle);
 
         // Assert
+        AssertHelper::AssertIsInstanceOf<ICalculationInput>(&calculationInput);
         ASSERT_EQ(1, calculationInput.GetLocationDependentDataItems().size());
 
         const auto& actualTimeDependentDataItems = calculationInput.GetTimeDependentDataItems();
@@ -98,7 +100,7 @@ namespace DiKErnel::Integration::Test
         const auto action = &CalculationInputTest::TimeDependentDataNotSubsequently;
 
         // Assert
-        DiKErnel::TestUtil::AssertHelper::AssertThrowsWithMessage<InvalidCalculationDataException>(
+        AssertHelper::AssertThrowsWithMessage<InvalidCalculationDataException>(
             action, "The begin time of an element must connect to the end time of the previous element.");
     }
 
@@ -108,7 +110,7 @@ namespace DiKErnel::Integration::Test
         const auto action = &CalculationInputTest::TimeDependentDataUnordered;
 
         // Assert
-        DiKErnel::TestUtil::AssertHelper::AssertThrowsWithMessage<InvalidCalculationDataException>(
+        AssertHelper::AssertThrowsWithMessage<InvalidCalculationDataException>(
             action, "The begin time of an element must connect to the end time of the previous element.");
     }
 }

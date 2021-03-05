@@ -20,6 +20,8 @@
 
 #pragma once
 
+#include <gmock/gmock.h>
+
 #include "LocationDependentData.h"
 
 namespace DiKErnel::Integration::TestUtil
@@ -31,9 +33,7 @@ namespace DiKErnel::Integration::TestUtil
                 const double initialDamage)
                 : LocationDependentData(initialDamage) {}
 
-            double Calculate(
-                double startDamage,
-                const Core::ITimeDependentData& timeDependentData,
-                double maximumWaveAngle) override;
+            MOCK_METHOD(double, Calculate, (double startDamage, const Core::ITimeDependentData& timeDependentData, double maximumWaveAngle),
+                        (override));
     };
 }

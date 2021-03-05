@@ -32,9 +32,10 @@
 namespace DiKErnel::KernelWrapper::Json::Test
 {
     using namespace std;
+    using namespace testing;
     using namespace TestUtil;
 
-    struct OutputComposerTest : testing::Test
+    struct OutputComposerTest : Test
     {
         const string _expectedOutputFilePath =
         (TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Test")

@@ -74,7 +74,7 @@ namespace DiKErnel::Integration::Test
     INSTANTIATE_TEST_SUITE_P(
         Constructor_EndTimeSmallerThanOrEqualToBeginTime_ThrowsInvalidCalculationDataException,
         TimeDependentDataTest,
-        ::testing::Values(
+        Values(
             40, 50
         ));
 }

@@ -20,13 +20,4 @@
 
 #include "LocationDependentDataMock.h"
 
-namespace DiKErnel::Integration::TestUtil
-{
-    double LocationDependentDataMock::Calculate(
-        double startDamage,
-        const Core::ITimeDependentData& timeDependentData,
-        double maximumWaveAngle)
-    {
-        return 0;
-    }
-}
+namespace DiKErnel::Integration::TestUtil { }
