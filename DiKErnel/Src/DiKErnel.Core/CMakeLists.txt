@@ -20,8 +20,6 @@ set(SOURCEFILES
   LocationDependentData.h
   LocationOutput.cpp
   LocationOutput.h
-  TimeDependentData.cpp
-  TimeDependentData.h
 )
 
 # Add library

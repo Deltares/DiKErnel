@@ -11,6 +11,8 @@ set(SOURCEFILES
   RevetmentCalculationInputBuilder.h
   RevetmentCalculationInputBuilderException.cpp
   RevetmentCalculationInputBuilderException.h
+  TimeDependentData.cpp
+  TimeDependentData.h
 )
 
 # Add library

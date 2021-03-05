@@ -11,7 +11,6 @@ set(SOURCEFILES
   LocationDependentDataTest.cpp
   LocationOutputTest.cpp
   Main.cpp
-  TimeDependentDataTest.cpp
 )
 
 # Add executable

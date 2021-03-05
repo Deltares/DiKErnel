@@ -8,6 +8,7 @@ set(SOURCEFILES
   NaturalStoneRevetmentLocationDependentDataTest.cpp
   RevetmentCalculationInputBuilderExceptionTest.cpp
   RevetmentCalculationInputBuilderTest.cpp
+  TimeDependentDataTest.cpp
 )
 
 # Add executable
