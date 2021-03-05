@@ -11,8 +11,6 @@ set(SOURCEFILES
   DeprecatedCalculator.h
   ICalculationInput.h
   ILocationDependentData.h
-  InvalidCalculationDataException.cpp
-  InvalidCalculationDataException.h
   ITimeDependentData.h
   LocationOutput.cpp
   LocationOutput.h

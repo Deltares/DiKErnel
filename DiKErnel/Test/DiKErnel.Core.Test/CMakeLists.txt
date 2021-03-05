@@ -6,7 +6,6 @@ set(SOURCEFILES
   CalculationOutputTest.cpp
   CalculatorTest.cpp
   DeprecatedCalculatorTest.cpp
-  InvalidCalculationDataExceptionTest.cpp
   LocationOutputTest.cpp
   Main.cpp
 )

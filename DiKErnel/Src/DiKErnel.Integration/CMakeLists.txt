@@ -5,6 +5,8 @@ set(LIBNAME DiKErnel.Integration)
 set(SOURCEFILES
   CalculationInput.cpp
   CalculationInput.h
+  InvalidCalculationDataException.cpp
+  InvalidCalculationDataException.h
   LocationDependentData.cpp
   LocationDependentData.h
   NaturalStoneRevetmentLocationConstructionProperties.cpp
