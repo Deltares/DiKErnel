@@ -11,16 +11,26 @@ set(SOURCEFILES
   CalculationLocation.h
   CalculationLocationOutput.cpp
   CalculationLocationOutput.h
+  CalculationMethod.cpp
+  CalculationMethod.h
   DamageVariables.cpp
   DamageVariables.h
+  DistanceMaximumWaveElevationNaturalStone.cpp
+  DistanceMaximumWaveElevationNaturalStone.h
   HydraulicLoads.cpp
   HydraulicLoads.h
+  HydraulicLoadOnNaturalStone.cpp
+  HydraulicLoadOnNaturalStone.h
   InputComposer.cpp
   InputComposer.h
   InputData.cpp
   InputData.h
   InputJsonDefinitions.cpp
   InputJsonDefinitions.h
+  LowerLimitLoadingOfNaturalStone.cpp
+  LowerLimitLoadingOfNaturalStone.h
+  NormativeWidthOfWaveImpact.cpp
+  NormativeWidthOfWaveImpact.h
   OutputComposer.cpp
   OutputComposer.h
   OutputData.cpp
@@ -34,6 +44,8 @@ set(SOURCEFILES
   Revetment.h
   RevetmentOutput.cpp
   RevetmentOutput.h
+  UpperLimitLoadingOfNaturalStone.cpp
+  UpperLimitLoadingOfNaturalStone.h
 )
 
 # Add library
