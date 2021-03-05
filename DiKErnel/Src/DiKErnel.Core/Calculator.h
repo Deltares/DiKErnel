@@ -23,7 +23,7 @@
 #include <atomic>
 #include <thread>
 
-#include "CalculationInput.h"
+#include "ICalculationInput.h"
 #include "CalculationOutput.h"
 
 namespace DiKErnel::Core
@@ -40,7 +40,7 @@ namespace DiKErnel::Core
              *        The data used in the calculation.
              */
             explicit Calculator(
-                CalculationInput& calculationInput);
+                ICalculationInput& calculationInput);
 
             /*!
              * \brief Handle that enables a calling instance to wait for the calculation to
@@ -88,7 +88,7 @@ namespace DiKErnel::Core
             std::shared_ptr<CalculationOutput> _calculationOutput;
 
             void PerformCalculation(
-                const CalculationInput& calculationInput,
+                const ICalculationInput& calculationInput,
                 std::atomic<double>& progress,
                 std::atomic<bool>& isFinished,
                 const std::atomic<bool>& isCancelled);

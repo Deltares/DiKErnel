@@ -27,7 +27,7 @@ namespace DiKErnel::Core
     using namespace std;
 
     Calculator::Calculator(
-        CalculationInput& calculationInput)
+        ICalculationInput& calculationInput)
     {
         _calculationThread = thread(
             &Calculator::PerformCalculation,
@@ -80,7 +80,7 @@ namespace DiKErnel::Core
     }
 
     void Calculator::PerformCalculation(
-        const CalculationInput& calculationInput,
+        const ICalculationInput& calculationInput,
         std::atomic<double>& progress,
         std::atomic<bool>& isFinished,
         const std::atomic<bool>& isCancelled)

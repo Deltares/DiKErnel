@@ -18,18 +18,6 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#pragma once
+#include "TestCalculationInput.h"
 
-#include <gmock/gmock.h>
-
-#include "ILocationDependentData.h"
-
-namespace DiKErnel::Core::TestUtil
-{
-    class TestLocationDependentData : public ILocationDependentData
-    {
-        public:
-            MOCK_METHOD3(Calculate, double(double startDamage, const ITimeDependentData& timeDependentData, double maximumWaveAngle));
-            MOCK_CONST_METHOD0(GetInitialDamage, double());
-    };
-}
+namespace DiKErnel::Core::TestUtil {}
