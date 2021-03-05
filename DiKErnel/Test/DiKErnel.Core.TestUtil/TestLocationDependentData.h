@@ -29,7 +29,7 @@ namespace DiKErnel::Core::TestUtil
     class TestLocationDependentData : public ILocationDependentData
     {
         public:
-            MOCK_METHOD3(Calculate, double(double startDamage, const ITimeDependentData& timeDependentData, double maximumWaveAngle));
-            MOCK_CONST_METHOD0(GetInitialDamage, double());
+            MOCK_METHOD(double, Calculate, (double startDamage, const ITimeDependentData& timeDependentData, double maximumWaveAngle), (override));
+            MOCK_METHOD(double, GetInitialDamage, (), (const, override));
     };
 }

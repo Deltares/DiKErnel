@@ -29,11 +29,11 @@ namespace DiKErnel::Core::TestUtil
     class TestTimeDependentData : public ITimeDependentData
     {
         public:
-            MOCK_CONST_METHOD0(GetBeginTime, int());
-            MOCK_CONST_METHOD0(GetEndTime, int());
-            MOCK_CONST_METHOD0(GetWaterLevel, double());
-            MOCK_CONST_METHOD0(GetWaveHeightHm0, double());
-            MOCK_CONST_METHOD0(GetWavePeriodTm10, double());
-            MOCK_CONST_METHOD0(GetWaveAngle, double());
+            MOCK_METHOD(int, GetBeginTime, (), (const, override));
+            MOCK_METHOD(int, GetEndTime, (), (const, override));
+            MOCK_METHOD(double, GetWaterLevel, (), (const, override));
+            MOCK_METHOD(double, GetWaveHeightHm0, (), (const, override));
+            MOCK_METHOD(double, GetWavePeriodTm10, (), (const, override));
+            MOCK_METHOD(double, GetWaveAngle, (), (const, override));
     };
 }
