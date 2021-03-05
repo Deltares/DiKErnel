@@ -63,6 +63,38 @@ namespace DiKErnel::KernelWrapper::Json
         static const std::string TAN_A;
         static const std::string POSITION_Z;
 
+        static const std::string CALCULATION_METHOD;
+        static const std::string CALCULATION_METHOD_SORT;
+
+        static const std::string HYDRAULIC_LOAD_ON_NATURAL_STONE;
+        static const std::string HYDRAULIC_LOAD_ON_NATURAL_STONE_XIB;
+        static const std::string HYDRAULIC_LOAD_ON_NATURAL_STONE_AP;
+        static const std::string HYDRAULIC_LOAD_ON_NATURAL_STONE_BP;
+        static const std::string HYDRAULIC_LOAD_ON_NATURAL_STONE_CP;
+        static const std::string HYDRAULIC_LOAD_ON_NATURAL_STONE_NP;
+        static const std::string HYDRAULIC_LOAD_ON_NATURAL_STONE_AS;
+        static const std::string HYDRAULIC_LOAD_ON_NATURAL_STONE_BS;
+        static const std::string HYDRAULIC_LOAD_ON_NATURAL_STONE_CS;
+        static const std::string HYDRAULIC_LOAD_ON_NATURAL_STONE_NS;
+
+        static const std::string UPPER_LIMIT_LOADING_OF_NATURAL_STONE;
+        static const std::string UPPER_LIMIT_LOADING_OF_NATURAL_STONE_AUL;
+        static const std::string UPPER_LIMIT_LOADING_OF_NATURAL_STONE_BUL;
+        static const std::string UPPER_LIMIT_LOADING_OF_NATURAL_STONE_CUL;
+
+        static const std::string LOWER_LIMIT_LOADING_OF_NATURAL_STONE;
+        static const std::string LOWER_LIMIT_LOADING_OF_NATURAL_STONE_AUL;
+        static const std::string LOWER_LIMIT_LOADING_OF_NATURAL_STONE_BUL;
+        static const std::string LOWER_LIMIT_LOADING_OF_NATURAL_STONE_CUL;
+
+        static const std::string DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE;
+        static const std::string DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE_ASMAX;
+        static const std::string DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE_BSMAX;
+
+        static const std::string NORMATIVE_WIDTH_OF_WAVE_IMPACT;
+        static const std::string NORMATIVE_WIDTH_OF_WAVE_IMPACT_AWI;
+        static const std::string NORMATIVE_WIDTH_OF_WAVE_IMPACT_BWI;
+
         static const std::string DAMAGE;
         static const std::string DAMAGE_OVER_TIME;
     };
