@@ -27,7 +27,7 @@ namespace DiKErnel::Integration
     /*!
      * \brief Class containing all natural stone revetment location related data to perform a calculation.
      */
-    class NaturalStoneRevetmentLocationDependentData : public Core::LocationDependentData
+    class NaturalStoneRevetmentLocationDependentData : public LocationDependentData
     {
         public:
             /*!
@@ -100,7 +100,7 @@ namespace DiKErnel::Integration
              */
             double Calculate(
                 double startDamage,
-                const Core::TimeDependentData& timeDependentData,
+                const Core::ITimeDependentData& timeDependentData,
                 double maximumWaveAngle) override;
 
             /*!

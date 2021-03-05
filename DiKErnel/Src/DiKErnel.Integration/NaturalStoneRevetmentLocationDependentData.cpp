@@ -58,7 +58,7 @@ namespace DiKErnel::Integration
 
     double NaturalStoneRevetmentLocationDependentData::Calculate(
         const double startDamage,
-        const TimeDependentData& timeDependentData,
+        const ITimeDependentData& timeDependentData,
         const double maximumWaveAngle)
     {
         return NaturalStoneRevetment::CalculateDamage(

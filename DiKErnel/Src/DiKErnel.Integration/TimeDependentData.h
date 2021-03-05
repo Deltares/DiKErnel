@@ -27,7 +27,7 @@ namespace DiKErnel::Integration
     /*!
      * \brief Class containing all time step that is needed to perform a calculation.
      */
-    class TimeDependentData : Core::ITimeDependentData
+    class TimeDependentData : public Core::ITimeDependentData
     {
         public:
             /*!

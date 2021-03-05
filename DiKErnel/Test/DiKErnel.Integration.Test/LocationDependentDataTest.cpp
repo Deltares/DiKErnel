@@ -20,10 +20,13 @@
 
 #include <gtest/gtest.h>
 
+#include "AssertHelper.h"
 #include "LocationDependentDataMock.h"
 
 namespace DiKErnel::Integration::Test
 {
+    using namespace Core;
+    using namespace DiKErnel::TestUtil;
     using namespace TestUtil;
 
     TEST(LocationDependentDataTest, Constructor_WithParameters_ExpectedValues)
@@ -35,6 +38,7 @@ namespace DiKErnel::Integration::Test
         const LocationDependentDataMock locationDependentData(initialDamage);
 
         // Assert
+        AssertHelper::AssertIsInstanceOf<ILocationDependentData>(&locationDependentData);
         ASSERT_DOUBLE_EQ(initialDamage, locationDependentData.GetInitialDamage());
     }
 }

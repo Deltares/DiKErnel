@@ -22,6 +22,7 @@
 
 #include "AssertHelper.h"
 #include "NaturalStoneRevetmentLocationDependentData.h"
+#include "TimeDependentData.h"
 
 namespace DiKErnel::Integration::Test
 {
