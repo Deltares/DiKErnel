@@ -20,9 +20,9 @@
 
 #include <gtest/gtest.h>
 
-#include "ILocationDependentDataMock.h"
+#include "LocationDependentDataMock.h"
 
-namespace DiKErnel::Core::Test
+namespace DiKErnel::Integration::Test
 {
     using namespace TestUtil;
 
@@ -32,7 +32,7 @@ namespace DiKErnel::Core::Test
         const auto initialDamage = rand() % 10;
 
         // Call
-        const ILocationDependentDataMock locationDependentData(initialDamage);
+        const LocationDependentDataMock locationDependentData(initialDamage);
 
         // Assert
         ASSERT_DOUBLE_EQ(initialDamage, locationDependentData.GetInitialDamage());

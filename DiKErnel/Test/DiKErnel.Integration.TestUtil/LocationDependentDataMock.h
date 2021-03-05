@@ -20,7 +20,20 @@
 
 #pragma once
 
+#include "LocationDependentData.h"
+
 namespace DiKErnel::Integration::TestUtil
 {
-    class ILocationDependentDataMock { };
+    class LocationDependentDataMock : public LocationDependentData
+    {
+        public:
+            explicit LocationDependentDataMock(
+                const double initialDamage)
+                : LocationDependentData(initialDamage) {}
+
+            double Calculate(
+                double startDamage,
+                const Core::ITimeDependentData& timeDependentData,
+                double maximumWaveAngle) override;
+    };
 }

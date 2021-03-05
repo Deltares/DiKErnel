@@ -20,10 +20,8 @@
 
 #include "LocationDependentData.h"
 
-namespace DiKErnel::Core
+namespace DiKErnel::Integration
 {
-    using namespace std;
-
     LocationDependentData::LocationDependentData(
         const double initialDamage)
         : _initialDamage(initialDamage) { }

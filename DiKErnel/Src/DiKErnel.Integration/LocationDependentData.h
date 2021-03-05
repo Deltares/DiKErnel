@@ -20,21 +20,16 @@
 
 #pragma once
 
-#include "TimeDependentData.h"
+#include "ILocationDependentData.h"
 
-namespace DiKErnel::Core
+namespace DiKErnel::Integration
 {
     /*!
      * \brief Class containing all location related data to perform a calculation.
      */
-    class LocationDependentData
+    class LocationDependentData : public Core::ILocationDependentData
     {
         public:
-            /*!
-             * \brief Destructs the instance.
-             */
-            virtual ~LocationDependentData() = default;
-
             /*!
              * \brief Performs a calculation.
              * \param startDamage
@@ -45,16 +40,16 @@ namespace DiKErnel::Core
              *        The maximum wave angle.
              * \return The calculated damage.
              */
-            virtual double Calculate(
+            double Calculate(
                 double startDamage,
-                const TimeDependentData& timeDependentData,
-                double maximumWaveAngle) = 0;
+                const Core::ITimeDependentData& timeDependentData,
+                double maximumWaveAngle) override = 0;
 
             /*!
              * \brief Gets the initial damage.
              * \return The initial damage.
              */
-            double GetInitialDamage() const;
+            double GetInitialDamage() const override;
 
         protected:
             /*!
