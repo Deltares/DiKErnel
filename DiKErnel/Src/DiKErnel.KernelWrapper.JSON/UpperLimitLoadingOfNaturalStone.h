@@ -23,7 +23,7 @@
 namespace DiKErnel::KernelWrapper::Json
 {
     /*!
-     * \brief Container for calculation method data.
+     * \brief Container for upper limit loading of natural stone data.
      */
     class UpperLimitLoadingOfNaturalStone
     {

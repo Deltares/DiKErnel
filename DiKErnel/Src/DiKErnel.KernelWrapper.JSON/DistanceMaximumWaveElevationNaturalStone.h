@@ -23,7 +23,7 @@
 namespace DiKErnel::KernelWrapper::Json
 {
     /*!
-     * \brief Container for calculation method data.
+     * \brief Container for distance maximum wave elevation natural stone data.
      */
     class DistanceMaximumWaveElevationNaturalStone
     {

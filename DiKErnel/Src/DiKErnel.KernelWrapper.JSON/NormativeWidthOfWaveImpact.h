@@ -23,7 +23,7 @@
 namespace DiKErnel::KernelWrapper::Json
 {
     /*!
-     * \brief Container for calculation method data.
+     * \brief Container for normative width of wave impact data.
      */
     class NormativeWidthOfWaveImpact
     {
