@@ -23,9 +23,9 @@
 #include <gtest/gtest.h>
 
 #include "Calculator.h"
-#include "TestCalculationInput.h"
-#include "TestLocationDependentData.h"
-#include "TestTimeDependentData.h"
+#include "ICalculationInputMock.h"
+#include "ILocationDependentDataMock.h"
+#include "ITimeDependentDataMock.h"
 
 namespace DiKErnel::Core::Test
 {
@@ -43,11 +43,11 @@ namespace DiKErnel::Core::Test
 
         explicit CalculatorTest()
         {
-            _locationDependentDataItems.emplace_back(make_unique<NiceMock<TestLocationDependentData>>());
+            _locationDependentDataItems.emplace_back(make_unique<NiceMock<ILocationDependentDataMock>>());
 
-            _timeDependentDataItems.emplace_back(make_unique<TestTimeDependentData>());
-            _timeDependentDataItems.emplace_back(make_unique<TestTimeDependentData>());
-            _timeDependentDataItems.emplace_back(make_unique<TestTimeDependentData>());
+            _timeDependentDataItems.emplace_back(make_unique<ITimeDependentDataMock>());
+            _timeDependentDataItems.emplace_back(make_unique<ITimeDependentDataMock>());
+            _timeDependentDataItems.emplace_back(make_unique<ITimeDependentDataMock>());
 
             for (const auto& locationDependentData : _locationDependentDataItems)
             {
@@ -66,12 +66,12 @@ namespace DiKErnel::Core::Test
         // Given
         const auto damage = 0.5;
 
-        NiceMock<TestCalculationInput> calculationInput;
+        NiceMock<ICalculationInputMock> calculationInput;
         ON_CALL(calculationInput, GetLocationDependentDataItems).WillByDefault(ReturnRef(_locationDependentDataItemReferences));
         ON_CALL(calculationInput, GetTimeDependentDataItems).WillByDefault(ReturnRef(_timeDependentDataItemReferences));
         ON_CALL(calculationInput, GetMaximumWaveAngle).WillByDefault(Return(0));
 
-        auto& location = static_cast<TestLocationDependentData&>(_locationDependentDataItemReferences[0].get());
+        auto& location = static_cast<ILocationDependentDataMock&>(_locationDependentDataItemReferences[0].get());
 
         ON_CALL(location, GetInitialDamage).WillByDefault(Return(0.1));
         ON_CALL(location, Calculate).WillByDefault(Return(damage));
@@ -108,7 +108,7 @@ namespace DiKErnel::Core::Test
     TEST_F(CalculatorTest, GivenCalculatorWithRunningCalculation_WhenCancelCalled_ThenCalculationCancelled)
     {
         // Given
-        NiceMock<TestCalculationInput> calculationInput;
+        NiceMock<ICalculationInputMock> calculationInput;
         ON_CALL(calculationInput, GetLocationDependentDataItems).WillByDefault(ReturnRef(_locationDependentDataItemReferences));
         ON_CALL(calculationInput, GetTimeDependentDataItems).WillByDefault(ReturnRef(_timeDependentDataItemReferences));
         ON_CALL(calculationInput, GetMaximumWaveAngle).WillByDefault(Return(0));
@@ -128,7 +128,7 @@ namespace DiKErnel::Core::Test
     TEST_F(CalculatorTest, GivenCalculatorWithFinishedCalculation_WhenCancelCalled_ThenCalculationNotCancelled)
     {
         // Given
-        NiceMock<TestCalculationInput> calculationInput;
+        NiceMock<ICalculationInputMock> calculationInput;
         EXPECT_CALL(calculationInput, GetLocationDependentDataItems).WillRepeatedly(ReturnRef(_locationDependentDataItemReferences));
         EXPECT_CALL(calculationInput, GetTimeDependentDataItems).WillRepeatedly(ReturnRef(_timeDependentDataItemReferences));
         EXPECT_CALL(calculationInput, GetMaximumWaveAngle).WillRepeatedly(Return(0));
@@ -148,7 +148,7 @@ namespace DiKErnel::Core::Test
     TEST_F(CalculatorTest, GivenCalculatorWithUnfinishedCalculation_WhenGetCalculationOutput_ThenNullPtrReturned)
     {
         // Given
-        NiceMock<TestCalculationInput> calculationInput;
+        NiceMock<ICalculationInputMock> calculationInput;
         EXPECT_CALL(calculationInput, GetLocationDependentDataItems).WillRepeatedly(ReturnRef(_locationDependentDataItemReferences));
         EXPECT_CALL(calculationInput, GetTimeDependentDataItems).WillRepeatedly(ReturnRef(_timeDependentDataItemReferences));
         EXPECT_CALL(calculationInput, GetMaximumWaveAngle).WillRepeatedly(Return(0));

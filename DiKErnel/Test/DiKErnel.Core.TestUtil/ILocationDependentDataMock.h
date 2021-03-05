@@ -22,17 +22,14 @@
 
 #include <gmock/gmock.h>
 
-#include "ICalculationInput.h"
+#include "ILocationDependentData.h"
 
 namespace DiKErnel::Core::TestUtil
 {
-    using namespace std;
-
-    class TestCalculationInput : public ICalculationInput
+    class ILocationDependentDataMock : public ILocationDependentData
     {
         public:
-            MOCK_METHOD(vector<reference_wrapper<ILocationDependentData>>&, GetLocationDependentDataItems, (), (const, override));
-            MOCK_METHOD(vector<reference_wrapper<ITimeDependentData>>&, GetTimeDependentDataItems, (), (const, override));
-            MOCK_METHOD(double, GetMaximumWaveAngle, (), (const, override));
+            MOCK_METHOD(double, Calculate, (double startDamage, const ITimeDependentData& timeDependentData, double maximumWaveAngle), (override));
+            MOCK_METHOD(double, GetInitialDamage, (), (const, override));
     };
 }

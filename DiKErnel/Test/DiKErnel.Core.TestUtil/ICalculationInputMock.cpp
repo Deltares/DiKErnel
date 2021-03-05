@@ -18,22 +18,6 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#pragma once
+#include "ICalculationInputMock.h"
 
-#include <gmock/gmock.h>
-
-#include "ITimeDependentData.h"
-
-namespace DiKErnel::Core::TestUtil
-{
-    class TestTimeDependentData : public ITimeDependentData
-    {
-        public:
-            MOCK_METHOD(int, GetBeginTime, (), (const, override));
-            MOCK_METHOD(int, GetEndTime, (), (const, override));
-            MOCK_METHOD(double, GetWaterLevel, (), (const, override));
-            MOCK_METHOD(double, GetWaveHeightHm0, (), (const, override));
-            MOCK_METHOD(double, GetWavePeriodTm10, (), (const, override));
-            MOCK_METHOD(double, GetWaveAngle, (), (const, override));
-    };
-}
+namespace DiKErnel::Core::TestUtil {}

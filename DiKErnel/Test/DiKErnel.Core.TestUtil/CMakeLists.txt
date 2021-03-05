@@ -3,12 +3,12 @@ set(LIBNAME DiKErnel.Core.TestUtil)
 
 # Define sources
 set(SOURCEFILES
-  TestCalculationInput.cpp
-  TestCalculationInput.h
-  TestLocationDependentData.cpp
-  TestLocationDependentData.h
-  TestTimeDependentData.cpp
-  TestTimeDependentData.h
+  ICalculationInputMock.cpp
+  ICalculationInputMock.h
+  ILocationDependentDataMock.cpp
+  ILocationDependentDataMock.h
+  ITimeDependentDataMock.cpp
+  ITimeDependentDataMock.h
 )
 
 # Add library

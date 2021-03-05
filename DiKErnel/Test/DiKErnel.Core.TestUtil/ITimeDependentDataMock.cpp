@@ -18,6 +18,6 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include "TestLocationDependentData.h"
+#include "ITimeDependentDataMock.h"
 
 namespace DiKErnel::Core::TestUtil {}
