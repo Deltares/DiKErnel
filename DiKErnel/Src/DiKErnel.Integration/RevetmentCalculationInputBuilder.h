@@ -78,12 +78,12 @@ namespace DiKErnel::Integration
              * \exception RevetmentCalculationInputBuilderException
              *            Thrown when time steps do not connect or are unordered.
              */
-            std::unique_ptr<Core::CalculationInput> Build();
+            std::unique_ptr<Core::ICalculationInput> Build();
 
         private:
             double _maximumWaveAngle;
-            std::vector<std::unique_ptr<Core::TimeDependentData>> _timeSteps = std::vector<std::unique_ptr<Core::TimeDependentData>>();
-            std::vector<std::unique_ptr<Core::LocationDependentData>> _locations = std::vector<std::unique_ptr<Core::LocationDependentData>>();
+            std::vector<std::unique_ptr<TimeDependentData>> _timeSteps = std::vector<std::unique_ptr<TimeDependentData>>();
+            std::vector<std::unique_ptr<LocationDependentData>> _locations = std::vector<std::unique_ptr<LocationDependentData>>();
 
             static double GetValue(
                 const double* doublePtr,

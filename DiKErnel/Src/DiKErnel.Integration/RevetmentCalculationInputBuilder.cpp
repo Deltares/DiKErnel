@@ -84,7 +84,7 @@ namespace DiKErnel::Integration
             surgingCoefficientB, surgingCoefficientC, surgingCoefficientN, similarityParameterThreshold));
     }
 
-    unique_ptr<CalculationInput> RevetmentCalculationInputBuilder::Build()
+    unique_ptr<ICalculationInput> RevetmentCalculationInputBuilder::Build()
     {
         try
         {
