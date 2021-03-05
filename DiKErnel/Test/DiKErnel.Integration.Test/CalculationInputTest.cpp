@@ -23,11 +23,13 @@
 #include "AssertHelper.h"
 #include "CalculationInput.h"
 #include "InvalidCalculationDataException.h"
-#include "ILocationDependentDataMock.h"
+#include "LocationDependentDataMock.h"
 
-namespace DiKErnel::Core::Test
+namespace DiKErnel::Integration::Test
 {
+    using namespace Core;
     using namespace std;
+    using namespace testing;
     using namespace TestUtil;
 
     struct CalculationInputTest : testing::Test
@@ -55,7 +57,7 @@ namespace DiKErnel::Core::Test
     {
         // Setup
         vector<unique_ptr<LocationDependentData>> locationDependentDataItems;
-        locationDependentDataItems.push_back(make_unique<ILocationDependentDataMock>(0));
+        locationDependentDataItems.push_back(make_unique<LocationDependentDataMock>(0));
 
         const auto beginTime = rand() % 100;
         const auto endTime = rand() % 100 + 100;

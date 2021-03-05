@@ -22,8 +22,9 @@
 
 #include "InvalidCalculationDataException.h"
 
-namespace DiKErnel::Core
+namespace DiKErnel::Integration
 {
+    using namespace Core;
     using namespace std;
 
     CalculationInput::CalculationInput(
@@ -39,7 +40,7 @@ namespace DiKErnel::Core
         {
             if (previousEndTime != INT_MIN && timeDependentData->GetBeginTime() != previousEndTime)
             {
-                throw InvalidCalculationDataException("The begin time of an element must connect to the end time of the previous element.");
+                throw Core::InvalidCalculationDataException("The begin time of an element must connect to the end time of the previous element.");
             }
             previousEndTime = timeDependentData->GetEndTime();
 
@@ -52,12 +53,12 @@ namespace DiKErnel::Core
         }
     }
 
-    const vector<reference_wrapper<LocationDependentData>>& CalculationInput::GetLocationDependentDataItems() const
+    const vector<reference_wrapper<ILocationDependentData>>& CalculationInput::GetLocationDependentDataItems() const
     {
         return _locationDependentDataItemReferences;
     }
 
-    const vector<reference_wrapper<TimeDependentData>>& CalculationInput::GetTimeDependentDataItems() const
+    const vector<reference_wrapper<ITimeDependentData>>& CalculationInput::GetTimeDependentDataItems() const
     {
         return _timeDependentDataItemReferences;
     }

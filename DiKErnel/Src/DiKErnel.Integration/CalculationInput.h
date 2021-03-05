@@ -23,15 +23,16 @@
 #include <memory>
 #include <vector>
 
+#include "ICalculationInput.h"
 #include "LocationDependentData.h"
 #include "TimeDependentData.h"
 
-namespace DiKErnel::Core
+namespace DiKErnel::Integration
 {
     /*!
      * \brief Class containing all data that is needed to perform a calculation.
      */
-    class CalculationInput
+    class CalculationInput : public Core::ICalculationInput
     {
         public:
             /*!
@@ -55,26 +56,26 @@ namespace DiKErnel::Core
              * \brief Gets the locations dependent data items to use in the calculation.
              * \return The locations dependent data items to use in the calculation.
              */
-            const std::vector<std::reference_wrapper<LocationDependentData>>& GetLocationDependentDataItems() const;
+            const std::vector<std::reference_wrapper<Core::ILocationDependentData>>& GetLocationDependentDataItems() const override;
 
             /*!
              * \brief Gets the time dependent data items to use in the calculation.
              * \return The time dependent data items to use in the calculation.
              */
-            const std::vector<std::reference_wrapper<TimeDependentData>>& GetTimeDependentDataItems() const;
+            const std::vector<std::reference_wrapper<Core::ITimeDependentData>>& GetTimeDependentDataItems() const override;
 
             /*!
              * \brief Gets the maximum wave angle.
              * \return The maximum wave angle.
              */
-            double GetMaximumWaveAngle() const;
+            double GetMaximumWaveAngle() const override;
 
         private:
             std::vector<std::unique_ptr<LocationDependentData>> _locationDependentDataItems;
             std::vector<std::unique_ptr<TimeDependentData>> _timeDependentDataItems;
 
-            std::vector<std::reference_wrapper<LocationDependentData>> _locationDependentDataItemReferences;
-            std::vector<std::reference_wrapper<TimeDependentData>> _timeDependentDataItemReferences;
+            std::vector<std::reference_wrapper<Core::ILocationDependentData>> _locationDependentDataItemReferences;
+            std::vector<std::reference_wrapper<Core::ITimeDependentData>> _timeDependentDataItemReferences;
 
             double _maximumWaveAngle;
     };
