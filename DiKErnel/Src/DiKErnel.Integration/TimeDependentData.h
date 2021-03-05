@@ -20,12 +20,14 @@
 
 #pragma once
 
-namespace DiKErnel::Core
+#include "ITimeDependentData.h"
+
+namespace DiKErnel::Integration
 {
     /*!
      * \brief Class containing all time step that is needed to perform a calculation.
      */
-    class TimeDependentData
+    class TimeDependentData : Core::ITimeDependentData
     {
         public:
             /*!
@@ -57,37 +59,37 @@ namespace DiKErnel::Core
              * \brief Gets the begin time.
              * \return The begin time.
             */
-            int GetBeginTime() const;
+            int GetBeginTime() const override;
 
             /*!
              * \brief Gets the end time.
              * \return The end time.
              */
-            int GetEndTime() const;
+            int GetEndTime() const override;
 
             /*!
              * \brief Gets the water level.
              * \return The water level.
              */
-            double GetWaterLevel() const;
+            double GetWaterLevel() const override;
 
             /*!
              * \brief Gets the wave height.
              * \return The wave height.
              */
-            double GetWaveHeightHm0() const;
+            double GetWaveHeightHm0() const override;
 
             /*!
              * \brief Gets the wave period.
              * \return The wave period.
              */
-            double GetWavePeriodTm10() const;
+            double GetWavePeriodTm10() const override;
 
             /*!
              * \brief Gets the wave angle.
              * \return The wave angle.
              */
-            double GetWaveAngle() const;
+            double GetWaveAngle() const override;
 
         private:
             int _beginTime;

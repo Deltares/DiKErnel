@@ -22,7 +22,7 @@
 
 #include "InvalidCalculationDataException.h"
 
-namespace DiKErnel::Core
+namespace DiKErnel::Integration
 {
     TimeDependentData::TimeDependentData(
         const int beginTime,
@@ -40,7 +40,7 @@ namespace DiKErnel::Core
     {
         if (_endTime <= _beginTime)
         {
-            throw InvalidCalculationDataException("'beginTime' should be smaller than 'endTime'.");
+            throw Core::InvalidCalculationDataException("'beginTime' should be smaller than 'endTime'.");
         }
     }
 

@@ -24,12 +24,14 @@
 #include "InvalidCalculationDataException.h"
 #include "TimeDependentData.h"
 
-namespace DiKErnel::Core::Test
+namespace DiKErnel::Integration::Test
 {
+    using namespace Core;
     using namespace std;
+    using namespace testing;
     using namespace TestUtil;
 
-    struct TimeDependentDataTest : testing::TestWithParam<int>
+    struct TimeDependentDataTest : TestWithParam<int>
     {
         static void DoCall()
         {
@@ -51,6 +53,7 @@ namespace DiKErnel::Core::Test
         const TimeDependentData timeDependentData(beginTime, endTime, waterLevel, waveHeightHm0, wavePeriodTm10, waveAngle);
 
         // Assert
+        AssertHelper::AssertIsInstanceOf<ITimeDependentData>(&timeDependentData);
         ASSERT_EQ(beginTime, timeDependentData.GetBeginTime());
         ASSERT_EQ(endTime, timeDependentData.GetEndTime());
         ASSERT_DOUBLE_EQ(waterLevel, timeDependentData.GetWaterLevel());
