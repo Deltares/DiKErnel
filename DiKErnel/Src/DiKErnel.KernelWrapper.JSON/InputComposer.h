@@ -61,5 +61,10 @@ namespace DiKErnel::KernelWrapper::Json
 
             static double GetCriticalDamage(
                 const nlohmann::basic_json<>::value_type& readDamageVariables);
+
+        static double GetOptionalDoubleValue(
+            const nlohmann::basic_json<>::value_type& hydraulicLoads,
+            std::string inputJsonDefinition,
+            double defaultValue);
     };
 }

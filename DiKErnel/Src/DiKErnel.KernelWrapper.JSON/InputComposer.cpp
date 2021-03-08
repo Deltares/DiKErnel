@@ -91,7 +91,8 @@ namespace DiKErnel::KernelWrapper::Json
             const auto& readHydraulicLoads = readCalculationMethod[InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE];
             const auto& readUpperLimitLoadingOfNaturalStone = readCalculationMethod[InputJsonDefinitions::UPPER_LIMIT_LOADING_OF_NATURAL_STONE];
             const auto& readLowerLimitLoadingOfNaturalStone = readCalculationMethod[InputJsonDefinitions::LOWER_LIMIT_LOADING_OF_NATURAL_STONE];
-            const auto& readDistanceMaximumWaveElevationNaturalStone = readCalculationMethod[InputJsonDefinitions::DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE];
+            const auto& readDistanceMaximumWaveElevationNaturalStone = readCalculationMethod[
+                InputJsonDefinitions::DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE];
             const auto& readNormativeWidthOfWaveImpact = readCalculationMethod[InputJsonDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT];
             const auto& readDamageVariables = readLocation[InputJsonDefinitions::DAMAGE];
             const auto& readProfileSchematization = readLocation[InputJsonDefinitions::PROFILE_SCHEMATIZATION];
@@ -100,7 +101,7 @@ namespace DiKErnel::KernelWrapper::Json
                 readLocation[InputJsonDefinitions::NAME].get<string>(),
                 make_unique<DamageVariables>(
                     readDamageVariables[InputJsonDefinitions::INITIAL_DAMAGE].get<double>(),
-                    GetCriticalDamage(readDamageVariables)),
+                    GetOptionalDoubleValue(readDamageVariables, InputJsonDefinitions::CRITICAL_DAMAGE, Defaults::CRITICAL_DAMAGE)),
                 make_unique<Revetment>(
                     readRevetment[InputJsonDefinitions::TYPE_TOP_LAYER].get<string>(),
                     readRevetment[InputJsonDefinitions::RELATIVE_DENSITY].get<double>(),
@@ -108,31 +109,58 @@ namespace DiKErnel::KernelWrapper::Json
                     make_unique<CalculationMethod>(
                         readCalculationMethod[InputJsonDefinitions::CALCULATION_METHOD_SORT].get<string>(),
                         make_unique<HydraulicLoadOnNaturalStone>(
-                            readHydraulicLoads[InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_XIB].get<double>(),
-                            readHydraulicLoads[InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_AP].get<double>(),
-                            readHydraulicLoads[InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_BP].get<double>(),
-                            readHydraulicLoads[InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_CP].get<double>(),
-                            readHydraulicLoads[InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_NP].get<double>(),
-                            readHydraulicLoads[InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_AS].get<double>(),
-                            readHydraulicLoads[InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_BS].get<double>(),
-                            readHydraulicLoads[InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_CS].get<double>(),
-                            readHydraulicLoads[InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_NS].get<double>()),
+                            GetOptionalDoubleValue(readHydraulicLoads, InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_XIB,
+                                                   Defaults::HYDRAULIC_LOAD_ON_NATURAL_STONE_XIB),
+                            GetOptionalDoubleValue(readHydraulicLoads, InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_AP,
+                                                   Defaults::HYDRAULIC_LOAD_ON_NATURAL_STONE_AP),
+                            GetOptionalDoubleValue(readHydraulicLoads, InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_BP,
+                                                   Defaults::HYDRAULIC_LOAD_ON_NATURAL_STONE_BP),
+                            GetOptionalDoubleValue(readHydraulicLoads, InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_CP,
+                                                   Defaults::HYDRAULIC_LOAD_ON_NATURAL_STONE_CP),
+                            GetOptionalDoubleValue(readHydraulicLoads, InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_NP,
+                                                   Defaults::HYDRAULIC_LOAD_ON_NATURAL_STONE_NP),
+                            GetOptionalDoubleValue(readHydraulicLoads, InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_AS,
+                                                   Defaults::HYDRAULIC_LOAD_ON_NATURAL_STONE_AS),
+                            GetOptionalDoubleValue(readHydraulicLoads, InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_BS,
+                                                   Defaults::HYDRAULIC_LOAD_ON_NATURAL_STONE_BS),
+                            GetOptionalDoubleValue(readHydraulicLoads, InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_CS,
+                                                   Defaults::HYDRAULIC_LOAD_ON_NATURAL_STONE_CS),
+                            GetOptionalDoubleValue(readHydraulicLoads, InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_NS,
+                                                   Defaults::HYDRAULIC_LOAD_ON_NATURAL_STONE_NS)),
                         make_unique<UpperLimitLoadingOfNaturalStone>(
-                            readUpperLimitLoadingOfNaturalStone[InputJsonDefinitions::UPPER_LIMIT_LOADING_OF_NATURAL_STONE_AUL].get<double>(),
-                            readUpperLimitLoadingOfNaturalStone[InputJsonDefinitions::UPPER_LIMIT_LOADING_OF_NATURAL_STONE_BUL].get<double>(),
-                            readUpperLimitLoadingOfNaturalStone[InputJsonDefinitions::UPPER_LIMIT_LOADING_OF_NATURAL_STONE_CUL].get<double>()),
+                            GetOptionalDoubleValue(readUpperLimitLoadingOfNaturalStone,
+                                                   InputJsonDefinitions::UPPER_LIMIT_LOADING_OF_NATURAL_STONE_AUL,
+                                                   Defaults::UPPER_LIMIT_LOADING_OF_NATURAL_STONE_AUL),
+                            GetOptionalDoubleValue(readUpperLimitLoadingOfNaturalStone,
+                                                   InputJsonDefinitions::UPPER_LIMIT_LOADING_OF_NATURAL_STONE_BUL,
+                                                   Defaults::UPPER_LIMIT_LOADING_OF_NATURAL_STONE_BUL),
+                            GetOptionalDoubleValue(readUpperLimitLoadingOfNaturalStone,
+                                                   InputJsonDefinitions::UPPER_LIMIT_LOADING_OF_NATURAL_STONE_CUL,
+                                                   Defaults::UPPER_LIMIT_LOADING_OF_NATURAL_STONE_CUL)),
                         make_unique<LowerLimitLoadingOfNaturalStone>(
-                            readLowerLimitLoadingOfNaturalStone[InputJsonDefinitions::LOWER_LIMIT_LOADING_OF_NATURAL_STONE_AUL].get<double>(),
-                            readLowerLimitLoadingOfNaturalStone[InputJsonDefinitions::LOWER_LIMIT_LOADING_OF_NATURAL_STONE_BUL].get<double>(),
-                            readLowerLimitLoadingOfNaturalStone[InputJsonDefinitions::LOWER_LIMIT_LOADING_OF_NATURAL_STONE_CUL].get<double>()),
+                            GetOptionalDoubleValue(readLowerLimitLoadingOfNaturalStone,
+                                                   InputJsonDefinitions::LOWER_LIMIT_LOADING_OF_NATURAL_STONE_AUL,
+                                                   Defaults::LOWER_LIMIT_LOADING_OF_NATURAL_STONE_ALL),
+                            GetOptionalDoubleValue(readLowerLimitLoadingOfNaturalStone,
+                                                   InputJsonDefinitions::LOWER_LIMIT_LOADING_OF_NATURAL_STONE_BUL,
+                                                   Defaults::LOWER_LIMIT_LOADING_OF_NATURAL_STONE_BLL),
+                            GetOptionalDoubleValue(readLowerLimitLoadingOfNaturalStone,
+                                                   InputJsonDefinitions::LOWER_LIMIT_LOADING_OF_NATURAL_STONE_CUL,
+                                                   Defaults::LOWER_LIMIT_LOADING_OF_NATURAL_STONE_CLL)),
                         make_unique<DistanceMaximumWaveElevationNaturalStone>(
-                            readDistanceMaximumWaveElevationNaturalStone[InputJsonDefinitions::DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE_ASMAX].
-                            get<double>(),
-                            readDistanceMaximumWaveElevationNaturalStone[InputJsonDefinitions::DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE_BSMAX].
-                            get<double>()),
+                            GetOptionalDoubleValue(readDistanceMaximumWaveElevationNaturalStone,
+                                                   InputJsonDefinitions::DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE_ASMAX,
+                                                   Defaults::DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE_ASMAX),
+                            GetOptionalDoubleValue(readDistanceMaximumWaveElevationNaturalStone,
+                                                   InputJsonDefinitions::DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE_BSMAX,
+                                                   Defaults::DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE_BSMAX)),
                         make_unique<NormativeWidthOfWaveImpact>(
-                            readNormativeWidthOfWaveImpact[InputJsonDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT_AWI].get<double>(),
-                            readNormativeWidthOfWaveImpact[InputJsonDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT_BWI].get<double>()))),
+                            GetOptionalDoubleValue(readDistanceMaximumWaveElevationNaturalStone,
+                                                   InputJsonDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT_AWI,
+                                                   Defaults::NORMATIVE_WIDTH_OF_WAVE_IMPACT_AWI),
+                            GetOptionalDoubleValue(readDistanceMaximumWaveElevationNaturalStone,
+                                                   InputJsonDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT_BWI,
+                                                   Defaults::NORMATIVE_WIDTH_OF_WAVE_IMPACT_BWI)))),
                 make_unique<ProfileSchematization>(
                     readProfileSchematization[InputJsonDefinitions::TAN_A].get<double>(),
                     readProfileSchematization[InputJsonDefinitions::POSITION_Z].get<double>()
@@ -159,5 +187,18 @@ namespace DiKErnel::KernelWrapper::Json
         }
 
         return Defaults::CRITICAL_DAMAGE;
+    }
+
+    double InputComposer::GetOptionalDoubleValue(
+        const nlohmann::basic_json<>::value_type& hydraulicLoads,
+        string inputJsonDefinition,
+        double defaultValue)
+    {
+        if (hydraulicLoads.contains(inputJsonDefinition))
+        {
+            return hydraulicLoads[inputJsonDefinition].get<double>();
+        }
+
+        return defaultValue;
     }
 }
