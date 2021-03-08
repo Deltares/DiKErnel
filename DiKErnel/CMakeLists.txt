@@ -22,4 +22,7 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
 # Add directories
 add_subdirectory(Src)
-add_subdirectory(Test)
+
+if (BUILD_WITH_TESTS)
+  add_subdirectory(Test)
+endif()
