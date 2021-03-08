@@ -30,8 +30,8 @@ namespace DiKErnel::KernelWrapper::Json
         public:
             /*! 
              * \brief Creates a new instance.
-             * \param hydraulicLoadOnNaturalStoneXib
-             *        The hydraulic load on natural stone Xib.
+             * \param hydraulicLoadOnNaturalStoneXIb
+             *        The hydraulic load on natural stone XIb.
              * \param hydraulicLoadOnNaturalStoneAp
              *        The hydraulic load on natural stone Ap.
              * \param hydraulicLoadOnNaturalStoneBp
@@ -50,7 +50,7 @@ namespace DiKErnel::KernelWrapper::Json
              *        The hydraulic load on natural stone Ns.
              */
             explicit HydraulicLoadOnNaturalStone(
-                double hydraulicLoadOnNaturalStoneXib,
+                double hydraulicLoadOnNaturalStoneXIb,
                 double hydraulicLoadOnNaturalStoneAp,
                 double hydraulicLoadOnNaturalStoneBp,
                 double hydraulicLoadOnNaturalStoneCp,
@@ -62,10 +62,10 @@ namespace DiKErnel::KernelWrapper::Json
             );
 
             /*!
-             * \brief Gets the hydraulic load on natural stone Xib.
-             * \return The hydraulic load on natural stone Xib.
+             * \brief Gets the hydraulic load on natural stone XIb.
+             * \return The hydraulic load on natural stone XIb.
              */
-            double GetHydraulicLoadOnNaturalStoneXib() const;
+            double GetHydraulicLoadOnNaturalStoneXIb() const;
 
             /*!
              * \brief Gets the hydraulic load on natural stone Ap.
@@ -116,7 +116,7 @@ namespace DiKErnel::KernelWrapper::Json
             double GetHydraulicLoadOnNaturalStoneNs() const;
 
         private:
-            double _hydraulicLoadOnNaturalStoneXib;
+            double _hydraulicLoadOnNaturalStoneXIb;
             double _hydraulicLoadOnNaturalStoneAp;
             double _hydraulicLoadOnNaturalStoneBp;
             double _hydraulicLoadOnNaturalStoneCp;

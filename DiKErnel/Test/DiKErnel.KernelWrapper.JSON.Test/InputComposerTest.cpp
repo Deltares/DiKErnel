@@ -92,9 +92,13 @@ namespace DiKErnel::KernelWrapper::Json::Test
             const double expectedCriticalDamageLocation2) const
         {
             AssertCalculationLocation(calculationLocations[0].get(), "LocatieZwak", "Noorse Steen", 1.65, 0.3,
-                                      0.0, expectedCriticalDamageLocation1, 0.25, 0.9);
+                                      0.0, expectedCriticalDamageLocation1, "NatuurSteen",
+                                      2.9, 4, 0, 0, -0.9, 0.8, 0, 0, 0.6, 0.1, 0.2, 4.0, 0.1,
+                                      0.6, 4.0, 0.42, 0.9, 0.96, 0.11, 0.25, 0.9);
             AssertCalculationLocation(calculationLocations[1].get(), "LocatieSterk", "Noorse Steen", 1.65, 0.7,
-                                      0.1, expectedCriticalDamageLocation2, 0.3, 1.0);
+                                      0.1, expectedCriticalDamageLocation2, "NatuurSteen",
+                                      2.9, 4, 0, 0, -0.9, 0.8, 0, 0, 0.6, 0.1, 0.2, 4.0, 0.1,
+                                      0.6, 4.0, 0.42, 0.9, 0.96, 0.11, 0.3, 1.0);
         }
 
         void AssertCalculationLocation(
@@ -105,6 +109,26 @@ namespace DiKErnel::KernelWrapper::Json::Test
             const double expectedThicknessTopLayer,
             const double expectedInitialDamage,
             const double expectedCriticalDamage,
+            const string& expectedCalculationMethodSort,
+            const double expectedXIb,
+            const double expectedAp,
+            const double expectedBp,
+            const double expectedCp,
+            const double expectedNp,
+            const double expectedAs,
+            const double expectedBs,
+            const double expectedCs,
+            const double expectedNs,
+            const double expectedAul,
+            const double expectedBul,
+            const double expectedCul,
+            const double expectedAll,
+            const double expectedBll,
+            const double expectedCll,
+            const double expectedAsmax,
+            const double expectedBsmax,
+            const double expectedAwi,
+            const double expectedBwi,
             const double expectedTanA,
             const double expectedPositionZ) const
         {
@@ -119,7 +143,28 @@ namespace DiKErnel::KernelWrapper::Json::Test
                 calculationLocation.GetRevetment(),
                 expectedTypeTopLayer,
                 expectedRelativeDensity,
-                expectedThicknessTopLayer);
+                expectedThicknessTopLayer,
+                expectedCalculationMethodSort,
+                expectedXIb,
+                expectedAp,
+                expectedBp,
+                expectedCp,
+                expectedNp,
+                expectedAs,
+                expectedBs,
+                expectedCs,
+                expectedNs,
+                expectedAul,
+                expectedBul,
+                expectedCul,
+                expectedAll,
+                expectedBll,
+                expectedCll,
+                expectedAsmax,
+                expectedBsmax,
+                expectedAwi,
+                expectedBwi
+            );
 
             AssertProfileSchematization(
                 calculationLocation.GetProfileSchematization(),
@@ -141,11 +186,188 @@ namespace DiKErnel::KernelWrapper::Json::Test
             const Revetment& revetment,
             const string& expectedTypeTopLayer,
             const double expectedRelativeDensity,
-            const double expectedThicknessTopLayer) const
+            const double expectedThicknessTopLayer,
+            const string& expectedCalculationMethodSort,
+            const double expectedXIb,
+            const double expectedAp,
+            const double expectedBp,
+            const double expectedCp,
+            const double expectedNp,
+            const double expectedAs,
+            const double expectedBs,
+            const double expectedCs,
+            const double expectedNs,
+            const double expectedAul,
+            const double expectedBul,
+            const double expectedCul,
+            const double expectedAll,
+            const double expectedBll,
+            const double expectedCll,
+            const double expectedAsmax,
+            const double expectedBsmax,
+            const double expectedAwi,
+            const double expectedBwi
+        ) const
         {
             ASSERT_EQ(expectedTypeTopLayer, revetment.GetTypeTopLayer());
             ASSERT_DOUBLE_EQ(expectedRelativeDensity, revetment.GetRelativeDensity());
             ASSERT_DOUBLE_EQ(expectedThicknessTopLayer, revetment.GetThicknessTopLayer());
+
+            AssertCalculationMethod(
+                revetment.GetCalculationMethod(),
+                expectedCalculationMethodSort,
+                expectedXIb,
+                expectedAp,
+                expectedBp,
+                expectedCp,
+                expectedNp,
+                expectedAs,
+                expectedBs,
+                expectedCs,
+                expectedNs,
+                expectedAul,
+                expectedBul,
+                expectedCul,
+                expectedAll,
+                expectedBll,
+                expectedCll,
+                expectedAsmax,
+                expectedBsmax,
+                expectedAwi,
+                expectedBwi
+            );
+        }
+
+        void AssertCalculationMethod(
+            const CalculationMethod& calculationMethod,
+            const string& expectedCalculationMethodSort,
+            const double expectedXIb,
+            const double expectedAp,
+            const double expectedBp,
+            const double expectedCp,
+            const double expectedNp,
+            const double expectedAs,
+            const double expectedBs,
+            const double expectedCs,
+            const double expectedNs,
+            const double expectedAul,
+            const double expectedBul,
+            const double expectedCul,
+            const double expectedAll,
+            const double expectedBll,
+            const double expectedCll,
+            const double expectedAsmax,
+            const double expectedBsmax,
+            const double expectedAwi,
+            const double expectedBwi
+
+        ) const
+        {
+            ASSERT_EQ(expectedCalculationMethodSort, calculationMethod.GetCalculationMethodSort());
+
+            AssertHydraulicLoadOnNaturalStone(
+                calculationMethod.GetHydraulicLoadOnNaturalStone(),
+                expectedXIb,
+                expectedAp,
+                expectedBp,
+                expectedCp,
+                expectedNp,
+                expectedAs,
+                expectedBs,
+                expectedCs,
+                expectedNs
+            );
+
+            AssertUpperLimitLoadingOfNaturalStone(
+                calculationMethod.GetUpperLimitLoadingOfNaturalStone(),
+                expectedAul,
+                expectedBul,
+                expectedCul
+            );
+            AssertLowerLimitLoadingOfNaturalStone(
+                calculationMethod.GetLowerLimitLoadingOfNaturalStone(),
+                expectedAll,
+                expectedBll,
+                expectedCll
+            );
+            AssertDistanceMaximumWaveElevationNaturalStone(
+                calculationMethod.GetDistanceMaximumWaveElevationNaturalStone(),
+                expectedAsmax,
+                expectedBsmax
+            );
+            AssertNormativeWidthOfWaveImpact(
+                calculationMethod.GetNormativeWidthOfWaveImpact(),
+                expectedAwi,
+                expectedBwi
+            );
+        }
+
+        void AssertHydraulicLoadOnNaturalStone(
+            const HydraulicLoadOnNaturalStone& hydraulicLoadOnNaturalStone,
+            const double expectedXIb,
+            const double expectedAp,
+            const double expectedBp,
+            const double expectedCp,
+            const double expectedNp,
+            const double expectedAs,
+            const double expectedBs,
+            const double expectedCs,
+            const double expectedNs
+        ) const
+        {
+            ASSERT_DOUBLE_EQ(expectedXIb, hydraulicLoadOnNaturalStone.GetHydraulicLoadOnNaturalStoneXIb());
+            ASSERT_DOUBLE_EQ(expectedAp, hydraulicLoadOnNaturalStone.GetHydraulicLoadOnNaturalStoneAp());
+            ASSERT_DOUBLE_EQ(expectedBp, hydraulicLoadOnNaturalStone.GetHydraulicLoadOnNaturalStoneBp());
+            ASSERT_DOUBLE_EQ(expectedCp, hydraulicLoadOnNaturalStone.GetHydraulicLoadOnNaturalStoneCp());
+            ASSERT_DOUBLE_EQ(expectedNp, hydraulicLoadOnNaturalStone.GetHydraulicLoadOnNaturalStoneNp());
+            ASSERT_DOUBLE_EQ(expectedAs, hydraulicLoadOnNaturalStone.GetHydraulicLoadOnNaturalStoneAs());
+            ASSERT_DOUBLE_EQ(expectedBs, hydraulicLoadOnNaturalStone.GetHydraulicLoadOnNaturalStoneBs());
+            ASSERT_DOUBLE_EQ(expectedCs, hydraulicLoadOnNaturalStone.GetHydraulicLoadOnNaturalStoneCs());
+            ASSERT_DOUBLE_EQ(expectedNs, hydraulicLoadOnNaturalStone.GetHydraulicLoadOnNaturalStoneNs());
+        }
+
+        void AssertUpperLimitLoadingOfNaturalStone(
+            const UpperLimitLoadingOfNaturalStone& upperLimitLoadingOfNaturalStone,
+            const double expectedAul,
+            const double expectedBul,
+            const double expectedCul
+        ) const
+        {
+            ASSERT_DOUBLE_EQ(expectedAul, upperLimitLoadingOfNaturalStone.GetUpperLimitLoadingOfNaturalStoneAul());
+            ASSERT_DOUBLE_EQ(expectedBul, upperLimitLoadingOfNaturalStone.GetUpperLimitLoadingOfNaturalStoneBul());
+            ASSERT_DOUBLE_EQ(expectedCul, upperLimitLoadingOfNaturalStone.GetUpperLimitLoadingOfNaturalStoneCul());
+        }
+
+        void AssertLowerLimitLoadingOfNaturalStone(
+            const LowerLimitLoadingOfNaturalStone& lowerLimitLoadingOfNaturalStone,
+            const double expectedAll,
+            const double expectedBll,
+            const double expectedCll
+        ) const
+        {
+            ASSERT_DOUBLE_EQ(expectedAll, lowerLimitLoadingOfNaturalStone.GetLowerLimitLoadingOfNaturalStoneAll());
+            ASSERT_DOUBLE_EQ(expectedBll, lowerLimitLoadingOfNaturalStone.GetLowerLimitLoadingOfNaturalStoneBll());
+            ASSERT_DOUBLE_EQ(expectedCll, lowerLimitLoadingOfNaturalStone.GetLowerLimitLoadingOfNaturalStoneCll());
+        }
+
+        void AssertDistanceMaximumWaveElevationNaturalStone(
+            const DistanceMaximumWaveElevationNaturalStone& distanceMaximumWaveElevationNaturalStone,
+            const double expectedAsmax,
+            const double expectedBsmax
+        ) const
+        {
+            ASSERT_DOUBLE_EQ(expectedAsmax, distanceMaximumWaveElevationNaturalStone.GetDistanceMaximumWaveElevationNaturalStoneAsmax());
+            ASSERT_DOUBLE_EQ(expectedBsmax, distanceMaximumWaveElevationNaturalStone.GetDistanceMaximumWaveElevationNaturalStoneBsmax());
+        }
+
+        void AssertNormativeWidthOfWaveImpact(
+            const NormativeWidthOfWaveImpact& normativeWidthOfWaveImpact,
+            const double expectedAwi,
+            const double expectedBwi
+        ) const
+        {
+            ASSERT_DOUBLE_EQ(expectedAwi, normativeWidthOfWaveImpact.GetNormativeWidthOfWaveImpactNaturalStoneAwi());
+            ASSERT_DOUBLE_EQ(expectedBwi, normativeWidthOfWaveImpact.GetNormativeWidthOfWaveImpactNaturalStoneBwi());
         }
 
         void AssertProfileSchematization(
