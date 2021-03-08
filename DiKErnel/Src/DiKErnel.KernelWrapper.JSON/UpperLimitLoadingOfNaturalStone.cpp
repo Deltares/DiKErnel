@@ -22,8 +22,6 @@
 
 namespace DiKErnel::KernelWrapper::Json
 {
-    using namespace std;
-
     UpperLimitLoadingOfNaturalStone::UpperLimitLoadingOfNaturalStone(
         const double upperLimitLoadingOfNaturalStoneAul,
         const double upperLimitLoadingOfNaturalStoneBul,

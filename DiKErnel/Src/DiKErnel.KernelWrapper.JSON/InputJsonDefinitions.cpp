@@ -56,11 +56,11 @@ namespace DiKErnel::KernelWrapper::Json
     const string InputJsonDefinitions::TAN_A = "TanA";
     const string InputJsonDefinitions::POSITION_Z = "PositieZ";
 
-    const string CALCULATION_METHOD = "Rekenmethode";
-    const string CALCULATION_METHOD_SORT = "RekenmethodeSoort";
+    const string InputJsonDefinitions::CALCULATION_METHOD = "Rekenmethode";
+    const string InputJsonDefinitions::CALCULATION_METHOD_SORT = "RekenmethodeSoort";
 
     const string InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE = "HydraulischeBelastingNatuursteen";
-    const string InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_XIB = "HydraulischeBelastingNatuursteenXib";
+    const string InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_XIB = "HydraulischeBelastingNatuursteenXIb";
     const string InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_AP = "HydraulischeBelastingNatuursteenAp";
     const string InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_BP = "HydraulischeBelastingNatuursteenBp";
     const string InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_CP = "HydraulischeBelastingNatuursteenCp";
