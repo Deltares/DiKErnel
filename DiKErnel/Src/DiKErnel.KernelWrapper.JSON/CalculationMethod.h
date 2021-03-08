@@ -39,8 +39,8 @@ namespace DiKErnel::KernelWrapper::Json
         public:
             /*! 
              * \brief Creates a new instance.
-             * \param calculationMethodSubSort
-             *        The calculation method sub sort.
+             * \param calculationMethodSort
+             *        The calculation method sort.
              * \param hydraulicLoadOnNaturalStone
              *        The hydraulic load on natural stone.
              * \param upperLimitLoadingOfNaturalStone
@@ -53,7 +53,7 @@ namespace DiKErnel::KernelWrapper::Json
              *        The normative width of wave impact.
              */
             explicit CalculationMethod(
-                std::string calculationMethodSubSort,
+                std::string calculationMethodSort,
                 std::unique_ptr<HydraulicLoadOnNaturalStone> hydraulicLoadOnNaturalStone,
                 std::unique_ptr<UpperLimitLoadingOfNaturalStone> upperLimitLoadingOfNaturalStone,
                 std::unique_ptr<LowerLimitLoadingOfNaturalStone> lowerLimitLoadingOfNaturalStone,
@@ -62,10 +62,10 @@ namespace DiKErnel::KernelWrapper::Json
             );
 
             /*!
-             * \brief Gets the calculation method sub sort.
-             * \return The calculation method sub sort.
+             * \brief Gets the calculation method sort.
+             * \return The calculation method sort.
              */
-            const std::string& GetCalculationMethodSubSort() const;
+            const std::string& GetCalculationMethodSort() const;
 
             /*!
              * \brief Gets the hydraulic load on natural stone.
@@ -98,7 +98,7 @@ namespace DiKErnel::KernelWrapper::Json
             const NormativeWidthOfWaveImpact& GetNormativeWidthOfWaveImpact() const;
 
         private:
-            std::string _calculationMethodSubSort;
+            std::string _calculationMethodSort;
             std::unique_ptr<HydraulicLoadOnNaturalStone> _hydraulicLoadOnNaturalStone;
             std::unique_ptr<UpperLimitLoadingOfNaturalStone> _upperLimitLoadingOfNaturalStone;
             std::unique_ptr<LowerLimitLoadingOfNaturalStone> _lowerLimitLoadingOfNaturalStone;

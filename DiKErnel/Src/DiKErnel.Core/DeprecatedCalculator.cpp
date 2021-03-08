@@ -228,6 +228,7 @@ namespace DiKErnel::Core
         const auto& revetment = currentLocation.GetRevetment();
         const auto& profileSchematization = currentLocation.GetProfileSchematization();
         const auto& boundaryCondition = get<2>(currentTimeStep).get();
+        const auto& hydraulicLoadOnNaturalStone = revetment.GetCalculationMethod().GetHydraulicLoadOnNaturalStone();
 
         const auto damage = subCalculation(
             get<1>(outputData.back()),
@@ -239,16 +240,16 @@ namespace DiKErnel::Core
             boundaryCondition.GetWaveAngle(),
             get<0>(currentTimeStep),
             get<1>(currentTimeStep),
-            revetment.GetPlungingCoefficientA(),
-            revetment.GetPlungingCoefficientB(),
-            revetment.GetPlungingCoefficientC(),
-            revetment.GetPlungingCoefficientN(),
-            revetment.GetSurgingCoefficientA(),
-            revetment.GetSurgingCoefficientB(),
-            revetment.GetSurgingCoefficientC(),
-            revetment.GetSurgingCoefficientN(),
+            hydraulicLoadOnNaturalStone.GetHydraulicLoadOnNaturalStoneAp(),
+            hydraulicLoadOnNaturalStone.GetHydraulicLoadOnNaturalStoneBp(),
+            hydraulicLoadOnNaturalStone.GetHydraulicLoadOnNaturalStoneCp(),
+            hydraulicLoadOnNaturalStone.GetHydraulicLoadOnNaturalStoneNp(),
+            hydraulicLoadOnNaturalStone.GetHydraulicLoadOnNaturalStoneAs(),
+            hydraulicLoadOnNaturalStone.GetHydraulicLoadOnNaturalStoneBs(),
+            hydraulicLoadOnNaturalStone.GetHydraulicLoadOnNaturalStoneCs(),
+            hydraulicLoadOnNaturalStone.GetHydraulicLoadOnNaturalStoneNs(),
             hydraulicLoads.GetWaveAngleMaximum(),
-            revetment.GetSimilarityParameterThreshold());
+            2.9);
 
         outputData.emplace_back(get<1>(currentTimeStep), damage);
     }

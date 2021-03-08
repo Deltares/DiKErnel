@@ -25,22 +25,22 @@ namespace DiKErnel::KernelWrapper::Json
     using namespace std;
 
     CalculationMethod::CalculationMethod(
-        string calculationMethodSubSort,
+        string calculationMethodSort,
         unique_ptr<HydraulicLoadOnNaturalStone> hydraulicLoadOnNaturalStone,
         unique_ptr<UpperLimitLoadingOfNaturalStone> upperLimitLoadingOfNaturalStone,
         unique_ptr<LowerLimitLoadingOfNaturalStone> lowerLimitLoadingOfNaturalStone,
         unique_ptr<DistanceMaximumWaveElevationNaturalStone> distanceMaximumWaveElevationNaturalStone,
         unique_ptr<NormativeWidthOfWaveImpact> normativeWidthOfWaveImpact)
-        : _calculationMethodSubSort(move(calculationMethodSubSort)),
+        : _calculationMethodSort(move(calculationMethodSort)),
           _hydraulicLoadOnNaturalStone(move(hydraulicLoadOnNaturalStone)),
           _upperLimitLoadingOfNaturalStone(move(upperLimitLoadingOfNaturalStone)),
           _lowerLimitLoadingOfNaturalStone(move(lowerLimitLoadingOfNaturalStone)),
           _distanceMaximumWaveElevationNaturalStone(move(distanceMaximumWaveElevationNaturalStone)),
           _normativeWidthOfWaveImpact(move(normativeWidthOfWaveImpact)) { }
 
-    const std::string& CalculationMethod::GetCalculationMethodSubSort() const
+    const std::string& CalculationMethod::GetCalculationMethodSort() const
     {
-        return _calculationMethodSubSort;
+        return _calculationMethodSort;
     }
 
     const HydraulicLoadOnNaturalStone& CalculationMethod::GetHydraulicLoadOnNaturalStone() const

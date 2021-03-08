@@ -61,15 +61,38 @@
 				"TypeToplaag": "Noorse Steen",
 				"RelatieveDichtheid": 1.65,
 				"DikteToplaag": 0.3,
-				"BrekerIndexGrenswaarde": 2.9,
-				"CoefficientPlungingAp": 4,
-				"CoefficientPlungingBp": 0,
-				"CoefficientPlungingCp": 0,
-				"CoefficientPlungingNp": -0.9,
-				"CoefficientSurgingAs": 0.8,
-				"CoefficientSurgingBs": 0,
-				"CoefficientSurgingCs": 0,
-				"CoefficientSurgingNs": 0.6
+				"Rekenmethode": {
+					"RekenmethodeSoort": "NatuurSteen",
+					"HydraulischeBelastingNatuurSteen": {
+						"HydraulischeBelastingNatuurSteenXIb": 2.9,
+						"HydraulischeBelastingNatuurSteenAp": 4,
+						"HydraulischeBelastingNatuurSteenBp": 0,
+						"HydraulischeBelastingNatuurSteenCp": 0,
+						"HydraulischeBelastingNatuurSteenNp": -0.9,
+						"HydraulischeBelastingNatuurSteenAs": 0.8,
+						"HydraulischeBelastingNatuurSteenBs": 0,
+						"HydraulischeBelastingNatuurSteenCs": 0,
+						"HydraulischeBelastingNatuurSteenNs": 0.6
+					},
+					"BovengrensBelastingNatuursteen": {
+						"BovengrensBelastingNatuursteenAul": 0.1,
+						"BovengrensBelastingNatuursteenBul": 0.2,
+						"BovengrensBelastingNatuursteenCul": 4.0
+					},
+					"OndergrensBelastingNatuursteen": {
+						"OndergrensBelastingNatuursteenAul": 0.1,
+						"OndergrensBelastingNatuursteenBul": 0.6,
+						"OndergrensBelastingNatuursteenCul": 4.0
+					},
+					"AfstandMaximaleStijghoogte": {
+						"AfstandMaximaleStijghoogteAsmax": 0.42,
+						"AfstandMaximaleStijghoogteBsmax": 0.9
+					},
+					"MaatgevendeBreedteGolfklap": {
+						"MaatgevendeBreedteGolfklapAwi": 0.96,
+						"MaatgevendeBreedteGolfklapBwi": 0.11
+					}
+				}
 			},
 			"Profielschematisatie":
 			{
@@ -88,15 +111,38 @@
 				"TypeToplaag": "Noorse Steen",
 				"RelatieveDichtheid": 1.65,
 				"DikteToplaag": 0.7,
-				"BrekerIndexGrenswaarde": 2.9,
-				"CoefficientPlungingAp": 4,
-				"CoefficientPlungingBp": 0,
-				"CoefficientPlungingCp": 0,
-				"CoefficientPlungingNp": -0.9,
-				"CoefficientSurgingAs": 0.8,
-				"CoefficientSurgingBs": 0,
-				"CoefficientSurgingCs": 0,
-				"CoefficientSurgingNs": 0.6
+				"Rekenmethode": {
+					"RekenmethodeSoort": "NatuurSteen",
+					"HydraulischeBelastingNatuurSteen": {
+						"HydraulischeBelastingNatuurSteenXIb": 2.9,
+						"HydraulischeBelastingNatuurSteenAp": 4,
+						"HydraulischeBelastingNatuurSteenBp": 0,
+						"HydraulischeBelastingNatuurSteenCp": 0,
+						"HydraulischeBelastingNatuurSteenNp": -0.9,
+						"HydraulischeBelastingNatuurSteenAs": 0.8,
+						"HydraulischeBelastingNatuurSteenBs": 0,
+						"HydraulischeBelastingNatuurSteenCs": 0,
+						"HydraulischeBelastingNatuurSteenNs": 0.6
+					},
+					"BovengrensBelastingNatuursteen": {
+						"BovengrensBelastingNatuursteenAul": 0.1,
+						"BovengrensBelastingNatuursteenBul": 0.2,
+						"BovengrensBelastingNatuursteenCul": 4.0
+					},
+					"OndergrensBelastingNatuursteen": {
+						"OndergrensBelastingNatuursteenAul": 0.1,
+						"OndergrensBelastingNatuursteenBul": 0.6,
+						"OndergrensBelastingNatuursteenCul": 4.0
+					},
+					"AfstandMaximaleStijghoogte": {
+						"AfstandMaximaleStijghoogteAsmax": 0.42,
+						"AfstandMaximaleStijghoogteBsmax": 0.9
+					},
+					"MaatgevendeBreedteGolfklap": {
+						"MaatgevendeBreedteGolfklapAwi": 0.96,
+						"MaatgevendeBreedteGolfklapBwi": 0.11
+					}
+				}
 			},
 			"Profielschematisatie":
 			{

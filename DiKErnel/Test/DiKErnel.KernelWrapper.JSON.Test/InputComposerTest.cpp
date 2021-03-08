@@ -175,15 +175,6 @@ namespace DiKErnel::KernelWrapper::Json::Test
             ASSERT_EQ(expectedTypeTopLayer, revetment.GetTypeTopLayer());
             ASSERT_DOUBLE_EQ(expectedRelativeDensity, revetment.GetRelativeDensity());
             ASSERT_DOUBLE_EQ(expectedThicknessTopLayer, revetment.GetThicknessTopLayer());
-            ASSERT_DOUBLE_EQ(expectedSimilarityParameterThreshold, revetment.GetSimilarityParameterThreshold());
-            ASSERT_DOUBLE_EQ(expectedPlungingCoefficientA, revetment.GetPlungingCoefficientA());
-            ASSERT_DOUBLE_EQ(expectedPlungingCoefficientB, revetment.GetPlungingCoefficientB());
-            ASSERT_DOUBLE_EQ(expectedPlungingCoefficientC, revetment.GetPlungingCoefficientC());
-            ASSERT_DOUBLE_EQ(expectedPlungingCoefficientN, revetment.GetPlungingCoefficientN());
-            ASSERT_DOUBLE_EQ(expectedSurgingCoefficientA, revetment.GetSurgingCoefficientA());
-            ASSERT_DOUBLE_EQ(expectedSurgingCoefficientB, revetment.GetSurgingCoefficientB());
-            ASSERT_DOUBLE_EQ(expectedSurgingCoefficientC, revetment.GetSurgingCoefficientC());
-            ASSERT_DOUBLE_EQ(expectedSurgingCoefficientN, revetment.GetSurgingCoefficientN());
         }
 
         void AssertProfileSchematization(

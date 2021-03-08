@@ -59,16 +59,16 @@ namespace DiKErnel::KernelWrapper::Json
     const string InputJsonDefinitions::CALCULATION_METHOD = "Rekenmethode";
     const string InputJsonDefinitions::CALCULATION_METHOD_SORT = "RekenmethodeSoort";
 
-    const string InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE = "HydraulischeBelastingNatuursteen";
-    const string InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_XIB = "HydraulischeBelastingNatuursteenXIb";
-    const string InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_AP = "HydraulischeBelastingNatuursteenAp";
-    const string InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_BP = "HydraulischeBelastingNatuursteenBp";
-    const string InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_CP = "HydraulischeBelastingNatuursteenCp";
-    const string InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_NP = "HydraulischeBelastingNatuursteenNp";
-    const string InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_AS = "HydraulischeBelastingNatuursteenAs";
-    const string InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_BS = "HydraulischeBelastingNatuursteenBs";
-    const string InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_CS = "HydraulischeBelastingNatuursteenCs";
-    const string InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_NS = "HydraulischeBelastingNatuursteenNs";
+    const string InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE = "HydraulischeBelastingNatuurSteen";
+    const string InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_XIB = "HydraulischeBelastingNatuurSteenXIb";
+    const string InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_AP = "HydraulischeBelastingNatuurSteenAp";
+    const string InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_BP = "HydraulischeBelastingNatuurSteenBp";
+    const string InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_CP = "HydraulischeBelastingNatuurSteenCp";
+    const string InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_NP = "HydraulischeBelastingNatuurSteenNp";
+    const string InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_AS = "HydraulischeBelastingNatuurSteenAs";
+    const string InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_BS = "HydraulischeBelastingNatuurSteenBs";
+    const string InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_CS = "HydraulischeBelastingNatuurSteenCs";
+    const string InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_NS = "HydraulischeBelastingNatuurSteenNs";
 
     const string InputJsonDefinitions::UPPER_LIMIT_LOADING_OF_NATURAL_STONE = "BovengrensBelastingNatuursteen";
     const string InputJsonDefinitions::UPPER_LIMIT_LOADING_OF_NATURAL_STONE_AUL = "BovengrensBelastingNatuursteenAul";
@@ -80,13 +80,13 @@ namespace DiKErnel::KernelWrapper::Json
     const string InputJsonDefinitions::LOWER_LIMIT_LOADING_OF_NATURAL_STONE_BUL = "OndergrensBelastingNatuursteenBul";
     const string InputJsonDefinitions::LOWER_LIMIT_LOADING_OF_NATURAL_STONE_CUL = "OndergrensBelastingNatuursteenCul";
 
-    const string InputJsonDefinitions::DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE = "AfstandMaximaleStijghoogteNatuursteen";
-    const string InputJsonDefinitions::DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE_ASMAX = "AfstandMaximaleStijghoogteNatuursteenAsmax";
-    const string InputJsonDefinitions::DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE_BSMAX = "AfstandMaximaleStijghoogteNatuursteenBsmax";
+    const string InputJsonDefinitions::DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE = "AfstandMaximaleStijghoogte";
+    const string InputJsonDefinitions::DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE_ASMAX = "AfstandMaximaleStijghoogteAsmax";
+    const string InputJsonDefinitions::DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE_BSMAX = "AfstandMaximaleStijghoogteBsmax";
 
-    const string InputJsonDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT = "MaatgevendeBreedteGolfklapNatuursteen";
-    const string InputJsonDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT_AWI = "MaatgevendeBreedteGolfklapNatuursteenAwi";
-    const string InputJsonDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT_BWI = "MaatgevendeBreedteGolfklapNatuursteenBwi";
+    const string InputJsonDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT = "MaatgevendeBreedteGolfklap";
+    const string InputJsonDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT_AWI = "MaatgevendeBreedteGolfklapAwi";
+    const string InputJsonDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT_BWI = "MaatgevendeBreedteGolfklapBwi";
 
     const string InputJsonDefinitions::DAMAGE = "Schade";
     const string InputJsonDefinitions::DAMAGE_OVER_TIME = "SchadegetalPerTijd";

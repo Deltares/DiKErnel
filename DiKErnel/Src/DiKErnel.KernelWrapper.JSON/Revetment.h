@@ -22,6 +22,8 @@
 
 #include <string>
 
+#include "CalculationMethod.h"
+
 namespace DiKErnel::KernelWrapper::Json
 {
     /*!
@@ -38,38 +40,14 @@ namespace DiKErnel::KernelWrapper::Json
              *        The relative density.
              * \param thicknessTopLayer
              *        The thickness of the top layer.
-             * \param similarityParameterThreshold
-             *        The similarity parameter threshold.
-             * \param plungingCoefficientA
-             *        The A coefficient for plunging.
-             * \param plungingCoefficientB
-             *        The B coefficient for plunging.
-             * \param plungingCoefficientC
-             *        The C coefficient for plunging.
-             * \param plungingCoefficientN
-             *        The N coefficient for plunging.
-             * \param surgingCoefficientA
-             *        The A coefficient for surging.
-             * \param surgingCoefficientB
-             *        The B coefficient for surging.
-             * \param surgingCoefficientC
-             *        The C coefficient for surging.
-             * \param surgingCoefficientN
-             *        The N coefficient for surging.
+             * \param calculationMethod
+             *        The calculation method.
              */
             explicit Revetment(
                 std::string typeTopLayer,
                 double relativeDensity,
                 double thicknessTopLayer,
-                double similarityParameterThreshold,
-                double plungingCoefficientA,
-                double plungingCoefficientB,
-                double plungingCoefficientC,
-                double plungingCoefficientN,
-                double surgingCoefficientA,
-                double surgingCoefficientB,
-                double surgingCoefficientC,
-                double surgingCoefficientN
+                std::unique_ptr<CalculationMethod> calculationMethod
             );
 
             /*!
@@ -91,71 +69,15 @@ namespace DiKErnel::KernelWrapper::Json
             double GetThicknessTopLayer() const;
 
             /*!
-             * \brief Gets the similarity parameter threshold.
-             * \return The similarity parameter threshold.
+             * \brief Gets the calculation method.
+             * \return The calculation method.
              */
-            double GetSimilarityParameterThreshold() const;
-
-            /*!
-             * \brief Gets the A coefficient for plunging.
-             * \return The A coefficient for plunging.
-             */
-            double GetPlungingCoefficientA() const;
-
-            /*!
-             * \brief Gets the B coefficient for plunging.
-             * \return The B coefficient for plunging.
-             */
-            double GetPlungingCoefficientB() const;
-
-            /*!
-             * \brief Gets the C coefficient for plunging.
-             * \return The C coefficient for plunging.
-             */
-            double GetPlungingCoefficientC() const;
-
-            /*!
-             * \brief Gets the N coefficient for plunging.
-             * \return The N coefficient for plunging.
-             */
-            double GetPlungingCoefficientN() const;
-
-            /*!
-             * \brief Gets the A coefficient for surging.
-             * \return The A coefficient for surging.
-             */
-            double GetSurgingCoefficientA() const;
-
-            /*!
-             * \brief Gets the B coefficient for surging.
-             * \return The B coefficient for surging.
-             */
-            double GetSurgingCoefficientB() const;
-
-            /*!
-             * \brief Gets the C coefficient for surging.
-             * \return The C coefficient for surging.
-             */
-            double GetSurgingCoefficientC() const;
-
-            /*!
-             * \brief Gets the D coefficient for surging.
-             * \return The D coefficient for surging.
-             */
-            double GetSurgingCoefficientN() const;
+            const CalculationMethod& GetCalculationMethod() const;
 
         private:
             std::string _typeTopLayer;
             double _relativeDensity;
             double _thicknessTopLayer;
-            double _similarityParameterThreshold;
-            double _plungingCoefficientA;
-            double _plungingCoefficientB;
-            double _plungingCoefficientC;
-            double _plungingCoefficientN;
-            double _surgingCoefficientA;
-            double _surgingCoefficientB;
-            double _surgingCoefficientC;
-            double _surgingCoefficientN;
+            std::unique_ptr<CalculationMethod> _calculationMethod;
     };
 }

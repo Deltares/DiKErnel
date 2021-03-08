@@ -87,6 +87,12 @@ namespace DiKErnel::KernelWrapper::Json
         for (const auto& readLocation : readLocations)
         {
             const auto& readRevetment = readLocation[InputJsonDefinitions::REVETMENT];
+            const auto& readCalculationMethod = readRevetment[InputJsonDefinitions::CALCULATION_METHOD];
+            const auto& readHydraulicLoads = readCalculationMethod[InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE];
+            const auto& readUpperLimitLoadingOfNaturalStone = readCalculationMethod[InputJsonDefinitions::UPPER_LIMIT_LOADING_OF_NATURAL_STONE];
+            const auto& readLowerLimitLoadingOfNaturalStone = readCalculationMethod[InputJsonDefinitions::LOWER_LIMIT_LOADING_OF_NATURAL_STONE];
+            const auto& readDistanceMaximumWaveElevationNaturalStone = readCalculationMethod[InputJsonDefinitions::DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE];
+            const auto& readNormativeWidthOfWaveImpact = readCalculationMethod[InputJsonDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT];
             const auto& readDamageVariables = readLocation[InputJsonDefinitions::DAMAGE];
             const auto& readProfileSchematization = readLocation[InputJsonDefinitions::PROFILE_SCHEMATIZATION];
 
@@ -99,15 +105,34 @@ namespace DiKErnel::KernelWrapper::Json
                     readRevetment[InputJsonDefinitions::TYPE_TOP_LAYER].get<string>(),
                     readRevetment[InputJsonDefinitions::RELATIVE_DENSITY].get<double>(),
                     readRevetment[InputJsonDefinitions::THICKNESS_TOP_LAYER].get<double>(),
-                    readRevetment[InputJsonDefinitions::SIMILARITY_PARAMETER_THRESHOLD].get<double>(),
-                    readRevetment[InputJsonDefinitions::COEFFICIENT_PLUNGING_AP].get<double>(),
-                    readRevetment[InputJsonDefinitions::COEFFICIENT_PLUNGING_BP].get<double>(),
-                    readRevetment[InputJsonDefinitions::COEFFICIENT_PLUNGING_CP].get<double>(),
-                    readRevetment[InputJsonDefinitions::COEFFICIENT_PLUNGING_NP].get<double>(),
-                    readRevetment[InputJsonDefinitions::COEFFICIENT_SURGING_AS].get<double>(),
-                    readRevetment[InputJsonDefinitions::COEFFICIENT_SURGING_BS].get<double>(),
-                    readRevetment[InputJsonDefinitions::COEFFICIENT_SURGING_CS].get<double>(),
-                    readRevetment[InputJsonDefinitions::COEFFICIENT_SURGING_NS].get<double>()),
+                    make_unique<CalculationMethod>(
+                        readCalculationMethod[InputJsonDefinitions::CALCULATION_METHOD_SORT].get<string>(),
+                        make_unique<HydraulicLoadOnNaturalStone>(
+                            readHydraulicLoads[InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_XIB].get<double>(),
+                            readHydraulicLoads[InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_AP].get<double>(),
+                            readHydraulicLoads[InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_BP].get<double>(),
+                            readHydraulicLoads[InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_CP].get<double>(),
+                            readHydraulicLoads[InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_NP].get<double>(),
+                            readHydraulicLoads[InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_AS].get<double>(),
+                            readHydraulicLoads[InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_BS].get<double>(),
+                            readHydraulicLoads[InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_CS].get<double>(),
+                            readHydraulicLoads[InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_NS].get<double>()),
+                        make_unique<UpperLimitLoadingOfNaturalStone>(
+                            readUpperLimitLoadingOfNaturalStone[InputJsonDefinitions::UPPER_LIMIT_LOADING_OF_NATURAL_STONE_AUL].get<double>(),
+                            readUpperLimitLoadingOfNaturalStone[InputJsonDefinitions::UPPER_LIMIT_LOADING_OF_NATURAL_STONE_BUL].get<double>(),
+                            readUpperLimitLoadingOfNaturalStone[InputJsonDefinitions::UPPER_LIMIT_LOADING_OF_NATURAL_STONE_CUL].get<double>()),
+                        make_unique<LowerLimitLoadingOfNaturalStone>(
+                            readLowerLimitLoadingOfNaturalStone[InputJsonDefinitions::LOWER_LIMIT_LOADING_OF_NATURAL_STONE_AUL].get<double>(),
+                            readLowerLimitLoadingOfNaturalStone[InputJsonDefinitions::LOWER_LIMIT_LOADING_OF_NATURAL_STONE_BUL].get<double>(),
+                            readLowerLimitLoadingOfNaturalStone[InputJsonDefinitions::LOWER_LIMIT_LOADING_OF_NATURAL_STONE_CUL].get<double>()),
+                        make_unique<DistanceMaximumWaveElevationNaturalStone>(
+                            readDistanceMaximumWaveElevationNaturalStone[InputJsonDefinitions::DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE_ASMAX].
+                            get<double>(),
+                            readDistanceMaximumWaveElevationNaturalStone[InputJsonDefinitions::DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE_BSMAX].
+                            get<double>()),
+                        make_unique<NormativeWidthOfWaveImpact>(
+                            readNormativeWidthOfWaveImpact[InputJsonDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT_AWI].get<double>(),
+                            readNormativeWidthOfWaveImpact[InputJsonDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT_BWI].get<double>()))),
                 make_unique<ProfileSchematization>(
                     readProfileSchematization[InputJsonDefinitions::TAN_A].get<double>(),
                     readProfileSchematization[InputJsonDefinitions::POSITION_Z].get<double>()
