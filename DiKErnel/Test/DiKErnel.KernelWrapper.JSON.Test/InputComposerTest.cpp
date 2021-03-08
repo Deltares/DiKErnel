@@ -92,11 +92,9 @@ namespace DiKErnel::KernelWrapper::Json::Test
             const double expectedCriticalDamageLocation2) const
         {
             AssertCalculationLocation(calculationLocations[0].get(), "LocatieZwak", "Noorse Steen", 1.65, 0.3,
-                                      0.0, expectedCriticalDamageLocation1, 2.9, 4.0, 0.0,
-                                      0.0, -0.9, 0.8, 0.0, 0.0, 0.6, 0.25, 0.9);
+                                      0.0, expectedCriticalDamageLocation1, 0.25, 0.9);
             AssertCalculationLocation(calculationLocations[1].get(), "LocatieSterk", "Noorse Steen", 1.65, 0.7,
-                                      0.1, expectedCriticalDamageLocation2, 2.9, 4.0, 0.0,
-                                      0.0, -0.9, 0.8, 0.0, 0.0, 0.6, 0.3, 1.0);
+                                      0.1, expectedCriticalDamageLocation2, 0.3, 1.0);
         }
 
         void AssertCalculationLocation(
@@ -107,15 +105,6 @@ namespace DiKErnel::KernelWrapper::Json::Test
             const double expectedThicknessTopLayer,
             const double expectedInitialDamage,
             const double expectedCriticalDamage,
-            const double expectedSimilarityParameterThreshold,
-            const double expectedPlungingCoefficientA,
-            const double expectedPlungingCoefficientB,
-            const double expectedPlungingCoefficientC,
-            const double expectedPlungingCoefficientN,
-            const double expectedSurgingCoefficientA,
-            const double expectedSurgingCoefficientB,
-            const double expectedSurgingCoefficientC,
-            const double expectedSurgingCoefficientN,
             const double expectedTanA,
             const double expectedPositionZ) const
         {
@@ -130,16 +119,7 @@ namespace DiKErnel::KernelWrapper::Json::Test
                 calculationLocation.GetRevetment(),
                 expectedTypeTopLayer,
                 expectedRelativeDensity,
-                expectedThicknessTopLayer,
-                expectedSimilarityParameterThreshold,
-                expectedPlungingCoefficientA,
-                expectedPlungingCoefficientB,
-                expectedPlungingCoefficientC,
-                expectedPlungingCoefficientN,
-                expectedSurgingCoefficientA,
-                expectedSurgingCoefficientB,
-                expectedSurgingCoefficientC,
-                expectedSurgingCoefficientN);
+                expectedThicknessTopLayer);
 
             AssertProfileSchematization(
                 calculationLocation.GetProfileSchematization(),
@@ -161,16 +141,7 @@ namespace DiKErnel::KernelWrapper::Json::Test
             const Revetment& revetment,
             const string& expectedTypeTopLayer,
             const double expectedRelativeDensity,
-            const double expectedThicknessTopLayer,
-            const double expectedSimilarityParameterThreshold,
-            const double expectedPlungingCoefficientA,
-            const double expectedPlungingCoefficientB,
-            const double expectedPlungingCoefficientC,
-            const double expectedPlungingCoefficientN,
-            const double expectedSurgingCoefficientA,
-            const double expectedSurgingCoefficientB,
-            const double expectedSurgingCoefficientC,
-            const double expectedSurgingCoefficientN) const
+            const double expectedThicknessTopLayer) const
         {
             ASSERT_EQ(expectedTypeTopLayer, revetment.GetTypeTopLayer());
             ASSERT_DOUBLE_EQ(expectedRelativeDensity, revetment.GetRelativeDensity());
