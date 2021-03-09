@@ -42,7 +42,17 @@ namespace DiKErnel::KernelWrapper::Json::Input
             static std::vector<int> GetTimes(
                 const nlohmann::json& json);
 
-            static void GetHydraulicData(
+            static std::unique_ptr<JsonInputHydraulicData> GetHydraulicData(
                 const nlohmann::json& json);
+
+            static std::vector<std::unique_ptr<JsonInputLocationData>> GetInputLocationData(
+                const nlohmann::json& json);
+
+            static std::unique_ptr<double> JsonInputParser::ReadOptionalValue(
+                const nlohmann::basic_json<>::value_type& object,
+                const std::string& propertyName);
+
+            static std::unique_ptr<JsonInputRevetmentLocationData> GetRevetmentLocationData(
+                nlohmann::basic_json<>::value_type readRevetment);
     };
 }

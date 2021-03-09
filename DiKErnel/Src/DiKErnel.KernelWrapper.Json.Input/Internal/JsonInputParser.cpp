@@ -38,7 +38,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
             make_unique<JsonInputCalculationData>(
                 GetTimes(json),
                 GetHydraulicData(json),
-                vector<unique_ptr<JsonInputLocationData>>()
+                GetInputLocationData(json)
             )
         );
     }
@@ -71,12 +71,52 @@ namespace DiKErnel::KernelWrapper::Json::Input
                     readBoundaryConditionsForTimeStep[JsonInputDefinitions::WATER_LEVEL].get<double>(),
                     readBoundaryConditionsForTimeStep[JsonInputDefinitions::WAVE_HEIGHT_HM0].get<double>(),
                     readBoundaryConditionsForTimeStep[JsonInputDefinitions::WAVE_PERIOD_TM10].get<double>(),
-                    readBoundaryConditionsForTimeStep[JsonInputDefinitions::WAVE_ANGLE].get<double>()
-                ));
+                    readBoundaryConditionsForTimeStep[JsonInputDefinitions::WAVE_ANGLE].get<double>()));
         }
 
         return make_unique<JsonInputHydraulicData>(
             readHydraulicLoads[JsonInputDefinitions::MAXIMUM_WAVE_ANGLE].get<double>(),
             move(timeDependentHydraulicData));
+    }
+
+    vector<unique_ptr<JsonInputLocationData>> JsonInputParser::GetInputLocationData(
+        const json& json)
+    {
+        auto parsedLocations = vector<unique_ptr<JsonInputLocationData>>();
+
+        const auto& readLocations = json[JsonInputDefinitions::LOCATIONS];
+
+        for (const auto& readLocation : readLocations)
+        {
+            const auto& readDamageVariables = readLocation[JsonInputDefinitions::DAMAGE];
+            const auto& readProfileSchematization = readLocation[JsonInputDefinitions::PROFILE_SCHEMATIZATION];
+
+            JsonInputLocationData parsedLocation(
+                readLocation[JsonInputDefinitions::NAME].get<string>(),
+                make_unique<JsonInputDamageData>(
+                    readDamageVariables[JsonInputDefinitions::INITIAL_DAMAGE].get<double>(),
+                    ReadOptionalValue(readDamageVariables, JsonInputDefinitions::CRITICAL_DAMAGE)),
+                GetRevetmentLocationData(readLocation[JsonInputDefinitions::REVETMENT]),
+                make_unique<JsonInputProfileSchematizationData>(
+                    readProfileSchematization[JsonInputDefinitions::TAN_A].get<double>(),
+                    readProfileSchematization[JsonInputDefinitions::POSITION_Z].get<double>()));
+        }
+
+        return vector<unique_ptr<JsonInputLocationData>>();
+    }
+
+    unique_ptr<double> JsonInputParser::ReadOptionalValue(
+        const basic_json<>::value_type& object,
+        const string& propertyName)
+    {
+        return object.contains(propertyName)
+                   ? make_unique<double>(object[propertyName].get<double>())
+                   : nullptr;
+    }
+
+    unique_ptr<JsonInputRevetmentLocationData> JsonInputParser::GetRevetmentLocationData(
+        basic_json<>::value_type readRevetment)
+    {
+        return nullptr;
     }
 }
