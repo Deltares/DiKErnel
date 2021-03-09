@@ -76,9 +76,9 @@ namespace DiKErnel::KernelWrapper::Json
     const string InputJsonDefinitions::UPPER_LIMIT_LOADING_OF_NATURAL_STONE_CUL = "BovengrensBelastingNatuursteenCul";
 
     const string InputJsonDefinitions::LOWER_LIMIT_LOADING_OF_NATURAL_STONE = "OndergrensBelastingNatuursteen";
-    const string InputJsonDefinitions::LOWER_LIMIT_LOADING_OF_NATURAL_STONE_AUL = "OndergrensBelastingNatuursteenAul";
-    const string InputJsonDefinitions::LOWER_LIMIT_LOADING_OF_NATURAL_STONE_BUL = "OndergrensBelastingNatuursteenBul";
-    const string InputJsonDefinitions::LOWER_LIMIT_LOADING_OF_NATURAL_STONE_CUL = "OndergrensBelastingNatuursteenCul";
+    const string InputJsonDefinitions::LOWER_LIMIT_LOADING_OF_NATURAL_STONE_ALL = "OndergrensBelastingNatuursteenAll";
+    const string InputJsonDefinitions::LOWER_LIMIT_LOADING_OF_NATURAL_STONE_BLL = "OndergrensBelastingNatuursteenBll";
+    const string InputJsonDefinitions::LOWER_LIMIT_LOADING_OF_NATURAL_STONE_CLL = "OndergrensBelastingNatuursteenCll";
 
     const string InputJsonDefinitions::DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE = "AfstandMaximaleStijghoogte";
     const string InputJsonDefinitions::DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE_ASMAX = "AfstandMaximaleStijghoogteAsmax";

@@ -93,12 +93,12 @@ namespace DiKErnel::KernelWrapper::Json::Test
         {
             AssertCalculationLocation(calculationLocations[0].get(), "LocatieZwak", "Noorse Steen", 1.65, 0.3,
                                       0.0, expectedCriticalDamageLocation1, "NatuurSteen",
-                                      2.9, 4, 0, 0, -0.9, 0.8, 0, 0, 0.6, 0.1, 0.2, 4.0, 0.1,
-                                      0.6, 4.0, 0.42, 0.9, 0.96, 0.11, 0.25, 0.9);
+                                      2.9, 4, 0, 0, -0.9, 0.8, 0, 0, 0.6, 0.1, 0.6, 4.0, 0.1,
+                                      0.2, 4.0, 0.42, 0.9, 0.96, 0.11, 0.25, 0.9);
             AssertCalculationLocation(calculationLocations[1].get(), "LocatieSterk", "Noorse Steen", 1.65, 0.7,
                                       0.1, expectedCriticalDamageLocation2, "NatuurSteen",
-                                      2.9, 4, 0, 0, -0.9, 0.8, 0, 0, 0.6, 0.1, 0.2, 4.0, 0.1,
-                                      0.6, 4.0, 0.42, 0.9, 0.96, 0.11, 0.3, 1.0);
+                                      2.9, 4, 0, 0, -0.9, 0.8, 0, 0, 0.6, 0.1, 0.6, 4.0, 0.1,
+                                      0.2, 4.0, 0.42, 0.9, 0.96, 0.11, 0.3, 1.0);
         }
 
         void AssertCalculationLocation(

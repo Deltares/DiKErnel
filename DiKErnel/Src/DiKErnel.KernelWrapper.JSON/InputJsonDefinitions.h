@@ -83,9 +83,9 @@ namespace DiKErnel::KernelWrapper::Json
         static const std::string UPPER_LIMIT_LOADING_OF_NATURAL_STONE_CUL;
 
         static const std::string LOWER_LIMIT_LOADING_OF_NATURAL_STONE;
-        static const std::string LOWER_LIMIT_LOADING_OF_NATURAL_STONE_AUL;
-        static const std::string LOWER_LIMIT_LOADING_OF_NATURAL_STONE_BUL;
-        static const std::string LOWER_LIMIT_LOADING_OF_NATURAL_STONE_CUL;
+        static const std::string LOWER_LIMIT_LOADING_OF_NATURAL_STONE_ALL;
+        static const std::string LOWER_LIMIT_LOADING_OF_NATURAL_STONE_BLL;
+        static const std::string LOWER_LIMIT_LOADING_OF_NATURAL_STONE_CLL;
 
         static const std::string DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE;
         static const std::string DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE_ASMAX;

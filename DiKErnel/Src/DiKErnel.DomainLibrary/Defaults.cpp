@@ -40,7 +40,7 @@ namespace DiKErnel::DomainLibrary
 
     const double Defaults::LOWER_LIMIT_LOADING_OF_NORDIC_STONE_ALL = 0.1;
     const double Defaults::LOWER_LIMIT_LOADING_OF_NORDIC_STONE_BLL = 0.2;
-    const double Defaults::LOWER_LIMIT_LOADING_OF_NORDIC_STONE_CLL = 0.4;
+    const double Defaults::LOWER_LIMIT_LOADING_OF_NORDIC_STONE_CLL = 4;
 
     const double Defaults::DISTANCE_MAXIMUM_WAVE_ELEVATION_NORDIC_STONE_ASMAX = 0.42;
     const double Defaults::DISTANCE_MAXIMUM_WAVE_ELEVATION_NORDIC_STONE_BSMAX = 0.9;

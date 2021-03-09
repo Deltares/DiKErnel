@@ -88,12 +88,130 @@ namespace DiKErnel::KernelWrapper::Json
         {
             const auto& readRevetment = readLocation[InputJsonDefinitions::REVETMENT];
             const auto& readCalculationMethod = readRevetment[InputJsonDefinitions::CALCULATION_METHOD];
-            const auto& readHydraulicLoads = readCalculationMethod[InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE];
-            const auto& readUpperLimitLoadingOfNaturalStone = readCalculationMethod[InputJsonDefinitions::UPPER_LIMIT_LOADING_OF_NATURAL_STONE];
-            const auto& readLowerLimitLoadingOfNaturalStone = readCalculationMethod[InputJsonDefinitions::LOWER_LIMIT_LOADING_OF_NATURAL_STONE];
-            const auto& readDistanceMaximumWaveElevationNaturalStone = readCalculationMethod[
-                InputJsonDefinitions::DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE];
-            const auto& readNormativeWidthOfWaveImpact = readCalculationMethod[InputJsonDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT];
+
+            vector<double> hydraulicLoadValues;
+
+            if (readCalculationMethod.contains(InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE))
+            {
+                const auto& readHydraulicLoads = readCalculationMethod[InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE];
+
+                hydraulicLoadValues.push_back(GetOptionalDoubleValue(readHydraulicLoads, InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_XIB,
+                                                                     Defaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_XIB));
+                hydraulicLoadValues.push_back(GetOptionalDoubleValue(readHydraulicLoads, InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_AP,
+                                                                     Defaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_XIB));
+                hydraulicLoadValues.push_back(GetOptionalDoubleValue(readHydraulicLoads, InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_BP,
+                                                                     Defaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_XIB));
+                hydraulicLoadValues.push_back(GetOptionalDoubleValue(readHydraulicLoads, InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_CP,
+                                                                     Defaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_XIB));
+                hydraulicLoadValues.push_back(GetOptionalDoubleValue(readHydraulicLoads, InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_NP,
+                                                                     Defaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_XIB));
+                hydraulicLoadValues.push_back(GetOptionalDoubleValue(readHydraulicLoads, InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_AS,
+                                                                     Defaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_XIB));
+                hydraulicLoadValues.push_back(GetOptionalDoubleValue(readHydraulicLoads, InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_BS,
+                                                                     Defaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_XIB));
+                hydraulicLoadValues.push_back(GetOptionalDoubleValue(readHydraulicLoads, InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_CS,
+                                                                     Defaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_XIB));
+                hydraulicLoadValues.push_back(GetOptionalDoubleValue(readHydraulicLoads, InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_NS,
+                                                                     Defaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_XIB));
+            }
+            else
+            {
+                hydraulicLoadValues.push_back(Defaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_XIB);
+                hydraulicLoadValues.push_back(Defaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_AP);
+                hydraulicLoadValues.push_back(Defaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_BP);
+                hydraulicLoadValues.push_back(Defaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_CP);
+                hydraulicLoadValues.push_back(Defaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_NP);
+                hydraulicLoadValues.push_back(Defaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_AS);
+                hydraulicLoadValues.push_back(Defaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_BS);
+                hydraulicLoadValues.push_back(Defaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_CS);
+                hydraulicLoadValues.push_back(Defaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_NS);
+            }
+
+            vector<double> upperLimitLoadingOfNaturalStoneValues;
+
+            if (readCalculationMethod.contains(InputJsonDefinitions::UPPER_LIMIT_LOADING_OF_NATURAL_STONE))
+            {
+                const auto& readUpperLimitLoadingOfNaturalStone = readCalculationMethod[InputJsonDefinitions::UPPER_LIMIT_LOADING_OF_NATURAL_STONE];
+
+                upperLimitLoadingOfNaturalStoneValues.push_back(GetOptionalDoubleValue(readUpperLimitLoadingOfNaturalStone,
+                                                                                       InputJsonDefinitions::UPPER_LIMIT_LOADING_OF_NATURAL_STONE_AUL,
+                                                                                       Defaults::UPPER_LIMIT_LOADING_OF_NORDIC_STONE_AUL));
+                upperLimitLoadingOfNaturalStoneValues.push_back(GetOptionalDoubleValue(readUpperLimitLoadingOfNaturalStone,
+                                                                                       InputJsonDefinitions::UPPER_LIMIT_LOADING_OF_NATURAL_STONE_BUL,
+                                                                                       Defaults::UPPER_LIMIT_LOADING_OF_NORDIC_STONE_BUL));
+                upperLimitLoadingOfNaturalStoneValues.push_back(GetOptionalDoubleValue(readUpperLimitLoadingOfNaturalStone,
+                                                                                       InputJsonDefinitions::UPPER_LIMIT_LOADING_OF_NATURAL_STONE_CUL,
+                                                                                       Defaults::UPPER_LIMIT_LOADING_OF_NORDIC_STONE_CUL));
+            }
+            else
+            {
+                upperLimitLoadingOfNaturalStoneValues.push_back(Defaults::UPPER_LIMIT_LOADING_OF_NORDIC_STONE_AUL);
+                upperLimitLoadingOfNaturalStoneValues.push_back(Defaults::UPPER_LIMIT_LOADING_OF_NORDIC_STONE_BUL);
+                upperLimitLoadingOfNaturalStoneValues.push_back(Defaults::UPPER_LIMIT_LOADING_OF_NORDIC_STONE_CUL);
+            }
+
+            vector<double> lowerLimitLoadingOfNaturalStoneValues;
+
+            if (readCalculationMethod.contains(InputJsonDefinitions::LOWER_LIMIT_LOADING_OF_NATURAL_STONE))
+            {
+                const auto& readLowerLimitLoadingOfNaturalStone = readCalculationMethod[InputJsonDefinitions::LOWER_LIMIT_LOADING_OF_NATURAL_STONE];
+
+                lowerLimitLoadingOfNaturalStoneValues.push_back(GetOptionalDoubleValue(readLowerLimitLoadingOfNaturalStone,
+                                                                                       InputJsonDefinitions::LOWER_LIMIT_LOADING_OF_NATURAL_STONE_ALL,
+                                                                                       Defaults::LOWER_LIMIT_LOADING_OF_NORDIC_STONE_ALL));
+                lowerLimitLoadingOfNaturalStoneValues.push_back(GetOptionalDoubleValue(readLowerLimitLoadingOfNaturalStone,
+                                                                                       InputJsonDefinitions::LOWER_LIMIT_LOADING_OF_NATURAL_STONE_BLL,
+                                                                                       Defaults::LOWER_LIMIT_LOADING_OF_NORDIC_STONE_BLL));
+                lowerLimitLoadingOfNaturalStoneValues.push_back(GetOptionalDoubleValue(readLowerLimitLoadingOfNaturalStone,
+                                                                                       InputJsonDefinitions::LOWER_LIMIT_LOADING_OF_NATURAL_STONE_CLL,
+                                                                                       Defaults::LOWER_LIMIT_LOADING_OF_NORDIC_STONE_CLL));
+            }
+            else
+            {
+                lowerLimitLoadingOfNaturalStoneValues.push_back(Defaults::LOWER_LIMIT_LOADING_OF_NORDIC_STONE_ALL);
+                lowerLimitLoadingOfNaturalStoneValues.push_back(Defaults::LOWER_LIMIT_LOADING_OF_NORDIC_STONE_BLL);
+                lowerLimitLoadingOfNaturalStoneValues.push_back(Defaults::LOWER_LIMIT_LOADING_OF_NORDIC_STONE_CLL);
+            }
+
+            vector<double> distanceMaximumWaveElevationNaturalStoneValues;
+
+            if (readCalculationMethod.contains(InputJsonDefinitions::DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE))
+            {
+                const auto& readDistanceMaximumWaveElevationNaturalStone = readCalculationMethod[
+                    InputJsonDefinitions::DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE];
+
+                distanceMaximumWaveElevationNaturalStoneValues.push_back(GetOptionalDoubleValue(
+                    readDistanceMaximumWaveElevationNaturalStone, InputJsonDefinitions::DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE_ASMAX,
+                    Defaults::DISTANCE_MAXIMUM_WAVE_ELEVATION_NORDIC_STONE_ASMAX));
+                distanceMaximumWaveElevationNaturalStoneValues.push_back(GetOptionalDoubleValue(
+                    readDistanceMaximumWaveElevationNaturalStone, InputJsonDefinitions::DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE_BSMAX,
+                    Defaults::DISTANCE_MAXIMUM_WAVE_ELEVATION_NORDIC_STONE_BSMAX));
+            }
+            else
+            {
+                distanceMaximumWaveElevationNaturalStoneValues.push_back(Defaults::DISTANCE_MAXIMUM_WAVE_ELEVATION_NORDIC_STONE_ASMAX);
+                distanceMaximumWaveElevationNaturalStoneValues.push_back(Defaults::DISTANCE_MAXIMUM_WAVE_ELEVATION_NORDIC_STONE_BSMAX);
+            }
+
+            vector<double> normativeWidthOfWaveImpactValues;
+
+            if (readCalculationMethod.contains(InputJsonDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT))
+            {
+                const auto& readNormativeWidthOfWaveImpact = readCalculationMethod[InputJsonDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT];
+
+                normativeWidthOfWaveImpactValues.push_back(GetOptionalDoubleValue(readNormativeWidthOfWaveImpact,
+                                                                                  InputJsonDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT_AWI,
+                                                                                  Defaults::NORMATIVE_WIDTH_OF_WAVE_IMPACT_AWI));
+                normativeWidthOfWaveImpactValues.push_back(GetOptionalDoubleValue(readNormativeWidthOfWaveImpact,
+                                                                                  InputJsonDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT_BWI,
+                                                                                  Defaults::NORMATIVE_WIDTH_OF_WAVE_IMPACT_BWI));
+            }
+            else
+            {
+                normativeWidthOfWaveImpactValues.push_back(Defaults::NORMATIVE_WIDTH_OF_WAVE_IMPACT_AWI);
+                normativeWidthOfWaveImpactValues.push_back(Defaults::NORMATIVE_WIDTH_OF_WAVE_IMPACT_BWI);
+            }
+
             const auto& readDamageVariables = readLocation[InputJsonDefinitions::DAMAGE];
             const auto& readProfileSchematization = readLocation[InputJsonDefinitions::PROFILE_SCHEMATIZATION];
 
@@ -109,58 +227,34 @@ namespace DiKErnel::KernelWrapper::Json
                     make_unique<CalculationMethod>(
                         readCalculationMethod[InputJsonDefinitions::CALCULATION_METHOD_SORT].get<string>(),
                         make_unique<HydraulicLoadOnNaturalStone>(
-                            GetOptionalDoubleValue(readHydraulicLoads, InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_XIB,
-                                                   Defaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_XIB),
-                            GetOptionalDoubleValue(readHydraulicLoads, InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_AP,
-                                                   Defaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_AP),
-                            GetOptionalDoubleValue(readHydraulicLoads, InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_BP,
-                                                   Defaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_BP),
-                            GetOptionalDoubleValue(readHydraulicLoads, InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_CP,
-                                                   Defaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_CP),
-                            GetOptionalDoubleValue(readHydraulicLoads, InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_NP,
-                                                   Defaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_NP),
-                            GetOptionalDoubleValue(readHydraulicLoads, InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_AS,
-                                                   Defaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_AS),
-                            GetOptionalDoubleValue(readHydraulicLoads, InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_BS,
-                                                   Defaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_BS),
-                            GetOptionalDoubleValue(readHydraulicLoads, InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_CS,
-                                                   Defaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_CS),
-                            GetOptionalDoubleValue(readHydraulicLoads, InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_NS,
-                                                   Defaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_NS)),
+                            hydraulicLoadValues.at(0),
+                            hydraulicLoadValues.at(1),
+                            hydraulicLoadValues.at(2),
+                            hydraulicLoadValues.at(3),
+                            hydraulicLoadValues.at(4),
+                            hydraulicLoadValues.at(5),
+                            hydraulicLoadValues.at(6),
+                            hydraulicLoadValues.at(7),
+                            hydraulicLoadValues.at(8)
+                        ),
                         make_unique<UpperLimitLoadingOfNaturalStone>(
-                            GetOptionalDoubleValue(readUpperLimitLoadingOfNaturalStone,
-                                                   InputJsonDefinitions::UPPER_LIMIT_LOADING_OF_NATURAL_STONE_AUL,
-                                                   Defaults::UPPER_LIMIT_LOADING_OF_NORDIC_STONE_AUL),
-                            GetOptionalDoubleValue(readUpperLimitLoadingOfNaturalStone,
-                                                   InputJsonDefinitions::UPPER_LIMIT_LOADING_OF_NATURAL_STONE_BUL,
-                                                   Defaults::UPPER_LIMIT_LOADING_OF_NORDIC_STONE_BUL),
-                            GetOptionalDoubleValue(readUpperLimitLoadingOfNaturalStone,
-                                                   InputJsonDefinitions::UPPER_LIMIT_LOADING_OF_NATURAL_STONE_CUL,
-                                                   Defaults::UPPER_LIMIT_LOADING_OF_NORDIC_STONE_CUL)),
+                            upperLimitLoadingOfNaturalStoneValues.at(0),
+                            upperLimitLoadingOfNaturalStoneValues.at(1),
+                            upperLimitLoadingOfNaturalStoneValues.at(2)
+                        ),
                         make_unique<LowerLimitLoadingOfNaturalStone>(
-                            GetOptionalDoubleValue(readLowerLimitLoadingOfNaturalStone,
-                                                   InputJsonDefinitions::LOWER_LIMIT_LOADING_OF_NATURAL_STONE_AUL,
-                                                   Defaults::LOWER_LIMIT_LOADING_OF_NORDIC_STONE_ALL),
-                            GetOptionalDoubleValue(readLowerLimitLoadingOfNaturalStone,
-                                                   InputJsonDefinitions::LOWER_LIMIT_LOADING_OF_NATURAL_STONE_BUL,
-                                                   Defaults::LOWER_LIMIT_LOADING_OF_NORDIC_STONE_BLL),
-                            GetOptionalDoubleValue(readLowerLimitLoadingOfNaturalStone,
-                                                   InputJsonDefinitions::LOWER_LIMIT_LOADING_OF_NATURAL_STONE_CUL,
-                                                   Defaults::LOWER_LIMIT_LOADING_OF_NORDIC_STONE_CLL)),
+                            lowerLimitLoadingOfNaturalStoneValues.at(0),
+                            lowerLimitLoadingOfNaturalStoneValues.at(1),
+                            lowerLimitLoadingOfNaturalStoneValues.at(2)
+                        ),
                         make_unique<DistanceMaximumWaveElevationNaturalStone>(
-                            GetOptionalDoubleValue(readDistanceMaximumWaveElevationNaturalStone,
-                                                   InputJsonDefinitions::DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE_ASMAX,
-                                                   Defaults::DISTANCE_MAXIMUM_WAVE_ELEVATION_NORDIC_STONE_ASMAX),
-                            GetOptionalDoubleValue(readDistanceMaximumWaveElevationNaturalStone,
-                                                   InputJsonDefinitions::DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE_BSMAX,
-                                                   Defaults::DISTANCE_MAXIMUM_WAVE_ELEVATION_NORDIC_STONE_BSMAX)),
+                            distanceMaximumWaveElevationNaturalStoneValues.at(0),
+                            distanceMaximumWaveElevationNaturalStoneValues.at(1)
+                        ),
                         make_unique<NormativeWidthOfWaveImpact>(
-                            GetOptionalDoubleValue(readNormativeWidthOfWaveImpact,
-                                                   InputJsonDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT_AWI,
-                                                   Defaults::NORMATIVE_WIDTH_OF_WAVE_IMPACT_AWI),
-                            GetOptionalDoubleValue(readNormativeWidthOfWaveImpact,
-                                                   InputJsonDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT_BWI,
-                                                   Defaults::NORMATIVE_WIDTH_OF_WAVE_IMPACT_BWI)))),
+                            normativeWidthOfWaveImpactValues.at(0),
+                            normativeWidthOfWaveImpactValues.at(1)
+                        ))),
                 make_unique<ProfileSchematization>(
                     readProfileSchematization[InputJsonDefinitions::TAN_A].get<double>(),
                     readProfileSchematization[InputJsonDefinitions::POSITION_Z].get<double>()

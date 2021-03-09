@@ -77,13 +77,13 @@
 					},
 					"BovengrensBelastingNatuursteen": {
 						"BovengrensBelastingNatuursteenAul": 0.1,
-						"BovengrensBelastingNatuursteenBul": 0.2,
+						"BovengrensBelastingNatuursteenBul": 0.6,
 						"BovengrensBelastingNatuursteenCul": 4.0
 					},
 					"OndergrensBelastingNatuursteen": {
-						"OndergrensBelastingNatuursteenAul": 0.1,
-						"OndergrensBelastingNatuursteenBul": 0.6,
-						"OndergrensBelastingNatuursteenCul": 4.0
+						"OndergrensBelastingNatuursteenAll": 0.1,
+						"OndergrensBelastingNatuursteenBll": 0.2,
+						"OndergrensBelastingNatuursteenCll": 4.0
 					},
 					"AfstandMaximaleStijghoogte": {
 						"AfstandMaximaleStijghoogteAsmax": 0.42,
@@ -128,13 +128,13 @@
 					},
 					"BovengrensBelastingNatuursteen": {
 						"BovengrensBelastingNatuursteenAul": 0.1,
-						"BovengrensBelastingNatuursteenBul": 0.2,
+						"BovengrensBelastingNatuursteenBul": 0.6,
 						"BovengrensBelastingNatuursteenCul": 4.0
 					},
 					"OndergrensBelastingNatuursteen": {
-						"OndergrensBelastingNatuursteenAul": 0.1,
-						"OndergrensBelastingNatuursteenBul": 0.6,
-						"OndergrensBelastingNatuursteenCul": 4.0
+						"OndergrensBelastingNatuursteenAll": 0.1,
+						"OndergrensBelastingNatuursteenBll": 0.2,
+						"OndergrensBelastingNatuursteenCll": 4.0
 					},
 					"AfstandMaximaleStijghoogte": {
 						"AfstandMaximaleStijghoogteAsmax": 0.42,
