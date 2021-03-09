@@ -4,6 +4,9 @@ cmake_minimum_required (VERSION 3.18)
 # Define project
 project (DiKErnel)
 
+# Define options
+option(BUILD_WITH_TESTS "Build with tests" ON)
+
 # Set compiler flags
 set(CMAKE_CXX_STANDARD 17)
 
