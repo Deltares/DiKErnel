@@ -178,17 +178,6 @@ namespace DiKErnel::KernelWrapper::Json
         return nlohmann::json::parse(ifs);
     }
 
-    double InputComposer::GetCriticalDamage(
-        const nlohmann::basic_json<>::value_type& readDamageVariables)
-    {
-        if (readDamageVariables.contains(InputJsonDefinitions::CRITICAL_DAMAGE))
-        {
-            return readDamageVariables[InputJsonDefinitions::CRITICAL_DAMAGE].get<double>();
-        }
-
-        return Defaults::CRITICAL_DAMAGE;
-    }
-
     double InputComposer::GetOptionalDoubleValue(
         const nlohmann::basic_json<>::value_type& hydraulicLoads,
         string inputJsonDefinition,

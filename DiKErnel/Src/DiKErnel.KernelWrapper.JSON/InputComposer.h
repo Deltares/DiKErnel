@@ -59,12 +59,9 @@ namespace DiKErnel::KernelWrapper::Json
             static nlohmann::json ParseJson(
                 const std::string& filePath);
 
-            static double GetCriticalDamage(
-                const nlohmann::basic_json<>::value_type& readDamageVariables);
-
-        static double GetOptionalDoubleValue(
-            const nlohmann::basic_json<>::value_type& hydraulicLoads,
-            std::string inputJsonDefinition,
-            double defaultValue);
+            static double GetOptionalDoubleValue(
+                const nlohmann::basic_json<>::value_type& hydraulicLoads,
+                std::string inputJsonDefinition,
+                double defaultValue);
     };
 }
