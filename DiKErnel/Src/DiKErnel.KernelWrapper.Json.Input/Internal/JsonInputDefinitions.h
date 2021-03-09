@@ -41,12 +41,18 @@ namespace DiKErnel::KernelWrapper::Json::Input
             inline static const std::string WAVE_ANGLE = "Golfhoek";
 
             inline static const std::string NAME = "Naam";
+            inline static const std::string DAMAGE = "Schade";
+            inline static const std::string INITIAL_DAMAGE = "BeginSchade";
+            inline static const std::string CRITICAL_DAMAGE = "Faalgetal";
+
             inline static const std::string REVETMENT = "Bekleding";
             inline static const std::string TYPE_TOP_LAYER = "TypeToplaag";
             inline static const std::string RELATIVE_DENSITY = "RelatieveDichtheid";
             inline static const std::string THICKNESS_TOP_LAYER = "DikteToplaag";
-            inline static const std::string INITIAL_DAMAGE = "BeginSchade";
-            inline static const std::string CRITICAL_DAMAGE = "Faalgetal";
+
+            inline static const std::string CALCULATION_METHOD = "Rekenmethode";
+            inline static const std::string CALCULATION_METHOD_SORT = "RekenmethodeSoort";
+
             inline static const std::string SIMILARITY_PARAMETER_THRESHOLD = "BrekerIndexGrenswaarde";
             inline static const std::string COEFFICIENT_PLUNGING_AP = "CoefficientPlungingAp";
             inline static const std::string COEFFICIENT_PLUNGING_BP = "CoefficientPlungingBp";
@@ -56,11 +62,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
             inline static const std::string COEFFICIENT_SURGING_BS = "CoefficientSurgingBs";
             inline static const std::string COEFFICIENT_SURGING_CS = "CoefficientSurgingCs";
             inline static const std::string COEFFICIENT_SURGING_NS = "CoefficientSurgingNs";
+
             inline static const std::string PROFILE_SCHEMATIZATION = "Profielschematisatie";
             inline static const std::string TAN_A = "TanA";
             inline static const std::string POSITION_Z = "PositieZ";
-
-            inline static const std::string DAMAGE = "Schade";
-            inline static const std::string DAMAGE_OVER_TIME = "SchadegetalPerTijd";
     };
 }
