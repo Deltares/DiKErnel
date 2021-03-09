@@ -61,7 +61,7 @@ namespace DiKErnel::KernelWrapper::Json
 
             static double GetOptionalDoubleValue(
                 const nlohmann::basic_json<>::value_type& hydraulicLoads,
-                std::string inputJsonDefinition,
+                const std::string& inputJsonDefinition,
                 double defaultValue);
     };
 }

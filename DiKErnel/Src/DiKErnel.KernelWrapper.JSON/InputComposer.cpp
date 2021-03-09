@@ -155,10 +155,10 @@ namespace DiKErnel::KernelWrapper::Json
                                                    InputJsonDefinitions::DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE_BSMAX,
                                                    Defaults::DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE_BSMAX)),
                         make_unique<NormativeWidthOfWaveImpact>(
-                            GetOptionalDoubleValue(readDistanceMaximumWaveElevationNaturalStone,
+                            GetOptionalDoubleValue(readNormativeWidthOfWaveImpact,
                                                    InputJsonDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT_AWI,
                                                    Defaults::NORMATIVE_WIDTH_OF_WAVE_IMPACT_AWI),
-                            GetOptionalDoubleValue(readDistanceMaximumWaveElevationNaturalStone,
+                            GetOptionalDoubleValue(readNormativeWidthOfWaveImpact,
                                                    InputJsonDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT_BWI,
                                                    Defaults::NORMATIVE_WIDTH_OF_WAVE_IMPACT_BWI)))),
                 make_unique<ProfileSchematization>(
@@ -180,7 +180,7 @@ namespace DiKErnel::KernelWrapper::Json
 
     double InputComposer::GetOptionalDoubleValue(
         const nlohmann::basic_json<>::value_type& hydraulicLoads,
-        string inputJsonDefinition,
+        const string& inputJsonDefinition,
         double defaultValue)
     {
         if (hydraulicLoads.contains(inputJsonDefinition))
