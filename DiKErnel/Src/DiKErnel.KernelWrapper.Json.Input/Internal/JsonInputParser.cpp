@@ -23,11 +23,23 @@
 #include <fstream>
 
 #include "JsonInputDefinitions.h"
+#include "JsonInputNaturalStoneRevetmentLocationData.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
     using namespace nlohmann;
     using namespace std;
+
+    NLOHMANN_JSON_SERIALIZE_ENUM(
+        JsonInputParser::CalculationType, 
+        {
+            {
+                JsonInputParser::CalculationType::Unknown, nullptr
+            },
+            {
+                JsonInputParser::CalculationType::NaturalStone, JsonInputDefinitions::CALCULATION_METHOD_TYPE_NATURAL_STONE
+            }
+        });
 
     unique_ptr<JsonInputData> JsonInputParser::GetJsonInputData(
         const string& filePath)
@@ -117,6 +129,28 @@ namespace DiKErnel::KernelWrapper::Json::Input
     unique_ptr<JsonInputRevetmentLocationData> JsonInputParser::GetRevetmentLocationData(
         basic_json<>::value_type readRevetment)
     {
-        return nullptr;
+        const auto& readCalculationMethod = readRevetment[JsonInputDefinitions::CALCULATION_METHOD];
+
+        unique_ptr<JsonInputRevetmentLocationData> revetmentLocationData;
+
+        if (readCalculationMethod[JsonInputDefinitions::CALCULATION_METHOD_TYPE].get<CalculationType>() == NaturalStone)
+        {
+            unique_ptr<double> similarityParameterThreshold = nullptr;
+            unique_ptr<double> plungingCoefficientA = nullptr;
+            unique_ptr<double> plungingCoefficientB = nullptr;
+            unique_ptr<double> plungingCoefficientC = nullptr;
+            unique_ptr<double> plungingCoefficientN = nullptr;
+            unique_ptr<double> surgingCoefficientA = nullptr;
+            unique_ptr<double> surgingCoefficientB = nullptr;
+            unique_ptr<double> surgingCoefficientC = nullptr;
+            unique_ptr<double> surgingCoefficientN = nullptr;
+
+            revetmentLocationData = make_unique<JsonInputNaturalStoneRevetmentLocationData>(
+                readRevetment[JsonInputDefinitions::TYPE_TOP_LAYER], readRevetment[JsonInputDefinitions::RELATIVE_DENSITY],
+                readRevetment[JsonInputDefinitions::THICKNESS_TOP_LAYER], similarityParameterThreshold, plungingCoefficientA, plungingCoefficientB,
+                plungingCoefficientC, plungingCoefficientN, surgingCoefficientA, surgingCoefficientB, surgingCoefficientC, surgingCoefficientN);
+        }
+
+        return revetmentLocationData;
     }
 }

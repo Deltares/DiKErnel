@@ -51,7 +51,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
             inline static const std::string THICKNESS_TOP_LAYER = "DikteToplaag";
 
             inline static const std::string CALCULATION_METHOD = "Rekenmethode";
-            inline static const std::string CALCULATION_METHOD_SORT = "RekenmethodeSoort";
+            inline static const std::string CALCULATION_METHOD_TYPE = "RekenmethodeSoort";
+
+            inline static const std::string CALCULATION_METHOD_TYPE_NATURAL_STONE = "Natuursteen";
 
             inline static const std::string SIMILARITY_PARAMETER_THRESHOLD = "BrekerIndexGrenswaarde";
             inline static const std::string COEFFICIENT_PLUNGING_AP = "CoefficientPlungingAp";

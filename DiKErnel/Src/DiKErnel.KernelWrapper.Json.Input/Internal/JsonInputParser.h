@@ -35,7 +35,14 @@ namespace DiKErnel::KernelWrapper::Json::Input
             static std::unique_ptr<JsonInputData> GetJsonInputData(
                 const std::string& filePath);
 
+            enum CalculationType
+            {
+                Unknown,
+                NaturalStone
+            };
+
         private:
+
             static nlohmann::json ReadJson(
                 const std::string& filePath);
 
