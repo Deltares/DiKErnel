@@ -22,16 +22,24 @@
 
 #include <fstream>
 
+#include "JsonInputDefinitions.h"
+
 namespace DiKErnel::KernelWrapper::Json::Input
 {
     using namespace std;
 
     unique_ptr<JsonInputData> JsonInputParser::GetJsonInputData(
-        const std::string& filePath)
+        const string& filePath)
     {
         const auto json = ReadJson(filePath);
 
-        return nullptr;
+        return make_unique<JsonInputData>(
+            make_unique<JsonInputCalculationData>(
+                GetTimes(json),
+                nullptr,
+                vector<unique_ptr<JsonInputLocationData>>()
+            )
+        );
     }
 
     nlohmann::json JsonInputParser::ReadJson(
@@ -39,5 +47,11 @@ namespace DiKErnel::KernelWrapper::Json::Input
     {
         ifstream ifs(filePath);
         return nlohmann::json::parse(ifs);
+    }
+
+    vector<int> JsonInputParser::GetTimes(
+        const nlohmann::json& json)
+    {
+        return json[JsonInputDefinitions::CALCULATION_DATA][JsonInputDefinitions::TIME].get<vector<int>>();
     }
 }

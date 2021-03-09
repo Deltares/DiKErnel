@@ -38,5 +38,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
         private:
             static nlohmann::json ReadJson(
                 const std::string& filePath);
+
+            static std::vector<int> GetTimes(
+                const nlohmann::json& json);
     };
 }
