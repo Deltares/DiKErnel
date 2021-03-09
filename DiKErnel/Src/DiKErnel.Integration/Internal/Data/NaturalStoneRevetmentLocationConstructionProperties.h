@@ -45,6 +45,66 @@ namespace DiKErnel::Integration
                 double thicknessTopLayer);
 
             /*!
+             * \brief Sets the relative density.
+             */
+            void SetRelativeDensity(
+                std::unique_ptr<double> relativeDensity);
+
+            /*!
+             * \brief Sets the plunging coefficient A.
+             */
+            void SetPlungingCoefficientA(
+                std::unique_ptr<double> plungingCoefficientA);
+
+            /*!
+             * \brief Sets the plunging coefficient B.
+             */
+            void SetPlungingCoefficientB(
+                std::unique_ptr<double> plungingCoefficientB);
+
+            /*!
+             * \brief Sets the plunging coefficient C.
+             */
+            void SetPlungingCoefficientC(
+                std::unique_ptr<double> plungingCoefficientC);
+
+            /*!
+             * \brief Sets the plunging coefficient N.
+             */
+            void SetPlungingCoefficientN(
+                std::unique_ptr<double> plungingCoefficientN);
+
+            /*!
+             * \brief Sets the surging coefficient A.
+             */
+            void SetSurgingCoefficientA(
+                std::unique_ptr<double> surgingCoefficientA);
+
+            /*!
+             * \brief Sets the surging coefficient B.
+             */
+            void SetSurgingCoefficientB(
+                std::unique_ptr<double> surgingCoefficientB);
+
+            /*!
+             * \brief Sets the surging coefficient C.
+             */
+            void SetSurgingCoefficientC(
+                std::unique_ptr<double> surgingCoefficientC);
+
+            /*!
+             * \brief Sets the surging coefficient N.
+             */
+            void SetSurgingCoefficientN(
+                std::unique_ptr<double> surgingCoefficientN);
+
+            /*!
+             * \brief Sets the similarity parameter threshold.
+             */
+            void SetSimilarityParameterThreshold(
+                std::unique_ptr<double> similarityParameterThreshold);
+
+            /*!
              * \brief Gets the initial damage of the location.
              * \return The initial damage of the location.
              */
@@ -63,58 +123,79 @@ namespace DiKErnel::Integration
             double GetThicknessTopLayer() const;
 
             /*!
-             * \brief The relative density of the location.
+             * \brief Gets the relative density.
+             * \return The relative density.
              */
-            std::unique_ptr<double> _relativeDensityPtr = nullptr;
+            const double* GetRelativeDensity() const;
 
             /*!
-             * \brief The plunging coefficient A of the location.
+             * \brief Gets the plunging coefficient A.
+             * \return The plunging coefficient A.
              */
-            std::unique_ptr<double> _plungingCoefficientAPtr = nullptr;
+            const double* GetPlungingCoefficientA() const;
 
             /*!
-             * \brief The plunging coefficient B of the location.
+             * \brief Gets the plunging coefficient B.
+             * \return The plunging coefficient B.
              */
-            std::unique_ptr<double> _plungingCoefficientBPtr = nullptr;
+            const double* GetPlungingCoefficientB() const;
 
             /*!
-             * \brief The plunging coefficient C of the location.
+             * \brief Gets the plunging coefficient C.
+             * \return The plunging coefficient C.
              */
-            std::unique_ptr<double> _plungingCoefficientCPtr = nullptr;
+            const double* GetPlungingCoefficientC() const;
 
             /*!
-             * \brief The plunging coefficient N of the location.
+             * \brief Gets the plunging coefficient N.
+             * \return The plunging coefficient N.
              */
-            std::unique_ptr<double> _plungingCoefficientNPtr = nullptr;
+            const double* GetPlungingCoefficientN() const;
 
             /*!
-             * \brief The surging coefficient A of the location.
+             * \brief Gets the surging coefficient A.
+             * \return The surging coefficient A.
              */
-            std::unique_ptr<double> _surgingCoefficientAPtr = nullptr;
+            const double* GetSurgingCoefficientA() const;
 
             /*!
-             * \brief The surging coefficient B of the location.
+             * \brief Gets the surging coefficient B.
+             * \return The surging coefficient B.
              */
-            std::unique_ptr<double> _surgingCoefficientBPtr = nullptr;
+            const double* GetSurgingCoefficientB() const;
 
             /*!
-             * \brief The surging coefficient C of the location.
+             * \brief Gets the surging coefficient C.
+             * \return The surging coefficient C.
              */
-            std::unique_ptr<double> _surgingCoefficientCPtr = nullptr;
+            const double* GetSurgingCoefficientC() const;
 
             /*!
-             * \brief The surging coefficient N of the location.
+             * \brief Gets the surging coefficient N.
+             * \return The surging coefficient N.
              */
-            std::unique_ptr<double> _surgingCoefficientNPtr = nullptr;
+            const double* GetSurgingCoefficientN() const;
 
             /*!
-             * \brief The similarity parameter threshold of the location.
+             * \brief Gets the similarity parameter threshold.
+             * \return The similarity parameter threshold.
              */
-            std::unique_ptr<double> _similarityParameterThresholdPtr = nullptr;
+            const double* GetSimilarityParameterThreshold() const;
 
         private:
             double _initialDamage;
             double _slopeAngle;
             double _thicknessTopLayer;
+
+            std::unique_ptr<double> _relativeDensity = nullptr;
+            std::unique_ptr<double> _plungingCoefficientA = nullptr;
+            std::unique_ptr<double> _plungingCoefficientB = nullptr;
+            std::unique_ptr<double> _plungingCoefficientC = nullptr;
+            std::unique_ptr<double> _plungingCoefficientN = nullptr;
+            std::unique_ptr<double> _surgingCoefficientA = nullptr;
+            std::unique_ptr<double> _surgingCoefficientB = nullptr;
+            std::unique_ptr<double> _surgingCoefficientC = nullptr;
+            std::unique_ptr<double> _surgingCoefficientN = nullptr;
+            std::unique_ptr<double> _similarityParameterThreshold = nullptr;
     };
 }

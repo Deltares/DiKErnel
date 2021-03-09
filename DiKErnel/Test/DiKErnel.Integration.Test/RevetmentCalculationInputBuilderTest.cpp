@@ -148,16 +148,16 @@ namespace DiKErnel::Integration::Test
         const auto surgingCoefficientN = 1.3;
 
         NaturalStoneRevetmentLocationConstructionProperties naturalStoneConstructionProperties(initialDamage, slopeAngle, thicknessTopLayer);
-        naturalStoneConstructionProperties._relativeDensityPtr = make_unique<double>(relativeDensity);
-        naturalStoneConstructionProperties._similarityParameterThresholdPtr = make_unique<double>(similarityParameterThreshold);
-        naturalStoneConstructionProperties._plungingCoefficientAPtr = make_unique<double>(plungingCoefficientA);
-        naturalStoneConstructionProperties._plungingCoefficientBPtr = make_unique<double>(plungingCoefficientB);
-        naturalStoneConstructionProperties._plungingCoefficientCPtr = make_unique<double>(plungingCoefficientC);
-        naturalStoneConstructionProperties._plungingCoefficientNPtr = make_unique<double>(plungingCoefficientN);
-        naturalStoneConstructionProperties._surgingCoefficientAPtr = make_unique<double>(surgingCoefficientA);
-        naturalStoneConstructionProperties._surgingCoefficientBPtr = make_unique<double>(surgingCoefficientB);
-        naturalStoneConstructionProperties._surgingCoefficientCPtr = make_unique<double>(surgingCoefficientC);
-        naturalStoneConstructionProperties._surgingCoefficientNPtr = make_unique<double>(surgingCoefficientN);
+        naturalStoneConstructionProperties.SetRelativeDensity(make_unique<double>(relativeDensity));
+        naturalStoneConstructionProperties.SetSimilarityParameterThreshold(make_unique<double>(similarityParameterThreshold));
+        naturalStoneConstructionProperties.SetPlungingCoefficientA(make_unique<double>(plungingCoefficientA));
+        naturalStoneConstructionProperties.SetPlungingCoefficientB(make_unique<double>(plungingCoefficientB));
+        naturalStoneConstructionProperties.SetPlungingCoefficientC(make_unique<double>(plungingCoefficientC));
+        naturalStoneConstructionProperties.SetPlungingCoefficientN(make_unique<double>(plungingCoefficientN));
+        naturalStoneConstructionProperties.SetSurgingCoefficientA(make_unique<double>(surgingCoefficientA));
+        naturalStoneConstructionProperties.SetSurgingCoefficientB(make_unique<double>(surgingCoefficientB));
+        naturalStoneConstructionProperties.SetSurgingCoefficientC(make_unique<double>(surgingCoefficientC));
+        naturalStoneConstructionProperties.SetSurgingCoefficientN(make_unique<double>(surgingCoefficientN));
 
         // When
         RevetmentCalculationInputBuilder builder(maximumWaveAngle);
