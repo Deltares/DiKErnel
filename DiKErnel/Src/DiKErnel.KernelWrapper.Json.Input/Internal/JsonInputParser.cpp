@@ -31,7 +31,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
     using namespace std;
 
     NLOHMANN_JSON_SERIALIZE_ENUM(
-        JsonInputParser::CalculationType, 
+        JsonInputParser::CalculationType,
         {
             {
                 JsonInputParser::CalculationType::Unknown, nullptr
@@ -117,17 +117,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
         return vector<unique_ptr<JsonInputLocationData>>();
     }
 
-    unique_ptr<double> JsonInputParser::ReadOptionalValue(
-        const basic_json<>::value_type& object,
-        const string& propertyName)
-    {
-        return object.contains(propertyName)
-                   ? make_unique<double>(object[propertyName].get<double>())
-                   : nullptr;
-    }
-
     unique_ptr<JsonInputRevetmentLocationData> JsonInputParser::GetRevetmentLocationData(
-        basic_json<>::value_type readRevetment)
+        const basic_json<>::value_type& readRevetment)
     {
         const auto& readCalculationMethod = readRevetment[JsonInputDefinitions::CALCULATION_METHOD];
 
@@ -135,22 +126,53 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
         if (readCalculationMethod[JsonInputDefinitions::CALCULATION_METHOD_TYPE].get<CalculationType>() == NaturalStone)
         {
-            unique_ptr<double> similarityParameterThreshold = nullptr;
-            unique_ptr<double> plungingCoefficientA = nullptr;
-            unique_ptr<double> plungingCoefficientB = nullptr;
-            unique_ptr<double> plungingCoefficientC = nullptr;
-            unique_ptr<double> plungingCoefficientN = nullptr;
-            unique_ptr<double> surgingCoefficientA = nullptr;
-            unique_ptr<double> surgingCoefficientB = nullptr;
-            unique_ptr<double> surgingCoefficientC = nullptr;
-            unique_ptr<double> surgingCoefficientN = nullptr;
-
-            revetmentLocationData = make_unique<JsonInputNaturalStoneRevetmentLocationData>(
-                readRevetment[JsonInputDefinitions::TYPE_TOP_LAYER], readRevetment[JsonInputDefinitions::RELATIVE_DENSITY],
-                readRevetment[JsonInputDefinitions::THICKNESS_TOP_LAYER], similarityParameterThreshold, plungingCoefficientA, plungingCoefficientB,
-                plungingCoefficientC, plungingCoefficientN, surgingCoefficientA, surgingCoefficientB, surgingCoefficientC, surgingCoefficientN);
+            revetmentLocationData = ReadNaturalStoneRevetmentLocationData(readRevetment, readCalculationMethod);
         }
 
         return revetmentLocationData;
+    }
+
+    unique_ptr<JsonInputNaturalStoneRevetmentLocationData> JsonInputParser::ReadNaturalStoneRevetmentLocationData(
+        const basic_json<>::value_type& readRevetment,
+        const basic_json<>::value_type& readCalculationMethod)
+    {
+        unique_ptr<double> similarityParameterThreshold = nullptr;
+        unique_ptr<double> plungingCoefficientA = nullptr;
+        unique_ptr<double> plungingCoefficientB = nullptr;
+        unique_ptr<double> plungingCoefficientC = nullptr;
+        unique_ptr<double> plungingCoefficientN = nullptr;
+        unique_ptr<double> surgingCoefficientA = nullptr;
+        unique_ptr<double> surgingCoefficientB = nullptr;
+        unique_ptr<double> surgingCoefficientC = nullptr;
+        unique_ptr<double> surgingCoefficientN = nullptr;
+
+        if (readCalculationMethod.contains(JsonInputDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE))
+        {
+            const auto& readHydraulicLoads = readRevetment[JsonInputDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE];
+
+            similarityParameterThreshold = ReadOptionalValue(readHydraulicLoads, JsonInputDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_XIB);
+            plungingCoefficientA = ReadOptionalValue(readHydraulicLoads, JsonInputDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_AP);
+            plungingCoefficientB = ReadOptionalValue(readHydraulicLoads, JsonInputDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_BP);
+            plungingCoefficientC = ReadOptionalValue(readHydraulicLoads, JsonInputDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_CP);
+            plungingCoefficientN = ReadOptionalValue(readHydraulicLoads, JsonInputDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_NP);
+            surgingCoefficientA = ReadOptionalValue(readHydraulicLoads, JsonInputDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_AS);
+            surgingCoefficientB = ReadOptionalValue(readHydraulicLoads, JsonInputDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_BS);
+            surgingCoefficientC = ReadOptionalValue(readHydraulicLoads, JsonInputDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_CS);
+            surgingCoefficientN = ReadOptionalValue(readHydraulicLoads, JsonInputDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_NS);
+        }
+
+        return make_unique<JsonInputNaturalStoneRevetmentLocationData>(
+            readRevetment[JsonInputDefinitions::TYPE_TOP_LAYER], readRevetment[JsonInputDefinitions::RELATIVE_DENSITY],
+            readRevetment[JsonInputDefinitions::THICKNESS_TOP_LAYER], similarityParameterThreshold, plungingCoefficientA, plungingCoefficientB,
+            plungingCoefficientC, plungingCoefficientN, surgingCoefficientA, surgingCoefficientB, surgingCoefficientC, surgingCoefficientN);
+    }
+
+    unique_ptr<double> JsonInputParser::ReadOptionalValue(
+        const basic_json<>::value_type& object,
+        const string& propertyName)
+    {
+        return object.contains(propertyName)
+                   ? make_unique<double>(object[propertyName].get<double>())
+                   : nullptr;
     }
 }

@@ -26,6 +26,7 @@
 #include <nlohmann/json.hpp>
 
 #include "JsonInputData.h"
+#include "JsonInputNaturalStoneRevetmentLocationData.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
@@ -55,11 +56,15 @@ namespace DiKErnel::KernelWrapper::Json::Input
             static std::vector<std::unique_ptr<JsonInputLocationData>> GetInputLocationData(
                 const nlohmann::json& json);
 
-            static std::unique_ptr<double> JsonInputParser::ReadOptionalValue(
+            static std::unique_ptr<JsonInputRevetmentLocationData> GetRevetmentLocationData(
+                const nlohmann::basic_json<>::value_type& readRevetment);
+
+            static std::unique_ptr<JsonInputNaturalStoneRevetmentLocationData> ReadNaturalStoneRevetmentLocationData(
+                const nlohmann::basic_json<>::value_type& readRevetment,
+                const nlohmann::basic_json<>::value_type& readCalculationMethod);
+
+            static std::unique_ptr<double> ReadOptionalValue(
                 const nlohmann::basic_json<>::value_type& object,
                 const std::string& propertyName);
-
-            static std::unique_ptr<JsonInputRevetmentLocationData> GetRevetmentLocationData(
-                nlohmann::basic_json<>::value_type readRevetment);
     };
 }

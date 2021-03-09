@@ -55,15 +55,16 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
             inline static const std::string CALCULATION_METHOD_TYPE_NATURAL_STONE = "Natuursteen";
 
-            inline static const std::string SIMILARITY_PARAMETER_THRESHOLD = "BrekerIndexGrenswaarde";
-            inline static const std::string COEFFICIENT_PLUNGING_AP = "CoefficientPlungingAp";
-            inline static const std::string COEFFICIENT_PLUNGING_BP = "CoefficientPlungingBp";
-            inline static const std::string COEFFICIENT_PLUNGING_CP = "CoefficientPlungingCp";
-            inline static const std::string COEFFICIENT_PLUNGING_NP = "CoefficientPlungingNp";
-            inline static const std::string COEFFICIENT_SURGING_AS = "CoefficientSurgingAs";
-            inline static const std::string COEFFICIENT_SURGING_BS = "CoefficientSurgingBs";
-            inline static const std::string COEFFICIENT_SURGING_CS = "CoefficientSurgingCs";
-            inline static const std::string COEFFICIENT_SURGING_NS = "CoefficientSurgingNs";
+            inline static const std::string HYDRAULIC_LOAD_ON_NATURAL_STONE = "HydraulischeBelastingNatuurSteen";
+            inline static const std::string HYDRAULIC_LOAD_ON_NATURAL_STONE_XIB = "HydraulischeBelastingNatuurSteenXIb";
+            inline static const std::string HYDRAULIC_LOAD_ON_NATURAL_STONE_AP = "HydraulischeBelastingNatuurSteenAp";
+            inline static const std::string HYDRAULIC_LOAD_ON_NATURAL_STONE_BP = "HydraulischeBelastingNatuurSteenBp";
+            inline static const std::string HYDRAULIC_LOAD_ON_NATURAL_STONE_CP = "HydraulischeBelastingNatuurSteenCp";
+            inline static const std::string HYDRAULIC_LOAD_ON_NATURAL_STONE_NP = "HydraulischeBelastingNatuurSteenNp";
+            inline static const std::string HYDRAULIC_LOAD_ON_NATURAL_STONE_AS = "HydraulischeBelastingNatuurSteenAs";
+            inline static const std::string HYDRAULIC_LOAD_ON_NATURAL_STONE_BS = "HydraulischeBelastingNatuurSteenBs";
+            inline static const std::string HYDRAULIC_LOAD_ON_NATURAL_STONE_CS = "HydraulischeBelastingNatuurSteenCs";
+            inline static const std::string HYDRAULIC_LOAD_ON_NATURAL_STONE_NS = "HydraulischeBelastingNatuurSteenNs";
 
             inline static const std::string PROFILE_SCHEMATIZATION = "Profielschematisatie";
             inline static const std::string TAN_A = "TanA";
