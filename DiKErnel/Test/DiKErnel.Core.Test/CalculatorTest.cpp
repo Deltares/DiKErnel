@@ -71,10 +71,11 @@ namespace DiKErnel::Core::Test
         ON_CALL(calculationInput, GetTimeDependentDataItems).WillByDefault(ReturnRef(_timeDependentDataItemReferences));
         ON_CALL(calculationInput, GetMaximumWaveAngle).WillByDefault(Return(0));
 
-        auto& location = static_cast<ILocationDependentDataMock&>(_locationDependentDataItemReferences[0].get());
+        const auto* location = dynamic_cast<ILocationDependentDataMock*>(&_locationDependentDataItemReferences[0].get());
+        ASSERT_TRUE(location != nullptr);
 
-        ON_CALL(location, GetInitialDamage).WillByDefault(Return(0.1));
-        ON_CALL(location, Calculate).WillByDefault(Return(damage));
+        ON_CALL(*location, GetInitialDamage).WillByDefault(Return(0.1));
+        ON_CALL(*location, Calculate).WillByDefault(Return(damage));
 
         Calculator calculator(calculationInput);
 
