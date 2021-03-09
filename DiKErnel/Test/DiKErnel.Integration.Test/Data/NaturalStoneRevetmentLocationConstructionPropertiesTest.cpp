@@ -40,16 +40,16 @@ namespace DiKErnel::Integration::Test
         ASSERT_DOUBLE_EQ(initialDamage, constructionProperties.GetInitialDamage());
         ASSERT_DOUBLE_EQ(slopeAngle, constructionProperties.GetSlopeAngle());
         ASSERT_DOUBLE_EQ(thicknessTopLayer, constructionProperties.GetThicknessTopLayer());
-        ASSERT_TRUE(constructionProperties._relativeDensityPtr == nullptr);
-        ASSERT_TRUE(constructionProperties._similarityParameterThresholdPtr == nullptr);
-        ASSERT_TRUE(constructionProperties._plungingCoefficientAPtr == nullptr);
-        ASSERT_TRUE(constructionProperties._plungingCoefficientBPtr == nullptr);
-        ASSERT_TRUE(constructionProperties._plungingCoefficientCPtr == nullptr);
-        ASSERT_TRUE(constructionProperties._plungingCoefficientNPtr == nullptr);
-        ASSERT_TRUE(constructionProperties._surgingCoefficientAPtr == nullptr);
-        ASSERT_TRUE(constructionProperties._surgingCoefficientBPtr == nullptr);
-        ASSERT_TRUE(constructionProperties._surgingCoefficientCPtr == nullptr);
-        ASSERT_TRUE(constructionProperties._surgingCoefficientNPtr == nullptr);
+        ASSERT_TRUE(constructionProperties.GetRelativeDensity() == nullptr);
+        ASSERT_TRUE(constructionProperties.GetSimilarityParameterThreshold() == nullptr);
+        ASSERT_TRUE(constructionProperties.GetPlungingCoefficientA() == nullptr);
+        ASSERT_TRUE(constructionProperties.GetPlungingCoefficientB() == nullptr);
+        ASSERT_TRUE(constructionProperties.GetPlungingCoefficientC() == nullptr);
+        ASSERT_TRUE(constructionProperties.GetPlungingCoefficientN() == nullptr);
+        ASSERT_TRUE(constructionProperties.GetSurgingCoefficientA() == nullptr);
+        ASSERT_TRUE(constructionProperties.GetSurgingCoefficientB() == nullptr);
+        ASSERT_TRUE(constructionProperties.GetSurgingCoefficientC() == nullptr);
+        ASSERT_TRUE(constructionProperties.GetSurgingCoefficientN() == nullptr);
     }
 
     TEST(NaturalStoneRevetmentLocationConstructionPropertiesTest, GivenConstructionProperties_WhenAllFieldsSet_ThenExpectedValues)
@@ -72,30 +72,30 @@ namespace DiKErnel::Integration::Test
         NaturalStoneRevetmentLocationConstructionProperties constructionProperties(initialDamage, slopeAngle, thicknessTopLayer);
 
         // When
-        constructionProperties._relativeDensityPtr = make_unique<double>(relativeDensity);
-        constructionProperties._similarityParameterThresholdPtr = make_unique<double>(similarityParameterThreshold);
-        constructionProperties._plungingCoefficientAPtr = make_unique<double>(plungingCoefficientA);
-        constructionProperties._plungingCoefficientBPtr = make_unique<double>(plungingCoefficientB);
-        constructionProperties._plungingCoefficientCPtr = make_unique<double>(plungingCoefficientC);
-        constructionProperties._plungingCoefficientNPtr = make_unique<double>(plungingCoefficientN);
-        constructionProperties._surgingCoefficientAPtr = make_unique<double>(surgingCoefficientA);
-        constructionProperties._surgingCoefficientBPtr = make_unique<double>(surgingCoefficientB);
-        constructionProperties._surgingCoefficientCPtr = make_unique<double>(surgingCoefficientC);
-        constructionProperties._surgingCoefficientNPtr = make_unique<double>(surgingCoefficientN);
+        constructionProperties.SetRelativeDensity(make_unique<double>(relativeDensity));
+        constructionProperties.SetSimilarityParameterThreshold(make_unique<double>(similarityParameterThreshold));
+        constructionProperties.SetPlungingCoefficientA(make_unique<double>(plungingCoefficientA));
+        constructionProperties.SetPlungingCoefficientB(make_unique<double>(plungingCoefficientB));
+        constructionProperties.SetPlungingCoefficientC(make_unique<double>(plungingCoefficientC));
+        constructionProperties.SetPlungingCoefficientN(make_unique<double>(plungingCoefficientN));
+        constructionProperties.SetSurgingCoefficientA(make_unique<double>(surgingCoefficientA));
+        constructionProperties.SetSurgingCoefficientB(make_unique<double>(surgingCoefficientB));
+        constructionProperties.SetSurgingCoefficientC(make_unique<double>(surgingCoefficientC));
+        constructionProperties.SetSurgingCoefficientN(make_unique<double>(surgingCoefficientN));
 
         // Then
         ASSERT_DOUBLE_EQ(initialDamage, constructionProperties.GetInitialDamage());
         ASSERT_DOUBLE_EQ(slopeAngle, constructionProperties.GetSlopeAngle());
         ASSERT_DOUBLE_EQ(thicknessTopLayer, constructionProperties.GetThicknessTopLayer());
-        ASSERT_DOUBLE_EQ(relativeDensity, *constructionProperties._relativeDensityPtr);
-        ASSERT_DOUBLE_EQ(similarityParameterThreshold, *constructionProperties._similarityParameterThresholdPtr);
-        ASSERT_DOUBLE_EQ(plungingCoefficientA, *constructionProperties._plungingCoefficientAPtr);
-        ASSERT_DOUBLE_EQ(plungingCoefficientB, *constructionProperties._plungingCoefficientBPtr);
-        ASSERT_DOUBLE_EQ(plungingCoefficientC, *constructionProperties._plungingCoefficientCPtr);
-        ASSERT_DOUBLE_EQ(plungingCoefficientN, *constructionProperties._plungingCoefficientNPtr);
-        ASSERT_DOUBLE_EQ(surgingCoefficientA, *constructionProperties._surgingCoefficientAPtr);
-        ASSERT_DOUBLE_EQ(surgingCoefficientB, *constructionProperties._surgingCoefficientBPtr);
-        ASSERT_DOUBLE_EQ(surgingCoefficientC, *constructionProperties._surgingCoefficientCPtr);
-        ASSERT_DOUBLE_EQ(surgingCoefficientN, *constructionProperties._surgingCoefficientNPtr);
+        ASSERT_DOUBLE_EQ(relativeDensity, *constructionProperties.GetRelativeDensity());
+        ASSERT_DOUBLE_EQ(similarityParameterThreshold, *constructionProperties.GetSimilarityParameterThreshold());
+        ASSERT_DOUBLE_EQ(plungingCoefficientA, *constructionProperties.GetPlungingCoefficientA());
+        ASSERT_DOUBLE_EQ(plungingCoefficientB, *constructionProperties.GetPlungingCoefficientB());
+        ASSERT_DOUBLE_EQ(plungingCoefficientC, *constructionProperties.GetPlungingCoefficientC());
+        ASSERT_DOUBLE_EQ(plungingCoefficientN, *constructionProperties.GetPlungingCoefficientN());
+        ASSERT_DOUBLE_EQ(surgingCoefficientA, *constructionProperties.GetSurgingCoefficientA());
+        ASSERT_DOUBLE_EQ(surgingCoefficientB, *constructionProperties.GetSurgingCoefficientB());
+        ASSERT_DOUBLE_EQ(surgingCoefficientC, *constructionProperties.GetSurgingCoefficientC());
+        ASSERT_DOUBLE_EQ(surgingCoefficientN, *constructionProperties.GetSurgingCoefficientN());
     }
 }
