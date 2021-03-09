@@ -41,5 +41,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
             static std::vector<int> GetTimes(
                 const nlohmann::json& json);
+
+            static void GetHydraulicData(
+                const nlohmann::json& json);
     };
 }

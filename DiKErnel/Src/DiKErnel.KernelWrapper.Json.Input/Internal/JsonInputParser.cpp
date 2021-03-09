@@ -26,6 +26,7 @@
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
+    using namespace nlohmann;
     using namespace std;
 
     unique_ptr<JsonInputData> JsonInputParser::GetJsonInputData(
@@ -36,22 +37,46 @@ namespace DiKErnel::KernelWrapper::Json::Input
         return make_unique<JsonInputData>(
             make_unique<JsonInputCalculationData>(
                 GetTimes(json),
-                nullptr,
+                GetHydraulicData(json),
                 vector<unique_ptr<JsonInputLocationData>>()
             )
         );
     }
 
-    nlohmann::json JsonInputParser::ReadJson(
+    json JsonInputParser::ReadJson(
         const string& filePath)
     {
         ifstream ifs(filePath);
-        return nlohmann::json::parse(ifs);
+        return json::parse(ifs);
     }
 
     vector<int> JsonInputParser::GetTimes(
-        const nlohmann::json& json)
+        const json& json)
     {
         return json[JsonInputDefinitions::CALCULATION_DATA][JsonInputDefinitions::TIME].get<vector<int>>();
+    }
+
+    unique_ptr<JsonInputHydraulicData> JsonInputParser::GetHydraulicData(
+        const json& json)
+    {
+        const auto& readHydraulicLoads = json[JsonInputDefinitions::HYDRAULIC_LOADS];
+        const auto& readBoundaryConditionsPerTimeStep = readHydraulicLoads[JsonInputDefinitions::BOUNDARY_CONDITIONS_PER_TIME_STEP];
+
+        vector<unique_ptr<JsonInputTimeDependentHydraulicData>> timeDependentHydraulicData;
+
+        for (const auto& readBoundaryConditionsForTimeStep : readBoundaryConditionsPerTimeStep)
+        {
+            timeDependentHydraulicData.push_back(
+                make_unique<JsonInputTimeDependentHydraulicData>(
+                    readBoundaryConditionsForTimeStep[JsonInputDefinitions::WATER_LEVEL].get<double>(),
+                    readBoundaryConditionsForTimeStep[JsonInputDefinitions::WAVE_HEIGHT_HM0].get<double>(),
+                    readBoundaryConditionsForTimeStep[JsonInputDefinitions::WAVE_PERIOD_TM10].get<double>(),
+                    readBoundaryConditionsForTimeStep[JsonInputDefinitions::WAVE_ANGLE].get<double>()
+                ));
+        }
+
+        return make_unique<JsonInputHydraulicData>(
+            readHydraulicLoads[JsonInputDefinitions::MAXIMUM_WAVE_ANGLE].get<double>(),
+            move(timeDependentHydraulicData));
     }
 }
