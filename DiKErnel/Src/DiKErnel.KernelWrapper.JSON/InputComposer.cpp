@@ -179,13 +179,13 @@ namespace DiKErnel::KernelWrapper::Json
     }
 
     double InputComposer::GetOptionalDoubleValue(
-        const nlohmann::basic_json<>::value_type& hydraulicLoads,
+        const nlohmann::basic_json<>::value_type& groupElement,
         const string& inputJsonDefinition,
         const double defaultValue)
     {
-        if (hydraulicLoads.contains(inputJsonDefinition))
+        if (groupElement.contains(inputJsonDefinition))
         {
-            return hydraulicLoads[inputJsonDefinition].get<double>();
+            return groupElement[inputJsonDefinition].get<double>();
         }
 
         return defaultValue;
