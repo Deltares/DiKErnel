@@ -24,26 +24,26 @@ namespace DiKErnel::DomainLibrary
 {
     const double Defaults::CRITICAL_DAMAGE = 1.0;
 
-    const double Defaults::HYDRAULIC_LOAD_ON_NATURAL_STONE_XIB = 2.9;
-    const double Defaults::HYDRAULIC_LOAD_ON_NATURAL_STONE_AP = 4;
-    const double Defaults::HYDRAULIC_LOAD_ON_NATURAL_STONE_BP = 0;
-    const double Defaults::HYDRAULIC_LOAD_ON_NATURAL_STONE_CP = 0;
-    const double Defaults::HYDRAULIC_LOAD_ON_NATURAL_STONE_NP = -0.9;
-    const double Defaults::HYDRAULIC_LOAD_ON_NATURAL_STONE_AS = 0.8;
-    const double Defaults::HYDRAULIC_LOAD_ON_NATURAL_STONE_BS = 0;
-    const double Defaults::HYDRAULIC_LOAD_ON_NATURAL_STONE_CS = 0;
-    const double Defaults::HYDRAULIC_LOAD_ON_NATURAL_STONE_NS = 0.6;
+    const double Defaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_XIB = 2.9;
+    const double Defaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_AP = 4;
+    const double Defaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_BP = 0;
+    const double Defaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_CP = 0;
+    const double Defaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_NP = -0.9;
+    const double Defaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_AS = 0.8;
+    const double Defaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_BS = 0;
+    const double Defaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_CS = 0;
+    const double Defaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_NS = 0.6;
 
-    const double Defaults::UPPER_LIMIT_LOADING_OF_NATURAL_STONE_AUL = 0.1;
-    const double Defaults::UPPER_LIMIT_LOADING_OF_NATURAL_STONE_BUL = 0.6;
-    const double Defaults::UPPER_LIMIT_LOADING_OF_NATURAL_STONE_CUL = 4;
+    const double Defaults::UPPER_LIMIT_LOADING_OF_NORDIC_STONE_AUL = 0.1;
+    const double Defaults::UPPER_LIMIT_LOADING_OF_NORDIC_STONE_BUL = 0.6;
+    const double Defaults::UPPER_LIMIT_LOADING_OF_NORDIC_STONE_CUL = 4;
 
-    const double Defaults::LOWER_LIMIT_LOADING_OF_NATURAL_STONE_ALL = 0.1;
-    const double Defaults::LOWER_LIMIT_LOADING_OF_NATURAL_STONE_BLL = 0.2;
-    const double Defaults::LOWER_LIMIT_LOADING_OF_NATURAL_STONE_CLL = 0.4;
+    const double Defaults::LOWER_LIMIT_LOADING_OF_NORDIC_STONE_ALL = 0.1;
+    const double Defaults::LOWER_LIMIT_LOADING_OF_NORDIC_STONE_BLL = 0.2;
+    const double Defaults::LOWER_LIMIT_LOADING_OF_NORDIC_STONE_CLL = 0.4;
 
-    const double Defaults::DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE_ASMAX = 0.42;
-    const double Defaults::DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE_BSMAX = 0.9;
+    const double Defaults::DISTANCE_MAXIMUM_WAVE_ELEVATION_NORDIC_STONE_ASMAX = 0.42;
+    const double Defaults::DISTANCE_MAXIMUM_WAVE_ELEVATION_NORDIC_STONE_BSMAX = 0.9;
 
     const double Defaults::NORMATIVE_WIDTH_OF_WAVE_IMPACT_AWI = 0.96;
     const double Defaults::NORMATIVE_WIDTH_OF_WAVE_IMPACT_BWI = 0.11;

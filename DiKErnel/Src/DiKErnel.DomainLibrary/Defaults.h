@@ -34,26 +34,26 @@ namespace DiKErnel::DomainLibrary
              */
             static const double CRITICAL_DAMAGE;
 
-            static const double HYDRAULIC_LOAD_ON_NATURAL_STONE_XIB;
-            static const double HYDRAULIC_LOAD_ON_NATURAL_STONE_AP;
-            static const double HYDRAULIC_LOAD_ON_NATURAL_STONE_BP;
-            static const double HYDRAULIC_LOAD_ON_NATURAL_STONE_CP;
-            static const double HYDRAULIC_LOAD_ON_NATURAL_STONE_NP;
-            static const double HYDRAULIC_LOAD_ON_NATURAL_STONE_AS;
-            static const double HYDRAULIC_LOAD_ON_NATURAL_STONE_BS;
-            static const double HYDRAULIC_LOAD_ON_NATURAL_STONE_CS;
-            static const double HYDRAULIC_LOAD_ON_NATURAL_STONE_NS;
+            static const double HYDRAULIC_LOAD_ON_NORDIC_STONE_XIB;
+            static const double HYDRAULIC_LOAD_ON_NORDIC_STONE_AP;
+            static const double HYDRAULIC_LOAD_ON_NORDIC_STONE_BP;
+            static const double HYDRAULIC_LOAD_ON_NORDIC_STONE_CP;
+            static const double HYDRAULIC_LOAD_ON_NORDIC_STONE_NP;
+            static const double HYDRAULIC_LOAD_ON_NORDIC_STONE_AS;
+            static const double HYDRAULIC_LOAD_ON_NORDIC_STONE_BS;
+            static const double HYDRAULIC_LOAD_ON_NORDIC_STONE_CS;
+            static const double HYDRAULIC_LOAD_ON_NORDIC_STONE_NS;
             
-            static const double UPPER_LIMIT_LOADING_OF_NATURAL_STONE_AUL;
-            static const double UPPER_LIMIT_LOADING_OF_NATURAL_STONE_BUL;
-            static const double UPPER_LIMIT_LOADING_OF_NATURAL_STONE_CUL;
+            static const double UPPER_LIMIT_LOADING_OF_NORDIC_STONE_AUL;
+            static const double UPPER_LIMIT_LOADING_OF_NORDIC_STONE_BUL;
+            static const double UPPER_LIMIT_LOADING_OF_NORDIC_STONE_CUL;
             
-            static const double LOWER_LIMIT_LOADING_OF_NATURAL_STONE_ALL;
-            static const double LOWER_LIMIT_LOADING_OF_NATURAL_STONE_BLL;
-            static const double LOWER_LIMIT_LOADING_OF_NATURAL_STONE_CLL;
+            static const double LOWER_LIMIT_LOADING_OF_NORDIC_STONE_ALL;
+            static const double LOWER_LIMIT_LOADING_OF_NORDIC_STONE_BLL;
+            static const double LOWER_LIMIT_LOADING_OF_NORDIC_STONE_CLL;
             
-            static const double DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE_ASMAX;
-            static const double DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE_BSMAX;
+            static const double DISTANCE_MAXIMUM_WAVE_ELEVATION_NORDIC_STONE_ASMAX;
+            static const double DISTANCE_MAXIMUM_WAVE_ELEVATION_NORDIC_STONE_BSMAX;
             
             static const double NORMATIVE_WIDTH_OF_WAVE_IMPACT_AWI;
             static const double NORMATIVE_WIDTH_OF_WAVE_IMPACT_BWI;
