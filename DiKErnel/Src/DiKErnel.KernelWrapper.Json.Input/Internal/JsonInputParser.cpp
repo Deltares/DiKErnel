@@ -163,8 +163,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
         return make_unique<JsonInputNaturalStoneRevetmentLocationData>(
             readRevetment[JsonInputDefinitions::TYPE_TOP_LAYER], readRevetment[JsonInputDefinitions::RELATIVE_DENSITY],
-            readRevetment[JsonInputDefinitions::THICKNESS_TOP_LAYER], similarityParameterThreshold, plungingCoefficientA, plungingCoefficientB,
-            plungingCoefficientC, plungingCoefficientN, surgingCoefficientA, surgingCoefficientB, surgingCoefficientC, surgingCoefficientN);
+            readRevetment[JsonInputDefinitions::THICKNESS_TOP_LAYER], move(similarityParameterThreshold), move(plungingCoefficientA),
+            move(plungingCoefficientB), move(plungingCoefficientC), move(plungingCoefficientN), move(surgingCoefficientA),
+            move(surgingCoefficientB), move(surgingCoefficientC), move(surgingCoefficientN));
     }
 
     unique_ptr<double> JsonInputParser::ReadOptionalValue(
