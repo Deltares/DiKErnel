@@ -38,7 +38,8 @@ namespace DiKErnel::Core::Test
         vector<unique_ptr<ILocationDependentInput>> _locationDependentInputItems = vector<unique_ptr<ILocationDependentInput>>();
         vector<unique_ptr<ITimeDependentInput>> _timeDependentInputItems = vector<unique_ptr<ITimeDependentInput>>();
 
-        vector<reference_wrapper<ILocationDependentInput>> _locationDependentInputItemReferences = vector<reference_wrapper<ILocationDependentInput>>();
+        vector<reference_wrapper<ILocationDependentInput>> _locationDependentInputItemReferences
+                = vector<reference_wrapper<ILocationDependentInput>>();
         vector<reference_wrapper<ITimeDependentInput>> _timeDependentInputItemReferences = vector<reference_wrapper<ITimeDependentInput>>();
 
         explicit CalculatorTest()
@@ -71,11 +72,11 @@ namespace DiKErnel::Core::Test
         ON_CALL(calculationInput, GetTimeDependentInputItems).WillByDefault(ReturnRef(_timeDependentInputItemReferences));
         ON_CALL(calculationInput, GetMaximumWaveAngle).WillByDefault(Return(0));
 
-        const auto* location = dynamic_cast<ILocationDependentInputMock*>(&_locationDependentInputItemReferences[0].get());
-        ASSERT_TRUE(location != nullptr);
+        const auto* locationDependentInput = dynamic_cast<ILocationDependentInputMock*>(&_locationDependentInputItemReferences[0].get());
+        ASSERT_TRUE(locationDependentInput != nullptr);
 
-        ON_CALL(*location, GetInitialDamage).WillByDefault(Return(0.1));
-        ON_CALL(*location, Calculate).WillByDefault(Return(damage));
+        ON_CALL(*locationDependentInput, GetInitialDamage).WillByDefault(Return(0.1));
+        ON_CALL(*locationDependentInput, Calculate).WillByDefault(Return(damage));
 
         Calculator calculator(calculationInput);
 
@@ -88,22 +89,19 @@ namespace DiKErnel::Core::Test
         ASSERT_FALSE(calculator.IsCancelled());
 
         const auto output = calculator.GetCalculationOutput();
+
         const auto& locationOutputItems = output->GetLocationOutputItems();
+        ASSERT_EQ(1, locationOutputItems.size());
 
-        ASSERT_EQ(_locationDependentInputItemReferences.size(), locationOutputItems.size());
+        const auto& actualDamages = locationOutputItems[0].get().GetDamages();
+        ASSERT_EQ(_timeDependentInputItemReferences.size(), actualDamages.size());
 
-        for (auto i = 0; i < static_cast<int>(_locationDependentInputItemReferences.size()); ++i)
+        for (auto j = 0; j < _timeDependentInputItemReferences.size(); ++j)
         {
-            const auto& actualDamages = locationOutputItems[i].get().GetDamages();
-            ASSERT_EQ(_timeDependentInputItemReferences.size(), actualDamages.size());
-
-            for (auto j = 0; j < _timeDependentInputItemReferences.size(); ++j)
-            {
-                ASSERT_EQ(damage, actualDamages[j]);
-            }
-
-            ASSERT_EQ(nullptr, locationOutputItems[i].get().GetTimeOfFailure());
+            ASSERT_DOUBLE_EQ(damage, actualDamages[j]);
         }
+
+        ASSERT_EQ(nullptr, locationOutputItems[0].get().GetTimeOfFailure());
     }
 
     TEST_F(CalculatorTest, GivenCalculatorWithRunningCalculation_WhenCancelCalled_ThenCalculationCancelled)
@@ -123,7 +121,7 @@ namespace DiKErnel::Core::Test
         // Then
         ASSERT_TRUE(calculator.IsCancelled());
         ASSERT_FALSE(calculator.IsFinished());
-        ASSERT_FALSE(calculator.GetProgress() == 100);
+        ASSERT_NE(100, calculator.GetProgress());
     }
 
     TEST_F(CalculatorTest, GivenCalculatorWithFinishedCalculation_WhenCancelCalled_ThenCalculationNotCancelled)
@@ -143,7 +141,7 @@ namespace DiKErnel::Core::Test
         // Then
         ASSERT_FALSE(calculator.IsCancelled());
         ASSERT_TRUE(calculator.IsFinished());
-        ASSERT_TRUE(calculator.GetProgress() == 100);
+        ASSERT_EQ(100, calculator.GetProgress());
     }
 
     TEST_F(CalculatorTest, GivenCalculatorWithUnfinishedCalculation_WhenGetCalculationOutput_ThenNullPtrReturned)

@@ -39,7 +39,7 @@ namespace DiKErnel::Core::Test
 
         // Assert
         ASSERT_EQ(1, locationOutput.GetDamages().size());
-        ASSERT_EQ(timeOfFailure, *locationOutput.GetTimeOfFailure());
+        ASSERT_DOUBLE_EQ(timeOfFailure, *locationOutput.GetTimeOfFailure());
     }
 
     TEST(LocationOutputTest, Constructor_TimeOfFailureNullPtr_ExpectedValues)
