@@ -24,8 +24,8 @@
 
 #include "Calculator.h"
 #include "ICalculationInputMock.h"
-#include "ILocationDependentDataMock.h"
-#include "ITimeDependentDataMock.h"
+#include "ILocationDependentInputMock.h"
+#include "ITimeDependentInputMock.h"
 
 namespace DiKErnel::Core::Test
 {
@@ -43,11 +43,11 @@ namespace DiKErnel::Core::Test
 
         explicit CalculatorTest()
         {
-            _locationDependentInputItems.emplace_back(make_unique<NiceMock<ILocationDependentDataMock>>());
+            _locationDependentInputItems.emplace_back(make_unique<NiceMock<ILocationDependentInputMock>>());
 
-            _timeDependentInputItems.emplace_back(make_unique<ITimeDependentDataMock>());
-            _timeDependentInputItems.emplace_back(make_unique<ITimeDependentDataMock>());
-            _timeDependentInputItems.emplace_back(make_unique<ITimeDependentDataMock>());
+            _timeDependentInputItems.emplace_back(make_unique<ITimeDependentInputMock>());
+            _timeDependentInputItems.emplace_back(make_unique<ITimeDependentInputMock>());
+            _timeDependentInputItems.emplace_back(make_unique<ITimeDependentInputMock>());
 
             for (const auto& locationDependentInput : _locationDependentInputItems)
             {
@@ -71,7 +71,7 @@ namespace DiKErnel::Core::Test
         ON_CALL(calculationInput, GetTimeDependentInputItems).WillByDefault(ReturnRef(_timeDependentInputItemReferences));
         ON_CALL(calculationInput, GetMaximumWaveAngle).WillByDefault(Return(0));
 
-        const auto* location = dynamic_cast<ILocationDependentDataMock*>(&_locationDependentInputItemReferences[0].get());
+        const auto* location = dynamic_cast<ILocationDependentInputMock*>(&_locationDependentInputItemReferences[0].get());
         ASSERT_TRUE(location != nullptr);
 
         ON_CALL(*location, GetInitialDamage).WillByDefault(Return(0.1));

@@ -22,14 +22,18 @@
 
 #include <gmock/gmock.h>
 
-#include "ILocationDependentInput.h"
+#include "ITimeDependentInput.h"
 
 namespace DiKErnel::Core::TestUtil
 {
-    class ILocationDependentDataMock : public ILocationDependentInput
+    class ITimeDependentInputMock : public ITimeDependentInput
     {
         public:
-            MOCK_METHOD(double, Calculate, (double startDamage, const ITimeDependentInput& timeDependentInput, double maximumWaveAngle), (override));
-            MOCK_METHOD(double, GetInitialDamage, (), (const, override));
+            MOCK_METHOD(int, GetBeginTime, (), (const, override));
+            MOCK_METHOD(int, GetEndTime, (), (const, override));
+            MOCK_METHOD(double, GetWaterLevel, (), (const, override));
+            MOCK_METHOD(double, GetWaveHeightHm0, (), (const, override));
+            MOCK_METHOD(double, GetWavePeriodTm10, (), (const, override));
+            MOCK_METHOD(double, GetWaveAngle, (), (const, override));
     };
 }

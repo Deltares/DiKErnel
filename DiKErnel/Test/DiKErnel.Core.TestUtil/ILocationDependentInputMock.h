@@ -18,6 +18,18 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include "ILocationDependentDataMock.h"
+#pragma once
 
-namespace DiKErnel::Core::TestUtil {}
+#include <gmock/gmock.h>
+
+#include "ILocationDependentInput.h"
+
+namespace DiKErnel::Core::TestUtil
+{
+    class ILocationDependentInputMock : public ILocationDependentInput
+    {
+        public:
+            MOCK_METHOD(double, Calculate, (double startDamage, const ITimeDependentInput& timeDependentInput, double maximumWaveAngle), (override));
+            MOCK_METHOD(double, GetInitialDamage, (), (const, override));
+    };
+}

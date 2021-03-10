@@ -5,10 +5,10 @@ set(LIBNAME DiKErnel.Core.TestUtil)
 set(SOURCEFILES
   ICalculationInputMock.cpp
   ICalculationInputMock.h
-  ILocationDependentDataMock.cpp
-  ILocationDependentDataMock.h
-  ITimeDependentDataMock.cpp
-  ITimeDependentDataMock.h
+  ILocationDependentInputMock.cpp
+  ILocationDependentInputMock.h
+  ITimeDependentInputMock.cpp
+  ITimeDependentInputMock.h
 )
 
 # Add library
