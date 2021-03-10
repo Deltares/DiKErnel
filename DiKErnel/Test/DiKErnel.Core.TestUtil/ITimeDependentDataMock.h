@@ -22,7 +22,7 @@
 
 #include <gmock/gmock.h>
 
-#include "ITimeDependentData.h"
+#include "ITimeDependentInput.h"
 
 namespace DiKErnel::Core::TestUtil
 {

@@ -20,7 +20,7 @@
 
 #pragma once
 
-#include "ILocationDependentData.h"
+#include "ILocationDependentInput.h"
 
 namespace DiKErnel::Integration
 {

@@ -43,8 +43,8 @@ namespace DiKErnel::Core
                 std::unique_ptr<double> timeOfFailure);
 
             /*!
-             * \brief Gets all damages.
-             * \return All damages.
+             * \brief Gets the damages.
+             * \return The damages.
              */
             const std::vector<double>& GetDamages() const;
 

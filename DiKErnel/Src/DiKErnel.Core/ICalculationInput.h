@@ -22,8 +22,8 @@
 
 #include <vector>
 
-#include "ILocationDependentData.h"
-#include "ITimeDependentData.h"
+#include "ILocationDependentInput.h"
+#include "ITimeDependentInput.h"
 
 namespace DiKErnel::Core
 {

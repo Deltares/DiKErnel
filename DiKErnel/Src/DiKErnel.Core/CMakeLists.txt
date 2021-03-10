@@ -10,8 +10,8 @@ set(SOURCEFILES
   DeprecatedCalculator.cpp
   DeprecatedCalculator.h
   ICalculationInput.h
-  ILocationDependentData.h
-  ITimeDependentData.h
+  ILocationDependentInput.h
+  ITimeDependentInput.h
   LocationOutput.cpp
   LocationOutput.h
 )

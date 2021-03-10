@@ -22,7 +22,7 @@
 
 #include <gmock/gmock.h>
 
-#include "ILocationDependentData.h"
+#include "ILocationDependentInput.h"
 
 namespace DiKErnel::Core::TestUtil
 {

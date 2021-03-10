@@ -20,7 +20,7 @@
 
 #pragma once
 
-#include "ITimeDependentData.h"
+#include "ITimeDependentInput.h"
 
 namespace DiKErnel::Integration
 {
