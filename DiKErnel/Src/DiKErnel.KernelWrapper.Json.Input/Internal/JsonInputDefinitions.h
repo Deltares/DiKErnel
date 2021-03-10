@@ -66,6 +66,24 @@ namespace DiKErnel::KernelWrapper::Json::Input
             inline static const std::string HYDRAULIC_LOAD_ON_NATURAL_STONE_CS = "HydraulischeBelastingNatuurSteenCs";
             inline static const std::string HYDRAULIC_LOAD_ON_NATURAL_STONE_NS = "HydraulischeBelastingNatuurSteenNs";
 
+            inline static const std::string UPPER_LIMIT_LOADING_OF_NATURAL_STONE = "BovengrensBelastingNatuursteen";
+            inline static const std::string UPPER_LIMIT_LOADING_OF_NATURAL_STONE_AUL = "BovengrensBelastingNatuursteenAul";
+            inline static const std::string UPPER_LIMIT_LOADING_OF_NATURAL_STONE_BUL = "BovengrensBelastingNatuursteenBul";
+            inline static const std::string UPPER_LIMIT_LOADING_OF_NATURAL_STONE_CUL = "BovengrensBelastingNatuursteenCul";
+
+            inline static const std::string LOWER_LIMIT_LOADING_OF_NATURAL_STONE = "OndergrensBelastingNatuursteen";
+            inline static const std::string LOWER_LIMIT_LOADING_OF_NATURAL_STONE_ALL = "OndergrensBelastingNatuursteenAll";
+            inline static const std::string LOWER_LIMIT_LOADING_OF_NATURAL_STONE_BLL = "OndergrensBelastingNatuursteenBll";
+            inline static const std::string LOWER_LIMIT_LOADING_OF_NATURAL_STONE_CLL = "OndergrensBelastingNatuursteenCll";
+
+            inline static const std::string DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE = "AfstandMaximaleStijghoogte";
+            inline static const std::string DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE_ASMAX = "AfstandMaximaleStijghoogteAsmax";
+            inline static const std::string DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE_BSMAX = "AfstandMaximaleStijghoogteBsmax";
+
+            inline static const std::string NORMATIVE_WIDTH_OF_WAVE_IMPACT = "MaatgevendeBreedteGolfklap";
+            inline static const std::string NORMATIVE_WIDTH_OF_WAVE_IMPACT_AWI = "MaatgevendeBreedteGolfklapAwi";
+            inline static const std::string NORMATIVE_WIDTH_OF_WAVE_IMPACT_BWI = "MaatgevendeBreedteGolfklapBwi";
+
             inline static const std::string PROFILE_SCHEMATIZATION = "Profielschematisatie";
             inline static const std::string TAN_A = "TanA";
             inline static const std::string POSITION_Z = "PositieZ";

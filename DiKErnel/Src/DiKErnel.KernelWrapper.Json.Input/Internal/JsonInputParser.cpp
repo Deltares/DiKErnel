@@ -136,15 +136,14 @@ namespace DiKErnel::KernelWrapper::Json::Input
         const basic_json<>::value_type& readRevetment,
         const basic_json<>::value_type& readCalculationMethod)
     {
-        auto locationData =  make_unique<JsonInputNaturalStoneRevetmentLocationData>(
+        auto locationData = make_unique<JsonInputNaturalStoneRevetmentLocationData>(
             readRevetment[JsonInputDefinitions::TYPE_TOP_LAYER], readRevetment[JsonInputDefinitions::RELATIVE_DENSITY],
             readRevetment[JsonInputDefinitions::THICKNESS_TOP_LAYER]);
 
         if (readCalculationMethod.contains(JsonInputDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE))
         {
-            const auto& readHydraulicLoads = readRevetment[JsonInputDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE];
+            const auto& readHydraulicLoads = readCalculationMethod[JsonInputDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE];
 
-            locationData->SetSimilarityParameterThreshold(ReadOptionalValue(readHydraulicLoads, JsonInputDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_XIB));
             locationData->SetPlungingCoefficientA(ReadOptionalValue(readHydraulicLoads, JsonInputDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_AP));
             locationData->SetPlungingCoefficientB(ReadOptionalValue(readHydraulicLoads, JsonInputDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_BP));
             locationData->SetPlungingCoefficientC(ReadOptionalValue(readHydraulicLoads, JsonInputDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_CP));
@@ -153,6 +152,42 @@ namespace DiKErnel::KernelWrapper::Json::Input
             locationData->SetSurgingCoefficientB(ReadOptionalValue(readHydraulicLoads, JsonInputDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_BS));
             locationData->SetSurgingCoefficientC(ReadOptionalValue(readHydraulicLoads, JsonInputDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_CS));
             locationData->SetSurgingCoefficientN(ReadOptionalValue(readHydraulicLoads, JsonInputDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_NS));
+            locationData->SetSimilarityParameterThreshold(
+                ReadOptionalValue(readHydraulicLoads, JsonInputDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_XIB));
+        }
+
+        if (readCalculationMethod.contains(JsonInputDefinitions::UPPER_LIMIT_LOADING_OF_NATURAL_STONE))
+        {
+            const auto& readUpperLimitLoading = readCalculationMethod[JsonInputDefinitions::UPPER_LIMIT_LOADING_OF_NATURAL_STONE];
+
+            locationData->SetUpperLimitLoadingAul(ReadOptionalValue(
+                readUpperLimitLoading, JsonInputDefinitions::UPPER_LIMIT_LOADING_OF_NATURAL_STONE_AUL));
+            locationData->SetUpperLimitLoadingBul(ReadOptionalValue(
+                readUpperLimitLoading, JsonInputDefinitions::UPPER_LIMIT_LOADING_OF_NATURAL_STONE_BUL));
+            locationData->SetUpperLimitLoadingCul(ReadOptionalValue(
+                readUpperLimitLoading, JsonInputDefinitions::UPPER_LIMIT_LOADING_OF_NATURAL_STONE_CUL));
+        }
+
+        if (readCalculationMethod.contains(JsonInputDefinitions::LOWER_LIMIT_LOADING_OF_NATURAL_STONE))
+        {
+            const auto& readLowerLimitLoading = readCalculationMethod[JsonInputDefinitions::LOWER_LIMIT_LOADING_OF_NATURAL_STONE];
+
+            locationData->SetLowerLimitLoadingAll(ReadOptionalValue(
+                readLowerLimitLoading, JsonInputDefinitions::LOWER_LIMIT_LOADING_OF_NATURAL_STONE_ALL));
+            locationData->SetLowerLimitLoadingBll(ReadOptionalValue(
+                readLowerLimitLoading, JsonInputDefinitions::LOWER_LIMIT_LOADING_OF_NATURAL_STONE_BLL));
+            locationData->SetLowerLimitLoadingCll(ReadOptionalValue(
+                readLowerLimitLoading, JsonInputDefinitions::LOWER_LIMIT_LOADING_OF_NATURAL_STONE_CLL));
+        }
+
+        if (readCalculationMethod.contains(JsonInputDefinitions::DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE))
+        {
+            const auto& readDistanceMaxWaveElevation = readCalculationMethod[JsonInputDefinitions::DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE];
+
+            locationData->SetDistanceMaximumWaveElevationAsmax(ReadOptionalValue(
+                readDistanceMaxWaveElevation, JsonInputDefinitions::DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE_ASMAX));
+            locationData->SetDistanceMaximumWaveElevationBsmax(ReadOptionalValue(
+                readDistanceMaxWaveElevation, JsonInputDefinitions::DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE_BSMAX));
         }
 
         return locationData;
