@@ -22,5 +22,23 @@
 
 namespace DiKErnel::Integration
 {
-    class NaturalStoneRevetmentLowerLimitLoading {};
+    class NaturalStoneRevetmentLowerLimitLoading
+    {
+        public:
+            explicit NaturalStoneRevetmentLowerLimitLoading(
+                double lowerLimitAll,
+                double lowerLimitBll,
+                double lowerLimitCll);
+
+            double GetLowerLimitAll() const;
+
+            double GetLowerLimitBll() const;
+
+            double GetLowerLimitCll() const;
+
+        private:
+            double _lowerLimitAll;
+            double _lowerLimitBll;
+            double _lowerLimitCll;
+    };
 }

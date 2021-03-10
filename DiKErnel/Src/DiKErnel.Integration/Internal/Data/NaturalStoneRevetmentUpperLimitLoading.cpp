@@ -18,4 +18,30 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-namespace DiKErnel::Integration {}
+#include "NaturalStoneRevetmentUpperLimitLoading.h"
+
+namespace DiKErnel::Integration
+{
+    NaturalStoneRevetmentUpperLimitLoading::NaturalStoneRevetmentUpperLimitLoading(
+        const double upperLimitAul,
+        const double upperLimitBul,
+        const double upperLimitCul)
+        : _upperLimitAul(upperLimitAul),
+          _upperLimitBul(upperLimitBul),
+          _upperLimitCul(upperLimitCul) {}
+
+    double NaturalStoneRevetmentUpperLimitLoading::GetUpperLimitAul() const
+    {
+        return _upperLimitAul;
+    }
+
+    double NaturalStoneRevetmentUpperLimitLoading::GetUpperLimitBul() const
+    {
+        return _upperLimitBul;
+    }
+
+    double NaturalStoneRevetmentUpperLimitLoading::GetUpperLimitCul() const
+    {
+        return _upperLimitCul;
+    }
+}
