@@ -34,20 +34,20 @@ namespace DiKErnel::Core
         public:
             /*!
              * \brief Creates a new instance.
-             * \param locationOutputs
-             *        All location outputs.
+             * \param locationOutputItems
+             *        The location output items.
              */
             explicit CalculationOutput(
-                std::vector<std::unique_ptr<LocationOutput>> locationOutputs);
+                std::vector<std::unique_ptr<LocationOutput>> locationOutputItems);
 
             /*!
-             * \brief Gets all location outputs.
-             * \return All location outputs.
+             * \brief Gets the location output items.
+             * \return The location output items.
              */
-            const std::vector<std::reference_wrapper<LocationOutput>>& GetLocationOutputs() const;
+            const std::vector<std::reference_wrapper<LocationOutput>>& GetLocationOutputItems() const;
 
         private:
-            std::vector<std::unique_ptr<LocationOutput>> _locationOutputs;
-            std::vector<std::reference_wrapper<LocationOutput>> _locationOutputReferences;
+            std::vector<std::unique_ptr<LocationOutput>> _locationOutputItems;
+            std::vector<std::reference_wrapper<LocationOutput>> _locationOutputItemReferences;
     };
 }

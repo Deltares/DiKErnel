@@ -30,14 +30,14 @@ namespace DiKErnel::Core::Test
     TEST(CalculationOutputTest, Constructor_WithParameters_ExpectedValues)
     {
         // Setup
-        auto locationOutputs = vector<unique_ptr<LocationOutput>>();
-        locationOutputs.push_back(make_unique<LocationOutput>(vector<double>(), nullptr));
-        locationOutputs.push_back(make_unique<LocationOutput>(vector<double>(), nullptr));
+        auto locationOutputItems = vector<unique_ptr<LocationOutput>>();
+        locationOutputItems.push_back(make_unique<LocationOutput>(vector<double>(), nullptr));
+        locationOutputItems.push_back(make_unique<LocationOutput>(vector<double>(), nullptr));
 
         // Call
-        const CalculationOutput output(move(locationOutputs));
+        const CalculationOutput output(move(locationOutputItems));
 
         // Assert
-        ASSERT_EQ(2, output.GetLocationOutputs().size());
+        ASSERT_EQ(2, output.GetLocationOutputItems().size());
     }
 }

@@ -134,13 +134,13 @@ namespace DiKErnel::Core
     void Calculator::CreateOutput(
         const vector<vector<double>>& damages)
     {
-        auto locationOutputs = vector<unique_ptr<LocationOutput>>();
+        auto locationOutputItems = vector<unique_ptr<LocationOutput>>();
 
         for (const auto& locationDamages : damages)
         {
-            locationOutputs.push_back(make_unique<LocationOutput>(locationDamages, nullptr));
+            locationOutputItems.push_back(make_unique<LocationOutput>(locationDamages, nullptr));
         }
 
-        _calculationOutput = make_shared<CalculationOutput>(move(locationOutputs));
+        _calculationOutput = make_shared<CalculationOutput>(move(locationOutputItems));
     }
 }

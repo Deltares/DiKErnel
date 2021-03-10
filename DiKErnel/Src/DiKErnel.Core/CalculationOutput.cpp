@@ -25,17 +25,17 @@ namespace DiKErnel::Core
     using namespace std;
 
     CalculationOutput::CalculationOutput(
-        vector<unique_ptr<LocationOutput>> locationOutputs)
-        : _locationOutputs(move(locationOutputs))
+        vector<unique_ptr<LocationOutput>> locationOutputItems)
+        : _locationOutputItems(move(locationOutputItems))
     {
-        for (const auto& locationOutput : _locationOutputs)
+        for (const auto& locationOutput : _locationOutputItems)
         {
-            _locationOutputReferences.emplace_back(*locationOutput);
+            _locationOutputItemReferences.emplace_back(*locationOutput);
         }
     }
 
-    const vector<reference_wrapper<LocationOutput>>& CalculationOutput::GetLocationOutputs() const
+    const vector<reference_wrapper<LocationOutput>>& CalculationOutput::GetLocationOutputItems() const
     {
-        return _locationOutputReferences;
+        return _locationOutputItemReferences;
     }
 }

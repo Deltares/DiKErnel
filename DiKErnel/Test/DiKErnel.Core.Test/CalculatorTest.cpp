@@ -88,13 +88,13 @@ namespace DiKErnel::Core::Test
         ASSERT_FALSE(calculator.IsCancelled());
 
         const auto output = calculator.GetCalculationOutput();
-        const auto& locationOutputs = output->GetLocationOutputs();
+        const auto& locationOutputItems = output->GetLocationOutputItems();
 
-        ASSERT_EQ(_locationDependentInputItemReferences.size(), locationOutputs.size());
+        ASSERT_EQ(_locationDependentInputItemReferences.size(), locationOutputItems.size());
 
         for (auto i = 0; i < static_cast<int>(_locationDependentInputItemReferences.size()); ++i)
         {
-            const auto& actualDamages = locationOutputs[i].get().GetDamages();
+            const auto& actualDamages = locationOutputItems[i].get().GetDamages();
             ASSERT_EQ(_timeDependentInputItemReferences.size(), actualDamages.size());
 
             for (auto j = 0; j < _timeDependentInputItemReferences.size(); ++j)
@@ -102,7 +102,7 @@ namespace DiKErnel::Core::Test
                 ASSERT_EQ(damage, actualDamages[j]);
             }
 
-            ASSERT_EQ(nullptr, locationOutputs[i].get().GetTimeOfFailure());
+            ASSERT_EQ(nullptr, locationOutputItems[i].get().GetTimeOfFailure());
         }
     }
 
