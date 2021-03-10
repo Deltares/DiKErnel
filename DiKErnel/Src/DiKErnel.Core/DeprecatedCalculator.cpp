@@ -57,7 +57,7 @@ namespace DiKErnel::Core
 
         auto timeSteps = vector<tuple<int, int, reference_wrapper<BoundaryConditionsPerTimeStep>>>();
 
-        for (auto i = 0; i < static_cast<int>(times.size()) - 1; i++)
+        for (auto i = 0; i < static_cast<int>(times.size()) - 1; ++i)
         {
             timeSteps.emplace_back(times[i], times[static_cast<vector<int, allocator<int>>::size_type>(i) + 1], boundariesPerTimeStep[i]);
         }
@@ -111,7 +111,7 @@ namespace DiKErnel::Core
 
         if (_isFinished)
         {
-            for (auto i = 0; i < static_cast<int>(_locations.size()); i++)
+            for (auto i = 0; i < static_cast<int>(_locations.size()); ++i)
             {
                 const auto& outputDataForLocation = _outputData[i];
 
@@ -180,7 +180,7 @@ namespace DiKErnel::Core
                 break;
             }
 
-            for (auto i = 0; i < static_cast<int>(locations.size()); i++)
+            for (auto i = 0; i < static_cast<int>(locations.size()); ++i)
             {
                 if (isCancelled)
                 {

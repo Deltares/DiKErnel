@@ -32,7 +32,7 @@ namespace DiKErnel::Integration
     {
         public:
             /*!
-             * \brief Create a new instance.
+             * \brief Creates a new instance.
              * \param maximumWaveAngle
              *        The maximum wave angle.
              */

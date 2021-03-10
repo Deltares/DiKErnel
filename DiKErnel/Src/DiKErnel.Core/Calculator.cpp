@@ -81,16 +81,16 @@ namespace DiKErnel::Core
 
     void Calculator::PerformCalculation(
         const ICalculationInput& calculationInput,
-        std::atomic<double>& progress,
-        std::atomic<bool>& isFinished,
-        const std::atomic<bool>& isCancelled)
+        atomic<double>& progress,
+        atomic<bool>& isFinished,
+        const atomic<bool>& isCancelled)
     {
         const auto& timeDependentDataItems = calculationInput.GetTimeDependentDataItems();
         const auto& locationDependentDataItems = calculationInput.GetLocationDependentDataItems();
 
         auto damages = vector<vector<double>>(locationDependentDataItems.size(), vector<double>());
 
-        const auto percentagePerCalculation = 1.0
+        const auto progressPerCalculationStep = 1.0
                 / static_cast<double>(timeDependentDataItems.size())
                 / static_cast<double>(locationDependentDataItems.size());
 
@@ -120,7 +120,7 @@ namespace DiKErnel::Core
 
                 damages[j].push_back(damage);
 
-                progress = progress + percentagePerCalculation;
+                progress = progress + progressPerCalculationStep;
             }
         }
 

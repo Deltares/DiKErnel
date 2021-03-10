@@ -35,7 +35,7 @@ namespace DiKErnel::Core
     {
         public:
             /*!
-             * \brief Create a new instance.
+             * \brief Creates a new instance.
              * \param calculationInput
              *        The data used in the calculation.
              */
@@ -76,15 +76,16 @@ namespace DiKErnel::Core
 
             /*!
              * \brief Gets the output of the calculation.
-             * \return The output of the calculation.
+             * \return The output of the calculation when the calculation is finished, nullptr
+             *         otherwise.
              */
             std::shared_ptr<CalculationOutput> GetCalculationOutput() const;
 
         private:
             std::thread _calculationThread;
             std::atomic<double> _progress = 0;
-            std::atomic<bool> _isCancelled = false;
             std::atomic<bool> _isFinished = false;
+            std::atomic<bool> _isCancelled = false;
             std::shared_ptr<CalculationOutput> _calculationOutput;
 
             void PerformCalculation(
