@@ -18,15 +18,15 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include "LocationDependentData.h"
+#include "LocationDependentInput.h"
 
 namespace DiKErnel::Integration
 {
-    LocationDependentData::LocationDependentData(
+    LocationDependentInput::LocationDependentInput(
         const double initialDamage)
         : _initialDamage(initialDamage) { }
 
-    double LocationDependentData::GetInitialDamage() const
+    double LocationDependentInput::GetInitialDamage() const
     {
         return _initialDamage;
     }

@@ -18,13 +18,13 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include "TimeDependentData.h"
+#include "TimeDependentInput.h"
 
 #include "InvalidCalculationDataException.h"
 
 namespace DiKErnel::Integration
 {
-    TimeDependentData::TimeDependentData(
+    TimeDependentInput::TimeDependentInput(
         const int beginTime,
         const int endTime,
         const double waterLevel,
@@ -44,32 +44,32 @@ namespace DiKErnel::Integration
         }
     }
 
-    int TimeDependentData::GetBeginTime() const
+    int TimeDependentInput::GetBeginTime() const
     {
         return _beginTime;
     }
 
-    int TimeDependentData::GetEndTime() const
+    int TimeDependentInput::GetEndTime() const
     {
         return _endTime;
     }
 
-    double TimeDependentData::GetWaterLevel() const
+    double TimeDependentInput::GetWaterLevel() const
     {
         return _waterLevel;
     }
 
-    double TimeDependentData::GetWaveHeightHm0() const
+    double TimeDependentInput::GetWaveHeightHm0() const
     {
         return _waveHeightHm0;
     }
 
-    double TimeDependentData::GetWavePeriodTm10() const
+    double TimeDependentInput::GetWavePeriodTm10() const
     {
         return _wavePeriodTm10;
     }
 
-    double TimeDependentData::GetWaveAngle() const
+    double TimeDependentInput::GetWaveAngle() const
     {
         return _waveAngle;
     }

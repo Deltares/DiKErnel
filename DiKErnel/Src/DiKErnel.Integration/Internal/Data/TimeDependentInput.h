@@ -27,7 +27,7 @@ namespace DiKErnel::Integration
     /*!
      * \brief Class containing all time dependent input that is needed to perform a calculation.
      */
-    class TimeDependentData : public Core::ITimeDependentInput
+    class TimeDependentInput : public Core::ITimeDependentInput
     {
         public:
             /*!
@@ -47,7 +47,7 @@ namespace DiKErnel::Integration
              * \exception InvalidCalculationDataException
              *            Thrown when endTime is equal to or larger than beginTime.
              */
-            explicit TimeDependentData(
+            explicit TimeDependentInput(
                 int beginTime,
                 int endTime,
                 double waterLevel,

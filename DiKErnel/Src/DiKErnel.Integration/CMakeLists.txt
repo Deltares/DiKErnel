@@ -27,8 +27,8 @@ set(SOURCEFILES_PUBLIC_EXCEPTIONS
 set(SOURCEFILES_INTERNAL_DATA
   ${INTERNAL_DATA_FOLDER}/CalculationInput.cpp
   ${INTERNAL_DATA_FOLDER}/CalculationInput.h
-  ${INTERNAL_DATA_FOLDER}/LocationDependentData.cpp
-  ${INTERNAL_DATA_FOLDER}/LocationDependentData.h
+  ${INTERNAL_DATA_FOLDER}/LocationDependentInput.cpp
+  ${INTERNAL_DATA_FOLDER}/LocationDependentInput.h
   ${INTERNAL_DATA_FOLDER}/NaturalStoneRevetmentDistanceMaximumWaveElevation.cpp
   ${INTERNAL_DATA_FOLDER}/NaturalStoneRevetmentDistanceMaximumWaveElevation.h
   ${INTERNAL_DATA_FOLDER}/NaturalStoneRevetmentHydraulicLoads.cpp
@@ -41,8 +41,8 @@ set(SOURCEFILES_INTERNAL_DATA
   ${INTERNAL_DATA_FOLDER}/NaturalStoneRevetmentNormativeWidthOfWaveImpact.h
   ${INTERNAL_DATA_FOLDER}/NaturalStoneRevetmentUpperLimitLoading.cpp
   ${INTERNAL_DATA_FOLDER}/NaturalStoneRevetmentUpperLimitLoading.h
-  ${INTERNAL_DATA_FOLDER}/TimeDependentData.cpp
-  ${INTERNAL_DATA_FOLDER}/TimeDependentData.h
+  ${INTERNAL_DATA_FOLDER}/TimeDependentInput.cpp
+  ${INTERNAL_DATA_FOLDER}/TimeDependentInput.h
 )
 
 set(SOURCEFILES_INTERNAL_EXCEPTIONS
