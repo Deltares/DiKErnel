@@ -28,13 +28,13 @@
 namespace DiKErnel::Core
 {
     /*!
-     * \brief Interface containing all data that is needed to perform a calculation.
+     * \brief Interface defining all logic that is needed to perform a calculation.
      */
     class ICalculationInput
     {
         public:
             /*!
-             * \brief Destructs the created instance.
+             * \brief Destructs the instance.
              */
             virtual ~ICalculationInput() = default;
 
