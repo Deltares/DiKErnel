@@ -20,7 +20,17 @@
 
 #pragma once
 
+#include <string>
+
+#include "ICalculationInput.h"
+#include "JsonInputData.h"
+
 namespace DiKErnel::KernelWrapper::Json::Input
 {
-    class JsonInputComposer {};
+    class JsonInputComposer
+    {
+        public:
+            static std::unique_ptr<Core::ICalculationInput> GetCalculationInputFromJson(
+                std::string& filePath);
+    };
 }

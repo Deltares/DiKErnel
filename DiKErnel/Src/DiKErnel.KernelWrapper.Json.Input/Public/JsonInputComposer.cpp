@@ -20,4 +20,19 @@
 
 #include "JsonInputComposer.h"
 
-namespace DiKErnel::KernelWrapper::Json::Input {}
+#include "JsonInputAdapter.h"
+#include "JsonInputParser.h"
+
+namespace DiKErnel::KernelWrapper::Json::Input
+{
+    using namespace Core;
+    using namespace std;
+
+    unique_ptr<ICalculationInput> JsonInputComposer::GetCalculationInputFromJson(
+        std::string& filePath)
+    {
+        const auto jsonInputData = JsonInputParser::GetJsonInputData(filePath);
+
+        return JsonInputAdapter::AdaptJsonInputData(*jsonInputData);
+    }
+}
