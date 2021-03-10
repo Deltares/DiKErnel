@@ -18,4 +18,23 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-namespace DiKErnel::Integration {}
+#include "NaturalStoneRevetmentDistanceMaximumWaveElevation.h"
+
+namespace DiKErnel::Integration
+{
+    NaturalStoneRevetmentDistanceMaximumWaveElevation::NaturalStoneRevetmentDistanceMaximumWaveElevation(
+        const double distanceMaximumWaveElevationAsmax,
+        const double distanceMaximumWaveElevationBsmax)
+        : _distanceMaximumWaveElevationAsmax(distanceMaximumWaveElevationAsmax),
+          _distanceMaximumWaveElevationBsmax(distanceMaximumWaveElevationBsmax) {}
+
+    double NaturalStoneRevetmentDistanceMaximumWaveElevation::GetDistanceMaximumWaveElevationAsmax() const
+    {
+        return _distanceMaximumWaveElevationAsmax;
+    }
+
+    double NaturalStoneRevetmentDistanceMaximumWaveElevation::GetDistanceMaximumWaveElevationBsmax() const
+    {
+        return _distanceMaximumWaveElevationBsmax;
+    }
+}

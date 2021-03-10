@@ -22,5 +22,18 @@
 
 namespace DiKErnel::Integration
 {
-    class NaturalStoneRevetmentDistanceMaximumWaveElevation {};
+    class NaturalStoneRevetmentDistanceMaximumWaveElevation
+    {
+        public:
+            explicit NaturalStoneRevetmentDistanceMaximumWaveElevation(
+                double distanceMaximumWaveElevationAsmax,
+                double distanceMaximumWaveElevationBsmax);
+
+            double GetDistanceMaximumWaveElevationAsmax() const;
+            double GetDistanceMaximumWaveElevationBsmax() const;
+
+        private:
+            const double _distanceMaximumWaveElevationAsmax;
+            const double _distanceMaximumWaveElevationBsmax;
+    };
 }
