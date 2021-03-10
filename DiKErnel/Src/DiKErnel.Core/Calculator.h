@@ -37,7 +37,7 @@ namespace DiKErnel::Core
             /*!
              * \brief Creates a new instance.
              * \param calculationInput
-             *        The data used in the calculation.
+             *        The input used in the calculation.
              */
             explicit Calculator(
                 ICalculationInput& calculationInput);
