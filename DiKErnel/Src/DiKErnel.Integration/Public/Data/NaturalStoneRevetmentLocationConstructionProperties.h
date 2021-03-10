@@ -47,6 +47,8 @@ namespace DiKErnel::Integration
                 double thicknessTopLayer,
                 double relativeDensity);
 
+            #pragma region Set methods
+
             /*!
              * \brief Sets the plunging coefficient A.
              */
@@ -100,6 +102,70 @@ namespace DiKErnel::Integration
              */
             void SetSimilarityParameterThreshold(
                 std::unique_ptr<double> similarityParameterThreshold);
+
+            /*!
+             * \brief Sets the upper limit loading Aul.
+             */
+            void SetUpperLimitLoadingAul(
+                std::unique_ptr<double> upperLimitLoadingAul);
+
+            /*!
+             * \brief Sets the upper limit loading Bul.
+             */
+            void SetUpperLimitLoadingBul(
+                std::unique_ptr<double> upperLimitLoadingBul);
+
+            /*!
+             * \brief Sets the upper limit loading Cul.
+             */
+            void SetUpperLimitLoadingCul(
+                std::unique_ptr<double> upperLimitLoadingCul);
+
+            /*!
+             * \brief Sets the lower limit loading All.
+             */
+            void SetLowerLimitLoadingAll(
+                std::unique_ptr<double> lowerLimitLoadingAll);
+
+            /*!
+             * \brief Sets the lower limit loading Bll.
+             */
+            void SetLowerLimitLoadingBll(
+                std::unique_ptr<double> lowerLimitLoadingBll);
+
+            /*!
+             * \brief Sets the lower limit loading Cll.
+             */
+            void SetLowerLimitLoadingCll(
+                std::unique_ptr<double> lowerLimitLoadingCll);
+
+            /*!
+             * \brief Sets the distance maximum wave elevation Asmax.
+             */
+            void SetDistanceMaximumWaveElevationAsmax(
+                std::unique_ptr<double> distanceMaximumWaveElevationAsmax);
+
+            /*!
+             * \brief Sets the distance maximum wave elevation Bsmax.
+             */
+            void SetDistanceMaximumWaveElevationBsmax(
+                std::unique_ptr<double> distanceMaximumWaveElevationBsmax);
+
+            /*!
+             * \brief Sets the normative width of wave impact Awi.
+             */
+            void SetNormativeWidthOfWaveImpactAwi(
+                std::unique_ptr<double> normativeWidthOfWaveImpactAwi);
+
+            /*!
+             * \brief Sets the normative width of wave impact Bwi.
+             */
+            void SetNormativeWidthOfWaveImpactBwi(
+                std::unique_ptr<double> normativeWidthOfWaveImpactBwi);
+
+            #pragma endregion
+
+            #pragma region Get methods
 
             /*!
              * \brief Gets the initial damage of the location.
@@ -179,6 +245,68 @@ namespace DiKErnel::Integration
              */
             const double* GetSimilarityParameterThreshold() const;
 
+            /*!
+             * \brief Gets the upper limit loading Aul.
+             * \return The upper limit loading Aul.
+             */
+            const double* GetUpperLimitLoadingAul() const;
+
+            /*!
+             * \brief Gets the upper limit loading Bul.
+             * \return The upper limit loading Bul.
+             */
+            const double* GetUpperLimitLoadingBul() const;
+
+            /*!
+             * \brief Gets the upper limit loading Cul.
+             * \return The upper limit loading Cul.
+             */
+            const double* GetUpperLimitLoadingCul() const;
+
+            /*!
+             * \brief Gets the lower limit loading All.
+             * \return The lower limit loading All.
+             */
+            const double* GetLowerLimitLoadingAll() const;
+
+            /*!
+             * \brief Gets the lower limit loading Bll.
+             * \return The lower limit loading Bll.
+             */
+            const double* GetLowerLimitLoadingBll() const;
+
+            /*!
+             * \brief Gets the lower limit loading Cll.
+             * \return The lower limit loading Cll.
+             */
+            const double* GetLowerLimitLoadingCll() const;
+
+            /*!
+             * \brief Gets the distance maximum wave elevation Asmax.
+             * \return The distance maximum wave elevation Asmax.
+             */
+            const double* GetDistanceMaximumWaveElevationAsmax() const;
+
+            /*!
+             * \brief Gets the distance maximum wave elevation Bsmax.
+             * \return The distance maximum wave elevation Bsmax.
+             */
+            const double* GetDistanceMaximumWaveElevationBsmax() const;
+
+            /*!
+             * \brief Gets the normative width of wave impact Awi.
+             * \return The normative width of wave impact Awi.
+             */
+            const double* GetNormativeWidthOfWaveImpactAwi() const;
+
+            /*!
+             * \brief Gets the normative width of wave impact Bwi.
+             * \return The normative width of wave impact Bwi.
+             */
+            const double* GetNormativeWidthOfWaveImpactBwi() const;
+
+            #pragma endregion
+
         private:
             double _initialDamage;
             double _slopeAngle;
@@ -194,5 +322,15 @@ namespace DiKErnel::Integration
             std::unique_ptr<double> _surgingCoefficientC = nullptr;
             std::unique_ptr<double> _surgingCoefficientN = nullptr;
             std::unique_ptr<double> _similarityParameterThreshold = nullptr;
+            std::unique_ptr<double> _upperLimitLoadingAul = nullptr;
+            std::unique_ptr<double> _upperLimitLoadingBul = nullptr;
+            std::unique_ptr<double> _upperLimitLoadingCul = nullptr;
+            std::unique_ptr<double> _lowerLimitLoadingAll = nullptr;
+            std::unique_ptr<double> _lowerLimitLoadingBll = nullptr;
+            std::unique_ptr<double> _lowerLimitLoadingCll = nullptr;
+            std::unique_ptr<double> _distanceMaximumWaveElevationAsmax = nullptr;
+            std::unique_ptr<double> _distanceMaximumWaveElevationBsmax = nullptr;
+            std::unique_ptr<double> _normativeWidthOfWaveImpactAwi = nullptr;
+            std::unique_ptr<double> _normativeWidthOfWaveImpactBwi = nullptr;
     };
 }

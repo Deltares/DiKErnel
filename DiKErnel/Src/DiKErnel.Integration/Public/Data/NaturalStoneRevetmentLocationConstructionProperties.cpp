@@ -34,6 +34,8 @@ namespace DiKErnel::Integration
           _thicknessTopLayer(thicknessTopLayer),
           _relativeDensity(relativeDensity) { }
 
+    #pragma region Set methods
+
     void NaturalStoneRevetmentLocationConstructionProperties::SetPlungingCoefficientA(
         unique_ptr<double> plungingCoefficientA)
     {
@@ -87,6 +89,70 @@ namespace DiKErnel::Integration
     {
         _similarityParameterThreshold = move(similarityParameterThreshold);
     }
+
+    void NaturalStoneRevetmentLocationConstructionProperties::SetUpperLimitLoadingAul(
+        unique_ptr<double> upperLimitLoadingAul)
+    {
+        _upperLimitLoadingAul = move(upperLimitLoadingAul);
+    }
+
+    void NaturalStoneRevetmentLocationConstructionProperties::SetUpperLimitLoadingBul(
+        unique_ptr<double> upperLimitLoadingBul)
+    {
+        _upperLimitLoadingBul = move(upperLimitLoadingBul);
+    }
+
+    void NaturalStoneRevetmentLocationConstructionProperties::SetUpperLimitLoadingCul(
+        unique_ptr<double> upperLimitLoadingCul)
+    {
+        _upperLimitLoadingCul = move(upperLimitLoadingCul);
+    }
+
+    void NaturalStoneRevetmentLocationConstructionProperties::SetLowerLimitLoadingAll(
+        unique_ptr<double> lowerLimitLoadingAll)
+    {
+        _lowerLimitLoadingAll = move(lowerLimitLoadingAll);
+    }
+
+    void NaturalStoneRevetmentLocationConstructionProperties::SetLowerLimitLoadingBll(
+        unique_ptr<double> lowerLimitLoadingBll)
+    {
+        _lowerLimitLoadingBll = move(lowerLimitLoadingBll);
+    }
+
+    void NaturalStoneRevetmentLocationConstructionProperties::SetLowerLimitLoadingCll(
+        unique_ptr<double> lowerLimitLoadingCll)
+    {
+        _lowerLimitLoadingCll = move(lowerLimitLoadingCll);
+    }
+
+    void NaturalStoneRevetmentLocationConstructionProperties::SetDistanceMaximumWaveElevationAsmax(
+        unique_ptr<double> distanceMaximumWaveElevationAsmax)
+    {
+        _distanceMaximumWaveElevationAsmax = move(distanceMaximumWaveElevationAsmax);
+    }
+
+    void NaturalStoneRevetmentLocationConstructionProperties::SetDistanceMaximumWaveElevationBsmax(
+        unique_ptr<double> distanceMaximumWaveElevationBsmax)
+    {
+        _distanceMaximumWaveElevationBsmax = move(distanceMaximumWaveElevationBsmax);
+    }
+
+    void NaturalStoneRevetmentLocationConstructionProperties::SetNormativeWidthOfWaveImpactAwi(
+        unique_ptr<double> normativeWidthOfWaveImpactAwi)
+    {
+        _normativeWidthOfWaveImpactAwi = move(normativeWidthOfWaveImpactAwi);
+    }
+
+    void NaturalStoneRevetmentLocationConstructionProperties::SetNormativeWidthOfWaveImpactBwi(
+        unique_ptr<double> normativeWidthOfWaveImpactBwi)
+    {
+        _normativeWidthOfWaveImpactBwi = move(normativeWidthOfWaveImpactBwi);
+    }
+
+    #pragma endregion
+
+    #pragma region Get methods
 
     double NaturalStoneRevetmentLocationConstructionProperties::GetInitialDamage() const
     {
@@ -152,4 +218,56 @@ namespace DiKErnel::Integration
     {
         return _similarityParameterThreshold.get();
     }
+
+    const double* NaturalStoneRevetmentLocationConstructionProperties::GetUpperLimitLoadingAul() const
+    {
+        return _upperLimitLoadingAul.get();
+    }
+
+    const double* NaturalStoneRevetmentLocationConstructionProperties::GetUpperLimitLoadingBul() const
+    {
+        return _upperLimitLoadingBul.get();
+    }
+
+    const double* NaturalStoneRevetmentLocationConstructionProperties::GetUpperLimitLoadingCul() const
+    {
+        return _upperLimitLoadingCul.get();
+    }
+
+    const double* NaturalStoneRevetmentLocationConstructionProperties::GetLowerLimitLoadingAll() const
+    {
+        return _lowerLimitLoadingAll.get();
+    }
+
+    const double* NaturalStoneRevetmentLocationConstructionProperties::GetLowerLimitLoadingBll() const
+    {
+        return _lowerLimitLoadingBll.get();
+    }
+
+    const double* NaturalStoneRevetmentLocationConstructionProperties::GetLowerLimitLoadingCll() const
+    {
+        return _lowerLimitLoadingCll.get();
+    }
+
+    const double* NaturalStoneRevetmentLocationConstructionProperties::GetDistanceMaximumWaveElevationAsmax() const
+    {
+        return _distanceMaximumWaveElevationAsmax.get();
+    }
+
+    const double* NaturalStoneRevetmentLocationConstructionProperties::GetDistanceMaximumWaveElevationBsmax() const
+    {
+        return _distanceMaximumWaveElevationBsmax.get();
+    }
+
+    const double* NaturalStoneRevetmentLocationConstructionProperties::GetNormativeWidthOfWaveImpactAwi() const
+    {
+        return _normativeWidthOfWaveImpactAwi.get();
+    }
+
+    const double* NaturalStoneRevetmentLocationConstructionProperties::GetNormativeWidthOfWaveImpactBwi() const
+    {
+        return _normativeWidthOfWaveImpactBwi.get();
+    }
+
+    #pragma endregion
 }

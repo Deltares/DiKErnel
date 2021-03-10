@@ -51,6 +51,16 @@ namespace DiKErnel::Integration::Test
         ASSERT_TRUE(constructionProperties.GetSurgingCoefficientB() == nullptr);
         ASSERT_TRUE(constructionProperties.GetSurgingCoefficientC() == nullptr);
         ASSERT_TRUE(constructionProperties.GetSurgingCoefficientN() == nullptr);
+        ASSERT_TRUE(constructionProperties.GetUpperLimitLoadingAul() == nullptr);
+        ASSERT_TRUE(constructionProperties.GetUpperLimitLoadingBul() == nullptr);
+        ASSERT_TRUE(constructionProperties.GetUpperLimitLoadingCul() == nullptr);
+        ASSERT_TRUE(constructionProperties.GetLowerLimitLoadingAll() == nullptr);
+        ASSERT_TRUE(constructionProperties.GetLowerLimitLoadingBll() == nullptr);
+        ASSERT_TRUE(constructionProperties.GetLowerLimitLoadingCll() == nullptr);
+        ASSERT_TRUE(constructionProperties.GetDistanceMaximumWaveElevationAsmax() == nullptr);
+        ASSERT_TRUE(constructionProperties.GetDistanceMaximumWaveElevationBsmax() == nullptr);
+        ASSERT_TRUE(constructionProperties.GetNormativeWidthOfWaveImpactAwi() == nullptr);
+        ASSERT_TRUE(constructionProperties.GetNormativeWidthOfWaveImpactBwi() == nullptr);
     }
 
     TEST(NaturalStoneRevetmentLocationConstructionPropertiesTest, GivenConstructionProperties_WhenAllFieldsSet_ThenExpectedValues)
@@ -69,6 +79,16 @@ namespace DiKErnel::Integration::Test
         const auto surgingCoefficientB = 1.1;
         const auto surgingCoefficientC = 1.2;
         const auto surgingCoefficientN = 1.3;
+        const auto upperLimitLoadingAul = 1.4;
+        const auto upperLimitLoadingBul = 1.5;
+        const auto upperLimitLoadingCul = 1.6;
+        const auto lowerLimitLoadingAll = 1.7;
+        const auto lowerLimitLoadingBll = 1.8;
+        const auto lowerLimitLoadingCll = 1.9;
+        const auto distanceMaximumWaveElevationAsmax = 2.0;
+        const auto distanceMaximumWaveElevationBsmax = 2.1;
+        const auto normativeWidthOfWaveImpactAwi = 2.2;
+        const auto normativeWidthOfWaveImpactBwi = 2.3;
 
         NaturalStoneRevetmentLocationConstructionProperties constructionProperties(initialDamage, slopeAngle, thicknessTopLayer, relativeDensity);
 
@@ -82,6 +102,16 @@ namespace DiKErnel::Integration::Test
         constructionProperties.SetSurgingCoefficientB(make_unique<double>(surgingCoefficientB));
         constructionProperties.SetSurgingCoefficientC(make_unique<double>(surgingCoefficientC));
         constructionProperties.SetSurgingCoefficientN(make_unique<double>(surgingCoefficientN));
+        constructionProperties.SetUpperLimitLoadingAul(make_unique<double>(upperLimitLoadingAul));
+        constructionProperties.SetUpperLimitLoadingBul(make_unique<double>(upperLimitLoadingBul));
+        constructionProperties.SetUpperLimitLoadingCul(make_unique<double>(upperLimitLoadingCul));
+        constructionProperties.SetLowerLimitLoadingAll(make_unique<double>(lowerLimitLoadingAll));
+        constructionProperties.SetLowerLimitLoadingBll(make_unique<double>(lowerLimitLoadingBll));
+        constructionProperties.SetLowerLimitLoadingCll(make_unique<double>(lowerLimitLoadingCll));
+        constructionProperties.SetDistanceMaximumWaveElevationAsmax(make_unique<double>(distanceMaximumWaveElevationAsmax));
+        constructionProperties.SetDistanceMaximumWaveElevationBsmax(make_unique<double>(distanceMaximumWaveElevationBsmax));
+        constructionProperties.SetNormativeWidthOfWaveImpactAwi(make_unique<double>(normativeWidthOfWaveImpactAwi));
+        constructionProperties.SetNormativeWidthOfWaveImpactBwi(make_unique<double>(normativeWidthOfWaveImpactBwi));
 
         // Then
         ASSERT_DOUBLE_EQ(initialDamage, constructionProperties.GetInitialDamage());
@@ -97,5 +127,15 @@ namespace DiKErnel::Integration::Test
         ASSERT_DOUBLE_EQ(surgingCoefficientB, *constructionProperties.GetSurgingCoefficientB());
         ASSERT_DOUBLE_EQ(surgingCoefficientC, *constructionProperties.GetSurgingCoefficientC());
         ASSERT_DOUBLE_EQ(surgingCoefficientN, *constructionProperties.GetSurgingCoefficientN());
+        ASSERT_DOUBLE_EQ(upperLimitLoadingAul, *constructionProperties.GetUpperLimitLoadingAul());
+        ASSERT_DOUBLE_EQ(upperLimitLoadingBul, *constructionProperties.GetUpperLimitLoadingBul());
+        ASSERT_DOUBLE_EQ(upperLimitLoadingCul, *constructionProperties.GetUpperLimitLoadingCul());
+        ASSERT_DOUBLE_EQ(lowerLimitLoadingAll, *constructionProperties.GetLowerLimitLoadingAll());
+        ASSERT_DOUBLE_EQ(lowerLimitLoadingBll, *constructionProperties.GetLowerLimitLoadingBll());
+        ASSERT_DOUBLE_EQ(lowerLimitLoadingCll, *constructionProperties.GetLowerLimitLoadingCll());
+        ASSERT_DOUBLE_EQ(distanceMaximumWaveElevationAsmax, *constructionProperties.GetDistanceMaximumWaveElevationAsmax());
+        ASSERT_DOUBLE_EQ(distanceMaximumWaveElevationBsmax, *constructionProperties.GetDistanceMaximumWaveElevationBsmax());
+        ASSERT_DOUBLE_EQ(normativeWidthOfWaveImpactAwi, *constructionProperties.GetNormativeWidthOfWaveImpactAwi());
+        ASSERT_DOUBLE_EQ(normativeWidthOfWaveImpactBwi, *constructionProperties.GetNormativeWidthOfWaveImpactBwi());
     }
 }
