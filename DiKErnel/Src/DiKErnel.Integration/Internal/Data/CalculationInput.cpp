@@ -28,8 +28,8 @@ namespace DiKErnel::Integration
     using namespace std;
 
     CalculationInput::CalculationInput(
-        vector<unique_ptr<LocationDependentData>> locationDependentInputItems,
-        vector<unique_ptr<TimeDependentData>> timeDependentInputItems,
+        vector<unique_ptr<LocationDependentInput>> locationDependentInputItems,
+        vector<unique_ptr<TimeDependentInput>> timeDependentInputItems,
         const double maximumWaveAngle)
         : _locationDependentInputItems(move(locationDependentInputItems)),
           _timeDependentInputItems(move(timeDependentInputItems)),

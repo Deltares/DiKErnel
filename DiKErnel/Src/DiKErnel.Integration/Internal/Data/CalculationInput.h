@@ -24,8 +24,8 @@
 #include <vector>
 
 #include "ICalculationInput.h"
-#include "LocationDependentData.h"
-#include "TimeDependentData.h"
+#include "LocationDependentInput.h"
+#include "TimeDependentInput.h"
 
 namespace DiKErnel::Integration
 {
