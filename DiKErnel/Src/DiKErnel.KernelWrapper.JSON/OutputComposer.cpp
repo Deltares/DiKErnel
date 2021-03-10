@@ -42,22 +42,25 @@ namespace DiKErnel::KernelWrapper::Json
 
         json[OutputJsonDefinitions::OUTPUT_DATA][OutputJsonDefinitions::TIME] = times;
 
-        for (const auto& calculationLocationOutput : outputData.GetCalculationLocationsOutput())
+        for (const auto& calculationLocationOutputReference : outputData.GetCalculationLocationsOutput())
         {
-            const auto& calculationLocationOutputReference = calculationLocationOutput.get();
-            const auto& revetmentOutput = calculationLocationOutputReference.GetRevetmentOutput();
+            const auto& calculationLocationOutput = calculationLocationOutputReference.get();
+            const auto& revetmentOutput = calculationLocationOutput.GetRevetmentOutput();
+
+            const auto* timeOfFailure = revetmentOutput.GetTimeOfFailure();
+
             auto locationJson = nlohmann::ordered_json::object(
                 {
                     {
                         OutputJsonDefinitions::NAME,
-                        calculationLocationOutputReference.GetName()
+                        calculationLocationOutput.GetName()
                     },
                     {
                         OutputJsonDefinitions::DAMAGE,
                         {
                             {
                                 OutputJsonDefinitions::FAILED,
-                                false
+                                timeOfFailure != nullptr
                             },
                             {
                                 OutputJsonDefinitions::TIME_OF_FAILURE,
@@ -71,10 +74,8 @@ namespace DiKErnel::KernelWrapper::Json
                     }
                 });
 
-            const auto* timeOfFailure = revetmentOutput.GetTimeOfFailure();
             if (timeOfFailure != nullptr)
             {
-                locationJson[OutputJsonDefinitions::DAMAGE][OutputJsonDefinitions::FAILED] = true;
                 locationJson[OutputJsonDefinitions::DAMAGE][OutputJsonDefinitions::TIME_OF_FAILURE] = *timeOfFailure;
             }
 
