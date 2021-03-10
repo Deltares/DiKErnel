@@ -29,12 +29,6 @@ namespace DiKErnel::DomainLibrary
     {
         public:
             /*!
-             * \brief The default value of the relative density.
-             *        Unit = [-]
-             */
-            static const double RELATIVE_DENSITY;
-
-            /*!
              * \brief The default value of the similarity parameter threshold.
              *        Unit = [-]
              */

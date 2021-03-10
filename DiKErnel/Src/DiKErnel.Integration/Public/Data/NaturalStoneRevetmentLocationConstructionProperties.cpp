@@ -27,16 +27,12 @@ namespace DiKErnel::Integration
     NaturalStoneRevetmentLocationConstructionProperties::NaturalStoneRevetmentLocationConstructionProperties(
         const double initialDamage,
         const double slopeAngle,
-        const double thicknessTopLayer)
+        const double thicknessTopLayer,
+        const double relativeDensity)
         : _initialDamage(initialDamage),
           _slopeAngle(slopeAngle),
-          _thicknessTopLayer(thicknessTopLayer) { }
-
-    void NaturalStoneRevetmentLocationConstructionProperties::SetRelativeDensity(
-        unique_ptr<double> relativeDensity)
-    {
-        _relativeDensity = move(relativeDensity);
-    }
+          _thicknessTopLayer(thicknessTopLayer),
+          _relativeDensity(relativeDensity) { }
 
     void NaturalStoneRevetmentLocationConstructionProperties::SetPlungingCoefficientA(
         unique_ptr<double> plungingCoefficientA)
@@ -107,9 +103,9 @@ namespace DiKErnel::Integration
         return _thicknessTopLayer;
     }
 
-    const double* NaturalStoneRevetmentLocationConstructionProperties::GetRelativeDensity() const
+    double NaturalStoneRevetmentLocationConstructionProperties::GetRelativeDensity() const
     {
-        return _relativeDensity.get();
+        return _relativeDensity;
     }
 
     const double* NaturalStoneRevetmentLocationConstructionProperties::GetPlungingCoefficientA() const

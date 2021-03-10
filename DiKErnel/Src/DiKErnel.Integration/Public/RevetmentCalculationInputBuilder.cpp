@@ -57,7 +57,6 @@ namespace DiKErnel::Integration
     void RevetmentCalculationInputBuilder::AddNaturalStoneLocation(
         const NaturalStoneRevetmentLocationConstructionProperties& constructionProperties)
     {
-        const auto relativeDensity = GetValue(constructionProperties.GetRelativeDensity(), NaturalStoneRevetmentDefaults::RELATIVE_DENSITY);
         const auto plungingCoefficientA = GetValue(constructionProperties.GetPlungingCoefficientA(),
                                                    NaturalStoneRevetmentDefaults::PLUNGING_COEFFICIENT_A);
         const auto plungingCoefficientB = GetValue(constructionProperties.GetPlungingCoefficientB(),
@@ -78,10 +77,9 @@ namespace DiKErnel::Integration
                                                            NaturalStoneRevetmentDefaults::SIMILARITY_PARAMETER_THRESHOLD);
 
         _locations.push_back(make_unique<NaturalStoneRevetmentLocationDependentData>(
-            constructionProperties.GetInitialDamage(), constructionProperties.GetSlopeAngle(), relativeDensity,
-            constructionProperties.GetThicknessTopLayer(), plungingCoefficientA,
-            plungingCoefficientB, plungingCoefficientC, plungingCoefficientN, surgingCoefficientA,
-            surgingCoefficientB, surgingCoefficientC, surgingCoefficientN, similarityParameterThreshold));
+            constructionProperties.GetInitialDamage(), constructionProperties.GetSlopeAngle(), constructionProperties.GetRelativeDensity(),
+            constructionProperties.GetThicknessTopLayer(), plungingCoefficientA, plungingCoefficientB, plungingCoefficientC, plungingCoefficientN,
+            surgingCoefficientA, surgingCoefficientB, surgingCoefficientC, surgingCoefficientN, similarityParameterThreshold));
     }
 
     unique_ptr<ICalculationInput> RevetmentCalculationInputBuilder::Build()

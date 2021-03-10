@@ -32,15 +32,16 @@ namespace DiKErnel::Integration::Test
         const auto initialDamage = 0.1;
         const auto slopeAngle = 0.2;
         const auto thicknessTopLayer = 0.3;
+        const auto relativeDensity = 0.4;
 
         // Call
-        const NaturalStoneRevetmentLocationConstructionProperties constructionProperties(initialDamage, slopeAngle, thicknessTopLayer);
+        const NaturalStoneRevetmentLocationConstructionProperties constructionProperties(initialDamage, slopeAngle, thicknessTopLayer, relativeDensity);
 
         // Assert
         ASSERT_DOUBLE_EQ(initialDamage, constructionProperties.GetInitialDamage());
         ASSERT_DOUBLE_EQ(slopeAngle, constructionProperties.GetSlopeAngle());
         ASSERT_DOUBLE_EQ(thicknessTopLayer, constructionProperties.GetThicknessTopLayer());
-        ASSERT_TRUE(constructionProperties.GetRelativeDensity() == nullptr);
+        ASSERT_DOUBLE_EQ(relativeDensity, constructionProperties.GetRelativeDensity());
         ASSERT_TRUE(constructionProperties.GetSimilarityParameterThreshold() == nullptr);
         ASSERT_TRUE(constructionProperties.GetPlungingCoefficientA() == nullptr);
         ASSERT_TRUE(constructionProperties.GetPlungingCoefficientB() == nullptr);
@@ -69,10 +70,9 @@ namespace DiKErnel::Integration::Test
         const auto surgingCoefficientC = 1.2;
         const auto surgingCoefficientN = 1.3;
 
-        NaturalStoneRevetmentLocationConstructionProperties constructionProperties(initialDamage, slopeAngle, thicknessTopLayer);
+        NaturalStoneRevetmentLocationConstructionProperties constructionProperties(initialDamage, slopeAngle, thicknessTopLayer, relativeDensity);
 
         // When
-        constructionProperties.SetRelativeDensity(make_unique<double>(relativeDensity));
         constructionProperties.SetSimilarityParameterThreshold(make_unique<double>(similarityParameterThreshold));
         constructionProperties.SetPlungingCoefficientA(make_unique<double>(plungingCoefficientA));
         constructionProperties.SetPlungingCoefficientB(make_unique<double>(plungingCoefficientB));
@@ -87,7 +87,7 @@ namespace DiKErnel::Integration::Test
         ASSERT_DOUBLE_EQ(initialDamage, constructionProperties.GetInitialDamage());
         ASSERT_DOUBLE_EQ(slopeAngle, constructionProperties.GetSlopeAngle());
         ASSERT_DOUBLE_EQ(thicknessTopLayer, constructionProperties.GetThicknessTopLayer());
-        ASSERT_DOUBLE_EQ(relativeDensity, *constructionProperties.GetRelativeDensity());
+        ASSERT_DOUBLE_EQ(relativeDensity, constructionProperties.GetRelativeDensity());
         ASSERT_DOUBLE_EQ(similarityParameterThreshold, *constructionProperties.GetSimilarityParameterThreshold());
         ASSERT_DOUBLE_EQ(plungingCoefficientA, *constructionProperties.GetPlungingCoefficientA());
         ASSERT_DOUBLE_EQ(plungingCoefficientB, *constructionProperties.GetPlungingCoefficientB());

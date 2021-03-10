@@ -22,8 +22,6 @@
 
 namespace DiKErnel::DomainLibrary
 {
-    const double NaturalStoneRevetmentDefaults::RELATIVE_DENSITY = 1.65;
-
     const double NaturalStoneRevetmentDefaults::SIMILARITY_PARAMETER_THRESHOLD = 2.9;
 
     const double NaturalStoneRevetmentDefaults::PLUNGING_COEFFICIENT_A = 4;

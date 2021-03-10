@@ -38,17 +38,14 @@ namespace DiKErnel::Integration
              *        The slope angle of the location.
              * \param thicknessTopLayer
              *        The thickness of the top layer of the location.
+             * \param relativeDensity
+             *        The relative density of the location.
              */
             explicit NaturalStoneRevetmentLocationConstructionProperties(
                 double initialDamage,
                 double slopeAngle,
-                double thicknessTopLayer);
-
-            /*!
-             * \brief Sets the relative density.
-             */
-            void SetRelativeDensity(
-                std::unique_ptr<double> relativeDensity);
+                double thicknessTopLayer,
+                double relativeDensity);
 
             /*!
              * \brief Sets the plunging coefficient A.
@@ -126,7 +123,7 @@ namespace DiKErnel::Integration
              * \brief Gets the relative density.
              * \return The relative density.
              */
-            const double* GetRelativeDensity() const;
+            double GetRelativeDensity() const;
 
             /*!
              * \brief Gets the plunging coefficient A.
@@ -186,8 +183,8 @@ namespace DiKErnel::Integration
             double _initialDamage;
             double _slopeAngle;
             double _thicknessTopLayer;
+            double _relativeDensity;
 
-            std::unique_ptr<double> _relativeDensity = nullptr;
             std::unique_ptr<double> _plungingCoefficientA = nullptr;
             std::unique_ptr<double> _plungingCoefficientB = nullptr;
             std::unique_ptr<double> _plungingCoefficientC = nullptr;

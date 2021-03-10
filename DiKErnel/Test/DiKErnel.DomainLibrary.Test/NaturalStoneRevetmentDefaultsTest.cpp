@@ -24,12 +24,6 @@
 
 namespace DiKErnel::DomainLibrary::Test::NaturalStoneRevetmentDefaultsTest
 {
-    TEST(NaturalStoneRevetmentDefaultsTest, RelativeDensity_ExpectedValue)
-    {
-        // Call & Assert
-        ASSERT_DOUBLE_EQ(1.65, NaturalStoneRevetmentDefaults::RELATIVE_DENSITY);
-    }
-
     TEST(NaturalStoneRevetmentDefaultsTest, SimilarityParameterThreshold_ExpectedValue)
     {
         // Call & Assert
