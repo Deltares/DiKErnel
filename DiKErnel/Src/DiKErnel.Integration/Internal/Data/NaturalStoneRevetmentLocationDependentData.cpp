@@ -27,34 +27,19 @@ namespace DiKErnel::Integration
 {
     using namespace Core;
     using namespace FunctionLibrary;
+    using namespace std;
 
     NaturalStoneRevetmentLocationDependentData::NaturalStoneRevetmentLocationDependentData(
         const double initialDamage,
         const double slopeAngle,
         const double relativeDensity,
         const double thicknessTopLayer,
-        const double plungingCoefficientA,
-        const double plungingCoefficientB,
-        const double plungingCoefficientC,
-        const double plungingCoefficientN,
-        const double surgingCoefficientA,
-        const double surgingCoefficientB,
-        const double surgingCoefficientC,
-        const double surgingCoefficientN,
-        const double similarityParameterThreshold)
+        unique_ptr<NaturalStoneRevetmentHydraulicLoads> hydraulicLoads)
         : LocationDependentData(initialDamage),
           _slopeAngle(slopeAngle),
           _relativeDensity(relativeDensity),
           _thicknessTopLayer(thicknessTopLayer),
-          _plungingCoefficientA(plungingCoefficientA),
-          _plungingCoefficientB(plungingCoefficientB),
-          _plungingCoefficientC(plungingCoefficientC),
-          _plungingCoefficientN(plungingCoefficientN),
-          _surgingCoefficientA(surgingCoefficientA),
-          _surgingCoefficientB(surgingCoefficientB),
-          _surgingCoefficientC(surgingCoefficientC),
-          _surgingCoefficientN(surgingCoefficientN),
-          _similarityParameterThreshold(similarityParameterThreshold) {}
+          _hydraulicLoads(move(hydraulicLoads)) {}
 
     double NaturalStoneRevetmentLocationDependentData::Calculate(
         const double startDamage,
@@ -64,10 +49,10 @@ namespace DiKErnel::Integration
         return NaturalStoneRevetment::CalculateDamage(
             startDamage, _slopeAngle, _relativeDensity, _thicknessTopLayer,
             timeDependentData.GetWaveHeightHm0(), timeDependentData.GetWavePeriodTm10(),
-            timeDependentData.GetWaveAngle(), timeDependentData.GetBeginTime(),
-            timeDependentData.GetEndTime(), _plungingCoefficientA, _plungingCoefficientB,
-            _plungingCoefficientC, _plungingCoefficientN, _surgingCoefficientA, _surgingCoefficientB,
-            _surgingCoefficientC, _surgingCoefficientN, maximumWaveAngle, _similarityParameterThreshold);
+            timeDependentData.GetWaveAngle(), timeDependentData.GetBeginTime(), timeDependentData.GetEndTime(),
+            _hydraulicLoads->GetHydraulicLoadAp(), _hydraulicLoads->GetHydraulicLoadBp(), _hydraulicLoads->GetHydraulicLoadCp(),
+            _hydraulicLoads->GetHydraulicLoadNp(), _hydraulicLoads->GetHydraulicLoadAs(), _hydraulicLoads->GetHydraulicLoadBs(),
+            _hydraulicLoads->GetHydraulicLoadCs(), _hydraulicLoads->GetHydraulicLoadNs(), maximumWaveAngle, _hydraulicLoads->GetHydraulicLoadXib());
     }
 
     double NaturalStoneRevetmentLocationDependentData::GetSlopeAngle() const
@@ -85,48 +70,8 @@ namespace DiKErnel::Integration
         return _thicknessTopLayer;
     }
 
-    double NaturalStoneRevetmentLocationDependentData::GetPlungingCoefficientA() const
+    NaturalStoneRevetmentHydraulicLoads& NaturalStoneRevetmentLocationDependentData::GetHydraulicLoads() const
     {
-        return _plungingCoefficientA;
-    }
-
-    double NaturalStoneRevetmentLocationDependentData::GetPlungingCoefficientB() const
-    {
-        return _plungingCoefficientB;
-    }
-
-    double NaturalStoneRevetmentLocationDependentData::GetPlungingCoefficientC() const
-    {
-        return _plungingCoefficientC;
-    }
-
-    double NaturalStoneRevetmentLocationDependentData::GetPlungingCoefficientN() const
-    {
-        return _plungingCoefficientN;
-    }
-
-    double NaturalStoneRevetmentLocationDependentData::GetSurgingCoefficientA() const
-    {
-        return _surgingCoefficientA;
-    }
-
-    double NaturalStoneRevetmentLocationDependentData::GetSurgingCoefficientB() const
-    {
-        return _surgingCoefficientB;
-    }
-
-    double NaturalStoneRevetmentLocationDependentData::GetSurgingCoefficientC() const
-    {
-        return _surgingCoefficientC;
-    }
-
-    double NaturalStoneRevetmentLocationDependentData::GetSurgingCoefficientN() const
-    {
-        return _surgingCoefficientN;
-    }
-
-    double NaturalStoneRevetmentLocationDependentData::GetSimilarityParameterThreshold() const
-    {
-        return _similarityParameterThreshold;
+        return *_hydraulicLoads;
     }
 }
