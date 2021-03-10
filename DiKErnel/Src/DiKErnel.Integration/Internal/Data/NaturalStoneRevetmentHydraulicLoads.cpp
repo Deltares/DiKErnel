@@ -18,4 +18,72 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-namespace DiKErnel::Integration {}
+#include "NaturalStoneRevetmentHydraulicLoads.h"
+
+namespace DiKErnel::Integration
+{
+    NaturalStoneRevetmentHydraulicLoads::NaturalStoneRevetmentHydraulicLoads(
+        const double hydraulicLoadAp,
+        const double hydraulicLoadBp,
+        const double hydraulicLoadCp,
+        const double hydraulicLoadNp,
+        const double hydraulicLoadAs,
+        const double hydraulicLoadBs,
+        const double hydraulicLoadCs,
+        const double hydraulicLoadNs,
+        const double hydraulicLoadXib)
+        : _hydraulicLoadAp(hydraulicLoadAp),
+          _hydraulicLoadBp(hydraulicLoadBp),
+          _hydraulicLoadCp(hydraulicLoadCp),
+          _hydraulicLoadNp(hydraulicLoadNp),
+          _hydraulicLoadAs(hydraulicLoadAs),
+          _hydraulicLoadBs(hydraulicLoadBs),
+          _hydraulicLoadCs(hydraulicLoadCs),
+          _hydraulicLoadNs(hydraulicLoadNs),
+          _hydraulicLoadXib(hydraulicLoadXib) {}
+
+    double NaturalStoneRevetmentHydraulicLoads::GetHydraulicLoadAp() const
+    {
+        return _hydraulicLoadAp;
+    }
+
+    double NaturalStoneRevetmentHydraulicLoads::GetHydraulicLoadBp() const
+    {
+        return _hydraulicLoadBp;
+    }
+
+    double NaturalStoneRevetmentHydraulicLoads::GetHydraulicLoadCp() const
+    {
+        return _hydraulicLoadCp;
+    }
+
+    double NaturalStoneRevetmentHydraulicLoads::GetHydraulicLoadNp() const
+    {
+        return _hydraulicLoadNp;
+    }
+
+    double NaturalStoneRevetmentHydraulicLoads::GetHydraulicLoadAs() const
+    {
+        return _hydraulicLoadAs;
+    }
+
+    double NaturalStoneRevetmentHydraulicLoads::GetHydraulicLoadBs() const
+    {
+        return _hydraulicLoadBs;
+    }
+
+    double NaturalStoneRevetmentHydraulicLoads::GetHydraulicLoadCs() const
+    {
+        return _hydraulicLoadCs;
+    }
+
+    double NaturalStoneRevetmentHydraulicLoads::GetHydraulicLoadNs() const
+    {
+        return _hydraulicLoadNs;
+    }
+
+    double NaturalStoneRevetmentHydraulicLoads::GetHydraulicLoadXib() const
+    {
+        return _hydraulicLoadXib;
+    }
+}

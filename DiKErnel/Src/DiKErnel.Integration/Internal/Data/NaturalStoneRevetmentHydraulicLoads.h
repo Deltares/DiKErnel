@@ -22,5 +22,47 @@
 
 namespace DiKErnel::Integration
 {
-    class NaturalStoneRevetmentHydraulicLoads {};
+    class NaturalStoneRevetmentHydraulicLoads
+    {
+        public:
+            explicit NaturalStoneRevetmentHydraulicLoads(
+                double hydraulicLoadAp,
+                double hydraulicLoadBp,
+                double hydraulicLoadCp,
+                double hydraulicLoadNp,
+                double hydraulicLoadAs,
+                double hydraulicLoadBs,
+                double hydraulicLoadCs,
+                double hydraulicLoadNs,
+                double hydraulicLoadXib);
+
+            double GetHydraulicLoadAp() const;
+
+            double GetHydraulicLoadBp() const;
+
+            double GetHydraulicLoadCp() const;
+
+            double GetHydraulicLoadNp() const;
+
+            double GetHydraulicLoadAs() const;
+
+            double GetHydraulicLoadBs() const;
+
+            double GetHydraulicLoadCs() const;
+
+            double GetHydraulicLoadNs() const;
+
+            double GetHydraulicLoadXib() const;
+
+        private:
+            double _hydraulicLoadAp;
+            double _hydraulicLoadBp;
+            double _hydraulicLoadCp;
+            double _hydraulicLoadNp;
+            double _hydraulicLoadAs;
+            double _hydraulicLoadBs;
+            double _hydraulicLoadCs;
+            double _hydraulicLoadNs;
+            double _hydraulicLoadXib;
+    };
 }
