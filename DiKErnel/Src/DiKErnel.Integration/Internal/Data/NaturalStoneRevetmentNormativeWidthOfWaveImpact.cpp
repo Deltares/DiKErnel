@@ -18,4 +18,23 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-namespace DiKErnel::Integration {}
+#include "NaturalStoneRevetmentNormativeWidthOfWaveImpact.h"
+
+namespace DiKErnel::Integration
+{
+    NaturalStoneRevetmentNormativeWidthOfWaveImpact::NaturalStoneRevetmentNormativeWidthOfWaveImpact(
+        const double normativeWidthOfWaveImpactAwi,
+        const double normativeWidthOfWaveImpactBwi)
+        : _normativeWidthOfWaveImpactAwi(normativeWidthOfWaveImpactAwi),
+          _normativeWidthOfWaveImpactBwi(normativeWidthOfWaveImpactBwi) {}
+
+    double NaturalStoneRevetmentNormativeWidthOfWaveImpact::GetNormativeWidthOfWaveImpactAwi() const
+    {
+        return _normativeWidthOfWaveImpactAwi;
+    }
+
+    double NaturalStoneRevetmentNormativeWidthOfWaveImpact::GetNormativeWidthOfWaveImpactBwi() const
+    {
+        return _normativeWidthOfWaveImpactBwi;
+    }
+}

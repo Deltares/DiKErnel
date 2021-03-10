@@ -22,5 +22,19 @@
 
 namespace DiKErnel::Integration
 {
-    class NaturalStoneRevetmentNormativeWidthOfWaveImpact {};
+    class NaturalStoneRevetmentNormativeWidthOfWaveImpact
+    {
+        public:
+            explicit NaturalStoneRevetmentNormativeWidthOfWaveImpact(
+                double normativeWidthOfWaveImpactAwi,
+                double normativeWidthOfWaveImpactBwi);
+
+            double GetNormativeWidthOfWaveImpactAwi() const;
+
+            double GetNormativeWidthOfWaveImpactBwi() const;
+
+        private:
+            double _normativeWidthOfWaveImpactAwi;
+            double _normativeWidthOfWaveImpactBwi;
+    };
 }
