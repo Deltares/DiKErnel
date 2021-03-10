@@ -33,8 +33,8 @@ set(SOURCEFILES_INTERNAL_DATA
   ${INTERNAL_DATA_FOLDER}/NaturalStoneRevetmentDistanceMaximumWaveElevation.h
   ${INTERNAL_DATA_FOLDER}/NaturalStoneRevetmentHydraulicLoads.cpp
   ${INTERNAL_DATA_FOLDER}/NaturalStoneRevetmentHydraulicLoads.h
-  ${INTERNAL_DATA_FOLDER}/NaturalStoneRevetmentLocationDependentData.cpp
-  ${INTERNAL_DATA_FOLDER}/NaturalStoneRevetmentLocationDependentData.h
+  ${INTERNAL_DATA_FOLDER}/NaturalStoneRevetmentLocationDependentInput.cpp
+  ${INTERNAL_DATA_FOLDER}/NaturalStoneRevetmentLocationDependentInput.h
   ${INTERNAL_DATA_FOLDER}/NaturalStoneRevetmentLowerLimitLoading.cpp
   ${INTERNAL_DATA_FOLDER}/NaturalStoneRevetmentLowerLimitLoading.h
   ${INTERNAL_DATA_FOLDER}/NaturalStoneRevetmentNormativeWidthOfWaveImpact.cpp

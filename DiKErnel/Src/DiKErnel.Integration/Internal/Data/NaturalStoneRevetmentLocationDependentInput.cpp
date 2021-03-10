@@ -18,7 +18,7 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include "NaturalStoneRevetmentLocationDependentData.h"
+#include "NaturalStoneRevetmentLocationDependentInput.h"
 
 #include "NaturalStoneRevetment.h"
 #include "TimeDependentInput.h"
@@ -29,7 +29,7 @@ namespace DiKErnel::Integration
     using namespace FunctionLibrary;
     using namespace std;
 
-    NaturalStoneRevetmentLocationDependentData::NaturalStoneRevetmentLocationDependentData(
+    NaturalStoneRevetmentLocationDependentInput::NaturalStoneRevetmentLocationDependentInput(
         const double initialDamage,
         const double slopeAngle,
         const double relativeDensity,
@@ -49,7 +49,7 @@ namespace DiKErnel::Integration
           _distanceMaximumWaveElevation(move(distanceMaximumWaveElevation)),
           _normativeWidthOfWaveImpact(move(normativeWidthOfWaveImpact)) {}
 
-    double NaturalStoneRevetmentLocationDependentData::Calculate(
+    double NaturalStoneRevetmentLocationDependentInput::Calculate(
         const double startDamage,
         const ITimeDependentInput& timeDependentInput,
         const double maximumWaveAngle)
@@ -63,42 +63,42 @@ namespace DiKErnel::Integration
             _hydraulicLoads->GetHydraulicLoadCs(), _hydraulicLoads->GetHydraulicLoadNs(), maximumWaveAngle, _hydraulicLoads->GetHydraulicLoadXib());
     }
 
-    double NaturalStoneRevetmentLocationDependentData::GetSlopeAngle() const
+    double NaturalStoneRevetmentLocationDependentInput::GetSlopeAngle() const
     {
         return _slopeAngle;
     }
 
-    double NaturalStoneRevetmentLocationDependentData::GetRelativeDensity() const
+    double NaturalStoneRevetmentLocationDependentInput::GetRelativeDensity() const
     {
         return _relativeDensity;
     }
 
-    double NaturalStoneRevetmentLocationDependentData::GetThicknessTopLayer() const
+    double NaturalStoneRevetmentLocationDependentInput::GetThicknessTopLayer() const
     {
         return _thicknessTopLayer;
     }
 
-    NaturalStoneRevetmentHydraulicLoads& NaturalStoneRevetmentLocationDependentData::GetHydraulicLoads() const
+    NaturalStoneRevetmentHydraulicLoads& NaturalStoneRevetmentLocationDependentInput::GetHydraulicLoads() const
     {
         return *_hydraulicLoads;
     }
 
-    NaturalStoneRevetmentUpperLimitLoading& NaturalStoneRevetmentLocationDependentData::GetUpperLimitLoading() const
+    NaturalStoneRevetmentUpperLimitLoading& NaturalStoneRevetmentLocationDependentInput::GetUpperLimitLoading() const
     {
         return *_upperLimitLoading;
     }
 
-    NaturalStoneRevetmentLowerLimitLoading& NaturalStoneRevetmentLocationDependentData::GetLowerLimitLoading() const
+    NaturalStoneRevetmentLowerLimitLoading& NaturalStoneRevetmentLocationDependentInput::GetLowerLimitLoading() const
     {
         return *_lowerLimitLoading;
     }
 
-    NaturalStoneRevetmentDistanceMaximumWaveElevation& NaturalStoneRevetmentLocationDependentData::GetDistanceMaximumWaveElevation() const
+    NaturalStoneRevetmentDistanceMaximumWaveElevation& NaturalStoneRevetmentLocationDependentInput::GetDistanceMaximumWaveElevation() const
     {
         return *_distanceMaximumWaveElevation;
     }
 
-    NaturalStoneRevetmentNormativeWidthOfWaveImpact& NaturalStoneRevetmentLocationDependentData::GetNormativeWidthOfWaveImpact() const
+    NaturalStoneRevetmentNormativeWidthOfWaveImpact& NaturalStoneRevetmentLocationDependentInput::GetNormativeWidthOfWaveImpact() const
     {
         return *_normativeWidthOfWaveImpact;
     }

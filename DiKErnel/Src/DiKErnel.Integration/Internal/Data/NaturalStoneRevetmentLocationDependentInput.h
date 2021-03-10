@@ -31,10 +31,10 @@
 
 namespace DiKErnel::Integration
 {
-    class NaturalStoneRevetmentLocationDependentData : public LocationDependentInput
+    class NaturalStoneRevetmentLocationDependentInput : public LocationDependentInput
     {
         public:
-            explicit NaturalStoneRevetmentLocationDependentData(
+            explicit NaturalStoneRevetmentLocationDependentInput(
                 double initialDamage,
                 double slopeAngle,
                 double relativeDensity,

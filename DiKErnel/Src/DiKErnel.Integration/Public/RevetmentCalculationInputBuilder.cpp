@@ -24,7 +24,7 @@
 #include "InvalidCalculationDataException.h"
 #include "NaturalStoneRevetmentDefaults.h"
 #include "NaturalStoneRevetmentLocationConstructionProperties.h"
-#include "NaturalStoneRevetmentLocationDependentData.h"
+#include "NaturalStoneRevetmentLocationDependentInput.h"
 #include "RevetmentCalculationInputBuilderException.h"
 
 namespace DiKErnel::Integration
@@ -87,7 +87,7 @@ namespace DiKErnel::Integration
             GetValue(constructionProperties.GetNormativeWidthOfWaveImpactAwi(), Defaults::NORMATIVE_WIDTH_OF_WAVE_IMPACT_AWI),
             GetValue(constructionProperties.GetNormativeWidthOfWaveImpactBwi(), Defaults::NORMATIVE_WIDTH_OF_WAVE_IMPACT_BWI));
 
-        _locations.push_back(make_unique<NaturalStoneRevetmentLocationDependentData>(
+        _locations.push_back(make_unique<NaturalStoneRevetmentLocationDependentInput>(
             constructionProperties.GetInitialDamage(), constructionProperties.GetSlopeAngle(), constructionProperties.GetRelativeDensity(),
             constructionProperties.GetThicknessTopLayer(), move(hydraulicLoads), move(upperLimitLoading), move(lowerLimitLoading),
             move(distanceMaximumWaveElevation), move(normativeWidthOfWaveImpact)));

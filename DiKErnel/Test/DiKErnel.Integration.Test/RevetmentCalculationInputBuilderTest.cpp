@@ -24,7 +24,7 @@
 #include "InvalidCalculationDataException.h"
 #include "NaturalStoneRevetmentDefaults.h"
 #include "NaturalStoneRevetmentLocationConstructionProperties.h"
-#include "NaturalStoneRevetmentLocationDependentData.h"
+#include "NaturalStoneRevetmentLocationDependentInput.h"
 #include "RevetmentCalculationInputBuilder.h"
 #include "RevetmentCalculationInputBuilderException.h"
 
@@ -171,7 +171,7 @@ namespace DiKErnel::Integration::Test
         const auto& actualLocationDependentInputItems = calculationInput->GetLocationDependentInputItems();
         ASSERT_EQ(1, actualLocationDependentInputItems.size());
 
-        const auto* locationDependentInput = dynamic_cast<NaturalStoneRevetmentLocationDependentData*>(&actualLocationDependentInputItems[0].get()
+        const auto* locationDependentInput = dynamic_cast<NaturalStoneRevetmentLocationDependentInput*>(&actualLocationDependentInputItems[0].get()
         );
         ASSERT_TRUE(locationDependentInput != nullptr);
 
@@ -216,7 +216,7 @@ namespace DiKErnel::Integration::Test
         const auto& actualLocationDependentInputItems = calculationInput->GetLocationDependentInputItems();
         ASSERT_EQ(1, actualLocationDependentInputItems.size());
 
-        const auto* locationDependentInput = dynamic_cast<NaturalStoneRevetmentLocationDependentData*>(&actualLocationDependentInputItems[0].get()
+        const auto* locationDependentInput = dynamic_cast<NaturalStoneRevetmentLocationDependentInput*>(&actualLocationDependentInputItems[0].get()
         );
         ASSERT_TRUE(locationDependentInput != nullptr);
 
