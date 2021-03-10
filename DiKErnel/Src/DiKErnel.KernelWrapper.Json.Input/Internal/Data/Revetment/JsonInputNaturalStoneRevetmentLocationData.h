@@ -32,16 +32,34 @@ namespace DiKErnel::KernelWrapper::Json::Input
             explicit JsonInputNaturalStoneRevetmentLocationData(
                 const std::string& typeTopLayer,
                 double relativeDensity,
-                double thicknessTopLayer,
-                std::unique_ptr<double> similarityParameterThreshold,
-                std::unique_ptr<double> plungingCoefficientA,
-                std::unique_ptr<double> plungingCoefficientB,
-                std::unique_ptr<double> plungingCoefficientC,
-                std::unique_ptr<double> plungingCoefficientN,
-                std::unique_ptr<double> surgingCoefficientA,
-                std::unique_ptr<double> surgingCoefficientB,
-                std::unique_ptr<double> surgingCoefficientC,
+                double thicknessTopLayer);
+
+            void SetPlungingCoefficientA(
+                std::unique_ptr<double> plungingCoefficientA);
+
+            void SetPlungingCoefficientB(
+                std::unique_ptr<double> plungingCoefficientB);
+
+            void SetPlungingCoefficientC(
+                std::unique_ptr<double> plungingCoefficientC);
+
+            void SetPlungingCoefficientN(
+                std::unique_ptr<double> plungingCoefficientN);
+
+            void SetSurgingCoefficientA(
+                std::unique_ptr<double> surgingCoefficientA);
+
+            void SetSurgingCoefficientB(
+                std::unique_ptr<double> surgingCoefficientB);
+
+            void SetSurgingCoefficientC(
+                std::unique_ptr<double> surgingCoefficientC);
+
+            void SetSurgingCoefficientN(
                 std::unique_ptr<double> surgingCoefficientN);
+
+            void SetSimilarityParameterThreshold(
+                std::unique_ptr<double> similarityParameterThreshold);
 
             const double* GetSimilarityParameterThreshold() const;
 
@@ -62,14 +80,14 @@ namespace DiKErnel::KernelWrapper::Json::Input
             const double* GetSurgingCoefficientN() const;
 
         private:
-            std::unique_ptr<double> _similarityParameterThreshold;
-            std::unique_ptr<double> _plungingCoefficientA;
-            std::unique_ptr<double> _plungingCoefficientB;
-            std::unique_ptr<double> _plungingCoefficientC;
-            std::unique_ptr<double> _plungingCoefficientN;
-            std::unique_ptr<double> _surgingCoefficientA;
-            std::unique_ptr<double> _surgingCoefficientB;
-            std::unique_ptr<double> _surgingCoefficientC;
-            std::unique_ptr<double> _surgingCoefficientN;
+            std::unique_ptr<double> _similarityParameterThreshold = nullptr;
+            std::unique_ptr<double> _plungingCoefficientA = nullptr;
+            std::unique_ptr<double> _plungingCoefficientB = nullptr;
+            std::unique_ptr<double> _plungingCoefficientC = nullptr;
+            std::unique_ptr<double> _plungingCoefficientN = nullptr;
+            std::unique_ptr<double> _surgingCoefficientA = nullptr;
+            std::unique_ptr<double> _surgingCoefficientB = nullptr;
+            std::unique_ptr<double> _surgingCoefficientC = nullptr;
+            std::unique_ptr<double> _surgingCoefficientN = nullptr;
     };
 }

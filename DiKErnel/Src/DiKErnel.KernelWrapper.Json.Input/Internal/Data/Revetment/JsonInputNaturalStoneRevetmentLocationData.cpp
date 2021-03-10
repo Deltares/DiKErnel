@@ -27,29 +27,65 @@ namespace DiKErnel::KernelWrapper::Json::Input
     JsonInputNaturalStoneRevetmentLocationData::JsonInputNaturalStoneRevetmentLocationData(
         const string& typeTopLayer,
         const double relativeDensity,
-        const double thicknessTopLayer,
-        unique_ptr<double> similarityParameterThreshold,
-        unique_ptr<double> plungingCoefficientA,
-        unique_ptr<double> plungingCoefficientB,
-        unique_ptr<double> plungingCoefficientC,
-        unique_ptr<double> plungingCoefficientN,
-        unique_ptr<double> surgingCoefficientA,
-        unique_ptr<double> surgingCoefficientB,
-        unique_ptr<double> surgingCoefficientC,
-        unique_ptr<double> surgingCoefficientN)
+        const double thicknessTopLayer)
         : JsonInputRevetmentLocationData(
               typeTopLayer,
               relativeDensity,
-              thicknessTopLayer),
-          _similarityParameterThreshold(move(similarityParameterThreshold)),
-          _plungingCoefficientA(move(plungingCoefficientA)),
-          _plungingCoefficientB(move(plungingCoefficientB)),
-          _plungingCoefficientC(move(plungingCoefficientC)),
-          _plungingCoefficientN(move(plungingCoefficientN)),
-          _surgingCoefficientA(move(surgingCoefficientA)),
-          _surgingCoefficientB(move(surgingCoefficientB)),
-          _surgingCoefficientC(move(surgingCoefficientC)),
-          _surgingCoefficientN(move(surgingCoefficientN)) { }
+              thicknessTopLayer) { }
+
+    void JsonInputNaturalStoneRevetmentLocationData::SetPlungingCoefficientA(
+        unique_ptr<double> plungingCoefficientA)
+    {
+        _plungingCoefficientA = move(plungingCoefficientA);
+    }
+
+    void JsonInputNaturalStoneRevetmentLocationData::SetPlungingCoefficientB(
+        unique_ptr<double> plungingCoefficientB)
+    {
+        _plungingCoefficientB = move(plungingCoefficientB);
+    }
+
+    void JsonInputNaturalStoneRevetmentLocationData::SetPlungingCoefficientC(
+        unique_ptr<double> plungingCoefficientC)
+    {
+        _plungingCoefficientC = move(plungingCoefficientC);
+    }
+
+    void JsonInputNaturalStoneRevetmentLocationData::SetPlungingCoefficientN(
+        unique_ptr<double> plungingCoefficientN)
+    {
+        _plungingCoefficientN = move(plungingCoefficientN);
+    }
+
+    void JsonInputNaturalStoneRevetmentLocationData::SetSurgingCoefficientA(
+        unique_ptr<double> surgingCoefficientA)
+    {
+        _surgingCoefficientA = move(surgingCoefficientA);
+    }
+
+    void JsonInputNaturalStoneRevetmentLocationData::SetSurgingCoefficientB(
+        unique_ptr<double> surgingCoefficientB)
+    {
+        _surgingCoefficientB = move(surgingCoefficientB);
+    }
+
+    void JsonInputNaturalStoneRevetmentLocationData::SetSurgingCoefficientC(
+        unique_ptr<double> surgingCoefficientC)
+    {
+        _surgingCoefficientC = move(surgingCoefficientC);
+    }
+
+    void JsonInputNaturalStoneRevetmentLocationData::SetSurgingCoefficientN(
+        unique_ptr<double> surgingCoefficientN)
+    {
+        _surgingCoefficientN = move(surgingCoefficientN);
+    }
+
+    void JsonInputNaturalStoneRevetmentLocationData::SetSimilarityParameterThreshold(
+        unique_ptr<double> similarityParameterThreshold)
+    {
+        _similarityParameterThreshold = move(similarityParameterThreshold);
+    }
 
     const double* JsonInputNaturalStoneRevetmentLocationData::GetSimilarityParameterThreshold() const
     {
