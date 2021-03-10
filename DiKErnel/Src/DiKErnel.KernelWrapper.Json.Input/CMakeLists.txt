@@ -74,7 +74,7 @@ if(NOT json_POPULATED)
 endif()
 
 # Link dependencies
-target_link_libraries(${LIBNAME} nlohmann_json::nlohmann_json)
+target_link_libraries(${LIBNAME} nlohmann_json::nlohmann_json DiKErnel.Core DiKErnel.Integration)
 
 # Expose header files
 if(BUILD_WITH_TESTS)

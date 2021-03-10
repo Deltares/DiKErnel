@@ -33,6 +33,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
             double GetThicknessTopLayer() const;
 
+            virtual ~JsonInputRevetmentLocationData() = default;
+
         protected:
             explicit JsonInputRevetmentLocationData(
                 std::string typeTopLayer,

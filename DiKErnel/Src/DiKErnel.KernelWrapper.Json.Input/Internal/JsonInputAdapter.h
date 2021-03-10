@@ -20,7 +20,21 @@
 
 #pragma once
 
+#include <memory>
+
+#include "ICalculationInput.h"
+#include "JsonInputData.h"
+
 namespace DiKErnel::KernelWrapper::Json::Input
 {
-    class JsonInputAdapter {};
+    class JsonInputAdapter
+    {
+        public:
+            static std::unique_ptr<Core::ICalculationInput> AdaptJsonInputData(
+                const JsonInputData& jsonInputData);
+
+        private:
+            static std::unique_ptr<double> CreatePointerOfValue(
+                const double* value);
+    };
 }
