@@ -25,13 +25,13 @@ namespace DiKErnel::Core
     /*!
      * \brief Interface defining all time dependent input that is needed to perform a calculation.
      */
-    class ITimeDependentData
+    class ITimeDependentInput
     {
         public:
             /*!
              * \brief Destructs the instance.
              */
-            virtual ~ITimeDependentData() = default;
+            virtual ~ITimeDependentInput() = default;
 
             /*!
              * \brief Gets the begin time.

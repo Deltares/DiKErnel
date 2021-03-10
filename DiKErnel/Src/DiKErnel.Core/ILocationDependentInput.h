@@ -28,27 +28,27 @@ namespace DiKErnel::Core
      * \brief Interface defining all location dependent input that is needed to perform a
      *        calculation.
      */
-    class ILocationDependentData
+    class ILocationDependentInput
     {
         public:
             /*!
              * \brief Destructs the instance.
              */
-            virtual ~ILocationDependentData() = default;
+            virtual ~ILocationDependentInput() = default;
 
             /*!
              * \brief Performs a location dependent calculation.
              * \param startDamage
              *        The damage at the start of the calculation.
-             * \param timeDependentData
-             *        The time dependent data to use in the calculation.
+             * \param timeDependentInput
+             *        The time dependent input to use in the calculation.
              * \param maximumWaveAngle
              *        The maximum wave angle.
              * \return The calculated damage.
              */
             virtual double Calculate(
                 double startDamage,
-                const ITimeDependentData& timeDependentData,
+                const ITimeDependentInput& timeDependentInput,
                 double maximumWaveAngle) = 0;
 
             /*!

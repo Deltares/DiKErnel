@@ -39,16 +39,16 @@ namespace DiKErnel::Core
             virtual ~ICalculationInput() = default;
 
             /*!
-             * \brief Gets the location dependent data items to use in the calculation.
-             * \return The location dependent data items to use in the calculation.
+             * \brief Gets the location dependent input items to use in the calculation.
+             * \return The location dependent input items to use in the calculation.
              */
-            virtual const std::vector<std::reference_wrapper<ILocationDependentData>>& GetLocationDependentDataItems() const = 0;
+            virtual const std::vector<std::reference_wrapper<ILocationDependentInput>>& GetLocationDependentInputItems() const = 0;
 
             /*!
-             * \brief Gets the time dependent data items to use in the calculation.
-             * \return The time dependent data items to use in the calculation.
+             * \brief Gets the time dependent input items to use in the calculation.
+             * \return The time dependent input items to use in the calculation.
              */
-            virtual const std::vector<std::reference_wrapper<ITimeDependentData>>& GetTimeDependentDataItems() const = 0;
+            virtual const std::vector<std::reference_wrapper<ITimeDependentInput>>& GetTimeDependentInputItems() const = 0;
 
             /*!
              * \brief Gets the maximum wave angle.
