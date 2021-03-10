@@ -52,23 +52,23 @@ namespace DiKErnel::Integration::Test
             builder.Build();
         }
 
-        static void AssertTimeDependentDataItems(
+        static void AssertTimeDependentInputItems(
             const int expectedBeginTime,
             const int expectedEndTime,
             const double expectedWaterLevel,
             const double expectedWaveHeightHm0,
             const double expectedWavePeriodTm10,
             const double expectedWaveAngle,
-            const vector<reference_wrapper<TimeDependentData>>& actualTimeDependentDataItems)
+            const vector<reference_wrapper<TimeDependentData>>& actualTimeDependentInputItems)
         {
-            ASSERT_EQ(1, actualTimeDependentDataItems.size());
-            const auto& timeDependentDataItem = actualTimeDependentDataItems[0].get();
-            ASSERT_DOUBLE_EQ(expectedBeginTime, timeDependentDataItem.GetBeginTime());
-            ASSERT_DOUBLE_EQ(expectedEndTime, timeDependentDataItem.GetEndTime());
-            ASSERT_DOUBLE_EQ(expectedWaterLevel, timeDependentDataItem.GetWaterLevel());
-            ASSERT_DOUBLE_EQ(expectedWaveHeightHm0, timeDependentDataItem.GetWaveHeightHm0());
-            ASSERT_DOUBLE_EQ(expectedWavePeriodTm10, timeDependentDataItem.GetWavePeriodTm10());
-            ASSERT_DOUBLE_EQ(expectedWaveAngle, timeDependentDataItem.GetWaveAngle());
+            ASSERT_EQ(1, actualTimeDependentInputItems.size());
+            const auto& timeDependentInput = actualTimeDependentInputItems[0].get();
+            ASSERT_DOUBLE_EQ(expectedBeginTime, timeDependentInput.GetBeginTime());
+            ASSERT_DOUBLE_EQ(expectedEndTime, timeDependentInput.GetEndTime());
+            ASSERT_DOUBLE_EQ(expectedWaterLevel, timeDependentInput.GetWaterLevel());
+            ASSERT_DOUBLE_EQ(expectedWaveHeightHm0, timeDependentInput.GetWaveHeightHm0());
+            ASSERT_DOUBLE_EQ(expectedWavePeriodTm10, timeDependentInput.GetWavePeriodTm10());
+            ASSERT_DOUBLE_EQ(expectedWaveAngle, timeDependentInput.GetWaveAngle());
         }
     };
 
@@ -83,8 +83,8 @@ namespace DiKErnel::Integration::Test
 
         // Then
         ASSERT_DOUBLE_EQ(maximumWaveAngle, calculationInput->GetMaximumWaveAngle());
-        ASSERT_EQ(0, calculationInput->GetTimeDependentDataItems().size());
-        ASSERT_EQ(0, calculationInput->GetLocationDependentDataItems().size());
+        ASSERT_EQ(0, calculationInput->GetTimeDependentInputItems().size());
+        ASSERT_EQ(0, calculationInput->GetLocationDependentInputItems().size());
     }
 
     TEST_F(RevetmentCalculationInputBuilderTest, GivenBuilderWithTimeStepAdded_WhenBuild_ThenReturnsCalculationInput)
@@ -106,17 +106,17 @@ namespace DiKErnel::Integration::Test
         // Then
         ASSERT_DOUBLE_EQ(maximumWaveAngle, calculationInput->GetMaximumWaveAngle());
 
-        const auto& actualTimeDependentDataItems = calculationInput->GetTimeDependentDataItems();
-        ASSERT_EQ(1, actualTimeDependentDataItems.size());
-        const auto& timeDependentDataItem = actualTimeDependentDataItems[0].get();
-        ASSERT_DOUBLE_EQ(beginTime, timeDependentDataItem.GetBeginTime());
-        ASSERT_DOUBLE_EQ(endTime, timeDependentDataItem.GetEndTime());
-        ASSERT_DOUBLE_EQ(waterLevel, timeDependentDataItem.GetWaterLevel());
-        ASSERT_DOUBLE_EQ(waveHeightHm0, timeDependentDataItem.GetWaveHeightHm0());
-        ASSERT_DOUBLE_EQ(wavePeriodTm10, timeDependentDataItem.GetWavePeriodTm10());
-        ASSERT_DOUBLE_EQ(waveAngle, timeDependentDataItem.GetWaveAngle());
+        const auto& actualTimeDependentInputItems = calculationInput->GetTimeDependentInputItems();
+        ASSERT_EQ(1, actualTimeDependentInputItems.size());
+        const auto& timeDependentInput = actualTimeDependentInputItems[0].get();
+        ASSERT_DOUBLE_EQ(beginTime, timeDependentInput.GetBeginTime());
+        ASSERT_DOUBLE_EQ(endTime, timeDependentInput.GetEndTime());
+        ASSERT_DOUBLE_EQ(waterLevel, timeDependentInput.GetWaterLevel());
+        ASSERT_DOUBLE_EQ(waveHeightHm0, timeDependentInput.GetWaveHeightHm0());
+        ASSERT_DOUBLE_EQ(wavePeriodTm10, timeDependentInput.GetWavePeriodTm10());
+        ASSERT_DOUBLE_EQ(waveAngle, timeDependentInput.GetWaveAngle());
 
-        ASSERT_EQ(0, calculationInput->GetLocationDependentDataItems().size());
+        ASSERT_EQ(0, calculationInput->GetLocationDependentInputItems().size());
     }
 
     TEST_F(RevetmentCalculationInputBuilderTest, GivenBuilder_WhenAddTimeStepWithInvalidEndTime_ThenThrowsRevetmentCalculationInputBuilderException)
@@ -126,7 +126,7 @@ namespace DiKErnel::Integration::Test
 
         // Assert
         AssertHelper::AssertThrowsWithMessageAndInnerException<RevetmentCalculationInputBuilderException, InvalidCalculationDataException>(
-            action, "Could not create TimeDependentData.", "'beginTime' should be smaller than 'endTime'.");
+            action, "Could not create TimeDependentInput.", "'beginTime' should be smaller than 'endTime'.");
     }
 
     TEST_F(RevetmentCalculationInputBuilderTest, GivenBuilderWithFullyConfiguredNaturalStoneLocationAdded_WhenBuild_ThenReturnsCalculationInput)
@@ -166,21 +166,21 @@ namespace DiKErnel::Integration::Test
 
         // Then
         ASSERT_DOUBLE_EQ(maximumWaveAngle, calculationInput->GetMaximumWaveAngle());
-        ASSERT_EQ(0, calculationInput->GetTimeDependentDataItems().size());
+        ASSERT_EQ(0, calculationInput->GetTimeDependentInputItems().size());
 
-        const auto& actualLocationDependentDataItems = calculationInput->GetLocationDependentDataItems();
-        ASSERT_EQ(1, actualLocationDependentDataItems.size());
+        const auto& actualLocationDependentInputItems = calculationInput->GetLocationDependentInputItems();
+        ASSERT_EQ(1, actualLocationDependentInputItems.size());
 
-        const auto* locationDependentDataItem = dynamic_cast<NaturalStoneRevetmentLocationDependentData*>(&actualLocationDependentDataItems[0].get()
+        const auto* locationDependentInput = dynamic_cast<NaturalStoneRevetmentLocationDependentData*>(&actualLocationDependentInputItems[0].get()
         );
-        ASSERT_TRUE(locationDependentDataItem != nullptr);
+        ASSERT_TRUE(locationDependentInput != nullptr);
 
-        ASSERT_DOUBLE_EQ(initialDamage, locationDependentDataItem->GetInitialDamage());
-        ASSERT_DOUBLE_EQ(slopeAngle, locationDependentDataItem->GetSlopeAngle());
-        ASSERT_DOUBLE_EQ(relativeDensity, locationDependentDataItem->GetRelativeDensity());
-        ASSERT_DOUBLE_EQ(thicknessTopLayer, locationDependentDataItem->GetThicknessTopLayer());
+        ASSERT_DOUBLE_EQ(initialDamage, locationDependentInput->GetInitialDamage());
+        ASSERT_DOUBLE_EQ(slopeAngle, locationDependentInput->GetSlopeAngle());
+        ASSERT_DOUBLE_EQ(relativeDensity, locationDependentInput->GetRelativeDensity());
+        ASSERT_DOUBLE_EQ(thicknessTopLayer, locationDependentInput->GetThicknessTopLayer());
 
-        const auto& hydraulicLoads = locationDependentDataItem->GetHydraulicLoads();
+        const auto& hydraulicLoads = locationDependentInput->GetHydraulicLoads();
         ASSERT_DOUBLE_EQ(plungingCoefficientA, hydraulicLoads.GetHydraulicLoadAp());
         ASSERT_DOUBLE_EQ(plungingCoefficientB, hydraulicLoads.GetHydraulicLoadBp());
         ASSERT_DOUBLE_EQ(plungingCoefficientC, hydraulicLoads.GetHydraulicLoadCp());
@@ -211,21 +211,21 @@ namespace DiKErnel::Integration::Test
 
         // Then
         ASSERT_DOUBLE_EQ(maximumWaveAngle, calculationInput->GetMaximumWaveAngle());
-        ASSERT_EQ(0, calculationInput->GetTimeDependentDataItems().size());
+        ASSERT_EQ(0, calculationInput->GetTimeDependentInputItems().size());
 
-        const auto& actualLocationDependentDataItems = calculationInput->GetLocationDependentDataItems();
-        ASSERT_EQ(1, actualLocationDependentDataItems.size());
+        const auto& actualLocationDependentInputItems = calculationInput->GetLocationDependentInputItems();
+        ASSERT_EQ(1, actualLocationDependentInputItems.size());
 
-        const auto* locationDependentDataItem = dynamic_cast<NaturalStoneRevetmentLocationDependentData*>(&actualLocationDependentDataItems[0].get()
+        const auto* locationDependentInput = dynamic_cast<NaturalStoneRevetmentLocationDependentData*>(&actualLocationDependentInputItems[0].get()
         );
-        ASSERT_TRUE(locationDependentDataItem != nullptr);
+        ASSERT_TRUE(locationDependentInput != nullptr);
 
-        ASSERT_DOUBLE_EQ(initialDamage, locationDependentDataItem->GetInitialDamage());
-        ASSERT_DOUBLE_EQ(slopeAngle, locationDependentDataItem->GetSlopeAngle());
-        ASSERT_DOUBLE_EQ(relativeDensity, locationDependentDataItem->GetRelativeDensity());
-        ASSERT_DOUBLE_EQ(thicknessTopLayer, locationDependentDataItem->GetThicknessTopLayer());
+        ASSERT_DOUBLE_EQ(initialDamage, locationDependentInput->GetInitialDamage());
+        ASSERT_DOUBLE_EQ(slopeAngle, locationDependentInput->GetSlopeAngle());
+        ASSERT_DOUBLE_EQ(relativeDensity, locationDependentInput->GetRelativeDensity());
+        ASSERT_DOUBLE_EQ(thicknessTopLayer, locationDependentInput->GetThicknessTopLayer());
 
-        const auto& hydraulicLoads = locationDependentDataItem->GetHydraulicLoads();
+        const auto& hydraulicLoads = locationDependentInput->GetHydraulicLoads();
         ASSERT_DOUBLE_EQ(NaturalStoneRevetmentDefaults::PLUNGING_COEFFICIENT_A, hydraulicLoads.GetHydraulicLoadAp());
         ASSERT_DOUBLE_EQ(NaturalStoneRevetmentDefaults::PLUNGING_COEFFICIENT_B, hydraulicLoads.GetHydraulicLoadBp());
         ASSERT_DOUBLE_EQ(NaturalStoneRevetmentDefaults::PLUNGING_COEFFICIENT_C, hydraulicLoads.GetHydraulicLoadCp());
@@ -244,6 +244,6 @@ namespace DiKErnel::Integration::Test
 
         // Assert
         AssertHelper::AssertThrowsWithMessageAndInnerException<RevetmentCalculationInputBuilderException, InvalidCalculationDataException>(
-            action, "Could not create TimeDependentData.", "The begin time of an element must connect to the end time of the previous element.");
+            action, "Could not create TimeDependentInput.", "The begin time of an element must connect to the end time of the previous element.");
     }
 }
