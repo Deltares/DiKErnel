@@ -124,7 +124,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
         unique_ptr<JsonInputRevetmentLocationData> revetmentLocationData;
 
-        if (readCalculationMethod[JsonInputDefinitions::CALCULATION_METHOD_TYPE].get<CalculationType>() == NaturalStone)
+        if (readCalculationMethod[JsonInputDefinitions::CALCULATION_METHOD_TYPE].get<CalculationType>() == CalculationType::NaturalStone)
         {
             revetmentLocationData = ReadNaturalStoneRevetmentLocationData(readRevetment, readCalculationMethod);
         }
