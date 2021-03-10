@@ -33,11 +33,14 @@ namespace DiKErnel::Core
     class ICalculationInput
     {
         public:
+            /*!
+             * \brief Destructs the created instance.
+             */
             virtual ~ICalculationInput() = default;
 
             /*!
-             * \brief Gets the locations dependent data items to use in the calculation.
-             * \return The locations dependent data items to use in the calculation.
+             * \brief Gets the location dependent data items to use in the calculation.
+             * \return The location dependent data items to use in the calculation.
              */
             virtual const std::vector<std::reference_wrapper<ILocationDependentData>>& GetLocationDependentDataItems() const = 0;
 
