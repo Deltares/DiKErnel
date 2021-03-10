@@ -23,8 +23,8 @@
 #include <atomic>
 #include <thread>
 
-#include "ICalculationInput.h"
 #include "CalculationOutput.h"
+#include "ICalculationInput.h"
 
 namespace DiKErnel::Core
 {

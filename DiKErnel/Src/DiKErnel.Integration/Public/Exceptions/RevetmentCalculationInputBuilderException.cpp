@@ -25,7 +25,7 @@ namespace DiKErnel::Integration
     using namespace std;
 
     RevetmentCalculationInputBuilderException::RevetmentCalculationInputBuilderException(
-        std::string message)
+        string message)
         : _message(move(message)) {}
 
     const char* RevetmentCalculationInputBuilderException::what() const throw()

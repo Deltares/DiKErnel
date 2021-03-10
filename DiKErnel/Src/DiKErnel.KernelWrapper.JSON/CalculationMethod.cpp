@@ -38,7 +38,7 @@ namespace DiKErnel::KernelWrapper::Json
           _distanceMaximumWaveElevationNaturalStone(move(distanceMaximumWaveElevationNaturalStone)),
           _normativeWidthOfWaveImpact(move(normativeWidthOfWaveImpact)) { }
 
-    const std::string& CalculationMethod::GetCalculationMethodSort() const
+    const string& CalculationMethod::GetCalculationMethodSort() const
     {
         return _calculationMethodSort;
     }
