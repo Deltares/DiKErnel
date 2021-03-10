@@ -28,7 +28,7 @@
 namespace DiKErnel::Core
 {
     /*!
-     * \brief Interface defining all logic that is needed to perform a calculation.
+     * \brief Interface defining all input that is needed to perform a calculation.
      */
     class ICalculationInput
     {

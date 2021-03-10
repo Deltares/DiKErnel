@@ -25,7 +25,7 @@
 namespace DiKErnel::Core
 {
     /*!
-     * \brief Interface defining all location related logic that is needed to perform a
+     * \brief Interface defining all location dependent input that is needed to perform a
      *        calculation.
      */
     class ILocationDependentData
@@ -37,7 +37,7 @@ namespace DiKErnel::Core
             virtual ~ILocationDependentData() = default;
 
             /*!
-             * \brief Performs a location related calculation.
+             * \brief Performs a location dependent calculation.
              * \param startDamage
              *        The damage at the start of the calculation.
              * \param timeDependentData

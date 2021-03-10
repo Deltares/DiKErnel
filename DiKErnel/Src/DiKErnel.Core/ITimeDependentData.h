@@ -23,7 +23,7 @@
 namespace DiKErnel::Core
 {
     /*!
-     * \brief Interface defining all time dependent logic that is needed to perform a calculation.
+     * \brief Interface defining all time dependent input that is needed to perform a calculation.
      */
     class ITimeDependentData
     {
