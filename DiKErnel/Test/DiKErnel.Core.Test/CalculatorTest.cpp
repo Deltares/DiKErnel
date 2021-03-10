@@ -35,28 +35,28 @@ namespace DiKErnel::Core::Test
 
     struct CalculatorTest : Test
     {
-        vector<unique_ptr<ILocationDependentData>> _locationDependentDataItems = vector<unique_ptr<ILocationDependentData>>();
-        vector<unique_ptr<ITimeDependentData>> _timeDependentDataItems = vector<unique_ptr<ITimeDependentData>>();
+        vector<unique_ptr<ILocationDependentInput>> _locationDependentInputItems = vector<unique_ptr<ILocationDependentInput>>();
+        vector<unique_ptr<ITimeDependentInput>> _timeDependentInputItems = vector<unique_ptr<ITimeDependentInput>>();
 
-        vector<reference_wrapper<ILocationDependentData>> _locationDependentDataItemReferences = vector<reference_wrapper<ILocationDependentData>>();
-        vector<reference_wrapper<ITimeDependentData>> _timeDependentDataItemReferences = vector<reference_wrapper<ITimeDependentData>>();
+        vector<reference_wrapper<ILocationDependentInput>> _locationDependentInputItemReferences = vector<reference_wrapper<ILocationDependentInput>>();
+        vector<reference_wrapper<ITimeDependentInput>> _timeDependentInputItemReferences = vector<reference_wrapper<ITimeDependentInput>>();
 
         explicit CalculatorTest()
         {
-            _locationDependentDataItems.emplace_back(make_unique<NiceMock<ILocationDependentDataMock>>());
+            _locationDependentInputItems.emplace_back(make_unique<NiceMock<ILocationDependentDataMock>>());
 
-            _timeDependentDataItems.emplace_back(make_unique<ITimeDependentDataMock>());
-            _timeDependentDataItems.emplace_back(make_unique<ITimeDependentDataMock>());
-            _timeDependentDataItems.emplace_back(make_unique<ITimeDependentDataMock>());
+            _timeDependentInputItems.emplace_back(make_unique<ITimeDependentDataMock>());
+            _timeDependentInputItems.emplace_back(make_unique<ITimeDependentDataMock>());
+            _timeDependentInputItems.emplace_back(make_unique<ITimeDependentDataMock>());
 
-            for (const auto& locationDependentData : _locationDependentDataItems)
+            for (const auto& locationDependentInput : _locationDependentInputItems)
             {
-                _locationDependentDataItemReferences.emplace_back(*locationDependentData);
+                _locationDependentInputItemReferences.emplace_back(*locationDependentInput);
             }
 
-            for (const auto& timeDependentData : _timeDependentDataItems)
+            for (const auto& timeDependentInput : _timeDependentInputItems)
             {
-                _timeDependentDataItemReferences.emplace_back(*timeDependentData);
+                _timeDependentInputItemReferences.emplace_back(*timeDependentInput);
             }
         }
     };
@@ -67,11 +67,11 @@ namespace DiKErnel::Core::Test
         const auto damage = 0.5;
 
         NiceMock<ICalculationInputMock> calculationInput;
-        ON_CALL(calculationInput, GetLocationDependentDataItems).WillByDefault(ReturnRef(_locationDependentDataItemReferences));
-        ON_CALL(calculationInput, GetTimeDependentDataItems).WillByDefault(ReturnRef(_timeDependentDataItemReferences));
+        ON_CALL(calculationInput, GetLocationDependentInputItems).WillByDefault(ReturnRef(_locationDependentInputItemReferences));
+        ON_CALL(calculationInput, GetTimeDependentInputItems).WillByDefault(ReturnRef(_timeDependentInputItemReferences));
         ON_CALL(calculationInput, GetMaximumWaveAngle).WillByDefault(Return(0));
 
-        const auto* location = dynamic_cast<ILocationDependentDataMock*>(&_locationDependentDataItemReferences[0].get());
+        const auto* location = dynamic_cast<ILocationDependentDataMock*>(&_locationDependentInputItemReferences[0].get());
         ASSERT_TRUE(location != nullptr);
 
         ON_CALL(*location, GetInitialDamage).WillByDefault(Return(0.1));
@@ -90,14 +90,14 @@ namespace DiKErnel::Core::Test
         const auto output = calculator.GetCalculationOutput();
         const auto& locationOutputs = output->GetLocationOutputs();
 
-        ASSERT_EQ(_locationDependentDataItemReferences.size(), locationOutputs.size());
+        ASSERT_EQ(_locationDependentInputItemReferences.size(), locationOutputs.size());
 
-        for (auto i = 0; i < static_cast<int>(_locationDependentDataItemReferences.size()); ++i)
+        for (auto i = 0; i < static_cast<int>(_locationDependentInputItemReferences.size()); ++i)
         {
             const auto& actualDamages = locationOutputs[i].get().GetDamages();
-            ASSERT_EQ(_timeDependentDataItemReferences.size(), actualDamages.size());
+            ASSERT_EQ(_timeDependentInputItemReferences.size(), actualDamages.size());
 
-            for (auto j = 0; j < _timeDependentDataItemReferences.size(); ++j)
+            for (auto j = 0; j < _timeDependentInputItemReferences.size(); ++j)
             {
                 ASSERT_EQ(damage, actualDamages[j]);
             }
@@ -110,8 +110,8 @@ namespace DiKErnel::Core::Test
     {
         // Given
         NiceMock<ICalculationInputMock> calculationInput;
-        ON_CALL(calculationInput, GetLocationDependentDataItems).WillByDefault(ReturnRef(_locationDependentDataItemReferences));
-        ON_CALL(calculationInput, GetTimeDependentDataItems).WillByDefault(ReturnRef(_timeDependentDataItemReferences));
+        ON_CALL(calculationInput, GetLocationDependentInputItems).WillByDefault(ReturnRef(_locationDependentInputItemReferences));
+        ON_CALL(calculationInput, GetTimeDependentInputItems).WillByDefault(ReturnRef(_timeDependentInputItemReferences));
         ON_CALL(calculationInput, GetMaximumWaveAngle).WillByDefault(Return(0));
 
         Calculator calculator(calculationInput);
@@ -130,8 +130,8 @@ namespace DiKErnel::Core::Test
     {
         // Given
         NiceMock<ICalculationInputMock> calculationInput;
-        EXPECT_CALL(calculationInput, GetLocationDependentDataItems).WillRepeatedly(ReturnRef(_locationDependentDataItemReferences));
-        EXPECT_CALL(calculationInput, GetTimeDependentDataItems).WillRepeatedly(ReturnRef(_timeDependentDataItemReferences));
+        EXPECT_CALL(calculationInput, GetLocationDependentInputItems).WillRepeatedly(ReturnRef(_locationDependentInputItemReferences));
+        EXPECT_CALL(calculationInput, GetTimeDependentInputItems).WillRepeatedly(ReturnRef(_timeDependentInputItemReferences));
         EXPECT_CALL(calculationInput, GetMaximumWaveAngle).WillRepeatedly(Return(0));
 
         Calculator calculator(calculationInput);
@@ -150,8 +150,8 @@ namespace DiKErnel::Core::Test
     {
         // Given
         NiceMock<ICalculationInputMock> calculationInput;
-        EXPECT_CALL(calculationInput, GetLocationDependentDataItems).WillRepeatedly(ReturnRef(_locationDependentDataItemReferences));
-        EXPECT_CALL(calculationInput, GetTimeDependentDataItems).WillRepeatedly(ReturnRef(_timeDependentDataItemReferences));
+        EXPECT_CALL(calculationInput, GetLocationDependentInputItems).WillRepeatedly(ReturnRef(_locationDependentInputItemReferences));
+        EXPECT_CALL(calculationInput, GetTimeDependentInputItems).WillRepeatedly(ReturnRef(_timeDependentInputItemReferences));
         EXPECT_CALL(calculationInput, GetMaximumWaveAngle).WillRepeatedly(Return(0));
 
         Calculator calculator(calculationInput);
