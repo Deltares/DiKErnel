@@ -34,6 +34,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 double relativeDensity,
                 double thicknessTopLayer);
 
+            #pragma region Set methods
+
             void SetPlungingCoefficientA(
                 std::unique_ptr<double> plungingCoefficientA);
 
@@ -61,6 +63,40 @@ namespace DiKErnel::KernelWrapper::Json::Input
             void SetSimilarityParameterThreshold(
                 std::unique_ptr<double> similarityParameterThreshold);
 
+            void SetUpperLimitLoadingAul(
+                std::unique_ptr<double> upperLimitLoadingAul);
+
+            void SetUpperLimitLoadingBul(
+                std::unique_ptr<double> upperLimitLoadingBul);
+
+            void SetUpperLimitLoadingCul(
+                std::unique_ptr<double> upperLimitLoadingCul);
+
+            void SetLowerLimitLoadingAll(
+                std::unique_ptr<double> lowerLimitLoadingAll);
+
+            void SetLowerLimitLoadingBll(
+                std::unique_ptr<double> lowerLimitLoadingBll);
+
+            void SetLowerLimitLoadingCll(
+                std::unique_ptr<double> lowerLimitLoadingCll);
+
+            void SetDistanceMaximumWaveElevationAsmax(
+                std::unique_ptr<double> distanceMaximumWaveElevationAsmax);
+
+            void SetDistanceMaximumWaveElevationBsmax(
+                std::unique_ptr<double> distanceMaximumWaveElevationBsmax);
+
+            void SetNormativeWidthOfWaveImpactAwi(
+                std::unique_ptr<double> normativeWidthOfWaveImpactAwi);
+
+            void SetNormativeWidthOfWaveImpactBwi(
+                std::unique_ptr<double> normativeWidthOfWaveImpactBwi);
+
+            #pragma endregion
+
+            #pragma region Get methods
+
             const double* GetSimilarityParameterThreshold() const;
 
             const double* GetPlungingCoefficientA() const;
@@ -79,6 +115,28 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
             const double* GetSurgingCoefficientN() const;
 
+            const double* GetUpperLimitLoadingAul() const;
+
+            const double* GetUpperLimitLoadingBul() const;
+
+            const double* GetUpperLimitLoadingCul() const;
+
+            const double* GetLowerLimitLoadingAll() const;
+
+            const double* GetLowerLimitLoadingBll() const;
+
+            const double* GetLowerLimitLoadingCll() const;
+
+            const double* GetDistanceMaximumWaveElevationAsmax() const;
+
+            const double* GetDistanceMaximumWaveElevationBsmax() const;
+
+            const double* SetNormativeWidthOfWaveImpactAwi() const;
+
+            const double* SetNormativeWidthOfWaveImpactBwi() const;
+
+            #pragma endregion
+
         private:
             std::unique_ptr<double> _similarityParameterThreshold = nullptr;
             std::unique_ptr<double> _plungingCoefficientA = nullptr;
@@ -89,5 +147,15 @@ namespace DiKErnel::KernelWrapper::Json::Input
             std::unique_ptr<double> _surgingCoefficientB = nullptr;
             std::unique_ptr<double> _surgingCoefficientC = nullptr;
             std::unique_ptr<double> _surgingCoefficientN = nullptr;
+            std::unique_ptr<double> _upperLimitLoadingAul = nullptr;
+            std::unique_ptr<double> _upperLimitLoadingBul = nullptr;
+            std::unique_ptr<double> _upperLimitLoadingCul = nullptr;
+            std::unique_ptr<double> _lowerLimitLoadingAll = nullptr;
+            std::unique_ptr<double> _lowerLimitLoadingBll = nullptr;
+            std::unique_ptr<double> _lowerLimitLoadingCll = nullptr;
+            std::unique_ptr<double> _distanceMaximumWaveElevationAsmax = nullptr;
+            std::unique_ptr<double> _distanceMaximumWaveElevationBsmax = nullptr;
+            std::unique_ptr<double> _normativeWidthOfWaveImpactAwi = nullptr;
+            std::unique_ptr<double> _normativeWidthOfWaveImpactBwi = nullptr;
     };
 }
