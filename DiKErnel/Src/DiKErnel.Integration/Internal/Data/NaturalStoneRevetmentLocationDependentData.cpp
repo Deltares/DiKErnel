@@ -34,12 +34,20 @@ namespace DiKErnel::Integration
         const double slopeAngle,
         const double relativeDensity,
         const double thicknessTopLayer,
-        unique_ptr<NaturalStoneRevetmentHydraulicLoads> hydraulicLoads)
+        unique_ptr<NaturalStoneRevetmentHydraulicLoads> hydraulicLoads,
+        unique_ptr<NaturalStoneRevetmentUpperLimitLoading> upperLimitLoading,
+        unique_ptr<NaturalStoneRevetmentLowerLimitLoading> lowerLimitLoading,
+        unique_ptr<NaturalStoneRevetmentDistanceMaximumWaveElevation> distanceMaximumWaveElevation,
+        unique_ptr<NaturalStoneRevetmentNormativeWidthOfWaveImpact> normativeWidthOfWaveImpact)
         : LocationDependentData(initialDamage),
           _slopeAngle(slopeAngle),
           _relativeDensity(relativeDensity),
           _thicknessTopLayer(thicknessTopLayer),
-          _hydraulicLoads(move(hydraulicLoads)) {}
+          _hydraulicLoads(move(hydraulicLoads)),
+          _upperLimitLoading(move(upperLimitLoading)),
+          _lowerLimitLoading(move(lowerLimitLoading)),
+          _distanceMaximumWaveElevation(move(distanceMaximumWaveElevation)),
+          _normativeWidthOfWaveImpact(move(normativeWidthOfWaveImpact)) {}
 
     double NaturalStoneRevetmentLocationDependentData::Calculate(
         const double startDamage,
@@ -73,5 +81,25 @@ namespace DiKErnel::Integration
     NaturalStoneRevetmentHydraulicLoads& NaturalStoneRevetmentLocationDependentData::GetHydraulicLoads() const
     {
         return *_hydraulicLoads;
+    }
+
+    NaturalStoneRevetmentUpperLimitLoading& NaturalStoneRevetmentLocationDependentData::GetUpperLimitLoading() const
+    {
+        return *_upperLimitLoading;
+    }
+
+    NaturalStoneRevetmentLowerLimitLoading& NaturalStoneRevetmentLocationDependentData::GetLowerLimitLoading() const
+    {
+        return *_lowerLimitLoading;
+    }
+
+    NaturalStoneRevetmentDistanceMaximumWaveElevation& NaturalStoneRevetmentLocationDependentData::GetDistanceMaximumWaveElevation() const
+    {
+        return *_distanceMaximumWaveElevation;
+    }
+
+    NaturalStoneRevetmentNormativeWidthOfWaveImpact& NaturalStoneRevetmentLocationDependentData::GetNormativeWidthOfWaveImpact() const
+    {
+        return *_normativeWidthOfWaveImpact;
     }
 }

@@ -23,7 +23,11 @@
 #include <memory>
 
 #include "LocationDependentData.h"
+#include "NaturalStoneRevetmentDistanceMaximumWaveElevation.h"
 #include "NaturalStoneRevetmentHydraulicLoads.h"
+#include "NaturalStoneRevetmentLowerLimitLoading.h"
+#include "NaturalStoneRevetmentNormativeWidthOfWaveImpact.h"
+#include "NaturalStoneRevetmentUpperLimitLoading.h"
 
 namespace DiKErnel::Integration
 {
@@ -35,7 +39,11 @@ namespace DiKErnel::Integration
                 double slopeAngle,
                 double relativeDensity,
                 double thicknessTopLayer,
-                std::unique_ptr<NaturalStoneRevetmentHydraulicLoads> hydraulicLoads);
+                std::unique_ptr<NaturalStoneRevetmentHydraulicLoads> hydraulicLoads,
+                std::unique_ptr<NaturalStoneRevetmentUpperLimitLoading> upperLimitLoading,
+                std::unique_ptr<NaturalStoneRevetmentLowerLimitLoading> lowerLimitLoading,
+                std::unique_ptr<NaturalStoneRevetmentDistanceMaximumWaveElevation> distanceMaximumWaveElevation,
+                std::unique_ptr<NaturalStoneRevetmentNormativeWidthOfWaveImpact> normativeWidthOfWaveImpact);
 
             double Calculate(
                 double startDamage,
@@ -50,10 +58,22 @@ namespace DiKErnel::Integration
 
             NaturalStoneRevetmentHydraulicLoads& GetHydraulicLoads() const;
 
+            NaturalStoneRevetmentUpperLimitLoading& GetUpperLimitLoading() const;
+
+            NaturalStoneRevetmentLowerLimitLoading& GetLowerLimitLoading() const;
+
+            NaturalStoneRevetmentDistanceMaximumWaveElevation& GetDistanceMaximumWaveElevation() const;
+
+            NaturalStoneRevetmentNormativeWidthOfWaveImpact& GetNormativeWidthOfWaveImpact() const;
+
         private:
             double _slopeAngle;
             double _relativeDensity;
             double _thicknessTopLayer;
             std::unique_ptr<NaturalStoneRevetmentHydraulicLoads> _hydraulicLoads;
+            std::unique_ptr<NaturalStoneRevetmentUpperLimitLoading> _upperLimitLoading;
+            std::unique_ptr<NaturalStoneRevetmentLowerLimitLoading> _lowerLimitLoading;
+            std::unique_ptr<NaturalStoneRevetmentDistanceMaximumWaveElevation> _distanceMaximumWaveElevation;
+            std::unique_ptr<NaturalStoneRevetmentNormativeWidthOfWaveImpact> _normativeWidthOfWaveImpact;
     };
 }
