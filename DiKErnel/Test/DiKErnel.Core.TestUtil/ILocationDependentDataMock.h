@@ -26,10 +26,10 @@
 
 namespace DiKErnel::Core::TestUtil
 {
-    class ILocationDependentDataMock : public ILocationDependentData
+    class ILocationDependentDataMock : public ILocationDependentInput
     {
         public:
-            MOCK_METHOD(double, Calculate, (double startDamage, const ITimeDependentData& timeDependentData, double maximumWaveAngle), (override));
+            MOCK_METHOD(double, Calculate, (double startDamage, const ITimeDependentInput& timeDependentInput, double maximumWaveAngle), (override));
             MOCK_METHOD(double, GetInitialDamage, (), (const, override));
     };
 }

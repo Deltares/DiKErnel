@@ -31,8 +31,8 @@ namespace DiKErnel::Core::TestUtil
     class ICalculationInputMock : public ICalculationInput
     {
         public:
-            MOCK_METHOD(vector<reference_wrapper<ILocationDependentData>>&, GetLocationDependentDataItems, (), (const, override));
-            MOCK_METHOD(vector<reference_wrapper<ITimeDependentData>>&, GetTimeDependentDataItems, (), (const, override));
+            MOCK_METHOD(vector<reference_wrapper<ILocationDependentInput>>&, GetLocationDependentInputItems, (), (const, override));
+            MOCK_METHOD(vector<reference_wrapper<ITimeDependentInput>>&, GetTimeDependentInputItems, (), (const, override));
             MOCK_METHOD(double, GetMaximumWaveAngle, (), (const, override));
     };
 }

@@ -26,7 +26,7 @@
 
 namespace DiKErnel::Core::TestUtil
 {
-    class ITimeDependentDataMock : public ITimeDependentData
+    class ITimeDependentDataMock : public ITimeDependentInput
     {
         public:
             MOCK_METHOD(int, GetBeginTime, (), (const, override));
