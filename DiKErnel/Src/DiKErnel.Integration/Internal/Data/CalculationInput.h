@@ -47,8 +47,8 @@ namespace DiKErnel::Integration
              *            Thrown when timeDependentInputItems do not connect or are unordered.
              */
             explicit CalculationInput(
-                std::vector<std::unique_ptr<LocationDependentData>> locationDependentInputItems,
-                std::vector<std::unique_ptr<TimeDependentData>> timeDependentInputItems,
+                std::vector<std::unique_ptr<LocationDependentInput>> locationDependentInputItems,
+                std::vector<std::unique_ptr<TimeDependentInput>> timeDependentInputItems,
                 double maximumWaveAngle
             );
 
@@ -71,8 +71,8 @@ namespace DiKErnel::Integration
             double GetMaximumWaveAngle() const override;
 
         private:
-            std::vector<std::unique_ptr<LocationDependentData>> _locationDependentInputItems;
-            std::vector<std::unique_ptr<TimeDependentData>> _timeDependentInputItems;
+            std::vector<std::unique_ptr<LocationDependentInput>> _locationDependentInputItems;
+            std::vector<std::unique_ptr<TimeDependentInput>> _timeDependentInputItems;
 
             std::vector<std::reference_wrapper<Core::ILocationDependentInput>> _locationDependentInputItemReferences;
             std::vector<std::reference_wrapper<Core::ITimeDependentInput>> _timeDependentInputItemReferences;

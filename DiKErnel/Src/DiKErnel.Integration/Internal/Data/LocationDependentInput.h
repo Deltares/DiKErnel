@@ -28,7 +28,7 @@ namespace DiKErnel::Integration
      * \brief Class containing all location dependent input that is needed to perform a
      *        calculation.
      */
-    class LocationDependentData : public Core::ILocationDependentInput
+    class LocationDependentInput : public Core::ILocationDependentInput
     {
         public:
             /*!
@@ -58,7 +58,7 @@ namespace DiKErnel::Integration
              * \param initialDamage
              *        The initial damage of the location.
              */
-            explicit LocationDependentData(
+            explicit LocationDependentInput(
                 double initialDamage);
 
         private:
