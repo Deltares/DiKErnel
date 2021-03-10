@@ -131,9 +131,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
             const double* GetDistanceMaximumWaveElevationBsmax() const;
 
-            const double* SetNormativeWidthOfWaveImpactAwi() const;
+            const double* GetNormativeWidthOfWaveImpactAwi() const;
 
-            const double* SetNormativeWidthOfWaveImpactBwi() const;
+            const double* GetNormativeWidthOfWaveImpactBwi() const;
 
             #pragma endregion
 

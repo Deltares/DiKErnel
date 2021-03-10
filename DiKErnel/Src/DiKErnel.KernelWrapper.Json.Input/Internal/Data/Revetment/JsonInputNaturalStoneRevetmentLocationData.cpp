@@ -238,12 +238,12 @@ namespace DiKErnel::KernelWrapper::Json::Input
         return _distanceMaximumWaveElevationAsmax.get();
     }
 
-    const double* JsonInputNaturalStoneRevetmentLocationData::SetNormativeWidthOfWaveImpactAwi() const
+    const double* JsonInputNaturalStoneRevetmentLocationData::GetNormativeWidthOfWaveImpactAwi() const
     {
         return _normativeWidthOfWaveImpactAwi.get();
     }
 
-    const double* JsonInputNaturalStoneRevetmentLocationData::SetNormativeWidthOfWaveImpactBwi() const
+    const double* JsonInputNaturalStoneRevetmentLocationData::GetNormativeWidthOfWaveImpactBwi() const
     {
         return _normativeWidthOfWaveImpactBwi.get();
     }
