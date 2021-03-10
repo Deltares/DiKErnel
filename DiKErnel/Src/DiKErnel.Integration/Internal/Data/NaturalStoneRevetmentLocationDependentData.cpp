@@ -21,7 +21,7 @@
 #include "NaturalStoneRevetmentLocationDependentData.h"
 
 #include "NaturalStoneRevetment.h"
-#include "TimeDependentData.h"
+#include "TimeDependentInput.h"
 
 namespace DiKErnel::Integration
 {
@@ -39,7 +39,7 @@ namespace DiKErnel::Integration
         unique_ptr<NaturalStoneRevetmentLowerLimitLoading> lowerLimitLoading,
         unique_ptr<NaturalStoneRevetmentDistanceMaximumWaveElevation> distanceMaximumWaveElevation,
         unique_ptr<NaturalStoneRevetmentNormativeWidthOfWaveImpact> normativeWidthOfWaveImpact)
-        : LocationDependentData(initialDamage),
+        : LocationDependentInput(initialDamage),
           _slopeAngle(slopeAngle),
           _relativeDensity(relativeDensity),
           _thicknessTopLayer(thicknessTopLayer),

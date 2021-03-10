@@ -22,7 +22,7 @@
 
 #include <memory>
 
-#include "LocationDependentData.h"
+#include "LocationDependentInput.h"
 #include "NaturalStoneRevetmentDistanceMaximumWaveElevation.h"
 #include "NaturalStoneRevetmentHydraulicLoads.h"
 #include "NaturalStoneRevetmentLowerLimitLoading.h"
@@ -31,7 +31,7 @@
 
 namespace DiKErnel::Integration
 {
-    class NaturalStoneRevetmentLocationDependentData : public LocationDependentData
+    class NaturalStoneRevetmentLocationDependentData : public LocationDependentInput
     {
         public:
             explicit NaturalStoneRevetmentLocationDependentData(
