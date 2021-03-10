@@ -30,39 +30,39 @@
 namespace DiKErnel::Integration
 {
     /*!
-     * \brief Class containing all data that is needed to perform a calculation.
+     * \brief Class containing all input that is needed to perform a calculation.
      */
     class CalculationInput : public Core::ICalculationInput
     {
         public:
             /*!
              * \brief Creates a new instance.
-             * \param locationDependentDataItems
-             *        The location dependent data items to use in the calculation.
-             * \param timeDependentDataItems
-             *        The time dependent data items to use in the calculation.
+             * \param locationDependentInputItems
+             *        The location dependent input items to use in the calculation.
+             * \param timeDependentInputItems
+             *        The time dependent input items to use in the calculation.
              * \param maximumWaveAngle
              *        The maximum wave angle.
              * \exception InvalidCalculationDataException
-             *            Thrown when timeDependentDataItems do not connect or are unordered.
+             *            Thrown when timeDependentInputItems do not connect or are unordered.
              */
             explicit CalculationInput(
-                std::vector<std::unique_ptr<LocationDependentData>> locationDependentDataItems,
-                std::vector<std::unique_ptr<TimeDependentData>> timeDependentDataItems,
+                std::vector<std::unique_ptr<LocationDependentData>> locationDependentInputItems,
+                std::vector<std::unique_ptr<TimeDependentData>> timeDependentInputItems,
                 double maximumWaveAngle
             );
 
             /*!
-             * \brief Gets the locations dependent data items to use in the calculation.
-             * \return The locations dependent data items to use in the calculation.
+             * \brief Gets the location dependent input items to use in the calculation.
+             * \return The location dependent input items to use in the calculation.
              */
-            const std::vector<std::reference_wrapper<Core::ILocationDependentData>>& GetLocationDependentDataItems() const override;
+            const std::vector<std::reference_wrapper<Core::ILocationDependentInput>>& GetLocationDependentInputItems() const override;
 
             /*!
-             * \brief Gets the time dependent data items to use in the calculation.
-             * \return The time dependent data items to use in the calculation.
+             * \brief Gets the time dependent input items to use in the calculation.
+             * \return The time dependent input items to use in the calculation.
              */
-            const std::vector<std::reference_wrapper<Core::ITimeDependentData>>& GetTimeDependentDataItems() const override;
+            const std::vector<std::reference_wrapper<Core::ITimeDependentInput>>& GetTimeDependentInputItems() const override;
 
             /*!
              * \brief Gets the maximum wave angle.
@@ -71,11 +71,11 @@ namespace DiKErnel::Integration
             double GetMaximumWaveAngle() const override;
 
         private:
-            std::vector<std::unique_ptr<LocationDependentData>> _locationDependentDataItems;
-            std::vector<std::unique_ptr<TimeDependentData>> _timeDependentDataItems;
+            std::vector<std::unique_ptr<LocationDependentData>> _locationDependentInputItems;
+            std::vector<std::unique_ptr<TimeDependentData>> _timeDependentInputItems;
 
-            std::vector<std::reference_wrapper<Core::ILocationDependentData>> _locationDependentDataItemReferences;
-            std::vector<std::reference_wrapper<Core::ITimeDependentData>> _timeDependentDataItemReferences;
+            std::vector<std::reference_wrapper<Core::ILocationDependentInput>> _locationDependentInputItemReferences;
+            std::vector<std::reference_wrapper<Core::ITimeDependentInput>> _timeDependentInputItemReferences;
 
             double _maximumWaveAngle;
     };

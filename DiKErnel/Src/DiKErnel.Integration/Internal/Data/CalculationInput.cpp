@@ -28,39 +28,39 @@ namespace DiKErnel::Integration
     using namespace std;
 
     CalculationInput::CalculationInput(
-        vector<unique_ptr<LocationDependentData>> locationDependentDataItems,
-        vector<unique_ptr<TimeDependentData>> timeDependentDataItems,
+        vector<unique_ptr<LocationDependentData>> locationDependentInputItems,
+        vector<unique_ptr<TimeDependentData>> timeDependentInputItems,
         const double maximumWaveAngle)
-        : _locationDependentDataItems(move(locationDependentDataItems)),
-          _timeDependentDataItems(move(timeDependentDataItems)),
+        : _locationDependentInputItems(move(locationDependentInputItems)),
+          _timeDependentInputItems(move(timeDependentInputItems)),
           _maximumWaveAngle(maximumWaveAngle)
     {
         auto previousEndTime = INT_MIN;
-        for (const auto& timeDependentData : _timeDependentDataItems)
+        for (const auto& timeDependentInput : _timeDependentInputItems)
         {
-            if (previousEndTime != INT_MIN && timeDependentData->GetBeginTime() != previousEndTime)
+            if (previousEndTime != INT_MIN && timeDependentInput->GetBeginTime() != previousEndTime)
             {
                 throw InvalidCalculationDataException("The begin time of an element must connect to the end time of the previous element.");
             }
-            previousEndTime = timeDependentData->GetEndTime();
+            previousEndTime = timeDependentInput->GetEndTime();
 
-            _timeDependentDataItemReferences.emplace_back(*timeDependentData);
+            _timeDependentInputItemReferences.emplace_back(*timeDependentInput);
         }
 
-        for (const auto& locationDependentData : _locationDependentDataItems)
+        for (const auto& locationDependentInput : _locationDependentInputItems)
         {
-            _locationDependentDataItemReferences.emplace_back(*locationDependentData);
+            _locationDependentInputItemReferences.emplace_back(*locationDependentInput);
         }
     }
 
-    const vector<reference_wrapper<ILocationDependentData>>& CalculationInput::GetLocationDependentDataItems() const
+    const vector<reference_wrapper<ILocationDependentInput>>& CalculationInput::GetLocationDependentInputItems() const
     {
-        return _locationDependentDataItemReferences;
+        return _locationDependentInputItemReferences;
     }
 
-    const vector<reference_wrapper<ITimeDependentData>>& CalculationInput::GetTimeDependentDataItems() const
+    const vector<reference_wrapper<ITimeDependentInput>>& CalculationInput::GetTimeDependentInputItems() const
     {
-        return _timeDependentDataItemReferences;
+        return _timeDependentInputItemReferences;
     }
 
     double CalculationInput::GetMaximumWaveAngle() const
