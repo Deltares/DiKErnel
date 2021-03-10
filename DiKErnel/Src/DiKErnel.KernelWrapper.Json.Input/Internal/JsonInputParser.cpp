@@ -114,7 +114,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
                     readProfileSchematization[JsonInputDefinitions::POSITION_Z].get<double>()));
         }
 
-        return vector<unique_ptr<JsonInputLocationData>>();
+        return parsedLocations;
     }
 
     unique_ptr<JsonInputRevetmentLocationData> JsonInputParser::GetRevetmentLocationData(
