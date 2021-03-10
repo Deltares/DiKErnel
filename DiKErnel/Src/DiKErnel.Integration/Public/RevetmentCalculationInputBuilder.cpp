@@ -47,7 +47,7 @@ namespace DiKErnel::Integration
     {
         try
         {
-            _timeSteps.push_back(make_unique<TimeDependentData>(beginTime, endTime, waterLevel, waveHeightHm0, wavePeriodTm10, waveAngle));
+            _timeSteps.push_back(make_unique<TimeDependentInput>(beginTime, endTime, waterLevel, waveHeightHm0, wavePeriodTm10, waveAngle));
         }
         catch (const InvalidCalculationDataException&)
         {
@@ -116,6 +116,6 @@ namespace DiKErnel::Integration
 
     void RevetmentCalculationInputBuilder::ThrowWithMessage()
     {
-        throw_with_nested(RevetmentCalculationInputBuilderException("Could not create TimeDependentData."));
+        throw_with_nested(RevetmentCalculationInputBuilderException("Could not create TimeDependentInput."));
     }
 }

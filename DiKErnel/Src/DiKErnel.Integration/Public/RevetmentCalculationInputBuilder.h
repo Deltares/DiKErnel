@@ -82,8 +82,8 @@ namespace DiKErnel::Integration
 
         private:
             double _maximumWaveAngle;
-            std::vector<std::unique_ptr<TimeDependentData>> _timeSteps = std::vector<std::unique_ptr<TimeDependentData>>();
-            std::vector<std::unique_ptr<LocationDependentData>> _locations = std::vector<std::unique_ptr<LocationDependentData>>();
+            std::vector<std::unique_ptr<TimeDependentInput>> _timeSteps = std::vector<std::unique_ptr<TimeDependentInput>>();
+            std::vector<std::unique_ptr<LocationDependentInput>> _locations = std::vector<std::unique_ptr<LocationDependentInput>>();
 
             static double GetValue(
                 const double* doublePtr,
