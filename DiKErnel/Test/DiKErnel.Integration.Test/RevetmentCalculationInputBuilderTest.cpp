@@ -171,8 +171,8 @@ namespace DiKErnel::Integration::Test
         const auto& actualLocationDependentInputItems = calculationInput->GetLocationDependentInputItems();
         ASSERT_EQ(1, actualLocationDependentInputItems.size());
 
-        const auto* locationDependentInput = dynamic_cast<NaturalStoneRevetmentLocationDependentInput*>(&actualLocationDependentInputItems[0].get()
-        );
+        const auto* locationDependentInput =
+                dynamic_cast<NaturalStoneRevetmentLocationDependentInput*>(&actualLocationDependentInputItems[0].get());
         ASSERT_TRUE(locationDependentInput != nullptr);
 
         ASSERT_DOUBLE_EQ(initialDamage, locationDependentInput->GetInitialDamage());
