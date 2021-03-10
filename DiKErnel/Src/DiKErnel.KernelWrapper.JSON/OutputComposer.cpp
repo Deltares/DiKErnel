@@ -44,11 +44,13 @@ namespace DiKErnel::KernelWrapper::Json
 
         for (const auto& calculationLocationOutput : outputData.GetCalculationLocationsOutput())
         {
+            const auto& calculationLocationOutputReference = calculationLocationOutput.get();
+            const auto& revetmentOutput = calculationLocationOutputReference.GetRevetmentOutput();
             auto locationJson = nlohmann::ordered_json::object(
                 {
                     {
                         OutputJsonDefinitions::NAME,
-                        calculationLocationOutput.get().GetName()
+                        calculationLocationOutputReference.GetName()
                     },
                     {
                         OutputJsonDefinitions::DAMAGE,
@@ -63,13 +65,13 @@ namespace DiKErnel::KernelWrapper::Json
                             },
                             {
                                 OutputJsonDefinitions::DAMAGE_OVER_TIME,
-                                calculationLocationOutput.get().GetRevetmentOutput().GetDamages()
+                                revetmentOutput.GetDamages()
                             }
                         }
                     }
                 });
 
-            const auto* const timeOfFailure = calculationLocationOutput.get().GetRevetmentOutput().GetTimeOfFailure();
+            const auto* timeOfFailure = revetmentOutput.GetTimeOfFailure();
             if (timeOfFailure != nullptr)
             {
                 locationJson[OutputJsonDefinitions::DAMAGE][OutputJsonDefinitions::FAILED] = true;

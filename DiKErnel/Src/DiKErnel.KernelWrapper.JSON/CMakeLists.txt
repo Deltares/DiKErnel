@@ -37,7 +37,6 @@ set(SOURCEFILES
   OutputData.h
   OutputJsonDefinitions.cpp
   OutputJsonDefinitions.h
-  InputJsonDefinitions.h
   ProfileSchematization.cpp
   ProfileSchematization.h
   Revetment.cpp
