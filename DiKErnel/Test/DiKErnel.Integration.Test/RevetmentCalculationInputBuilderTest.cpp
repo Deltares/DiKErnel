@@ -147,7 +147,8 @@ namespace DiKErnel::Integration::Test
         const auto surgingCoefficientC = 1.2;
         const auto surgingCoefficientN = 1.3;
 
-        NaturalStoneRevetmentLocationConstructionProperties naturalStoneConstructionProperties(initialDamage, slopeAngle, thicknessTopLayer, relativeDensity);
+        NaturalStoneRevetmentLocationConstructionProperties naturalStoneConstructionProperties(
+            initialDamage, slopeAngle, thicknessTopLayer, relativeDensity);
         naturalStoneConstructionProperties.SetSimilarityParameterThreshold(make_unique<double>(similarityParameterThreshold));
         naturalStoneConstructionProperties.SetPlungingCoefficientA(make_unique<double>(plungingCoefficientA));
         naturalStoneConstructionProperties.SetPlungingCoefficientB(make_unique<double>(plungingCoefficientB));
@@ -170,22 +171,25 @@ namespace DiKErnel::Integration::Test
         const auto& actualLocationDependentDataItems = calculationInput->GetLocationDependentDataItems();
         ASSERT_EQ(1, actualLocationDependentDataItems.size());
 
-        const auto* locationDependentDataItem = dynamic_cast<NaturalStoneRevetmentLocationDependentData*>(&actualLocationDependentDataItems[0].get());
+        const auto* locationDependentDataItem = dynamic_cast<NaturalStoneRevetmentLocationDependentData*>(&actualLocationDependentDataItems[0].get()
+        );
         ASSERT_TRUE(locationDependentDataItem != nullptr);
 
         ASSERT_DOUBLE_EQ(initialDamage, locationDependentDataItem->GetInitialDamage());
         ASSERT_DOUBLE_EQ(slopeAngle, locationDependentDataItem->GetSlopeAngle());
         ASSERT_DOUBLE_EQ(relativeDensity, locationDependentDataItem->GetRelativeDensity());
         ASSERT_DOUBLE_EQ(thicknessTopLayer, locationDependentDataItem->GetThicknessTopLayer());
-        ASSERT_DOUBLE_EQ(plungingCoefficientA, locationDependentDataItem->GetPlungingCoefficientA());
-        ASSERT_DOUBLE_EQ(plungingCoefficientB, locationDependentDataItem->GetPlungingCoefficientB());
-        ASSERT_DOUBLE_EQ(plungingCoefficientC, locationDependentDataItem->GetPlungingCoefficientC());
-        ASSERT_DOUBLE_EQ(plungingCoefficientN, locationDependentDataItem->GetPlungingCoefficientN());
-        ASSERT_DOUBLE_EQ(surgingCoefficientA, locationDependentDataItem->GetSurgingCoefficientA());
-        ASSERT_DOUBLE_EQ(surgingCoefficientB, locationDependentDataItem->GetSurgingCoefficientB());
-        ASSERT_DOUBLE_EQ(surgingCoefficientC, locationDependentDataItem->GetSurgingCoefficientC());
-        ASSERT_DOUBLE_EQ(surgingCoefficientN, locationDependentDataItem->GetSurgingCoefficientN());
-        ASSERT_DOUBLE_EQ(similarityParameterThreshold, locationDependentDataItem->GetSimilarityParameterThreshold());
+
+        const auto& hydraulicLoads = locationDependentDataItem->GetHydraulicLoads();
+        ASSERT_DOUBLE_EQ(plungingCoefficientA, hydraulicLoads.GetHydraulicLoadAp());
+        ASSERT_DOUBLE_EQ(plungingCoefficientB, hydraulicLoads.GetHydraulicLoadBp());
+        ASSERT_DOUBLE_EQ(plungingCoefficientC, hydraulicLoads.GetHydraulicLoadCp());
+        ASSERT_DOUBLE_EQ(plungingCoefficientN, hydraulicLoads.GetHydraulicLoadNp());
+        ASSERT_DOUBLE_EQ(surgingCoefficientA, hydraulicLoads.GetHydraulicLoadAs());
+        ASSERT_DOUBLE_EQ(surgingCoefficientB, hydraulicLoads.GetHydraulicLoadBs());
+        ASSERT_DOUBLE_EQ(surgingCoefficientC, hydraulicLoads.GetHydraulicLoadCs());
+        ASSERT_DOUBLE_EQ(surgingCoefficientN, hydraulicLoads.GetHydraulicLoadNs());
+        ASSERT_DOUBLE_EQ(similarityParameterThreshold, hydraulicLoads.GetHydraulicLoadXib());
     }
 
     TEST_F(RevetmentCalculationInputBuilderTest, GivenBuilderWithNotFullyConfiguredNaturalStoneLocationAdded_WhenBuild_ThenReturnsCalculationInput)
@@ -197,7 +201,8 @@ namespace DiKErnel::Integration::Test
         const auto thicknessTopLayer = 0.3;
         const auto relativeDensity = 0.4;
 
-        NaturalStoneRevetmentLocationConstructionProperties naturalStoneConstructionProperties(initialDamage, slopeAngle, thicknessTopLayer, relativeDensity);
+        NaturalStoneRevetmentLocationConstructionProperties naturalStoneConstructionProperties(
+            initialDamage, slopeAngle, thicknessTopLayer, relativeDensity);
 
         // When
         RevetmentCalculationInputBuilder builder(maximumWaveAngle);
@@ -211,23 +216,25 @@ namespace DiKErnel::Integration::Test
         const auto& actualLocationDependentDataItems = calculationInput->GetLocationDependentDataItems();
         ASSERT_EQ(1, actualLocationDependentDataItems.size());
 
-        const auto* locationDependentDataItem = dynamic_cast<NaturalStoneRevetmentLocationDependentData*>(&actualLocationDependentDataItems[0].get());
+        const auto* locationDependentDataItem = dynamic_cast<NaturalStoneRevetmentLocationDependentData*>(&actualLocationDependentDataItems[0].get()
+        );
         ASSERT_TRUE(locationDependentDataItem != nullptr);
 
         ASSERT_DOUBLE_EQ(initialDamage, locationDependentDataItem->GetInitialDamage());
         ASSERT_DOUBLE_EQ(slopeAngle, locationDependentDataItem->GetSlopeAngle());
         ASSERT_DOUBLE_EQ(relativeDensity, locationDependentDataItem->GetRelativeDensity());
         ASSERT_DOUBLE_EQ(thicknessTopLayer, locationDependentDataItem->GetThicknessTopLayer());
-        ASSERT_DOUBLE_EQ(NaturalStoneRevetmentDefaults::PLUNGING_COEFFICIENT_A, locationDependentDataItem->GetPlungingCoefficientA());
-        ASSERT_DOUBLE_EQ(NaturalStoneRevetmentDefaults::PLUNGING_COEFFICIENT_B, locationDependentDataItem->GetPlungingCoefficientB());
-        ASSERT_DOUBLE_EQ(NaturalStoneRevetmentDefaults::PLUNGING_COEFFICIENT_C, locationDependentDataItem->GetPlungingCoefficientC());
-        ASSERT_DOUBLE_EQ(NaturalStoneRevetmentDefaults::PLUNGING_COEFFICIENT_N, locationDependentDataItem->GetPlungingCoefficientN());
-        ASSERT_DOUBLE_EQ(NaturalStoneRevetmentDefaults::SURGING_COEFFICIENT_A, locationDependentDataItem->GetSurgingCoefficientA());
-        ASSERT_DOUBLE_EQ(NaturalStoneRevetmentDefaults::SURGING_COEFFICIENT_B, locationDependentDataItem->GetSurgingCoefficientB());
-        ASSERT_DOUBLE_EQ(NaturalStoneRevetmentDefaults::SURGING_COEFFICIENT_C, locationDependentDataItem->GetSurgingCoefficientC());
-        ASSERT_DOUBLE_EQ(NaturalStoneRevetmentDefaults::SURGING_COEFFICIENT_N, locationDependentDataItem->GetSurgingCoefficientN());
-        ASSERT_DOUBLE_EQ(NaturalStoneRevetmentDefaults::SIMILARITY_PARAMETER_THRESHOLD,
-                         locationDependentDataItem->GetSimilarityParameterThreshold());
+
+        const auto& hydraulicLoads = locationDependentDataItem->GetHydraulicLoads();
+        ASSERT_DOUBLE_EQ(NaturalStoneRevetmentDefaults::PLUNGING_COEFFICIENT_A, hydraulicLoads.GetHydraulicLoadAp());
+        ASSERT_DOUBLE_EQ(NaturalStoneRevetmentDefaults::PLUNGING_COEFFICIENT_B, hydraulicLoads.GetHydraulicLoadBp());
+        ASSERT_DOUBLE_EQ(NaturalStoneRevetmentDefaults::PLUNGING_COEFFICIENT_C, hydraulicLoads.GetHydraulicLoadCp());
+        ASSERT_DOUBLE_EQ(NaturalStoneRevetmentDefaults::PLUNGING_COEFFICIENT_N, hydraulicLoads.GetHydraulicLoadNp());
+        ASSERT_DOUBLE_EQ(NaturalStoneRevetmentDefaults::SURGING_COEFFICIENT_A, hydraulicLoads.GetHydraulicLoadAs());
+        ASSERT_DOUBLE_EQ(NaturalStoneRevetmentDefaults::SURGING_COEFFICIENT_B, hydraulicLoads.GetHydraulicLoadBs());
+        ASSERT_DOUBLE_EQ(NaturalStoneRevetmentDefaults::SURGING_COEFFICIENT_C, hydraulicLoads.GetHydraulicLoadCs());
+        ASSERT_DOUBLE_EQ(NaturalStoneRevetmentDefaults::SURGING_COEFFICIENT_N, hydraulicLoads.GetHydraulicLoadNs());
+        ASSERT_DOUBLE_EQ(NaturalStoneRevetmentDefaults::SIMILARITY_PARAMETER_THRESHOLD, hydraulicLoads.GetHydraulicLoadXib());
     }
 
     TEST_F(RevetmentCalculationInputBuilderTest, GivenBuilderWithInvalidTimeSteps_WhenBuild_ThenThrowsRevetmentCalculationInputBuilderException)

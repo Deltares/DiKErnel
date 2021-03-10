@@ -76,10 +76,13 @@ namespace DiKErnel::Integration
         const auto similarityParameterThreshold = GetValue(constructionProperties.GetSimilarityParameterThreshold(),
                                                            NaturalStoneRevetmentDefaults::SIMILARITY_PARAMETER_THRESHOLD);
 
+        auto hydraulicLoads = make_unique<NaturalStoneRevetmentHydraulicLoads>(
+            plungingCoefficientA, plungingCoefficientB, plungingCoefficientC, plungingCoefficientN, surgingCoefficientA, surgingCoefficientB,
+            surgingCoefficientC, surgingCoefficientN, similarityParameterThreshold);
+
         _locations.push_back(make_unique<NaturalStoneRevetmentLocationDependentData>(
             constructionProperties.GetInitialDamage(), constructionProperties.GetSlopeAngle(), constructionProperties.GetRelativeDensity(),
-            constructionProperties.GetThicknessTopLayer(), plungingCoefficientA, plungingCoefficientB, plungingCoefficientC, plungingCoefficientN,
-            surgingCoefficientA, surgingCoefficientB, surgingCoefficientC, surgingCoefficientN, similarityParameterThreshold));
+            constructionProperties.GetThicknessTopLayer(), move(hydraulicLoads), nullptr, nullptr, nullptr, nullptr));
     }
 
     unique_ptr<ICalculationInput> RevetmentCalculationInputBuilder::Build()
