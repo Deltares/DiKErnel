@@ -26,10 +26,10 @@
 
 namespace DiKErnel::Integration::TestUtil
 {
-    class LocationDependentDataMock : public LocationDependentInput
+    class LocationDependentInputMock : public LocationDependentInput
     {
         public:
-            explicit LocationDependentDataMock(
+            explicit LocationDependentInputMock(
                 const double initialDamage)
                 : LocationDependentInput(initialDamage) {}
 

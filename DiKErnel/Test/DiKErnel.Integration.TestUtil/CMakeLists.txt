@@ -3,8 +3,8 @@ set(LIBNAME DiKErnel.Integration.TestUtil)
 
 # Define sources
 set(SOURCEFILES
-  LocationDependentDataMock.cpp
-  LocationDependentDataMock.h
+  LocationDependentInputMock.cpp
+  LocationDependentInputMock.h
 )
 
 # Add library
