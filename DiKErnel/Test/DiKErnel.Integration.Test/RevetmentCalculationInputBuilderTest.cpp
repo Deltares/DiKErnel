@@ -59,7 +59,7 @@ namespace DiKErnel::Integration::Test
             const double expectedWaveHeightHm0,
             const double expectedWavePeriodTm10,
             const double expectedWaveAngle,
-            const vector<reference_wrapper<TimeDependentData>>& actualTimeDependentInputItems)
+            const vector<reference_wrapper<TimeDependentInput>>& actualTimeDependentInputItems)
         {
             ASSERT_EQ(1, actualTimeDependentInputItems.size());
             const auto& timeDependentInput = actualTimeDependentInputItems[0].get();

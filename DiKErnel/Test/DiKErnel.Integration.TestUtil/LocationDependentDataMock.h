@@ -22,18 +22,18 @@
 
 #include <gmock/gmock.h>
 
-#include "LocationDependentData.h"
+#include "LocationDependentInput.h"
 
 namespace DiKErnel::Integration::TestUtil
 {
-    class LocationDependentDataMock : public LocationDependentData
+    class LocationDependentDataMock : public LocationDependentInput
     {
         public:
             explicit LocationDependentDataMock(
                 const double initialDamage)
-                : LocationDependentData(initialDamage) {}
+                : LocationDependentInput(initialDamage) {}
 
-            MOCK_METHOD(double, Calculate, (double startDamage, const Core::ITimeDependentData& timeDependentData, double maximumWaveAngle),
+            MOCK_METHOD(double, Calculate, (double startDamage, const Core::ITimeDependentInput& timeDependentInput, double maximumWaveAngle),
                         (override));
     };
 }
