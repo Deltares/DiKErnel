@@ -85,38 +85,38 @@ namespace DiKErnel::Core
         atomic<bool>& isFinished,
         const atomic<bool>& isCancelled)
     {
-        const auto& timeDependentDataItems = calculationInput.GetTimeDependentDataItems();
-        const auto& locationDependentDataItems = calculationInput.GetLocationDependentDataItems();
+        const auto& timeDependentInputItems = calculationInput.GetTimeDependentInputItems();
+        const auto& locationDependentInputItems = calculationInput.GetLocationDependentInputItems();
 
-        auto damages = vector<vector<double>>(locationDependentDataItems.size(), vector<double>());
+        auto damages = vector<vector<double>>(locationDependentInputItems.size(), vector<double>());
 
         const auto progressPerCalculationStep = 1.0
-                / static_cast<double>(timeDependentDataItems.size())
-                / static_cast<double>(locationDependentDataItems.size());
+                / static_cast<double>(timeDependentInputItems.size())
+                / static_cast<double>(locationDependentInputItems.size());
 
-        for (auto i = 0; i < static_cast<int>(timeDependentDataItems.size()); ++i)
+        for (auto i = 0; i < static_cast<int>(timeDependentInputItems.size()); ++i)
         {
             if (isCancelled)
             {
                 break;
             }
 
-            const auto& timeDependentData = timeDependentDataItems[i].get();
+            const auto& timeDependentInput = timeDependentInputItems[i].get();
 
-            for (auto j = 0; j < static_cast<int>(locationDependentDataItems.size()); ++j)
+            for (auto j = 0; j < static_cast<int>(locationDependentInputItems.size()); ++j)
             {
                 if (isCancelled)
                 {
                     break;
                 }
 
-                auto& location = locationDependentDataItems[j].get();
+                auto& locationDependentInput = locationDependentInputItems[j].get();
 
                 const auto startDamage = i == 0
-                                             ? location.GetInitialDamage()
+                                             ? locationDependentInput.GetInitialDamage()
                                              : damages[j].back();
 
-                const auto damage = location.Calculate(startDamage, timeDependentData, calculationInput.GetMaximumWaveAngle());
+                const auto damage = locationDependentInput.Calculate(startDamage, timeDependentInput, calculationInput.GetMaximumWaveAngle());
 
                 damages[j].push_back(damage);
 
