@@ -76,7 +76,8 @@ namespace DiKErnel::TestUtil
             }
 
             /*!
-             * \brief Asserts whether an exception is thrown with an expected message.
+             * \brief Asserts whether an exception is thrown with an expected message and an
+             *        expected inner exception.
              * \tparam TException
              *         The type of the exception.
              * \tparam TInnerException
@@ -86,7 +87,7 @@ namespace DiKErnel::TestUtil
              * \param expectedMessage
              *        The expected message in the exception.
              * \param expectedInnerExceptionMessage
-             *        The expected message of the inner exception.
+             *        The expected message in the inner exception.
              */
             template <typename TException, typename TInnerException>
             static void AssertThrowsWithMessageAndInnerException(
@@ -125,20 +126,23 @@ namespace DiKErnel::TestUtil
             {
                 ASSERT_TRUE(dynamic_cast<const TExpected*>(actual) != nullptr);
             }
+
         private:
             template <typename TException, typename TInnerException>
-            static void AssertInnerException(TException& actualException, const std::string& expectedInnerExceptionMessage)
+            static void AssertInnerException(
+                TException& actualException,
+                const std::string& expectedInnerExceptionMessage)
             {
                 try
                 {
                     std::rethrow_if_nested(actualException);
                     FAIL() << "Expected " << typeid(TInnerException).name();
                 }
-                catch(TInnerException& exception)
+                catch (TInnerException& exception)
                 {
                     ASSERT_TRUE(expectedInnerExceptionMessage == exception.what());
                 }
-                catch(...)
+                catch (...)
                 {
                     FAIL() << "Expected " << typeid(TInnerException).name();
                 }
