@@ -29,7 +29,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
     using namespace std;
 
     unique_ptr<ICalculationInput> JsonInputComposer::GetCalculationInputFromJson(
-        string& filePath)
+        const string& filePath)
     {
         const auto jsonInputData = JsonInputParser::GetJsonInputData(filePath);
 

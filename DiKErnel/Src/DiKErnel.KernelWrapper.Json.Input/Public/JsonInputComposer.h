@@ -31,6 +31,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
     {
         public:
             static std::unique_ptr<Core::ICalculationInput> GetCalculationInputFromJson(
-                std::string& filePath);
+                const std::string& filePath);
     };
 }
