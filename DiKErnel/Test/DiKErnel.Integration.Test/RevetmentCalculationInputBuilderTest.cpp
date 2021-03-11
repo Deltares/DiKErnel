@@ -26,10 +26,12 @@
 #include "NaturalStoneRevetmentLocationDependentInput.h"
 #include "RevetmentCalculationInputBuilder.h"
 #include "RevetmentCalculationInputBuilderException.h"
+#include "TimeDependentInputAssertHelper.h"
 
 namespace DiKErnel::Integration::Test
 {
     using namespace Core;
+    using namespace DiKErnel::TestUtil;
     using namespace std;
     using namespace testing;
     using namespace TestUtil;
@@ -48,25 +50,6 @@ namespace DiKErnel::Integration::Test
             builder.AddTimeStep(0, 5, 0, 0, 0, 0);
             builder.AddTimeStep(10, 20, 0, 0, 0, 0);
             builder.Build();
-        }
-
-        void AssertTimeDependentInputItems(
-            const int expectedBeginTime,
-            const int expectedEndTime,
-            const double expectedWaterLevel,
-            const double expectedWaveHeightHm0,
-            const double expectedWavePeriodTm10,
-            const double expectedWaveAngle,
-            const vector<reference_wrapper<TimeDependentInput>>& actualTimeDependentInputItems) const
-        {
-            ASSERT_EQ(1, actualTimeDependentInputItems.size());
-            const auto& timeDependentInput = actualTimeDependentInputItems[0].get();
-            ASSERT_DOUBLE_EQ(expectedBeginTime, timeDependentInput.GetBeginTime());
-            ASSERT_DOUBLE_EQ(expectedEndTime, timeDependentInput.GetEndTime());
-            ASSERT_DOUBLE_EQ(expectedWaterLevel, timeDependentInput.GetWaterLevel());
-            ASSERT_DOUBLE_EQ(expectedWaveHeightHm0, timeDependentInput.GetWaveHeightHm0());
-            ASSERT_DOUBLE_EQ(expectedWavePeriodTm10, timeDependentInput.GetWavePeriodTm10());
-            ASSERT_DOUBLE_EQ(expectedWaveAngle, timeDependentInput.GetWaveAngle());
         }
 
         void AssertHydraulicLoads(
@@ -170,12 +153,9 @@ namespace DiKErnel::Integration::Test
         const auto& actualTimeDependentInputItems = calculationInput->GetTimeDependentInputItems();
         ASSERT_EQ(1, actualTimeDependentInputItems.size());
         const auto& timeDependentInput = actualTimeDependentInputItems[0].get();
-        ASSERT_DOUBLE_EQ(beginTime, timeDependentInput.GetBeginTime());
-        ASSERT_DOUBLE_EQ(endTime, timeDependentInput.GetEndTime());
-        ASSERT_DOUBLE_EQ(waterLevel, timeDependentInput.GetWaterLevel());
-        ASSERT_DOUBLE_EQ(waveHeightHm0, timeDependentInput.GetWaveHeightHm0());
-        ASSERT_DOUBLE_EQ(wavePeriodTm10, timeDependentInput.GetWavePeriodTm10());
-        ASSERT_DOUBLE_EQ(waveAngle, timeDependentInput.GetWaveAngle());
+
+        TimeDependentInputAssertHelper::AssertTimeDependentInputItem(beginTime, endTime, waterLevel, waveHeightHm0, wavePeriodTm10, waveAngle,
+                                                                     timeDependentInput);
 
         ASSERT_EQ(0, calculationInput->GetLocationDependentInputItems().size());
     }

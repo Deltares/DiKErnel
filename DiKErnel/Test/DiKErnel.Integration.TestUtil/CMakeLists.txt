@@ -5,6 +5,8 @@ set(LIBNAME DiKErnel.Integration.TestUtil)
 set(SOURCEFILES
   LocationDependentInputMock.cpp
   LocationDependentInputMock.h
+  TimeDependentInputAssertHelper.cpp
+  TimeDependentInputAssertHelper.h
 )
 
 # Add library
@@ -18,4 +20,4 @@ source_group("Sources" FILES ${SOURCEFILES})
 target_include_directories(${LIBNAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
 # Link dependencies
-target_link_libraries(${LIBNAME} gmock DiKErnel.Integration)
+target_link_libraries(${LIBNAME} gmock DiKErnel.Core DiKErnel.Integration)
