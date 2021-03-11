@@ -12,8 +12,8 @@ set(SOURCEFILES
   ICalculationInput.h
   ILocationDependentInput.h
   ITimeDependentInput.h
-  LocationOutput.cpp
-  LocationOutput.h
+  LocationDependentOutput.cpp
+  LocationDependentOutput.h
 )
 
 # Add library

@@ -21,7 +21,7 @@
 #include <gtest/gtest.h>
 
 #include "CalculationOutput.h"
-#include "LocationOutput.h"
+#include "LocationDependentOutput.h"
 
 namespace DiKErnel::Core::Test
 {
@@ -30,14 +30,14 @@ namespace DiKErnel::Core::Test
     TEST(CalculationOutputTest, Constructor_WithParameters_ExpectedValues)
     {
         // Setup
-        auto locationOutputItems = vector<unique_ptr<LocationOutput>>();
-        locationOutputItems.push_back(make_unique<LocationOutput>(vector<double>(), nullptr));
-        locationOutputItems.push_back(make_unique<LocationOutput>(vector<double>(), nullptr));
+        auto locationDependentOutputItems = vector<unique_ptr<LocationDependentOutput>>();
+        locationDependentOutputItems.push_back(make_unique<LocationDependentOutput>(vector<double>(), nullptr));
+        locationDependentOutputItems.push_back(make_unique<LocationDependentOutput>(vector<double>(), nullptr));
 
         // Call
-        const CalculationOutput output(move(locationOutputItems));
+        const CalculationOutput output(move(locationDependentOutputItems));
 
         // Assert
-        ASSERT_EQ(2, output.GetLocationOutputItems().size());
+        ASSERT_EQ(2, output.GetLocationDependentOutputItems().size());
     }
 }

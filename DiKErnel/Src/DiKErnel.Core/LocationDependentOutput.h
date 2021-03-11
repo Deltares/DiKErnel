@@ -26,9 +26,9 @@
 namespace DiKErnel::Core
 {
     /*!
-     * \brief Class containing all output data of a location.
+     * \brief Class containing all location dependent output of a location.
      */
-    class LocationOutput
+    class LocationDependentOutput
     {
         public:
             /*!
@@ -38,7 +38,7 @@ namespace DiKErnel::Core
              * \param timeOfFailure
              *        The time of failure.
              */
-            explicit LocationOutput(
+            explicit LocationDependentOutput(
                 std::vector<double> damages,
                 std::unique_ptr<double> timeOfFailure);
 

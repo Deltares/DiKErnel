@@ -6,7 +6,7 @@ set(SOURCEFILES
   CalculationOutputTest.cpp
   CalculatorTest.cpp
   DeprecatedCalculatorTest.cpp
-  LocationOutputTest.cpp
+  LocationDependentOutputTest.cpp
   Main.cpp
 )
 

@@ -18,36 +18,25 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include <gtest/gtest.h>
+#include "LocationDependentOutput.h"
 
-#include "LocationOutput.h"
-
-namespace DiKErnel::Core::Test
+namespace DiKErnel::Core
 {
     using namespace std;
 
-    TEST(LocationOutputTest, Constructor_WithParameters_ExpectedValues)
+    LocationDependentOutput::LocationDependentOutput(
+        vector<double> damages,
+        unique_ptr<double> timeOfFailure)
+        : _damages(move(damages)),
+          _timeOfFailure(move(timeOfFailure)) {}
+
+    const vector<double>& LocationDependentOutput::GetDamages() const
     {
-        // Setup
-        auto damages = vector<double>();
-        damages.push_back(rand() % 10);
-
-        double timeOfFailure = rand() % 20;
-
-        // Call
-        const LocationOutput locationOutput(move(damages), make_unique<double>(timeOfFailure));
-
-        // Assert
-        ASSERT_EQ(1, locationOutput.GetDamages().size());
-        ASSERT_DOUBLE_EQ(timeOfFailure, *locationOutput.GetTimeOfFailure());
+        return _damages;
     }
 
-    TEST(LocationOutputTest, Constructor_TimeOfFailureNullPtr_ExpectedValues)
+    const double* LocationDependentOutput::GetTimeOfFailure() const
     {
-        // Call
-        const LocationOutput locationOutput((vector<double>()), nullptr);
-
-        // Assert
-        ASSERT_EQ(nullptr, locationOutput.GetTimeOfFailure());
+        return _timeOfFailure.get();
     }
 }

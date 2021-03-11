@@ -22,32 +22,32 @@
 
 #include <memory>
 
-#include "LocationOutput.h"
+#include "LocationDependentOutput.h"
 
 namespace DiKErnel::Core
 {
     /*!
-     * \brief Class containing all output data of a calculation.
+     * \brief Class containing all output of a calculation.
      */
     class CalculationOutput
     {
         public:
             /*!
              * \brief Creates a new instance.
-             * \param locationOutputItems
-             *        The location output items.
+             * \param locationDependentOutputItems
+             *        The location dependent output items.
              */
             explicit CalculationOutput(
-                std::vector<std::unique_ptr<LocationOutput>> locationOutputItems);
+                std::vector<std::unique_ptr<LocationDependentOutput>> locationDependentOutputItems);
 
             /*!
-             * \brief Gets the location output items.
-             * \return The location output items.
+             * \brief Gets the location dependent output items.
+             * \return The location dependent output items.
              */
-            const std::vector<std::reference_wrapper<LocationOutput>>& GetLocationOutputItems() const;
+            const std::vector<std::reference_wrapper<LocationDependentOutput>>& GetLocationDependentOutputItems() const;
 
         private:
-            std::vector<std::unique_ptr<LocationOutput>> _locationOutputItems;
-            std::vector<std::reference_wrapper<LocationOutput>> _locationOutputItemReferences;
+            std::vector<std::unique_ptr<LocationDependentOutput>> _locationDependentOutputItems;
+            std::vector<std::reference_wrapper<LocationDependentOutput>> _locationDependentOutputItemReferences;
     };
 }
