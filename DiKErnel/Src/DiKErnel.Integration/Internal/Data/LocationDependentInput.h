@@ -24,40 +24,17 @@
 
 namespace DiKErnel::Integration
 {
-    /*!
-     * \brief Class containing all location dependent input that is needed to perform a
-     *        calculation.
-     */
     class LocationDependentInput : public Core::ILocationDependentInput
     {
         public:
-            /*!
-             * \brief Performs a location dependent calculation.
-             * \param startDamage
-             *        The damage at the start of the calculation.
-             * \param timeDependentInput
-             *        The time dependent input to use in the calculation.
-             * \param maximumWaveAngle
-             *        The maximum wave angle.
-             * \return The calculated damage.
-             */
             double Calculate(
                 double startDamage,
                 const Core::ITimeDependentInput& timeDependentInput,
                 double maximumWaveAngle) override = 0;
 
-            /*!
-             * \brief Gets the initial damage.
-             * \return The initial damage.
-             */
             double GetInitialDamage() const override;
 
         protected:
-            /*!
-             * \brief Creates a new instance.
-             * \param initialDamage
-             *        The initial damage of the location.
-             */
             explicit LocationDependentInput(
                 double initialDamage);
 

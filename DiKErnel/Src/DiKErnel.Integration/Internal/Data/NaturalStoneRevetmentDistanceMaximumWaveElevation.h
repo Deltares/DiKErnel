@@ -30,6 +30,7 @@ namespace DiKErnel::Integration
                 double distanceMaximumWaveElevationBsmax);
 
             double GetDistanceMaximumWaveElevationAsmax() const;
+
             double GetDistanceMaximumWaveElevationBsmax() const;
 
         private:

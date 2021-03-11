@@ -29,54 +29,26 @@
 
 namespace DiKErnel::Integration
 {
-    /*!
-     * \brief Class containing all input that is needed to perform a calculation.
-     */
     class CalculationInput : public Core::ICalculationInput
     {
         public:
-            /*!
-             * \brief Creates a new instance.
-             * \param locationDependentInputItems
-             *        The location dependent input items to use in the calculation.
-             * \param timeDependentInputItems
-             *        The time dependent input items to use in the calculation.
-             * \param maximumWaveAngle
-             *        The maximum wave angle.
-             * \exception InvalidCalculationDataException
-             *            Thrown when timeDependentInputItems do not connect or are unordered.
-             */
             explicit CalculationInput(
                 std::vector<std::unique_ptr<LocationDependentInput>> locationDependentInputItems,
                 std::vector<std::unique_ptr<TimeDependentInput>> timeDependentInputItems,
                 double maximumWaveAngle
             );
 
-            /*!
-             * \brief Gets the location dependent input items to use in the calculation.
-             * \return The location dependent input items to use in the calculation.
-             */
             const std::vector<std::reference_wrapper<Core::ILocationDependentInput>>& GetLocationDependentInputItems() const override;
 
-            /*!
-             * \brief Gets the time dependent input items to use in the calculation.
-             * \return The time dependent input items to use in the calculation.
-             */
             const std::vector<std::reference_wrapper<Core::ITimeDependentInput>>& GetTimeDependentInputItems() const override;
 
-            /*!
-             * \brief Gets the maximum wave angle.
-             * \return The maximum wave angle.
-             */
             double GetMaximumWaveAngle() const override;
 
         private:
             std::vector<std::unique_ptr<LocationDependentInput>> _locationDependentInputItems;
-            std::vector<std::unique_ptr<TimeDependentInput>> _timeDependentInputItems;
-
             std::vector<std::reference_wrapper<Core::ILocationDependentInput>> _locationDependentInputItemReferences;
+            std::vector<std::unique_ptr<TimeDependentInput>> _timeDependentInputItems;
             std::vector<std::reference_wrapper<Core::ITimeDependentInput>> _timeDependentInputItemReferences;
-
             double _maximumWaveAngle;
     };
 }

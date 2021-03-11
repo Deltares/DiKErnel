@@ -24,17 +24,9 @@
 
 namespace DiKErnel::Integration
 {
-    /*!
-     * \brief Exception that can be thrown when there is invalid calculation data.
-     */
     class InvalidCalculationDataException : public std::exception
     {
         public:
-            /*!
-             * \brief Creates a new instance.
-             * \param message
-             *        The message of the exception.
-             */
             explicit InvalidCalculationDataException(
                 std::string message);
 

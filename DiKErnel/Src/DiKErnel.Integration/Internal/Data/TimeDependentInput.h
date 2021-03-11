@@ -24,29 +24,9 @@
 
 namespace DiKErnel::Integration
 {
-    /*!
-     * \brief Class containing all time dependent input that is needed to perform a calculation.
-     */
     class TimeDependentInput : public Core::ITimeDependentInput
     {
         public:
-            /*!
-             * \brief Creates a new instance.
-             * \param beginTime
-             *        The begin time.
-             * \param endTime
-             *        The end time.
-             * \param waterLevel
-             *        The water level.
-             * \param waveHeightHm0
-             *        The wave height.
-             * \param wavePeriodTm10
-             *        The wave period.
-             * \param waveAngle
-             *        The wave angle.
-             * \exception InvalidCalculationDataException
-             *            Thrown when endTime is equal to or larger than beginTime.
-             */
             explicit TimeDependentInput(
                 int beginTime,
                 int endTime,
@@ -55,40 +35,16 @@ namespace DiKErnel::Integration
                 double wavePeriodTm10,
                 double waveAngle);
 
-            /*!
-             * \brief Gets the begin time.
-             * \return The begin time.
-            */
             int GetBeginTime() const override;
 
-            /*!
-             * \brief Gets the end time.
-             * \return The end time.
-             */
             int GetEndTime() const override;
 
-            /*!
-             * \brief Gets the water level.
-             * \return The water level.
-             */
             double GetWaterLevel() const override;
 
-            /*!
-             * \brief Gets the wave height.
-             * \return The wave height.
-             */
             double GetWaveHeightHm0() const override;
 
-            /*!
-             * \brief Gets the wave period.
-             * \return The wave period.
-             */
             double GetWavePeriodTm10() const override;
 
-            /*!
-             * \brief Gets the wave angle.
-             * \return The wave angle.
-             */
             double GetWaveAngle() const override;
 
         private:
