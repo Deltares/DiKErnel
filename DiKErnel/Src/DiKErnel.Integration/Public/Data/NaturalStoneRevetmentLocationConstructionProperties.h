@@ -25,7 +25,8 @@
 namespace DiKErnel::Integration
 {
     /*!
-     * \brief Construction properties to construct a natural stone revetment location.
+     * \brief Construction properties to construct natural stone revetment location dependent
+     *        input.
      */
     class NaturalStoneRevetmentLocationConstructionProperties
     {
@@ -312,7 +313,6 @@ namespace DiKErnel::Integration
             double _slopeAngle;
             double _thicknessTopLayer;
             double _relativeDensity;
-
             std::unique_ptr<double> _plungingCoefficientA = nullptr;
             std::unique_ptr<double> _plungingCoefficientB = nullptr;
             std::unique_ptr<double> _plungingCoefficientC = nullptr;

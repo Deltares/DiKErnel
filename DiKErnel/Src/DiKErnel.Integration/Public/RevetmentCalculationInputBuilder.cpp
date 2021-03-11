@@ -46,7 +46,8 @@ namespace DiKErnel::Integration
     {
         try
         {
-            _timeSteps.push_back(make_unique<TimeDependentInput>(beginTime, endTime, waterLevel, waveHeightHm0, wavePeriodTm10, waveAngle));
+            _timeDependentInputItems.push_back(
+                make_unique<TimeDependentInput>(beginTime, endTime, waterLevel, waveHeightHm0, wavePeriodTm10, waveAngle));
         }
         catch (const InvalidCalculationDataException&)
         {
@@ -88,17 +89,24 @@ namespace DiKErnel::Integration
             GetValue(constructionProperties.GetNormativeWidthOfWaveImpactAwi(), NaturalStoneRevetmentDefaults::NORMATIVE_WIDTH_OF_WAVE_IMPACT_AWI),
             GetValue(constructionProperties.GetNormativeWidthOfWaveImpactBwi(), NaturalStoneRevetmentDefaults::NORMATIVE_WIDTH_OF_WAVE_IMPACT_BWI));
 
-        _locations.push_back(make_unique<NaturalStoneRevetmentLocationDependentInput>(
-            constructionProperties.GetInitialDamage(), constructionProperties.GetSlopeAngle(), constructionProperties.GetRelativeDensity(),
-            constructionProperties.GetThicknessTopLayer(), move(hydraulicLoads), move(upperLimitLoading), move(lowerLimitLoading),
-            move(distanceMaximumWaveElevation), move(normativeWidthOfWaveImpact)));
+        _locationDependentInputItems.push_back(
+            make_unique<NaturalStoneRevetmentLocationDependentInput>(
+                constructionProperties.GetInitialDamage(),
+                constructionProperties.GetSlopeAngle(),
+                constructionProperties.GetRelativeDensity(),
+                constructionProperties.GetThicknessTopLayer(),
+                move(hydraulicLoads),
+                move(upperLimitLoading),
+                move(lowerLimitLoading),
+                move(distanceMaximumWaveElevation),
+                move(normativeWidthOfWaveImpact)));
     }
 
     unique_ptr<ICalculationInput> RevetmentCalculationInputBuilder::Build()
     {
         try
         {
-            return make_unique<CalculationInput>(move(_locations), move(_timeSteps), _maximumWaveAngle);
+            return make_unique<CalculationInput>(move(_locationDependentInputItems), move(_timeDependentInputItems), _maximumWaveAngle);
         }
         catch (const InvalidCalculationDataException&)
         {

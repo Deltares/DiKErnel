@@ -21,12 +21,12 @@
 #pragma once
 
 #include "CalculationInput.h"
+#include "NaturalStoneRevetmentLocationConstructionProperties.h"
 
 namespace DiKErnel::Integration
 {
-    class NaturalStoneRevetmentLocationConstructionProperties;
     /*!
-     * \brief Builder to configure and create the CalculationInput.
+     * \brief Builder to configure and create calculation input.
      */
     class RevetmentCalculationInputBuilder
     {
@@ -54,7 +54,7 @@ namespace DiKErnel::Integration
              * \param waveAngle
              *        The wave angle.
              * \exception RevetmentCalculationInputBuilderException
-             *            Thrown when endTime is equal to or larger than beginTime.
+             *            Thrown when beginTime is equal to or larger than endTime.
              */
             void AddTimeStep(
                 int beginTime,
@@ -67,23 +67,24 @@ namespace DiKErnel::Integration
             /*!
              * \brief Adds a natural stone location.
              * \param constructionProperties
-             *        The properties to construct a natural stone location.
+             *        The properties to construct the natural stone location dependent input.
              */
             void AddNaturalStoneLocation(
                 const NaturalStoneRevetmentLocationConstructionProperties& constructionProperties);
 
             /*!
-             * \brief Builds the CalculationInput.
-             * \return The build CalculationInput.
+             * \brief Builds the calculation input.
+             * \return The created calculation input.
              * \exception RevetmentCalculationInputBuilderException
-             *            Thrown when time steps do not connect or are unordered.
+             *            Thrown when the time steps are not successive.
              */
             std::unique_ptr<Core::ICalculationInput> Build();
 
         private:
             double _maximumWaveAngle;
-            std::vector<std::unique_ptr<TimeDependentInput>> _timeSteps = std::vector<std::unique_ptr<TimeDependentInput>>();
-            std::vector<std::unique_ptr<LocationDependentInput>> _locations = std::vector<std::unique_ptr<LocationDependentInput>>();
+            std::vector<std::unique_ptr<TimeDependentInput>> _timeDependentInputItems = std::vector<std::unique_ptr<TimeDependentInput>>();
+            std::vector<std::unique_ptr<LocationDependentInput>> _locationDependentInputItems
+                    = std::vector<std::unique_ptr<LocationDependentInput>>();
 
             static double GetValue(
                 const double* doublePtr,

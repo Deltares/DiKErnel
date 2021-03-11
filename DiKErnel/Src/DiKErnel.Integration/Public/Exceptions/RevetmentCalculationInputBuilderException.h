@@ -25,7 +25,7 @@
 namespace DiKErnel::Integration
 {
     /*!
-     * \brief Exception that can be thrown when there is invalid calculation data.
+     * \brief Exception that can be thrown when there is invalid calculation input.
      */
     class RevetmentCalculationInputBuilderException : public std::exception
     {
@@ -38,6 +38,10 @@ namespace DiKErnel::Integration
             explicit RevetmentCalculationInputBuilderException(
                 std::string message);
 
+            /*!
+             * \brief Gets the message of the exception.
+             * \return The message of the exception.
+             */
             const char* what() const throw () override;
 
         private:
