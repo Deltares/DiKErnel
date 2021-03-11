@@ -24,6 +24,7 @@
 #include "InvalidCalculationDataException.h"
 #include "NaturalStoneRevetmentLocationConstructionProperties.h"
 #include "NaturalStoneRevetmentLocationDependentInput.h"
+#include "NaturalStoneRevetmentLocationDependentInputAssertHelper.h"
 #include "RevetmentCalculationInputBuilder.h"
 #include "RevetmentCalculationInputBuilderException.h"
 #include "TimeDependentInputAssertHelper.h"
@@ -50,69 +51,6 @@ namespace DiKErnel::Integration::Test
             builder.AddTimeStep(0, 5, 0, 0, 0, 0);
             builder.AddTimeStep(10, 20, 0, 0, 0, 0);
             builder.Build();
-        }
-
-        void AssertHydraulicLoads(
-            const double plungingCoefficientA,
-            const double plungingCoefficientB,
-            const double plungingCoefficientC,
-            const double plungingCoefficientN,
-            const double surgingCoefficientA,
-            const double surgingCoefficientB,
-            const double surgingCoefficientC,
-            const double surgingCoefficientN,
-            const double similarityParameterThreshold,
-            const NaturalStoneRevetmentHydraulicLoads& hydraulicLoads) const
-        {
-            ASSERT_DOUBLE_EQ(plungingCoefficientA, hydraulicLoads.GetHydraulicLoadAp());
-            ASSERT_DOUBLE_EQ(plungingCoefficientB, hydraulicLoads.GetHydraulicLoadBp());
-            ASSERT_DOUBLE_EQ(plungingCoefficientC, hydraulicLoads.GetHydraulicLoadCp());
-            ASSERT_DOUBLE_EQ(plungingCoefficientN, hydraulicLoads.GetHydraulicLoadNp());
-            ASSERT_DOUBLE_EQ(surgingCoefficientA, hydraulicLoads.GetHydraulicLoadAs());
-            ASSERT_DOUBLE_EQ(surgingCoefficientB, hydraulicLoads.GetHydraulicLoadBs());
-            ASSERT_DOUBLE_EQ(surgingCoefficientC, hydraulicLoads.GetHydraulicLoadCs());
-            ASSERT_DOUBLE_EQ(surgingCoefficientN, hydraulicLoads.GetHydraulicLoadNs());
-            ASSERT_DOUBLE_EQ(similarityParameterThreshold, hydraulicLoads.GetHydraulicLoadXib());
-        }
-
-        void AssertUpperLimitLoading(
-            const double upperLimitLoadingAul,
-            const double upperLimitLoadingBul,
-            const double upperLimitLoadingCul,
-            const NaturalStoneRevetmentUpperLimitLoading& upperLimitLoading) const
-        {
-            ASSERT_DOUBLE_EQ(upperLimitLoadingAul, upperLimitLoading.GetUpperLimitAul());
-            ASSERT_DOUBLE_EQ(upperLimitLoadingBul, upperLimitLoading.GetUpperLimitBul());
-            ASSERT_DOUBLE_EQ(upperLimitLoadingCul, upperLimitLoading.GetUpperLimitCul());
-        }
-
-        void AssertLowerLimitLoading(
-            const double lowerLimitLoadingAll,
-            const double lowerLimitLoadingBll,
-            const double lowerLimitLoadingCll,
-            const NaturalStoneRevetmentLowerLimitLoading& lowerLimitLoading) const
-        {
-            ASSERT_DOUBLE_EQ(lowerLimitLoadingAll, lowerLimitLoading.GetLowerLimitAll());
-            ASSERT_DOUBLE_EQ(lowerLimitLoadingBll, lowerLimitLoading.GetLowerLimitBll());
-            ASSERT_DOUBLE_EQ(lowerLimitLoadingCll, lowerLimitLoading.GetLowerLimitCll());
-        }
-
-        void AssertDistanceMaximumWaveElevation(
-            const double distanceMaximumWaveElevationAsmax,
-            const double distanceMaximumWaveElevationBsmax,
-            const NaturalStoneRevetmentDistanceMaximumWaveElevation& distanceMaximumWaveElevation) const
-        {
-            ASSERT_DOUBLE_EQ(distanceMaximumWaveElevationAsmax, distanceMaximumWaveElevation.GetDistanceMaximumWaveElevationAsmax());
-            ASSERT_DOUBLE_EQ(distanceMaximumWaveElevationBsmax, distanceMaximumWaveElevation.GetDistanceMaximumWaveElevationBsmax());
-        }
-
-        void AssertNormativeWidthOfWaveImpact(
-            const double normativeWidthOfWaveImpactAwi,
-            const double normativeWidthOfWaveImpactBwi,
-            const NaturalStoneRevetmentNormativeWidthOfWaveImpact& normativeWidthOfWaveImpact) const
-        {
-            ASSERT_DOUBLE_EQ(normativeWidthOfWaveImpactAwi, normativeWidthOfWaveImpact.GetNormativeWidthOfWaveImpactAwi());
-            ASSERT_DOUBLE_EQ(normativeWidthOfWaveImpactBwi, normativeWidthOfWaveImpact.GetNormativeWidthOfWaveImpactBwi());
         }
     };
 
@@ -232,28 +170,30 @@ namespace DiKErnel::Integration::Test
         const auto& actualLocationDependentInputItems = calculationInput->GetLocationDependentInputItems();
         ASSERT_EQ(1, actualLocationDependentInputItems.size());
 
-        const auto* locationDependentInput =
-                dynamic_cast<NaturalStoneRevetmentLocationDependentInput*>(&actualLocationDependentInputItems[0].get());
+        const auto* locationDependentInput = dynamic_cast<NaturalStoneRevetmentLocationDependentInput*>(
+            &actualLocationDependentInputItems[0].get());
         ASSERT_TRUE(locationDependentInput != nullptr);
 
-        ASSERT_DOUBLE_EQ(initialDamage, locationDependentInput->GetInitialDamage());
-        ASSERT_DOUBLE_EQ(slopeAngle, locationDependentInput->GetSlopeAngle());
-        ASSERT_DOUBLE_EQ(relativeDensity, locationDependentInput->GetRelativeDensity());
-        ASSERT_DOUBLE_EQ(thicknessTopLayer, locationDependentInput->GetThicknessTopLayer());
+        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertMandatoryProperties(
+            initialDamage, slopeAngle, relativeDensity, thicknessTopLayer, *locationDependentInput);
 
-        AssertHydraulicLoads(plungingCoefficientA, plungingCoefficientB, plungingCoefficientC, plungingCoefficientN, surgingCoefficientA,
-                             surgingCoefficientB, surgingCoefficientC, surgingCoefficientN, similarityParameterThreshold,
-                             locationDependentInput->GetHydraulicLoads());
+        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertHydraulicLoads(
+            plungingCoefficientA, plungingCoefficientB, plungingCoefficientC, plungingCoefficientN, surgingCoefficientA, surgingCoefficientB,
+            surgingCoefficientC, surgingCoefficientN, similarityParameterThreshold, locationDependentInput->GetHydraulicLoads());
 
-        AssertUpperLimitLoading(upperLimitLoadingAul, upperLimitLoadingBul, upperLimitLoadingCul, locationDependentInput->GetUpperLimitLoading());
+        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertUpperLimitLoading(
+            upperLimitLoadingAul, upperLimitLoadingBul, upperLimitLoadingCul, locationDependentInput->GetUpperLimitLoading());
 
-        AssertLowerLimitLoading(lowerLimitLoadingAll, lowerLimitLoadingBll, lowerLimitLoadingCll, locationDependentInput->GetLowerLimitLoading());
+        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertLowerLimitLoading(
+            lowerLimitLoadingAll, lowerLimitLoadingBll, lowerLimitLoadingCll, locationDependentInput->GetLowerLimitLoading());
 
-        AssertDistanceMaximumWaveElevation(distanceMaximumWaveElevationAsmax, distanceMaximumWaveElevationBsmax,
-                                           locationDependentInput->GetDistanceMaximumWaveElevation());
+        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertDistanceMaximumWaveElevation(
+            distanceMaximumWaveElevationAsmax, distanceMaximumWaveElevationBsmax,
+            locationDependentInput->GetDistanceMaximumWaveElevation());
 
-        AssertNormativeWidthOfWaveImpact(normativeWidthOfWaveImpactAwi, normativeWidthOfWaveImpactBwi,
-                                         locationDependentInput->GetNormativeWidthOfWaveImpact());
+        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertNormativeWidthOfWaveImpact(
+            normativeWidthOfWaveImpactAwi, normativeWidthOfWaveImpactBwi,
+            locationDependentInput->GetNormativeWidthOfWaveImpact());
     }
 
     TEST_F(RevetmentCalculationInputBuilderTest, GivenBuilderWithNotFullyConfiguredNaturalStoneLocationAdded_WhenBuild_ThenReturnsCalculationInput)
@@ -280,20 +220,18 @@ namespace DiKErnel::Integration::Test
         const auto& actualLocationDependentInputItems = calculationInput->GetLocationDependentInputItems();
         ASSERT_EQ(1, actualLocationDependentInputItems.size());
 
-        const auto* locationDependentInput = dynamic_cast<NaturalStoneRevetmentLocationDependentInput*>(&actualLocationDependentInputItems[0].get()
-        );
+        const auto* locationDependentInput = dynamic_cast<NaturalStoneRevetmentLocationDependentInput*>(
+            &actualLocationDependentInputItems[0].get());
         ASSERT_TRUE(locationDependentInput != nullptr);
 
-        ASSERT_DOUBLE_EQ(initialDamage, locationDependentInput->GetInitialDamage());
-        ASSERT_DOUBLE_EQ(slopeAngle, locationDependentInput->GetSlopeAngle());
-        ASSERT_DOUBLE_EQ(relativeDensity, locationDependentInput->GetRelativeDensity());
-        ASSERT_DOUBLE_EQ(thicknessTopLayer, locationDependentInput->GetThicknessTopLayer());
+        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertMandatoryProperties(
+            initialDamage, slopeAngle, relativeDensity, thicknessTopLayer, *locationDependentInput);
 
-        AssertHydraulicLoads(4, 0, 0, -0.9, 0.8, 0, 0, 0.6, 2.9, locationDependentInput->GetHydraulicLoads());
-        AssertUpperLimitLoading(0.1, 0.6, 4, locationDependentInput->GetUpperLimitLoading());
-        AssertLowerLimitLoading(0.1, 0.2, 4, locationDependentInput->GetLowerLimitLoading());
-        AssertDistanceMaximumWaveElevation(0.42, 0.9, locationDependentInput->GetDistanceMaximumWaveElevation());
-        AssertNormativeWidthOfWaveImpact(0.96, 0.11, locationDependentInput->GetNormativeWidthOfWaveImpact());
+        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertHydraulicLoads(4, 0, 0, -0.9, 0.8, 0, 0, 0.6, 2.9, locationDependentInput->GetHydraulicLoads());
+        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertUpperLimitLoading(0.1, 0.6, 4, locationDependentInput->GetUpperLimitLoading());
+        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertLowerLimitLoading(0.1, 0.2, 4, locationDependentInput->GetLowerLimitLoading());
+        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertDistanceMaximumWaveElevation(0.42, 0.9, locationDependentInput->GetDistanceMaximumWaveElevation());
+        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertNormativeWidthOfWaveImpact(0.96, 0.11, locationDependentInput->GetNormativeWidthOfWaveImpact());
     }
 
     TEST_F(RevetmentCalculationInputBuilderTest, GivenBuilderWithInvalidTimeSteps_WhenBuild_ThenThrowsRevetmentCalculationInputBuilderException)

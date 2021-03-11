@@ -5,6 +5,8 @@ set(LIBNAME DiKErnel.Integration.TestUtil)
 set(SOURCEFILES
   LocationDependentInputMock.cpp
   LocationDependentInputMock.h
+  NaturalStoneRevetmentLocationDependentInputAssertHelper.cpp
+  NaturalStoneRevetmentLocationDependentInputAssertHelper.h
   TimeDependentInputAssertHelper.cpp
   TimeDependentInputAssertHelper.h
 )
