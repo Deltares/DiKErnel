@@ -27,9 +27,18 @@
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
+    /*!
+     * \brief Class responsible for reading Json and turning it into ICalculationInput.
+    */
     class JsonInputComposer
     {
         public:
+            /*!
+             * \brief Gets calculation input based on Json.
+             * \param filePath
+             *        The filepath to the Json file.
+             * \return The created ICalculationInput.
+            */
             static std::unique_ptr<Core::ICalculationInput> GetCalculationInputFromJson(
                 const std::string& filePath);
     };
