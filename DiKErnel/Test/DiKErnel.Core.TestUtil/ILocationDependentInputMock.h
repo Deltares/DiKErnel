@@ -29,7 +29,8 @@ namespace DiKErnel::Core::TestUtil
     class ILocationDependentInputMock : public ILocationDependentInput
     {
         public:
-            MOCK_METHOD(double, Calculate, (double startDamage, const ITimeDependentInput& timeDependentInput, double maximumWaveAngle), (override));
+            MOCK_METHOD(double, Calculate, (double startDamage, const ITimeDependentInput& timeDependentInput, double maximumWaveAngle),
+                        (override));
             MOCK_METHOD(double, GetInitialDamage, (), (const, override));
     };
 }
