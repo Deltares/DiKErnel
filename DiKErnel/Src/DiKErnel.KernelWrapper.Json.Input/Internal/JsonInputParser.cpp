@@ -103,7 +103,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
             const auto& readDamageVariables = readLocation[JsonInputDefinitions::DAMAGE];
             const auto& readProfileSchematization = readLocation[JsonInputDefinitions::PROFILE_SCHEMATIZATION];
 
-            JsonInputLocationData parsedLocation(
+            auto parsedLocation = make_unique<JsonInputLocationData>(
                 readLocation[JsonInputDefinitions::NAME].get<string>(),
                 make_unique<JsonInputDamageData>(
                     readDamageVariables[JsonInputDefinitions::INITIAL_DAMAGE].get<double>(),
@@ -112,6 +112,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 make_unique<JsonInputProfileSchematizationData>(
                     readProfileSchematization[JsonInputDefinitions::TAN_A].get<double>(),
                     readProfileSchematization[JsonInputDefinitions::POSITION_Z].get<double>()));
+
+            parsedLocations.emplace_back(move(parsedLocation));
         }
 
         return parsedLocations;
@@ -188,6 +190,16 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 readDistanceMaxWaveElevation, JsonInputDefinitions::DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE_ASMAX));
             locationData->SetDistanceMaximumWaveElevationBsmax(ReadOptionalValue(
                 readDistanceMaxWaveElevation, JsonInputDefinitions::DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE_BSMAX));
+        }
+
+        if (readCalculationMethod.contains(JsonInputDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT))
+        {
+            const auto& readNormativeWidthOfWaveImpact = readCalculationMethod[JsonInputDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT];
+
+            locationData->SetNormativeWidthOfWaveImpactAwi(
+                ReadOptionalValue(readNormativeWidthOfWaveImpact, JsonInputDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT_AWI));
+            locationData->SetNormativeWidthOfWaveImpactBwi(
+                ReadOptionalValue(readNormativeWidthOfWaveImpact, JsonInputDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT_BWI));
         }
 
         return locationData;

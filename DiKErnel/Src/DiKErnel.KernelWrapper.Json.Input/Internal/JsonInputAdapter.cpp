@@ -73,6 +73,20 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 constructionProperties.SetSurgingCoefficientN(CreatePointerOfValue(naturalStoneRevetmentLocationData->GetSurgingCoefficientN()));
                 constructionProperties.SetSimilarityParameterThreshold(
                     CreatePointerOfValue(naturalStoneRevetmentLocationData->GetSimilarityParameterThreshold()));
+                constructionProperties.SetUpperLimitLoadingAul(CreatePointerOfValue(naturalStoneRevetmentLocationData->GetUpperLimitLoadingAul()));
+                constructionProperties.SetUpperLimitLoadingBul(CreatePointerOfValue(naturalStoneRevetmentLocationData->GetUpperLimitLoadingBul()));
+                constructionProperties.SetUpperLimitLoadingCul(CreatePointerOfValue(naturalStoneRevetmentLocationData->GetUpperLimitLoadingCul()));
+                constructionProperties.SetLowerLimitLoadingAll(CreatePointerOfValue(naturalStoneRevetmentLocationData->GetLowerLimitLoadingAll()));
+                constructionProperties.SetLowerLimitLoadingBll(CreatePointerOfValue(naturalStoneRevetmentLocationData->GetLowerLimitLoadingBll()));
+                constructionProperties.SetLowerLimitLoadingCll(CreatePointerOfValue(naturalStoneRevetmentLocationData->GetLowerLimitLoadingCll()));
+                constructionProperties.SetDistanceMaximumWaveElevationAsmax(
+                    CreatePointerOfValue(naturalStoneRevetmentLocationData->GetDistanceMaximumWaveElevationAsmax()));
+                constructionProperties.SetDistanceMaximumWaveElevationBsmax(
+                    CreatePointerOfValue(naturalStoneRevetmentLocationData->GetDistanceMaximumWaveElevationBsmax()));
+                constructionProperties.SetNormativeWidthOfWaveImpactAwi(
+                    CreatePointerOfValue(naturalStoneRevetmentLocationData->GetNormativeWidthOfWaveImpactAwi()));
+                constructionProperties.SetNormativeWidthOfWaveImpactBwi(
+                    CreatePointerOfValue(naturalStoneRevetmentLocationData->GetNormativeWidthOfWaveImpactBwi()));
 
                 builder.AddNaturalStoneLocation(constructionProperties);
             }

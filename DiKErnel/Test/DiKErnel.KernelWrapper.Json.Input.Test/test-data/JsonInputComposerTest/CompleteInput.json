@@ -1,0 +1,126 @@
+{
+	"Rekendata":
+	{
+		"Tijd":
+		[
+			0,
+			100,
+			500,
+			800,
+			1200,
+			2000
+		]
+	},
+	"HydraulischeBelastingen": 
+	{
+		"GolfhoekMaximum": 78,
+		"RandvoorwaardenPerTijdstap": 
+		[
+			{
+				"Waterstand": 0.1,
+				"GolfhoogteHm0": 0.5,
+				"GolfperiodeTm10": 2,
+				"Golfhoek": -10
+			},
+			{
+				"Waterstand": 0.5,
+				"GolfhoogteHm0": 0.8,
+				"GolfperiodeTm10": 6,
+				"Golfhoek": -5
+			},
+			{
+				"Waterstand": 1.15,
+				"GolfhoogteHm0": 1.2,
+				"GolfperiodeTm10": 6,
+				"Golfhoek": 0
+			},
+			{
+				"Waterstand": 1.77,
+				"GolfhoogteHm0": 1.5,
+				"GolfperiodeTm10": 7,
+				"Golfhoek": 7
+			},
+			{
+				"Waterstand": 2.0,
+				"GolfhoogteHm0": 0.5,
+				"GolfperiodeTm10": 4,
+				"Golfhoek": 8
+			}
+		]
+	},
+	"Locaties":
+	[
+		{
+			"Naam": "LocatieZwak",
+			"Schade":
+			{
+				"BeginSchade": 0,
+				"Faalgetal": 1
+			},
+			"Bekleding":
+			{
+				"TypeToplaag": "Noorse Steen",
+				"RelatieveDichtheid": 1.65,
+				"DikteToplaag": 0.3,
+				"Rekenmethode": {
+					"RekenmethodeSoort": "NatuurSteen",
+					"HydraulischeBelastingNatuurSteen": {
+						"HydraulischeBelastingNatuurSteenXIb": 4.9,
+						"HydraulischeBelastingNatuurSteenAp": 5,
+						"HydraulischeBelastingNatuurSteenBp": 1.3,
+						"HydraulischeBelastingNatuurSteenCp": 1.7,
+						"HydraulischeBelastingNatuurSteenNp": 0.9,
+						"HydraulischeBelastingNatuurSteenAs": -0.8,
+						"HydraulischeBelastingNatuurSteenBs": 10,
+						"HydraulischeBelastingNatuurSteenCs": -8,
+						"HydraulischeBelastingNatuurSteenNs": 6
+					},
+					"BovengrensBelastingNatuursteen": {
+						"BovengrensBelastingNatuursteenAul": 6.1,
+						"BovengrensBelastingNatuursteenBul": 3.6,
+						"BovengrensBelastingNatuursteenCul": 4.5
+					},
+					"OndergrensBelastingNatuursteen": {
+						"OndergrensBelastingNatuursteenAll": 4.1,
+						"OndergrensBelastingNatuursteenBll": 8,
+						"OndergrensBelastingNatuursteenCll": 0.5
+					},
+					"AfstandMaximaleStijghoogte": {
+						"AfstandMaximaleStijghoogteAsmax": 0.7,
+						"AfstandMaximaleStijghoogteBsmax": 0.319
+					},
+					"MaatgevendeBreedteGolfklap": {
+						"MaatgevendeBreedteGolfklapAwi": 1,
+						"MaatgevendeBreedteGolfklapBwi": 0.01
+					}
+				}
+			},
+			"Profielschematisatie":
+			{
+				"TanA": 0.25,
+				"PositieZ": 0.9
+			}
+		},
+		{
+			"Naam": "LocatieSterk",
+			"Schade":
+			{
+				"BeginSchade": 0.1
+			},
+			"Bekleding":
+			{
+				"TypeToplaag": "Noorse Steen",
+				"RelatieveDichtheid": 1.65,
+				"DikteToplaag": 0.7,
+				"Rekenmethode": {
+					"RekenmethodeSoort": "NatuurSteen"
+				}
+			},
+			"Profielschematisatie":
+			{
+				"TanA": 0.3,
+				"PositieZ": 1.0
+			}
+		}
+	]
+}

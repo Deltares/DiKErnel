@@ -235,7 +235,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
     const double* JsonInputNaturalStoneRevetmentLocationData::GetDistanceMaximumWaveElevationBsmax() const
     {
-        return _distanceMaximumWaveElevationAsmax.get();
+        return _distanceMaximumWaveElevationBsmax.get();
     }
 
     const double* JsonInputNaturalStoneRevetmentLocationData::GetNormativeWidthOfWaveImpactAwi() const
