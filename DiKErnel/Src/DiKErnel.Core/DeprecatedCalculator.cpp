@@ -249,7 +249,7 @@ namespace DiKErnel::Core
             hydraulicLoadOnNaturalStone.GetHydraulicLoadOnNaturalStoneCs(),
             hydraulicLoadOnNaturalStone.GetHydraulicLoadOnNaturalStoneNs(),
             hydraulicLoads.GetWaveAngleMaximum(),
-            2.9);
+            revetment.GetCalculationMethod().GetHydraulicLoadOnNaturalStone().GetHydraulicLoadOnNaturalStoneXIb());
 
         outputData.emplace_back(get<1>(currentTimeStep), damage);
     }
