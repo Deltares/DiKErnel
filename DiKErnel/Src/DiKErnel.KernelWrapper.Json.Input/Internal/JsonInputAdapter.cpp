@@ -63,7 +63,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 NaturalStoneRevetmentLocationConstructionProperties constructionProperties(
                     location.GetDamageData().GetInitialDamage(), location.GetProfileSchematizationData().GetTanA(),
                     naturalStoneRevetmentLocationData->GetThicknessTopLayer(), naturalStoneRevetmentLocationData->GetRelativeDensity());
-                constructionProperties.SetPlungingCoefficientA(make_unique<double>(1));
+                constructionProperties.SetPlungingCoefficientA(CreatePointerOfValue(naturalStoneRevetmentLocationData->GetPlungingCoefficientA()));
                 constructionProperties.SetPlungingCoefficientB(CreatePointerOfValue(naturalStoneRevetmentLocationData->GetPlungingCoefficientB()));
                 constructionProperties.SetPlungingCoefficientC(CreatePointerOfValue(naturalStoneRevetmentLocationData->GetPlungingCoefficientC()));
                 constructionProperties.SetPlungingCoefficientN(CreatePointerOfValue(naturalStoneRevetmentLocationData->GetPlungingCoefficientN()));
