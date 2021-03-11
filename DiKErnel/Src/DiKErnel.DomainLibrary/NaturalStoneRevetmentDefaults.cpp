@@ -26,17 +26,17 @@ namespace DiKErnel::DomainLibrary
 
     const double NaturalStoneRevetmentDefaults::PLUNGING_COEFFICIENT_A = 4;
 
-    const double NaturalStoneRevetmentDefaults::PLUNGING_COEFFICIENT_B = 0.8;
+    const double NaturalStoneRevetmentDefaults::PLUNGING_COEFFICIENT_B = 0;
 
     const double NaturalStoneRevetmentDefaults::PLUNGING_COEFFICIENT_C = 0;
 
-    const double NaturalStoneRevetmentDefaults::PLUNGING_COEFFICIENT_N = 0;
+    const double NaturalStoneRevetmentDefaults::PLUNGING_COEFFICIENT_N = -0.9;
 
-    const double NaturalStoneRevetmentDefaults::SURGING_COEFFICIENT_A = 0;
+    const double NaturalStoneRevetmentDefaults::SURGING_COEFFICIENT_A = 0.8;
 
     const double NaturalStoneRevetmentDefaults::SURGING_COEFFICIENT_B = 0;
 
-    const double NaturalStoneRevetmentDefaults::SURGING_COEFFICIENT_C = -0.9;
+    const double NaturalStoneRevetmentDefaults::SURGING_COEFFICIENT_C = 0;
 
     const double NaturalStoneRevetmentDefaults::SURGING_COEFFICIENT_N = 0.6;
 }

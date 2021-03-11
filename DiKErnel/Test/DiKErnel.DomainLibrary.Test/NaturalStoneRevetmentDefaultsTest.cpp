@@ -39,7 +39,7 @@ namespace DiKErnel::DomainLibrary::Test::NaturalStoneRevetmentDefaultsTest
     TEST(NaturalStoneRevetmentDefaultsTest, PlunginCoefficientB_ExpectedValue)
     {
         // Call & Assert
-        ASSERT_DOUBLE_EQ(0.8, NaturalStoneRevetmentDefaults::PLUNGING_COEFFICIENT_B);
+        ASSERT_DOUBLE_EQ(0, NaturalStoneRevetmentDefaults::PLUNGING_COEFFICIENT_B);
     }
 
     TEST(NaturalStoneRevetmentDefaultsTest, PlunginCoefficientC_ExpectedValue)
@@ -51,13 +51,13 @@ namespace DiKErnel::DomainLibrary::Test::NaturalStoneRevetmentDefaultsTest
     TEST(NaturalStoneRevetmentDefaultsTest, PlunginCoefficientN_ExpectedValue)
     {
         // Call & Assert
-        ASSERT_DOUBLE_EQ(0, NaturalStoneRevetmentDefaults::PLUNGING_COEFFICIENT_N);
+        ASSERT_DOUBLE_EQ(-0.9, NaturalStoneRevetmentDefaults::PLUNGING_COEFFICIENT_N);
     }
 
     TEST(NaturalStoneRevetmentDefaultsTest, SurgingCoefficientA_ExpectedValue)
     {
         // Call & Assert
-        ASSERT_DOUBLE_EQ(0, NaturalStoneRevetmentDefaults::SURGING_COEFFICIENT_A);
+        ASSERT_DOUBLE_EQ(0.8, NaturalStoneRevetmentDefaults::SURGING_COEFFICIENT_A);
     }
 
     TEST(NaturalStoneRevetmentDefaultsTest, SurgingCoefficientB_ExpectedValue)
@@ -69,7 +69,7 @@ namespace DiKErnel::DomainLibrary::Test::NaturalStoneRevetmentDefaultsTest
     TEST(NaturalStoneRevetmentDefaultsTest, SurgingCoefficientC_ExpectedValue)
     {
         // Call & Assert
-        ASSERT_DOUBLE_EQ(-0.9, NaturalStoneRevetmentDefaults::SURGING_COEFFICIENT_C);
+        ASSERT_DOUBLE_EQ(0, NaturalStoneRevetmentDefaults::SURGING_COEFFICIENT_C);
     }
 
     TEST(NaturalStoneRevetmentDefaultsTest, SurgingCoefficientN_ExpectedValue)

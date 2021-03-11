@@ -21,9 +21,7 @@
 #include <gtest/gtest.h>
 
 #include "AssertHelper.h"
-#include "Defaults.h"
 #include "InvalidCalculationDataException.h"
-#include "NaturalStoneRevetmentDefaults.h"
 #include "NaturalStoneRevetmentLocationConstructionProperties.h"
 #include "NaturalStoneRevetmentLocationDependentInput.h"
 #include "RevetmentCalculationInputBuilder.h"
@@ -32,7 +30,6 @@
 namespace DiKErnel::Integration::Test
 {
     using namespace Core;
-    using namespace DomainLibrary;
     using namespace std;
     using namespace testing;
     using namespace TestUtil;
@@ -312,24 +309,11 @@ namespace DiKErnel::Integration::Test
         ASSERT_DOUBLE_EQ(relativeDensity, locationDependentInput->GetRelativeDensity());
         ASSERT_DOUBLE_EQ(thicknessTopLayer, locationDependentInput->GetThicknessTopLayer());
 
-        AssertHydraulicLoads(NaturalStoneRevetmentDefaults::PLUNGING_COEFFICIENT_A, NaturalStoneRevetmentDefaults::PLUNGING_COEFFICIENT_B,
-                             NaturalStoneRevetmentDefaults::PLUNGING_COEFFICIENT_C, NaturalStoneRevetmentDefaults::PLUNGING_COEFFICIENT_N,
-                             NaturalStoneRevetmentDefaults::SURGING_COEFFICIENT_A, NaturalStoneRevetmentDefaults::SURGING_COEFFICIENT_B,
-                             NaturalStoneRevetmentDefaults::SURGING_COEFFICIENT_C, NaturalStoneRevetmentDefaults::SURGING_COEFFICIENT_N,
-                             NaturalStoneRevetmentDefaults::SIMILARITY_PARAMETER_THRESHOLD, locationDependentInput->GetHydraulicLoads());
-
-        AssertUpperLimitLoading(Defaults::UPPER_LIMIT_LOADING_OF_NORDIC_STONE_AUL, Defaults::UPPER_LIMIT_LOADING_OF_NORDIC_STONE_BUL,
-                                Defaults::UPPER_LIMIT_LOADING_OF_NORDIC_STONE_CUL, locationDependentInput->GetUpperLimitLoading());
-
-        AssertLowerLimitLoading(Defaults::LOWER_LIMIT_LOADING_OF_NORDIC_STONE_ALL, Defaults::LOWER_LIMIT_LOADING_OF_NORDIC_STONE_BLL,
-                                Defaults::LOWER_LIMIT_LOADING_OF_NORDIC_STONE_CLL, locationDependentInput->GetLowerLimitLoading());
-
-        AssertDistanceMaximumWaveElevation(Defaults::DISTANCE_MAXIMUM_WAVE_ELEVATION_NORDIC_STONE_ASMAX,
-                                           Defaults::DISTANCE_MAXIMUM_WAVE_ELEVATION_NORDIC_STONE_BSMAX,
-                                           locationDependentInput->GetDistanceMaximumWaveElevation());
-
-        AssertNormativeWidthOfWaveImpact(Defaults::NORMATIVE_WIDTH_OF_WAVE_IMPACT_AWI, Defaults::NORMATIVE_WIDTH_OF_WAVE_IMPACT_BWI,
-                                         locationDependentInput->GetNormativeWidthOfWaveImpact());
+        AssertHydraulicLoads(4, 0, 0, -0.9, 0.8, 0, 0, 0.6, 2.9, locationDependentInput->GetHydraulicLoads());
+        AssertUpperLimitLoading(0.1, 0.6, 4, locationDependentInput->GetUpperLimitLoading());
+        AssertLowerLimitLoading(0.1, 0.2, 4, locationDependentInput->GetLowerLimitLoading());
+        AssertDistanceMaximumWaveElevation(0.42, 0.9, locationDependentInput->GetDistanceMaximumWaveElevation());
+        AssertNormativeWidthOfWaveImpact(0.96, 0.11, locationDependentInput->GetNormativeWidthOfWaveImpact());
     }
 
     TEST_F(RevetmentCalculationInputBuilderTest, GivenBuilderWithInvalidTimeSteps_WhenBuild_ThenThrowsRevetmentCalculationInputBuilderException)
