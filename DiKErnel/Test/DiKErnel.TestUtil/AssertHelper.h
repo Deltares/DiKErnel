@@ -24,37 +24,15 @@
 
 namespace DiKErnel::TestUtil
 {
-    /*!
-     * \brief Helper class for assertions.
-    */
     class AssertHelper
     {
         public:
-            /*!
-             * \brief Asserts whether the given collections of doubles are equal.
-             * \param expectedCollection
-             *        The expected collection.
-             * \param actualCollection
-             *        The actual collection.
-             */
             static void AssertAreEqual(
                 const std::vector<double>& expectedCollection,
                 const std::vector<double>& actualCollection);
 
-            /*!
-             * \brief Function pointer to use as action.
-             */
             typedef void (*Action)();
 
-            /*!
-             * \brief Asserts whether an exception is thrown with an expected message.
-             * \tparam TException
-             *         The type of the exception.
-             * \param action
-             *        The action to perform.
-             * \param expectedMessage
-             *        The expected message in the exception.
-             */
             template <typename TException>
             static void AssertThrowsWithMessage(
                 const Action action,
@@ -75,20 +53,6 @@ namespace DiKErnel::TestUtil
                 }
             }
 
-            /*!
-             * \brief Asserts whether an exception is thrown with an expected message and an
-             *        expected inner exception.
-             * \tparam TException
-             *         The type of the exception.
-             * \tparam TInnerException
-             *         The type of the inner exception.
-             * \param action
-             *        The action to perform.
-             * \param expectedMessage
-             *        The expected message in the exception.
-             * \param expectedInnerExceptionMessage
-             *        The expected message in the inner exception.
-             */
             template <typename TException, typename TInnerException>
             static void AssertThrowsWithMessageAndInnerException(
                 const Action action,
@@ -111,15 +75,6 @@ namespace DiKErnel::TestUtil
                 }
             }
 
-            /*!
-             * \brief Asserts whether TActual is of type TExpected.
-             * \tparam TExpected
-             *         The expected type.
-             * \tparam TActual
-             *         The actual type.
-             * \param actual
-             *        The object to assert.
-             */
             template <typename TExpected, typename TActual>
             static void AssertIsInstanceOf(
                 const TActual* actual)

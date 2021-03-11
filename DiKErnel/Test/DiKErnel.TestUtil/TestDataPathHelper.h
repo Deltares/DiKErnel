@@ -24,18 +24,9 @@
 
 namespace DiKErnel::TestUtil
 {
-    /*!
-     * \brief Helper class for test data path related logic.
-    */
     class TestDataPathHelper
     {
         public:
-            /*!
-             * \brief Gets the test data path.
-             * \param currentNamespace
-             *        The namespace of the current test project. 
-             * \return The path to the related test data.
-            */
             static std::filesystem::path GetTestDataPath(
                 const std::string& currentNamespace);
     };

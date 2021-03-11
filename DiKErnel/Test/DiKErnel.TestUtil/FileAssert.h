@@ -24,20 +24,9 @@
 
 namespace DiKErnel::TestUtil
 {
-    /*!
-     * \brief Helper class for file related assertion logic.
-    */
     class FileAssert
     {
         public:
-            /*!
-             * \brief Asserts whether or not the contents of the files represented by the provided
-             *        file paths are equal.
-             * \param expectedOutputFilePath
-             *        The path to the file with the expected contents.
-             * \param actualOutputFilePath
-             *        The path to the file with the actual contents.
-             */
             static void AssertFileContents(
                 const std::string& expectedOutputFilePath,
                 const std::string& actualOutputFilePath);
