@@ -58,34 +58,34 @@ namespace DiKErnel::FunctionLibrary
              * \param endTime
              *        The end time.
              *        Unit = [s]
-             * \param plungingCoefficientA
+             * \param hydraulicLoadAp
              *        The A coefficient for plunging.
              *        Unit = [-]
-             * \param plungingCoefficientB
+             * \param hydraulicLoadBp
              *        The B coefficient for plunging.
              *        Unit = [-]
-             * \param plungingCoefficientC
+             * \param hydraulicLoadCp
              *        The C coefficient for plunging.
              *        Unit = [-]
-             * \param plungingCoefficientN
+             * \param hydraulicLoadNp
              *        The N coefficient for plunging.
              *        Unit = [-]
-             * \param surgingCoefficientA
+             * \param hydraulicLoadAs
              *        The A coefficient for surging.
              *        Unit = [-]
-             * \param surgingCoefficientB
+             * \param hydraulicLoadBs
              *        The B coefficient for surging.
              *        Unit = [-]
-             * \param surgingCoefficientC
+             * \param hydraulicLoadCs
              *        The C coefficient for surging.
              *        Unit = [-]
-             * \param surgingCoefficientN
+             * \param hydraulicLoadNs
              *        The N coefficient for surging.
              *        Unit = [-]
              * \param waveAngleMaximum
              *        The maximum incoming wave angle.
              *        Unit = [°]
-             * \param similarityParameterThreshold
+             * \param hydraulicLoadXIb
              *        The similarity parameter threshold, which determines whether there is
              *        plunging or surging.
              *        Unit = [-]
@@ -103,16 +103,16 @@ namespace DiKErnel::FunctionLibrary
                 double waveAngle,
                 double startTime,
                 double endTime,
-                double plungingCoefficientA,
-                double plungingCoefficientB,
-                double plungingCoefficientC,
-                double plungingCoefficientN,
-                double surgingCoefficientA,
-                double surgingCoefficientB,
-                double surgingCoefficientC,
-                double surgingCoefficientN,
+                double hydraulicLoadAp,
+                double hydraulicLoadBp,
+                double hydraulicLoadCp,
+                double hydraulicLoadNp,
+                double hydraulicLoadAs,
+                double hydraulicLoadBs,
+                double hydraulicLoadCs,
+                double hydraulicLoadNs,
                 double waveAngleMaximum,
-                double similarityParameterThreshold);
+                double hydraulicLoadXIb);
 
             /*!
              * \brief Calculates the increment of damage.
@@ -140,28 +140,28 @@ namespace DiKErnel::FunctionLibrary
              * \param endTime
              *        The end time.
              *        Unit = [s]
-             * \param plungingCoefficientA
+             * \param hydraulicLoadAp
              *        The A coefficient for plunging.
              *        Unit = [-]
-             * \param plungingCoefficientB
+             * \param hydraulicLoadBp
              *        The B coefficient for plunging.
              *        Unit = [-]
-             * \param plungingCoefficientC
+             * \param hydraulicLoadCp
              *        The C coefficient for plunging.
              *        Unit = [-]
-             * \param plungingCoefficientN
+             * \param hydraulicLoadNp
              *        The N coefficient for plunging.
              *        Unit = [-]
-             * \param surgingCoefficientA
+             * \param hydraulicLoadAs
              *        The A coefficient for surging.
              *        Unit = [-]
-             * \param surgingCoefficientB
+             * \param hydraulicLoadBs
              *        The B coefficient for surging.
              *        Unit = [-]
-             * \param surgingCoefficientC
+             * \param hydraulicLoadCs
              *        The C coefficient for surging.
              *        Unit = [-]
-             * \param surgingCoefficientN
+             * \param hydraulicLoadNs
              *        The N coefficient for surging.
              *        Unit = [-]
              * \param waveAngleMaximum
@@ -170,7 +170,7 @@ namespace DiKErnel::FunctionLibrary
              * \param initialDamage
              *        The cumulative damage from the previous time step.
              *        Unit = [-]
-             * \param similarityParameterThreshold
+             * \param hydraulicLoadXIb
              *        The similarity parameter threshold, which determines whether there is
              *        plunging or surging.
              *        Unit = [-]
@@ -186,17 +186,17 @@ namespace DiKErnel::FunctionLibrary
                 double waveAngle,
                 double startTime,
                 double endTime,
-                double plungingCoefficientA,
-                double plungingCoefficientB,
-                double plungingCoefficientC,
-                double plungingCoefficientN,
-                double surgingCoefficientA,
-                double surgingCoefficientB,
-                double surgingCoefficientC,
-                double surgingCoefficientN,
+                double hydraulicLoadAp,
+                double hydraulicLoadBp,
+                double hydraulicLoadCp,
+                double hydraulicLoadNp,
+                double hydraulicLoadAs,
+                double hydraulicLoadBs,
+                double hydraulicLoadCs,
+                double hydraulicLoadNs,
                 double waveAngleMaximum,
                 double initialDamage,
-                double similarityParameterThreshold);
+                double hydraulicLoadXIb);
 
             /*!
              * \brief Calculates the hydraulic load.
@@ -209,31 +209,31 @@ namespace DiKErnel::FunctionLibrary
              * \param spectralWavePeriod
              *        The spectral wave period between ti-1 and ti.
              *        Unit = [s]
-             * \param plungingCoefficientA
+             * \param hydraulicLoadAp
              *        The A coefficient for plunging.
              *        Unit = [-]
-             * \param plungingCoefficientB
+             * \param hydraulicLoadBp
              *        The B coefficient for plunging.
              *        Unit = [-]
-             * \param plungingCoefficientC
+             * \param hydraulicLoadCp
              *        The C coefficient for plunging.
              *        Unit = [-]
-             * \param plungingCoefficientN
+             * \param hydraulicLoadNp
              *        The N coefficient for plunging.
              *        Unit = [-]
-             * \param surgingCoefficientA
+             * \param hydraulicLoadAs
              *        The A coefficient for surging.
              *        Unit = [-]
-             * \param surgingCoefficientB
+             * \param hydraulicLoadBs
              *        The B coefficient for surging.
              *        Unit = [-]
-             * \param surgingCoefficientC
+             * \param hydraulicLoadCs
              *        The C coefficient for surging.
              *        Unit = [-]
-             * \param surgingCoefficientN
+             * \param hydraulicLoadNs
              *        The N coefficient for surging.
              *        Unit = [-]
-             * \param similarityParameterThreshold
+             * \param hydraulicLoadXIb
              *        The similarity parameter threshold, which determines whether there is
              *        plunging or surging.
              *        Unit = [-]
@@ -244,15 +244,15 @@ namespace DiKErnel::FunctionLibrary
                 double slopeAngle,
                 double spectralWaveHeight,
                 double spectralWavePeriod,
-                double plungingCoefficientA,
-                double plungingCoefficientB,
-                double plungingCoefficientC,
-                double plungingCoefficientN,
-                double surgingCoefficientA,
-                double surgingCoefficientB,
-                double surgingCoefficientC,
-                double surgingCoefficientN,
-                double similarityParameterThreshold);
+                double hydraulicLoadAp,
+                double hydraulicLoadBp,
+                double hydraulicLoadCp,
+                double hydraulicLoadNp,
+                double hydraulicLoadAs,
+                double hydraulicLoadBs,
+                double hydraulicLoadCs,
+                double hydraulicLoadNs,
+                double hydraulicLoadXIb);
 
             /*!
              * \brief Calculates the surf similarity parameter.
@@ -314,28 +314,28 @@ namespace DiKErnel::FunctionLibrary
             * \param endTime
             *        The end time.
             *        Unit = [s]
-            * \param plungingCoefficientA
+            * \param hydraulicLoadAp
             *        The A coefficient for plunging.
             *        Unit = [-]
-            * \param plungingCoefficientB
+            * \param hydraulicLoadBp
             *        The B coefficient for plunging.
             *        Unit = [-]
-            * \param plungingCoefficientC
+            * \param hydraulicLoadCp
             *        The C coefficient for plunging.
             *        Unit = [-]
-            * \param plungingCoefficientN
+            * \param hydraulicLoadNp
             *        The N coefficient for plunging.
             *        Unit = [-]
-            * \param surgingCoefficientA
+            * \param hydraulicLoadAs
             *        The A coefficient for surging.
             *        Unit = [-]
-            * \param surgingCoefficientB
+            * \param hydraulicLoadBs
             *        The B coefficient for surging.
             *        Unit = [-]
-            * \param surgingCoefficientC
+            * \param hydraulicLoadCs
             *        The C coefficient for surging.
             *        Unit = [-]
-            * \param surgingCoefficientN
+            * \param hydraulicLoadNs
             *        The N coefficient for surging.
             *        Unit = [-]
             * \param waveAngleMaximum
@@ -344,7 +344,7 @@ namespace DiKErnel::FunctionLibrary
             * \param initialDamage
             *        The cumulative damage from the previous time step.
             *        Unit = [-]
-            * \param similarityParameterThreshold
+            * \param hydraulicLoadXIb
             *        The similarity parameter threshold, which determines whether there is
             *        plunging or surging.
             *        Unit = [-]
@@ -360,17 +360,17 @@ namespace DiKErnel::FunctionLibrary
                 double waveAngle,
                 double startTime,
                 double endTime,
-                double plungingCoefficientA,
-                double plungingCoefficientB,
-                double plungingCoefficientC,
-                double plungingCoefficientN,
-                double surgingCoefficientA,
-                double surgingCoefficientB,
-                double surgingCoefficientC,
-                double surgingCoefficientN,
+                double hydraulicLoadAp,
+                double hydraulicLoadBp,
+                double hydraulicLoadCp,
+                double hydraulicLoadNp,
+                double hydraulicLoadAs,
+                double hydraulicLoadBs,
+                double hydraulicLoadCs,
+                double hydraulicLoadNs,
                 double waveAngleMaximum,
                 double initialDamage,
-                double similarityParameterThreshold);
+                double hydraulicLoadXIb);
 
             /*!
              * \brief Calculates the degradation.
@@ -407,37 +407,37 @@ namespace DiKErnel::FunctionLibrary
              * \param waveAngle
              *        The incoming wave angle relative to the normal line between ti-1 and ti.
              *        Unit = [°]
-             * \param plungingCoefficientA
-             *        The A coefficient for plunging.
-             *        Unit = [-]
-             * \param plungingCoefficientB
-             *        The B coefficient for plunging.
-             *        Unit = [-]
-             * \param plungingCoefficientC
-             *        The C coefficient for plunging.
-             *        Unit = [-]
-             * \param plungingCoefficientN
-             *        The N coefficient for plunging.
-             *        Unit = [-]
-             * \param surgingCoefficientA
-             *        The A coefficient for surging.
-             *        Unit = [-]
-             * \param surgingCoefficientB
-             *        The B coefficient for surging.
-             *        Unit = [-]
-             * \param surgingCoefficientC
-             *        The C coefficient for surging.
-             *        Unit = [-]
-             * \param surgingCoefficientN
-             *        The N coefficient for surging.
-             *        Unit = [-]
+            * \param  hydraulicLoadAp
+            *         The A coefficient for plunging.
+            *         Unit = [-]
+            * \param  hydraulicLoadBp
+            *         The B coefficient for plunging.
+            *         Unit = [-]
+            * \param  hydraulicLoadCp
+            *         The C coefficient for plunging.
+            *         Unit = [-]
+            * \param  hydraulicLoadNp
+            *         The N coefficient for plunging.
+            *         Unit = [-]
+            * \param  hydraulicLoadAs
+            *         The A coefficient for surging.
+            *         Unit = [-]
+            * \param  hydraulicLoadBs
+            *         The B coefficient for surging.
+            *         Unit = [-]
+            * \param  hydraulicLoadCs
+            *         The C coefficient for surging.
+            *         Unit = [-]
+            * \param  hydraulicLoadNs
+            *         The N coefficient for surging.
+            *         Unit = [-]
              * \param waveAngleMaximum
              *        The maximum incoming wave angle.
              *        Unit = [°]
              * \param initialDamage
              *        The cumulative damage from the previous time step.
              *        Unit = [-]
-             * \param similarityParameterThreshold
+             * \param hydraulicLoadXIb
              *        The similarity parameter threshold, which determines whether there is
              *        plunging or surging.
              *        Unit = [-]
@@ -451,17 +451,17 @@ namespace DiKErnel::FunctionLibrary
                 double spectralWaveHeight,
                 double spectralWavePeriod,
                 double waveAngle,
-                double plungingCoefficientA,
-                double plungingCoefficientB,
-                double plungingCoefficientC,
-                double plungingCoefficientN,
-                double surgingCoefficientA,
-                double surgingCoefficientB,
-                double surgingCoefficientC,
-                double surgingCoefficientN,
+                double hydraulicLoadAp,
+                double hydraulicLoadBp,
+                double hydraulicLoadCp,
+                double hydraulicLoadNp,
+                double hydraulicLoadAs,
+                double hydraulicLoadBs,
+                double hydraulicLoadCs,
+                double hydraulicLoadNs,
                 double waveAngleMaximum,
                 double initialDamage,
-                double similarityParameterThreshold);
+                double hydraulicLoadXIb);
 
             /*!
              * \brief Calculates the reference degradation.
@@ -486,34 +486,34 @@ namespace DiKErnel::FunctionLibrary
              * \param waveAngle
              *        The incoming wave angle relative to the normal line between ti-1 and ti.
              *        Unit = [°]
-             * \param plungingCoefficientA
-             *        The A coefficient for plunging.
-             *        Unit = [-]
-             * \param plungingCoefficientB
-             *        The B coefficient for plunging.
-             *        Unit = [-]
-             * \param plungingCoefficientC
-             *        The C coefficient for plunging.
-             *        Unit = [-]
-             * \param plungingCoefficientN
-             *        The N coefficient for plunging.
-             *        Unit = [-]
-             * \param surgingCoefficientA
-             *        The A coefficient for surging.
-             *        Unit = [-]
-             * \param surgingCoefficientB
-             *        The B coefficient for surging.
-             *        Unit = [-]
-             * \param surgingCoefficientC
-             *        The C coefficient for surging.
-             *        Unit = [-]
-             * \param surgingCoefficientN
-             *        The N coefficient for surging.
-             *        Unit = [-]
+            * \param  hydraulicLoadAp
+            *         The A coefficient for plunging.
+            *         Unit = [-]
+            * \param  hydraulicLoadBp
+            *         The B coefficient for plunging.
+            *         Unit = [-]
+            * \param  hydraulicLoadCp
+            *         The C coefficient for plunging.
+            *         Unit = [-]
+            * \param  hydraulicLoadNp
+            *         The N coefficient for plunging.
+            *         Unit = [-]
+            * \param  hydraulicLoadAs
+            *         The A coefficient for surging.
+            *         Unit = [-]
+            * \param  hydraulicLoadBs
+            *         The B coefficient for surging.
+            *         Unit = [-]
+            * \param  hydraulicLoadCs
+            *         The C coefficient for surging.
+            *         Unit = [-]
+            * \param  hydraulicLoadNs
+            *         The N coefficient for surging.
+            *         Unit = [-]
              * \param waveAngleMaximum
              *        The maximum incoming wave angle.
              *        Unit = [°]
-             * \param similarityParameterThreshold
+             * \param hydraulicLoadXIb
              *        The similarity parameter threshold, which determines whether there is
              *        plunging or surging.
              *        Unit = [-]
@@ -528,16 +528,16 @@ namespace DiKErnel::FunctionLibrary
                 double spectralWaveHeight,
                 double spectralWavePeriod,
                 double waveAngle,
-                double plungingCoefficientA,
-                double plungingCoefficientB,
-                double plungingCoefficientC,
-                double plungingCoefficientN,
-                double surgingCoefficientA,
-                double surgingCoefficientB,
-                double surgingCoefficientC,
-                double surgingCoefficientN,
+                double hydraulicLoadAp,
+                double hydraulicLoadBp,
+                double hydraulicLoadCp,
+                double hydraulicLoadNp,
+                double hydraulicLoadAs,
+                double hydraulicLoadBs,
+                double hydraulicLoadCs,
+                double hydraulicLoadNs,
                 double waveAngleMaximum,
-                double similarityParameterThreshold);
+                double hydraulicLoadXIb);
 
             /*!
              * \brief Calculates the wave angle impact.
