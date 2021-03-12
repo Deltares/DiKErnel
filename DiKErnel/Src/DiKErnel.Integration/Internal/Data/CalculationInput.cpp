@@ -42,6 +42,7 @@ namespace DiKErnel::Integration
             {
                 throw InvalidCalculationDataException("The begin time of an element must connect to the end time of the previous element.");
             }
+
             previousEndTime = timeDependentInput->GetEndTime();
 
             _timeDependentInputItemReferences.emplace_back(*timeDependentInput);

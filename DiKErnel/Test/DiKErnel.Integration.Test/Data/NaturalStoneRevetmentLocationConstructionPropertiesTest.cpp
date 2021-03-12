@@ -35,35 +35,36 @@ namespace DiKErnel::Integration::Test
         const auto relativeDensity = 0.4;
 
         // Call
-        const NaturalStoneRevetmentLocationConstructionProperties constructionProperties(initialDamage, slopeAngle, thicknessTopLayer, relativeDensity);
+        const NaturalStoneRevetmentLocationConstructionProperties constructionProperties(
+            initialDamage, slopeAngle, thicknessTopLayer, relativeDensity);
 
         // Assert
         ASSERT_DOUBLE_EQ(initialDamage, constructionProperties.GetInitialDamage());
         ASSERT_DOUBLE_EQ(slopeAngle, constructionProperties.GetSlopeAngle());
         ASSERT_DOUBLE_EQ(thicknessTopLayer, constructionProperties.GetThicknessTopLayer());
         ASSERT_DOUBLE_EQ(relativeDensity, constructionProperties.GetRelativeDensity());
-        ASSERT_TRUE(constructionProperties.GetSimilarityParameterThreshold() == nullptr);
-        ASSERT_TRUE(constructionProperties.GetPlungingCoefficientA() == nullptr);
-        ASSERT_TRUE(constructionProperties.GetPlungingCoefficientB() == nullptr);
-        ASSERT_TRUE(constructionProperties.GetPlungingCoefficientC() == nullptr);
-        ASSERT_TRUE(constructionProperties.GetPlungingCoefficientN() == nullptr);
-        ASSERT_TRUE(constructionProperties.GetSurgingCoefficientA() == nullptr);
-        ASSERT_TRUE(constructionProperties.GetSurgingCoefficientB() == nullptr);
-        ASSERT_TRUE(constructionProperties.GetSurgingCoefficientC() == nullptr);
-        ASSERT_TRUE(constructionProperties.GetSurgingCoefficientN() == nullptr);
-        ASSERT_TRUE(constructionProperties.GetUpperLimitLoadingAul() == nullptr);
-        ASSERT_TRUE(constructionProperties.GetUpperLimitLoadingBul() == nullptr);
-        ASSERT_TRUE(constructionProperties.GetUpperLimitLoadingCul() == nullptr);
-        ASSERT_TRUE(constructionProperties.GetLowerLimitLoadingAll() == nullptr);
-        ASSERT_TRUE(constructionProperties.GetLowerLimitLoadingBll() == nullptr);
-        ASSERT_TRUE(constructionProperties.GetLowerLimitLoadingCll() == nullptr);
-        ASSERT_TRUE(constructionProperties.GetDistanceMaximumWaveElevationAsmax() == nullptr);
-        ASSERT_TRUE(constructionProperties.GetDistanceMaximumWaveElevationBsmax() == nullptr);
-        ASSERT_TRUE(constructionProperties.GetNormativeWidthOfWaveImpactAwi() == nullptr);
-        ASSERT_TRUE(constructionProperties.GetNormativeWidthOfWaveImpactBwi() == nullptr);
+        ASSERT_EQ(nullptr, constructionProperties.GetSimilarityParameterThreshold());
+        ASSERT_EQ(nullptr, constructionProperties.GetPlungingCoefficientA());
+        ASSERT_EQ(nullptr, constructionProperties.GetPlungingCoefficientB());
+        ASSERT_EQ(nullptr, constructionProperties.GetPlungingCoefficientC());
+        ASSERT_EQ(nullptr, constructionProperties.GetPlungingCoefficientN());
+        ASSERT_EQ(nullptr, constructionProperties.GetSurgingCoefficientA());
+        ASSERT_EQ(nullptr, constructionProperties.GetSurgingCoefficientB());
+        ASSERT_EQ(nullptr, constructionProperties.GetSurgingCoefficientC());
+        ASSERT_EQ(nullptr, constructionProperties.GetSurgingCoefficientN());
+        ASSERT_EQ(nullptr, constructionProperties.GetUpperLimitLoadingAul());
+        ASSERT_EQ(nullptr, constructionProperties.GetUpperLimitLoadingBul());
+        ASSERT_EQ(nullptr, constructionProperties.GetUpperLimitLoadingCul());
+        ASSERT_EQ(nullptr, constructionProperties.GetLowerLimitLoadingAll());
+        ASSERT_EQ(nullptr, constructionProperties.GetLowerLimitLoadingBll());
+        ASSERT_EQ(nullptr, constructionProperties.GetLowerLimitLoadingCll());
+        ASSERT_EQ(nullptr, constructionProperties.GetDistanceMaximumWaveElevationAsmax());
+        ASSERT_EQ(nullptr, constructionProperties.GetDistanceMaximumWaveElevationBsmax());
+        ASSERT_EQ(nullptr, constructionProperties.GetNormativeWidthOfWaveImpactAwi());
+        ASSERT_EQ(nullptr, constructionProperties.GetNormativeWidthOfWaveImpactBwi());
     }
 
-    TEST(NaturalStoneRevetmentLocationConstructionPropertiesTest, GivenConstructionProperties_WhenAllFieldsSet_ThenExpectedValues)
+    TEST(NaturalStoneRevetmentLocationConstructionPropertiesTest, GivenConstructionProperties_WhenAllInputSet_ThenExpectedValues)
     {
         // Given
         const auto initialDamage = 0.1;

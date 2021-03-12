@@ -45,7 +45,7 @@ namespace DiKErnel::Integration::Test
             builder.AddTimeStep(10, 5, 0, 0, 0, 0);
         }
 
-        static void CreateBuilderAndAddNotConnectingTimeStep()
+        static void CreateBuilderAndAddNonSuccessiveTimeSteps()
         {
             RevetmentCalculationInputBuilder builder(0);
             builder.AddTimeStep(0, 5, 0, 0, 0, 0);
@@ -100,10 +100,10 @@ namespace DiKErnel::Integration::Test
 
     TEST_F(RevetmentCalculationInputBuilderTest, GivenBuilder_WhenAddTimeStepWithInvalidEndTime_ThenThrowsRevetmentCalculationInputBuilderException)
     {
-        // Call
+        // Given & When
         const auto action = &RevetmentCalculationInputBuilderTest::CreateBuilderAndAddInvalidTimeStep;
 
-        // Assert
+        // Then
         AssertHelper::AssertThrowsWithMessageAndInnerException<RevetmentCalculationInputBuilderException, InvalidCalculationDataException>(
             action, "Could not create TimeDependentInput.", "'beginTime' should be smaller than 'endTime'.");
     }
@@ -236,10 +236,10 @@ namespace DiKErnel::Integration::Test
 
     TEST_F(RevetmentCalculationInputBuilderTest, GivenBuilderWithInvalidTimeSteps_WhenBuild_ThenThrowsRevetmentCalculationInputBuilderException)
     {
-        // Call
-        const auto action = &RevetmentCalculationInputBuilderTest::CreateBuilderAndAddNotConnectingTimeStep;
+        // Given & When
+        const auto action = &RevetmentCalculationInputBuilderTest::CreateBuilderAndAddNonSuccessiveTimeSteps;
 
-        // Assert
+        // Then
         AssertHelper::AssertThrowsWithMessageAndInnerException<RevetmentCalculationInputBuilderException, InvalidCalculationDataException>(
             action, "Could not create TimeDependentInput.", "The begin time of an element must connect to the end time of the previous element.");
     }

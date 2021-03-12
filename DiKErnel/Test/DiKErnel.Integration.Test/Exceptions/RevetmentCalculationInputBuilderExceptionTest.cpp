@@ -38,6 +38,6 @@ namespace DiKErnel::Integration::Test
 
         // Assert
         AssertHelper::AssertIsInstanceOf<exception>(&actualException);
-        ASSERT_TRUE(message == actualException.what());
+        ASSERT_EQ(message, actualException.what());
     }
 }
