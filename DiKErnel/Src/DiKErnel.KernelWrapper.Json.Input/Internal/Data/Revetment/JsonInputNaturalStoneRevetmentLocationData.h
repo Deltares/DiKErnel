@@ -30,7 +30,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
     {
         public:
             explicit JsonInputNaturalStoneRevetmentLocationData(
-                const std::string& typeTopLayer,
                 double relativeDensity,
                 double thicknessTopLayer);
 

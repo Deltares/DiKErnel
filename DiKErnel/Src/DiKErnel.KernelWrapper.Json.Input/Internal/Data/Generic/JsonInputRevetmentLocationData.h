@@ -27,8 +27,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
     class JsonInputRevetmentLocationData
     {
         public:
-            const std::string& GetTypeTopLayer() const;
-
             double GetRelativeDensity() const;
 
             double GetThicknessTopLayer() const;
@@ -37,12 +35,10 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
         protected:
             explicit JsonInputRevetmentLocationData(
-                std::string typeTopLayer,
                 double relativeDensity,
                 double thicknessTopLayer);
 
         private:
-            std::string _typeTopLayer;
             double _relativeDensity;
             double _thicknessTopLayer;
     };

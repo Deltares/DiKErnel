@@ -25,17 +25,10 @@ namespace DiKErnel::KernelWrapper::Json::Input
     using namespace std;
 
     JsonInputRevetmentLocationData::JsonInputRevetmentLocationData(
-        string typeTopLayer,
         const double relativeDensity,
         const double thicknessTopLayer)
-        : _typeTopLayer(move(typeTopLayer)),
-          _relativeDensity(relativeDensity),
+        : _relativeDensity(relativeDensity),
           _thicknessTopLayer(thicknessTopLayer) { }
-
-    const string& JsonInputRevetmentLocationData::GetTypeTopLayer() const
-    {
-        return _typeTopLayer;
-    }
 
     double JsonInputRevetmentLocationData::GetRelativeDensity() const
     {
