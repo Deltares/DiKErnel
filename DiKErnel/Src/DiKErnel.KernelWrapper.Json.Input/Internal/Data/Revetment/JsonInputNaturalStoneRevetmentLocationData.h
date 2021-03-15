@@ -29,9 +29,16 @@ namespace DiKErnel::KernelWrapper::Json::Input
     class JsonInputNaturalStoneRevetmentLocationData : public JsonInputRevetmentLocationData
     {
         public:
+            enum class TopLayerType
+            {
+                Unknown,
+                NordicStone
+            };
+
             explicit JsonInputNaturalStoneRevetmentLocationData(
                 double relativeDensity,
-                double thicknessTopLayer);
+                double thicknessTopLayer,
+                TopLayerType topLayerType);
 
             #pragma region Set methods
 
@@ -96,6 +103,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
             #pragma region Get methods
 
+            TopLayerType GetTopLayerType() const;
+
             const double* GetSimilarityParameterThreshold() const;
 
             const double* GetPlungingCoefficientA() const;
@@ -137,6 +146,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
             #pragma endregion
 
         private:
+            TopLayerType _topLayerType;
             std::unique_ptr<double> _similarityParameterThreshold = nullptr;
             std::unique_ptr<double> _plungingCoefficientA = nullptr;
             std::unique_ptr<double> _plungingCoefficientB = nullptr;

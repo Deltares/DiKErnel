@@ -41,6 +41,17 @@ namespace DiKErnel::KernelWrapper::Json::Input
             }
         });
 
+    NLOHMANN_JSON_SERIALIZE_ENUM(JsonInputNaturalStoneRevetmentLocationData::TopLayerType,
+        {
+            {
+                JsonInputNaturalStoneRevetmentLocationData::TopLayerType::Unknown, nullptr
+            },
+            {
+                JsonInputNaturalStoneRevetmentLocationData::TopLayerType::NordicStone, JsonInputDefinitions::TOP_LAYER_TYPE_NORDIC_STONE
+            }
+        });
+
+
     unique_ptr<JsonInputData> JsonInputParser::GetJsonInputData(
         const string& filePath)
     {
@@ -140,7 +151,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
     {
         auto locationData = make_unique<JsonInputNaturalStoneRevetmentLocationData>(
             readRevetment[JsonInputDefinitions::RELATIVE_DENSITY],
-            readRevetment[JsonInputDefinitions::THICKNESS_TOP_LAYER]);
+            readRevetment[JsonInputDefinitions::THICKNESS_TOP_LAYER],
+            readRevetment[JsonInputDefinitions::TYPE_TOP_LAYER].get<JsonInputNaturalStoneRevetmentLocationData::TopLayerType>());
 
         if (readCalculationMethod.contains(JsonInputDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE))
         {

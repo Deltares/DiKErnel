@@ -87,5 +87,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
             inline static const std::string PROFILE_SCHEMATIZATION = "Profielschematisatie";
             inline static const std::string TAN_A = "TanA";
             inline static const std::string POSITION_Z = "PositieZ";
+
+            inline static const std::string TOP_LAYER_TYPE_NORDIC_STONE = "Noorse Steen";
     };
 }
