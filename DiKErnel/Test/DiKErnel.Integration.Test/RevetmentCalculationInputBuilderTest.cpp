@@ -54,13 +54,14 @@ namespace DiKErnel::Integration::Test
         }
     };
 
-    TEST_F(RevetmentCalculationInputBuilderTest, GiveBuilder_WhenBuild_ThenReturnsCalculationInput)
+    TEST_F(RevetmentCalculationInputBuilderTest, GivenBuilder_WhenBuild_ThenReturnsCalculationInput)
     {
         // Given
         const auto maximumWaveAngle = rand() % 100;
 
-        // When
         RevetmentCalculationInputBuilder builder(maximumWaveAngle);
+
+        // When
         const auto calculationInput = builder.Build();
 
         // Then
@@ -80,9 +81,10 @@ namespace DiKErnel::Integration::Test
         const auto wavePeriodTm10 = 0.3;
         const auto waveAngle = 0.4;
 
-        // When
         RevetmentCalculationInputBuilder builder(maximumWaveAngle);
         builder.AddTimeStep(beginTime, endTime, waterLevel, waveHeightHm0, wavePeriodTm10, waveAngle);
+
+        // When
         const auto calculationInput = builder.Build();
 
         // Then
@@ -158,9 +160,10 @@ namespace DiKErnel::Integration::Test
         naturalStoneConstructionProperties.SetNormativeWidthOfWaveImpactAwi(make_unique<double>(normativeWidthOfWaveImpactAwi));
         naturalStoneConstructionProperties.SetNormativeWidthOfWaveImpactBwi(make_unique<double>(normativeWidthOfWaveImpactBwi));
 
-        // When
         RevetmentCalculationInputBuilder builder(maximumWaveAngle);
         builder.AddNaturalStoneLocation(naturalStoneConstructionProperties);
+
+        // When
         const auto calculationInput = builder.Build();
 
         // Then
@@ -208,9 +211,10 @@ namespace DiKErnel::Integration::Test
         const NaturalStoneRevetmentLocationConstructionProperties naturalStoneConstructionProperties(
             initialDamage, slopeAngle, thicknessTopLayer, relativeDensity);
 
-        // When
         RevetmentCalculationInputBuilder builder(maximumWaveAngle);
         builder.AddNaturalStoneLocation(naturalStoneConstructionProperties);
+
+        // When
         const auto calculationInput = builder.Build();
 
         // Then
@@ -227,11 +231,16 @@ namespace DiKErnel::Integration::Test
         NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertMandatoryProperties(
             initialDamage, slopeAngle, relativeDensity, thicknessTopLayer, *locationDependentInput);
 
-        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertHydraulicLoads(4, 0, 0, -0.9, 0.8, 0, 0, 0.6, 2.9, locationDependentInput->GetHydraulicLoads());
-        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertUpperLimitLoading(0.1, 0.6, 4, locationDependentInput->GetUpperLimitLoading());
-        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertLowerLimitLoading(0.1, 0.2, 4, locationDependentInput->GetLowerLimitLoading());
-        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertDistanceMaximumWaveElevation(0.42, 0.9, locationDependentInput->GetDistanceMaximumWaveElevation());
-        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertNormativeWidthOfWaveImpact(0.96, 0.11, locationDependentInput->GetNormativeWidthOfWaveImpact());
+        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertHydraulicLoads(
+            4, 0, 0, -0.9, 0.8, 0, 0, 0.6, 2.9, locationDependentInput->GetHydraulicLoads());
+        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertUpperLimitLoading(
+            0.1, 0.6, 4, locationDependentInput->GetUpperLimitLoading());
+        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertLowerLimitLoading(
+            0.1, 0.2, 4, locationDependentInput->GetLowerLimitLoading());
+        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertDistanceMaximumWaveElevation(
+            0.42, 0.9, locationDependentInput->GetDistanceMaximumWaveElevation());
+        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertNormativeWidthOfWaveImpact(
+            0.96, 0.11, locationDependentInput->GetNormativeWidthOfWaveImpact());
     }
 
     TEST_F(RevetmentCalculationInputBuilderTest, GivenBuilderWithInvalidTimeSteps_WhenBuild_ThenThrowsRevetmentCalculationInputBuilderException)
@@ -241,6 +250,7 @@ namespace DiKErnel::Integration::Test
 
         // Then
         AssertHelper::AssertThrowsWithMessageAndInnerException<RevetmentCalculationInputBuilderException, InvalidCalculationDataException>(
-            action, "Could not create TimeDependentInput.", "The begin time of an element must connect to the end time of the previous element.");
+            action, "Could not create TimeDependentInput.",
+            "The begin time of a successive element must equal the end time of the previous element.");
     }
 }
