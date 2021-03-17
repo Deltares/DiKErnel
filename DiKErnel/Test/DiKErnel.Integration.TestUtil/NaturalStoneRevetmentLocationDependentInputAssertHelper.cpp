@@ -94,7 +94,7 @@ namespace DiKErnel::Integration::TestUtil
     void NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertNormativeWidthOfWaveImpact(
         const double normativeWidthOfWaveImpactAwi,
         const double normativeWidthOfWaveImpactBwi,
-        const NaturalStoneRevetmentNormativeWidthOfWaveImpact& normativeWidthOfWaveImpact) 
+        const NaturalStoneRevetmentNormativeWidthOfWaveImpact& normativeWidthOfWaveImpact)
     {
         ASSERT_DOUBLE_EQ(normativeWidthOfWaveImpactAwi, normativeWidthOfWaveImpact.GetNormativeWidthOfWaveImpactAwi());
         ASSERT_DOUBLE_EQ(normativeWidthOfWaveImpactBwi, normativeWidthOfWaveImpact.GetNormativeWidthOfWaveImpactBwi());

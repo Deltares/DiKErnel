@@ -35,8 +35,8 @@ namespace DiKErnel::Integration::TestUtil
         const double expectedWaveAngle,
         const ITimeDependentInput& actualTimeDependentInput)
     {
-        ASSERT_DOUBLE_EQ(expectedBeginTime, actualTimeDependentInput.GetBeginTime());
-        ASSERT_DOUBLE_EQ(expectedEndTime, actualTimeDependentInput.GetEndTime());
+        ASSERT_EQ(expectedBeginTime, actualTimeDependentInput.GetBeginTime());
+        ASSERT_EQ(expectedEndTime, actualTimeDependentInput.GetEndTime());
         ASSERT_DOUBLE_EQ(expectedWaterLevel, actualTimeDependentInput.GetWaterLevel());
         ASSERT_DOUBLE_EQ(expectedWaveHeightHm0, actualTimeDependentInput.GetWaveHeightHm0());
         ASSERT_DOUBLE_EQ(expectedWavePeriodTm10, actualTimeDependentInput.GetWavePeriodTm10());
