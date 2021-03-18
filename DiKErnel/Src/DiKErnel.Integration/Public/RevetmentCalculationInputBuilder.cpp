@@ -89,17 +89,16 @@ namespace DiKErnel::Integration
             GetValue(constructionProperties.GetNormativeWidthOfWaveImpactAwi(), NaturalStoneRevetmentDefaults::NORMATIVE_WIDTH_OF_WAVE_IMPACT_AWI),
             GetValue(constructionProperties.GetNormativeWidthOfWaveImpactBwi(), NaturalStoneRevetmentDefaults::NORMATIVE_WIDTH_OF_WAVE_IMPACT_BWI));
 
-        _locationDependentInputItems.push_back(
-            make_unique<NaturalStoneRevetmentLocationDependentInput>(
-                constructionProperties.GetInitialDamage(),
-                constructionProperties.GetSlopeAngle(),
-                constructionProperties.GetRelativeDensity(),
-                constructionProperties.GetThicknessTopLayer(),
-                move(hydraulicLoads),
-                move(upperLimitLoading),
-                move(lowerLimitLoading),
-                move(distanceMaximumWaveElevation),
-                move(normativeWidthOfWaveImpact)));
+        _locationDependentInputItems.push_back(make_unique<NaturalStoneRevetmentLocationDependentInput>(
+            constructionProperties.GetInitialDamage(),
+            constructionProperties.GetSlopeAngle(),
+            constructionProperties.GetRelativeDensity(),
+            constructionProperties.GetThicknessTopLayer(),
+            move(hydraulicLoads),
+            move(upperLimitLoading),
+            move(lowerLimitLoading),
+            move(distanceMaximumWaveElevation),
+            move(normativeWidthOfWaveImpact)));
     }
 
     unique_ptr<ICalculationInput> RevetmentCalculationInputBuilder::Build()
