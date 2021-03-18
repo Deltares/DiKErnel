@@ -45,7 +45,7 @@ namespace DiKErnel::TestUtil
                 }
                 catch (TException& exception)
                 {
-                    ASSERT_TRUE(expectedMessage == exception.what());
+                    ASSERT_EQ(expectedMessage, exception.what());
                 }
                 catch (...)
                 {
@@ -66,7 +66,7 @@ namespace DiKErnel::TestUtil
                 }
                 catch (TException& exception)
                 {
-                    ASSERT_TRUE(expectedMessage == exception.what());
+                    ASSERT_EQ(expectedMessage, exception.what());
                     AssertInnerException<TException, TInnerException>(exception, expectedInnerExceptionMessage);
                 }
                 catch (...)
@@ -95,7 +95,7 @@ namespace DiKErnel::TestUtil
                 }
                 catch (TInnerException& exception)
                 {
-                    ASSERT_TRUE(expectedInnerExceptionMessage == exception.what());
+                    ASSERT_EQ(expectedInnerExceptionMessage, exception.what());
                 }
                 catch (...)
                 {
