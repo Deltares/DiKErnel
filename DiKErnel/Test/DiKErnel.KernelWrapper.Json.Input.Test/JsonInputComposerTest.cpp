@@ -39,7 +39,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
 
     struct JsonInputComposerTest : Test
     {
-        void AssertTimeDependentDataItems(
+        void AssertTimeDependentInputItems(
             const vector<reference_wrapper<ITimeDependentInput>>& timeDependentInputItems) const
         {
             ASSERT_EQ(5, timeDependentInputItems.size());
@@ -65,7 +65,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
         AssertHelper::AssertIsInstanceOf<CalculationInput>(calculationInput.get());
         ASSERT_DOUBLE_EQ(78, calculationInput->GetMaximumWaveAngle());
 
-        AssertTimeDependentDataItems(calculationInput->GetTimeDependentInputItems());
+        AssertTimeDependentInputItems(calculationInput->GetTimeDependentInputItems());
 
         const auto locationDependentInputItems = calculationInput->GetLocationDependentInputItems();
         ASSERT_EQ(2, locationDependentInputItems.size());
