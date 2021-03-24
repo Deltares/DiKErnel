@@ -68,30 +68,44 @@ namespace DiKErnel::KernelWrapper::Json::Input
                     location.GetProfileSchematizationData().GetTanA(), naturalStoneRevetmentLocationData->GetThicknessTopLayer(),
                     naturalStoneRevetmentLocationData->GetRelativeDensity());
 
-                constructionProperties.SetPlungingCoefficientA(CreatePointerOfValue(naturalStoneRevetmentLocationData->GetPlungingCoefficientA()));
-                constructionProperties.SetPlungingCoefficientB(CreatePointerOfValue(naturalStoneRevetmentLocationData->GetPlungingCoefficientB()));
-                constructionProperties.SetPlungingCoefficientC(CreatePointerOfValue(naturalStoneRevetmentLocationData->GetPlungingCoefficientC()));
-                constructionProperties.SetPlungingCoefficientN(CreatePointerOfValue(naturalStoneRevetmentLocationData->GetPlungingCoefficientN()));
-                constructionProperties.SetSurgingCoefficientA(CreatePointerOfValue(naturalStoneRevetmentLocationData->GetSurgingCoefficientA()));
-                constructionProperties.SetSurgingCoefficientB(CreatePointerOfValue(naturalStoneRevetmentLocationData->GetSurgingCoefficientB()));
-                constructionProperties.SetSurgingCoefficientC(CreatePointerOfValue(naturalStoneRevetmentLocationData->GetSurgingCoefficientC()));
-                constructionProperties.SetSurgingCoefficientN(CreatePointerOfValue(naturalStoneRevetmentLocationData->GetSurgingCoefficientN()));
+                constructionProperties.SetPlungingCoefficientA(
+                    forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData->GetPlungingCoefficientA())));
+                constructionProperties.SetPlungingCoefficientB(
+                    forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData->GetPlungingCoefficientB())));
+                constructionProperties.SetPlungingCoefficientC(
+                    forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData->GetPlungingCoefficientC())));
+                constructionProperties.SetPlungingCoefficientN(
+                    forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData->GetPlungingCoefficientN())));
+                constructionProperties.SetSurgingCoefficientA(
+                    forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData->GetSurgingCoefficientA())));
+                constructionProperties.SetSurgingCoefficientB(
+                    forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData->GetSurgingCoefficientB())));
+                constructionProperties.SetSurgingCoefficientC(
+                    forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData->GetSurgingCoefficientC())));
+                constructionProperties.SetSurgingCoefficientN(
+                    forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData->GetSurgingCoefficientN())));
                 constructionProperties.SetSimilarityParameterThreshold(
-                    CreatePointerOfValue(naturalStoneRevetmentLocationData->GetSimilarityParameterThreshold()));
-                constructionProperties.SetUpperLimitLoadingAul(CreatePointerOfValue(naturalStoneRevetmentLocationData->GetUpperLimitLoadingAul()));
-                constructionProperties.SetUpperLimitLoadingBul(CreatePointerOfValue(naturalStoneRevetmentLocationData->GetUpperLimitLoadingBul()));
-                constructionProperties.SetUpperLimitLoadingCul(CreatePointerOfValue(naturalStoneRevetmentLocationData->GetUpperLimitLoadingCul()));
-                constructionProperties.SetLowerLimitLoadingAll(CreatePointerOfValue(naturalStoneRevetmentLocationData->GetLowerLimitLoadingAll()));
-                constructionProperties.SetLowerLimitLoadingBll(CreatePointerOfValue(naturalStoneRevetmentLocationData->GetLowerLimitLoadingBll()));
-                constructionProperties.SetLowerLimitLoadingCll(CreatePointerOfValue(naturalStoneRevetmentLocationData->GetLowerLimitLoadingCll()));
+                    forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData->GetSimilarityParameterThreshold())));
+                constructionProperties.SetUpperLimitLoadingAul(
+                    forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData->GetUpperLimitLoadingAul())));
+                constructionProperties.SetUpperLimitLoadingBul(
+                    forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData->GetUpperLimitLoadingBul())));
+                constructionProperties.SetUpperLimitLoadingCul(
+                    forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData->GetUpperLimitLoadingCul())));
+                constructionProperties.SetLowerLimitLoadingAll(
+                    forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData->GetLowerLimitLoadingAll())));
+                constructionProperties.SetLowerLimitLoadingBll(
+                    forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData->GetLowerLimitLoadingBll())));
+                constructionProperties.SetLowerLimitLoadingCll(
+                    forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData->GetLowerLimitLoadingCll())));
                 constructionProperties.SetDistanceMaximumWaveElevationAsmax(
-                    CreatePointerOfValue(naturalStoneRevetmentLocationData->GetDistanceMaximumWaveElevationAsmax()));
+                    forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData->GetDistanceMaximumWaveElevationAsmax())));
                 constructionProperties.SetDistanceMaximumWaveElevationBsmax(
-                    CreatePointerOfValue(naturalStoneRevetmentLocationData->GetDistanceMaximumWaveElevationBsmax()));
+                    forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData->GetDistanceMaximumWaveElevationBsmax())));
                 constructionProperties.SetNormativeWidthOfWaveImpactAwi(
-                    CreatePointerOfValue(naturalStoneRevetmentLocationData->GetNormativeWidthOfWaveImpactAwi()));
+                    forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData->GetNormativeWidthOfWaveImpactAwi())));
                 constructionProperties.SetNormativeWidthOfWaveImpactBwi(
-                    CreatePointerOfValue(naturalStoneRevetmentLocationData->GetNormativeWidthOfWaveImpactBwi()));
+                    forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData->GetNormativeWidthOfWaveImpactBwi())));
 
                 builder.AddNaturalStoneLocation(constructionProperties);
             }
