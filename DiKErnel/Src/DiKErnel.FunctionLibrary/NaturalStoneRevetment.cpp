@@ -20,6 +20,8 @@
 
 #include "NaturalStoneRevetment.h"
 
+#include <cmath>
+
 #include "Revetment.h"
 
 namespace DiKErnel::FunctionLibrary
@@ -28,7 +30,8 @@ namespace DiKErnel::FunctionLibrary
         const double startTime,
         const double endTime,
         const double relativeDensity,
-        const double thicknessTopLayer)
+        const double thicknessTopLayer,
+        const double wavePeriodTm10)
     {
         const auto initialDamage = 0.0;
 
@@ -36,18 +39,20 @@ namespace DiKErnel::FunctionLibrary
             startTime,
             endTime,
             relativeDensity,
-            thicknessTopLayer);
+            thicknessTopLayer,
+            wavePeriodTm10);
     }
 
     double NaturalStoneRevetment::CalculateIncrementDamageOfNaturalStone(
         const double startTime,
         const double endTime,
         const double relativeDensity,
-        const double thicknessTopLayer)
+        const double thicknessTopLayer,
+        const double wavePeriodTm10)
     {
         const auto hydraulicLoadOnNaturalStone = CalculateHydraulicLoadOnNaturalStone();
         const auto resistanceOfNaturalStone = CalculateResistanceOfNaturalStone(relativeDensity, thicknessTopLayer);
-        const auto incrementDegradationOfNaturalStone = CalculateIncrementDegradationOfNaturalStone(startTime, endTime);
+        const auto incrementDegradationOfNaturalStone = CalculateIncrementDegradationOfNaturalStone(startTime, endTime, wavePeriodTm10);
         const auto loadingOfRevetment = Revetment::CalculateLoadingOfRevetment();
         const auto waveAngleImpactOnNaturalStone = CalculateWaveAngleImpactOnNaturalStone();
 
@@ -69,11 +74,34 @@ namespace DiKErnel::FunctionLibrary
 
     double NaturalStoneRevetment::CalculateIncrementDegradationOfNaturalStone(
         const double startTime,
-        const double endTime)
+        const double endTime,
+        const double wavePeriodTm10)
     {
         const auto incrementOfTime = Revetment::CalculateIncrementOfTime(startTime, endTime);
+        const auto referenceTimeDegradationOfNaturalStone = CalculateReferenceTimeDegradationOfNaturalStone(wavePeriodTm10);
 
-        return incrementOfTime;
+        return CalculateDegradationOfNaturalStone(referenceTimeDegradationOfNaturalStone + incrementOfTime, wavePeriodTm10)
+                - CalculateDegradationOfNaturalStone(referenceTimeDegradationOfNaturalStone, wavePeriodTm10);
+    }
+
+    double NaturalStoneRevetment::CalculateReferenceTimeDegradationOfNaturalStone(
+        const double wavePeriodTm10)
+    {
+        const auto referenceDegradationOfNaturalStone = CalculateReferenceDegradationOfNaturalStone();
+
+        return 1000.0 * wavePeriodTm10 * pow(referenceDegradationOfNaturalStone, 10.0);
+    }
+
+    double NaturalStoneRevetment::CalculateDegradationOfNaturalStone(
+        const double referenceTimeDegradation,
+        const double wavePeriodTm10)
+    {
+        return pow(referenceTimeDegradation / (wavePeriodTm10 * 1000.0), 0.1);
+    }
+
+    double NaturalStoneRevetment::CalculateReferenceDegradationOfNaturalStone()
+    {
+        return 1.0;
     }
 
     double NaturalStoneRevetment::CalculateWaveAngleImpactOnNaturalStone()
