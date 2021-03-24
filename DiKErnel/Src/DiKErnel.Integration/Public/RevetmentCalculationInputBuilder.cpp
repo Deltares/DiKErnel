@@ -58,36 +58,47 @@ namespace DiKErnel::Integration
     void RevetmentCalculationInputBuilder::AddNaturalStoneLocation(
         const NaturalStoneRevetmentLocationConstructionProperties& constructionProperties)
     {
-        auto hydraulicLoads = make_unique<NaturalStoneRevetmentHydraulicLoads>(
-            GetValue(constructionProperties.GetPlungingCoefficientA(), NaturalStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_AP),
-            GetValue(constructionProperties.GetPlungingCoefficientB(), NaturalStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_BP),
-            GetValue(constructionProperties.GetPlungingCoefficientC(), NaturalStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_CP),
-            GetValue(constructionProperties.GetPlungingCoefficientN(), NaturalStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_NP),
-            GetValue(constructionProperties.GetSurgingCoefficientA(), NaturalStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_AS),
-            GetValue(constructionProperties.GetSurgingCoefficientB(), NaturalStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_BS),
-            GetValue(constructionProperties.GetSurgingCoefficientC(), NaturalStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_CS),
-            GetValue(constructionProperties.GetSurgingCoefficientN(), NaturalStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_NS),
-            GetValue(constructionProperties.GetSimilarityParameterThreshold(), NaturalStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_XIB));
+        unique_ptr<NaturalStoneRevetmentHydraulicLoads> hydraulicLoads;
+        unique_ptr<NaturalStoneRevetmentUpperLimitLoading> upperLimitLoading;
+        unique_ptr<NaturalStoneRevetmentLowerLimitLoading> lowerLimitLoading;
+        unique_ptr<NaturalStoneRevetmentDistanceMaximumWaveElevation> distanceMaximumWaveElevation;
+        unique_ptr<NaturalStoneRevetmentNormativeWidthOfWaveImpact> normativeWidthOfWaveImpact;
 
-        auto upperLimitLoading = make_unique<NaturalStoneRevetmentUpperLimitLoading>(
-            GetValue(constructionProperties.GetUpperLimitLoadingAul(), NaturalStoneRevetmentDefaults::UPPER_LIMIT_LOADING_OF_NORDIC_STONE_AUL),
-            GetValue(constructionProperties.GetUpperLimitLoadingBul(), NaturalStoneRevetmentDefaults::UPPER_LIMIT_LOADING_OF_NORDIC_STONE_BUL),
-            GetValue(constructionProperties.GetUpperLimitLoadingCul(), NaturalStoneRevetmentDefaults::UPPER_LIMIT_LOADING_OF_NORDIC_STONE_CUL));
+        if (constructionProperties.GetTopLayerType() == NaturalStoneRevetmentLocationConstructionProperties::TopLayerType::NordicStone)
+        {
+            hydraulicLoads = make_unique<NaturalStoneRevetmentHydraulicLoads>(
+                GetValue(constructionProperties.GetPlungingCoefficientA(), NaturalStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_AP),
+                GetValue(constructionProperties.GetPlungingCoefficientB(), NaturalStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_BP),
+                GetValue(constructionProperties.GetPlungingCoefficientC(), NaturalStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_CP),
+                GetValue(constructionProperties.GetPlungingCoefficientN(), NaturalStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_NP),
+                GetValue(constructionProperties.GetSurgingCoefficientA(), NaturalStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_AS),
+                GetValue(constructionProperties.GetSurgingCoefficientB(), NaturalStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_BS),
+                GetValue(constructionProperties.GetSurgingCoefficientC(), NaturalStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_CS),
+                GetValue(constructionProperties.GetSurgingCoefficientN(), NaturalStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_NS),
+                GetValue(constructionProperties.GetSimilarityParameterThreshold(), NaturalStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_XIB));
 
-        auto lowerLimitLoading = make_unique<NaturalStoneRevetmentLowerLimitLoading>(
-            GetValue(constructionProperties.GetLowerLimitLoadingAll(), NaturalStoneRevetmentDefaults::LOWER_LIMIT_LOADING_OF_NORDIC_STONE_ALL),
-            GetValue(constructionProperties.GetLowerLimitLoadingBll(), NaturalStoneRevetmentDefaults::LOWER_LIMIT_LOADING_OF_NORDIC_STONE_BLL),
-            GetValue(constructionProperties.GetLowerLimitLoadingCll(), NaturalStoneRevetmentDefaults::LOWER_LIMIT_LOADING_OF_NORDIC_STONE_CLL));
+            upperLimitLoading = make_unique<NaturalStoneRevetmentUpperLimitLoading>(
+                GetValue(constructionProperties.GetUpperLimitLoadingAul(), NaturalStoneRevetmentDefaults::UPPER_LIMIT_LOADING_OF_NORDIC_STONE_AUL),
+                GetValue(constructionProperties.GetUpperLimitLoadingBul(), NaturalStoneRevetmentDefaults::UPPER_LIMIT_LOADING_OF_NORDIC_STONE_BUL),
+                GetValue(constructionProperties.GetUpperLimitLoadingCul(), NaturalStoneRevetmentDefaults::UPPER_LIMIT_LOADING_OF_NORDIC_STONE_CUL));
 
-        auto distanceMaximumWaveElevation = make_unique<NaturalStoneRevetmentDistanceMaximumWaveElevation>(
-            GetValue(constructionProperties.GetDistanceMaximumWaveElevationAsmax(),
-                     NaturalStoneRevetmentDefaults::DISTANCE_MAXIMUM_WAVE_ELEVATION_NORDIC_STONE_ASMAX),
-            GetValue(constructionProperties.GetDistanceMaximumWaveElevationBsmax(),
-                     NaturalStoneRevetmentDefaults::DISTANCE_MAXIMUM_WAVE_ELEVATION_NORDIC_STONE_BSMAX));
+            lowerLimitLoading = make_unique<NaturalStoneRevetmentLowerLimitLoading>(
+                GetValue(constructionProperties.GetLowerLimitLoadingAll(), NaturalStoneRevetmentDefaults::LOWER_LIMIT_LOADING_OF_NORDIC_STONE_ALL),
+                GetValue(constructionProperties.GetLowerLimitLoadingBll(), NaturalStoneRevetmentDefaults::LOWER_LIMIT_LOADING_OF_NORDIC_STONE_BLL),
+                GetValue(constructionProperties.GetLowerLimitLoadingCll(), NaturalStoneRevetmentDefaults::LOWER_LIMIT_LOADING_OF_NORDIC_STONE_CLL));
 
-        auto normativeWidthOfWaveImpact = make_unique<NaturalStoneRevetmentNormativeWidthOfWaveImpact>(
-            GetValue(constructionProperties.GetNormativeWidthOfWaveImpactAwi(), NaturalStoneRevetmentDefaults::NORMATIVE_WIDTH_OF_WAVE_IMPACT_NORDIC_STONE_AWI),
-            GetValue(constructionProperties.GetNormativeWidthOfWaveImpactBwi(), NaturalStoneRevetmentDefaults::NORMATIVE_WIDTH_OF_WAVE_IMPACT_NORDIC_STONE_BWI));
+            distanceMaximumWaveElevation = make_unique<NaturalStoneRevetmentDistanceMaximumWaveElevation>(
+                GetValue(constructionProperties.GetDistanceMaximumWaveElevationAsmax(),
+                    NaturalStoneRevetmentDefaults::DISTANCE_MAXIMUM_WAVE_ELEVATION_NORDIC_STONE_ASMAX),
+                GetValue(constructionProperties.GetDistanceMaximumWaveElevationBsmax(),
+                    NaturalStoneRevetmentDefaults::DISTANCE_MAXIMUM_WAVE_ELEVATION_NORDIC_STONE_BSMAX));
+
+            normativeWidthOfWaveImpact = make_unique<NaturalStoneRevetmentNormativeWidthOfWaveImpact>(
+                GetValue(constructionProperties.GetNormativeWidthOfWaveImpactAwi(),
+                    NaturalStoneRevetmentDefaults::NORMATIVE_WIDTH_OF_WAVE_IMPACT_NORDIC_STONE_AWI),
+                GetValue(constructionProperties.GetNormativeWidthOfWaveImpactBwi(),
+                    NaturalStoneRevetmentDefaults::NORMATIVE_WIDTH_OF_WAVE_IMPACT_NORDIC_STONE_BWI));
+        }
 
         _locationDependentInputItems.push_back(
             make_unique<NaturalStoneRevetmentLocationDependentInput>(
