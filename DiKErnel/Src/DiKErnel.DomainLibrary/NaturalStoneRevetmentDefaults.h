@@ -29,60 +29,6 @@ namespace DiKErnel::DomainLibrary
     {
         public:
             /*!
-             * \brief The default value of the similarity parameter threshold.
-             *        Unit = [-]
-             */
-            static const double SIMILARITY_PARAMETER_THRESHOLD;
-
-            /*!
-             * \brief The default value of the A coefficient for plunging.
-             *        Unit = [-]
-             */
-            static const double PLUNGING_COEFFICIENT_A;
-
-            /*!
-             * \brief The default value of the B coefficient for plunging.
-             *        Unit = [-]
-             */
-            static const double PLUNGING_COEFFICIENT_B;
-
-            /*!
-             * \brief The default value of the C coefficient for plunging.
-             *        Unit = [-]
-             */
-            static const double PLUNGING_COEFFICIENT_C;
-
-            /*!
-             * \brief The default value of the N coefficient for plunging.
-             *        Unit = [-]
-             */
-            static const double PLUNGING_COEFFICIENT_N;
-
-            /*!
-             * \brief The default value of the A coefficient for surging.
-             *        Unit = [-]
-             */
-            static const double SURGING_COEFFICIENT_A;
-
-            /*!
-             * \brief The default value of the B coefficient for surging.
-             *        Unit = [-]
-             */
-            static const double SURGING_COEFFICIENT_B;
-
-            /*!
-             * \brief The default value of the C coefficient for surging.
-             *        Unit = [-]
-             */
-            static const double SURGING_COEFFICIENT_C;
-
-            /*!
-             * \brief The default value of the N coefficient for surging.
-             *        Unit = [-]
-             */
-            static const double SURGING_COEFFICIENT_N;
-
-            /*!
              * \brief The default value of the hydraulic load on nordic stone XIb.
              *        Unit = [-]
              */
@@ -174,28 +120,30 @@ namespace DiKErnel::DomainLibrary
 
             /*!
              * \brief The default value of the distance maximum wave elevation
-             * on nordic stone Asmax.
+             *        on nordic stone Asmax.
              *        Unit = [-]
              */
             static const double DISTANCE_MAXIMUM_WAVE_ELEVATION_NORDIC_STONE_ASMAX;
 
             /*!
              * \brief The default value of the distance maximum wave elevation
-             * on nordic stone Bsmax.
+             *        on nordic stone Bsmax.
              *        Unit = [-]
              */
             static const double DISTANCE_MAXIMUM_WAVE_ELEVATION_NORDIC_STONE_BSMAX;
 
             /*!
-             * \brief The default value of the normative width of wave impact Awi.
+             * \brief The default value of the normative width of wave impact
+             *        on nordic stone Awi.
              *        Unit = [-]
              */
-            static const double NORMATIVE_WIDTH_OF_WAVE_IMPACT_AWI;
+            static const double NORMATIVE_WIDTH_OF_WAVE_IMPACT_NORDIC_STONE_AWI;
 
             /*!
-             * \brief The default value of the normative width of wave impact Bwi.
+             * \brief The default value of the normative width of wave impact
+             *        on nordic stone Bwi.
              *        Unit = [-]
              */
-            static const double NORMATIVE_WIDTH_OF_WAVE_IMPACT_BWI;
+            static const double NORMATIVE_WIDTH_OF_WAVE_IMPACT_NORDIC_STONE_BWI;
     };
 }

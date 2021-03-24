@@ -22,24 +22,6 @@
 
 namespace DiKErnel::DomainLibrary
 {
-    const double NaturalStoneRevetmentDefaults::SIMILARITY_PARAMETER_THRESHOLD = 2.9;
-
-    const double NaturalStoneRevetmentDefaults::PLUNGING_COEFFICIENT_A = 4;
-
-    const double NaturalStoneRevetmentDefaults::PLUNGING_COEFFICIENT_B = 0;
-
-    const double NaturalStoneRevetmentDefaults::PLUNGING_COEFFICIENT_C = 0;
-
-    const double NaturalStoneRevetmentDefaults::PLUNGING_COEFFICIENT_N = -0.9;
-
-    const double NaturalStoneRevetmentDefaults::SURGING_COEFFICIENT_A = 0.8;
-
-    const double NaturalStoneRevetmentDefaults::SURGING_COEFFICIENT_B = 0;
-
-    const double NaturalStoneRevetmentDefaults::SURGING_COEFFICIENT_C = 0;
-
-    const double NaturalStoneRevetmentDefaults::SURGING_COEFFICIENT_N = 0.6;
-
     const double NaturalStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_XIB = 2.9;
     const double NaturalStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_AP = 4;
     const double NaturalStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_BP = 0;
@@ -61,6 +43,6 @@ namespace DiKErnel::DomainLibrary
     const double NaturalStoneRevetmentDefaults::DISTANCE_MAXIMUM_WAVE_ELEVATION_NORDIC_STONE_ASMAX = 0.42;
     const double NaturalStoneRevetmentDefaults::DISTANCE_MAXIMUM_WAVE_ELEVATION_NORDIC_STONE_BSMAX = 0.9;
 
-    const double NaturalStoneRevetmentDefaults::NORMATIVE_WIDTH_OF_WAVE_IMPACT_AWI = 0.96;
-    const double NaturalStoneRevetmentDefaults::NORMATIVE_WIDTH_OF_WAVE_IMPACT_BWI = 0.11;
+    const double NaturalStoneRevetmentDefaults::NORMATIVE_WIDTH_OF_WAVE_IMPACT_NORDIC_STONE_AWI = 0.96;
+    const double NaturalStoneRevetmentDefaults::NORMATIVE_WIDTH_OF_WAVE_IMPACT_NORDIC_STONE_BWI = 0.11;
 }
