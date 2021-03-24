@@ -22,6 +22,7 @@
 
 #include <stdexcept>
 
+#include "JsonConversionException.h"
 #include "JsonInputNaturalStoneRevetmentLocationData.h"
 #include "NaturalStoneRevetmentLocationConstructionProperties.h"
 #include "RevetmentCalculationInputBuilder.h"
@@ -107,7 +108,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
             return NaturalStoneRevetmentLocationConstructionProperties::TopLayerType::NordicStone;
         }
 
-        throw runtime_error("Cannot convert top layer type.");
+        throw JsonConversionException("Cannot convert top layer type.");
     }
 
     unique_ptr<double> JsonInputAdapter::CreatePointerOfValue(
