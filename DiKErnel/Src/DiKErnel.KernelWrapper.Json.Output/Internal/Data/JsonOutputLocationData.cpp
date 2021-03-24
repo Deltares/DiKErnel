@@ -20,24 +20,26 @@
 
 #include "JsonOutputLocationData.h"
 
+#include <utility>
+
 namespace DiKErnel::KernelWrapper::Json::Output
 {
     using namespace std;
 
     JsonOutputLocationData::JsonOutputLocationData(
         string name,
-        vector<int> damages,
-        unique_ptr<double> timeOfFailure)
+        vector<double> damages,
+        const double* timeOfFailure)
         : _name(move(name)),
           _damages(move(damages)),
-          _timeOfFailure(move(timeOfFailure)) {}
+          _timeOfFailure(timeOfFailure) {}
 
     const string& JsonOutputLocationData::GetName() const
     {
         return _name;
     }
 
-    const vector<int>& JsonOutputLocationData::GetDamages() const
+    const vector<double>& JsonOutputLocationData::GetDamages() const
     {
         return _damages;
     }
@@ -49,6 +51,6 @@ namespace DiKErnel::KernelWrapper::Json::Output
 
     const double* JsonOutputLocationData::GetTimeOfFailure() const
     {
-        return _timeOfFailure.get();
+        return _timeOfFailure;
     }
 }

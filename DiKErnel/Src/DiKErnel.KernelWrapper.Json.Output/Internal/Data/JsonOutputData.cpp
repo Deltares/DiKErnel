@@ -26,17 +26,23 @@ namespace DiKErnel::KernelWrapper::Json::Output
 
     JsonOutputData::JsonOutputData(
         vector<int> times,
-        vector<JsonOutputLocationData> locationDataItems)
+        vector<unique_ptr<JsonOutputLocationData>> locationDataItems)
         : _times(move(times)),
-          _locationDataItems(move(locationDataItems)) {}
+          _locationDataItems(move(locationDataItems))
+    {
+        for (const auto& locationDataItem : _locationDataItems)
+        {
+            _locationDataItemReferences.emplace_back(*locationDataItem);
+        }
+    }
 
-    const std::vector<int>& JsonOutputData::GetTimes() const
+    const vector<int>& JsonOutputData::GetTimes() const
     {
         return _times;
     }
 
-    const std::vector<JsonOutputLocationData>& JsonOutputData::GetLocationDataItems() const
+    const vector<reference_wrapper<JsonOutputLocationData>>& JsonOutputData::GetLocationDataItems() const
     {
-        return _locationDataItems;
+        return _locationDataItemReferences;
     }
 }

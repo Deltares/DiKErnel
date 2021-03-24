@@ -31,14 +31,15 @@ namespace DiKErnel::KernelWrapper::Json::Output
         public:
             explicit JsonOutputData(
                 std::vector<int> times,
-                std::vector<JsonOutputLocationData> locationDataItems);
+                std::vector<std::unique_ptr<JsonOutputLocationData>> locationDataItems);
 
             const std::vector<int>& GetTimes() const;
 
-            const std::vector<JsonOutputLocationData>& GetLocationDataItems() const;
+            const std::vector<std::reference_wrapper<JsonOutputLocationData>>& GetLocationDataItems() const;
 
         private:
             std::vector<int> _times;
-            std::vector<JsonOutputLocationData> _locationDataItems;
+            std::vector<std::unique_ptr<JsonOutputLocationData>> _locationDataItems;
+            std::vector<std::reference_wrapper<JsonOutputLocationData>> _locationDataItemReferences;
     };
 }

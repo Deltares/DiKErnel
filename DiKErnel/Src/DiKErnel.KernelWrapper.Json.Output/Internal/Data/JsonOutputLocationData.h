@@ -31,12 +31,12 @@ namespace DiKErnel::KernelWrapper::Json::Output
         public:
             explicit JsonOutputLocationData(
                 std::string name,
-                std::vector<int> damages,
-                std::unique_ptr<double> timeOfFailure);
+                std::vector<double> damages,
+                const double* timeOfFailure);
 
             const std::string& GetName() const;
 
-            const std::vector<int>& GetDamages() const;
+            const std::vector<double>& GetDamages() const;
 
             bool GetLocationFailed() const;
 
@@ -44,7 +44,7 @@ namespace DiKErnel::KernelWrapper::Json::Output
 
         private:
             std::string _name;
-            std::vector<int> _damages;
-            std::unique_ptr<double> _timeOfFailure;
+            std::vector<double> _damages;
+            const double* _timeOfFailure;
     };
 }
