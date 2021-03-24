@@ -18,6 +18,23 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
+#include "JsonOutputComposer.h"
+
+#include "CalculationOutputAdapter.h"
+#include "JsonOutputWriter.h"
+
 namespace DiKErnel::KernelWrapper::Json::Output
 {
+    using namespace Core;
+    using namespace std;
+
+    void JsonOutputComposer::WriteCalculationOutputToJson(
+        const string& filePath,
+        const CalculationOutput& calculationOutput,
+        const ICalculationInput& calculationInput)
+    {
+        const auto jsonOutput = CalculationOutputAdapter::AdaptCalculationOutput(calculationOutput, calculationInput);
+
+        JsonOutputWriter::Write(filePath, *jsonOutput);
+    }
 }

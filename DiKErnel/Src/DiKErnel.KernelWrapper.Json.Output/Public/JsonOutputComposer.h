@@ -20,7 +20,31 @@
 
 #pragma once
 
+#include <string>
+
+#include "CalculationOutput.h"
+#include "ICalculationInput.h"
+
 namespace DiKErnel::KernelWrapper::Json::Output
 {
-    class JsonOutputComposer {};
+    /*!
+     * \brief Class responsible for writing Json from CalculationOutput.
+     */
+    class JsonOutputComposer
+    {
+        public:
+            /*!
+             * \brief Writes the output Json based on the given calculation output.
+             * \param filePath
+             *        The file to the Json file.
+             * \param calculationOutput
+             *        The calculation output to write.
+             * \param calculationInput
+             *        The calculation input that belongs to the calculation output.
+             */
+            static void WriteCalculationOutputToJson(
+                const std::string& filePath,
+                const Core::CalculationOutput& calculationOutput,
+                const Core::ICalculationInput& calculationInput);
+    };
 }
