@@ -36,16 +36,18 @@ namespace DiKErnel::KernelWrapper::Json::Output
     {
         const auto jsonOutput = ordered_json::object(
             {
-                JsonOutputDefinitions::OUTPUT_DATA,
                 {
+                    JsonOutputDefinitions::OUTPUT_DATA,
                     {
-                        JsonOutputDefinitions::TIME,
-                        jsonOutputData.GetTimes()
-                    },
-                    {
-                        JsonOutputDefinitions::LOCATIONS,
-                        GetLocations(jsonOutputData.GetLocationDataItems())
-                     }
+                        {
+                            JsonOutputDefinitions::TIME,
+                            jsonOutputData.GetTimes()
+                        },
+                        {
+                            JsonOutputDefinitions::LOCATIONS,
+                            GetLocations(jsonOutputData.GetLocationDataItems())
+                        }
+                    }
                 }
             });
 

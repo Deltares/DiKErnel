@@ -1,0 +1,33 @@
+{
+    "Uitvoerdata": {
+        "Tijd": [
+            0,
+            10,
+            100
+        ],
+        "Locaties": [
+            {
+                "Naam": "testName1",
+                "Schade": {
+                    "Faalgebeurtenis": true,
+                    "Faaltijd": 60.0,
+                    "SchadegetalPerTijd": [
+                        0.15,
+                        0.253
+                    ]
+                }
+            },
+            {
+                "Naam": "testName2",
+                "Schade": {
+                    "Faalgebeurtenis": false,
+                    "Faaltijd": null,
+                    "SchadegetalPerTijd": [
+                        0.28,
+                        0.512
+                    ]
+                }
+            }
+        ]
+    }
+}
