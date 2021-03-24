@@ -33,7 +33,7 @@ namespace DiKErnel::KernelWrapper::Json::Output
     {
         return make_unique<JsonOutputData>(
             GetTimes(calculationInput.GetTimeDependentInputItems()),
-            GetJsonOutputLocations(calculationOutput.GetLocationDependentOutputItems()));
+            GetJsonOutputLocations(calculationOutput.GetLocationDependentOutputItems(), calculationInput.GetLocationDependentInputItems()));
     }
 
     vector<int> CalculationOutputAdapter::GetTimes(
@@ -57,16 +57,19 @@ namespace DiKErnel::KernelWrapper::Json::Output
     }
 
     vector<unique_ptr<JsonOutputLocationData>> CalculationOutputAdapter::GetJsonOutputLocations(
-        const vector<reference_wrapper<LocationDependentOutput>>& locationDependentOutputItems)
+        const vector<reference_wrapper<LocationDependentOutput>>& locationDependentOutputItems,
+        const vector<reference_wrapper<ILocationDependentInput>>& locationDependentInputItems)
     {
         vector<unique_ptr<JsonOutputLocationData>> jsonLocations;
 
-        for (const auto& locationOutputReference : locationDependentOutputItems)
+        for (auto i = 0; i < static_cast<int>(locationDependentOutputItems.size()); ++i)
         {
-            const auto& locationOutput = locationOutputReference.get();
+            const auto& locationOutput = locationDependentOutputItems[i].get();
 
             jsonLocations.push_back(make_unique<JsonOutputLocationData>(
-                "Test", locationOutput.GetDamages(), locationOutput.GetTimeOfFailure()));
+                locationDependentInputItems[i].get().GetName(),
+                locationOutput.GetDamages(),
+                locationOutput.GetTimeOfFailure()));
         }
 
         return jsonLocations;
