@@ -76,6 +76,7 @@ namespace DiKErnel::FunctionLibrary
             static double CalculateWaveAngleImpactOnNaturalStone();
 
             static double CalculateDurationInTimeStepFailureNaturalStone(
+                double initialDamage,
                 double failureNumber,
                 double relativeDensity,
                 double thicknessTopLayer,

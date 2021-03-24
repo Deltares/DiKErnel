@@ -142,6 +142,7 @@ namespace DiKErnel::FunctionLibrary
     }
 
     double NaturalStoneRevetment::CalculateDurationInTimeStepFailureNaturalStone(
+        const double initialDamage,
         const double failureNumber,
         const double relativeDensity,
         const double thicknessTopLayer,
@@ -152,8 +153,13 @@ namespace DiKErnel::FunctionLibrary
             relativeDensity,
             thicknessTopLayer,
             wavePeriodTm10);
+        const auto referenceTimeDegradationOfNaturalStone = CalculateReferenceTimeDegradationOfNaturalStone(
+            initialDamage,
+            relativeDensity,
+            thicknessTopLayer,
+            wavePeriodTm10);
 
-        return referenceTimeFailureOfNaturalStone - 1.0;
+        return referenceTimeFailureOfNaturalStone - referenceTimeDegradationOfNaturalStone;
     }
 
     double NaturalStoneRevetment::CalculateReferenceTimeFailureOfNaturalStone(
