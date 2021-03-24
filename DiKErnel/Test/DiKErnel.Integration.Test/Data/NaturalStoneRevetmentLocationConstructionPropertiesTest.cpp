@@ -29,6 +29,7 @@ namespace DiKErnel::Integration::Test
     TEST(NaturalStoneRevetmentLocationConstructionPropertiesTest, Constructor_ExpectedValues)
     {
         // Setup
+        const auto topLayerType = NaturalStoneRevetmentLocationConstructionProperties::TopLayerType::NordicStone;
         const auto initialDamage = 0.1;
         const auto slopeAngle = 0.2;
         const auto thicknessTopLayer = 0.3;
@@ -36,9 +37,10 @@ namespace DiKErnel::Integration::Test
 
         // Call
         const NaturalStoneRevetmentLocationConstructionProperties constructionProperties(
-            initialDamage, slopeAngle, thicknessTopLayer, relativeDensity);
+            topLayerType, initialDamage, slopeAngle, thicknessTopLayer, relativeDensity);
 
         // Assert
+        ASSERT_EQ(topLayerType, constructionProperties.GetTopLayerType());
         ASSERT_DOUBLE_EQ(initialDamage, constructionProperties.GetInitialDamage());
         ASSERT_DOUBLE_EQ(slopeAngle, constructionProperties.GetSlopeAngle());
         ASSERT_DOUBLE_EQ(thicknessTopLayer, constructionProperties.GetThicknessTopLayer());
@@ -67,6 +69,7 @@ namespace DiKErnel::Integration::Test
     TEST(NaturalStoneRevetmentLocationConstructionPropertiesTest, GivenConstructionProperties_WhenAllInputSet_ThenExpectedValues)
     {
         // Given
+        const auto topLayerType = NaturalStoneRevetmentLocationConstructionProperties::TopLayerType::NordicStone;
         const auto initialDamage = 0.1;
         const auto slopeAngle = 0.2;
         const auto thicknessTopLayer = 0.3;
@@ -91,7 +94,7 @@ namespace DiKErnel::Integration::Test
         const auto normativeWidthOfWaveImpactAwi = 2.2;
         const auto normativeWidthOfWaveImpactBwi = 2.3;
 
-        NaturalStoneRevetmentLocationConstructionProperties constructionProperties(initialDamage, slopeAngle, thicknessTopLayer, relativeDensity);
+        NaturalStoneRevetmentLocationConstructionProperties constructionProperties(topLayerType, initialDamage, slopeAngle, thicknessTopLayer, relativeDensity);
 
         // When
         constructionProperties.SetSimilarityParameterThreshold(make_unique<double>(similarityParameterThreshold));
@@ -115,6 +118,7 @@ namespace DiKErnel::Integration::Test
         constructionProperties.SetNormativeWidthOfWaveImpactBwi(make_unique<double>(normativeWidthOfWaveImpactBwi));
 
         // Then
+        ASSERT_EQ(topLayerType, constructionProperties.GetTopLayerType());
         ASSERT_DOUBLE_EQ(initialDamage, constructionProperties.GetInitialDamage());
         ASSERT_DOUBLE_EQ(slopeAngle, constructionProperties.GetSlopeAngle());
         ASSERT_DOUBLE_EQ(thicknessTopLayer, constructionProperties.GetThicknessTopLayer());

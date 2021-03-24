@@ -31,8 +31,19 @@ namespace DiKErnel::Integration
     class NaturalStoneRevetmentLocationConstructionProperties
     {
         public:
+
+            /*!
+             * \brief The types of the top layer.
+             */
+            enum class TopLayerType
+            {
+                NordicStone
+            };
+
             /*!
              * \brief Creates a new instance.
+             * \param topLayerType
+             *        The type of the top layer.
              * \param initialDamage
              *        The initial damage of the location.
              * \param slopeAngle
@@ -43,6 +54,7 @@ namespace DiKErnel::Integration
              *        The relative density of the location.
              */
             explicit NaturalStoneRevetmentLocationConstructionProperties(
+                TopLayerType topLayerType,
                 double initialDamage,
                 double slopeAngle,
                 double thicknessTopLayer,
@@ -167,6 +179,12 @@ namespace DiKErnel::Integration
             #pragma endregion
 
             #pragma region Get methods
+
+            /*!
+             * \brief Gets the type of the top layer.
+             * \return The type of the top layer.
+             */
+            TopLayerType GetTopLayerType() const;
 
             /*!
              * \brief Gets the initial damage of the location.
@@ -309,6 +327,7 @@ namespace DiKErnel::Integration
             #pragma endregion
 
         private:
+            TopLayerType _topLayerType;
             double _initialDamage;
             double _slopeAngle;
             double _thicknessTopLayer;

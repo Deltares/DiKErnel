@@ -113,6 +113,7 @@ namespace DiKErnel::Integration::Test
     TEST_F(RevetmentCalculationInputBuilderTest, GivenBuilderWithFullyConfiguredNaturalStoneLocationAdded_WhenBuild_ThenReturnsCalculationInput)
     {
         // Given
+        const auto topLayerType = NaturalStoneRevetmentLocationConstructionProperties::TopLayerType::NordicStone;
         const auto maximumWaveAngle = rand() % 100;
         const auto initialDamage = 0.1;
         const auto slopeAngle = 0.2;
@@ -139,7 +140,7 @@ namespace DiKErnel::Integration::Test
         const auto normativeWidthOfWaveImpactBwi = 2.3;
 
         NaturalStoneRevetmentLocationConstructionProperties naturalStoneConstructionProperties(
-            initialDamage, slopeAngle, thicknessTopLayer, relativeDensity);
+            topLayerType, initialDamage, slopeAngle, thicknessTopLayer, relativeDensity);
         naturalStoneConstructionProperties.SetSimilarityParameterThreshold(make_unique<double>(similarityParameterThreshold));
         naturalStoneConstructionProperties.SetPlungingCoefficientA(make_unique<double>(plungingCoefficientA));
         naturalStoneConstructionProperties.SetPlungingCoefficientB(make_unique<double>(plungingCoefficientB));
@@ -202,6 +203,7 @@ namespace DiKErnel::Integration::Test
     TEST_F(RevetmentCalculationInputBuilderTest, GivenBuilderWithNotFullyConfiguredNaturalStoneLocationAdded_WhenBuild_ThenReturnsCalculationInput)
     {
         // Given
+        const auto topLayerType = NaturalStoneRevetmentLocationConstructionProperties::TopLayerType::NordicStone;
         const auto maximumWaveAngle = rand() % 100;
         const auto initialDamage = 0.1;
         const auto slopeAngle = 0.2;
@@ -209,7 +211,7 @@ namespace DiKErnel::Integration::Test
         const auto relativeDensity = 0.4;
 
         const NaturalStoneRevetmentLocationConstructionProperties naturalStoneConstructionProperties(
-            initialDamage, slopeAngle, thicknessTopLayer, relativeDensity);
+            topLayerType, initialDamage, slopeAngle, thicknessTopLayer, relativeDensity);
 
         RevetmentCalculationInputBuilder builder(maximumWaveAngle);
         builder.AddNaturalStoneLocation(naturalStoneConstructionProperties);

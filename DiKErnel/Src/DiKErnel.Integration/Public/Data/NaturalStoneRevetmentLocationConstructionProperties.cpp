@@ -25,6 +25,7 @@ namespace DiKErnel::Integration
     using namespace std;
 
     NaturalStoneRevetmentLocationConstructionProperties::NaturalStoneRevetmentLocationConstructionProperties(
+        const TopLayerType topLayerType,
         const double initialDamage,
         const double slopeAngle,
         const double thicknessTopLayer,
@@ -32,7 +33,8 @@ namespace DiKErnel::Integration
         : _initialDamage(initialDamage),
           _slopeAngle(slopeAngle),
           _thicknessTopLayer(thicknessTopLayer),
-          _relativeDensity(relativeDensity) { }
+          _relativeDensity(relativeDensity),
+          _topLayerType(topLayerType) { }
 
     #pragma region Set methods
 
@@ -153,6 +155,11 @@ namespace DiKErnel::Integration
     #pragma endregion
 
     #pragma region Get methods
+
+    NaturalStoneRevetmentLocationConstructionProperties::TopLayerType NaturalStoneRevetmentLocationConstructionProperties::GetTopLayerType() const
+    {
+        return _topLayerType;
+    }
 
     double NaturalStoneRevetmentLocationConstructionProperties::GetInitialDamage() const
     {
