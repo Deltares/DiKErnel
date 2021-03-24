@@ -7,6 +7,8 @@ set(SOURCEFILES
   NaturalStoneRevetment.h
   NaturalStoneRevetmentDeprecated.cpp
   NaturalStoneRevetmentDeprecated.h
+  Revetment.cpp
+  Revetment.h
 )
 
 # Add library

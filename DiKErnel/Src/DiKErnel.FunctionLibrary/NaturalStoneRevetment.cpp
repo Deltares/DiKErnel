@@ -20,6 +20,8 @@
 
 #include "NaturalStoneRevetment.h"
 
+#include "Revetment.h"
+
 namespace DiKErnel::FunctionLibrary
 {
     double NaturalStoneRevetment::CalculateDamageOfNaturalStone()
@@ -34,7 +36,7 @@ namespace DiKErnel::FunctionLibrary
         const auto hydraulicLoadOnNaturalStone = CalculateHydraulicLoadOnNaturalStone();
         const auto resistanceOfNaturalStone = CalculateResistanceOfNaturalStone();
         const auto incrementDegradationOfNaturalStone = CalculateIncrementDegradationOfNaturalStone();
-        const auto loadingOfRevetment = CalculateLoadingOfRevetment();
+        const auto loadingOfRevetment = Revetment::CalculateLoadingOfRevetment();
         const auto waveAngleImpactOnNaturalStone = CalculateWaveAngleImpactOnNaturalStone();
 
         return hydraulicLoadOnNaturalStone / resistanceOfNaturalStone * incrementDegradationOfNaturalStone * loadingOfRevetment
@@ -52,11 +54,6 @@ namespace DiKErnel::FunctionLibrary
     }
 
     double NaturalStoneRevetment::CalculateIncrementDegradationOfNaturalStone()
-    {
-        return 1.0;
-    }
-
-    double NaturalStoneRevetment::CalculateLoadingOfRevetment()
     {
         return 1.0;
     }

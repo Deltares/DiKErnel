@@ -18,26 +18,12 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#pragma once
+#include "Revetment.h"
 
 namespace DiKErnel::FunctionLibrary
 {
-    /*!
-     * \brief Class that holds all natural stone revetment specific calculation routines.
-     */
-    class NaturalStoneRevetment
+    double Revetment::CalculateLoadingOfRevetment()
     {
-        public:
-            static double CalculateDamageOfNaturalStone();
-
-            static double CalculateIncrementDamageOfNaturalStone();
-
-            static double CalculateHydraulicLoadOnNaturalStone();
-
-            static double CalculateResistanceOfNaturalStone();
-
-            static double CalculateIncrementDegradationOfNaturalStone();
-
-            static double CalculateWaveAngleImpactOnNaturalStone();
-    };
+        return 1.0;
+    }
 }
