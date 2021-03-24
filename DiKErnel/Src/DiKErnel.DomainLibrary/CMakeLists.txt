@@ -9,8 +9,8 @@ set(SOURCEFILES
   Defaults.h
   HydraulicLoadsDefaults.cpp
   HydraulicLoadsDefaults.h
-  NaturalStoneRevetmentDefaults.cpp
-  NaturalStoneRevetmentDefaults.h
+  NordicStoneRevetmentDefaults.cpp
+  NordicStoneRevetmentDefaults.h
 )
 
 # Add library

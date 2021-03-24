@@ -7,7 +7,7 @@ set(SOURCEFILES
   DefaultsTest.cpp
   HydraulicLoadsDefaultsTest.cpp
   Main.cpp
-  NaturalStoneRevetmentDefaultsTest.cpp
+  NordicStoneRevetmentDefaultsTest.cpp
 )
 
 # Add executable

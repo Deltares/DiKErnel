@@ -21,7 +21,7 @@
 #include "RevetmentCalculationInputBuilder.h"
 
 #include "InvalidCalculationDataException.h"
-#include "NaturalStoneRevetmentDefaults.h"
+#include "NordicStoneRevetmentDefaults.h"
 #include "NaturalStoneRevetmentLocationConstructionProperties.h"
 #include "NaturalStoneRevetmentLocationDependentInput.h"
 #include "RevetmentCalculationInputBuilderException.h"

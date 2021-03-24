@@ -25,7 +25,7 @@ namespace DiKErnel::DomainLibrary
     /*!
      * \brief Class that contains default values for natural stone revetment.
      */
-    class NaturalStoneRevetmentDefaults
+    class NordicStoneRevetmentDefaults
     {
         public:
             /*!
