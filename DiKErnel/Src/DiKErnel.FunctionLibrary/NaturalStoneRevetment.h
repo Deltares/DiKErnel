@@ -74,5 +74,22 @@ namespace DiKErnel::FunctionLibrary
                 double thicknessTopLayer);
 
             static double CalculateWaveAngleImpactOnNaturalStone();
+
+            static double CalculateDurationInTimeStepFailureNaturalStone(
+                double failureNumber,
+                double relativeDensity,
+                double thicknessTopLayer,
+                double wavePeriodTm10);
+
+            static double CalculateReferenceTimeFailureOfNaturalStone(
+                double failureNumber,
+                double relativeDensity,
+                double thicknessTopLayer,
+                double wavePeriodTm10);
+
+            static double CalculateReferenceFailureOfNaturalStone(
+                double failureNumber,
+                double relativeDensity,
+                double thicknessTopLayer);
     };
 }

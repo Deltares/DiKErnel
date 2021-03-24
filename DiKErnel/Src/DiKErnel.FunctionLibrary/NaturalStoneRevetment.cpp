@@ -140,4 +140,45 @@ namespace DiKErnel::FunctionLibrary
     {
         return 1.0;
     }
+
+    double NaturalStoneRevetment::CalculateDurationInTimeStepFailureNaturalStone(
+        const double failureNumber,
+        const double relativeDensity,
+        const double thicknessTopLayer,
+        const double wavePeriodTm10)
+    {
+        const auto referenceTimeFailureOfNaturalStone = CalculateReferenceTimeFailureOfNaturalStone(
+            failureNumber,
+            relativeDensity,
+            thicknessTopLayer,
+            wavePeriodTm10);
+
+        return referenceTimeFailureOfNaturalStone - 1.0;
+    }
+
+    double NaturalStoneRevetment::CalculateReferenceTimeFailureOfNaturalStone(
+        const double failureNumber,
+        const double relativeDensity,
+        const double thicknessTopLayer,
+        const double wavePeriodTm10)
+    {
+        const auto referenceFailureOfNaturalStone = CalculateReferenceFailureOfNaturalStone(
+            failureNumber,
+            relativeDensity,
+            thicknessTopLayer);
+
+        return 1000.0 * wavePeriodTm10 * pow(referenceFailureOfNaturalStone, 10.0);
+    }
+
+    double NaturalStoneRevetment::CalculateReferenceFailureOfNaturalStone(
+        const double failureNumber,
+        const double relativeDensity,
+        const double thicknessTopLayer)
+    {
+        const auto resistanceOfNaturalStone = CalculateResistanceOfNaturalStone(relativeDensity, thicknessTopLayer);
+        const auto hydraulicLoadOnNaturalStone = CalculateHydraulicLoadOnNaturalStone();
+        const auto waveAngleImpactOnNaturalStone = CalculateWaveAngleImpactOnNaturalStone();
+
+        return failureNumber * (resistanceOfNaturalStone / hydraulicLoadOnNaturalStone) * (1 / waveAngleImpactOnNaturalStone);
+    }
 }
