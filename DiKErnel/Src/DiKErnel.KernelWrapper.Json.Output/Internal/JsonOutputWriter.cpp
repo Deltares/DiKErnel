@@ -18,6 +18,83 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
+#include "JsonOutputWriter.h"
+
+#include <fstream>
+#include <iomanip>
+
+#include "JsonOutputDefinitions.h"
+
 namespace DiKErnel::KernelWrapper::Json::Output
 {
+    using namespace nlohmann;
+    using namespace std;
+
+    void JsonOutputWriter::Write(
+        const string& filePath,
+        const JsonOutputData& jsonOutputData)
+    {
+        const auto jsonOutput = ordered_json::object(
+            {
+                JsonOutputDefinitions::OUTPUT_DATA,
+                {
+                    {
+                        JsonOutputDefinitions::TIME,
+                        jsonOutputData.GetTimes()
+                    },
+                    {
+                        JsonOutputDefinitions::LOCATIONS,
+                        GetLocations(jsonOutputData.GetLocationDataItems())
+                     }
+                }
+            });
+
+        ofstream outfile(filePath, ios::trunc);
+        outfile << setw(4) << jsonOutput << endl;
+    }
+
+    vector<basic_json<ordered_map>> JsonOutputWriter::GetLocations(
+        const vector<JsonOutputLocationData>& locationDataItems)
+    {
+        vector<basic_json<ordered_map>> locationOutputJsonItems;
+
+        for (const auto& locationData : locationDataItems)
+        {
+            auto locationFailed = locationData.GetLocationFailed();
+            auto locationOutputJson = ordered_json::object(
+                {
+                    {
+                        JsonOutputDefinitions::NAME,
+                        locationData.GetName()
+                    },
+                    {
+                        JsonOutputDefinitions::DAMAGE,
+                        {
+                            {
+                                JsonOutputDefinitions::FAILED,
+                                locationFailed
+                            },
+                            {
+                                JsonOutputDefinitions::TIME_OF_FAILURE,
+                                nullptr
+                            },
+                            {
+                                JsonOutputDefinitions::DAMAGE_OVER_TIME,
+                                locationData.GetDamages()
+                            }
+                        }
+                    }
+                }
+            );
+
+            if (locationFailed)
+            {
+                locationOutputJson[JsonOutputDefinitions::DAMAGE][JsonOutputDefinitions::TIME_OF_FAILURE] = *locationData.GetTimeOfFailure();
+            }
+
+            locationOutputJsonItems.push_back(locationOutputJson);
+        }
+
+        return locationOutputJsonItems;
+    }
 }

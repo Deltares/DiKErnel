@@ -20,7 +20,23 @@
 
 #pragma once
 
+#include <string>
+
 namespace DiKErnel::KernelWrapper::Json::Output
 {
-    class JsonOutputDefinitions {};
+    class JsonOutputDefinitions
+    {
+        public:
+            inline static const std::string OUTPUT_DATA = "Uitvoerdata";
+
+            inline static const std::string TIME = "Tijd";
+
+            inline static const std::string LOCATIONS = "Locaties";
+            inline static const std::string NAME = "Naam";
+
+            inline static const std::string DAMAGE = "Schade";
+            inline static const std::string FAILED = "Faalgebeurtenis";
+            inline static const std::string TIME_OF_FAILURE = "Faaltijd";
+            inline static const std::string DAMAGE_OVER_TIME = "SchadegetalPerTijd";
+    };
 }

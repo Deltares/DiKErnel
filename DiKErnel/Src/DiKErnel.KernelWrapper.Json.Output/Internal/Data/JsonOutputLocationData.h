@@ -40,7 +40,7 @@ namespace DiKErnel::KernelWrapper::Json::Output
 
             bool GetLocationFailed() const;
 
-            double GetTimeOfFailure() const;
+            const double* GetTimeOfFailure() const;
 
         private:
             std::string _name;

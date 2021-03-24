@@ -47,8 +47,8 @@ namespace DiKErnel::KernelWrapper::Json::Output
         return _timeOfFailure != nullptr;
     }
 
-    double JsonOutputLocationData::GetTimeOfFailure() const
+    const double* JsonOutputLocationData::GetTimeOfFailure() const
     {
-        return *_timeOfFailure;
+        return _timeOfFailure.get();
     }
 }

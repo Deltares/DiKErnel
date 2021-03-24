@@ -20,7 +20,23 @@
 
 #pragma once
 
+#include <string>
+
+#include <nlohmann/json.hpp>
+
+#include "JsonOutputData.h"
+
 namespace DiKErnel::KernelWrapper::Json::Output
 {
-    class JsonOutputWriter {};
+    class JsonOutputWriter
+    {
+        public:
+            static void Write(
+                const std::string& filePath,
+                const JsonOutputData& jsonOutputData);
+
+        private:
+            static std::vector<nlohmann::basic_json<nlohmann::ordered_map>> GetLocations(
+                const std::vector<JsonOutputLocationData>& locationDataItems);
+    };
 }
