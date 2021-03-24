@@ -5,6 +5,8 @@ set(LIBNAME DiKErnel.FunctionLibrary)
 set(SOURCEFILES
   NaturalStoneRevetment.cpp
   NaturalStoneRevetment.h
+  NaturalStoneRevetmentDeprecated.cpp
+  NaturalStoneRevetmentDeprecated.h
 )
 
 # Add library

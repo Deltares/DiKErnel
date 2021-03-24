@@ -20,9 +20,9 @@
 
 #include <gtest/gtest.h>
 
-#include "NaturalStoneRevetment.h"
+#include "NaturalStoneRevetmentDeprecated.h"
 
-namespace DiKErnel::FunctionLibrary::Test::NaturalStoneRevetmentTest
+namespace DiKErnel::FunctionLibrary::Test::NaturalStoneRevetmentDeprecatedTest
 {
     using namespace testing;
 
@@ -52,7 +52,7 @@ namespace DiKErnel::FunctionLibrary::Test::NaturalStoneRevetmentTest
     TEST_F(NaturalStoneRevetmentTest, GivenInput_WhenCalculateDamage_ThenExpectedResult)
     {
         // When
-        const auto damage = NaturalStoneRevetment::CalculateDamage(
+        const auto damage = NaturalStoneRevetmentDeprecated::CalculateDamage(
             _initialDamage,
             _slopeAngle,
             _relativeDensity,
@@ -80,7 +80,7 @@ namespace DiKErnel::FunctionLibrary::Test::NaturalStoneRevetmentTest
     TEST_F(NaturalStoneRevetmentTest, GivenInput_WhenCalculateIncrementDamage_ThenExpectedResult)
     {
         // When
-        const auto incrementDamage = NaturalStoneRevetment::CalculateIncrementDamage(
+        const auto incrementDamage = NaturalStoneRevetmentDeprecated::CalculateIncrementDamage(
             _slopeAngle,
             _relativeDensity,
             _thicknessTopLayer,
@@ -108,7 +108,7 @@ namespace DiKErnel::FunctionLibrary::Test::NaturalStoneRevetmentTest
     TEST_F(NaturalStoneRevetmentTest, GivenInput_WhenCalculateHydraulicLoadWithSurfSimilarityParameterSmallerThanThreshold_ThenExpectedResult)
     {
         // When
-        const auto hydraulicLoad = NaturalStoneRevetment::CalculateHydraulicLoad(
+        const auto hydraulicLoad = NaturalStoneRevetmentDeprecated::CalculateHydraulicLoad(
             _slopeAngle,
             _spectralWaveHeight,
             _spectralWavePeriod,
@@ -129,7 +129,7 @@ namespace DiKErnel::FunctionLibrary::Test::NaturalStoneRevetmentTest
     TEST_F(NaturalStoneRevetmentTest, GivenInput_WhenCalculateHydraulicLoadWithSurfSimilarityParameterBiggerThanThreshold_ThenExpectedResult)
     {
         // When
-        const auto hydraulicLoad = NaturalStoneRevetment::CalculateHydraulicLoad(
+        const auto hydraulicLoad = NaturalStoneRevetmentDeprecated::CalculateHydraulicLoad(
             _slopeAngle,
             _spectralWaveHeight,
             _spectralWavePeriod,
@@ -150,7 +150,7 @@ namespace DiKErnel::FunctionLibrary::Test::NaturalStoneRevetmentTest
     TEST_F(NaturalStoneRevetmentTest, GivenInput_WhenCalculateSurfSimilarityParameter_ThenExpectedResult)
     {
         // When
-        const auto surfSimilarityParameter = NaturalStoneRevetment::CalculateSurfSimilarityParameter(
+        const auto surfSimilarityParameter = NaturalStoneRevetmentDeprecated::CalculateSurfSimilarityParameter(
             _slopeAngle,
             _spectralWaveHeight,
             _spectralWavePeriod);
@@ -162,7 +162,7 @@ namespace DiKErnel::FunctionLibrary::Test::NaturalStoneRevetmentTest
     TEST_F(NaturalStoneRevetmentTest, GivenInput_WhenCalculateResistance_ThenExpectedResult)
     {
         // When
-        const auto resistance = NaturalStoneRevetment::CalculateResistance(
+        const auto resistance = NaturalStoneRevetmentDeprecated::CalculateResistance(
             _relativeDensity,
             _thicknessTopLayer);
 
@@ -173,7 +173,7 @@ namespace DiKErnel::FunctionLibrary::Test::NaturalStoneRevetmentTest
     TEST_F(NaturalStoneRevetmentTest, GivenInput_WhenCalculateIncrementDegradation_ThenExpectedResult)
     {
         // When
-        const auto incrementDegradation = NaturalStoneRevetment::CalculateIncrementDegradation(
+        const auto incrementDegradation = NaturalStoneRevetmentDeprecated::CalculateIncrementDegradation(
             _slopeAngle,
             _relativeDensity,
             _thicknessTopLayer,
@@ -201,7 +201,7 @@ namespace DiKErnel::FunctionLibrary::Test::NaturalStoneRevetmentTest
     TEST_F(NaturalStoneRevetmentTest, GivenInput_WhenCalculateDegradation_ThenExpectedResult)
     {
         // When
-        const auto degradation = NaturalStoneRevetment::CalculateDegradation(_endTime, _spectralWavePeriod);
+        const auto degradation = NaturalStoneRevetmentDeprecated::CalculateDegradation(_endTime, _spectralWavePeriod);
 
         // Then
         ASSERT_DOUBLE_EQ(0.7411344491069477, degradation);
@@ -210,7 +210,7 @@ namespace DiKErnel::FunctionLibrary::Test::NaturalStoneRevetmentTest
     TEST_F(NaturalStoneRevetmentTest, GivenInput_WhenCalculateReferenceTimeDegradation_ThenExpectedResult)
     {
         // When
-        const auto referenceTimeDegradation = NaturalStoneRevetment::CalculateReferenceTimeDegradation(
+        const auto referenceTimeDegradation = NaturalStoneRevetmentDeprecated::CalculateReferenceTimeDegradation(
             _slopeAngle,
             _relativeDensity,
             _thicknessTopLayer,
@@ -236,7 +236,7 @@ namespace DiKErnel::FunctionLibrary::Test::NaturalStoneRevetmentTest
     TEST_F(NaturalStoneRevetmentTest, GivenInput_WhenCalculateReferenceDegradation_ThenExpectedResult)
     {
         // When
-        const auto referenceDegradation = NaturalStoneRevetment::CalculateReferenceDegradation(
+        const auto referenceDegradation = NaturalStoneRevetmentDeprecated::CalculateReferenceDegradation(
             _initialDamage,
             _slopeAngle,
             _relativeDensity,
@@ -262,7 +262,7 @@ namespace DiKErnel::FunctionLibrary::Test::NaturalStoneRevetmentTest
     TEST_F(NaturalStoneRevetmentTest, GivenInput_WhenCalculateWaveAngleImpactWithPositiveWaveAngle_ThenExpectedResult)
     {
         // When
-        const auto waveAngleImpact = NaturalStoneRevetment::CalculateWaveAngleImpact(_waveAngle, _waveAngleMaximum);
+        const auto waveAngleImpact = NaturalStoneRevetmentDeprecated::CalculateWaveAngleImpact(_waveAngle, _waveAngleMaximum);
 
         // Then
         ASSERT_DOUBLE_EQ(0.98984601570399278, waveAngleImpact);
@@ -271,7 +271,7 @@ namespace DiKErnel::FunctionLibrary::Test::NaturalStoneRevetmentTest
     TEST_F(NaturalStoneRevetmentTest, GivenInput_WhenCalculateWaveAngleImpactWithNegativeWaveAngle_ThenExpectedResult)
     {
         // When
-        const auto waveAngleImpact = NaturalStoneRevetment::CalculateWaveAngleImpact(-_waveAngle, _waveAngleMaximum);
+        const auto waveAngleImpact = NaturalStoneRevetmentDeprecated::CalculateWaveAngleImpact(-_waveAngle, _waveAngleMaximum);
 
         // Then
         ASSERT_DOUBLE_EQ(0.98984601570399278, waveAngleImpact);

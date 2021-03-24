@@ -26,7 +26,7 @@
 #include "DeprecatedCalculator.h"
 #include "InputComposer.h"
 #include "InputData.h"
-#include "NaturalStoneRevetment.h"
+#include "NaturalStoneRevetmentDeprecated.h"
 #include "OutputComposer.h"
 
 using namespace DiKErnel::Core;
@@ -212,7 +212,7 @@ double CalculateDamageWithDelay(
 {
     this_thread::sleep_for(chrono::seconds(subCalculationDelay));
 
-    return NaturalStoneRevetment::CalculateDamage(
+    return NaturalStoneRevetmentDeprecated::CalculateDamage(
         initialDamage,
         slopeAngle,
         relativeDensity,

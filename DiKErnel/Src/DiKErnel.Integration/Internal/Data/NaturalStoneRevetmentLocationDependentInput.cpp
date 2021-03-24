@@ -20,7 +20,7 @@
 
 #include "NaturalStoneRevetmentLocationDependentInput.h"
 
-#include "NaturalStoneRevetment.h"
+#include "NaturalStoneRevetmentDeprecated.h"
 #include "TimeDependentInput.h"
 
 namespace DiKErnel::Integration
@@ -55,7 +55,7 @@ namespace DiKErnel::Integration
         const ITimeDependentInput& timeDependentInput,
         const double maximumWaveAngle)
     {
-        return NaturalStoneRevetment::CalculateDamage(
+        return NaturalStoneRevetmentDeprecated::CalculateDamage(
             startDamage, _slopeAngle, _relativeDensity, _thicknessTopLayer,
             timeDependentInput.GetWaveHeightHm0(), timeDependentInput.GetWavePeriodTm10(),
             timeDependentInput.GetWaveAngle(), timeDependentInput.GetBeginTime(), timeDependentInput.GetEndTime(),
