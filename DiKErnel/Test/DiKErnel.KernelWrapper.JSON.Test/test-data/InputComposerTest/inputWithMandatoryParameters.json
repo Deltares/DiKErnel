@@ -61,7 +61,7 @@
 				"TypeToplaag": "Noorse Steen",
 				"RelatieveDichtheid": 1.65,
 				"DikteToplaag": 0.3,
-				"Rekenmethode": {
+				"Rekenmethoden": {
 					"RekenmethodeSoort": "NatuurSteen"
 				}
 			},
@@ -82,7 +82,7 @@
 				"TypeToplaag": "Noorse Steen",
 				"RelatieveDichtheid": 1.65,
 				"DikteToplaag": 0.7,
-				"Rekenmethode": {
+				"Rekenmethoden": {
 					"RekenmethodeSoort": "NatuurSteen"
 				}
 			},

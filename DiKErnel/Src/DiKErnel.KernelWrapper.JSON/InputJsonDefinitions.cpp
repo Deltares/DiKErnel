@@ -56,7 +56,7 @@ namespace DiKErnel::KernelWrapper::Json
     const string InputJsonDefinitions::TAN_A = "TanA";
     const string InputJsonDefinitions::POSITION_Z = "PositieZ";
 
-    const string InputJsonDefinitions::CALCULATION_METHOD = "Rekenmethode";
+    const string InputJsonDefinitions::CALCULATION_METHOD = "Rekenmethoden";
     const string InputJsonDefinitions::CALCULATION_METHOD_SORT = "RekenmethodeSoort";
 
     const string InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE = "HydraulischeBelastingNatuurSteen";
