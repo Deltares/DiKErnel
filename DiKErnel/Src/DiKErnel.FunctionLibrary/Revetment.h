@@ -29,5 +29,9 @@ namespace DiKErnel::FunctionLibrary
     {
         public:
             static double CalculateLoadingOfRevetment();
+
+            static double CalculateIncrementOfTime(
+                double startTime,
+                double endTime);
     };
 }

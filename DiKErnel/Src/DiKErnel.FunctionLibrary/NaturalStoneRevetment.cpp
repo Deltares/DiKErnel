@@ -25,21 +25,29 @@
 namespace DiKErnel::FunctionLibrary
 {
     double NaturalStoneRevetment::CalculateDamageOfNaturalStone(
+        const double startTime,
+        const double endTime,
         const double relativeDensity,
         const double thicknessTopLayer)
     {
         const auto initialDamage = 0.0;
 
-        return initialDamage + CalculateIncrementDamageOfNaturalStone(relativeDensity, thicknessTopLayer);
+        return initialDamage + CalculateIncrementDamageOfNaturalStone(
+            startTime,
+            endTime,
+            relativeDensity,
+            thicknessTopLayer);
     }
 
     double NaturalStoneRevetment::CalculateIncrementDamageOfNaturalStone(
+        const double startTime,
+        const double endTime,
         const double relativeDensity,
         const double thicknessTopLayer)
     {
         const auto hydraulicLoadOnNaturalStone = CalculateHydraulicLoadOnNaturalStone();
         const auto resistanceOfNaturalStone = CalculateResistanceOfNaturalStone(relativeDensity, thicknessTopLayer);
-        const auto incrementDegradationOfNaturalStone = CalculateIncrementDegradationOfNaturalStone();
+        const auto incrementDegradationOfNaturalStone = CalculateIncrementDegradationOfNaturalStone(startTime, endTime);
         const auto loadingOfRevetment = Revetment::CalculateLoadingOfRevetment();
         const auto waveAngleImpactOnNaturalStone = CalculateWaveAngleImpactOnNaturalStone();
 
@@ -59,9 +67,13 @@ namespace DiKErnel::FunctionLibrary
         return relativeDensity * thicknessTopLayer;
     }
 
-    double NaturalStoneRevetment::CalculateIncrementDegradationOfNaturalStone()
+    double NaturalStoneRevetment::CalculateIncrementDegradationOfNaturalStone(
+        const double startTime,
+        const double endTime)
     {
-        return 1.0;
+        const auto incrementOfTime = Revetment::CalculateIncrementOfTime(startTime, endTime);
+
+        return incrementOfTime;
     }
 
     double NaturalStoneRevetment::CalculateWaveAngleImpactOnNaturalStone()

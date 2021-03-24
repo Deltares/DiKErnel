@@ -26,4 +26,11 @@ namespace DiKErnel::FunctionLibrary
     {
         return 1.0;
     }
+
+    double Revetment::CalculateIncrementOfTime(
+        const double startTime,
+        const double endTime)
+    {
+        return endTime - startTime;
+    }
 }

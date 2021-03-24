@@ -29,10 +29,14 @@ namespace DiKErnel::FunctionLibrary
     {
         public:
             static double CalculateDamageOfNaturalStone(
+                double startTime,
+                double endTime,
                 double relativeDensity,
                 double thicknessTopLayer);
 
             static double CalculateIncrementDamageOfNaturalStone(
+                double startTime,
+                double endTime,
                 double relativeDensity,
                 double thicknessTopLayer);
 
@@ -42,7 +46,9 @@ namespace DiKErnel::FunctionLibrary
                 double relativeDensity,
                 double thicknessTopLayer);
 
-            static double CalculateIncrementDegradationOfNaturalStone();
+            static double CalculateIncrementDegradationOfNaturalStone(
+                double startTime,
+                double endTime);
 
             static double CalculateWaveAngleImpactOnNaturalStone();
     };
