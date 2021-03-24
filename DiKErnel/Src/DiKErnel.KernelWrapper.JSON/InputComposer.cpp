@@ -97,35 +97,35 @@ namespace DiKErnel::KernelWrapper::Json
                 const auto& readHydraulicLoads = readCalculationMethod[InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE];
 
                 hydraulicLoadValues.push_back(GetOptionalDoubleValue(readHydraulicLoads, InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_XIB,
-                                                                     NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_XIB));
+                                                                     NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NATURAL_STONE_XIB));
                 hydraulicLoadValues.push_back(GetOptionalDoubleValue(readHydraulicLoads, InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_AP,
-                                                                     NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_XIB));
+                                                                     NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NATURAL_STONE_XIB));
                 hydraulicLoadValues.push_back(GetOptionalDoubleValue(readHydraulicLoads, InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_BP,
-                                                                     NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_XIB));
+                                                                     NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NATURAL_STONE_XIB));
                 hydraulicLoadValues.push_back(GetOptionalDoubleValue(readHydraulicLoads, InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_CP,
-                                                                     NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_XIB));
+                                                                     NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NATURAL_STONE_XIB));
                 hydraulicLoadValues.push_back(GetOptionalDoubleValue(readHydraulicLoads, InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_NP,
-                                                                     NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_XIB));
+                                                                     NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NATURAL_STONE_XIB));
                 hydraulicLoadValues.push_back(GetOptionalDoubleValue(readHydraulicLoads, InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_AS,
-                                                                     NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_XIB));
+                                                                     NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NATURAL_STONE_XIB));
                 hydraulicLoadValues.push_back(GetOptionalDoubleValue(readHydraulicLoads, InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_BS,
-                                                                     NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_XIB));
+                                                                     NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NATURAL_STONE_XIB));
                 hydraulicLoadValues.push_back(GetOptionalDoubleValue(readHydraulicLoads, InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_CS,
-                                                                     NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_XIB));
+                                                                     NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NATURAL_STONE_XIB));
                 hydraulicLoadValues.push_back(GetOptionalDoubleValue(readHydraulicLoads, InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_NS,
-                                                                     NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_XIB));
+                                                                     NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NATURAL_STONE_XIB));
             }
             else
             {
-                hydraulicLoadValues.push_back(NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_XIB);
-                hydraulicLoadValues.push_back(NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_AP);
-                hydraulicLoadValues.push_back(NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_BP);
-                hydraulicLoadValues.push_back(NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_CP);
-                hydraulicLoadValues.push_back(NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_NP);
-                hydraulicLoadValues.push_back(NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_AS);
-                hydraulicLoadValues.push_back(NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_BS);
-                hydraulicLoadValues.push_back(NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_CS);
-                hydraulicLoadValues.push_back(NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_NS);
+                hydraulicLoadValues.push_back(NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NATURAL_STONE_XIB);
+                hydraulicLoadValues.push_back(NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NATURAL_STONE_AP);
+                hydraulicLoadValues.push_back(NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NATURAL_STONE_BP);
+                hydraulicLoadValues.push_back(NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NATURAL_STONE_CP);
+                hydraulicLoadValues.push_back(NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NATURAL_STONE_NP);
+                hydraulicLoadValues.push_back(NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NATURAL_STONE_AS);
+                hydraulicLoadValues.push_back(NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NATURAL_STONE_BS);
+                hydraulicLoadValues.push_back(NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NATURAL_STONE_CS);
+                hydraulicLoadValues.push_back(NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NATURAL_STONE_NS);
             }
 
             vector<double> upperLimitLoadingOfNaturalStoneValues;
@@ -136,19 +136,19 @@ namespace DiKErnel::KernelWrapper::Json
 
                 upperLimitLoadingOfNaturalStoneValues.push_back(GetOptionalDoubleValue(readUpperLimitLoadingOfNaturalStone,
                                                                                        InputJsonDefinitions::UPPER_LIMIT_LOADING_OF_NATURAL_STONE_AUL,
-                                                                                       NordicStoneRevetmentDefaults::UPPER_LIMIT_LOADING_OF_NORDIC_STONE_AUL));
+                                                                                       NordicStoneRevetmentDefaults::UPPER_LIMIT_LOADING_OF_NATURAL_STONE_AUL));
                 upperLimitLoadingOfNaturalStoneValues.push_back(GetOptionalDoubleValue(readUpperLimitLoadingOfNaturalStone,
                                                                                        InputJsonDefinitions::UPPER_LIMIT_LOADING_OF_NATURAL_STONE_BUL,
-                                                                                       NordicStoneRevetmentDefaults::UPPER_LIMIT_LOADING_OF_NORDIC_STONE_BUL));
+                                                                                       NordicStoneRevetmentDefaults::UPPER_LIMIT_LOADING_OF_NATURAL_STONE_BUL));
                 upperLimitLoadingOfNaturalStoneValues.push_back(GetOptionalDoubleValue(readUpperLimitLoadingOfNaturalStone,
                                                                                        InputJsonDefinitions::UPPER_LIMIT_LOADING_OF_NATURAL_STONE_CUL,
-                                                                                       NordicStoneRevetmentDefaults::UPPER_LIMIT_LOADING_OF_NORDIC_STONE_CUL));
+                                                                                       NordicStoneRevetmentDefaults::UPPER_LIMIT_LOADING_OF_NATURAL_STONE_CUL));
             }
             else
             {
-                upperLimitLoadingOfNaturalStoneValues.push_back(NordicStoneRevetmentDefaults::UPPER_LIMIT_LOADING_OF_NORDIC_STONE_AUL);
-                upperLimitLoadingOfNaturalStoneValues.push_back(NordicStoneRevetmentDefaults::UPPER_LIMIT_LOADING_OF_NORDIC_STONE_BUL);
-                upperLimitLoadingOfNaturalStoneValues.push_back(NordicStoneRevetmentDefaults::UPPER_LIMIT_LOADING_OF_NORDIC_STONE_CUL);
+                upperLimitLoadingOfNaturalStoneValues.push_back(NordicStoneRevetmentDefaults::UPPER_LIMIT_LOADING_OF_NATURAL_STONE_AUL);
+                upperLimitLoadingOfNaturalStoneValues.push_back(NordicStoneRevetmentDefaults::UPPER_LIMIT_LOADING_OF_NATURAL_STONE_BUL);
+                upperLimitLoadingOfNaturalStoneValues.push_back(NordicStoneRevetmentDefaults::UPPER_LIMIT_LOADING_OF_NATURAL_STONE_CUL);
             }
 
             vector<double> lowerLimitLoadingOfNaturalStoneValues;
@@ -159,19 +159,19 @@ namespace DiKErnel::KernelWrapper::Json
 
                 lowerLimitLoadingOfNaturalStoneValues.push_back(GetOptionalDoubleValue(readLowerLimitLoadingOfNaturalStone,
                                                                                        InputJsonDefinitions::LOWER_LIMIT_LOADING_OF_NATURAL_STONE_ALL,
-                                                                                       NordicStoneRevetmentDefaults::LOWER_LIMIT_LOADING_OF_NORDIC_STONE_ALL));
+                                                                                       NordicStoneRevetmentDefaults::LOWER_LIMIT_LOADING_OF_NATURAL_STONE_ALL));
                 lowerLimitLoadingOfNaturalStoneValues.push_back(GetOptionalDoubleValue(readLowerLimitLoadingOfNaturalStone,
                                                                                        InputJsonDefinitions::LOWER_LIMIT_LOADING_OF_NATURAL_STONE_BLL,
-                                                                                       NordicStoneRevetmentDefaults::LOWER_LIMIT_LOADING_OF_NORDIC_STONE_BLL));
+                                                                                       NordicStoneRevetmentDefaults::LOWER_LIMIT_LOADING_OF_NATURAL_STONE_BLL));
                 lowerLimitLoadingOfNaturalStoneValues.push_back(GetOptionalDoubleValue(readLowerLimitLoadingOfNaturalStone,
                                                                                        InputJsonDefinitions::LOWER_LIMIT_LOADING_OF_NATURAL_STONE_CLL,
-                                                                                       NordicStoneRevetmentDefaults::LOWER_LIMIT_LOADING_OF_NORDIC_STONE_CLL));
+                                                                                       NordicStoneRevetmentDefaults::LOWER_LIMIT_LOADING_OF_NATURAL_STONE_CLL));
             }
             else
             {
-                lowerLimitLoadingOfNaturalStoneValues.push_back(NordicStoneRevetmentDefaults::LOWER_LIMIT_LOADING_OF_NORDIC_STONE_ALL);
-                lowerLimitLoadingOfNaturalStoneValues.push_back(NordicStoneRevetmentDefaults::LOWER_LIMIT_LOADING_OF_NORDIC_STONE_BLL);
-                lowerLimitLoadingOfNaturalStoneValues.push_back(NordicStoneRevetmentDefaults::LOWER_LIMIT_LOADING_OF_NORDIC_STONE_CLL);
+                lowerLimitLoadingOfNaturalStoneValues.push_back(NordicStoneRevetmentDefaults::LOWER_LIMIT_LOADING_OF_NATURAL_STONE_ALL);
+                lowerLimitLoadingOfNaturalStoneValues.push_back(NordicStoneRevetmentDefaults::LOWER_LIMIT_LOADING_OF_NATURAL_STONE_BLL);
+                lowerLimitLoadingOfNaturalStoneValues.push_back(NordicStoneRevetmentDefaults::LOWER_LIMIT_LOADING_OF_NATURAL_STONE_CLL);
             }
 
             vector<double> distanceMaximumWaveElevationNaturalStoneValues;
@@ -183,17 +183,17 @@ namespace DiKErnel::KernelWrapper::Json
 
                 distanceMaximumWaveElevationNaturalStoneValues.push_back(GetOptionalDoubleValue(
                     readDistanceMaximumWaveElevationNaturalStone, InputJsonDefinitions::DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE_ASMAX,
-                    NordicStoneRevetmentDefaults::DISTANCE_MAXIMUM_WAVE_ELEVATION_NORDIC_STONE_ASMAX));
+                    NordicStoneRevetmentDefaults::DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE_ASMAX));
                 distanceMaximumWaveElevationNaturalStoneValues.push_back(GetOptionalDoubleValue(
                     readDistanceMaximumWaveElevationNaturalStone, InputJsonDefinitions::DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE_BSMAX,
-                    NordicStoneRevetmentDefaults::DISTANCE_MAXIMUM_WAVE_ELEVATION_NORDIC_STONE_BSMAX));
+                    NordicStoneRevetmentDefaults::DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE_BSMAX));
             }
             else
             {
                 distanceMaximumWaveElevationNaturalStoneValues.push_back(
-                    NordicStoneRevetmentDefaults::DISTANCE_MAXIMUM_WAVE_ELEVATION_NORDIC_STONE_ASMAX);
+                    NordicStoneRevetmentDefaults::DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE_ASMAX);
                 distanceMaximumWaveElevationNaturalStoneValues.push_back(
-                    NordicStoneRevetmentDefaults::DISTANCE_MAXIMUM_WAVE_ELEVATION_NORDIC_STONE_BSMAX);
+                    NordicStoneRevetmentDefaults::DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE_BSMAX);
             }
 
             vector<double> normativeWidthOfWaveImpactValues;
@@ -204,15 +204,15 @@ namespace DiKErnel::KernelWrapper::Json
 
                 normativeWidthOfWaveImpactValues.push_back(GetOptionalDoubleValue(readNormativeWidthOfWaveImpact,
                                                                                   InputJsonDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT_AWI,
-                                                                                  NordicStoneRevetmentDefaults::NORMATIVE_WIDTH_OF_WAVE_IMPACT_NORDIC_STONE_AWI));
+                                                                                  NordicStoneRevetmentDefaults::NORMATIVE_WIDTH_OF_WAVE_IMPACT_NATURAL_STONE_AWI));
                 normativeWidthOfWaveImpactValues.push_back(GetOptionalDoubleValue(readNormativeWidthOfWaveImpact,
                                                                                   InputJsonDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT_BWI,
-                                                                                  NordicStoneRevetmentDefaults::NORMATIVE_WIDTH_OF_WAVE_IMPACT_NORDIC_STONE_BWI));
+                                                                                  NordicStoneRevetmentDefaults::NORMATIVE_WIDTH_OF_WAVE_IMPACT_NATURAL_STONE_BWI));
             }
             else
             {
-                normativeWidthOfWaveImpactValues.push_back(NordicStoneRevetmentDefaults::NORMATIVE_WIDTH_OF_WAVE_IMPACT_NORDIC_STONE_AWI);
-                normativeWidthOfWaveImpactValues.push_back(NordicStoneRevetmentDefaults::NORMATIVE_WIDTH_OF_WAVE_IMPACT_NORDIC_STONE_BWI);
+                normativeWidthOfWaveImpactValues.push_back(NordicStoneRevetmentDefaults::NORMATIVE_WIDTH_OF_WAVE_IMPACT_NATURAL_STONE_AWI);
+                normativeWidthOfWaveImpactValues.push_back(NordicStoneRevetmentDefaults::NORMATIVE_WIDTH_OF_WAVE_IMPACT_NATURAL_STONE_BWI);
             }
 
             const auto& readDamageVariables = readLocation[InputJsonDefinitions::DAMAGE];

@@ -27,54 +27,54 @@ namespace DiKErnel::DomainLibrary::Test::NordicStoneRevetmentDefaultsTest
     TEST(NordicStoneRevetmentDefaultsTest, SimilarityParameterThreshold_ExpectedValue)
     {
         // Call & Assert
-        ASSERT_DOUBLE_EQ(2.9, NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_XIB);
+        ASSERT_DOUBLE_EQ(2.9, NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NATURAL_STONE_XIB);
     }
 
     TEST(NordicStoneRevetmentDefaultsTest, PlunginCoefficientA_ExpectedValue)
     {
         // Call & Assert
-        ASSERT_DOUBLE_EQ(4, NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_AP);
+        ASSERT_DOUBLE_EQ(4, NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NATURAL_STONE_AP);
     }
 
     TEST(NordicStoneRevetmentDefaultsTest, PlunginCoefficientB_ExpectedValue)
     {
         // Call & Assert
-        ASSERT_DOUBLE_EQ(0, NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_BP);
+        ASSERT_DOUBLE_EQ(0, NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NATURAL_STONE_BP);
     }
 
     TEST(NordicStoneRevetmentDefaultsTest, PlunginCoefficientC_ExpectedValue)
     {
         // Call & Assert
-        ASSERT_DOUBLE_EQ(0, NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_CP);
+        ASSERT_DOUBLE_EQ(0, NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NATURAL_STONE_CP);
     }
 
     TEST(NordicStoneRevetmentDefaultsTest, PlunginCoefficientN_ExpectedValue)
     {
         // Call & Assert
-        ASSERT_DOUBLE_EQ(-0.9, NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_NP);
+        ASSERT_DOUBLE_EQ(-0.9, NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NATURAL_STONE_NP);
     }
 
     TEST(NordicStoneRevetmentDefaultsTest, SurgingCoefficientA_ExpectedValue)
     {
         // Call & Assert
-        ASSERT_DOUBLE_EQ(0.8, NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_AS);
+        ASSERT_DOUBLE_EQ(0.8, NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NATURAL_STONE_AS);
     }
 
     TEST(NordicStoneRevetmentDefaultsTest, SurgingCoefficientB_ExpectedValue)
     {
         // Call & Assert
-        ASSERT_DOUBLE_EQ(0, NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_BS);
+        ASSERT_DOUBLE_EQ(0, NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NATURAL_STONE_BS);
     }
 
     TEST(NordicStoneRevetmentDefaultsTest, SurgingCoefficientC_ExpectedValue)
     {
         // Call & Assert
-        ASSERT_DOUBLE_EQ(0, NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_CS);
+        ASSERT_DOUBLE_EQ(0, NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NATURAL_STONE_CS);
     }
 
     TEST(NordicStoneRevetmentDefaultsTest, SurgingCoefficientN_ExpectedValue)
     {
         // Call & Assert
-        ASSERT_DOUBLE_EQ(0.6, NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NORDIC_STONE_NS);
+        ASSERT_DOUBLE_EQ(0.6, NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NATURAL_STONE_NS);
     }
 }

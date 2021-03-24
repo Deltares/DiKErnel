@@ -32,118 +32,118 @@ namespace DiKErnel::DomainLibrary
              * \brief The default value of the hydraulic load on nordic stone XIb.
              *        Unit = [-]
              */
-            static const double HYDRAULIC_LOAD_ON_NORDIC_STONE_XIB;
+            inline static const double HYDRAULIC_LOAD_ON_NATURAL_STONE_XIB = 2.9;
 
             /*!
              * \brief The default value of the hydraulic load on nordic stone Ap.
              *        Unit = [-]
              */
-            static const double HYDRAULIC_LOAD_ON_NORDIC_STONE_AP;
+            inline static const double HYDRAULIC_LOAD_ON_NATURAL_STONE_AP = 4;
 
             /*!
              * \brief The default value of the hydraulic load on nordic stone Bp.
              *        Unit = [-]
              */
-            static const double HYDRAULIC_LOAD_ON_NORDIC_STONE_BP;
+            inline static const double HYDRAULIC_LOAD_ON_NATURAL_STONE_BP = 0;
 
             /*!
              * \brief The default value of the hydraulic load on nordic stone Cp.
              *        Unit = [-]
              */
-            static const double HYDRAULIC_LOAD_ON_NORDIC_STONE_CP;
+            inline static const double HYDRAULIC_LOAD_ON_NATURAL_STONE_CP = 0;
 
             /*!
              * \brief The default value of the hydraulic load on nordic stone Np.
              *        Unit = [-]
              */
-            static const double HYDRAULIC_LOAD_ON_NORDIC_STONE_NP;
+            inline static const double HYDRAULIC_LOAD_ON_NATURAL_STONE_NP = -0.9;
 
             /*!
              * \brief The default value of the hydraulic load on nordic stone As.
              *        Unit = [-]
              */
-            static const double HYDRAULIC_LOAD_ON_NORDIC_STONE_AS;
+            inline static const double HYDRAULIC_LOAD_ON_NATURAL_STONE_AS = 0.8;
 
             /*!
              * \brief The default value of the hydraulic load on nordic stone Bs.
              *        Unit = [-]
              */
-            static const double HYDRAULIC_LOAD_ON_NORDIC_STONE_BS;
+            inline static const double HYDRAULIC_LOAD_ON_NATURAL_STONE_BS = 0;
 
             /*!
              * \brief The default value of the hydraulic load on nordic stone Cs.
              *        Unit = [-]
              */
-            static const double HYDRAULIC_LOAD_ON_NORDIC_STONE_CS;
+            inline static const double HYDRAULIC_LOAD_ON_NATURAL_STONE_CS = 0;
 
             /*!
              * \brief The default value of the hydraulic load on nordic stone Ns.
              *        Unit = [-]
              */
-            static const double HYDRAULIC_LOAD_ON_NORDIC_STONE_NS;
+            inline static const double HYDRAULIC_LOAD_ON_NATURAL_STONE_NS = 0.6;
 
             /*!
              * \brief The default value of the upper loading limit on nordic stone Aul.
              *        Unit = [-]
              */
-            static const double UPPER_LIMIT_LOADING_OF_NORDIC_STONE_AUL;
+            inline static const double UPPER_LIMIT_LOADING_OF_NATURAL_STONE_AUL = 0.1;
 
             /*!
              * \brief The default value of the upper loading limit on nordic stone Bul.
              *        Unit = [-]
              */
-            static const double UPPER_LIMIT_LOADING_OF_NORDIC_STONE_BUL;
+            inline static const double UPPER_LIMIT_LOADING_OF_NATURAL_STONE_BUL = 0.6;
 
             /*!
              * \brief The default value of the upper loading limit on nordic stone Cul.
              *        Unit = [-]
              */
-            static const double UPPER_LIMIT_LOADING_OF_NORDIC_STONE_CUL;
+            inline static const double UPPER_LIMIT_LOADING_OF_NATURAL_STONE_CUL = 4;
 
             /*!
              * \brief The default value of the lower loading limit on nordic stone All.
              *        Unit = [-]
              */
-            static const double LOWER_LIMIT_LOADING_OF_NORDIC_STONE_ALL;
+            inline static const double LOWER_LIMIT_LOADING_OF_NATURAL_STONE_ALL = 0.1;
 
             /*!
              * \brief The default value of the lower loading limit on nordic stone Bll.
              *        Unit = [-]
              */
-            static const double LOWER_LIMIT_LOADING_OF_NORDIC_STONE_BLL;
+            inline static const double LOWER_LIMIT_LOADING_OF_NATURAL_STONE_BLL = 0.2;
 
             /*!
              * \brief The default value of the lower loading limit on nordic stone Cll.
              *        Unit = [-]
              */
-            static const double LOWER_LIMIT_LOADING_OF_NORDIC_STONE_CLL;
+            inline static const double LOWER_LIMIT_LOADING_OF_NATURAL_STONE_CLL = 4;
 
             /*!
              * \brief The default value of the distance maximum wave elevation
              *        on nordic stone Asmax.
              *        Unit = [-]
              */
-            static const double DISTANCE_MAXIMUM_WAVE_ELEVATION_NORDIC_STONE_ASMAX;
+            inline static const double DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE_ASMAX = 0.42;
 
             /*!
              * \brief The default value of the distance maximum wave elevation
              *        on nordic stone Bsmax.
              *        Unit = [-]
              */
-            static const double DISTANCE_MAXIMUM_WAVE_ELEVATION_NORDIC_STONE_BSMAX;
+            inline static const double DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE_BSMAX = 0.9;
 
             /*!
              * \brief The default value of the normative width of wave impact
              *        on nordic stone Awi.
              *        Unit = [-]
              */
-            static const double NORMATIVE_WIDTH_OF_WAVE_IMPACT_NORDIC_STONE_AWI;
+            inline static const double NORMATIVE_WIDTH_OF_WAVE_IMPACT_NATURAL_STONE_AWI = 0.96;
 
             /*!
              * \brief The default value of the normative width of wave impact
              *        on nordic stone Bwi.
              *        Unit = [-]
              */
-            static const double NORMATIVE_WIDTH_OF_WAVE_IMPACT_NORDIC_STONE_BWI;
+            inline static const double NORMATIVE_WIDTH_OF_WAVE_IMPACT_NATURAL_STONE_BWI = 0.11;
     };
 }
