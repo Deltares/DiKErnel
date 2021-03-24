@@ -30,13 +30,15 @@ namespace DiKErnel::KernelWrapper::Json
         unique_ptr<UpperLimitLoadingOfNaturalStone> upperLimitLoadingOfNaturalStone,
         unique_ptr<LowerLimitLoadingOfNaturalStone> lowerLimitLoadingOfNaturalStone,
         unique_ptr<DistanceMaximumWaveElevationNaturalStone> distanceMaximumWaveElevationNaturalStone,
-        unique_ptr<NormativeWidthOfWaveImpact> normativeWidthOfWaveImpact)
+        unique_ptr<NormativeWidthOfWaveImpact> normativeWidthOfWaveImpact,
+        unique_ptr<WaveAngleImpact> waveAngleImpact)
         : _calculationMethodSort(move(calculationMethodSort)),
           _hydraulicLoadOnNaturalStone(move(hydraulicLoadOnNaturalStone)),
           _upperLimitLoadingOfNaturalStone(move(upperLimitLoadingOfNaturalStone)),
           _lowerLimitLoadingOfNaturalStone(move(lowerLimitLoadingOfNaturalStone)),
           _distanceMaximumWaveElevationNaturalStone(move(distanceMaximumWaveElevationNaturalStone)),
-          _normativeWidthOfWaveImpact(move(normativeWidthOfWaveImpact)) { }
+          _normativeWidthOfWaveImpact(move(normativeWidthOfWaveImpact)),
+          _waveAngleImpact(move(waveAngleImpact)) { }
 
     const string& CalculationMethod::GetCalculationMethodSort() const
     {
@@ -66,5 +68,10 @@ namespace DiKErnel::KernelWrapper::Json
     const NormativeWidthOfWaveImpact& CalculationMethod::GetNormativeWidthOfWaveImpact() const
     {
         return *_normativeWidthOfWaveImpact;
+    }
+
+    const WaveAngleImpact& CalculationMethod::GetWaveAngleImpact() const
+    {
+        return *_waveAngleImpact;
     }
 }

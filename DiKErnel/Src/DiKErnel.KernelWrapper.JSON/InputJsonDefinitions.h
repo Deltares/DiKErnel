@@ -95,6 +95,9 @@ namespace DiKErnel::KernelWrapper::Json
         static const std::string NORMATIVE_WIDTH_OF_WAVE_IMPACT_AWI;
         static const std::string NORMATIVE_WIDTH_OF_WAVE_IMPACT_BWI;
 
+        static const std::string WAVE_ANGLE_IMPACT_ON_NATURAL_STONE;
+        static const std::string WAVE_ANGLE_IMPACT_ON_NATURAL_STONE_BETA_MAX;
+
         static const std::string DAMAGE;
         static const std::string DAMAGE_OVER_TIME;
     };

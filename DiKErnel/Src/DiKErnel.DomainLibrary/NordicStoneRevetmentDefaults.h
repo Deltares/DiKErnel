@@ -145,5 +145,12 @@ namespace DiKErnel::DomainLibrary
              *        Unit = [-]
              */
             inline static const double NORMATIVE_WIDTH_OF_WAVE_IMPACT_NATURAL_STONE_BWI = 0.11;
+
+            /*!
+             * \brief The default value of the wave angle impact
+             *        on nordic stone beta max.
+             *        Unit = [°]
+             */
+            inline static const double WAVE_ANGLE_IMPACT_ON_NATURAL_STONE_BETA_MAX = 78;
     };
 }

@@ -88,6 +88,9 @@ namespace DiKErnel::KernelWrapper::Json
     const string InputJsonDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT_AWI = "MaatgevendeBreedteGolfklapAwi";
     const string InputJsonDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT_BWI = "MaatgevendeBreedteGolfklapBwi";
 
+    const string InputJsonDefinitions::WAVE_ANGLE_IMPACT_ON_NATURAL_STONE = "ImpactGolfhoekBekledingNatuursteen";
+    const string InputJsonDefinitions::WAVE_ANGLE_IMPACT_ON_NATURAL_STONE_BETA_MAX = "ImpactGolfhoekBekledingNatuursteenBetamax";
+
     const string InputJsonDefinitions::DAMAGE = "Schade";
     const string InputJsonDefinitions::DAMAGE_OVER_TIME = "SchadegetalPerTijd";
 }

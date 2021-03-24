@@ -73,7 +73,6 @@ namespace DiKErnel::KernelWrapper::Json
         }
 
         return make_unique<HydraulicLoads>(
-            readHydraulicLoads[InputJsonDefinitions::MAXIMUM_WAVE_ANGLE].get<int>(),
             move(boundaryConditionsPerTimeStep)
         );
     }
@@ -215,6 +214,21 @@ namespace DiKErnel::KernelWrapper::Json
                 normativeWidthOfWaveImpactValues.push_back(NordicStoneRevetmentDefaults::NORMATIVE_WIDTH_OF_WAVE_IMPACT_NATURAL_STONE_BWI);
             }
 
+            vector<double> waveAngleImpactValues;
+
+            if (readCalculationMethod.contains(InputJsonDefinitions::WAVE_ANGLE_IMPACT_ON_NATURAL_STONE))
+            {
+                const auto& readWaveAngleImpact = readCalculationMethod[InputJsonDefinitions::WAVE_ANGLE_IMPACT_ON_NATURAL_STONE];
+
+                waveAngleImpactValues.push_back(GetOptionalDoubleValue(readWaveAngleImpact,
+                    InputJsonDefinitions::WAVE_ANGLE_IMPACT_ON_NATURAL_STONE_BETA_MAX,
+                    NordicStoneRevetmentDefaults::WAVE_ANGLE_IMPACT_ON_NATURAL_STONE_BETA_MAX));
+            }
+            else
+            {
+                waveAngleImpactValues.push_back(NordicStoneRevetmentDefaults::WAVE_ANGLE_IMPACT_ON_NATURAL_STONE_BETA_MAX);
+            }
+
             const auto& readDamageVariables = readLocation[InputJsonDefinitions::DAMAGE];
             const auto& readProfileSchematization = readLocation[InputJsonDefinitions::PROFILE_SCHEMATIZATION];
 
@@ -257,7 +271,9 @@ namespace DiKErnel::KernelWrapper::Json
                         make_unique<NormativeWidthOfWaveImpact>(
                             normativeWidthOfWaveImpactValues.at(0),
                             normativeWidthOfWaveImpactValues.at(1)
-                        ))),
+                        ),
+                        make_unique<WaveAngleImpact>(
+                            waveAngleImpactValues.at(0)))),
                 make_unique<ProfileSchematization>(
                     readProfileSchematization[InputJsonDefinitions::TAN_A].get<double>(),
                     readProfileSchematization[InputJsonDefinitions::POSITION_Z].get<double>()

@@ -18,24 +18,20 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include "HydraulicLoads.h"
+#include "WaveAngleImpact.h"
+
+#include <utility>
 
 namespace DiKErnel::KernelWrapper::Json
 {
     using namespace std;
 
-    HydraulicLoads::HydraulicLoads(
-        vector<unique_ptr<BoundaryConditionsPerTimeStep>> boundaryConditionsPerTimeStep)
-        : _boundaryConditionsPerTimeStep(move(boundaryConditionsPerTimeStep))
-    {
-        for (const auto& boundaryConditionForTimeStep : _boundaryConditionsPerTimeStep)
-        {
-            _boundaryConditionsPerTimeStepReferences.emplace_back(*boundaryConditionForTimeStep);
-        }
-    }
+    WaveAngleImpact::WaveAngleImpact(
+        const double waveAngleImpactOnNaturalStoneBetamax)
+        : _waveAngleImpactOnNaturalStoneBetamax(waveAngleImpactOnNaturalStoneBetamax) { }
 
-    const vector<reference_wrapper<BoundaryConditionsPerTimeStep>>& HydraulicLoads::GetBoundaryConditionsPerTimeStep() const
+    double WaveAngleImpact::GetWaveAngleImpactOnNaturalStoneBetamax() const
     {
-        return _boundaryConditionsPerTimeStepReferences;
+        return _waveAngleImpactOnNaturalStoneBetamax;
     }
 }

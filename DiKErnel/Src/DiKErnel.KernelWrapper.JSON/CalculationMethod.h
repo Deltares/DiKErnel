@@ -28,6 +28,7 @@
 #include "LowerLimitLoadingOfNaturalStone.h"
 #include "NormativeWidthOfWaveImpact.h"
 #include "UpperLimitLoadingOfNaturalStone.h"
+#include "WaveAngleImpact.h"
 
 namespace DiKErnel::KernelWrapper::Json
 {
@@ -51,6 +52,8 @@ namespace DiKErnel::KernelWrapper::Json
              *        The distance maximum wave elevation natural stone.
              * \param normativeWidthOfWaveImpact
              *        The normative width of wave impact.
+             * \param waveAngleImpact
+             *        Te wave angle impact.
              */
             explicit CalculationMethod(
                 std::string calculationMethodSort,
@@ -58,7 +61,8 @@ namespace DiKErnel::KernelWrapper::Json
                 std::unique_ptr<UpperLimitLoadingOfNaturalStone> upperLimitLoadingOfNaturalStone,
                 std::unique_ptr<LowerLimitLoadingOfNaturalStone> lowerLimitLoadingOfNaturalStone,
                 std::unique_ptr<DistanceMaximumWaveElevationNaturalStone> distanceMaximumWaveElevationNaturalStone,
-                std::unique_ptr<NormativeWidthOfWaveImpact> normativeWidthOfWaveImpact
+                std::unique_ptr<NormativeWidthOfWaveImpact> normativeWidthOfWaveImpact,
+                std::unique_ptr<WaveAngleImpact> waveAngleImpact
             );
 
             /*!
@@ -97,6 +101,12 @@ namespace DiKErnel::KernelWrapper::Json
              */
             const NormativeWidthOfWaveImpact& GetNormativeWidthOfWaveImpact() const;
 
+            /*!
+             * \brief Gets the wave angle impact.
+             * \return The wave angle impact.
+             */
+            const WaveAngleImpact& GetWaveAngleImpact() const;
+
         private:
             std::string _calculationMethodSort;
             std::unique_ptr<HydraulicLoadOnNaturalStone> _hydraulicLoadOnNaturalStone;
@@ -104,5 +114,6 @@ namespace DiKErnel::KernelWrapper::Json
             std::unique_ptr<LowerLimitLoadingOfNaturalStone> _lowerLimitLoadingOfNaturalStone;
             std::unique_ptr<DistanceMaximumWaveElevationNaturalStone> _distanceMaximumWaveElevationNaturalStone;
             std::unique_ptr<NormativeWidthOfWaveImpact> _normativeWidthOfWaveImpact;
+            std::unique_ptr<WaveAngleImpact> _waveAngleImpact;
     };
 }

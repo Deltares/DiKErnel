@@ -45,6 +45,8 @@ set(SOURCEFILES
   RevetmentOutput.h
   UpperLimitLoadingOfNaturalStone.cpp
   UpperLimitLoadingOfNaturalStone.h
+  WaveAngleImpact.cpp
+  WaveAngleImpact.h
 )
 
 # Add library

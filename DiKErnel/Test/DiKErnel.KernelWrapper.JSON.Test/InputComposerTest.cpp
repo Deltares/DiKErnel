@@ -62,8 +62,6 @@ namespace DiKErnel::KernelWrapper::Json::Test
         void AssertHydraulicLoads(
             const HydraulicLoads& hydraulicLoads) const
         {
-            ASSERT_EQ(78, hydraulicLoads.GetWaveAngleMaximum());
-
             const auto& boundaryConditionsPerTimeStep = hydraulicLoads.GetBoundaryConditionsPerTimeStep();
 
             AssertBoundaryConditionsForTimeStep(boundaryConditionsPerTimeStep[0].get(), 0.1, 0.5, 2.0, -10.0);
@@ -94,11 +92,11 @@ namespace DiKErnel::KernelWrapper::Json::Test
             AssertCalculationLocation(calculationLocations[0].get(), "LocatieZwak", "Noorse Steen", 1.65, 0.3,
                                       0.0, expectedCriticalDamageLocation1, "NatuurSteen",
                                       2.9, 4, 0, 0, -0.9, 0.8, 0, 0, 0.6, 0.1, 0.6, 4.0, 0.1,
-                                      0.2, 4.0, 0.42, 0.9, 0.96, 0.11, 0.25, 0.9);
+                                      0.2, 4.0, 0.42, 0.9, 0.96, 0.11, 78.0, 0.25, 0.9);
             AssertCalculationLocation(calculationLocations[1].get(), "LocatieSterk", "Noorse Steen", 1.65, 0.7,
                                       0.1, expectedCriticalDamageLocation2, "NatuurSteen",
                                       2.9, 4, 0, 0, -0.9, 0.8, 0, 0, 0.6, 0.1, 0.6, 4.0, 0.1,
-                                      0.2, 4.0, 0.42, 0.9, 0.96, 0.11, 0.3, 1.0);
+                                      0.2, 4.0, 0.42, 0.9, 0.96, 0.11, 78.0, 0.3, 1.0);
         }
 
         void AssertCalculationLocation(
@@ -129,6 +127,7 @@ namespace DiKErnel::KernelWrapper::Json::Test
             const double expectedBsmax,
             const double expectedAwi,
             const double expectedBwi,
+            const double expectedBetamax,
             const double expectedTanA,
             const double expectedPositionZ) const
         {
@@ -163,7 +162,8 @@ namespace DiKErnel::KernelWrapper::Json::Test
                 expectedAsmax,
                 expectedBsmax,
                 expectedAwi,
-                expectedBwi
+                expectedBwi,
+                expectedBetamax
             );
 
             AssertProfileSchematization(
@@ -206,7 +206,8 @@ namespace DiKErnel::KernelWrapper::Json::Test
             const double expectedAsmax,
             const double expectedBsmax,
             const double expectedAwi,
-            const double expectedBwi
+            const double expectedBwi,
+            const double expectedBetamax
         ) const
         {
             ASSERT_EQ(expectedTypeTopLayer, revetment.GetTypeTopLayer());
@@ -234,7 +235,8 @@ namespace DiKErnel::KernelWrapper::Json::Test
                 expectedAsmax,
                 expectedBsmax,
                 expectedAwi,
-                expectedBwi
+                expectedBwi,
+                expectedBetamax
             );
         }
 
@@ -259,7 +261,8 @@ namespace DiKErnel::KernelWrapper::Json::Test
             const double expectedAsmax,
             const double expectedBsmax,
             const double expectedAwi,
-            const double expectedBwi
+            const double expectedBwi,
+            const double expectedBetamax
 
         ) const
         {
@@ -299,6 +302,10 @@ namespace DiKErnel::KernelWrapper::Json::Test
                 calculationMethod.GetNormativeWidthOfWaveImpact(),
                 expectedAwi,
                 expectedBwi
+            );
+            AssertWaveAngleImpact(
+                calculationMethod.GetWaveAngleImpact(),
+                expectedBetamax
             );
         }
 
@@ -368,6 +375,14 @@ namespace DiKErnel::KernelWrapper::Json::Test
         {
             ASSERT_DOUBLE_EQ(expectedAwi, normativeWidthOfWaveImpact.GetNormativeWidthOfWaveImpactNaturalStoneAwi());
             ASSERT_DOUBLE_EQ(expectedBwi, normativeWidthOfWaveImpact.GetNormativeWidthOfWaveImpactNaturalStoneBwi());
+        }
+
+        void AssertWaveAngleImpact(
+            const WaveAngleImpact& waveAngleImpact,
+            const double expectedBetamax
+        ) const
+        {
+            ASSERT_DOUBLE_EQ(expectedBetamax, waveAngleImpact.GetWaveAngleImpactOnNaturalStoneBetamax());
         }
 
         void AssertProfileSchematization(
