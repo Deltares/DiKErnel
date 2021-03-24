@@ -26,11 +26,13 @@ namespace DiKErnel::Integration
 
     NaturalStoneRevetmentLocationConstructionProperties::NaturalStoneRevetmentLocationConstructionProperties(
         const TopLayerType topLayerType,
+        string name,
         const double initialDamage,
         const double slopeAngle,
         const double thicknessTopLayer,
         const double relativeDensity)
         : _topLayerType(topLayerType),
+          _name(move(name)),
           _initialDamage(initialDamage),
           _slopeAngle(slopeAngle),
           _thicknessTopLayer(thicknessTopLayer),
@@ -159,6 +161,11 @@ namespace DiKErnel::Integration
     NaturalStoneRevetmentLocationConstructionProperties::TopLayerType NaturalStoneRevetmentLocationConstructionProperties::GetTopLayerType() const
     {
         return _topLayerType;
+    }
+
+    string NaturalStoneRevetmentLocationConstructionProperties::GetName() const
+    {
+        return _name;
     }
 
     double NaturalStoneRevetmentLocationConstructionProperties::GetInitialDamage() const

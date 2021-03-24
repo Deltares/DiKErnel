@@ -114,6 +114,7 @@ namespace DiKErnel::Integration::Test
     {
         // Given
         const auto topLayerType = NaturalStoneRevetmentLocationConstructionProperties::TopLayerType::NordicStone;
+        const string name = "Test";
         const auto maximumWaveAngle = rand() % 100;
         const auto initialDamage = 0.1;
         const auto slopeAngle = 0.2;
@@ -140,7 +141,7 @@ namespace DiKErnel::Integration::Test
         const auto normativeWidthOfWaveImpactBwi = 2.3;
 
         NaturalStoneRevetmentLocationConstructionProperties naturalStoneConstructionProperties(
-            topLayerType, initialDamage, slopeAngle, thicknessTopLayer, relativeDensity);
+            topLayerType, name, initialDamage, slopeAngle, thicknessTopLayer, relativeDensity);
         naturalStoneConstructionProperties.SetSimilarityParameterThreshold(make_unique<double>(similarityParameterThreshold));
         naturalStoneConstructionProperties.SetPlungingCoefficientA(make_unique<double>(plungingCoefficientA));
         naturalStoneConstructionProperties.SetPlungingCoefficientB(make_unique<double>(plungingCoefficientB));
@@ -179,7 +180,7 @@ namespace DiKErnel::Integration::Test
         ASSERT_TRUE(locationDependentInput != nullptr);
 
         NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertMandatoryProperties(
-            initialDamage, slopeAngle, relativeDensity, thicknessTopLayer, *locationDependentInput);
+            name, initialDamage, slopeAngle, relativeDensity, thicknessTopLayer, *locationDependentInput);
 
         NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertHydraulicLoads(
             plungingCoefficientA, plungingCoefficientB, plungingCoefficientC, plungingCoefficientN, surgingCoefficientA, surgingCoefficientB,
@@ -204,6 +205,7 @@ namespace DiKErnel::Integration::Test
     {
         // Given
         const auto topLayerType = NaturalStoneRevetmentLocationConstructionProperties::TopLayerType::NordicStone;
+        const string name = "Test";
         const auto maximumWaveAngle = rand() % 100;
         const auto initialDamage = 0.1;
         const auto slopeAngle = 0.2;
@@ -211,7 +213,7 @@ namespace DiKErnel::Integration::Test
         const auto relativeDensity = 0.4;
 
         const NaturalStoneRevetmentLocationConstructionProperties naturalStoneConstructionProperties(
-            topLayerType, initialDamage, slopeAngle, thicknessTopLayer, relativeDensity);
+            topLayerType, name, initialDamage, slopeAngle, thicknessTopLayer, relativeDensity);
 
         RevetmentCalculationInputBuilder builder(maximumWaveAngle);
         builder.AddNaturalStoneLocation(naturalStoneConstructionProperties);
@@ -231,7 +233,7 @@ namespace DiKErnel::Integration::Test
         ASSERT_TRUE(locationDependentInput != nullptr);
 
         NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertMandatoryProperties(
-            initialDamage, slopeAngle, relativeDensity, thicknessTopLayer, *locationDependentInput);
+            name, initialDamage, slopeAngle, relativeDensity, thicknessTopLayer, *locationDependentInput);
 
         NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertHydraulicLoads(
             4, 0, 0, -0.9, 0.8, 0, 0, 0.6, 2.9, locationDependentInput->GetHydraulicLoads());

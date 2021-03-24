@@ -64,9 +64,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
             if (naturalStoneRevetmentLocationData != nullptr)
             {
                 NaturalStoneRevetmentLocationConstructionProperties constructionProperties(
-                    ConvertTypeTopLayer(naturalStoneRevetmentLocationData->GetTopLayerType()), location.GetDamageData().GetInitialDamage(),
-                    location.GetProfileSchematizationData().GetTanA(), naturalStoneRevetmentLocationData->GetThicknessTopLayer(),
-                    naturalStoneRevetmentLocationData->GetRelativeDensity());
+                    ConvertTypeTopLayer(naturalStoneRevetmentLocationData->GetTopLayerType()), location.GetName(),
+                    location.GetDamageData().GetInitialDamage(), location.GetProfileSchematizationData().GetTanA(),
+                    naturalStoneRevetmentLocationData->GetThicknessTopLayer(), naturalStoneRevetmentLocationData->GetRelativeDensity());
 
                 constructionProperties.SetPlungingCoefficientA(
                     forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData->GetPlungingCoefficientA())));

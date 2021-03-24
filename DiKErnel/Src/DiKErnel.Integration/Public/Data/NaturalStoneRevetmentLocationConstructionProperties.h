@@ -21,6 +21,7 @@
 #pragma once
 
 #include <memory>
+#include <string>
 
 namespace DiKErnel::Integration
 {
@@ -44,6 +45,8 @@ namespace DiKErnel::Integration
              * \brief Creates a new instance.
              * \param topLayerType
              *        The type of the top layer.
+             * \param name
+             *        The name of the location.
              * \param initialDamage
              *        The initial damage of the location.
              * \param slopeAngle
@@ -55,6 +58,7 @@ namespace DiKErnel::Integration
              */
             explicit NaturalStoneRevetmentLocationConstructionProperties(
                 TopLayerType topLayerType,
+                std::string name,
                 double initialDamage,
                 double slopeAngle,
                 double thicknessTopLayer,
@@ -185,6 +189,12 @@ namespace DiKErnel::Integration
              * \return The type of the top layer.
              */
             TopLayerType GetTopLayerType() const;
+
+            /*!
+             * \brief Gets the name of the location.
+             * \return The name of the location.
+             */
+            std::string GetName() const;
 
             /*!
              * \brief Gets the initial damage of the location.
@@ -328,6 +338,7 @@ namespace DiKErnel::Integration
 
         private:
             TopLayerType _topLayerType;
+            std::string _name;
             double _initialDamage;
             double _slopeAngle;
             double _thicknessTopLayer;

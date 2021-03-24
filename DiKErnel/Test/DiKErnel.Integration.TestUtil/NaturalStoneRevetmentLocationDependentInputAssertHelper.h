@@ -28,6 +28,7 @@ namespace DiKErnel::Integration::TestUtil
     {
         public:
             static void AssertMandatoryProperties(
+                const std::string& name,
                 double initialDamage,
                 double slopeAngle,
                 double relativeDensity,
