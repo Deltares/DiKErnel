@@ -28,13 +28,19 @@ namespace DiKErnel::FunctionLibrary
     class NaturalStoneRevetment
     {
         public:
-            static double CalculateDamageOfNaturalStone();
+            static double CalculateDamageOfNaturalStone(
+                double relativeDensity,
+                double thicknessTopLayer);
 
-            static double CalculateIncrementDamageOfNaturalStone();
+            static double CalculateIncrementDamageOfNaturalStone(
+                double relativeDensity,
+                double thicknessTopLayer);
 
             static double CalculateHydraulicLoadOnNaturalStone();
 
-            static double CalculateResistanceOfNaturalStone();
+            static double CalculateResistanceOfNaturalStone(
+                double relativeDensity,
+                double thicknessTopLayer);
 
             static double CalculateIncrementDegradationOfNaturalStone();
 
