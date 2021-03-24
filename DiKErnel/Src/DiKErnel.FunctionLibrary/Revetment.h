@@ -34,9 +34,6 @@ namespace DiKErnel::FunctionLibrary
                 double startTime,
                 double endTime);
 
-            static bool CalculateHeavisideFunction(
-                double value);
-
             static double CalculateSurfSimilarityParameter(
                 double tanA,
                 double waveHeightHm0,

@@ -40,12 +40,6 @@ namespace DiKErnel::FunctionLibrary
         return endTime - startTime;
     }
 
-    bool Revetment::CalculateHeavisideFunction(
-        const double value)
-    {
-        return value >= 0.0;
-    }
-
     double Revetment::CalculateSurfSimilarityParameter(
         const double tanA,
         const double waveHeightHm0,

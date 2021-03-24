@@ -84,7 +84,19 @@ namespace DiKErnel::FunctionLibrary
         const double hydraulicLoadOnNaturalStoneCs,
         const double hydraulicLoadOnNaturalStoneNs)
     {
-        const auto hydraulicLoadOnNaturalStone = CalculateHydraulicLoadOnNaturalStone();
+        const auto hydraulicLoadOnNaturalStone = CalculateHydraulicLoadOnNaturalStone(
+            tanA,
+            waveHeightHm0,
+            wavePeriodTm10,
+            hydraulicLoadOnNaturalStoneXib,
+            hydraulicLoadOnNaturalStoneAp,
+            hydraulicLoadOnNaturalStoneBp,
+            hydraulicLoadOnNaturalStoneCp,
+            hydraulicLoadOnNaturalStoneNp,
+            hydraulicLoadOnNaturalStoneAs,
+            hydraulicLoadOnNaturalStoneBs,
+            hydraulicLoadOnNaturalStoneCs,
+            hydraulicLoadOnNaturalStoneNs);
         const auto resistanceOfNaturalStone = CalculateResistanceOfNaturalStone(
             relativeDensity,
             thicknessTopLayer);
