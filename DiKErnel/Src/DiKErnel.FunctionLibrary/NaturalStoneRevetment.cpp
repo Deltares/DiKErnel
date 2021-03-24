@@ -130,8 +130,10 @@ namespace DiKErnel::FunctionLibrary
         const double thicknessTopLayer)
     {
         const auto resistanceOfNaturalStone = CalculateResistanceOfNaturalStone(relativeDensity, thicknessTopLayer);
+        const auto hydraulicLoadOnNaturalStone = CalculateHydraulicLoadOnNaturalStone();
+        const auto waveAngleImpactOnNaturalStone = CalculateWaveAngleImpactOnNaturalStone();
 
-        return initialDamage * resistanceOfNaturalStone;
+        return initialDamage * (resistanceOfNaturalStone / hydraulicLoadOnNaturalStone) * (1 / waveAngleImpactOnNaturalStone);
     }
 
     double NaturalStoneRevetment::CalculateWaveAngleImpactOnNaturalStone()
