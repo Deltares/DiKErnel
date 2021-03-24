@@ -59,7 +59,7 @@ namespace DiKErnel::KernelWrapper::Json
     const string InputJsonDefinitions::CALCULATION_METHOD = "Rekenmethoden";
     const string InputJsonDefinitions::CALCULATION_METHOD_SORT = "RekenmethodeSoort";
 
-    const string InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE = "HydraulischeBelastingNatuurSteen";
+    const string InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE = "ToenameSchadeNatuursteen";
     const string InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_XIB = "HydraulischeBelastingNatuurSteenXIb";
     const string InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_AP = "HydraulischeBelastingNatuurSteenAp";
     const string InputJsonDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_BP = "HydraulischeBelastingNatuurSteenBp";

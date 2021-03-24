@@ -63,7 +63,7 @@
 				"DikteToplaag": 0.3,
 				"Rekenmethoden": {
 					"RekenmethodeSoort": "NatuurSteen",
-					"HydraulischeBelastingNatuurSteen": {
+					"ToenameSchadeNatuursteen": {
 						"HydraulischeBelastingNatuurSteenXIb": 2.9,
 						"HydraulischeBelastingNatuurSteenAp": 4,
 						"HydraulischeBelastingNatuurSteenBp": 0,

@@ -91,7 +91,7 @@ namespace DiKErnel::Integration
                 GetValue(constructionProperties.GetDistanceMaximumWaveElevationAsmax(),
                     NordicStoneRevetmentDefaults::DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE_ASMAX),
                 GetValue(constructionProperties.GetDistanceMaximumWaveElevationBsmax(),
-                    NordicStoneRevetmentDefaults::DISTANCE_MAXIMUM_WAVE_ELEVATION_ON_NATURAL_STONE_BSMAX));
+                    NordicStoneRevetmentDefaults::DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE_BSMAX));
 
             normativeWidthOfWaveImpact = make_unique<NaturalStoneRevetmentNormativeWidthOfWaveImpact>(
                 GetValue(constructionProperties.GetNormativeWidthOfWaveImpactAwi(),
