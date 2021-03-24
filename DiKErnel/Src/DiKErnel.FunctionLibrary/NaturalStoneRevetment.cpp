@@ -18,4 +18,51 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-namespace DiKErnel::FunctionLibrary {}
+#include "NaturalStoneRevetment.h"
+
+namespace DiKErnel::FunctionLibrary
+{
+    double NaturalStoneRevetment::CalculateDamageOfNaturalStone()
+    {
+        const auto initialDamage = 0.0;
+
+        return initialDamage + CalculateIncrementDamageOfNaturalStone();
+    }
+
+    double NaturalStoneRevetment::CalculateIncrementDamageOfNaturalStone()
+    {
+        const auto hydraulicLoadOnNaturalStone = CalculateHydraulicLoadOnNaturalStone();
+        const auto resistanceOfNaturalStone = CalculateResistanceOfNaturalStone();
+        const auto incrementDegradationOfNaturalStone = CalculateIncrementDegradationOfNaturalStone();
+        const auto loadingOfRevetment = CalculateLoadingOfRevetment();
+        const auto waveAngleImpactOnNaturalStone = CalculateWaveAngleImpactOnNaturalStone();
+
+        return hydraulicLoadOnNaturalStone / resistanceOfNaturalStone * incrementDegradationOfNaturalStone * loadingOfRevetment
+                * waveAngleImpactOnNaturalStone;
+    }
+
+    double NaturalStoneRevetment::CalculateHydraulicLoadOnNaturalStone()
+    {
+        return 1.0;
+    }
+
+    double NaturalStoneRevetment::CalculateResistanceOfNaturalStone()
+    {
+        return 1.0;
+    }
+
+    double NaturalStoneRevetment::CalculateIncrementDegradationOfNaturalStone()
+    {
+        return 1.0;
+    }
+
+    double NaturalStoneRevetment::CalculateLoadingOfRevetment()
+    {
+        return 1.0;
+    }
+
+    double NaturalStoneRevetment::CalculateWaveAngleImpactOnNaturalStone()
+    {
+        return 1.0;
+    }
+}

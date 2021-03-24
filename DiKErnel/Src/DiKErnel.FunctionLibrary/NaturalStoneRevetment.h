@@ -23,8 +23,24 @@
 namespace DiKErnel::FunctionLibrary
 {
     /*!
-     * \brief Class that holds all methods to perform calculations for natural stone based
-     *        revetments.
+     * \brief Class that holds all natural stone revetment specific calculation routines.
      */
-    class NaturalStoneRevetment { };
+    class NaturalStoneRevetment
+    {
+        public:
+            static double CalculateDamageOfNaturalStone();
+
+        private:
+            static double CalculateIncrementDamageOfNaturalStone();
+
+            static double CalculateHydraulicLoadOnNaturalStone();
+
+            static double CalculateResistanceOfNaturalStone();
+
+            static double CalculateIncrementDegradationOfNaturalStone();
+
+            static double CalculateLoadingOfRevetment();
+
+            static double CalculateWaveAngleImpactOnNaturalStone();
+    };
 }
