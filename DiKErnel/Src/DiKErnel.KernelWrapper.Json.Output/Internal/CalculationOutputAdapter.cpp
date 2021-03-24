@@ -43,7 +43,7 @@ namespace DiKErnel::KernelWrapper::Json::Output
 
         for (auto i = 0; i < static_cast<int>(timeDependentInputItems.size()); ++i)
         {
-            auto& timeDependentInput = timeDependentInputItems[i].get();
+            const auto& timeDependentInput = timeDependentInputItems[i].get();
 
             if (i == 0)
             {
