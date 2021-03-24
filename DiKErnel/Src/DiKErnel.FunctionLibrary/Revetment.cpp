@@ -20,8 +20,14 @@
 
 #include "Revetment.h"
 
+#include <cmath>
+
+#include "Constants.h"
+
 namespace DiKErnel::FunctionLibrary
 {
+    using namespace DomainLibrary;
+
     double Revetment::CalculateLoadingOfRevetment()
     {
         return 1.0;
@@ -32,5 +38,19 @@ namespace DiKErnel::FunctionLibrary
         const double endTime)
     {
         return endTime - startTime;
+    }
+
+    bool Revetment::CalculateHeavisideFunction(
+        const double value)
+    {
+        return value >= 0.0;
+    }
+
+    double Revetment::CalculateSurfSimilarityParameter(
+        const double tanA,
+        const double waveHeightHm0,
+        const double wavePeriodTm10)
+    {
+        return tanA / sqrt(2 * Constants::PI * waveHeightHm0 / (Constants::GRAVITATIONAL_ACCELERATION * pow(wavePeriodTm10, 2.0)));
     }
 }

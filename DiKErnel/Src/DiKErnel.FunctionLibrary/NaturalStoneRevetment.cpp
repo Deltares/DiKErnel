@@ -32,7 +32,18 @@ namespace DiKErnel::FunctionLibrary
         const double initialDamage,
         const double relativeDensity,
         const double thicknessTopLayer,
-        const double wavePeriodTm10)
+        const double tanA,
+        const double waveHeightHm0,
+        const double wavePeriodTm10,
+        const double hydraulicLoadOnNaturalStoneXib,
+        const double hydraulicLoadOnNaturalStoneAp,
+        const double hydraulicLoadOnNaturalStoneBp,
+        const double hydraulicLoadOnNaturalStoneCp,
+        const double hydraulicLoadOnNaturalStoneNp,
+        const double hydraulicLoadOnNaturalStoneAs,
+        const double hydraulicLoadOnNaturalStoneBs,
+        const double hydraulicLoadOnNaturalStoneCs,
+        const double hydraulicLoadOnNaturalStoneNs)
     {
         return initialDamage + CalculateIncrementDamageOfNaturalStone(
             startTime,
@@ -40,7 +51,18 @@ namespace DiKErnel::FunctionLibrary
             initialDamage,
             relativeDensity,
             thicknessTopLayer,
-            wavePeriodTm10);
+            tanA,
+            waveHeightHm0,
+            wavePeriodTm10,
+            hydraulicLoadOnNaturalStoneXib,
+            hydraulicLoadOnNaturalStoneAp,
+            hydraulicLoadOnNaturalStoneBp,
+            hydraulicLoadOnNaturalStoneCp,
+            hydraulicLoadOnNaturalStoneNp,
+            hydraulicLoadOnNaturalStoneAs,
+            hydraulicLoadOnNaturalStoneBs,
+            hydraulicLoadOnNaturalStoneCs,
+            hydraulicLoadOnNaturalStoneNs);
     }
 
     double NaturalStoneRevetment::CalculateIncrementDamageOfNaturalStone(
@@ -49,7 +71,18 @@ namespace DiKErnel::FunctionLibrary
         const double initialDamage,
         const double relativeDensity,
         const double thicknessTopLayer,
-        const double wavePeriodTm10)
+        const double tanA,
+        const double waveHeightHm0,
+        const double wavePeriodTm10,
+        const double hydraulicLoadOnNaturalStoneXib,
+        const double hydraulicLoadOnNaturalStoneAp,
+        const double hydraulicLoadOnNaturalStoneBp,
+        const double hydraulicLoadOnNaturalStoneCp,
+        const double hydraulicLoadOnNaturalStoneNp,
+        const double hydraulicLoadOnNaturalStoneAs,
+        const double hydraulicLoadOnNaturalStoneBs,
+        const double hydraulicLoadOnNaturalStoneCs,
+        const double hydraulicLoadOnNaturalStoneNs)
     {
         const auto hydraulicLoadOnNaturalStone = CalculateHydraulicLoadOnNaturalStone();
         const auto resistanceOfNaturalStone = CalculateResistanceOfNaturalStone(
@@ -61,7 +94,18 @@ namespace DiKErnel::FunctionLibrary
             initialDamage,
             relativeDensity,
             thicknessTopLayer,
-            wavePeriodTm10);
+            tanA,
+            waveHeightHm0,
+            wavePeriodTm10,
+            hydraulicLoadOnNaturalStoneXib,
+            hydraulicLoadOnNaturalStoneAp,
+            hydraulicLoadOnNaturalStoneBp,
+            hydraulicLoadOnNaturalStoneCp,
+            hydraulicLoadOnNaturalStoneNp,
+            hydraulicLoadOnNaturalStoneAs,
+            hydraulicLoadOnNaturalStoneBs,
+            hydraulicLoadOnNaturalStoneCs,
+            hydraulicLoadOnNaturalStoneNs);
         const auto loadingOfRevetment = Revetment::CalculateLoadingOfRevetment();
         const auto waveAngleImpactOnNaturalStone = CalculateWaveAngleImpactOnNaturalStone();
 
@@ -69,9 +113,41 @@ namespace DiKErnel::FunctionLibrary
                 * waveAngleImpactOnNaturalStone;
     }
 
-    double NaturalStoneRevetment::CalculateHydraulicLoadOnNaturalStone()
+    double NaturalStoneRevetment::CalculateHydraulicLoadOnNaturalStone(
+        const double tanA,
+        const double waveHeightHm0,
+        const double wavePeriodTm10,
+        const double hydraulicLoadOnNaturalStoneXib,
+        const double hydraulicLoadOnNaturalStoneAp,
+        const double hydraulicLoadOnNaturalStoneBp,
+        const double hydraulicLoadOnNaturalStoneCp,
+        const double hydraulicLoadOnNaturalStoneNp,
+        const double hydraulicLoadOnNaturalStoneAs,
+        const double hydraulicLoadOnNaturalStoneBs,
+        const double hydraulicLoadOnNaturalStoneCs,
+        const double hydraulicLoadOnNaturalStoneNs)
     {
-        return 1.0;
+        const auto surfSimilarityParameter = Revetment::CalculateSurfSimilarityParameter(
+            tanA,
+            waveHeightHm0,
+            wavePeriodTm10);
+        const auto usePurgingBreakers = hydraulicLoadOnNaturalStoneXib - surfSimilarityParameter >= 0.0;
+        const auto hydraulicLoadOnNaturalStoneA = usePurgingBreakers
+                                                      ? hydraulicLoadOnNaturalStoneAp
+                                                      : hydraulicLoadOnNaturalStoneAs;
+        const auto hydraulicLoadOnNaturalStoneB = usePurgingBreakers
+                                                      ? hydraulicLoadOnNaturalStoneBp
+                                                      : hydraulicLoadOnNaturalStoneBs;
+        const auto hydraulicLoadOnNaturalStoneC = usePurgingBreakers
+                                                      ? hydraulicLoadOnNaturalStoneCp
+                                                      : hydraulicLoadOnNaturalStoneCs;
+        const auto hydraulicLoadOnNaturalStoneN = usePurgingBreakers
+                                                      ? hydraulicLoadOnNaturalStoneNp
+                                                      : hydraulicLoadOnNaturalStoneNs;
+
+        return waveHeightHm0 / (hydraulicLoadOnNaturalStoneA * pow(surfSimilarityParameter, hydraulicLoadOnNaturalStoneN)
+            + hydraulicLoadOnNaturalStoneB * surfSimilarityParameter
+            + hydraulicLoadOnNaturalStoneC);
     }
 
     double NaturalStoneRevetment::CalculateResistanceOfNaturalStone(
@@ -87,7 +163,18 @@ namespace DiKErnel::FunctionLibrary
         const double initialDamage,
         const double relativeDensity,
         const double thicknessTopLayer,
-        const double wavePeriodTm10)
+        const double tanA,
+        const double waveHeightHm0,
+        const double wavePeriodTm10,
+        const double hydraulicLoadOnNaturalStoneXib,
+        const double hydraulicLoadOnNaturalStoneAp,
+        const double hydraulicLoadOnNaturalStoneBp,
+        const double hydraulicLoadOnNaturalStoneCp,
+        const double hydraulicLoadOnNaturalStoneNp,
+        const double hydraulicLoadOnNaturalStoneAs,
+        const double hydraulicLoadOnNaturalStoneBs,
+        const double hydraulicLoadOnNaturalStoneCs,
+        const double hydraulicLoadOnNaturalStoneNs)
     {
         const auto incrementOfTime = Revetment::CalculateIncrementOfTime(
             startTime,
@@ -97,7 +184,18 @@ namespace DiKErnel::FunctionLibrary
             initialDamage,
             relativeDensity,
             thicknessTopLayer,
-            wavePeriodTm10);
+            tanA,
+            waveHeightHm0,
+            wavePeriodTm10,
+            hydraulicLoadOnNaturalStoneXib,
+            hydraulicLoadOnNaturalStoneAp,
+            hydraulicLoadOnNaturalStoneBp,
+            hydraulicLoadOnNaturalStoneCp,
+            hydraulicLoadOnNaturalStoneNp,
+            hydraulicLoadOnNaturalStoneAs,
+            hydraulicLoadOnNaturalStoneBs,
+            hydraulicLoadOnNaturalStoneCs,
+            hydraulicLoadOnNaturalStoneNs);
 
         return CalculateDegradationOfNaturalStone(referenceTimeDegradationOfNaturalStone + incrementOfTime, wavePeriodTm10)
                 - CalculateDegradationOfNaturalStone(referenceTimeDegradationOfNaturalStone, wavePeriodTm10);
@@ -107,12 +205,35 @@ namespace DiKErnel::FunctionLibrary
         const double initialDamage,
         const double relativeDensity,
         const double thicknessTopLayer,
-        const double wavePeriodTm10)
+        const double tanA,
+        const double waveHeightHm0,
+        const double wavePeriodTm10,
+        const double hydraulicLoadOnNaturalStoneXib,
+        const double hydraulicLoadOnNaturalStoneAp,
+        const double hydraulicLoadOnNaturalStoneBp,
+        const double hydraulicLoadOnNaturalStoneCp,
+        const double hydraulicLoadOnNaturalStoneNp,
+        const double hydraulicLoadOnNaturalStoneAs,
+        const double hydraulicLoadOnNaturalStoneBs,
+        const double hydraulicLoadOnNaturalStoneCs,
+        const double hydraulicLoadOnNaturalStoneNs)
     {
         const auto referenceDegradationOfNaturalStone = CalculateReferenceDegradationOfNaturalStone(
             initialDamage,
             relativeDensity,
-            thicknessTopLayer);
+            thicknessTopLayer,
+            tanA,
+            waveHeightHm0,
+            wavePeriodTm10,
+            hydraulicLoadOnNaturalStoneXib,
+            hydraulicLoadOnNaturalStoneAp,
+            hydraulicLoadOnNaturalStoneBp,
+            hydraulicLoadOnNaturalStoneCp,
+            hydraulicLoadOnNaturalStoneNp,
+            hydraulicLoadOnNaturalStoneAs,
+            hydraulicLoadOnNaturalStoneBs,
+            hydraulicLoadOnNaturalStoneCs,
+            hydraulicLoadOnNaturalStoneNs);
 
         return 1000.0 * wavePeriodTm10 * pow(referenceDegradationOfNaturalStone, 10.0);
     }
@@ -127,10 +248,36 @@ namespace DiKErnel::FunctionLibrary
     double NaturalStoneRevetment::CalculateReferenceDegradationOfNaturalStone(
         const double initialDamage,
         const double relativeDensity,
-        const double thicknessTopLayer)
+        const double thicknessTopLayer,
+        const double tanA,
+        const double waveHeightHm0,
+        const double wavePeriodTm10,
+        const double hydraulicLoadOnNaturalStoneXib,
+        const double hydraulicLoadOnNaturalStoneAp,
+        const double hydraulicLoadOnNaturalStoneBp,
+        const double hydraulicLoadOnNaturalStoneCp,
+        const double hydraulicLoadOnNaturalStoneNp,
+        const double hydraulicLoadOnNaturalStoneAs,
+        const double hydraulicLoadOnNaturalStoneBs,
+        const double hydraulicLoadOnNaturalStoneCs,
+        const double hydraulicLoadOnNaturalStoneNs)
     {
-        const auto resistanceOfNaturalStone = CalculateResistanceOfNaturalStone(relativeDensity, thicknessTopLayer);
-        const auto hydraulicLoadOnNaturalStone = CalculateHydraulicLoadOnNaturalStone();
+        const auto resistanceOfNaturalStone = CalculateResistanceOfNaturalStone(
+            relativeDensity,
+            thicknessTopLayer);
+        const auto hydraulicLoadOnNaturalStone = CalculateHydraulicLoadOnNaturalStone(
+            tanA,
+            waveHeightHm0,
+            wavePeriodTm10,
+            hydraulicLoadOnNaturalStoneXib,
+            hydraulicLoadOnNaturalStoneAp,
+            hydraulicLoadOnNaturalStoneBp,
+            hydraulicLoadOnNaturalStoneCp,
+            hydraulicLoadOnNaturalStoneNp,
+            hydraulicLoadOnNaturalStoneAs,
+            hydraulicLoadOnNaturalStoneBs,
+            hydraulicLoadOnNaturalStoneCs,
+            hydraulicLoadOnNaturalStoneNs);
         const auto waveAngleImpactOnNaturalStone = CalculateWaveAngleImpactOnNaturalStone();
 
         return initialDamage * (resistanceOfNaturalStone / hydraulicLoadOnNaturalStone) * (1 / waveAngleImpactOnNaturalStone);
@@ -146,18 +293,51 @@ namespace DiKErnel::FunctionLibrary
         const double failureNumber,
         const double relativeDensity,
         const double thicknessTopLayer,
-        const double wavePeriodTm10)
+        const double tanA,
+        const double waveHeightHm0,
+        const double wavePeriodTm10,
+        const double hydraulicLoadOnNaturalStoneXib,
+        const double hydraulicLoadOnNaturalStoneAp,
+        const double hydraulicLoadOnNaturalStoneBp,
+        const double hydraulicLoadOnNaturalStoneCp,
+        const double hydraulicLoadOnNaturalStoneNp,
+        const double hydraulicLoadOnNaturalStoneAs,
+        const double hydraulicLoadOnNaturalStoneBs,
+        const double hydraulicLoadOnNaturalStoneCs,
+        const double hydraulicLoadOnNaturalStoneNs)
     {
         const auto referenceTimeFailureOfNaturalStone = CalculateReferenceTimeFailureOfNaturalStone(
             failureNumber,
             relativeDensity,
             thicknessTopLayer,
-            wavePeriodTm10);
+            tanA,
+            waveHeightHm0,
+            wavePeriodTm10,
+            hydraulicLoadOnNaturalStoneXib,
+            hydraulicLoadOnNaturalStoneAp,
+            hydraulicLoadOnNaturalStoneBp,
+            hydraulicLoadOnNaturalStoneCp,
+            hydraulicLoadOnNaturalStoneNp,
+            hydraulicLoadOnNaturalStoneAs,
+            hydraulicLoadOnNaturalStoneBs,
+            hydraulicLoadOnNaturalStoneCs,
+            hydraulicLoadOnNaturalStoneNs);
         const auto referenceTimeDegradationOfNaturalStone = CalculateReferenceTimeDegradationOfNaturalStone(
             initialDamage,
             relativeDensity,
             thicknessTopLayer,
-            wavePeriodTm10);
+            tanA,
+            waveHeightHm0,
+            wavePeriodTm10,
+            hydraulicLoadOnNaturalStoneXib,
+            hydraulicLoadOnNaturalStoneAp,
+            hydraulicLoadOnNaturalStoneBp,
+            hydraulicLoadOnNaturalStoneCp,
+            hydraulicLoadOnNaturalStoneNp,
+            hydraulicLoadOnNaturalStoneAs,
+            hydraulicLoadOnNaturalStoneBs,
+            hydraulicLoadOnNaturalStoneCs,
+            hydraulicLoadOnNaturalStoneNs);
 
         return referenceTimeFailureOfNaturalStone - referenceTimeDegradationOfNaturalStone;
     }
@@ -166,12 +346,35 @@ namespace DiKErnel::FunctionLibrary
         const double failureNumber,
         const double relativeDensity,
         const double thicknessTopLayer,
-        const double wavePeriodTm10)
+        const double tanA,
+        const double waveHeightHm0,
+        const double wavePeriodTm10,
+        const double hydraulicLoadOnNaturalStoneXib,
+        const double hydraulicLoadOnNaturalStoneAp,
+        const double hydraulicLoadOnNaturalStoneBp,
+        const double hydraulicLoadOnNaturalStoneCp,
+        const double hydraulicLoadOnNaturalStoneNp,
+        const double hydraulicLoadOnNaturalStoneAs,
+        const double hydraulicLoadOnNaturalStoneBs,
+        const double hydraulicLoadOnNaturalStoneCs,
+        const double hydraulicLoadOnNaturalStoneNs)
     {
         const auto referenceFailureOfNaturalStone = CalculateReferenceFailureOfNaturalStone(
             failureNumber,
             relativeDensity,
-            thicknessTopLayer);
+            thicknessTopLayer,
+            tanA,
+            waveHeightHm0,
+            wavePeriodTm10,
+            hydraulicLoadOnNaturalStoneXib,
+            hydraulicLoadOnNaturalStoneAp,
+            hydraulicLoadOnNaturalStoneBp,
+            hydraulicLoadOnNaturalStoneCp,
+            hydraulicLoadOnNaturalStoneNp,
+            hydraulicLoadOnNaturalStoneAs,
+            hydraulicLoadOnNaturalStoneBs,
+            hydraulicLoadOnNaturalStoneCs,
+            hydraulicLoadOnNaturalStoneNs);
 
         return 1000.0 * wavePeriodTm10 * pow(referenceFailureOfNaturalStone, 10.0);
     }
@@ -179,10 +382,34 @@ namespace DiKErnel::FunctionLibrary
     double NaturalStoneRevetment::CalculateReferenceFailureOfNaturalStone(
         const double failureNumber,
         const double relativeDensity,
-        const double thicknessTopLayer)
+        const double thicknessTopLayer,
+        const double tanA,
+        const double waveHeightHm0,
+        const double wavePeriodTm10,
+        const double hydraulicLoadOnNaturalStoneXib,
+        const double hydraulicLoadOnNaturalStoneAp,
+        const double hydraulicLoadOnNaturalStoneBp,
+        const double hydraulicLoadOnNaturalStoneCp,
+        const double hydraulicLoadOnNaturalStoneNp,
+        const double hydraulicLoadOnNaturalStoneAs,
+        const double hydraulicLoadOnNaturalStoneBs,
+        const double hydraulicLoadOnNaturalStoneCs,
+        const double hydraulicLoadOnNaturalStoneNs)
     {
         const auto resistanceOfNaturalStone = CalculateResistanceOfNaturalStone(relativeDensity, thicknessTopLayer);
-        const auto hydraulicLoadOnNaturalStone = CalculateHydraulicLoadOnNaturalStone();
+        const auto hydraulicLoadOnNaturalStone = CalculateHydraulicLoadOnNaturalStone(
+            tanA,
+            waveHeightHm0,
+            wavePeriodTm10,
+            hydraulicLoadOnNaturalStoneXib,
+            hydraulicLoadOnNaturalStoneAp,
+            hydraulicLoadOnNaturalStoneBp,
+            hydraulicLoadOnNaturalStoneCp,
+            hydraulicLoadOnNaturalStoneNp,
+            hydraulicLoadOnNaturalStoneAs,
+            hydraulicLoadOnNaturalStoneBs,
+            hydraulicLoadOnNaturalStoneCs,
+            hydraulicLoadOnNaturalStoneNs);
         const auto waveAngleImpactOnNaturalStone = CalculateWaveAngleImpactOnNaturalStone();
 
         return failureNumber * (resistanceOfNaturalStone / hydraulicLoadOnNaturalStone) * (1 / waveAngleImpactOnNaturalStone);
