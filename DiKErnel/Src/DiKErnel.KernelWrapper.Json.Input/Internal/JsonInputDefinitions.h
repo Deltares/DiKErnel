@@ -50,12 +50,12 @@ namespace DiKErnel::KernelWrapper::Json::Input
             inline static const std::string RELATIVE_DENSITY = "RelatieveDichtheid";
             inline static const std::string THICKNESS_TOP_LAYER = "DikteToplaag";
 
-            inline static const std::string CALCULATION_METHOD = "Rekenmethode";
+            inline static const std::string CALCULATION_METHOD = "Rekenmethoden";
             inline static const std::string CALCULATION_METHOD_TYPE = "RekenmethodeSoort";
 
             inline static const std::string CALCULATION_METHOD_TYPE_NATURAL_STONE = "NatuurSteen";
 
-            inline static const std::string HYDRAULIC_LOAD_ON_NATURAL_STONE = "HydraulischeBelastingNatuurSteen";
+            inline static const std::string HYDRAULIC_LOAD_ON_NATURAL_STONE = "ToenameSchadeNatuursteen";
             inline static const std::string HYDRAULIC_LOAD_ON_NATURAL_STONE_XIB = "HydraulischeBelastingNatuurSteenXIb";
             inline static const std::string HYDRAULIC_LOAD_ON_NATURAL_STONE_AP = "HydraulischeBelastingNatuurSteenAp";
             inline static const std::string HYDRAULIC_LOAD_ON_NATURAL_STONE_BP = "HydraulischeBelastingNatuurSteenBp";
