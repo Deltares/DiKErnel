@@ -55,7 +55,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
             inline static const std::string CALCULATION_METHOD_TYPE_NATURAL_STONE = "NatuurSteen";
 
-            inline static const std::string HYDRAULIC_LOAD_ON_NATURAL_STONE = "ToenameSchadeNatuursteen";
+            inline static const std::string HYDRAULIC_LOAD_ON_NATURAL_STONE = "HydraulischeBelastingNatuurSteen";
             inline static const std::string HYDRAULIC_LOAD_ON_NATURAL_STONE_XIB = "HydraulischeBelastingNatuurSteenXIb";
             inline static const std::string HYDRAULIC_LOAD_ON_NATURAL_STONE_AP = "HydraulischeBelastingNatuurSteenAp";
             inline static const std::string HYDRAULIC_LOAD_ON_NATURAL_STONE_BP = "HydraulischeBelastingNatuurSteenBp";
