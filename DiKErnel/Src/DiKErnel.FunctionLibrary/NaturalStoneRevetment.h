@@ -31,6 +31,7 @@ namespace DiKErnel::FunctionLibrary
             static double CalculateDamageOfNaturalStone(
                 double startTime,
                 double endTime,
+                double initialDamage,
                 double relativeDensity,
                 double thicknessTopLayer,
                 double wavePeriodTm10);
@@ -38,6 +39,7 @@ namespace DiKErnel::FunctionLibrary
             static double CalculateIncrementDamageOfNaturalStone(
                 double startTime,
                 double endTime,
+                double initialDamage,
                 double relativeDensity,
                 double thicknessTopLayer,
                 double wavePeriodTm10);
@@ -51,16 +53,25 @@ namespace DiKErnel::FunctionLibrary
             static double CalculateIncrementDegradationOfNaturalStone(
                 double startTime,
                 double endTime,
+                double initialDamage,
+                double relativeDensity,
+                double thicknessTopLayer,
                 double wavePeriodTm10);
 
             static double CalculateReferenceTimeDegradationOfNaturalStone(
+                double initialDamage,
+                double relativeDensity,
+                double thicknessTopLayer,
                 double wavePeriodTm10);
 
             static double CalculateDegradationOfNaturalStone(
                 double referenceTimeDegradation,
                 double wavePeriodTm10);
 
-            static double CalculateReferenceDegradationOfNaturalStone();
+            static double CalculateReferenceDegradationOfNaturalStone(
+                double initialDamage,
+                double relativeDensity,
+                double thicknessTopLayer);
 
             static double CalculateWaveAngleImpactOnNaturalStone();
     };
