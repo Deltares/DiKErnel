@@ -20,25 +20,31 @@
 
 #pragma once
 
+#include <memory>
+#include <string>
 #include <vector>
-
-#include "JsonOutputLocationData.h"
 
 namespace DiKErnel::KernelWrapper::Json::Output
 {
-    class JsonOutputData
+    class JsonOutputLocationData
     {
         public:
-            explicit JsonOutputData(
-                std::vector<int> times,
-                std::vector<JsonOutputLocationData> locationDataItems);
+            explicit JsonOutputLocationData(
+                std::string name,
+                std::vector<int> damages,
+                std::unique_ptr<double> timeOfFailure);
 
-            std::vector<int>& GetTimes();
+            std::string& GetName();
 
-            std::vector<JsonOutputLocationData>& GetLocationDataItems();
+            std::vector<int>& GetDamages();
+
+            bool GetLocationFailed() const;
+
+            double GetTimeOfFailure() const;
 
         private:
-            std::vector<int> _times;
-            std::vector<JsonOutputLocationData> _locationDataItems;
+            std::string _name;
+            std::vector<int> _damages;
+            std::unique_ptr<double> _timeOfFailure;
     };
 }

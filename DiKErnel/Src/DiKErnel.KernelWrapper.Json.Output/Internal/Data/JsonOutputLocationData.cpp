@@ -18,27 +18,37 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#pragma once
-
-#include <vector>
-
 #include "JsonOutputLocationData.h"
 
 namespace DiKErnel::KernelWrapper::Json::Output
 {
-    class JsonOutputData
+    using namespace std;
+
+    JsonOutputLocationData::JsonOutputLocationData(
+        string name,
+        vector<int> damages,
+        unique_ptr<double> timeOfFailure)
+        : _name(std::move(name)),
+          _damages(move(damages)),
+          _timeOfFailure(move(timeOfFailure)) {}
+
+    string& JsonOutputLocationData::GetName()
     {
-        public:
-            explicit JsonOutputData(
-                std::vector<int> times,
-                std::vector<JsonOutputLocationData> locationDataItems);
+        return _name;
+    }
 
-            std::vector<int>& GetTimes();
+    vector<int>& JsonOutputLocationData::GetDamages()
+    {
+        return _damages;
+    }
 
-            std::vector<JsonOutputLocationData>& GetLocationDataItems();
+    bool JsonOutputLocationData::GetLocationFailed() const
+    {
+        return _timeOfFailure != nullptr;
+    }
 
-        private:
-            std::vector<int> _times;
-            std::vector<JsonOutputLocationData> _locationDataItems;
-    };
+    double JsonOutputLocationData::GetTimeOfFailure() const
+    {
+        return *_timeOfFailure;
+    }
 }

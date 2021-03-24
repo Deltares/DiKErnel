@@ -18,6 +18,25 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
+#include "JsonOutputData.h"
+
 namespace DiKErnel::KernelWrapper::Json::Output
 {
+    using namespace std;
+
+    JsonOutputData::JsonOutputData(
+        vector<int> times,
+        vector<JsonOutputLocationData> locationDataItems)
+        : _times(move(times)),
+          _locationDataItems(move(locationDataItems)) {}
+
+    std::vector<int>& JsonOutputData::GetTimes()
+    {
+        return _times;
+    }
+
+    std::vector<JsonOutputLocationData>& JsonOutputData::GetLocationDataItems()
+    {
+        return _locationDataItems;
+    }
 }
