@@ -137,14 +137,14 @@ namespace DiKErnel::DomainLibrary
              *        on nordic stone Awi.
              *        Unit = [-]
              */
-            inline static const double NORMATIVE_WIDTH_OF_WAVE_IMPACT_NATURAL_STONE_AWI = 0.96;
+            inline static const double NORMATIVE_WIDTH_OF_WAVE_IMPACT_ON_NATURAL_STONE_AWI = 0.96;
 
             /*!
              * \brief The default value of the normative width of wave impact
              *        on nordic stone Bwi.
              *        Unit = [-]
              */
-            inline static const double NORMATIVE_WIDTH_OF_WAVE_IMPACT_NATURAL_STONE_BWI = 0.11;
+            inline static const double NORMATIVE_WIDTH_OF_WAVE_IMPACT_ON_NATURAL_STONE_BWI = 0.11;
 
             /*!
              * \brief The default value of the wave angle impact

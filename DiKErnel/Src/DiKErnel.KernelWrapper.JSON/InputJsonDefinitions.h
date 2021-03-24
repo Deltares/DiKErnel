@@ -91,9 +91,9 @@ namespace DiKErnel::KernelWrapper::Json
         static const std::string DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE_ASMAX;
         static const std::string DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE_BSMAX;
 
-        static const std::string NORMATIVE_WIDTH_OF_WAVE_IMPACT;
-        static const std::string NORMATIVE_WIDTH_OF_WAVE_IMPACT_AWI;
-        static const std::string NORMATIVE_WIDTH_OF_WAVE_IMPACT_BWI;
+        static const std::string NORMATIVE_WIDTH_OF_WAVE_IMPACT_ON_NATURAL_STONE;
+        static const std::string NORMATIVE_WIDTH_OF_WAVE_IMPACT_ON_NATURAL_STONE_AWI;
+        static const std::string NORMATIVE_WIDTH_OF_WAVE_IMPACT_ON_NATURAL_STONE_BWI;
 
         static const std::string WAVE_ANGLE_IMPACT_ON_NATURAL_STONE;
         static const std::string WAVE_ANGLE_IMPACT_ON_NATURAL_STONE_BETA_MAX;

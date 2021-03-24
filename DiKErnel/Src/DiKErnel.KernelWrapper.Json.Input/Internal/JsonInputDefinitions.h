@@ -80,9 +80,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
             inline static const std::string DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE_ASMAX = "AfstandMaximaleStijghoogteAsmax";
             inline static const std::string DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE_BSMAX = "AfstandMaximaleStijghoogteBsmax";
 
-            inline static const std::string NORMATIVE_WIDTH_OF_WAVE_IMPACT = "MaatgevendeBreedteGolfklap";
-            inline static const std::string NORMATIVE_WIDTH_OF_WAVE_IMPACT_AWI = "MaatgevendeBreedteGolfklapAwi";
-            inline static const std::string NORMATIVE_WIDTH_OF_WAVE_IMPACT_BWI = "MaatgevendeBreedteGolfklapBwi";
+            inline static const std::string NORMATIVE_WIDTH_OF_WAVE_IMPACT_ON_NATURAL_STONE = "MaatgevendeBreedteGolfklap";
+            inline static const std::string NORMATIVE_WIDTH_OF_WAVE_IMPACT_ON_NATURAL_STONE_AWI = "MaatgevendeBreedteGolfklapAwi";
+            inline static const std::string NORMATIVE_WIDTH_OF_WAVE_IMPACT_ON_NATURAL_STONE_BWI = "MaatgevendeBreedteGolfklapBwi";
 
             inline static const std::string PROFILE_SCHEMATIZATION = "Profielschematisatie";
             inline static const std::string TAN_A = "TanA";

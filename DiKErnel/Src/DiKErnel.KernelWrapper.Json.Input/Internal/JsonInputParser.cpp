@@ -219,16 +219,16 @@ namespace DiKErnel::KernelWrapper::Json::Input
                     readDistanceMaxWaveElevation, JsonInputDefinitions::DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE_BSMAX)));
         }
 
-        if (readCalculationMethod.contains(JsonInputDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT))
+        if (readCalculationMethod.contains(JsonInputDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT_ON_NATURAL_STONE))
         {
-            const auto& readNormativeWidthOfWaveImpact = readCalculationMethod[JsonInputDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT];
+            const auto& readNormativeWidthOfWaveImpact = readCalculationMethod[JsonInputDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT_ON_NATURAL_STONE];
 
             locationData->SetNormativeWidthOfWaveImpactAwi(
                 forward<unique_ptr<double>>(ReadOptionalValue(readNormativeWidthOfWaveImpact,
-                                                              JsonInputDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT_AWI)));
+                                                              JsonInputDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT_ON_NATURAL_STONE_AWI)));
             locationData->SetNormativeWidthOfWaveImpactBwi(
                 forward<unique_ptr<double>>(ReadOptionalValue(readNormativeWidthOfWaveImpact,
-                                                              JsonInputDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT_BWI)));
+                                                              JsonInputDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT_ON_NATURAL_STONE_BWI)));
         }
 
         return locationData;

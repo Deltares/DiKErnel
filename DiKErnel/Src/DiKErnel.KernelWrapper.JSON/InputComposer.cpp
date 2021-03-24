@@ -197,15 +197,15 @@ namespace DiKErnel::KernelWrapper::Json
 
             vector<double> normativeWidthOfWaveImpactValues;
 
-            if (readCalculationMethod.contains(InputJsonDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT))
+            if (readCalculationMethod.contains(InputJsonDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT_ON_NATURAL_STONE))
             {
-                const auto& readNormativeWidthOfWaveImpact = readCalculationMethod[InputJsonDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT];
+                const auto& readNormativeWidthOfWaveImpact = readCalculationMethod[InputJsonDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT_ON_NATURAL_STONE];
 
                 normativeWidthOfWaveImpactValues.push_back(GetOptionalDoubleValue(readNormativeWidthOfWaveImpact,
-                                                                                  InputJsonDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT_AWI,
+                                                                                  InputJsonDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT_ON_NATURAL_STONE_AWI,
                                                                                   NordicStoneRevetmentDefaults::NORMATIVE_WIDTH_OF_WAVE_IMPACT_NATURAL_STONE_AWI));
                 normativeWidthOfWaveImpactValues.push_back(GetOptionalDoubleValue(readNormativeWidthOfWaveImpact,
-                                                                                  InputJsonDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT_BWI,
+                                                                                  InputJsonDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT_ON_NATURAL_STONE_BWI,
                                                                                   NordicStoneRevetmentDefaults::NORMATIVE_WIDTH_OF_WAVE_IMPACT_NATURAL_STONE_BWI));
             }
             else
