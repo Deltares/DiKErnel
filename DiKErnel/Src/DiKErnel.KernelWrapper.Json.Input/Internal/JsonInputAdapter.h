@@ -29,8 +29,6 @@
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
-    class JsonInputNaturalStoneRevetmentLocationData;
-
     class JsonInputAdapter
     {
         public:

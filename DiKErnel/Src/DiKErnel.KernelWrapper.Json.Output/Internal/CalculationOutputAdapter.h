@@ -20,7 +20,24 @@
 
 #pragma once
 
+#include "CalculationOutput.h"
+#include "ICalculationInput.h"
+#include "JsonOutputData.h"
+
 namespace DiKErnel::KernelWrapper::Json::Output
 {
-    class CalculationOutputAdapter {};
+    class CalculationOutputAdapter
+    {
+        public:
+            static std::unique_ptr<JsonOutputData> AdaptCalculationOutput(
+                const Core::CalculationOutput& calculationOutput,
+                const Core::ICalculationInput& calculationInput);
+
+        private:
+            static std::vector<int> GetTimes(
+                const std::vector<std::reference_wrapper<Core::ITimeDependentInput>>& timeDependentInputItems);
+
+            static std::vector<std::unique_ptr<JsonOutputLocationData>> GetJsonOutputLocations(
+                const std::vector<std::reference_wrapper<Core::LocationDependentOutput>>& locationDependentOutputItems);
+    };
 }
