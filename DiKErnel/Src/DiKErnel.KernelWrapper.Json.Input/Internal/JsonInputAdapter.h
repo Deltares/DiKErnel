@@ -24,9 +24,13 @@
 
 #include "ICalculationInput.h"
 #include "JsonInputData.h"
+#include "JsonInputNaturalStoneRevetmentLocationData.h"
+#include "NaturalStoneRevetmentLocationConstructionProperties.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
+    class JsonInputNaturalStoneRevetmentLocationData;
+
     class JsonInputAdapter
     {
         public:
@@ -34,6 +38,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 const JsonInputData& jsonInputData);
 
         private:
+            static Integration::NaturalStoneRevetmentLocationConstructionProperties::TopLayerType ConvertTypeTopLayer(
+                JsonInputNaturalStoneRevetmentLocationData::TopLayerType topLayerType);
+
             static std::unique_ptr<double> CreatePointerOfValue(
                 const double* value);
     };

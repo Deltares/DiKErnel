@@ -20,6 +20,8 @@
 
 #include "JsonInputAdapter.h"
 
+#include <stdexcept>
+
 #include "JsonInputNaturalStoneRevetmentLocationData.h"
 #include "NaturalStoneRevetmentLocationConstructionProperties.h"
 #include "RevetmentCalculationInputBuilder.h"
@@ -61,7 +63,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
             if (naturalStoneRevetmentLocationData != nullptr)
             {
                 NaturalStoneRevetmentLocationConstructionProperties constructionProperties(
-                    NaturalStoneRevetmentLocationConstructionProperties::TopLayerType::NordicStone, location.GetDamageData().GetInitialDamage(),
+                    ConvertTypeTopLayer(naturalStoneRevetmentLocationData->GetTopLayerType()), location.GetDamageData().GetInitialDamage(),
                     location.GetProfileSchematizationData().GetTanA(), naturalStoneRevetmentLocationData->GetThicknessTopLayer(),
                     naturalStoneRevetmentLocationData->GetRelativeDensity());
 
@@ -95,6 +97,19 @@ namespace DiKErnel::KernelWrapper::Json::Input
         }
 
         return builder.Build();
+    }
+
+    NaturalStoneRevetmentLocationConstructionProperties::TopLayerType JsonInputAdapter::ConvertTypeTopLayer(
+        const JsonInputNaturalStoneRevetmentLocationData::TopLayerType topLayerType)
+    {
+        switch (topLayerType)
+        {
+            case JsonInputNaturalStoneRevetmentLocationData::TopLayerType::NordicStone:
+                return NaturalStoneRevetmentLocationConstructionProperties::TopLayerType::NordicStone;
+            case JsonInputNaturalStoneRevetmentLocationData::TopLayerType::Unknown:
+            default:
+                throw runtime_error("Cannot convert top layer type.");
+        }
     }
 
     unique_ptr<double> JsonInputAdapter::CreatePointerOfValue(
