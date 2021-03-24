@@ -20,6 +20,8 @@
 
 #include "CalculationOutputAdapter.h"
 
+#include "LocationDependentOutput.h"
+
 namespace DiKErnel::KernelWrapper::Json::Output
 {
     using namespace Core;

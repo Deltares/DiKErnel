@@ -54,12 +54,14 @@ namespace DiKErnel::KernelWrapper::Json::Output
     }
 
     vector<basic_json<ordered_map>> JsonOutputWriter::GetLocations(
-        const vector<JsonOutputLocationData>& locationDataItems)
+        const vector<reference_wrapper<JsonOutputLocationData>>& locationDataItems)
     {
         vector<basic_json<ordered_map>> locationOutputJsonItems;
 
-        for (const auto& locationData : locationDataItems)
+        for (const auto& locationDataReference : locationDataItems)
         {
+            const auto& locationData = locationDataReference.get();
+
             auto locationFailed = locationData.GetLocationFailed();
             auto locationOutputJson = ordered_json::object(
                 {

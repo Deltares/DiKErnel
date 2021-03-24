@@ -37,6 +37,6 @@ namespace DiKErnel::KernelWrapper::Json::Output
 
         private:
             static std::vector<nlohmann::basic_json<nlohmann::ordered_map>> GetLocations(
-                const std::vector<JsonOutputLocationData>& locationDataItems);
+                const std::vector<std::reference_wrapper<JsonOutputLocationData>>& locationDataItems);
     };
 }
