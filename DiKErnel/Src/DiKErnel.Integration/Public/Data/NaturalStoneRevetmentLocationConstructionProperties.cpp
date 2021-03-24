@@ -30,11 +30,11 @@ namespace DiKErnel::Integration
         const double slopeAngle,
         const double thicknessTopLayer,
         const double relativeDensity)
-        : _initialDamage(initialDamage),
+        : _topLayerType(topLayerType),
+          _initialDamage(initialDamage),
           _slopeAngle(slopeAngle),
           _thicknessTopLayer(thicknessTopLayer),
-          _relativeDensity(relativeDensity),
-          _topLayerType(topLayerType) { }
+          _relativeDensity(relativeDensity) { }
 
     #pragma region Set methods
 
