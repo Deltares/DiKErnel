@@ -102,6 +102,7 @@ namespace DiKErnel::Integration
 
         _locationDependentInputItems.push_back(
             make_unique<NaturalStoneRevetmentLocationDependentInput>(
+                "Test",
                 constructionProperties.GetInitialDamage(),
                 constructionProperties.GetSlopeAngle(),
                 constructionProperties.GetRelativeDensity(),

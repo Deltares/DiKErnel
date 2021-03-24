@@ -20,6 +20,8 @@
 
 #pragma once
 
+#include <string>
+
 #include "ITimeDependentInput.h"
 
 namespace DiKErnel::Core
@@ -50,6 +52,12 @@ namespace DiKErnel::Core
                 double startDamage,
                 const ITimeDependentInput& timeDependentInput,
                 double maximumWaveAngle) = 0;
+
+            /*!
+             * \brief Gets the name.
+             * \return The name.
+             */
+            virtual std::string GetName() const = 0;
 
             /*!
              * \brief Gets the initial damage.

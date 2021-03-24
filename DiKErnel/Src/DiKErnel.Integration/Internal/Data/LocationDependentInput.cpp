@@ -20,11 +20,22 @@
 
 #include "LocationDependentInput.h"
 
+#include <utility>
+
 namespace DiKErnel::Integration
 {
+    using namespace std;
+
     LocationDependentInput::LocationDependentInput(
+        string name,
         const double initialDamage)
-        : _initialDamage(initialDamage) { }
+        : _name(move(name)),
+          _initialDamage(initialDamage) { }
+
+    string LocationDependentInput::GetName() const
+    {
+        return _name;
+    }
 
     double LocationDependentInput::GetInitialDamage() const
     {

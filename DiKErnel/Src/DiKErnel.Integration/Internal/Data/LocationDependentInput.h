@@ -32,13 +32,17 @@ namespace DiKErnel::Integration
                 const Core::ITimeDependentInput& timeDependentInput,
                 double maximumWaveAngle) override = 0;
 
+            std::string GetName() const override;
+
             double GetInitialDamage() const override;
 
         protected:
             explicit LocationDependentInput(
+                std::string name,
                 double initialDamage);
 
         private:
+            std::string _name;
             double _initialDamage;
     };
 }
