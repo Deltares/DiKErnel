@@ -33,9 +33,9 @@ namespace DiKErnel::KernelWrapper::Json::Output
                 std::vector<int> times,
                 std::vector<JsonOutputLocationData> locationDataItems);
 
-            std::vector<int>& GetTimes();
+            const std::vector<int>& GetTimes() const;
 
-            std::vector<JsonOutputLocationData>& GetLocationDataItems();
+            const std::vector<JsonOutputLocationData>& GetLocationDataItems() const;
 
         private:
             std::vector<int> _times;

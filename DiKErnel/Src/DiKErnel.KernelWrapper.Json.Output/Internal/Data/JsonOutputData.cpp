@@ -30,12 +30,12 @@ namespace DiKErnel::KernelWrapper::Json::Output
         : _times(move(times)),
           _locationDataItems(move(locationDataItems)) {}
 
-    std::vector<int>& JsonOutputData::GetTimes()
+    const std::vector<int>& JsonOutputData::GetTimes() const
     {
         return _times;
     }
 
-    std::vector<JsonOutputLocationData>& JsonOutputData::GetLocationDataItems()
+    const std::vector<JsonOutputLocationData>& JsonOutputData::GetLocationDataItems() const
     {
         return _locationDataItems;
     }

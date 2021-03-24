@@ -34,9 +34,9 @@ namespace DiKErnel::KernelWrapper::Json::Output
                 std::vector<int> damages,
                 std::unique_ptr<double> timeOfFailure);
 
-            std::string& GetName();
+            const std::string& GetName() const;
 
-            std::vector<int>& GetDamages();
+            const std::vector<int>& GetDamages() const;
 
             bool GetLocationFailed() const;
 

@@ -28,16 +28,16 @@ namespace DiKErnel::KernelWrapper::Json::Output
         string name,
         vector<int> damages,
         unique_ptr<double> timeOfFailure)
-        : _name(std::move(name)),
+        : _name(move(name)),
           _damages(move(damages)),
           _timeOfFailure(move(timeOfFailure)) {}
 
-    string& JsonOutputLocationData::GetName()
+    const string& JsonOutputLocationData::GetName() const
     {
         return _name;
     }
 
-    vector<int>& JsonOutputLocationData::GetDamages()
+    const vector<int>& JsonOutputLocationData::GetDamages() const
     {
         return _damages;
     }
