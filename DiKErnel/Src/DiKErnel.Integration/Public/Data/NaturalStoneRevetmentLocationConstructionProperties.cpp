@@ -27,16 +27,26 @@ namespace DiKErnel::Integration
     NaturalStoneRevetmentLocationConstructionProperties::NaturalStoneRevetmentLocationConstructionProperties(
         const TopLayerType topLayerType,
         string name,
-        const double initialDamage,
         const double slopeAngle,
         const double thicknessTopLayer,
         const double relativeDensity)
         : _topLayerType(topLayerType),
           _name(move(name)),
-          _initialDamage(initialDamage),
           _slopeAngle(slopeAngle),
           _thicknessTopLayer(thicknessTopLayer),
           _relativeDensity(relativeDensity) { }
+
+    void NaturalStoneRevetmentLocationConstructionProperties::SetInitialDamage(
+        std::unique_ptr<double> initialDamage)
+    {
+        _initialDamage = move(initialDamage);
+    }
+
+    void NaturalStoneRevetmentLocationConstructionProperties::SetFailureNumber(
+        std::unique_ptr<double> failureNumber)
+    {
+        _failureNumber = move(failureNumber);
+    }
 
     #pragma region Set methods
 
@@ -174,11 +184,6 @@ namespace DiKErnel::Integration
         return _name;
     }
 
-    double NaturalStoneRevetmentLocationConstructionProperties::GetInitialDamage() const
-    {
-        return _initialDamage;
-    }
-
     double NaturalStoneRevetmentLocationConstructionProperties::GetSlopeAngle() const
     {
         return _slopeAngle;
@@ -192,6 +197,16 @@ namespace DiKErnel::Integration
     double NaturalStoneRevetmentLocationConstructionProperties::GetRelativeDensity() const
     {
         return _relativeDensity;
+    }
+
+    const double* NaturalStoneRevetmentLocationConstructionProperties::GetInitialDamage() const
+    {
+        return _initialDamage.get();
+    }
+
+    const double* NaturalStoneRevetmentLocationConstructionProperties::GetFailureNumber() const
+    {
+        return _failureNumber.get();
     }
 
     const double* NaturalStoneRevetmentLocationConstructionProperties::GetHydraulicLoadAp() const

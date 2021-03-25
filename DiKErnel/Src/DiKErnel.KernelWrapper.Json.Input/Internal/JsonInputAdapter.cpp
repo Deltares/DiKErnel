@@ -65,8 +65,13 @@ namespace DiKErnel::KernelWrapper::Json::Input
             {
                 NaturalStoneRevetmentLocationConstructionProperties constructionProperties(
                     ConvertTypeTopLayer(naturalStoneRevetmentLocationData->GetTopLayerType()), location.GetName(),
-                    location.GetDamageData().GetInitialDamage(), location.GetProfileSchematizationData().GetTanA(),
+                    location.GetProfileSchematizationData().GetTanA(),
                     naturalStoneRevetmentLocationData->GetThicknessTopLayer(), naturalStoneRevetmentLocationData->GetRelativeDensity());
+
+                constructionProperties.SetInitialDamage(
+                    forward<unique_ptr<double>>(CreatePointerOfValue(location.GetDamageData().GetInitialDamage())));
+                constructionProperties.SetFailureNumber(
+                    forward<unique_ptr<double>>(CreatePointerOfValue(location.GetDamageData().GetCriticalDamage())));
 
                 constructionProperties.SetHydraulicLoadAp(
                     forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData->GetHydraulicLoadAp())));

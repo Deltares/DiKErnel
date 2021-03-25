@@ -46,25 +46,38 @@ namespace DiKErnel::Integration
              * \param topLayerType
              *        The type of the top layer.
              * \param name
-             *        The name of the location.
-             * \param initialDamage
-             *        The initial damage of the location.
+             *        The name.
              * \param slopeAngle
-             *        The slope angle of the location.
+             *        The slope angle.
              * \param thicknessTopLayer
-             *        The thickness of the top layer of the location.
+             *        The thickness of the top layer.
              * \param relativeDensity
-             *        The relative density of the location.
+             *        The relative density.
              */
             explicit NaturalStoneRevetmentLocationConstructionProperties(
                 TopLayerType topLayerType,
                 std::string name,
-                double initialDamage,
                 double slopeAngle,
                 double thicknessTopLayer,
                 double relativeDensity);
 
             #pragma region Set methods
+
+            /*!
+             * \brief Sets the initial damage.
+             * \param initialDamage
+             *        The initial damage.
+             */
+            void SetInitialDamage(
+                std::unique_ptr<double> initialDamage);
+
+            /*!
+             * \brief Sets the failure number.
+             * \param failureNumber
+             *        The failure number.
+             */
+            void SetFailureNumber(
+                std::unique_ptr<double> failureNumber);
 
             /*!
              * \brief Sets the hydraulic load Ap.
@@ -217,26 +230,20 @@ namespace DiKErnel::Integration
             TopLayerType GetTopLayerType() const;
 
             /*!
-             * \brief Gets the name of the location.
-             * \return The name of the location.
+             * \brief Gets the name.
+             * \return The name.
              */
             std::string GetName() const;
 
             /*!
-             * \brief Gets the initial damage of the location.
-             * \return The initial damage of the location.
-             */
-            double GetInitialDamage() const;
-
-            /*!
-             * \brief Gets the slope angle of the location.
-             * \return The slope angle of the location.
+             * \brief Gets the slope angle.
+             * \return The slope angle.
              */
             double GetSlopeAngle() const;
 
             /*!
-             * \brief Gets the thickness of the top layer of the location.
-             * \return The thickness of the top layer of the location.
+             * \brief Gets the thickness of the top layer.
+             * \return The thickness of the top layer.
              */
             double GetThicknessTopLayer() const;
 
@@ -245,6 +252,18 @@ namespace DiKErnel::Integration
              * \return The relative density.
              */
             double GetRelativeDensity() const;
+
+            /*!
+             * \brief Gets the initial damage.
+             * \return The initial damage.
+             */
+            const double* GetInitialDamage() const;
+
+            /*!
+             * \brief Gets the failure number.
+             * \return The failure number.
+             */
+            const double* GetFailureNumber() const;
 
             /*!
              * \brief Gets the hydraulic load Ap.
@@ -371,10 +390,11 @@ namespace DiKErnel::Integration
         private:
             TopLayerType _topLayerType;
             std::string _name;
-            double _initialDamage;
             double _slopeAngle;
             double _thicknessTopLayer;
             double _relativeDensity;
+            std::unique_ptr<double> _initialDamage = nullptr;
+            std::unique_ptr<double> _failureNumber = nullptr;
             std::unique_ptr<double> _hydraulicLoadAp = nullptr;
             std::unique_ptr<double> _hydraulicLoadBp = nullptr;
             std::unique_ptr<double> _hydraulicLoadCp = nullptr;

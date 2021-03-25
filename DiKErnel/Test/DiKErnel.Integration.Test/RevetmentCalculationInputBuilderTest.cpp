@@ -109,33 +109,36 @@ namespace DiKErnel::Integration::Test
         // Given
         const auto topLayerType = NaturalStoneRevetmentLocationConstructionProperties::TopLayerType::NordicStone;
         const string name = "Test";
-        const auto initialDamage = 0.1;
-        const auto slopeAngle = 0.2;
-        const auto thicknessTopLayer = 0.3;
-        const auto relativeDensity = 0.4;
-        const auto hydraulicLoadXib = 0.5;
-        const auto hydraulicLoadAp = 0.6;
-        const auto hydraulicLoadBp = 0.7;
-        const auto hydraulicLoadCp = 0.8;
-        const auto hydraulicLoadNp = 0.9;
-        const auto hydraulicLoadAs = 1.0;
-        const auto hydraulicLoadBs = 1.1;
-        const auto hydraulicLoadCs = 1.2;
-        const auto hydraulicLoadNs = 1.3;
-        const auto upperLimitLoadingAul = 1.4;
-        const auto upperLimitLoadingBul = 1.5;
-        const auto upperLimitLoadingCul = 1.6;
-        const auto lowerLimitLoadingAll = 1.7;
-        const auto lowerLimitLoadingBll = 1.8;
-        const auto lowerLimitLoadingCll = 1.9;
-        const auto distanceMaximumWaveElevationAsmax = 2.0;
-        const auto distanceMaximumWaveElevationBsmax = 2.1;
-        const auto normativeWidthOfWaveImpactAwi = 2.2;
-        const auto normativeWidthOfWaveImpactBwi = 2.3;
-        const auto waveAngleImpactBetamax = 2.4;
+        const auto slopeAngle = 0.1;
+        const auto thicknessTopLayer = 0.2;
+        const auto relativeDensity = 0.3;
+        const auto initialDamage = 0.4;
+        const auto failureNumber = 0.5;
+        const auto hydraulicLoadXib = 0.6;
+        const auto hydraulicLoadAp = 0.7;
+        const auto hydraulicLoadBp = 0.8;
+        const auto hydraulicLoadCp = 0.9;
+        const auto hydraulicLoadNp = 1.0;
+        const auto hydraulicLoadAs = 1.1;
+        const auto hydraulicLoadBs = 1.2;
+        const auto hydraulicLoadCs = 1.3;
+        const auto hydraulicLoadNs = 1.4;
+        const auto upperLimitLoadingAul = 1.5;
+        const auto upperLimitLoadingBul = 1.6;
+        const auto upperLimitLoadingCul = 1.7;
+        const auto lowerLimitLoadingAll = 1.8;
+        const auto lowerLimitLoadingBll = 1.9;
+        const auto lowerLimitLoadingCll = 2.0;
+        const auto distanceMaximumWaveElevationAsmax = 2.1;
+        const auto distanceMaximumWaveElevationBsmax = 2.2;
+        const auto normativeWidthOfWaveImpactAwi = 2.3;
+        const auto normativeWidthOfWaveImpactBwi = 2.4;
+        const auto waveAngleImpactBetamax = 2.5;
 
         NaturalStoneRevetmentLocationConstructionProperties naturalStoneConstructionProperties(
-            topLayerType, name, initialDamage, slopeAngle, thicknessTopLayer, relativeDensity);
+            topLayerType, name, slopeAngle, thicknessTopLayer, relativeDensity);
+        naturalStoneConstructionProperties.SetInitialDamage(make_unique<double>(initialDamage));
+        naturalStoneConstructionProperties.SetFailureNumber(make_unique<double>(failureNumber));
         naturalStoneConstructionProperties.SetHydraulicLoadXib(make_unique<double>(hydraulicLoadXib));
         naturalStoneConstructionProperties.SetHydraulicLoadAp(make_unique<double>(hydraulicLoadAp));
         naturalStoneConstructionProperties.SetHydraulicLoadBp(make_unique<double>(hydraulicLoadBp));
@@ -209,7 +212,7 @@ namespace DiKErnel::Integration::Test
         const auto relativeDensity = 0.4;
 
         const NaturalStoneRevetmentLocationConstructionProperties naturalStoneConstructionProperties(
-            topLayerType, name, initialDamage, slopeAngle, thicknessTopLayer, relativeDensity);
+            topLayerType, name, slopeAngle, thicknessTopLayer, relativeDensity);
 
         RevetmentCalculationInputBuilder builder;
         builder.AddNaturalStoneLocation(naturalStoneConstructionProperties);
