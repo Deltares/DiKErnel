@@ -97,7 +97,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
         }
 
         return make_unique<JsonInputHydraulicData>(
-            readHydraulicLoads[JsonInputDefinitions::MAXIMUM_WAVE_ANGLE].get<double>(),
             move(timeDependentHydraulicData));
     }
 

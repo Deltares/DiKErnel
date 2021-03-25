@@ -33,7 +33,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
             inline static const std::string LOCATIONS = "Locaties";
 
             inline static const std::string TIME = "Tijd";
-            inline static const std::string MAXIMUM_WAVE_ANGLE = "GolfhoekMaximum";
             inline static const std::string BOUNDARY_CONDITIONS_PER_TIME_STEP = "RandvoorwaardenPerTijdstap";
             inline static const std::string WATER_LEVEL = "Waterstand";
             inline static const std::string WAVE_HEIGHT_HM0 = "GolfhoogteHm0";
