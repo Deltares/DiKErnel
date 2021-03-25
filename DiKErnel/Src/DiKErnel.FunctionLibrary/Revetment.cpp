@@ -28,9 +28,14 @@ namespace DiKErnel::FunctionLibrary
 {
     using namespace DomainLibrary;
 
-    double Revetment::CalculateLoadingOfRevetment()
+    double Revetment::CalculateLoadingOfRevetment(
+        const double positionZ,
+        const double upperLimitLoadingOfRevetment,
+        const double lowerLimitLoadingOfRevetment)
     {
-        return 1.0;
+        return positionZ >= lowerLimitLoadingOfRevetment && positionZ <= upperLimitLoadingOfRevetment
+            ? 1.0
+            : 0.0;
     }
 
     double Revetment::CalculateIncrementOfTime(

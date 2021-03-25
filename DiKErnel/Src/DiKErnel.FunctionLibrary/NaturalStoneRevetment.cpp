@@ -35,6 +35,9 @@ namespace DiKErnel::FunctionLibrary
         const double initialDamage,
         const double relativeDensity,
         const double thicknessTopLayer,
+        const double positionZ,
+        const double upperLimitLoadingOfRevetment,
+        const double lowerLimitLoadingOfRevetment,
         const double tanA,
         const double waveHeightHm0,
         const double wavePeriodTm10,
@@ -56,6 +59,9 @@ namespace DiKErnel::FunctionLibrary
             initialDamage,
             relativeDensity,
             thicknessTopLayer,
+            positionZ,
+            upperLimitLoadingOfRevetment,
+            lowerLimitLoadingOfRevetment,
             tanA,
             waveHeightHm0,
             wavePeriodTm10,
@@ -78,6 +84,9 @@ namespace DiKErnel::FunctionLibrary
         const double initialDamage,
         const double relativeDensity,
         const double thicknessTopLayer,
+        const double positionZ,
+        const double upperLimitLoadingOfRevetment,
+        const double lowerLimitLoadingOfRevetment,
         const double tanA,
         const double waveHeightHm0,
         const double wavePeriodTm10,
@@ -129,7 +138,10 @@ namespace DiKErnel::FunctionLibrary
             hydraulicLoadOnNaturalStoneBs,
             hydraulicLoadOnNaturalStoneCs,
             hydraulicLoadOnNaturalStoneNs);
-        const auto loadingOfRevetment = Revetment::CalculateLoadingOfRevetment();
+        const auto loadingOfRevetment = Revetment::CalculateLoadingOfRevetment(
+            positionZ,
+            upperLimitLoadingOfRevetment,
+            lowerLimitLoadingOfRevetment);
         const auto waveAngleImpactOnNaturalStone = CalculateWaveAngleImpactOnNaturalStone(
             waveAngle,
             waveAngleImpactOnNaturalStoneBetamax);
