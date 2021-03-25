@@ -68,5 +68,9 @@ namespace DiKErnel::Integration::TestUtil
                 double normativeWidthOfWaveImpactAwi,
                 double normativeWidthOfWaveImpactBwi,
                 const NaturalStoneRevetmentNormativeWidthOfWaveImpact& normativeWidthOfWaveImpact);
+
+            static void AssertWaveAngleImpact(
+                double waveAngleImpactBetamax,
+                const NaturalStoneRevetmentWaveAngleImpact& waveAngleImpact);
     };
 }

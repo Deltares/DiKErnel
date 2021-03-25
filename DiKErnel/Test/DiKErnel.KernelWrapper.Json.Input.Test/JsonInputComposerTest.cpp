@@ -77,7 +77,8 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
         NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertUpperLimitLoading(6.1, 3.6, 4.5, locationDependentInputItem1->GetUpperLimitLoading());
         NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertLowerLimitLoading(4.1, 8, 0.5, locationDependentInputItem1->GetLowerLimitLoading());
         NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertDistanceMaximumWaveElevation(0.7, 0.319, locationDependentInputItem1->GetDistanceMaximumWaveElevation());
-        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertNormativeWidthOfWaveImpact(1., 0.01, locationDependentInputItem1->GetNormativeWidthOfWaveImpact());
+        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertNormativeWidthOfWaveImpact(1.0, 0.01, locationDependentInputItem1->GetNormativeWidthOfWaveImpact());
+        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertWaveAngleImpact(30, locationDependentInputItem1->GetWaveAngleImpact());
 
         const auto* locationDependentInputItem2 = dynamic_cast<NaturalStoneRevetmentLocationDependentInput*>(
             &locationDependentInputItems[1].get());
@@ -88,5 +89,6 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
         NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertLowerLimitLoading(0.1, 0.2, 4, locationDependentInputItem2->GetLowerLimitLoading());
         NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertDistanceMaximumWaveElevation(0.42, 0.9, locationDependentInputItem2->GetDistanceMaximumWaveElevation());
         NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertNormativeWidthOfWaveImpact(0.96, 0.11, locationDependentInputItem2->GetNormativeWidthOfWaveImpact());
+        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertWaveAngleImpact(78, locationDependentInputItem2->GetWaveAngleImpact());
     }
 }

@@ -13,7 +13,6 @@
 	},
 	"HydraulischeBelastingen": 
 	{
-		"GolfhoekMaximum": 78,
 		"RandvoorwaardenPerTijdstap": 
 		[
 			{
@@ -92,6 +91,9 @@
 					"MaatgevendeBreedteGolfklap": {
 						"MaatgevendeBreedteGolfklapAwi": 1,
 						"MaatgevendeBreedteGolfklapBwi": 0.01
+					},
+					"ImpactGolfhoekBekledingNatuursteen": {
+						"ImpactGolfhoekBekledingNatuursteenBetamax": 30
 					}
 				}
 			},

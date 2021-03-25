@@ -103,4 +103,11 @@ namespace DiKErnel::Integration::TestUtil
         ASSERT_DOUBLE_EQ(normativeWidthOfWaveImpactAwi, normativeWidthOfWaveImpact.GetNormativeWidthOfWaveImpactAwi());
         ASSERT_DOUBLE_EQ(normativeWidthOfWaveImpactBwi, normativeWidthOfWaveImpact.GetNormativeWidthOfWaveImpactBwi());
     }
+
+    void NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertWaveAngleImpact(
+        const double waveAngleImpactBetamax,
+        const NaturalStoneRevetmentWaveAngleImpact& waveAngleImpact)
+    {
+        ASSERT_DOUBLE_EQ(waveAngleImpactBetamax, waveAngleImpact.GetBetamax());
+    }
 }

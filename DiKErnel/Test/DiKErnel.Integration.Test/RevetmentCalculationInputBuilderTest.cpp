@@ -132,6 +132,7 @@ namespace DiKErnel::Integration::Test
         const auto distanceMaximumWaveElevationBsmax = 2.1;
         const auto normativeWidthOfWaveImpactAwi = 2.2;
         const auto normativeWidthOfWaveImpactBwi = 2.3;
+        const auto waveAngleImpactBetamax = 2.4;
 
         NaturalStoneRevetmentLocationConstructionProperties naturalStoneConstructionProperties(
             topLayerType, name, initialDamage, slopeAngle, thicknessTopLayer, relativeDensity);
@@ -154,6 +155,7 @@ namespace DiKErnel::Integration::Test
         naturalStoneConstructionProperties.SetDistanceMaximumWaveElevationBsmax(make_unique<double>(distanceMaximumWaveElevationBsmax));
         naturalStoneConstructionProperties.SetNormativeWidthOfWaveImpactAwi(make_unique<double>(normativeWidthOfWaveImpactAwi));
         naturalStoneConstructionProperties.SetNormativeWidthOfWaveImpactBwi(make_unique<double>(normativeWidthOfWaveImpactBwi));
+        naturalStoneConstructionProperties.SetWaveAngleImpactBetamax(make_unique<double>(waveAngleImpactBetamax));
 
         RevetmentCalculationInputBuilder builder;
         builder.AddNaturalStoneLocation(naturalStoneConstructionProperties);
@@ -191,6 +193,9 @@ namespace DiKErnel::Integration::Test
         NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertNormativeWidthOfWaveImpact(
             normativeWidthOfWaveImpactAwi, normativeWidthOfWaveImpactBwi,
             locationDependentInput->GetNormativeWidthOfWaveImpact());
+
+        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertWaveAngleImpact(
+            waveAngleImpactBetamax, locationDependentInput->GetWaveAngleImpact());
     }
 
     TEST_F(RevetmentCalculationInputBuilderTest, GivenBuilderWithNotFullyConfiguredNaturalStoneLocationAdded_WhenBuild_ThenReturnsCalculationInput)
@@ -235,6 +240,8 @@ namespace DiKErnel::Integration::Test
             0.42, 0.9, locationDependentInput->GetDistanceMaximumWaveElevation());
         NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertNormativeWidthOfWaveImpact(
             0.96, 0.11, locationDependentInput->GetNormativeWidthOfWaveImpact());
+        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertWaveAngleImpact(
+            78, locationDependentInput->GetWaveAngleImpact());
     }
 
     TEST_F(RevetmentCalculationInputBuilderTest, GivenBuilderWithInvalidTimeSteps_WhenBuild_ThenThrowsRevetmentCalculationInputBuilderException)
