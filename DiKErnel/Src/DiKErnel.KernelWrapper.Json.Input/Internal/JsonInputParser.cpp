@@ -109,14 +109,22 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
         for (const auto& readLocation : readLocations)
         {
-            const auto& readDamageVariables = readLocation[JsonInputDefinitions::DAMAGE];
+            unique_ptr<double> initialDamage = nullptr;
+            unique_ptr<double> failureNumber = nullptr;
+
+            if (readLocation.contains(JsonInputDefinitions::DAMAGE))
+            {
+                const auto& readDamageVariables = readLocation[JsonInputDefinitions::DAMAGE];
+
+                initialDamage = ReadOptionalValue(readDamageVariables, JsonInputDefinitions::INITIAL_DAMAGE);
+                failureNumber = ReadOptionalValue(readDamageVariables, JsonInputDefinitions::CRITICAL_DAMAGE);
+            }
+
             const auto& readProfileSchematization = readLocation[JsonInputDefinitions::PROFILE_SCHEMATIZATION];
 
             auto parsedLocation = make_unique<JsonInputLocationData>(
                 readLocation[JsonInputDefinitions::NAME].get<string>(),
-                make_unique<JsonInputDamageData>(
-                    ReadOptionalValue(readDamageVariables, JsonInputDefinitions::INITIAL_DAMAGE),
-                    ReadOptionalValue(readDamageVariables, JsonInputDefinitions::CRITICAL_DAMAGE)),
+                make_unique<JsonInputDamageData>(move(initialDamage), move(failureNumber)),
                 GetRevetmentLocationData(readLocation[JsonInputDefinitions::REVETMENT]),
                 make_unique<JsonInputProfileSchematizationData>(
                     readProfileSchematization[JsonInputDefinitions::TAN_A].get<double>(),
