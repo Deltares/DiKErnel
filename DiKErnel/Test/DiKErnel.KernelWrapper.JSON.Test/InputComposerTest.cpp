@@ -322,7 +322,7 @@ namespace DiKErnel::KernelWrapper::Json::Test
             const double expectedNs
         ) const
         {
-            ASSERT_DOUBLE_EQ(expectedXIb, hydraulicLoadOnNaturalStone.GetHydraulicLoadOnNaturalStoneXIb());
+            ASSERT_DOUBLE_EQ(expectedXIb, hydraulicLoadOnNaturalStone.GetHydraulicLoadOnNaturalStoneXib());
             ASSERT_DOUBLE_EQ(expectedAp, hydraulicLoadOnNaturalStone.GetHydraulicLoadOnNaturalStoneAp());
             ASSERT_DOUBLE_EQ(expectedBp, hydraulicLoadOnNaturalStone.GetHydraulicLoadOnNaturalStoneBp());
             ASSERT_DOUBLE_EQ(expectedCp, hydraulicLoadOnNaturalStone.GetHydraulicLoadOnNaturalStoneCp());

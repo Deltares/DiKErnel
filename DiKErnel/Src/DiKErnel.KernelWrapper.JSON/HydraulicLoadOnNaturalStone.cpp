@@ -23,7 +23,7 @@
 namespace DiKErnel::KernelWrapper::Json
 {
     HydraulicLoadOnNaturalStone::HydraulicLoadOnNaturalStone(
-        const double hydraulicLoadOnNaturalStoneXIb,
+        const double hydraulicLoadOnNaturalStoneXib,
         const double hydraulicLoadOnNaturalStoneAp,
         const double hydraulicLoadOnNaturalStoneBp,
         const double hydraulicLoadOnNaturalStoneCp,
@@ -32,7 +32,7 @@ namespace DiKErnel::KernelWrapper::Json
         const double hydraulicLoadOnNaturalStoneBs,
         const double hydraulicLoadOnNaturalStoneCs,
         const double hydraulicLoadOnNaturalStoneNs)
-        : _hydraulicLoadOnNaturalStoneXIb(hydraulicLoadOnNaturalStoneXIb),
+        : _hydraulicLoadOnNaturalStoneXib(hydraulicLoadOnNaturalStoneXib),
           _hydraulicLoadOnNaturalStoneAp(hydraulicLoadOnNaturalStoneAp),
           _hydraulicLoadOnNaturalStoneBp(hydraulicLoadOnNaturalStoneBp),
           _hydraulicLoadOnNaturalStoneCp(hydraulicLoadOnNaturalStoneCp),
@@ -42,9 +42,9 @@ namespace DiKErnel::KernelWrapper::Json
           _hydraulicLoadOnNaturalStoneCs(hydraulicLoadOnNaturalStoneCs),
           _hydraulicLoadOnNaturalStoneNs(hydraulicLoadOnNaturalStoneNs) { }
 
-    double HydraulicLoadOnNaturalStone::GetHydraulicLoadOnNaturalStoneXIb() const
+    double HydraulicLoadOnNaturalStone::GetHydraulicLoadOnNaturalStoneXib() const
     {
-        return _hydraulicLoadOnNaturalStoneXIb;
+        return _hydraulicLoadOnNaturalStoneXib;
     }
 
     double HydraulicLoadOnNaturalStone::GetHydraulicLoadOnNaturalStoneAp() const
