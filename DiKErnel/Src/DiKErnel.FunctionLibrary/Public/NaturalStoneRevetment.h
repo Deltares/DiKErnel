@@ -86,6 +86,10 @@ namespace DiKErnel::FunctionLibrary
                 double normativeWidthOfWaveImpactNaturalStoneBwi,
                 double surfSimilarityParameter);
 
+            static double CalculateWaveAngleImpactOnNaturalStone(
+                double waveAngle,
+                double waveAngleImpactOnNaturalStoneBetamax);
+
             static double CalculateResistanceOfNaturalStone(
                 double relativeDensity,
                 double thicknessTopLayer);
@@ -95,23 +99,19 @@ namespace DiKErnel::FunctionLibrary
                 double incrementOfTime,
                 double referenceTimeDegradationOfNaturalStone);
 
-            static double CalculateReferenceTimeDegradationOfNaturalStone(
-                double wavePeriodTm10,
-                double referenceDegradationOfNaturalStone);
-
             static double CalculateDegradationOfNaturalStone(
                 double referenceTimeDegradation,
                 double wavePeriodTm10);
+
+            static double CalculateReferenceTimeDegradationOfNaturalStone(
+                double wavePeriodTm10,
+                double referenceDegradationOfNaturalStone);
 
             static double CalculateReferenceDegradationOfNaturalStone(
                 double initialDamage,
                 double resistanceOfNaturalStone,
                 double hydraulicLoadOnNaturalStone,
                 double waveAngleImpactOnNaturalStone);
-
-            static double CalculateWaveAngleImpactOnNaturalStone(
-                double waveAngle,
-                double waveAngleImpactOnNaturalStoneBetamax);
 
             static double CalculateDurationInTimeStepFailureNaturalStone(
                 double referenceTimeFailureOfNaturalStone,

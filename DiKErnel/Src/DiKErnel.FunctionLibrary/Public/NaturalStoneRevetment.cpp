@@ -140,6 +140,13 @@ namespace DiKErnel::FunctionLibrary
                 * waveHeightHm0;
     }
 
+    double NaturalStoneRevetment::CalculateWaveAngleImpactOnNaturalStone(
+        const double waveAngle,
+        const double waveAngleImpactOnNaturalStoneBetamax)
+    {
+        return pow(cos(Revetment::DegreesToRadians(min(waveAngleImpactOnNaturalStoneBetamax, abs(waveAngle)))), 2.0 / 3.0);
+    }
+
     double NaturalStoneRevetment::CalculateResistanceOfNaturalStone(
         const double relativeDensity,
         const double thicknessTopLayer)
@@ -156,18 +163,18 @@ namespace DiKErnel::FunctionLibrary
                 - CalculateDegradationOfNaturalStone(referenceTimeDegradationOfNaturalStone, wavePeriodTm10);
     }
 
-    double NaturalStoneRevetment::CalculateReferenceTimeDegradationOfNaturalStone(
-        const double wavePeriodTm10,
-        const double referenceDegradationOfNaturalStone)
-    {
-        return 1000.0 * wavePeriodTm10 * pow(referenceDegradationOfNaturalStone, 10.0);
-    }
-
     double NaturalStoneRevetment::CalculateDegradationOfNaturalStone(
         const double referenceTimeDegradation,
         const double wavePeriodTm10)
     {
         return pow(referenceTimeDegradation / (wavePeriodTm10 * 1000.0), 0.1);
+    }
+
+    double NaturalStoneRevetment::CalculateReferenceTimeDegradationOfNaturalStone(
+        const double wavePeriodTm10,
+        const double referenceDegradationOfNaturalStone)
+    {
+        return 1000.0 * wavePeriodTm10 * pow(referenceDegradationOfNaturalStone, 10.0);
     }
 
     double NaturalStoneRevetment::CalculateReferenceDegradationOfNaturalStone(
@@ -177,13 +184,6 @@ namespace DiKErnel::FunctionLibrary
         const double waveAngleImpactOnNaturalStone)
     {
         return initialDamage * (resistanceOfNaturalStone / hydraulicLoadOnNaturalStone) * (1 / waveAngleImpactOnNaturalStone);
-    }
-
-    double NaturalStoneRevetment::CalculateWaveAngleImpactOnNaturalStone(
-        const double waveAngle,
-        const double waveAngleImpactOnNaturalStoneBetamax)
-    {
-        return pow(cos(Revetment::DegreesToRadians(min(waveAngleImpactOnNaturalStoneBetamax, abs(waveAngle)))), 2.0 / 3.0);
     }
 
     double NaturalStoneRevetment::CalculateDurationInTimeStepFailureNaturalStone(
