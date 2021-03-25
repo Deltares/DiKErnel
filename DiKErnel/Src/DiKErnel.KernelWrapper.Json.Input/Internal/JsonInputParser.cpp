@@ -221,7 +221,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
         if (readCalculationMethod.contains(JsonInputDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT_ON_NATURAL_STONE))
         {
-            const auto& readNormativeWidthOfWaveImpact = readCalculationMethod[JsonInputDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT_ON_NATURAL_STONE];
+            const auto& readNormativeWidthOfWaveImpact =
+                    readCalculationMethod[JsonInputDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT_ON_NATURAL_STONE];
 
             locationData->SetNormativeWidthOfWaveImpactAwi(
                 forward<unique_ptr<double>>(ReadOptionalValue(readNormativeWidthOfWaveImpact,
@@ -229,6 +230,15 @@ namespace DiKErnel::KernelWrapper::Json::Input
             locationData->SetNormativeWidthOfWaveImpactBwi(
                 forward<unique_ptr<double>>(ReadOptionalValue(readNormativeWidthOfWaveImpact,
                                                               JsonInputDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT_ON_NATURAL_STONE_BWI)));
+        }
+
+        if (readCalculationMethod.contains(JsonInputDefinitions::WAVE_ANGLE_IMPACT_ON_NATURAL_STONE))
+        {
+            const auto& readWaveAngleImpact = readCalculationMethod[JsonInputDefinitions::WAVE_ANGLE_IMPACT_ON_NATURAL_STONE];
+
+            locationData->SetWaveAngleImpactBetamax(
+                forward<unique_ptr<double>>(ReadOptionalValue(readWaveAngleImpact,
+                                                              JsonInputDefinitions::WAVE_ANGLE_IMPACT_ON_NATURAL_STONE_BETA_MAX)));
         }
 
         return locationData;

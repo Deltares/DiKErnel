@@ -84,6 +84,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
             inline static const std::string NORMATIVE_WIDTH_OF_WAVE_IMPACT_ON_NATURAL_STONE_AWI = "MaatgevendeBreedteGolfklapAwi";
             inline static const std::string NORMATIVE_WIDTH_OF_WAVE_IMPACT_ON_NATURAL_STONE_BWI = "MaatgevendeBreedteGolfklapBwi";
 
+            inline static const std::string WAVE_ANGLE_IMPACT_ON_NATURAL_STONE = "ImpactGolfhoekBekledingNatuursteen";
+            inline static const std::string WAVE_ANGLE_IMPACT_ON_NATURAL_STONE_BETA_MAX = "ImpactGolfhoekBekledingNatuursteenBetamax";
+
             inline static const std::string PROFILE_SCHEMATIZATION = "Profielschematisatie";
             inline static const std::string TAN_A = "TanA";
             inline static const std::string POSITION_Z = "PositieZ";
