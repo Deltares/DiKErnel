@@ -66,15 +66,15 @@
 					{
 						"RekenmethodeSoort": "NatuurSteen",
 						"ToenameSchadeNatuursteen": {
-							"HydraulischeBelastingNatuurSteenXib": 4.9,
-							"HydraulischeBelastingNatuurSteenAp": 5,
-							"HydraulischeBelastingNatuurSteenBp": 1.3,
-							"HydraulischeBelastingNatuurSteenCp": 1.7,
-							"HydraulischeBelastingNatuurSteenNp": 0.9,
-							"HydraulischeBelastingNatuurSteenAs": -0.8,
-							"HydraulischeBelastingNatuurSteenBs": 10,
-							"HydraulischeBelastingNatuurSteenCs": -8,
-							"HydraulischeBelastingNatuurSteenNs": 6
+							"HydraulischeBelastingNatuursteenXib": 4.9,
+							"HydraulischeBelastingNatuursteenAp": 5,
+							"HydraulischeBelastingNatuursteenBp": 1.3,
+							"HydraulischeBelastingNatuursteenCp": 1.7,
+							"HydraulischeBelastingNatuursteenNp": 0.9,
+							"HydraulischeBelastingNatuursteenAs": -0.8,
+							"HydraulischeBelastingNatuursteenBs": 10,
+							"HydraulischeBelastingNatuursteenCs": -8,
+							"HydraulischeBelastingNatuursteenNs": 6
 						},
 						"BovengrensBelastingNatuursteen": {
 							"BovengrensBelastingNatuursteenAul": 6.1,

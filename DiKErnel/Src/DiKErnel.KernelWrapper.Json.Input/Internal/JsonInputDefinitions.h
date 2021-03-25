@@ -55,15 +55,15 @@ namespace DiKErnel::KernelWrapper::Json::Input
             inline static const std::string CALCULATION_METHOD_TYPE_NATURAL_STONE = "NatuurSteen";
 
             inline static const std::string HYDRAULIC_LOAD_ON_NATURAL_STONE = "ToenameSchadeNatuursteen";
-            inline static const std::string HYDRAULIC_LOAD_ON_NATURAL_STONE_XIB = "HydraulischeBelastingNatuurSteenXib";
-            inline static const std::string HYDRAULIC_LOAD_ON_NATURAL_STONE_AP = "HydraulischeBelastingNatuurSteenAp";
-            inline static const std::string HYDRAULIC_LOAD_ON_NATURAL_STONE_BP = "HydraulischeBelastingNatuurSteenBp";
-            inline static const std::string HYDRAULIC_LOAD_ON_NATURAL_STONE_CP = "HydraulischeBelastingNatuurSteenCp";
-            inline static const std::string HYDRAULIC_LOAD_ON_NATURAL_STONE_NP = "HydraulischeBelastingNatuurSteenNp";
-            inline static const std::string HYDRAULIC_LOAD_ON_NATURAL_STONE_AS = "HydraulischeBelastingNatuurSteenAs";
-            inline static const std::string HYDRAULIC_LOAD_ON_NATURAL_STONE_BS = "HydraulischeBelastingNatuurSteenBs";
-            inline static const std::string HYDRAULIC_LOAD_ON_NATURAL_STONE_CS = "HydraulischeBelastingNatuurSteenCs";
-            inline static const std::string HYDRAULIC_LOAD_ON_NATURAL_STONE_NS = "HydraulischeBelastingNatuurSteenNs";
+            inline static const std::string HYDRAULIC_LOAD_ON_NATURAL_STONE_XIB = "HydraulischeBelastingNatuursteenXib";
+            inline static const std::string HYDRAULIC_LOAD_ON_NATURAL_STONE_AP = "HydraulischeBelastingNatuursteenAp";
+            inline static const std::string HYDRAULIC_LOAD_ON_NATURAL_STONE_BP = "HydraulischeBelastingNatuursteenBp";
+            inline static const std::string HYDRAULIC_LOAD_ON_NATURAL_STONE_CP = "HydraulischeBelastingNatuursteenCp";
+            inline static const std::string HYDRAULIC_LOAD_ON_NATURAL_STONE_NP = "HydraulischeBelastingNatuursteenNp";
+            inline static const std::string HYDRAULIC_LOAD_ON_NATURAL_STONE_AS = "HydraulischeBelastingNatuursteenAs";
+            inline static const std::string HYDRAULIC_LOAD_ON_NATURAL_STONE_BS = "HydraulischeBelastingNatuursteenBs";
+            inline static const std::string HYDRAULIC_LOAD_ON_NATURAL_STONE_CS = "HydraulischeBelastingNatuursteenCs";
+            inline static const std::string HYDRAULIC_LOAD_ON_NATURAL_STONE_NS = "HydraulischeBelastingNatuursteenNs";
 
             inline static const std::string UPPER_LIMIT_LOADING_OF_NATURAL_STONE = "BovengrensBelastingNatuursteen";
             inline static const std::string UPPER_LIMIT_LOADING_OF_NATURAL_STONE_AUL = "BovengrensBelastingNatuursteenAul";
