@@ -67,19 +67,16 @@ namespace DiKErnel::FunctionLibrary
                 double surfSimilarityParameter);
 
             static double CalculateDepthMaximumWaveLoadNaturalStone(
-                double tanA,
-                double waveHeightHm0,
-                double wavePeriodTm10,
-                double distanceMaximumWaveElevationNaturalStoneAsmax,
-                double distanceMaximumWaveElevationNaturalStoneBsmax,
-                double normativeWidthOfWaveImpactNaturalStoneAwi,
-                double normativeWidthOfWaveImpactNaturalStoneBwi);
+                double distanceMaximumWaveElevationNaturalStone,
+                double normativeWidthOfWaveImpact,
+                double slopeAngle);
 
             static double CalculateDistanceMaximumWaveElevationNaturalStone(
                 double waveHeightHm0,
-                double wavePeriodTm10,
                 double distanceMaximumWaveElevationNaturalStoneAsmax,
-                double distanceMaximumWaveElevationNaturalStoneBsmax);
+                double distanceMaximumWaveElevationNaturalStoneBsmax,
+                double impactShallowWaterNaturalStone,
+                double waveSteepnessDeepWater);
 
             static double CalculateImpactShallowWaterNaturalStone();
 
