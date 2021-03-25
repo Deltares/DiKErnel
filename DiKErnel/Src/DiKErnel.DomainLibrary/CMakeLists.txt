@@ -8,12 +8,12 @@ set(PUBLIC_FOLDER Public)
 set(SOURCEFILES_PUBLIC
   ${PUBLIC_FOLDER}/Constants.cpp
   ${PUBLIC_FOLDER}/Constants.h
-  ${PUBLIC_FOLDER}/Defaults.cpp
-  ${PUBLIC_FOLDER}/Defaults.h
   ${PUBLIC_FOLDER}/HydraulicLoadsDefaults.cpp
   ${PUBLIC_FOLDER}/HydraulicLoadsDefaults.h
   ${PUBLIC_FOLDER}/NordicStoneRevetmentDefaults.cpp
   ${PUBLIC_FOLDER}/NordicStoneRevetmentDefaults.h
+  ${PUBLIC_FOLDER}/RevetmentDefaults.cpp
+  ${PUBLIC_FOLDER}/RevetmentDefaults.h
 )
 
 # Add library

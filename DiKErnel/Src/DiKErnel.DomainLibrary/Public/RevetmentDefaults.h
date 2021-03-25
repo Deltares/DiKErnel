@@ -23,9 +23,9 @@
 namespace DiKErnel::DomainLibrary
 {
     /*!
-     * \brief Class that contains domain default values.
+     * \brief Class that contains revetment default values.
      */
-    class Defaults
+    class RevetmentDefaults
     {
         public:
             /*!

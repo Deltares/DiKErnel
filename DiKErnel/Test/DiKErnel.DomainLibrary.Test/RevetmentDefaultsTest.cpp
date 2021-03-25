@@ -20,13 +20,13 @@
 
 #include <gtest/gtest.h>
 
-#include "Defaults.h"
+#include "RevetmentDefaults.h"
 
 namespace DiKErnel::DomainLibrary::Test::DefaultsTest
 {
-    TEST(DefaultsTest, CriticalDamage_ExpectedValue)
+    TEST(RevetmentDefaultsTest, CriticalDamage_ExpectedValue)
     {
         // Call & Assert
-        ASSERT_DOUBLE_EQ(1.0, Defaults::CRITICAL_DAMAGE);
+        ASSERT_DOUBLE_EQ(1.0, RevetmentDefaults::CRITICAL_DAMAGE);
     }
 }
