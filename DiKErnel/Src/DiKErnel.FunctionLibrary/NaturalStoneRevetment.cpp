@@ -262,7 +262,8 @@ namespace DiKErnel::FunctionLibrary
             normativeWidthOfWaveImpactNaturalStoneBwi);
         const auto slopeAngle = Revetment::CalculateSlopeAngle();
 
-        return (distanceMaximumWaveElevationNaturalStone - 0.5 * normativeWidthOfWaveImpact * cos(slopeAngle)) * tan(slopeAngle);
+        return (distanceMaximumWaveElevationNaturalStone - 0.5 * normativeWidthOfWaveImpact * cos(Revetment::DegreesToRadians(slopeAngle)))
+                * tan(Revetment::DegreesToRadians(slopeAngle));
     }
 
     double NaturalStoneRevetment::CalculateDistanceMaximumWaveElevationNaturalStone(
@@ -449,7 +450,7 @@ namespace DiKErnel::FunctionLibrary
         const double waveAngle,
         const double waveAngleImpactOnNaturalStoneBetamax)
     {
-        return cos(pow(min(waveAngleImpactOnNaturalStoneBetamax, abs(waveAngle)), 2.0 / 3.0));
+        return pow(cos(Revetment::DegreesToRadians(min(waveAngleImpactOnNaturalStoneBetamax, abs(waveAngle)))), 2.0 / 3.0);
     }
 
     double NaturalStoneRevetment::CalculateDurationInTimeStepFailureNaturalStone(

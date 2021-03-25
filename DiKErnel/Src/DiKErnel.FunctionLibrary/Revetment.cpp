@@ -57,4 +57,10 @@ namespace DiKErnel::FunctionLibrary
     {
         return 1.0;
     }
+
+    double Revetment::DegreesToRadians(
+        const double degrees)
+    {
+        return degrees * (Constants::PI / 180);
+    }
 }

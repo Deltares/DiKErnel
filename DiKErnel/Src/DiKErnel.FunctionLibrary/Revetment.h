@@ -42,5 +42,8 @@ namespace DiKErnel::FunctionLibrary
             static double CalculateSlopeAngle();
 
             static double CalculateWaveSteepnessDeepWater();
+
+            static double DegreesToRadians(
+                double degrees);
     };
 }
