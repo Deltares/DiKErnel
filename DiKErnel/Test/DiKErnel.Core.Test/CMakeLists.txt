@@ -5,7 +5,6 @@ set(EXENAME DiKErnel.Core.Test)
 set(SOURCEFILES
   CalculationOutputTest.cpp
   CalculatorTest.cpp
-  DeprecatedCalculatorTest.cpp
   LocationDependentOutputTest.cpp
   Main.cpp
 )

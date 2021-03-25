@@ -7,8 +7,6 @@ set(SOURCEFILES
   CalculationOutput.h
   Calculator.cpp
   Calculator.h
-  DeprecatedCalculator.cpp
-  DeprecatedCalculator.h
   ICalculationInput.h
   ILocationDependentInput.h
   ITimeDependentInput.h
@@ -25,6 +23,3 @@ source_group("Sources" FILES ${SOURCEFILES})
 
 # Expose header files
 target_include_directories(${LIBNAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
-
-# Link dependencies
-target_link_libraries(${LIBNAME} DiKErnel.KernelWrapper.Json)
