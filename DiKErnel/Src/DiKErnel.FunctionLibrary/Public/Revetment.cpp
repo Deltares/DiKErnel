@@ -58,7 +58,7 @@ namespace DiKErnel::FunctionLibrary
     double Revetment::DegreesToRadians(
         const double degrees)
     {
-        return degrees * (Constants::PI / 180);
+        return degrees * (Constants::PI / 180.0);
     }
 
     double Revetment::CalculateSlopeAngle(
@@ -82,13 +82,13 @@ namespace DiKErnel::FunctionLibrary
         const double waveHeightHm0,
         const double wavePeriodTm10)
     {
-        return tanA / sqrt(2 * Constants::PI * waveHeightHm0 / (Constants::GRAVITATIONAL_ACCELERATION * pow(wavePeriodTm10, 2.0)));
+        return tanA / sqrt(2.0 * Constants::PI * waveHeightHm0 / (Constants::GRAVITATIONAL_ACCELERATION * pow(wavePeriodTm10, 2.0)));
     }
 
     double Revetment::CalculateWaveSteepnessDeepWater(
         const double waveHeightHm0,
         const double wavePeriodTm10)
     {
-        return waveHeightHm0 / (Constants::GRAVITATIONAL_ACCELERATION / (2 * Constants::PI) * pow(wavePeriodTm10, 2));
+        return waveHeightHm0 / (Constants::GRAVITATIONAL_ACCELERATION / (2.0 * Constants::PI) * pow(wavePeriodTm10, 2.0));
     }
 }

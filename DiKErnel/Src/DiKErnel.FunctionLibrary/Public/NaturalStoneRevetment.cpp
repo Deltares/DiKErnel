@@ -82,7 +82,7 @@ namespace DiKErnel::FunctionLibrary
         const double surfSimilarityParameter)
     {
         return waterLevel
-                - 2 * depthMaximumWaveLoadNaturalStone
+                - 2.0 * depthMaximumWaveLoadNaturalStone
                 + max(depthMaximumWaveLoadNaturalStone + upperLimitLoadingOfNaturalStoneAul,
                       upperLimitLoadingOfNaturalStoneBul * waveHeightHm0 * min(surfSimilarityParameter,
                                                                                upperLimitLoadingOfNaturalStoneCul));
@@ -98,7 +98,7 @@ namespace DiKErnel::FunctionLibrary
         const double surfSimilarityParameter)
     {
         return waterLevel
-                - 2 * depthMaximumWaveLoadNaturalStone
+                - 2.0 * depthMaximumWaveLoadNaturalStone
                 + min(depthMaximumWaveLoadNaturalStone - lowerLimitLoadingOfNaturalStoneAll,
                       lowerLimitLoadingOfNaturalStoneBll * waveHeightHm0 * min(surfSimilarityParameter,
                                                                                lowerLimitLoadingOfNaturalStoneCll));
@@ -183,7 +183,7 @@ namespace DiKErnel::FunctionLibrary
         const double hydraulicLoadOnNaturalStone,
         const double waveAngleImpactOnNaturalStone)
     {
-        return initialDamage * (resistanceOfNaturalStone / hydraulicLoadOnNaturalStone) * (1 / waveAngleImpactOnNaturalStone);
+        return initialDamage * (resistanceOfNaturalStone / hydraulicLoadOnNaturalStone) * (1.0 / waveAngleImpactOnNaturalStone);
     }
 
     double NaturalStoneRevetment::CalculateDurationInTimeStepFailureNaturalStone(
@@ -206,6 +206,6 @@ namespace DiKErnel::FunctionLibrary
         const double hydraulicLoadOnNaturalStone,
         const double waveAngleImpactOnNaturalStone)
     {
-        return failureNumber * (resistanceOfNaturalStone / hydraulicLoadOnNaturalStone) * (1 / waveAngleImpactOnNaturalStone);
+        return failureNumber * (resistanceOfNaturalStone / hydraulicLoadOnNaturalStone) * (1.0 / waveAngleImpactOnNaturalStone);
     }
 }
