@@ -127,6 +127,7 @@ namespace DiKErnel::FunctionLibrary
 
             static double CalculateDistanceMaximumWaveElevationNaturalStone(
                 double waveHeightHm0,
+                double wavePeriodTm10,
                 double distanceMaximumWaveElevationNaturalStoneAsmax,
                 double distanceMaximumWaveElevationNaturalStoneBsmax);
 

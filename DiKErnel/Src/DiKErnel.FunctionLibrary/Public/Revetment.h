@@ -42,9 +42,12 @@ namespace DiKErnel::FunctionLibrary
                 double waveHeightHm0,
                 double wavePeriodTm10);
 
-            static double CalculateSlopeAngle();
+            static double CalculateSlopeAngle(
+                double tanA);
 
-            static double CalculateWaveSteepnessDeepWater();
+            static double CalculateWaveSteepnessDeepWater(
+                double waveHeightHm0,
+                double wavePeriodTm10);
 
             static double DegreesToRadians(
                 double degrees);

@@ -264,6 +264,7 @@ namespace DiKErnel::FunctionLibrary
     {
         const auto distanceMaximumWaveElevationNaturalStone = CalculateDistanceMaximumWaveElevationNaturalStone(
             waveHeightHm0,
+            wavePeriodTm10,
             distanceMaximumWaveElevationNaturalStoneAsmax,
             distanceMaximumWaveElevationNaturalStoneBsmax);
         const auto normativeWidthOfWaveImpact = CalculateNormativeWidthOfWaveImpactNaturalStone(
@@ -272,7 +273,7 @@ namespace DiKErnel::FunctionLibrary
             wavePeriodTm10,
             normativeWidthOfWaveImpactNaturalStoneAwi,
             normativeWidthOfWaveImpactNaturalStoneBwi);
-        const auto slopeAngle = Revetment::CalculateSlopeAngle();
+        const auto slopeAngle = Revetment::CalculateSlopeAngle(tanA);
 
         return (distanceMaximumWaveElevationNaturalStone - 0.5 * normativeWidthOfWaveImpact * cos(Revetment::DegreesToRadians(slopeAngle)))
                 * tan(Revetment::DegreesToRadians(slopeAngle));
@@ -280,11 +281,14 @@ namespace DiKErnel::FunctionLibrary
 
     double NaturalStoneRevetment::CalculateDistanceMaximumWaveElevationNaturalStone(
         const double waveHeightHm0,
+        const double wavePeriodTm10,
         const double distanceMaximumWaveElevationNaturalStoneAsmax,
         const double distanceMaximumWaveElevationNaturalStoneBsmax)
     {
         const auto impactShallowWaterNaturalStone = CalculateImpactShallowWaterNaturalStone();
-        const auto waveSteepnessDeepWater = Revetment::CalculateWaveSteepnessDeepWater();
+        const auto waveSteepnessDeepWater = Revetment::CalculateWaveSteepnessDeepWater(
+            waveHeightHm0,
+            wavePeriodTm10);
 
         return waveHeightHm0
                 * (distanceMaximumWaveElevationNaturalStoneAsmax / sqrt(waveSteepnessDeepWater) - distanceMaximumWaveElevationNaturalStoneBsmax)
