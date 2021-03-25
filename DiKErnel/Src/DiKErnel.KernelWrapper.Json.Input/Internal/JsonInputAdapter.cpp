@@ -39,7 +39,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
         const auto& calculationData = jsonInputData.GetCalculationData();
         const auto& hydraulicData = calculationData.GetHydraulicData();
 
-        RevetmentCalculationInputBuilder builder(hydraulicData.GetWaveAngleMaximum());
+        RevetmentCalculationInputBuilder builder;
 
         const auto& times = calculationData.GetTimes();
         const auto& timeDependentData = hydraulicData.GetTimeDependentHydraulicData();

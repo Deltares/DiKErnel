@@ -21,9 +21,9 @@
 #include "RevetmentCalculationInputBuilder.h"
 
 #include "InvalidCalculationDataException.h"
-#include "NordicStoneRevetmentDefaults.h"
 #include "NaturalStoneRevetmentLocationConstructionProperties.h"
 #include "NaturalStoneRevetmentLocationDependentInput.h"
+#include "NordicStoneRevetmentDefaults.h"
 #include "RevetmentCalculationInputBuilderException.h"
 
 namespace DiKErnel::Integration
@@ -31,10 +31,6 @@ namespace DiKErnel::Integration
     using namespace Core;
     using namespace DomainLibrary;
     using namespace std;
-
-    RevetmentCalculationInputBuilder::RevetmentCalculationInputBuilder(
-        const double maximumWaveAngle)
-        : _maximumWaveAngle(maximumWaveAngle) { }
 
     void RevetmentCalculationInputBuilder::AddTimeStep(
         int beginTime,
@@ -75,7 +71,8 @@ namespace DiKErnel::Integration
                 GetValue(constructionProperties.GetSurgingCoefficientB(), NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NATURAL_STONE_BS),
                 GetValue(constructionProperties.GetSurgingCoefficientC(), NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NATURAL_STONE_CS),
                 GetValue(constructionProperties.GetSurgingCoefficientN(), NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NATURAL_STONE_NS),
-                GetValue(constructionProperties.GetSimilarityParameterThreshold(), NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NATURAL_STONE_XIB));
+                GetValue(constructionProperties.GetSimilarityParameterThreshold(),
+                         NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NATURAL_STONE_XIB));
 
             upperLimitLoading = make_unique<NaturalStoneRevetmentUpperLimitLoading>(
                 GetValue(constructionProperties.GetUpperLimitLoadingAul(), NordicStoneRevetmentDefaults::UPPER_LIMIT_LOADING_OF_NATURAL_STONE_AUL),
@@ -89,15 +86,15 @@ namespace DiKErnel::Integration
 
             distanceMaximumWaveElevation = make_unique<NaturalStoneRevetmentDistanceMaximumWaveElevation>(
                 GetValue(constructionProperties.GetDistanceMaximumWaveElevationAsmax(),
-                    NordicStoneRevetmentDefaults::DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE_ASMAX),
+                         NordicStoneRevetmentDefaults::DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE_ASMAX),
                 GetValue(constructionProperties.GetDistanceMaximumWaveElevationBsmax(),
-                    NordicStoneRevetmentDefaults::DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE_BSMAX));
+                         NordicStoneRevetmentDefaults::DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE_BSMAX));
 
             normativeWidthOfWaveImpact = make_unique<NaturalStoneRevetmentNormativeWidthOfWaveImpact>(
                 GetValue(constructionProperties.GetNormativeWidthOfWaveImpactAwi(),
-                    NordicStoneRevetmentDefaults::NORMATIVE_WIDTH_OF_WAVE_IMPACT_ON_NATURAL_STONE_AWI),
+                         NordicStoneRevetmentDefaults::NORMATIVE_WIDTH_OF_WAVE_IMPACT_ON_NATURAL_STONE_AWI),
                 GetValue(constructionProperties.GetNormativeWidthOfWaveImpactBwi(),
-                    NordicStoneRevetmentDefaults::NORMATIVE_WIDTH_OF_WAVE_IMPACT_ON_NATURAL_STONE_BWI));
+                         NordicStoneRevetmentDefaults::NORMATIVE_WIDTH_OF_WAVE_IMPACT_ON_NATURAL_STONE_BWI));
         }
 
         _locationDependentInputItems.push_back(
@@ -118,7 +115,7 @@ namespace DiKErnel::Integration
     {
         try
         {
-            return make_unique<CalculationInput>(move(_locationDependentInputItems), move(_timeDependentInputItems), _maximumWaveAngle);
+            return make_unique<CalculationInput>(move(_locationDependentInputItems), move(_timeDependentInputItems));
         }
         catch (const InvalidCalculationDataException&)
         {

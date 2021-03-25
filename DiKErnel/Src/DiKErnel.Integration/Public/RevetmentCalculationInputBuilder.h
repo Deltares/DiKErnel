@@ -33,11 +33,8 @@ namespace DiKErnel::Integration
         public:
             /*!
              * \brief Creates a new instance.
-             * \param maximumWaveAngle
-             *        The maximum wave angle.
              */
-            explicit RevetmentCalculationInputBuilder(
-                double maximumWaveAngle);
+            explicit RevetmentCalculationInputBuilder() = default;
 
             /*!
              * \brief Adds a time step.
@@ -81,7 +78,6 @@ namespace DiKErnel::Integration
             std::unique_ptr<Core::ICalculationInput> Build();
 
         private:
-            double _maximumWaveAngle;
             std::vector<std::unique_ptr<TimeDependentInput>> _timeDependentInputItems = std::vector<std::unique_ptr<TimeDependentInput>>();
             std::vector<std::unique_ptr<LocationDependentInput>> _locationDependentInputItems
                     = std::vector<std::unique_ptr<LocationDependentInput>>();

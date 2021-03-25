@@ -49,11 +49,5 @@ namespace DiKErnel::Core
              * \return The time dependent input items to use in the calculation.
              */
             virtual const std::vector<std::reference_wrapper<ITimeDependentInput>>& GetTimeDependentInputItems() const = 0;
-
-            /*!
-             * \brief Gets the maximum wave angle.
-             * \return The maximum wave angle.
-             */
-            virtual double GetMaximumWaveAngle() const = 0;
     };
 }

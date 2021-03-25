@@ -63,7 +63,6 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
 
         // Then
         AssertHelper::AssertIsInstanceOf<CalculationInput>(calculationInput.get());
-        ASSERT_DOUBLE_EQ(78, calculationInput->GetMaximumWaveAngle());
 
         AssertTimeDependentInputItems(calculationInput->GetTimeDependentInputItems());
 

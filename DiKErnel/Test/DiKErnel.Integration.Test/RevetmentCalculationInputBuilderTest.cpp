@@ -41,13 +41,13 @@ namespace DiKErnel::Integration::Test
     {
         static void CreateBuilderAndAddInvalidTimeStep()
         {
-            RevetmentCalculationInputBuilder builder(0);
+            RevetmentCalculationInputBuilder builder;
             builder.AddTimeStep(10, 5, 0, 0, 0, 0);
         }
 
         static void CreateBuilderAndAddNonSuccessiveTimeSteps()
         {
-            RevetmentCalculationInputBuilder builder(0);
+            RevetmentCalculationInputBuilder builder;
             builder.AddTimeStep(0, 5, 0, 0, 0, 0);
             builder.AddTimeStep(10, 20, 0, 0, 0, 0);
             builder.Build();
@@ -57,15 +57,12 @@ namespace DiKErnel::Integration::Test
     TEST_F(RevetmentCalculationInputBuilderTest, GivenBuilder_WhenBuild_ThenReturnsCalculationInput)
     {
         // Given
-        const auto maximumWaveAngle = rand() % 100;
-
-        RevetmentCalculationInputBuilder builder(maximumWaveAngle);
+        RevetmentCalculationInputBuilder builder;
 
         // When
         const auto calculationInput = builder.Build();
 
         // Then
-        ASSERT_DOUBLE_EQ(maximumWaveAngle, calculationInput->GetMaximumWaveAngle());
         ASSERT_EQ(0, calculationInput->GetTimeDependentInputItems().size());
         ASSERT_EQ(0, calculationInput->GetLocationDependentInputItems().size());
     }
@@ -73,7 +70,6 @@ namespace DiKErnel::Integration::Test
     TEST_F(RevetmentCalculationInputBuilderTest, GivenBuilderWithTimeStepAdded_WhenBuild_ThenReturnsCalculationInput)
     {
         // Given
-        const auto maximumWaveAngle = rand() % 100;
         const auto beginTime = rand() % 100;
         const auto endTime = rand() % 100 + 100;
         const auto waterLevel = 0.1;
@@ -81,15 +77,13 @@ namespace DiKErnel::Integration::Test
         const auto wavePeriodTm10 = 0.3;
         const auto waveAngle = 0.4;
 
-        RevetmentCalculationInputBuilder builder(maximumWaveAngle);
+        RevetmentCalculationInputBuilder builder;
         builder.AddTimeStep(beginTime, endTime, waterLevel, waveHeightHm0, wavePeriodTm10, waveAngle);
 
         // When
         const auto calculationInput = builder.Build();
 
         // Then
-        ASSERT_DOUBLE_EQ(maximumWaveAngle, calculationInput->GetMaximumWaveAngle());
-
         const auto& actualTimeDependentInputItems = calculationInput->GetTimeDependentInputItems();
         ASSERT_EQ(1, actualTimeDependentInputItems.size());
         const auto& timeDependentInput = actualTimeDependentInputItems[0].get();
@@ -115,7 +109,6 @@ namespace DiKErnel::Integration::Test
         // Given
         const auto topLayerType = NaturalStoneRevetmentLocationConstructionProperties::TopLayerType::NordicStone;
         const string name = "Test";
-        const auto maximumWaveAngle = rand() % 100;
         const auto initialDamage = 0.1;
         const auto slopeAngle = 0.2;
         const auto thicknessTopLayer = 0.3;
@@ -162,14 +155,13 @@ namespace DiKErnel::Integration::Test
         naturalStoneConstructionProperties.SetNormativeWidthOfWaveImpactAwi(make_unique<double>(normativeWidthOfWaveImpactAwi));
         naturalStoneConstructionProperties.SetNormativeWidthOfWaveImpactBwi(make_unique<double>(normativeWidthOfWaveImpactBwi));
 
-        RevetmentCalculationInputBuilder builder(maximumWaveAngle);
+        RevetmentCalculationInputBuilder builder;
         builder.AddNaturalStoneLocation(naturalStoneConstructionProperties);
 
         // When
         const auto calculationInput = builder.Build();
 
         // Then
-        ASSERT_DOUBLE_EQ(maximumWaveAngle, calculationInput->GetMaximumWaveAngle());
         ASSERT_EQ(0, calculationInput->GetTimeDependentInputItems().size());
 
         const auto& actualLocationDependentInputItems = calculationInput->GetLocationDependentInputItems();
@@ -206,7 +198,6 @@ namespace DiKErnel::Integration::Test
         // Given
         const auto topLayerType = NaturalStoneRevetmentLocationConstructionProperties::TopLayerType::NordicStone;
         const string name = "Test";
-        const auto maximumWaveAngle = rand() % 100;
         const auto initialDamage = 0.1;
         const auto slopeAngle = 0.2;
         const auto thicknessTopLayer = 0.3;
@@ -215,14 +206,13 @@ namespace DiKErnel::Integration::Test
         const NaturalStoneRevetmentLocationConstructionProperties naturalStoneConstructionProperties(
             topLayerType, name, initialDamage, slopeAngle, thicknessTopLayer, relativeDensity);
 
-        RevetmentCalculationInputBuilder builder(maximumWaveAngle);
+        RevetmentCalculationInputBuilder builder;
         builder.AddNaturalStoneLocation(naturalStoneConstructionProperties);
 
         // When
         const auto calculationInput = builder.Build();
 
         // Then
-        ASSERT_DOUBLE_EQ(maximumWaveAngle, calculationInput->GetMaximumWaveAngle());
         ASSERT_EQ(0, calculationInput->GetTimeDependentInputItems().size());
 
         const auto& actualLocationDependentInputItems = calculationInput->GetLocationDependentInputItems();

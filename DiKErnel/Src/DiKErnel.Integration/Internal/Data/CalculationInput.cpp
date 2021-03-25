@@ -29,11 +29,9 @@ namespace DiKErnel::Integration
 
     CalculationInput::CalculationInput(
         vector<unique_ptr<LocationDependentInput>> locationDependentInputItems,
-        vector<unique_ptr<TimeDependentInput>> timeDependentInputItems,
-        const double maximumWaveAngle)
+        vector<unique_ptr<TimeDependentInput>> timeDependentInputItems)
         : _locationDependentInputItems(move(locationDependentInputItems)),
-          _timeDependentInputItems(move(timeDependentInputItems)),
-          _maximumWaveAngle(maximumWaveAngle)
+          _timeDependentInputItems(move(timeDependentInputItems))
     {
         auto previousEndTime = INT_MIN;
         for (const auto& timeDependentInput : _timeDependentInputItems)
@@ -62,10 +60,5 @@ namespace DiKErnel::Integration
     const vector<reference_wrapper<ITimeDependentInput>>& CalculationInput::GetTimeDependentInputItems() const
     {
         return _timeDependentInputItemReferences;
-    }
-
-    double CalculationInput::GetMaximumWaveAngle() const
-    {
-        return _maximumWaveAngle;
     }
 }

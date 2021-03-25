@@ -70,7 +70,6 @@ namespace DiKErnel::Core::Test
         NiceMock<ICalculationInputMock> calculationInput;
         ON_CALL(calculationInput, GetLocationDependentInputItems).WillByDefault(ReturnRef(_locationDependentInputItemReferences));
         ON_CALL(calculationInput, GetTimeDependentInputItems).WillByDefault(ReturnRef(_timeDependentInputItemReferences));
-        ON_CALL(calculationInput, GetMaximumWaveAngle).WillByDefault(Return(0));
 
         const auto* locationDependentInput = dynamic_cast<ILocationDependentInputMock*>(&_locationDependentInputItemReferences[0].get());
         ASSERT_TRUE(locationDependentInput != nullptr);
@@ -110,7 +109,6 @@ namespace DiKErnel::Core::Test
         NiceMock<ICalculationInputMock> calculationInput;
         ON_CALL(calculationInput, GetLocationDependentInputItems).WillByDefault(ReturnRef(_locationDependentInputItemReferences));
         ON_CALL(calculationInput, GetTimeDependentInputItems).WillByDefault(ReturnRef(_timeDependentInputItemReferences));
-        ON_CALL(calculationInput, GetMaximumWaveAngle).WillByDefault(Return(0));
 
         Calculator calculator(calculationInput);
 
@@ -130,7 +128,6 @@ namespace DiKErnel::Core::Test
         NiceMock<ICalculationInputMock> calculationInput;
         EXPECT_CALL(calculationInput, GetLocationDependentInputItems).WillRepeatedly(ReturnRef(_locationDependentInputItemReferences));
         EXPECT_CALL(calculationInput, GetTimeDependentInputItems).WillRepeatedly(ReturnRef(_timeDependentInputItemReferences));
-        EXPECT_CALL(calculationInput, GetMaximumWaveAngle).WillRepeatedly(Return(0));
 
         Calculator calculator(calculationInput);
         calculator.WaitForCompletion();
@@ -150,7 +147,6 @@ namespace DiKErnel::Core::Test
         NiceMock<ICalculationInputMock> calculationInput;
         EXPECT_CALL(calculationInput, GetLocationDependentInputItems).WillRepeatedly(ReturnRef(_locationDependentInputItemReferences));
         EXPECT_CALL(calculationInput, GetTimeDependentInputItems).WillRepeatedly(ReturnRef(_timeDependentInputItemReferences));
-        EXPECT_CALL(calculationInput, GetMaximumWaveAngle).WillRepeatedly(Return(0));
 
         Calculator calculator(calculationInput);
         calculator.Cancel();
