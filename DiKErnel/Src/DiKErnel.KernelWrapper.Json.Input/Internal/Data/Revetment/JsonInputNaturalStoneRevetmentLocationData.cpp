@@ -149,6 +149,12 @@ namespace DiKErnel::KernelWrapper::Json::Input
         _normativeWidthOfWaveImpactBwi = move(normativeWidthOfWaveImpactBwi);
     }
 
+    void JsonInputNaturalStoneRevetmentLocationData::SetWaveAngleImpactBetamax(
+        std::unique_ptr<double> waveAngleImpactBetamax)
+    {
+        _waveAngleImpactBetamax = move(waveAngleImpactBetamax);
+    }
+
     #pragma endregion
 
     #pragma region Get methods
@@ -251,6 +257,11 @@ namespace DiKErnel::KernelWrapper::Json::Input
     const double* JsonInputNaturalStoneRevetmentLocationData::GetNormativeWidthOfWaveImpactBwi() const
     {
         return _normativeWidthOfWaveImpactBwi.get();
+    }
+
+    const double* JsonInputNaturalStoneRevetmentLocationData::GetWaveAngleImpactBetamax() const
+    {
+        return _waveAngleImpactBetamax.get();
     }
 
     #pragma endregion

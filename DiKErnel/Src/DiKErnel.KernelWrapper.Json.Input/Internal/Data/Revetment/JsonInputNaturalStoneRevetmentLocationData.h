@@ -99,6 +99,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
             void SetNormativeWidthOfWaveImpactBwi(
                 std::unique_ptr<double> normativeWidthOfWaveImpactBwi);
 
+            void SetWaveAngleImpactBetamax(
+                std::unique_ptr<double> waveAngleImpactBetamax);
+
             #pragma endregion
 
             #pragma region Get methods
@@ -143,6 +146,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
             const double* GetNormativeWidthOfWaveImpactBwi() const;
 
+            const double* GetWaveAngleImpactBetamax() const;
+
             #pragma endregion
 
         private:
@@ -166,5 +171,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
             std::unique_ptr<double> _distanceMaximumWaveElevationBsmax = nullptr;
             std::unique_ptr<double> _normativeWidthOfWaveImpactAwi = nullptr;
             std::unique_ptr<double> _normativeWidthOfWaveImpactBwi = nullptr;
+            std::unique_ptr<double> _waveAngleImpactBetamax = nullptr;
     };
 }
