@@ -84,9 +84,9 @@ namespace DiKErnel::KernelWrapper::Json
     const string InputJsonDefinitions::DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE_ASMAX = "AfstandMaximaleStijghoogteNatuursteenAsmax";
     const string InputJsonDefinitions::DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE_BSMAX = "AfstandMaximaleStijghoogteNatuursteenBsmax";
 
-    const string InputJsonDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT_ON_NATURAL_STONE = "MaatgevendeBreedteGolfklap";
-    const string InputJsonDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT_ON_NATURAL_STONE_AWI = "MaatgevendeBreedteGolfklapAwi";
-    const string InputJsonDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT_ON_NATURAL_STONE_BWI = "MaatgevendeBreedteGolfklapBwi";
+    const string InputJsonDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT_ON_NATURAL_STONE = "MaatgevendeBreedteGolfklapNatuursteen";
+    const string InputJsonDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT_ON_NATURAL_STONE_AWI = "MaatgevendeBreedteGolfklapNatuursteenAwi";
+    const string InputJsonDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT_ON_NATURAL_STONE_BWI = "MaatgevendeBreedteGolfklapNatuursteenBwi";
 
     const string InputJsonDefinitions::WAVE_ANGLE_IMPACT_ON_NATURAL_STONE = "ImpactGolfhoekBekledingNatuursteen";
     const string InputJsonDefinitions::WAVE_ANGLE_IMPACT_ON_NATURAL_STONE_BETA_MAX = "ImpactGolfhoekBekledingNatuursteenBetamax";

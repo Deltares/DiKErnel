@@ -88,9 +88,9 @@
 						"AfstandMaximaleStijghoogteNatuursteenAsmax": 0.42,
 						"AfstandMaximaleStijghoogteNatuursteenBsmax": 0.9
 					},
-					"MaatgevendeBreedteGolfklap": {
-						"MaatgevendeBreedteGolfklapAwi": 0.96,
-						"MaatgevendeBreedteGolfklapBwi": 0.11
+					"MaatgevendeBreedteGolfklapNatuursteen": {
+						"MaatgevendeBreedteGolfklapNatuursteenAwi": 0.96,
+						"MaatgevendeBreedteGolfklapNatuursteenBwi": 0.11
 					},
 					"ImpactGolfhoekBekledingNatuursteen": {
 						"ImpactGolfhoekBekledingNatuursteenBetamax": 78
