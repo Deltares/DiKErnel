@@ -67,55 +67,73 @@ namespace DiKErnel::Integration
             #pragma region Set methods
 
             /*!
-             * \brief Sets the plunging coefficient A.
+             * \brief Sets the hydraulic load Ap.
+             * \param hydraulicLoadAp
+             *        The hydraulic load Ap.
              */
             void SetHydraulicLoadAp(
                 std::unique_ptr<double> hydraulicLoadAp);
 
             /*!
-             * \brief Sets the plunging coefficient B.
+             * \brief Sets the hydraulic load Bp.
+             * \param hydraulicLoadBp
+             *        The hydraulic load Bp.
              */
             void SetHydraulicLoadBp(
                 std::unique_ptr<double> hydraulicLoadBp);
 
             /*!
-             * \brief Sets the plunging coefficient C.
+             * \brief Sets the hydraulic load Cp.
+             * \param hydraulicLoadCp
+             *        The hydraulic load Cp.
              */
             void SetHydraulicLoadCp(
                 std::unique_ptr<double> hydraulicLoadCp);
 
             /*!
-             * \brief Sets the plunging coefficient N.
+             * \brief Sets the hydraulic load Np.
+             * \param hydraulicLoadNp
+             *        The hydraulic load Np.
              */
             void SetHydraulicLoadNp(
                 std::unique_ptr<double> hydraulicLoadNp);
 
             /*!
-             * \brief Sets the surging coefficient A.
+             * \brief Sets the hydraulic load As.
+             * \param hydraulicLoadAs
+             *        The hydraulic load As.
              */
             void SetHydraulicLoadAs(
                 std::unique_ptr<double> hydraulicLoadAs);
 
             /*!
-             * \brief Sets the surging coefficient B.
+             * \brief Sets the hydraulic load Bs.
+             * \param hydraulicLoadBs
+             *        The hydraulic load Bs.
              */
             void SetHydraulicLoadBs(
                 std::unique_ptr<double> hydraulicLoadBs);
 
             /*!
-             * \brief Sets the surging coefficient C.
+             * \brief Sets the hydraulic load Cs.
+             * \param hydraulicLoadCs
+             *        The hydraulic load Cs.
              */
             void SetHydraulicLoadCs(
                 std::unique_ptr<double> hydraulicLoadCs);
 
             /*!
-             * \brief Sets the surging coefficient N.
+             * \brief Sets the hydraulic load Ns.
+             * \param hydraulicLoadNs
+             *        The hydraulic load Ns.
              */
             void SetHydraulicLoadNs(
                 std::unique_ptr<double> hydraulicLoadNs);
 
             /*!
-             * \brief Sets the similarity parameter threshold.
+             * \brief Sets the hydraulic load Xib.
+             * \param hydraulicLoadXib
+             *        The hydraulic load Xib.
              */
             void SetHydraulicLoadXib(
                 std::unique_ptr<double> hydraulicLoadXib);
@@ -229,56 +247,56 @@ namespace DiKErnel::Integration
             double GetRelativeDensity() const;
 
             /*!
-             * \brief Gets the plunging coefficient A.
-             * \return The plunging coefficient A.
+             * \brief Gets the hydraulic load Ap.
+             * \return The hydraulic load Ap.
              */
             const double* GetHydraulicLoadAp() const;
 
             /*!
-             * \brief Gets the plunging coefficient B.
-             * \return The plunging coefficient B.
+             * \brief Gets the hydraulic load Bp.
+             * \return The hydraulic load Bp.
              */
             const double* GetHydraulicLoadBp() const;
 
             /*!
-             * \brief Gets the plunging coefficient C.
-             * \return The plunging coefficient C.
+             * \brief Gets the hydraulic load Cp.
+             * \return The hydraulic load Cp.
              */
             const double* GetHydraulicLoadCp() const;
 
             /*!
-             * \brief Gets the plunging coefficient N.
-             * \return The plunging coefficient N.
+             * \brief Gets the hydraulic load Np.
+             * \return The hydraulic load Np.
              */
             const double* GetHydraulicLoadNp() const;
 
             /*!
-             * \brief Gets the surging coefficient A.
-             * \return The surging coefficient A.
+             * \brief Gets the hydraulic load As.
+             * \return The hydraulic load As.
              */
             const double* GetHydraulicLoadAs() const;
 
             /*!
-             * \brief Gets the surging coefficient B.
-             * \return The surging coefficient B.
+             * \brief Gets the hydraulic load Bs.
+             * \return The hydraulic load Bs.
              */
             const double* GetHydraulicLoadBs() const;
 
             /*!
-             * \brief Gets the surging coefficient C.
-             * \return The surging coefficient C.
+             * \brief Gets the hydraulic load Cs.
+             * \return The hydraulic load Cs.
              */
             const double* GetHydraulicLoadCs() const;
 
             /*!
-             * \brief Gets the surging coefficient N.
-             * \return The surging coefficient N.
+             * \brief Gets the hydraulic load Ns.
+             * \return The hydraulic load Ns.
              */
             const double* GetHydraulicLoadNs() const;
 
             /*!
-             * \brief Gets the similarity parameter threshold.
-             * \return The similarity parameter threshold.
+             * \brief Gets the hydraulic load Xib.
+             * \return The hydraulic load Xib.
              */
             const double* GetHydraulicLoadXib() const;
 
