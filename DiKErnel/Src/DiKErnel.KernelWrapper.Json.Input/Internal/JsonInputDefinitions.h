@@ -75,13 +75,13 @@ namespace DiKErnel::KernelWrapper::Json::Input
             inline static const std::string LOWER_LIMIT_LOADING_OF_NATURAL_STONE_BLL = "OndergrensBelastingNatuursteenBll";
             inline static const std::string LOWER_LIMIT_LOADING_OF_NATURAL_STONE_CLL = "OndergrensBelastingNatuursteenCll";
 
-            inline static const std::string DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE = "AfstandMaximaleStijghoogte";
-            inline static const std::string DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE_ASMAX = "AfstandMaximaleStijghoogteAsmax";
-            inline static const std::string DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE_BSMAX = "AfstandMaximaleStijghoogteBsmax";
+            inline static const std::string DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE = "AfstandMaximaleStijghoogteNatuursteen";
+            inline static const std::string DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE_ASMAX = "AfstandMaximaleStijghoogteNatuursteenAsmax";
+            inline static const std::string DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE_BSMAX = "AfstandMaximaleStijghoogteNatuursteenBsmax";
 
-            inline static const std::string NORMATIVE_WIDTH_OF_WAVE_IMPACT_ON_NATURAL_STONE = "MaatgevendeBreedteGolfklap";
-            inline static const std::string NORMATIVE_WIDTH_OF_WAVE_IMPACT_ON_NATURAL_STONE_AWI = "MaatgevendeBreedteGolfklapAwi";
-            inline static const std::string NORMATIVE_WIDTH_OF_WAVE_IMPACT_ON_NATURAL_STONE_BWI = "MaatgevendeBreedteGolfklapBwi";
+            inline static const std::string NORMATIVE_WIDTH_OF_WAVE_IMPACT_ON_NATURAL_STONE = "MaatgevendeBreedteGolfklapNatuursteen";
+            inline static const std::string NORMATIVE_WIDTH_OF_WAVE_IMPACT_ON_NATURAL_STONE_AWI = "MaatgevendeBreedteGolfklapNatuursteenAwi";
+            inline static const std::string NORMATIVE_WIDTH_OF_WAVE_IMPACT_ON_NATURAL_STONE_BWI = "MaatgevendeBreedteGolfklapNatuursteenBwi";
 
             inline static const std::string WAVE_ANGLE_IMPACT_ON_NATURAL_STONE = "ImpactGolfhoekBekledingNatuursteen";
             inline static const std::string WAVE_ANGLE_IMPACT_ON_NATURAL_STONE_BETA_MAX = "ImpactGolfhoekBekledingNatuursteenBetamax";
