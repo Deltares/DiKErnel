@@ -32,12 +32,12 @@ namespace DiKErnel::DomainLibrary
              * \brief The default value of the maximum wave angle.
              *        Unit = [°]
              */
-            static const double WAVE_ANGLE_MAXIMUM;
+            inline static const double WAVE_ANGLE_MAXIMUM = 78;
 
             /*!
              * \brief The default value of the wave angle.
              *        Unit = [°]
              */
-            static const double WAVE_ANGLE;
+            inline static const double WAVE_ANGLE = 0;
     };
 }

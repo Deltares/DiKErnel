@@ -20,9 +20,4 @@
 
 #include "HydraulicLoadsDefaults.h"
 
-namespace DiKErnel::DomainLibrary
-{
-    const double HydraulicLoadsDefaults::WAVE_ANGLE_MAXIMUM = 78;
-
-    const double HydraulicLoadsDefaults::WAVE_ANGLE = 0;
-}
+namespace DiKErnel::DomainLibrary {}
