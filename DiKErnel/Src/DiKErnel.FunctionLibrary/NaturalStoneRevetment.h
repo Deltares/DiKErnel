@@ -80,6 +80,26 @@ namespace DiKErnel::FunctionLibrary
                 double hydraulicLoadOnNaturalStoneCs,
                 double hydraulicLoadOnNaturalStoneNs);
 
+            static double CalculateUpperLimitLoadingOfNaturalStone(
+                double waterLevel,
+                double tanA,
+                double waveHeightHm0,
+                double wavePeriodTm10,
+                double upperLimitLoadingOfNaturalStoneAul,
+                double upperLimitLoadingOfNaturalStoneBul,
+                double upperLimitLoadingOfNaturalStoneCul);
+
+            static double CalculateLowerLimitLoadingOfNaturalStone(
+                double waterLevel,
+                double tanA,
+                double waveHeightHm0,
+                double wavePeriodTm10,
+                double lowerLimitLoadingOfNaturalStoneAll,
+                double lowerLimitLoadingOfNaturalStoneBll,
+                double lowerLimitLoadingOfNaturalStoneCll);
+
+            static double CalculateDepthMaximumWaveLoadNaturalStone();
+
             static double CalculateResistanceOfNaturalStone(
                 double relativeDensity,
                 double thicknessTopLayer);

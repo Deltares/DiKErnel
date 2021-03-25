@@ -47,4 +47,9 @@ namespace DiKErnel::FunctionLibrary
     {
         return tanA / sqrt(2 * Constants::PI * waveHeightHm0 / (Constants::GRAVITATIONAL_ACCELERATION * pow(wavePeriodTm10, 2.0)));
     }
+
+    double Revetment::CalculateSlopeAngle()
+    {
+        return 1.0;
+    }
 }

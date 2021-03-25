@@ -38,5 +38,7 @@ namespace DiKErnel::FunctionLibrary
                 double tanA,
                 double waveHeightHm0,
                 double wavePeriodTm10);
+
+            static double CalculateSlopeAngle();
     };
 }

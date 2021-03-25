@@ -20,12 +20,15 @@
 
 #include "NaturalStoneRevetment.h"
 
+#include <algorithm>
 #include <cmath>
 
 #include "Revetment.h"
 
 namespace DiKErnel::FunctionLibrary
 {
+    using namespace std;
+
     double NaturalStoneRevetment::CalculateDamageOfNaturalStone(
         const double startTime,
         const double endTime,
@@ -160,6 +163,74 @@ namespace DiKErnel::FunctionLibrary
         return waveHeightHm0 / (hydraulicLoadOnNaturalStoneA * pow(surfSimilarityParameter, hydraulicLoadOnNaturalStoneN)
             + hydraulicLoadOnNaturalStoneB * surfSimilarityParameter
             + hydraulicLoadOnNaturalStoneC);
+    }
+
+    double NaturalStoneRevetment::CalculateUpperLimitLoadingOfNaturalStone(
+        const double waterLevel,
+        const double tanA,
+        const double waveHeightHm0,
+        const double wavePeriodTm10,
+        const double upperLimitLoadingOfNaturalStoneAul,
+        const double upperLimitLoadingOfNaturalStoneBul,
+        const double upperLimitLoadingOfNaturalStoneCul)
+    {
+        const auto depthMaximumWaveLoadNaturalStone = CalculateDepthMaximumWaveLoadNaturalStone();
+        const auto surfSimilarityParameter = Revetment::CalculateSurfSimilarityParameter(
+            tanA,
+            waveHeightHm0,
+            wavePeriodTm10);
+
+        return waterLevel
+                - 2 * depthMaximumWaveLoadNaturalStone
+                + max(depthMaximumWaveLoadNaturalStone + upperLimitLoadingOfNaturalStoneAul,
+                      upperLimitLoadingOfNaturalStoneBul * waveHeightHm0 * min(surfSimilarityParameter,
+                                                                               upperLimitLoadingOfNaturalStoneCul));
+    }
+
+    double NaturalStoneRevetment::CalculateLowerLimitLoadingOfNaturalStone(
+        const double waterLevel,
+        const double tanA,
+        const double waveHeightHm0,
+        const double wavePeriodTm10,
+        const double lowerLimitLoadingOfNaturalStoneAll,
+        const double lowerLimitLoadingOfNaturalStoneBll,
+        const double lowerLimitLoadingOfNaturalStoneCll)
+    {
+        const auto depthMaximumWaveLoadNaturalStone = CalculateDepthMaximumWaveLoadNaturalStone();
+        const auto surfSimilarityParameter = Revetment::CalculateSurfSimilarityParameter(
+            tanA,
+            waveHeightHm0,
+            wavePeriodTm10);
+
+        return waterLevel
+                - 2 * depthMaximumWaveLoadNaturalStone
+                + min(depthMaximumWaveLoadNaturalStone - lowerLimitLoadingOfNaturalStoneAll,
+                      lowerLimitLoadingOfNaturalStoneBll * waveHeightHm0 * min(surfSimilarityParameter,
+                                                                               lowerLimitLoadingOfNaturalStoneCll));
+    }
+
+    double NaturalStoneRevetment::CalculateDepthMaximumWaveLoadNaturalStone()
+    {
+        const auto distanceMaximumWaveElevationNaturalStone = CalculateDistanceMaximumWaveElevationNaturalStone();
+        const auto normativeWidthOfWaveImpact = CalculateNormativeWidthOfWaveImpact();
+        const auto slopeAngle = Revetment::CalculateSlopeAngle();
+
+        return distanceMaximumWaveElevationNaturalStone - 0.5 * normativeWidthOfWaveImpact * cos(slopeAngle) * tan(slopeAngle);
+    }
+
+    double NaturalStoneRevetment::CalculateDistanceMaximumWaveElevationNaturalStone()
+    {
+        return 1.0;
+    }
+
+    double NaturalStoneRevetment::CalculateImpactShallowWaterNaturalStone()
+    {
+        return 1.0;
+    }
+
+    double NaturalStoneRevetment::CalculateNormativeWidthOfWaveImpact()
+    {
+        return 1.0;
     }
 
     double NaturalStoneRevetment::CalculateResistanceOfNaturalStone(
