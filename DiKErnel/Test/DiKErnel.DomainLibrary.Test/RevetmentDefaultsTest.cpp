@@ -24,9 +24,15 @@
 
 namespace DiKErnel::DomainLibrary::Test
 {
+    TEST(RevetmentDefaultsTest, InitialDamage_ExpectedValue)
+    {
+        // Call & Assert
+        ASSERT_DOUBLE_EQ(0, RevetmentDefaults::INITIAL_DAMAGE);
+    }
+
     TEST(RevetmentDefaultsTest, FailureNumber_ExpectedValue)
     {
         // Call & Assert
-        ASSERT_DOUBLE_EQ(1.0, RevetmentDefaults::FAILURE_NUMBER);
+        ASSERT_DOUBLE_EQ(1, RevetmentDefaults::FAILURE_NUMBER);
     }
 }

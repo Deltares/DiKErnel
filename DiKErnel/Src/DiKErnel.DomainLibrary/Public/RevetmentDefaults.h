@@ -29,9 +29,15 @@ namespace DiKErnel::DomainLibrary
     {
         public:
             /*!
+             * \brief The initial damage.
+             *        Unit = [-]
+             */
+            inline static const double INITIAL_DAMAGE = 0;
+
+            /*!
              * \brief The failure number.
              *        Unit = [-]
              */
-            inline static const double FAILURE_NUMBER = 1.0;
+            inline static const double FAILURE_NUMBER = 1;
     };
 }
