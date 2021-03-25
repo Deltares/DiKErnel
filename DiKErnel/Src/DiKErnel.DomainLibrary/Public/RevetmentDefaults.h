@@ -29,9 +29,9 @@ namespace DiKErnel::DomainLibrary
     {
         public:
             /*!
-             * \brief The critical damage value.
+             * \brief The failure number.
              *        Unit = [-]
              */
-            inline static const double CRITICAL_DAMAGE = 1.0;
+            inline static const double FAILURE_NUMBER = 1.0;
     };
 }

@@ -24,9 +24,9 @@
 
 namespace DiKErnel::DomainLibrary::Test::DefaultsTest
 {
-    TEST(RevetmentDefaultsTest, CriticalDamage_ExpectedValue)
+    TEST(RevetmentDefaultsTest, FailureNumber_ExpectedValue)
     {
         // Call & Assert
-        ASSERT_DOUBLE_EQ(1.0, RevetmentDefaults::CRITICAL_DAMAGE);
+        ASSERT_DOUBLE_EQ(1.0, RevetmentDefaults::FAILURE_NUMBER);
     }
 }
