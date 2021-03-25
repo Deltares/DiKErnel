@@ -98,7 +98,8 @@ namespace DiKErnel::Integration
                          NordicStoneRevetmentDefaults::NORMATIVE_WIDTH_OF_WAVE_IMPACT_ON_NATURAL_STONE_BWI));
 
             waveAngleImpact = make_unique<NaturalStoneRevetmentWaveAngleImpact>(
-                GetValue(nullptr, NordicStoneRevetmentDefaults::WAVE_ANGLE_IMPACT_ON_NATURAL_STONE_BETA_MAX));
+                GetValue(constructionProperties.GetWaveAngleImpactBetamax(),
+                         NordicStoneRevetmentDefaults::WAVE_ANGLE_IMPACT_ON_NATURAL_STONE_BETA_MAX));
         }
 
         _locationDependentInputItems.push_back(

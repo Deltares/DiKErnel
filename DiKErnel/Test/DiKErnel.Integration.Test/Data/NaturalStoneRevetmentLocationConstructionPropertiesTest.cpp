@@ -66,6 +66,7 @@ namespace DiKErnel::Integration::Test
         ASSERT_EQ(nullptr, constructionProperties.GetDistanceMaximumWaveElevationBsmax());
         ASSERT_EQ(nullptr, constructionProperties.GetNormativeWidthOfWaveImpactAwi());
         ASSERT_EQ(nullptr, constructionProperties.GetNormativeWidthOfWaveImpactBwi());
+        ASSERT_EQ(nullptr, constructionProperties.GetWaveAngleImpactBetamax());
     }
 
     TEST(NaturalStoneRevetmentLocationConstructionPropertiesTest, GivenConstructionProperties_WhenAllInputSet_ThenExpectedValues)
@@ -96,6 +97,7 @@ namespace DiKErnel::Integration::Test
         const auto distanceMaximumWaveElevationBsmax = 2.1;
         const auto normativeWidthOfWaveImpactAwi = 2.2;
         const auto normativeWidthOfWaveImpactBwi = 2.3;
+        const auto waveAngleImpactBetamax = 2.4;
 
         NaturalStoneRevetmentLocationConstructionProperties constructionProperties(topLayerType, name, initialDamage, slopeAngle, thicknessTopLayer, relativeDensity);
 
@@ -119,6 +121,7 @@ namespace DiKErnel::Integration::Test
         constructionProperties.SetDistanceMaximumWaveElevationBsmax(make_unique<double>(distanceMaximumWaveElevationBsmax));
         constructionProperties.SetNormativeWidthOfWaveImpactAwi(make_unique<double>(normativeWidthOfWaveImpactAwi));
         constructionProperties.SetNormativeWidthOfWaveImpactBwi(make_unique<double>(normativeWidthOfWaveImpactBwi));
+        constructionProperties.SetWaveAngleImpactBetamax(make_unique<double>(waveAngleImpactBetamax));
 
         // Then
         ASSERT_EQ(topLayerType, constructionProperties.GetTopLayerType());
@@ -146,5 +149,6 @@ namespace DiKErnel::Integration::Test
         ASSERT_DOUBLE_EQ(distanceMaximumWaveElevationBsmax, *constructionProperties.GetDistanceMaximumWaveElevationBsmax());
         ASSERT_DOUBLE_EQ(normativeWidthOfWaveImpactAwi, *constructionProperties.GetNormativeWidthOfWaveImpactAwi());
         ASSERT_DOUBLE_EQ(normativeWidthOfWaveImpactBwi, *constructionProperties.GetNormativeWidthOfWaveImpactBwi());
+        ASSERT_DOUBLE_EQ(waveAngleImpactBetamax, *constructionProperties.GetWaveAngleImpactBetamax());
     }
 }

@@ -180,6 +180,14 @@ namespace DiKErnel::Integration
             void SetNormativeWidthOfWaveImpactBwi(
                 std::unique_ptr<double> normativeWidthOfWaveImpactBwi);
 
+            /*!
+             * \brief Sets the wave angle impact beta max
+             * \param waveAngleImpactBetamax
+             *        The wave angle impact beta max.
+             */
+            void SetWaveAngleImpactBetamax(
+                std::unique_ptr<double> waveAngleImpactBetamax);
+
             #pragma endregion
 
             #pragma region Get methods
@@ -334,6 +342,12 @@ namespace DiKErnel::Integration
              */
             const double* GetNormativeWidthOfWaveImpactBwi() const;
 
+            /*!
+             * \brief Gets the wave angle impact beta max
+             * \return The wave angle impact beta max.
+             */
+            const double* GetWaveAngleImpactBetamax() const;
+
             #pragma endregion
 
         private:
@@ -362,5 +376,6 @@ namespace DiKErnel::Integration
             std::unique_ptr<double> _distanceMaximumWaveElevationBsmax = nullptr;
             std::unique_ptr<double> _normativeWidthOfWaveImpactAwi = nullptr;
             std::unique_ptr<double> _normativeWidthOfWaveImpactBwi = nullptr;
+            std::unique_ptr<double> _waveAngleImpactBetamax = nullptr;
     };
 }

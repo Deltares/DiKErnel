@@ -154,6 +154,12 @@ namespace DiKErnel::Integration
         _normativeWidthOfWaveImpactBwi = move(normativeWidthOfWaveImpactBwi);
     }
 
+    void NaturalStoneRevetmentLocationConstructionProperties::SetWaveAngleImpactBetamax(
+        std::unique_ptr<double> waveAngleImpactBetamax)
+    {
+        _waveAngleImpactBetamax = move(waveAngleImpactBetamax);
+    }
+
     #pragma endregion
 
     #pragma region Get methods
@@ -281,6 +287,11 @@ namespace DiKErnel::Integration
     const double* NaturalStoneRevetmentLocationConstructionProperties::GetNormativeWidthOfWaveImpactBwi() const
     {
         return _normativeWidthOfWaveImpactBwi.get();
+    }
+
+    const double* NaturalStoneRevetmentLocationConstructionProperties::GetWaveAngleImpactBetamax() const
+    {
+        return _waveAngleImpactBetamax.get();
     }
 
     #pragma endregion

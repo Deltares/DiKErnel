@@ -106,6 +106,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
                     forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData->GetNormativeWidthOfWaveImpactAwi())));
                 constructionProperties.SetNormativeWidthOfWaveImpactBwi(
                     forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData->GetNormativeWidthOfWaveImpactBwi())));
+                constructionProperties.SetWaveAngleImpactBetamax(
+                    forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData->GetWaveAngleImpactBetamax())));
 
                 builder.AddNaturalStoneLocation(constructionProperties);
             }
