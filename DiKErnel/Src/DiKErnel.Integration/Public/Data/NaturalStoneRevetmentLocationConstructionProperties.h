@@ -69,56 +69,56 @@ namespace DiKErnel::Integration
             /*!
              * \brief Sets the plunging coefficient A.
              */
-            void SetPlungingCoefficientA(
-                std::unique_ptr<double> plungingCoefficientA);
+            void SetHydraulicLoadAp(
+                std::unique_ptr<double> hydraulicLoadAp);
 
             /*!
              * \brief Sets the plunging coefficient B.
              */
-            void SetPlungingCoefficientB(
-                std::unique_ptr<double> plungingCoefficientB);
+            void SetHydraulicLoadBp(
+                std::unique_ptr<double> hydraulicLoadBp);
 
             /*!
              * \brief Sets the plunging coefficient C.
              */
-            void SetPlungingCoefficientC(
-                std::unique_ptr<double> plungingCoefficientC);
+            void SetHydraulicLoadCp(
+                std::unique_ptr<double> hydraulicLoadCp);
 
             /*!
              * \brief Sets the plunging coefficient N.
              */
-            void SetPlungingCoefficientN(
-                std::unique_ptr<double> plungingCoefficientN);
+            void SetHydraulicLoadNp(
+                std::unique_ptr<double> hydraulicLoadNp);
 
             /*!
              * \brief Sets the surging coefficient A.
              */
-            void SetSurgingCoefficientA(
-                std::unique_ptr<double> surgingCoefficientA);
+            void SetHydraulicLoadAs(
+                std::unique_ptr<double> hydraulicLoadAs);
 
             /*!
              * \brief Sets the surging coefficient B.
              */
-            void SetSurgingCoefficientB(
-                std::unique_ptr<double> surgingCoefficientB);
+            void SetHydraulicLoadBs(
+                std::unique_ptr<double> hydraulicLoadBs);
 
             /*!
              * \brief Sets the surging coefficient C.
              */
-            void SetSurgingCoefficientC(
-                std::unique_ptr<double> surgingCoefficientC);
+            void SetHydraulicLoadCs(
+                std::unique_ptr<double> hydraulicLoadCs);
 
             /*!
              * \brief Sets the surging coefficient N.
              */
-            void SetSurgingCoefficientN(
-                std::unique_ptr<double> surgingCoefficientN);
+            void SetHydraulicLoadNs(
+                std::unique_ptr<double> hydraulicLoadNs);
 
             /*!
              * \brief Sets the similarity parameter threshold.
              */
-            void SetSimilarityParameterThreshold(
-                std::unique_ptr<double> similarityParameterThreshold);
+            void SetHydraulicLoadXib(
+                std::unique_ptr<double> hydraulicLoadXib);
 
             /*!
              * \brief Sets the upper limit loading Aul.
@@ -232,55 +232,55 @@ namespace DiKErnel::Integration
              * \brief Gets the plunging coefficient A.
              * \return The plunging coefficient A.
              */
-            const double* GetPlungingCoefficientA() const;
+            const double* GetHydraulicLoadAp() const;
 
             /*!
              * \brief Gets the plunging coefficient B.
              * \return The plunging coefficient B.
              */
-            const double* GetPlungingCoefficientB() const;
+            const double* GetHydraulicLoadBp() const;
 
             /*!
              * \brief Gets the plunging coefficient C.
              * \return The plunging coefficient C.
              */
-            const double* GetPlungingCoefficientC() const;
+            const double* GetHydraulicLoadCp() const;
 
             /*!
              * \brief Gets the plunging coefficient N.
              * \return The plunging coefficient N.
              */
-            const double* GetPlungingCoefficientN() const;
+            const double* GetHydraulicLoadNp() const;
 
             /*!
              * \brief Gets the surging coefficient A.
              * \return The surging coefficient A.
              */
-            const double* GetSurgingCoefficientA() const;
+            const double* GetHydraulicLoadAs() const;
 
             /*!
              * \brief Gets the surging coefficient B.
              * \return The surging coefficient B.
              */
-            const double* GetSurgingCoefficientB() const;
+            const double* GetHydraulicLoadBs() const;
 
             /*!
              * \brief Gets the surging coefficient C.
              * \return The surging coefficient C.
              */
-            const double* GetSurgingCoefficientC() const;
+            const double* GetHydraulicLoadCs() const;
 
             /*!
              * \brief Gets the surging coefficient N.
              * \return The surging coefficient N.
              */
-            const double* GetSurgingCoefficientN() const;
+            const double* GetHydraulicLoadNs() const;
 
             /*!
              * \brief Gets the similarity parameter threshold.
              * \return The similarity parameter threshold.
              */
-            const double* GetSimilarityParameterThreshold() const;
+            const double* GetHydraulicLoadXib() const;
 
             /*!
              * \brief Gets the upper limit loading Aul.
@@ -357,15 +357,15 @@ namespace DiKErnel::Integration
             double _slopeAngle;
             double _thicknessTopLayer;
             double _relativeDensity;
-            std::unique_ptr<double> _plungingCoefficientA = nullptr;
-            std::unique_ptr<double> _plungingCoefficientB = nullptr;
-            std::unique_ptr<double> _plungingCoefficientC = nullptr;
-            std::unique_ptr<double> _plungingCoefficientN = nullptr;
-            std::unique_ptr<double> _surgingCoefficientA = nullptr;
-            std::unique_ptr<double> _surgingCoefficientB = nullptr;
-            std::unique_ptr<double> _surgingCoefficientC = nullptr;
-            std::unique_ptr<double> _surgingCoefficientN = nullptr;
-            std::unique_ptr<double> _similarityParameterThreshold = nullptr;
+            std::unique_ptr<double> _hydraulicLoadAp = nullptr;
+            std::unique_ptr<double> _hydraulicLoadBp = nullptr;
+            std::unique_ptr<double> _hydraulicLoadCp = nullptr;
+            std::unique_ptr<double> _hydraulicLoadNp = nullptr;
+            std::unique_ptr<double> _hydraulicLoadAs = nullptr;
+            std::unique_ptr<double> _hydraulicLoadBs = nullptr;
+            std::unique_ptr<double> _hydraulicLoadCs = nullptr;
+            std::unique_ptr<double> _hydraulicLoadNs = nullptr;
+            std::unique_ptr<double> _hydraulicLoadXib = nullptr;
             std::unique_ptr<double> _upperLimitLoadingAul = nullptr;
             std::unique_ptr<double> _upperLimitLoadingBul = nullptr;
             std::unique_ptr<double> _upperLimitLoadingCul = nullptr;

@@ -156,23 +156,23 @@ namespace DiKErnel::KernelWrapper::Json::Input
         {
             const auto& readHydraulicLoads = readCalculationMethod[JsonInputDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE];
 
-            locationData->SetPlungingCoefficientA(
+            locationData->SetHydraulicLoadAp(
                 forward<unique_ptr<double>>(ReadOptionalValue(readHydraulicLoads, JsonInputDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_AP)));
-            locationData->SetPlungingCoefficientB(
+            locationData->SetHydraulicLoadBp(
                 forward<unique_ptr<double>>(ReadOptionalValue(readHydraulicLoads, JsonInputDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_BP)));
-            locationData->SetPlungingCoefficientC(
+            locationData->SetHydraulicLoadCp(
                 forward<unique_ptr<double>>(ReadOptionalValue(readHydraulicLoads, JsonInputDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_CP)));
-            locationData->SetPlungingCoefficientN(
+            locationData->SetHydraulicLoadNp(
                 forward<unique_ptr<double>>(ReadOptionalValue(readHydraulicLoads, JsonInputDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_NP)));
-            locationData->SetSurgingCoefficientA(
+            locationData->SetHydraulicLoadAs(
                 forward<unique_ptr<double>>(ReadOptionalValue(readHydraulicLoads, JsonInputDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_AS)));
-            locationData->SetSurgingCoefficientB(
+            locationData->SetHydraulicLoadBs(
                 forward<unique_ptr<double>>(ReadOptionalValue(readHydraulicLoads, JsonInputDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_BS)));
-            locationData->SetSurgingCoefficientC(
+            locationData->SetHydraulicLoadCs(
                 forward<unique_ptr<double>>(ReadOptionalValue(readHydraulicLoads, JsonInputDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_CS)));
-            locationData->SetSurgingCoefficientN(
+            locationData->SetHydraulicLoadNs(
                 forward<unique_ptr<double>>(ReadOptionalValue(readHydraulicLoads, JsonInputDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_NS)));
-            locationData->SetSimilarityParameterThreshold(
+            locationData->SetHydraulicLoadXib(
                 forward<unique_ptr<double>>(ReadOptionalValue(readHydraulicLoads, JsonInputDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_XIB)));
         }
 

@@ -42,32 +42,32 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
             #pragma region Set methods
 
-            void SetPlungingCoefficientA(
-                std::unique_ptr<double> plungingCoefficientA);
+            void SetHydraulicLoadAp(
+                std::unique_ptr<double> hydraulicLoadAp);
 
-            void SetPlungingCoefficientB(
-                std::unique_ptr<double> plungingCoefficientB);
+            void SetHydraulicLoadBp(
+                std::unique_ptr<double> hydraulicLoadBp);
 
-            void SetPlungingCoefficientC(
-                std::unique_ptr<double> plungingCoefficientC);
+            void SetHydraulicLoadCp(
+                std::unique_ptr<double> hydraulicLoadCp);
 
-            void SetPlungingCoefficientN(
-                std::unique_ptr<double> plungingCoefficientN);
+            void SetHydraulicLoadNp(
+                std::unique_ptr<double> hydraulicLoadNp);
 
-            void SetSurgingCoefficientA(
-                std::unique_ptr<double> surgingCoefficientA);
+            void SetHydraulicLoadAs(
+                std::unique_ptr<double> hydraulicLoadAs);
 
-            void SetSurgingCoefficientB(
-                std::unique_ptr<double> surgingCoefficientB);
+            void SetHydraulicLoadBs(
+                std::unique_ptr<double> hydraulicLoadBs);
 
-            void SetSurgingCoefficientC(
-                std::unique_ptr<double> surgingCoefficientC);
+            void SetHydraulicLoadCs(
+                std::unique_ptr<double> hydraulicLoadCs);
 
-            void SetSurgingCoefficientN(
-                std::unique_ptr<double> surgingCoefficientN);
+            void SetHydraulicLoadNs(
+                std::unique_ptr<double> hydraulicLoadNs);
 
-            void SetSimilarityParameterThreshold(
-                std::unique_ptr<double> similarityParameterThreshold);
+            void SetHydraulicLoadXib(
+                std::unique_ptr<double> hydraulicLoadXib);
 
             void SetUpperLimitLoadingAul(
                 std::unique_ptr<double> upperLimitLoadingAul);
@@ -108,23 +108,23 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
             TopLayerType GetTopLayerType() const;
 
-            const double* GetSimilarityParameterThreshold() const;
+            const double* GetHydraulicLoadXib() const;
 
-            const double* GetPlungingCoefficientA() const;
+            const double* GetHydraulicLoadAp() const;
 
-            const double* GetPlungingCoefficientB() const;
+            const double* GetHydraulicLoadBp() const;
 
-            const double* GetPlungingCoefficientC() const;
+            const double* GetHydraulicLoadCp() const;
 
-            const double* GetPlungingCoefficientN() const;
+            const double* GetHydraulicLoadNp() const;
 
-            const double* GetSurgingCoefficientA() const;
+            const double* GetHydraulicLoadAs() const;
 
-            const double* GetSurgingCoefficientB() const;
+            const double* GetHydraulicLoadBs() const;
 
-            const double* GetSurgingCoefficientC() const;
+            const double* GetHydraulicLoadCs() const;
 
-            const double* GetSurgingCoefficientN() const;
+            const double* GetHydraulicLoadNs() const;
 
             const double* GetUpperLimitLoadingAul() const;
 
@@ -152,15 +152,15 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
         private:
             TopLayerType _topLayerType;
-            std::unique_ptr<double> _similarityParameterThreshold = nullptr;
-            std::unique_ptr<double> _plungingCoefficientA = nullptr;
-            std::unique_ptr<double> _plungingCoefficientB = nullptr;
-            std::unique_ptr<double> _plungingCoefficientC = nullptr;
-            std::unique_ptr<double> _plungingCoefficientN = nullptr;
-            std::unique_ptr<double> _surgingCoefficientA = nullptr;
-            std::unique_ptr<double> _surgingCoefficientB = nullptr;
-            std::unique_ptr<double> _surgingCoefficientC = nullptr;
-            std::unique_ptr<double> _surgingCoefficientN = nullptr;
+            std::unique_ptr<double> _hydraulicLoadXib = nullptr;
+            std::unique_ptr<double> _hydraulicLoadAp = nullptr;
+            std::unique_ptr<double> _hydraulicLoadBp = nullptr;
+            std::unique_ptr<double> _hydraulicLoadCp = nullptr;
+            std::unique_ptr<double> _hydraulicLoadNp = nullptr;
+            std::unique_ptr<double> _hydraulicLoadAs = nullptr;
+            std::unique_ptr<double> _hydraulicLoadBs = nullptr;
+            std::unique_ptr<double> _hydraulicLoadCs = nullptr;
+            std::unique_ptr<double> _hydraulicLoadNs = nullptr;
             std::unique_ptr<double> _upperLimitLoadingAul = nullptr;
             std::unique_ptr<double> _upperLimitLoadingBul = nullptr;
             std::unique_ptr<double> _upperLimitLoadingCul = nullptr;

@@ -35,58 +35,58 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
     #pragma region Set methods
 
-    void JsonInputNaturalStoneRevetmentLocationData::SetPlungingCoefficientA(
-        unique_ptr<double> plungingCoefficientA)
+    void JsonInputNaturalStoneRevetmentLocationData::SetHydraulicLoadAp(
+        unique_ptr<double> hydraulicLoadAp)
     {
-        _plungingCoefficientA = move(plungingCoefficientA);
+        _hydraulicLoadAp = move(hydraulicLoadAp);
     }
 
-    void JsonInputNaturalStoneRevetmentLocationData::SetPlungingCoefficientB(
-        unique_ptr<double> plungingCoefficientB)
+    void JsonInputNaturalStoneRevetmentLocationData::SetHydraulicLoadBp(
+        unique_ptr<double> hydraulicLoadBp)
     {
-        _plungingCoefficientB = move(plungingCoefficientB);
+        _hydraulicLoadBp = move(hydraulicLoadBp);
     }
 
-    void JsonInputNaturalStoneRevetmentLocationData::SetPlungingCoefficientC(
-        unique_ptr<double> plungingCoefficientC)
+    void JsonInputNaturalStoneRevetmentLocationData::SetHydraulicLoadCp(
+        unique_ptr<double> hydraulicLoadCp)
     {
-        _plungingCoefficientC = move(plungingCoefficientC);
+        _hydraulicLoadCp = move(hydraulicLoadCp);
     }
 
-    void JsonInputNaturalStoneRevetmentLocationData::SetPlungingCoefficientN(
-        unique_ptr<double> plungingCoefficientN)
+    void JsonInputNaturalStoneRevetmentLocationData::SetHydraulicLoadNp(
+        unique_ptr<double> hydraulicLoadNp)
     {
-        _plungingCoefficientN = move(plungingCoefficientN);
+        _hydraulicLoadNp = move(hydraulicLoadNp);
     }
 
-    void JsonInputNaturalStoneRevetmentLocationData::SetSurgingCoefficientA(
-        unique_ptr<double> surgingCoefficientA)
+    void JsonInputNaturalStoneRevetmentLocationData::SetHydraulicLoadAs(
+        unique_ptr<double> hydraulicLoadAs)
     {
-        _surgingCoefficientA = move(surgingCoefficientA);
+        _hydraulicLoadAs = move(hydraulicLoadAs);
     }
 
-    void JsonInputNaturalStoneRevetmentLocationData::SetSurgingCoefficientB(
-        unique_ptr<double> surgingCoefficientB)
+    void JsonInputNaturalStoneRevetmentLocationData::SetHydraulicLoadBs(
+        unique_ptr<double> hydraulicLoadBs)
     {
-        _surgingCoefficientB = move(surgingCoefficientB);
+        _hydraulicLoadBs = move(hydraulicLoadBs);
     }
 
-    void JsonInputNaturalStoneRevetmentLocationData::SetSurgingCoefficientC(
-        unique_ptr<double> surgingCoefficientC)
+    void JsonInputNaturalStoneRevetmentLocationData::SetHydraulicLoadCs(
+        unique_ptr<double> hydraulicLoadCs)
     {
-        _surgingCoefficientC = move(surgingCoefficientC);
+        _hydraulicLoadCs = move(hydraulicLoadCs);
     }
 
-    void JsonInputNaturalStoneRevetmentLocationData::SetSurgingCoefficientN(
-        unique_ptr<double> surgingCoefficientN)
+    void JsonInputNaturalStoneRevetmentLocationData::SetHydraulicLoadNs(
+        unique_ptr<double> hydraulicLoadNs)
     {
-        _surgingCoefficientN = move(surgingCoefficientN);
+        _hydraulicLoadNs = move(hydraulicLoadNs);
     }
 
-    void JsonInputNaturalStoneRevetmentLocationData::SetSimilarityParameterThreshold(
-        unique_ptr<double> similarityParameterThreshold)
+    void JsonInputNaturalStoneRevetmentLocationData::SetHydraulicLoadXib(
+        unique_ptr<double> hydraulicLoadXib)
     {
-        _similarityParameterThreshold = move(similarityParameterThreshold);
+        _hydraulicLoadXib = move(hydraulicLoadXib);
     }
 
     void JsonInputNaturalStoneRevetmentLocationData::SetUpperLimitLoadingAul(
@@ -164,49 +164,49 @@ namespace DiKErnel::KernelWrapper::Json::Input
         return _topLayerType;
     }
 
-    const double* JsonInputNaturalStoneRevetmentLocationData::GetSimilarityParameterThreshold() const
+    const double* JsonInputNaturalStoneRevetmentLocationData::GetHydraulicLoadXib() const
     {
-        return _similarityParameterThreshold.get();
+        return _hydraulicLoadXib.get();
     }
 
-    const double* JsonInputNaturalStoneRevetmentLocationData::GetPlungingCoefficientA() const
+    const double* JsonInputNaturalStoneRevetmentLocationData::GetHydraulicLoadAp() const
     {
-        return _plungingCoefficientA.get();
+        return _hydraulicLoadAp.get();
     }
 
-    const double* JsonInputNaturalStoneRevetmentLocationData::GetPlungingCoefficientB() const
+    const double* JsonInputNaturalStoneRevetmentLocationData::GetHydraulicLoadBp() const
     {
-        return _plungingCoefficientB.get();
+        return _hydraulicLoadBp.get();
     }
 
-    const double* JsonInputNaturalStoneRevetmentLocationData::GetPlungingCoefficientC() const
+    const double* JsonInputNaturalStoneRevetmentLocationData::GetHydraulicLoadCp() const
     {
-        return _plungingCoefficientC.get();
+        return _hydraulicLoadCp.get();
     }
 
-    const double* JsonInputNaturalStoneRevetmentLocationData::GetPlungingCoefficientN() const
+    const double* JsonInputNaturalStoneRevetmentLocationData::GetHydraulicLoadNp() const
     {
-        return _plungingCoefficientN.get();
+        return _hydraulicLoadNp.get();
     }
 
-    const double* JsonInputNaturalStoneRevetmentLocationData::GetSurgingCoefficientA() const
+    const double* JsonInputNaturalStoneRevetmentLocationData::GetHydraulicLoadAs() const
     {
-        return _surgingCoefficientA.get();
+        return _hydraulicLoadAs.get();
     }
 
-    const double* JsonInputNaturalStoneRevetmentLocationData::GetSurgingCoefficientB() const
+    const double* JsonInputNaturalStoneRevetmentLocationData::GetHydraulicLoadBs() const
     {
-        return _surgingCoefficientB.get();
+        return _hydraulicLoadBs.get();
     }
 
-    const double* JsonInputNaturalStoneRevetmentLocationData::GetSurgingCoefficientC() const
+    const double* JsonInputNaturalStoneRevetmentLocationData::GetHydraulicLoadCs() const
     {
-        return _surgingCoefficientC.get();
+        return _hydraulicLoadCs.get();
     }
 
-    const double* JsonInputNaturalStoneRevetmentLocationData::GetSurgingCoefficientN() const
+    const double* JsonInputNaturalStoneRevetmentLocationData::GetHydraulicLoadNs() const
     {
-        return _surgingCoefficientN.get();
+        return _hydraulicLoadNs.get();
     }
 
     const double* JsonInputNaturalStoneRevetmentLocationData::GetUpperLimitLoadingAul() const

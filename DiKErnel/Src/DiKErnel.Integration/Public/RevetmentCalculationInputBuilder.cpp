@@ -64,15 +64,15 @@ namespace DiKErnel::Integration
         if (constructionProperties.GetTopLayerType() == NaturalStoneRevetmentLocationConstructionProperties::TopLayerType::NordicStone)
         {
             hydraulicLoads = make_unique<NaturalStoneRevetmentHydraulicLoads>(
-                GetValue(constructionProperties.GetPlungingCoefficientA(), NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NATURAL_STONE_AP),
-                GetValue(constructionProperties.GetPlungingCoefficientB(), NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NATURAL_STONE_BP),
-                GetValue(constructionProperties.GetPlungingCoefficientC(), NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NATURAL_STONE_CP),
-                GetValue(constructionProperties.GetPlungingCoefficientN(), NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NATURAL_STONE_NP),
-                GetValue(constructionProperties.GetSurgingCoefficientA(), NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NATURAL_STONE_AS),
-                GetValue(constructionProperties.GetSurgingCoefficientB(), NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NATURAL_STONE_BS),
-                GetValue(constructionProperties.GetSurgingCoefficientC(), NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NATURAL_STONE_CS),
-                GetValue(constructionProperties.GetSurgingCoefficientN(), NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NATURAL_STONE_NS),
-                GetValue(constructionProperties.GetSimilarityParameterThreshold(),
+                GetValue(constructionProperties.GetHydraulicLoadAp(), NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NATURAL_STONE_AP),
+                GetValue(constructionProperties.GetHydraulicLoadBp(), NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NATURAL_STONE_BP),
+                GetValue(constructionProperties.GetHydraulicLoadCp(), NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NATURAL_STONE_CP),
+                GetValue(constructionProperties.GetHydraulicLoadNp(), NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NATURAL_STONE_NP),
+                GetValue(constructionProperties.GetHydraulicLoadAs(), NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NATURAL_STONE_AS),
+                GetValue(constructionProperties.GetHydraulicLoadBs(), NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NATURAL_STONE_BS),
+                GetValue(constructionProperties.GetHydraulicLoadCs(), NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NATURAL_STONE_CS),
+                GetValue(constructionProperties.GetHydraulicLoadNs(), NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NATURAL_STONE_NS),
+                GetValue(constructionProperties.GetHydraulicLoadXib(),
                          NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NATURAL_STONE_XIB));
 
             upperLimitLoading = make_unique<NaturalStoneRevetmentUpperLimitLoading>(

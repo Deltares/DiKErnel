@@ -68,24 +68,24 @@ namespace DiKErnel::KernelWrapper::Json::Input
                     location.GetDamageData().GetInitialDamage(), location.GetProfileSchematizationData().GetTanA(),
                     naturalStoneRevetmentLocationData->GetThicknessTopLayer(), naturalStoneRevetmentLocationData->GetRelativeDensity());
 
-                constructionProperties.SetPlungingCoefficientA(
-                    forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData->GetPlungingCoefficientA())));
-                constructionProperties.SetPlungingCoefficientB(
-                    forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData->GetPlungingCoefficientB())));
-                constructionProperties.SetPlungingCoefficientC(
-                    forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData->GetPlungingCoefficientC())));
-                constructionProperties.SetPlungingCoefficientN(
-                    forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData->GetPlungingCoefficientN())));
-                constructionProperties.SetSurgingCoefficientA(
-                    forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData->GetSurgingCoefficientA())));
-                constructionProperties.SetSurgingCoefficientB(
-                    forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData->GetSurgingCoefficientB())));
-                constructionProperties.SetSurgingCoefficientC(
-                    forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData->GetSurgingCoefficientC())));
-                constructionProperties.SetSurgingCoefficientN(
-                    forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData->GetSurgingCoefficientN())));
-                constructionProperties.SetSimilarityParameterThreshold(
-                    forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData->GetSimilarityParameterThreshold())));
+                constructionProperties.SetHydraulicLoadAp(
+                    forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData->GetHydraulicLoadAp())));
+                constructionProperties.SetHydraulicLoadBp(
+                    forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData->GetHydraulicLoadBp())));
+                constructionProperties.SetHydraulicLoadCp(
+                    forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData->GetHydraulicLoadCp())));
+                constructionProperties.SetHydraulicLoadNp(
+                    forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData->GetHydraulicLoadNp())));
+                constructionProperties.SetHydraulicLoadAs(
+                    forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData->GetHydraulicLoadAs())));
+                constructionProperties.SetHydraulicLoadBs(
+                    forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData->GetHydraulicLoadBs())));
+                constructionProperties.SetHydraulicLoadCs(
+                    forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData->GetHydraulicLoadCs())));
+                constructionProperties.SetHydraulicLoadNs(
+                    forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData->GetHydraulicLoadNs())));
+                constructionProperties.SetHydraulicLoadXib(
+                    forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData->GetHydraulicLoadXib())));
                 constructionProperties.SetUpperLimitLoadingAul(
                     forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData->GetUpperLimitLoadingAul())));
                 constructionProperties.SetUpperLimitLoadingBul(

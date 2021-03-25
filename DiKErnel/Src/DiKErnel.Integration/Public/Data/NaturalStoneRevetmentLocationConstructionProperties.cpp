@@ -40,58 +40,58 @@ namespace DiKErnel::Integration
 
     #pragma region Set methods
 
-    void NaturalStoneRevetmentLocationConstructionProperties::SetPlungingCoefficientA(
-        unique_ptr<double> plungingCoefficientA)
+    void NaturalStoneRevetmentLocationConstructionProperties::SetHydraulicLoadAp(
+        unique_ptr<double> hydraulicLoadAp)
     {
-        _plungingCoefficientA = move(plungingCoefficientA);
+        _hydraulicLoadAp = move(hydraulicLoadAp);
     }
 
-    void NaturalStoneRevetmentLocationConstructionProperties::SetPlungingCoefficientB(
-        unique_ptr<double> plungingCoefficientB)
+    void NaturalStoneRevetmentLocationConstructionProperties::SetHydraulicLoadBp(
+        unique_ptr<double> hydraulicLoadBp)
     {
-        _plungingCoefficientB = move(plungingCoefficientB);
+        _hydraulicLoadBp = move(hydraulicLoadBp);
     }
 
-    void NaturalStoneRevetmentLocationConstructionProperties::SetPlungingCoefficientC(
-        unique_ptr<double> plungingCoefficientC)
+    void NaturalStoneRevetmentLocationConstructionProperties::SetHydraulicLoadCp(
+        unique_ptr<double> hydraulicLoadCp)
     {
-        _plungingCoefficientC = move(plungingCoefficientC);
+        _hydraulicLoadCp = move(hydraulicLoadCp);
     }
 
-    void NaturalStoneRevetmentLocationConstructionProperties::SetPlungingCoefficientN(
-        unique_ptr<double> plungingCoefficientN)
+    void NaturalStoneRevetmentLocationConstructionProperties::SetHydraulicLoadNp(
+        unique_ptr<double> hydraulicLoadNp)
     {
-        _plungingCoefficientN = move(plungingCoefficientN);
+        _hydraulicLoadNp = move(hydraulicLoadNp);
     }
 
-    void NaturalStoneRevetmentLocationConstructionProperties::SetSurgingCoefficientA(
-        unique_ptr<double> surgingCoefficientA)
+    void NaturalStoneRevetmentLocationConstructionProperties::SetHydraulicLoadAs(
+        unique_ptr<double> hydraulicLoadAs)
     {
-        _surgingCoefficientA = move(surgingCoefficientA);
+        _hydraulicLoadAs = move(hydraulicLoadAs);
     }
 
-    void NaturalStoneRevetmentLocationConstructionProperties::SetSurgingCoefficientB(
-        unique_ptr<double> surgingCoefficientB)
+    void NaturalStoneRevetmentLocationConstructionProperties::SetHydraulicLoadBs(
+        unique_ptr<double> hydraulicLoadBs)
     {
-        _surgingCoefficientB = move(surgingCoefficientB);
+        _hydraulicLoadBs = move(hydraulicLoadBs);
     }
 
-    void NaturalStoneRevetmentLocationConstructionProperties::SetSurgingCoefficientC(
-        unique_ptr<double> surgingCoefficientC)
+    void NaturalStoneRevetmentLocationConstructionProperties::SetHydraulicLoadCs(
+        unique_ptr<double> hydraulicLoadCs)
     {
-        _surgingCoefficientC = move(surgingCoefficientC);
+        _hydraulicLoadCs = move(hydraulicLoadCs);
     }
 
-    void NaturalStoneRevetmentLocationConstructionProperties::SetSurgingCoefficientN(
-        unique_ptr<double> surgingCoefficientN)
+    void NaturalStoneRevetmentLocationConstructionProperties::SetHydraulicLoadNs(
+        unique_ptr<double> hydraulicLoadNs)
     {
-        _surgingCoefficientN = move(surgingCoefficientN);
+        _hydraulicLoadNs = move(hydraulicLoadNs);
     }
 
-    void NaturalStoneRevetmentLocationConstructionProperties::SetSimilarityParameterThreshold(
-        unique_ptr<double> similarityParameterThreshold)
+    void NaturalStoneRevetmentLocationConstructionProperties::SetHydraulicLoadXib(
+        unique_ptr<double> hydraulicLoadXib)
     {
-        _similarityParameterThreshold = move(similarityParameterThreshold);
+        _hydraulicLoadXib = move(hydraulicLoadXib);
     }
 
     void NaturalStoneRevetmentLocationConstructionProperties::SetUpperLimitLoadingAul(
@@ -194,49 +194,49 @@ namespace DiKErnel::Integration
         return _relativeDensity;
     }
 
-    const double* NaturalStoneRevetmentLocationConstructionProperties::GetPlungingCoefficientA() const
+    const double* NaturalStoneRevetmentLocationConstructionProperties::GetHydraulicLoadAp() const
     {
-        return _plungingCoefficientA.get();
+        return _hydraulicLoadAp.get();
     }
 
-    const double* NaturalStoneRevetmentLocationConstructionProperties::GetPlungingCoefficientB() const
+    const double* NaturalStoneRevetmentLocationConstructionProperties::GetHydraulicLoadBp() const
     {
-        return _plungingCoefficientB.get();
+        return _hydraulicLoadBp.get();
     }
 
-    const double* NaturalStoneRevetmentLocationConstructionProperties::GetPlungingCoefficientC() const
+    const double* NaturalStoneRevetmentLocationConstructionProperties::GetHydraulicLoadCp() const
     {
-        return _plungingCoefficientC.get();
+        return _hydraulicLoadCp.get();
     }
 
-    const double* NaturalStoneRevetmentLocationConstructionProperties::GetPlungingCoefficientN() const
+    const double* NaturalStoneRevetmentLocationConstructionProperties::GetHydraulicLoadNp() const
     {
-        return _plungingCoefficientN.get();
+        return _hydraulicLoadNp.get();
     }
 
-    const double* NaturalStoneRevetmentLocationConstructionProperties::GetSurgingCoefficientA() const
+    const double* NaturalStoneRevetmentLocationConstructionProperties::GetHydraulicLoadAs() const
     {
-        return _surgingCoefficientA.get();
+        return _hydraulicLoadAs.get();
     }
 
-    const double* NaturalStoneRevetmentLocationConstructionProperties::GetSurgingCoefficientB() const
+    const double* NaturalStoneRevetmentLocationConstructionProperties::GetHydraulicLoadBs() const
     {
-        return _surgingCoefficientB.get();
+        return _hydraulicLoadBs.get();
     }
 
-    const double* NaturalStoneRevetmentLocationConstructionProperties::GetSurgingCoefficientC() const
+    const double* NaturalStoneRevetmentLocationConstructionProperties::GetHydraulicLoadCs() const
     {
-        return _surgingCoefficientC.get();
+        return _hydraulicLoadCs.get();
     }
 
-    const double* NaturalStoneRevetmentLocationConstructionProperties::GetSurgingCoefficientN() const
+    const double* NaturalStoneRevetmentLocationConstructionProperties::GetHydraulicLoadNs() const
     {
-        return _surgingCoefficientN.get();
+        return _hydraulicLoadNs.get();
     }
 
-    const double* NaturalStoneRevetmentLocationConstructionProperties::GetSimilarityParameterThreshold() const
+    const double* NaturalStoneRevetmentLocationConstructionProperties::GetHydraulicLoadXib() const
     {
-        return _similarityParameterThreshold.get();
+        return _hydraulicLoadXib.get();
     }
 
     const double* NaturalStoneRevetmentLocationConstructionProperties::GetUpperLimitLoadingAul() const

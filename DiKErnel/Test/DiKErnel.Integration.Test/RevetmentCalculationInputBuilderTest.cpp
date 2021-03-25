@@ -136,15 +136,15 @@ namespace DiKErnel::Integration::Test
 
         NaturalStoneRevetmentLocationConstructionProperties naturalStoneConstructionProperties(
             topLayerType, name, initialDamage, slopeAngle, thicknessTopLayer, relativeDensity);
-        naturalStoneConstructionProperties.SetSimilarityParameterThreshold(make_unique<double>(similarityParameterThreshold));
-        naturalStoneConstructionProperties.SetPlungingCoefficientA(make_unique<double>(plungingCoefficientA));
-        naturalStoneConstructionProperties.SetPlungingCoefficientB(make_unique<double>(plungingCoefficientB));
-        naturalStoneConstructionProperties.SetPlungingCoefficientC(make_unique<double>(plungingCoefficientC));
-        naturalStoneConstructionProperties.SetPlungingCoefficientN(make_unique<double>(plungingCoefficientN));
-        naturalStoneConstructionProperties.SetSurgingCoefficientA(make_unique<double>(surgingCoefficientA));
-        naturalStoneConstructionProperties.SetSurgingCoefficientB(make_unique<double>(surgingCoefficientB));
-        naturalStoneConstructionProperties.SetSurgingCoefficientC(make_unique<double>(surgingCoefficientC));
-        naturalStoneConstructionProperties.SetSurgingCoefficientN(make_unique<double>(surgingCoefficientN));
+        naturalStoneConstructionProperties.SetHydraulicLoadXib(make_unique<double>(similarityParameterThreshold));
+        naturalStoneConstructionProperties.SetHydraulicLoadAp(make_unique<double>(plungingCoefficientA));
+        naturalStoneConstructionProperties.SetHydraulicLoadBp(make_unique<double>(plungingCoefficientB));
+        naturalStoneConstructionProperties.SetHydraulicLoadCp(make_unique<double>(plungingCoefficientC));
+        naturalStoneConstructionProperties.SetHydraulicLoadNp(make_unique<double>(plungingCoefficientN));
+        naturalStoneConstructionProperties.SetHydraulicLoadAs(make_unique<double>(surgingCoefficientA));
+        naturalStoneConstructionProperties.SetHydraulicLoadBs(make_unique<double>(surgingCoefficientB));
+        naturalStoneConstructionProperties.SetHydraulicLoadCs(make_unique<double>(surgingCoefficientC));
+        naturalStoneConstructionProperties.SetHydraulicLoadNs(make_unique<double>(surgingCoefficientN));
         naturalStoneConstructionProperties.SetUpperLimitLoadingAul(make_unique<double>(upperLimitLoadingAul));
         naturalStoneConstructionProperties.SetUpperLimitLoadingBul(make_unique<double>(upperLimitLoadingBul));
         naturalStoneConstructionProperties.SetUpperLimitLoadingCul(make_unique<double>(upperLimitLoadingCul));
