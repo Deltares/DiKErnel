@@ -3,6 +3,8 @@ set(LIBNAME DiKErnel.Integration.TestUtil)
 
 # Define sources
 set(SOURCEFILES
+  LocationDependentInputAssertHelper.cpp
+  LocationDependentInputAssertHelper.h
   LocationDependentInputMock.cpp
   LocationDependentInputMock.h
   NaturalStoneRevetmentLocationDependentInputAssertHelper.cpp

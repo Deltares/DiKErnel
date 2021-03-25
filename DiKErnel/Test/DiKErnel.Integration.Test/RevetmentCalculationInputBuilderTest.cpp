@@ -22,6 +22,7 @@
 
 #include "AssertHelper.h"
 #include "InvalidCalculationDataException.h"
+#include "LocationDependentInputAssertHelper.h"
 #include "NaturalStoneRevetmentLocationConstructionProperties.h"
 #include "NaturalStoneRevetmentLocationDependentInput.h"
 #include "NaturalStoneRevetmentLocationDependentInputAssertHelper.h"
@@ -176,8 +177,10 @@ namespace DiKErnel::Integration::Test
             &actualLocationDependentInputItems[0].get());
         ASSERT_TRUE(locationDependentInput != nullptr);
 
+        LocationDependentInputAssertHelper::AssertDamageProperties(initialDamage, failureNumber, *locationDependentInput);
+
         NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertMandatoryProperties(
-            name, initialDamage, slopeAngle, relativeDensity, thicknessTopLayer, *locationDependentInput);
+            name, slopeAngle, relativeDensity, thicknessTopLayer, *locationDependentInput);
 
         NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertHydraulicLoads(
             hydraulicLoadAp, hydraulicLoadBp, hydraulicLoadCp, hydraulicLoadNp, hydraulicLoadAs, hydraulicLoadBs,
@@ -206,10 +209,9 @@ namespace DiKErnel::Integration::Test
         // Given
         const auto topLayerType = NaturalStoneRevetmentLocationConstructionProperties::TopLayerType::NordicStone;
         const string name = "Test";
-        const auto initialDamage = 0.1;
-        const auto slopeAngle = 0.2;
-        const auto thicknessTopLayer = 0.3;
-        const auto relativeDensity = 0.4;
+        const auto slopeAngle = 0.1;
+        const auto thicknessTopLayer = 0.2;
+        const auto relativeDensity = 0.3;
 
         const NaturalStoneRevetmentLocationConstructionProperties naturalStoneConstructionProperties(
             topLayerType, name, slopeAngle, thicknessTopLayer, relativeDensity);
@@ -231,8 +233,9 @@ namespace DiKErnel::Integration::Test
         ASSERT_TRUE(locationDependentInput != nullptr);
 
         NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertMandatoryProperties(
-            name, initialDamage, slopeAngle, relativeDensity, thicknessTopLayer, *locationDependentInput);
+            name, slopeAngle, relativeDensity, thicknessTopLayer, *locationDependentInput);
 
+        LocationDependentInputAssertHelper::AssertDamageProperties(0, 1, *locationDependentInput);
         NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertHydraulicLoads(
             4, 0, 0, -0.9, 0.8, 0, 0, 0.6, 2.9, locationDependentInput->GetHydraulicLoads());
         NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertUpperLimitLoading(
