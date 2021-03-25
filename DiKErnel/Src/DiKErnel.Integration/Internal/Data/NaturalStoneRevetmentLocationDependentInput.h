@@ -48,8 +48,7 @@ namespace DiKErnel::Integration
 
             double Calculate(
                 double startDamage,
-                const Core::ITimeDependentInput& timeDependentInput,
-                double maximumWaveAngle) override;
+                const Core::ITimeDependentInput& timeDependentInput) override;
 
             double GetSlopeAngle() const;
 

@@ -34,7 +34,6 @@ namespace DiKErnel::Integration::TestUtil
                 const double initialDamage)
                 : LocationDependentInput(move(name), initialDamage) {}
 
-            MOCK_METHOD(double, Calculate, (double startDamage, const Core::ITimeDependentInput& timeDependentInput, double maximumWaveAngle),
-                        (override));
+            MOCK_METHOD(double, Calculate, (double startDamage, const Core::ITimeDependentInput& timeDependentInput), (override));
     };
 }

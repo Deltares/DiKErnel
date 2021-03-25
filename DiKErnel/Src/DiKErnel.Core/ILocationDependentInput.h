@@ -44,14 +44,11 @@ namespace DiKErnel::Core
              *        The damage at the start of the calculation.
              * \param timeDependentInput
              *        The time dependent input to use in the calculation.
-             * \param maximumWaveAngle
-             *        The maximum wave angle.
              * \return The calculated damage.
              */
             virtual double Calculate(
                 double startDamage,
-                const ITimeDependentInput& timeDependentInput,
-                double maximumWaveAngle) = 0;
+                const ITimeDependentInput& timeDependentInput) = 0;
 
             /*!
              * \brief Gets the name.

@@ -29,8 +29,7 @@ namespace DiKErnel::Integration
         public:
             double Calculate(
                 double startDamage,
-                const Core::ITimeDependentInput& timeDependentInput,
-                double maximumWaveAngle) override = 0;
+                const Core::ITimeDependentInput& timeDependentInput) override = 0;
 
             std::string GetName() const override;
 

@@ -52,8 +52,7 @@ namespace DiKErnel::Integration
 
     double NaturalStoneRevetmentLocationDependentInput::Calculate(
         const double startDamage,
-        const ITimeDependentInput& timeDependentInput,
-        const double maximumWaveAngle)
+        const ITimeDependentInput& timeDependentInput)
     {
         return NaturalStoneRevetmentDeprecated::CalculateDamage(
             startDamage, _slopeAngle, _relativeDensity, _thicknessTopLayer,
@@ -61,7 +60,7 @@ namespace DiKErnel::Integration
             timeDependentInput.GetWaveAngle(), timeDependentInput.GetBeginTime(), timeDependentInput.GetEndTime(),
             _hydraulicLoads->GetHydraulicLoadAp(), _hydraulicLoads->GetHydraulicLoadBp(), _hydraulicLoads->GetHydraulicLoadCp(),
             _hydraulicLoads->GetHydraulicLoadNp(), _hydraulicLoads->GetHydraulicLoadAs(), _hydraulicLoads->GetHydraulicLoadBs(),
-            _hydraulicLoads->GetHydraulicLoadCs(), _hydraulicLoads->GetHydraulicLoadNs(), maximumWaveAngle,
+            _hydraulicLoads->GetHydraulicLoadCs(), _hydraulicLoads->GetHydraulicLoadNs(), 0,
             _hydraulicLoads->GetHydraulicLoadXib());
     }
 

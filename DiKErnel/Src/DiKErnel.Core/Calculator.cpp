@@ -116,7 +116,7 @@ namespace DiKErnel::Core
                                              ? locationDependentInput.GetInitialDamage()
                                              : damages[j].back();
 
-                const auto damage = locationDependentInput.Calculate(startDamage, timeDependentInput, calculationInput.GetMaximumWaveAngle());
+                const auto damage = locationDependentInput.Calculate(startDamage, timeDependentInput);
 
                 damages[j].push_back(damage);
 
