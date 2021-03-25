@@ -117,7 +117,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 const auto& readDamageVariables = readLocation[JsonInputDefinitions::DAMAGE];
 
                 initialDamage = ReadOptionalValue(readDamageVariables, JsonInputDefinitions::INITIAL_DAMAGE);
-                failureNumber = ReadOptionalValue(readDamageVariables, JsonInputDefinitions::CRITICAL_DAMAGE);
+                failureNumber = ReadOptionalValue(readDamageVariables, JsonInputDefinitions::FAILURE_NUMBER);
             }
 
             const auto& readProfileSchematization = readLocation[JsonInputDefinitions::PROFILE_SCHEMATIZATION];

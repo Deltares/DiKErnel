@@ -71,7 +71,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 constructionProperties.SetInitialDamage(
                     forward<unique_ptr<double>>(CreatePointerOfValue(location.GetDamageData().GetInitialDamage())));
                 constructionProperties.SetFailureNumber(
-                    forward<unique_ptr<double>>(CreatePointerOfValue(location.GetDamageData().GetCriticalDamage())));
+                    forward<unique_ptr<double>>(CreatePointerOfValue(location.GetDamageData().GetFailureNumber())));
 
                 constructionProperties.SetHydraulicLoadAp(
                     forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData->GetHydraulicLoadAp())));

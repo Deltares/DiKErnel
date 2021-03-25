@@ -42,7 +42,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
             inline static const std::string NAME = "Naam";
             inline static const std::string DAMAGE = "Schade";
             inline static const std::string INITIAL_DAMAGE = "BeginSchade";
-            inline static const std::string CRITICAL_DAMAGE = "Faalgetal";
+            inline static const std::string FAILURE_NUMBER = "Faalgetal";
 
             inline static const std::string REVETMENT = "Bekleding";
             inline static const std::string TYPE_TOP_LAYER = "TypeToplaag";
