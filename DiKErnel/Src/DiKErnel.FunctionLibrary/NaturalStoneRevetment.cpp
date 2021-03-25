@@ -422,9 +422,11 @@ namespace DiKErnel::FunctionLibrary
         return initialDamage * (resistanceOfNaturalStone / hydraulicLoadOnNaturalStone) * (1 / waveAngleImpactOnNaturalStone);
     }
 
-    double NaturalStoneRevetment::CalculateWaveAngleImpactOnNaturalStone()
+    double NaturalStoneRevetment::CalculateWaveAngleImpactOnNaturalStone(
+        const double waveAngle,
+        const double waveAngleImpactOnNaturalStoneBetamax)
     {
-        return 1.0;
+        return cos(pow(min(waveAngleImpactOnNaturalStoneBetamax, abs(waveAngle)), 2.0 / 3.0));
     }
 
     double NaturalStoneRevetment::CalculateDurationInTimeStepFailureNaturalStone(

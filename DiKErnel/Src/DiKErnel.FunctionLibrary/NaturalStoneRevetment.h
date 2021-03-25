@@ -190,7 +190,9 @@ namespace DiKErnel::FunctionLibrary
                 double hydraulicLoadOnNaturalStoneCs,
                 double hydraulicLoadOnNaturalStoneNs);
 
-            static double CalculateWaveAngleImpactOnNaturalStone();
+            static double CalculateWaveAngleImpactOnNaturalStone(
+                double waveAngle,
+                double waveAngleImpactOnNaturalStoneBetamax);
 
             static double CalculateDurationInTimeStepFailureNaturalStone(
                 double initialDamage,
