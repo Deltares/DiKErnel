@@ -113,15 +113,15 @@ namespace DiKErnel::Integration::Test
         const auto slopeAngle = 0.2;
         const auto thicknessTopLayer = 0.3;
         const auto relativeDensity = 0.4;
-        const auto similarityParameterThreshold = 0.5;
-        const auto plungingCoefficientA = 0.6;
-        const auto plungingCoefficientB = 0.7;
-        const auto plungingCoefficientC = 0.8;
-        const auto plungingCoefficientN = 0.9;
-        const auto surgingCoefficientA = 1.0;
-        const auto surgingCoefficientB = 1.1;
-        const auto surgingCoefficientC = 1.2;
-        const auto surgingCoefficientN = 1.3;
+        const auto hydraulicLoadXib = 0.5;
+        const auto hydraulicLoadAp = 0.6;
+        const auto hydraulicLoadBp = 0.7;
+        const auto hydraulicLoadCp = 0.8;
+        const auto hydraulicLoadNp = 0.9;
+        const auto hydraulicLoadAs = 1.0;
+        const auto hydraulicLoadBs = 1.1;
+        const auto hydraulicLoadCs = 1.2;
+        const auto hydraulicLoadNs = 1.3;
         const auto upperLimitLoadingAul = 1.4;
         const auto upperLimitLoadingBul = 1.5;
         const auto upperLimitLoadingCul = 1.6;
@@ -136,15 +136,15 @@ namespace DiKErnel::Integration::Test
 
         NaturalStoneRevetmentLocationConstructionProperties naturalStoneConstructionProperties(
             topLayerType, name, initialDamage, slopeAngle, thicknessTopLayer, relativeDensity);
-        naturalStoneConstructionProperties.SetHydraulicLoadXib(make_unique<double>(similarityParameterThreshold));
-        naturalStoneConstructionProperties.SetHydraulicLoadAp(make_unique<double>(plungingCoefficientA));
-        naturalStoneConstructionProperties.SetHydraulicLoadBp(make_unique<double>(plungingCoefficientB));
-        naturalStoneConstructionProperties.SetHydraulicLoadCp(make_unique<double>(plungingCoefficientC));
-        naturalStoneConstructionProperties.SetHydraulicLoadNp(make_unique<double>(plungingCoefficientN));
-        naturalStoneConstructionProperties.SetHydraulicLoadAs(make_unique<double>(surgingCoefficientA));
-        naturalStoneConstructionProperties.SetHydraulicLoadBs(make_unique<double>(surgingCoefficientB));
-        naturalStoneConstructionProperties.SetHydraulicLoadCs(make_unique<double>(surgingCoefficientC));
-        naturalStoneConstructionProperties.SetHydraulicLoadNs(make_unique<double>(surgingCoefficientN));
+        naturalStoneConstructionProperties.SetHydraulicLoadXib(make_unique<double>(hydraulicLoadXib));
+        naturalStoneConstructionProperties.SetHydraulicLoadAp(make_unique<double>(hydraulicLoadAp));
+        naturalStoneConstructionProperties.SetHydraulicLoadBp(make_unique<double>(hydraulicLoadBp));
+        naturalStoneConstructionProperties.SetHydraulicLoadCp(make_unique<double>(hydraulicLoadCp));
+        naturalStoneConstructionProperties.SetHydraulicLoadNp(make_unique<double>(hydraulicLoadNp));
+        naturalStoneConstructionProperties.SetHydraulicLoadAs(make_unique<double>(hydraulicLoadAs));
+        naturalStoneConstructionProperties.SetHydraulicLoadBs(make_unique<double>(hydraulicLoadBs));
+        naturalStoneConstructionProperties.SetHydraulicLoadCs(make_unique<double>(hydraulicLoadCs));
+        naturalStoneConstructionProperties.SetHydraulicLoadNs(make_unique<double>(hydraulicLoadNs));
         naturalStoneConstructionProperties.SetUpperLimitLoadingAul(make_unique<double>(upperLimitLoadingAul));
         naturalStoneConstructionProperties.SetUpperLimitLoadingBul(make_unique<double>(upperLimitLoadingBul));
         naturalStoneConstructionProperties.SetUpperLimitLoadingCul(make_unique<double>(upperLimitLoadingCul));
@@ -177,8 +177,8 @@ namespace DiKErnel::Integration::Test
             name, initialDamage, slopeAngle, relativeDensity, thicknessTopLayer, *locationDependentInput);
 
         NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertHydraulicLoads(
-            plungingCoefficientA, plungingCoefficientB, plungingCoefficientC, plungingCoefficientN, surgingCoefficientA, surgingCoefficientB,
-            surgingCoefficientC, surgingCoefficientN, similarityParameterThreshold, locationDependentInput->GetHydraulicLoads());
+            hydraulicLoadAp, hydraulicLoadBp, hydraulicLoadCp, hydraulicLoadNp, hydraulicLoadAs, hydraulicLoadBs,
+            hydraulicLoadCs, hydraulicLoadNs, hydraulicLoadXib, locationDependentInput->GetHydraulicLoads());
 
         NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertUpperLimitLoading(
             upperLimitLoadingAul, upperLimitLoadingBul, upperLimitLoadingCul, locationDependentInput->GetUpperLimitLoading());
