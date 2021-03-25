@@ -84,9 +84,9 @@
 						"OndergrensBelastingNatuursteenBll": 0.2,
 						"OndergrensBelastingNatuursteenCll": 4.0
 					},
-					"AfstandMaximaleStijghoogte": {
-						"AfstandMaximaleStijghoogteAsmax": 0.42,
-						"AfstandMaximaleStijghoogteBsmax": 0.9
+					"AfstandMaximaleStijghoogteNatuursteen": {
+						"AfstandMaximaleStijghoogteNatuursteenAsmax": 0.42,
+						"AfstandMaximaleStijghoogteNatuursteenBsmax": 0.9
 					},
 					"MaatgevendeBreedteGolfklap": {
 						"MaatgevendeBreedteGolfklapAwi": 0.96,
@@ -138,9 +138,9 @@
 						"OndergrensBelastingNatuursteenBll": 0.2,
 						"OndergrensBelastingNatuursteenCll": 4.0
 					},
-					"AfstandMaximaleStijghoogte": {
-						"AfstandMaximaleStijghoogteAsmax": 0.42,
-						"AfstandMaximaleStijghoogteBsmax": 0.9
+					"AfstandMaximaleStijghoogteNatuursteen": {
+						"AfstandMaximaleStijghoogteNatuursteenAsmax": 0.42,
+						"AfstandMaximaleStijghoogteNatuursteenBsmax": 0.9
 					},
 					"MaatgevendeBreedteGolfklap": {
 						"MaatgevendeBreedteGolfklapAwi": 0.96,
