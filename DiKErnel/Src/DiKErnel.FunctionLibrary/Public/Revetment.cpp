@@ -28,11 +28,43 @@ namespace DiKErnel::FunctionLibrary
 {
     using namespace DomainLibrary;
 
+    int Revetment::CalculateNumberOfTimeSteps(
+        const int numberOfTimeStamps)
+    {
+        return numberOfTimeStamps - 1;
+    }
+
+    double Revetment::CalculateIncrementOfTime(
+        const double startTime,
+        const double endTime)
+    {
+        return endTime - startTime;
+    }
+
     double Revetment::CalculateDamage(
         const double initialDamage,
         const double incrementOfDamage)
     {
         return initialDamage + incrementOfDamage;
+    }
+
+    bool Revetment::CalculateFailureOfRevetment(
+        const double failureNumber,
+        const double damage)
+    {
+        return damage >= failureNumber;
+    }
+
+    double Revetment::DegreesToRadians(
+        const double degrees)
+    {
+        return degrees * (Constants::PI / 180);
+    }
+
+    double Revetment::CalculateSlopeAngle(
+        const double tanA)
+    {
+        return atan(DegreesToRadians(tanA));
     }
 
     double Revetment::CalculateLoadingOfRevetment(
@@ -41,15 +73,8 @@ namespace DiKErnel::FunctionLibrary
         const double lowerLimitLoadingOfRevetment)
     {
         return positionZ >= lowerLimitLoadingOfRevetment && positionZ <= upperLimitLoadingOfRevetment
-            ? 1.0
-            : 0.0;
-    }
-
-    double Revetment::CalculateIncrementOfTime(
-        const double startTime,
-        const double endTime)
-    {
-        return endTime - startTime;
+                   ? 1.0
+                   : 0.0;
     }
 
     double Revetment::CalculateSurfSimilarityParameter(
@@ -60,22 +85,10 @@ namespace DiKErnel::FunctionLibrary
         return tanA / sqrt(2 * Constants::PI * waveHeightHm0 / (Constants::GRAVITATIONAL_ACCELERATION * pow(wavePeriodTm10, 2.0)));
     }
 
-    double Revetment::CalculateSlopeAngle(
-        const double tanA)
-    {
-        return atan(DegreesToRadians(tanA));
-    }
-
     double Revetment::CalculateWaveSteepnessDeepWater(
         const double waveHeightHm0,
         const double wavePeriodTm10)
     {
         return waveHeightHm0 / (Constants::GRAVITATIONAL_ACCELERATION / (2 * Constants::PI) * pow(wavePeriodTm10, 2));
-    }
-
-    double Revetment::DegreesToRadians(
-        const double degrees)
-    {
-        return degrees * (Constants::PI / 180);
     }
 }
