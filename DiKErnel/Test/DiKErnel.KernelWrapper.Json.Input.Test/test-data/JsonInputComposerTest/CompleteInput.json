@@ -95,7 +95,7 @@
 					"ImpactGolfhoekBekledingNatuursteen": {
 						"ImpactGolfhoekBekledingNatuursteenBetamax": 30
 					}
-				}
+				]
 			},
 			"Profielschematisatie":
 			{
@@ -114,9 +114,12 @@
 				"TypeToplaag": "Noorse Steen",
 				"RelatieveDichtheid": 1.65,
 				"DikteToplaag": 0.7,
-				"Rekenmethoden": {
-					"RekenmethodeSoort": "NatuurSteen"
-				}
+				"Rekenmethoden":
+				[
+					{
+						"RekenmethodeSoort": "NatuurSteen"
+					}
+				]
 			},
 			"Profielschematisatie":
 			{

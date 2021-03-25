@@ -131,7 +131,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
     unique_ptr<JsonInputRevetmentLocationData> JsonInputParser::GetRevetmentLocationData(
         const basic_json<>::value_type& readRevetment)
     {
-        const auto& readCalculationMethod = readRevetment[JsonInputDefinitions::CALCULATION_METHOD];
+        const auto& readCalculationMethod = readRevetment[JsonInputDefinitions::CALCULATION_METHOD][0];
 
         unique_ptr<JsonInputRevetmentLocationData> revetmentLocationData;
 
