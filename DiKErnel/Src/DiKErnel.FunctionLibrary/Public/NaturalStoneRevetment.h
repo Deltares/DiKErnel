@@ -81,55 +81,23 @@ namespace DiKErnel::FunctionLibrary
             static double CalculateImpactShallowWaterNaturalStone();
 
             static double CalculateNormativeWidthOfWaveImpactNaturalStone(
-                double tanA,
                 double waveHeightHm0,
-                double wavePeriodTm10,
                 double normativeWidthOfWaveImpactNaturalStoneAwi,
-                double normativeWidthOfWaveImpactNaturalStoneBwi);
+                double normativeWidthOfWaveImpactNaturalStoneBwi,
+                double surfSimilarityParameter);
 
             static double CalculateResistanceOfNaturalStone(
                 double relativeDensity,
                 double thicknessTopLayer);
 
             static double CalculateIncrementDegradationOfNaturalStone(
-                double startTime,
-                double endTime,
-                double initialDamage,
-                double relativeDensity,
-                double thicknessTopLayer,
-                double tanA,
-                double waveHeightHm0,
                 double wavePeriodTm10,
-                double waveAngle,
-                double waveAngleImpactOnNaturalStoneBetamax,
-                double hydraulicLoadOnNaturalStoneXib,
-                double hydraulicLoadOnNaturalStoneAp,
-                double hydraulicLoadOnNaturalStoneBp,
-                double hydraulicLoadOnNaturalStoneCp,
-                double hydraulicLoadOnNaturalStoneNp,
-                double hydraulicLoadOnNaturalStoneAs,
-                double hydraulicLoadOnNaturalStoneBs,
-                double hydraulicLoadOnNaturalStoneCs,
-                double hydraulicLoadOnNaturalStoneNs);
+                double incrementOfTime,
+                double referenceTimeDegradationOfNaturalStone);
 
             static double CalculateReferenceTimeDegradationOfNaturalStone(
-                double initialDamage,
-                double relativeDensity,
-                double thicknessTopLayer,
-                double tanA,
-                double waveHeightHm0,
                 double wavePeriodTm10,
-                double waveAngle,
-                double waveAngleImpactOnNaturalStoneBetamax,
-                double hydraulicLoadOnNaturalStoneXib,
-                double hydraulicLoadOnNaturalStoneAp,
-                double hydraulicLoadOnNaturalStoneBp,
-                double hydraulicLoadOnNaturalStoneCp,
-                double hydraulicLoadOnNaturalStoneNp,
-                double hydraulicLoadOnNaturalStoneAs,
-                double hydraulicLoadOnNaturalStoneBs,
-                double hydraulicLoadOnNaturalStoneCs,
-                double hydraulicLoadOnNaturalStoneNs);
+                double referenceDegradationOfNaturalStone);
 
             static double CalculateDegradationOfNaturalStone(
                 double referenceTimeDegradation,
@@ -137,83 +105,26 @@ namespace DiKErnel::FunctionLibrary
 
             static double CalculateReferenceDegradationOfNaturalStone(
                 double initialDamage,
-                double relativeDensity,
-                double thicknessTopLayer,
-                double tanA,
-                double waveHeightHm0,
-                double wavePeriodTm10,
-                double waveAngle,
-                double waveAngleImpactOnNaturalStoneBetamax,
-                double hydraulicLoadOnNaturalStoneXib,
-                double hydraulicLoadOnNaturalStoneAp,
-                double hydraulicLoadOnNaturalStoneBp,
-                double hydraulicLoadOnNaturalStoneCp,
-                double hydraulicLoadOnNaturalStoneNp,
-                double hydraulicLoadOnNaturalStoneAs,
-                double hydraulicLoadOnNaturalStoneBs,
-                double hydraulicLoadOnNaturalStoneCs,
-                double hydraulicLoadOnNaturalStoneNs);
+                double resistanceOfNaturalStone,
+                double hydraulicLoadOnNaturalStone,
+                double waveAngleImpactOnNaturalStone);
 
             static double CalculateWaveAngleImpactOnNaturalStone(
                 double waveAngle,
                 double waveAngleImpactOnNaturalStoneBetamax);
 
             static double CalculateDurationInTimeStepFailureNaturalStone(
-                double initialDamage,
-                double failureNumber,
-                double relativeDensity,
-                double thicknessTopLayer,
-                double tanA,
-                double waveHeightHm0,
-                double wavePeriodTm10,
-                double waveAngle,
-                double waveAngleImpactOnNaturalStoneBetamax,
-                double hydraulicLoadOnNaturalStoneXib,
-                double hydraulicLoadOnNaturalStoneAp,
-                double hydraulicLoadOnNaturalStoneBp,
-                double hydraulicLoadOnNaturalStoneCp,
-                double hydraulicLoadOnNaturalStoneNp,
-                double hydraulicLoadOnNaturalStoneAs,
-                double hydraulicLoadOnNaturalStoneBs,
-                double hydraulicLoadOnNaturalStoneCs,
-                double hydraulicLoadOnNaturalStoneNs);
+                double referenceTimeFailureOfNaturalStone,
+                double referenceTimeDegradationOfNaturalStone);
 
             static double CalculateReferenceTimeFailureOfNaturalStone(
-                double failureNumber,
-                double relativeDensity,
-                double thicknessTopLayer,
-                double tanA,
-                double waveHeightHm0,
                 double wavePeriodTm10,
-                double waveAngle,
-                double waveAngleImpactOnNaturalStoneBetamax,
-                double hydraulicLoadOnNaturalStoneXib,
-                double hydraulicLoadOnNaturalStoneAp,
-                double hydraulicLoadOnNaturalStoneBp,
-                double hydraulicLoadOnNaturalStoneCp,
-                double hydraulicLoadOnNaturalStoneNp,
-                double hydraulicLoadOnNaturalStoneAs,
-                double hydraulicLoadOnNaturalStoneBs,
-                double hydraulicLoadOnNaturalStoneCs,
-                double hydraulicLoadOnNaturalStoneNs);
+                double referenceFailureOfNaturalStone);
 
             static double CalculateReferenceFailureOfNaturalStone(
                 double failureNumber,
-                double relativeDensity,
-                double thicknessTopLayer,
-                double tanA,
-                double waveHeightHm0,
-                double wavePeriodTm10,
-                double waveAngle,
-                double waveAngleImpactOnNaturalStoneBetamax,
-                double hydraulicLoadOnNaturalStoneXib,
-                double hydraulicLoadOnNaturalStoneAp,
-                double hydraulicLoadOnNaturalStoneBp,
-                double hydraulicLoadOnNaturalStoneCp,
-                double hydraulicLoadOnNaturalStoneNp,
-                double hydraulicLoadOnNaturalStoneAs,
-                double hydraulicLoadOnNaturalStoneBs,
-                double hydraulicLoadOnNaturalStoneCs,
-                double hydraulicLoadOnNaturalStoneNs);
+                double resistanceOfNaturalStone,
+                double hydraulicLoadOnNaturalStone,
+                double waveAngleImpactOnNaturalStone);
     };
 }
