@@ -22,7 +22,7 @@
 
 #include "RevetmentDefaults.h"
 
-namespace DiKErnel::DomainLibrary::Test::DefaultsTest
+namespace DiKErnel::DomainLibrary::Test
 {
     TEST(RevetmentDefaultsTest, FailureNumber_ExpectedValue)
     {

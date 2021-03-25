@@ -148,9 +148,9 @@ namespace DiKErnel::DomainLibrary
 
             /*!
              * \brief The default value of the wave angle impact
-             *        on nordic stone beta max.
+             *        on nordic stone betamax.
              *        Unit = [°]
              */
-            inline static const double WAVE_ANGLE_IMPACT_ON_NATURAL_STONE_BETA_MAX = 78;
+            inline static const double WAVE_ANGLE_IMPACT_ON_NATURAL_STONE_BETAMAX = 78;
     };
 }

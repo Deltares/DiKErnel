@@ -22,14 +22,8 @@
 
 #include "HydraulicLoadsDefaults.h"
 
-namespace DiKErnel::DomainLibrary::Test::HydraulicLoadsDefaultsTest
+namespace DiKErnel::DomainLibrary::Test
 {
-    TEST(HydraulicLoadsDefaultsTest, WaveAngleMaximum_ExpectedValue)
-    {
-        // Call & Assert
-        ASSERT_DOUBLE_EQ(78, HydraulicLoadsDefaults::WAVE_ANGLE_MAXIMUM);
-    }
-
     TEST(HydraulicLoadsDefaultsTest, WaveAngle_ExpectedValue)
     {
         // Call & Assert

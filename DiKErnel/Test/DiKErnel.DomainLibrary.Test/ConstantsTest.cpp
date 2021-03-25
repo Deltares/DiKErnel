@@ -24,7 +24,7 @@
 
 #include "Constants.h"
 
-namespace DiKErnel::DomainLibrary::Test::ConstantsTest
+namespace DiKErnel::DomainLibrary::Test
 {
     TEST(ConstantsTest, Pi_ExpectedValue)
     {
