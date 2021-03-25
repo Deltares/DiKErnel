@@ -52,4 +52,9 @@ namespace DiKErnel::FunctionLibrary
     {
         return 1.0;
     }
+
+    double Revetment::CalculateWaveSteepnessDeepWater()
+    {
+        return 1.0;
+    }
 }

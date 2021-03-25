@@ -40,5 +40,7 @@ namespace DiKErnel::FunctionLibrary
                 double wavePeriodTm10);
 
             static double CalculateSlopeAngle();
+
+            static double CalculateWaveSteepnessDeepWater();
     };
 }

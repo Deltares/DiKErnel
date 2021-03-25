@@ -170,11 +170,22 @@ namespace DiKErnel::FunctionLibrary
         const double tanA,
         const double waveHeightHm0,
         const double wavePeriodTm10,
+        const double distanceMaximumWaveElevationNaturalStoneAsmax,
+        const double distanceMaximumWaveElevationNaturalStoneBsmax,
+        const double normativeWidthOfWaveImpactNaturalStoneAwi,
+        const double normativeWidthOfWaveImpactNaturalStoneBwi,
         const double upperLimitLoadingOfNaturalStoneAul,
         const double upperLimitLoadingOfNaturalStoneBul,
         const double upperLimitLoadingOfNaturalStoneCul)
     {
-        const auto depthMaximumWaveLoadNaturalStone = CalculateDepthMaximumWaveLoadNaturalStone();
+        const auto depthMaximumWaveLoadNaturalStone = CalculateDepthMaximumWaveLoadNaturalStone(
+            tanA,
+            waveHeightHm0,
+            wavePeriodTm10,
+            distanceMaximumWaveElevationNaturalStoneAsmax,
+            distanceMaximumWaveElevationNaturalStoneBsmax,
+            normativeWidthOfWaveImpactNaturalStoneAwi,
+            normativeWidthOfWaveImpactNaturalStoneBwi);
         const auto surfSimilarityParameter = Revetment::CalculateSurfSimilarityParameter(
             tanA,
             waveHeightHm0,
@@ -192,11 +203,22 @@ namespace DiKErnel::FunctionLibrary
         const double tanA,
         const double waveHeightHm0,
         const double wavePeriodTm10,
+        const double distanceMaximumWaveElevationNaturalStoneAsmax,
+        const double distanceMaximumWaveElevationNaturalStoneBsmax,
+        const double normativeWidthOfWaveImpactNaturalStoneAwi,
+        const double normativeWidthOfWaveImpactNaturalStoneBwi,
         const double lowerLimitLoadingOfNaturalStoneAll,
         const double lowerLimitLoadingOfNaturalStoneBll,
         const double lowerLimitLoadingOfNaturalStoneCll)
     {
-        const auto depthMaximumWaveLoadNaturalStone = CalculateDepthMaximumWaveLoadNaturalStone();
+        const auto depthMaximumWaveLoadNaturalStone = CalculateDepthMaximumWaveLoadNaturalStone(
+            tanA,
+            waveHeightHm0,
+            wavePeriodTm10,
+            distanceMaximumWaveElevationNaturalStoneAsmax,
+            distanceMaximumWaveElevationNaturalStoneBsmax,
+            normativeWidthOfWaveImpactNaturalStoneAwi,
+            normativeWidthOfWaveImpactNaturalStoneBwi);
         const auto surfSimilarityParameter = Revetment::CalculateSurfSimilarityParameter(
             tanA,
             waveHeightHm0,
@@ -209,18 +231,41 @@ namespace DiKErnel::FunctionLibrary
                                                                                lowerLimitLoadingOfNaturalStoneCll));
     }
 
-    double NaturalStoneRevetment::CalculateDepthMaximumWaveLoadNaturalStone()
+    double NaturalStoneRevetment::CalculateDepthMaximumWaveLoadNaturalStone(
+        const double tanA,
+        const double waveHeightHm0,
+        const double wavePeriodTm10,
+        const double distanceMaximumWaveElevationNaturalStoneAsmax,
+        const double distanceMaximumWaveElevationNaturalStoneBsmax,
+        const double normativeWidthOfWaveImpactNaturalStoneAwi,
+        const double normativeWidthOfWaveImpactNaturalStoneBwi)
     {
-        const auto distanceMaximumWaveElevationNaturalStone = CalculateDistanceMaximumWaveElevationNaturalStone();
-        const auto normativeWidthOfWaveImpact = CalculateNormativeWidthOfWaveImpact();
+        const auto distanceMaximumWaveElevationNaturalStone = CalculateDistanceMaximumWaveElevationNaturalStone(
+            waveHeightHm0,
+            distanceMaximumWaveElevationNaturalStoneAsmax,
+            distanceMaximumWaveElevationNaturalStoneBsmax);
+        const auto normativeWidthOfWaveImpact = CalculateNormativeWidthOfWaveImpactNaturalStone(
+            tanA,
+            waveHeightHm0,
+            wavePeriodTm10,
+            normativeWidthOfWaveImpactNaturalStoneAwi,
+            normativeWidthOfWaveImpactNaturalStoneBwi);
         const auto slopeAngle = Revetment::CalculateSlopeAngle();
 
-        return distanceMaximumWaveElevationNaturalStone - 0.5 * normativeWidthOfWaveImpact * cos(slopeAngle) * tan(slopeAngle);
+        return (distanceMaximumWaveElevationNaturalStone - 0.5 * normativeWidthOfWaveImpact * cos(slopeAngle)) * tan(slopeAngle);
     }
 
-    double NaturalStoneRevetment::CalculateDistanceMaximumWaveElevationNaturalStone()
+    double NaturalStoneRevetment::CalculateDistanceMaximumWaveElevationNaturalStone(
+        const double waveHeightHm0,
+        const double distanceMaximumWaveElevationNaturalStoneAsmax,
+        const double distanceMaximumWaveElevationNaturalStoneBsmax)
     {
-        return 1.0;
+        const auto impactShallowWaterNaturalStone = CalculateImpactShallowWaterNaturalStone();
+        const auto waveSteepnessDeepWater = Revetment::CalculateWaveSteepnessDeepWater();
+
+        return waveHeightHm0
+                * (distanceMaximumWaveElevationNaturalStoneAsmax / sqrt(waveSteepnessDeepWater) - distanceMaximumWaveElevationNaturalStoneBsmax)
+                * impactShallowWaterNaturalStone;
     }
 
     double NaturalStoneRevetment::CalculateImpactShallowWaterNaturalStone()
@@ -228,9 +273,20 @@ namespace DiKErnel::FunctionLibrary
         return 1.0;
     }
 
-    double NaturalStoneRevetment::CalculateNormativeWidthOfWaveImpact()
+    double NaturalStoneRevetment::CalculateNormativeWidthOfWaveImpactNaturalStone(
+        const double tanA,
+        const double waveHeightHm0,
+        const double wavePeriodTm10,
+        const double normativeWidthOfWaveImpactNaturalStoneAwi,
+        const double normativeWidthOfWaveImpactNaturalStoneBwi)
     {
-        return 1.0;
+        const auto surfSimilarityParameter = Revetment::CalculateSurfSimilarityParameter(
+            tanA,
+            waveHeightHm0,
+            wavePeriodTm10);
+
+        return (normativeWidthOfWaveImpactNaturalStoneAwi - normativeWidthOfWaveImpactNaturalStoneBwi * surfSimilarityParameter)
+                * waveHeightHm0;
     }
 
     double NaturalStoneRevetment::CalculateResistanceOfNaturalStone(

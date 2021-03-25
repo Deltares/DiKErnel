@@ -85,6 +85,10 @@ namespace DiKErnel::FunctionLibrary
                 double tanA,
                 double waveHeightHm0,
                 double wavePeriodTm10,
+                double distanceMaximumWaveElevationNaturalStoneAsmax,
+                double distanceMaximumWaveElevationNaturalStoneBsmax,
+                double normativeWidthOfWaveImpactNaturalStoneAwi,
+                double normativeWidthOfWaveImpactNaturalStoneBwi,
                 double upperLimitLoadingOfNaturalStoneAul,
                 double upperLimitLoadingOfNaturalStoneBul,
                 double upperLimitLoadingOfNaturalStoneCul);
@@ -94,11 +98,36 @@ namespace DiKErnel::FunctionLibrary
                 double tanA,
                 double waveHeightHm0,
                 double wavePeriodTm10,
+                double distanceMaximumWaveElevationNaturalStoneAsmax,
+                double distanceMaximumWaveElevationNaturalStoneBsmax,
+                double normativeWidthOfWaveImpactNaturalStoneAwi,
+                double normativeWidthOfWaveImpactNaturalStoneBwi,
                 double lowerLimitLoadingOfNaturalStoneAll,
                 double lowerLimitLoadingOfNaturalStoneBll,
                 double lowerLimitLoadingOfNaturalStoneCll);
 
-            static double CalculateDepthMaximumWaveLoadNaturalStone();
+            static double CalculateDepthMaximumWaveLoadNaturalStone(
+                double tanA,
+                double waveHeightHm0,
+                double wavePeriodTm10,
+                double distanceMaximumWaveElevationNaturalStoneAsmax,
+                double distanceMaximumWaveElevationNaturalStoneBsmax,
+                double normativeWidthOfWaveImpactNaturalStoneAwi,
+                double normativeWidthOfWaveImpactNaturalStoneBwi);
+
+            static double CalculateDistanceMaximumWaveElevationNaturalStone(
+                double waveHeightHm0,
+                double distanceMaximumWaveElevationNaturalStoneAsmax,
+                double distanceMaximumWaveElevationNaturalStoneBsmax);
+
+            static double CalculateImpactShallowWaterNaturalStone();
+
+            static double CalculateNormativeWidthOfWaveImpactNaturalStone(
+                double tanA,
+                double waveHeightHm0,
+                double wavePeriodTm10,
+                double normativeWidthOfWaveImpactNaturalStoneAwi,
+                double normativeWidthOfWaveImpactNaturalStoneBwi);
 
             static double CalculateResistanceOfNaturalStone(
                 double relativeDensity,
