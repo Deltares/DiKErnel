@@ -23,15 +23,13 @@
 #include <string>
 #include <thread>
 
-#include "DeprecatedCalculator.h"
-#include "InputComposer.h"
-#include "InputData.h"
-#include "NaturalStoneRevetmentDeprecated.h"
-#include "OutputComposer.h"
+#include "Calculator.h"
+#include "JsonInputComposer.h"
+#include "JsonOutputComposer.h"
 
 using namespace DiKErnel::Core;
-using namespace DiKErnel::FunctionLibrary;
-using namespace DiKErnel::KernelWrapper::Json;
+using namespace DiKErnel::KernelWrapper::Json::Input;
+using namespace DiKErnel::KernelWrapper::Json::Output;
 using namespace std;
 
 enum class UserInput
@@ -42,27 +40,6 @@ enum class UserInput
 };
 
 #pragma region Forward declarations
-
-double CalculateDamageWithDelay(
-    double,
-    double,
-    double,
-    double,
-    double,
-    double,
-    double,
-    double,
-    double,
-    double,
-    double,
-    double,
-    double,
-    double,
-    double,
-    double,
-    double,
-    double,
-    double);
 
 void InputMethod(
     const atomic<bool>&,
@@ -91,14 +68,14 @@ int main()
         cout << endl;
 
         // Read input Json file
-        const auto inputData = InputComposer::GetDomainParametersFromJson(jsonFilePath);
+        const auto inputData = JsonInputComposer::GetCalculationInputFromJson(jsonFilePath);
 
         // Write user feedback
         cout << "|===========|" << endl;
         cout << "| Read data |" << endl;
         cout << "|===========|" << endl;
-        cout << "-> Number of read time steps: " << inputData->GetCalculationData().GetTimes().size() - 1 << endl;
-        cout << "-> Number of read locations: " << inputData->GetLocations().size() << endl << endl;
+        cout << "-> Number of read time steps: " << inputData->GetTimeDependentInputItems().size() - 1 << endl;
+        cout << "-> Number of read locations: " << inputData->GetLocationDependentInputItems().size() << endl << endl;
 
         // Start stopwatch
         const auto start = chrono::high_resolution_clock::now();
@@ -111,9 +88,7 @@ int main()
         cout << "-> Enter 'c' to cancel the calculation" << endl << endl;
 
         // Start calculation on separate thread
-        DeprecatedCalculator calculator(
-            *inputData,
-            CalculateDamageWithDelay);
+        Calculator calculator(*inputData);
 
         // Start obtaining user input on separate thread
         thread inputThread(
@@ -157,8 +132,8 @@ int main()
             const auto outputPath = outputDirectory / ("output-" + to_string(milliseconds.count() % 1000) + ".json");
 
             // Write Json output to file
-            const auto outputData = calculator.GetOutputData();
-            OutputComposer::WriteParametersToJson(outputPath.u8string(), *outputData, inputData->GetCalculationData().GetTimes());
+            const auto outputData = calculator.GetCalculationOutput();
+            JsonOutputComposer::WriteCalculationOutputToJson(outputPath.u8string(), *outputData, *inputData);
 
             cout << endl;
             cout << "|========================|" << endl;
@@ -187,51 +162,6 @@ int main()
     {
         return -1;
     }
-}
-
-double CalculateDamageWithDelay(
-    const double initialDamage,
-    const double slopeAngle,
-    const double relativeDensity,
-    const double thicknessTopLayer,
-    const double spectralWaveHeight,
-    const double spectralWavePeriod,
-    const double waveAngle,
-    const double startTime,
-    const double endTime,
-    const double coefficientPlungingA,
-    const double coefficientPlungingB,
-    const double coefficientPlungingC,
-    const double coefficientPlungingN,
-    const double coefficientSurgingA,
-    const double coefficientSurgingB,
-    const double coefficientSurgingC,
-    const double coefficientSurgingN,
-    const double waveAngleMaximum,
-    const double similarityParameterThreshold)
-{
-    this_thread::sleep_for(chrono::seconds(subCalculationDelay));
-
-    return NaturalStoneRevetmentDeprecated::CalculateDamage(
-        initialDamage,
-        slopeAngle,
-        relativeDensity,
-        thicknessTopLayer,
-        spectralWaveHeight,
-        spectralWavePeriod,
-        waveAngle,
-        startTime,
-        endTime,
-        coefficientPlungingA,
-        coefficientPlungingB,
-        coefficientPlungingC,
-        coefficientPlungingN,
-        coefficientSurgingA,
-        coefficientSurgingB,
-        coefficientSurgingC,
-        coefficientSurgingN,
-        waveAngleMaximum,
-        similarityParameterThreshold);
 }
 
 void InputMethod(
