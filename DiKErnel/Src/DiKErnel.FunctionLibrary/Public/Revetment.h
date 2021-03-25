@@ -28,6 +28,10 @@ namespace DiKErnel::FunctionLibrary
     class Revetment
     {
         public:
+            static double CalculateDamage(
+                double initialDamage,
+                double incrementOfDamage);
+
             static double CalculateLoadingOfRevetment(
                 double positionZ,
                 double upperLimitLoadingOfRevetment,

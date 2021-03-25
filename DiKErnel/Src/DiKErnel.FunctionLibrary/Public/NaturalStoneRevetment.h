@@ -28,30 +28,6 @@ namespace DiKErnel::FunctionLibrary
     class NaturalStoneRevetment
     {
         public:
-            static double CalculateDamageOfNaturalStone(
-                double startTime,
-                double endTime,
-                double initialDamage,
-                double relativeDensity,
-                double thicknessTopLayer,
-                double positionZ,
-                double upperLimitLoadingOfRevetment,
-                double lowerLimitLoadingOfRevetment,
-                double tanA,
-                double waveHeightHm0,
-                double wavePeriodTm10,
-                double waveAngle,
-                double waveAngleImpactOnNaturalStoneBetamax,
-                double hydraulicLoadOnNaturalStoneXib,
-                double hydraulicLoadOnNaturalStoneAp,
-                double hydraulicLoadOnNaturalStoneBp,
-                double hydraulicLoadOnNaturalStoneCp,
-                double hydraulicLoadOnNaturalStoneNp,
-                double hydraulicLoadOnNaturalStoneAs,
-                double hydraulicLoadOnNaturalStoneBs,
-                double hydraulicLoadOnNaturalStoneCs,
-                double hydraulicLoadOnNaturalStoneNs);
-
             static double CalculateIncrementDamageOfNaturalStone(
                 double startTime,
                 double endTime,

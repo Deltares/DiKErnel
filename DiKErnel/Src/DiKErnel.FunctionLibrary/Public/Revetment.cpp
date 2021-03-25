@@ -28,6 +28,13 @@ namespace DiKErnel::FunctionLibrary
 {
     using namespace DomainLibrary;
 
+    double Revetment::CalculateDamage(
+        const double initialDamage,
+        const double incrementOfDamage)
+    {
+        return initialDamage + incrementOfDamage;
+    }
+
     double Revetment::CalculateLoadingOfRevetment(
         const double positionZ,
         const double upperLimitLoadingOfRevetment,

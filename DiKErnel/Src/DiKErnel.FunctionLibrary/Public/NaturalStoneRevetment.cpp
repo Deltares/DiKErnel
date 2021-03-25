@@ -29,55 +29,6 @@ namespace DiKErnel::FunctionLibrary
 {
     using namespace std;
 
-    double NaturalStoneRevetment::CalculateDamageOfNaturalStone(
-        const double startTime,
-        const double endTime,
-        const double initialDamage,
-        const double relativeDensity,
-        const double thicknessTopLayer,
-        const double positionZ,
-        const double upperLimitLoadingOfRevetment,
-        const double lowerLimitLoadingOfRevetment,
-        const double tanA,
-        const double waveHeightHm0,
-        const double wavePeriodTm10,
-        const double waveAngle,
-        const double waveAngleImpactOnNaturalStoneBetamax,
-        const double hydraulicLoadOnNaturalStoneXib,
-        const double hydraulicLoadOnNaturalStoneAp,
-        const double hydraulicLoadOnNaturalStoneBp,
-        const double hydraulicLoadOnNaturalStoneCp,
-        const double hydraulicLoadOnNaturalStoneNp,
-        const double hydraulicLoadOnNaturalStoneAs,
-        const double hydraulicLoadOnNaturalStoneBs,
-        const double hydraulicLoadOnNaturalStoneCs,
-        const double hydraulicLoadOnNaturalStoneNs)
-    {
-        return initialDamage + CalculateIncrementDamageOfNaturalStone(
-            startTime,
-            endTime,
-            initialDamage,
-            relativeDensity,
-            thicknessTopLayer,
-            positionZ,
-            upperLimitLoadingOfRevetment,
-            lowerLimitLoadingOfRevetment,
-            tanA,
-            waveHeightHm0,
-            wavePeriodTm10,
-            waveAngle,
-            waveAngleImpactOnNaturalStoneBetamax,
-            hydraulicLoadOnNaturalStoneXib,
-            hydraulicLoadOnNaturalStoneAp,
-            hydraulicLoadOnNaturalStoneBp,
-            hydraulicLoadOnNaturalStoneCp,
-            hydraulicLoadOnNaturalStoneNp,
-            hydraulicLoadOnNaturalStoneAs,
-            hydraulicLoadOnNaturalStoneBs,
-            hydraulicLoadOnNaturalStoneCs,
-            hydraulicLoadOnNaturalStoneNs);
-    }
-
     double NaturalStoneRevetment::CalculateIncrementDamageOfNaturalStone(
         const double startTime,
         const double endTime,
