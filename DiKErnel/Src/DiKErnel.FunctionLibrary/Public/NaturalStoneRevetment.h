@@ -29,33 +29,14 @@ namespace DiKErnel::FunctionLibrary
     {
         public:
             static double CalculateIncrementDamageOfNaturalStone(
-                double startTime,
-                double endTime,
-                double initialDamage,
-                double relativeDensity,
-                double thicknessTopLayer,
-                double positionZ,
-                double upperLimitLoadingOfRevetment,
-                double lowerLimitLoadingOfRevetment,
-                double tanA,
-                double waveHeightHm0,
-                double wavePeriodTm10,
-                double waveAngle,
-                double waveAngleImpactOnNaturalStoneBetamax,
-                double hydraulicLoadOnNaturalStoneXib,
-                double hydraulicLoadOnNaturalStoneAp,
-                double hydraulicLoadOnNaturalStoneBp,
-                double hydraulicLoadOnNaturalStoneCp,
-                double hydraulicLoadOnNaturalStoneNp,
-                double hydraulicLoadOnNaturalStoneAs,
-                double hydraulicLoadOnNaturalStoneBs,
-                double hydraulicLoadOnNaturalStoneCs,
-                double hydraulicLoadOnNaturalStoneNs);
+                double hydraulicLoadOnNaturalStone,
+                double resistanceOfNaturalStone,
+                double incrementDegradationOfNaturalStone,
+                double loadingOfRevetment,
+                double waveAngleImpactOnNaturalStone);
 
             static double CalculateHydraulicLoadOnNaturalStone(
-                double tanA,
                 double waveHeightHm0,
-                double wavePeriodTm10,
                 double hydraulicLoadOnNaturalStoneXib,
                 double hydraulicLoadOnNaturalStoneAp,
                 double hydraulicLoadOnNaturalStoneBp,
@@ -64,33 +45,26 @@ namespace DiKErnel::FunctionLibrary
                 double hydraulicLoadOnNaturalStoneAs,
                 double hydraulicLoadOnNaturalStoneBs,
                 double hydraulicLoadOnNaturalStoneCs,
-                double hydraulicLoadOnNaturalStoneNs);
+                double hydraulicLoadOnNaturalStoneNs,
+                double surfSimilarityParameter);
 
             static double CalculateUpperLimitLoadingOfNaturalStone(
                 double waterLevel,
-                double tanA,
                 double waveHeightHm0,
-                double wavePeriodTm10,
-                double distanceMaximumWaveElevationNaturalStoneAsmax,
-                double distanceMaximumWaveElevationNaturalStoneBsmax,
-                double normativeWidthOfWaveImpactNaturalStoneAwi,
-                double normativeWidthOfWaveImpactNaturalStoneBwi,
                 double upperLimitLoadingOfNaturalStoneAul,
                 double upperLimitLoadingOfNaturalStoneBul,
-                double upperLimitLoadingOfNaturalStoneCul);
+                double upperLimitLoadingOfNaturalStoneCul,
+                double depthMaximumWaveLoadNaturalStone,
+                double surfSimilarityParameter);
 
             static double CalculateLowerLimitLoadingOfNaturalStone(
                 double waterLevel,
-                double tanA,
                 double waveHeightHm0,
-                double wavePeriodTm10,
-                double distanceMaximumWaveElevationNaturalStoneAsmax,
-                double distanceMaximumWaveElevationNaturalStoneBsmax,
-                double normativeWidthOfWaveImpactNaturalStoneAwi,
-                double normativeWidthOfWaveImpactNaturalStoneBwi,
                 double lowerLimitLoadingOfNaturalStoneAll,
                 double lowerLimitLoadingOfNaturalStoneBll,
-                double lowerLimitLoadingOfNaturalStoneCll);
+                double lowerLimitLoadingOfNaturalStoneCll,
+                double depthMaximumWaveLoadNaturalStone,
+                double surfSimilarityParameter);
 
             static double CalculateDepthMaximumWaveLoadNaturalStone(
                 double tanA,
