@@ -20,7 +20,4 @@
 
 #include "Defaults.h"
 
-namespace DiKErnel::DomainLibrary
-{
-    const double Defaults::CRITICAL_DAMAGE = 1.0;
-}
+namespace DiKErnel::DomainLibrary {}

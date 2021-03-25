@@ -32,6 +32,6 @@ namespace DiKErnel::DomainLibrary
              * \brief The critical damage value.
              *        Unit = [-]
              */
-            static const double CRITICAL_DAMAGE;
+            inline static const double CRITICAL_DAMAGE = 1.0;
     };
 }
