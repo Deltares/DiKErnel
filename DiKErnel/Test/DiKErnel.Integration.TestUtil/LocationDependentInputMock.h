@@ -31,8 +31,9 @@ namespace DiKErnel::Integration::TestUtil
         public:
             explicit LocationDependentInputMock(
                 std::string name,
-                const double initialDamage)
-                : LocationDependentInput(move(name), initialDamage) {}
+                const double initialDamage,
+                const double failureNumber)
+                : LocationDependentInput(move(name), initialDamage, failureNumber) {}
 
             MOCK_METHOD(double, Calculate, (double startDamage, const Core::ITimeDependentInput& timeDependentInput), (override));
     };

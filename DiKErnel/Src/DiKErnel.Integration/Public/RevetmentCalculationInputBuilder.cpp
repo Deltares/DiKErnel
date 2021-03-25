@@ -25,6 +25,7 @@
 #include "NaturalStoneRevetmentLocationDependentInput.h"
 #include "NordicStoneRevetmentDefaults.h"
 #include "RevetmentCalculationInputBuilderException.h"
+#include "RevetmentDefaults.h"
 
 namespace DiKErnel::Integration
 {
@@ -105,7 +106,8 @@ namespace DiKErnel::Integration
         _locationDependentInputItems.push_back(
             make_unique<NaturalStoneRevetmentLocationDependentInput>(
                 constructionProperties.GetName(),
-                0,
+                GetValue(constructionProperties.GetInitialDamage(), RevetmentDefaults::INITIAL_DAMAGE),
+                GetValue(constructionProperties.GetFailureNumber(), RevetmentDefaults::FAILURE_NUMBER),
                 constructionProperties.GetSlopeAngle(),
                 constructionProperties.GetRelativeDensity(),
                 constructionProperties.GetThicknessTopLayer(),

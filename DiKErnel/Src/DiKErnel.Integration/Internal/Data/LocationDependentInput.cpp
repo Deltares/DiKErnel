@@ -28,9 +28,11 @@ namespace DiKErnel::Integration
 
     LocationDependentInput::LocationDependentInput(
         string name,
-        const double initialDamage)
+        const double initialDamage,
+        const double failureNumber)
         : _name(move(name)),
-          _initialDamage(initialDamage) { }
+          _initialDamage(initialDamage),
+          _failureNumber(failureNumber) { }
 
     string LocationDependentInput::GetName() const
     {
@@ -40,5 +42,10 @@ namespace DiKErnel::Integration
     double LocationDependentInput::GetInitialDamage() const
     {
         return _initialDamage;
+    }
+
+    double LocationDependentInput::GetFailureNumber() const
+    {
+        return _failureNumber;
     }
 }

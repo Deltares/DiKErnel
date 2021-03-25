@@ -61,5 +61,11 @@ namespace DiKErnel::Core
              * \return The initial damage.
              */
             virtual double GetInitialDamage() const = 0;
+
+            /*!
+             * \brief Gets the failure number.
+             * \return The failure number.
+             */
+            virtual double GetFailureNumber() const = 0;
     };
 }

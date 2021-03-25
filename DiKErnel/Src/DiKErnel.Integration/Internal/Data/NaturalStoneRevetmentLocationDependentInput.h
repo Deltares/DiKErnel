@@ -38,6 +38,7 @@ namespace DiKErnel::Integration
             explicit NaturalStoneRevetmentLocationDependentInput(
                 std::string name,
                 double initialDamage,
+                double failureNumber,
                 double slopeAngle,
                 double relativeDensity,
                 double thicknessTopLayer,
