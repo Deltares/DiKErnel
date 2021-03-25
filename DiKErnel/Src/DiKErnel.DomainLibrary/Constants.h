@@ -20,6 +20,8 @@
 
 #pragma once
 
+#include <cmath>
+
 namespace DiKErnel::DomainLibrary
 {
     /*!
@@ -32,12 +34,12 @@ namespace DiKErnel::DomainLibrary
              * \brief The value of pi.
              *        Unit = [-]
              */
-            static const double PI;
+            inline static const double PI = 2 * acos(0.0);
 
             /*!
              * \brief The value of the gravitational acceleration.
              *        Unit = [m/s²]
              */
-            static const double GRAVITATIONAL_ACCELERATION;
+            inline static const double GRAVITATIONAL_ACCELERATION = 9.81;
     };
 }
