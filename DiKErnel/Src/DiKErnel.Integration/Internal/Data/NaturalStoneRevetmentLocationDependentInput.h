@@ -28,6 +28,7 @@
 #include "NaturalStoneRevetmentLowerLimitLoading.h"
 #include "NaturalStoneRevetmentNormativeWidthOfWaveImpact.h"
 #include "NaturalStoneRevetmentUpperLimitLoading.h"
+#include "NaturalStoneRevetmentWaveAngleImpact.h"
 
 namespace DiKErnel::Integration
 {
@@ -44,7 +45,8 @@ namespace DiKErnel::Integration
                 std::unique_ptr<NaturalStoneRevetmentUpperLimitLoading> upperLimitLoading,
                 std::unique_ptr<NaturalStoneRevetmentLowerLimitLoading> lowerLimitLoading,
                 std::unique_ptr<NaturalStoneRevetmentDistanceMaximumWaveElevation> distanceMaximumWaveElevation,
-                std::unique_ptr<NaturalStoneRevetmentNormativeWidthOfWaveImpact> normativeWidthOfWaveImpact);
+                std::unique_ptr<NaturalStoneRevetmentNormativeWidthOfWaveImpact> normativeWidthOfWaveImpact,
+                std::unique_ptr<NaturalStoneRevetmentWaveAngleImpact> waveAngleImpact);
 
             double Calculate(
                 double startDamage,
@@ -66,6 +68,8 @@ namespace DiKErnel::Integration
 
             NaturalStoneRevetmentNormativeWidthOfWaveImpact& GetNormativeWidthOfWaveImpact() const;
 
+            NaturalStoneRevetmentWaveAngleImpact& GetWaveAngleImpact() const;
+
         private:
             double _slopeAngle;
             double _relativeDensity;
@@ -75,5 +79,6 @@ namespace DiKErnel::Integration
             std::unique_ptr<NaturalStoneRevetmentLowerLimitLoading> _lowerLimitLoading;
             std::unique_ptr<NaturalStoneRevetmentDistanceMaximumWaveElevation> _distanceMaximumWaveElevation;
             std::unique_ptr<NaturalStoneRevetmentNormativeWidthOfWaveImpact> _normativeWidthOfWaveImpact;
+            std::unique_ptr<NaturalStoneRevetmentWaveAngleImpact> _waveAngleImpact;
     };
 }

@@ -59,6 +59,7 @@ namespace DiKErnel::Integration
         unique_ptr<NaturalStoneRevetmentLowerLimitLoading> lowerLimitLoading;
         unique_ptr<NaturalStoneRevetmentDistanceMaximumWaveElevation> distanceMaximumWaveElevation;
         unique_ptr<NaturalStoneRevetmentNormativeWidthOfWaveImpact> normativeWidthOfWaveImpact;
+        unique_ptr<NaturalStoneRevetmentWaveAngleImpact> waveAngleImpact;
 
         if (constructionProperties.GetTopLayerType() == NaturalStoneRevetmentLocationConstructionProperties::TopLayerType::NordicStone)
         {
@@ -95,6 +96,9 @@ namespace DiKErnel::Integration
                          NordicStoneRevetmentDefaults::NORMATIVE_WIDTH_OF_WAVE_IMPACT_ON_NATURAL_STONE_AWI),
                 GetValue(constructionProperties.GetNormativeWidthOfWaveImpactBwi(),
                          NordicStoneRevetmentDefaults::NORMATIVE_WIDTH_OF_WAVE_IMPACT_ON_NATURAL_STONE_BWI));
+
+            waveAngleImpact = make_unique<NaturalStoneRevetmentWaveAngleImpact>(
+                GetValue(nullptr, NordicStoneRevetmentDefaults::WAVE_ANGLE_IMPACT_ON_NATURAL_STONE_BETA_MAX));
         }
 
         _locationDependentInputItems.push_back(
@@ -108,7 +112,8 @@ namespace DiKErnel::Integration
                 move(upperLimitLoading),
                 move(lowerLimitLoading),
                 move(distanceMaximumWaveElevation),
-                move(normativeWidthOfWaveImpact)));
+                move(normativeWidthOfWaveImpact),
+                move(waveAngleImpact)));
     }
 
     unique_ptr<ICalculationInput> RevetmentCalculationInputBuilder::Build()

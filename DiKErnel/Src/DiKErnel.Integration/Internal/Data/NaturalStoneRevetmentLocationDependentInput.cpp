@@ -39,7 +39,8 @@ namespace DiKErnel::Integration
         unique_ptr<NaturalStoneRevetmentUpperLimitLoading> upperLimitLoading,
         unique_ptr<NaturalStoneRevetmentLowerLimitLoading> lowerLimitLoading,
         unique_ptr<NaturalStoneRevetmentDistanceMaximumWaveElevation> distanceMaximumWaveElevation,
-        unique_ptr<NaturalStoneRevetmentNormativeWidthOfWaveImpact> normativeWidthOfWaveImpact)
+        unique_ptr<NaturalStoneRevetmentNormativeWidthOfWaveImpact> normativeWidthOfWaveImpact,
+        unique_ptr<NaturalStoneRevetmentWaveAngleImpact> waveAngleImpact)
         : LocationDependentInput(move(name), initialDamage),
           _slopeAngle(slopeAngle),
           _relativeDensity(relativeDensity),
@@ -48,7 +49,8 @@ namespace DiKErnel::Integration
           _upperLimitLoading(move(upperLimitLoading)),
           _lowerLimitLoading(move(lowerLimitLoading)),
           _distanceMaximumWaveElevation(move(distanceMaximumWaveElevation)),
-          _normativeWidthOfWaveImpact(move(normativeWidthOfWaveImpact)) {}
+          _normativeWidthOfWaveImpact(move(normativeWidthOfWaveImpact)),
+          _waveAngleImpact(move(waveAngleImpact)) {}
 
     double NaturalStoneRevetmentLocationDependentInput::Calculate(
         const double startDamage,
@@ -60,7 +62,7 @@ namespace DiKErnel::Integration
             timeDependentInput.GetWaveAngle(), timeDependentInput.GetBeginTime(), timeDependentInput.GetEndTime(),
             _hydraulicLoads->GetHydraulicLoadAp(), _hydraulicLoads->GetHydraulicLoadBp(), _hydraulicLoads->GetHydraulicLoadCp(),
             _hydraulicLoads->GetHydraulicLoadNp(), _hydraulicLoads->GetHydraulicLoadAs(), _hydraulicLoads->GetHydraulicLoadBs(),
-            _hydraulicLoads->GetHydraulicLoadCs(), _hydraulicLoads->GetHydraulicLoadNs(), 0,
+            _hydraulicLoads->GetHydraulicLoadCs(), _hydraulicLoads->GetHydraulicLoadNs(), _waveAngleImpact->GetBetamax(),
             _hydraulicLoads->GetHydraulicLoadXib());
     }
 
@@ -102,5 +104,10 @@ namespace DiKErnel::Integration
     NaturalStoneRevetmentNormativeWidthOfWaveImpact& NaturalStoneRevetmentLocationDependentInput::GetNormativeWidthOfWaveImpact() const
     {
         return *_normativeWidthOfWaveImpact;
+    }
+
+    NaturalStoneRevetmentWaveAngleImpact& NaturalStoneRevetmentLocationDependentInput::GetWaveAngleImpact() const
+    {
+        return *_waveAngleImpact;
     }
 }

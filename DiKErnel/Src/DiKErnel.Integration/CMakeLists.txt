@@ -41,6 +41,8 @@ set(SOURCEFILES_INTERNAL_DATA
   ${INTERNAL_DATA_FOLDER}/NaturalStoneRevetmentNormativeWidthOfWaveImpact.h
   ${INTERNAL_DATA_FOLDER}/NaturalStoneRevetmentUpperLimitLoading.cpp
   ${INTERNAL_DATA_FOLDER}/NaturalStoneRevetmentUpperLimitLoading.h
+  ${INTERNAL_DATA_FOLDER}/NaturalStoneRevetmentWaveAngleImpact.cpp
+  ${INTERNAL_DATA_FOLDER}/NaturalStoneRevetmentWaveAngleImpact.h
   ${INTERNAL_DATA_FOLDER}/TimeDependentInput.cpp
   ${INTERNAL_DATA_FOLDER}/TimeDependentInput.h
 )
