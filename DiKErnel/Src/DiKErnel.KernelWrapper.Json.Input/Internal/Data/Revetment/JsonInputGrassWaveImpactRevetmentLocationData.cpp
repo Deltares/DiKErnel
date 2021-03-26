@@ -54,10 +54,10 @@ namespace DiKErnel::KernelWrapper::Json::Input
         _minimumWaveHeightTemax = move(minimumWaveHeightTemax);
     }
 
-    void JsonInputGrassWaveImpactRevetmentLocationData::SetMinimumWaveHeightTemin(
-        std::unique_ptr<double> minimumWaveHeightTemin)
+    void JsonInputGrassWaveImpactRevetmentLocationData::SetMaximumWaveHeightTemin(
+        std::unique_ptr<double> maximumWaveHeightTemin)
     {
-        _minimumWaveHeightTemin = move(minimumWaveHeightTemin);
+        _maximumWaveHeightTemin = move(maximumWaveHeightTemin);
     }
 
     void JsonInputGrassWaveImpactRevetmentLocationData::SetWaveAngleImpactNwa(
@@ -119,9 +119,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
         return _minimumWaveHeightTemax.get();
     }
 
-    const double* JsonInputGrassWaveImpactRevetmentLocationData::GetMinimumWaveHeightTemin() const
+    const double* JsonInputGrassWaveImpactRevetmentLocationData::GetMaximumWaveHeightTemin() const
     {
-        return _minimumWaveHeightTemin.get();
+        return _maximumWaveHeightTemin.get();
     }
 
     const double* JsonInputGrassWaveImpactRevetmentLocationData::GetWaveAngleImpactNwa() const

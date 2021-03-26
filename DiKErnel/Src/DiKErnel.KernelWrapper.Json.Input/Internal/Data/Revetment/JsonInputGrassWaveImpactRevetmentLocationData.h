@@ -53,8 +53,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
             void SetMinimumWaveHeightTemax(
                 std::unique_ptr<double> minimumWaveHeightTemax);
 
-            void SetMinimumWaveHeightTemin(
-                std::unique_ptr<double> minimumWaveHeightTemin);
+            void SetMaximumWaveHeightTemin(
+                std::unique_ptr<double> maximumWaveHeightTemin);
 
             void SetWaveAngleImpactNwa(
                 std::unique_ptr<double> waveAngleImpactNwa);
@@ -85,7 +85,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
             const double* GetMinimumWaveHeightTemax() const;
 
-            const double* GetMinimumWaveHeightTemin() const;
+            const double* GetMaximumWaveHeightTemin() const;
 
             const double* GetWaveAngleImpactNwa() const;
 
@@ -105,7 +105,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
             std::unique_ptr<double> _failureTimeBgwi = nullptr;
             std::unique_ptr<double> _failureTimeCgwi = nullptr;
             std::unique_ptr<double> _minimumWaveHeightTemax = nullptr;
-            std::unique_ptr<double> _minimumWaveHeightTemin = nullptr;
+            std::unique_ptr<double> _maximumWaveHeightTemin = nullptr;
             std::unique_ptr<double> _waveAngleImpactNwa = nullptr;
             std::unique_ptr<double> _waveAngleImpactQwa = nullptr;
             std::unique_ptr<double> _waveAngleImpactRwa = nullptr;
