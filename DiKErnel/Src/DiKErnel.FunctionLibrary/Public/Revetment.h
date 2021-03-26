@@ -43,9 +43,6 @@ namespace DiKErnel::FunctionLibrary
                 double damage,
                 double failureNumber);
 
-            static double DegreesToRadians(
-                double degrees);
-
             static double SlopeAngle(
                 double tanA);
 

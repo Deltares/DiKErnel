@@ -6,6 +6,8 @@ set(PUBLIC_FOLDER Public)
 
 # Define sources
 set(SOURCEFILES_PUBLIC
+  ${PUBLIC_FOLDER}/Generic.cpp
+  ${PUBLIC_FOLDER}/Generic.h
   ${PUBLIC_FOLDER}/NaturalStoneRevetment.cpp
   ${PUBLIC_FOLDER}/NaturalStoneRevetment.h
   ${PUBLIC_FOLDER}/NaturalStoneRevetmentDeprecated.cpp

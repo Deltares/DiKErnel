@@ -23,7 +23,7 @@
 #include <algorithm>
 #include <cmath>
 
-#include "Revetment.h"
+#include "Generic.h"
 
 namespace DiKErnel::FunctionLibrary
 {
@@ -107,8 +107,8 @@ namespace DiKErnel::FunctionLibrary
         const double normativeWidthOfWaveImpact,
         const double slopeAngle)
     {
-        return (distanceMaximumWaveElevation - 0.5 * normativeWidthOfWaveImpact * cos(Revetment::DegreesToRadians(slopeAngle)))
-                * tan(Revetment::DegreesToRadians(slopeAngle));
+        return (distanceMaximumWaveElevation - 0.5 * normativeWidthOfWaveImpact * cos(Generic::Radians(slopeAngle)))
+                * tan(Generic::Radians(slopeAngle));
     }
 
     double NaturalStoneRevetment::DistanceMaximumWaveElevation(
@@ -142,7 +142,7 @@ namespace DiKErnel::FunctionLibrary
         const double waveAngle,
         const double waveAngleImpactOnBetamax)
     {
-        return pow(cos(Revetment::DegreesToRadians(min(waveAngleImpactOnBetamax, abs(waveAngle)))), 2.0 / 3.0);
+        return pow(cos(Generic::Radians(min(waveAngleImpactOnBetamax, abs(waveAngle)))), 2.0 / 3.0);
     }
 
     double NaturalStoneRevetment::Resistance(

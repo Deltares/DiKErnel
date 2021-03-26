@@ -23,6 +23,7 @@
 #include <cmath>
 
 #include "Constants.h"
+#include "Generic.h"
 
 namespace DiKErnel::FunctionLibrary
 {
@@ -55,16 +56,10 @@ namespace DiKErnel::FunctionLibrary
         return damage >= failureNumber;
     }
 
-    double Revetment::DegreesToRadians(
-        const double degrees)
-    {
-        return degrees * (Constants::PI / 180.0);
-    }
-
     double Revetment::SlopeAngle(
         const double tanA)
     {
-        return atan(DegreesToRadians(tanA));
+        return atan(Generic::Radians(tanA));
     }
 
     bool Revetment::LoadingOfRevetment(
