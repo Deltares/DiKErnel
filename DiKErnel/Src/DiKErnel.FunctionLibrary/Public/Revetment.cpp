@@ -20,12 +20,8 @@
 
 #include "Revetment.h"
 
-#include "Constants.h"
-
 namespace DiKErnel::FunctionLibrary
 {
-    using namespace DomainLibrary;
-
     int Revetment::NumberOfTimeSteps(
         const int numberOfTimeStamps)
     {

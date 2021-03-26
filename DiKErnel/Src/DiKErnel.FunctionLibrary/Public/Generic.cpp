@@ -22,12 +22,8 @@
 
 #include <cmath>
 
-#include "Constants.h"
-
 namespace DiKErnel::FunctionLibrary
 {
-    using namespace DomainLibrary;
-
     double Generic::Pi()
     {
         return 2.0 * acos(0.0);

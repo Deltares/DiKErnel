@@ -38,11 +38,13 @@ namespace DiKErnel::FunctionLibrary
 
             static double WaveSteepnessDeepWater(
                 double waveHeightHm0,
-                double wavePeriodTm10);
+                double wavePeriodTm10,
+                double gravitationalAcceleration);
 
             static double SurfSimilarityParameter(
                 double tanA,
                 double waveHeightHm0,
-                double wavePeriodTm10);
+                double wavePeriodTm10,
+                double gravitationalAcceleration);
     };
 }

@@ -22,13 +22,10 @@
 
 #include <cmath>
 
-#include "Constants.h"
 #include "Generic.h"
 
 namespace DiKErnel::FunctionLibrary
 {
-    using namespace DomainLibrary;
-
     double HydraulicLoad::SlopeAngle(
         const double tanA)
     {
@@ -46,15 +43,17 @@ namespace DiKErnel::FunctionLibrary
     double HydraulicLoad::SurfSimilarityParameter(
         const double tanA,
         const double waveHeightHm0,
-        const double wavePeriodTm10)
+        const double wavePeriodTm10,
+        const double gravitationalAcceleration)
     {
-        return tanA / sqrt(2.0 * Generic::Pi() * waveHeightHm0 / (Constants::GRAVITATIONAL_ACCELERATION * pow(wavePeriodTm10, 2.0)));
+        return tanA / sqrt(2.0 * Generic::Pi() * waveHeightHm0 / (gravitationalAcceleration * pow(wavePeriodTm10, 2.0)));
     }
 
     double HydraulicLoad::WaveSteepnessDeepWater(
         const double waveHeightHm0,
-        const double wavePeriodTm10)
+        const double wavePeriodTm10,
+        const double gravitationalAcceleration)
     {
-        return waveHeightHm0 / (Constants::GRAVITATIONAL_ACCELERATION / (2.0 * Generic::Pi()) * pow(wavePeriodTm10, 2.0));
+        return waveHeightHm0 / (gravitationalAcceleration / (2.0 * Generic::Pi()) * pow(wavePeriodTm10, 2.0));
     }
 }

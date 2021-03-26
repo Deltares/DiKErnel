@@ -23,12 +23,10 @@
 #include <algorithm>
 #include <cmath>
 
-#include "Constants.h"
 #include "Generic.h"
 
 namespace DiKErnel::FunctionLibrary
 {
-    using namespace DomainLibrary;
     using namespace std;
 
     double NaturalStoneRevetmentDeprecated::CalculateDamage(
@@ -189,7 +187,7 @@ namespace DiKErnel::FunctionLibrary
     {
         const auto spectralWaveHeightRelatedValue = 2.0 * Generic::Pi() * spectralWaveHeight;
 
-        const auto spectralWavePeriodRelatedValue = Constants::GRAVITATIONAL_ACCELERATION * pow(spectralWavePeriod, 2.0);
+        const auto spectralWavePeriodRelatedValue = 9.81 * pow(spectralWavePeriod, 2.0);
 
         const auto denominator = sqrt(spectralWaveHeightRelatedValue / spectralWavePeriodRelatedValue);
 
