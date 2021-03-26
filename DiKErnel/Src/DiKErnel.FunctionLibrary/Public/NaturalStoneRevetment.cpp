@@ -33,11 +33,9 @@ namespace DiKErnel::FunctionLibrary
         const double hydraulicLoadOnNaturalStone,
         const double resistanceOfNaturalStone,
         const double incrementDegradationOfNaturalStone,
-        const double loadingOfRevetment,
         const double waveAngleImpactOnNaturalStone)
     {
-        return hydraulicLoadOnNaturalStone / resistanceOfNaturalStone * incrementDegradationOfNaturalStone * loadingOfRevetment
-                * waveAngleImpactOnNaturalStone;
+        return hydraulicLoadOnNaturalStone / resistanceOfNaturalStone * incrementDegradationOfNaturalStone * waveAngleImpactOnNaturalStone;
     }
 
     double NaturalStoneRevetment::HydraulicLoadOnNaturalStone(

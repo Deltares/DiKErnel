@@ -49,7 +49,7 @@ namespace DiKErnel::FunctionLibrary
             static double SlopeAngle(
                 double tanA);
 
-            static double LoadingOfRevetment(
+            static bool LoadingOfRevetment(
                 double upperLimitLoadingOfRevetment,
                 double lowerLimitLoadingOfRevetment,
                 double positionZ);

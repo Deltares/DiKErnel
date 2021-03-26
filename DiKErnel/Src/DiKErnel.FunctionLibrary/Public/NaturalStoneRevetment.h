@@ -32,7 +32,6 @@ namespace DiKErnel::FunctionLibrary
                 double hydraulicLoadOnNaturalStone,
                 double resistanceOfNaturalStone,
                 double incrementDegradationOfNaturalStone,
-                double loadingOfRevetment,
                 double waveAngleImpactOnNaturalStone);
 
             static double HydraulicLoadOnNaturalStone(

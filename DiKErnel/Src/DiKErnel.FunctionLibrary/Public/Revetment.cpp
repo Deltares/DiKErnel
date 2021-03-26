@@ -67,14 +67,12 @@ namespace DiKErnel::FunctionLibrary
         return atan(DegreesToRadians(tanA));
     }
 
-    double Revetment::LoadingOfRevetment(
+    bool Revetment::LoadingOfRevetment(
         const double upperLimitLoadingOfRevetment,
         const double lowerLimitLoadingOfRevetment,
         const double positionZ)
     {
-        return positionZ >= lowerLimitLoadingOfRevetment && positionZ <= upperLimitLoadingOfRevetment
-                   ? 1.0
-                   : 0.0;
+        return positionZ >= lowerLimitLoadingOfRevetment && positionZ <= upperLimitLoadingOfRevetment;
     }
 
     double Revetment::SurfSimilarityParameter(
