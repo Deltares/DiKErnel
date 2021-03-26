@@ -33,8 +33,8 @@ namespace DiKErnel::FunctionLibrary
     }
 
     bool HydraulicLoad::LoadingOfRevetment(
-        const double upperLimitLoadingOfRevetment,
         const double lowerLimitLoadingOfRevetment,
+        const double upperLimitLoadingOfRevetment,
         const double positionZ)
     {
         return positionZ >= lowerLimitLoadingOfRevetment && positionZ <= upperLimitLoadingOfRevetment;

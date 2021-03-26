@@ -32,8 +32,8 @@ namespace DiKErnel::FunctionLibrary
                 double tanA);
 
             static bool LoadingOfRevetment(
-                double upperLimitLoadingOfRevetment,
                 double lowerLimitLoadingOfRevetment,
+                double upperLimitLoadingOfRevetment,
                 double positionZ);
 
             static double WaveSteepnessDeepWater(
