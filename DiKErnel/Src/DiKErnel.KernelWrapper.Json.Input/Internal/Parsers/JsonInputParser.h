@@ -26,7 +26,6 @@
 #include <nlohmann/json.hpp>
 
 #include "JsonInputData.h"
-#include "JsonInputNaturalStoneRevetmentLocationData.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {

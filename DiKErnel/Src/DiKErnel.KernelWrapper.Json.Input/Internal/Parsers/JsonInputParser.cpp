@@ -23,9 +23,7 @@
 #include <fstream>
 
 #include "JsonInputDefinitions.h"
-#include "JsonInputNaturalStoneRevetmentLocationData.h"
 #include "JsonInputParserHelper.h"
-#include "NaturalStoneJsonInputDefinitions.h"
 #include "NaturalStoneJsonInputParser.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
@@ -40,7 +38,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 JsonInputParser::CalculationType::Unknown, nullptr
             },
             {
-                JsonInputParser::CalculationType::NaturalStone, NaturalStoneJsonInputDefinitions::CALCULATION_METHOD_TYPE
+                JsonInputParser::CalculationType::NaturalStone, JsonInputDefinitions::CALCULATION_METHOD_TYPE_NATURAL_STONE
             }
         });
 

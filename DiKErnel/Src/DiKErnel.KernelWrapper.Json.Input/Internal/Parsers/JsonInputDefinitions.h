@@ -46,11 +46,11 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
             inline static const std::string REVETMENT = "Bekleding";
             inline static const std::string TYPE_TOP_LAYER = "TypeToplaag";
-            inline static const std::string RELATIVE_DENSITY = "RelatieveDichtheid";
-            inline static const std::string THICKNESS_TOP_LAYER = "DikteToplaag";
 
             inline static const std::string CALCULATION_METHOD = "Rekenmethoden";
             inline static const std::string CALCULATION_METHOD_TYPE = "RekenmethodeSoort";
+
+            inline static const std::string CALCULATION_METHOD_TYPE_NATURAL_STONE = "NatuurSteen";
 
             inline static const std::string PROFILE_SCHEMATIZATION = "Profielschematisatie";
             inline static const std::string TAN_A = "TanA";
