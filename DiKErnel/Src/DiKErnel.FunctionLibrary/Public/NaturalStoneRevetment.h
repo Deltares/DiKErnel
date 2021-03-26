@@ -95,8 +95,8 @@ namespace DiKErnel::FunctionLibrary
 
             static double IncrementDegradation(
                 double referenceTimeDegradation,
-                double wavePeriodTm10,
-                double incrementTime);
+                double incrementTime,
+                double wavePeriodTm10);
 
             static double Degradation(
                 double referenceTimeDegradation,

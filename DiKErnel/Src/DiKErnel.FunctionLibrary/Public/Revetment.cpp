@@ -28,7 +28,7 @@ namespace DiKErnel::FunctionLibrary
         return numberOfTimeStamps - 1;
     }
 
-    double Revetment::IncrementOfTime(
+    double Revetment::IncrementTime(
         const double startTime,
         const double endTime)
     {

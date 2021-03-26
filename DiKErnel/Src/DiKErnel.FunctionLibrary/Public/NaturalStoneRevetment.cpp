@@ -154,8 +154,8 @@ namespace DiKErnel::FunctionLibrary
 
     double NaturalStoneRevetment::IncrementDegradation(
         const double referenceTimeDegradation,
-        const double wavePeriodTm10,
-        const double incrementTime)
+        const double incrementTime,
+        const double wavePeriodTm10)
     {
         return Degradation(referenceTimeDegradation + incrementTime, wavePeriodTm10)
                 - Degradation(referenceTimeDegradation, wavePeriodTm10);

@@ -132,10 +132,47 @@ namespace DiKErnel::Integration
 
         if (loadingOfRevetment)
         {
-            const auto hydraulicLoad = 1.0;
-            const auto resistance = 1.0;
-            const auto incrementDegradation = 1.0;
-            const auto waveAngleImpact = 1.0;
+            const auto& hydraulicLoadInput = GetHydraulicLoads();
+            const auto hydraulicLoad = NaturalStoneRevetment::HydraulicLoad(
+                surfSimilarityParameter,
+                waveHeightHm0,
+                hydraulicLoadInput.GetHydraulicLoadXib(),
+                hydraulicLoadInput.GetHydraulicLoadAp(),
+                hydraulicLoadInput.GetHydraulicLoadBp(),
+                hydraulicLoadInput.GetHydraulicLoadCp(),
+                hydraulicLoadInput.GetHydraulicLoadNp(),
+                hydraulicLoadInput.GetHydraulicLoadAs(),
+                hydraulicLoadInput.GetHydraulicLoadBs(),
+                hydraulicLoadInput.GetHydraulicLoadCs(),
+                hydraulicLoadInput.GetHydraulicLoadNs());
+
+            const auto resistance = NaturalStoneRevetment::Resistance(
+                GetRelativeDensity(),
+                GetThicknessTopLayer());
+
+            const auto& waveAngleImpactInput = GetWaveAngleImpact();
+            const auto waveAngleImpact = NaturalStoneRevetment::WaveAngleImpact(
+                timeDependentInput.GetWaveAngle(),
+                waveAngleImpactInput.GetBetamax());
+
+            const auto referenceDegradation = NaturalStoneRevetment::ReferenceDegradation(
+                resistance,
+                hydraulicLoad,
+                waveAngleImpact,
+                startDamage);
+
+            const auto referenceTimeDegradation = NaturalStoneRevetment::ReferenceTimeDegradation(
+                referenceDegradation,
+                wavePeriodTm10);
+
+            const auto incrementTime = Revetment::IncrementTime(
+                timeDependentInput.GetBeginTime(),
+                timeDependentInput.GetEndTime());
+
+            const auto incrementDegradation = NaturalStoneRevetment::IncrementDegradation(
+                referenceTimeDegradation,
+                incrementTime,
+                wavePeriodTm10);
 
             incrementOfDamage = NaturalStoneRevetment::IncrementDamage(
                 hydraulicLoad,
@@ -144,16 +181,7 @@ namespace DiKErnel::Integration
                 waveAngleImpact);
         }
 
-        return Revetment::Damage(incrementOfDamage, startDamage);
-
-        // return NaturalStoneRevetmentDeprecated::CalculateDamage(
-        //     startDamage, _slopeAngle, _relativeDensity, _thicknessTopLayer,
-        //     timeDependentInput.GetWaveHeightHm0(), timeDependentInput.GetWavePeriodTm10(),
-        //     timeDependentInput.GetWaveAngle(), timeDependentInput.GetBeginTime(), timeDependentInput.GetEndTime(),
-        //     _hydraulicLoads->GetHydraulicLoadAp(), _hydraulicLoads->GetHydraulicLoadBp(), _hydraulicLoads->GetHydraulicLoadCp(),
-        //     _hydraulicLoads->GetHydraulicLoadNp(), _hydraulicLoads->GetHydraulicLoadAs(), _hydraulicLoads->GetHydraulicLoadBs(),
-        //     _hydraulicLoads->GetHydraulicLoadCs(), _hydraulicLoads->GetHydraulicLoadNs(), _waveAngleImpact->GetBetamax(),
-        //     _hydraulicLoads->GetHydraulicLoadXib());
+        return Revetment::Damage(incrementOfDamage, startDamage);  
     }
 
     double NaturalStoneRevetmentLocationDependentInput::GetSlopeAngle() const

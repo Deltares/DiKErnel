@@ -31,7 +31,7 @@ namespace DiKErnel::FunctionLibrary
             static int NumberOfTimeSteps(
                 int numberOfTimeStamps);
 
-            static double IncrementOfTime(
+            static double IncrementTime(
                 double startTime,
                 double endTime);
 
