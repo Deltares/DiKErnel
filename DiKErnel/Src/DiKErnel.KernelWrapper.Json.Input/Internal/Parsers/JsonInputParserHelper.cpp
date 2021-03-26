@@ -25,7 +25,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
     using namespace nlohmann;
     using namespace std;
 
-    unique_ptr<double> JsonInputParserHelper::ReadOptionalValue(
+    unique_ptr<double> JsonInputParserHelper::ParseOptionalValue(
         const basic_json<>::value_type& object,
         const string& propertyName)
     {

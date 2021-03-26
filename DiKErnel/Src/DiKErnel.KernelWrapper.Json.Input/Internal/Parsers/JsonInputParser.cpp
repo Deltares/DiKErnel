@@ -51,9 +51,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
         return make_unique<JsonInputData>(
             make_unique<JsonInputCalculationData>(
-                GetTimes(json),
-                GetHydraulicData(json),
-                GetInputLocationData(json)
+                ParseTime(json),
+                ParseHydraulicData(json),
+                ParseLocationData(json)
             )
         );
     }
@@ -65,13 +65,13 @@ namespace DiKErnel::KernelWrapper::Json::Input
         return json::parse(ifs);
     }
 
-    vector<int> JsonInputParser::GetTimes(
+    vector<int> JsonInputParser::ParseTime(
         const json& json)
     {
         return json[JsonInputDefinitions::CALCULATION_DATA][JsonInputDefinitions::TIME].get<vector<int>>();
     }
 
-    unique_ptr<JsonInputHydraulicData> JsonInputParser::GetHydraulicData(
+    unique_ptr<JsonInputHydraulicData> JsonInputParser::ParseHydraulicData(
         const json& json)
     {
         const auto& readHydraulicLoads = json[JsonInputDefinitions::HYDRAULIC_LOADS];
@@ -93,7 +93,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
             move(timeDependentHydraulicData));
     }
 
-    vector<unique_ptr<JsonInputLocationData>> JsonInputParser::GetInputLocationData(
+    vector<unique_ptr<JsonInputLocationData>> JsonInputParser::ParseLocationData(
         const json& json)
     {
         auto parsedLocations = vector<unique_ptr<JsonInputLocationData>>();
@@ -109,8 +109,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
             {
                 const auto& readDamageVariables = readLocation[JsonInputDefinitions::DAMAGE];
 
-                initialDamage = JsonInputParserHelper::ReadOptionalValue(readDamageVariables, JsonInputDefinitions::INITIAL_DAMAGE);
-                failureNumber = JsonInputParserHelper::ReadOptionalValue(readDamageVariables, JsonInputDefinitions::FAILURE_NUMBER);
+                initialDamage = JsonInputParserHelper::ParseOptionalValue(readDamageVariables, JsonInputDefinitions::INITIAL_DAMAGE);
+                failureNumber = JsonInputParserHelper::ParseOptionalValue(readDamageVariables, JsonInputDefinitions::FAILURE_NUMBER);
             }
 
             const auto& readProfileSchematization = readLocation[JsonInputDefinitions::PROFILE_SCHEMATIZATION];
@@ -118,7 +118,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
             auto parsedLocation = make_unique<JsonInputLocationData>(
                 readLocation[JsonInputDefinitions::NAME].get<string>(),
                 make_unique<JsonInputDamageData>(move(initialDamage), move(failureNumber)),
-                GetRevetmentLocationData(readLocation[JsonInputDefinitions::REVETMENT]),
+                ParseRevetmentLocationData(readLocation[JsonInputDefinitions::REVETMENT]),
                 make_unique<JsonInputProfileSchematizationData>(
                     readProfileSchematization[JsonInputDefinitions::TAN_A].get<double>(),
                     readProfileSchematization[JsonInputDefinitions::POSITION_Z].get<double>()));
@@ -129,7 +129,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
         return parsedLocations;
     }
 
-    unique_ptr<IJsonInputRevetmentLocationData> JsonInputParser::GetRevetmentLocationData(
+    unique_ptr<IJsonInputRevetmentLocationData> JsonInputParser::ParseRevetmentLocationData(
         const basic_json<>::value_type& readRevetment)
     {
         const auto& readCalculationMethod = readRevetment[JsonInputDefinitions::CALCULATION_METHOD][0];
@@ -138,7 +138,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
         if (readCalculationMethod[JsonInputDefinitions::CALCULATION_METHOD_TYPE].get<CalculationType>() == CalculationType::NaturalStone)
         {
-            revetmentLocationData = NaturalStoneJsonInputParser::ReadRevetmentLocationData(readRevetment, readCalculationMethod);
+            revetmentLocationData = NaturalStoneJsonInputParser::ParseRevetmentLocationData(readRevetment, readCalculationMethod);
         }
 
         return revetmentLocationData;
