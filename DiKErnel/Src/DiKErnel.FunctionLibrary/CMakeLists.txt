@@ -12,8 +12,6 @@ set(SOURCEFILES_PUBLIC
   ${PUBLIC_FOLDER}/HydraulicLoad.h
   ${PUBLIC_FOLDER}/NaturalStoneRevetment.cpp
   ${PUBLIC_FOLDER}/NaturalStoneRevetment.h
-  ${PUBLIC_FOLDER}/NaturalStoneRevetmentDeprecated.cpp
-  ${PUBLIC_FOLDER}/NaturalStoneRevetmentDeprecated.h
   ${PUBLIC_FOLDER}/Revetment.cpp
   ${PUBLIC_FOLDER}/Revetment.h
 )
