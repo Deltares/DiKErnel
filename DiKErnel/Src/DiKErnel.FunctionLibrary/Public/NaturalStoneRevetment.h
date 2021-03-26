@@ -36,6 +36,7 @@ namespace DiKErnel::FunctionLibrary
                 double waveAngleImpactOnNaturalStone);
 
             static double HydraulicLoadOnNaturalStone(
+                double surfSimilarityParameter,
                 double waveHeightHm0,
                 double hydraulicLoadOnNaturalStoneXib,
                 double hydraulicLoadOnNaturalStoneAp,
@@ -45,26 +46,25 @@ namespace DiKErnel::FunctionLibrary
                 double hydraulicLoadOnNaturalStoneAs,
                 double hydraulicLoadOnNaturalStoneBs,
                 double hydraulicLoadOnNaturalStoneCs,
-                double hydraulicLoadOnNaturalStoneNs,
-                double surfSimilarityParameter);
+                double hydraulicLoadOnNaturalStoneNs);
 
             static double UpperLimitLoadingOfNaturalStone(
+                double depthMaximumWaveLoadNaturalStone,
+                double surfSimilarityParameter,
                 double waterLevel,
                 double waveHeightHm0,
                 double upperLimitLoadingOfNaturalStoneAul,
                 double upperLimitLoadingOfNaturalStoneBul,
-                double upperLimitLoadingOfNaturalStoneCul,
-                double depthMaximumWaveLoadNaturalStone,
-                double surfSimilarityParameter);
+                double upperLimitLoadingOfNaturalStoneCul);
 
             static double LowerLimitLoadingOfNaturalStone(
+                double depthMaximumWaveLoadNaturalStone,
+                double surfSimilarityParameter,
                 double waterLevel,
                 double waveHeightHm0,
                 double lowerLimitLoadingOfNaturalStoneAll,
                 double lowerLimitLoadingOfNaturalStoneBll,
-                double lowerLimitLoadingOfNaturalStoneCll,
-                double depthMaximumWaveLoadNaturalStone,
-                double surfSimilarityParameter);
+                double lowerLimitLoadingOfNaturalStoneCll);
 
             static double DepthMaximumWaveLoadNaturalStone(
                 double distanceMaximumWaveElevationNaturalStone,
@@ -72,19 +72,19 @@ namespace DiKErnel::FunctionLibrary
                 double slopeAngle);
 
             static double DistanceMaximumWaveElevationNaturalStone(
+                double impactShallowWaterNaturalStone,
+                double waveSteepnessDeepWater,
                 double waveHeightHm0,
                 double distanceMaximumWaveElevationNaturalStoneAsmax,
-                double distanceMaximumWaveElevationNaturalStoneBsmax,
-                double impactShallowWaterNaturalStone,
-                double waveSteepnessDeepWater);
+                double distanceMaximumWaveElevationNaturalStoneBsmax);
 
             static double ImpactShallowWaterNaturalStone();
 
             static double NormativeWidthOfWaveImpactNaturalStone(
+                double surfSimilarityParameter,
                 double waveHeightHm0,
                 double normativeWidthOfWaveImpactNaturalStoneAwi,
-                double normativeWidthOfWaveImpactNaturalStoneBwi,
-                double surfSimilarityParameter);
+                double normativeWidthOfWaveImpactNaturalStoneBwi);
 
             static double WaveAngleImpactOnNaturalStone(
                 double waveAngle,
@@ -95,36 +95,36 @@ namespace DiKErnel::FunctionLibrary
                 double thicknessTopLayer);
 
             static double IncrementDegradationOfNaturalStone(
+                double referenceTimeDegradationOfNaturalStone,
                 double wavePeriodTm10,
-                double incrementOfTime,
-                double referenceTimeDegradationOfNaturalStone);
+                double incrementOfTime);
 
             static double DegradationOfNaturalStone(
                 double referenceTimeDegradation,
                 double wavePeriodTm10);
 
             static double ReferenceTimeDegradationOfNaturalStone(
-                double wavePeriodTm10,
-                double referenceDegradationOfNaturalStone);
+                double referenceDegradationOfNaturalStone,
+                double wavePeriodTm10);
 
             static double ReferenceDegradationOfNaturalStone(
-                double initialDamage,
                 double resistanceOfNaturalStone,
                 double hydraulicLoadOnNaturalStone,
-                double waveAngleImpactOnNaturalStone);
+                double waveAngleImpactOnNaturalStone,
+                double initialDamage);
 
             static double DurationInTimeStepFailureNaturalStone(
                 double referenceTimeFailureOfNaturalStone,
                 double referenceTimeDegradationOfNaturalStone);
 
             static double ReferenceTimeFailureOfNaturalStone(
-                double wavePeriodTm10,
-                double referenceFailureOfNaturalStone);
+                double referenceFailureOfNaturalStone,
+                double wavePeriodTm10);
 
             static double ReferenceFailureOfNaturalStone(
-                double failureNumber,
                 double resistanceOfNaturalStone,
                 double hydraulicLoadOnNaturalStone,
-                double waveAngleImpactOnNaturalStone);
+                double waveAngleImpactOnNaturalStone,
+                double failureNumber);
     };
 }
