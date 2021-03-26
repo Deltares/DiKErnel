@@ -40,14 +40,14 @@ namespace DiKErnel::Core
 
             /*!
              * \brief Performs a location dependent calculation.
-             * \param startDamage
+             * \param initialDamage
              *        The damage at the start of the calculation.
              * \param timeDependentInput
              *        The time dependent input to use in the calculation.
              * \return The calculated damage.
              */
             virtual double Calculate(
-                double startDamage,
+                double initialDamage,
                 const ITimeDependentInput& timeDependentInput) = 0;
 
             /*!

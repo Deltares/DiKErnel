@@ -58,7 +58,7 @@ namespace DiKErnel::Integration
           _waveAngleImpact(move(waveAngleImpact)) {}
 
     double NaturalStoneRevetmentLocationDependentInput::Calculate(
-        const double startDamage,
+        const double initialDamage,
         const ITimeDependentInput& timeDependentInput)
     {
         const auto positionZ = 1.0;
@@ -152,7 +152,7 @@ namespace DiKErnel::Integration
                 resistance,
                 hydraulicLoad,
                 waveAngleImpact,
-                startDamage);
+                initialDamage);
 
             const auto referenceTimeDegradation = NaturalStoneRevetment::ReferenceTimeDegradation(
                 referenceDegradation,
@@ -174,7 +174,7 @@ namespace DiKErnel::Integration
                 waveAngleImpact);
         }
 
-        return Revetment::Damage(incrementOfDamage, startDamage);
+        return Revetment::Damage(incrementOfDamage, initialDamage);
     }
 
     double NaturalStoneRevetmentLocationDependentInput::GetTanA() const

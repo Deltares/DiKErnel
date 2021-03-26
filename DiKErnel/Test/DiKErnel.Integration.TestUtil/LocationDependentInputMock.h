@@ -35,6 +35,6 @@ namespace DiKErnel::Integration::TestUtil
                 const double failureNumber)
                 : LocationDependentInput(move(name), initialDamage, failureNumber) {}
 
-            MOCK_METHOD(double, Calculate, (double startDamage, const Core::ITimeDependentInput& timeDependentInput), (override));
+            MOCK_METHOD(double, Calculate, (double initialDamage, const Core::ITimeDependentInput& timeDependentInput), (override));
     };
 }

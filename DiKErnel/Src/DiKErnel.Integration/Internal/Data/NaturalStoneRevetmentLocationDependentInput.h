@@ -50,7 +50,7 @@ namespace DiKErnel::Integration
                 std::unique_ptr<NaturalStoneRevetmentWaveAngleImpact> waveAngleImpact);
 
             double Calculate(
-                double startDamage,
+                double initialDamage,
                 const Core::ITimeDependentInput& timeDependentInput) override;
 
             double GetTanA() const;

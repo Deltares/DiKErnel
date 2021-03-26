@@ -112,11 +112,11 @@ namespace DiKErnel::Core
 
                 auto& locationDependentInput = locationDependentInputItems[j].get();
 
-                const auto startDamage = i == 0
-                                             ? locationDependentInput.GetInitialDamage()
-                                             : damages[j].back();
+                const auto initialDamage = i == 0
+                                               ? locationDependentInput.GetInitialDamage()
+                                               : damages[j].back();
 
-                const auto damage = locationDependentInput.Calculate(startDamage, timeDependentInput);
+                const auto damage = locationDependentInput.Calculate(initialDamage, timeDependentInput);
 
                 damages[j].push_back(damage);
 
