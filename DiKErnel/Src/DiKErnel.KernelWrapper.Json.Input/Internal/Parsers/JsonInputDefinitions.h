@@ -51,6 +51,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
             inline static const std::string CALCULATION_METHOD_TYPE = "RekenmethodeSoort";
 
             inline static const std::string CALCULATION_METHOD_TYPE_NATURAL_STONE = "NatuurSteen";
+            inline static const std::string CALCULATION_METHOD_TYPE_GRASS_WAVE_IMPACT = "GrasGolfklap";
 
             inline static const std::string PROFILE_SCHEMATIZATION = "Profielschematisatie";
             inline static const std::string TAN_A = "TanA";

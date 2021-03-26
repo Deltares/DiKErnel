@@ -38,7 +38,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
             enum class CalculationType
             {
                 Unknown,
-                NaturalStone
+                NaturalStone,
+                GrassWaveImpact
             };
 
         private:

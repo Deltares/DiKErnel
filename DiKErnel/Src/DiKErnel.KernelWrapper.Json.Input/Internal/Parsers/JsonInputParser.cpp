@@ -22,6 +22,7 @@
 
 #include <fstream>
 
+#include "GrassWaveImpactJsonInputParser.h"
 #include "JsonInputDefinitions.h"
 #include "JsonInputParserHelper.h"
 #include "NaturalStoneJsonInputParser.h"
@@ -31,14 +32,16 @@ namespace DiKErnel::KernelWrapper::Json::Input
     using namespace nlohmann;
     using namespace std;
 
-    NLOHMANN_JSON_SERIALIZE_ENUM(
-        JsonInputParser::CalculationType,
+    NLOHMANN_JSON_SERIALIZE_ENUM(JsonInputParser::CalculationType,
         {
             {
                 JsonInputParser::CalculationType::Unknown, nullptr
             },
             {
                 JsonInputParser::CalculationType::NaturalStone, JsonInputDefinitions::CALCULATION_METHOD_TYPE_NATURAL_STONE
+            },
+            {
+                JsonInputParser::CalculationType::GrassWaveImpact, JsonInputDefinitions::CALCULATION_METHOD_TYPE_GRASS_WAVE_IMPACT
             }
         });
 
@@ -134,9 +137,16 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
         unique_ptr<IJsonInputRevetmentLocationData> revetmentLocationData;
 
-        if (readCalculationMethod[JsonInputDefinitions::CALCULATION_METHOD_TYPE].get<CalculationType>() == CalculationType::NaturalStone)
+        const auto& calculationType = readCalculationMethod[JsonInputDefinitions::CALCULATION_METHOD_TYPE].get<CalculationType>();
+
+        if (calculationType == CalculationType::NaturalStone)
         {
             revetmentLocationData = NaturalStoneJsonInputParser::ParseRevetmentLocationData(readRevetment, readCalculationMethod);
+        }
+
+        if (calculationType == CalculationType::GrassWaveImpact)
+        {
+            revetmentLocationData = GrassWaveImpactJsonInputParser::ParseRevetmentLocationData(readRevetment, readCalculationMethod);
         }
 
         return revetmentLocationData;
