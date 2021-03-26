@@ -28,9 +28,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
         const double relativeDensity,
         const double thicknessTopLayer,
         const TopLayerType topLayerType)
-        : JsonInputRevetmentLocationData(
-              relativeDensity,
-              thicknessTopLayer),
+        : _relativeDensity(relativeDensity),
+          _thicknessTopLayer(thicknessTopLayer),
           _topLayerType(topLayerType) { }
 
     #pragma region Set methods
@@ -158,6 +157,16 @@ namespace DiKErnel::KernelWrapper::Json::Input
     #pragma endregion
 
     #pragma region Get methods
+
+    double JsonInputNaturalStoneRevetmentLocationData::GetRelativeDensity() const
+    {
+        return _relativeDensity;
+    }
+
+    double JsonInputNaturalStoneRevetmentLocationData::GetThicknessTopLayer() const
+    {
+        return _thicknessTopLayer;
+    }
 
     JsonInputNaturalStoneRevetmentLocationData::TopLayerType JsonInputNaturalStoneRevetmentLocationData::GetTopLayerType() const
     {

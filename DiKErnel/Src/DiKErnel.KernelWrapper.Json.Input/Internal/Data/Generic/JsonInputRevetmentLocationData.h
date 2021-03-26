@@ -20,26 +20,11 @@
 
 #pragma once
 
-#include <string>
-
 namespace DiKErnel::KernelWrapper::Json::Input
 {
     class JsonInputRevetmentLocationData
     {
         public:
-            double GetRelativeDensity() const;
-
-            double GetThicknessTopLayer() const;
-
             virtual ~JsonInputRevetmentLocationData() = default;
-
-        protected:
-            explicit JsonInputRevetmentLocationData(
-                double relativeDensity,
-                double thicknessTopLayer);
-
-        private:
-            double _relativeDensity;
-            double _thicknessTopLayer;
     };
 }

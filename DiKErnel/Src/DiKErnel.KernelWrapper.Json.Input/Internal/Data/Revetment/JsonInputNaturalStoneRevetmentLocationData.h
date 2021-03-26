@@ -106,6 +106,10 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
             #pragma region Get methods
 
+            double GetRelativeDensity() const;
+
+            double GetThicknessTopLayer() const;
+
             TopLayerType GetTopLayerType() const;
 
             const double* GetHydraulicLoadXib() const;
@@ -151,6 +155,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
             #pragma endregion
 
         private:
+            double _relativeDensity;
+            double _thicknessTopLayer;
             TopLayerType _topLayerType;
             std::unique_ptr<double> _hydraulicLoadXib = nullptr;
             std::unique_ptr<double> _hydraulicLoadAp = nullptr;

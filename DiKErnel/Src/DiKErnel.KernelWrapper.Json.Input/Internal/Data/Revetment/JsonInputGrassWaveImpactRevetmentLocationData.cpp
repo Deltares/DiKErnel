@@ -26,8 +26,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
     JsonInputGrassWaveImpactRevetmentLocationData::JsonInputGrassWaveImpactRevetmentLocationData(
         const TopLayerType topLayerType)
-        : JsonInputRevetmentLocationData(0, 0),
-          _topLayerType(topLayerType) { }
+        : _topLayerType(topLayerType) { }
 
     #pragma region Set methods
 
