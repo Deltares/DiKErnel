@@ -104,12 +104,7 @@ namespace DiKErnel::Integration::Test
         const auto waveAngleImpactBetamax = 2.6;
 
         NaturalStoneRevetmentLocationConstructionProperties constructionProperties(
-            topLayerType,
-            name,
-            tanA,
-            positionZ,
-            thicknessTopLayer,
-            relativeDensity);
+            topLayerType, name, tanA, positionZ, thicknessTopLayer, relativeDensity);
 
         // When
         constructionProperties.SetInitialDamage(make_unique<double>(initialDamage));

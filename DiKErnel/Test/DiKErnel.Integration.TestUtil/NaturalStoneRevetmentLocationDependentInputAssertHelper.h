@@ -30,6 +30,7 @@ namespace DiKErnel::Integration::TestUtil
             static void AssertMandatoryProperties(
                 const std::string& name,
                 double tanA,
+                double positionZ,
                 double relativeDensity,
                 double thicknessTopLayer,
                 const NaturalStoneRevetmentLocationDependentInput& locationDependentInput);
