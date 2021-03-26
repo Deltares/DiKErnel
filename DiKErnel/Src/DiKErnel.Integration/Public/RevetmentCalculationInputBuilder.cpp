@@ -108,7 +108,7 @@ namespace DiKErnel::Integration
                 constructionProperties.GetName(),
                 GetValue(constructionProperties.GetInitialDamage(), RevetmentDefaults::INITIAL_DAMAGE),
                 GetValue(constructionProperties.GetFailureNumber(), RevetmentDefaults::FAILURE_NUMBER),
-                constructionProperties.GetSlopeAngle(),
+                constructionProperties.GetTanA(),
                 constructionProperties.GetRelativeDensity(),
                 constructionProperties.GetThicknessTopLayer(),
                 move(hydraulicLoads),

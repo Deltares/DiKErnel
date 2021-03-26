@@ -37,7 +37,7 @@ namespace DiKErnel::Integration
         string name,
         const double initialDamage,
         const double failureNumber,
-        const double slopeAngle,
+        const double tanA,
         const double relativeDensity,
         const double thicknessTopLayer,
         unique_ptr<NaturalStoneRevetmentHydraulicLoads> hydraulicLoads,
@@ -47,7 +47,7 @@ namespace DiKErnel::Integration
         unique_ptr<NaturalStoneRevetmentNormativeWidthOfWaveImpact> normativeWidthOfWaveImpact,
         unique_ptr<NaturalStoneRevetmentWaveAngleImpact> waveAngleImpact)
         : LocationDependentInput(move(name), initialDamage, failureNumber),
-          _slopeAngle(slopeAngle),
+          _tanA(tanA),
           _relativeDensity(relativeDensity),
           _thicknessTopLayer(thicknessTopLayer),
           _hydraulicLoads(move(hydraulicLoads)),
@@ -61,7 +61,7 @@ namespace DiKErnel::Integration
         const double startDamage,
         const ITimeDependentInput& timeDependentInput)
     {
-        const auto tanA = GetSlopeAngle();
+        const auto tanA = GetTanA();
         const auto positionZ = 1.0;
         const auto waterLevel = timeDependentInput.GetWaterLevel();
         const auto waveHeightHm0 = timeDependentInput.GetWaveHeightHm0();
@@ -181,12 +181,12 @@ namespace DiKErnel::Integration
                 waveAngleImpact);
         }
 
-        return Revetment::Damage(incrementOfDamage, startDamage);  
+        return Revetment::Damage(incrementOfDamage, startDamage);
     }
 
-    double NaturalStoneRevetmentLocationDependentInput::GetSlopeAngle() const
+    double NaturalStoneRevetmentLocationDependentInput::GetTanA() const
     {
-        return _slopeAngle;
+        return _tanA;
     }
 
     double NaturalStoneRevetmentLocationDependentInput::GetRelativeDensity() const

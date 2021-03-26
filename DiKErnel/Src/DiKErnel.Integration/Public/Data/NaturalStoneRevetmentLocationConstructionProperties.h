@@ -47,8 +47,8 @@ namespace DiKErnel::Integration
              *        The type of the top layer.
              * \param name
              *        The name.
-             * \param slopeAngle
-             *        The slope angle.
+             * \param tanA
+             *        The tanA value.
              * \param thicknessTopLayer
              *        The thickness of the top layer.
              * \param relativeDensity
@@ -57,7 +57,7 @@ namespace DiKErnel::Integration
             explicit NaturalStoneRevetmentLocationConstructionProperties(
                 TopLayerType topLayerType,
                 std::string name,
-                double slopeAngle,
+                double tanA,
                 double thicknessTopLayer,
                 double relativeDensity);
 
@@ -236,10 +236,10 @@ namespace DiKErnel::Integration
             std::string GetName() const;
 
             /*!
-             * \brief Gets the slope angle.
-             * \return The slope angle.
+             * \brief Gets the tanA value.
+             * \return The tanA value.
              */
-            double GetSlopeAngle() const;
+            double GetTanA() const;
 
             /*!
              * \brief Gets the thickness of the top layer.
@@ -390,7 +390,7 @@ namespace DiKErnel::Integration
         private:
             TopLayerType _topLayerType;
             std::string _name;
-            double _slopeAngle;
+            double _tanA;
             double _thicknessTopLayer;
             double _relativeDensity;
             std::unique_ptr<double> _initialDamage = nullptr;

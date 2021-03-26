@@ -27,12 +27,12 @@ namespace DiKErnel::Integration
     NaturalStoneRevetmentLocationConstructionProperties::NaturalStoneRevetmentLocationConstructionProperties(
         const TopLayerType topLayerType,
         string name,
-        const double slopeAngle,
+        const double tanA,
         const double thicknessTopLayer,
         const double relativeDensity)
         : _topLayerType(topLayerType),
           _name(move(name)),
-          _slopeAngle(slopeAngle),
+          _tanA(tanA),
           _thicknessTopLayer(thicknessTopLayer),
           _relativeDensity(relativeDensity) { }
 
@@ -184,9 +184,9 @@ namespace DiKErnel::Integration
         return _name;
     }
 
-    double NaturalStoneRevetmentLocationConstructionProperties::GetSlopeAngle() const
+    double NaturalStoneRevetmentLocationConstructionProperties::GetTanA() const
     {
-        return _slopeAngle;
+        return _tanA;
     }
 
     double NaturalStoneRevetmentLocationConstructionProperties::GetThicknessTopLayer() const

@@ -31,18 +31,18 @@ namespace DiKErnel::Integration::Test
         // Setup
         const auto topLayerType = NaturalStoneRevetmentLocationConstructionProperties::TopLayerType::NordicStone;
         const string name = "Test";
-        const auto slopeAngle = 0.1;
+        const auto tanA = 0.1;
         const auto thicknessTopLayer = 0.2;
         const auto relativeDensity = 0.3;
 
         // Call
         const NaturalStoneRevetmentLocationConstructionProperties constructionProperties(
-            topLayerType, name, slopeAngle, thicknessTopLayer, relativeDensity);
+            topLayerType, name, tanA, thicknessTopLayer, relativeDensity);
 
         // Assert
         ASSERT_EQ(topLayerType, constructionProperties.GetTopLayerType());
         ASSERT_EQ(name, constructionProperties.GetName());
-        ASSERT_DOUBLE_EQ(slopeAngle, constructionProperties.GetSlopeAngle());
+        ASSERT_DOUBLE_EQ(tanA, constructionProperties.GetTanA());
         ASSERT_DOUBLE_EQ(thicknessTopLayer, constructionProperties.GetThicknessTopLayer());
         ASSERT_DOUBLE_EQ(relativeDensity, constructionProperties.GetRelativeDensity());
         ASSERT_EQ(nullptr, constructionProperties.GetInitialDamage());
@@ -74,7 +74,7 @@ namespace DiKErnel::Integration::Test
         // Given
         const auto topLayerType = NaturalStoneRevetmentLocationConstructionProperties::TopLayerType::NordicStone;
         const string name = "Test";
-        const auto slopeAngle = 0.1;
+        const auto tanA = 0.1;
         const auto thicknessTopLayer = 0.2;
         const auto relativeDensity = 0.3;
         const auto initialDamage = 0.4;
@@ -100,7 +100,7 @@ namespace DiKErnel::Integration::Test
         const auto normativeWidthOfWaveImpactBwi = 2.4;
         const auto waveAngleImpactBetamax = 2.5;
 
-        NaturalStoneRevetmentLocationConstructionProperties constructionProperties(topLayerType, name, slopeAngle, thicknessTopLayer, relativeDensity);
+        NaturalStoneRevetmentLocationConstructionProperties constructionProperties(topLayerType, name, tanA, thicknessTopLayer, relativeDensity);
 
         // When
         constructionProperties.SetInitialDamage(make_unique<double>(initialDamage));
@@ -129,7 +129,7 @@ namespace DiKErnel::Integration::Test
         // Then
         ASSERT_EQ(topLayerType, constructionProperties.GetTopLayerType());
         ASSERT_EQ(name, constructionProperties.GetName());
-        ASSERT_DOUBLE_EQ(slopeAngle, constructionProperties.GetSlopeAngle());
+        ASSERT_DOUBLE_EQ(tanA, constructionProperties.GetTanA());
         ASSERT_DOUBLE_EQ(thicknessTopLayer, constructionProperties.GetThicknessTopLayer());
         ASSERT_DOUBLE_EQ(relativeDensity, constructionProperties.GetRelativeDensity());
         ASSERT_DOUBLE_EQ(initialDamage, *constructionProperties.GetInitialDamage());
