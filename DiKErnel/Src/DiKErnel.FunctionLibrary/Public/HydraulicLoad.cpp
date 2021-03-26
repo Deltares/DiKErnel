@@ -48,13 +48,13 @@ namespace DiKErnel::FunctionLibrary
         const double waveHeightHm0,
         const double wavePeriodTm10)
     {
-        return tanA / sqrt(2.0 * Constants::PI * waveHeightHm0 / (Constants::GRAVITATIONAL_ACCELERATION * pow(wavePeriodTm10, 2.0)));
+        return tanA / sqrt(2.0 * Generic::Pi() * waveHeightHm0 / (Constants::GRAVITATIONAL_ACCELERATION * pow(wavePeriodTm10, 2.0)));
     }
 
     double HydraulicLoad::WaveSteepnessDeepWater(
         const double waveHeightHm0,
         const double wavePeriodTm10)
     {
-        return waveHeightHm0 / (Constants::GRAVITATIONAL_ACCELERATION / (2.0 * Constants::PI) * pow(wavePeriodTm10, 2.0));
+        return waveHeightHm0 / (Constants::GRAVITATIONAL_ACCELERATION / (2.0 * Generic::Pi()) * pow(wavePeriodTm10, 2.0));
     }
 }

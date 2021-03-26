@@ -20,8 +20,6 @@
 
 #pragma once
 
-#include <cmath>
-
 namespace DiKErnel::DomainLibrary
 {
     /*!
@@ -30,12 +28,6 @@ namespace DiKErnel::DomainLibrary
     class Constants
     {
         public:
-            /*!
-             * \brief The value of pi.
-             *        Unit = [-]
-             */
-            inline static const double PI = 2 * acos(0.0);
-
             /*!
              * \brief The value of the gravitational acceleration.
              *        Unit = [m/s²]

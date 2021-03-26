@@ -28,6 +28,8 @@ namespace DiKErnel::FunctionLibrary
     class Generic
     {
         public:
+            static double Pi();
+
             static double Radians(
                 double degrees);
     };

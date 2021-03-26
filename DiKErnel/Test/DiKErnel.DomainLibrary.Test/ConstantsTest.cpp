@@ -26,12 +26,6 @@
 
 namespace DiKErnel::DomainLibrary::Test
 {
-    TEST(ConstantsTest, Pi_ExpectedValue)
-    {
-        // Call & Assert
-        ASSERT_DOUBLE_EQ(2 * acos(0.0), Constants::PI);
-    }
-
     TEST(ConstantsTest, GravitationalAcceleration_ExpectedValue)
     {
         // Call & Assert

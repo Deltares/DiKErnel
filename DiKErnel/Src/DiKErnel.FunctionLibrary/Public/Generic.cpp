@@ -20,15 +20,22 @@
 
 #include "Generic.h"
 
+#include <cmath>
+
 #include "Constants.h"
 
 namespace DiKErnel::FunctionLibrary
 {
     using namespace DomainLibrary;
 
+    double Generic::Pi()
+    {
+        return 2.0 * acos(0.0);
+    }
+
     double Generic::Radians(
         const double degrees)
     {
-        return degrees * (Constants::PI / 180.0);
+        return degrees * (Pi() / 180.0);
     }
 }

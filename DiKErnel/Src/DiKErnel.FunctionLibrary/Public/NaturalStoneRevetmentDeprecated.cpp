@@ -24,6 +24,7 @@
 #include <cmath>
 
 #include "Constants.h"
+#include "Generic.h"
 
 namespace DiKErnel::FunctionLibrary
 {
@@ -186,7 +187,7 @@ namespace DiKErnel::FunctionLibrary
         const double spectralWaveHeight,
         const double spectralWavePeriod)
     {
-        const auto spectralWaveHeightRelatedValue = 2.0 * Constants::PI * spectralWaveHeight;
+        const auto spectralWaveHeightRelatedValue = 2.0 * Generic::Pi() * spectralWaveHeight;
 
         const auto spectralWavePeriodRelatedValue = Constants::GRAVITATIONAL_ACCELERATION * pow(spectralWavePeriod, 2.0);
 
@@ -371,6 +372,6 @@ namespace DiKErnel::FunctionLibrary
     double NaturalStoneRevetmentDeprecated::ConvertDegreesToRadians(
         const double degrees)
     {
-        return degrees * (Constants::PI / 180);
+        return degrees * (Generic::Pi() / 180);
     }
 }
