@@ -48,15 +48,15 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 const std::string& filePath);
 
             static std::vector<int> ParseTime(
-                const nlohmann::json& json);
+                const nlohmann::json& readCalculationData);
 
             static std::unique_ptr<JsonInputHydraulicData> ParseHydraulicData(
-                const nlohmann::json& json);
+                const nlohmann::json& readCalculationData);
 
             static std::vector<std::unique_ptr<JsonInputLocationData>> ParseLocationData(
-                const nlohmann::json& json);
+                const nlohmann::json& readCalculationData);
 
             static std::unique_ptr<IJsonInputRevetmentLocationData> ParseRevetmentLocationData(
-                const nlohmann::basic_json<>::value_type& readRevetment);
+                const nlohmann::json& readRevetment);
     };
 }

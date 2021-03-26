@@ -50,11 +50,13 @@ namespace DiKErnel::KernelWrapper::Json::Input
     {
         const auto json = ReadJson(filePath);
 
+        const auto& readCalculationData = json[JsonInputDefinitions::CALCULATION_DATA];
+
         return make_unique<JsonInputData>(
             make_unique<JsonInputCalculationData>(
-                ParseTime(json),
-                ParseHydraulicData(json),
-                ParseLocationData(json)
+                ParseTime(readCalculationData),
+                ParseHydraulicData(readCalculationData),
+                ParseLocationData(readCalculationData)
             )
         );
     }
@@ -67,15 +69,15 @@ namespace DiKErnel::KernelWrapper::Json::Input
     }
 
     vector<int> JsonInputParser::ParseTime(
-        const json& json)
+        const json& readCalculationData)
     {
-        return json[JsonInputDefinitions::CALCULATION_DATA][JsonInputDefinitions::TIME].get<vector<int>>();
+        return readCalculationData[JsonInputDefinitions::TIME].get<vector<int>>();
     }
 
     unique_ptr<JsonInputHydraulicData> JsonInputParser::ParseHydraulicData(
-        const json& json)
+        const json& readCalculationData)
     {
-        const auto& readHydraulicLoads = json[JsonInputDefinitions::HYDRAULIC_LOADS];
+        const auto& readHydraulicLoads = readCalculationData[JsonInputDefinitions::HYDRAULIC_LOADS];
         const auto& readBoundaryConditionsPerTimeStep = readHydraulicLoads[JsonInputDefinitions::BOUNDARY_CONDITIONS_PER_TIME_STEP];
 
         vector<unique_ptr<JsonInputTimeDependentHydraulicData>> timeDependentHydraulicData;
@@ -95,11 +97,11 @@ namespace DiKErnel::KernelWrapper::Json::Input
     }
 
     vector<unique_ptr<JsonInputLocationData>> JsonInputParser::ParseLocationData(
-        const json& json)
+        const json& readCalculationData)
     {
         auto parsedLocations = vector<unique_ptr<JsonInputLocationData>>();
 
-        const auto& readLocations = json[JsonInputDefinitions::LOCATIONS];
+        const auto& readLocations = readCalculationData[JsonInputDefinitions::LOCATIONS];
 
         for (const auto& readLocation : readLocations)
         {
@@ -131,7 +133,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
     }
 
     unique_ptr<IJsonInputRevetmentLocationData> JsonInputParser::ParseRevetmentLocationData(
-        const basic_json<>::value_type& readRevetment)
+        const json& readRevetment)
     {
         const auto& readCalculationMethod = readRevetment[JsonInputDefinitions::CALCULATION_METHOD][0];
 

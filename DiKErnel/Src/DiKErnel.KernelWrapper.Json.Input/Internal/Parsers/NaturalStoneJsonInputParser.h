@@ -32,7 +32,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
     {
         public:
             static std::unique_ptr<JsonInputNaturalStoneRevetmentLocationData> ParseRevetmentLocationData(
-                const nlohmann::basic_json<>::value_type& readRevetment,
-                const nlohmann::basic_json<>::value_type& readCalculationMethod);
+                const nlohmann::json& readRevetment,
+                const nlohmann::json& readCalculationMethod);
     };
 }

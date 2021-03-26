@@ -43,8 +43,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
         });
 
     unique_ptr<JsonInputGrassWaveImpactRevetmentLocationData> GrassWaveImpactJsonInputParser::ParseRevetmentLocationData(
-        const basic_json<>::value_type& readRevetment,
-        const basic_json<>::value_type& readCalculationMethod)
+        const json& readRevetment,
+        const json& readCalculationMethod)
     {
         auto locationData = make_unique<JsonInputGrassWaveImpactRevetmentLocationData>(
             readRevetment[JsonInputDefinitions::TYPE_TOP_LAYER].get<JsonInputGrassWaveImpactRevetmentLocationData::TopLayerType>());

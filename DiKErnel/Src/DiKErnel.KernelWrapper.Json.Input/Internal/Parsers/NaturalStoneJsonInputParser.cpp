@@ -40,8 +40,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
         });
 
     unique_ptr<JsonInputNaturalStoneRevetmentLocationData> NaturalStoneJsonInputParser::ParseRevetmentLocationData(
-        const basic_json<>::value_type& readRevetment,
-        const basic_json<>::value_type& readCalculationMethod)
+        const json& readRevetment,
+        const json& readCalculationMethod)
     {
         auto locationData = make_unique<JsonInputNaturalStoneRevetmentLocationData>(
             readRevetment[NaturalStoneJsonInputDefinitions::RELATIVE_DENSITY],
