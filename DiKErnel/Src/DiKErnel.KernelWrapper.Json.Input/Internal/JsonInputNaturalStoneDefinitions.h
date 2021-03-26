@@ -27,39 +27,39 @@ namespace DiKErnel::KernelWrapper::Json::Input
     class JsonInputNaturalStoneDefinitions
     {
         public:
-            inline static const std::string CALCULATION_METHOD_TYPE_NATURAL_STONE = "NatuurSteen";
+            inline static const std::string CALCULATION_METHOD_TYPE = "NatuurSteen";
 
-            inline static const std::string HYDRAULIC_LOAD_ON_NATURAL_STONE = "ToenameSchadeNatuursteen";
-            inline static const std::string HYDRAULIC_LOAD_ON_NATURAL_STONE_XIB = "HydraulischeBelastingNatuursteenXib";
-            inline static const std::string HYDRAULIC_LOAD_ON_NATURAL_STONE_AP = "HydraulischeBelastingNatuursteenAp";
-            inline static const std::string HYDRAULIC_LOAD_ON_NATURAL_STONE_BP = "HydraulischeBelastingNatuursteenBp";
-            inline static const std::string HYDRAULIC_LOAD_ON_NATURAL_STONE_CP = "HydraulischeBelastingNatuursteenCp";
-            inline static const std::string HYDRAULIC_LOAD_ON_NATURAL_STONE_NP = "HydraulischeBelastingNatuursteenNp";
-            inline static const std::string HYDRAULIC_LOAD_ON_NATURAL_STONE_AS = "HydraulischeBelastingNatuursteenAs";
-            inline static const std::string HYDRAULIC_LOAD_ON_NATURAL_STONE_BS = "HydraulischeBelastingNatuursteenBs";
-            inline static const std::string HYDRAULIC_LOAD_ON_NATURAL_STONE_CS = "HydraulischeBelastingNatuursteenCs";
-            inline static const std::string HYDRAULIC_LOAD_ON_NATURAL_STONE_NS = "HydraulischeBelastingNatuursteenNs";
+            inline static const std::string HYDRAULIC_LOAD = "ToenameSchadeNatuursteen";
+            inline static const std::string HYDRAULIC_LOAD_XIB = "HydraulischeBelastingNatuursteenXib";
+            inline static const std::string HYDRAULIC_LOAD_AP = "HydraulischeBelastingNatuursteenAp";
+            inline static const std::string HYDRAULIC_LOAD_BP = "HydraulischeBelastingNatuursteenBp";
+            inline static const std::string HYDRAULIC_LOAD_CP = "HydraulischeBelastingNatuursteenCp";
+            inline static const std::string HYDRAULIC_LOAD_NP = "HydraulischeBelastingNatuursteenNp";
+            inline static const std::string HYDRAULIC_LOAD_AS = "HydraulischeBelastingNatuursteenAs";
+            inline static const std::string HYDRAULIC_LOAD_BS = "HydraulischeBelastingNatuursteenBs";
+            inline static const std::string HYDRAULIC_LOAD_CS = "HydraulischeBelastingNatuursteenCs";
+            inline static const std::string HYDRAULIC_LOAD_NS = "HydraulischeBelastingNatuursteenNs";
 
-            inline static const std::string UPPER_LIMIT_LOADING_OF_NATURAL_STONE = "BovengrensBelastingNatuursteen";
-            inline static const std::string UPPER_LIMIT_LOADING_OF_NATURAL_STONE_AUL = "BovengrensBelastingNatuursteenAul";
-            inline static const std::string UPPER_LIMIT_LOADING_OF_NATURAL_STONE_BUL = "BovengrensBelastingNatuursteenBul";
-            inline static const std::string UPPER_LIMIT_LOADING_OF_NATURAL_STONE_CUL = "BovengrensBelastingNatuursteenCul";
+            inline static const std::string UPPER_LIMIT_LOADING = "BovengrensBelastingNatuursteen";
+            inline static const std::string UPPER_LIMIT_LOADING_AUL = "BovengrensBelastingNatuursteenAul";
+            inline static const std::string UPPER_LIMIT_LOADING_BUL = "BovengrensBelastingNatuursteenBul";
+            inline static const std::string UPPER_LIMIT_LOADING_CUL = "BovengrensBelastingNatuursteenCul";
 
-            inline static const std::string LOWER_LIMIT_LOADING_OF_NATURAL_STONE = "OndergrensBelastingNatuursteen";
-            inline static const std::string LOWER_LIMIT_LOADING_OF_NATURAL_STONE_ALL = "OndergrensBelastingNatuursteenAll";
-            inline static const std::string LOWER_LIMIT_LOADING_OF_NATURAL_STONE_BLL = "OndergrensBelastingNatuursteenBll";
-            inline static const std::string LOWER_LIMIT_LOADING_OF_NATURAL_STONE_CLL = "OndergrensBelastingNatuursteenCll";
+            inline static const std::string LOWER_LIMIT_LOADING = "OndergrensBelastingNatuursteen";
+            inline static const std::string LOWER_LIMIT_LOADING_ALL = "OndergrensBelastingNatuursteenAll";
+            inline static const std::string LOWER_LIMIT_LOADING_BLL = "OndergrensBelastingNatuursteenBll";
+            inline static const std::string LOWER_LIMIT_LOADING_CLL = "OndergrensBelastingNatuursteenCll";
 
-            inline static const std::string DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE = "AfstandMaximaleStijghoogteNatuursteen";
-            inline static const std::string DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE_ASMAX = "AfstandMaximaleStijghoogteNatuursteenAsmax";
-            inline static const std::string DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE_BSMAX = "AfstandMaximaleStijghoogteNatuursteenBsmax";
+            inline static const std::string DISTANCE_MAXIMUM_WAVE_ELEVATION = "AfstandMaximaleStijghoogteNatuursteen";
+            inline static const std::string DISTANCE_MAXIMUM_WAVE_ELEVATION_ASMAX = "AfstandMaximaleStijghoogteNatuursteenAsmax";
+            inline static const std::string DISTANCE_MAXIMUM_WAVE_ELEVATION_BSMAX = "AfstandMaximaleStijghoogteNatuursteenBsmax";
 
-            inline static const std::string NORMATIVE_WIDTH_OF_WAVE_IMPACT_ON_NATURAL_STONE = "MaatgevendeBreedteGolfklapNatuursteen";
-            inline static const std::string NORMATIVE_WIDTH_OF_WAVE_IMPACT_ON_NATURAL_STONE_AWI = "MaatgevendeBreedteGolfklapNatuursteenAwi";
-            inline static const std::string NORMATIVE_WIDTH_OF_WAVE_IMPACT_ON_NATURAL_STONE_BWI = "MaatgevendeBreedteGolfklapNatuursteenBwi";
+            inline static const std::string NORMATIVE_WIDTH_OF_WAVE_IMPACT = "MaatgevendeBreedteGolfklapNatuursteen";
+            inline static const std::string NORMATIVE_WIDTH_OF_WAVE_IMPACT_AWI = "MaatgevendeBreedteGolfklapNatuursteenAwi";
+            inline static const std::string NORMATIVE_WIDTH_OF_WAVE_IMPACT_BWI = "MaatgevendeBreedteGolfklapNatuursteenBwi";
 
-            inline static const std::string WAVE_ANGLE_IMPACT_ON_NATURAL_STONE = "ImpactGolfhoekBekledingNatuursteen";
-            inline static const std::string WAVE_ANGLE_IMPACT_ON_NATURAL_STONE_BETA_MAX = "ImpactGolfhoekBekledingNatuursteenBetamax";
+            inline static const std::string WAVE_ANGLE_IMPACT = "ImpactGolfhoekBekledingNatuursteen";
+            inline static const std::string WAVE_ANGLE_IMPACT_BETA_MAX = "ImpactGolfhoekBekledingNatuursteenBetamax";
 
             inline static const std::string TOP_LAYER_TYPE_NORDIC_STONE = "Noorse Steen";
     };

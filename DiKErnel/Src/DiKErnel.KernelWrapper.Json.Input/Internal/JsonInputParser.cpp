@@ -38,7 +38,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 JsonInputParser::CalculationType::Unknown, nullptr
             },
             {
-                JsonInputParser::CalculationType::NaturalStone, JsonInputNaturalStoneDefinitions::CALCULATION_METHOD_TYPE_NATURAL_STONE
+                JsonInputParser::CalculationType::NaturalStone, JsonInputNaturalStoneDefinitions::CALCULATION_METHOD_TYPE
             }
         });
 
@@ -161,102 +161,102 @@ namespace DiKErnel::KernelWrapper::Json::Input
             readRevetment[JsonInputDefinitions::THICKNESS_TOP_LAYER],
             readRevetment[JsonInputDefinitions::TYPE_TOP_LAYER].get<JsonInputNaturalStoneRevetmentLocationData::TopLayerType>());
 
-        if (readCalculationMethod.contains(JsonInputNaturalStoneDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE))
+        if (readCalculationMethod.contains(JsonInputNaturalStoneDefinitions::HYDRAULIC_LOAD))
         {
-            const auto& readHydraulicLoads = readCalculationMethod[JsonInputNaturalStoneDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE];
+            const auto& readHydraulicLoads = readCalculationMethod[JsonInputNaturalStoneDefinitions::HYDRAULIC_LOAD];
 
             locationData->SetHydraulicLoadAp(
                 forward<unique_ptr<double>>(ReadOptionalValue(readHydraulicLoads,
-                                                              JsonInputNaturalStoneDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_AP)));
+                                                              JsonInputNaturalStoneDefinitions::HYDRAULIC_LOAD_AP)));
             locationData->SetHydraulicLoadBp(
                 forward<unique_ptr<double>>(ReadOptionalValue(readHydraulicLoads,
-                                                              JsonInputNaturalStoneDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_BP)));
+                                                              JsonInputNaturalStoneDefinitions::HYDRAULIC_LOAD_BP)));
             locationData->SetHydraulicLoadCp(
                 forward<unique_ptr<double>>(ReadOptionalValue(readHydraulicLoads,
-                                                              JsonInputNaturalStoneDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_CP)));
+                                                              JsonInputNaturalStoneDefinitions::HYDRAULIC_LOAD_CP)));
             locationData->SetHydraulicLoadNp(
                 forward<unique_ptr<double>>(ReadOptionalValue(readHydraulicLoads,
-                                                              JsonInputNaturalStoneDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_NP)));
+                                                              JsonInputNaturalStoneDefinitions::HYDRAULIC_LOAD_NP)));
             locationData->SetHydraulicLoadAs(
                 forward<unique_ptr<double>>(ReadOptionalValue(readHydraulicLoads,
-                                                              JsonInputNaturalStoneDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_AS)));
+                                                              JsonInputNaturalStoneDefinitions::HYDRAULIC_LOAD_AS)));
             locationData->SetHydraulicLoadBs(
                 forward<unique_ptr<double>>(ReadOptionalValue(readHydraulicLoads,
-                                                              JsonInputNaturalStoneDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_BS)));
+                                                              JsonInputNaturalStoneDefinitions::HYDRAULIC_LOAD_BS)));
             locationData->SetHydraulicLoadCs(
                 forward<unique_ptr<double>>(ReadOptionalValue(readHydraulicLoads,
-                                                              JsonInputNaturalStoneDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_CS)));
+                                                              JsonInputNaturalStoneDefinitions::HYDRAULIC_LOAD_CS)));
             locationData->SetHydraulicLoadNs(
                 forward<unique_ptr<double>>(ReadOptionalValue(readHydraulicLoads,
-                                                              JsonInputNaturalStoneDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_NS)));
+                                                              JsonInputNaturalStoneDefinitions::HYDRAULIC_LOAD_NS)));
             locationData->SetHydraulicLoadXib(
                 forward<unique_ptr<double>>(ReadOptionalValue(readHydraulicLoads,
-                                                              JsonInputNaturalStoneDefinitions::HYDRAULIC_LOAD_ON_NATURAL_STONE_XIB)));
+                                                              JsonInputNaturalStoneDefinitions::HYDRAULIC_LOAD_XIB)));
         }
 
-        if (readCalculationMethod.contains(JsonInputNaturalStoneDefinitions::UPPER_LIMIT_LOADING_OF_NATURAL_STONE))
+        if (readCalculationMethod.contains(JsonInputNaturalStoneDefinitions::UPPER_LIMIT_LOADING))
         {
-            const auto& readUpperLimitLoading = readCalculationMethod[JsonInputNaturalStoneDefinitions::UPPER_LIMIT_LOADING_OF_NATURAL_STONE];
+            const auto& readUpperLimitLoading = readCalculationMethod[JsonInputNaturalStoneDefinitions::UPPER_LIMIT_LOADING];
 
             locationData->SetUpperLimitLoadingAul(
                 forward<unique_ptr<double>>(ReadOptionalValue(
-                    readUpperLimitLoading, JsonInputNaturalStoneDefinitions::UPPER_LIMIT_LOADING_OF_NATURAL_STONE_AUL)));
+                    readUpperLimitLoading, JsonInputNaturalStoneDefinitions::UPPER_LIMIT_LOADING_AUL)));
             locationData->SetUpperLimitLoadingBul(
                 forward<unique_ptr<double>>(ReadOptionalValue(
-                    readUpperLimitLoading, JsonInputNaturalStoneDefinitions::UPPER_LIMIT_LOADING_OF_NATURAL_STONE_BUL)));
+                    readUpperLimitLoading, JsonInputNaturalStoneDefinitions::UPPER_LIMIT_LOADING_BUL)));
             locationData->SetUpperLimitLoadingCul(
                 forward<unique_ptr<double>>(ReadOptionalValue(
-                    readUpperLimitLoading, JsonInputNaturalStoneDefinitions::UPPER_LIMIT_LOADING_OF_NATURAL_STONE_CUL)));
+                    readUpperLimitLoading, JsonInputNaturalStoneDefinitions::UPPER_LIMIT_LOADING_CUL)));
         }
 
-        if (readCalculationMethod.contains(JsonInputNaturalStoneDefinitions::LOWER_LIMIT_LOADING_OF_NATURAL_STONE))
+        if (readCalculationMethod.contains(JsonInputNaturalStoneDefinitions::LOWER_LIMIT_LOADING))
         {
-            const auto& readLowerLimitLoading = readCalculationMethod[JsonInputNaturalStoneDefinitions::LOWER_LIMIT_LOADING_OF_NATURAL_STONE];
+            const auto& readLowerLimitLoading = readCalculationMethod[JsonInputNaturalStoneDefinitions::LOWER_LIMIT_LOADING];
 
             locationData->SetLowerLimitLoadingAll(
                 forward<unique_ptr<double>>(
-                    ReadOptionalValue(readLowerLimitLoading, JsonInputNaturalStoneDefinitions::LOWER_LIMIT_LOADING_OF_NATURAL_STONE_ALL)));
+                    ReadOptionalValue(readLowerLimitLoading, JsonInputNaturalStoneDefinitions::LOWER_LIMIT_LOADING_ALL)));
             locationData->SetLowerLimitLoadingBll(
                 forward<unique_ptr<double>>(ReadOptionalValue(
-                    readLowerLimitLoading, JsonInputNaturalStoneDefinitions::LOWER_LIMIT_LOADING_OF_NATURAL_STONE_BLL)));
+                    readLowerLimitLoading, JsonInputNaturalStoneDefinitions::LOWER_LIMIT_LOADING_BLL)));
             locationData->SetLowerLimitLoadingCll(
                 forward<unique_ptr<double>>(ReadOptionalValue(
-                    readLowerLimitLoading, JsonInputNaturalStoneDefinitions::LOWER_LIMIT_LOADING_OF_NATURAL_STONE_CLL)));
+                    readLowerLimitLoading, JsonInputNaturalStoneDefinitions::LOWER_LIMIT_LOADING_CLL)));
         }
 
-        if (readCalculationMethod.contains(JsonInputNaturalStoneDefinitions::DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE))
+        if (readCalculationMethod.contains(JsonInputNaturalStoneDefinitions::DISTANCE_MAXIMUM_WAVE_ELEVATION))
         {
             const auto& readDistanceMaxWaveElevation = readCalculationMethod[
-                JsonInputNaturalStoneDefinitions::DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE];
+                JsonInputNaturalStoneDefinitions::DISTANCE_MAXIMUM_WAVE_ELEVATION];
 
             locationData->SetDistanceMaximumWaveElevationAsmax(
                 forward<unique_ptr<double>>(ReadOptionalValue(
-                    readDistanceMaxWaveElevation, JsonInputNaturalStoneDefinitions::DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE_ASMAX)));
+                    readDistanceMaxWaveElevation, JsonInputNaturalStoneDefinitions::DISTANCE_MAXIMUM_WAVE_ELEVATION_ASMAX)));
             locationData->SetDistanceMaximumWaveElevationBsmax(
                 forward<unique_ptr<double>>(ReadOptionalValue(
-                    readDistanceMaxWaveElevation, JsonInputNaturalStoneDefinitions::DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE_BSMAX)));
+                    readDistanceMaxWaveElevation, JsonInputNaturalStoneDefinitions::DISTANCE_MAXIMUM_WAVE_ELEVATION_BSMAX)));
         }
 
-        if (readCalculationMethod.contains(JsonInputNaturalStoneDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT_ON_NATURAL_STONE))
+        if (readCalculationMethod.contains(JsonInputNaturalStoneDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT))
         {
             const auto& readNormativeWidthOfWaveImpact =
-                    readCalculationMethod[JsonInputNaturalStoneDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT_ON_NATURAL_STONE];
+                    readCalculationMethod[JsonInputNaturalStoneDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT];
 
             locationData->SetNormativeWidthOfWaveImpactAwi(
                 forward<unique_ptr<double>>(ReadOptionalValue(
-                    readNormativeWidthOfWaveImpact, JsonInputNaturalStoneDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT_ON_NATURAL_STONE_AWI)));
+                    readNormativeWidthOfWaveImpact, JsonInputNaturalStoneDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT_AWI)));
             locationData->SetNormativeWidthOfWaveImpactBwi(
                 forward<unique_ptr<double>>(ReadOptionalValue(
-                    readNormativeWidthOfWaveImpact, JsonInputNaturalStoneDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT_ON_NATURAL_STONE_BWI)));
+                    readNormativeWidthOfWaveImpact, JsonInputNaturalStoneDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT_BWI)));
         }
 
-        if (readCalculationMethod.contains(JsonInputNaturalStoneDefinitions::WAVE_ANGLE_IMPACT_ON_NATURAL_STONE))
+        if (readCalculationMethod.contains(JsonInputNaturalStoneDefinitions::WAVE_ANGLE_IMPACT))
         {
-            const auto& readWaveAngleImpact = readCalculationMethod[JsonInputNaturalStoneDefinitions::WAVE_ANGLE_IMPACT_ON_NATURAL_STONE];
+            const auto& readWaveAngleImpact = readCalculationMethod[JsonInputNaturalStoneDefinitions::WAVE_ANGLE_IMPACT];
 
             locationData->SetWaveAngleImpactBetamax(
                 forward<unique_ptr<double>>(ReadOptionalValue(
-                    readWaveAngleImpact, JsonInputNaturalStoneDefinitions::WAVE_ANGLE_IMPACT_ON_NATURAL_STONE_BETA_MAX)));
+                    readWaveAngleImpact, JsonInputNaturalStoneDefinitions::WAVE_ANGLE_IMPACT_BETA_MAX)));
         }
 
         return locationData;
