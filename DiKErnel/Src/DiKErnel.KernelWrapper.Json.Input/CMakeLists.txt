@@ -53,7 +53,11 @@ set(SOURCEFILES_INTERNAL_PARSERS
   ${INTERNAL_PARSERS_FOLDER}/JsonInputDefinitions.h
   ${INTERNAL_PARSERS_FOLDER}/JsonInputParser.cpp
   ${INTERNAL_PARSERS_FOLDER}/JsonInputParser.h
+  ${INTERNAL_PARSERS_FOLDER}/JsonInputParserHelper.cpp
+  ${INTERNAL_PARSERS_FOLDER}/JsonInputParserHelper.h
   ${INTERNAL_PARSERS_FOLDER}/NaturalStoneJsonInputDefinitions.h
+  ${INTERNAL_PARSERS_FOLDER}/NaturalStoneJsonInputParser.cpp
+  ${INTERNAL_PARSERS_FOLDER}/NaturalStoneJsonInputParser.h
 )
 
 # Add library

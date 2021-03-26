@@ -21,42 +21,18 @@
 #pragma once
 
 #include <memory>
-#include <string>
 
 #include <nlohmann/json.hpp>
 
-#include "JsonInputData.h"
 #include "JsonInputNaturalStoneRevetmentLocationData.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
-    class JsonInputParser
+    class NaturalStoneJsonInputParser
     {
         public:
-            static std::unique_ptr<JsonInputData> GetJsonInputData(
-                const std::string& filePath);
-
-            enum class CalculationType
-            {
-                Unknown,
-                NaturalStone
-            };
-
-        private:
-
-            static nlohmann::json ReadJson(
-                const std::string& filePath);
-
-            static std::vector<int> GetTimes(
-                const nlohmann::json& json);
-
-            static std::unique_ptr<JsonInputHydraulicData> GetHydraulicData(
-                const nlohmann::json& json);
-
-            static std::vector<std::unique_ptr<JsonInputLocationData>> GetInputLocationData(
-                const nlohmann::json& json);
-
-            static std::unique_ptr<IJsonInputRevetmentLocationData> GetRevetmentLocationData(
-                const nlohmann::basic_json<>::value_type& readRevetment);
+            static std::unique_ptr<JsonInputNaturalStoneRevetmentLocationData> ReadRevetmentLocationData(
+                const nlohmann::basic_json<>::value_type& readRevetment,
+                const nlohmann::basic_json<>::value_type& readCalculationMethod);
     };
 }
