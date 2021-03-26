@@ -28,27 +28,27 @@ namespace DiKErnel::FunctionLibrary
 {
     using namespace DomainLibrary;
 
-    int Revetment::CalculateNumberOfTimeSteps(
+    int Revetment::NumberOfTimeSteps(
         const int numberOfTimeStamps)
     {
         return numberOfTimeStamps - 1;
     }
 
-    double Revetment::CalculateIncrementOfTime(
+    double Revetment::IncrementOfTime(
         const double startTime,
         const double endTime)
     {
         return endTime - startTime;
     }
 
-    double Revetment::CalculateDamage(
+    double Revetment::Damage(
         const double initialDamage,
         const double incrementOfDamage)
     {
         return initialDamage + incrementOfDamage;
     }
 
-    bool Revetment::CalculateFailureOfRevetment(
+    bool Revetment::FailureOfRevetment(
         const double failureNumber,
         const double damage)
     {
@@ -61,13 +61,13 @@ namespace DiKErnel::FunctionLibrary
         return degrees * (Constants::PI / 180.0);
     }
 
-    double Revetment::CalculateSlopeAngle(
+    double Revetment::SlopeAngle(
         const double tanA)
     {
         return atan(DegreesToRadians(tanA));
     }
 
-    double Revetment::CalculateLoadingOfRevetment(
+    double Revetment::LoadingOfRevetment(
         const double positionZ,
         const double upperLimitLoadingOfRevetment,
         const double lowerLimitLoadingOfRevetment)
@@ -77,7 +77,7 @@ namespace DiKErnel::FunctionLibrary
                    : 0.0;
     }
 
-    double Revetment::CalculateSurfSimilarityParameter(
+    double Revetment::SurfSimilarityParameter(
         const double tanA,
         const double waveHeightHm0,
         const double wavePeriodTm10)
@@ -85,7 +85,7 @@ namespace DiKErnel::FunctionLibrary
         return tanA / sqrt(2.0 * Constants::PI * waveHeightHm0 / (Constants::GRAVITATIONAL_ACCELERATION * pow(wavePeriodTm10, 2.0)));
     }
 
-    double Revetment::CalculateWaveSteepnessDeepWater(
+    double Revetment::WaveSteepnessDeepWater(
         const double waveHeightHm0,
         const double wavePeriodTm10)
     {
