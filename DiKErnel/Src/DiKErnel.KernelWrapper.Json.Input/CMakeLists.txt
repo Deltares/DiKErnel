@@ -22,6 +22,7 @@ set(SOURCEFILES_INTERNAL
 )
 
 set(SOURCEFILES_INTERNAL_DATA_GENERIC
+  ${INTERNAL_DATA_GENERIC_FOLDER}/IJsonInputRevetmentLocationData.h
   ${INTERNAL_DATA_GENERIC_FOLDER}/JsonInputCalculationData.cpp
   ${INTERNAL_DATA_GENERIC_FOLDER}/JsonInputCalculationData.h
   ${INTERNAL_DATA_GENERIC_FOLDER}/JsonInputDamageData.cpp
@@ -34,7 +35,6 @@ set(SOURCEFILES_INTERNAL_DATA_GENERIC
   ${INTERNAL_DATA_GENERIC_FOLDER}/JsonInputLocationData.h
   ${INTERNAL_DATA_GENERIC_FOLDER}/JsonInputProfileSchematizationData.cpp
   ${INTERNAL_DATA_GENERIC_FOLDER}/JsonInputProfileSchematizationData.h
-  ${INTERNAL_DATA_GENERIC_FOLDER}/JsonInputRevetmentLocationData.h
   ${INTERNAL_DATA_GENERIC_FOLDER}/JsonInputTimeDependentHydraulicData.cpp
   ${INTERNAL_DATA_GENERIC_FOLDER}/JsonInputTimeDependentHydraulicData.h
 )

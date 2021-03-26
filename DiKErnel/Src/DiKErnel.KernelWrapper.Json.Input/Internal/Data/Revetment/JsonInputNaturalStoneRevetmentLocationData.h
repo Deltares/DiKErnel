@@ -22,11 +22,11 @@
 
 #include <memory>
 
-#include "JsonInputRevetmentLocationData.h"
+#include "IJsonInputRevetmentLocationData.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
-    class JsonInputNaturalStoneRevetmentLocationData : public JsonInputRevetmentLocationData
+    class JsonInputNaturalStoneRevetmentLocationData : public IJsonInputRevetmentLocationData
     {
         public:
             enum class TopLayerType

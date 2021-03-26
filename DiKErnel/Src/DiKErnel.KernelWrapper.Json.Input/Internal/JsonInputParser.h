@@ -56,7 +56,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
             static std::vector<std::unique_ptr<JsonInputLocationData>> GetInputLocationData(
                 const nlohmann::json& json);
 
-            static std::unique_ptr<JsonInputRevetmentLocationData> GetRevetmentLocationData(
+            static std::unique_ptr<IJsonInputRevetmentLocationData> GetRevetmentLocationData(
                 const nlohmann::basic_json<>::value_type& readRevetment);
 
             static std::unique_ptr<JsonInputNaturalStoneRevetmentLocationData> ReadNaturalStoneRevetmentLocationData(

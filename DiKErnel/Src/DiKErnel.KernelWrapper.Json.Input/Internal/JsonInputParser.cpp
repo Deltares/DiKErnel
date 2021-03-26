@@ -136,12 +136,12 @@ namespace DiKErnel::KernelWrapper::Json::Input
         return parsedLocations;
     }
 
-    unique_ptr<JsonInputRevetmentLocationData> JsonInputParser::GetRevetmentLocationData(
+    unique_ptr<IJsonInputRevetmentLocationData> JsonInputParser::GetRevetmentLocationData(
         const basic_json<>::value_type& readRevetment)
     {
         const auto& readCalculationMethod = readRevetment[JsonInputDefinitions::CALCULATION_METHOD][0];
 
-        unique_ptr<JsonInputRevetmentLocationData> revetmentLocationData;
+        unique_ptr<IJsonInputRevetmentLocationData> revetmentLocationData;
 
         if (readCalculationMethod[JsonInputDefinitions::CALCULATION_METHOD_TYPE].get<CalculationType>() == CalculationType::NaturalStone)
         {

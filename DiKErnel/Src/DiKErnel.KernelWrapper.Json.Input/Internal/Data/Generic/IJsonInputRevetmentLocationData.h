@@ -22,9 +22,9 @@
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
-    class JsonInputRevetmentLocationData
+    class IJsonInputRevetmentLocationData
     {
         public:
-            virtual ~JsonInputRevetmentLocationData() = default;
+            virtual ~IJsonInputRevetmentLocationData() = default;
     };
 }
