@@ -8,6 +8,8 @@ set(PUBLIC_FOLDER Public)
 set(SOURCEFILES_PUBLIC
   ${PUBLIC_FOLDER}/Generic.cpp
   ${PUBLIC_FOLDER}/Generic.h
+  ${PUBLIC_FOLDER}/HydraulicLoad.cpp
+  ${PUBLIC_FOLDER}/HydraulicLoad.h
   ${PUBLIC_FOLDER}/NaturalStoneRevetment.cpp
   ${PUBLIC_FOLDER}/NaturalStoneRevetment.h
   ${PUBLIC_FOLDER}/NaturalStoneRevetmentDeprecated.cpp
