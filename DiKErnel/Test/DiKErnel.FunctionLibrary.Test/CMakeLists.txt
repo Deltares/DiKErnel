@@ -4,7 +4,6 @@ set(EXENAME DiKErnel.FunctionLibrary.Test)
 # Define sources
 set(SOURCEFILES
   Main.cpp
-  NaturalStoneRevetmentDeprecatedTest.cpp
 )
 
 # Add executable
