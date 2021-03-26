@@ -42,11 +42,11 @@ namespace DiKErnel::KernelWrapper::Json::Input
             inline static const std::string WAVE_ANGLE_IMPACT_QWA = "ImpactGolfhoekBekledingGrasGolfklapQwa";
             inline static const std::string WAVE_ANGLE_IMPACT_RWA = "ImpactGolfhoekBekledingGrasGolfklapRwa";
 
-            inline static const std::string UPPER_LIMIT_LOADING = "BovengrensBelastingNatuursteen";
-            inline static const std::string UPPER_LIMIT_LOADING_AUL = "BovengrensBelastingNatuursteenAul";
+            inline static const std::string UPPER_LIMIT_LOADING = "BovengrensBelastingGrasGolfklap";
+            inline static const std::string UPPER_LIMIT_LOADING_AUL = "BovengrensBelastingGrasGolfklapAul";
 
-            inline static const std::string LOWER_LIMIT_LOADING = "OndergrensBelastingNatuursteen";
-            inline static const std::string LOWER_LIMIT_LOADING_ALL = "OndergrensBelastingNatuursteenAll";
+            inline static const std::string LOWER_LIMIT_LOADING = "OndergrensBelastingGrasGolfklap";
+            inline static const std::string LOWER_LIMIT_LOADING_ALL = "OndergrensBelastingGrasGolfklapAll";
 
             inline static const std::string TOP_LAYER_TYPE_CLOSED_SOD = "GrasGeslotenZode";
             inline static const std::string TOP_LAYER_TYPE_OPEN_SOD = "GrasOpenZode";
