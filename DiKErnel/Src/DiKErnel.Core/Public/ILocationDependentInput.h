@@ -67,5 +67,17 @@ namespace DiKErnel::Core
              * \return The failure number.
              */
             virtual double GetFailureNumber() const = 0;
+
+            /*!
+             * \brief Gets the tanA value.
+             * \return The tanA value.
+             */
+            virtual double GetTanA() const = 0;
+
+            /*!
+             * \brief Gets the vertical position.
+             * \return The vertical position.
+             */
+            virtual double GetPositionZ() const = 0;
     };
 }
