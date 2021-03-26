@@ -24,7 +24,7 @@
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
-    class JsonInputNaturalStoneDefinitions
+    class NaturalStoneJsonInputDefinitions
     {
         public:
             inline static const std::string CALCULATION_METHOD_TYPE = "NatuurSteen";

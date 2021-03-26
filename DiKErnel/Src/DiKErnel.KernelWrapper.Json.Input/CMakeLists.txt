@@ -51,9 +51,9 @@ set(SOURCEFILES_INTERNAL_EXCEPTIONS
 
 set(SOURCEFILES_INTERNAL_PARSERS
   ${INTERNAL_PARSERS_FOLDER}/JsonInputDefinitions.h
-  ${INTERNAL_PARSERS_FOLDER}/JsonInputNaturalStoneDefinitions.h
   ${INTERNAL_PARSERS_FOLDER}/JsonInputParser.cpp
   ${INTERNAL_PARSERS_FOLDER}/JsonInputParser.h
+  ${INTERNAL_PARSERS_FOLDER}/NaturalStoneJsonInputDefinitions.h
 )
 
 # Add library
