@@ -40,6 +40,7 @@ namespace DiKErnel::Integration
                 double initialDamage,
                 double failureNumber,
                 double tanA,
+                double positionZ,
                 double relativeDensity,
                 double thicknessTopLayer,
                 std::unique_ptr<NaturalStoneRevetmentHydraulicLoads> hydraulicLoads,
@@ -52,8 +53,6 @@ namespace DiKErnel::Integration
             double Calculate(
                 double initialDamage,
                 const Core::ITimeDependentInput& timeDependentInput) override;
-
-            double GetTanA() const;
 
             double GetRelativeDensity() const;
 
@@ -72,7 +71,6 @@ namespace DiKErnel::Integration
             NaturalStoneRevetmentWaveAngleImpact& GetWaveAngleImpact() const;
 
         private:
-            double _tanA;
             double _relativeDensity;
             double _thicknessTopLayer;
             std::unique_ptr<NaturalStoneRevetmentHydraulicLoads> _hydraulicLoads;

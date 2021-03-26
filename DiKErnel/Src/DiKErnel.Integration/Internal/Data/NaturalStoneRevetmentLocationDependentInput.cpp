@@ -38,6 +38,7 @@ namespace DiKErnel::Integration
         const double initialDamage,
         const double failureNumber,
         const double tanA,
+        const double positionZ,
         const double relativeDensity,
         const double thicknessTopLayer,
         unique_ptr<NaturalStoneRevetmentHydraulicLoads> hydraulicLoads,
@@ -46,8 +47,7 @@ namespace DiKErnel::Integration
         unique_ptr<NaturalStoneRevetmentDistanceMaximumWaveElevation> distanceMaximumWaveElevation,
         unique_ptr<NaturalStoneRevetmentNormativeWidthOfWaveImpact> normativeWidthOfWaveImpact,
         unique_ptr<NaturalStoneRevetmentWaveAngleImpact> waveAngleImpact)
-        : LocationDependentInput(move(name), initialDamage, failureNumber),
-          _tanA(tanA),
+        : LocationDependentInput(move(name), initialDamage, failureNumber, tanA, positionZ),
           _relativeDensity(relativeDensity),
           _thicknessTopLayer(thicknessTopLayer),
           _hydraulicLoads(move(hydraulicLoads)),
@@ -61,7 +61,8 @@ namespace DiKErnel::Integration
         const double initialDamage,
         const ITimeDependentInput& timeDependentInput)
     {
-        const auto positionZ = 1.0;
+        const auto tanA = GetTanA();
+        const auto positionZ = GetPositionZ();
         const auto waterLevel = timeDependentInput.GetWaterLevel();
         const auto waveHeightHm0 = timeDependentInput.GetWaveHeightHm0();
         const auto wavePeriodTm10 = timeDependentInput.GetWavePeriodTm10();
@@ -81,7 +82,7 @@ namespace DiKErnel::Integration
             _distanceMaximumWaveElevation->GetDistanceMaximumWaveElevationBsmax());
 
         const auto surfSimilarityParameter = HydraulicLoad::SurfSimilarityParameter(
-            _tanA,
+            tanA,
             waveHeightHm0,
             wavePeriodTm10,
             Constants::GRAVITATIONAL_ACCELERATION);
@@ -93,7 +94,7 @@ namespace DiKErnel::Integration
             _normativeWidthOfWaveImpact->GetNormativeWidthOfWaveImpactBwi());
 
         const auto slopeAngle = HydraulicLoad::SlopeAngle(
-            _tanA);
+            tanA);
 
         const auto depthMaximumWaveLoad = NaturalStoneRevetment::DepthMaximumWaveLoad(
             distanceMaximumWaveElevation,
@@ -175,11 +176,6 @@ namespace DiKErnel::Integration
         }
 
         return Revetment::Damage(incrementOfDamage, initialDamage);
-    }
-
-    double NaturalStoneRevetmentLocationDependentInput::GetTanA() const
-    {
-        return _tanA;
     }
 
     double NaturalStoneRevetmentLocationDependentInput::GetRelativeDensity() const
