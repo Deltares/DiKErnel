@@ -33,5 +33,7 @@ namespace DiKErnel::Core::TestUtil
             MOCK_METHOD(std::string, GetName, (), (const, override));
             MOCK_METHOD(double, GetInitialDamage, (), (const, override));
             MOCK_METHOD(double, GetFailureNumber, (), (const, override));
+            MOCK_METHOD(double, GetTanA, (), (const, override));
+            MOCK_METHOD(double, GetPositionZ, (), (const, override));
     };
 }

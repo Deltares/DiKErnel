@@ -69,8 +69,8 @@ namespace DiKErnel::Core
             virtual double GetFailureNumber() const = 0;
 
             /*!
-             * \brief Gets the tanA value.
-             * \return The tanA value.
+             * \brief Gets the tanA.
+             * \return The tanA.
              */
             virtual double GetTanA() const = 0;
 
