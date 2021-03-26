@@ -32,17 +32,19 @@ namespace DiKErnel::Integration::Test
         const auto topLayerType = NaturalStoneRevetmentLocationConstructionProperties::TopLayerType::NordicStone;
         const string name = "Test";
         const auto tanA = 0.1;
-        const auto thicknessTopLayer = 0.2;
-        const auto relativeDensity = 0.3;
+        const auto positionZ = 0.2;
+        const auto thicknessTopLayer = 0.3;
+        const auto relativeDensity = 0.4;
 
         // Call
         const NaturalStoneRevetmentLocationConstructionProperties constructionProperties(
-            topLayerType, name, tanA, thicknessTopLayer, relativeDensity);
+            topLayerType, name, tanA, positionZ, thicknessTopLayer, relativeDensity);
 
         // Assert
         ASSERT_EQ(topLayerType, constructionProperties.GetTopLayerType());
         ASSERT_EQ(name, constructionProperties.GetName());
         ASSERT_DOUBLE_EQ(tanA, constructionProperties.GetTanA());
+        ASSERT_DOUBLE_EQ(positionZ, constructionProperties.GetPositionZ());
         ASSERT_DOUBLE_EQ(thicknessTopLayer, constructionProperties.GetThicknessTopLayer());
         ASSERT_DOUBLE_EQ(relativeDensity, constructionProperties.GetRelativeDensity());
         ASSERT_EQ(nullptr, constructionProperties.GetInitialDamage());
@@ -75,32 +77,39 @@ namespace DiKErnel::Integration::Test
         const auto topLayerType = NaturalStoneRevetmentLocationConstructionProperties::TopLayerType::NordicStone;
         const string name = "Test";
         const auto tanA = 0.1;
-        const auto thicknessTopLayer = 0.2;
-        const auto relativeDensity = 0.3;
-        const auto initialDamage = 0.4;
-        const auto failureNumber = 0.5;
-        const auto hydraulicLoadXib = 0.6;
-        const auto hydraulicLoadAp = 0.7;
-        const auto hydraulicLoadBp = 0.8;
-        const auto hydraulicLoadCp = 0.9;
-        const auto hydraulicLoadNp = 1.0;
-        const auto hydraulicLoadAs = 1.1;
-        const auto hydraulicLoadBs = 1.2;
-        const auto hydraulicLoadCs = 1.3;
-        const auto hydraulicLoadNs = 1.4;
-        const auto upperLimitLoadingAul = 1.5;
-        const auto upperLimitLoadingBul = 1.6;
-        const auto upperLimitLoadingCul = 1.7;
-        const auto lowerLimitLoadingAll = 1.8;
-        const auto lowerLimitLoadingBll = 1.9;
-        const auto lowerLimitLoadingCll = 2.0;
-        const auto distanceMaximumWaveElevationAsmax = 2.1;
-        const auto distanceMaximumWaveElevationBsmax = 2.2;
-        const auto normativeWidthOfWaveImpactAwi = 2.3;
-        const auto normativeWidthOfWaveImpactBwi = 2.4;
-        const auto waveAngleImpactBetamax = 2.5;
+        const auto positionZ = 0.2;
+        const auto thicknessTopLayer = 0.3;
+        const auto relativeDensity = 0.4;
+        const auto initialDamage = 0.5;
+        const auto failureNumber = 0.6;
+        const auto hydraulicLoadXib = 0.7;
+        const auto hydraulicLoadAp = 0.8;
+        const auto hydraulicLoadBp = 0.9;
+        const auto hydraulicLoadCp = 1.0;
+        const auto hydraulicLoadNp = 1.1;
+        const auto hydraulicLoadAs = 1.2;
+        const auto hydraulicLoadBs = 1.3;
+        const auto hydraulicLoadCs = 1.4;
+        const auto hydraulicLoadNs = 1.5;
+        const auto upperLimitLoadingAul = 1.6;
+        const auto upperLimitLoadingBul = 1.7;
+        const auto upperLimitLoadingCul = 1.8;
+        const auto lowerLimitLoadingAll = 1.9;
+        const auto lowerLimitLoadingBll = 2.0;
+        const auto lowerLimitLoadingCll = 2.1;
+        const auto distanceMaximumWaveElevationAsmax = 2.2;
+        const auto distanceMaximumWaveElevationBsmax = 2.3;
+        const auto normativeWidthOfWaveImpactAwi = 2.4;
+        const auto normativeWidthOfWaveImpactBwi = 2.5;
+        const auto waveAngleImpactBetamax = 2.6;
 
-        NaturalStoneRevetmentLocationConstructionProperties constructionProperties(topLayerType, name, tanA, thicknessTopLayer, relativeDensity);
+        NaturalStoneRevetmentLocationConstructionProperties constructionProperties(
+            topLayerType,
+            name,
+            tanA,
+            positionZ,
+            thicknessTopLayer,
+            relativeDensity);
 
         // When
         constructionProperties.SetInitialDamage(make_unique<double>(initialDamage));
@@ -130,6 +139,7 @@ namespace DiKErnel::Integration::Test
         ASSERT_EQ(topLayerType, constructionProperties.GetTopLayerType());
         ASSERT_EQ(name, constructionProperties.GetName());
         ASSERT_DOUBLE_EQ(tanA, constructionProperties.GetTanA());
+        ASSERT_DOUBLE_EQ(positionZ, constructionProperties.GetPositionZ());
         ASSERT_DOUBLE_EQ(thicknessTopLayer, constructionProperties.GetThicknessTopLayer());
         ASSERT_DOUBLE_EQ(relativeDensity, constructionProperties.GetRelativeDensity());
         ASSERT_DOUBLE_EQ(initialDamage, *constructionProperties.GetInitialDamage());

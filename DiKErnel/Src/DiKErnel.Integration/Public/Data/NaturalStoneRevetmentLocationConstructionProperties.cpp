@@ -28,11 +28,13 @@ namespace DiKErnel::Integration
         const TopLayerType topLayerType,
         string name,
         const double tanA,
+        const double positionZ,
         const double thicknessTopLayer,
         const double relativeDensity)
         : _topLayerType(topLayerType),
           _name(move(name)),
           _tanA(tanA),
+          _positionZ(positionZ),
           _thicknessTopLayer(thicknessTopLayer),
           _relativeDensity(relativeDensity) { }
 
@@ -187,6 +189,11 @@ namespace DiKErnel::Integration
     double NaturalStoneRevetmentLocationConstructionProperties::GetTanA() const
     {
         return _tanA;
+    }
+
+    double NaturalStoneRevetmentLocationConstructionProperties::GetPositionZ() const
+    {
+        return _positionZ;
     }
 
     double NaturalStoneRevetmentLocationConstructionProperties::GetThicknessTopLayer() const

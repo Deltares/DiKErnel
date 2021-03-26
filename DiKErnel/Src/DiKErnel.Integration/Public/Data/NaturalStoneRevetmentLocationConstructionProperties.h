@@ -48,7 +48,9 @@ namespace DiKErnel::Integration
              * \param name
              *        The name.
              * \param tanA
-             *        The tanA value.
+             *        The tanA.
+             * \param positionZ
+             *        The vertical position.
              * \param thicknessTopLayer
              *        The thickness of the top layer.
              * \param relativeDensity
@@ -58,6 +60,7 @@ namespace DiKErnel::Integration
                 TopLayerType topLayerType,
                 std::string name,
                 double tanA,
+                double positionZ,
                 double thicknessTopLayer,
                 double relativeDensity);
 
@@ -236,10 +239,16 @@ namespace DiKErnel::Integration
             std::string GetName() const;
 
             /*!
-             * \brief Gets the tanA value.
-             * \return The tanA value.
+             * \brief Gets the tanA.
+             * \return The tanA.
              */
             double GetTanA() const;
+
+            /*!
+             * \brief Gets the vertical position.
+             * \return The vertical position.
+             */
+            double GetPositionZ() const;
 
             /*!
              * \brief Gets the thickness of the top layer.
@@ -391,6 +400,7 @@ namespace DiKErnel::Integration
             TopLayerType _topLayerType;
             std::string _name;
             double _tanA;
+            double _positionZ;
             double _thicknessTopLayer;
             double _relativeDensity;
             std::unique_ptr<double> _initialDamage = nullptr;
