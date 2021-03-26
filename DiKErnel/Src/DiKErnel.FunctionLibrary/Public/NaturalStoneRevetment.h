@@ -28,102 +28,102 @@ namespace DiKErnel::FunctionLibrary
     class NaturalStoneRevetment
     {
         public:
-            static double IncrementDamageOfNaturalStone(
-                double hydraulicLoadOnNaturalStone,
-                double resistanceOfNaturalStone,
-                double incrementDegradationOfNaturalStone,
-                double waveAngleImpactOnNaturalStone);
+            static double IncrementDamage(
+                double hydraulicLoad,
+                double resistance,
+                double incrementDegradation,
+                double waveAngleImpact);
 
-            static double HydraulicLoadOnNaturalStone(
+            static double HydraulicLoad(
                 double surfSimilarityParameter,
                 double waveHeightHm0,
-                double hydraulicLoadOnNaturalStoneXib,
-                double hydraulicLoadOnNaturalStoneAp,
-                double hydraulicLoadOnNaturalStoneBp,
-                double hydraulicLoadOnNaturalStoneCp,
-                double hydraulicLoadOnNaturalStoneNp,
-                double hydraulicLoadOnNaturalStoneAs,
-                double hydraulicLoadOnNaturalStoneBs,
-                double hydraulicLoadOnNaturalStoneCs,
-                double hydraulicLoadOnNaturalStoneNs);
+                double hydraulicLoadOnXib,
+                double hydraulicLoadOnAp,
+                double hydraulicLoadOnBp,
+                double hydraulicLoadOnCp,
+                double hydraulicLoadOnNp,
+                double hydraulicLoadOnAs,
+                double hydraulicLoadOnBs,
+                double hydraulicLoadOnCs,
+                double hydraulicLoadOnNs);
 
-            static double UpperLimitLoadingOfNaturalStone(
-                double depthMaximumWaveLoadNaturalStone,
-                double surfSimilarityParameter,
-                double waterLevel,
-                double waveHeightHm0,
-                double upperLimitLoadingOfNaturalStoneAul,
-                double upperLimitLoadingOfNaturalStoneBul,
-                double upperLimitLoadingOfNaturalStoneCul);
-
-            static double LowerLimitLoadingOfNaturalStone(
-                double depthMaximumWaveLoadNaturalStone,
+            static double UpperLimitLoading(
+                double depthMaximumWaveLoad,
                 double surfSimilarityParameter,
                 double waterLevel,
                 double waveHeightHm0,
-                double lowerLimitLoadingOfNaturalStoneAll,
-                double lowerLimitLoadingOfNaturalStoneBll,
-                double lowerLimitLoadingOfNaturalStoneCll);
+                double upperLimitLoadingOfAul,
+                double upperLimitLoadingOfBul,
+                double upperLimitLoadingOfCul);
 
-            static double DepthMaximumWaveLoadNaturalStone(
-                double distanceMaximumWaveElevationNaturalStone,
+            static double LowerLimitLoading(
+                double depthMaximumWaveLoad,
+                double surfSimilarityParameter,
+                double waterLevel,
+                double waveHeightHm0,
+                double lowerLimitLoadingOfAll,
+                double lowerLimitLoadingOfBll,
+                double lowerLimitLoadingOfCll);
+
+            static double DepthMaximumWaveLoad(
+                double distanceMaximumWaveElevation,
                 double normativeWidthOfWaveImpact,
                 double slopeAngle);
 
-            static double DistanceMaximumWaveElevationNaturalStone(
-                double impactShallowWaterNaturalStone,
+            static double DistanceMaximumWaveElevation(
+                double impactShallowWater,
                 double waveSteepnessDeepWater,
                 double waveHeightHm0,
-                double distanceMaximumWaveElevationNaturalStoneAsmax,
-                double distanceMaximumWaveElevationNaturalStoneBsmax);
+                double distanceMaximumWaveElevationAsmax,
+                double distanceMaximumWaveElevationBsmax);
 
-            static double ImpactShallowWaterNaturalStone();
+            static double ImpactShallowWater();
 
-            static double NormativeWidthOfWaveImpactNaturalStone(
+            static double NormativeWidthOfWaveImpact(
                 double surfSimilarityParameter,
                 double waveHeightHm0,
-                double normativeWidthOfWaveImpactNaturalStoneAwi,
-                double normativeWidthOfWaveImpactNaturalStoneBwi);
+                double normativeWidthOfWaveImpactAwi,
+                double normativeWidthOfWaveImpactBwi);
 
-            static double WaveAngleImpactOnNaturalStone(
+            static double WaveAngleImpact(
                 double waveAngle,
-                double waveAngleImpactOnNaturalStoneBetamax);
+                double waveAngleImpactOnBetamax);
 
-            static double ResistanceOfNaturalStone(
+            static double Resistance(
                 double relativeDensity,
                 double thicknessTopLayer);
 
-            static double IncrementDegradationOfNaturalStone(
-                double referenceTimeDegradationOfNaturalStone,
+            static double IncrementDegradation(
+                double referenceTimeDegradation,
                 double wavePeriodTm10,
-                double incrementOfTime);
+                double incrementTime);
 
-            static double DegradationOfNaturalStone(
+            static double Degradation(
                 double referenceTimeDegradation,
                 double wavePeriodTm10);
 
-            static double ReferenceTimeDegradationOfNaturalStone(
-                double referenceDegradationOfNaturalStone,
+            static double ReferenceTimeDegradation(
+                double referenceDegradation,
                 double wavePeriodTm10);
 
-            static double ReferenceDegradationOfNaturalStone(
-                double resistanceOfNaturalStone,
-                double hydraulicLoadOnNaturalStone,
-                double waveAngleImpactOnNaturalStone,
+            static double ReferenceDegradation(
+                double resistance,
+                double hydraulicLoad,
+                double waveAngleImpact,
                 double initialDamage);
 
-            static double DurationInTimeStepFailureNaturalStone(
-                double referenceTimeFailureOfNaturalStone,
-                double referenceTimeDegradationOfNaturalStone);
+            static double DurationInTimeStepFailure(
+                double referenceTimeFailure,
+                double referenceTimeDegradation);
 
-            static double ReferenceTimeFailureOfNaturalStone(
-                double referenceFailureOfNaturalStone,
+            static double ReferenceTimeFailure(
+                double referenceFailure,
                 double wavePeriodTm10);
 
-            static double ReferenceFailureOfNaturalStone(
-                double resistanceOfNaturalStone,
-                double hydraulicLoadOnNaturalStone,
-                double waveAngleImpactOnNaturalStone,
+            static double ReferenceFailure(
+                double resistance,
+                double hydraulicLoad,
+                double waveAngleImpact,
                 double failureNumber);
     };
 }

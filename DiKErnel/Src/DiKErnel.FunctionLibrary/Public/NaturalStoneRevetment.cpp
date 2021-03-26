@@ -29,181 +29,181 @@ namespace DiKErnel::FunctionLibrary
 {
     using namespace std;
 
-    double NaturalStoneRevetment::IncrementDamageOfNaturalStone(
-        const double hydraulicLoadOnNaturalStone,
-        const double resistanceOfNaturalStone,
-        const double incrementDegradationOfNaturalStone,
-        const double waveAngleImpactOnNaturalStone)
+    double NaturalStoneRevetment::IncrementDamage(
+        const double hydraulicLoad,
+        const double resistance,
+        const double incrementDegradation,
+        const double waveAngleImpact)
     {
-        return hydraulicLoadOnNaturalStone / resistanceOfNaturalStone * incrementDegradationOfNaturalStone * waveAngleImpactOnNaturalStone;
+        return hydraulicLoad / resistance * incrementDegradation * waveAngleImpact;
     }
 
-    double NaturalStoneRevetment::HydraulicLoadOnNaturalStone(
+    double NaturalStoneRevetment::HydraulicLoad(
         const double surfSimilarityParameter,
         const double waveHeightHm0,
-        const double hydraulicLoadOnNaturalStoneXib,
-        const double hydraulicLoadOnNaturalStoneAp,
-        const double hydraulicLoadOnNaturalStoneBp,
-        const double hydraulicLoadOnNaturalStoneCp,
-        const double hydraulicLoadOnNaturalStoneNp,
-        const double hydraulicLoadOnNaturalStoneAs,
-        const double hydraulicLoadOnNaturalStoneBs,
-        const double hydraulicLoadOnNaturalStoneCs,
-        const double hydraulicLoadOnNaturalStoneNs)
+        const double hydraulicLoadOnXib,
+        const double hydraulicLoadOnAp,
+        const double hydraulicLoadOnBp,
+        const double hydraulicLoadOnCp,
+        const double hydraulicLoadOnNp,
+        const double hydraulicLoadOnAs,
+        const double hydraulicLoadOnBs,
+        const double hydraulicLoadOnCs,
+        const double hydraulicLoadOnNs)
     {
-        const auto usePurgingBreakers = hydraulicLoadOnNaturalStoneXib - surfSimilarityParameter >= 0.0;
-        const auto hydraulicLoadOnNaturalStoneA = usePurgingBreakers
-                                                      ? hydraulicLoadOnNaturalStoneAp
-                                                      : hydraulicLoadOnNaturalStoneAs;
-        const auto hydraulicLoadOnNaturalStoneB = usePurgingBreakers
-                                                      ? hydraulicLoadOnNaturalStoneBp
-                                                      : hydraulicLoadOnNaturalStoneBs;
-        const auto hydraulicLoadOnNaturalStoneC = usePurgingBreakers
-                                                      ? hydraulicLoadOnNaturalStoneCp
-                                                      : hydraulicLoadOnNaturalStoneCs;
-        const auto hydraulicLoadOnNaturalStoneN = usePurgingBreakers
-                                                      ? hydraulicLoadOnNaturalStoneNp
-                                                      : hydraulicLoadOnNaturalStoneNs;
+        const auto usePurgingBreakers = hydraulicLoadOnXib - surfSimilarityParameter >= 0.0;
+        const auto hydraulicLoadOnA = usePurgingBreakers
+                                          ? hydraulicLoadOnAp
+                                          : hydraulicLoadOnAs;
+        const auto hydraulicLoadOnB = usePurgingBreakers
+                                          ? hydraulicLoadOnBp
+                                          : hydraulicLoadOnBs;
+        const auto hydraulicLoadOnC = usePurgingBreakers
+                                          ? hydraulicLoadOnCp
+                                          : hydraulicLoadOnCs;
+        const auto hydraulicLoadOnN = usePurgingBreakers
+                                          ? hydraulicLoadOnNp
+                                          : hydraulicLoadOnNs;
 
-        return waveHeightHm0 / (hydraulicLoadOnNaturalStoneA * pow(surfSimilarityParameter, hydraulicLoadOnNaturalStoneN)
-            + hydraulicLoadOnNaturalStoneB * surfSimilarityParameter
-            + hydraulicLoadOnNaturalStoneC);
+        return waveHeightHm0 / (hydraulicLoadOnA * pow(surfSimilarityParameter, hydraulicLoadOnN)
+            + hydraulicLoadOnB * surfSimilarityParameter
+            + hydraulicLoadOnC);
     }
 
-    double NaturalStoneRevetment::UpperLimitLoadingOfNaturalStone(
-        const double depthMaximumWaveLoadNaturalStone,
-        const double surfSimilarityParameter,
-        const double waterLevel,
-        const double waveHeightHm0,
-        const double upperLimitLoadingOfNaturalStoneAul,
-        const double upperLimitLoadingOfNaturalStoneBul,
-        const double upperLimitLoadingOfNaturalStoneCul)
-    {
-        return waterLevel
-                - 2.0 * depthMaximumWaveLoadNaturalStone
-                + max(depthMaximumWaveLoadNaturalStone + upperLimitLoadingOfNaturalStoneAul,
-                      upperLimitLoadingOfNaturalStoneBul * waveHeightHm0 * min(surfSimilarityParameter,
-                                                                               upperLimitLoadingOfNaturalStoneCul));
-    }
-
-    double NaturalStoneRevetment::LowerLimitLoadingOfNaturalStone(
-        const double depthMaximumWaveLoadNaturalStone,
+    double NaturalStoneRevetment::UpperLimitLoading(
+        const double depthMaximumWaveLoad,
         const double surfSimilarityParameter,
         const double waterLevel,
         const double waveHeightHm0,
-        const double lowerLimitLoadingOfNaturalStoneAll,
-        const double lowerLimitLoadingOfNaturalStoneBll,
-        const double lowerLimitLoadingOfNaturalStoneCll)
+        const double upperLimitLoadingOfAul,
+        const double upperLimitLoadingOfBul,
+        const double upperLimitLoadingOfCul)
     {
         return waterLevel
-                - 2.0 * depthMaximumWaveLoadNaturalStone
-                + min(depthMaximumWaveLoadNaturalStone - lowerLimitLoadingOfNaturalStoneAll,
-                      lowerLimitLoadingOfNaturalStoneBll * waveHeightHm0 * min(surfSimilarityParameter,
-                                                                               lowerLimitLoadingOfNaturalStoneCll));
+                - 2.0 * depthMaximumWaveLoad
+                + max(depthMaximumWaveLoad + upperLimitLoadingOfAul,
+                      upperLimitLoadingOfBul * waveHeightHm0 * min(surfSimilarityParameter,
+                                                                   upperLimitLoadingOfCul));
     }
 
-    double NaturalStoneRevetment::DepthMaximumWaveLoadNaturalStone(
-        const double distanceMaximumWaveElevationNaturalStone,
+    double NaturalStoneRevetment::LowerLimitLoading(
+        const double depthMaximumWaveLoad,
+        const double surfSimilarityParameter,
+        const double waterLevel,
+        const double waveHeightHm0,
+        const double lowerLimitLoadingOfAll,
+        const double lowerLimitLoadingOfBll,
+        const double lowerLimitLoadingOfCll)
+    {
+        return waterLevel
+                - 2.0 * depthMaximumWaveLoad
+                + min(depthMaximumWaveLoad - lowerLimitLoadingOfAll,
+                      lowerLimitLoadingOfBll * waveHeightHm0 * min(surfSimilarityParameter,
+                                                                   lowerLimitLoadingOfCll));
+    }
+
+    double NaturalStoneRevetment::DepthMaximumWaveLoad(
+        const double distanceMaximumWaveElevation,
         const double normativeWidthOfWaveImpact,
         const double slopeAngle)
     {
-        return (distanceMaximumWaveElevationNaturalStone - 0.5 * normativeWidthOfWaveImpact * cos(Revetment::DegreesToRadians(slopeAngle)))
+        return (distanceMaximumWaveElevation - 0.5 * normativeWidthOfWaveImpact * cos(Revetment::DegreesToRadians(slopeAngle)))
                 * tan(Revetment::DegreesToRadians(slopeAngle));
     }
 
-    double NaturalStoneRevetment::DistanceMaximumWaveElevationNaturalStone(
-        const double impactShallowWaterNaturalStone,
+    double NaturalStoneRevetment::DistanceMaximumWaveElevation(
+        const double impactShallowWater,
         const double waveSteepnessDeepWater,
         const double waveHeightHm0,
-        const double distanceMaximumWaveElevationNaturalStoneAsmax,
-        const double distanceMaximumWaveElevationNaturalStoneBsmax)
+        const double distanceMaximumWaveElevationAsmax,
+        const double distanceMaximumWaveElevationBsmax)
     {
         return waveHeightHm0
-                * (distanceMaximumWaveElevationNaturalStoneAsmax / sqrt(waveSteepnessDeepWater) - distanceMaximumWaveElevationNaturalStoneBsmax)
-                * impactShallowWaterNaturalStone;
+                * (distanceMaximumWaveElevationAsmax / sqrt(waveSteepnessDeepWater) - distanceMaximumWaveElevationBsmax)
+                * impactShallowWater;
     }
 
-    double NaturalStoneRevetment::ImpactShallowWaterNaturalStone()
+    double NaturalStoneRevetment::ImpactShallowWater()
     {
         return 1.0;
     }
 
-    double NaturalStoneRevetment::NormativeWidthOfWaveImpactNaturalStone(
+    double NaturalStoneRevetment::NormativeWidthOfWaveImpact(
         const double surfSimilarityParameter,
         const double waveHeightHm0,
-        const double normativeWidthOfWaveImpactNaturalStoneAwi,
-        const double normativeWidthOfWaveImpactNaturalStoneBwi)
+        const double normativeWidthOfWaveImpactAwi,
+        const double normativeWidthOfWaveImpactBwi)
     {
-        return (normativeWidthOfWaveImpactNaturalStoneAwi - normativeWidthOfWaveImpactNaturalStoneBwi * surfSimilarityParameter)
+        return (normativeWidthOfWaveImpactAwi - normativeWidthOfWaveImpactBwi * surfSimilarityParameter)
                 * waveHeightHm0;
     }
 
-    double NaturalStoneRevetment::WaveAngleImpactOnNaturalStone(
+    double NaturalStoneRevetment::WaveAngleImpact(
         const double waveAngle,
-        const double waveAngleImpactOnNaturalStoneBetamax)
+        const double waveAngleImpactOnBetamax)
     {
-        return pow(cos(Revetment::DegreesToRadians(min(waveAngleImpactOnNaturalStoneBetamax, abs(waveAngle)))), 2.0 / 3.0);
+        return pow(cos(Revetment::DegreesToRadians(min(waveAngleImpactOnBetamax, abs(waveAngle)))), 2.0 / 3.0);
     }
 
-    double NaturalStoneRevetment::ResistanceOfNaturalStone(
+    double NaturalStoneRevetment::Resistance(
         const double relativeDensity,
         const double thicknessTopLayer)
     {
         return relativeDensity * thicknessTopLayer;
     }
 
-    double NaturalStoneRevetment::IncrementDegradationOfNaturalStone(
-        const double referenceTimeDegradationOfNaturalStone,
+    double NaturalStoneRevetment::IncrementDegradation(
+        const double referenceTimeDegradation,
         const double wavePeriodTm10,
-        const double incrementOfTime)
+        const double incrementTime)
     {
-        return DegradationOfNaturalStone(referenceTimeDegradationOfNaturalStone + incrementOfTime, wavePeriodTm10)
-                - DegradationOfNaturalStone(referenceTimeDegradationOfNaturalStone, wavePeriodTm10);
+        return Degradation(referenceTimeDegradation + incrementTime, wavePeriodTm10)
+                - Degradation(referenceTimeDegradation, wavePeriodTm10);
     }
 
-    double NaturalStoneRevetment::DegradationOfNaturalStone(
+    double NaturalStoneRevetment::Degradation(
         const double referenceTimeDegradation,
         const double wavePeriodTm10)
     {
         return pow(referenceTimeDegradation / (wavePeriodTm10 * 1000.0), 0.1);
     }
 
-    double NaturalStoneRevetment::ReferenceTimeDegradationOfNaturalStone(
-        const double referenceDegradationOfNaturalStone,
+    double NaturalStoneRevetment::ReferenceTimeDegradation(
+        const double referenceDegradation,
         const double wavePeriodTm10)
     {
-        return 1000.0 * wavePeriodTm10 * pow(referenceDegradationOfNaturalStone, 10.0);
+        return 1000.0 * wavePeriodTm10 * pow(referenceDegradation, 10.0);
     }
 
-    double NaturalStoneRevetment::ReferenceDegradationOfNaturalStone(
-        const double resistanceOfNaturalStone,
-        const double hydraulicLoadOnNaturalStone,
-        const double waveAngleImpactOnNaturalStone,
+    double NaturalStoneRevetment::ReferenceDegradation(
+        const double resistance,
+        const double hydraulicLoad,
+        const double waveAngleImpact,
         const double initialDamage)
     {
-        return initialDamage * (resistanceOfNaturalStone / hydraulicLoadOnNaturalStone) * (1.0 / waveAngleImpactOnNaturalStone);
+        return initialDamage * (resistance / hydraulicLoad) * (1.0 / waveAngleImpact);
     }
 
-    double NaturalStoneRevetment::DurationInTimeStepFailureNaturalStone(
-        const double referenceTimeFailureOfNaturalStone,
-        const double referenceTimeDegradationOfNaturalStone)
+    double NaturalStoneRevetment::DurationInTimeStepFailure(
+        const double referenceTimeFailure,
+        const double referenceTimeDegradation)
     {
-        return referenceTimeFailureOfNaturalStone - referenceTimeDegradationOfNaturalStone;
+        return referenceTimeFailure - referenceTimeDegradation;
     }
 
-    double NaturalStoneRevetment::ReferenceTimeFailureOfNaturalStone(
-        const double referenceFailureOfNaturalStone,
+    double NaturalStoneRevetment::ReferenceTimeFailure(
+        const double referenceFailure,
         const double wavePeriodTm10)
     {
-        return 1000.0 * wavePeriodTm10 * pow(referenceFailureOfNaturalStone, 10.0);
+        return 1000.0 * wavePeriodTm10 * pow(referenceFailure, 10.0);
     }
 
-    double NaturalStoneRevetment::ReferenceFailureOfNaturalStone(
-        const double resistanceOfNaturalStone,
-        const double hydraulicLoadOnNaturalStone,
-        const double waveAngleImpactOnNaturalStone,
+    double NaturalStoneRevetment::ReferenceFailure(
+        const double resistance,
+        const double hydraulicLoad,
+        const double waveAngleImpact,
         const double failureNumber)
     {
-        return failureNumber * (resistanceOfNaturalStone / hydraulicLoadOnNaturalStone) * (1.0 / waveAngleImpactOnNaturalStone);
+        return failureNumber * (resistance / hydraulicLoad) * (1.0 / waveAngleImpact);
     }
 }
