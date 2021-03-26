@@ -57,13 +57,13 @@
 				},
 				"Bekleding":
 				{
-					"TypeToplaag": "Noorse Steen",
+					"TypeToplaag": "NoorseSteen",
 					"RelatieveDichtheid": 1.65,
 					"DikteToplaag": 0.3,
 					"Rekenmethoden": 
 					[
 						{
-							"RekenmethodeSoort": "NatuurSteen",
+							"RekenmethodeSoort": "Natuursteen",
 							"ToenameSchadeNatuursteen": {
 								"HydraulischeBelastingNatuursteenXib": 4.9,
 								"HydraulischeBelastingNatuursteenAp": 5,
@@ -109,13 +109,13 @@
 				"Naam": "LocatieSterk",
 				"Bekleding":
 				{
-					"TypeToplaag": "Noorse Steen",
+					"TypeToplaag": "NoorseSteen",
 					"RelatieveDichtheid": 1.65,
 					"DikteToplaag": 0.7,
 					"Rekenmethoden":
 					[
 						{
-							"RekenmethodeSoort": "NatuurSteen"
+							"RekenmethodeSoort": "Natuursteen"
 						}
 					]
 				},

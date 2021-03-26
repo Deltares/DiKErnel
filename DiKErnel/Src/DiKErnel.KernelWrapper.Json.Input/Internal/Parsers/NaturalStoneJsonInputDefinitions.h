@@ -62,6 +62,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
             inline static const std::string WAVE_ANGLE_IMPACT = "ImpactGolfhoekBekledingNatuursteen";
             inline static const std::string WAVE_ANGLE_IMPACT_BETA_MAX = "ImpactGolfhoekBekledingNatuursteenBetamax";
 
-            inline static const std::string TOP_LAYER_TYPE_NORDIC_STONE = "Noorse Steen";
+            inline static const std::string TOP_LAYER_TYPE_NORDIC_STONE = "NoorseSteen";
     };
 }
