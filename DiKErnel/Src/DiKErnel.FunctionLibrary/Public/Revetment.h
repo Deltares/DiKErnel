@@ -36,12 +36,12 @@ namespace DiKErnel::FunctionLibrary
                 double endTime);
 
             static double Damage(
-                double initialDamage,
-                double incrementOfDamage);
+                double incrementOfDamage,
+                double initialDamage);
 
             static bool FailureOfRevetment(
-                double failureNumber,
-                double damage);
+                double damage,
+                double failureNumber);
 
             static double DegreesToRadians(
                 double degrees);
@@ -50,9 +50,9 @@ namespace DiKErnel::FunctionLibrary
                 double tanA);
 
             static double LoadingOfRevetment(
-                double positionZ,
                 double upperLimitLoadingOfRevetment,
-                double lowerLimitLoadingOfRevetment);
+                double lowerLimitLoadingOfRevetment,
+                double positionZ);
 
             static double WaveSteepnessDeepWater(
                 double waveHeightHm0,

@@ -42,15 +42,15 @@ namespace DiKErnel::FunctionLibrary
     }
 
     double Revetment::Damage(
-        const double initialDamage,
-        const double incrementOfDamage)
+        const double incrementOfDamage,
+        const double initialDamage)
     {
         return initialDamage + incrementOfDamage;
     }
 
     bool Revetment::FailureOfRevetment(
-        const double failureNumber,
-        const double damage)
+        const double damage,
+        const double failureNumber)
     {
         return damage >= failureNumber;
     }
@@ -68,9 +68,9 @@ namespace DiKErnel::FunctionLibrary
     }
 
     double Revetment::LoadingOfRevetment(
-        const double positionZ,
         const double upperLimitLoadingOfRevetment,
-        const double lowerLimitLoadingOfRevetment)
+        const double lowerLimitLoadingOfRevetment,
+        const double positionZ)
     {
         return positionZ >= lowerLimitLoadingOfRevetment && positionZ <= upperLimitLoadingOfRevetment
                    ? 1.0
