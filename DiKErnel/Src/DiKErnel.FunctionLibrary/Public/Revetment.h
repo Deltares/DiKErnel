@@ -28,37 +28,37 @@ namespace DiKErnel::FunctionLibrary
     class Revetment
     {
         public:
-            static int CalculateNumberOfTimeSteps(
+            static int NumberOfTimeSteps(
                 int numberOfTimeStamps);
 
-            static double CalculateIncrementOfTime(
+            static double IncrementOfTime(
                 double startTime,
                 double endTime);
 
-            static double CalculateDamage(
+            static double Damage(
                 double initialDamage,
                 double incrementOfDamage);
 
-            static bool CalculateFailureOfRevetment(
+            static bool FailureOfRevetment(
                 double failureNumber,
                 double damage);
 
             static double DegreesToRadians(
                 double degrees);
 
-            static double CalculateSlopeAngle(
+            static double SlopeAngle(
                 double tanA);
 
-            static double CalculateLoadingOfRevetment(
+            static double LoadingOfRevetment(
                 double positionZ,
                 double upperLimitLoadingOfRevetment,
                 double lowerLimitLoadingOfRevetment);
 
-            static double CalculateWaveSteepnessDeepWater(
+            static double WaveSteepnessDeepWater(
                 double waveHeightHm0,
                 double wavePeriodTm10);
 
-            static double CalculateSurfSimilarityParameter(
+            static double SurfSimilarityParameter(
                 double tanA,
                 double waveHeightHm0,
                 double wavePeriodTm10);

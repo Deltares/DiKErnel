@@ -29,7 +29,7 @@ namespace DiKErnel::FunctionLibrary
 {
     using namespace std;
 
-    double NaturalStoneRevetment::CalculateIncrementDamageOfNaturalStone(
+    double NaturalStoneRevetment::IncrementDamageOfNaturalStone(
         const double hydraulicLoadOnNaturalStone,
         const double resistanceOfNaturalStone,
         const double incrementDegradationOfNaturalStone,
@@ -40,7 +40,7 @@ namespace DiKErnel::FunctionLibrary
                 * waveAngleImpactOnNaturalStone;
     }
 
-    double NaturalStoneRevetment::CalculateHydraulicLoadOnNaturalStone(
+    double NaturalStoneRevetment::HydraulicLoadOnNaturalStone(
         const double waveHeightHm0,
         const double hydraulicLoadOnNaturalStoneXib,
         const double hydraulicLoadOnNaturalStoneAp,
@@ -72,7 +72,7 @@ namespace DiKErnel::FunctionLibrary
             + hydraulicLoadOnNaturalStoneC);
     }
 
-    double NaturalStoneRevetment::CalculateUpperLimitLoadingOfNaturalStone(
+    double NaturalStoneRevetment::UpperLimitLoadingOfNaturalStone(
         const double waterLevel,
         const double waveHeightHm0,
         const double upperLimitLoadingOfNaturalStoneAul,
@@ -88,7 +88,7 @@ namespace DiKErnel::FunctionLibrary
                                                                                upperLimitLoadingOfNaturalStoneCul));
     }
 
-    double NaturalStoneRevetment::CalculateLowerLimitLoadingOfNaturalStone(
+    double NaturalStoneRevetment::LowerLimitLoadingOfNaturalStone(
         const double waterLevel,
         const double waveHeightHm0,
         const double lowerLimitLoadingOfNaturalStoneAll,
@@ -104,7 +104,7 @@ namespace DiKErnel::FunctionLibrary
                                                                                lowerLimitLoadingOfNaturalStoneCll));
     }
 
-    double NaturalStoneRevetment::CalculateDepthMaximumWaveLoadNaturalStone(
+    double NaturalStoneRevetment::DepthMaximumWaveLoadNaturalStone(
         const double distanceMaximumWaveElevationNaturalStone,
         const double normativeWidthOfWaveImpact,
         const double slopeAngle)
@@ -113,7 +113,7 @@ namespace DiKErnel::FunctionLibrary
                 * tan(Revetment::DegreesToRadians(slopeAngle));
     }
 
-    double NaturalStoneRevetment::CalculateDistanceMaximumWaveElevationNaturalStone(
+    double NaturalStoneRevetment::DistanceMaximumWaveElevationNaturalStone(
         const double waveHeightHm0,
         const double distanceMaximumWaveElevationNaturalStoneAsmax,
         const double distanceMaximumWaveElevationNaturalStoneBsmax,
@@ -125,12 +125,12 @@ namespace DiKErnel::FunctionLibrary
                 * impactShallowWaterNaturalStone;
     }
 
-    double NaturalStoneRevetment::CalculateImpactShallowWaterNaturalStone()
+    double NaturalStoneRevetment::ImpactShallowWaterNaturalStone()
     {
         return 1.0;
     }
 
-    double NaturalStoneRevetment::CalculateNormativeWidthOfWaveImpactNaturalStone(
+    double NaturalStoneRevetment::NormativeWidthOfWaveImpactNaturalStone(
         const double waveHeightHm0,
         const double normativeWidthOfWaveImpactNaturalStoneAwi,
         const double normativeWidthOfWaveImpactNaturalStoneBwi,
@@ -140,44 +140,44 @@ namespace DiKErnel::FunctionLibrary
                 * waveHeightHm0;
     }
 
-    double NaturalStoneRevetment::CalculateWaveAngleImpactOnNaturalStone(
+    double NaturalStoneRevetment::WaveAngleImpactOnNaturalStone(
         const double waveAngle,
         const double waveAngleImpactOnNaturalStoneBetamax)
     {
         return pow(cos(Revetment::DegreesToRadians(min(waveAngleImpactOnNaturalStoneBetamax, abs(waveAngle)))), 2.0 / 3.0);
     }
 
-    double NaturalStoneRevetment::CalculateResistanceOfNaturalStone(
+    double NaturalStoneRevetment::ResistanceOfNaturalStone(
         const double relativeDensity,
         const double thicknessTopLayer)
     {
         return relativeDensity * thicknessTopLayer;
     }
 
-    double NaturalStoneRevetment::CalculateIncrementDegradationOfNaturalStone(
+    double NaturalStoneRevetment::IncrementDegradationOfNaturalStone(
         const double wavePeriodTm10,
         const double incrementOfTime,
         const double referenceTimeDegradationOfNaturalStone)
     {
-        return CalculateDegradationOfNaturalStone(referenceTimeDegradationOfNaturalStone + incrementOfTime, wavePeriodTm10)
-                - CalculateDegradationOfNaturalStone(referenceTimeDegradationOfNaturalStone, wavePeriodTm10);
+        return DegradationOfNaturalStone(referenceTimeDegradationOfNaturalStone + incrementOfTime, wavePeriodTm10)
+                - DegradationOfNaturalStone(referenceTimeDegradationOfNaturalStone, wavePeriodTm10);
     }
 
-    double NaturalStoneRevetment::CalculateDegradationOfNaturalStone(
+    double NaturalStoneRevetment::DegradationOfNaturalStone(
         const double referenceTimeDegradation,
         const double wavePeriodTm10)
     {
         return pow(referenceTimeDegradation / (wavePeriodTm10 * 1000.0), 0.1);
     }
 
-    double NaturalStoneRevetment::CalculateReferenceTimeDegradationOfNaturalStone(
+    double NaturalStoneRevetment::ReferenceTimeDegradationOfNaturalStone(
         const double wavePeriodTm10,
         const double referenceDegradationOfNaturalStone)
     {
         return 1000.0 * wavePeriodTm10 * pow(referenceDegradationOfNaturalStone, 10.0);
     }
 
-    double NaturalStoneRevetment::CalculateReferenceDegradationOfNaturalStone(
+    double NaturalStoneRevetment::ReferenceDegradationOfNaturalStone(
         const double initialDamage,
         const double resistanceOfNaturalStone,
         const double hydraulicLoadOnNaturalStone,
@@ -186,21 +186,21 @@ namespace DiKErnel::FunctionLibrary
         return initialDamage * (resistanceOfNaturalStone / hydraulicLoadOnNaturalStone) * (1.0 / waveAngleImpactOnNaturalStone);
     }
 
-    double NaturalStoneRevetment::CalculateDurationInTimeStepFailureNaturalStone(
+    double NaturalStoneRevetment::DurationInTimeStepFailureNaturalStone(
         const double referenceTimeFailureOfNaturalStone,
         const double referenceTimeDegradationOfNaturalStone)
     {
         return referenceTimeFailureOfNaturalStone - referenceTimeDegradationOfNaturalStone;
     }
 
-    double NaturalStoneRevetment::CalculateReferenceTimeFailureOfNaturalStone(
+    double NaturalStoneRevetment::ReferenceTimeFailureOfNaturalStone(
         const double wavePeriodTm10,
         const double referenceFailureOfNaturalStone)
     {
         return 1000.0 * wavePeriodTm10 * pow(referenceFailureOfNaturalStone, 10.0);
     }
 
-    double NaturalStoneRevetment::CalculateReferenceFailureOfNaturalStone(
+    double NaturalStoneRevetment::ReferenceFailureOfNaturalStone(
         const double failureNumber,
         const double resistanceOfNaturalStone,
         const double hydraulicLoadOnNaturalStone,
