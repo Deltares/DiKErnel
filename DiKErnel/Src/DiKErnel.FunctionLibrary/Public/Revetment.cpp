@@ -20,10 +20,7 @@
 
 #include "Revetment.h"
 
-#include <cmath>
-
 #include "Constants.h"
-#include "Generic.h"
 
 namespace DiKErnel::FunctionLibrary
 {
@@ -54,34 +51,5 @@ namespace DiKErnel::FunctionLibrary
         const double failureNumber)
     {
         return damage >= failureNumber;
-    }
-
-    double Revetment::SlopeAngle(
-        const double tanA)
-    {
-        return atan(Generic::Radians(tanA));
-    }
-
-    bool Revetment::LoadingOfRevetment(
-        const double upperLimitLoadingOfRevetment,
-        const double lowerLimitLoadingOfRevetment,
-        const double positionZ)
-    {
-        return positionZ >= lowerLimitLoadingOfRevetment && positionZ <= upperLimitLoadingOfRevetment;
-    }
-
-    double Revetment::SurfSimilarityParameter(
-        const double tanA,
-        const double waveHeightHm0,
-        const double wavePeriodTm10)
-    {
-        return tanA / sqrt(2.0 * Constants::PI * waveHeightHm0 / (Constants::GRAVITATIONAL_ACCELERATION * pow(wavePeriodTm10, 2.0)));
-    }
-
-    double Revetment::WaveSteepnessDeepWater(
-        const double waveHeightHm0,
-        const double wavePeriodTm10)
-    {
-        return waveHeightHm0 / (Constants::GRAVITATIONAL_ACCELERATION / (2.0 * Constants::PI) * pow(wavePeriodTm10, 2.0));
     }
 }

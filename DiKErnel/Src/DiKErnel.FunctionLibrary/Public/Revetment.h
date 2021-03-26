@@ -42,22 +42,5 @@ namespace DiKErnel::FunctionLibrary
             static bool FailureOfRevetment(
                 double damage,
                 double failureNumber);
-
-            static double SlopeAngle(
-                double tanA);
-
-            static bool LoadingOfRevetment(
-                double upperLimitLoadingOfRevetment,
-                double lowerLimitLoadingOfRevetment,
-                double positionZ);
-
-            static double WaveSteepnessDeepWater(
-                double waveHeightHm0,
-                double wavePeriodTm10);
-
-            static double SurfSimilarityParameter(
-                double tanA,
-                double waveHeightHm0,
-                double wavePeriodTm10);
     };
 }
