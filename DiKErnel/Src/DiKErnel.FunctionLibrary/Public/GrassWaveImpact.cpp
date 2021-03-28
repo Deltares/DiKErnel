@@ -23,6 +23,8 @@
 #include <algorithm>
 #include <cmath>
 
+#include "Generic.h"
+
 namespace DiKErnel::FunctionLibrary
 {
     using namespace std;
@@ -63,11 +65,25 @@ namespace DiKErnel::FunctionLibrary
     }
 
     double GrassWaveImpact::MaximumWaveHeight(
-        double failureTimeAgwi,
-        double failureTimeBgwi,
-        double failureTimeCgwi,
-        double minimumWaveHeightTemin)
+        const double failureTimeAgwi,
+        const double failureTimeBgwi,
+        const double failureTimeCgwi,
+        const double minimumWaveHeightTemin)
     {
         return failureTimeAgwi * exp(failureTimeBgwi * minimumWaveHeightTemin) + failureTimeCgwi;
+    }
+
+    double GrassWaveImpact::WaveAngleImpact(
+        const double waveAngle,
+        const double waveAngleImpactNwa,
+        const double waveAngleImpactQwa,
+        const double waveAngleImpactRwa)
+    {
+        if (abs(waveAngle) <= 90.0)
+        {
+            return max(pow(cos(Generic::Radians(waveAngle)), waveAngleImpactNwa), waveAngleImpactQwa);
+        }
+
+        return max(waveAngleImpactQwa * ((90.0 + waveAngleImpactRwa - abs(waveAngle)) / waveAngleImpactRwa), 0.0);
     }
 }

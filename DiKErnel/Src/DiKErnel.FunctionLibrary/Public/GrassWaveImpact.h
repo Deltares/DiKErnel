@@ -55,5 +55,11 @@ namespace DiKErnel::FunctionLibrary
             double failureTimeBgwi,
             double failureTimeCgwi,
             double minimumWaveHeightTemin);
+
+        static double WaveAngleImpact(
+            double waveAngle,
+            double waveAngleImpactNwa,
+            double waveAngleImpactQwa,
+            double waveAngleImpactRwa);
     };
 }
