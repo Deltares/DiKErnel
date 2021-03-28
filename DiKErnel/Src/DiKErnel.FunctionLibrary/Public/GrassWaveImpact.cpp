@@ -31,10 +31,9 @@ namespace DiKErnel::FunctionLibrary
 
     double GrassWaveImpact::IncrementDamage(
         const double incrementTime,
-        const double failureTime,
-        const double loadingOfRevetment)
+        const double failureTime)
     {
-        return incrementTime / failureTime * loadingOfRevetment;
+        return incrementTime / failureTime;
     }
 
     double GrassWaveImpact::FailureTime(
@@ -101,5 +100,13 @@ namespace DiKErnel::FunctionLibrary
         const double lowerLimitLoadingAll)
     {
         return waterLevel - lowerLimitLoadingAll * waveHeightHm0;
+    }
+
+    double GrassWaveImpact::DurationInTimeStepFailure(
+        const double failureTime,
+        const double failureNumber,
+        const double initialDamage)
+    {
+        return (failureNumber - initialDamage) * failureTime;
     }
 }

@@ -29,8 +29,7 @@ namespace DiKErnel::FunctionLibrary
     {
         static double IncrementDamage(
             double incrementTime,
-            double failureTime,
-            double loadingOfRevetment);
+            double failureTime);
 
         static double FailureTime(
             double waveHeight,
@@ -71,5 +70,10 @@ namespace DiKErnel::FunctionLibrary
             double waterLevel,
             double waveHeightHm0,
             double lowerLimitLoadingAll);
+
+        static double DurationInTimeStepFailure(
+            double failureTime,
+            double failureNumber,
+            double initialDamage);
     };
 }
