@@ -20,6 +20,8 @@
 
 #include "GrassWaveImpact.h"
 
+#include <cmath>
+
 namespace DiKErnel::FunctionLibrary
 {
     double GrassWaveImpact::IncrementDamage(
@@ -28,5 +30,14 @@ namespace DiKErnel::FunctionLibrary
         const double loadingOfRevetment)
     {
         return incrementTime / failureTime * loadingOfRevetment;
+    }
+
+    double GrassWaveImpact::FailureTime(
+        const double waveHeight,
+        const double failureTimeOfGrassWaveImpactAgwi,
+        const double failureTimeOfGrassWaveImpactBgwi,
+        const double failureTimeOfGrassWaveImpactCgwi)
+    {
+        return 1 / failureTimeOfGrassWaveImpactBgwi * log((waveHeight - failureTimeOfGrassWaveImpactCgwi) / failureTimeOfGrassWaveImpactAgwi);
     }
 }

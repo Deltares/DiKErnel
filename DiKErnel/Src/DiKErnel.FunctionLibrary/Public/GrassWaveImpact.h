@@ -31,5 +31,11 @@ namespace DiKErnel::FunctionLibrary
             double incrementTime,
             double failureTime,
             double loadingOfRevetment);
+
+        static double FailureTime(
+            double waveHeight,
+            double failureTimeOfGrassWaveImpactAgwi,
+            double failureTimeOfGrassWaveImpactBgwi,
+            double failureTimeOfGrassWaveImpactCgwi);
     };
 }
