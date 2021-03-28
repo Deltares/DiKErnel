@@ -20,4 +20,13 @@
 
 #include "GrassWaveImpact.h"
 
-namespace DiKErnel::FunctionLibrary {}
+namespace DiKErnel::FunctionLibrary
+{
+    double GrassWaveImpact::IncrementDamage(
+        const double incrementTime,
+        const double failureTime,
+        const double loadingOfRevetment)
+    {
+        return incrementTime / failureTime * loadingOfRevetment;
+    }
+}

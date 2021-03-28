@@ -25,5 +25,11 @@ namespace DiKErnel::FunctionLibrary
     /*!
      * \brief Class that holds all grass wave impact specific calculation routines.
      */
-    class GrassWaveImpact { };
+    class GrassWaveImpact
+    {
+        static double IncrementDamage(
+            double incrementTime,
+            double failureTime,
+            double loadingOfRevetment);
+    };
 }
