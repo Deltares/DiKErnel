@@ -34,14 +34,20 @@ namespace DiKErnel::FunctionLibrary
 
         static double FailureTime(
             double waveHeight,
-            double failureTimeOfGrassWaveImpactAgwi,
-            double failureTimeOfGrassWaveImpactBgwi,
-            double failureTimeOfGrassWaveImpactCgwi);
+            double failureTimeAgwi,
+            double failureTimeBgwi,
+            double failureTimeCgwi);
 
         static double WaveHeight(
             double minimumWaveHeight,
             double maximumWaveHeight,
             double waveAngleImpact,
             double waveHeightHm0);
+
+        static double MinimumWaveHeight(
+            double failureTimeAgwi,
+            double failureTimeBgwi,
+            double failureTimeCgwi,
+            double minimumWaveHeightTemax);
     };
 }

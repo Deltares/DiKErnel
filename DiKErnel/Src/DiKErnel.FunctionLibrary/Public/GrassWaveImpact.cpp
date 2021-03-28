@@ -37,11 +37,11 @@ namespace DiKErnel::FunctionLibrary
 
     double GrassWaveImpact::FailureTime(
         const double waveHeight,
-        const double failureTimeOfGrassWaveImpactAgwi,
-        const double failureTimeOfGrassWaveImpactBgwi,
-        const double failureTimeOfGrassWaveImpactCgwi)
+        const double failureTimeAgwi,
+        const double failureTimeBgwi,
+        const double failureTimeCgwi)
     {
-        return 1 / failureTimeOfGrassWaveImpactBgwi * log((waveHeight - failureTimeOfGrassWaveImpactCgwi) / failureTimeOfGrassWaveImpactAgwi);
+        return 1 / failureTimeBgwi * log((waveHeight - failureTimeCgwi) / failureTimeAgwi);
     }
 
     double GrassWaveImpact::WaveHeight(
@@ -51,5 +51,14 @@ namespace DiKErnel::FunctionLibrary
         const double waveHeightHm0)
     {
         return min(maximumWaveHeight, max(waveAngleImpact * waveHeightHm0, minimumWaveHeight));
+    }
+
+    double GrassWaveImpact::MinimumWaveHeight(
+        const double failureTimeAgwi,
+        const double failureTimeBgwi,
+        const double failureTimeCgwi,
+        const double minimumWaveHeightTemax)
+    {
+        return failureTimeAgwi * exp(failureTimeBgwi * minimumWaveHeightTemax) + failureTimeCgwi;
     }
 }
