@@ -49,5 +49,11 @@ namespace DiKErnel::FunctionLibrary
             double failureTimeBgwi,
             double failureTimeCgwi,
             double minimumWaveHeightTemax);
+
+        static double MaximumWaveHeight(
+            double failureTimeAgwi,
+            double failureTimeBgwi,
+            double failureTimeCgwi,
+            double minimumWaveHeightTemin);
     };
 }

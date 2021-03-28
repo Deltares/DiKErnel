@@ -61,4 +61,13 @@ namespace DiKErnel::FunctionLibrary
     {
         return failureTimeAgwi * exp(failureTimeBgwi * minimumWaveHeightTemax) + failureTimeCgwi;
     }
+
+    double GrassWaveImpact::MaximumWaveHeight(
+        double failureTimeAgwi,
+        double failureTimeBgwi,
+        double failureTimeCgwi,
+        double minimumWaveHeightTemin)
+    {
+        return failureTimeAgwi * exp(failureTimeBgwi * minimumWaveHeightTemin) + failureTimeCgwi;
+    }
 }
