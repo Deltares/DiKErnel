@@ -86,4 +86,20 @@ namespace DiKErnel::FunctionLibrary
 
         return max(waveAngleImpactQwa * ((90.0 + waveAngleImpactRwa - abs(waveAngle)) / waveAngleImpactRwa), 0.0);
     }
+
+    double GrassWaveImpact::UpperLimitLoading(
+        const double waterLevel,
+        const double waveHeightHm0,
+        const double upperLimitLoadingAul)
+    {
+        return waterLevel - upperLimitLoadingAul * waveHeightHm0;
+    }
+
+    double GrassWaveImpact::LowerLimitLoading(
+        const double waterLevel,
+        const double waveHeightHm0,
+        const double lowerLimitLoadingAll)
+    {
+        return waterLevel - lowerLimitLoadingAll * waveHeightHm0;
+    }
 }

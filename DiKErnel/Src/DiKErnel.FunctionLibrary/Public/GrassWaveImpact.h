@@ -61,5 +61,15 @@ namespace DiKErnel::FunctionLibrary
             double waveAngleImpactNwa,
             double waveAngleImpactQwa,
             double waveAngleImpactRwa);
+
+        static double UpperLimitLoading(
+            double waterLevel,
+            double waveHeightHm0,
+            double upperLimitLoadingAul);
+
+        static double LowerLimitLoading(
+            double waterLevel,
+            double waveHeightHm0,
+            double lowerLimitLoadingAll);
     };
 }
