@@ -37,5 +37,11 @@ namespace DiKErnel::FunctionLibrary
             double failureTimeOfGrassWaveImpactAgwi,
             double failureTimeOfGrassWaveImpactBgwi,
             double failureTimeOfGrassWaveImpactCgwi);
+
+        static double WaveHeight(
+            double minimumWaveHeight,
+            double maximumWaveHeight,
+            double waveAngleImpact,
+            double waveHeightHm0);
     };
 }

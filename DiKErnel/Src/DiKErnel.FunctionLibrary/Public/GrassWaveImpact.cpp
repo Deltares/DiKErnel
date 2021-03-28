@@ -20,10 +20,13 @@
 
 #include "GrassWaveImpact.h"
 
+#include <algorithm>
 #include <cmath>
 
 namespace DiKErnel::FunctionLibrary
 {
+    using namespace std;
+
     double GrassWaveImpact::IncrementDamage(
         const double incrementTime,
         const double failureTime,
@@ -39,5 +42,14 @@ namespace DiKErnel::FunctionLibrary
         const double failureTimeOfGrassWaveImpactCgwi)
     {
         return 1 / failureTimeOfGrassWaveImpactBgwi * log((waveHeight - failureTimeOfGrassWaveImpactCgwi) / failureTimeOfGrassWaveImpactAgwi);
+    }
+
+    double GrassWaveImpact::WaveHeight(
+        const double minimumWaveHeight,
+        const double maximumWaveHeight,
+        const double waveAngleImpact,
+        const double waveHeightHm0)
+    {
+        return min(maximumWaveHeight, max(waveAngleImpact * waveHeightHm0, minimumWaveHeight));
     }
 }
