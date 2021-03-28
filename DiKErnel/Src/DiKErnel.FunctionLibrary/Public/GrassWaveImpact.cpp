@@ -42,7 +42,7 @@ namespace DiKErnel::FunctionLibrary
         const double failureTimeBgwi,
         const double failureTimeCgwi)
     {
-        return 1 / failureTimeBgwi * log((waveHeight - failureTimeCgwi) / failureTimeAgwi);
+        return 1.0 / failureTimeBgwi * log((waveHeight - failureTimeCgwi) / failureTimeAgwi);
     }
 
     double GrassWaveImpact::WaveHeight(
