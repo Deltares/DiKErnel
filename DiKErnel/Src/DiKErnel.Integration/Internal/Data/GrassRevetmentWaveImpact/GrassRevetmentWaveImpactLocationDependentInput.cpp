@@ -22,6 +22,7 @@
 
 namespace DiKErnel::Integration
 {
+    using namespace Core;
     using namespace std;
 
     GrassRevetmentWaveImpactLocationDependentInput::GrassRevetmentWaveImpactLocationDependentInput(
@@ -30,13 +31,15 @@ namespace DiKErnel::Integration
         const double failureNumber,
         const double tanA,
         const double positionZ,
-        unique_ptr<GrassRevetmentWaveImpactWaveAngleImpact> waveAngleImpact)
+        unique_ptr<GrassRevetmentWaveImpactWaveAngleImpact> waveAngleImpact,
+        unique_ptr<GrassRevetmentWaveImpactFailureTime> failureTime)
         : LocationDependentInput(move(name), initialDamage, failureNumber, tanA, positionZ),
-          _waveAngleImpact(move(waveAngleImpact)) {}
+          _waveAngleImpact(move(waveAngleImpact)),
+          _failureTime(move(failureTime)) {}
 
     double GrassRevetmentWaveImpactLocationDependentInput::Calculate(
         double initialDamage,
-        const Core::ITimeDependentInput& timeDependentInput)
+        const ITimeDependentInput& timeDependentInput)
     {
         return 0;
     }
@@ -44,5 +47,10 @@ namespace DiKErnel::Integration
     GrassRevetmentWaveImpactWaveAngleImpact& GrassRevetmentWaveImpactLocationDependentInput::GetWaveAngleImpact() const
     {
         return *_waveAngleImpact;
+    }
+
+    GrassRevetmentWaveImpactFailureTime& GrassRevetmentWaveImpactLocationDependentInput::GetFailureTime() const
+    {
+        return *_failureTime;
     }
 }

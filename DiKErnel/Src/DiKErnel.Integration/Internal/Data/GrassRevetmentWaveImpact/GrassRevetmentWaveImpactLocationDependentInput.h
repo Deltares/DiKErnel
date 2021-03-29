@@ -22,6 +22,7 @@
 
 #include <memory>
 
+#include "GrassRevetmentWaveImpactFailureTime.h"
 #include "GrassRevetmentWaveImpactWaveAngleImpact.h"
 #include "LocationDependentInput.h"
 
@@ -36,7 +37,8 @@ namespace DiKErnel::Integration
                 double failureNumber,
                 double tanA,
                 double positionZ,
-                std::unique_ptr<GrassRevetmentWaveImpactWaveAngleImpact> waveAngleImpact);
+                std::unique_ptr<GrassRevetmentWaveImpactWaveAngleImpact> waveAngleImpact,
+                std::unique_ptr<GrassRevetmentWaveImpactFailureTime> failureTime);
 
             double Calculate(
                 double initialDamage,
@@ -44,7 +46,10 @@ namespace DiKErnel::Integration
 
             GrassRevetmentWaveImpactWaveAngleImpact& GetWaveAngleImpact() const;
 
+            GrassRevetmentWaveImpactFailureTime& GetFailureTime() const;
+
         private:
             std::unique_ptr<GrassRevetmentWaveImpactWaveAngleImpact> _waveAngleImpact;
+            std::unique_ptr<GrassRevetmentWaveImpactFailureTime> _failureTime;
     };
 }
