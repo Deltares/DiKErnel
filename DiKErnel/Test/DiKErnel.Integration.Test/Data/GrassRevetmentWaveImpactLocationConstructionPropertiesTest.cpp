@@ -31,12 +31,10 @@ namespace DiKErnel::Integration::Test
 
     using TopLayerType = GrassRevetmentWaveImpactLocationConstructionProperties::TopLayerType;
 
-    struct GrassRevetmentWaveImpactLocationConstructionPropertiesTest : TestWithParam<TopLayerType> { };
-
-    TEST_P(GrassRevetmentWaveImpactLocationConstructionPropertiesTest, Constructor_ExpectedValues)
+    TEST(GrassRevetmentWaveImpactLocationConstructionPropertiesTest, Constructor_ExpectedValues)
     {
         // Setup
-        const auto topLayerType = GetParam();
+        const auto topLayerType = static_cast<TopLayerType>(rand() % 2);
         const string name = "Test";
         const auto tanA = 0.1;
         const auto positionZ = 0.2;
@@ -65,10 +63,10 @@ namespace DiKErnel::Integration::Test
         ASSERT_EQ(nullptr, constructionProperties.GetLowerLimitLoadingAll());
     }
 
-    TEST_P(GrassRevetmentWaveImpactLocationConstructionPropertiesTest, GivenConstructionProperties_WhenAllInputSet_ThenExpectedValues)
+    TEST(GrassRevetmentWaveImpactLocationConstructionPropertiesTest, GivenConstructionProperties_WhenAllInputSet_ThenExpectedValues)
     {
         // Given
-        const auto topLayerType = GetParam();
+        const auto topLayerType = static_cast<TopLayerType>(rand() % 2);
         const string name = "Test";
         const auto tanA = 0.1;
         const auto positionZ = 0.2;
@@ -120,9 +118,4 @@ namespace DiKErnel::Integration::Test
         ASSERT_DOUBLE_EQ(upperLimitLoadingAul, *constructionProperties.GetUpperLimitLoadingAul());
         ASSERT_DOUBLE_EQ(lowerLimitLoadingAll, *constructionProperties.GetLowerLimitLoadingAll());
     }
-
-    INSTANTIATE_TEST_SUITE_P(
-        WithTopLayerType,
-        GrassRevetmentWaveImpactLocationConstructionPropertiesTest,
-        Values(TopLayerType::ClosedSod, TopLayerType::OpenSod));
 }
