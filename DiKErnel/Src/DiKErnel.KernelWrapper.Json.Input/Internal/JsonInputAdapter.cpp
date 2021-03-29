@@ -64,8 +64,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
             if (naturalStoneRevetmentLocationData != nullptr)
             {
                 NaturalStoneRevetmentLocationConstructionProperties constructionProperties(
-                    ConvertTypeTopLayer(naturalStoneRevetmentLocationData->GetTopLayerType()), location.GetName(),
-                    location.GetProfileSchematizationData().GetTanA(), location.GetProfileSchematizationData().GetPositionZ(),
+                    location.GetName(), location.GetProfileSchematizationData().GetTanA(), location.GetProfileSchematizationData().GetPositionZ(),
+                    ConvertTypeTopLayer(naturalStoneRevetmentLocationData->GetTopLayerType()),
                     naturalStoneRevetmentLocationData->GetThicknessTopLayer(), naturalStoneRevetmentLocationData->GetRelativeDensity());
 
                 constructionProperties.SetInitialDamage(

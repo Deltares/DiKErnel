@@ -20,11 +20,14 @@
 
 #include <gtest/gtest.h>
 
+
+#include "AssertHelper.h"
 #include "NaturalStoneRevetmentLocationConstructionProperties.h"
 
 namespace DiKErnel::Integration::Test
 {
     using namespace std;
+    using namespace TestUtil;
 
     TEST(NaturalStoneRevetmentLocationConstructionPropertiesTest, Constructor_ExpectedValues)
     {
@@ -38,9 +41,10 @@ namespace DiKErnel::Integration::Test
 
         // Call
         const NaturalStoneRevetmentLocationConstructionProperties constructionProperties(
-            topLayerType, name, tanA, positionZ, thicknessTopLayer, relativeDensity);
+            name, tanA, positionZ, topLayerType, thicknessTopLayer, relativeDensity);
 
         // Assert
+        AssertHelper::AssertIsInstanceOf<RevetmentLocationConstructionPropertiesBase>(&constructionProperties);
         ASSERT_EQ(topLayerType, constructionProperties.GetTopLayerType());
         ASSERT_EQ(name, constructionProperties.GetName());
         ASSERT_DOUBLE_EQ(tanA, constructionProperties.GetTanA());
@@ -104,7 +108,7 @@ namespace DiKErnel::Integration::Test
         const auto waveAngleImpactBetamax = 2.6;
 
         NaturalStoneRevetmentLocationConstructionProperties constructionProperties(
-            topLayerType, name, tanA, positionZ, thicknessTopLayer, relativeDensity);
+            name, tanA, positionZ, topLayerType, thicknessTopLayer, relativeDensity);
 
         // When
         constructionProperties.SetInitialDamage(make_unique<double>(initialDamage));

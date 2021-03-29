@@ -20,35 +20,23 @@
 
 #include "NaturalStoneRevetmentLocationConstructionProperties.h"
 
+#include <utility>
+
 namespace DiKErnel::Integration
 {
     using namespace std;
 
     NaturalStoneRevetmentLocationConstructionProperties::NaturalStoneRevetmentLocationConstructionProperties(
-        const TopLayerType topLayerType,
         string name,
         const double tanA,
         const double positionZ,
+        const TopLayerType topLayerType,
         const double thicknessTopLayer,
         const double relativeDensity)
-        : _topLayerType(topLayerType),
-          _name(move(name)),
-          _tanA(tanA),
-          _positionZ(positionZ),
+        : RevetmentLocationConstructionPropertiesBase(move(name), tanA, positionZ),
+          _topLayerType(topLayerType),
           _thicknessTopLayer(thicknessTopLayer),
           _relativeDensity(relativeDensity) { }
-
-    void NaturalStoneRevetmentLocationConstructionProperties::SetInitialDamage(
-        std::unique_ptr<double> initialDamage)
-    {
-        _initialDamage = move(initialDamage);
-    }
-
-    void NaturalStoneRevetmentLocationConstructionProperties::SetFailureNumber(
-        std::unique_ptr<double> failureNumber)
-    {
-        _failureNumber = move(failureNumber);
-    }
 
     #pragma region Set methods
 
@@ -181,21 +169,6 @@ namespace DiKErnel::Integration
         return _topLayerType;
     }
 
-    string NaturalStoneRevetmentLocationConstructionProperties::GetName() const
-    {
-        return _name;
-    }
-
-    double NaturalStoneRevetmentLocationConstructionProperties::GetTanA() const
-    {
-        return _tanA;
-    }
-
-    double NaturalStoneRevetmentLocationConstructionProperties::GetPositionZ() const
-    {
-        return _positionZ;
-    }
-
     double NaturalStoneRevetmentLocationConstructionProperties::GetThicknessTopLayer() const
     {
         return _thicknessTopLayer;
@@ -204,16 +177,6 @@ namespace DiKErnel::Integration
     double NaturalStoneRevetmentLocationConstructionProperties::GetRelativeDensity() const
     {
         return _relativeDensity;
-    }
-
-    const double* NaturalStoneRevetmentLocationConstructionProperties::GetInitialDamage() const
-    {
-        return _initialDamage.get();
-    }
-
-    const double* NaturalStoneRevetmentLocationConstructionProperties::GetFailureNumber() const
-    {
-        return _failureNumber.get();
     }
 
     const double* NaturalStoneRevetmentLocationConstructionProperties::GetHydraulicLoadAp() const

@@ -19,6 +19,8 @@ set(SOURCEFILES_PUBLIC
 set(SOURCEFILES_PUBLIC_DATA
   ${PUBLIC_DATA_FOLDER}/NaturalStoneRevetmentLocationConstructionProperties.cpp
   ${PUBLIC_DATA_FOLDER}/NaturalStoneRevetmentLocationConstructionProperties.h
+  ${PUBLIC_DATA_FOLDER}/RevetmentLocationConstructionPropertiesBase.cpp
+  ${PUBLIC_DATA_FOLDER}/RevetmentLocationConstructionPropertiesBase.h
 )
 
 set(SOURCEFILES_PUBLIC_EXCEPTIONS

@@ -138,7 +138,7 @@ namespace DiKErnel::Integration::Test
         const auto waveAngleImpactBetamax = 2.6;
 
         NaturalStoneRevetmentLocationConstructionProperties naturalStoneConstructionProperties(
-            topLayerType, name, tanA, positionZ, thicknessTopLayer, relativeDensity);
+            name, tanA, positionZ, topLayerType, thicknessTopLayer, relativeDensity);
         naturalStoneConstructionProperties.SetInitialDamage(make_unique<double>(initialDamage));
         naturalStoneConstructionProperties.SetFailureNumber(make_unique<double>(failureNumber));
         naturalStoneConstructionProperties.SetHydraulicLoadXib(make_unique<double>(hydraulicLoadXib));
@@ -216,7 +216,7 @@ namespace DiKErnel::Integration::Test
         const auto relativeDensity = 0.4;
 
         const NaturalStoneRevetmentLocationConstructionProperties naturalStoneConstructionProperties(
-            topLayerType, name, tanA, positionZ, thicknessTopLayer, relativeDensity);
+            name, tanA, positionZ, topLayerType, thicknessTopLayer, relativeDensity);
 
         RevetmentCalculationInputBuilder builder;
         builder.AddNaturalStoneLocation(naturalStoneConstructionProperties);

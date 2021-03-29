@@ -23,13 +23,14 @@
 #include <memory>
 #include <string>
 
+#include "RevetmentLocationConstructionPropertiesBase.h"
+
 namespace DiKErnel::Integration
 {
     /*!
-     * \brief Construction properties to construct natural stone revetment location dependent
-     *        input.
+     * \brief Construction properties to construct natural stone revetment location dependent input.
      */
-    class NaturalStoneRevetmentLocationConstructionProperties
+    class NaturalStoneRevetmentLocationConstructionProperties : public RevetmentLocationConstructionPropertiesBase
     {
         public:
 
@@ -43,44 +44,28 @@ namespace DiKErnel::Integration
 
             /*!
              * \brief Creates a new instance.
-             * \param topLayerType
-             *        The type of the top layer.
              * \param name
              *        The name.
              * \param tanA
              *        The tanA.
              * \param positionZ
              *        The vertical position.
+             * \param topLayerType
+             *        The type of the top layer.
              * \param thicknessTopLayer
              *        The thickness of the top layer.
              * \param relativeDensity
              *        The relative density.
              */
             explicit NaturalStoneRevetmentLocationConstructionProperties(
-                TopLayerType topLayerType,
                 std::string name,
                 double tanA,
                 double positionZ,
+                TopLayerType topLayerType,
                 double thicknessTopLayer,
                 double relativeDensity);
 
             #pragma region Set methods
-
-            /*!
-             * \brief Sets the initial damage.
-             * \param initialDamage
-             *        The initial damage.
-             */
-            void SetInitialDamage(
-                std::unique_ptr<double> initialDamage);
-
-            /*!
-             * \brief Sets the failure number.
-             * \param failureNumber
-             *        The failure number.
-             */
-            void SetFailureNumber(
-                std::unique_ptr<double> failureNumber);
 
             /*!
              * \brief Sets the hydraulic load Ap.
@@ -233,24 +218,6 @@ namespace DiKErnel::Integration
             TopLayerType GetTopLayerType() const;
 
             /*!
-             * \brief Gets the name.
-             * \return The name.
-             */
-            std::string GetName() const;
-
-            /*!
-             * \brief Gets the tanA.
-             * \return The tanA.
-             */
-            double GetTanA() const;
-
-            /*!
-             * \brief Gets the vertical position.
-             * \return The vertical position.
-             */
-            double GetPositionZ() const;
-
-            /*!
              * \brief Gets the thickness of the top layer.
              * \return The thickness of the top layer.
              */
@@ -261,18 +228,6 @@ namespace DiKErnel::Integration
              * \return The relative density.
              */
             double GetRelativeDensity() const;
-
-            /*!
-             * \brief Gets the initial damage.
-             * \return The initial damage.
-             */
-            const double* GetInitialDamage() const;
-
-            /*!
-             * \brief Gets the failure number.
-             * \return The failure number.
-             */
-            const double* GetFailureNumber() const;
 
             /*!
              * \brief Gets the hydraulic load Ap.
@@ -398,9 +353,6 @@ namespace DiKErnel::Integration
 
         private:
             TopLayerType _topLayerType;
-            std::string _name;
-            double _tanA;
-            double _positionZ;
             double _thicknessTopLayer;
             double _relativeDensity;
             std::unique_ptr<double> _initialDamage = nullptr;
