@@ -28,7 +28,8 @@
 namespace DiKErnel::Integration
 {
     /*!
-     * \brief Construction properties to construct natural stone revetment location dependent input.
+     * \brief Construction properties to construct natural stone revetment location dependent
+     *        input.
      */
     class NaturalStoneRevetmentLocationConstructionProperties : public RevetmentLocationConstructionPropertiesBase
     {
@@ -141,60 +142,80 @@ namespace DiKErnel::Integration
 
             /*!
              * \brief Sets the upper limit loading Aul.
+             * \param upperLimitLoadingAul
+             *        The upper limit loading Aul.
              */
             void SetUpperLimitLoadingAul(
                 std::unique_ptr<double> upperLimitLoadingAul);
 
             /*!
              * \brief Sets the upper limit loading Bul.
+             * \param upperLimitLoadingBul
+             *        The upper limit loading Bul.
              */
             void SetUpperLimitLoadingBul(
                 std::unique_ptr<double> upperLimitLoadingBul);
 
             /*!
              * \brief Sets the upper limit loading Cul.
+             * \param upperLimitLoadingCul
+             *        The upper limit loading Cul.
              */
             void SetUpperLimitLoadingCul(
                 std::unique_ptr<double> upperLimitLoadingCul);
 
             /*!
              * \brief Sets the lower limit loading All.
+             * \param lowerLimitLoadingAll
+             *        The lower limit loading All.
              */
             void SetLowerLimitLoadingAll(
                 std::unique_ptr<double> lowerLimitLoadingAll);
 
             /*!
              * \brief Sets the lower limit loading Bll.
+             * \param lowerLimitLoadingBll
+             *        The lower limit loading Bll.
              */
             void SetLowerLimitLoadingBll(
                 std::unique_ptr<double> lowerLimitLoadingBll);
 
             /*!
              * \brief Sets the lower limit loading Cll.
+             * \param lowerLimitLoadingCll
+             *        The lower limit loading Cll.
              */
             void SetLowerLimitLoadingCll(
                 std::unique_ptr<double> lowerLimitLoadingCll);
 
             /*!
              * \brief Sets the distance maximum wave elevation Asmax.
+             * \param distanceMaximumWaveElevationAsmax
+             *        The distance maximum wave elevation Asmax.
              */
             void SetDistanceMaximumWaveElevationAsmax(
                 std::unique_ptr<double> distanceMaximumWaveElevationAsmax);
 
             /*!
              * \brief Sets the distance maximum wave elevation Bsmax.
+             * \param distanceMaximumWaveElevationBsmax
+             *        The distance maximum wave elevation Bsmax.
              */
             void SetDistanceMaximumWaveElevationBsmax(
                 std::unique_ptr<double> distanceMaximumWaveElevationBsmax);
 
             /*!
              * \brief Sets the normative width of wave impact Awi.
+             * \param normativeWidthOfWaveImpactAwi
+             *        The normative width of wave impact Awi.
              */
             void SetNormativeWidthOfWaveImpactAwi(
                 std::unique_ptr<double> normativeWidthOfWaveImpactAwi);
 
             /*!
              * \brief Sets the normative width of wave impact Bwi.
+             * \param normativeWidthOfWaveImpactBwi
+             *        The normative width of wave impact Bwi.
              */
             void SetNormativeWidthOfWaveImpactBwi(
                 std::unique_ptr<double> normativeWidthOfWaveImpactBwi);
