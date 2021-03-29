@@ -20,31 +20,25 @@
 
 #pragma once
 
-#include <memory>
-
-#include "GrassRevetmentWaveImpactWaveAngleImpact.h"
-#include "LocationDependentInput.h"
-
 namespace DiKErnel::Integration
 {
-    class GrassRevetmentWaveImpactLocationDependentInput : public LocationDependentInput
+    class GrassRevetmentWaveImpactWaveAngleImpact
     {
         public:
-            explicit GrassRevetmentWaveImpactLocationDependentInput(
-                std::string name,
-                double initialDamage,
-                double failureNumber,
-                double tanA,
-                double positionZ,
-                std::unique_ptr<GrassRevetmentWaveImpactWaveAngleImpact> waveAngleImpact);
+            explicit GrassRevetmentWaveImpactWaveAngleImpact(
+                double waveAngleImpactNwa,
+                double waveAngleImpactQwa,
+                double waveAngleImpactRwa);
 
-            double Calculate(
-                double initialDamage,
-                const Core::ITimeDependentInput& timeDependentInput) override;
+            double GetWaveAngleImpactNwa() const;
 
-            GrassRevetmentWaveImpactWaveAngleImpact& GetWaveAngleImpact() const;
+            double GetWaveAngleImpactQwa() const;
+
+            double GetWaveAngleImpactRwa() const;
 
         private:
-            std::unique_ptr<GrassRevetmentWaveImpactWaveAngleImpact> _waveAngleImpact;
+            const double _waveAngleImpactNwa;
+            const double _waveAngleImpactQwa;
+            const double _waveAngleImpactRwa;
     };
 }

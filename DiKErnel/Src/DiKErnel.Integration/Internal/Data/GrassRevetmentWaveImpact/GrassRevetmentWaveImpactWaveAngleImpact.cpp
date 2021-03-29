@@ -18,33 +18,30 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#pragma once
-
-#include <memory>
-
 #include "GrassRevetmentWaveImpactWaveAngleImpact.h"
-#include "LocationDependentInput.h"
 
 namespace DiKErnel::Integration
 {
-    class GrassRevetmentWaveImpactLocationDependentInput : public LocationDependentInput
+    GrassRevetmentWaveImpactWaveAngleImpact::GrassRevetmentWaveImpactWaveAngleImpact(
+        const double waveAngleImpactNwa,
+        const double waveAngleImpactQwa,
+        const double waveAngleImpactRwa)
+        : _waveAngleImpactNwa(waveAngleImpactNwa),
+          _waveAngleImpactQwa(waveAngleImpactQwa),
+          _waveAngleImpactRwa(waveAngleImpactRwa) { }
+
+    double GrassRevetmentWaveImpactWaveAngleImpact::GetWaveAngleImpactNwa() const
     {
-        public:
-            explicit GrassRevetmentWaveImpactLocationDependentInput(
-                std::string name,
-                double initialDamage,
-                double failureNumber,
-                double tanA,
-                double positionZ,
-                std::unique_ptr<GrassRevetmentWaveImpactWaveAngleImpact> waveAngleImpact);
+        return _waveAngleImpactNwa;
+    }
 
-            double Calculate(
-                double initialDamage,
-                const Core::ITimeDependentInput& timeDependentInput) override;
+    double GrassRevetmentWaveImpactWaveAngleImpact::GetWaveAngleImpactQwa() const
+    {
+        return _waveAngleImpactQwa;
+    }
 
-            GrassRevetmentWaveImpactWaveAngleImpact& GetWaveAngleImpact() const;
-
-        private:
-            std::unique_ptr<GrassRevetmentWaveImpactWaveAngleImpact> _waveAngleImpact;
-    };
+    double GrassRevetmentWaveImpactWaveAngleImpact::GetWaveAngleImpactRwa() const
+    {
+        return _waveAngleImpactRwa;
+    }
 }

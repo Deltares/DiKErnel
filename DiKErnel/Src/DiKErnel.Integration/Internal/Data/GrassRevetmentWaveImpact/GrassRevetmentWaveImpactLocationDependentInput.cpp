@@ -29,13 +29,20 @@ namespace DiKErnel::Integration
         const double initialDamage,
         const double failureNumber,
         const double tanA,
-        const double positionZ)
-        : LocationDependentInput(move(name), initialDamage, failureNumber, tanA, positionZ) {}
+        const double positionZ,
+        unique_ptr<GrassRevetmentWaveImpactWaveAngleImpact> waveAngleImpact)
+        : LocationDependentInput(move(name), initialDamage, failureNumber, tanA, positionZ),
+          _waveAngleImpact(move(waveAngleImpact)) {}
 
     double GrassRevetmentWaveImpactLocationDependentInput::Calculate(
         double initialDamage,
         const Core::ITimeDependentInput& timeDependentInput)
     {
         return 0;
+    }
+
+    GrassRevetmentWaveImpactWaveAngleImpact& GrassRevetmentWaveImpactLocationDependentInput::GetWaveAngleImpact() const
+    {
+        return *_waveAngleImpact;
     }
 }
