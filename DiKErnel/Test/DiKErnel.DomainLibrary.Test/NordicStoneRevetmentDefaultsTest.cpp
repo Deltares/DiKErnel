@@ -27,120 +27,120 @@ namespace DiKErnel::DomainLibrary::Test
     TEST(NordicStoneRevetmentDefaultsTest, hydraulicLoadXib_ExpectedValue)
     {
         // Call & Assert
-        ASSERT_DOUBLE_EQ(2.9, NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NATURAL_STONE_XIB);
+        ASSERT_DOUBLE_EQ(2.9, NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_XIB);
     }
 
     TEST(NordicStoneRevetmentDefaultsTest, hydraulicLoadAp_ExpectedValue)
     {
         // Call & Assert
-        ASSERT_DOUBLE_EQ(4, NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NATURAL_STONE_AP);
+        ASSERT_DOUBLE_EQ(4, NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_AP);
     }
 
     TEST(NordicStoneRevetmentDefaultsTest, hydraulicLoadBp_ExpectedValue)
     {
         // Call & Assert
-        ASSERT_DOUBLE_EQ(0, NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NATURAL_STONE_BP);
+        ASSERT_DOUBLE_EQ(0, NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_BP);
     }
 
     TEST(NordicStoneRevetmentDefaultsTest, hydraulicLoadCp_ExpectedValue)
     {
         // Call & Assert
-        ASSERT_DOUBLE_EQ(0, NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NATURAL_STONE_CP);
+        ASSERT_DOUBLE_EQ(0, NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_CP);
     }
 
     TEST(NordicStoneRevetmentDefaultsTest, hydraulicLoadNp_ExpectedValue)
     {
         // Call & Assert
-        ASSERT_DOUBLE_EQ(-0.9, NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NATURAL_STONE_NP);
+        ASSERT_DOUBLE_EQ(-0.9, NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_NP);
     }
 
     TEST(NordicStoneRevetmentDefaultsTest, hydraulicLoadAs_ExpectedValue)
     {
         // Call & Assert
-        ASSERT_DOUBLE_EQ(0.8, NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NATURAL_STONE_AS);
+        ASSERT_DOUBLE_EQ(0.8, NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_AS);
     }
 
     TEST(NordicStoneRevetmentDefaultsTest, hydraulicLoadBs_ExpectedValue)
     {
         // Call & Assert
-        ASSERT_DOUBLE_EQ(0, NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NATURAL_STONE_BS);
+        ASSERT_DOUBLE_EQ(0, NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_BS);
     }
 
     TEST(NordicStoneRevetmentDefaultsTest, hydraulicLoadCs_ExpectedValue)
     {
         // Call & Assert
-        ASSERT_DOUBLE_EQ(0, NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NATURAL_STONE_CS);
+        ASSERT_DOUBLE_EQ(0, NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_CS);
     }
 
     TEST(NordicStoneRevetmentDefaultsTest, hydraulicLoadNs_ExpectedValue)
     {
         // Call & Assert
-        ASSERT_DOUBLE_EQ(0.6, NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_ON_NATURAL_STONE_NS);
+        ASSERT_DOUBLE_EQ(0.6, NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_NS);
     }
 
     TEST(NordicStoneRevetmentDefaultsTest, UpperLimitLoadingAul_ExpectedValue)
     {
         // Call & Assert
-        ASSERT_DOUBLE_EQ(0.1, NordicStoneRevetmentDefaults::UPPER_LIMIT_LOADING_OF_NATURAL_STONE_AUL);
+        ASSERT_DOUBLE_EQ(0.1, NordicStoneRevetmentDefaults::UPPER_LIMIT_LOADING_AUL);
     }
 
     TEST(NordicStoneRevetmentDefaultsTest, UpperLimitLoadingBul_ExpectedValue)
     {
         // Call & Assert
-        ASSERT_DOUBLE_EQ(0.6, NordicStoneRevetmentDefaults::UPPER_LIMIT_LOADING_OF_NATURAL_STONE_BUL);
+        ASSERT_DOUBLE_EQ(0.6, NordicStoneRevetmentDefaults::UPPER_LIMIT_LOADING_BUL);
     }
 
     TEST(NordicStoneRevetmentDefaultsTest, UpperLimitLoadingCul_ExpectedValue)
     {
         // Call & Assert
-        ASSERT_DOUBLE_EQ(4, NordicStoneRevetmentDefaults::UPPER_LIMIT_LOADING_OF_NATURAL_STONE_CUL);
+        ASSERT_DOUBLE_EQ(4, NordicStoneRevetmentDefaults::UPPER_LIMIT_LOADING_CUL);
     }
 
     TEST(NordicStoneRevetmentDefaultsTest, LowerLimitLoadingAll_ExpectedValue)
     {
         // Call & Assert
-        ASSERT_DOUBLE_EQ(0.1, NordicStoneRevetmentDefaults::LOWER_LIMIT_LOADING_OF_NATURAL_STONE_ALL);
+        ASSERT_DOUBLE_EQ(0.1, NordicStoneRevetmentDefaults::LOWER_LIMIT_LOADING_ALL);
     }
 
     TEST(NordicStoneRevetmentDefaultsTest, LowerLimitLoadingBll_ExpectedValue)
     {
         // Call & Assert
-        ASSERT_DOUBLE_EQ(0.2, NordicStoneRevetmentDefaults::LOWER_LIMIT_LOADING_OF_NATURAL_STONE_BLL);
+        ASSERT_DOUBLE_EQ(0.2, NordicStoneRevetmentDefaults::LOWER_LIMIT_LOADING_BLL);
     }
 
     TEST(NordicStoneRevetmentDefaultsTest, LowerLimitLoadingCll_ExpectedValue)
     {
         // Call & Assert
-        ASSERT_DOUBLE_EQ(4, NordicStoneRevetmentDefaults::LOWER_LIMIT_LOADING_OF_NATURAL_STONE_CLL);
+        ASSERT_DOUBLE_EQ(4, NordicStoneRevetmentDefaults::LOWER_LIMIT_LOADING_CLL);
     }
 
     TEST(NordicStoneRevetmentDefaultsTest, DistanceMaximumWaveElevationAsmax_ExpectedValues)
     {
         // Call & Assert
-        ASSERT_DOUBLE_EQ(0.42, NordicStoneRevetmentDefaults::DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE_ASMAX);
+        ASSERT_DOUBLE_EQ(0.42, NordicStoneRevetmentDefaults::DISTANCE_MAXIMUM_WAVE_ELEVATION_ASMAX);
     }
 
     TEST(NordicStoneRevetmentDefaultsTest, DistanceMaximumWaveElevationBsmax_ExpectedValues)
     {
         // Call & Assert
-        ASSERT_DOUBLE_EQ(0.9, NordicStoneRevetmentDefaults::DISTANCE_MAXIMUM_WAVE_ELEVATION_NATURAL_STONE_BSMAX);
+        ASSERT_DOUBLE_EQ(0.9, NordicStoneRevetmentDefaults::DISTANCE_MAXIMUM_WAVE_ELEVATION_BSMAX);
     }
 
     TEST(NordicStoneRevetmentDefaultsTest, NormativeWidthOfWaveImpactAwi_ExpectedValues)
     {
         // Call & Assert
-        ASSERT_DOUBLE_EQ(0.96, NordicStoneRevetmentDefaults::NORMATIVE_WIDTH_OF_WAVE_IMPACT_ON_NATURAL_STONE_AWI);
+        ASSERT_DOUBLE_EQ(0.96, NordicStoneRevetmentDefaults::NORMATIVE_WIDTH_OF_WAVE_IMPACT_AWI);
     }
 
     TEST(NordicStoneRevetmentDefaultsTest, NormativeWidthOfWaveImpactBwi_ExpectedValues)
     {
         // Call & Assert
-        ASSERT_DOUBLE_EQ(0.11, NordicStoneRevetmentDefaults::NORMATIVE_WIDTH_OF_WAVE_IMPACT_ON_NATURAL_STONE_BWI);
+        ASSERT_DOUBLE_EQ(0.11, NordicStoneRevetmentDefaults::NORMATIVE_WIDTH_OF_WAVE_IMPACT_BWI);
     }
 
     TEST(NordicStoneRevetmentDefaultsTest, WaveAngleImpactBetamax_ExpectedValues)
     {
         // Call & Assert
-        ASSERT_DOUBLE_EQ(78, NordicStoneRevetmentDefaults::WAVE_ANGLE_IMPACT_ON_NATURAL_STONE_BETAMAX);
+        ASSERT_DOUBLE_EQ(78, NordicStoneRevetmentDefaults::WAVE_ANGLE_IMPACT_BETAMAX);
     }
 }
