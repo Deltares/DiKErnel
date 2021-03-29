@@ -8,6 +8,10 @@ set(PUBLIC_FOLDER Public)
 set(SOURCEFILES_PUBLIC
   ${PUBLIC_FOLDER}/Constants.cpp
   ${PUBLIC_FOLDER}/Constants.h
+  ${PUBLIC_FOLDER}/GrassRevetmentWaveImpactClosedSodDefaults.cpp
+  ${PUBLIC_FOLDER}/GrassRevetmentWaveImpactClosedSodDefaults.h
+  ${PUBLIC_FOLDER}/GrassRevetmentWaveImpactOpenSodDefaults.cpp
+  ${PUBLIC_FOLDER}/GrassRevetmentWaveImpactOpenSodDefaults.h
   ${PUBLIC_FOLDER}/HydraulicLoadsDefaults.cpp
   ${PUBLIC_FOLDER}/HydraulicLoadsDefaults.h
   ${PUBLIC_FOLDER}/NordicStoneRevetmentDefaults.cpp
