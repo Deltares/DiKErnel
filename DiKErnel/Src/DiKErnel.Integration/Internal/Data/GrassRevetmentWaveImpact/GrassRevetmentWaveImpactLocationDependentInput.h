@@ -38,7 +38,11 @@ namespace DiKErnel::Integration
                 double tanA,
                 double positionZ,
                 std::unique_ptr<GrassRevetmentWaveImpactWaveAngleImpact> waveAngleImpact,
-                std::unique_ptr<GrassRevetmentWaveImpactFailureTime> failureTime);
+                double minimumWaveHeightTemax,
+                double maximumWaveHeightTemin,
+                std::unique_ptr<GrassRevetmentWaveImpactFailureTime> failureTime,
+                double upperLimitLoadingAul,
+                double lowerLimitLoadingAll);
 
             double Calculate(
                 double initialDamage,
@@ -50,6 +54,10 @@ namespace DiKErnel::Integration
 
         private:
             std::unique_ptr<GrassRevetmentWaveImpactWaveAngleImpact> _waveAngleImpact;
+            double _minimumWaveHeightTemax;
+            double _maximumWaveHeightTemin;
             std::unique_ptr<GrassRevetmentWaveImpactFailureTime> _failureTime;
+            double _upperLimitLoadingAul;
+            double _lowerLimitLoadingAll;
     };
 }
