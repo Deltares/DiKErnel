@@ -24,7 +24,7 @@
 
 namespace DiKErnel::FunctionLibrary::Test
 {
-    TEST(GenericTest, NumberOfTimeSteps_ValidInput_ExpectedValue)
+    TEST(RevetmentTest, NumberOfTimeSteps_ValidInput_ExpectedValue)
     {
         // Setup
         const auto numberOfTimeStamps = 9;
@@ -36,7 +36,7 @@ namespace DiKErnel::FunctionLibrary::Test
         ASSERT_EQ(8, numberOfTimeSteps);
     }
 
-    TEST(GenericTest, IncrementTime_ValidInput_ExpectedValue)
+    TEST(RevetmentTest, IncrementTime_ValidInput_ExpectedValue)
     {
         // Setup
         const auto startTime = 1200;
@@ -49,7 +49,7 @@ namespace DiKErnel::FunctionLibrary::Test
         ASSERT_EQ(300, incrementTime);
     }
 
-    TEST(GenericTest, Damage_ValidInput_ExpectedValue)
+    TEST(RevetmentTest, Damage_ValidInput_ExpectedValue)
     {
         // Setup
         const auto incrementOfDamage = 0.12;
@@ -62,7 +62,7 @@ namespace DiKErnel::FunctionLibrary::Test
         ASSERT_DOUBLE_EQ(0.35, damage);
     }
 
-    TEST(GenericTest, FailureOfRevetment_ValidInput_ExpectedValue)
+    TEST(RevetmentTest, FailureOfRevetment_ValidInput_ExpectedTrue)
     {
         // Setup
         const auto damage = 0.23;
@@ -72,6 +72,19 @@ namespace DiKErnel::FunctionLibrary::Test
         const auto failureOfRevetment = Revetment::FailureOfRevetment(damage, failureNumber);
 
         // Assert
-        ASSERT_EQ(true, failureOfRevetment);
+        ASSERT_TRUE(failureOfRevetment);
+    }
+
+    TEST(RevetmentTest, FailureOfRevetment_ValidInput_ExpectedFalse)
+    {
+        // Setup
+        const auto damage = 0.12;
+        const auto failureNumber = 0.23;
+
+        // Call
+        const auto failureOfRevetment = Revetment::FailureOfRevetment(damage, failureNumber);
+
+        // Assert
+        ASSERT_FALSE(failureOfRevetment);
     }
 }
