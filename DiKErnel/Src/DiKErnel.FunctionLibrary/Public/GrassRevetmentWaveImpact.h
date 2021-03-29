@@ -23,15 +23,15 @@
 namespace DiKErnel::FunctionLibrary
 {
     /*!
-     * \brief Class that holds all grass wave impact specific calculation routines.
+     * \brief Class that holds all grass revetment wave impact specific calculation routines.
      */
-    class GrassWaveImpact
+    class GrassRevetmentWaveImpact
     {
         static double IncrementDamage(
             double incrementTime,
             double failureTime);
 
-        static double FailureTime(
+        static double TimeLine(
             double waveHeight,
             double failureTimeAgwi,
             double failureTimeBgwi,
@@ -71,7 +71,7 @@ namespace DiKErnel::FunctionLibrary
             double waveHeightHm0,
             double lowerLimitLoadingAll);
 
-        static double DurationInTimeStepFailure(
+        static double FailureTime(
             double failureTime,
             double failureNumber,
             double initialDamage);
