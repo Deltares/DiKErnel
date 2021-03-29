@@ -18,7 +18,30 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
+#include <gtest/gtest.h>
+
+#include "Generic.h"
+
 namespace DiKErnel::FunctionLibrary::Test
 {
-    
+    TEST(GenericTest, Pi_ExpectedValue)
+    {
+        // Call
+        const auto pi = Generic::Pi();
+
+        // Assert
+        ASSERT_DOUBLE_EQ(3.1415926535897931, pi);
+    }
+
+    TEST(GenericTest, Radians_DegreesValue_ExpectedValue)
+    {
+        // Setup
+        const auto degrees = 123.45;
+
+        // Call
+        const auto radians = Generic::Radians(degrees);
+
+        // Assert
+        ASSERT_DOUBLE_EQ(2.1546089615869999, radians);
+    }
 }
