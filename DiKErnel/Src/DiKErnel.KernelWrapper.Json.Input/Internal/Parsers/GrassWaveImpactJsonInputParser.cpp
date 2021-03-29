@@ -29,25 +29,25 @@ namespace DiKErnel::KernelWrapper::Json::Input
     using namespace nlohmann;
     using namespace std;
 
-    NLOHMANN_JSON_SERIALIZE_ENUM(JsonInputGrassWaveImpactRevetmentLocationData::TopLayerType,
+    NLOHMANN_JSON_SERIALIZE_ENUM(JsonInputGrassRevetmentWaveImpactLocationData::TopLayerType,
         {
             {
-                JsonInputGrassWaveImpactRevetmentLocationData::TopLayerType::Unknown, nullptr
+                JsonInputGrassRevetmentWaveImpactLocationData::TopLayerType::Unknown, nullptr
             },
             {
-                JsonInputGrassWaveImpactRevetmentLocationData::TopLayerType::ClosedSod, GrassWaveImpactJsonInputDefinitions::TOP_LAYER_TYPE_CLOSED_SOD
+                JsonInputGrassRevetmentWaveImpactLocationData::TopLayerType::ClosedSod, GrassWaveImpactJsonInputDefinitions::TOP_LAYER_TYPE_CLOSED_SOD
             },
             {
-                JsonInputGrassWaveImpactRevetmentLocationData::TopLayerType::OpenSod, GrassWaveImpactJsonInputDefinitions::TOP_LAYER_TYPE_OPEN_SOD
+                JsonInputGrassRevetmentWaveImpactLocationData::TopLayerType::OpenSod, GrassWaveImpactJsonInputDefinitions::TOP_LAYER_TYPE_OPEN_SOD
             }
         });
 
-    unique_ptr<JsonInputGrassWaveImpactRevetmentLocationData> GrassWaveImpactJsonInputParser::ParseRevetmentLocationData(
+    unique_ptr<JsonInputGrassRevetmentWaveImpactLocationData> GrassWaveImpactJsonInputParser::ParseRevetmentLocationData(
         const json& readRevetment,
         const json& readCalculationMethod)
     {
-        auto locationData = make_unique<JsonInputGrassWaveImpactRevetmentLocationData>(
-            readRevetment[JsonInputDefinitions::TYPE_TOP_LAYER].get<JsonInputGrassWaveImpactRevetmentLocationData::TopLayerType>());
+        auto locationData = make_unique<JsonInputGrassRevetmentWaveImpactLocationData>(
+            readRevetment[JsonInputDefinitions::TYPE_TOP_LAYER].get<JsonInputGrassRevetmentWaveImpactLocationData::TopLayerType>());
 
         locationData->SetFailureTimeAgwi(
             forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalValue(

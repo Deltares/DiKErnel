@@ -24,14 +24,14 @@
 
 #include <nlohmann/json.hpp>
 
-#include "JsonInputGrassWaveImpactRevetmentLocationData.h"
+#include "JsonInputGrassRevetmentWaveImpactLocationData.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
     class GrassWaveImpactJsonInputParser
     {
         public:
-            static std::unique_ptr<JsonInputGrassWaveImpactRevetmentLocationData> ParseRevetmentLocationData(
+            static std::unique_ptr<JsonInputGrassRevetmentWaveImpactLocationData> ParseRevetmentLocationData(
                 const nlohmann::json& readRevetment,
                 const nlohmann::json& readCalculationMethod);
     };

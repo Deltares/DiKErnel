@@ -26,7 +26,7 @@
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
-    class JsonInputGrassWaveImpactRevetmentLocationData : public IJsonInputRevetmentLocationData
+    class JsonInputGrassRevetmentWaveImpactLocationData : public IJsonInputRevetmentLocationData
     {
         public:
             enum class TopLayerType
@@ -36,7 +36,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 ClosedSod
             };
 
-            explicit JsonInputGrassWaveImpactRevetmentLocationData(
+            explicit JsonInputGrassRevetmentWaveImpactLocationData(
                 TopLayerType topLayerType);
 
             #pragma region Set methods
