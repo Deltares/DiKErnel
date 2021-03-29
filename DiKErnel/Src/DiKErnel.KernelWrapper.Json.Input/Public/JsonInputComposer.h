@@ -20,10 +20,10 @@
 
 #pragma once
 
+#include <memory>
 #include <string>
 
 #include "ICalculationInput.h"
-#include "JsonInputData.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
