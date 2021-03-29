@@ -33,7 +33,7 @@ namespace DiKErnel::FunctionLibrary::Test
         ASSERT_DOUBLE_EQ(3.1415926535897931, pi);
     }
 
-    TEST(GenericTest, Radians_DegreesValue_ExpectedValue)
+    TEST(GenericTest, Radians_ValidInput_ExpectedValue)
     {
         // Setup
         const auto degrees = 123.45;

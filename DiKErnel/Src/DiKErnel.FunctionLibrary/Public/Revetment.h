@@ -31,9 +31,9 @@ namespace DiKErnel::FunctionLibrary
             static int NumberOfTimeSteps(
                 int numberOfTimeStamps);
 
-            static double IncrementTime(
-                double startTime,
-                double endTime);
+            static int IncrementTime(
+                int startTime,
+                int endTime);
 
             static double Damage(
                 double incrementOfDamage,
