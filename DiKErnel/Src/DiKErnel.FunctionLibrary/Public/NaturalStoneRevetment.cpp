@@ -63,8 +63,7 @@ namespace DiKErnel::FunctionLibrary
         return waterLevel
                 - 2.0 * depthMaximumWaveLoad
                 + max(depthMaximumWaveLoad + upperLimitLoadingAul,
-                      upperLimitLoadingBul * waveHeightHm0 * min(surfSimilarityParameter,
-                                                                   upperLimitLoadingCul));
+                      upperLimitLoadingBul * waveHeightHm0 * min(surfSimilarityParameter, upperLimitLoadingCul));
     }
 
     double NaturalStoneRevetment::LowerLimitLoading(
@@ -79,8 +78,7 @@ namespace DiKErnel::FunctionLibrary
         return waterLevel
                 - 2.0 * depthMaximumWaveLoad
                 + min(depthMaximumWaveLoad - lowerLimitLoadingAll,
-                      lowerLimitLoadingBll * waveHeightHm0 * min(surfSimilarityParameter,
-                                                                   lowerLimitLoadingCll));
+                      lowerLimitLoadingBll * waveHeightHm0 * min(surfSimilarityParameter, lowerLimitLoadingCll));
     }
 
     double NaturalStoneRevetment::DepthMaximumWaveLoad(
@@ -114,8 +112,7 @@ namespace DiKErnel::FunctionLibrary
         const double normativeWidthWaveImpactAwi,
         const double normativeWidthWaveImpactBwi)
     {
-        return (normativeWidthWaveImpactAwi - normativeWidthWaveImpactBwi * surfSimilarityParameter)
-                * waveHeightHm0;
+        return (normativeWidthWaveImpactAwi - normativeWidthWaveImpactBwi * surfSimilarityParameter) * waveHeightHm0;
     }
 
     double NaturalStoneRevetment::WaveAngleImpact(
@@ -137,8 +134,7 @@ namespace DiKErnel::FunctionLibrary
         const double incrementTime,
         const double wavePeriodTm10)
     {
-        return Degradation(referenceTimeDegradation + incrementTime, wavePeriodTm10)
-                - Degradation(referenceTimeDegradation, wavePeriodTm10);
+        return Degradation(referenceTimeDegradation + incrementTime, wavePeriodTm10) - Degradation(referenceTimeDegradation, wavePeriodTm10);
     }
 
     double NaturalStoneRevetment::Degradation(
