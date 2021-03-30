@@ -109,30 +109,30 @@ namespace DiKErnel::FunctionLibrary::Test
     TEST(HydraulicLoadTest, WaveSteepnessDeepWater_ValidInput_ExpectedValue)
     {
         // Setup
-        const auto waveHeightHm0 = 1.1;
-        const auto wavePeriodTm10 = 1.1;
-        const auto gravitationalAcceleration = 1.1;
+        const auto waveHeightHm0 = 1.6;
+        const auto wavePeriodTm10 = 5.2;
+        const auto gravitationalAcceleration = 9.81;
 
         // Call
         const auto waveSteepnessDeepWater = HydraulicLoad::WaveSteepnessDeepWater(waveHeightHm0, wavePeriodTm10, gravitationalAcceleration);
 
         // Assert
-        ASSERT_DOUBLE_EQ(1.1, waveSteepnessDeepWater);
+        ASSERT_DOUBLE_EQ(0.037898686325266363, waveSteepnessDeepWater);
     }
 
     TEST(HydraulicLoadTest, SurfSimilarityParameter_ValidInput_ExpectedValue)
     {
         // Setup
-        const auto tanA = 1.1;
-        const auto waveHeightHm0 = 1.1;
-        const auto wavePeriodTm10 = 1.1;
-        const auto gravitationalAcceleration = 1.1;
+        const auto tanA = 0.25;
+        const auto waveHeightHm0 = 1.6;
+        const auto wavePeriodTm10 = 5.2;
+        const auto gravitationalAcceleration = 9.81;
 
         // Call
         const auto surfSimilarityParameter = HydraulicLoad::SurfSimilarityParameter(tanA, waveHeightHm0, wavePeriodTm10,
                                                                                     gravitationalAcceleration);
 
         // Assert
-        ASSERT_DOUBLE_EQ(1.1, surfSimilarityParameter);
+        ASSERT_DOUBLE_EQ(1.2841859985089348, surfSimilarityParameter);
     }
 }
