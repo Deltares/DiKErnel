@@ -230,56 +230,56 @@ namespace DiKErnel::FunctionLibrary::Test
     TEST(NaturalStoneRevetmentTest, ReferenceDegradation_ValidInput_ExpectedValue)
     {
         // Setup
-        const auto resistance = 1.1;
-        const auto hydraulicLoad = 1.1;
-        const auto waveAngleImpact = 1.1;
-        const auto initialDamage = 1.1;
+        const auto resistance = 0.495;
+        const auto hydraulicLoad = 0.56;
+        const auto waveAngleImpact = 0.997;
+        const auto initialDamage = 0.905;
 
         // Call
         const auto referenceDegradation = NaturalStoneRevetment::ReferenceDegradation(resistance, hydraulicLoad, waveAngleImpact, initialDamage);
 
         // Assert
-        ASSERT_DOUBLE_EQ(1.1, referenceDegradation);
+        ASSERT_DOUBLE_EQ(0.80236244447628591, referenceDegradation);
     }
 
     TEST(NaturalStoneRevetmentTest, DurationInTimeStepFailure_ValidInput_ExpectedValue)
     {
         // Setup
-        const auto referenceTimeFailure = 1.1;
-        const auto referenceTimeDegradation = 1.1;
+        const auto referenceTimeFailure = 945.943;
+        const auto referenceTimeDegradation = 597.743;
 
         // Call
         const auto durationInTimeStepFailure = NaturalStoneRevetment::DurationInTimeStepFailure(referenceTimeFailure, referenceTimeDegradation);
 
         // Assert
-        ASSERT_DOUBLE_EQ(1.1, durationInTimeStepFailure);
+        ASSERT_DOUBLE_EQ(348.2, durationInTimeStepFailure);
     }
 
     TEST(NaturalStoneRevetmentTest, ReferenceTimeFailure_ValidInput_ExpectedValue)
     {
         // Setup
-        const auto referenceFailure = 1.1;
-        const auto wavePeriodTm10 = 1.1;
+        const auto referenceFailure = 0.84;
+        const auto wavePeriodTm10 = 5.5;
 
         // Call
         const auto referenceTimeFailure = NaturalStoneRevetment::ReferenceTimeFailure(referenceFailure, wavePeriodTm10);
 
         // Assert
-        ASSERT_DOUBLE_EQ(1.1, referenceTimeFailure);
+        ASSERT_DOUBLE_EQ(961.95675821289467, referenceTimeFailure);
     }
 
     TEST(NaturalStoneRevetmentTest, ReferenceFailure_ValidInput_ExpectedValue)
     {
         // Setup
-        const auto resistance = 1.1;
-        const auto hydraulicLoad = 1.1;
-        const auto waveAngleImpact = 1.1;
-        const auto failureNumber = 1.1;
+        const auto resistance = 0.495;
+        const auto hydraulicLoad = 0.56;
+        const auto waveAngleImpact = 0.997;
+        const auto failureNumber = 0.95;
 
         // Call
         const auto referenceFailure = NaturalStoneRevetment::ReferenceFailure(resistance, hydraulicLoad, waveAngleImpact, failureNumber);
 
         // Assert
-        ASSERT_DOUBLE_EQ(1.1, referenceFailure);
+        ASSERT_DOUBLE_EQ(0.84225891961599064, referenceFailure);
     }
 }
