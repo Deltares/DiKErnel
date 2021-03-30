@@ -122,7 +122,7 @@ namespace DiKErnel::FunctionLibrary::Test
     TEST(NaturalStoneRevetmentTest, DistanceMaximumWaveElevation_ValidInput_ExpectedValue)
     {
         // Setup
-        const auto impactShallowWater = 1.0;
+        const auto impactShallowWater = 1.1;
         const auto waveSteepnessDeepWater = 0.038;
         const auto waveHeightHm0 = 1.8;
         const auto distanceMaximumWaveElevationAsmax = 0.42;
@@ -133,7 +133,7 @@ namespace DiKErnel::FunctionLibrary::Test
             impactShallowWater, waveSteepnessDeepWater, waveHeightHm0, distanceMaximumWaveElevationAsmax, distanceMaximumWaveElevationBsmax);
 
         // Assert
-        ASSERT_DOUBLE_EQ(2.2581981708818826, distanceMaximumWaveElevation);
+        ASSERT_DOUBLE_EQ(2.4840179879700712, distanceMaximumWaveElevation);
     }
 
     TEST(NaturalStoneRevetmentTest, ImpactShallowWater_Always_ExpectedValue)
