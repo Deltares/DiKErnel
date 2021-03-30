@@ -41,33 +41,14 @@ namespace DiKErnel::FunctionLibrary
     double NaturalStoneRevetment::HydraulicLoad(
         const double surfSimilarityParameter,
         const double waveHeightHm0,
-        const double hydraulicLoadOnXib,
-        const double hydraulicLoadOnAp,
-        const double hydraulicLoadOnBp,
-        const double hydraulicLoadOnCp,
-        const double hydraulicLoadOnNp,
-        const double hydraulicLoadOnAs,
-        const double hydraulicLoadOnBs,
-        const double hydraulicLoadOnCs,
-        const double hydraulicLoadOnNs)
+        const double hydraulicLoadA,
+        const double hydraulicLoadB,
+        const double hydraulicLoadC,
+        const double hydraulicLoadN)
     {
-        const auto usePurgingBreakers = hydraulicLoadOnXib - surfSimilarityParameter >= 0.0;
-        const auto hydraulicLoadOnA = usePurgingBreakers
-                                          ? hydraulicLoadOnAp
-                                          : hydraulicLoadOnAs;
-        const auto hydraulicLoadOnB = usePurgingBreakers
-                                          ? hydraulicLoadOnBp
-                                          : hydraulicLoadOnBs;
-        const auto hydraulicLoadOnC = usePurgingBreakers
-                                          ? hydraulicLoadOnCp
-                                          : hydraulicLoadOnCs;
-        const auto hydraulicLoadOnN = usePurgingBreakers
-                                          ? hydraulicLoadOnNp
-                                          : hydraulicLoadOnNs;
-
-        return waveHeightHm0 / (hydraulicLoadOnA * pow(surfSimilarityParameter, hydraulicLoadOnN)
-            + hydraulicLoadOnB * surfSimilarityParameter
-            + hydraulicLoadOnC);
+        return waveHeightHm0 / (hydraulicLoadA * pow(surfSimilarityParameter, hydraulicLoadN)
+            + hydraulicLoadB * surfSimilarityParameter
+            + hydraulicLoadC);
     }
 
     double NaturalStoneRevetment::UpperLimitLoading(

@@ -37,15 +37,10 @@ namespace DiKErnel::FunctionLibrary
             static double HydraulicLoad(
                 double surfSimilarityParameter,
                 double waveHeightHm0,
-                double hydraulicLoadOnXib,
-                double hydraulicLoadOnAp,
-                double hydraulicLoadOnBp,
-                double hydraulicLoadOnCp,
-                double hydraulicLoadOnNp,
-                double hydraulicLoadOnAs,
-                double hydraulicLoadOnBs,
-                double hydraulicLoadOnCs,
-                double hydraulicLoadOnNs);
+                double hydraulicLoadA,
+                double hydraulicLoadB,
+                double hydraulicLoadC,
+                double hydraulicLoadN);
 
             static double UpperLimitLoading(
                 double depthMaximumWaveLoad,

@@ -44,21 +44,14 @@ namespace DiKErnel::FunctionLibrary::Test
         // Setup
         const auto surfSimilarityParameter = 1.28;
         const auto waveHeightHm0 = 1.8;
-        const auto hydraulicLoadOnXib = 2.9;
-        const auto hydraulicLoadOnAp = 4.0;
-        const auto hydraulicLoadOnBp = 0.1;
-        const auto hydraulicLoadOnCp = 0.3;
-        const auto hydraulicLoadOnNp = -0.9;
-        const auto hydraulicLoadOnAs = 0.8;
-        const auto hydraulicLoadOnBs = 0.2;
-        const auto hydraulicLoadOnCs = 0.4;
-        const auto hydraulicLoadOnNs = 0.6;
+        const auto hydraulicLoadA = 4.0;
+        const auto hydraulicLoadB = 0.1;
+        const auto hydraulicLoadC = 0.3;
+        const auto hydraulicLoadN = -0.9;
 
         // Call
-        const auto hydraulicLoad = NaturalStoneRevetment::HydraulicLoad(surfSimilarityParameter, waveHeightHm0, hydraulicLoadOnXib,
-                                                                        hydraulicLoadOnAp, hydraulicLoadOnBp, hydraulicLoadOnCp, hydraulicLoadOnNp,
-                                                                        hydraulicLoadOnAs, hydraulicLoadOnBs, hydraulicLoadOnCs,
-                                                                        hydraulicLoadOnNs);
+        const auto hydraulicLoad = NaturalStoneRevetment::HydraulicLoad(surfSimilarityParameter, waveHeightHm0, hydraulicLoadA, hydraulicLoadB,
+                                                                        hydraulicLoadC, hydraulicLoadN);
 
         // Assert
         ASSERT_DOUBLE_EQ(0.49571702636245252, hydraulicLoad);

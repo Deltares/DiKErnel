@@ -128,18 +128,27 @@ namespace DiKErnel::Integration
 
         if (loadingOfRevetment)
         {
+            const auto usePurgingBreakers = _hydraulicLoads->GetHydraulicLoadXib() - surfSimilarityParameter >= 0.0;
+            const auto hydraulicLoadA = usePurgingBreakers
+                                            ? _hydraulicLoads->GetHydraulicLoadAp()
+                                            : _hydraulicLoads->GetHydraulicLoadAs();
+            const auto hydraulicLoadB = usePurgingBreakers
+                                            ? _hydraulicLoads->GetHydraulicLoadBp()
+                                            : _hydraulicLoads->GetHydraulicLoadBs();
+            const auto hydraulicLoadC = usePurgingBreakers
+                                            ? _hydraulicLoads->GetHydraulicLoadCp()
+                                            : _hydraulicLoads->GetHydraulicLoadCs();
+            const auto hydraulicLoadN = usePurgingBreakers
+                                            ? _hydraulicLoads->GetHydraulicLoadNp()
+                                            : _hydraulicLoads->GetHydraulicLoadNs();
+
             const auto hydraulicLoad = NaturalStoneRevetment::HydraulicLoad(
                 surfSimilarityParameter,
                 waveHeightHm0,
-                _hydraulicLoads->GetHydraulicLoadXib(),
-                _hydraulicLoads->GetHydraulicLoadAp(),
-                _hydraulicLoads->GetHydraulicLoadBp(),
-                _hydraulicLoads->GetHydraulicLoadCp(),
-                _hydraulicLoads->GetHydraulicLoadNp(),
-                _hydraulicLoads->GetHydraulicLoadAs(),
-                _hydraulicLoads->GetHydraulicLoadBs(),
-                _hydraulicLoads->GetHydraulicLoadCs(),
-                _hydraulicLoads->GetHydraulicLoadNs());
+                hydraulicLoadA,
+                hydraulicLoadB,
+                hydraulicLoadC,
+                hydraulicLoadN);
 
             const auto resistance = NaturalStoneRevetment::Resistance(
                 _relativeDensity,
