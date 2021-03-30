@@ -41,6 +41,7 @@ namespace DiKErnel::FunctionLibrary
 
             static bool FailureOfRevetment(
                 double damage,
+                double initialDamage,
                 double failureNumber);
     };
 }

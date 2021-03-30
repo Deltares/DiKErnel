@@ -62,27 +62,71 @@ namespace DiKErnel::FunctionLibrary::Test
         ASSERT_DOUBLE_EQ(0.35, damage);
     }
 
-    TEST(RevetmentTest, FailureOfRevetment_ValidInput_ExpectedTrue)
+    TEST(RevetmentTest, FailureOfRevetment_DamageAndInitialDamageSmallerThanFailureNumber_ExpectedFalse)
     {
         // Setup
-        const auto damage = 0.23;
-        const auto failureNumber = 0.12;
+        const auto initialDamage = 0.1;
+        const auto damage = 0.2;
+        const auto failureNumber = 0.3;
 
         // Call
-        const auto failureOfRevetment = Revetment::FailureOfRevetment(damage, failureNumber);
+        const auto failureOfRevetment = Revetment::FailureOfRevetment(damage, initialDamage, failureNumber);
+
+        // Assert
+        ASSERT_FALSE(failureOfRevetment);
+    }
+
+    TEST(RevetmentTest, FailureOfRevetment_InitialDamageEqualToFailureNumber_ExpectedFalse)
+    {
+        // Setup
+        const auto initialDamage = 0.3;
+        const auto damage = 0.4;
+        const auto failureNumber = 0.3;
+
+        // Call
+        const auto failureOfRevetment = Revetment::FailureOfRevetment(damage, initialDamage, failureNumber);
+
+        // Assert
+        ASSERT_FALSE(failureOfRevetment);
+    }
+
+    TEST(RevetmentTest, FailureOfRevetment_DamageEqualToFailureNumber_ExpectedTrue)
+    {
+        // Setup
+        const auto initialDamage = 0.2;
+        const auto damage = 0.3;
+        const auto failureNumber = 0.3;
+
+        // Call
+        const auto failureOfRevetment = Revetment::FailureOfRevetment(damage, initialDamage, failureNumber);
 
         // Assert
         ASSERT_TRUE(failureOfRevetment);
     }
 
-    TEST(RevetmentTest, FailureOfRevetment_ValidInput_ExpectedFalse)
+    TEST(RevetmentTest, FailureOfRevetment_DamageLargerAndInitialDamageSmallerThanFailureNumber_ExpectedTrue)
     {
         // Setup
-        const auto damage = 0.12;
-        const auto failureNumber = 0.23;
+        const auto initialDamage = 0.2;
+        const auto damage = 0.4;
+        const auto failureNumber = 0.3;
 
         // Call
-        const auto failureOfRevetment = Revetment::FailureOfRevetment(damage, failureNumber);
+        const auto failureOfRevetment = Revetment::FailureOfRevetment(damage, initialDamage, failureNumber);
+
+        // Assert
+        ASSERT_TRUE(failureOfRevetment);
+    }
+
+    TEST(RevetmentTest, FailureOfRevetment_DamageAndInitialDamageLargerThanFailureNumber_ExpectedFalse)
+    {
+        // Setup
+        const auto initialDamage = 0.4;
+        const auto damage = 0.5;
+        const auto failureNumber = 0.3;
+
+        // Call
+        const auto failureOfRevetment = Revetment::FailureOfRevetment(damage, initialDamage, failureNumber);
 
         // Assert
         ASSERT_FALSE(failureOfRevetment);

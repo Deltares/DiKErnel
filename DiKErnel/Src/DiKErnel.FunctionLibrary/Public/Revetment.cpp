@@ -44,8 +44,9 @@ namespace DiKErnel::FunctionLibrary
 
     bool Revetment::FailureOfRevetment(
         const double damage,
+        const double initialDamage,
         const double failureNumber)
     {
-        return damage >= failureNumber;
+        return initialDamage < failureNumber && damage >= failureNumber;
     }
 }
