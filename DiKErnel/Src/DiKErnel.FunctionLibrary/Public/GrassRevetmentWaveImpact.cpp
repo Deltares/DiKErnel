@@ -67,9 +67,9 @@ namespace DiKErnel::FunctionLibrary
         const double failureTimeAgwi,
         const double failureTimeBgwi,
         const double failureTimeCgwi,
-        const double minimumWaveHeightTemin)
+        const double maximumWaveHeightTemin)
     {
-        return failureTimeAgwi * exp(failureTimeBgwi * minimumWaveHeightTemin) + failureTimeCgwi;
+        return failureTimeAgwi * exp(failureTimeBgwi * maximumWaveHeightTemin) + failureTimeCgwi;
     }
 
     double GrassRevetmentWaveImpact::WaveAngleImpact(

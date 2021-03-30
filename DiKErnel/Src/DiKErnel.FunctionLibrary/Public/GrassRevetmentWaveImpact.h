@@ -27,53 +27,54 @@ namespace DiKErnel::FunctionLibrary
      */
     class GrassRevetmentWaveImpact
     {
-        static double IncrementDamage(
-            double incrementTime,
-            double failureTime);
+        public:
+            static double IncrementDamage(
+                double incrementTime,
+                double failureTime);
 
-        static double TimeLine(
-            double waveHeight,
-            double failureTimeAgwi,
-            double failureTimeBgwi,
-            double failureTimeCgwi);
+            static double TimeLine(
+                double waveHeight,
+                double failureTimeAgwi,
+                double failureTimeBgwi,
+                double failureTimeCgwi);
 
-        static double WaveHeight(
-            double minimumWaveHeight,
-            double maximumWaveHeight,
-            double waveAngleImpact,
-            double waveHeightHm0);
+            static double WaveHeight(
+                double minimumWaveHeight,
+                double maximumWaveHeight,
+                double waveAngleImpact,
+                double waveHeightHm0);
 
-        static double MinimumWaveHeight(
-            double failureTimeAgwi,
-            double failureTimeBgwi,
-            double failureTimeCgwi,
-            double minimumWaveHeightTemax);
+            static double MinimumWaveHeight(
+                double failureTimeAgwi,
+                double failureTimeBgwi,
+                double failureTimeCgwi,
+                double minimumWaveHeightTemax);
 
-        static double MaximumWaveHeight(
-            double failureTimeAgwi,
-            double failureTimeBgwi,
-            double failureTimeCgwi,
-            double minimumWaveHeightTemin);
+            static double MaximumWaveHeight(
+                double failureTimeAgwi,
+                double failureTimeBgwi,
+                double failureTimeCgwi,
+                double maximumWaveHeightTemin);
 
-        static double WaveAngleImpact(
-            double waveAngle,
-            double waveAngleImpactNwa,
-            double waveAngleImpactQwa,
-            double waveAngleImpactRwa);
+            static double WaveAngleImpact(
+                double waveAngle,
+                double waveAngleImpactNwa,
+                double waveAngleImpactQwa,
+                double waveAngleImpactRwa);
 
-        static double UpperLimitLoading(
-            double waterLevel,
-            double waveHeightHm0,
-            double upperLimitLoadingAul);
+            static double UpperLimitLoading(
+                double waterLevel,
+                double waveHeightHm0,
+                double upperLimitLoadingAul);
 
-        static double LowerLimitLoading(
-            double waterLevel,
-            double waveHeightHm0,
-            double lowerLimitLoadingAll);
+            static double LowerLimitLoading(
+                double waterLevel,
+                double waveHeightHm0,
+                double lowerLimitLoadingAll);
 
-        static double FailureTime(
-            double failureTime,
-            double failureNumber,
-            double initialDamage);
+            static double FailureTime(
+                double failureTime,
+                double failureNumber,
+                double initialDamage);
     };
 }
