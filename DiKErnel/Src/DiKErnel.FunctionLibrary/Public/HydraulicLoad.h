@@ -28,19 +28,57 @@ namespace DiKErnel::FunctionLibrary
     class HydraulicLoad
     {
         public:
+            /*!
+             * \brief Calculates the slope angle.
+             * \param tanA
+             *        The tanA.
+             * \return The slope angle.
+             */
             static double SlopeAngle(
                 double tanA);
 
+            /*!
+             * \brief Calculates whether there is loading of the revetment.
+             * \param lowerLimitLoadingRevetment
+             *        The lower limit of the loading.
+             * \param upperLimitLoadingRevetment
+             *        The upper limit of the loading.
+             * \param positionZ
+             *        The vertical position.
+             * \return Whether there is loading of the revetment.
+             */
             static bool LoadingRevetment(
                 double lowerLimitLoadingRevetment,
                 double upperLimitLoadingRevetment,
                 double positionZ);
 
+            /*!
+             * \brief Calculates the wave steepness of deep water.
+             * \param waveHeightHm0
+             *        The wave height.
+             * \param wavePeriodTm10
+             *        The wave period.
+             * \param gravitationalAcceleration
+             *        The gravitational acceleration.
+             * \return The wave steepness of deep water.
+             */
             static double WaveSteepnessDeepWater(
                 double waveHeightHm0,
                 double wavePeriodTm10,
                 double gravitationalAcceleration);
 
+            /*!
+             * \brief Calculates the surf similarity parameter.
+             * \param tanA
+             *        The tanA.
+             * \param waveHeightHm0
+             *        The wave height.
+             * \param wavePeriodTm10
+             *        The wave period.
+             * \param gravitationalAcceleration
+             *        The gravitational acceleration.
+             * \return The surf similarity parameter.
+             */
             static double SurfSimilarityParameter(
                 double tanA,
                 double waveHeightHm0,
