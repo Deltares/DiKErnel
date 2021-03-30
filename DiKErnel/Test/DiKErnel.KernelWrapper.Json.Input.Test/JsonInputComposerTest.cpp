@@ -22,6 +22,8 @@
 
 #include "AssertHelper.h"
 #include "CalculationInput.h"
+#include "GrassRevetmentWaveImpactLocationDependentInput.h"
+#include "GrassRevetmentWaveImpactLocationDependentInputAssertHelper.h"
 #include "JsonInputComposer.h"
 #include "LocationDependentInputAssertHelper.h"
 #include "NaturalStoneRevetmentLocationDependentInput.h"
@@ -68,30 +70,104 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
         AssertTimeDependentInputItems(calculationInput->GetTimeDependentInputItems());
 
         const auto locationDependentInputItems = calculationInput->GetLocationDependentInputItems();
-        ASSERT_EQ(2, locationDependentInputItems.size());
+        ASSERT_EQ(5, locationDependentInputItems.size());
 
-        const auto* locationDependentInputItem1 = dynamic_cast<NaturalStoneRevetmentLocationDependentInput*>(
+        const auto* naturalStoneRevetmentLocationDependentInputItem1 = dynamic_cast<NaturalStoneRevetmentLocationDependentInput*>(
             &locationDependentInputItems[0].get());
-        ASSERT_TRUE(locationDependentInputItem1 != nullptr);
-        LocationDependentInputAssertHelper::AssertDamageProperties(0.1, 1.06, *locationDependentInputItem1);
-        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertMandatoryProperties("LocatieZwak", 0.25, 0.9, 1.65, 0.3, *locationDependentInputItem1);
-        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertHydraulicLoads(5, 1.3, 1.7, 0.9, -0.8, 10, -8, 6, 4.9, locationDependentInputItem1->GetHydraulicLoads());
-        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertUpperLimitLoading(6.1, 3.6, 4.5, locationDependentInputItem1->GetUpperLimitLoading());
-        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertLowerLimitLoading(4.1, 8, 0.5, locationDependentInputItem1->GetLowerLimitLoading());
-        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertDistanceMaximumWaveElevation(0.7, 0.319, locationDependentInputItem1->GetDistanceMaximumWaveElevation());
-        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertNormativeWidthOfWaveImpact(1.0, 0.01, locationDependentInputItem1->GetNormativeWidthOfWaveImpact());
-        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertWaveAngleImpact(30, locationDependentInputItem1->GetWaveAngleImpact());
+        ASSERT_NE(nullptr, naturalStoneRevetmentLocationDependentInputItem1);
 
-        const auto* locationDependentInputItem2 = dynamic_cast<NaturalStoneRevetmentLocationDependentInput*>(
+        LocationDependentInputAssertHelper::AssertDamageProperties(0.1, 1.06, *naturalStoneRevetmentLocationDependentInputItem1);
+        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertMandatoryProperties(
+            "NatuursteenAlleOptiesAan", 0.25, 0.9, 1.65, 0.3, *naturalStoneRevetmentLocationDependentInputItem1);
+        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertHydraulicLoads(
+            5, 1.3, 1.7, 0.9, -0.8, 10, -8, 6, 4.9, naturalStoneRevetmentLocationDependentInputItem1->GetHydraulicLoads());
+        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertUpperLimitLoading(
+            6.1, 3.6, 4.5, naturalStoneRevetmentLocationDependentInputItem1->GetUpperLimitLoading());
+        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertLowerLimitLoading(
+            4.1, 8, 0.5, naturalStoneRevetmentLocationDependentInputItem1->GetLowerLimitLoading());
+        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertDistanceMaximumWaveElevation(
+            0.7, 0.319, naturalStoneRevetmentLocationDependentInputItem1->GetDistanceMaximumWaveElevation());
+        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertNormativeWidthOfWaveImpact(
+            1.0, 0.01, naturalStoneRevetmentLocationDependentInputItem1->GetNormativeWidthOfWaveImpact());
+        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertWaveAngleImpact(
+            30, naturalStoneRevetmentLocationDependentInputItem1->GetWaveAngleImpact());
+
+        const auto* naturalStoneRevetmentLocationDependentInputItem2 = dynamic_cast<NaturalStoneRevetmentLocationDependentInput*>(
             &locationDependentInputItems[1].get());
-        ASSERT_TRUE(locationDependentInputItem2 != nullptr);
-        LocationDependentInputAssertHelper::AssertDamageProperties(0, 1, *locationDependentInputItem2);
-        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertMandatoryProperties("LocatieSterk", 0.3, 1.0, 1.65, 0.7, *locationDependentInputItem2);
-        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertHydraulicLoads(4, 0, 0, -0.9, 0.8, 0, 0, 0.6, 2.9, locationDependentInputItem2->GetHydraulicLoads());
-        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertUpperLimitLoading(0.1, 0.6, 4, locationDependentInputItem2->GetUpperLimitLoading());
-        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertLowerLimitLoading(0.1, 0.2, 4, locationDependentInputItem2->GetLowerLimitLoading());
-        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertDistanceMaximumWaveElevation(0.42, 0.9, locationDependentInputItem2->GetDistanceMaximumWaveElevation());
-        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertNormativeWidthOfWaveImpact(0.96, 0.11, locationDependentInputItem2->GetNormativeWidthOfWaveImpact());
-        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertWaveAngleImpact(78, locationDependentInputItem2->GetWaveAngleImpact());
+        ASSERT_NE(nullptr, naturalStoneRevetmentLocationDependentInputItem2);
+
+        LocationDependentInputAssertHelper::AssertDamageProperties(0, 1, *naturalStoneRevetmentLocationDependentInputItem2);
+        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertMandatoryProperties(
+            "NatuursteenAlleOptiesUit", 0.3, 1.0, 1.65, 0.7, *naturalStoneRevetmentLocationDependentInputItem2);
+        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertHydraulicLoads(
+            4, 0, 0, -0.9, 0.8, 0, 0, 0.6, 2.9, naturalStoneRevetmentLocationDependentInputItem2->GetHydraulicLoads());
+        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertUpperLimitLoading(
+            0.1, 0.6, 4, naturalStoneRevetmentLocationDependentInputItem2->GetUpperLimitLoading());
+        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertLowerLimitLoading(
+            0.1, 0.2, 4, naturalStoneRevetmentLocationDependentInputItem2->GetLowerLimitLoading());
+        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertDistanceMaximumWaveElevation(
+            0.42, 0.9, naturalStoneRevetmentLocationDependentInputItem2->GetDistanceMaximumWaveElevation());
+        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertNormativeWidthOfWaveImpact(
+            0.96, 0.11, naturalStoneRevetmentLocationDependentInputItem2->GetNormativeWidthOfWaveImpact());
+        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertWaveAngleImpact(
+            78, naturalStoneRevetmentLocationDependentInputItem2->GetWaveAngleImpact());
+
+        const auto* grassRevetmentWaveImpactLocationDependentInputItem1 = dynamic_cast<GrassRevetmentWaveImpactLocationDependentInput*>(
+            &locationDependentInputItems[2].get());
+        ASSERT_NE(nullptr, grassRevetmentWaveImpactLocationDependentInputItem1);
+
+        LocationDependentInputAssertHelper::AssertDamageProperties(0.04, 1.07, *grassRevetmentWaveImpactLocationDependentInputItem1);
+        GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertMandatoryProperties(
+            "GrasGolfklapAlleOptiesAan", 0.2, 1.0, *grassRevetmentWaveImpactLocationDependentInputItem1);
+        GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertMinimumWaveHeight(
+            2500000, *grassRevetmentWaveImpactLocationDependentInputItem1);
+        GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertMaximumWaveHeight(
+            3.1, *grassRevetmentWaveImpactLocationDependentInputItem1);
+        GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertWaveAngleImpact(
+            0.9, 0.1, 8.0, grassRevetmentWaveImpactLocationDependentInputItem1->GetWaveAngleImpact());
+        GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertFailureTime(
+            0.3, -0.1, 0.96, grassRevetmentWaveImpactLocationDependentInputItem1->GetFailureTime());
+        GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertUpperLimitLoading(
+            1.0, *grassRevetmentWaveImpactLocationDependentInputItem1);
+        GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertLowerLimitLoading(
+            3.5, *grassRevetmentWaveImpactLocationDependentInputItem1);
+
+        const auto* grassRevetmentWaveImpactLocationDependentInputItem2 = dynamic_cast<GrassRevetmentWaveImpactLocationDependentInput*>(
+            &locationDependentInputItems[3].get());
+        ASSERT_NE(nullptr, grassRevetmentWaveImpactLocationDependentInputItem2);
+        LocationDependentInputAssertHelper::AssertDamageProperties(0.0, 1.0, *grassRevetmentWaveImpactLocationDependentInputItem2);
+        GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertMandatoryProperties(
+            "GrasGolfklapGeslotenZodeAlleOptiesUit", 0.3, 0.0, *grassRevetmentWaveImpactLocationDependentInputItem2);
+        GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertMinimumWaveHeight(
+            3600000, *grassRevetmentWaveImpactLocationDependentInputItem2);
+        GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertMaximumWaveHeight(
+            3.6, *grassRevetmentWaveImpactLocationDependentInputItem2);
+        GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertWaveAngleImpact(
+            2.0 / 3.0, 0.35, 10.0, grassRevetmentWaveImpactLocationDependentInputItem2->GetWaveAngleImpact());
+        GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertFailureTime(
+            1.0, -0.000009722, 0.25, grassRevetmentWaveImpactLocationDependentInputItem2->GetFailureTime());
+        GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertUpperLimitLoading(
+            0.0, *grassRevetmentWaveImpactLocationDependentInputItem2);
+        GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertLowerLimitLoading(
+            0.5, *grassRevetmentWaveImpactLocationDependentInputItem2);
+
+        const auto* grassRevetmentWaveImpactLocationDependentInputItem3 = dynamic_cast<GrassRevetmentWaveImpactLocationDependentInput*>(
+            &locationDependentInputItems[4].get());
+        ASSERT_NE(nullptr, grassRevetmentWaveImpactLocationDependentInputItem3);
+        LocationDependentInputAssertHelper::AssertDamageProperties(0.0, 1.0, *grassRevetmentWaveImpactLocationDependentInputItem3);
+        GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertMandatoryProperties(
+            "GrasGolfklapOpenZodeAlleOptiesUit", 0.3, 0.0, *grassRevetmentWaveImpactLocationDependentInputItem3);
+        GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertMinimumWaveHeight(
+            3600000, *grassRevetmentWaveImpactLocationDependentInputItem3);
+        GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertMaximumWaveHeight(
+            3.6, *grassRevetmentWaveImpactLocationDependentInputItem3);
+        GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertWaveAngleImpact(
+            2.0 / 3.0, 0.35, 10.0, grassRevetmentWaveImpactLocationDependentInputItem3->GetWaveAngleImpact());
+        GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertFailureTime(
+            0.8, -0.00001944, 0.25, grassRevetmentWaveImpactLocationDependentInputItem3->GetFailureTime());
+        GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertUpperLimitLoading(
+            0.0, *grassRevetmentWaveImpactLocationDependentInputItem3);
+        GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertLowerLimitLoading(
+            0.5, *grassRevetmentWaveImpactLocationDependentInputItem3);
     }
 }

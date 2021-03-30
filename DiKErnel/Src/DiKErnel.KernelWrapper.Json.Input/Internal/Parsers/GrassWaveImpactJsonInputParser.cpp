@@ -51,13 +51,13 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
         locationData->SetFailureTimeAgwi(
             forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalValue(
-                readCalculationMethod, GrassWaveImpactJsonInputDefinitions::FAILURE_TIME_AGWI)));
+                readRevetment, GrassWaveImpactJsonInputDefinitions::FAILURE_TIME_AGWI)));
         locationData->SetFailureTimeBgwi(
             forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalValue(
-                readCalculationMethod, GrassWaveImpactJsonInputDefinitions::FAILURE_TIME_BGWI)));
+                readRevetment, GrassWaveImpactJsonInputDefinitions::FAILURE_TIME_BGWI)));
         locationData->SetFailureTimeCgwi(
             forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalValue(
-                readCalculationMethod, GrassWaveImpactJsonInputDefinitions::FAILURE_TIME_CGWI)));
+                readRevetment, GrassWaveImpactJsonInputDefinitions::FAILURE_TIME_CGWI)));
 
         if (readCalculationMethod.contains(GrassWaveImpactJsonInputDefinitions::MINIMUM_WAVE_HEIGHT))
         {
@@ -74,7 +74,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
             locationData->SetMaximumWaveHeightTemin(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalValue(
-                    readMaximumWaveHeight, GrassWaveImpactJsonInputDefinitions::MINIMUM_WAVE_HEIGHT_TEMAX)));
+                    readMaximumWaveHeight, GrassWaveImpactJsonInputDefinitions::MAXIMUM_WAVE_HEIGHT_TEMIN)));
         }
 
         if (readCalculationMethod.contains(GrassWaveImpactJsonInputDefinitions::WAVE_ANGLE_IMPACT))
@@ -108,9 +108,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
             const auto& readLowerLimitLoading = readCalculationMethod[GrassWaveImpactJsonInputDefinitions::LOWER_LIMIT_LOADING];
 
             locationData->SetLowerLimitLoadingAll(
-                forward<unique_ptr<double>>(
-                    JsonInputParserHelper::ParseOptionalValue(
-                        readLowerLimitLoading, GrassWaveImpactJsonInputDefinitions::LOWER_LIMIT_LOADING_ALL)));
+                forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalValue(
+                    readLowerLimitLoading, GrassWaveImpactJsonInputDefinitions::LOWER_LIMIT_LOADING_ALL)));
         }
 
         return locationData;
