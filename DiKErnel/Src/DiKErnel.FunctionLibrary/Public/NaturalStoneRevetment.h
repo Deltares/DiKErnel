@@ -148,9 +148,9 @@ namespace DiKErnel::FunctionLibrary
              * \param waveHeightHm0
              *        The wave height.
              * \param distanceMaximumWaveElevationAsmax
-             *        The the maximum distance wave elevation Asmax.
+             *        The maximum distance wave elevation Asmax.
              * \param distanceMaximumWaveElevationBsmax
-             *        The the maximum distance wave elevation Bsmax.
+             *        The maximum distance wave elevation Bsmax.
              * \return The maximum distance wave elevation.
              */
             static double DistanceMaximumWaveElevation(
@@ -160,49 +160,147 @@ namespace DiKErnel::FunctionLibrary
                 double distanceMaximumWaveElevationAsmax,
                 double distanceMaximumWaveElevationBsmax);
 
+            /*!
+             * \brief Calculates the impact shallow water.
+             * \return The impact shallow water.
+             */
             static double ImpactShallowWater();
 
+            /*!
+             * \brief Calculates the normative width wave impact.
+             * \param surfSimilarityParameter
+             *        The surf similarity parameter.
+             * \param waveHeightHm0
+             *        The wave height.
+             * \param normativeWidthWaveImpactAwi
+             *        The normative width wave impact Awi.
+             * \param normativeWidthWaveImpactBwi
+             *        The normative width wave impact Bwi.
+             * \return The normative width wave impact.
+             */
             static double NormativeWidthWaveImpact(
                 double surfSimilarityParameter,
                 double waveHeightHm0,
                 double normativeWidthWaveImpactAwi,
                 double normativeWidthWaveImpactBwi);
 
+            /*!
+             * \brief Calculates the wave angle impact.
+             * \param waveAngle
+             *        The wave angle.
+             * \param waveAngleImpactBetamax
+             *        The wave angle impact Betamax.
+             * \return The wave angle impact.
+             */
             static double WaveAngleImpact(
                 double waveAngle,
                 double waveAngleImpactBetamax);
 
+            /*!
+             * \brief Calculates the resistance.
+             * \param relativeDensity
+             *        The relative density.
+             * \param thicknessTopLayer
+             *        The thickness of the top layer.
+             * \return The resistance.
+             */
             static double Resistance(
                 double relativeDensity,
                 double thicknessTopLayer);
 
+            /*!
+             * \brief Calculates the increment of degradation.
+             * \param referenceTimeDegradation
+             *        The reference time degradation.
+             * \param incrementTime
+             *        The increment of time.
+             * \param wavePeriodTm10
+             *        The wave period.
+             * \return The increment of degradation.
+             */
             static double IncrementDegradation(
                 double referenceTimeDegradation,
                 double incrementTime,
                 double wavePeriodTm10);
 
+            /*!
+             * \brief Calculates the degradation.
+             * \param referenceTimeDegradation
+             *        The reference time degradation.
+             * \param wavePeriodTm10
+             *        The wave period.
+             * \return The degradation.
+             */
             static double Degradation(
                 double referenceTimeDegradation,
                 double wavePeriodTm10);
 
+            /*!
+             * \brief Calculates the reference time degradation.
+             * \param referenceDegradation
+             *        The reference degradation.
+             * \param wavePeriodTm10
+             *        The wave period.
+             * \return The reference time degradation.
+             */
             static double ReferenceTimeDegradation(
                 double referenceDegradation,
                 double wavePeriodTm10);
 
+            /*!
+             * \brief Calculates the reference degradation.
+             * \param resistance
+             *        The resistance.
+             * \param hydraulicLoad
+             *        The hydraulic load.
+             * \param waveAngleImpact
+             *        The wave angle impact.
+             * \param initialDamage
+             *        The initial damage.
+             * \return The reference degradation.
+             */
             static double ReferenceDegradation(
                 double resistance,
                 double hydraulicLoad,
                 double waveAngleImpact,
                 double initialDamage);
 
+            /*!
+             * \brief Calculates the duration in the time step of failure.
+             * \param referenceTimeFailure
+             *        The reference time failure.
+             * \param referenceTimeDegradation
+             *        The reference time degradation.
+             * \return The duration in the time step of failure.
+             */
             static double DurationInTimeStepFailure(
                 double referenceTimeFailure,
                 double referenceTimeDegradation);
 
+            /*!
+             * \brief Calculates the reference time failure.
+             * \param referenceFailure
+             *        The reference failure.
+             * \param wavePeriodTm10
+             *        The wave period.
+             * \return The reference time failure.
+             */
             static double ReferenceTimeFailure(
                 double referenceFailure,
                 double wavePeriodTm10);
 
+            /*!
+             * \brief Calculates the reference failure.
+             * \param resistance
+             *        The resistance.
+             * \param hydraulicLoad
+             *        The hydraulic load.
+             * \param waveAngleImpact
+             *        The wave angle impact.
+             * \param failureNumber
+             *        The failure number.
+             * \return The reference failure.
+             */
             static double ReferenceFailure(
                 double resistance,
                 double hydraulicLoad,
