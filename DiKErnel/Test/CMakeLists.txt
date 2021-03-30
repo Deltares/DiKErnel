@@ -1,4 +1,5 @@
 # Add directories
+add_subdirectory(DiKErnel.Acceptance.Test)
 add_subdirectory(DiKErnel.Core.Test)
 add_subdirectory(DiKErnel.Core.TestUtil)
 add_subdirectory(DiKErnel.DomainLibrary.Test)
