@@ -24,18 +24,6 @@
 
 namespace DiKErnel::FunctionLibrary::Test
 {
-    TEST(RevetmentTest, NumberOfTimeSteps_ValidInput_ExpectedValue)
-    {
-        // Setup
-        const auto numberOfTimeStamps = 9;
-
-        // Call
-        const auto numberOfTimeSteps = Revetment::NumberOfTimeSteps(numberOfTimeStamps);
-
-        // Assert
-        ASSERT_EQ(8, numberOfTimeSteps);
-    }
-
     TEST(RevetmentTest, IncrementTime_ValidInput_ExpectedValue)
     {
         // Setup

@@ -22,12 +22,6 @@
 
 namespace DiKErnel::FunctionLibrary
 {
-    int Revetment::NumberOfTimeSteps(
-        const int numberOfTimeStamps)
-    {
-        return numberOfTimeStamps - 1;
-    }
-
     int Revetment::IncrementTime(
         const int startTime,
         const int endTime)
