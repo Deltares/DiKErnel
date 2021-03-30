@@ -29,7 +29,7 @@ namespace DiKErnel::FunctionLibrary
     double HydraulicLoad::SlopeAngle(
         const double tanA)
     {
-        return atan(Generic::Radians(tanA));
+        return atan(tanA);
     }
 
     bool HydraulicLoad::LoadingOfRevetment(
