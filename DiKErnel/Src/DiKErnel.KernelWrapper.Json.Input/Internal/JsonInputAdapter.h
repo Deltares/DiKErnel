@@ -22,8 +22,10 @@
 
 #include <memory>
 
+#include "GrassRevetmentWaveImpactLocationConstructionProperties.h"
 #include "ICalculationInput.h"
 #include "JsonInputData.h"
+#include "JsonInputGrassRevetmentWaveImpactLocationData.h"
 #include "JsonInputNaturalStoneRevetmentLocationData.h"
 #include "NaturalStoneRevetmentLocationConstructionProperties.h"
 
@@ -42,6 +44,13 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
             static Integration::NaturalStoneRevetmentLocationConstructionProperties::TopLayerType ConvertTypeTopLayer(
                 JsonInputNaturalStoneRevetmentLocationData::TopLayerType topLayerType);
+
+            static std::unique_ptr<Integration::GrassRevetmentWaveImpactLocationConstructionProperties> CreateGrassWaveImpactConstructionProperties(
+                const JsonInputLocationData& location,
+                const JsonInputGrassRevetmentWaveImpactLocationData& grassRevetmentWaveImpactLocationData);
+
+            static Integration::GrassRevetmentWaveImpactLocationConstructionProperties::TopLayerType ConvertTypeTopLayer(
+                JsonInputGrassRevetmentWaveImpactLocationData::TopLayerType topLayerType);
 
             static std::unique_ptr<double> CreatePointerOfValue(
                 const double* value);

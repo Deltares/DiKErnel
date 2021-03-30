@@ -57,12 +57,22 @@ namespace DiKErnel::KernelWrapper::Json::Input
             const auto& location = locationReference.get();
             const auto& revetmentLocationData = location.GetRevetmentLocationData();
 
-            const auto* naturalStoneRevetmentLocationData = dynamic_cast<const JsonInputNaturalStoneRevetmentLocationData*>(&revetmentLocationData);
+            const auto* naturalStoneRevetmentLocationData = dynamic_cast<const JsonInputNaturalStoneRevetmentLocationData*>(
+                &revetmentLocationData);
 
             if (naturalStoneRevetmentLocationData != nullptr)
             {
                 const auto constructionProperties = CreateNaturalStoneConstructionProperties(location, *naturalStoneRevetmentLocationData);
                 builder.AddNaturalStoneLocation(*constructionProperties);
+            }
+
+            const auto* grassRevetmentWaveImpactLocationData = dynamic_cast<const JsonInputGrassRevetmentWaveImpactLocationData*>(
+                &revetmentLocationData);
+
+            if(grassRevetmentWaveImpactLocationData != nullptr)
+            {
+                const auto constructionProperties = CreateGrassWaveImpactConstructionProperties(location, *grassRevetmentWaveImpactLocationData);
+                builder.AddGrassWaveImpactLocation(*constructionProperties);
             }
         }
 
@@ -81,10 +91,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
             ConvertTypeTopLayer(naturalStoneRevetmentLocationData.GetTopLayerType()),
             naturalStoneRevetmentLocationData.GetThicknessTopLayer(), naturalStoneRevetmentLocationData.GetRelativeDensity());
 
-        constructionProperties->SetInitialDamage(
-            forward<unique_ptr<double>>(CreatePointerOfValue(damageData.GetInitialDamage())));
-        constructionProperties->SetFailureNumber(
-            forward<unique_ptr<double>>(CreatePointerOfValue(damageData.GetFailureNumber())));
+        constructionProperties->SetInitialDamage(forward<unique_ptr<double>>(CreatePointerOfValue(damageData.GetInitialDamage())));
+        constructionProperties->SetFailureNumber(forward<unique_ptr<double>>(CreatePointerOfValue(damageData.GetFailureNumber())));
 
         constructionProperties->SetHydraulicLoadAp(
             forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData.GetHydraulicLoadAp())));
@@ -136,6 +144,62 @@ namespace DiKErnel::KernelWrapper::Json::Input
         if (topLayerType == JsonInputNaturalStoneRevetmentLocationData::TopLayerType::NordicStone)
         {
             return NaturalStoneRevetmentLocationConstructionProperties::TopLayerType::NordicStone;
+        }
+
+        throw JsonConversionException("Cannot convert top layer type.");
+    }
+
+    unique_ptr<GrassRevetmentWaveImpactLocationConstructionProperties> JsonInputAdapter::CreateGrassWaveImpactConstructionProperties(
+        const JsonInputLocationData& location,
+        const JsonInputGrassRevetmentWaveImpactLocationData& grassRevetmentWaveImpactLocationData)
+    {
+        const auto& damageData = location.GetDamageData();
+        const auto& profileSchematizationData = location.GetProfileSchematizationData();
+
+        auto constructionProperties = make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(
+            location.GetName(), profileSchematizationData.GetTanA(), profileSchematizationData.GetPositionZ(),
+            ConvertTypeTopLayer(grassRevetmentWaveImpactLocationData.GetTopLayerType()));
+
+        constructionProperties->SetInitialDamage(forward<unique_ptr<double>>(CreatePointerOfValue(damageData.GetInitialDamage())));
+        constructionProperties->SetFailureNumber(forward<unique_ptr<double>>(CreatePointerOfValue(damageData.GetFailureNumber())));
+
+        constructionProperties->SetFailureTimeAgwi(
+            forward<unique_ptr<double>>(CreatePointerOfValue(grassRevetmentWaveImpactLocationData.GetFailureTimeAgwi())));
+        constructionProperties->SetFailureTimeBgwi(
+            forward<unique_ptr<double>>(CreatePointerOfValue(grassRevetmentWaveImpactLocationData.GetFailureTimeBgwi())));
+        constructionProperties->SetFailureTimeCgwi(
+            forward<unique_ptr<double>>(CreatePointerOfValue(grassRevetmentWaveImpactLocationData.GetFailureTimeCgwi())));
+
+        constructionProperties->SetMinimumWaveHeightTemax(
+            forward<unique_ptr<double>>(CreatePointerOfValue(grassRevetmentWaveImpactLocationData.GetMinimumWaveHeightTemax())));
+        constructionProperties->SetMaximumWaveHeightTemin(
+            forward<unique_ptr<double>>(CreatePointerOfValue(grassRevetmentWaveImpactLocationData.GetMaximumWaveHeightTemin())));
+
+        constructionProperties->SetWaveAngleImpactNwa(
+            forward<unique_ptr<double>>(CreatePointerOfValue(grassRevetmentWaveImpactLocationData.GetWaveAngleImpactNwa())));
+        constructionProperties->SetWaveAngleImpactQwa(
+            forward<unique_ptr<double>>(CreatePointerOfValue(grassRevetmentWaveImpactLocationData.GetWaveAngleImpactQwa())));
+        constructionProperties->SetWaveAngleImpactRwa(
+            forward<unique_ptr<double>>(CreatePointerOfValue(grassRevetmentWaveImpactLocationData.GetWaveAngleImpactRwa())));
+
+        constructionProperties->SetUpperLimitLoadingAul(
+            forward<unique_ptr<double>>(CreatePointerOfValue(grassRevetmentWaveImpactLocationData.GetUpperLimitLoadingAul())));
+        constructionProperties->SetLowerLimitLoadingAll(
+            forward<unique_ptr<double>>(CreatePointerOfValue(grassRevetmentWaveImpactLocationData.GetLowerLimitLoadingAll())));
+
+        return constructionProperties;
+    }
+
+    GrassRevetmentWaveImpactLocationConstructionProperties::TopLayerType JsonInputAdapter::ConvertTypeTopLayer(
+        const JsonInputGrassRevetmentWaveImpactLocationData::TopLayerType topLayerType)
+    {
+        if (topLayerType == JsonInputGrassRevetmentWaveImpactLocationData::TopLayerType::OpenSod)
+        {
+            return GrassRevetmentWaveImpactLocationConstructionProperties::TopLayerType::OpenSod;
+        }
+        if (topLayerType == JsonInputGrassRevetmentWaveImpactLocationData::TopLayerType::ClosedSod)
+        {
+            return GrassRevetmentWaveImpactLocationConstructionProperties::TopLayerType::ClosedSod;
         }
 
         throw JsonConversionException("Cannot convert top layer type.");
