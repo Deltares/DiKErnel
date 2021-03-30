@@ -36,6 +36,10 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 const JsonInputData& jsonInputData);
 
         private:
+            static std::unique_ptr<Integration::NaturalStoneRevetmentLocationConstructionProperties> CreateNaturalStoneConstructionProperties(
+                const JsonInputLocationData& location,
+                const JsonInputNaturalStoneRevetmentLocationData& naturalStoneRevetmentLocationData);
+
             static Integration::NaturalStoneRevetmentLocationConstructionProperties::TopLayerType ConvertTypeTopLayer(
                 JsonInputNaturalStoneRevetmentLocationData::TopLayerType topLayerType);
 
