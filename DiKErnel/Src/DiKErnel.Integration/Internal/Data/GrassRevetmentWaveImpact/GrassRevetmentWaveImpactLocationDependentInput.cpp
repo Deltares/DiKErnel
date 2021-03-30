@@ -57,8 +57,28 @@ namespace DiKErnel::Integration
         return *_waveAngleImpact;
     }
 
+    double GrassRevetmentWaveImpactLocationDependentInput::GetMinimumWaveHeightTemax() const
+    {
+        return _minimumWaveHeightTemax;
+    }
+
+    double GrassRevetmentWaveImpactLocationDependentInput::GetMaximumWaveHeightTemin() const
+    {
+        return _maximumWaveHeightTemin;
+    }
+
     GrassRevetmentWaveImpactFailureTime& GrassRevetmentWaveImpactLocationDependentInput::GetFailureTime() const
     {
         return *_failureTime;
+    }
+
+    double GrassRevetmentWaveImpactLocationDependentInput::GetUpperLimitLoadingAul() const
+    {
+        return _upperLimitLoadingAul;
+    }
+
+    double GrassRevetmentWaveImpactLocationDependentInput::GetLowerLimitLoadingAll() const
+    {
+        return _lowerLimitLoadingAll;
     }
 }

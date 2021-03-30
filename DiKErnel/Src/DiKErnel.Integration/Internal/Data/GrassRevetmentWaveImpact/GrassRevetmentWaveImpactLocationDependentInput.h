@@ -50,7 +50,15 @@ namespace DiKErnel::Integration
 
             GrassRevetmentWaveImpactWaveAngleImpact& GetWaveAngleImpact() const;
 
+            double GetMinimumWaveHeightTemax() const;
+
+            double GetMaximumWaveHeightTemin() const;
+
             GrassRevetmentWaveImpactFailureTime& GetFailureTime() const;
+
+            double GetUpperLimitLoadingAul() const;
+
+            double GetLowerLimitLoadingAll() const;
 
         private:
             std::unique_ptr<GrassRevetmentWaveImpactWaveAngleImpact> _waveAngleImpact;
