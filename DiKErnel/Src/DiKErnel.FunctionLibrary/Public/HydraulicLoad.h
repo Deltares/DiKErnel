@@ -40,9 +40,9 @@ namespace DiKErnel::FunctionLibrary
             /*!
              * \brief Calculates whether there is loading of the revetment.
              * \param lowerLimitLoadingRevetment
-             *        The lower limit loading.
+             *        The lower limit of loading.
              * \param upperLimitLoadingRevetment
-             *        The upper limit loading.
+             *        The upper limit of loading.
              * \param positionZ
              *        The vertical position.
              * \return Whether there is loading of the revetment.
