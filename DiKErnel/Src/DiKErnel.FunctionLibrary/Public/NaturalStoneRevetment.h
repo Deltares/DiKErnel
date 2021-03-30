@@ -28,12 +28,40 @@ namespace DiKErnel::FunctionLibrary
     class NaturalStoneRevetment
     {
         public:
+            /*!
+             * \brief Calculates the increment of damage.
+             * \param hydraulicLoad
+             *        The hydraulic load.
+             * \param resistance
+             *        The resistance.
+             * \param incrementDegradation
+             *        The increment of degradation.
+             * \param waveAngleImpact
+             *        The wave angle of impact.
+             * \return The increment of damage.
+             */
             static double IncrementDamage(
                 double hydraulicLoad,
                 double resistance,
                 double incrementDegradation,
                 double waveAngleImpact);
 
+            /*!
+             * \brief Calculates the hydraulic load.
+             * \param surfSimilarityParameter
+             *        The surf similarity parameter.
+             * \param waveHeightHm0
+             *        The wave height.
+             * \param hydraulicLoadA
+             *        The hydraulic load A.
+             * \param hydraulicLoadB
+             *        The hydraulic load B.
+             * \param hydraulicLoadC
+             *        The hydraulic load C.
+             * \param hydraulicLoadN
+             *        The hydraulic load N.
+             * \return The hydraulic load.
+             */
             static double HydraulicLoad(
                 double surfSimilarityParameter,
                 double waveHeightHm0,
@@ -42,6 +70,24 @@ namespace DiKErnel::FunctionLibrary
                 double hydraulicLoadC,
                 double hydraulicLoadN);
 
+            /*!
+             * \brief Calculates the upper limit loading.
+             * \param depthMaximumWaveLoad
+             *        The maximum wave load depth.
+             * \param surfSimilarityParameter
+             *        The surf similarity parameter.
+             * \param waterLevel
+             *        The water level.
+             * \param waveHeightHm0
+             *        The wave height.
+             * \param upperLimitLoadingAul
+             *        The upper limit loading Aul.
+             * \param upperLimitLoadingBul
+             *        The upper limit loading Bul.
+             * \param upperLimitLoadingCul
+             *        The upper limit loading Cul.
+             * \return The upper limit loading.
+             */
             static double UpperLimitLoading(
                 double depthMaximumWaveLoad,
                 double surfSimilarityParameter,
@@ -51,6 +97,24 @@ namespace DiKErnel::FunctionLibrary
                 double upperLimitLoadingBul,
                 double upperLimitLoadingCul);
 
+            /*!
+              * \brief Calculates the lower limit loading.
+              * \param depthMaximumWaveLoad
+              *        The maximum wave load depth.
+              * \param surfSimilarityParameter
+              *        The surf similarity parameter.
+              * \param waterLevel
+              *        The water level.
+              * \param waveHeightHm0
+              *        The wave height.
+              * \param lowerLimitLoadingAll
+              *        The lower limit loading All.
+              * \param lowerLimitLoadingBll
+              *        The lower limit loading Bll.
+              * \param lowerLimitLoadingCll
+              *        The lower limit loading Cll.
+              * \return The lower limit loading.
+              */
             static double LowerLimitLoading(
                 double depthMaximumWaveLoad,
                 double surfSimilarityParameter,
@@ -60,11 +124,35 @@ namespace DiKErnel::FunctionLibrary
                 double lowerLimitLoadingBll,
                 double lowerLimitLoadingCll);
 
+            /*!
+              * \brief Calculates the maximum wave load depth.
+              * \param distanceMaximumWaveElevation
+              *        The maximum distance of wave elevation.
+              * \param normativeWidthWaveImpact
+              *        The normative width of wave impact.
+              * \param slopeAngle
+              *        The slope angle.
+              * \return The maximum wave load depth.
+              */
             static double DepthMaximumWaveLoad(
                 double distanceMaximumWaveElevation,
                 double normativeWidthWaveImpact,
                 double slopeAngle);
 
+            /*!
+             * \brief Calculates the maximum distance wave elevation.
+             * \param impactShallowWater
+             *        The impact shallow water.
+             * \param waveSteepnessDeepWater
+             *        The wave steepness deep water
+             * \param waveHeightHm0
+             *        The wave height.
+             * \param distanceMaximumWaveElevationAsmax
+             *        The the maximum distance wave elevation Asmax.
+             * \param distanceMaximumWaveElevationBsmax
+             *        The the maximum distance wave elevation Bsmax.
+             * \return The maximum distance wave elevation.
+             */
             static double DistanceMaximumWaveElevation(
                 double impactShallowWater,
                 double waveSteepnessDeepWater,

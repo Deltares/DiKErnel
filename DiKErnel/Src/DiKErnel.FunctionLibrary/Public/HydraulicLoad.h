@@ -40,9 +40,9 @@ namespace DiKErnel::FunctionLibrary
             /*!
              * \brief Calculates whether there is loading of the revetment.
              * \param lowerLimitLoadingRevetment
-             *        The lower limit of the loading.
+             *        The lower limit loading.
              * \param upperLimitLoadingRevetment
-             *        The upper limit of the loading.
+             *        The upper limit loading.
              * \param positionZ
              *        The vertical position.
              * \return Whether there is loading of the revetment.
@@ -53,14 +53,14 @@ namespace DiKErnel::FunctionLibrary
                 double positionZ);
 
             /*!
-             * \brief Calculates the wave steepness of deep water.
+             * \brief Calculates the wave steepness in deep water.
              * \param waveHeightHm0
              *        The wave height.
              * \param wavePeriodTm10
              *        The wave period.
              * \param gravitationalAcceleration
              *        The gravitational acceleration.
-             * \return The wave steepness of deep water.
+             * \return The wave steepness in deep water.
              */
             static double WaveSteepnessDeepWater(
                 double waveHeightHm0,
