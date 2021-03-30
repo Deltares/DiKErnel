@@ -27,32 +27,32 @@ namespace DiKErnel::FunctionLibrary::Test
     TEST(NaturalStoneRevetmentTest, IncrementDamage_ValidInput_ExpectedValue)
     {
         // Setup
-        const auto hydraulicLoad = 1.1;
-        const auto resistance = 1.1;
-        const auto incrementDegradation = 1.1;
-        const auto waveAngleImpact = 1.1;
+        const auto hydraulicLoad = 0.56;
+        const auto resistance = 0.495;
+        const auto incrementDegradation = 0.078;
+        const auto waveAngleImpact = 0.997;
 
         // Call
         const auto incrementDamage = NaturalStoneRevetment::IncrementDamage(hydraulicLoad, resistance, incrementDegradation, waveAngleImpact);
 
         // Assert
-        ASSERT_DOUBLE_EQ(1.1, incrementDamage);
+        ASSERT_DOUBLE_EQ(0.087977696969696983, incrementDamage);
     }
 
     TEST(NaturalStoneRevetmentTest, HydraulicLoad_ValidInput_ExpectedValue)
     {
         // Setup
-        const auto surfSimilarityParameter = 1.1;
-        const auto waveHeightHm0 = 1.1;
-        const auto hydraulicLoadOnXib = 1.1;
-        const auto hydraulicLoadOnAp = 1.1;
-        const auto hydraulicLoadOnBp = 1.1;
-        const auto hydraulicLoadOnCp = 1.1;
-        const auto hydraulicLoadOnNp = 1.1;
-        const auto hydraulicLoadOnAs = 1.1;
-        const auto hydraulicLoadOnBs = 1.1;
-        const auto hydraulicLoadOnCs = 1.1;
-        const auto hydraulicLoadOnNs = 1.1;
+        const auto surfSimilarityParameter = 1.28;
+        const auto waveHeightHm0 = 1.8;
+        const auto hydraulicLoadOnXib = 2.9;
+        const auto hydraulicLoadOnAp = 4.0;
+        const auto hydraulicLoadOnBp = 0.1;
+        const auto hydraulicLoadOnCp = 0.3;
+        const auto hydraulicLoadOnNp = -0.9;
+        const auto hydraulicLoadOnAs = 0.8;
+        const auto hydraulicLoadOnBs = 0.2;
+        const auto hydraulicLoadOnCs = 0.4;
+        const auto hydraulicLoadOnNs = 0.6;
 
         // Call
         const auto hydraulicLoad = NaturalStoneRevetment::HydraulicLoad(surfSimilarityParameter, waveHeightHm0, hydraulicLoadOnXib,
@@ -61,7 +61,7 @@ namespace DiKErnel::FunctionLibrary::Test
                                                                         hydraulicLoadOnNs);
 
         // Assert
-        ASSERT_DOUBLE_EQ(1.1, hydraulicLoad);
+        ASSERT_DOUBLE_EQ(0.49571702636245252, hydraulicLoad);
     }
 
     TEST(NaturalStoneRevetmentTest, UpperLimitLoading_ValidInput_ExpectedValue)
