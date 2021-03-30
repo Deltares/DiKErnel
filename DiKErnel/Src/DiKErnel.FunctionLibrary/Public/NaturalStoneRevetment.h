@@ -47,22 +47,22 @@ namespace DiKErnel::FunctionLibrary
                 double surfSimilarityParameter,
                 double waterLevel,
                 double waveHeightHm0,
-                double upperLimitLoadingOfAul,
-                double upperLimitLoadingOfBul,
-                double upperLimitLoadingOfCul);
+                double upperLimitLoadingAul,
+                double upperLimitLoadingBul,
+                double upperLimitLoadingCul);
 
             static double LowerLimitLoading(
                 double depthMaximumWaveLoad,
                 double surfSimilarityParameter,
                 double waterLevel,
                 double waveHeightHm0,
-                double lowerLimitLoadingOfAll,
-                double lowerLimitLoadingOfBll,
-                double lowerLimitLoadingOfCll);
+                double lowerLimitLoadingAll,
+                double lowerLimitLoadingBll,
+                double lowerLimitLoadingCll);
 
             static double DepthMaximumWaveLoad(
                 double distanceMaximumWaveElevation,
-                double normativeWidthOfWaveImpact,
+                double normativeWidthWaveImpact,
                 double slopeAngle);
 
             static double DistanceMaximumWaveElevation(
@@ -74,15 +74,15 @@ namespace DiKErnel::FunctionLibrary
 
             static double ImpactShallowWater();
 
-            static double NormativeWidthOfWaveImpact(
+            static double NormativeWidthWaveImpact(
                 double surfSimilarityParameter,
                 double waveHeightHm0,
-                double normativeWidthOfWaveImpactAwi,
-                double normativeWidthOfWaveImpactBwi);
+                double normativeWidthWaveImpactAwi,
+                double normativeWidthWaveImpactBwi);
 
             static double WaveAngleImpact(
                 double waveAngle,
-                double waveAngleImpactOnBetamax);
+                double waveAngleImpactBetamax);
 
             static double Resistance(
                 double relativeDensity,

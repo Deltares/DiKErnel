@@ -87,7 +87,7 @@ namespace DiKErnel::Integration
             wavePeriodTm10,
             Constants::GRAVITATIONAL_ACCELERATION);
 
-        const auto normativeWidthOfWaveImpact = NaturalStoneRevetment::NormativeWidthOfWaveImpact(
+        const auto normativeWidthWaveImpact = NaturalStoneRevetment::NormativeWidthWaveImpact(
             surfSimilarityParameter,
             waveHeightHm0,
             _normativeWidthOfWaveImpact->GetNormativeWidthOfWaveImpactAwi(),
@@ -98,7 +98,7 @@ namespace DiKErnel::Integration
 
         const auto depthMaximumWaveLoad = NaturalStoneRevetment::DepthMaximumWaveLoad(
             distanceMaximumWaveElevation,
-            normativeWidthOfWaveImpact,
+            normativeWidthWaveImpact,
             slopeAngle);
 
         const auto lowerLimitLoading = NaturalStoneRevetment::LowerLimitLoading(
@@ -119,14 +119,14 @@ namespace DiKErnel::Integration
             _upperLimitLoading->GetUpperLimitBul(),
             _upperLimitLoading->GetUpperLimitCul());
 
-        const auto loadingOfRevetment = HydraulicLoad::LoadingOfRevetment(
+        const auto loadingRevetment = HydraulicLoad::LoadingRevetment(
             lowerLimitLoading,
             upperLimitLoading,
             positionZ);
 
-        auto incrementOfDamage = 0.0;
+        auto incrementDamage = 0.0;
 
-        if (loadingOfRevetment)
+        if (loadingRevetment)
         {
             const auto usePurgingBreakers = _hydraulicLoads->GetHydraulicLoadXib() - surfSimilarityParameter >= 0.0;
             const auto hydraulicLoadA = usePurgingBreakers
@@ -177,14 +177,14 @@ namespace DiKErnel::Integration
                 incrementTime,
                 wavePeriodTm10);
 
-            incrementOfDamage = NaturalStoneRevetment::IncrementDamage(
+            incrementDamage = NaturalStoneRevetment::IncrementDamage(
                 hydraulicLoad,
                 resistance,
                 incrementDegradation,
                 waveAngleImpact);
         }
 
-        return Revetment::Damage(incrementOfDamage, initialDamage);
+        return Revetment::Damage(incrementDamage, initialDamage);
     }
 
     double NaturalStoneRevetmentLocationDependentInput::GetRelativeDensity() const

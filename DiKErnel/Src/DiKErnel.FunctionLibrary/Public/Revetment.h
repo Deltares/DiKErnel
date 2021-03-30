@@ -28,18 +28,15 @@ namespace DiKErnel::FunctionLibrary
     class Revetment
     {
         public:
-            static int NumberOfTimeSteps(
-                int numberOfTimeStamps);
-
             static int IncrementTime(
                 int startTime,
                 int endTime);
 
             static double Damage(
-                double incrementOfDamage,
+                double incrementDamage,
                 double initialDamage);
 
-            static bool FailureOfRevetment(
+            static bool FailureRevetment(
                 double damage,
                 double initialDamage,
                 double failureNumber);

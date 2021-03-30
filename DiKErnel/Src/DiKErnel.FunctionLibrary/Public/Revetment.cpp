@@ -30,13 +30,13 @@ namespace DiKErnel::FunctionLibrary
     }
 
     double Revetment::Damage(
-        const double incrementOfDamage,
+        const double incrementDamage,
         const double initialDamage)
     {
-        return initialDamage + incrementOfDamage;
+        return initialDamage + incrementDamage;
     }
 
-    bool Revetment::FailureOfRevetment(
+    bool Revetment::FailureRevetment(
         const double damage,
         const double initialDamage,
         const double failureNumber)

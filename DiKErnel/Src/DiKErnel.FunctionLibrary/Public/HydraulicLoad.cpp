@@ -32,12 +32,12 @@ namespace DiKErnel::FunctionLibrary
         return atan(tanA);
     }
 
-    bool HydraulicLoad::LoadingOfRevetment(
-        const double lowerLimitLoadingOfRevetment,
-        const double upperLimitLoadingOfRevetment,
+    bool HydraulicLoad::LoadingRevetment(
+        const double lowerLimitLoadingRevetment,
+        const double upperLimitLoadingRevetment,
         const double positionZ)
     {
-        return positionZ >= lowerLimitLoadingOfRevetment && positionZ <= upperLimitLoadingOfRevetment;
+        return positionZ >= lowerLimitLoadingRevetment && positionZ <= upperLimitLoadingRevetment;
     }
 
     double HydraulicLoad::SurfSimilarityParameter(

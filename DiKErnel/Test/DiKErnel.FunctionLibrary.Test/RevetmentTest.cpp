@@ -40,17 +40,17 @@ namespace DiKErnel::FunctionLibrary::Test
     TEST(RevetmentTest, Damage_ValidInput_ExpectedValue)
     {
         // Setup
-        const auto incrementOfDamage = 0.12;
+        const auto incrementDamage = 0.12;
         const auto initialDamage = 0.23;
 
         // Call
-        const auto damage = Revetment::Damage(incrementOfDamage, initialDamage);
+        const auto damage = Revetment::Damage(incrementDamage, initialDamage);
 
         // Assert
         ASSERT_DOUBLE_EQ(0.35, damage);
     }
 
-    TEST(RevetmentTest, FailureOfRevetment_DamageAndInitialDamageSmallerThanFailureNumber_ExpectedFalse)
+    TEST(RevetmentTest, FailureRevetment_DamageAndInitialDamageSmallerThanFailureNumber_ExpectedFalse)
     {
         // Setup
         const auto initialDamage = 0.1;
@@ -58,13 +58,13 @@ namespace DiKErnel::FunctionLibrary::Test
         const auto failureNumber = 0.3;
 
         // Call
-        const auto failureOfRevetment = Revetment::FailureOfRevetment(damage, initialDamage, failureNumber);
+        const auto failureRevetment = Revetment::FailureRevetment(damage, initialDamage, failureNumber);
 
         // Assert
-        ASSERT_FALSE(failureOfRevetment);
+        ASSERT_FALSE(failureRevetment);
     }
 
-    TEST(RevetmentTest, FailureOfRevetment_InitialDamageEqualToFailureNumber_ExpectedFalse)
+    TEST(RevetmentTest, FailureRevetment_InitialDamageEqualToFailureNumber_ExpectedFalse)
     {
         // Setup
         const auto initialDamage = 0.3;
@@ -72,13 +72,13 @@ namespace DiKErnel::FunctionLibrary::Test
         const auto failureNumber = 0.3;
 
         // Call
-        const auto failureOfRevetment = Revetment::FailureOfRevetment(damage, initialDamage, failureNumber);
+        const auto failureRevetment = Revetment::FailureRevetment(damage, initialDamage, failureNumber);
 
         // Assert
-        ASSERT_FALSE(failureOfRevetment);
+        ASSERT_FALSE(failureRevetment);
     }
 
-    TEST(RevetmentTest, FailureOfRevetment_DamageEqualToFailureNumber_ExpectedTrue)
+    TEST(RevetmentTest, FailureRevetment_DamageEqualToFailureNumber_ExpectedTrue)
     {
         // Setup
         const auto initialDamage = 0.2;
@@ -86,13 +86,13 @@ namespace DiKErnel::FunctionLibrary::Test
         const auto failureNumber = 0.3;
 
         // Call
-        const auto failureOfRevetment = Revetment::FailureOfRevetment(damage, initialDamage, failureNumber);
+        const auto failureRevetment = Revetment::FailureRevetment(damage, initialDamage, failureNumber);
 
         // Assert
-        ASSERT_TRUE(failureOfRevetment);
+        ASSERT_TRUE(failureRevetment);
     }
 
-    TEST(RevetmentTest, FailureOfRevetment_DamageLargerAndInitialDamageSmallerThanFailureNumber_ExpectedTrue)
+    TEST(RevetmentTest, FailureRevetment_DamageLargerAndInitialDamageSmallerThanFailureNumber_ExpectedTrue)
     {
         // Setup
         const auto initialDamage = 0.2;
@@ -100,13 +100,13 @@ namespace DiKErnel::FunctionLibrary::Test
         const auto failureNumber = 0.3;
 
         // Call
-        const auto failureOfRevetment = Revetment::FailureOfRevetment(damage, initialDamage, failureNumber);
+        const auto failureRevetment = Revetment::FailureRevetment(damage, initialDamage, failureNumber);
 
         // Assert
-        ASSERT_TRUE(failureOfRevetment);
+        ASSERT_TRUE(failureRevetment);
     }
 
-    TEST(RevetmentTest, FailureOfRevetment_DamageAndInitialDamageLargerThanFailureNumber_ExpectedFalse)
+    TEST(RevetmentTest, FailureRevetment_DamageAndInitialDamageLargerThanFailureNumber_ExpectedFalse)
     {
         // Setup
         const auto initialDamage = 0.4;
@@ -114,9 +114,9 @@ namespace DiKErnel::FunctionLibrary::Test
         const auto failureNumber = 0.3;
 
         // Call
-        const auto failureOfRevetment = Revetment::FailureOfRevetment(damage, initialDamage, failureNumber);
+        const auto failureRevetment = Revetment::FailureRevetment(damage, initialDamage, failureNumber);
 
         // Assert
-        ASSERT_FALSE(failureOfRevetment);
+        ASSERT_FALSE(failureRevetment);
     }
 }

@@ -36,74 +36,74 @@ namespace DiKErnel::FunctionLibrary::Test
         ASSERT_DOUBLE_EQ(0.24497866312686414, slopeAngle);
     }
 
-    TEST(HydraulicLoadTest, LoadingOfRevetment_LowerLimitAndUpperLimitSmallerThanPositionZ_ExpectedFalse)
+    TEST(HydraulicLoadTest, LoadingRevetment_LowerLimitAndUpperLimitSmallerThanPositionZ_ExpectedFalse)
     {
         // Setup
-        const auto lowerLimitLoadingOfRevetment = 1.3;
-        const auto upperLimitLoadingOfRevetment = 1.4;
+        const auto lowerLimitLoadingRevetment = 1.3;
+        const auto upperLimitLoadingRevetment = 1.4;
         const auto positionZ = 1.5;
 
         // Call
-        const auto loadingOfRevetment = HydraulicLoad::LoadingOfRevetment(lowerLimitLoadingOfRevetment, upperLimitLoadingOfRevetment, positionZ);
+        const auto loadingRevetment = HydraulicLoad::LoadingRevetment(lowerLimitLoadingRevetment, upperLimitLoadingRevetment, positionZ);
 
         // Assert
-        ASSERT_FALSE(loadingOfRevetment);
+        ASSERT_FALSE(loadingRevetment);
     }
 
-    TEST(HydraulicLoadTest, LoadingOfRevetment_LowerLimitSmallerThanAndUpperLimitEqualToPositionZ_ExpectedTrue)
+    TEST(HydraulicLoadTest, LoadingRevetment_LowerLimitSmallerThanAndUpperLimitEqualToPositionZ_ExpectedTrue)
     {
         // Setup
-        const auto lowerLimitLoadingOfRevetment = 1.4;
-        const auto upperLimitLoadingOfRevetment = 1.5;
+        const auto lowerLimitLoadingRevetment = 1.4;
+        const auto upperLimitLoadingRevetment = 1.5;
         const auto positionZ = 1.5;
 
         // Call
-        const auto loadingOfRevetment = HydraulicLoad::LoadingOfRevetment(lowerLimitLoadingOfRevetment, upperLimitLoadingOfRevetment, positionZ);
+        const auto loadingRevetment = HydraulicLoad::LoadingRevetment(lowerLimitLoadingRevetment, upperLimitLoadingRevetment, positionZ);
 
         // Assert
-        ASSERT_TRUE(loadingOfRevetment);
+        ASSERT_TRUE(loadingRevetment);
     }
 
-    TEST(HydraulicLoadTest, LoadingOfRevetment_LowerLimitSmallerAndUpperLimitLargerThanPositionZ_ExpectedTrue)
+    TEST(HydraulicLoadTest, LoadingRevetment_LowerLimitSmallerAndUpperLimitLargerThanPositionZ_ExpectedTrue)
     {
         // Setup
-        const auto lowerLimitLoadingOfRevetment = 1.4;
-        const auto upperLimitLoadingOfRevetment = 1.6;
+        const auto lowerLimitLoadingRevetment = 1.4;
+        const auto upperLimitLoadingRevetment = 1.6;
         const auto positionZ = 1.5;
 
         // Call
-        const auto loadingOfRevetment = HydraulicLoad::LoadingOfRevetment(lowerLimitLoadingOfRevetment, upperLimitLoadingOfRevetment, positionZ);
+        const auto loadingRevetment = HydraulicLoad::LoadingRevetment(lowerLimitLoadingRevetment, upperLimitLoadingRevetment, positionZ);
 
         // Assert
-        ASSERT_TRUE(loadingOfRevetment);
+        ASSERT_TRUE(loadingRevetment);
     }
 
-    TEST(HydraulicLoadTest, LoadingOfRevetment_LowerLimitEqualToAndUpperLimitLargerThanPositionZ_ExpectedTrue)
+    TEST(HydraulicLoadTest, LoadingRevetment_LowerLimitEqualToAndUpperLimitLargerThanPositionZ_ExpectedTrue)
     {
         // Setup
-        const auto lowerLimitLoadingOfRevetment = 1.5;
-        const auto upperLimitLoadingOfRevetment = 1.6;
+        const auto lowerLimitLoadingRevetment = 1.5;
+        const auto upperLimitLoadingRevetment = 1.6;
         const auto positionZ = 1.5;
 
         // Call
-        const auto loadingOfRevetment = HydraulicLoad::LoadingOfRevetment(lowerLimitLoadingOfRevetment, upperLimitLoadingOfRevetment, positionZ);
+        const auto loadingRevetment = HydraulicLoad::LoadingRevetment(lowerLimitLoadingRevetment, upperLimitLoadingRevetment, positionZ);
 
         // Assert
-        ASSERT_TRUE(loadingOfRevetment);
+        ASSERT_TRUE(loadingRevetment);
     }
 
-    TEST(HydraulicLoadTest, LoadingOfRevetment_LowerLimitAndUpperLimitLargerThanPositionZ_ExpectedFalse)
+    TEST(HydraulicLoadTest, LoadingRevetment_LowerLimitAndUpperLimitLargerThanPositionZ_ExpectedFalse)
     {
         // Setup
-        const auto lowerLimitLoadingOfRevetment = 1.6;
-        const auto upperLimitLoadingOfRevetment = 1.7;
+        const auto lowerLimitLoadingRevetment = 1.6;
+        const auto upperLimitLoadingRevetment = 1.7;
         const auto positionZ = 1.5;
 
         // Call
-        const auto loadingOfRevetment = HydraulicLoad::LoadingOfRevetment(lowerLimitLoadingOfRevetment, upperLimitLoadingOfRevetment, positionZ);
+        const auto loadingRevetment = HydraulicLoad::LoadingRevetment(lowerLimitLoadingRevetment, upperLimitLoadingRevetment, positionZ);
 
         // Assert
-        ASSERT_FALSE(loadingOfRevetment);
+        ASSERT_FALSE(loadingRevetment);
     }
 
     TEST(HydraulicLoadTest, WaveSteepnessDeepWater_ValidInput_ExpectedValue)

@@ -56,15 +56,15 @@ namespace DiKErnel::FunctionLibrary
         const double surfSimilarityParameter,
         const double waterLevel,
         const double waveHeightHm0,
-        const double upperLimitLoadingOfAul,
-        const double upperLimitLoadingOfBul,
-        const double upperLimitLoadingOfCul)
+        const double upperLimitLoadingAul,
+        const double upperLimitLoadingBul,
+        const double upperLimitLoadingCul)
     {
         return waterLevel
                 - 2.0 * depthMaximumWaveLoad
-                + max(depthMaximumWaveLoad + upperLimitLoadingOfAul,
-                      upperLimitLoadingOfBul * waveHeightHm0 * min(surfSimilarityParameter,
-                                                                   upperLimitLoadingOfCul));
+                + max(depthMaximumWaveLoad + upperLimitLoadingAul,
+                      upperLimitLoadingBul * waveHeightHm0 * min(surfSimilarityParameter,
+                                                                   upperLimitLoadingCul));
     }
 
     double NaturalStoneRevetment::LowerLimitLoading(
@@ -72,23 +72,23 @@ namespace DiKErnel::FunctionLibrary
         const double surfSimilarityParameter,
         const double waterLevel,
         const double waveHeightHm0,
-        const double lowerLimitLoadingOfAll,
-        const double lowerLimitLoadingOfBll,
-        const double lowerLimitLoadingOfCll)
+        const double lowerLimitLoadingAll,
+        const double lowerLimitLoadingBll,
+        const double lowerLimitLoadingCll)
     {
         return waterLevel
                 - 2.0 * depthMaximumWaveLoad
-                + min(depthMaximumWaveLoad - lowerLimitLoadingOfAll,
-                      lowerLimitLoadingOfBll * waveHeightHm0 * min(surfSimilarityParameter,
-                                                                   lowerLimitLoadingOfCll));
+                + min(depthMaximumWaveLoad - lowerLimitLoadingAll,
+                      lowerLimitLoadingBll * waveHeightHm0 * min(surfSimilarityParameter,
+                                                                   lowerLimitLoadingCll));
     }
 
     double NaturalStoneRevetment::DepthMaximumWaveLoad(
         const double distanceMaximumWaveElevation,
-        const double normativeWidthOfWaveImpact,
+        const double normativeWidthWaveImpact,
         const double slopeAngle)
     {
-        return (distanceMaximumWaveElevation - 0.5 * normativeWidthOfWaveImpact * cos(slopeAngle)) * tan(slopeAngle);
+        return (distanceMaximumWaveElevation - 0.5 * normativeWidthWaveImpact * cos(slopeAngle)) * tan(slopeAngle);
     }
 
     double NaturalStoneRevetment::DistanceMaximumWaveElevation(
@@ -108,21 +108,21 @@ namespace DiKErnel::FunctionLibrary
         return 1.0;
     }
 
-    double NaturalStoneRevetment::NormativeWidthOfWaveImpact(
+    double NaturalStoneRevetment::NormativeWidthWaveImpact(
         const double surfSimilarityParameter,
         const double waveHeightHm0,
-        const double normativeWidthOfWaveImpactAwi,
-        const double normativeWidthOfWaveImpactBwi)
+        const double normativeWidthWaveImpactAwi,
+        const double normativeWidthWaveImpactBwi)
     {
-        return (normativeWidthOfWaveImpactAwi - normativeWidthOfWaveImpactBwi * surfSimilarityParameter)
+        return (normativeWidthWaveImpactAwi - normativeWidthWaveImpactBwi * surfSimilarityParameter)
                 * waveHeightHm0;
     }
 
     double NaturalStoneRevetment::WaveAngleImpact(
         const double waveAngle,
-        const double waveAngleImpactOnBetamax)
+        const double waveAngleImpactBetamax)
     {
-        return pow(cos(Generic::Radians(min(waveAngleImpactOnBetamax, abs(waveAngle)))), 2.0 / 3.0);
+        return pow(cos(Generic::Radians(min(waveAngleImpactBetamax, abs(waveAngle)))), 2.0 / 3.0);
     }
 
     double NaturalStoneRevetment::Resistance(

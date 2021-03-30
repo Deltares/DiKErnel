@@ -64,14 +64,14 @@ namespace DiKErnel::FunctionLibrary::Test
         const auto surfSimilarityParameter = 1.28;
         const auto waterLevel = 1.77;
         const auto waveHeightHm0 = 1.8;
-        const auto upperLimitLoadingOfAul = 0.1;
-        const auto upperLimitLoadingOfBul = 0.6;
-        const auto upperLimitLoadingOfCul = 4.0;
+        const auto upperLimitLoadingAul = 0.1;
+        const auto upperLimitLoadingBul = 0.6;
+        const auto upperLimitLoadingCul = 4.0;
 
         // Call
         const auto upperLimitLoading = NaturalStoneRevetment::UpperLimitLoading(depthMaximumWaveLoad, surfSimilarityParameter, waterLevel,
-                                                                                waveHeightHm0, upperLimitLoadingOfAul, upperLimitLoadingOfBul,
-                                                                                upperLimitLoadingOfCul);
+                                                                                waveHeightHm0, upperLimitLoadingAul, upperLimitLoadingBul,
+                                                                                upperLimitLoadingCul);
 
         // Assert
         ASSERT_DOUBLE_EQ(2.3924, upperLimitLoading);
@@ -84,14 +84,14 @@ namespace DiKErnel::FunctionLibrary::Test
         const auto surfSimilarityParameter = 1.28;
         const auto waterLevel = 1.77;
         const auto waveHeightHm0 = 1.8;
-        const auto lowerLimitLoadingOfAll = 0.1;
-        const auto lowerLimitLoadingOfBll = 0.2;
-        const auto lowerLimitLoadingOfCll = 4.0;
+        const auto lowerLimitLoadingAll = 0.1;
+        const auto lowerLimitLoadingBll = 0.2;
+        const auto lowerLimitLoadingCll = 4.0;
 
         // Call
         const auto lowerLimitLoading = NaturalStoneRevetment::LowerLimitLoading(depthMaximumWaveLoad, surfSimilarityParameter, waterLevel,
-                                                                                waveHeightHm0, lowerLimitLoadingOfAll, lowerLimitLoadingOfBll,
-                                                                                lowerLimitLoadingOfCll);
+                                                                                waveHeightHm0, lowerLimitLoadingAll, lowerLimitLoadingBll,
+                                                                                lowerLimitLoadingCll);
 
         // Assert
         ASSERT_DOUBLE_EQ(1.29, lowerLimitLoading);
@@ -101,11 +101,11 @@ namespace DiKErnel::FunctionLibrary::Test
     {
         // Setup
         const auto distanceMaximumWaveElevation = 2.25;
-        const auto normativeWidthOfWaveImpact = 1.47;
+        const auto normativeWidthWaveImpact = 1.47;
         const auto slopeAngle = 0.245;
 
         // Call
-        const auto depthMaximumWaveLoad = NaturalStoneRevetment::DepthMaximumWaveLoad(distanceMaximumWaveElevation, normativeWidthOfWaveImpact,
+        const auto depthMaximumWaveLoad = NaturalStoneRevetment::DepthMaximumWaveLoad(distanceMaximumWaveElevation, normativeWidthWaveImpact,
                                                                                       slopeAngle);
 
         // Assert
@@ -138,30 +138,30 @@ namespace DiKErnel::FunctionLibrary::Test
         ASSERT_DOUBLE_EQ(1.0, impactShallowWater);
     }
 
-    TEST(NaturalStoneRevetmentTest, NormativeWidthOfWaveImpact_ValidInput_ExpectedValue)
+    TEST(NaturalStoneRevetmentTest, NormativeWidthWaveImpact_ValidInput_ExpectedValue)
     {
         // Setup
         const auto surfSimilarityParameter = 1.28;
         const auto waveHeightHm0 = 1.8;
-        const auto normativeWidthOfWaveImpactAwi = 0.96;
-        const auto normativeWidthOfWaveImpactBwi = 0.11;
+        const auto normativeWidthWaveImpactAwi = 0.96;
+        const auto normativeWidthWaveImpactBwi = 0.11;
 
         // Call
-        const auto normativeWidthOfWaveImpact = NaturalStoneRevetment::NormativeWidthOfWaveImpact(
-            surfSimilarityParameter, waveHeightHm0, normativeWidthOfWaveImpactAwi, normativeWidthOfWaveImpactBwi);
+        const auto normativeWidthWaveImpact = NaturalStoneRevetment::NormativeWidthWaveImpact(
+            surfSimilarityParameter, waveHeightHm0, normativeWidthWaveImpactAwi, normativeWidthWaveImpactBwi);
 
         // Assert
-        ASSERT_DOUBLE_EQ(1.47456, normativeWidthOfWaveImpact);
+        ASSERT_DOUBLE_EQ(1.47456, normativeWidthWaveImpact);
     }
 
     TEST(NaturalStoneRevetmentTest, WaveAngleImpact_ValidInput_ExpectedValue)
     {
         // Setup
         const auto waveAngle = 5.0;
-        const auto waveAngleImpactOnBetamax = 78.0;
+        const auto waveAngleImpactBetamax = 78.0;
 
         // Call
-        const auto waveAngleImpact = NaturalStoneRevetment::WaveAngleImpact(waveAngle, waveAngleImpactOnBetamax);
+        const auto waveAngleImpact = NaturalStoneRevetment::WaveAngleImpact(waveAngle, waveAngleImpactBetamax);
 
         // Assert
         ASSERT_DOUBLE_EQ(0.99746152040928704, waveAngleImpact);
