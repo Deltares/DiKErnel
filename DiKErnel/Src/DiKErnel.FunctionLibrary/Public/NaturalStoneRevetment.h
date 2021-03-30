@@ -37,7 +37,7 @@ namespace DiKErnel::FunctionLibrary
              * \param incrementDegradation
              *        The increment of degradation.
              * \param waveAngleImpact
-             *        The wave angle of impact.
+             *        The angle of the wave impact.
              * \return The increment of damage.
              */
             static double IncrementDamage(
@@ -53,13 +53,13 @@ namespace DiKErnel::FunctionLibrary
              * \param waveHeightHm0
              *        The wave height.
              * \param hydraulicLoadA
-             *        The hydraulic load A.
+             *        The A coefficient.
              * \param hydraulicLoadB
-             *        The hydraulic load B.
+             *        The B coefficient.
              * \param hydraulicLoadC
-             *        The hydraulic load C.
+             *        The C coefficient.
              * \param hydraulicLoadN
-             *        The hydraulic load N.
+             *        The N coefficient.
              * \return The hydraulic load.
              */
             static double HydraulicLoad(
@@ -71,7 +71,7 @@ namespace DiKErnel::FunctionLibrary
                 double hydraulicLoadN);
 
             /*!
-             * \brief Calculates the upper limit loading.
+             * \brief Calculates the upper limit of loading.
              * \param depthMaximumWaveLoad
              *        The maximum wave load depth.
              * \param surfSimilarityParameter
@@ -81,12 +81,12 @@ namespace DiKErnel::FunctionLibrary
              * \param waveHeightHm0
              *        The wave height.
              * \param upperLimitLoadingAul
-             *        The upper limit loading Aul.
+             *        The Aul coefficient.
              * \param upperLimitLoadingBul
-             *        The upper limit loading Bul.
+             *        The Bul coefficient.
              * \param upperLimitLoadingCul
-             *        The upper limit loading Cul.
-             * \return The upper limit loading.
+             *        The Cul coefficient.
+             * \return The upper limit of loading.
              */
             static double UpperLimitLoading(
                 double depthMaximumWaveLoad,
@@ -98,23 +98,23 @@ namespace DiKErnel::FunctionLibrary
                 double upperLimitLoadingCul);
 
             /*!
-              * \brief Calculates the lower limit loading.
-              * \param depthMaximumWaveLoad
-              *        The maximum wave load depth.
-              * \param surfSimilarityParameter
-              *        The surf similarity parameter.
-              * \param waterLevel
-              *        The water level.
-              * \param waveHeightHm0
-              *        The wave height.
-              * \param lowerLimitLoadingAll
-              *        The lower limit loading All.
-              * \param lowerLimitLoadingBll
-              *        The lower limit loading Bll.
-              * \param lowerLimitLoadingCll
-              *        The lower limit loading Cll.
-              * \return The lower limit loading.
-              */
+             * \brief Calculates the lower limit of loading.
+             * \param depthMaximumWaveLoad
+             *        The maximum wave load depth.
+             * \param surfSimilarityParameter
+             *        The surf similarity parameter.
+             * \param waterLevel
+             *        The water level.
+             * \param waveHeightHm0
+             *        The wave height.
+             * \param lowerLimitLoadingAll
+             *        The All coefficient.
+             * \param lowerLimitLoadingBll
+             *        The Bll coefficient.
+             * \param lowerLimitLoadingCll
+             *        The Cll coefficient.
+             * \return The lower limit of loading.
+             */
             static double LowerLimitLoading(
                 double depthMaximumWaveLoad,
                 double surfSimilarityParameter,
@@ -140,18 +140,18 @@ namespace DiKErnel::FunctionLibrary
                 double slopeAngle);
 
             /*!
-             * \brief Calculates the maximum distance wave elevation.
+             * \brief Calculates the maximum distance of wave elevation.
              * \param impactShallowWater
-             *        The impact shallow water.
+             *        The impact in shallow water.
              * \param waveSteepnessDeepWater
-             *        The wave steepness deep water
+             *        The wave steepness in deep water
              * \param waveHeightHm0
              *        The wave height.
              * \param distanceMaximumWaveElevationAsmax
-             *        The maximum distance wave elevation Asmax.
+             *        The Asmax coefficient.
              * \param distanceMaximumWaveElevationBsmax
-             *        The maximum distance wave elevation Bsmax.
-             * \return The maximum distance wave elevation.
+             *        The Bsmax coefficient.
+             * \return The maximum distance of wave elevation.
              */
             static double DistanceMaximumWaveElevation(
                 double impactShallowWater,
@@ -161,22 +161,22 @@ namespace DiKErnel::FunctionLibrary
                 double distanceMaximumWaveElevationBsmax);
 
             /*!
-             * \brief Calculates the impact shallow water.
-             * \return The impact shallow water.
+             * \brief Calculates the impact in shallow water.
+             * \return The impact in shallow water.
              */
             static double ImpactShallowWater();
 
             /*!
-             * \brief Calculates the normative width wave impact.
+             * \brief Calculates the normative width of wave impact.
              * \param surfSimilarityParameter
              *        The surf similarity parameter.
              * \param waveHeightHm0
              *        The wave height.
              * \param normativeWidthWaveImpactAwi
-             *        The normative width wave impact Awi.
+             *        The Awi coefficient.
              * \param normativeWidthWaveImpactBwi
-             *        The normative width wave impact Bwi.
-             * \return The normative width wave impact.
+             *        The Bwi coefficient.
+             * \return The normative width of wave impact.
              */
             static double NormativeWidthWaveImpact(
                 double surfSimilarityParameter,
@@ -185,12 +185,12 @@ namespace DiKErnel::FunctionLibrary
                 double normativeWidthWaveImpactBwi);
 
             /*!
-             * \brief Calculates the wave angle impact.
+             * \brief Calculates the angle of wave impact.
              * \param waveAngle
              *        The wave angle.
              * \param waveAngleImpactBetamax
-             *        The wave angle impact Betamax.
-             * \return The wave angle impact.
+             *        The Betamax coefficient.
+             * \return The angle of wave impact.
              */
             static double WaveAngleImpact(
                 double waveAngle,
@@ -211,7 +211,7 @@ namespace DiKErnel::FunctionLibrary
             /*!
              * \brief Calculates the increment of degradation.
              * \param referenceTimeDegradation
-             *        The reference time degradation.
+             *        The reference time of degradation.
              * \param incrementTime
              *        The increment of time.
              * \param wavePeriodTm10
@@ -226,7 +226,7 @@ namespace DiKErnel::FunctionLibrary
             /*!
              * \brief Calculates the degradation.
              * \param referenceTimeDegradation
-             *        The reference time degradation.
+             *        The reference time of degradation.
              * \param wavePeriodTm10
              *        The wave period.
              * \return The degradation.
@@ -236,28 +236,28 @@ namespace DiKErnel::FunctionLibrary
                 double wavePeriodTm10);
 
             /*!
-             * \brief Calculates the reference time degradation.
+             * \brief Calculates the reference time of degradation.
              * \param referenceDegradation
-             *        The reference degradation.
+             *        The reference of degradation.
              * \param wavePeriodTm10
              *        The wave period.
-             * \return The reference time degradation.
+             * \return The reference time of degradation.
              */
             static double ReferenceTimeDegradation(
                 double referenceDegradation,
                 double wavePeriodTm10);
 
             /*!
-             * \brief Calculates the reference degradation.
+             * \brief Calculates the reference of degradation.
              * \param resistance
              *        The resistance.
              * \param hydraulicLoad
              *        The hydraulic load.
              * \param waveAngleImpact
-             *        The wave angle impact.
+             *        The angle of wave impact.
              * \param initialDamage
              *        The initial damage.
-             * \return The reference degradation.
+             * \return The reference of degradation.
              */
             static double ReferenceDegradation(
                 double resistance,
@@ -268,9 +268,9 @@ namespace DiKErnel::FunctionLibrary
             /*!
              * \brief Calculates the duration in the time step of failure.
              * \param referenceTimeFailure
-             *        The reference time failure.
+             *        The reference time of failure.
              * \param referenceTimeDegradation
-             *        The reference time degradation.
+             *        The reference time of degradation.
              * \return The duration in the time step of failure.
              */
             static double DurationInTimeStepFailure(
@@ -278,28 +278,28 @@ namespace DiKErnel::FunctionLibrary
                 double referenceTimeDegradation);
 
             /*!
-             * \brief Calculates the reference time failure.
+             * \brief Calculates the reference time of failure.
              * \param referenceFailure
-             *        The reference failure.
+             *        The reference of failure.
              * \param wavePeriodTm10
              *        The wave period.
-             * \return The reference time failure.
+             * \return The reference time of failure.
              */
             static double ReferenceTimeFailure(
                 double referenceFailure,
                 double wavePeriodTm10);
 
             /*!
-             * \brief Calculates the reference failure.
+             * \brief Calculates the reference of failure.
              * \param resistance
              *        The resistance.
              * \param hydraulicLoad
              *        The hydraulic load.
              * \param waveAngleImpact
-             *        The wave angle impact.
+             *        The angle of wave impact.
              * \param failureNumber
              *        The failure number.
-             * \return The reference failure.
+             * \return The reference of failure.
              */
             static double ReferenceFailure(
                 double resistance,
