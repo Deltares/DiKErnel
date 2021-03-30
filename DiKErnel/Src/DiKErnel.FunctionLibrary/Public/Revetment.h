@@ -28,14 +28,40 @@ namespace DiKErnel::FunctionLibrary
     class Revetment
     {
         public:
+            /*!
+             * \brief Calculates the increment of time.
+             * \param startTime
+             *        The start time.
+             * \param endTime
+             *        The end time.
+             * \return The increment of time.
+             */
             static int IncrementTime(
                 int startTime,
                 int endTime);
 
+            /*!
+             * \brief Calculates the damage.
+             * \param incrementDamage
+             *        The increment of damage.
+             * \param initialDamage
+             *        The initial damage.
+             * \return The damage.
+             */
             static double Damage(
                 double incrementDamage,
                 double initialDamage);
 
+            /*!
+             * \brief Calculates whether the revetment has failed or not.
+             * \param damage
+             *        The damage.
+             * \param initialDamage
+             *        The initial damage.
+             * \param failureNumber
+             *        The failure number.
+             * \return Whether the revetment has failed or not.
+             */
             static bool FailureRevetment(
                 double damage,
                 double initialDamage,

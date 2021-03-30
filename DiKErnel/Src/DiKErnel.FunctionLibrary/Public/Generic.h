@@ -28,8 +28,19 @@ namespace DiKErnel::FunctionLibrary
     class Generic
     {
         public:
+
+            /*!
+             * \brief Calculates the value of Pi.
+             * \return The value of Pi.
+             */
             static double Pi();
 
+            /*!
+             * \brief Converts a degrees value into radians.
+             * \param degrees
+             *        The value in degrees.
+             * \return The value in radians.
+             */
             static double Radians(
                 double degrees);
     };
