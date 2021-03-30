@@ -21,6 +21,8 @@
 #include <gtest/gtest.h>
 
 #include "AssertHelper.h"
+#include "GrassRevetmentWaveImpactLocationDependentInput.h"
+#include "GrassRevetmentWaveImpactLocationDependentInputAssertHelper.h"
 #include "InvalidCalculationDataException.h"
 #include "LocationDependentInputAssertHelper.h"
 #include "NaturalStoneRevetmentLocationConstructionProperties.h"
@@ -103,6 +105,17 @@ namespace DiKErnel::Integration::Test
         // Then
         AssertHelper::AssertThrowsWithMessageAndInnerException<RevetmentCalculationInputBuilderException, InvalidCalculationDataException>(
             action, "Could not create TimeDependentInput.", "'beginTime' should be smaller than 'endTime'.");
+    }
+
+    TEST_F(RevetmentCalculationInputBuilderTest, GivenBuilderWithInvalidTimeSteps_WhenBuild_ThenThrowsRevetmentCalculationInputBuilderException)
+    {
+        // Given & When
+        const auto action = &RevetmentCalculationInputBuilderTest::CreateBuilderAndAddNonSuccessiveTimeSteps;
+
+        // Then
+        AssertHelper::AssertThrowsWithMessageAndInnerException<RevetmentCalculationInputBuilderException, InvalidCalculationDataException>(
+            action, "Could not create TimeDependentInput.",
+            "The begin time of a successive element must equal the end time of the previous element.");
     }
 
     TEST_F(RevetmentCalculationInputBuilderTest, GivenBuilderWithFullyConfiguredNaturalStoneLocationAdded_WhenBuild_ThenReturnsCalculationInput)
@@ -237,7 +250,7 @@ namespace DiKErnel::Integration::Test
         NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertMandatoryProperties(
             name, tanA, positionZ, relativeDensity, thicknessTopLayer, *locationDependentInput);
 
-        LocationDependentInputAssertHelper::AssertDamageProperties(0, 1, *locationDependentInput);
+        LocationDependentInputAssertHelper::AssertDamageProperties(0.0, 1.0, *locationDependentInput);
         NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertHydraulicLoads(
             4, 0, 0, -0.9, 0.8, 0, 0, 0.6, 2.9, locationDependentInput->GetHydraulicLoads());
         NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertUpperLimitLoading(
@@ -252,14 +265,182 @@ namespace DiKErnel::Integration::Test
             78, locationDependentInput->GetWaveAngleImpact());
     }
 
-    TEST_F(RevetmentCalculationInputBuilderTest, GivenBuilderWithInvalidTimeSteps_WhenBuild_ThenThrowsRevetmentCalculationInputBuilderException)
+    TEST_F(RevetmentCalculationInputBuilderTest, GivenBuilderWithFullyConfiguredGrassWaveImpactLocationAdded_WhenBuild_ReturnsCalculationInput)
     {
-        // Given & When
-        const auto action = &RevetmentCalculationInputBuilderTest::CreateBuilderAndAddNonSuccessiveTimeSteps;
+        // Given
+        const auto topLayerType = static_cast<GrassRevetmentWaveImpactLocationConstructionProperties::TopLayerType>(rand() % 2);
+        const string name = "Test";
+        const auto tanA = 0.1;
+        const auto positionZ = 0.2;
+        const auto initialDamage = 0.3;
+        const auto failureNumber = 0.4;
+        const auto failureTimeAgwi = 0.5;
+        const auto failureTimeBgwi = 0.6;
+        const auto failureTimeCgwi = 0.7;
+        const auto minimumWaveHeightTemax = 0.8;
+        const auto maximumWaveHeightTemin = 0.9;
+        const auto waveAngleImpactNwa = 1.0;
+        const auto waveAngleImpactQwa = 1.1;
+        const auto waveAngleImpactRwa = 1.2;
+        const auto upperLimitLoadingAul = 1.3;
+        const auto lowerLimitLoadingAll = 1.4;
+
+        GrassRevetmentWaveImpactLocationConstructionProperties constructionProperties(
+            name, tanA, positionZ, topLayerType);
+        constructionProperties.SetInitialDamage(make_unique<double>(initialDamage));
+        constructionProperties.SetFailureNumber(make_unique<double>(failureNumber));
+        constructionProperties.SetFailureTimeAgwi(make_unique<double>(failureTimeAgwi));
+        constructionProperties.SetFailureTimeBgwi(make_unique<double>(failureTimeBgwi));
+        constructionProperties.SetFailureTimeCgwi(make_unique<double>(failureTimeCgwi));
+        constructionProperties.SetMinimumWaveHeightTemax(make_unique<double>(minimumWaveHeightTemax));
+        constructionProperties.SetMaximumWaveHeightTemin(make_unique<double>(maximumWaveHeightTemin));
+        constructionProperties.SetWaveAngleImpactNwa(make_unique<double>(waveAngleImpactNwa));
+        constructionProperties.SetWaveAngleImpactQwa(make_unique<double>(waveAngleImpactQwa));
+        constructionProperties.SetWaveAngleImpactRwa(make_unique<double>(waveAngleImpactRwa));
+        constructionProperties.SetUpperLimitLoadingAul(make_unique<double>(upperLimitLoadingAul));
+        constructionProperties.SetLowerLimitLoadingAll(make_unique<double>(lowerLimitLoadingAll));
+
+        RevetmentCalculationInputBuilder builder;
+        builder.AddGrassWaveImpactLocation(constructionProperties);
+
+        // When
+        const auto calculationInput = builder.Build();
 
         // Then
-        AssertHelper::AssertThrowsWithMessageAndInnerException<RevetmentCalculationInputBuilderException, InvalidCalculationDataException>(
-            action, "Could not create TimeDependentInput.",
-            "The begin time of a successive element must equal the end time of the previous element.");
+        ASSERT_EQ(0, calculationInput->GetTimeDependentInputItems().size());
+
+        const auto& actualLocationDependentInputItems = calculationInput->GetLocationDependentInputItems();
+        ASSERT_EQ(1, actualLocationDependentInputItems.size());
+
+        const auto* locationDependentInput = dynamic_cast<GrassRevetmentWaveImpactLocationDependentInput*>(
+            &actualLocationDependentInputItems[0].get());
+        ASSERT_TRUE(locationDependentInput != nullptr);
+
+        LocationDependentInputAssertHelper::AssertDamageProperties(initialDamage, failureNumber, *locationDependentInput);
+
+        GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertMandatoryProperties(
+            name, tanA, positionZ, *locationDependentInput);
+
+        GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertMinimumWaveHeight(
+            minimumWaveHeightTemax, *locationDependentInput);
+
+        GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertMaximumWaveHeight(
+            maximumWaveHeightTemin, *locationDependentInput);
+
+        GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertWaveAngleImpact(
+            waveAngleImpactNwa, waveAngleImpactQwa, waveAngleImpactRwa, locationDependentInput->GetWaveAngleImpact());
+
+        GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertFailureTime(
+            failureTimeAgwi, failureTimeBgwi, failureTimeCgwi, locationDependentInput->GetFailureTime());
+
+        GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertUpperLimitLoading(
+            upperLimitLoadingAul, *locationDependentInput);
+
+        GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertLowerLimitLoading(
+            lowerLimitLoadingAll, *locationDependentInput);
+    }
+
+    TEST_F(RevetmentCalculationInputBuilderTest,
+           GivenBuilderWithNotFullyConfiguredClosedSodGrassWaveImpactLocationAdded_WhenBuild_ReturnsCalculationInput)
+    {
+        // Given
+        const auto topLayerType = GrassRevetmentWaveImpactLocationConstructionProperties::TopLayerType::ClosedSod;
+        const string name = "Test";
+        const auto tanA = 0.1;
+        const auto positionZ = 0.2;
+
+        GrassRevetmentWaveImpactLocationConstructionProperties constructionProperties(
+            name, tanA, positionZ, topLayerType);
+
+        RevetmentCalculationInputBuilder builder;
+        builder.AddGrassWaveImpactLocation(constructionProperties);
+
+        // When
+        const auto calculationInput = builder.Build();
+
+        // Then
+        ASSERT_EQ(0, calculationInput->GetTimeDependentInputItems().size());
+
+        const auto& actualLocationDependentInputItems = calculationInput->GetLocationDependentInputItems();
+        ASSERT_EQ(1, actualLocationDependentInputItems.size());
+
+        const auto* locationDependentInput = dynamic_cast<GrassRevetmentWaveImpactLocationDependentInput*>(
+            &actualLocationDependentInputItems[0].get());
+        ASSERT_TRUE(locationDependentInput != nullptr);
+
+        LocationDependentInputAssertHelper::AssertDamageProperties(0.0, 1.0, *locationDependentInput);
+
+        GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertMandatoryProperties(
+            name, tanA, positionZ, *locationDependentInput);
+
+        GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertMinimumWaveHeight(
+            3600000, *locationDependentInput);
+
+        GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertMaximumWaveHeight(
+            3.6, *locationDependentInput);
+
+        GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertWaveAngleImpact(
+            2.0 / 3.0, 0.35, 10.0, locationDependentInput->GetWaveAngleImpact());
+
+        GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertFailureTime(
+            1.0, -0.000009722, 0.25, locationDependentInput->GetFailureTime());
+
+        GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertUpperLimitLoading(
+            0.0, *locationDependentInput);
+
+        GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertLowerLimitLoading(
+            0.5, *locationDependentInput);
+    }
+
+    TEST_F(RevetmentCalculationInputBuilderTest,
+           GivenBuilderWithNotFullyConfiguredOpenSodGrassWaveImpactLocationAdded_WhenBuild_ReturnsCalculationInput)
+    {
+        // Given
+        const auto topLayerType = GrassRevetmentWaveImpactLocationConstructionProperties::TopLayerType::OpenSod;
+        const string name = "Test";
+        const auto tanA = 0.1;
+        const auto positionZ = 0.2;
+
+        GrassRevetmentWaveImpactLocationConstructionProperties constructionProperties(
+            name, tanA, positionZ, topLayerType);
+
+        RevetmentCalculationInputBuilder builder;
+        builder.AddGrassWaveImpactLocation(constructionProperties);
+
+        // When
+        const auto calculationInput = builder.Build();
+
+        // Then
+        ASSERT_EQ(0, calculationInput->GetTimeDependentInputItems().size());
+
+        const auto& actualLocationDependentInputItems = calculationInput->GetLocationDependentInputItems();
+        ASSERT_EQ(1, actualLocationDependentInputItems.size());
+
+        const auto* locationDependentInput = dynamic_cast<GrassRevetmentWaveImpactLocationDependentInput*>(
+            &actualLocationDependentInputItems[0].get());
+        ASSERT_TRUE(locationDependentInput != nullptr);
+
+        LocationDependentInputAssertHelper::AssertDamageProperties(0.0, 1.0, *locationDependentInput);
+
+        GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertMandatoryProperties(
+            name, tanA, positionZ, *locationDependentInput);
+
+        GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertMinimumWaveHeight(
+            3600000, *locationDependentInput);
+
+        GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertMaximumWaveHeight(
+            3.6, *locationDependentInput);
+
+        GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertWaveAngleImpact(
+            2.0 / 3.0, 0.35, 10.0, locationDependentInput->GetWaveAngleImpact());
+
+        GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertFailureTime(
+            0.8, -0.00001944, 0.25, locationDependentInput->GetFailureTime());
+
+        GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertUpperLimitLoading(
+            0.0, *locationDependentInput);
+
+        GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertLowerLimitLoading(
+            0.5, *locationDependentInput);
     }
 }

@@ -20,6 +20,9 @@
 
 #include "RevetmentCalculationInputBuilder.h"
 
+#include "GrassRevetmentWaveImpactClosedSodDefaults.h"
+#include "GrassRevetmentWaveImpactLocationDependentInput.h"
+#include "GrassRevetmentWaveImpactOpenSodDefaults.h"
 #include "InvalidCalculationDataException.h"
 #include "NaturalStoneRevetmentLocationConstructionProperties.h"
 #include "NaturalStoneRevetmentLocationDependentInput.h"
@@ -116,6 +119,77 @@ namespace DiKErnel::Integration
                 move(distanceMaximumWaveElevation),
                 move(normativeWidthOfWaveImpact),
                 move(waveAngleImpact)));
+    }
+
+    void RevetmentCalculationInputBuilder::AddGrassWaveImpactLocation(
+        const GrassRevetmentWaveImpactLocationConstructionProperties& constructionProperties)
+    {
+        unique_ptr<GrassRevetmentWaveImpactWaveAngleImpact> waveAngleImpact;
+        unique_ptr<GrassRevetmentWaveImpactFailureTime> failureTime;
+
+        double minimumWaveHeightTemax;
+        double maximumWaveHeightTemin;
+        double upperLimitLoadingAul;
+        double lowerLimitLoadingAll;
+
+        const auto topLayerType = constructionProperties.GetTopLayerType();
+        if (topLayerType == GrassRevetmentWaveImpactLocationConstructionProperties::TopLayerType::ClosedSod)
+        {
+            waveAngleImpact = make_unique<GrassRevetmentWaveImpactWaveAngleImpact>(
+                GetValue(constructionProperties.GetWaveAngleImpactNwa(), GrassRevetmentWaveImpactClosedSodDefaults::WAVE_ANGLE_IMPACT_NWA),
+                GetValue(constructionProperties.GetWaveAngleImpactQwa(), GrassRevetmentWaveImpactClosedSodDefaults::WAVE_ANGLE_IMPACT_QWA),
+                GetValue(constructionProperties.GetWaveAngleImpactRwa(), GrassRevetmentWaveImpactClosedSodDefaults::WAVE_ANGLE_IMPACT_RWA));
+
+            failureTime = make_unique<GrassRevetmentWaveImpactFailureTime>(
+                GetValue(constructionProperties.GetFailureTimeAgwi(), GrassRevetmentWaveImpactClosedSodDefaults::FAILURE_TIME_AGWI),
+                GetValue(constructionProperties.GetFailureTimeBgwi(), GrassRevetmentWaveImpactClosedSodDefaults::FAILURE_TIME_BGWI),
+                GetValue(constructionProperties.GetFailureTimeCgwi(), GrassRevetmentWaveImpactClosedSodDefaults::FAILURE_TIME_CGWI));
+
+            minimumWaveHeightTemax = GetValue(constructionProperties.GetMinimumWaveHeightTemax(),
+                                              GrassRevetmentWaveImpactClosedSodDefaults::MINIMUM_WAVE_HEIGHT_TEMAX);
+            maximumWaveHeightTemin = GetValue(constructionProperties.GetMaximumWaveHeightTemin(),
+                                              GrassRevetmentWaveImpactClosedSodDefaults::MAXIMUM_WAVE_HEIGHT_TEMIN);
+            upperLimitLoadingAul = GetValue(constructionProperties.GetUpperLimitLoadingAul(),
+                                            GrassRevetmentWaveImpactClosedSodDefaults::UPPER_LIMIT_LOADING_AUL);
+            lowerLimitLoadingAll = GetValue(constructionProperties.GetLowerLimitLoadingAll(),
+                                            GrassRevetmentWaveImpactClosedSodDefaults::LOWER_LIMIT_LOADING_ALL);
+        }
+
+        if (topLayerType == GrassRevetmentWaveImpactLocationConstructionProperties::TopLayerType::OpenSod)
+        {
+            waveAngleImpact = make_unique<GrassRevetmentWaveImpactWaveAngleImpact>(
+                GetValue(constructionProperties.GetWaveAngleImpactNwa(), GrassRevetmentWaveImpactOpenSodDefaults::WAVE_ANGLE_IMPACT_NWA),
+                GetValue(constructionProperties.GetWaveAngleImpactQwa(), GrassRevetmentWaveImpactOpenSodDefaults::WAVE_ANGLE_IMPACT_QWA),
+                GetValue(constructionProperties.GetWaveAngleImpactRwa(), GrassRevetmentWaveImpactOpenSodDefaults::WAVE_ANGLE_IMPACT_RWA));
+
+            failureTime = make_unique<GrassRevetmentWaveImpactFailureTime>(
+                GetValue(constructionProperties.GetFailureTimeAgwi(), GrassRevetmentWaveImpactOpenSodDefaults::FAILURE_TIME_AGWI),
+                GetValue(constructionProperties.GetFailureTimeBgwi(), GrassRevetmentWaveImpactOpenSodDefaults::FAILURE_TIME_BGWI),
+                GetValue(constructionProperties.GetFailureTimeCgwi(), GrassRevetmentWaveImpactOpenSodDefaults::FAILURE_TIME_CGWI));
+
+            minimumWaveHeightTemax = GetValue(constructionProperties.GetMinimumWaveHeightTemax(),
+                                              GrassRevetmentWaveImpactOpenSodDefaults::MINIMUM_WAVE_HEIGHT_TEMAX);
+            maximumWaveHeightTemin = GetValue(constructionProperties.GetMaximumWaveHeightTemin(),
+                                              GrassRevetmentWaveImpactOpenSodDefaults::MAXIMUM_WAVE_HEIGHT_TEMIN);
+            upperLimitLoadingAul = GetValue(constructionProperties.GetUpperLimitLoadingAul(),
+                                            GrassRevetmentWaveImpactOpenSodDefaults::UPPER_LIMIT_LOADING_AUL);
+            lowerLimitLoadingAll = GetValue(constructionProperties.GetLowerLimitLoadingAll(),
+                                            GrassRevetmentWaveImpactOpenSodDefaults::LOWER_LIMIT_LOADING_ALL);
+        }
+
+        _locationDependentInputItems.push_back(
+            make_unique<GrassRevetmentWaveImpactLocationDependentInput>(
+                constructionProperties.GetName(),
+                GetValue(constructionProperties.GetInitialDamage(), RevetmentDefaults::INITIAL_DAMAGE),
+                GetValue(constructionProperties.GetFailureNumber(), RevetmentDefaults::FAILURE_NUMBER),
+                constructionProperties.GetTanA(),
+                constructionProperties.GetPositionZ(),
+                move(waveAngleImpact),
+                minimumWaveHeightTemax,
+                maximumWaveHeightTemin,
+                move(failureTime),
+                upperLimitLoadingAul,
+                lowerLimitLoadingAll));
     }
 
     unique_ptr<ICalculationInput> RevetmentCalculationInputBuilder::Build()

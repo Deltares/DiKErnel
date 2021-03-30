@@ -21,6 +21,7 @@
 #pragma once
 
 #include "CalculationInput.h"
+#include "GrassRevetmentWaveImpactLocationConstructionProperties.h"
 #include "NaturalStoneRevetmentLocationConstructionProperties.h"
 
 namespace DiKErnel::Integration
@@ -68,6 +69,14 @@ namespace DiKErnel::Integration
              */
             void AddNaturalStoneLocation(
                 const NaturalStoneRevetmentLocationConstructionProperties& constructionProperties);
+
+            /*!
+             * \brief Adds a grass wave impact location.
+             * \param constructionProperties
+             *        The properties to construct the grass wave impact location dependent input.
+             */
+            void AddGrassWaveImpactLocation(
+                const GrassRevetmentWaveImpactLocationConstructionProperties& constructionProperties);
 
             /*!
              * \brief Builds the calculation input.
