@@ -190,41 +190,41 @@ namespace DiKErnel::FunctionLibrary::Test
     TEST(NaturalStoneRevetmentTest, IncrementDegradation_ValidInput_ExpectedValue)
     {
         // Setup
-        const auto referenceTimeDegradation = 1.1;
-        const auto incrementTime = 1.1;
-        const auto wavePeriodTm10 = 1.1;
+        const auto referenceTimeDegradation = 579.743;
+        const auto incrementTime = 900;
+        const auto wavePeriodTm10 = 5.5;
 
         // Call
         const auto incrementDegradation = NaturalStoneRevetment::IncrementDegradation(referenceTimeDegradation, incrementTime, wavePeriodTm10);
 
         // Assert
-        ASSERT_DOUBLE_EQ(1.1, incrementDegradation);
+        ASSERT_DOUBLE_EQ(0.078442472004777053, incrementDegradation);
     }
 
     TEST(NaturalStoneRevetmentTest, Degradation_ValidInput_ExpectedValue)
     {
         // Setup
-        const auto referenceTimeDegradation = 1.1;
-        const auto wavePeriodTm10 = 1.1;
+        const auto referenceTimeDegradation = 579.743;
+        const auto wavePeriodTm10 = 5.5;
 
         // Call
         const auto degradation = NaturalStoneRevetment::Degradation(referenceTimeDegradation, wavePeriodTm10);
 
         // Assert
-        ASSERT_DOUBLE_EQ(1.1, degradation);
+        ASSERT_DOUBLE_EQ(0.79852272914233136, degradation);
     }
 
     TEST(NaturalStoneRevetmentTest, ReferenceTimeDegradation_ValidInput_ExpectedValue)
     {
         // Setup
-        const auto referenceDegradation = 1.1;
-        const auto wavePeriodTm10 = 1.1;
+        const auto referenceDegradation = 0.802;
+        const auto wavePeriodTm10 = 5.5;
 
         // Call
         const auto referenceTimeDegradation = NaturalStoneRevetment::ReferenceTimeDegradation(referenceDegradation, wavePeriodTm10);
 
         // Assert
-        ASSERT_DOUBLE_EQ(1.1, referenceTimeDegradation);
+        ASSERT_DOUBLE_EQ(605.48915987364103, referenceTimeDegradation);
     }
 
     TEST(NaturalStoneRevetmentTest, ReferenceDegradation_ValidInput_ExpectedValue)
