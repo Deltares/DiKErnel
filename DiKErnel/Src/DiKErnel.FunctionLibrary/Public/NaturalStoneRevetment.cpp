@@ -107,8 +107,7 @@ namespace DiKErnel::FunctionLibrary
         const double normativeWidthOfWaveImpact,
         const double slopeAngle)
     {
-        return (distanceMaximumWaveElevation - 0.5 * normativeWidthOfWaveImpact * cos(Generic::Radians(slopeAngle)))
-                * tan(Generic::Radians(slopeAngle));
+        return (distanceMaximumWaveElevation - 0.5 * normativeWidthOfWaveImpact * cos(slopeAngle)) * tan(slopeAngle);
     }
 
     double NaturalStoneRevetment::DistanceMaximumWaveElevation(
