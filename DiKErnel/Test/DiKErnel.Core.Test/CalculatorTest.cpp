@@ -71,11 +71,11 @@ namespace DiKErnel::Core::Test
         ON_CALL(calculationInput, GetLocationDependentInputItems).WillByDefault(ReturnRef(_locationDependentInputItemReferences));
         ON_CALL(calculationInput, GetTimeDependentInputItems).WillByDefault(ReturnRef(_timeDependentInputItemReferences));
 
-        const auto* locationDependentInput = dynamic_cast<ILocationDependentInputMock*>(&_locationDependentInputItemReferences[0].get());
+        auto* locationDependentInput = dynamic_cast<ILocationDependentInputMock*>(&_locationDependentInputItemReferences[0].get());
         ASSERT_TRUE(locationDependentInput != nullptr);
 
+        locationDependentInput->SetDamage(damage);
         ON_CALL(*locationDependentInput, GetInitialDamage).WillByDefault(Return(0.1));
-        ON_CALL(*locationDependentInput, Calculate).WillByDefault(Return(damage));
 
         Calculator calculator(calculationInput);
 

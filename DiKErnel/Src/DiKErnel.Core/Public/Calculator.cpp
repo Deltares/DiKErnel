@@ -116,9 +116,9 @@ namespace DiKErnel::Core
                                                ? locationDependentInput.GetInitialDamage()
                                                : damages[j].back();
 
-                const auto damage = locationDependentInput.Calculate(initialDamage, timeDependentInput);
+                const auto timeDependentOutput = locationDependentInput.Calculate(initialDamage, timeDependentInput);
 
-                damages[j].push_back(damage);
+                damages[j].push_back(timeDependentOutput->GetDamage());
 
                 progress = progress + progressPerCalculationStep;
             }

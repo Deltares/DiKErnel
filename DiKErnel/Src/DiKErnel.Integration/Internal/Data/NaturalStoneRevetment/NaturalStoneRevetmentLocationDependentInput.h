@@ -50,7 +50,7 @@ namespace DiKErnel::Integration
                 std::unique_ptr<NaturalStoneRevetmentNormativeWidthOfWaveImpact> normativeWidthOfWaveImpact,
                 std::unique_ptr<NaturalStoneRevetmentWaveAngleImpact> waveAngleImpact);
 
-            double Calculate(
+            std::unique_ptr<Core::TimeDependentOutput> Calculate(
                 double initialDamage,
                 const Core::ITimeDependentInput& timeDependentInput) override;
 

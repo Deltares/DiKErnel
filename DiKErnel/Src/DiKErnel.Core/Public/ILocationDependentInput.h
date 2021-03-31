@@ -23,6 +23,7 @@
 #include <string>
 
 #include "ITimeDependentInput.h"
+#include "TimeDependentOutput.h"
 
 namespace DiKErnel::Core
 {
@@ -46,7 +47,7 @@ namespace DiKErnel::Core
              *        The time dependent input to use in the calculation.
              * \return The calculated damage.
              */
-            virtual double Calculate(
+            virtual std::unique_ptr<TimeDependentOutput> Calculate(
                 double initialDamage,
                 const ITimeDependentInput& timeDependentInput) = 0;
 

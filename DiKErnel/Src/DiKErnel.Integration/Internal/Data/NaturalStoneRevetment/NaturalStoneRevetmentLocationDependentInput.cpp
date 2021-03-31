@@ -57,7 +57,7 @@ namespace DiKErnel::Integration
           _normativeWidthOfWaveImpact(move(normativeWidthOfWaveImpact)),
           _waveAngleImpact(move(waveAngleImpact)) {}
 
-    double NaturalStoneRevetmentLocationDependentInput::Calculate(
+    unique_ptr<TimeDependentOutput> NaturalStoneRevetmentLocationDependentInput::Calculate(
         const double initialDamage,
         const ITimeDependentInput& timeDependentInput)
     {
@@ -184,7 +184,7 @@ namespace DiKErnel::Integration
                 waveAngleImpact);
         }
 
-        return Revetment::Damage(incrementDamage, initialDamage);
+        return make_unique<TimeDependentOutput>(Revetment::Damage(incrementDamage, initialDamage), nullptr);
     }
 
     double NaturalStoneRevetmentLocationDependentInput::GetRelativeDensity() const

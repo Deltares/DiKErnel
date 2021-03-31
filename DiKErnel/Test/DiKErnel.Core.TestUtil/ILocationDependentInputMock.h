@@ -29,11 +29,26 @@ namespace DiKErnel::Core::TestUtil
     class ILocationDependentInputMock : public ILocationDependentInput
     {
         public:
-            MOCK_METHOD(double, Calculate, (double initialDamage, const ITimeDependentInput& timeDependentInput), (override));
+            std::unique_ptr<TimeDependentOutput> Calculate(
+                double initialDamage,
+                const ITimeDependentInput& timeDependentInput) override
+            {
+                return std::make_unique<TimeDependentOutput>(_damage, nullptr);
+            };
+
             MOCK_METHOD(std::string, GetName, (), (const, override));
             MOCK_METHOD(double, GetInitialDamage, (), (const, override));
             MOCK_METHOD(double, GetFailureNumber, (), (const, override));
             MOCK_METHOD(double, GetTanA, (), (const, override));
             MOCK_METHOD(double, GetPositionZ, (), (const, override));
+
+            void SetDamage(
+                const double damage)
+            {
+                _damage = damage;
+            }
+
+        private:
+            double _damage;
     };
 }

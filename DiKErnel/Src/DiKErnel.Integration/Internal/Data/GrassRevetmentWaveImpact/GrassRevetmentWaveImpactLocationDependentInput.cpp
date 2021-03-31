@@ -50,7 +50,7 @@ namespace DiKErnel::Integration
           _upperLimitLoadingAul(upperLimitLoadingAul),
           _lowerLimitLoadingAll(lowerLimitLoadingAll) {}
 
-    double GrassRevetmentWaveImpactLocationDependentInput::Calculate(
+    unique_ptr<TimeDependentOutput> GrassRevetmentWaveImpactLocationDependentInput::Calculate(
         const double initialDamage,
         const ITimeDependentInput& timeDependentInput)
     {
@@ -116,7 +116,7 @@ namespace DiKErnel::Integration
                 incrementTime, failureTime);
         }
 
-        return Revetment::Damage(incrementOfDamage, initialDamage);
+        return make_unique<TimeDependentOutput>(Revetment::Damage(incrementOfDamage, initialDamage), nullptr);
     }
 
     GrassRevetmentWaveImpactWaveAngleImpact& GrassRevetmentWaveImpactLocationDependentInput::GetWaveAngleImpact() const

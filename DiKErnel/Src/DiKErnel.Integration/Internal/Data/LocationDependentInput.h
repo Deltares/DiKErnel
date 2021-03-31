@@ -27,7 +27,7 @@ namespace DiKErnel::Integration
     class LocationDependentInput : public Core::ILocationDependentInput
     {
         public:
-            double Calculate(
+            std::unique_ptr<Core::TimeDependentOutput> Calculate(
                 double initialDamage,
                 const Core::ITimeDependentInput& timeDependentInput) override = 0;
 

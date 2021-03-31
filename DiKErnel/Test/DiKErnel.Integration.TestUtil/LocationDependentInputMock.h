@@ -42,6 +42,6 @@ namespace DiKErnel::Integration::TestUtil
                     tanA,
                     positionZ) {}
 
-            MOCK_METHOD(double, Calculate, (double initialDamage, const Core::ITimeDependentInput& timeDependentInput), (override));
+            MOCK_METHOD(std::unique_ptr<Core::TimeDependentOutput>, Calculate, (double initialDamage, const Core::ITimeDependentInput& timeDependentInput), (override));
     };
 }
