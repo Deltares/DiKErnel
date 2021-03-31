@@ -51,13 +51,13 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
         locationData->SetTimeLineAgwi(
             forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalValue(
-                readRevetment, GrassWaveImpactJsonInputDefinitions::FAILURE_TIME_AGWI)));
+                readRevetment, GrassWaveImpactJsonInputDefinitions::TIME_LINE_AGWI)));
         locationData->SetTimeLineBgwi(
             forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalValue(
-                readRevetment, GrassWaveImpactJsonInputDefinitions::FAILURE_TIME_BGWI)));
+                readRevetment, GrassWaveImpactJsonInputDefinitions::TIME_LINE_BGWI)));
         locationData->SetTimeLineCgwi(
             forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalValue(
-                readRevetment, GrassWaveImpactJsonInputDefinitions::FAILURE_TIME_CGWI)));
+                readRevetment, GrassWaveImpactJsonInputDefinitions::TIME_LINE_CGWI)));
 
         if (readCalculationMethod.contains(GrassWaveImpactJsonInputDefinitions::MINIMUM_WAVE_HEIGHT))
         {

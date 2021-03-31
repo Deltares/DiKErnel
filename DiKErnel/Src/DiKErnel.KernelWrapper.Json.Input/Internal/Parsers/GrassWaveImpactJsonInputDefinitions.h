@@ -27,9 +27,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
     class GrassWaveImpactJsonInputDefinitions
     {
         public:
-            inline static const std::string FAILURE_TIME_AGWI = "StandtijdlijnGrasGolfklapAgwi";
-            inline static const std::string FAILURE_TIME_BGWI = "StandtijdlijnGrasGolfklapBgwi";
-            inline static const std::string FAILURE_TIME_CGWI = "StandtijdlijnGrasGolfklapCgwi";
+            inline static const std::string TIME_LINE_AGWI = "StandtijdlijnGrasGolfklapAgwi";
+            inline static const std::string TIME_LINE_BGWI = "StandtijdlijnGrasGolfklapBgwi";
+            inline static const std::string TIME_LINE_CGWI = "StandtijdlijnGrasGolfklapCgwi";
 
             inline static const std::string MINIMUM_WAVE_HEIGHT = "MinimumGolfhoogteGrasGolfklap";
             inline static const std::string MINIMUM_WAVE_HEIGHT_TEMAX = "MinimumGolfhoogteGrasGolfklapTemax";
