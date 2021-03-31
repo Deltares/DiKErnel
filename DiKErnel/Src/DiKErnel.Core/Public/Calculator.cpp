@@ -88,7 +88,7 @@ namespace DiKErnel::Core
         const auto& timeDependentInputItems = calculationInput.GetTimeDependentInputItems();
         const auto& locationDependentInputItems = calculationInput.GetLocationDependentInputItems();
 
-        auto damages = vector<vector<double>>(locationDependentInputItems.size(), vector<double>());
+        auto timeDependentOutputItems = vector<vector<unique_ptr<TimeDependentOutput>>>(locationDependentInputItems.size());
 
         const auto progressPerCalculationStep = 1.0
                 / static_cast<double>(timeDependentInputItems.size())
@@ -114,11 +114,11 @@ namespace DiKErnel::Core
 
                 const auto initialDamage = i == 0
                                                ? locationDependentInput.GetInitialDamage()
-                                               : damages[j].back();
+                                               : timeDependentOutputItems[j].back()->GetDamage();
 
-                const auto timeDependentOutput = locationDependentInput.Calculate(initialDamage, timeDependentInput);
+                auto timeDependentOutput = locationDependentInput.Calculate(initialDamage, timeDependentInput);
 
-                damages[j].push_back(timeDependentOutput->GetDamage());
+                timeDependentOutputItems[j].push_back(move(timeDependentOutput));
 
                 progress = progress + progressPerCalculationStep;
             }
@@ -126,19 +126,25 @@ namespace DiKErnel::Core
 
         if (!isCancelled)
         {
-            CreateOutput(damages);
+            CreateOutput(timeDependentOutputItems);
             isFinished = true;
         }
     }
 
     void Calculator::CreateOutput(
-        const vector<vector<double>>& damages)
+        const vector<vector<unique_ptr<TimeDependentOutput>>>& timeDependentOutputItems)
     {
         auto locationDependentOutputItems = vector<unique_ptr<LocationDependentOutput>>();
 
-        for (const auto& locationDamages : damages)
+        for (const auto& timeDependentOutputItemsPerLocation : timeDependentOutputItems)
         {
-            locationDependentOutputItems.push_back(make_unique<LocationDependentOutput>(locationDamages, nullptr));
+            vector<double> damages;
+            for (const auto& timeDependentOutput : timeDependentOutputItemsPerLocation)
+            {
+                damages.push_back(timeDependentOutput->GetDamage());
+            }
+
+            locationDependentOutputItems.push_back(make_unique<LocationDependentOutput>(damages, nullptr));
         }
 
         _calculationOutput = make_shared<CalculationOutput>(move(locationDependentOutputItems));

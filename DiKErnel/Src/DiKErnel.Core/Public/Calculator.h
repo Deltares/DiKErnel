@@ -95,6 +95,6 @@ namespace DiKErnel::Core
                 const std::atomic<bool>& isCancelled);
 
             void CreateOutput(
-                const std::vector<std::vector<double>>& damages);
+                const std::vector<std::vector<std::unique_ptr<TimeDependentOutput>>>& timeDependentOutputItems);
     };
 }
