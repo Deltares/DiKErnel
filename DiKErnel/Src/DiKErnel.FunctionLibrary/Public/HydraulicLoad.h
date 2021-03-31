@@ -34,7 +34,7 @@ namespace DiKErnel::FunctionLibrary
              *        The tanA.
              *        Unit = [-]
              * \return The slope angle.
-             *         Unit = [rad]
+             *         Unit = [deg]
              */
             static double SlopeAngle(
                 double tanA);

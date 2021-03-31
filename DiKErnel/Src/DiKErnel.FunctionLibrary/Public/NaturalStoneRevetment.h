@@ -162,7 +162,7 @@ namespace DiKErnel::FunctionLibrary
              *        Unit = [m]
              * \param slopeAngle
              *        The slope angle.
-             *        Unit = [rad]
+             *        Unit = [deg]
              * \return The maximum wave load depth.
              *         Unit = [m]
              */
