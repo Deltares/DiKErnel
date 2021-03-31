@@ -34,7 +34,7 @@ namespace DiKErnel::FunctionLibrary
              *        The tanA.
              *        Unit = [-]
              * \return The slope angle.
-             *         Unit = [-]
+             *         Unit = [rad]
              */
             static double SlopeAngle(
                 double tanA);
@@ -43,39 +43,19 @@ namespace DiKErnel::FunctionLibrary
              * \brief Calculates whether there is loading of the revetment.
              * \param lowerLimitLoadingRevetment
              *        The lower limit of loading.
-             *        Unit = [-]
+             *        Unit = [m]
              * \param upperLimitLoadingRevetment
              *        The upper limit of loading.
-             *        Unit = [-]
+             *        Unit = [m]
              * \param positionZ
              *        The vertical position.
-             *        Unit = [-]
+             *        Unit = [m]
              * \return Whether there is loading of the revetment.
-             *         Unit = [-]
              */
             static bool LoadingRevetment(
                 double lowerLimitLoadingRevetment,
                 double upperLimitLoadingRevetment,
                 double positionZ);
-
-            /*!
-             * \brief Calculates the wave steepness in deep water.
-             * \param waveHeightHm0
-             *        The wave height.
-             *        Unit = [-]
-             * \param wavePeriodTm10
-             *        The wave period.
-             *        Unit = [-]
-             * \param gravitationalAcceleration
-             *        The gravitational acceleration.
-             *        Unit = [-]
-             * \return The wave steepness in deep water.
-             *         Unit = [-]
-             */
-            static double WaveSteepnessDeepWater(
-                double waveHeightHm0,
-                double wavePeriodTm10,
-                double gravitationalAcceleration);
 
             /*!
              * \brief Calculates the surf similarity parameter.
@@ -84,18 +64,37 @@ namespace DiKErnel::FunctionLibrary
              *        Unit = [-]
              * \param waveHeightHm0
              *        The wave height.
-             *        Unit = [-]
+             *        Unit = [m]
              * \param wavePeriodTm10
              *        The wave period.
-             *        Unit = [-]
+             *        Unit = [s]
              * \param gravitationalAcceleration
              *        The gravitational acceleration.
-             *        Unit = [-]
+             *        Unit = [m/s^2]
              * \return The surf similarity parameter.
              *         Unit = [-]
              */
             static double SurfSimilarityParameter(
                 double tanA,
+                double waveHeightHm0,
+                double wavePeriodTm10,
+                double gravitationalAcceleration);
+
+            /*!
+             * \brief Calculates the wave steepness in deep water.
+             * \param waveHeightHm0
+             *        The wave height.
+             *        Unit = [m]
+             * \param wavePeriodTm10
+             *        The wave period.
+             *        Unit = [s]
+             * \param gravitationalAcceleration
+             *        The gravitational acceleration.
+             *        Unit = [m/s^2]
+             * \return The wave steepness in deep water.
+             *         Unit = [-]
+             */
+            static double WaveSteepnessDeepWater(
                 double waveHeightHm0,
                 double wavePeriodTm10,
                 double gravitationalAcceleration);

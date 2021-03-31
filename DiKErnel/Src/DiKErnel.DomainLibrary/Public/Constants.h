@@ -30,7 +30,7 @@ namespace DiKErnel::DomainLibrary
         public:
             /*!
              * \brief The value of the gravitational acceleration.
-             *        Unit = [m/s²]
+             *        Unit = [m/s^2]
              */
             inline static const double GRAVITATIONAL_ACCELERATION = 9.81;
     };

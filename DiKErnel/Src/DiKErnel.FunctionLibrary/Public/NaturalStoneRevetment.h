@@ -32,15 +32,15 @@ namespace DiKErnel::FunctionLibrary
              * \brief Calculates the increment of damage.
              * \param hydraulicLoad
              *        The hydraulic load.
-             *        Unit = [-]
+             *        Unit = [m]
              * \param resistance
              *        The resistance.
-             *        Unit = [-]
+             *        Unit = [m]
              * \param incrementDegradation
              *        The increment of degradation.
              *        Unit = [-]
              * \param waveAngleImpact
-             *        The angle of the wave impact.
+             *        The wave impact with respect to the wave angle.
              *        Unit = [-]
              * \return The increment of damage.
              *         Unit = [-]
@@ -58,7 +58,7 @@ namespace DiKErnel::FunctionLibrary
              *        Unit = [-]
              * \param waveHeightHm0
              *        The wave height.
-             *        Unit = [-]
+             *        Unit = [m]
              * \param hydraulicLoadA
              *        The A coefficient.
              *        Unit = [-]
@@ -72,7 +72,7 @@ namespace DiKErnel::FunctionLibrary
              *        The N coefficient.
              *        Unit = [-]
              * \return The hydraulic load.
-             *         Unit = [-]
+             *         Unit = [m]
              */
             static double HydraulicLoad(
                 double surfSimilarityParameter,
@@ -86,16 +86,16 @@ namespace DiKErnel::FunctionLibrary
              * \brief Calculates the upper limit of loading.
              * \param depthMaximumWaveLoad
              *        The maximum wave load depth.
-             *        Unit = [-]
+             *        Unit = [m]
              * \param surfSimilarityParameter
              *        The surf similarity parameter.
              *        Unit = [-]
              * \param waterLevel
              *        The water level.
-             *        Unit = [-]
+             *        Unit = [m]
              * \param waveHeightHm0
              *        The wave height.
-             *        Unit = [-]
+             *        Unit = [m]
              * \param upperLimitLoadingAul
              *        The Aul coefficient.
              *        Unit = [-]
@@ -106,7 +106,7 @@ namespace DiKErnel::FunctionLibrary
              *        The Cul coefficient.
              *        Unit = [-]
              * \return The upper limit of loading.
-             *         Unit = [-]
+             *         Unit = [m]
              */
             static double UpperLimitLoading(
                 double depthMaximumWaveLoad,
@@ -121,16 +121,16 @@ namespace DiKErnel::FunctionLibrary
              * \brief Calculates the lower limit of loading.
              * \param depthMaximumWaveLoad
              *        The maximum wave load depth.
-             *        Unit = [-]
+             *        Unit = [m]
              * \param surfSimilarityParameter
              *        The surf similarity parameter.
              *        Unit = [-]
              * \param waterLevel
              *        The water level.
-             *        Unit = [-]
+             *        Unit = [m]
              * \param waveHeightHm0
              *        The wave height.
-             *        Unit = [-]
+             *        Unit = [m]
              * \param lowerLimitLoadingAll
              *        The All coefficient.
              *        Unit = [-]
@@ -141,7 +141,7 @@ namespace DiKErnel::FunctionLibrary
              *        The Cll coefficient.
              *        Unit = [-]
              * \return The lower limit of loading.
-             *         Unit = [-]
+             *         Unit = [m]
              */
             static double LowerLimitLoading(
                 double depthMaximumWaveLoad,
@@ -156,15 +156,15 @@ namespace DiKErnel::FunctionLibrary
              * \brief Calculates the maximum wave load depth.
              * \param distanceMaximumWaveElevation
              *        The maximum distance of wave elevation.
-             *        Unit = [-]
+             *        Unit = [m]
              * \param normativeWidthWaveImpact
              *        The normative width of wave impact.
-             *        Unit = [-]
+             *        Unit = [m]
              * \param slopeAngle
              *        The slope angle.
-             *        Unit = [-]
+             *        Unit = [rad]
              * \return The maximum wave load depth.
-             *         Unit = [-]
+             *         Unit = [m]
              */
             static double DepthMaximumWaveLoad(
                 double distanceMaximumWaveElevation,
@@ -181,7 +181,7 @@ namespace DiKErnel::FunctionLibrary
              *        Unit = [-]
              * \param waveHeightHm0
              *        The wave height.
-             *        Unit = [-]
+             *        Unit = [m]
              * \param distanceMaximumWaveElevationAsmax
              *        The Asmax coefficient.
              *        Unit = [-]
@@ -189,7 +189,7 @@ namespace DiKErnel::FunctionLibrary
              *        The Bsmax coefficient.
              *        Unit = [-]
              * \return The maximum distance of wave elevation.
-             *         Unit = [-]
+             *         Unit = [m]
              */
             static double DistanceMaximumWaveElevation(
                 double impactShallowWater,
@@ -212,7 +212,7 @@ namespace DiKErnel::FunctionLibrary
              *        Unit = [-]
              * \param waveHeightHm0
              *        The wave height.
-             *        Unit = [-]
+             *        Unit = [m]
              * \param normativeWidthWaveImpactAwi
              *        The Awi coefficient.
              *        Unit = [-]
@@ -220,7 +220,7 @@ namespace DiKErnel::FunctionLibrary
              *        The Bwi coefficient.
              *        Unit = [-]
              * \return The normative width of wave impact.
-             *         Unit = [-]
+             *         Unit = [m]
              */
             static double NormativeWidthWaveImpact(
                 double surfSimilarityParameter,
@@ -229,14 +229,14 @@ namespace DiKErnel::FunctionLibrary
                 double normativeWidthWaveImpactBwi);
 
             /*!
-             * \brief Calculates the angle of wave impact.
+             * \brief Calculates the wave impact with respect to the wave angle.
              * \param waveAngle
              *        The wave angle.
-             *        Unit = [-]
+             *        Unit = [deg]
              * \param waveAngleImpactBetamax
              *        The Betamax coefficient.
-             *        Unit = [-]
-             * \return The angle of wave impact.
+             *        Unit = [deg]
+             * \return The wave impact with respect to the wave angle.
              *         Unit = [-]
              */
             static double WaveAngleImpact(
@@ -250,9 +250,9 @@ namespace DiKErnel::FunctionLibrary
              *        Unit = [-]
              * \param thicknessTopLayer
              *        The thickness of the top layer.
-             *        Unit = [-]
+             *        Unit = [m]
              * \return The resistance.
-             *         Unit = [-]
+             *         Unit = [m]
              */
             static double Resistance(
                 double relativeDensity,
@@ -262,13 +262,13 @@ namespace DiKErnel::FunctionLibrary
              * \brief Calculates the increment of degradation.
              * \param referenceTimeDegradation
              *        The reference time of degradation.
-             *        Unit = [-]
+             *        Unit = [s]
              * \param incrementTime
              *        The increment of time.
-             *        Unit = [-]
+             *        Unit = [s]
              * \param wavePeriodTm10
              *        The wave period.
-             *        Unit = [-]
+             *        Unit = [s]
              * \return The increment of degradation.
              *         Unit = [-]
              */
@@ -281,10 +281,10 @@ namespace DiKErnel::FunctionLibrary
              * \brief Calculates the degradation.
              * \param referenceTimeDegradation
              *        The reference time of degradation.
-             *        Unit = [-]
+             *        Unit = [s]
              * \param wavePeriodTm10
              *        The wave period.
-             *        Unit = [-]
+             *        Unit = [s]
              * \return The degradation.
              *         Unit = [-]
              */
@@ -299,9 +299,9 @@ namespace DiKErnel::FunctionLibrary
              *        Unit = [-]
              * \param wavePeriodTm10
              *        The wave period.
-             *        Unit = [-]
+             *        Unit = [s]
              * \return The reference time of degradation.
-             *         Unit = [-]
+             *         Unit = [s]
              */
             static double ReferenceTimeDegradation(
                 double referenceDegradation,
@@ -311,12 +311,12 @@ namespace DiKErnel::FunctionLibrary
              * \brief Calculates the reference of degradation.
              * \param resistance
              *        The resistance.
-             *        Unit = [-]
+             *        Unit = [m]
              * \param hydraulicLoad
              *        The hydraulic load.
-             *        Unit = [-]
+             *        Unit = [m]
              * \param waveAngleImpact
-             *        The angle of wave impact.
+             *        The wave impact with respect to the wave angle.
              *        Unit = [-]
              * \param initialDamage
              *        The initial damage.
@@ -334,12 +334,12 @@ namespace DiKErnel::FunctionLibrary
              * \brief Calculates the duration in the time step of failure.
              * \param referenceTimeFailure
              *        The reference time of failure.
-             *        Unit = [-]
+             *        Unit = [s]
              * \param referenceTimeDegradation
              *        The reference time of degradation.
-             *        Unit = [-]
+             *        Unit = [s]
              * \return The duration in the time step of failure.
-             *         Unit = [-]
+             *         Unit = [s]
              */
             static double DurationInTimeStepFailure(
                 double referenceTimeFailure,
@@ -352,9 +352,9 @@ namespace DiKErnel::FunctionLibrary
              *        Unit = [-]
              * \param wavePeriodTm10
              *        The wave period.
-             *        Unit = [-]
+             *        Unit = [s]
              * \return The reference time of failure.
-             *         Unit = [-]
+             *         Unit = [s]
              */
             static double ReferenceTimeFailure(
                 double referenceFailure,
@@ -364,12 +364,12 @@ namespace DiKErnel::FunctionLibrary
              * \brief Calculates the reference of failure.
              * \param resistance
              *        The resistance.
-             *        Unit = [-]
+             *        Unit = [m]
              * \param hydraulicLoad
              *        The hydraulic load.
-             *        Unit = [-]
+             *        Unit = [m]
              * \param waveAngleImpact
-             *        The angle of wave impact.
+             *        The wave impact with respect to the wave angle.
              *        Unit = [-]
              * \param failureNumber
              *        The failure number.
