@@ -30,13 +30,13 @@ namespace DiKErnel::FunctionLibrary
         public:
             static double IncrementDamage(
                 double incrementTime,
-                double failureTime);
+                double timeLine);
 
             static double TimeLine(
                 double waveHeight,
-                double failureTimeAgwi,
-                double failureTimeBgwi,
-                double failureTimeCgwi);
+                double timeLineAgwi,
+                double timeLineBgwi,
+                double timeLineCgwi);
 
             static double WaveHeight(
                 double minimumWaveHeight,
@@ -45,15 +45,15 @@ namespace DiKErnel::FunctionLibrary
                 double waveHeightHm0);
 
             static double MinimumWaveHeight(
-                double failureTimeAgwi,
-                double failureTimeBgwi,
-                double failureTimeCgwi,
+                double timeLineAgwi,
+                double timeLineBgwi,
+                double timeLineCgwi,
                 double minimumWaveHeightTemax);
 
             static double MaximumWaveHeight(
-                double failureTimeAgwi,
-                double failureTimeBgwi,
-                double failureTimeCgwi,
+                double timeLineAgwi,
+                double timeLineBgwi,
+                double timeLineCgwi,
                 double maximumWaveHeightTemin);
 
             static double WaveAngleImpact(
@@ -73,7 +73,7 @@ namespace DiKErnel::FunctionLibrary
                 double lowerLimitLoadingAll);
 
             static double FailureTime(
-                double failureTime,
+                double timeLine,
                 double failureNumber,
                 double initialDamage);
     };

@@ -31,18 +31,18 @@ namespace DiKErnel::FunctionLibrary
 
     double GrassRevetmentWaveImpact::IncrementDamage(
         const double incrementTime,
-        const double failureTime)
+        const double timeLine)
     {
-        return incrementTime / failureTime;
+        return incrementTime / timeLine;
     }
 
     double GrassRevetmentWaveImpact::TimeLine(
         const double waveHeight,
-        const double failureTimeAgwi,
-        const double failureTimeBgwi,
-        const double failureTimeCgwi)
+        const double timeLineAgwi,
+        const double timeLineBgwi,
+        const double timeLineCgwi)
     {
-        return 1.0 / failureTimeBgwi * log((waveHeight - failureTimeCgwi) / failureTimeAgwi);
+        return 1.0 / timeLineBgwi * log((waveHeight - timeLineCgwi) / timeLineAgwi);
     }
 
     double GrassRevetmentWaveImpact::WaveHeight(
@@ -55,21 +55,21 @@ namespace DiKErnel::FunctionLibrary
     }
 
     double GrassRevetmentWaveImpact::MinimumWaveHeight(
-        const double failureTimeAgwi,
-        const double failureTimeBgwi,
-        const double failureTimeCgwi,
+        const double timeLineAgwi,
+        const double timeLineBgwi,
+        const double timeLineCgwi,
         const double minimumWaveHeightTemax)
     {
-        return failureTimeAgwi * exp(failureTimeBgwi * minimumWaveHeightTemax) + failureTimeCgwi;
+        return timeLineAgwi * exp(timeLineBgwi * minimumWaveHeightTemax) + timeLineCgwi;
     }
 
     double GrassRevetmentWaveImpact::MaximumWaveHeight(
-        const double failureTimeAgwi,
-        const double failureTimeBgwi,
-        const double failureTimeCgwi,
+        const double timeLineAgwi,
+        const double timeLineBgwi,
+        const double timeLineCgwi,
         const double maximumWaveHeightTemin)
     {
-        return failureTimeAgwi * exp(failureTimeBgwi * maximumWaveHeightTemin) + failureTimeCgwi;
+        return timeLineAgwi * exp(timeLineBgwi * maximumWaveHeightTemin) + timeLineCgwi;
     }
 
     double GrassRevetmentWaveImpact::WaveAngleImpact(
@@ -103,10 +103,10 @@ namespace DiKErnel::FunctionLibrary
     }
 
     double GrassRevetmentWaveImpact::FailureTime(
-        const double failureTime,
+        const double timeLine,
         const double failureNumber,
         const double initialDamage)
     {
-        return (failureNumber - initialDamage) * failureTime;
+        return (failureNumber - initialDamage) * timeLine;
     }
 }
