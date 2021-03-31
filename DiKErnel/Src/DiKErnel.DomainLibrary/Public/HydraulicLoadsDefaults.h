@@ -30,7 +30,7 @@ namespace DiKErnel::DomainLibrary
         public:
             /*!
              * \brief The default value of the wave angle.
-             *        Unit = [°]
+             *        Unit = [deg]
              */
             inline static const double WAVE_ANGLE = 0;
     };

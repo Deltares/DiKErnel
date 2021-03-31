@@ -144,7 +144,7 @@ namespace DiKErnel::DomainLibrary
 
             /*!
              * \brief The default value of the wave angle impact betamax.
-             *        Unit = [°]
+             *        Unit = [deg]
              */
             inline static const double WAVE_ANGLE_IMPACT_BETAMAX = 78;
     };
