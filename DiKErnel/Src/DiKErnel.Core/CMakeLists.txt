@@ -15,6 +15,8 @@ set(SOURCEFILES_PUBLIC
   ${PUBLIC_FOLDER}/ITimeDependentInput.h
   ${PUBLIC_FOLDER}/LocationDependentOutput.cpp
   ${PUBLIC_FOLDER}/LocationDependentOutput.h
+  ${PUBLIC_FOLDER}/TimeDependentOutput.cpp
+  ${PUBLIC_FOLDER}/TimeDependentOutput.h
 )
 
 # Add library

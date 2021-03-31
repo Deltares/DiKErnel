@@ -7,6 +7,7 @@ set(SOURCEFILES
   CalculatorTest.cpp
   LocationDependentOutputTest.cpp
   Main.cpp
+  TimeDependentOutputTest.cpp
 )
 
 # Add executable
