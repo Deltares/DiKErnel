@@ -139,12 +139,18 @@ namespace DiKErnel::Core
         for (const auto& timeDependentOutputItemsPerLocation : timeDependentOutputItems)
         {
             vector<double> damages;
+            unique_ptr<double> timeOfFailure;
             for (const auto& timeDependentOutput : timeDependentOutputItemsPerLocation)
             {
                 damages.push_back(timeDependentOutput->GetDamage());
+
+                if(timeDependentOutput->GetTimeOfFailure() != nullptr)
+                {
+                    timeOfFailure = make_unique<double>(*timeDependentOutput->GetTimeOfFailure());
+                }
             }
 
-            locationDependentOutputItems.push_back(make_unique<LocationDependentOutput>(damages, nullptr));
+            locationDependentOutputItems.push_back(make_unique<LocationDependentOutput>(damages, move(timeOfFailure)));
         }
 
         _calculationOutput = make_shared<CalculationOutput>(move(locationDependentOutputItems));

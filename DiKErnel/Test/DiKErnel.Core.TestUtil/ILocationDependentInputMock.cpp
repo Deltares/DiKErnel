@@ -20,4 +20,28 @@
 
 #include "ILocationDependentInputMock.h"
 
-namespace DiKErnel::Core::TestUtil {}
+namespace DiKErnel::Core::TestUtil
+{
+    using namespace std;
+
+    unique_ptr<TimeDependentOutput> ILocationDependentInputMock::Calculate(
+        double initialDamage,
+        const ITimeDependentInput& timeDependentInput)
+    {
+        return make_unique<TimeDependentOutput>(_damage, _timeOfFailure != nullptr
+                                                             ? make_unique<double>(*_timeOfFailure)
+                                                             : nullptr);
+    }
+
+    void ILocationDependentInputMock::SetDamage(
+        const double damage)
+    {
+        _damage = damage;
+    }
+
+    void ILocationDependentInputMock::SetTimeOfFailure(
+        double* timeOfFailure)
+    {
+        _timeOfFailure = timeOfFailure;
+    }
+}

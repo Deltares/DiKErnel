@@ -31,10 +31,7 @@ namespace DiKErnel::Core::TestUtil
         public:
             std::unique_ptr<TimeDependentOutput> Calculate(
                 double initialDamage,
-                const ITimeDependentInput& timeDependentInput) override
-            {
-                return std::make_unique<TimeDependentOutput>(_damage, nullptr);
-            };
+                const ITimeDependentInput& timeDependentInput) override;
 
             MOCK_METHOD(std::string, GetName, (), (const, override));
             MOCK_METHOD(double, GetInitialDamage, (), (const, override));
@@ -43,12 +40,13 @@ namespace DiKErnel::Core::TestUtil
             MOCK_METHOD(double, GetPositionZ, (), (const, override));
 
             void SetDamage(
-                const double damage)
-            {
-                _damage = damage;
-            }
+                double damage);
+
+            void SetTimeOfFailure(
+                double* timeOfFailure);
 
         private:
             double _damage;
+            double* _timeOfFailure = nullptr;
     };
 }

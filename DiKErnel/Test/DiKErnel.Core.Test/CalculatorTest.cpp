@@ -86,7 +86,29 @@ namespace DiKErnel::Core::Test
         ASSERT_EQ(100, calculator.GetProgress());
         ASSERT_TRUE(calculator.IsFinished());
         ASSERT_FALSE(calculator.IsCancelled());
+    }
 
+    TEST_F(CalculatorTest, GivenCalculator_WhenCalculationPerformedAndNoTimeOfFailure_ThenOutputSet)
+    {
+        // Given
+        const auto damage = 0.5;
+
+        NiceMock<ICalculationInputMock> calculationInput;
+        ON_CALL(calculationInput, GetLocationDependentInputItems).WillByDefault(ReturnRef(_locationDependentInputItemReferences));
+        ON_CALL(calculationInput, GetTimeDependentInputItems).WillByDefault(ReturnRef(_timeDependentInputItemReferences));
+
+        auto* locationDependentInput = dynamic_cast<ILocationDependentInputMock*>(&_locationDependentInputItemReferences[0].get());
+        ASSERT_TRUE(locationDependentInput != nullptr);
+
+        locationDependentInput->SetDamage(damage);
+        ON_CALL(*locationDependentInput, GetInitialDamage).WillByDefault(Return(0.1));
+
+        Calculator calculator(calculationInput);
+
+        // When
+        calculator.WaitForCompletion();
+
+        // Then
         const auto output = calculator.GetCalculationOutput();
 
         const auto& locationDependentOutputItems = output->GetLocationDependentOutputItems();
@@ -95,12 +117,53 @@ namespace DiKErnel::Core::Test
         const auto& actualDamages = locationDependentOutputItems[0].get().GetDamages();
         ASSERT_EQ(_timeDependentInputItemReferences.size(), actualDamages.size());
 
-        for (auto j = 0; j < _timeDependentInputItemReferences.size(); ++j)
+        for (auto j = 0; j < static_cast<int>(_timeDependentInputItemReferences.size()); ++j)
         {
             ASSERT_DOUBLE_EQ(damage, actualDamages[j]);
         }
 
         ASSERT_EQ(nullptr, locationDependentOutputItems[0].get().GetTimeOfFailure());
+    }
+
+    TEST_F(CalculatorTest, GivenCalculator_WhenCalculationPerformedAndTimeOfFailure_ThenOutputSet)
+    {
+        // Given
+        const auto damage = 0.5;
+        const auto timeOfFailure = 20.0;
+        const auto timeOfFailurePtr = make_unique<double>(timeOfFailure);
+
+        NiceMock<ICalculationInputMock> calculationInput;
+        ON_CALL(calculationInput, GetLocationDependentInputItems).WillByDefault(ReturnRef(_locationDependentInputItemReferences));
+        ON_CALL(calculationInput, GetTimeDependentInputItems).WillByDefault(ReturnRef(_timeDependentInputItemReferences));
+
+        auto* locationDependentInput = dynamic_cast<ILocationDependentInputMock*>(&_locationDependentInputItemReferences[0].get());
+        ASSERT_TRUE(locationDependentInput != nullptr);
+
+        locationDependentInput->SetDamage(damage);
+        locationDependentInput->SetTimeOfFailure(timeOfFailurePtr.get());
+
+        ON_CALL(*locationDependentInput, GetInitialDamage).WillByDefault(Return(0.1));
+
+        Calculator calculator(calculationInput);
+
+        // When
+        calculator.WaitForCompletion();
+
+        // Then
+        const auto output = calculator.GetCalculationOutput();
+
+        const auto& locationDependentOutputItems = output->GetLocationDependentOutputItems();
+        ASSERT_EQ(1, locationDependentOutputItems.size());
+
+        const auto& actualDamages = locationDependentOutputItems[0].get().GetDamages();
+        ASSERT_EQ(_timeDependentInputItemReferences.size(), actualDamages.size());
+
+        for (auto j = 0; j < static_cast<int>(_timeDependentInputItemReferences.size()); ++j)
+        {
+            ASSERT_DOUBLE_EQ(damage, actualDamages[j]);
+        }
+
+        ASSERT_DOUBLE_EQ(timeOfFailure, *locationDependentOutputItems[0].get().GetTimeOfFailure());
     }
 
     TEST_F(CalculatorTest, GivenCalculatorWithRunningCalculation_WhenCancelCalled_ThenCalculationCancelled)
