@@ -32,7 +32,9 @@ namespace DiKErnel::FunctionLibrary
              * \brief Calculates the slope angle.
              * \param tanA
              *        The tanA.
+             *        Unit = [-]
              * \return The slope angle.
+             *         Unit = [-]
              */
             static double SlopeAngle(
                 double tanA);
@@ -41,11 +43,15 @@ namespace DiKErnel::FunctionLibrary
              * \brief Calculates whether there is loading of the revetment.
              * \param lowerLimitLoadingRevetment
              *        The lower limit of loading.
+             *        Unit = [-]
              * \param upperLimitLoadingRevetment
              *        The upper limit of loading.
+             *        Unit = [-]
              * \param positionZ
              *        The vertical position.
+             *        Unit = [-]
              * \return Whether there is loading of the revetment.
+             *         Unit = [-]
              */
             static bool LoadingRevetment(
                 double lowerLimitLoadingRevetment,
@@ -56,11 +62,15 @@ namespace DiKErnel::FunctionLibrary
              * \brief Calculates the wave steepness in deep water.
              * \param waveHeightHm0
              *        The wave height.
+             *        Unit = [-]
              * \param wavePeriodTm10
              *        The wave period.
+             *        Unit = [-]
              * \param gravitationalAcceleration
              *        The gravitational acceleration.
+             *        Unit = [-]
              * \return The wave steepness in deep water.
+             *         Unit = [-]
              */
             static double WaveSteepnessDeepWater(
                 double waveHeightHm0,
@@ -71,13 +81,18 @@ namespace DiKErnel::FunctionLibrary
              * \brief Calculates the surf similarity parameter.
              * \param tanA
              *        The tanA.
+             *        Unit = [-]
              * \param waveHeightHm0
              *        The wave height.
+             *        Unit = [-]
              * \param wavePeriodTm10
              *        The wave period.
+             *        Unit = [-]
              * \param gravitationalAcceleration
              *        The gravitational acceleration.
+             *        Unit = [-]
              * \return The surf similarity parameter.
+             *         Unit = [-]
              */
             static double SurfSimilarityParameter(
                 double tanA,

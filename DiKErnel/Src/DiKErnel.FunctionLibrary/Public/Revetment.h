@@ -32,9 +32,12 @@ namespace DiKErnel::FunctionLibrary
              * \brief Calculates the increment of time.
              * \param startTime
              *        The start time.
+             *        Unit = [-]
              * \param endTime
              *        The end time.
+             *        Unit = [-]
              * \return The increment of time.
+             *         Unit = [-]
              */
             static int IncrementTime(
                 int startTime,
@@ -44,9 +47,12 @@ namespace DiKErnel::FunctionLibrary
              * \brief Calculates the damage.
              * \param incrementDamage
              *        The increment of damage.
+             *        Unit = [-]
              * \param initialDamage
              *        The initial damage.
+             *        Unit = [-]
              * \return The damage.
+             *         Unit = [-]
              */
             static double Damage(
                 double incrementDamage,
@@ -56,11 +62,15 @@ namespace DiKErnel::FunctionLibrary
              * \brief Calculates whether the revetment has failed or not.
              * \param damage
              *        The damage.
+             *        Unit = [-]
              * \param initialDamage
              *        The initial damage.
+             *        Unit = [-]
              * \param failureNumber
              *        The failure number.
+             *        Unit = [-]
              * \return Whether the revetment has failed or not.
+             *         Unit = [-]
              */
             static bool FailureRevetment(
                 double damage,

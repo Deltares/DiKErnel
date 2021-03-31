@@ -32,14 +32,17 @@ namespace DiKErnel::FunctionLibrary
             /*!
              * \brief Calculates the value of Pi.
              * \return The value of Pi.
+             *         Unit = [-]
              */
             static double Pi();
 
             /*!
              * \brief Converts a degrees value into radians.
              * \param degrees
-             *        The value in degrees.
-             * \return The value in radians.
+             *        The value to convert.
+             *        Unit = [deg]
+             * \return The converted value.
+             *         Unit = [rad]
              */
             static double Radians(
                 double degrees);
