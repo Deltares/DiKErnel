@@ -274,9 +274,9 @@ namespace DiKErnel::Integration::Test
         const auto positionZ = 0.2;
         const auto initialDamage = 0.3;
         const auto failureNumber = 0.4;
-        const auto failureTimeAgwi = 0.5;
-        const auto failureTimeBgwi = 0.6;
-        const auto failureTimeCgwi = 0.7;
+        const auto timeLineAgwi = 0.5;
+        const auto timeLineBgwi = 0.6;
+        const auto timeLineCgwi = 0.7;
         const auto minimumWaveHeightTemax = 0.8;
         const auto maximumWaveHeightTemin = 0.9;
         const auto waveAngleImpactNwa = 1.0;
@@ -289,9 +289,9 @@ namespace DiKErnel::Integration::Test
             name, tanA, positionZ, topLayerType);
         constructionProperties.SetInitialDamage(make_unique<double>(initialDamage));
         constructionProperties.SetFailureNumber(make_unique<double>(failureNumber));
-        constructionProperties.SetTimeLineAgwi(make_unique<double>(failureTimeAgwi));
-        constructionProperties.SetTimeLineBgwi(make_unique<double>(failureTimeBgwi));
-        constructionProperties.SetTimeLineCgwi(make_unique<double>(failureTimeCgwi));
+        constructionProperties.SetTimeLineAgwi(make_unique<double>(timeLineAgwi));
+        constructionProperties.SetTimeLineBgwi(make_unique<double>(timeLineBgwi));
+        constructionProperties.SetTimeLineCgwi(make_unique<double>(timeLineCgwi));
         constructionProperties.SetMinimumWaveHeightTemax(make_unique<double>(minimumWaveHeightTemax));
         constructionProperties.SetMaximumWaveHeightTemin(make_unique<double>(maximumWaveHeightTemin));
         constructionProperties.SetWaveAngleImpactNwa(make_unique<double>(waveAngleImpactNwa));
@@ -331,7 +331,7 @@ namespace DiKErnel::Integration::Test
             waveAngleImpactNwa, waveAngleImpactQwa, waveAngleImpactRwa, locationDependentInput->GetWaveAngleImpact());
 
         GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertTimeLine(
-            failureTimeAgwi, failureTimeBgwi, failureTimeCgwi, locationDependentInput->GetTimeLine());
+            timeLineAgwi, timeLineBgwi, timeLineCgwi, locationDependentInput->GetTimeLine());
 
         GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertUpperLimitLoading(
             upperLimitLoadingAul, *locationDependentInput);

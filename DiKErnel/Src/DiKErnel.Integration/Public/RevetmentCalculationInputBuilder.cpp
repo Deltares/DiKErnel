@@ -163,9 +163,9 @@ namespace DiKErnel::Integration
                 GetValue(constructionProperties.GetWaveAngleImpactRwa(), GrassRevetmentWaveImpactOpenSodDefaults::WAVE_ANGLE_IMPACT_RWA));
 
             timeLine = make_unique<GrassRevetmentWaveImpactTimeLine>(
-                GetValue(constructionProperties.GetTimeLineAgwi(), GrassRevetmentWaveImpactOpenSodDefaults::FAILURE_TIME_AGWI),
-                GetValue(constructionProperties.GetTimeLineBgwi(), GrassRevetmentWaveImpactOpenSodDefaults::FAILURE_TIME_BGWI),
-                GetValue(constructionProperties.GetTimeLineCgwi(), GrassRevetmentWaveImpactOpenSodDefaults::FAILURE_TIME_CGWI));
+                GetValue(constructionProperties.GetTimeLineAgwi(), GrassRevetmentWaveImpactOpenSodDefaults::TIME_LINE_AGWI),
+                GetValue(constructionProperties.GetTimeLineBgwi(), GrassRevetmentWaveImpactOpenSodDefaults::TIME_LINE_BGWI),
+                GetValue(constructionProperties.GetTimeLineCgwi(), GrassRevetmentWaveImpactOpenSodDefaults::TIME_LINE_CGWI));
 
             minimumWaveHeightTemax = GetValue(constructionProperties.GetMinimumWaveHeightTemax(),
                                               GrassRevetmentWaveImpactOpenSodDefaults::MINIMUM_WAVE_HEIGHT_TEMAX);

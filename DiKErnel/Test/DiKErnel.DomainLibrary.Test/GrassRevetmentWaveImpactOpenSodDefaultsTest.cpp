@@ -24,22 +24,22 @@
 
 namespace DiKErnel::DomainLibrary::Test
 {
-    TEST(GrassRevetmentWaveImpactOpenSodDefaultsTest, FailureTimeAgwi_ExpectedValue)
+    TEST(GrassRevetmentWaveImpactOpenSodDefaultsTest, TimeLineAgwi_ExpectedValue)
     {
         // Call & Assert
-        ASSERT_DOUBLE_EQ(0.8, GrassRevetmentWaveImpactOpenSodDefaults::FAILURE_TIME_AGWI);
+        ASSERT_DOUBLE_EQ(0.8, GrassRevetmentWaveImpactOpenSodDefaults::TIME_LINE_AGWI);
     }
 
-    TEST(GrassRevetmentWaveImpactOpenSodDefaultsTest, FailureTimeBgwi_ExpectedValue)
+    TEST(GrassRevetmentWaveImpactOpenSodDefaultsTest, TimeLineBgwi_ExpectedValue)
     {
         // Call & Assert
-        ASSERT_DOUBLE_EQ(-0.00001944, GrassRevetmentWaveImpactOpenSodDefaults::FAILURE_TIME_BGWI);
+        ASSERT_DOUBLE_EQ(-0.00001944, GrassRevetmentWaveImpactOpenSodDefaults::TIME_LINE_BGWI);
     }
 
-    TEST(GrassRevetmentWaveImpactOpenSodDefaultsTest, FailureTimeCgwi_ExpectedValue)
+    TEST(GrassRevetmentWaveImpactOpenSodDefaultsTest, TimeLineCgwi_ExpectedValue)
     {
         // Call & Assert
-        ASSERT_DOUBLE_EQ(0.25, GrassRevetmentWaveImpactOpenSodDefaults::FAILURE_TIME_CGWI);
+        ASSERT_DOUBLE_EQ(0.25, GrassRevetmentWaveImpactOpenSodDefaults::TIME_LINE_CGWI);
     }
 
     TEST(GrassRevetmentWaveImpactOpenSodDefaultsTest, MinimumWaveHeightTemax_ExpectedValue)
