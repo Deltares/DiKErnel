@@ -49,13 +49,13 @@ namespace DiKErnel::KernelWrapper::Json::Input
         auto locationData = make_unique<JsonInputGrassRevetmentWaveImpactLocationData>(
             readRevetment[JsonInputDefinitions::TYPE_TOP_LAYER].get<JsonInputGrassRevetmentWaveImpactLocationData::TopLayerType>());
 
-        locationData->SetFailureTimeAgwi(
+        locationData->SetTimeLineAgwi(
             forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalValue(
                 readRevetment, GrassWaveImpactJsonInputDefinitions::FAILURE_TIME_AGWI)));
-        locationData->SetFailureTimeBgwi(
+        locationData->SetTimeLineBgwi(
             forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalValue(
                 readRevetment, GrassWaveImpactJsonInputDefinitions::FAILURE_TIME_BGWI)));
-        locationData->SetFailureTimeCgwi(
+        locationData->SetTimeLineCgwi(
             forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalValue(
                 readRevetment, GrassWaveImpactJsonInputDefinitions::FAILURE_TIME_CGWI)));
 

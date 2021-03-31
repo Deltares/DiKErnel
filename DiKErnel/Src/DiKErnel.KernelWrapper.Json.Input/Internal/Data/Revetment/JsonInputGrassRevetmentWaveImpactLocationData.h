@@ -41,14 +41,14 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
             #pragma region Set methods
 
-            void SetFailureTimeAgwi(
-                std::unique_ptr<double> failureTimeAgwi);
+            void SetTimeLineAgwi(
+                std::unique_ptr<double> timeLineAgwi);
 
-            void SetFailureTimeBgwi(
-                std::unique_ptr<double> failureTimeBgwi);
+            void SetTimeLineBgwi(
+                std::unique_ptr<double> timeLineBgwi);
 
-            void SetFailureTimeCgwi(
-                std::unique_ptr<double> failureTimeCgwi);
+            void SetTimeLineCgwi(
+                std::unique_ptr<double> timeLineCgwi);
 
             void SetMinimumWaveHeightTemax(
                 std::unique_ptr<double> minimumWaveHeightTemax);
@@ -77,11 +77,11 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
             TopLayerType GetTopLayerType() const;
 
-            const double* GetFailureTimeAgwi() const;
+            const double* GetTimeLineAgwi() const;
 
-            const double* GetFailureTimeBgwi() const;
+            const double* GetTimeLineBgwi() const;
 
-            const double* GetFailureTimeCgwi() const;
+            const double* GetTimeLineCgwi() const;
 
             const double* GetMinimumWaveHeightTemax() const;
 
@@ -101,9 +101,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
         private:
             TopLayerType _topLayerType;
-            std::unique_ptr<double> _failureTimeAgwi = nullptr;
-            std::unique_ptr<double> _failureTimeBgwi = nullptr;
-            std::unique_ptr<double> _failureTimeCgwi = nullptr;
+            std::unique_ptr<double> _timeLineAgwi = nullptr;
+            std::unique_ptr<double> _timeLineBgwi = nullptr;
+            std::unique_ptr<double> _timeLineCgwi = nullptr;
             std::unique_ptr<double> _minimumWaveHeightTemax = nullptr;
             std::unique_ptr<double> _maximumWaveHeightTemin = nullptr;
             std::unique_ptr<double> _waveAngleImpactNwa = nullptr;

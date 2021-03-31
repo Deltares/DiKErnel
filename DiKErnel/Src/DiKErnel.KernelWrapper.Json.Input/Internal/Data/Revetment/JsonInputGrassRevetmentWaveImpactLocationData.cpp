@@ -30,22 +30,22 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
     #pragma region Set methods
 
-    void JsonInputGrassRevetmentWaveImpactLocationData::SetFailureTimeAgwi(
-        std::unique_ptr<double> failureTimeAgwi)
+    void JsonInputGrassRevetmentWaveImpactLocationData::SetTimeLineAgwi(
+        std::unique_ptr<double> timeLineAgwi)
     {
-        _failureTimeAgwi = move(failureTimeAgwi);
+        _timeLineAgwi = move(timeLineAgwi);
     }
 
-    void JsonInputGrassRevetmentWaveImpactLocationData::SetFailureTimeBgwi(
-        std::unique_ptr<double> failureTimeBgwi)
+    void JsonInputGrassRevetmentWaveImpactLocationData::SetTimeLineBgwi(
+        std::unique_ptr<double> timeLineBgwi)
     {
-        _failureTimeBgwi = move(failureTimeBgwi);
+        _timeLineBgwi = move(timeLineBgwi);
     }
 
-    void JsonInputGrassRevetmentWaveImpactLocationData::SetFailureTimeCgwi(
-        std::unique_ptr<double> failureTimeCgwi)
+    void JsonInputGrassRevetmentWaveImpactLocationData::SetTimeLineCgwi(
+        std::unique_ptr<double> timeLineCgwi)
     {
-        _failureTimeCgwi = move(failureTimeCgwi);
+        _timeLineCgwi = move(timeLineCgwi);
     }
 
     void JsonInputGrassRevetmentWaveImpactLocationData::SetMinimumWaveHeightTemax(
@@ -99,19 +99,19 @@ namespace DiKErnel::KernelWrapper::Json::Input
         return _topLayerType;
     }
 
-    const double* JsonInputGrassRevetmentWaveImpactLocationData::GetFailureTimeAgwi() const
+    const double* JsonInputGrassRevetmentWaveImpactLocationData::GetTimeLineAgwi() const
     {
-        return _failureTimeAgwi.get();
+        return _timeLineAgwi.get();
     }
 
-    const double* JsonInputGrassRevetmentWaveImpactLocationData::GetFailureTimeBgwi() const
+    const double* JsonInputGrassRevetmentWaveImpactLocationData::GetTimeLineBgwi() const
     {
-        return _failureTimeBgwi.get();
+        return _timeLineBgwi.get();
     }
 
-    const double* JsonInputGrassRevetmentWaveImpactLocationData::GetFailureTimeCgwi() const
+    const double* JsonInputGrassRevetmentWaveImpactLocationData::GetTimeLineCgwi() const
     {
-        return _failureTimeCgwi.get();
+        return _timeLineCgwi.get();
     }
 
     const double* JsonInputGrassRevetmentWaveImpactLocationData::GetMinimumWaveHeightTemax() const

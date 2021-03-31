@@ -164,11 +164,11 @@ namespace DiKErnel::KernelWrapper::Json::Input
         constructionProperties->SetFailureNumber(forward<unique_ptr<double>>(CreatePointerOfValue(damageData.GetFailureNumber())));
 
         constructionProperties->SetFailureTimeAgwi(
-            forward<unique_ptr<double>>(CreatePointerOfValue(grassRevetmentWaveImpactLocationData.GetFailureTimeAgwi())));
+            forward<unique_ptr<double>>(CreatePointerOfValue(grassRevetmentWaveImpactLocationData.GetTimeLineAgwi())));
         constructionProperties->SetFailureTimeBgwi(
-            forward<unique_ptr<double>>(CreatePointerOfValue(grassRevetmentWaveImpactLocationData.GetFailureTimeBgwi())));
+            forward<unique_ptr<double>>(CreatePointerOfValue(grassRevetmentWaveImpactLocationData.GetTimeLineBgwi())));
         constructionProperties->SetFailureTimeCgwi(
-            forward<unique_ptr<double>>(CreatePointerOfValue(grassRevetmentWaveImpactLocationData.GetFailureTimeCgwi())));
+            forward<unique_ptr<double>>(CreatePointerOfValue(grassRevetmentWaveImpactLocationData.GetTimeLineCgwi())));
 
         constructionProperties->SetMinimumWaveHeightTemax(
             forward<unique_ptr<double>>(CreatePointerOfValue(grassRevetmentWaveImpactLocationData.GetMinimumWaveHeightTemax())));
