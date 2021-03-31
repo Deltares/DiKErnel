@@ -70,60 +70,33 @@ namespace DiKErnel::Integration
         const auto impactShallowWater = NaturalStoneRevetment::ImpactShallowWater();
 
         const auto waveSteepnessDeepWater = HydraulicLoad::WaveSteepnessDeepWater(
-            waveHeightHm0,
-            wavePeriodTm10,
-            Constants::GRAVITATIONAL_ACCELERATION);
+            waveHeightHm0, wavePeriodTm10, Constants::GRAVITATIONAL_ACCELERATION);
 
         const auto distanceMaximumWaveElevation = NaturalStoneRevetment::DistanceMaximumWaveElevation(
-            impactShallowWater,
-            waveSteepnessDeepWater,
-            waveHeightHm0,
-            _distanceMaximumWaveElevation->GetDistanceMaximumWaveElevationAsmax(),
+            impactShallowWater, waveSteepnessDeepWater, waveHeightHm0, _distanceMaximumWaveElevation->GetDistanceMaximumWaveElevationAsmax(),
             _distanceMaximumWaveElevation->GetDistanceMaximumWaveElevationBsmax());
 
         const auto surfSimilarityParameter = HydraulicLoad::SurfSimilarityParameter(
-            tanA,
-            waveHeightHm0,
-            wavePeriodTm10,
-            Constants::GRAVITATIONAL_ACCELERATION);
+            tanA, waveHeightHm0, wavePeriodTm10, Constants::GRAVITATIONAL_ACCELERATION);
 
         const auto normativeWidthWaveImpact = NaturalStoneRevetment::NormativeWidthWaveImpact(
-            surfSimilarityParameter,
-            waveHeightHm0,
-            _normativeWidthOfWaveImpact->GetNormativeWidthOfWaveImpactAwi(),
+            surfSimilarityParameter, waveHeightHm0, _normativeWidthOfWaveImpact->GetNormativeWidthOfWaveImpactAwi(),
             _normativeWidthOfWaveImpact->GetNormativeWidthOfWaveImpactBwi());
 
-        const auto slopeAngle = HydraulicLoad::SlopeAngle(
-            tanA);
+        const auto slopeAngle = HydraulicLoad::SlopeAngle(tanA);
 
         const auto depthMaximumWaveLoad = NaturalStoneRevetment::DepthMaximumWaveLoad(
-            distanceMaximumWaveElevation,
-            normativeWidthWaveImpact,
-            slopeAngle);
+            distanceMaximumWaveElevation, normativeWidthWaveImpact, slopeAngle);
 
         const auto lowerLimitLoading = NaturalStoneRevetment::LowerLimitLoading(
-            depthMaximumWaveLoad,
-            surfSimilarityParameter,
-            waterLevel,
-            waveHeightHm0,
-            _lowerLimitLoading->GetLowerLimitAll(),
-            _lowerLimitLoading->GetLowerLimitBll(),
-            _lowerLimitLoading->GetLowerLimitCll());
+            depthMaximumWaveLoad, surfSimilarityParameter, waterLevel, waveHeightHm0, _lowerLimitLoading->GetLowerLimitAll(),
+            _lowerLimitLoading->GetLowerLimitBll(), _lowerLimitLoading->GetLowerLimitCll());
 
         const auto upperLimitLoading = NaturalStoneRevetment::UpperLimitLoading(
-            depthMaximumWaveLoad,
-            surfSimilarityParameter,
-            waterLevel,
-            waveHeightHm0,
-            _upperLimitLoading->GetUpperLimitAul(),
-            _upperLimitLoading->GetUpperLimitBul(),
-            _upperLimitLoading->GetUpperLimitCul());
+            depthMaximumWaveLoad, surfSimilarityParameter, waterLevel, waveHeightHm0, _upperLimitLoading->GetUpperLimitAul(),
+            _upperLimitLoading->GetUpperLimitBul(), _upperLimitLoading->GetUpperLimitCul());
 
-        const auto loadingRevetment = HydraulicLoad::LoadingRevetment(
-            lowerLimitLoading,
-            upperLimitLoading,
-            positionZ);
-
+        const auto loadingRevetment = HydraulicLoad::LoadingRevetment(lowerLimitLoading, upperLimitLoading, positionZ);
         auto incrementDamage = 0.0;
 
         if (loadingRevetment)
@@ -143,45 +116,22 @@ namespace DiKErnel::Integration
                                             : _hydraulicLoads->GetHydraulicLoadNs();
 
             const auto hydraulicLoad = NaturalStoneRevetment::HydraulicLoad(
-                surfSimilarityParameter,
-                waveHeightHm0,
-                hydraulicLoadA,
-                hydraulicLoadB,
-                hydraulicLoadC,
-                hydraulicLoadN);
+                surfSimilarityParameter, waveHeightHm0, hydraulicLoadA, hydraulicLoadB, hydraulicLoadC, hydraulicLoadN);
 
-            const auto resistance = NaturalStoneRevetment::Resistance(
-                _relativeDensity,
-                _thicknessTopLayer);
+            const auto resistance = NaturalStoneRevetment::Resistance(_relativeDensity, _thicknessTopLayer);
 
-            const auto waveAngleImpact = NaturalStoneRevetment::WaveAngleImpact(
-                timeDependentInput.GetWaveAngle(),
-                _waveAngleImpact->GetBetamax());
+            const auto waveAngleImpact = NaturalStoneRevetment::WaveAngleImpact(timeDependentInput.GetWaveAngle(), _waveAngleImpact->GetBetamax());
 
             const auto referenceDegradation = NaturalStoneRevetment::ReferenceDegradation(
-                resistance,
-                hydraulicLoad,
-                waveAngleImpact,
-                initialDamage);
+                resistance, hydraulicLoad, waveAngleImpact, initialDamage);
 
-            const auto referenceTimeDegradation = NaturalStoneRevetment::ReferenceTimeDegradation(
-                referenceDegradation,
-                wavePeriodTm10);
+            const auto referenceTimeDegradation = NaturalStoneRevetment::ReferenceTimeDegradation(referenceDegradation, wavePeriodTm10);
 
-            const auto incrementTime = Revetment::IncrementTime(
-                timeDependentInput.GetBeginTime(),
-                timeDependentInput.GetEndTime());
+            const auto incrementTime = Revetment::IncrementTime(timeDependentInput.GetBeginTime(), timeDependentInput.GetEndTime());
 
-            const auto incrementDegradation = NaturalStoneRevetment::IncrementDegradation(
-                referenceTimeDegradation,
-                incrementTime,
-                wavePeriodTm10);
+            const auto incrementDegradation = NaturalStoneRevetment::IncrementDegradation(referenceTimeDegradation, incrementTime, wavePeriodTm10);
 
-            incrementDamage = NaturalStoneRevetment::IncrementDamage(
-                hydraulicLoad,
-                resistance,
-                incrementDegradation,
-                waveAngleImpact);
+            incrementDamage = NaturalStoneRevetment::IncrementDamage(hydraulicLoad, resistance, incrementDegradation, waveAngleImpact);
         }
 
         return make_unique<TimeDependentOutput>(Revetment::Damage(incrementDamage, initialDamage), nullptr);
