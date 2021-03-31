@@ -63,28 +63,28 @@ namespace DiKErnel::Integration
             #pragma region Set methods
 
             /*!
-             * \brief Sets the failure time Agwi.
-             * \param failureTimeAgwi
-             *        The failure time Agwi.
+             * \brief Sets the time line Agwi.
+             * \param timeLineAgwi
+             *        The time line Agwi.
              */
-            void SetFailureTimeAgwi(
-                std::unique_ptr<double> failureTimeAgwi);
+            void SetTimeLineAgwi(
+                std::unique_ptr<double> timeLineAgwi);
 
             /*!
-             * \brief Sets the failure time Bgwi.
-             * \param failureTimeBgwi
-             *        The failure time Bgwi.
+             * \brief Sets the time line Bgwi.
+             * \param timeLineBgwi
+             *        The time line Bgwi.
              */
-            void SetFailureTimeBgwi(
-                std::unique_ptr<double> failureTimeBgwi);
+            void SetTimeLineBgwi(
+                std::unique_ptr<double> timeLineBgwi);
 
             /*!
-             * \brief Sets the failure time Cgwi.
-             * \param failureTimeCgwi
-             *        The failure time Cgwi.
+             * \brief Sets the time line Cgwi.
+             * \param timeLineCgwi
+             *        The time line Cgwi.
              */
-            void SetFailureTimeCgwi(
-                std::unique_ptr<double> failureTimeCgwi);
+            void SetTimeLineCgwi(
+                std::unique_ptr<double> timeLineCgwi);
 
             /*!
              * \brief Sets the minimum wave height Temax.
@@ -153,22 +153,22 @@ namespace DiKErnel::Integration
             TopLayerType GetTopLayerType() const;
 
             /*!
-             * \brief Gets the failure time Agwi.
-             * \return The failure time Agwi.
+             * \brief Gets the time line Agwi.
+             * \return The time line Agwi.
              */
-            const double* GetFailureTimeAgwi() const;
+            const double* GetTimeLineAgwi() const;
 
             /*!
-             * \brief Gets the failure time Bgwi.
-             * \return The failure time Bgwi.
+             * \brief Gets the time line Bgwi.
+             * \return The time line Bgwi.
              */
-            const double* GetFailureTimeBgwi() const;
+            const double* GetTimeLineBgwi() const;
 
             /*!
-             * \brief Gets the failure time Cgwi.
-             * \return The failure time Cgwi.
+             * \brief Gets the time line Cgwi.
+             * \return The time line Cgwi.
              */
-            const double* GetFailureTimeCgwi() const;
+            const double* GetTimeLineCgwi() const;
 
             /*!
              * \brief Gets the minimum wave height Temax.
@@ -216,9 +216,9 @@ namespace DiKErnel::Integration
 
         private:
             TopLayerType _topLayerType;
-            std::unique_ptr<double> _failureTimeAgwi = nullptr;
-            std::unique_ptr<double> _failureTimeBgwi = nullptr;
-            std::unique_ptr<double> _failureTimeCgwi = nullptr;
+            std::unique_ptr<double> _timeLineAgwi = nullptr;
+            std::unique_ptr<double> _timeLineBgwi = nullptr;
+            std::unique_ptr<double> _timeLineCgwi = nullptr;
             std::unique_ptr<double> _minimumWaveHeightTemax = nullptr;
             std::unique_ptr<double> _maximumWaveHeightTemin = nullptr;
             std::unique_ptr<double> _waveAngleImpactNwa = nullptr;

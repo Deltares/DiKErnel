@@ -289,9 +289,9 @@ namespace DiKErnel::Integration::Test
             name, tanA, positionZ, topLayerType);
         constructionProperties.SetInitialDamage(make_unique<double>(initialDamage));
         constructionProperties.SetFailureNumber(make_unique<double>(failureNumber));
-        constructionProperties.SetFailureTimeAgwi(make_unique<double>(failureTimeAgwi));
-        constructionProperties.SetFailureTimeBgwi(make_unique<double>(failureTimeBgwi));
-        constructionProperties.SetFailureTimeCgwi(make_unique<double>(failureTimeCgwi));
+        constructionProperties.SetTimeLineAgwi(make_unique<double>(failureTimeAgwi));
+        constructionProperties.SetTimeLineBgwi(make_unique<double>(failureTimeBgwi));
+        constructionProperties.SetTimeLineCgwi(make_unique<double>(failureTimeCgwi));
         constructionProperties.SetMinimumWaveHeightTemax(make_unique<double>(minimumWaveHeightTemax));
         constructionProperties.SetMaximumWaveHeightTemin(make_unique<double>(maximumWaveHeightTemin));
         constructionProperties.SetWaveAngleImpactNwa(make_unique<double>(waveAngleImpactNwa));

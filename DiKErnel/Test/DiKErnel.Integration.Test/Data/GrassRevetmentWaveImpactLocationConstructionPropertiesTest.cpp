@@ -51,9 +51,9 @@ namespace DiKErnel::Integration::Test
         ASSERT_DOUBLE_EQ(positionZ, constructionProperties.GetPositionZ());
         ASSERT_EQ(nullptr, constructionProperties.GetInitialDamage());
         ASSERT_EQ(nullptr, constructionProperties.GetFailureNumber());
-        ASSERT_EQ(nullptr, constructionProperties.GetFailureTimeAgwi());
-        ASSERT_EQ(nullptr, constructionProperties.GetFailureTimeBgwi());
-        ASSERT_EQ(nullptr, constructionProperties.GetFailureTimeCgwi());
+        ASSERT_EQ(nullptr, constructionProperties.GetTimeLineAgwi());
+        ASSERT_EQ(nullptr, constructionProperties.GetTimeLineBgwi());
+        ASSERT_EQ(nullptr, constructionProperties.GetTimeLineCgwi());
         ASSERT_EQ(nullptr, constructionProperties.GetMinimumWaveHeightTemax());
         ASSERT_EQ(nullptr, constructionProperties.GetMaximumWaveHeightTemin());
         ASSERT_EQ(nullptr, constructionProperties.GetWaveAngleImpactNwa());
@@ -89,9 +89,9 @@ namespace DiKErnel::Integration::Test
         // When
         constructionProperties.SetInitialDamage(make_unique<double>(initialDamage));
         constructionProperties.SetFailureNumber(make_unique<double>(failureNumber));
-        constructionProperties.SetFailureTimeAgwi(make_unique<double>(failureTimeAgwi));
-        constructionProperties.SetFailureTimeBgwi(make_unique<double>(failureTimeBgwi));
-        constructionProperties.SetFailureTimeCgwi(make_unique<double>(failureTimeCgwi));
+        constructionProperties.SetTimeLineAgwi(make_unique<double>(failureTimeAgwi));
+        constructionProperties.SetTimeLineBgwi(make_unique<double>(failureTimeBgwi));
+        constructionProperties.SetTimeLineCgwi(make_unique<double>(failureTimeCgwi));
         constructionProperties.SetMinimumWaveHeightTemax(make_unique<double>(minimumWaveHeightTemax));
         constructionProperties.SetMaximumWaveHeightTemin(make_unique<double>(maximumWaveHeightTemin));
         constructionProperties.SetWaveAngleImpactNwa(make_unique<double>(waveAngleImpactNwa));
@@ -107,9 +107,9 @@ namespace DiKErnel::Integration::Test
         ASSERT_DOUBLE_EQ(positionZ, constructionProperties.GetPositionZ());
         ASSERT_DOUBLE_EQ(initialDamage, *constructionProperties.GetInitialDamage());
         ASSERT_DOUBLE_EQ(failureNumber, *constructionProperties.GetFailureNumber());
-        ASSERT_DOUBLE_EQ(failureTimeAgwi, *constructionProperties.GetFailureTimeAgwi());
-        ASSERT_DOUBLE_EQ(failureTimeBgwi, *constructionProperties.GetFailureTimeBgwi());
-        ASSERT_DOUBLE_EQ(failureTimeCgwi, *constructionProperties.GetFailureTimeCgwi());
+        ASSERT_DOUBLE_EQ(failureTimeAgwi, *constructionProperties.GetTimeLineAgwi());
+        ASSERT_DOUBLE_EQ(failureTimeBgwi, *constructionProperties.GetTimeLineBgwi());
+        ASSERT_DOUBLE_EQ(failureTimeCgwi, *constructionProperties.GetTimeLineCgwi());
         ASSERT_DOUBLE_EQ(minimumWaveHeightTemax, *constructionProperties.GetMinimumWaveHeightTemax());
         ASSERT_DOUBLE_EQ(maximumWaveHeightTemin, *constructionProperties.GetMaximumWaveHeightTemin());
         ASSERT_DOUBLE_EQ(waveAngleImpactNwa, *constructionProperties.GetWaveAngleImpactNwa());

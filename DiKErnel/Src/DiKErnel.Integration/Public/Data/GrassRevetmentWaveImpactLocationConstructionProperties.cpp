@@ -38,22 +38,22 @@ namespace DiKErnel::Integration
 
     #pragma region Set methods
 
-    void GrassRevetmentWaveImpactLocationConstructionProperties::SetFailureTimeAgwi(
-        std::unique_ptr<double> failureTimeAgwi)
+    void GrassRevetmentWaveImpactLocationConstructionProperties::SetTimeLineAgwi(
+        std::unique_ptr<double> timeLineAgwi)
     {
-        _failureTimeAgwi = move(failureTimeAgwi);
+        _timeLineAgwi = move(timeLineAgwi);
     }
 
-    void GrassRevetmentWaveImpactLocationConstructionProperties::SetFailureTimeBgwi(
-        std::unique_ptr<double> failureTimeBgwi)
+    void GrassRevetmentWaveImpactLocationConstructionProperties::SetTimeLineBgwi(
+        std::unique_ptr<double> timeLineBgwi)
     {
-        _failureTimeBgwi = move(failureTimeBgwi);
+        _timeLineBgwi = move(timeLineBgwi);
     }
 
-    void GrassRevetmentWaveImpactLocationConstructionProperties::SetFailureTimeCgwi(
-        std::unique_ptr<double> failureTimeCgwi)
+    void GrassRevetmentWaveImpactLocationConstructionProperties::SetTimeLineCgwi(
+        std::unique_ptr<double> timeLineCgwi)
     {
-        _failureTimeCgwi = move(failureTimeCgwi);
+        _timeLineCgwi = move(timeLineCgwi);
     }
 
     void GrassRevetmentWaveImpactLocationConstructionProperties::SetMinimumWaveHeightTemax(
@@ -107,19 +107,19 @@ namespace DiKErnel::Integration
         return _topLayerType;
     }
 
-    const double* GrassRevetmentWaveImpactLocationConstructionProperties::GetFailureTimeAgwi() const
+    const double* GrassRevetmentWaveImpactLocationConstructionProperties::GetTimeLineAgwi() const
     {
-        return _failureTimeAgwi.get();
+        return _timeLineAgwi.get();
     }
 
-    const double* GrassRevetmentWaveImpactLocationConstructionProperties::GetFailureTimeBgwi() const
+    const double* GrassRevetmentWaveImpactLocationConstructionProperties::GetTimeLineBgwi() const
     {
-        return _failureTimeBgwi.get();
+        return _timeLineBgwi.get();
     }
 
-    const double* GrassRevetmentWaveImpactLocationConstructionProperties::GetFailureTimeCgwi() const
+    const double* GrassRevetmentWaveImpactLocationConstructionProperties::GetTimeLineCgwi() const
     {
-        return _failureTimeCgwi.get();
+        return _timeLineCgwi.get();
     }
 
     const double* GrassRevetmentWaveImpactLocationConstructionProperties::GetMinimumWaveHeightTemax() const
