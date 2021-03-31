@@ -113,7 +113,7 @@ namespace DiKErnel::Integration
                 _timeLine->GetTimeLineCgwi()
             );
 
-            const auto incrementOfDamage = GrassRevetmentWaveImpact::IncrementDamage(incrementTime, failureTime);
+            const auto incrementOfDamage = GrassRevetmentWaveImpact::IncrementDamage(incrementTime, timeLine);
 
             damage = Revetment::Damage(incrementOfDamage, initialDamage);
 
@@ -121,7 +121,7 @@ namespace DiKErnel::Integration
 
             if (Revetment::FailureRevetment(damage, initialDamage, failureNumber))
             {
-                timeOfFailure = make_unique<double>(GrassRevetmentWaveImpact::FailureTime(failureTime, failureNumber, initialDamage) + timeDependentInput.GetBeginTime());
+                timeOfFailure = make_unique<double>(GrassRevetmentWaveImpact::FailureTime(timeLine, failureNumber, initialDamage) + timeDependentInput.GetBeginTime());
             }
         }
 
