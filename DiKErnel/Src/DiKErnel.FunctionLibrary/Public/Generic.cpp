@@ -34,4 +34,10 @@ namespace DiKErnel::FunctionLibrary
     {
         return degrees * (Pi() / 180.0);
     }
+
+    double Generic::Degrees(
+        const double radians)
+    {
+        return radians / (Pi() / 180.0);
+    }
 }

@@ -44,4 +44,16 @@ namespace DiKErnel::FunctionLibrary::Test
         // Assert
         ASSERT_DOUBLE_EQ(2.1546089615869999, radians);
     }
+
+    TEST(GenericTest, Degrees_ValidInput_ExpectedValue)
+    {
+        // Setup
+        const auto radians = 1.2345;
+
+        // Call
+        const auto degrees = Generic::Degrees(radians);
+
+        // Assert
+        ASSERT_DOUBLE_EQ(70.731639808900127, degrees);
+    }
 }

@@ -46,5 +46,16 @@ namespace DiKErnel::FunctionLibrary
              */
             static double Radians(
                 double degrees);
+
+            /*!
+             * \brief Converts a radians value into degrees.
+             * \param radians
+             *        The value to convert.
+             *        Unit = [rad]
+             * \return The converted value.
+             *         Unit = [deg]
+             */
+            static double Degrees(
+                double radians);
     };
 }
