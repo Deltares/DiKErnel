@@ -24,22 +24,22 @@
 
 namespace DiKErnel::DomainLibrary::Test
 {
-    TEST(GrassRevetmentWaveImpactClosedSodDefaultsTest, FailureTimeAgwi_ExpectedValue)
+    TEST(GrassRevetmentWaveImpactClosedSodDefaultsTest, TimeLineAgwi_ExpectedValue)
     {
         // Call & Assert
-        ASSERT_DOUBLE_EQ(1.0, GrassRevetmentWaveImpactClosedSodDefaults::FAILURE_TIME_AGWI);
+        ASSERT_DOUBLE_EQ(1.0, GrassRevetmentWaveImpactClosedSodDefaults::TIME_LINE_AGWI);
     }
 
-    TEST(GrassRevetmentWaveImpactClosedSodDefaultsTest, FailureTimeBgwi_ExpectedValue)
+    TEST(GrassRevetmentWaveImpactClosedSodDefaultsTest, TimeLineBgwi_ExpectedValue)
     {
         // Call & Assert
-        ASSERT_DOUBLE_EQ(-0.000009722, GrassRevetmentWaveImpactClosedSodDefaults::FAILURE_TIME_BGWI);
+        ASSERT_DOUBLE_EQ(-0.000009722, GrassRevetmentWaveImpactClosedSodDefaults::TIME_LINE_BGWI);
     }
 
-    TEST(GrassRevetmentWaveImpactClosedSodDefaultsTest, FailureTimeCgwi_ExpectedValue)
+    TEST(GrassRevetmentWaveImpactClosedSodDefaultsTest, TimeLineCgwi_ExpectedValue)
     {
         // Call & Assert
-        ASSERT_DOUBLE_EQ(0.25, GrassRevetmentWaveImpactClosedSodDefaults::FAILURE_TIME_CGWI);
+        ASSERT_DOUBLE_EQ(0.25, GrassRevetmentWaveImpactClosedSodDefaults::TIME_LINE_CGWI);
     }
 
     TEST(GrassRevetmentWaveImpactClosedSodDefaultsTest, MinimumWaveHeightTemax_ExpectedValue)

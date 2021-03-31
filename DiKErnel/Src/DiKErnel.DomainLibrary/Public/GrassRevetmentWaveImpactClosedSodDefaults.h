@@ -29,22 +29,22 @@ namespace DiKErnel::DomainLibrary
     {
         public:
             /*!
-             * \brief The default value of the failure time Agwi.
+             * \brief The default value of the time line Agwi.
              *        Unit = [-]
              */
-            inline static const double FAILURE_TIME_AGWI = 1.0;
+            inline static const double TIME_LINE_AGWI = 1.0;
 
             /*!
-             * \brief The default value of the failure time Bgwi
+             * \brief The default value of the time line Bgwi.
              *        Unit = [-]
              */
-            inline static const double FAILURE_TIME_BGWI = -0.000009722;
+            inline static const double TIME_LINE_BGWI = -0.000009722;
 
             /*!
-             * \brief The default value of the failure time Cgwi
+             * \brief The default value of the time line Cgwi.
              *        Unit = [-]
              */
-            inline static const double FAILURE_TIME_CGWI = 0.25;
+            inline static const double TIME_LINE_CGWI = 0.25;
 
             /*!
              * \brief The default value of the minimum wave height Temax.
