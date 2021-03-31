@@ -18,7 +18,11 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
+#include <fstream>
+
 #include <gtest/gtest.h>
+
+#include <nlohmann/json.hpp>
 
 #include "Calculator.h"
 #include "FileAssert.h"
@@ -30,15 +34,35 @@ namespace DiKErnel::Acceptance::Test
 {
     using namespace Core;
     using namespace KernelWrapper::Json::Input;
+    using namespace KernelWrapper::Json::Output;
+    using namespace nlohmann;
     using namespace std;
     using namespace testing;
-    using namespace TestUtil;    
+    using namespace TestUtil;
 
     struct AcceptanceTest : Test
     {
         const string _actualOutputFilePath =
-            (filesystem::temp_directory_path()
-                / "actualOutput.json").string();
+        (filesystem::temp_directory_path()
+            / "actualOutput.json").string();
+
+        static void AssertOutput(
+            const double expectedDamage,
+            const double* expectedFailureTime,
+            const double actualDamage,
+            const double* actualFailureTime)
+        {
+            ASSERT_DOUBLE_EQ(expectedDamage, actualDamage);
+
+            if(expectedFailureTime == nullptr || actualFailureTime == nullptr)
+            {
+                ASSERT_EQ(expectedFailureTime, actualFailureTime);
+            }
+            else
+            {
+                ASSERT_DOUBLE_EQ(*expectedFailureTime, *actualFailureTime);
+            }
+        }
 
         ~AcceptanceTest()
         {
@@ -50,8 +74,8 @@ namespace DiKErnel::Acceptance::Test
     {
         // Given
         const auto filePath =
-            (TestDataPathHelper::GetTestDataPath("DiKErnel.Acceptance.Test")
-                / "AcceptanceTest" / "naturalStone.json").string();
+        (TestDataPathHelper::GetTestDataPath("DiKErnel.Acceptance.Test")
+            / "AcceptanceTest" / "naturalStone.json").string();
 
         // When
         const auto calculationInput = JsonInputComposer::GetCalculationInputFromJson(filePath);
@@ -59,13 +83,22 @@ namespace DiKErnel::Acceptance::Test
         calculator.WaitForCompletion();
 
         const auto outputData = calculator.GetCalculationOutput();
-        KernelWrapper::Json::Output::JsonOutputComposer::WriteCalculationOutputToJson(_actualOutputFilePath, *outputData, *calculationInput);
+        JsonOutputComposer::WriteCalculationOutputToJson(_actualOutputFilePath, *outputData, *calculationInput);
 
         // Assert
-        const auto expectedOutputFilePath =
-            (TestDataPathHelper::GetTestDataPath("DiKErnel.Acceptance.Test")
-                / "AcceptanceTest"
-                / "expectedOutputNaturalStone.json").string();
-        FileAssert::AssertFileContents(expectedOutputFilePath, _actualOutputFilePath);
+        ifstream ifs(_actualOutputFilePath);
+        const auto json = json::parse(ifs);
+
+        const auto& readLocation = json["Uitvoerdata"]["Locaties"][0];
+        const auto& actualDamages = readLocation["Schade"]["SchadegetalPerTijd"].get<vector<double>>();
+
+        unique_ptr<double> actualFailureTime = nullptr;
+
+        if(!readLocation["Schade"]["Faaltijd"].is_null())
+        {
+            actualFailureTime = make_unique<double>(readLocation["Schade"]["Faaltijd"].get<double>());
+        }
+
+        AssertOutput(1.1836103307707342, nullptr, actualDamages.back(), actualFailureTime.get());
     }
 }
