@@ -33,7 +33,7 @@ namespace DiKErnel::FunctionLibrary::Test
         const auto slopeAngle = HydraulicLoad::SlopeAngle(tanA);
 
         // Assert
-        ASSERT_DOUBLE_EQ(0.24497866312686414, slopeAngle);
+        ASSERT_DOUBLE_EQ(14.036243467926479, slopeAngle);
     }
 
     TEST(HydraulicLoadTest, LoadingRevetment_LowerLimitAndUpperLimitSmallerThanPositionZ_ExpectedFalse)

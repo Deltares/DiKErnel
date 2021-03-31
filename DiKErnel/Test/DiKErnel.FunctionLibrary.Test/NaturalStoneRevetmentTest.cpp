@@ -102,14 +102,14 @@ namespace DiKErnel::FunctionLibrary::Test
         // Setup
         const auto distanceMaximumWaveElevation = 2.25;
         const auto normativeWidthWaveImpact = 1.47;
-        const auto slopeAngle = 0.245;
+        const auto slopeAngle = 14.037;
 
         // Call
         const auto depthMaximumWaveLoad = NaturalStoneRevetment::DepthMaximumWaveLoad(distanceMaximumWaveElevation, normativeWidthWaveImpact,
                                                                                       slopeAngle);
 
         // Assert
-        ASSERT_DOUBLE_EQ(0.3842721100148393, depthMaximumWaveLoad);
+        ASSERT_DOUBLE_EQ(0.38425846631481392, depthMaximumWaveLoad);
     }
 
     TEST(NaturalStoneRevetmentTest, DistanceMaximumWaveElevation_ValidInput_ExpectedValue)
