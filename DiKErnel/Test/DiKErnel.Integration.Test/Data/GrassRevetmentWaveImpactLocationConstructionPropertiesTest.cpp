@@ -72,9 +72,9 @@ namespace DiKErnel::Integration::Test
         const auto positionZ = 0.2;
         const auto initialDamage = 0.3;
         const auto failureNumber = 0.4;
-        const auto failureTimeAgwi = 0.5;
-        const auto failureTimeBgwi = 0.6;
-        const auto failureTimeCgwi = 0.7;
+        const auto timeLineAgwi = 0.5;
+        const auto timeLineBgwi = 0.6;
+        const auto timeLineCgwi = 0.7;
         const auto minimumWaveHeightTemax = 0.8;
         const auto maximumWaveHeightTemin = 0.9;
         const auto waveAngleImpactNwa = 1.0;
@@ -89,9 +89,9 @@ namespace DiKErnel::Integration::Test
         // When
         constructionProperties.SetInitialDamage(make_unique<double>(initialDamage));
         constructionProperties.SetFailureNumber(make_unique<double>(failureNumber));
-        constructionProperties.SetTimeLineAgwi(make_unique<double>(failureTimeAgwi));
-        constructionProperties.SetTimeLineBgwi(make_unique<double>(failureTimeBgwi));
-        constructionProperties.SetTimeLineCgwi(make_unique<double>(failureTimeCgwi));
+        constructionProperties.SetTimeLineAgwi(make_unique<double>(timeLineAgwi));
+        constructionProperties.SetTimeLineBgwi(make_unique<double>(timeLineBgwi));
+        constructionProperties.SetTimeLineCgwi(make_unique<double>(timeLineCgwi));
         constructionProperties.SetMinimumWaveHeightTemax(make_unique<double>(minimumWaveHeightTemax));
         constructionProperties.SetMaximumWaveHeightTemin(make_unique<double>(maximumWaveHeightTemin));
         constructionProperties.SetWaveAngleImpactNwa(make_unique<double>(waveAngleImpactNwa));
@@ -107,9 +107,9 @@ namespace DiKErnel::Integration::Test
         ASSERT_DOUBLE_EQ(positionZ, constructionProperties.GetPositionZ());
         ASSERT_DOUBLE_EQ(initialDamage, *constructionProperties.GetInitialDamage());
         ASSERT_DOUBLE_EQ(failureNumber, *constructionProperties.GetFailureNumber());
-        ASSERT_DOUBLE_EQ(failureTimeAgwi, *constructionProperties.GetTimeLineAgwi());
-        ASSERT_DOUBLE_EQ(failureTimeBgwi, *constructionProperties.GetTimeLineBgwi());
-        ASSERT_DOUBLE_EQ(failureTimeCgwi, *constructionProperties.GetTimeLineCgwi());
+        ASSERT_DOUBLE_EQ(timeLineAgwi, *constructionProperties.GetTimeLineAgwi());
+        ASSERT_DOUBLE_EQ(timeLineBgwi, *constructionProperties.GetTimeLineBgwi());
+        ASSERT_DOUBLE_EQ(timeLineCgwi, *constructionProperties.GetTimeLineCgwi());
         ASSERT_DOUBLE_EQ(minimumWaveHeightTemax, *constructionProperties.GetMinimumWaveHeightTemax());
         ASSERT_DOUBLE_EQ(maximumWaveHeightTemin, *constructionProperties.GetMaximumWaveHeightTemin());
         ASSERT_DOUBLE_EQ(waveAngleImpactNwa, *constructionProperties.GetWaveAngleImpactNwa());
