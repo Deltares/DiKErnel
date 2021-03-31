@@ -25,7 +25,6 @@
 #include <nlohmann/json.hpp>
 
 #include "Calculator.h"
-#include "FileAssert.h"
 #include "JsonInputComposer.h"
 #include "JsonOutputComposer.h"
 #include "TestDataPathHelper.h"
@@ -46,6 +45,36 @@ namespace DiKErnel::Acceptance::Test
         (filesystem::temp_directory_path()
             / "actualOutput.json").string();
 
+        void PerformTest(
+            const string& filePath,
+            const double expectedDamage,
+            const double* expectedFailureTime) const
+        {
+            // When
+            const auto calculationInput = JsonInputComposer::GetCalculationInputFromJson(filePath);
+            Calculator calculator(*calculationInput);
+            calculator.WaitForCompletion();
+
+            const auto outputData = calculator.GetCalculationOutput();
+            JsonOutputComposer::WriteCalculationOutputToJson(_actualOutputFilePath, *outputData, *calculationInput);
+
+            // Assert
+            ifstream ifs(_actualOutputFilePath);
+            const auto json = json::parse(ifs);
+
+            const auto& readLocation = json["Uitvoerdata"]["Locaties"][0];
+            const auto& actualDamages = readLocation["Schade"]["SchadegetalPerTijd"].get<vector<double>>();
+
+            unique_ptr<double> actualFailureTime = nullptr;
+
+            if (!readLocation["Schade"]["Faaltijd"].is_null())
+            {
+                actualFailureTime = make_unique<double>(readLocation["Schade"]["Faaltijd"].get<double>());
+            }
+
+            AssertOutput(expectedDamage, expectedFailureTime, actualDamages.back(), actualFailureTime.get());
+        }
+
         static void AssertOutput(
             const double expectedDamage,
             const double* expectedFailureTime,
@@ -54,7 +83,7 @@ namespace DiKErnel::Acceptance::Test
         {
             ASSERT_DOUBLE_EQ(expectedDamage, actualDamage);
 
-            if(expectedFailureTime == nullptr || actualFailureTime == nullptr)
+            if (expectedFailureTime == nullptr || actualFailureTime == nullptr)
             {
                 ASSERT_EQ(expectedFailureTime, actualFailureTime);
             }
@@ -77,28 +106,18 @@ namespace DiKErnel::Acceptance::Test
         (TestDataPathHelper::GetTestDataPath("DiKErnel.Acceptance.Test")
             / "AcceptanceTest" / "naturalStone.json").string();
 
-        // When
-        const auto calculationInput = JsonInputComposer::GetCalculationInputFromJson(filePath);
-        Calculator calculator(*calculationInput);
-        calculator.WaitForCompletion();
+        // When & Then
+        PerformTest(filePath, 1.1836103307707342, nullptr);
+    }
 
-        const auto outputData = calculator.GetCalculationOutput();
-        JsonOutputComposer::WriteCalculationOutputToJson(_actualOutputFilePath, *outputData, *calculationInput);
+    TEST_F(AcceptanceTest, GivenJsonWithGrassWaveImpactLocation_WhenCalculating_ThenExpectedOutputJsonCreated)
+    {
+        // Given
+        const auto filePath =
+        (TestDataPathHelper::GetTestDataPath("DiKErnel.Acceptance.Test")
+            / "AcceptanceTest" / "grassWaveImpact.json").string();
 
-        // Assert
-        ifstream ifs(_actualOutputFilePath);
-        const auto json = json::parse(ifs);
-
-        const auto& readLocation = json["Uitvoerdata"]["Locaties"][0];
-        const auto& actualDamages = readLocation["Schade"]["SchadegetalPerTijd"].get<vector<double>>();
-
-        unique_ptr<double> actualFailureTime = nullptr;
-
-        if(!readLocation["Schade"]["Faaltijd"].is_null())
-        {
-            actualFailureTime = make_unique<double>(readLocation["Schade"]["Faaltijd"].get<double>());
-        }
-
-        AssertOutput(1.1836103307707342, nullptr, actualDamages.back(), actualFailureTime.get());
+        // When & Then
+        PerformTest(filePath, 2.83680441583725, nullptr);
     }
 }
