@@ -330,7 +330,7 @@ namespace DiKErnel::Integration::Test
         GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertWaveAngleImpact(
             waveAngleImpactNwa, waveAngleImpactQwa, waveAngleImpactRwa, locationDependentInput->GetWaveAngleImpact());
 
-        GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertFailureTime(
+        GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertTimeLine(
             failureTimeAgwi, failureTimeBgwi, failureTimeCgwi, locationDependentInput->GetFailureTime());
 
         GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertUpperLimitLoading(
@@ -382,7 +382,7 @@ namespace DiKErnel::Integration::Test
         GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertWaveAngleImpact(
             2.0 / 3.0, 0.35, 10.0, locationDependentInput->GetWaveAngleImpact());
 
-        GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertFailureTime(
+        GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertTimeLine(
             1.0, -0.000009722, 0.25, locationDependentInput->GetFailureTime());
 
         GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertUpperLimitLoading(
@@ -434,7 +434,7 @@ namespace DiKErnel::Integration::Test
         GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertWaveAngleImpact(
             2.0 / 3.0, 0.35, 10.0, locationDependentInput->GetWaveAngleImpact());
 
-        GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertFailureTime(
+        GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertTimeLine(
             0.8, -0.00001944, 0.25, locationDependentInput->GetFailureTime());
 
         GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertUpperLimitLoading(
