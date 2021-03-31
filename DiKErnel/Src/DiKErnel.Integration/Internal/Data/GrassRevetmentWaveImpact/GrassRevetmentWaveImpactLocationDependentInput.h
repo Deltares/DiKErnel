@@ -40,7 +40,7 @@ namespace DiKErnel::Integration
                 std::unique_ptr<GrassRevetmentWaveImpactWaveAngleImpact> waveAngleImpact,
                 double minimumWaveHeightTemax,
                 double maximumWaveHeightTemin,
-                std::unique_ptr<GrassRevetmentWaveImpactTimeLine> failureTime,
+                std::unique_ptr<GrassRevetmentWaveImpactTimeLine> timeLine,
                 double upperLimitLoadingAul,
                 double lowerLimitLoadingAll);
 
@@ -54,7 +54,7 @@ namespace DiKErnel::Integration
 
             double GetMaximumWaveHeightTemin() const;
 
-            GrassRevetmentWaveImpactTimeLine& GetFailureTime() const;
+            GrassRevetmentWaveImpactTimeLine& GetTimeLine() const;
 
             double GetUpperLimitLoadingAul() const;
 
@@ -64,7 +64,7 @@ namespace DiKErnel::Integration
             std::unique_ptr<GrassRevetmentWaveImpactWaveAngleImpact> _waveAngleImpact;
             double _minimumWaveHeightTemax;
             double _maximumWaveHeightTemin;
-            std::unique_ptr<GrassRevetmentWaveImpactTimeLine> _failureTime;
+            std::unique_ptr<GrassRevetmentWaveImpactTimeLine> _timeLine;
             double _upperLimitLoadingAul;
             double _lowerLimitLoadingAll;
     };

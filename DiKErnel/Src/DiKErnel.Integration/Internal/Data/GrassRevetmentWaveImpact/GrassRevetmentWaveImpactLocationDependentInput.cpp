@@ -39,14 +39,14 @@ namespace DiKErnel::Integration
         unique_ptr<GrassRevetmentWaveImpactWaveAngleImpact> waveAngleImpact,
         const double minimumWaveHeightTemax,
         const double maximumWaveHeightTemin,
-        unique_ptr<GrassRevetmentWaveImpactTimeLine> failureTime,
+        unique_ptr<GrassRevetmentWaveImpactTimeLine> timeLine,
         const double upperLimitLoadingAul,
         const double lowerLimitLoadingAll)
         : LocationDependentInput(move(name), initialDamage, failureNumber, tanA, positionZ),
           _waveAngleImpact(move(waveAngleImpact)),
           _minimumWaveHeightTemax(minimumWaveHeightTemax),
           _maximumWaveHeightTemin(maximumWaveHeightTemin),
-          _failureTime(move(failureTime)),
+          _timeLine(move(timeLine)),
           _upperLimitLoadingAul(upperLimitLoadingAul),
           _lowerLimitLoadingAll(lowerLimitLoadingAll) {}
 
@@ -82,15 +82,15 @@ namespace DiKErnel::Integration
                 timeDependentInput.GetEndTime());
 
             const auto minimumWaveHeight = GrassRevetmentWaveImpact::MinimumWaveHeight(
-                _failureTime->GetTimeLineAgwi(),
-                _failureTime->GetTimeLineBgwi(),
-                _failureTime->GetTimeLineCgwi(),
+                _timeLine->GetTimeLineAgwi(),
+                _timeLine->GetTimeLineBgwi(),
+                _timeLine->GetTimeLineCgwi(),
                 _minimumWaveHeightTemax);
 
             const auto maximumWaveHeight = GrassRevetmentWaveImpact::MaximumWaveHeight(
-                _failureTime->GetTimeLineAgwi(),
-                _failureTime->GetTimeLineBgwi(),
-                _failureTime->GetTimeLineCgwi(),
+                _timeLine->GetTimeLineAgwi(),
+                _timeLine->GetTimeLineBgwi(),
+                _timeLine->GetTimeLineCgwi(),
                 _maximumWaveHeightTemin);
 
             const auto waveAngleImpact = GrassRevetmentWaveImpact::WaveAngleImpact(
@@ -105,15 +105,15 @@ namespace DiKErnel::Integration
                 waveAngleImpact,
                 waveHeightHm0);
 
-            const auto failureTime = GrassRevetmentWaveImpact::TimeLine(
+            const auto timeLine = GrassRevetmentWaveImpact::TimeLine(
                 waveHeight,
-                _failureTime->GetTimeLineAgwi(),
-                _failureTime->GetTimeLineBgwi(),
-                _failureTime->GetTimeLineCgwi()
+                _timeLine->GetTimeLineAgwi(),
+                _timeLine->GetTimeLineBgwi(),
+                _timeLine->GetTimeLineCgwi()
             );
 
             incrementOfDamage = GrassRevetmentWaveImpact::IncrementDamage(
-                incrementTime, failureTime);
+                incrementTime, timeLine);
         }
 
         return make_unique<TimeDependentOutput>(Revetment::Damage(incrementOfDamage, initialDamage), nullptr);
@@ -134,9 +134,9 @@ namespace DiKErnel::Integration
         return _maximumWaveHeightTemin;
     }
 
-    GrassRevetmentWaveImpactTimeLine& GrassRevetmentWaveImpactLocationDependentInput::GetFailureTime() const
+    GrassRevetmentWaveImpactTimeLine& GrassRevetmentWaveImpactLocationDependentInput::GetTimeLine() const
     {
-        return *_failureTime;
+        return *_timeLine;
     }
 
     double GrassRevetmentWaveImpactLocationDependentInput::GetUpperLimitLoadingAul() const

@@ -125,7 +125,7 @@ namespace DiKErnel::Integration
         const GrassRevetmentWaveImpactLocationConstructionProperties& constructionProperties)
     {
         unique_ptr<GrassRevetmentWaveImpactWaveAngleImpact> waveAngleImpact;
-        unique_ptr<GrassRevetmentWaveImpactTimeLine> failureTime;
+        unique_ptr<GrassRevetmentWaveImpactTimeLine> timeLine;
 
         double minimumWaveHeightTemax;
         double maximumWaveHeightTemin;
@@ -140,7 +140,7 @@ namespace DiKErnel::Integration
                 GetValue(constructionProperties.GetWaveAngleImpactQwa(), GrassRevetmentWaveImpactClosedSodDefaults::WAVE_ANGLE_IMPACT_QWA),
                 GetValue(constructionProperties.GetWaveAngleImpactRwa(), GrassRevetmentWaveImpactClosedSodDefaults::WAVE_ANGLE_IMPACT_RWA));
 
-            failureTime = make_unique<GrassRevetmentWaveImpactTimeLine>(
+            timeLine = make_unique<GrassRevetmentWaveImpactTimeLine>(
                 GetValue(constructionProperties.GetTimeLineAgwi(), GrassRevetmentWaveImpactClosedSodDefaults::TIME_LINE_AGWI),
                 GetValue(constructionProperties.GetTimeLineBgwi(), GrassRevetmentWaveImpactClosedSodDefaults::TIME_LINE_BGWI),
                 GetValue(constructionProperties.GetTimeLineCgwi(), GrassRevetmentWaveImpactClosedSodDefaults::TIME_LINE_CGWI));
@@ -162,7 +162,7 @@ namespace DiKErnel::Integration
                 GetValue(constructionProperties.GetWaveAngleImpactQwa(), GrassRevetmentWaveImpactOpenSodDefaults::WAVE_ANGLE_IMPACT_QWA),
                 GetValue(constructionProperties.GetWaveAngleImpactRwa(), GrassRevetmentWaveImpactOpenSodDefaults::WAVE_ANGLE_IMPACT_RWA));
 
-            failureTime = make_unique<GrassRevetmentWaveImpactTimeLine>(
+            timeLine = make_unique<GrassRevetmentWaveImpactTimeLine>(
                 GetValue(constructionProperties.GetTimeLineAgwi(), GrassRevetmentWaveImpactOpenSodDefaults::FAILURE_TIME_AGWI),
                 GetValue(constructionProperties.GetTimeLineBgwi(), GrassRevetmentWaveImpactOpenSodDefaults::FAILURE_TIME_BGWI),
                 GetValue(constructionProperties.GetTimeLineCgwi(), GrassRevetmentWaveImpactOpenSodDefaults::FAILURE_TIME_CGWI));
@@ -187,7 +187,7 @@ namespace DiKErnel::Integration
                 move(waveAngleImpact),
                 minimumWaveHeightTemax,
                 maximumWaveHeightTemin,
-                move(failureTime),
+                move(timeLine),
                 upperLimitLoadingAul,
                 lowerLimitLoadingAll));
     }

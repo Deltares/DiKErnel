@@ -126,7 +126,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
         GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertWaveAngleImpact(
             0.9, 0.1, 8.0, grassRevetmentWaveImpactLocationDependentInputItem1->GetWaveAngleImpact());
         GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertTimeLine(
-            0.3, -0.1, 0.96, grassRevetmentWaveImpactLocationDependentInputItem1->GetFailureTime());
+            0.3, -0.1, 0.96, grassRevetmentWaveImpactLocationDependentInputItem1->GetTimeLine());
         GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertUpperLimitLoading(
             1.0, *grassRevetmentWaveImpactLocationDependentInputItem1);
         GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertLowerLimitLoading(
@@ -145,7 +145,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
         GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertWaveAngleImpact(
             2.0 / 3.0, 0.35, 10.0, grassRevetmentWaveImpactLocationDependentInputItem2->GetWaveAngleImpact());
         GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertTimeLine(
-            1.0, -0.000009722, 0.25, grassRevetmentWaveImpactLocationDependentInputItem2->GetFailureTime());
+            1.0, -0.000009722, 0.25, grassRevetmentWaveImpactLocationDependentInputItem2->GetTimeLine());
         GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertUpperLimitLoading(
             0.0, *grassRevetmentWaveImpactLocationDependentInputItem2);
         GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertLowerLimitLoading(
@@ -164,7 +164,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
         GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertWaveAngleImpact(
             2.0 / 3.0, 0.35, 10.0, grassRevetmentWaveImpactLocationDependentInputItem3->GetWaveAngleImpact());
         GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertTimeLine(
-            0.8, -0.00001944, 0.25, grassRevetmentWaveImpactLocationDependentInputItem3->GetFailureTime());
+            0.8, -0.00001944, 0.25, grassRevetmentWaveImpactLocationDependentInputItem3->GetTimeLine());
         GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertUpperLimitLoading(
             0.0, *grassRevetmentWaveImpactLocationDependentInputItem3);
         GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertLowerLimitLoading(
