@@ -73,7 +73,8 @@ namespace DiKErnel::Integration
             upperLimitLoading,
             positionZ);
 
-        auto incrementOfDamage = 0.0;
+        auto damage = initialDamage;
+        unique_ptr<double> timeOfFailure = nullptr;
 
         if (loadingOfRevetment)
         {
@@ -112,11 +113,19 @@ namespace DiKErnel::Integration
                 _failureTime->GetWaveAngleImpactCgwi()
             );
 
-            incrementOfDamage = GrassRevetmentWaveImpact::IncrementDamage(
-                incrementTime, failureTime);
+            const auto incrementOfDamage = GrassRevetmentWaveImpact::IncrementDamage(incrementTime, failureTime);
+
+            damage = Revetment::Damage(incrementOfDamage, initialDamage);
+
+            const auto failureNumber = GetFailureNumber();
+
+            if (Revetment::FailureRevetment(damage, initialDamage, failureNumber))
+            {
+                timeOfFailure = make_unique<double>(GrassRevetmentWaveImpact::FailureTime(failureTime, failureNumber, initialDamage) + timeDependentInput.GetBeginTime());
+            }
         }
 
-        return make_unique<TimeDependentOutput>(Revetment::Damage(incrementOfDamage, initialDamage), nullptr);
+        return make_unique<TimeDependentOutput>(damage, move(timeOfFailure));
     }
 
     GrassRevetmentWaveImpactWaveAngleImpact& GrassRevetmentWaveImpactLocationDependentInput::GetWaveAngleImpact() const

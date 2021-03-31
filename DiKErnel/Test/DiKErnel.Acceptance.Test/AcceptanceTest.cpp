@@ -83,7 +83,7 @@ namespace DiKErnel::Acceptance::Test
         {
             ASSERT_DOUBLE_EQ(expectedDamage, actualDamage);
 
-            if (expectedFailureTime == nullptr || actualFailureTime == nullptr)
+            if (expectedFailureTime == nullptr)
             {
                 ASSERT_EQ(expectedFailureTime, actualFailureTime);
             }
@@ -107,7 +107,7 @@ namespace DiKErnel::Acceptance::Test
             / "AcceptanceTest" / "naturalStone.json").string();
 
         // When & Then
-        PerformTest(filePath, 1.1836103307707342, nullptr);
+        PerformTest(filePath, 1.1836103307707342, make_unique<double>(3066.1997118323134).get());
     }
 
     TEST_F(AcceptanceTest, GivenJsonWithGrassWaveImpactLocation_WhenCalculating_ThenExpectedOutputJsonCreated)
@@ -118,6 +118,6 @@ namespace DiKErnel::Acceptance::Test
             / "AcceptanceTest" / "grassWaveImpact.json").string();
 
         // When & Then
-        PerformTest(filePath, 2.83680441583725, nullptr);
+        PerformTest(filePath, 2.83680441583725, make_unique<double>(32952.81503687505).get());
     }
 }
