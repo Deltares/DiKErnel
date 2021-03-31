@@ -66,11 +66,11 @@ namespace DiKErnel::Integration::TestUtil
         const double waveAngleImpactAgwi,
         const double waveAngleImpactBgwi,
         const double waveAngleImpactCgwi,
-        const GrassRevetmentWaveImpactFailureTime& failureTime)
+        const GrassRevetmentWaveImpactTimeLine& failureTime)
     {
-        ASSERT_DOUBLE_EQ(waveAngleImpactAgwi, failureTime.GetWaveAngleImpactAgwi());
-        ASSERT_DOUBLE_EQ(waveAngleImpactBgwi, failureTime.GetWaveAngleImpactBgwi());
-        ASSERT_DOUBLE_EQ(waveAngleImpactCgwi, failureTime.GetWaveAngleImpactCgwi());
+        ASSERT_DOUBLE_EQ(waveAngleImpactAgwi, failureTime.GetTimeLineAgwi());
+        ASSERT_DOUBLE_EQ(waveAngleImpactBgwi, failureTime.GetTimeLineBgwi());
+        ASSERT_DOUBLE_EQ(waveAngleImpactCgwi, failureTime.GetTimeLineCgwi());
     }
 
     void GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertUpperLimitLoading(

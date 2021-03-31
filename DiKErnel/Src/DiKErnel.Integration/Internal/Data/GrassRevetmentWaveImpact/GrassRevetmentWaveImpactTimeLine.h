@@ -22,23 +22,23 @@
 
 namespace DiKErnel::Integration
 {
-    class GrassRevetmentWaveImpactFailureTime
+    class GrassRevetmentWaveImpactTimeLine
     {
         public:
-            explicit GrassRevetmentWaveImpactFailureTime(
-                double waveAngleImpactAgwi,
-                double waveAngleImpactBgwi,
-                double waveAngleImpactCgwi);
+            explicit GrassRevetmentWaveImpactTimeLine(
+                double timeLineAgwi,
+                double timeLineBgwi,
+                double timeLineCgwi);
 
-            double GetWaveAngleImpactAgwi() const;
+            double GetTimeLineAgwi() const;
 
-            double GetWaveAngleImpactBgwi() const;
+            double GetTimeLineBgwi() const;
 
-            double GetWaveAngleImpactCgwi() const;
+            double GetTimeLineCgwi() const;
 
         private:
-            const double _waveAngleImpactAgwi;
-            const double _waveAngleImpactBgwi;
-            const double _waveAngleImpactCgwi;
+            const double _timeLineAgwi;
+            const double _timeLineBgwi;
+            const double _timeLineCgwi;
     };
 }

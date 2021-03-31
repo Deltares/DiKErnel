@@ -22,7 +22,7 @@
 
 #include <memory>
 
-#include "GrassRevetmentWaveImpactFailureTime.h"
+#include "GrassRevetmentWaveImpactTimeLine.h"
 #include "GrassRevetmentWaveImpactWaveAngleImpact.h"
 #include "LocationDependentInput.h"
 
@@ -40,7 +40,7 @@ namespace DiKErnel::Integration
                 std::unique_ptr<GrassRevetmentWaveImpactWaveAngleImpact> waveAngleImpact,
                 double minimumWaveHeightTemax,
                 double maximumWaveHeightTemin,
-                std::unique_ptr<GrassRevetmentWaveImpactFailureTime> failureTime,
+                std::unique_ptr<GrassRevetmentWaveImpactTimeLine> failureTime,
                 double upperLimitLoadingAul,
                 double lowerLimitLoadingAll);
 
@@ -54,7 +54,7 @@ namespace DiKErnel::Integration
 
             double GetMaximumWaveHeightTemin() const;
 
-            GrassRevetmentWaveImpactFailureTime& GetFailureTime() const;
+            GrassRevetmentWaveImpactTimeLine& GetFailureTime() const;
 
             double GetUpperLimitLoadingAul() const;
 
@@ -64,7 +64,7 @@ namespace DiKErnel::Integration
             std::unique_ptr<GrassRevetmentWaveImpactWaveAngleImpact> _waveAngleImpact;
             double _minimumWaveHeightTemax;
             double _maximumWaveHeightTemin;
-            std::unique_ptr<GrassRevetmentWaveImpactFailureTime> _failureTime;
+            std::unique_ptr<GrassRevetmentWaveImpactTimeLine> _failureTime;
             double _upperLimitLoadingAul;
             double _lowerLimitLoadingAll;
     };

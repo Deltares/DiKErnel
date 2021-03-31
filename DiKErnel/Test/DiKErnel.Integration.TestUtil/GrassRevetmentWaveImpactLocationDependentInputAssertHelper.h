@@ -51,7 +51,7 @@ namespace DiKErnel::Integration::TestUtil
                 double waveAngleImpactAgwi,
                 double waveAngleImpactBgwi,
                 double waveAngleImpactCgwi,
-                const GrassRevetmentWaveImpactFailureTime& failureTime);
+                const GrassRevetmentWaveImpactTimeLine& failureTime);
 
             static void AssertUpperLimitLoading(
                 double upperLimitLoadingAul,

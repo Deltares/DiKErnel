@@ -18,30 +18,30 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include "GrassRevetmentWaveImpactFailureTime.h"
+#include "GrassRevetmentWaveImpactTimeLine.h"
 
 namespace DiKErnel::Integration
 {
-    GrassRevetmentWaveImpactFailureTime::GrassRevetmentWaveImpactFailureTime(
-        const double waveAngleImpactAgwi,
-        const double waveAngleImpactBgwi,
-        const double waveAngleImpactCgwi)
-        : _waveAngleImpactAgwi(waveAngleImpactAgwi),
-          _waveAngleImpactBgwi(waveAngleImpactBgwi),
-          _waveAngleImpactCgwi(waveAngleImpactCgwi) { }
+    GrassRevetmentWaveImpactTimeLine::GrassRevetmentWaveImpactTimeLine(
+        const double timeLineAgwi,
+        const double timeLineBgwi,
+        const double timeLineCgwi)
+        : _timeLineAgwi(timeLineAgwi),
+          _timeLineBgwi(timeLineBgwi),
+          _timeLineCgwi(timeLineCgwi) { }
 
-    double GrassRevetmentWaveImpactFailureTime::GetWaveAngleImpactAgwi() const
+    double GrassRevetmentWaveImpactTimeLine::GetTimeLineAgwi() const
     {
-        return _waveAngleImpactAgwi;
+        return _timeLineAgwi;
     }
 
-    double GrassRevetmentWaveImpactFailureTime::GetWaveAngleImpactBgwi() const
+    double GrassRevetmentWaveImpactTimeLine::GetTimeLineBgwi() const
     {
-        return _waveAngleImpactBgwi;
+        return _timeLineBgwi;
     }
 
-    double GrassRevetmentWaveImpactFailureTime::GetWaveAngleImpactCgwi() const
+    double GrassRevetmentWaveImpactTimeLine::GetTimeLineCgwi() const
     {
-        return _waveAngleImpactCgwi;
+        return _timeLineCgwi;
     }
 }
