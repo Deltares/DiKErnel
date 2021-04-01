@@ -43,4 +43,11 @@ namespace DiKErnel::FunctionLibrary
     {
         return initialDamage < failureNumber && damage >= failureNumber;
     }
+
+    double Revetment::TimeOfFailure(
+        const double durationInTimeStepFailure,
+        const double startTime)
+    {
+        return durationInTimeStepFailure + startTime;
+    }
 }

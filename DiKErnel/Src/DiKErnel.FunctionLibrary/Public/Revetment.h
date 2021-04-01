@@ -75,5 +75,20 @@ namespace DiKErnel::FunctionLibrary
                 double damage,
                 double initialDamage,
                 double failureNumber);
+
+            /*!
+             * \brief Calculated the time of failure.
+             * \param durationInTimeStepFailure
+             *        The duration in the time step failure.
+             *        Unit = [s]
+             * \param startTime
+             *        The start time.
+             *        Unit = [s]
+             * \return The time of failure.
+             *         Unit = [s]
+             */
+            static double TimeOfFailure(
+                double durationInTimeStepFailure,
+                double startTime);
     };
 }

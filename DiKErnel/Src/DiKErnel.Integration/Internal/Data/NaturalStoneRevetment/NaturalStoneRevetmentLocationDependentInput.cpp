@@ -136,8 +136,9 @@ namespace DiKErnel::Integration
             {
                 const auto referenceFailure = NaturalStoneRevetment::ReferenceFailure(resistance, hydraulicLoad, waveAngleImpact, failureNumber);
                 const auto referenceTimeFailure = NaturalStoneRevetment::ReferenceTimeFailure(referenceFailure, wavePeriodTm10);
-                timeOfFailure = make_unique<double>(NaturalStoneRevetment::DurationInTimeStepFailure(
-                    referenceTimeFailure, referenceTimeDegradation) + timeDependentInput.GetBeginTime());
+                const auto durationInTimeStepFailure = NaturalStoneRevetment::DurationInTimeStepFailure(
+                    referenceTimeFailure, referenceTimeDegradation);
+                timeOfFailure = make_unique<double>(Revetment::TimeOfFailure(durationInTimeStepFailure, timeDependentInput.GetBeginTime()));
             }
         }
 
