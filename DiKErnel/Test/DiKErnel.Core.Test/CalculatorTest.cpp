@@ -130,7 +130,7 @@ namespace DiKErnel::Core::Test
         // Given
         const auto damage = 0.5;
         const auto timeOfFailure = 20.0;
-        const auto timeOfFailurePtr = make_unique<double>(timeOfFailure);
+        const auto timeOfFailurePtr = make_unique<int>(timeOfFailure);
 
         NiceMock<ICalculationInputMock> calculationInput;
         ON_CALL(calculationInput, GetLocationDependentInputItems).WillByDefault(ReturnRef(_locationDependentInputItemReferences));
@@ -163,7 +163,7 @@ namespace DiKErnel::Core::Test
             ASSERT_DOUBLE_EQ(damage, actualDamages[j]);
         }
 
-        ASSERT_DOUBLE_EQ(timeOfFailure, *locationDependentOutputItems[0].get().GetTimeOfFailure());
+        ASSERT_EQ(timeOfFailure, *locationDependentOutputItems[0].get().GetTimeOfFailure());
     }
 
     TEST_F(CalculatorTest, GivenCalculatorWithRunningCalculation_WhenCancelCalled_ThenCalculationCancelled)

@@ -43,10 +43,10 @@ namespace DiKErnel::Core::TestUtil
                 double damage);
 
             void SetTimeOfFailure(
-                double* timeOfFailure);
+                int* timeOfFailure);
 
         private:
             double _damage;
-            double* _timeOfFailure = nullptr;
+            int* _timeOfFailure = nullptr;
     };
 }

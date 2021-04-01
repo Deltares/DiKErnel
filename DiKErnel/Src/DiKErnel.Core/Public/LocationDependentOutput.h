@@ -40,7 +40,7 @@ namespace DiKErnel::Core
              */
             explicit LocationDependentOutput(
                 std::vector<double> damages,
-                std::unique_ptr<double> timeOfFailure);
+                std::unique_ptr<int> timeOfFailure);
 
             /*!
              * \brief Gets the damages.
@@ -52,10 +52,10 @@ namespace DiKErnel::Core
              * \brief Gets the time of failure.
              * \return The time of failure.
              */
-            const double* GetTimeOfFailure() const;
+            const int* GetTimeOfFailure() const;
 
         private:
             std::vector<double> _damages;
-            std::unique_ptr<double> _timeOfFailure;
+            std::unique_ptr<int> _timeOfFailure;
     };
 }

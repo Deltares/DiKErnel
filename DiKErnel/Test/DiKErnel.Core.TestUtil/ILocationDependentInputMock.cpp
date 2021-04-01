@@ -29,7 +29,7 @@ namespace DiKErnel::Core::TestUtil
         const ITimeDependentInput& timeDependentInput)
     {
         return make_unique<TimeDependentOutput>(_damage, _timeOfFailure != nullptr
-                                                             ? make_unique<double>(*_timeOfFailure)
+                                                             ? make_unique<int>(*_timeOfFailure)
                                                              : nullptr);
     }
 
@@ -40,7 +40,7 @@ namespace DiKErnel::Core::TestUtil
     }
 
     void ILocationDependentInputMock::SetTimeOfFailure(
-        double* timeOfFailure)
+        int* timeOfFailure)
     {
         _timeOfFailure = timeOfFailure;
     }

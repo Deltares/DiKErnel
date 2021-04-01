@@ -26,7 +26,7 @@ namespace DiKErnel::Core
 
     LocationDependentOutput::LocationDependentOutput(
         vector<double> damages,
-        unique_ptr<double> timeOfFailure)
+        unique_ptr<int> timeOfFailure)
         : _damages(move(damages)),
           _timeOfFailure(move(timeOfFailure)) {}
 
@@ -35,7 +35,7 @@ namespace DiKErnel::Core
         return _damages;
     }
 
-    const double* LocationDependentOutput::GetTimeOfFailure() const
+    const int* LocationDependentOutput::GetTimeOfFailure() const
     {
         return _timeOfFailure.get();
     }

@@ -35,11 +35,11 @@ namespace DiKErnel::Core::Test
         double timeOfFailure = rand() % 20;
 
         // Call
-        const LocationDependentOutput locationDependentOutput(move(damages), make_unique<double>(timeOfFailure));
+        const LocationDependentOutput locationDependentOutput(move(damages), make_unique<int>(timeOfFailure));
 
         // Assert
         ASSERT_EQ(1, locationDependentOutput.GetDamages().size());
-        ASSERT_DOUBLE_EQ(timeOfFailure, *locationDependentOutput.GetTimeOfFailure());
+        ASSERT_EQ(timeOfFailure, *locationDependentOutput.GetTimeOfFailure());
     }
 
     TEST(LocationDependentOutputTest, Constructor_TimeOfFailureNullPtr_ExpectedValues)
