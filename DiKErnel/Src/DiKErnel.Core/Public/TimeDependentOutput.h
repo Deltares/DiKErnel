@@ -39,7 +39,7 @@ namespace DiKErnel::Core
              */
             explicit TimeDependentOutput(
                 double damage,
-                std::unique_ptr<double> timeOfFailure);
+                std::unique_ptr<int> timeOfFailure);
 
             /*!
              * \brief Gets the damage.
@@ -51,10 +51,10 @@ namespace DiKErnel::Core
              * \brief Gets the time of failure.
              * \return The time of failure.
              */
-            const double* GetTimeOfFailure() const;
+            const int* GetTimeOfFailure() const;
 
         private:
             double _damage;
-            std::unique_ptr<double> _timeOfFailure;
+            std::unique_ptr<int> _timeOfFailure;
     };
 }

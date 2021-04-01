@@ -26,7 +26,7 @@ namespace DiKErnel::Core
 
     TimeDependentOutput::TimeDependentOutput(
         const double damage,
-        unique_ptr<double> timeOfFailure)
+        unique_ptr<int> timeOfFailure)
         : _damage(damage),
           _timeOfFailure(move(timeOfFailure)) {}
 
@@ -35,7 +35,7 @@ namespace DiKErnel::Core
         return _damage;
     }
 
-    const double* TimeDependentOutput::GetTimeOfFailure() const
+    const int* TimeDependentOutput::GetTimeOfFailure() const
     {
         return _timeOfFailure.get();
     }

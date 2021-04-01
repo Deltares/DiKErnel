@@ -99,7 +99,7 @@ namespace DiKErnel::Integration
         const auto loadingRevetment = HydraulicLoad::LoadingRevetment(lowerLimitLoading, upperLimitLoading, positionZ);
 
         auto damage = initialDamage;
-        unique_ptr<double> timeOfFailure = nullptr;
+        unique_ptr<int> timeOfFailure = nullptr;
 
         if (loadingRevetment)
         {
@@ -138,7 +138,7 @@ namespace DiKErnel::Integration
                 const auto referenceTimeFailure = NaturalStoneRevetment::ReferenceTimeFailure(referenceFailure, wavePeriodTm10);
                 const auto durationInTimeStepFailure = NaturalStoneRevetment::DurationInTimeStepFailure(
                     referenceTimeFailure, referenceTimeDegradation);
-                timeOfFailure = make_unique<double>(Revetment::TimeOfFailure(durationInTimeStepFailure, timeDependentInput.GetBeginTime()));
+                timeOfFailure = make_unique<int>(Revetment::TimeOfFailure(durationInTimeStepFailure, timeDependentInput.GetBeginTime()));
             }
         }
 

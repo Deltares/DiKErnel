@@ -33,11 +33,11 @@ namespace DiKErnel::Core::Test
         double timeOfFailure = rand() % 20;
 
         // Call
-        const TimeDependentOutput timeDependentOutput(damage, make_unique<double>(timeOfFailure));
+        const TimeDependentOutput timeDependentOutput(damage, make_unique<int>(timeOfFailure));
 
         // Assert
         ASSERT_DOUBLE_EQ(damage, timeDependentOutput.GetDamage());
-        ASSERT_DOUBLE_EQ(timeOfFailure, *timeDependentOutput.GetTimeOfFailure());
+        ASSERT_EQ(timeOfFailure, *timeDependentOutput.GetTimeOfFailure());
     }
 
     TEST(TimeDependentOutputTest, Constructor_TimeOfFailureNullPtr_ExpectedValues)
