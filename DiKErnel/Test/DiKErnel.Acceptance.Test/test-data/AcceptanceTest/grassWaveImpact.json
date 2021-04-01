@@ -360,7 +360,7 @@
 				{
 					"TypeToplaag": "GrasGeslotenZode",
 					"StandtijdlijnGrasGolfklapAgwi": 1.0,
-					"StandtijdlijnGrasGolfklapBgwi": -9.72222222222222E-06,
+					"StandtijdlijnGrasGolfklapBgwi": -9.72e-06,
 					"StandtijdlijnGrasGolfklapCgwi": 0.25,
 					"Rekenmethoden":
 					[

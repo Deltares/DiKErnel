@@ -118,6 +118,6 @@ namespace DiKErnel::Acceptance::Test
             / "AcceptanceTest" / "grassWaveImpact.json").string();
 
         // When & Then
-        PerformTest(filePath, 2.83680441583725, make_unique<double>(32952.81503687505).get());
+        PerformTest(filePath, 2.836154231066117, make_unique<double>(32954.290321476336).get());
     }
 }
