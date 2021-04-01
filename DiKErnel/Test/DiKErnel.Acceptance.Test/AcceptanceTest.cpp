@@ -107,7 +107,7 @@ namespace DiKErnel::Acceptance::Test
             / "AcceptanceTest" / "naturalStone.json").string();
 
         // When & Then
-        PerformTest(filePath, 1.1836103307707342, make_unique<double>(3066.1997118323134).get());
+        PerformTest(filePath, 1.1836103307707342, make_unique<double>(3067).get());
     }
 
     TEST_F(AcceptanceTest, GivenJsonWithGrassWaveImpactLocation_WhenCalculating_ThenExpectedOutputJsonCreated)
@@ -118,6 +118,6 @@ namespace DiKErnel::Acceptance::Test
             / "AcceptanceTest" / "grassWaveImpact.json").string();
 
         // When & Then
-        PerformTest(filePath, 2.836154231066117, make_unique<double>(32954.290321476336).get());
+        PerformTest(filePath, 2.836154231066117, make_unique<double>(32955).get());
     }
 }

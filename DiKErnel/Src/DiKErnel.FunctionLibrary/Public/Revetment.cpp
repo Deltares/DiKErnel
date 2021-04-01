@@ -20,6 +20,8 @@
 
 #include "Revetment.h"
 
+#include <cmath>
+
 namespace DiKErnel::FunctionLibrary
 {
     int Revetment::IncrementTime(
@@ -44,10 +46,10 @@ namespace DiKErnel::FunctionLibrary
         return initialDamage < failureNumber && damage >= failureNumber;
     }
 
-    double Revetment::TimeOfFailure(
+    int Revetment::TimeOfFailure(
         const double durationInTimeStepFailure,
         const double startTime)
     {
-        return durationInTimeStepFailure + startTime;
+        return static_cast<int>(ceil(durationInTimeStepFailure + startTime));
     }
 }

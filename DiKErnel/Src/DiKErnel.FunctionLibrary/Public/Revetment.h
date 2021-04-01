@@ -87,7 +87,7 @@ namespace DiKErnel::FunctionLibrary
              * \return The time of failure.
              *         Unit = [s]
              */
-            static double TimeOfFailure(
+            static int TimeOfFailure(
                 double durationInTimeStepFailure,
                 double startTime);
     };

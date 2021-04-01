@@ -120,7 +120,7 @@ namespace DiKErnel::FunctionLibrary::Test
         ASSERT_FALSE(failureRevetment);
     }
 
-    TEST(RevetmentTest, TimeOfFailure_ValidInput_ExpectedValue)
+    TEST(RevetmentTest, TimeOfFailure_ValidUnroundedInput_ExpectedValue)
     {
         // Setup
         const auto durationInTimeStepFailure = 254.56;
@@ -130,6 +130,19 @@ namespace DiKErnel::FunctionLibrary::Test
         const auto timeOfFailure = Revetment::TimeOfFailure(durationInTimeStepFailure, startTime);
 
         // Assert
-        ASSERT_DOUBLE_EQ(1822.56, timeOfFailure);
+        ASSERT_EQ(1823, timeOfFailure);
+    }
+
+    TEST(RevetmentTest, TimeOfFailure_ValidRoundedInput_ExpectedValue)
+    {
+        // Setup
+        const auto durationInTimeStepFailure = 254;
+        const auto startTime = 1568;
+
+        // Call
+        const auto timeOfFailure = Revetment::TimeOfFailure(durationInTimeStepFailure, startTime);
+
+        // Assert
+        ASSERT_EQ(1822, timeOfFailure);
     }
 }
