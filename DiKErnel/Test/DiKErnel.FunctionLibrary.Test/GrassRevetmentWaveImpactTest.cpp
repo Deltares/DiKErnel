@@ -27,161 +27,133 @@ namespace DiKErnel::FunctionLibrary::Test
     TEST(GrassRevetmentWaveImpactTest, IncrementDamage_ValidInput_ExpectedValue)
     {
         // Setup
-        const auto incrementTime = 1.1;
-        const auto failureTime = 1.1;
+        const auto incrementTime = 900;
+        const auto timeLine = 3319.12;
 
         // Call
-        const auto incrementDamage = GrassRevetmentWaveImpact::IncrementDamage(
-            incrementTime,
-            failureTime);
+        const auto incrementDamage = GrassRevetmentWaveImpact::IncrementDamage(incrementTime, timeLine);
 
         // Assert
-        ASSERT_DOUBLE_EQ(1.1, incrementDamage);
+        ASSERT_DOUBLE_EQ(0.27115621007978019, incrementDamage);
     }
 
     TEST(GrassRevetmentWaveImpactTest, TimeLine_ValidInput_ExpectedValue)
     {
         // Setup
-        const auto waveHeight = 1.1;
-        const auto failureTimeAgwi = 1.1;
-        const auto failureTimeBgwi = 1.1;
-        const auto failureTimeCgwi = 1.1;
+        const auto waveHeight = 1.0;
+        const auto timeLineAgwi = 0.8;
+        const auto timeLineBgwi = -0.00001944;
+        const auto timeLineCgwi = 0.25;
 
         // Call
-        const auto timeLine = GrassRevetmentWaveImpact::TimeLine(
-            waveHeight,
-            failureTimeAgwi,
-            failureTimeBgwi,
-            failureTimeCgwi);
+        const auto timeLine = GrassRevetmentWaveImpact::TimeLine(waveHeight, timeLineAgwi, timeLineBgwi, timeLineCgwi);
 
         // Assert
-        ASSERT_DOUBLE_EQ(1.1, timeLine);
+        ASSERT_DOUBLE_EQ(3319.8827745664184, timeLine);
     }
 
     TEST(GrassRevetmentWaveImpactTest, WaveHeight_ValidInput_ExpectedValue)
     {
         // Setup
-        const auto minimumWaveHeight = 1.1;
-        const auto maximumWaveHeight = 1.1;
-        const auto waveAngleImpact = 1.1;
-        const auto waveHeightHm0 = 1.1;
+        const auto minimumWaveHeight = 0.25;
+        const auto maximumWaveHeight = 1.05;
+        const auto waveAngleImpact = 0.79;
+        const auto waveHeightHm0 = 1.0;
 
         // Call
-        const auto waveHeight = GrassRevetmentWaveImpact::WaveHeight(
-            minimumWaveHeight,
-            maximumWaveHeight,
-            waveAngleImpact,
-            waveHeightHm0);
+        const auto waveHeight = GrassRevetmentWaveImpact::WaveHeight(minimumWaveHeight, maximumWaveHeight, waveAngleImpact, waveHeightHm0);
 
         // Assert
-        ASSERT_DOUBLE_EQ(1.1, waveHeight);
+        ASSERT_DOUBLE_EQ(0.79, waveHeight);
     }
 
     TEST(GrassRevetmentWaveImpactTest, MinimumWaveHeight_ValidInput_ExpectedValue)
     {
         // Setup
-        const auto failureTimeAgwi = 1.1;
-        const auto failureTimeBgwi = 1.1;
-        const auto failureTimeCgwi = 1.1;
-        const auto minimumWaveHeightTemax = 1.1;
+        const auto timeLineAgwi = 0.8;
+        const auto timeLineBgwi = -0.00001944;
+        const auto timeLineCgwi = 0.25;
+        const auto minimumWaveHeightTemax = 3600000.0;
 
         // Call
-        const auto minimumWaveHeight = GrassRevetmentWaveImpact::MinimumWaveHeight(
-            failureTimeAgwi,
-            failureTimeBgwi,
-            failureTimeCgwi,
-            minimumWaveHeightTemax);
+        const auto minimumWaveHeight =
+                GrassRevetmentWaveImpact::MinimumWaveHeight(timeLineAgwi, timeLineBgwi, timeLineCgwi, minimumWaveHeightTemax);
 
         // Assert
-        ASSERT_DOUBLE_EQ(1.1, minimumWaveHeight);
+        ASSERT_DOUBLE_EQ(0.25, minimumWaveHeight);
     }
 
     TEST(GrassRevetmentWaveImpactTest, MaximumWaveHeight_ValidInput_ExpectedValue)
     {
         // Setup
-        const auto failureTimeAgwi = 1.1;
-        const auto failureTimeBgwi = 1.1;
-        const auto failureTimeCgwi = 1.1;
-        const auto maximumWaveHeightTemin = 1.1;
+        const auto timeLineAgwi = 0.8;
+        const auto timeLineBgwi = -0.00001944;
+        const auto timeLineCgwi = 0.25;
+        const auto maximumWaveHeightTemin = 3.6;
 
         // Call
-        const auto maximumWaveHeight = GrassRevetmentWaveImpact::MaximumWaveHeight(
-            failureTimeAgwi,
-            failureTimeBgwi,
-            failureTimeCgwi,
-            maximumWaveHeightTemin);
+        const auto maximumWaveHeight =
+                GrassRevetmentWaveImpact::MaximumWaveHeight(timeLineAgwi, timeLineBgwi, timeLineCgwi, maximumWaveHeightTemin);
 
         // Assert
-        ASSERT_DOUBLE_EQ(1.1, maximumWaveHeight);
+        ASSERT_DOUBLE_EQ(1.0499440147590584, maximumWaveHeight);
     }
 
     TEST(GrassRevetmentWaveImpactTest, WaveAngleImpact_ValidInput_ExpectedValue)
     {
         // Setup
-        const auto waveAngle = 1.1;
-        const auto waveAngleImpactNwa = 1.1;
-        const auto waveAngleImpactQwa = 1.1;
-        const auto waveAngleImpactRwa = 1.1;
+        const auto waveAngle = 45.0;
+        const auto waveAngleImpactNwa = 0.67;
+        const auto waveAngleImpactQwa = 0.35;
+        const auto waveAngleImpactRwa = 10.0;
 
         // Call
-        const auto waveAngleImpact = GrassRevetmentWaveImpact::WaveAngleImpact(
-            waveAngle,
-            waveAngleImpactNwa,
-            waveAngleImpactQwa,
-            waveAngleImpactRwa);
+        const auto waveAngleImpact = GrassRevetmentWaveImpact::WaveAngleImpact(waveAngle, waveAngleImpactNwa, waveAngleImpactQwa,
+                                                                               waveAngleImpactRwa);
 
         // Assert
-        ASSERT_DOUBLE_EQ(1.1, waveAngleImpact);
+        ASSERT_DOUBLE_EQ(0.79278413661028446, waveAngleImpact);
     }
 
     TEST(GrassRevetmentWaveImpactTest, UpperLimitLoading_ValidInput_ExpectedValue)
     {
         // Setup
-        const auto waterLevel = 1.1;
-        const auto waveHeightHm0 = 1.1;
-        const auto upperLimitLoadingAul = 1.1;
+        const auto waterLevel = 0.03;
+        const auto waveHeightHm0 = 1.0;
+        const auto upperLimitLoadingAul = 0.001;
 
         // Call
-        const auto upperLimitLoading = GrassRevetmentWaveImpact::UpperLimitLoading(
-            waterLevel,
-            waveHeightHm0,
-            upperLimitLoadingAul);
+        const auto upperLimitLoading = GrassRevetmentWaveImpact::UpperLimitLoading(waterLevel, waveHeightHm0, upperLimitLoadingAul);
 
         // Assert
-        ASSERT_DOUBLE_EQ(1.1, upperLimitLoading);
+        ASSERT_DOUBLE_EQ(0.029, upperLimitLoading);
     }
 
     TEST(GrassRevetmentWaveImpactTest, LowerLimitLoading_ValidInput_ExpectedValue)
     {
         // Setup
-        const auto waterLevel = 1.1;
-        const auto waveHeightHm0 = 1.1;
-        const auto lowerLimitLoadingAll = 1.1;
+        const auto waterLevel = 0.03;
+        const auto waveHeightHm0 = 1.0;
+        const auto lowerLimitLoadingAll = 0.5;
 
         // Call
-        const auto lowerLimitLoading = GrassRevetmentWaveImpact::LowerLimitLoading(
-            waterLevel,
-            waveHeightHm0,
-            lowerLimitLoadingAll);
+        const auto lowerLimitLoading = GrassRevetmentWaveImpact::LowerLimitLoading(waterLevel, waveHeightHm0, lowerLimitLoadingAll);
 
         // Assert
-        ASSERT_DOUBLE_EQ(1.1, lowerLimitLoading);
+        ASSERT_DOUBLE_EQ(-0.47, lowerLimitLoading);
     }
 
     TEST(GrassRevetmentWaveImpactTest, FailureTime_ValidInput_ExpectedValue)
     {
         // Setup
-        const auto timeLine = 1.1;
-        const auto failureNumber = 1.1;
-        const auto initialDamage = 1.1;
+        const auto timeLine = 3319.12;
+        const auto failureNumber = 1.0;
+        const auto initialDamage = 0.836;
 
         // Call
-        const auto failureTime = GrassRevetmentWaveImpact::FailureTime(
-            timeLine,
-            failureNumber,
-            initialDamage);
+        const auto failureTime = GrassRevetmentWaveImpact::FailureTime(timeLine, failureNumber, initialDamage);
 
         // Assert
-        ASSERT_DOUBLE_EQ(1.1, failureTime);
+        ASSERT_DOUBLE_EQ(544.33568, failureTime);
     }
 }
