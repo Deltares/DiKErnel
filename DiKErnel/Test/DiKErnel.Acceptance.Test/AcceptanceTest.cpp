@@ -48,7 +48,7 @@ namespace DiKErnel::Acceptance::Test
         void PerformTest(
             const string& filePath,
             const double expectedDamage,
-            const double* expectedFailureTime) const
+            const int* expectedFailureTime) const
         {
             // When
             const auto calculationInput = JsonInputComposer::GetCalculationInputFromJson(filePath);
@@ -65,11 +65,11 @@ namespace DiKErnel::Acceptance::Test
             const auto& readLocation = json["Uitvoerdata"]["Locaties"][0];
             const auto& actualDamages = readLocation["Schade"]["SchadegetalPerTijd"].get<vector<double>>();
 
-            unique_ptr<double> actualFailureTime = nullptr;
+            unique_ptr<int> actualFailureTime = nullptr;
 
             if (!readLocation["Schade"]["Faaltijd"].is_null())
             {
-                actualFailureTime = make_unique<double>(readLocation["Schade"]["Faaltijd"].get<double>());
+                actualFailureTime = make_unique<int>(readLocation["Schade"]["Faaltijd"].get<int>());
             }
 
             AssertOutput(expectedDamage, expectedFailureTime, actualDamages.back(), actualFailureTime.get());
@@ -77,9 +77,9 @@ namespace DiKErnel::Acceptance::Test
 
         static void AssertOutput(
             const double expectedDamage,
-            const double* expectedFailureTime,
+            const int* expectedFailureTime,
             const double actualDamage,
-            const double* actualFailureTime)
+            const int* actualFailureTime)
         {
             ASSERT_DOUBLE_EQ(expectedDamage, actualDamage);
 
@@ -89,7 +89,7 @@ namespace DiKErnel::Acceptance::Test
             }
             else
             {
-                ASSERT_DOUBLE_EQ(*expectedFailureTime, *actualFailureTime);
+                ASSERT_EQ(*expectedFailureTime, *actualFailureTime);
             }
         }
 
@@ -107,7 +107,7 @@ namespace DiKErnel::Acceptance::Test
             / "AcceptanceTest" / "naturalStone.json").string();
 
         // When & Then
-        PerformTest(filePath, 1.1836103307707342, make_unique<double>(3067).get());
+        PerformTest(filePath, 1.1836103307707342, make_unique<int>(3067).get());
     }
 
     TEST_F(AcceptanceTest, GivenJsonWithGrassWaveImpactLocation_WhenCalculating_ThenExpectedOutputJsonCreated)
@@ -118,6 +118,6 @@ namespace DiKErnel::Acceptance::Test
             / "AcceptanceTest" / "grassWaveImpact.json").string();
 
         // When & Then
-        PerformTest(filePath, 2.836154231066117, make_unique<double>(32955).get());
+        PerformTest(filePath, 2.836154231066117, make_unique<int>(32955).get());
     }
 }

@@ -10,7 +10,7 @@
                 "Naam": "testName1",
                 "Schade": {
                     "Faalgebeurtenis": true,
-                    "Faaltijd": 60.0,
+                    "Faaltijd": 60,
                     "SchadegetalPerTijd": [
                         0.15,
                         0.253

@@ -112,7 +112,7 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
             {
                 0.15,
                 0.253
-            }, make_unique<double>(60)));
+            }, make_unique<int>(60)));
         locations.push_back(make_unique<LocationDependentOutput>(
             vector<double>
             {

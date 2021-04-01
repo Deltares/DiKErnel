@@ -29,7 +29,7 @@ namespace DiKErnel::KernelWrapper::Json::Output
     JsonOutputLocationData::JsonOutputLocationData(
         string name,
         vector<double> damages,
-        const double* timeOfFailure)
+        const int* timeOfFailure)
         : _name(move(name)),
           _damages(move(damages)),
           _timeOfFailure(timeOfFailure) {}
@@ -49,7 +49,7 @@ namespace DiKErnel::KernelWrapper::Json::Output
         return _timeOfFailure != nullptr;
     }
 
-    const double* JsonOutputLocationData::GetTimeOfFailure() const
+    const int* JsonOutputLocationData::GetTimeOfFailure() const
     {
         return _timeOfFailure;
     }
