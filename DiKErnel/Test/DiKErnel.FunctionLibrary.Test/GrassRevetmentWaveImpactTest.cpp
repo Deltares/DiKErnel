@@ -99,7 +99,7 @@ namespace DiKErnel::FunctionLibrary::Test
         ASSERT_DOUBLE_EQ(1.0499440147590584, maximumWaveHeight);
     }
 
-    TEST(GrassRevetmentWaveImpactTest, WaveAngleImpact_ValidInput_ExpectedValue)
+    TEST(GrassRevetmentWaveImpactTest, WaveAngleImpact_ValidInputAndWaveAngleSmallerThan90Degrees_ExpectedValue)
     {
         // Setup
         const auto waveAngle = 45.0;
@@ -113,6 +113,38 @@ namespace DiKErnel::FunctionLibrary::Test
 
         // Assert
         ASSERT_DOUBLE_EQ(0.79278413661028446, waveAngleImpact);
+    }
+
+    TEST(GrassRevetmentWaveImpactTest, WaveAngleImpact_ValidInputAndWaveAngleEqualTo90Degrees_ExpectedValue)
+    {
+        // Setup
+        const auto waveAngle = 90.0;
+        const auto waveAngleImpactNwa = 0.67;
+        const auto waveAngleImpactQwa = 0.35;
+        const auto waveAngleImpactRwa = 10.0;
+
+        // Call
+        const auto waveAngleImpact = GrassRevetmentWaveImpact::WaveAngleImpact(waveAngle, waveAngleImpactNwa, waveAngleImpactQwa,
+            waveAngleImpactRwa);
+
+        // Assert
+        ASSERT_DOUBLE_EQ(0.35, waveAngleImpact);
+    }
+
+    TEST(GrassRevetmentWaveImpactTest, WaveAngleImpact_ValidInputAndWaveAngleLargerThan90Degrees_ExpectedValue)
+    {
+        // Setup
+        const auto waveAngle = 91.0;
+        const auto waveAngleImpactNwa = 0.67;
+        const auto waveAngleImpactQwa = 0.35;
+        const auto waveAngleImpactRwa = 10.0;
+
+        // Call
+        const auto waveAngleImpact = GrassRevetmentWaveImpact::WaveAngleImpact(waveAngle, waveAngleImpactNwa, waveAngleImpactQwa,
+            waveAngleImpactRwa);
+
+        // Assert
+        ASSERT_DOUBLE_EQ(0.315, waveAngleImpact);
     }
 
     TEST(GrassRevetmentWaveImpactTest, UpperLimitLoading_ValidInput_ExpectedValue)
