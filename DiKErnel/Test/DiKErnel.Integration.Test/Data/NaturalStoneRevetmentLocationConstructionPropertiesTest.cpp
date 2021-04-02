@@ -20,7 +20,6 @@
 
 #include <gtest/gtest.h>
 
-
 #include "AssertHelper.h"
 #include "NaturalStoneRevetmentLocationConstructionProperties.h"
 

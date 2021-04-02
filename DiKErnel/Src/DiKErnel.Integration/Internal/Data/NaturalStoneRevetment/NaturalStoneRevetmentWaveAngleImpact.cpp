@@ -30,5 +30,4 @@ namespace DiKErnel::Integration
     {
         return _betamax;
     }
-
 }

@@ -144,7 +144,7 @@ namespace DiKErnel::Core
             {
                 damages.push_back(timeDependentOutput->GetDamage());
 
-                if(timeDependentOutput->GetTimeOfFailure() != nullptr)
+                if (timeDependentOutput->GetTimeOfFailure() != nullptr)
                 {
                     timeOfFailure = make_unique<int>(*timeDependentOutput->GetTimeOfFailure());
                 }
