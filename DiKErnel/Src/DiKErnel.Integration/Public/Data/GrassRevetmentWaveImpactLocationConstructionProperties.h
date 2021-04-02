@@ -63,81 +63,81 @@ namespace DiKErnel::Integration
             #pragma region Set methods
 
             /*!
-             * \brief Sets the time line Agwi.
+             * \brief Sets the Agwi coefficient.
              * \param timeLineAgwi
-             *        The time line Agwi.
+             *        The Agwi coefficient.
              */
             void SetTimeLineAgwi(
                 std::unique_ptr<double> timeLineAgwi);
 
             /*!
-             * \brief Sets the time line Bgwi.
+             * \brief Sets the Bgwi coefficient.
              * \param timeLineBgwi
-             *        The time line Bgwi.
+             *        The Bgwi coefficient.
              */
             void SetTimeLineBgwi(
                 std::unique_ptr<double> timeLineBgwi);
 
             /*!
-             * \brief Sets the time line Cgwi.
+             * \brief Sets the Cgwi coefficient.
              * \param timeLineCgwi
-             *        The time line Cgwi.
+             *        The Cgwi coefficient.
              */
             void SetTimeLineCgwi(
                 std::unique_ptr<double> timeLineCgwi);
 
             /*!
-             * \brief Sets the minimum wave height Temax.
+             * \brief Sets the Temax coefficient.
              * \param minimumWaveHeightTemax
-             *        The minimum wave height Temax.
+             *        The Temax coefficient.
              */
             void SetMinimumWaveHeightTemax(
                 std::unique_ptr<double> minimumWaveHeightTemax);
 
             /*!
-             * \brief Sets the maximum wave height Temin.
+             * \brief Sets the Temin coefficient.
              * \param maximumWaveHeightTemin
-             *        The maximum wave height Temin.
+             *        The Temin coefficient.
              */
             void SetMaximumWaveHeightTemin(
                 std::unique_ptr<double> maximumWaveHeightTemin);
 
             /*!
-             * \brief Sets the wave angle impact Nwa.
+             * \brief Sets the Nwa coefficient.
              * \param waveAngleImpactNwa
-             *        The wave angle impact Nwa.
+             *        The Nwa coefficient.
              */
             void SetWaveAngleImpactNwa(
                 std::unique_ptr<double> waveAngleImpactNwa);
 
             /*!
-             * \brief Sets the wave angle impact Qwa.
+             * \brief Sets the Qwa coefficient.
              * \param waveAngleImpactQwa
-             *        The wave angle impact Qwa.
+             *        The Qwa coefficient.
              */
             void SetWaveAngleImpactQwa(
                 std::unique_ptr<double> waveAngleImpactQwa);
 
             /*!
-             * \brief Sets the wave angle impact Rwa.
+             * \brief Sets the Rwa coefficient.
              * \param waveAngleImpactRwa
-             *        The wave angle impact Rwa.
+             *        The Rwa coefficient.
              */
             void SetWaveAngleImpactRwa(
                 std::unique_ptr<double> waveAngleImpactRwa);
 
             /*!
-             * \brief Sets the upper limit loading Aul.
+             * \brief Sets the Aul coefficient.
              * \param upperLimitLoadingAul
-             *        The upper limit loading Aul.
+             *        The Aul coefficient.
              */
             void SetUpperLimitLoadingAul(
                 std::unique_ptr<double> upperLimitLoadingAul);
 
             /*!
-             * \brief Sets the lower limit loading All.
+             * \brief Sets the All coefficient.
              * \param lowerLimitLoadingAll
-             *        The lower limit loading All.
+             *        The All coefficient.
              */
             void SetLowerLimitLoadingAll(
                 std::unique_ptr<double> lowerLimitLoadingAll);
@@ -153,62 +153,62 @@ namespace DiKErnel::Integration
             TopLayerType GetTopLayerType() const;
 
             /*!
-             * \brief Gets the time line Agwi.
-             * \return The time line Agwi.
+             * \brief Gets the Agwi coefficient.
+             * \return The Agwi coefficient.
              */
             const double* GetTimeLineAgwi() const;
 
             /*!
-             * \brief Gets the time line Bgwi.
-             * \return The time line Bgwi.
+             * \brief Gets the Bgwi coefficient.
+             * \return The Bgwi coefficient.
              */
             const double* GetTimeLineBgwi() const;
 
             /*!
-             * \brief Gets the time line Cgwi.
-             * \return The time line Cgwi.
+             * \brief Gets the Cgwi coefficient.
+             * \return The Cgwi coefficient.
              */
             const double* GetTimeLineCgwi() const;
 
             /*!
-             * \brief Gets the minimum wave height Temax.
-             * \return The minimum wave height Temax.
+             * \brief Gets the Temax coefficient.
+             * \return The Temax coefficient.
              */
             const double* GetMinimumWaveHeightTemax() const;
 
             /*!
-             * \brief Gets the maximum wave height Temin.
-             * \return The maximum wave height Temin.
+             * \brief Gets the Temin coefficient.
+             * \return The Temin coefficient.
              */
             const double* GetMaximumWaveHeightTemin() const;
 
             /*!
-             * \brief Gets the maximum wave angle impact Nwa.
-             * \return The maximum wave angle impact Nwa.
+             * \brief Gets the Nwa coefficient.
+             * \return The Nwa coefficient.
              */
             const double* GetWaveAngleImpactNwa() const;
 
             /*!
-             * \brief Gets the maximum wave angle impact Qwa.
-             * \return The maximum wave angle impact Qwa.
+             * \brief Gets the Qwa coefficient.
+             * \return The Qwa coefficient.
              */
             const double* GetWaveAngleImpactQwa() const;
 
             /*!
-             * \brief Gets the maximum wave angle impact Rwa.
-             * \return The maximum wave angle impact Rwa.
+             * \brief Gets the Rwa coefficient.
+             * \return The Rwa coefficient.
              */
             const double* GetWaveAngleImpactRwa() const;
 
             /*!
-             * \brief Gets the upper limit loading Aul.
-             * \return The upper limit loading Aul.
+             * \brief Gets the Aul coefficient.
+             * \return The Aul coefficient.
              */
             const double* GetUpperLimitLoadingAul() const;
 
             /*!
-             * \brief Gets the lower limit loading All.
-             * \return The lower limit loading All.
+             * \brief Gets the All coefficient.
+             * \return The All coefficient.
              */
             const double* GetLowerLimitLoadingAll() const;
 
