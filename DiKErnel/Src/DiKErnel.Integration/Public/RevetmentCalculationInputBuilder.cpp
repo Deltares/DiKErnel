@@ -182,7 +182,6 @@ namespace DiKErnel::Integration
                 constructionProperties.GetName(),
                 GetValue(constructionProperties.GetInitialDamage(), RevetmentDefaults::INITIAL_DAMAGE),
                 GetValue(constructionProperties.GetFailureNumber(), RevetmentDefaults::FAILURE_NUMBER),
-                constructionProperties.GetTanA(),
                 constructionProperties.GetPositionZ(),
                 move(waveAngleImpact),
                 minimumWaveHeightTemax,

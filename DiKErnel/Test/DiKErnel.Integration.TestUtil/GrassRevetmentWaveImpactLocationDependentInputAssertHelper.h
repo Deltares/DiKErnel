@@ -29,7 +29,6 @@ namespace DiKErnel::Integration::TestUtil
         public:
             static void AssertMandatoryProperties(
                 const std::string& name,
-                double tanA,
                 double positionZ,
                 const GrassRevetmentWaveImpactLocationDependentInput& locationDependentInput);
 

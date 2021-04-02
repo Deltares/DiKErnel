@@ -319,7 +319,7 @@ namespace DiKErnel::Integration::Test
         LocationDependentInputAssertHelper::AssertDamageProperties(initialDamage, failureNumber, *locationDependentInput);
 
         GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertMandatoryProperties(
-            name, tanA, positionZ, *locationDependentInput);
+            name, positionZ, *locationDependentInput);
 
         GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertMinimumWaveHeight(
             minimumWaveHeightTemax, *locationDependentInput);
@@ -371,7 +371,7 @@ namespace DiKErnel::Integration::Test
         LocationDependentInputAssertHelper::AssertDamageProperties(0.0, 1.0, *locationDependentInput);
 
         GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertMandatoryProperties(
-            name, tanA, positionZ, *locationDependentInput);
+            name, positionZ, *locationDependentInput);
 
         GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertMinimumWaveHeight(
             3600000, *locationDependentInput);
@@ -423,7 +423,7 @@ namespace DiKErnel::Integration::Test
         LocationDependentInputAssertHelper::AssertDamageProperties(0.0, 1.0, *locationDependentInput);
 
         GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertMandatoryProperties(
-            name, tanA, positionZ, *locationDependentInput);
+            name, positionZ, *locationDependentInput);
 
         GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertMinimumWaveHeight(
             3600000, *locationDependentInput);

@@ -47,7 +47,8 @@ namespace DiKErnel::Integration
         unique_ptr<NaturalStoneRevetmentDistanceMaximumWaveElevation> distanceMaximumWaveElevation,
         unique_ptr<NaturalStoneRevetmentNormativeWidthOfWaveImpact> normativeWidthOfWaveImpact,
         unique_ptr<NaturalStoneRevetmentWaveAngleImpact> waveAngleImpact)
-        : LocationDependentInput(move(name), initialDamage, failureNumber, tanA, positionZ),
+        : LocationDependentInput(move(name), initialDamage, failureNumber, positionZ),
+          _tanA(tanA),
           _relativeDensity(relativeDensity),
           _thicknessTopLayer(thicknessTopLayer),
           _hydraulicLoads(move(hydraulicLoads)),
@@ -143,6 +144,11 @@ namespace DiKErnel::Integration
         }
 
         return make_unique<TimeDependentOutput>(damage, move(timeOfFailure));
+    }
+
+    double NaturalStoneRevetmentLocationDependentInput::GetTanA() const
+    {
+        return _tanA;
     }
 
     double NaturalStoneRevetmentLocationDependentInput::GetRelativeDensity() const

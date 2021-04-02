@@ -30,12 +30,10 @@ namespace DiKErnel::Integration
         string name,
         const double initialDamage,
         const double failureNumber,
-        const double tanA,
         const double positionZ)
         : _name(move(name)),
           _initialDamage(initialDamage),
           _failureNumber(failureNumber),
-          _tanA(tanA),
           _positionZ(positionZ) { }
 
     string LocationDependentInput::GetName() const
@@ -51,11 +49,6 @@ namespace DiKErnel::Integration
     double LocationDependentInput::GetFailureNumber() const
     {
         return _failureNumber;
-    }
-
-    double LocationDependentInput::GetTanA() const
-    {
-        return _tanA;
     }
 
     double LocationDependentInput::GetPositionZ() const

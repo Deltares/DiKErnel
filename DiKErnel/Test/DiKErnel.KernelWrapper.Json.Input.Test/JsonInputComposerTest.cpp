@@ -34,7 +34,7 @@
 namespace DiKErnel::KernelWrapper::Json::Input::Test
 {
     using namespace Core;
-    using namespace DiKErnel::TestUtil;
+    using namespace TestUtil;
     using namespace Integration;
     using namespace Integration::TestUtil;
     using namespace std;
@@ -118,7 +118,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
 
         LocationDependentInputAssertHelper::AssertDamageProperties(0.04, 1.07, *grassRevetmentWaveImpactLocationDependentInputItem1);
         GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertMandatoryProperties(
-            "GrasGolfklapAlleOptiesAan", 0.2, 1.0, *grassRevetmentWaveImpactLocationDependentInputItem1);
+            "GrasGolfklapAlleOptiesAan", 1.0, *grassRevetmentWaveImpactLocationDependentInputItem1);
         GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertMinimumWaveHeight(
             2500000, *grassRevetmentWaveImpactLocationDependentInputItem1);
         GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertMaximumWaveHeight(
@@ -137,7 +137,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
         ASSERT_NE(nullptr, grassRevetmentWaveImpactLocationDependentInputItem2);
         LocationDependentInputAssertHelper::AssertDamageProperties(0.0, 1.0, *grassRevetmentWaveImpactLocationDependentInputItem2);
         GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertMandatoryProperties(
-            "GrasGolfklapGeslotenZodeAlleOptiesUit", 0.3, 0.0, *grassRevetmentWaveImpactLocationDependentInputItem2);
+            "GrasGolfklapGeslotenZodeAlleOptiesUit", 0.0, *grassRevetmentWaveImpactLocationDependentInputItem2);
         GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertMinimumWaveHeight(
             3600000, *grassRevetmentWaveImpactLocationDependentInputItem2);
         GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertMaximumWaveHeight(
@@ -156,7 +156,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
         ASSERT_NE(nullptr, grassRevetmentWaveImpactLocationDependentInputItem3);
         LocationDependentInputAssertHelper::AssertDamageProperties(0.0, 1.0, *grassRevetmentWaveImpactLocationDependentInputItem3);
         GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertMandatoryProperties(
-            "GrasGolfklapOpenZodeAlleOptiesUit", 0.3, 0.0, *grassRevetmentWaveImpactLocationDependentInputItem3);
+            "GrasGolfklapOpenZodeAlleOptiesUit", 0.0, *grassRevetmentWaveImpactLocationDependentInputItem3);
         GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertMinimumWaveHeight(
             3600000, *grassRevetmentWaveImpactLocationDependentInputItem3);
         GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertMaximumWaveHeight(
