@@ -121,8 +121,8 @@ namespace DiKErnel::Integration
 
             if (Revetment::FailureRevetment(damage, initialDamage, failureNumber))
             {
-                const auto failureTime = GrassRevetmentWaveImpact::FailureTime(timeLine, failureNumber, initialDamage);
-                timeOfFailure = make_unique<int>(Revetment::TimeOfFailure(failureTime, timeDependentInput.GetBeginTime()));
+                const auto durationInTimeStepFailure = GrassRevetmentWaveImpact::DurationInTimeStepFailure(timeLine, failureNumber, initialDamage);
+                timeOfFailure = make_unique<int>(Revetment::TimeOfFailure(durationInTimeStepFailure, timeDependentInput.GetBeginTime()));
             }
         }
 

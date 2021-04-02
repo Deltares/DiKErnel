@@ -143,7 +143,7 @@ namespace DiKErnel::FunctionLibrary::Test
         ASSERT_DOUBLE_EQ(-0.47, lowerLimitLoading);
     }
 
-    TEST(GrassRevetmentWaveImpactTest, FailureTime_ValidInput_ExpectedValue)
+    TEST(GrassRevetmentWaveImpactTest, DurationInTimeStepFailure_ValidInput_ExpectedValue)
     {
         // Setup
         const auto timeLine = 3319.12;
@@ -151,9 +151,9 @@ namespace DiKErnel::FunctionLibrary::Test
         const auto initialDamage = 0.836;
 
         // Call
-        const auto failureTime = GrassRevetmentWaveImpact::FailureTime(timeLine, failureNumber, initialDamage);
+        const auto durationInTimeStepFailure = GrassRevetmentWaveImpact::DurationInTimeStepFailure(timeLine, failureNumber, initialDamage);
 
         // Assert
-        ASSERT_DOUBLE_EQ(544.33568, failureTime);
+        ASSERT_DOUBLE_EQ(544.33568, durationInTimeStepFailure);
     }
 }

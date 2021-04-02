@@ -196,7 +196,21 @@ namespace DiKErnel::FunctionLibrary
                 double waveHeightHm0,
                 double lowerLimitLoadingAll);
 
-            static double FailureTime(
+            /*!
+             * \brief Calculates the duration in the time step of failure.
+             * \param timeLine
+             *        The time line.
+             *        Unit = [s]
+             * \param failureNumber
+             *        The failure number.
+             *        Unit = [-]
+             * \param initialDamage
+             *        The initial damage.
+             *        Unit = [-]
+             * \return The duration in the time step of failure.
+             *         Unit = [s]
+             */
+            static double DurationInTimeStepFailure(
                 double timeLine,
                 double failureNumber,
                 double initialDamage);
