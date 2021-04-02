@@ -99,14 +99,14 @@ namespace DiKErnel::Integration
                 _waveAngleImpact->GetWaveAngleImpactQwa(),
                 _waveAngleImpact->GetWaveAngleImpactRwa());
 
-            const auto waveHeight = GrassRevetmentWaveImpact::WaveHeight(
+            const auto waveHeightImpact = GrassRevetmentWaveImpact::WaveHeightImpact(
                 minimumWaveHeight,
                 maximumWaveHeight,
                 waveAngleImpact,
                 waveHeightHm0);
 
             const auto timeLine = GrassRevetmentWaveImpact::TimeLine(
-                waveHeight,
+                waveHeightImpact,
                 _timeLine->GetTimeLineAgwi(),
                 _timeLine->GetTimeLineBgwi(),
                 _timeLine->GetTimeLineCgwi()

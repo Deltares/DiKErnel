@@ -37,15 +37,15 @@ namespace DiKErnel::FunctionLibrary
     }
 
     double GrassRevetmentWaveImpact::TimeLine(
-        const double waveHeight,
+        const double waveHeightImpact,
         const double timeLineAgwi,
         const double timeLineBgwi,
         const double timeLineCgwi)
     {
-        return 1.0 / timeLineBgwi * log((waveHeight - timeLineCgwi) / timeLineAgwi);
+        return 1.0 / timeLineBgwi * log((waveHeightImpact - timeLineCgwi) / timeLineAgwi);
     }
 
-    double GrassRevetmentWaveImpact::WaveHeight(
+    double GrassRevetmentWaveImpact::WaveHeightImpact(
         const double minimumWaveHeight,
         const double maximumWaveHeight,
         const double waveAngleImpact,

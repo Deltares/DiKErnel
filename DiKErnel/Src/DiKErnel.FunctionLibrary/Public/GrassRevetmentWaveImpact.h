@@ -45,8 +45,8 @@ namespace DiKErnel::FunctionLibrary
 
             /*!
              * \brief Calculates the time line.
-             * \param waveHeight
-             *        The wave height.
+             * \param waveHeightImpact
+             *        The wave height with respect to the wave impact.
              *        Unit = [m]
              * \param timeLineAgwi
              *        The Agwi coefficient.
@@ -61,13 +61,13 @@ namespace DiKErnel::FunctionLibrary
              *         Unit = [s]
              */
             static double TimeLine(
-                double waveHeight,
+                double waveHeightImpact,
                 double timeLineAgwi,
                 double timeLineBgwi,
                 double timeLineCgwi);
 
             /*!
-             * \brief Calculates the wave height.
+             * \brief Calculates the wave height with respect to the wave impact.
              * \param minimumWaveHeight
              *        The minimum wave height.
              *        Unit = [m]
@@ -80,10 +80,10 @@ namespace DiKErnel::FunctionLibrary
              * \param waveHeightHm0
              *        The wave height.
              *        Unit = [m]
-             * \return The wave height.
+             * \return The wave height with respect to the wave impact.
              *         Unit = [m]
              */
-            static double WaveHeight(
+            static double WaveHeightImpact(
                 double minimumWaveHeight,
                 double maximumWaveHeight,
                 double waveAngleImpact,
