@@ -12,8 +12,6 @@ set(SOURCEFILES_PUBLIC
   ${PUBLIC_FOLDER}/GrassRevetmentWaveImpactClosedSodDefaults.h
   ${PUBLIC_FOLDER}/GrassRevetmentWaveImpactOpenSodDefaults.cpp
   ${PUBLIC_FOLDER}/GrassRevetmentWaveImpactOpenSodDefaults.h
-  ${PUBLIC_FOLDER}/HydraulicLoadsDefaults.cpp
-  ${PUBLIC_FOLDER}/HydraulicLoadsDefaults.h
   ${PUBLIC_FOLDER}/NordicStoneRevetmentDefaults.cpp
   ${PUBLIC_FOLDER}/NordicStoneRevetmentDefaults.h
   ${PUBLIC_FOLDER}/RevetmentDefaults.cpp

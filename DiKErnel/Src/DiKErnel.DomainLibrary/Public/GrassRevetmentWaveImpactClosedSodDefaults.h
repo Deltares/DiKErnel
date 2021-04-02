@@ -32,7 +32,7 @@ namespace DiKErnel::DomainLibrary
              * \brief The default value of the Agwi coefficient.
              *        Unit = [m]
              */
-            inline static const double TIME_LINE_AGWI = 1.0;
+            inline static const double TIME_LINE_AGWI = 1;
 
             /*!
              * \brief The default value of the Bgwi coefficient.
@@ -74,13 +74,13 @@ namespace DiKErnel::DomainLibrary
              * \brief The default value of the Rwa coefficient.
              *        Unit = [-]
              */
-            inline static const double WAVE_ANGLE_IMPACT_RWA = 10.0;
+            inline static const double WAVE_ANGLE_IMPACT_RWA = 10;
 
             /*!
              * \brief The default value of the Aul coefficient.
              *        Unit = [-]
              */
-            inline static const double UPPER_LIMIT_LOADING_AUL = 0.0;
+            inline static const double UPPER_LIMIT_LOADING_AUL = 0;
 
             /*!
              * \brief The default value of the All coefficient.

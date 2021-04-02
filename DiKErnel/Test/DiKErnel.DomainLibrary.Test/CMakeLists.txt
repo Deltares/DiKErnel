@@ -6,7 +6,6 @@ set(SOURCEFILES
   ConstantsTest.cpp
   GrassRevetmentWaveImpactClosedSodDefaultsTest.cpp
   GrassRevetmentWaveImpactOpenSodDefaultsTest.cpp
-  HydraulicLoadsDefaultsTest.cpp
   Main.cpp
   NordicStoneRevetmentDefaultsTest.cpp
   RevetmentDefaultsTest.cpp
