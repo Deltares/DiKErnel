@@ -23,19 +23,19 @@
 namespace DiKErnel::DomainLibrary
 {
     /*!
-     * \brief Class that contains revetment default values.
+     * \brief Class that contains default values that apply to all revetments.
      */
     class RevetmentDefaults
     {
         public:
             /*!
-             * \brief The initial damage.
+             * \brief The default value of the initial damage.
              *        Unit = [-]
              */
             inline static const double INITIAL_DAMAGE = 0;
 
             /*!
-             * \brief The failure number.
+             * \brief The default value of the failure number.
              *        Unit = [-]
              */
             inline static const double FAILURE_NUMBER = 1;

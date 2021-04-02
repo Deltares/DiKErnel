@@ -23,127 +23,127 @@
 namespace DiKErnel::DomainLibrary
 {
     /*!
-     * \brief Class that contains default values for nordic stone revetment.
+     * \brief Class that contains default values for nordic stone revetments.
      */
     class NordicStoneRevetmentDefaults
     {
         public:
             /*!
-             * \brief The default value of the hydraulic load XIb.
+             * \brief The default value of the XIb coefficient.
              *        Unit = [-]
              */
             inline static const double HYDRAULIC_LOAD_XIB = 2.9;
 
             /*!
-             * \brief The default value of the hydraulic load Ap.
+             * \brief The default value of the Ap coefficient.
              *        Unit = [-]
              */
             inline static const double HYDRAULIC_LOAD_AP = 4;
 
             /*!
-             * \brief The default value of the hydraulic load Bp.
+             * \brief The default value of the Bp coefficient.
              *        Unit = [-]
              */
             inline static const double HYDRAULIC_LOAD_BP = 0;
 
             /*!
-             * \brief The default value of the hydraulic load Cp.
+             * \brief The default value of the Cp coefficient.
              *        Unit = [-]
              */
             inline static const double HYDRAULIC_LOAD_CP = 0;
 
             /*!
-             * \brief The default value of the hydraulic load Np.
+             * \brief The default value of the Np coefficient.
              *        Unit = [-]
              */
             inline static const double HYDRAULIC_LOAD_NP = -0.9;
 
             /*!
-             * \brief The default value of the hydraulic load As.
+             * \brief The default value of the As coefficient.
              *        Unit = [-]
              */
             inline static const double HYDRAULIC_LOAD_AS = 0.8;
 
             /*!
-             * \brief The default value of the hydraulic load Bs.
+             * \brief The default value of the Bs coefficient.
              *        Unit = [-]
              */
             inline static const double HYDRAULIC_LOAD_BS = 0;
 
             /*!
-             * \brief The default value of the hydraulic load Cs.
+             * \brief The default value of the Cs coefficient.
              *        Unit = [-]
              */
             inline static const double HYDRAULIC_LOAD_CS = 0;
 
             /*!
-             * \brief The default value of the hydraulic load Ns.
+             * \brief The default value of the Ns coefficient.
              *        Unit = [-]
              */
             inline static const double HYDRAULIC_LOAD_NS = 0.6;
 
             /*!
-             * \brief The default value of the upper limit loading Aul.
+             * \brief The default value of the Aul coefficient.
              *        Unit = [-]
              */
             inline static const double UPPER_LIMIT_LOADING_AUL = 0.1;
 
             /*!
-             * \brief The default value of the upper limit loading Bul.
+             * \brief The default value of the Bul coefficient.
              *        Unit = [-]
              */
             inline static const double UPPER_LIMIT_LOADING_BUL = 0.6;
 
             /*!
-             * \brief The default value of the upper limit loading Cul.
+             * \brief The default value of the Cul coefficient.
              *        Unit = [-]
              */
             inline static const double UPPER_LIMIT_LOADING_CUL = 4;
 
             /*!
-             * \brief The default value of the lower limit loading All.
+             * \brief The default value of the All coefficient.
              *        Unit = [-]
              */
             inline static const double LOWER_LIMIT_LOADING_ALL = 0.1;
 
             /*!
-             * \brief The default value of the lower limit loading Bll.
+             * \brief The default value of the Bll coefficient.
              *        Unit = [-]
              */
             inline static const double LOWER_LIMIT_LOADING_BLL = 0.2;
 
             /*!
-             * \brief The default value of the lower limit loading Cll.
+             * \brief The default value of the Cll coefficient.
              *        Unit = [-]
              */
             inline static const double LOWER_LIMIT_LOADING_CLL = 4;
 
             /*!
-             * \brief The default value of the distance maximum wave elevation Asmax.
+             * \brief The default value of the Asmax coefficient.
              *        Unit = [-]
              */
             inline static const double DISTANCE_MAXIMUM_WAVE_ELEVATION_ASMAX = 0.42;
 
             /*!
-             * \brief The default value of the distance maximum wave elevation Bsmax.
+             * \brief The default value of the Bsmax coefficient.
              *        Unit = [-]
              */
             inline static const double DISTANCE_MAXIMUM_WAVE_ELEVATION_BSMAX = 0.9;
 
             /*!
-             * \brief The default value of the normative width of wave impact Awi.
+             * \brief The default value of the Awi coefficient.
              *        Unit = [-]
              */
             inline static const double NORMATIVE_WIDTH_OF_WAVE_IMPACT_AWI = 0.96;
 
             /*!
-             * \brief The default value of the normative width of wave impact Bwi.
+             * \brief The default value of the Bwi coefficient.
              *        Unit = [-]
              */
             inline static const double NORMATIVE_WIDTH_OF_WAVE_IMPACT_BWI = 0.11;
 
             /*!
-             * \brief The default value of the wave angle impact betamax.
+             * \brief The default value of the Betamax coefficient.
              *        Unit = [deg]
              */
             inline static const double WAVE_ANGLE_IMPACT_BETAMAX = 78;
