@@ -29,61 +29,61 @@ namespace DiKErnel::DomainLibrary
     {
         public:
             /*!
-             * \brief The default value of the time line Agwi.
-             *        Unit = [-]
+             * \brief The default value of the Agwi coefficient.
+             *        Unit = [m]
              */
             inline static const double TIME_LINE_AGWI = 1.0;
 
             /*!
-             * \brief The default value of the time line Bgwi.
-             *        Unit = [-]
+             * \brief The default value of the Bgwi coefficient.
+             *        Unit = [s^-1]
              */
             inline static const double TIME_LINE_BGWI = -0.000009722;
 
             /*!
-             * \brief The default value of the time line Cgwi.
-             *        Unit = [-]
+             * \brief The default value of the Cgwi coefficient.
+             *        Unit = [m]
              */
             inline static const double TIME_LINE_CGWI = 0.25;
 
             /*!
-             * \brief The default value of the minimum wave height Temax.
-             *        Unit = [-]
+             * \brief The default value of the Temax coefficient.
+             *        Unit = [s]
              */
             inline static const double MINIMUM_WAVE_HEIGHT_TEMAX = 3600000;
 
             /*!
-             * \brief The default value of the maximum wave height Temin.
-             *        Unit = [-]
+             * \brief The default value of the Temin coefficient.
+             *        Unit = [s]
              */
             inline static const double MAXIMUM_WAVE_HEIGHT_TEMIN = 3.6;
 
             /*!
-             * \brief The default value of the wave angle impact Nwa.
+             * \brief The default value of the Nwa coefficient.
              *        Unit = [-]
              */
             inline static const double WAVE_ANGLE_IMPACT_NWA = 2.0 / 3.0;
 
             /*!
-             * \brief The default value of the wave angle impact Qwa.
+             * \brief The default value of the Qwa coefficient.
              *        Unit = [-]
              */
             inline static const double WAVE_ANGLE_IMPACT_QWA = 0.35;
 
             /*!
-             * \brief The default value of the wave angle impact Rwa.
+             * \brief The default value of the Rwa coefficient.
              *        Unit = [-]
              */
             inline static const double WAVE_ANGLE_IMPACT_RWA = 10.0;
 
             /*!
-             * \brief The default value of the upper limit loading Aul.
+             * \brief The default value of the Aul coefficient.
              *        Unit = [-]
              */
             inline static const double UPPER_LIMIT_LOADING_AUL = 0.0;
 
             /*!
-             * \brief The default value of the lower limit loading All.
+             * \brief The default value of the All coefficient.
              *        Unit = [-]
              */
             inline static const double LOWER_LIMIT_LOADING_ALL = 0.5;
