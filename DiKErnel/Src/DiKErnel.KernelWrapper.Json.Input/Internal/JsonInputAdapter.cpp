@@ -69,7 +69,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
             const auto* grassRevetmentWaveImpactLocationData = dynamic_cast<const JsonInputGrassRevetmentWaveImpactLocationData*>(
                 &revetmentLocationData);
 
-            if(grassRevetmentWaveImpactLocationData != nullptr)
+            if (grassRevetmentWaveImpactLocationData != nullptr)
             {
                 const auto constructionProperties = CreateGrassWaveImpactConstructionProperties(location, *grassRevetmentWaveImpactLocationData);
                 builder.AddGrassWaveImpactLocation(*constructionProperties);
@@ -157,7 +157,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
         const auto& profileSchematizationData = location.GetProfileSchematizationData();
 
         auto constructionProperties = make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(
-            location.GetName(), profileSchematizationData.GetTanA(), profileSchematizationData.GetPositionZ(),
+            location.GetName(), profileSchematizationData.GetPositionZ(),
             ConvertTypeTopLayer(grassRevetmentWaveImpactLocationData.GetTopLayerType()));
 
         constructionProperties->SetInitialDamage(forward<unique_ptr<double>>(CreatePointerOfValue(damageData.GetInitialDamage())));

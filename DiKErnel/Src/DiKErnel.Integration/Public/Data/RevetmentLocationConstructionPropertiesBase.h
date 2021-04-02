@@ -35,14 +35,11 @@ namespace DiKErnel::Integration
              * \brief Creates a new instance.
              * \param name
              *        The name.
-             * \param tanA
-             *        The tanA.
              * \param positionZ
              *        The vertical position.
              */
             explicit RevetmentLocationConstructionPropertiesBase(
                 std::string name,
-                double tanA,
                 double positionZ);
 
             /*!
@@ -68,12 +65,6 @@ namespace DiKErnel::Integration
             std::string GetName() const;
 
             /*!
-             * \brief Gets the tanA.
-             * \return The tanA.
-             */
-            double GetTanA() const;
-
-            /*!
              * \brief Gets the vertical position.
              * \return The vertical position.
              */
@@ -93,7 +84,6 @@ namespace DiKErnel::Integration
 
         private:
             std::string _name;
-            double _tanA;
             double _positionZ;
             std::unique_ptr<double> _initialDamage = nullptr;
             std::unique_ptr<double> _failureNumber = nullptr;

@@ -239,6 +239,12 @@ namespace DiKErnel::Integration
             TopLayerType GetTopLayerType() const;
 
             /*!
+             * \brief Gets the tanA.
+             * \return The tanA.
+             */
+            double GetTanA() const;
+
+            /*!
              * \brief Gets the thickness of the top layer.
              * \return The thickness of the top layer.
              */
@@ -374,6 +380,7 @@ namespace DiKErnel::Integration
 
         private:
             TopLayerType _topLayerType;
+            double _tanA;
             double _thicknessTopLayer;
             double _relativeDensity;
             std::unique_ptr<double> _initialDamage = nullptr;

@@ -270,7 +270,6 @@ namespace DiKErnel::Integration::Test
         // Given
         const auto topLayerType = static_cast<GrassRevetmentWaveImpactLocationConstructionProperties::TopLayerType>(rand() % 2);
         const string name = "Test";
-        const auto tanA = 0.1;
         const auto positionZ = 0.2;
         const auto initialDamage = 0.3;
         const auto failureNumber = 0.4;
@@ -286,7 +285,7 @@ namespace DiKErnel::Integration::Test
         const auto lowerLimitLoadingAll = 1.4;
 
         GrassRevetmentWaveImpactLocationConstructionProperties constructionProperties(
-            name, tanA, positionZ, topLayerType);
+            name, positionZ, topLayerType);
         constructionProperties.SetInitialDamage(make_unique<double>(initialDamage));
         constructionProperties.SetFailureNumber(make_unique<double>(failureNumber));
         constructionProperties.SetTimeLineAgwi(make_unique<double>(timeLineAgwi));
@@ -346,11 +345,10 @@ namespace DiKErnel::Integration::Test
         // Given
         const auto topLayerType = GrassRevetmentWaveImpactLocationConstructionProperties::TopLayerType::ClosedSod;
         const string name = "Test";
-        const auto tanA = 0.1;
         const auto positionZ = 0.2;
 
         GrassRevetmentWaveImpactLocationConstructionProperties constructionProperties(
-            name, tanA, positionZ, topLayerType);
+            name, positionZ, topLayerType);
 
         RevetmentCalculationInputBuilder builder;
         builder.AddGrassWaveImpactLocation(constructionProperties);
@@ -398,11 +396,10 @@ namespace DiKErnel::Integration::Test
         // Given
         const auto topLayerType = GrassRevetmentWaveImpactLocationConstructionProperties::TopLayerType::OpenSod;
         const string name = "Test";
-        const auto tanA = 0.1;
         const auto positionZ = 0.2;
 
         GrassRevetmentWaveImpactLocationConstructionProperties constructionProperties(
-            name, tanA, positionZ, topLayerType);
+            name, positionZ, topLayerType);
 
         RevetmentCalculationInputBuilder builder;
         builder.AddGrassWaveImpactLocation(constructionProperties);

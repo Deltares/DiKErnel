@@ -30,10 +30,9 @@ namespace DiKErnel::Integration
 
     GrassRevetmentWaveImpactLocationConstructionProperties::GrassRevetmentWaveImpactLocationConstructionProperties(
         string name,
-        const double tanA,
         const double positionZ,
         const TopLayerType topLayerType)
-        : RevetmentLocationConstructionPropertiesBase(move(name), tanA, positionZ),
+        : RevetmentLocationConstructionPropertiesBase(move(name), positionZ),
           _topLayerType(topLayerType) { }
 
     #pragma region Set methods
