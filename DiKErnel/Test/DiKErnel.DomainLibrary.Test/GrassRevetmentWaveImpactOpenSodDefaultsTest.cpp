@@ -57,7 +57,7 @@ namespace DiKErnel::DomainLibrary::Test
     TEST(GrassRevetmentWaveImpactOpenSodDefaultsTest, WaveAngleImpactNwa_ExpectedValue)
     {
         // Call & Assert
-        ASSERT_DOUBLE_EQ(2.0/3.0, GrassRevetmentWaveImpactOpenSodDefaults::WAVE_ANGLE_IMPACT_NWA);
+        ASSERT_DOUBLE_EQ(2.0 / 3.0, GrassRevetmentWaveImpactOpenSodDefaults::WAVE_ANGLE_IMPACT_NWA);
     }
 
     TEST(GrassRevetmentWaveImpactOpenSodDefaultsTest, WaveAngleImpactQwa_ExpectedValue)
@@ -69,13 +69,13 @@ namespace DiKErnel::DomainLibrary::Test
     TEST(GrassRevetmentWaveImpactOpenSodDefaultsTest, WaveAngleImpactRwa_ExpectedValue)
     {
         // Call & Assert
-        ASSERT_DOUBLE_EQ(10.0, GrassRevetmentWaveImpactOpenSodDefaults::WAVE_ANGLE_IMPACT_RWA);
+        ASSERT_DOUBLE_EQ(10, GrassRevetmentWaveImpactOpenSodDefaults::WAVE_ANGLE_IMPACT_RWA);
     }
 
     TEST(GrassRevetmentWaveImpactOpenSodDefaultsTest, UpperLimitLoadingAul_ExpectedValue)
     {
         // Call & Assert
-        ASSERT_DOUBLE_EQ(0.0, GrassRevetmentWaveImpactOpenSodDefaults::UPPER_LIMIT_LOADING_AUL);
+        ASSERT_DOUBLE_EQ(0, GrassRevetmentWaveImpactOpenSodDefaults::UPPER_LIMIT_LOADING_AUL);
     }
 
     TEST(GrassRevetmentWaveImpactOpenSodDefaultsTest, LowerLimitLoadingAll_ExpectedValue)

@@ -27,7 +27,7 @@ namespace DiKErnel::DomainLibrary::Test
     TEST(GrassRevetmentWaveImpactClosedSodDefaultsTest, TimeLineAgwi_ExpectedValue)
     {
         // Call & Assert
-        ASSERT_DOUBLE_EQ(1.0, GrassRevetmentWaveImpactClosedSodDefaults::TIME_LINE_AGWI);
+        ASSERT_DOUBLE_EQ(1, GrassRevetmentWaveImpactClosedSodDefaults::TIME_LINE_AGWI);
     }
 
     TEST(GrassRevetmentWaveImpactClosedSodDefaultsTest, TimeLineBgwi_ExpectedValue)
@@ -69,13 +69,13 @@ namespace DiKErnel::DomainLibrary::Test
     TEST(GrassRevetmentWaveImpactClosedSodDefaultsTest, WaveAngleImpactRwa_ExpectedValue)
     {
         // Call & Assert
-        ASSERT_DOUBLE_EQ(10.0, GrassRevetmentWaveImpactClosedSodDefaults::WAVE_ANGLE_IMPACT_RWA);
+        ASSERT_DOUBLE_EQ(10, GrassRevetmentWaveImpactClosedSodDefaults::WAVE_ANGLE_IMPACT_RWA);
     }
 
     TEST(GrassRevetmentWaveImpactClosedSodDefaultsTest, UpperLimitLoadingAul_ExpectedValue)
     {
         // Call & Assert
-        ASSERT_DOUBLE_EQ(0.0, GrassRevetmentWaveImpactClosedSodDefaults::UPPER_LIMIT_LOADING_AUL);
+        ASSERT_DOUBLE_EQ(0, GrassRevetmentWaveImpactClosedSodDefaults::UPPER_LIMIT_LOADING_AUL);
     }
 
     TEST(GrassRevetmentWaveImpactClosedSodDefaultsTest, LowerLimitLoadingAll_ExpectedValue)

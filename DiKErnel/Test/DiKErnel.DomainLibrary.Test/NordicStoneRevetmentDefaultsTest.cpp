@@ -24,55 +24,55 @@
 
 namespace DiKErnel::DomainLibrary::Test
 {
-    TEST(NordicStoneRevetmentDefaultsTest, hydraulicLoadXib_ExpectedValue)
+    TEST(NordicStoneRevetmentDefaultsTest, HydraulicLoadXib_ExpectedValue)
     {
         // Call & Assert
         ASSERT_DOUBLE_EQ(2.9, NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_XIB);
     }
 
-    TEST(NordicStoneRevetmentDefaultsTest, hydraulicLoadAp_ExpectedValue)
+    TEST(NordicStoneRevetmentDefaultsTest, HydraulicLoadAp_ExpectedValue)
     {
         // Call & Assert
         ASSERT_DOUBLE_EQ(4, NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_AP);
     }
 
-    TEST(NordicStoneRevetmentDefaultsTest, hydraulicLoadBp_ExpectedValue)
+    TEST(NordicStoneRevetmentDefaultsTest, HydraulicLoadBp_ExpectedValue)
     {
         // Call & Assert
         ASSERT_DOUBLE_EQ(0, NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_BP);
     }
 
-    TEST(NordicStoneRevetmentDefaultsTest, hydraulicLoadCp_ExpectedValue)
+    TEST(NordicStoneRevetmentDefaultsTest, HydraulicLoadCp_ExpectedValue)
     {
         // Call & Assert
         ASSERT_DOUBLE_EQ(0, NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_CP);
     }
 
-    TEST(NordicStoneRevetmentDefaultsTest, hydraulicLoadNp_ExpectedValue)
+    TEST(NordicStoneRevetmentDefaultsTest, HydraulicLoadNp_ExpectedValue)
     {
         // Call & Assert
         ASSERT_DOUBLE_EQ(-0.9, NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_NP);
     }
 
-    TEST(NordicStoneRevetmentDefaultsTest, hydraulicLoadAs_ExpectedValue)
+    TEST(NordicStoneRevetmentDefaultsTest, HydraulicLoadAs_ExpectedValue)
     {
         // Call & Assert
         ASSERT_DOUBLE_EQ(0.8, NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_AS);
     }
 
-    TEST(NordicStoneRevetmentDefaultsTest, hydraulicLoadBs_ExpectedValue)
+    TEST(NordicStoneRevetmentDefaultsTest, HydraulicLoadBs_ExpectedValue)
     {
         // Call & Assert
         ASSERT_DOUBLE_EQ(0, NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_BS);
     }
 
-    TEST(NordicStoneRevetmentDefaultsTest, hydraulicLoadCs_ExpectedValue)
+    TEST(NordicStoneRevetmentDefaultsTest, HydraulicLoadCs_ExpectedValue)
     {
         // Call & Assert
         ASSERT_DOUBLE_EQ(0, NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_CS);
     }
 
-    TEST(NordicStoneRevetmentDefaultsTest, hydraulicLoadNs_ExpectedValue)
+    TEST(NordicStoneRevetmentDefaultsTest, HydraulicLoadNs_ExpectedValue)
     {
         // Call & Assert
         ASSERT_DOUBLE_EQ(0.6, NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_NS);
