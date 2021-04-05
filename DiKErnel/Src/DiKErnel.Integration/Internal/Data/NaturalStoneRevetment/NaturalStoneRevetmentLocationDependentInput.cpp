@@ -95,7 +95,7 @@ namespace DiKErnel::Integration
 
         if (loadingRevetment)
         {
-            const auto usePurgingBreakers = _hydraulicLoads->GetHydraulicLoadXib() - surfSimilarityParameter >= 0.0;
+            const auto usePurgingBreakers = _hydraulicLoads->GetHydraulicLoadXib() >= surfSimilarityParameter;
             const auto hydraulicLoadA = usePurgingBreakers
                                             ? _hydraulicLoads->GetHydraulicLoadAp()
                                             : _hydraulicLoads->GetHydraulicLoadAs();
