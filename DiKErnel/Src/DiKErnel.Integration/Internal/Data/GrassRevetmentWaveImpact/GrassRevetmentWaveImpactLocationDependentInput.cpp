@@ -57,61 +57,27 @@ namespace DiKErnel::Integration
         const auto waveHeightHm0 = timeDependentInput.GetWaveHeightHm0();
         const auto positionZ = GetPositionZ();
 
-        const auto lowerLimitLoading = GrassRevetmentWaveImpact::LowerLimitLoading(
-            waterLevel,
-            waveHeightHm0,
-            _lowerLimitLoadingAll);
-
-        const auto upperLimitLoading = GrassRevetmentWaveImpact::UpperLimitLoading(
-            waterLevel,
-            waveHeightHm0,
-            _upperLimitLoadingAul);
-
-        const auto loadingOfRevetment = HydraulicLoad::LoadingRevetment(
-            lowerLimitLoading,
-            upperLimitLoading,
-            positionZ);
+        const auto lowerLimitLoading = GrassRevetmentWaveImpact::LowerLimitLoading(waterLevel, waveHeightHm0, _lowerLimitLoadingAll);
+        const auto upperLimitLoading = GrassRevetmentWaveImpact::UpperLimitLoading(waterLevel, waveHeightHm0, _upperLimitLoadingAul);
+        const auto loadingOfRevetment = HydraulicLoad::LoadingRevetment(lowerLimitLoading, upperLimitLoading, positionZ);
 
         auto damage = initialDamage;
         unique_ptr<int> timeOfFailure = nullptr;
 
         if (loadingOfRevetment)
         {
-            const auto incrementTime = Revetment::IncrementTime(
-                timeDependentInput.GetBeginTime(),
-                timeDependentInput.GetEndTime());
-
+            const auto incrementTime = Revetment::IncrementTime(timeDependentInput.GetBeginTime(), timeDependentInput.GetEndTime());
             const auto minimumWaveHeight = GrassRevetmentWaveImpact::MinimumWaveHeight(
-                _timeLine->GetTimeLineAgwi(),
-                _timeLine->GetTimeLineBgwi(),
-                _timeLine->GetTimeLineCgwi(),
-                _minimumWaveHeightTemax);
-
+                _timeLine->GetTimeLineAgwi(), _timeLine->GetTimeLineBgwi(), _timeLine->GetTimeLineCgwi(), _minimumWaveHeightTemax);
             const auto maximumWaveHeight = GrassRevetmentWaveImpact::MaximumWaveHeight(
-                _timeLine->GetTimeLineAgwi(),
-                _timeLine->GetTimeLineBgwi(),
-                _timeLine->GetTimeLineCgwi(),
-                _maximumWaveHeightTemin);
-
+                _timeLine->GetTimeLineAgwi(), _timeLine->GetTimeLineBgwi(), _timeLine->GetTimeLineCgwi(), _maximumWaveHeightTemin);
             const auto waveAngleImpact = GrassRevetmentWaveImpact::WaveAngleImpact(
-                timeDependentInput.GetWaveAngle(),
-                _waveAngleImpact->GetWaveAngleImpactNwa(),
-                _waveAngleImpact->GetWaveAngleImpactQwa(),
+                timeDependentInput.GetWaveAngle(), _waveAngleImpact->GetWaveAngleImpactNwa(), _waveAngleImpact->GetWaveAngleImpactQwa(),
                 _waveAngleImpact->GetWaveAngleImpactRwa());
-
             const auto waveHeightImpact = GrassRevetmentWaveImpact::WaveHeightImpact(
-                minimumWaveHeight,
-                maximumWaveHeight,
-                waveAngleImpact,
-                waveHeightHm0);
-
+                minimumWaveHeight, maximumWaveHeight, waveAngleImpact, waveHeightHm0);
             const auto timeLine = GrassRevetmentWaveImpact::TimeLine(
-                waveHeightImpact,
-                _timeLine->GetTimeLineAgwi(),
-                _timeLine->GetTimeLineBgwi(),
-                _timeLine->GetTimeLineCgwi()
-            );
-
+                waveHeightImpact, _timeLine->GetTimeLineAgwi(), _timeLine->GetTimeLineBgwi(), _timeLine->GetTimeLineCgwi());
             const auto incrementOfDamage = GrassRevetmentWaveImpact::IncrementDamage(incrementTime, timeLine);
 
             damage = Revetment::Damage(incrementOfDamage, initialDamage);
@@ -121,6 +87,7 @@ namespace DiKErnel::Integration
             if (Revetment::FailureRevetment(damage, initialDamage, failureNumber))
             {
                 const auto durationInTimeStepFailure = GrassRevetmentWaveImpact::DurationInTimeStepFailure(timeLine, failureNumber, initialDamage);
+
                 timeOfFailure = make_unique<int>(Revetment::TimeOfFailure(durationInTimeStepFailure, timeDependentInput.GetBeginTime()));
             }
         }

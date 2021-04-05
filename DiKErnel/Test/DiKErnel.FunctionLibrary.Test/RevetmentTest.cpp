@@ -123,7 +123,7 @@ namespace DiKErnel::FunctionLibrary::Test
     TEST(RevetmentTest, TimeOfFailure_ValidUnroundedInput_ExpectedValue)
     {
         // Setup
-        const auto durationInTimeStepFailure = 254.56;
+        const auto durationInTimeStepFailure = 254.001;
         const auto startTime = 1568;
 
         // Call

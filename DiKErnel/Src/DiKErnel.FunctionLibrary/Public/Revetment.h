@@ -77,9 +77,9 @@ namespace DiKErnel::FunctionLibrary
                 double failureNumber);
 
             /*!
-             * \brief Calculated the time of failure.
+             * \brief Calculates the time of failure.
              * \param durationInTimeStepFailure
-             *        The duration in the time step failure.
+             *        The duration in the time step of failure.
              *        Unit = [s]
              * \param startTime
              *        The start time.

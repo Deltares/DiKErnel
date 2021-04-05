@@ -48,7 +48,7 @@ namespace DiKErnel::Acceptance::Test
         void PerformTest(
             const string& filePath,
             const double expectedDamage,
-            const int* expectedFailureTime) const
+            const int* expectedTimeOfFailure) const
         {
             // When
             const auto calculationInput = JsonInputComposer::GetCalculationInputFromJson(filePath);
@@ -58,38 +58,38 @@ namespace DiKErnel::Acceptance::Test
             const auto outputData = calculator.GetCalculationOutput();
             JsonOutputComposer::WriteCalculationOutputToJson(_actualOutputFilePath, *outputData, *calculationInput);
 
-            // Assert
+            // Then
             ifstream ifs(_actualOutputFilePath);
             const auto json = json::parse(ifs);
 
             const auto& readLocation = json["Uitvoerdata"]["Locaties"][0];
             const auto& actualDamages = readLocation["Schade"]["SchadegetalPerTijd"].get<vector<double>>();
 
-            unique_ptr<int> actualFailureTime = nullptr;
+            unique_ptr<int> actualTimeOfFailure = nullptr;
 
             if (!readLocation["Schade"]["Faaltijd"].is_null())
             {
-                actualFailureTime = make_unique<int>(readLocation["Schade"]["Faaltijd"].get<int>());
+                actualTimeOfFailure = make_unique<int>(readLocation["Schade"]["Faaltijd"].get<int>());
             }
 
-            AssertOutput(expectedDamage, expectedFailureTime, actualDamages.back(), actualFailureTime.get());
+            AssertOutput(expectedDamage, expectedTimeOfFailure, actualDamages.back(), actualTimeOfFailure.get());
         }
 
         static void AssertOutput(
             const double expectedDamage,
-            const int* expectedFailureTime,
+            const int* expectedTimeOfFailure,
             const double actualDamage,
-            const int* actualFailureTime)
+            const int* actualTimeOfFailure)
         {
             ASSERT_DOUBLE_EQ(expectedDamage, actualDamage);
 
-            if (expectedFailureTime == nullptr)
+            if (expectedTimeOfFailure == nullptr)
             {
-                ASSERT_EQ(expectedFailureTime, actualFailureTime);
+                ASSERT_EQ(expectedTimeOfFailure, actualTimeOfFailure);
             }
             else
             {
-                ASSERT_EQ(*expectedFailureTime, *actualFailureTime);
+                ASSERT_EQ(*expectedTimeOfFailure, *actualTimeOfFailure);
             }
         }
 
@@ -103,8 +103,7 @@ namespace DiKErnel::Acceptance::Test
     {
         // Given
         const auto filePath =
-        (TestDataPathHelper::GetTestDataPath("DiKErnel.Acceptance.Test")
-            / "AcceptanceTest" / "naturalStone.json").string();
+                (TestDataPathHelper::GetTestDataPath("DiKErnel.Acceptance.Test") / "AcceptanceTest" / "naturalStone.json").string();
 
         // When & Then
         PerformTest(filePath, 1.1836103307707342, make_unique<int>(3067).get());
@@ -114,8 +113,7 @@ namespace DiKErnel::Acceptance::Test
     {
         // Given
         const auto filePath =
-        (TestDataPathHelper::GetTestDataPath("DiKErnel.Acceptance.Test")
-            / "AcceptanceTest" / "grassWaveImpact.json").string();
+                (TestDataPathHelper::GetTestDataPath("DiKErnel.Acceptance.Test") / "AcceptanceTest" / "grassWaveImpact.json").string();
 
         // When & Then
         PerformTest(filePath, 2.836154231066117, make_unique<int>(32955).get());

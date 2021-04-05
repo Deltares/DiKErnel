@@ -45,7 +45,7 @@ namespace DiKErnel::Core::TestUtil
                 int* timeOfFailure);
 
         private:
-            double _damage;
+            double _damage = 0;
             int* _timeOfFailure = nullptr;
     };
 }
