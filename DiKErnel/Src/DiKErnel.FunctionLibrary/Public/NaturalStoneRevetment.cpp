@@ -138,7 +138,7 @@ namespace DiKErnel::FunctionLibrary
         const double referenceDegradation,
         const double wavePeriodTm10)
     {
-        return 1000.0 * wavePeriodTm10 * pow(referenceDegradation, 10.0);
+        return ReferenceTime(referenceDegradation, wavePeriodTm10);
     }
 
     double NaturalStoneRevetment::ReferenceDegradation(
@@ -147,7 +147,7 @@ namespace DiKErnel::FunctionLibrary
         const double waveAngleImpact,
         const double initialDamage)
     {
-        return initialDamage * (resistance / hydraulicLoad) * (1.0 / waveAngleImpact);
+        return Reference(resistance, hydraulicLoad, waveAngleImpact, initialDamage);
     }
 
     double NaturalStoneRevetment::DurationInTimeStepFailure(
@@ -161,7 +161,7 @@ namespace DiKErnel::FunctionLibrary
         const double referenceFailure,
         const double wavePeriodTm10)
     {
-        return 1000.0 * wavePeriodTm10 * pow(referenceFailure, 10.0);
+        return ReferenceTime(referenceFailure, wavePeriodTm10);
     }
 
     double NaturalStoneRevetment::ReferenceFailure(
@@ -170,7 +170,7 @@ namespace DiKErnel::FunctionLibrary
         const double waveAngleImpact,
         const double failureNumber)
     {
-        return failureNumber * (resistance / hydraulicLoad) * (1.0 / waveAngleImpact);
+        return Reference(resistance, hydraulicLoad, waveAngleImpact, failureNumber);
     }
 
     double NaturalStoneRevetment::Degradation(
@@ -178,5 +178,21 @@ namespace DiKErnel::FunctionLibrary
         const double wavePeriodTm10)
     {
         return pow(referenceTimeDegradation / (wavePeriodTm10 * 1000.0), 0.1);
+    }
+
+    double NaturalStoneRevetment::ReferenceTime(
+        const double reference,
+        const double wavePeriodTm10)
+    {
+        return 1000.0 * wavePeriodTm10 * pow(reference, 10.0);
+    }
+
+    double NaturalStoneRevetment::Reference(
+        const double resistance,
+        const double hydraulicLoad,
+        const double waveAngleImpact,
+        const double value)
+    {
+        return value * (resistance / hydraulicLoad) * (1.0 / waveAngleImpact);
     }
 }

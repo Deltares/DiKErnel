@@ -365,5 +365,15 @@ namespace DiKErnel::FunctionLibrary
             static double Degradation(
                 double referenceTimeDegradation,
                 double wavePeriodTm10);
+
+            static double ReferenceTime(
+                double reference,
+                double wavePeriodTm10);
+
+            static double Reference(
+                double resistance,
+                double hydraulicLoad,
+                double waveAngleImpact,
+                double value);
     };
 }
