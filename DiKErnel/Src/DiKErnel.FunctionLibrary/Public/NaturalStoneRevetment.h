@@ -271,21 +271,6 @@ namespace DiKErnel::FunctionLibrary
                 double wavePeriodTm10);
 
             /*!
-             * \brief Calculates the degradation.
-             * \param referenceTimeDegradation
-             *        The reference time of degradation.
-             *        Unit = [s]
-             * \param wavePeriodTm10
-             *        The wave period.
-             *        Unit = [s]
-             * \return The degradation.
-             *         Unit = [-]
-             */
-            static double Degradation(
-                double referenceTimeDegradation,
-                double wavePeriodTm10);
-
-            /*!
              * \brief Calculates the reference time of degradation.
              * \param referenceDegradation
              *        The reference of degradation.
@@ -375,5 +360,10 @@ namespace DiKErnel::FunctionLibrary
                 double hydraulicLoad,
                 double waveAngleImpact,
                 double failureNumber);
+
+        private:
+            static double Degradation(
+                double referenceTimeDegradation,
+                double wavePeriodTm10);
     };
 }

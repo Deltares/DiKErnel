@@ -134,13 +134,6 @@ namespace DiKErnel::FunctionLibrary
         return Degradation(referenceTimeDegradation + incrementTime, wavePeriodTm10) - Degradation(referenceTimeDegradation, wavePeriodTm10);
     }
 
-    double NaturalStoneRevetment::Degradation(
-        const double referenceTimeDegradation,
-        const double wavePeriodTm10)
-    {
-        return pow(referenceTimeDegradation / (wavePeriodTm10 * 1000.0), 0.1);
-    }
-
     double NaturalStoneRevetment::ReferenceTimeDegradation(
         const double referenceDegradation,
         const double wavePeriodTm10)
@@ -178,5 +171,12 @@ namespace DiKErnel::FunctionLibrary
         const double failureNumber)
     {
         return failureNumber * (resistance / hydraulicLoad) * (1.0 / waveAngleImpact);
+    }
+
+    double NaturalStoneRevetment::Degradation(
+        const double referenceTimeDegradation,
+        const double wavePeriodTm10)
+    {
+        return pow(referenceTimeDegradation / (wavePeriodTm10 * 1000.0), 0.1);
     }
 }

@@ -185,19 +185,6 @@ namespace DiKErnel::FunctionLibrary::Test
         ASSERT_DOUBLE_EQ(0.078442472004777053, incrementDegradation);
     }
 
-    TEST(NaturalStoneRevetmentTest, Degradation_ValidInput_ExpectedValue)
-    {
-        // Setup
-        const auto referenceTimeDegradation = 579.743;
-        const auto wavePeriodTm10 = 5.5;
-
-        // Call
-        const auto degradation = NaturalStoneRevetment::Degradation(referenceTimeDegradation, wavePeriodTm10);
-
-        // Assert
-        ASSERT_DOUBLE_EQ(0.79852272914233136, degradation);
-    }
-
     TEST(NaturalStoneRevetmentTest, ReferenceTimeDegradation_ValidInput_ExpectedValue)
     {
         // Setup
