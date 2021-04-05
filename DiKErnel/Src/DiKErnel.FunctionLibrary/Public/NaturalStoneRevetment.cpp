@@ -103,11 +103,6 @@ namespace DiKErnel::FunctionLibrary
                 * impactShallowWater;
     }
 
-    double NaturalStoneRevetment::ImpactShallowWater()
-    {
-        return 1.0;
-    }
-
     double NaturalStoneRevetment::NormativeWidthWaveImpact(
         const double surfSimilarityParameter,
         const double waveHeightHm0,

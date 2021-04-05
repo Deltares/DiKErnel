@@ -199,13 +199,6 @@ namespace DiKErnel::FunctionLibrary
                 double distanceMaximumWaveElevationBsmax);
 
             /*!
-             * \brief Calculates the impact in shallow water.
-             * \return The impact in shallow water.
-             *         Unit = [-]
-             */
-            static double ImpactShallowWater();
-
-            /*!
              * \brief Calculates the normative width of wave impact.
              * \param surfSimilarityParameter
              *        The surf similarity parameter.

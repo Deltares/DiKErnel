@@ -67,8 +67,8 @@ namespace DiKErnel::Integration
         const auto waterLevel = timeDependentInput.GetWaterLevel();
         const auto waveHeightHm0 = timeDependentInput.GetWaveHeightHm0();
         const auto wavePeriodTm10 = timeDependentInput.GetWavePeriodTm10();
+        const auto impactShallowWater = 1.0;
 
-        const auto impactShallowWater = NaturalStoneRevetment::ImpactShallowWater();
         const auto waveSteepnessDeepWater = HydraulicLoad::WaveSteepnessDeepWater(
             waveHeightHm0, wavePeriodTm10, Constants::GRAVITATIONAL_ACCELERATION);
         const auto distanceMaximumWaveElevation = NaturalStoneRevetment::DistanceMaximumWaveElevation(

@@ -129,15 +129,6 @@ namespace DiKErnel::FunctionLibrary::Test
         ASSERT_DOUBLE_EQ(2.4840179879700712, distanceMaximumWaveElevation);
     }
 
-    TEST(NaturalStoneRevetmentTest, ImpactShallowWater_Always_ExpectedValue)
-    {
-        // Call
-        const auto impactShallowWater = NaturalStoneRevetment::ImpactShallowWater();
-
-        // Assert
-        ASSERT_DOUBLE_EQ(1.0, impactShallowWater);
-    }
-
     TEST(NaturalStoneRevetmentTest, NormativeWidthWaveImpact_ValidInput_ExpectedValue)
     {
         // Setup
