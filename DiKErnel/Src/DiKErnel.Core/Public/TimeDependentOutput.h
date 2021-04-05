@@ -25,7 +25,7 @@
 namespace DiKErnel::Core
 {
     /*!
-     * \brief Class containing all time dependent output of a location.
+     * \brief Class containing time dependent output of a location.
      */
     class TimeDependentOutput
     {
@@ -33,7 +33,7 @@ namespace DiKErnel::Core
             /*!
              * \brief Creates a new instance.
              * \param damage
-             *        The damage of the location.
+             *        The damage.
              * \param timeOfFailure
              *        The time of failure.
              */

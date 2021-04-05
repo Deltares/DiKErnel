@@ -65,17 +65,9 @@ namespace DiKErnel::Core::Test
     TEST_F(CalculatorTest, GivenCalculator_WhenWaitForCompletion_ThenCalculationPerformed)
     {
         // Given
-        const auto damage = 0.5;
-
         NiceMock<ICalculationInputMock> calculationInput;
         ON_CALL(calculationInput, GetLocationDependentInputItems).WillByDefault(ReturnRef(_locationDependentInputItemReferences));
         ON_CALL(calculationInput, GetTimeDependentInputItems).WillByDefault(ReturnRef(_timeDependentInputItemReferences));
-
-        auto* locationDependentInput = dynamic_cast<ILocationDependentInputMock*>(&_locationDependentInputItemReferences[0].get());
-        ASSERT_TRUE(locationDependentInput != nullptr);
-
-        locationDependentInput->SetDamage(damage);
-        ON_CALL(*locationDependentInput, GetInitialDamage).WillByDefault(Return(0.1));
 
         Calculator calculator(calculationInput);
 
@@ -88,7 +80,7 @@ namespace DiKErnel::Core::Test
         ASSERT_FALSE(calculator.IsCancelled());
     }
 
-    TEST_F(CalculatorTest, GivenCalculator_WhenCalculationPerformedAndNoTimeOfFailure_ThenOutputSet)
+    TEST_F(CalculatorTest, GivenCalculator_WhenCalculationPerformedAndNoTimeOfFailure_ThenExpectedOutput)
     {
         // Given
         const auto damage = 0.5;
@@ -101,7 +93,6 @@ namespace DiKErnel::Core::Test
         ASSERT_TRUE(locationDependentInput != nullptr);
 
         locationDependentInput->SetDamage(damage);
-        ON_CALL(*locationDependentInput, GetInitialDamage).WillByDefault(Return(0.1));
 
         Calculator calculator(calculationInput);
 
@@ -125,12 +116,11 @@ namespace DiKErnel::Core::Test
         ASSERT_EQ(nullptr, locationDependentOutputItems[0].get().GetTimeOfFailure());
     }
 
-    TEST_F(CalculatorTest, GivenCalculator_WhenCalculationPerformedAndTimeOfFailure_ThenOutputSet)
+    TEST_F(CalculatorTest, GivenCalculator_WhenCalculationPerformedAndTimeOfFailure_ThenExpectedOutput)
     {
         // Given
         const auto damage = 0.5;
-        const auto timeOfFailure = 20.0;
-        const auto timeOfFailurePtr = make_unique<int>(timeOfFailure);
+        auto timeOfFailure = 20;
 
         NiceMock<ICalculationInputMock> calculationInput;
         ON_CALL(calculationInput, GetLocationDependentInputItems).WillByDefault(ReturnRef(_locationDependentInputItemReferences));
@@ -140,9 +130,7 @@ namespace DiKErnel::Core::Test
         ASSERT_TRUE(locationDependentInput != nullptr);
 
         locationDependentInput->SetDamage(damage);
-        locationDependentInput->SetTimeOfFailure(timeOfFailurePtr.get());
-
-        ON_CALL(*locationDependentInput, GetInitialDamage).WillByDefault(Return(0.1));
+        locationDependentInput->SetTimeOfFailure(&timeOfFailure);
 
         Calculator calculator(calculationInput);
 

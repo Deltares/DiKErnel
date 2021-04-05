@@ -140,6 +140,7 @@ namespace DiKErnel::Core
         {
             vector<double> damages;
             unique_ptr<int> timeOfFailure;
+
             for (const auto& timeDependentOutput : timeDependentOutputItemsPerLocation)
             {
                 damages.push_back(timeDependentOutput->GetDamage());

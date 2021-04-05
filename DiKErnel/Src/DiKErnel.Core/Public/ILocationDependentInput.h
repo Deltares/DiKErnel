@@ -45,7 +45,7 @@ namespace DiKErnel::Core
              *        The damage at the start of the calculation.
              * \param timeDependentInput
              *        The time dependent input to use in the calculation.
-             * \return The calculated damage.
+             * \return The time dependent output.
              */
             virtual std::unique_ptr<TimeDependentOutput> Calculate(
                 double initialDamage,
