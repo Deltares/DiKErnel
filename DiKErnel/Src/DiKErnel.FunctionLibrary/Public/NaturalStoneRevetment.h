@@ -85,7 +85,7 @@ namespace DiKErnel::FunctionLibrary
             /*!
              * \brief Calculates the upper limit of loading.
              * \param depthMaximumWaveLoad
-             *        The maximum wave load depth.
+             *        The depth of the maximum wave load.
              *        Unit = [m]
              * \param surfSimilarityParameter
              *        The surf similarity parameter.
@@ -120,7 +120,7 @@ namespace DiKErnel::FunctionLibrary
             /*!
              * \brief Calculates the lower limit of loading.
              * \param depthMaximumWaveLoad
-             *        The maximum wave load depth.
+             *        The depth of the maximum wave load.
              *        Unit = [m]
              * \param surfSimilarityParameter
              *        The surf similarity parameter.
@@ -153,7 +153,7 @@ namespace DiKErnel::FunctionLibrary
                 double lowerLimitLoadingCll);
 
             /*!
-             * \brief Calculates the maximum wave load depth.
+             * \brief Calculates the depth of the maximum wave load.
              * \param distanceMaximumWaveElevation
              *        The maximum distance of wave elevation.
              *        Unit = [m]
@@ -163,7 +163,7 @@ namespace DiKErnel::FunctionLibrary
              * \param slopeAngle
              *        The slope angle.
              *        Unit = [deg]
-             * \return The maximum wave load depth.
+             * \return The depth of the maximum wave load.
              *         Unit = [m]
              */
             static double DepthMaximumWaveLoad(
