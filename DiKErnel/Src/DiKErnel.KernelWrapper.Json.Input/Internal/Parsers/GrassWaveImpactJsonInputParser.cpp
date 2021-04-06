@@ -29,16 +29,16 @@ namespace DiKErnel::KernelWrapper::Json::Input
     using namespace nlohmann;
     using namespace std;
 
-    NLOHMANN_JSON_SERIALIZE_ENUM(JsonInputGrassRevetmentWaveImpactLocationData::TopLayerType,
+    NLOHMANN_JSON_SERIALIZE_ENUM(JsonInputGrassRevetmentTopLayerType,
         {
             {
-                JsonInputGrassRevetmentWaveImpactLocationData::TopLayerType::Unknown, nullptr
+                JsonInputGrassRevetmentTopLayerType::Unknown, nullptr
             },
             {
-                JsonInputGrassRevetmentWaveImpactLocationData::TopLayerType::ClosedSod, GrassWaveImpactJsonInputDefinitions::TOP_LAYER_TYPE_CLOSED_SOD
+                JsonInputGrassRevetmentTopLayerType::ClosedSod, GrassWaveImpactJsonInputDefinitions::TOP_LAYER_TYPE_CLOSED_SOD
             },
             {
-                JsonInputGrassRevetmentWaveImpactLocationData::TopLayerType::OpenSod, GrassWaveImpactJsonInputDefinitions::TOP_LAYER_TYPE_OPEN_SOD
+                JsonInputGrassRevetmentTopLayerType::OpenSod, GrassWaveImpactJsonInputDefinitions::TOP_LAYER_TYPE_OPEN_SOD
             }
         });
 
@@ -47,7 +47,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
         const json& readCalculationMethod)
     {
         auto locationData = make_unique<JsonInputGrassRevetmentWaveImpactLocationData>(
-            readRevetment[JsonInputDefinitions::TYPE_TOP_LAYER].get<JsonInputGrassRevetmentWaveImpactLocationData::TopLayerType>());
+            readRevetment[JsonInputDefinitions::TYPE_TOP_LAYER].get<JsonInputGrassRevetmentTopLayerType>());
 
         locationData->SetTimeLineAgwi(
             forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalValue(

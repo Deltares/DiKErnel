@@ -191,13 +191,13 @@ namespace DiKErnel::KernelWrapper::Json::Input
     }
 
     GrassRevetmentWaveImpactLocationConstructionProperties::TopLayerType JsonInputAdapter::ConvertTypeTopLayer(
-        const JsonInputGrassRevetmentWaveImpactLocationData::TopLayerType topLayerType)
+        const JsonInputGrassRevetmentTopLayerType topLayerType)
     {
-        if (topLayerType == JsonInputGrassRevetmentWaveImpactLocationData::TopLayerType::OpenSod)
+        if (topLayerType == JsonInputGrassRevetmentTopLayerType::OpenSod)
         {
             return GrassRevetmentWaveImpactLocationConstructionProperties::TopLayerType::OpenSod;
         }
-        if (topLayerType == JsonInputGrassRevetmentWaveImpactLocationData::TopLayerType::ClosedSod)
+        if (topLayerType == JsonInputGrassRevetmentTopLayerType::ClosedSod)
         {
             return GrassRevetmentWaveImpactLocationConstructionProperties::TopLayerType::ClosedSod;
         }
