@@ -22,7 +22,7 @@
 
 #include "JsonInputDefinitions.h"
 #include "JsonInputParserHelper.h"
-#include "NaturalStoneJsonInputDefinitions.h"
+#include "JsonInputNaturalStoneDefinitions.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
@@ -35,7 +35,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 JsonInputNaturalStoneRevetmentTopLayerType::Unknown, nullptr
             },
             {
-                JsonInputNaturalStoneRevetmentTopLayerType::NordicStone, NaturalStoneJsonInputDefinitions::TOP_LAYER_TYPE_NORDIC_STONE
+                JsonInputNaturalStoneRevetmentTopLayerType::NordicStone, JsonInputNaturalStoneDefinitions::TOP_LAYER_TYPE_NORDIC_STONE
             }
         });
 
@@ -44,106 +44,106 @@ namespace DiKErnel::KernelWrapper::Json::Input
         const json& readCalculationMethod)
     {
         auto locationData = make_unique<JsonInputNaturalStoneRevetmentLocationData>(
-            readRevetment[NaturalStoneJsonInputDefinitions::RELATIVE_DENSITY],
-            readRevetment[NaturalStoneJsonInputDefinitions::THICKNESS_TOP_LAYER],
+            readRevetment[JsonInputNaturalStoneDefinitions::RELATIVE_DENSITY],
+            readRevetment[JsonInputNaturalStoneDefinitions::THICKNESS_TOP_LAYER],
             readRevetment[JsonInputDefinitions::TYPE_TOP_LAYER].get<JsonInputNaturalStoneRevetmentTopLayerType>());
 
-        if (readCalculationMethod.contains(NaturalStoneJsonInputDefinitions::HYDRAULIC_LOAD))
+        if (readCalculationMethod.contains(JsonInputNaturalStoneDefinitions::HYDRAULIC_LOAD))
         {
-            const auto& readHydraulicLoads = readCalculationMethod[NaturalStoneJsonInputDefinitions::HYDRAULIC_LOAD];
+            const auto& readHydraulicLoads = readCalculationMethod[JsonInputNaturalStoneDefinitions::HYDRAULIC_LOAD];
 
             locationData->SetHydraulicLoadAp(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalValue(
-                    readHydraulicLoads, NaturalStoneJsonInputDefinitions::HYDRAULIC_LOAD_AP)));
+                    readHydraulicLoads, JsonInputNaturalStoneDefinitions::HYDRAULIC_LOAD_AP)));
             locationData->SetHydraulicLoadBp(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalValue(
-                    readHydraulicLoads, NaturalStoneJsonInputDefinitions::HYDRAULIC_LOAD_BP)));
+                    readHydraulicLoads, JsonInputNaturalStoneDefinitions::HYDRAULIC_LOAD_BP)));
             locationData->SetHydraulicLoadCp(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalValue(
-                    readHydraulicLoads, NaturalStoneJsonInputDefinitions::HYDRAULIC_LOAD_CP)));
+                    readHydraulicLoads, JsonInputNaturalStoneDefinitions::HYDRAULIC_LOAD_CP)));
             locationData->SetHydraulicLoadNp(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalValue(
-                    readHydraulicLoads, NaturalStoneJsonInputDefinitions::HYDRAULIC_LOAD_NP)));
+                    readHydraulicLoads, JsonInputNaturalStoneDefinitions::HYDRAULIC_LOAD_NP)));
             locationData->SetHydraulicLoadAs(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalValue(
-                    readHydraulicLoads, NaturalStoneJsonInputDefinitions::HYDRAULIC_LOAD_AS)));
+                    readHydraulicLoads, JsonInputNaturalStoneDefinitions::HYDRAULIC_LOAD_AS)));
             locationData->SetHydraulicLoadBs(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalValue(
-                    readHydraulicLoads, NaturalStoneJsonInputDefinitions::HYDRAULIC_LOAD_BS)));
+                    readHydraulicLoads, JsonInputNaturalStoneDefinitions::HYDRAULIC_LOAD_BS)));
             locationData->SetHydraulicLoadCs(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalValue(
-                    readHydraulicLoads, NaturalStoneJsonInputDefinitions::HYDRAULIC_LOAD_CS)));
+                    readHydraulicLoads, JsonInputNaturalStoneDefinitions::HYDRAULIC_LOAD_CS)));
             locationData->SetHydraulicLoadNs(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalValue(
-                    readHydraulicLoads, NaturalStoneJsonInputDefinitions::HYDRAULIC_LOAD_NS)));
+                    readHydraulicLoads, JsonInputNaturalStoneDefinitions::HYDRAULIC_LOAD_NS)));
             locationData->SetHydraulicLoadXib(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalValue(
-                    readHydraulicLoads, NaturalStoneJsonInputDefinitions::HYDRAULIC_LOAD_XIB)));
+                    readHydraulicLoads, JsonInputNaturalStoneDefinitions::HYDRAULIC_LOAD_XIB)));
         }
 
-        if (readCalculationMethod.contains(NaturalStoneJsonInputDefinitions::UPPER_LIMIT_LOADING))
+        if (readCalculationMethod.contains(JsonInputNaturalStoneDefinitions::UPPER_LIMIT_LOADING))
         {
-            const auto& readUpperLimitLoading = readCalculationMethod[NaturalStoneJsonInputDefinitions::UPPER_LIMIT_LOADING];
+            const auto& readUpperLimitLoading = readCalculationMethod[JsonInputNaturalStoneDefinitions::UPPER_LIMIT_LOADING];
 
             locationData->SetUpperLimitLoadingAul(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalValue(
-                    readUpperLimitLoading, NaturalStoneJsonInputDefinitions::UPPER_LIMIT_LOADING_AUL)));
+                    readUpperLimitLoading, JsonInputNaturalStoneDefinitions::UPPER_LIMIT_LOADING_AUL)));
             locationData->SetUpperLimitLoadingBul(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalValue(
-                    readUpperLimitLoading, NaturalStoneJsonInputDefinitions::UPPER_LIMIT_LOADING_BUL)));
+                    readUpperLimitLoading, JsonInputNaturalStoneDefinitions::UPPER_LIMIT_LOADING_BUL)));
             locationData->SetUpperLimitLoadingCul(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalValue(
-                    readUpperLimitLoading, NaturalStoneJsonInputDefinitions::UPPER_LIMIT_LOADING_CUL)));
+                    readUpperLimitLoading, JsonInputNaturalStoneDefinitions::UPPER_LIMIT_LOADING_CUL)));
         }
 
-        if (readCalculationMethod.contains(NaturalStoneJsonInputDefinitions::LOWER_LIMIT_LOADING))
+        if (readCalculationMethod.contains(JsonInputNaturalStoneDefinitions::LOWER_LIMIT_LOADING))
         {
-            const auto& readLowerLimitLoading = readCalculationMethod[NaturalStoneJsonInputDefinitions::LOWER_LIMIT_LOADING];
+            const auto& readLowerLimitLoading = readCalculationMethod[JsonInputNaturalStoneDefinitions::LOWER_LIMIT_LOADING];
 
             locationData->SetLowerLimitLoadingAll(
                 forward<unique_ptr<double>>(
-                    JsonInputParserHelper::ParseOptionalValue(readLowerLimitLoading, NaturalStoneJsonInputDefinitions::LOWER_LIMIT_LOADING_ALL)));
+                    JsonInputParserHelper::ParseOptionalValue(readLowerLimitLoading, JsonInputNaturalStoneDefinitions::LOWER_LIMIT_LOADING_ALL)));
             locationData->SetLowerLimitLoadingBll(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalValue(
-                    readLowerLimitLoading, NaturalStoneJsonInputDefinitions::LOWER_LIMIT_LOADING_BLL)));
+                    readLowerLimitLoading, JsonInputNaturalStoneDefinitions::LOWER_LIMIT_LOADING_BLL)));
             locationData->SetLowerLimitLoadingCll(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalValue(
-                    readLowerLimitLoading, NaturalStoneJsonInputDefinitions::LOWER_LIMIT_LOADING_CLL)));
+                    readLowerLimitLoading, JsonInputNaturalStoneDefinitions::LOWER_LIMIT_LOADING_CLL)));
         }
 
-        if (readCalculationMethod.contains(NaturalStoneJsonInputDefinitions::DISTANCE_MAXIMUM_WAVE_ELEVATION))
+        if (readCalculationMethod.contains(JsonInputNaturalStoneDefinitions::DISTANCE_MAXIMUM_WAVE_ELEVATION))
         {
             const auto& readDistanceMaxWaveElevation = readCalculationMethod[
-                NaturalStoneJsonInputDefinitions::DISTANCE_MAXIMUM_WAVE_ELEVATION];
+                JsonInputNaturalStoneDefinitions::DISTANCE_MAXIMUM_WAVE_ELEVATION];
 
             locationData->SetDistanceMaximumWaveElevationAsmax(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalValue(
-                    readDistanceMaxWaveElevation, NaturalStoneJsonInputDefinitions::DISTANCE_MAXIMUM_WAVE_ELEVATION_ASMAX)));
+                    readDistanceMaxWaveElevation, JsonInputNaturalStoneDefinitions::DISTANCE_MAXIMUM_WAVE_ELEVATION_ASMAX)));
             locationData->SetDistanceMaximumWaveElevationBsmax(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalValue(
-                    readDistanceMaxWaveElevation, NaturalStoneJsonInputDefinitions::DISTANCE_MAXIMUM_WAVE_ELEVATION_BSMAX)));
+                    readDistanceMaxWaveElevation, JsonInputNaturalStoneDefinitions::DISTANCE_MAXIMUM_WAVE_ELEVATION_BSMAX)));
         }
 
-        if (readCalculationMethod.contains(NaturalStoneJsonInputDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT))
+        if (readCalculationMethod.contains(JsonInputNaturalStoneDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT))
         {
             const auto& readNormativeWidthOfWaveImpact =
-                    readCalculationMethod[NaturalStoneJsonInputDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT];
+                    readCalculationMethod[JsonInputNaturalStoneDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT];
 
             locationData->SetNormativeWidthOfWaveImpactAwi(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalValue(
-                    readNormativeWidthOfWaveImpact, NaturalStoneJsonInputDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT_AWI)));
+                    readNormativeWidthOfWaveImpact, JsonInputNaturalStoneDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT_AWI)));
             locationData->SetNormativeWidthOfWaveImpactBwi(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalValue(
-                    readNormativeWidthOfWaveImpact, NaturalStoneJsonInputDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT_BWI)));
+                    readNormativeWidthOfWaveImpact, JsonInputNaturalStoneDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT_BWI)));
         }
 
-        if (readCalculationMethod.contains(NaturalStoneJsonInputDefinitions::WAVE_ANGLE_IMPACT))
+        if (readCalculationMethod.contains(JsonInputNaturalStoneDefinitions::WAVE_ANGLE_IMPACT))
         {
-            const auto& readWaveAngleImpact = readCalculationMethod[NaturalStoneJsonInputDefinitions::WAVE_ANGLE_IMPACT];
+            const auto& readWaveAngleImpact = readCalculationMethod[JsonInputNaturalStoneDefinitions::WAVE_ANGLE_IMPACT];
 
             locationData->SetWaveAngleImpactBetamax(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalValue(
-                    readWaveAngleImpact, NaturalStoneJsonInputDefinitions::WAVE_ANGLE_IMPACT_BETAMAX)));
+                    readWaveAngleImpact, JsonInputNaturalStoneDefinitions::WAVE_ANGLE_IMPACT_BETAMAX)));
         }
 
         return locationData;

@@ -24,7 +24,7 @@
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
-    class NaturalStoneJsonInputDefinitions
+    class JsonInputNaturalStoneDefinitions
     {
         public:
             inline static const std::string RELATIVE_DENSITY = "RelatieveDichtheid";
