@@ -26,13 +26,11 @@ namespace DiKErnel::Integration
 {
     using namespace std;
 
-    using TopLayerType = NaturalStoneRevetmentLocationConstructionProperties::TopLayerType;
-
     NaturalStoneRevetmentLocationConstructionProperties::NaturalStoneRevetmentLocationConstructionProperties(
         string name,
         const double tanA,
         const double positionZ,
-        const TopLayerType topLayerType,
+        const NaturalStoneRevetmentTopLayerType topLayerType,
         const double thicknessTopLayer,
         const double relativeDensity)
         : RevetmentLocationConstructionPropertiesBase(move(name), positionZ),
@@ -167,7 +165,7 @@ namespace DiKErnel::Integration
 
     #pragma region Get methods
 
-    TopLayerType NaturalStoneRevetmentLocationConstructionProperties::GetTopLayerType() const
+    NaturalStoneRevetmentTopLayerType NaturalStoneRevetmentLocationConstructionProperties::GetTopLayerType() const
     {
         return _topLayerType;
     }

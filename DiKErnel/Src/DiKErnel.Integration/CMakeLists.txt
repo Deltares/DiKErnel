@@ -22,6 +22,7 @@ set(SOURCEFILES_PUBLIC_DATA
   ${PUBLIC_DATA_FOLDER}/GrassRevetmentWaveImpactLocationConstructionProperties.h
   ${PUBLIC_DATA_FOLDER}/NaturalStoneRevetmentLocationConstructionProperties.cpp
   ${PUBLIC_DATA_FOLDER}/NaturalStoneRevetmentLocationConstructionProperties.h
+  ${PUBLIC_DATA_FOLDER}/NaturalStoneRevetmentTopLayerType.h
   ${PUBLIC_DATA_FOLDER}/RevetmentLocationConstructionPropertiesBase.cpp
   ${PUBLIC_DATA_FOLDER}/RevetmentLocationConstructionPropertiesBase.h
 )

@@ -23,6 +23,7 @@
 #include <memory>
 #include <string>
 
+#include "NaturalStoneRevetmentTopLayerType.h"
 #include "RevetmentLocationConstructionPropertiesBase.h"
 
 namespace DiKErnel::Integration
@@ -34,14 +35,6 @@ namespace DiKErnel::Integration
     class NaturalStoneRevetmentLocationConstructionProperties : public RevetmentLocationConstructionPropertiesBase
     {
         public:
-
-            /*!
-             * \brief The types of the top layer.
-             */
-            enum class TopLayerType
-            {
-                NordicStone
-            };
 
             /*!
              * \brief Creates a new instance.
@@ -62,7 +55,7 @@ namespace DiKErnel::Integration
                 std::string name,
                 double tanA,
                 double positionZ,
-                TopLayerType topLayerType,
+                NaturalStoneRevetmentTopLayerType topLayerType,
                 double thicknessTopLayer,
                 double relativeDensity);
 
@@ -236,7 +229,7 @@ namespace DiKErnel::Integration
              * \brief Gets the type of the top layer.
              * \return The type of the top layer.
              */
-            TopLayerType GetTopLayerType() const;
+            NaturalStoneRevetmentTopLayerType GetTopLayerType() const;
 
             /*!
              * \brief Gets the tanA.
@@ -379,7 +372,7 @@ namespace DiKErnel::Integration
             #pragma endregion
 
         private:
-            TopLayerType _topLayerType;
+            NaturalStoneRevetmentTopLayerType _topLayerType;
             double _tanA;
             double _thicknessTopLayer;
             double _relativeDensity;

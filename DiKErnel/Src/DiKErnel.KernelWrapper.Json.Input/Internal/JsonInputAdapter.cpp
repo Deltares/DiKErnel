@@ -138,12 +138,12 @@ namespace DiKErnel::KernelWrapper::Json::Input
         return constructionProperties;
     }
 
-    NaturalStoneRevetmentLocationConstructionProperties::TopLayerType JsonInputAdapter::ConvertTypeTopLayer(
+    NaturalStoneRevetmentTopLayerType JsonInputAdapter::ConvertTypeTopLayer(
         const JsonInputNaturalStoneRevetmentTopLayerType topLayerType)
     {
         if (topLayerType == JsonInputNaturalStoneRevetmentTopLayerType::NordicStone)
         {
-            return NaturalStoneRevetmentLocationConstructionProperties::TopLayerType::NordicStone;
+            return NaturalStoneRevetmentTopLayerType::NordicStone;
         }
 
         throw JsonConversionException("Cannot convert top layer type.");

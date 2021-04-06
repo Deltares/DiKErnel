@@ -121,7 +121,7 @@ namespace DiKErnel::Integration::Test
     TEST_F(RevetmentCalculationInputBuilderTest, GivenBuilderWithFullyConfiguredNaturalStoneLocationAdded_WhenBuild_ThenReturnsCalculationInput)
     {
         // Given
-        const auto topLayerType = NaturalStoneRevetmentLocationConstructionProperties::TopLayerType::NordicStone;
+        const auto topLayerType = NaturalStoneRevetmentTopLayerType::NordicStone;
         const string name = "Test";
         const auto tanA = 0.1;
         const auto positionZ = 0.2;
@@ -221,7 +221,7 @@ namespace DiKErnel::Integration::Test
     TEST_F(RevetmentCalculationInputBuilderTest, GivenBuilderWithNotFullyConfiguredNaturalStoneLocationAdded_WhenBuild_ThenReturnsCalculationInput)
     {
         // Given
-        const auto topLayerType = NaturalStoneRevetmentLocationConstructionProperties::TopLayerType::NordicStone;
+        const auto topLayerType = NaturalStoneRevetmentTopLayerType::NordicStone;
         const string name = "Test";
         const auto tanA = 0.1;
         const auto positionZ = 0.2;

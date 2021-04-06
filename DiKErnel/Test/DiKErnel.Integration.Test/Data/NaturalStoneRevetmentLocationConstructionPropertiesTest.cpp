@@ -31,7 +31,7 @@ namespace DiKErnel::Integration::Test
     TEST(NaturalStoneRevetmentLocationConstructionPropertiesTest, Constructor_ExpectedValues)
     {
         // Setup
-        const auto topLayerType = NaturalStoneRevetmentLocationConstructionProperties::TopLayerType::NordicStone;
+        const auto topLayerType = NaturalStoneRevetmentTopLayerType::NordicStone;
         const string name = "Test";
         const auto tanA = 0.1;
         const auto positionZ = 0.2;
@@ -77,7 +77,7 @@ namespace DiKErnel::Integration::Test
     TEST(NaturalStoneRevetmentLocationConstructionPropertiesTest, GivenConstructionProperties_WhenAllInputSet_ThenExpectedValues)
     {
         // Given
-        const auto topLayerType = NaturalStoneRevetmentLocationConstructionProperties::TopLayerType::NordicStone;
+        const auto topLayerType = NaturalStoneRevetmentTopLayerType::NordicStone;
         const string name = "Test";
         const auto tanA = 0.1;
         const auto positionZ = 0.2;

@@ -65,7 +65,7 @@ namespace DiKErnel::Integration
         unique_ptr<NaturalStoneRevetmentNormativeWidthOfWaveImpact> normativeWidthOfWaveImpact;
         unique_ptr<NaturalStoneRevetmentWaveAngleImpact> waveAngleImpact;
 
-        if (constructionProperties.GetTopLayerType() == NaturalStoneRevetmentLocationConstructionProperties::TopLayerType::NordicStone)
+        if (constructionProperties.GetTopLayerType() == NaturalStoneRevetmentTopLayerType::NordicStone)
         {
             hydraulicLoads = make_unique<NaturalStoneRevetmentHydraulicLoads>(
                 GetValue(constructionProperties.GetHydraulicLoadAp(), NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_AP),
