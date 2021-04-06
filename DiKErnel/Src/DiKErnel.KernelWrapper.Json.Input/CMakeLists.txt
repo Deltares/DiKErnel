@@ -43,6 +43,7 @@ set(SOURCEFILES_INTERNAL_DATA_REVETMENT
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassRevetmentWaveImpactLocationData.h
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputNaturalStoneRevetmentLocationData.cpp
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputNaturalStoneRevetmentLocationData.h
+  ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputNaturalStoneRevetmentTopLayerType.h
 )
 
 set(SOURCEFILES_INTERNAL_EXCEPTIONS

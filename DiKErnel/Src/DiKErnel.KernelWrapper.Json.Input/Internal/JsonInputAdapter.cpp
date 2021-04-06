@@ -139,9 +139,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
     }
 
     NaturalStoneRevetmentLocationConstructionProperties::TopLayerType JsonInputAdapter::ConvertTypeTopLayer(
-        const JsonInputNaturalStoneRevetmentLocationData::TopLayerType topLayerType)
+        const JsonInputNaturalStoneRevetmentTopLayerType topLayerType)
     {
-        if (topLayerType == JsonInputNaturalStoneRevetmentLocationData::TopLayerType::NordicStone)
+        if (topLayerType == JsonInputNaturalStoneRevetmentTopLayerType::NordicStone)
         {
             return NaturalStoneRevetmentLocationConstructionProperties::TopLayerType::NordicStone;
         }

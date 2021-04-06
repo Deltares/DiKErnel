@@ -29,13 +29,13 @@ namespace DiKErnel::KernelWrapper::Json::Input
     using namespace nlohmann;
     using namespace std;
 
-    NLOHMANN_JSON_SERIALIZE_ENUM(JsonInputNaturalStoneRevetmentLocationData::TopLayerType,
+    NLOHMANN_JSON_SERIALIZE_ENUM(JsonInputNaturalStoneRevetmentTopLayerType,
         {
             {
-                JsonInputNaturalStoneRevetmentLocationData::TopLayerType::Unknown, nullptr
+                JsonInputNaturalStoneRevetmentTopLayerType::Unknown, nullptr
             },
             {
-                JsonInputNaturalStoneRevetmentLocationData::TopLayerType::NordicStone, NaturalStoneJsonInputDefinitions::TOP_LAYER_TYPE_NORDIC_STONE
+                JsonInputNaturalStoneRevetmentTopLayerType::NordicStone, NaturalStoneJsonInputDefinitions::TOP_LAYER_TYPE_NORDIC_STONE
             }
         });
 
@@ -46,7 +46,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
         auto locationData = make_unique<JsonInputNaturalStoneRevetmentLocationData>(
             readRevetment[NaturalStoneJsonInputDefinitions::RELATIVE_DENSITY],
             readRevetment[NaturalStoneJsonInputDefinitions::THICKNESS_TOP_LAYER],
-            readRevetment[JsonInputDefinitions::TYPE_TOP_LAYER].get<JsonInputNaturalStoneRevetmentLocationData::TopLayerType>());
+            readRevetment[JsonInputDefinitions::TYPE_TOP_LAYER].get<JsonInputNaturalStoneRevetmentTopLayerType>());
 
         if (readCalculationMethod.contains(NaturalStoneJsonInputDefinitions::HYDRAULIC_LOAD))
         {
