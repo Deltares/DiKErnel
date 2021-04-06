@@ -28,7 +28,7 @@
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
-    class GrassWaveImpactJsonInputParser
+    class JsonInputGrassWaveImpactParser
     {
         public:
             static std::unique_ptr<JsonInputGrassRevetmentWaveImpactLocationData> ParseRevetmentLocationData(

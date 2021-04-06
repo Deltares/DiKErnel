@@ -18,7 +18,7 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include "GrassWaveImpactJsonInputParser.h"
+#include "JsonInputGrassWaveImpactParser.h"
 
 #include "JsonInputDefinitions.h"
 #include "JsonInputGrassWaveImpactDefinitions.h"
@@ -42,7 +42,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
             }
         });
 
-    unique_ptr<JsonInputGrassRevetmentWaveImpactLocationData> GrassWaveImpactJsonInputParser::ParseRevetmentLocationData(
+    unique_ptr<JsonInputGrassRevetmentWaveImpactLocationData> JsonInputGrassWaveImpactParser::ParseRevetmentLocationData(
         const json& readRevetment,
         const json& readCalculationMethod)
     {
