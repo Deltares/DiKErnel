@@ -55,29 +55,33 @@ namespace DiKErnel::Integration
     {
         const auto waterLevel = timeDependentInput.GetWaterLevel();
         const auto waveHeightHm0 = timeDependentInput.GetWaveHeightHm0();
-        const auto positionZ = GetPositionZ();
 
         const auto lowerLimitLoading = GrassRevetmentWaveImpact::LowerLimitLoading(waterLevel, waveHeightHm0, _lowerLimitLoadingAll);
         const auto upperLimitLoading = GrassRevetmentWaveImpact::UpperLimitLoading(waterLevel, waveHeightHm0, _upperLimitLoadingAul);
-        const auto loadingOfRevetment = HydraulicLoad::LoadingRevetment(lowerLimitLoading, upperLimitLoading, positionZ);
+        const auto loadingOfRevetment = HydraulicLoad::LoadingRevetment(lowerLimitLoading, upperLimitLoading, GetPositionZ());
 
         auto damage = initialDamage;
         unique_ptr<int> timeOfFailure = nullptr;
 
         if (loadingOfRevetment)
         {
-            const auto incrementTime = Revetment::IncrementTime(timeDependentInput.GetBeginTime(), timeDependentInput.GetEndTime());
-            const auto minimumWaveHeight = GrassRevetmentWaveImpact::MinimumWaveHeight(
-                _timeLine->GetTimeLineAgwi(), _timeLine->GetTimeLineBgwi(), _timeLine->GetTimeLineCgwi(), _minimumWaveHeightTemax);
-            const auto maximumWaveHeight = GrassRevetmentWaveImpact::MaximumWaveHeight(
-                _timeLine->GetTimeLineAgwi(), _timeLine->GetTimeLineBgwi(), _timeLine->GetTimeLineCgwi(), _maximumWaveHeightTemin);
-            const auto waveAngleImpact = GrassRevetmentWaveImpact::WaveAngleImpact(
-                timeDependentInput.GetWaveAngle(), _waveAngleImpact->GetWaveAngleImpactNwa(), _waveAngleImpact->GetWaveAngleImpactQwa(),
-                _waveAngleImpact->GetWaveAngleImpactRwa());
-            const auto waveHeightImpact = GrassRevetmentWaveImpact::WaveHeightImpact(
-                minimumWaveHeight, maximumWaveHeight, waveAngleImpact, waveHeightHm0);
-            const auto timeLine = GrassRevetmentWaveImpact::TimeLine(
-                waveHeightImpact, _timeLine->GetTimeLineAgwi(), _timeLine->GetTimeLineBgwi(), _timeLine->GetTimeLineCgwi());
+            const auto timeLineAgwi = _timeLine->GetTimeLineAgwi();
+            const auto timeLineBgwi = _timeLine->GetTimeLineBgwi();
+            const auto timeLineCgwi = _timeLine->GetTimeLineCgwi();
+            const auto startTime = timeDependentInput.GetBeginTime();
+
+            const auto incrementTime = Revetment::IncrementTime(startTime, timeDependentInput.GetEndTime());
+            const auto minimumWaveHeight = GrassRevetmentWaveImpact::MinimumWaveHeight(timeLineAgwi, timeLineBgwi, timeLineCgwi,
+                                                                                       _minimumWaveHeightTemax);
+            const auto maximumWaveHeight = GrassRevetmentWaveImpact::MaximumWaveHeight(timeLineAgwi, timeLineBgwi, timeLineCgwi,
+                                                                                       _maximumWaveHeightTemin);
+            const auto waveAngleImpact = GrassRevetmentWaveImpact::WaveAngleImpact(timeDependentInput.GetWaveAngle(),
+                                                                                   _waveAngleImpact->GetWaveAngleImpactNwa(),
+                                                                                   _waveAngleImpact->GetWaveAngleImpactQwa(),
+                                                                                   _waveAngleImpact->GetWaveAngleImpactRwa());
+            const auto waveHeightImpact = GrassRevetmentWaveImpact::WaveHeightImpact(minimumWaveHeight, maximumWaveHeight, waveAngleImpact,
+                                                                                     waveHeightHm0);
+            const auto timeLine = GrassRevetmentWaveImpact::TimeLine(waveHeightImpact, timeLineAgwi, timeLineBgwi, timeLineCgwi);
             const auto incrementOfDamage = GrassRevetmentWaveImpact::IncrementDamage(incrementTime, timeLine);
 
             damage = Revetment::Damage(incrementOfDamage, initialDamage);
@@ -88,7 +92,7 @@ namespace DiKErnel::Integration
             {
                 const auto durationInTimeStepFailure = GrassRevetmentWaveImpact::DurationInTimeStepFailure(timeLine, failureNumber, initialDamage);
 
-                timeOfFailure = make_unique<int>(Revetment::TimeOfFailure(durationInTimeStepFailure, timeDependentInput.GetBeginTime()));
+                timeOfFailure = make_unique<int>(Revetment::TimeOfFailure(durationInTimeStepFailure, startTime));
             }
         }
 
