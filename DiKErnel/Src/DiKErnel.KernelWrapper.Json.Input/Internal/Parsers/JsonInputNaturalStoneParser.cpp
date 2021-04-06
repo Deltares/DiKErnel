@@ -18,11 +18,11 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include "NaturalStoneJsonInputParser.h"
+#include "JsonInputNaturalStoneParser.h"
 
 #include "JsonInputDefinitions.h"
-#include "JsonInputParserHelper.h"
 #include "JsonInputNaturalStoneDefinitions.h"
+#include "JsonInputParserHelper.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
@@ -39,7 +39,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
             }
         });
 
-    unique_ptr<JsonInputNaturalStoneRevetmentLocationData> NaturalStoneJsonInputParser::ParseRevetmentLocationData(
+    unique_ptr<JsonInputNaturalStoneRevetmentLocationData> JsonInputNaturalStoneParser::ParseRevetmentLocationData(
         const json& readRevetment,
         const json& readCalculationMethod)
     {

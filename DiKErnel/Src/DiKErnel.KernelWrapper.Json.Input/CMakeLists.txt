@@ -58,12 +58,12 @@ set(SOURCEFILES_INTERNAL_PARSERS
   ${INTERNAL_PARSERS_FOLDER}/JsonInputGrassWaveImpactParser.cpp
   ${INTERNAL_PARSERS_FOLDER}/JsonInputGrassWaveImpactParser.h
   ${INTERNAL_PARSERS_FOLDER}/JsonInputNaturalStoneDefinitions.h
+  ${INTERNAL_PARSERS_FOLDER}/JsonInputNaturalStoneParser.cpp
+  ${INTERNAL_PARSERS_FOLDER}/JsonInputNaturalStoneParser.h
   ${INTERNAL_PARSERS_FOLDER}/JsonInputParser.cpp
   ${INTERNAL_PARSERS_FOLDER}/JsonInputParser.h
   ${INTERNAL_PARSERS_FOLDER}/JsonInputParserHelper.cpp
   ${INTERNAL_PARSERS_FOLDER}/JsonInputParserHelper.h
-  ${INTERNAL_PARSERS_FOLDER}/NaturalStoneJsonInputParser.cpp
-  ${INTERNAL_PARSERS_FOLDER}/NaturalStoneJsonInputParser.h
 )
 
 # Add library

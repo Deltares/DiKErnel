@@ -28,7 +28,7 @@
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
-    class NaturalStoneJsonInputParser
+    class JsonInputNaturalStoneParser
     {
         public:
             static std::unique_ptr<JsonInputNaturalStoneRevetmentLocationData> ParseRevetmentLocationData(
