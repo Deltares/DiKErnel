@@ -17,10 +17,12 @@ set(SOURCEFILES_PUBLIC
 add_library(${LIBNAME} INTERFACE)
 
 # Set target sources
-target_sources(${LIBNAME} PUBLIC ${SOURCEFILES_PUBLIC})
+target_sources(${LIBNAME} INTERFACE ${SOURCEFILES_PUBLIC})
+
+add_custom_target(${LIBNAME}_ SOURCES ${SOURCEFILES_PUBLIC})
 
 # Configure folder structure
-set_target_properties(${LIBNAME} PROPERTIES FOLDER Src)
+set_target_properties(${LIBNAME}_ PROPERTIES FOLDER Src)
 source_group(${PUBLIC_FOLDER} FILES ${SOURCEFILES_PUBLIC})
 
 # Expose header files
