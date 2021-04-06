@@ -63,32 +63,32 @@ namespace DiKErnel::Integration
         const ITimeDependentInput& timeDependentInput)
     {
         const auto tanA = GetTanA();
-        const auto positionZ = GetPositionZ();
         const auto waterLevel = timeDependentInput.GetWaterLevel();
         const auto waveHeightHm0 = timeDependentInput.GetWaveHeightHm0();
         const auto wavePeriodTm10 = timeDependentInput.GetWavePeriodTm10();
-        const auto impactShallowWater = 1.0;
 
-        const auto waveSteepnessDeepWater = HydraulicLoad::WaveSteepnessDeepWater(
-            waveHeightHm0, wavePeriodTm10, Constants::GRAVITATIONAL_ACCELERATION);
+        const auto waveSteepnessDeepWater = HydraulicLoad::WaveSteepnessDeepWater(waveHeightHm0, wavePeriodTm10,
+                                                                                  Constants::GRAVITATIONAL_ACCELERATION);
         const auto distanceMaximumWaveElevation = NaturalStoneRevetment::DistanceMaximumWaveElevation(
-            impactShallowWater, waveSteepnessDeepWater, waveHeightHm0, _distanceMaximumWaveElevation->GetDistanceMaximumWaveElevationAsmax(),
+            1.0, waveSteepnessDeepWater, waveHeightHm0, _distanceMaximumWaveElevation->GetDistanceMaximumWaveElevationAsmax(),
             _distanceMaximumWaveElevation->GetDistanceMaximumWaveElevationBsmax());
-        const auto surfSimilarityParameter = HydraulicLoad::SurfSimilarityParameter(
-            tanA, waveHeightHm0, wavePeriodTm10, Constants::GRAVITATIONAL_ACCELERATION);
+        const auto surfSimilarityParameter = HydraulicLoad::SurfSimilarityParameter(tanA, waveHeightHm0, wavePeriodTm10,
+                                                                                    Constants::GRAVITATIONAL_ACCELERATION);
         const auto normativeWidthWaveImpact = NaturalStoneRevetment::NormativeWidthWaveImpact(
             surfSimilarityParameter, waveHeightHm0, _normativeWidthOfWaveImpact->GetNormativeWidthOfWaveImpactAwi(),
             _normativeWidthOfWaveImpact->GetNormativeWidthOfWaveImpactBwi());
         const auto slopeAngle = HydraulicLoad::SlopeAngle(tanA);
-        const auto depthMaximumWaveLoad = NaturalStoneRevetment::DepthMaximumWaveLoad(
-            distanceMaximumWaveElevation, normativeWidthWaveImpact, slopeAngle);
-        const auto lowerLimitLoading = NaturalStoneRevetment::LowerLimitLoading(
-            depthMaximumWaveLoad, surfSimilarityParameter, waterLevel, waveHeightHm0, _lowerLimitLoading->GetLowerLimitAll(),
-            _lowerLimitLoading->GetLowerLimitBll(), _lowerLimitLoading->GetLowerLimitCll());
-        const auto upperLimitLoading = NaturalStoneRevetment::UpperLimitLoading(
-            depthMaximumWaveLoad, surfSimilarityParameter, waterLevel, waveHeightHm0, _upperLimitLoading->GetUpperLimitAul(),
-            _upperLimitLoading->GetUpperLimitBul(), _upperLimitLoading->GetUpperLimitCul());
-        const auto loadingRevetment = HydraulicLoad::LoadingRevetment(lowerLimitLoading, upperLimitLoading, positionZ);
+        const auto depthMaximumWaveLoad = NaturalStoneRevetment::DepthMaximumWaveLoad(distanceMaximumWaveElevation, normativeWidthWaveImpact,
+                                                                                      slopeAngle);
+        const auto lowerLimitLoading = NaturalStoneRevetment::LowerLimitLoading(depthMaximumWaveLoad, surfSimilarityParameter, waterLevel,
+                                                                                waveHeightHm0, _lowerLimitLoading->GetLowerLimitAll(),
+                                                                                _lowerLimitLoading->GetLowerLimitBll(),
+                                                                                _lowerLimitLoading->GetLowerLimitCll());
+        const auto upperLimitLoading = NaturalStoneRevetment::UpperLimitLoading(depthMaximumWaveLoad, surfSimilarityParameter, waterLevel,
+                                                                                waveHeightHm0, _upperLimitLoading->GetUpperLimitAul(),
+                                                                                _upperLimitLoading->GetUpperLimitBul(),
+                                                                                _upperLimitLoading->GetUpperLimitCul());
+        const auto loadingRevetment = HydraulicLoad::LoadingRevetment(lowerLimitLoading, upperLimitLoading, GetPositionZ());
 
         auto damage = initialDamage;
         unique_ptr<int> timeOfFailure = nullptr;
@@ -109,12 +109,12 @@ namespace DiKErnel::Integration
                                             ? _hydraulicLoads->GetHydraulicLoadNp()
                                             : _hydraulicLoads->GetHydraulicLoadNs();
 
-            const auto hydraulicLoad = NaturalStoneRevetment::HydraulicLoad(
-                surfSimilarityParameter, waveHeightHm0, hydraulicLoadA, hydraulicLoadB, hydraulicLoadC, hydraulicLoadN);
+            const auto hydraulicLoad = NaturalStoneRevetment::HydraulicLoad(surfSimilarityParameter, waveHeightHm0, hydraulicLoadA, hydraulicLoadB,
+                                                                            hydraulicLoadC, hydraulicLoadN);
             const auto resistance = NaturalStoneRevetment::Resistance(_relativeDensity, _thicknessTopLayer);
             const auto waveAngleImpact = NaturalStoneRevetment::WaveAngleImpact(timeDependentInput.GetWaveAngle(), _waveAngleImpact->GetBetamax());
-            const auto referenceDegradation = NaturalStoneRevetment::ReferenceDegradation(
-                resistance, hydraulicLoad, waveAngleImpact, initialDamage);
+            const auto referenceDegradation =
+                    NaturalStoneRevetment::ReferenceDegradation(resistance, hydraulicLoad, waveAngleImpact, initialDamage);
             const auto referenceTimeDegradation = NaturalStoneRevetment::ReferenceTimeDegradation(referenceDegradation, wavePeriodTm10);
             const auto incrementTime = Revetment::IncrementTime(timeDependentInput.GetBeginTime(), timeDependentInput.GetEndTime());
             const auto incrementDegradation = NaturalStoneRevetment::IncrementDegradation(referenceTimeDegradation, incrementTime, wavePeriodTm10);
