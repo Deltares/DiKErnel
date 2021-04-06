@@ -14,10 +14,7 @@ set(SOURCEFILES_PUBLIC
 )
 
 # Add library
-add_library(${LIBNAME} INTERFACE)
-
-# Set target sources
-target_sources(${LIBNAME} PUBLIC ${SOURCEFILES_PUBLIC})
+add_library(${LIBNAME} INTERFACE ${SOURCEFILES_PUBLIC})
 
 # Configure folder structure
 set_target_properties(${LIBNAME} PROPERTIES FOLDER Src)
