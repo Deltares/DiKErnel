@@ -133,7 +133,7 @@ namespace DiKErnel::Integration
         double lowerLimitLoadingAll;
 
         const auto topLayerType = constructionProperties.GetTopLayerType();
-        if (topLayerType == GrassRevetmentWaveImpactLocationConstructionProperties::TopLayerType::ClosedSod)
+        if (topLayerType == GrassRevetmentTopLayerType::ClosedSod)
         {
             waveAngleImpact = make_unique<GrassRevetmentWaveImpactWaveAngleImpact>(
                 GetValue(constructionProperties.GetWaveAngleImpactNwa(), GrassRevetmentWaveImpactClosedSodDefaults::WAVE_ANGLE_IMPACT_NWA),
@@ -155,7 +155,7 @@ namespace DiKErnel::Integration
                                             GrassRevetmentWaveImpactClosedSodDefaults::LOWER_LIMIT_LOADING_ALL);
         }
 
-        if (topLayerType == GrassRevetmentWaveImpactLocationConstructionProperties::TopLayerType::OpenSod)
+        if (topLayerType == GrassRevetmentTopLayerType::OpenSod)
         {
             waveAngleImpact = make_unique<GrassRevetmentWaveImpactWaveAngleImpact>(
                 GetValue(constructionProperties.GetWaveAngleImpactNwa(), GrassRevetmentWaveImpactOpenSodDefaults::WAVE_ANGLE_IMPACT_NWA),

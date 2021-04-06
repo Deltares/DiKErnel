@@ -22,6 +22,7 @@
 
 #include <string>
 
+#include "GrassRevetmentTopLayerType.h"
 #include "RevetmentLocationConstructionPropertiesBase.h"
 
 namespace DiKErnel::Integration
@@ -33,16 +34,6 @@ namespace DiKErnel::Integration
     class GrassRevetmentWaveImpactLocationConstructionProperties : public RevetmentLocationConstructionPropertiesBase
     {
         public:
-
-            /*!
-             * \brief The types of the top layer.
-             */
-            enum class TopLayerType
-            {
-                ClosedSod,
-                OpenSod
-            };
-
             /*!
              * \brief Creates a new instance.
              * \param name
@@ -55,7 +46,7 @@ namespace DiKErnel::Integration
             explicit GrassRevetmentWaveImpactLocationConstructionProperties(
                 std::string name,
                 double positionZ,
-                TopLayerType topLayerType);
+                GrassRevetmentTopLayerType topLayerType);
 
             #pragma region Set methods
 
@@ -147,7 +138,7 @@ namespace DiKErnel::Integration
              * \brief Gets the type of the top layer.
              * \return The type of the top layer.
              */
-            TopLayerType GetTopLayerType() const;
+            GrassRevetmentTopLayerType GetTopLayerType() const;
 
             /*!
              * \brief Gets the Agwi coefficient.
@@ -212,7 +203,7 @@ namespace DiKErnel::Integration
             #pragma endregion
 
         private:
-            TopLayerType _topLayerType;
+            GrassRevetmentTopLayerType _topLayerType;
             std::unique_ptr<double> _timeLineAgwi = nullptr;
             std::unique_ptr<double> _timeLineBgwi = nullptr;
             std::unique_ptr<double> _timeLineCgwi = nullptr;

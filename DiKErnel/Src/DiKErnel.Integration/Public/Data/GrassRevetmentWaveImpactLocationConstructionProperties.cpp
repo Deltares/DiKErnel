@@ -26,12 +26,10 @@ namespace DiKErnel::Integration
 {
     using namespace std;
 
-    using TopLayerType = GrassRevetmentWaveImpactLocationConstructionProperties::TopLayerType;
-
     GrassRevetmentWaveImpactLocationConstructionProperties::GrassRevetmentWaveImpactLocationConstructionProperties(
         string name,
         const double positionZ,
-        const TopLayerType topLayerType)
+        const GrassRevetmentTopLayerType topLayerType)
         : RevetmentLocationConstructionPropertiesBase(move(name), positionZ),
           _topLayerType(topLayerType) { }
 
@@ -101,7 +99,7 @@ namespace DiKErnel::Integration
 
     #pragma region Get methods
 
-    TopLayerType GrassRevetmentWaveImpactLocationConstructionProperties::GetTopLayerType() const
+    GrassRevetmentTopLayerType GrassRevetmentWaveImpactLocationConstructionProperties::GetTopLayerType() const
     {
         return _topLayerType;
     }

@@ -29,12 +29,10 @@ namespace DiKErnel::Integration::Test
     using namespace testing;
     using namespace TestUtil;
 
-    using TopLayerType = GrassRevetmentWaveImpactLocationConstructionProperties::TopLayerType;
-
     TEST(GrassRevetmentWaveImpactLocationConstructionPropertiesTest, Constructor_ExpectedValues)
     {
         // Setup
-        const auto topLayerType = static_cast<TopLayerType>(rand() % 2);
+        const auto topLayerType = static_cast<GrassRevetmentTopLayerType>(rand() % 2);
         const string name = "Test";
         const auto positionZ = 0.2;
 
@@ -64,7 +62,7 @@ namespace DiKErnel::Integration::Test
     TEST(GrassRevetmentWaveImpactLocationConstructionPropertiesTest, GivenConstructionProperties_WhenAllInputSet_ThenExpectedValues)
     {
         // Given
-        const auto topLayerType = static_cast<TopLayerType>(rand() % 2);
+        const auto topLayerType = static_cast<GrassRevetmentTopLayerType>(rand() % 2);
         const string name = "Test";
         const auto positionZ = 0.2;
         const auto initialDamage = 0.3;

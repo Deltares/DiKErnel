@@ -190,16 +190,16 @@ namespace DiKErnel::KernelWrapper::Json::Input
         return constructionProperties;
     }
 
-    GrassRevetmentWaveImpactLocationConstructionProperties::TopLayerType JsonInputAdapter::ConvertTypeTopLayer(
+    GrassRevetmentTopLayerType JsonInputAdapter::ConvertTypeTopLayer(
         const JsonInputGrassRevetmentTopLayerType topLayerType)
     {
         if (topLayerType == JsonInputGrassRevetmentTopLayerType::OpenSod)
         {
-            return GrassRevetmentWaveImpactLocationConstructionProperties::TopLayerType::OpenSod;
+            return GrassRevetmentTopLayerType::OpenSod;
         }
         if (topLayerType == JsonInputGrassRevetmentTopLayerType::ClosedSod)
         {
-            return GrassRevetmentWaveImpactLocationConstructionProperties::TopLayerType::ClosedSod;
+            return GrassRevetmentTopLayerType::ClosedSod;
         }
 
         throw JsonConversionException("Cannot convert top layer type.");

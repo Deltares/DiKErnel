@@ -49,7 +49,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 const JsonInputLocationData& location,
                 const JsonInputGrassRevetmentWaveImpactLocationData& grassRevetmentWaveImpactLocationData);
 
-            static Integration::GrassRevetmentWaveImpactLocationConstructionProperties::TopLayerType ConvertTypeTopLayer(
+            static Integration::GrassRevetmentTopLayerType ConvertTypeTopLayer(
                 JsonInputGrassRevetmentTopLayerType topLayerType);
 
             static std::unique_ptr<double> CreatePointerOfValue(

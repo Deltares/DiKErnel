@@ -268,7 +268,7 @@ namespace DiKErnel::Integration::Test
     TEST_F(RevetmentCalculationInputBuilderTest, GivenBuilderWithFullyConfiguredGrassWaveImpactLocationAdded_WhenBuild_ReturnsCalculationInput)
     {
         // Given
-        const auto topLayerType = static_cast<GrassRevetmentWaveImpactLocationConstructionProperties::TopLayerType>(rand() % 2);
+        const auto topLayerType = static_cast<GrassRevetmentTopLayerType>(rand() % 2);
         const string name = "Test";
         const auto positionZ = 0.2;
         const auto initialDamage = 0.3;
@@ -343,7 +343,7 @@ namespace DiKErnel::Integration::Test
            GivenBuilderWithNotFullyConfiguredClosedSodGrassWaveImpactLocationAdded_WhenBuild_ReturnsCalculationInput)
     {
         // Given
-        const auto topLayerType = GrassRevetmentWaveImpactLocationConstructionProperties::TopLayerType::ClosedSod;
+        const auto topLayerType = GrassRevetmentTopLayerType::ClosedSod;
         const string name = "Test";
         const auto positionZ = 0.2;
 
@@ -394,7 +394,7 @@ namespace DiKErnel::Integration::Test
            GivenBuilderWithNotFullyConfiguredOpenSodGrassWaveImpactLocationAdded_WhenBuild_ReturnsCalculationInput)
     {
         // Given
-        const auto topLayerType = GrassRevetmentWaveImpactLocationConstructionProperties::TopLayerType::OpenSod;
+        const auto topLayerType = GrassRevetmentTopLayerType::OpenSod;
         const string name = "Test";
         const auto positionZ = 0.2;
 
