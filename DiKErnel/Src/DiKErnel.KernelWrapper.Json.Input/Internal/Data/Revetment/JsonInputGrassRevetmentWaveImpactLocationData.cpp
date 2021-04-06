@@ -31,49 +31,49 @@ namespace DiKErnel::KernelWrapper::Json::Input
     #pragma region Set methods
 
     void JsonInputGrassRevetmentWaveImpactLocationData::SetTimeLineAgwi(
-        std::unique_ptr<double> timeLineAgwi)
+        unique_ptr<double> timeLineAgwi)
     {
         _timeLineAgwi = move(timeLineAgwi);
     }
 
     void JsonInputGrassRevetmentWaveImpactLocationData::SetTimeLineBgwi(
-        std::unique_ptr<double> timeLineBgwi)
+        unique_ptr<double> timeLineBgwi)
     {
         _timeLineBgwi = move(timeLineBgwi);
     }
 
     void JsonInputGrassRevetmentWaveImpactLocationData::SetTimeLineCgwi(
-        std::unique_ptr<double> timeLineCgwi)
+        unique_ptr<double> timeLineCgwi)
     {
         _timeLineCgwi = move(timeLineCgwi);
     }
 
     void JsonInputGrassRevetmentWaveImpactLocationData::SetMinimumWaveHeightTemax(
-        std::unique_ptr<double> minimumWaveHeightTemax)
+        unique_ptr<double> minimumWaveHeightTemax)
     {
         _minimumWaveHeightTemax = move(minimumWaveHeightTemax);
     }
 
     void JsonInputGrassRevetmentWaveImpactLocationData::SetMaximumWaveHeightTemin(
-        std::unique_ptr<double> maximumWaveHeightTemin)
+        unique_ptr<double> maximumWaveHeightTemin)
     {
         _maximumWaveHeightTemin = move(maximumWaveHeightTemin);
     }
 
     void JsonInputGrassRevetmentWaveImpactLocationData::SetWaveAngleImpactNwa(
-        std::unique_ptr<double> waveAngleImpactNwa)
+        unique_ptr<double> waveAngleImpactNwa)
     {
         _waveAngleImpactNwa = move(waveAngleImpactNwa);
     }
 
     void JsonInputGrassRevetmentWaveImpactLocationData::SetWaveAngleImpactQwa(
-        std::unique_ptr<double> waveAngleImpactQwa)
+        unique_ptr<double> waveAngleImpactQwa)
     {
         _waveAngleImpactQwa = move(waveAngleImpactQwa);
     }
 
     void JsonInputGrassRevetmentWaveImpactLocationData::SetWaveAngleImpactRwa(
-        std::unique_ptr<double> waveAngleImpactRwa)
+        unique_ptr<double> waveAngleImpactRwa)
     {
         _waveAngleImpactRwa = move(waveAngleImpactRwa);
     }

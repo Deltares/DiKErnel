@@ -31,13 +31,13 @@ namespace DiKErnel::Integration
           _positionZ(positionZ) { }
 
     void RevetmentLocationConstructionPropertiesBase::SetInitialDamage(
-        std::unique_ptr<double> initialDamage)
+        unique_ptr<double> initialDamage)
     {
         _initialDamage = move(initialDamage);
     }
 
     void RevetmentLocationConstructionPropertiesBase::SetFailureNumber(
-        std::unique_ptr<double> failureNumber)
+        unique_ptr<double> failureNumber)
     {
         _failureNumber = move(failureNumber);
     }

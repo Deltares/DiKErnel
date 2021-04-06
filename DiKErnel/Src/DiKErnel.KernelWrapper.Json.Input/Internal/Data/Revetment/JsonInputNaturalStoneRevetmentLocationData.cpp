@@ -149,7 +149,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
     }
 
     void JsonInputNaturalStoneRevetmentLocationData::SetWaveAngleImpactBetamax(
-        std::unique_ptr<double> waveAngleImpactBetamax)
+        unique_ptr<double> waveAngleImpactBetamax)
     {
         _waveAngleImpactBetamax = move(waveAngleImpactBetamax);
     }
