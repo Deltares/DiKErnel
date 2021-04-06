@@ -366,21 +366,26 @@
 					[
 						{
 							"RekenmethodeSoort": "GrasGolfklap",
-							"MinimumGolfhoogteGrasGolfklap": {
+							"MinimumGolfhoogteGrasGolfklap":
+							{
 								"MinimumGolfhoogteGrasGolfklapTemax": 3600000
 							},
-							"MaximumGolfhoogteGrasGolfklap": {
+							"MaximumGolfhoogteGrasGolfklap":
+							{
 								"MaximumGolfhoogteGrasGolfklapTemin": 3.6
 							},
-							"ImpactGolfhoekBekledingGrasGolfklap": {
+							"ImpactGolfhoekBekledingGrasGolfklap":
+							{
 								"ImpactGolfhoekBekledingGrasGolfklapNwa": 0.67,
 								"ImpactGolfhoekBekledingGrasGolfklapQwa": 0.35,
 								"ImpactGolfhoekBekledingGrasGolfklapRwa": 10.0
 							},
-							"BovengrensBelastingGrasGolfklap": {
+							"BovengrensBelastingGrasGolfklap":
+							{
 								"BovengrensBelastingGrasGolfklapAul": 0.0
 							},
-							"OndergrensBelastingGrasGolfklap": {
+							"OndergrensBelastingGrasGolfklap":
+							{
 								"BovengrensBelastingGrasGolfklapAll": 0.5
 							}
 						}

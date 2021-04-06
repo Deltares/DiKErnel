@@ -41,17 +41,15 @@ namespace DiKErnel::Acceptance::Test
 
     struct AcceptanceTest : Test
     {
-        const string _actualOutputFilePath =
-        (filesystem::temp_directory_path()
-            / "actualOutput.json").string();
+        const string _actualOutputFilePath = (filesystem::temp_directory_path() / "actualOutput.json").string();
 
         void PerformTest(
-            const string& filePath,
+            const string& inputFilePath,
             const double expectedDamage,
             const int* expectedTimeOfFailure) const
         {
             // When
-            const auto calculationInput = JsonInputComposer::GetCalculationInputFromJson(filePath);
+            const auto calculationInput = JsonInputComposer::GetCalculationInputFromJson(inputFilePath);
             Calculator calculator(*calculationInput);
             calculator.WaitForCompletion();
 
@@ -99,23 +97,23 @@ namespace DiKErnel::Acceptance::Test
         }
     };
 
-    TEST_F(AcceptanceTest, GivenJsonWithNaturalStoneLocation_WhenCalculating_ThenExpectedOutputJsonCreated)
+    TEST_F(AcceptanceTest, GivenJsonInputWithNaturalStoneLocation_WhenCalculating_ThenExpectedOutputJsonCreated)
     {
         // Given
-        const auto filePath =
-                (TestDataPathHelper::GetTestDataPath("DiKErnel.Acceptance.Test") / "AcceptanceTest" / "naturalStone.json").string();
+        const auto inputFilePath = (TestDataPathHelper::GetTestDataPath("DiKErnel.Acceptance.Test") / "AcceptanceTest"
+            / "naturalStone.json").string();
 
         // When & Then
-        PerformTest(filePath, 1.1836103307707342, make_unique<int>(3067).get());
+        PerformTest(inputFilePath, 1.1836103307707342, make_unique<int>(3067).get());
     }
 
-    TEST_F(AcceptanceTest, GivenJsonWithGrassWaveImpactLocation_WhenCalculating_ThenExpectedOutputJsonCreated)
+    TEST_F(AcceptanceTest, GivenJsonInputWithGrassWaveImpactLocation_WhenCalculating_ThenExpectedOutputJsonCreated)
     {
         // Given
-        const auto filePath =
-                (TestDataPathHelper::GetTestDataPath("DiKErnel.Acceptance.Test") / "AcceptanceTest" / "grassWaveImpact.json").string();
+        const auto inputFilePath = (TestDataPathHelper::GetTestDataPath("DiKErnel.Acceptance.Test") / "AcceptanceTest"
+            / "grassWaveImpact.json").string();
 
         // When & Then
-        PerformTest(filePath, 2.836154231066117, make_unique<int>(32955).get());
+        PerformTest(inputFilePath, 2.836154231066117, make_unique<int>(32955).get());
     }
 }

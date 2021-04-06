@@ -57,9 +57,8 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
     TEST_F(JsonInputComposerTest, GivenJsonFile_WhenGetCalculationInputFromJson_ThenReturnICalculationInputWithExpectedValues)
     {
         // Given
-        const auto filePath =
-        (TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Input.Test")
-            / "JsonInputComposerTest" / "CompleteInput.json").string();
+        const auto filePath = (TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Input.Test") / "JsonInputComposerTest"
+            / "CompleteInput.json").string();
 
         // When
         const auto calculationInput = JsonInputComposer::GetCalculationInputFromJson(filePath);

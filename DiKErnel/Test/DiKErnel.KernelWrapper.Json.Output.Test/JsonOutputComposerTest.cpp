@@ -101,10 +101,8 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
     TEST_F(JsonOutputComposerTest, WriteCalculationOutputToJson_Always_WritesExpectedValues)
     {
         // Setup
-        const auto expectedOutputFilePath =
-        (TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Output.Test")
-            / "JsonOutputComposerTest"
-            / "expectedOutput.json").string();
+        const auto expectedOutputFilePath = (TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Output.Test")
+            / "JsonOutputComposerTest" / "expectedOutput.json").string();
 
         vector<unique_ptr<LocationDependentOutput>> locations;
         locations.push_back(make_unique<LocationDependentOutput>(
