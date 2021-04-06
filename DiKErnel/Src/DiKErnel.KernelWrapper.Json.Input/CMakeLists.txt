@@ -53,10 +53,10 @@ set(SOURCEFILES_INTERNAL_EXCEPTIONS
 )
 
 set(SOURCEFILES_INTERNAL_PARSERS
-  ${INTERNAL_PARSERS_FOLDER}/GrassWaveImpactJsonInputDefinitions.h
   ${INTERNAL_PARSERS_FOLDER}/GrassWaveImpactJsonInputParser.cpp
   ${INTERNAL_PARSERS_FOLDER}/GrassWaveImpactJsonInputParser.h
   ${INTERNAL_PARSERS_FOLDER}/JsonInputDefinitions.h
+  ${INTERNAL_PARSERS_FOLDER}/JsonInputGrassWaveImpactDefinitions.h
   ${INTERNAL_PARSERS_FOLDER}/JsonInputParser.cpp
   ${INTERNAL_PARSERS_FOLDER}/JsonInputParser.h
   ${INTERNAL_PARSERS_FOLDER}/JsonInputParserHelper.cpp

@@ -24,7 +24,7 @@
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
-    class GrassWaveImpactJsonInputDefinitions
+    class JsonInputGrassWaveImpactDefinitions
     {
         public:
             inline static const std::string TIME_LINE_AGWI = "StandtijdlijnGrasGolfklapAgwi";

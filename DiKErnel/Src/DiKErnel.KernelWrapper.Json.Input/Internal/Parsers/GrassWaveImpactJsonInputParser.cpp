@@ -20,8 +20,8 @@
 
 #include "GrassWaveImpactJsonInputParser.h"
 
-#include "GrassWaveImpactJsonInputDefinitions.h"
 #include "JsonInputDefinitions.h"
+#include "JsonInputGrassWaveImpactDefinitions.h"
 #include "JsonInputParserHelper.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
@@ -35,10 +35,10 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 JsonInputGrassRevetmentTopLayerType::Unknown, nullptr
             },
             {
-                JsonInputGrassRevetmentTopLayerType::ClosedSod, GrassWaveImpactJsonInputDefinitions::TOP_LAYER_TYPE_CLOSED_SOD
+                JsonInputGrassRevetmentTopLayerType::ClosedSod, JsonInputGrassWaveImpactDefinitions::TOP_LAYER_TYPE_CLOSED_SOD
             },
             {
-                JsonInputGrassRevetmentTopLayerType::OpenSod, GrassWaveImpactJsonInputDefinitions::TOP_LAYER_TYPE_OPEN_SOD
+                JsonInputGrassRevetmentTopLayerType::OpenSod, JsonInputGrassWaveImpactDefinitions::TOP_LAYER_TYPE_OPEN_SOD
             }
         });
 
@@ -51,65 +51,65 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
         locationData->SetTimeLineAgwi(
             forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalValue(
-                readRevetment, GrassWaveImpactJsonInputDefinitions::TIME_LINE_AGWI)));
+                readRevetment, JsonInputGrassWaveImpactDefinitions::TIME_LINE_AGWI)));
         locationData->SetTimeLineBgwi(
             forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalValue(
-                readRevetment, GrassWaveImpactJsonInputDefinitions::TIME_LINE_BGWI)));
+                readRevetment, JsonInputGrassWaveImpactDefinitions::TIME_LINE_BGWI)));
         locationData->SetTimeLineCgwi(
             forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalValue(
-                readRevetment, GrassWaveImpactJsonInputDefinitions::TIME_LINE_CGWI)));
+                readRevetment, JsonInputGrassWaveImpactDefinitions::TIME_LINE_CGWI)));
 
-        if (readCalculationMethod.contains(GrassWaveImpactJsonInputDefinitions::MINIMUM_WAVE_HEIGHT))
+        if (readCalculationMethod.contains(JsonInputGrassWaveImpactDefinitions::MINIMUM_WAVE_HEIGHT))
         {
-            const auto& readMinimumWaveHeight = readCalculationMethod[GrassWaveImpactJsonInputDefinitions::MINIMUM_WAVE_HEIGHT];
+            const auto& readMinimumWaveHeight = readCalculationMethod[JsonInputGrassWaveImpactDefinitions::MINIMUM_WAVE_HEIGHT];
 
             locationData->SetMinimumWaveHeightTemax(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalValue(
-                    readMinimumWaveHeight, GrassWaveImpactJsonInputDefinitions::MINIMUM_WAVE_HEIGHT_TEMAX)));
+                    readMinimumWaveHeight, JsonInputGrassWaveImpactDefinitions::MINIMUM_WAVE_HEIGHT_TEMAX)));
         }
 
-        if (readCalculationMethod.contains(GrassWaveImpactJsonInputDefinitions::MAXIMUM_WAVE_HEIGHT))
+        if (readCalculationMethod.contains(JsonInputGrassWaveImpactDefinitions::MAXIMUM_WAVE_HEIGHT))
         {
-            const auto& readMaximumWaveHeight = readCalculationMethod[GrassWaveImpactJsonInputDefinitions::MAXIMUM_WAVE_HEIGHT];
+            const auto& readMaximumWaveHeight = readCalculationMethod[JsonInputGrassWaveImpactDefinitions::MAXIMUM_WAVE_HEIGHT];
 
             locationData->SetMaximumWaveHeightTemin(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalValue(
-                    readMaximumWaveHeight, GrassWaveImpactJsonInputDefinitions::MAXIMUM_WAVE_HEIGHT_TEMIN)));
+                    readMaximumWaveHeight, JsonInputGrassWaveImpactDefinitions::MAXIMUM_WAVE_HEIGHT_TEMIN)));
         }
 
-        if (readCalculationMethod.contains(GrassWaveImpactJsonInputDefinitions::WAVE_ANGLE_IMPACT))
+        if (readCalculationMethod.contains(JsonInputGrassWaveImpactDefinitions::WAVE_ANGLE_IMPACT))
         {
-            const auto& readWaveAngleImpact = readCalculationMethod[GrassWaveImpactJsonInputDefinitions::WAVE_ANGLE_IMPACT];
+            const auto& readWaveAngleImpact = readCalculationMethod[JsonInputGrassWaveImpactDefinitions::WAVE_ANGLE_IMPACT];
 
             locationData->SetWaveAngleImpactNwa(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalValue(
-                    readWaveAngleImpact, GrassWaveImpactJsonInputDefinitions::WAVE_ANGLE_IMPACT_NWA)));
+                    readWaveAngleImpact, JsonInputGrassWaveImpactDefinitions::WAVE_ANGLE_IMPACT_NWA)));
 
             locationData->SetWaveAngleImpactQwa(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalValue(
-                    readWaveAngleImpact, GrassWaveImpactJsonInputDefinitions::WAVE_ANGLE_IMPACT_QWA)));
+                    readWaveAngleImpact, JsonInputGrassWaveImpactDefinitions::WAVE_ANGLE_IMPACT_QWA)));
 
             locationData->SetWaveAngleImpactRwa(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalValue(
-                    readWaveAngleImpact, GrassWaveImpactJsonInputDefinitions::WAVE_ANGLE_IMPACT_RWA)));
+                    readWaveAngleImpact, JsonInputGrassWaveImpactDefinitions::WAVE_ANGLE_IMPACT_RWA)));
         }
 
-        if (readCalculationMethod.contains(GrassWaveImpactJsonInputDefinitions::UPPER_LIMIT_LOADING))
+        if (readCalculationMethod.contains(JsonInputGrassWaveImpactDefinitions::UPPER_LIMIT_LOADING))
         {
-            const auto& readUpperLimitLoading = readCalculationMethod[GrassWaveImpactJsonInputDefinitions::UPPER_LIMIT_LOADING];
+            const auto& readUpperLimitLoading = readCalculationMethod[JsonInputGrassWaveImpactDefinitions::UPPER_LIMIT_LOADING];
 
             locationData->SetUpperLimitLoadingAul(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalValue(
-                    readUpperLimitLoading, GrassWaveImpactJsonInputDefinitions::UPPER_LIMIT_LOADING_AUL)));
+                    readUpperLimitLoading, JsonInputGrassWaveImpactDefinitions::UPPER_LIMIT_LOADING_AUL)));
         }
 
-        if (readCalculationMethod.contains(GrassWaveImpactJsonInputDefinitions::LOWER_LIMIT_LOADING))
+        if (readCalculationMethod.contains(JsonInputGrassWaveImpactDefinitions::LOWER_LIMIT_LOADING))
         {
-            const auto& readLowerLimitLoading = readCalculationMethod[GrassWaveImpactJsonInputDefinitions::LOWER_LIMIT_LOADING];
+            const auto& readLowerLimitLoading = readCalculationMethod[JsonInputGrassWaveImpactDefinitions::LOWER_LIMIT_LOADING];
 
             locationData->SetLowerLimitLoadingAll(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalValue(
-                    readLowerLimitLoading, GrassWaveImpactJsonInputDefinitions::LOWER_LIMIT_LOADING_ALL)));
+                    readLowerLimitLoading, JsonInputGrassWaveImpactDefinitions::LOWER_LIMIT_LOADING_ALL)));
         }
 
         return locationData;
