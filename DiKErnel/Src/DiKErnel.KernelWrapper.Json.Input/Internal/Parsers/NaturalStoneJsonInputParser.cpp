@@ -143,7 +143,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
             locationData->SetWaveAngleImpactBetamax(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalValue(
-                    readWaveAngleImpact, NaturalStoneJsonInputDefinitions::WAVE_ANGLE_IMPACT_BETA_MAX)));
+                    readWaveAngleImpact, NaturalStoneJsonInputDefinitions::WAVE_ANGLE_IMPACT_BETAMAX)));
         }
 
         return locationData;

@@ -36,7 +36,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
             /*!
              * \brief Gets calculation input based on Json.
              * \param filePath
-             *        The filepath to the Json file.
+             *        The path to the Json file.
              * \return The created ICalculationInput.
             */
             static std::unique_ptr<Core::ICalculationInput> GetCalculationInputFromJson(

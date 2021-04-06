@@ -26,7 +26,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
     using namespace std;
 
     unique_ptr<double> JsonInputParserHelper::ParseOptionalValue(
-        const basic_json<>::value_type& object,
+        const json& object,
         const string& propertyName)
     {
         return object.contains(propertyName)

@@ -30,7 +30,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
     {
         public:
             static std::unique_ptr<double> ParseOptionalValue(
-                const nlohmann::basic_json<>::value_type& object,
+                const nlohmann::json& object,
                 const std::string& propertyName);
     };
 }
