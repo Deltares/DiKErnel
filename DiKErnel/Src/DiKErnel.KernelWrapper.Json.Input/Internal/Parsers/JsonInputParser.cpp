@@ -23,6 +23,7 @@
 #include <fstream>
 
 #include "GrassWaveImpactJsonInputParser.h"
+#include "JsonInputCalculationType.h"
 #include "JsonInputDefinitions.h"
 #include "JsonInputParserHelper.h"
 #include "NaturalStoneJsonInputParser.h"
@@ -32,16 +33,16 @@ namespace DiKErnel::KernelWrapper::Json::Input
     using namespace nlohmann;
     using namespace std;
 
-    NLOHMANN_JSON_SERIALIZE_ENUM(JsonInputParser::CalculationType,
+    NLOHMANN_JSON_SERIALIZE_ENUM(JsonInputCalculationType,
         {
             {
-                JsonInputParser::CalculationType::Unknown, nullptr
+                JsonInputCalculationType::Unknown, nullptr
             },
             {
-                JsonInputParser::CalculationType::NaturalStone, JsonInputDefinitions::CALCULATION_METHOD_TYPE_NATURAL_STONE
+                JsonInputCalculationType::NaturalStone, JsonInputDefinitions::CALCULATION_METHOD_TYPE_NATURAL_STONE
             },
             {
-                JsonInputParser::CalculationType::GrassWaveImpact, JsonInputDefinitions::CALCULATION_METHOD_TYPE_GRASS_WAVE_IMPACT
+                JsonInputCalculationType::GrassWaveImpact, JsonInputDefinitions::CALCULATION_METHOD_TYPE_GRASS_WAVE_IMPACT
             }
         });
 
@@ -139,14 +140,14 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
         unique_ptr<IJsonInputRevetmentLocationData> revetmentLocationData;
 
-        const auto& calculationType = readCalculationMethod[JsonInputDefinitions::CALCULATION_METHOD_TYPE].get<CalculationType>();
+        const auto& calculationType = readCalculationMethod[JsonInputDefinitions::CALCULATION_METHOD_TYPE].get<JsonInputCalculationType>();
 
-        if (calculationType == CalculationType::NaturalStone)
+        if (calculationType == JsonInputCalculationType::NaturalStone)
         {
             revetmentLocationData = NaturalStoneJsonInputParser::ParseRevetmentLocationData(readRevetment, readCalculationMethod);
         }
 
-        if (calculationType == CalculationType::GrassWaveImpact)
+        if (calculationType == JsonInputCalculationType::GrassWaveImpact)
         {
             revetmentLocationData = GrassWaveImpactJsonInputParser::ParseRevetmentLocationData(readRevetment, readCalculationMethod);
         }

@@ -23,6 +23,7 @@ set(SOURCEFILES_INTERNAL_DATA_GENERIC
   ${INTERNAL_DATA_GENERIC_FOLDER}/IJsonInputRevetmentLocationData.h
   ${INTERNAL_DATA_GENERIC_FOLDER}/JsonInputCalculationData.cpp
   ${INTERNAL_DATA_GENERIC_FOLDER}/JsonInputCalculationData.h
+  ${INTERNAL_DATA_GENERIC_FOLDER}/JsonInputCalculationType.h
   ${INTERNAL_DATA_GENERIC_FOLDER}/JsonInputDamageData.cpp
   ${INTERNAL_DATA_GENERIC_FOLDER}/JsonInputDamageData.h
   ${INTERNAL_DATA_GENERIC_FOLDER}/JsonInputData.cpp
