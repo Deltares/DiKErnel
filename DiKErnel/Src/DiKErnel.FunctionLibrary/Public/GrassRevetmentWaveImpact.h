@@ -214,5 +214,17 @@ namespace DiKErnel::FunctionLibrary
                 double timeLine,
                 double failureNumber,
                 double initialDamage);
+
+        private:
+            static double WaveHeightBoundary(
+                double timeLineAgwi,
+                double timeLineBgwi,
+                double timeLineCgwi,
+                double waveHeightCoefficient);
+
+            static double LimitLoading(
+                double waterLevel,
+                double waveHeightHm0,
+                double coefficientA);
     };
 }

@@ -60,7 +60,7 @@ namespace DiKErnel::FunctionLibrary
         const double timeLineCgwi,
         const double minimumWaveHeightTemax)
     {
-        return timeLineAgwi * exp(timeLineBgwi * minimumWaveHeightTemax) + timeLineCgwi;
+        return WaveHeightBoundary(timeLineAgwi, timeLineBgwi, timeLineCgwi, minimumWaveHeightTemax);
     }
 
     double GrassRevetmentWaveImpact::MaximumWaveHeight(
@@ -69,7 +69,7 @@ namespace DiKErnel::FunctionLibrary
         const double timeLineCgwi,
         const double maximumWaveHeightTemin)
     {
-        return timeLineAgwi * exp(timeLineBgwi * maximumWaveHeightTemin) + timeLineCgwi;
+        return WaveHeightBoundary(timeLineAgwi, timeLineBgwi, timeLineCgwi, maximumWaveHeightTemin);
     }
 
     double GrassRevetmentWaveImpact::WaveAngleImpact(
@@ -91,7 +91,7 @@ namespace DiKErnel::FunctionLibrary
         const double waveHeightHm0,
         const double upperLimitLoadingAul)
     {
-        return waterLevel - upperLimitLoadingAul * waveHeightHm0;
+        return LimitLoading(waterLevel, waveHeightHm0, upperLimitLoadingAul);
     }
 
     double GrassRevetmentWaveImpact::LowerLimitLoading(
@@ -99,7 +99,7 @@ namespace DiKErnel::FunctionLibrary
         const double waveHeightHm0,
         const double lowerLimitLoadingAll)
     {
-        return waterLevel - lowerLimitLoadingAll * waveHeightHm0;
+        return LimitLoading(waterLevel, waveHeightHm0, lowerLimitLoadingAll);
     }
 
     double GrassRevetmentWaveImpact::DurationInTimeStepFailure(
@@ -108,5 +108,22 @@ namespace DiKErnel::FunctionLibrary
         const double initialDamage)
     {
         return (failureNumber - initialDamage) * timeLine;
+    }
+
+    double GrassRevetmentWaveImpact::WaveHeightBoundary(
+        const double timeLineAgwi,
+        const double timeLineBgwi,
+        const double timeLineCgwi,
+        const double waveHeightCoefficient)
+    {
+        return timeLineAgwi * exp(timeLineBgwi * waveHeightCoefficient) + timeLineCgwi;
+    }
+
+    double GrassRevetmentWaveImpact::LimitLoading(
+        const double waterLevel,
+        const double waveHeightHm0,
+        const double coefficientA)
+    {
+        return waterLevel - coefficientA * waveHeightHm0;
     }
 }
