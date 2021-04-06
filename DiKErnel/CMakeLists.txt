@@ -1,5 +1,5 @@
 ﻿# Set CMake variables
-cmake_minimum_required (VERSION 3.19)
+cmake_minimum_required (VERSION 3.18)
 
 # Define project
 project (DiKErnel)
