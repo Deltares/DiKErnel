@@ -19,11 +19,5 @@ add_library(${LIBNAME} INTERFACE)
 # Set target sources
 target_sources(${LIBNAME} INTERFACE ${SOURCEFILES_PUBLIC})
 
-add_custom_target(${LIBNAME}_ SOURCES ${SOURCEFILES_PUBLIC})
-
-# Configure folder structure
-set_target_properties(${LIBNAME}_ PROPERTIES FOLDER Src)
-source_group(${PUBLIC_FOLDER} FILES ${SOURCEFILES_PUBLIC})
-
 # Expose header files
 target_include_directories(${LIBNAME} INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/${PUBLIC_FOLDER})
