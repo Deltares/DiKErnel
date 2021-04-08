@@ -20,154 +20,157 @@
 
 #pragma once
 
-#include "INaturalStoneRevetmentDefaults.h"
-
 namespace DiKErnel::DomainLibrary
 {
     /*!
-     * \brief Class that contains default values for nordic stone revetments.
+     * \brief Interface that defines default values for natural stone revetments.
      */
-    class NordicStoneRevetmentDefaults : public INaturalStoneRevetmentDefaults
+    class INaturalStoneRevetmentDefaults
     {
         public:
             /*!
-            * \brief Gets the default value of the Xib coefficient.
-            * \return The default value of the Xib coefficient.
-            *         Unit = [-]
-            */
-            double GetHydraulicLoadXib() const override;
+             * \brief Destructs the instance.
+             */
+            virtual ~INaturalStoneRevetmentDefaults() = default;
+
+            /*!
+             * \brief Gets the default value of the Xib coefficient.
+             * \return The default value of the Xib coefficient.
+             *         Unit = [-]
+             */
+            virtual double GetHydraulicLoadXib() const = 0;
 
             /*!
              * \brief Gets the default value of the Ap coefficient.
              * \return The default value of the Ap coefficient.
              *         Unit = [-]
              */
-            double GetHydraulicLoadAp() const override;
+            virtual double GetHydraulicLoadAp() const = 0;
 
             /*!
              * \brief Gets the default value of the Bp coefficient.
              * \return The default value of the Bp coefficient.
              *         Unit = [-]
              */
-            double GetHydraulicLoadBp() const override;
+            virtual double GetHydraulicLoadBp() const = 0;
 
             /*!
              * \brief Gets the default value of the Cp coefficient.
              * \return The default value of the Cp coefficient.
              *         Unit = [-]
              */
-            double GetHydraulicLoadCp() const override;
+            virtual double GetHydraulicLoadCp() const = 0;
 
             /*!
              * \brief Gets the default value of the Np coefficient.
              * \return The default value of the Np coefficient.
              *         Unit = [-]
              */
-            double GetHydraulicLoadNp() const override;
+            virtual double GetHydraulicLoadNp() const = 0;
 
             /*!
              * \brief Gets the default value of the As coefficient.
              * \return The default value of the As coefficient.
              *         Unit = [-]
              */
-            double GetHydraulicLoadAs() const override;
+            virtual double GetHydraulicLoadAs() const = 0;
 
             /*!
              * \brief Gets the default value of the Bs coefficient.
              * \return The default value of the Bs coefficient.
              *         Unit = [-]
              */
-            double GetHydraulicLoadBs() const override;
+            virtual double GetHydraulicLoadBs() const = 0;
 
             /*!
              * \brief Gets the default value of the Cs coefficient.
              * \return The default value of the Cs coefficient.
              *         Unit = [-]
              */
-            double GetHydraulicLoadCs() const override;
+            virtual double GetHydraulicLoadCs() const = 0;
 
             /*!
              * \brief Gets the default value of the Ns coefficient.
              * \return The default value of the Ns coefficient.
              *         Unit = [-]
              */
-            double GetHydraulicLoadNs() const override;
+            virtual double GetHydraulicLoadNs() const = 0;
 
             /*!
              * \brief Gets the default value of the Aul coefficient.
              * \return The default value of the Aul coefficient.
              *         Unit = [-]
              */
-            double GetUpperLimitLoadingAul() const override;
+            virtual double GetUpperLimitLoadingAul() const = 0;
 
             /*!
              * \brief Gets the default value of the Bul coefficient.
              * \return The default value of the Bul coefficient.
              *         Unit = [-]
              */
-            double GetUpperLimitLoadingBul() const override;
+            virtual double GetUpperLimitLoadingBul() const = 0;
 
             /*!
              * \brief Gets the default value of the Cul coefficient.
              * \return The default value of the Cul coefficient.
              *         Unit = [-]
              */
-            double GetUpperLimitLoadingCul() const override;
+            virtual double GetUpperLimitLoadingCul() const = 0;
 
             /*!
              * \brief Gets the default value of the All coefficient.
              * \return The default value of the All coefficient.
              *         Unit = [-]
              */
-            double GetLowerLimitLoadingAll() const override;
+            virtual double GetLowerLimitLoadingAll() const = 0;
 
             /*!
              * \brief Gets the default value of the Bll coefficient.
              * \return The default value of the Bll coefficient.
              *         Unit = [-]
              */
-            double GetLowerLimitLoadingBll() const override;
+            virtual double GetLowerLimitLoadingBll() const = 0;
 
             /*!
              * \brief Gets the default value of the Cll coefficient.
              * \return The default value of the Cll coefficient.
              *         Unit = [-]
              */
-            double GetLowerLimitLoadingCll() const override;
+            virtual double GetLowerLimitLoadingCll() const = 0;
 
             /*!
              * \brief Gets the default value of the Asmax coefficient.
              * \return The default value of the Asmax coefficient.
              *         Unit = [-]
              */
-            double GetDistanceMaximumWaveElevationAsmax() const override;
+            virtual double GetDistanceMaximumWaveElevationAsmax() const = 0;
 
             /*!
              * \brief Gets the default value of the Bsmax coefficient.
              * \return The default value of the Bsmax coefficient.
              *         Unit = [-]
              */
-            double GetDistanceMaximumWaveElevationBsmax() const override;
+            virtual double GetDistanceMaximumWaveElevationBsmax() const = 0;
 
             /*!
              * \brief Gets the default value of the Awi coefficient.
              * \return The default value of the Awi coefficient.
              *         Unit = [-]
              */
-            double GetNormativeWidthOfWaveImpactAwi() const override;
+            virtual double GetNormativeWidthOfWaveImpactAwi() const = 0;
 
             /*!
              * \brief Gets the default value of the Bwi coefficient.
              * \return The default value of the Bwi coefficient.
              *         Unit = [-]
              */
-            double GetNormativeWidthOfWaveImpactBwi() const override;
+            virtual double GetNormativeWidthOfWaveImpactBwi() const = 0;
 
             /*!
              * \brief Gets the default value of the Betamax coefficient.
              * \return The default value of the Betamax coefficient.
              *         Unit = [deg]
              */
-            double GetWaveAngleImpactBetamax() const override;
+            virtual double GetWaveAngleImpactBetamax() const = 0;
     };
 }

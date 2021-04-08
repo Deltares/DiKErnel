@@ -20,127 +20,39 @@
 
 #include <gtest/gtest.h>
 
+#include "AssertHelper.h"
 #include "NordicStoneRevetmentDefaults.h"
 
 namespace DiKErnel::DomainLibrary::Test
 {
-    TEST(NordicStoneRevetmentDefaultsTest, HydraulicLoadXib_ExpectedValue)
-    {
-        // Call & Assert
-        ASSERT_DOUBLE_EQ(2.9, NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_XIB);
-    }
+    using namespace TestUtil;
 
-    TEST(NordicStoneRevetmentDefaultsTest, HydraulicLoadAp_ExpectedValue)
+    TEST(NordicStoneRevetmentDefaultsTest, Constructor_ExpectedValues)
     {
-        // Call & Assert
-        ASSERT_DOUBLE_EQ(4, NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_AP);
-    }
+        // Call
+        const NordicStoneRevetmentDefaults defaults;
 
-    TEST(NordicStoneRevetmentDefaultsTest, HydraulicLoadBp_ExpectedValue)
-    {
-        // Call & Assert
-        ASSERT_DOUBLE_EQ(0, NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_BP);
-    }
-
-    TEST(NordicStoneRevetmentDefaultsTest, HydraulicLoadCp_ExpectedValue)
-    {
-        // Call & Assert
-        ASSERT_DOUBLE_EQ(0, NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_CP);
-    }
-
-    TEST(NordicStoneRevetmentDefaultsTest, HydraulicLoadNp_ExpectedValue)
-    {
-        // Call & Assert
-        ASSERT_DOUBLE_EQ(-0.9, NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_NP);
-    }
-
-    TEST(NordicStoneRevetmentDefaultsTest, HydraulicLoadAs_ExpectedValue)
-    {
-        // Call & Assert
-        ASSERT_DOUBLE_EQ(0.8, NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_AS);
-    }
-
-    TEST(NordicStoneRevetmentDefaultsTest, HydraulicLoadBs_ExpectedValue)
-    {
-        // Call & Assert
-        ASSERT_DOUBLE_EQ(0, NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_BS);
-    }
-
-    TEST(NordicStoneRevetmentDefaultsTest, HydraulicLoadCs_ExpectedValue)
-    {
-        // Call & Assert
-        ASSERT_DOUBLE_EQ(0, NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_CS);
-    }
-
-    TEST(NordicStoneRevetmentDefaultsTest, HydraulicLoadNs_ExpectedValue)
-    {
-        // Call & Assert
-        ASSERT_DOUBLE_EQ(0.6, NordicStoneRevetmentDefaults::HYDRAULIC_LOAD_NS);
-    }
-
-    TEST(NordicStoneRevetmentDefaultsTest, UpperLimitLoadingAul_ExpectedValue)
-    {
-        // Call & Assert
-        ASSERT_DOUBLE_EQ(0.1, NordicStoneRevetmentDefaults::UPPER_LIMIT_LOADING_AUL);
-    }
-
-    TEST(NordicStoneRevetmentDefaultsTest, UpperLimitLoadingBul_ExpectedValue)
-    {
-        // Call & Assert
-        ASSERT_DOUBLE_EQ(0.6, NordicStoneRevetmentDefaults::UPPER_LIMIT_LOADING_BUL);
-    }
-
-    TEST(NordicStoneRevetmentDefaultsTest, UpperLimitLoadingCul_ExpectedValue)
-    {
-        // Call & Assert
-        ASSERT_DOUBLE_EQ(4, NordicStoneRevetmentDefaults::UPPER_LIMIT_LOADING_CUL);
-    }
-
-    TEST(NordicStoneRevetmentDefaultsTest, LowerLimitLoadingAll_ExpectedValue)
-    {
-        // Call & Assert
-        ASSERT_DOUBLE_EQ(0.1, NordicStoneRevetmentDefaults::LOWER_LIMIT_LOADING_ALL);
-    }
-
-    TEST(NordicStoneRevetmentDefaultsTest, LowerLimitLoadingBll_ExpectedValue)
-    {
-        // Call & Assert
-        ASSERT_DOUBLE_EQ(0.2, NordicStoneRevetmentDefaults::LOWER_LIMIT_LOADING_BLL);
-    }
-
-    TEST(NordicStoneRevetmentDefaultsTest, LowerLimitLoadingCll_ExpectedValue)
-    {
-        // Call & Assert
-        ASSERT_DOUBLE_EQ(4, NordicStoneRevetmentDefaults::LOWER_LIMIT_LOADING_CLL);
-    }
-
-    TEST(NordicStoneRevetmentDefaultsTest, DistanceMaximumWaveElevationAsmax_ExpectedValues)
-    {
-        // Call & Assert
-        ASSERT_DOUBLE_EQ(0.42, NordicStoneRevetmentDefaults::DISTANCE_MAXIMUM_WAVE_ELEVATION_ASMAX);
-    }
-
-    TEST(NordicStoneRevetmentDefaultsTest, DistanceMaximumWaveElevationBsmax_ExpectedValues)
-    {
-        // Call & Assert
-        ASSERT_DOUBLE_EQ(0.9, NordicStoneRevetmentDefaults::DISTANCE_MAXIMUM_WAVE_ELEVATION_BSMAX);
-    }
-
-    TEST(NordicStoneRevetmentDefaultsTest, NormativeWidthOfWaveImpactAwi_ExpectedValues)
-    {
-        // Call & Assert
-        ASSERT_DOUBLE_EQ(0.96, NordicStoneRevetmentDefaults::NORMATIVE_WIDTH_OF_WAVE_IMPACT_AWI);
-    }
-
-    TEST(NordicStoneRevetmentDefaultsTest, NormativeWidthOfWaveImpactBwi_ExpectedValues)
-    {
-        // Call & Assert
-        ASSERT_DOUBLE_EQ(0.11, NordicStoneRevetmentDefaults::NORMATIVE_WIDTH_OF_WAVE_IMPACT_BWI);
-    }
-
-    TEST(NordicStoneRevetmentDefaultsTest, WaveAngleImpactBetamax_ExpectedValues)
-    {
-        // Call & Assert
-        ASSERT_DOUBLE_EQ(78, NordicStoneRevetmentDefaults::WAVE_ANGLE_IMPACT_BETAMAX);
+        // Assert
+        AssertHelper::AssertIsInstanceOf<INaturalStoneRevetmentDefaults>(&defaults);
+        ASSERT_DOUBLE_EQ(2.9, defaults.GetHydraulicLoadXib());
+        ASSERT_DOUBLE_EQ(4, defaults.GetHydraulicLoadAp());
+        ASSERT_DOUBLE_EQ(0, defaults.GetHydraulicLoadBp());
+        ASSERT_DOUBLE_EQ(0, defaults.GetHydraulicLoadCp());
+        ASSERT_DOUBLE_EQ(-0.9, defaults.GetHydraulicLoadNp());
+        ASSERT_DOUBLE_EQ(0.8, defaults.GetHydraulicLoadAs());
+        ASSERT_DOUBLE_EQ(0, defaults.GetHydraulicLoadBs());
+        ASSERT_DOUBLE_EQ(0, defaults.GetHydraulicLoadCs());
+        ASSERT_DOUBLE_EQ(0.6, defaults.GetHydraulicLoadNs());
+        ASSERT_DOUBLE_EQ(0.1, defaults.GetUpperLimitLoadingAul());
+        ASSERT_DOUBLE_EQ(0.6, defaults.GetUpperLimitLoadingBul());
+        ASSERT_DOUBLE_EQ(4, defaults.GetUpperLimitLoadingCul());
+        ASSERT_DOUBLE_EQ(0.1, defaults.GetLowerLimitLoadingAll());
+        ASSERT_DOUBLE_EQ(0.2, defaults.GetLowerLimitLoadingBll());
+        ASSERT_DOUBLE_EQ(4, defaults.GetLowerLimitLoadingCll());
+        ASSERT_DOUBLE_EQ(0.42, defaults.GetDistanceMaximumWaveElevationAsmax());
+        ASSERT_DOUBLE_EQ(0.9,  defaults.GetDistanceMaximumWaveElevationBsmax());
+        ASSERT_DOUBLE_EQ(0.96, defaults.GetNormativeWidthOfWaveImpactAwi());
+        ASSERT_DOUBLE_EQ(0.11, defaults.GetNormativeWidthOfWaveImpactBwi());
+        ASSERT_DOUBLE_EQ(78, defaults.GetWaveAngleImpactBetamax());
     }
 }
