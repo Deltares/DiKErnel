@@ -42,14 +42,14 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 const JsonInputLocationData& location,
                 const JsonInputNaturalStoneRevetmentLocationData& naturalStoneRevetmentLocationData);
 
-            static Integration::NaturalStoneRevetmentTopLayerType ConvertTypeTopLayer(
+            static Integration::NaturalStoneRevetmentTopLayerType ConvertTopLayerType(
                 JsonInputNaturalStoneRevetmentTopLayerType topLayerType);
 
             static std::unique_ptr<Integration::GrassRevetmentWaveImpactLocationConstructionProperties> CreateGrassWaveImpactConstructionProperties(
                 const JsonInputLocationData& location,
                 const JsonInputGrassRevetmentWaveImpactLocationData& grassRevetmentWaveImpactLocationData);
 
-            static Integration::GrassRevetmentTopLayerType ConvertTypeTopLayer(
+            static Integration::GrassRevetmentTopLayerType ConvertTopLayerType(
                 JsonInputGrassRevetmentTopLayerType topLayerType);
 
             static std::unique_ptr<double> CreatePointerOfValue(
