@@ -28,7 +28,7 @@
 namespace DiKErnel::KernelWrapper::Json::Output
 {
     /*!
-     * \brief Class responsible for writing Json from CalculationOutput.
+     * \brief Class responsible for writing CalculationOutput to Json.
      */
     class JsonOutputComposer
     {
@@ -40,7 +40,7 @@ namespace DiKErnel::KernelWrapper::Json::Output
              * \param calculationOutput
              *        The calculation output to write.
              * \param calculationInput
-             *        The calculation input that belongs to the calculation output.
+             *        The calculation input that corresponds to the calculation output.
              */
             static void WriteCalculationOutputToJson(
                 const std::string& filePath,

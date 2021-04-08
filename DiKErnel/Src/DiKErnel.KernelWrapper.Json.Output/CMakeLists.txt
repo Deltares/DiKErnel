@@ -11,6 +11,7 @@ set(SOURCEFILES_PUBLIC
   ${PUBLIC_FOLDER}/JsonOutputComposer.cpp
   ${PUBLIC_FOLDER}/JsonOutputComposer.h
 )
+
 set(SOURCEFILES_INTERNAL
   ${INTERNAL_FOLDER}/CalculationOutputAdapter.cpp
   ${INTERNAL_FOLDER}/CalculationOutputAdapter.h

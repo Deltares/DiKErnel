@@ -60,18 +60,18 @@ namespace DiKErnel::KernelWrapper::Json::Output
         const vector<reference_wrapper<LocationDependentOutput>>& locationDependentOutputItems,
         const vector<reference_wrapper<ILocationDependentInput>>& locationDependentInputItems)
     {
-        vector<unique_ptr<JsonOutputLocationData>> jsonLocations;
+        vector<unique_ptr<JsonOutputLocationData>> jsonOutputLocationDataItems;
 
         for (auto i = 0; i < static_cast<int>(locationDependentOutputItems.size()); ++i)
         {
             const auto& locationOutput = locationDependentOutputItems[i].get();
 
-            jsonLocations.push_back(make_unique<JsonOutputLocationData>(
+            jsonOutputLocationDataItems.push_back(make_unique<JsonOutputLocationData>(
                 locationDependentInputItems[i].get().GetName(),
                 locationOutput.GetDamages(),
                 locationOutput.GetTimeOfFailure()));
         }
 
-        return jsonLocations;
+        return jsonOutputLocationDataItems;
     }
 }
