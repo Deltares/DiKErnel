@@ -27,11 +27,11 @@ namespace DiKErnel::FunctionLibrary::Test
     TEST(RevetmentTest, IncrementTime_ValidInput_ExpectedValue)
     {
         // Setup
-        const auto startTime = 1200;
+        const auto beginTime = 1200;
         const auto endTime = 1500;
 
         // Call
-        const auto incrementTime = Revetment::IncrementTime(startTime, endTime);
+        const auto incrementTime = Revetment::IncrementTime(beginTime, endTime);
 
         // Assert
         ASSERT_EQ(300, incrementTime);
@@ -124,10 +124,10 @@ namespace DiKErnel::FunctionLibrary::Test
     {
         // Setup
         const auto durationInTimeStepFailure = 254.001;
-        const auto startTime = 1568;
+        const auto beginTime = 1568;
 
         // Call
-        const auto timeOfFailure = Revetment::TimeOfFailure(durationInTimeStepFailure, startTime);
+        const auto timeOfFailure = Revetment::TimeOfFailure(durationInTimeStepFailure, beginTime);
 
         // Assert
         ASSERT_EQ(1823, timeOfFailure);
@@ -137,10 +137,10 @@ namespace DiKErnel::FunctionLibrary::Test
     {
         // Setup
         const auto durationInTimeStepFailure = 254;
-        const auto startTime = 1568;
+        const auto beginTime = 1568;
 
         // Call
-        const auto timeOfFailure = Revetment::TimeOfFailure(durationInTimeStepFailure, startTime);
+        const auto timeOfFailure = Revetment::TimeOfFailure(durationInTimeStepFailure, beginTime);
 
         // Assert
         ASSERT_EQ(1822, timeOfFailure);

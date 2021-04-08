@@ -68,9 +68,9 @@ namespace DiKErnel::Integration
             const auto timeLineAgwi = _timeLine->GetTimeLineAgwi();
             const auto timeLineBgwi = _timeLine->GetTimeLineBgwi();
             const auto timeLineCgwi = _timeLine->GetTimeLineCgwi();
-            const auto startTime = timeDependentInput.GetBeginTime();
+            const auto beginTime = timeDependentInput.GetBeginTime();
 
-            const auto incrementTime = Revetment::IncrementTime(startTime, timeDependentInput.GetEndTime());
+            const auto incrementTime = Revetment::IncrementTime(beginTime, timeDependentInput.GetEndTime());
             const auto minimumWaveHeight = GrassRevetmentWaveImpact::MinimumWaveHeight(timeLineAgwi, timeLineBgwi, timeLineCgwi,
                                                                                        _minimumWaveHeightTemax);
             const auto maximumWaveHeight = GrassRevetmentWaveImpact::MaximumWaveHeight(timeLineAgwi, timeLineBgwi, timeLineCgwi,
@@ -92,7 +92,7 @@ namespace DiKErnel::Integration
             {
                 const auto durationInTimeStepFailure = GrassRevetmentWaveImpact::DurationInTimeStepFailure(timeLine, failureNumber, initialDamage);
 
-                timeOfFailure = make_unique<int>(Revetment::TimeOfFailure(durationInTimeStepFailure, startTime));
+                timeOfFailure = make_unique<int>(Revetment::TimeOfFailure(durationInTimeStepFailure, beginTime));
             }
         }
 

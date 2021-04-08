@@ -25,10 +25,10 @@
 namespace DiKErnel::FunctionLibrary
 {
     int Revetment::IncrementTime(
-        const int startTime,
+        const int beginTime,
         const int endTime)
     {
-        return endTime - startTime;
+        return endTime - beginTime;
     }
 
     double Revetment::Damage(
@@ -48,8 +48,8 @@ namespace DiKErnel::FunctionLibrary
 
     int Revetment::TimeOfFailure(
         const double durationInTimeStepFailure,
-        const double startTime)
+        const double beginTime)
     {
-        return static_cast<int>(ceil(durationInTimeStepFailure + startTime));
+        return static_cast<int>(ceil(durationInTimeStepFailure + beginTime));
     }
 }

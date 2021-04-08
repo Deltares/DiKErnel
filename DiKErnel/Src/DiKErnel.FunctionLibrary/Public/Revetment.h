@@ -30,8 +30,8 @@ namespace DiKErnel::FunctionLibrary
         public:
             /*!
              * \brief Calculates the increment of time.
-             * \param startTime
-             *        The start time.
+             * \param beginTime
+             *        The begin time.
              *        Unit = [s]
              * \param endTime
              *        The end time.
@@ -40,7 +40,7 @@ namespace DiKErnel::FunctionLibrary
              *         Unit = [s]
              */
             static int IncrementTime(
-                int startTime,
+                int beginTime,
                 int endTime);
 
             /*!
@@ -81,14 +81,14 @@ namespace DiKErnel::FunctionLibrary
              * \param durationInTimeStepFailure
              *        The duration in the time step of failure.
              *        Unit = [s]
-             * \param startTime
-             *        The start time.
+             * \param beginTime
+             *        The begin time.
              *        Unit = [s]
              * \return The time of failure.
              *         Unit = [s]
              */
             static int TimeOfFailure(
                 double durationInTimeStepFailure,
-                double startTime);
+                double beginTime);
     };
 }
