@@ -32,17 +32,6 @@ namespace DiKErnel::Integration
     {
         public:
             /*!
-             * \brief Creates a new instance.
-             * \param name
-             *        The name.
-             * \param positionZ
-             *        The vertical position.
-             */
-            explicit RevetmentLocationConstructionPropertiesBase(
-                std::string name,
-                double positionZ);
-
-            /*!
              * \brief Sets the initial damage.
              * \param initialDamage
              *        The initial damage.
@@ -81,6 +70,18 @@ namespace DiKErnel::Integration
              * \return The failure number.
              */
             const double* GetFailureNumber() const;
+
+        protected:
+            /*!
+             * \brief Creates a new instance.
+             * \param name
+             *        The name.
+             * \param positionZ
+             *        The vertical position.
+             */
+            explicit RevetmentLocationConstructionPropertiesBase(
+                std::string name,
+                double positionZ);
 
         private:
             std::string _name;

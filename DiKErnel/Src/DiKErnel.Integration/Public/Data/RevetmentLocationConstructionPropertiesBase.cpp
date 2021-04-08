@@ -61,6 +61,4 @@ namespace DiKErnel::Integration
     {
         return _failureNumber.get();
     }
-
-    #pragma endregion
 }

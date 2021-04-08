@@ -35,7 +35,6 @@ namespace DiKErnel::Integration
     class NaturalStoneRevetmentLocationConstructionProperties : public RevetmentLocationConstructionPropertiesBase
     {
         public:
-
             /*!
              * \brief Creates a new instance.
              * \param name
