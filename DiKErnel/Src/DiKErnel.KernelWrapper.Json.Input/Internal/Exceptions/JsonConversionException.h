@@ -24,24 +24,12 @@
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
-    /*!
-     * \brief Exception that can be thrown when there is an json conversion error.
-     */
     class JsonConversionException : public std::exception
     {
         public:
-            /*!
-             * \brief Creates a new instance.
-             * \param message
-             *        The message of the exception.
-             */
             explicit JsonConversionException(
                 std::string message);
 
-            /*!
-             * \brief Gets the message of the exception.
-             * \return The message of the exception.
-             */
             const char* what() const throw () override;
 
         private:

@@ -14,6 +14,7 @@ set(SOURCEFILES_PUBLIC
   ${PUBLIC_FOLDER}/JsonInputComposer.cpp
   ${PUBLIC_FOLDER}/JsonInputComposer.h
 )
+
 set(SOURCEFILES_INTERNAL
   ${INTERNAL_FOLDER}/JsonInputAdapter.cpp
   ${INTERNAL_FOLDER}/JsonInputAdapter.h
