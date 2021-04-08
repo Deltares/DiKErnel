@@ -104,7 +104,7 @@ namespace DiKErnel::Acceptance::Test
             / "NaturalStone.json").string();
 
         // When & Then
-        PerformTest(inputFilePath, 1.1836103307707342, make_unique<int>(3067).get());
+        PerformTest(inputFilePath, 1.1709670425264469, make_unique<int>(3833).get());
     }
 
     TEST_F(AcceptanceTest, GivenJsonInputWithGrassWaveImpactLocation_WhenCalculating_ThenExpectedOutputJsonCreated)

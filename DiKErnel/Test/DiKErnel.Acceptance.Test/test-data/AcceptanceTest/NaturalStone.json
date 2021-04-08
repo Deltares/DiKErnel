@@ -38,8 +38,8 @@
 				},
 				{
 					"Waterstand": 1.77,
-					"GolfhoogteHm0": 1.8,
-					"GolfperiodeTm10": 5.5,
+					"GolfhoogteHm0": 0.7,
+					"GolfperiodeTm10": 9,
 					"Golfhoek": 5
 				},
 				{
@@ -136,7 +136,7 @@
 				"Profielschematisatie":
 				{
 					"TanA": 0.25,
-					"PositieZ": 1.7
+					"PositieZ": 1.6
 				}
 			}
 		]
