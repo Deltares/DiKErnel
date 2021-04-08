@@ -1,0 +1,45 @@
+{
+	"Rekendata":
+	{
+		"Tijd":
+		[
+			0,
+			100
+		],
+		"HydraulischeBelastingen": 
+		{
+			"RandvoorwaardenPerTijdstap": 
+			[
+				{
+					"Waterstand": 0.1,
+					"GolfhoogteHm0": 0.5,
+					"GolfperiodeTm10": 2,
+					"Golfhoek": -10
+				}
+			]
+		},
+		"Locaties":
+		[
+			{
+				"Naam": "Natuursteen",
+				"Bekleding":
+				{
+					"TypeToplaag": "OngeldigeSteen",
+					"RelatieveDichtheid": 1.65,
+					"DikteToplaag": 0.3,
+					"Rekenmethoden": 
+					[
+						{
+							"RekenmethodeSoort": "Natuursteen"
+						}
+					]
+				},
+				"Profielschematisatie":
+				{
+					"TanA": 0.25,
+					"PositieZ": 0.9
+				}
+			}
+		]
+	}
+}

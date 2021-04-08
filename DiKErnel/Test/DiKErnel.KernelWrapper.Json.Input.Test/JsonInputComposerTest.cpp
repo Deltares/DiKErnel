@@ -24,6 +24,7 @@
 #include "CalculationInput.h"
 #include "GrassRevetmentWaveImpactLocationDependentInput.h"
 #include "GrassRevetmentWaveImpactLocationDependentInputAssertHelper.h"
+#include "JsonConversionException.h"
 #include "JsonInputComposer.h"
 #include "LocationDependentInputAssertHelper.h"
 #include "NaturalStoneRevetmentLocationDependentInput.h"
@@ -42,6 +43,22 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
 
     struct JsonInputComposerTest : Test
     {
+        static void GetCalculationInputFromJsonWithInvalidNaturalStoneRevetmentTopLayerType()
+        {
+            const auto filePath = (TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Input.Test") / "JsonInputComposerTest"
+                / "InvalidNaturalStoneRevetmentTopLayerType.json").string();
+
+            JsonInputComposer::GetCalculationInputFromJson(filePath);
+        }
+
+        static void GetCalculationInputFromJsonWithInvalidGrassRevetmentTopLayerType()
+        {
+            const auto filePath = (TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Input.Test") / "JsonInputComposerTest"
+                / "InvalidGrassRevetmentTopLayerType.json").string();
+
+            JsonInputComposer::GetCalculationInputFromJson(filePath);
+        }
+
         void AssertTimeDependentInputItems(
             const vector<reference_wrapper<ITimeDependentInput>>& timeDependentInputItems) const
         {
@@ -168,5 +185,23 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
             0.0, *grassRevetmentWaveImpactLocationDependentInputItem3);
         GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertLowerLimitLoading(
             0.5, *grassRevetmentWaveImpactLocationDependentInputItem3);
+    }
+
+    TEST_F(JsonInputComposerTest, GivenJsonInputWithInvalidNaturalStoneRevetmentTypeTopLayer_WhenGetCalculationInputFromJson_ThenThrowsJsonConversionException)
+    {
+        // Given & When
+        const auto action = &JsonInputComposerTest::GetCalculationInputFromJsonWithInvalidNaturalStoneRevetmentTopLayerType;
+
+        // Then
+        AssertHelper::AssertThrowsWithMessage<JsonConversionException>(action, "Cannot convert top layer type.");
+    }
+
+    TEST_F(JsonInputComposerTest, GivenJsonInputWithInvalidGrassRevetmentTypeTopLayer_WhenGetCalculationInputFromJson_ThenThrowsJsonConversionException)
+    {
+        // Given & When
+        const auto action = &JsonInputComposerTest::GetCalculationInputFromJsonWithInvalidGrassRevetmentTopLayerType;
+
+        // Then
+        AssertHelper::AssertThrowsWithMessage<JsonConversionException>(action, "Cannot convert top layer type.");
     }
 }
