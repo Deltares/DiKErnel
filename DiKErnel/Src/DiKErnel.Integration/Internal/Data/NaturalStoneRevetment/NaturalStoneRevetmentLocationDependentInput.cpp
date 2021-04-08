@@ -95,17 +95,17 @@ namespace DiKErnel::Integration
 
         if (loadingRevetment)
         {
-            const auto usePurgingBreakers = _hydraulicLoads->GetHydraulicLoadXib() >= surfSimilarityParameter;
-            const auto hydraulicLoadA = usePurgingBreakers
+            const auto usePlungingBreakers = _hydraulicLoads->GetHydraulicLoadXib() >= surfSimilarityParameter;
+            const auto hydraulicLoadA = usePlungingBreakers
                                             ? _hydraulicLoads->GetHydraulicLoadAp()
                                             : _hydraulicLoads->GetHydraulicLoadAs();
-            const auto hydraulicLoadB = usePurgingBreakers
+            const auto hydraulicLoadB = usePlungingBreakers
                                             ? _hydraulicLoads->GetHydraulicLoadBp()
                                             : _hydraulicLoads->GetHydraulicLoadBs();
-            const auto hydraulicLoadC = usePurgingBreakers
+            const auto hydraulicLoadC = usePlungingBreakers
                                             ? _hydraulicLoads->GetHydraulicLoadCp()
                                             : _hydraulicLoads->GetHydraulicLoadCs();
-            const auto hydraulicLoadN = usePurgingBreakers
+            const auto hydraulicLoadN = usePlungingBreakers
                                             ? _hydraulicLoads->GetHydraulicLoadNp()
                                             : _hydraulicLoads->GetHydraulicLoadNs();
 
