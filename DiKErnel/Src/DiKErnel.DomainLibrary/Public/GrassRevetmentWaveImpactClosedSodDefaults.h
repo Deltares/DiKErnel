@@ -20,72 +20,84 @@
 
 #pragma once
 
+#include "IGrassRevetmentWaveImpactDefaults.h"
+
 namespace DiKErnel::DomainLibrary
 {
     /*!
      * \brief Class that contains default values for grass revetment wave impact with closed sod.
      */
-    class GrassRevetmentWaveImpactClosedSodDefaults
+    class GrassRevetmentWaveImpactClosedSodDefaults : public IGrassRevetmentWaveImpactDefaults
     {
         public:
             /*!
-             * \brief The default value of the Agwi coefficient.
-             *        Unit = [m]
-             */
-            inline static const double TIME_LINE_AGWI = 1;
+              * \brief Gets the default value of the Agwi coefficient.
+              * \return The default value of the Agwi coefficient.
+              *         Unit = [m]
+              */
+            double GetTimeLineAgwi() const override;
 
             /*!
-             * \brief The default value of the Bgwi coefficient.
-             *        Unit = [s^-1]
+             * \brief Gets the default value of the Bgwi coefficient.
+             * \return The default value of the Bgwi coefficient.
+             *         Unit = [s^-1]
              */
-            inline static const double TIME_LINE_BGWI = -0.000009722;
+            double GetTimeLineBgwi() const override;
 
             /*!
-             * \brief The default value of the Cgwi coefficient.
-             *        Unit = [m]
+             * \brief Gets the default value of the Cgwi coefficient.
+             * \return The default value of the Cgwi coefficient.
+             *         Unit = [m]
              */
-            inline static const double TIME_LINE_CGWI = 0.25;
+            double GetTimeLineCgwi() const override;
 
             /*!
-             * \brief The default value of the Temax coefficient.
-             *        Unit = [s]
+             * \brief Gets the default value of the Temax coefficient.
+             * \return The default value of the Temax coefficient.
+             *         Unit = [s]
              */
-            inline static const double MINIMUM_WAVE_HEIGHT_TEMAX = 3600000;
+            double GetMinimumWaveHeightTemax() const override;
 
             /*!
-             * \brief The default value of the Temin coefficient.
-             *        Unit = [s]
+             * \brief Gets the default value of the Temin coefficient.
+             * \return The default value of the Temin coefficient.
+             *         Unit = [s]
              */
-            inline static const double MAXIMUM_WAVE_HEIGHT_TEMIN = 3.6;
+            double GetMaximumWaveHeightTemin() const override;
 
             /*!
-             * \brief The default value of the Nwa coefficient.
-             *        Unit = [-]
+             * \brief Gets the default value of the Nwa coefficient.
+             * \return The default value of the Nwa coefficient.
+             *         Unit = [-]
              */
-            inline static const double WAVE_ANGLE_IMPACT_NWA = 2.0 / 3.0;
+            double GetWaveAngleImpactNwa() const override;
 
             /*!
-             * \brief The default value of the Qwa coefficient.
-             *        Unit = [-]
+             * \brief Gets the default value of the Qwa coefficient.
+             * \return The default value of the Qwa coefficient.
+             *         Unit = [-]
              */
-            inline static const double WAVE_ANGLE_IMPACT_QWA = 0.35;
+            double GetWaveAngleImpactQwa() const override;
 
             /*!
-             * \brief The default value of the Rwa coefficient.
-             *        Unit = [-]
+             * \brief Gets the default value of the Rwa coefficient.
+             * \return The default value of the Rwa coefficient.
+             *         Unit = [-]
              */
-            inline static const double WAVE_ANGLE_IMPACT_RWA = 10;
+            double GetWaveAngleImpactRwa() const override;
 
             /*!
-             * \brief The default value of the Aul coefficient.
-             *        Unit = [-]
+             * \brief Gets the default value of the Aul coefficient.
+             * \return The default value of the Aul coefficient.
+             *         Unit = [-]
              */
-            inline static const double UPPER_LIMIT_LOADING_AUL = 0;
+            double GetUpperLimitLoadingAul() const override;
 
             /*!
-             * \brief The default value of the All coefficient.
-             *        Unit = [-]
+             * \brief Gets the default value of the All coefficient.
+             * \return The default value of the All coefficient.
+             *         Unit = [-]
              */
-            inline static const double LOWER_LIMIT_LOADING_ALL = 0.5;
+            double GetLowerLimitLoadingAll() const override;
     };
 }

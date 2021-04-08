@@ -119,58 +119,28 @@ namespace DiKErnel::Integration
     void RevetmentCalculationInputBuilder::AddGrassWaveImpactLocation(
         const GrassRevetmentWaveImpactLocationConstructionProperties& constructionProperties)
     {
-        unique_ptr<GrassRevetmentWaveImpactWaveAngleImpact> waveAngleImpact;
-        unique_ptr<GrassRevetmentWaveImpactTimeLine> timeLine;
-
-        double minimumWaveHeightTemax;
-        double maximumWaveHeightTemin;
-        double upperLimitLoadingAul;
-        double lowerLimitLoadingAll;
+        unique_ptr<IGrassRevetmentWaveImpactDefaults> defaults;
 
         const auto topLayerType = constructionProperties.GetTopLayerType();
+
         if (topLayerType == GrassRevetmentTopLayerType::ClosedSod)
         {
-            waveAngleImpact = make_unique<GrassRevetmentWaveImpactWaveAngleImpact>(
-                GetValue(constructionProperties.GetWaveAngleImpactNwa(), GrassRevetmentWaveImpactClosedSodDefaults::WAVE_ANGLE_IMPACT_NWA),
-                GetValue(constructionProperties.GetWaveAngleImpactQwa(), GrassRevetmentWaveImpactClosedSodDefaults::WAVE_ANGLE_IMPACT_QWA),
-                GetValue(constructionProperties.GetWaveAngleImpactRwa(), GrassRevetmentWaveImpactClosedSodDefaults::WAVE_ANGLE_IMPACT_RWA));
-
-            timeLine = make_unique<GrassRevetmentWaveImpactTimeLine>(
-                GetValue(constructionProperties.GetTimeLineAgwi(), GrassRevetmentWaveImpactClosedSodDefaults::TIME_LINE_AGWI),
-                GetValue(constructionProperties.GetTimeLineBgwi(), GrassRevetmentWaveImpactClosedSodDefaults::TIME_LINE_BGWI),
-                GetValue(constructionProperties.GetTimeLineCgwi(), GrassRevetmentWaveImpactClosedSodDefaults::TIME_LINE_CGWI));
-
-            minimumWaveHeightTemax = GetValue(constructionProperties.GetMinimumWaveHeightTemax(),
-                                              GrassRevetmentWaveImpactClosedSodDefaults::MINIMUM_WAVE_HEIGHT_TEMAX);
-            maximumWaveHeightTemin = GetValue(constructionProperties.GetMaximumWaveHeightTemin(),
-                                              GrassRevetmentWaveImpactClosedSodDefaults::MAXIMUM_WAVE_HEIGHT_TEMIN);
-            upperLimitLoadingAul = GetValue(constructionProperties.GetUpperLimitLoadingAul(),
-                                            GrassRevetmentWaveImpactClosedSodDefaults::UPPER_LIMIT_LOADING_AUL);
-            lowerLimitLoadingAll = GetValue(constructionProperties.GetLowerLimitLoadingAll(),
-                                            GrassRevetmentWaveImpactClosedSodDefaults::LOWER_LIMIT_LOADING_ALL);
+            defaults = make_unique<GrassRevetmentWaveImpactClosedSodDefaults>();
         }
-
-        if (topLayerType == GrassRevetmentTopLayerType::OpenSod)
+        else if (topLayerType == GrassRevetmentTopLayerType::OpenSod)
         {
-            waveAngleImpact = make_unique<GrassRevetmentWaveImpactWaveAngleImpact>(
-                GetValue(constructionProperties.GetWaveAngleImpactNwa(), GrassRevetmentWaveImpactOpenSodDefaults::WAVE_ANGLE_IMPACT_NWA),
-                GetValue(constructionProperties.GetWaveAngleImpactQwa(), GrassRevetmentWaveImpactOpenSodDefaults::WAVE_ANGLE_IMPACT_QWA),
-                GetValue(constructionProperties.GetWaveAngleImpactRwa(), GrassRevetmentWaveImpactOpenSodDefaults::WAVE_ANGLE_IMPACT_RWA));
-
-            timeLine = make_unique<GrassRevetmentWaveImpactTimeLine>(
-                GetValue(constructionProperties.GetTimeLineAgwi(), GrassRevetmentWaveImpactOpenSodDefaults::TIME_LINE_AGWI),
-                GetValue(constructionProperties.GetTimeLineBgwi(), GrassRevetmentWaveImpactOpenSodDefaults::TIME_LINE_BGWI),
-                GetValue(constructionProperties.GetTimeLineCgwi(), GrassRevetmentWaveImpactOpenSodDefaults::TIME_LINE_CGWI));
-
-            minimumWaveHeightTemax = GetValue(constructionProperties.GetMinimumWaveHeightTemax(),
-                                              GrassRevetmentWaveImpactOpenSodDefaults::MINIMUM_WAVE_HEIGHT_TEMAX);
-            maximumWaveHeightTemin = GetValue(constructionProperties.GetMaximumWaveHeightTemin(),
-                                              GrassRevetmentWaveImpactOpenSodDefaults::MAXIMUM_WAVE_HEIGHT_TEMIN);
-            upperLimitLoadingAul = GetValue(constructionProperties.GetUpperLimitLoadingAul(),
-                                            GrassRevetmentWaveImpactOpenSodDefaults::UPPER_LIMIT_LOADING_AUL);
-            lowerLimitLoadingAll = GetValue(constructionProperties.GetLowerLimitLoadingAll(),
-                                            GrassRevetmentWaveImpactOpenSodDefaults::LOWER_LIMIT_LOADING_ALL);
+            defaults = make_unique<GrassRevetmentWaveImpactOpenSodDefaults>();
         }
+
+        auto waveAngleImpact = make_unique<GrassRevetmentWaveImpactWaveAngleImpact>(
+            GetValue(constructionProperties.GetWaveAngleImpactNwa(), defaults->GetWaveAngleImpactNwa()),
+            GetValue(constructionProperties.GetWaveAngleImpactQwa(), defaults->GetWaveAngleImpactQwa()),
+            GetValue(constructionProperties.GetWaveAngleImpactRwa(), defaults->GetWaveAngleImpactRwa()));
+
+        auto timeLine = make_unique<GrassRevetmentWaveImpactTimeLine>(
+            GetValue(constructionProperties.GetTimeLineAgwi(), defaults->GetTimeLineAgwi()),
+            GetValue(constructionProperties.GetTimeLineBgwi(), defaults->GetTimeLineBgwi()),
+            GetValue(constructionProperties.GetTimeLineCgwi(), defaults->GetTimeLineCgwi()));
 
         _locationDependentInputItems.push_back(
             make_unique<GrassRevetmentWaveImpactLocationDependentInput>(
@@ -179,11 +149,11 @@ namespace DiKErnel::Integration
                 GetValue(constructionProperties.GetFailureNumber(), RevetmentDefaults::FAILURE_NUMBER),
                 constructionProperties.GetPositionZ(),
                 move(waveAngleImpact),
-                minimumWaveHeightTemax,
-                maximumWaveHeightTemin,
+                GetValue(constructionProperties.GetMinimumWaveHeightTemax(), defaults->GetMinimumWaveHeightTemax()),
+                GetValue(constructionProperties.GetMaximumWaveHeightTemin(), defaults->GetMaximumWaveHeightTemin()),
                 move(timeLine),
-                upperLimitLoadingAul,
-                lowerLimitLoadingAll));
+                GetValue(constructionProperties.GetUpperLimitLoadingAul(), defaults->GetUpperLimitLoadingAul()),
+                GetValue(constructionProperties.GetLowerLimitLoadingAll(), defaults->GetLowerLimitLoadingAll())));
     }
 
     unique_ptr<ICalculationInput> RevetmentCalculationInputBuilder::Build()

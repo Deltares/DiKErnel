@@ -20,67 +20,29 @@
 
 #include <gtest/gtest.h>
 
+#include "AssertHelper.h"
 #include "GrassRevetmentWaveImpactOpenSodDefaults.h"
 
 namespace DiKErnel::DomainLibrary::Test
 {
-    TEST(GrassRevetmentWaveImpactOpenSodDefaultsTest, TimeLineAgwi_ExpectedValue)
-    {
-        // Call & Assert
-        ASSERT_DOUBLE_EQ(0.8, GrassRevetmentWaveImpactOpenSodDefaults::TIME_LINE_AGWI);
-    }
+    using namespace TestUtil;
 
-    TEST(GrassRevetmentWaveImpactOpenSodDefaultsTest, TimeLineBgwi_ExpectedValue)
+    TEST(GrassRevetmentWaveImpactOpenSodDefaultsTest, Constructor_ExpectedValues)
     {
-        // Call & Assert
-        ASSERT_DOUBLE_EQ(-0.00001944, GrassRevetmentWaveImpactOpenSodDefaults::TIME_LINE_BGWI);
-    }
+        // Call
+        const GrassRevetmentWaveImpactOpenSodDefaults defaults;
 
-    TEST(GrassRevetmentWaveImpactOpenSodDefaultsTest, TimeLineCgwi_ExpectedValue)
-    {
-        // Call & Assert
-        ASSERT_DOUBLE_EQ(0.25, GrassRevetmentWaveImpactOpenSodDefaults::TIME_LINE_CGWI);
-    }
-
-    TEST(GrassRevetmentWaveImpactOpenSodDefaultsTest, MinimumWaveHeightTemax_ExpectedValue)
-    {
-        // Call & Assert
-        ASSERT_DOUBLE_EQ(3600000, GrassRevetmentWaveImpactOpenSodDefaults::MINIMUM_WAVE_HEIGHT_TEMAX);
-    }
-
-    TEST(GrassRevetmentWaveImpactOpenSodDefaultsTest, MaximumWaveHeightTemin_ExpectedValue)
-    {
-        // Call & Assert
-        ASSERT_DOUBLE_EQ(3.6, GrassRevetmentWaveImpactOpenSodDefaults::MAXIMUM_WAVE_HEIGHT_TEMIN);
-    }
-
-    TEST(GrassRevetmentWaveImpactOpenSodDefaultsTest, WaveAngleImpactNwa_ExpectedValue)
-    {
-        // Call & Assert
-        ASSERT_DOUBLE_EQ(2.0 / 3.0, GrassRevetmentWaveImpactOpenSodDefaults::WAVE_ANGLE_IMPACT_NWA);
-    }
-
-    TEST(GrassRevetmentWaveImpactOpenSodDefaultsTest, WaveAngleImpactQwa_ExpectedValue)
-    {
-        // Call & Assert
-        ASSERT_DOUBLE_EQ(0.35, GrassRevetmentWaveImpactOpenSodDefaults::WAVE_ANGLE_IMPACT_QWA);
-    }
-
-    TEST(GrassRevetmentWaveImpactOpenSodDefaultsTest, WaveAngleImpactRwa_ExpectedValue)
-    {
-        // Call & Assert
-        ASSERT_DOUBLE_EQ(10, GrassRevetmentWaveImpactOpenSodDefaults::WAVE_ANGLE_IMPACT_RWA);
-    }
-
-    TEST(GrassRevetmentWaveImpactOpenSodDefaultsTest, UpperLimitLoadingAul_ExpectedValue)
-    {
-        // Call & Assert
-        ASSERT_DOUBLE_EQ(0, GrassRevetmentWaveImpactOpenSodDefaults::UPPER_LIMIT_LOADING_AUL);
-    }
-
-    TEST(GrassRevetmentWaveImpactOpenSodDefaultsTest, LowerLimitLoadingAll_ExpectedValue)
-    {
-        // Call & Assert
-        ASSERT_DOUBLE_EQ(0.5, GrassRevetmentWaveImpactOpenSodDefaults::LOWER_LIMIT_LOADING_ALL);
+        // Assert
+        AssertHelper::AssertIsInstanceOf<IGrassRevetmentWaveImpactDefaults>(&defaults);
+        ASSERT_DOUBLE_EQ(0.8, defaults.GetTimeLineAgwi());
+        ASSERT_DOUBLE_EQ(-0.00001944, defaults.GetTimeLineBgwi());
+        ASSERT_DOUBLE_EQ(0.25, defaults.GetTimeLineCgwi());
+        ASSERT_DOUBLE_EQ(3600000, defaults.GetMinimumWaveHeightTemax());
+        ASSERT_DOUBLE_EQ(3.6, defaults.GetMaximumWaveHeightTemin());
+        ASSERT_DOUBLE_EQ(2.0 / 3.0, defaults.GetWaveAngleImpactNwa());
+        ASSERT_DOUBLE_EQ(0.35, defaults.GetWaveAngleImpactQwa());
+        ASSERT_DOUBLE_EQ(10, defaults.GetWaveAngleImpactRwa());
+        ASSERT_DOUBLE_EQ(0, defaults.GetUpperLimitLoadingAul());
+        ASSERT_DOUBLE_EQ(0.5, defaults.GetLowerLimitLoadingAll());
     }
 }

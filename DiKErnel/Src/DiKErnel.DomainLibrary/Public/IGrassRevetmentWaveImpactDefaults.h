@@ -20,84 +20,87 @@
 
 #pragma once
 
-#include "IGrassRevetmentWaveImpactDefaults.h"
-
 namespace DiKErnel::DomainLibrary
 {
     /*!
-     * \brief Class that contains default values for grass revetment wave impact with open sod.
+     * \brief Interface that contains default value definitions for grass revetment wave impact.
      */
-    class GrassRevetmentWaveImpactOpenSodDefaults : public IGrassRevetmentWaveImpactDefaults
+    class IGrassRevetmentWaveImpactDefaults
     {
         public:
             /*!
-              * \brief Gets the default value of the Agwi coefficient.
-              * \return The default value of the Agwi coefficient.
-              *         Unit = [m]
-              */
-            double GetTimeLineAgwi() const override;
+             * \brief Destructs the instance.
+             */
+            virtual ~IGrassRevetmentWaveImpactDefaults() = default;
+
+            /*!
+             * \brief Gets the default value of the Agwi coefficient.
+             * \return The default value of the Agwi coefficient.
+             *         Unit = [m]
+             */
+            virtual double GetTimeLineAgwi() const = 0;
 
             /*!
              * \brief Gets the default value of the Bgwi coefficient.
              * \return The default value of the Bgwi coefficient.
              *         Unit = [s^-1]
              */
-            double GetTimeLineBgwi() const override;
+            virtual double GetTimeLineBgwi() const = 0;
 
             /*!
              * \brief Gets the default value of the Cgwi coefficient.
              * \return The default value of the Cgwi coefficient.
              *         Unit = [m]
              */
-            double GetTimeLineCgwi() const override;
+            virtual double GetTimeLineCgwi() const = 0;
 
             /*!
              * \brief Gets the default value of the Temax coefficient.
              * \return The default value of the Temax coefficient.
              *         Unit = [s]
              */
-            double GetMinimumWaveHeightTemax() const override;
+            virtual double GetMinimumWaveHeightTemax() const = 0;
 
             /*!
              * \brief Gets the default value of the Temin coefficient.
              * \return The default value of the Temin coefficient.
              *         Unit = [s]
              */
-            double GetMaximumWaveHeightTemin() const override;
+            virtual double GetMaximumWaveHeightTemin() const = 0;
 
             /*!
              * \brief Gets the default value of the Nwa coefficient.
              * \return The default value of the Nwa coefficient.
              *         Unit = [-]
              */
-            double GetWaveAngleImpactNwa() const override;
+            virtual double GetWaveAngleImpactNwa() const = 0;
 
             /*!
              * \brief Gets the default value of the Qwa coefficient.
              * \return The default value of the Qwa coefficient.
              *         Unit = [-]
              */
-            double GetWaveAngleImpactQwa() const override;
+            virtual double GetWaveAngleImpactQwa() const = 0;
 
             /*!
              * \brief Gets the default value of the Rwa coefficient.
              * \return The default value of the Rwa coefficient.
              *         Unit = [-]
              */
-            double GetWaveAngleImpactRwa() const override;
+            virtual double GetWaveAngleImpactRwa() const = 0;
 
             /*!
              * \brief Gets the default value of the Aul coefficient.
              * \return The default value of the Aul coefficient.
              *         Unit = [-]
              */
-            double GetUpperLimitLoadingAul() const override;
+            virtual double GetUpperLimitLoadingAul() const = 0;
 
             /*!
              * \brief Gets the default value of the All coefficient.
              * \return The default value of the All coefficient.
              *         Unit = [-]
              */
-            double GetLowerLimitLoadingAll() const override;
+            virtual double GetLowerLimitLoadingAll() const = 0;
     };
 }

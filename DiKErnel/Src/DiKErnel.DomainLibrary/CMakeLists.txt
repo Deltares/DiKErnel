@@ -7,8 +7,11 @@ set(PUBLIC_FOLDER Public)
 # Define sources
 set(SOURCEFILES_PUBLIC
   ${PUBLIC_FOLDER}/Constants.h
+  ${PUBLIC_FOLDER}/GrassRevetmentWaveImpactClosedSodDefaults.cpp
   ${PUBLIC_FOLDER}/GrassRevetmentWaveImpactClosedSodDefaults.h
+  ${PUBLIC_FOLDER}/GrassRevetmentWaveImpactOpenSodDefaults.cpp
   ${PUBLIC_FOLDER}/GrassRevetmentWaveImpactOpenSodDefaults.h
+  ${PUBLIC_FOLDER}/IGrassRevetmentWaveImpactDefaults.h
   ${PUBLIC_FOLDER}/INaturalStoneRevetmentDefaults.h
   ${PUBLIC_FOLDER}/NordicStoneRevetmentDefaults.cpp
   ${PUBLIC_FOLDER}/NordicStoneRevetmentDefaults.h

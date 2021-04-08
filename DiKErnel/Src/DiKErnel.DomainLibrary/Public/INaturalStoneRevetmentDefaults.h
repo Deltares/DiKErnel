@@ -23,7 +23,7 @@
 namespace DiKErnel::DomainLibrary
 {
     /*!
-     * \brief Interface that defines default values for natural stone revetments.
+     * \brief Interface that contains default value definitions for natural stone revetments.
      */
     class INaturalStoneRevetmentDefaults
     {
