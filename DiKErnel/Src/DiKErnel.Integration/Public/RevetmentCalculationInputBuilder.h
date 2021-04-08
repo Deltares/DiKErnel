@@ -66,6 +66,8 @@ namespace DiKErnel::Integration
              * \brief Adds a natural stone location.
              * \param constructionProperties
              *        The properties to construct the natural stone location dependent input.
+             * \exception RevetmentCalculationInputBuilderException
+             *            Thrown when the top layer type is invalid
              */
             void AddNaturalStoneLocation(
                 const NaturalStoneRevetmentLocationConstructionProperties& constructionProperties);
@@ -74,6 +76,8 @@ namespace DiKErnel::Integration
              * \brief Adds a grass wave impact location.
              * \param constructionProperties
              *        The properties to construct the grass wave impact location dependent input.
+             * \exception RevetmentCalculationInputBuilderException
+             *            Thrown when the top layer type is invalid.
              */
             void AddGrassWaveImpactLocation(
                 const GrassRevetmentWaveImpactLocationConstructionProperties& constructionProperties);
