@@ -20,10 +20,11 @@
 
 #include "RevetmentCalculationInputBuilder.h"
 
-#include "GrassRevetmentWaveImpactClosedSodDefaults.h"
+#include "DefaultsFactoryException.h"
+#include "GrassRevetmentWaveImpactDefaultsFactory.h"
 #include "GrassRevetmentWaveImpactLocationDependentInput.h"
-#include "GrassRevetmentWaveImpactOpenSodDefaults.h"
 #include "InvalidCalculationDataException.h"
+#include "NaturalStoneRevetmentDefaultsFactory.h"
 #include "NaturalStoneRevetmentLocationConstructionProperties.h"
 #include "NaturalStoneRevetmentLocationDependentInput.h"
 #include "NordicStoneRevetmentDefaults.h"
@@ -60,9 +61,13 @@ namespace DiKErnel::Integration
     {
         unique_ptr<INaturalStoneRevetmentDefaults> defaults;
 
-        if (constructionProperties.GetTopLayerType() == NaturalStoneRevetmentTopLayerType::NordicStone)
+        try
         {
-            defaults = make_unique<NordicStoneRevetmentDefaults>();
+            defaults = NaturalStoneRevetmentDefaultsFactory::Create(constructionProperties.GetTopLayerType());
+        }
+        catch (const DefaultsFactoryException&)
+        {
+            throw_with_nested(RevetmentCalculationInputBuilderException("Could not create NaturalStoneRevetmentLocationDependentInput."));
         }
 
         auto hydraulicLoads = make_unique<NaturalStoneRevetmentHydraulicLoads>(
@@ -121,15 +126,13 @@ namespace DiKErnel::Integration
     {
         unique_ptr<IGrassRevetmentWaveImpactDefaults> defaults;
 
-        const auto topLayerType = constructionProperties.GetTopLayerType();
-
-        if (topLayerType == GrassRevetmentTopLayerType::ClosedSod)
+        try
         {
-            defaults = make_unique<GrassRevetmentWaveImpactClosedSodDefaults>();
+            defaults = GrassRevetmentWaveImpactDefaultsFactory::Create(constructionProperties.GetTopLayerType());
         }
-        else if (topLayerType == GrassRevetmentTopLayerType::OpenSod)
+        catch (const DefaultsFactoryException&)
         {
-            defaults = make_unique<GrassRevetmentWaveImpactOpenSodDefaults>();
+            throw_with_nested(RevetmentCalculationInputBuilderException("Could not create GrassRevetmentWaveImpactLocationDependentInput."));
         }
 
         auto waveAngleImpact = make_unique<GrassRevetmentWaveImpactWaveAngleImpact>(

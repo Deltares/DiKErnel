@@ -21,6 +21,7 @@
 #include <gtest/gtest.h>
 
 #include "AssertHelper.h"
+#include "DefaultsFactoryException.h"
 #include "GrassRevetmentWaveImpactLocationDependentInput.h"
 #include "GrassRevetmentWaveImpactLocationDependentInputAssertHelper.h"
 #include "InvalidCalculationDataException.h"
@@ -54,6 +55,24 @@ namespace DiKErnel::Integration::Test
             builder.AddTimeStep(0, 5, 0, 0, 0, 0);
             builder.AddTimeStep(10, 20, 0, 0, 0, 0);
             builder.Build();
+        }
+
+        static void CreateBuilderAndAddGrassRevetmentWaveImpactLocationWithInvalidTopLayerType()
+        {
+            const auto topLayerType = static_cast<GrassRevetmentTopLayerType>(99);
+            const GrassRevetmentWaveImpactLocationConstructionProperties constructionProperties("Test", 0.1, topLayerType);
+
+            RevetmentCalculationInputBuilder builder;
+            builder.AddGrassWaveImpactLocation(constructionProperties);
+        }
+
+        static void CreateBuilderAndAddNaturalStoneRevetmentLocationWithInvalidTopLayerType()
+        {
+            const auto topLayerType = static_cast<NaturalStoneRevetmentTopLayerType>(99);
+            const NaturalStoneRevetmentLocationConstructionProperties constructionProperties("Test", 0.1, 0.2, topLayerType, 0.3, 0.4);
+
+            RevetmentCalculationInputBuilder builder;
+            builder.AddNaturalStoneLocation(constructionProperties);
         }
     };
 
@@ -116,6 +135,17 @@ namespace DiKErnel::Integration::Test
         AssertHelper::AssertThrowsWithMessageAndInnerException<RevetmentCalculationInputBuilderException, InvalidCalculationDataException>(
             action, "Could not create TimeDependentInput.",
             "The begin time of a successive element must equal the end time of the previous element.");
+    }
+
+    TEST_F(RevetmentCalculationInputBuilderTest,
+        GivenBuilder_WhenAddingNaturalStoneLocationWithInvalidTopLayerType_ThenThrowsRevetmentCalculationInputBuilderException)
+    {
+        // Given & When
+        const auto action = &RevetmentCalculationInputBuilderTest::CreateBuilderAndAddNaturalStoneRevetmentLocationWithInvalidTopLayerType;
+
+        // Then
+        AssertHelper::AssertThrowsWithMessageAndInnerException<RevetmentCalculationInputBuilderException, DefaultsFactoryException>(
+            action, "Could not create NaturalStoneRevetmentLocationDependentInput.", "Couldn't create defaults for given top layer type.");
     }
 
     TEST_F(RevetmentCalculationInputBuilderTest, GivenBuilderWithFullyConfiguredNaturalStoneLocationAdded_WhenBuild_ThenReturnsCalculationInput)
@@ -263,6 +293,17 @@ namespace DiKErnel::Integration::Test
             0.96, 0.11, locationDependentInput->GetNormativeWidthOfWaveImpact());
         NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertWaveAngleImpact(
             78, locationDependentInput->GetWaveAngleImpact());
+    }
+
+    TEST_F(RevetmentCalculationInputBuilderTest,
+        GivenBuilder_WhenAddingGrassWaveImpactLocationWithInvalidTopLayerType_ThenThrowsRevetmentCalculationInputBuilderException)
+    {
+        // Given & When
+        const auto action = &RevetmentCalculationInputBuilderTest::CreateBuilderAndAddGrassRevetmentWaveImpactLocationWithInvalidTopLayerType;
+
+        // Then
+        AssertHelper::AssertThrowsWithMessageAndInnerException<RevetmentCalculationInputBuilderException, DefaultsFactoryException>(
+            action, "Could not create GrassRevetmentWaveImpactLocationDependentInput.", "Couldn't create defaults for given top layer type.");
     }
 
     TEST_F(RevetmentCalculationInputBuilderTest, GivenBuilderWithFullyConfiguredGrassWaveImpactLocationAdded_WhenBuild_ThenReturnsCalculationInput)
