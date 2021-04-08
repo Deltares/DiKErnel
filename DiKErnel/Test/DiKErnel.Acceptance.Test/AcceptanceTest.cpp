@@ -101,7 +101,7 @@ namespace DiKErnel::Acceptance::Test
     {
         // Given
         const auto inputFilePath = (TestDataPathHelper::GetTestDataPath("DiKErnel.Acceptance.Test") / "AcceptanceTest"
-            / "naturalStone.json").string();
+            / "NaturalStone.json").string();
 
         // When & Then
         PerformTest(inputFilePath, 1.1836103307707342, make_unique<int>(3067).get());
@@ -111,7 +111,7 @@ namespace DiKErnel::Acceptance::Test
     {
         // Given
         const auto inputFilePath = (TestDataPathHelper::GetTestDataPath("DiKErnel.Acceptance.Test") / "AcceptanceTest"
-            / "grassWaveImpact.json").string();
+            / "GrassWaveImpact.json").string();
 
         // When & Then
         PerformTest(inputFilePath, 2.836154231066117, make_unique<int>(32955).get());

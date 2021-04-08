@@ -100,7 +100,7 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
     {
         // Setup
         const auto expectedOutputFilePath = (TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Output.Test")
-            / "JsonOutputComposerTest" / "expectedOutput.json").string();
+            / "JsonOutputComposerTest" / "ExpectedOutput.json").string();
 
         vector<unique_ptr<LocationDependentOutput>> locations;
         locations.push_back(make_unique<LocationDependentOutput>(
