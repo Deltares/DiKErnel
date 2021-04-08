@@ -57,19 +57,15 @@ namespace DiKErnel::KernelWrapper::Json::Input
             const auto& location = locationReference.get();
             const auto& revetmentLocationData = location.GetRevetmentLocationData();
 
-            const auto* naturalStoneRevetmentLocationData = dynamic_cast<const JsonInputNaturalStoneRevetmentLocationData*>(
-                &revetmentLocationData);
-
-            if (naturalStoneRevetmentLocationData != nullptr)
+            if (const auto* naturalStoneRevetmentLocationData = dynamic_cast<const JsonInputNaturalStoneRevetmentLocationData*>(
+                &revetmentLocationData); naturalStoneRevetmentLocationData != nullptr)
             {
                 const auto constructionProperties = CreateNaturalStoneConstructionProperties(location, *naturalStoneRevetmentLocationData);
                 builder.AddNaturalStoneLocation(*constructionProperties);
             }
 
-            const auto* grassRevetmentWaveImpactLocationData = dynamic_cast<const JsonInputGrassRevetmentWaveImpactLocationData*>(
-                &revetmentLocationData);
-
-            if (grassRevetmentWaveImpactLocationData != nullptr)
+            if (const auto* grassRevetmentWaveImpactLocationData = dynamic_cast<const JsonInputGrassRevetmentWaveImpactLocationData*>(
+                &revetmentLocationData); grassRevetmentWaveImpactLocationData != nullptr)
             {
                 const auto constructionProperties = CreateGrassWaveImpactConstructionProperties(location, *grassRevetmentWaveImpactLocationData);
                 builder.AddGrassWaveImpactLocation(*constructionProperties);
