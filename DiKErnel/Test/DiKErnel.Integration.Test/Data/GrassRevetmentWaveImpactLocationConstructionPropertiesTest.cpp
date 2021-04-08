@@ -34,11 +34,10 @@ namespace DiKErnel::Integration::Test
         // Setup
         const auto topLayerType = static_cast<GrassRevetmentTopLayerType>(rand() % 2);
         const string name = "Test";
-        const auto positionZ = 0.2;
+        const auto positionZ = 0.1;
 
         // Call
-        const GrassRevetmentWaveImpactLocationConstructionProperties constructionProperties(
-            name, positionZ, topLayerType);
+        const GrassRevetmentWaveImpactLocationConstructionProperties constructionProperties(name, positionZ, topLayerType);
 
         // Assert
         AssertHelper::AssertIsInstanceOf<RevetmentLocationConstructionPropertiesBase>(&constructionProperties);
@@ -64,22 +63,21 @@ namespace DiKErnel::Integration::Test
         // Given
         const auto topLayerType = static_cast<GrassRevetmentTopLayerType>(rand() % 2);
         const string name = "Test";
-        const auto positionZ = 0.2;
-        const auto initialDamage = 0.3;
-        const auto failureNumber = 0.4;
-        const auto timeLineAgwi = 0.5;
-        const auto timeLineBgwi = 0.6;
-        const auto timeLineCgwi = 0.7;
-        const auto minimumWaveHeightTemax = 0.8;
-        const auto maximumWaveHeightTemin = 0.9;
-        const auto waveAngleImpactNwa = 1.0;
-        const auto waveAngleImpactQwa = 1.1;
-        const auto waveAngleImpactRwa = 1.2;
-        const auto upperLimitLoadingAul = 1.3;
-        const auto lowerLimitLoadingAll = 1.4;
+        const auto positionZ = 0.1;
+        const auto initialDamage = 0.2;
+        const auto failureNumber = 0.3;
+        const auto timeLineAgwi = 0.4;
+        const auto timeLineBgwi = 0.5;
+        const auto timeLineCgwi = 0.6;
+        const auto minimumWaveHeightTemax = 0.7;
+        const auto maximumWaveHeightTemin = 0.8;
+        const auto waveAngleImpactNwa = 0.9;
+        const auto waveAngleImpactQwa = 1.0;
+        const auto waveAngleImpactRwa = 1.1;
+        const auto upperLimitLoadingAul = 1.2;
+        const auto lowerLimitLoadingAll = 1.3;
 
-        GrassRevetmentWaveImpactLocationConstructionProperties constructionProperties(
-            name, positionZ, topLayerType);
+        GrassRevetmentWaveImpactLocationConstructionProperties constructionProperties(name, positionZ, topLayerType);
 
         // When
         constructionProperties.SetInitialDamage(make_unique<double>(initialDamage));

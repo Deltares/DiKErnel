@@ -26,7 +26,7 @@ namespace DiKErnel::Integration::TestUtil
 {
     using namespace std;
 
-    void NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertMandatoryProperties(
+    void NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertGeneralProperties(
         const string& name,
         const double tanA,
         const double positionZ,

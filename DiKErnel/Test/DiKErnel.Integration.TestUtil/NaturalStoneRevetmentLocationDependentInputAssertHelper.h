@@ -27,7 +27,7 @@ namespace DiKErnel::Integration::TestUtil
     class NaturalStoneRevetmentLocationDependentInputAssertHelper
     {
         public:
-            static void AssertMandatoryProperties(
+            static void AssertGeneralProperties(
                 const std::string& name,
                 double tanA,
                 double positionZ,

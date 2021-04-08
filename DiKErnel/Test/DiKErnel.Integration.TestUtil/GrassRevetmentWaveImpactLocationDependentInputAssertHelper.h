@@ -27,7 +27,7 @@ namespace DiKErnel::Integration::TestUtil
     class GrassRevetmentWaveImpactLocationDependentInputAssertHelper
     {
         public:
-            static void AssertMandatoryProperties(
+            static void AssertGeneralProperties(
                 const std::string& name,
                 double positionZ,
                 const GrassRevetmentWaveImpactLocationDependentInput& locationDependentInput);

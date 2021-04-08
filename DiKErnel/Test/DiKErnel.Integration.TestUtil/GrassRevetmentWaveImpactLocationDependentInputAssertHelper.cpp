@@ -26,7 +26,7 @@ namespace DiKErnel::Integration::TestUtil
 {
     using namespace std;
 
-    void GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertMandatoryProperties(
+    void GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertGeneralProperties(
         const string& name,
         const double positionZ,
         const GrassRevetmentWaveImpactLocationDependentInput& locationDependentInput)
