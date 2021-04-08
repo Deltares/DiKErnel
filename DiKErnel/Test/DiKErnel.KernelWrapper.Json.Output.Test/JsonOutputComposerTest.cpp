@@ -39,9 +39,7 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
 
     struct JsonOutputComposerTest : Test
     {
-        const string _actualOutputFilePath =
-        (filesystem::temp_directory_path()
-            / "actualOutput.json").string();
+        const string _actualOutputFilePath = (filesystem::temp_directory_path() / "actualOutput.json").string();
 
         vector<unique_ptr<ILocationDependentInput>> _locationDependentInputItems = vector<unique_ptr<ILocationDependentInput>>();
         vector<unique_ptr<ITimeDependentInput>> _timeDependentInputItems = vector<unique_ptr<ITimeDependentInput>>();
