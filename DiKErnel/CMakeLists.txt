@@ -12,7 +12,7 @@ set(CMAKE_CXX_STANDARD 17)
 
 if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
   message("Building with code coverage")
-  set(CMAKE_CXX_FLAGS "-g -O0 -Wall -fprofile-arcs -ftest-coverage -static-libgcc -static-libstdc++")
+  set(CMAKE_CXX_FLAGS "-g -O0 -Wall -fprofile-arcs -ftest-coverage -fprofile-abs-path -static-libgcc -static-libstdc++")
   set(CMAKE_CXX_OUTPUT_EXTENSION_REPLACE 1)
 else()
   message("Building without code coverage")
