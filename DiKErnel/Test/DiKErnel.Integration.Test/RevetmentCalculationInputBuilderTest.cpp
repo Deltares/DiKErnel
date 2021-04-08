@@ -116,14 +116,15 @@ namespace DiKErnel::Integration::Test
         ASSERT_EQ(0, calculationInput->GetLocationDependentInputItems().size());
     }
 
-    TEST_F(RevetmentCalculationInputBuilderTest, GivenBuilder_WhenAddTimeStepWithInvalidEndTime_ThenThrowsRevetmentCalculationInputBuilderException)
+    TEST_F(RevetmentCalculationInputBuilderTest,
+           GivenBuilder_WhenAddTimeStepWithInvalidEndTime_ThenThrowsRevetmentCalculationInputBuilderException)
     {
         // Given & When
         const auto action = &RevetmentCalculationInputBuilderTest::CreateBuilderAndAddInvalidTimeStep;
 
         // Then
         AssertHelper::AssertThrowsWithMessageAndInnerException<RevetmentCalculationInputBuilderException, InvalidCalculationDataException>(
-            action, "Could not create TimeDependentInput.", "'beginTime' should be smaller than 'endTime'.");
+            action, "Could not create class DiKErnel::Integration::TimeDependentInput.", "'beginTime' should be smaller than 'endTime'.");
     }
 
     TEST_F(RevetmentCalculationInputBuilderTest, GivenBuilderWithInvalidTimeSteps_WhenBuild_ThenThrowsRevetmentCalculationInputBuilderException)
@@ -133,19 +134,20 @@ namespace DiKErnel::Integration::Test
 
         // Then
         AssertHelper::AssertThrowsWithMessageAndInnerException<RevetmentCalculationInputBuilderException, InvalidCalculationDataException>(
-            action, "Could not create TimeDependentInput.",
+            action, "Could not create class DiKErnel::Integration::CalculationInput.",
             "The begin time of a successive element must equal the end time of the previous element.");
     }
 
     TEST_F(RevetmentCalculationInputBuilderTest,
-        GivenBuilder_WhenAddingNaturalStoneLocationWithInvalidTopLayerType_ThenThrowsRevetmentCalculationInputBuilderException)
+           GivenBuilder_WhenAddingNaturalStoneLocationWithInvalidTopLayerType_ThenThrowsRevetmentCalculationInputBuilderException)
     {
         // Given & When
         const auto action = &RevetmentCalculationInputBuilderTest::CreateBuilderAndAddNaturalStoneRevetmentLocationWithInvalidTopLayerType;
 
         // Then
         AssertHelper::AssertThrowsWithMessageAndInnerException<RevetmentCalculationInputBuilderException, DefaultsFactoryException>(
-            action, "Could not create NaturalStoneRevetmentLocationDependentInput.", "Couldn't create defaults for given top layer type.");
+            action, "Could not create class DiKErnel::Integration::NaturalStoneRevetmentLocationDependentInput.",
+            "Couldn't create defaults for the given top layer type.");
     }
 
     TEST_F(RevetmentCalculationInputBuilderTest, GivenBuilderWithFullyConfiguredNaturalStoneLocationAdded_WhenBuild_ThenReturnsCalculationInput)
@@ -296,14 +298,15 @@ namespace DiKErnel::Integration::Test
     }
 
     TEST_F(RevetmentCalculationInputBuilderTest,
-        GivenBuilder_WhenAddingGrassWaveImpactLocationWithInvalidTopLayerType_ThenThrowsRevetmentCalculationInputBuilderException)
+           GivenBuilder_WhenAddingGrassWaveImpactLocationWithInvalidTopLayerType_ThenThrowsRevetmentCalculationInputBuilderException)
     {
         // Given & When
         const auto action = &RevetmentCalculationInputBuilderTest::CreateBuilderAndAddGrassRevetmentWaveImpactLocationWithInvalidTopLayerType;
 
         // Then
         AssertHelper::AssertThrowsWithMessageAndInnerException<RevetmentCalculationInputBuilderException, DefaultsFactoryException>(
-            action, "Could not create GrassRevetmentWaveImpactLocationDependentInput.", "Couldn't create defaults for given top layer type.");
+            action, "Could not create class DiKErnel::Integration::GrassRevetmentWaveImpactLocationDependentInput.",
+            "Couldn't create defaults for the given top layer type.");
     }
 
     TEST_F(RevetmentCalculationInputBuilderTest, GivenBuilderWithFullyConfiguredGrassWaveImpactLocationAdded_WhenBuild_ThenReturnsCalculationInput)
