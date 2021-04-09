@@ -99,7 +99,6 @@ namespace DiKErnel::Integration
                 const double* doublePtr,
                 double defaultValue);
 
-            template<typename T>
             [[noreturn]]
             static void ThrowWithMessage();
     };

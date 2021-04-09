@@ -124,7 +124,7 @@ namespace DiKErnel::Integration::Test
 
         // Then
         AssertHelper::AssertThrowsWithMessageAndInnerException<RevetmentCalculationInputBuilderException, InvalidCalculationDataException>(
-            action, "Could not create class DiKErnel::Integration::TimeDependentInput.", "'beginTime' should be smaller than 'endTime'.");
+            action, "Could not create instance.", "'beginTime' should be smaller than 'endTime'.");
     }
 
     TEST_F(RevetmentCalculationInputBuilderTest, GivenBuilderWithInvalidTimeSteps_WhenBuild_ThenThrowsRevetmentCalculationInputBuilderException)
@@ -134,8 +134,7 @@ namespace DiKErnel::Integration::Test
 
         // Then
         AssertHelper::AssertThrowsWithMessageAndInnerException<RevetmentCalculationInputBuilderException, InvalidCalculationDataException>(
-            action, "Could not create class DiKErnel::Integration::CalculationInput.",
-            "The begin time of a successive element must equal the end time of the previous element.");
+            action, "Could not create instance.", "The begin time of a successive element must equal the end time of the previous element.");
     }
 
     TEST_F(RevetmentCalculationInputBuilderTest,
@@ -146,8 +145,7 @@ namespace DiKErnel::Integration::Test
 
         // Then
         AssertHelper::AssertThrowsWithMessageAndInnerException<RevetmentCalculationInputBuilderException, DefaultsFactoryException>(
-            action, "Could not create class DiKErnel::Integration::NaturalStoneRevetmentLocationDependentInput.",
-            "Couldn't create defaults for the given top layer type.");
+            action, "Could not create instance.", "Couldn't create defaults for the given top layer type.");
     }
 
     TEST_F(RevetmentCalculationInputBuilderTest, GivenBuilderWithFullyConfiguredNaturalStoneLocationAdded_WhenBuild_ThenReturnsCalculationInput)
@@ -305,8 +303,7 @@ namespace DiKErnel::Integration::Test
 
         // Then
         AssertHelper::AssertThrowsWithMessageAndInnerException<RevetmentCalculationInputBuilderException, DefaultsFactoryException>(
-            action, "Could not create class DiKErnel::Integration::GrassRevetmentWaveImpactLocationDependentInput.",
-            "Couldn't create defaults for the given top layer type.");
+            action, "Could not create instance.", "Couldn't create defaults for the given top layer type.");
     }
 
     TEST_F(RevetmentCalculationInputBuilderTest, GivenBuilderWithFullyConfiguredGrassWaveImpactLocationAdded_WhenBuild_ThenReturnsCalculationInput)

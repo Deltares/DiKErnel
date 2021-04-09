@@ -52,7 +52,7 @@ namespace DiKErnel::Integration
         }
         catch (const InvalidCalculationDataException&)
         {
-            ThrowWithMessage<TimeDependentInput>();
+            ThrowWithMessage();
         }
     }
 
@@ -67,7 +67,7 @@ namespace DiKErnel::Integration
         }
         catch (const DefaultsFactoryException&)
         {
-            ThrowWithMessage<NaturalStoneRevetmentLocationDependentInput>();
+            ThrowWithMessage();
         }
 
         auto hydraulicLoads = make_unique<NaturalStoneRevetmentHydraulicLoads>(
@@ -132,7 +132,7 @@ namespace DiKErnel::Integration
         }
         catch (const DefaultsFactoryException&)
         {
-            ThrowWithMessage<GrassRevetmentWaveImpactLocationDependentInput>();
+            ThrowWithMessage();
         }
 
         auto waveAngleImpact = make_unique<GrassRevetmentWaveImpactWaveAngleImpact>(
@@ -167,7 +167,7 @@ namespace DiKErnel::Integration
         }
         catch (const InvalidCalculationDataException&)
         {
-            ThrowWithMessage<CalculationInput>();
+            ThrowWithMessage();
         }
     }
 
@@ -180,9 +180,8 @@ namespace DiKErnel::Integration
                    : defaultValue;
     }
 
-    template <typename T>
     void RevetmentCalculationInputBuilder::ThrowWithMessage()
     {
-        throw_with_nested(RevetmentCalculationInputBuilderException(string("Could not create ").append(typeid(T).name()).append(".")));
+        throw_with_nested(RevetmentCalculationInputBuilderException("Could not create instance."));
     }
 }
