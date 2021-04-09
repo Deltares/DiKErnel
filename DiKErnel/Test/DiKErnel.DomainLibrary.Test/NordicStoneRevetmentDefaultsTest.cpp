@@ -50,7 +50,7 @@ namespace DiKErnel::DomainLibrary::Test
         ASSERT_DOUBLE_EQ(0.2, defaults.GetLowerLimitLoadingBll());
         ASSERT_DOUBLE_EQ(4, defaults.GetLowerLimitLoadingCll());
         ASSERT_DOUBLE_EQ(0.42, defaults.GetDistanceMaximumWaveElevationAsmax());
-        ASSERT_DOUBLE_EQ(0.9,  defaults.GetDistanceMaximumWaveElevationBsmax());
+        ASSERT_DOUBLE_EQ(0.9, defaults.GetDistanceMaximumWaveElevationBsmax());
         ASSERT_DOUBLE_EQ(0.96, defaults.GetNormativeWidthOfWaveImpactAwi());
         ASSERT_DOUBLE_EQ(0.11, defaults.GetNormativeWidthOfWaveImpactBwi());
         ASSERT_DOUBLE_EQ(78, defaults.GetWaveAngleImpactBetamax());

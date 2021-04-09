@@ -22,8 +22,8 @@
 
 #include <memory>
 
-#include "NaturalStoneRevetmentTopLayerType.h"
 #include "INaturalStoneRevetmentDefaults.h"
+#include "NaturalStoneRevetmentTopLayerType.h"
 
 namespace DiKErnel::Integration
 {

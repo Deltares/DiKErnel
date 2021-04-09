@@ -184,7 +184,8 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
             0.5, *grassRevetmentWaveImpactLocationDependentInputItem3);
     }
 
-    TEST_F(JsonInputComposerTest, GivenJsonInputWithInvalidNaturalStoneRevetmentTypeTopLayer_WhenGetCalculationInputFromJson_ThenThrowsJsonConversionException)
+    TEST_F(JsonInputComposerTest,
+           GivenJsonInputWithInvalidNaturalStoneRevetmentTypeTopLayer_WhenGetCalculationInputFromJson_ThenThrowsJsonConversionException)
     {
         // Given & When
         const auto action = &JsonInputComposerTest::GetCalculationInputFromJsonWithInvalidNaturalStoneRevetmentTopLayerType;
@@ -193,7 +194,8 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
         AssertHelper::AssertThrowsWithMessage<JsonConversionException>(action, "Cannot convert top layer type.");
     }
 
-    TEST_F(JsonInputComposerTest, GivenJsonInputWithInvalidGrassRevetmentTypeTopLayer_WhenGetCalculationInputFromJson_ThenThrowsJsonConversionException)
+    TEST_F(JsonInputComposerTest,
+           GivenJsonInputWithInvalidGrassRevetmentTypeTopLayer_WhenGetCalculationInputFromJson_ThenThrowsJsonConversionException)
     {
         // Given & When
         const auto action = &JsonInputComposerTest::GetCalculationInputFromJsonWithInvalidGrassRevetmentTopLayerType;
