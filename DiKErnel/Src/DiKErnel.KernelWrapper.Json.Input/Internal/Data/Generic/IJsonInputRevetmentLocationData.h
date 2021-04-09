@@ -25,6 +25,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
     class IJsonInputRevetmentLocationData
     {
         public:
-            virtual ~IJsonInputRevetmentLocationData() { }
+            virtual ~IJsonInputRevetmentLocationData() = default;
     };
 }
