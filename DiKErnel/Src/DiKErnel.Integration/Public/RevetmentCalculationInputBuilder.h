@@ -67,7 +67,7 @@ namespace DiKErnel::Integration
              * \param constructionProperties
              *        The properties to construct the natural stone location dependent input.
              * \exception RevetmentCalculationInputBuilderException
-             *            Thrown when the top layer type is invalid
+             *            Thrown when the top layer type is invalid.
              */
             void AddNaturalStoneLocation(
                 const NaturalStoneRevetmentLocationConstructionProperties& constructionProperties);
