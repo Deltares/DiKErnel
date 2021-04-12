@@ -24,4 +24,34 @@
 
 namespace DiKErnel::FunctionLibrary::Test
 {
+    TEST(GrassRevetmentWaveRunupRayleighTest, CumulativeOverload_ValidInput_ExpectedValue)
+    {
+        // Setup
+        const auto averageNumberOfWaves = 187.5;
+        const auto representativeWaveRunup2p = 2.98;
+        const auto fixedNumberOfWaves = 10000;
+        const auto positionZ = 1.0;
+        const auto waterLevel = 0.03;
+        const auto criticalFrontVelocity = 4.0;
+        const auto increasedLoadTransitionAlphaM = 1.1;
+        const auto reducedStrengthTransitionAlphaS = 1.2;
+        const auto frontVelocityCu = 1.3;
+        const auto gravitationalAcceleration = 9.81;
+
+        // Call
+        const auto cumulativeOverload = GrassRevetmentWaveRunupRayleigh::CumulativeOverload(
+            averageNumberOfWaves,
+            representativeWaveRunup2p,
+            fixedNumberOfWaves,
+            positionZ,
+            waterLevel,
+            criticalFrontVelocity,
+            increasedLoadTransitionAlphaM,
+            reducedStrengthTransitionAlphaS,
+            frontVelocityCu,
+            gravitationalAcceleration);
+
+        // Assert
+        ASSERT_DOUBLE_EQ(215.067825119515, cumulativeOverload);
+    }
 }
