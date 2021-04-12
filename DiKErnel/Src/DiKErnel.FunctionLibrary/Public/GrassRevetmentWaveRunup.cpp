@@ -25,4 +25,11 @@
 namespace DiKErnel::FunctionLibrary
 {
     using namespace std;
+
+    double GrassRevetmentWaveRunup::IncrementDamage(
+        const double cumulativeOverloadWaveRunup,
+        const double criticalCumulativeOverloadWaveRunup)
+    {
+        return cumulativeOverloadWaveRunup / criticalCumulativeOverloadWaveRunup;
+    }
 }

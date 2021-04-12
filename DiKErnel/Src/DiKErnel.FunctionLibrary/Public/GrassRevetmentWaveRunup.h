@@ -28,5 +28,19 @@ namespace DiKErnel::FunctionLibrary
     class GrassRevetmentWaveRunup
     {
         public:
+            /*!
+             * \brief Calculates the increment of damage.
+             * \param cumulativeOverloadWaveRunup
+             *        The cumulative overload wave run-up.
+             *        Unit = [m^2/s^2]
+             * \param criticalCumulativeOverloadWaveRunup
+             *        The critical cumulative overload wave run-up.
+             *        Unit = [m^2/s^2]
+             * \return The increment of damage.
+             *         Unit = [-]
+             */
+            static double IncrementDamage(
+                double cumulativeOverloadWaveRunup,
+                double criticalCumulativeOverloadWaveRunup);
     };
 }
