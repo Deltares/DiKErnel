@@ -32,9 +32,16 @@ namespace DiKErnel::FunctionLibrary
         const double criticalFrontVelocity,
         const double increasedLoadTransitionAlphaM,
         const double reducedStrengthTransitionAlphaS,
-        const double cumulativeOverloadNf)
+        const int cumulativeOverloadNf)
     {
-        return averageNumberOfWaves / cumulativeOverloadNf * max(increasedLoadTransitionAlphaM * pow(frontVelocity, 2.0)
-                                                                 - reducedStrengthTransitionAlphaS * pow(criticalFrontVelocity, 2.0), 0.0);
+        auto sum = 0.0;
+
+        for (auto i = 1; i <= cumulativeOverloadNf; ++i)
+        {
+            sum += max(increasedLoadTransitionAlphaM * pow(frontVelocity, 2.0)
+                       - reducedStrengthTransitionAlphaS * pow(criticalFrontVelocity, 2.0), 0.0);
+        }
+
+        return averageNumberOfWaves / cumulativeOverloadNf * sum;
     }
 }

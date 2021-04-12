@@ -58,7 +58,7 @@ namespace DiKErnel::FunctionLibrary
                 double criticalFrontVelocity,
                 double increasedLoadTransitionAlphaM,
                 double reducedStrengthTransitionAlphaS,
-                double cumulativeOverloadNf
+                int cumulativeOverloadNf
             );
     };
 }
