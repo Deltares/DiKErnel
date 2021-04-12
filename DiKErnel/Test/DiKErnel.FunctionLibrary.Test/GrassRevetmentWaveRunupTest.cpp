@@ -50,4 +50,30 @@ namespace DiKErnel::FunctionLibrary::Test
         // Assert
         ASSERT_DOUBLE_EQ(115.38461538461539, averageNumberOfWaves);
     }
+
+    TEST(GrassRevetmentWaveRunupTest, RepresentativeWaveRunup2p_ValidInput_ExpectedValue)
+    {
+        // Setup
+        const auto surfSimilarityParameter = 1.436;
+        const auto waveAngleImpact = 0.901;
+        const auto waveHeightHm0 = 2.0;
+        const auto representativeWaveRunup2pGammab = 1.1;
+        const auto representativeWaveRunup2pGammaf = 1.2;
+        const auto representativeWaveRunup2pAru = 1.65;
+        const auto representativeWaveRunup2pBru = 4.0;
+        const auto representativeWaveRunup2pCru = 1.5;
+
+        // Call
+        const auto representativeWaveRunup2p = GrassRevetmentWaveRunup::RepresentativeWaveRunup2p(surfSimilarityParameter,
+            waveAngleImpact,
+            waveHeightHm0,
+            representativeWaveRunup2pGammab,
+            representativeWaveRunup2pGammaf,
+            representativeWaveRunup2pAru,
+            representativeWaveRunup2pBru,
+            representativeWaveRunup2pCru);
+
+        // Assert
+        ASSERT_DOUBLE_EQ(5.635949616, representativeWaveRunup2p);
+    }
 }

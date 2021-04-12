@@ -62,5 +62,45 @@ namespace DiKErnel::FunctionLibrary
                 double wavePeriodTm10,
                 double averageNumberOfWavesCtm
             );
+
+            /*!
+             * \brief Calculates the representative wave run-up 2p.
+             * \param surfSimilarityParameter
+             *        The surf similarity parameter.
+             *        Unit = [-]
+             * \param waveAngleImpact
+             *        The wave impact with respect to the wave angle.
+             *        Unit = [-]
+             * \param waveHeightHm0
+             *        The wave height.
+             *        Unit = [m]
+             * \param representativeWaveRunup2pGammab
+             *        The Gammab coefficient.
+             *        Unit = [-]
+             * \param representativeWaveRunup2pGammaf
+             *        The Gammaf coefficient.
+             *        Unit = [-]
+             * \param representativeWaveRunup2pAru
+             *        The Aru coefficient.
+             *        Unit = [-]
+             * \param representativeWaveRunup2pBru
+             *        The Bru coefficient.
+             *        Unit = [-]
+             * \param representativeWaveRunup2pCru
+             *        The Cru coefficient.
+             *        Unit = [-]
+             * \return The representative wave run-up 2p.
+             *         Unit = [m]
+             */
+            static double RepresentativeWaveRunup2p(
+                double surfSimilarityParameter,
+                double waveAngleImpact,
+                double waveHeightHm0,
+                double representativeWaveRunup2pGammab,
+                double representativeWaveRunup2pGammaf,
+                double representativeWaveRunup2pAru,
+                double representativeWaveRunup2pBru,
+                double representativeWaveRunup2pCru
+            );
     };
 }
