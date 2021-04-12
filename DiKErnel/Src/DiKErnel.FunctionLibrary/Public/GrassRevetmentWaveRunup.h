@@ -75,10 +75,10 @@ namespace DiKErnel::FunctionLibrary
              *        The wave height.
              *        Unit = [m]
              * \param representativeWaveRunup2pGammab
-             *        The Gammab coefficient.
+             *        The Gammab value.
              *        Unit = [-]
              * \param representativeWaveRunup2pGammaf
-             *        The Gammaf coefficient.
+             *        The Gammaf value.
              *        Unit = [-]
              * \param representativeWaveRunup2pAru
              *        The Aru coefficient.

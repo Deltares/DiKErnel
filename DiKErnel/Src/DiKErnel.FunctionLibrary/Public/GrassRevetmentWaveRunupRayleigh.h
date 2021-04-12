@@ -29,5 +29,36 @@ namespace DiKErnel::FunctionLibrary
     class GrassRevetmentWaveRunupRayleigh
     {
         public:
+            /*!
+             * \brief Calculates the cumulative overload.
+             * \param averageNumberOfWaves
+             *        The average number of waves.
+             *        Unit = [-]
+             * \param frontVelocity
+             *        The front velocity.
+             *        Unit = [m/s]
+             * \param criticalFrontVelocity
+             *        The critical front velocity.
+             *        Unit = [m/s]
+             * \param increasedLoadTransitionAlphaM
+             *        The AlphaM value.
+             *        Unit = [-]
+             * \param reducedStrengthTransitionAlphaS
+             *        The AlphaS value.
+             *        Unit = [-]
+             * \param cumulativeOverloadNf
+             *        The Nf value.
+             *        Unit = [-]
+             * \return The cumulative overload.
+             *         Unit = [m^2/s^2]
+             */
+            static double CumulativeOverload(
+                double averageNumberOfWaves,
+                double frontVelocity,
+                double criticalFrontVelocity,
+                double increasedLoadTransitionAlphaM,
+                double reducedStrengthTransitionAlphaS,
+                double cumulativeOverloadNf
+            );
     };
 }

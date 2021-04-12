@@ -25,4 +25,16 @@
 namespace DiKErnel::FunctionLibrary
 {
     using namespace std;
+
+    double GrassRevetmentWaveRunupRayleigh::CumulativeOverload(
+        const double averageNumberOfWaves,
+        const double frontVelocity,
+        const double criticalFrontVelocity,
+        const double increasedLoadTransitionAlphaM,
+        const double reducedStrengthTransitionAlphaS,
+        const double cumulativeOverloadNf)
+    {
+        return averageNumberOfWaves / cumulativeOverloadNf * max(increasedLoadTransitionAlphaM * pow(frontVelocity, 2.0)
+                                                                 - reducedStrengthTransitionAlphaS * pow(criticalFrontVelocity, 2.0), 0.0);
+    }
 }
