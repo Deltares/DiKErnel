@@ -41,12 +41,12 @@ namespace DiKErnel::KernelWrapper::Json::Input
         _representativeWaveRunup2PGammaf = move(representativeWaveRunup2PGammaf);
     }
 
-    const double* JsonInputGrassRevetmentWaveRunupProfileSchematizationData::SetRepresentativeWaveRunup2PGammab() const
+    const double* JsonInputGrassRevetmentWaveRunupProfileSchematizationData::GetRepresentativeWaveRunup2PGammab() const
     {
         return _representativeWaveRunup2PGammab.get();
     }
 
-    const double* JsonInputGrassRevetmentWaveRunupProfileSchematizationData::SetRepresentativeWaveRunup2PGammaf() const
+    const double* JsonInputGrassRevetmentWaveRunupProfileSchematizationData::GetRepresentativeWaveRunup2PGammaf() const
     {
         return _representativeWaveRunup2PGammaf.get();
     }

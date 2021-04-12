@@ -38,9 +38,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
             void SetRepresentativeWaveRunup2PGammaf(
                 std::unique_ptr<double> representativeWaveRunup2PGammaf);
 
-            const double* SetRepresentativeWaveRunup2PGammab() const;
+            const double* GetRepresentativeWaveRunup2PGammab() const;
 
-            const double* SetRepresentativeWaveRunup2PGammaf() const;
+            const double* GetRepresentativeWaveRunup2PGammaf() const;
 
         private:
             std::unique_ptr<double> _representativeWaveRunup2PGammab;
