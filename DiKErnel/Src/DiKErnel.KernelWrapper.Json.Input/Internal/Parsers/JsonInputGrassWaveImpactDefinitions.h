@@ -47,8 +47,5 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
             inline static const std::string LOWER_LIMIT_LOADING = "OndergrensBelastingGrasGolfklap";
             inline static const std::string LOWER_LIMIT_LOADING_ALL = "OndergrensBelastingGrasGolfklapAll";
-
-            inline static const std::string TOP_LAYER_TYPE_CLOSED_SOD = "GrasGeslotenZode";
-            inline static const std::string TOP_LAYER_TYPE_OPEN_SOD = "GrasOpenZode";
     };
 }

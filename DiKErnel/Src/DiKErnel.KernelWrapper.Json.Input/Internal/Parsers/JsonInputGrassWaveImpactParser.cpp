@@ -21,6 +21,7 @@
 #include "JsonInputGrassWaveImpactParser.h"
 
 #include "JsonInputDefinitions.h"
+#include "JsonInputGrassRevetmentDefinitions.h"
 #include "JsonInputGrassWaveImpactDefinitions.h"
 #include "JsonInputParserHelper.h"
 
@@ -35,10 +36,10 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 JsonInputGrassRevetmentTopLayerType::Unknown, nullptr
             },
             {
-                JsonInputGrassRevetmentTopLayerType::ClosedSod, JsonInputGrassWaveImpactDefinitions::TOP_LAYER_TYPE_CLOSED_SOD
+                JsonInputGrassRevetmentTopLayerType::ClosedSod, JsonInputGrassRevetmentDefinitions::TOP_LAYER_TYPE_CLOSED_SOD
             },
             {
-                JsonInputGrassRevetmentTopLayerType::OpenSod, JsonInputGrassWaveImpactDefinitions::TOP_LAYER_TYPE_OPEN_SOD
+                JsonInputGrassRevetmentTopLayerType::OpenSod, JsonInputGrassRevetmentDefinitions::TOP_LAYER_TYPE_OPEN_SOD
             }
         });
 
