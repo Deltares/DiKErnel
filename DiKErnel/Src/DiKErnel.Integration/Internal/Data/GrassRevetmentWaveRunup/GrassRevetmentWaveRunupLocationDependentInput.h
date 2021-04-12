@@ -22,6 +22,8 @@
 
 #include <memory>
 
+#include "GrassRevetmentWaveRunupRepresentative2P.h"
+#include "GrassRevetmentWaveRunupWaveAngleImpact.h"
 #include "LocationDependentInput.h"
 
 namespace DiKErnel::Integration
@@ -41,7 +43,9 @@ namespace DiKErnel::Integration
                 double criticalFrontVelocity,
                 double increasedLoadTransitionAlphaM,
                 double reducedStrengthTransitionAlphaS,
-                double averageNumberOfWavesCtm);
+                double averageNumberOfWavesCtm,
+                std::unique_ptr<GrassRevetmentWaveRunupRepresentative2P> representative2P,
+                std::unique_ptr<GrassRevetmentWaveRunupWaveAngleImpact> waveAngleImpact);
 
             std::unique_ptr<Core::TimeDependentOutput> Calculate(
                 double initialDamage,
@@ -63,6 +67,10 @@ namespace DiKErnel::Integration
 
             double GetAverageNumberOfWavesCtm() const;
 
+            GrassRevetmentWaveRunupRepresentative2P& GetRepresentative2P() const;
+
+            GrassRevetmentWaveRunupWaveAngleImpact& GetWaveAngleImpact() const;
+
         private:
             double _tanA;
             double _representativeWaveRunup2PGammab;
@@ -72,5 +80,7 @@ namespace DiKErnel::Integration
             double _increasedLoadTransitionAlphaM;
             double _reducedStrengthTransitionAlphaS;
             double _averageNumberOfWavesCtm;
+            std::unique_ptr<GrassRevetmentWaveRunupRepresentative2P> _representative2P;
+            std::unique_ptr<GrassRevetmentWaveRunupWaveAngleImpact> _waveAngleImpact;
     };
 }

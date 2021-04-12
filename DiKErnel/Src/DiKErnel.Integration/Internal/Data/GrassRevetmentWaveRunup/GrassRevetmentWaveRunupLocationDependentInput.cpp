@@ -37,7 +37,9 @@ namespace DiKErnel::Integration
         const double criticalFrontVelocity,
         const double increasedLoadTransitionAlphaM,
         const double reducedStrengthTransitionAlphaS,
-        const double averageNumberOfWavesCtm)
+        const double averageNumberOfWavesCtm,
+        unique_ptr<GrassRevetmentWaveRunupRepresentative2P> representative2P,
+        unique_ptr<GrassRevetmentWaveRunupWaveAngleImpact> waveAngleImpact)
         : LocationDependentInput(move(name), initialDamage, failureNumber, positionZ),
           _tanA(tanA),
           _representativeWaveRunup2PGammab(representativeWaveRunup2PGammab),
@@ -46,7 +48,9 @@ namespace DiKErnel::Integration
           _criticalFrontVelocity(criticalFrontVelocity),
           _increasedLoadTransitionAlphaM(increasedLoadTransitionAlphaM),
           _reducedStrengthTransitionAlphaS(reducedStrengthTransitionAlphaS),
-          _averageNumberOfWavesCtm(averageNumberOfWavesCtm) {}
+          _averageNumberOfWavesCtm(averageNumberOfWavesCtm),
+          _representative2P(move(representative2P)),
+          _waveAngleImpact(move(waveAngleImpact)) {}
 
     unique_ptr<TimeDependentOutput> GrassRevetmentWaveRunupLocationDependentInput::Calculate(
         const double initialDamage,
@@ -93,5 +97,15 @@ namespace DiKErnel::Integration
     double GrassRevetmentWaveRunupLocationDependentInput::GetAverageNumberOfWavesCtm() const
     {
         return _averageNumberOfWavesCtm;
+    }
+
+    GrassRevetmentWaveRunupRepresentative2P& GrassRevetmentWaveRunupLocationDependentInput::GetRepresentative2P() const
+    {
+        return *_representative2P;
+    }
+
+    GrassRevetmentWaveRunupWaveAngleImpact& GrassRevetmentWaveRunupLocationDependentInput::GetWaveAngleImpact() const
+    {
+        return *_waveAngleImpact;
     }
 }
