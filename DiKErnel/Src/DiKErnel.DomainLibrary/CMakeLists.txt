@@ -26,7 +26,12 @@ set(SOURCEFILES_PUBLIC_GRASS_REVETMENT_WAVE_RUNUP
   ${PUBLIC_GRASS_REVETMENT_WAVE_RUNUP_FOLDER}/GrassRevetmentWaveRunupClosedSodDefaults.h
   ${PUBLIC_GRASS_REVETMENT_WAVE_RUNUP_FOLDER}/GrassRevetmentWaveRunupOpenSodDefaults.cpp
   ${PUBLIC_GRASS_REVETMENT_WAVE_RUNUP_FOLDER}/GrassRevetmentWaveRunupOpenSodDefaults.h
+  ${PUBLIC_GRASS_REVETMENT_WAVE_RUNUP_FOLDER}/GrassRevetmentWaveRunupRayleighClosedSodDefaults.cpp
+  ${PUBLIC_GRASS_REVETMENT_WAVE_RUNUP_FOLDER}/GrassRevetmentWaveRunupRayleighClosedSodDefaults.h
+  ${PUBLIC_GRASS_REVETMENT_WAVE_RUNUP_FOLDER}/GrassRevetmentWaveRunupRayleighOpenSodDefaults.cpp
+  ${PUBLIC_GRASS_REVETMENT_WAVE_RUNUP_FOLDER}/GrassRevetmentWaveRunupRayleighOpenSodDefaults.h
   ${PUBLIC_GRASS_REVETMENT_WAVE_RUNUP_FOLDER}/IGrassRevetmentWaveRunupDefaults.h
+  ${PUBLIC_GRASS_REVETMENT_WAVE_RUNUP_FOLDER}/IGrassRevetmentWaveRunupRayleighDefaults.h
 )
 
 set(SOURCEFILES_PUBLIC_NATURAL_STONE_REVETMENT
