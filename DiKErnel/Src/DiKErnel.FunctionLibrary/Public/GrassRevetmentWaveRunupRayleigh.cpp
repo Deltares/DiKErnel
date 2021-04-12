@@ -38,19 +38,18 @@ namespace DiKErnel::FunctionLibrary
         const double frontVelocityCu,
         const double gravitationalAcceleration)
     {
-        auto sum = 0.0;
+        auto effectiveFrontVelocity = 0.0;
 
         for (auto k = 1; k <= fixedNumberOfWaves; ++k)
         {
             const auto waveRunup = WaveRunup(representativeWaveRunup2p, fixedNumberOfWaves, k);
-
             const auto frontVelocity = FrontVelocity(waveRunup, positionZ, waterLevel, frontVelocityCu, gravitationalAcceleration);
 
-            sum += max(increasedLoadTransitionAlphaM * pow(frontVelocity, 2.0)
-                       - reducedStrengthTransitionAlphaS * pow(criticalFrontVelocity, 2.0), 0.0);
+            effectiveFrontVelocity += max(increasedLoadTransitionAlphaM * pow(frontVelocity, 2.0)
+                                          - reducedStrengthTransitionAlphaS * pow(criticalFrontVelocity, 2.0), 0.0);
         }
 
-        return averageNumberOfWaves / fixedNumberOfWaves * sum;
+        return averageNumberOfWaves / fixedNumberOfWaves * effectiveFrontVelocity;
     }
 
     double GrassRevetmentWaveRunupRayleigh::FrontVelocity(
@@ -60,8 +59,8 @@ namespace DiKErnel::FunctionLibrary
         const double frontVelocityCu,
         const double gravitationalAcceleration)
     {
-        return frontVelocityCu * sqrt(gravitationalAcceleration * waveRunup) * max(
-            0.0, min(1.0, (waveRunup - (positionZ - waterLevel)) / (0.25 * waveRunup)));
+        return frontVelocityCu * sqrt(gravitationalAcceleration * waveRunup)
+                * max(0.0, min(1.0, (waveRunup - (positionZ - waterLevel)) / (0.25 * waveRunup)));
     }
 
     double GrassRevetmentWaveRunupRayleigh::WaveRunup(
@@ -69,6 +68,6 @@ namespace DiKErnel::FunctionLibrary
         const int fixedNumberOfWaves,
         const int waveNumber)
     {
-        return representativeWaveRunup2p * sqrt(log(1 - waveNumber / (fixedNumberOfWaves + 1.0)) / log(0.02));
+        return representativeWaveRunup2p * sqrt(log(1.0 - waveNumber / (fixedNumberOfWaves + 1.0)) / log(0.02));
     }
 }
