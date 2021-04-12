@@ -116,8 +116,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
             {
                 const auto& readDamageVariables = readLocation[JsonInputDefinitions::DAMAGE];
 
-                initialDamage = JsonInputParserHelper::ParseOptionalValue(readDamageVariables, JsonInputDefinitions::INITIAL_DAMAGE);
-                failureNumber = JsonInputParserHelper::ParseOptionalValue(readDamageVariables, JsonInputDefinitions::FAILURE_NUMBER);
+                initialDamage = JsonInputParserHelper::ParseOptionalDouble(readDamageVariables, JsonInputDefinitions::INITIAL_DAMAGE);
+                failureNumber = JsonInputParserHelper::ParseOptionalDouble(readDamageVariables, JsonInputDefinitions::FAILURE_NUMBER);
             }
 
             const auto& readRevetment = readLocation[JsonInputDefinitions::REVETMENT];

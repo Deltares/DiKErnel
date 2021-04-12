@@ -29,7 +29,17 @@ namespace DiKErnel::KernelWrapper::Json::Input
     class JsonInputParserHelper
     {
         public:
-            static std::unique_ptr<double> ParseOptionalValue(
+            static std::unique_ptr<double> ParseOptionalDouble(
+                const nlohmann::json& object,
+                const std::string& propertyName);
+
+            static std::unique_ptr<int> ParseOptionalInteger(
+                const nlohmann::json& object,
+                const std::string& propertyName);
+
+        private:
+            template<class T>
+            static std::unique_ptr<T> ParseOptionalValue(
                 const nlohmann::json& object,
                 const std::string& propertyName);
     };

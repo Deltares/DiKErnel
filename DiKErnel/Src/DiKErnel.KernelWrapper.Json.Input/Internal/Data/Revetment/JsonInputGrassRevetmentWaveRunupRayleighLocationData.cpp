@@ -30,10 +30,10 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
     #pragma region Set methods
 
-    void JsonInputGrassRevetmentWaveRunupRayleighLocationData::SetCumulativeOverloadNFixed(
-        unique_ptr<double> cumulativeOverloadNFixed)
+    void JsonInputGrassRevetmentWaveRunupRayleighLocationData::SetCumulativeOverloadNf(
+        unique_ptr<int> cumulativeOverloadNf)
     {
-        _cumulativeOverloadNFixed = move(cumulativeOverloadNFixed);
+        _cumulativeOverloadNf = move(cumulativeOverloadNf);
     }
 
     void JsonInputGrassRevetmentWaveRunupRayleighLocationData::SetFrontVelocityCu(
@@ -46,9 +46,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
     #pragma region Get methods
 
-    const double* JsonInputGrassRevetmentWaveRunupRayleighLocationData::GetCumulativeOverloadNFixed() const
+    const int* JsonInputGrassRevetmentWaveRunupRayleighLocationData::GetCumulativeOverloadNf() const
     {
-        return _cumulativeOverloadNFixed.get();
+        return _cumulativeOverloadNf.get();
     }
 
     const double* JsonInputGrassRevetmentWaveRunupRayleighLocationData::GetFrontVelocityCu() const

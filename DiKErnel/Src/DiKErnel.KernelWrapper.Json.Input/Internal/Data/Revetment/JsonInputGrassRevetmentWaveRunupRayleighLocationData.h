@@ -35,8 +35,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
             #pragma region Set methods
 
-            void SetCumulativeOverloadNFixed(
-                std::unique_ptr<double> cumulativeOverloadNFixed);
+            void SetCumulativeOverloadNf(
+                std::unique_ptr<int> cumulativeOverloadNf);
 
             void SetFrontVelocityCu(
                 std::unique_ptr<double> frontVelocityCu);
@@ -45,14 +45,14 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
             #pragma region Get methods
 
-            const double* GetCumulativeOverloadNFixed() const;
+            const int* GetCumulativeOverloadNf() const;
 
             const double* GetFrontVelocityCu() const;
 
             #pragma endregion
 
         private:
-            std::unique_ptr<double> _cumulativeOverloadNFixed = nullptr;
+            std::unique_ptr<int> _cumulativeOverloadNf = nullptr;
             std::unique_ptr<double> _frontVelocityCu = nullptr;
     };
 }

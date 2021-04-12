@@ -51,13 +51,13 @@ namespace DiKErnel::KernelWrapper::Json::Input
             readRevetment[JsonInputDefinitions::TYPE_TOP_LAYER].get<JsonInputGrassRevetmentTopLayerType>());
 
         locationData->SetTimeLineAgwi(
-            forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalValue(
+            forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
                 readRevetment, JsonInputGrassWaveImpactDefinitions::TIME_LINE_AGWI)));
         locationData->SetTimeLineBgwi(
-            forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalValue(
+            forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
                 readRevetment, JsonInputGrassWaveImpactDefinitions::TIME_LINE_BGWI)));
         locationData->SetTimeLineCgwi(
-            forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalValue(
+            forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
                 readRevetment, JsonInputGrassWaveImpactDefinitions::TIME_LINE_CGWI)));
 
         if (readCalculationMethod.contains(JsonInputGrassWaveImpactDefinitions::MINIMUM_WAVE_HEIGHT))
@@ -65,7 +65,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
             const auto& readMinimumWaveHeight = readCalculationMethod[JsonInputGrassWaveImpactDefinitions::MINIMUM_WAVE_HEIGHT];
 
             locationData->SetMinimumWaveHeightTemax(
-                forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalValue(
+                forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
                     readMinimumWaveHeight, JsonInputGrassWaveImpactDefinitions::MINIMUM_WAVE_HEIGHT_TEMAX)));
         }
 
@@ -74,7 +74,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
             const auto& readMaximumWaveHeight = readCalculationMethod[JsonInputGrassWaveImpactDefinitions::MAXIMUM_WAVE_HEIGHT];
 
             locationData->SetMaximumWaveHeightTemin(
-                forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalValue(
+                forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
                     readMaximumWaveHeight, JsonInputGrassWaveImpactDefinitions::MAXIMUM_WAVE_HEIGHT_TEMIN)));
         }
 
@@ -83,15 +83,15 @@ namespace DiKErnel::KernelWrapper::Json::Input
             const auto& readWaveAngleImpact = readCalculationMethod[JsonInputGrassWaveImpactDefinitions::WAVE_ANGLE_IMPACT];
 
             locationData->SetWaveAngleImpactNwa(
-                forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalValue(
+                forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
                     readWaveAngleImpact, JsonInputGrassWaveImpactDefinitions::WAVE_ANGLE_IMPACT_NWA)));
 
             locationData->SetWaveAngleImpactQwa(
-                forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalValue(
+                forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
                     readWaveAngleImpact, JsonInputGrassWaveImpactDefinitions::WAVE_ANGLE_IMPACT_QWA)));
 
             locationData->SetWaveAngleImpactRwa(
-                forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalValue(
+                forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
                     readWaveAngleImpact, JsonInputGrassWaveImpactDefinitions::WAVE_ANGLE_IMPACT_RWA)));
         }
 
@@ -100,7 +100,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
             const auto& readUpperLimitLoading = readCalculationMethod[JsonInputGrassWaveImpactDefinitions::UPPER_LIMIT_LOADING];
 
             locationData->SetUpperLimitLoadingAul(
-                forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalValue(
+                forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
                     readUpperLimitLoading, JsonInputGrassWaveImpactDefinitions::UPPER_LIMIT_LOADING_AUL)));
         }
 
@@ -109,7 +109,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
             const auto& readLowerLimitLoading = readCalculationMethod[JsonInputGrassWaveImpactDefinitions::LOWER_LIMIT_LOADING];
 
             locationData->SetLowerLimitLoadingAll(
-                forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalValue(
+                forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
                     readLowerLimitLoading, JsonInputGrassWaveImpactDefinitions::LOWER_LIMIT_LOADING_ALL)));
         }
 

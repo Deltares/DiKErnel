@@ -38,12 +38,12 @@ namespace DiKErnel::Integration
         const double averageNumberOfWavesCtm,
         unique_ptr<GrassRevetmentWaveRunupRepresentative2P> representative2P,
         unique_ptr<GrassRevetmentWaveRunupWaveAngleImpact> waveAngleImpact,
-        const double cumulativeOverloadNFixed,
+        const int cumulativeOverloadNf,
         const double frontVelocityCu)
         : GrassRevetmentWaveRunupLocationDependentInput(move(name), initialDamage, failureNumber, positionZ, tanA, criticalCumulativeOverload,
                                                         criticalFrontVelocity, increasedLoadTransitionAlphaM, reducedStrengthTransitionAlphaS,
                                                         averageNumberOfWavesCtm, move(representative2P), move(waveAngleImpact)),
-          _cumulativeOverloadNFixed(cumulativeOverloadNFixed),
+          _cumulativeOverloadNf(cumulativeOverloadNf),
           _frontVelocityCu(frontVelocityCu) {}
 
     unique_ptr<TimeDependentOutput> GrassRevetmentWaveRunupRayleighLocationDependentInput::Calculate(
@@ -53,9 +53,9 @@ namespace DiKErnel::Integration
         return nullptr;
     }
 
-    double GrassRevetmentWaveRunupRayleighLocationDependentInput::GetCumulativeOverloadNFixed() const
+    int GrassRevetmentWaveRunupRayleighLocationDependentInput::GetCumulativeOverloadNf() const
     {
-        return _cumulativeOverloadNFixed;
+        return _cumulativeOverloadNf;
     }
 
     double GrassRevetmentWaveRunupRayleighLocationDependentInput::GetFrontVelocityCu() const
