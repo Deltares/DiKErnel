@@ -38,7 +38,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 const std::string& propertyName);
 
         private:
-            template<class T>
+            template <class T>
             static std::unique_ptr<T> ParseOptionalValue(
                 const nlohmann::json& object,
                 const std::string& propertyName);

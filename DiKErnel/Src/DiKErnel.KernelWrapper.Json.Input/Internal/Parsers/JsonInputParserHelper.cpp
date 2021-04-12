@@ -40,12 +40,12 @@ namespace DiKErnel::KernelWrapper::Json::Input
     }
 
     template <class T>
-    std::unique_ptr<T> JsonInputParserHelper::ParseOptionalValue(
+    unique_ptr<T> JsonInputParserHelper::ParseOptionalValue(
         const json& object,
-        const std::string& propertyName)
+        const string& propertyName)
     {
         return object.contains(propertyName)
-            ? make_unique<T>(object[propertyName].get<T>())
-            : nullptr;
+                   ? make_unique<T>(object[propertyName].get<T>())
+                   : nullptr;
     }
 }
