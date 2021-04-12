@@ -22,6 +22,7 @@
 
 #include "JsonInputDefinitions.h"
 #include "JsonInputGrassRevetmentDefinitions.h"
+#include "JsonInputGrassRevetmentWaveRunupRayleighLocationData.h"
 #include "JsonInputGrassWaveRunupDefinitions.h"
 #include "JsonInputParserHelper.h"
 
@@ -47,7 +48,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
         const json& readRevetment,
         const json& readCalculationMethod)
     {
-        auto locationData = make_unique<JsonInputGrassRevetmentWaveRunupLocationData>(
+        auto locationData = make_unique<JsonInputGrassRevetmentWaveRunupRayleighLocationData>(
             readRevetment[JsonInputDefinitions::TYPE_TOP_LAYER].get<JsonInputGrassRevetmentTopLayerType>());
 
         locationData->SetCriticalCumulativeOverload(
@@ -67,7 +68,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
         {
             const auto& readAverageNumberWaveTimeStep = readCalculationMethod[JsonInputGrassWaveRunupDefinitions::AVERAGE_NUMBER_WAVE_TIMESTEP];
 
-            locationData->SetAverageNumberWaveTimeStepCtm(
+            locationData->SetAverageNumberOfWavesCtm(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalValue(
                     readAverageNumberWaveTimeStep, JsonInputGrassWaveRunupDefinitions::AVERAGE_NUMBER_WAVE_TIMESTEP_CTM)));
         }
@@ -104,7 +105,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
         const auto& readCalculationProtocol = readCalculationMethod[JsonInputGrassWaveRunupDefinitions::CALCULATION_PROTOCOL];
 
-        locationData->SetCumulativeOverloadTimeStepNf(
+        locationData->SetCumulativeOverloadNFixed(
             forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalValue(
                 readCalculationProtocol, JsonInputGrassWaveRunupDefinitions::CUMULATIVE_OVERLOAD_TIMESTEP_RDNF)));
 

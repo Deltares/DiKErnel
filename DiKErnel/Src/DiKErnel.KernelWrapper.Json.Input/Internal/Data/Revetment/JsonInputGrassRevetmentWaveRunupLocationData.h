@@ -30,9 +30,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
     class JsonInputGrassRevetmentWaveRunupLocationData : public IJsonInputRevetmentLocationData
     {
         public:
-            explicit JsonInputGrassRevetmentWaveRunupLocationData(
-                JsonInputGrassRevetmentTopLayerType topLayerType);
-
             #pragma region Set methods
 
             void SetCriticalCumulativeOverload(
@@ -47,8 +44,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
             void SetReducedStrengthTransitionAlphaS(
                 std::unique_ptr<double> reducedStrengthTransitionAlphaS);
 
-            void SetAverageNumberWaveTimeStepCtm(
-                std::unique_ptr<double> averageNumberWaveTimeStepCtm);
+            void SetAverageNumberOfWavesCtm(
+                std::unique_ptr<double> averageNumberOfWavesCtm);
 
             void SetRepresentativeWaveRunUp2PAru(
                 std::unique_ptr<double> representativeWaveRunUp2PAru);
@@ -65,12 +62,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
             void SetWaveAngleImpactBetamax(
                 std::unique_ptr<double> waveAngleImpactBetamax);
 
-            void SetCumulativeOverloadTimeStepNf(
-                std::unique_ptr<double> cumulativeOverloadTimeStepNf);
-
-            void SetFrontVelocityCu(
-                std::unique_ptr<double> frontVelocityCu);
-
             #pragma endregion
 
             #pragma region Get methods
@@ -85,7 +76,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
             const double* GetReducedStrengthTransitionAlphaS() const;
 
-            const double* GetAverageNumberWaveTimeStepCtm() const;
+            const double* GetAverageNumberOfWavesCtm() const;
 
             const double* GetRepresentativeWaveRunUp2PAru() const;
 
@@ -97,11 +88,11 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
             const double* GetWaveAngleImpactBetamax() const;
 
-            const double* GetCumulativeOverloadTimeStepNf() const;
-
-            const double* GetFrontVelocityCu() const;
-
             #pragma endregion
+
+        protected:
+            explicit JsonInputGrassRevetmentWaveRunupLocationData(
+                JsonInputGrassRevetmentTopLayerType topLayerType);
 
         private:
             JsonInputGrassRevetmentTopLayerType _topLayerType;
@@ -109,13 +100,11 @@ namespace DiKErnel::KernelWrapper::Json::Input
             std::unique_ptr<double> _criticalFrontVelocity = nullptr;
             std::unique_ptr<double> _increasedLoadTransitionAlphaM = nullptr;
             std::unique_ptr<double> _reducedStrengthTransitionAlphaS = nullptr;
-            std::unique_ptr<double> _averageNumberWaveTimeStepCtm = nullptr;
+            std::unique_ptr<double> _averageNumberOfWavesCtm = nullptr;
             std::unique_ptr<double> _representativeWaveRunUp2PAru = nullptr;
             std::unique_ptr<double> _representativeWaveRunUp2PBru = nullptr;
             std::unique_ptr<double> _representativeWaveRunUp2PCru = nullptr;
             std::unique_ptr<double> _waveAngleImpactAbeta = nullptr;
             std::unique_ptr<double> _waveAngleImpactBetamax = nullptr;
-            std::unique_ptr<double> _cumulativeOverloadTimeStepNf = nullptr;
-            std::unique_ptr<double> _frontVelocityCu = nullptr;
     };
 }

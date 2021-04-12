@@ -54,10 +54,10 @@ namespace DiKErnel::KernelWrapper::Json::Input
         _reducedStrengthTransitionAlphaS = move(reducedStrengthTransitionAlphaS);
     }
 
-    void JsonInputGrassRevetmentWaveRunupLocationData::SetAverageNumberWaveTimeStepCtm(
-        unique_ptr<double> averageNumberWaveTimeStepCtm)
+    void JsonInputGrassRevetmentWaveRunupLocationData::SetAverageNumberOfWavesCtm(
+        unique_ptr<double> averageNumberOfWavesCtm)
     {
-        _averageNumberWaveTimeStepCtm = move(averageNumberWaveTimeStepCtm);
+        _averageNumberOfWavesCtm = move(averageNumberOfWavesCtm);
     }
 
     void JsonInputGrassRevetmentWaveRunupLocationData::SetRepresentativeWaveRunUp2PAru(
@@ -90,18 +90,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
         _waveAngleImpactBetamax = move(waveAngleImpactBetamax);
     }
 
-    void JsonInputGrassRevetmentWaveRunupLocationData::SetCumulativeOverloadTimeStepNf(
-        std::unique_ptr<double> cumulativeOverloadTimeStepNf)
-    {
-        _cumulativeOverloadTimeStepNf = move(cumulativeOverloadTimeStepNf);
-    }
-
-    void JsonInputGrassRevetmentWaveRunupLocationData::SetFrontVelocityCu(
-        std::unique_ptr<double> frontVelocityCu)
-    {
-        _frontVelocityCu = move(frontVelocityCu);
-    }
-
     #pragma endregion
 
     #pragma region Get methods
@@ -131,9 +119,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
         return _reducedStrengthTransitionAlphaS.get();
     }
 
-    const double* JsonInputGrassRevetmentWaveRunupLocationData::GetAverageNumberWaveTimeStepCtm() const
+    const double* JsonInputGrassRevetmentWaveRunupLocationData::GetAverageNumberOfWavesCtm() const
     {
-        return _averageNumberWaveTimeStepCtm.get();
+        return _averageNumberOfWavesCtm.get();
     }
 
     const double* JsonInputGrassRevetmentWaveRunupLocationData::GetRepresentativeWaveRunUp2PAru() const
@@ -159,16 +147,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
     const double* JsonInputGrassRevetmentWaveRunupLocationData::GetWaveAngleImpactBetamax() const
     {
         return _waveAngleImpactBetamax.get();
-    }
-
-    const double* JsonInputGrassRevetmentWaveRunupLocationData::GetCumulativeOverloadTimeStepNf() const
-    {
-        return _cumulativeOverloadTimeStepNf.get();
-    }
-
-    const double* JsonInputGrassRevetmentWaveRunupLocationData::GetFrontVelocityCu() const
-    {
-        return _frontVelocityCu.get();
     }
 
     #pragma endregion

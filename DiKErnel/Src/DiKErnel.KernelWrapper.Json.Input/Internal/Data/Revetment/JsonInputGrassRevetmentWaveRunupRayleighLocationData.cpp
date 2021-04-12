@@ -1,0 +1,60 @@
+// Copyright (C) Stichting Deltares 2020. All rights reserved.
+//
+// This file is part of DiKErnel.
+//
+// DiKErnel is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published by
+// the Free Software Foundation, version 3.
+// 
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public License
+// along with this program. If not, see <https://www.gnu.org/licenses/lgpl-3.0.html>.
+//
+// All names, logos, and references to "Deltares" are registered trademarks of
+// Stichting Deltares and remain full property of Stichting Deltares at all times.
+// All rights reserved.
+
+#include "JsonInputGrassRevetmentWaveRunupRayleighLocationData.h"
+
+namespace DiKErnel::KernelWrapper::Json::Input
+{
+    using namespace std;
+
+    JsonInputGrassRevetmentWaveRunupRayleighLocationData::JsonInputGrassRevetmentWaveRunupRayleighLocationData(
+        const JsonInputGrassRevetmentTopLayerType topLayerType)
+        : JsonInputGrassRevetmentWaveRunupLocationData(topLayerType) {}
+
+    #pragma region Set methods
+
+    void JsonInputGrassRevetmentWaveRunupRayleighLocationData::SetCumulativeOverloadNFixed(
+        unique_ptr<double> cumulativeOverloadNFixed)
+    {
+        _cumulativeOverloadNFixed = move(cumulativeOverloadNFixed);
+    }
+
+    void JsonInputGrassRevetmentWaveRunupRayleighLocationData::SetFrontVelocityCu(
+        unique_ptr<double> frontVelocityCu)
+    {
+        _frontVelocityCu = move(frontVelocityCu);
+    }
+
+    #pragma endregion
+
+    #pragma region Get methods
+
+    const double* JsonInputGrassRevetmentWaveRunupRayleighLocationData::GetCumulativeOverloadNFixed() const
+    {
+        return _cumulativeOverloadNFixed.get();
+    }
+
+    const double* JsonInputGrassRevetmentWaveRunupRayleighLocationData::GetFrontVelocityCu() const
+    {
+        return _frontVelocityCu.get();
+    }
+
+    #pragma endregion
+}
