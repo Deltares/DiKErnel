@@ -32,4 +32,12 @@ namespace DiKErnel::FunctionLibrary
     {
         return cumulativeOverloadWaveRunup / criticalCumulativeOverloadWaveRunup;
     }
+
+    double GrassRevetmentWaveRunup::AverageNumberOfWaves(
+        const double incrementTime,
+        const double wavePeriodTm10,
+        const double averageNumberOfWavesCtm)
+    {
+        return incrementTime / (averageNumberOfWavesCtm * wavePeriodTm10);
+    }
 }
