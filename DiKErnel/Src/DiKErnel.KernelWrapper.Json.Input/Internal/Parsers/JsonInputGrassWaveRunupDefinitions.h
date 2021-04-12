@@ -49,8 +49,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
             inline static const std::string CUMULATIVE_OVERLOAD_TIMESTEP_RDNF = "AantalGolvenVastRD";
 
-            inline static const std::string FRONTVELOCITY = "FrontsnelheidGolfOploopRD";
-            inline static const std::string FRONTVELOCITYCU = "FrontsnelheidGolfOploopRDCu";
+            inline static const std::string FRONT_VELOCITY = "FrontsnelheidGolfOploopRD";
+            inline static const std::string FRONT_VELOCITY_CU = "FrontsnelheidGolfOploopRDCu";
 
             inline static const std::string REPRESENTATIVE_WAVE_RUNUP_2P_GAMMA_B = "BermfactorGammab";
             inline static const std::string REPRESENTATIVE_WAVE_RUNUP_2P_GAMMA_F = "RuwheidsfactorGammaf";
