@@ -33,9 +33,9 @@ namespace DiKErnel::FunctionLibrary::Test
         const auto positionZ = 1.0;
         const auto waterLevel = 0.03;
         const auto criticalFrontVelocity = 4.0;
-        const auto increasedLoadTransitionAlphaM = 1.0;
-        const auto reducedStrengthTransitionAlphaS = 1.0;
-        const auto frontVelocityCu = 1.1;
+        const auto increasedLoadTransitionAlphaM = 1.1;
+        const auto reducedStrengthTransitionAlphaS = 1.2;
+        const auto frontVelocityCu = 1.3;
         const auto gravitationalAcceleration = 9.81;
 
         // Call
@@ -52,6 +52,6 @@ namespace DiKErnel::FunctionLibrary::Test
             gravitationalAcceleration);
 
         // Assert
-        ASSERT_DOUBLE_EQ(256.30450411476841, cumulativeOverload);
+        ASSERT_DOUBLE_EQ(735.67446176679459, cumulativeOverload);
     }
 }
