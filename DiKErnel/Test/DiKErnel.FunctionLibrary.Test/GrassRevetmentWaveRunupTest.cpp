@@ -34,6 +34,6 @@ namespace DiKErnel::FunctionLibrary::Test
         const auto incrementDamage = GrassRevetmentWaveRunup::IncrementDamage(cumulativeOverloadWaveRunup, criticalCumulativeOverloadWaveRunup);
 
         // Assert
-        ASSERT_DOUBLE_EQ(0.151984285714286, incrementDamage);
+        ASSERT_DOUBLE_EQ(0.15198428571428574, incrementDamage);
     }
 }
