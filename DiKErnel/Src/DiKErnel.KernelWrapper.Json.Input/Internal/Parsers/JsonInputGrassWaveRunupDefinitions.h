@@ -32,8 +32,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
             inline static const std::string INCREASED_LOAD_TRANSITION_ALPHA_M = "VerhogingBelastingOvergangAlfaM";
             inline static const std::string REDUCED_STRENGTH_TRANSITION_ALPHA_S = "VerlagingSterkteOvergangAlfaS";
 
-            inline static const std::string AVERAGE_NUMBER_WAVE_TIMESTEP = "GemiddeldAantalGolvenPerTijdstap";
-            inline static const std::string AVERAGE_NUMBER_WAVE_TIMESTEP_CTM = "GemiddeldAantalGolvenPerTijdstapCtm";
+            inline static const std::string AVERAGE_NUMBER_OF_WAVES = "GemiddeldAantalGolvenPerTijdstap";
+            inline static const std::string AVERAGE_NUMBER_OF_WAVES_CTM = "GemiddeldAantalGolvenPerTijdstapCtm";
 
             inline static const std::string REPRESENTATIVE_WAVE_RUNUP_2P = "RepresentatieveGolfoploop2p";
             inline static const std::string REPRESENTATIVE_WAVE_RUNUP_2P_ARU = "RepresentatieveGolfoploop2pAru";
@@ -46,11 +46,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
             inline static const std::string CALCULATION_PROTOCOL = "Rekenprotocol";
             inline static const std::string CALCULATION_PROTOCOL_TYPE = "Rekenprotocolsoort";
-
-            inline static const std::string CUMULATIVE_OVERLOAD_TIMESTEP_RDNF = "AantalGolvenVastRD";
-
-            inline static const std::string FRONT_VELOCITY = "FrontsnelheidGolfOploopRD";
-            inline static const std::string FRONT_VELOCITY_CU = "FrontsnelheidGolfOploopRDCu";
 
             inline static const std::string REPRESENTATIVE_WAVE_RUNUP_2P_GAMMA_B = "BermfactorGammab";
             inline static const std::string REPRESENTATIVE_WAVE_RUNUP_2P_GAMMA_F = "RuwheidsfactorGammaf";

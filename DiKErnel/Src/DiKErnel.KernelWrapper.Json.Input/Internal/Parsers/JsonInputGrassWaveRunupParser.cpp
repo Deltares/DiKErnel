@@ -24,6 +24,7 @@
 #include "JsonInputGrassRevetmentDefinitions.h"
 #include "JsonInputGrassRevetmentWaveRunupRayleighLocationData.h"
 #include "JsonInputGrassWaveRunupDefinitions.h"
+#include "JsonInputGrassWaveRunupRayleighDefinitions.h"
 #include "JsonInputParserHelper.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
@@ -32,17 +33,17 @@ namespace DiKErnel::KernelWrapper::Json::Input
     using namespace std;
 
     NLOHMANN_JSON_SERIALIZE_ENUM(JsonInputGrassRevetmentTopLayerType,
-                                 {
-                                 {
-                                 JsonInputGrassRevetmentTopLayerType::Unknown, nullptr
-                                 },
-                                 {
-                                 JsonInputGrassRevetmentTopLayerType::ClosedSod, JsonInputGrassRevetmentDefinitions::TOP_LAYER_TYPE_CLOSED_SOD
-                                 },
-                                 {
-                                 JsonInputGrassRevetmentTopLayerType::OpenSod, JsonInputGrassRevetmentDefinitions::TOP_LAYER_TYPE_OPEN_SOD
-                                 }
-                                 });
+        {
+            {
+                JsonInputGrassRevetmentTopLayerType::Unknown, nullptr
+            },
+            {
+                JsonInputGrassRevetmentTopLayerType::ClosedSod, JsonInputGrassRevetmentDefinitions::TOP_LAYER_TYPE_CLOSED_SOD
+            },
+            {
+                JsonInputGrassRevetmentTopLayerType::OpenSod, JsonInputGrassRevetmentDefinitions::TOP_LAYER_TYPE_OPEN_SOD
+            }
+        });
 
     unique_ptr<JsonInputGrassRevetmentWaveRunupLocationData> JsonInputGrassWaveRunupParser::ParseRevetmentLocationData(
         const json& readRevetment,
@@ -64,13 +65,13 @@ namespace DiKErnel::KernelWrapper::Json::Input
             forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalValue(
                 readRevetment, JsonInputGrassWaveRunupDefinitions::REDUCED_STRENGTH_TRANSITION_ALPHA_S)));
 
-        if (readCalculationMethod.contains(JsonInputGrassWaveRunupDefinitions::AVERAGE_NUMBER_WAVE_TIMESTEP))
+        if (readCalculationMethod.contains(JsonInputGrassWaveRunupDefinitions::AVERAGE_NUMBER_OF_WAVES))
         {
-            const auto& readAverageNumberWaveTimeStep = readCalculationMethod[JsonInputGrassWaveRunupDefinitions::AVERAGE_NUMBER_WAVE_TIMESTEP];
+            const auto& readAverageNumberWaveTimeStep = readCalculationMethod[JsonInputGrassWaveRunupDefinitions::AVERAGE_NUMBER_OF_WAVES];
 
             locationData->SetAverageNumberOfWavesCtm(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalValue(
-                    readAverageNumberWaveTimeStep, JsonInputGrassWaveRunupDefinitions::AVERAGE_NUMBER_WAVE_TIMESTEP_CTM)));
+                    readAverageNumberWaveTimeStep, JsonInputGrassWaveRunupDefinitions::AVERAGE_NUMBER_OF_WAVES_CTM)));
         }
 
         if (readCalculationMethod.contains(JsonInputGrassWaveRunupDefinitions::REPRESENTATIVE_WAVE_RUNUP_2P))
@@ -107,15 +108,15 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
         locationData->SetCumulativeOverloadNFixed(
             forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalValue(
-                readCalculationProtocol, JsonInputGrassWaveRunupDefinitions::CUMULATIVE_OVERLOAD_TIMESTEP_RDNF)));
+                readCalculationProtocol, JsonInputGrassWaveRunupRayleighDefinitions::CUMULATIVE_OVERLOAD_N_FIXED)));
 
-        if (readCalculationProtocol.contains(JsonInputGrassWaveRunupDefinitions::FRONT_VELOCITY))
+        if (readCalculationProtocol.contains(JsonInputGrassWaveRunupRayleighDefinitions::FRONT_VELOCITY))
         {
-            const auto& readFrontVelocity = readCalculationMethod[JsonInputGrassWaveRunupDefinitions::FRONT_VELOCITY];
+            const auto& readFrontVelocity = readCalculationMethod[JsonInputGrassWaveRunupRayleighDefinitions::FRONT_VELOCITY];
 
             locationData->SetFrontVelocityCu(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalValue(
-                    readFrontVelocity, JsonInputGrassWaveRunupDefinitions::FRONT_VELOCITY_CU)));
+                    readFrontVelocity, JsonInputGrassWaveRunupRayleighDefinitions::FRONT_VELOCITY_CU)));
         }
 
         return locationData;
