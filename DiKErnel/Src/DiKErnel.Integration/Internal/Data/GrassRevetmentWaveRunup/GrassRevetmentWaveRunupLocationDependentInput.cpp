@@ -52,13 +52,6 @@ namespace DiKErnel::Integration
           _representative2P(move(representative2P)),
           _waveAngleImpact(move(waveAngleImpact)) {}
 
-    unique_ptr<TimeDependentOutput> GrassRevetmentWaveRunupLocationDependentInput::Calculate(
-        const double initialDamage,
-        const ITimeDependentInput& timeDependentInput)
-    {
-        return nullptr;
-    }
-
     double GrassRevetmentWaveRunupLocationDependentInput::GetTanA() const
     {
         return _tanA;

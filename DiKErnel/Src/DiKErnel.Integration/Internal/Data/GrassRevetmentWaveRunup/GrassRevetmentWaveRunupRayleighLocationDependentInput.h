@@ -22,16 +22,14 @@
 
 #include <memory>
 
-#include "GrassRevetmentWaveRunupRepresentative2P.h"
-#include "GrassRevetmentWaveRunupWaveAngleImpact.h"
-#include "LocationDependentInput.h"
+#include "GrassRevetmentWaveRunupLocationDependentInput.h"
 
 namespace DiKErnel::Integration
 {
-    class GrassRevetmentWaveRunupLocationDependentInput : public LocationDependentInput
+    class GrassRevetmentWaveRunupRayleighLocationDependentInput : public GrassRevetmentWaveRunupLocationDependentInput
     {
         public:
-            explicit GrassRevetmentWaveRunupLocationDependentInput(
+            explicit GrassRevetmentWaveRunupRayleighLocationDependentInput(
                 std::string name,
                 double initialDamage,
                 double failureNumber,
@@ -45,42 +43,20 @@ namespace DiKErnel::Integration
                 double reducedStrengthTransitionAlphaS,
                 double averageNumberOfWavesCtm,
                 std::unique_ptr<GrassRevetmentWaveRunupRepresentative2P> representative2P,
-                std::unique_ptr<GrassRevetmentWaveRunupWaveAngleImpact> waveAngleImpact);
+                std::unique_ptr<GrassRevetmentWaveRunupWaveAngleImpact> waveAngleImpact,
+                double cumulativeOverloadNFixed,
+                double frontVelocityCu);
 
             std::unique_ptr<Core::TimeDependentOutput> Calculate(
                 double initialDamage,
-                const Core::ITimeDependentInput& timeDependentInput) override = 0;
+                const Core::ITimeDependentInput& timeDependentInput) override;
 
-            double GetTanA() const;
+            double GetCumulativeOverloadNFixed() const;
 
-            double GetRepresentativeWaveRunup2PGammab() const;
-
-            double GetRepresentativeWaveRunup2PGammaf() const;
-
-            double GetCriticalCumulativeOverload() const;
-
-            double GetCriticalFrontVelocity() const;
-
-            double GetIncreasedLoadTransitionAlphaM() const;
-
-            double GetReducedStrengthTransitionAlphaS() const;
-
-            double GetAverageNumberOfWavesCtm() const;
-
-            GrassRevetmentWaveRunupRepresentative2P& GetRepresentative2P() const;
-
-            GrassRevetmentWaveRunupWaveAngleImpact& GetWaveAngleImpact() const;
+            double GetFrontVelocityCu() const;
 
         private:
-            double _tanA;
-            double _representativeWaveRunup2PGammab;
-            double _representativeWaveRunup2PGammaf;
-            double _criticalCumulativeOverload;
-            double _criticalFrontVelocity;
-            double _increasedLoadTransitionAlphaM;
-            double _reducedStrengthTransitionAlphaS;
-            double _averageNumberOfWavesCtm;
-            std::unique_ptr<GrassRevetmentWaveRunupRepresentative2P> _representative2P;
-            std::unique_ptr<GrassRevetmentWaveRunupWaveAngleImpact> _waveAngleImpact;
+            const double _cumulativeOverloadNFixed;
+            const double _frontVelocityCu;
     };
 }
