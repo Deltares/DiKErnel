@@ -3,27 +3,44 @@ set(LIBNAME DiKErnel.DomainLibrary)
 
 # Set folder names
 set(PUBLIC_FOLDER Public)
+set(PUBLIC_GRASS_REVETMENT_WAVE_IMPACT_FOLDER ${PUBLIC_FOLDER}/GrassRevetmentWaveImpact)
+set(PUBLIC_NATURAL_STONE_REVETMENT_FOLDER ${PUBLIC_FOLDER}/NaturalStoneRevetment)
 
 # Define sources
 set(SOURCEFILES_PUBLIC
   ${PUBLIC_FOLDER}/Constants.h
-  ${PUBLIC_FOLDER}/GrassRevetmentWaveImpactClosedSodDefaults.cpp
-  ${PUBLIC_FOLDER}/GrassRevetmentWaveImpactClosedSodDefaults.h
-  ${PUBLIC_FOLDER}/GrassRevetmentWaveImpactOpenSodDefaults.cpp
-  ${PUBLIC_FOLDER}/GrassRevetmentWaveImpactOpenSodDefaults.h
-  ${PUBLIC_FOLDER}/IGrassRevetmentWaveImpactDefaults.h
-  ${PUBLIC_FOLDER}/INaturalStoneRevetmentDefaults.h
-  ${PUBLIC_FOLDER}/NordicStoneRevetmentDefaults.cpp
-  ${PUBLIC_FOLDER}/NordicStoneRevetmentDefaults.h
   ${PUBLIC_FOLDER}/RevetmentDefaults.h
 )
 
+set(SOURCEFILES_PUBLIC_GRASS_REVETMENT_WAVE_IMPACT
+  ${PUBLIC_GRASS_REVETMENT_WAVE_IMPACT_FOLDER}/GrassRevetmentWaveImpactClosedSodDefaults.cpp
+  ${PUBLIC_GRASS_REVETMENT_WAVE_IMPACT_FOLDER}/GrassRevetmentWaveImpactClosedSodDefaults.h
+  ${PUBLIC_GRASS_REVETMENT_WAVE_IMPACT_FOLDER}/GrassRevetmentWaveImpactOpenSodDefaults.cpp
+  ${PUBLIC_GRASS_REVETMENT_WAVE_IMPACT_FOLDER}/GrassRevetmentWaveImpactOpenSodDefaults.h
+  ${PUBLIC_GRASS_REVETMENT_WAVE_IMPACT_FOLDER}/IGrassRevetmentWaveImpactDefaults.h
+)
+
+set(SOURCEFILES_PUBLIC_NATURAL_STONE_REVETMENT
+  ${PUBLIC_NATURAL_STONE_REVETMENT_FOLDER}/INaturalStoneRevetmentDefaults.h
+  ${PUBLIC_NATURAL_STONE_REVETMENT_FOLDER}/NordicStoneRevetmentDefaults.cpp
+  ${PUBLIC_NATURAL_STONE_REVETMENT_FOLDER}/NordicStoneRevetmentDefaults.h
+)
+
 # Add library
-add_library(${LIBNAME} STATIC ${SOURCEFILES_PUBLIC})
+add_library(${LIBNAME} STATIC
+  ${SOURCEFILES_PUBLIC}
+  ${SOURCEFILES_PUBLIC_GRASS_REVETMENT_WAVE_IMPACT}
+  ${SOURCEFILES_PUBLIC_NATURAL_STONE_REVETMENT}
+)
 
 # Configure folder structure
 set_target_properties(${LIBNAME} PROPERTIES FOLDER Src)
 source_group(${PUBLIC_FOLDER} FILES ${SOURCEFILES_PUBLIC})
+source_group(${PUBLIC_GRASS_REVETMENT_WAVE_IMPACT_FOLDER} FILES ${SOURCEFILES_PUBLIC_GRASS_REVETMENT_WAVE_IMPACT})
+source_group(${PUBLIC_NATURAL_STONE_REVETMENT_FOLDER} FILES ${SOURCEFILES_PUBLIC_NATURAL_STONE_REVETMENT})
 
 # Expose header files
-target_include_directories(${LIBNAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/${PUBLIC_FOLDER})
+target_include_directories(${LIBNAME} PUBLIC
+  ${CMAKE_CURRENT_SOURCE_DIR}/${PUBLIC_FOLDER}
+  ${CMAKE_CURRENT_SOURCE_DIR}/${PUBLIC_GRASS_REVETMENT_WAVE_IMPACT_FOLDER}
+  ${CMAKE_CURRENT_SOURCE_DIR}/${PUBLIC_NATURAL_STONE_REVETMENT_FOLDER})
