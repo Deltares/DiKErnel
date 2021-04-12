@@ -35,8 +35,6 @@ namespace DiKErnel::Integration
                 double failureNumber,
                 double tanA,
                 double positionZ,
-                double representativeWaveRunup2PGammab,
-                double representativeWaveRunup2PGammaf,
                 double criticalCumulativeOverload,
                 double criticalFrontVelocity,
                 double increasedLoadTransitionAlphaM,

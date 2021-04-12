@@ -28,7 +28,9 @@ namespace DiKErnel::Integration
             explicit GrassRevetmentWaveRunupRepresentative2P(
                 double representative2PAru,
                 double representative2PBru,
-                double representative2PCru);
+                double representative2PCru,
+                double gammaB,
+                double gammaF);
 
             double GetRepresentative2PAru() const;
 
@@ -36,9 +38,15 @@ namespace DiKErnel::Integration
 
             double GetRepresentative2PCru() const;
 
+            double GetGammaB() const;
+
+            double GetGammaF() const;
+
         private:
             double _representative2PAru;
             double _representative2PBru;
             double _representative2PCru;
+            double _gammaB;
+            double _gammaF;
     };
 }

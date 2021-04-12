@@ -37,10 +37,6 @@ namespace DiKErnel::Integration
 
             double GetTanA() const;
 
-            double GetRepresentativeWaveRunup2PGammab() const;
-
-            double GetRepresentativeWaveRunup2PGammaf() const;
-
             double GetCriticalCumulativeOverload() const;
 
             double GetCriticalFrontVelocity() const;
@@ -62,8 +58,6 @@ namespace DiKErnel::Integration
                 double failureNumber,
                 double tanA,
                 double positionZ,
-                double representativeWaveRunup2PGammab,
-                double representativeWaveRunup2PGammaf,
                 double criticalCumulativeOverload,
                 double criticalFrontVelocity,
                 double increasedLoadTransitionAlphaM,
@@ -74,8 +68,6 @@ namespace DiKErnel::Integration
 
         private:
             double _tanA;
-            double _representativeWaveRunup2PGammab;
-            double _representativeWaveRunup2PGammaf;
             double _criticalCumulativeOverload;
             double _criticalFrontVelocity;
             double _increasedLoadTransitionAlphaM;
