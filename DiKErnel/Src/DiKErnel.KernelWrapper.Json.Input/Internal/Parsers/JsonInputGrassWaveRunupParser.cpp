@@ -31,17 +31,17 @@ namespace DiKErnel::KernelWrapper::Json::Input
     using namespace std;
 
     NLOHMANN_JSON_SERIALIZE_ENUM(JsonInputGrassRevetmentTopLayerType,
-        {
-            {
-                JsonInputGrassRevetmentTopLayerType::Unknown, nullptr
-            },
-            {
-                JsonInputGrassRevetmentTopLayerType::ClosedSod, JsonInputGrassRevetmentDefinitions::TOP_LAYER_TYPE_CLOSED_SOD
-            },
-            {
-                JsonInputGrassRevetmentTopLayerType::OpenSod, JsonInputGrassRevetmentDefinitions::TOP_LAYER_TYPE_OPEN_SOD
-            }
-        });
+                                 {
+                                 {
+                                 JsonInputGrassRevetmentTopLayerType::Unknown, nullptr
+                                 },
+                                 {
+                                 JsonInputGrassRevetmentTopLayerType::ClosedSod, JsonInputGrassRevetmentDefinitions::TOP_LAYER_TYPE_CLOSED_SOD
+                                 },
+                                 {
+                                 JsonInputGrassRevetmentTopLayerType::OpenSod, JsonInputGrassRevetmentDefinitions::TOP_LAYER_TYPE_OPEN_SOD
+                                 }
+                                 });
 
     unique_ptr<JsonInputGrassRevetmentWaveRunupLocationData> JsonInputGrassWaveRunupParser::ParseRevetmentLocationData(
         const json& readRevetment,
@@ -118,5 +118,23 @@ namespace DiKErnel::KernelWrapper::Json::Input
         }
 
         return locationData;
+    }
+
+    unique_ptr<JsonInputGrassRevetmentWaveRunupProfileSchematizationData> JsonInputGrassWaveRunupParser::ParseProfileSchematizationData(
+        const json& readProfileSchematization)
+    {
+        auto profileSchematization = make_unique<JsonInputGrassRevetmentWaveRunupProfileSchematizationData>(
+            readProfileSchematization[JsonInputDefinitions::TAN_A].get<double>(),
+            readProfileSchematization[JsonInputDefinitions::POSITION_Z].get<double>());
+
+        profileSchematization->SetRepresentativeWaveRunup2PGammab(
+            forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalValue(
+                readProfileSchematization, JsonInputGrassWaveRunupDefinitions::REPRESENTATIVE_WAVE_RUNUP_2P_GAMMA_B)));
+
+        profileSchematization->SetRepresentativeWaveRunup2PGammaf(
+            forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalValue(
+                readProfileSchematization, JsonInputGrassWaveRunupDefinitions::REPRESENTATIVE_WAVE_RUNUP_2P_GAMMA_F)));
+
+        return profileSchematization;
     }
 }

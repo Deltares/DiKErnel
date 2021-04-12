@@ -22,7 +22,6 @@
 
 #include <fstream>
 
-#include "JsonInputCalculationType.h"
 #include "JsonInputDefinitions.h"
 #include "JsonInputGrassWaveImpactParser.h"
 #include "JsonInputGrassWaveRunupParser.h"
@@ -121,15 +120,15 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 failureNumber = JsonInputParserHelper::ParseOptionalValue(readDamageVariables, JsonInputDefinitions::FAILURE_NUMBER);
             }
 
-            const auto& readProfileSchematization = readLocation[JsonInputDefinitions::PROFILE_SCHEMATIZATION];
+            const auto& readRevetment = readLocation[JsonInputDefinitions::REVETMENT];
+            const auto& readCalculationMethod = readRevetment[JsonInputDefinitions::CALCULATION_METHOD][0];
+            const auto& calculationType = readCalculationMethod[JsonInputDefinitions::CALCULATION_METHOD_TYPE].get<JsonInputCalculationType>();
 
             auto parsedLocation = make_unique<JsonInputLocationData>(
                 readLocation[JsonInputDefinitions::NAME].get<string>(),
                 make_unique<JsonInputDamageData>(move(initialDamage), move(failureNumber)),
-                ParseRevetmentLocationData(readLocation[JsonInputDefinitions::REVETMENT]),
-                make_unique<JsonInputProfileSchematizationData>(
-                    readProfileSchematization[JsonInputDefinitions::TAN_A].get<double>(),
-                    readProfileSchematization[JsonInputDefinitions::POSITION_Z].get<double>()));
+                ParseRevetmentLocationData(readRevetment, readCalculationMethod, calculationType),
+                ParseProfileSchematizationData(readLocation[JsonInputDefinitions::PROFILE_SCHEMATIZATION], calculationType));
 
             parsedLocations.emplace_back(move(parsedLocation));
         }
@@ -138,13 +137,11 @@ namespace DiKErnel::KernelWrapper::Json::Input
     }
 
     unique_ptr<IJsonInputRevetmentLocationData> JsonInputParser::ParseRevetmentLocationData(
-        const json& readRevetment)
+        const json& readRevetment,
+        const json& readCalculationMethod,
+        const JsonInputCalculationType calculationType)
     {
-        const auto& readCalculationMethod = readRevetment[JsonInputDefinitions::CALCULATION_METHOD][0];
-
         unique_ptr<IJsonInputRevetmentLocationData> revetmentLocationData;
-
-        const auto& calculationType = readCalculationMethod[JsonInputDefinitions::CALCULATION_METHOD_TYPE].get<JsonInputCalculationType>();
 
         if (calculationType == JsonInputCalculationType::NaturalStone)
         {
@@ -156,11 +153,25 @@ namespace DiKErnel::KernelWrapper::Json::Input
             revetmentLocationData = JsonInputGrassWaveImpactParser::ParseRevetmentLocationData(readRevetment, readCalculationMethod);
         }
 
-        if(calculationType == JsonInputCalculationType::GrassWaveRunup)
+        if (calculationType == JsonInputCalculationType::GrassWaveRunup)
         {
             revetmentLocationData = JsonInputGrassWaveRunupParser::ParseRevetmentLocationData(readRevetment, readCalculationMethod);
         }
 
         return revetmentLocationData;
+    }
+
+    unique_ptr<JsonInputProfileSchematizationData> JsonInputParser::ParseProfileSchematizationData(
+        const json& readProfileSchematization,
+        const JsonInputCalculationType calculationType)
+    {
+        if (calculationType == JsonInputCalculationType::GrassWaveRunup)
+        {
+            return JsonInputGrassWaveRunupParser::ParseProfileSchematizationData(readProfileSchematization);
+        }
+
+        return make_unique<JsonInputProfileSchematizationData>(
+            readProfileSchematization[JsonInputDefinitions::TAN_A].get<double>(),
+            readProfileSchematization[JsonInputDefinitions::POSITION_Z].get<double>());
     }
 }

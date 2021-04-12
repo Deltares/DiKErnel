@@ -25,6 +25,7 @@
 #include <nlohmann/json.hpp>
 
 #include "JsonInputGrassRevetmentWaveRunupLocationData.h"
+#include "JsonInputGrassRevetmentWaveRunupProfileSchematizationData.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
@@ -34,5 +35,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
             static std::unique_ptr<JsonInputGrassRevetmentWaveRunupLocationData> ParseRevetmentLocationData(
                 const nlohmann::json& readRevetment,
                 const nlohmann::json& readCalculationMethod);
+
+            static std::unique_ptr<JsonInputGrassRevetmentWaveRunupProfileSchematizationData> ParseProfileSchematizationData(
+                const nlohmann::json& readProfileSchematization);
     };
 }
