@@ -26,6 +26,7 @@
 
 #include "JsonInputGrassRevetmentWaveRunupLocationData.h"
 #include "JsonInputGrassRevetmentWaveRunupProfileSchematizationData.h"
+#include "JsonInputGrassRevetmentWaveRunupRayleighLocationData.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
@@ -38,5 +39,16 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
             static std::unique_ptr<JsonInputGrassRevetmentWaveRunupProfileSchematizationData> ParseProfileSchematizationData(
                 const nlohmann::json& readProfileSchematization);
+
+        private:
+            static std::unique_ptr<JsonInputGrassRevetmentWaveRunupRayleighLocationData> ParseRayleighRevetmentLocationData(
+                const nlohmann::json& readRevetment,
+                const nlohmann::json& readCalculationMethod,
+                const nlohmann::json& readCalculationProtocol);
+
+            static void ParseGenericRevetmentLocationData(
+                const nlohmann::json& readRevetment,
+                const nlohmann::json& readCalculationMethod,
+                JsonInputGrassRevetmentWaveRunupLocationData& locationData);
     };
 }

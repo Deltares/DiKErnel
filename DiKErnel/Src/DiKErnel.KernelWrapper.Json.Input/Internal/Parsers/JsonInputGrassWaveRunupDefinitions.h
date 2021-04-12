@@ -46,6 +46,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
             inline static const std::string CALCULATION_PROTOCOL = "Rekenprotocol";
             inline static const std::string CALCULATION_PROTOCOL_TYPE = "Rekenprotocolsoort";
+            inline static const std::string CALCULATION_PROTOCOL_TYPE_RAYLEIGH_DISCRETE = "RayleighDiscreet";
 
             inline static const std::string REPRESENTATIVE_WAVE_RUNUP_2P_GAMMA_B = "BermfactorGammab";
             inline static const std::string REPRESENTATIVE_WAVE_RUNUP_2P_GAMMA_F = "RuwheidsfactorGammaf";
