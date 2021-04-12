@@ -12,6 +12,8 @@ set(SOURCEFILES_PUBLIC
   ${PUBLIC_FOLDER}/GrassRevetmentWaveImpact.h
   ${PUBLIC_FOLDER}/GrassRevetmentWaveRunup.cpp
   ${PUBLIC_FOLDER}/GrassRevetmentWaveRunup.h
+  ${PUBLIC_FOLDER}/GrassRevetmentWaveRunupRayleigh.cpp
+  ${PUBLIC_FOLDER}/GrassRevetmentWaveRunupRayleigh.h
   ${PUBLIC_FOLDER}/HydraulicLoad.cpp
   ${PUBLIC_FOLDER}/HydraulicLoad.h
   ${PUBLIC_FOLDER}/NaturalStoneRevetment.cpp

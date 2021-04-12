@@ -6,6 +6,7 @@ set(SOURCEFILES
   GenericTest.cpp
   GrassRevetmentWaveImpactTest.cpp
   GrassRevetmentWaveRunupTest.cpp
+  GrassRevetmentWaveRunupRayleighTest.cpp
   HydraulicLoadTest.cpp
   Main.cpp
   NaturalStoneRevetmentTest.cpp
