@@ -90,10 +90,10 @@ namespace DiKErnel::KernelWrapper::Json::Input
         _waveAngleImpactBetamax = move(waveAngleImpactBetamax);
     }
 
-    void JsonInputGrassRevetmentWaveRunupLocationData::SetCumulativeOverloadTimeStepRDNf(
-        std::unique_ptr<double> cumulativeOverloadTimeStepRDNf)
+    void JsonInputGrassRevetmentWaveRunupLocationData::SetCumulativeOverloadTimeStepNf(
+        std::unique_ptr<double> cumulativeOverloadTimeStepNf)
     {
-        _cumulativeOverloadTimeStepRDNf = move(cumulativeOverloadTimeStepRDNf);
+        _cumulativeOverloadTimeStepNf = move(cumulativeOverloadTimeStepNf);
     }
 
     void JsonInputGrassRevetmentWaveRunupLocationData::SetFrontVelocityCu(
@@ -159,6 +159,11 @@ namespace DiKErnel::KernelWrapper::Json::Input
     const double* JsonInputGrassRevetmentWaveRunupLocationData::GetWaveAngleImpactBetamax() const
     {
         return _waveAngleImpactBetamax.get();
+    }
+
+    const double* JsonInputGrassRevetmentWaveRunupLocationData::GetCumulativeOverloadTimeStepNf() const
+    {
+        return _cumulativeOverloadTimeStepNf.get();
     }
 
     const double* JsonInputGrassRevetmentWaveRunupLocationData::GetFrontVelocityCu() const

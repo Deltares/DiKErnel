@@ -65,8 +65,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
             void SetWaveAngleImpactBetamax(
                 std::unique_ptr<double> waveAngleImpactBetamax);
 
-            void SetCumulativeOverloadTimeStepRDNf(
-                std::unique_ptr<double> cumulativeOverloadTimeStepRDNf);
+            void SetCumulativeOverloadTimeStepNf(
+                std::unique_ptr<double> cumulativeOverloadTimeStepNf);
 
             void SetFrontVelocityCu(
                 std::unique_ptr<double> frontVelocityCu);
@@ -97,6 +97,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
             const double* GetWaveAngleImpactBetamax() const;
 
+            const double* GetCumulativeOverloadTimeStepNf() const;
+
             const double* GetFrontVelocityCu() const;
 
             #pragma endregion
@@ -113,7 +115,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
             std::unique_ptr<double> _representativeWaveRunUp2PCru = nullptr;
             std::unique_ptr<double> _waveAngleImpactAbeta = nullptr;
             std::unique_ptr<double> _waveAngleImpactBetamax = nullptr;
-            std::unique_ptr<double> _cumulativeOverloadTimeStepRDNf = nullptr;
+            std::unique_ptr<double> _cumulativeOverloadTimeStepNf = nullptr;
             std::unique_ptr<double> _frontVelocityCu = nullptr;
     };
 }

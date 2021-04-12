@@ -104,7 +104,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
         const auto& readCalculationProtocol = readCalculationMethod[JsonInputGrassWaveRunupDefinitions::CALCULATION_PROTOCOL];
 
-        locationData->SetCumulativeOverloadTimeStepRDNf(
+        locationData->SetCumulativeOverloadTimeStepNf(
             forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalValue(
                 readCalculationProtocol, JsonInputGrassWaveRunupDefinitions::CUMULATIVE_OVERLOAD_TIMESTEP_RDNF)));
 
