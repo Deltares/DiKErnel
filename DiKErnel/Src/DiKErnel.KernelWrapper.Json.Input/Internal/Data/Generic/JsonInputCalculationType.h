@@ -26,6 +26,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
     {
         Unknown,
         NaturalStone,
-        GrassWaveImpact
+        GrassWaveImpact,
+        GrassWaveRunup
     };
 }

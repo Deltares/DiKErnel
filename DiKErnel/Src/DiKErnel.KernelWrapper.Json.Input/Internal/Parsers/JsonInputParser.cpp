@@ -25,6 +25,7 @@
 #include "JsonInputCalculationType.h"
 #include "JsonInputDefinitions.h"
 #include "JsonInputGrassWaveImpactParser.h"
+#include "JsonInputGrassWaveRunupParser.h"
 #include "JsonInputNaturalStoneParser.h"
 #include "JsonInputParserHelper.h"
 
@@ -43,6 +44,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
             },
             {
                 JsonInputCalculationType::GrassWaveImpact, JsonInputDefinitions::CALCULATION_METHOD_TYPE_GRASS_WAVE_IMPACT
+            },
+            {
+                JsonInputCalculationType::GrassWaveRunup, JsonInputDefinitions::CALCULATION_METHOD_TYPE_GRASS_WAVE_RUNUP
             }
         });
 
@@ -150,6 +154,11 @@ namespace DiKErnel::KernelWrapper::Json::Input
         if (calculationType == JsonInputCalculationType::GrassWaveImpact)
         {
             revetmentLocationData = JsonInputGrassWaveImpactParser::ParseRevetmentLocationData(readRevetment, readCalculationMethod);
+        }
+
+        if(calculationType == JsonInputCalculationType::GrassWaveRunup)
+        {
+            revetmentLocationData = JsonInputGrassWaveRunupParser::ParseRevetmentLocationData(readRevetment, readCalculationMethod);
         }
 
         return revetmentLocationData;
