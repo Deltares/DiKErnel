@@ -31,22 +31,6 @@ namespace DiKErnel::Integration
     class GrassRevetmentWaveRunupLocationDependentInput : public LocationDependentInput
     {
         public:
-            explicit GrassRevetmentWaveRunupLocationDependentInput(
-                std::string name,
-                double initialDamage,
-                double failureNumber,
-                double tanA,
-                double positionZ,
-                double representativeWaveRunup2PGammab,
-                double representativeWaveRunup2PGammaf,
-                double criticalCumulativeOverload,
-                double criticalFrontVelocity,
-                double increasedLoadTransitionAlphaM,
-                double reducedStrengthTransitionAlphaS,
-                double averageNumberOfWavesCtm,
-                std::unique_ptr<GrassRevetmentWaveRunupRepresentative2P> representative2P,
-                std::unique_ptr<GrassRevetmentWaveRunupWaveAngleImpact> waveAngleImpact);
-
             std::unique_ptr<Core::TimeDependentOutput> Calculate(
                 double initialDamage,
                 const Core::ITimeDependentInput& timeDependentInput) override = 0;
@@ -70,6 +54,23 @@ namespace DiKErnel::Integration
             GrassRevetmentWaveRunupRepresentative2P& GetRepresentative2P() const;
 
             GrassRevetmentWaveRunupWaveAngleImpact& GetWaveAngleImpact() const;
+
+        protected:
+            explicit GrassRevetmentWaveRunupLocationDependentInput(
+                std::string name,
+                double initialDamage,
+                double failureNumber,
+                double tanA,
+                double positionZ,
+                double representativeWaveRunup2PGammab,
+                double representativeWaveRunup2PGammaf,
+                double criticalCumulativeOverload,
+                double criticalFrontVelocity,
+                double increasedLoadTransitionAlphaM,
+                double reducedStrengthTransitionAlphaS,
+                double averageNumberOfWavesCtm,
+                std::unique_ptr<GrassRevetmentWaveRunupRepresentative2P> representative2P,
+                std::unique_ptr<GrassRevetmentWaveRunupWaveAngleImpact> waveAngleImpact);
 
         private:
             double _tanA;
