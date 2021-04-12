@@ -5,6 +5,7 @@ set(EXENAME DiKErnel.FunctionLibrary.Test)
 set(SOURCEFILES
   GenericTest.cpp
   GrassRevetmentWaveImpactTest.cpp
+  GrassRevetmentWaveRunupTest.cpp
   HydraulicLoadTest.cpp
   Main.cpp
   NaturalStoneRevetmentTest.cpp
