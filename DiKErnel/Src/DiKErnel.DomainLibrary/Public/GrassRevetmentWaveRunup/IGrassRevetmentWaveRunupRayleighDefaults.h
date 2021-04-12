@@ -46,7 +46,7 @@ namespace DiKErnel::DomainLibrary
             /*!
              * \brief Gets the default value of the Cu coefficient.
              * \return The default value of the Cu coefficient.
-             *         Unit = [m/s]
+             *         Unit = [-]
              */
             virtual double GetFrontVelocityCu() const = 0;
     };
