@@ -30,18 +30,18 @@ namespace DiKErnel::FunctionLibrary
         public:
             /*!
              * \brief Calculates the increment of damage.
-             * \param cumulativeOverloadWaveRunup
-             *        The cumulative overload wave run-up.
+             * \param cumulativeOverload
+             *        The cumulative overload.
              *        Unit = [m^2/s^2]
-             * \param criticalCumulativeOverloadWaveRunup
-             *        The critical cumulative overload wave run-up.
+             * \param criticalCumulativeOverload
+             *        The critical cumulative overload.
              *        Unit = [m^2/s^2]
              * \return The increment of damage.
              *         Unit = [-]
              */
             static double IncrementDamage(
-                double cumulativeOverloadWaveRunup,
-                double criticalCumulativeOverloadWaveRunup);
+                double cumulativeOverload,
+                double criticalCumulativeOverload);
 
             /*!
              * \brief Calculates the average number of waves.

@@ -27,10 +27,10 @@ namespace DiKErnel::FunctionLibrary
     using namespace std;
 
     double GrassRevetmentWaveRunup::IncrementDamage(
-        const double cumulativeOverloadWaveRunup,
-        const double criticalCumulativeOverloadWaveRunup)
+        const double cumulativeOverload,
+        const double criticalCumulativeOverload)
     {
-        return cumulativeOverloadWaveRunup / criticalCumulativeOverloadWaveRunup;
+        return cumulativeOverload / criticalCumulativeOverload;
     }
 
     double GrassRevetmentWaveRunup::AverageNumberOfWaves(
