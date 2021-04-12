@@ -47,14 +47,14 @@ namespace DiKErnel::KernelWrapper::Json::Input
             void SetAverageNumberOfWavesCtm(
                 std::unique_ptr<double> averageNumberOfWavesCtm);
 
-            void SetRepresentativeWaveRunUp2PAru(
-                std::unique_ptr<double> representativeWaveRunUp2PAru);
+            void SetRepresentativeWaveRunup2PAru(
+                std::unique_ptr<double> representativeWaveRunup2PAru);
 
-            void SetRepresentativeWaveRunUp2PBru(
-                std::unique_ptr<double> representativeWaveRunUp2PBru);
+            void SetRepresentativeWaveRunup2PBru(
+                std::unique_ptr<double> representativeWaveRunup2PBru);
 
-            void SetRepresentativeWaveRunUp2PCru(
-                std::unique_ptr<double> representativeWaveRunUp2PCru);
+            void SetRepresentativeWaveRunup2PCru(
+                std::unique_ptr<double> representativeWaveRunup2PCru);
 
             void SetWaveAngleImpactAbeta(
                 std::unique_ptr<double> waveAngleImpactAbeta);
@@ -78,11 +78,11 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
             const double* GetAverageNumberOfWavesCtm() const;
 
-            const double* GetRepresentativeWaveRunUp2PAru() const;
+            const double* GetRepresentativeWaveRunup2PAru() const;
 
-            const double* GetRepresentativeWaveRunUp2PBru() const;
+            const double* GetRepresentativeWaveRunup2PBru() const;
 
-            const double* GetRepresentativeWaveRunUp2PCru() const;
+            const double* GetRepresentativeWaveRunup2PCru() const;
 
             const double* GetWaveAngleImpactAbeta() const;
 
@@ -101,9 +101,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
             std::unique_ptr<double> _increasedLoadTransitionAlphaM = nullptr;
             std::unique_ptr<double> _reducedStrengthTransitionAlphaS = nullptr;
             std::unique_ptr<double> _averageNumberOfWavesCtm = nullptr;
-            std::unique_ptr<double> _representativeWaveRunUp2PAru = nullptr;
-            std::unique_ptr<double> _representativeWaveRunUp2PBru = nullptr;
-            std::unique_ptr<double> _representativeWaveRunUp2PCru = nullptr;
+            std::unique_ptr<double> _representativeWaveRunup2PAru = nullptr;
+            std::unique_ptr<double> _representativeWaveRunup2PBru = nullptr;
+            std::unique_ptr<double> _representativeWaveRunup2PCru = nullptr;
             std::unique_ptr<double> _waveAngleImpactAbeta = nullptr;
             std::unique_ptr<double> _waveAngleImpactBetamax = nullptr;
     };

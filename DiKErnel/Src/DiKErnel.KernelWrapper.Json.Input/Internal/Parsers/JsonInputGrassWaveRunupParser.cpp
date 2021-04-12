@@ -149,15 +149,15 @@ namespace DiKErnel::KernelWrapper::Json::Input
         {
             const auto& readRepresentativeWaveRunup2P = readCalculationMethod[JsonInputGrassWaveRunupDefinitions::REPRESENTATIVE_WAVE_RUNUP_2P];
 
-            locationData.SetRepresentativeWaveRunUp2PAru(
+            locationData.SetRepresentativeWaveRunup2PAru(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
                     readRepresentativeWaveRunup2P, JsonInputGrassWaveRunupDefinitions::REPRESENTATIVE_WAVE_RUNUP_2P_ARU)));
 
-            locationData.SetRepresentativeWaveRunUp2PBru(
+            locationData.SetRepresentativeWaveRunup2PBru(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
                     readRepresentativeWaveRunup2P, JsonInputGrassWaveRunupDefinitions::REPRESENTATIVE_WAVE_RUNUP_2P_BRU)));
 
-            locationData.SetRepresentativeWaveRunUp2PCru(
+            locationData.SetRepresentativeWaveRunup2PCru(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
                     readRepresentativeWaveRunup2P, JsonInputGrassWaveRunupDefinitions::REPRESENTATIVE_WAVE_RUNUP_2P_CRU)));
         }

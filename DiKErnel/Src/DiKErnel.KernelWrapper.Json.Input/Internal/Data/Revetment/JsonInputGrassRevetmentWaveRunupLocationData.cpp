@@ -60,22 +60,22 @@ namespace DiKErnel::KernelWrapper::Json::Input
         _averageNumberOfWavesCtm = move(averageNumberOfWavesCtm);
     }
 
-    void JsonInputGrassRevetmentWaveRunupLocationData::SetRepresentativeWaveRunUp2PAru(
-        unique_ptr<double> representativeWaveRunUp2PAru)
+    void JsonInputGrassRevetmentWaveRunupLocationData::SetRepresentativeWaveRunup2PAru(
+        unique_ptr<double> representativeWaveRunup2PAru)
     {
-        _representativeWaveRunUp2PAru = move(representativeWaveRunUp2PAru);
+        _representativeWaveRunup2PAru = move(representativeWaveRunup2PAru);
     }
 
-    void JsonInputGrassRevetmentWaveRunupLocationData::SetRepresentativeWaveRunUp2PBru(
-        unique_ptr<double> representativeWaveRunUp2PBru)
+    void JsonInputGrassRevetmentWaveRunupLocationData::SetRepresentativeWaveRunup2PBru(
+        unique_ptr<double> representativeWaveRunup2PBru)
     {
-        _representativeWaveRunUp2PBru = move(representativeWaveRunUp2PBru);
+        _representativeWaveRunup2PBru = move(representativeWaveRunup2PBru);
     }
 
-    void JsonInputGrassRevetmentWaveRunupLocationData::SetRepresentativeWaveRunUp2PCru(
-        unique_ptr<double> representativeWaveRunUp2PCru)
+    void JsonInputGrassRevetmentWaveRunupLocationData::SetRepresentativeWaveRunup2PCru(
+        unique_ptr<double> representativeWaveRunup2PCru)
     {
-        _representativeWaveRunUp2PCru = move(representativeWaveRunUp2PCru);
+        _representativeWaveRunup2PCru = move(representativeWaveRunup2PCru);
     }
 
     void JsonInputGrassRevetmentWaveRunupLocationData::SetWaveAngleImpactAbeta(
@@ -124,19 +124,19 @@ namespace DiKErnel::KernelWrapper::Json::Input
         return _averageNumberOfWavesCtm.get();
     }
 
-    const double* JsonInputGrassRevetmentWaveRunupLocationData::GetRepresentativeWaveRunUp2PAru() const
+    const double* JsonInputGrassRevetmentWaveRunupLocationData::GetRepresentativeWaveRunup2PAru() const
     {
-        return _representativeWaveRunUp2PAru.get();
+        return _representativeWaveRunup2PAru.get();
     }
 
-    const double* JsonInputGrassRevetmentWaveRunupLocationData::GetRepresentativeWaveRunUp2PBru() const
+    const double* JsonInputGrassRevetmentWaveRunupLocationData::GetRepresentativeWaveRunup2PBru() const
     {
-        return _representativeWaveRunUp2PBru.get();
+        return _representativeWaveRunup2PBru.get();
     }
 
-    const double* JsonInputGrassRevetmentWaveRunupLocationData::GetRepresentativeWaveRunUp2PCru() const
+    const double* JsonInputGrassRevetmentWaveRunupLocationData::GetRepresentativeWaveRunup2PCru() const
     {
-        return _representativeWaveRunUp2PCru.get();
+        return _representativeWaveRunup2PCru.get();
     }
 
     const double* JsonInputGrassRevetmentWaveRunupLocationData::GetWaveAngleImpactAbeta() const
