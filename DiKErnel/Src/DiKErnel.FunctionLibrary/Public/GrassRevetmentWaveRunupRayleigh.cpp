@@ -28,20 +28,47 @@ namespace DiKErnel::FunctionLibrary
 
     double GrassRevetmentWaveRunupRayleigh::CumulativeOverload(
         const double averageNumberOfWaves,
-        const double frontVelocity,
+        const double representativeWaveRunup2p,
+        const int fixedNumberOfWaves,
+        const double positionZ,
+        const double waterLevel,
         const double criticalFrontVelocity,
         const double increasedLoadTransitionAlphaM,
         const double reducedStrengthTransitionAlphaS,
-        const int cumulativeOverloadNf)
+        const double frontVelocityCu,
+        const double gravitationalAcceleration)
     {
         auto sum = 0.0;
 
-        for (auto i = 1; i <= cumulativeOverloadNf; ++i)
+        for (auto k = 1; k <= fixedNumberOfWaves; ++k)
         {
+            const auto waveRunup = WaveRunup(representativeWaveRunup2p, fixedNumberOfWaves, k);
+
+            const auto frontVelocity = FrontVelocity(waveRunup, positionZ, waterLevel, frontVelocityCu, gravitationalAcceleration);
+
             sum += max(increasedLoadTransitionAlphaM * pow(frontVelocity, 2.0)
                        - reducedStrengthTransitionAlphaS * pow(criticalFrontVelocity, 2.0), 0.0);
         }
 
-        return averageNumberOfWaves / cumulativeOverloadNf * sum;
+        return averageNumberOfWaves / fixedNumberOfWaves * sum;
+    }
+
+    double GrassRevetmentWaveRunupRayleigh::FrontVelocity(
+        const double waveRunup,
+        const double positionZ,
+        const double waterLevel,
+        const double frontVelocityCu,
+        const double gravitationalAcceleration)
+    {
+        return frontVelocityCu * sqrt(gravitationalAcceleration * waveRunup) * max(
+            0.0, min(1.0, (waveRunup - (positionZ - waterLevel)) / (0.25 * waveRunup)));
+    }
+
+    double GrassRevetmentWaveRunupRayleigh::WaveRunup(
+        const double representativeWaveRunup2p,
+        const int fixedNumberOfWaves,
+        const int waveNumber)
+    {
+        return representativeWaveRunup2p * sqrt(log(1 - waveNumber / (fixedNumberOfWaves + 1.0)) / log(0.02));
     }
 }
