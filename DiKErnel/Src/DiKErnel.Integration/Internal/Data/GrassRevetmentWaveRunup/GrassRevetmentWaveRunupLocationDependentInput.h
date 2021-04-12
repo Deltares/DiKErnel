@@ -36,7 +36,12 @@ namespace DiKErnel::Integration
                 double tanA,
                 double positionZ,
                 double representativeWaveRunup2PGammab,
-                double representativeWaveRunup2PGammaf);
+                double representativeWaveRunup2PGammaf,
+                double criticalCumulativeOverload,
+                double criticalFrontVelocity,
+                double increasedLoadTransitionAlphaM,
+                double reducedStrengthTransitionAlphaS,
+                double averageNumberOfWavesCtm);
 
             std::unique_ptr<Core::TimeDependentOutput> Calculate(
                 double initialDamage,
@@ -48,9 +53,24 @@ namespace DiKErnel::Integration
 
             double GetRepresentativeWaveRunup2PGammaf() const;
 
+            double GetCriticalCumulativeOverload() const;
+
+            double GetCriticalFrontVelocity() const;
+
+            double GetIncreasedLoadTransitionAlphaM() const;
+
+            double GetReducedStrengthTransitionAlphaS() const;
+
+            double GetAverageNumberOfWavesCtm() const;
+
         private:
             double _tanA;
             double _representativeWaveRunup2PGammab;
             double _representativeWaveRunup2PGammaf;
+            double _criticalCumulativeOverload;
+            double _criticalFrontVelocity;
+            double _increasedLoadTransitionAlphaM;
+            double _reducedStrengthTransitionAlphaS;
+            double _averageNumberOfWavesCtm;
     };
 }

@@ -32,11 +32,21 @@ namespace DiKErnel::Integration
         const double tanA,
         const double positionZ,
         const double representativeWaveRunup2PGammab,
-        const double representativeWaveRunup2PGammaf)
+        const double representativeWaveRunup2PGammaf,
+        const double criticalCumulativeOverload,
+        const double criticalFrontVelocity,
+        const double increasedLoadTransitionAlphaM,
+        const double reducedStrengthTransitionAlphaS,
+        const double averageNumberOfWavesCtm)
         : LocationDependentInput(move(name), initialDamage, failureNumber, positionZ),
           _tanA(tanA),
           _representativeWaveRunup2PGammab(representativeWaveRunup2PGammab),
-          _representativeWaveRunup2PGammaf(representativeWaveRunup2PGammaf) {}
+          _representativeWaveRunup2PGammaf(representativeWaveRunup2PGammaf),
+          _criticalCumulativeOverload(criticalCumulativeOverload),
+          _criticalFrontVelocity(criticalFrontVelocity),
+          _increasedLoadTransitionAlphaM(increasedLoadTransitionAlphaM),
+          _reducedStrengthTransitionAlphaS(reducedStrengthTransitionAlphaS),
+          _averageNumberOfWavesCtm(averageNumberOfWavesCtm) {}
 
     unique_ptr<TimeDependentOutput> GrassRevetmentWaveRunupLocationDependentInput::Calculate(
         const double initialDamage,
@@ -58,5 +68,30 @@ namespace DiKErnel::Integration
     double GrassRevetmentWaveRunupLocationDependentInput::GetRepresentativeWaveRunup2PGammaf() const
     {
         return _representativeWaveRunup2PGammaf;
+    }
+
+    double GrassRevetmentWaveRunupLocationDependentInput::GetCriticalCumulativeOverload() const
+    {
+        return _criticalCumulativeOverload;
+    }
+
+    double GrassRevetmentWaveRunupLocationDependentInput::GetCriticalFrontVelocity() const
+    {
+        return _criticalFrontVelocity;
+    }
+
+    double GrassRevetmentWaveRunupLocationDependentInput::GetIncreasedLoadTransitionAlphaM() const
+    {
+        return _increasedLoadTransitionAlphaM;
+    }
+
+    double GrassRevetmentWaveRunupLocationDependentInput::GetReducedStrengthTransitionAlphaS() const
+    {
+        return _reducedStrengthTransitionAlphaS;
+    }
+
+    double GrassRevetmentWaveRunupLocationDependentInput::GetAverageNumberOfWavesCtm() const
+    {
+        return _averageNumberOfWavesCtm;
     }
 }
