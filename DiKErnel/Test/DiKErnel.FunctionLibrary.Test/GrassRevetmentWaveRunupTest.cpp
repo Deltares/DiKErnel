@@ -76,4 +76,18 @@ namespace DiKErnel::FunctionLibrary::Test
         // Assert
         ASSERT_DOUBLE_EQ(5.635949616, representativeWaveRunup2p);
     }
+
+    TEST(GrassRevetmentWaveRunupTest, WaveAngleImpact_ValidInput_ExpectedValue)
+    {
+        // Setup
+        const auto waveAngle = 45.0;
+        const auto waveAngleImpactAbeta = 0.0022;
+        const auto waveAngleImpactBetamax = 80.0;
+
+        // Call
+        const auto waveAngleImpact = GrassRevetmentWaveRunup::WaveAngleImpact(waveAngle, waveAngleImpactAbeta, waveAngleImpactBetamax);
+
+        // Assert
+        ASSERT_DOUBLE_EQ(0.901, waveAngleImpact);
+    }
 }

@@ -102,5 +102,25 @@ namespace DiKErnel::FunctionLibrary
                 double representativeWaveRunup2pBru,
                 double representativeWaveRunup2pCru
             );
+
+            /*!
+             * \brief Calculates the wave impact with respect to the wave angle.
+             * \param waveAngle
+             *        The wave angle.
+             *        Unit = [deg]
+             * \param waveAngleImpactAbeta
+             *        The Abeta coefficient.
+             *        Unit = [-]
+             * \param waveAngleImpactBetamax
+             *        The Betamax coefficient.
+             *        Unit = [-]
+             * \return The wave impact with respect to the wave angle.
+             *         Unit = [-]
+             */
+            static double WaveAngleImpact(
+                double waveAngle,
+                double waveAngleImpactAbeta,
+                double waveAngleImpactBetamax
+            );
     };
 }

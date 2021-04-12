@@ -55,4 +55,12 @@ namespace DiKErnel::FunctionLibrary
                                    * waveAngleImpact * surfSimilarityParameter, representativeWaveRunup2pGammaf * waveAngleImpact
                                    * (representativeWaveRunup2pBru - representativeWaveRunup2pCru / sqrt(surfSimilarityParameter)));
     }
+
+    double GrassRevetmentWaveRunup::WaveAngleImpact(
+        const double waveAngle,
+        const double waveAngleImpactAbeta,
+        const double waveAngleImpactBetamax)
+    {
+        return 1.0 - waveAngleImpactAbeta * min(abs(waveAngle), waveAngleImpactBetamax);
+    }
 }
