@@ -20,101 +20,98 @@
 
 #pragma once
 
+#include "IGrassRevetmentWaveRunupDefaults.h"
+
 namespace DiKErnel::DomainLibrary
 {
     /*!
-     * \brief Interface that contains default value definitions for grass revetment wave run-up.
+     * \brief Class that contains default values for grass revetment wave run-up with open sod.
      */
-    class IGrassRevetmentWaveRunupDefaults
+    class GrassRevetmentWaveRunupOpenSodDefaults : public IGrassRevetmentWaveRunupDefaults
     {
         public:
-            /*!
-             * \brief Destructs the instance.
-             */
-            virtual ~IGrassRevetmentWaveRunupDefaults() = default;
-
             /*!
              * \brief Gets the default value of the critical cumulative overload.
              * \return The default value of the critical cumulative overload.
              *         Unit = [m^2/s^2]
              */
-            virtual double GetCriticalCumulativeOverload() const = 0;
+            double GetCriticalCumulativeOverload() const override;
 
             /*!
              * \brief Gets the default value of the critical front velocity.
              * \return The default value of the critical front velocity.
              *         Unit = [m/s]
              */
-            virtual double GetCriticalFrontVelocity() const = 0;
+            double GetCriticalFrontVelocity() const override;
 
             /*!
              * \brief Gets the default value of the increased load transition alpha M.
              * \return The default value of the increased load transition alpha M.
              *         Unit = [-]
              */
-            virtual double GetIncreasedLoadTransitionAlphaM() const = 0;
+            double GetIncreasedLoadTransitionAlphaM() const override;
 
             /*!
              * \brief Gets the default value of the reduced strength transition alpha S.
              * \return The default value of the reduced strength transition alpha S.
              *         Unit = [-]
              */
-            virtual double GetReducedStrengthTransitionAlphaS() const = 0;
+            double GetReducedStrengthTransitionAlphaS() const override;
 
             /*!
              * \brief Gets the default value of the Ctm coefficient.
              * \return The default value of the Ctm coefficient.
              *         Unit = [-]
              */
-            virtual double GetAverageNumberOfWavesCtm() const = 0;
+            double GetAverageNumberOfWavesCtm() const override;
 
             /*!
              * \brief Gets the default value of the representative 2P Aru coefficient.
              * \return The default value of the representative 2P Aru coefficient.
              *         Unit = [-]
              */
-            virtual double GetRepresentativeWaveRunup2PAru() const = 0;
+            double GetRepresentativeWaveRunup2PAru() const override;
 
             /*!
              * \brief Gets the default value of the representative 2P Bru coefficient.
              * \return The default value of the representative 2P Bru coefficient.
              *         Unit = [-]
              */
-            virtual double GetRepresentativeWaveRunup2PBru() const = 0;
+            double GetRepresentativeWaveRunup2PBru() const override;
 
             /*!
              * \brief Gets the default value of the representative 2P Cru coefficient.
              * \return The default value of the representative 2P Cru coefficient.
              *         Unit = [-]
              */
-            virtual double GetRepresentativeWaveRunup2PCru() const = 0;
+            double GetRepresentativeWaveRunup2PCru() const override;
 
             /*!
              * \brief Gets the default value of the representative 2P Gammab coefficient.
              * \return The default value of the representative 2P Gammab coefficient.
              *         Unit = [-]
              */
-            virtual double GetRepresentativeWaveRunup2PGammab() const = 0;
+            double GetRepresentativeWaveRunup2PGammab() const override;
 
             /*!
              * \brief Gets the default value of the representative 2P Gammaf coefficient.
              * \return The default value of the representative 2P Gammaf coefficient.
              *         Unit = [-]
              */
-            virtual double GetRepresentativeWaveRunup2PGammaf() const = 0;
+            double GetRepresentativeWaveRunup2PGammaf() const override;
 
             /*!
              * \brief Gets the default value of the Abeta coefficient.
              * \return The default value of the Abeta coefficient.
              *         Unit = [-]
              */
-            virtual double GetWaveAngleImpactAbeta() const = 0;
+            double GetWaveAngleImpactAbeta() const override;
 
             /*!
              * \brief Gets the default value of the Betamax coefficient.
              * \return The default value of the Betamax coefficient.
              *         Unit = [-]
              */
-            virtual double GetWaveAngleImpactBetamax() const = 0;
+            double GetWaveAngleImpactBetamax() const override;
     };
 }
