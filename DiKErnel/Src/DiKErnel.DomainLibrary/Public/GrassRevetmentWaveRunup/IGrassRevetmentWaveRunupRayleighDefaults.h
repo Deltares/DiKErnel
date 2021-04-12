@@ -20,15 +20,13 @@
 
 #pragma once
 
-#include "IGrassRevetmentWaveRunupDefaults.h"
-
 namespace DiKErnel::DomainLibrary
 {
     /*!
      * \brief Interface that contains default value definitions for grass revetment wave run-up
      *        for the Rayleigh protocol.
      */
-    class IGrassRevetmentWaveRunupRayleighDefaults : public IGrassRevetmentWaveRunupDefaults
+    class IGrassRevetmentWaveRunupRayleighDefaults
     {
         public:
             /*!

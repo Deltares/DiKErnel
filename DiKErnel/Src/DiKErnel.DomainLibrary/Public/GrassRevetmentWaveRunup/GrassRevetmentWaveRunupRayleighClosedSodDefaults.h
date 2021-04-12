@@ -29,8 +29,8 @@ namespace DiKErnel::DomainLibrary
      * \brief Class that contains default values for grass revetment wave run-up with closed sod
      *        for the Rayleigh protocol.
      */
-    class GrassRevetmentWaveRunupRayleighClosedSodDefaults : public IGrassRevetmentWaveRunupRayleighDefaults,
-                                                             GrassRevetmentWaveRunupClosedSodDefaults
+    class GrassRevetmentWaveRunupRayleighClosedSodDefaults : public GrassRevetmentWaveRunupClosedSodDefaults,
+                                                             public IGrassRevetmentWaveRunupRayleighDefaults
     {
         public:
             /*!
