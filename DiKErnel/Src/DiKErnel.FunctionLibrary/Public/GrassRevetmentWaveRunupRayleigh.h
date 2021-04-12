@@ -31,6 +31,36 @@ namespace DiKErnel::FunctionLibrary
         public:
             /*!
              * \brief Calculates the cumulative overload.
+             * \param averageNumberOfWaves
+             *        The average number of waves.
+             *        Unit = [-]
+             * \param representativeWaveRunup2p
+             *        The representative wave run-up 2p.
+             *        Unit = [m]
+             * \param fixedNumberOfWaves
+             *        The fixed number of waves.
+             *        Unit = [-]
+             * \param positionZ
+             *        The vertical position.
+             *        Unit = [m]
+             * \param waterLevel
+             *        The water level.
+             *        Unit = [m]
+             * \param criticalFrontVelocity
+             *        The critical front velocity.
+             *        Unit = [m/s]
+             * \param increasedLoadTransitionAlphaM
+             *        The AlphaM value.
+             *        Unit = [-]
+             * \param reducedStrengthTransitionAlphaS
+             *        The AlphaS value.
+             *        Unit = [-]
+             * \param frontVelocityCu
+             *        The Cu coefficient.
+             *        Unit = [-]
+             * \param gravitationalAcceleration
+             *        The gravitational acceleration.
+             *        Unit = [m/s^2]
              * \return The cumulative overload.
              *         Unit = [m^2/s^2]
              */
