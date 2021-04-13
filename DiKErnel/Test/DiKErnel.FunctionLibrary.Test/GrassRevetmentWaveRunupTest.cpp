@@ -27,11 +27,11 @@ namespace DiKErnel::FunctionLibrary::Test
     TEST(GrassRevetmentWaveRunupTest, IncrementDamage_ValidInput_ExpectedValue)
     {
         // Setup
-        const auto cumulativeOverloadWaveRunup = 1063.89;
-        const auto criticalCumulativeOverloadWaveRunup = 7000.0;
+        const auto cumulativeOverload = 1063.89;
+        const auto criticalCumulativeOverload = 7000.0;
 
         // Call
-        const auto incrementDamage = GrassRevetmentWaveRunup::IncrementDamage(cumulativeOverloadWaveRunup, criticalCumulativeOverloadWaveRunup);
+        const auto incrementDamage = GrassRevetmentWaveRunup::IncrementDamage(cumulativeOverload, criticalCumulativeOverload);
 
         // Assert
         ASSERT_DOUBLE_EQ(0.15198428571428574, incrementDamage);
