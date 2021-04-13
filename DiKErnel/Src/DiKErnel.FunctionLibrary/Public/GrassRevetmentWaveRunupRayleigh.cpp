@@ -46,8 +46,8 @@ namespace DiKErnel::FunctionLibrary
             const auto waveRunup = WaveRunup(representativeWaveRunup2p, fixedNumberOfWaves, k);
             const auto frontVelocity = FrontVelocity(waveRunup, positionZ, waterLevel, frontVelocityCu, gravitationalAcceleration);
 
-            effectiveFrontVelocity += max(increasedLoadTransitionAlphaM * pow(frontVelocity, 2.0)
-                                          - reducedStrengthTransitionAlphaS * pow(criticalFrontVelocity, 2.0), 0.0);
+            effectiveFrontVelocity += max(0.0, increasedLoadTransitionAlphaM * pow(frontVelocity, 2.0)
+                                          - reducedStrengthTransitionAlphaS * pow(criticalFrontVelocity, 2.0));
         }
 
         return averageNumberOfWaves / fixedNumberOfWaves * effectiveFrontVelocity;
