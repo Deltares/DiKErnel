@@ -21,6 +21,7 @@
 #include "GrassRevetmentWaveRunup.h"
 
 #include <algorithm>
+#include <cmath>
 
 namespace DiKErnel::FunctionLibrary
 {
