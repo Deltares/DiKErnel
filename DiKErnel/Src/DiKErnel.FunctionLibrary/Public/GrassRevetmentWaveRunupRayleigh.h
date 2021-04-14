@@ -34,8 +34,8 @@ namespace DiKErnel::FunctionLibrary
              * \param averageNumberOfWaves
              *        The average number of waves.
              *        Unit = [-]
-             * \param representativeWaveRunup2p
-             *        The representative wave run-up 2p.
+             * \param representativeWaveRunup2P
+             *        The representative wave run-up (2 percent).
              *        Unit = [m]
              * \param fixedNumberOfWaves
              *        The fixed number of waves.
@@ -66,7 +66,7 @@ namespace DiKErnel::FunctionLibrary
              */
             static double CumulativeOverload(
                 double averageNumberOfWaves,
-                double representativeWaveRunup2p,
+                double representativeWaveRunup2P,
                 int fixedNumberOfWaves,
                 double positionZ,
                 double waterLevel,
@@ -85,7 +85,7 @@ namespace DiKErnel::FunctionLibrary
                 double gravitationalAcceleration);
 
             static double WaveRunup(
-                double representativeWaveRunup2p,
+                double representativeWaveRunup2P,
                 int fixedNumberOfWaves,
                 int waveNumber);
     };

@@ -28,7 +28,7 @@ namespace DiKErnel::FunctionLibrary::Test
     {
         // Setup
         const auto averageNumberOfWaves = 225;
-        const auto representativeWaveRunup2p = 2.258;
+        const auto representativeWaveRunup2P = 2.258;
         const auto fixedNumberOfWaves = 10000;
         const auto positionZ = 1.0;
         const auto waterLevel = 0.03;
@@ -41,7 +41,7 @@ namespace DiKErnel::FunctionLibrary::Test
         // Call
         const auto cumulativeOverload = GrassRevetmentWaveRunupRayleigh::CumulativeOverload(
             averageNumberOfWaves,
-            representativeWaveRunup2p,
+            representativeWaveRunup2P,
             fixedNumberOfWaves,
             positionZ,
             waterLevel,

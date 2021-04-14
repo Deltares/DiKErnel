@@ -29,7 +29,7 @@ namespace DiKErnel::FunctionLibrary
 
     double GrassRevetmentWaveRunupRayleigh::CumulativeOverload(
         const double averageNumberOfWaves,
-        const double representativeWaveRunup2p,
+        const double representativeWaveRunup2P,
         const int fixedNumberOfWaves,
         const double positionZ,
         const double waterLevel,
@@ -43,7 +43,7 @@ namespace DiKErnel::FunctionLibrary
 
         for (auto k = 1; k <= fixedNumberOfWaves; ++k)
         {
-            const auto waveRunup = WaveRunup(representativeWaveRunup2p, fixedNumberOfWaves, k);
+            const auto waveRunup = WaveRunup(representativeWaveRunup2P, fixedNumberOfWaves, k);
             const auto frontVelocity = FrontVelocity(waveRunup, positionZ, waterLevel, frontVelocityCu, gravitationalAcceleration);
 
             effectiveFrontVelocity += max(0.0, increasedLoadTransitionAlphaM * pow(frontVelocity, 2.0)
@@ -65,10 +65,10 @@ namespace DiKErnel::FunctionLibrary
     }
 
     double GrassRevetmentWaveRunupRayleigh::WaveRunup(
-        const double representativeWaveRunup2p,
+        const double representativeWaveRunup2P,
         const int fixedNumberOfWaves,
         const int waveNumber)
     {
-        return representativeWaveRunup2p * sqrt(log(1.0 - waveNumber / (fixedNumberOfWaves + 1.0)) / log(0.02));
+        return representativeWaveRunup2P * sqrt(log(1.0 - waveNumber / (fixedNumberOfWaves + 1.0)) / log(0.02));
     }
 }

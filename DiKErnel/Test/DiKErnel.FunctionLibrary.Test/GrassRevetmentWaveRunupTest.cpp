@@ -51,30 +51,30 @@ namespace DiKErnel::FunctionLibrary::Test
         ASSERT_DOUBLE_EQ(115.38461538461539, averageNumberOfWaves);
     }
 
-    TEST(GrassRevetmentWaveRunupTest, RepresentativeWaveRunup2p_ValidInput_ExpectedValue)
+    TEST(GrassRevetmentWaveRunupTest, RepresentativeWaveRunup2P_ValidInput_ExpectedValue)
     {
         // Setup
         const auto surfSimilarityParameter = 1.436;
         const auto waveAngleImpact = 0.901;
         const auto waveHeightHm0 = 2.0;
-        const auto representativeWaveRunup2pGammab = 1.1;
-        const auto representativeWaveRunup2pGammaf = 1.2;
-        const auto representativeWaveRunup2pAru = 1.65;
-        const auto representativeWaveRunup2pBru = 4.0;
-        const auto representativeWaveRunup2pCru = 1.5;
+        const auto representativeWaveRunup2PGammab = 1.1;
+        const auto representativeWaveRunup2PGammaf = 1.2;
+        const auto representativeWaveRunup2PAru = 1.65;
+        const auto representativeWaveRunup2PBru = 4.0;
+        const auto representativeWaveRunup2PCru = 1.5;
 
         // Call
-        const auto representativeWaveRunup2p = GrassRevetmentWaveRunup::RepresentativeWaveRunup2p(surfSimilarityParameter,
+        const auto representativeWaveRunup2P = GrassRevetmentWaveRunup::RepresentativeWaveRunup2P(surfSimilarityParameter,
             waveAngleImpact,
             waveHeightHm0,
-            representativeWaveRunup2pGammab,
-            representativeWaveRunup2pGammaf,
-            representativeWaveRunup2pAru,
-            representativeWaveRunup2pBru,
-            representativeWaveRunup2pCru);
+            representativeWaveRunup2PGammab,
+            representativeWaveRunup2PGammaf,
+            representativeWaveRunup2PAru,
+            representativeWaveRunup2PBru,
+            representativeWaveRunup2PCru);
 
         // Assert
-        ASSERT_DOUBLE_EQ(5.635949616, representativeWaveRunup2p);
+        ASSERT_DOUBLE_EQ(5.635949616, representativeWaveRunup2P);
     }
 
     TEST(GrassRevetmentWaveRunupTest, WaveAngleImpact_ValidInput_ExpectedValue)

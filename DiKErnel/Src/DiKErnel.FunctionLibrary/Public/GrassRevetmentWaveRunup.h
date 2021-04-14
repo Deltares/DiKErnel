@@ -63,7 +63,7 @@ namespace DiKErnel::FunctionLibrary
                 double averageNumberOfWavesCtm);
 
             /*!
-             * \brief Calculates the representative wave run-up 2p.
+             * \brief Calculates the representative wave run-up (2 percent).
              * \param surfSimilarityParameter
              *        The surf similarity parameter.
              *        Unit = [-]
@@ -73,33 +73,33 @@ namespace DiKErnel::FunctionLibrary
              * \param waveHeightHm0
              *        The wave height.
              *        Unit = [m]
-             * \param representativeWaveRunup2pGammab
+             * \param representativeWaveRunup2PGammab
              *        The Gammab value.
              *        Unit = [-]
-             * \param representativeWaveRunup2pGammaf
+             * \param representativeWaveRunup2PGammaf
              *        The Gammaf value.
              *        Unit = [-]
-             * \param representativeWaveRunup2pAru
+             * \param representativeWaveRunup2PAru
              *        The Aru coefficient.
              *        Unit = [-]
-             * \param representativeWaveRunup2pBru
+             * \param representativeWaveRunup2PBru
              *        The Bru coefficient.
              *        Unit = [-]
-             * \param representativeWaveRunup2pCru
+             * \param representativeWaveRunup2PCru
              *        The Cru coefficient.
              *        Unit = [-]
-             * \return The representative wave run-up 2p.
+             * \return The representative wave run-up (2 percent).
              *         Unit = [m]
              */
-            static double RepresentativeWaveRunup2p(
+            static double RepresentativeWaveRunup2P(
                 double surfSimilarityParameter,
                 double waveAngleImpact,
                 double waveHeightHm0,
-                double representativeWaveRunup2pGammab,
-                double representativeWaveRunup2pGammaf,
-                double representativeWaveRunup2pAru,
-                double representativeWaveRunup2pBru,
-                double representativeWaveRunup2pCru);
+                double representativeWaveRunup2PGammab,
+                double representativeWaveRunup2PGammaf,
+                double representativeWaveRunup2PAru,
+                double representativeWaveRunup2PBru,
+                double representativeWaveRunup2PCru);
 
             /*!
              * \brief Calculates the wave impact with respect to the wave angle.

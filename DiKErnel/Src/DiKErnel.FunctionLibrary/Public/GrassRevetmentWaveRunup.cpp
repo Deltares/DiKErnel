@@ -42,19 +42,19 @@ namespace DiKErnel::FunctionLibrary
         return incrementTime / (averageNumberOfWavesCtm * wavePeriodTm10);
     }
 
-    double GrassRevetmentWaveRunup::RepresentativeWaveRunup2p(
+    double GrassRevetmentWaveRunup::RepresentativeWaveRunup2P(
         const double surfSimilarityParameter,
         const double waveAngleImpact,
         const double waveHeightHm0,
-        const double representativeWaveRunup2pGammab,
-        const double representativeWaveRunup2pGammaf,
-        const double representativeWaveRunup2pAru,
-        const double representativeWaveRunup2pBru,
-        const double representativeWaveRunup2pCru)
+        const double representativeWaveRunup2PGammab,
+        const double representativeWaveRunup2PGammaf,
+        const double representativeWaveRunup2PAru,
+        const double representativeWaveRunup2PBru,
+        const double representativeWaveRunup2PCru)
     {
-        return waveHeightHm0 * min(representativeWaveRunup2pAru * representativeWaveRunup2pGammab * representativeWaveRunup2pGammaf
-                                   * waveAngleImpact * surfSimilarityParameter, representativeWaveRunup2pGammaf * waveAngleImpact
-                                   * (representativeWaveRunup2pBru - representativeWaveRunup2pCru / sqrt(surfSimilarityParameter)));
+        return waveHeightHm0 * min(representativeWaveRunup2PAru * representativeWaveRunup2PGammab * representativeWaveRunup2PGammaf
+                                   * waveAngleImpact * surfSimilarityParameter, representativeWaveRunup2PGammaf * waveAngleImpact
+                                   * (representativeWaveRunup2PBru - representativeWaveRunup2PCru / sqrt(surfSimilarityParameter)));
     }
 
     double GrassRevetmentWaveRunup::WaveAngleImpact(
