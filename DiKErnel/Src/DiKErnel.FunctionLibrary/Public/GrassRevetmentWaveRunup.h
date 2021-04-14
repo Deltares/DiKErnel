@@ -60,8 +60,7 @@ namespace DiKErnel::FunctionLibrary
             static double AverageNumberOfWaves(
                 double incrementTime,
                 double wavePeriodTm10,
-                double averageNumberOfWavesCtm
-            );
+                double averageNumberOfWavesCtm);
 
             /*!
              * \brief Calculates the representative wave run-up 2p.
@@ -100,8 +99,7 @@ namespace DiKErnel::FunctionLibrary
                 double representativeWaveRunup2pGammaf,
                 double representativeWaveRunup2pAru,
                 double representativeWaveRunup2pBru,
-                double representativeWaveRunup2pCru
-            );
+                double representativeWaveRunup2pCru);
 
             /*!
              * \brief Calculates the wave impact with respect to the wave angle.
@@ -120,7 +118,6 @@ namespace DiKErnel::FunctionLibrary
             static double WaveAngleImpact(
                 double waveAngle,
                 double waveAngleImpactAbeta,
-                double waveAngleImpactBetamax
-            );
+                double waveAngleImpactBetamax);
     };
 }
