@@ -39,18 +39,18 @@ namespace DiKErnel::FunctionLibrary
         const double frontVelocityCu,
         const double gravitationalAcceleration)
     {
-        auto effectiveFrontVelocity = 0.0;
+        auto cumulativeFrontVelocity = 0.0;
 
         for (auto k = 1; k <= fixedNumberOfWaves; ++k)
         {
             const auto waveRunup = WaveRunup(representativeWaveRunup2P, fixedNumberOfWaves, k);
             const auto frontVelocity = FrontVelocity(waveRunup, positionZ, waterLevel, frontVelocityCu, gravitationalAcceleration);
 
-            effectiveFrontVelocity += max(0.0, increasedLoadTransitionAlphaM * pow(frontVelocity, 2.0)
-                                          - reducedStrengthTransitionAlphaS * pow(criticalFrontVelocity, 2.0));
+            cumulativeFrontVelocity += max(0.0, increasedLoadTransitionAlphaM * pow(frontVelocity, 2.0)
+                                           - reducedStrengthTransitionAlphaS * pow(criticalFrontVelocity, 2.0));
         }
 
-        return averageNumberOfWaves / fixedNumberOfWaves * effectiveFrontVelocity;
+        return averageNumberOfWaves / fixedNumberOfWaves * cumulativeFrontVelocity;
     }
 
     double GrassRevetmentWaveRunupRayleigh::FrontVelocity(
