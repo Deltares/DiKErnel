@@ -13,6 +13,7 @@ set(SOURCEFILES_MAIN
 
 set(SOURCEFILES_DATA
   ${DATA_FOLDER}/GrassRevetmentWaveImpactLocationConstructionPropertiesTest.cpp
+  ${DATA_FOLDER}/GrassRevetmentWaveRunupLocationConstructionPropertiesTest.cpp
   ${DATA_FOLDER}/NaturalStoneRevetmentLocationConstructionPropertiesTest.cpp
   ${DATA_FOLDER}/RevetmentLocationConstructionPropertiesBaseTest.cpp
 )

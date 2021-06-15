@@ -35,9 +35,124 @@ namespace DiKErnel::Integration
 
     #pragma region Set methods
 
+    void GrassRevetmentWaveRunupLocationConstructionProperties::SetCriticalCumulativeOverload(
+        std::unique_ptr<double> criticalCumulativeOverload)
+    {
+        _criticalCumulativeOverload = move(criticalCumulativeOverload);
+    }
+
+    void GrassRevetmentWaveRunupLocationConstructionProperties::SetCriticalFrontVelocity(
+        std::unique_ptr<double> criticalFrontVelocity)
+    {
+        _criticalFrontVelocity = move(criticalFrontVelocity);
+    }
+
+    void GrassRevetmentWaveRunupLocationConstructionProperties::SetIncreasedLoadTransitionAlphaM(
+        std::unique_ptr<double> increasedLoadTransitionAlphaM)
+    {
+        _increasedLoadTransitionAlphaM = move(increasedLoadTransitionAlphaM);
+    }
+
+    void GrassRevetmentWaveRunupLocationConstructionProperties::SetReducedStrengthTransitionAlphaS(
+        std::unique_ptr<double> reducedStrengthTransitionAlphaS)
+    {
+        _reducedStrengthTransitionAlphaS = move(reducedStrengthTransitionAlphaS);
+    }
+
+    void GrassRevetmentWaveRunupLocationConstructionProperties::SetAverageNumberOfWavesCtm(
+        std::unique_ptr<double> averageNumberOfWavesCtm)
+    {
+        _averageNumberOfWavesCtm = move(averageNumberOfWavesCtm);
+    }
+
+    void GrassRevetmentWaveRunupLocationConstructionProperties::SetRepresentativeWaveRunup2PAru(
+        std::unique_ptr<double> representativeWaveRunup2PAru)
+    {
+        _representativeWaveRunup2PAru = move(representativeWaveRunup2PAru);
+    }
+
+    void GrassRevetmentWaveRunupLocationConstructionProperties::SetRepresentativeWaveRunup2PBru(
+        std::unique_ptr<double> representativeWaveRunup2PBru)
+    {
+        _representativeWaveRunup2PBru = move(representativeWaveRunup2PBru);
+    }
+
+    void GrassRevetmentWaveRunupLocationConstructionProperties::SetRepresentativeWaveRunup2PCru(
+        std::unique_ptr<double> representativeWaveRunup2PCru)
+    {
+        _representativeWaveRunup2PCru = move(representativeWaveRunup2PCru);
+    }
+
+    void GrassRevetmentWaveRunupLocationConstructionProperties::SetWaveAngleImpactAbeta(
+        std::unique_ptr<double> waveAngleImpactAbeta)
+    {
+        _waveAngleImpactAbeta = move(waveAngleImpactAbeta);
+    }
+
+    void GrassRevetmentWaveRunupLocationConstructionProperties::SetWaveAngleImpactBetamax(
+        std::unique_ptr<double> waveAngleImpactBetamax)
+    {
+        _waveAngleImpactBetamax = move(waveAngleImpactBetamax);
+    }
+
     #pragma endregion
 
     #pragma region Get methods
+
+    GrassRevetmentTopLayerType GrassRevetmentWaveRunupLocationConstructionProperties::GetTopLayerType() const
+    {
+        return _topLayerType;
+    }
+
+    const double* GrassRevetmentWaveRunupLocationConstructionProperties::GetCriticalCumulativeOverload() const
+    {
+        return _criticalCumulativeOverload.get();
+    }
+
+    const double* GrassRevetmentWaveRunupLocationConstructionProperties::GetCriticalFrontVelocity() const
+    {
+        return _criticalFrontVelocity.get();
+    }
+
+    const double* GrassRevetmentWaveRunupLocationConstructionProperties::GetIncreasedLoadTransitionAlphaM() const
+    {
+        return _increasedLoadTransitionAlphaM.get();
+    }
+
+    const double* GrassRevetmentWaveRunupLocationConstructionProperties::GetReducedStrengthTransitionAlphaS() const
+    {
+        return _reducedStrengthTransitionAlphaS.get();
+    }
+
+    const double* GrassRevetmentWaveRunupLocationConstructionProperties::GetAverageNumberOfWavesCtm() const
+    {
+        return _averageNumberOfWavesCtm.get();
+    }
+
+    const double* GrassRevetmentWaveRunupLocationConstructionProperties::GetRepresentativeWaveRunup2PAru() const
+    {
+        return _representativeWaveRunup2PAru.get();
+    }
+
+    const double* GrassRevetmentWaveRunupLocationConstructionProperties::GetRepresentativeWaveRunup2PBru() const
+    {
+        return _representativeWaveRunup2PBru.get();
+    }
+
+    const double* GrassRevetmentWaveRunupLocationConstructionProperties::GetRepresentativeWaveRunup2PCru() const
+    {
+        return _representativeWaveRunup2PCru.get();
+    }
+
+    const double* GrassRevetmentWaveRunupLocationConstructionProperties::GetWaveAngleImpactAbeta() const
+    {
+        return _waveAngleImpactAbeta.get();
+    }
+
+    const double* GrassRevetmentWaveRunupLocationConstructionProperties::GetWaveAngleImpactBetamax() const
+    {
+        return _waveAngleImpactBetamax.get();
+    }
 
     #pragma endregion
 }
