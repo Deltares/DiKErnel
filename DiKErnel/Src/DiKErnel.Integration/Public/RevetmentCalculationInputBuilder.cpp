@@ -180,8 +180,8 @@ namespace DiKErnel::Integration
             GetValue(constructionProperties.GetRepresentativeWaveRunup2PAru(), defaults->GetRepresentativeWaveRunup2PAru()),
             GetValue(constructionProperties.GetRepresentativeWaveRunup2PBru(), defaults->GetRepresentativeWaveRunup2PBru()),
             GetValue(constructionProperties.GetRepresentativeWaveRunup2PCru(), defaults->GetRepresentativeWaveRunup2PCru()),
-            0.0,
-            0.0);
+            GetValue(constructionProperties.GetRepresentativeWaveRunup2PGammab(), defaults->GetRepresentativeWaveRunup2PGammab()),
+            GetValue(constructionProperties.GetRepresentativeWaveRunup2PGammaf(), defaults->GetRepresentativeWaveRunup2PGammaf()));
 
         auto waveAngleImpact = make_unique<GrassRevetmentWaveRunupWaveAngleImpact>(
             GetValue(constructionProperties.GetWaveAngleImpactAbeta(), defaults->GetWaveAngleImpactAbeta()),
@@ -192,7 +192,7 @@ namespace DiKErnel::Integration
                 constructionProperties.GetName(),
                 GetValue(constructionProperties.GetInitialDamage(), RevetmentDefaults::INITIAL_DAMAGE),
                 GetValue(constructionProperties.GetFailureNumber(), RevetmentDefaults::FAILURE_NUMBER),
-                0.0,
+                constructionProperties.GetTanA(),
                 constructionProperties.GetPositionZ(),
                 GetValue(constructionProperties.GetCriticalCumulativeOverload(), defaults->GetCriticalCumulativeOverload()),
                 GetValue(constructionProperties.GetCriticalFrontVelocity(), defaults->GetCriticalFrontVelocity()),
