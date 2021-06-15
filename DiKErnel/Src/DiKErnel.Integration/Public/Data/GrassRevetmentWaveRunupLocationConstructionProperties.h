@@ -101,6 +101,22 @@ namespace DiKErnel::Integration
                 std::unique_ptr<double> representativeWaveRunup2PCru);
 
             /*!
+             * \brief Sets the 2P Gammab coefficient.
+             * \param representativeWaveRunup2PGammab
+             *        The 2P Gammab coefficient.
+             */
+            void SetRepresentativeWaveRunup2PGammab(
+                std::unique_ptr<double> representativeWaveRunup2PGammab);
+
+            /*!
+             * \brief Sets the 2P Gammaf coefficient.
+             * \param representativeWaveRunup2PGammaf
+             *        The 2P Gammaf coefficient.
+             */
+            void SetRepresentativeWaveRunup2PGammaf(
+                std::unique_ptr<double> representativeWaveRunup2PGammaf);
+
+            /*!
              * \brief Sets the Abeta coefficient.
              * \param waveAngleImpactAbeta
              *        The Abeta coefficient.
@@ -181,6 +197,18 @@ namespace DiKErnel::Integration
             const double* GetRepresentativeWaveRunup2PCru() const;
 
             /*!
+             * \brief Gets the 2P Gammab coefficient.
+             * \return The 2P Gammab coefficient.
+             */
+            const double* GetRepresentativeWaveRunup2PGammab() const;
+
+            /*!
+             * \brief Gets the 2P Gammaf coefficient.
+             * \return The 2P Gammaf coefficient.
+             */
+            const double* GetRepresentativeWaveRunup2PGammaf() const;
+
+            /*!
              * \brief Gets the Abeta coefficient.
              * \return The Abeta coefficient.
              */
@@ -223,6 +251,8 @@ namespace DiKErnel::Integration
             std::unique_ptr<double> _representativeWaveRunup2PAru = nullptr;
             std::unique_ptr<double> _representativeWaveRunup2PBru = nullptr;
             std::unique_ptr<double> _representativeWaveRunup2PCru = nullptr;
+            std::unique_ptr<double> _representativeWaveRunup2PGammab;
+            std::unique_ptr<double> _representativeWaveRunup2PGammaf;
             std::unique_ptr<double> _waveAngleImpactAbeta = nullptr;
             std::unique_ptr<double> _waveAngleImpactBetamax = nullptr;
     };

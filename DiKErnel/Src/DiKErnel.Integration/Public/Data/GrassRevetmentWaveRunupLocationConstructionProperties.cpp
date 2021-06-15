@@ -85,6 +85,18 @@ namespace DiKErnel::Integration
         _representativeWaveRunup2PCru = move(representativeWaveRunup2PCru);
     }
 
+    void GrassRevetmentWaveRunupLocationConstructionProperties::SetRepresentativeWaveRunup2PGammab(
+        std::unique_ptr<double> representativeWaveRunup2PGammab)
+    {
+        _representativeWaveRunup2PGammab = move(representativeWaveRunup2PGammab);
+    }
+
+    void GrassRevetmentWaveRunupLocationConstructionProperties::SetRepresentativeWaveRunup2PGammaf(
+        std::unique_ptr<double> representativeWaveRunup2PGammaf)
+    {
+        _representativeWaveRunup2PGammaf = move(representativeWaveRunup2PGammaf);
+    }
+
     void GrassRevetmentWaveRunupLocationConstructionProperties::SetWaveAngleImpactAbeta(
         std::unique_ptr<double> waveAngleImpactAbeta)
     {
@@ -149,6 +161,16 @@ namespace DiKErnel::Integration
     const double* GrassRevetmentWaveRunupLocationConstructionProperties::GetRepresentativeWaveRunup2PCru() const
     {
         return _representativeWaveRunup2PCru.get();
+    }
+
+    const double* GrassRevetmentWaveRunupLocationConstructionProperties::GetRepresentativeWaveRunup2PGammab() const
+    {
+        return _representativeWaveRunup2PGammab.get();
+    }
+
+    const double* GrassRevetmentWaveRunupLocationConstructionProperties::GetRepresentativeWaveRunup2PGammaf() const
+    {
+        return _representativeWaveRunup2PGammaf.get();
     }
 
     const double* GrassRevetmentWaveRunupLocationConstructionProperties::GetWaveAngleImpactAbeta() const

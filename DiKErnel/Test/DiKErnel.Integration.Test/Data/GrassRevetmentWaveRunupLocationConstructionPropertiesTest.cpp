@@ -57,6 +57,8 @@ namespace DiKErnel::Integration::Test
         ASSERT_EQ(nullptr, constructionProperties.GetRepresentativeWaveRunup2PAru());
         ASSERT_EQ(nullptr, constructionProperties.GetRepresentativeWaveRunup2PBru());
         ASSERT_EQ(nullptr, constructionProperties.GetRepresentativeWaveRunup2PCru());
+        ASSERT_EQ(nullptr, constructionProperties.GetRepresentativeWaveRunup2PGammab());
+        ASSERT_EQ(nullptr, constructionProperties.GetRepresentativeWaveRunup2PGammaf());
         ASSERT_EQ(nullptr, constructionProperties.GetWaveAngleImpactAbeta());
         ASSERT_EQ(nullptr, constructionProperties.GetWaveAngleImpactBetamax());
     }
@@ -78,8 +80,10 @@ namespace DiKErnel::Integration::Test
         const auto representativeWaveRunup2PAru = 1.0;
         const auto representativeWaveRunup2PBru = 1.1;
         const auto representativeWaveRunup2PCru = 1.2;
-        const auto waveAngleImpactAbeta = 1.3;
-        const auto waveAngleImpactBetamax = 1.4;
+        const auto representativeWaveRunup2PGammab = 1.3;
+        const auto representativeWaveRunup2PGammaf = 1.4;
+        const auto waveAngleImpactAbeta = 1.5;
+        const auto waveAngleImpactBetamax = 1.6;
 
         GrassRevetmentWaveRunupLocationConstructionPropertiesMock constructionProperties(name, tanA, positionZ, topLayerType);
 
@@ -94,6 +98,8 @@ namespace DiKErnel::Integration::Test
         constructionProperties.SetRepresentativeWaveRunup2PAru(make_unique<double>(representativeWaveRunup2PAru));
         constructionProperties.SetRepresentativeWaveRunup2PBru(make_unique<double>(representativeWaveRunup2PBru));
         constructionProperties.SetRepresentativeWaveRunup2PCru(make_unique<double>(representativeWaveRunup2PCru));
+        constructionProperties.SetRepresentativeWaveRunup2PGammab(make_unique<double>(representativeWaveRunup2PGammab));
+        constructionProperties.SetRepresentativeWaveRunup2PGammaf(make_unique<double>(representativeWaveRunup2PGammaf));
         constructionProperties.SetWaveAngleImpactAbeta(make_unique<double>(waveAngleImpactAbeta));
         constructionProperties.SetWaveAngleImpactBetamax(make_unique<double>(waveAngleImpactBetamax));
 
@@ -112,6 +118,8 @@ namespace DiKErnel::Integration::Test
         ASSERT_DOUBLE_EQ(representativeWaveRunup2PAru, *constructionProperties.GetRepresentativeWaveRunup2PAru());
         ASSERT_DOUBLE_EQ(representativeWaveRunup2PBru, *constructionProperties.GetRepresentativeWaveRunup2PBru());
         ASSERT_DOUBLE_EQ(representativeWaveRunup2PCru, *constructionProperties.GetRepresentativeWaveRunup2PCru());
+        ASSERT_DOUBLE_EQ(representativeWaveRunup2PGammab, *constructionProperties.GetRepresentativeWaveRunup2PGammab());
+        ASSERT_DOUBLE_EQ(representativeWaveRunup2PGammaf, *constructionProperties.GetRepresentativeWaveRunup2PGammaf());
         ASSERT_DOUBLE_EQ(waveAngleImpactAbeta, *constructionProperties.GetWaveAngleImpactAbeta());
         ASSERT_DOUBLE_EQ(waveAngleImpactBetamax, *constructionProperties.GetWaveAngleImpactBetamax());
     }
