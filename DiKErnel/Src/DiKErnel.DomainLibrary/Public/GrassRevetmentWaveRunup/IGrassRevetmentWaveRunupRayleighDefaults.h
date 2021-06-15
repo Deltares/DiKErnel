@@ -20,20 +20,17 @@
 
 #pragma once
 
+#include "IGrassRevetmentWaveRunupDefaults.h"
+
 namespace DiKErnel::DomainLibrary
 {
     /*!
      * \brief Interface that contains default value definitions for grass revetment wave run-up
      *        for the Rayleigh protocol.
      */
-    class IGrassRevetmentWaveRunupRayleighDefaults
+    class IGrassRevetmentWaveRunupRayleighDefaults : public virtual IGrassRevetmentWaveRunupDefaults
     {
         public:
-            /*!
-             * \brief Destructs the instance.
-             */
-            virtual ~IGrassRevetmentWaveRunupRayleighDefaults() = default;
-
             /*!
              * \brief Gets the default value of the cumulative overload Nf.
              * \return The default value of the cumulative overload Nf.

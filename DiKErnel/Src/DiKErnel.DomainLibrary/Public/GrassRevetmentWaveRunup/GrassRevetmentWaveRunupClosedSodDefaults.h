@@ -27,7 +27,7 @@ namespace DiKErnel::DomainLibrary
     /*!
      * \brief Class that contains default values for grass revetment wave run-up with closed sod.
      */
-    class GrassRevetmentWaveRunupClosedSodDefaults : public IGrassRevetmentWaveRunupDefaults
+    class GrassRevetmentWaveRunupClosedSodDefaults : public virtual IGrassRevetmentWaveRunupDefaults
     {
         public:
             /*!

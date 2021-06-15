@@ -22,6 +22,7 @@
 
 #include "CalculationInput.h"
 #include "GrassRevetmentWaveImpactLocationConstructionProperties.h"
+#include "GrassRevetmentWaveRunupRayleighLocationConstructionProperties.h"
 #include "NaturalStoneRevetmentLocationConstructionProperties.h"
 
 namespace DiKErnel::Integration
@@ -83,6 +84,16 @@ namespace DiKErnel::Integration
                 const GrassRevetmentWaveImpactLocationConstructionProperties& constructionProperties);
 
             /*!
+             * \brief Adds a grass wave runup location with Rayleigh protocol.
+             * \param constructionProperties
+             *        The properties to construct the grass wave runup rayleigh location dependent input.
+             * \exception RevetmentCalculationInputBuilderException
+             *            Thrown when the top layer type is invalid.
+             */
+            void AddGrassWaveRunupRayleighLocation(
+                const GrassRevetmentWaveRunupRayleighLocationConstructionProperties& constructionProperties);
+
+            /*!
              * \brief Builds the calculation input.
              * \return The created calculation input.
              * \exception RevetmentCalculationInputBuilderException
@@ -95,9 +106,10 @@ namespace DiKErnel::Integration
             std::vector<std::unique_ptr<LocationDependentInput>> _locationDependentInputItems
                     = std::vector<std::unique_ptr<LocationDependentInput>>();
 
-            static double GetValue(
-                const double* doublePtr,
-                double defaultValue);
+            template <typename TValue>
+            static TValue GetValue(
+                const TValue* ptrValue,
+                TValue defaultValue);
 
             [[noreturn]]
             static void ThrowWithMessage();

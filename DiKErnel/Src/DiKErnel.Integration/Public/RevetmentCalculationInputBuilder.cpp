@@ -23,6 +23,9 @@
 #include "DefaultsFactoryException.h"
 #include "GrassRevetmentWaveImpactDefaultsFactory.h"
 #include "GrassRevetmentWaveImpactLocationDependentInput.h"
+#include "GrassRevetmentWaveRunupDefaultsFactory.h"
+#include "GrassRevetmentWaveRunupRayleighLocationDependentInput.h"
+#include "IGrassRevetmentWaveRunupRayleighDefaults.h"
 #include "InvalidCalculationDataException.h"
 #include "NaturalStoneRevetmentDefaultsFactory.h"
 #include "NaturalStoneRevetmentLocationConstructionProperties.h"
@@ -159,6 +162,49 @@ namespace DiKErnel::Integration
                 GetValue(constructionProperties.GetLowerLimitLoadingAll(), defaults->GetLowerLimitLoadingAll())));
     }
 
+    void RevetmentCalculationInputBuilder::AddGrassWaveRunupRayleighLocation(
+        const GrassRevetmentWaveRunupRayleighLocationConstructionProperties& constructionProperties)
+    {
+        unique_ptr<IGrassRevetmentWaveRunupRayleighDefaults> defaults;
+
+        try
+        {
+            defaults = GrassRevetmentWaveRunupDefaultsFactory::CreateForRayleigh(constructionProperties.GetTopLayerType());
+        }
+        catch (const DefaultsFactoryException&)
+        {
+            ThrowWithMessage();
+        }
+
+        auto representative2P = make_unique<GrassRevetmentWaveRunupRepresentative2P>(
+            GetValue(constructionProperties.GetRepresentativeWaveRunup2PAru(), defaults->GetRepresentativeWaveRunup2PAru()),
+            GetValue(constructionProperties.GetRepresentativeWaveRunup2PBru(), defaults->GetRepresentativeWaveRunup2PBru()),
+            GetValue(constructionProperties.GetRepresentativeWaveRunup2PCru(), defaults->GetRepresentativeWaveRunup2PCru()),
+            0.0,
+            0.0);
+
+        auto waveAngleImpact = make_unique<GrassRevetmentWaveRunupWaveAngleImpact>(
+            GetValue(constructionProperties.GetWaveAngleImpactAbeta(), defaults->GetWaveAngleImpactAbeta()),
+            GetValue(constructionProperties.GetWaveAngleImpactBetamax(), defaults->GetWaveAngleImpactBetamax()));
+
+        _locationDependentInputItems.push_back(
+            make_unique<GrassRevetmentWaveRunupRayleighLocationDependentInput>(
+                constructionProperties.GetName(),
+                GetValue(constructionProperties.GetInitialDamage(), RevetmentDefaults::INITIAL_DAMAGE),
+                GetValue(constructionProperties.GetFailureNumber(), RevetmentDefaults::FAILURE_NUMBER),
+                0.0,
+                constructionProperties.GetPositionZ(),
+                GetValue(constructionProperties.GetCriticalCumulativeOverload(), defaults->GetCriticalCumulativeOverload()),
+                GetValue(constructionProperties.GetCriticalFrontVelocity(), defaults->GetCriticalFrontVelocity()),
+                GetValue(constructionProperties.GetIncreasedLoadTransitionAlphaM(), defaults->GetIncreasedLoadTransitionAlphaM()),
+                GetValue(constructionProperties.GetReducedStrengthTransitionAlphaS(), defaults->GetReducedStrengthTransitionAlphaS()),
+                GetValue(constructionProperties.GetAverageNumberOfWavesCtm(), defaults->GetAverageNumberOfWavesCtm()),
+                move(representative2P),
+                move(waveAngleImpact),
+                GetValue(constructionProperties.GetCumulativeOverloadNf(), defaults->GetCumulativeOverloadNf()),
+                GetValue(constructionProperties.GetFrontVelocityCu(), defaults->GetFrontVelocityCu())));
+    }
+
     unique_ptr<ICalculationInput> RevetmentCalculationInputBuilder::Build()
     {
         try
@@ -171,12 +217,13 @@ namespace DiKErnel::Integration
         }
     }
 
-    double RevetmentCalculationInputBuilder::GetValue(
-        const double* doublePtr,
-        const double defaultValue)
+    template <typename TValue>
+    TValue RevetmentCalculationInputBuilder::GetValue(
+        const TValue* ptrValue,
+        const TValue defaultValue)
     {
-        return doublePtr != nullptr
-                   ? *doublePtr
+        return ptrValue != nullptr
+                   ? *ptrValue
                    : defaultValue;
     }
 
