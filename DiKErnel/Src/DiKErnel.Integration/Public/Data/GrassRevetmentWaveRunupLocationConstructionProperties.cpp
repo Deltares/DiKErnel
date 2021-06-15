@@ -28,10 +28,12 @@ namespace DiKErnel::Integration
 
     GrassRevetmentWaveRunupLocationConstructionProperties::GrassRevetmentWaveRunupLocationConstructionProperties(
         string name,
+        const double tanA,
         const double positionZ,
         const GrassRevetmentTopLayerType topLayerType)
         : RevetmentLocationConstructionPropertiesBase(move(name), positionZ),
-          _topLayerType(topLayerType) { }
+          _topLayerType(topLayerType),
+          _tanA(tanA) { }
 
     #pragma region Set methods
 
@@ -102,6 +104,11 @@ namespace DiKErnel::Integration
     GrassRevetmentTopLayerType GrassRevetmentWaveRunupLocationConstructionProperties::GetTopLayerType() const
     {
         return _topLayerType;
+    }
+
+    double GrassRevetmentWaveRunupLocationConstructionProperties::GetTanA() const
+    {
+        return _tanA;
     }
 
     const double* GrassRevetmentWaveRunupLocationConstructionProperties::GetCriticalCumulativeOverload() const

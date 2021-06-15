@@ -26,7 +26,8 @@ namespace DiKErnel::Integration::TestUtil
 
     GrassRevetmentWaveRunupLocationConstructionPropertiesMock::GrassRevetmentWaveRunupLocationConstructionPropertiesMock(
         string name,
+        const double tanA,
         const double positionZ,
         const GrassRevetmentTopLayerType topLayerType)
-        : GrassRevetmentWaveRunupLocationConstructionProperties(move(name), positionZ, topLayerType) {}
+        : GrassRevetmentWaveRunupLocationConstructionProperties(move(name), tanA, positionZ, topLayerType) {}
 }

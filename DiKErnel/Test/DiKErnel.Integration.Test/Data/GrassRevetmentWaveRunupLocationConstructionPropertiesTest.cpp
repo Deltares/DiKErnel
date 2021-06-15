@@ -35,15 +35,17 @@ namespace DiKErnel::Integration::Test
         // Setup
         const auto topLayerType = static_cast<GrassRevetmentTopLayerType>(rand() % 2);
         const string name = "Test";
-        const auto positionZ = 0.1;
+        const auto tanA = 0.1;
+        const auto positionZ = 0.2;
 
         // Call
-        const GrassRevetmentWaveRunupLocationConstructionPropertiesMock constructionProperties(name, positionZ, topLayerType);
+        const GrassRevetmentWaveRunupLocationConstructionPropertiesMock constructionProperties(name, tanA, positionZ, topLayerType);
 
         // Assert
         AssertHelper::AssertIsInstanceOf<RevetmentLocationConstructionPropertiesBase>(&constructionProperties);
         ASSERT_EQ(topLayerType, constructionProperties.GetTopLayerType());
         ASSERT_EQ(name, constructionProperties.GetName());
+        ASSERT_DOUBLE_EQ(tanA, constructionProperties.GetTanA());
         ASSERT_DOUBLE_EQ(positionZ, constructionProperties.GetPositionZ());
         ASSERT_EQ(nullptr, constructionProperties.GetInitialDamage());
         ASSERT_EQ(nullptr, constructionProperties.GetFailureNumber());
@@ -64,21 +66,22 @@ namespace DiKErnel::Integration::Test
         // Given
         const auto topLayerType = static_cast<GrassRevetmentTopLayerType>(rand() % 2);
         const string name = "Test";
-        const auto positionZ = 0.1;
-        const auto initialDamage = 0.2;
-        const auto failureNumber = 0.3;
-        const auto criticalCumulativeOverload = 0.4;
-        const auto criticalFrontVelocity = 0.5;
-        const auto increasedLoadTransitionAlphaM = 0.6;
-        const auto reducedStrengthTransitionAlphaS = 0.7;
-        const auto averageNumberOfWavesCtm = 0.8;
-        const auto representativeWaveRunup2PAru = 0.9;
-        const auto representativeWaveRunup2PBru = 1.0;
-        const auto representativeWaveRunup2PCru = 1.1;
-        const auto waveAngleImpactAbeta = 1.2;
-        const auto waveAngleImpactBetamax = 1.3;
+        const auto tanA = 0.1;
+        const auto positionZ = 0.2;
+        const auto initialDamage = 0.3;
+        const auto failureNumber = 0.4;
+        const auto criticalCumulativeOverload = 0.5;
+        const auto criticalFrontVelocity = 0.6;
+        const auto increasedLoadTransitionAlphaM = 0.7;
+        const auto reducedStrengthTransitionAlphaS = 0.8;
+        const auto averageNumberOfWavesCtm = 0.9;
+        const auto representativeWaveRunup2PAru = 1.0;
+        const auto representativeWaveRunup2PBru = 1.1;
+        const auto representativeWaveRunup2PCru = 1.2;
+        const auto waveAngleImpactAbeta = 1.3;
+        const auto waveAngleImpactBetamax = 1.4;
 
-        GrassRevetmentWaveRunupLocationConstructionPropertiesMock constructionProperties(name, positionZ, topLayerType);
+        GrassRevetmentWaveRunupLocationConstructionPropertiesMock constructionProperties(name, tanA, positionZ, topLayerType);
 
         // When
         constructionProperties.SetInitialDamage(make_unique<double>(initialDamage));
@@ -97,6 +100,7 @@ namespace DiKErnel::Integration::Test
         // Then
         ASSERT_EQ(topLayerType, constructionProperties.GetTopLayerType());
         ASSERT_EQ(name, constructionProperties.GetName());
+        ASSERT_DOUBLE_EQ(tanA, constructionProperties.GetTanA());
         ASSERT_DOUBLE_EQ(positionZ, constructionProperties.GetPositionZ());
         ASSERT_DOUBLE_EQ(initialDamage, *constructionProperties.GetInitialDamage());
         ASSERT_DOUBLE_EQ(failureNumber, *constructionProperties.GetFailureNumber());

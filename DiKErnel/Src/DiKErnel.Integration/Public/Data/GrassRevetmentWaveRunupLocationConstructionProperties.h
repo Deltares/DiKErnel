@@ -127,6 +127,12 @@ namespace DiKErnel::Integration
             GrassRevetmentTopLayerType GetTopLayerType() const;
 
             /*!
+             * \brief Gets the tanA.
+             * \return The tanA.
+             */
+            double GetTanA() const;
+
+            /*!
              * \brief Gets the critical cumulative overload.
              * \return The critical cumulative overload.
              */
@@ -193,6 +199,8 @@ namespace DiKErnel::Integration
              * \brief Creates a new instance.
              * \param name
              *        The name.
+             * \param tanA
+             *        The tanA.
              * \param positionZ
              *        The vertical position.
              * \param topLayerType
@@ -200,11 +208,13 @@ namespace DiKErnel::Integration
              */
             explicit GrassRevetmentWaveRunupLocationConstructionProperties(
                 std::string name,
+                double tanA,
                 double positionZ,
                 GrassRevetmentTopLayerType topLayerType);
 
         private:
             GrassRevetmentTopLayerType _topLayerType;
+            double _tanA;
             std::unique_ptr<double> _criticalCumulativeOverload = nullptr;
             std::unique_ptr<double> _criticalFrontVelocity = nullptr;
             std::unique_ptr<double> _increasedLoadTransitionAlphaM = nullptr;
