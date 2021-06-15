@@ -7,6 +7,10 @@ set(SOURCEFILES
   GrassRevetmentWaveImpactLocationDependentInputAssertHelper.h
   GrassRevetmentWaveRunupLocationConstructionPropertiesMock.cpp
   GrassRevetmentWaveRunupLocationConstructionPropertiesMock.h
+  GrassRevetmentWaveRunupLocationDependentInputAssertHelper.cpp
+  GrassRevetmentWaveRunupLocationDependentInputAssertHelper.h
+  GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper.cpp
+  GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper.h
   LocationDependentInputAssertHelper.cpp
   LocationDependentInputAssertHelper.h
   LocationDependentInputMock.cpp

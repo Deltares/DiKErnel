@@ -40,7 +40,7 @@ namespace DiKErnel::Integration
         unique_ptr<GrassRevetmentWaveRunupWaveAngleImpact> waveAngleImpact,
         const int cumulativeOverloadNf,
         const double frontVelocityCu)
-        : GrassRevetmentWaveRunupLocationDependentInput(move(name), initialDamage, failureNumber, positionZ, tanA, criticalCumulativeOverload,
+        : GrassRevetmentWaveRunupLocationDependentInput(move(name), initialDamage, failureNumber, tanA, positionZ, criticalCumulativeOverload,
                                                         criticalFrontVelocity, increasedLoadTransitionAlphaM, reducedStrengthTransitionAlphaS,
                                                         averageNumberOfWavesCtm, move(representative2P), move(waveAngleImpact)),
           _cumulativeOverloadNf(cumulativeOverloadNf),
