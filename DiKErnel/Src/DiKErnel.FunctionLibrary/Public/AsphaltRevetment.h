@@ -31,6 +31,7 @@ namespace DiKErnel::FunctionLibrary
     {
         public:
             static double IncrementDamage(
+                double averageNumberOfWaves,
                 const std::vector<std::tuple<double, double>>& widthFactors,
                 const std::vector<std::tuple<double, double>>& depthFactors,
                 const std::vector<std::tuple<double, double>>& impactFactors
@@ -38,12 +39,14 @@ namespace DiKErnel::FunctionLibrary
 
         private:
             static double DepthFactorAccumulation(
+                double averageNumberOfWaves,
                 double widthFactorValue,
                 const std::vector<std::tuple<double, double>>& depthFactors,
                 const std::vector<std::tuple<double, double>>& impactFactors
             );
 
             static double ImpactFactorAccumulation(
+                double averageNumberOfWaves,
                 double widthFactorValue,
                 double depthFactorValue,
                 const std::vector<std::tuple<double, double>>& impactFactors

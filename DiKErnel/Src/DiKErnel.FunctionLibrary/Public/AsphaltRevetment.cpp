@@ -25,6 +25,7 @@ namespace DiKErnel::FunctionLibrary
     using namespace std;
 
     double AsphaltRevetment::IncrementDamage(
+        const double averageNumberOfWaves,
         const std::vector<std::tuple<double, double>>& widthFactors,
         const std::vector<std::tuple<double, double>>& depthFactors,
         const std::vector<std::tuple<double, double>>& impactFactors)
@@ -35,7 +36,7 @@ namespace DiKErnel::FunctionLibrary
         {
             const auto widthFactorValue = get<0>(widthFactor);
             const auto widthFactorProbability = get<1>(widthFactor);
-            const auto depthFactorAccumulation = DepthFactorAccumulation(widthFactorValue, depthFactors, impactFactors);
+            const auto depthFactorAccumulation = DepthFactorAccumulation(averageNumberOfWaves, widthFactorValue, depthFactors, impactFactors);
 
             result += widthFactorProbability * depthFactorAccumulation;
         }
@@ -44,6 +45,7 @@ namespace DiKErnel::FunctionLibrary
     }
 
     double AsphaltRevetment::DepthFactorAccumulation(
+        const double averageNumberOfWaves,
         const double widthFactorValue,
         const std::vector<std::tuple<double, double>>& depthFactors,
         const std::vector<std::tuple<double, double>>& impactFactors)
@@ -54,7 +56,7 @@ namespace DiKErnel::FunctionLibrary
         {
             const auto depthFactorValue = get<0>(depthFactor);
             const auto depthFactorProbability = get<1>(depthFactor);
-            const auto impactFactorAccumulation = ImpactFactorAccumulation(widthFactorValue, depthFactorValue, impactFactors);
+            const auto impactFactorAccumulation = ImpactFactorAccumulation(averageNumberOfWaves, widthFactorValue, depthFactorValue, impactFactors);
 
             result += depthFactorProbability * impactFactorAccumulation;
         }
@@ -63,6 +65,7 @@ namespace DiKErnel::FunctionLibrary
     }
 
     double AsphaltRevetment::ImpactFactorAccumulation(
+        const double averageNumberOfWaves,
         const double widthFactorValue,
         const double depthFactorValue,
         const std::vector<std::tuple<double, double>>& impactFactors)
@@ -74,7 +77,7 @@ namespace DiKErnel::FunctionLibrary
             const auto impactFactorValue = get<0>(impactFactor);
             const auto impactFactorProbability = get<1>(impactFactor);
 
-            result += impactFactorProbability * (widthFactorValue + depthFactorValue + impactFactorValue);
+            result += impactFactorProbability * averageNumberOfWaves;
         }
 
         return result;
