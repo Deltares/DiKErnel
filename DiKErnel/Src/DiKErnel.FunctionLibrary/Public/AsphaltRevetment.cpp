@@ -20,12 +20,63 @@
 
 #include "AsphaltRevetment.h"
 
-#include <algorithm>
-#include <cmath>
-
-#include "Generic.h"
-
 namespace DiKErnel::FunctionLibrary
 {
     using namespace std;
+
+    double AsphaltRevetment::IncrementDamage(
+        const std::vector<std::tuple<double, double>>& widthFactors,
+        const std::vector<std::tuple<double, double>>& depthFactors,
+        const std::vector<std::tuple<double, double>>& impactFactors)
+    {
+        double result = 0;
+
+        for (const auto& widthFactor : widthFactors)
+        {
+            const auto widthFactorValue = get<0>(widthFactor);
+            const auto widthFactorProbability = get<1>(widthFactor);
+            const auto depthFactorAccumulation = DepthFactorAccumulation(widthFactorValue, depthFactors, impactFactors);
+
+            result += widthFactorProbability * depthFactorAccumulation;
+        }
+
+        return result;
+    }
+
+    double AsphaltRevetment::DepthFactorAccumulation(
+        const double widthFactorValue,
+        const std::vector<std::tuple<double, double>>& depthFactors,
+        const std::vector<std::tuple<double, double>>& impactFactors)
+    {
+        double result = 0;
+
+        for (const auto& depthFactor : depthFactors)
+        {
+            const auto depthFactorValue = get<0>(depthFactor);
+            const auto depthFactorProbability = get<1>(depthFactor);
+            const auto impactFactorAccumulation = ImpactFactorAccumulation(widthFactorValue, depthFactorValue, impactFactors);
+
+            result += depthFactorProbability * impactFactorAccumulation;
+        }
+
+        return result;
+    }
+
+    double AsphaltRevetment::ImpactFactorAccumulation(
+        const double widthFactorValue,
+        const double depthFactorValue,
+        const std::vector<std::tuple<double, double>>& impactFactors)
+    {
+        double result = 0;
+
+        for (const auto& impactFactor : impactFactors)
+        {
+            const auto impactFactorValue = get<0>(impactFactor);
+            const auto impactFactorProbability = get<1>(impactFactor);
+
+            result += impactFactorProbability * (widthFactorValue + depthFactorValue + impactFactorValue);
+        }
+
+        return result;
+    }
 }

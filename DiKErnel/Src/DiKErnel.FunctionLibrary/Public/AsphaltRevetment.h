@@ -20,6 +20,8 @@
 
 #pragma once
 
+#include <vector>
+
 namespace DiKErnel::FunctionLibrary
 {
     /*!
@@ -27,6 +29,24 @@ namespace DiKErnel::FunctionLibrary
      */
     class AsphaltRevetment
     {
-        
+        public:
+            static double IncrementDamage(
+                const std::vector<std::tuple<double, double>>& widthFactors,
+                const std::vector<std::tuple<double, double>>& depthFactors,
+                const std::vector<std::tuple<double, double>>& impactFactors
+            );
+
+        private:
+            static double DepthFactorAccumulation(
+                double widthFactorValue,
+                const std::vector<std::tuple<double, double>>& depthFactors,
+                const std::vector<std::tuple<double, double>>& impactFactors
+            );
+
+            static double ImpactFactorAccumulation(
+                double widthFactorValue,
+                double depthFactorValue,
+                const std::vector<std::tuple<double, double>>& impactFactors
+            );
     };
 }
