@@ -175,18 +175,4 @@ namespace DiKErnel::FunctionLibrary::Test
         // Assert
         ASSERT_DOUBLE_EQ(-0.47, lowerLimitLoading);
     }
-
-    TEST(GrassRevetmentWaveImpactTest, DurationInTimeStepFailure_ValidInput_ExpectedValue)
-    {
-        // Setup
-        const auto timeLine = 3319.12;
-        const auto failureNumber = 1.0;
-        const auto initialDamage = 0.836;
-
-        // Call
-        const auto durationInTimeStepFailure = GrassRevetmentWaveImpact::DurationInTimeStepFailure(timeLine, failureNumber, initialDamage);
-
-        // Assert
-        ASSERT_DOUBLE_EQ(544.33568, durationInTimeStepFailure);
-    }
 }
