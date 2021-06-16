@@ -21,6 +21,7 @@
 #include "JsonInputAdapter.h"
 
 #include "JsonConversionException.h"
+#include "JsonInputGrassRevetmentWaveRunupProfileSchematizationData.h"
 #include "JsonInputNaturalStoneRevetmentLocationData.h"
 #include "NaturalStoneRevetmentLocationConstructionProperties.h"
 #include "RevetmentCalculationInputBuilder.h"
@@ -69,6 +70,14 @@ namespace DiKErnel::KernelWrapper::Json::Input
             {
                 const auto constructionProperties = CreateGrassWaveImpactConstructionProperties(location, *grassRevetmentWaveImpactLocationData);
                 builder.AddGrassWaveImpactLocation(*constructionProperties);
+            }
+
+            if (const auto* grassRevetmentWaveRunupRayleighLocationData = dynamic_cast<const JsonInputGrassRevetmentWaveRunupRayleighLocationData*>(
+                &revetmentLocationData); grassRevetmentWaveRunupRayleighLocationData != nullptr)
+            {
+                const auto constructionProperties = CreateGrassWaveRunupRayleighConstructionProperties(
+                    location, *grassRevetmentWaveRunupRayleighLocationData);
+                builder.AddGrassWaveRunupRayleighLocation(*constructionProperties);
             }
         }
 
@@ -191,6 +200,61 @@ namespace DiKErnel::KernelWrapper::Json::Input
         return constructionProperties;
     }
 
+    unique_ptr<GrassRevetmentWaveRunupRayleighLocationConstructionProperties> JsonInputAdapter::CreateGrassWaveRunupRayleighConstructionProperties(
+        const JsonInputLocationData& location,
+        const JsonInputGrassRevetmentWaveRunupRayleighLocationData& grassRevetmentWaveRunupRayleighLocationData)
+    {
+        const auto& damageData = location.GetDamageData();
+        const auto* profileSchematizationData = dynamic_cast<const JsonInputGrassRevetmentWaveRunupProfileSchematizationData*>(
+            &location.GetProfileSchematizationData());
+
+        if (profileSchematizationData == nullptr)
+        {
+            throw JsonConversionException("Cannot convert profile schematization data.");
+        }
+
+        auto constructionProperties = make_unique<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(
+            location.GetName(), profileSchematizationData->GetTanA(), profileSchematizationData->GetPositionZ(),
+            ConvertTopLayerType(grassRevetmentWaveRunupRayleighLocationData.GetTopLayerType()));
+
+        constructionProperties->SetInitialDamage(forward<unique_ptr<double>>(CreatePointerOfValue(damageData.GetInitialDamage())));
+        constructionProperties->SetFailureNumber(forward<unique_ptr<double>>(CreatePointerOfValue(damageData.GetFailureNumber())));
+
+        constructionProperties->SetCriticalCumulativeOverload(
+            forward<unique_ptr<double>>(CreatePointerOfValue(grassRevetmentWaveRunupRayleighLocationData.GetCriticalCumulativeOverload())));
+        constructionProperties->SetCriticalFrontVelocity(
+            forward<unique_ptr<double>>(CreatePointerOfValue(grassRevetmentWaveRunupRayleighLocationData.GetCriticalFrontVelocity())));
+        constructionProperties->SetIncreasedLoadTransitionAlphaM(
+            forward<unique_ptr<double>>(CreatePointerOfValue(grassRevetmentWaveRunupRayleighLocationData.GetIncreasedLoadTransitionAlphaM())));
+        constructionProperties->SetReducedStrengthTransitionAlphaS(
+            forward<unique_ptr<double>>(CreatePointerOfValue(grassRevetmentWaveRunupRayleighLocationData.GetReducedStrengthTransitionAlphaS())));
+        constructionProperties->SetAverageNumberOfWavesCtm(
+            forward<unique_ptr<double>>(CreatePointerOfValue(grassRevetmentWaveRunupRayleighLocationData.GetAverageNumberOfWavesCtm())));
+
+        constructionProperties->SetRepresentativeWaveRunup2PAru(
+            forward<unique_ptr<double>>(CreatePointerOfValue(grassRevetmentWaveRunupRayleighLocationData.GetRepresentativeWaveRunup2PAru())));
+        constructionProperties->SetRepresentativeWaveRunup2PBru(
+            forward<unique_ptr<double>>(CreatePointerOfValue(grassRevetmentWaveRunupRayleighLocationData.GetRepresentativeWaveRunup2PBru())));
+        constructionProperties->SetRepresentativeWaveRunup2PCru(
+            forward<unique_ptr<double>>(CreatePointerOfValue(grassRevetmentWaveRunupRayleighLocationData.GetRepresentativeWaveRunup2PCru())));
+        constructionProperties->SetRepresentativeWaveRunup2PGammab(
+            forward<unique_ptr<double>>(CreatePointerOfValue(profileSchematizationData->GetRepresentativeWaveRunup2PGammab())));
+        constructionProperties->SetRepresentativeWaveRunup2PGammaf(
+            forward<unique_ptr<double>>(CreatePointerOfValue(profileSchematizationData->GetRepresentativeWaveRunup2PGammaf())));
+
+        constructionProperties->SetWaveAngleImpactAbeta(
+            forward<unique_ptr<double>>(CreatePointerOfValue(grassRevetmentWaveRunupRayleighLocationData.GetWaveAngleImpactAbeta())));
+        constructionProperties->SetWaveAngleImpactBetamax(
+            forward<unique_ptr<double>>(CreatePointerOfValue(grassRevetmentWaveRunupRayleighLocationData.GetWaveAngleImpactBetamax())));
+
+        constructionProperties->SetCumulativeOverloadNf(
+            forward<unique_ptr<int>>(CreatePointerOfValue(grassRevetmentWaveRunupRayleighLocationData.GetCumulativeOverloadNf())));
+        constructionProperties->SetFrontVelocityCu(
+            forward<unique_ptr<double>>(CreatePointerOfValue(grassRevetmentWaveRunupRayleighLocationData.GetFrontVelocityCu())));
+
+        return constructionProperties;
+    }
+
     GrassRevetmentTopLayerType JsonInputAdapter::ConvertTopLayerType(
         const JsonInputGrassRevetmentTopLayerType topLayerType)
     {
@@ -206,11 +270,12 @@ namespace DiKErnel::KernelWrapper::Json::Input
         throw JsonConversionException("Cannot convert top layer type.");
     }
 
-    unique_ptr<double> JsonInputAdapter::CreatePointerOfValue(
-        const double* value)
+    template <typename TValue>
+    unique_ptr<TValue> JsonInputAdapter::CreatePointerOfValue(
+        const TValue* value)
     {
         return value != nullptr
-                   ? make_unique<double>(*value)
+                   ? make_unique<TValue>(*value)
                    : nullptr;
     }
 }
