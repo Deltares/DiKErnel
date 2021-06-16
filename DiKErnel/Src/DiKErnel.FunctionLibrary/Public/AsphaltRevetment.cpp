@@ -76,10 +76,19 @@ namespace DiKErnel::FunctionLibrary
         {
             const auto impactFactorValue = get<0>(impactFactor);
             const auto impactFactorProbability = get<1>(impactFactor);
+            const auto fatigue = Fatigue(widthFactorValue, depthFactorValue, impactFactorValue);
 
-            result += impactFactorProbability * averageNumberOfWaves;
+            result += impactFactorProbability * averageNumberOfWaves * fatigue;
         }
 
         return result;
+    }
+
+    double AsphaltRevetment::Fatigue(
+        double widthFactorValue,
+        double depthFactorValue,
+        double impactFactorValue)
+    {
+        return 1.1;
     }
 }

@@ -51,5 +51,11 @@ namespace DiKErnel::FunctionLibrary
                 double depthFactorValue,
                 const std::vector<std::tuple<double, double>>& impactFactors
             );
+
+            static double Fatigue(
+                double widthFactorValue,
+                double depthFactorValue,
+                double impactFactorValue
+            );
     };
 }
