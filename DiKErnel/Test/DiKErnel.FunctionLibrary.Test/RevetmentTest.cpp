@@ -133,6 +133,21 @@ namespace DiKErnel::FunctionLibrary::Test
         ASSERT_EQ(1823, timeOfFailure);
     }
 
+    TEST(RevetmentTest, DurationInTimeStepFailure_ValidInput_ExpectedValue)
+    {
+        // Setup
+        const auto incrementTime = 550;
+        const auto incrementDamage = 0.234;
+        const auto failureNumber = 1.0;
+        const auto initialDamage = 0.836;
+
+        // Call
+        const auto durationInTimeStepFailure = Revetment::DurationInTimeStepFailure(incrementTime, incrementDamage, failureNumber, initialDamage);
+
+        // Assert
+        ASSERT_DOUBLE_EQ(385.47008547008551, durationInTimeStepFailure);
+    }
+
     TEST(RevetmentTest, TimeOfFailure_ValidRoundedInput_ExpectedValue)
     {
         // Setup

@@ -47,11 +47,12 @@ namespace DiKErnel::FunctionLibrary
     }
 
     double Revetment::DurationInTimeStepFailure(
+        const double incrementTime,
         const double incrementDamage,
         const double failureNumber,
         const double initialDamage)
     {
-        return (failureNumber - initialDamage) / incrementDamage;
+        return (failureNumber - initialDamage) / incrementDamage * incrementTime;
     }
 
     int Revetment::TimeOfFailure(
