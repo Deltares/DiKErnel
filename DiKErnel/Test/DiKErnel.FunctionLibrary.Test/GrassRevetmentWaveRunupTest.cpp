@@ -37,20 +37,6 @@ namespace DiKErnel::FunctionLibrary::Test
         ASSERT_DOUBLE_EQ(0.15198428571428574, incrementDamage);
     }
 
-    TEST(GrassRevetmentWaveRunupTest, AverageNumberOfWaves_ValidInput_ExpectedValue)
-    {
-        // Setup
-        const auto incrementTime = 900.0;
-        const auto wavePeriodTm10 = 1.2;
-        const auto averageNumberOfWavesCtm = 6.5;
-
-        // Call
-        const auto averageNumberOfWaves = GrassRevetmentWaveRunup::AverageNumberOfWaves(incrementTime, wavePeriodTm10, averageNumberOfWavesCtm);
-
-        // Assert
-        ASSERT_DOUBLE_EQ(115.38461538461539, averageNumberOfWaves);
-    }
-
     TEST(GrassRevetmentWaveRunupTest, RepresentativeWaveRunup2P_ValidInput_ExpectedValue)
     {
         // Setup

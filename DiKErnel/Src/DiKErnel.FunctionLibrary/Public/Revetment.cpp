@@ -31,6 +31,14 @@ namespace DiKErnel::FunctionLibrary
         return endTime - beginTime;
     }
 
+    double Revetment::AverageNumberOfWaves(
+        const double incrementTime,
+        const double wavePeriodTm10,
+        const double averageNumberOfWavesCtm)
+    {
+        return incrementTime / (averageNumberOfWavesCtm * wavePeriodTm10);
+    }
+
     double Revetment::Damage(
         const double incrementDamage,
         const double initialDamage)

@@ -61,8 +61,8 @@ namespace DiKErnel::Integration
         const auto beginTime = timeDependentInput.GetBeginTime();
 
         const auto incrementTime = Revetment::IncrementTime(beginTime, timeDependentInput.GetEndTime());
-        const auto averageNumberOfWaves = GrassRevetmentWaveRunup::AverageNumberOfWaves(incrementTime, timeDependentInput.GetWavePeriodTm10(),
-                                                                                        GetAverageNumberOfWavesCtm());
+        const auto averageNumberOfWaves = Revetment::AverageNumberOfWaves(incrementTime, timeDependentInput.GetWavePeriodTm10(),
+                                                                          GetAverageNumberOfWavesCtm());
 
         const auto surfSimilarityParameter = HydraulicLoad::SurfSimilarityParameter(GetTanA(), timeDependentInput.GetWaveHeightHm0(),
                                                                                     timeDependentInput.GetWavePeriodTm10(),

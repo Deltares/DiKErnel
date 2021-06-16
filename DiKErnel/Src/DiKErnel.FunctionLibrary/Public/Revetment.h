@@ -44,6 +44,25 @@ namespace DiKErnel::FunctionLibrary
                 int endTime);
 
             /*!
+             * \brief Calculates the average number of waves.
+             * \param incrementTime
+             *        The increment of time.
+             *        Unit = [s]
+             * \param wavePeriodTm10
+             *        The wave period.
+             *        Unit = [s]
+             * \param averageNumberOfWavesCtm
+             *        The Ctm coefficient.
+             *        Unit = [-]
+             * \return The average number of waves.
+             *         Unit = [-]
+             */
+            static double AverageNumberOfWaves(
+                double incrementTime,
+                double wavePeriodTm10,
+                double averageNumberOfWavesCtm);
+
+            /*!
              * \brief Calculates the damage.
              * \param incrementDamage
              *        The increment of damage.

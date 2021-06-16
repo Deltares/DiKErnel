@@ -34,14 +34,6 @@ namespace DiKErnel::FunctionLibrary
         return cumulativeOverload / criticalCumulativeOverload;
     }
 
-    double GrassRevetmentWaveRunup::AverageNumberOfWaves(
-        const double incrementTime,
-        const double wavePeriodTm10,
-        const double averageNumberOfWavesCtm)
-    {
-        return incrementTime / (averageNumberOfWavesCtm * wavePeriodTm10);
-    }
-
     double GrassRevetmentWaveRunup::RepresentativeWaveRunup2P(
         const double surfSimilarityParameter,
         const double waveAngleImpact,

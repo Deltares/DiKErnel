@@ -37,6 +37,20 @@ namespace DiKErnel::FunctionLibrary::Test
         ASSERT_EQ(300, incrementTime);
     }
 
+    TEST(RevetmentTest, AverageNumberOfWaves_ValidInput_ExpectedValue)
+    {
+        // Setup
+        const auto incrementTime = 900.0;
+        const auto wavePeriodTm10 = 1.2;
+        const auto averageNumberOfWavesCtm = 6.5;
+
+        // Call
+        const auto averageNumberOfWaves = Revetment::AverageNumberOfWaves(incrementTime, wavePeriodTm10, averageNumberOfWavesCtm);
+
+        // Assert
+        ASSERT_DOUBLE_EQ(115.38461538461539, averageNumberOfWaves);
+    }
+
     TEST(RevetmentTest, Damage_ValidInput_ExpectedValue)
     {
         // Setup
