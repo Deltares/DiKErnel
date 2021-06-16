@@ -43,7 +43,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
         private:
             static std::unique_ptr<JsonInputGrassRevetmentWaveRunupRayleighLocationData> ParseRayleighRevetmentLocationData(
                 const nlohmann::json& readRevetment,
-                const nlohmann::json& readCalculationMethod,
                 const nlohmann::json& readCalculationProtocol);
 
             static void ParseGenericRevetmentLocationData(

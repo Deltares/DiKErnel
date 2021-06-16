@@ -68,7 +68,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
         if (calculationProtocolType == JsonInputGrassRevetmentWaveRunupCalculationProtocolType::RayleighDiscrete)
         {
-            locationData = ParseRayleighRevetmentLocationData(readRevetment, readCalculationMethod, readCalculationProtocol);
+            locationData = ParseRayleighRevetmentLocationData(readRevetment, readCalculationProtocol);
         }
 
         ParseGenericRevetmentLocationData(readRevetment, readCalculationMethod, *locationData);
@@ -96,7 +96,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
     std::unique_ptr<JsonInputGrassRevetmentWaveRunupRayleighLocationData> JsonInputGrassWaveRunupParser::ParseRayleighRevetmentLocationData(
         const json& readRevetment,
-        const json& readCalculationMethod,
         const json& readCalculationProtocol)
     {
         auto rayleighLocationData = make_unique<JsonInputGrassRevetmentWaveRunupRayleighLocationData>(
