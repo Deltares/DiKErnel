@@ -77,6 +77,25 @@ namespace DiKErnel::FunctionLibrary
                 double failureNumber);
 
             /*!
+             * \brief Calculates the duration in the time step of failure.
+             * \param incrementDamage
+             *        The increment of damage.
+             *        Unit = [-]
+             * \param failureNumber
+             *        The failure number.
+             *        Unit = [-]
+             * \param initialDamage
+             *        The initial damage.
+             *        Unit = [-]
+             * \return The duration in the time step of failure.
+             *         Unit = [s]
+             */
+            static double DurationInTimeStepFailure(
+                double incrementDamage,
+                double failureNumber,
+                double initialDamage);
+
+            /*!
              * \brief Calculates the time of failure.
              * \param durationInTimeStepFailure
              *        The duration in the time step of failure.
