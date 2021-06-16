@@ -214,6 +214,103 @@
 					"TanA": 0.3,
 					"PositieZ": 0.0
 				}
+			},
+			{
+				"Naam": "GrasGolfoploopRayleighDiscreetAlleOptiesAan",
+				"Schade":
+				{
+					"BeginSchade": 0.0006,
+					"Faalgetal": 0.45
+				},
+				"Bekleding":
+				{
+					"TypeToplaag": "GrasGeslotenZode",
+					"KritiekeCumulatieveOverbelasting": 7213.0,
+					"KritiekeFrontsnelheidGrasGolfoploop": 8.3,
+					"VerhogingBelastingOvergangAlfaM": 1.5,
+					"VerlagingSterkteOvergangAlfaS": 0.8,
+					"Rekenmethoden":
+					[
+						{
+							"RekenmethodeSoort": "GrasGolfoploop",
+							"GemiddeldAantalGolvenPerTijdstap":
+							{
+								"GemiddeldAantalGolvenPerTijdstapCtm": 0.99
+							},
+							"RepresentatieveGolfoploop2p":
+							{
+								"RepresentatieveGolfoploop2pAru": 1.56,
+								"RepresentatieveGolfoploop2pBru": 4.6,
+								"RepresentatieveGolfoploop2pCru": 3.5
+							},
+							"ImpactGolfhoekGolfoploop":
+							{
+								"ImpactGolfhoekGolfoploopAbeta": 0.0011,
+								"ImpactGolfhoekGolfoploopBetamax": 89.0
+							},
+							"Rekenprotocol":
+							{
+								"Rekenprotocolsoort": "RayleighDiscreet",
+								"AantalGolvenVastRD": 5000,
+								"FrontsnelheidGolfOploopRD":
+								{
+									"FrontsnelheidGolfOploopRDCu": 3.5
+								}
+							}
+						}
+					]
+				},
+				"Profielschematisatie":
+				{
+					"TanA": 0.7,
+					"PositieZ": 5.0,
+					"BermfactorGammab": 3.2,
+					"RuwheidsfactorGammaf": 4.1
+				}
+			},
+			{
+				"Naam": "GrasGolfoploopRayleighDiscreetGeslotenZodeAlleOptiesUit",
+				"Bekleding":
+				{
+					"TypeToplaag": "GrasGeslotenZode",
+					"Rekenmethoden":
+					[
+						{
+							"RekenmethodeSoort": "GrasGolfoploop",
+							"Rekenprotocol":
+							{
+								"Rekenprotocolsoort": "RayleighDiscreet"
+							}
+						}
+					]
+				},
+				"Profielschematisatie":
+				{
+					"TanA": 0.8,
+					"PositieZ": 5.1
+				}
+			},
+			{
+				"Naam": "GrasGolfoploopRayleighDiscreetOpenZodeAlleOptiesUit",
+				"Bekleding":
+				{
+					"TypeToplaag": "GrasOpenZode",
+					"Rekenmethoden":
+					[
+						{
+							"RekenmethodeSoort": "GrasGolfoploop",
+							"Rekenprotocol":
+							{
+								"Rekenprotocolsoort": "RayleighDiscreet"
+							}
+						}
+					]
+				},
+				"Profielschematisatie":
+				{
+					"TanA": 0.9,
+					"PositieZ": 5.2
+				}
 			}
 		]
 	}

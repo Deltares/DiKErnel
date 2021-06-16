@@ -108,7 +108,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
         if (readCalculationProtocol.contains(JsonInputGrassWaveRunupRayleighDefinitions::FRONT_VELOCITY))
         {
-            const auto& readFrontVelocity = readCalculationMethod[JsonInputGrassWaveRunupRayleighDefinitions::FRONT_VELOCITY];
+            const auto& readFrontVelocity = readCalculationProtocol[JsonInputGrassWaveRunupRayleighDefinitions::FRONT_VELOCITY];
 
             rayleighLocationData->SetFrontVelocityCu(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(

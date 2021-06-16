@@ -1,0 +1,44 @@
+{
+	"Rekendata":
+	{
+		"Tijd":
+		[
+			0,
+			100
+		],
+		"HydraulischeBelastingen": 
+		{
+			"RandvoorwaardenPerTijdstap": 
+			[
+				{
+					"Waterstand": 0.1,
+					"GolfhoogteHm0": 0.5,
+					"GolfperiodeTm10": 2,
+					"Golfhoek": -10
+				}
+			]
+		},
+		"Locaties":
+		[
+			{
+				"Naam": "GrasGolfoploop",
+				"Bekleding": {
+					"TypeToplaag": "GrasHalveZode",
+					"Rekenmethoden": 
+					[
+						{
+							"RekenmethodeSoort": "GrasGolfoploop",
+							"Rekenprotocol": {
+								"Rekenprotocolsoort": "RayleighDiscreet"
+							}
+						}
+					]
+				},
+				"Profielschematisatie": {
+					"TanA": 0.3,
+					"PositieZ": 0.0
+				}
+			}
+		]
+	}
+}
