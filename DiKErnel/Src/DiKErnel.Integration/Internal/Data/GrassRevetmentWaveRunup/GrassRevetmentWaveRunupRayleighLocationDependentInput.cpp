@@ -93,7 +93,9 @@ namespace DiKErnel::Integration
 
         if (Revetment::FailureRevetment(damage, initialDamage, failureNumber))
         {
-            const auto durationInTimeStepFailure = Revetment::DurationInTimeStepFailure(incrementDamage, failureNumber, initialDamage);
+            const auto durationInTimeStepFailure = Revetment::DurationInTimeStepFailure(incrementTime, incrementDamage, failureNumber,
+                                                                                        initialDamage);
+
             timeOfFailure = make_unique<int>(Revetment::TimeOfFailure(durationInTimeStepFailure, beginTime));
         }
 
