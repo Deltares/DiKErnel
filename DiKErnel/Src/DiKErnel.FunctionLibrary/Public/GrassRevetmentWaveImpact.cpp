@@ -102,14 +102,6 @@ namespace DiKErnel::FunctionLibrary
         return LimitLoading(waterLevel, waveHeightHm0, lowerLimitLoadingAll);
     }
 
-    double GrassRevetmentWaveImpact::DurationInTimeStepFailure(
-        const double timeLine,
-        const double failureNumber,
-        const double initialDamage)
-    {
-        return (failureNumber - initialDamage) * timeLine;
-    }
-
     double GrassRevetmentWaveImpact::WaveHeightBoundary(
         const double timeLineAgwi,
         const double timeLineBgwi,

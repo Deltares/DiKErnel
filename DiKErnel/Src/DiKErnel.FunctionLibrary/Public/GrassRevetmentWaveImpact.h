@@ -35,7 +35,7 @@ namespace DiKErnel::FunctionLibrary
              *        Unit = [s]
              * \param timeLine
              *        The time line.
-             *        Unit = [s]
+             *        Unit = [-]
              * \return The increment of damage.
              *         Unit = [-]
              */
@@ -58,7 +58,7 @@ namespace DiKErnel::FunctionLibrary
              *        The Cgwi coefficient.
              *        Unit = [m]
              * \return The time line.
-             *         Unit = [s]
+             *         Unit = [-]
              */
             static double TimeLine(
                 double waveHeightImpact,
@@ -195,25 +195,6 @@ namespace DiKErnel::FunctionLibrary
                 double waterLevel,
                 double waveHeightHm0,
                 double lowerLimitLoadingAll);
-
-            /*!
-             * \brief Calculates the duration in the time step of failure.
-             * \param timeLine
-             *        The time line.
-             *        Unit = [s]
-             * \param failureNumber
-             *        The failure number.
-             *        Unit = [-]
-             * \param initialDamage
-             *        The initial damage.
-             *        Unit = [-]
-             * \return The duration in the time step of failure.
-             *         Unit = [s]
-             */
-            static double DurationInTimeStepFailure(
-                double timeLine,
-                double failureNumber,
-                double initialDamage);
 
         private:
             static double WaveHeightBoundary(
