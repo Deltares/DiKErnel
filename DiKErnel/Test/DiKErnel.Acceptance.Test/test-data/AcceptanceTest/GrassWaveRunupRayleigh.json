@@ -1,0 +1,184 @@
+{
+	"Rekendata": 
+    {
+		"Tijd": 
+        [
+			0,
+			900,
+			1800,
+			2700,
+			3600,
+			4500,
+			5400,
+			6300,
+			7200,
+			8100,
+			9000,
+            9900,
+            10800,
+            11700,
+            12600,
+            13500,
+            14400
+		],
+		"HydraulischeBelastingen": 
+        {
+			"RandvoorwaardenPerTijdstap": 
+            [
+				{
+					"Waterstand": 0,
+					"GolfhoogteHm0": 0.8,
+					"GolfperiodeTm10": 3,
+					"Golfhoek": 0
+				},
+                {
+					"Waterstand": 0.01,
+					"GolfhoogteHm0": 0.8,
+					"GolfperiodeTm10": 4,
+					"Golfhoek": 0
+				},
+                {
+					"Waterstand": 0.02,
+					"GolfhoogteHm0": 0.8,
+					"GolfperiodeTm10": 3,
+					"Golfhoek": 45
+				},
+                {
+					"Waterstand": 0.03,
+					"GolfhoogteHm0": 1.2,
+					"GolfperiodeTm10": 4,
+					"Golfhoek": 0
+				},
+                {
+					"Waterstand": 0.04,
+					"GolfhoogteHm0": 1.2,
+					"GolfperiodeTm10": 5,
+					"Golfhoek": 0
+				},
+                {
+					"Waterstand": 0.05,
+					"GolfhoogteHm0": 1.2,
+					"GolfperiodeTm10": 4,
+					"Golfhoek": 45
+				},
+                {
+					"Waterstand": 0.06,
+					"GolfhoogteHm0": 1.6,
+					"GolfperiodeTm10": 5,
+					"Golfhoek": 0
+				},
+                {
+					"Waterstand": 0.07,
+					"GolfhoogteHm0": 1.6,
+					"GolfperiodeTm10": 6,
+					"Golfhoek": 0
+				},
+                {
+					"Waterstand": 0.08,
+					"GolfhoogteHm0": 1.6,
+					"GolfperiodeTm10": 5,
+					"Golfhoek": 45
+				},
+                {
+					"Waterstand": 0.09,
+					"GolfhoogteHm0": 2,
+					"GolfperiodeTm10": 6,
+					"Golfhoek": 0
+				},
+                {
+					"Waterstand": 0.1,
+					"GolfhoogteHm0": 2,
+					"GolfperiodeTm10": 9,
+					"Golfhoek": 0
+				},
+                {
+					"Waterstand": 0.11,
+					"GolfhoogteHm0": 2,
+					"GolfperiodeTm10": 6,
+					"Golfhoek": 45
+				},
+                {
+					"Waterstand": 0.12,
+					"GolfhoogteHm0": 2.4,
+					"GolfperiodeTm10": 9,
+					"Golfhoek": 0
+				},
+                {
+					"Waterstand": 0.13,
+					"GolfhoogteHm0": 2.4,
+					"GolfperiodeTm10": 10,
+					"Golfhoek": 0
+				},
+                {
+					"Waterstand": 0.14,
+					"GolfhoogteHm0": 2.4,
+					"GolfperiodeTm10": 9,
+					"Golfhoek": 45
+				},
+                {
+					"Waterstand": 0.15,
+					"GolfhoogteHm0": 2.8,
+					"GolfperiodeTm10": 10,
+					"Golfhoek": 0
+				}
+			]
+		},
+		"Locaties": 
+        [
+			{
+				"Naam": "GrasbekledingGeslotenZodeAlleenGolfoploopRayleighDiscreetAlleOptiesAan",
+				"Schade": 
+                {
+					"BeginSchade": 0.0,
+					"Faalgetal": 1.0
+				},
+				"Bekleding":
+                 {
+					"TypeToplaag": "GrasGeslotenZode",
+					"KritiekeCumulatieveOverbelasting": 7000,
+					"KritiekeFrontsnelheidGrasGolfoploop": 4,
+					"VerhogingBelastingOvergangAlfaM": 1,
+					"VerlagingSterkteOvergangAlfaS": 1,
+					"FactorFrontSnelheidGolfoploop": 1.1,
+					"Rekenmethoden":
+                    [
+						{
+							"RekenmethodeSoort": "GrasGolfoploop",
+							"GemiddeldAantalGolvenPerTijdstap": 
+                            {
+								"GemiddeldAantalGolvenPerTijdstapCtm": 1
+							},
+							"RepresentatieveGolfoploop2p": 
+                            {
+								"RepresentatieveGolfoploop2pAru": 1.65,
+								"RepresentatieveGolfoploop2pBru": 4.0,
+								"RepresentatieveGolfoploop2pCru": 1.5
+							},
+							"ImpactGolfhoekGolfoploop": 
+                            {
+								"ImpactGolfhoekGolfoploopAbeta": 0.0022,
+								"ImpactGolfhoekGolfoploopBetamax": 80.0
+							},
+							"Rekenprotocol": 
+                            {
+								"Rekenprotocolsoort": "RayleighDiscreet",
+								"AantalGolvenVastRD": 10000,
+                                "FrontsnelheidGolfOploopRD":
+                                {
+									"FrontsnelheidGolfOploopRDCu": 1.1
+								}
+							}
+						}
+					]
+				},
+				"Profielschematisatie": 
+                {
+					"TanA": 0.25,
+					"PositieZ": 1,
+					"BermfactorGammab": 1,
+					"RuwheidsfactorGammaf": 1
+				}
+			}
+		]
+	}
+}

@@ -116,4 +116,14 @@ namespace DiKErnel::Acceptance::Test
         // When & Then
         PerformTest(inputFilePath, 2.836154231066117, make_unique<int>(32955).get());
     }
+
+    TEST_F(AcceptanceTest, GivenJsonInputWithGrassWaveRunupRayleighLocation_WhenCalculating_ThenExpectedOutputJsonCreated)
+    {
+        // Given
+        const auto inputFilePath = (TestDataPathHelper::GetTestDataPath("DiKErnel.Acceptance.Test") / "AcceptanceTest"
+            / "GrassWaveRunupRayleigh.json").string();
+
+        // When & Then
+        PerformTest(inputFilePath, 2.273256874349757, make_unique<int>(10433).get());
+    }
 }
