@@ -40,6 +40,18 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
     #pragma region Set methods
 
+    void JsonInputAsphaltRevetmentLocationData::SetThicknessSubLayer(
+        unique_ptr<double> thicknessSubLayer)
+    {
+        _thicknessSubLayer = move(thicknessSubLayer);
+    }
+
+    void JsonInputAsphaltRevetmentLocationData::SetElasticModulusSubLayer(
+        unique_ptr<double> elasticModulusSubLayer)
+    {
+        _elasticModulusSubLayer = move(elasticModulusSubLayer);
+    }
+
     void JsonInputAsphaltRevetmentLocationData::SetAverageNumberOfWavesCtm(
         unique_ptr<double> averageNumberOfWavesCtm)
     {
@@ -102,6 +114,16 @@ namespace DiKErnel::KernelWrapper::Json::Input
     double JsonInputAsphaltRevetmentLocationData::GetElasticModulusUpperLayer() const
     {
         return _elasticModulusUpperLayer;
+    }
+
+    const double* JsonInputAsphaltRevetmentLocationData::GetThicknessSubLayer() const
+    {
+        return _thicknessSubLayer.get();
+    }
+
+    const double* JsonInputAsphaltRevetmentLocationData::GetElasticModulusSubLayer() const
+    {
+        return _elasticModulusSubLayer.get();
     }
 
     const double* JsonInputAsphaltRevetmentLocationData::GetAverageNumberOfWavesCtm() const

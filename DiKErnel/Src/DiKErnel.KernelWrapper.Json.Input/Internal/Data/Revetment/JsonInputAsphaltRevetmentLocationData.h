@@ -40,6 +40,12 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
             #pragma region Set methods
 
+            void SetThicknessSubLayer(
+                std::unique_ptr<double> thicknessSubLayer);
+
+            void SetElasticModulusSubLayer(
+                std::unique_ptr<double> elasticModulusSubLayer);
+
             void SetAverageNumberOfWavesCtm(
                 std::unique_ptr<double> averageNumberOfWavesCtm);
 
@@ -71,6 +77,10 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
             double GetElasticModulusUpperLayer() const;
 
+            const double* GetThicknessSubLayer() const;
+
+            const double* GetElasticModulusSubLayer() const;
+
             const double* GetAverageNumberOfWavesCtm() const;
 
             const double* GetFatigueAlpha() const;
@@ -90,6 +100,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
             double _soilElasticity;
             double _thicknessUpperLayer;
             double _elasticModulusUpperLayer;
+            std::unique_ptr<double> _thicknessSubLayer = nullptr;
+            std::unique_ptr<double> _elasticModulusSubLayer = nullptr;
             std::unique_ptr<double> _averageNumberOfWavesCtm = nullptr;
             std::unique_ptr<double> _fatigueAlpha = nullptr;
             std::unique_ptr<double> _fatigueBeta = nullptr;
