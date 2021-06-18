@@ -22,6 +22,8 @@
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
+    using namespace std;
+
     JsonInputAsphaltRevetmentLocationData::JsonInputAsphaltRevetmentLocationData(
         const JsonInputAsphaltRevetmentTopLayerType topLayerType,
         const double failureTension,
@@ -37,6 +39,36 @@ namespace DiKErnel::KernelWrapper::Json::Input
           _elasticModulusUpperLayer(elasticModulusUpperLayer) { }
 
     #pragma region Set methods
+
+    void JsonInputAsphaltRevetmentLocationData::SetAverageNumberOfWavesCtm(
+        unique_ptr<double> averageNumberOfWavesCtm)
+    {
+        _averageNumberOfWavesCtm = move(averageNumberOfWavesCtm);
+    }
+
+    void JsonInputAsphaltRevetmentLocationData::SetFatigueAlpha(
+        unique_ptr<double> fatigueAlpha)
+    {
+        _fatigueAlpha = move(fatigueAlpha);
+    }
+
+    void JsonInputAsphaltRevetmentLocationData::SetFatigueBeta(
+        unique_ptr<double> fatigueBeta)
+    {
+        _fatigueBeta = move(fatigueBeta);
+    }
+
+    void JsonInputAsphaltRevetmentLocationData::SetImpactNumberC(
+        unique_ptr<double> impactNumberC)
+    {
+        _impactNumberC = move(impactNumberC);
+    }
+
+    void JsonInputAsphaltRevetmentLocationData::SetStiffnessRelationNu(
+        unique_ptr<double> stiffnessRelationNu)
+    {
+        _stiffnessRelationNu = move(stiffnessRelationNu);
+    }
 
     #pragma endregion
 
@@ -70,6 +102,31 @@ namespace DiKErnel::KernelWrapper::Json::Input
     double JsonInputAsphaltRevetmentLocationData::GetElasticModulusUpperLayer() const
     {
         return _elasticModulusUpperLayer;
+    }
+
+    const double* JsonInputAsphaltRevetmentLocationData::GetAverageNumberOfWavesCtm() const
+    {
+        return _averageNumberOfWavesCtm.get();
+    }
+
+    const double* JsonInputAsphaltRevetmentLocationData::GetFatigueAlpha() const
+    {
+        return _fatigueAlpha.get();
+    }
+
+    const double* JsonInputAsphaltRevetmentLocationData::GetFatigueBeta() const
+    {
+        return _fatigueBeta.get();
+    }
+
+    const double* JsonInputAsphaltRevetmentLocationData::GetImpactNumberC() const
+    {
+        return _impactNumberC.get();
+    }
+
+    const double* JsonInputAsphaltRevetmentLocationData::GetStiffnessRelationNu() const
+    {
+        return _stiffnessRelationNu.get();
     }
 
     #pragma endregion

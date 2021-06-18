@@ -20,6 +20,8 @@
 
 #pragma once
 
+#include <memory>
+
 #include "IJsonInputRevetmentLocationData.h"
 #include "JsonInputAsphaltRevetmentTopLayerType.h"
 
@@ -38,6 +40,21 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
             #pragma region Set methods
 
+            void SetAverageNumberOfWavesCtm(
+                std::unique_ptr<double> averageNumberOfWavesCtm);
+
+            void SetFatigueAlpha(
+                std::unique_ptr<double> fatigueAlpha);
+
+            void SetFatigueBeta(
+                std::unique_ptr<double> fatigueBeta);
+
+            void SetImpactNumberC(
+                std::unique_ptr<double> impactNumberC);
+
+            void SetStiffnessRelationNu(
+                std::unique_ptr<double> stiffnessRelationNu);
+
             #pragma endregion
 
             #pragma region Get methods
@@ -54,6 +71,16 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
             double GetElasticModulusUpperLayer() const;
 
+            const double* GetAverageNumberOfWavesCtm() const;
+
+            const double* GetFatigueAlpha() const;
+
+            const double* GetFatigueBeta() const;
+
+            const double* GetImpactNumberC() const;
+
+            const double* GetStiffnessRelationNu() const;
+
             #pragma endregion
 
         private:
@@ -63,5 +90,10 @@ namespace DiKErnel::KernelWrapper::Json::Input
             double _soilElasticity;
             double _thicknessUpperLayer;
             double _elasticModulusUpperLayer;
+            std::unique_ptr<double> _averageNumberOfWavesCtm = nullptr;
+            std::unique_ptr<double> _fatigueAlpha = nullptr;
+            std::unique_ptr<double> _fatigueBeta = nullptr;
+            std::unique_ptr<double> _impactNumberC = nullptr;
+            std::unique_ptr<double> _stiffnessRelationNu = nullptr;
     };
 }
