@@ -20,6 +20,9 @@
 
 #include "AsphaltRevetment.h"
 
+#include <tuple>
+#include <utility>
+
 namespace DiKErnel::FunctionLibrary
 {
     using namespace std;
