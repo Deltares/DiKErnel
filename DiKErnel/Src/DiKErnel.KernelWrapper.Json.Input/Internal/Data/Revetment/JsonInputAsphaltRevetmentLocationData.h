@@ -29,7 +29,12 @@ namespace DiKErnel::KernelWrapper::Json::Input
     {
         public:
             explicit JsonInputAsphaltRevetmentLocationData(
-                JsonInputAsphaltRevetmentTopLayerType topLayerType);
+                JsonInputAsphaltRevetmentTopLayerType topLayerType,
+                double failureTension,
+                double densityOfWater,
+                double soilElasticity,
+                double thicknessUpperLayer,
+                double elasticModulusUpperLayer);
 
             #pragma region Set methods
 
@@ -39,9 +44,24 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
             JsonInputAsphaltRevetmentTopLayerType GetTopLayerType() const;
 
+            double GetFailureTension() const;
+
+            double GetDensityOfWater() const;
+
+            double GetSoilElasticity() const;
+
+            double GetThicknessUpperLayer() const;
+
+            double GetElasticModulusUpperLayer() const;
+
             #pragma endregion
 
         private:
             JsonInputAsphaltRevetmentTopLayerType _topLayerType;
+            double _failureTension;
+            double _densityOfWater;
+            double _soilElasticity;
+            double _thicknessUpperLayer;
+            double _elasticModulusUpperLayer;
     };
 }

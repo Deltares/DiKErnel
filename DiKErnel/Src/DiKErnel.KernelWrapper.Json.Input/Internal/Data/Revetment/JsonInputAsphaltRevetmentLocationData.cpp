@@ -23,8 +23,18 @@
 namespace DiKErnel::KernelWrapper::Json::Input
 {
     JsonInputAsphaltRevetmentLocationData::JsonInputAsphaltRevetmentLocationData(
-        const JsonInputAsphaltRevetmentTopLayerType topLayerType)
-        : _topLayerType(topLayerType) { }
+        const JsonInputAsphaltRevetmentTopLayerType topLayerType,
+        const double failureTension,
+        const double densityOfWater,
+        const double soilElasticity,
+        const double thicknessUpperLayer,
+        const double elasticModulusUpperLayer)
+        : _topLayerType(topLayerType),
+          _failureTension(failureTension),
+          _densityOfWater(densityOfWater),
+          _soilElasticity(soilElasticity),
+          _thicknessUpperLayer(thicknessUpperLayer),
+          _elasticModulusUpperLayer(elasticModulusUpperLayer) { }
 
     #pragma region Set methods
 
@@ -35,6 +45,31 @@ namespace DiKErnel::KernelWrapper::Json::Input
     JsonInputAsphaltRevetmentTopLayerType JsonInputAsphaltRevetmentLocationData::GetTopLayerType() const
     {
         return _topLayerType;
+    }
+
+    double JsonInputAsphaltRevetmentLocationData::GetFailureTension() const
+    {
+        return _failureTension;
+    }
+
+    double JsonInputAsphaltRevetmentLocationData::GetDensityOfWater() const
+    {
+        return _densityOfWater;
+    }
+
+    double JsonInputAsphaltRevetmentLocationData::GetSoilElasticity() const
+    {
+        return _soilElasticity;
+    }
+
+    double JsonInputAsphaltRevetmentLocationData::GetThicknessUpperLayer() const
+    {
+        return _thicknessUpperLayer;
+    }
+
+    double JsonInputAsphaltRevetmentLocationData::GetElasticModulusUpperLayer() const
+    {
+        return _elasticModulusUpperLayer;
     }
 
     #pragma endregion
