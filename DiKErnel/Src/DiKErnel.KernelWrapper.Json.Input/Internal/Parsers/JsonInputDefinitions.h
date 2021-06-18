@@ -47,12 +47,16 @@ namespace DiKErnel::KernelWrapper::Json::Input
             inline static const std::string REVETMENT = "Bekleding";
             inline static const std::string TYPE_TOP_LAYER = "TypeToplaag";
 
+            inline static const std::string AVERAGE_NUMBER_OF_WAVES = "GemiddeldAantalGolvenPerTijdstap";
+            inline static const std::string AVERAGE_NUMBER_OF_WAVES_CTM = "GemiddeldAantalGolvenPerTijdstapCtm";
+
             inline static const std::string CALCULATION_METHOD = "Rekenmethoden";
             inline static const std::string CALCULATION_METHOD_TYPE = "RekenmethodeSoort";
 
-            inline static const std::string CALCULATION_METHOD_TYPE_NATURAL_STONE = "Natuursteen";
+            inline static const std::string CALCULATION_METHOD_TYPE_ASPHALT = "GrasGolfoploop";
             inline static const std::string CALCULATION_METHOD_TYPE_GRASS_WAVE_IMPACT = "GrasGolfklap";
             inline static const std::string CALCULATION_METHOD_TYPE_GRASS_WAVE_RUNUP = "GrasGolfoploop";
+            inline static const std::string CALCULATION_METHOD_TYPE_NATURAL_STONE = "Natuursteen";
 
             inline static const std::string PROFILE_SCHEMATIZATION = "Profielschematisatie";
             inline static const std::string TAN_A = "TanA";

@@ -39,14 +39,14 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 JsonInputCalculationType::Unknown, nullptr
             },
             {
-                JsonInputCalculationType::NaturalStone, JsonInputDefinitions::CALCULATION_METHOD_TYPE_NATURAL_STONE
-            },
-            {
                 JsonInputCalculationType::GrassWaveImpact, JsonInputDefinitions::CALCULATION_METHOD_TYPE_GRASS_WAVE_IMPACT
             },
             {
                 JsonInputCalculationType::GrassWaveRunup, JsonInputDefinitions::CALCULATION_METHOD_TYPE_GRASS_WAVE_RUNUP
-            }
+            },
+            {
+                JsonInputCalculationType::NaturalStone, JsonInputDefinitions::CALCULATION_METHOD_TYPE_NATURAL_STONE
+            },
         });
 
     unique_ptr<JsonInputData> JsonInputParser::GetJsonInputData(

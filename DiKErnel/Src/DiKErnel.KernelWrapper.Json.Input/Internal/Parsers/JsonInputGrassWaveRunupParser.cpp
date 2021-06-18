@@ -135,13 +135,13 @@ namespace DiKErnel::KernelWrapper::Json::Input
             forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
                 readRevetment, JsonInputGrassWaveRunupDefinitions::REDUCED_STRENGTH_TRANSITION_ALPHA_S)));
 
-        if (readCalculationMethod.contains(JsonInputGrassWaveRunupDefinitions::AVERAGE_NUMBER_OF_WAVES))
+        if (readCalculationMethod.contains(JsonInputDefinitions::AVERAGE_NUMBER_OF_WAVES))
         {
-            const auto& readAverageNumberWaveTimeStep = readCalculationMethod[JsonInputGrassWaveRunupDefinitions::AVERAGE_NUMBER_OF_WAVES];
+            const auto& readAverageNumberWaveTimeStep = readCalculationMethod[JsonInputDefinitions::AVERAGE_NUMBER_OF_WAVES];
 
             locationData.SetAverageNumberOfWavesCtm(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
-                    readAverageNumberWaveTimeStep, JsonInputGrassWaveRunupDefinitions::AVERAGE_NUMBER_OF_WAVES_CTM)));
+                    readAverageNumberWaveTimeStep, JsonInputDefinitions::AVERAGE_NUMBER_OF_WAVES_CTM)));
         }
 
         if (readCalculationMethod.contains(JsonInputGrassWaveRunupDefinitions::REPRESENTATIVE_WAVE_RUNUP_2P))
