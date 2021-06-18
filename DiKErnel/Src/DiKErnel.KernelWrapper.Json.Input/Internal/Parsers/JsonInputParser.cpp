@@ -22,6 +22,7 @@
 
 #include <fstream>
 
+#include "JsonInputAsphaltParser.h"
 #include "JsonInputDefinitions.h"
 #include "JsonInputGrassWaveImpactParser.h"
 #include "JsonInputGrassWaveRunupParser.h"
@@ -37,6 +38,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
         {
             {
                 JsonInputCalculationType::Unknown, nullptr
+            },
+            {
+                JsonInputCalculationType::Asphalt, JsonInputDefinitions::CALCULATION_METHOD_TYPE_ASPHALT
             },
             {
                 JsonInputCalculationType::GrassWaveImpact, JsonInputDefinitions::CALCULATION_METHOD_TYPE_GRASS_WAVE_IMPACT
@@ -143,9 +147,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
     {
         unique_ptr<IJsonInputRevetmentLocationData> revetmentLocationData;
 
-        if (calculationType == JsonInputCalculationType::NaturalStone)
+        if (calculationType == JsonInputCalculationType::Asphalt)
         {
-            revetmentLocationData = JsonInputNaturalStoneParser::ParseRevetmentLocationData(readRevetment, readCalculationMethod);
+            revetmentLocationData = JsonInputAsphaltParser::ParseRevetmentLocationData(readRevetment, readCalculationMethod);
         }
 
         if (calculationType == JsonInputCalculationType::GrassWaveImpact)
@@ -156,6 +160,11 @@ namespace DiKErnel::KernelWrapper::Json::Input
         if (calculationType == JsonInputCalculationType::GrassWaveRunup)
         {
             revetmentLocationData = JsonInputGrassWaveRunupParser::ParseRevetmentLocationData(readRevetment, readCalculationMethod);
+        }
+
+        if (calculationType == JsonInputCalculationType::NaturalStone)
+        {
+            revetmentLocationData = JsonInputNaturalStoneParser::ParseRevetmentLocationData(readRevetment, readCalculationMethod);
         }
 
         return revetmentLocationData;
