@@ -44,9 +44,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
         const json& readCalculationMethod)
     {
         auto locationData = make_unique<JsonInputNaturalStoneRevetmentLocationData>(
+            readRevetment[JsonInputDefinitions::TYPE_TOP_LAYER].get<JsonInputNaturalStoneRevetmentTopLayerType>(),
             readRevetment[JsonInputNaturalStoneDefinitions::RELATIVE_DENSITY],
-            readRevetment[JsonInputNaturalStoneDefinitions::THICKNESS_TOP_LAYER],
-            readRevetment[JsonInputDefinitions::TYPE_TOP_LAYER].get<JsonInputNaturalStoneRevetmentTopLayerType>());
+            readRevetment[JsonInputNaturalStoneDefinitions::THICKNESS_TOP_LAYER]);
 
         if (readCalculationMethod.contains(JsonInputNaturalStoneDefinitions::HYDRAULIC_LOAD))
         {
