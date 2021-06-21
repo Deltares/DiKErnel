@@ -41,7 +41,8 @@ namespace DiKErnel::FunctionLibrary
             );
 
             static double LogFailureTension(
-                double failureTension);
+                double failureTension
+            );
 
         private:
             static double DepthFactorAccumulation(
@@ -70,6 +71,20 @@ namespace DiKErnel::FunctionLibrary
                 double depthFactorValue,
                 double impactFactorValue,
                 double fatigueAlpha,
-                double fatigueBeta);
+                double fatigueBeta
+            );
+
+            static double LogTension(
+                double tanA,
+                double widthFactorValue,
+                double depthFactorValue,
+                double impactFactorValue,
+                double impactNumberC
+            );
+
+            static double ImpactNumber(
+                double tanA,
+                double impactFactorValue,
+                double impactNumberC);
     };
 }

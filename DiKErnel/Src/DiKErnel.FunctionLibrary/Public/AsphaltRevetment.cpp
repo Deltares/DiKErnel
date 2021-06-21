@@ -117,4 +117,25 @@ namespace DiKErnel::FunctionLibrary
 
         return pow(10.0, -1.0 * fatigueBeta * pow(max(0.0, logFailureTension - logTension), fatigueAlpha));
     }
+
+    double AsphaltRevetment::LogTension(
+        const double tanA,
+        double widthFactorValue,
+        double depthFactorValue,
+        const double impactFactorValue,
+        const double impactNumberC)
+    {
+        const auto impactNumber = ImpactNumber(tanA, impactFactorValue, impactNumberC);
+        const auto bendingStress = 1.1;
+
+        return log10(impactNumber * bendingStress);
+    }
+
+    double AsphaltRevetment::ImpactNumber(
+        const double tanA,
+        const double impactFactorValue,
+        const double impactNumberC)
+    {
+        return 4.0 * impactNumberC * tanA * impactFactorValue;
+    }
 }
