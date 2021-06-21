@@ -33,6 +33,7 @@ namespace DiKErnel::FunctionLibrary
             static double IncrementDamage(
                 double logFailureTension,
                 double averageNumberOfWaves,
+                double maximumPeakStress,
                 double tanA,
                 const std::vector<std::tuple<double, double>>& widthFactors,
                 const std::vector<std::tuple<double, double>>& depthFactors,
@@ -50,6 +51,7 @@ namespace DiKErnel::FunctionLibrary
             static double DepthFactorAccumulation(
                 double logFailureTension,
                 double averageNumberOfWaves,
+                double maximumPeakStress,
                 double tanA,
                 double widthFactorValue,
                 const std::vector<std::tuple<double, double>>& depthFactors,
@@ -62,6 +64,7 @@ namespace DiKErnel::FunctionLibrary
             static double ImpactFactorAccumulation(
                 double logFailureTension,
                 double averageNumberOfWaves,
+                double maximumPeakStress,
                 double tanA,
                 double widthFactorValue,
                 double depthFactorValue,
@@ -72,6 +75,7 @@ namespace DiKErnel::FunctionLibrary
 
             static double Fatigue(
                 double logFailureTension,
+                double maximumPeakStress,
                 double tanA,
                 double widthFactorValue,
                 double depthFactorValue,
@@ -82,6 +86,7 @@ namespace DiKErnel::FunctionLibrary
             );
 
             static double LogTension(
+                double maximumPeakStress,
                 double tanA,
                 double widthFactorValue,
                 double depthFactorValue,
@@ -92,8 +97,11 @@ namespace DiKErnel::FunctionLibrary
             static double ImpactNumber(
                 double tanA,
                 double impactFactorValue,
-                double impactNumberC);
+                double impactNumberC
+            );
 
-            static double BendingStress();
+            static double BendingStress(
+                double maximumPeakStress
+            );
     };
 }
