@@ -93,5 +93,7 @@ namespace DiKErnel::FunctionLibrary
                 double tanA,
                 double impactFactorValue,
                 double impactNumberC);
+
+            static double BendingStress();
     };
 }

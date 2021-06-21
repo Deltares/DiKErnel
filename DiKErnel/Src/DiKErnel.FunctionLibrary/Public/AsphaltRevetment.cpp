@@ -148,4 +148,16 @@ namespace DiKErnel::FunctionLibrary
     {
         return 4.0 * impactNumberC * tanA * impactFactorValue;
     }
+
+    double AsphaltRevetment::BendingStress()
+    {
+        const auto maximumPeakStress = 1.1;
+        const auto stiffnessRelation = 2.2;
+        const auto computationalThickness = 3.3;
+        const auto spatialDistributionBendingStress = 4.4;
+
+        return max(pow(10.0, -99.0),
+                   -1.0 * (3 * maximumPeakStress / (4.0 * pow(stiffnessRelation, 2.0) * pow(computationalThickness, 2.0))) *
+                   spatialDistributionBendingStress);
+    }
 }
