@@ -62,6 +62,23 @@ namespace DiKErnel::FunctionLibrary
         return log10(failureTension);
     }
 
+    double AsphaltRevetment::MaximumPeakStress(
+        const double waveHeightHm0,
+        const double gravitationalAcceleration,
+        const double densityOfWater)
+    {
+        return gravitationalAcceleration * densityOfWater * waveHeightHm0 / pow(10.0, 6.0);
+    }
+
+    double AsphaltRevetment::StiffnessRelation(
+        const double computationalThickness,
+        const double equivalentElasticModulus,
+        const double soilElasticy,
+        const double stiffnessRelationNu)
+    {
+        return pow(3.0 * soilElasticy * (1.0 - pow(stiffnessRelationNu, 2.0)) / (equivalentElasticModulus * computationalThickness), 0.25);
+    }
+
     double AsphaltRevetment::DepthFactorAccumulation(
         const double logFailureTension,
         const double averageNumberOfWaves,

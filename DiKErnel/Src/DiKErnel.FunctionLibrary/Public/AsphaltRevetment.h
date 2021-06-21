@@ -47,6 +47,19 @@ namespace DiKErnel::FunctionLibrary
                 double failureTension
             );
 
+            static double MaximumPeakStress(
+                double waveHeightHm0,
+                double gravitationalAcceleration,
+                double densityOfWater
+            );
+
+            static double StiffnessRelation(
+                double computationalThickness,
+                double equivalentElasticModulus,
+                double soilElasticy,
+                double stiffnessRelationNu
+            );
+
         private:
             static double DepthFactorAccumulation(
                 double logFailureTension,
@@ -105,3 +118,4 @@ namespace DiKErnel::FunctionLibrary
             );
     };
 }
+
