@@ -82,6 +82,24 @@ namespace DiKErnel::KernelWrapper::Json::Input
         _stiffnessRelationNu = move(stiffnessRelationNu);
     }
 
+    void JsonInputAsphaltRevetmentWaveImpactLocationData::SetWidthFactors(
+        std::unique_ptr<std::vector<std::tuple<double, double>>> widthFactors)
+    {
+        _widthFactors = move(widthFactors);
+    }
+
+    void JsonInputAsphaltRevetmentWaveImpactLocationData::SetDepthFactors(
+        std::unique_ptr<std::vector<std::tuple<double, double>>> depthFactors)
+    {
+        _depthFactors = move(depthFactors);
+    }
+
+    void JsonInputAsphaltRevetmentWaveImpactLocationData::SetImpactFactors(
+        std::unique_ptr<std::vector<std::tuple<double, double>>> impactFactors)
+    {
+        _impactFactors = move(impactFactors);
+    }
+
     #pragma endregion
 
     #pragma region Get methods
@@ -149,6 +167,21 @@ namespace DiKErnel::KernelWrapper::Json::Input
     const double* JsonInputAsphaltRevetmentWaveImpactLocationData::GetStiffnessRelationNu() const
     {
         return _stiffnessRelationNu.get();
+    }
+
+    const std::vector<std::tuple<double, double>>* JsonInputAsphaltRevetmentWaveImpactLocationData::GetWidthFactors() const
+    {
+        return _widthFactors.get();
+    }
+
+    const std::vector<std::tuple<double, double>>* JsonInputAsphaltRevetmentWaveImpactLocationData::GetDepthFactors() const
+    {
+        return _depthFactors.get();
+    }
+
+    const std::vector<std::tuple<double, double>>* JsonInputAsphaltRevetmentWaveImpactLocationData::GetImpactFactors() const
+    {
+        return _impactFactors.get();
     }
 
     #pragma endregion

@@ -21,6 +21,7 @@
 #pragma once
 
 #include <memory>
+#include <vector>
 
 #include "IJsonInputRevetmentLocationData.h"
 #include "JsonInputAsphaltRevetmentTopLayerType.h"
@@ -61,6 +62,15 @@ namespace DiKErnel::KernelWrapper::Json::Input
             void SetStiffnessRelationNu(
                 std::unique_ptr<double> stiffnessRelationNu);
 
+            void SetWidthFactors(
+                std::unique_ptr<std::vector<std::tuple<double, double>>> widthFactors);
+
+            void SetDepthFactors(
+                std::unique_ptr<std::vector<std::tuple<double, double>>> depthFactors);
+
+            void SetImpactFactors(
+                std::unique_ptr<std::vector<std::tuple<double, double>>> impactFactors);
+
             #pragma endregion
 
             #pragma region Get methods
@@ -91,6 +101,12 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
             const double* GetStiffnessRelationNu() const;
 
+            const std::vector<std::tuple<double, double>>* GetWidthFactors() const;
+
+            const std::vector<std::tuple<double, double>>* GetDepthFactors() const;
+
+            const std::vector<std::tuple<double, double>>* GetImpactFactors() const;
+
             #pragma endregion
 
         private:
@@ -107,5 +123,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
             std::unique_ptr<double> _fatigueBeta = nullptr;
             std::unique_ptr<double> _impactNumberC = nullptr;
             std::unique_ptr<double> _stiffnessRelationNu = nullptr;
+            std::unique_ptr<std::vector<std::tuple<double, double>>> _widthFactors = nullptr;
+            std::unique_ptr<std::vector<std::tuple<double, double>>> _depthFactors = nullptr;
+            std::unique_ptr<std::vector<std::tuple<double, double>>> _impactFactors = nullptr;
     };
 }
