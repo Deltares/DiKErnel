@@ -53,9 +53,11 @@ namespace DiKErnel::FunctionLibrary
             );
 
             static double Fatigue(
+                double logFailureTension,
                 double widthFactorValue,
                 double depthFactorValue,
-                double impactFactorValue
-            );
+                double impactFactorValue,
+                double fatigueAlpha,
+                double fatigueBeta);
     };
 }

@@ -88,10 +88,15 @@ namespace DiKErnel::FunctionLibrary
     }
 
     double AsphaltRevetment::Fatigue(
+        const double logFailureTension,
         double widthFactorValue,
         double depthFactorValue,
-        double impactFactorValue)
+        double impactFactorValue,
+        const double fatigueAlpha,
+        const double fatigueBeta)
     {
-        return 1.1;
+        const auto logTension = 2.2;
+
+        return pow(10.0, -1.0 * fatigueBeta * pow(max(0.0, logFailureTension - logTension), fatigueAlpha));
     }
 }
