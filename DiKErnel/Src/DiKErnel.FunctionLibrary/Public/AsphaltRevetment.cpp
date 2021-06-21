@@ -31,11 +31,13 @@ namespace DiKErnel::FunctionLibrary
     double AsphaltRevetment::IncrementDamage(
         const double logFailureTension,
         const double averageNumberOfWaves,
+        const double tanA,
         const std::vector<std::tuple<double, double>>& widthFactors,
         const std::vector<std::tuple<double, double>>& depthFactors,
         const std::vector<std::tuple<double, double>>& impactFactors,
         const double fatigueAlpha,
-        const double fatigueBeta)
+        const double fatigueBeta,
+        const double impactNumberC)
     {
         double result = 0;
 
@@ -43,8 +45,8 @@ namespace DiKErnel::FunctionLibrary
         {
             const auto widthFactorValue = get<0>(widthFactor);
             const auto widthFactorProbability = get<1>(widthFactor);
-            const auto depthFactorAccumulation = DepthFactorAccumulation(logFailureTension, averageNumberOfWaves, widthFactorValue, depthFactors,
-                                                                         impactFactors, fatigueAlpha, fatigueBeta);
+            const auto depthFactorAccumulation = DepthFactorAccumulation(logFailureTension, averageNumberOfWaves, tanA, widthFactorValue,
+                                                                         depthFactors, impactFactors, fatigueAlpha, fatigueBeta, impactNumberC);
 
             result += widthFactorProbability * depthFactorAccumulation;
         }
@@ -61,11 +63,13 @@ namespace DiKErnel::FunctionLibrary
     double AsphaltRevetment::DepthFactorAccumulation(
         const double logFailureTension,
         const double averageNumberOfWaves,
+        const double tanA,
         const double widthFactorValue,
         const std::vector<std::tuple<double, double>>& depthFactors,
         const std::vector<std::tuple<double, double>>& impactFactors,
         const double fatigueAlpha,
-        const double fatigueBeta)
+        const double fatigueBeta,
+        const double impactNumberC)
     {
         double result = 0;
 
@@ -73,8 +77,9 @@ namespace DiKErnel::FunctionLibrary
         {
             const auto depthFactorValue = get<0>(depthFactor);
             const auto depthFactorProbability = get<1>(depthFactor);
-            const auto impactFactorAccumulation = ImpactFactorAccumulation(logFailureTension, averageNumberOfWaves, widthFactorValue,
-                                                                           depthFactorValue, impactFactors, fatigueAlpha, fatigueBeta);
+            const auto impactFactorAccumulation = ImpactFactorAccumulation(logFailureTension, averageNumberOfWaves, tanA, widthFactorValue,
+                                                                           depthFactorValue, impactFactors, fatigueAlpha, fatigueBeta,
+                                                                           impactNumberC);
 
             result += depthFactorProbability * impactFactorAccumulation;
         }
@@ -85,11 +90,13 @@ namespace DiKErnel::FunctionLibrary
     double AsphaltRevetment::ImpactFactorAccumulation(
         const double logFailureTension,
         const double averageNumberOfWaves,
+        const double tanA,
         const double widthFactorValue,
         const double depthFactorValue,
         const std::vector<std::tuple<double, double>>& impactFactors,
         const double fatigueAlpha,
-        const double fatigueBeta)
+        const double fatigueBeta,
+        const double impactNumberC)
     {
         double result = 0;
 
@@ -97,7 +104,8 @@ namespace DiKErnel::FunctionLibrary
         {
             const auto impactFactorValue = get<0>(impactFactor);
             const auto impactFactorProbability = get<1>(impactFactor);
-            const auto fatigue = Fatigue(logFailureTension, widthFactorValue, depthFactorValue, impactFactorValue, fatigueAlpha, fatigueBeta);
+            const auto fatigue = Fatigue(logFailureTension, tanA, widthFactorValue, depthFactorValue, impactFactorValue, fatigueAlpha, fatigueBeta,
+                                         impactNumberC);
 
             result += impactFactorProbability * averageNumberOfWaves * fatigue;
         }
@@ -107,13 +115,15 @@ namespace DiKErnel::FunctionLibrary
 
     double AsphaltRevetment::Fatigue(
         const double logFailureTension,
-        double widthFactorValue,
-        double depthFactorValue,
-        double impactFactorValue,
+        const double tanA,
+        const double widthFactorValue,
+        const double depthFactorValue,
+        const double impactFactorValue,
         const double fatigueAlpha,
-        const double fatigueBeta)
+        const double fatigueBeta,
+        const double impactNumberC)
     {
-        const auto logTension = 2.2;
+        const auto logTension = LogTension(tanA, widthFactorValue, depthFactorValue, impactFactorValue, impactNumberC);
 
         return pow(10.0, -1.0 * fatigueBeta * pow(max(0.0, logFailureTension - logTension), fatigueAlpha));
     }

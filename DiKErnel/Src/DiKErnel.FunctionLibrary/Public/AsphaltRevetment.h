@@ -33,11 +33,13 @@ namespace DiKErnel::FunctionLibrary
             static double IncrementDamage(
                 double logFailureTension,
                 double averageNumberOfWaves,
+                double tanA,
                 const std::vector<std::tuple<double, double>>& widthFactors,
                 const std::vector<std::tuple<double, double>>& depthFactors,
                 const std::vector<std::tuple<double, double>>& impactFactors,
                 double fatigueAlpha,
-                double fatigueBeta
+                double fatigueBeta,
+                double impactNumberC
             );
 
             static double LogFailureTension(
@@ -48,30 +50,35 @@ namespace DiKErnel::FunctionLibrary
             static double DepthFactorAccumulation(
                 double logFailureTension,
                 double averageNumberOfWaves,
+                double tanA,
                 double widthFactorValue,
                 const std::vector<std::tuple<double, double>>& depthFactors,
                 const std::vector<std::tuple<double, double>>& impactFactors,
                 double fatigueAlpha,
-                double fatigueBeta
+                double fatigueBeta,
+                double impactNumberC
             );
 
             static double ImpactFactorAccumulation(
                 double logFailureTension,
                 double averageNumberOfWaves,
+                double tanA,
                 double widthFactorValue,
                 double depthFactorValue,
                 const std::vector<std::tuple<double, double>>& impactFactors,
                 double fatigueAlpha,
-                double fatigueBeta
-            );
+                double fatigueBeta,
+                double impactNumberC);
 
             static double Fatigue(
                 double logFailureTension,
+                double tanA,
                 double widthFactorValue,
                 double depthFactorValue,
                 double impactFactorValue,
                 double fatigueAlpha,
-                double fatigueBeta
+                double fatigueBeta,
+                double impactNumberC
             );
 
             static double LogTension(
