@@ -46,5 +46,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
             inline static const std::string STIFFNESS_RELATION = "Stijfheidsverhouding";
             inline static const std::string STIFFNESS_RELATION_NU = "StijfheidsverhoudingNu";
+
+            inline static const std::string WIDTH_FACTORS = "BreedteFactorenTabel";
+            inline static const std::string DEPTH_FACTORS = "DiepteFactorenTabel";
+            inline static const std::string IMPACT_FACTORS = "StootFactorenTabel";
     };
 }

@@ -97,6 +97,40 @@ namespace DiKErnel::KernelWrapper::Json::Input
                     readStiffnessRelation, JsonInputAsphaltRevetmentDefinitions::STIFFNESS_RELATION_NU)));
         }
 
+        if (readCalculationMethod.contains(JsonInputAsphaltRevetmentDefinitions::WIDTH_FACTORS))
+        {
+            locationData->SetWidthFactors(
+                forward<unique_ptr<vector<tuple<double, double>>>>(
+                    ParseFactorsTable(readCalculationMethod[JsonInputAsphaltRevetmentDefinitions::WIDTH_FACTORS])));
+        }
+
+        if (readCalculationMethod.contains(JsonInputAsphaltRevetmentDefinitions::DEPTH_FACTORS))
+        {
+            locationData->SetDepthFactors(
+                forward<unique_ptr<vector<tuple<double, double>>>>(
+                    ParseFactorsTable(readCalculationMethod[JsonInputAsphaltRevetmentDefinitions::DEPTH_FACTORS])));
+        }
+
+        if (readCalculationMethod.contains(JsonInputAsphaltRevetmentDefinitions::IMPACT_FACTORS))
+        {
+            locationData->SetImpactFactors(
+                forward<unique_ptr<vector<tuple<double, double>>>>(
+                    ParseFactorsTable(readCalculationMethod[JsonInputAsphaltRevetmentDefinitions::IMPACT_FACTORS])));
+        }
+
         return locationData;
+    }
+
+    unique_ptr<vector<tuple<double, double>>> JsonInputAsphaltWaveImpactParser::ParseFactorsTable(
+        const json& factorsTable)
+    {
+        auto readFactors = make_unique<vector<tuple<double, double>>>();
+
+        for (const auto& factor : factorsTable)
+        {
+            readFactors->push_back(factor.get<tuple<double, double>>());
+        }
+
+        return readFactors;
     }
 }
