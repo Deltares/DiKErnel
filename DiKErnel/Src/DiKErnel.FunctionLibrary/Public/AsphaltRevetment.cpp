@@ -32,6 +32,8 @@ namespace DiKErnel::FunctionLibrary
         const double logFailureTension,
         const double averageNumberOfWaves,
         const double maximumPeakStress,
+        const double stiffnessRelation,
+        const double computationalThickness,
         const double tanA,
         const std::vector<std::tuple<double, double>>& widthFactors,
         const std::vector<std::tuple<double, double>>& depthFactors,
@@ -46,9 +48,9 @@ namespace DiKErnel::FunctionLibrary
         {
             const auto widthFactorValue = get<0>(widthFactor);
             const auto widthFactorProbability = get<1>(widthFactor);
-            const auto depthFactorAccumulation = DepthFactorAccumulation(logFailureTension, averageNumberOfWaves, maximumPeakStress, tanA,
-                                                                         widthFactorValue, depthFactors, impactFactors, fatigueAlpha, fatigueBeta,
-                                                                         impactNumberC);
+            const auto depthFactorAccumulation = DepthFactorAccumulation(logFailureTension, averageNumberOfWaves, maximumPeakStress,
+                                                                         stiffnessRelation, computationalThickness, tanA, widthFactorValue,
+                                                                         depthFactors, impactFactors, fatigueAlpha, fatigueBeta, impactNumberC);
 
             result += widthFactorProbability * depthFactorAccumulation;
         }
@@ -83,6 +85,8 @@ namespace DiKErnel::FunctionLibrary
         const double logFailureTension,
         const double averageNumberOfWaves,
         const double maximumPeakStress,
+        const double stiffnessRelation,
+        const double computationalThickness,
         const double tanA,
         const double widthFactorValue,
         const std::vector<std::tuple<double, double>>& depthFactors,
@@ -97,9 +101,10 @@ namespace DiKErnel::FunctionLibrary
         {
             const auto depthFactorValue = get<0>(depthFactor);
             const auto depthFactorProbability = get<1>(depthFactor);
-            const auto impactFactorAccumulation = ImpactFactorAccumulation(logFailureTension, averageNumberOfWaves, maximumPeakStress, tanA,
-                                                                           widthFactorValue, depthFactorValue, impactFactors, fatigueAlpha,
-                                                                           fatigueBeta, impactNumberC);
+            const auto impactFactorAccumulation = ImpactFactorAccumulation(logFailureTension, averageNumberOfWaves, maximumPeakStress,
+                                                                           stiffnessRelation, computationalThickness, tanA, widthFactorValue,
+                                                                           depthFactorValue, impactFactors, fatigueAlpha, fatigueBeta,
+                                                                           impactNumberC);
 
             result += depthFactorProbability * impactFactorAccumulation;
         }
@@ -111,6 +116,8 @@ namespace DiKErnel::FunctionLibrary
         const double logFailureTension,
         const double averageNumberOfWaves,
         const double maximumPeakStress,
+        const double stiffnessRelation,
+        const double computationalThickness,
         const double tanA,
         const double widthFactorValue,
         const double depthFactorValue,
@@ -125,8 +132,8 @@ namespace DiKErnel::FunctionLibrary
         {
             const auto impactFactorValue = get<0>(impactFactor);
             const auto impactFactorProbability = get<1>(impactFactor);
-            const auto fatigue = Fatigue(logFailureTension, maximumPeakStress, tanA, widthFactorValue, depthFactorValue, impactFactorValue,
-                                         fatigueAlpha, fatigueBeta, impactNumberC);
+            const auto fatigue = Fatigue(logFailureTension, maximumPeakStress, stiffnessRelation, computationalThickness, tanA, widthFactorValue,
+                                         depthFactorValue, impactFactorValue, fatigueAlpha, fatigueBeta, impactNumberC);
 
             result += impactFactorProbability * averageNumberOfWaves * fatigue;
         }
@@ -137,6 +144,8 @@ namespace DiKErnel::FunctionLibrary
     double AsphaltRevetment::Fatigue(
         const double logFailureTension,
         const double maximumPeakStress,
+        const double stiffnessRelation,
+        const double computationalThickness,
         const double tanA,
         const double widthFactorValue,
         const double depthFactorValue,
@@ -145,13 +154,16 @@ namespace DiKErnel::FunctionLibrary
         const double fatigueBeta,
         const double impactNumberC)
     {
-        const auto logTension = LogTension(maximumPeakStress, tanA, widthFactorValue, depthFactorValue, impactFactorValue, impactNumberC);
+        const auto logTension = LogTension(maximumPeakStress, stiffnessRelation, computationalThickness, tanA, widthFactorValue, depthFactorValue,
+                                           impactFactorValue, impactNumberC);
 
         return pow(10.0, -1.0 * fatigueBeta * pow(max(0.0, logFailureTension - logTension), fatigueAlpha));
     }
 
     double AsphaltRevetment::LogTension(
         const double maximumPeakStress,
+        const double stiffnessRelation,
+        const double computationalThickness,
         const double tanA,
         double widthFactorValue,
         double depthFactorValue,
@@ -159,7 +171,7 @@ namespace DiKErnel::FunctionLibrary
         const double impactNumberC)
     {
         const auto impactNumber = ImpactNumber(tanA, impactFactorValue, impactNumberC);
-        const auto bendingStress = BendingStress(maximumPeakStress);
+        const auto bendingStress = BendingStress(maximumPeakStress, stiffnessRelation, computationalThickness);
 
         return log10(impactNumber * bendingStress);
     }
@@ -173,10 +185,10 @@ namespace DiKErnel::FunctionLibrary
     }
 
     double AsphaltRevetment::BendingStress(
-        const double maximumPeakStress)
+        const double maximumPeakStress,
+        const double stiffnessRelation,
+        const double computationalThickness)
     {
-        const auto stiffnessRelation = 2.2;
-        const auto computationalThickness = 3.3;
         const auto spatialDistributionBendingStress = 4.4;
 
         return max(pow(10.0, -99.0),

@@ -34,6 +34,8 @@ namespace DiKErnel::FunctionLibrary
                 double logFailureTension,
                 double averageNumberOfWaves,
                 double maximumPeakStress,
+                double stiffnessRelation,
+                double computationalThickness,
                 double tanA,
                 const std::vector<std::tuple<double, double>>& widthFactors,
                 const std::vector<std::tuple<double, double>>& depthFactors,
@@ -65,6 +67,8 @@ namespace DiKErnel::FunctionLibrary
                 double logFailureTension,
                 double averageNumberOfWaves,
                 double maximumPeakStress,
+                double stiffnessRelation,
+                double computationalThickness,
                 double tanA,
                 double widthFactorValue,
                 const std::vector<std::tuple<double, double>>& depthFactors,
@@ -78,6 +82,8 @@ namespace DiKErnel::FunctionLibrary
                 double logFailureTension,
                 double averageNumberOfWaves,
                 double maximumPeakStress,
+                double stiffnessRelation,
+                double computationalThickness,
                 double tanA,
                 double widthFactorValue,
                 double depthFactorValue,
@@ -89,6 +95,8 @@ namespace DiKErnel::FunctionLibrary
             static double Fatigue(
                 double logFailureTension,
                 double maximumPeakStress,
+                double stiffnessRelation,
+                double computationalThickness,
                 double tanA,
                 double widthFactorValue,
                 double depthFactorValue,
@@ -100,6 +108,8 @@ namespace DiKErnel::FunctionLibrary
 
             static double LogTension(
                 double maximumPeakStress,
+                double stiffnessRelation,
+                double computationalThickness,
                 double tanA,
                 double widthFactorValue,
                 double depthFactorValue,
@@ -114,7 +124,9 @@ namespace DiKErnel::FunctionLibrary
             );
 
             static double BendingStress(
-                double maximumPeakStress
+                double maximumPeakStress,
+                double stiffnessRelation,
+                double computationalThickness
             );
     };
 }
