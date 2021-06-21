@@ -31,25 +31,34 @@ namespace DiKErnel::FunctionLibrary
     {
         public:
             static double IncrementDamage(
+                double logFailureTension,
                 double averageNumberOfWaves,
                 const std::vector<std::tuple<double, double>>& widthFactors,
                 const std::vector<std::tuple<double, double>>& depthFactors,
-                const std::vector<std::tuple<double, double>>& impactFactors
+                const std::vector<std::tuple<double, double>>& impactFactors,
+                double fatigueAlpha,
+                double fatigueBeta
             );
 
         private:
             static double DepthFactorAccumulation(
+                double logFailureTension,
                 double averageNumberOfWaves,
                 double widthFactorValue,
                 const std::vector<std::tuple<double, double>>& depthFactors,
-                const std::vector<std::tuple<double, double>>& impactFactors
+                const std::vector<std::tuple<double, double>>& impactFactors,
+                double fatigueAlpha,
+                double fatigueBeta
             );
 
             static double ImpactFactorAccumulation(
+                double logFailureTension,
                 double averageNumberOfWaves,
                 double widthFactorValue,
                 double depthFactorValue,
-                const std::vector<std::tuple<double, double>>& impactFactors
+                const std::vector<std::tuple<double, double>>& impactFactors,
+                double fatigueAlpha,
+                double fatigueBeta
             );
 
             static double Fatigue(
