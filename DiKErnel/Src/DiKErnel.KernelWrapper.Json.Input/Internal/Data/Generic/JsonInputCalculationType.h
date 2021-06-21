@@ -25,7 +25,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
     enum class JsonInputCalculationType
     {
         Unknown,
-        Asphalt,
+        AsphaltWaveImpact,
         GrassWaveImpact,
         GrassWaveRunup,
         NaturalStone

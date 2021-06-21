@@ -53,7 +53,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
             inline static const std::string CALCULATION_METHOD = "Rekenmethoden";
             inline static const std::string CALCULATION_METHOD_TYPE = "RekenmethodeSoort";
 
-            inline static const std::string CALCULATION_METHOD_TYPE_ASPHALT = "AsfaltGolfklap";
+            inline static const std::string CALCULATION_METHOD_TYPE_ASPHALT_WAVE_IMPACT = "AsfaltGolfklap";
             inline static const std::string CALCULATION_METHOD_TYPE_GRASS_WAVE_IMPACT = "GrasGolfklap";
             inline static const std::string CALCULATION_METHOD_TYPE_GRASS_WAVE_RUNUP = "GrasGolfoploop";
             inline static const std::string CALCULATION_METHOD_TYPE_NATURAL_STONE = "Natuursteen";

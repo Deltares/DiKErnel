@@ -27,10 +27,10 @@
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
-    class JsonInputAsphaltRevetmentLocationData : public IJsonInputRevetmentLocationData
+    class JsonInputAsphaltRevetmentWaveImpactLocationData : public IJsonInputRevetmentLocationData
     {
         public:
-            explicit JsonInputAsphaltRevetmentLocationData(
+            explicit JsonInputAsphaltRevetmentWaveImpactLocationData(
                 JsonInputAsphaltRevetmentTopLayerType topLayerType,
                 double failureTension,
                 double densityOfWater,

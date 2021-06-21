@@ -18,7 +18,7 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include "JsonInputAsphaltParser.h"
+#include "JsonInputAsphaltWaveImpactParser.h"
 
 #include "JsonInputAsphaltRevetmentDefinitions.h"
 #include "JsonInputDefinitions.h"
@@ -39,11 +39,11 @@ namespace DiKErnel::KernelWrapper::Json::Input
             }
         });
 
-    unique_ptr<JsonInputAsphaltRevetmentLocationData> JsonInputAsphaltParser::ParseRevetmentLocationData(
+    unique_ptr<JsonInputAsphaltRevetmentWaveImpactLocationData> JsonInputAsphaltWaveImpactParser::ParseRevetmentLocationData(
         const json& readRevetment,
         const json& readCalculationMethod)
     {
-        auto locationData = make_unique<JsonInputAsphaltRevetmentLocationData>(
+        auto locationData = make_unique<JsonInputAsphaltRevetmentWaveImpactLocationData>(
             readRevetment[JsonInputDefinitions::TYPE_TOP_LAYER].get<JsonInputAsphaltRevetmentTopLayerType>(),
             readRevetment[JsonInputAsphaltRevetmentDefinitions::FAILURE_TENSION],
             readRevetment[JsonInputAsphaltRevetmentDefinitions::DENSITY_OF_WATER],

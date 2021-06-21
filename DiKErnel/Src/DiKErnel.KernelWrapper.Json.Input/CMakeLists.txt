@@ -40,9 +40,9 @@ set(SOURCEFILES_INTERNAL_DATA_GENERIC
 )
 
 set(SOURCEFILES_INTERNAL_DATA_REVETMENT
-  ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputAsphaltRevetmentLocationData.cpp
-  ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputAsphaltRevetmentLocationData.h
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputAsphaltRevetmentTopLayerType.h
+  ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputAsphaltRevetmentWaveImpactLocationData.cpp
+  ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputAsphaltRevetmentWaveImpactLocationData.h
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassRevetmentTopLayerType.h
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassRevetmentWaveImpactLocationData.cpp
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassRevetmentWaveImpactLocationData.h
@@ -64,9 +64,9 @@ set(SOURCEFILES_INTERNAL_EXCEPTIONS
 )
 
 set(SOURCEFILES_INTERNAL_PARSERS
-  ${INTERNAL_PARSERS_FOLDER}/JsonInputAsphaltParser.cpp
-  ${INTERNAL_PARSERS_FOLDER}/JsonInputAsphaltParser.h
   ${INTERNAL_PARSERS_FOLDER}/JsonInputAsphaltRevetmentDefinitions.h
+  ${INTERNAL_PARSERS_FOLDER}/JsonInputAsphaltWaveImpactParser.cpp
+  ${INTERNAL_PARSERS_FOLDER}/JsonInputAsphaltWaveImpactParser.h
   ${INTERNAL_PARSERS_FOLDER}/JsonInputDefinitions.h
   ${INTERNAL_PARSERS_FOLDER}/JsonInputGrassRevetmentDefinitions.h
   ${INTERNAL_PARSERS_FOLDER}/JsonInputGrassWaveImpactDefinitions.h

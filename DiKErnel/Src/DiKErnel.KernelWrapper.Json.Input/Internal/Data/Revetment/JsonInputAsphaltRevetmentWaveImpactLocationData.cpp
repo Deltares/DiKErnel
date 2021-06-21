@@ -18,13 +18,13 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include "JsonInputAsphaltRevetmentLocationData.h"
+#include "JsonInputAsphaltRevetmentWaveImpactLocationData.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
     using namespace std;
 
-    JsonInputAsphaltRevetmentLocationData::JsonInputAsphaltRevetmentLocationData(
+    JsonInputAsphaltRevetmentWaveImpactLocationData::JsonInputAsphaltRevetmentWaveImpactLocationData(
         const JsonInputAsphaltRevetmentTopLayerType topLayerType,
         const double failureTension,
         const double densityOfWater,
@@ -40,43 +40,43 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
     #pragma region Set methods
 
-    void JsonInputAsphaltRevetmentLocationData::SetThicknessSubLayer(
+    void JsonInputAsphaltRevetmentWaveImpactLocationData::SetThicknessSubLayer(
         unique_ptr<double> thicknessSubLayer)
     {
         _thicknessSubLayer = move(thicknessSubLayer);
     }
 
-    void JsonInputAsphaltRevetmentLocationData::SetElasticModulusSubLayer(
+    void JsonInputAsphaltRevetmentWaveImpactLocationData::SetElasticModulusSubLayer(
         unique_ptr<double> elasticModulusSubLayer)
     {
         _elasticModulusSubLayer = move(elasticModulusSubLayer);
     }
 
-    void JsonInputAsphaltRevetmentLocationData::SetAverageNumberOfWavesCtm(
+    void JsonInputAsphaltRevetmentWaveImpactLocationData::SetAverageNumberOfWavesCtm(
         unique_ptr<double> averageNumberOfWavesCtm)
     {
         _averageNumberOfWavesCtm = move(averageNumberOfWavesCtm);
     }
 
-    void JsonInputAsphaltRevetmentLocationData::SetFatigueAlpha(
+    void JsonInputAsphaltRevetmentWaveImpactLocationData::SetFatigueAlpha(
         unique_ptr<double> fatigueAlpha)
     {
         _fatigueAlpha = move(fatigueAlpha);
     }
 
-    void JsonInputAsphaltRevetmentLocationData::SetFatigueBeta(
+    void JsonInputAsphaltRevetmentWaveImpactLocationData::SetFatigueBeta(
         unique_ptr<double> fatigueBeta)
     {
         _fatigueBeta = move(fatigueBeta);
     }
 
-    void JsonInputAsphaltRevetmentLocationData::SetImpactNumberC(
+    void JsonInputAsphaltRevetmentWaveImpactLocationData::SetImpactNumberC(
         unique_ptr<double> impactNumberC)
     {
         _impactNumberC = move(impactNumberC);
     }
 
-    void JsonInputAsphaltRevetmentLocationData::SetStiffnessRelationNu(
+    void JsonInputAsphaltRevetmentWaveImpactLocationData::SetStiffnessRelationNu(
         unique_ptr<double> stiffnessRelationNu)
     {
         _stiffnessRelationNu = move(stiffnessRelationNu);
@@ -86,67 +86,67 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
     #pragma region Get methods
 
-    JsonInputAsphaltRevetmentTopLayerType JsonInputAsphaltRevetmentLocationData::GetTopLayerType() const
+    JsonInputAsphaltRevetmentTopLayerType JsonInputAsphaltRevetmentWaveImpactLocationData::GetTopLayerType() const
     {
         return _topLayerType;
     }
 
-    double JsonInputAsphaltRevetmentLocationData::GetFailureTension() const
+    double JsonInputAsphaltRevetmentWaveImpactLocationData::GetFailureTension() const
     {
         return _failureTension;
     }
 
-    double JsonInputAsphaltRevetmentLocationData::GetDensityOfWater() const
+    double JsonInputAsphaltRevetmentWaveImpactLocationData::GetDensityOfWater() const
     {
         return _densityOfWater;
     }
 
-    double JsonInputAsphaltRevetmentLocationData::GetSoilElasticity() const
+    double JsonInputAsphaltRevetmentWaveImpactLocationData::GetSoilElasticity() const
     {
         return _soilElasticity;
     }
 
-    double JsonInputAsphaltRevetmentLocationData::GetThicknessUpperLayer() const
+    double JsonInputAsphaltRevetmentWaveImpactLocationData::GetThicknessUpperLayer() const
     {
         return _thicknessUpperLayer;
     }
 
-    double JsonInputAsphaltRevetmentLocationData::GetElasticModulusUpperLayer() const
+    double JsonInputAsphaltRevetmentWaveImpactLocationData::GetElasticModulusUpperLayer() const
     {
         return _elasticModulusUpperLayer;
     }
 
-    const double* JsonInputAsphaltRevetmentLocationData::GetThicknessSubLayer() const
+    const double* JsonInputAsphaltRevetmentWaveImpactLocationData::GetThicknessSubLayer() const
     {
         return _thicknessSubLayer.get();
     }
 
-    const double* JsonInputAsphaltRevetmentLocationData::GetElasticModulusSubLayer() const
+    const double* JsonInputAsphaltRevetmentWaveImpactLocationData::GetElasticModulusSubLayer() const
     {
         return _elasticModulusSubLayer.get();
     }
 
-    const double* JsonInputAsphaltRevetmentLocationData::GetAverageNumberOfWavesCtm() const
+    const double* JsonInputAsphaltRevetmentWaveImpactLocationData::GetAverageNumberOfWavesCtm() const
     {
         return _averageNumberOfWavesCtm.get();
     }
 
-    const double* JsonInputAsphaltRevetmentLocationData::GetFatigueAlpha() const
+    const double* JsonInputAsphaltRevetmentWaveImpactLocationData::GetFatigueAlpha() const
     {
         return _fatigueAlpha.get();
     }
 
-    const double* JsonInputAsphaltRevetmentLocationData::GetFatigueBeta() const
+    const double* JsonInputAsphaltRevetmentWaveImpactLocationData::GetFatigueBeta() const
     {
         return _fatigueBeta.get();
     }
 
-    const double* JsonInputAsphaltRevetmentLocationData::GetImpactNumberC() const
+    const double* JsonInputAsphaltRevetmentWaveImpactLocationData::GetImpactNumberC() const
     {
         return _impactNumberC.get();
     }
 
-    const double* JsonInputAsphaltRevetmentLocationData::GetStiffnessRelationNu() const
+    const double* JsonInputAsphaltRevetmentWaveImpactLocationData::GetStiffnessRelationNu() const
     {
         return _stiffnessRelationNu.get();
     }

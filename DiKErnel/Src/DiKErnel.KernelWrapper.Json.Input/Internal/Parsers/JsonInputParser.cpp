@@ -22,7 +22,7 @@
 
 #include <fstream>
 
-#include "JsonInputAsphaltParser.h"
+#include "JsonInputAsphaltWaveImpactParser.h"
 #include "JsonInputDefinitions.h"
 #include "JsonInputGrassWaveImpactParser.h"
 #include "JsonInputGrassWaveRunupParser.h"
@@ -40,7 +40,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 JsonInputCalculationType::Unknown, nullptr
             },
             {
-                JsonInputCalculationType::Asphalt, JsonInputDefinitions::CALCULATION_METHOD_TYPE_ASPHALT
+                JsonInputCalculationType::AsphaltWaveImpact, JsonInputDefinitions::CALCULATION_METHOD_TYPE_ASPHALT_WAVE_IMPACT
             },
             {
                 JsonInputCalculationType::GrassWaveImpact, JsonInputDefinitions::CALCULATION_METHOD_TYPE_GRASS_WAVE_IMPACT
@@ -147,9 +147,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
     {
         unique_ptr<IJsonInputRevetmentLocationData> revetmentLocationData;
 
-        if (calculationType == JsonInputCalculationType::Asphalt)
+        if (calculationType == JsonInputCalculationType::AsphaltWaveImpact)
         {
-            revetmentLocationData = JsonInputAsphaltParser::ParseRevetmentLocationData(readRevetment, readCalculationMethod);
+            revetmentLocationData = JsonInputAsphaltWaveImpactParser::ParseRevetmentLocationData(readRevetment, readCalculationMethod);
         }
 
         if (calculationType == JsonInputCalculationType::GrassWaveImpact)
