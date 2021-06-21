@@ -32,10 +32,12 @@ namespace DiKErnel::KernelWrapper::Json::Input
             inline static const std::string FAILURE_TENSION = "BreuksterkteAsfalt";
             inline static const std::string DENSITY_OF_WATER = "SoortelijkeDichtheidWater";
             inline static const std::string SOIL_ELASTICITY = "VeerconstanteOndergrond";
-            inline static const std::string THICKNESS_UPPER_LAYER = "DikteAsfaltToplaag";
-            inline static const std::string THICKNESS_SUB_LAYER = "DikteAsfaltOnderlaag";
-            inline static const std::string ELASTIC_MODULUS_UPPER_LAYER = "StijfheidsmodulusAsfaltToplaag";
-            inline static const std::string ELASTIC_MODULUS_SUB_LAYER = "StijfheidsmodulusAsfaltOnderlaag";
+
+            inline static const std::string UPPER_LAYER = "Toplaag";
+            inline static const std::string SUB_LAYER = "Onderlaag";
+
+            inline static const std::string THICKNESS = "Dikte";
+            inline static const std::string ELASTIC_MODULUS= "Stijfheidsmodulus";
 
             inline static const std::string FATIGUE = "VermoeiingAsfaltbekleding";
             inline static const std::string FATIGUE_ALPHA = "VermoeiingAsfaltbekledingAlfa";

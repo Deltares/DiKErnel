@@ -43,20 +43,23 @@ namespace DiKErnel::KernelWrapper::Json::Input
         const json& readRevetment,
         const json& readCalculationMethod)
     {
+        const auto& readUpperLayer = readRevetment[JsonInputAsphaltRevetmentDefinitions::UPPER_LAYER];
+
         auto locationData = make_unique<JsonInputAsphaltRevetmentWaveImpactLocationData>(
             readRevetment[JsonInputDefinitions::TYPE_TOP_LAYER].get<JsonInputAsphaltRevetmentTopLayerType>(),
             readRevetment[JsonInputAsphaltRevetmentDefinitions::FAILURE_TENSION],
             readRevetment[JsonInputAsphaltRevetmentDefinitions::DENSITY_OF_WATER],
             readRevetment[JsonInputAsphaltRevetmentDefinitions::SOIL_ELASTICITY],
-            readRevetment[JsonInputAsphaltRevetmentDefinitions::THICKNESS_UPPER_LAYER],
-            readRevetment[JsonInputAsphaltRevetmentDefinitions::ELASTIC_MODULUS_UPPER_LAYER]);
+            readUpperLayer[JsonInputAsphaltRevetmentDefinitions::THICKNESS],
+            readUpperLayer[JsonInputAsphaltRevetmentDefinitions::ELASTIC_MODULUS]);
 
-        locationData->SetThicknessSubLayer(
-            forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
-                readRevetment, JsonInputAsphaltRevetmentDefinitions::THICKNESS_SUB_LAYER)));
-        locationData->SetElasticModulusSubLayer(
-            forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
-                readRevetment, JsonInputAsphaltRevetmentDefinitions::ELASTIC_MODULUS_SUB_LAYER)));
+        if (readRevetment.contains(JsonInputAsphaltRevetmentDefinitions::SUB_LAYER))
+        {
+            const auto& readSubLayer = readRevetment[JsonInputAsphaltRevetmentDefinitions::SUB_LAYER];
+
+            locationData->SetThicknessSubLayer(make_unique<double>(readSubLayer[JsonInputAsphaltRevetmentDefinitions::THICKNESS]));
+            locationData->SetElasticModulusSubLayer(make_unique<double>(readSubLayer[JsonInputAsphaltRevetmentDefinitions::ELASTIC_MODULUS]));
+        }
 
         if (readCalculationMethod.contains(JsonInputDefinitions::AVERAGE_NUMBER_OF_WAVES))
         {
