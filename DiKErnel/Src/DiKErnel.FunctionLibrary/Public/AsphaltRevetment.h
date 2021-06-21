@@ -40,6 +40,9 @@ namespace DiKErnel::FunctionLibrary
                 double fatigueBeta
             );
 
+            static double LogFailureTension(
+                double failureTension);
+
         private:
             static double DepthFactorAccumulation(
                 double logFailureTension,

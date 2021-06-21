@@ -20,6 +20,7 @@
 
 #include "AsphaltRevetment.h"
 
+#include <cmath>
 #include <tuple>
 #include <utility>
 
@@ -49,6 +50,12 @@ namespace DiKErnel::FunctionLibrary
         }
 
         return result;
+    }
+
+    double AsphaltRevetment::LogFailureTension(
+        const double failureTension)
+    {
+        return log10(failureTension);
     }
 
     double AsphaltRevetment::DepthFactorAccumulation(
