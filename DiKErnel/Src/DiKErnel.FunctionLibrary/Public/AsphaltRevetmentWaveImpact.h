@@ -25,12 +25,11 @@
 namespace DiKErnel::FunctionLibrary
 {
     /*!
-     * \brief Class that holds all asphalt revetment specific calculation routines.
+     * \brief Class that holds all asphalt revetment wave impact specific calculation routines.
      */
-    class AsphaltRevetment
+    class AsphaltRevetmentWaveImpact
     {
         public:
-
             /*!
              * \brief Calculates the increment of damage.
              * \param logFailureTension

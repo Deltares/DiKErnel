@@ -6,8 +6,8 @@ set(PUBLIC_FOLDER Public)
 
 # Define sources
 set(SOURCEFILES_PUBLIC
-  ${PUBLIC_FOLDER}/AsphaltRevetment.cpp
-  ${PUBLIC_FOLDER}/AsphaltRevetment.h
+  ${PUBLIC_FOLDER}/AsphaltRevetmentWaveImpact.cpp
+  ${PUBLIC_FOLDER}/AsphaltRevetmentWaveImpact.h
   ${PUBLIC_FOLDER}/Generic.cpp
   ${PUBLIC_FOLDER}/Generic.h
   ${PUBLIC_FOLDER}/GrassRevetmentWaveImpact.cpp

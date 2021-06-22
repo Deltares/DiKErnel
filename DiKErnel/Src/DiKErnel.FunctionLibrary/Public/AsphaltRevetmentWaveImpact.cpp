@@ -18,7 +18,7 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include "AsphaltRevetment.h"
+#include "AsphaltRevetmentWaveImpact.h"
 
 #include <cmath>
 #include <tuple>
@@ -30,7 +30,7 @@ namespace DiKErnel::FunctionLibrary
 {
     using namespace std;
 
-    double AsphaltRevetment::IncrementDamage(
+    double AsphaltRevetmentWaveImpact::IncrementDamage(
         const double logFailureTension,
         const double averageNumberOfWaves,
         const double maximumPeakStress,
@@ -64,13 +64,13 @@ namespace DiKErnel::FunctionLibrary
         return result;
     }
 
-    double AsphaltRevetment::LogFailureTension(
+    double AsphaltRevetmentWaveImpact::LogFailureTension(
         const double failureTension)
     {
         return log10(failureTension);
     }
 
-    double AsphaltRevetment::MaximumPeakStress(
+    double AsphaltRevetmentWaveImpact::MaximumPeakStress(
         const double waveHeightHm0,
         const double gravitationalAcceleration,
         const double densityOfWater)
@@ -78,7 +78,7 @@ namespace DiKErnel::FunctionLibrary
         return gravitationalAcceleration * densityOfWater * waveHeightHm0 / pow(10.0, 6.0);
     }
 
-    double AsphaltRevetment::StiffnessRelation(
+    double AsphaltRevetmentWaveImpact::StiffnessRelation(
         const double computationalThickness,
         const double equivalentElasticModulus,
         const double soilElasticity,
@@ -87,7 +87,7 @@ namespace DiKErnel::FunctionLibrary
         return pow(3.0 * soilElasticity * (1.0 - pow(stiffnessRelationNu, 2.0)) / (equivalentElasticModulus * computationalThickness), 1.0 / 4.0);
     }
 
-    double AsphaltRevetment::ComputationalThickness(
+    double AsphaltRevetmentWaveImpact::ComputationalThickness(
         const double thicknessUpperLayer,
         const double thicknessSubLayer,
         const double elasticModulusUpperLayer,
@@ -96,7 +96,7 @@ namespace DiKErnel::FunctionLibrary
         return thicknessUpperLayer * pow(elasticModulusUpperLayer / elasticModulusSubLayer, 1.0 / 3.0) + thicknessSubLayer;
     }
 
-    double AsphaltRevetment::DepthFactorAccumulation(
+    double AsphaltRevetmentWaveImpact::DepthFactorAccumulation(
         const double logFailureTension,
         const double averageNumberOfWaves,
         const double maximumPeakStress,
@@ -130,7 +130,7 @@ namespace DiKErnel::FunctionLibrary
         return result;
     }
 
-    double AsphaltRevetment::ImpactFactorAccumulation(
+    double AsphaltRevetmentWaveImpact::ImpactFactorAccumulation(
         const double logFailureTension,
         const double averageNumberOfWaves,
         const double maximumPeakStress,
@@ -163,7 +163,7 @@ namespace DiKErnel::FunctionLibrary
         return result;
     }
 
-    double AsphaltRevetment::Fatigue(
+    double AsphaltRevetmentWaveImpact::Fatigue(
         const double logFailureTension,
         const double maximumPeakStress,
         const double stiffnessRelation,
@@ -185,7 +185,7 @@ namespace DiKErnel::FunctionLibrary
         return pow(10.0, -fatigueBeta * pow(max(0.0, logFailureTension - logTension), fatigueAlpha));
     }
 
-    double AsphaltRevetment::LogTension(
+    double AsphaltRevetmentWaveImpact::LogTension(
         const double maximumPeakStress,
         const double stiffnessRelation,
         const double computationalThickness,
@@ -205,7 +205,7 @@ namespace DiKErnel::FunctionLibrary
         return log10(impactNumber * bendingStress);
     }
 
-    double AsphaltRevetment::ImpactNumber(
+    double AsphaltRevetmentWaveImpact::ImpactNumber(
         const double tanA,
         const double impactFactorValue,
         const double impactNumberC)
@@ -213,7 +213,7 @@ namespace DiKErnel::FunctionLibrary
         return 4.0 * impactNumberC * tanA * impactFactorValue;
     }
 
-    double AsphaltRevetment::BendingStress(
+    double AsphaltRevetmentWaveImpact::BendingStress(
         const double maximumPeakStress,
         const double stiffnessRelation,
         const double computationalThickness,
@@ -231,7 +231,7 @@ namespace DiKErnel::FunctionLibrary
                    * spatialDistributionBendingStress);
     }
 
-    double AsphaltRevetment::SpatialDistributionBendingStress(
+    double AsphaltRevetmentWaveImpact::SpatialDistributionBendingStress(
         const double stiffnessRelation,
         const double tanA,
         const double widthFactorValue,
@@ -266,7 +266,7 @@ namespace DiKErnel::FunctionLibrary
                 * exp(-relativeDistanceCenterWaveImpact) / relativeWidthWaveImpact;
     }
 
-    double AsphaltRevetment::RelativeWidthWaveImpact(
+    double AsphaltRevetmentWaveImpact::RelativeWidthWaveImpact(
         const double stiffnessRelation,
         const double widthFactorValue,
         const double waveHeightHm0)
@@ -274,7 +274,7 @@ namespace DiKErnel::FunctionLibrary
         return min(85.0, stiffnessRelation * widthFactorValue * waveHeightHm0 / 2.0);
     }
 
-    double AsphaltRevetment::RelativeDistanceCenterWaveImpact(
+    double AsphaltRevetmentWaveImpact::RelativeDistanceCenterWaveImpact(
         const double stiffnessRelation,
         const double depthFactorValue,
         const double slopeAngle,
