@@ -270,6 +270,62 @@ namespace DiKErnel::KernelWrapper::Json::Input
         throw JsonConversionException("Cannot convert top layer type.");
     }
 
+    unique_ptr<AsphaltRevetmentWaveImpactLocationConstructionProperties> JsonInputAdapter::CreateAsphaltWaveImpactConstructionProperties(
+        const JsonInputLocationData& location,
+        const JsonInputAsphaltRevetmentWaveImpactLocationData& asphaltRevetmentWaveImpactLocationData)
+    {
+        const auto& damageData = location.GetDamageData();
+        const auto& profileSchematizationData = location.GetProfileSchematizationData();
+
+        auto constructionProperties = make_unique<AsphaltRevetmentWaveImpactLocationConstructionProperties>(
+            location.GetName(), profileSchematizationData.GetTanA(), profileSchematizationData.GetPositionZ(),
+            ConvertTopLayerType(asphaltRevetmentWaveImpactLocationData.GetTopLayerType()),
+            asphaltRevetmentWaveImpactLocationData.GetFailureTension(), asphaltRevetmentWaveImpactLocationData.GetDensityOfWater(),
+            asphaltRevetmentWaveImpactLocationData.GetSoilElasticity(), asphaltRevetmentWaveImpactLocationData.GetThicknessUpperLayer(),
+            asphaltRevetmentWaveImpactLocationData.GetElasticModulusUpperLayer());
+
+        constructionProperties->SetInitialDamage(forward<unique_ptr<double>>(CreatePointerOfValue(damageData.GetInitialDamage())));
+        constructionProperties->SetFailureNumber(forward<unique_ptr<double>>(CreatePointerOfValue(damageData.GetFailureNumber())));
+
+        constructionProperties->SetThicknessSubLayer(
+            forward<unique_ptr<double>>(CreatePointerOfValue(asphaltRevetmentWaveImpactLocationData.GetThicknessSubLayer())));
+        constructionProperties->SetElasticModulusSubLayer(
+            forward<unique_ptr<double>>(CreatePointerOfValue(asphaltRevetmentWaveImpactLocationData.GetElasticModulusSubLayer())));
+
+        constructionProperties->SetAverageNumberOfWavesCtm(
+            forward<unique_ptr<double>>(CreatePointerOfValue(asphaltRevetmentWaveImpactLocationData.GetAverageNumberOfWavesCtm())));
+
+        constructionProperties->SetFatigueAlpha(
+            forward<unique_ptr<double>>(CreatePointerOfValue(asphaltRevetmentWaveImpactLocationData.GetFatigueAlpha())));
+        constructionProperties->SetFatigueBeta(
+            forward<unique_ptr<double>>(CreatePointerOfValue(asphaltRevetmentWaveImpactLocationData.GetFatigueBeta())));
+
+        constructionProperties->SetImpactNumberC(
+            forward<unique_ptr<double>>(CreatePointerOfValue(asphaltRevetmentWaveImpactLocationData.GetImpactNumberC())));
+        constructionProperties->SetStiffnessRelationNu(
+            forward<unique_ptr<double>>(CreatePointerOfValue(asphaltRevetmentWaveImpactLocationData.GetStiffnessRelationNu())));
+
+        constructionProperties->SetWidthFactors(
+            forward<unique_ptr<vector<tuple<double, double>>>>(CreatePointerOfValue(asphaltRevetmentWaveImpactLocationData.GetWidthFactors())));
+        constructionProperties->SetDepthFactors(
+            forward<unique_ptr<vector<tuple<double, double>>>>(CreatePointerOfValue(asphaltRevetmentWaveImpactLocationData.GetDepthFactors())));
+        constructionProperties->SetImpactFactors(
+            forward<unique_ptr<vector<tuple<double, double>>>>(CreatePointerOfValue(asphaltRevetmentWaveImpactLocationData.GetImpactFactors())));
+
+        return constructionProperties;
+    }
+
+    AsphaltRevetmentTopLayerType JsonInputAdapter::ConvertTopLayerType(
+        const JsonInputAsphaltRevetmentTopLayerType topLayerType)
+    {
+        if (topLayerType == JsonInputAsphaltRevetmentTopLayerType::WAB)
+        {
+            return AsphaltRevetmentTopLayerType::WAB;
+        }
+
+        throw JsonConversionException("Cannot convert top layer type.");
+    }
+
     template <typename TValue>
     unique_ptr<TValue> JsonInputAdapter::CreatePointerOfValue(
         const TValue* value)
