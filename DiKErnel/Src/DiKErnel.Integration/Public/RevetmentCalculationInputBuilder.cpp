@@ -20,11 +20,14 @@
 
 #include "RevetmentCalculationInputBuilder.h"
 
+#include "AsphaltRevetmentWaveImpactDefaultsFactory.h"
+#include "AsphaltRevetmentWaveImpactLocationDependentInput.h"
 #include "DefaultsFactoryException.h"
 #include "GrassRevetmentWaveImpactDefaultsFactory.h"
 #include "GrassRevetmentWaveImpactLocationDependentInput.h"
 #include "GrassRevetmentWaveRunupDefaultsFactory.h"
 #include "GrassRevetmentWaveRunupRayleighLocationDependentInput.h"
+#include "IAsphaltRevetmentWaveImpactDefaults.h"
 #include "IGrassRevetmentWaveRunupRayleighDefaults.h"
 #include "InvalidCalculationDataException.h"
 #include "NaturalStoneRevetmentDefaultsFactory.h"
@@ -203,6 +206,55 @@ namespace DiKErnel::Integration
                 move(waveAngleImpact),
                 GetValue(constructionProperties.GetCumulativeOverloadNf(), defaults->GetCumulativeOverloadNf()),
                 GetValue(constructionProperties.GetFrontVelocityCu(), defaults->GetFrontVelocityCu())));
+    }
+
+    void RevetmentCalculationInputBuilder::AddAsphaltWaveImpactLocation(
+        const AsphaltRevetmentWaveImpactLocationConstructionProperties& constructionProperties)
+    {
+        unique_ptr<IAsphaltRevetmentWaveImpactDefaults> defaults;
+
+        try
+        {
+            defaults = AsphaltRevetmentWaveImpactDefaultsFactory::Create(
+                constructionProperties.GetTopLayerType());
+        }
+        catch (const DefaultsFactoryException&)
+        {
+            ThrowWithMessage();
+        }
+
+        auto elasticModulusUpperLayer = constructionProperties.GetElasticModulusUpperLayer();
+        auto upperLayer = make_unique<AsphaltRevetmentWaveImpactLayer>(
+            constructionProperties.GetThicknessUpperLayer(),
+            elasticModulusUpperLayer);
+
+        auto subLayer = make_unique<AsphaltRevetmentWaveImpactLayer>(
+            GetValue(constructionProperties.GetThicknessSubLayer(), defaults->GetSubLayerThickness()),
+            GetValue(constructionProperties.GetElasticModulusSubLayer(), elasticModulusUpperLayer));
+
+        auto fatigue = make_unique<AsphaltRevetmentWaveImpactFatigue>(
+            GetValue(constructionProperties.GetFatigueAlpha(), defaults->GetFatigueAlpha()),
+            GetValue(constructionProperties.GetFatigueBeta(), defaults->GetFatigueBeta()));
+
+        _locationDependentInputItems.push_back(
+            make_unique<AsphaltRevetmentWaveImpactLocationDependentInput>(
+                constructionProperties.GetName(),
+                GetValue(constructionProperties.GetInitialDamage(), RevetmentDefaults::INITIAL_DAMAGE),
+                GetValue(constructionProperties.GetFailureNumber(), RevetmentDefaults::FAILURE_NUMBER),
+                constructionProperties.GetTanA(),
+                constructionProperties.GetPositionZ(),
+                constructionProperties.GetFailureTension(),
+                constructionProperties.GetDensityOfWater(),
+                constructionProperties.GetSoilElasticity(),
+                move(upperLayer),
+                move(subLayer),
+                GetValue(constructionProperties.GetAverageNumberOfWavesCtm(), defaults->GetAverageNumberOfWavesCtm()),
+                move(fatigue),
+                GetValue(constructionProperties.GetImpactNumberC(), defaults->GetImpactNumberC()),
+                GetValue(constructionProperties.GetStiffnessRelationNu(), defaults->GetStiffnessRelationNu()),
+                GetValue(constructionProperties.GetWidthFactors(), defaults->GetWidthFactors()),
+                GetValue(constructionProperties.GetDepthFactors(), defaults->GetDepthFactors()),
+                GetValue(constructionProperties.GetImpactFactors(), defaults->GetImpactFactors())));
     }
 
     unique_ptr<ICalculationInput> RevetmentCalculationInputBuilder::Build()

@@ -20,6 +20,7 @@
 
 #pragma once
 
+#include "AsphaltRevetmentWaveImpactLocationConstructionProperties.h"
 #include "CalculationInput.h"
 #include "GrassRevetmentWaveImpactLocationConstructionProperties.h"
 #include "GrassRevetmentWaveRunupRayleighLocationConstructionProperties.h"
@@ -92,6 +93,16 @@ namespace DiKErnel::Integration
              */
             void AddGrassWaveRunupRayleighLocation(
                 const GrassRevetmentWaveRunupRayleighLocationConstructionProperties& constructionProperties);
+
+            /*!
+             * \brief Adds a asphalt wave impact location.
+             * \param constructionProperties
+             *        The properties to construct the asphalt wave impact location dependent input.
+             * \exception RevetmentCalculationInputBuilderException
+             *            Thrown when the top layer type is invalid.
+             */
+            void AddAsphaltWaveImpactLocation(
+                const AsphaltRevetmentWaveImpactLocationConstructionProperties& constructionProperties);
 
             /*!
              * \brief Builds the calculation input.

@@ -3,6 +3,8 @@ set(LIBNAME DiKErnel.Integration.TestUtil)
 
 # Define sources
 set(SOURCEFILES
+  AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper.cpp
+  AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper.h
   GrassRevetmentWaveImpactLocationDependentInputAssertHelper.cpp
   GrassRevetmentWaveImpactLocationDependentInputAssertHelper.h
   GrassRevetmentWaveRunupLocationConstructionPropertiesMock.cpp

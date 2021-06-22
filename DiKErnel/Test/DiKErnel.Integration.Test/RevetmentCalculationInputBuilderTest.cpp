@@ -20,6 +20,8 @@
 
 #include <gtest/gtest.h>
 
+#include "AsphaltRevetmentWaveImpactLocationDependentInput.h"
+#include "AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper.h"
 #include "AssertHelper.h"
 #include "DefaultsFactoryException.h"
 #include "GrassRevetmentWaveImpactLocationDependentInput.h"
@@ -58,6 +60,16 @@ namespace DiKErnel::Integration::Test
             builder.AddTimeStep(0, 5, 0, 0, 0, 0);
             builder.AddTimeStep(10, 20, 0, 0, 0, 0);
             builder.Build();
+        }
+
+        static void CreateBuilderAndAddAsphaltRevetmentWaveImpactLocationWithInvalidTopLayerType()
+        {
+            const auto topLayerType = static_cast<AsphaltRevetmentTopLayerType>(99);
+            const AsphaltRevetmentWaveImpactLocationConstructionProperties constructionProperties(
+                "Test", 0.1, 0.2, topLayerType, 0.3, 0.4, 0.5, 0.6, 0.71);
+
+            RevetmentCalculationInputBuilder builder;
+            builder.AddAsphaltWaveImpactLocation(constructionProperties);
         }
 
         static void CreateBuilderAndAddGrassRevetmentWaveImpactLocationWithInvalidTopLayerType()
@@ -492,7 +504,7 @@ namespace DiKErnel::Integration::Test
     }
 
     TEST_F(RevetmentCalculationInputBuilderTest,
-           GivenBuilder_WhenAddingGrassWaveRunupRayleighWithInvalidTopLayerType_ThenThrowsRevetmentCalculationInputBuilderException)
+           GivenBuilder_WhenAddingGrassWaveRunupRayleighLocationWithInvalidTopLayerType_ThenThrowsRevetmentCalculationInputBuilderException)
     {
         // Given & When
         const auto action = &
@@ -687,5 +699,202 @@ namespace DiKErnel::Integration::Test
 
         GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper::AssertFrontVelocity(
             4.3, 1.1, *locationDependentInput);
+    }
+
+    TEST_F(RevetmentCalculationInputBuilderTest,
+           GivenBuilder_WhenAddingAsphaltWaveImpactLocationWithInvalidTopLayerType_ThenThrowsRevetmentCalculationInputBuilderException)
+    {
+        // Given & When
+        const auto action = &
+                RevetmentCalculationInputBuilderTest::CreateBuilderAndAddAsphaltRevetmentWaveImpactLocationWithInvalidTopLayerType;
+
+        // Then
+        AssertHelper::AssertThrowsWithMessageAndInnerException<RevetmentCalculationInputBuilderException, DefaultsFactoryException>(
+            action, "Could not create instance.", "Couldn't create defaults for the given top layer type.");
+    }
+
+    TEST_F(RevetmentCalculationInputBuilderTest,
+           GivenBuilderWithFullyConfiguredAsphaltWaveImpactLocationAdded_WhenBuild_ThenReturnsCalculationInput)
+    {
+        const auto topLayerType = AsphaltRevetmentTopLayerType::WAB;
+        const string name = "Test";
+        const auto tanA = 0.1;
+        const auto positionZ = 0.2;
+        const auto failureTension = 0.3;
+        const auto densityOfWater = 0.4;
+        const auto soilElasticity = 0.5;
+        const auto thicknessUpperLayer = 0.6;
+        const auto elasticModulusUpperLayer = 0.7;
+        const auto initialDamage = 0.8;
+        const auto failureNumber = 0.9;
+        const auto thicknessSubLayer = 1.0;
+        const auto elasticModulusSubLayer = 1.1;
+        const auto averageNumberOfWavesCtm = 1.2;
+        const auto fatigueAlpha = 1.3;
+        const auto fatigueBeta = 1.4;
+        const auto impactNumberC = 1.5;
+        const auto stiffnessRelationNu = 1.6;
+        const auto widthFactors = vector<tuple<double, double>>
+        {
+            tuple<double, double>(1.7, 1.8)
+        };
+        const auto depthFactors = vector<tuple<double, double>>
+        {
+            tuple<double, double>(1.9, 2.0)
+        };
+        const auto impactFactors = vector<tuple<double, double>>
+        {
+            tuple<double, double>(2.1, 2.2)
+        };
+
+        AsphaltRevetmentWaveImpactLocationConstructionProperties constructionProperties(
+            name, tanA, positionZ, topLayerType, failureTension, densityOfWater, soilElasticity, thicknessUpperLayer, elasticModulusUpperLayer);
+
+        constructionProperties.SetInitialDamage(make_unique<double>(initialDamage));
+        constructionProperties.SetFailureNumber(make_unique<double>(failureNumber));
+        constructionProperties.SetThicknessSubLayer(make_unique<double>(thicknessSubLayer));
+        constructionProperties.SetElasticModulusSubLayer(make_unique<double>(elasticModulusSubLayer));
+        constructionProperties.SetAverageNumberOfWavesCtm(make_unique<double>(averageNumberOfWavesCtm));
+        constructionProperties.SetFatigueAlpha(make_unique<double>(fatigueAlpha));
+        constructionProperties.SetFatigueBeta(make_unique<double>(fatigueBeta));
+        constructionProperties.SetImpactNumberC(make_unique<double>(impactNumberC));
+        constructionProperties.SetStiffnessRelationNu(make_unique<double>(stiffnessRelationNu));
+        constructionProperties.SetWidthFactors(make_unique<vector<tuple<double, double>>>(widthFactors));
+        constructionProperties.SetDepthFactors(make_unique<vector<tuple<double, double>>>(depthFactors));
+        constructionProperties.SetImpactFactors(make_unique<vector<tuple<double, double>>>(impactFactors));
+
+        RevetmentCalculationInputBuilder builder;
+        builder.AddAsphaltWaveImpactLocation(constructionProperties);
+
+        // When
+        const auto calculationInput = builder.Build();
+
+        // Then
+        ASSERT_EQ(0, calculationInput->GetTimeDependentInputItems().size());
+
+        const auto& actualLocationDependentInputItems = calculationInput->GetLocationDependentInputItems();
+        ASSERT_EQ(1, actualLocationDependentInputItems.size());
+
+        const auto* locationDependentInput = dynamic_cast<AsphaltRevetmentWaveImpactLocationDependentInput*>(
+            &actualLocationDependentInputItems[0].get());
+        ASSERT_TRUE(locationDependentInput != nullptr);
+
+        LocationDependentInputAssertHelper::AssertDamageProperties(initialDamage, failureNumber, *locationDependentInput);
+
+        AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertGeneralProperties(
+            name, tanA, positionZ, failureTension, densityOfWater, soilElasticity, averageNumberOfWavesCtm, impactNumberC, stiffnessRelationNu,
+            *locationDependentInput);
+
+        AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertLayer(thicknessUpperLayer, elasticModulusUpperLayer,
+                                                                                  locationDependentInput->GetUpperLayer());
+
+        AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertLayer(thicknessSubLayer, elasticModulusSubLayer,
+                                                                                  locationDependentInput->GetSubLayer());
+
+        AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertFatigue(fatigueAlpha, fatigueBeta,
+                                                                                    locationDependentInput->GetFatigue());
+
+        AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertFactors(widthFactors, depthFactors, impactFactors,
+                                                                                    *locationDependentInput);
+    }
+
+    TEST_F(RevetmentCalculationInputBuilderTest,
+           GivenBuilderWithNotFullyConfiguredAsphaltWaveImpactLocationAdded_WhenBuild_ThenReturnsCalculationInput)
+    {
+        const auto topLayerType = AsphaltRevetmentTopLayerType::WAB;
+        const string name = "Test";
+        const auto tanA = 0.1;
+        const auto positionZ = 0.2;
+        const auto failureTension = 0.3;
+        const auto densityOfWater = 0.4;
+        const auto soilElasticity = 0.5;
+        const auto thicknessUpperLayer = 0.6;
+        const auto elasticModulusUpperLayer = 0.7;
+
+        AsphaltRevetmentWaveImpactLocationConstructionProperties constructionProperties(
+            name, tanA, positionZ, topLayerType, failureTension, densityOfWater, soilElasticity, thicknessUpperLayer, elasticModulusUpperLayer);
+
+        RevetmentCalculationInputBuilder builder;
+        builder.AddAsphaltWaveImpactLocation(constructionProperties);
+
+        // When
+        const auto calculationInput = builder.Build();
+
+        // Then
+        ASSERT_EQ(0, calculationInput->GetTimeDependentInputItems().size());
+
+        const auto& actualLocationDependentInputItems = calculationInput->GetLocationDependentInputItems();
+        ASSERT_EQ(1, actualLocationDependentInputItems.size());
+
+        const auto* locationDependentInput = dynamic_cast<AsphaltRevetmentWaveImpactLocationDependentInput*>(
+            &actualLocationDependentInputItems[0].get());
+        ASSERT_TRUE(locationDependentInput != nullptr);
+
+        LocationDependentInputAssertHelper::AssertDamageProperties(0, 1, *locationDependentInput);
+
+        AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertGeneralProperties(
+            name, tanA, positionZ, failureTension, densityOfWater, soilElasticity, 1, 1, 0.35,
+            *locationDependentInput);
+
+        AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertLayer(thicknessUpperLayer, elasticModulusUpperLayer,
+                                                                                  locationDependentInput->GetUpperLayer());
+
+        AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertLayer(0, elasticModulusUpperLayer,
+                                                                                  locationDependentInput->GetSubLayer());
+
+        AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertFatigue(0.42, 4.76,
+                                                                                    locationDependentInput->GetFatigue());
+
+        const auto expectedWidthFactors = vector<tuple<double, double>>
+        {
+            tuple<double, double>(0.1, 0.0392),
+            tuple<double, double>(0.2, 0.0738),
+            tuple<double, double>(0.3, 0.1002),
+            tuple<double, double>(0.4, 0.1162),
+            tuple<double, double>(0.5, 0.1213),
+            tuple<double, double>(0.6, 0.1168),
+            tuple<double, double>(0.7, 0.1051),
+            tuple<double, double>(0.8, 0.0890),
+            tuple<double, double>(0.9, 0.0712),
+            tuple<double, double>(1.0, 0.0541),
+            tuple<double, double>(1.1, 0.0391),
+            tuple<double, double>(1.2, 0.0269),
+            tuple<double, double>(1.3, 0.0216),
+            tuple<double, double>(1.4, 0.0150),
+            tuple<double, double>(1.5, 0.0105)
+        };
+
+        const auto expectedDepthFactors = vector<tuple<double, double>>
+        {
+            tuple<double, double>(-1, 0.0244),
+            tuple<double, double>(-0.875, 0.0544),
+            tuple<double, double>(-0.750, 0.0938),
+            tuple<double, double>(-0.625, 0.1407),
+            tuple<double, double>(-0.500, 0.1801),
+            tuple<double, double>(-0.375, 0.1632),
+            tuple<double, double>(-0.250, 0.1426),
+            tuple<double, double>(-0.125, 0.0994),
+            tuple<double, double>(0, 0.06),
+            tuple<double, double>(0.125, 0.0244),
+            tuple<double, double>(0.250, 0.0169)
+        };
+
+        const auto expectedImpactFactors = vector<tuple<double, double>>
+        {
+            tuple<double, double>(2, 0.039),
+            tuple<double, double>(2.4, 0.1),
+            tuple<double, double>(2.8, 0.18),
+            tuple<double, double>(3.2, 0.235),
+            tuple<double, double>(3.6, 0.2),
+            tuple<double, double>(4.0, 0.13),
+            tuple<double, double>(4.4, 0.08),
+            tuple<double, double>(4.8, 0.02),
+            tuple<double, double>(5.2, 0.01),
+            tuple<double, double>(5.6, 0.005),
+            tuple<double, double>(6, 0.001)
+        };
+
+        AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertFactors(expectedWidthFactors, expectedDepthFactors,
+                                                                                    expectedImpactFactors, *locationDependentInput);
     }
 }
