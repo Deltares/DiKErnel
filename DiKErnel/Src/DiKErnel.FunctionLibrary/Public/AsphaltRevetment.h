@@ -40,6 +40,9 @@ namespace DiKErnel::FunctionLibrary
                 const std::vector<std::tuple<double, double>>& widthFactors,
                 const std::vector<std::tuple<double, double>>& depthFactors,
                 const std::vector<std::tuple<double, double>>& impactFactors,
+                double positionZ,
+                double waterLevel,
+                double waveHeightHm0,
                 double fatigueAlpha,
                 double fatigueBeta,
                 double impactNumberC
@@ -80,6 +83,9 @@ namespace DiKErnel::FunctionLibrary
                 double widthFactorValue,
                 const std::vector<std::tuple<double, double>>& depthFactors,
                 const std::vector<std::tuple<double, double>>& impactFactors,
+                double positionZ,
+                double waterLevel,
+                double waveHeightHm0,
                 double fatigueAlpha,
                 double fatigueBeta,
                 double impactNumberC
@@ -95,6 +101,9 @@ namespace DiKErnel::FunctionLibrary
                 double widthFactorValue,
                 double depthFactorValue,
                 const std::vector<std::tuple<double, double>>& impactFactors,
+                double positionZ,
+                double waterLevel,
+                double waveHeightHm0,
                 double fatigueAlpha,
                 double fatigueBeta,
                 double impactNumberC
@@ -109,6 +118,9 @@ namespace DiKErnel::FunctionLibrary
                 double widthFactorValue,
                 double depthFactorValue,
                 double impactFactorValue,
+                double positionZ,
+                double waterLevel,
+                double waveHeightHm0,
                 double fatigueAlpha,
                 double fatigueBeta,
                 double impactNumberC
@@ -122,6 +134,9 @@ namespace DiKErnel::FunctionLibrary
                 double widthFactorValue,
                 double depthFactorValue,
                 double impactFactorValue,
+                double positionZ,
+                double waterLevel,
+                double waveHeightHm0,
                 double impactNumberC
             );
 
@@ -134,7 +149,13 @@ namespace DiKErnel::FunctionLibrary
             static double BendingStress(
                 double maximumPeakStress,
                 double stiffnessRelation,
-                double computationalThickness
+                double computationalThickness,
+                double tanA,
+                double widthFactorValue,
+                double depthFactorValue,
+                double positionZ,
+                double waterLevel,
+                double waveHeightHm0
             );
 
             static double SpatialDistributionBendingStress(
