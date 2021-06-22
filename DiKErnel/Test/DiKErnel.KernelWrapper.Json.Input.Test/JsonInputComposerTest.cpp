@@ -20,6 +20,8 @@
 
 #include <gtest/gtest.h>
 
+#include "AsphaltRevetmentWaveImpactLocationDependentInput.h"
+#include "AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper.h"
 #include "AssertHelper.h"
 #include "CalculationInput.h"
 #include "GrassRevetmentWaveImpactLocationDependentInput.h"
@@ -46,6 +48,14 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
 
     struct JsonInputComposerTest : Test
     {
+        static void GetCalculationInputFromJsonWithInvalidAsphaltRevetmentWaveImpactTopLayerType()
+        {
+            const auto filePath = (TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Input.Test") / "JsonInputComposerTest"
+                / "InvalidAsphaltRevetmentWaveImpactTopLayerType.json").string();
+
+            JsonInputComposer::GetCalculationInputFromJson(filePath);
+        }
+
         static void GetCalculationInputFromJsonWithInvalidNaturalStoneRevetmentTopLayerType()
         {
             const auto filePath = (TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Input.Test") / "JsonInputComposerTest"
@@ -92,7 +102,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
         TimeDependentInputAssertHelper::AssertTimeDependentInputItem(1200, 2000, 2, 0.5, 4, 8, timeDependentInputItems[4].get());
 
         const auto& locationDependentInputItems = calculationInput->GetLocationDependentInputItems();
-        ASSERT_EQ(8, locationDependentInputItems.size());
+        ASSERT_EQ(10, locationDependentInputItems.size());
 
         const auto* naturalStoneRevetmentLocationDependentInputItem1 = dynamic_cast<NaturalStoneRevetmentLocationDependentInput*>(
             &locationDependentInputItems[0].get());
@@ -253,13 +263,114 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
             7000, 10000, *grassRevetmentWaveRunupRayleighLocationDependentInputItem3);
         GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper::AssertFrontVelocity(
             4.3, 1.1, *grassRevetmentWaveRunupRayleighLocationDependentInputItem3);
+
+        const auto* asphaltRevetmentWaveImpactLocationDependentInputItem1 = dynamic_cast
+                <AsphaltRevetmentWaveImpactLocationDependentInput*>(&locationDependentInputItems[8].get());
+        ASSERT_NE(nullptr, asphaltRevetmentWaveImpactLocationDependentInputItem1);
+
+        LocationDependentInputAssertHelper::AssertDamageProperties(1, 0.0098, *asphaltRevetmentWaveImpactLocationDependentInputItem1);
+        AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertGeneralProperties(
+            "AsfaltAlleOptiesAan", 0.6548, 7.6, 5.6, 0.25, 53, 1.1, 4, 0.58, *asphaltRevetmentWaveImpactLocationDependentInputItem1);
+        AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertLayer(
+            0.16, 18214, asphaltRevetmentWaveImpactLocationDependentInputItem1->GetUpperLayer());
+        AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertLayer(
+            0.2, 15000, asphaltRevetmentWaveImpactLocationDependentInputItem1->GetSubLayer());
+        AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertFatigue(
+            0.723, 7.2, asphaltRevetmentWaveImpactLocationDependentInputItem1->GetFatigue());
+
+        const auto expectedWidthFactors1 = vector<tuple<double, double>>
+        {
+            tuple<double, double>(1.6, 1.0392),
+            tuple<double, double>(1.7, 1.0738)
+        };
+
+        const auto expectedDepthFactors1 = vector<tuple<double, double>>
+        {
+            tuple<double, double>(-2, 1.0244),
+            tuple<double, double>(-1.875, 1.0544)
+        };
+
+        const auto expectedImpactFactors1 = vector<tuple<double, double>>
+        {
+            tuple<double, double>(6, 2.039),
+            tuple<double, double>(6.4, 2.1)
+        };
+
+        AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertFactors(
+            expectedWidthFactors1, expectedDepthFactors1, expectedImpactFactors1, *asphaltRevetmentWaveImpactLocationDependentInputItem1);
+
+        const auto* asphaltRevetmentWaveImpactLocationDependentInputItem2 = dynamic_cast
+                <AsphaltRevetmentWaveImpactLocationDependentInput*>(&locationDependentInputItems[9].get());
+        ASSERT_NE(nullptr, asphaltRevetmentWaveImpactLocationDependentInputItem2);
+
+        LocationDependentInputAssertHelper::AssertDamageProperties(0, 1, *asphaltRevetmentWaveImpactLocationDependentInputItem2);
+        AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertGeneralProperties(
+            "AsfaltAlleOptiesUit", 0.233, 2.988, 1.56, 1.25, 56, 1, 1, 0.35, *asphaltRevetmentWaveImpactLocationDependentInputItem2);
+        AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertLayer(
+            0.16, 18214, asphaltRevetmentWaveImpactLocationDependentInputItem2->GetUpperLayer());
+        AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertLayer(
+            0, 18214, asphaltRevetmentWaveImpactLocationDependentInputItem2->GetSubLayer());
+        AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertFatigue(
+            0.42, 4.76, asphaltRevetmentWaveImpactLocationDependentInputItem2->GetFatigue());
+
+        const auto expectedWidthFactors2 = vector<tuple<double, double>>
+        {
+            tuple<double, double>(0.1, 0.0392),
+            tuple<double, double>(0.2, 0.0738),
+            tuple<double, double>(0.3, 0.1002),
+            tuple<double, double>(0.4, 0.1162),
+            tuple<double, double>(0.5, 0.1213),
+            tuple<double, double>(0.6, 0.1168),
+            tuple<double, double>(0.7, 0.1051),
+            tuple<double, double>(0.8, 0.0890),
+            tuple<double, double>(0.9, 0.0712),
+            tuple<double, double>(1.0, 0.0541),
+            tuple<double, double>(1.1, 0.0391),
+            tuple<double, double>(1.2, 0.0269),
+            tuple<double, double>(1.3, 0.0216),
+            tuple<double, double>(1.4, 0.0150),
+            tuple<double, double>(1.5, 0.0105)
+        };
+
+        const auto expectedDepthFactors2 = vector<tuple<double, double>>
+        {
+            tuple<double, double>(-1, 0.0244),
+            tuple<double, double>(-0.875, 0.0544),
+            tuple<double, double>(-0.750, 0.0938),
+            tuple<double, double>(-0.625, 0.1407),
+            tuple<double, double>(-0.500, 0.1801),
+            tuple<double, double>(-0.375, 0.1632),
+            tuple<double, double>(-0.250, 0.1426),
+            tuple<double, double>(-0.125, 0.0994),
+            tuple<double, double>(0, 0.06),
+            tuple<double, double>(0.125, 0.0244),
+            tuple<double, double>(0.250, 0.0169)
+        };
+
+        const auto expectedImpactFactors2 = vector<tuple<double, double>>
+        {
+            tuple<double, double>(2, 0.039),
+            tuple<double, double>(2.4, 0.1),
+            tuple<double, double>(2.8, 0.18),
+            tuple<double, double>(3.2, 0.235),
+            tuple<double, double>(3.6, 0.2),
+            tuple<double, double>(4.0, 0.13),
+            tuple<double, double>(4.4, 0.08),
+            tuple<double, double>(4.8, 0.02),
+            tuple<double, double>(5.2, 0.01),
+            tuple<double, double>(5.6, 0.005),
+            tuple<double, double>(6, 0.001)
+        };
+
+        AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertFactors(
+            expectedWidthFactors2, expectedDepthFactors2, expectedImpactFactors2, *asphaltRevetmentWaveImpactLocationDependentInputItem2);
     }
 
     TEST_F(JsonInputComposerTest,
-           GivenJsonInputWithInvalidNaturalStoneRevetmentTypeTopLayer_WhenGetCalculationInputFromJson_ThenThrowsJsonConversionException)
+           GivenJsonInputWithInvalidAsphaltRevetmentWaveImpactTypeTopLayer_WhenGetCalculationInputFromJson_ThenThrowsJsonConversionException)
     {
         // Given & When
-        const auto action = &JsonInputComposerTest::GetCalculationInputFromJsonWithInvalidNaturalStoneRevetmentTopLayerType;
+        const auto action = &JsonInputComposerTest::GetCalculationInputFromJsonWithInvalidAsphaltRevetmentWaveImpactTopLayerType;
 
         // Then
         AssertHelper::AssertThrowsWithMessage<JsonConversionException>(action, "Cannot convert top layer type.");
@@ -280,6 +391,16 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
     {
         // Given & When
         const auto action = &JsonInputComposerTest::GetCalculationInputFromJsonWithInvalidGrassRevetmentWaveRunupRayleighTopLayerType;
+
+        // Then
+        AssertHelper::AssertThrowsWithMessage<JsonConversionException>(action, "Cannot convert top layer type.");
+    }
+
+    TEST_F(JsonInputComposerTest,
+           GivenJsonInputWithInvalidNaturalStoneRevetmentTypeTopLayer_WhenGetCalculationInputFromJson_ThenThrowsJsonConversionException)
+    {
+        // Given & When
+        const auto action = &JsonInputComposerTest::GetCalculationInputFromJsonWithInvalidNaturalStoneRevetmentTopLayerType;
 
         // Then
         AssertHelper::AssertThrowsWithMessage<JsonConversionException>(action, "Cannot convert top layer type.");

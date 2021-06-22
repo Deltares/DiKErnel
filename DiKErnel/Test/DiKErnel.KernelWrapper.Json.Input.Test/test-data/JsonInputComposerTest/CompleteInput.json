@@ -311,6 +311,118 @@
 					"TanA": 0.9,
 					"PositieZ": 5.2
 				}
+			},
+			{
+				"Naam": "AsfaltAlleOptiesAan",
+				"Schade":
+				{
+					"BeginSchade": 1.0,
+					"Faalgetal": 0.0098
+				},
+				"Bekleding":
+				{
+					"TypeToplaag": "WaterbouwAsfaltBeton",
+					"BreuksterkteAsfalt": 5.6,
+					"SoortelijkeDichtheidWater": 0.25,
+					"VeerconstanteOndergrond": 53,
+					"Toplaag":
+					{
+						"Dikte": 0.16,
+						"Stijfheidsmodulus": 18214
+					},
+					"Onderlaag":
+					{
+						"Dikte": 0.20,
+						"Stijfheidsmodulus": 15000
+					},
+					"Rekenmethoden":
+					[
+						{
+							"RekenmethodeSoort": "AsfaltGolfklap",
+							"GemiddeldAantalGolvenPerTijdstap":
+							{
+								"GemiddeldAantalGolvenPerTijdstapCtm": 1.1
+							},
+							"VermoeiingAsfaltbekleding":
+							{
+								"VermoeiingAsfaltbekledingAlfa": 0.723,
+								"VermoeiingAsfaltbekledingBeta": 7.2
+							},
+							"Stootgetal":
+							{
+								"StootgetalC": 4.0
+							},
+							"Stijfheidsverhouding":
+							{
+								"StijfheidsverhoudingNu": 0.58
+							},
+							"BreedteFactorenTabel":
+							[
+								[
+									1.6,
+									1.0392
+								],
+								[
+									1.7,
+									1.0738
+								]
+							],
+							"DiepteFactorenTabel":
+							[
+								[
+									-2.0,
+									1.0244
+								],
+								[
+									-1.875,
+									1.0544
+								]
+							],
+							"StootFactorenTabel":
+							[
+								[
+									6.0,
+									2.039
+								],
+								[
+									6.4,
+									2.1
+								]
+							]
+						}
+					]
+				},
+				"Profielschematisatie":
+				{
+					"TanA": 0.6548,
+					"PositieZ": 7.6
+				}
+			},
+			{
+				"Naam": "AsfaltAlleOptiesUit",
+				"Bekleding":
+				{
+					"TypeToplaag": "WaterbouwAsfaltBeton",
+					"BreuksterkteAsfalt": 1.56,
+					"SoortelijkeDichtheidWater": 1.25,
+					"VeerconstanteOndergrond": 56,
+					"Toplaag":
+					{
+						"Dikte": 0.16,
+						"Stijfheidsmodulus": 18214
+					},
+					"Rekenmethoden":
+					[
+						{
+							"RekenmethodeSoort": "AsfaltGolfklap"
+						}
+					]
+				},
+				"Profielschematisatie":
+				{
+					"TanA": 0.233,
+					"PositieZ": 2.988
+				}
 			}
 		]
 	}
