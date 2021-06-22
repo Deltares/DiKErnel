@@ -15,6 +15,8 @@ set(SOURCEFILES_PUBLIC
 )
 
 set(SOURCEFILES_PUBLIC_ASPHALT_REVETMENT_WAVE_IMPACT
+  ${PUBLIC_ASPHALT_WAVE_IMPACT_FOLDER}/AsphaltRevetmentWaveImpactDefaults.cpp
+  ${PUBLIC_ASPHALT_WAVE_IMPACT_FOLDER}/AsphaltRevetmentWaveImpactDefaults.h
   ${PUBLIC_ASPHALT_WAVE_IMPACT_FOLDER}/IAsphaltRevetmentWaveImpactDefaults.h
 )
 
