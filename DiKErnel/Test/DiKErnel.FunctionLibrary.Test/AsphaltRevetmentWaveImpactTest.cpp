@@ -20,7 +20,7 @@
 
 #include <gtest/gtest.h>
 
-#include "AsphaltRevetment.h"
+#include "AsphaltRevetmentWaveImpact.h"
 
 namespace DiKErnel::FunctionLibrary::Test
 {
