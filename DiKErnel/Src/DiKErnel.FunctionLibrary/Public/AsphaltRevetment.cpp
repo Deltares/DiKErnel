@@ -78,7 +78,16 @@ namespace DiKErnel::FunctionLibrary
         const double soilElasticy,
         const double stiffnessRelationNu)
     {
-        return pow(3.0 * soilElasticy * (1.0 - pow(stiffnessRelationNu, 2.0)) / (equivalentElasticModulus * computationalThickness), 0.25);
+        return pow(3.0 * soilElasticy * (1.0 - pow(stiffnessRelationNu, 2.0)) / (equivalentElasticModulus * computationalThickness), 1.0 / 4.0);
+    }
+
+    double AsphaltRevetment::ComputationalThickness(
+        const double thicknessUpperLayer,
+        const double thicknessSubLayer,
+        const double elasticModulusUpperLayer,
+        const double elasticModulusSubLayer)
+    {
+        return thicknessUpperLayer * pow(elasticModulusUpperLayer / elasticModulusSubLayer, 1.0 / 3.0) + thicknessSubLayer;
     }
 
     double AsphaltRevetment::DepthFactorAccumulation(
@@ -194,5 +203,31 @@ namespace DiKErnel::FunctionLibrary
         return max(pow(10.0, -99.0),
                    -1.0 * (3 * maximumPeakStress / (4.0 * pow(stiffnessRelation, 2.0) * pow(computationalThickness, 2.0))) *
                    spatialDistributionBendingStress);
+    }
+
+    double AsphaltRevetment::SpatialDistributionBendingStress()
+    {
+        const auto bb = RelativeWidthWaveImpact();
+        const auto bdx = RelativeDistanceCenterWaveImpact();
+
+        if (bb >= bdx)
+        {
+            return (-1.0 * sin(bdx) * (exp(bdx) - exp(-1.0 * bdx)) * (cos(bb) - sin(bb)) * exp(-1.0 * bb)
+                + cos(bdx) * (exp(bdx) + exp(-1.0 * bdx)) * (cos(bb) + sin(bb)) * exp(-1.0 * bb)
+                - 2.0 * exp(-1.0 * bdx) * (cos(bdx) + sin(bdx))) / bb;
+        }
+        return (cos(bdx) * (exp(bb) * (cos(bb) - sin(bb)) + exp(-1.0 * bb) * (cos(bb) + sin(bb)))
+            + sin(bdx) * (exp(bb) * (cos(bb) + sin(bb)) + exp(-1.0 * bb) * (cos(bb) - sin(bb)))
+            - 2.0 * (cos(bdx) + sin(bdx))) * exp(-1.0 * bdx) / bb;
+    }
+
+    double AsphaltRevetment::RelativeWidthWaveImpact()
+    {
+        return 1.1;
+    }
+
+    double AsphaltRevetment::RelativeDistanceCenterWaveImpact()
+    {
+        return 2.2;
     }
 }

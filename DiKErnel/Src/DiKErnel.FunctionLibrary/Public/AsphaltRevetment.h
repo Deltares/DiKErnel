@@ -62,6 +62,13 @@ namespace DiKErnel::FunctionLibrary
                 double stiffnessRelationNu
             );
 
+            static double ComputationalThickness(
+                double thicknessUpperLayer,
+                double thicknessSubLayer,
+                double elasticModulusUpperLayer,
+                double elasticModulusSubLayer
+            );
+
         private:
             static double DepthFactorAccumulation(
                 double logFailureTension,
@@ -128,6 +135,11 @@ namespace DiKErnel::FunctionLibrary
                 double stiffnessRelation,
                 double computationalThickness
             );
+
+            static double SpatialDistributionBendingStress();
+
+            static double RelativeWidthWaveImpact();
+
+            static double RelativeDistanceCenterWaveImpact();
     };
 }
-
