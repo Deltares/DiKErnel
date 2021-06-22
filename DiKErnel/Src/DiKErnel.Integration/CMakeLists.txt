@@ -21,6 +21,8 @@ set(SOURCEFILES_PUBLIC
 
 set(SOURCEFILES_PUBLIC_DATA
   ${PUBLIC_DATA_FOLDER}/AsphaltRevetmentTopLayerType.h
+  ${PUBLIC_DATA_FOLDER}/AsphaltRevetmentWaveImpactLocationConstructionProperties.cpp
+  ${PUBLIC_DATA_FOLDER}/AsphaltRevetmentWaveImpactLocationConstructionProperties.h
   ${PUBLIC_DATA_FOLDER}/GrassRevetmentTopLayerType.h
   ${PUBLIC_DATA_FOLDER}/GrassRevetmentWaveImpactLocationConstructionProperties.cpp
   ${PUBLIC_DATA_FOLDER}/GrassRevetmentWaveImpactLocationConstructionProperties.h

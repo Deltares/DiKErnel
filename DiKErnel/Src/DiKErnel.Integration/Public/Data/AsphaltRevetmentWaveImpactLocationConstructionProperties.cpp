@@ -18,83 +18,88 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include "JsonInputAsphaltRevetmentWaveImpactLocationData.h"
+#include "AsphaltRevetmentWaveImpactLocationConstructionProperties.h"
 
-namespace DiKErnel::KernelWrapper::Json::Input
+namespace DiKErnel::Integration
 {
     using namespace std;
 
-    JsonInputAsphaltRevetmentWaveImpactLocationData::JsonInputAsphaltRevetmentWaveImpactLocationData(
-        const JsonInputAsphaltRevetmentTopLayerType topLayerType,
+    AsphaltRevetmentWaveImpactLocationConstructionProperties::AsphaltRevetmentWaveImpactLocationConstructionProperties(
+        string name,
+        const double tanA,
+        const double positionZ,
+        const AsphaltRevetmentTopLayerType topLayerType,
         const double failureTension,
         const double densityOfWater,
         const double soilElasticity,
         const double thicknessUpperLayer,
         const double elasticModulusUpperLayer)
-        : _topLayerType(topLayerType),
+        : RevetmentLocationConstructionPropertiesBase(move(name), positionZ),
+          _topLayerType(topLayerType),
+          _tanA(tanA),
           _failureTension(failureTension),
           _densityOfWater(densityOfWater),
           _soilElasticity(soilElasticity),
           _thicknessUpperLayer(thicknessUpperLayer),
-          _elasticModulusUpperLayer(elasticModulusUpperLayer) { }
+          _elasticModulusUpperLayer(elasticModulusUpperLayer) {}
 
     #pragma region Set methods
 
-    void JsonInputAsphaltRevetmentWaveImpactLocationData::SetThicknessSubLayer(
+    void AsphaltRevetmentWaveImpactLocationConstructionProperties::SetThicknessSubLayer(
         unique_ptr<double> thicknessSubLayer)
     {
         _thicknessSubLayer = move(thicknessSubLayer);
     }
 
-    void JsonInputAsphaltRevetmentWaveImpactLocationData::SetElasticModulusSubLayer(
+    void AsphaltRevetmentWaveImpactLocationConstructionProperties::SetElasticModulusSubLayer(
         unique_ptr<double> elasticModulusSubLayer)
     {
         _elasticModulusSubLayer = move(elasticModulusSubLayer);
     }
 
-    void JsonInputAsphaltRevetmentWaveImpactLocationData::SetAverageNumberOfWavesCtm(
+    void AsphaltRevetmentWaveImpactLocationConstructionProperties::SetAverageNumberOfWavesCtm(
         unique_ptr<double> averageNumberOfWavesCtm)
     {
         _averageNumberOfWavesCtm = move(averageNumberOfWavesCtm);
     }
 
-    void JsonInputAsphaltRevetmentWaveImpactLocationData::SetFatigueAlpha(
+    void AsphaltRevetmentWaveImpactLocationConstructionProperties::SetFatigueAlpha(
         unique_ptr<double> fatigueAlpha)
     {
         _fatigueAlpha = move(fatigueAlpha);
     }
 
-    void JsonInputAsphaltRevetmentWaveImpactLocationData::SetFatigueBeta(
+    void AsphaltRevetmentWaveImpactLocationConstructionProperties::SetFatigueBeta(
         unique_ptr<double> fatigueBeta)
     {
         _fatigueBeta = move(fatigueBeta);
     }
 
-    void JsonInputAsphaltRevetmentWaveImpactLocationData::SetImpactNumberC(
+    void AsphaltRevetmentWaveImpactLocationConstructionProperties::SetImpactNumberC(
         unique_ptr<double> impactNumberC)
     {
         _impactNumberC = move(impactNumberC);
     }
 
-    void JsonInputAsphaltRevetmentWaveImpactLocationData::SetStiffnessRelationNu(
+    void AsphaltRevetmentWaveImpactLocationConstructionProperties::SetStiffnessRelationNu(
         unique_ptr<double> stiffnessRelationNu)
     {
         _stiffnessRelationNu = move(stiffnessRelationNu);
     }
 
-    void JsonInputAsphaltRevetmentWaveImpactLocationData::SetWidthFactors(
+    void AsphaltRevetmentWaveImpactLocationConstructionProperties::SetWidthFactors(
         unique_ptr<vector<tuple<double, double>>> widthFactors)
     {
         _widthFactors = move(widthFactors);
     }
 
-    void JsonInputAsphaltRevetmentWaveImpactLocationData::SetDepthFactors(
+    void AsphaltRevetmentWaveImpactLocationConstructionProperties::SetDepthFactors(
         unique_ptr<vector<tuple<double, double>>> depthFactors)
     {
         _depthFactors = move(depthFactors);
     }
 
-    void JsonInputAsphaltRevetmentWaveImpactLocationData::SetImpactFactors(
+    void AsphaltRevetmentWaveImpactLocationConstructionProperties::SetImpactFactors(
         unique_ptr<vector<tuple<double, double>>> impactFactors)
     {
         _impactFactors = move(impactFactors);
@@ -104,82 +109,87 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
     #pragma region Get methods
 
-    JsonInputAsphaltRevetmentTopLayerType JsonInputAsphaltRevetmentWaveImpactLocationData::GetTopLayerType() const
+    AsphaltRevetmentTopLayerType AsphaltRevetmentWaveImpactLocationConstructionProperties::GetTopLayerType() const
     {
         return _topLayerType;
     }
 
-    double JsonInputAsphaltRevetmentWaveImpactLocationData::GetFailureTension() const
+    double AsphaltRevetmentWaveImpactLocationConstructionProperties::GetTanA() const
+    {
+        return _tanA;
+    }
+
+    double AsphaltRevetmentWaveImpactLocationConstructionProperties::GetFailureTension() const
     {
         return _failureTension;
     }
 
-    double JsonInputAsphaltRevetmentWaveImpactLocationData::GetDensityOfWater() const
+    double AsphaltRevetmentWaveImpactLocationConstructionProperties::GetDensityOfWater() const
     {
         return _densityOfWater;
     }
 
-    double JsonInputAsphaltRevetmentWaveImpactLocationData::GetSoilElasticity() const
+    double AsphaltRevetmentWaveImpactLocationConstructionProperties::GetSoilElasticity() const
     {
         return _soilElasticity;
     }
 
-    double JsonInputAsphaltRevetmentWaveImpactLocationData::GetThicknessUpperLayer() const
+    double AsphaltRevetmentWaveImpactLocationConstructionProperties::GetThicknessUpperLayer() const
     {
         return _thicknessUpperLayer;
     }
 
-    double JsonInputAsphaltRevetmentWaveImpactLocationData::GetElasticModulusUpperLayer() const
+    double AsphaltRevetmentWaveImpactLocationConstructionProperties::GetElasticModulusUpperLayer() const
     {
         return _elasticModulusUpperLayer;
     }
 
-    const double* JsonInputAsphaltRevetmentWaveImpactLocationData::GetThicknessSubLayer() const
+    const double* AsphaltRevetmentWaveImpactLocationConstructionProperties::GetThicknessSubLayer() const
     {
         return _thicknessSubLayer.get();
     }
 
-    const double* JsonInputAsphaltRevetmentWaveImpactLocationData::GetElasticModulusSubLayer() const
+    const double* AsphaltRevetmentWaveImpactLocationConstructionProperties::GetElasticModulusSubLayer() const
     {
         return _elasticModulusSubLayer.get();
     }
 
-    const double* JsonInputAsphaltRevetmentWaveImpactLocationData::GetAverageNumberOfWavesCtm() const
+    const double* AsphaltRevetmentWaveImpactLocationConstructionProperties::GetAverageNumberOfWavesCtm() const
     {
         return _averageNumberOfWavesCtm.get();
     }
 
-    const double* JsonInputAsphaltRevetmentWaveImpactLocationData::GetFatigueAlpha() const
+    const double* AsphaltRevetmentWaveImpactLocationConstructionProperties::GetFatigueAlpha() const
     {
         return _fatigueAlpha.get();
     }
 
-    const double* JsonInputAsphaltRevetmentWaveImpactLocationData::GetFatigueBeta() const
+    const double* AsphaltRevetmentWaveImpactLocationConstructionProperties::GetFatigueBeta() const
     {
         return _fatigueBeta.get();
     }
 
-    const double* JsonInputAsphaltRevetmentWaveImpactLocationData::GetImpactNumberC() const
+    const double* AsphaltRevetmentWaveImpactLocationConstructionProperties::GetImpactNumberC() const
     {
         return _impactNumberC.get();
     }
 
-    const double* JsonInputAsphaltRevetmentWaveImpactLocationData::GetStiffnessRelationNu() const
+    const double* AsphaltRevetmentWaveImpactLocationConstructionProperties::GetStiffnessRelationNu() const
     {
         return _stiffnessRelationNu.get();
     }
 
-    const vector<tuple<double, double>>* JsonInputAsphaltRevetmentWaveImpactLocationData::GetWidthFactors() const
+    const vector<tuple<double, double>>* AsphaltRevetmentWaveImpactLocationConstructionProperties::GetWidthFactors() const
     {
         return _widthFactors.get();
     }
 
-    const vector<tuple<double, double>>* JsonInputAsphaltRevetmentWaveImpactLocationData::GetDepthFactors() const
+    const vector<tuple<double, double>>* AsphaltRevetmentWaveImpactLocationConstructionProperties::GetDepthFactors() const
     {
         return _depthFactors.get();
     }
 
-    const vector<tuple<double, double>>* JsonInputAsphaltRevetmentWaveImpactLocationData::GetImpactFactors() const
+    const vector<tuple<double, double>>* AsphaltRevetmentWaveImpactLocationConstructionProperties::GetImpactFactors() const
     {
         return _impactFactors.get();
     }
