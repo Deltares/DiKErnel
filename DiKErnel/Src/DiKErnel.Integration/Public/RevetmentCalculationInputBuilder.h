@@ -65,14 +65,14 @@ namespace DiKErnel::Integration
                 double waveAngle);
 
             /*!
-             * \brief Adds a natural stone location.
+             * \brief Adds a asphalt wave impact location.
              * \param constructionProperties
-             *        The properties to construct the natural stone location dependent input.
+             *        The properties to construct the asphalt wave impact location dependent input.
              * \exception RevetmentCalculationInputBuilderException
              *            Thrown when the top layer type is invalid.
              */
-            void AddNaturalStoneLocation(
-                const NaturalStoneRevetmentLocationConstructionProperties& constructionProperties);
+            void AddAsphaltWaveImpactLocation(
+                const AsphaltRevetmentWaveImpactLocationConstructionProperties& constructionProperties);
 
             /*!
              * \brief Adds a grass wave impact location.
@@ -95,14 +95,14 @@ namespace DiKErnel::Integration
                 const GrassRevetmentWaveRunupRayleighLocationConstructionProperties& constructionProperties);
 
             /*!
-             * \brief Adds a asphalt wave impact location.
+             * \brief Adds a natural stone location.
              * \param constructionProperties
-             *        The properties to construct the asphalt wave impact location dependent input.
+             *        The properties to construct the natural stone location dependent input.
              * \exception RevetmentCalculationInputBuilderException
              *            Thrown when the top layer type is invalid.
              */
-            void AddAsphaltWaveImpactLocation(
-                const AsphaltRevetmentWaveImpactLocationConstructionProperties& constructionProperties);
+            void AddNaturalStoneLocation(
+                const NaturalStoneRevetmentLocationConstructionProperties& constructionProperties);
 
             /*!
              * \brief Builds the calculation input.

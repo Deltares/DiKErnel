@@ -100,6 +100,8 @@ namespace DiKErnel::Integration::Test
         }
     };
 
+    #pragma region Time step
+
     TEST_F(RevetmentCalculationInputBuilderTest, GivenBuilder_WhenBuild_ThenReturnsCalculationInput)
     {
         // Given
@@ -161,76 +163,74 @@ namespace DiKErnel::Integration::Test
             action, "Could not create instance.", "The begin time of a successive element must equal the end time of the previous element.");
     }
 
+    #pragma endregion
+
+    #pragma region Asphalt wave impact
+
     TEST_F(RevetmentCalculationInputBuilderTest,
-           GivenBuilder_WhenAddingNaturalStoneLocationWithInvalidTopLayerType_ThenThrowsRevetmentCalculationInputBuilderException)
+           GivenBuilder_WhenAddingAsphaltWaveImpactLocationWithInvalidTopLayerType_ThenThrowsRevetmentCalculationInputBuilderException)
     {
         // Given & When
-        const auto action = &RevetmentCalculationInputBuilderTest::CreateBuilderAndAddNaturalStoneRevetmentLocationWithInvalidTopLayerType;
+        const auto action = &
+                RevetmentCalculationInputBuilderTest::CreateBuilderAndAddAsphaltRevetmentWaveImpactLocationWithInvalidTopLayerType;
 
         // Then
         AssertHelper::AssertThrowsWithMessageAndInnerException<RevetmentCalculationInputBuilderException, DefaultsFactoryException>(
             action, "Could not create instance.", "Couldn't create defaults for the given top layer type.");
     }
 
-    TEST_F(RevetmentCalculationInputBuilderTest, GivenBuilderWithFullyConfiguredNaturalStoneLocationAdded_WhenBuild_ThenReturnsCalculationInput)
+    TEST_F(RevetmentCalculationInputBuilderTest,
+           GivenBuilderWithFullyConfiguredAsphaltWaveImpactLocationAdded_WhenBuild_ThenReturnsCalculationInput)
     {
-        // Given
-        const auto topLayerType = NaturalStoneRevetmentTopLayerType::NordicStone;
+        const auto topLayerType = AsphaltRevetmentTopLayerType::WAB;
         const string name = "Test";
         const auto tanA = 0.1;
         const auto positionZ = 0.2;
-        const auto thicknessTopLayer = 0.3;
-        const auto relativeDensity = 0.4;
-        const auto initialDamage = 0.5;
-        const auto failureNumber = 0.6;
-        const auto hydraulicLoadXib = 0.7;
-        const auto hydraulicLoadAp = 0.8;
-        const auto hydraulicLoadBp = 0.9;
-        const auto hydraulicLoadCp = 1.0;
-        const auto hydraulicLoadNp = 1.1;
-        const auto hydraulicLoadAs = 1.2;
-        const auto hydraulicLoadBs = 1.3;
-        const auto hydraulicLoadCs = 1.4;
-        const auto hydraulicLoadNs = 1.5;
-        const auto upperLimitLoadingAul = 1.6;
-        const auto upperLimitLoadingBul = 1.7;
-        const auto upperLimitLoadingCul = 1.8;
-        const auto lowerLimitLoadingAll = 1.9;
-        const auto lowerLimitLoadingBll = 2.0;
-        const auto lowerLimitLoadingCll = 2.1;
-        const auto distanceMaximumWaveElevationAsmax = 2.2;
-        const auto distanceMaximumWaveElevationBsmax = 2.3;
-        const auto normativeWidthOfWaveImpactAwi = 2.4;
-        const auto normativeWidthOfWaveImpactBwi = 2.5;
-        const auto waveAngleImpactBetamax = 2.6;
+        const auto failureTension = 0.3;
+        const auto densityOfWater = 0.4;
+        const auto soilElasticity = 0.5;
+        const auto thicknessUpperLayer = 0.6;
+        const auto elasticModulusUpperLayer = 0.7;
+        const auto initialDamage = 0.8;
+        const auto failureNumber = 0.9;
+        const auto thicknessSubLayer = 1.0;
+        const auto elasticModulusSubLayer = 1.1;
+        const auto averageNumberOfWavesCtm = 1.2;
+        const auto fatigueAlpha = 1.3;
+        const auto fatigueBeta = 1.4;
+        const auto impactNumberC = 1.5;
+        const auto stiffnessRelationNu = 1.6;
+        const auto widthFactors = vector<tuple<double, double>>
+        {
+            tuple<double, double>(1.7, 1.8)
+        };
+        const auto depthFactors = vector<tuple<double, double>>
+        {
+            tuple<double, double>(1.9, 2.0)
+        };
+        const auto impactFactors = vector<tuple<double, double>>
+        {
+            tuple<double, double>(2.1, 2.2)
+        };
 
-        NaturalStoneRevetmentLocationConstructionProperties naturalStoneConstructionProperties(
-            name, tanA, positionZ, topLayerType, thicknessTopLayer, relativeDensity);
-        naturalStoneConstructionProperties.SetInitialDamage(make_unique<double>(initialDamage));
-        naturalStoneConstructionProperties.SetFailureNumber(make_unique<double>(failureNumber));
-        naturalStoneConstructionProperties.SetHydraulicLoadXib(make_unique<double>(hydraulicLoadXib));
-        naturalStoneConstructionProperties.SetHydraulicLoadAp(make_unique<double>(hydraulicLoadAp));
-        naturalStoneConstructionProperties.SetHydraulicLoadBp(make_unique<double>(hydraulicLoadBp));
-        naturalStoneConstructionProperties.SetHydraulicLoadCp(make_unique<double>(hydraulicLoadCp));
-        naturalStoneConstructionProperties.SetHydraulicLoadNp(make_unique<double>(hydraulicLoadNp));
-        naturalStoneConstructionProperties.SetHydraulicLoadAs(make_unique<double>(hydraulicLoadAs));
-        naturalStoneConstructionProperties.SetHydraulicLoadBs(make_unique<double>(hydraulicLoadBs));
-        naturalStoneConstructionProperties.SetHydraulicLoadCs(make_unique<double>(hydraulicLoadCs));
-        naturalStoneConstructionProperties.SetHydraulicLoadNs(make_unique<double>(hydraulicLoadNs));
-        naturalStoneConstructionProperties.SetUpperLimitLoadingAul(make_unique<double>(upperLimitLoadingAul));
-        naturalStoneConstructionProperties.SetUpperLimitLoadingBul(make_unique<double>(upperLimitLoadingBul));
-        naturalStoneConstructionProperties.SetUpperLimitLoadingCul(make_unique<double>(upperLimitLoadingCul));
-        naturalStoneConstructionProperties.SetLowerLimitLoadingAll(make_unique<double>(lowerLimitLoadingAll));
-        naturalStoneConstructionProperties.SetLowerLimitLoadingBll(make_unique<double>(lowerLimitLoadingBll));
-        naturalStoneConstructionProperties.SetLowerLimitLoadingCll(make_unique<double>(lowerLimitLoadingCll));
-        naturalStoneConstructionProperties.SetDistanceMaximumWaveElevationAsmax(make_unique<double>(distanceMaximumWaveElevationAsmax));
-        naturalStoneConstructionProperties.SetDistanceMaximumWaveElevationBsmax(make_unique<double>(distanceMaximumWaveElevationBsmax));
-        naturalStoneConstructionProperties.SetNormativeWidthOfWaveImpactAwi(make_unique<double>(normativeWidthOfWaveImpactAwi));
-        naturalStoneConstructionProperties.SetNormativeWidthOfWaveImpactBwi(make_unique<double>(normativeWidthOfWaveImpactBwi));
-        naturalStoneConstructionProperties.SetWaveAngleImpactBetamax(make_unique<double>(waveAngleImpactBetamax));
+        AsphaltRevetmentWaveImpactLocationConstructionProperties constructionProperties(
+            name, tanA, positionZ, topLayerType, failureTension, densityOfWater, soilElasticity, thicknessUpperLayer, elasticModulusUpperLayer);
+
+        constructionProperties.SetInitialDamage(make_unique<double>(initialDamage));
+        constructionProperties.SetFailureNumber(make_unique<double>(failureNumber));
+        constructionProperties.SetThicknessSubLayer(make_unique<double>(thicknessSubLayer));
+        constructionProperties.SetElasticModulusSubLayer(make_unique<double>(elasticModulusSubLayer));
+        constructionProperties.SetAverageNumberOfWavesCtm(make_unique<double>(averageNumberOfWavesCtm));
+        constructionProperties.SetFatigueAlpha(make_unique<double>(fatigueAlpha));
+        constructionProperties.SetFatigueBeta(make_unique<double>(fatigueBeta));
+        constructionProperties.SetImpactNumberC(make_unique<double>(impactNumberC));
+        constructionProperties.SetStiffnessRelationNu(make_unique<double>(stiffnessRelationNu));
+        constructionProperties.SetWidthFactors(make_unique<vector<tuple<double, double>>>(widthFactors));
+        constructionProperties.SetDepthFactors(make_unique<vector<tuple<double, double>>>(depthFactors));
+        constructionProperties.SetImpactFactors(make_unique<vector<tuple<double, double>>>(impactFactors));
 
         RevetmentCalculationInputBuilder builder;
-        builder.AddNaturalStoneLocation(naturalStoneConstructionProperties);
+        builder.AddAsphaltWaveImpactLocation(constructionProperties);
 
         // When
         const auto calculationInput = builder.Build();
@@ -241,52 +241,47 @@ namespace DiKErnel::Integration::Test
         const auto& actualLocationDependentInputItems = calculationInput->GetLocationDependentInputItems();
         ASSERT_EQ(1, actualLocationDependentInputItems.size());
 
-        const auto* locationDependentInput = dynamic_cast<NaturalStoneRevetmentLocationDependentInput*>(
+        const auto* locationDependentInput = dynamic_cast<AsphaltRevetmentWaveImpactLocationDependentInput*>(
             &actualLocationDependentInputItems[0].get());
         ASSERT_TRUE(locationDependentInput != nullptr);
 
         LocationDependentInputAssertHelper::AssertDamageProperties(initialDamage, failureNumber, *locationDependentInput);
 
-        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertGeneralProperties(
-            name, tanA, positionZ, relativeDensity, thicknessTopLayer, *locationDependentInput);
+        AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertGeneralProperties(
+            name, tanA, positionZ, failureTension, densityOfWater, soilElasticity, averageNumberOfWavesCtm, impactNumberC, stiffnessRelationNu,
+            *locationDependentInput);
 
-        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertHydraulicLoads(
-            hydraulicLoadAp, hydraulicLoadBp, hydraulicLoadCp, hydraulicLoadNp, hydraulicLoadAs, hydraulicLoadBs,
-            hydraulicLoadCs, hydraulicLoadNs, hydraulicLoadXib, locationDependentInput->GetHydraulicLoads());
+        AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertLayer(thicknessUpperLayer, elasticModulusUpperLayer,
+                                                                                  locationDependentInput->GetUpperLayer());
 
-        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertUpperLimitLoading(
-            upperLimitLoadingAul, upperLimitLoadingBul, upperLimitLoadingCul, locationDependentInput->GetUpperLimitLoading());
+        AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertLayer(thicknessSubLayer, elasticModulusSubLayer,
+                                                                                  locationDependentInput->GetSubLayer());
 
-        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertLowerLimitLoading(
-            lowerLimitLoadingAll, lowerLimitLoadingBll, lowerLimitLoadingCll, locationDependentInput->GetLowerLimitLoading());
+        AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertFatigue(fatigueAlpha, fatigueBeta,
+                                                                                    locationDependentInput->GetFatigue());
 
-        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertDistanceMaximumWaveElevation(
-            distanceMaximumWaveElevationAsmax, distanceMaximumWaveElevationBsmax,
-            locationDependentInput->GetDistanceMaximumWaveElevation());
-
-        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertNormativeWidthOfWaveImpact(
-            normativeWidthOfWaveImpactAwi, normativeWidthOfWaveImpactBwi,
-            locationDependentInput->GetNormativeWidthOfWaveImpact());
-
-        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertWaveAngleImpact(
-            waveAngleImpactBetamax, locationDependentInput->GetWaveAngleImpact());
+        AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertFactors(widthFactors, depthFactors, impactFactors,
+                                                                                    *locationDependentInput);
     }
 
-    TEST_F(RevetmentCalculationInputBuilderTest, GivenBuilderWithNotFullyConfiguredNaturalStoneLocationAdded_WhenBuild_ThenReturnsCalculationInput)
+    TEST_F(RevetmentCalculationInputBuilderTest,
+           GivenBuilderWithNotFullyConfiguredAsphaltWaveImpactLocationAdded_WhenBuild_ThenReturnsCalculationInput)
     {
-        // Given
-        const auto topLayerType = NaturalStoneRevetmentTopLayerType::NordicStone;
+        const auto topLayerType = AsphaltRevetmentTopLayerType::WAB;
         const string name = "Test";
         const auto tanA = 0.1;
         const auto positionZ = 0.2;
-        const auto thicknessTopLayer = 0.3;
-        const auto relativeDensity = 0.4;
+        const auto failureTension = 0.3;
+        const auto densityOfWater = 0.4;
+        const auto soilElasticity = 0.5;
+        const auto thicknessUpperLayer = 0.6;
+        const auto elasticModulusUpperLayer = 0.7;
 
-        const NaturalStoneRevetmentLocationConstructionProperties naturalStoneConstructionProperties(
-            name, tanA, positionZ, topLayerType, thicknessTopLayer, relativeDensity);
+        AsphaltRevetmentWaveImpactLocationConstructionProperties constructionProperties(
+            name, tanA, positionZ, topLayerType, failureTension, densityOfWater, soilElasticity, thicknessUpperLayer, elasticModulusUpperLayer);
 
         RevetmentCalculationInputBuilder builder;
-        builder.AddNaturalStoneLocation(naturalStoneConstructionProperties);
+        builder.AddAsphaltWaveImpactLocation(constructionProperties);
 
         // When
         const auto calculationInput = builder.Build();
@@ -297,27 +292,81 @@ namespace DiKErnel::Integration::Test
         const auto& actualLocationDependentInputItems = calculationInput->GetLocationDependentInputItems();
         ASSERT_EQ(1, actualLocationDependentInputItems.size());
 
-        const auto* locationDependentInput = dynamic_cast<NaturalStoneRevetmentLocationDependentInput*>(
+        const auto* locationDependentInput = dynamic_cast<AsphaltRevetmentWaveImpactLocationDependentInput*>(
             &actualLocationDependentInputItems[0].get());
         ASSERT_TRUE(locationDependentInput != nullptr);
 
-        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertGeneralProperties(
-            name, tanA, positionZ, relativeDensity, thicknessTopLayer, *locationDependentInput);
+        LocationDependentInputAssertHelper::AssertDamageProperties(0, 1, *locationDependentInput);
 
-        LocationDependentInputAssertHelper::AssertDamageProperties(0.0, 1.0, *locationDependentInput);
-        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertHydraulicLoads(
-            4, 0, 0, -0.9, 0.8, 0, 0, 0.6, 2.9, locationDependentInput->GetHydraulicLoads());
-        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertUpperLimitLoading(
-            0.1, 0.6, 4, locationDependentInput->GetUpperLimitLoading());
-        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertLowerLimitLoading(
-            0.1, 0.2, 4, locationDependentInput->GetLowerLimitLoading());
-        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertDistanceMaximumWaveElevation(
-            0.42, 0.9, locationDependentInput->GetDistanceMaximumWaveElevation());
-        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertNormativeWidthOfWaveImpact(
-            0.96, 0.11, locationDependentInput->GetNormativeWidthOfWaveImpact());
-        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertWaveAngleImpact(
-            78, locationDependentInput->GetWaveAngleImpact());
+        AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertGeneralProperties(
+            name, tanA, positionZ, failureTension, densityOfWater, soilElasticity, 1, 1, 0.35,
+            *locationDependentInput);
+
+        AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertLayer(thicknessUpperLayer, elasticModulusUpperLayer,
+                                                                                  locationDependentInput->GetUpperLayer());
+
+        AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertLayer(0, elasticModulusUpperLayer,
+                                                                                  locationDependentInput->GetSubLayer());
+
+        AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertFatigue(0.42, 4.76,
+                                                                                    locationDependentInput->GetFatigue());
+
+        const auto expectedWidthFactors = vector<tuple<double, double>>
+        {
+            tuple<double, double>(0.1, 0.0392),
+            tuple<double, double>(0.2, 0.0738),
+            tuple<double, double>(0.3, 0.1002),
+            tuple<double, double>(0.4, 0.1162),
+            tuple<double, double>(0.5, 0.1213),
+            tuple<double, double>(0.6, 0.1168),
+            tuple<double, double>(0.7, 0.1051),
+            tuple<double, double>(0.8, 0.0890),
+            tuple<double, double>(0.9, 0.0712),
+            tuple<double, double>(1.0, 0.0541),
+            tuple<double, double>(1.1, 0.0391),
+            tuple<double, double>(1.2, 0.0269),
+            tuple<double, double>(1.3, 0.0216),
+            tuple<double, double>(1.4, 0.0150),
+            tuple<double, double>(1.5, 0.0105)
+        };
+
+        const auto expectedDepthFactors = vector<tuple<double, double>>
+        {
+            tuple<double, double>(-1, 0.0244),
+            tuple<double, double>(-0.875, 0.0544),
+            tuple<double, double>(-0.750, 0.0938),
+            tuple<double, double>(-0.625, 0.1407),
+            tuple<double, double>(-0.500, 0.1801),
+            tuple<double, double>(-0.375, 0.1632),
+            tuple<double, double>(-0.250, 0.1426),
+            tuple<double, double>(-0.125, 0.0994),
+            tuple<double, double>(0, 0.06),
+            tuple<double, double>(0.125, 0.0244),
+            tuple<double, double>(0.250, 0.0169)
+        };
+
+        const auto expectedImpactFactors = vector<tuple<double, double>>
+        {
+            tuple<double, double>(2, 0.039),
+            tuple<double, double>(2.4, 0.1),
+            tuple<double, double>(2.8, 0.18),
+            tuple<double, double>(3.2, 0.235),
+            tuple<double, double>(3.6, 0.2),
+            tuple<double, double>(4.0, 0.13),
+            tuple<double, double>(4.4, 0.08),
+            tuple<double, double>(4.8, 0.02),
+            tuple<double, double>(5.2, 0.01),
+            tuple<double, double>(5.6, 0.005),
+            tuple<double, double>(6, 0.001)
+        };
+
+        AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertFactors(expectedWidthFactors, expectedDepthFactors,
+                                                                                    expectedImpactFactors, *locationDependentInput);
     }
+
+    #pragma endregion
+
+    #pragma region Grass wave impact
 
     TEST_F(RevetmentCalculationInputBuilderTest,
            GivenBuilder_WhenAddingGrassWaveImpactLocationWithInvalidTopLayerType_ThenThrowsRevetmentCalculationInputBuilderException)
@@ -502,6 +551,10 @@ namespace DiKErnel::Integration::Test
         GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertLowerLimitLoading(
             0.5, *locationDependentInput);
     }
+
+    #pragma endregion
+
+    #pragma region Grass wave runup Rayleigh
 
     TEST_F(RevetmentCalculationInputBuilderTest,
            GivenBuilder_WhenAddingGrassWaveRunupRayleighLocationWithInvalidTopLayerType_ThenThrowsRevetmentCalculationInputBuilderException)
@@ -701,70 +754,80 @@ namespace DiKErnel::Integration::Test
             4.3, 1.1, *locationDependentInput);
     }
 
+    #pragma endregion
+
+    #pragma region Natural stone
+
     TEST_F(RevetmentCalculationInputBuilderTest,
-           GivenBuilder_WhenAddingAsphaltWaveImpactLocationWithInvalidTopLayerType_ThenThrowsRevetmentCalculationInputBuilderException)
+           GivenBuilder_WhenAddingNaturalStoneLocationWithInvalidTopLayerType_ThenThrowsRevetmentCalculationInputBuilderException)
     {
         // Given & When
-        const auto action = &
-                RevetmentCalculationInputBuilderTest::CreateBuilderAndAddAsphaltRevetmentWaveImpactLocationWithInvalidTopLayerType;
+        const auto action = &RevetmentCalculationInputBuilderTest::CreateBuilderAndAddNaturalStoneRevetmentLocationWithInvalidTopLayerType;
 
         // Then
         AssertHelper::AssertThrowsWithMessageAndInnerException<RevetmentCalculationInputBuilderException, DefaultsFactoryException>(
             action, "Could not create instance.", "Couldn't create defaults for the given top layer type.");
     }
 
-    TEST_F(RevetmentCalculationInputBuilderTest,
-           GivenBuilderWithFullyConfiguredAsphaltWaveImpactLocationAdded_WhenBuild_ThenReturnsCalculationInput)
+    TEST_F(RevetmentCalculationInputBuilderTest, GivenBuilderWithFullyConfiguredNaturalStoneLocationAdded_WhenBuild_ThenReturnsCalculationInput)
     {
-        const auto topLayerType = AsphaltRevetmentTopLayerType::WAB;
+        // Given
+        const auto topLayerType = NaturalStoneRevetmentTopLayerType::NordicStone;
         const string name = "Test";
         const auto tanA = 0.1;
         const auto positionZ = 0.2;
-        const auto failureTension = 0.3;
-        const auto densityOfWater = 0.4;
-        const auto soilElasticity = 0.5;
-        const auto thicknessUpperLayer = 0.6;
-        const auto elasticModulusUpperLayer = 0.7;
-        const auto initialDamage = 0.8;
-        const auto failureNumber = 0.9;
-        const auto thicknessSubLayer = 1.0;
-        const auto elasticModulusSubLayer = 1.1;
-        const auto averageNumberOfWavesCtm = 1.2;
-        const auto fatigueAlpha = 1.3;
-        const auto fatigueBeta = 1.4;
-        const auto impactNumberC = 1.5;
-        const auto stiffnessRelationNu = 1.6;
-        const auto widthFactors = vector<tuple<double, double>>
-        {
-            tuple<double, double>(1.7, 1.8)
-        };
-        const auto depthFactors = vector<tuple<double, double>>
-        {
-            tuple<double, double>(1.9, 2.0)
-        };
-        const auto impactFactors = vector<tuple<double, double>>
-        {
-            tuple<double, double>(2.1, 2.2)
-        };
+        const auto thicknessTopLayer = 0.3;
+        const auto relativeDensity = 0.4;
+        const auto initialDamage = 0.5;
+        const auto failureNumber = 0.6;
+        const auto hydraulicLoadXib = 0.7;
+        const auto hydraulicLoadAp = 0.8;
+        const auto hydraulicLoadBp = 0.9;
+        const auto hydraulicLoadCp = 1.0;
+        const auto hydraulicLoadNp = 1.1;
+        const auto hydraulicLoadAs = 1.2;
+        const auto hydraulicLoadBs = 1.3;
+        const auto hydraulicLoadCs = 1.4;
+        const auto hydraulicLoadNs = 1.5;
+        const auto upperLimitLoadingAul = 1.6;
+        const auto upperLimitLoadingBul = 1.7;
+        const auto upperLimitLoadingCul = 1.8;
+        const auto lowerLimitLoadingAll = 1.9;
+        const auto lowerLimitLoadingBll = 2.0;
+        const auto lowerLimitLoadingCll = 2.1;
+        const auto distanceMaximumWaveElevationAsmax = 2.2;
+        const auto distanceMaximumWaveElevationBsmax = 2.3;
+        const auto normativeWidthOfWaveImpactAwi = 2.4;
+        const auto normativeWidthOfWaveImpactBwi = 2.5;
+        const auto waveAngleImpactBetamax = 2.6;
 
-        AsphaltRevetmentWaveImpactLocationConstructionProperties constructionProperties(
-            name, tanA, positionZ, topLayerType, failureTension, densityOfWater, soilElasticity, thicknessUpperLayer, elasticModulusUpperLayer);
-
-        constructionProperties.SetInitialDamage(make_unique<double>(initialDamage));
-        constructionProperties.SetFailureNumber(make_unique<double>(failureNumber));
-        constructionProperties.SetThicknessSubLayer(make_unique<double>(thicknessSubLayer));
-        constructionProperties.SetElasticModulusSubLayer(make_unique<double>(elasticModulusSubLayer));
-        constructionProperties.SetAverageNumberOfWavesCtm(make_unique<double>(averageNumberOfWavesCtm));
-        constructionProperties.SetFatigueAlpha(make_unique<double>(fatigueAlpha));
-        constructionProperties.SetFatigueBeta(make_unique<double>(fatigueBeta));
-        constructionProperties.SetImpactNumberC(make_unique<double>(impactNumberC));
-        constructionProperties.SetStiffnessRelationNu(make_unique<double>(stiffnessRelationNu));
-        constructionProperties.SetWidthFactors(make_unique<vector<tuple<double, double>>>(widthFactors));
-        constructionProperties.SetDepthFactors(make_unique<vector<tuple<double, double>>>(depthFactors));
-        constructionProperties.SetImpactFactors(make_unique<vector<tuple<double, double>>>(impactFactors));
+        NaturalStoneRevetmentLocationConstructionProperties naturalStoneConstructionProperties(
+            name, tanA, positionZ, topLayerType, thicknessTopLayer, relativeDensity);
+        naturalStoneConstructionProperties.SetInitialDamage(make_unique<double>(initialDamage));
+        naturalStoneConstructionProperties.SetFailureNumber(make_unique<double>(failureNumber));
+        naturalStoneConstructionProperties.SetHydraulicLoadXib(make_unique<double>(hydraulicLoadXib));
+        naturalStoneConstructionProperties.SetHydraulicLoadAp(make_unique<double>(hydraulicLoadAp));
+        naturalStoneConstructionProperties.SetHydraulicLoadBp(make_unique<double>(hydraulicLoadBp));
+        naturalStoneConstructionProperties.SetHydraulicLoadCp(make_unique<double>(hydraulicLoadCp));
+        naturalStoneConstructionProperties.SetHydraulicLoadNp(make_unique<double>(hydraulicLoadNp));
+        naturalStoneConstructionProperties.SetHydraulicLoadAs(make_unique<double>(hydraulicLoadAs));
+        naturalStoneConstructionProperties.SetHydraulicLoadBs(make_unique<double>(hydraulicLoadBs));
+        naturalStoneConstructionProperties.SetHydraulicLoadCs(make_unique<double>(hydraulicLoadCs));
+        naturalStoneConstructionProperties.SetHydraulicLoadNs(make_unique<double>(hydraulicLoadNs));
+        naturalStoneConstructionProperties.SetUpperLimitLoadingAul(make_unique<double>(upperLimitLoadingAul));
+        naturalStoneConstructionProperties.SetUpperLimitLoadingBul(make_unique<double>(upperLimitLoadingBul));
+        naturalStoneConstructionProperties.SetUpperLimitLoadingCul(make_unique<double>(upperLimitLoadingCul));
+        naturalStoneConstructionProperties.SetLowerLimitLoadingAll(make_unique<double>(lowerLimitLoadingAll));
+        naturalStoneConstructionProperties.SetLowerLimitLoadingBll(make_unique<double>(lowerLimitLoadingBll));
+        naturalStoneConstructionProperties.SetLowerLimitLoadingCll(make_unique<double>(lowerLimitLoadingCll));
+        naturalStoneConstructionProperties.SetDistanceMaximumWaveElevationAsmax(make_unique<double>(distanceMaximumWaveElevationAsmax));
+        naturalStoneConstructionProperties.SetDistanceMaximumWaveElevationBsmax(make_unique<double>(distanceMaximumWaveElevationBsmax));
+        naturalStoneConstructionProperties.SetNormativeWidthOfWaveImpactAwi(make_unique<double>(normativeWidthOfWaveImpactAwi));
+        naturalStoneConstructionProperties.SetNormativeWidthOfWaveImpactBwi(make_unique<double>(normativeWidthOfWaveImpactBwi));
+        naturalStoneConstructionProperties.SetWaveAngleImpactBetamax(make_unique<double>(waveAngleImpactBetamax));
 
         RevetmentCalculationInputBuilder builder;
-        builder.AddAsphaltWaveImpactLocation(constructionProperties);
+        builder.AddNaturalStoneLocation(naturalStoneConstructionProperties);
 
         // When
         const auto calculationInput = builder.Build();
@@ -775,47 +838,52 @@ namespace DiKErnel::Integration::Test
         const auto& actualLocationDependentInputItems = calculationInput->GetLocationDependentInputItems();
         ASSERT_EQ(1, actualLocationDependentInputItems.size());
 
-        const auto* locationDependentInput = dynamic_cast<AsphaltRevetmentWaveImpactLocationDependentInput*>(
+        const auto* locationDependentInput = dynamic_cast<NaturalStoneRevetmentLocationDependentInput*>(
             &actualLocationDependentInputItems[0].get());
         ASSERT_TRUE(locationDependentInput != nullptr);
 
         LocationDependentInputAssertHelper::AssertDamageProperties(initialDamage, failureNumber, *locationDependentInput);
 
-        AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertGeneralProperties(
-            name, tanA, positionZ, failureTension, densityOfWater, soilElasticity, averageNumberOfWavesCtm, impactNumberC, stiffnessRelationNu,
-            *locationDependentInput);
+        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertGeneralProperties(
+            name, tanA, positionZ, relativeDensity, thicknessTopLayer, *locationDependentInput);
 
-        AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertLayer(thicknessUpperLayer, elasticModulusUpperLayer,
-                                                                                  locationDependentInput->GetUpperLayer());
+        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertHydraulicLoads(
+            hydraulicLoadAp, hydraulicLoadBp, hydraulicLoadCp, hydraulicLoadNp, hydraulicLoadAs, hydraulicLoadBs,
+            hydraulicLoadCs, hydraulicLoadNs, hydraulicLoadXib, locationDependentInput->GetHydraulicLoads());
 
-        AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertLayer(thicknessSubLayer, elasticModulusSubLayer,
-                                                                                  locationDependentInput->GetSubLayer());
+        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertUpperLimitLoading(
+            upperLimitLoadingAul, upperLimitLoadingBul, upperLimitLoadingCul, locationDependentInput->GetUpperLimitLoading());
 
-        AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertFatigue(fatigueAlpha, fatigueBeta,
-                                                                                    locationDependentInput->GetFatigue());
+        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertLowerLimitLoading(
+            lowerLimitLoadingAll, lowerLimitLoadingBll, lowerLimitLoadingCll, locationDependentInput->GetLowerLimitLoading());
 
-        AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertFactors(widthFactors, depthFactors, impactFactors,
-                                                                                    *locationDependentInput);
+        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertDistanceMaximumWaveElevation(
+            distanceMaximumWaveElevationAsmax, distanceMaximumWaveElevationBsmax,
+            locationDependentInput->GetDistanceMaximumWaveElevation());
+
+        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertNormativeWidthOfWaveImpact(
+            normativeWidthOfWaveImpactAwi, normativeWidthOfWaveImpactBwi,
+            locationDependentInput->GetNormativeWidthOfWaveImpact());
+
+        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertWaveAngleImpact(
+            waveAngleImpactBetamax, locationDependentInput->GetWaveAngleImpact());
     }
 
-    TEST_F(RevetmentCalculationInputBuilderTest,
-           GivenBuilderWithNotFullyConfiguredAsphaltWaveImpactLocationAdded_WhenBuild_ThenReturnsCalculationInput)
+    TEST_F(RevetmentCalculationInputBuilderTest, GivenBuilderWithNotFullyConfiguredNaturalStoneLocationAdded_WhenBuild_ThenReturnsCalculationInput)
     {
-        const auto topLayerType = AsphaltRevetmentTopLayerType::WAB;
+        // Given
+        const auto topLayerType = NaturalStoneRevetmentTopLayerType::NordicStone;
         const string name = "Test";
         const auto tanA = 0.1;
         const auto positionZ = 0.2;
-        const auto failureTension = 0.3;
-        const auto densityOfWater = 0.4;
-        const auto soilElasticity = 0.5;
-        const auto thicknessUpperLayer = 0.6;
-        const auto elasticModulusUpperLayer = 0.7;
+        const auto thicknessTopLayer = 0.3;
+        const auto relativeDensity = 0.4;
 
-        AsphaltRevetmentWaveImpactLocationConstructionProperties constructionProperties(
-            name, tanA, positionZ, topLayerType, failureTension, densityOfWater, soilElasticity, thicknessUpperLayer, elasticModulusUpperLayer);
+        const NaturalStoneRevetmentLocationConstructionProperties naturalStoneConstructionProperties(
+            name, tanA, positionZ, topLayerType, thicknessTopLayer, relativeDensity);
 
         RevetmentCalculationInputBuilder builder;
-        builder.AddAsphaltWaveImpactLocation(constructionProperties);
+        builder.AddNaturalStoneLocation(naturalStoneConstructionProperties);
 
         // When
         const auto calculationInput = builder.Build();
@@ -826,75 +894,27 @@ namespace DiKErnel::Integration::Test
         const auto& actualLocationDependentInputItems = calculationInput->GetLocationDependentInputItems();
         ASSERT_EQ(1, actualLocationDependentInputItems.size());
 
-        const auto* locationDependentInput = dynamic_cast<AsphaltRevetmentWaveImpactLocationDependentInput*>(
+        const auto* locationDependentInput = dynamic_cast<NaturalStoneRevetmentLocationDependentInput*>(
             &actualLocationDependentInputItems[0].get());
         ASSERT_TRUE(locationDependentInput != nullptr);
 
-        LocationDependentInputAssertHelper::AssertDamageProperties(0, 1, *locationDependentInput);
+        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertGeneralProperties(
+            name, tanA, positionZ, relativeDensity, thicknessTopLayer, *locationDependentInput);
 
-        AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertGeneralProperties(
-            name, tanA, positionZ, failureTension, densityOfWater, soilElasticity, 1, 1, 0.35,
-            *locationDependentInput);
-
-        AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertLayer(thicknessUpperLayer, elasticModulusUpperLayer,
-                                                                                  locationDependentInput->GetUpperLayer());
-
-        AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertLayer(0, elasticModulusUpperLayer,
-                                                                                  locationDependentInput->GetSubLayer());
-
-        AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertFatigue(0.42, 4.76,
-                                                                                    locationDependentInput->GetFatigue());
-
-        const auto expectedWidthFactors = vector<tuple<double, double>>
-        {
-            tuple<double, double>(0.1, 0.0392),
-            tuple<double, double>(0.2, 0.0738),
-            tuple<double, double>(0.3, 0.1002),
-            tuple<double, double>(0.4, 0.1162),
-            tuple<double, double>(0.5, 0.1213),
-            tuple<double, double>(0.6, 0.1168),
-            tuple<double, double>(0.7, 0.1051),
-            tuple<double, double>(0.8, 0.0890),
-            tuple<double, double>(0.9, 0.0712),
-            tuple<double, double>(1.0, 0.0541),
-            tuple<double, double>(1.1, 0.0391),
-            tuple<double, double>(1.2, 0.0269),
-            tuple<double, double>(1.3, 0.0216),
-            tuple<double, double>(1.4, 0.0150),
-            tuple<double, double>(1.5, 0.0105)
-        };
-
-        const auto expectedDepthFactors = vector<tuple<double, double>>
-        {
-            tuple<double, double>(-1, 0.0244),
-            tuple<double, double>(-0.875, 0.0544),
-            tuple<double, double>(-0.750, 0.0938),
-            tuple<double, double>(-0.625, 0.1407),
-            tuple<double, double>(-0.500, 0.1801),
-            tuple<double, double>(-0.375, 0.1632),
-            tuple<double, double>(-0.250, 0.1426),
-            tuple<double, double>(-0.125, 0.0994),
-            tuple<double, double>(0, 0.06),
-            tuple<double, double>(0.125, 0.0244),
-            tuple<double, double>(0.250, 0.0169)
-        };
-
-        const auto expectedImpactFactors = vector<tuple<double, double>>
-        {
-            tuple<double, double>(2, 0.039),
-            tuple<double, double>(2.4, 0.1),
-            tuple<double, double>(2.8, 0.18),
-            tuple<double, double>(3.2, 0.235),
-            tuple<double, double>(3.6, 0.2),
-            tuple<double, double>(4.0, 0.13),
-            tuple<double, double>(4.4, 0.08),
-            tuple<double, double>(4.8, 0.02),
-            tuple<double, double>(5.2, 0.01),
-            tuple<double, double>(5.6, 0.005),
-            tuple<double, double>(6, 0.001)
-        };
-
-        AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertFactors(expectedWidthFactors, expectedDepthFactors,
-                                                                                    expectedImpactFactors, *locationDependentInput);
+        LocationDependentInputAssertHelper::AssertDamageProperties(0.0, 1.0, *locationDependentInput);
+        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertHydraulicLoads(
+            4, 0, 0, -0.9, 0.8, 0, 0, 0.6, 2.9, locationDependentInput->GetHydraulicLoads());
+        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertUpperLimitLoading(
+            0.1, 0.6, 4, locationDependentInput->GetUpperLimitLoading());
+        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertLowerLimitLoading(
+            0.1, 0.2, 4, locationDependentInput->GetLowerLimitLoading());
+        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertDistanceMaximumWaveElevation(
+            0.42, 0.9, locationDependentInput->GetDistanceMaximumWaveElevation());
+        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertNormativeWidthOfWaveImpact(
+            0.96, 0.11, locationDependentInput->GetNormativeWidthOfWaveImpact());
+        NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertWaveAngleImpact(
+            78, locationDependentInput->GetWaveAngleImpact());
     }
+
+    #pragma endregion
 }

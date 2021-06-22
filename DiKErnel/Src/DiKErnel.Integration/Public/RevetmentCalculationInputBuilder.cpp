@@ -62,69 +62,53 @@ namespace DiKErnel::Integration
         }
     }
 
-    void RevetmentCalculationInputBuilder::AddNaturalStoneLocation(
-        const NaturalStoneRevetmentLocationConstructionProperties& constructionProperties)
+    void RevetmentCalculationInputBuilder::AddAsphaltWaveImpactLocation(
+        const AsphaltRevetmentWaveImpactLocationConstructionProperties& constructionProperties)
     {
-        unique_ptr<INaturalStoneRevetmentDefaults> defaults;
+        unique_ptr<IAsphaltRevetmentWaveImpactDefaults> defaults;
 
         try
         {
-            defaults = NaturalStoneRevetmentDefaultsFactory::Create(constructionProperties.GetTopLayerType());
+            defaults = AsphaltRevetmentWaveImpactDefaultsFactory::Create(
+                constructionProperties.GetTopLayerType());
         }
         catch (const DefaultsFactoryException&)
         {
             ThrowWithMessage();
         }
 
-        auto hydraulicLoads = make_unique<NaturalStoneRevetmentHydraulicLoads>(
-            GetValue(constructionProperties.GetHydraulicLoadAp(), defaults->GetHydraulicLoadAp()),
-            GetValue(constructionProperties.GetHydraulicLoadBp(), defaults->GetHydraulicLoadBp()),
-            GetValue(constructionProperties.GetHydraulicLoadCp(), defaults->GetHydraulicLoadCp()),
-            GetValue(constructionProperties.GetHydraulicLoadNp(), defaults->GetHydraulicLoadNp()),
-            GetValue(constructionProperties.GetHydraulicLoadAs(), defaults->GetHydraulicLoadAs()),
-            GetValue(constructionProperties.GetHydraulicLoadBs(), defaults->GetHydraulicLoadBs()),
-            GetValue(constructionProperties.GetHydraulicLoadCs(), defaults->GetHydraulicLoadCs()),
-            GetValue(constructionProperties.GetHydraulicLoadNs(), defaults->GetHydraulicLoadNs()),
-            GetValue(constructionProperties.GetHydraulicLoadXib(), defaults->GetHydraulicLoadXib()));
+        auto elasticModulusUpperLayer = constructionProperties.GetElasticModulusUpperLayer();
+        auto upperLayer = make_unique<AsphaltRevetmentWaveImpactLayer>(
+            constructionProperties.GetThicknessUpperLayer(),
+            elasticModulusUpperLayer);
 
-        auto upperLimitLoading = make_unique<NaturalStoneRevetmentUpperLimitLoading>(
-            GetValue(constructionProperties.GetUpperLimitLoadingAul(), defaults->GetUpperLimitLoadingAul()),
-            GetValue(constructionProperties.GetUpperLimitLoadingBul(), defaults->GetUpperLimitLoadingBul()),
-            GetValue(constructionProperties.GetUpperLimitLoadingCul(), defaults->GetUpperLimitLoadingCul()));
+        auto subLayer = make_unique<AsphaltRevetmentWaveImpactLayer>(
+            GetValue(constructionProperties.GetThicknessSubLayer(), defaults->GetSubLayerThickness()),
+            GetValue(constructionProperties.GetElasticModulusSubLayer(), elasticModulusUpperLayer));
 
-        auto lowerLimitLoading = make_unique<NaturalStoneRevetmentLowerLimitLoading>(
-            GetValue(constructionProperties.GetLowerLimitLoadingAll(), defaults->GetLowerLimitLoadingAll()),
-            GetValue(constructionProperties.GetLowerLimitLoadingBll(), defaults->GetLowerLimitLoadingBll()),
-            GetValue(constructionProperties.GetLowerLimitLoadingCll(), defaults->GetLowerLimitLoadingCll()));
-
-        auto distanceMaximumWaveElevation = make_unique<
-            NaturalStoneRevetmentDistanceMaximumWaveElevation>(
-            GetValue(constructionProperties.GetDistanceMaximumWaveElevationAsmax(), defaults->GetDistanceMaximumWaveElevationAsmax()),
-            GetValue(constructionProperties.GetDistanceMaximumWaveElevationBsmax(), defaults->GetDistanceMaximumWaveElevationBsmax()));
-
-        auto normativeWidthOfWaveImpact = make_unique<
-            NaturalStoneRevetmentNormativeWidthOfWaveImpact>(
-            GetValue(constructionProperties.GetNormativeWidthOfWaveImpactAwi(), defaults->GetNormativeWidthOfWaveImpactAwi()),
-            GetValue(constructionProperties.GetNormativeWidthOfWaveImpactBwi(), defaults->GetNormativeWidthOfWaveImpactBwi()));
-
-        auto waveAngleImpact = make_unique<NaturalStoneRevetmentWaveAngleImpact>(
-            GetValue(constructionProperties.GetWaveAngleImpactBetamax(), defaults->GetWaveAngleImpactBetamax()));
+        auto fatigue = make_unique<AsphaltRevetmentWaveImpactFatigue>(
+            GetValue(constructionProperties.GetFatigueAlpha(), defaults->GetFatigueAlpha()),
+            GetValue(constructionProperties.GetFatigueBeta(), defaults->GetFatigueBeta()));
 
         _locationDependentInputItems.push_back(
-            make_unique<NaturalStoneRevetmentLocationDependentInput>(
+            make_unique<AsphaltRevetmentWaveImpactLocationDependentInput>(
                 constructionProperties.GetName(),
                 GetValue(constructionProperties.GetInitialDamage(), RevetmentDefaults::INITIAL_DAMAGE),
                 GetValue(constructionProperties.GetFailureNumber(), RevetmentDefaults::FAILURE_NUMBER),
                 constructionProperties.GetTanA(),
                 constructionProperties.GetPositionZ(),
-                constructionProperties.GetRelativeDensity(),
-                constructionProperties.GetThicknessTopLayer(),
-                move(hydraulicLoads),
-                move(upperLimitLoading),
-                move(lowerLimitLoading),
-                move(distanceMaximumWaveElevation),
-                move(normativeWidthOfWaveImpact),
-                move(waveAngleImpact)));
+                constructionProperties.GetFailureTension(),
+                constructionProperties.GetDensityOfWater(),
+                constructionProperties.GetSoilElasticity(),
+                move(upperLayer),
+                move(subLayer),
+                GetValue(constructionProperties.GetAverageNumberOfWavesCtm(), defaults->GetAverageNumberOfWavesCtm()),
+                move(fatigue),
+                GetValue(constructionProperties.GetImpactNumberC(), defaults->GetImpactNumberC()),
+                GetValue(constructionProperties.GetStiffnessRelationNu(), defaults->GetStiffnessRelationNu()),
+                GetValue(constructionProperties.GetWidthFactors(), defaults->GetWidthFactors()),
+                GetValue(constructionProperties.GetDepthFactors(), defaults->GetDepthFactors()),
+                GetValue(constructionProperties.GetImpactFactors(), defaults->GetImpactFactors())));
     }
 
     void RevetmentCalculationInputBuilder::AddGrassWaveImpactLocation(
@@ -208,53 +192,69 @@ namespace DiKErnel::Integration
                 GetValue(constructionProperties.GetFrontVelocityCu(), defaults->GetFrontVelocityCu())));
     }
 
-    void RevetmentCalculationInputBuilder::AddAsphaltWaveImpactLocation(
-        const AsphaltRevetmentWaveImpactLocationConstructionProperties& constructionProperties)
+    void RevetmentCalculationInputBuilder::AddNaturalStoneLocation(
+        const NaturalStoneRevetmentLocationConstructionProperties& constructionProperties)
     {
-        unique_ptr<IAsphaltRevetmentWaveImpactDefaults> defaults;
+        unique_ptr<INaturalStoneRevetmentDefaults> defaults;
 
         try
         {
-            defaults = AsphaltRevetmentWaveImpactDefaultsFactory::Create(
-                constructionProperties.GetTopLayerType());
+            defaults = NaturalStoneRevetmentDefaultsFactory::Create(constructionProperties.GetTopLayerType());
         }
         catch (const DefaultsFactoryException&)
         {
             ThrowWithMessage();
         }
 
-        auto elasticModulusUpperLayer = constructionProperties.GetElasticModulusUpperLayer();
-        auto upperLayer = make_unique<AsphaltRevetmentWaveImpactLayer>(
-            constructionProperties.GetThicknessUpperLayer(),
-            elasticModulusUpperLayer);
+        auto hydraulicLoads = make_unique<NaturalStoneRevetmentHydraulicLoads>(
+            GetValue(constructionProperties.GetHydraulicLoadAp(), defaults->GetHydraulicLoadAp()),
+            GetValue(constructionProperties.GetHydraulicLoadBp(), defaults->GetHydraulicLoadBp()),
+            GetValue(constructionProperties.GetHydraulicLoadCp(), defaults->GetHydraulicLoadCp()),
+            GetValue(constructionProperties.GetHydraulicLoadNp(), defaults->GetHydraulicLoadNp()),
+            GetValue(constructionProperties.GetHydraulicLoadAs(), defaults->GetHydraulicLoadAs()),
+            GetValue(constructionProperties.GetHydraulicLoadBs(), defaults->GetHydraulicLoadBs()),
+            GetValue(constructionProperties.GetHydraulicLoadCs(), defaults->GetHydraulicLoadCs()),
+            GetValue(constructionProperties.GetHydraulicLoadNs(), defaults->GetHydraulicLoadNs()),
+            GetValue(constructionProperties.GetHydraulicLoadXib(), defaults->GetHydraulicLoadXib()));
 
-        auto subLayer = make_unique<AsphaltRevetmentWaveImpactLayer>(
-            GetValue(constructionProperties.GetThicknessSubLayer(), defaults->GetSubLayerThickness()),
-            GetValue(constructionProperties.GetElasticModulusSubLayer(), elasticModulusUpperLayer));
+        auto upperLimitLoading = make_unique<NaturalStoneRevetmentUpperLimitLoading>(
+            GetValue(constructionProperties.GetUpperLimitLoadingAul(), defaults->GetUpperLimitLoadingAul()),
+            GetValue(constructionProperties.GetUpperLimitLoadingBul(), defaults->GetUpperLimitLoadingBul()),
+            GetValue(constructionProperties.GetUpperLimitLoadingCul(), defaults->GetUpperLimitLoadingCul()));
 
-        auto fatigue = make_unique<AsphaltRevetmentWaveImpactFatigue>(
-            GetValue(constructionProperties.GetFatigueAlpha(), defaults->GetFatigueAlpha()),
-            GetValue(constructionProperties.GetFatigueBeta(), defaults->GetFatigueBeta()));
+        auto lowerLimitLoading = make_unique<NaturalStoneRevetmentLowerLimitLoading>(
+            GetValue(constructionProperties.GetLowerLimitLoadingAll(), defaults->GetLowerLimitLoadingAll()),
+            GetValue(constructionProperties.GetLowerLimitLoadingBll(), defaults->GetLowerLimitLoadingBll()),
+            GetValue(constructionProperties.GetLowerLimitLoadingCll(), defaults->GetLowerLimitLoadingCll()));
+
+        auto distanceMaximumWaveElevation = make_unique<
+            NaturalStoneRevetmentDistanceMaximumWaveElevation>(
+                GetValue(constructionProperties.GetDistanceMaximumWaveElevationAsmax(), defaults->GetDistanceMaximumWaveElevationAsmax()),
+                GetValue(constructionProperties.GetDistanceMaximumWaveElevationBsmax(), defaults->GetDistanceMaximumWaveElevationBsmax()));
+
+        auto normativeWidthOfWaveImpact = make_unique<
+            NaturalStoneRevetmentNormativeWidthOfWaveImpact>(
+                GetValue(constructionProperties.GetNormativeWidthOfWaveImpactAwi(), defaults->GetNormativeWidthOfWaveImpactAwi()),
+                GetValue(constructionProperties.GetNormativeWidthOfWaveImpactBwi(), defaults->GetNormativeWidthOfWaveImpactBwi()));
+
+        auto waveAngleImpact = make_unique<NaturalStoneRevetmentWaveAngleImpact>(
+            GetValue(constructionProperties.GetWaveAngleImpactBetamax(), defaults->GetWaveAngleImpactBetamax()));
 
         _locationDependentInputItems.push_back(
-            make_unique<AsphaltRevetmentWaveImpactLocationDependentInput>(
+            make_unique<NaturalStoneRevetmentLocationDependentInput>(
                 constructionProperties.GetName(),
                 GetValue(constructionProperties.GetInitialDamage(), RevetmentDefaults::INITIAL_DAMAGE),
                 GetValue(constructionProperties.GetFailureNumber(), RevetmentDefaults::FAILURE_NUMBER),
                 constructionProperties.GetTanA(),
                 constructionProperties.GetPositionZ(),
-                constructionProperties.GetFailureTension(),
-                constructionProperties.GetDensityOfWater(),
-                constructionProperties.GetSoilElasticity(),
-                move(upperLayer),
-                move(subLayer),
-                GetValue(constructionProperties.GetAverageNumberOfWavesCtm(), defaults->GetAverageNumberOfWavesCtm()),
-                move(fatigue),
-                GetValue(constructionProperties.GetImpactNumberC(), defaults->GetImpactNumberC()),
-                GetValue(constructionProperties.GetStiffnessRelationNu(), defaults->GetStiffnessRelationNu()),
-                GetValue(constructionProperties.GetWidthFactors(), defaults->GetWidthFactors()),
-                GetValue(constructionProperties.GetDepthFactors(), defaults->GetDepthFactors()),
-                GetValue(constructionProperties.GetImpactFactors(), defaults->GetImpactFactors())));
+                constructionProperties.GetRelativeDensity(),
+                constructionProperties.GetThicknessTopLayer(),
+                move(hydraulicLoads),
+                move(upperLimitLoading),
+                move(lowerLimitLoading),
+                move(distanceMaximumWaveElevation),
+                move(normativeWidthOfWaveImpact),
+                move(waveAngleImpact)));
     }
 
     unique_ptr<ICalculationInput> RevetmentCalculationInputBuilder::Build()
