@@ -58,7 +58,7 @@ namespace DiKErnel::FunctionLibrary
             static double StiffnessRelation(
                 double computationalThickness,
                 double equivalentElasticModulus,
-                double soilElasticy,
+                double soilElasticity,
                 double stiffnessRelationNu
             );
 
@@ -97,7 +97,8 @@ namespace DiKErnel::FunctionLibrary
                 const std::vector<std::tuple<double, double>>& impactFactors,
                 double fatigueAlpha,
                 double fatigueBeta,
-                double impactNumberC);
+                double impactNumberC
+            );
 
             static double Fatigue(
                 double logFailureTension,
@@ -136,7 +137,15 @@ namespace DiKErnel::FunctionLibrary
                 double computationalThickness
             );
 
-            static double SpatialDistributionBendingStress();
+            static double SpatialDistributionBendingStress(
+                double stiffnessRelation,
+                double tanA,
+                double widthFactorValue,
+                double depthFactorValue,
+                double positionZ,
+                double waterLevel,
+                double waveHeightHm0
+            );
 
             static double RelativeWidthWaveImpact(
                 double stiffnessRelation,
@@ -150,6 +159,7 @@ namespace DiKErnel::FunctionLibrary
                 double slopeAngle,
                 double positionZ,
                 double waterLevel,
-                double waveHeightHm0);
+                double waveHeightHm0
+            );
     };
 }

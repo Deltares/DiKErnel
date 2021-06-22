@@ -77,10 +77,10 @@ namespace DiKErnel::FunctionLibrary
     double AsphaltRevetment::StiffnessRelation(
         const double computationalThickness,
         const double equivalentElasticModulus,
-        const double soilElasticy,
+        const double soilElasticity,
         const double stiffnessRelationNu)
     {
-        return pow(3.0 * soilElasticy * (1.0 - pow(stiffnessRelationNu, 2.0)) / (equivalentElasticModulus * computationalThickness), 1.0 / 4.0);
+        return pow(3.0 * soilElasticity * (1.0 - pow(stiffnessRelationNu, 2.0)) / (equivalentElasticModulus * computationalThickness), 1.0 / 4.0);
     }
 
     double AsphaltRevetment::ComputationalThickness(
@@ -207,11 +207,18 @@ namespace DiKErnel::FunctionLibrary
                    spatialDistributionBendingStress);
     }
 
-    double AsphaltRevetment::SpatialDistributionBendingStress()
+    double AsphaltRevetment::SpatialDistributionBendingStress(
+        const double stiffnessRelation,
+        const double tanA,
+        const double widthFactorValue,
+        const double depthFactorValue,
+        const double positionZ,
+        const double waterLevel,
+        const double waveHeightHm0)
     {
         const auto bb = RelativeWidthWaveImpact(stiffnessRelation, widthFactorValue, waveHeightHm0);
         const auto slopeAngle = HydraulicLoad::SlopeAngle(tanA);
-        const auto bdx = RelativeDistanceCenterWaveImpact(stiffnessRelation, depthFactorValue, positionZ, waterLevel, waveHeightHm0, slopeAngle);
+        const auto bdx = RelativeDistanceCenterWaveImpact(stiffnessRelation, depthFactorValue, slopeAngle, positionZ, waterLevel, waveHeightHm0);
 
         if (bb >= bdx)
         {
@@ -235,10 +242,10 @@ namespace DiKErnel::FunctionLibrary
     double AsphaltRevetment::RelativeDistanceCenterWaveImpact(
         const double stiffnessRelation,
         const double depthFactorValue,
+        const double slopeAngle,
         const double positionZ,
         const double waterLevel,
-        const double waveHeightHm0,
-        const double slopeAngle)
+        const double waveHeightHm0)
     {
         return min(85.0, stiffnessRelation * (abs(positionZ - waterLevel - depthFactorValue * waveHeightHm0) / sin(slopeAngle)));
     }
