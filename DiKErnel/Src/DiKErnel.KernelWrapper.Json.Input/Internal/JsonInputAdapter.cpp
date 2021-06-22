@@ -58,11 +58,12 @@ namespace DiKErnel::KernelWrapper::Json::Input
             const auto& location = locationReference.get();
             const auto& revetmentLocationData = location.GetRevetmentLocationData();
 
-            if (const auto* naturalStoneRevetmentLocationData = dynamic_cast<const JsonInputNaturalStoneRevetmentLocationData*>(
-                &revetmentLocationData); naturalStoneRevetmentLocationData != nullptr)
+            if (const auto* asphaltRevetmentWaveImpactLocationData = dynamic_cast<const JsonInputAsphaltRevetmentWaveImpactLocationData*>(
+                &revetmentLocationData); asphaltRevetmentWaveImpactLocationData != nullptr)
             {
-                const auto constructionProperties = CreateNaturalStoneConstructionProperties(location, *naturalStoneRevetmentLocationData);
-                builder.AddNaturalStoneLocation(*constructionProperties);
+                const auto constructionProperties =
+                        CreateAsphaltWaveImpactConstructionProperties(location, *asphaltRevetmentWaveImpactLocationData);
+                builder.AddAsphaltWaveImpactLocation(*constructionProperties);
             }
 
             if (const auto* grassRevetmentWaveImpactLocationData = dynamic_cast<const JsonInputGrassRevetmentWaveImpactLocationData*>(
@@ -79,81 +80,69 @@ namespace DiKErnel::KernelWrapper::Json::Input
                     location, *grassRevetmentWaveRunupRayleighLocationData);
                 builder.AddGrassWaveRunupRayleighLocation(*constructionProperties);
             }
+
+            if (const auto* naturalStoneRevetmentLocationData = dynamic_cast<const JsonInputNaturalStoneRevetmentLocationData*>(
+                &revetmentLocationData); naturalStoneRevetmentLocationData != nullptr)
+            {
+                const auto constructionProperties = CreateNaturalStoneConstructionProperties(location, *naturalStoneRevetmentLocationData);
+                builder.AddNaturalStoneLocation(*constructionProperties);
+            }
         }
 
         return builder.Build();
     }
 
-    unique_ptr<NaturalStoneRevetmentLocationConstructionProperties> JsonInputAdapter::CreateNaturalStoneConstructionProperties(
+    unique_ptr<AsphaltRevetmentWaveImpactLocationConstructionProperties> JsonInputAdapter::CreateAsphaltWaveImpactConstructionProperties(
         const JsonInputLocationData& location,
-        const JsonInputNaturalStoneRevetmentLocationData& naturalStoneRevetmentLocationData)
+        const JsonInputAsphaltRevetmentWaveImpactLocationData& asphaltRevetmentWaveImpactLocationData)
     {
         const auto& damageData = location.GetDamageData();
         const auto& profileSchematizationData = location.GetProfileSchematizationData();
 
-        auto constructionProperties = make_unique<NaturalStoneRevetmentLocationConstructionProperties>(
+        auto constructionProperties = make_unique<AsphaltRevetmentWaveImpactLocationConstructionProperties>(
             location.GetName(), profileSchematizationData.GetTanA(), profileSchematizationData.GetPositionZ(),
-            ConvertTopLayerType(naturalStoneRevetmentLocationData.GetTopLayerType()),
-            naturalStoneRevetmentLocationData.GetThicknessTopLayer(), naturalStoneRevetmentLocationData.GetRelativeDensity());
+            ConvertTopLayerType(asphaltRevetmentWaveImpactLocationData.GetTopLayerType()),
+            asphaltRevetmentWaveImpactLocationData.GetFailureTension(), asphaltRevetmentWaveImpactLocationData.GetDensityOfWater(),
+            asphaltRevetmentWaveImpactLocationData.GetSoilElasticity(), asphaltRevetmentWaveImpactLocationData.GetThicknessUpperLayer(),
+            asphaltRevetmentWaveImpactLocationData.GetElasticModulusUpperLayer());
 
         constructionProperties->SetInitialDamage(forward<unique_ptr<double>>(CreatePointerOfValue(damageData.GetInitialDamage())));
         constructionProperties->SetFailureNumber(forward<unique_ptr<double>>(CreatePointerOfValue(damageData.GetFailureNumber())));
 
-        constructionProperties->SetHydraulicLoadAp(
-            forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData.GetHydraulicLoadAp())));
-        constructionProperties->SetHydraulicLoadBp(
-            forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData.GetHydraulicLoadBp())));
-        constructionProperties->SetHydraulicLoadCp(
-            forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData.GetHydraulicLoadCp())));
-        constructionProperties->SetHydraulicLoadNp(
-            forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData.GetHydraulicLoadNp())));
-        constructionProperties->SetHydraulicLoadAs(
-            forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData.GetHydraulicLoadAs())));
-        constructionProperties->SetHydraulicLoadBs(
-            forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData.GetHydraulicLoadBs())));
-        constructionProperties->SetHydraulicLoadCs(
-            forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData.GetHydraulicLoadCs())));
-        constructionProperties->SetHydraulicLoadNs(
-            forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData.GetHydraulicLoadNs())));
-        constructionProperties->SetHydraulicLoadXib(
-            forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData.GetHydraulicLoadXib())));
+        constructionProperties->SetThicknessSubLayer(
+            forward<unique_ptr<double>>(CreatePointerOfValue(asphaltRevetmentWaveImpactLocationData.GetThicknessSubLayer())));
+        constructionProperties->SetElasticModulusSubLayer(
+            forward<unique_ptr<double>>(CreatePointerOfValue(asphaltRevetmentWaveImpactLocationData.GetElasticModulusSubLayer())));
 
-        constructionProperties->SetUpperLimitLoadingAul(
-            forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData.GetUpperLimitLoadingAul())));
-        constructionProperties->SetUpperLimitLoadingBul(
-            forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData.GetUpperLimitLoadingBul())));
-        constructionProperties->SetUpperLimitLoadingCul(
-            forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData.GetUpperLimitLoadingCul())));
+        constructionProperties->SetAverageNumberOfWavesCtm(
+            forward<unique_ptr<double>>(CreatePointerOfValue(asphaltRevetmentWaveImpactLocationData.GetAverageNumberOfWavesCtm())));
 
-        constructionProperties->SetLowerLimitLoadingAll(
-            forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData.GetLowerLimitLoadingAll())));
-        constructionProperties->SetLowerLimitLoadingBll(
-            forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData.GetLowerLimitLoadingBll())));
-        constructionProperties->SetLowerLimitLoadingCll(
-            forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData.GetLowerLimitLoadingCll())));
+        constructionProperties->SetFatigueAlpha(
+            forward<unique_ptr<double>>(CreatePointerOfValue(asphaltRevetmentWaveImpactLocationData.GetFatigueAlpha())));
+        constructionProperties->SetFatigueBeta(
+            forward<unique_ptr<double>>(CreatePointerOfValue(asphaltRevetmentWaveImpactLocationData.GetFatigueBeta())));
 
-        constructionProperties->SetDistanceMaximumWaveElevationAsmax(
-            forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData.GetDistanceMaximumWaveElevationAsmax())));
-        constructionProperties->SetDistanceMaximumWaveElevationBsmax(
-            forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData.GetDistanceMaximumWaveElevationBsmax())));
+        constructionProperties->SetImpactNumberC(
+            forward<unique_ptr<double>>(CreatePointerOfValue(asphaltRevetmentWaveImpactLocationData.GetImpactNumberC())));
+        constructionProperties->SetStiffnessRelationNu(
+            forward<unique_ptr<double>>(CreatePointerOfValue(asphaltRevetmentWaveImpactLocationData.GetStiffnessRelationNu())));
 
-        constructionProperties->SetNormativeWidthOfWaveImpactAwi(
-            forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData.GetNormativeWidthOfWaveImpactAwi())));
-        constructionProperties->SetNormativeWidthOfWaveImpactBwi(
-            forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData.GetNormativeWidthOfWaveImpactBwi())));
-
-        constructionProperties->SetWaveAngleImpactBetamax(
-            forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData.GetWaveAngleImpactBetamax())));
+        constructionProperties->SetWidthFactors(
+            forward<unique_ptr<vector<tuple<double, double>>>>(CreatePointerOfValue(asphaltRevetmentWaveImpactLocationData.GetWidthFactors())));
+        constructionProperties->SetDepthFactors(
+            forward<unique_ptr<vector<tuple<double, double>>>>(CreatePointerOfValue(asphaltRevetmentWaveImpactLocationData.GetDepthFactors())));
+        constructionProperties->SetImpactFactors(
+            forward<unique_ptr<vector<tuple<double, double>>>>(CreatePointerOfValue(asphaltRevetmentWaveImpactLocationData.GetImpactFactors())));
 
         return constructionProperties;
     }
 
-    NaturalStoneRevetmentTopLayerType JsonInputAdapter::ConvertTopLayerType(
-        const JsonInputNaturalStoneRevetmentTopLayerType topLayerType)
+    AsphaltRevetmentTopLayerType JsonInputAdapter::ConvertTopLayerType(
+        const JsonInputAsphaltRevetmentTopLayerType topLayerType)
     {
-        if (topLayerType == JsonInputNaturalStoneRevetmentTopLayerType::NordicStone)
+        if (topLayerType == JsonInputAsphaltRevetmentTopLayerType::WAB)
         {
-            return NaturalStoneRevetmentTopLayerType::NordicStone;
+            return AsphaltRevetmentTopLayerType::WAB;
         }
 
         throw JsonConversionException("Cannot convert top layer type.");
@@ -270,57 +259,76 @@ namespace DiKErnel::KernelWrapper::Json::Input
         throw JsonConversionException("Cannot convert top layer type.");
     }
 
-    unique_ptr<AsphaltRevetmentWaveImpactLocationConstructionProperties> JsonInputAdapter::CreateAsphaltWaveImpactConstructionProperties(
+    unique_ptr<NaturalStoneRevetmentLocationConstructionProperties> JsonInputAdapter::CreateNaturalStoneConstructionProperties(
         const JsonInputLocationData& location,
-        const JsonInputAsphaltRevetmentWaveImpactLocationData& asphaltRevetmentWaveImpactLocationData)
+        const JsonInputNaturalStoneRevetmentLocationData& naturalStoneRevetmentLocationData)
     {
         const auto& damageData = location.GetDamageData();
         const auto& profileSchematizationData = location.GetProfileSchematizationData();
 
-        auto constructionProperties = make_unique<AsphaltRevetmentWaveImpactLocationConstructionProperties>(
+        auto constructionProperties = make_unique<NaturalStoneRevetmentLocationConstructionProperties>(
             location.GetName(), profileSchematizationData.GetTanA(), profileSchematizationData.GetPositionZ(),
-            ConvertTopLayerType(asphaltRevetmentWaveImpactLocationData.GetTopLayerType()),
-            asphaltRevetmentWaveImpactLocationData.GetFailureTension(), asphaltRevetmentWaveImpactLocationData.GetDensityOfWater(),
-            asphaltRevetmentWaveImpactLocationData.GetSoilElasticity(), asphaltRevetmentWaveImpactLocationData.GetThicknessUpperLayer(),
-            asphaltRevetmentWaveImpactLocationData.GetElasticModulusUpperLayer());
+            ConvertTopLayerType(naturalStoneRevetmentLocationData.GetTopLayerType()),
+            naturalStoneRevetmentLocationData.GetThicknessTopLayer(), naturalStoneRevetmentLocationData.GetRelativeDensity());
 
         constructionProperties->SetInitialDamage(forward<unique_ptr<double>>(CreatePointerOfValue(damageData.GetInitialDamage())));
         constructionProperties->SetFailureNumber(forward<unique_ptr<double>>(CreatePointerOfValue(damageData.GetFailureNumber())));
 
-        constructionProperties->SetThicknessSubLayer(
-            forward<unique_ptr<double>>(CreatePointerOfValue(asphaltRevetmentWaveImpactLocationData.GetThicknessSubLayer())));
-        constructionProperties->SetElasticModulusSubLayer(
-            forward<unique_ptr<double>>(CreatePointerOfValue(asphaltRevetmentWaveImpactLocationData.GetElasticModulusSubLayer())));
+        constructionProperties->SetHydraulicLoadAp(
+            forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData.GetHydraulicLoadAp())));
+        constructionProperties->SetHydraulicLoadBp(
+            forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData.GetHydraulicLoadBp())));
+        constructionProperties->SetHydraulicLoadCp(
+            forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData.GetHydraulicLoadCp())));
+        constructionProperties->SetHydraulicLoadNp(
+            forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData.GetHydraulicLoadNp())));
+        constructionProperties->SetHydraulicLoadAs(
+            forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData.GetHydraulicLoadAs())));
+        constructionProperties->SetHydraulicLoadBs(
+            forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData.GetHydraulicLoadBs())));
+        constructionProperties->SetHydraulicLoadCs(
+            forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData.GetHydraulicLoadCs())));
+        constructionProperties->SetHydraulicLoadNs(
+            forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData.GetHydraulicLoadNs())));
+        constructionProperties->SetHydraulicLoadXib(
+            forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData.GetHydraulicLoadXib())));
 
-        constructionProperties->SetAverageNumberOfWavesCtm(
-            forward<unique_ptr<double>>(CreatePointerOfValue(asphaltRevetmentWaveImpactLocationData.GetAverageNumberOfWavesCtm())));
+        constructionProperties->SetUpperLimitLoadingAul(
+            forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData.GetUpperLimitLoadingAul())));
+        constructionProperties->SetUpperLimitLoadingBul(
+            forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData.GetUpperLimitLoadingBul())));
+        constructionProperties->SetUpperLimitLoadingCul(
+            forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData.GetUpperLimitLoadingCul())));
 
-        constructionProperties->SetFatigueAlpha(
-            forward<unique_ptr<double>>(CreatePointerOfValue(asphaltRevetmentWaveImpactLocationData.GetFatigueAlpha())));
-        constructionProperties->SetFatigueBeta(
-            forward<unique_ptr<double>>(CreatePointerOfValue(asphaltRevetmentWaveImpactLocationData.GetFatigueBeta())));
+        constructionProperties->SetLowerLimitLoadingAll(
+            forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData.GetLowerLimitLoadingAll())));
+        constructionProperties->SetLowerLimitLoadingBll(
+            forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData.GetLowerLimitLoadingBll())));
+        constructionProperties->SetLowerLimitLoadingCll(
+            forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData.GetLowerLimitLoadingCll())));
 
-        constructionProperties->SetImpactNumberC(
-            forward<unique_ptr<double>>(CreatePointerOfValue(asphaltRevetmentWaveImpactLocationData.GetImpactNumberC())));
-        constructionProperties->SetStiffnessRelationNu(
-            forward<unique_ptr<double>>(CreatePointerOfValue(asphaltRevetmentWaveImpactLocationData.GetStiffnessRelationNu())));
+        constructionProperties->SetDistanceMaximumWaveElevationAsmax(
+            forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData.GetDistanceMaximumWaveElevationAsmax())));
+        constructionProperties->SetDistanceMaximumWaveElevationBsmax(
+            forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData.GetDistanceMaximumWaveElevationBsmax())));
 
-        constructionProperties->SetWidthFactors(
-            forward<unique_ptr<vector<tuple<double, double>>>>(CreatePointerOfValue(asphaltRevetmentWaveImpactLocationData.GetWidthFactors())));
-        constructionProperties->SetDepthFactors(
-            forward<unique_ptr<vector<tuple<double, double>>>>(CreatePointerOfValue(asphaltRevetmentWaveImpactLocationData.GetDepthFactors())));
-        constructionProperties->SetImpactFactors(
-            forward<unique_ptr<vector<tuple<double, double>>>>(CreatePointerOfValue(asphaltRevetmentWaveImpactLocationData.GetImpactFactors())));
+        constructionProperties->SetNormativeWidthOfWaveImpactAwi(
+            forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData.GetNormativeWidthOfWaveImpactAwi())));
+        constructionProperties->SetNormativeWidthOfWaveImpactBwi(
+            forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData.GetNormativeWidthOfWaveImpactBwi())));
+
+        constructionProperties->SetWaveAngleImpactBetamax(
+            forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData.GetWaveAngleImpactBetamax())));
 
         return constructionProperties;
     }
 
-    AsphaltRevetmentTopLayerType JsonInputAdapter::ConvertTopLayerType(
-        const JsonInputAsphaltRevetmentTopLayerType topLayerType)
+    NaturalStoneRevetmentTopLayerType JsonInputAdapter::ConvertTopLayerType(
+        const JsonInputNaturalStoneRevetmentTopLayerType topLayerType)
     {
-        if (topLayerType == JsonInputAsphaltRevetmentTopLayerType::WAB)
+        if (topLayerType == JsonInputNaturalStoneRevetmentTopLayerType::NordicStone)
         {
-            return AsphaltRevetmentTopLayerType::WAB;
+            return NaturalStoneRevetmentTopLayerType::NordicStone;
         }
 
         throw JsonConversionException("Cannot convert top layer type.");

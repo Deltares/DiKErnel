@@ -42,12 +42,13 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 const JsonInputData& jsonInputData);
 
         private:
-            static std::unique_ptr<Integration::NaturalStoneRevetmentLocationConstructionProperties> CreateNaturalStoneConstructionProperties(
+            static std::unique_ptr<Integration::AsphaltRevetmentWaveImpactLocationConstructionProperties>
+            CreateAsphaltWaveImpactConstructionProperties(
                 const JsonInputLocationData& location,
-                const JsonInputNaturalStoneRevetmentLocationData& naturalStoneRevetmentLocationData);
+                const JsonInputAsphaltRevetmentWaveImpactLocationData& asphaltRevetmentWaveImpactLocationData);
 
-            static Integration::NaturalStoneRevetmentTopLayerType ConvertTopLayerType(
-                JsonInputNaturalStoneRevetmentTopLayerType topLayerType);
+            static Integration::AsphaltRevetmentTopLayerType ConvertTopLayerType(
+                JsonInputAsphaltRevetmentTopLayerType topLayerType);
 
             static std::unique_ptr<Integration::GrassRevetmentWaveImpactLocationConstructionProperties> CreateGrassWaveImpactConstructionProperties(
                 const JsonInputLocationData& location,
@@ -61,13 +62,12 @@ namespace DiKErnel::KernelWrapper::Json::Input
             static Integration::GrassRevetmentTopLayerType ConvertTopLayerType(
                 JsonInputGrassRevetmentTopLayerType topLayerType);
 
-            static std::unique_ptr<Integration::AsphaltRevetmentWaveImpactLocationConstructionProperties>
-            CreateAsphaltWaveImpactConstructionProperties(
+            static std::unique_ptr<Integration::NaturalStoneRevetmentLocationConstructionProperties> CreateNaturalStoneConstructionProperties(
                 const JsonInputLocationData& location,
-                const JsonInputAsphaltRevetmentWaveImpactLocationData& asphaltRevetmentWaveImpactLocationData);
+                const JsonInputNaturalStoneRevetmentLocationData& naturalStoneRevetmentLocationData);
 
-            static Integration::AsphaltRevetmentTopLayerType ConvertTopLayerType(
-                JsonInputAsphaltRevetmentTopLayerType topLayerType);
+            static Integration::NaturalStoneRevetmentTopLayerType ConvertTopLayerType(
+                JsonInputNaturalStoneRevetmentTopLayerType topLayerType);
 
             template <typename TValue>
             static std::unique_ptr<TValue> CreatePointerOfValue(
