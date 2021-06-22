@@ -113,7 +113,7 @@ namespace DiKErnel::FunctionLibrary
         const double fatigueBeta,
         const double impactNumberC)
     {
-        double result = 0;
+        auto result = 0.0;
 
         for (const auto& depthFactor : depthFactors)
         {
@@ -147,7 +147,7 @@ namespace DiKErnel::FunctionLibrary
         const double fatigueBeta,
         const double impactNumberC)
     {
-        double result = 0;
+        auto result = 0.0;
 
         for (const auto& impactFactor : impactFactors)
         {
@@ -182,7 +182,7 @@ namespace DiKErnel::FunctionLibrary
         const auto logTension = LogTension(maximumPeakStress, stiffnessRelation, computationalThickness, tanA, widthFactorValue, depthFactorValue,
                                            impactFactorValue, positionZ, waterLevel, waveHeightHm0, impactNumberC);
 
-        return pow(10.0, -1.0 * fatigueBeta * pow(max(0.0, logFailureTension - logTension), fatigueAlpha));
+        return pow(10.0, -fatigueBeta * pow(max(0.0, logFailureTension - logTension), fatigueAlpha));
     }
 
     double AsphaltRevetment::LogTension(
@@ -227,9 +227,8 @@ namespace DiKErnel::FunctionLibrary
         const auto spatialDistributionBendingStress = SpatialDistributionBendingStress(stiffnessRelation, tanA, widthFactorValue, depthFactorValue,
                                                                                        positionZ, waterLevel, waveHeightHm0);
 
-        return max(pow(10.0, -99.0),
-                   -1.0 * (3 * maximumPeakStress / (4.0 * pow(stiffnessRelation, 2.0) * pow(computationalThickness, 2.0))) *
-                   spatialDistributionBendingStress);
+        return max(pow(10.0, -99.0), -3.0 * maximumPeakStress / (4.0 * pow(stiffnessRelation, 2.0) * pow(computationalThickness, 2.0))
+                   * spatialDistributionBendingStress);
     }
 
     double AsphaltRevetment::SpatialDistributionBendingStress(
@@ -241,19 +240,30 @@ namespace DiKErnel::FunctionLibrary
         const double waterLevel,
         const double waveHeightHm0)
     {
-        const auto bb = RelativeWidthWaveImpact(stiffnessRelation, widthFactorValue, waveHeightHm0);
+        const auto relativeWidthWaveImpact = RelativeWidthWaveImpact(stiffnessRelation, widthFactorValue, waveHeightHm0);
         const auto slopeAngle = HydraulicLoad::SlopeAngle(tanA);
-        const auto bdx = RelativeDistanceCenterWaveImpact(stiffnessRelation, depthFactorValue, slopeAngle, positionZ, waterLevel, waveHeightHm0);
+        const auto relativeDistanceCenterWaveImpact = RelativeDistanceCenterWaveImpact(stiffnessRelation, depthFactorValue, slopeAngle, positionZ,
+                                                                                       waterLevel, waveHeightHm0);
 
-        if (bb >= bdx)
+        if (relativeWidthWaveImpact >= relativeDistanceCenterWaveImpact)
         {
-            return (-1.0 * sin(bdx) * (exp(bdx) - exp(-1.0 * bdx)) * (cos(bb) - sin(bb)) * exp(-1.0 * bb)
-                + cos(bdx) * (exp(bdx) + exp(-1.0 * bdx)) * (cos(bb) + sin(bb)) * exp(-1.0 * bb)
-                - 2.0 * exp(-1.0 * bdx) * (cos(bdx) + sin(bdx))) / bb;
+            return (-sin(relativeDistanceCenterWaveImpact) * (exp(relativeDistanceCenterWaveImpact) - exp(-relativeDistanceCenterWaveImpact))
+                        * (cos(relativeWidthWaveImpact) - sin(relativeWidthWaveImpact)) * exp(-relativeWidthWaveImpact)
+                        + cos(relativeDistanceCenterWaveImpact) * (exp(relativeDistanceCenterWaveImpact) + exp(-relativeDistanceCenterWaveImpact))
+                        * (cos(relativeWidthWaveImpact) + sin(relativeWidthWaveImpact)) * exp(-relativeWidthWaveImpact)
+                        - 2.0 * exp(-relativeDistanceCenterWaveImpact)
+                        * (cos(relativeDistanceCenterWaveImpact) + sin(relativeDistanceCenterWaveImpact)))
+                    / relativeWidthWaveImpact;
         }
-        return (cos(bdx) * (exp(bb) * (cos(bb) - sin(bb)) + exp(-1.0 * bb) * (cos(bb) + sin(bb)))
-            + sin(bdx) * (exp(bb) * (cos(bb) + sin(bb)) + exp(-1.0 * bb) * (cos(bb) - sin(bb)))
-            - 2.0 * (cos(bdx) + sin(bdx))) * exp(-1.0 * bdx) / bb;
+
+        return (cos(relativeDistanceCenterWaveImpact) * (exp(relativeWidthWaveImpact) * (cos(relativeWidthWaveImpact)
+                        - sin(relativeWidthWaveImpact)) + exp(-relativeWidthWaveImpact) * (cos(relativeWidthWaveImpact)
+                        + sin(relativeWidthWaveImpact)))
+                    + sin(relativeDistanceCenterWaveImpact) * (exp(relativeWidthWaveImpact) * (cos(relativeWidthWaveImpact)
+                        + sin(relativeWidthWaveImpact)) + exp(-relativeWidthWaveImpact) * (cos(relativeWidthWaveImpact)
+                        - sin(relativeWidthWaveImpact)))
+                    - 2.0 * (cos(relativeDistanceCenterWaveImpact) + sin(relativeDistanceCenterWaveImpact)))
+                * exp(-relativeDistanceCenterWaveImpact) / relativeWidthWaveImpact;
     }
 
     double AsphaltRevetment::RelativeWidthWaveImpact(
@@ -272,6 +282,6 @@ namespace DiKErnel::FunctionLibrary
         const double waterLevel,
         const double waveHeightHm0)
     {
-        return min(85.0, stiffnessRelation * (abs(positionZ - waterLevel - depthFactorValue * waveHeightHm0) / sin(slopeAngle)));
+        return min(85.0, stiffnessRelation * abs(positionZ - waterLevel - depthFactorValue * waveHeightHm0) / sin(slopeAngle));
     }
 }
