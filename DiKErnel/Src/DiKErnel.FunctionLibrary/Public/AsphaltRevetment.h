@@ -138,8 +138,18 @@ namespace DiKErnel::FunctionLibrary
 
             static double SpatialDistributionBendingStress();
 
-            static double RelativeWidthWaveImpact();
+            static double RelativeWidthWaveImpact(
+                double stiffnessRelation,
+                double widthFactorValue,
+                double waveHeightHm0
+            );
 
-            static double RelativeDistanceCenterWaveImpact();
+            static double RelativeDistanceCenterWaveImpact(
+                double stiffnessRelation,
+                double depthFactorValue,
+                double slopeAngle,
+                double positionZ,
+                double waterLevel,
+                double waveHeightHm0);
     };
 }

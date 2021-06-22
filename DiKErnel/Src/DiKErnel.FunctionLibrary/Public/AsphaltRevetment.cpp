@@ -24,6 +24,8 @@
 #include <tuple>
 #include <utility>
 
+#include "HydraulicLoad.h"
+
 namespace DiKErnel::FunctionLibrary
 {
     using namespace std;
@@ -207,8 +209,9 @@ namespace DiKErnel::FunctionLibrary
 
     double AsphaltRevetment::SpatialDistributionBendingStress()
     {
-        const auto bb = RelativeWidthWaveImpact();
-        const auto bdx = RelativeDistanceCenterWaveImpact();
+        const auto bb = RelativeWidthWaveImpact(stiffnessRelation, widthFactorValue, waveHeightHm0);
+        const auto slopeAngle = HydraulicLoad::SlopeAngle(tanA);
+        const auto bdx = RelativeDistanceCenterWaveImpact(stiffnessRelation, depthFactorValue, positionZ, waterLevel, waveHeightHm0, slopeAngle);
 
         if (bb >= bdx)
         {
@@ -221,13 +224,22 @@ namespace DiKErnel::FunctionLibrary
             - 2.0 * (cos(bdx) + sin(bdx))) * exp(-1.0 * bdx) / bb;
     }
 
-    double AsphaltRevetment::RelativeWidthWaveImpact()
+    double AsphaltRevetment::RelativeWidthWaveImpact(
+        const double stiffnessRelation,
+        const double widthFactorValue,
+        const double waveHeightHm0)
     {
-        return 1.1;
+        return min(85.0, stiffnessRelation * widthFactorValue * waveHeightHm0 / 2.0);
     }
 
-    double AsphaltRevetment::RelativeDistanceCenterWaveImpact()
+    double AsphaltRevetment::RelativeDistanceCenterWaveImpact(
+        const double stiffnessRelation,
+        const double depthFactorValue,
+        const double positionZ,
+        const double waterLevel,
+        const double waveHeightHm0,
+        const double slopeAngle)
     {
-        return 2.2;
+        return min(85.0, stiffnessRelation * (abs(positionZ - waterLevel - depthFactorValue * waveHeightHm0) / sin(slopeAngle)));
     }
 }
