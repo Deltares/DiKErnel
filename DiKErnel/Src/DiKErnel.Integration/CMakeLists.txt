@@ -105,6 +105,8 @@ set(SOURCEFILES_INTERNAL_EXCEPTIONS
 )
 
 set(SOURCEFILES_INTERNAL_FACTORIES
+  ${INTERNAL_FACTORIES_FOLDER}/AsphaltRevetmentWaveImpactDefaultsFactory.cpp
+  ${INTERNAL_FACTORIES_FOLDER}/AsphaltRevetmentWaveImpactDefaultsFactory.h
   ${INTERNAL_FACTORIES_FOLDER}/GrassRevetmentWaveImpactDefaultsFactory.cpp
   ${INTERNAL_FACTORIES_FOLDER}/GrassRevetmentWaveImpactDefaultsFactory.h
   ${INTERNAL_FACTORIES_FOLDER}/GrassRevetmentWaveRunupDefaultsFactory.cpp
