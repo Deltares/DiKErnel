@@ -126,4 +126,21 @@ namespace DiKErnel::FunctionLibrary::Test
         // Assert
         ASSERT_DOUBLE_EQ(0.19312459835446161, logFailureTension);
     }
+
+    TEST(AsphaltRevetmentWaveImpactTest, MaximumPeakStress_ValidInput_ExpectedValue)
+    {
+        // Setup
+        const auto waveHeightHm0 = 1.6;
+        const auto gravitationalAcceleration = 9.81;
+        const auto densityOfWater = 1025;
+
+        // Call
+        const auto maximumPeakStress = AsphaltRevetmentWaveImpact::MaximumPeakStress(
+            waveHeightHm0,
+            gravitationalAcceleration,
+            densityOfWater);
+
+        // Assert
+        ASSERT_DOUBLE_EQ(0.0160884, maximumPeakStress);
+    }
 }
