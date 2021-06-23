@@ -185,9 +185,9 @@ namespace DiKErnel::FunctionLibrary
                 double maximumPeakStress,
                 double stiffnessRelation,
                 double computationalThickness,
+                double relativeWidthWaveImpact,
                 double tanA,
                 double sinA,
-                double widthFactorValue,
                 const std::vector<std::tuple<double, double>>& depthFactors,
                 const std::vector<std::tuple<double, double>>& impactFactors,
                 double positionZ,
@@ -195,8 +195,7 @@ namespace DiKErnel::FunctionLibrary
                 double waveHeightHm0,
                 double fatigueAlpha,
                 double fatigueBeta,
-                double impactNumberC
-            );
+                double impactNumberC);
 
             static double ImpactFactorAccumulation(
                 double logFailureTension,
@@ -236,8 +235,8 @@ namespace DiKErnel::FunctionLibrary
                 double maximumPeakStress,
                 double stiffnessRelation,
                 double computationalThickness,
+                double relativeWidthWaveImpact,
                 double sinA,
-                double widthFactorValue,
                 double depthFactorValue,
                 double positionZ,
                 double waterLevel,
@@ -246,8 +245,8 @@ namespace DiKErnel::FunctionLibrary
 
             static double SpatialDistributionBendingStress(
                 double stiffnessRelation,
+                double relativeWidthWaveImpact,
                 double sinA,
-                double widthFactorValue,
                 double depthFactorValue,
                 double positionZ,
                 double waterLevel,
