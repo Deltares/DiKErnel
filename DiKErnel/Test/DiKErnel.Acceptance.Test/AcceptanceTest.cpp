@@ -97,11 +97,11 @@ namespace DiKErnel::Acceptance::Test
         }
     };
 
-    TEST_F(AcceptanceTest, GivenJsonInputWithNaturalStoneLocation_WhenCalculating_ThenExpectedOutputJsonCreated)
+    TEST_F(AcceptanceTest, GivenJsonInputWithAsphaltWaveImpactLocation_WhenCalculating_ThenExpectedOutputJsonCreated)
     {
         // Given
         const auto inputFilePath = (TestDataPathHelper::GetTestDataPath("DiKErnel.Acceptance.Test") / "AcceptanceTest"
-            / "NaturalStone.json").string();
+            / "AsphaltWaveImpact.json").string();
 
         // When & Then
         PerformTest(inputFilePath, 1.1709670425264469, make_unique<int>(3833).get());
@@ -125,5 +125,15 @@ namespace DiKErnel::Acceptance::Test
 
         // When & Then
         PerformTest(inputFilePath, 2.273256874349757, make_unique<int>(10433).get());
+    }
+
+    TEST_F(AcceptanceTest, GivenJsonInputWithNaturalStoneLocation_WhenCalculating_ThenExpectedOutputJsonCreated)
+    {
+        // Given
+        const auto inputFilePath = (TestDataPathHelper::GetTestDataPath("DiKErnel.Acceptance.Test") / "AcceptanceTest"
+            / "NaturalStone.json").string();
+
+        // When & Then
+        PerformTest(inputFilePath, 1.1709670425264469, make_unique<int>(3833).get());
     }
 }
