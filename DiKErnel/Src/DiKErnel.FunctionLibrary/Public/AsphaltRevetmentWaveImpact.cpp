@@ -49,10 +49,8 @@ namespace DiKErnel::FunctionLibrary
 
         const auto sinA = sin(atan(tanA));
 
-        for (const auto& widthFactor : widthFactors)
+        for (const auto& [widthFactorValue, widthFactorProbability] : widthFactors)
         {
-            const auto widthFactorValue = get<0>(widthFactor);
-            const auto widthFactorProbability = get<1>(widthFactor);
             const auto relativeWidthWaveImpact = RelativeWidthWaveImpact(stiffnessRelation, widthFactorValue, waveHeightHm0);
             const auto depthFactorAccumulation = DepthFactorAccumulation(logFailureTension, averageNumberOfWaves, maximumPeakStress,
                                                                          stiffnessRelation, computationalThickness, relativeWidthWaveImpact,
@@ -118,10 +116,8 @@ namespace DiKErnel::FunctionLibrary
     {
         auto result = 0.0;
 
-        for (const auto& depthFactor : depthFactors)
+        for (const auto& [depthFactorValue, depthFactorProbability] : depthFactors)
         {
-            const auto depthFactorValue = get<0>(depthFactor);
-            const auto depthFactorProbability = get<1>(depthFactor);
             const auto bendingStress = BendingStress(maximumPeakStress, stiffnessRelation, computationalThickness, relativeWidthWaveImpact, sinA,
                                                      depthFactorValue, positionZ, waterLevel, waveHeightHm0);
             const auto impactFactorAccumulation = ImpactFactorAccumulation(logFailureTension, averageNumberOfWaves, bendingStress, tanA,
@@ -145,10 +141,8 @@ namespace DiKErnel::FunctionLibrary
     {
         auto result = 0.0;
 
-        for (const auto& impactFactor : impactFactors)
+        for (const auto& [impactFactorValue, impactFactorProbability] : impactFactors)
         {
-            const auto impactFactorValue = get<0>(impactFactor);
-            const auto impactFactorProbability = get<1>(impactFactor);
             const auto fatigue = Fatigue(logFailureTension, bendingStress, tanA, impactFactorValue, fatigueAlpha, fatigueBeta, impactNumberC);
 
             result += impactFactorProbability * averageNumberOfWaves * fatigue;
