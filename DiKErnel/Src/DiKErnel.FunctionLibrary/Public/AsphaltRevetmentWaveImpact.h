@@ -207,7 +207,6 @@ namespace DiKErnel::FunctionLibrary
                 double tanA,
                 double relativeDistanceCenterWaveImpact,
                 double widthFactorValue,
-                double depthFactorValue,
                 const std::vector<std::tuple<double, double>>& impactFactors,
                 double waveHeightHm0,
                 double fatigueAlpha,
@@ -223,7 +222,6 @@ namespace DiKErnel::FunctionLibrary
                 double tanA,
                 double relativeDistanceCenterWaveImpact,
                 double widthFactorValue,
-                double depthFactorValue,
                 double impactFactorValue,
                 double waveHeightHm0,
                 double fatigueAlpha,
@@ -238,7 +236,6 @@ namespace DiKErnel::FunctionLibrary
                 double tanA,
                 double relativeDistanceCenterWaveImpact,
                 double widthFactorValue,
-                double depthFactorValue,
                 double impactFactorValue,
                 double waveHeightHm0,
                 double impactNumberC

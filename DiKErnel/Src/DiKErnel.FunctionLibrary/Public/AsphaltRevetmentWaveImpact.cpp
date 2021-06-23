@@ -35,9 +35,9 @@ namespace DiKErnel::FunctionLibrary
         const double stiffnessRelation,
         const double computationalThickness,
         const double tanA,
-        const std::vector<std::tuple<double, double>>& widthFactors,
-        const std::vector<std::tuple<double, double>>& depthFactors,
-        const std::vector<std::tuple<double, double>>& impactFactors,
+        const vector<tuple<double, double>>& widthFactors,
+        const vector<tuple<double, double>>& depthFactors,
+        const vector<tuple<double, double>>& impactFactors,
         const double positionZ,
         const double waterLevel,
         const double waveHeightHm0,
@@ -106,8 +106,8 @@ namespace DiKErnel::FunctionLibrary
         const double tanA,
         const double sinA,
         const double widthFactorValue,
-        const std::vector<std::tuple<double, double>>& depthFactors,
-        const std::vector<std::tuple<double, double>>& impactFactors,
+        const vector<tuple<double, double>>& depthFactors,
+        const vector<tuple<double, double>>& impactFactors,
         const double positionZ,
         const double waterLevel,
         const double waveHeightHm0,
@@ -126,8 +126,8 @@ namespace DiKErnel::FunctionLibrary
 
             const auto impactFactorAccumulation = ImpactFactorAccumulation(logFailureTension, averageNumberOfWaves, maximumPeakStress,
                                                                            stiffnessRelation, computationalThickness, tanA,
-                                                                           relativeDistanceCenterWaveImpact, widthFactorValue, depthFactorValue,
-                                                                           impactFactors, waveHeightHm0, fatigueAlpha, fatigueBeta, impactNumberC);
+                                                                           relativeDistanceCenterWaveImpact, widthFactorValue, impactFactors,
+                                                                           waveHeightHm0, fatigueAlpha, fatigueBeta, impactNumberC);
 
             result += depthFactorProbability * impactFactorAccumulation;
         }
@@ -144,8 +144,7 @@ namespace DiKErnel::FunctionLibrary
         const double tanA,
         const double relativeDistanceCenterWaveImpact,
         const double widthFactorValue,
-        const double depthFactorValue,
-        const std::vector<std::tuple<double, double>>& impactFactors,
+        const vector<tuple<double, double>>& impactFactors,
         const double waveHeightHm0,
         const double fatigueAlpha,
         const double fatigueBeta,
@@ -158,8 +157,8 @@ namespace DiKErnel::FunctionLibrary
             const auto impactFactorValue = get<0>(impactFactor);
             const auto impactFactorProbability = get<1>(impactFactor);
             const auto fatigue = Fatigue(logFailureTension, maximumPeakStress, stiffnessRelation, computationalThickness, tanA,
-                                         relativeDistanceCenterWaveImpact, widthFactorValue, depthFactorValue, impactFactorValue, waveHeightHm0,
-                                         fatigueAlpha, fatigueBeta, impactNumberC);
+                                         relativeDistanceCenterWaveImpact, widthFactorValue, impactFactorValue, waveHeightHm0, fatigueAlpha,
+                                         fatigueBeta, impactNumberC);
 
             result += impactFactorProbability * averageNumberOfWaves * fatigue;
         }
@@ -175,7 +174,6 @@ namespace DiKErnel::FunctionLibrary
         const double tanA,
         const double relativeDistanceCenterWaveImpact,
         const double widthFactorValue,
-        const double depthFactorValue,
         const double impactFactorValue,
         const double waveHeightHm0,
         const double fatigueAlpha,
@@ -183,7 +181,7 @@ namespace DiKErnel::FunctionLibrary
         const double impactNumberC)
     {
         const auto logTension = LogTension(maximumPeakStress, stiffnessRelation, computationalThickness, tanA, relativeDistanceCenterWaveImpact,
-                                           widthFactorValue, depthFactorValue, impactFactorValue, waveHeightHm0, impactNumberC);
+                                           widthFactorValue, impactFactorValue, waveHeightHm0, impactNumberC);
 
         return pow(10.0, -fatigueBeta * pow(max(0.0, logFailureTension - logTension), fatigueAlpha));
     }
@@ -195,7 +193,6 @@ namespace DiKErnel::FunctionLibrary
         const double tanA,
         const double relativeDistanceCenterWaveImpact,
         const double widthFactorValue,
-        const double depthFactorValue,
         const double impactFactorValue,
         const double waveHeightHm0,
         const double impactNumberC)
