@@ -205,12 +205,10 @@ namespace DiKErnel::FunctionLibrary
                 double stiffnessRelation,
                 double computationalThickness,
                 double tanA,
-                double sinA,
+                double relativeDistanceCenterWaveImpact,
                 double widthFactorValue,
                 double depthFactorValue,
                 const std::vector<std::tuple<double, double>>& impactFactors,
-                double positionZ,
-                double waterLevel,
                 double waveHeightHm0,
                 double fatigueAlpha,
                 double fatigueBeta,
@@ -223,12 +221,10 @@ namespace DiKErnel::FunctionLibrary
                 double stiffnessRelation,
                 double computationalThickness,
                 double tanA,
-                double sinA,
+                double relativeDistanceCenterWaveImpact,
                 double widthFactorValue,
                 double depthFactorValue,
                 double impactFactorValue,
-                double positionZ,
-                double waterLevel,
                 double waveHeightHm0,
                 double fatigueAlpha,
                 double fatigueBeta,
@@ -240,12 +236,10 @@ namespace DiKErnel::FunctionLibrary
                 double stiffnessRelation,
                 double computationalThickness,
                 double tanA,
-                double sinA,
+                double relativeDistanceCenterWaveImpact,
                 double widthFactorValue,
                 double depthFactorValue,
                 double impactFactorValue,
-                double positionZ,
-                double waterLevel,
                 double waveHeightHm0,
                 double impactNumberC
             );
@@ -260,21 +254,15 @@ namespace DiKErnel::FunctionLibrary
                 double maximumPeakStress,
                 double stiffnessRelation,
                 double computationalThickness,
-                double sinA,
+                double relativeDistanceCenterWaveImpact,
                 double widthFactorValue,
-                double depthFactorValue,
-                double positionZ,
-                double waterLevel,
                 double waveHeightHm0
             );
 
             static double SpatialDistributionBendingStress(
                 double stiffnessRelation,
-                double sinA,
+                double relativeDistanceCenterWaveImpact,
                 double widthFactorValue,
-                double depthFactorValue,
-                double positionZ,
-                double waterLevel,
                 double waveHeightHm0
             );
 

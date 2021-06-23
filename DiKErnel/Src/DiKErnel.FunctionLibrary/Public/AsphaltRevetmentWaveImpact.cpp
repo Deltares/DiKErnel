@@ -121,10 +121,13 @@ namespace DiKErnel::FunctionLibrary
         {
             const auto depthFactorValue = get<0>(depthFactor);
             const auto depthFactorProbability = get<1>(depthFactor);
+            const auto relativeDistanceCenterWaveImpact = RelativeDistanceCenterWaveImpact(stiffnessRelation, depthFactorValue, sinA, positionZ,
+                                                                                           waterLevel, waveHeightHm0);
+
             const auto impactFactorAccumulation = ImpactFactorAccumulation(logFailureTension, averageNumberOfWaves, maximumPeakStress,
-                                                                           stiffnessRelation, computationalThickness, tanA, sinA, widthFactorValue,
-                                                                           depthFactorValue, impactFactors, positionZ, waterLevel, waveHeightHm0,
-                                                                           fatigueAlpha, fatigueBeta, impactNumberC);
+                                                                           stiffnessRelation, computationalThickness, tanA,
+                                                                           relativeDistanceCenterWaveImpact, widthFactorValue, depthFactorValue,
+                                                                           impactFactors, waveHeightHm0, fatigueAlpha, fatigueBeta, impactNumberC);
 
             result += depthFactorProbability * impactFactorAccumulation;
         }
@@ -139,12 +142,10 @@ namespace DiKErnel::FunctionLibrary
         const double stiffnessRelation,
         const double computationalThickness,
         const double tanA,
-        const double sinA,
+        const double relativeDistanceCenterWaveImpact,
         const double widthFactorValue,
         const double depthFactorValue,
         const std::vector<std::tuple<double, double>>& impactFactors,
-        const double positionZ,
-        const double waterLevel,
         const double waveHeightHm0,
         const double fatigueAlpha,
         const double fatigueBeta,
@@ -156,9 +157,9 @@ namespace DiKErnel::FunctionLibrary
         {
             const auto impactFactorValue = get<0>(impactFactor);
             const auto impactFactorProbability = get<1>(impactFactor);
-            const auto fatigue = Fatigue(logFailureTension, maximumPeakStress, stiffnessRelation, computationalThickness, tanA, sinA,
-                                         widthFactorValue, depthFactorValue, impactFactorValue, positionZ, waterLevel, waveHeightHm0, fatigueAlpha,
-                                         fatigueBeta, impactNumberC);
+            const auto fatigue = Fatigue(logFailureTension, maximumPeakStress, stiffnessRelation, computationalThickness, tanA,
+                                         relativeDistanceCenterWaveImpact, widthFactorValue, depthFactorValue, impactFactorValue, waveHeightHm0,
+                                         fatigueAlpha, fatigueBeta, impactNumberC);
 
             result += impactFactorProbability * averageNumberOfWaves * fatigue;
         }
@@ -172,19 +173,17 @@ namespace DiKErnel::FunctionLibrary
         const double stiffnessRelation,
         const double computationalThickness,
         const double tanA,
-        const double sinA,
+        const double relativeDistanceCenterWaveImpact,
         const double widthFactorValue,
         const double depthFactorValue,
         const double impactFactorValue,
-        const double positionZ,
-        const double waterLevel,
         const double waveHeightHm0,
         const double fatigueAlpha,
         const double fatigueBeta,
         const double impactNumberC)
     {
-        const auto logTension = LogTension(maximumPeakStress, stiffnessRelation, computationalThickness, tanA, sinA, widthFactorValue,
-                                           depthFactorValue, impactFactorValue, positionZ, waterLevel, waveHeightHm0, impactNumberC);
+        const auto logTension = LogTension(maximumPeakStress, stiffnessRelation, computationalThickness, tanA, relativeDistanceCenterWaveImpact,
+                                           widthFactorValue, depthFactorValue, impactFactorValue, waveHeightHm0, impactNumberC);
 
         return pow(10.0, -fatigueBeta * pow(max(0.0, logFailureTension - logTension), fatigueAlpha));
     }
@@ -194,18 +193,16 @@ namespace DiKErnel::FunctionLibrary
         const double stiffnessRelation,
         const double computationalThickness,
         const double tanA,
-        const double sinA,
+        const double relativeDistanceCenterWaveImpact,
         const double widthFactorValue,
         const double depthFactorValue,
         const double impactFactorValue,
-        const double positionZ,
-        const double waterLevel,
         const double waveHeightHm0,
         const double impactNumberC)
     {
         const auto impactNumber = ImpactNumber(tanA, impactFactorValue, impactNumberC);
-        const auto bendingStress = BendingStress(maximumPeakStress, stiffnessRelation, computationalThickness, sinA, widthFactorValue,
-                                                 depthFactorValue, positionZ, waterLevel, waveHeightHm0);
+        const auto bendingStress = BendingStress(maximumPeakStress, stiffnessRelation, computationalThickness, relativeDistanceCenterWaveImpact,
+                                                 widthFactorValue, waveHeightHm0);
 
         return log10(impactNumber * bendingStress);
     }
@@ -222,15 +219,12 @@ namespace DiKErnel::FunctionLibrary
         const double maximumPeakStress,
         const double stiffnessRelation,
         const double computationalThickness,
-        const double sinA,
+        const double relativeDistanceCenterWaveImpact,
         const double widthFactorValue,
-        const double depthFactorValue,
-        const double positionZ,
-        const double waterLevel,
         const double waveHeightHm0)
     {
-        const auto spatialDistributionBendingStress = SpatialDistributionBendingStress(stiffnessRelation, sinA, widthFactorValue, depthFactorValue,
-                                                                                       positionZ, waterLevel, waveHeightHm0);
+        const auto spatialDistributionBendingStress = SpatialDistributionBendingStress(stiffnessRelation, relativeDistanceCenterWaveImpact,
+                                                                                       widthFactorValue, waveHeightHm0);
 
         return max(pow(10.0, -99.0), -3.0 * maximumPeakStress / (4.0 * pow(stiffnessRelation, 2.0) * pow(computationalThickness, 2.0))
                    * spatialDistributionBendingStress);
@@ -238,16 +232,11 @@ namespace DiKErnel::FunctionLibrary
 
     double AsphaltRevetmentWaveImpact::SpatialDistributionBendingStress(
         const double stiffnessRelation,
-        const double sinA,
+        const double relativeDistanceCenterWaveImpact,
         const double widthFactorValue,
-        const double depthFactorValue,
-        const double positionZ,
-        const double waterLevel,
         const double waveHeightHm0)
     {
         const auto relativeWidthWaveImpact = RelativeWidthWaveImpact(stiffnessRelation, widthFactorValue, waveHeightHm0);
-        const auto relativeDistanceCenterWaveImpact = RelativeDistanceCenterWaveImpact(stiffnessRelation, depthFactorValue, sinA, positionZ,
-                                                                                       waterLevel, waveHeightHm0);
 
         const auto sinRelativeDistanceCenterWaveImpact = sin(relativeDistanceCenterWaveImpact);
         const auto sinRelativeWidthWaveImpact = sin(relativeWidthWaveImpact);
