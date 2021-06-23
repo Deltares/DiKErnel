@@ -23,6 +23,7 @@
 #include <memory>
 
 #include "JsonInputCalculationData.h"
+#include "JsonInputProcessData.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
@@ -30,12 +31,15 @@ namespace DiKErnel::KernelWrapper::Json::Input
     {
         public:
             explicit JsonInputData(
-                std::unique_ptr<JsonInputCalculationData> calculationData
-            );
+                std::unique_ptr<JsonInputProcessData> processData,
+                std::unique_ptr<JsonInputCalculationData> calculationData);
 
             const JsonInputCalculationData& GetCalculationData() const;
 
+            const JsonInputProcessData& GetProcessData() const;
+
         private:
+            std::unique_ptr<JsonInputProcessData> _processData;
             std::unique_ptr<JsonInputCalculationData> _calculationData;
     };
 }

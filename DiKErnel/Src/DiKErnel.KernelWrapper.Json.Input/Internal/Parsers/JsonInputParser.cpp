@@ -53,14 +53,33 @@ namespace DiKErnel::KernelWrapper::Json::Input
             },
         });
 
+    NLOHMANN_JSON_SERIALIZE_ENUM(JsonInputProcessType,
+        {
+            {
+                JsonInputProcessType::Unknown, nullptr
+            },
+            {
+                JsonInputProcessType::Failure, JsonInputDefinitions::PROCESS_TYPE_FAILURE
+            },
+            {
+                JsonInputProcessType::Damage, JsonInputDefinitions::PROCESS_TYPE_DAMAGE
+            },
+            {
+                JsonInputProcessType::Physics, JsonInputDefinitions::PROCESS_TYPE_PHYSICS
+            }
+        });
+
     unique_ptr<JsonInputData> JsonInputParser::GetJsonInputData(
         const string& filePath)
     {
         const auto json = ReadJson(filePath);
 
+        const auto& readProcessData = json[JsonInputDefinitions::PROCESS_DATA];
         const auto& readCalculationData = json[JsonInputDefinitions::CALCULATION_DATA];
 
         return make_unique<JsonInputData>(
+            make_unique<JsonInputProcessData>(
+                readProcessData[JsonInputDefinitions::PROCESS_TYPE].get<JsonInputProcessType>()),
             make_unique<JsonInputCalculationData>(
                 ParseTime(readCalculationData),
                 ParseHydraulicData(readCalculationData),
