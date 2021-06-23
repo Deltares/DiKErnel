@@ -84,7 +84,8 @@ namespace DiKErnel::FunctionLibrary
         const double soilElasticity,
         const double stiffnessRelationNu)
     {
-        return pow(3.0 * soilElasticity * (1.0 - pow(stiffnessRelationNu, 2.0)) / (equivalentElasticModulus * computationalThickness), 1.0 / 4.0);
+        return pow(3.0 * soilElasticity * (1.0 - pow(stiffnessRelationNu, 2.0)) / (equivalentElasticModulus * pow(computationalThickness, 3.0)),
+                   1.0 / 4.0);
     }
 
     double AsphaltRevetmentWaveImpact::ComputationalThickness(

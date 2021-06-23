@@ -143,4 +143,44 @@ namespace DiKErnel::FunctionLibrary::Test
         // Assert
         ASSERT_DOUBLE_EQ(0.0160884, maximumPeakStress);
     }
+
+    TEST(AsphaltRevetmentWaveImpactTest, StiffnessRelation_ValidInput_ExpectedValue)
+    {
+        // Setup
+        const auto computationalThickness = 0.16;
+        const auto equivalentElasticModulus = 18214;
+        const auto soilElasticity = 56.0;
+        const auto stiffnessRelationNu = 0.35;
+
+        // Call
+        const auto stiffnessRelation = AsphaltRevetmentWaveImpact::StiffnessRelation(
+            computationalThickness,
+            equivalentElasticModulus,
+            soilElasticity,
+            stiffnessRelationNu
+        );
+
+        // Assert
+        ASSERT_DOUBLE_EQ(1.1856261832690844, stiffnessRelation);
+    }
+
+    TEST(AsphaltRevetmentWaveImpactTest, ComputationalThickness_ValidInput_ExpectedValue)
+    {
+        // Setup
+        const auto thicknessUpperLayer = 0.16;
+        const auto thicknessSubLayer = 0.23;
+        const auto elasticModulusUpperLayer = 18214;
+        const auto elasticModulusSubLayer = 19214;
+
+        // Call
+        const auto computationalThickness = AsphaltRevetmentWaveImpact::ComputationalThickness(
+            thicknessUpperLayer,
+            thicknessSubLayer,
+            elasticModulusUpperLayer,
+            elasticModulusSubLayer
+        );
+
+        // Assert
+        ASSERT_DOUBLE_EQ(0.387174648559827, computationalThickness);
+    }
 }
