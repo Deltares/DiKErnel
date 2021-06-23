@@ -249,25 +249,34 @@ namespace DiKErnel::FunctionLibrary
         const auto relativeDistanceCenterWaveImpact = RelativeDistanceCenterWaveImpact(stiffnessRelation, depthFactorValue, sinA, positionZ,
                                                                                        waterLevel, waveHeightHm0);
 
+        const auto sinRelativeDistanceCenterWaveImpact = sin(relativeDistanceCenterWaveImpact);
+        const auto sinRelativeWidthWaveImpact = sin(relativeWidthWaveImpact);
+        const auto cosRelativeDistanceCenterWaveImpact = cos(relativeDistanceCenterWaveImpact);
+        const auto cosRelativeWidthWaveImpact = cos(relativeWidthWaveImpact);
+        const auto expNegativeRelativeDistanceCenterWaveImpact = exp(-relativeDistanceCenterWaveImpact);
+        const auto expNegativeRelativeWidthWaveImpact = exp(-relativeWidthWaveImpact);
+
         if (relativeWidthWaveImpact >= relativeDistanceCenterWaveImpact)
         {
-            return (-sin(relativeDistanceCenterWaveImpact) * (exp(relativeDistanceCenterWaveImpact) - exp(-relativeDistanceCenterWaveImpact))
-                        * (cos(relativeWidthWaveImpact) - sin(relativeWidthWaveImpact)) * exp(-relativeWidthWaveImpact)
-                        + cos(relativeDistanceCenterWaveImpact) * (exp(relativeDistanceCenterWaveImpact) + exp(-relativeDistanceCenterWaveImpact))
-                        * (cos(relativeWidthWaveImpact) + sin(relativeWidthWaveImpact)) * exp(-relativeWidthWaveImpact)
-                        - 2.0 * exp(-relativeDistanceCenterWaveImpact)
-                        * (cos(relativeDistanceCenterWaveImpact) + sin(relativeDistanceCenterWaveImpact)))
+            const auto expRelativeDistanceCenterWaveImpact = exp(relativeDistanceCenterWaveImpact);
+
+            return (-sinRelativeDistanceCenterWaveImpact * (expRelativeDistanceCenterWaveImpact - expNegativeRelativeDistanceCenterWaveImpact)
+                        * (cosRelativeWidthWaveImpact - sinRelativeWidthWaveImpact) * expNegativeRelativeWidthWaveImpact
+                        + cosRelativeDistanceCenterWaveImpact * (expRelativeDistanceCenterWaveImpact + expNegativeRelativeDistanceCenterWaveImpact)
+                        * (cosRelativeWidthWaveImpact + sinRelativeWidthWaveImpact) * expNegativeRelativeWidthWaveImpact
+                        - 2.0 * expNegativeRelativeDistanceCenterWaveImpact
+                        * (cosRelativeDistanceCenterWaveImpact + sinRelativeDistanceCenterWaveImpact))
                     / relativeWidthWaveImpact;
         }
 
-        return (cos(relativeDistanceCenterWaveImpact) * (exp(relativeWidthWaveImpact) * (cos(relativeWidthWaveImpact)
-                        - sin(relativeWidthWaveImpact)) + exp(-relativeWidthWaveImpact) * (cos(relativeWidthWaveImpact)
-                        + sin(relativeWidthWaveImpact)))
-                    + sin(relativeDistanceCenterWaveImpact) * (exp(relativeWidthWaveImpact) * (cos(relativeWidthWaveImpact)
-                        + sin(relativeWidthWaveImpact)) + exp(-relativeWidthWaveImpact) * (cos(relativeWidthWaveImpact)
-                        - sin(relativeWidthWaveImpact)))
-                    - 2.0 * (cos(relativeDistanceCenterWaveImpact) + sin(relativeDistanceCenterWaveImpact)))
-                * exp(-relativeDistanceCenterWaveImpact) / relativeWidthWaveImpact;
+        const auto expRelativeWidthWaveImpact = exp(relativeWidthWaveImpact);
+
+        return (cosRelativeDistanceCenterWaveImpact * (expRelativeWidthWaveImpact * (cosRelativeWidthWaveImpact - sinRelativeWidthWaveImpact)
+                        + expNegativeRelativeWidthWaveImpact * (cosRelativeWidthWaveImpact + sinRelativeWidthWaveImpact))
+                    + sinRelativeDistanceCenterWaveImpact * (expRelativeWidthWaveImpact * (cosRelativeWidthWaveImpact + sinRelativeWidthWaveImpact)
+                        + expNegativeRelativeWidthWaveImpact * (cosRelativeWidthWaveImpact - sinRelativeWidthWaveImpact))
+                    - 2.0 * (cosRelativeDistanceCenterWaveImpact + sinRelativeDistanceCenterWaveImpact))
+                * expNegativeRelativeDistanceCenterWaveImpact / relativeWidthWaveImpact;
     }
 
     double AsphaltRevetmentWaveImpact::RelativeWidthWaveImpact(
