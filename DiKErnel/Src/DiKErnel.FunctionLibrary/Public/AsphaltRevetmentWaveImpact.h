@@ -236,15 +236,21 @@ namespace DiKErnel::FunctionLibrary
                 double maximumPeakStress,
                 double stiffnessRelation,
                 double computationalThickness,
-                double relativeDistanceCenterWaveImpact,
+                double sinA,
                 double widthFactorValue,
+                double depthFactorValue,
+                double positionZ,
+                double waterLevel,
                 double waveHeightHm0
             );
 
             static double SpatialDistributionBendingStress(
                 double stiffnessRelation,
-                double relativeDistanceCenterWaveImpact,
+                double sinA,
                 double widthFactorValue,
+                double depthFactorValue,
+                double positionZ,
+                double waterLevel,
                 double waveHeightHm0
             );
 
