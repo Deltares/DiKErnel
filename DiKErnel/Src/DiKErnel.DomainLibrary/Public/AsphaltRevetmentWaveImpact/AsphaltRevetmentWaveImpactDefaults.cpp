@@ -27,52 +27,50 @@ namespace DiKErnel::DomainLibrary
     using namespace std;
 
     AsphaltRevetmentWaveImpactDefaults::AsphaltRevetmentWaveImpactDefaults()
-        : _widthFactors(vector
-              {
-                  tuple(0.1, 0.0392),
-                  tuple(0.2, 0.0738),
-                  tuple(0.3, 0.1002),
-                  tuple(0.4, 0.1162),
-                  tuple(0.5, 0.1213),
-                  tuple(0.6, 0.1168),
-                  tuple(0.7, 0.1051),
-                  tuple(0.8, 0.0890),
-                  tuple(0.9, 0.0712),
-                  tuple(1.0, 0.0541),
-                  tuple(1.1, 0.0391),
-                  tuple(1.2, 0.0269),
-                  tuple(1.3, 0.0216),
-                  tuple(1.4, 0.0150),
-                  tuple(1.5, 0.0105)
-              }),
-          _depthFactors(vector
-              {
-                  tuple(-1.0, 0.0244),
-                  tuple(-0.875, 0.0544),
-                  tuple(-0.750, 0.0938),
-                  tuple(-0.625, 0.1407),
-                  tuple(-0.500, 0.1801),
-                  tuple(-0.375, 0.1632),
-                  tuple(-0.250, 0.1426),
-                  tuple(-0.125, 0.0994),
-                  tuple(0.0, 0.06),
-                  tuple(0.125, 0.0244),
-                  tuple(0.250, 0.0169)
-              }),
-          _impactFactors(vector
-              {
-                  tuple(2.0, 0.039),
-                  tuple(2.4, 0.1),
-                  tuple(2.8, 0.18),
-                  tuple(3.2, 0.235),
-                  tuple(3.6, 0.2),
-                  tuple(4.0, 0.13),
-                  tuple(4.4, 0.08),
-                  tuple(4.8, 0.02),
-                  tuple(5.2, 0.01),
-                  tuple(5.6, 0.005),
-                  tuple(6.0, 0.001)
-              }) {}
+        : _widthFactors(vector<tuple<double, double>>()),
+          _depthFactors(vector<tuple<double, double>>()),
+          _impactFactors(vector<tuple<double, double>>())
+    {
+        _widthFactors.emplace_back(0.1, 0.0392);
+        _widthFactors.emplace_back(0.2, 0.0738);
+        _widthFactors.emplace_back(0.3, 0.1002);
+        _widthFactors.emplace_back(0.4, 0.1162);
+        _widthFactors.emplace_back(0.5, 0.1213);
+        _widthFactors.emplace_back(0.6, 0.1168);
+        _widthFactors.emplace_back(0.7, 0.1051);
+        _widthFactors.emplace_back(0.8, 0.0890);
+        _widthFactors.emplace_back(0.9, 0.0712);
+        _widthFactors.emplace_back(1.0, 0.0541);
+        _widthFactors.emplace_back(1.1, 0.0391);
+        _widthFactors.emplace_back(1.2, 0.0269);
+        _widthFactors.emplace_back(1.3, 0.0216);
+        _widthFactors.emplace_back(1.4, 0.0150);
+        _widthFactors.emplace_back(1.5, 0.0105);
+
+        _depthFactors.emplace_back(-1.0, 0.0244);
+        _depthFactors.emplace_back(-0.875, 0.0544);
+        _depthFactors.emplace_back(-0.750, 0.0938);
+        _depthFactors.emplace_back(-0.625, 0.1407);
+        _depthFactors.emplace_back(-0.500, 0.1801);
+        _depthFactors.emplace_back(-0.375, 0.1632);
+        _depthFactors.emplace_back(-0.250, 0.1426);
+        _depthFactors.emplace_back(-0.125, 0.0994);
+        _depthFactors.emplace_back(0.0, 0.06);
+        _depthFactors.emplace_back(0.125, 0.0244);
+        _depthFactors.emplace_back(0.250, 0.0169);
+
+        _impactFactors.emplace_back(2.0, 0.039);
+        _impactFactors.emplace_back(2.4, 0.1);
+        _impactFactors.emplace_back(2.8, 0.18);
+        _impactFactors.emplace_back(3.2, 0.235);
+        _impactFactors.emplace_back(3.6, 0.2);
+        _impactFactors.emplace_back(4.0, 0.13);
+        _impactFactors.emplace_back(4.4, 0.08);
+        _impactFactors.emplace_back(4.8, 0.02);
+        _impactFactors.emplace_back(5.2, 0.01);
+        _impactFactors.emplace_back(5.6, 0.005);
+        _impactFactors.emplace_back(6.0, 0.001);
+    }
 
     double AsphaltRevetmentWaveImpactDefaults::GetSubLayerThickness() const
     {
