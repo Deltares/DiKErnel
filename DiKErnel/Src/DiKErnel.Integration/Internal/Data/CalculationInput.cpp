@@ -29,9 +29,11 @@ namespace DiKErnel::Integration
 
     CalculationInput::CalculationInput(
         vector<unique_ptr<LocationDependentInput>> locationDependentInputItems,
-        vector<unique_ptr<TimeDependentInput>> timeDependentInputItems)
+        vector<unique_ptr<TimeDependentInput>> timeDependentInputItems,
+        const CalculationLevelType calculationLevelType)
         : _locationDependentInputItems(move(locationDependentInputItems)),
-          _timeDependentInputItems(move(timeDependentInputItems))
+          _timeDependentInputItems(move(timeDependentInputItems)),
+          _calculationLevelType(calculationLevelType)
     {
         auto previousEndTime = INT_MIN;
         for (const auto& timeDependentInput : _timeDependentInputItems)
@@ -60,5 +62,10 @@ namespace DiKErnel::Integration
     const vector<reference_wrapper<ITimeDependentInput>>& CalculationInput::GetTimeDependentInputItems() const
     {
         return _timeDependentInputItemReferences;
+    }
+
+    CalculationLevelType CalculationInput::GetCalculationLevelType() const
+    {
+        return _calculationLevelType;
     }
 }

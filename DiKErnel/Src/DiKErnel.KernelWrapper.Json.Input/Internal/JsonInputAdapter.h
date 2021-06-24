@@ -42,6 +42,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 const JsonInputData& jsonInputData);
 
         private:
+            static std::unique_ptr<Core::CalculationLevelType> ConvertProcessType(
+                const JsonInputProcessType* processType);
+
             static std::unique_ptr<Integration::AsphaltRevetmentWaveImpactLocationConstructionProperties>
             CreateAsphaltWaveImpactConstructionProperties(
                 const JsonInputLocationData& location,

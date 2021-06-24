@@ -50,13 +50,13 @@ namespace DiKErnel::Integration::Test
     {
         static void CreateBuilderAndAddInvalidTimeStep()
         {
-            RevetmentCalculationInputBuilder builder;
+            RevetmentCalculationInputBuilder builder(make_unique<CalculationLevelType>(CalculationLevelType::Damage));
             builder.AddTimeStep(10, 5, 0, 0, 0, 0);
         }
 
         static void CreateBuilderAndAddNonSuccessiveTimeSteps()
         {
-            RevetmentCalculationInputBuilder builder;
+            RevetmentCalculationInputBuilder builder(make_unique<CalculationLevelType>(CalculationLevelType::Damage));
             builder.AddTimeStep(0, 5, 0, 0, 0, 0);
             builder.AddTimeStep(10, 20, 0, 0, 0, 0);
             builder.Build();
@@ -68,7 +68,7 @@ namespace DiKErnel::Integration::Test
             const AsphaltRevetmentWaveImpactLocationConstructionProperties constructionProperties(
                 "Test", 0.1, 0.2, topLayerType, 0.3, 0.4, 0.5, 0.6, 0.71);
 
-            RevetmentCalculationInputBuilder builder;
+            RevetmentCalculationInputBuilder builder(make_unique<CalculationLevelType>(CalculationLevelType::Damage));
             builder.AddAsphaltWaveImpactLocation(constructionProperties);
         }
 
@@ -77,7 +77,7 @@ namespace DiKErnel::Integration::Test
             const auto topLayerType = static_cast<GrassRevetmentTopLayerType>(99);
             const GrassRevetmentWaveImpactLocationConstructionProperties constructionProperties("Test", 0.1, topLayerType);
 
-            RevetmentCalculationInputBuilder builder;
+            RevetmentCalculationInputBuilder builder(make_unique<CalculationLevelType>(CalculationLevelType::Damage));
             builder.AddGrassWaveImpactLocation(constructionProperties);
         }
 
@@ -86,7 +86,7 @@ namespace DiKErnel::Integration::Test
             const auto topLayerType = static_cast<GrassRevetmentTopLayerType>(99);
             const GrassRevetmentWaveRunupRayleighLocationConstructionProperties constructionProperties("Test", 0.1, 0.2, topLayerType);
 
-            RevetmentCalculationInputBuilder builder;
+            RevetmentCalculationInputBuilder builder(make_unique<CalculationLevelType>(CalculationLevelType::Damage));
             builder.AddGrassWaveRunupRayleighLocation(constructionProperties);
         }
 
@@ -95,7 +95,7 @@ namespace DiKErnel::Integration::Test
             const auto topLayerType = static_cast<NaturalStoneRevetmentTopLayerType>(99);
             const NaturalStoneRevetmentLocationConstructionProperties constructionProperties("Test", 0.1, 0.2, topLayerType, 0.3, 0.4);
 
-            RevetmentCalculationInputBuilder builder;
+            RevetmentCalculationInputBuilder builder(make_unique<CalculationLevelType>(CalculationLevelType::Damage));
             builder.AddNaturalStoneLocation(constructionProperties);
         }
     };
@@ -105,7 +105,7 @@ namespace DiKErnel::Integration::Test
     TEST_F(RevetmentCalculationInputBuilderTest, GivenBuilder_WhenBuild_ThenReturnsCalculationInput)
     {
         // Given
-        RevetmentCalculationInputBuilder builder;
+        RevetmentCalculationInputBuilder builder(make_unique<CalculationLevelType>(CalculationLevelType::Damage));
 
         // When
         const auto calculationInput = builder.Build();
@@ -125,7 +125,7 @@ namespace DiKErnel::Integration::Test
         const auto wavePeriodTm10 = 0.3;
         const auto waveAngle = 0.4;
 
-        RevetmentCalculationInputBuilder builder;
+        RevetmentCalculationInputBuilder builder(make_unique<CalculationLevelType>(CalculationLevelType::Damage));
         builder.AddTimeStep(beginTime, endTime, waterLevel, waveHeightHm0, wavePeriodTm10, waveAngle);
 
         // When
@@ -229,7 +229,7 @@ namespace DiKErnel::Integration::Test
         constructionProperties.SetDepthFactors(make_unique<vector<tuple<double, double>>>(depthFactors));
         constructionProperties.SetImpactFactors(make_unique<vector<tuple<double, double>>>(impactFactors));
 
-        RevetmentCalculationInputBuilder builder;
+        RevetmentCalculationInputBuilder builder(make_unique<CalculationLevelType>(CalculationLevelType::Damage));
         builder.AddAsphaltWaveImpactLocation(constructionProperties);
 
         // When
@@ -280,7 +280,7 @@ namespace DiKErnel::Integration::Test
         AsphaltRevetmentWaveImpactLocationConstructionProperties constructionProperties(
             name, tanA, positionZ, topLayerType, failureTension, densityOfWater, soilElasticity, thicknessUpperLayer, elasticModulusUpperLayer);
 
-        RevetmentCalculationInputBuilder builder;
+        RevetmentCalculationInputBuilder builder(make_unique<CalculationLevelType>(CalculationLevelType::Damage));
         builder.AddAsphaltWaveImpactLocation(constructionProperties);
 
         // When
@@ -412,7 +412,7 @@ namespace DiKErnel::Integration::Test
         constructionProperties.SetUpperLimitLoadingAul(make_unique<double>(upperLimitLoadingAul));
         constructionProperties.SetLowerLimitLoadingAll(make_unique<double>(lowerLimitLoadingAll));
 
-        RevetmentCalculationInputBuilder builder;
+        RevetmentCalculationInputBuilder builder(make_unique<CalculationLevelType>(CalculationLevelType::Damage));
         builder.AddGrassWaveImpactLocation(constructionProperties);
 
         // When
@@ -462,7 +462,7 @@ namespace DiKErnel::Integration::Test
 
         GrassRevetmentWaveImpactLocationConstructionProperties constructionProperties(name, positionZ, topLayerType);
 
-        RevetmentCalculationInputBuilder builder;
+        RevetmentCalculationInputBuilder builder(make_unique<CalculationLevelType>(CalculationLevelType::Damage));
         builder.AddGrassWaveImpactLocation(constructionProperties);
 
         // When
@@ -512,7 +512,7 @@ namespace DiKErnel::Integration::Test
 
         GrassRevetmentWaveImpactLocationConstructionProperties constructionProperties(name, positionZ, topLayerType);
 
-        RevetmentCalculationInputBuilder builder;
+        RevetmentCalculationInputBuilder builder(make_unique<CalculationLevelType>(CalculationLevelType::Damage));
         builder.AddGrassWaveImpactLocation(constructionProperties);
 
         // When
@@ -611,7 +611,7 @@ namespace DiKErnel::Integration::Test
         constructionProperties.SetCumulativeOverloadNf(make_unique<int>(cumulativeOverloadNf));
         constructionProperties.SetFrontVelocityCu(make_unique<double>(frontVelocityCu));
 
-        RevetmentCalculationInputBuilder builder;
+        RevetmentCalculationInputBuilder builder(make_unique<CalculationLevelType>(CalculationLevelType::Damage));
         builder.AddGrassWaveRunupRayleighLocation(constructionProperties);
 
         // When
@@ -663,7 +663,7 @@ namespace DiKErnel::Integration::Test
 
         const GrassRevetmentWaveRunupRayleighLocationConstructionProperties constructionProperties(name, tanA, positionZ, topLayerType);
 
-        RevetmentCalculationInputBuilder builder;
+        RevetmentCalculationInputBuilder builder(make_unique<CalculationLevelType>(CalculationLevelType::Damage));
         builder.AddGrassWaveRunupRayleighLocation(constructionProperties);
 
         // When
@@ -714,7 +714,7 @@ namespace DiKErnel::Integration::Test
 
         const GrassRevetmentWaveRunupRayleighLocationConstructionProperties constructionProperties(name, tanA, positionZ, topLayerType);
 
-        RevetmentCalculationInputBuilder builder;
+        RevetmentCalculationInputBuilder builder(make_unique<CalculationLevelType>(CalculationLevelType::Damage));
         builder.AddGrassWaveRunupRayleighLocation(constructionProperties);
 
         // When
@@ -826,7 +826,7 @@ namespace DiKErnel::Integration::Test
         naturalStoneConstructionProperties.SetNormativeWidthOfWaveImpactBwi(make_unique<double>(normativeWidthOfWaveImpactBwi));
         naturalStoneConstructionProperties.SetWaveAngleImpactBetamax(make_unique<double>(waveAngleImpactBetamax));
 
-        RevetmentCalculationInputBuilder builder;
+        RevetmentCalculationInputBuilder builder(make_unique<CalculationLevelType>(CalculationLevelType::Damage));
         builder.AddNaturalStoneLocation(naturalStoneConstructionProperties);
 
         // When
@@ -882,7 +882,7 @@ namespace DiKErnel::Integration::Test
         const NaturalStoneRevetmentLocationConstructionProperties naturalStoneConstructionProperties(
             name, tanA, positionZ, topLayerType, thicknessTopLayer, relativeDensity);
 
-        RevetmentCalculationInputBuilder builder;
+        RevetmentCalculationInputBuilder builder(make_unique<CalculationLevelType>(CalculationLevelType::Damage));
         builder.AddNaturalStoneLocation(naturalStoneConstructionProperties);
 
         // When

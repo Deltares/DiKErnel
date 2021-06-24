@@ -38,7 +38,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
         const auto& calculationData = jsonInputData.GetCalculationData();
         const auto& hydraulicData = calculationData.GetHydraulicData();
 
-        RevetmentCalculationInputBuilder builder;
+        const auto& processData = jsonInputData.GetProcessData();
+
+        RevetmentCalculationInputBuilder builder(ConvertProcessType(processData.GetProcessType()));
 
         const auto& times = calculationData.GetTimes();
         const auto& timeDependentData = hydraulicData.GetTimeDependentHydraulicData();
@@ -90,6 +92,39 @@ namespace DiKErnel::KernelWrapper::Json::Input
         }
 
         return builder.Build();
+    }
+
+    unique_ptr<CalculationLevelType> JsonInputAdapter::ConvertProcessType(
+        const JsonInputProcessType* processType)
+    {
+        if(processType == nullptr)
+        {
+            return nullptr;
+        }
+
+        const auto processTypeValue = *processType;
+
+        CalculationLevelType calculationLevelType;
+
+        if(processTypeValue == JsonInputProcessType::Failure)
+        {
+            calculationLevelType = CalculationLevelType::Failure;
+        }
+        else if(processTypeValue == JsonInputProcessType::Damage)
+        {
+            calculationLevelType = CalculationLevelType::Damage;
+        }
+        else if(processTypeValue == JsonInputProcessType::Physics)
+        {
+            calculationLevelType = CalculationLevelType::Physics;
+        }
+        else
+        {
+            throw JsonConversionException("Cannot convert calculation level type.");
+        }
+
+        return make_unique<CalculationLevelType>(calculationLevelType);
+
     }
 
     unique_ptr<AsphaltRevetmentWaveImpactLocationConstructionProperties> JsonInputAdapter::CreateAsphaltWaveImpactConstructionProperties(

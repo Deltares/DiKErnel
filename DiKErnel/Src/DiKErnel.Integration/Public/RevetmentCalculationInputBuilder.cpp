@@ -43,6 +43,10 @@ namespace DiKErnel::Integration
     using namespace DomainLibrary;
     using namespace std;
 
+    RevetmentCalculationInputBuilder::RevetmentCalculationInputBuilder(
+        unique_ptr<CalculationLevelType> calculationLevelType)
+        : _calculationLevelType(move(calculationLevelType)) {}
+
     void RevetmentCalculationInputBuilder::AddTimeStep(
         int beginTime,
         int endTime,
@@ -229,13 +233,13 @@ namespace DiKErnel::Integration
 
         auto distanceMaximumWaveElevation = make_unique<
             NaturalStoneRevetmentDistanceMaximumWaveElevation>(
-                GetValue(constructionProperties.GetDistanceMaximumWaveElevationAsmax(), defaults->GetDistanceMaximumWaveElevationAsmax()),
-                GetValue(constructionProperties.GetDistanceMaximumWaveElevationBsmax(), defaults->GetDistanceMaximumWaveElevationBsmax()));
+            GetValue(constructionProperties.GetDistanceMaximumWaveElevationAsmax(), defaults->GetDistanceMaximumWaveElevationAsmax()),
+            GetValue(constructionProperties.GetDistanceMaximumWaveElevationBsmax(), defaults->GetDistanceMaximumWaveElevationBsmax()));
 
         auto normativeWidthOfWaveImpact = make_unique<
             NaturalStoneRevetmentNormativeWidthOfWaveImpact>(
-                GetValue(constructionProperties.GetNormativeWidthOfWaveImpactAwi(), defaults->GetNormativeWidthOfWaveImpactAwi()),
-                GetValue(constructionProperties.GetNormativeWidthOfWaveImpactBwi(), defaults->GetNormativeWidthOfWaveImpactBwi()));
+            GetValue(constructionProperties.GetNormativeWidthOfWaveImpactAwi(), defaults->GetNormativeWidthOfWaveImpactAwi()),
+            GetValue(constructionProperties.GetNormativeWidthOfWaveImpactBwi(), defaults->GetNormativeWidthOfWaveImpactBwi()));
 
         auto waveAngleImpact = make_unique<NaturalStoneRevetmentWaveAngleImpact>(
             GetValue(constructionProperties.GetWaveAngleImpactBetamax(), defaults->GetWaveAngleImpactBetamax()));
@@ -261,7 +265,8 @@ namespace DiKErnel::Integration
     {
         try
         {
-            return make_unique<CalculationInput>(move(_locationDependentInputItems), move(_timeDependentInputItems));
+            return make_unique<CalculationInput>(move(_locationDependentInputItems), move(_timeDependentInputItems),
+                                                 GetValue(_calculationLevelType.get(), CalculationLevelType::Damage));
         }
         catch (const InvalidCalculationDataException&)
         {
