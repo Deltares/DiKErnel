@@ -104,7 +104,7 @@ namespace DiKErnel::Acceptance::Test
             / "AsphaltWaveImpact.json").string();
 
         // When & Then
-        PerformTest(inputFilePath, 1.1709670425264469, make_unique<int>(3833).get());
+        PerformTest(inputFilePath, 12.9568389512477, make_unique<int>(2851).get());
     }
 
     TEST_F(AcceptanceTest, GivenJsonInputWithGrassWaveImpactLocation_WhenCalculating_ThenExpectedOutputJsonCreated)
