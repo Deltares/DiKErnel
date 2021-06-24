@@ -55,7 +55,7 @@ namespace DiKErnel::DomainLibrary
                   tuple(-0.375, 0.1632),
                   tuple(-0.250, 0.1426),
                   tuple(-0.125, 0.0994),
-                  tuple(1.0, 0.06),
+                  tuple(0.0, 0.06),
                   tuple(0.125, 0.0244),
                   tuple(0.250, 0.0169)
               }),
