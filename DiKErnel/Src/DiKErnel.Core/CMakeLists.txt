@@ -6,6 +6,7 @@ set(PUBLIC_FOLDER Public)
 
 # Define sources
 set(SOURCEFILES_PUBLIC
+  ${PUBLIC_FOLDER}/CalculationLevelType.h
   ${PUBLIC_FOLDER}/CalculationOutput.cpp
   ${PUBLIC_FOLDER}/CalculationOutput.h
   ${PUBLIC_FOLDER}/Calculator.cpp
