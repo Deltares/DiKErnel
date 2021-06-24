@@ -34,20 +34,16 @@ namespace DiKErnel::Integration
         public:
             explicit CalculationInput(
                 std::vector<std::unique_ptr<LocationDependentInput>> locationDependentInputItems,
-                std::vector<std::unique_ptr<TimeDependentInput>> timeDependentInputItems,
-                Core::CalculationLevelType calculationLevelType);
+                std::vector<std::unique_ptr<TimeDependentInput>> timeDependentInputItems);
 
             const std::vector<std::reference_wrapper<Core::ILocationDependentInput>>& GetLocationDependentInputItems() const override;
 
             const std::vector<std::reference_wrapper<Core::ITimeDependentInput>>& GetTimeDependentInputItems() const override;
-
-            Core::CalculationLevelType GetCalculationLevelType() const override;
 
         private:
             std::vector<std::unique_ptr<LocationDependentInput>> _locationDependentInputItems;
             std::vector<std::reference_wrapper<Core::ILocationDependentInput>> _locationDependentInputItemReferences;
             std::vector<std::unique_ptr<TimeDependentInput>> _timeDependentInputItems;
             std::vector<std::reference_wrapper<Core::ITimeDependentInput>> _timeDependentInputItemReferences;
-            Core::CalculationLevelType _calculationLevelType;
     };
 }

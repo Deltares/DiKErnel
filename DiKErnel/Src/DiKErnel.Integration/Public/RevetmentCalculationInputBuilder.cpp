@@ -44,8 +44,8 @@ namespace DiKErnel::Integration
     using namespace std;
 
     RevetmentCalculationInputBuilder::RevetmentCalculationInputBuilder(
-        unique_ptr<CalculationLevelType> calculationLevelType)
-        : _calculationLevelType(move(calculationLevelType)) {}
+        const unique_ptr<CalculationLevelType> calculationLevelType)
+        : _calculationLevelType(GetValue(calculationLevelType.get(), CalculationLevelType::Damage)) {}
 
     void RevetmentCalculationInputBuilder::AddTimeStep(
         int beginTime,
@@ -265,8 +265,7 @@ namespace DiKErnel::Integration
     {
         try
         {
-            return make_unique<CalculationInput>(move(_locationDependentInputItems), move(_timeDependentInputItems),
-                                                 GetValue(_calculationLevelType.get(), CalculationLevelType::Damage));
+            return make_unique<CalculationInput>(move(_locationDependentInputItems), move(_timeDependentInputItems));
         }
         catch (const InvalidCalculationDataException&)
         {

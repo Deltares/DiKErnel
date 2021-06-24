@@ -22,7 +22,6 @@
 
 #include <vector>
 
-#include "CalculationLevelType.h"
 #include "ILocationDependentInput.h"
 #include "ITimeDependentInput.h"
 
@@ -50,11 +49,5 @@ namespace DiKErnel::Core
              * \return The time dependent input items to use in the calculation.
              */
             virtual const std::vector<std::reference_wrapper<ITimeDependentInput>>& GetTimeDependentInputItems() const = 0;
-
-            /*!
-             * \brief Gets the calculation level type.
-             * \return The calculation level type.
-             */
-            virtual CalculationLevelType GetCalculationLevelType() const = 0;
     };
 }

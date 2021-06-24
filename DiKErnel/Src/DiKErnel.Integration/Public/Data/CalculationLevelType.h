@@ -20,8 +20,11 @@
 
 #pragma once
 
-namespace DiKErnel::Core
+namespace DiKErnel::Integration
 {
+    /*!
+     * \brief The types of calculation levels.
+     */
     enum class CalculationLevelType
     {
         Failure,

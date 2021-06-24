@@ -22,6 +22,7 @@
 
 #include "AsphaltRevetmentWaveImpactLocationConstructionProperties.h"
 #include "CalculationInput.h"
+#include "CalculationLevelType.h"
 #include "GrassRevetmentWaveImpactLocationConstructionProperties.h"
 #include "GrassRevetmentWaveRunupRayleighLocationConstructionProperties.h"
 #include "NaturalStoneRevetmentLocationConstructionProperties.h"
@@ -40,7 +41,7 @@ namespace DiKErnel::Integration
              *        The calculation level type.
              */
             explicit RevetmentCalculationInputBuilder(
-                std::unique_ptr<Core::CalculationLevelType> calculationLevelType);
+                std::unique_ptr<CalculationLevelType> calculationLevelType);
 
             /*!
              * \brief Adds a time step.
@@ -116,7 +117,7 @@ namespace DiKErnel::Integration
             std::unique_ptr<Core::ICalculationInput> Build();
 
         private:
-            std::unique_ptr<Core::CalculationLevelType> _calculationLevelType;
+            CalculationLevelType _calculationLevelType;
             std::vector<std::unique_ptr<TimeDependentInput>> _timeDependentInputItems = std::vector<std::unique_ptr<TimeDependentInput>>();
             std::vector<std::unique_ptr<LocationDependentInput>> _locationDependentInputItems
                     = std::vector<std::unique_ptr<LocationDependentInput>>();

@@ -33,6 +33,5 @@ namespace DiKErnel::Core::TestUtil
         public:
             MOCK_METHOD(vector<reference_wrapper<ILocationDependentInput>>&, GetLocationDependentInputItems, (), (const, override));
             MOCK_METHOD(vector<reference_wrapper<ITimeDependentInput>>&, GetTimeDependentInputItems, (), (const, override));
-            MOCK_METHOD(CalculationLevelType, GetCalculationLevelType, (), (const, override));
     };
 }
