@@ -20,8 +20,6 @@
 
 #include "AsphaltRevetmentWaveImpactDefaults.h"
 
-#include <tuple>
-
 namespace DiKErnel::DomainLibrary
 {
     using namespace std;

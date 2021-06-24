@@ -21,6 +21,7 @@
 #pragma once
 
 #include <vector>
+#include <tuple>
 
 #include "IAsphaltRevetmentWaveImpactDefaults.h"
 
