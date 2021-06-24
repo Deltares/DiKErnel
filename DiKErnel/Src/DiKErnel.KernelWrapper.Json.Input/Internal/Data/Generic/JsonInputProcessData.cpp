@@ -22,12 +22,16 @@
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
-    JsonInputProcessData::JsonInputProcessData(
-        const JsonInputProcessType processType):
-        _processType(processType) {}
+    using namespace std;
 
-    JsonInputProcessType JsonInputProcessData::GetProcessType() const
+    void JsonInputProcessData::SetProcessType(
+        std::unique_ptr<JsonInputProcessType> processType)
     {
-        return _processType;
+        _processType = move(processType);
+    }
+
+    const JsonInputProcessType* JsonInputProcessData::GetProcessType() const
+    {
+        return _processType.get();
     }
 }

@@ -40,6 +40,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
             static nlohmann::json ReadJson(
                 const std::string& filePath);
 
+            static std::unique_ptr<JsonInputProcessData> ParseProcessData(
+                const nlohmann::json& readJson);
+
             static std::vector<int> ParseTime(
                 const nlohmann::json& readCalculationData);
 

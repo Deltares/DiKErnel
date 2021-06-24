@@ -74,12 +74,10 @@ namespace DiKErnel::KernelWrapper::Json::Input
     {
         const auto json = ReadJson(filePath);
 
-        const auto& readProcessData = json[JsonInputDefinitions::PROCESS_DATA];
         const auto& readCalculationData = json[JsonInputDefinitions::CALCULATION_DATA];
 
         return make_unique<JsonInputData>(
-            make_unique<JsonInputProcessData>(
-                readProcessData[JsonInputDefinitions::PROCESS_TYPE].get<JsonInputProcessType>()),
+            ParseProcessData(json),
             make_unique<JsonInputCalculationData>(
                 ParseTime(readCalculationData),
                 ParseHydraulicData(readCalculationData),
@@ -93,6 +91,23 @@ namespace DiKErnel::KernelWrapper::Json::Input
     {
         ifstream ifs(filePath);
         return json::parse(ifs);
+    }
+
+    unique_ptr<JsonInputProcessData> JsonInputParser::ParseProcessData(
+        const json& readJson)
+    {
+        unique_ptr<JsonInputProcessType> readProcessType = nullptr;
+
+        if (readJson.contains(JsonInputDefinitions::PROCESS_DATA))
+        {
+            const auto& readProcessData = readJson[JsonInputDefinitions::PROCESS_DATA];
+            readProcessType = make_unique<JsonInputProcessType>(readProcessData[JsonInputDefinitions::PROCESS_TYPE].get<JsonInputProcessType>());
+        }
+
+        auto processData = make_unique<JsonInputProcessData>();
+        processData->SetProcessType(move(readProcessType));
+
+        return processData;
     }
 
     vector<int> JsonInputParser::ParseTime(

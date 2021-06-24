@@ -20,6 +20,8 @@
 
 #pragma once
 
+#include <memory>
+
 #include "JsonInputProcessType.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
@@ -27,12 +29,12 @@ namespace DiKErnel::KernelWrapper::Json::Input
     class JsonInputProcessData
     {
         public:
-            explicit JsonInputProcessData(
-                JsonInputProcessType processType);
+            void SetProcessType(
+                std::unique_ptr<JsonInputProcessType> processType);
 
-            JsonInputProcessType GetProcessType() const;
+            const JsonInputProcessType* GetProcessType() const;
 
         private:
-            JsonInputProcessType _processType;
+            std::unique_ptr<JsonInputProcessType> _processType = nullptr;
     };
 }
