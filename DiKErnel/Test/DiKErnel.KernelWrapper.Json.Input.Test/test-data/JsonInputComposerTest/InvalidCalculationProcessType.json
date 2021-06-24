@@ -1,0 +1,15 @@
+{
+	"Processdata":
+	{
+		"UitvoerRekenresultaten": "Bekleding"
+	},
+	"Rekendata":
+	{
+		"Tijd":	[],
+		"HydraulischeBelastingen": 
+		{
+			"RandvoorwaardenPerTijdstap": []
+		},
+		"Locaties": []
+	}
+}

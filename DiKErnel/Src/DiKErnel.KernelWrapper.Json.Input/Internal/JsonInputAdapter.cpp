@@ -102,25 +102,21 @@ namespace DiKErnel::KernelWrapper::Json::Input
             return nullptr;
         }
 
-        const auto processTypeValue = *processType;
-
         CalculationLevelType calculationLevelType;
 
-        if(processTypeValue == JsonInputProcessType::Failure)
+        switch(*processType)
         {
-            calculationLevelType = CalculationLevelType::Failure;
-        }
-        else if(processTypeValue == JsonInputProcessType::Damage)
-        {
-            calculationLevelType = CalculationLevelType::Damage;
-        }
-        else if(processTypeValue == JsonInputProcessType::Physics)
-        {
-            calculationLevelType = CalculationLevelType::Physics;
-        }
-        else
-        {
-            throw JsonConversionException("Cannot convert calculation level type.");
+            case JsonInputProcessType::Failure:
+                calculationLevelType = CalculationLevelType::Failure;
+                break;
+            case JsonInputProcessType::Damage:
+                calculationLevelType = CalculationLevelType::Damage;
+                break;
+            case JsonInputProcessType::Physics:
+                calculationLevelType = CalculationLevelType::Physics;
+                break;
+            default: 
+                throw JsonConversionException("Cannot convert calculation level type.");
         }
 
         return make_unique<CalculationLevelType>(calculationLevelType);

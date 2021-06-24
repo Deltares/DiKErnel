@@ -48,6 +48,14 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
 
     struct JsonInputComposerTest : Test
     {
+        static void GetCalculationInputFromJsonWithInvalidCalculationProcessType()
+        {
+            const auto filePath = (TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Input.Test") / "JsonInputComposerTest"
+                / "InvalidCalculationProcessType.json").string();
+
+            JsonInputComposer::GetCalculationInputFromJson(filePath);
+        }
+
         static void GetCalculationInputFromJsonWithInvalidAsphaltRevetmentWaveImpactTopLayerType()
         {
             const auto filePath = (TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Input.Test") / "JsonInputComposerTest"
@@ -364,6 +372,15 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
 
         AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertFactors(
             expectedWidthFactors2, expectedDepthFactors2, expectedImpactFactors2, *asphaltRevetmentWaveImpactLocationDependentInputItem2);
+    }
+
+    TEST_F(JsonInputComposerTest, GivenJsonInputWithInvalidCalculationProcessType_WhenGetCalculationInputFromJson_ThenThrowsJsonConversionException)
+    {
+        // Given & When
+        const auto action = &JsonInputComposerTest::GetCalculationInputFromJsonWithInvalidCalculationProcessType;
+
+        // Then
+        AssertHelper::AssertThrowsWithMessage<JsonConversionException>(action, "Cannot convert calculation level type.");
     }
 
     TEST_F(JsonInputComposerTest,

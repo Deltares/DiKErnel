@@ -27,7 +27,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
     class JsonInputDefinitions
     {
         public:
-            inline static const std::string PROCESS_DATA = "Procesdata";
+            inline static const std::string PROCESS_DATA = "Processdata";
 
             inline static const std::string PROCESS_TYPE = "UitvoerRekenresultaten";
             inline static const std::string PROCESS_TYPE_FAILURE = "FalenBekleding";
