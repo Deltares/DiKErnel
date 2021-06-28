@@ -23,6 +23,7 @@
 #include "Constants.h"
 #include "HydraulicLoad.h"
 #include "NaturalStoneRevetment.h"
+#include "NaturalStoneRevetmentTimeDependentOutput.h"
 #include "Revetment.h"
 #include "TimeDependentInput.h"
 
@@ -135,7 +136,7 @@ namespace DiKErnel::Integration
             }
         }
 
-        return make_unique<TimeDependentOutput>(damage, move(timeOfFailure));
+        return make_unique<NaturalStoneRevetmentTimeDependentOutput>(damage, move(timeOfFailure));
     }
 
     double NaturalStoneRevetmentLocationDependentInput::GetTanA() const
