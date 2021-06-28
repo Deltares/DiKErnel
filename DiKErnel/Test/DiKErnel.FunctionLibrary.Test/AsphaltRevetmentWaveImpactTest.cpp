@@ -52,7 +52,7 @@ namespace DiKErnel::FunctionLibrary::Test
             tuple<double, double>(1.2, 0.0269),
             tuple<double, double>(1.3, 0.0216),
             tuple<double, double>(1.4, 0.015),
-            tuple<double, double>(1.5, 0.0105),
+            tuple<double, double>(1.5, 0.0105)
         };
 
         const vector<tuple<double, double>> depthFactors
