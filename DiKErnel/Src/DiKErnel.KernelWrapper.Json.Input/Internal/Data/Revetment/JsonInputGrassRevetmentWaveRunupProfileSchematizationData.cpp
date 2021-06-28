@@ -30,13 +30,13 @@ namespace DiKErnel::KernelWrapper::Json::Input
         : JsonInputProfileSchematizationData(tanA, positionZ) { }
 
     void JsonInputGrassRevetmentWaveRunupProfileSchematizationData::SetRepresentativeWaveRunup2PGammab(
-        std::unique_ptr<double> representativeWaveRunup2PGammab)
+        unique_ptr<double> representativeWaveRunup2PGammab)
     {
         _representativeWaveRunup2PGammab = move(representativeWaveRunup2PGammab);
     }
 
     void JsonInputGrassRevetmentWaveRunupProfileSchematizationData::SetRepresentativeWaveRunup2PGammaf(
-        std::unique_ptr<double> representativeWaveRunup2PGammaf)
+        unique_ptr<double> representativeWaveRunup2PGammaf)
     {
         _representativeWaveRunup2PGammaf = move(representativeWaveRunup2PGammaf);
     }

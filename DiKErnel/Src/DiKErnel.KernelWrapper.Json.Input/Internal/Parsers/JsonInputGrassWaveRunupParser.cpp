@@ -94,7 +94,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
         return profileSchematization;
     }
 
-    std::unique_ptr<JsonInputGrassRevetmentWaveRunupRayleighLocationData> JsonInputGrassWaveRunupParser::ParseRayleighRevetmentLocationData(
+    unique_ptr<JsonInputGrassRevetmentWaveRunupRayleighLocationData> JsonInputGrassWaveRunupParser::ParseRayleighRevetmentLocationData(
         const json& readRevetment,
         const json& readCalculationProtocol)
     {
