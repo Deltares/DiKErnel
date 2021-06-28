@@ -43,10 +43,6 @@ namespace DiKErnel::Integration
     using namespace DomainLibrary;
     using namespace std;
 
-    RevetmentCalculationInputBuilder::RevetmentCalculationInputBuilder(
-        const unique_ptr<CalculationLevelType> calculationLevelType)
-        : _calculationLevelType(GetValue(calculationLevelType.get(), CalculationLevelType::Damage)) {}
-
     void RevetmentCalculationInputBuilder::AddTimeStep(
         int beginTime,
         int endTime,

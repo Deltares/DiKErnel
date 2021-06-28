@@ -23,7 +23,6 @@
 #include <memory>
 
 #include "AsphaltRevetmentWaveImpactLocationConstructionProperties.h"
-#include "CalculationLevelType.h"
 #include "GrassRevetmentWaveImpactLocationConstructionProperties.h"
 #include "GrassRevetmentWaveRunupRayleighLocationConstructionProperties.h"
 #include "ICalculationInput.h"
@@ -43,9 +42,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 const JsonInputData& jsonInputData);
 
         private:
-            static std::unique_ptr<Integration::CalculationLevelType> ConvertProcessType(
-                const JsonInputProcessType* processType);
-
             static std::unique_ptr<Integration::AsphaltRevetmentWaveImpactLocationConstructionProperties>
             CreateAsphaltWaveImpactConstructionProperties(
                 const JsonInputLocationData& location,
