@@ -46,7 +46,15 @@ namespace DiKErnel::Acceptance::Test
         void PerformTest(
             const string& inputFilePath,
             const double expectedDamage,
-            const int* expectedTimeOfFailure) const
+            int* expectedTimeOfFailure) const
+        {
+            PerformTest(inputFilePath, vector<double>(1, expectedDamage), vector<int*>(1, expectedTimeOfFailure));
+        }
+
+        void PerformTest(
+            const string& inputFilePath,
+            const vector<double>& expectedDamages,
+            const vector<int*>& expectedTimeOfFailures) const
         {
             // When
             const auto calculationInput = JsonInputComposer::GetCalculationInputFromJson(inputFilePath);
@@ -60,17 +68,26 @@ namespace DiKErnel::Acceptance::Test
             ifstream ifs(_actualOutputFilePath);
             const auto json = json::parse(ifs);
 
-            const auto& readLocation = json["Uitvoerdata"]["Locaties"][0];
-            const auto& actualDamages = readLocation["Schade"]["SchadegetalPerTijd"].get<vector<double>>();
+            const auto& readLocations = json["Uitvoerdata"]["Locaties"];
 
-            unique_ptr<int> actualTimeOfFailure = nullptr;
+            ASSERT_EQ(expectedDamages.size(), readLocations.size());
+            ASSERT_EQ(expectedTimeOfFailures.size(), readLocations.size());
 
-            if (!readLocation["Schade"]["Faaltijd"].is_null())
+            for (auto i = 0; i < static_cast<int>(readLocations.size()); ++i)
             {
-                actualTimeOfFailure = make_unique<int>(readLocation["Schade"]["Faaltijd"].get<int>());
-            }
+                const auto readLocation = readLocations[i];
 
-            AssertOutput(expectedDamage, expectedTimeOfFailure, actualDamages.back(), actualTimeOfFailure.get());
+                const auto& actualDamages = readLocation["Schade"]["SchadegetalPerTijd"].get<vector<double>>();
+
+                unique_ptr<int> actualTimeOfFailure = nullptr;
+
+                if (!readLocation["Schade"]["Faaltijd"].is_null())
+                {
+                    actualTimeOfFailure = make_unique<int>(readLocation["Schade"]["Faaltijd"].get<int>());
+                }
+
+                AssertOutput(expectedDamages[i], expectedTimeOfFailures[i], actualDamages.back(), actualTimeOfFailure.get());
+            }
         }
 
         static void AssertOutput(
@@ -104,7 +121,16 @@ namespace DiKErnel::Acceptance::Test
             / "AsphaltWaveImpact.json").string();
 
         // When & Then
-        PerformTest(inputFilePath, 12.9568389512477, make_unique<int>(2851).get());
+        PerformTest(inputFilePath, vector<double>
+                    {
+                        12.9568389512477,
+                        0.199599646828026,
+
+                    }, vector<int*>
+                    {
+                        make_unique<int>(2851).get(),
+                        nullptr
+                    });
     }
 
     TEST_F(AcceptanceTest, GivenJsonInputWithGrassWaveImpactLocation_WhenCalculating_ThenExpectedOutputJsonCreated)
