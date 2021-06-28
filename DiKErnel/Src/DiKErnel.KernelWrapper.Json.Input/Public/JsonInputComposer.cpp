@@ -28,11 +28,17 @@ namespace DiKErnel::KernelWrapper::Json::Input
     using namespace Core;
     using namespace std;
 
-    unique_ptr<ICalculationInput> JsonInputComposer::GetCalculationInputFromJson(
+    tuple<unique_ptr<ICalculationInput>, JsonInputProcessType> JsonInputComposer::GetInputDataFromJson(
         const string& filePath)
     {
         const auto jsonInputData = JsonInputParser::GetJsonInputData(filePath);
 
-        return JsonInputAdapter::AdaptJsonInputData(*jsonInputData);
+        const auto* readProcessType = jsonInputData->GetProcessData().GetProcessType();
+        const auto processType = readProcessType == nullptr
+            ? JsonInputProcessType::Damage
+            : *readProcessType;
+
+        return tuple<unique_ptr<ICalculationInput>, JsonInputProcessType>(
+            JsonInputAdapter::AdaptJsonInputData(*jsonInputData), processType);
     }
 }

@@ -68,14 +68,15 @@ int main()
         cout << endl;
 
         // Read input Json file
-        const auto inputData = JsonInputComposer::GetCalculationInputFromJson(jsonFilePath);
+        const auto inputData = JsonInputComposer::GetInputDataFromJson(jsonFilePath);
+        auto* calculationInput = get<0>(inputData).get();
 
         // Write user feedback
         cout << "|===========|" << endl;
         cout << "| Read data |" << endl;
         cout << "|===========|" << endl;
-        cout << "-> Number of read time steps: " << inputData->GetTimeDependentInputItems().size() - 1 << endl;
-        cout << "-> Number of read locations: " << inputData->GetLocationDependentInputItems().size() << endl << endl;
+        cout << "-> Number of read time steps: " << calculationInput->GetTimeDependentInputItems().size() - 1 << endl;
+        cout << "-> Number of read locations: " << calculationInput->GetLocationDependentInputItems().size() << endl << endl;
 
         // Start stopwatch
         const auto start = chrono::high_resolution_clock::now();
@@ -88,7 +89,7 @@ int main()
         cout << "-> Enter 'c' to cancel the calculation" << endl << endl;
 
         // Start calculation on separate thread
-        Calculator calculator(*inputData);
+        Calculator calculator(*calculationInput);
 
         // Start obtaining user input on separate thread
         thread inputThread(
@@ -133,7 +134,7 @@ int main()
 
             // Write Json output to file
             const auto outputData = calculator.GetCalculationOutput();
-            JsonOutputComposer::WriteCalculationOutputToJson(outputPath.u8string(), *outputData, *inputData);
+            JsonOutputComposer::WriteCalculationOutputToJson(outputPath.u8string(), *outputData, *calculationInput);
 
             cout << endl;
             cout << "|========================|" << endl;

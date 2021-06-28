@@ -24,22 +24,23 @@
 #include <string>
 
 #include "ICalculationInput.h"
+#include "JsonInputProcessType.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
     /*!
-     * \brief Class responsible for reading Json and turning it into ICalculationInput.
+     * \brief Class responsible for reading Json and turning it into input data.
     */
     class JsonInputComposer
     {
         public:
             /*!
-             * \brief Gets calculation input based on Json.
+             * \brief Gets input data based on Json.
              * \param filePath
              *        The path to the Json file.
-             * \return The created ICalculationInput.
+             * \return A tuple with the created ICalculationInput and JsonInputProcessType.
             */
-            static std::unique_ptr<Core::ICalculationInput> GetCalculationInputFromJson(
+            static std::tuple<std::unique_ptr<Core::ICalculationInput>, JsonInputProcessType> GetInputDataFromJson(
                 const std::string& filePath);
     };
 }

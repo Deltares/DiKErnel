@@ -53,7 +53,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
             const auto filePath = (TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Input.Test") / "JsonInputComposerTest"
                 / "InvalidCalculationProcessType.json").string();
 
-            JsonInputComposer::GetCalculationInputFromJson(filePath);
+            JsonInputComposer::GetInputDataFromJson(filePath);
         }
 
         static void GetCalculationInputFromJsonWithInvalidAsphaltRevetmentWaveImpactTopLayerType()
@@ -61,7 +61,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
             const auto filePath = (TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Input.Test") / "JsonInputComposerTest"
                 / "InvalidAsphaltRevetmentWaveImpactTopLayerType.json").string();
 
-            JsonInputComposer::GetCalculationInputFromJson(filePath);
+            JsonInputComposer::GetInputDataFromJson(filePath);
         }
 
         static void GetCalculationInputFromJsonWithInvalidNaturalStoneRevetmentTopLayerType()
@@ -69,7 +69,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
             const auto filePath = (TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Input.Test") / "JsonInputComposerTest"
                 / "InvalidNaturalStoneRevetmentTopLayerType.json").string();
 
-            JsonInputComposer::GetCalculationInputFromJson(filePath);
+            JsonInputComposer::GetInputDataFromJson(filePath);
         }
 
         static void GetCalculationInputFromJsonWithInvalidGrassRevetmentWaveImpactTopLayerType()
@@ -77,7 +77,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
             const auto filePath = (TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Input.Test") / "JsonInputComposerTest"
                 / "InvalidGrassRevetmentWaveImpactTopLayerType.json").string();
 
-            JsonInputComposer::GetCalculationInputFromJson(filePath);
+            JsonInputComposer::GetInputDataFromJson(filePath);
         }
 
         static void GetCalculationInputFromJsonWithInvalidGrassRevetmentWaveRunupRayleighTopLayerType()
@@ -85,7 +85,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
             const auto filePath = (TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Input.Test") / "JsonInputComposerTest"
                 / "InvalidGrassRevetmentWaveRunupRayleighTopLayerType.json").string();
 
-            JsonInputComposer::GetCalculationInputFromJson(filePath);
+            JsonInputComposer::GetInputDataFromJson(filePath);
         }
     };
 
@@ -96,7 +96,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
             / "CompleteInput.json").string();
 
         // When
-        const auto calculationInput = JsonInputComposer::GetCalculationInputFromJson(filePath);
+        const auto calculationInput = get<0>(JsonInputComposer::GetInputDataFromJson(filePath));
 
         // Then
         AssertHelper::AssertIsInstanceOf<CalculationInput>(calculationInput.get());
