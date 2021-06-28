@@ -157,8 +157,7 @@ namespace DiKErnel::FunctionLibrary::Test
             computationalThickness,
             equivalentElasticModulus,
             soilElasticity,
-            stiffnessRelationNu
-        );
+            stiffnessRelationNu);
 
         // Assert
         ASSERT_DOUBLE_EQ(1.1856261832690844, stiffnessRelation);
@@ -177,8 +176,7 @@ namespace DiKErnel::FunctionLibrary::Test
             thicknessUpperLayer,
             thicknessSubLayer,
             elasticModulusUpperLayer,
-            elasticModulusSubLayer
-        );
+            elasticModulusSubLayer);
 
         // Assert
         ASSERT_DOUBLE_EQ(0.387174648559827, computationalThickness);

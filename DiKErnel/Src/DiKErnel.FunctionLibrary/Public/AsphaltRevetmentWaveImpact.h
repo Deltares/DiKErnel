@@ -95,8 +95,7 @@ namespace DiKErnel::FunctionLibrary
                 double waveHeightHm0,
                 double fatigueAlpha,
                 double fatigueBeta,
-                double impactNumberC
-            );
+                double impactNumberC);
 
             /*!
              * \brief Calculates the logarithm of the failure tension.
@@ -107,8 +106,7 @@ namespace DiKErnel::FunctionLibrary
              *         Unit = [MPa]
              */
             static double LogFailureTension(
-                double failureTension
-            );
+                double failureTension);
 
             /*!
              * \brief Calculates the maximum peak stress.
@@ -127,8 +125,7 @@ namespace DiKErnel::FunctionLibrary
             static double MaximumPeakStress(
                 double waveHeightHm0,
                 double gravitationalAcceleration,
-                double densityOfWater
-            );
+                double densityOfWater);
 
             /*!
              * \brief Calculates the stiffness relation.
@@ -151,8 +148,7 @@ namespace DiKErnel::FunctionLibrary
                 double computationalThickness,
                 double equivalentElasticModulus,
                 double soilElasticity,
-                double stiffnessRelationNu
-            );
+                double stiffnessRelationNu);
 
             /*!
              * \brief Calculates the computational thickness.
@@ -175,8 +171,7 @@ namespace DiKErnel::FunctionLibrary
                 double thicknessUpperLayer,
                 double thicknessSubLayer,
                 double elasticModulusUpperLayer,
-                double elasticModulusSubLayer
-            );
+                double elasticModulusSubLayer);
 
         private:
             static double DepthFactorAccumulation(
@@ -205,8 +200,7 @@ namespace DiKErnel::FunctionLibrary
                 const std::vector<std::tuple<double, double>>& impactFactors,
                 double fatigueAlpha,
                 double fatigueBeta,
-                double impactNumberC
-            );
+                double impactNumberC);
 
             static double Fatigue(
                 double logFailureTension,
@@ -215,21 +209,18 @@ namespace DiKErnel::FunctionLibrary
                 double impactFactorValue,
                 double fatigueAlpha,
                 double fatigueBeta,
-                double impactNumberC
-            );
+                double impactNumberC);
 
             static double LogTension(
                 double bendingStress,
                 double tanA,
                 double impactFactorValue,
-                double impactNumberC
-            );
+                double impactNumberC);
 
             static double ImpactNumber(
                 double tanA,
                 double impactFactorValue,
-                double impactNumberC
-            );
+                double impactNumberC);
 
             static double BendingStress(
                 double maximumPeakStress,
@@ -240,8 +231,7 @@ namespace DiKErnel::FunctionLibrary
                 double depthFactorValue,
                 double positionZ,
                 double waterLevel,
-                double waveHeightHm0
-            );
+                double waveHeightHm0);
 
             static double SpatialDistributionBendingStress(
                 double stiffnessRelation,
@@ -250,14 +240,12 @@ namespace DiKErnel::FunctionLibrary
                 double depthFactorValue,
                 double positionZ,
                 double waterLevel,
-                double waveHeightHm0
-            );
+                double waveHeightHm0);
 
             static double RelativeWidthWaveImpact(
                 double stiffnessRelation,
                 double widthFactorValue,
-                double waveHeightHm0
-            );
+                double waveHeightHm0);
 
             static double RelativeDistanceCenterWaveImpact(
                 double stiffnessRelation,
@@ -265,7 +253,6 @@ namespace DiKErnel::FunctionLibrary
                 double sinA,
                 double positionZ,
                 double waterLevel,
-                double waveHeightHm0
-            );
+                double waveHeightHm0);
     };
 }
