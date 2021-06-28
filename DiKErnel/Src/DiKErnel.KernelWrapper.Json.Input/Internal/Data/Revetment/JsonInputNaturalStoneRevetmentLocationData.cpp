@@ -28,9 +28,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
         const JsonInputNaturalStoneRevetmentTopLayerType topLayerType,
         const double relativeDensity,
         const double thicknessTopLayer)
-        : _relativeDensity(relativeDensity),
-          _thicknessTopLayer(thicknessTopLayer),
-          _topLayerType(topLayerType) { }
+        : _topLayerType(topLayerType),
+          _relativeDensity(relativeDensity),
+          _thicknessTopLayer(thicknessTopLayer) { }
 
     #pragma region Set methods
 

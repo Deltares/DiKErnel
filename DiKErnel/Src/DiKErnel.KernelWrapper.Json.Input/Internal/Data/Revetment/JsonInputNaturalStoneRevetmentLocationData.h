@@ -150,9 +150,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
             #pragma endregion
 
         private:
+            JsonInputNaturalStoneRevetmentTopLayerType _topLayerType;
             double _relativeDensity;
             double _thicknessTopLayer;
-            JsonInputNaturalStoneRevetmentTopLayerType _topLayerType;
             std::unique_ptr<double> _hydraulicLoadXib = nullptr;
             std::unique_ptr<double> _hydraulicLoadAp = nullptr;
             std::unique_ptr<double> _hydraulicLoadBp = nullptr;

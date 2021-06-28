@@ -24,7 +24,7 @@
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
-    class JsonInputAsphaltRevetmentDefinitions
+    class JsonInputAsphaltWaveImpactDefinitions
     {
         public:
             inline static const std::string TOP_LAYER_TYPE_WAB = "WaterbouwAsfaltBeton";
