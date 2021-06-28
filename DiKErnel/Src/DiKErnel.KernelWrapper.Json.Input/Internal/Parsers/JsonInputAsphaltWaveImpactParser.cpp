@@ -35,7 +35,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 JsonInputAsphaltRevetmentTopLayerType::Unknown, nullptr
             },
             {
-                JsonInputAsphaltRevetmentTopLayerType::WAB, JsonInputAsphaltRevetmentDefinitions::TOP_LAYER_TYPE_WAD
+                JsonInputAsphaltRevetmentTopLayerType::WAB, JsonInputAsphaltRevetmentDefinitions::TOP_LAYER_TYPE_WAB
             }
         });
 
