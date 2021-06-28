@@ -124,7 +124,7 @@ namespace DiKErnel::Acceptance::Test
         PerformTest(inputFilePath, vector<double>
                     {
                         12.9568389512477,
-                        0.199599646828026,
+                        0.19959964682802614,
 
                     }, vector<int*>
                     {
