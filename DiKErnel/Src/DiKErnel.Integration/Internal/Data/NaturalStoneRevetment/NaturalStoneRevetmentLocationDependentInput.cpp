@@ -91,6 +91,7 @@ namespace DiKErnel::Integration
                                                                                 _upperLimitLoading->GetUpperLimitCul());
         const auto loadingRevetment = HydraulicLoad::LoadingRevetment(lowerLimitLoading, upperLimitLoading, GetPositionZ());
 
+        auto incrementDamage = 0.0;
         auto damage = initialDamage;
         unique_ptr<int> timeOfFailure = nullptr;
 
@@ -99,7 +100,6 @@ namespace DiKErnel::Integration
         unique_ptr<double> resistance = nullptr;
         unique_ptr<double> referenceTimeDegradation = nullptr;
         unique_ptr<double> referenceDegradation = nullptr;
-        auto incrementDamage = 0.0;
 
         if (loadingRevetment)
         {
