@@ -21,6 +21,7 @@
 #include "AsphaltRevetmentWaveImpactLocationDependentInput.h"
 
 #include "AsphaltRevetmentWaveImpact.h"
+#include "AsphaltRevetmentWaveImpactTimeDependentOutput.h"
 #include "Constants.h"
 #include "Revetment.h"
 
@@ -72,6 +73,7 @@ namespace DiKErnel::Integration
 
         const auto beginTime = timeDependentInput.GetBeginTime();
         const auto waveHeightHm0 = timeDependentInput.GetWaveHeightHm0();
+        auto equivalentElasticModulus = _subLayer->GetElasticModulus();
 
         const auto incrementTime = Revetment::IncrementTime(beginTime, timeDependentInput.GetEndTime());
         const auto averageNumberOfWaves = Revetment::AverageNumberOfWaves(incrementTime, timeDependentInput.GetWavePeriodTm10(),
@@ -82,8 +84,8 @@ namespace DiKErnel::Integration
         const auto computationalThickness = AsphaltRevetmentWaveImpact::ComputationalThickness(_upperLayer->GetThickness(),
                                                                                                _subLayer->GetThickness(),
                                                                                                _upperLayer->GetElasticModulus(),
-                                                                                               _subLayer->GetElasticModulus());
-        const auto stiffnessRelation = AsphaltRevetmentWaveImpact::StiffnessRelation(computationalThickness, _subLayer->GetElasticModulus(),
+                                                                                               equivalentElasticModulus);
+        const auto stiffnessRelation = AsphaltRevetmentWaveImpact::StiffnessRelation(computationalThickness, equivalentElasticModulus,
                                                                                      _soilElasticity, _stiffnessRelationNu);
         const auto incrementDamage = AsphaltRevetmentWaveImpact::IncrementDamage(logFailureTension, averageNumberOfWaves, maximumPeakStress,
                                                                                  stiffnessRelation, computationalThickness, _tanA,
@@ -103,7 +105,9 @@ namespace DiKErnel::Integration
             timeOfFailure = make_unique<int>(Revetment::TimeOfFailure(durationInTimeStepFailure, beginTime));
         }
 
-        return make_unique<TimeDependentOutput>(incrementDamage, damage, move(timeOfFailure));
+        return make_unique<AsphaltRevetmentWaveImpactTimeDependentOutput>(incrementDamage, damage, move(timeOfFailure), logFailureTension,
+                                                                          maximumPeakStress, stiffnessRelation, computationalThickness,
+                                                                          equivalentElasticModulus);
     }
 
     double AsphaltRevetmentWaveImpactLocationDependentInput::GetTanA() const
