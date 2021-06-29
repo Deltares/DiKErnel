@@ -27,7 +27,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
     class JsonInputAsphaltWaveImpactDefinitions
     {
         public:
-            inline static const std::string TOP_LAYER_TYPE_WAB = "WaterbouwAsfaltBeton";
+            inline static const std::string TOP_LAYER_TYPE_HYDRAULIC_ASPHALT_CONCRETE = "WaterbouwAsfaltBeton";
 
             inline static const std::string FAILURE_TENSION = "BreuksterkteAsfalt";
             inline static const std::string DENSITY_OF_WATER = "SoortelijkeDichtheidWater";

@@ -140,9 +140,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
     AsphaltRevetmentTopLayerType JsonInputAdapter::ConvertTopLayerType(
         const JsonInputAsphaltRevetmentTopLayerType topLayerType)
     {
-        if (topLayerType == JsonInputAsphaltRevetmentTopLayerType::WAB)
+        if (topLayerType == JsonInputAsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete)
         {
-            return AsphaltRevetmentTopLayerType::WAB;
+            return AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete;
         }
 
         throw JsonConversionException("Cannot convert top layer type.");

@@ -27,6 +27,6 @@ namespace DiKErnel::Integration
      */
     enum class AsphaltRevetmentTopLayerType
     {
-        WAB
+        HydraulicAsphaltConcrete
     };
 }

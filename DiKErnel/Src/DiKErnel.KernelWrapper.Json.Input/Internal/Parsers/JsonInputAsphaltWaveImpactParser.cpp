@@ -35,7 +35,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 JsonInputAsphaltRevetmentTopLayerType::Unknown, nullptr
             },
             {
-                JsonInputAsphaltRevetmentTopLayerType::WAB, JsonInputAsphaltWaveImpactDefinitions::TOP_LAYER_TYPE_WAB
+                JsonInputAsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete,
+                JsonInputAsphaltWaveImpactDefinitions::TOP_LAYER_TYPE_HYDRAULIC_ASPHALT_CONCRETE
             }
         });
 

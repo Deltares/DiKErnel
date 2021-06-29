@@ -25,6 +25,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
     enum class JsonInputAsphaltRevetmentTopLayerType
     {
         Unknown,
-        WAB
+        HydraulicAsphaltConcrete
     };
 }

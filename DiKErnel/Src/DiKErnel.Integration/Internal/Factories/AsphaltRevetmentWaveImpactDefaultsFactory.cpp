@@ -33,7 +33,7 @@ namespace DiKErnel::Integration
     {
         switch (topLayerType)
         {
-            case AsphaltRevetmentTopLayerType::WAB:
+            case AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete:
                 return make_unique<AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteDefaults>();
         }
 

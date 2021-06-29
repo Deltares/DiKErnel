@@ -182,7 +182,7 @@ namespace DiKErnel::Integration::Test
     TEST_F(RevetmentCalculationInputBuilderTest,
            GivenBuilderWithFullyConfiguredAsphaltWaveImpactLocationAdded_WhenBuild_ThenReturnsCalculationInput)
     {
-        const auto topLayerType = AsphaltRevetmentTopLayerType::WAB;
+        const auto topLayerType = AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete;
         const string name = "Test";
         const auto tanA = 0.1;
         const auto positionZ = 0.2;
@@ -267,7 +267,7 @@ namespace DiKErnel::Integration::Test
     TEST_F(RevetmentCalculationInputBuilderTest,
            GivenBuilderWithNotFullyConfiguredAsphaltWaveImpactLocationAdded_WhenBuild_ThenReturnsCalculationInput)
     {
-        const auto topLayerType = AsphaltRevetmentTopLayerType::WAB;
+        const auto topLayerType = AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete;
         const string name = "Test";
         const auto tanA = 0.1;
         const auto positionZ = 0.2;
