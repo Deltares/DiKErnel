@@ -60,7 +60,7 @@ namespace DiKErnel::Integration
                 double waveAngle);
 
             /*!
-             * \brief Adds a asphalt wave impact location.
+             * \brief Adds an asphalt wave impact location.
              * \param constructionProperties
              *        The properties to construct the asphalt wave impact location dependent input.
              * \exception RevetmentCalculationInputBuilderException

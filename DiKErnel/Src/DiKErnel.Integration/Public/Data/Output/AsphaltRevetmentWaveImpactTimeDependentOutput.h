@@ -25,7 +25,7 @@
 namespace DiKErnel::Integration
 {
     /*!
-     * \brief Time dependent output of a asphalt revetment wave impact location.
+     * \brief Time dependent output of an asphalt revetment wave impact location.
      */
     class AsphaltRevetmentWaveImpactTimeDependentOutput : public Core::TimeDependentOutput
     {

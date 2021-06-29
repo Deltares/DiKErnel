@@ -46,15 +46,15 @@ namespace DiKErnel::Acceptance::Test
         void PerformTest(
             const string& inputFilePath,
             const double expectedDamage,
-            int* expectedTimeOfFailure) const
+            const int* expectedTimeOfFailure) const
         {
-            PerformTest(inputFilePath, vector<double>(1, expectedDamage), vector<int*>(1, expectedTimeOfFailure));
+            PerformTest(inputFilePath, vector<double>(1, expectedDamage), vector<const int*>(1, expectedTimeOfFailure));
         }
 
         void PerformTest(
             const string& inputFilePath,
             const vector<double>& expectedDamages,
-            const vector<int*>& expectedTimeOfFailures) const
+            const vector<const int*>& expectedTimesOfFailure) const
         {
             // When
             const auto inputData = JsonInputComposer::GetInputDataFromJson(inputFilePath);
@@ -73,7 +73,7 @@ namespace DiKErnel::Acceptance::Test
             const auto& readLocations = json["Uitvoerdata"]["Locaties"];
 
             ASSERT_EQ(expectedDamages.size(), readLocations.size());
-            ASSERT_EQ(expectedTimeOfFailures.size(), readLocations.size());
+            ASSERT_EQ(expectedTimesOfFailure.size(), readLocations.size());
 
             for (auto i = 0; i < static_cast<int>(readLocations.size()); ++i)
             {
@@ -88,7 +88,7 @@ namespace DiKErnel::Acceptance::Test
                     actualTimeOfFailure = make_unique<int>(readLocation["Schade"]["Faaltijd"].get<int>());
                 }
 
-                AssertOutput(expectedDamages[i], expectedTimeOfFailures[i], actualDamages.back(), actualTimeOfFailure.get());
+                AssertOutput(expectedDamages[i], expectedTimesOfFailure[i], actualDamages.back(), actualTimeOfFailure.get());
             }
         }
 
@@ -116,7 +116,7 @@ namespace DiKErnel::Acceptance::Test
         }
     };
 
-    TEST_F(AcceptanceTest, GivenJsonInputWithAsphaltWaveImpactLocation_WhenCalculating_ThenExpectedOutputJsonCreated)
+    TEST_F(AcceptanceTest, GivenJsonInputWithAsphaltWaveImpactLocations_WhenCalculating_ThenExpectedOutputJsonCreated)
     {
         // Given
         const auto inputFilePath = (TestDataPathHelper::GetTestDataPath("DiKErnel.Acceptance.Test") / "AcceptanceTest"
@@ -128,7 +128,7 @@ namespace DiKErnel::Acceptance::Test
                         12.9568389512477,
                         0.19959964682802614,
 
-                    }, vector<int*>
+                    }, vector<const int*>
                     {
                         make_unique<int>(2851).get(),
                         nullptr
