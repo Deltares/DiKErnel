@@ -188,7 +188,7 @@ namespace DiKErnel::Integration
                 GetValue(constructionProperties.GetAverageNumberOfWavesCtm(), defaults->GetAverageNumberOfWavesCtm()),
                 move(representative2P),
                 move(waveAngleImpact),
-                GetValue(constructionProperties.GetCumulativeOverloadNf(), defaults->GetCumulativeOverloadNf()),
+                GetValue(constructionProperties.GetFixedNumberOfWaves(), defaults->GetFixedNumberOfWaves()),
                 GetValue(constructionProperties.GetFrontVelocityCu(), defaults->GetFrontVelocityCu())));
     }
 

@@ -42,19 +42,19 @@ namespace DiKErnel::Integration
                 double averageNumberOfWavesCtm,
                 std::unique_ptr<GrassRevetmentWaveRunupRepresentative2P> representative2P,
                 std::unique_ptr<GrassRevetmentWaveRunupWaveAngleImpact> waveAngleImpact,
-                int cumulativeOverloadNf,
+                int fixedNumberOfWaves,
                 double frontVelocityCu);
 
             std::unique_ptr<Core::TimeDependentOutput> Calculate(
                 double initialDamage,
                 const Core::ITimeDependentInput& timeDependentInput) override;
 
-            int GetCumulativeOverloadNf() const;
+            int GetFixedNumberOfWaves() const;
 
             double GetFrontVelocityCu() const;
 
         private:
-            const int _cumulativeOverloadNf;
+            const int _fixedNumberOfWaves;
             const double _frontVelocityCu;
     };
 }

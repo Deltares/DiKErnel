@@ -29,7 +29,7 @@ namespace DiKErnel::Integration::TestUtil
         public:
             static void AssertCumulativeOverload(
                 double criticalCumulativeOverload,
-                int cumulativeOverloadNf,
+                int fixedNumberOfWaves,
                 const GrassRevetmentWaveRunupRayleighLocationDependentInput& locationDependentInput);
 
             static void AssertFrontVelocity(

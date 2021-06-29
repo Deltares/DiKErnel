@@ -236,8 +236,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
         constructionProperties->SetWaveAngleImpactBetamax(
             forward<unique_ptr<double>>(CreatePointerOfValue(grassRevetmentWaveRunupRayleighLocationData.GetWaveAngleImpactBetamax())));
 
-        constructionProperties->SetCumulativeOverloadNf(
-            forward<unique_ptr<int>>(CreatePointerOfValue(grassRevetmentWaveRunupRayleighLocationData.GetCumulativeOverloadNf())));
+        constructionProperties->SetFixedNumberOfWaves(
+            forward<unique_ptr<int>>(CreatePointerOfValue(grassRevetmentWaveRunupRayleighLocationData.GetFixedNumberOfWaves())));
         constructionProperties->SetFrontVelocityCu(
             forward<unique_ptr<double>>(CreatePointerOfValue(grassRevetmentWaveRunupRayleighLocationData.GetFrontVelocityCu())));
 

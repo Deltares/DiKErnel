@@ -51,12 +51,12 @@ namespace DiKErnel::Integration
             #pragma region Set methods
 
             /*!
-             * \brief Sets the Nf coefficient.
-             * \param cumulativeOverloadNf
-             *        The Nf coefficient.
+             * \brief Sets the fixed number of waves.
+             * \param fixedNumberOfWaves
+             *        The fixed number of waves.
              */
-            void SetCumulativeOverloadNf(
-                std::unique_ptr<int> cumulativeOverloadNf);
+            void SetFixedNumberOfWaves(
+                std::unique_ptr<int> fixedNumberOfWaves);
 
             /*!
              * \brief Sets the Cu coefficient.
@@ -71,10 +71,10 @@ namespace DiKErnel::Integration
             #pragma region Get methods
 
             /*!
-             * \brief Gets the Nf coefficient.
-             * \return The Nf coefficient.
+             * \brief Gets the fixed number of waves.
+             * \return The fixed number of waves.
              */
-            const int* GetCumulativeOverloadNf() const;
+            const int* GetFixedNumberOfWaves() const;
 
             /*!
              * \brief Gets the Cu coefficient.
@@ -85,7 +85,7 @@ namespace DiKErnel::Integration
             #pragma endregion
 
         private:
-            std::unique_ptr<int> _cumulativeOverloadNf = nullptr;
+            std::unique_ptr<int> _fixedNumberOfWaves = nullptr;
             std::unique_ptr<double> _frontVelocityCu = nullptr;
     };
 }

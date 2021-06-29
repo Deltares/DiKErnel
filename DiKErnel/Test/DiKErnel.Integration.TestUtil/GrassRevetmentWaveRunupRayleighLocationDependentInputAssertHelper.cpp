@@ -30,13 +30,13 @@ namespace DiKErnel::Integration::TestUtil
 
     void GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper::AssertCumulativeOverload(
         const double criticalCumulativeOverload,
-        const int cumulativeOverloadNf,
+        const int fixedNumberOfWaves,
         const GrassRevetmentWaveRunupRayleighLocationDependentInput& locationDependentInput)
     {
         GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertCumulativeOverload(
             criticalCumulativeOverload, locationDependentInput);
 
-        ASSERT_EQ(cumulativeOverloadNf, locationDependentInput.GetCumulativeOverloadNf());
+        ASSERT_EQ(fixedNumberOfWaves, locationDependentInput.GetFixedNumberOfWaves());
     }
 
     void GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper::AssertFrontVelocity(

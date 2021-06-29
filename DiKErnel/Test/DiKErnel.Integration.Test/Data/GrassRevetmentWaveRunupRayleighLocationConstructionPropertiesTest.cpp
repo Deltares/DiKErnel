@@ -61,7 +61,7 @@ namespace DiKErnel::Integration::Test
         ASSERT_EQ(nullptr, constructionProperties.GetRepresentativeWaveRunup2PGammaf());
         ASSERT_EQ(nullptr, constructionProperties.GetWaveAngleImpactAbeta());
         ASSERT_EQ(nullptr, constructionProperties.GetWaveAngleImpactBetamax());
-        ASSERT_EQ(nullptr, constructionProperties.GetCumulativeOverloadNf());
+        ASSERT_EQ(nullptr, constructionProperties.GetFixedNumberOfWaves());
         ASSERT_EQ(nullptr, constructionProperties.GetFrontVelocityCu());
     }
 
@@ -86,7 +86,7 @@ namespace DiKErnel::Integration::Test
         const auto representativeWaveRunup2PGammaf = 1.4;
         const auto waveAngleImpactAbeta = 1.5;
         const auto waveAngleImpactBetamax = 1.6;
-        const auto cumulativeOverloadNf = 17;
+        const auto fixedNumberOfWaves = 17;
         const auto frontVelocityCu = 1.8;
 
         GrassRevetmentWaveRunupRayleighLocationConstructionProperties constructionProperties(name, tanA, positionZ, topLayerType);
@@ -106,7 +106,7 @@ namespace DiKErnel::Integration::Test
         constructionProperties.SetRepresentativeWaveRunup2PGammaf(make_unique<double>(representativeWaveRunup2PGammaf));
         constructionProperties.SetWaveAngleImpactAbeta(make_unique<double>(waveAngleImpactAbeta));
         constructionProperties.SetWaveAngleImpactBetamax(make_unique<double>(waveAngleImpactBetamax));
-        constructionProperties.SetCumulativeOverloadNf(make_unique<int>(cumulativeOverloadNf));
+        constructionProperties.SetFixedNumberOfWaves(make_unique<int>(fixedNumberOfWaves));
         constructionProperties.SetFrontVelocityCu(make_unique<double>(frontVelocityCu));
 
         // Then
@@ -128,7 +128,7 @@ namespace DiKErnel::Integration::Test
         ASSERT_DOUBLE_EQ(representativeWaveRunup2PGammaf, *constructionProperties.GetRepresentativeWaveRunup2PGammaf());
         ASSERT_DOUBLE_EQ(waveAngleImpactAbeta, *constructionProperties.GetWaveAngleImpactAbeta());
         ASSERT_DOUBLE_EQ(waveAngleImpactBetamax, *constructionProperties.GetWaveAngleImpactBetamax());
-        ASSERT_EQ(cumulativeOverloadNf, *constructionProperties.GetCumulativeOverloadNf());
+        ASSERT_EQ(fixedNumberOfWaves, *constructionProperties.GetFixedNumberOfWaves());
         ASSERT_DOUBLE_EQ(frontVelocityCu, *constructionProperties.GetFrontVelocityCu());
     }
 }

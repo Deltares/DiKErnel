@@ -46,12 +46,12 @@ namespace DiKErnel::Integration
         const double averageNumberOfWavesCtm,
         unique_ptr<GrassRevetmentWaveRunupRepresentative2P> representative2P,
         unique_ptr<GrassRevetmentWaveRunupWaveAngleImpact> waveAngleImpact,
-        const int cumulativeOverloadNf,
+        const int fixedNumberOfWaves,
         const double frontVelocityCu)
         : GrassRevetmentWaveRunupLocationDependentInput(move(name), initialDamage, failureNumber, tanA, positionZ, criticalCumulativeOverload,
                                                         criticalFrontVelocity, increasedLoadTransitionAlphaM, reducedStrengthTransitionAlphaS,
                                                         averageNumberOfWavesCtm, move(representative2P), move(waveAngleImpact)),
-          _cumulativeOverloadNf(cumulativeOverloadNf),
+          _fixedNumberOfWaves(fixedNumberOfWaves),
           _frontVelocityCu(frontVelocityCu) {}
 
     unique_ptr<TimeDependentOutput> GrassRevetmentWaveRunupRayleighLocationDependentInput::Calculate(
@@ -77,7 +77,7 @@ namespace DiKErnel::Integration
             representative2P.GetRepresentative2PAru(), representative2P.GetRepresentative2PBru(), representative2P.GetRepresentative2PCru());
 
         const auto cumulativeOverload = GrassRevetmentWaveRunupRayleigh::CumulativeOverload(averageNumberOfWaves, representativeWaveRunup2P,
-                                                                                            _cumulativeOverloadNf, GetPositionZ(),
+                                                                                            _fixedNumberOfWaves, GetPositionZ(),
                                                                                             timeDependentInput.GetWaterLevel(),
                                                                                             GetCriticalFrontVelocity(),
                                                                                             GetIncreasedLoadTransitionAlphaM(),
@@ -102,9 +102,9 @@ namespace DiKErnel::Integration
         return make_unique<TimeDependentOutput>(damage, move(timeOfFailure));
     }
 
-    int GrassRevetmentWaveRunupRayleighLocationDependentInput::GetCumulativeOverloadNf() const
+    int GrassRevetmentWaveRunupRayleighLocationDependentInput::GetFixedNumberOfWaves() const
     {
-        return _cumulativeOverloadNf;
+        return _fixedNumberOfWaves;
     }
 
     double GrassRevetmentWaveRunupRayleighLocationDependentInput::GetFrontVelocityCu() const

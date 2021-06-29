@@ -35,8 +35,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
             #pragma region Set methods
 
-            void SetCumulativeOverloadNf(
-                std::unique_ptr<int> cumulativeOverloadNf);
+            void SetFixedNumberOfWaves(
+                std::unique_ptr<int> fixedNumberOfWaves);
 
             void SetFrontVelocityCu(
                 std::unique_ptr<double> frontVelocityCu);
@@ -45,14 +45,14 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
             #pragma region Get methods
 
-            const int* GetCumulativeOverloadNf() const;
+            const int* GetFixedNumberOfWaves() const;
 
             const double* GetFrontVelocityCu() const;
 
             #pragma endregion
 
         private:
-            std::unique_ptr<int> _cumulativeOverloadNf = nullptr;
+            std::unique_ptr<int> _fixedNumberOfWaves = nullptr;
             std::unique_ptr<double> _frontVelocityCu = nullptr;
     };
 }

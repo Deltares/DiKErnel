@@ -47,7 +47,7 @@ namespace DiKErnel::DomainLibrary::Test
         ASSERT_DOUBLE_EQ(1, defaults.GetRepresentativeWaveRunup2PGammaf());
         ASSERT_DOUBLE_EQ(0.0022, defaults.GetWaveAngleImpactAbeta());
         ASSERT_DOUBLE_EQ(80, defaults.GetWaveAngleImpactBetamax());
-        ASSERT_EQ(10000, defaults.GetCumulativeOverloadNf());
+        ASSERT_EQ(10000, defaults.GetFixedNumberOfWaves());
         ASSERT_DOUBLE_EQ(1.1, defaults.GetFrontVelocityCu());
     }
 }

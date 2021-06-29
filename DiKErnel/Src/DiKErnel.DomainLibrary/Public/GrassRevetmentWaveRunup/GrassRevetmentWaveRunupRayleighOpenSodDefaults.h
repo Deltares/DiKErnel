@@ -34,11 +34,11 @@ namespace DiKErnel::DomainLibrary
     {
         public:
             /*!
-             * \brief Gets the default value of the cumulative overload Nf.
-             * \return The default value of the cumulative overload Nf.
+             * \brief Gets the default value of the fixed number of waves.
+             * \return The default value of the fixed number of waves.
              *         Unit = [-]
              */
-            int GetCumulativeOverloadNf() const override;
+            int GetFixedNumberOfWaves() const override;
 
             /*!
              * \brief Gets the default value of the Cu coefficient.

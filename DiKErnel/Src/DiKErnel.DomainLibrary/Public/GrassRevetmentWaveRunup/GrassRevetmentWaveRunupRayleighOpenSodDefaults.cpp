@@ -22,7 +22,7 @@
 
 namespace DiKErnel::DomainLibrary
 {
-    int GrassRevetmentWaveRunupRayleighOpenSodDefaults::GetCumulativeOverloadNf() const
+    int GrassRevetmentWaveRunupRayleighOpenSodDefaults::GetFixedNumberOfWaves() const
     {
         return 10000;
     }

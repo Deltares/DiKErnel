@@ -590,7 +590,7 @@ namespace DiKErnel::Integration::Test
         const auto representativeWaveRunup2PGammaf = 1.4;
         const auto waveAngleImpactAbeta = 1.5;
         const auto waveAngleImpactBetamax = 1.6;
-        const auto cumulativeOverloadNf = 17;
+        const auto fixedNumberOfWaves = 17;
         const auto frontVelocityCu = 1.8;
 
         GrassRevetmentWaveRunupRayleighLocationConstructionProperties constructionProperties(name, tanA, positionZ, topLayerType);
@@ -608,7 +608,7 @@ namespace DiKErnel::Integration::Test
         constructionProperties.SetRepresentativeWaveRunup2PGammaf(make_unique<double>(representativeWaveRunup2PGammaf));
         constructionProperties.SetWaveAngleImpactAbeta(make_unique<double>(waveAngleImpactAbeta));
         constructionProperties.SetWaveAngleImpactBetamax(make_unique<double>(waveAngleImpactBetamax));
-        constructionProperties.SetCumulativeOverloadNf(make_unique<int>(cumulativeOverloadNf));
+        constructionProperties.SetFixedNumberOfWaves(make_unique<int>(fixedNumberOfWaves));
         constructionProperties.SetFrontVelocityCu(make_unique<double>(frontVelocityCu));
 
         RevetmentCalculationInputBuilder builder;
@@ -646,7 +646,7 @@ namespace DiKErnel::Integration::Test
             averageNumberOfWavesCtm, *locationDependentInput);
 
         GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper::AssertCumulativeOverload(
-            criticalCumulativeOverload, cumulativeOverloadNf, *locationDependentInput);
+            criticalCumulativeOverload, fixedNumberOfWaves, *locationDependentInput);
 
         GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper::AssertFrontVelocity(
             criticalFrontVelocity, frontVelocityCu, *locationDependentInput);

@@ -33,10 +33,10 @@ namespace DiKErnel::Integration
 
     #pragma region Set methods
 
-    void GrassRevetmentWaveRunupRayleighLocationConstructionProperties::SetCumulativeOverloadNf(
-        unique_ptr<int> cumulativeOverloadNf)
+    void GrassRevetmentWaveRunupRayleighLocationConstructionProperties::SetFixedNumberOfWaves(
+        unique_ptr<int> fixedNumberOfWaves)
     {
-        _cumulativeOverloadNf = move(cumulativeOverloadNf);
+        _fixedNumberOfWaves = move(fixedNumberOfWaves);
     }
 
     void GrassRevetmentWaveRunupRayleighLocationConstructionProperties::SetFrontVelocityCu(
@@ -49,9 +49,9 @@ namespace DiKErnel::Integration
 
     #pragma region Get methods
 
-    const int* GrassRevetmentWaveRunupRayleighLocationConstructionProperties::GetCumulativeOverloadNf() const
+    const int* GrassRevetmentWaveRunupRayleighLocationConstructionProperties::GetFixedNumberOfWaves() const
     {
-        return _cumulativeOverloadNf.get();
+        return _fixedNumberOfWaves.get();
     }
 
     const double* GrassRevetmentWaveRunupRayleighLocationConstructionProperties::GetFrontVelocityCu() const
