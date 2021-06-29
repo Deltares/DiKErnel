@@ -23,6 +23,7 @@
 #include "Constants.h"
 #include "GrassRevetmentWaveRunup.h"
 #include "GrassRevetmentWaveRunupRayleigh.h"
+#include "GrassRevetmentWaveRunupRayleighTimeDependentOutput.h"
 #include "HydraulicLoad.h"
 #include "Revetment.h"
 
@@ -99,7 +100,8 @@ namespace DiKErnel::Integration
             timeOfFailure = make_unique<int>(Revetment::TimeOfFailure(durationInTimeStepFailure, beginTime));
         }
 
-        return make_unique<TimeDependentOutput>(incrementDamage, damage, move(timeOfFailure));
+        return make_unique<GrassRevetmentWaveRunupRayleighTimeDependentOutput>(incrementDamage, damage, move(timeOfFailure), waveAngleImpact,
+                                                                               representativeWaveRunup2P, cumulativeOverload);
     }
 
     int GrassRevetmentWaveRunupRayleighLocationDependentInput::GetFixedNumberOfWaves() const
