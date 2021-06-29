@@ -22,6 +22,7 @@ set(SOURCEFILES_DATA
 )
 
 set(SOURCEFILES_DATA_OUTPUT
+  ${DATA_OUTPUT_FOLDER}/GrassRevetmentWaveImpactTimeDependentOutputTest.cpp
   ${DATA_OUTPUT_FOLDER}/NaturalStoneRevetmentTimeDependentOutputTest.cpp
 )
 
