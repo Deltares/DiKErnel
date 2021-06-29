@@ -25,7 +25,8 @@
 namespace DiKErnel::Integration
 {
     /*!
-     * \brief Time dependent output of a grass revetment wave impact location.
+     * \brief Time dependent output of a grass revetment wave run-up location for the Rayleigh
+     *        protocol.
      */
     class GrassRevetmentWaveRunupRayleighTimeDependentOutput : public Core::TimeDependentOutput
     {
