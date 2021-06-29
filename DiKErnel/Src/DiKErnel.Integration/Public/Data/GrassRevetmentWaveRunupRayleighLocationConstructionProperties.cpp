@@ -34,13 +34,13 @@ namespace DiKErnel::Integration
     #pragma region Set methods
 
     void GrassRevetmentWaveRunupRayleighLocationConstructionProperties::SetCumulativeOverloadNf(
-        std::unique_ptr<int> cumulativeOverloadNf)
+        unique_ptr<int> cumulativeOverloadNf)
     {
         _cumulativeOverloadNf = move(cumulativeOverloadNf);
     }
 
     void GrassRevetmentWaveRunupRayleighLocationConstructionProperties::SetFrontVelocityCu(
-        std::unique_ptr<double> frontVelocityCu)
+        unique_ptr<double> frontVelocityCu)
     {
         _frontVelocityCu = move(frontVelocityCu);
     }

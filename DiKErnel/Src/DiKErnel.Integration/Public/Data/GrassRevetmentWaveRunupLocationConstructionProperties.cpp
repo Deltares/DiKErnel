@@ -38,73 +38,73 @@ namespace DiKErnel::Integration
     #pragma region Set methods
 
     void GrassRevetmentWaveRunupLocationConstructionProperties::SetCriticalCumulativeOverload(
-        std::unique_ptr<double> criticalCumulativeOverload)
+        unique_ptr<double> criticalCumulativeOverload)
     {
         _criticalCumulativeOverload = move(criticalCumulativeOverload);
     }
 
     void GrassRevetmentWaveRunupLocationConstructionProperties::SetCriticalFrontVelocity(
-        std::unique_ptr<double> criticalFrontVelocity)
+        unique_ptr<double> criticalFrontVelocity)
     {
         _criticalFrontVelocity = move(criticalFrontVelocity);
     }
 
     void GrassRevetmentWaveRunupLocationConstructionProperties::SetIncreasedLoadTransitionAlphaM(
-        std::unique_ptr<double> increasedLoadTransitionAlphaM)
+        unique_ptr<double> increasedLoadTransitionAlphaM)
     {
         _increasedLoadTransitionAlphaM = move(increasedLoadTransitionAlphaM);
     }
 
     void GrassRevetmentWaveRunupLocationConstructionProperties::SetReducedStrengthTransitionAlphaS(
-        std::unique_ptr<double> reducedStrengthTransitionAlphaS)
+        unique_ptr<double> reducedStrengthTransitionAlphaS)
     {
         _reducedStrengthTransitionAlphaS = move(reducedStrengthTransitionAlphaS);
     }
 
     void GrassRevetmentWaveRunupLocationConstructionProperties::SetAverageNumberOfWavesCtm(
-        std::unique_ptr<double> averageNumberOfWavesCtm)
+        unique_ptr<double> averageNumberOfWavesCtm)
     {
         _averageNumberOfWavesCtm = move(averageNumberOfWavesCtm);
     }
 
     void GrassRevetmentWaveRunupLocationConstructionProperties::SetRepresentativeWaveRunup2PAru(
-        std::unique_ptr<double> representativeWaveRunup2PAru)
+        unique_ptr<double> representativeWaveRunup2PAru)
     {
         _representativeWaveRunup2PAru = move(representativeWaveRunup2PAru);
     }
 
     void GrassRevetmentWaveRunupLocationConstructionProperties::SetRepresentativeWaveRunup2PBru(
-        std::unique_ptr<double> representativeWaveRunup2PBru)
+        unique_ptr<double> representativeWaveRunup2PBru)
     {
         _representativeWaveRunup2PBru = move(representativeWaveRunup2PBru);
     }
 
     void GrassRevetmentWaveRunupLocationConstructionProperties::SetRepresentativeWaveRunup2PCru(
-        std::unique_ptr<double> representativeWaveRunup2PCru)
+        unique_ptr<double> representativeWaveRunup2PCru)
     {
         _representativeWaveRunup2PCru = move(representativeWaveRunup2PCru);
     }
 
     void GrassRevetmentWaveRunupLocationConstructionProperties::SetRepresentativeWaveRunup2PGammab(
-        std::unique_ptr<double> representativeWaveRunup2PGammab)
+        unique_ptr<double> representativeWaveRunup2PGammab)
     {
         _representativeWaveRunup2PGammab = move(representativeWaveRunup2PGammab);
     }
 
     void GrassRevetmentWaveRunupLocationConstructionProperties::SetRepresentativeWaveRunup2PGammaf(
-        std::unique_ptr<double> representativeWaveRunup2PGammaf)
+        unique_ptr<double> representativeWaveRunup2PGammaf)
     {
         _representativeWaveRunup2PGammaf = move(representativeWaveRunup2PGammaf);
     }
 
     void GrassRevetmentWaveRunupLocationConstructionProperties::SetWaveAngleImpactAbeta(
-        std::unique_ptr<double> waveAngleImpactAbeta)
+        unique_ptr<double> waveAngleImpactAbeta)
     {
         _waveAngleImpactAbeta = move(waveAngleImpactAbeta);
     }
 
     void GrassRevetmentWaveRunupLocationConstructionProperties::SetWaveAngleImpactBetamax(
-        std::unique_ptr<double> waveAngleImpactBetamax)
+        unique_ptr<double> waveAngleImpactBetamax)
     {
         _waveAngleImpactBetamax = move(waveAngleImpactBetamax);
     }
