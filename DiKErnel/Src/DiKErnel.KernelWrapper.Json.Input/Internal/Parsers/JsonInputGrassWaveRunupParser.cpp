@@ -103,7 +103,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
         rayleighLocationData->SetFixedNumberOfWaves(
             forward<unique_ptr<int>>(JsonInputParserHelper::ParseOptionalInteger(
-                readCalculationProtocol, JsonInputGrassWaveRunupRayleighDefinitions::CUMULATIVE_OVERLOAD_N_FIXED)));
+                readCalculationProtocol, JsonInputGrassWaveRunupRayleighDefinitions::FIXED_NUMBER_OF_WAVES)));
 
         if (readCalculationProtocol.contains(JsonInputGrassWaveRunupRayleighDefinitions::FRONT_VELOCITY))
         {
