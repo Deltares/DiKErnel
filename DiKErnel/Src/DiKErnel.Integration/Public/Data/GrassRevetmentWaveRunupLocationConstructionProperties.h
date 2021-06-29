@@ -137,16 +137,16 @@ namespace DiKErnel::Integration
             #pragma region Get methods
 
             /*!
-             * \brief Gets the type of the top layer.
-             * \return The type of the top layer.
-             */
-            GrassRevetmentTopLayerType GetTopLayerType() const;
-
-            /*!
              * \brief Gets the tanA.
              * \return The tanA.
              */
             double GetTanA() const;
+
+            /*!
+             * \brief Gets the type of the top layer.
+             * \return The type of the top layer.
+             */
+            GrassRevetmentTopLayerType GetTopLayerType() const;
 
             /*!
              * \brief Gets the critical cumulative overload.
@@ -241,8 +241,8 @@ namespace DiKErnel::Integration
                 GrassRevetmentTopLayerType topLayerType);
 
         private:
-            GrassRevetmentTopLayerType _topLayerType;
             double _tanA;
+            GrassRevetmentTopLayerType _topLayerType;
             std::unique_ptr<double> _criticalCumulativeOverload = nullptr;
             std::unique_ptr<double> _criticalFrontVelocity = nullptr;
             std::unique_ptr<double> _increasedLoadTransitionAlphaM = nullptr;
