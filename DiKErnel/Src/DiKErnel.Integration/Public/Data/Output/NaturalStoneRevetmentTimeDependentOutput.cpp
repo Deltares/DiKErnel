@@ -26,6 +26,34 @@ namespace DiKErnel::Integration
 
     NaturalStoneRevetmentTimeDependentOutput::NaturalStoneRevetmentTimeDependentOutput(
         const double damage,
-        unique_ptr<int> timeOfFailure)
-        : TimeDependentOutput(damage, move(timeOfFailure)) {}
+        unique_ptr<int> timeOfFailure,
+        const bool loadingRevetment,
+        const double surfSimilarityParameter,
+        const double waveSteepnessDeepWater,
+        const double upperLimitLoading,
+        const double lowerLimitLoading,
+        const double depthMaximumWaveLoad,
+        const double distanceMaximumWaveElevation,
+        const double normativeWidthOfWaveImpact,
+        unique_ptr<double> hydraulicLoad,
+        unique_ptr<double> waveAngleImpact,
+        unique_ptr<double> resistance,
+        unique_ptr<double> referenceTimeDegradation,
+        unique_ptr<double> referenceDegradation,
+        const double incrementDamage)
+        : TimeDependentOutput(damage, move(timeOfFailure)),
+          _loadingRevetment(loadingRevetment),
+          _surfSimilarityParameter(surfSimilarityParameter),
+          _waveSteepnessDeepWater(waveSteepnessDeepWater),
+          _upperLimitLoading(upperLimitLoading),
+          _lowerLimitLoading(lowerLimitLoading),
+          _depthMaximumWaveLoad(depthMaximumWaveLoad),
+          _distanceMaximumWaveElevation(distanceMaximumWaveElevation),
+          _normativeWidthOfWaveImpact(normativeWidthOfWaveImpact),
+          _hydraulicLoad(move(hydraulicLoad)),
+          _waveAngleImpact(move(waveAngleImpact)),
+          _resistance(move(resistance)),
+          _referenceTimeDegradation(move(referenceTimeDegradation)),
+          _referenceDegradation(move(referenceDegradation)),
+          _incrementDamage(incrementDamage) {}
 }
