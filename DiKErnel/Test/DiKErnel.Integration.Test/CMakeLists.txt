@@ -3,6 +3,7 @@ set(EXENAME DiKErnel.Integration.Test)
 
 # Set folder names
 set(DATA_FOLDER Data)
+set(DATA_OUTPUT_FOLDER ${DATA_FOLDER}/Output)
 set(EXCEPTIONS_FOLDER Exceptions)
 
 # Define sources
@@ -20,6 +21,10 @@ set(SOURCEFILES_DATA
   ${DATA_FOLDER}/RevetmentLocationConstructionPropertiesBaseTest.cpp
 )
 
+set(SOURCEFILES_DATA_OUTPUT
+  ${DATA_OUTPUT_FOLDER}/NaturalStoneRevetmentTimeDependentOutputTest.cpp
+)
+
 set(SOURCEFILES_EXCEPTIONS
   ${EXCEPTIONS_FOLDER}/RevetmentCalculationInputBuilderExceptionTest.cpp
 )
@@ -28,6 +33,7 @@ set(SOURCEFILES_EXCEPTIONS
 add_executable(${EXENAME}
   ${SOURCEFILES_MAIN}
   ${SOURCEFILES_DATA}
+  ${SOURCEFILES_DATA_OUTPUT}
   ${SOURCEFILES_EXCEPTIONS}
 )
 
@@ -35,6 +41,7 @@ add_executable(${EXENAME}
 set_target_properties(${EXENAME} PROPERTIES FOLDER Test)
 source_group("" FILES ${SOURCEFILES_MAIN})
 source_group(${DATA_FOLDER} FILES ${SOURCEFILES_DATA})
+source_group(${DATA_OUTPUT_FOLDER} FILES ${SOURCEFILES_DATA_OUTPUT})
 source_group(${EXCEPTIONS_FOLDER} FILES ${SOURCEFILES_EXCEPTIONS})
 
 # Link dependencies
