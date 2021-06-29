@@ -25,7 +25,7 @@
 namespace DiKErnel::Integration
 {
     /*!
-     * \brief Construction properties to construct grass revetment wave runup location dependent
+     * \brief Construction properties to construct grass revetment wave run-up location dependent
      *        input for the Rayleigh protocol.
      */
     class GrassRevetmentWaveRunupRayleighLocationConstructionProperties : public GrassRevetmentWaveRunupLocationConstructionProperties

@@ -80,9 +80,9 @@ namespace DiKErnel::Integration
                 const GrassRevetmentWaveImpactLocationConstructionProperties& constructionProperties);
 
             /*!
-             * \brief Adds a grass wave runup location with Rayleigh protocol.
+             * \brief Adds a grass wave run-up location with Rayleigh protocol.
              * \param constructionProperties
-             *        The properties to construct the grass wave runup rayleigh location dependent input.
+             *        The properties to construct the grass wave run-up Rayleigh location dependent input.
              * \exception RevetmentCalculationInputBuilderException
              *            Thrown when the top layer type is invalid.
              */

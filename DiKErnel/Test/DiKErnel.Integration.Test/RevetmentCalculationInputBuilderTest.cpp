@@ -554,7 +554,7 @@ namespace DiKErnel::Integration::Test
 
     #pragma endregion
 
-    #pragma region Grass wave runup Rayleigh
+    #pragma region Grass wave run-up Rayleigh
 
     TEST_F(RevetmentCalculationInputBuilderTest,
            GivenBuilder_WhenAddingGrassWaveRunupRayleighLocationWithInvalidTopLayerType_ThenThrowsRevetmentCalculationInputBuilderException)
