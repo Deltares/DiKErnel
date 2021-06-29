@@ -132,26 +132,13 @@ namespace DiKErnel::Core
     }
 
     void Calculator::CreateOutput(
-        const vector<vector<unique_ptr<TimeDependentOutput>>>& timeDependentOutputItems)
+        vector<vector<unique_ptr<TimeDependentOutput>>>& timeDependentOutputItems)
     {
         auto locationDependentOutputItems = vector<unique_ptr<LocationDependentOutput>>();
 
-        for (const auto& timeDependentOutputItemsPerLocation : timeDependentOutputItems)
+        for (auto& timeDependentOutputItemsPerLocation : timeDependentOutputItems)
         {
-            vector<double> damages;
-            unique_ptr<int> timeOfFailure;
-
-            for (const auto& timeDependentOutput : timeDependentOutputItemsPerLocation)
-            {
-                damages.push_back(timeDependentOutput->GetDamage());
-
-                if (timeDependentOutput->GetTimeOfFailure() != nullptr)
-                {
-                    timeOfFailure = make_unique<int>(*timeDependentOutput->GetTimeOfFailure());
-                }
-            }
-
-            locationDependentOutputItems.push_back(make_unique<LocationDependentOutput>(damages, move(timeOfFailure)));
+            locationDependentOutputItems.push_back(make_unique<LocationDependentOutput>(move(timeDependentOutputItemsPerLocation)));
         }
 
         _calculationOutput = make_shared<CalculationOutput>(move(locationDependentOutputItems));

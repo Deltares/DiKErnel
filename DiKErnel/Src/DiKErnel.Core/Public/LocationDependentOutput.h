@@ -23,6 +23,8 @@
 #include <memory>
 #include <vector>
 
+#include "TimeDependentOutput.h"
+
 namespace DiKErnel::Core
 {
     /*!
@@ -33,14 +35,11 @@ namespace DiKErnel::Core
         public:
             /*!
              * \brief Creates a new instance.
-             * \param damages
-             *        The damages of the location.
-             * \param timeOfFailure
-             *        The time of failure.
+             * \param timeDependentOutputItems
+             *        The time dependent output items of the location.
              */
             explicit LocationDependentOutput(
-                std::vector<double> damages,
-                std::unique_ptr<int> timeOfFailure);
+                std::vector<std::unique_ptr<TimeDependentOutput>> timeDependentOutputItems);
 
             /*!
              * \brief Gets the damages.
@@ -54,8 +53,16 @@ namespace DiKErnel::Core
              */
             const int* GetTimeOfFailure() const;
 
+            /*!
+             * \brief Gets the time dependent output items.
+             * \return The time dependent output items.
+             */
+            const std::vector<std::reference_wrapper<TimeDependentOutput>>& GetTimeDependentOutputItems() const;
+
         private:
             std::vector<double> _damages;
             std::unique_ptr<int> _timeOfFailure;
+            std::vector<std::unique_ptr<TimeDependentOutput>> _timeDependentOutputItems;
+            std::vector<std::reference_wrapper<TimeDependentOutput>> _timeDependentOutputItemReferences;
     };
 }

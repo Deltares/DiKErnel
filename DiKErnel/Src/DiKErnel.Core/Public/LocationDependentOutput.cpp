@@ -20,15 +20,32 @@
 
 #include "LocationDependentOutput.h"
 
+#include <utility>
+
 namespace DiKErnel::Core
 {
     using namespace std;
 
     LocationDependentOutput::LocationDependentOutput(
-        vector<double> damages,
-        unique_ptr<int> timeOfFailure)
-        : _damages(move(damages)),
-          _timeOfFailure(move(timeOfFailure)) {}
+        vector<unique_ptr<TimeDependentOutput>> timeDependentOutputItems)
+        : _damages(vector<double>()),
+          _timeDependentOutputItems(move(timeDependentOutputItems))
+    {
+        for (const auto& timeDependentOutput : _timeDependentOutputItems)
+        {
+            _timeDependentOutputItemReferences.emplace_back(*timeDependentOutput);
+        }
+
+        for (const auto& timeDependentOutput : _timeDependentOutputItems)
+        {
+            _damages.push_back(timeDependentOutput->GetDamage());
+
+            if (timeDependentOutput->GetTimeOfFailure() != nullptr)
+            {
+                _timeOfFailure = make_unique<int>(*timeDependentOutput->GetTimeOfFailure());
+            }
+        }
+    }
 
     const vector<double>& LocationDependentOutput::GetDamages() const
     {
@@ -38,5 +55,10 @@ namespace DiKErnel::Core
     const int* LocationDependentOutput::GetTimeOfFailure() const
     {
         return _timeOfFailure.get();
+    }
+
+    const std::vector<std::reference_wrapper<TimeDependentOutput>>& LocationDependentOutput::GetTimeDependentOutputItems() const
+    {
+        return _timeDependentOutputItemReferences;
     }
 }
