@@ -20,6 +20,8 @@
 
 #include "ILocationDependentInputMock.h"
 
+#include "TimeDependentOutputMock.h"
+
 namespace DiKErnel::Core::TestUtil
 {
     using namespace std;
@@ -28,9 +30,9 @@ namespace DiKErnel::Core::TestUtil
         double initialDamage,
         const ITimeDependentInput& timeDependentInput)
     {
-        return make_unique<TimeDependentOutput>(_incrementDamage, _damage, _timeOfFailure != nullptr
-                                                                               ? make_unique<int>(*_timeOfFailure)
-                                                                               : nullptr);
+        return make_unique<TimeDependentOutputMock>(_incrementDamage, _damage, _timeOfFailure != nullptr
+                                                                                   ? make_unique<int>(*_timeOfFailure)
+                                                                                   : nullptr);
     }
 
     void ILocationDependentInputMock::SetIncrementDamage(

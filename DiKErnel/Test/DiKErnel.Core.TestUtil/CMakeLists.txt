@@ -9,6 +9,8 @@ set(SOURCEFILES
   ILocationDependentInputMock.h
   ITimeDependentInputMock.cpp
   ITimeDependentInputMock.h
+  TimeDependentOutputMock.cpp
+  TimeDependentOutputMock.h
 )
 
 # Add library

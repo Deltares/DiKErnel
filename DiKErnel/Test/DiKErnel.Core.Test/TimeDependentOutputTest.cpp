@@ -21,10 +21,12 @@
 #include <gtest/gtest.h>
 
 #include "TimeDependentOutput.h"
+#include "TimeDependentOutputMock.h"
 
 namespace DiKErnel::Core::Test
 {
     using namespace std;
+    using namespace TestUtil;
 
     TEST(TimeDependentOutputTest, Constructor_WithParameters_ExpectedValues)
     {
@@ -34,7 +36,7 @@ namespace DiKErnel::Core::Test
         double timeOfFailure = rand() % 30;
 
         // Call
-        const TimeDependentOutput timeDependentOutput(incrementDamage, damage, make_unique<int>(timeOfFailure));
+        const TimeDependentOutputMock timeDependentOutput(incrementDamage, damage, make_unique<int>(timeOfFailure));
 
         // Assert
         ASSERT_DOUBLE_EQ(incrementDamage, timeDependentOutput.GetIncrementDamage());
@@ -45,7 +47,7 @@ namespace DiKErnel::Core::Test
     TEST(TimeDependentOutputTest, Constructor_TimeOfFailureNullPtr_ExpectedValues)
     {
         // Call
-        const TimeDependentOutput timeDependentOutput(0, 0, nullptr);
+        const TimeDependentOutputMock timeDependentOutput(0, 0, nullptr);
 
         // Assert
         ASSERT_EQ(nullptr, timeDependentOutput.GetTimeOfFailure());

@@ -21,10 +21,12 @@
 #include <gtest/gtest.h>
 
 #include "LocationDependentOutput.h"
+#include "TimeDependentOutputMock.h"
 
 namespace DiKErnel::Core::Test
 {
     using namespace std;
+    using namespace TestUtil;
 
     TEST(LocationDependentOutputTest, Constructor_WithTimeDependentOutputItems_ExpectedValues)
     {
@@ -34,7 +36,7 @@ namespace DiKErnel::Core::Test
         auto timeOfFailure = 3;
 
         auto timeDependentOutputItems = vector<unique_ptr<TimeDependentOutput>>();
-        timeDependentOutputItems.push_back(make_unique<TimeDependentOutput>(incrementDamage, damage, make_unique<int>(timeOfFailure)));
+        timeDependentOutputItems.push_back(make_unique<TimeDependentOutputMock>(incrementDamage, damage, make_unique<int>(timeOfFailure)));
 
         // Call
         const LocationDependentOutput locationDependentOutput(move(timeDependentOutputItems));
@@ -52,7 +54,7 @@ namespace DiKErnel::Core::Test
         const auto damage = 0.2;
 
         auto timeDependentOutputItems = vector<unique_ptr<TimeDependentOutput>>();
-        timeDependentOutputItems.push_back(make_unique<TimeDependentOutput>(incrementDamage, damage, nullptr));
+        timeDependentOutputItems.push_back(make_unique<TimeDependentOutputMock>(incrementDamage, damage, nullptr));
 
         // Call
         const LocationDependentOutput locationDependentOutput(move(timeDependentOutputItems));

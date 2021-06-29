@@ -18,28 +18,20 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include <gtest/gtest.h>
+#pragma once
 
-#include "CalculationOutput.h"
-#include "LocationDependentOutput.h"
-#include "TimeDependentOutputMock.h"
+#include <gmock/gmock.h>
 
-namespace DiKErnel::Core::Test
+#include "TimeDependentOutput.h"
+
+namespace DiKErnel::Core::TestUtil
 {
-    using namespace std;
-    using namespace TestUtil;
-
-    TEST(CalculationOutputTest, Constructor_WithParameters_ExpectedValues)
+    class TimeDependentOutputMock : public TimeDependentOutput
     {
-        // Setup
-        auto locationDependentOutputItems = vector<unique_ptr<LocationDependentOutput>>();
-        locationDependentOutputItems.push_back(make_unique<LocationDependentOutput>(vector<unique_ptr<TimeDependentOutput>>()));
-        locationDependentOutputItems.push_back(make_unique<LocationDependentOutput>(vector<unique_ptr<TimeDependentOutput>>()));
-
-        // Call
-        const CalculationOutput output(move(locationDependentOutputItems));
-
-        // Assert
-        ASSERT_EQ(2, output.GetLocationDependentOutputItems().size());
-    }
+        public:
+            explicit TimeDependentOutputMock(
+                double incrementDamage,
+                double damage,
+                std::unique_ptr<int> timeOfFailure);
+    };
 }
