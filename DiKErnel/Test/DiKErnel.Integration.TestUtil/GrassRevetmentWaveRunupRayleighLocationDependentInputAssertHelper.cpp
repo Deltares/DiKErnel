@@ -40,8 +40,8 @@ namespace DiKErnel::Integration::TestUtil
     }
 
     void GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper::AssertFrontVelocity(
-        double criticalFrontVelocity,
-        double frontVelocityCu,
+        const double criticalFrontVelocity,
+        const double frontVelocityCu,
         const GrassRevetmentWaveRunupRayleighLocationDependentInput& locationDependentInput)
     {
         GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertFrontVelocity(

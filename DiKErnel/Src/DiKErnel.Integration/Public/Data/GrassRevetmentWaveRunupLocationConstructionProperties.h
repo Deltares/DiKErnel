@@ -53,17 +53,17 @@ namespace DiKErnel::Integration
                 std::unique_ptr<double> criticalFrontVelocity);
 
             /*!
-             * \brief Sets the alpha m coefficient.
+             * \brief Sets the alpha M coefficient.
              * \param increasedLoadTransitionAlphaM
-             *        The alpha m coefficient.
+             *        The alpha M coefficient.
              */
             void SetIncreasedLoadTransitionAlphaM(
                 std::unique_ptr<double> increasedLoadTransitionAlphaM);
 
             /*!
-             * \brief Sets the alpha s coefficient.
+             * \brief Sets the alpha S coefficient.
              * \param reducedStrengthTransitionAlphaS
-             *        The alpha s coefficient.
+             *        The alpha S coefficient.
              */
             void SetReducedStrengthTransitionAlphaS(
                 std::unique_ptr<double> reducedStrengthTransitionAlphaS);
@@ -161,14 +161,14 @@ namespace DiKErnel::Integration
             const double* GetCriticalFrontVelocity() const;
 
             /*!
-             * \brief Gets the alpha m coefficient.
-             * \return The alpha m coefficient.
+             * \brief Gets the alpha M coefficient.
+             * \return The alpha M coefficient.
              */
             const double* GetIncreasedLoadTransitionAlphaM() const;
 
             /*!
-             * \brief Gets the alpha s coefficient.
-             * \return The alpha s coefficient.
+             * \brief Gets the alpha S coefficient.
+             * \return The alpha S coefficient.
              */
             const double* GetReducedStrengthTransitionAlphaS() const;
 
