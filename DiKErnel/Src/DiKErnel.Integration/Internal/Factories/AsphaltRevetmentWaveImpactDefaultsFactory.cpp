@@ -20,7 +20,7 @@
 
 #include "AsphaltRevetmentWaveImpactDefaultsFactory.h"
 
-#include "AsphaltRevetmentWaveImpactDefaults.h"
+#include "AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteDefaults.h"
 #include "DefaultsFactoryException.h"
 
 namespace DiKErnel::Integration
@@ -34,7 +34,7 @@ namespace DiKErnel::Integration
         switch (topLayerType)
         {
             case AsphaltRevetmentTopLayerType::WAB:
-                return make_unique<AsphaltRevetmentWaveImpactDefaults>();
+                return make_unique<AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteDefaults>();
             default:
                 throw DefaultsFactoryException("Couldn't create defaults for the given top layer type.");
         }

@@ -28,9 +28,10 @@
 namespace DiKErnel::DomainLibrary
 {
     /*!
-     * \brief Class that contains default value definitions for asphalt revetment wave impact.
+     * \brief Class that contains default values for asphalt revetment wave impact with hydraulic
+     *        asphalt concrete.
      */
-    class AsphaltRevetmentWaveImpactDefaults : public IAsphaltRevetmentWaveImpactDefaults
+    class AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteDefaults : public IAsphaltRevetmentWaveImpactDefaults
     {
         public:
             /*!

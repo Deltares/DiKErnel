@@ -20,7 +20,7 @@
 
 #include <gtest/gtest.h>
 
-#include "AsphaltRevetmentWaveImpactDefaults.h"
+#include "AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteDefaults.h"
 #include "AssertHelper.h"
 
 namespace DiKErnel::DomainLibrary::Test
@@ -28,10 +28,10 @@ namespace DiKErnel::DomainLibrary::Test
     using namespace std;
     using namespace TestUtil;
 
-    TEST(AsphaltRevetmentWaveImpactDefaultsTest, Constructor_ExpectedValues)
+    TEST(AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteDefaults, Constructor_ExpectedValues)
     {
         // Call
-        const AsphaltRevetmentWaveImpactDefaults defaults;
+        const AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteDefaults defaults;
 
         // Assert
         AssertHelper::AssertIsInstanceOf<IAsphaltRevetmentWaveImpactDefaults>(&defaults);

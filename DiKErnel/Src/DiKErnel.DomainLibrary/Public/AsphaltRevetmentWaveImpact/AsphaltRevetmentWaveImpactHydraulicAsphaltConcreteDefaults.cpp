@@ -18,53 +18,53 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include "AsphaltRevetmentWaveImpactDefaults.h"
+#include "AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteDefaults.h"
 
 namespace DiKErnel::DomainLibrary
 {
     using namespace std;
 
-    double AsphaltRevetmentWaveImpactDefaults::GetSubLayerThickness() const
+    double AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteDefaults::GetSubLayerThickness() const
     {
         return 0;
     }
 
-    double AsphaltRevetmentWaveImpactDefaults::GetAverageNumberOfWavesCtm() const
+    double AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteDefaults::GetAverageNumberOfWavesCtm() const
     {
         return 1;
     }
 
-    double AsphaltRevetmentWaveImpactDefaults::GetFatigueAlpha() const
+    double AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteDefaults::GetFatigueAlpha() const
     {
         return 0.42;
     }
 
-    double AsphaltRevetmentWaveImpactDefaults::GetFatigueBeta() const
+    double AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteDefaults::GetFatigueBeta() const
     {
         return 4.76;
     }
 
-    double AsphaltRevetmentWaveImpactDefaults::GetImpactNumberC() const
+    double AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteDefaults::GetImpactNumberC() const
     {
         return 1;
     }
 
-    double AsphaltRevetmentWaveImpactDefaults::GetStiffnessRelationNu() const
+    double AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteDefaults::GetStiffnessRelationNu() const
     {
         return 0.35;
     }
 
-    const vector<tuple<double, double>>& AsphaltRevetmentWaveImpactDefaults::GetWidthFactors() const
+    const vector<tuple<double, double>>& AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteDefaults::GetWidthFactors() const
     {
         return _widthFactors;
     }
 
-    const vector<tuple<double, double>>& AsphaltRevetmentWaveImpactDefaults::GetDepthFactors() const
+    const vector<tuple<double, double>>& AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteDefaults::GetDepthFactors() const
     {
         return _depthFactors;
     }
 
-    const vector<tuple<double, double>>& AsphaltRevetmentWaveImpactDefaults::GetImpactFactors() const
+    const vector<tuple<double, double>>& AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteDefaults::GetImpactFactors() const
     {
         return _impactFactors;
     }
