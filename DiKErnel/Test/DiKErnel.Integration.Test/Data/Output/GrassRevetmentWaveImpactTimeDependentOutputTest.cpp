@@ -30,7 +30,7 @@ namespace DiKErnel::Integration::Test
     using namespace std;
     using namespace TestUtil;
 
-    TEST(GrassRevetmentWaveImpactTimeDependentOutputTest, Constructor__WithAllValuesSet_ExpectedValues)
+    TEST(GrassRevetmentWaveImpactTimeDependentOutputTest, Constructor_WithAllValuesSet_ExpectedValues)
     {
         // Setup
         const auto incrementDamage = 0.1;
@@ -65,7 +65,7 @@ namespace DiKErnel::Integration::Test
         ASSERT_DOUBLE_EQ(waveHeightImpact, *output.GetWaveHeightImpact());
     }
 
-    TEST(GrassRevetmentWaveImpactTimeDependentOutputTest, Constructor__WithNullPtrValues_ExpectedValues)
+    TEST(GrassRevetmentWaveImpactTimeDependentOutputTest, Constructor_WithNullPtrValues_ExpectedValues)
     {
         // Setup
         const auto incrementDamage = 0.1;

@@ -30,7 +30,7 @@ namespace DiKErnel::Integration::Test
     using namespace std;
     using namespace TestUtil;
 
-    TEST(NaturalStoneRevetmentTimeDependentOutputTest, Constructor__WithAllValuesSet_ExpectedValues)
+    TEST(NaturalStoneRevetmentTimeDependentOutputTest, Constructor_WithAllValuesSet_ExpectedValues)
     {
         // Setup
         const auto incrementDamage = 0.1;
@@ -77,7 +77,7 @@ namespace DiKErnel::Integration::Test
         ASSERT_DOUBLE_EQ(referenceDegradation, *output.GetReferenceDegradation());
     }
 
-    TEST(NaturalStoneRevetmentTimeDependentOutputTest, Constructor__WithNullPtrValues_ExpectedValues)
+    TEST(NaturalStoneRevetmentTimeDependentOutputTest, Constructor_WithNullPtrValues_ExpectedValues)
     {
         // Setup
         const auto incrementDamage = 0.1;
