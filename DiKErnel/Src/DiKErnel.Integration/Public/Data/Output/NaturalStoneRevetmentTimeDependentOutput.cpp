@@ -56,4 +56,69 @@ namespace DiKErnel::Integration
           _referenceTimeDegradation(move(referenceTimeDegradation)),
           _referenceDegradation(move(referenceDegradation)),
           _incrementDamage(incrementDamage) {}
+
+    bool NaturalStoneRevetmentTimeDependentOutput::GetLoadingRevetment() const
+    {
+        return _loadingRevetment;
+    }
+
+    double NaturalStoneRevetmentTimeDependentOutput::GetSurfSimilarityParameter() const
+    {
+        return _surfSimilarityParameter;
+    }
+
+    double NaturalStoneRevetmentTimeDependentOutput::GetWaveSteepnessDeepWater() const
+    {
+        return _waveSteepnessDeepWater;
+    }
+
+    double NaturalStoneRevetmentTimeDependentOutput::GetUpperLimitLoading() const
+    {
+        return _upperLimitLoading;
+    }
+
+    double NaturalStoneRevetmentTimeDependentOutput::GetLowerLimitLoading() const
+    {
+        return _lowerLimitLoading;
+    }
+
+    double NaturalStoneRevetmentTimeDependentOutput::GetDepthMaximumWaveLoad() const
+    {
+        return _depthMaximumWaveLoad;
+    }
+
+    double NaturalStoneRevetmentTimeDependentOutput::GetDistanceMaximumWaveElevation() const
+    {
+        return _distanceMaximumWaveElevation;
+    }
+
+    double NaturalStoneRevetmentTimeDependentOutput::GetNormativeWidthOfWaveImpact() const
+    {
+        return _normativeWidthOfWaveImpact;
+    }
+
+    const double* NaturalStoneRevetmentTimeDependentOutput::GetHydraulicLoad() const
+    {
+        return _hydraulicLoad.get();
+    }
+
+    const double* NaturalStoneRevetmentTimeDependentOutput::GetWaveAngleImpact() const
+    {
+        return _waveAngleImpact.get();
+    }
+
+    const double* NaturalStoneRevetmentTimeDependentOutput::GetResistance() const
+    {
+        return _resistance.get();
+    }
+
+    const double* NaturalStoneRevetmentTimeDependentOutput::GetReferenceTimeDegradation() const
+    {
+        return _referenceTimeDegradation.get();
+    }
+
+    const double* NaturalStoneRevetmentTimeDependentOutput::GetReferenceDegradation() const
+    {
+        return _referenceDegradation.get();
+    }
 }

@@ -83,6 +83,84 @@ namespace DiKErnel::Integration
                 std::unique_ptr<double> referenceDegradation,
                 double incrementDamage);
 
+            /*!
+             * \brief Gets the loading revetment.
+             * \return The loading revetment.
+             */
+            bool GetLoadingRevetment() const;
+
+            /*!
+             * \brief Gets the surf similarity parameter.
+             * \return The surf similarity parameter.
+             */
+            double GetSurfSimilarityParameter() const;
+
+            /*!
+             * \brief Gets the wave steepness deep water.
+             * \return The wave steepness deep water.
+             */
+            double GetWaveSteepnessDeepWater() const;
+
+            /*!
+             * \brief Gets the upper limit loading.
+             * \return The upper limit loading.
+             */
+            double GetUpperLimitLoading() const;
+
+            /*!
+             * \brief Gets the lower limit loading.
+             * \return The lower limit loading.
+             */
+            double GetLowerLimitLoading() const;
+
+            /*!
+             * \brief Gets the depth maximum wave load.
+             * \return The depth maximum wave load.
+             */
+            double GetDepthMaximumWaveLoad() const;
+
+            /*!
+             * \brief Gets the distance maximum wave elevation.
+             * \return The distance maximum wave elevation.
+             */
+            double GetDistanceMaximumWaveElevation() const;
+
+            /*!
+             * \brief Gets the normative width of wave impact.
+             * \return The normative width of wave impact.
+             */
+            double GetNormativeWidthOfWaveImpact() const;
+
+            /*!
+             * \brief Gets the hydraulic load.
+             * \return The hydraulic load.
+             */
+            const double* GetHydraulicLoad() const;
+
+            /*!
+             * \brief Gets the wave angle impact.
+             * \return The wave angle impact.
+             */
+            const double* GetWaveAngleImpact() const;
+
+            /*!
+             * \brief Gets the resistance.
+             * \return The resistance.
+             */
+            const double* GetResistance() const;
+
+            /*!
+             * \brief Gets the reference time degradation.
+             * \return The reference time degradation.
+             */
+            const double* GetReferenceTimeDegradation() const;
+
+            /*!
+             * \brief Gets the reference degradation.
+             * \return The reference degradation.
+             */
+            const double* GetReferenceDegradation() const;
+
         private:
             const bool _loadingRevetment;
             const double _surfSimilarityParameter;
