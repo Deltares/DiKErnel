@@ -225,16 +225,16 @@ namespace DiKErnel::Integration
             #pragma region Get methods
 
             /*!
-             * \brief Gets the type of the top layer.
-             * \return The type of the top layer.
-             */
-            NaturalStoneRevetmentTopLayerType GetTopLayerType() const;
-
-            /*!
              * \brief Gets the tanA.
              * \return The tanA.
              */
             double GetTanA() const;
+
+            /*!
+             * \brief Gets the type of the top layer.
+             * \return The type of the top layer.
+             */
+            NaturalStoneRevetmentTopLayerType GetTopLayerType() const;
 
             /*!
              * \brief Gets the thickness of the top layer.
@@ -371,8 +371,8 @@ namespace DiKErnel::Integration
             #pragma endregion
 
         private:
-            NaturalStoneRevetmentTopLayerType _topLayerType;
             double _tanA;
+            NaturalStoneRevetmentTopLayerType _topLayerType;
             double _thicknessTopLayer;
             double _relativeDensity;
             std::unique_ptr<double> _initialDamage = nullptr;

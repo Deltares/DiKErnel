@@ -154,16 +154,16 @@ namespace DiKErnel::Integration
             #pragma region Get methods
 
             /*!
-             * \brief Gets the type of the top layer.
-             * \return The type of the top layer.
-             */
-            AsphaltRevetmentTopLayerType GetTopLayerType() const;
-
-            /*!
              * \brief Gets the tanA.
              * \return The tanA.
              */
             double GetTanA() const;
+
+            /*!
+             * \brief Gets the type of the top layer.
+             * \return The type of the top layer.
+             */
+            AsphaltRevetmentTopLayerType GetTopLayerType() const;
 
             /*!
              * \brief Gets the failure tension.
@@ -258,8 +258,8 @@ namespace DiKErnel::Integration
             #pragma endregion
 
         private:
-            AsphaltRevetmentTopLayerType _topLayerType;
             double _tanA;
+            AsphaltRevetmentTopLayerType _topLayerType;
             double _failureTension;
             double _densityOfWater;
             double _soilElasticity;

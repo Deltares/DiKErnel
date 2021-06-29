@@ -35,8 +35,8 @@ namespace DiKErnel::Integration
         const double thicknessUpperLayer,
         const double elasticModulusUpperLayer)
         : RevetmentLocationConstructionPropertiesBase(move(name), positionZ),
-          _topLayerType(topLayerType),
           _tanA(tanA),
+          _topLayerType(topLayerType),
           _failureTension(failureTension),
           _densityOfWater(densityOfWater),
           _soilElasticity(soilElasticity),
@@ -109,14 +109,14 @@ namespace DiKErnel::Integration
 
     #pragma region Get methods
 
-    AsphaltRevetmentTopLayerType AsphaltRevetmentWaveImpactLocationConstructionProperties::GetTopLayerType() const
-    {
-        return _topLayerType;
-    }
-
     double AsphaltRevetmentWaveImpactLocationConstructionProperties::GetTanA() const
     {
         return _tanA;
+    }
+
+    AsphaltRevetmentTopLayerType AsphaltRevetmentWaveImpactLocationConstructionProperties::GetTopLayerType() const
+    {
+        return _topLayerType;
     }
 
     double AsphaltRevetmentWaveImpactLocationConstructionProperties::GetFailureTension() const
