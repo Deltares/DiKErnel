@@ -25,6 +25,7 @@ namespace DiKErnel::Integration
     using namespace std;
 
     NaturalStoneRevetmentTimeDependentOutput::NaturalStoneRevetmentTimeDependentOutput(
+        const double incrementDamage,
         const double damage,
         unique_ptr<int> timeOfFailure,
         const bool loadingRevetment,
@@ -39,9 +40,8 @@ namespace DiKErnel::Integration
         unique_ptr<double> waveAngleImpact,
         unique_ptr<double> resistance,
         unique_ptr<double> referenceTimeDegradation,
-        unique_ptr<double> referenceDegradation,
-        const double incrementDamage)
-        : TimeDependentOutput(damage, move(timeOfFailure)),
+        unique_ptr<double> referenceDegradation)
+        : TimeDependentOutput(incrementDamage, damage, move(timeOfFailure)),
           _loadingRevetment(loadingRevetment),
           _surfSimilarityParameter(surfSimilarityParameter),
           _waveSteepnessDeepWater(waveSteepnessDeepWater),
@@ -54,8 +54,7 @@ namespace DiKErnel::Integration
           _waveAngleImpact(move(waveAngleImpact)),
           _resistance(move(resistance)),
           _referenceTimeDegradation(move(referenceTimeDegradation)),
-          _referenceDegradation(move(referenceDegradation)),
-          _incrementDamage(incrementDamage) {}
+          _referenceDegradation(move(referenceDegradation)) {}
 
     bool NaturalStoneRevetmentTimeDependentOutput::GetLoadingRevetment() const
     {

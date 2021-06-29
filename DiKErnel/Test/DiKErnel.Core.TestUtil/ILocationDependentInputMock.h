@@ -38,6 +38,9 @@ namespace DiKErnel::Core::TestUtil
             MOCK_METHOD(double, GetFailureNumber, (), (const, override));
             MOCK_METHOD(double, GetPositionZ, (), (const, override));
 
+            void SetIncrementDamage(
+                double incrementDamage);
+
             void SetDamage(
                 double damage);
 
@@ -45,6 +48,7 @@ namespace DiKErnel::Core::TestUtil
                 int* timeOfFailure);
 
         private:
+            double _incrementDamage = 0;
             double _damage = 0;
             int* _timeOfFailure = nullptr;
     };

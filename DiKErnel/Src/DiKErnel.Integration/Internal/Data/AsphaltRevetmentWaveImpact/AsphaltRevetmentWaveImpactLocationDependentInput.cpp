@@ -103,7 +103,7 @@ namespace DiKErnel::Integration
             timeOfFailure = make_unique<int>(Revetment::TimeOfFailure(durationInTimeStepFailure, beginTime));
         }
 
-        return make_unique<TimeDependentOutput>(damage, move(timeOfFailure));
+        return make_unique<TimeDependentOutput>(incrementDamage, damage, move(timeOfFailure));
     }
 
     double AsphaltRevetmentWaveImpactLocationDependentInput::GetTanA() const

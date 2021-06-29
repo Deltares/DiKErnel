@@ -29,13 +29,15 @@ namespace DiKErnel::Core::Test
     TEST(TimeDependentOutputTest, Constructor_WithParameters_ExpectedValues)
     {
         // Setup
-        const double damage = rand() % 10;
-        double timeOfFailure = rand() % 20;
+        const double incrementDamage = rand() % 10;
+        const double damage = rand() % 20;
+        double timeOfFailure = rand() % 30;
 
         // Call
-        const TimeDependentOutput timeDependentOutput(damage, make_unique<int>(timeOfFailure));
+        const TimeDependentOutput timeDependentOutput(incrementDamage, damage, make_unique<int>(timeOfFailure));
 
         // Assert
+        ASSERT_DOUBLE_EQ(incrementDamage, timeDependentOutput.GetIncrementDamage());
         ASSERT_DOUBLE_EQ(damage, timeDependentOutput.GetDamage());
         ASSERT_EQ(timeOfFailure, *timeDependentOutput.GetTimeOfFailure());
     }
@@ -43,7 +45,7 @@ namespace DiKErnel::Core::Test
     TEST(TimeDependentOutputTest, Constructor_TimeOfFailureNullPtr_ExpectedValues)
     {
         // Call
-        const TimeDependentOutput timeDependentOutput(0, nullptr);
+        const TimeDependentOutput timeDependentOutput(0, 0, nullptr);
 
         // Assert
         ASSERT_EQ(nullptr, timeDependentOutput.GetTimeOfFailure());

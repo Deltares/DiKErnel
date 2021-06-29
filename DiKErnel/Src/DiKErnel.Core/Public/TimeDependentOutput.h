@@ -32,14 +32,23 @@ namespace DiKErnel::Core
         public:
             /*!
              * \brief Creates a new instance.
+             * \param incrementDamage
+             *        The increment damage.
              * \param damage
              *        The damage.
              * \param timeOfFailure
              *        The time of failure.
              */
             explicit TimeDependentOutput(
+                double incrementDamage,
                 double damage,
                 std::unique_ptr<int> timeOfFailure);
+
+            /*!
+             * \brief Gets the incrementDamage.
+             * \return The incrementDamage.
+             */
+            double GetIncrementDamage() const;
 
             /*!
              * \brief Gets the damage.
@@ -54,6 +63,7 @@ namespace DiKErnel::Core
             const int* GetTimeOfFailure() const;
 
         private:
+            double _incrementDamage;
             double _damage;
             std::unique_ptr<int> _timeOfFailure;
     };

@@ -25,10 +25,17 @@ namespace DiKErnel::Core
     using namespace std;
 
     TimeDependentOutput::TimeDependentOutput(
+        const double incrementDamage,
         const double damage,
         unique_ptr<int> timeOfFailure)
-        : _damage(damage),
+        : _incrementDamage(incrementDamage),
+          _damage(damage),
           _timeOfFailure(move(timeOfFailure)) {}
+
+    double TimeDependentOutput::GetIncrementDamage() const
+    {
+        return _incrementDamage;
+    }
 
     double TimeDependentOutput::GetDamage() const
     {

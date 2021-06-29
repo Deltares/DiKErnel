@@ -145,9 +145,9 @@ namespace DiKErnel::Integration
         }
 
         return make_unique<NaturalStoneRevetmentTimeDependentOutput>(
-            damage, move(timeOfFailure), loadingRevetment, surfSimilarityParameter, waveSteepnessDeepWater, upperLimitLoading, lowerLimitLoading,
-            depthMaximumWaveLoad, distanceMaximumWaveElevation, normativeWidthWaveImpact, move(hydraulicLoad), move(waveAngleImpact),
-            move(resistance), move(referenceTimeDegradation), move(referenceDegradation), incrementDamage);
+            incrementDamage, damage, move(timeOfFailure), loadingRevetment, surfSimilarityParameter, waveSteepnessDeepWater, upperLimitLoading,
+            lowerLimitLoading, depthMaximumWaveLoad, distanceMaximumWaveElevation, normativeWidthWaveImpact, move(hydraulicLoad),
+            move(waveAngleImpact), move(resistance), move(referenceTimeDegradation), move(referenceDegradation));
     }
 
     double NaturalStoneRevetmentLocationDependentInput::GetTanA() const

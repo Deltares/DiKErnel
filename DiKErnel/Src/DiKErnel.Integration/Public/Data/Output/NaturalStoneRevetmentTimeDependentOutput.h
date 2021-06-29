@@ -32,6 +32,8 @@ namespace DiKErnel::Integration
         public:
             /*!
              * \brief Creates a new instance.
+             * \param incrementDamage
+             *        The increment damage.
              * \param damage
              *        The damage.
              * \param timeOfFailure
@@ -62,10 +64,9 @@ namespace DiKErnel::Integration
              *        The reference time degradation.
              * \param referenceDegradation
              *        The reference degradation.
-             * \param incrementDamage
-             *        The increment damage.
              */
             explicit NaturalStoneRevetmentTimeDependentOutput(
+                double incrementDamage,
                 double damage,
                 std::unique_ptr<int> timeOfFailure,
                 bool loadingRevetment,
@@ -80,8 +81,7 @@ namespace DiKErnel::Integration
                 std::unique_ptr<double> waveAngleImpact,
                 std::unique_ptr<double> resistance,
                 std::unique_ptr<double> referenceTimeDegradation,
-                std::unique_ptr<double> referenceDegradation,
-                double incrementDamage);
+                std::unique_ptr<double> referenceDegradation);
 
             /*!
              * \brief Gets the loading revetment.
@@ -175,6 +175,5 @@ namespace DiKErnel::Integration
             std::unique_ptr<double> _resistance;
             std::unique_ptr<double> _referenceTimeDegradation;
             std::unique_ptr<double> _referenceDegradation;
-            const double _incrementDamage;
     };
 }

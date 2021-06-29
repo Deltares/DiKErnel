@@ -28,9 +28,15 @@ namespace DiKErnel::Core::TestUtil
         double initialDamage,
         const ITimeDependentInput& timeDependentInput)
     {
-        return make_unique<TimeDependentOutput>(_damage, _timeOfFailure != nullptr
-                                                             ? make_unique<int>(*_timeOfFailure)
-                                                             : nullptr);
+        return make_unique<TimeDependentOutput>(_incrementDamage, _damage, _timeOfFailure != nullptr
+                                                                               ? make_unique<int>(*_timeOfFailure)
+                                                                               : nullptr);
+    }
+
+    void ILocationDependentInputMock::SetIncrementDamage(
+        const double incrementDamage)
+    {
+        _incrementDamage = incrementDamage;
     }
 
     void ILocationDependentInputMock::SetDamage(

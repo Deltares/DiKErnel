@@ -97,7 +97,7 @@ namespace DiKErnel::Integration
             }
         }
 
-        return make_unique<TimeDependentOutput>(damage, move(timeOfFailure));
+        return make_unique<TimeDependentOutput>(0, damage, move(timeOfFailure));
     }
 
     GrassRevetmentWaveImpactWaveAngleImpact& GrassRevetmentWaveImpactLocationDependentInput::GetWaveAngleImpact() const
