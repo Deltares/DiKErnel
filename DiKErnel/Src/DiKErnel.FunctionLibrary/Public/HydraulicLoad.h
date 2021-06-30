@@ -98,5 +98,20 @@ namespace DiKErnel::FunctionLibrary
                 double waveHeightHm0,
                 double wavePeriodTm10,
                 double gravitationalAcceleration);
+
+            /*!
+             * \brief Calculates the vertical distance of the water elevation.
+             * \param positionZ
+             *        The vertical position.
+             *        Unit = [m]
+             * \param waterLevel
+             *        The water level.
+             *        Unit = [m]
+             * \return The vertical distance of the water elevation.
+             *         Unit = [m]
+             */
+            static double VerticalDistanceWaterLevelElevation(
+                double positionZ,
+                double waterLevel);
     };
 }

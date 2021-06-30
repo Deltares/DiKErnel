@@ -135,4 +135,17 @@ namespace DiKErnel::FunctionLibrary::Test
         // Assert
         ASSERT_DOUBLE_EQ(1.2841859985089348, surfSimilarityParameter);
     }
+
+    TEST(HydraulicLoadTest, VerticalDistanceWaterLevelElevation_ValidInput_ExpectedValue)
+    {
+        // Setup
+        const auto positionZ = 1.12;
+        const auto waterLevel = 0.03;
+
+        // Call
+        const auto verticalDistanceWaterLevelElevation = HydraulicLoad::VerticalDistanceWaterLevelElevation(positionZ, waterLevel);
+
+        // Assert
+        ASSERT_DOUBLE_EQ(1.09, verticalDistanceWaterLevelElevation);
+    }
 }

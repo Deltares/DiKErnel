@@ -56,4 +56,11 @@ namespace DiKErnel::FunctionLibrary
     {
         return waveHeightHm0 / (gravitationalAcceleration / (2.0 * Generic::Pi()) * pow(wavePeriodTm10, 2.0));
     }
+
+    double HydraulicLoad::VerticalDistanceWaterLevelElevation(
+        const double positionZ,
+        const double waterLevel)
+    {
+        return positionZ - waterLevel;
+    }
 }
