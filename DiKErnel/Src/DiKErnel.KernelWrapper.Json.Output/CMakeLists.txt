@@ -21,6 +21,7 @@ set(SOURCEFILES_INTERNAL
 )
 
 set(SOURCEFILES_INTERNAL_DATA
+  ${INTERNAL_DATA_FOLDER}/IJsonOutputData.h
   ${INTERNAL_DATA_FOLDER}/JsonOutputData.cpp
   ${INTERNAL_DATA_FOLDER}/JsonOutputData.h
   ${INTERNAL_DATA_FOLDER}/JsonOutputLocationData.cpp
