@@ -51,6 +51,7 @@ namespace DiKErnel::Integration::Test
                                                                         make_unique<double>(maximumWaveHeight),
                                                                         make_unique<double>(waveAngleImpact),
                                                                         make_unique<double>(waveHeightImpact));
+
         // Assert
         AssertHelper::AssertIsInstanceOf<TimeDependentOutput>(&output);
         ASSERT_DOUBLE_EQ(incrementDamage, output.GetIncrementDamage());
@@ -75,9 +76,9 @@ namespace DiKErnel::Integration::Test
         const auto lowerLimitLoading = 0.4;
 
         // Call
-        const auto output = GrassRevetmentWaveImpactTimeDependentOutput(incrementDamage, damage, nullptr, loadingRevetment,
-                                                                        upperLimitLoading, lowerLimitLoading,
-                                                                        nullptr, nullptr, nullptr, nullptr);
+        const auto output = GrassRevetmentWaveImpactTimeDependentOutput(incrementDamage, damage, nullptr, loadingRevetment, upperLimitLoading,
+                                                                        lowerLimitLoading, nullptr, nullptr, nullptr, nullptr);
+
         // Assert
         AssertHelper::AssertIsInstanceOf<TimeDependentOutput>(&output);
         ASSERT_DOUBLE_EQ(incrementDamage, output.GetIncrementDamage());
