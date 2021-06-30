@@ -22,7 +22,7 @@
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
-    enum class JsonInputProcessType
+    enum class JsonProcessType
     {
         Unknown,
         Failure,

@@ -50,7 +50,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
     {
         static void PerformProcessTypeTest(
             const string& filename,
-            const JsonInputProcessType expectedProcessType)
+            const JsonProcessType expectedProcessType)
         {
             // Given
             const auto filePath = (TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Input.Test") / "JsonInputComposerTest"
@@ -96,28 +96,28 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
         }
     };
 
-    TEST_F(JsonInputComposerTest, GivenJsonInputWithoutProcessType_WhenGetInputDataFromJson_ThenReturnDefaultJsonInputProcessType)
+    TEST_F(JsonInputComposerTest, GivenJsonInputWithoutProcessType_WhenGetInputDataFromJson_ThenReturnDefaultJsonProcessType)
     {
         // Given & When & Then
-        PerformProcessTypeTest("AllLocationsInput.json", JsonInputProcessType::Damage);
+        PerformProcessTypeTest("AllLocationsInput.json", JsonProcessType::Damage);
     }
 
     TEST_F(JsonInputComposerTest, GivenJsonFileWithProcessTypeFailure_WhenGetInputDataFromJson_ThenReturnExpectedProcessType)
     {
         // Given & When & Then
-        PerformProcessTypeTest("ProcessTypeFailure.json", JsonInputProcessType::Failure);
+        PerformProcessTypeTest("ProcessTypeFailure.json", JsonProcessType::Failure);
     }
 
     TEST_F(JsonInputComposerTest, GivenJsonFileWithProcessTypeDamage_WhenGetInputDataFromJson_ThenReturnExpectedProcessType)
     {
         // Given & When & Then
-        PerformProcessTypeTest("ProcessTypeDamage.json", JsonInputProcessType::Damage);
+        PerformProcessTypeTest("ProcessTypeDamage.json", JsonProcessType::Damage);
     }
 
     TEST_F(JsonInputComposerTest, GivenJsonFileWithProcessTypePhysics_WhenGetInputDataFromJson_ThenReturnExpectedProcessType)
     {
         // Given & When & Then
-        PerformProcessTypeTest("ProcessTypePhysics.json", JsonInputProcessType::Physics);
+        PerformProcessTypeTest("ProcessTypePhysics.json", JsonProcessType::Physics);
     }
 
     TEST_F(JsonInputComposerTest, GivenJsonFile_WhenGetInputDataFromJson_ThenReturnICalculationInputWithExpectedValues)

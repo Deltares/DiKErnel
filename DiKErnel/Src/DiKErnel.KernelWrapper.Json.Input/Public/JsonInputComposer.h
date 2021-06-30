@@ -24,7 +24,7 @@
 #include <string>
 
 #include "ICalculationInput.h"
-#include "JsonInputProcessType.h"
+#include "JsonProcessType.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
@@ -38,9 +38,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
              * \brief Gets input data based on Json.
              * \param filePath
              *        The path to the Json file.
-             * \return A tuple with the created ICalculationInput and the JsonInputProcessType.
+             * \return A tuple with the created ICalculationInput and the JsonProcessType.
             */
-            static std::tuple<std::unique_ptr<Core::ICalculationInput>, JsonInputProcessType> GetInputDataFromJson(
+            static std::tuple<std::unique_ptr<Core::ICalculationInput>, JsonProcessType> GetInputDataFromJson(
                 const std::string& filePath);
     };
 }
