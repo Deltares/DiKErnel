@@ -18,7 +18,9 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include "JsonOutputData.h"
+#include "JsonOutputDamageLocationData.h"
+
+#include <utility>
 
 #include "JsonOutputDefinitions.h"
 
@@ -27,36 +29,37 @@ namespace DiKErnel::KernelWrapper::Json::Output
     using namespace nlohmann;
     using namespace std;
 
-    JsonOutputData::JsonOutputData(
-        vector<int> times,
-        vector<unique_ptr<JsonOutputFailureLocationData>> locationDataItems)
-        : _times(move(times)),
-          _locationDataItems(move(locationDataItems)) { }
+    JsonOutputDamageLocationData::JsonOutputDamageLocationData(
+        string& name,
+        const int* timeOfFailure,
+        const double initialDamage,
+        const double failureNumber,
+        vector<double> damages)
+        : JsonOutputFailureLocationData(name, timeOfFailure),
+          _initialDamage(initialDamage),
+          _failureNumber(failureNumber),
+          _damages(move(damages)) {}
 
-    ordered_json JsonOutputData::CreateJson() const
+    ordered_json JsonOutputDamageLocationData::CreateJson() const
     {
-        vector<basic_json<ordered_map>> locationOutputJsonItems;
+        auto output = JsonOutputFailureLocationData::CreateJson();
 
-        for (const auto& location : _locationDataItems)
-        {
-            locationOutputJsonItems.emplace_back(location->CreateJson());
-        }
-
-        return ordered_json::object(
+        output[JsonOutputDefinitions::DAMAGE_REVETMENT] = ordered_json::object(
             {
                 {
-                    JsonOutputDefinitions::OUTPUT_DATA,
-                    {
-                        {
-                            JsonOutputDefinitions::TIME,
-                            _times
-                        },
-                        {
-                            JsonOutputDefinitions::LOCATIONS,
-                            locationOutputJsonItems
-                        }
-                    }
+                    JsonOutputDefinitions::INITIAL_DAMAGE,
+                    _initialDamage
+                },
+                {
+                    JsonOutputDefinitions::FAILURE_NUMBER,
+                    _failureNumber
+                },
+                {
+                    JsonOutputDefinitions::DAMAGE_OVER_TIME,
+                    _damages
                 }
             });
+
+        return output;
     }
 }

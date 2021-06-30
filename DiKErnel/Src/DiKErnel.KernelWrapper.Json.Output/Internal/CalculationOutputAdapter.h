@@ -37,7 +37,7 @@ namespace DiKErnel::KernelWrapper::Json::Output
             static std::vector<int> GetTimes(
                 const std::vector<std::reference_wrapper<Core::ITimeDependentInput>>& timeDependentInputItems);
 
-            static std::vector<std::unique_ptr<JsonOutputLocationData>> GetJsonOutputLocations(
+            static std::vector<std::unique_ptr<JsonOutputFailureLocationData>> GetJsonOutputLocations(
                 const std::vector<std::reference_wrapper<Core::LocationDependentOutput>>& locationDependentOutputItems,
                 const std::vector<std::reference_wrapper<Core::ILocationDependentInput>>& locationDependentInputItems);
     };

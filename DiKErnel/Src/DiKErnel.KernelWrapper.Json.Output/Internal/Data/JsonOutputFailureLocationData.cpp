@@ -18,7 +18,7 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include "JsonOutputLocationData.h"
+#include "JsonOutputFailureLocationData.h"
 
 #include <utility>
 
@@ -29,15 +29,13 @@ namespace DiKErnel::KernelWrapper::Json::Output
     using namespace nlohmann;
     using namespace std;
 
-    JsonOutputLocationData::JsonOutputLocationData(
-        string name,
-        vector<double> damages,
+    JsonOutputFailureLocationData::JsonOutputFailureLocationData(
+        string& name,
         const int* timeOfFailure)
         : _name(move(name)),
-          _damages(move(damages)),
           _timeOfFailure(timeOfFailure) {}
 
-    ordered_json JsonOutputLocationData::CreateJson() const
+    ordered_json JsonOutputFailureLocationData::CreateJson() const
     {
         auto output = ordered_json::object(
             {
@@ -46,7 +44,7 @@ namespace DiKErnel::KernelWrapper::Json::Output
                     _name
                 },
                 {
-                    JsonOutputDefinitions::DAMAGE,
+                    JsonOutputDefinitions::FAILURE_REVETMENT,
                     {
                         {
                             JsonOutputDefinitions::FAILED,
@@ -55,10 +53,6 @@ namespace DiKErnel::KernelWrapper::Json::Output
                         {
                             JsonOutputDefinitions::TIME_OF_FAILURE,
                             nullptr
-                        },
-                        {
-                            JsonOutputDefinitions::DAMAGE_OVER_TIME,
-                            _damages
                         }
                     }
                 }
@@ -66,7 +60,7 @@ namespace DiKErnel::KernelWrapper::Json::Output
 
         if (_timeOfFailure != nullptr)
         {
-            output[JsonOutputDefinitions::DAMAGE][JsonOutputDefinitions::TIME_OF_FAILURE] = *_timeOfFailure;
+            output[JsonOutputDefinitions::FAILURE_REVETMENT][JsonOutputDefinitions::TIME_OF_FAILURE] = *_timeOfFailure;
         }
 
         return output;

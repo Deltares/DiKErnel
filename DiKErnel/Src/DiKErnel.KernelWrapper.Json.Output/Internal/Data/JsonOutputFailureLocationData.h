@@ -20,25 +20,23 @@
 
 #pragma once
 
-#include <memory>
-#include <vector>
+#include <string>
 
 #include "IJsonOutputData.h"
-#include "JsonOutputFailureLocationData.h"
 
 namespace DiKErnel::KernelWrapper::Json::Output
 {
-    class JsonOutputData : public IJsonOutputData
+    class JsonOutputFailureLocationData : public IJsonOutputData
     {
         public:
-            explicit JsonOutputData(
-                std::vector<int> times,
-                std::vector<std::unique_ptr<JsonOutputFailureLocationData>> locationDataItems);
+            explicit JsonOutputFailureLocationData(
+                std::string& name,
+                const int* timeOfFailure);
 
             nlohmann::ordered_json CreateJson() const override;
 
         private:
-            std::vector<int> _times;
-            std::vector<std::unique_ptr<JsonOutputFailureLocationData>> _locationDataItems;
+            std::string _name;
+            const int* _timeOfFailure;
     };
 }

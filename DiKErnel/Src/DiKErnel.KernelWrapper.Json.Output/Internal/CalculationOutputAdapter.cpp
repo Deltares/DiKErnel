@@ -56,19 +56,18 @@ namespace DiKErnel::KernelWrapper::Json::Output
         return times;
     }
 
-    vector<unique_ptr<JsonOutputLocationData>> CalculationOutputAdapter::GetJsonOutputLocations(
+    vector<unique_ptr<JsonOutputFailureLocationData>> CalculationOutputAdapter::GetJsonOutputLocations(
         const vector<reference_wrapper<LocationDependentOutput>>& locationDependentOutputItems,
         const vector<reference_wrapper<ILocationDependentInput>>& locationDependentInputItems)
     {
-        vector<unique_ptr<JsonOutputLocationData>> jsonOutputLocationDataItems;
+        vector<unique_ptr<JsonOutputFailureLocationData>> jsonOutputLocationDataItems;
 
         for (auto i = 0; i < static_cast<int>(locationDependentOutputItems.size()); ++i)
         {
             const auto& locationOutput = locationDependentOutputItems[i].get();
 
-            jsonOutputLocationDataItems.push_back(make_unique<JsonOutputLocationData>(
+            jsonOutputLocationDataItems.push_back(make_unique<JsonOutputFailureLocationData>(
                 locationDependentInputItems[i].get().GetName(),
-                locationOutput.GetDamages(),
                 locationOutput.GetTimeOfFailure()));
         }
 

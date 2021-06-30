@@ -22,10 +22,12 @@ set(SOURCEFILES_INTERNAL
 
 set(SOURCEFILES_INTERNAL_DATA
   ${INTERNAL_DATA_FOLDER}/IJsonOutputData.h
+  ${INTERNAL_DATA_FOLDER}/JsonOutputDamageLocationData.cpp
+  ${INTERNAL_DATA_FOLDER}/JsonOutputDamageLocationData.h
   ${INTERNAL_DATA_FOLDER}/JsonOutputData.cpp
   ${INTERNAL_DATA_FOLDER}/JsonOutputData.h
-  ${INTERNAL_DATA_FOLDER}/JsonOutputLocationData.cpp
-  ${INTERNAL_DATA_FOLDER}/JsonOutputLocationData.h
+  ${INTERNAL_DATA_FOLDER}/JsonOutputFailureLocationData.cpp
+  ${INTERNAL_DATA_FOLDER}/JsonOutputFailureLocationData.h
 )
 
 # Add library
