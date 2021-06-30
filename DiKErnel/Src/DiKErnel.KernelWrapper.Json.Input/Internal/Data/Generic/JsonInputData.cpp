@@ -32,13 +32,13 @@ namespace DiKErnel::KernelWrapper::Json::Input
         : _processData(move(processData)),
           _calculationData(move(calculationData)) { }
 
-    const JsonInputCalculationData& JsonInputData::GetCalculationData() const
-    {
-        return *_calculationData;
-    }
-
     const JsonInputProcessData& JsonInputData::GetProcessData() const
     {
         return *_processData;
+    }
+
+    const JsonInputCalculationData& JsonInputData::GetCalculationData() const
+    {
+        return *_calculationData;
     }
 }

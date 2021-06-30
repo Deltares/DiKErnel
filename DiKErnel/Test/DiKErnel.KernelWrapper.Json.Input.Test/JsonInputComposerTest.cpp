@@ -48,15 +48,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
 
     struct JsonInputComposerTest : Test
     {
-        static void GetCalculationInputFromJsonWithInvalidCalculationProcessType()
-        {
-            const auto filePath = (TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Input.Test") / "JsonInputComposerTest"
-                / "InvalidCalculationProcessType.json").string();
-
-            JsonInputComposer::GetInputDataFromJson(filePath);
-        }
-
-        static void GetCalculationInputFromJsonWithInvalidAsphaltRevetmentWaveImpactTopLayerType()
+        static void GetInputDataFromJsonWithInvalidAsphaltRevetmentWaveImpactTopLayerType()
         {
             const auto filePath = (TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Input.Test") / "JsonInputComposerTest"
                 / "InvalidAsphaltRevetmentWaveImpactTopLayerType.json").string();
@@ -64,7 +56,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
             JsonInputComposer::GetInputDataFromJson(filePath);
         }
 
-        static void GetCalculationInputFromJsonWithInvalidNaturalStoneRevetmentTopLayerType()
+        static void GetInputDataFromJsonWithInvalidNaturalStoneRevetmentTopLayerType()
         {
             const auto filePath = (TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Input.Test") / "JsonInputComposerTest"
                 / "InvalidNaturalStoneRevetmentTopLayerType.json").string();
@@ -72,7 +64,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
             JsonInputComposer::GetInputDataFromJson(filePath);
         }
 
-        static void GetCalculationInputFromJsonWithInvalidGrassRevetmentWaveImpactTopLayerType()
+        static void GetInputDataFromJsonWithInvalidGrassRevetmentWaveImpactTopLayerType()
         {
             const auto filePath = (TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Input.Test") / "JsonInputComposerTest"
                 / "InvalidGrassRevetmentWaveImpactTopLayerType.json").string();
@@ -80,7 +72,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
             JsonInputComposer::GetInputDataFromJson(filePath);
         }
 
-        static void GetCalculationInputFromJsonWithInvalidGrassRevetmentWaveRunupRayleighTopLayerType()
+        static void GetInputDataFromJsonWithInvalidGrassRevetmentWaveRunupRayleighTopLayerType()
         {
             const auto filePath = (TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Input.Test") / "JsonInputComposerTest"
                 / "InvalidGrassRevetmentWaveRunupRayleighTopLayerType.json").string();
@@ -378,7 +370,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
            GivenJsonInputWithInvalidAsphaltRevetmentWaveImpactTypeTopLayer_WhenGetCalculationInputFromJson_ThenThrowsJsonConversionException)
     {
         // Given & When
-        const auto action = &JsonInputComposerTest::GetCalculationInputFromJsonWithInvalidAsphaltRevetmentWaveImpactTopLayerType;
+        const auto action = &JsonInputComposerTest::GetInputDataFromJsonWithInvalidAsphaltRevetmentWaveImpactTopLayerType;
 
         // Then
         AssertHelper::AssertThrowsWithMessage<JsonConversionException>(action, "Cannot convert top layer type.");
@@ -388,7 +380,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
            GivenJsonInputWithInvalidGrassRevetmentWaveImpactTypeTopLayer_WhenGetCalculationInputFromJson_ThenThrowsJsonConversionException)
     {
         // Given & When
-        const auto action = &JsonInputComposerTest::GetCalculationInputFromJsonWithInvalidGrassRevetmentWaveImpactTopLayerType;
+        const auto action = &JsonInputComposerTest::GetInputDataFromJsonWithInvalidGrassRevetmentWaveImpactTopLayerType;
 
         // Then
         AssertHelper::AssertThrowsWithMessage<JsonConversionException>(action, "Cannot convert top layer type.");
@@ -398,7 +390,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
            GivenJsonInputWithInvalidGrassRevetmentWaveRunupRayleighTypeTopLayer_WhenGetCalculationInputFromJson_ThenThrowsJsonConversionException)
     {
         // Given & When
-        const auto action = &JsonInputComposerTest::GetCalculationInputFromJsonWithInvalidGrassRevetmentWaveRunupRayleighTopLayerType;
+        const auto action = &JsonInputComposerTest::GetInputDataFromJsonWithInvalidGrassRevetmentWaveRunupRayleighTopLayerType;
 
         // Then
         AssertHelper::AssertThrowsWithMessage<JsonConversionException>(action, "Cannot convert top layer type.");
@@ -408,7 +400,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
            GivenJsonInputWithInvalidNaturalStoneRevetmentTypeTopLayer_WhenGetCalculationInputFromJson_ThenThrowsJsonConversionException)
     {
         // Given & When
-        const auto action = &JsonInputComposerTest::GetCalculationInputFromJsonWithInvalidNaturalStoneRevetmentTopLayerType;
+        const auto action = &JsonInputComposerTest::GetInputDataFromJsonWithInvalidNaturalStoneRevetmentTopLayerType;
 
         // Then
         AssertHelper::AssertThrowsWithMessage<JsonConversionException>(action, "Cannot convert top layer type.");
