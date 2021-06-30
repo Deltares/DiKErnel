@@ -20,29 +20,43 @@
 
 #include "JsonOutputData.h"
 
+#include "JsonOutputDefinitions.h"
+
 namespace DiKErnel::KernelWrapper::Json::Output
 {
+    using namespace nlohmann;
     using namespace std;
 
     JsonOutputData::JsonOutputData(
         vector<int> times,
         vector<unique_ptr<JsonOutputLocationData>> locationDataItems)
         : _times(move(times)),
-          _locationDataItems(move(locationDataItems))
+          _locationDataItems(move(locationDataItems)) { }
+
+    ordered_json JsonOutputData::CreateJson() const
     {
-        for (const auto& locationDataItem : _locationDataItems)
+        vector<basic_json<ordered_map>> locationOutputJsonItems;
+
+        for (const auto& location : _locationDataItems)
         {
-            _locationDataItemReferences.emplace_back(*locationDataItem);
+            locationOutputJsonItems.emplace_back(location->CreateJson());
         }
-    }
 
-    const vector<int>& JsonOutputData::GetTimes() const
-    {
-        return _times;
-    }
-
-    const vector<reference_wrapper<JsonOutputLocationData>>& JsonOutputData::GetLocationDataItems() const
-    {
-        return _locationDataItemReferences;
+        return ordered_json::object(
+            {
+                {
+                    JsonOutputDefinitions::OUTPUT_DATA,
+                    {
+                        {
+                            JsonOutputDefinitions::TIME,
+                            _times
+                        },
+                        {
+                            JsonOutputDefinitions::LOCATIONS,
+                            locationOutputJsonItems
+                        }
+                    }
+                }
+            });
     }
 }

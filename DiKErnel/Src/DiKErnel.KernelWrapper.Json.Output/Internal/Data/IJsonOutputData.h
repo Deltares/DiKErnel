@@ -29,6 +29,6 @@ namespace DiKErnel::KernelWrapper::Json::Output
         public:
             virtual ~IJsonOutputData() = default;
 
-            virtual nlohmann::json CreateJson() = 0;
+            virtual nlohmann::ordered_json CreateJson() const = 0;
     };
 }

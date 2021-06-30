@@ -24,7 +24,7 @@
 
 #include <nlohmann/json.hpp>
 
-#include "JsonOutputData.h"
+#include "IJsonOutputData.h"
 
 namespace DiKErnel::KernelWrapper::Json::Output
 {
@@ -33,10 +33,6 @@ namespace DiKErnel::KernelWrapper::Json::Output
         public:
             static void Write(
                 const std::string& filePath,
-                const JsonOutputData& jsonOutputData);
-
-        private:
-            static std::vector<nlohmann::basic_json<nlohmann::ordered_map>> GetLocations(
-                const std::vector<std::reference_wrapper<JsonOutputLocationData>>& locationDataItems);
+                const IJsonOutputData& jsonOutputData);
     };
 }

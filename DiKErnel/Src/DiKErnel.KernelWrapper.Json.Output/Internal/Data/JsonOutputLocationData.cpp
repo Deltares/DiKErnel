@@ -22,8 +22,11 @@
 
 #include <utility>
 
+#include "JsonOutputDefinitions.h"
+
 namespace DiKErnel::KernelWrapper::Json::Output
 {
+    using namespace nlohmann;
     using namespace std;
 
     JsonOutputLocationData::JsonOutputLocationData(
@@ -34,23 +37,38 @@ namespace DiKErnel::KernelWrapper::Json::Output
           _damages(move(damages)),
           _timeOfFailure(timeOfFailure) {}
 
-    const string& JsonOutputLocationData::GetName() const
+    ordered_json JsonOutputLocationData::CreateJson() const
     {
-        return _name;
-    }
+        auto output = ordered_json::object(
+            {
+                {
+                    JsonOutputDefinitions::NAME,
+                    _name
+                },
+                {
+                    JsonOutputDefinitions::DAMAGE,
+                    {
+                        {
+                            JsonOutputDefinitions::FAILED,
+                            _timeOfFailure != nullptr
+                        },
+                        {
+                            JsonOutputDefinitions::TIME_OF_FAILURE,
+                            nullptr
+                        },
+                        {
+                            JsonOutputDefinitions::DAMAGE_OVER_TIME,
+                            _damages
+                        }
+                    }
+                }
+            });
 
-    const vector<double>& JsonOutputLocationData::GetDamages() const
-    {
-        return _damages;
-    }
+        if (_timeOfFailure != nullptr)
+        {
+            output[JsonOutputDefinitions::DAMAGE][JsonOutputDefinitions::TIME_OF_FAILURE] = *_timeOfFailure;
+        }
 
-    bool JsonOutputLocationData::GetLocationFailed() const
-    {
-        return _timeOfFailure != nullptr;
-    }
-
-    const int* JsonOutputLocationData::GetTimeOfFailure() const
-    {
-        return _timeOfFailure;
+        return output;
     }
 }

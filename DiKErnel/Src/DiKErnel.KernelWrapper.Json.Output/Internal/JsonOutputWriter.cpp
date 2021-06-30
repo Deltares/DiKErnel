@@ -23,8 +23,6 @@
 #include <fstream>
 #include <iomanip>
 
-#include "JsonOutputDefinitions.h"
-
 namespace DiKErnel::KernelWrapper::Json::Output
 {
     using namespace nlohmann;
@@ -32,73 +30,9 @@ namespace DiKErnel::KernelWrapper::Json::Output
 
     void JsonOutputWriter::Write(
         const string& filePath,
-        const JsonOutputData& jsonOutputData)
+        const IJsonOutputData& jsonOutputData)
     {
-        const auto jsonOutput = ordered_json::object(
-            {
-                {
-                    JsonOutputDefinitions::OUTPUT_DATA,
-                    {
-                        {
-                            JsonOutputDefinitions::TIME,
-                            jsonOutputData.GetTimes()
-                        },
-                        {
-                            JsonOutputDefinitions::LOCATIONS,
-                            GetLocations(jsonOutputData.GetLocationDataItems())
-                        }
-                    }
-                }
-            });
-
         ofstream outfile(filePath, ios::trunc);
-        outfile << setw(4) << jsonOutput << endl;
-    }
-
-    vector<basic_json<ordered_map>> JsonOutputWriter::GetLocations(
-        const vector<reference_wrapper<JsonOutputLocationData>>& locationDataItems)
-    {
-        vector<basic_json<ordered_map>> locationOutputJsonItems;
-
-        for (const auto& locationDataReference : locationDataItems)
-        {
-            const auto& locationData = locationDataReference.get();
-
-            auto locationFailed = locationData.GetLocationFailed();
-            auto locationOutputJson = ordered_json::object(
-                {
-                    {
-                        JsonOutputDefinitions::NAME,
-                        locationData.GetName()
-                    },
-                    {
-                        JsonOutputDefinitions::DAMAGE,
-                        {
-                            {
-                                JsonOutputDefinitions::FAILED,
-                                locationFailed
-                            },
-                            {
-                                JsonOutputDefinitions::TIME_OF_FAILURE,
-                                nullptr
-                            },
-                            {
-                                JsonOutputDefinitions::DAMAGE_OVER_TIME,
-                                locationData.GetDamages()
-                            }
-                        }
-                    }
-                }
-            );
-
-            if (locationFailed)
-            {
-                locationOutputJson[JsonOutputDefinitions::DAMAGE][JsonOutputDefinitions::TIME_OF_FAILURE] = *locationData.GetTimeOfFailure();
-            }
-
-            locationOutputJsonItems.push_back(locationOutputJson);
-        }
-
-        return locationOutputJsonItems;
+        outfile << setw(4) << jsonOutputData.CreateJson() << endl;
     }
 }

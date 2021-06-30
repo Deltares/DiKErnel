@@ -23,9 +23,11 @@
 #include <string>
 #include <vector>
 
+#include "IJsonOutputData.h"
+
 namespace DiKErnel::KernelWrapper::Json::Output
 {
-    class JsonOutputLocationData
+    class JsonOutputLocationData : public IJsonOutputData
     {
         public:
             explicit JsonOutputLocationData(
@@ -33,13 +35,7 @@ namespace DiKErnel::KernelWrapper::Json::Output
                 std::vector<double> damages,
                 const int* timeOfFailure);
 
-            const std::string& GetName() const;
-
-            const std::vector<double>& GetDamages() const;
-
-            bool GetLocationFailed() const;
-
-            const int* GetTimeOfFailure() const;
+            nlohmann::ordered_json CreateJson() const override;
 
         private:
             std::string _name;

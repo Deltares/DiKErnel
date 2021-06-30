@@ -23,24 +23,22 @@
 #include <memory>
 #include <vector>
 
+#include "IJsonOutputData.h"
 #include "JsonOutputLocationData.h"
 
 namespace DiKErnel::KernelWrapper::Json::Output
 {
-    class JsonOutputData
+    class JsonOutputData : public IJsonOutputData
     {
         public:
             explicit JsonOutputData(
                 std::vector<int> times,
                 std::vector<std::unique_ptr<JsonOutputLocationData>> locationDataItems);
 
-            const std::vector<int>& GetTimes() const;
-
-            const std::vector<std::reference_wrapper<JsonOutputLocationData>>& GetLocationDataItems() const;
+            nlohmann::ordered_json CreateJson() const override;
 
         private:
             std::vector<int> _times;
             std::vector<std::unique_ptr<JsonOutputLocationData>> _locationDataItems;
-            std::vector<std::reference_wrapper<JsonOutputLocationData>> _locationDataItemReferences;
     };
 }
