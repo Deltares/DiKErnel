@@ -73,7 +73,7 @@ namespace DiKErnel::Integration
 
         const auto beginTime = timeDependentInput.GetBeginTime();
         const auto waveHeightHm0 = timeDependentInput.GetWaveHeightHm0();
-        auto equivalentElasticModulus = _subLayer->GetElasticModulus();
+        const auto equivalentElasticModulus = _subLayer->GetElasticModulus();
 
         const auto incrementTime = Revetment::IncrementTime(beginTime, timeDependentInput.GetEndTime());
         const auto averageNumberOfWaves = Revetment::AverageNumberOfWaves(incrementTime, timeDependentInput.GetWavePeriodTm10(),
@@ -90,9 +90,8 @@ namespace DiKErnel::Integration
         const auto incrementDamage = AsphaltRevetmentWaveImpact::IncrementDamage(logFailureTension, averageNumberOfWaves, maximumPeakStress,
                                                                                  stiffnessRelation, computationalThickness, _tanA,
                                                                                  _widthFactors, _depthFactors, _impactFactors, GetPositionZ(),
-                                                                                 timeDependentInput.GetWaterLevel(),
-                                                                                 waveHeightHm0, _fatigue->GetAlpha(),
-                                                                                 _fatigue->GetBeta(), _impactNumberC);
+                                                                                 timeDependentInput.GetWaterLevel(), waveHeightHm0,
+                                                                                 _fatigue->GetAlpha(), _fatigue->GetBeta(), _impactNumberC);
 
         const auto damage = Revetment::Damage(incrementDamage, initialDamage);
         const auto failureNumber = GetFailureNumber();
