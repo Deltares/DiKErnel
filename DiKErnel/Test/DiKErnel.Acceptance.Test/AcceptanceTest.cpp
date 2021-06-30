@@ -110,7 +110,7 @@ namespace DiKErnel::Acceptance::Test
             }
         }
 
-        ~AcceptanceTest()
+        ~AcceptanceTest() override
         {
             remove(_actualOutputFilePath.c_str());
         }
@@ -123,7 +123,7 @@ namespace DiKErnel::Acceptance::Test
             / "AsphaltWaveImpact.json").string();
 
         // When & Then
-        PerformTest(inputFilePath, vector<double>
+        PerformTest(inputFilePath, vector
                     {
                         12.9568389512477,
                         0.19959964682802614,
@@ -153,6 +153,16 @@ namespace DiKErnel::Acceptance::Test
 
         // When & Then
         PerformTest(inputFilePath, 2.273256874349757, make_unique<int>(10433).get());
+    }
+
+    TEST_F(AcceptanceTest, GivenJsonInputWithGrassWaveRunupRayleighLocationWithHighWaterLevel_WhenCalculating_ThenExpectedOutputJsonCreated)
+    {
+        // Given
+        const auto inputFilePath = (TestDataPathHelper::GetTestDataPath("DiKErnel.Acceptance.Test") / "AcceptanceTest"
+            / "GrassWaveRunupRayleighWithHighWaterLevel.json").string();
+
+        // When & Then
+        PerformTest(inputFilePath, 0.24492951079678721, nullptr);
     }
 
     TEST_F(AcceptanceTest, GivenJsonInputWithNaturalStoneLocation_WhenCalculating_ThenExpectedOutputJsonCreated)
