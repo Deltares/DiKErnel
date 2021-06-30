@@ -28,8 +28,7 @@ namespace DiKErnel::Core
 
     LocationDependentOutput::LocationDependentOutput(
         vector<unique_ptr<TimeDependentOutput>> timeDependentOutputItems)
-        : _damages(vector<double>()),
-          _timeDependentOutputItems(move(timeDependentOutputItems))
+        : _timeDependentOutputItems(move(timeDependentOutputItems))
     {
         for (const auto& timeDependentOutput : _timeDependentOutputItems)
         {

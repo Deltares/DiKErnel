@@ -60,7 +60,7 @@ namespace DiKErnel::Core
             const std::vector<std::reference_wrapper<TimeDependentOutput>>& GetTimeDependentOutputItems() const;
 
         private:
-            std::vector<double> _damages;
+            std::vector<double> _damages = std::vector<double>();
             std::unique_ptr<int> _timeOfFailure;
             std::vector<std::unique_ptr<TimeDependentOutput>> _timeDependentOutputItems;
             std::vector<std::reference_wrapper<TimeDependentOutput>> _timeDependentOutputItemReferences;
