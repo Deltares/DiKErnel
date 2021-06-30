@@ -24,6 +24,7 @@
 
 #include "CalculationOutput.h"
 #include "ICalculationInput.h"
+#include "JsonProcessType.h"
 
 namespace DiKErnel::KernelWrapper::Json::Output
 {
@@ -41,10 +42,13 @@ namespace DiKErnel::KernelWrapper::Json::Output
              *        The calculation output to write.
              * \param calculationInput
              *        The calculation input that corresponds to the calculation output.
+             * \param processType
+             *        The process type.
              */
             static void WriteCalculationOutputToJson(
                 const std::string& filePath,
                 const Core::CalculationOutput& calculationOutput,
-                const Core::ICalculationInput& calculationInput);
+                const Core::ICalculationInput& calculationInput,
+                Input::JsonProcessType processType);
     };
 }

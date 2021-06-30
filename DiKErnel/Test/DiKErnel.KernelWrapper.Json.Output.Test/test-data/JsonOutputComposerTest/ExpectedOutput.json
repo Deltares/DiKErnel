@@ -8,9 +8,13 @@
         "Locaties": [
             {
                 "Naam": "testName1",
-                "Schade": {
+                "FalenBekleding": {
                     "Faalgebeurtenis": true,
-                    "Faaltijd": 60,
+                    "Faaltijd": 60
+                },
+                "SchadeBekleding": {
+                    "Beginschade": 0.0,
+                    "Faalgetal": 0.95,
                     "SchadegetalPerTijd": [
                         0.15,
                         0.253
@@ -19,9 +23,13 @@
             },
             {
                 "Naam": "testName2",
-                "Schade": {
+                "FalenBekleding": {
                     "Faalgebeurtenis": false,
-                    "Faaltijd": null,
+                    "Faaltijd": null
+                },
+                "SchadeBekleding": {
+                    "Beginschade": 0.05,
+                    "Faalgetal": 1.0,
                     "SchadegetalPerTijd": [
                         0.28,
                         0.512

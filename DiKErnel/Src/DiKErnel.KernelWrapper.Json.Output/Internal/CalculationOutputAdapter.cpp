@@ -20,20 +20,24 @@
 
 #include "CalculationOutputAdapter.h"
 
+#include "JsonOutputDamageLocationData.h"
 #include "LocationDependentOutput.h"
 
 namespace DiKErnel::KernelWrapper::Json::Output
 {
     using namespace Core;
+    using namespace Input;
     using namespace std;
 
     unique_ptr<JsonOutputData> CalculationOutputAdapter::AdaptCalculationOutput(
         const CalculationOutput& calculationOutput,
-        const ICalculationInput& calculationInput)
+        const ICalculationInput& calculationInput,
+        const JsonProcessType processType)
     {
         return make_unique<JsonOutputData>(
             GetTimes(calculationInput.GetTimeDependentInputItems()),
-            GetJsonOutputLocations(calculationOutput.GetLocationDependentOutputItems(), calculationInput.GetLocationDependentInputItems()));
+            GetJsonOutputLocations(calculationOutput.GetLocationDependentOutputItems(), calculationInput.GetLocationDependentInputItems(),
+                                   processType));
     }
 
     vector<int> CalculationOutputAdapter::GetTimes(
@@ -58,17 +62,32 @@ namespace DiKErnel::KernelWrapper::Json::Output
 
     vector<unique_ptr<JsonOutputFailureLocationData>> CalculationOutputAdapter::GetJsonOutputLocations(
         const vector<reference_wrapper<LocationDependentOutput>>& locationDependentOutputItems,
-        const vector<reference_wrapper<ILocationDependentInput>>& locationDependentInputItems)
+        const vector<reference_wrapper<ILocationDependentInput>>& locationDependentInputItems,
+        const JsonProcessType processType)
     {
         vector<unique_ptr<JsonOutputFailureLocationData>> jsonOutputLocationDataItems;
 
         for (auto i = 0; i < static_cast<int>(locationDependentOutputItems.size()); ++i)
         {
             const auto& locationOutput = locationDependentOutputItems[i].get();
+            const auto& locationInput = locationDependentInputItems[i].get();
 
-            jsonOutputLocationDataItems.push_back(make_unique<JsonOutputFailureLocationData>(
-                locationDependentInputItems[i].get().GetName(),
-                locationOutput.GetTimeOfFailure()));
+            if(processType == JsonProcessType::Failure)
+            {
+                jsonOutputLocationDataItems.push_back(make_unique<JsonOutputFailureLocationData>(
+                    locationInput.GetName(),
+                    locationOutput.GetTimeOfFailure()));
+            }
+
+            if(processType == JsonProcessType::Damage)
+            {
+                jsonOutputLocationDataItems.push_back(make_unique<JsonOutputDamageLocationData>(
+                    locationInput.GetName(),
+                    locationOutput.GetTimeOfFailure(),
+                    locationInput.GetInitialDamage(),
+                    locationInput.GetFailureNumber(),
+                    locationOutput.GetDamages()));
+            }
         }
 
         return jsonOutputLocationDataItems;

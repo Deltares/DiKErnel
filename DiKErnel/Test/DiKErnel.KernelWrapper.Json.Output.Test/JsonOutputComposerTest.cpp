@@ -35,6 +35,7 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
     using namespace Core;
     using namespace Core::TestUtil;
     using namespace DiKErnel::TestUtil;
+    using namespace Input;
     using namespace std;
     using namespace testing;
 
@@ -62,6 +63,12 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
 
             ON_CALL(*locationDependentInput1, GetName).WillByDefault(Return("testName1"));
             ON_CALL(*locationDependentInput2, GetName).WillByDefault(Return("testName2"));
+
+            ON_CALL(*locationDependentInput1, GetInitialDamage).WillByDefault(Return(0));
+            ON_CALL(*locationDependentInput2, GetInitialDamage).WillByDefault(Return(0.05));
+
+            ON_CALL(*locationDependentInput1, GetFailureNumber).WillByDefault(Return(0.95));
+            ON_CALL(*locationDependentInput2, GetFailureNumber).WillByDefault(Return(1));
 
             _locationDependentInputItems.emplace_back(move(locationDependentInput1));
             _locationDependentInputItems.emplace_back(move(locationDependentInput2));
@@ -91,7 +98,7 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
             }
         }
 
-        ~JsonOutputComposerTest()
+        ~JsonOutputComposerTest() override
         {
             remove(_actualOutputFilePath.c_str());
         }
@@ -122,7 +129,7 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
         ON_CALL(calculationInput, GetTimeDependentInputItems).WillByDefault(ReturnRef(_timeDependentInputItemReferences));
 
         // Call
-        JsonOutputComposer::WriteCalculationOutputToJson(_actualOutputFilePath, calculationOutput, calculationInput);
+        JsonOutputComposer::WriteCalculationOutputToJson(_actualOutputFilePath, calculationOutput, calculationInput, JsonProcessType::Damage);
 
         // Assert
         FileAssert::AssertFileContents(expectedOutputFilePath, _actualOutputFilePath);

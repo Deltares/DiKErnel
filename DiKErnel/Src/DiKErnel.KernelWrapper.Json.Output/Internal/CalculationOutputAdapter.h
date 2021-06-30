@@ -23,6 +23,7 @@
 #include "CalculationOutput.h"
 #include "ICalculationInput.h"
 #include "JsonOutputData.h"
+#include "JsonProcessType.h"
 
 namespace DiKErnel::KernelWrapper::Json::Output
 {
@@ -31,7 +32,8 @@ namespace DiKErnel::KernelWrapper::Json::Output
         public:
             static std::unique_ptr<JsonOutputData> AdaptCalculationOutput(
                 const Core::CalculationOutput& calculationOutput,
-                const Core::ICalculationInput& calculationInput);
+                const Core::ICalculationInput& calculationInput,
+                Input::JsonProcessType processType);
 
         private:
             static std::vector<int> GetTimes(
@@ -39,6 +41,7 @@ namespace DiKErnel::KernelWrapper::Json::Output
 
             static std::vector<std::unique_ptr<JsonOutputFailureLocationData>> GetJsonOutputLocations(
                 const std::vector<std::reference_wrapper<Core::LocationDependentOutput>>& locationDependentOutputItems,
-                const std::vector<std::reference_wrapper<Core::ILocationDependentInput>>& locationDependentInputItems);
+                const std::vector<std::reference_wrapper<Core::ILocationDependentInput>>& locationDependentInputItems,
+                Input::JsonProcessType processType);
     };
 }

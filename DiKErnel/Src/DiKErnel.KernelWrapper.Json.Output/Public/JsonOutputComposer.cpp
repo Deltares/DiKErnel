@@ -26,14 +26,16 @@
 namespace DiKErnel::KernelWrapper::Json::Output
 {
     using namespace Core;
+    using namespace Input;
     using namespace std;
 
     void JsonOutputComposer::WriteCalculationOutputToJson(
         const string& filePath,
         const CalculationOutput& calculationOutput,
-        const ICalculationInput& calculationInput)
+        const ICalculationInput& calculationInput,
+        const JsonProcessType processType)
     {
-        const auto jsonOutput = CalculationOutputAdapter::AdaptCalculationOutput(calculationOutput, calculationInput);
+        const auto jsonOutput = CalculationOutputAdapter::AdaptCalculationOutput(calculationOutput, calculationInput, processType);
 
         JsonOutputWriter::Write(filePath, *jsonOutput);
     }

@@ -64,7 +64,7 @@ namespace DiKErnel::Acceptance::Test
             calculator.WaitForCompletion();
 
             const auto outputData = calculator.GetCalculationOutput();
-            JsonOutputComposer::WriteCalculationOutputToJson(_actualOutputFilePath, *outputData, *calculationInput);
+            JsonOutputComposer::WriteCalculationOutputToJson(_actualOutputFilePath, *outputData, *calculationInput, get<1>(inputData));
 
             // Then
             ifstream ifs(_actualOutputFilePath);
@@ -79,13 +79,13 @@ namespace DiKErnel::Acceptance::Test
             {
                 const auto readLocation = readLocations[i];
 
-                const auto& actualDamages = readLocation["Schade"]["SchadegetalPerTijd"].get<vector<double>>();
+                const auto& actualDamages = readLocation["SchadeBekleding"]["SchadegetalPerTijd"].get<vector<double>>();
 
                 unique_ptr<int> actualTimeOfFailure = nullptr;
 
-                if (!readLocation["Schade"]["Faaltijd"].is_null())
+                if (!readLocation["FalenBekleding"]["Faaltijd"].is_null())
                 {
-                    actualTimeOfFailure = make_unique<int>(readLocation["Schade"]["Faaltijd"].get<int>());
+                    actualTimeOfFailure = make_unique<int>(readLocation["FalenBekleding"]["Faaltijd"].get<int>());
                 }
 
                 AssertOutput(expectedDamages[i], expectedTimesOfFailure[i], actualDamages.back(), actualTimeOfFailure.get());
