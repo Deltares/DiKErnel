@@ -31,9 +31,9 @@ namespace DiKErnel::Core::Test
     TEST(TimeDependentOutputTest, Constructor_WithParameters_ExpectedValues)
     {
         // Setup
-        const double incrementDamage = rand() % 10;
-        const double damage = rand() % 20;
-        double timeOfFailure = rand() % 30;
+        const auto incrementDamage = 0.1;
+        const auto damage = 0.2;
+        auto timeOfFailure = 3;
 
         // Call
         const TimeDependentOutputMock timeDependentOutput(incrementDamage, damage, make_unique<int>(timeOfFailure));

@@ -36,8 +36,8 @@ namespace DiKErnel::Core
             virtual ~TimeDependentOutput() = default;
 
             /*!
-             * \brief Gets the incrementDamage.
-             * \return The incrementDamage.
+             * \brief Gets the increment damage.
+             * \return The increment damage.
              */
             double GetIncrementDamage() const;
 
