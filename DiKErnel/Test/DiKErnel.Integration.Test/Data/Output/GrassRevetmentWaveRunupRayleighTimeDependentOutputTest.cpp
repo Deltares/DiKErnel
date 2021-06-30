@@ -42,15 +42,17 @@ namespace DiKErnel::Integration::Test
 
         // Call
         const auto output = GrassRevetmentWaveRunupRayleighTimeDependentOutput(incrementDamage, damage, make_unique<int>(timeOfFailure),
-                                                                               waveAngleImpact, representativeWaveRunup2P, cumulativeOverload);
+                                                                               make_unique<double>(waveAngleImpact),
+                                                                               make_unique<double>(representativeWaveRunup2P),
+                                                                               make_unique<double>(cumulativeOverload));
         // Assert
         AssertHelper::AssertIsInstanceOf<TimeDependentOutput>(&output);
         ASSERT_DOUBLE_EQ(incrementDamage, output.GetIncrementDamage());
         ASSERT_DOUBLE_EQ(damage, output.GetDamage());
         ASSERT_EQ(timeOfFailure, *output.GetTimeOfFailure());
-        ASSERT_DOUBLE_EQ(waveAngleImpact, output.GetWaveAngleImpact());
-        ASSERT_DOUBLE_EQ(representativeWaveRunup2P, output.GetRepresentativeWaveRunup2P());
-        ASSERT_DOUBLE_EQ(cumulativeOverload, output.GetCumulativeOverload());
+        ASSERT_DOUBLE_EQ(waveAngleImpact, *output.GetWaveAngleImpact());
+        ASSERT_DOUBLE_EQ(representativeWaveRunup2P, *output.GetRepresentativeWaveRunup2P());
+        ASSERT_DOUBLE_EQ(cumulativeOverload, *output.GetCumulativeOverload());
     }
 
     TEST(GrassRevetmentWaveRunupRayleighTimeDependentOutputTest, Constructor_WithNullPtrValues_ExpectedValues)
@@ -58,20 +60,16 @@ namespace DiKErnel::Integration::Test
         // Setup
         const auto incrementDamage = 0.1;
         const auto damage = 0.2;
-        const auto waveAngleImpact = 0.3;
-        const auto representativeWaveRunup2P = 0.4;
-        const auto cumulativeOverload = 0.5;
 
         // Call
-        const auto output = GrassRevetmentWaveRunupRayleighTimeDependentOutput(incrementDamage, damage, nullptr, waveAngleImpact,
-                                                                               representativeWaveRunup2P, cumulativeOverload);
+        const auto output = GrassRevetmentWaveRunupRayleighTimeDependentOutput(incrementDamage, damage, nullptr, nullptr, nullptr, nullptr);
         // Assert
         AssertHelper::AssertIsInstanceOf<TimeDependentOutput>(&output);
         ASSERT_DOUBLE_EQ(incrementDamage, output.GetIncrementDamage());
         ASSERT_DOUBLE_EQ(damage, output.GetDamage());
         ASSERT_EQ(nullptr, output.GetTimeOfFailure());
-        ASSERT_DOUBLE_EQ(waveAngleImpact, output.GetWaveAngleImpact());
-        ASSERT_DOUBLE_EQ(representativeWaveRunup2P, output.GetRepresentativeWaveRunup2P());
-        ASSERT_DOUBLE_EQ(cumulativeOverload, output.GetCumulativeOverload());
+        ASSERT_EQ(nullptr, output.GetWaveAngleImpact());
+        ASSERT_EQ(nullptr, output.GetRepresentativeWaveRunup2P());
+        ASSERT_EQ(nullptr, output.GetCumulativeOverload());
     }
 }

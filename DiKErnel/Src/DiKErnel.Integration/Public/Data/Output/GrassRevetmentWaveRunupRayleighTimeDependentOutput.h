@@ -50,31 +50,31 @@ namespace DiKErnel::Integration
                 double incrementDamage,
                 double damage,
                 std::unique_ptr<int> timeOfFailure,
-                double waveAngleImpact,
-                double representativeWaveRunup2P,
-                double cumulativeOverload);
+                std::unique_ptr<double> waveAngleImpact,
+                std::unique_ptr<double> representativeWaveRunup2P,
+                std::unique_ptr<double> cumulativeOverload);
 
             /*!
              * \brief Gets the wave angle impact.
              * \return The wave angle impact.
              */
-            double GetWaveAngleImpact() const;
+            const double* GetWaveAngleImpact() const;
 
             /*!
              * \brief Gets the representative wave run-up 2P.
              * \return The representative wave run-up 2P.
              */
-            double GetRepresentativeWaveRunup2P() const;
+            const double* GetRepresentativeWaveRunup2P() const;
 
             /*!
              * \brief Gets the cumulative overload.
              * \return The cumulative overload.
              */
-            double GetCumulativeOverload() const;
+            const double* GetCumulativeOverload() const;
 
         private:
-            const double _waveAngleImpact;
-            const double _representativeWaveRunup2P;
-            const double _cumulativeOverload;
+            std::unique_ptr<double> _waveAngleImpact;
+            std::unique_ptr<double> _representativeWaveRunup2P;
+            std::unique_ptr<double> _cumulativeOverload;
     };
 }

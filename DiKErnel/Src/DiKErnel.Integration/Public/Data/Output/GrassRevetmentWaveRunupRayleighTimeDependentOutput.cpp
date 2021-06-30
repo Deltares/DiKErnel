@@ -28,26 +28,26 @@ namespace DiKErnel::Integration
         const double incrementDamage,
         const double damage,
         unique_ptr<int> timeOfFailure,
-        const double waveAngleImpact,
-        const double representativeWaveRunup2P,
-        const double cumulativeOverload)
+        unique_ptr<double> waveAngleImpact,
+        unique_ptr<double> representativeWaveRunup2P,
+        unique_ptr<double> cumulativeOverload)
         : TimeDependentOutput(incrementDamage, damage, move(timeOfFailure)),
-          _waveAngleImpact(waveAngleImpact),
-          _representativeWaveRunup2P(representativeWaveRunup2P),
-          _cumulativeOverload(cumulativeOverload) {}
+          _waveAngleImpact(move(waveAngleImpact)),
+          _representativeWaveRunup2P(move(representativeWaveRunup2P)),
+          _cumulativeOverload(move(cumulativeOverload)) {}
 
-    double GrassRevetmentWaveRunupRayleighTimeDependentOutput::GetWaveAngleImpact() const
+    const double* GrassRevetmentWaveRunupRayleighTimeDependentOutput::GetWaveAngleImpact() const
     {
-        return _waveAngleImpact;
+        return _waveAngleImpact.get();
     }
 
-    double GrassRevetmentWaveRunupRayleighTimeDependentOutput::GetRepresentativeWaveRunup2P() const
+    const double* GrassRevetmentWaveRunupRayleighTimeDependentOutput::GetRepresentativeWaveRunup2P() const
     {
-        return _representativeWaveRunup2P;
+        return _representativeWaveRunup2P.get();
     }
 
-    double GrassRevetmentWaveRunupRayleighTimeDependentOutput::GetCumulativeOverload() const
+    const double* GrassRevetmentWaveRunupRayleighTimeDependentOutput::GetCumulativeOverload() const
     {
-        return _cumulativeOverload;
+        return _cumulativeOverload.get();
     }
 }
