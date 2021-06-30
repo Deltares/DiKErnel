@@ -40,11 +40,8 @@ namespace DiKErnel::FunctionLibrary
              * \param fixedNumberOfWaves
              *        The fixed number of waves.
              *        Unit = [-]
-             * \param positionZ
-             *        The vertical position.
-             *        Unit = [m]
-             * \param waterLevel
-             *        The water level.
+             * \param verticalDistanceWaterLevelElevation
+             *        The vertical distance of the water elevation.
              *        Unit = [m]
              * \param criticalFrontVelocity
              *        The critical front velocity.
@@ -68,8 +65,7 @@ namespace DiKErnel::FunctionLibrary
                 double averageNumberOfWaves,
                 double representativeWaveRunup2P,
                 int fixedNumberOfWaves,
-                double positionZ,
-                double waterLevel,
+                double verticalDistanceWaterLevelElevation,
                 double criticalFrontVelocity,
                 double increasedLoadTransitionAlphaM,
                 double reducedStrengthTransitionAlphaS,
@@ -79,8 +75,7 @@ namespace DiKErnel::FunctionLibrary
         private:
             static double FrontVelocity(
                 double waveRunup,
-                double positionZ,
-                double waterLevel,
+                double verticalDistanceWaterLevelElevation,
                 double frontVelocityCu,
                 double gravitationalAcceleration);
 

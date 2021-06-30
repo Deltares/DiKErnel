@@ -77,13 +77,12 @@ namespace DiKErnel::Integration
             timeDependentInput.GetWaveHeightHm0(), representative2P.GetGammaB(), representative2P.GetGammaF(),
             representative2P.GetRepresentative2PAru(), representative2P.GetRepresentative2PBru(), representative2P.GetRepresentative2PCru());
 
-        const auto cumulativeOverload = GrassRevetmentWaveRunupRayleigh::CumulativeOverload(averageNumberOfWaves, representativeWaveRunup2P,
-                                                                                            _fixedNumberOfWaves, GetPositionZ(),
-                                                                                            timeDependentInput.GetWaterLevel(),
-                                                                                            GetCriticalFrontVelocity(),
-                                                                                            GetIncreasedLoadTransitionAlphaM(),
-                                                                                            GetReducedStrengthTransitionAlphaS(), _frontVelocityCu,
-                                                                                            Constants::GRAVITATIONAL_ACCELERATION);
+        const auto verticalDistanceWaterLevelElevation = HydraulicLoad::VerticalDistanceWaterLevelElevation(
+            GetPositionZ(), timeDependentInput.GetWaterLevel());
+
+        const auto cumulativeOverload = GrassRevetmentWaveRunupRayleigh::CumulativeOverload(
+            averageNumberOfWaves, representativeWaveRunup2P, _fixedNumberOfWaves, verticalDistanceWaterLevelElevation, GetCriticalFrontVelocity(),
+            GetIncreasedLoadTransitionAlphaM(), GetReducedStrengthTransitionAlphaS(), _frontVelocityCu, Constants::GRAVITATIONAL_ACCELERATION);
 
         const auto incrementDamage = GrassRevetmentWaveRunup::IncrementDamage(cumulativeOverload, GetCriticalCumulativeOverload());
 

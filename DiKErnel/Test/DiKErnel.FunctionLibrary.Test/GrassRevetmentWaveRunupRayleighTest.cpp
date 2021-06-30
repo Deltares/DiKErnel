@@ -30,8 +30,7 @@ namespace DiKErnel::FunctionLibrary::Test
         const auto averageNumberOfWaves = 225;
         const auto representativeWaveRunup2P = 2.258;
         const auto fixedNumberOfWaves = 10000;
-        const auto positionZ = 1.0;
-        const auto waterLevel = 0.03;
+        const auto verticalDistanceWaterLevelElevation = 0.97;
         const auto criticalFrontVelocity = 4.0;
         const auto increasedLoadTransitionAlphaM = 1.1;
         const auto reducedStrengthTransitionAlphaS = 1.2;
@@ -43,8 +42,7 @@ namespace DiKErnel::FunctionLibrary::Test
             averageNumberOfWaves,
             representativeWaveRunup2P,
             fixedNumberOfWaves,
-            positionZ,
-            waterLevel,
+            verticalDistanceWaterLevelElevation,
             criticalFrontVelocity,
             increasedLoadTransitionAlphaM,
             reducedStrengthTransitionAlphaS,

@@ -31,8 +31,7 @@ namespace DiKErnel::FunctionLibrary
         const double averageNumberOfWaves,
         const double representativeWaveRunup2P,
         const int fixedNumberOfWaves,
-        const double positionZ,
-        const double waterLevel,
+        const double verticalDistanceWaterLevelElevation,
         const double criticalFrontVelocity,
         const double increasedLoadTransitionAlphaM,
         const double reducedStrengthTransitionAlphaS,
@@ -44,7 +43,7 @@ namespace DiKErnel::FunctionLibrary
         for (auto k = 1; k <= fixedNumberOfWaves; ++k)
         {
             const auto waveRunup = WaveRunup(representativeWaveRunup2P, fixedNumberOfWaves, k);
-            const auto frontVelocity = FrontVelocity(waveRunup, positionZ, waterLevel, frontVelocityCu, gravitationalAcceleration);
+            const auto frontVelocity = FrontVelocity(waveRunup, verticalDistanceWaterLevelElevation, frontVelocityCu, gravitationalAcceleration);
 
             cumulativeFrontVelocity += max(0.0, increasedLoadTransitionAlphaM * pow(frontVelocity, 2.0)
                                            - reducedStrengthTransitionAlphaS * pow(criticalFrontVelocity, 2.0));
@@ -55,13 +54,12 @@ namespace DiKErnel::FunctionLibrary
 
     double GrassRevetmentWaveRunupRayleigh::FrontVelocity(
         const double waveRunup,
-        const double positionZ,
-        const double waterLevel,
+        const double verticalDistanceWaterLevelElevation,
         const double frontVelocityCu,
         const double gravitationalAcceleration)
     {
         return frontVelocityCu * sqrt(gravitationalAcceleration * waveRunup)
-                * max(0.0, min(1.0, (waveRunup - (positionZ - waterLevel)) / (0.25 * waveRunup)));
+                * max(0.0, min(1.0, (waveRunup - verticalDistanceWaterLevelElevation) / (0.25 * waveRunup)));
     }
 
     double GrassRevetmentWaveRunupRayleigh::WaveRunup(
