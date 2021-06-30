@@ -35,10 +35,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
         const auto* readProcessType = jsonInputData->GetProcessData().GetProcessType();
         const auto processType = readProcessType == nullptr
-            ? JsonInputProcessType::Damage
-            : *readProcessType;
+                                     ? JsonInputProcessType::Damage
+                                     : *readProcessType;
 
-        return tuple<unique_ptr<ICalculationInput>, JsonInputProcessType>(
-            JsonInputAdapter::AdaptJsonInputData(*jsonInputData), processType);
+        return tuple(JsonInputAdapter::AdaptJsonInputData(*jsonInputData), processType);
     }
 }
