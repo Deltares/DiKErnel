@@ -39,6 +39,8 @@ namespace DiKErnel::Integration
              *        The damage.
              * \param timeOfFailure
              *        The time of failure.
+             * \param verticalDistanceWaterLevelElevation
+             *        The vertical distance water level elevation.
              * \param waveAngleImpact
              *        The wave angle impact.
              * \param representativeWaveRunup2P
@@ -50,9 +52,16 @@ namespace DiKErnel::Integration
                 double incrementDamage,
                 double damage,
                 std::unique_ptr<int> timeOfFailure,
+                double verticalDistanceWaterLevelElevation,
                 std::unique_ptr<double> waveAngleImpact,
                 std::unique_ptr<double> representativeWaveRunup2P,
                 std::unique_ptr<double> cumulativeOverload);
+
+            /*!
+             * \brief Gets the vertical distance water level elevation.
+             * \return The vertical distance water level elevation.
+             */
+            double GetVerticalDistanceWaterLevelElevation() const;
 
             /*!
              * \brief Gets the wave angle impact.
@@ -73,6 +82,7 @@ namespace DiKErnel::Integration
             const double* GetCumulativeOverload() const;
 
         private:
+            const double _verticalDistanceWaterLevelElevation;
             std::unique_ptr<double> _waveAngleImpact;
             std::unique_ptr<double> _representativeWaveRunup2P;
             std::unique_ptr<double> _cumulativeOverload;

@@ -28,13 +28,20 @@ namespace DiKErnel::Integration
         const double incrementDamage,
         const double damage,
         unique_ptr<int> timeOfFailure,
+        const double verticalDistanceWaterLevelElevation,
         unique_ptr<double> waveAngleImpact,
         unique_ptr<double> representativeWaveRunup2P,
         unique_ptr<double> cumulativeOverload)
         : TimeDependentOutput(incrementDamage, damage, move(timeOfFailure)),
+          _verticalDistanceWaterLevelElevation(verticalDistanceWaterLevelElevation),
           _waveAngleImpact(move(waveAngleImpact)),
           _representativeWaveRunup2P(move(representativeWaveRunup2P)),
           _cumulativeOverload(move(cumulativeOverload)) {}
+
+    double GrassRevetmentWaveRunupRayleighTimeDependentOutput::GetVerticalDistanceWaterLevelElevation() const
+    {
+        return _verticalDistanceWaterLevelElevation;
+    }
 
     const double* GrassRevetmentWaveRunupRayleighTimeDependentOutput::GetWaveAngleImpact() const
     {

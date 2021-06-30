@@ -67,8 +67,10 @@ namespace DiKErnel::Integration
         unique_ptr<double> representativeWaveRunup2P = nullptr;
         unique_ptr<double> cumulativeOverload = nullptr;
 
-        if (const auto verticalDistanceWaterLevelElevation = HydraulicLoad::VerticalDistanceWaterLevelElevation(
-            GetPositionZ(), timeDependentInput.GetWaterLevel()); verticalDistanceWaterLevelElevation > 0)
+        const auto verticalDistanceWaterLevelElevation = HydraulicLoad::VerticalDistanceWaterLevelElevation(
+            GetPositionZ(), timeDependentInput.GetWaterLevel());
+
+        if (verticalDistanceWaterLevelElevation > 0)
         {
             const auto beginTime = timeDependentInput.GetBeginTime();
 
@@ -110,7 +112,8 @@ namespace DiKErnel::Integration
             }
         }
 
-        return make_unique<GrassRevetmentWaveRunupRayleighTimeDependentOutput>(incrementDamage, damage, move(timeOfFailure), move(waveAngleImpact),
+        return make_unique<GrassRevetmentWaveRunupRayleighTimeDependentOutput>(incrementDamage, damage, move(timeOfFailure),
+                                                                               verticalDistanceWaterLevelElevation, move(waveAngleImpact),
                                                                                move(representativeWaveRunup2P), move(cumulativeOverload));
     }
 
