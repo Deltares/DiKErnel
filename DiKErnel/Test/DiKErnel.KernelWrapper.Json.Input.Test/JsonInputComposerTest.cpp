@@ -48,6 +48,21 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
 
     struct JsonInputComposerTest : Test
     {
+        static void PerformProcessTypeTest(
+            const string& filename,
+            const JsonInputProcessType expectedProcessType)
+        {
+            // Given
+            const auto filePath = (TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Input.Test") / "JsonInputComposerTest"
+                / filename).string();
+
+            // When
+            const auto processType = get<1>(JsonInputComposer::GetInputDataFromJson(filePath));
+
+            // Then
+            ASSERT_EQ(expectedProcessType, processType);
+        }
+
         static void GetInputDataFromJsonWithInvalidAsphaltRevetmentWaveImpactTopLayerType()
         {
             const auto filePath = (TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Input.Test") / "JsonInputComposerTest"
@@ -81,11 +96,35 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
         }
     };
 
+    TEST_F(JsonInputComposerTest, GivenJsonInputWithoutProcessType_WhenGetInputDataFromJson_ThenReturnDefaultJsonInputProcessType)
+    {
+        // Given & When & Then
+        PerformProcessTypeTest("AllLocationsInput.json", JsonInputProcessType::Damage);
+    }
+
+    TEST_F(JsonInputComposerTest, GivenJsonFileWithProcessTypeFailure_WhenGetInputDataFromJson_ThenReturnExpectedProcessType)
+    {
+        // Given & When & Then
+        PerformProcessTypeTest("ProcessTypeFailure.json", JsonInputProcessType::Failure);
+    }
+
+    TEST_F(JsonInputComposerTest, GivenJsonFileWithProcessTypeDamage_WhenGetInputDataFromJson_ThenReturnExpectedProcessType)
+    {
+        // Given & When & Then
+        PerformProcessTypeTest("ProcessTypeDamage.json", JsonInputProcessType::Damage);
+    }
+
+    TEST_F(JsonInputComposerTest, GivenJsonFileWithProcessTypePhysics_WhenGetInputDataFromJson_ThenReturnExpectedProcessType)
+    {
+        // Given & When & Then
+        PerformProcessTypeTest("ProcessTypePhysics.json", JsonInputProcessType::Physics);
+    }
+
     TEST_F(JsonInputComposerTest, GivenJsonFile_WhenGetInputDataFromJson_ThenReturnICalculationInputWithExpectedValues)
     {
         // Given
         const auto filePath = (TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Input.Test") / "JsonInputComposerTest"
-            / "CompleteInput.json").string();
+            / "AllLocationsInput.json").string();
 
         // When
         const auto calculationInput = get<0>(JsonInputComposer::GetInputDataFromJson(filePath));
