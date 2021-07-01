@@ -35,8 +35,8 @@ namespace DiKErnel::Integration
         {
             case NaturalStoneRevetmentTopLayerType::NordicStone:
                 return make_unique<NordicStoneRevetmentDefaults>();
+            default:
+                throw DefaultsFactoryException("Couldn't create defaults for the given top layer type.");
         }
-
-        throw DefaultsFactoryException("Couldn't create defaults for the given top layer type.");
     }
 }

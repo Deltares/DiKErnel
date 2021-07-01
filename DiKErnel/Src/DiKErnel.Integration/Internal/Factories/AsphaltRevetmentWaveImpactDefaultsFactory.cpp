@@ -35,8 +35,8 @@ namespace DiKErnel::Integration
         {
             case AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete:
                 return make_unique<AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteDefaults>();
+            default:
+                throw DefaultsFactoryException("Couldn't create defaults for the given top layer type.");
         }
-
-        throw DefaultsFactoryException("Couldn't create defaults for the given top layer type.");
     }
 }

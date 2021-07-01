@@ -38,8 +38,8 @@ namespace DiKErnel::Integration
                 return make_unique<GrassRevetmentWaveImpactClosedSodDefaults>();
             case GrassRevetmentTopLayerType::OpenSod:
                 return make_unique<GrassRevetmentWaveImpactOpenSodDefaults>();
+            default:
+                throw DefaultsFactoryException("Couldn't create defaults for the given top layer type.");
         }
-
-        throw DefaultsFactoryException("Couldn't create defaults for the given top layer type.");
     }
 }
