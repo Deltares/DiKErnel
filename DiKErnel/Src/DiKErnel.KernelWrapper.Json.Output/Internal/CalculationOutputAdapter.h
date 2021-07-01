@@ -58,5 +58,9 @@ namespace DiKErnel::KernelWrapper::Json::Output
             static std::unique_ptr<JsonOutputFailureLocationData> CreateJsonOutputDamageLocationData(
                 const Core::LocationDependentOutput& locationOutput,
                 const Core::ILocationDependentInput& locationInput);
+
+            static std::unique_ptr<JsonOutputFailureLocationData> CreateJsonOutputPhysicsLocationData(
+                const Core::LocationDependentOutput& locationOutput,
+                const Core::ILocationDependentInput& locationInput);
     };
 }

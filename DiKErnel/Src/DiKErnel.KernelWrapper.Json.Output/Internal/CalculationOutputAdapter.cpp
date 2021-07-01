@@ -22,10 +22,13 @@
 
 #include "JsonConversionException.h"
 #include "JsonOutputDamageLocationData.h"
+#include "JsonOutputNaturalStoneRevetmentPhysicsLocationData.h"
+#include "NaturalStoneRevetmentLocationDependentInput.h"
 
 namespace DiKErnel::KernelWrapper::Json::Output
 {
     using namespace Core;
+    using namespace Integration;
     using namespace std;
 
     unique_ptr<JsonOutputData> CalculationOutputAdapter::AdaptCalculationOutput(
@@ -87,7 +90,7 @@ namespace DiKErnel::KernelWrapper::Json::Output
             case JsonProcessType::Damage:
                 return &CreateJsonOutputDamageLocationData;
             case JsonProcessType::Physics:
-                return &CreateJsonOutputDamageLocationData;
+                return &CreateJsonOutputPhysicsLocationData;
             default:
                 throw JsonConversionException("Invalid JsonProcessType");
         }
@@ -105,5 +108,18 @@ namespace DiKErnel::KernelWrapper::Json::Output
         const ILocationDependentInput& locationInput)
     {
         return make_unique<JsonOutputDamageLocationData>(locationOutput, locationInput);
+    }
+
+    unique_ptr<JsonOutputFailureLocationData> CalculationOutputAdapter::CreateJsonOutputPhysicsLocationData(
+        const LocationDependentOutput& locationOutput,
+        const ILocationDependentInput& locationInput)
+    {
+        if (const auto* naturalStoneRevetmentLocationDependentInput = dynamic_cast<const NaturalStoneRevetmentLocationDependentInput*>(
+            &locationInput); naturalStoneRevetmentLocationDependentInput != nullptr)
+        {
+            return make_unique<JsonOutputNaturalStoneRevetmentPhysicsLocationData>(locationOutput, *naturalStoneRevetmentLocationDependentInput);
+        }
+
+        throw JsonConversionException("Invalid revetment type");
     }
 }
