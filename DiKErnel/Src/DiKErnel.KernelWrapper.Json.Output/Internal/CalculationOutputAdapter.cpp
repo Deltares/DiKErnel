@@ -92,7 +92,7 @@ namespace DiKErnel::KernelWrapper::Json::Output
             case JsonProcessType::Physics:
                 return &CreateJsonOutputPhysicsLocationData;
             default:
-                throw JsonConversionException("Invalid JsonProcessType");
+                throw JsonConversionException("Invalid JsonProcessType.");
         }
     }
 
@@ -120,6 +120,6 @@ namespace DiKErnel::KernelWrapper::Json::Output
             return make_unique<JsonOutputNaturalStoneRevetmentPhysicsLocationData>(locationOutput, *naturalStoneRevetmentLocationDependentInput);
         }
 
-        throw JsonConversionException("Invalid revetment type");
+        throw JsonConversionException("Invalid revetment type.");
     }
 }

@@ -22,10 +22,12 @@
 
 #include <gtest/gtest.h>
 
+#include "AssertHelper.h"
 #include "FileAssert.h"
 #include "ICalculationInputMock.h"
 #include "ILocationDependentInputMock.h"
 #include "ITimeDependentInputMock.h"
+#include "JsonConversionException.h"
 #include "JsonOutputComposer.h"
 #include "TestDataPathHelper.h"
 #include "TimeDependentOutputMock.h"
@@ -97,9 +99,11 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
             }
         }
 
-        void PerformTest(const string& filename,
-                         const JsonProcessType processType)
+        void PerformTest(
+            const string& filename,
+            const JsonProcessType processType)
         {
+            // Setup
             const auto expectedOutputFilePath = (TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Output.Test")
                 / "JsonOutputComposerTest" / filename).string();
 
@@ -128,11 +132,68 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
             FileAssert::AssertFileContents(expectedOutputFilePath, _actualOutputFilePath);
         }
 
+        static void WriteCalculationOutputToJsonWithNotSupportedLocationData()
+        {
+            // Setup
+            auto location1TimeDependentOutputItems = vector<unique_ptr<TimeDependentOutput>>();
+            location1TimeDependentOutputItems.push_back(make_unique<TimeDependentOutputMock>(0, 0.15, nullptr));
+
+            vector<unique_ptr<LocationDependentOutput>> locations;
+            locations.push_back(make_unique<LocationDependentOutput>(move(location1TimeDependentOutputItems)));
+
+            const CalculationOutput calculationOutput(move(locations));
+
+            auto locationDependentInputItems = vector<unique_ptr<ILocationDependentInput>>();
+            auto timeDependentInputItems = vector<unique_ptr<ITimeDependentInput>>();
+
+            auto locationDependentInputItemReferences = vector<reference_wrapper<ILocationDependentInput>>();
+            auto timeDependentInputItemReferences = vector<reference_wrapper<ITimeDependentInput>>();
+
+            auto locationDependentInput1 = make_unique<NiceMock<ILocationDependentInputMock>>();
+
+            locationDependentInputItems.emplace_back(move(locationDependentInput1));
+
+            for (const auto& locationDependentInput : locationDependentInputItems)
+            {
+                locationDependentInputItemReferences.emplace_back(*locationDependentInput);
+            }
+
+            const NiceMock<ICalculationInputMock> calculationInput;
+            ON_CALL(calculationInput, GetLocationDependentInputItems).WillByDefault(ReturnRef(locationDependentInputItemReferences));
+            ON_CALL(calculationInput, GetTimeDependentInputItems).WillByDefault(ReturnRef(timeDependentInputItemReferences));
+
+            // Call
+            JsonOutputComposer::WriteCalculationOutputToJson("", calculationOutput, calculationInput, JsonProcessType::Physics);
+        }
+
+        static void WriteCalculationOutputToJsonWithInvalidJsonProcessType()
+        {
+            auto locationDependentInputItemReferences = vector<reference_wrapper<ILocationDependentInput>>();
+            auto timeDependentInputItemReferences = vector<reference_wrapper<ITimeDependentInput>>();
+
+            const NiceMock<ICalculationInputMock> calculationInput;
+            ON_CALL(calculationInput, GetLocationDependentInputItems).WillByDefault(ReturnRef(locationDependentInputItemReferences));
+            ON_CALL(calculationInput, GetTimeDependentInputItems).WillByDefault(ReturnRef(timeDependentInputItemReferences));
+
+            const CalculationOutput calculationOutput((vector<unique_ptr<LocationDependentOutput>>()));
+
+            JsonOutputComposer::WriteCalculationOutputToJson("", calculationOutput, calculationInput, JsonProcessType::Unknown);
+        }
+
         ~JsonOutputComposerTest() override
         {
             remove(_actualOutputFilePath.c_str());
         }
     };
+
+    TEST_F(JsonOutputComposerTest, WriteCalculationOutputToJson_InvalidJsonProcessType_ThrowsJsonConversionException)
+    {
+        // Setup & Call
+        const auto action = &JsonOutputComposerTest::WriteCalculationOutputToJsonWithInvalidJsonProcessType;
+
+        // Assert
+        AssertHelper::AssertThrowsWithMessage<JsonConversionException>(action, "Invalid JsonProcessType.");
+    }
 
     TEST_F(JsonOutputComposerTest, WriteCalculationOutputToJson_JsonProcessTypeFailure_WritesExpectedValues)
     {
@@ -142,5 +203,14 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
     TEST_F(JsonOutputComposerTest, WriteCalculationOutputToJson_JsonProcessTypeDamage_WritesExpectedValues)
     {
         PerformTest("ExpectedDamageOutput.json", JsonProcessType::Damage);
+    }
+
+    TEST_F(JsonOutputComposerTest, WriteCalculationOutputToJson_JsonProcessTypePhysicsAndLocationDataNotSupported_ThrowsJsonConversionException)
+    {
+        // Setup & Call
+        const auto action = &JsonOutputComposerTest::WriteCalculationOutputToJsonWithNotSupportedLocationData;
+
+        // Assert
+        AssertHelper::AssertThrowsWithMessage<JsonConversionException>(action, "Invalid revetment type.");
     }
 }
