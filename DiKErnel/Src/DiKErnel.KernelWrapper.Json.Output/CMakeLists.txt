@@ -18,6 +18,7 @@ set(SOURCEFILES_INTERNAL
   ${INTERNAL_FOLDER}/CalculationOutputAdapter.cpp
   ${INTERNAL_FOLDER}/CalculationOutputAdapter.h
   ${INTERNAL_FOLDER}/JsonOutputDefinitions.h
+  ${INTERNAL_FOLDER}/JsonOutputNaturalStoneRevetmentDefinitions.h
   ${INTERNAL_FOLDER}/JsonOutputWriter.cpp
   ${INTERNAL_FOLDER}/JsonOutputWriter.h
 )

@@ -20,6 +20,9 @@
 
 #include "JsonOutputNaturalStoneRevetmentPhysicsLocationData.h"
 
+#include "JsonOutputDefinitions.h"
+#include "JsonOutputNaturalStoneRevetmentDefinitions.h"
+
 namespace DiKErnel::KernelWrapper::Json::Output
 {
     using namespace Core;
@@ -43,67 +46,67 @@ namespace DiKErnel::KernelWrapper::Json::Output
         auto physicsJson = ordered_json(
             {
                 {
-                    "TypeToplaag",
+                    JsonOutputDefinitions::TOP_LAYER_TYPE,
                     "NoorseSteen"
                 },
                 {
-                    "RekenmethodeSoort",
-                    "Natuursteen"
+                    JsonOutputDefinitions::CALCULATION_TYPE,
+                    JsonOutputNaturalStoneRevetmentDefinitions::CALCULATION_TYPE_NATURAL_STONE
                 },
                 {
-                    "ToenameschadeNatuursteen",
+                    JsonOutputNaturalStoneRevetmentDefinitions::INCREMENT_DAMAGE,
                     json::array({})
                 },
                 {
-                    "BelastingBekleding",
+                    JsonOutputDefinitions::HYDRAULIC_LOAD,
                     json::array({})
                 },
                 {
-                    "Golfbrekingparameter",
+                    JsonOutputDefinitions::SURF_SIMILARITY_PARAMETER,
                     json::array({})
                 },
                 {
-                    "GolfsteilheidDiepWater",
+                    JsonOutputDefinitions::WAVE_STEEPNESS_DEEP_WATER,
                     json::array({})
                 },
                 {
-                    "BovengrensBelastingNatuursteen",
+                    JsonOutputNaturalStoneRevetmentDefinitions::UPPER_LIMIT_LOADING,
                     json::array({})
                 },
                 {
-                    "OndergrensBelastingNatuursteen",
+                    JsonOutputNaturalStoneRevetmentDefinitions::LOWER_LIMIT_LOADING,
                     json::array({})
                 },
                 {
-                    "DiepteMaximaleGolfbelastingNatuursteen",
+                    JsonOutputNaturalStoneRevetmentDefinitions::DEPTH_MAXIMUM_WAVE_LOAD,
                     json::array({})
                 },
                 {
-                    "AfstandMaximaleStijghoogteNatuursteen",
+                    JsonOutputNaturalStoneRevetmentDefinitions::DISTANCE_MAXIMUM_WAVE_ELEVATION,
                     json::array({})
                 },
                 {
-                    "MaatgevendeBreedteGolfklapNatuursteen",
+                    JsonOutputNaturalStoneRevetmentDefinitions::NORMATIVE_WIDTH_WAVE_IMPACT,
                     json::array({})
                 },
                 {
-                    "HydraulischeBelastingNatuursteen",
+                    JsonOutputNaturalStoneRevetmentDefinitions::HYDRAULIC_LOAD,
                     json::array({})
                 },
                 {
-                    "ImpactGolfhoekBekledingNatuursteen",
+                    JsonOutputNaturalStoneRevetmentDefinitions::WAVE_ANGLE_IMPACT,
                     json::array({})
                 },
                 {
-                    "SterkteBekledingNatuursteen",
+                    JsonOutputNaturalStoneRevetmentDefinitions::RESISTANCE,
                     json::array({})
                 },
                 {
-                    "ReferentieTijdDegradatieNatuursteen",
+                    JsonOutputNaturalStoneRevetmentDefinitions::REFERENCE_TIME_DEGRADATION,
                     json::array({})
                 },
                 {
-                    "ReferentieDegradatieNatuursteen",
+                    JsonOutputNaturalStoneRevetmentDefinitions::REFERENCE_DEGRADATION,
                     json::array({})
                 }
             });
@@ -112,30 +115,30 @@ namespace DiKErnel::KernelWrapper::Json::Output
         {
             const auto* outputItem = _timeDependentOutputItems[i];
 
-            physicsJson["ToenameschadeNatuursteen"][i] = outputItem->GetIncrementDamage();
-            physicsJson["BelastingBekleding"][i] = outputItem->GetLoadingRevetment();
-            physicsJson["Golfbrekingparameter"][i] = outputItem->GetSurfSimilarityParameter();
-            physicsJson["GolfsteilheidDiepWater"][i] = outputItem->GetWaveSteepnessDeepWater();
-            physicsJson["BovengrensBelastingNatuursteen"][i] = outputItem->GetUpperLimitLoading();
-            physicsJson["OndergrensBelastingNatuursteen"][i] = outputItem->GetLowerLimitLoading();
-            physicsJson["DiepteMaximaleGolfbelastingNatuursteen"][i] = outputItem->GetDepthMaximumWaveLoad();
-            physicsJson["AfstandMaximaleStijghoogteNatuursteen"][i] = outputItem->GetDistanceMaximumWaveElevation();
-            physicsJson["MaatgevendeBreedteGolfklapNatuursteen"][i] = outputItem->GetNormativeWidthOfWaveImpact();
-            physicsJson["HydraulischeBelastingNatuursteen"][i] = nullptr;
-            physicsJson["ImpactGolfhoekBekledingNatuursteen"][i] = nullptr;
-            physicsJson["SterkteBekledingNatuursteen"][i] = nullptr;
-            physicsJson["ReferentieTijdDegradatieNatuursteen"][i] = nullptr;
-            physicsJson["ReferentieDegradatieNatuursteen"][i] = nullptr;
+            physicsJson[JsonOutputNaturalStoneRevetmentDefinitions::INCREMENT_DAMAGE][i] = outputItem->GetIncrementDamage();
+            physicsJson[JsonOutputDefinitions::HYDRAULIC_LOAD][i] = outputItem->GetLoadingRevetment();
+            physicsJson[JsonOutputDefinitions::SURF_SIMILARITY_PARAMETER][i] = outputItem->GetSurfSimilarityParameter();
+            physicsJson[JsonOutputDefinitions::WAVE_STEEPNESS_DEEP_WATER][i] = outputItem->GetWaveSteepnessDeepWater();
+            physicsJson[JsonOutputNaturalStoneRevetmentDefinitions::UPPER_LIMIT_LOADING][i] = outputItem->GetUpperLimitLoading();
+            physicsJson[JsonOutputNaturalStoneRevetmentDefinitions::LOWER_LIMIT_LOADING][i] = outputItem->GetLowerLimitLoading();
+            physicsJson[JsonOutputNaturalStoneRevetmentDefinitions::DEPTH_MAXIMUM_WAVE_LOAD][i] = outputItem->GetDepthMaximumWaveLoad();
+            physicsJson[JsonOutputNaturalStoneRevetmentDefinitions::DISTANCE_MAXIMUM_WAVE_ELEVATION][i] = outputItem->GetDistanceMaximumWaveElevation();
+            physicsJson[JsonOutputNaturalStoneRevetmentDefinitions::NORMATIVE_WIDTH_WAVE_IMPACT][i] = outputItem->GetNormativeWidthOfWaveImpact();
+            physicsJson[JsonOutputNaturalStoneRevetmentDefinitions::HYDRAULIC_LOAD][i] = nullptr;
+            physicsJson[JsonOutputNaturalStoneRevetmentDefinitions::WAVE_ANGLE_IMPACT][i] = nullptr;
+            physicsJson[JsonOutputNaturalStoneRevetmentDefinitions::RESISTANCE][i] = nullptr;
+            physicsJson[JsonOutputNaturalStoneRevetmentDefinitions::REFERENCE_TIME_DEGRADATION][i] = nullptr;
+            physicsJson[JsonOutputNaturalStoneRevetmentDefinitions::REFERENCE_DEGRADATION][i] = nullptr;
 
-            SetPropertyWhenApplicable(physicsJson["HydraulischeBelastingNatuursteen"][i], outputItem->GetHydraulicLoad());
-            SetPropertyWhenApplicable(physicsJson["ImpactGolfhoekBekledingNatuursteen"][i], outputItem->GetWaveAngleImpact());
-            SetPropertyWhenApplicable(physicsJson["SterkteBekledingNatuursteen"][i], outputItem->GetResistance());
-            SetPropertyWhenApplicable(physicsJson["ReferentieTijdDegradatieNatuursteen"][i], outputItem->GetReferenceTimeDegradation());
-            SetPropertyWhenApplicable(physicsJson["ReferentieDegradatieNatuursteen"][i], outputItem->GetReferenceDegradation());
+            SetPropertyWhenApplicable(physicsJson[JsonOutputNaturalStoneRevetmentDefinitions::HYDRAULIC_LOAD][i], outputItem->GetHydraulicLoad());
+            SetPropertyWhenApplicable(physicsJson[JsonOutputNaturalStoneRevetmentDefinitions::WAVE_ANGLE_IMPACT][i], outputItem->GetWaveAngleImpact());
+            SetPropertyWhenApplicable(physicsJson[JsonOutputNaturalStoneRevetmentDefinitions::RESISTANCE][i], outputItem->GetResistance());
+            SetPropertyWhenApplicable(physicsJson[JsonOutputNaturalStoneRevetmentDefinitions::REFERENCE_TIME_DEGRADATION][i], outputItem->GetReferenceTimeDegradation());
+            SetPropertyWhenApplicable(physicsJson[JsonOutputNaturalStoneRevetmentDefinitions::REFERENCE_DEGRADATION][i], outputItem->GetReferenceDegradation());
         }
 
         auto output = JsonOutputDamageLocationData::CreateJson();
-        output["FysicaBekleding"] = physicsJson;
+        output[JsonOutputDefinitions::PHYSICS_REVETMENT] = physicsJson;
         return output;
     }
 

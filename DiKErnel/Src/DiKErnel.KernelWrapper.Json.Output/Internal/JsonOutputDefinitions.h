@@ -42,5 +42,13 @@ namespace DiKErnel::KernelWrapper::Json::Output
             inline static const std::string INITIAL_DAMAGE = "Beginschade";
             inline static const std::string FAILURE_NUMBER = "Faalgetal";
             inline static const std::string DAMAGE_OVER_TIME = "SchadegetalPerTijd";
+
+            inline static const std::string PHYSICS_REVETMENT = "FysicaBekleding";
+            inline static const std::string TOP_LAYER_TYPE = "TypeToplaag";
+            inline static const std::string CALCULATION_TYPE = "RekenmethodeSoort";
+
+            inline static const std::string HYDRAULIC_LOAD = "BelastingBekleding";
+            inline static const std::string SURF_SIMILARITY_PARAMETER = "Golfbrekingparameter";
+            inline static const std::string WAVE_STEEPNESS_DEEP_WATER = "GolfsteilheidDiepWater";
     };
 }
