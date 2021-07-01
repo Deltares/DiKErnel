@@ -20,7 +20,6 @@
 
 #include "CalculationOutputAdapter.h"
 
-#include "JsonConversionException.h"
 #include "JsonOutputDamageLocationData.h"
 #include "JsonOutputNaturalStoneRevetmentPhysicsLocationData.h"
 #include "NaturalStoneRevetmentLocationDependentInput.h"

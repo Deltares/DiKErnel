@@ -14,7 +14,7 @@ set_target_properties(${EXENAME} PROPERTIES FOLDER Src)
 source_group("" FILES ${SOURCEFILES})
 
 # Link dependencies
-target_link_libraries(${EXENAME} DiKErnel.Core DiKErnel.KernelWrapper.Json DiKErnel.KernelWrapper.Json.Input DiKErnel.KernelWrapper.Json.Output)
+target_link_libraries(${EXENAME} DiKErnel.Core DiKErnel.KernelWrapper.Json.Input DiKErnel.KernelWrapper.Json.Output)
 
 # Set startup project in Visual Studio
 if (CMAKE_GENERATOR MATCHES "Visual Studio")
