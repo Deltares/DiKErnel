@@ -20,8 +20,6 @@
 
 #pragma once
 
-#include <string>
-#include <vector>
 
 #include "IJsonOutputData.h"
 #include "JsonOutputFailureLocationData.h"
@@ -32,17 +30,11 @@ namespace DiKErnel::KernelWrapper::Json::Output
     {
         public:
             explicit JsonOutputDamageLocationData(
-                std::string& name,
-                const int* timeOfFailure,
-                double initialDamage,
-                double failureNumber,
-                std::vector<double> damages);
+                const Core::LocationDependentOutput& locationOutput,
+                const Core::ILocationDependentInput& locationInput);
 
             nlohmann::ordered_json CreateJson() const override;
 
         private:
-            double _initialDamage;
-            double _failureNumber;
-            std::vector<double> _damages;
     };
 }

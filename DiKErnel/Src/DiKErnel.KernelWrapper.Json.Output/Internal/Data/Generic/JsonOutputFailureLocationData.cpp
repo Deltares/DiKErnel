@@ -26,29 +26,30 @@
 
 namespace DiKErnel::KernelWrapper::Json::Output
 {
+    using namespace Core;
     using namespace nlohmann;
-    using namespace std;
 
     JsonOutputFailureLocationData::JsonOutputFailureLocationData(
-        string& name,
-        const int* timeOfFailure)
-        : _name(move(name)),
-          _timeOfFailure(timeOfFailure) {}
+        const LocationDependentOutput& locationOutput,
+        const ILocationDependentInput& locationInput)
+        : _locationOutput(locationOutput), _locationInput(locationInput) {}
 
     ordered_json JsonOutputFailureLocationData::CreateJson() const
     {
+        const auto timeOfFailure = _locationOutput.GetTimeOfFailure();
+
         auto output = ordered_json::object(
             {
                 {
                     JsonOutputDefinitions::NAME,
-                    _name
+                    _locationInput.GetName()
                 },
                 {
                     JsonOutputDefinitions::FAILURE_REVETMENT,
                     {
                         {
                             JsonOutputDefinitions::FAILED,
-                            _timeOfFailure != nullptr
+                            timeOfFailure != nullptr
                         },
                         {
                             JsonOutputDefinitions::TIME_OF_FAILURE,
@@ -58,11 +59,21 @@ namespace DiKErnel::KernelWrapper::Json::Output
                 }
             });
 
-        if (_timeOfFailure != nullptr)
+        if (timeOfFailure != nullptr)
         {
-            output[JsonOutputDefinitions::FAILURE_REVETMENT][JsonOutputDefinitions::TIME_OF_FAILURE] = *_timeOfFailure;
+            output[JsonOutputDefinitions::FAILURE_REVETMENT][JsonOutputDefinitions::TIME_OF_FAILURE] = *timeOfFailure;
         }
 
         return output;
+    }
+
+    const LocationDependentOutput& JsonOutputFailureLocationData::GetLocationOutput() const
+    {
+        return _locationOutput;
+    }
+
+    const ILocationDependentInput& JsonOutputFailureLocationData::GetLocationInput() const
+    {
+        return _locationInput;
     }
 }

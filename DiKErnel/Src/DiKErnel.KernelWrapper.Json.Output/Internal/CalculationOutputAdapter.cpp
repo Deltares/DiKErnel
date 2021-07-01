@@ -97,20 +97,13 @@ namespace DiKErnel::KernelWrapper::Json::Output
         const LocationDependentOutput& locationOutput,
         const ILocationDependentInput& locationInput)
     {
-        return make_unique<JsonOutputFailureLocationData>(
-            locationInput.GetName(),
-            locationOutput.GetTimeOfFailure());
+        return make_unique<JsonOutputFailureLocationData>(locationOutput, locationInput);
     }
 
     unique_ptr<JsonOutputFailureLocationData> CalculationOutputAdapter::CreateJsonOutputDamageLocationData(
         const LocationDependentOutput& locationOutput,
         const ILocationDependentInput& locationInput)
     {
-        return make_unique<JsonOutputDamageLocationData>(
-            locationInput.GetName(),
-            locationOutput.GetTimeOfFailure(),
-            locationInput.GetInitialDamage(),
-            locationInput.GetFailureNumber(),
-            locationOutput.GetDamages());
+        return make_unique<JsonOutputDamageLocationData>(locationOutput, locationInput);
     }
 }

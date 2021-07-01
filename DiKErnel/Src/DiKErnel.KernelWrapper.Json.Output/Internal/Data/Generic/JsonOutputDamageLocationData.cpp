@@ -20,43 +20,38 @@
 
 #include "JsonOutputDamageLocationData.h"
 
-#include <utility>
-
 #include "JsonOutputDefinitions.h"
 
 namespace DiKErnel::KernelWrapper::Json::Output
 {
+    using namespace Core;
     using namespace nlohmann;
-    using namespace std;
 
     JsonOutputDamageLocationData::JsonOutputDamageLocationData(
-        string& name,
-        const int* timeOfFailure,
-        const double initialDamage,
-        const double failureNumber,
-        vector<double> damages)
-        : JsonOutputFailureLocationData(name, timeOfFailure),
-          _initialDamage(initialDamage),
-          _failureNumber(failureNumber),
-          _damages(move(damages)) {}
+        const LocationDependentOutput& locationOutput,
+        const ILocationDependentInput& locationInput)
+        : JsonOutputFailureLocationData(locationOutput, locationInput) {}
 
     ordered_json JsonOutputDamageLocationData::CreateJson() const
     {
+        const auto& locationOutput = GetLocationOutput();
+        const auto& locationInput = GetLocationInput();
+
         auto output = JsonOutputFailureLocationData::CreateJson();
 
         output[JsonOutputDefinitions::DAMAGE_REVETMENT] = ordered_json::object(
             {
                 {
                     JsonOutputDefinitions::INITIAL_DAMAGE,
-                    _initialDamage
+                    locationInput.GetInitialDamage()
                 },
                 {
                     JsonOutputDefinitions::FAILURE_NUMBER,
-                    _failureNumber
+                    locationInput.GetFailureNumber()
                 },
                 {
                     JsonOutputDefinitions::DAMAGE_OVER_TIME,
-                    _damages
+                    locationOutput.GetDamages()
                 }
             });
 
