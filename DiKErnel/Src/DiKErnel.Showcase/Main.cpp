@@ -45,6 +45,9 @@ void InputMethod(
     const atomic<bool>&,
     atomic<UserInput>&);
 
+JsonOutputType ConvertProcessType(
+    JsonProcessType);
+
 #pragma endregion
 
 int subCalculationDelay = 0;
@@ -134,7 +137,7 @@ int main()
 
             // Write Json output to file
             const auto outputData = calculator.GetCalculationOutput();
-            JsonOutputComposer::WriteCalculationOutputToJson(outputPath.u8string(), *outputData, *calculationInput, get<1>(inputData));
+            JsonOutputComposer::WriteCalculationOutputToJson(outputPath.u8string(), *outputData, *calculationInput, ConvertProcessType(get<1>(inputData)));
 
             cout << endl;
             cout << "|========================|" << endl;
@@ -184,5 +187,21 @@ void InputMethod(
         {
             userInput = UserInput::Progress;
         }
+    }
+}
+
+JsonOutputType ConvertProcessType(
+    const JsonProcessType processType)
+{
+    switch (processType)
+    {
+        case JsonProcessType::Failure:
+            return JsonOutputType::Failure;
+        case JsonProcessType::Damage:
+            return JsonOutputType::Damage;
+        case JsonProcessType::Physics:
+            return JsonOutputType::Physics;
+        default:
+            throw runtime_error("Unsupported processType");
     }
 }

@@ -64,7 +64,7 @@ namespace DiKErnel::Acceptance::Test
             calculator.WaitForCompletion();
 
             const auto outputData = calculator.GetCalculationOutput();
-            JsonOutputComposer::WriteCalculationOutputToJson(_actualOutputFilePath, *outputData, *calculationInput, get<1>(inputData));
+            JsonOutputComposer::WriteCalculationOutputToJson(_actualOutputFilePath, *outputData, *calculationInput, JsonOutputType::Damage);
 
             // Then
             ifstream ifs(_actualOutputFilePath);
