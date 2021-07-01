@@ -52,62 +52,6 @@ namespace DiKErnel::KernelWrapper::Json::Output
                 {
                     JsonOutputDefinitions::CALCULATION_TYPE,
                     JsonOutputNaturalStoneRevetmentDefinitions::CALCULATION_TYPE_NATURAL_STONE
-                },
-                {
-                    JsonOutputNaturalStoneRevetmentDefinitions::INCREMENT_DAMAGE,
-                    json::array({})
-                },
-                {
-                    JsonOutputDefinitions::HYDRAULIC_LOAD,
-                    json::array({})
-                },
-                {
-                    JsonOutputDefinitions::SURF_SIMILARITY_PARAMETER,
-                    json::array({})
-                },
-                {
-                    JsonOutputDefinitions::WAVE_STEEPNESS_DEEP_WATER,
-                    json::array({})
-                },
-                {
-                    JsonOutputNaturalStoneRevetmentDefinitions::UPPER_LIMIT_LOADING,
-                    json::array({})
-                },
-                {
-                    JsonOutputNaturalStoneRevetmentDefinitions::LOWER_LIMIT_LOADING,
-                    json::array({})
-                },
-                {
-                    JsonOutputNaturalStoneRevetmentDefinitions::DEPTH_MAXIMUM_WAVE_LOAD,
-                    json::array({})
-                },
-                {
-                    JsonOutputNaturalStoneRevetmentDefinitions::DISTANCE_MAXIMUM_WAVE_ELEVATION,
-                    json::array({})
-                },
-                {
-                    JsonOutputNaturalStoneRevetmentDefinitions::NORMATIVE_WIDTH_WAVE_IMPACT,
-                    json::array({})
-                },
-                {
-                    JsonOutputNaturalStoneRevetmentDefinitions::HYDRAULIC_LOAD,
-                    json::array({})
-                },
-                {
-                    JsonOutputNaturalStoneRevetmentDefinitions::WAVE_ANGLE_IMPACT,
-                    json::array({})
-                },
-                {
-                    JsonOutputNaturalStoneRevetmentDefinitions::RESISTANCE,
-                    json::array({})
-                },
-                {
-                    JsonOutputNaturalStoneRevetmentDefinitions::REFERENCE_TIME_DEGRADATION,
-                    json::array({})
-                },
-                {
-                    JsonOutputNaturalStoneRevetmentDefinitions::REFERENCE_DEGRADATION,
-                    json::array({})
                 }
             });
 
