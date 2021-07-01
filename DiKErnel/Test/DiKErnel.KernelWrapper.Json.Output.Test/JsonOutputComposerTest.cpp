@@ -97,40 +97,50 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
             }
         }
 
+        void PerformTest(const string& filename,
+                         const JsonProcessType processType)
+        {
+            const auto expectedOutputFilePath = (TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Output.Test")
+                / "JsonOutputComposerTest" / filename).string();
+
+            auto location1TimeDependentOutputItems = vector<unique_ptr<TimeDependentOutput>>();
+            location1TimeDependentOutputItems.push_back(make_unique<TimeDependentOutputMock>(0, 0.15, nullptr));
+            location1TimeDependentOutputItems.push_back(make_unique<TimeDependentOutputMock>(0, 0.253, make_unique<int>(60)));
+
+            auto location2TimeDependentOutputItems = vector<unique_ptr<TimeDependentOutput>>();
+            location2TimeDependentOutputItems.push_back(make_unique<TimeDependentOutputMock>(0, 0.28, nullptr));
+            location2TimeDependentOutputItems.push_back(make_unique<TimeDependentOutputMock>(0, 0.512, nullptr));
+
+            vector<unique_ptr<LocationDependentOutput>> locations;
+            locations.push_back(make_unique<LocationDependentOutput>(move(location1TimeDependentOutputItems)));
+            locations.push_back(make_unique<LocationDependentOutput>(move(location2TimeDependentOutputItems)));
+
+            const CalculationOutput calculationOutput(move(locations));
+
+            const NiceMock<ICalculationInputMock> calculationInput;
+            ON_CALL(calculationInput, GetLocationDependentInputItems).WillByDefault(ReturnRef(_locationDependentInputItemReferences));
+            ON_CALL(calculationInput, GetTimeDependentInputItems).WillByDefault(ReturnRef(_timeDependentInputItemReferences));
+
+            // Call
+            JsonOutputComposer::WriteCalculationOutputToJson(_actualOutputFilePath, calculationOutput, calculationInput, processType);
+
+            // Assert
+            FileAssert::AssertFileContents(expectedOutputFilePath, _actualOutputFilePath);
+        }
+
         ~JsonOutputComposerTest() override
         {
             remove(_actualOutputFilePath.c_str());
         }
     };
 
-    TEST_F(JsonOutputComposerTest, WriteCalculationOutputToJson_Always_WritesExpectedValues)
+    TEST_F(JsonOutputComposerTest, WriteCalculationOutputToJson_JsonProcessTypeFailure_WritesExpectedValues)
     {
-        // Setup
-        const auto expectedOutputFilePath = (TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Output.Test")
-            / "JsonOutputComposerTest" / "ExpectedOutput.json").string();
+        PerformTest("ExpectedFailureOutput.json", JsonProcessType::Failure);
+    }
 
-        auto location1TimeDependentOutputItems = vector<unique_ptr<TimeDependentOutput>>();
-        location1TimeDependentOutputItems.push_back(make_unique<TimeDependentOutputMock>(0, 0.15, nullptr));
-        location1TimeDependentOutputItems.push_back(make_unique<TimeDependentOutputMock>(0, 0.253, make_unique<int>(60)));
-
-        auto location2TimeDependentOutputItems = vector<unique_ptr<TimeDependentOutput>>();
-        location2TimeDependentOutputItems.push_back(make_unique<TimeDependentOutputMock>(0, 0.28, nullptr));
-        location2TimeDependentOutputItems.push_back(make_unique<TimeDependentOutputMock>(0, 0.512, nullptr));
-
-        vector<unique_ptr<LocationDependentOutput>> locations;
-        locations.push_back(make_unique<LocationDependentOutput>(move(location1TimeDependentOutputItems)));
-        locations.push_back(make_unique<LocationDependentOutput>(move(location2TimeDependentOutputItems)));
-
-        const CalculationOutput calculationOutput(move(locations));
-
-        const NiceMock<ICalculationInputMock> calculationInput;
-        ON_CALL(calculationInput, GetLocationDependentInputItems).WillByDefault(ReturnRef(_locationDependentInputItemReferences));
-        ON_CALL(calculationInput, GetTimeDependentInputItems).WillByDefault(ReturnRef(_timeDependentInputItemReferences));
-
-        // Call
-        JsonOutputComposer::WriteCalculationOutputToJson(_actualOutputFilePath, calculationOutput, calculationInput, JsonProcessType::Damage);
-
-        // Assert
-        FileAssert::AssertFileContents(expectedOutputFilePath, _actualOutputFilePath);
+    TEST_F(JsonOutputComposerTest, WriteCalculationOutputToJson_JsonProcessTypeDamage_WritesExpectedValues)
+    {
+        PerformTest("ExpectedDamageOutput.json", JsonProcessType::Damage);
     }
 }
