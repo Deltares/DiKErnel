@@ -33,7 +33,7 @@ namespace DiKErnel::KernelWrapper::Json::Output
             static std::unique_ptr<JsonOutputData> AdaptCalculationOutput(
                 const Core::CalculationOutput& calculationOutput,
                 const Core::ICalculationInput& calculationInput,
-                JsonProcessType processType);
+                Input::JsonProcessType processType);
 
         private:
             static std::vector<int> GetTimes(
@@ -42,14 +42,14 @@ namespace DiKErnel::KernelWrapper::Json::Output
             static std::vector<std::unique_ptr<JsonOutputFailureLocationData>> GetJsonOutputLocations(
                 const std::vector<std::reference_wrapper<Core::LocationDependentOutput>>& locationDependentOutputItems,
                 const std::vector<std::reference_wrapper<Core::ILocationDependentInput>>& locationDependentInputItems,
-                JsonProcessType processType);
+                Input::JsonProcessType processType);
 
             typedef std::unique_ptr<JsonOutputFailureLocationData> (*FuncPtr)(
                 const Core::LocationDependentOutput&,
                 const Core::ILocationDependentInput&);
 
             static FuncPtr GetCreateLocationDataMethod(
-                JsonProcessType processType);
+                Input::JsonProcessType processType);
 
             static std::unique_ptr<JsonOutputFailureLocationData> CreateJsonOutputFailureLocationData(
                 const Core::LocationDependentOutput& locationOutput,

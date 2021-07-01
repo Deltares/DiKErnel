@@ -20,7 +20,7 @@
 
 #pragma once
 
-namespace DiKErnel::KernelWrapper::Json
+namespace DiKErnel::KernelWrapper::Json::Input
 {
     enum class JsonProcessType
     {

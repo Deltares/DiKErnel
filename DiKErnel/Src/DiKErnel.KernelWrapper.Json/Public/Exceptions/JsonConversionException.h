@@ -22,7 +22,7 @@
 
 #include <string>
 
-namespace DiKErnel::KernelWrapper::Json
+namespace DiKErnel::KernelWrapper::Json::Input
 {
     class JsonConversionException : public std::exception
     {

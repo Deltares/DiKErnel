@@ -20,7 +20,7 @@
 
 #include "JsonConversionException.h"
 
-namespace DiKErnel::KernelWrapper::Json
+namespace DiKErnel::KernelWrapper::Json::Input
 {
     using namespace std;
 

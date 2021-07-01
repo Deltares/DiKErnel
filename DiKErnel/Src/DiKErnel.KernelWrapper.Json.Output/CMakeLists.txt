@@ -23,14 +23,14 @@ set(SOURCEFILES_INTERNAL
   ${INTERNAL_FOLDER}/JsonOutputWriter.h
 )
 
-set(SOURCEFILES_INTERNAL_DATA_GENERIC
-  ${INTERNAL_DATA_GENERIC_FOLDER}/IJsonOutputData.h
-  ${INTERNAL_DATA_GENERIC_FOLDER}/JsonOutputDamageLocationData.cpp
-  ${INTERNAL_DATA_GENERIC_FOLDER}/JsonOutputDamageLocationData.h
-  ${INTERNAL_DATA_GENERIC_FOLDER}/JsonOutputData.cpp
-  ${INTERNAL_DATA_GENERIC_FOLDER}/JsonOutputData.h
-  ${INTERNAL_DATA_GENERIC_FOLDER}/JsonOutputFailureLocationData.cpp
-  ${INTERNAL_DATA_GENERIC_FOLDER}/JsonOutputFailureLocationData.h
+set(SOURCEFILES_INTERNAL_DATA
+  ${INTERNAL_DATA_FOLDER}/IJsonOutputData.h
+  ${INTERNAL_DATA_FOLDER}/JsonOutputDamageLocationData.cpp
+  ${INTERNAL_DATA_FOLDER}/JsonOutputDamageLocationData.h
+  ${INTERNAL_DATA_FOLDER}/JsonOutputData.cpp
+  ${INTERNAL_DATA_FOLDER}/JsonOutputData.h
+  ${INTERNAL_DATA_FOLDER}/JsonOutputFailureLocationData.cpp
+  ${INTERNAL_DATA_FOLDER}/JsonOutputFailureLocationData.h
 )
 
 set(SOURCEFILES_INTERNAL_DATA_REVETMENT

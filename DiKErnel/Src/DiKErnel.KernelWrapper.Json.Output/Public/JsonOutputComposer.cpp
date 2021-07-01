@@ -26,6 +26,7 @@
 namespace DiKErnel::KernelWrapper::Json::Output
 {
     using namespace Core;
+    using namespace Input;
     using namespace std;
 
     void JsonOutputComposer::WriteCalculationOutputToJson(
