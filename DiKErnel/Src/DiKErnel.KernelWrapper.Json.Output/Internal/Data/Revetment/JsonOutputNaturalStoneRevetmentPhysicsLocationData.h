@@ -20,8 +20,6 @@
 
 #pragma once
 
-#include <functional>
-
 #include "JsonOutputDamageLocationData.h"
 #include "NaturalStoneRevetmentLocationDependentInput.h"
 #include "NaturalStoneRevetmentTimeDependentOutput.h"
@@ -38,13 +36,11 @@ namespace DiKErnel::KernelWrapper::Json::Output
             nlohmann::ordered_json CreateJson() const override;
 
         private:
-            std::vector<Integration::NaturalStoneRevetmentTimeDependentOutput*> _timeDependentOutputItems = std::vector<Integration::NaturalStoneRevetmentTimeDependentOutput*>();
+            std::vector<Integration::NaturalStoneRevetmentTimeDependentOutput*> _timeDependentOutputItems =
+                    std::vector<Integration::NaturalStoneRevetmentTimeDependentOutput*>();
 
-            typedef std::unique_ptr<JsonOutputFailureLocationData>(*FuncPtr)(
-                const Core::LocationDependentOutput&,
-                const Core::ILocationDependentInput&);
-
-            template<typename TSource, typename TResult>
-            static std::vector<TResult> Select(std::vector<TSource> source, std::function<TResult(TSource)> f);
+            static void JsonOutputNaturalStoneRevetmentPhysicsLocationData::SetPropertyWhenApplicable(
+                nlohmann::ordered_json& jsonObject,
+                const double* value);
     };
 }

@@ -40,9 +40,7 @@ namespace DiKErnel::KernelWrapper::Json::Output
 
     ordered_json JsonOutputNaturalStoneRevetmentPhysicsLocationData::CreateJson() const
     {
-        auto output = JsonOutputDamageLocationData::CreateJson();
-
-        output["FysicaBekleding"] = ordered_json(
+        auto physicsJson = ordered_json(
             {
                 {
                     "TypeToplaag",
@@ -54,94 +52,100 @@ namespace DiKErnel::KernelWrapper::Json::Output
                 },
                 {
                     "ToenameschadeNatuursteen",
-                    Select<NaturalStoneRevetmentTimeDependentOutput*, double>(_timeDependentOutputItems, [](
-                                                                          NaturalStoneRevetmentTimeDependentOutput* tdo) -> double
-                                                                              {
-                                                                                  return tdo->GetIncrementDamage();
-                                                                              })
+                    json::array({})
                 },
                 {
                     "BelastingBekleding",
-                    Select<NaturalStoneRevetmentTimeDependentOutput*, double>(_timeDependentOutputItems, [](
-                                                                          NaturalStoneRevetmentTimeDependentOutput* tdo) -> double
-                                                                              {
-                                                                                  return tdo->GetLoadingRevetment();
-                                                                              })
+                    json::array({})
                 },
                 {
                     "Golfbrekingparameter",
-                    Select<NaturalStoneRevetmentTimeDependentOutput*, double>(_timeDependentOutputItems, [](
-                                                                          NaturalStoneRevetmentTimeDependentOutput* tdo) -> double
-                                                                              {
-                                                                                  return tdo->GetSurfSimilarityParameter();
-                                                                              })
+                    json::array({})
                 },
                 {
                     "GolfsteilheidDiepWater",
-                    Select<NaturalStoneRevetmentTimeDependentOutput*, double>(_timeDependentOutputItems, [](
-                                                                          NaturalStoneRevetmentTimeDependentOutput* tdo) -> double
-                                                                              {
-                                                                                  return tdo->GetWaveSteepnessDeepWater();
-                                                                              })
+                    json::array({})
                 },
                 {
                     "BovengrensBelastingNatuursteen",
-                     Select<NaturalStoneRevetmentTimeDependentOutput*, double>(_timeDependentOutputItems, [](
-                                                                          NaturalStoneRevetmentTimeDependentOutput* tdo) -> double
-                                                                              {
-                                                                                  return tdo->GetUpperLimitLoading();
-                                                                              })
+                    json::array({})
                 },
                 {
                     "OndergrensBelastingNatuursteen",
-                     Select<NaturalStoneRevetmentTimeDependentOutput*, double>(_timeDependentOutputItems, [](
-                                                                          NaturalStoneRevetmentTimeDependentOutput* tdo) -> double
-                                                                              {
-                                                                                  return tdo->GetLowerLimitLoading();
-                                                                              })
+                    json::array({})
                 },
                 {
                     "DiepteMaximaleGolfbelastingNatuursteen",
-                     Select<NaturalStoneRevetmentTimeDependentOutput*, double>(_timeDependentOutputItems, [](
-                                                                          NaturalStoneRevetmentTimeDependentOutput* tdo) -> double
-                                                                              {
-                                                                                  return tdo->GetDepthMaximumWaveLoad();
-                                                                              })
+                    json::array({})
                 },
                 {
                     "AfstandMaximaleStijghoogteNatuursteen",
-                     Select<NaturalStoneRevetmentTimeDependentOutput*, double>(_timeDependentOutputItems, [](
-                                                                          NaturalStoneRevetmentTimeDependentOutput* tdo) -> double
-                                                                              {
-                                                                                  return tdo->GetDistanceMaximumWaveElevation();
-                                                                              })
+                    json::array({})
                 },
                 {
                     "MaatgevendeBreedteGolfklapNatuursteen",
-                     Select<NaturalStoneRevetmentTimeDependentOutput*, double>(_timeDependentOutputItems, [](
-                                                                          NaturalStoneRevetmentTimeDependentOutput* tdo) -> double
-                                                                              {
-                                                                                  return tdo->GetNormativeWidthOfWaveImpact();
-                                                                              })
+                    json::array({})
+                },
+                {
+                    "HydraulischeBelastingNatuursteen",
+                    json::array({})
+                },
+                {
+                    "ImpactGolfhoekBekledingNatuursteen",
+                    json::array({})
+                },
+                {
+                    "SterkteBekledingNatuursteen",
+                    json::array({})
+                },
+                {
+                    "ReferentieTijdDegradatieNatuursteen",
+                    json::array({})
+                },
+                {
+                    "ReferentieDegradatieNatuursteen",
+                    json::array({})
                 }
             });
 
+        for (int i = 0; i < static_cast<int>(_timeDependentOutputItems.size()); ++i)
+        {
+            const auto* outputItem = _timeDependentOutputItems[i];
+
+            physicsJson["ToenameschadeNatuursteen"][i] = outputItem->GetIncrementDamage();
+            physicsJson["BelastingBekleding"][i] = outputItem->GetLoadingRevetment();
+            physicsJson["Golfbrekingparameter"][i] = outputItem->GetSurfSimilarityParameter();
+            physicsJson["GolfsteilheidDiepWater"][i] = outputItem->GetWaveSteepnessDeepWater();
+            physicsJson["BovengrensBelastingNatuursteen"][i] = outputItem->GetUpperLimitLoading();
+            physicsJson["OndergrensBelastingNatuursteen"][i] = outputItem->GetLowerLimitLoading();
+            physicsJson["DiepteMaximaleGolfbelastingNatuursteen"][i] = outputItem->GetDepthMaximumWaveLoad();
+            physicsJson["AfstandMaximaleStijghoogteNatuursteen"][i] = outputItem->GetDistanceMaximumWaveElevation();
+            physicsJson["MaatgevendeBreedteGolfklapNatuursteen"][i] = outputItem->GetNormativeWidthOfWaveImpact();
+            physicsJson["HydraulischeBelastingNatuursteen"][i] = nullptr;
+            physicsJson["ImpactGolfhoekBekledingNatuursteen"][i] = nullptr;
+            physicsJson["SterkteBekledingNatuursteen"][i] = nullptr;
+            physicsJson["ReferentieTijdDegradatieNatuursteen"][i] = nullptr;
+            physicsJson["ReferentieDegradatieNatuursteen"][i] = nullptr;
+
+            SetPropertyWhenApplicable(physicsJson["HydraulischeBelastingNatuursteen"][i], outputItem->GetHydraulicLoad());
+            SetPropertyWhenApplicable(physicsJson["ImpactGolfhoekBekledingNatuursteen"][i], outputItem->GetWaveAngleImpact());
+            SetPropertyWhenApplicable(physicsJson["SterkteBekledingNatuursteen"][i], outputItem->GetResistance());
+            SetPropertyWhenApplicable(physicsJson["ReferentieTijdDegradatieNatuursteen"][i], outputItem->GetReferenceTimeDegradation());
+            SetPropertyWhenApplicable(physicsJson["ReferentieDegradatieNatuursteen"][i], outputItem->GetReferenceDegradation());
+        }
+
+        auto output = JsonOutputDamageLocationData::CreateJson();
+        output["FysicaBekleding"] = physicsJson;
         return output;
     }
 
-    template <typename TSource, typename TResult>
-    vector<TResult> JsonOutputNaturalStoneRevetmentPhysicsLocationData::Select(
-        vector<TSource> source,
-        function<TResult(
-            TSource)> f)
+    void JsonOutputNaturalStoneRevetmentPhysicsLocationData::SetPropertyWhenApplicable(
+        ordered_json& jsonObject,
+        const double* value)
     {
-        auto result = vector<TResult>();
-
-        for (auto item : source)
+        if (value != nullptr)
         {
-            result.emplace_back(f(item));
+            jsonObject = *value;
         }
-
-        return result;
     }
 }
