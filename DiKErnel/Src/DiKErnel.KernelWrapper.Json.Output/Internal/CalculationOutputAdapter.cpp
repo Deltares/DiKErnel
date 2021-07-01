@@ -26,7 +26,6 @@
 namespace DiKErnel::KernelWrapper::Json::Output
 {
     using namespace Core;
-    using namespace Input;
     using namespace std;
 
     unique_ptr<JsonOutputData> CalculationOutputAdapter::AdaptCalculationOutput(

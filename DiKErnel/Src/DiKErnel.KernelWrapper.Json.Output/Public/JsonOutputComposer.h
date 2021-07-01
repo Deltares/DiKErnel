@@ -49,6 +49,6 @@ namespace DiKErnel::KernelWrapper::Json::Output
                 const std::string& filePath,
                 const Core::CalculationOutput& calculationOutput,
                 const Core::ICalculationInput& calculationInput,
-                Input::JsonProcessType processType);
+                JsonProcessType processType);
     };
 }
