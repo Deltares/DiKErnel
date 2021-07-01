@@ -21,7 +21,6 @@
 #include "CalculationOutputAdapter.h"
 
 #include "JsonOutputDamageLocationData.h"
-#include "LocationDependentOutput.h"
 
 namespace DiKErnel::KernelWrapper::Json::Output
 {
@@ -65,31 +64,53 @@ namespace DiKErnel::KernelWrapper::Json::Output
         const vector<reference_wrapper<ILocationDependentInput>>& locationDependentInputItems,
         const JsonProcessType processType)
     {
+        const auto createLocationDataFuncPtr = GetCreateLocationDataMethod(processType);
+
         vector<unique_ptr<JsonOutputFailureLocationData>> jsonOutputLocationDataItems;
 
         for (auto i = 0; i < static_cast<int>(locationDependentOutputItems.size()); ++i)
         {
-            const auto& locationOutput = locationDependentOutputItems[i].get();
-            const auto& locationInput = locationDependentInputItems[i].get();
-
-            if(processType == JsonProcessType::Failure)
-            {
-                jsonOutputLocationDataItems.push_back(make_unique<JsonOutputFailureLocationData>(
-                    locationInput.GetName(),
-                    locationOutput.GetTimeOfFailure()));
-            }
-
-            if(processType == JsonProcessType::Damage)
-            {
-                jsonOutputLocationDataItems.push_back(make_unique<JsonOutputDamageLocationData>(
-                    locationInput.GetName(),
-                    locationOutput.GetTimeOfFailure(),
-                    locationInput.GetInitialDamage(),
-                    locationInput.GetFailureNumber(),
-                    locationOutput.GetDamages()));
-            }
+            jsonOutputLocationDataItems.push_back(
+                createLocationDataFuncPtr(locationDependentOutputItems[i].get(), locationDependentInputItems[i].get()));
         }
 
         return jsonOutputLocationDataItems;
+    }
+
+    CalculationOutputAdapter::FuncPtr CalculationOutputAdapter::GetCreateLocationDataMethod(
+        const JsonProcessType processType)
+    {
+        switch (processType)
+        {
+            case JsonProcessType::Failure:
+                return &CreateJsonOutputFailureLocationData;
+            case JsonProcessType::Damage:
+                return &CreateJsonOutputDamageLocationData;
+            case JsonProcessType::Physics:
+                return &CreateJsonOutputDamageLocationData;
+            default:
+                throw runtime_error("test");
+        }
+    }
+
+    unique_ptr<JsonOutputFailureLocationData> CalculationOutputAdapter::CreateJsonOutputFailureLocationData(
+        const LocationDependentOutput& locationOutput,
+        const ILocationDependentInput& locationInput)
+    {
+        return make_unique<JsonOutputFailureLocationData>(
+            locationInput.GetName(),
+            locationOutput.GetTimeOfFailure());
+    }
+
+    unique_ptr<JsonOutputFailureLocationData> CalculationOutputAdapter::CreateJsonOutputDamageLocationData(
+        const LocationDependentOutput& locationOutput,
+        const ILocationDependentInput& locationInput)
+    {
+        return make_unique<JsonOutputDamageLocationData>(
+            locationInput.GetName(),
+            locationOutput.GetTimeOfFailure(),
+            locationInput.GetInitialDamage(),
+            locationInput.GetFailureNumber(),
+            locationOutput.GetDamages());
     }
 }

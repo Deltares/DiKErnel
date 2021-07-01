@@ -43,5 +43,20 @@ namespace DiKErnel::KernelWrapper::Json::Output
                 const std::vector<std::reference_wrapper<Core::LocationDependentOutput>>& locationDependentOutputItems,
                 const std::vector<std::reference_wrapper<Core::ILocationDependentInput>>& locationDependentInputItems,
                 Input::JsonProcessType processType);
+
+            typedef std::unique_ptr<JsonOutputFailureLocationData> (*FuncPtr)(
+                const Core::LocationDependentOutput&,
+                const Core::ILocationDependentInput&);
+
+            static FuncPtr GetCreateLocationDataMethod(
+                Input::JsonProcessType processType);
+
+            static std::unique_ptr<JsonOutputFailureLocationData> CreateJsonOutputFailureLocationData(
+                const Core::LocationDependentOutput& locationOutput,
+                const Core::ILocationDependentInput& locationInput);
+
+            static std::unique_ptr<JsonOutputFailureLocationData> CreateJsonOutputDamageLocationData(
+                const Core::LocationDependentOutput& locationOutput,
+                const Core::ILocationDependentInput& locationInput);
     };
 }
