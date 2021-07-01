@@ -20,6 +20,7 @@
 
 #include "CalculationOutputAdapter.h"
 
+#include "JsonConversionException.h"
 #include "JsonOutputDamageLocationData.h"
 
 namespace DiKErnel::KernelWrapper::Json::Output
@@ -89,7 +90,7 @@ namespace DiKErnel::KernelWrapper::Json::Output
             case JsonProcessType::Physics:
                 return &CreateJsonOutputDamageLocationData;
             default:
-                throw runtime_error("test");
+                throw JsonConversionException("Invalid JsonProcessType");
         }
     }
 
