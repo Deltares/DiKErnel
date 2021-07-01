@@ -7,7 +7,7 @@ set(DATA_OUTPUT_FOLDER ${DATA_FOLDER}/Output)
 set(EXCEPTIONS_FOLDER Exceptions)
 
 # Define sources
-set(SOURCEFILES_ROOT
+set(SOURCEFILES_MAIN
   Main.cpp
   RevetmentCalculationInputBuilderTest.cpp
 )
@@ -34,7 +34,7 @@ set(SOURCEFILES_EXCEPTIONS
 
 # Add executable
 add_executable(${EXENAME}
-  ${SOURCEFILES_ROOT}
+  ${SOURCEFILES_MAIN}
   ${SOURCEFILES_DATA}
   ${SOURCEFILES_DATA_OUTPUT}
   ${SOURCEFILES_EXCEPTIONS}
@@ -42,7 +42,7 @@ add_executable(${EXENAME}
 
 # Configure folder structure
 set_target_properties(${EXENAME} PROPERTIES FOLDER Test)
-source_group("" FILES ${SOURCEFILES_ROOT})
+source_group("" FILES ${SOURCEFILES_MAIN})
 source_group(${DATA_FOLDER} FILES ${SOURCEFILES_DATA})
 source_group(${DATA_OUTPUT_FOLDER} FILES ${SOURCEFILES_DATA_OUTPUT})
 source_group(${EXCEPTIONS_FOLDER} FILES ${SOURCEFILES_EXCEPTIONS})
