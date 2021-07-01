@@ -20,6 +20,7 @@
 
 #include "CalculationOutputAdapter.h"
 
+#include "JsonOutputConversionException.h"
 #include "JsonOutputDamageLocationData.h"
 #include "JsonOutputNaturalStoneRevetmentPhysicsLocationData.h"
 #include "NaturalStoneRevetmentLocationDependentInput.h"
@@ -91,7 +92,7 @@ namespace DiKErnel::KernelWrapper::Json::Output
             case JsonOutputType::Physics:
                 return &CreateJsonOutputPhysicsLocationData;
             default:
-                throw JsonConversionException("Invalid JsonOutputType.");
+                throw JsonOutputConversionException("Invalid JsonOutputType.");
         }
     }
 
@@ -119,6 +120,6 @@ namespace DiKErnel::KernelWrapper::Json::Output
             return make_unique<JsonOutputNaturalStoneRevetmentPhysicsLocationData>(locationOutput, *naturalStoneRevetmentLocationDependentInput);
         }
 
-        throw JsonConversionException("Invalid revetment type.");
+        throw JsonOutputConversionException("Invalid revetment type.");
     }
 }

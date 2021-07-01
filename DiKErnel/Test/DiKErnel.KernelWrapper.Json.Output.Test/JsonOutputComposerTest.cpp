@@ -28,6 +28,7 @@
 #include "ILocationDependentInputMock.h"
 #include "ITimeDependentInputMock.h"
 #include "JsonOutputComposer.h"
+#include "JsonOutputConversionException.h"
 #include "TestDataPathHelper.h"
 #include "TimeDependentOutputMock.h"
 
@@ -185,13 +186,13 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
         }
     };
 
-    TEST_F(JsonOutputComposerTest, WriteCalculationOutputToJson_InvalidJsonOutputType_ThrowsJsonConversionException)
+    TEST_F(JsonOutputComposerTest, WriteCalculationOutputToJson_InvalidJsonOutputType_ThrowsJsonOutputConversionException)
     {
         // Setup & Call
         const auto action = &JsonOutputComposerTest::WriteCalculationOutputToJsonWithInvalidJsonOutputType;
 
         // Assert
-        AssertHelper::AssertThrowsWithMessage<JsonConversionException>(action, "Invalid JsonOutputType.");
+        AssertHelper::AssertThrowsWithMessage<JsonOutputConversionException>(action, "Invalid JsonOutputType.");
     }
 
     TEST_F(JsonOutputComposerTest, WriteCalculationOutputToJson_JsonOutputTypeFailure_WritesExpectedValues)
@@ -204,12 +205,12 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
         PerformTest("ExpectedDamageOutput.json", JsonOutputType::Damage);
     }
 
-    TEST_F(JsonOutputComposerTest, WriteCalculationOutputToJson_JsonOutputTypePhysicsAndLocationDataNotSupported_ThrowsJsonConversionException)
+    TEST_F(JsonOutputComposerTest, WriteCalculationOutputToJson_JsonOutputTypePhysicsAndLocationDataNotSupported_ThrowsJsonOutputConversionException)
     {
         // Setup & Call
         const auto action = &JsonOutputComposerTest::WriteCalculationOutputToJsonWithNotSupportedLocationData;
 
         // Assert
-        AssertHelper::AssertThrowsWithMessage<JsonConversionException>(action, "Invalid revetment type.");
+        AssertHelper::AssertThrowsWithMessage<JsonOutputConversionException>(action, "Invalid revetment type.");
     }
 }
