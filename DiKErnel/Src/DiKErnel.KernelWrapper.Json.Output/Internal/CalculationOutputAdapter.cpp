@@ -33,12 +33,12 @@ namespace DiKErnel::KernelWrapper::Json::Output
     unique_ptr<JsonOutputData> CalculationOutputAdapter::AdaptCalculationOutput(
         const CalculationOutput& calculationOutput,
         const ICalculationInput& calculationInput,
-        const JsonProcessType processType)
+        const JsonOutputType outputType)
     {
         return make_unique<JsonOutputData>(
             GetTimes(calculationInput.GetTimeDependentInputItems()),
             GetJsonOutputLocations(calculationOutput.GetLocationDependentOutputItems(), calculationInput.GetLocationDependentInputItems(),
-                                   processType));
+                                   outputType));
     }
 
     vector<int> CalculationOutputAdapter::GetTimes(
@@ -64,9 +64,9 @@ namespace DiKErnel::KernelWrapper::Json::Output
     vector<unique_ptr<JsonOutputFailureLocationData>> CalculationOutputAdapter::GetJsonOutputLocations(
         const vector<reference_wrapper<LocationDependentOutput>>& locationDependentOutputItems,
         const vector<reference_wrapper<ILocationDependentInput>>& locationDependentInputItems,
-        const JsonProcessType processType)
+        const JsonOutputType outputType)
     {
-        const auto createLocationDataFuncPtr = GetCreateLocationDataMethod(processType);
+        const auto createLocationDataFuncPtr = GetCreateLocationDataMethod(outputType);
 
         vector<unique_ptr<JsonOutputFailureLocationData>> jsonOutputLocationDataItems;
 
@@ -80,18 +80,18 @@ namespace DiKErnel::KernelWrapper::Json::Output
     }
 
     CalculationOutputAdapter::FuncPtr CalculationOutputAdapter::GetCreateLocationDataMethod(
-        const JsonProcessType processType)
+        const JsonOutputType outputType)
     {
-        switch (processType)
+        switch (outputType)
         {
-            case JsonProcessType::Failure:
+            case JsonOutputType::Failure:
                 return &CreateJsonOutputFailureLocationData;
-            case JsonProcessType::Damage:
+            case JsonOutputType::Damage:
                 return &CreateJsonOutputDamageLocationData;
-            case JsonProcessType::Physics:
+            case JsonOutputType::Physics:
                 return &CreateJsonOutputPhysicsLocationData;
             default:
-                throw JsonConversionException("Invalid JsonProcessType.");
+                throw JsonConversionException("Invalid JsonOutputType.");
         }
     }
 

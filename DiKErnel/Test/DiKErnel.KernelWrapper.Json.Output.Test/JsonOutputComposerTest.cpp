@@ -27,7 +27,6 @@
 #include "ICalculationInputMock.h"
 #include "ILocationDependentInputMock.h"
 #include "ITimeDependentInputMock.h"
-#include "JsonConversionException.h"
 #include "JsonOutputComposer.h"
 #include "TestDataPathHelper.h"
 #include "TimeDependentOutputMock.h"
@@ -37,7 +36,6 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
     using namespace Core;
     using namespace Core::TestUtil;
     using namespace DiKErnel::TestUtil;
-    using namespace Input;
     using namespace std;
     using namespace testing;
 
@@ -102,7 +100,7 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
 
         void PerformTest(
             const string& filename,
-            const JsonProcessType processType)
+            const JsonOutputType outputType)
         {
             // Setup
             const auto expectedOutputFilePath = (TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Output.Test")
@@ -127,7 +125,7 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
             ON_CALL(calculationInput, GetTimeDependentInputItems).WillByDefault(ReturnRef(_timeDependentInputItemReferences));
 
             // Call
-            JsonOutputComposer::WriteCalculationOutputToJson(_actualOutputFilePath, calculationOutput, calculationInput, processType);
+            JsonOutputComposer::WriteCalculationOutputToJson(_actualOutputFilePath, calculationOutput, calculationInput, outputType);
 
             // Assert
             FileAssert::AssertFileContents(expectedOutputFilePath, _actualOutputFilePath);
@@ -164,10 +162,10 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
             ON_CALL(calculationInput, GetTimeDependentInputItems).WillByDefault(ReturnRef(timeDependentInputItemReferences));
 
             // Call
-            JsonOutputComposer::WriteCalculationOutputToJson("", calculationOutput, calculationInput, JsonProcessType::Physics);
+            JsonOutputComposer::WriteCalculationOutputToJson("", calculationOutput, calculationInput, JsonOutputType::Physics);
         }
 
-        static void WriteCalculationOutputToJsonWithInvalidJsonProcessType()
+        static void WriteCalculationOutputToJsonWithInvalidJsonOutputType()
         {
             auto locationDependentInputItemReferences = vector<reference_wrapper<ILocationDependentInput>>();
             auto timeDependentInputItemReferences = vector<reference_wrapper<ITimeDependentInput>>();
@@ -178,7 +176,7 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
 
             const CalculationOutput calculationOutput((vector<unique_ptr<LocationDependentOutput>>()));
 
-            JsonOutputComposer::WriteCalculationOutputToJson("", calculationOutput, calculationInput, JsonProcessType::Unknown);
+            JsonOutputComposer::WriteCalculationOutputToJson("", calculationOutput, calculationInput, static_cast<JsonOutputType>(99));
         }
 
         ~JsonOutputComposerTest() override
@@ -187,26 +185,26 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
         }
     };
 
-    TEST_F(JsonOutputComposerTest, WriteCalculationOutputToJson_InvalidJsonProcessType_ThrowsJsonConversionException)
+    TEST_F(JsonOutputComposerTest, WriteCalculationOutputToJson_InvalidJsonOutputType_ThrowsJsonConversionException)
     {
         // Setup & Call
-        const auto action = &JsonOutputComposerTest::WriteCalculationOutputToJsonWithInvalidJsonProcessType;
+        const auto action = &JsonOutputComposerTest::WriteCalculationOutputToJsonWithInvalidJsonOutputType;
 
         // Assert
-        AssertHelper::AssertThrowsWithMessage<JsonConversionException>(action, "Invalid JsonProcessType.");
+        AssertHelper::AssertThrowsWithMessage<JsonConversionException>(action, "Invalid JsonOutputType.");
     }
 
-    TEST_F(JsonOutputComposerTest, WriteCalculationOutputToJson_JsonProcessTypeFailure_WritesExpectedValues)
+    TEST_F(JsonOutputComposerTest, WriteCalculationOutputToJson_JsonOutputTypeFailure_WritesExpectedValues)
     {
-        PerformTest("ExpectedFailureOutput.json", JsonProcessType::Failure);
+        PerformTest("ExpectedFailureOutput.json", JsonOutputType::Failure);
     }
 
-    TEST_F(JsonOutputComposerTest, WriteCalculationOutputToJson_JsonProcessTypeDamage_WritesExpectedValues)
+    TEST_F(JsonOutputComposerTest, WriteCalculationOutputToJson_JsonOutputTypeDamage_WritesExpectedValues)
     {
-        PerformTest("ExpectedDamageOutput.json", JsonProcessType::Damage);
+        PerformTest("ExpectedDamageOutput.json", JsonOutputType::Damage);
     }
 
-    TEST_F(JsonOutputComposerTest, WriteCalculationOutputToJson_JsonProcessTypePhysicsAndLocationDataNotSupported_ThrowsJsonConversionException)
+    TEST_F(JsonOutputComposerTest, WriteCalculationOutputToJson_JsonOutputTypePhysicsAndLocationDataNotSupported_ThrowsJsonConversionException)
     {
         // Setup & Call
         const auto action = &JsonOutputComposerTest::WriteCalculationOutputToJsonWithNotSupportedLocationData;
