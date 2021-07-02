@@ -28,6 +28,7 @@ set(SOURCEFILES_INTERNAL
   ${INTERNAL_FOLDER}/CalculationOutputAdapterHelper.h
   ${INTERNAL_FOLDER}/JsonOutputDefinitions.h
   ${INTERNAL_FOLDER}/JsonOutputGrassRevetmentWaveImpactDefinitions.h
+  ${INTERNAL_FOLDER}/JsonOutputGrassRevetmentWaveRunupRayleighDefinitions.h
   ${INTERNAL_FOLDER}/JsonOutputNaturalStoneRevetmentDefinitions.h
   ${INTERNAL_FOLDER}/JsonOutputWriter.cpp
   ${INTERNAL_FOLDER}/JsonOutputWriter.h
