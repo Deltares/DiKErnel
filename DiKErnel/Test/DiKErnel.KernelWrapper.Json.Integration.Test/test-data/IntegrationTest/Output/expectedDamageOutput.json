@@ -56,6 +56,28 @@
                         0.04
                     ]
                 }
+            },
+            {
+                "Naam": "GrasGolfoploopRayleighDiscreetAlleOptiesAan",
+                "FalenBekleding": {
+                    "Faalgebeurtenis": true,
+                    "Faaltijd": 16
+                },
+                "SchadeBekleding": {
+                    "Beginschade": 0.0006,
+                    "Faalgetal": 0.45,
+                    "SchadegetalPerTijd": [
+                        26.912298635047495,
+                        56.68248967130978,
+                        89.16658900060655,
+                        97.02788808158947,
+                        133.24495938921714,
+                        170.40263034122825,
+                        206.2570259521144,
+                        239.48292319156525,
+                        270.6801101013296
+                    ]
+                }
             }
         ]
     }

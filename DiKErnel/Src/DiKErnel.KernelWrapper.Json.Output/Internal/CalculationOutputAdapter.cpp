@@ -21,9 +21,11 @@
 #include "CalculationOutputAdapter.h"
 
 #include "GrassRevetmentWaveImpactTimeDependentOutput.h"
+#include "GrassRevetmentWaveRunupRayleighTimeDependentOutput.h"
 #include "JsonOutputConversionException.h"
 #include "JsonOutputDamageLocationData.h"
 #include "JsonOutputGrassRevetmentWaveImpactPhysicsLocationData.h"
+#include "JsonOutputGrassRevetmentWaveRunupRayleighPhysicsLocationData.h"
 #include "JsonOutputNaturalStoneRevetmentPhysicsLocationData.h"
 #include "NaturalStoneRevetmentLocationDependentInput.h"
 
@@ -118,16 +120,23 @@ namespace DiKErnel::KernelWrapper::Json::Output
     {
         const auto& locationTimeDependentOutputItem = locationOutput.GetTimeDependentOutputItems().front();
 
-        if (const auto* naturalStoneRevetmentLocationTimeDependentOutputItem = dynamic_cast<const NaturalStoneRevetmentTimeDependentOutput*>(
-            &locationTimeDependentOutputItem.get()); naturalStoneRevetmentLocationTimeDependentOutputItem != nullptr)
-        {
-            return make_unique<JsonOutputNaturalStoneRevetmentPhysicsLocationData>(locationOutput, locationInput);
-        }
-
         if (const auto* grassRevetmentWaveImpactLocationTimeDependentOutputItem = dynamic_cast<const GrassRevetmentWaveImpactTimeDependentOutput*>(
             &locationTimeDependentOutputItem.get()); grassRevetmentWaveImpactLocationTimeDependentOutputItem != nullptr)
         {
             return make_unique<JsonOutputGrassRevetmentWaveImpactPhysicsLocationData>(locationOutput, locationInput);
+        }
+
+        if (const auto* grassRevetmentWaveRunupRayleighLocationTimeDependentOutputItem =
+                    dynamic_cast<const GrassRevetmentWaveRunupRayleighTimeDependentOutput*>(&locationTimeDependentOutputItem.get());
+            grassRevetmentWaveRunupRayleighLocationTimeDependentOutputItem != nullptr)
+        {
+            return make_unique<JsonOutputGrassRevetmentWaveRunupRayleighPhysicsLocationData>(locationOutput, locationInput);
+        }
+
+        if (const auto* naturalStoneRevetmentLocationTimeDependentOutputItem = dynamic_cast<const NaturalStoneRevetmentTimeDependentOutput*>(
+            &locationTimeDependentOutputItem.get()); naturalStoneRevetmentLocationTimeDependentOutputItem != nullptr)
+        {
+            return make_unique<JsonOutputNaturalStoneRevetmentPhysicsLocationData>(locationOutput, locationInput);
         }
 
         throw JsonOutputConversionException("Invalid revetment type.");

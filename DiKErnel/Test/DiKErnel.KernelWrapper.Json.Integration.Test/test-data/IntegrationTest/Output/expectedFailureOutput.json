@@ -26,6 +26,13 @@
                     "Faalgebeurtenis": false,
                     "Faaltijd": null
                 }
+            },
+            {
+                "Naam": "GrasGolfoploopRayleighDiscreetAlleOptiesAan",
+                "FalenBekleding": {
+                    "Faalgebeurtenis": true,
+                    "Faaltijd": 16
+                }
             }
         ]
     }
