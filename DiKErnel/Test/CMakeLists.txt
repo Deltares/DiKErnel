@@ -7,6 +7,7 @@ add_subdirectory(DiKErnel.FunctionLibrary.Test)
 add_subdirectory(DiKErnel.Integration.Test)
 add_subdirectory(DiKErnel.Integration.TestUtil)
 add_subdirectory(DiKErnel.KernelWrapper.Json.Input.Test)
+add_subdirectory(DiKErnel.KernelWrapper.Json.Integration.Test)
 add_subdirectory(DiKErnel.KernelWrapper.Json.Output.Test)
 add_subdirectory(DiKErnel.TestUtil)
 

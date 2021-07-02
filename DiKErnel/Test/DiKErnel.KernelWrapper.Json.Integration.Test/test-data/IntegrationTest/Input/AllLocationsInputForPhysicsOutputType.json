@@ -1,0 +1,148 @@
+{
+    "Processdata":
+    {
+        "UitvoerRekenresultaten": "FysicaBekleding"
+    },
+    "Rekendata": 
+    {
+        "Tijd":
+        [
+            0,
+            900,
+            1800,
+            2700,
+            3600,
+            4500,
+            5400,
+            6300,
+            7200,
+            8100
+        ],
+        "HydraulischeBelastingen":
+        {
+            "RandvoorwaardenPerTijdstap":
+            [
+                {
+                    "Waterstand": 0.1,
+                    "GolfhoogteHm0": 1.5,
+                    "GolfperiodeTm10": 5.0,
+                    "Golfhoek": 0
+                },
+                {
+                    "Waterstand": 0.5,
+                    "GolfhoogteHm0": 1.6,
+                    "GolfperiodeTm10": 5.2,
+                    "Golfhoek": 0
+                },
+                {
+                    "Waterstand": 1.15,
+                    "GolfhoogteHm0": 1.7,
+                    "GolfperiodeTm10": 5.4,
+                    "Golfhoek": 2
+                },
+                {
+                    "Waterstand": 1.77,
+                    "GolfhoogteHm0": 0.7,
+                    "GolfperiodeTm10": 9,
+                    "Golfhoek": 5
+                },
+                {
+                    "Waterstand": 2.0,
+                    "GolfhoogteHm0": 1.9,
+                    "GolfperiodeTm10": 5.6,
+                    "Golfhoek": 10
+                },
+                {
+                    "Waterstand": 1.77,
+                    "GolfhoogteHm0": 2.0,
+                    "GolfperiodeTm10": 5.8,
+                    "Golfhoek": 5
+                },
+                {
+                    "Waterstand": 1.15,
+                    "GolfhoogteHm0": 2.0,
+                    "GolfperiodeTm10": 6.0,
+                    "Golfhoek": 2
+                },
+                {
+                    "Waterstand": 0.5,
+                    "GolfhoogteHm0": 1.9,
+                    "GolfperiodeTm10": 6.0,
+                    "Golfhoek": 0
+                },
+                {
+                    "Waterstand": 0.1,
+                    "GolfhoogteHm0": 1.8,
+                    "GolfperiodeTm10": 5.8,
+                    "Golfhoek": 0
+                }
+            ]
+        },
+        "Locaties":
+        [
+            {
+                "Naam": "NaturalStoneExtended",
+                "Schade":
+                {
+                    "BeginSchade": 0.2,
+                    "Faalgetal": 0.95
+                },
+                "Bekleding":
+                {
+                    "TypeToplaag": "NoorseSteen",
+                    "RelatieveDichtheid": 1.65,
+                    "DikteToplaag": 0.3,
+                    "Rekenmethoden":
+                    [
+                        {
+                            "RekenmethodeSoort": "Natuursteen",
+                            "ToenameSchadeNatuursteen":
+                            {
+                                "HydraulischeBelastingNatuursteenXib": 2.9,
+                                "HydraulischeBelastingNatuursteenAp": 4,
+                                "HydraulischeBelastingNatuursteenBp": 0,
+                                "HydraulischeBelastingNatuursteenCp": 0,
+                                "HydraulischeBelastingNatuursteenNp": -0.9,
+                                "HydraulischeBelastingNatuursteenAs": 0.8,
+                                "HydraulischeBelastingNatuursteenBs": 0,
+                                "HydraulischeBelastingNatuursteenCs": 0,
+                                "HydraulischeBelastingNatuursteenNs": 0.6
+                            },
+                            "BovengrensBelastingNatuursteen":
+                            {
+                                "BovengrensBelastingNatuursteenAul": 0.1,
+                                "BovengrensBelastingNatuursteenBul": 0.6,
+                                "BovengrensBelastingNatuursteenCul": 4.0
+                            },
+                            "OndergrensBelastingNatuursteen":
+                            {
+                                "OndergrensBelastingNatuursteenAll": 0.1,
+                                "OndergrensBelastingNatuursteenBll": 0.2,
+                                "OndergrensBelastingNatuursteenCll": 4.0
+                            },
+                            "AfstandMaximaleStijghoogteNatuursteen":
+                            {
+                                "AfstandMaximaleStijghoogteNatuursteenAsmax": 0.42,
+                                "AfstandMaximaleStijghoogteNatuursteenBsmax": 0.9
+                            },
+                            "MaatgevendeBreedteGolfklapNatuursteen":
+                            {
+                                "MaatgevendeBreedteGolfklapNatuursteenAwi": 0.96,
+                                "MaatgevendeBreedteGolfklapNatuursteenBwi": 0.11
+                            },
+                            "ImpactGolfhoekBekledingNatuursteen":
+                            {
+                                "ImpactGolfhoekBekledingNatuursteenBetamax": 78
+                            }
+                        }
+                    ]
+                },
+                "Profielschematisatie":
+                {
+                    "TanA": 0.25,
+                    "PositieZ": 1.6
+                }
+            }
+        ]
+    }
+}

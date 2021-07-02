@@ -1,0 +1,25 @@
+{
+    "Uitvoerdata": {
+        "Tijd": [
+            0,
+            900,
+            1800,
+            2700,
+            3600,
+            4500,
+            5400,
+            6300,
+            7200,
+            8100
+        ],
+        "Locaties": [
+            {
+                "Naam": "NaturalStoneExtended",
+                "FalenBekleding": {
+                    "Faalgebeurtenis": true,
+                    "Faaltijd": 3833
+                }
+            }
+        ]
+    }
+}
