@@ -24,6 +24,8 @@ set(SOURCEFILES_PUBLIC_EXCEPTIONS
 set(SOURCEFILES_INTERNAL
   ${INTERNAL_FOLDER}/CalculationOutputAdapter.cpp
   ${INTERNAL_FOLDER}/CalculationOutputAdapter.h
+  ${INTERNAL_FOLDER}/CalculationOutputAdapterHelper.cpp
+  ${INTERNAL_FOLDER}/CalculationOutputAdapterHelper.h
   ${INTERNAL_FOLDER}/JsonOutputDefinitions.h
   ${INTERNAL_FOLDER}/JsonOutputNaturalStoneRevetmentDefinitions.h
   ${INTERNAL_FOLDER}/JsonOutputWriter.cpp

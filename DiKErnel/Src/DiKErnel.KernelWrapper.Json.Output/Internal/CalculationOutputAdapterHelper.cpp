@@ -18,24 +18,19 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#pragma once
-
-#include "JsonOutputDamageLocationData.h"
-#include "NaturalStoneRevetmentTimeDependentOutput.h"
+#include "CalculationOutputAdapterHelper.h"
 
 namespace DiKErnel::KernelWrapper::Json::Output
 {
-    class JsonOutputNaturalStoneRevetmentPhysicsLocationData : public JsonOutputDamageLocationData
+    using namespace nlohmann;
+
+    void CalculationOutputAdapterHelper::SetPropertyWhenApplicable(
+        ordered_json& jsonObject,
+        const double* value)
     {
-        public:
-            explicit JsonOutputNaturalStoneRevetmentPhysicsLocationData(
-                const Core::LocationDependentOutput& locationOutput,
-                const Core::ILocationDependentInput& locationInput);
-
-            nlohmann::ordered_json CreateJson() const override;
-
-        private:
-            std::vector<Integration::NaturalStoneRevetmentTimeDependentOutput*> _timeDependentOutputItems =
-                    std::vector<Integration::NaturalStoneRevetmentTimeDependentOutput*>();
-    };
+        if (value != nullptr)
+        {
+            jsonObject = *value;
+        }
+    }
 }

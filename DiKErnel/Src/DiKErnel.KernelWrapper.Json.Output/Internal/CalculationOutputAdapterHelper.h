@@ -20,22 +20,15 @@
 
 #pragma once
 
-#include "JsonOutputDamageLocationData.h"
-#include "NaturalStoneRevetmentTimeDependentOutput.h"
+#include <nlohmann/json.hpp>
 
 namespace DiKErnel::KernelWrapper::Json::Output
 {
-    class JsonOutputNaturalStoneRevetmentPhysicsLocationData : public JsonOutputDamageLocationData
+    class CalculationOutputAdapterHelper
     {
         public:
-            explicit JsonOutputNaturalStoneRevetmentPhysicsLocationData(
-                const Core::LocationDependentOutput& locationOutput,
-                const Core::ILocationDependentInput& locationInput);
-
-            nlohmann::ordered_json CreateJson() const override;
-
-        private:
-            std::vector<Integration::NaturalStoneRevetmentTimeDependentOutput*> _timeDependentOutputItems =
-                    std::vector<Integration::NaturalStoneRevetmentTimeDependentOutput*>();
+            static void SetPropertyWhenApplicable(
+                nlohmann::ordered_json& jsonObject,
+                const double* value);
     };
 }
