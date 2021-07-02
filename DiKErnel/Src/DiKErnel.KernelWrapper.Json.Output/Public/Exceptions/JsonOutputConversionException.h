@@ -24,12 +24,24 @@
 
 namespace DiKErnel::KernelWrapper::Json::Output
 {
+    /*!
+     * \brief Exception that can be thrown when json output cannot be created.
+     */
     class JsonOutputConversionException : public std::exception
     {
         public:
+            /*!
+             * \brief Creates a new instance.
+             * \param message
+             *        The message of the exception.
+             */
             explicit JsonOutputConversionException(
                 std::string message);
 
+            /*!
+            * \brief Gets the message of the exception.
+            * \return The message of the exception.
+            */
             const char* what() const throw () override;
 
         private:

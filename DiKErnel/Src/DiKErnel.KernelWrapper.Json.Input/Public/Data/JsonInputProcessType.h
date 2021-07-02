@@ -22,6 +22,9 @@
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
+    /*!
+     * \brief The json input process types.
+     */
     enum class JsonInputProcessType
     {
         Unknown,
