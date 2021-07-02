@@ -91,17 +91,17 @@ namespace DiKErnel::Integration::Test
         const auto fatigueBeta = 1.4;
         const auto impactNumberC = 1.5;
         const auto stiffnessRelationNu = 1.6;
-        const auto widthFactors = vector<tuple<double, double>>
+        const auto widthFactors = vector
         {
-            tuple<double, double>(1.7, 1.8)
+            tuple(1.7, 1.8)
         };
-        const auto depthFactors = vector<tuple<double, double>>
+        const auto depthFactors = vector
         {
-            tuple<double, double>(1.9, 2.0)
+            tuple(1.9, 2.0)
         };
-        const auto impactFactors = vector<tuple<double, double>>
+        const auto impactFactors = vector
         {
-            tuple<double, double>(2.1, 2.2)
+            tuple(2.1, 2.2)
         };
 
         AsphaltRevetmentWaveImpactLocationConstructionProperties constructionProperties(

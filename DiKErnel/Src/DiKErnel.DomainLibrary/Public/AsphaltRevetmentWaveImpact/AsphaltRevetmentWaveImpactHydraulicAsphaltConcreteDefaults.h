@@ -98,7 +98,7 @@ namespace DiKErnel::DomainLibrary
             const std::vector<std::tuple<double, double>>& GetImpactFactors() const override;
 
         private:
-            std::vector<std::tuple<double, double>> _widthFactors = std::vector<std::tuple<double, double>>
+            std::vector<std::tuple<double, double>> _widthFactors = std::vector
             {
                 std::tuple(0.1, 0.0392),
                 std::tuple(0.2, 0.0738),
@@ -116,7 +116,7 @@ namespace DiKErnel::DomainLibrary
                 std::tuple(1.4, 0.0150),
                 std::tuple(1.5, 0.0105)
             };
-            std::vector<std::tuple<double, double>> _depthFactors = std::vector<std::tuple<double, double>>
+            std::vector<std::tuple<double, double>> _depthFactors = std::vector
             {
                 std::tuple(-1.0, 0.0244),
                 std::tuple(-0.875, 0.0544),
@@ -131,7 +131,7 @@ namespace DiKErnel::DomainLibrary
                 std::tuple(0.250, 0.0169)
 
             };
-            std::vector<std::tuple<double, double>> _impactFactors = std::vector<std::tuple<double, double>>
+            std::vector<std::tuple<double, double>> _impactFactors = std::vector
             {
                 std::tuple(2.0, 0.039),
                 std::tuple(2.4, 0.1),
