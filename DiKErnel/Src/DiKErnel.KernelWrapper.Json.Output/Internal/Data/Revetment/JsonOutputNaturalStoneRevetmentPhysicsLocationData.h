@@ -39,7 +39,7 @@ namespace DiKErnel::KernelWrapper::Json::Output
             std::vector<Integration::NaturalStoneRevetmentTimeDependentOutput*> _timeDependentOutputItems =
                     std::vector<Integration::NaturalStoneRevetmentTimeDependentOutput*>();
 
-            static void JsonOutputNaturalStoneRevetmentPhysicsLocationData::SetPropertyWhenApplicable(
+            static void SetPropertyWhenApplicable(
                 nlohmann::ordered_json& jsonObject,
                 const double* value);
     };
