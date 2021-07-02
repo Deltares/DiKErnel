@@ -11,7 +11,7 @@ set(SOURCEFILES_ROOT
 )
 
 set(SOURCEFILES_EXCEPTIONS 
-  ${EXCEPTIONS_FOLDER}/JsonOutputConversionException.cpp
+  ${EXCEPTIONS_FOLDER}/JsonOutputConversionExceptionTest.cpp
 )
 
 # Add executable
