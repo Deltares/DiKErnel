@@ -21,7 +21,6 @@
 #pragma once
 
 #include "JsonOutputDamageLocationData.h"
-#include "NaturalStoneRevetmentLocationDependentInput.h"
 #include "NaturalStoneRevetmentTimeDependentOutput.h"
 
 namespace DiKErnel::KernelWrapper::Json::Output
