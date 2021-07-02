@@ -27,6 +27,7 @@ set(SOURCEFILES_INTERNAL
   ${INTERNAL_FOLDER}/CalculationOutputAdapterHelper.cpp
   ${INTERNAL_FOLDER}/CalculationOutputAdapterHelper.h
   ${INTERNAL_FOLDER}/JsonOutputDefinitions.h
+  ${INTERNAL_FOLDER}/JsonOutputGrassRevetmentWaveImpactDefinitions.h
   ${INTERNAL_FOLDER}/JsonOutputNaturalStoneRevetmentDefinitions.h
   ${INTERNAL_FOLDER}/JsonOutputWriter.cpp
   ${INTERNAL_FOLDER}/JsonOutputWriter.h
@@ -43,6 +44,8 @@ set(SOURCEFILES_INTERNAL_DATA_GENERIC
 )
 
 set(SOURCEFILES_INTERNAL_DATA_REVETMENT
+  ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonOutputGrassRevetmentWaveImpactPhysicsLocationData.cpp
+  ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonOutputGrassRevetmentWaveImpactPhysicsLocationData.h
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonOutputNaturalStoneRevetmentPhysicsLocationData.cpp
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonOutputNaturalStoneRevetmentPhysicsLocationData.h
 )

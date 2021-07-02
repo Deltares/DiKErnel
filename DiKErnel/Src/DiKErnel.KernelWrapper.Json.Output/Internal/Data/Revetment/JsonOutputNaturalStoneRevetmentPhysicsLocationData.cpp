@@ -48,7 +48,7 @@ namespace DiKErnel::KernelWrapper::Json::Output
             {
                 {
                     JsonOutputDefinitions::CALCULATION_TYPE,
-                    JsonOutputNaturalStoneRevetmentDefinitions::CALCULATION_TYPE_NATURAL_STONE
+                    JsonOutputNaturalStoneRevetmentDefinitions::CALCULATION_TYPE
                 }
             });
 
