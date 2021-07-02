@@ -18,18 +18,26 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include "JsonConversionException.h"
+#include <gtest/gtest.h>
 
-namespace DiKErnel::KernelWrapper::Json::Input
+#include "AssertHelper.h"
+#include "JsonInputConversionException.h"
+
+namespace DiKErnel::KernelWrapper::Json::Input::Test
 {
     using namespace std;
+    using namespace TestUtil;
 
-    JsonConversionException::JsonConversionException(
-        string message)
-        : _message(move(message)) {}
-
-    const char* JsonConversionException::what() const throw()
+    TEST(JsonInputConversionExceptionTest, Constructor_WithMessage_ExpectedValues)
     {
-        return _message.c_str();
+        // Setup
+        const string message = "Test message";
+
+        // Call
+        const JsonInputConversionException actualException(message);
+
+        // Assert
+        AssertHelper::AssertIsInstanceOf<exception>(&actualException);
+        ASSERT_EQ(message, actualException.what());
     }
 }

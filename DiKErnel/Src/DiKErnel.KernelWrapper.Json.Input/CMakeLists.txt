@@ -21,8 +21,8 @@ set(SOURCEFILES_PUBLIC_DATA
 )
 
 set(SOURCEFILES_PUBLIC_EXCEPTIONS
-  ${PUBLIC_EXCEPTIONS_FOLDER}/JsonConversionException.cpp
-  ${PUBLIC_EXCEPTIONS_FOLDER}/JsonConversionException.h
+  ${PUBLIC_EXCEPTIONS_FOLDER}/JsonInputConversionException.cpp
+  ${PUBLIC_EXCEPTIONS_FOLDER}/JsonInputConversionException.h
 )
 
 set(SOURCEFILES_INTERNAL

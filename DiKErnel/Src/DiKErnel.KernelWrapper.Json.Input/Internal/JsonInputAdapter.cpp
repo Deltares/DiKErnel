@@ -20,7 +20,7 @@
 
 #include "JsonInputAdapter.h"
 
-#include "JsonConversionException.h"
+#include "JsonInputConversionException.h"
 #include "JsonInputGrassRevetmentWaveRunupProfileSchematizationData.h"
 #include "JsonInputNaturalStoneRevetmentLocationData.h"
 #include "NaturalStoneRevetmentLocationConstructionProperties.h"
@@ -145,7 +145,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
             return AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete;
         }
 
-        throw JsonConversionException("Cannot convert top layer type.");
+        throw JsonInputConversionException("Cannot convert top layer type.");
     }
 
     unique_ptr<GrassRevetmentWaveImpactLocationConstructionProperties> JsonInputAdapter::CreateGrassWaveImpactConstructionProperties(
@@ -199,7 +199,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
         if (profileSchematizationData == nullptr)
         {
-            throw JsonConversionException("Cannot convert profile schematization data.");
+            throw JsonInputConversionException("Cannot convert profile schematization data.");
         }
 
         auto constructionProperties = make_unique<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(
@@ -256,7 +256,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
             return GrassRevetmentTopLayerType::ClosedSod;
         }
 
-        throw JsonConversionException("Cannot convert top layer type.");
+        throw JsonInputConversionException("Cannot convert top layer type.");
     }
 
     unique_ptr<NaturalStoneRevetmentLocationConstructionProperties> JsonInputAdapter::CreateNaturalStoneConstructionProperties(
@@ -331,7 +331,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
             return NaturalStoneRevetmentTopLayerType::NordicStone;
         }
 
-        throw JsonConversionException("Cannot convert top layer type.");
+        throw JsonInputConversionException("Cannot convert top layer type.");
     }
 
     template <typename TValue>

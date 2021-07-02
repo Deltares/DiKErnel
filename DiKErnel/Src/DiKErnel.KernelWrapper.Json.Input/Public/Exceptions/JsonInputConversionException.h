@@ -18,26 +18,33 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include <gtest/gtest.h>
+#pragma once
 
-#include "AssertHelper.h"
-#include "JsonConversionException.h"
+#include <string>
 
-namespace DiKErnel::KernelWrapper::Json::Input::Test
+namespace DiKErnel::KernelWrapper::Json::Input
 {
-    using namespace std;
-    using namespace TestUtil;
-
-    TEST(JsonConversionExceptionTest, Constructor_WithMessage_ExpectedValues)
+    /*!
+     * \brief Exception that can be thrown when json input cannot be converted.
+     */
+    class JsonInputConversionException : public std::exception
     {
-        // Setup
-        const string message = "Test message";
+        public:
+            /*!
+             * \brief Creates a new instance.
+             * \param message
+             *        The message of the exception.
+             */
+            explicit JsonInputConversionException(
+                std::string message);
 
-        // Call
-        const JsonConversionException actualException(message);
+            /*!
+             * \brief Gets the message of the exception.
+             * \return The message of the exception.
+             */
+            const char* what() const throw () override;
 
-        // Assert
-        AssertHelper::AssertIsInstanceOf<exception>(&actualException);
-        ASSERT_EQ(message, actualException.what());
-    }
+        private:
+            std::string _message;
+    };
 }

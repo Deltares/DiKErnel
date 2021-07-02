@@ -18,33 +18,18 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#pragma once
-
-#include <string>
+#include "JsonInputConversionException.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
-    /*!
-     * \brief Exception that can be thrown when json input cannot be converted.
-     */
-    class JsonConversionException : public std::exception
+    using namespace std;
+
+    JsonInputConversionException::JsonInputConversionException(
+        string message)
+        : _message(move(message)) {}
+
+    const char* JsonInputConversionException::what() const throw()
     {
-        public:
-            /*!
-             * \brief Creates a new instance.
-             * \param message
-             *        The message of the exception.
-             */
-            explicit JsonConversionException(
-                std::string message);
-
-            /*!
-             * \brief Gets the message of the exception.
-             * \return The message of the exception.
-             */
-            const char* what() const throw () override;
-
-        private:
-            std::string _message;
-    };
+        return _message.c_str();
+    }
 }
