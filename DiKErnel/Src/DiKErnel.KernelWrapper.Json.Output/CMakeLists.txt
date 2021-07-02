@@ -26,6 +26,7 @@ set(SOURCEFILES_INTERNAL
   ${INTERNAL_FOLDER}/CalculationOutputAdapter.h
   ${INTERNAL_FOLDER}/CalculationOutputAdapterHelper.cpp
   ${INTERNAL_FOLDER}/CalculationOutputAdapterHelper.h
+  ${INTERNAL_FOLDER}/JsonOutputAsphaltRevetmentWaveImpactDefinitions.h
   ${INTERNAL_FOLDER}/JsonOutputDefinitions.h
   ${INTERNAL_FOLDER}/JsonOutputGrassRevetmentWaveImpactDefinitions.h
   ${INTERNAL_FOLDER}/JsonOutputGrassRevetmentWaveRunupRayleighDefinitions.h
