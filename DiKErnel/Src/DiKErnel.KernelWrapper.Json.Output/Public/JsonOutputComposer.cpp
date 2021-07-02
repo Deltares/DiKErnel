@@ -20,8 +20,10 @@
 
 #include "JsonOutputComposer.h"
 
+#include <fstream>
+#include <iomanip>
+
 #include "CalculationOutputAdapter.h"
-#include "JsonOutputWriter.h"
 
 namespace DiKErnel::KernelWrapper::Json::Output
 {
@@ -36,6 +38,7 @@ namespace DiKErnel::KernelWrapper::Json::Output
     {
         const auto jsonOutput = CalculationOutputAdapter::AdaptCalculationOutput(calculationOutput, calculationInput, outputType);
 
-        JsonOutputWriter::Write(filePath, *jsonOutput);
+        ofstream outfile(filePath, ios::trunc);
+        outfile << setw(4) << jsonOutput->CreateJson() << endl;
     }
 }
