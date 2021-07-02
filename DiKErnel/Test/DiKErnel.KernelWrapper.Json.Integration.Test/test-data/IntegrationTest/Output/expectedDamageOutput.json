@@ -34,6 +34,28 @@
                         1.170967042526447
                     ]
                 }
+            },
+            {
+                "Naam": "GrasGolfklapAlleOptiesAan",
+                "FalenBekleding": {
+                    "Faalgebeurtenis": false,
+                    "Faaltijd": null
+                },
+                "SchadeBekleding": {
+                    "Beginschade": 0.04,
+                    "Faalgetal": 1.07,
+                    "SchadegetalPerTijd": [
+                        0.04,
+                        0.04,
+                        0.04,
+                        0.04,
+                        0.04,
+                        0.04,
+                        0.04,
+                        0.04,
+                        0.04
+                    ]
+                }
             }
         ]
     }

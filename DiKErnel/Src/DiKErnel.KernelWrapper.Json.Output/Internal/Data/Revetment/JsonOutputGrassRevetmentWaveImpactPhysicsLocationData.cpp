@@ -65,14 +65,18 @@ namespace DiKErnel::KernelWrapper::Json::Output
             physicsJson[JsonOutputGrassRevetmentWaveImpactDefinitions::WAVE_ANGLE_IMPACT][i] = nullptr;
             physicsJson[JsonOutputGrassRevetmentWaveImpactDefinitions::WAVE_HEIGHT_IMPACT][i] = nullptr;
 
-            CalculationOutputAdapterHelper::SetPropertyWhenApplicable(physicsJson[JsonOutputGrassRevetmentWaveImpactDefinitions::MAXIMUM_WAVE_HEIGHT][i],
-                                                                      outputItem->GetMaximumWaveHeight());
-            CalculationOutputAdapterHelper::SetPropertyWhenApplicable(physicsJson[JsonOutputGrassRevetmentWaveImpactDefinitions::MINIMUM_WAVE_HEIGHT][i],
-                                                                      outputItem->GetMinimumWaveHeight());
-            CalculationOutputAdapterHelper::SetPropertyWhenApplicable(physicsJson[JsonOutputGrassRevetmentWaveImpactDefinitions::WAVE_ANGLE_IMPACT][i],
-                                                                      outputItem->GetWaveAngleImpact());
-            CalculationOutputAdapterHelper::SetPropertyWhenApplicable(physicsJson[JsonOutputGrassRevetmentWaveImpactDefinitions::WAVE_HEIGHT_IMPACT][i],
-                                                                      outputItem->GetWaveHeightImpact());
+            CalculationOutputAdapterHelper::SetPropertyWhenApplicable(
+                physicsJson[JsonOutputGrassRevetmentWaveImpactDefinitions::MAXIMUM_WAVE_HEIGHT][i],
+                outputItem->GetMaximumWaveHeight());
+            CalculationOutputAdapterHelper::SetPropertyWhenApplicable(
+                physicsJson[JsonOutputGrassRevetmentWaveImpactDefinitions::MINIMUM_WAVE_HEIGHT][i],
+                outputItem->GetMinimumWaveHeight());
+            CalculationOutputAdapterHelper::SetPropertyWhenApplicable(
+                physicsJson[JsonOutputGrassRevetmentWaveImpactDefinitions::WAVE_ANGLE_IMPACT][i],
+                outputItem->GetWaveAngleImpact());
+            CalculationOutputAdapterHelper::SetPropertyWhenApplicable(
+                physicsJson[JsonOutputGrassRevetmentWaveImpactDefinitions::WAVE_HEIGHT_IMPACT][i],
+                outputItem->GetWaveHeightImpact());
         }
 
         auto output = JsonOutputDamageLocationData::CreateJson();

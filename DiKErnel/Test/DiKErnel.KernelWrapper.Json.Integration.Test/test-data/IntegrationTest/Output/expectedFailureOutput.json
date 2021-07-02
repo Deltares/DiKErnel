@@ -19,6 +19,13 @@
                     "Faalgebeurtenis": true,
                     "Faaltijd": 3833
                 }
+            },
+            {
+                "Naam": "GrasGolfklapAlleOptiesAan",
+                "FalenBekleding": {
+                    "Faalgebeurtenis": false,
+                    "Faaltijd": null
+                }
             }
         ]
     }

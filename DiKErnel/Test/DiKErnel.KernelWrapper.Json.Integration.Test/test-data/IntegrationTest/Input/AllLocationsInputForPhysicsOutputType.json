@@ -142,7 +142,55 @@
                     "TanA": 0.25,
                     "PositieZ": 1.6
                 }
-            }
+            },
+            {
+				"Naam": "GrasGolfklapAlleOptiesAan",
+				"Schade":
+				{
+					"BeginSchade": 0.04,
+					"Faalgetal": 1.07
+				},
+				"Bekleding":
+				{
+					"TypeToplaag": "GrasGeslotenZode",
+					"StandtijdlijnGrasGolfklapAgwi": 0.3,
+					"StandtijdlijnGrasGolfklapBgwi": -0.1,
+					"StandtijdlijnGrasGolfklapCgwi": 0.96,
+					"Rekenmethoden":
+					[
+						{
+							"RekenmethodeSoort": "GrasGolfklap",
+							"MinimumGolfhoogteGrasGolfklap":
+							{
+								"MinimumGolfhoogteGrasGolfklapTemax": 2500000
+							},
+							"MaximumGolfhoogteGrasGolfklap":
+							{
+								"MaximumGolfhoogteGrasGolfklapTemin": 3.1
+							},
+							"ImpactGolfhoekBekledingGrasGolfklap":
+							{
+								"ImpactGolfhoekBekledingGrasGolfklapNwa": 0.9,
+								"ImpactGolfhoekBekledingGrasGolfklapQwa": 0.1,
+								"ImpactGolfhoekBekledingGrasGolfklapRwa": 8.0
+							},
+							"BovengrensBelastingGrasGolfklap":
+							{
+								"BovengrensBelastingGrasGolfklapAul": 1.0
+							},
+							"OndergrensBelastingGrasGolfklap":
+							{
+								"OndergrensBelastingGrasGolfklapAll": 3.5
+							}
+						}
+					]
+				},
+				"Profielschematisatie":
+				{
+					"TanA": 0.2,
+					"PositieZ": 1.0
+				}
+			}
         ]
     }
 }

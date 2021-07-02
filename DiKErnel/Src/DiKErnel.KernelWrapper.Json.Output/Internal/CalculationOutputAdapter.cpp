@@ -20,8 +20,10 @@
 
 #include "CalculationOutputAdapter.h"
 
+#include "GrassRevetmentWaveImpactTimeDependentOutput.h"
 #include "JsonOutputConversionException.h"
 #include "JsonOutputDamageLocationData.h"
+#include "JsonOutputGrassRevetmentWaveImpactPhysicsLocationData.h"
 #include "JsonOutputNaturalStoneRevetmentPhysicsLocationData.h"
 #include "NaturalStoneRevetmentLocationDependentInput.h"
 
@@ -116,10 +118,16 @@ namespace DiKErnel::KernelWrapper::Json::Output
     {
         const auto& locationTimeDependentOutputItem = locationOutput.GetTimeDependentOutputItems().front();
 
-        if(const auto* naturalStoneRevetmentLocationTimeDependentOutputItem = dynamic_cast<const NaturalStoneRevetmentTimeDependentOutput*>(
+        if (const auto* naturalStoneRevetmentLocationTimeDependentOutputItem = dynamic_cast<const NaturalStoneRevetmentTimeDependentOutput*>(
             &locationTimeDependentOutputItem.get()); naturalStoneRevetmentLocationTimeDependentOutputItem != nullptr)
         {
             return make_unique<JsonOutputNaturalStoneRevetmentPhysicsLocationData>(locationOutput, locationInput);
+        }
+
+        if (const auto* grassRevetmentWaveImpactLocationTimeDependentOutputItem = dynamic_cast<const GrassRevetmentWaveImpactTimeDependentOutput*>(
+            &locationTimeDependentOutputItem.get()); grassRevetmentWaveImpactLocationTimeDependentOutputItem != nullptr)
+        {
+            return make_unique<JsonOutputGrassRevetmentWaveImpactPhysicsLocationData>(locationOutput, locationInput);
         }
 
         throw JsonOutputConversionException("Invalid revetment type.");

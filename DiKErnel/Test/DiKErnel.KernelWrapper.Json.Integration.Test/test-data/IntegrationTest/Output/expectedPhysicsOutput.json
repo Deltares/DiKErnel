@@ -191,6 +191,119 @@
                         null
                     ]
                 }
+            },
+            {
+                "Naam": "GrasGolfklapAlleOptiesAan",
+                "FalenBekleding": {
+                    "Faalgebeurtenis": false,
+                    "Faaltijd": null
+                },
+                "SchadeBekleding": {
+                    "Beginschade": 0.04,
+                    "Faalgetal": 1.07,
+                    "SchadegetalPerTijd": [
+                        0.04,
+                        0.04,
+                        0.04,
+                        0.04,
+                        0.04,
+                        0.04,
+                        0.04,
+                        0.04,
+                        0.04
+                    ]
+                },
+                "FysicaBekleding": {
+                    "RekenmethodeSoort": "GrasGolfklap",
+                    "ToenameSchadeGrasGolfklap": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "BelastingBekleding": [
+                        false,
+                        false,
+                        false,
+                        true,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false
+                    ],
+                    "BovengrensBelastingGrasGolfklap": [
+                        -1.4,
+                        -1.1,
+                        -0.55,
+                        1.07,
+                        0.10000000000000009,
+                        -0.22999999999999998,
+                        -0.8500000000000001,
+                        -1.4,
+                        -1.7
+                    ],
+                    "OndergrensBelastingGrasGolfklap": [
+                        -5.15,
+                        -5.1000000000000005,
+                        -4.800000000000001,
+                        -0.6799999999999997,
+                        -4.6499999999999995,
+                        -5.23,
+                        -5.85,
+                        -6.1499999999999995,
+                        -6.2
+                    ],
+                    "MaximumGolfhoogteGrasGolfklap": [
+                        null,
+                        null,
+                        null,
+                        1.1800340868672867,
+                        null,
+                        null,
+                        null,
+                        null,
+                        null
+                    ],
+                    "MinimumGolfhoogteGrasGolfklap": [
+                        null,
+                        null,
+                        null,
+                        0.96,
+                        null,
+                        null,
+                        null,
+                        null,
+                        null
+                    ],
+                    "ImpactGolfhoekBekledingGrasGolfklap": [
+                        null,
+                        null,
+                        null,
+                        0.9965745757570498,
+                        null,
+                        null,
+                        null,
+                        null,
+                        null
+                    ],
+                    "GolfhoogteGrasGolfklap": [
+                        null,
+                        null,
+                        null,
+                        0.96,
+                        null,
+                        null,
+                        null,
+                        null,
+                        null
+                    ]
+                }
             }
         ]
     }
