@@ -56,22 +56,22 @@ namespace DiKErnel::KernelWrapper::Json::Output
         {
             const auto* outputItem = _timeDependentOutputItems[i];
 
-            physicsJson["ToenameSchadeGrasGolfklap"][i] = outputItem->GetIncrementDamage();
+            physicsJson[JsonOutputGrassRevetmentWaveImpactDefinitions::INCREMENT_DAMAGE][i] = outputItem->GetIncrementDamage();
             physicsJson[JsonOutputDefinitions::HYDRAULIC_LOAD][i] = outputItem->GetLoadingRevetment();
-            physicsJson["BovengrensBelastingGrasGolfklap"][i] = outputItem->GetUpperLimitLoading();
-            physicsJson["OndergrensBelastingGrasGolfklap"][i] = outputItem->GetLowerLimitLoading();
-            physicsJson["MaximumGolfhoogteGrasGolfklap"][i] = nullptr;
-            physicsJson["MinimumGolfhoogteGrasGolfklap"][i] = nullptr;
-            physicsJson["ImpactGolfhoekBekledingGrasGolfklap"][i] = nullptr;
-            physicsJson["GolfhoogteGrasGolfklap"][i] = nullptr;
+            physicsJson[JsonOutputGrassRevetmentWaveImpactDefinitions::UPPER_LIMIT_LOADING][i] = outputItem->GetUpperLimitLoading();
+            physicsJson[JsonOutputGrassRevetmentWaveImpactDefinitions::LOWER_LIMIT_LOADING][i] = outputItem->GetLowerLimitLoading();
+            physicsJson[JsonOutputGrassRevetmentWaveImpactDefinitions::MAXIMUM_WAVE_HEIGHT][i] = nullptr;
+            physicsJson[JsonOutputGrassRevetmentWaveImpactDefinitions::MINIMUM_WAVE_HEIGHT][i] = nullptr;
+            physicsJson[JsonOutputGrassRevetmentWaveImpactDefinitions::WAVE_ANGLE_IMPACT][i] = nullptr;
+            physicsJson[JsonOutputGrassRevetmentWaveImpactDefinitions::WAVE_HEIGHT_IMPACT][i] = nullptr;
 
-            CalculationOutputAdapterHelper::SetPropertyWhenApplicable(physicsJson["MaximumGolfhoogteGrasGolfklap"][i],
+            CalculationOutputAdapterHelper::SetPropertyWhenApplicable(physicsJson[JsonOutputGrassRevetmentWaveImpactDefinitions::MAXIMUM_WAVE_HEIGHT][i],
                                                                       outputItem->GetMaximumWaveHeight());
-            CalculationOutputAdapterHelper::SetPropertyWhenApplicable(physicsJson["MinimumGolfhoogteGrasGolfklap"][i],
+            CalculationOutputAdapterHelper::SetPropertyWhenApplicable(physicsJson[JsonOutputGrassRevetmentWaveImpactDefinitions::MINIMUM_WAVE_HEIGHT][i],
                                                                       outputItem->GetMinimumWaveHeight());
-            CalculationOutputAdapterHelper::SetPropertyWhenApplicable(physicsJson["ImpactGolfhoekBekledingGrasGolfklap"][i],
+            CalculationOutputAdapterHelper::SetPropertyWhenApplicable(physicsJson[JsonOutputGrassRevetmentWaveImpactDefinitions::WAVE_ANGLE_IMPACT][i],
                                                                       outputItem->GetWaveAngleImpact());
-            CalculationOutputAdapterHelper::SetPropertyWhenApplicable(physicsJson["GolfhoogteGrasGolfklap"][i],
+            CalculationOutputAdapterHelper::SetPropertyWhenApplicable(physicsJson[JsonOutputGrassRevetmentWaveImpactDefinitions::WAVE_HEIGHT_IMPACT][i],
                                                                       outputItem->GetWaveHeightImpact());
         }
 
