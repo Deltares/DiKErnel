@@ -52,7 +52,7 @@ namespace DiKErnel::KernelWrapper::Json::Output
                 }
             });
 
-        for (int i = 0; i < static_cast<int>(_timeDependentOutputItems.size()); ++i)
+        for (auto i = 0; i < static_cast<int>(_timeDependentOutputItems.size()); ++i)
         {
             const auto* outputItem = _timeDependentOutputItems[i];
 
