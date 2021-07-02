@@ -32,5 +32,9 @@ namespace DiKErnel::KernelWrapper::Json::Output
         {
             jsonObject = *value;
         }
+        else
+        {
+            jsonObject = nullptr;
+        }
     }
 }

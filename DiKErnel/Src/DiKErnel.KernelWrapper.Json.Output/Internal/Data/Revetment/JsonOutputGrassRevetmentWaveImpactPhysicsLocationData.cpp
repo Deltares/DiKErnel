@@ -60,10 +60,6 @@ namespace DiKErnel::KernelWrapper::Json::Output
             physicsJson[JsonOutputDefinitions::HYDRAULIC_LOAD][i] = outputItem->GetLoadingRevetment();
             physicsJson[JsonOutputGrassRevetmentWaveImpactDefinitions::UPPER_LIMIT_LOADING][i] = outputItem->GetUpperLimitLoading();
             physicsJson[JsonOutputGrassRevetmentWaveImpactDefinitions::LOWER_LIMIT_LOADING][i] = outputItem->GetLowerLimitLoading();
-            physicsJson[JsonOutputGrassRevetmentWaveImpactDefinitions::MAXIMUM_WAVE_HEIGHT][i] = nullptr;
-            physicsJson[JsonOutputGrassRevetmentWaveImpactDefinitions::MINIMUM_WAVE_HEIGHT][i] = nullptr;
-            physicsJson[JsonOutputGrassRevetmentWaveImpactDefinitions::WAVE_ANGLE_IMPACT][i] = nullptr;
-            physicsJson[JsonOutputGrassRevetmentWaveImpactDefinitions::WAVE_HEIGHT_IMPACT][i] = nullptr;
 
             CalculationOutputAdapterHelper::SetPropertyWhenApplicable(
                 physicsJson[JsonOutputGrassRevetmentWaveImpactDefinitions::MAXIMUM_WAVE_HEIGHT][i],

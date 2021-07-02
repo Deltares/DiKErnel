@@ -66,11 +66,6 @@ namespace DiKErnel::KernelWrapper::Json::Output
             physicsJson[JsonOutputNaturalStoneRevetmentDefinitions::DISTANCE_MAXIMUM_WAVE_ELEVATION][i] =
                     outputItem->GetDistanceMaximumWaveElevation();
             physicsJson[JsonOutputNaturalStoneRevetmentDefinitions::NORMATIVE_WIDTH_WAVE_IMPACT][i] = outputItem->GetNormativeWidthOfWaveImpact();
-            physicsJson[JsonOutputNaturalStoneRevetmentDefinitions::HYDRAULIC_LOAD][i] = nullptr;
-            physicsJson[JsonOutputNaturalStoneRevetmentDefinitions::WAVE_ANGLE_IMPACT][i] = nullptr;
-            physicsJson[JsonOutputNaturalStoneRevetmentDefinitions::RESISTANCE][i] = nullptr;
-            physicsJson[JsonOutputNaturalStoneRevetmentDefinitions::REFERENCE_TIME_DEGRADATION][i] = nullptr;
-            physicsJson[JsonOutputNaturalStoneRevetmentDefinitions::REFERENCE_DEGRADATION][i] = nullptr;
 
             CalculationOutputAdapterHelper::SetPropertyWhenApplicable(physicsJson[JsonOutputNaturalStoneRevetmentDefinitions::HYDRAULIC_LOAD][i],
                                                                       outputItem->GetHydraulicLoad());

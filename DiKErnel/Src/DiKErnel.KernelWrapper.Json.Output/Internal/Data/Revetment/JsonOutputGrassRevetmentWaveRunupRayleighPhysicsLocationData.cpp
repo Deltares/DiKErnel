@@ -59,9 +59,6 @@ namespace DiKErnel::KernelWrapper::Json::Output
             physicsJson[JsonOutputGrassRevetmentWaveRunupRayleighDefinitions::INCREMENT_DAMAGE][i] = outputItem->GetIncrementDamage();
             physicsJson[JsonOutputGrassRevetmentWaveRunupRayleighDefinitions::VERTICAL_DISTANCE_WATER_LEVELE_LEVATION][i] =
                     outputItem->GetVerticalDistanceWaterLevelElevation();
-            physicsJson[JsonOutputGrassRevetmentWaveRunupRayleighDefinitions::WAVE_ANGLE_IMPACT][i] = nullptr;
-            physicsJson[JsonOutputGrassRevetmentWaveRunupRayleighDefinitions::REPRESENTATIVE_WAVE_RUNUP_2P][i] = nullptr;
-            physicsJson[JsonOutputGrassRevetmentWaveRunupRayleighDefinitions::CUMULATIVE_OVERLOAD][i] = nullptr;
 
             CalculationOutputAdapterHelper::SetPropertyWhenApplicable(
                 physicsJson[JsonOutputGrassRevetmentWaveRunupRayleighDefinitions::WAVE_ANGLE_IMPACT][i],
