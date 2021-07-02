@@ -46,6 +46,8 @@ set(SOURCEFILES_INTERNAL_DATA_GENERIC
 )
 
 set(SOURCEFILES_INTERNAL_DATA_REVETMENT
+  ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonOutputAsphaltRevetmentWaveImpactPhysicsLocationData.cpp
+  ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonOutputAsphaltRevetmentWaveImpactPhysicsLocationData.h
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonOutputGrassRevetmentWaveImpactPhysicsLocationData.cpp
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonOutputGrassRevetmentWaveImpactPhysicsLocationData.h
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonOutputGrassRevetmentWaveRunupRayleighPhysicsLocationData.cpp
