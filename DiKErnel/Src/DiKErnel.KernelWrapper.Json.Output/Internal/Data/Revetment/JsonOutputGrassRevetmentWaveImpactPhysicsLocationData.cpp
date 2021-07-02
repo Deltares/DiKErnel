@@ -20,6 +20,7 @@
 
 #include "JsonOutputGrassRevetmentWaveImpactPhysicsLocationData.h"
 
+#include "CalculationOutputAdapterHelper.h"
 #include "JsonOutputDefinitions.h"
 #include "JsonOutputGrassRevetmentWaveImpactDefinitions.h"
 
@@ -55,7 +56,23 @@ namespace DiKErnel::KernelWrapper::Json::Output
         {
             const auto* outputItem = _timeDependentOutputItems[i];
 
-            
+            physicsJson["ToenameSchadeGrasGolfklap"][i] = outputItem->GetIncrementDamage();
+            physicsJson[JsonOutputDefinitions::HYDRAULIC_LOAD][i] = outputItem->GetLoadingRevetment();
+            physicsJson["BovengrensBelastingGrasGolfklap"][i] = outputItem->GetUpperLimitLoading();
+            physicsJson["OndergrensBelastingGrasGolfklap"][i] = outputItem->GetLowerLimitLoading();
+            physicsJson["MaximumGolfhoogteGrasGolfklap"][i] = nullptr;
+            physicsJson["MinimumGolfhoogteGrasGolfklap"][i] = nullptr;
+            physicsJson["ImpactGolfhoekBekledingGrasGolfklap"][i] = nullptr;
+            physicsJson["GolfhoogteGrasGolfklap"][i] = nullptr;
+
+            CalculationOutputAdapterHelper::SetPropertyWhenApplicable(physicsJson["MaximumGolfhoogteGrasGolfklap"][i],
+                                                                      outputItem->GetMaximumWaveHeight());
+            CalculationOutputAdapterHelper::SetPropertyWhenApplicable(physicsJson["MinimumGolfhoogteGrasGolfklap"][i],
+                                                                      outputItem->GetMinimumWaveHeight());
+            CalculationOutputAdapterHelper::SetPropertyWhenApplicable(physicsJson["ImpactGolfhoekBekledingGrasGolfklap"][i],
+                                                                      outputItem->GetWaveAngleImpact());
+            CalculationOutputAdapterHelper::SetPropertyWhenApplicable(physicsJson["GolfhoogteGrasGolfklap"][i],
+                                                                      outputItem->GetWaveHeightImpact());
         }
 
         auto output = JsonOutputDamageLocationData::CreateJson();
