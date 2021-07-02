@@ -32,7 +32,7 @@ namespace DiKErnel::KernelWrapper::Json::Output
 
     JsonOutputNaturalStoneRevetmentPhysicsLocationData::JsonOutputNaturalStoneRevetmentPhysicsLocationData(
         const LocationDependentOutput& locationOutput,
-        const NaturalStoneRevetmentLocationDependentInput& locationInput)
+        const ILocationDependentInput& locationInput)
         : JsonOutputDamageLocationData(locationOutput, locationInput)
     {
         for (auto timeDependentOutput : locationOutput.GetTimeDependentOutputItems())

@@ -73,7 +73,7 @@ namespace DiKErnel::KernelWrapper::Json::Output
 
         for (auto i = 0; i < static_cast<int>(locationDependentOutputItems.size()); ++i)
         {
-            jsonOutputLocationDataItems.push_back(
+            jsonOutputLocationDataItems.emplace_back(
                 createLocationDataFuncPtr(locationDependentOutputItems[i].get(), locationDependentInputItems[i].get()));
         }
 
@@ -114,10 +114,12 @@ namespace DiKErnel::KernelWrapper::Json::Output
         const LocationDependentOutput& locationOutput,
         const ILocationDependentInput& locationInput)
     {
-        if (const auto* naturalStoneRevetmentLocationDependentInput = dynamic_cast<const NaturalStoneRevetmentLocationDependentInput*>(
-            &locationInput); naturalStoneRevetmentLocationDependentInput != nullptr)
+        const auto& locationTimeDependentOutputItem = locationOutput.GetTimeDependentOutputItems().front();
+
+        if(const auto* naturalStoneRevetmentLocationTimeDependentOutputItem = dynamic_cast<const NaturalStoneRevetmentTimeDependentOutput*>(
+            &locationTimeDependentOutputItem.get()); naturalStoneRevetmentLocationTimeDependentOutputItem != nullptr)
         {
-            return make_unique<JsonOutputNaturalStoneRevetmentPhysicsLocationData>(locationOutput, *naturalStoneRevetmentLocationDependentInput);
+            return make_unique<JsonOutputNaturalStoneRevetmentPhysicsLocationData>(locationOutput, locationInput);
         }
 
         throw JsonOutputConversionException("Invalid revetment type.");
