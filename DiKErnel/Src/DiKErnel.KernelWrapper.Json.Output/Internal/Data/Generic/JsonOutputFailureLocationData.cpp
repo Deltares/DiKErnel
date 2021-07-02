@@ -20,8 +20,6 @@
 
 #include "JsonOutputFailureLocationData.h"
 
-#include <utility>
-
 #include "JsonOutputDefinitions.h"
 
 namespace DiKErnel::KernelWrapper::Json::Output
@@ -32,11 +30,12 @@ namespace DiKErnel::KernelWrapper::Json::Output
     JsonOutputFailureLocationData::JsonOutputFailureLocationData(
         const LocationDependentOutput& locationOutput,
         const ILocationDependentInput& locationInput)
-        : _locationOutput(locationOutput), _locationInput(locationInput) {}
+        : _locationOutput(locationOutput),
+          _locationInput(locationInput) {}
 
     ordered_json JsonOutputFailureLocationData::CreateJson() const
     {
-        const auto timeOfFailure = _locationOutput.GetTimeOfFailure();
+        const auto* timeOfFailure = _locationOutput.GetTimeOfFailure();
 
         auto output = ordered_json::object(
             {
