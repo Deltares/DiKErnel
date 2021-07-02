@@ -58,8 +58,8 @@ namespace DiKErnel::KernelWrapper::Json::Output
 
             physicsJson[JsonOutputNaturalStoneRevetmentDefinitions::INCREMENT_DAMAGE][i] = outputItem->GetIncrementDamage();
             physicsJson[JsonOutputDefinitions::HYDRAULIC_LOAD][i] = outputItem->GetLoadingRevetment();
-            physicsJson[JsonOutputDefinitions::SURF_SIMILARITY_PARAMETER][i] = outputItem->GetSurfSimilarityParameter();
-            physicsJson[JsonOutputDefinitions::WAVE_STEEPNESS_DEEP_WATER][i] = outputItem->GetWaveSteepnessDeepWater();
+            physicsJson[JsonOutputNaturalStoneRevetmentDefinitions::SURF_SIMILARITY_PARAMETER][i] = outputItem->GetSurfSimilarityParameter();
+            physicsJson[JsonOutputNaturalStoneRevetmentDefinitions::WAVE_STEEPNESS_DEEP_WATER][i] = outputItem->GetWaveSteepnessDeepWater();
             physicsJson[JsonOutputNaturalStoneRevetmentDefinitions::UPPER_LIMIT_LOADING][i] = outputItem->GetUpperLimitLoading();
             physicsJson[JsonOutputNaturalStoneRevetmentDefinitions::LOWER_LIMIT_LOADING][i] = outputItem->GetLowerLimitLoading();
             physicsJson[JsonOutputNaturalStoneRevetmentDefinitions::DEPTH_MAXIMUM_WAVE_LOAD][i] = outputItem->GetDepthMaximumWaveLoad();

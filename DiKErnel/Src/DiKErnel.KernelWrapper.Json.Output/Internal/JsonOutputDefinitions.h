@@ -47,7 +47,5 @@ namespace DiKErnel::KernelWrapper::Json::Output
             inline static const std::string CALCULATION_TYPE = "RekenmethodeSoort";
 
             inline static const std::string HYDRAULIC_LOAD = "BelastingBekleding";
-            inline static const std::string SURF_SIMILARITY_PARAMETER = "Golfbrekingparameter";
-            inline static const std::string WAVE_STEEPNESS_DEEP_WATER = "GolfsteilheidDiepWater";
     };
 }

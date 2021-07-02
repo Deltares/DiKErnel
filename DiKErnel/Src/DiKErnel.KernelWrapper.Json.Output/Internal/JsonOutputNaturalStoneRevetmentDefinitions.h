@@ -29,7 +29,11 @@ namespace DiKErnel::KernelWrapper::Json::Output
         public:
             inline static const std::string CALCULATION_TYPE = "Natuursteen";
 
-            inline static const std::string INCREMENT_DAMAGE = "ToenameschadeNatuursteen";
+            inline static const std::string INCREMENT_DAMAGE = "ToenameSchadeNatuursteen";
+
+            inline static const std::string SURF_SIMILARITY_PARAMETER = "Golfbrekingparameter";
+            inline static const std::string WAVE_STEEPNESS_DEEP_WATER = "GolfsteilheidDiepWater";
+
             inline static const std::string UPPER_LIMIT_LOADING = "BovengrensBelastingNatuursteen";
             inline static const std::string LOWER_LIMIT_LOADING = "OndergrensBelastingNatuursteen";
             inline static const std::string DEPTH_MAXIMUM_WAVE_LOAD = "DiepteMaximaleGolfbelastingNatuursteen";
