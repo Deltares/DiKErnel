@@ -20,8 +20,10 @@
 
 #include "CalculationOutputAdapter.h"
 
+#include "AsphaltRevetmentWaveImpactTimeDependentOutput.h"
 #include "GrassRevetmentWaveImpactTimeDependentOutput.h"
 #include "GrassRevetmentWaveRunupRayleighTimeDependentOutput.h"
+#include "JsonOutputAsphaltRevetmentWaveImpactPhysicsLocationData.h"
 #include "JsonOutputConversionException.h"
 #include "JsonOutputDamageLocationData.h"
 #include "JsonOutputGrassRevetmentWaveImpactPhysicsLocationData.h"
@@ -119,6 +121,13 @@ namespace DiKErnel::KernelWrapper::Json::Output
         const ILocationDependentInput& locationInput)
     {
         const auto& locationTimeDependentOutputItem = locationOutput.GetTimeDependentOutputItems().front();
+
+        if (const auto* asphalt1RevetmentWaveImpactLocationTimeDependentOutputItem = dynamic_cast<const
+            AsphaltRevetmentWaveImpactTimeDependentOutput*>(
+            &locationTimeDependentOutputItem.get()); asphalt1RevetmentWaveImpactLocationTimeDependentOutputItem != nullptr)
+        {
+            return make_unique<JsonOutputAsphaltRevetmentWaveImpactPhysicsLocationData>(locationOutput, locationInput);
+        }
 
         if (const auto* grassRevetmentWaveImpactLocationTimeDependentOutputItem = dynamic_cast<const GrassRevetmentWaveImpactTimeDependentOutput*>(
             &locationTimeDependentOutputItem.get()); grassRevetmentWaveImpactLocationTimeDependentOutputItem != nullptr)

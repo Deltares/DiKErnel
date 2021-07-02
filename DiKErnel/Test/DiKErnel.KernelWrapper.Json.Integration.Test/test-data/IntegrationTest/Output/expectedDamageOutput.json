@@ -78,6 +78,28 @@
                         270.6801101013296
                     ]
                 }
+            },
+            {
+                "Naam": "AsfaltAlleOptiesAan",
+                "FalenBekleding": {
+                    "Faalgebeurtenis": false,
+                    "Faaltijd": null
+                },
+                "SchadeBekleding": {
+                    "Beginschade": 0.0,
+                    "Faalgetal": 1.0,
+                    "SchadegetalPerTijd": [
+                        2.1394583060906714e-29,
+                        6.340258721780794e-29,
+                        1.1061214875033552e-28,
+                        1.1061214875033552e-28,
+                        1.1185828780469863e-28,
+                        1.8926865521010166e-28,
+                        2.9237053163572527e-28,
+                        3.176093889756526e-28,
+                        3.2633965678347004e-28
+                    ]
+                }
             }
         ]
     }

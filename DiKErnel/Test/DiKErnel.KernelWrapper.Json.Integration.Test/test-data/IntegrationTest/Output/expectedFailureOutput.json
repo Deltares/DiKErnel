@@ -33,6 +33,13 @@
                     "Faalgebeurtenis": true,
                     "Faaltijd": 16
                 }
+            },
+            {
+                "Naam": "AsfaltAlleOptiesAan",
+                "FalenBekleding": {
+                    "Faalgebeurtenis": false,
+                    "Faaltijd": null
+                }
             }
         ]
     }
