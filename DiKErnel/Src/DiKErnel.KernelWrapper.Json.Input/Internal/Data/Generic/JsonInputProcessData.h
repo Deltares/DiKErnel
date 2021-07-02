@@ -22,7 +22,7 @@
 
 #include <memory>
 
-#include "JsonProcessType.h"
+#include "JsonInputProcessType.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
@@ -30,11 +30,11 @@ namespace DiKErnel::KernelWrapper::Json::Input
     {
         public:
             void SetProcessType(
-                std::unique_ptr<JsonProcessType> processType);
+                std::unique_ptr<JsonInputProcessType> processType);
 
-            const JsonProcessType* GetProcessType() const;
+            const JsonInputProcessType* GetProcessType() const;
 
         private:
-            std::unique_ptr<JsonProcessType> _processType = nullptr;
+            std::unique_ptr<JsonInputProcessType> _processType = nullptr;
     };
 }

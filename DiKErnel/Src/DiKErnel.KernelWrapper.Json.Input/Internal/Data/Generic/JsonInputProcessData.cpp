@@ -25,12 +25,12 @@ namespace DiKErnel::KernelWrapper::Json::Input
     using namespace std;
 
     void JsonInputProcessData::SetProcessType(
-        unique_ptr<JsonProcessType> processType)
+        unique_ptr<JsonInputProcessType> processType)
     {
         _processType = move(processType);
     }
 
-    const JsonProcessType* JsonInputProcessData::GetProcessType() const
+    const JsonInputProcessType* JsonInputProcessData::GetProcessType() const
     {
         return _processType.get();
     }

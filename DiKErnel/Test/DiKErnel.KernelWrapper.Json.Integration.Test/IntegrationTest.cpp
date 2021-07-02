@@ -44,15 +44,15 @@ namespace DiKErnel::KernelWrapper::Json::Integration::Test
         const string _actualOutputFilePath = (filesystem::temp_directory_path() / "actualOutput.json").string();
 
         static JsonOutputType ConvertProcessType(
-            const JsonProcessType processType)
+            const JsonInputProcessType processType)
         {
             switch (processType)
             {
-                case JsonProcessType::Failure:
+                case JsonInputProcessType::Failure:
                     return JsonOutputType::Failure;
-                case JsonProcessType::Damage:
+                case JsonInputProcessType::Damage:
                     return JsonOutputType::Damage;
-                case JsonProcessType::Physics:
+                case JsonInputProcessType::Physics:
                     return JsonOutputType::Physics;
                 default:
                     throw runtime_error("Unsupported processType");

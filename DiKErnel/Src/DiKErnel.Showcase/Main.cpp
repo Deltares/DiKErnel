@@ -46,7 +46,7 @@ void InputMethod(
     atomic<UserInput>&);
 
 JsonOutputType ConvertProcessType(
-    JsonProcessType);
+    JsonInputProcessType);
 
 #pragma endregion
 
@@ -191,15 +191,15 @@ void InputMethod(
 }
 
 JsonOutputType ConvertProcessType(
-    const JsonProcessType processType)
+    const JsonInputProcessType processType)
 {
     switch (processType)
     {
-        case JsonProcessType::Failure:
+        case JsonInputProcessType::Failure:
             return JsonOutputType::Failure;
-        case JsonProcessType::Damage:
+        case JsonInputProcessType::Damage:
             return JsonOutputType::Damage;
-        case JsonProcessType::Physics:
+        case JsonInputProcessType::Physics:
             return JsonOutputType::Physics;
         default:
             throw runtime_error("Unsupported processType");
