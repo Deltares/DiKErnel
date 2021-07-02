@@ -98,25 +98,21 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
 
     TEST_F(JsonInputComposerTest, GivenJsonInputWithoutProcessType_WhenGetInputDataFromJson_ThenReturnDefaultJsonProcessType)
     {
-        // Given & When & Then
         PerformProcessTypeTest("AllLocationsInput.json", JsonProcessType::Damage);
     }
 
     TEST_F(JsonInputComposerTest, GivenJsonFileWithProcessTypeFailure_WhenGetInputDataFromJson_ThenReturnExpectedProcessType)
     {
-        // Given & When & Then
         PerformProcessTypeTest("ProcessTypeFailure.json", JsonProcessType::Failure);
     }
 
     TEST_F(JsonInputComposerTest, GivenJsonFileWithProcessTypeDamage_WhenGetInputDataFromJson_ThenReturnExpectedProcessType)
     {
-        // Given & When & Then
         PerformProcessTypeTest("ProcessTypeDamage.json", JsonProcessType::Damage);
     }
 
     TEST_F(JsonInputComposerTest, GivenJsonFileWithProcessTypePhysics_WhenGetInputDataFromJson_ThenReturnExpectedProcessType)
     {
-        // Given & When & Then
         PerformProcessTypeTest("ProcessTypePhysics.json", JsonProcessType::Physics);
     }
 
