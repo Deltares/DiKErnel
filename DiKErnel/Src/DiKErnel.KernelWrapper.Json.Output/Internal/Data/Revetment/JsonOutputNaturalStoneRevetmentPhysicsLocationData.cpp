@@ -46,10 +46,6 @@ namespace DiKErnel::KernelWrapper::Json::Output
         auto physicsJson = ordered_json(
             {
                 {
-                    JsonOutputDefinitions::TOP_LAYER_TYPE,
-                    "NoorseSteen"
-                },
-                {
                     JsonOutputDefinitions::CALCULATION_TYPE,
                     JsonOutputNaturalStoneRevetmentDefinitions::CALCULATION_TYPE_NATURAL_STONE
                 }
