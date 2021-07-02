@@ -144,192 +144,192 @@
                 }
             },
             {
-				"Naam": "GrasGolfklapAlleOptiesAan",
-				"Schade":
-				{
-					"BeginSchade": 0.04,
-					"Faalgetal": 1.07
-				},
-				"Bekleding":
-				{
-					"TypeToplaag": "GrasGeslotenZode",
-					"StandtijdlijnGrasGolfklapAgwi": 0.3,
-					"StandtijdlijnGrasGolfklapBgwi": -0.1,
-					"StandtijdlijnGrasGolfklapCgwi": 0.96,
-					"Rekenmethoden":
-					[
-						{
-							"RekenmethodeSoort": "GrasGolfklap",
-							"MinimumGolfhoogteGrasGolfklap":
-							{
-								"MinimumGolfhoogteGrasGolfklapTemax": 2500000
-							},
-							"MaximumGolfhoogteGrasGolfklap":
-							{
-								"MaximumGolfhoogteGrasGolfklapTemin": 3.1
-							},
-							"ImpactGolfhoekBekledingGrasGolfklap":
-							{
-								"ImpactGolfhoekBekledingGrasGolfklapNwa": 0.9,
-								"ImpactGolfhoekBekledingGrasGolfklapQwa": 0.1,
-								"ImpactGolfhoekBekledingGrasGolfklapRwa": 8.0
-							},
-							"BovengrensBelastingGrasGolfklap":
-							{
-								"BovengrensBelastingGrasGolfklapAul": 1.0
-							},
-							"OndergrensBelastingGrasGolfklap":
-							{
-								"OndergrensBelastingGrasGolfklapAll": 3.5
-							}
-						}
-					]
-				},
-				"Profielschematisatie":
-				{
-					"TanA": 0.2,
-					"PositieZ": 1.0
-				}
-			},
+                "Naam": "GrasGolfklapAlleOptiesAan",
+                "Schade":
+                {
+                    "BeginSchade": 0.04,
+                    "Faalgetal": 1.07
+                },
+                "Bekleding":
+                {
+                    "TypeToplaag": "GrasGeslotenZode",
+                    "StandtijdlijnGrasGolfklapAgwi": 0.3,
+                    "StandtijdlijnGrasGolfklapBgwi": -0.1,
+                    "StandtijdlijnGrasGolfklapCgwi": 0.96,
+                    "Rekenmethoden":
+                    [
+                        {
+                            "RekenmethodeSoort": "GrasGolfklap",
+                            "MinimumGolfhoogteGrasGolfklap":
+                            {
+                                "MinimumGolfhoogteGrasGolfklapTemax": 2500000
+                            },
+                            "MaximumGolfhoogteGrasGolfklap":
+                            {
+                                "MaximumGolfhoogteGrasGolfklapTemin": 3.1
+                            },
+                            "ImpactGolfhoekBekledingGrasGolfklap":
+                            {
+                                "ImpactGolfhoekBekledingGrasGolfklapNwa": 0.9,
+                                "ImpactGolfhoekBekledingGrasGolfklapQwa": 0.1,
+                                "ImpactGolfhoekBekledingGrasGolfklapRwa": 8.0
+                            },
+                            "BovengrensBelastingGrasGolfklap":
+                            {
+                                "BovengrensBelastingGrasGolfklapAul": 1.0
+                            },
+                            "OndergrensBelastingGrasGolfklap":
+                            {
+                                "OndergrensBelastingGrasGolfklapAll": 3.5
+                            }
+                        }
+                    ]
+                },
+                "Profielschematisatie":
+                {
+                    "TanA": 0.2,
+                    "PositieZ": 1.0
+                }
+            },
             {
-				"Naam": "GrasGolfoploopRayleighDiscreetAlleOptiesAan",
-				"Schade":
-				{
-					"BeginSchade": 0.0006,
-					"Faalgetal": 0.45
-				},
-				"Bekleding":
-				{
-					"TypeToplaag": "GrasGeslotenZode",
-					"KritiekeCumulatieveOverbelasting": 7213.0,
-					"KritiekeFrontsnelheidGrasGolfoploop": 8.3,
-					"VerhogingBelastingOvergangAlfaM": 1.5,
-					"VerlagingSterkteOvergangAlfaS": 0.8,
-					"Rekenmethoden":
-					[
-						{
-							"RekenmethodeSoort": "GrasGolfoploop",
-							"GemiddeldAantalGolvenPerTijdstap":
-							{
-								"GemiddeldAantalGolvenPerTijdstapCtm": 0.99
-							},
-							"RepresentatieveGolfoploop2p":
-							{
-								"RepresentatieveGolfoploop2pAru": 1.56,
-								"RepresentatieveGolfoploop2pBru": 4.6,
-								"RepresentatieveGolfoploop2pCru": 3.5
-							},
-							"ImpactGolfhoekGolfoploop":
-							{
-								"ImpactGolfhoekGolfoploopAbeta": 0.0011,
-								"ImpactGolfhoekGolfoploopBetamax": 89.0
-							},
-							"Rekenprotocol":
-							{
-								"Rekenprotocolsoort": "RayleighDiscreet",
-								"AantalGolvenVastRD": 5000,
-								"FrontsnelheidGolfOploopRD":
-								{
-									"FrontsnelheidGolfOploopRDCu": 3.5
-								}
-							}
-						}
-					]
-				},
-				"Profielschematisatie":
-				{
-					"TanA": 0.7,
-					"PositieZ": 5.0,
-					"BermfactorGammab": 3.2,
-					"RuwheidsfactorGammaf": 4.1
-				}
-			},
+                "Naam": "GrasGolfoploopRayleighDiscreetAlleOptiesAan",
+                "Schade":
+                {
+                    "BeginSchade": 0.0006,
+                    "Faalgetal": 0.45
+                },
+                "Bekleding":
+                {
+                    "TypeToplaag": "GrasGeslotenZode",
+                    "KritiekeCumulatieveOverbelasting": 7213.0,
+                    "KritiekeFrontsnelheidGrasGolfoploop": 8.3,
+                    "VerhogingBelastingOvergangAlfaM": 1.5,
+                    "VerlagingSterkteOvergangAlfaS": 0.8,
+                    "Rekenmethoden":
+                    [
+                        {
+                            "RekenmethodeSoort": "GrasGolfoploop",
+                            "GemiddeldAantalGolvenPerTijdstap":
+                            {
+                                "GemiddeldAantalGolvenPerTijdstapCtm": 0.99
+                            },
+                            "RepresentatieveGolfoploop2p":
+                            {
+                                "RepresentatieveGolfoploop2pAru": 1.56,
+                                "RepresentatieveGolfoploop2pBru": 4.6,
+                                "RepresentatieveGolfoploop2pCru": 3.5
+                            },
+                            "ImpactGolfhoekGolfoploop":
+                            {
+                                "ImpactGolfhoekGolfoploopAbeta": 0.0011,
+                                "ImpactGolfhoekGolfoploopBetamax": 89.0
+                            },
+                            "Rekenprotocol":
+                            {
+                                "Rekenprotocolsoort": "RayleighDiscreet",
+                                "AantalGolvenVastRD": 5000,
+                                "FrontsnelheidGolfOploopRD":
+                                {
+                                    "FrontsnelheidGolfOploopRDCu": 3.5
+                                }
+                            }
+                        }
+                    ]
+                },
+                "Profielschematisatie":
+                {
+                    "TanA": 0.7,
+                    "PositieZ": 5.0,
+                    "BermfactorGammab": 3.2,
+                    "RuwheidsfactorGammaf": 4.1
+                }
+            },
             {
-				"Naam": "AsfaltAlleOptiesAan",
-				"Schade":
-				{
-					"BeginSchade": 0,
-					"Faalgetal": 1
-				},
-				"Bekleding":
-				{
-					"TypeToplaag": "WaterbouwAsfaltBeton",
-					"BreuksterkteAsfalt": 5.6,
-					"SoortelijkeDichtheidWater": 0.25,
-					"VeerconstanteOndergrond": 53,
-					"Toplaag":
-					{
-						"Dikte": 0.16,
-						"Stijfheidsmodulus": 18214
-					},
-					"Onderlaag":
-					{
-						"Dikte": 0.20,
-						"Stijfheidsmodulus": 15000
-					},
-					"Rekenmethoden":
-					[
-						{
-							"RekenmethodeSoort": "AsfaltGolfklap",
-							"GemiddeldAantalGolvenPerTijdstap":
-							{
-								"GemiddeldAantalGolvenPerTijdstapCtm": 1.1
-							},
-							"VermoeiingAsfaltbekleding":
-							{
-								"VermoeiingAsfaltbekledingAlfa": 0.723,
-								"VermoeiingAsfaltbekledingBeta": 7.2
-							},
-							"Stootgetal":
-							{
-								"StootgetalC": 4.0
-							},
-							"Stijfheidsverhouding":
-							{
-								"StijfheidsverhoudingNu": 0.58
-							},
-							"BreedteFactorenTabel":
-							[
-								[
-									1.6,
-									1.0392
-								],
-								[
-									1.7,
-									1.0738
-								]
-							],
-							"DiepteFactorenTabel":
-							[
-								[
-									-2.0,
-									1.0244
-								],
-								[
-									-1.875,
-									1.0544
-								]
-							],
-							"StootFactorenTabel":
-							[
-								[
-									6.0,
-									2.039
-								],
-								[
-									6.4,
-									2.1
-								]
-							]
-						}
-					]
-				},
-				"Profielschematisatie":
-				{
-					"TanA": 0.6548,
-					"PositieZ": 7.6
-				}
-			}
+                "Naam": "AsfaltAlleOptiesAan",
+                "Schade":
+                {
+                    "BeginSchade": 0,
+                    "Faalgetal": 1
+                },
+                "Bekleding":
+                {
+                    "TypeToplaag": "WaterbouwAsfaltBeton",
+                    "BreuksterkteAsfalt": 5.6,
+                    "SoortelijkeDichtheidWater": 0.25,
+                    "VeerconstanteOndergrond": 53,
+                    "Toplaag":
+                    {
+                        "Dikte": 0.16,
+                        "Stijfheidsmodulus": 18214
+                    },
+                    "Onderlaag":
+                    {
+                        "Dikte": 0.20,
+                        "Stijfheidsmodulus": 15000
+                    },
+                    "Rekenmethoden":
+                    [
+                        {
+                            "RekenmethodeSoort": "AsfaltGolfklap",
+                            "GemiddeldAantalGolvenPerTijdstap":
+                            {
+                                "GemiddeldAantalGolvenPerTijdstapCtm": 1.1
+                            },
+                            "VermoeiingAsfaltbekleding":
+                            {
+                                "VermoeiingAsfaltbekledingAlfa": 0.723,
+                                "VermoeiingAsfaltbekledingBeta": 7.2
+                            },
+                            "Stootgetal":
+                            {
+                                "StootgetalC": 4.0
+                            },
+                            "Stijfheidsverhouding":
+                            {
+                                "StijfheidsverhoudingNu": 0.58
+                            },
+                            "BreedteFactorenTabel":
+                            [
+                                [
+                                    1.6,
+                                    1.0392
+                                ],
+                                [
+                                    1.7,
+                                    1.0738
+                                ]
+                            ],
+                            "DiepteFactorenTabel":
+                            [
+                                [
+                                    -2.0,
+                                    1.0244
+                                ],
+                                [
+                                    -1.875,
+                                    1.0544
+                                ]
+                            ],
+                            "StootFactorenTabel":
+                            [
+                                [
+                                    6.0,
+                                    2.039
+                                ],
+                                [
+                                    6.4,
+                                    2.1
+                                ]
+                            ]
+                        }
+                    ]
+                },
+                "Profielschematisatie":
+                {
+                    "TanA": 0.6548,
+                    "PositieZ": 7.6
+                }
+            }
         ]
     }
 }
