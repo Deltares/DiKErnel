@@ -42,7 +42,10 @@ namespace DiKErnel::TestUtil
         double expected,
         double actual)
     {
-        while (expected < 1)
+        expected = abs(expected);
+        actual = abs(actual);
+
+        while (expected > 0 && expected < 1)
         {
             expected *= 10.0;
             actual *= 10.0;

@@ -101,7 +101,7 @@ namespace DiKErnel::KernelWrapper::Json::Integration::Test
                 {
                     if (value[j].type() == json::value_t::number_float)
                     {
-                        ASSERT_DOUBLE_EQ(value[j], actualPhysics[key][j]);
+                        AssertHelper::AssertAreAlmostEqual(value[j].get<double>(), actualPhysics[key][j].get<double>());
                     }
                     else
                     {
