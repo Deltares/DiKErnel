@@ -24,6 +24,7 @@
 
 #include <nlohmann/json.hpp>
 
+#include "AssertHelper.h"
 #include "Calculator.h"
 #include "JsonInputComposer.h"
 #include "JsonOutputComposer.h"
@@ -59,6 +60,57 @@ namespace DiKErnel::KernelWrapper::Json::Integration::Test
             }
         }
 
+        void AssertFailure(
+            const json& expectedLocation,
+            const json& actualLocation) const
+        {
+            ASSERT_EQ(expectedLocation["Naam"], actualLocation["Naam"]);
+
+            const auto& expectedFailure = expectedLocation["FalenBekleding"];
+            const auto& actualFailure = actualLocation["FalenBekleding"];
+
+            ASSERT_EQ(expectedFailure["Faalgebeurtenis"], actualFailure["Faalgebeurtenis"]);
+            ASSERT_EQ(expectedFailure["Faaltijd"], actualFailure["Faaltijd"]);
+        }
+
+        void AssertDamage(
+            const json& expectedLocation,
+            const json& actualLocation) const
+        {
+            auto expectedDamage = expectedLocation["SchadeBekleding"];
+            auto actualDamage = actualLocation["SchadeBekleding"];
+
+            ASSERT_EQ(expectedDamage["Beginschade"], actualDamage["Beginschade"]);
+            ASSERT_EQ(expectedDamage["Faalgetal"], actualDamage["Faalgetal"]);
+            AssertHelper::AssertAreEqual(expectedDamage["SchadegetalPerTijd"], actualDamage["SchadegetalPerTijd"]);
+        }
+
+        void AssertPhysics(
+            const json& expectedLocation,
+            const json& actualLocation) const
+        {
+            const auto& expectedPhysics = expectedLocation["FysicaBekleding"];
+            const auto& actualPhysics = actualLocation["FysicaBekleding"];
+
+            ASSERT_EQ(expectedPhysics.size(), actualPhysics.size());
+            ASSERT_EQ(expectedPhysics["RekenmethodeSoort"], actualPhysics["RekenmethodeSoort"]);
+
+            for (const auto& [key, value] : expectedPhysics.items())
+            {
+                for (auto j = 1; j < static_cast<int>(value.size()); ++j)
+                {
+                    if (value[j].type() == json::value_t::number_float)
+                    {
+                        ASSERT_DOUBLE_EQ(value[j], actualPhysics[key][j]);
+                    }
+                    else
+                    {
+                        ASSERT_EQ(value[j], actualPhysics[key][j]);
+                    }
+                }
+            }
+        }
+
         void PerformTest(
             const string& inputFilePath,
             const string& expectedOutputFilePath) const
@@ -70,9 +122,11 @@ namespace DiKErnel::KernelWrapper::Json::Integration::Test
             Calculator calculator(*calculationInput);
             calculator.WaitForCompletion();
 
+            const auto outputType = ConvertProcessType(get<1>(inputData));
+
             const auto outputData = calculator.GetCalculationOutput();
             JsonOutputComposer::WriteCalculationOutputToJson(_actualOutputFilePath, *outputData, *calculationInput,
-                                                             ConvertProcessType(get<1>(inputData)));
+                                                             outputType);
 
             // Then
             ifstream ifs1(expectedOutputFilePath);
@@ -81,9 +135,30 @@ namespace DiKErnel::KernelWrapper::Json::Integration::Test
             ifstream ifs2(_actualOutputFilePath);
             const auto actualJson = json::parse(ifs2);
 
-            json patch = json::diff(expectedJson, actualJson);
+            ASSERT_EQ(expectedJson["Uitvoerdata"]["Tijd"], actualJson["Uitvoerdata"]["Tijd"]);
 
-            ASSERT_TRUE(patch.empty());
+            const auto& expectedLocations = expectedJson["Uitvoerdata"]["Locaties"];
+            const auto& actualLocations = actualJson["Uitvoerdata"]["Locaties"];
+
+            ASSERT_EQ(expectedLocations.size(), actualLocations.size());
+
+            for (auto i = 0; i < static_cast<int>(expectedLocations.size()); ++i)
+            {
+                const auto& expectedLocation = expectedLocations[i];
+                const auto& actualLocation = actualLocations[i];
+
+                AssertFailure(expectedLocation, actualLocation);
+
+                if (outputType == JsonOutputType::Damage || outputType == JsonOutputType::Physics)
+                {
+                    AssertDamage(expectedLocation, actualLocation);
+                }
+
+                if (outputType == JsonOutputType::Physics)
+                {
+                    AssertPhysics(expectedLocation, actualLocation);
+                }
+            }
         }
 
         ~IntegrationTest() override
