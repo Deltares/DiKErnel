@@ -44,11 +44,11 @@ namespace DiKErnel::Core::Test
 
         explicit CalculatorTest()
         {
-            _locationDependentInputItems.emplace_back(make_unique<NiceMock<ILocationDependentInputMock>>());
+            _locationDependentInputItems.push_back(make_unique<NiceMock<ILocationDependentInputMock>>());
 
-            _timeDependentInputItems.emplace_back(make_unique<ITimeDependentInputMock>());
-            _timeDependentInputItems.emplace_back(make_unique<ITimeDependentInputMock>());
-            _timeDependentInputItems.emplace_back(make_unique<ITimeDependentInputMock>());
+            _timeDependentInputItems.push_back(make_unique<ITimeDependentInputMock>());
+            _timeDependentInputItems.push_back(make_unique<ITimeDependentInputMock>());
+            _timeDependentInputItems.push_back(make_unique<ITimeDependentInputMock>());
 
             for (const auto& locationDependentInput : _locationDependentInputItems)
             {

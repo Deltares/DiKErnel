@@ -71,8 +71,8 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
             ON_CALL(*locationDependentInput1, GetFailureNumber).WillByDefault(Return(0.95));
             ON_CALL(*locationDependentInput2, GetFailureNumber).WillByDefault(Return(1));
 
-            _locationDependentInputItems.emplace_back(move(locationDependentInput1));
-            _locationDependentInputItems.emplace_back(move(locationDependentInput2));
+            _locationDependentInputItems.push_back(move(locationDependentInput1));
+            _locationDependentInputItems.push_back(move(locationDependentInput2));
 
             for (const auto& locationDependentInput : _locationDependentInputItems)
             {
@@ -90,8 +90,8 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
             ON_CALL(*timeDependentInput2, GetBeginTime).WillByDefault(Return(10));
             ON_CALL(*timeDependentInput2, GetEndTime).WillByDefault(Return(100));
 
-            _timeDependentInputItems.emplace_back(move(timeDependentInput1));
-            _timeDependentInputItems.emplace_back(move(timeDependentInput2));
+            _timeDependentInputItems.push_back(move(timeDependentInput1));
+            _timeDependentInputItems.push_back(move(timeDependentInput2));
 
             for (const auto& timeDependentInput : _timeDependentInputItems)
             {
@@ -151,7 +151,7 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
 
             auto locationDependentInput1 = make_unique<NiceMock<ILocationDependentInputMock>>();
 
-            locationDependentInputItems.emplace_back(move(locationDependentInput1));
+            locationDependentInputItems.push_back(move(locationDependentInput1));
 
             for (const auto& locationDependentInput : locationDependentInputItems)
             {

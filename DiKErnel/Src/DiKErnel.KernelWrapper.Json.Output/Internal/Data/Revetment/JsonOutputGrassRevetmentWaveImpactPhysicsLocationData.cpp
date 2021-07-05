@@ -38,7 +38,7 @@ namespace DiKErnel::KernelWrapper::Json::Output
     {
         for (auto timeDependentOutput : locationOutput.GetTimeDependentOutputItems())
         {
-            _timeDependentOutputItems.emplace_back(dynamic_cast<GrassRevetmentWaveImpactTimeDependentOutput*>(&timeDependentOutput.get()));
+            _timeDependentOutputItems.push_back(dynamic_cast<GrassRevetmentWaveImpactTimeDependentOutput*>(&timeDependentOutput.get()));
         }
     }
 

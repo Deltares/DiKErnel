@@ -39,7 +39,7 @@ namespace DiKErnel::KernelWrapper::Json::Output
 
         for (const auto& location : _locationDataItems)
         {
-            locationOutputJsonItems.emplace_back(location->CreateJson());
+            locationOutputJsonItems.push_back(location->CreateJson());
         }
 
         return ordered_json::object(

@@ -168,7 +168,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 ParseRevetmentLocationData(readRevetment, readCalculationMethod, calculationType),
                 ParseProfileSchematizationData(readLocation[JsonInputDefinitions::PROFILE_SCHEMATIZATION], calculationType));
 
-            parsedLocations.emplace_back(move(parsedLocation));
+            parsedLocations.push_back(move(parsedLocation));
         }
 
         return parsedLocations;
