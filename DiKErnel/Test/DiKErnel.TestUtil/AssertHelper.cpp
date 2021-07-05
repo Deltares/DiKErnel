@@ -51,6 +51,6 @@ namespace DiKErnel::TestUtil
             actual *= 10.0;
         }
 
-        ASSERT_NEAR(expected, actual, 1e-14);
+        ASSERT_NEAR(expected, actual, 1e-13);
     }
 }
