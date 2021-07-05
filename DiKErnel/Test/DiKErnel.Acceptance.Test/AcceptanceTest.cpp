@@ -48,7 +48,7 @@ namespace DiKErnel::Acceptance::Test
             const double expectedDamage,
             const int* expectedTimeOfFailure) const
         {
-            PerformTest(inputFilePath, vector<double>(1, expectedDamage), vector<const int*>(1, expectedTimeOfFailure));
+            PerformTest(inputFilePath, vector(1, expectedDamage), vector(1, expectedTimeOfFailure));
         }
 
         void PerformTest(

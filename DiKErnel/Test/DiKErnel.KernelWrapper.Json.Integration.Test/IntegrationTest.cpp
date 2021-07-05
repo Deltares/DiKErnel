@@ -82,7 +82,7 @@ namespace DiKErnel::KernelWrapper::Json::Integration::Test
 
             ASSERT_EQ(expectedDamage["Beginschade"], actualDamage["Beginschade"]);
             ASSERT_EQ(expectedDamage["Faalgetal"], actualDamage["Faalgetal"]);
-            AssertHelper::AssertAreEqual(expectedDamage["SchadegetalPerTijd"], actualDamage["SchadegetalPerTijd"]);
+            AssertHelper::AssertAreAlmostEqual(expectedDamage["SchadegetalPerTijd"].get<vector<double>>(), actualDamage["SchadegetalPerTijd"].get<vector<double>>());
         }
 
         void AssertPhysics(

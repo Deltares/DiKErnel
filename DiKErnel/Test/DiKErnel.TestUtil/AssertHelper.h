@@ -27,9 +27,13 @@ namespace DiKErnel::TestUtil
     class AssertHelper
     {
         public:
-            static void AssertAreEqual(
+            static void AssertAreAlmostEqual(
                 const std::vector<double>& expectedCollection,
                 const std::vector<double>& actualCollection);
+
+            static void AssertAreAlmostEqual(
+                double expected,
+                double actual);
 
             typedef void (*Action)();
 
