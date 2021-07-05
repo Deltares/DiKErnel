@@ -25,7 +25,6 @@
 #include <nlohmann/json.hpp>
 
 #include "Calculator.h"
-#include "FileAssert.h"
 #include "JsonInputComposer.h"
 #include "JsonOutputComposer.h"
 #include "TestDataPathHelper.h"
@@ -34,6 +33,7 @@ namespace DiKErnel::KernelWrapper::Json::Integration::Test
 {
     using namespace Core;
     using namespace Input;
+    using namespace nlohmann;
     using namespace Output;
     using namespace std;
     using namespace testing;
@@ -75,7 +75,15 @@ namespace DiKErnel::KernelWrapper::Json::Integration::Test
                                                              ConvertProcessType(get<1>(inputData)));
 
             // Then
-            FileAssert::AssertFileContents(expectedOutputFilePath, _actualOutputFilePath);
+            ifstream ifs1(expectedOutputFilePath);
+            const auto expectedJson = json::parse(ifs1);
+
+            ifstream ifs2(_actualOutputFilePath);
+            const auto actualJson = json::parse(ifs2);
+
+            json patch = json::diff(expectedJson, actualJson);
+
+            ASSERT_TRUE(patch.empty());
         }
 
         ~IntegrationTest() override
