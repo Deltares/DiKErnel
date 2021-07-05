@@ -22,6 +22,9 @@
 
 namespace DiKErnel::KernelWrapper::Json::Output
 {
+    /*!
+     * \brief The Json output types.
+     */
     enum class JsonOutputType
     {
         Failure,

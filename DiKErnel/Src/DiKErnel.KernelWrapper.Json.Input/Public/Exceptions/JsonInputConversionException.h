@@ -25,7 +25,7 @@
 namespace DiKErnel::KernelWrapper::Json::Input
 {
     /*!
-     * \brief Exception that can be thrown when json input cannot be converted.
+     * \brief Exception that can be thrown when Json input cannot be converted.
      */
     class JsonInputConversionException : public std::exception
     {

@@ -21,13 +21,10 @@
 #include <gtest/gtest.h>
 
 #include "CalculationOutput.h"
-#include "LocationDependentOutput.h"
-#include "TimeDependentOutputMock.h"
 
 namespace DiKErnel::Core::Test
 {
     using namespace std;
-    using namespace TestUtil;
 
     TEST(CalculationOutputTest, Constructor_WithParameters_ExpectedValues)
     {

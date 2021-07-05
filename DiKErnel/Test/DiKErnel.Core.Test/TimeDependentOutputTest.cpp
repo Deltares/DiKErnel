@@ -20,7 +20,6 @@
 
 #include <gtest/gtest.h>
 
-#include "TimeDependentOutput.h"
 #include "TimeDependentOutputMock.h"
 
 namespace DiKErnel::Core::Test

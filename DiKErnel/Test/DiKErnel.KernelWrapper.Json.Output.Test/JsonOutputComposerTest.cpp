@@ -205,7 +205,8 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
         PerformTest("ExpectedDamageOutput.json", JsonOutputType::Damage);
     }
 
-    TEST_F(JsonOutputComposerTest, WriteCalculationOutputToJson_JsonOutputTypePhysicsAndLocationDataNotSupported_ThrowsJsonOutputConversionException)
+    TEST_F(JsonOutputComposerTest,
+           WriteCalculationOutputToJson_JsonOutputTypePhysicsAndLocationDataNotSupported_ThrowsJsonOutputConversionException)
     {
         // Setup & Call
         const auto action = &JsonOutputComposerTest::WriteCalculationOutputToJsonWithNotSupportedLocationData;

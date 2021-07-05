@@ -25,7 +25,7 @@
 namespace DiKErnel::KernelWrapper::Json::Output
 {
     /*!
-     * \brief Exception that can be thrown when json output cannot be created.
+     * \brief Exception that can be thrown when Json output cannot be created.
      */
     class JsonOutputConversionException : public std::exception
     {

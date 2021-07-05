@@ -20,16 +20,11 @@
 
 #include "CalculationOutputAdapter.h"
 
-#include "AsphaltRevetmentWaveImpactTimeDependentOutput.h"
-#include "GrassRevetmentWaveImpactTimeDependentOutput.h"
-#include "GrassRevetmentWaveRunupRayleighTimeDependentOutput.h"
 #include "JsonOutputAsphaltRevetmentWaveImpactPhysicsLocationData.h"
 #include "JsonOutputConversionException.h"
-#include "JsonOutputDamageLocationData.h"
 #include "JsonOutputGrassRevetmentWaveImpactPhysicsLocationData.h"
 #include "JsonOutputGrassRevetmentWaveRunupRayleighPhysicsLocationData.h"
 #include "JsonOutputNaturalStoneRevetmentPhysicsLocationData.h"
-#include "NaturalStoneRevetmentLocationDependentInput.h"
 
 namespace DiKErnel::KernelWrapper::Json::Output
 {
@@ -77,9 +72,10 @@ namespace DiKErnel::KernelWrapper::Json::Output
 
         vector<unique_ptr<JsonOutputFailureLocationData>> jsonOutputLocationDataItems;
 
+        jsonOutputLocationDataItems.reserve(static_cast<int>(locationDependentOutputItems.size()));
         for (auto i = 0; i < static_cast<int>(locationDependentOutputItems.size()); ++i)
         {
-            jsonOutputLocationDataItems.emplace_back(
+            jsonOutputLocationDataItems.push_back(
                 createLocationDataFuncPtr(locationDependentOutputItems[i].get(), locationDependentInputItems[i].get()));
         }
 
