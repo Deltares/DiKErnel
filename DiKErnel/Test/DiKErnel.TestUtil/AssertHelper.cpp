@@ -48,6 +48,6 @@ namespace DiKErnel::TestUtil
             actual *= 10.0;
         }
 
-        ASSERT_DOUBLE_EQ(expected, actual);
+        ASSERT_NEAR(expected, actual, 1e-14);
     }
 }
