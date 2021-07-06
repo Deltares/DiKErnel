@@ -42,8 +42,11 @@ namespace DiKErnel::TestUtil
         double expected,
         double actual)
     {
-        expected = abs(expected);
-        actual = abs(actual);
+        if (expected < 0 && actual < 0)
+        {
+            expected = abs(expected);
+            actual = abs(actual);
+        }
 
         while (expected > 0 && expected < 1)
         {
@@ -51,6 +54,6 @@ namespace DiKErnel::TestUtil
             actual *= 10.0;
         }
 
-        ASSERT_NEAR(expected, actual, 1e-13);
+        ASSERT_NEAR(expected, actual, 1e-11);
     }
 }
