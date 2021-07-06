@@ -36,7 +36,7 @@ namespace DiKErnel::KernelWrapper::Json::Output
         const ILocationDependentInput& locationInput)
         : JsonOutputDamageLocationData(locationOutput, locationInput)
     {
-        for (auto timeDependentOutput : locationOutput.GetTimeDependentOutputItems())
+        for (const auto& timeDependentOutput : locationOutput.GetTimeDependentOutputItems())
         {
             _timeDependentOutputItems.push_back(dynamic_cast<GrassRevetmentWaveImpactTimeDependentOutput*>(&timeDependentOutput.get()));
         }
