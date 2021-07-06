@@ -194,16 +194,11 @@ namespace DiKErnel::KernelWrapper::Json::Input
         const JsonInputGrassRevetmentWaveRunupRayleighLocationData& grassRevetmentWaveRunupRayleighLocationData)
     {
         const auto& damageData = location.GetDamageData();
-        const auto* profileSchematizationData = dynamic_cast<const JsonInputGrassRevetmentWaveRunupProfileSchematizationData*>(
-            &location.GetProfileSchematizationData());
-
-        if (profileSchematizationData == nullptr)
-        {
-            throw JsonInputConversionException("Cannot convert profile schematization data.");
-        }
+        const auto& profileSchematizationData = dynamic_cast<const JsonInputGrassRevetmentWaveRunupProfileSchematizationData&>(
+            location.GetProfileSchematizationData());
 
         auto constructionProperties = make_unique<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(
-            location.GetName(), profileSchematizationData->GetTanA(), profileSchematizationData->GetPositionZ(),
+            location.GetName(), profileSchematizationData.GetTanA(), profileSchematizationData.GetPositionZ(),
             ConvertTopLayerType(grassRevetmentWaveRunupRayleighLocationData.GetTopLayerType()));
 
         constructionProperties->SetInitialDamage(forward<unique_ptr<double>>(CreatePointerOfValue(damageData.GetInitialDamage())));
@@ -227,9 +222,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
         constructionProperties->SetRepresentativeWaveRunup2PCru(
             forward<unique_ptr<double>>(CreatePointerOfValue(grassRevetmentWaveRunupRayleighLocationData.GetRepresentativeWaveRunup2PCru())));
         constructionProperties->SetRepresentativeWaveRunup2PGammab(
-            forward<unique_ptr<double>>(CreatePointerOfValue(profileSchematizationData->GetRepresentativeWaveRunup2PGammab())));
+            forward<unique_ptr<double>>(CreatePointerOfValue(profileSchematizationData.GetRepresentativeWaveRunup2PGammab())));
         constructionProperties->SetRepresentativeWaveRunup2PGammaf(
-            forward<unique_ptr<double>>(CreatePointerOfValue(profileSchematizationData->GetRepresentativeWaveRunup2PGammaf())));
+            forward<unique_ptr<double>>(CreatePointerOfValue(profileSchematizationData.GetRepresentativeWaveRunup2PGammaf())));
 
         constructionProperties->SetWaveAngleImpactAbeta(
             forward<unique_ptr<double>>(CreatePointerOfValue(grassRevetmentWaveRunupRayleighLocationData.GetWaveAngleImpactAbeta())));
