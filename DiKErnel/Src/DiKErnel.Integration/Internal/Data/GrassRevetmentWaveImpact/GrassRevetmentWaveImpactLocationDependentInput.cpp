@@ -89,16 +89,16 @@ namespace DiKErnel::Integration
             waveHeightImpact = make_unique<double>(GrassRevetmentWaveImpact::WaveHeightImpact(
                 *minimumWaveHeight, *maximumWaveHeight, *waveAngleImpact, waveHeightHm0));
             const auto timeLine = GrassRevetmentWaveImpact::TimeLine(*waveHeightImpact, timeLineAgwi, timeLineBgwi, timeLineCgwi);
-            const auto incrementOfDamage = GrassRevetmentWaveImpact::IncrementDamage(incrementTime, timeLine);
+            incrementDamage = GrassRevetmentWaveImpact::IncrementDamage(incrementTime, timeLine);
 
-            damage = Revetment::Damage(incrementOfDamage, initialDamage);
+            damage = Revetment::Damage(incrementDamage, initialDamage);
 
             const auto failureNumber = GetFailureNumber();
 
             if (Revetment::FailureRevetment(damage, initialDamage, failureNumber))
             {
                 const auto durationInTimeStepFailure = Revetment::DurationInTimeStepFailure(
-                    incrementTime, incrementOfDamage, failureNumber, initialDamage);
+                    incrementTime, incrementDamage, failureNumber, initialDamage);
 
                 timeOfFailure = make_unique<int>(Revetment::TimeOfFailure(durationInTimeStepFailure, beginTime));
             }

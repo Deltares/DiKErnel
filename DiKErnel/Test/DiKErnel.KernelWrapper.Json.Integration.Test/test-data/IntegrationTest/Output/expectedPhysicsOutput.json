@@ -195,8 +195,8 @@
             {
                 "Naam": "GrasGolfklapAlleOptiesAan",
                 "FalenBekleding": {
-                    "Faalgebeurtenis": false,
-                    "Faaltijd": null
+                    "Faalgebeurtenis": true,
+                    "Faaltijd": 3604
                 },
                 "SchadeBekleding": {
                     "Beginschade": 0.04,
@@ -206,11 +206,11 @@
                         0.04,
                         0.04,
                         0.04,
-                        0.04,
-                        0.04,
-                        0.04,
-                        0.04,
-                        0.04
+                        290.36258064516124,
+                        290.36258064516124,
+                        290.36258064516124,
+                        290.36258064516124,
+                        290.36258064516124
                     ]
                 },
                 "FysicaBekleding": {
@@ -220,7 +220,7 @@
                         0.0,
                         0.0,
                         0.0,
-                        0.0,
+                        290.3225806451612,
                         0.0,
                         0.0,
                         0.0,
@@ -231,7 +231,7 @@
                         false,
                         false,
                         true,
-                        false,
+                        true,
                         false,
                         false,
                         false,
@@ -264,7 +264,7 @@
                         null,
                         null,
                         1.1800340868672867,
-                        null,
+                        1.1800340868672867,
                         null,
                         null,
                         null,
@@ -275,7 +275,7 @@
                         null,
                         null,
                         0.96,
-                        null,
+                        0.96,
                         null,
                         null,
                         null,
@@ -286,7 +286,7 @@
                         null,
                         null,
                         0.9965745757570498,
-                        null,
+                        0.9863165331923437,
                         null,
                         null,
                         null,
@@ -297,7 +297,7 @@
                         null,
                         null,
                         0.96,
-                        null,
+                        1.1800340868672867,
                         null,
                         null,
                         null,
