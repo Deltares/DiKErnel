@@ -50,8 +50,6 @@ JsonOutputType ConvertProcessType(
 
 #pragma endregion
 
-int subCalculationDelay = 0;
-
 int main()
 {
     try
@@ -66,8 +64,6 @@ int main()
         cout << "|===================|" << endl;
         cout << "-> Enter the path to the Json file: ";
         getline(cin, jsonFilePath);
-        cout << "-> Enter any additional sub-calculation delay (in seconds): ";
-        cin >> subCalculationDelay;
         cout << endl;
 
         // Read input Json file
