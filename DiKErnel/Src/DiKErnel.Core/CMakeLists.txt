@@ -10,15 +10,17 @@ set(SOURCEFILES_PUBLIC
   ${PUBLIC_FOLDER}/CalculationOutput.h
   ${PUBLIC_FOLDER}/Calculator.cpp
   ${PUBLIC_FOLDER}/Calculator.h
+  ${PUBLIC_FOLDER}/CharacteristicPoint.cpp
+  ${PUBLIC_FOLDER}/CharacteristicPoint.h
   ${PUBLIC_FOLDER}/CharacteristicPointType.h
   ${PUBLIC_FOLDER}/ICalculationInput.h
-  ${PUBLIC_FOLDER}/ICharacteristicPoint.h
   ${PUBLIC_FOLDER}/ILocationDependentInput.h
   ${PUBLIC_FOLDER}/IProfileData.h
-  ${PUBLIC_FOLDER}/IProfilePoint.h
   ${PUBLIC_FOLDER}/ITimeDependentInput.h
   ${PUBLIC_FOLDER}/LocationDependentOutput.cpp
   ${PUBLIC_FOLDER}/LocationDependentOutput.h
+  ${PUBLIC_FOLDER}/ProfilePoint.cpp
+  ${PUBLIC_FOLDER}/ProfilePoint.h
   ${PUBLIC_FOLDER}/TimeDependentOutput.cpp
   ${PUBLIC_FOLDER}/TimeDependentOutput.h
 )

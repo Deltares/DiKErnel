@@ -18,37 +18,25 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#pragma once
-
-#include <vector>
-
 #include "CharacteristicPoint.h"
-#include "ILocationDependentInput.h"
-#include "ProfilePoint.h"
 
 namespace DiKErnel::Core
 {
-    /*!
-     * \brief Interface defining all profile data that is needed to perform a calculation.
-     */
-    class IProfileData
+    using namespace std;
+
+    CharacteristicPoint::CharacteristicPoint(
+        ProfilePoint& profilePoint,
+        std::unique_ptr<CharacteristicPointType> characteristicPointType)
+        : _profilePoint(profilePoint),
+          _characteristicPointType(move(characteristicPointType)) {}
+
+    const ProfilePoint& CharacteristicPoint::GetProfilePoint() const
     {
-        public:
-            /*!
-             * \brief Destructs the instance.
-             */
-            virtual ~IProfileData() = default;
+        return _profilePoint;
+    }
 
-            /*!
-             * \brief Gets the profile points to use in the calculation.
-             * \return The profile points to use in the calculation.
-             */
-            virtual const std::vector<std::reference_wrapper<ProfilePoint>>& GetProfilePoints() const = 0;
-
-            /*!
-             * \brief Gets the characteristic points to use in the calculation.
-             * \return The characteristic points to use in the calculation.
-             */
-            virtual const std::vector<std::reference_wrapper<CharacteristicPoint>>& GetCharacteristicPoints() const = 0;
-    };
+    const CharacteristicPointType& CharacteristicPoint::GetCharacteristicPointType() const
+    {
+        return *_characteristicPointType;
+    }
 }

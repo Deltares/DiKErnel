@@ -23,26 +23,36 @@
 namespace DiKErnel::Core
 {
     /*!
-     * \brief Interface defining a profile point that is needed to perform a calculation.
+     * \brief Class containing a profile point that is needed to perform a calculation.
      */
-    class IProfilePoint
+    class ProfilePoint
     {
         public:
             /*!
-             * \brief Destructs the instance.
+             * \brief Creates a new instance.
+             * \param x
+             *        The x coordinate.
+             * \param z
+             *        The z coordinate.
              */
-            virtual ~IProfilePoint() = default;
+            explicit ProfilePoint(
+                double x,
+                double z);
 
             /*!
              * \brief Gets the x coordinate of the point.
              * \return The x coordinate of the point.
              */
-            virtual double GetX() const = 0;
+            double GetX() const;
 
             /*!
              * \brief Gets the z coordinate of the point.
              * \return The z coordinate of the point.
              */
-            virtual double GetZ() const = 0;
+            double GetZ() const;
+
+        private:
+            double _x;
+            double _z;
     };
 }

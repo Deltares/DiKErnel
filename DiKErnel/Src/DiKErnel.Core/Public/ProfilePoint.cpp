@@ -18,34 +18,23 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#pragma once
-
-#include "CharacteristicPointType.h"
-#include "IProfilePoint.h"
+#include "ProfilePoint.h"
 
 namespace DiKErnel::Core
 {
-    /*!
-     * \brief Interface defining all profile data that is needed to perform a calculation.
-     */
-    class ICharacteristicPoint
+    ProfilePoint::ProfilePoint(
+        const double x,
+        const double z)
+        : _x(x),
+          _z(z) {}
+
+    double ProfilePoint::GetX() const
     {
-        public:
-            /*!
-             * \brief Destructs the instance.
-             */
-            virtual ~ICharacteristicPoint() = default;
+        return _x;
+    }
 
-            /*!
-             * \brief Gets the profile point.
-             * \return The profile point.
-             */
-            virtual const IProfilePoint& GetProfilePoint() const = 0;
-
-            /*!
-             * \brief Gets the characteristic point type.
-             * \return The characteristic point type.
-             */
-            virtual const CharacteristicPointType& GetCharacteristicPointType() const = 0;
-    };
+    double ProfilePoint::GetZ() const
+    {
+        return _z;
+    }
 }

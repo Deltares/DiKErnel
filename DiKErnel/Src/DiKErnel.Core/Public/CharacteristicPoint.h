@@ -20,10 +20,9 @@
 
 #pragma once
 
-#include <vector>
+#include <memory>
 
-#include "CharacteristicPoint.h"
-#include "ILocationDependentInput.h"
+#include "CharacteristicPointType.h"
 #include "ProfilePoint.h"
 
 namespace DiKErnel::Core
@@ -31,24 +30,34 @@ namespace DiKErnel::Core
     /*!
      * \brief Interface defining all profile data that is needed to perform a calculation.
      */
-    class IProfileData
+    class CharacteristicPoint
     {
         public:
             /*!
-             * \brief Destructs the instance.
+             * \brief Creates a new instance.
+             * \param profilePoint
+             *        The profile point of the characteristic point.
+             * \param characteristicPointType
+             *        The type of the characteristic point.
              */
-            virtual ~IProfileData() = default;
+            explicit CharacteristicPoint(
+                ProfilePoint& profilePoint,
+                std::unique_ptr<CharacteristicPointType> characteristicPointType);
 
             /*!
-             * \brief Gets the profile points to use in the calculation.
-             * \return The profile points to use in the calculation.
+             * \brief Gets the profile point.
+             * \return The profile point.
              */
-            virtual const std::vector<std::reference_wrapper<ProfilePoint>>& GetProfilePoints() const = 0;
+            const ProfilePoint& GetProfilePoint() const;
 
             /*!
-             * \brief Gets the characteristic points to use in the calculation.
-             * \return The characteristic points to use in the calculation.
+             * \brief Gets the characteristic point type.
+             * \return The characteristic point type.
              */
-            virtual const std::vector<std::reference_wrapper<CharacteristicPoint>>& GetCharacteristicPoints() const = 0;
+            const CharacteristicPointType& GetCharacteristicPointType() const;
+
+        private:
+            ProfilePoint& _profilePoint;
+            std::unique_ptr<CharacteristicPointType> _characteristicPointType;
     };
 }
