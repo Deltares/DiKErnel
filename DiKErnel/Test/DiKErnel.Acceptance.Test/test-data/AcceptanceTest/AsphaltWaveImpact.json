@@ -1,503 +1,538 @@
 {
-	"Rekendata": 
-	{
-		"Tijd":
-		[
-			0,
-			22985,
-			34431,
-			45877,
-			57323,
-			68769,
-			80215,
-			91661,
-			103107,
-			114553,
-			126000
-		],
-		"HydraulischeBelastingen":
-		{
-			"RandvoorwaardenPerTijdstap":
-			[
-				{
-					"Waterstand": 3.8,
-					"GolfhoogteHm0": 1.6,
-					"GolfperiodeTm10": 3.54,
-					"Golfhoek": 0.0
-				},
-				{
-					"Waterstand": 3.4,
-					"GolfhoogteHm0": 1.6,
-					"GolfperiodeTm10": 3.54,
-					"Golfhoek": 0.0
-				},
-				{
-					"Waterstand": 3.0,
-					"GolfhoogteHm0": 1.6,
-					"GolfperiodeTm10": 3.54,
-					"Golfhoek": 0.0
-				},
-				{
-					"Waterstand": 2.6,
-					"GolfhoogteHm0": 1.6,
-					"GolfperiodeTm10": 3.54,
-					"Golfhoek": 0.0
-				},
-				{
-					"Waterstand": 2.2,
-					"GolfhoogteHm0": 1.6,
-					"GolfperiodeTm10": 3.54,
-					"Golfhoek": 0.0
-				},
-				{
-					"Waterstand": 1.8,
-					"GolfhoogteHm0": 1.6,
-					"GolfperiodeTm10": 3.54,
-					"Golfhoek": 0.0
-				},
-				{
-					"Waterstand": 1.4,
-					"GolfhoogteHm0": 1.6,
-					"GolfperiodeTm10": 3.54,
-					"Golfhoek": 0.0
-				},
-				{
-					"Waterstand": 1.0,
-					"GolfhoogteHm0": 1.6,
-					"GolfperiodeTm10": 3.54,
-					"Golfhoek": 0.0
-				},
-				{
-					"Waterstand": 0.6,
-					"GolfhoogteHm0": 1.6,
-					"GolfperiodeTm10": 3.54,
-					"Golfhoek": 0.0
-				},
-				{
-					"Waterstand": 0.2,
-					"GolfhoogteHm0": 1.6,
-					"GolfperiodeTm10": 3.54,
-					"Golfhoek": 0.0
-				}
-			]
-		},
-		"Locaties":
-		[
-			{
-				"Naam": "AsfaltAlleOptiesAanEnkelLaags",
-				"Schade":
-				{
-					"BeginSchade": 0.0,
-					"Faalgetal": 1.0
-				},
-				"Bekleding":
-				{
-					"TypeToplaag": "WaterbouwAsfaltBeton",
-					"BreuksterkteAsfalt": 1.56,
-					"SoortelijkeDichtheidWater": 1025,
-					"VeerconstanteOndergrond": 56,
-					"Toplaag": 
-					{
-						"Dikte": 0.16,
-						"Stijfheidsmodulus": 18214
-					},
-					"Rekenmethoden":
-					[
-						{
-							"RekenmethodeSoort": "AsfaltGolfklap",
-							"GemiddeldAantalGolvenPerTijdstap":
-							{
-								"GemiddeldAantalGolvenPerTijdstapCtm": 1.0
-							},
-							"VermoeiingAsfaltbekleding":
-							{
-								"VermoeiingAsfaltbekledingAlfa": 0.42,
-								"VermoeiingAsfaltbekledingBeta": 4.76
-							},
-							"Stootgetal":
-							{
-								"StootgetalC": 1.0
-							},
-							"Stijfheidsverhouding":
-							{
-								"StijfheidsverhoudingNu": 0.35
-							},
-							"BreedteFactorenTabel":
-							[
-								[
-									0.1,
-									0.0392
-								],
-								[
-									0.2,
-									0.0738
-								],
-								[
-									0.3,
-									0.1002
-								],
-								[
-									0.4,
-									0.1162
-								],
-								[
-									0.5,
-									0.1213
-								],
-								[
-									0.6,
-									0.1168
-								],
-								[
-									0.7,
-									0.1051
-								],
-								[
-									0.8,
-									0.089
-								],
-								[
-									0.9,
-									0.0712
-								],
-								[
-									1.0,
-									0.0541
-								],
-								[
-									1.1,
-									0.0391
-								],
-								[
-									1.2,
-									0.0269
-								],
-								[
-									1.3,
-									0.0216
-								],
-								[
-									1.4,
-									0.015
-								],
-								[
-									1.5,
-									0.0105
-								]
-							],
-							"DiepteFactorenTabel":
-							[
-								[
-									-1.0,
-									0.0244
-								],
-								[
-									-0.875,
-									0.0544
-								],
-								[
-									-0.75,
-									0.0938
-								],
-								[
-									-0.625,
-									0.1407
-								],
-								[
-									-0.5,
-									0.1801
-								],
-								[
-									-0.375,
-									0.1632
-								],
-								[
-									-0.25,
-									0.1426
-								],
-								[
-									-0.125,
-									0.0994
-								],
-								[
-									0.0,
-									0.06
-								],
-								[
-									0.125,
-									0.0244
-								],
-								[
-									0.25,
-									0.0169
-								]
-							],
-							"StootFactorenTabel":
-							[
-								[
-									2.0,
-									0.039
-								],
-								[
-									2.4,
-									0.1
-								],
-								[
-									2.8,
-									0.18
-								],
-								[
-									3.2,
-									0.235
-								],
-								[
-									3.6,
-									0.2
-								],
-								[
-									4.0,
-									0.13
-								],
-								[
-									4.4,
-									0.08
-								],
-								[
-									4.8,
-									0.02
-								],
-								[
-									5.2,
-									0.01
-								],
-								[
-									5.6,
-									0.005
-								],
-								[
-									6.0,
-									0.001
-								]
-							]
-						}
-					]
-				},
-				"Profielschematisatie":
-				{
-					"TanA": 0.233,
-					"PositieZ": 2.988
-				}
-			},
-			{
-				"Naam": "AsfaltAlleOptiesAanDubbelLaags",
-				"Schade":
-				{
-					"BeginSchade": 0.0,
-					"Faalgetal": 1.0
-				},
-				"Bekleding":
-				{
-					"TypeToplaag": "WaterbouwAsfaltBeton",
-					"BreuksterkteAsfalt": 1.56,
-					"SoortelijkeDichtheidWater": 1025,
-					"VeerconstanteOndergrond": 56,
-					"Toplaag": 
-					{
-						"Dikte": 0.16,
-						"Stijfheidsmodulus": 18214
-					},
-					"Onderlaag": 
-					{
-						"Dikte": 0.25,
-						"Stijfheidsmodulus": 15500
-					},
-					"Rekenmethoden":
-					[
-						{
-							"RekenmethodeSoort": "AsfaltGolfklap",
-							"GemiddeldAantalGolvenPerTijdstap":
-							{
-								"GemiddeldAantalGolvenPerTijdstapCtm": 1.0
-							},
-							"VermoeiingAsfaltbekleding":
-							{
-								"VermoeiingAsfaltbekledingAlfa": 0.42,
-								"VermoeiingAsfaltbekledingBeta": 4.76
-							},
-							"Stootgetal":
-							{
-								"StootgetalC": 1.0
-							},
-							"Stijfheidsverhouding":
-							{
-								"StijfheidsverhoudingNu": 0.35
-							},
-							"BreedteFactorenTabel":
-							[
-								[
-									0.1,
-									0.0392
-								],
-								[
-									0.2,
-									0.0738
-								],
-								[
-									0.3,
-									0.1002
-								],
-								[
-									0.4,
-									0.1162
-								],
-								[
-									0.5,
-									0.1213
-								],
-								[
-									0.6,
-									0.1168
-								],
-								[
-									0.7,
-									0.1051
-								],
-								[
-									0.8,
-									0.089
-								],
-								[
-									0.9,
-									0.0712
-								],
-								[
-									1.0,
-									0.0541
-								],
-								[
-									1.1,
-									0.0391
-								],
-								[
-									1.2,
-									0.0269
-								],
-								[
-									1.3,
-									0.0216
-								],
-								[
-									1.4,
-									0.015
-								],
-								[
-									1.5,
-									0.0105
-								]
-							],
-							"DiepteFactorenTabel":
-							[
-								[
-									-1.0,
-									0.0244
-								],
-								[
-									-0.875,
-									0.0544
-								],
-								[
-									-0.75,
-									0.0938
-								],
-								[
-									-0.625,
-									0.1407
-								],
-								[
-									-0.5,
-									0.1801
-								],
-								[
-									-0.375,
-									0.1632
-								],
-								[
-									-0.25,
-									0.1426
-								],
-								[
-									-0.125,
-									0.0994
-								],
-								[
-									0.0,
-									0.06
-								],
-								[
-									0.125,
-									0.0244
-								],
-								[
-									0.25,
-									0.0169
-								]
-							],
-							"StootFactorenTabel":
-							[
-								[
-									2.0,
-									0.039
-								],
-								[
-									2.4,
-									0.1
-								],
-								[
-									2.8,
-									0.18
-								],
-								[
-									3.2,
-									0.235
-								],
-								[
-									3.6,
-									0.2
-								],
-								[
-									4.0,
-									0.13
-								],
-								[
-									4.4,
-									0.08
-								],
-								[
-									4.8,
-									0.02
-								],
-								[
-									5.2,
-									0.01
-								],
-								[
-									5.6,
-									0.005
-								],
-								[
-									6.0,
-									0.001
-								]
-							]
-						}
-					]
-				},
-				"Profielschematisatie":
-				{
-					"TanA": 0.233,
-					"PositieZ": 2.988
-				}
-			}
-		]
-	}
+    "Rekendata": 
+    {
+        "Tijd":
+        [
+            0,
+            22985,
+            34431,
+            45877,
+            57323,
+            68769,
+            80215,
+            91661,
+            103107,
+            114553,
+            126000
+        ],
+        "HydraulischeBelastingen":
+        {
+            "RandvoorwaardenPerTijdstap":
+            [
+                {
+                    "Waterstand": 3.8,
+                    "GolfhoogteHm0": 1.6,
+                    "GolfperiodeTm10": 3.54,
+                    "Golfhoek": 0.0
+                },
+                {
+                    "Waterstand": 3.4,
+                    "GolfhoogteHm0": 1.6,
+                    "GolfperiodeTm10": 3.54,
+                    "Golfhoek": 0.0
+                },
+                {
+                    "Waterstand": 3.0,
+                    "GolfhoogteHm0": 1.6,
+                    "GolfperiodeTm10": 3.54,
+                    "Golfhoek": 0.0
+                },
+                {
+                    "Waterstand": 2.6,
+                    "GolfhoogteHm0": 1.6,
+                    "GolfperiodeTm10": 3.54,
+                    "Golfhoek": 0.0
+                },
+                {
+                    "Waterstand": 2.2,
+                    "GolfhoogteHm0": 1.6,
+                    "GolfperiodeTm10": 3.54,
+                    "Golfhoek": 0.0
+                },
+                {
+                    "Waterstand": 1.8,
+                    "GolfhoogteHm0": 1.6,
+                    "GolfperiodeTm10": 3.54,
+                    "Golfhoek": 0.0
+                },
+                {
+                    "Waterstand": 1.4,
+                    "GolfhoogteHm0": 1.6,
+                    "GolfperiodeTm10": 3.54,
+                    "Golfhoek": 0.0
+                },
+                {
+                    "Waterstand": 1.0,
+                    "GolfhoogteHm0": 1.6,
+                    "GolfperiodeTm10": 3.54,
+                    "Golfhoek": 0.0
+                },
+                {
+                    "Waterstand": 0.6,
+                    "GolfhoogteHm0": 1.6,
+                    "GolfperiodeTm10": 3.54,
+                    "Golfhoek": 0.0
+                },
+                {
+                    "Waterstand": 0.2,
+                    "GolfhoogteHm0": 1.6,
+                    "GolfperiodeTm10": 3.54,
+                    "Golfhoek": 0.0
+                }
+            ]
+        },
+        "Dijkprofiel":
+        [
+            {
+                "Positie": -30,
+                "Hoogte": 0
+            },
+            {
+                "Positie": 0,
+                "Hoogte": 1.73,
+                "KarakteristiekPunt": "TeenBuitenzijde"
+            },
+            {
+                "Positie": 18.29,
+                "Hoogte": 5.99,
+                "KarakteristiekPunt": "KruinBermBuitenzijde"
+            },
+            {
+                "Positie": 30,
+                "Hoogte": 6.99,
+                "KarakteristiekPunt": "InsteekBermBuitenzijde"
+            },
+            {
+                "Positie": 40,
+                "Hoogte": 9,
+                "KarakteristiekPunt": "KruinBuitenzijde"
+            },
+            {
+                "Positie": 45,
+                "Hoogte": 9
+            },
+            {
+                "Positie": 65,
+                "Hoogte": 0
+            }
+        ],
+        "Locaties":
+        [
+            {
+                "Naam": "AsfaltAlleOptiesAanEnkelLaags",
+                "Schade":
+                {
+                    "BeginSchade": 0.0,
+                    "Faalgetal": 1.0
+                },
+                "Bekleding":
+                {
+                    "TypeToplaag": "WaterbouwAsfaltBeton",
+                    "BreuksterkteAsfalt": 1.56,
+                    "SoortelijkeDichtheidWater": 1025,
+                    "VeerconstanteOndergrond": 56,
+                    "Toplaag": 
+                    {
+                        "Dikte": 0.16,
+                        "Stijfheidsmodulus": 18214
+                    },
+                    "Rekenmethoden":
+                    [
+                        {
+                            "RekenmethodeSoort": "AsfaltGolfklap",
+                            "GemiddeldAantalGolvenPerTijdstap":
+                            {
+                                "GemiddeldAantalGolvenPerTijdstapCtm": 1.0
+                            },
+                            "VermoeiingAsfaltbekleding":
+                            {
+                                "VermoeiingAsfaltbekledingAlfa": 0.42,
+                                "VermoeiingAsfaltbekledingBeta": 4.76
+                            },
+                            "Stootgetal":
+                            {
+                                "StootgetalC": 1.0
+                            },
+                            "Stijfheidsverhouding":
+                            {
+                                "StijfheidsverhoudingNu": 0.35
+                            },
+                            "BreedteFactorenTabel":
+                            [
+                                [
+                                    0.1,
+                                    0.0392
+                                ],
+                                [
+                                    0.2,
+                                    0.0738
+                                ],
+                                [
+                                    0.3,
+                                    0.1002
+                                ],
+                                [
+                                    0.4,
+                                    0.1162
+                                ],
+                                [
+                                    0.5,
+                                    0.1213
+                                ],
+                                [
+                                    0.6,
+                                    0.1168
+                                ],
+                                [
+                                    0.7,
+                                    0.1051
+                                ],
+                                [
+                                    0.8,
+                                    0.089
+                                ],
+                                [
+                                    0.9,
+                                    0.0712
+                                ],
+                                [
+                                    1.0,
+                                    0.0541
+                                ],
+                                [
+                                    1.1,
+                                    0.0391
+                                ],
+                                [
+                                    1.2,
+                                    0.0269
+                                ],
+                                [
+                                    1.3,
+                                    0.0216
+                                ],
+                                [
+                                    1.4,
+                                    0.015
+                                ],
+                                [
+                                    1.5,
+                                    0.0105
+                                ]
+                            ],
+                            "DiepteFactorenTabel":
+                            [
+                                [
+                                    -1.0,
+                                    0.0244
+                                ],
+                                [
+                                    -0.875,
+                                    0.0544
+                                ],
+                                [
+                                    -0.75,
+                                    0.0938
+                                ],
+                                [
+                                    -0.625,
+                                    0.1407
+                                ],
+                                [
+                                    -0.5,
+                                    0.1801
+                                ],
+                                [
+                                    -0.375,
+                                    0.1632
+                                ],
+                                [
+                                    -0.25,
+                                    0.1426
+                                ],
+                                [
+                                    -0.125,
+                                    0.0994
+                                ],
+                                [
+                                    0.0,
+                                    0.06
+                                ],
+                                [
+                                    0.125,
+                                    0.0244
+                                ],
+                                [
+                                    0.25,
+                                    0.0169
+                                ]
+                            ],
+                            "StootFactorenTabel":
+                            [
+                                [
+                                    2.0,
+                                    0.039
+                                ],
+                                [
+                                    2.4,
+                                    0.1
+                                ],
+                                [
+                                    2.8,
+                                    0.18
+                                ],
+                                [
+                                    3.2,
+                                    0.235
+                                ],
+                                [
+                                    3.6,
+                                    0.2
+                                ],
+                                [
+                                    4.0,
+                                    0.13
+                                ],
+                                [
+                                    4.4,
+                                    0.08
+                                ],
+                                [
+                                    4.8,
+                                    0.02
+                                ],
+                                [
+                                    5.2,
+                                    0.01
+                                ],
+                                [
+                                    5.6,
+                                    0.005
+                                ],
+                                [
+                                    6.0,
+                                    0.001
+                                ]
+                            ]
+                        }
+                    ]
+                },
+                "Profielschematisatie":
+                {
+                    "TanA": 0.233,
+                    "PositieZ": 2.988
+                }
+            },
+            {
+                "Naam": "AsfaltAlleOptiesAanDubbelLaags",
+                "Schade":
+                {
+                    "BeginSchade": 0.0,
+                    "Faalgetal": 1.0
+                },
+                "Bekleding":
+                {
+                    "TypeToplaag": "WaterbouwAsfaltBeton",
+                    "BreuksterkteAsfalt": 1.56,
+                    "SoortelijkeDichtheidWater": 1025,
+                    "VeerconstanteOndergrond": 56,
+                    "Toplaag": 
+                    {
+                        "Dikte": 0.16,
+                        "Stijfheidsmodulus": 18214
+                    },
+                    "Onderlaag": 
+                    {
+                        "Dikte": 0.25,
+                        "Stijfheidsmodulus": 15500
+                    },
+                    "Rekenmethoden":
+                    [
+                        {
+                            "RekenmethodeSoort": "AsfaltGolfklap",
+                            "GemiddeldAantalGolvenPerTijdstap":
+                            {
+                                "GemiddeldAantalGolvenPerTijdstapCtm": 1.0
+                            },
+                            "VermoeiingAsfaltbekleding":
+                            {
+                                "VermoeiingAsfaltbekledingAlfa": 0.42,
+                                "VermoeiingAsfaltbekledingBeta": 4.76
+                            },
+                            "Stootgetal":
+                            {
+                                "StootgetalC": 1.0
+                            },
+                            "Stijfheidsverhouding":
+                            {
+                                "StijfheidsverhoudingNu": 0.35
+                            },
+                            "BreedteFactorenTabel":
+                            [
+                                [
+                                    0.1,
+                                    0.0392
+                                ],
+                                [
+                                    0.2,
+                                    0.0738
+                                ],
+                                [
+                                    0.3,
+                                    0.1002
+                                ],
+                                [
+                                    0.4,
+                                    0.1162
+                                ],
+                                [
+                                    0.5,
+                                    0.1213
+                                ],
+                                [
+                                    0.6,
+                                    0.1168
+                                ],
+                                [
+                                    0.7,
+                                    0.1051
+                                ],
+                                [
+                                    0.8,
+                                    0.089
+                                ],
+                                [
+                                    0.9,
+                                    0.0712
+                                ],
+                                [
+                                    1.0,
+                                    0.0541
+                                ],
+                                [
+                                    1.1,
+                                    0.0391
+                                ],
+                                [
+                                    1.2,
+                                    0.0269
+                                ],
+                                [
+                                    1.3,
+                                    0.0216
+                                ],
+                                [
+                                    1.4,
+                                    0.015
+                                ],
+                                [
+                                    1.5,
+                                    0.0105
+                                ]
+                            ],
+                            "DiepteFactorenTabel":
+                            [
+                                [
+                                    -1.0,
+                                    0.0244
+                                ],
+                                [
+                                    -0.875,
+                                    0.0544
+                                ],
+                                [
+                                    -0.75,
+                                    0.0938
+                                ],
+                                [
+                                    -0.625,
+                                    0.1407
+                                ],
+                                [
+                                    -0.5,
+                                    0.1801
+                                ],
+                                [
+                                    -0.375,
+                                    0.1632
+                                ],
+                                [
+                                    -0.25,
+                                    0.1426
+                                ],
+                                [
+                                    -0.125,
+                                    0.0994
+                                ],
+                                [
+                                    0.0,
+                                    0.06
+                                ],
+                                [
+                                    0.125,
+                                    0.0244
+                                ],
+                                [
+                                    0.25,
+                                    0.0169
+                                ]
+                            ],
+                            "StootFactorenTabel":
+                            [
+                                [
+                                    2.0,
+                                    0.039
+                                ],
+                                [
+                                    2.4,
+                                    0.1
+                                ],
+                                [
+                                    2.8,
+                                    0.18
+                                ],
+                                [
+                                    3.2,
+                                    0.235
+                                ],
+                                [
+                                    3.6,
+                                    0.2
+                                ],
+                                [
+                                    4.0,
+                                    0.13
+                                ],
+                                [
+                                    4.4,
+                                    0.08
+                                ],
+                                [
+                                    4.8,
+                                    0.02
+                                ],
+                                [
+                                    5.2,
+                                    0.01
+                                ],
+                                [
+                                    5.6,
+                                    0.005
+                                ],
+                                [
+                                    6.0,
+                                    0.001
+                                ]
+                            ]
+                        }
+                    ]
+                },
+                "Profielschematisatie":
+                {
+                    "TanA": 0.233,
+                    "PositieZ": 2.988
+                }
+            }
+        ]
+    }
 }

@@ -347,6 +347,85 @@
                 }
             ]
         },
+        "Dijkprofiel":
+        [
+            {
+                "Positie": -30,
+                "Hoogte": -0.3
+            },
+            {
+                "Positie": -30,
+                "Hoogte": -0.3
+            },
+            {
+                "Positie": -20,
+                "Hoogte": 0.0
+            },
+            {
+                "Positie": -10,
+                "Hoogte": 0.2
+            },
+            {
+                "Positie": 0,
+                "Hoogte": 0.4,
+                "KarakteristiekPunt": "TeenBuitenzijde"
+            },
+            {
+                "Positie": 5,
+                "Hoogte": 0.5
+            },
+            {
+                "Positie": 10,
+                "Hoogte": 2.1
+            },
+            {
+                "Positie": 15,
+                "Hoogte": 3.5,
+                "KarakteristiekPunt": "KruinBermBuitenzijde"
+            },
+            {
+                "Positie": 20,
+                "Hoogte": 3.9
+            },
+            {
+                "Positie": 25,
+                "Hoogte": 4.1,
+                "KarakteristiekPunt": "InsteekBermBuitenzijde"
+            },
+            {
+                "Positie": 30,
+                "Hoogte": 5.2
+            },
+            {
+                "Positie": 35,
+                "Hoogte": 6.1
+            },
+            {
+                "Positie": 40,
+                "Hoogte": 7.0,
+                "KarakteristiekPunt": "KruinBuitenzijde"
+            },
+            {
+                "Positie": 45,
+                "Hoogte": 7.1
+            },
+            {
+                "Positie": 50,
+                "Hoogte": 6.9
+            },
+            {
+                "Positie": 55,
+                "Hoogte": 5.9
+            },
+            {
+                "Positie": 60,
+                "Hoogte": 5.0
+            },
+            {
+                "Positie": 65,
+                "Hoogte": 4.2
+            }
+        ],
         "Locaties":
         [
             {
