@@ -34,6 +34,7 @@
 #include "NaturalStoneRevetmentLocationConstructionProperties.h"
 #include "NaturalStoneRevetmentLocationDependentInput.h"
 #include "NordicStoneRevetmentDefaults.h"
+#include "ProfileData.h"
 #include "RevetmentCalculationInputBuilderException.h"
 #include "RevetmentDefaults.h"
 
@@ -261,7 +262,9 @@ namespace DiKErnel::Integration
     {
         try
         {
-            return make_unique<CalculationInput>(move(_locationDependentInputItems), move(_timeDependentInputItems));
+            return make_unique<CalculationInput>(
+                make_unique<ProfileData>(vector<unique_ptr<ProfilePoint>>(), vector<unique_ptr<CharacteristicPoint>>()),
+                move(_locationDependentInputItems), move(_timeDependentInputItems));
         }
         catch (const InvalidCalculationDataException&)
         {

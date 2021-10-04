@@ -23,6 +23,7 @@
 #include <vector>
 
 #include "ILocationDependentInput.h"
+#include "IProfileData.h"
 #include "ITimeDependentInput.h"
 
 namespace DiKErnel::Core
@@ -37,6 +38,12 @@ namespace DiKErnel::Core
              * \brief Destructs the instance.
              */
             virtual ~ICalculationInput() = default;
+
+            /*!
+             * \brief Gets the profile data to use in the calculation.
+             * \return The profile data to use in the calculation.
+             */
+            virtual const IProfileData& GetProfileData() const = 0;
 
             /*!
              * \brief Gets the location dependent input items to use in the calculation.

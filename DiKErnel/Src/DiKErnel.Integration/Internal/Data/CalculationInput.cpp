@@ -28,9 +28,11 @@ namespace DiKErnel::Integration
     using namespace std;
 
     CalculationInput::CalculationInput(
+        unique_ptr<IProfileData> profileData,
         vector<unique_ptr<LocationDependentInput>> locationDependentInputItems,
         vector<unique_ptr<TimeDependentInput>> timeDependentInputItems)
-        : _locationDependentInputItems(move(locationDependentInputItems)),
+        : _profileData(move(profileData)),
+          _locationDependentInputItems(move(locationDependentInputItems)),
           _timeDependentInputItems(move(timeDependentInputItems))
     {
         auto previousEndTime = INT_MIN;
@@ -50,6 +52,11 @@ namespace DiKErnel::Integration
         {
             _locationDependentInputItemReferences.emplace_back(*locationDependentInput);
         }
+    }
+
+    const IProfileData& CalculationInput::GetProfileData() const
+    {
+        return *_profileData;
     }
 
     const vector<reference_wrapper<ILocationDependentInput>>& CalculationInput::GetLocationDependentInputItems() const
