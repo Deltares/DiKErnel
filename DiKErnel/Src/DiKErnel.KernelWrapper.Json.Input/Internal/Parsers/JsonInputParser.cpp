@@ -164,13 +164,13 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
         vector<unique_ptr<JsonInputDikeProfilePoint>> dikeProfilePoints;
 
-        for(const auto& readDikeProfilePoint : readDikeProfile)
+        for (const auto& readDikeProfilePoint : readDikeProfile)
         {
             auto dikeProfilePoint = make_unique<JsonInputDikeProfilePoint>(
                 readDikeProfilePoint[JsonInputDefinitions::DIKE_PROFILE_X].get<double>(),
                 readDikeProfilePoint[JsonInputDefinitions::DIKE_PROFILE_Z].get<double>());
 
-            if(readDikeProfilePoint.contains(JsonInputDefinitions::CHARACTERISTIC_POINT))
+            if (readDikeProfilePoint.contains(JsonInputDefinitions::CHARACTERISTIC_POINT))
             {
                 auto readCharacteristicPointType = make_unique<JsonInputCharacteristicPointType>(
                     readDikeProfilePoint[JsonInputDefinitions::CHARACTERISTIC_POINT].get<JsonInputCharacteristicPointType>());
