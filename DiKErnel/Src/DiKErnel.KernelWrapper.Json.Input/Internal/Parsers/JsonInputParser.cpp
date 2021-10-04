@@ -100,6 +100,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
             make_unique<JsonInputCalculationData>(
                 ParseTime(readCalculationData),
                 ParseHydraulicData(readCalculationData),
+                ParseDikeProfileData(readCalculationData),
                 ParseLocationData(readCalculationData)
             )
         );

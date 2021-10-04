@@ -23,6 +23,7 @@
 #include <memory>
 #include <vector>
 
+#include "JsonInputDikeProfileData.h"
 #include "JsonInputHydraulicData.h"
 #include "JsonInputLocationData.h"
 
@@ -34,6 +35,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
             explicit JsonInputCalculationData(
                 std::vector<int> times,
                 std::unique_ptr<JsonInputHydraulicData> hydraulicData,
+                std::unique_ptr<JsonInputDikeProfileData> dikeProfileData,
                 std::vector<std::unique_ptr<JsonInputLocationData>> locationData
             );
 
@@ -41,11 +43,14 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
             const JsonInputHydraulicData& GetHydraulicData() const;
 
+            const JsonInputDikeProfileData& GetDikeProfileData() const;
+
             const std::vector<std::reference_wrapper<JsonInputLocationData>>& GetLocationData() const;
 
         private:
             std::vector<int> _times;
             std::unique_ptr<JsonInputHydraulicData> _hydraulicData;
+            std::unique_ptr<JsonInputDikeProfileData> _dikeProfileData;
             std::vector<std::unique_ptr<JsonInputLocationData>> _locationData;
             std::vector<std::reference_wrapper<JsonInputLocationData>> _locationDataReferences;
     };
