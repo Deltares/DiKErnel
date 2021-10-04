@@ -118,9 +118,9 @@ namespace DiKErnel::KernelWrapper::Json::Output
     {
         const auto& locationTimeDependentOutputItem = locationOutput.GetTimeDependentOutputItems().front();
 
-        if (const auto* asphalt1RevetmentWaveImpactLocationTimeDependentOutputItem = dynamic_cast<const
+        if (const auto* asphaltRevetmentWaveImpactLocationTimeDependentOutputItem = dynamic_cast<const
             AsphaltRevetmentWaveImpactTimeDependentOutput*>(
-            &locationTimeDependentOutputItem.get()); asphalt1RevetmentWaveImpactLocationTimeDependentOutputItem != nullptr)
+            &locationTimeDependentOutputItem.get()); asphaltRevetmentWaveImpactLocationTimeDependentOutputItem != nullptr)
         {
             return make_unique<JsonOutputAsphaltRevetmentWaveImpactPhysicsLocationData>(locationOutput, locationInput);
         }
