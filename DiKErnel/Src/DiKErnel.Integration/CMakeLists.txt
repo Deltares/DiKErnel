@@ -59,6 +59,8 @@ set(SOURCEFILES_INTERNAL_DATA
   ${INTERNAL_DATA_FOLDER}/CalculationInput.h
   ${INTERNAL_DATA_FOLDER}/LocationDependentInput.cpp
   ${INTERNAL_DATA_FOLDER}/LocationDependentInput.h
+  ${INTERNAL_DATA_FOLDER}/ProfileData.cpp
+  ${INTERNAL_DATA_FOLDER}/ProfileData.h
   ${INTERNAL_DATA_FOLDER}/TimeDependentInput.cpp
   ${INTERNAL_DATA_FOLDER}/TimeDependentInput.h
 )
