@@ -46,6 +46,16 @@ namespace DiKErnel::KernelWrapper::Json::Input
             inline static const std::string WAVE_PERIOD_TM10 = "GolfperiodeTm10";
             inline static const std::string WAVE_ANGLE = "Golfhoek";
 
+            inline static const std::string DIKE_PROFILE = "Dijkprofiel";
+            inline static const std::string DIKE_PROFILE_X = "Positie";
+            inline static const std::string DIKE_PROFILE_Z = "Hoogte";
+
+            inline static const std::string CHARACTERISTIC_POINT = "KarakteristiekPunt";
+            inline static const std::string CHARACTERISTIC_POINT_TYPE_OUTER_TOE = "TeenBuitenzijde";
+            inline static const std::string CHARACTERISTIC_POINT_TYPE_OUTER_CREST = "KruinBuitenzijde";
+            inline static const std::string CHARACTERISTIC_POINT_TYPE_CREST_OUTER_BERM= "KruinBermBuitenzijde";
+            inline static const std::string CHARACTERISTIC_POINT_TYPE_NOTCH_OUTER_BERM= "InsteekBermBuitenzijde";
+
             inline static const std::string NAME = "Naam";
             inline static const std::string DAMAGE = "Schade";
             inline static const std::string INITIAL_DAMAGE = "BeginSchade";

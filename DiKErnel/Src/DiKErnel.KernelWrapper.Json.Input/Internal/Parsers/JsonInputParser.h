@@ -27,6 +27,7 @@
 
 #include "JsonInputCalculationType.h"
 #include "JsonInputData.h"
+#include "JsonInputDikeProfileData.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
@@ -47,6 +48,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 const nlohmann::json& readCalculationData);
 
             static std::unique_ptr<JsonInputHydraulicData> ParseHydraulicData(
+                const nlohmann::json& readCalculationData);
+
+            static std::unique_ptr<JsonInputDikeProfileData> ParseDikeProfileData(
                 const nlohmann::json& readCalculationData);
 
             static std::vector<std::unique_ptr<JsonInputLocationData>> ParseLocationData(
