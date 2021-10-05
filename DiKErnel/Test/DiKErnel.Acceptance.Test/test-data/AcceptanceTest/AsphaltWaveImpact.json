@@ -120,6 +120,7 @@
         [
             {
                 "Naam": "AsfaltAlleOptiesAanEnkelLaags",
+                "PositieLocatie": 5.40113145539906,
                 "Schade":
                 {
                     "BeginSchade": 0.0,
@@ -325,6 +326,7 @@
             },
             {
                 "Naam": "AsfaltAlleOptiesAanDubbelLaags",
+                "PositieLocatie": 5.40113145539906,
                 "Schade":
                 {
                     "BeginSchade": 0.0,

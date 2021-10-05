@@ -202,6 +202,7 @@
         [
             {
                 "Naam": "GrasbekledingGeslotenZodeAlleenGolfoploopRayleighDiscreetAlleOptiesAan",
+                "PositieLocatie": 0,
                 "Schade": 
                 {
                     "BeginSchade": 0.0,
