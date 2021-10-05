@@ -1,0 +1,19 @@
+{
+    "Rekendata":
+    {
+        "Tijd": [],
+        "HydraulischeBelastingen": 
+        {
+            "RandvoorwaardenPerTijdstap": []
+        },
+        "Dijkprofiel": 
+        [
+            {
+                "Positie": 30,
+                "Hoogte": 5.55,
+                "KarakteristiekPunt": "TeenBinnenzijde"
+            }
+        ],
+        "Locaties": []
+    }
+}

@@ -95,6 +95,14 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
 
             JsonInputComposer::GetInputDataFromJson(filePath);
         }
+
+        static void GetInputDataFromJsonWithInvalidCharacteristicPointType()
+        {
+            const auto filePath = (TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Input.Test") / "JsonInputComposerTest"
+                / "InvalidCharacteristicPointType.json").string();
+
+            JsonInputComposer::GetInputDataFromJson(filePath);
+        }
     };
 
     TEST_F(JsonInputComposerTest, GivenJsonInputWithoutProcessType_WhenGetInputDataFromJson_ThenReturnDefaultJsonInputProcessType)
@@ -429,6 +437,16 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
 
         AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertFactors(
             expectedWidthFactors2, expectedDepthFactors2, expectedImpactFactors2, *asphaltRevetmentWaveImpactLocationDependentInputItem2);
+    }
+
+    TEST_F(JsonInputComposerTest,
+           GivenJsonInputWithInvalidCharacteristicPointType_WhenGetInputDataFromJson_ThenThrowsJsonInputConversionException)
+    {
+        // Given & When
+        const auto action = &JsonInputComposerTest::GetInputDataFromJsonWithInvalidCharacteristicPointType;
+
+        // Then
+        AssertHelper::AssertThrowsWithMessage<JsonInputConversionException>(action, "Cannot convert characteristic point type.");
     }
 
     TEST_F(JsonInputComposerTest,
