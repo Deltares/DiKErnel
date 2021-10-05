@@ -20,6 +20,8 @@
 
 #pragma once
 
+#include <vector>
+
 namespace DiKErnel::FunctionLibrary
 {
     /*!
@@ -61,6 +63,21 @@ namespace DiKErnel::FunctionLibrary
                 double incrementTime,
                 double wavePeriodTm10,
                 double averageNumberOfWavesCtm);
+
+            /*!
+             * \brief Calculates the z value based on linear interpolation.
+             * \param x
+             *        The x value.
+             *        Unit = [m]
+             * \param dikeProfile
+             *        The dike profile.
+             *        Unit = [-]
+             * \return The z value or INFINITY when the x value is not on the dike profile.
+             *         Unit = [m]
+             */
+            static double Z(
+                double x,
+                std::vector<std::pair<double, double>> dikeProfile);
 
             /*!
              * \brief Calculates the damage.

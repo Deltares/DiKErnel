@@ -24,6 +24,8 @@
 
 namespace DiKErnel::FunctionLibrary
 {
+    using namespace std;
+
     int Revetment::IncrementTime(
         const int beginTime,
         const int endTime)
@@ -37,6 +39,37 @@ namespace DiKErnel::FunctionLibrary
         const double averageNumberOfWavesCtm)
     {
         return incrementTime / (averageNumberOfWavesCtm * wavePeriodTm10);
+    }
+
+    double Revetment::Z(
+        const double x,
+        vector<pair<double, double>> dikeProfile)
+    {
+        for (auto i = 0; i < static_cast<int>(dikeProfile.size()); ++i)
+        {
+            const auto& [xCurrentDikeProfilePoint, zCurrentDikeProfilePoint] = dikeProfile[i];
+
+            if (abs(xCurrentDikeProfilePoint - x) <= numeric_limits<double>::epsilon())
+            {
+                return zCurrentDikeProfilePoint;
+            }
+
+            if (xCurrentDikeProfilePoint > x)
+            {
+                if (i == 0)
+                {
+                    return numeric_limits<double>::infinity();
+                }
+
+                const auto& [xPreviousDikeProfilePoint, zPreviousDikeProfilePoint] = dikeProfile[i - 1];
+
+                return zPreviousDikeProfilePoint + (zCurrentDikeProfilePoint - zPreviousDikeProfilePoint)
+                        / (xCurrentDikeProfilePoint - xPreviousDikeProfilePoint)
+                        * (x - xPreviousDikeProfilePoint);
+            }
+        }
+
+        return numeric_limits<double>::infinity();
     }
 
     double Revetment::Damage(
