@@ -48,6 +48,11 @@ namespace DiKErnel::Integration::TestUtil
                 double hydraulicLoadXib,
                 const NaturalStoneRevetmentHydraulicLoads& hydraulicLoads);
 
+            static void AssertSlope(
+                double slopeUpperLevelAus,
+                double slopeLowerLevelAls,
+                const NaturalStoneRevetmentSlope& slope);
+
             static void AssertUpperLimitLoading(
                 double upperLimitLoadingAul,
                 double upperLimitLoadingBul,

@@ -66,6 +66,15 @@ namespace DiKErnel::Integration::TestUtil
         ASSERT_DOUBLE_EQ(hydraulicLoadXib, hydraulicLoads.GetHydraulicLoadXib());
     }
 
+    void NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertSlope(
+        const double slopeUpperLevelAus,
+        const double slopeLowerLevelAls,
+        const NaturalStoneRevetmentSlope& slope)
+    {
+        ASSERT_DOUBLE_EQ(slopeUpperLevelAus, slope.GetUpperLevelAus());
+        ASSERT_DOUBLE_EQ(slopeLowerLevelAls, slope.GetLowerLevelAls());
+    }
+
     void NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertUpperLimitLoading(
         const double upperLimitLoadingAul,
         const double upperLimitLoadingBul,
