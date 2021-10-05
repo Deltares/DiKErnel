@@ -67,7 +67,7 @@ namespace DiKErnel::Integration::Test
         {
             const auto topLayerType = static_cast<AsphaltRevetmentTopLayerType>(99);
             const AsphaltRevetmentWaveImpactLocationConstructionProperties constructionProperties(
-                "Test", 0.1, 0.2, topLayerType, 0.3, 0.4, 0.5, 0.6, 0.71);
+                "Test", 0.1, 0.2, 0.3, topLayerType, 0.4, 0.5, 0.6, 0.7, 0.8);
 
             RevetmentCalculationInputBuilder builder;
             builder.AddAsphaltWaveImpactLocation(constructionProperties);
@@ -76,7 +76,7 @@ namespace DiKErnel::Integration::Test
         static void CreateBuilderAndAddGrassRevetmentWaveImpactLocationWithInvalidTopLayerType()
         {
             const auto topLayerType = static_cast<GrassRevetmentTopLayerType>(99);
-            const GrassRevetmentWaveImpactLocationConstructionProperties constructionProperties("Test", 0.1, topLayerType);
+            const GrassRevetmentWaveImpactLocationConstructionProperties constructionProperties("Test", 0.1, 0.2, topLayerType);
 
             RevetmentCalculationInputBuilder builder;
             builder.AddGrassWaveImpactLocation(constructionProperties);
@@ -85,7 +85,7 @@ namespace DiKErnel::Integration::Test
         static void CreateBuilderAndAddGrassRevetmentWaveRunupRayleighLocationWithInvalidTopLayerType()
         {
             const auto topLayerType = static_cast<GrassRevetmentTopLayerType>(99);
-            const GrassRevetmentWaveRunupRayleighLocationConstructionProperties constructionProperties("Test", 0.1, 0.2, topLayerType);
+            const GrassRevetmentWaveRunupRayleighLocationConstructionProperties constructionProperties("Test", 0.1, 0.2, 0.3, topLayerType);
 
             RevetmentCalculationInputBuilder builder;
             builder.AddGrassWaveRunupRayleighLocation(constructionProperties);
@@ -94,7 +94,7 @@ namespace DiKErnel::Integration::Test
         static void CreateBuilderAndAddNaturalStoneRevetmentLocationWithInvalidTopLayerType()
         {
             const auto topLayerType = static_cast<NaturalStoneRevetmentTopLayerType>(99);
-            const NaturalStoneRevetmentLocationConstructionProperties constructionProperties("Test", 0.1, 0.2, topLayerType, 0.3, 0.4);
+            const NaturalStoneRevetmentLocationConstructionProperties constructionProperties("Test", 0.1, 0.2, 0.3, topLayerType, 0.4, 0.5);
 
             RevetmentCalculationInputBuilder builder;
             builder.AddNaturalStoneLocation(constructionProperties);
@@ -237,37 +237,38 @@ namespace DiKErnel::Integration::Test
     {
         const auto topLayerType = AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete;
         const string name = "Test";
-        const auto tanA = 0.1;
-        const auto positionZ = 0.2;
-        const auto failureTension = 0.3;
-        const auto densityOfWater = 0.4;
-        const auto soilElasticity = 0.5;
-        const auto thicknessUpperLayer = 0.6;
-        const auto elasticModulusUpperLayer = 0.7;
-        const auto initialDamage = 0.8;
-        const auto failureNumber = 0.9;
-        const auto thicknessSubLayer = 1.0;
-        const auto elasticModulusSubLayer = 1.1;
-        const auto averageNumberOfWavesCtm = 1.2;
-        const auto fatigueAlpha = 1.3;
-        const auto fatigueBeta = 1.4;
-        const auto impactNumberC = 1.5;
-        const auto stiffnessRelationNu = 1.6;
+        const auto x = 0.1;
+        const auto tanA = 0.2;
+        const auto positionZ = 0.3;
+        const auto failureTension = 0.4;
+        const auto densityOfWater = 0.5;
+        const auto soilElasticity = 0.6;
+        const auto thicknessUpperLayer = 0.7;
+        const auto elasticModulusUpperLayer = 0.8;
+        const auto initialDamage = 0.9;
+        const auto failureNumber = 1.0;
+        const auto thicknessSubLayer = 1.1;
+        const auto elasticModulusSubLayer = 1.2;
+        const auto averageNumberOfWavesCtm = 1.3;
+        const auto fatigueAlpha = 1.4;
+        const auto fatigueBeta = 1.5;
+        const auto impactNumberC = 1.6;
+        const auto stiffnessRelationNu = 1.7;
         const auto widthFactors = vector
         {
-            tuple(1.7, 1.8)
+            tuple(1.8, 1.9)
         };
         const auto depthFactors = vector
         {
-            tuple(1.9, 2.0)
+            tuple(2.0, 2.1)
         };
         const auto impactFactors = vector
         {
-            tuple(2.1, 2.2)
+            tuple(2.2, 2.3)
         };
 
         AsphaltRevetmentWaveImpactLocationConstructionProperties constructionProperties(
-            name, tanA, positionZ, topLayerType, failureTension, densityOfWater, soilElasticity, thicknessUpperLayer, elasticModulusUpperLayer);
+            name, x, tanA, positionZ, topLayerType, failureTension, densityOfWater, soilElasticity, thicknessUpperLayer, elasticModulusUpperLayer);
 
         constructionProperties.SetInitialDamage(make_unique<double>(initialDamage));
         constructionProperties.SetFailureNumber(make_unique<double>(failureNumber));
@@ -322,16 +323,17 @@ namespace DiKErnel::Integration::Test
     {
         const auto topLayerType = AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete;
         const string name = "Test";
-        const auto tanA = 0.1;
-        const auto positionZ = 0.2;
-        const auto failureTension = 0.3;
-        const auto densityOfWater = 0.4;
-        const auto soilElasticity = 0.5;
-        const auto thicknessUpperLayer = 0.6;
-        const auto elasticModulusUpperLayer = 0.7;
+        const auto x = 0.1;
+        const auto tanA = 0.2;
+        const auto positionZ = 0.3;
+        const auto failureTension = 0.4;
+        const auto densityOfWater = 0.5;
+        const auto soilElasticity = 0.6;
+        const auto thicknessUpperLayer = 0.7;
+        const auto elasticModulusUpperLayer = 0.8;
 
         AsphaltRevetmentWaveImpactLocationConstructionProperties constructionProperties(
-            name, tanA, positionZ, topLayerType, failureTension, densityOfWater, soilElasticity, thicknessUpperLayer, elasticModulusUpperLayer);
+            name, x, tanA, positionZ, topLayerType, failureTension, densityOfWater, soilElasticity, thicknessUpperLayer, elasticModulusUpperLayer);
 
         RevetmentCalculationInputBuilder builder;
         builder.AddAsphaltWaveImpactLocation(constructionProperties);
@@ -437,21 +439,22 @@ namespace DiKErnel::Integration::Test
         // Given
         const auto topLayerType = static_cast<GrassRevetmentTopLayerType>(rand() % 2);
         const string name = "Test";
-        const auto positionZ = 0.1;
-        const auto initialDamage = 0.2;
-        const auto failureNumber = 0.3;
-        const auto timeLineAgwi = 0.4;
-        const auto timeLineBgwi = 0.5;
-        const auto timeLineCgwi = 0.6;
-        const auto minimumWaveHeightTemax = 0.7;
-        const auto maximumWaveHeightTemin = 0.8;
-        const auto waveAngleImpactNwa = 0.9;
-        const auto waveAngleImpactQwa = 1.0;
-        const auto waveAngleImpactRwa = 1.1;
-        const auto upperLimitLoadingAul = 1.2;
-        const auto lowerLimitLoadingAll = 1.3;
+        const auto x = 0.1;
+        const auto positionZ = 0.2;
+        const auto initialDamage = 0.3;
+        const auto failureNumber = 0.4;
+        const auto timeLineAgwi = 0.5;
+        const auto timeLineBgwi = 0.6;
+        const auto timeLineCgwi = 0.7;
+        const auto minimumWaveHeightTemax = 0.8;
+        const auto maximumWaveHeightTemin = 0.9;
+        const auto waveAngleImpactNwa = 1.0;
+        const auto waveAngleImpactQwa = 1.1;
+        const auto waveAngleImpactRwa = 1.2;
+        const auto upperLimitLoadingAul = 1.3;
+        const auto lowerLimitLoadingAll = 1.4;
 
-        GrassRevetmentWaveImpactLocationConstructionProperties constructionProperties(name, positionZ, topLayerType);
+        GrassRevetmentWaveImpactLocationConstructionProperties constructionProperties(name, x, positionZ, topLayerType);
         constructionProperties.SetInitialDamage(make_unique<double>(initialDamage));
         constructionProperties.SetFailureNumber(make_unique<double>(failureNumber));
         constructionProperties.SetTimeLineAgwi(make_unique<double>(timeLineAgwi));
@@ -511,9 +514,10 @@ namespace DiKErnel::Integration::Test
         // Given
         const auto topLayerType = GrassRevetmentTopLayerType::ClosedSod;
         const string name = "Test";
-        const auto positionZ = 0.1;
+        const auto x = 0.1;
+        const auto positionZ = 0.2;
 
-        GrassRevetmentWaveImpactLocationConstructionProperties constructionProperties(name, positionZ, topLayerType);
+        GrassRevetmentWaveImpactLocationConstructionProperties constructionProperties(name, x, positionZ, topLayerType);
 
         RevetmentCalculationInputBuilder builder;
         builder.AddGrassWaveImpactLocation(constructionProperties);
@@ -561,9 +565,10 @@ namespace DiKErnel::Integration::Test
         // Given
         const auto topLayerType = GrassRevetmentTopLayerType::OpenSod;
         const string name = "Test";
-        const auto positionZ = 0.1;
+        const auto x = 0.1;
+        const auto positionZ = 0.2;
 
-        GrassRevetmentWaveImpactLocationConstructionProperties constructionProperties(name, positionZ, topLayerType);
+        GrassRevetmentWaveImpactLocationConstructionProperties constructionProperties(name, x, positionZ, topLayerType);
 
         RevetmentCalculationInputBuilder builder;
         builder.AddGrassWaveImpactLocation(constructionProperties);
@@ -627,26 +632,27 @@ namespace DiKErnel::Integration::Test
         // Given
         const auto topLayerType = static_cast<GrassRevetmentTopLayerType>(rand() % 2);
         const string name = "Test";
-        const auto tanA = 0.1;
-        const auto positionZ = 0.2;
-        const auto initialDamage = 0.3;
-        const auto failureNumber = 0.4;
-        const auto criticalCumulativeOverload = 0.5;
-        const auto criticalFrontVelocity = 0.6;
-        const auto increasedLoadTransitionAlphaM = 0.7;
-        const auto reducedStrengthTransitionAlphaS = 0.8;
-        const auto averageNumberOfWavesCtm = 0.9;
-        const auto representativeWaveRunup2PAru = 1.0;
-        const auto representativeWaveRunup2PBru = 1.1;
-        const auto representativeWaveRunup2PCru = 1.2;
-        const auto representativeWaveRunup2PGammab = 1.3;
-        const auto representativeWaveRunup2PGammaf = 1.4;
-        const auto waveAngleImpactAbeta = 1.5;
-        const auto waveAngleImpactBetamax = 1.6;
-        const auto fixedNumberOfWaves = 17;
-        const auto frontVelocityCu = 1.8;
+        const auto x = 0.1;
+        const auto tanA = 0.2;
+        const auto positionZ = 0.3;
+        const auto initialDamage = 0.4;
+        const auto failureNumber = 0.5;
+        const auto criticalCumulativeOverload = 0.6;
+        const auto criticalFrontVelocity = 0.7;
+        const auto increasedLoadTransitionAlphaM = 0.8;
+        const auto reducedStrengthTransitionAlphaS = 0.9;
+        const auto averageNumberOfWavesCtm = 1.0;
+        const auto representativeWaveRunup2PAru = 1.1;
+        const auto representativeWaveRunup2PBru = 1.2;
+        const auto representativeWaveRunup2PCru = 1.3;
+        const auto representativeWaveRunup2PGammab = 1.4;
+        const auto representativeWaveRunup2PGammaf = 1.5;
+        const auto waveAngleImpactAbeta = 1.6;
+        const auto waveAngleImpactBetamax = 1.7;
+        const auto fixedNumberOfWaves = 18;
+        const auto frontVelocityCu = 1.9;
 
-        GrassRevetmentWaveRunupRayleighLocationConstructionProperties constructionProperties(name, tanA, positionZ, topLayerType);
+        GrassRevetmentWaveRunupRayleighLocationConstructionProperties constructionProperties(name, x, tanA, positionZ, topLayerType);
         constructionProperties.SetInitialDamage(make_unique<double>(initialDamage));
         constructionProperties.SetFailureNumber(make_unique<double>(failureNumber));
         constructionProperties.SetCriticalCumulativeOverload(make_unique<double>(criticalCumulativeOverload));
@@ -711,10 +717,11 @@ namespace DiKErnel::Integration::Test
         // Given
         const auto topLayerType = GrassRevetmentTopLayerType::ClosedSod;
         const string name = "Test";
-        const auto tanA = 0.1;
-        const auto positionZ = 0.2;
+        const auto x = 0.1;
+        const auto tanA = 0.2;
+        const auto positionZ = 0.3;
 
-        const GrassRevetmentWaveRunupRayleighLocationConstructionProperties constructionProperties(name, tanA, positionZ, topLayerType);
+        const GrassRevetmentWaveRunupRayleighLocationConstructionProperties constructionProperties(name, x, tanA, positionZ, topLayerType);
 
         RevetmentCalculationInputBuilder builder;
         builder.AddGrassWaveRunupRayleighLocation(constructionProperties);
@@ -762,10 +769,11 @@ namespace DiKErnel::Integration::Test
         // Given
         const auto topLayerType = GrassRevetmentTopLayerType::OpenSod;
         const string name = "Test";
-        const auto tanA = 0.1;
-        const auto positionZ = 0.2;
+        const auto x = 0.1;
+        const auto tanA = 0.2;
+        const auto positionZ = 0.3;
 
-        const GrassRevetmentWaveRunupRayleighLocationConstructionProperties constructionProperties(name, tanA, positionZ, topLayerType);
+        const GrassRevetmentWaveRunupRayleighLocationConstructionProperties constructionProperties(name, x, tanA, positionZ, topLayerType);
 
         RevetmentCalculationInputBuilder builder;
         builder.AddGrassWaveRunupRayleighLocation(constructionProperties);
@@ -827,35 +835,36 @@ namespace DiKErnel::Integration::Test
         // Given
         const auto topLayerType = NaturalStoneRevetmentTopLayerType::NordicStone;
         const string name = "Test";
-        const auto tanA = 0.1;
-        const auto positionZ = 0.2;
-        const auto thicknessTopLayer = 0.3;
-        const auto relativeDensity = 0.4;
-        const auto initialDamage = 0.5;
-        const auto failureNumber = 0.6;
-        const auto hydraulicLoadXib = 0.7;
-        const auto hydraulicLoadAp = 0.8;
-        const auto hydraulicLoadBp = 0.9;
-        const auto hydraulicLoadCp = 1.0;
-        const auto hydraulicLoadNp = 1.1;
-        const auto hydraulicLoadAs = 1.2;
-        const auto hydraulicLoadBs = 1.3;
-        const auto hydraulicLoadCs = 1.4;
-        const auto hydraulicLoadNs = 1.5;
-        const auto upperLimitLoadingAul = 1.6;
-        const auto upperLimitLoadingBul = 1.7;
-        const auto upperLimitLoadingCul = 1.8;
-        const auto lowerLimitLoadingAll = 1.9;
-        const auto lowerLimitLoadingBll = 2.0;
-        const auto lowerLimitLoadingCll = 2.1;
-        const auto distanceMaximumWaveElevationAsmax = 2.2;
-        const auto distanceMaximumWaveElevationBsmax = 2.3;
-        const auto normativeWidthOfWaveImpactAwi = 2.4;
-        const auto normativeWidthOfWaveImpactBwi = 2.5;
-        const auto waveAngleImpactBetamax = 2.6;
+        const auto x = 0.1;
+        const auto tanA = 0.2;
+        const auto positionZ = 0.3;
+        const auto thicknessTopLayer = 0.4;
+        const auto relativeDensity = 0.5;
+        const auto initialDamage = 0.6;
+        const auto failureNumber = 0.7;
+        const auto hydraulicLoadXib = 0.8;
+        const auto hydraulicLoadAp = 0.9;
+        const auto hydraulicLoadBp = 1.0;
+        const auto hydraulicLoadCp = 1.1;
+        const auto hydraulicLoadNp = 1.2;
+        const auto hydraulicLoadAs = 1.3;
+        const auto hydraulicLoadBs = 1.4;
+        const auto hydraulicLoadCs = 1.5;
+        const auto hydraulicLoadNs = 1.6;
+        const auto upperLimitLoadingAul = 1.7;
+        const auto upperLimitLoadingBul = 1.8;
+        const auto upperLimitLoadingCul = 1.9;
+        const auto lowerLimitLoadingAll = 2.0;
+        const auto lowerLimitLoadingBll = 2.1;
+        const auto lowerLimitLoadingCll = 2.2;
+        const auto distanceMaximumWaveElevationAsmax = 2.3;
+        const auto distanceMaximumWaveElevationBsmax = 2.4;
+        const auto normativeWidthOfWaveImpactAwi = 2.5;
+        const auto normativeWidthOfWaveImpactBwi = 2.6;
+        const auto waveAngleImpactBetamax = 2.7;
 
         NaturalStoneRevetmentLocationConstructionProperties naturalStoneConstructionProperties(
-            name, tanA, positionZ, topLayerType, thicknessTopLayer, relativeDensity);
+            name, x, tanA, positionZ, topLayerType, thicknessTopLayer, relativeDensity);
         naturalStoneConstructionProperties.SetInitialDamage(make_unique<double>(initialDamage));
         naturalStoneConstructionProperties.SetFailureNumber(make_unique<double>(failureNumber));
         naturalStoneConstructionProperties.SetHydraulicLoadXib(make_unique<double>(hydraulicLoadXib));
@@ -927,13 +936,14 @@ namespace DiKErnel::Integration::Test
         // Given
         const auto topLayerType = NaturalStoneRevetmentTopLayerType::NordicStone;
         const string name = "Test";
-        const auto tanA = 0.1;
-        const auto positionZ = 0.2;
-        const auto thicknessTopLayer = 0.3;
-        const auto relativeDensity = 0.4;
+        const auto x = 0.1;
+        const auto tanA = 0.2;
+        const auto positionZ = 0.3;
+        const auto thicknessTopLayer = 0.4;
+        const auto relativeDensity = 0.5;
 
         const NaturalStoneRevetmentLocationConstructionProperties naturalStoneConstructionProperties(
-            name, tanA, positionZ, topLayerType, thicknessTopLayer, relativeDensity);
+            name, x, tanA, positionZ, topLayerType, thicknessTopLayer, relativeDensity);
 
         RevetmentCalculationInputBuilder builder;
         builder.AddNaturalStoneLocation(naturalStoneConstructionProperties);

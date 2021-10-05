@@ -33,22 +33,24 @@ namespace DiKErnel::Integration::Test
         // Setup
         const auto topLayerType = AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete;
         const string name = "Test";
-        const auto tanA = 0.1;
-        const auto positionZ = 0.2;
-        const auto failureTension = 0.3;
-        const auto densityOfWater = 0.4;
-        const auto soilElasticity = 0.5;
-        const auto thicknessUpperLayer = 0.6;
-        const auto elasticModulusUpperLayer = 0.7;
+        const auto x = 0.1;
+        const auto tanA = 0.2;
+        const auto positionZ = 0.3;
+        const auto failureTension = 0.4;
+        const auto densityOfWater = 0.5;
+        const auto soilElasticity = 0.6;
+        const auto thicknessUpperLayer = 0.7;
+        const auto elasticModulusUpperLayer = 0.8;
 
         // Call
         const AsphaltRevetmentWaveImpactLocationConstructionProperties constructionProperties(
-            name, tanA, positionZ, topLayerType, failureTension, densityOfWater, soilElasticity, thicknessUpperLayer, elasticModulusUpperLayer);
+            name, x, tanA, positionZ, topLayerType, failureTension, densityOfWater, soilElasticity, thicknessUpperLayer, elasticModulusUpperLayer);
 
         // Assert
         AssertHelper::AssertIsInstanceOf<RevetmentLocationConstructionPropertiesBase>(&constructionProperties);
         ASSERT_EQ(topLayerType, constructionProperties.GetTopLayerType());
         ASSERT_EQ(name, constructionProperties.GetName());
+        ASSERT_DOUBLE_EQ(x, constructionProperties.GetX());
         ASSERT_DOUBLE_EQ(tanA, constructionProperties.GetTanA());
         ASSERT_DOUBLE_EQ(positionZ, constructionProperties.GetPositionZ());
         ASSERT_DOUBLE_EQ(failureTension, constructionProperties.GetFailureTension());
@@ -75,37 +77,38 @@ namespace DiKErnel::Integration::Test
         // Given
         const auto topLayerType = AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete;
         const string name = "Test";
-        const auto tanA = 0.1;
-        const auto positionZ = 0.2;
-        const auto failureTension = 0.3;
-        const auto densityOfWater = 0.4;
-        const auto soilElasticity = 0.5;
-        const auto thicknessUpperLayer = 0.6;
-        const auto elasticModulusUpperLayer = 0.7;
-        const auto initialDamage = 0.8;
-        const auto failureNumber = 0.9;
-        const auto thicknessSubLayer = 1.0;
-        const auto elasticModulusSubLayer = 1.1;
-        const auto averageNumberOfWavesCtm = 1.2;
-        const auto fatigueAlpha = 1.3;
-        const auto fatigueBeta = 1.4;
-        const auto impactNumberC = 1.5;
-        const auto stiffnessRelationNu = 1.6;
+        const auto x = 0.1;
+        const auto tanA = 0.2;
+        const auto positionZ = 0.3;
+        const auto failureTension = 0.4;
+        const auto densityOfWater = 0.5;
+        const auto soilElasticity = 0.6;
+        const auto thicknessUpperLayer = 0.7;
+        const auto elasticModulusUpperLayer = 0.8;
+        const auto initialDamage = 0.9;
+        const auto failureNumber = 1.0;
+        const auto thicknessSubLayer = 1.1;
+        const auto elasticModulusSubLayer = 1.2;
+        const auto averageNumberOfWavesCtm = 1.3;
+        const auto fatigueAlpha = 1.4;
+        const auto fatigueBeta = 1.5;
+        const auto impactNumberC = 1.6;
+        const auto stiffnessRelationNu = 1.7;
         const auto widthFactors = vector
         {
-            tuple(1.7, 1.8)
+            tuple(1.8, 1.9)
         };
         const auto depthFactors = vector
         {
-            tuple(1.9, 2.0)
+            tuple(2.0, 2.1)
         };
         const auto impactFactors = vector
         {
-            tuple(2.1, 2.2)
+            tuple(2.2, 2.3)
         };
 
         AsphaltRevetmentWaveImpactLocationConstructionProperties constructionProperties(
-            name, tanA, positionZ, topLayerType, failureTension, densityOfWater, soilElasticity, thicknessUpperLayer, elasticModulusUpperLayer);
+            name, x, tanA, positionZ, topLayerType, failureTension, densityOfWater, soilElasticity, thicknessUpperLayer, elasticModulusUpperLayer);
 
         // When
         constructionProperties.SetInitialDamage(make_unique<double>(initialDamage));
@@ -124,6 +127,7 @@ namespace DiKErnel::Integration::Test
         // Then
         ASSERT_EQ(topLayerType, constructionProperties.GetTopLayerType());
         ASSERT_EQ(name, constructionProperties.GetName());
+        ASSERT_DOUBLE_EQ(x, constructionProperties.GetX());
         ASSERT_DOUBLE_EQ(tanA, constructionProperties.GetTanA());
         ASSERT_DOUBLE_EQ(positionZ, constructionProperties.GetPositionZ());
         ASSERT_DOUBLE_EQ(failureTension, constructionProperties.GetFailureTension());
