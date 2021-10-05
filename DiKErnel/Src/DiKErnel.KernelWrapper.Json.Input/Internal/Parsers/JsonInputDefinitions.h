@@ -57,6 +57,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
             inline static const std::string CHARACTERISTIC_POINT_TYPE_NOTCH_OUTER_BERM= "InsteekBermBuitenzijde";
 
             inline static const std::string NAME = "Naam";
+            inline static const std::string X_LOCATION = "PositieLocatie";
             inline static const std::string DAMAGE = "Schade";
             inline static const std::string INITIAL_DAMAGE = "BeginSchade";
             inline static const std::string FAILURE_NUMBER = "Faalgetal";
