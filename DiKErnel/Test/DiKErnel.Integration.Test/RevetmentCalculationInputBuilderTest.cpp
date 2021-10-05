@@ -34,6 +34,7 @@
 #include "NaturalStoneRevetmentLocationConstructionProperties.h"
 #include "NaturalStoneRevetmentLocationDependentInput.h"
 #include "NaturalStoneRevetmentLocationDependentInputAssertHelper.h"
+#include "ProfileDataAssertHelper.h"
 #include "RevetmentCalculationInputBuilder.h"
 #include "RevetmentCalculationInputBuilderException.h"
 #include "TimeDependentInputAssertHelper.h"
@@ -100,8 +101,6 @@ namespace DiKErnel::Integration::Test
         }
     };
 
-    #pragma region Time step
-
     TEST_F(RevetmentCalculationInputBuilderTest, GivenBuilder_WhenBuild_ThenReturnsCalculationInput)
     {
         // Given
@@ -111,9 +110,63 @@ namespace DiKErnel::Integration::Test
         const auto calculationInput = builder.Build();
 
         // Then
+        const auto& profileData = calculationInput->GetProfileData();
+        ASSERT_EQ(0, profileData.GetProfilePoints().size());
+        ASSERT_EQ(0, profileData.GetCharacteristicPoints().size());
         ASSERT_EQ(0, calculationInput->GetTimeDependentInputItems().size());
         ASSERT_EQ(0, calculationInput->GetLocationDependentInputItems().size());
     }
+
+    #pragma region Profile Point
+
+    TEST_F(RevetmentCalculationInputBuilderTest, GivenBuilderWithDikeProfilePointWithoutCharacteristicPointTypeAdded_WhenBuild_ThenReturnsCalculationInput)
+    {
+        // Given
+        const auto x = 10;
+        const auto z = 20;
+
+        RevetmentCalculationInputBuilder builder;
+        builder.AddDikeProfilePoint(x, z, nullptr);
+
+        // When
+        const auto calculationInput = builder.Build();
+
+        // Then
+        const auto& actualProfileData = calculationInput->GetProfileData();
+        const auto& actualProfilePoints = actualProfileData.GetProfilePoints();
+        ASSERT_EQ(1, actualProfilePoints.size());
+        ASSERT_EQ(0, actualProfileData.GetCharacteristicPoints().size());
+
+        ProfileDataAssertHelper::AssertProfilePoint(x, z, actualProfilePoints[0]);
+    }
+
+    TEST_F(RevetmentCalculationInputBuilderTest, GivenBuilderWithDikeProfilePointWithCharacteristicPointTypeAdded_WhenBuild_ThenReturnsCalculationInput)
+    {
+        // Given
+        const auto x = 10;
+        const auto z = 20;
+        const auto characteristicPointType = make_unique<CharacteristicPointType>(CharacteristicPointType::NotchOuterBerm);
+
+        RevetmentCalculationInputBuilder builder;
+        builder.AddDikeProfilePoint(x, z, characteristicPointType.get());
+
+        // When
+        const auto calculationInput = builder.Build();
+
+        // Then
+        const auto& actualProfileData = calculationInput->GetProfileData();
+        const auto& actualProfilePoints = actualProfileData.GetProfilePoints();
+        const auto& actualCharacteristicPoints = actualProfileData.GetCharacteristicPoints();
+        ASSERT_EQ(1, actualProfilePoints.size());
+        ASSERT_EQ(1, actualCharacteristicPoints.size());
+
+        ProfileDataAssertHelper::AssertProfilePoint(x, z, actualProfilePoints[0]);
+        ProfileDataAssertHelper::AssertCharacteristicPoint(actualProfilePoints[0], *characteristicPointType, actualCharacteristicPoints[0]);
+    }
+
+    #pragma endregion
+
+    #pragma region Time step
 
     TEST_F(RevetmentCalculationInputBuilderTest, GivenBuilderWithTimeStepAdded_WhenBuild_ThenReturnsCalculationInput)
     {

@@ -19,6 +19,8 @@ set(SOURCEFILES
   LocationDependentInputMock.h
   NaturalStoneRevetmentLocationDependentInputAssertHelper.cpp
   NaturalStoneRevetmentLocationDependentInputAssertHelper.h
+  ProfileDataAssertHelper.cpp
+  ProfileDataAssertHelper.h
   RevetmentLocationConstructionPropertiesMock.cpp
   RevetmentLocationConstructionPropertiesMock.h
   TimeDependentInputAssertHelper.cpp
