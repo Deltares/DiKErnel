@@ -81,6 +81,24 @@ namespace DiKErnel::KernelWrapper::Json::Input
                     readHydraulicLoads, JsonInputNaturalStoneDefinitions::HYDRAULIC_LOAD_XIB)));
         }
 
+        if (readCalculationMethod.contains(JsonInputNaturalStoneDefinitions::SLOPE_UPPER_LEVEL))
+        {
+            const auto& readSlopeUpperLevel = readCalculationMethod[JsonInputNaturalStoneDefinitions::SLOPE_UPPER_LEVEL];
+
+            locationData->SetSlopeUpperLevelAus(
+                forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
+                    readSlopeUpperLevel, JsonInputNaturalStoneDefinitions::SLOPE_UPPER_LEVEL_AUS)));
+        }
+
+        if (readCalculationMethod.contains(JsonInputNaturalStoneDefinitions::SLOPE_LOWER_LEVEL))
+        {
+            const auto& readSlopeLowerLevel = readCalculationMethod[JsonInputNaturalStoneDefinitions::SLOPE_LOWER_LEVEL];
+
+            locationData->SetSlopeUpperLevelAus(
+                forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
+                    readSlopeLowerLevel, JsonInputNaturalStoneDefinitions::SLOPE_LOWER_LEVEL_ALS)));
+        }
+
         if (readCalculationMethod.contains(JsonInputNaturalStoneDefinitions::UPPER_LIMIT_LOADING))
         {
             const auto& readUpperLimitLoading = readCalculationMethod[JsonInputNaturalStoneDefinitions::UPPER_LIMIT_LOADING];

@@ -41,6 +41,12 @@ namespace DiKErnel::KernelWrapper::Json::Input
             inline static const std::string HYDRAULIC_LOAD_CS = "HydraulischeBelastingNatuursteenCs";
             inline static const std::string HYDRAULIC_LOAD_NS = "HydraulischeBelastingNatuursteenNs";
 
+            inline static const std::string SLOPE_UPPER_LEVEL = "BovenzijdeHellingvlakNatuursteen";
+            inline static const std::string SLOPE_UPPER_LEVEL_AUS = "BovenzijdeHellingvlakNatuursteenAus";
+
+            inline static const std::string SLOPE_LOWER_LEVEL = "OnderzijdeHellingvlakNatuursteen";
+            inline static const std::string SLOPE_LOWER_LEVEL_ALS = "OnderzijdeHellingvlakNatuursteenAls";
+
             inline static const std::string UPPER_LIMIT_LOADING = "BovengrensBelastingNatuursteen";
             inline static const std::string UPPER_LIMIT_LOADING_AUL = "BovengrensBelastingNatuursteenAul";
             inline static const std::string UPPER_LIMIT_LOADING_BUL = "BovengrensBelastingNatuursteenBul";
