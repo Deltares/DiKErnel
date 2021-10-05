@@ -28,12 +28,13 @@ namespace DiKErnel::Integration
 
     NaturalStoneRevetmentLocationConstructionProperties::NaturalStoneRevetmentLocationConstructionProperties(
         string name,
+        const double x,
         const double tanA,
         const double positionZ,
         const NaturalStoneRevetmentTopLayerType topLayerType,
         const double thicknessTopLayer,
         const double relativeDensity)
-        : RevetmentLocationConstructionPropertiesBase(move(name), positionZ),
+        : RevetmentLocationConstructionPropertiesBase(move(name), x, positionZ),
           _tanA(tanA),
           _topLayerType(topLayerType),
           _thicknessTopLayer(thicknessTopLayer),

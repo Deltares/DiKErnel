@@ -227,6 +227,8 @@ namespace DiKErnel::Integration
              * \brief Creates a new instance.
              * \param name
              *        The name.
+             * \param x
+             *        The x coordinate.
              * \param tanA
              *        The tanA.
              * \param positionZ
@@ -236,6 +238,7 @@ namespace DiKErnel::Integration
              */
             explicit GrassRevetmentWaveRunupLocationConstructionProperties(
                 std::string name,
+                double x,
                 double tanA,
                 double positionZ,
                 GrassRevetmentTopLayerType topLayerType);

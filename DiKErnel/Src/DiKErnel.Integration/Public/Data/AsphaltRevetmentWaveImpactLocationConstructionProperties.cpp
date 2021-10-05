@@ -26,6 +26,7 @@ namespace DiKErnel::Integration
 
     AsphaltRevetmentWaveImpactLocationConstructionProperties::AsphaltRevetmentWaveImpactLocationConstructionProperties(
         string name,
+        const double x,
         const double tanA,
         const double positionZ,
         const AsphaltRevetmentTopLayerType topLayerType,
@@ -34,7 +35,7 @@ namespace DiKErnel::Integration
         const double soilElasticity,
         const double thicknessUpperLayer,
         const double elasticModulusUpperLayer)
-        : RevetmentLocationConstructionPropertiesBase(move(name), positionZ),
+        : RevetmentLocationConstructionPropertiesBase(move(name), x, positionZ),
           _tanA(tanA),
           _topLayerType(topLayerType),
           _failureTension(failureTension),

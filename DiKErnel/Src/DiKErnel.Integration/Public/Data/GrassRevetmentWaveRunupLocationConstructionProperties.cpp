@@ -28,10 +28,11 @@ namespace DiKErnel::Integration
 
     GrassRevetmentWaveRunupLocationConstructionProperties::GrassRevetmentWaveRunupLocationConstructionProperties(
         string name,
+        const double x,
         const double tanA,
         const double positionZ,
         const GrassRevetmentTopLayerType topLayerType)
-        : RevetmentLocationConstructionPropertiesBase(move(name), positionZ),
+        : RevetmentLocationConstructionPropertiesBase(move(name), x, positionZ),
           _tanA(tanA),
           _topLayerType(topLayerType) { }
 

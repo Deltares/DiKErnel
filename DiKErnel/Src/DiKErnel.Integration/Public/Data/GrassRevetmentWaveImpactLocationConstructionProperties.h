@@ -38,6 +38,8 @@ namespace DiKErnel::Integration
              * \brief Creates a new instance.
              * \param name
              *        The name.
+             * \param x
+             *        The x coordinate.
              * \param positionZ
              *        The vertical position.
              * \param topLayerType
@@ -45,6 +47,7 @@ namespace DiKErnel::Integration
              */
             explicit GrassRevetmentWaveImpactLocationConstructionProperties(
                 std::string name,
+                double x,
                 double positionZ,
                 GrassRevetmentTopLayerType topLayerType);
 
