@@ -44,6 +44,7 @@ namespace DiKErnel::Integration
         const double relativeDensity,
         const double thicknessTopLayer,
         unique_ptr<NaturalStoneRevetmentHydraulicLoads> hydraulicLoads,
+        unique_ptr<NaturalStoneRevetmentSlope> slope,
         unique_ptr<NaturalStoneRevetmentUpperLimitLoading> upperLimitLoading,
         unique_ptr<NaturalStoneRevetmentLowerLimitLoading> lowerLimitLoading,
         unique_ptr<NaturalStoneRevetmentDistanceMaximumWaveElevation> distanceMaximumWaveElevation,
@@ -54,6 +55,7 @@ namespace DiKErnel::Integration
           _relativeDensity(relativeDensity),
           _thicknessTopLayer(thicknessTopLayer),
           _hydraulicLoads(move(hydraulicLoads)),
+          _slope(move(slope)),
           _upperLimitLoading(move(upperLimitLoading)),
           _lowerLimitLoading(move(lowerLimitLoading)),
           _distanceMaximumWaveElevation(move(distanceMaximumWaveElevation)),
@@ -169,6 +171,11 @@ namespace DiKErnel::Integration
     NaturalStoneRevetmentHydraulicLoads& NaturalStoneRevetmentLocationDependentInput::GetHydraulicLoads() const
     {
         return *_hydraulicLoads;
+    }
+
+    NaturalStoneRevetmentSlope& NaturalStoneRevetmentLocationDependentInput::GetSlope() const
+    {
+        return *_slope;
     }
 
     NaturalStoneRevetmentUpperLimitLoading& NaturalStoneRevetmentLocationDependentInput::GetUpperLimitLoading() const
