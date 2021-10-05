@@ -881,7 +881,7 @@ namespace DiKErnel::Integration::Test
         naturalStoneConstructionProperties.SetHydraulicLoadCs(make_unique<double>(hydraulicLoadCs));
         naturalStoneConstructionProperties.SetHydraulicLoadNs(make_unique<double>(hydraulicLoadNs));
         naturalStoneConstructionProperties.SetSlopeUpperLevelAus(make_unique<double>(slopeUpperLevelAus));
-        naturalStoneConstructionProperties.SetSlopeLowerLevelAus(make_unique<double>(slopeLowerLevelAls));
+        naturalStoneConstructionProperties.SetSlopeLowerLevelAls(make_unique<double>(slopeLowerLevelAls));
         naturalStoneConstructionProperties.SetUpperLimitLoadingAul(make_unique<double>(upperLimitLoadingAul));
         naturalStoneConstructionProperties.SetUpperLimitLoadingBul(make_unique<double>(upperLimitLoadingBul));
         naturalStoneConstructionProperties.SetUpperLimitLoadingCul(make_unique<double>(upperLimitLoadingCul));
