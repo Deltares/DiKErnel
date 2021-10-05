@@ -234,6 +234,10 @@ namespace DiKErnel::Integration
             GetValue(constructionProperties.GetHydraulicLoadNs(), defaults->GetHydraulicLoadNs()),
             GetValue(constructionProperties.GetHydraulicLoadXib(), defaults->GetHydraulicLoadXib()));
 
+        auto slope = make_unique<NaturalStoneRevetmentSlope>(
+            GetValue(constructionProperties.GetSlopeUpperLevelAus(), defaults->GetSlopeUpperLevelAus()),
+            GetValue(constructionProperties.GetSlopeLowerLevelAls(), defaults->GetSlopeLowerLevelAls()));
+
         auto upperLimitLoading = make_unique<NaturalStoneRevetmentUpperLimitLoading>(
             GetValue(constructionProperties.GetUpperLimitLoadingAul(), defaults->GetUpperLimitLoadingAul()),
             GetValue(constructionProperties.GetUpperLimitLoadingBul(), defaults->GetUpperLimitLoadingBul()),
@@ -268,6 +272,7 @@ namespace DiKErnel::Integration
                 constructionProperties.GetRelativeDensity(),
                 constructionProperties.GetThicknessTopLayer(),
                 move(hydraulicLoads),
+                move(slope),
                 move(upperLimitLoading),
                 move(lowerLimitLoading),
                 move(distanceMaximumWaveElevation),
