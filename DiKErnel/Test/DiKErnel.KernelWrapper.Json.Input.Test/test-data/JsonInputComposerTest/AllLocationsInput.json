@@ -140,7 +140,7 @@
                     [
                         {
                             "RekenmethodeSoort": "Natuursteen",
-                            "ToenameSchadeNatuursteen":
+                            "HydraulischeBelastingNatuursteen":
                             {
                                 "HydraulischeBelastingNatuursteenXib": 4.9,
                                 "HydraulischeBelastingNatuursteenAp": 5,

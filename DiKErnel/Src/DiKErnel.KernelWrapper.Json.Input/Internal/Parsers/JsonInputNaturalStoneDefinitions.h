@@ -30,7 +30,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
             inline static const std::string RELATIVE_DENSITY = "RelatieveDichtheid";
             inline static const std::string THICKNESS_TOP_LAYER = "DikteToplaag";
 
-            inline static const std::string HYDRAULIC_LOAD = "ToenameSchadeNatuursteen";
+            inline static const std::string HYDRAULIC_LOAD = "HydraulischeBelastingNatuursteen";
             inline static const std::string HYDRAULIC_LOAD_XIB = "HydraulischeBelastingNatuursteenXib";
             inline static const std::string HYDRAULIC_LOAD_AP = "HydraulischeBelastingNatuursteenAp";
             inline static const std::string HYDRAULIC_LOAD_BP = "HydraulischeBelastingNatuursteenBp";
