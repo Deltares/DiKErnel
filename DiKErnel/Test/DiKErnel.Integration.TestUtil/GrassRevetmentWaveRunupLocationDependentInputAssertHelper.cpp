@@ -28,11 +28,13 @@ namespace DiKErnel::Integration::TestUtil
 
     void GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertGeneralProperties(
         const string& name,
+        const double x,
         const double tanA,
         const double positionZ,
         const GrassRevetmentWaveRunupLocationDependentInput& locationDependentInput)
     {
         ASSERT_EQ(name, locationDependentInput.GetName());
+        ASSERT_DOUBLE_EQ(x, locationDependentInput.GetX());
         ASSERT_DOUBLE_EQ(tanA, locationDependentInput.GetTanA());
         ASSERT_DOUBLE_EQ(positionZ, locationDependentInput.GetPositionZ());
     }

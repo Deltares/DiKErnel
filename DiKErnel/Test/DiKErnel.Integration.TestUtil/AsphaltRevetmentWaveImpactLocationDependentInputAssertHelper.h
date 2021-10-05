@@ -29,6 +29,7 @@ namespace DiKErnel::Integration::TestUtil
         public:
             static void AssertGeneralProperties(
                 const std::string& name,
+                double x,
                 double tanA,
                 double positionZ,
                 double failureTension,
