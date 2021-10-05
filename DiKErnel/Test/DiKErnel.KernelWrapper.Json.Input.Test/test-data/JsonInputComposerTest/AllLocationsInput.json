@@ -152,6 +152,14 @@
                                 "HydraulischeBelastingNatuursteenCs": -8,
                                 "HydraulischeBelastingNatuursteenNs": 6
                             },
+                            "BovenzijdeHellingvlakNatuursteen":
+                            {
+								"BovenzijdeHellingvlakNatuursteenAus": 0.95
+							},
+							"OnderzijdeHellingvlakNatuursteen":
+                            {
+								"OnderzijdeHellingvlakNatuursteenAls": 1.8
+							},
                             "BovengrensBelastingNatuursteen":
                             {
                                 "BovengrensBelastingNatuursteenAul": 6.1,
