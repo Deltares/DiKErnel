@@ -97,6 +97,20 @@ namespace DiKErnel::DomainLibrary
             virtual double GetHydraulicLoadNs() const = 0;
 
             /*!
+             * \brief Gets the default value of the Aus coefficient.
+             * \return The default value of the Aus coefficient.
+             *         Unit = [-]
+             */
+            virtual double GetSlopeUpperLevelAus() const = 0;
+
+            /*!
+             * \brief Gets the default value of the Als coefficient.
+             * \return The default value of the Als coefficient.
+             *         Unit = [-]
+             */
+            virtual double GetSlopeLowerLevelAls() const = 0;
+
+            /*!
              * \brief Gets the default value of the Aul coefficient.
              * \return The default value of the Aul coefficient.
              *         Unit = [-]

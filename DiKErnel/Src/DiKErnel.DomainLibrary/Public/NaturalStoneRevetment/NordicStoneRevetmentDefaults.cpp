@@ -67,6 +67,16 @@ namespace DiKErnel::DomainLibrary
         return 0.6;
     }
 
+    double NordicStoneRevetmentDefaults::GetSlopeUpperLevelAus() const
+    {
+        return 0.05;
+    }
+
+    double NordicStoneRevetmentDefaults::GetSlopeLowerLevelAls() const
+    {
+        return 1.5;
+    }
+
     double NordicStoneRevetmentDefaults::GetUpperLimitLoadingAul() const
     {
         return 0.1;
