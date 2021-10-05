@@ -88,6 +88,18 @@ namespace DiKErnel::KernelWrapper::Json::Input
         _hydraulicLoadXib = move(hydraulicLoadXib);
     }
 
+    void JsonInputNaturalStoneRevetmentLocationData::SetSlopeUpperLevelAus(
+        std::unique_ptr<double> slopeUpperLevelAus)
+    {
+        _slopeUpperLevelAus = move(slopeUpperLevelAus);
+    }
+
+    void JsonInputNaturalStoneRevetmentLocationData::SetSlopeLowerLevelAus(
+        std::unique_ptr<double> slopeLowerLevelAls)
+    {
+        _slopeLowerLevelAls = move(slopeLowerLevelAls);
+    }
+
     void JsonInputNaturalStoneRevetmentLocationData::SetUpperLimitLoadingAul(
         unique_ptr<double> upperLimitLoadingAul)
     {
@@ -216,6 +228,16 @@ namespace DiKErnel::KernelWrapper::Json::Input
     const double* JsonInputNaturalStoneRevetmentLocationData::GetHydraulicLoadNs() const
     {
         return _hydraulicLoadNs.get();
+    }
+
+    const double* JsonInputNaturalStoneRevetmentLocationData::GetSlopeUpperLevelAus() const
+    {
+        return _slopeUpperLevelAus.get();
+    }
+
+    const double* JsonInputNaturalStoneRevetmentLocationData::GetSlopeLowerLevelAls() const
+    {
+        return _slopeLowerLevelAls.get();
     }
 
     const double* JsonInputNaturalStoneRevetmentLocationData::GetUpperLimitLoadingAul() const

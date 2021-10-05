@@ -64,6 +64,12 @@ namespace DiKErnel::KernelWrapper::Json::Input
             void SetHydraulicLoadXib(
                 std::unique_ptr<double> hydraulicLoadXib);
 
+            void SetSlopeUpperLevelAus(
+                std::unique_ptr<double> slopeUpperLevelAus);
+
+            void SetSlopeLowerLevelAus(
+                std::unique_ptr<double> slopeLowerLevelAls);
+
             void SetUpperLimitLoadingAul(
                 std::unique_ptr<double> upperLimitLoadingAul);
 
@@ -125,6 +131,10 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
             const double* GetHydraulicLoadNs() const;
 
+            const double* GetSlopeUpperLevelAus() const;
+
+            const double* GetSlopeLowerLevelAls() const;
+
             const double* GetUpperLimitLoadingAul() const;
 
             const double* GetUpperLimitLoadingBul() const;
@@ -162,6 +172,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
             std::unique_ptr<double> _hydraulicLoadBs = nullptr;
             std::unique_ptr<double> _hydraulicLoadCs = nullptr;
             std::unique_ptr<double> _hydraulicLoadNs = nullptr;
+            std::unique_ptr<double> _slopeUpperLevelAus = nullptr;
+            std::unique_ptr<double> _slopeLowerLevelAls = nullptr;
             std::unique_ptr<double> _upperLimitLoadingAul = nullptr;
             std::unique_ptr<double> _upperLimitLoadingBul = nullptr;
             std::unique_ptr<double> _upperLimitLoadingCul = nullptr;
