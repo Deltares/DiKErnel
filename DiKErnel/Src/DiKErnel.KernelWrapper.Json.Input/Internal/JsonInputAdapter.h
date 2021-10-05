@@ -42,6 +42,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 const JsonInputData& jsonInputData);
 
         private:
+            static std::unique_ptr<Core::CharacteristicPointType> ConvertCharacteristicPointType(
+                const JsonInputCharacteristicPointType* jsonCharacteristicPointType);
+
             static std::unique_ptr<Integration::AsphaltRevetmentWaveImpactLocationConstructionProperties>
             CreateAsphaltWaveImpactConstructionProperties(
                 const JsonInputLocationData& location,

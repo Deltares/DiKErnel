@@ -40,6 +40,16 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
         RevetmentCalculationInputBuilder builder;
 
+        const auto& dikeProfileData = calculationData.GetDikeProfileData();
+
+        for (const auto& dikeProfilePointReference : dikeProfileData.GetDikeProfilePoints())
+        {
+            const auto& dikeProfilePoint = dikeProfilePointReference.get();
+
+            builder.AddDikeProfilePoint(dikeProfilePoint.GetX(), dikeProfilePoint.GetZ(),
+                                        ConvertCharacteristicPointType(dikeProfilePoint.GetCharacteristicPointType()));
+        }
+
         const auto& times = calculationData.GetTimes();
         const auto& timeDependentData = hydraulicData.GetTimeDependentHydraulicData();
 
@@ -90,6 +100,35 @@ namespace DiKErnel::KernelWrapper::Json::Input
         }
 
         return builder.Build();
+    }
+
+    unique_ptr<CharacteristicPointType> JsonInputAdapter::ConvertCharacteristicPointType(
+        const JsonInputCharacteristicPointType* jsonCharacteristicPointType)
+    {
+        unique_ptr<CharacteristicPointType> characteristicPointType = nullptr;
+
+        if (jsonCharacteristicPointType != nullptr)
+        {
+            switch (*jsonCharacteristicPointType)
+            {
+                case JsonInputCharacteristicPointType::OuterToe:
+                    characteristicPointType = make_unique<CharacteristicPointType>(CharacteristicPointType::OuterToe);
+                    break;
+                case JsonInputCharacteristicPointType::OuterCrest:
+                    characteristicPointType = make_unique<CharacteristicPointType>(CharacteristicPointType::OuterCrest);
+                    break;
+                case JsonInputCharacteristicPointType::CrestOuterBerm:
+                    characteristicPointType = make_unique<CharacteristicPointType>(CharacteristicPointType::CrestOuterBerm);
+                    break;
+                case JsonInputCharacteristicPointType::NotchOuterBerm:
+                    characteristicPointType = make_unique<CharacteristicPointType>(CharacteristicPointType::NotchOuterBerm);
+                    break;
+                default:
+                    throw JsonInputConversionException("Cannot convert characteristic point type.");
+            }
+        }
+
+        return characteristicPointType;
     }
 
     unique_ptr<AsphaltRevetmentWaveImpactLocationConstructionProperties> JsonInputAdapter::CreateAsphaltWaveImpactConstructionProperties(

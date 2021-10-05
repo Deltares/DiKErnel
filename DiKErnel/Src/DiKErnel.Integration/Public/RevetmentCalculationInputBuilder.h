@@ -35,6 +35,20 @@ namespace DiKErnel::Integration
     {
         public:
             /*!
+             * \brief Adds a dike profile point.
+             * \param x
+             *        The x coordinate.
+             * \param z
+             *        The z coordinate.
+             * \param characteristicPointType
+             *        The characteristic point type.
+             */
+            void AddDikeProfilePoint(
+                double x,
+                double z,
+                std::unique_ptr<Core::CharacteristicPointType> characteristicPointType);
+
+            /*!
              * \brief Adds a time step.
              * \param beginTime
              *        The begin time.
@@ -108,6 +122,9 @@ namespace DiKErnel::Integration
             std::unique_ptr<Core::ICalculationInput> Build();
 
         private:
+            std::vector<std::unique_ptr<Core::ProfilePoint>> _profilePoints = std::vector<std::unique_ptr<Core::ProfilePoint>>();
+            std::vector<std::unique_ptr<Core::CharacteristicPoint>> _characteristicPoints
+                    = std::vector<std::unique_ptr<Core::CharacteristicPoint>>();
             std::vector<std::unique_ptr<TimeDependentInput>> _timeDependentInputItems = std::vector<std::unique_ptr<TimeDependentInput>>();
             std::vector<std::unique_ptr<LocationDependentInput>> _locationDependentInputItems
                     = std::vector<std::unique_ptr<LocationDependentInput>>();

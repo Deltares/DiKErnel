@@ -44,6 +44,19 @@ namespace DiKErnel::Integration
     using namespace DomainLibrary;
     using namespace std;
 
+    void RevetmentCalculationInputBuilder::AddDikeProfilePoint(
+        const double x,
+        const double z,
+        unique_ptr<CharacteristicPointType> characteristicPointType)
+    {
+        _profilePoints.push_back(make_unique<ProfilePoint>(x, z));
+
+        if (characteristicPointType != nullptr)
+        {
+            _characteristicPoints.push_back(make_unique<CharacteristicPoint>(*_profilePoints.back(), move(characteristicPointType)));
+        }
+    }
+
     void RevetmentCalculationInputBuilder::AddTimeStep(
         int beginTime,
         int endTime,
