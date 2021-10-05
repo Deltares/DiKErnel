@@ -11,6 +11,7 @@
 		[
 			{
 				"Naam": "AsfaltGolfklap",
+				"PositieLocatie": 0,
 				"Bekleding":
 				{
 					"TypeToplaag": "WaterbouwAsfaltZonderBeton",

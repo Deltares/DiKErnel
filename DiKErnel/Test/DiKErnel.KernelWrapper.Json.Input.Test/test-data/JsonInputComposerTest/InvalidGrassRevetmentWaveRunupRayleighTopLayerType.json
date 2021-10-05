@@ -11,6 +11,7 @@
 		[
 			{
 				"Naam": "GrasGolfoploop",
+				"PositieLocatie": 0,
 				"Bekleding": {
 					"TypeToplaag": "GrasHalveZode",
 					"Rekenmethoden": 

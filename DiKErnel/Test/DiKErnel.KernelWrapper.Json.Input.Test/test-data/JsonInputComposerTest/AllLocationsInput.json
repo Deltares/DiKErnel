@@ -125,6 +125,7 @@
         [
             {
                 "Naam": "NatuursteenAlleOptiesAan",
+                "PositieLocatie": 11,
                 "Schade":
                 {
                     "BeginSchade": 0.1,
@@ -188,6 +189,7 @@
             },
             {
                 "Naam": "NatuursteenAlleOptiesUit",
+                "PositieLocatie": 8.79,
                 "Bekleding":
                 {
                     "TypeToplaag": "NoorseSteen",
@@ -208,6 +210,7 @@
             },
             {
                 "Naam": "GrasGolfklapAlleOptiesAan",
+                "PositieLocatie": 0,
                 "Schade":
                 {
                     "BeginSchade": 0.04,
@@ -256,6 +259,7 @@
             },
             {
                 "Naam": "GrasGolfklapGeslotenZodeAlleOptiesUit",
+                "PositieLocatie": -18.4,
                 "Bekleding":
                 {
                     "TypeToplaag": "GrasGeslotenZode",
@@ -274,6 +278,7 @@
             },
             {
                 "Naam": "GrasGolfklapOpenZodeAlleOptiesUit",
+                "PositieLocatie": 4,
                 "Bekleding":
                 {
                     "TypeToplaag": "GrasOpenZode",
@@ -292,6 +297,7 @@
             },
             {
                 "Naam": "GrasGolfoploopRayleighDiscreetAlleOptiesAan",
+                "PositieLocatie": 157,
                 "Schade":
                 {
                     "BeginSchade": 0.0006,
@@ -345,6 +351,7 @@
             },
             {
                 "Naam": "GrasGolfoploopRayleighDiscreetGeslotenZodeAlleOptiesUit",
+                "PositieLocatie": 0.98,
                 "Bekleding":
                 {
                     "TypeToplaag": "GrasGeslotenZode",
@@ -367,6 +374,7 @@
             },
             {
                 "Naam": "GrasGolfoploopRayleighDiscreetOpenZodeAlleOptiesUit",
+                "PositieLocatie": 7.698,
                 "Bekleding":
                 {
                     "TypeToplaag": "GrasOpenZode",
@@ -389,6 +397,7 @@
             },
             {
                 "Naam": "AsfaltAlleOptiesAan",
+                "PositieLocatie": 25,
                 "Schade":
                 {
                     "BeginSchade": 1.0,
@@ -475,6 +484,7 @@
             },
             {
                 "Naam": "AsfaltAlleOptiesUit",
+                "PositieLocatie": 19,
                 "Bekleding":
                 {
                     "TypeToplaag": "WaterbouwAsfaltBeton",

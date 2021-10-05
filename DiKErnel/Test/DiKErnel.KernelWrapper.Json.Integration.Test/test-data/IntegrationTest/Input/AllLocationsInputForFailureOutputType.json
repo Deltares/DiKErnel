@@ -157,6 +157,7 @@
         [
             {
                 "Naam": "NaturalStoneExtended",
+                "PositieLocatie": 0,
                 "Schade":
                 {
                     "BeginSchade": 0.2,
@@ -220,6 +221,7 @@
             },
             {
                 "Naam": "GrasGolfklapAlleOptiesAan",
+                "PositieLocatie": 0,
                 "Schade":
                 {
                     "BeginSchade": 0.04,
@@ -268,6 +270,7 @@
             },
             {
                 "Naam": "GrasGolfoploopRayleighDiscreetAlleOptiesAan",
+                "PositieLocatie": 0,
                 "Schade":
                 {
                     "BeginSchade": 0.0006,
@@ -321,6 +324,7 @@
             },
             {
                 "Naam": "AsfaltAlleOptiesAan",
+                "PositieLocatie": 0,
                 "Schade":
                 {
                     "BeginSchade": 0,
