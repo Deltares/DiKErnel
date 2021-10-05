@@ -67,7 +67,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
             void SetSlopeUpperLevelAus(
                 std::unique_ptr<double> slopeUpperLevelAus);
 
-            void SetSlopeLowerLevelAus(
+            void SetSlopeLowerLevelAls(
                 std::unique_ptr<double> slopeLowerLevelAls);
 
             void SetUpperLimitLoadingAul(

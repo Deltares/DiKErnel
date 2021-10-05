@@ -129,7 +129,7 @@ namespace DiKErnel::Integration::Test
         constructionProperties.SetHydraulicLoadCs(make_unique<double>(hydraulicLoadCs));
         constructionProperties.SetHydraulicLoadNs(make_unique<double>(hydraulicLoadNs));
         constructionProperties.SetSlopeUpperLevelAus(make_unique<double>(slopeUpperLevelAus));
-        constructionProperties.SetSlopeLowerLevelAus(make_unique<double>(slopeLowerLevelAls));
+        constructionProperties.SetSlopeLowerLevelAls(make_unique<double>(slopeLowerLevelAls));
         constructionProperties.SetUpperLimitLoadingAul(make_unique<double>(upperLimitLoadingAul));
         constructionProperties.SetUpperLimitLoadingBul(make_unique<double>(upperLimitLoadingBul));
         constructionProperties.SetUpperLimitLoadingCul(make_unique<double>(upperLimitLoadingCul));

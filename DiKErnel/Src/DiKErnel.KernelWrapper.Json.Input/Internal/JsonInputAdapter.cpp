@@ -329,7 +329,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
         constructionProperties->SetSlopeUpperLevelAus(
             forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData.GetSlopeUpperLevelAus())));
-        constructionProperties->SetSlopeLowerLevelAus(
+        constructionProperties->SetSlopeLowerLevelAls(
             forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData.GetSlopeLowerLevelAls())));
 
         constructionProperties->SetUpperLimitLoadingAul(

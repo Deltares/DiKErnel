@@ -94,7 +94,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
         {
             const auto& readSlopeLowerLevel = readCalculationMethod[JsonInputNaturalStoneDefinitions::SLOPE_LOWER_LEVEL];
 
-            locationData->SetSlopeLowerLevelAus(
+            locationData->SetSlopeLowerLevelAls(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
                     readSlopeLowerLevel, JsonInputNaturalStoneDefinitions::SLOPE_LOWER_LEVEL_ALS)));
         }

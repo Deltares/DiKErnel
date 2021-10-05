@@ -148,7 +148,7 @@ namespace DiKErnel::Integration
              * \param slopeLowerLevelAls
              *        The Als coefficient.
              */
-            void SetSlopeLowerLevelAus(
+            void SetSlopeLowerLevelAls(
                 std::unique_ptr<double> slopeLowerLevelAls);
 
             /*!
