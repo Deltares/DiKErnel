@@ -58,6 +58,12 @@ namespace DiKErnel::Core
             virtual std::string GetName() const = 0;
 
             /*!
+             * \brief Gets the x coordinate.
+             * \return The x coordinate.
+             */
+            virtual double GetX() const = 0;
+
+            /*!
              * \brief Gets the initial damage.
              * \return The initial damage.
              */

@@ -34,6 +34,7 @@ namespace DiKErnel::Integration
 
     AsphaltRevetmentWaveImpactLocationDependentInput::AsphaltRevetmentWaveImpactLocationDependentInput(
         string name,
+        const double x,
         const double initialDamage,
         const double failureNumber,
         const double tanA,
@@ -50,7 +51,7 @@ namespace DiKErnel::Integration
         vector<tuple<double, double>> widthFactors,
         vector<tuple<double, double>> depthFactors,
         vector<tuple<double, double>> impactFactors)
-        : LocationDependentInput(move(name), initialDamage, failureNumber, positionZ),
+        : LocationDependentInput(move(name), x, initialDamage, failureNumber, positionZ),
           _tanA(tanA),
           _failureTension(failureTension),
           _densityOfWater(densityOfWater),

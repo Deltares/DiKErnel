@@ -33,6 +33,8 @@ namespace DiKErnel::Integration
 
             std::string GetName() const override;
 
+            double GetX() const override;
+
             double GetInitialDamage() const override;
 
             double GetFailureNumber() const override;
@@ -42,12 +44,14 @@ namespace DiKErnel::Integration
         protected:
             explicit LocationDependentInput(
                 std::string name,
+                double x,
                 double initialDamage,
                 double failureNumber,
                 double positionZ);
 
         private:
             std::string _name;
+            double _x;
             double _initialDamage;
             const double _failureNumber;
             const double _positionZ;

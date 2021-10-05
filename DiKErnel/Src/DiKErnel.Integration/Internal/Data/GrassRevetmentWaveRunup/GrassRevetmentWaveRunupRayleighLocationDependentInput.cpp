@@ -36,6 +36,7 @@ namespace DiKErnel::Integration
 
     GrassRevetmentWaveRunupRayleighLocationDependentInput::GrassRevetmentWaveRunupRayleighLocationDependentInput(
         string name,
+        const double x,
         const double initialDamage,
         const double failureNumber,
         const double tanA,
@@ -49,7 +50,7 @@ namespace DiKErnel::Integration
         unique_ptr<GrassRevetmentWaveRunupWaveAngleImpact> waveAngleImpact,
         const int fixedNumberOfWaves,
         const double frontVelocityCu)
-        : GrassRevetmentWaveRunupLocationDependentInput(move(name), initialDamage, failureNumber, tanA, positionZ, criticalCumulativeOverload,
+        : GrassRevetmentWaveRunupLocationDependentInput(move(name), x, initialDamage, failureNumber, tanA, positionZ, criticalCumulativeOverload,
                                                         criticalFrontVelocity, increasedLoadTransitionAlphaM, reducedStrengthTransitionAlphaS,
                                                         averageNumberOfWavesCtm, move(representative2P), move(waveAngleImpact)),
           _fixedNumberOfWaves(fixedNumberOfWaves),
