@@ -327,6 +327,11 @@ namespace DiKErnel::KernelWrapper::Json::Input
         constructionProperties->SetHydraulicLoadXib(
             forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData.GetHydraulicLoadXib())));
 
+        constructionProperties->SetSlopeUpperLevelAus(
+            forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData.GetSlopeUpperLevelAus())));
+        constructionProperties->SetSlopeLowerLevelAus(
+            forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData.GetSlopeLowerLevelAls())));
+
         constructionProperties->SetUpperLimitLoadingAul(
             forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData.GetUpperLimitLoadingAul())));
         constructionProperties->SetUpperLimitLoadingBul(
