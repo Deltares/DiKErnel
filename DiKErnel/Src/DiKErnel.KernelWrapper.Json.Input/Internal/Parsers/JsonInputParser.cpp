@@ -211,6 +211,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
             auto parsedLocation = make_unique<JsonInputLocationData>(
                 readLocation[JsonInputDefinitions::NAME].get<string>(),
+                0,
                 make_unique<JsonInputDamageData>(move(initialDamage), move(failureNumber)),
                 ParseRevetmentLocationData(readRevetment, readCalculationMethod, calculationType),
                 ParseProfileSchematizationData(readLocation[JsonInputDefinitions::PROFILE_SCHEMATIZATION], calculationType));

@@ -26,10 +26,12 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
     JsonInputLocationData::JsonInputLocationData(
         string name,
+        const double xLocation,
         unique_ptr<JsonInputDamageData> damageData,
         unique_ptr<IJsonInputRevetmentLocationData> revetmentLocationData,
         unique_ptr<JsonInputProfileSchematizationData> profileSchematizationData)
         : _name(move(name)),
+          _xLocation(xLocation),
           _damageData(move(damageData)),
           _revetmentLocationData(move(revetmentLocationData)),
           _profileSchematizationData(move(profileSchematizationData)) { }
@@ -37,6 +39,11 @@ namespace DiKErnel::KernelWrapper::Json::Input
     const string& JsonInputLocationData::GetName() const
     {
         return _name;
+    }
+
+    double JsonInputLocationData::GetXLocation() const
+    {
+        return _xLocation;
     }
 
     const JsonInputDamageData& JsonInputLocationData::GetDamageData() const
