@@ -46,7 +46,7 @@ namespace DiKErnel::Integration
             void AddDikeProfilePoint(
                 double x,
                 double z,
-                std::unique_ptr<Core::CharacteristicPointType> characteristicPointType);
+                const Core::CharacteristicPointType* characteristicPointType);
 
             /*!
              * \brief Adds a time step.

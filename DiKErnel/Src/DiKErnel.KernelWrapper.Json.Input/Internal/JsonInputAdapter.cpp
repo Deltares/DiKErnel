@@ -45,9 +45,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
         for (const auto& dikeProfilePointReference : dikeProfileData.GetDikeProfilePoints())
         {
             const auto& dikeProfilePoint = dikeProfilePointReference.get();
+            const auto characteristicPointType = ConvertCharacteristicPointType(dikeProfilePoint.GetCharacteristicPointType());
 
-            builder.AddDikeProfilePoint(dikeProfilePoint.GetX(), dikeProfilePoint.GetZ(),
-                                        ConvertCharacteristicPointType(dikeProfilePoint.GetCharacteristicPointType()));
+            builder.AddDikeProfilePoint(dikeProfilePoint.GetX(), dikeProfilePoint.GetZ(), characteristicPointType.get());
         }
 
         const auto& times = calculationData.GetTimes();

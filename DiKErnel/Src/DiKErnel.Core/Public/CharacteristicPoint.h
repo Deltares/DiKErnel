@@ -42,7 +42,7 @@ namespace DiKErnel::Core
              */
             explicit CharacteristicPoint(
                 ProfilePoint& profilePoint,
-                std::unique_ptr<CharacteristicPointType> characteristicPointType);
+                CharacteristicPointType characteristicPointType);
 
             /*!
              * \brief Gets the profile point.
@@ -54,10 +54,10 @@ namespace DiKErnel::Core
              * \brief Gets the characteristic point type.
              * \return The characteristic point type.
              */
-            const CharacteristicPointType& GetCharacteristicPointType() const;
+            CharacteristicPointType GetCharacteristicPointType() const;
 
         private:
             ProfilePoint& _profilePoint;
-            std::unique_ptr<CharacteristicPointType> _characteristicPointType;
+            CharacteristicPointType _characteristicPointType;
     };
 }

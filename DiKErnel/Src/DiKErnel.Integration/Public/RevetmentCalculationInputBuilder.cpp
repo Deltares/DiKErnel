@@ -47,13 +47,13 @@ namespace DiKErnel::Integration
     void RevetmentCalculationInputBuilder::AddDikeProfilePoint(
         const double x,
         const double z,
-        unique_ptr<CharacteristicPointType> characteristicPointType)
+        const CharacteristicPointType* characteristicPointType)
     {
         _profilePoints.push_back(make_unique<ProfilePoint>(x, z));
 
         if (characteristicPointType != nullptr)
         {
-            _characteristicPoints.push_back(make_unique<CharacteristicPoint>(*_profilePoints.back(), move(characteristicPointType)));
+            _characteristicPoints.push_back(make_unique<CharacteristicPoint>(*_profilePoints.back(), *characteristicPointType));
         }
     }
 

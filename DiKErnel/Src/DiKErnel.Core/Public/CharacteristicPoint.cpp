@@ -26,17 +26,17 @@ namespace DiKErnel::Core
 
     CharacteristicPoint::CharacteristicPoint(
         ProfilePoint& profilePoint,
-        std::unique_ptr<CharacteristicPointType> characteristicPointType)
+        const CharacteristicPointType characteristicPointType)
         : _profilePoint(profilePoint),
-          _characteristicPointType(move(characteristicPointType)) {}
+          _characteristicPointType(characteristicPointType) {}
 
     const ProfilePoint& CharacteristicPoint::GetProfilePoint() const
     {
         return _profilePoint;
     }
 
-    const CharacteristicPointType& CharacteristicPoint::GetCharacteristicPointType() const
+    CharacteristicPointType CharacteristicPoint::GetCharacteristicPointType() const
     {
-        return *_characteristicPointType;
+        return _characteristicPointType;
     }
 }
