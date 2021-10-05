@@ -96,6 +96,18 @@ namespace DiKErnel::Integration
         _hydraulicLoadXib = move(hydraulicLoadXib);
     }
 
+    void NaturalStoneRevetmentLocationConstructionProperties::SetSlopeUpperLevelAus(
+        std::unique_ptr<double> slopeUpperLevelAus)
+    {
+        _slopeUpperLevelAus = move(slopeUpperLevelAus);
+    }
+
+    void NaturalStoneRevetmentLocationConstructionProperties::SetSlopeLowerLevelAus(
+        std::unique_ptr<double> slopeLowerLevelAls)
+    {
+        _slopeLowerLevelAls = move(slopeLowerLevelAls);
+    }
+
     void NaturalStoneRevetmentLocationConstructionProperties::SetUpperLimitLoadingAul(
         unique_ptr<double> upperLimitLoadingAul)
     {
@@ -229,6 +241,16 @@ namespace DiKErnel::Integration
     const double* NaturalStoneRevetmentLocationConstructionProperties::GetHydraulicLoadXib() const
     {
         return _hydraulicLoadXib.get();
+    }
+
+    const double* NaturalStoneRevetmentLocationConstructionProperties::GetSlopeUpperLevelAus() const
+    {
+        return _slopeUpperLevelAus.get();
+    }
+
+    const double* NaturalStoneRevetmentLocationConstructionProperties::GetSlopeLowerLevelAls() const
+    {
+        return _slopeLowerLevelAls.get();
     }
 
     const double* NaturalStoneRevetmentLocationConstructionProperties::GetUpperLimitLoadingAul() const

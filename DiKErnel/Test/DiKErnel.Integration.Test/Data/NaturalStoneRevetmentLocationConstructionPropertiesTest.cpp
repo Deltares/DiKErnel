@@ -63,6 +63,8 @@ namespace DiKErnel::Integration::Test
         ASSERT_EQ(nullptr, constructionProperties.GetHydraulicLoadBs());
         ASSERT_EQ(nullptr, constructionProperties.GetHydraulicLoadCs());
         ASSERT_EQ(nullptr, constructionProperties.GetHydraulicLoadNs());
+        ASSERT_EQ(nullptr, constructionProperties.GetSlopeUpperLevelAus());
+        ASSERT_EQ(nullptr, constructionProperties.GetSlopeLowerLevelAls());
         ASSERT_EQ(nullptr, constructionProperties.GetUpperLimitLoadingAul());
         ASSERT_EQ(nullptr, constructionProperties.GetUpperLimitLoadingBul());
         ASSERT_EQ(nullptr, constructionProperties.GetUpperLimitLoadingCul());
@@ -97,17 +99,19 @@ namespace DiKErnel::Integration::Test
         const auto hydraulicLoadBs = 1.4;
         const auto hydraulicLoadCs = 1.5;
         const auto hydraulicLoadNs = 1.6;
-        const auto upperLimitLoadingAul = 1.7;
-        const auto upperLimitLoadingBul = 1.8;
-        const auto upperLimitLoadingCul = 1.9;
-        const auto lowerLimitLoadingAll = 2.0;
-        const auto lowerLimitLoadingBll = 2.1;
-        const auto lowerLimitLoadingCll = 2.2;
-        const auto distanceMaximumWaveElevationAsmax = 2.3;
-        const auto distanceMaximumWaveElevationBsmax = 2.4;
-        const auto normativeWidthOfWaveImpactAwi = 2.5;
-        const auto normativeWidthOfWaveImpactBwi = 2.6;
-        const auto waveAngleImpactBetamax = 2.7;
+        const auto slopeUpperLevelAus = 1.7;
+        const auto slopeLowerLevelAls = 1.8;
+        const auto upperLimitLoadingAul = 1.9;
+        const auto upperLimitLoadingBul = 2.0;
+        const auto upperLimitLoadingCul = 2.1;
+        const auto lowerLimitLoadingAll = 2.2;
+        const auto lowerLimitLoadingBll = 2.3;
+        const auto lowerLimitLoadingCll = 2.4;
+        const auto distanceMaximumWaveElevationAsmax = 2.5;
+        const auto distanceMaximumWaveElevationBsmax = 2.6;
+        const auto normativeWidthOfWaveImpactAwi = 2.7;
+        const auto normativeWidthOfWaveImpactBwi = 2.8;
+        const auto waveAngleImpactBetamax = 2.9;
 
         NaturalStoneRevetmentLocationConstructionProperties constructionProperties(
             name, x, tanA, positionZ, topLayerType, thicknessTopLayer, relativeDensity);
@@ -124,6 +128,8 @@ namespace DiKErnel::Integration::Test
         constructionProperties.SetHydraulicLoadBs(make_unique<double>(hydraulicLoadBs));
         constructionProperties.SetHydraulicLoadCs(make_unique<double>(hydraulicLoadCs));
         constructionProperties.SetHydraulicLoadNs(make_unique<double>(hydraulicLoadNs));
+        constructionProperties.SetSlopeUpperLevelAus(make_unique<double>(slopeUpperLevelAus));
+        constructionProperties.SetSlopeLowerLevelAus(make_unique<double>(slopeLowerLevelAls));
         constructionProperties.SetUpperLimitLoadingAul(make_unique<double>(upperLimitLoadingAul));
         constructionProperties.SetUpperLimitLoadingBul(make_unique<double>(upperLimitLoadingBul));
         constructionProperties.SetUpperLimitLoadingCul(make_unique<double>(upperLimitLoadingCul));
@@ -155,6 +161,8 @@ namespace DiKErnel::Integration::Test
         ASSERT_DOUBLE_EQ(hydraulicLoadBs, *constructionProperties.GetHydraulicLoadBs());
         ASSERT_DOUBLE_EQ(hydraulicLoadCs, *constructionProperties.GetHydraulicLoadCs());
         ASSERT_DOUBLE_EQ(hydraulicLoadNs, *constructionProperties.GetHydraulicLoadNs());
+        ASSERT_DOUBLE_EQ(slopeUpperLevelAus, *constructionProperties.GetSlopeUpperLevelAus());
+        ASSERT_DOUBLE_EQ(slopeLowerLevelAls, *constructionProperties.GetSlopeLowerLevelAls());
         ASSERT_DOUBLE_EQ(upperLimitLoadingAul, *constructionProperties.GetUpperLimitLoadingAul());
         ASSERT_DOUBLE_EQ(upperLimitLoadingBul, *constructionProperties.GetUpperLimitLoadingBul());
         ASSERT_DOUBLE_EQ(upperLimitLoadingCul, *constructionProperties.GetUpperLimitLoadingCul());

@@ -136,6 +136,22 @@ namespace DiKErnel::Integration
                 std::unique_ptr<double> hydraulicLoadXib);
 
             /*!
+             * \brief Sets the Aus coefficient.
+             * \param slopeUpperLevelAus
+             *        The Aus coefficient.
+             */
+            void SetSlopeUpperLevelAus(
+                std::unique_ptr<double> slopeUpperLevelAus);
+
+            /*!
+             * \brief Sets the Als coefficient.
+             * \param slopeLowerLevelAls
+             *        The Als coefficient.
+             */
+            void SetSlopeLowerLevelAus(
+                std::unique_ptr<double> slopeLowerLevelAls);
+
+            /*!
              * \brief Sets the Aul coefficient.
              * \param upperLimitLoadingAul
              *        The Aul coefficient.
@@ -306,6 +322,18 @@ namespace DiKErnel::Integration
             const double* GetHydraulicLoadXib() const;
 
             /*!
+             * \brief Gets the Aus coefficient.
+             * \return The Aus coefficient.
+             */
+            const double* GetSlopeUpperLevelAus() const;
+
+            /*!
+             * \brief Gets the Als coefficient.
+             * \return The Als coefficient.
+             */
+            const double* GetSlopeLowerLevelAls() const;
+
+            /*!
              * \brief Gets the Aul coefficient.
              * \return The Aul coefficient.
              */
@@ -389,6 +417,8 @@ namespace DiKErnel::Integration
             std::unique_ptr<double> _hydraulicLoadCs = nullptr;
             std::unique_ptr<double> _hydraulicLoadNs = nullptr;
             std::unique_ptr<double> _hydraulicLoadXib = nullptr;
+            std::unique_ptr<double> _slopeUpperLevelAus = nullptr;
+            std::unique_ptr<double> _slopeLowerLevelAls = nullptr;
             std::unique_ptr<double> _upperLimitLoadingAul = nullptr;
             std::unique_ptr<double> _upperLimitLoadingBul = nullptr;
             std::unique_ptr<double> _upperLimitLoadingCul = nullptr;
