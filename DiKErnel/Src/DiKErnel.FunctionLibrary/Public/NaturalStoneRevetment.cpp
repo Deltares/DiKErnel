@@ -60,6 +60,18 @@ namespace DiKErnel::FunctionLibrary
         return (slopeUpperLevel - slopeLowerLevel) / (slopeUpperPosition - slopeLowerPosition);
     }
 
+    double NaturalStoneRevetment::SlopeUpperLevel(
+        const double outerToeHeight,
+        const double outerCrestHeight,
+        const double waterLevel,
+        const double waveHeightHm0,
+        const double slopeUpperLevelAus)
+    {
+        return min(outerCrestHeight,
+                   max(outerToeHeight + slopeUpperLevelAus * waveHeightHm0,
+                       waterLevel));
+    }
+
     double NaturalStoneRevetment::UpperLimitLoading(
         const double depthMaximumWaveLoad,
         const double surfSimilarityParameter,
