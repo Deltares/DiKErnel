@@ -24,6 +24,24 @@
 
 namespace DiKErnel::FunctionLibrary::Test
 {
+    using namespace std;
+
+    const vector<pair<double, double>> TEST_DIKE_PROFILE
+    {
+        {
+            1.0,
+            1.1
+        },
+        {
+            2.0,
+            2.2
+        },
+        {
+            3.0,
+            -1.1
+        }
+    };
+
     TEST(RevetmentTest, IncrementTime_ValidInput_ExpectedValue)
     {
         // Setup
@@ -62,6 +80,69 @@ namespace DiKErnel::FunctionLibrary::Test
 
         // Assert
         ASSERT_DOUBLE_EQ(0.35, damage);
+    }
+
+    TEST(RevetmentTest, Z_XLeftOfDikeProfile_ExpectedValue)
+    {
+        // Call
+        const auto z = Revetment::Z(0.0, TEST_DIKE_PROFILE);
+
+        // Assert
+        ASSERT_DOUBLE_EQ(numeric_limits<double>::infinity(), z);
+    }
+
+    TEST(RevetmentTest, Z_XOnFirstDikeProfilePoint_ExpectedValue)
+    {
+        // Call
+        const auto z = Revetment::Z(1.0, TEST_DIKE_PROFILE);
+
+        // Assert
+        ASSERT_DOUBLE_EQ(1.1, z);
+    }
+
+    TEST(RevetmentTest, Z_XOnRandomDikeProfilePoint_ExpectedValue)
+    {
+        // Call
+        const auto z = Revetment::Z(2.0, TEST_DIKE_PROFILE);
+
+        // Assert
+        ASSERT_DOUBLE_EQ(2.2, z);
+    }
+
+    TEST(RevetmentTest, Z_XOnLastDikeProfilePoint_ExpectedValue)
+    {
+        // Call
+        const auto z = Revetment::Z(3.0, TEST_DIKE_PROFILE);
+
+        // Assert
+        ASSERT_DOUBLE_EQ(-1.1, z);
+    }
+
+    TEST(RevetmentTest, Z_XBetweenAscendingDikeProfilePoints_ExpectedValue)
+    {
+        // Call
+        const auto z = Revetment::Z(1.5, TEST_DIKE_PROFILE);
+
+        // Assert
+        ASSERT_DOUBLE_EQ(1.65, z);
+    }
+
+    TEST(RevetmentTest, Z_XBetweenDescendingDikeProfilePoints_ExpectedValue)
+    {
+        // Call
+        const auto z = Revetment::Z(2.5, TEST_DIKE_PROFILE);
+
+        // Assert
+        ASSERT_DOUBLE_EQ(0.55, z);
+    }
+
+    TEST(RevetmentTest, Z_XRightOfDikeProfile_ExpectedValue)
+    {
+        // Call
+        const auto z = Revetment::Z(4.0, TEST_DIKE_PROFILE);
+
+        // Assert
+        ASSERT_DOUBLE_EQ(numeric_limits<double>::infinity(), z);
     }
 
     TEST(RevetmentTest, FailureRevetment_DamageAndInitialDamageSmallerThanFailureNumber_ExpectedFalse)
