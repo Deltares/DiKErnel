@@ -44,6 +44,10 @@ namespace DiKErnel::KernelWrapper::Json::Output
                     _locationInput.GetName()
                 },
                 {
+                    JsonOutputDefinitions::X,
+                    _locationInput.GetX()
+                },
+                {
                     JsonOutputDefinitions::FAILURE_REVETMENT,
                     {
                         {

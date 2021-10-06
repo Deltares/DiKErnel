@@ -65,6 +65,9 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
             ON_CALL(*locationDependentInput1, GetName).WillByDefault(Return("testName1"));
             ON_CALL(*locationDependentInput2, GetName).WillByDefault(Return("testName2"));
 
+            ON_CALL(*locationDependentInput1, GetX).WillByDefault(Return(5.6));
+            ON_CALL(*locationDependentInput2, GetX).WillByDefault(Return(0));
+
             ON_CALL(*locationDependentInput1, GetInitialDamage).WillByDefault(Return(0));
             ON_CALL(*locationDependentInput2, GetInitialDamage).WillByDefault(Return(0.05));
 
