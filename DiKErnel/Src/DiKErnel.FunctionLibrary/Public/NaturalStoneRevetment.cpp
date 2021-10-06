@@ -51,6 +51,15 @@ namespace DiKErnel::FunctionLibrary
             + hydraulicLoadC);
     }
 
+    double NaturalStoneRevetment::SingleSlopePart(
+        const double slopeUpperLevel,
+        const double slopeLowerLevel,
+        const double slopeUpperPosition,
+        const double slopeLowerPosition)
+    {
+        return (slopeUpperLevel - slopeLowerLevel) / (slopeUpperPosition - slopeLowerPosition);
+    }
+
     double NaturalStoneRevetment::UpperLimitLoading(
         const double depthMaximumWaveLoad,
         const double surfSimilarityParameter,

@@ -82,6 +82,12 @@ namespace DiKErnel::FunctionLibrary
                 double hydraulicLoadC,
                 double hydraulicLoadN);
 
+            static double SingleSlopePart(
+                double slopeUpperLevel,
+                double slopeLowerLevel,
+                double slopeUpperPosition,
+                double slopeLowerPosition);
+
             /*!
              * \brief Calculates the upper limit of loading.
              * \param depthMaximumWaveLoad
