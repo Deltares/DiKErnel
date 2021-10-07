@@ -46,14 +46,15 @@ namespace DiKErnel::Integration
                 int fixedNumberOfWaves,
                 double frontVelocityCu);
 
-            std::unique_ptr<Core::TimeDependentOutput> Calculate(
-                double initialDamage,
-                const Core::ITimeDependentInput& timeDependentInput,
-                const Core::IProfileData& profileData) override;
-
             int GetFixedNumberOfWaves() const;
 
             double GetFrontVelocityCu() const;
+
+        protected:
+            std::unique_ptr<Core::TimeDependentOutput> CalculateTimeDependentOutput(
+                double initialDamage,
+                const Core::ITimeDependentInput& timeDependentInput,
+                const Core::IProfileData& profileData) override;
 
         private:
             const int _fixedNumberOfWaves;

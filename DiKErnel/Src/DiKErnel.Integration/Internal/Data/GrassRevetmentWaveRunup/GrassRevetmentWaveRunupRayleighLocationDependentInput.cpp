@@ -56,7 +56,17 @@ namespace DiKErnel::Integration
           _fixedNumberOfWaves(fixedNumberOfWaves),
           _frontVelocityCu(frontVelocityCu) {}
 
-    unique_ptr<TimeDependentOutput> GrassRevetmentWaveRunupRayleighLocationDependentInput::Calculate(
+    int GrassRevetmentWaveRunupRayleighLocationDependentInput::GetFixedNumberOfWaves() const
+    {
+        return _fixedNumberOfWaves;
+    }
+
+    double GrassRevetmentWaveRunupRayleighLocationDependentInput::GetFrontVelocityCu() const
+    {
+        return _frontVelocityCu;
+    }
+
+    unique_ptr<TimeDependentOutput> GrassRevetmentWaveRunupRayleighLocationDependentInput::CalculateTimeDependentOutput(
         const double initialDamage,
         const ITimeDependentInput& timeDependentInput,
         const IProfileData& profileData)
@@ -117,15 +127,5 @@ namespace DiKErnel::Integration
         return make_unique<GrassRevetmentWaveRunupRayleighTimeDependentOutput>(incrementDamage, damage, move(timeOfFailure),
                                                                                verticalDistanceWaterLevelElevation, move(waveAngleImpact),
                                                                                move(representativeWaveRunup2P), move(cumulativeOverload));
-    }
-
-    int GrassRevetmentWaveRunupRayleighLocationDependentInput::GetFixedNumberOfWaves() const
-    {
-        return _fixedNumberOfWaves;
-    }
-
-    double GrassRevetmentWaveRunupRayleighLocationDependentInput::GetFrontVelocityCu() const
-    {
-        return _frontVelocityCu;
     }
 }
