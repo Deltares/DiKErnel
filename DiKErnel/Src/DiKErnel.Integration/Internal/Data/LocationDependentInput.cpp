@@ -22,6 +22,8 @@
 
 #include <utility>
 
+#include "Revetment.h"
+
 namespace DiKErnel::Integration
 {
     using namespace Core;
@@ -70,5 +72,22 @@ namespace DiKErnel::Integration
     double LocationDependentInput::GetPositionZ() const
     {
         return _positionZ;
+    }
+
+    void LocationDependentInput::InitializeDerivedLocationDependentInput(
+        const IProfileData& profileData)
+    {
+        auto dikeProfile = vector<pair<double, double>>();
+
+        const auto& profilePoints = profileData.GetProfilePoints();
+
+        for (const auto& i : profilePoints)
+        {
+            auto& profilePoint = i.get();
+
+            dikeProfile.emplace_back(profilePoint.GetX(), profilePoint.GetZ());
+        }
+
+        _positionZ = FunctionLibrary::Revetment::InterpolationVerticalHeight(_x, dikeProfile);
     }
 }

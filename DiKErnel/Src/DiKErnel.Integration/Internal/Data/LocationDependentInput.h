@@ -50,6 +50,9 @@ namespace DiKErnel::Integration
                 double failureNumber,
                 double positionZ);
 
+            virtual void InitializeDerivedLocationDependentInput(
+                const Core::IProfileData& profileData);
+
             virtual std::unique_ptr<Core::TimeDependentOutput> CalculateTimeDependentOutput(
                 double initialDamage,
                 const Core::ITimeDependentInput& timeDependentInput,
@@ -60,6 +63,6 @@ namespace DiKErnel::Integration
             double _x;
             double _initialDamage;
             const double _failureNumber;
-            const double _positionZ;
+            double _positionZ;
     };
 }
