@@ -82,67 +82,67 @@ namespace DiKErnel::FunctionLibrary::Test
         ASSERT_DOUBLE_EQ(0.35, damage);
     }
 
-    TEST(RevetmentTest, Z_XLeftOfDikeProfile_ExpectedValue)
+    TEST(RevetmentTest, InterpolationVerticalHeight_HorizontalPositionLeftOfDikeProfile_ExpectedValue)
     {
         // Call
-        const auto z = Revetment::Z(0.0, TEST_DIKE_PROFILE);
+        const auto verticalHeight = Revetment::InterpolationVerticalHeight(0.0, TEST_DIKE_PROFILE);
 
         // Assert
-        ASSERT_DOUBLE_EQ(numeric_limits<double>::infinity(), z);
+        ASSERT_DOUBLE_EQ(numeric_limits<double>::infinity(), verticalHeight);
     }
 
-    TEST(RevetmentTest, Z_XOnFirstDikeProfilePoint_ExpectedValue)
+    TEST(RevetmentTest, InterpolationVerticalHeight_HorizontalPositionOnFirstDikeProfilePoint_ExpectedValue)
     {
         // Call
-        const auto z = Revetment::Z(1.0, TEST_DIKE_PROFILE);
+        const auto verticalHeight = Revetment::InterpolationVerticalHeight(1.0, TEST_DIKE_PROFILE);
 
         // Assert
-        ASSERT_DOUBLE_EQ(1.1, z);
+        ASSERT_DOUBLE_EQ(1.1, verticalHeight);
     }
 
-    TEST(RevetmentTest, Z_XOnRandomDikeProfilePoint_ExpectedValue)
+    TEST(RevetmentTest, InterpolationVerticalHeight_HorizontalPositionOnRandomDikeProfilePoint_ExpectedValue)
     {
         // Call
-        const auto z = Revetment::Z(2.0, TEST_DIKE_PROFILE);
+        const auto verticalHeight = Revetment::InterpolationVerticalHeight(2.0, TEST_DIKE_PROFILE);
 
         // Assert
-        ASSERT_DOUBLE_EQ(2.2, z);
+        ASSERT_DOUBLE_EQ(2.2, verticalHeight);
     }
 
-    TEST(RevetmentTest, Z_XOnLastDikeProfilePoint_ExpectedValue)
+    TEST(RevetmentTest, InterpolationVerticalHeight_HorizontalPositionOnLastDikeProfilePoint_ExpectedValue)
     {
         // Call
-        const auto z = Revetment::Z(3.0, TEST_DIKE_PROFILE);
+        const auto verticalHeight = Revetment::InterpolationVerticalHeight(3.0, TEST_DIKE_PROFILE);
 
         // Assert
-        ASSERT_DOUBLE_EQ(-1.1, z);
+        ASSERT_DOUBLE_EQ(-1.1, verticalHeight);
     }
 
-    TEST(RevetmentTest, Z_XBetweenAscendingDikeProfilePoints_ExpectedValue)
+    TEST(RevetmentTest, InterpolationVerticalHeight_HorizontalPositionBetweenAscendingDikeProfilePoints_ExpectedValue)
     {
         // Call
-        const auto z = Revetment::Z(1.5, TEST_DIKE_PROFILE);
+        const auto verticalHeight = Revetment::InterpolationVerticalHeight(1.5, TEST_DIKE_PROFILE);
 
         // Assert
-        ASSERT_DOUBLE_EQ(1.65, z);
+        ASSERT_DOUBLE_EQ(1.65, verticalHeight);
     }
 
-    TEST(RevetmentTest, Z_XBetweenDescendingDikeProfilePoints_ExpectedValue)
+    TEST(RevetmentTest, InterpolationVerticalHeight_HorizontalPositionBetweenDescendingDikeProfilePoints_ExpectedValue)
     {
         // Call
-        const auto z = Revetment::Z(2.5, TEST_DIKE_PROFILE);
+        const auto verticalHeight = Revetment::InterpolationVerticalHeight(2.5, TEST_DIKE_PROFILE);
 
         // Assert
-        ASSERT_DOUBLE_EQ(0.55, z);
+        ASSERT_DOUBLE_EQ(0.55, verticalHeight);
     }
 
-    TEST(RevetmentTest, Z_XRightOfDikeProfile_ExpectedValue)
+    TEST(RevetmentTest, InterpolationVerticalHeight_HorizontalPositionRightOfDikeProfile_ExpectedValue)
     {
         // Call
-        const auto z = Revetment::Z(4.0, TEST_DIKE_PROFILE);
+        const auto verticalHeight = Revetment::InterpolationVerticalHeight(4.0, TEST_DIKE_PROFILE);
 
         // Assert
-        ASSERT_DOUBLE_EQ(numeric_limits<double>::infinity(), z);
+        ASSERT_DOUBLE_EQ(numeric_limits<double>::infinity(), verticalHeight);
     }
 
     TEST(RevetmentTest, FailureRevetment_DamageAndInitialDamageSmallerThanFailureNumber_ExpectedFalse)
