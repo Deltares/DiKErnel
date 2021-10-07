@@ -31,11 +31,6 @@ namespace DiKErnel::Integration
     class GrassRevetmentWaveRunupLocationDependentInput : public LocationDependentInput
     {
         public:
-            std::unique_ptr<Core::TimeDependentOutput> Calculate(
-                double initialDamage,
-                const Core::ITimeDependentInput& timeDependentInput,
-                const Core::IProfileData& profileData) override = 0;
-
             double GetTanA() const;
 
             double GetCriticalCumulativeOverload() const;
@@ -67,6 +62,11 @@ namespace DiKErnel::Integration
                 double averageNumberOfWavesCtm,
                 std::unique_ptr<GrassRevetmentWaveRunupRepresentative2P> representative2P,
                 std::unique_ptr<GrassRevetmentWaveRunupWaveAngleImpact> waveAngleImpact);
+
+            std::unique_ptr<Core::TimeDependentOutput> CalculateTimeDependentOutput(
+                double initialDamage,
+                const Core::ITimeDependentInput& timeDependentInput,
+                const Core::IProfileData& profileData) override = 0;
 
         private:
             double _tanA;
