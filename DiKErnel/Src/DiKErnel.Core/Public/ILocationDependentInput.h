@@ -22,6 +22,7 @@
 
 #include <string>
 
+#include "IProfileData.h"
 #include "ITimeDependentInput.h"
 #include "TimeDependentOutput.h"
 
@@ -45,11 +46,14 @@ namespace DiKErnel::Core
              *        The damage at the start of the calculation.
              * \param timeDependentInput
              *        The time dependent input to use in the calculation.
+             * \param profileData
+             *        The profile data to use in the calculation.
              * \return The time dependent output.
              */
             virtual std::unique_ptr<TimeDependentOutput> Calculate(
                 double initialDamage,
-                const ITimeDependentInput& timeDependentInput) = 0;
+                const ITimeDependentInput& timeDependentInput,
+                const IProfileData& profileData) = 0;
 
             /*!
              * \brief Gets the name.

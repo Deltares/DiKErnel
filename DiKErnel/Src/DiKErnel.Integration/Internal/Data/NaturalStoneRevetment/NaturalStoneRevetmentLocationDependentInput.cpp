@@ -64,7 +64,8 @@ namespace DiKErnel::Integration
 
     unique_ptr<TimeDependentOutput> NaturalStoneRevetmentLocationDependentInput::Calculate(
         const double initialDamage,
-        const ITimeDependentInput& timeDependentInput)
+        const ITimeDependentInput& timeDependentInput,
+        const IProfileData& profileData)
     {
         const auto tanA = GetTanA();
         const auto waterLevel = timeDependentInput.GetWaterLevel();

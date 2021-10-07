@@ -31,7 +31,8 @@ namespace DiKErnel::Core::TestUtil
         public:
             std::unique_ptr<TimeDependentOutput> Calculate(
                 double initialDamage,
-                const ITimeDependentInput& timeDependentInput) override;
+                const ITimeDependentInput& timeDependentInput,
+                const IProfileData& profileData) override;
 
             MOCK_METHOD(std::string, GetName, (), (const, override));
             MOCK_METHOD(double, GetX, (), (const, override));

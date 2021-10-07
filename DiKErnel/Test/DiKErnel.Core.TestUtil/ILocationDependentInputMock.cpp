@@ -28,7 +28,8 @@ namespace DiKErnel::Core::TestUtil
 
     unique_ptr<TimeDependentOutput> ILocationDependentInputMock::Calculate(
         double initialDamage,
-        const ITimeDependentInput& timeDependentInput)
+        const ITimeDependentInput& timeDependentInput,
+        const IProfileData& profileData)
     {
         return make_unique<TimeDependentOutputMock>(_incrementDamage, _damage, _timeOfFailure != nullptr
                                                                                    ? make_unique<int>(*_timeOfFailure)

@@ -68,7 +68,8 @@ namespace DiKErnel::Integration
 
     unique_ptr<TimeDependentOutput> AsphaltRevetmentWaveImpactLocationDependentInput::Calculate(
         const double initialDamage,
-        const ITimeDependentInput& timeDependentInput)
+        const ITimeDependentInput& timeDependentInput,
+        const IProfileData& profileData)
     {
         const auto logFailureTension = AsphaltRevetmentWaveImpact::LogFailureTension(_failureTension);
 

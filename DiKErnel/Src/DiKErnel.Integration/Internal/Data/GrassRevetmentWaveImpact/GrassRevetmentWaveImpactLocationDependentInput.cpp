@@ -53,7 +53,8 @@ namespace DiKErnel::Integration
 
     unique_ptr<TimeDependentOutput> GrassRevetmentWaveImpactLocationDependentInput::Calculate(
         const double initialDamage,
-        const ITimeDependentInput& timeDependentInput)
+        const ITimeDependentInput& timeDependentInput,
+        const IProfileData& profileData)
     {
         const auto waterLevel = timeDependentInput.GetWaterLevel();
         const auto waveHeightHm0 = timeDependentInput.GetWaveHeightHm0();

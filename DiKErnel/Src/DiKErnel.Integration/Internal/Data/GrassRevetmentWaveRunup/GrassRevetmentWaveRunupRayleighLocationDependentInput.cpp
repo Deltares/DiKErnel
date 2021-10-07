@@ -58,7 +58,8 @@ namespace DiKErnel::Integration
 
     unique_ptr<TimeDependentOutput> GrassRevetmentWaveRunupRayleighLocationDependentInput::Calculate(
         const double initialDamage,
-        const ITimeDependentInput& timeDependentInput)
+        const ITimeDependentInput& timeDependentInput,
+        const IProfileData& profileData)
     {
         auto incrementDamage = 0.0;
         auto damage = initialDamage;

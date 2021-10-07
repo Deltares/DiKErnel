@@ -54,7 +54,8 @@ namespace DiKErnel::Integration
 
             std::unique_ptr<Core::TimeDependentOutput> Calculate(
                 double initialDamage,
-                const Core::ITimeDependentInput& timeDependentInput) override;
+                const Core::ITimeDependentInput& timeDependentInput,
+                const Core::IProfileData& profileData) override;
 
             double GetTanA() const;
 

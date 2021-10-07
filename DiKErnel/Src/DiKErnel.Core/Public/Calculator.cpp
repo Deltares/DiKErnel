@@ -85,6 +85,7 @@ namespace DiKErnel::Core
         atomic<bool>& isFinished,
         const atomic<bool>& isCancelled)
     {
+        const auto& profileData = calculationInput.GetProfileData();
         const auto& timeDependentInputItems = calculationInput.GetTimeDependentInputItems();
         const auto& locationDependentInputItems = calculationInput.GetLocationDependentInputItems();
 
@@ -116,7 +117,7 @@ namespace DiKErnel::Core
                                                ? locationDependentInput.GetInitialDamage()
                                                : timeDependentOutputItems[j].back()->GetDamage();
 
-                auto timeDependentOutput = locationDependentInput.Calculate(initialDamage, timeDependentInput);
+                auto timeDependentOutput = locationDependentInput.Calculate(initialDamage, timeDependentInput, profileData);
 
                 timeDependentOutputItems[j].push_back(move(timeDependentOutput));
 

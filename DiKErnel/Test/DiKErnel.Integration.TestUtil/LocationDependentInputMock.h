@@ -38,6 +38,8 @@ namespace DiKErnel::Integration::TestUtil
                 : LocationDependentInput(move(name), x, initialDamage, failureNumber, positionZ) {}
 
             MOCK_METHOD(std::unique_ptr<Core::TimeDependentOutput>, Calculate,
-                        (double initialDamage, const Core::ITimeDependentInput& timeDependentInput), (override));
+                        (double initialDamage,
+                            const Core::ITimeDependentInput& timeDependentInput,
+                            const Core::IProfileData& profileData), (override));
     };
 }
