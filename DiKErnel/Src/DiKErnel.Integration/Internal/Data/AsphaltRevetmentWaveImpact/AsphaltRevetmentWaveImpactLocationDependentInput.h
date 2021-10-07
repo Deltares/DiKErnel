@@ -52,11 +52,6 @@ namespace DiKErnel::Integration
                 std::vector<std::tuple<double, double>> depthFactors,
                 std::vector<std::tuple<double, double>> impactFactors);
 
-            std::unique_ptr<Core::TimeDependentOutput> Calculate(
-                double initialDamage,
-                const Core::ITimeDependentInput& timeDependentInput,
-                const Core::IProfileData& profileData) override;
-
             double GetTanA() const;
 
             double GetFailureTension() const;
@@ -82,6 +77,12 @@ namespace DiKErnel::Integration
             const std::vector<std::tuple<double, double>>& GetDepthFactors() const;
 
             const std::vector<std::tuple<double, double>>& GetImpactFactors() const;
+
+        protected:
+            std::unique_ptr<Core::TimeDependentOutput> CalculateTimeDependentOutput(
+                double initialDamage,
+                const Core::ITimeDependentInput& timeDependentInput,
+                const Core::IProfileData& profileData) override;
 
         private:
             const double _tanA;

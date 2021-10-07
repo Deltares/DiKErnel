@@ -66,51 +66,6 @@ namespace DiKErnel::Integration
           _depthFactors(move(depthFactors)),
           _impactFactors(move(impactFactors)) { }
 
-    unique_ptr<TimeDependentOutput> AsphaltRevetmentWaveImpactLocationDependentInput::Calculate(
-        const double initialDamage,
-        const ITimeDependentInput& timeDependentInput,
-        const IProfileData& profileData)
-    {
-        const auto logFailureTension = AsphaltRevetmentWaveImpact::LogFailureTension(_failureTension);
-
-        const auto beginTime = timeDependentInput.GetBeginTime();
-        const auto waveHeightHm0 = timeDependentInput.GetWaveHeightHm0();
-        const auto equivalentElasticModulus = _subLayer->GetElasticModulus();
-
-        const auto incrementTime = Revetment::IncrementTime(beginTime, timeDependentInput.GetEndTime());
-        const auto averageNumberOfWaves = Revetment::AverageNumberOfWaves(incrementTime, timeDependentInput.GetWavePeriodTm10(),
-                                                                          _averageNumberOfWavesCtm);
-
-        const auto maximumPeakStress = AsphaltRevetmentWaveImpact::MaximumPeakStress(waveHeightHm0,
-                                                                                     Constants::GRAVITATIONAL_ACCELERATION, _densityOfWater);
-        const auto computationalThickness = AsphaltRevetmentWaveImpact::ComputationalThickness(_upperLayer->GetThickness(),
-                                                                                               _subLayer->GetThickness(),
-                                                                                               _upperLayer->GetElasticModulus(),
-                                                                                               equivalentElasticModulus);
-        const auto stiffnessRelation = AsphaltRevetmentWaveImpact::StiffnessRelation(computationalThickness, equivalentElasticModulus,
-                                                                                     _soilElasticity, _stiffnessRelationNu);
-        const auto incrementDamage = AsphaltRevetmentWaveImpact::IncrementDamage(logFailureTension, averageNumberOfWaves, maximumPeakStress,
-                                                                                 stiffnessRelation, computationalThickness, _tanA,
-                                                                                 _widthFactors, _depthFactors, _impactFactors, GetPositionZ(),
-                                                                                 timeDependentInput.GetWaterLevel(), waveHeightHm0,
-                                                                                 _fatigue->GetAlpha(), _fatigue->GetBeta(), _impactNumberC);
-
-        const auto damage = Revetment::Damage(incrementDamage, initialDamage);
-        const auto failureNumber = GetFailureNumber();
-        unique_ptr<int> timeOfFailure = nullptr;
-
-        if (Revetment::FailureRevetment(damage, initialDamage, failureNumber))
-        {
-            const auto durationInTimeStepFailure = Revetment::DurationInTimeStepFailure(incrementTime, incrementDamage, failureNumber,
-                                                                                        initialDamage);
-            timeOfFailure = make_unique<int>(Revetment::TimeOfFailure(durationInTimeStepFailure, beginTime));
-        }
-
-        return make_unique<AsphaltRevetmentWaveImpactTimeDependentOutput>(incrementDamage, damage, move(timeOfFailure), logFailureTension,
-                                                                          maximumPeakStress, stiffnessRelation, computationalThickness,
-                                                                          equivalentElasticModulus);
-    }
-
     double AsphaltRevetmentWaveImpactLocationDependentInput::GetTanA() const
     {
         return _tanA;
@@ -174,5 +129,50 @@ namespace DiKErnel::Integration
     const vector<tuple<double, double>>& AsphaltRevetmentWaveImpactLocationDependentInput::GetImpactFactors() const
     {
         return _impactFactors;
+    }
+
+    unique_ptr<TimeDependentOutput> AsphaltRevetmentWaveImpactLocationDependentInput::CalculateTimeDependentOutput(
+        const double initialDamage,
+        const ITimeDependentInput& timeDependentInput,
+        const IProfileData& profileData)
+    {
+        const auto logFailureTension = AsphaltRevetmentWaveImpact::LogFailureTension(_failureTension);
+
+        const auto beginTime = timeDependentInput.GetBeginTime();
+        const auto waveHeightHm0 = timeDependentInput.GetWaveHeightHm0();
+        const auto equivalentElasticModulus = _subLayer->GetElasticModulus();
+
+        const auto incrementTime = Revetment::IncrementTime(beginTime, timeDependentInput.GetEndTime());
+        const auto averageNumberOfWaves = Revetment::AverageNumberOfWaves(incrementTime, timeDependentInput.GetWavePeriodTm10(),
+                                                                          _averageNumberOfWavesCtm);
+
+        const auto maximumPeakStress = AsphaltRevetmentWaveImpact::MaximumPeakStress(waveHeightHm0,
+                                                                                     Constants::GRAVITATIONAL_ACCELERATION, _densityOfWater);
+        const auto computationalThickness = AsphaltRevetmentWaveImpact::ComputationalThickness(_upperLayer->GetThickness(),
+                                                                                               _subLayer->GetThickness(),
+                                                                                               _upperLayer->GetElasticModulus(),
+                                                                                               equivalentElasticModulus);
+        const auto stiffnessRelation = AsphaltRevetmentWaveImpact::StiffnessRelation(computationalThickness, equivalentElasticModulus,
+                                                                                     _soilElasticity, _stiffnessRelationNu);
+        const auto incrementDamage = AsphaltRevetmentWaveImpact::IncrementDamage(logFailureTension, averageNumberOfWaves, maximumPeakStress,
+                                                                                 stiffnessRelation, computationalThickness, _tanA,
+                                                                                 _widthFactors, _depthFactors, _impactFactors, GetPositionZ(),
+                                                                                 timeDependentInput.GetWaterLevel(), waveHeightHm0,
+                                                                                 _fatigue->GetAlpha(), _fatigue->GetBeta(), _impactNumberC);
+
+        const auto damage = Revetment::Damage(incrementDamage, initialDamage);
+        const auto failureNumber = GetFailureNumber();
+        unique_ptr<int> timeOfFailure = nullptr;
+
+        if (Revetment::FailureRevetment(damage, initialDamage, failureNumber))
+        {
+            const auto durationInTimeStepFailure = Revetment::DurationInTimeStepFailure(incrementTime, incrementDamage, failureNumber,
+                                                                                        initialDamage);
+            timeOfFailure = make_unique<int>(Revetment::TimeOfFailure(durationInTimeStepFailure, beginTime));
+        }
+
+        return make_unique<AsphaltRevetmentWaveImpactTimeDependentOutput>(incrementDamage, damage, move(timeOfFailure), logFailureTension,
+                                                                          maximumPeakStress, stiffnessRelation, computationalThickness,
+                                                                          equivalentElasticModulus);
     }
 }
