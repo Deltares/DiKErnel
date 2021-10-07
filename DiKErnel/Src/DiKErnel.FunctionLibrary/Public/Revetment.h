@@ -80,6 +80,10 @@ namespace DiKErnel::FunctionLibrary
                 double horizontalPosition,
                 std::vector<std::pair<double, double>> dikeProfile);
 
+            static double InterpolationHorizontalPosition(
+                double verticalHeight,
+                std::vector<std::pair<double, double>> dikeProfile);
+
             /*!
              * \brief Calculates the damage.
              * \param incrementDamage

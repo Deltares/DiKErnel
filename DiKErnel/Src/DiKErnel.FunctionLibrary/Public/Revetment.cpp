@@ -72,6 +72,37 @@ namespace DiKErnel::FunctionLibrary
         return numeric_limits<double>::infinity();
     }
 
+    double Revetment::InterpolationHorizontalPosition(
+        const double verticalHeight,
+        vector<pair<double, double>> dikeProfile)
+    {
+        for (auto i = 0; i < static_cast<int>(dikeProfile.size()); ++i)
+        {
+            const auto& [xCurrentDikeProfilePoint, zCurrentDikeProfilePoint] = dikeProfile[i];
+
+            if (abs(zCurrentDikeProfilePoint - verticalHeight) <= numeric_limits<double>::epsilon())
+            {
+                return xCurrentDikeProfilePoint;
+            }
+
+            if (zCurrentDikeProfilePoint > verticalHeight)
+            {
+                if (i == 0)
+                {
+                    return numeric_limits<double>::infinity();
+                }
+
+                const auto& [xPreviousDikeProfilePoint, zPreviousDikeProfilePoint] = dikeProfile[i - 1];
+
+                return xPreviousDikeProfilePoint + (xCurrentDikeProfilePoint - xPreviousDikeProfilePoint)
+                    / (zCurrentDikeProfilePoint - zPreviousDikeProfilePoint)
+                    * (verticalHeight - zPreviousDikeProfilePoint);
+            }
+        }
+
+        return numeric_limits<double>::infinity();
+    }
+
     double Revetment::Damage(
         const double incrementDamage,
         const double initialDamage)
