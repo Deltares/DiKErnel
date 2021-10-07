@@ -23,7 +23,6 @@
 #include <vector>
 
 #include "CharacteristicPoint.h"
-#include "ILocationDependentInput.h"
 #include "ProfilePoint.h"
 
 namespace DiKErnel::Core
