@@ -41,20 +41,20 @@ namespace DiKErnel::FunctionLibrary
         return incrementTime / (averageNumberOfWavesCtm * wavePeriodTm10);
     }
 
-    double Revetment::Z(
-        const double x,
+    double Revetment::InterpolationVerticalHeight(
+        const double horizontalPosition,
         vector<pair<double, double>> dikeProfile)
     {
         for (auto i = 0; i < static_cast<int>(dikeProfile.size()); ++i)
         {
             const auto& [xCurrentDikeProfilePoint, zCurrentDikeProfilePoint] = dikeProfile[i];
 
-            if (abs(xCurrentDikeProfilePoint - x) <= numeric_limits<double>::epsilon())
+            if (abs(xCurrentDikeProfilePoint - horizontalPosition) <= numeric_limits<double>::epsilon())
             {
                 return zCurrentDikeProfilePoint;
             }
 
-            if (xCurrentDikeProfilePoint > x)
+            if (xCurrentDikeProfilePoint > horizontalPosition)
             {
                 if (i == 0)
                 {
@@ -65,7 +65,7 @@ namespace DiKErnel::FunctionLibrary
 
                 return zPreviousDikeProfilePoint + (zCurrentDikeProfilePoint - zPreviousDikeProfilePoint)
                         / (xCurrentDikeProfilePoint - xPreviousDikeProfilePoint)
-                        * (x - xPreviousDikeProfilePoint);
+                        * (horizontalPosition - xPreviousDikeProfilePoint);
             }
         }
 

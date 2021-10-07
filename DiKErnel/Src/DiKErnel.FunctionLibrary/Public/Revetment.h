@@ -65,18 +65,19 @@ namespace DiKErnel::FunctionLibrary
                 double averageNumberOfWavesCtm);
 
             /*!
-             * \brief Calculates the z value based on linear interpolation.
-             * \param x
-             *        The x value.
+             * \brief Calculates the vertical height based on linear interpolation.
+             * \param horizontalPosition
+             *        The horizontal position.
              *        Unit = [m]
              * \param dikeProfile
              *        The dike profile.
              *        Unit = [-]
-             * \return The z value or INFINITY when the x value is not on the dike profile.
+             * \return The vertical height or INFINITY when the horizontal position cannot be
+             *         fitted with the dike profile.
              *         Unit = [m]
              */
-            static double Z(
-                double x,
+            static double InterpolationVerticalHeight(
+                double horizontalPosition,
                 std::vector<std::pair<double, double>> dikeProfile);
 
             /*!
