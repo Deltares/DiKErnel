@@ -44,11 +44,6 @@ namespace DiKErnel::Integration
                 double upperLimitLoadingAul,
                 double lowerLimitLoadingAll);
 
-            std::unique_ptr<Core::TimeDependentOutput> Calculate(
-                double initialDamage,
-                const Core::ITimeDependentInput& timeDependentInput,
-                const Core::IProfileData& profileData) override;
-
             GrassRevetmentWaveImpactWaveAngleImpact& GetWaveAngleImpact() const;
 
             double GetMinimumWaveHeightTemax() const;
@@ -60,6 +55,12 @@ namespace DiKErnel::Integration
             double GetUpperLimitLoadingAul() const;
 
             double GetLowerLimitLoadingAll() const;
+
+        protected:
+            std::unique_ptr<Core::TimeDependentOutput> CalculateTimeDependentOutput(
+                double initialDamage,
+                const Core::ITimeDependentInput& timeDependentInput,
+                const Core::IProfileData& profileData) override;
 
         private:
             std::unique_ptr<GrassRevetmentWaveImpactWaveAngleImpact> _waveAngleImpact;

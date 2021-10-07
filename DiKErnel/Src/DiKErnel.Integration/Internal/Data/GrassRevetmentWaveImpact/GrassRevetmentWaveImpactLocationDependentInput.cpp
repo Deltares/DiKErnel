@@ -51,7 +51,37 @@ namespace DiKErnel::Integration
           _upperLimitLoadingAul(upperLimitLoadingAul),
           _lowerLimitLoadingAll(lowerLimitLoadingAll) {}
 
-    unique_ptr<TimeDependentOutput> GrassRevetmentWaveImpactLocationDependentInput::Calculate(
+    GrassRevetmentWaveImpactWaveAngleImpact& GrassRevetmentWaveImpactLocationDependentInput::GetWaveAngleImpact() const
+    {
+        return *_waveAngleImpact;
+    }
+
+    double GrassRevetmentWaveImpactLocationDependentInput::GetMinimumWaveHeightTemax() const
+    {
+        return _minimumWaveHeightTemax;
+    }
+
+    double GrassRevetmentWaveImpactLocationDependentInput::GetMaximumWaveHeightTemin() const
+    {
+        return _maximumWaveHeightTemin;
+    }
+
+    GrassRevetmentWaveImpactTimeLine& GrassRevetmentWaveImpactLocationDependentInput::GetTimeLine() const
+    {
+        return *_timeLine;
+    }
+
+    double GrassRevetmentWaveImpactLocationDependentInput::GetUpperLimitLoadingAul() const
+    {
+        return _upperLimitLoadingAul;
+    }
+
+    double GrassRevetmentWaveImpactLocationDependentInput::GetLowerLimitLoadingAll() const
+    {
+        return _lowerLimitLoadingAll;
+    }
+
+    unique_ptr<TimeDependentOutput> GrassRevetmentWaveImpactLocationDependentInput::CalculateTimeDependentOutput(
         const double initialDamage,
         const ITimeDependentInput& timeDependentInput,
         const IProfileData& profileData)
@@ -109,35 +139,5 @@ namespace DiKErnel::Integration
         return make_unique<GrassRevetmentWaveImpactTimeDependentOutput>(incrementDamage, damage, move(timeOfFailure), loadingRevetment,
                                                                         upperLimitLoading, lowerLimitLoading, move(minimumWaveHeight),
                                                                         move(maximumWaveHeight), move(waveAngleImpact), move(waveHeightImpact));
-    }
-
-    GrassRevetmentWaveImpactWaveAngleImpact& GrassRevetmentWaveImpactLocationDependentInput::GetWaveAngleImpact() const
-    {
-        return *_waveAngleImpact;
-    }
-
-    double GrassRevetmentWaveImpactLocationDependentInput::GetMinimumWaveHeightTemax() const
-    {
-        return _minimumWaveHeightTemax;
-    }
-
-    double GrassRevetmentWaveImpactLocationDependentInput::GetMaximumWaveHeightTemin() const
-    {
-        return _maximumWaveHeightTemin;
-    }
-
-    GrassRevetmentWaveImpactTimeLine& GrassRevetmentWaveImpactLocationDependentInput::GetTimeLine() const
-    {
-        return *_timeLine;
-    }
-
-    double GrassRevetmentWaveImpactLocationDependentInput::GetUpperLimitLoadingAul() const
-    {
-        return _upperLimitLoadingAul;
-    }
-
-    double GrassRevetmentWaveImpactLocationDependentInput::GetLowerLimitLoadingAll() const
-    {
-        return _lowerLimitLoadingAll;
     }
 }
