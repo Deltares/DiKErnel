@@ -79,11 +79,9 @@ namespace DiKErnel::Integration
     {
         auto dikeProfile = vector<pair<double, double>>();
 
-        const auto& profilePoints = profileData.GetProfilePoints();
-
-        for (const auto& i : profilePoints)
+        for (const auto& profilePointReference : profileData.GetProfilePoints())
         {
-            auto& profilePoint = i.get();
+            auto& profilePoint = profilePointReference.get();
 
             dikeProfile.emplace_back(profilePoint.GetX(), profilePoint.GetZ());
         }
