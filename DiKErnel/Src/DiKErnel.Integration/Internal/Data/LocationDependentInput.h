@@ -30,7 +30,7 @@ namespace DiKErnel::Integration
             std::unique_ptr<Core::TimeDependentOutput> Calculate(
                 double initialDamage,
                 const Core::ITimeDependentInput& timeDependentInput,
-                const Core::IProfileData& profileData) override = 0;
+                const Core::IProfileData& profileData) override;
 
             std::string GetName() const override;
 
@@ -49,6 +49,11 @@ namespace DiKErnel::Integration
                 double initialDamage,
                 double failureNumber,
                 double positionZ);
+
+            virtual std::unique_ptr<Core::TimeDependentOutput> CalculateTimeDependentOutput(
+                double initialDamage,
+                const Core::ITimeDependentInput& timeDependentInput,
+                const Core::IProfileData& profileData) = 0;
 
         private:
             std::string _name;
