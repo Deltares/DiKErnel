@@ -35,11 +35,12 @@ namespace DiKErnel::Integration
 
             const std::vector<std::reference_wrapper<Core::CharacteristicPoint>>& GetCharacteristicPoints() const override;
 
+            bool HasBerm() const override;
+
         private:
             std::vector<std::unique_ptr<Core::ProfilePoint>> _profilePoints;
             std::vector<std::reference_wrapper<Core::ProfilePoint>> _profilePointReferences;
             std::vector<std::unique_ptr<Core::CharacteristicPoint>> _characteristicPoints;
             std::vector<std::reference_wrapper<Core::CharacteristicPoint>> _characteristicPointReferences;
-
     };
 }

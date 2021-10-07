@@ -49,5 +49,11 @@ namespace DiKErnel::Core
              * \return The characteristic points to use in the calculation.
              */
             virtual const std::vector<std::reference_wrapper<CharacteristicPoint>>& GetCharacteristicPoints() const = 0;
+
+            /*!
+             * \brief Gets whether a berm is defined with characteristic points.
+             * \return true when a berm is defined; false otherwise.
+             */
+            virtual bool HasBerm() const = 0;
     };
 }
