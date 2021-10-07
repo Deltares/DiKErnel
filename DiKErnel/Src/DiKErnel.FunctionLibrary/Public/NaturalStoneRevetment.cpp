@@ -109,6 +109,17 @@ namespace DiKErnel::FunctionLibrary
         return (slopeUpperLevel - slopeLowerLevel) / (distanceBermUpperSlope + distanceBermLowerSlope);
     }
 
+    double NaturalStoneRevetment::DistanceBermUpperSlope(
+        const double crestOuterBermHeight,
+        const double notchOuterBermPosition,
+        const double notchOuterBermHeight,
+        const double slopeUpperLevel,
+        const double slopeUpperPosition)
+    {
+        return (slopeUpperLevel - 0.5 * (crestOuterBermHeight + notchOuterBermHeight))
+                * ((slopeUpperPosition - notchOuterBermPosition) / (slopeUpperLevel - notchOuterBermHeight));
+    }
+
     double NaturalStoneRevetment::UpperLimitLoading(
         const double depthMaximumWaveLoad,
         const double surfSimilarityParameter,
