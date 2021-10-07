@@ -39,13 +39,21 @@ namespace DiKErnel::Integration
           _x(x),
           _initialDamage(initialDamage),
           _failureNumber(failureNumber),
-          _positionZ(positionZ) { }
+          _positionZ(positionZ),
+          _derivedLocationDependentInputInitialized(false) { }
 
     unique_ptr<TimeDependentOutput> LocationDependentInput::Calculate(
         const double initialDamage,
         const ITimeDependentInput& timeDependentInput,
         const IProfileData& profileData)
     {
+        if (!_derivedLocationDependentInputInitialized)
+        {
+            _derivedLocationDependentInputInitialized = true;
+
+            InitializeDerivedLocationDependentInput(profileData);
+        }
+
         return CalculateTimeDependentOutput(initialDamage, timeDependentInput, profileData);
     }
 

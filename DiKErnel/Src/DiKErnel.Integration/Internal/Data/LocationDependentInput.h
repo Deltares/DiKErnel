@@ -59,10 +59,11 @@ namespace DiKErnel::Integration
                 const Core::IProfileData& profileData) = 0;
 
         private:
-            std::string _name;
-            double _x;
-            double _initialDamage;
+            const std::string _name;
+            const double _x;
+            const double _initialDamage;
             const double _failureNumber;
+            bool _derivedLocationDependentInputInitialized;
             double _positionZ;
     };
 }
