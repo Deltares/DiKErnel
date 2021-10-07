@@ -107,6 +107,12 @@ namespace DiKErnel::FunctionLibrary
                 double slopeLowerLevel,
                 double slopeLowerPosition);
 
+            static double SlopeBermUpperSlope(
+                double notchOuterBermPosition,
+                double notchOuterBermHeight,
+                double slopeUpperLevel,
+                double slopeUpperPosition);
+
             /*!
              * \brief Calculates the upper limit of loading.
              * \param depthMaximumWaveLoad
