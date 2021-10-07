@@ -62,7 +62,57 @@ namespace DiKErnel::Integration
           _normativeWidthOfWaveImpact(move(normativeWidthOfWaveImpact)),
           _waveAngleImpact(move(waveAngleImpact)) {}
 
-    unique_ptr<TimeDependentOutput> NaturalStoneRevetmentLocationDependentInput::Calculate(
+    double NaturalStoneRevetmentLocationDependentInput::GetTanA() const
+    {
+        return _tanA;
+    }
+
+    double NaturalStoneRevetmentLocationDependentInput::GetRelativeDensity() const
+    {
+        return _relativeDensity;
+    }
+
+    double NaturalStoneRevetmentLocationDependentInput::GetThicknessTopLayer() const
+    {
+        return _thicknessTopLayer;
+    }
+
+    NaturalStoneRevetmentHydraulicLoads& NaturalStoneRevetmentLocationDependentInput::GetHydraulicLoads() const
+    {
+        return *_hydraulicLoads;
+    }
+
+    NaturalStoneRevetmentSlope& NaturalStoneRevetmentLocationDependentInput::GetSlope() const
+    {
+        return *_slope;
+    }
+
+    NaturalStoneRevetmentUpperLimitLoading& NaturalStoneRevetmentLocationDependentInput::GetUpperLimitLoading() const
+    {
+        return *_upperLimitLoading;
+    }
+
+    NaturalStoneRevetmentLowerLimitLoading& NaturalStoneRevetmentLocationDependentInput::GetLowerLimitLoading() const
+    {
+        return *_lowerLimitLoading;
+    }
+
+    NaturalStoneRevetmentDistanceMaximumWaveElevation& NaturalStoneRevetmentLocationDependentInput::GetDistanceMaximumWaveElevation() const
+    {
+        return *_distanceMaximumWaveElevation;
+    }
+
+    NaturalStoneRevetmentNormativeWidthOfWaveImpact& NaturalStoneRevetmentLocationDependentInput::GetNormativeWidthOfWaveImpact() const
+    {
+        return *_normativeWidthOfWaveImpact;
+    }
+
+    NaturalStoneRevetmentWaveAngleImpact& NaturalStoneRevetmentLocationDependentInput::GetWaveAngleImpact() const
+    {
+        return *_waveAngleImpact;
+    }
+
+    unique_ptr<TimeDependentOutput> NaturalStoneRevetmentLocationDependentInput::CalculateTimeDependentOutput(
         const double initialDamage,
         const ITimeDependentInput& timeDependentInput,
         const IProfileData& profileData)
@@ -152,55 +202,5 @@ namespace DiKErnel::Integration
             incrementDamage, damage, move(timeOfFailure), loadingRevetment, surfSimilarityParameter, waveSteepnessDeepWater, upperLimitLoading,
             lowerLimitLoading, depthMaximumWaveLoad, distanceMaximumWaveElevation, normativeWidthWaveImpact, move(hydraulicLoad),
             move(waveAngleImpact), move(resistance), move(referenceTimeDegradation), move(referenceDegradation));
-    }
-
-    double NaturalStoneRevetmentLocationDependentInput::GetTanA() const
-    {
-        return _tanA;
-    }
-
-    double NaturalStoneRevetmentLocationDependentInput::GetRelativeDensity() const
-    {
-        return _relativeDensity;
-    }
-
-    double NaturalStoneRevetmentLocationDependentInput::GetThicknessTopLayer() const
-    {
-        return _thicknessTopLayer;
-    }
-
-    NaturalStoneRevetmentHydraulicLoads& NaturalStoneRevetmentLocationDependentInput::GetHydraulicLoads() const
-    {
-        return *_hydraulicLoads;
-    }
-
-    NaturalStoneRevetmentSlope& NaturalStoneRevetmentLocationDependentInput::GetSlope() const
-    {
-        return *_slope;
-    }
-
-    NaturalStoneRevetmentUpperLimitLoading& NaturalStoneRevetmentLocationDependentInput::GetUpperLimitLoading() const
-    {
-        return *_upperLimitLoading;
-    }
-
-    NaturalStoneRevetmentLowerLimitLoading& NaturalStoneRevetmentLocationDependentInput::GetLowerLimitLoading() const
-    {
-        return *_lowerLimitLoading;
-    }
-
-    NaturalStoneRevetmentDistanceMaximumWaveElevation& NaturalStoneRevetmentLocationDependentInput::GetDistanceMaximumWaveElevation() const
-    {
-        return *_distanceMaximumWaveElevation;
-    }
-
-    NaturalStoneRevetmentNormativeWidthOfWaveImpact& NaturalStoneRevetmentLocationDependentInput::GetNormativeWidthOfWaveImpact() const
-    {
-        return *_normativeWidthOfWaveImpact;
-    }
-
-    NaturalStoneRevetmentWaveAngleImpact& NaturalStoneRevetmentLocationDependentInput::GetWaveAngleImpact() const
-    {
-        return *_waveAngleImpact;
     }
 }

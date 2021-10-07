@@ -53,11 +53,6 @@ namespace DiKErnel::Integration
                 std::unique_ptr<NaturalStoneRevetmentNormativeWidthOfWaveImpact> normativeWidthOfWaveImpact,
                 std::unique_ptr<NaturalStoneRevetmentWaveAngleImpact> waveAngleImpact);
 
-            std::unique_ptr<Core::TimeDependentOutput> Calculate(
-                double initialDamage,
-                const Core::ITimeDependentInput& timeDependentInput,
-                const Core::IProfileData& profileData) override;
-
             double GetTanA() const;
 
             double GetRelativeDensity() const;
@@ -77,6 +72,12 @@ namespace DiKErnel::Integration
             NaturalStoneRevetmentNormativeWidthOfWaveImpact& GetNormativeWidthOfWaveImpact() const;
 
             NaturalStoneRevetmentWaveAngleImpact& GetWaveAngleImpact() const;
+
+        protected:
+            std::unique_ptr<Core::TimeDependentOutput> CalculateTimeDependentOutput(
+                double initialDamage,
+                const Core::ITimeDependentInput& timeDependentInput,
+                const Core::IProfileData& profileData) override;
 
         private:
             double _tanA;
