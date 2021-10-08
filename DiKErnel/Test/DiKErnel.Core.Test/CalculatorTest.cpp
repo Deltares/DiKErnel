@@ -67,6 +67,7 @@ namespace DiKErnel::Core::Test
     {
         // Given
         NiceMock<ICalculationInputMock> calculationInput;
+        ON_CALL(calculationInput, GetProfileData).WillByDefault(ReturnRef(*_profileData));
         ON_CALL(calculationInput, GetLocationDependentInputItems).WillByDefault(ReturnRef(_locationDependentInputItemReferences));
         ON_CALL(calculationInput, GetTimeDependentInputItems).WillByDefault(ReturnRef(_timeDependentInputItemReferences));
 
@@ -87,6 +88,7 @@ namespace DiKErnel::Core::Test
         const auto damage = 0.5;
 
         NiceMock<ICalculationInputMock> calculationInput;
+        ON_CALL(calculationInput, GetProfileData).WillByDefault(ReturnRef(*_profileData));
         ON_CALL(calculationInput, GetLocationDependentInputItems).WillByDefault(ReturnRef(_locationDependentInputItemReferences));
         ON_CALL(calculationInput, GetTimeDependentInputItems).WillByDefault(ReturnRef(_timeDependentInputItemReferences));
 
@@ -124,6 +126,7 @@ namespace DiKErnel::Core::Test
         auto timeOfFailure = 20;
 
         NiceMock<ICalculationInputMock> calculationInput;
+        ON_CALL(calculationInput, GetProfileData).WillByDefault(ReturnRef(*_profileData));
         ON_CALL(calculationInput, GetLocationDependentInputItems).WillByDefault(ReturnRef(_locationDependentInputItemReferences));
         ON_CALL(calculationInput, GetTimeDependentInputItems).WillByDefault(ReturnRef(_timeDependentInputItemReferences));
 
@@ -159,6 +162,7 @@ namespace DiKErnel::Core::Test
     {
         // Given
         NiceMock<ICalculationInputMock> calculationInput;
+        ON_CALL(calculationInput, GetProfileData).WillByDefault(ReturnRef(*_profileData));
         ON_CALL(calculationInput, GetLocationDependentInputItems).WillByDefault(ReturnRef(_locationDependentInputItemReferences));
         ON_CALL(calculationInput, GetTimeDependentInputItems).WillByDefault(ReturnRef(_timeDependentInputItemReferences));
 
@@ -178,6 +182,7 @@ namespace DiKErnel::Core::Test
     {
         // Given
         NiceMock<ICalculationInputMock> calculationInput;
+        EXPECT_CALL(calculationInput, GetProfileData).WillRepeatedly(ReturnRef(*_profileData));
         EXPECT_CALL(calculationInput, GetLocationDependentInputItems).WillRepeatedly(ReturnRef(_locationDependentInputItemReferences));
         EXPECT_CALL(calculationInput, GetTimeDependentInputItems).WillRepeatedly(ReturnRef(_timeDependentInputItemReferences));
 
@@ -197,6 +202,7 @@ namespace DiKErnel::Core::Test
     {
         // Given
         NiceMock<ICalculationInputMock> calculationInput;
+        EXPECT_CALL(calculationInput, GetProfileData).WillRepeatedly(ReturnRef(*_profileData));
         EXPECT_CALL(calculationInput, GetLocationDependentInputItems).WillRepeatedly(ReturnRef(_locationDependentInputItemReferences));
         EXPECT_CALL(calculationInput, GetTimeDependentInputItems).WillRepeatedly(ReturnRef(_timeDependentInputItemReferences));
 
