@@ -22,15 +22,15 @@
 
 #include <gmock/gmock.h>
 
-#include "ICalculationInput.h"
+#include "IProfileData.h"
 
 namespace DiKErnel::Core::TestUtil
 {
-    class ICalculationInputMock : public ICalculationInput
+    class IProfileDataMock : public IProfileData
     {
         public:
-            MOCK_METHOD(IProfileData&, GetProfileData, (), (const, override));
-            MOCK_METHOD(std::vector<std::reference_wrapper<ILocationDependentInput>>&, GetLocationDependentInputItems, (), (const, override));
-            MOCK_METHOD(std::vector<std::reference_wrapper<ITimeDependentInput>>&, GetTimeDependentInputItems, (), (const, override));
+            MOCK_METHOD(std::vector<std::reference_wrapper<ProfilePoint>>&, GetProfilePoints, (), (const, override));
+            MOCK_METHOD(std::vector<std::reference_wrapper<CharacteristicPoint>>&, GetCharacteristicPoints, (), (const, override));
+            MOCK_METHOD(bool, HasBerm, (), (const, override));
     };
 }

@@ -7,6 +7,8 @@ set(SOURCEFILES
   ICalculationInputMock.h
   ILocationDependentInputMock.cpp
   ILocationDependentInputMock.h
+  IProfileDataMock.cpp
+  IProfileDataMock.h
   ITimeDependentInputMock.cpp
   ITimeDependentInputMock.h
   TimeDependentOutputMock.cpp

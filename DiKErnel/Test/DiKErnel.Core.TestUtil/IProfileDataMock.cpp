@@ -18,19 +18,6 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#pragma once
+#include "IProfileDataMock.h"
 
-#include <gmock/gmock.h>
-
-#include "ICalculationInput.h"
-
-namespace DiKErnel::Core::TestUtil
-{
-    class ICalculationInputMock : public ICalculationInput
-    {
-        public:
-            MOCK_METHOD(IProfileData&, GetProfileData, (), (const, override));
-            MOCK_METHOD(std::vector<std::reference_wrapper<ILocationDependentInput>>&, GetLocationDependentInputItems, (), (const, override));
-            MOCK_METHOD(std::vector<std::reference_wrapper<ITimeDependentInput>>&, GetTimeDependentInputItems, (), (const, override));
-    };
-}
+namespace DiKErnel::Core::TestUtil {}

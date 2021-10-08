@@ -25,6 +25,7 @@
 #include "Calculator.h"
 #include "ICalculationInputMock.h"
 #include "ILocationDependentInputMock.h"
+#include "IProfileDataMock.h"
 #include "ITimeDependentInputMock.h"
 
 namespace DiKErnel::Core::Test
@@ -35,11 +36,11 @@ namespace DiKErnel::Core::Test
 
     struct CalculatorTest : Test
     {
+        unique_ptr<IProfileData> _profileData = make_unique<IProfileDataMock>();
         vector<unique_ptr<ILocationDependentInput>> _locationDependentInputItems = vector<unique_ptr<ILocationDependentInput>>();
         vector<unique_ptr<ITimeDependentInput>> _timeDependentInputItems = vector<unique_ptr<ITimeDependentInput>>();
-
-        vector<reference_wrapper<ILocationDependentInput>> _locationDependentInputItemReferences
-                = vector<reference_wrapper<ILocationDependentInput>>();
+        vector<reference_wrapper<ILocationDependentInput>> _locationDependentInputItemReferences =
+            vector<reference_wrapper<ILocationDependentInput>>();
         vector<reference_wrapper<ITimeDependentInput>> _timeDependentInputItemReferences = vector<reference_wrapper<ITimeDependentInput>>();
 
         explicit CalculatorTest()
