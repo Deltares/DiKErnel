@@ -84,6 +84,38 @@ namespace DiKErnel::FunctionLibrary
                 double hydraulicLoadC,
                 double hydraulicLoadN);
 
+            /*!
+             * \brief Calculates the outer slope.
+             * \param hasBerm
+             *        Indicator whether a berm is defined on the dike profile.
+             *        Unit = [-]
+             * \param outerToeHeight
+             *        The height of the outer toe.
+             *        Unit = [m]
+             * \param outerCrestHeight
+             *        The height of the outer crest.
+             *        Unit = [m]
+             * \param notchOuterBerm
+             *        The coordinates of the notch outer berm.
+             *        Unit = [-]
+             * \param crestOuterBerm
+             *        The coordinates of the crest outer berm.
+             *        Unit = [-]
+             * \param slopeUpperLevel
+             *        The slope upper level.
+             *        Unit = [-]
+             * \param slopeLowerLevel
+             *        The slope lower level.
+             *        Unit = [-]
+             * \param slopeUpperPosition
+             *        The slope upper position.
+             *        Unit = [-]
+             * \param slopeLowerPosition
+             *        The slope lower position.
+             *        Unit = [-]
+             * \return The outer slope.
+             *         Unit = [-]
+             */
             static double OuterSlope(
                 bool hasBerm,
                 double outerToeHeight,
@@ -95,6 +127,26 @@ namespace DiKErnel::FunctionLibrary
                 double slopeUpperPosition,
                 double slopeLowerPosition);
 
+            /*!
+             * \brief Calculates the slope upper level.
+             * \param outerToeHeight
+             *        The height of the outer toe.
+             *        Unit = [m]
+             * \param outerCrestHeight
+             *        The height of the outer crest.
+             *        Unit = [m]
+             * \param waterLevel
+             *        The water level.
+             *        Unit = [m]
+             * \param waveHeightHm0
+             *        The wave height.
+             *        Unit = [m]
+             * \param slopeUpperLevelAus
+             *        The Aus coefficient.
+             *        Unit = [-]
+             * \return The slope upper level.
+             *         Unit = [-]
+             */
             static double SlopeUpperLevel(
                 double outerToeHeight,
                 double outerCrestHeight,
@@ -102,6 +154,23 @@ namespace DiKErnel::FunctionLibrary
                 double waveHeightHm0,
                 double slopeUpperLevelAus);
 
+            /*!
+             * \brief Calculates the slope lower level.
+             * \param outerToeHeight
+             *        The height of the outer toe.
+             *        Unit = [m]
+             * \param slopeUpperLevel
+             *        The slope upper level.
+             *        Unit = [-]
+             * \param waveHeightHm0
+             *        The wave height.
+             *        Unit = [m]
+             * \param slopeLowerLevelAls
+             *        The Als coefficient.
+             *        Unit = [-]
+             * \return The slope lower level.
+             *         Unit = [-]
+             */
             static double SlopeLowerLevel(
                 double outerToeHeight,
                 double slopeUpperLevel,
