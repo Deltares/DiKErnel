@@ -57,6 +57,38 @@ namespace DiKErnel::FunctionLibrary::Test
         ASSERT_DOUBLE_EQ(0.49571702636245252, hydraulicLoad);
     }
 
+    TEST(NaturalStoneRevetmentTest, SlopeUpperLevel_ValidInput_ExpectedValue)
+    {
+        // Setup
+        const auto outerToeHeight = 5.35;
+        const auto outerCrestHeight = 14.1;
+        const auto waterLevel = 0.1;
+        const auto waveHeightHm0 = 1.5;
+        const auto slopeUpperLevelAus = 0.05;
+
+        // Call
+        const auto slopeUpperLevel = NaturalStoneRevetment::SlopeUpperLevel(outerToeHeight, outerCrestHeight, waterLevel, waveHeightHm0,
+                                                                            slopeUpperLevelAus);
+
+        // Assert
+        ASSERT_DOUBLE_EQ(5.425, slopeUpperLevel);
+    }
+
+    TEST(NaturalStoneRevetmentTest, SlopeLowerLevel_ValidInput_ExpectedValue)
+    {
+        // Setup
+        const auto outerToeHeight = 5.35;
+        const auto slopeUpperLevel = 5.425;
+        const auto waveHeightHm0 = 1.5;
+        const auto slopeLowerLevelAls = 1.5;
+
+        // Call
+        const auto slopeLowerLevel = NaturalStoneRevetment::SlopeLowerLevel(outerToeHeight, slopeUpperLevel, waveHeightHm0, slopeLowerLevelAls);
+
+        // Assert
+        ASSERT_DOUBLE_EQ(5.35, slopeLowerLevel);
+    }
+
     TEST(NaturalStoneRevetmentTest, UpperLimitLoading_ValidInput_ExpectedValue)
     {
         // Setup
