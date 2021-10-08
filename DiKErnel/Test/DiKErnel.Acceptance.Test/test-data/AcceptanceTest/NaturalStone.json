@@ -78,35 +78,35 @@
         [
             {
                 "Positie": -30,
-                "Hoogte": -11.85
+                "Hoogte": -9.65
             },
             {
                 "Positie": -20,
-                "Hoogte": -8.95
+                "Hoogte": -7.15
             },
             {
                 "Positie": -10,
-                "Hoogte": -6.05
+                "Hoogte": -4.65
             },
             {
                 "Positie": 0,
-                "Hoogte": -3.15
+                "Hoogte": -2.15
             },
             {
                 "Positie": 5,
-                "Hoogte": -1.7
+                "Hoogte": -0.9
             },
             {
                 "Positie": 10,
-                "Hoogte": -0.25
+                "Hoogte": 0.35
             },
             {
                 "Positie": 15,
-                "Hoogte": 1.2
+                "Hoogte": 1.6
             },
             {
                 "Positie": 20,
-                "Hoogte": 2.65
+                "Hoogte": 2.85
             },
             {
                 "Positie": 25,
@@ -114,38 +114,38 @@
             },
             {
                 "Positie": 30,
-                "Hoogte": 5.55,
+                "Hoogte": 5.35,
                 "KarakteristiekPunt": "TeenBuitenzijde"
             },
             {
                 "Positie": 35,
-                "Hoogte": 7
+                "Hoogte": 6.6
             },
             {
                 "Positie": 40,
-                "Hoogte": 8.45,
+                "Hoogte": 7.85,
                 "KarakteristiekPunt": "KruinBermBuitenzijde"
             },
             {
                 "Positie": 45,
-                "Hoogte": 9.9
+                "Hoogte": 9.1
             },
             {
                 "Positie": 50,
-                "Hoogte": 11.35,
+                "Hoogte": 10.35,
                 "KarakteristiekPunt": "InsteekBermBuitenzijde"
             },
             {
                 "Positie": 55,
-                "Hoogte": 12.8
+                "Hoogte": 11.6
             },
             {
                 "Positie": 60,
-                "Hoogte": 14.25
+                "Hoogte": 12.85
             },
             {
                 "Positie": 65,
-                "Hoogte": 15.7,
+                "Hoogte": 14.1,
                 "KarakteristiekPunt": "KruinBuitenzijde"
             }
         ],
