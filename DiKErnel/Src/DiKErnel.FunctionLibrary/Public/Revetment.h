@@ -80,6 +80,18 @@ namespace DiKErnel::FunctionLibrary
                 double horizontalPosition,
                 std::vector<std::pair<double, double>> dikeProfile);
 
+            /*!
+             * \brief Calculates the horizontal position based on linear interpolation.
+             * \param verticalHeight
+             *        The vertical height.
+             *        Unit = [m]
+             * \param dikeProfile
+             *        The dike profile.
+             *        Unit = [-]
+             * \return The horizontal position or INFINITY when the vertical height cannot be
+             *         fitted with the dike profile.
+             *         Unit = [m]
+             */
             static double InterpolationHorizontalPosition(
                 double verticalHeight,
                 std::vector<std::pair<double, double>> dikeProfile);
