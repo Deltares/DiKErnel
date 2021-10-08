@@ -20,6 +20,8 @@
 
 #pragma once
 
+#include <utility>
+
 namespace DiKErnel::FunctionLibrary
 {
     /*!
@@ -82,7 +84,12 @@ namespace DiKErnel::FunctionLibrary
                 double hydraulicLoadC,
                 double hydraulicLoadN);
 
-            static double SingleSlopePart(
+            static double OuterSlope(
+                bool hasBerm,
+                double outerToeHeight,
+                double outerCrestHeight,
+                std::pair<double, double> notchOuterBerm,
+                std::pair<double, double> crestOuterBerm,
                 double slopeUpperLevel,
                 double slopeLowerLevel,
                 double slopeUpperPosition,
@@ -100,38 +107,6 @@ namespace DiKErnel::FunctionLibrary
                 double slopeUpperLevel,
                 double waveHeightHm0,
                 double slopeLowerLevelAls);
-
-            static double SlopeLowerSlopeBerm(
-                double crestOuterBermPosition,
-                double crestOuterBermHeight,
-                double slopeLowerLevel,
-                double slopeLowerPosition);
-
-            static double SlopeBermUpperSlope(
-                double notchOuterBermPosition,
-                double notchOuterBermHeight,
-                double slopeUpperLevel,
-                double slopeUpperPosition);
-
-            static double SlopeLowerUpperSlope(
-                double slopeUpperLevel,
-                double slopeLowerLevel,
-                double distanceBermUpperSlope,
-                double distanceBermLowerSlope);
-
-            static double DistanceBermUpperSlope(
-                double crestOuterBermHeight,
-                double notchOuterBermPosition,
-                double notchOuterBermHeight,
-                double slopeUpperLevel,
-                double slopeUpperPosition);
-
-            static double DistanceBermLowerSlope(
-                double crestOuterBermPosition,
-                double crestOuterBermHeight,
-                double notchOuterBermHeight,
-                double slopeLowerLevel,
-                double slopeLowerPosition);
 
             /*!
              * \brief Calculates the upper limit of loading.
@@ -413,6 +388,44 @@ namespace DiKErnel::FunctionLibrary
                 double failureNumber);
 
         private:
+            static double SingleSlopePart(
+                double slopeUpperLevel,
+                double slopeLowerLevel,
+                double slopeUpperPosition,
+                double slopeLowerPosition);
+
+            static double SlopeLowerSlopeBerm(
+                double crestOuterBermPosition,
+                double crestOuterBermHeight,
+                double slopeLowerLevel,
+                double slopeLowerPosition);
+
+            static double SlopeBermUpperSlope(
+                double notchOuterBermPosition,
+                double notchOuterBermHeight,
+                double slopeUpperLevel,
+                double slopeUpperPosition);
+
+            static double SlopeLowerUpperSlope(
+                double slopeUpperLevel,
+                double slopeLowerLevel,
+                double distanceBermUpperSlope,
+                double distanceBermLowerSlope);
+
+            static double DistanceBermUpperSlope(
+                double crestOuterBermHeight,
+                double notchOuterBermPosition,
+                double notchOuterBermHeight,
+                double slopeUpperLevel,
+                double slopeUpperPosition);
+
+            static double DistanceBermLowerSlope(
+                double crestOuterBermPosition,
+                double crestOuterBermHeight,
+                double notchOuterBermHeight,
+                double slopeLowerLevel,
+                double slopeLowerPosition);
+
             static double Degradation(
                 double referenceTimeDegradation,
                 double wavePeriodTm10);

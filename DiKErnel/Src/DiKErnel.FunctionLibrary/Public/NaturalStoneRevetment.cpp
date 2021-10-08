@@ -51,13 +51,84 @@ namespace DiKErnel::FunctionLibrary
             + hydraulicLoadC);
     }
 
-    double NaturalStoneRevetment::SingleSlopePart(
+    double NaturalStoneRevetment::OuterSlope(
+        const bool hasBerm,
+        const double outerToeHeight,
+        const double outerCrestHeight,
+        const std::pair<double, double> notchOuterBerm,
+        const std::pair<double, double> crestOuterBerm,
         const double slopeUpperLevel,
         const double slopeLowerLevel,
         const double slopeUpperPosition,
         const double slopeLowerPosition)
     {
-        return (slopeUpperLevel - slopeLowerLevel) / (slopeUpperPosition - slopeLowerPosition);
+        auto tanA = numeric_limits<double>::infinity();
+
+        if (!hasBerm)
+        {
+            if (outerToeHeight <= slopeLowerLevel && slopeLowerLevel < outerCrestHeight
+                && outerToeHeight < slopeUpperLevel && slopeUpperLevel < outerCrestHeight)
+            {
+                tanA = SingleSlopePart(slopeUpperLevel, slopeLowerLevel, slopeUpperPosition, slopeLowerPosition);
+            }
+        }
+        else
+        {
+            const auto crestOuterBermPosition = crestOuterBerm.first;
+            const auto crestOuterBermHeight = crestOuterBerm.second;
+
+            const auto notchOuterBermPosition = notchOuterBerm.first;
+            const auto notchOuterBermHeight = notchOuterBerm.second;
+
+            // Ondertalud-Ondertalud
+            if (outerToeHeight <= slopeLowerLevel && slopeLowerLevel < crestOuterBermHeight
+                && outerToeHeight <= slopeUpperLevel && slopeUpperLevel < crestOuterBermHeight)
+            {
+                tanA = SingleSlopePart(slopeUpperLevel, slopeLowerLevel, slopeUpperPosition, slopeLowerPosition);
+            }
+
+            // Ondertalud-Berm
+            if (outerToeHeight <= slopeLowerLevel && slopeLowerLevel < crestOuterBermHeight
+                && crestOuterBermHeight <= slopeUpperLevel && slopeUpperLevel <= notchOuterBermHeight)
+            {
+                tanA = SlopeLowerSlopeBerm(crestOuterBermPosition, crestOuterBermHeight, slopeLowerLevel, slopeLowerPosition);
+            }
+
+            // Ondertalud-Boventalud
+            if (outerToeHeight <= slopeLowerLevel && slopeLowerLevel < crestOuterBermHeight
+                && notchOuterBermHeight < slopeUpperLevel && slopeUpperLevel <= outerCrestHeight)
+            {
+                const auto distanceBermUpperSlope = DistanceBermUpperSlope(crestOuterBermHeight, notchOuterBermPosition, notchOuterBermHeight,
+                                                                           slopeUpperLevel, slopeUpperPosition);
+                const auto distanceBermLowerSlope = DistanceBermLowerSlope(crestOuterBermPosition, crestOuterBermHeight, notchOuterBermHeight,
+                                                                           slopeLowerLevel, slopeLowerPosition);
+
+                tanA = SlopeLowerUpperSlope(slopeUpperLevel, slopeLowerLevel, distanceBermUpperSlope, distanceBermLowerSlope);
+            }
+
+            // Berm-Berm
+            if (crestOuterBermHeight <= slopeLowerLevel && slopeLowerLevel <= notchOuterBermHeight
+                && crestOuterBermHeight <= slopeUpperLevel && slopeUpperLevel <= notchOuterBermHeight)
+            {
+                tanA = SingleSlopePart(slopeUpperLevel, slopeLowerLevel, slopeUpperPosition, slopeLowerPosition);
+            }
+
+            // Berm-Boventalud
+            if (crestOuterBermHeight <= slopeLowerLevel && slopeLowerLevel <= notchOuterBermHeight
+                && notchOuterBermHeight <= slopeUpperLevel && slopeUpperLevel <= outerCrestHeight)
+            {
+                tanA = SlopeBermUpperSlope(notchOuterBermPosition, notchOuterBermHeight, slopeUpperLevel, slopeUpperPosition);
+            }
+
+            // Boventalud-BovenTalud
+            if (notchOuterBermHeight < slopeLowerLevel && slopeLowerLevel <= outerCrestHeight
+                && notchOuterBermHeight < slopeUpperLevel && slopeUpperLevel <= outerCrestHeight)
+            {
+                tanA = SingleSlopePart(slopeUpperLevel, slopeLowerLevel, slopeUpperPosition, slopeLowerPosition);
+            }
+        }
+
+        return tanA;
     }
 
     double NaturalStoneRevetment::SlopeUpperLevel(
@@ -80,55 +151,6 @@ namespace DiKErnel::FunctionLibrary
     {
         return max(slopeUpperLevel - slopeLowerLevelAls * waveHeightHm0,
                    outerToeHeight);
-    }
-
-    double NaturalStoneRevetment::SlopeLowerSlopeBerm(
-        const double crestOuterBermPosition,
-        const double crestOuterBermHeight,
-        const double slopeLowerLevel,
-        const double slopeLowerPosition)
-    {
-        return (crestOuterBermHeight - slopeLowerLevel) / (crestOuterBermPosition - slopeLowerPosition);
-    }
-
-    double NaturalStoneRevetment::SlopeBermUpperSlope(
-        const double notchOuterBermPosition,
-        const double notchOuterBermHeight,
-        const double slopeUpperLevel,
-        const double slopeUpperPosition)
-    {
-        return (slopeUpperLevel - notchOuterBermHeight) / (slopeUpperPosition - notchOuterBermPosition);
-    }
-
-    double NaturalStoneRevetment::SlopeLowerUpperSlope(
-        const double slopeUpperLevel,
-        const double slopeLowerLevel,
-        const double distanceBermUpperSlope,
-        const double distanceBermLowerSlope)
-    {
-        return (slopeUpperLevel - slopeLowerLevel) / (distanceBermUpperSlope + distanceBermLowerSlope);
-    }
-
-    double NaturalStoneRevetment::DistanceBermUpperSlope(
-        const double crestOuterBermHeight,
-        const double notchOuterBermPosition,
-        const double notchOuterBermHeight,
-        const double slopeUpperLevel,
-        const double slopeUpperPosition)
-    {
-        return (slopeUpperLevel - 0.5 * (crestOuterBermHeight + notchOuterBermHeight))
-                * ((slopeUpperPosition - notchOuterBermPosition) / (slopeUpperLevel - notchOuterBermHeight));
-    }
-
-    double NaturalStoneRevetment::DistanceBermLowerSlope(
-        const double crestOuterBermPosition,
-        const double crestOuterBermHeight,
-        const double notchOuterBermHeight,
-        const double slopeLowerLevel,
-        const double slopeLowerPosition)
-    {
-        return (0.5 * (crestOuterBermHeight + notchOuterBermHeight) - slopeLowerLevel)
-                * ((crestOuterBermPosition - slopeLowerPosition) / (crestOuterBermHeight - slopeLowerLevel));
     }
 
     double NaturalStoneRevetment::UpperLimitLoading(
@@ -251,6 +273,64 @@ namespace DiKErnel::FunctionLibrary
         const double failureNumber)
     {
         return Reference(resistance, hydraulicLoad, waveAngleImpact, failureNumber);
+    }
+
+    double NaturalStoneRevetment::SingleSlopePart(
+        const double slopeUpperLevel,
+        const double slopeLowerLevel,
+        const double slopeUpperPosition,
+        const double slopeLowerPosition)
+    {
+        return (slopeUpperLevel - slopeLowerLevel) / (slopeUpperPosition - slopeLowerPosition);
+    }
+
+    double NaturalStoneRevetment::SlopeLowerSlopeBerm(
+        const double crestOuterBermPosition,
+        const double crestOuterBermHeight,
+        const double slopeLowerLevel,
+        const double slopeLowerPosition)
+    {
+        return (crestOuterBermHeight - slopeLowerLevel) / (crestOuterBermPosition - slopeLowerPosition);
+    }
+
+    double NaturalStoneRevetment::SlopeBermUpperSlope(
+        const double notchOuterBermPosition,
+        const double notchOuterBermHeight,
+        const double slopeUpperLevel,
+        const double slopeUpperPosition)
+    {
+        return (slopeUpperLevel - notchOuterBermHeight) / (slopeUpperPosition - notchOuterBermPosition);
+    }
+
+    double NaturalStoneRevetment::SlopeLowerUpperSlope(
+        const double slopeUpperLevel,
+        const double slopeLowerLevel,
+        const double distanceBermUpperSlope,
+        const double distanceBermLowerSlope)
+    {
+        return (slopeUpperLevel - slopeLowerLevel) / (distanceBermUpperSlope + distanceBermLowerSlope);
+    }
+
+    double NaturalStoneRevetment::DistanceBermUpperSlope(
+        const double crestOuterBermHeight,
+        const double notchOuterBermPosition,
+        const double notchOuterBermHeight,
+        const double slopeUpperLevel,
+        const double slopeUpperPosition)
+    {
+        return (slopeUpperLevel - 0.5 * (crestOuterBermHeight + notchOuterBermHeight))
+                * ((slopeUpperPosition - notchOuterBermPosition) / (slopeUpperLevel - notchOuterBermHeight));
+    }
+
+    double NaturalStoneRevetment::DistanceBermLowerSlope(
+        const double crestOuterBermPosition,
+        const double crestOuterBermHeight,
+        const double notchOuterBermHeight,
+        const double slopeLowerLevel,
+        const double slopeLowerPosition)
+    {
+        return (0.5 * (crestOuterBermHeight + notchOuterBermHeight) - slopeLowerLevel)
+                * ((crestOuterBermPosition - slopeLowerPosition) / (crestOuterBermHeight - slopeLowerLevel));
     }
 
     double NaturalStoneRevetment::Degradation(
