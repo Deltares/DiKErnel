@@ -117,10 +117,99 @@ namespace DiKErnel::Integration
         const ITimeDependentInput& timeDependentInput,
         const IProfileData& profileData)
     {
-        const auto tanA = GetTanA();
         const auto waterLevel = timeDependentInput.GetWaterLevel();
         const auto waveHeightHm0 = timeDependentInput.GetWaveHeightHm0();
         const auto wavePeriodTm10 = timeDependentInput.GetWavePeriodTm10();
+
+        auto tanA = numeric_limits<double>::infinity();
+
+        const auto& characteristicPoints = profileData.GetCharacteristicPoints();
+
+        const auto [outerToePosition, outerToeHeight] = GetCharacteristicPointCoordinates(characteristicPoints, CharacteristicPointType::OuterToe);
+        const auto [outerCrestPosition, outerCrestHeight] = GetCharacteristicPointCoordinates(
+            characteristicPoints, CharacteristicPointType::OuterCrest);
+
+        const auto slopeUpperLevel = NaturalStoneRevetment::SlopeUpperLevel(outerToeHeight, outerCrestHeight, waterLevel,
+                                                                            waveHeightHm0, GetSlope().GetUpperLevelAus());
+        const auto slopeLowerLevel = NaturalStoneRevetment::SlopeLowerLevel(outerToeHeight, slopeUpperLevel, waveHeightHm0,
+                                                                            GetSlope().GetLowerLevelAls());
+
+        auto dikeProfilePoints = vector<pair<double, double>>();
+
+        for (const auto& profilePointReference : profileData.GetProfilePoints())
+        {
+            const auto profilePoint = profilePointReference.get();
+            dikeProfilePoints.emplace_back(profilePoint.GetX(), profilePoint.GetZ());
+        }
+
+        const auto slopeUpperPosition = Revetment::InterpolationHorizontalPosition(slopeUpperLevel, dikeProfilePoints);
+        const auto slopeLowerPosition = Revetment::InterpolationHorizontalPosition(slopeLowerLevel, dikeProfilePoints);
+
+        if (!profileData.HasBerm())
+        {
+            if (outerToeHeight <= slopeLowerLevel && slopeLowerLevel < outerCrestHeight
+                && outerToeHeight < slopeUpperLevel && slopeUpperLevel < outerCrestHeight)
+            {
+                tanA = NaturalStoneRevetment::SingleSlopePart(slopeUpperLevel, slopeLowerLevel, slopeUpperPosition, slopeLowerPosition);
+            }
+        }
+        else
+        {
+            const auto [notchOuterBermPosition, notchOuterBermHeight] = GetCharacteristicPointCoordinates(
+                characteristicPoints, CharacteristicPointType::NotchOuterBerm);
+            const auto [crestOuterBermPosition, crestOuterBermHeight] = GetCharacteristicPointCoordinates(
+                characteristicPoints, CharacteristicPointType::CrestOuterBerm);
+
+            // Ondertalud-Ondertalud
+            if (outerToeHeight <= slopeLowerLevel && slopeLowerLevel < crestOuterBermHeight
+                && outerToeHeight <= slopeUpperLevel && slopeUpperLevel < crestOuterBermHeight)
+            {
+                tanA = NaturalStoneRevetment::SingleSlopePart(slopeUpperLevel, slopeLowerLevel, slopeUpperPosition, slopeLowerPosition);
+            }
+
+            // Ondertalud-Berm
+            if (outerToeHeight <= slopeLowerLevel && slopeLowerLevel < crestOuterBermHeight
+                && crestOuterBermHeight <= slopeUpperLevel && slopeUpperLevel <= notchOuterBermHeight)
+            {
+                tanA = NaturalStoneRevetment::SlopeLowerSlopeBerm(crestOuterBermPosition, crestOuterBermHeight, slopeLowerLevel,
+                                                                  slopeLowerPosition);
+            }
+
+            // Ondertalud-Boventalud
+            if (outerToeHeight <= slopeLowerLevel && slopeLowerLevel < crestOuterBermHeight
+                && notchOuterBermHeight < slopeUpperLevel && slopeUpperLevel <= outerCrestHeight)
+            {
+                const auto distanceBermUpperSlope = NaturalStoneRevetment::DistanceBermUpperSlope(
+                    crestOuterBermHeight, notchOuterBermPosition, notchOuterBermHeight, slopeUpperLevel, slopeUpperPosition);
+                const auto distanceBermLowerSlope = NaturalStoneRevetment::DistanceBermLowerSlope(
+                    crestOuterBermPosition, crestOuterBermHeight, notchOuterBermHeight, slopeLowerLevel, slopeLowerPosition);
+
+                tanA = NaturalStoneRevetment::SlopeLowerUpperSlope(slopeUpperLevel, slopeLowerLevel, distanceBermUpperSlope,
+                                                                   distanceBermLowerSlope);
+            }
+
+            // Berm-Berm
+            if (crestOuterBermHeight <= slopeLowerLevel && slopeLowerLevel <= notchOuterBermHeight
+                && crestOuterBermHeight <= slopeUpperLevel && slopeUpperLevel <= notchOuterBermHeight)
+            {
+                tanA = NaturalStoneRevetment::SingleSlopePart(slopeUpperLevel, slopeLowerLevel, slopeUpperPosition, slopeLowerPosition);
+            }
+
+            // Berm-Boventalud
+            if (crestOuterBermHeight <= slopeLowerLevel && slopeLowerLevel <= notchOuterBermHeight
+                && notchOuterBermHeight <= slopeUpperLevel && slopeUpperLevel <= outerCrestHeight)
+            {
+                tanA = NaturalStoneRevetment::SlopeBermUpperSlope(notchOuterBermPosition, notchOuterBermHeight, slopeUpperLevel,
+                                                                  slopeUpperPosition);
+            }
+
+            // Boventalud-BovenTalud
+            if (notchOuterBermHeight < slopeLowerLevel && slopeLowerLevel <= outerCrestHeight
+                && notchOuterBermHeight < slopeUpperLevel && slopeUpperLevel <= outerCrestHeight)
+            {
+                tanA = NaturalStoneRevetment::SingleSlopePart(slopeUpperLevel, slopeLowerLevel, slopeUpperPosition, slopeLowerPosition);
+            }
+        }
 
         const auto waveSteepnessDeepWater = HydraulicLoad::WaveSteepnessDeepWater(waveHeightHm0, wavePeriodTm10,
                                                                                   Constants::GRAVITATIONAL_ACCELERATION);
@@ -202,5 +291,22 @@ namespace DiKErnel::Integration
             incrementDamage, damage, move(timeOfFailure), loadingRevetment, surfSimilarityParameter, waveSteepnessDeepWater, upperLimitLoading,
             lowerLimitLoading, depthMaximumWaveLoad, distanceMaximumWaveElevation, normativeWidthWaveImpact, move(hydraulicLoad),
             move(waveAngleImpact), move(resistance), move(referenceTimeDegradation), move(referenceDegradation));
+    }
+
+    pair<double, double> NaturalStoneRevetmentLocationDependentInput::GetCharacteristicPointCoordinates(
+        const vector<reference_wrapper<CharacteristicPoint>>& characteristicPoints,
+        const CharacteristicPointType characteristicPointType)
+    {
+        for (const auto characteristicPointReference : characteristicPoints)
+        {
+            if (const auto characteristicPoint = characteristicPointReference.get(); characteristicPoint.GetCharacteristicPointType() ==
+                characteristicPointType)
+            {
+                const auto profilePoint = characteristicPoint.GetProfilePoint();
+                return pair(profilePoint.GetX(), profilePoint.GetZ());
+            }
+        }
+
+        return pair(numeric_limits<double>::infinity(), numeric_limits<double>::infinity());
     }
 }

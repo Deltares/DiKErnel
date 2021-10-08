@@ -90,5 +90,9 @@ namespace DiKErnel::Integration
             std::unique_ptr<NaturalStoneRevetmentDistanceMaximumWaveElevation> _distanceMaximumWaveElevation;
             std::unique_ptr<NaturalStoneRevetmentNormativeWidthOfWaveImpact> _normativeWidthOfWaveImpact;
             std::unique_ptr<NaturalStoneRevetmentWaveAngleImpact> _waveAngleImpact;
+
+            static std::pair<double, double> GetCharacteristicPointCoordinates(
+                const std::vector<std::reference_wrapper<Core::CharacteristicPoint>>& characteristicPoints,
+                Core::CharacteristicPointType characteristicPointType);
     };
 }
