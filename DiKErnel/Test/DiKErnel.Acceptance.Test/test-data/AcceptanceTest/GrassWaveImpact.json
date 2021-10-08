@@ -292,6 +292,50 @@
                     "TanA": 0.3,
                     "PositieZ": 0.0
                 }
+            },
+            {
+                "Naam": "GrasbekledingOpenZode",
+                "PositieLocatie": 5.0,
+                "Bekleding":
+                {
+                    "TypeToplaag": "GrasOpenZode",
+                    "StandtijdlijnGrasGolfklapAgwi": 0.8,
+                    "StandtijdlijnGrasGolfklapBgwi": -0.0000194444444,
+                    "StandtijdlijnGrasGolfklapCgwi": 0.25,
+                    "Rekenmethoden":
+                    [
+                        {
+                            "RekenmethodeSoort": "GrasGolfklap",
+                            "MinimumGolfhoogteGrasGolfklap":
+                            {
+                                "MinimumGolfhoogteGrasGolfklapTemax": 3600000
+                            },
+                            "MaximumGolfhoogteGrasGolfklap":
+                            {
+                                "MaximumGolfhoogteGrasGolfklapTemin": 3.6
+                            },
+                            "ImpactGolfhoekBekledingGrasGolfklap":
+                            {
+                                "ImpactGolfhoekBekledingGrasGolfklapNwa": 0.67,
+                                "ImpactGolfhoekBekledingGrasGolfklapQwa": 0.35,
+                                "ImpactGolfhoekBekledingGrasGolfklapRwa": 10.0
+                            },
+                            "BovengrensBelastingGrasGolfklap":
+                            {
+                                "BovengrensBelastingGrasGolfklapAul": 0.0
+                            },
+                            "OndergrensBelastingGrasGolfklap":
+                            {
+                                "OndergrensBelastingGrasGolfklapAll": 0.5
+                            }
+                        }
+                    ]
+                },
+                "Profielschematisatie":
+                {
+                    "TanA": 0.3,
+                    "PositieZ": 0.0
+                }
             }
         ]
     }

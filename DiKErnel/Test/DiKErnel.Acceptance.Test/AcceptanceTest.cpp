@@ -141,7 +141,15 @@ namespace DiKErnel::Acceptance::Test
             / "GrassWaveImpact.json").string();
 
         // When & Then
-        PerformTest(inputFilePath, 2.836154231066117, make_unique<int>(32955).get());
+        PerformTest(inputFilePath, vector
+                    {
+                        1.0587334122468244,
+                        2001.5520809290408
+                    }, vector<const int*>
+                    {
+                        make_unique<int>(18391).get(),
+                        make_unique<int>(9002).get()
+                    });
     }
 
     TEST_F(AcceptanceTest, GivenJsonInputWithGrassWaveRunupRayleighLocation_WhenCalculating_ThenExpectedOutputJsonCreated)
