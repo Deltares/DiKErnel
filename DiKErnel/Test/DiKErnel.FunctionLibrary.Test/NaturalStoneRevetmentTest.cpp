@@ -24,6 +24,8 @@
 
 namespace DiKErnel::FunctionLibrary::Test
 {
+    using namespace std;
+
     TEST(NaturalStoneRevetmentTest, IncrementDamage_ValidInput_ExpectedValue)
     {
         // Setup
@@ -55,6 +57,27 @@ namespace DiKErnel::FunctionLibrary::Test
 
         // Assert
         ASSERT_DOUBLE_EQ(0.49571702636245252, hydraulicLoad);
+    }
+
+    TEST(NaturalStoneRevetmentTest, OuterSlope_ValidInput_ExpectedValue)
+    {
+        // Setup
+        const auto hasBerm = true;
+        const auto outerToeHeight = 5.35;
+        const auto outerCrestHeight = 14.1;
+        const auto notchOuterBerm = pair(50.0, 10.35);
+        const auto crestOuterBerm = pair(40.0, 7.85);
+        const auto slopeUpperLevel = 5.425;
+        const auto slopeLowerLevel = 5.35;
+        const auto slopeUpperPosition = 30.3;
+        const auto slopeLowerPosition = 30.0;
+
+        // Call
+        const auto outerSlope = NaturalStoneRevetment::OuterSlope(hasBerm, outerToeHeight, outerCrestHeight, notchOuterBerm, crestOuterBerm,
+                                                                  slopeUpperLevel, slopeLowerLevel, slopeUpperPosition, slopeLowerPosition);
+
+        // Assert
+        ASSERT_DOUBLE_EQ(0.25, outerSlope);
     }
 
     TEST(NaturalStoneRevetmentTest, SlopeUpperLevel_ValidInput_ExpectedValue)
