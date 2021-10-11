@@ -26,183 +26,125 @@
             "RandvoorwaardenPerTijdstap": 
             [
                 {
-                    "Waterstand": 0,
+                    "Waterstand": 0.0,
                     "GolfhoogteHm0": 0.8,
-                    "GolfperiodeTm10": 3,
-                    "Golfhoek": 0
+                    "GolfperiodeTm10": 3.0,
+                    "Golfhoek": 0.0
                 },
                 {
                     "Waterstand": 0.01,
                     "GolfhoogteHm0": 0.8,
-                    "GolfperiodeTm10": 4,
-                    "Golfhoek": 0
+                    "GolfperiodeTm10": 4.0,
+                    "Golfhoek": 0.0
                 },
                 {
                     "Waterstand": 0.02,
                     "GolfhoogteHm0": 0.8,
-                    "GolfperiodeTm10": 3,
-                    "Golfhoek": 45
+                    "GolfperiodeTm10": 3.0,
+                    "Golfhoek": 45.0
                 },
                 {
                     "Waterstand": 0.03,
                     "GolfhoogteHm0": 1.2,
-                    "GolfperiodeTm10": 4,
-                    "Golfhoek": 0
+                    "GolfperiodeTm10": 4.0,
+                    "Golfhoek": 0.0
                 },
                 {
                     "Waterstand": 0.04,
                     "GolfhoogteHm0": 1.2,
-                    "GolfperiodeTm10": 5,
-                    "Golfhoek": 0
+                    "GolfperiodeTm10": 5.0,
+                    "Golfhoek": 0.0
                 },
                 {
                     "Waterstand": 0.05,
                     "GolfhoogteHm0": 1.2,
-                    "GolfperiodeTm10": 4,
-                    "Golfhoek": 45
+                    "GolfperiodeTm10": 4.0,
+                    "Golfhoek": 45.0
                 },
                 {
                     "Waterstand": 0.06,
                     "GolfhoogteHm0": 1.6,
-                    "GolfperiodeTm10": 5,
-                    "Golfhoek": 0
+                    "GolfperiodeTm10": 5.0,
+                    "Golfhoek": 0.0
                 },
                 {
                     "Waterstand": 0.07,
                     "GolfhoogteHm0": 1.6,
-                    "GolfperiodeTm10": 6,
-                    "Golfhoek": 0
+                    "GolfperiodeTm10": 6.0,
+                    "Golfhoek": 0.0
                 },
                 {
                     "Waterstand": 0.08,
                     "GolfhoogteHm0": 1.6,
-                    "GolfperiodeTm10": 5,
-                    "Golfhoek": 45
+                    "GolfperiodeTm10": 5.0,
+                    "Golfhoek": 45.0
                 },
                 {
                     "Waterstand": 0.09,
-                    "GolfhoogteHm0": 2,
-                    "GolfperiodeTm10": 6,
-                    "Golfhoek": 0
+                    "GolfhoogteHm0": 2.0,
+                    "GolfperiodeTm10": 6.0,
+                    "Golfhoek": 0.0
                 },
                 {
                     "Waterstand": 0.1,
-                    "GolfhoogteHm0": 2,
-                    "GolfperiodeTm10": 9,
-                    "Golfhoek": 0
+                    "GolfhoogteHm0": 2.0,
+                    "GolfperiodeTm10": 9.0,
+                    "Golfhoek": 0.0
                 },
                 {
                     "Waterstand": 0.11,
-                    "GolfhoogteHm0": 2,
-                    "GolfperiodeTm10": 6,
-                    "Golfhoek": 45
+                    "GolfhoogteHm0": 2.0,
+                    "GolfperiodeTm10": 6.0,
+                    "Golfhoek": 45.0
                 },
                 {
                     "Waterstand": 0.12,
                     "GolfhoogteHm0": 2.4,
-                    "GolfperiodeTm10": 9,
-                    "Golfhoek": 0
+                    "GolfperiodeTm10": 9.0,
+                    "Golfhoek": 0.0
                 },
                 {
                     "Waterstand": 0.13,
                     "GolfhoogteHm0": 2.4,
-                    "GolfperiodeTm10": 10,
-                    "Golfhoek": 0
+                    "GolfperiodeTm10": 10.0,
+                    "Golfhoek": 0.0
                 },
                 {
                     "Waterstand": 0.14,
                     "GolfhoogteHm0": 2.4,
-                    "GolfperiodeTm10": 9,
-                    "Golfhoek": 45
+                    "GolfperiodeTm10": 9.0,
+                    "Golfhoek": 45.0
                 },
                 {
                     "Waterstand": 0.15,
                     "GolfhoogteHm0": 2.8,
-                    "GolfperiodeTm10": 10,
-                    "Golfhoek": 0
+                    "GolfperiodeTm10": 10.0,
+                    "Golfhoek": 0.0
                 }
             ]
         },
         "Dijkprofiel":
         [
             {
-                "Positie": -30,
-                "Hoogte": -0.3
-            },
-            {
-                "Positie": -20,
-                "Hoogte": 0.0
-            },
-            {
-                "Positie": -10,
-                "Hoogte": 0.2
-            },
-            {
-                "Positie": 0,
-                "Hoogte": 0.4,
+                "Positie": 0.0,
+                "Hoogte": 0.0,
                 "KarakteristiekPunt": "TeenBuitenzijde"
             },
             {
-                "Positie": 5,
-                "Hoogte": 0.5
+                "Positie": 6.0,
+                "Hoogte": 1.5
             },
             {
-                "Positie": 10,
-                "Hoogte": 2.1
-            },
-            {
-                "Positie": 15,
-                "Hoogte": 3.5,
-                "KarakteristiekPunt": "KruinBermBuitenzijde"
-            },
-            {
-                "Positie": 20,
-                "Hoogte": 3.9
-            },
-            {
-                "Positie": 25,
-                "Hoogte": 4.1,
-                "KarakteristiekPunt": "InsteekBermBuitenzijde"
-            },
-            {
-                "Positie": 30,
-                "Hoogte": 5.2
-            },
-            {
-                "Positie": 35,
-                "Hoogte": 6.1
-            },
-            {
-                "Positie": 40,
-                "Hoogte": 7.0,
+                "Positie": 12,
+                "Hoogte": 3.0,
                 "KarakteristiekPunt": "KruinBuitenzijde"
-            },
-            {
-                "Positie": 45,
-                "Hoogte": 7.1
-            },
-            {
-                "Positie": 50,
-                "Hoogte": 6.9
-            },
-            {
-                "Positie": 55,
-                "Hoogte": 5.9
-            },
-            {
-                "Positie": 60,
-                "Hoogte": 5.0
-            },
-            {
-                "Positie": 65,
-                "Hoogte": 4.2
             }
         ],
         "Locaties": 
         [
             {
                 "Naam": "GrasbekledingGeslotenZodeAlleenGolfoploopRayleighDiscreetAlleOptiesAan",
-                "PositieLocatie": 0,
+                "PositieLocatie": 4.0,
                 "Schade": 
                 {
                     "BeginSchade": 0.0,
@@ -212,9 +154,9 @@
                  {
                     "TypeToplaag": "GrasGeslotenZode",
                     "KritiekeCumulatieveOverbelasting": 7000,
-                    "KritiekeFrontsnelheidGrasGolfoploop": 4,
-                    "VerhogingBelastingOvergangAlfaM": 1,
-                    "VerlagingSterkteOvergangAlfaS": 1,
+                    "KritiekeFrontsnelheidGrasGolfoploop": 4.0,
+                    "VerhogingBelastingOvergangAlfaM": 1.0,
+                    "VerlagingSterkteOvergangAlfaS": 1.0,
                     "FactorFrontSnelheidGolfoploop": 1.1,
                     "Rekenmethoden":
                     [
@@ -222,7 +164,7 @@
                             "RekenmethodeSoort": "GrasGolfoploop",
                             "GemiddeldAantalGolvenPerTijdstap": 
                             {
-                                "GemiddeldAantalGolvenPerTijdstapCtm": 1
+                                "GemiddeldAantalGolvenPerTijdstapCtm": 0.92
                             },
                             "RepresentatieveGolfoploop2p": 
                             {
@@ -250,9 +192,9 @@
                 "Profielschematisatie": 
                 {
                     "TanA": 0.25,
-                    "PositieZ": 1,
-                    "BermfactorGammab": 1,
-                    "RuwheidsfactorGammaf": 1
+                    "PositieZ": 1.0,
+                    "BermfactorGammab": 1.0,
+                    "RuwheidsfactorGammaf": 1.0
                 }
             }
         ]

@@ -159,7 +159,7 @@ namespace DiKErnel::Acceptance::Test
             / "GrassWaveRunupRayleigh.json").string();
 
         // When & Then
-        PerformTest(inputFilePath, 2.273256874349757, make_unique<int>(10433).get());
+        PerformTest(inputFilePath, 2.4709313851627792, make_unique<int>(9959).get());
     }
 
     TEST_F(AcceptanceTest, GivenJsonInputWithGrassWaveRunupRayleighLocationWithHighWaterLevel_WhenCalculating_ThenExpectedOutputJsonCreated)
@@ -169,7 +169,7 @@ namespace DiKErnel::Acceptance::Test
             / "GrassWaveRunupRayleighWithHighWaterLevel.json").string();
 
         // When & Then
-        PerformTest(inputFilePath, 0.24492951079678721, nullptr);
+        PerformTest(inputFilePath, 0.26622772912694259, nullptr);
     }
 
     TEST_F(AcceptanceTest, GivenJsonInputWithNaturalStoneLocation_WhenCalculating_ThenExpectedOutputJsonCreated)
