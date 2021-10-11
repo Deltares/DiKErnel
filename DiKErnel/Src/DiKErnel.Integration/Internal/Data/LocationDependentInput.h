@@ -63,7 +63,7 @@ namespace DiKErnel::Integration
             const double _x;
             const double _initialDamage;
             const double _failureNumber;
-            bool _derivedLocationDependentInputInitialized;
+            bool _derivedLocationDependentInputInitialized = false;
             double _positionZ;
     };
 }
