@@ -98,6 +98,7 @@ namespace DiKErnel::Integration
             double _outerCrestHeight = std::numeric_limits<double>::infinity();
             std::pair<double, double> _notchOuterBerm = std::pair<double, double>();
             std::pair<double, double> _crestOuterBerm = std::pair<double, double>();
+            double _resistance = std::numeric_limits<double>::infinity();
 
             static std::pair<double, double> GetCharacteristicPointCoordinates(
                 const std::vector<std::reference_wrapper<Core::CharacteristicPoint>>& characteristicPoints,

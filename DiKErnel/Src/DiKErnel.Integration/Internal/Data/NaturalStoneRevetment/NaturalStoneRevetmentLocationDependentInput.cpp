@@ -20,8 +20,6 @@
 
 #include "NaturalStoneRevetmentLocationDependentInput.h"
 
-#include <cmath>
-
 #include "Constants.h"
 #include "HydraulicLoad.h"
 #include "NaturalStoneRevetment.h"
@@ -131,6 +129,8 @@ namespace DiKErnel::Integration
         _outerCrestHeight = GetCharacteristicPointCoordinates(characteristicPoints, CharacteristicPointType::OuterCrest).second;
         _notchOuterBerm = GetCharacteristicPointCoordinates(characteristicPoints, CharacteristicPointType::NotchOuterBerm);
         _crestOuterBerm = GetCharacteristicPointCoordinates(characteristicPoints, CharacteristicPointType::CrestOuterBerm);
+
+        _resistance = NaturalStoneRevetment::Resistance(_relativeDensity, _thicknessTopLayer);
     }
 
     unique_ptr<TimeDependentOutput> NaturalStoneRevetmentLocationDependentInput::CalculateTimeDependentOutput(
@@ -148,8 +148,8 @@ namespace DiKErnel::Integration
                                                                             naturalStoneRevetmentSlope.GetUpperLevelAus());
         const auto slopeLowerLevel = NaturalStoneRevetment::SlopeLowerLevel(_outerToeHeight, slopeUpperLevel, waveHeightHm0,
                                                                             naturalStoneRevetmentSlope.GetLowerLevelAls());
-        const double slopeUpperPosition = Revetment::InterpolationHorizontalPosition(slopeUpperLevel, _dikeProfilePoints);
-        const double slopeLowerPosition = Revetment::InterpolationHorizontalPosition(slopeLowerLevel, _dikeProfilePoints);
+        const auto slopeUpperPosition = Revetment::InterpolationHorizontalPosition(slopeUpperLevel, _dikeProfilePoints);
+        const auto slopeLowerPosition = Revetment::InterpolationHorizontalPosition(slopeLowerLevel, _dikeProfilePoints);
 
         const auto tanA = profileData.HasBerm()
                               ? NaturalStoneRevetment::OuterSlopeWithBerm(_outerToeHeight, _outerCrestHeight, _notchOuterBerm, _crestOuterBerm,
@@ -184,9 +184,10 @@ namespace DiKErnel::Integration
         auto damage = initialDamage;
         unique_ptr<int> timeOfFailure = nullptr;
 
+        auto resistance = loadingRevetment ? make_unique<double>(_resistance) : nullptr;
+
         unique_ptr<double> hydraulicLoad = nullptr;
         unique_ptr<double> waveAngleImpact = nullptr;
-        unique_ptr<double> resistance = nullptr;
         unique_ptr<double> referenceTimeDegradation = nullptr;
         unique_ptr<double> referenceDegradation = nullptr;
 
@@ -208,9 +209,8 @@ namespace DiKErnel::Integration
 
             hydraulicLoad = make_unique<double>(NaturalStoneRevetment::HydraulicLoad(surfSimilarityParameter, waveHeightHm0, hydraulicLoadA,
                                                                                      hydraulicLoadB, hydraulicLoadC, hydraulicLoadN));
-            resistance = make_unique<double>(NaturalStoneRevetment::Resistance(_relativeDensity, _thicknessTopLayer));
-            waveAngleImpact = make_unique<double>(
-                NaturalStoneRevetment::WaveAngleImpact(timeDependentInput.GetWaveAngle(), _waveAngleImpact->GetBetamax()));
+            waveAngleImpact = make_unique<double>(NaturalStoneRevetment::WaveAngleImpact(timeDependentInput.GetWaveAngle(),
+                                                                                         _waveAngleImpact->GetBetamax()));
             referenceDegradation = make_unique<double>(
                 NaturalStoneRevetment::ReferenceDegradation(*resistance, *hydraulicLoad, *waveAngleImpact, initialDamage));
             referenceTimeDegradation = make_unique<double>(NaturalStoneRevetment::ReferenceTimeDegradation(*referenceDegradation, wavePeriodTm10));
@@ -243,12 +243,13 @@ namespace DiKErnel::Integration
         const vector<reference_wrapper<CharacteristicPoint>>& characteristicPoints,
         const CharacteristicPointType characteristicPointType)
     {
-        for (const auto characteristicPointReference : characteristicPoints)
+        for (const auto& characteristicPointReference : characteristicPoints)
         {
             if (const auto characteristicPoint = characteristicPointReference.get(); characteristicPoint.GetCharacteristicPointType() ==
                 characteristicPointType)
             {
-                const auto profilePoint = characteristicPoint.GetProfilePoint();
+                const auto& profilePoint = characteristicPoint.GetProfilePoint();
+
                 return pair(profilePoint.GetX(), profilePoint.GetZ());
             }
         }
