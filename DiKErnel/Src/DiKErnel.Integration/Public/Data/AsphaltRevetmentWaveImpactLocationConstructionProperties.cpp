@@ -110,7 +110,7 @@ namespace DiKErnel::Integration
 
     #pragma region Get methods
 
-    double AsphaltRevetmentWaveImpactLocationConstructionProperties::GetTanA() const
+    double AsphaltRevetmentWaveImpactLocationConstructionProperties::GetOuterSlope() const
     {
         return _outerSlope;
     }

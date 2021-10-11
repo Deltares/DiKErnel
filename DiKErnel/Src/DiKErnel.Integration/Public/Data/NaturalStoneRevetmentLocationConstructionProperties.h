@@ -41,8 +41,8 @@ namespace DiKErnel::Integration
              *        The name.
              * \param x
              *        The x coordinate.
-             * \param tanA
-             *        The tanA.
+             * \param outerSlope
+             *        The outer slope.
              * \param positionZ
              *        The vertical position.
              * \param topLayerType
@@ -55,7 +55,7 @@ namespace DiKErnel::Integration
             explicit NaturalStoneRevetmentLocationConstructionProperties(
                 std::string name,
                 double x,
-                double tanA,
+                double outerSlope,
                 double positionZ,
                 NaturalStoneRevetmentTopLayerType topLayerType,
                 double thicknessTopLayer,
@@ -244,10 +244,10 @@ namespace DiKErnel::Integration
             #pragma region Get methods
 
             /*!
-             * \brief Gets the tanA.
-             * \return The tanA.
+             * \brief Gets the outer slope.
+             * \return The outer slope.
              */
-            double GetTanA() const;
+            double GetOuterSlope() const;
 
             /*!
              * \brief Gets the type of the top layer.
@@ -402,7 +402,7 @@ namespace DiKErnel::Integration
             #pragma endregion
 
         private:
-            double _tanA;
+            double _outerSlope;
             NaturalStoneRevetmentTopLayerType _topLayerType;
             double _thicknessTopLayer;
             double _relativeDensity;
