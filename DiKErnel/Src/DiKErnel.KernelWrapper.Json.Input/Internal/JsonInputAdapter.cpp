@@ -139,7 +139,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
         const auto& profileSchematizationData = location.GetProfileSchematizationData();
 
         auto constructionProperties = make_unique<AsphaltRevetmentWaveImpactLocationConstructionProperties>(
-            location.GetName(), location.GetX(), profileSchematizationData.GetTanA(), profileSchematizationData.GetPositionZ(),
+            location.GetName(), location.GetX(), profileSchematizationData.GetOuterSlope(), profileSchematizationData.GetPositionZ(),
             ConvertTopLayerType(asphaltRevetmentWaveImpactLocationData.GetTopLayerType()),
             asphaltRevetmentWaveImpactLocationData.GetFailureTension(), asphaltRevetmentWaveImpactLocationData.GetDensityOfWater(),
             asphaltRevetmentWaveImpactLocationData.GetSoilElasticity(), asphaltRevetmentWaveImpactLocationData.GetThicknessUpperLayer(),
@@ -237,7 +237,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
             location.GetProfileSchematizationData());
 
         auto constructionProperties = make_unique<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(
-            location.GetName(), location.GetX(), profileSchematizationData.GetTanA(), profileSchematizationData.GetPositionZ(),
+            location.GetName(), location.GetX(), profileSchematizationData.GetOuterSlope(), profileSchematizationData.GetPositionZ(),
             ConvertTopLayerType(grassRevetmentWaveRunupRayleighLocationData.GetTopLayerType()));
 
         constructionProperties->SetInitialDamage(forward<unique_ptr<double>>(CreatePointerOfValue(damageData.GetInitialDamage())));
@@ -301,7 +301,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
         const auto& profileSchematizationData = location.GetProfileSchematizationData();
 
         auto constructionProperties = make_unique<NaturalStoneRevetmentLocationConstructionProperties>(
-            location.GetName(), location.GetX(), profileSchematizationData.GetTanA(), profileSchematizationData.GetPositionZ(),
+            location.GetName(), location.GetX(), profileSchematizationData.GetOuterSlope(), profileSchematizationData.GetPositionZ(),
             ConvertTopLayerType(naturalStoneRevetmentLocationData.GetTopLayerType()),
             naturalStoneRevetmentLocationData.GetThicknessTopLayer(), naturalStoneRevetmentLocationData.GetRelativeDensity());
 

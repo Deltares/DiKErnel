@@ -30,7 +30,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
     {
         public:
             explicit JsonInputGrassRevetmentWaveRunupProfileSchematizationData(
-                double tanA,
+                double outerSlope,
                 double positionZ);
 
             void SetRepresentativeWaveRunup2PGammab(

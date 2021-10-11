@@ -23,14 +23,14 @@
 namespace DiKErnel::KernelWrapper::Json::Input
 {
     JsonInputProfileSchematizationData::JsonInputProfileSchematizationData(
-        const double tanA,
+        const double outerSlope,
         const double positionZ)
-        : _tanA(tanA),
+        : _outerSlope(outerSlope),
           _positionZ(positionZ) { }
 
-    double JsonInputProfileSchematizationData::GetTanA() const
+    double JsonInputProfileSchematizationData::GetOuterSlope() const
     {
-        return _tanA;
+        return _outerSlope;
     }
 
     double JsonInputProfileSchematizationData::GetPositionZ() const
