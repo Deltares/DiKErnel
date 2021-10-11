@@ -114,6 +114,18 @@ namespace DiKErnel::Integration
         return *_waveAngleImpact;
     }
 
+    void NaturalStoneRevetmentLocationDependentInput::InitializeDerivedLocationDependentInput(
+        const IProfileData& profileData)
+    {
+        LocationDependentInput::InitializeDerivedLocationDependentInput(profileData);
+
+        for (const auto& profilePointReference : profileData.GetProfilePoints())
+        {
+            const auto& profilePoint = profilePointReference.get();
+            _dikeProfilePoints.emplace_back(profilePoint.GetX(), profilePoint.GetZ());
+        }
+    }
+
     unique_ptr<TimeDependentOutput> NaturalStoneRevetmentLocationDependentInput::CalculateTimeDependentOutput(
         const double initialDamage,
         const ITimeDependentInput& timeDependentInput,
@@ -124,14 +136,6 @@ namespace DiKErnel::Integration
         const auto wavePeriodTm10 = timeDependentInput.GetWavePeriodTm10();
 
         const auto& naturalStoneRevetmentSlope = GetSlope();
-
-        auto dikeProfilePoints = vector<pair<double, double>>();
-
-        for (const auto& profilePointReference : profileData.GetProfilePoints())
-        {
-            const auto profilePoint = profilePointReference.get();
-            dikeProfilePoints.emplace_back(profilePoint.GetX(), profilePoint.GetZ());
-        }
 
         const auto& characteristicPoints = profileData.GetCharacteristicPoints();
 
@@ -145,8 +149,8 @@ namespace DiKErnel::Integration
                                                                             naturalStoneRevetmentSlope.GetUpperLevelAus());
         const auto slopeLowerLevel = NaturalStoneRevetment::SlopeLowerLevel(outerToeHeight, slopeUpperLevel, waveHeightHm0,
                                                                             naturalStoneRevetmentSlope.GetLowerLevelAls());
-        const double slopeUpperPosition = Revetment::InterpolationHorizontalPosition(slopeUpperLevel, dikeProfilePoints);
-        const double slopeLowerPosition = Revetment::InterpolationHorizontalPosition(slopeLowerLevel, dikeProfilePoints);
+        const double slopeUpperPosition = Revetment::InterpolationHorizontalPosition(slopeUpperLevel, _dikeProfilePoints);
+        const double slopeLowerPosition = Revetment::InterpolationHorizontalPosition(slopeLowerLevel, _dikeProfilePoints);
 
         const auto tanA = profileData.HasBerm()
                               ? NaturalStoneRevetment::OuterSlopeWithBerm(outerToeHeight, outerCrestHeight, notchOuterBerm, crestOuterBerm,
