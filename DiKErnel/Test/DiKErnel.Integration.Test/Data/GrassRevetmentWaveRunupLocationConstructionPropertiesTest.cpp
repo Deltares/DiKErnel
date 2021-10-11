@@ -47,7 +47,7 @@ namespace DiKErnel::Integration::Test
         ASSERT_EQ(topLayerType, constructionProperties.GetTopLayerType());
         ASSERT_EQ(name, constructionProperties.GetName());
         ASSERT_DOUBLE_EQ(x, constructionProperties.GetX());
-        ASSERT_DOUBLE_EQ(tanA, constructionProperties.GetTanA());
+        ASSERT_DOUBLE_EQ(tanA, constructionProperties.GetOuterSlope());
         ASSERT_DOUBLE_EQ(positionZ, constructionProperties.GetPositionZ());
         ASSERT_EQ(nullptr, constructionProperties.GetInitialDamage());
         ASSERT_EQ(nullptr, constructionProperties.GetFailureNumber());
@@ -110,7 +110,7 @@ namespace DiKErnel::Integration::Test
         ASSERT_EQ(topLayerType, constructionProperties.GetTopLayerType());
         ASSERT_EQ(name, constructionProperties.GetName());
         ASSERT_DOUBLE_EQ(x, constructionProperties.GetX());
-        ASSERT_DOUBLE_EQ(tanA, constructionProperties.GetTanA());
+        ASSERT_DOUBLE_EQ(tanA, constructionProperties.GetOuterSlope());
         ASSERT_DOUBLE_EQ(positionZ, constructionProperties.GetPositionZ());
         ASSERT_DOUBLE_EQ(initialDamage, *constructionProperties.GetInitialDamage());
         ASSERT_DOUBLE_EQ(failureNumber, *constructionProperties.GetFailureNumber());

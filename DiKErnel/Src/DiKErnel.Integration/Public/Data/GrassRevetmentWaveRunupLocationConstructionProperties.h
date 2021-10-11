@@ -137,10 +137,10 @@ namespace DiKErnel::Integration
             #pragma region Get methods
 
             /*!
-             * \brief Gets the tanA.
-             * \return The tanA.
+             * \brief Gets the outer slope.
+             * \return The outer slope.
              */
-            double GetTanA() const;
+            double GetOuterSlope() const;
 
             /*!
              * \brief Gets the type of the top layer.
@@ -229,8 +229,8 @@ namespace DiKErnel::Integration
              *        The name.
              * \param x
              *        The x coordinate.
-             * \param tanA
-             *        The tanA.
+             * \param outerSlope
+             *        The outer slope.
              * \param positionZ
              *        The vertical position.
              * \param topLayerType
@@ -239,12 +239,12 @@ namespace DiKErnel::Integration
             explicit GrassRevetmentWaveRunupLocationConstructionProperties(
                 std::string name,
                 double x,
-                double tanA,
+                double outerSlope,
                 double positionZ,
                 GrassRevetmentTopLayerType topLayerType);
 
         private:
-            double _tanA;
+            double _outerSlope;
             GrassRevetmentTopLayerType _topLayerType;
             std::unique_ptr<double> _criticalCumulativeOverload = nullptr;
             std::unique_ptr<double> _criticalFrontVelocity = nullptr;

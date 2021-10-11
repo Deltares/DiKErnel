@@ -29,11 +29,11 @@ namespace DiKErnel::Integration
     GrassRevetmentWaveRunupLocationConstructionProperties::GrassRevetmentWaveRunupLocationConstructionProperties(
         string name,
         const double x,
-        const double tanA,
+        const double outerSlope,
         const double positionZ,
         const GrassRevetmentTopLayerType topLayerType)
         : RevetmentLocationConstructionPropertiesBase(move(name), x, positionZ),
-          _tanA(tanA),
+          _outerSlope(outerSlope),
           _topLayerType(topLayerType) { }
 
     #pragma region Set methods
@@ -114,9 +114,9 @@ namespace DiKErnel::Integration
 
     #pragma region Get methods
 
-    double GrassRevetmentWaveRunupLocationConstructionProperties::GetTanA() const
+    double GrassRevetmentWaveRunupLocationConstructionProperties::GetOuterSlope() const
     {
-        return _tanA;
+        return _outerSlope;
     }
 
     GrassRevetmentTopLayerType GrassRevetmentWaveRunupLocationConstructionProperties::GetTopLayerType() const

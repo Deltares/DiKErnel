@@ -37,8 +37,8 @@ namespace DiKErnel::Integration
              *        The name.
              * \param x
              *        The x coordinate.
-             * \param tanA
-             *        The tanA.
+             * \param outerSlope
+             *        The outer slope.
              * \param positionZ
              *        The vertical position.
              * \param topLayerType
@@ -47,7 +47,7 @@ namespace DiKErnel::Integration
             explicit GrassRevetmentWaveRunupRayleighLocationConstructionProperties(
                 std::string name,
                 double x,
-                double tanA,
+                double outerSlope,
                 double positionZ,
                 GrassRevetmentTopLayerType topLayerType);
 

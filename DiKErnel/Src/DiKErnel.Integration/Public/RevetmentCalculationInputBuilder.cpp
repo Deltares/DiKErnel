@@ -196,7 +196,7 @@ namespace DiKErnel::Integration
                 constructionProperties.GetX(),
                 GetValue(constructionProperties.GetInitialDamage(), RevetmentDefaults::INITIAL_DAMAGE),
                 GetValue(constructionProperties.GetFailureNumber(), RevetmentDefaults::FAILURE_NUMBER),
-                constructionProperties.GetTanA(),
+                constructionProperties.GetOuterSlope(),
                 constructionProperties.GetPositionZ(),
                 GetValue(constructionProperties.GetCriticalCumulativeOverload(), defaults->GetCriticalCumulativeOverload()),
                 GetValue(constructionProperties.GetCriticalFrontVelocity(), defaults->GetCriticalFrontVelocity()),
