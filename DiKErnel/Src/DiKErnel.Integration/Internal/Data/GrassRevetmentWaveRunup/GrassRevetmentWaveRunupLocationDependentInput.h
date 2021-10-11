@@ -31,7 +31,7 @@ namespace DiKErnel::Integration
     class GrassRevetmentWaveRunupLocationDependentInput : public LocationDependentInput
     {
         public:
-            double GetTanA() const;
+            double GetOuterSlope() const;
 
             double GetCriticalCumulativeOverload() const;
 
@@ -53,7 +53,7 @@ namespace DiKErnel::Integration
                 double x,
                 double initialDamage,
                 double failureNumber,
-                double tanA,
+                double outerSlope,
                 double positionZ,
                 double criticalCumulativeOverload,
                 double criticalFrontVelocity,
@@ -69,7 +69,7 @@ namespace DiKErnel::Integration
                 const Core::IProfileData& profileData) override = 0;
 
         private:
-            double _tanA;
+            double _outerSlope;
             double _criticalCumulativeOverload;
             double _criticalFrontVelocity;
             double _increasedLoadTransitionAlphaM;

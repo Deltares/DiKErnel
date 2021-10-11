@@ -39,7 +39,7 @@ namespace DiKErnel::Integration
         const double x,
         const double initialDamage,
         const double failureNumber,
-        const double tanA,
+        const double outerSlope,
         const double positionZ,
         const double criticalCumulativeOverload,
         const double criticalFrontVelocity,
@@ -50,9 +50,10 @@ namespace DiKErnel::Integration
         unique_ptr<GrassRevetmentWaveRunupWaveAngleImpact> waveAngleImpact,
         const int fixedNumberOfWaves,
         const double frontVelocityCu)
-        : GrassRevetmentWaveRunupLocationDependentInput(move(name), x, initialDamage, failureNumber, tanA, positionZ, criticalCumulativeOverload,
-                                                        criticalFrontVelocity, increasedLoadTransitionAlphaM, reducedStrengthTransitionAlphaS,
-                                                        averageNumberOfWavesCtm, move(representative2P), move(waveAngleImpact)),
+        : GrassRevetmentWaveRunupLocationDependentInput(move(name), x, initialDamage, failureNumber, outerSlope, positionZ,
+                                                        criticalCumulativeOverload, criticalFrontVelocity, increasedLoadTransitionAlphaM,
+                                                        reducedStrengthTransitionAlphaS, averageNumberOfWavesCtm, move(representative2P),
+                                                        move(waveAngleImpact)),
           _fixedNumberOfWaves(fixedNumberOfWaves),
           _frontVelocityCu(frontVelocityCu) {}
 
@@ -90,7 +91,7 @@ namespace DiKErnel::Integration
             const auto averageNumberOfWaves = Revetment::AverageNumberOfWaves(incrementTime, timeDependentInput.GetWavePeriodTm10(),
                                                                               GetAverageNumberOfWavesCtm());
 
-            const auto surfSimilarityParameter = HydraulicLoad::SurfSimilarityParameter(GetTanA(), timeDependentInput.GetWaveHeightHm0(),
+            const auto surfSimilarityParameter = HydraulicLoad::SurfSimilarityParameter(GetOuterSlope(), timeDependentInput.GetWaveHeightHm0(),
                                                                                         timeDependentInput.GetWavePeriodTm10(),
                                                                                         Constants::GRAVITATIONAL_ACCELERATION);
 

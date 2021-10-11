@@ -30,7 +30,7 @@ namespace DiKErnel::Integration
         const double x,
         const double initialDamage,
         const double failureNumber,
-        const double tanA,
+        const double outerSlope,
         const double positionZ,
         const double criticalCumulativeOverload,
         const double criticalFrontVelocity,
@@ -40,7 +40,7 @@ namespace DiKErnel::Integration
         unique_ptr<GrassRevetmentWaveRunupRepresentative2P> representative2P,
         unique_ptr<GrassRevetmentWaveRunupWaveAngleImpact> waveAngleImpact)
         : LocationDependentInput(move(name), x, initialDamage, failureNumber, positionZ),
-          _tanA(tanA),
+          _outerSlope(outerSlope),
           _criticalCumulativeOverload(criticalCumulativeOverload),
           _criticalFrontVelocity(criticalFrontVelocity),
           _increasedLoadTransitionAlphaM(increasedLoadTransitionAlphaM),
@@ -49,9 +49,9 @@ namespace DiKErnel::Integration
           _representative2P(move(representative2P)),
           _waveAngleImpact(move(waveAngleImpact)) {}
 
-    double GrassRevetmentWaveRunupLocationDependentInput::GetTanA() const
+    double GrassRevetmentWaveRunupLocationDependentInput::GetOuterSlope() const
     {
-        return _tanA;
+        return _outerSlope;
     }
 
     double GrassRevetmentWaveRunupLocationDependentInput::GetCriticalCumulativeOverload() const
