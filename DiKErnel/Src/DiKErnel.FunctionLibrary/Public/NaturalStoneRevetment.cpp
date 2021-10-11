@@ -78,49 +78,50 @@ namespace DiKErnel::FunctionLibrary
         const auto notchOuterBermPosition = notchOuterBerm.first;
         const auto notchOuterBermHeight = notchOuterBerm.second;
 
+        const bool slopeLowerLevelOnLowerSlope = outerToeHeight <= slopeLowerLevel && slopeLowerLevel < crestOuterBermHeight;
+        const bool slopeUpperLevelOnLowerSlope = outerToeHeight <= slopeUpperLevel && slopeUpperLevel < crestOuterBermHeight;
+        const bool slopeLowerLevelOnBerm = crestOuterBermHeight <= slopeLowerLevel && slopeLowerLevel <= notchOuterBermHeight;
+        const bool slopeUpperLevelOnBerm = crestOuterBermHeight <= slopeUpperLevel && slopeUpperLevel <= notchOuterBermHeight;
+        const bool slopeLowerLevelOnUpperSlope = notchOuterBermHeight < slopeLowerLevel && slopeLowerLevel <= outerCrestHeight;
+        const bool slopeUpperLevelOnUpperSlope = notchOuterBermHeight < slopeUpperLevel && slopeUpperLevel <= outerCrestHeight;
+
         // Ondertalud-Ondertalud
-        if (outerToeHeight <= slopeLowerLevel && slopeLowerLevel < crestOuterBermHeight
-            && outerToeHeight <= slopeUpperLevel && slopeUpperLevel < crestOuterBermHeight)
+        if (slopeLowerLevelOnLowerSlope && slopeUpperLevelOnLowerSlope)
         {
             tanA = SingleSlopePart(slopeUpperLevel, slopeLowerLevel, slopeUpperPosition, slopeLowerPosition);
         }
 
         // Ondertalud-Berm
-        if (outerToeHeight <= slopeLowerLevel && slopeLowerLevel < crestOuterBermHeight
-            && crestOuterBermHeight <= slopeUpperLevel && slopeUpperLevel <= notchOuterBermHeight)
+        if (slopeLowerLevelOnLowerSlope && slopeUpperLevelOnBerm)
         {
             tanA = SlopeLowerSlopeBerm(crestOuterBermPosition, crestOuterBermHeight, slopeLowerLevel, slopeLowerPosition);
         }
 
         // Ondertalud-Boventalud
-        if (outerToeHeight <= slopeLowerLevel && slopeLowerLevel < crestOuterBermHeight
-            && notchOuterBermHeight < slopeUpperLevel && slopeUpperLevel <= outerCrestHeight)
+        if (slopeLowerLevelOnLowerSlope && slopeUpperLevelOnUpperSlope)
         {
             const auto distanceBermUpperSlope = DistanceBermUpperSlope(crestOuterBermHeight, notchOuterBermPosition, notchOuterBermHeight,
-                slopeUpperLevel, slopeUpperPosition);
+                                                                       slopeUpperLevel, slopeUpperPosition);
             const auto distanceBermLowerSlope = DistanceBermLowerSlope(crestOuterBermPosition, crestOuterBermHeight, notchOuterBermHeight,
-                slopeLowerLevel, slopeLowerPosition);
+                                                                       slopeLowerLevel, slopeLowerPosition);
 
             tanA = SlopeLowerUpperSlope(slopeUpperLevel, slopeLowerLevel, distanceBermUpperSlope, distanceBermLowerSlope);
         }
 
         // Berm-Berm
-        if (crestOuterBermHeight <= slopeLowerLevel && slopeLowerLevel <= notchOuterBermHeight
-            && crestOuterBermHeight <= slopeUpperLevel && slopeUpperLevel <= notchOuterBermHeight)
+        if (slopeLowerLevelOnBerm && slopeUpperLevelOnBerm)
         {
             tanA = SingleSlopePart(slopeUpperLevel, slopeLowerLevel, slopeUpperPosition, slopeLowerPosition);
         }
 
         // Berm-Boventalud
-        if (crestOuterBermHeight <= slopeLowerLevel && slopeLowerLevel <= notchOuterBermHeight
-            && notchOuterBermHeight <= slopeUpperLevel && slopeUpperLevel <= outerCrestHeight)
+        if (slopeLowerLevelOnBerm && slopeUpperLevelOnUpperSlope)
         {
             tanA = SlopeBermUpperSlope(notchOuterBermPosition, notchOuterBermHeight, slopeUpperLevel, slopeUpperPosition);
         }
 
         // Boventalud-BovenTalud
-        if (notchOuterBermHeight < slopeLowerLevel && slopeLowerLevel <= outerCrestHeight
-            && notchOuterBermHeight < slopeUpperLevel && slopeUpperLevel <= outerCrestHeight)
+        if (slopeLowerLevelOnUpperSlope && slopeUpperLevelOnUpperSlope)
         {
             tanA = SingleSlopePart(slopeUpperLevel, slopeLowerLevel, slopeUpperPosition, slopeLowerPosition);
         }
