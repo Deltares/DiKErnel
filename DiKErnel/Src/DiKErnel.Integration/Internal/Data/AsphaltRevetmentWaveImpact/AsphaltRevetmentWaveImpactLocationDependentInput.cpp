@@ -37,7 +37,7 @@ namespace DiKErnel::Integration
         const double x,
         const double initialDamage,
         const double failureNumber,
-        const double tanA,
+        const double outerSlope,
         const double positionZ,
         const double failureTension,
         const double densityOfWater,
@@ -52,7 +52,7 @@ namespace DiKErnel::Integration
         vector<tuple<double, double>> depthFactors,
         vector<tuple<double, double>> impactFactors)
         : LocationDependentInput(move(name), x, initialDamage, failureNumber, positionZ),
-          _tanA(tanA),
+          _outerSlope(outerSlope),
           _failureTension(failureTension),
           _densityOfWater(densityOfWater),
           _soilElasticity(soilElasticity),
@@ -66,9 +66,9 @@ namespace DiKErnel::Integration
           _depthFactors(move(depthFactors)),
           _impactFactors(move(impactFactors)) { }
 
-    double AsphaltRevetmentWaveImpactLocationDependentInput::GetTanA() const
+    double AsphaltRevetmentWaveImpactLocationDependentInput::GetOuterSlope() const
     {
-        return _tanA;
+        return _outerSlope;
     }
 
     double AsphaltRevetmentWaveImpactLocationDependentInput::GetFailureTension() const
@@ -158,7 +158,7 @@ namespace DiKErnel::Integration
         const auto maximumPeakStress = AsphaltRevetmentWaveImpact::MaximumPeakStress(waveHeightHm0, Constants::GRAVITATIONAL_ACCELERATION,
                                                                                      _densityOfWater);
         const auto incrementDamage = AsphaltRevetmentWaveImpact::IncrementDamage(_logFailureTension, averageNumberOfWaves, maximumPeakStress,
-                                                                                 _stiffnessRelation, _computationalThickness, _tanA,
+                                                                                 _stiffnessRelation, _computationalThickness, _outerSlope,
                                                                                  _widthFactors, _depthFactors, _impactFactors, GetPositionZ(),
                                                                                  timeDependentInput.GetWaterLevel(), waveHeightHm0,
                                                                                  _fatigue->GetAlpha(), _fatigue->GetBeta(), _impactNumberC);

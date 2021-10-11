@@ -37,7 +37,7 @@ namespace DiKErnel::Integration
                 double x,
                 double initialDamage,
                 double failureNumber,
-                double tanA,
+                double outerSlope,
                 double positionZ,
                 double failureTension,
                 double densityOfWater,
@@ -52,7 +52,7 @@ namespace DiKErnel::Integration
                 std::vector<std::tuple<double, double>> depthFactors,
                 std::vector<std::tuple<double, double>> impactFactors);
 
-            double GetTanA() const;
+            double GetOuterSlope() const;
 
             double GetFailureTension() const;
 
@@ -88,7 +88,7 @@ namespace DiKErnel::Integration
                 const Core::IProfileData& profileData) override;
 
         private:
-            const double _tanA;
+            const double _outerSlope;
             const double _failureTension;
             const double _densityOfWater;
             const double _soilElasticity;
