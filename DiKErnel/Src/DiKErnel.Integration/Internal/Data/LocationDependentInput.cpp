@@ -89,7 +89,7 @@ namespace DiKErnel::Integration
 
         for (const auto& profilePointReference : profileData.GetProfilePoints())
         {
-            auto& profilePoint = profilePointReference.get();
+            const auto& profilePoint = profilePointReference.get();
 
             dikeProfile.emplace_back(profilePoint.GetX(), profilePoint.GetZ());
         }
