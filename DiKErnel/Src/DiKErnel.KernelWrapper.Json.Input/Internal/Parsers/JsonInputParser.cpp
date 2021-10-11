@@ -262,7 +262,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
         }
 
         return make_unique<JsonInputProfileSchematizationData>(
-            readProfileSchematization[JsonInputDefinitions::TAN_A].get<double>(),
+            readProfileSchematization[JsonInputDefinitions::OUTER_SLOPE].get<double>(),
             readProfileSchematization[JsonInputDefinitions::POSITION_Z].get<double>());
     }
 }
