@@ -36,18 +36,18 @@ namespace DiKErnel::Integration::Test
         const auto topLayerType = static_cast<GrassRevetmentTopLayerType>(rand() % 2);
         const string name = "Test";
         const auto x = 0.1;
-        const auto tanA = 0.2;
+        const auto outerSlope = 0.2;
         const auto positionZ = 0.3;
 
         // Call
-        const GrassRevetmentWaveRunupLocationConstructionPropertiesMock constructionProperties(name, x, tanA, positionZ, topLayerType);
+        const GrassRevetmentWaveRunupLocationConstructionPropertiesMock constructionProperties(name, x, outerSlope, positionZ, topLayerType);
 
         // Assert
         AssertHelper::AssertIsInstanceOf<RevetmentLocationConstructionPropertiesBase>(&constructionProperties);
         ASSERT_EQ(topLayerType, constructionProperties.GetTopLayerType());
         ASSERT_EQ(name, constructionProperties.GetName());
         ASSERT_DOUBLE_EQ(x, constructionProperties.GetX());
-        ASSERT_DOUBLE_EQ(tanA, constructionProperties.GetOuterSlope());
+        ASSERT_DOUBLE_EQ(outerSlope, constructionProperties.GetOuterSlope());
         ASSERT_DOUBLE_EQ(positionZ, constructionProperties.GetPositionZ());
         ASSERT_EQ(nullptr, constructionProperties.GetInitialDamage());
         ASSERT_EQ(nullptr, constructionProperties.GetFailureNumber());
@@ -71,7 +71,7 @@ namespace DiKErnel::Integration::Test
         const auto topLayerType = static_cast<GrassRevetmentTopLayerType>(rand() % 2);
         const string name = "Test";
         const auto x = 0.1;
-        const auto tanA = 0.2;
+        const auto outerSlope = 0.2;
         const auto positionZ = 0.3;
         const auto initialDamage = 0.4;
         const auto failureNumber = 0.5;
@@ -88,7 +88,7 @@ namespace DiKErnel::Integration::Test
         const auto waveAngleImpactAbeta = 1.6;
         const auto waveAngleImpactBetamax = 1.7;
 
-        GrassRevetmentWaveRunupLocationConstructionPropertiesMock constructionProperties(name, x, tanA, positionZ, topLayerType);
+        GrassRevetmentWaveRunupLocationConstructionPropertiesMock constructionProperties(name, x, outerSlope, positionZ, topLayerType);
 
         // When
         constructionProperties.SetInitialDamage(make_unique<double>(initialDamage));
@@ -110,7 +110,7 @@ namespace DiKErnel::Integration::Test
         ASSERT_EQ(topLayerType, constructionProperties.GetTopLayerType());
         ASSERT_EQ(name, constructionProperties.GetName());
         ASSERT_DOUBLE_EQ(x, constructionProperties.GetX());
-        ASSERT_DOUBLE_EQ(tanA, constructionProperties.GetOuterSlope());
+        ASSERT_DOUBLE_EQ(outerSlope, constructionProperties.GetOuterSlope());
         ASSERT_DOUBLE_EQ(positionZ, constructionProperties.GetPositionZ());
         ASSERT_DOUBLE_EQ(initialDamage, *constructionProperties.GetInitialDamage());
         ASSERT_DOUBLE_EQ(failureNumber, *constructionProperties.GetFailureNumber());
