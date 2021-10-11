@@ -20,6 +20,8 @@
 
 #include "NaturalStoneRevetmentLocationDependentInput.h"
 
+#include <cmath>
+
 #include "Constants.h"
 #include "HydraulicLoad.h"
 #include "NaturalStoneRevetment.h"
