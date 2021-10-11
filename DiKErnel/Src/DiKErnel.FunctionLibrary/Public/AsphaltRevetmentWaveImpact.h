@@ -47,8 +47,8 @@ namespace DiKErnel::FunctionLibrary
              * \param computationalThickness
              *        The computation thickness.
              *        Unit = [m]
-             * \param tanA
-             *        The tanA.
+             * \param outerSlope
+             *        The outer slope.
              *        Unit = [-]
              * \param widthFactors
              *        The width factors.
@@ -86,7 +86,7 @@ namespace DiKErnel::FunctionLibrary
                 double maximumPeakStress,
                 double stiffnessRelation,
                 double computationalThickness,
-                double tanA,
+                double outerSlope,
                 const std::vector<std::tuple<double, double>>& widthFactors,
                 const std::vector<std::tuple<double, double>>& depthFactors,
                 const std::vector<std::tuple<double, double>>& impactFactors,
@@ -181,7 +181,7 @@ namespace DiKErnel::FunctionLibrary
                 double stiffnessRelation,
                 double computationalThickness,
                 double relativeWidthWaveImpact,
-                double tanA,
+                double outerSlope,
                 double sinA,
                 const std::vector<std::tuple<double, double>>& depthFactors,
                 const std::vector<std::tuple<double, double>>& impactFactors,
@@ -196,7 +196,7 @@ namespace DiKErnel::FunctionLibrary
                 double logFailureTension,
                 double averageNumberOfWaves,
                 double bendingStress,
-                double tanA,
+                double outerSlope,
                 const std::vector<std::tuple<double, double>>& impactFactors,
                 double fatigueAlpha,
                 double fatigueBeta,
@@ -205,7 +205,7 @@ namespace DiKErnel::FunctionLibrary
             static double Fatigue(
                 double logFailureTension,
                 double bendingStress,
-                double tanA,
+                double outerSlope,
                 double impactFactorValue,
                 double fatigueAlpha,
                 double fatigueBeta,
@@ -213,12 +213,12 @@ namespace DiKErnel::FunctionLibrary
 
             static double LogTension(
                 double bendingStress,
-                double tanA,
+                double outerSlope,
                 double impactFactorValue,
                 double impactNumberC);
 
             static double ImpactNumber(
-                double tanA,
+                double outerSlope,
                 double impactFactorValue,
                 double impactNumberC);
 

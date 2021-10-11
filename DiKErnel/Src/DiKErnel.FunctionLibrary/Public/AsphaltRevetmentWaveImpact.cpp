@@ -34,7 +34,7 @@ namespace DiKErnel::FunctionLibrary
         const double maximumPeakStress,
         const double stiffnessRelation,
         const double computationalThickness,
-        const double tanA,
+        const double outerSlope,
         const vector<tuple<double, double>>& widthFactors,
         const vector<tuple<double, double>>& depthFactors,
         const vector<tuple<double, double>>& impactFactors,
@@ -47,14 +47,14 @@ namespace DiKErnel::FunctionLibrary
     {
         auto result = 0.0;
 
-        const auto sinA = sin(atan(tanA));
+        const auto sinA = sin(atan(outerSlope));
 
         for (const auto& [widthFactorValue, widthFactorProbability] : widthFactors)
         {
             const auto relativeWidthWaveImpact = RelativeWidthWaveImpact(stiffnessRelation, widthFactorValue, waveHeightHm0);
             const auto depthFactorAccumulation = DepthFactorAccumulation(logFailureTension, averageNumberOfWaves, maximumPeakStress,
                                                                          stiffnessRelation, computationalThickness, relativeWidthWaveImpact,
-                                                                         tanA, sinA, depthFactors, impactFactors, positionZ, waterLevel,
+                                                                         outerSlope, sinA, depthFactors, impactFactors, positionZ, waterLevel,
                                                                          waveHeightHm0, fatigueAlpha, fatigueBeta, impactNumberC);
 
             result += widthFactorProbability * depthFactorAccumulation;
@@ -103,7 +103,7 @@ namespace DiKErnel::FunctionLibrary
         const double stiffnessRelation,
         const double computationalThickness,
         const double relativeWidthWaveImpact,
-        const double tanA,
+        const double outerSlope,
         const double sinA,
         const vector<tuple<double, double>>& depthFactors,
         const vector<tuple<double, double>>& impactFactors,
@@ -120,7 +120,7 @@ namespace DiKErnel::FunctionLibrary
         {
             const auto bendingStress = BendingStress(maximumPeakStress, stiffnessRelation, computationalThickness, relativeWidthWaveImpact, sinA,
                                                      depthFactorValue, positionZ, waterLevel, waveHeightHm0);
-            const auto impactFactorAccumulation = ImpactFactorAccumulation(logFailureTension, averageNumberOfWaves, bendingStress, tanA,
+            const auto impactFactorAccumulation = ImpactFactorAccumulation(logFailureTension, averageNumberOfWaves, bendingStress, outerSlope,
                                                                            impactFactors, fatigueAlpha, fatigueBeta, impactNumberC);
 
             result += depthFactorProbability * impactFactorAccumulation;
@@ -133,7 +133,7 @@ namespace DiKErnel::FunctionLibrary
         const double logFailureTension,
         const double averageNumberOfWaves,
         const double bendingStress,
-        const double tanA,
+        const double outerSlope,
         const vector<tuple<double, double>>& impactFactors,
         const double fatigueAlpha,
         const double fatigueBeta,
@@ -143,7 +143,7 @@ namespace DiKErnel::FunctionLibrary
 
         for (const auto& [impactFactorValue, impactFactorProbability] : impactFactors)
         {
-            const auto fatigue = Fatigue(logFailureTension, bendingStress, tanA, impactFactorValue, fatigueAlpha, fatigueBeta, impactNumberC);
+            const auto fatigue = Fatigue(logFailureTension, bendingStress, outerSlope, impactFactorValue, fatigueAlpha, fatigueBeta, impactNumberC);
 
             result += impactFactorProbability * averageNumberOfWaves * fatigue;
         }
@@ -154,34 +154,34 @@ namespace DiKErnel::FunctionLibrary
     double AsphaltRevetmentWaveImpact::Fatigue(
         const double logFailureTension,
         const double bendingStress,
-        const double tanA,
+        const double outerSlope,
         const double impactFactorValue,
         const double fatigueAlpha,
         const double fatigueBeta,
         const double impactNumberC)
     {
-        const auto logTension = LogTension(bendingStress, tanA, impactFactorValue, impactNumberC);
+        const auto logTension = LogTension(bendingStress, outerSlope, impactFactorValue, impactNumberC);
 
         return pow(10.0, -fatigueBeta * pow(max(0.0, logFailureTension - logTension), fatigueAlpha));
     }
 
     double AsphaltRevetmentWaveImpact::LogTension(
         const double bendingStress,
-        const double tanA,
+        const double outerSlope,
         const double impactFactorValue,
         const double impactNumberC)
     {
-        const auto impactNumber = ImpactNumber(tanA, impactFactorValue, impactNumberC);
+        const auto impactNumber = ImpactNumber(outerSlope, impactFactorValue, impactNumberC);
 
         return log10(impactNumber * bendingStress);
     }
 
     double AsphaltRevetmentWaveImpact::ImpactNumber(
-        const double tanA,
+        const double outerSlope,
         const double impactFactorValue,
         const double impactNumberC)
     {
-        return 4.0 * impactNumberC * tanA * impactFactorValue;
+        return 4.0 * impactNumberC * outerSlope * impactFactorValue;
     }
 
     double AsphaltRevetmentWaveImpact::BendingStress(
