@@ -102,5 +102,7 @@ namespace DiKErnel::Integration
             std::vector<std::tuple<double, double>> _depthFactors;
             std::vector<std::tuple<double, double>> _impactFactors;
             double _logFailureTension = std::numeric_limits<double>::infinity();
+            double _computationalThickness = std::numeric_limits<double>::infinity();
+            double _stiffnessRelation = std::numeric_limits<double>::infinity();
     };
 }

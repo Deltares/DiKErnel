@@ -137,6 +137,11 @@ namespace DiKErnel::Integration
         LocationDependentInput::InitializeDerivedLocationDependentInput(profileData);
 
         _logFailureTension = AsphaltRevetmentWaveImpact::LogFailureTension(_failureTension);
+        _computationalThickness = AsphaltRevetmentWaveImpact::ComputationalThickness(_upperLayer->GetThickness(), _subLayer->GetThickness(),
+                                                                                     _upperLayer->GetElasticModulus(),
+                                                                                     _subLayer->GetElasticModulus());
+        _stiffnessRelation = AsphaltRevetmentWaveImpact::StiffnessRelation(_computationalThickness, _subLayer->GetElasticModulus(),
+                                                                           _soilElasticity, _stiffnessRelationNu);
     }
 
     unique_ptr<TimeDependentOutput> AsphaltRevetmentWaveImpactLocationDependentInput::CalculateTimeDependentOutput(
@@ -146,27 +151,19 @@ namespace DiKErnel::Integration
     {
         const auto beginTime = timeDependentInput.GetBeginTime();
         const auto waveHeightHm0 = timeDependentInput.GetWaveHeightHm0();
-        const auto equivalentElasticModulus = _subLayer->GetElasticModulus();
 
         const auto incrementTime = Revetment::IncrementTime(beginTime, timeDependentInput.GetEndTime());
         const auto averageNumberOfWaves = Revetment::AverageNumberOfWaves(incrementTime, timeDependentInput.GetWavePeriodTm10(),
                                                                           _averageNumberOfWavesCtm);
-
-        const auto maximumPeakStress = AsphaltRevetmentWaveImpact::MaximumPeakStress(waveHeightHm0,
-                                                                                     Constants::GRAVITATIONAL_ACCELERATION, _densityOfWater);
-        const auto computationalThickness = AsphaltRevetmentWaveImpact::ComputationalThickness(_upperLayer->GetThickness(),
-                                                                                               _subLayer->GetThickness(),
-                                                                                               _upperLayer->GetElasticModulus(),
-                                                                                               equivalentElasticModulus);
-        const auto stiffnessRelation = AsphaltRevetmentWaveImpact::StiffnessRelation(computationalThickness, equivalentElasticModulus,
-                                                                                     _soilElasticity, _stiffnessRelationNu);
+        const auto maximumPeakStress = AsphaltRevetmentWaveImpact::MaximumPeakStress(waveHeightHm0, Constants::GRAVITATIONAL_ACCELERATION,
+                                                                                     _densityOfWater);
         const auto incrementDamage = AsphaltRevetmentWaveImpact::IncrementDamage(_logFailureTension, averageNumberOfWaves, maximumPeakStress,
-                                                                                 stiffnessRelation, computationalThickness, _tanA,
+                                                                                 _stiffnessRelation, _computationalThickness, _tanA,
                                                                                  _widthFactors, _depthFactors, _impactFactors, GetPositionZ(),
                                                                                  timeDependentInput.GetWaterLevel(), waveHeightHm0,
                                                                                  _fatigue->GetAlpha(), _fatigue->GetBeta(), _impactNumberC);
-
         const auto damage = Revetment::Damage(incrementDamage, initialDamage);
+
         const auto failureNumber = GetFailureNumber();
         unique_ptr<int> timeOfFailure = nullptr;
 
@@ -178,7 +175,7 @@ namespace DiKErnel::Integration
         }
 
         return make_unique<AsphaltRevetmentWaveImpactTimeDependentOutput>(incrementDamage, damage, move(timeOfFailure), _logFailureTension,
-                                                                          maximumPeakStress, stiffnessRelation, computationalThickness,
-                                                                          equivalentElasticModulus);
+                                                                          maximumPeakStress, _stiffnessRelation, _computationalThickness,
+                                                                          _subLayer->GetElasticModulus());
     }
 }
