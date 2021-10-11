@@ -30,7 +30,7 @@ namespace DiKErnel::Integration::TestUtil
             static void AssertGeneralProperties(
                 const std::string& name,
                 double x,
-                double tanA,
+                double outerSlope,
                 double positionZ,
                 const GrassRevetmentWaveRunupLocationDependentInput& locationDependentInput);
 

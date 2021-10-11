@@ -30,7 +30,7 @@ namespace DiKErnel::Integration::TestUtil
             explicit GrassRevetmentWaveRunupLocationConstructionPropertiesMock(
                 std::string name,
                 double x,
-                double tanA,
+                double outerSlope,
                 double positionZ,
                 GrassRevetmentTopLayerType topLayerType);
     };
