@@ -57,6 +57,9 @@ namespace DiKErnel::Integration
             double GetLowerLimitLoadingAll() const;
 
         protected:
+            void InitializeDerivedLocationDependentInput(
+                const Core::IProfileData& profileData) override;
+
             std::unique_ptr<Core::TimeDependentOutput> CalculateTimeDependentOutput(
                 double initialDamage,
                 const Core::ITimeDependentInput& timeDependentInput,
@@ -69,5 +72,7 @@ namespace DiKErnel::Integration
             std::unique_ptr<GrassRevetmentWaveImpactTimeLine> _timeLine;
             double _upperLimitLoadingAul;
             double _lowerLimitLoadingAll;
+            double _minimumWaveHeight = std::numeric_limits<double>::infinity();
+            double _maximumWaveHeight = std::numeric_limits<double>::infinity();
     };
 }
