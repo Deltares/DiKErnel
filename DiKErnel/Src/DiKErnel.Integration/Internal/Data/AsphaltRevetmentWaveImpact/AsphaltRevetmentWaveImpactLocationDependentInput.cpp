@@ -131,13 +131,19 @@ namespace DiKErnel::Integration
         return _impactFactors;
     }
 
+    void AsphaltRevetmentWaveImpactLocationDependentInput::InitializeDerivedLocationDependentInput(
+        const IProfileData& profileData)
+    {
+        LocationDependentInput::InitializeDerivedLocationDependentInput(profileData);
+
+        _logFailureTension = AsphaltRevetmentWaveImpact::LogFailureTension(_failureTension);
+    }
+
     unique_ptr<TimeDependentOutput> AsphaltRevetmentWaveImpactLocationDependentInput::CalculateTimeDependentOutput(
         const double initialDamage,
         const ITimeDependentInput& timeDependentInput,
         const IProfileData& profileData)
     {
-        const auto logFailureTension = AsphaltRevetmentWaveImpact::LogFailureTension(_failureTension);
-
         const auto beginTime = timeDependentInput.GetBeginTime();
         const auto waveHeightHm0 = timeDependentInput.GetWaveHeightHm0();
         const auto equivalentElasticModulus = _subLayer->GetElasticModulus();
@@ -154,7 +160,7 @@ namespace DiKErnel::Integration
                                                                                                equivalentElasticModulus);
         const auto stiffnessRelation = AsphaltRevetmentWaveImpact::StiffnessRelation(computationalThickness, equivalentElasticModulus,
                                                                                      _soilElasticity, _stiffnessRelationNu);
-        const auto incrementDamage = AsphaltRevetmentWaveImpact::IncrementDamage(logFailureTension, averageNumberOfWaves, maximumPeakStress,
+        const auto incrementDamage = AsphaltRevetmentWaveImpact::IncrementDamage(_logFailureTension, averageNumberOfWaves, maximumPeakStress,
                                                                                  stiffnessRelation, computationalThickness, _tanA,
                                                                                  _widthFactors, _depthFactors, _impactFactors, GetPositionZ(),
                                                                                  timeDependentInput.GetWaterLevel(), waveHeightHm0,
@@ -171,7 +177,7 @@ namespace DiKErnel::Integration
             timeOfFailure = make_unique<int>(Revetment::TimeOfFailure(durationInTimeStepFailure, beginTime));
         }
 
-        return make_unique<AsphaltRevetmentWaveImpactTimeDependentOutput>(incrementDamage, damage, move(timeOfFailure), logFailureTension,
+        return make_unique<AsphaltRevetmentWaveImpactTimeDependentOutput>(incrementDamage, damage, move(timeOfFailure), _logFailureTension,
                                                                           maximumPeakStress, stiffnessRelation, computationalThickness,
                                                                           equivalentElasticModulus);
     }

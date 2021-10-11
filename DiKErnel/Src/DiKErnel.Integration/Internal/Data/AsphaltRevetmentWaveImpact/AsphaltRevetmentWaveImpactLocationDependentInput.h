@@ -79,6 +79,9 @@ namespace DiKErnel::Integration
             const std::vector<std::tuple<double, double>>& GetImpactFactors() const;
 
         protected:
+            void InitializeDerivedLocationDependentInput(
+                const Core::IProfileData& profileData) override;
+
             std::unique_ptr<Core::TimeDependentOutput> CalculateTimeDependentOutput(
                 double initialDamage,
                 const Core::ITimeDependentInput& timeDependentInput,
@@ -98,5 +101,6 @@ namespace DiKErnel::Integration
             std::vector<std::tuple<double, double>> _widthFactors;
             std::vector<std::tuple<double, double>> _depthFactors;
             std::vector<std::tuple<double, double>> _impactFactors;
+            double _logFailureTension = std::numeric_limits<double>::infinity();
     };
 }
