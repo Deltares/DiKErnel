@@ -34,7 +34,7 @@ namespace DiKErnel::FunctionLibrary::Test
         const auto maximumPeakStress = 0.0160884;
         const auto stiffnessRelation = 1.185626183;
         const auto computationalThickness = 0.16;
-        const auto tanA = 0.232914161;
+        const auto outerSlope = 0.232914161;
 
         const vector widthFactors
         {
@@ -99,7 +99,7 @@ namespace DiKErnel::FunctionLibrary::Test
             maximumPeakStress,
             stiffnessRelation,
             computationalThickness,
-            tanA,
+            outerSlope,
             widthFactors,
             depthFactors,
             impactFactors,

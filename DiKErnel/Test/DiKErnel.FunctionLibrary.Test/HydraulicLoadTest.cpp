@@ -27,10 +27,10 @@ namespace DiKErnel::FunctionLibrary::Test
     TEST(HydraulicLoadTest, SlopeAngle_ValidInput_ExpectedValue)
     {
         // Setup
-        const auto tanA = 0.25;
+        const auto outerSlope = 0.25;
 
         // Call
-        const auto slopeAngle = HydraulicLoad::SlopeAngle(tanA);
+        const auto slopeAngle = HydraulicLoad::SlopeAngle(outerSlope);
 
         // Assert
         ASSERT_DOUBLE_EQ(14.036243467926479, slopeAngle);
@@ -123,13 +123,13 @@ namespace DiKErnel::FunctionLibrary::Test
     TEST(HydraulicLoadTest, SurfSimilarityParameter_ValidInput_ExpectedValue)
     {
         // Setup
-        const auto tanA = 0.25;
+        const auto outerSlope = 0.25;
         const auto waveHeightHm0 = 1.6;
         const auto wavePeriodTm10 = 5.2;
         const auto gravitationalAcceleration = 9.81;
 
         // Call
-        const auto surfSimilarityParameter = HydraulicLoad::SurfSimilarityParameter(tanA, waveHeightHm0, wavePeriodTm10,
+        const auto surfSimilarityParameter = HydraulicLoad::SurfSimilarityParameter(outerSlope, waveHeightHm0, wavePeriodTm10,
                                                                                     gravitationalAcceleration);
 
         // Assert
