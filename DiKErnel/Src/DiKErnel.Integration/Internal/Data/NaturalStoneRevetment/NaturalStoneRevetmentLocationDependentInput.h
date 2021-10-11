@@ -94,6 +94,10 @@ namespace DiKErnel::Integration
             std::unique_ptr<NaturalStoneRevetmentNormativeWidthOfWaveImpact> _normativeWidthOfWaveImpact;
             std::unique_ptr<NaturalStoneRevetmentWaveAngleImpact> _waveAngleImpact;
             std::vector<std::pair<double, double>> _dikeProfilePoints = std::vector<std::pair<double, double>>();
+            double _outerToeHeight = std::numeric_limits<double>::infinity();
+            double _outerCrestHeight = std::numeric_limits<double>::infinity();
+            std::pair<double, double> _notchOuterBerm = std::pair<double, double>();
+            std::pair<double, double> _crestOuterBerm = std::pair<double, double>();
 
             static std::pair<double, double> GetCharacteristicPointCoordinates(
                 const std::vector<std::reference_wrapper<Core::CharacteristicPoint>>& characteristicPoints,

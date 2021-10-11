@@ -124,6 +124,13 @@ namespace DiKErnel::Integration
             const auto& profilePoint = profilePointReference.get();
             _dikeProfilePoints.emplace_back(profilePoint.GetX(), profilePoint.GetZ());
         }
+
+        const auto& characteristicPoints = profileData.GetCharacteristicPoints();
+
+        _outerToeHeight = GetCharacteristicPointCoordinates(characteristicPoints, CharacteristicPointType::OuterToe).second;
+        _outerCrestHeight = GetCharacteristicPointCoordinates(characteristicPoints, CharacteristicPointType::OuterCrest).second;
+        _notchOuterBerm = GetCharacteristicPointCoordinates(characteristicPoints, CharacteristicPointType::NotchOuterBerm);
+        _crestOuterBerm = GetCharacteristicPointCoordinates(characteristicPoints, CharacteristicPointType::CrestOuterBerm);
     }
 
     unique_ptr<TimeDependentOutput> NaturalStoneRevetmentLocationDependentInput::CalculateTimeDependentOutput(
@@ -137,23 +144,15 @@ namespace DiKErnel::Integration
 
         const auto& naturalStoneRevetmentSlope = GetSlope();
 
-        const auto& characteristicPoints = profileData.GetCharacteristicPoints();
-
-        const auto [outerToePosition, outerToeHeight] = GetCharacteristicPointCoordinates(characteristicPoints, CharacteristicPointType::OuterToe);
-        const auto [outerCrestPosition, outerCrestHeight] = GetCharacteristicPointCoordinates(
-            characteristicPoints, CharacteristicPointType::OuterCrest);
-        const auto notchOuterBerm = GetCharacteristicPointCoordinates(characteristicPoints, CharacteristicPointType::NotchOuterBerm);
-        const auto crestOuterBerm = GetCharacteristicPointCoordinates(characteristicPoints, CharacteristicPointType::CrestOuterBerm);
-
-        const auto slopeUpperLevel = NaturalStoneRevetment::SlopeUpperLevel(outerToeHeight, outerCrestHeight, waterLevel, waveHeightHm0,
+        const auto slopeUpperLevel = NaturalStoneRevetment::SlopeUpperLevel(_outerToeHeight, _outerCrestHeight, waterLevel, waveHeightHm0,
                                                                             naturalStoneRevetmentSlope.GetUpperLevelAus());
-        const auto slopeLowerLevel = NaturalStoneRevetment::SlopeLowerLevel(outerToeHeight, slopeUpperLevel, waveHeightHm0,
+        const auto slopeLowerLevel = NaturalStoneRevetment::SlopeLowerLevel(_outerToeHeight, slopeUpperLevel, waveHeightHm0,
                                                                             naturalStoneRevetmentSlope.GetLowerLevelAls());
         const double slopeUpperPosition = Revetment::InterpolationHorizontalPosition(slopeUpperLevel, _dikeProfilePoints);
         const double slopeLowerPosition = Revetment::InterpolationHorizontalPosition(slopeLowerLevel, _dikeProfilePoints);
 
         const auto tanA = profileData.HasBerm()
-                              ? NaturalStoneRevetment::OuterSlopeWithBerm(outerToeHeight, outerCrestHeight, notchOuterBerm, crestOuterBerm,
+                              ? NaturalStoneRevetment::OuterSlopeWithBerm(_outerToeHeight, _outerCrestHeight, _notchOuterBerm, _crestOuterBerm,
                                                                           slopeUpperLevel, slopeLowerLevel, slopeUpperPosition, slopeLowerPosition)
                               : NaturalStoneRevetment::OuterSlopeWithoutBerm(slopeUpperLevel, slopeLowerLevel, slopeUpperPosition,
                                                                              slopeLowerPosition);
