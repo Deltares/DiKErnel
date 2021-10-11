@@ -70,8 +70,6 @@ namespace DiKErnel::FunctionLibrary
         const double slopeUpperPosition,
         const double slopeLowerPosition)
     {
-        auto tanA = numeric_limits<double>::infinity();
-
         const auto crestOuterBermPosition = crestOuterBerm.first;
         const auto crestOuterBermHeight = crestOuterBerm.second;
 
@@ -89,12 +87,12 @@ namespace DiKErnel::FunctionLibrary
             || slopeLowerLevelOnBerm && slopeUpperLevelOnBerm
             || slopeLowerLevelOnUpperSlope && slopeUpperLevelOnUpperSlope)
         {
-            tanA = SingleSlopePart(slopeUpperLevel, slopeLowerLevel, slopeUpperPosition, slopeLowerPosition);
+            return SingleSlopePart(slopeUpperLevel, slopeLowerLevel, slopeUpperPosition, slopeLowerPosition);
         }
 
         if (slopeLowerLevelOnLowerSlope && slopeUpperLevelOnBerm)
         {
-            tanA = SlopeLowerSlopeBerm(crestOuterBermPosition, crestOuterBermHeight, slopeLowerLevel, slopeLowerPosition);
+            return SlopeLowerSlopeBerm(crestOuterBermPosition, crestOuterBermHeight, slopeLowerLevel, slopeLowerPosition);
         }
 
         if (slopeLowerLevelOnLowerSlope && slopeUpperLevelOnUpperSlope)
@@ -104,15 +102,15 @@ namespace DiKErnel::FunctionLibrary
             const auto distanceBermLowerSlope = DistanceBermLowerSlope(crestOuterBermPosition, crestOuterBermHeight, notchOuterBermHeight,
                                                                        slopeLowerLevel, slopeLowerPosition);
 
-            tanA = SlopeLowerUpperSlope(slopeUpperLevel, slopeLowerLevel, distanceBermUpperSlope, distanceBermLowerSlope);
+            return SlopeLowerUpperSlope(slopeUpperLevel, slopeLowerLevel, distanceBermUpperSlope, distanceBermLowerSlope);
         }
 
         if (slopeLowerLevelOnBerm && slopeUpperLevelOnUpperSlope)
         {
-            tanA = SlopeBermUpperSlope(notchOuterBermPosition, notchOuterBermHeight, slopeUpperLevel, slopeUpperPosition);
+            return  SlopeBermUpperSlope(notchOuterBermPosition, notchOuterBermHeight, slopeUpperLevel, slopeUpperPosition);
         }
 
-        return tanA;
+        return numeric_limits<double>::infinity();
     }
 
     double NaturalStoneRevetment::SlopeUpperLevel(
