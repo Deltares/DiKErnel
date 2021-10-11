@@ -39,7 +39,7 @@ namespace DiKErnel::Integration
         const double x,
         const double initialDamage,
         const double failureNumber,
-        const double tanA,
+        const double outerSlope,
         const double positionZ,
         const double relativeDensity,
         const double thicknessTopLayer,
@@ -51,7 +51,7 @@ namespace DiKErnel::Integration
         unique_ptr<NaturalStoneRevetmentNormativeWidthOfWaveImpact> normativeWidthOfWaveImpact,
         unique_ptr<NaturalStoneRevetmentWaveAngleImpact> waveAngleImpact)
         : LocationDependentInput(move(name), x, initialDamage, failureNumber, positionZ),
-          _tanA(tanA),
+          _outerSlope(outerSlope),
           _relativeDensity(relativeDensity),
           _thicknessTopLayer(thicknessTopLayer),
           _hydraulicLoads(move(hydraulicLoads)),
@@ -62,9 +62,9 @@ namespace DiKErnel::Integration
           _normativeWidthOfWaveImpact(move(normativeWidthOfWaveImpact)),
           _waveAngleImpact(move(waveAngleImpact)) {}
 
-    double NaturalStoneRevetmentLocationDependentInput::GetTanA() const
+    double NaturalStoneRevetmentLocationDependentInput::GetOuterSlope() const
     {
-        return _tanA;
+        return _outerSlope;
     }
 
     double NaturalStoneRevetmentLocationDependentInput::GetRelativeDensity() const
@@ -151,23 +151,24 @@ namespace DiKErnel::Integration
         const auto slopeUpperPosition = Revetment::InterpolationHorizontalPosition(slopeUpperLevel, _dikeProfilePoints);
         const auto slopeLowerPosition = Revetment::InterpolationHorizontalPosition(slopeLowerLevel, _dikeProfilePoints);
 
-        const auto tanA = profileData.HasBerm()
-                              ? NaturalStoneRevetment::OuterSlopeWithBerm(_outerToeHeight, _outerCrestHeight, _notchOuterBerm, _crestOuterBerm,
-                                                                          slopeUpperLevel, slopeLowerLevel, slopeUpperPosition, slopeLowerPosition)
-                              : NaturalStoneRevetment::OuterSlopeWithoutBerm(slopeUpperLevel, slopeLowerLevel, slopeUpperPosition,
-                                                                             slopeLowerPosition);
+        const auto outerSlope = profileData.HasBerm()
+                                    ? NaturalStoneRevetment::OuterSlopeWithBerm(_outerToeHeight, _outerCrestHeight, _notchOuterBerm,
+                                                                                _crestOuterBerm, slopeUpperLevel, slopeLowerLevel,
+                                                                                slopeUpperPosition, slopeLowerPosition)
+                                    : NaturalStoneRevetment::OuterSlopeWithoutBerm(slopeUpperLevel, slopeLowerLevel, slopeUpperPosition,
+                                                                                   slopeLowerPosition);
 
         const auto waveSteepnessDeepWater = HydraulicLoad::WaveSteepnessDeepWater(waveHeightHm0, wavePeriodTm10,
                                                                                   Constants::GRAVITATIONAL_ACCELERATION);
         const auto distanceMaximumWaveElevation = NaturalStoneRevetment::DistanceMaximumWaveElevation(
             1.0, waveSteepnessDeepWater, waveHeightHm0, _distanceMaximumWaveElevation->GetDistanceMaximumWaveElevationAsmax(),
             _distanceMaximumWaveElevation->GetDistanceMaximumWaveElevationBsmax());
-        const auto surfSimilarityParameter = HydraulicLoad::SurfSimilarityParameter(tanA, waveHeightHm0, wavePeriodTm10,
+        const auto surfSimilarityParameter = HydraulicLoad::SurfSimilarityParameter(outerSlope, waveHeightHm0, wavePeriodTm10,
                                                                                     Constants::GRAVITATIONAL_ACCELERATION);
         const auto normativeWidthWaveImpact = NaturalStoneRevetment::NormativeWidthWaveImpact(
             surfSimilarityParameter, waveHeightHm0, _normativeWidthOfWaveImpact->GetNormativeWidthOfWaveImpactAwi(),
             _normativeWidthOfWaveImpact->GetNormativeWidthOfWaveImpactBwi());
-        const auto slopeAngle = HydraulicLoad::SlopeAngle(tanA);
+        const auto slopeAngle = HydraulicLoad::SlopeAngle(outerSlope);
         const auto depthMaximumWaveLoad = NaturalStoneRevetment::DepthMaximumWaveLoad(distanceMaximumWaveElevation, normativeWidthWaveImpact,
                                                                                       slopeAngle);
         const auto lowerLimitLoading = NaturalStoneRevetment::LowerLimitLoading(depthMaximumWaveLoad, surfSimilarityParameter, waterLevel,
