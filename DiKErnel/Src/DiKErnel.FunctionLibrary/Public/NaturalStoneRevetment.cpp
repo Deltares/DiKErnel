@@ -51,8 +51,16 @@ namespace DiKErnel::FunctionLibrary
             + hydraulicLoadC);
     }
 
-    double NaturalStoneRevetment::OuterSlope(
-        const bool hasBerm,
+    double NaturalStoneRevetment::OuterSlopeWithoutBerm(
+        const double slopeUpperLevel,
+        const double slopeLowerLevel,
+        const double slopeUpperPosition,
+        const double slopeLowerPosition)
+    {
+        return SingleSlopePart(slopeUpperLevel, slopeLowerLevel, slopeUpperPosition, slopeLowerPosition);
+    }
+
+    double NaturalStoneRevetment::OuterSlopeWithBerm(
         const double outerToeHeight,
         const double outerCrestHeight,
         const std::pair<double, double> notchOuterBerm,
@@ -64,68 +72,57 @@ namespace DiKErnel::FunctionLibrary
     {
         auto tanA = numeric_limits<double>::infinity();
 
-        if (!hasBerm)
+        const auto crestOuterBermPosition = crestOuterBerm.first;
+        const auto crestOuterBermHeight = crestOuterBerm.second;
+
+        const auto notchOuterBermPosition = notchOuterBerm.first;
+        const auto notchOuterBermHeight = notchOuterBerm.second;
+
+        // Ondertalud-Ondertalud
+        if (outerToeHeight <= slopeLowerLevel && slopeLowerLevel < crestOuterBermHeight
+            && outerToeHeight <= slopeUpperLevel && slopeUpperLevel < crestOuterBermHeight)
         {
-            if (outerToeHeight <= slopeLowerLevel && slopeLowerLevel < outerCrestHeight
-                && outerToeHeight < slopeUpperLevel && slopeUpperLevel < outerCrestHeight)
-            {
-                tanA = SingleSlopePart(slopeUpperLevel, slopeLowerLevel, slopeUpperPosition, slopeLowerPosition);
-            }
+            tanA = SingleSlopePart(slopeUpperLevel, slopeLowerLevel, slopeUpperPosition, slopeLowerPosition);
         }
-        else
+
+        // Ondertalud-Berm
+        if (outerToeHeight <= slopeLowerLevel && slopeLowerLevel < crestOuterBermHeight
+            && crestOuterBermHeight <= slopeUpperLevel && slopeUpperLevel <= notchOuterBermHeight)
         {
-            const auto crestOuterBermPosition = crestOuterBerm.first;
-            const auto crestOuterBermHeight = crestOuterBerm.second;
+            tanA = SlopeLowerSlopeBerm(crestOuterBermPosition, crestOuterBermHeight, slopeLowerLevel, slopeLowerPosition);
+        }
 
-            const auto notchOuterBermPosition = notchOuterBerm.first;
-            const auto notchOuterBermHeight = notchOuterBerm.second;
+        // Ondertalud-Boventalud
+        if (outerToeHeight <= slopeLowerLevel && slopeLowerLevel < crestOuterBermHeight
+            && notchOuterBermHeight < slopeUpperLevel && slopeUpperLevel <= outerCrestHeight)
+        {
+            const auto distanceBermUpperSlope = DistanceBermUpperSlope(crestOuterBermHeight, notchOuterBermPosition, notchOuterBermHeight,
+                slopeUpperLevel, slopeUpperPosition);
+            const auto distanceBermLowerSlope = DistanceBermLowerSlope(crestOuterBermPosition, crestOuterBermHeight, notchOuterBermHeight,
+                slopeLowerLevel, slopeLowerPosition);
 
-            // Ondertalud-Ondertalud
-            if (outerToeHeight <= slopeLowerLevel && slopeLowerLevel < crestOuterBermHeight
-                && outerToeHeight <= slopeUpperLevel && slopeUpperLevel < crestOuterBermHeight)
-            {
-                tanA = SingleSlopePart(slopeUpperLevel, slopeLowerLevel, slopeUpperPosition, slopeLowerPosition);
-            }
+            tanA = SlopeLowerUpperSlope(slopeUpperLevel, slopeLowerLevel, distanceBermUpperSlope, distanceBermLowerSlope);
+        }
 
-            // Ondertalud-Berm
-            if (outerToeHeight <= slopeLowerLevel && slopeLowerLevel < crestOuterBermHeight
-                && crestOuterBermHeight <= slopeUpperLevel && slopeUpperLevel <= notchOuterBermHeight)
-            {
-                tanA = SlopeLowerSlopeBerm(crestOuterBermPosition, crestOuterBermHeight, slopeLowerLevel, slopeLowerPosition);
-            }
+        // Berm-Berm
+        if (crestOuterBermHeight <= slopeLowerLevel && slopeLowerLevel <= notchOuterBermHeight
+            && crestOuterBermHeight <= slopeUpperLevel && slopeUpperLevel <= notchOuterBermHeight)
+        {
+            tanA = SingleSlopePart(slopeUpperLevel, slopeLowerLevel, slopeUpperPosition, slopeLowerPosition);
+        }
 
-            // Ondertalud-Boventalud
-            if (outerToeHeight <= slopeLowerLevel && slopeLowerLevel < crestOuterBermHeight
-                && notchOuterBermHeight < slopeUpperLevel && slopeUpperLevel <= outerCrestHeight)
-            {
-                const auto distanceBermUpperSlope = DistanceBermUpperSlope(crestOuterBermHeight, notchOuterBermPosition, notchOuterBermHeight,
-                                                                           slopeUpperLevel, slopeUpperPosition);
-                const auto distanceBermLowerSlope = DistanceBermLowerSlope(crestOuterBermPosition, crestOuterBermHeight, notchOuterBermHeight,
-                                                                           slopeLowerLevel, slopeLowerPosition);
+        // Berm-Boventalud
+        if (crestOuterBermHeight <= slopeLowerLevel && slopeLowerLevel <= notchOuterBermHeight
+            && notchOuterBermHeight <= slopeUpperLevel && slopeUpperLevel <= outerCrestHeight)
+        {
+            tanA = SlopeBermUpperSlope(notchOuterBermPosition, notchOuterBermHeight, slopeUpperLevel, slopeUpperPosition);
+        }
 
-                tanA = SlopeLowerUpperSlope(slopeUpperLevel, slopeLowerLevel, distanceBermUpperSlope, distanceBermLowerSlope);
-            }
-
-            // Berm-Berm
-            if (crestOuterBermHeight <= slopeLowerLevel && slopeLowerLevel <= notchOuterBermHeight
-                && crestOuterBermHeight <= slopeUpperLevel && slopeUpperLevel <= notchOuterBermHeight)
-            {
-                tanA = SingleSlopePart(slopeUpperLevel, slopeLowerLevel, slopeUpperPosition, slopeLowerPosition);
-            }
-
-            // Berm-Boventalud
-            if (crestOuterBermHeight <= slopeLowerLevel && slopeLowerLevel <= notchOuterBermHeight
-                && notchOuterBermHeight <= slopeUpperLevel && slopeUpperLevel <= outerCrestHeight)
-            {
-                tanA = SlopeBermUpperSlope(notchOuterBermPosition, notchOuterBermHeight, slopeUpperLevel, slopeUpperPosition);
-            }
-
-            // Boventalud-BovenTalud
-            if (notchOuterBermHeight < slopeLowerLevel && slopeLowerLevel <= outerCrestHeight
-                && notchOuterBermHeight < slopeUpperLevel && slopeUpperLevel <= outerCrestHeight)
-            {
-                tanA = SingleSlopePart(slopeUpperLevel, slopeLowerLevel, slopeUpperPosition, slopeLowerPosition);
-            }
+        // Boventalud-BovenTalud
+        if (notchOuterBermHeight < slopeLowerLevel && slopeLowerLevel <= outerCrestHeight
+            && notchOuterBermHeight < slopeUpperLevel && slopeUpperLevel <= outerCrestHeight)
+        {
+            tanA = SingleSlopePart(slopeUpperLevel, slopeLowerLevel, slopeUpperPosition, slopeLowerPosition);
         }
 
         return tanA;

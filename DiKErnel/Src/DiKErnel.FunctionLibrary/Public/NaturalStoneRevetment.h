@@ -86,9 +86,29 @@ namespace DiKErnel::FunctionLibrary
 
             /*!
              * \brief Calculates the outer slope.
-             * \param hasBerm
-             *        Indicator whether a berm is defined on the dike profile.
+             * \param slopeUpperLevel
+             *        The slope upper level.
              *        Unit = [-]
+             * \param slopeLowerLevel
+             *        The slope lower level.
+             *        Unit = [-]
+             * \param slopeUpperPosition
+             *        The slope upper position.
+             *        Unit = [-]
+             * \param slopeLowerPosition
+             *        The slope lower position.
+             *        Unit = [-]
+             * \return The outer slope.
+             *         Unit = [-]
+             */
+            static double OuterSlopeWithoutBerm(
+                double slopeUpperLevel,
+                double slopeLowerLevel,
+                double slopeUpperPosition,
+                double slopeLowerPosition);
+
+            /*!
+             * \brief Calculates the outer slope.
              * \param outerToeHeight
              *        The height of the outer toe.
              *        Unit = [m]
@@ -116,8 +136,7 @@ namespace DiKErnel::FunctionLibrary
              * \return The outer slope.
              *         Unit = [-]
              */
-            static double OuterSlope(
-                bool hasBerm,
+            static double OuterSlopeWithBerm(
                 double outerToeHeight,
                 double outerCrestHeight,
                 std::pair<double, double> notchOuterBerm,

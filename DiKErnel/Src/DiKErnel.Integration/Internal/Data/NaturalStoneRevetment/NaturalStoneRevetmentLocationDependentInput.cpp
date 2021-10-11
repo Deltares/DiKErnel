@@ -148,8 +148,11 @@ namespace DiKErnel::Integration
         const double slopeUpperPosition = Revetment::InterpolationHorizontalPosition(slopeUpperLevel, dikeProfilePoints);
         const double slopeLowerPosition = Revetment::InterpolationHorizontalPosition(slopeLowerLevel, dikeProfilePoints);
 
-        const auto tanA = NaturalStoneRevetment::OuterSlope(profileData.HasBerm(), outerToeHeight, outerCrestHeight, notchOuterBerm, crestOuterBerm,
-                                                            slopeUpperLevel, slopeLowerLevel, slopeUpperPosition, slopeLowerPosition);
+        const auto tanA = profileData.HasBerm()
+                              ? NaturalStoneRevetment::OuterSlopeWithBerm(outerToeHeight, outerCrestHeight, notchOuterBerm, crestOuterBerm,
+                                                                          slopeUpperLevel, slopeLowerLevel, slopeUpperPosition, slopeLowerPosition)
+                              : NaturalStoneRevetment::OuterSlopeWithoutBerm(slopeUpperLevel, slopeLowerLevel, slopeUpperPosition,
+                                                                             slopeLowerPosition);
 
         const auto waveSteepnessDeepWater = HydraulicLoad::WaveSteepnessDeepWater(waveHeightHm0, wavePeriodTm10,
                                                                                   Constants::GRAVITATIONAL_ACCELERATION);
