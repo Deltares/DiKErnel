@@ -85,19 +85,18 @@ namespace DiKErnel::FunctionLibrary
         const bool slopeLowerLevelOnUpperSlope = notchOuterBermHeight < slopeLowerLevel && slopeLowerLevel <= outerCrestHeight;
         const bool slopeUpperLevelOnUpperSlope = notchOuterBermHeight < slopeUpperLevel && slopeUpperLevel <= outerCrestHeight;
 
-        // Ondertalud-Ondertalud
-        if (slopeLowerLevelOnLowerSlope && slopeUpperLevelOnLowerSlope)
+        if (slopeLowerLevelOnLowerSlope && slopeUpperLevelOnLowerSlope
+            || slopeLowerLevelOnBerm && slopeUpperLevelOnBerm
+            || slopeLowerLevelOnUpperSlope && slopeUpperLevelOnUpperSlope)
         {
             tanA = SingleSlopePart(slopeUpperLevel, slopeLowerLevel, slopeUpperPosition, slopeLowerPosition);
         }
 
-        // Ondertalud-Berm
         if (slopeLowerLevelOnLowerSlope && slopeUpperLevelOnBerm)
         {
             tanA = SlopeLowerSlopeBerm(crestOuterBermPosition, crestOuterBermHeight, slopeLowerLevel, slopeLowerPosition);
         }
 
-        // Ondertalud-Boventalud
         if (slopeLowerLevelOnLowerSlope && slopeUpperLevelOnUpperSlope)
         {
             const auto distanceBermUpperSlope = DistanceBermUpperSlope(crestOuterBermHeight, notchOuterBermPosition, notchOuterBermHeight,
@@ -108,22 +107,9 @@ namespace DiKErnel::FunctionLibrary
             tanA = SlopeLowerUpperSlope(slopeUpperLevel, slopeLowerLevel, distanceBermUpperSlope, distanceBermLowerSlope);
         }
 
-        // Berm-Berm
-        if (slopeLowerLevelOnBerm && slopeUpperLevelOnBerm)
-        {
-            tanA = SingleSlopePart(slopeUpperLevel, slopeLowerLevel, slopeUpperPosition, slopeLowerPosition);
-        }
-
-        // Berm-Boventalud
         if (slopeLowerLevelOnBerm && slopeUpperLevelOnUpperSlope)
         {
             tanA = SlopeBermUpperSlope(notchOuterBermPosition, notchOuterBermHeight, slopeUpperLevel, slopeUpperPosition);
-        }
-
-        // Boventalud-BovenTalud
-        if (slopeLowerLevelOnUpperSlope && slopeUpperLevelOnUpperSlope)
-        {
-            tanA = SingleSlopePart(slopeUpperLevel, slopeLowerLevel, slopeUpperPosition, slopeLowerPosition);
         }
 
         return tanA;
