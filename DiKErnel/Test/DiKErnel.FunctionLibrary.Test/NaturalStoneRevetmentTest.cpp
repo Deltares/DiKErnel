@@ -20,11 +20,13 @@
 
 #include <gtest/gtest.h>
 
+#include "AssertHelper.h"
 #include "NaturalStoneRevetment.h"
 
 namespace DiKErnel::FunctionLibrary::Test
 {
     using namespace std;
+    using namespace TestUtil;
 
     TEST(NaturalStoneRevetmentTest, IncrementDamage_ValidInput_ExpectedValue)
     {
@@ -78,6 +80,132 @@ namespace DiKErnel::FunctionLibrary::Test
 
         // Assert
         ASSERT_DOUBLE_EQ(0.25, outerSlope);
+    }
+
+    TEST(NaturalStoneRevetmentTest, OuterSlope_UpperAndLowerSlopeLevelOnLowerSlope_ExpectedValue)
+    {
+        // Setup
+        const auto hasBerm = true;
+        const auto outerToeHeight = 0.5;
+        const auto outerCrestHeight = 7.0;
+        const auto notchOuterBerm = pair(25.0, 4.1);
+        const auto crestOuterBerm = pair(15.0, 3.5);
+        const auto slopeUpperLevel = 0.55;
+        const auto slopeLowerLevel = 0.5;
+        const auto slopeUpperPosition = 5.15625;
+        const auto slopeLowerPosition = 5.0;
+
+        // Call
+        const auto outerSlope = NaturalStoneRevetment::OuterSlope(hasBerm, outerToeHeight, outerCrestHeight, notchOuterBerm, crestOuterBerm,
+                                                                  slopeUpperLevel, slopeLowerLevel, slopeUpperPosition, slopeLowerPosition);
+
+        // Assert
+        AssertHelper::AssertAreAlmostEqual(0.32, outerSlope);
+    }
+
+    TEST(NaturalStoneRevetmentTest, OuterSlope_UpperSlopeLevelOnBermAndLowerSlopeLevelOnLowerSlope_ExpectedValue)
+    {
+        // Setup
+        const auto hasBerm = true;
+        const auto outerToeHeight = 0.5;
+        const auto outerCrestHeight = 7.0;
+        const auto notchOuterBerm = pair(25.0, 4.1);
+        const auto crestOuterBerm = pair(15.0, 3.5);
+        const auto slopeUpperLevel = 3.5;
+        const auto slopeLowerLevel = 2.3;
+        const auto slopeUpperPosition = 15.0;
+        const auto slopeLowerPosition = 10.7142857142857;
+
+        // Call
+        const auto outerSlope = NaturalStoneRevetment::OuterSlope(hasBerm, outerToeHeight, outerCrestHeight, notchOuterBerm, crestOuterBerm,
+                                                                  slopeUpperLevel, slopeLowerLevel, slopeUpperPosition, slopeLowerPosition);
+
+        // Assert
+        AssertHelper::AssertAreAlmostEqual(0.28, outerSlope);
+    }
+
+    TEST(NaturalStoneRevetmentTest, OuterSlope_UpperAndLowerSlopeLevelOnBerm_ExpectedValue)
+    {
+        // Setup
+        const auto hasBerm = true;
+        const auto outerToeHeight = 0.5;
+        const auto outerCrestHeight = 7.0;
+        const auto notchOuterBerm = pair(25.0, 4.1);
+        const auto crestOuterBerm = pair(15.0, 3.5);
+        const auto slopeUpperLevel = 3.8;
+        const auto slopeLowerLevel = 3.5;
+        const auto slopeUpperPosition = 18.75;
+        const auto slopeLowerPosition = 15.0;
+
+        // Call
+        const auto outerSlope = NaturalStoneRevetment::OuterSlope(hasBerm, outerToeHeight, outerCrestHeight, notchOuterBerm, crestOuterBerm,
+                                                                  slopeUpperLevel, slopeLowerLevel, slopeUpperPosition, slopeLowerPosition);
+
+        // Assert
+        AssertHelper::AssertAreAlmostEqual(0.08, outerSlope);
+    }
+
+    TEST(NaturalStoneRevetmentTest, OuterSlope_UpperAndLowerSlopeLevelOnUpperSlope_ExpectedValue)
+    {
+        // Setup
+        const auto hasBerm = true;
+        const auto outerToeHeight = 0.5;
+        const auto outerCrestHeight = 7.0;
+        const auto notchOuterBerm = pair(25.0, 4.1);
+        const auto crestOuterBerm = pair(15.0, 3.5);
+        const auto slopeUpperLevel = 5.0;
+        const auto slopeLowerLevel = 4.25;
+        const auto slopeUpperPosition = 29.0909090909091;
+        const auto slopeLowerPosition = 25.6818181818182;
+
+        // Call
+        const auto outerSlope = NaturalStoneRevetment::OuterSlope(hasBerm, outerToeHeight, outerCrestHeight, notchOuterBerm, crestOuterBerm,
+                                                                  slopeUpperLevel, slopeLowerLevel, slopeUpperPosition, slopeLowerPosition);
+
+        // Assert
+        AssertHelper::AssertAreAlmostEqual(0.22, outerSlope);
+    }
+
+    TEST(NaturalStoneRevetmentTest, OuterSlope_UpperSlopeLevelOnUpperSlopeAndLowerSlopeLevelOnBerm_ExpectedValue)
+    {
+        // Setup
+        const auto hasBerm = true;
+        const auto outerToeHeight = 0.5;
+        const auto outerCrestHeight = 7.0;
+        const auto notchOuterBerm = pair(25.0, 4.1);
+        const auto crestOuterBerm = pair(15.0, 3.5);
+        const auto slopeUpperLevel = 7.0;
+        const auto slopeLowerLevel = 4.075;
+        const auto slopeUpperPosition = 40.0;
+        const auto slopeLowerPosition = 24.375;
+
+        // Call
+        const auto outerSlope = NaturalStoneRevetment::OuterSlope(hasBerm, outerToeHeight, outerCrestHeight, notchOuterBerm, crestOuterBerm,
+                                                                  slopeUpperLevel, slopeLowerLevel, slopeUpperPosition, slopeLowerPosition);
+
+        // Assert
+        AssertHelper::AssertAreAlmostEqual(0.193333333333333, outerSlope);
+    }
+
+    TEST(NaturalStoneRevetmentTest, OuterSlope_UpperSlopeLevelOnUpperSlopeAndLowerSlopeLevelOnLowerSlope_ExpectedValue)
+    {
+        // Setup
+        const auto hasBerm = true;
+        const auto outerToeHeight = 0.5;
+        const auto outerCrestHeight = 7.0;
+        const auto notchOuterBerm = pair(25.0, 4.1);
+        const auto crestOuterBerm = pair(15.0, 3.5);
+        const auto slopeUpperLevel = 7.0;
+        const auto slopeLowerLevel = 2.8;
+        const auto slopeUpperPosition = 40.0;
+        const auto slopeLowerPosition = 12.5;
+
+        // Call
+        const auto outerSlope = NaturalStoneRevetment::OuterSlope(hasBerm, outerToeHeight, outerCrestHeight, notchOuterBerm, crestOuterBerm,
+                                                                  slopeUpperLevel, slopeLowerLevel, slopeUpperPosition, slopeLowerPosition);
+
+        // Assert
+        AssertHelper::AssertAreAlmostEqual(0.208714810281518, outerSlope);
     }
 
     TEST(NaturalStoneRevetmentTest, SlopeUpperLevel_ValidInput_ExpectedValue)
