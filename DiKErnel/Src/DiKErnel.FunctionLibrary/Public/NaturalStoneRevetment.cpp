@@ -83,16 +83,18 @@ namespace DiKErnel::FunctionLibrary
         const bool slopeLowerLevelOnUpperSlope = notchOuterBermHeight < slopeLowerLevel && slopeLowerLevel <= outerCrestHeight;
         const bool slopeUpperLevelOnUpperSlope = notchOuterBermHeight < slopeUpperLevel && slopeUpperLevel <= outerCrestHeight;
 
+        auto outerSlope = numeric_limits<double>::infinity();
+
         if (slopeLowerLevelOnLowerSlope && slopeUpperLevelOnLowerSlope
             || slopeLowerLevelOnBerm && slopeUpperLevelOnBerm
             || slopeLowerLevelOnUpperSlope && slopeUpperLevelOnUpperSlope)
         {
-            return SingleSlopePart(slopeUpperLevel, slopeLowerLevel, slopeUpperPosition, slopeLowerPosition);
+            outerSlope = SingleSlopePart(slopeUpperLevel, slopeLowerLevel, slopeUpperPosition, slopeLowerPosition);
         }
 
         if (slopeLowerLevelOnLowerSlope && slopeUpperLevelOnBerm)
         {
-            return SlopeLowerSlopeBerm(crestOuterBermPosition, crestOuterBermHeight, slopeLowerLevel, slopeLowerPosition);
+            outerSlope = SlopeLowerSlopeBerm(crestOuterBermPosition, crestOuterBermHeight, slopeLowerLevel, slopeLowerPosition);
         }
 
         if (slopeLowerLevelOnLowerSlope && slopeUpperLevelOnUpperSlope)
@@ -102,15 +104,15 @@ namespace DiKErnel::FunctionLibrary
             const auto distanceBermLowerSlope = DistanceBermLowerSlope(crestOuterBermPosition, crestOuterBermHeight, notchOuterBermHeight,
                                                                        slopeLowerLevel, slopeLowerPosition);
 
-            return SlopeLowerUpperSlope(slopeUpperLevel, slopeLowerLevel, distanceBermUpperSlope, distanceBermLowerSlope);
+            outerSlope = SlopeLowerUpperSlope(slopeUpperLevel, slopeLowerLevel, distanceBermUpperSlope, distanceBermLowerSlope);
         }
 
         if (slopeLowerLevelOnBerm && slopeUpperLevelOnUpperSlope)
         {
-            return  SlopeBermUpperSlope(notchOuterBermPosition, notchOuterBermHeight, slopeUpperLevel, slopeUpperPosition);
+            outerSlope = SlopeBermUpperSlope(notchOuterBermPosition, notchOuterBermHeight, slopeUpperLevel, slopeUpperPosition);
         }
 
-        return numeric_limits<double>::infinity();
+        return outerSlope;
     }
 
     double NaturalStoneRevetment::SlopeUpperLevel(
