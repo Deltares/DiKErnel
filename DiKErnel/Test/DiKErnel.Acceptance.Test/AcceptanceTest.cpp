@@ -125,11 +125,11 @@ namespace DiKErnel::Acceptance::Test
         // When & Then
         PerformTest(inputFilePath, vector
                     {
-                        12.956838951247651,
-                        0.19959964682802633
+                        12.759112406328461,
+                        0.19953624319339708
                     }, vector<const int*>
                     {
-                        make_unique<int>(2851).get(),
+                        make_unique<int>(2895).get(),
                         nullptr
                     });
     }
