@@ -27,9 +27,9 @@
 namespace DiKErnel::FunctionLibrary
 {
     double HydraulicLoad::SlopeAngle(
-        const double tanA)
+        const double outerSlope)
     {
-        return Generic::Degrees(atan(tanA));
+        return Generic::Degrees(atan(outerSlope));
     }
 
     bool HydraulicLoad::LoadingRevetment(
@@ -41,12 +41,12 @@ namespace DiKErnel::FunctionLibrary
     }
 
     double HydraulicLoad::SurfSimilarityParameter(
-        const double tanA,
+        const double outerSlope,
         const double waveHeightHm0,
         const double wavePeriodTm10,
         const double gravitationalAcceleration)
     {
-        return tanA / sqrt(2.0 * Generic::Pi() * waveHeightHm0 / (gravitationalAcceleration * pow(wavePeriodTm10, 2.0)));
+        return outerSlope / sqrt(2.0 * Generic::Pi() * waveHeightHm0 / (gravitationalAcceleration * pow(wavePeriodTm10, 2.0)));
     }
 
     double HydraulicLoad::WaveSteepnessDeepWater(

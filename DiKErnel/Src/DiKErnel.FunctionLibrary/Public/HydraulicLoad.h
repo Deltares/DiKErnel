@@ -30,14 +30,14 @@ namespace DiKErnel::FunctionLibrary
         public:
             /*!
              * \brief Calculates the slope angle.
-             * \param tanA
-             *        The tanA.
+             * \param outerSlope
+             *        The outer slope.
              *        Unit = [-]
              * \return The slope angle.
              *         Unit = [deg]
              */
             static double SlopeAngle(
-                double tanA);
+                double outerSlope);
 
             /*!
              * \brief Calculates whether there is loading of the revetment.
@@ -59,8 +59,8 @@ namespace DiKErnel::FunctionLibrary
 
             /*!
              * \brief Calculates the surf similarity parameter.
-             * \param tanA
-             *        The tanA.
+             * \param outerSlope
+             *        The outer slope.
              *        Unit = [-]
              * \param waveHeightHm0
              *        The wave height.
@@ -75,7 +75,7 @@ namespace DiKErnel::FunctionLibrary
              *         Unit = [-]
              */
             static double SurfSimilarityParameter(
-                double tanA,
+                double outerSlope,
                 double waveHeightHm0,
                 double wavePeriodTm10,
                 double gravitationalAcceleration);
