@@ -125,8 +125,8 @@ namespace DiKErnel::Integration
                                                                                             _waveAngleImpact->GetWaveAngleImpactNwa(),
                                                                                             _waveAngleImpact->GetWaveAngleImpactQwa(),
                                                                                             _waveAngleImpact->GetWaveAngleImpactRwa()));
-            waveHeightImpact = make_unique<double>(GrassRevetmentWaveImpact::WaveHeightImpact(
-                *minimumWaveHeight, *maximumWaveHeight, *waveAngleImpact, waveHeightHm0));
+            waveHeightImpact = make_unique<double>(GrassRevetmentWaveImpact::WaveHeightImpact(*minimumWaveHeight, *maximumWaveHeight,
+                                                                                              *waveAngleImpact, waveHeightHm0));
             const auto timeLine = GrassRevetmentWaveImpact::TimeLine(*waveHeightImpact, _timeLine->GetTimeLineAgwi(), _timeLine->GetTimeLineBgwi(),
                                                                      _timeLine->GetTimeLineCgwi());
             incrementDamage = GrassRevetmentWaveImpact::IncrementDamage(incrementTime, timeLine);
