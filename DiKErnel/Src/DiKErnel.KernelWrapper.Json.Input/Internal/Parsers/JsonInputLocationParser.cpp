@@ -57,6 +57,11 @@ namespace DiKErnel::KernelWrapper::Json::Input
         return ParseLocationData(move(name), x, move(damage));
     }
 
+    const json& JsonInputLocationParser::GetReadLocation() const
+    {
+        return _readLocation;
+    }
+
     const json& JsonInputLocationParser::GetReadRevetment() const
     {
         return _readRevetment;

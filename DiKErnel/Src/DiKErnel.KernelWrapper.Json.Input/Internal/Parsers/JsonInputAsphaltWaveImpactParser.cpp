@@ -20,6 +20,7 @@
 
 #include "JsonInputAsphaltWaveImpactParser.h"
 
+#include "JsonInputAsphaltLocationData.h"
 #include "JsonInputAsphaltWaveImpactDefinitions.h"
 #include "JsonInputDefinitions.h"
 #include "JsonInputParserHelper.h"
@@ -40,10 +41,26 @@ namespace DiKErnel::KernelWrapper::Json::Input
             }
         });
 
-    unique_ptr<JsonInputAsphaltRevetmentWaveImpactLocationData> JsonInputAsphaltWaveImpactParser::ParseRevetmentLocationData(
+    JsonInputAsphaltWaveImpactParser::JsonInputAsphaltWaveImpactParser(
+        const json& readLocation,
         const json& readRevetment,
         const json& readCalculationMethod)
+        : JsonInputLocationParser(readLocation, readRevetment, readCalculationMethod) {}
+
+    unique_ptr<JsonInputLocationData> JsonInputAsphaltWaveImpactParser::ParseLocationData(
+        string name,
+        double x,
+        unique_ptr<JsonInputDamageData> damageData)
     {
+        return make_unique<JsonInputAsphaltLocationData>(move(name), x, move(damageData), ParseRevetmentLocationData(),
+                                                         ParseProfileSchematizationData());
+    }
+
+    unique_ptr<JsonInputAsphaltRevetmentWaveImpactLocationData> JsonInputAsphaltWaveImpactParser::ParseRevetmentLocationData() const
+    {
+        const auto& readRevetment = GetReadRevetment();
+        const auto& readCalculationMethod = GetReadCalculationMethod();
+
         const auto& readUpperLayer = readRevetment[JsonInputAsphaltWaveImpactDefinitions::UPPER_LAYER];
 
         auto locationData = make_unique<JsonInputAsphaltRevetmentWaveImpactLocationData>(
@@ -125,8 +142,16 @@ namespace DiKErnel::KernelWrapper::Json::Input
         return locationData;
     }
 
+    unique_ptr<JsonInputProfileSchematizationData> JsonInputAsphaltWaveImpactParser::ParseProfileSchematizationData() const
+    {
+        const auto& readProfileSchematization = GetReadLocation()[JsonInputDefinitions::PROFILE_SCHEMATIZATION];
+
+        return make_unique<JsonInputProfileSchematizationData>(
+            readProfileSchematization[JsonInputDefinitions::OUTER_SLOPE].get<double>());
+    }
+
     unique_ptr<vector<tuple<double, double>>> JsonInputAsphaltWaveImpactParser::ParseFactorsTable(
-        const json& factorsTable)
+        const json& factorsTable) const
     {
         auto readFactors = make_unique<vector<tuple<double, double>>>();
 

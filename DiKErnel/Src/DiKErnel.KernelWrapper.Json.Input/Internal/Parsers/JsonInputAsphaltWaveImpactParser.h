@@ -25,18 +25,30 @@
 #include <nlohmann/json.hpp>
 
 #include "JsonInputAsphaltRevetmentWaveImpactLocationData.h"
+#include "JsonInputLocationParser.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
-    class JsonInputAsphaltWaveImpactParser
+    class JsonInputAsphaltWaveImpactParser : public JsonInputLocationParser
     {
         public:
-            static std::unique_ptr<JsonInputAsphaltRevetmentWaveImpactLocationData> ParseRevetmentLocationData(
+            explicit JsonInputAsphaltWaveImpactParser(
+                const nlohmann::json& readLocation,
                 const nlohmann::json& readRevetment,
                 const nlohmann::json& readCalculationMethod);
 
+        protected:
+            std::unique_ptr<JsonInputLocationData> ParseLocationData(
+                std::string name,
+                double x,
+                std::unique_ptr<JsonInputDamageData> damageData) override;
+
         private:
-            static std::unique_ptr<std::vector<std::tuple<double, double>>> ParseFactorsTable(
-                const nlohmann::json& factorsTable);
-    };
+            std::unique_ptr<JsonInputAsphaltRevetmentWaveImpactLocationData> ParseRevetmentLocationData() const;
+
+            std::unique_ptr<std::vector<std::tuple<double, double>>> ParseFactorsTable(
+                const nlohmann::json& factorsTable) const;
+
+            std::unique_ptr<JsonInputProfileSchematizationData> ParseProfileSchematizationData() const;
+    };    
 }
