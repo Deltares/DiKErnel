@@ -31,6 +31,12 @@ namespace DiKErnel::KernelWrapper::Json::Output
 
             inline static const std::string INCREMENT_DAMAGE = "ToenameSchadeNatuursteen";
 
+            inline static const std::string OUTER_SLOPE = "HellingBuitentaladNatuursteen";
+            inline static const std::string SLOPE_UPPER_LEVEL = "BovenzijdeHellingvlakNatuursteen";
+            inline static const std::string SLOPE_UPPER_POSITION = "RechterzijdeHellingvlakNatuursteen";
+            inline static const std::string SLOPE_LOWER_LEVEL = "OnderzijdeHellingvlakNatuursteen";
+            inline static const std::string SLOPE_LOWER_POSITION = "LinkerzijdeHellingvlakNatuursteen";
+
             inline static const std::string SURF_SIMILARITY_PARAMETER = "Golfbrekingparameter";
             inline static const std::string WAVE_STEEPNESS_DEEP_WATER = "GolfsteilheidDiepWater";
 
