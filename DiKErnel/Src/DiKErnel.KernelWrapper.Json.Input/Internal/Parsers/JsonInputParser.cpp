@@ -212,7 +212,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
             unique_ptr<JsonInputLocationParser> parser = nullptr;
 
             if (calculationType == JsonInputCalculationType::NaturalStone)
-            {                
+            {
                 parser = make_unique<JsonInputNaturalStoneParser>(readLocation, readRevetment, readCalculationMethod);
             }
 
@@ -221,26 +221,17 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 parser = make_unique<JsonInputAsphaltWaveImpactParser>(readLocation, readRevetment, readCalculationMethod);
             }
 
-            if(calculationType == JsonInputCalculationType::GrassWaveImpact)
+            if (calculationType == JsonInputCalculationType::GrassWaveImpact)
             {
                 parser = make_unique<JsonInputGrassWaveImpactParser>(readLocation, readRevetment, readCalculationMethod);
             }
 
-            if(parser != nullptr)
+            if (calculationType == JsonInputCalculationType::GrassWaveRunup)
             {
-                parsedLocations.push_back(forward<unique_ptr<JsonInputLocationData>>(parser->Parse()));
+                parser = make_unique<JsonInputGrassWaveRunupParser>(readLocation, readRevetment, readCalculationMethod);
             }
-            else
-            {
-                auto parsedLocation = make_unique<JsonInputLocationData>(
-                    readLocation[JsonInputDefinitions::NAME].get<string>(),
-                    readLocation[JsonInputDefinitions::X].get<double>(),
-                    make_unique<JsonInputDamageData>(move(initialDamage), move(failureNumber)),
-                    ParseRevetmentLocationData(readRevetment, readCalculationMethod, calculationType),
-                    ParseProfileSchematizationData(readLocation[JsonInputDefinitions::PROFILE_SCHEMATIZATION], calculationType));
 
-                parsedLocations.push_back(move(parsedLocation));
-            }
+            parsedLocations.push_back(forward<unique_ptr<JsonInputLocationData>>(parser->Parse()));
         }
 
         return parsedLocations;
@@ -253,11 +244,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
     {
         unique_ptr<IJsonInputRevetmentLocationData> revetmentLocationData;
 
-        if (calculationType == JsonInputCalculationType::GrassWaveRunup)
-        {
-            revetmentLocationData = JsonInputGrassWaveRunupParser::ParseRevetmentLocationData(readRevetment, readCalculationMethod);
-        }
-
         return revetmentLocationData;
     }
 
@@ -265,11 +251,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
         const json& readProfileSchematization,
         const JsonInputCalculationType calculationType)
     {
-        if (calculationType == JsonInputCalculationType::GrassWaveRunup)
-        {
-            return JsonInputGrassWaveRunupParser::ParseProfileSchematizationData(readProfileSchematization);
-        }
-
         return make_unique<JsonInputProfileSchematizationData>(
             readProfileSchematization[JsonInputDefinitions::OUTER_SLOPE].get<double>());
     }

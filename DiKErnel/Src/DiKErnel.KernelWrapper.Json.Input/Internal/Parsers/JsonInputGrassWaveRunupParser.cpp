@@ -25,6 +25,7 @@
 #include "JsonInputGrassRevetmentWaveRunupCalculationProtocolType.h"
 #include "JsonInputGrassWaveRunupDefinitions.h"
 #include "JsonInputGrassWaveRunupRayleighDefinitions.h"
+#include "JsonInputGrassWaveRunupRayleighLocationData.h"
 #include "JsonInputParserHelper.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
@@ -56,29 +57,50 @@ namespace DiKErnel::KernelWrapper::Json::Input
             }
         });
 
-    unique_ptr<JsonInputGrassRevetmentWaveRunupLocationData> JsonInputGrassWaveRunupParser::ParseRevetmentLocationData(
+    JsonInputGrassWaveRunupParser::JsonInputGrassWaveRunupParser(
+        const json& readLocation,
         const json& readRevetment,
         const json& readCalculationMethod)
+        : JsonInputLocationParser(readLocation, readRevetment, readCalculationMethod) {}
+
+    unique_ptr<JsonInputLocationData> JsonInputGrassWaveRunupParser::ParseLocationData(
+        string name,
+        double x,
+        unique_ptr<JsonInputDamageData> damageData)
     {
+        const auto& readCalculationMethod = GetReadCalculationMethod();
         const auto& readCalculationProtocol = readCalculationMethod[JsonInputGrassWaveRunupDefinitions::CALCULATION_PROTOCOL];
-        const auto& calculationProtocolType = readCalculationProtocol[JsonInputGrassWaveRunupDefinitions::CALCULATION_PROTOCOL_TYPE]
-                .get<JsonInputGrassRevetmentWaveRunupCalculationProtocolType>();
 
-        unique_ptr<JsonInputGrassRevetmentWaveRunupLocationData> locationData;
-
-        if (calculationProtocolType == JsonInputGrassRevetmentWaveRunupCalculationProtocolType::RayleighDiscrete)
+        if (const auto& calculationProtocolType = readCalculationProtocol[JsonInputGrassWaveRunupDefinitions::CALCULATION_PROTOCOL_TYPE]
+                    .get<JsonInputGrassRevetmentWaveRunupCalculationProtocolType>();
+            calculationProtocolType != JsonInputGrassRevetmentWaveRunupCalculationProtocolType::RayleighDiscrete)
         {
-            locationData = ParseRayleighRevetmentLocationData(readRevetment, readCalculationProtocol);
+            return nullptr;
         }
+
+        return make_unique<JsonInputGrassWaveRunupRayleighLocationData>(move(name), x, move(damageData),
+                                                                        ParseRevetmentLocationData(readCalculationMethod, readCalculationProtocol),
+                                                                        ParseProfileSchematizationData());
+    }
+
+    unique_ptr<JsonInputGrassRevetmentWaveRunupRayleighLocationData> JsonInputGrassWaveRunupParser::ParseRevetmentLocationData(
+        const json& readCalculationMethod,
+        const json& readCalculationProtocol) const
+    {
+        const auto& readRevetment = GetReadRevetment();
+
+        unique_ptr<JsonInputGrassRevetmentWaveRunupRayleighLocationData> locationData = ParseRayleighRevetmentLocationData(
+            readRevetment, readCalculationProtocol);
 
         ParseGenericRevetmentLocationData(readRevetment, readCalculationMethod, *locationData);
 
         return locationData;
     }
 
-    unique_ptr<JsonInputGrassRevetmentWaveRunupProfileSchematizationData> JsonInputGrassWaveRunupParser::ParseProfileSchematizationData(
-        const json& readProfileSchematization)
+    unique_ptr<JsonInputGrassRevetmentWaveRunupProfileSchematizationData> JsonInputGrassWaveRunupParser::ParseProfileSchematizationData() const
     {
+        const auto& readProfileSchematization = GetReadLocation()[JsonInputDefinitions::PROFILE_SCHEMATIZATION];
+
         auto profileSchematization = make_unique<JsonInputGrassRevetmentWaveRunupProfileSchematizationData>(
             readProfileSchematization[JsonInputDefinitions::OUTER_SLOPE].get<double>());
 

@@ -20,27 +20,34 @@
 
 #pragma once
 
-#include <memory>
-
-#include <nlohmann/json.hpp>
-
 #include "JsonInputGrassRevetmentWaveRunupLocationData.h"
 #include "JsonInputGrassRevetmentWaveRunupProfileSchematizationData.h"
 #include "JsonInputGrassRevetmentWaveRunupRayleighLocationData.h"
+#include "JsonInputLocationParser.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
-    class JsonInputGrassWaveRunupParser
+    class JsonInputGrassWaveRunupParser : public JsonInputLocationParser
     {
         public:
-            static std::unique_ptr<JsonInputGrassRevetmentWaveRunupLocationData> ParseRevetmentLocationData(
+            explicit JsonInputGrassWaveRunupParser(
+                const nlohmann::json& readLocation,
                 const nlohmann::json& readRevetment,
                 const nlohmann::json& readCalculationMethod);
 
-            static std::unique_ptr<JsonInputGrassRevetmentWaveRunupProfileSchematizationData> ParseProfileSchematizationData(
-                const nlohmann::json& readProfileSchematization);
+        protected:
+            std::unique_ptr<JsonInputLocationData> ParseLocationData(
+                std::string name,
+                double x,
+                std::unique_ptr<JsonInputDamageData> damageData) override;
 
         private:
+            std::unique_ptr<JsonInputGrassRevetmentWaveRunupRayleighLocationData> ParseRevetmentLocationData(
+                const nlohmann::json& readCalculationMethod,
+                const nlohmann::json& readCalculationProtocol) const;
+
+            std::unique_ptr<JsonInputGrassRevetmentWaveRunupProfileSchematizationData> ParseProfileSchematizationData() const;
+
             static std::unique_ptr<JsonInputGrassRevetmentWaveRunupRayleighLocationData> ParseRayleighRevetmentLocationData(
                 const nlohmann::json& readRevetment,
                 const nlohmann::json& readCalculationProtocol);
