@@ -23,12 +23,11 @@
 #include <memory>
 #include <vector>
 
-#include "IJsonInputRevetmentLocationData.h"
 #include "JsonInputAsphaltRevetmentTopLayerType.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
-    class JsonInputAsphaltRevetmentWaveImpactLocationData : public IJsonInputRevetmentLocationData
+    class JsonInputAsphaltRevetmentWaveImpactLocationData
     {
         public:
             explicit JsonInputAsphaltRevetmentWaveImpactLocationData(

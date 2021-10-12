@@ -22,12 +22,11 @@
 
 #include <memory>
 
-#include "IJsonInputRevetmentLocationData.h"
 #include "JsonInputGrassRevetmentTopLayerType.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
-    class JsonInputGrassRevetmentWaveImpactLocationData : public IJsonInputRevetmentLocationData
+    class JsonInputGrassRevetmentWaveImpactLocationData
     {
         public:
             explicit JsonInputGrassRevetmentWaveImpactLocationData(

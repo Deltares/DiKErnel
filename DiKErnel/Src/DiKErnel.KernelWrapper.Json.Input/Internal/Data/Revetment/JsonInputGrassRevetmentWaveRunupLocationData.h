@@ -22,12 +22,11 @@
 
 #include <memory>
 
-#include "IJsonInputRevetmentLocationData.h"
 #include "JsonInputGrassRevetmentTopLayerType.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
-    class JsonInputGrassRevetmentWaveRunupLocationData : public IJsonInputRevetmentLocationData
+    class JsonInputGrassRevetmentWaveRunupLocationData
     {
         public:
             #pragma region Set methods
