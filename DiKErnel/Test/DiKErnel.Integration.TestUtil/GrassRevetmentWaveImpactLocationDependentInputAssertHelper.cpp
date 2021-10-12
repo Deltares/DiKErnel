@@ -29,12 +29,10 @@ namespace DiKErnel::Integration::TestUtil
     void GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertGeneralProperties(
         const string& name,
         const double x,
-        const double positionZ,
         const GrassRevetmentWaveImpactLocationDependentInput& locationDependentInput)
     {
         ASSERT_EQ(name, locationDependentInput.GetName());
         ASSERT_DOUBLE_EQ(x, locationDependentInput.GetX());
-        ASSERT_DOUBLE_EQ(positionZ, locationDependentInput.GetPositionZ());
     }
 
     void GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertMinimumWaveHeight(
