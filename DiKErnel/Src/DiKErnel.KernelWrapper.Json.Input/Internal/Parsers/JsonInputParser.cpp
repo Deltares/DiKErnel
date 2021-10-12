@@ -209,10 +209,20 @@ namespace DiKErnel::KernelWrapper::Json::Input
             const auto& readCalculationMethod = readRevetment[JsonInputDefinitions::CALCULATION_METHOD][0];
             const auto& calculationType = readCalculationMethod[JsonInputDefinitions::CALCULATION_METHOD_TYPE].get<JsonInputCalculationType>();
 
+            unique_ptr<JsonInputLocationParser> parser = nullptr;
+
             if (calculationType == JsonInputCalculationType::NaturalStone)
+            {                
+                parser = make_unique<JsonInputNaturalStoneParser>(readLocation, readRevetment, readCalculationMethod);
+            }
+
+            if (calculationType == JsonInputCalculationType::AsphaltWaveImpact)
             {
-                unique_ptr<JsonInputLocationParser> parser = make_unique<JsonInputNaturalStoneParser>(
-                    readLocation, readRevetment, readCalculationMethod);
+                parser = make_unique<JsonInputAsphaltWaveImpactParser>(readLocation, readRevetment, readCalculationMethod);
+            }
+
+            if(parser != nullptr)
+            {
                 parsedLocations.push_back(forward<unique_ptr<JsonInputLocationData>>(parser->Parse()));
             }
             else
@@ -237,11 +247,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
         const JsonInputCalculationType calculationType)
     {
         unique_ptr<IJsonInputRevetmentLocationData> revetmentLocationData;
-
-        if (calculationType == JsonInputCalculationType::AsphaltWaveImpact)
-        {
-            revetmentLocationData = JsonInputAsphaltWaveImpactParser::ParseRevetmentLocationData(readRevetment, readCalculationMethod);
-        }
 
         if (calculationType == JsonInputCalculationType::GrassWaveImpact)
         {
