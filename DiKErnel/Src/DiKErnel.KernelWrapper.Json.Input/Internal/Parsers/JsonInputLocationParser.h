@@ -24,26 +24,35 @@
 
 #include <nlohmann/json.hpp>
 
-#include "JsonInputLocationParser.h"
-#include "JsonInputNaturalStoneRevetmentLocationData.h"
+#include "JsonInputLocationData.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
-    class JsonInputNaturalStoneParser : public JsonInputLocationParser
+    class JsonInputLocationParser
     {
         public:
-            explicit JsonInputNaturalStoneParser(
+            virtual ~JsonInputLocationParser() = default;
+
+            explicit JsonInputLocationParser(
                 const nlohmann::json& readLocation,
                 const nlohmann::json& readRevetment,
                 const nlohmann::json& readCalculationMethod);
 
+            std::unique_ptr<JsonInputLocationData> Parse();
+
         protected:
-            std::unique_ptr<JsonInputLocationData> ParseLocationData(
+            virtual std::unique_ptr<JsonInputLocationData> ParseLocationData(
                 std::string name,
                 double x,
-                std::unique_ptr<JsonInputDamageData> damageData) override;
+                std::unique_ptr<JsonInputDamageData> damageData) = 0;
+
+            const nlohmann::json& GetReadRevetment() const;
+
+            const nlohmann::json& GetReadCalculationMethod() const;
 
         private:
-            std::unique_ptr<JsonInputNaturalStoneRevetmentLocationData> ParseRevetmentLocationData() const;
+            const nlohmann::json& _readLocation;
+            const nlohmann::json& _readRevetment;
+            const nlohmann::json& _readCalculationMethod;
     };
 }

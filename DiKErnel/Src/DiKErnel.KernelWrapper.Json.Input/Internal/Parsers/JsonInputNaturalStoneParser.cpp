@@ -22,6 +22,7 @@
 
 #include "JsonInputDefinitions.h"
 #include "JsonInputNaturalStoneDefinitions.h"
+#include "JsonInputNaturalStoneLocationData.h"
 #include "JsonInputParserHelper.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
@@ -39,10 +40,25 @@ namespace DiKErnel::KernelWrapper::Json::Input
             }
         });
 
-    unique_ptr<JsonInputNaturalStoneRevetmentLocationData> JsonInputNaturalStoneParser::ParseRevetmentLocationData(
+    JsonInputNaturalStoneParser::JsonInputNaturalStoneParser(
+        const json& readLocation,
         const json& readRevetment,
         const json& readCalculationMethod)
+        : JsonInputLocationParser(readLocation, readRevetment, readCalculationMethod) {}
+
+    unique_ptr<JsonInputLocationData> JsonInputNaturalStoneParser::ParseLocationData(
+        string name,
+        double x,
+        unique_ptr<JsonInputDamageData> damageData)
     {
+        return make_unique<JsonInputNaturalStoneLocationData>(move(name), x, move(damageData), ParseRevetmentLocationData());
+    }
+
+    unique_ptr<JsonInputNaturalStoneRevetmentLocationData> JsonInputNaturalStoneParser::ParseRevetmentLocationData() const
+    {
+        const auto& readRevetment = GetReadRevetment();
+        const auto& readCalculationMethod = GetReadCalculationMethod();
+
         auto locationData = make_unique<JsonInputNaturalStoneRevetmentLocationData>(
             readRevetment[JsonInputDefinitions::TYPE_TOP_LAYER].get<JsonInputNaturalStoneRevetmentTopLayerType>(),
             readRevetment[JsonInputNaturalStoneDefinitions::RELATIVE_DENSITY],

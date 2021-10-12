@@ -90,6 +90,8 @@ set(SOURCEFILES_INTERNAL_PARSERS
   ${INTERNAL_PARSERS_FOLDER}/JsonInputGrassWaveRunupParser.cpp
   ${INTERNAL_PARSERS_FOLDER}/JsonInputGrassWaveRunupParser.h
   ${INTERNAL_PARSERS_FOLDER}/JsonInputGrassWaveRunupRayleighDefinitions.h
+  ${INTERNAL_PARSERS_FOLDER}/JsonInputLocationParser.cpp
+  ${INTERNAL_PARSERS_FOLDER}/JsonInputLocationParser.h
   ${INTERNAL_PARSERS_FOLDER}/JsonInputNaturalStoneDefinitions.h
   ${INTERNAL_PARSERS_FOLDER}/JsonInputNaturalStoneParser.cpp
   ${INTERNAL_PARSERS_FOLDER}/JsonInputNaturalStoneParser.h
