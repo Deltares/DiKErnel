@@ -20,10 +20,6 @@
 
 #pragma once
 
-#include <memory>
-
-#include <nlohmann/json.hpp>
-
 #include "JsonInputLocationParser.h"
 #include "JsonInputNaturalStoneRevetmentLocationData.h"
 
