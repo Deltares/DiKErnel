@@ -20,19 +20,29 @@
 
 #pragma once
 
+#include <memory>
+
+#include "JsonInputAsphaltRevetmentWaveImpactLocationData.h"
+#include "JsonInputLocationData.h"
+
 namespace DiKErnel::KernelWrapper::Json::Input
 {
-    class JsonInputProfileSchematizationData
+    class JsonInputAsphaltLocationData : public JsonInputLocationData
     {
         public:
-            virtual ~JsonInputProfileSchematizationData() = default;
+            explicit JsonInputAsphaltLocationData(
+                std::string name,
+                double x,
+                std::unique_ptr<JsonInputDamageData> damageData,
+                std::unique_ptr<JsonInputAsphaltRevetmentWaveImpactLocationData> revetmentLocationData,
+                std::unique_ptr<JsonInputProfileSchematizationData> profileSchematizationData);
 
-            explicit JsonInputProfileSchematizationData(
-                double outerSlope);
+            const JsonInputAsphaltRevetmentWaveImpactLocationData& GetRevetmentLocationData() const;
 
-            double GetOuterSlope() const;
+            const JsonInputProfileSchematizationData& GetProfileSchematizationData() const;
 
         private:
-            double _outerSlope;
+            std::unique_ptr<JsonInputAsphaltRevetmentWaveImpactLocationData> _revetmentLocationData;
+            std::unique_ptr<JsonInputProfileSchematizationData> _profileSchematizationData;
     };
 }

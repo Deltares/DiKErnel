@@ -18,21 +18,31 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#pragma once
+#include "JsonInputAsphaltLocationData.h"
+
+#include <utility>
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
-    class JsonInputProfileSchematizationData
+    using namespace std;
+
+    JsonInputAsphaltLocationData::JsonInputAsphaltLocationData(
+        string name,
+        const double x,
+        unique_ptr<JsonInputDamageData> damageData,
+        unique_ptr<JsonInputAsphaltRevetmentWaveImpactLocationData> revetmentLocationData,
+        unique_ptr<JsonInputProfileSchematizationData> profileSchematizationData)
+        : JsonInputLocationData(move(name), x, move(damageData)),
+          _revetmentLocationData(move(revetmentLocationData)),
+          _profileSchematizationData(move(profileSchematizationData)) {}
+
+    const JsonInputAsphaltRevetmentWaveImpactLocationData& JsonInputAsphaltLocationData::GetRevetmentLocationData() const
     {
-        public:
-            virtual ~JsonInputProfileSchematizationData() = default;
+        return *_revetmentLocationData;
+    }
 
-            explicit JsonInputProfileSchematizationData(
-                double outerSlope);
-
-            double GetOuterSlope() const;
-
-        private:
-            double _outerSlope;
-    };
+    const JsonInputProfileSchematizationData& JsonInputAsphaltLocationData::GetProfileSchematizationData() const
+    {
+        return *_profileSchematizationData;
+    }
 }
