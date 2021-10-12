@@ -234,9 +234,10 @@ namespace DiKErnel::Integration
         }
 
         return make_unique<NaturalStoneRevetmentTimeDependentOutput>(
-            incrementDamage, damage, move(timeOfFailure), loadingRevetment, surfSimilarityParameter, waveSteepnessDeepWater, upperLimitLoading,
-            lowerLimitLoading, depthMaximumWaveLoad, distanceMaximumWaveElevation, normativeWidthWaveImpact, move(hydraulicLoad),
-            move(waveAngleImpact), move(resistance), move(referenceTimeDegradation), move(referenceDegradation));
+            incrementDamage, damage, move(timeOfFailure), outerSlope, slopeUpperLevel, slopeUpperPosition, slopeLowerLevel, slopeLowerPosition,
+            loadingRevetment, surfSimilarityParameter, waveSteepnessDeepWater, upperLimitLoading, lowerLimitLoading, depthMaximumWaveLoad,
+            distanceMaximumWaveElevation, normativeWidthWaveImpact, move(hydraulicLoad), move(waveAngleImpact), move(resistance),
+            move(referenceTimeDegradation), move(referenceDegradation));
     }
 
     pair<double, double> NaturalStoneRevetmentLocationDependentInput::GetCharacteristicPointCoordinates(

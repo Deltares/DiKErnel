@@ -38,6 +38,16 @@ namespace DiKErnel::Integration
              *        The damage.
              * \param timeOfFailure
              *        The time of failure.
+             * \param outerSlope
+             *        The outer slope.
+             * \param slopeUpperLevel
+             *        The slope upper level.
+             * \param slopeUpperPosition
+             *        The slope upper position.
+             * \param slopeLowerLevel
+             *        The slope lower level.
+             * \param slopeLowerPosition
+             *        The slope lower position.
              * \param loadingRevetment
              *        The loading revetment.
              * \param surfSimilarityParameter
@@ -69,6 +79,11 @@ namespace DiKErnel::Integration
                 double incrementDamage,
                 double damage,
                 std::unique_ptr<int> timeOfFailure,
+                double outerSlope,
+                double slopeUpperLevel,
+                double slopeUpperPosition,
+                double slopeLowerLevel,
+                double slopeLowerPosition,
                 bool loadingRevetment,
                 double surfSimilarityParameter,
                 double waveSteepnessDeepWater,
@@ -82,6 +97,36 @@ namespace DiKErnel::Integration
                 std::unique_ptr<double> resistance,
                 std::unique_ptr<double> referenceTimeDegradation,
                 std::unique_ptr<double> referenceDegradation);
+
+            /*!
+             * \brief Gets the outer slope.
+             * \return The outer slope.
+             */
+            double GetOuterSlope() const;
+
+            /*!
+             * \brief Gets the slope upper level.
+             * \return The slope upper level.
+             */
+            double GetSlopeUpperLevel() const;
+
+            /*!
+             * \brief Gets the slope upper position.
+             * \return The slope upper position.
+             */
+            double GetSlopeUpperPosition() const;
+
+            /*!
+             * \brief Gets the slope lower level.
+             * \return The slope lower level.
+             */
+            double GetSlopeLowerLevel() const;
+
+            /*!
+             * \brief Gets the slope lower position.
+             * \return The slope lower position.
+             */
+            double GetSlopeLowerPosition() const;
 
             /*!
              * \brief Gets the loading revetment.
@@ -162,6 +207,11 @@ namespace DiKErnel::Integration
             const double* GetReferenceDegradation() const;
 
         private:
+            const double _outerSlope;
+            const double _slopeUpperLevel;
+            const double _slopeUpperPosition;
+            const double _slopeLowerLevel;
+            const double _slopeLowerPosition;
             const bool _loadingRevetment;
             const double _surfSimilarityParameter;
             const double _waveSteepnessDeepWater;

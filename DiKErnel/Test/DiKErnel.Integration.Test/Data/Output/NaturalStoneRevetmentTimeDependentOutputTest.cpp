@@ -36,27 +36,33 @@ namespace DiKErnel::Integration::Test
         const auto incrementDamage = 0.1;
         const auto damage = 0.2;
         const auto timeOfFailure = 3;
+        const auto outerSlope = 0.4;
+        const auto slopeUpperLevel = 0.5;
+        const auto slopeUpperPosition = 0.6;
+        const auto slopeLowerLevel = 0.7;
+        const auto slopeLowerPosition = 0.8;
         const auto loadingRevetment = true;
-        const auto surfSimilarityParameter = 0.4;
-        const auto waveSteepnessDeepWater = 0.5;
-        const auto upperLimitLoading = 0.6;
-        const auto lowerLimitLoading = 0.7;
-        const auto depthMaximumWaveLoad = 0.8;
-        const auto distanceMaximumWaveElevation = 0.9;
-        const auto normativeWidthOfWaveImpact = 1.0;
-        const auto hydraulicLoad = 1.1;
-        const auto waveAngleImpact = 1.2;
-        const auto resistance = 1.3;
-        const auto referenceTimeDegradation = 1.4;
-        const auto referenceDegradation = 1.5;
+        const auto surfSimilarityParameter = 0.9;
+        const auto waveSteepnessDeepWater = 1.0;
+        const auto upperLimitLoading = 1.1;
+        const auto lowerLimitLoading = 1.2;
+        const auto depthMaximumWaveLoad = 1.3;
+        const auto distanceMaximumWaveElevation = 1.4;
+        const auto normativeWidthOfWaveImpact = 1.5;
+        const auto hydraulicLoad = 1.6;
+        const auto waveAngleImpact = 1.7;
+        const auto resistance = 1.8;
+        const auto referenceTimeDegradation = 1.9;
+        const auto referenceDegradation = 2.0;
 
         // Call
-        const auto output = NaturalStoneRevetmentTimeDependentOutput(incrementDamage, damage, make_unique<int>(timeOfFailure), loadingRevetment,
-                                                                     surfSimilarityParameter, waveSteepnessDeepWater, upperLimitLoading,
-                                                                     lowerLimitLoading, depthMaximumWaveLoad, distanceMaximumWaveElevation,
-                                                                     normativeWidthOfWaveImpact, make_unique<double>(hydraulicLoad),
-                                                                     make_unique<double>(waveAngleImpact), make_unique<double>(resistance),
-                                                                     make_unique<double>(referenceTimeDegradation),
+        const auto output = NaturalStoneRevetmentTimeDependentOutput(incrementDamage, damage, make_unique<int>(timeOfFailure), outerSlope,
+                                                                     slopeUpperLevel, slopeUpperPosition, slopeLowerLevel, slopeLowerPosition,
+                                                                     loadingRevetment, surfSimilarityParameter, waveSteepnessDeepWater,
+                                                                     upperLimitLoading, lowerLimitLoading, depthMaximumWaveLoad,
+                                                                     distanceMaximumWaveElevation, normativeWidthOfWaveImpact,
+                                                                     make_unique<double>(hydraulicLoad), make_unique<double>(waveAngleImpact),
+                                                                     make_unique<double>(resistance), make_unique<double>(referenceTimeDegradation),
                                                                      make_unique<double>(referenceDegradation));
 
         // Assert
@@ -64,6 +70,11 @@ namespace DiKErnel::Integration::Test
         ASSERT_DOUBLE_EQ(incrementDamage, output.GetIncrementDamage());
         ASSERT_DOUBLE_EQ(damage, output.GetDamage());
         ASSERT_EQ(timeOfFailure, *output.GetTimeOfFailure());
+        ASSERT_DOUBLE_EQ(outerSlope, output.GetOuterSlope());
+        ASSERT_DOUBLE_EQ(slopeUpperLevel, output.GetSlopeUpperLevel());
+        ASSERT_DOUBLE_EQ(slopeUpperPosition, output.GetSlopeUpperPosition());
+        ASSERT_DOUBLE_EQ(slopeLowerLevel, output.GetSlopeLowerLevel());
+        ASSERT_DOUBLE_EQ(slopeLowerPosition, output.GetSlopeLowerPosition());
         ASSERT_EQ(loadingRevetment, output.GetLoadingRevetment());
         ASSERT_DOUBLE_EQ(surfSimilarityParameter, output.GetSurfSimilarityParameter());
         ASSERT_DOUBLE_EQ(waveSteepnessDeepWater, output.GetWaveSteepnessDeepWater());
@@ -84,25 +95,36 @@ namespace DiKErnel::Integration::Test
         // Setup
         const auto incrementDamage = 0.1;
         const auto damage = 0.2;
+        const auto outerSlope = 0.3;
+        const auto slopeUpperLevel = 0.4;
+        const auto slopeUpperPosition = 0.5;
+        const auto slopeLowerLevel = 0.6;
+        const auto slopeLowerPosition = 0.7;
         const auto loadingRevetment = false;
-        const auto surfSimilarityParameter = 0.3;
-        const auto waveSteepnessDeepWater = 0.4;
-        const auto upperLimitLoading = 0.5;
-        const auto lowerLimitLoading = 0.6;
-        const auto depthMaximumWaveLoad = 0.7;
-        const auto distanceMaximumWaveElevation = 0.8;
-        const auto normativeWidthOfWaveImpact = 0.9;
+        const auto surfSimilarityParameter = 0.9;
+        const auto waveSteepnessDeepWater = 1.0;
+        const auto upperLimitLoading = 1.1;
+        const auto lowerLimitLoading = 1.2;
+        const auto depthMaximumWaveLoad = 1.3;
+        const auto distanceMaximumWaveElevation = 1.4;
+        const auto normativeWidthOfWaveImpact = 1.5;
 
         // Call
-        const auto output = NaturalStoneRevetmentTimeDependentOutput(incrementDamage, damage, nullptr, loadingRevetment, surfSimilarityParameter,
-                                                                     waveSteepnessDeepWater, upperLimitLoading, lowerLimitLoading,
-                                                                     depthMaximumWaveLoad, distanceMaximumWaveElevation, normativeWidthOfWaveImpact,
-                                                                     nullptr, nullptr, nullptr, nullptr, nullptr);
+        const auto output = NaturalStoneRevetmentTimeDependentOutput(incrementDamage, damage, nullptr, outerSlope, slopeUpperLevel,
+                                                                     slopeUpperPosition, slopeLowerLevel, slopeLowerPosition, loadingRevetment,
+                                                                     surfSimilarityParameter, waveSteepnessDeepWater, upperLimitLoading,
+                                                                     lowerLimitLoading, depthMaximumWaveLoad, distanceMaximumWaveElevation,
+                                                                     normativeWidthOfWaveImpact, nullptr, nullptr, nullptr, nullptr, nullptr);
         // Assert
         AssertHelper::AssertIsInstanceOf<TimeDependentOutput>(&output);
         ASSERT_DOUBLE_EQ(incrementDamage, output.GetIncrementDamage());
         ASSERT_DOUBLE_EQ(damage, output.GetDamage());
         ASSERT_EQ(nullptr, output.GetTimeOfFailure());
+        ASSERT_DOUBLE_EQ(outerSlope, output.GetOuterSlope());
+        ASSERT_DOUBLE_EQ(slopeUpperLevel, output.GetSlopeUpperLevel());
+        ASSERT_DOUBLE_EQ(slopeUpperPosition, output.GetSlopeUpperPosition());
+        ASSERT_DOUBLE_EQ(slopeLowerLevel, output.GetSlopeLowerLevel());
+        ASSERT_DOUBLE_EQ(slopeLowerPosition, output.GetSlopeLowerPosition());
         ASSERT_EQ(loadingRevetment, output.GetLoadingRevetment());
         ASSERT_DOUBLE_EQ(surfSimilarityParameter, output.GetSurfSimilarityParameter());
         ASSERT_DOUBLE_EQ(waveSteepnessDeepWater, output.GetWaveSteepnessDeepWater());

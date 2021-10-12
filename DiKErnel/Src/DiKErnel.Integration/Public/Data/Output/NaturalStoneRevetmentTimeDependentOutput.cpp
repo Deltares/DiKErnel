@@ -28,6 +28,11 @@ namespace DiKErnel::Integration
         const double incrementDamage,
         const double damage,
         unique_ptr<int> timeOfFailure,
+        const double outerSlope,
+        const double slopeUpperLevel,
+        const double slopeUpperPosition,
+        const double slopeLowerLevel,
+        const double slopeLowerPosition,
         const bool loadingRevetment,
         const double surfSimilarityParameter,
         const double waveSteepnessDeepWater,
@@ -42,6 +47,11 @@ namespace DiKErnel::Integration
         unique_ptr<double> referenceTimeDegradation,
         unique_ptr<double> referenceDegradation)
         : TimeDependentOutput(incrementDamage, damage, move(timeOfFailure)),
+          _outerSlope(outerSlope),
+          _slopeUpperLevel(slopeUpperLevel),
+          _slopeUpperPosition(slopeUpperPosition),
+          _slopeLowerLevel(slopeLowerLevel),
+          _slopeLowerPosition(slopeLowerPosition),
           _loadingRevetment(loadingRevetment),
           _surfSimilarityParameter(surfSimilarityParameter),
           _waveSteepnessDeepWater(waveSteepnessDeepWater),
@@ -55,6 +65,31 @@ namespace DiKErnel::Integration
           _resistance(move(resistance)),
           _referenceTimeDegradation(move(referenceTimeDegradation)),
           _referenceDegradation(move(referenceDegradation)) {}
+
+    double NaturalStoneRevetmentTimeDependentOutput::GetOuterSlope() const
+    {
+        return _outerSlope;
+    }
+
+    double NaturalStoneRevetmentTimeDependentOutput::GetSlopeUpperLevel() const
+    {
+        return _slopeUpperLevel;
+    }
+
+    double NaturalStoneRevetmentTimeDependentOutput::GetSlopeUpperPosition() const
+    {
+        return _slopeUpperPosition;
+    }
+
+    double NaturalStoneRevetmentTimeDependentOutput::GetSlopeLowerLevel() const
+    {
+        return _slopeLowerLevel;
+    }
+
+    double NaturalStoneRevetmentTimeDependentOutput::GetSlopeLowerPosition() const
+    {
+        return _slopeLowerPosition;
+    }
 
     bool NaturalStoneRevetmentTimeDependentOutput::GetLoadingRevetment() const
     {
