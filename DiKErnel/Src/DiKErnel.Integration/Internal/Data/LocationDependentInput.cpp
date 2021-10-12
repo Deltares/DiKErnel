@@ -33,13 +33,11 @@ namespace DiKErnel::Integration
         string name,
         const double x,
         const double initialDamage,
-        const double failureNumber,
-        const double positionZ)
+        const double failureNumber)
         : _name(move(name)),
           _x(x),
           _initialDamage(initialDamage),
-          _failureNumber(failureNumber),
-          _positionZ(positionZ) { }
+          _failureNumber(failureNumber) { }
 
     unique_ptr<TimeDependentOutput> LocationDependentInput::Calculate(
         const double initialDamage,

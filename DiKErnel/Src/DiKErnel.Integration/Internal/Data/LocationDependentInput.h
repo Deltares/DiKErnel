@@ -22,6 +22,8 @@
 
 #include "ILocationDependentInput.h"
 
+#include <cmath>
+
 namespace DiKErnel::Integration
 {
     class LocationDependentInput : public Core::ILocationDependentInput
@@ -47,8 +49,7 @@ namespace DiKErnel::Integration
                 std::string name,
                 double x,
                 double initialDamage,
-                double failureNumber,
-                double positionZ);
+                double failureNumber);
 
             virtual void InitializeDerivedLocationDependentInput(
                 const Core::IProfileData& profileData);
@@ -64,6 +65,6 @@ namespace DiKErnel::Integration
             const double _initialDamage;
             const double _failureNumber;
             bool _derivedLocationDependentInputInitialized = false;
-            double _positionZ;
+            double _positionZ = std::numeric_limits<double>::infinity();
     };
 }

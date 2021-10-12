@@ -39,7 +39,7 @@ namespace DiKErnel::Integration
         const double averageNumberOfWavesCtm,
         unique_ptr<GrassRevetmentWaveRunupRepresentative2P> representative2P,
         unique_ptr<GrassRevetmentWaveRunupWaveAngleImpact> waveAngleImpact)
-        : LocationDependentInput(move(name), x, initialDamage, failureNumber, positionZ),
+        : LocationDependentInput(move(name), x, initialDamage, failureNumber),
           _outerSlope(outerSlope),
           _criticalCumulativeOverload(criticalCumulativeOverload),
           _criticalFrontVelocity(criticalFrontVelocity),
