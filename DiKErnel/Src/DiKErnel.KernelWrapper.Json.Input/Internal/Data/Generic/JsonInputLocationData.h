@@ -32,12 +32,19 @@ namespace DiKErnel::KernelWrapper::Json::Input
     class JsonInputLocationData
     {
         public:
+            virtual ~JsonInputLocationData() = default;
+
             explicit JsonInputLocationData(
                 std::string name,
                 double x,
                 std::unique_ptr<JsonInputDamageData> damageData,
                 std::unique_ptr<IJsonInputRevetmentLocationData> revetmentLocationData,
                 std::unique_ptr<JsonInputProfileSchematizationData> profileSchematizationData);
+
+            explicit JsonInputLocationData(
+                std::string name,
+                double x,
+                std::unique_ptr<JsonInputDamageData> damageData);
 
             const std::string& GetName() const;
 
