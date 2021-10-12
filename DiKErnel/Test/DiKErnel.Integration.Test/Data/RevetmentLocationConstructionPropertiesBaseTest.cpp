@@ -33,15 +33,13 @@ namespace DiKErnel::Integration::Test
         // Setup
         const string name = "Test";
         const auto x = 0.1;
-        const auto positionZ = 0.2;
 
         // Call
-        const RevetmentLocationConstructionPropertiesMock constructionProperties(name, x, positionZ);
+        const RevetmentLocationConstructionPropertiesMock constructionProperties(name, x);
 
         // Assert
         ASSERT_EQ(name, constructionProperties.GetName());
         ASSERT_DOUBLE_EQ(x, constructionProperties.GetX());
-        ASSERT_DOUBLE_EQ(positionZ, constructionProperties.GetPositionZ());
         ASSERT_EQ(nullptr, constructionProperties.GetInitialDamage());
         ASSERT_EQ(nullptr, constructionProperties.GetFailureNumber());
     }
@@ -51,11 +49,10 @@ namespace DiKErnel::Integration::Test
         // Given
         const string name = "Test";
         const auto x = 0.1;
-        const auto positionZ = 0.2;
-        const auto initialDamage = 0.3;
-        const auto failureNumber = 0.4;
+        const auto initialDamage = 0.2;
+        const auto failureNumber = 0.3;
 
-        RevetmentLocationConstructionPropertiesMock constructionProperties(name, x, positionZ);
+        RevetmentLocationConstructionPropertiesMock constructionProperties(name, x);
 
         // When
         constructionProperties.SetInitialDamage(make_unique<double>(initialDamage));
@@ -64,7 +61,6 @@ namespace DiKErnel::Integration::Test
         // Then
         ASSERT_EQ(name, constructionProperties.GetName());
         ASSERT_DOUBLE_EQ(x, constructionProperties.GetX());
-        ASSERT_DOUBLE_EQ(positionZ, constructionProperties.GetPositionZ());
         ASSERT_DOUBLE_EQ(initialDamage, *constructionProperties.GetInitialDamage());
         ASSERT_DOUBLE_EQ(failureNumber, *constructionProperties.GetFailureNumber());
     }
