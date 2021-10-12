@@ -183,7 +183,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
 
         LocationDependentInputAssertHelper::AssertDamageProperties(0.1, 1.06, *naturalStoneRevetmentLocationDependentInputItem1);
         NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertGeneralProperties(
-            "NatuursteenAlleOptiesAan", 11, 0.25, 1.65, 0.3, *naturalStoneRevetmentLocationDependentInputItem1);
+            "NatuursteenAlleOptiesAan", 11, 1.65, 0.3, *naturalStoneRevetmentLocationDependentInputItem1);
         NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertHydraulicLoads(
             5, 1.3, 1.7, 0.9, -0.8, 10, -8, 6, 4.9, naturalStoneRevetmentLocationDependentInputItem1->GetHydraulicLoads());
         NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertSlope(
@@ -205,7 +205,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
 
         LocationDependentInputAssertHelper::AssertDamageProperties(0, 1, *naturalStoneRevetmentLocationDependentInputItem2);
         NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertGeneralProperties(
-            "NatuursteenAlleOptiesUit", 8.79, 0.3, 1.65, 0.7, *naturalStoneRevetmentLocationDependentInputItem2);
+            "NatuursteenAlleOptiesUit", 8.79, 1.65, 0.7, *naturalStoneRevetmentLocationDependentInputItem2);
         NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertHydraulicLoads(
             4, 0, 0, -0.9, 0.8, 0, 0, 0.6, 2.9, naturalStoneRevetmentLocationDependentInputItem2->GetHydraulicLoads());
         NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertSlope(
