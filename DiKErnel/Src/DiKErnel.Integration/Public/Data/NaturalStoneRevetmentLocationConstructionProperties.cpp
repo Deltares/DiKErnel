@@ -29,12 +29,10 @@ namespace DiKErnel::Integration
     NaturalStoneRevetmentLocationConstructionProperties::NaturalStoneRevetmentLocationConstructionProperties(
         string name,
         const double x,
-        const double outerSlope,
         const NaturalStoneRevetmentTopLayerType topLayerType,
         const double thicknessTopLayer,
         const double relativeDensity)
         : RevetmentLocationConstructionPropertiesBase(move(name), x),
-          _outerSlope(outerSlope),
           _topLayerType(topLayerType),
           _thicknessTopLayer(thicknessTopLayer),
           _relativeDensity(relativeDensity) { }
@@ -176,11 +174,6 @@ namespace DiKErnel::Integration
     #pragma endregion
 
     #pragma region Get methods
-
-    double NaturalStoneRevetmentLocationConstructionProperties::GetOuterSlope() const
-    {
-        return _outerSlope;
-    }
 
     NaturalStoneRevetmentTopLayerType NaturalStoneRevetmentLocationConstructionProperties::GetTopLayerType() const
     {
