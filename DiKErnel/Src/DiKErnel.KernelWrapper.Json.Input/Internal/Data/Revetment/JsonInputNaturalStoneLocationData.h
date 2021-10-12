@@ -20,8 +20,6 @@
 
 #pragma once
 
-#include <memory>
-
 #include "JsonInputLocationData.h"
 #include "JsonInputNaturalStoneRevetmentLocationData.h"
 

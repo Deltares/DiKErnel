@@ -20,8 +20,6 @@
 
 #pragma once
 
-#include <memory>
-
 #include "JsonInputAsphaltRevetmentWaveImpactLocationData.h"
 #include "JsonInputLocationData.h"
 
