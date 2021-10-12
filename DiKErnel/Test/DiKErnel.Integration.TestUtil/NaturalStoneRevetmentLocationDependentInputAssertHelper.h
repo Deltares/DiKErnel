@@ -31,7 +31,6 @@ namespace DiKErnel::Integration::TestUtil
                 const std::string& name,
                 double x,
                 double outerSlope,
-                double positionZ,
                 double relativeDensity,
                 double thicknessTopLayer,
                 const NaturalStoneRevetmentLocationDependentInput& locationDependentInput);
