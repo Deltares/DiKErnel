@@ -30,9 +30,8 @@ namespace DiKErnel::Integration
         string name,
         const double x,
         const double outerSlope,
-        const double positionZ,
         const GrassRevetmentTopLayerType topLayerType)
-        : RevetmentLocationConstructionPropertiesBase(move(name), x, positionZ),
+        : RevetmentLocationConstructionPropertiesBase(move(name), x),
           _outerSlope(outerSlope),
           _topLayerType(topLayerType) { }
 

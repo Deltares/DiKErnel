@@ -26,11 +26,9 @@ namespace DiKErnel::Integration
 
     RevetmentLocationConstructionPropertiesBase::RevetmentLocationConstructionPropertiesBase(
         string name,
-        const double x,
-        const double positionZ)
+        const double x)
         : _name(move(name)),
-          _x(x),
-          _positionZ(positionZ) { }
+          _x(x) { }
 
     void RevetmentLocationConstructionPropertiesBase::SetInitialDamage(
         unique_ptr<double> initialDamage)
@@ -52,11 +50,6 @@ namespace DiKErnel::Integration
     double RevetmentLocationConstructionPropertiesBase::GetX() const
     {
         return _x;
-    }
-
-    double RevetmentLocationConstructionPropertiesBase::GetPositionZ() const
-    {
-        return _positionZ;
     }
 
     const double* RevetmentLocationConstructionPropertiesBase::GetInitialDamage() const

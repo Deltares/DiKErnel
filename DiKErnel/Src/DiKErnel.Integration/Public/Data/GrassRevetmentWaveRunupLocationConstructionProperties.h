@@ -231,8 +231,6 @@ namespace DiKErnel::Integration
              *        The x coordinate.
              * \param outerSlope
              *        The outer slope.
-             * \param positionZ
-             *        The vertical position.
              * \param topLayerType
              *        The type of the top layer.
              */
@@ -240,7 +238,6 @@ namespace DiKErnel::Integration
                 std::string name,
                 double x,
                 double outerSlope,
-                double positionZ,
                 GrassRevetmentTopLayerType topLayerType);
 
         private:

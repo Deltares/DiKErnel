@@ -28,9 +28,8 @@ namespace DiKErnel::Integration
         string name,
         const double x,
         const double outerSlope,
-        const double positionZ,
         const GrassRevetmentTopLayerType topLayerType)
-        : GrassRevetmentWaveRunupLocationConstructionProperties(move(name), x, outerSlope, positionZ, topLayerType) {}
+        : GrassRevetmentWaveRunupLocationConstructionProperties(move(name), x, outerSlope, topLayerType) {}
 
     #pragma region Set methods
 

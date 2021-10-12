@@ -60,12 +60,6 @@ namespace DiKErnel::Integration
             double GetX() const;
 
             /*!
-             * \brief Gets the vertical position.
-             * \return The vertical position.
-             */
-            double GetPositionZ() const;
-
-            /*!
              * \brief Gets the initial damage.
              * \return The initial damage.
              */
@@ -84,18 +78,14 @@ namespace DiKErnel::Integration
              *        The name.
              * \param x
              *        The x coordinate.
-             * \param positionZ
-             *        The vertical position.
              */
             explicit RevetmentLocationConstructionPropertiesBase(
                 std::string name,
-                double x,
-                double positionZ);
+                double x);
 
         private:
             std::string _name;
             double _x;
-            double _positionZ;
             std::unique_ptr<double> _initialDamage = nullptr;
             std::unique_ptr<double> _failureNumber = nullptr;
     };

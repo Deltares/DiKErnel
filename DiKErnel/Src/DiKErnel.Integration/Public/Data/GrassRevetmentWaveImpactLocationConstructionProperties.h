@@ -40,15 +40,12 @@ namespace DiKErnel::Integration
              *        The name.
              * \param x
              *        The x coordinate.
-             * \param positionZ
-             *        The vertical position.
              * \param topLayerType
              *        The type of the top layer.
              */
             explicit GrassRevetmentWaveImpactLocationConstructionProperties(
                 std::string name,
                 double x,
-                double positionZ,
                 GrassRevetmentTopLayerType topLayerType);
 
             #pragma region Set methods

@@ -30,11 +30,10 @@ namespace DiKErnel::Integration
         string name,
         const double x,
         const double outerSlope,
-        const double positionZ,
         const NaturalStoneRevetmentTopLayerType topLayerType,
         const double thicknessTopLayer,
         const double relativeDensity)
-        : RevetmentLocationConstructionPropertiesBase(move(name), x, positionZ),
+        : RevetmentLocationConstructionPropertiesBase(move(name), x),
           _outerSlope(outerSlope),
           _topLayerType(topLayerType),
           _thicknessTopLayer(thicknessTopLayer),

@@ -31,7 +31,6 @@ namespace DiKErnel::Integration::TestUtil
                 std::string name,
                 double x,
                 double outerSlope,
-                double positionZ,
                 GrassRevetmentTopLayerType topLayerType);
     };
 }
