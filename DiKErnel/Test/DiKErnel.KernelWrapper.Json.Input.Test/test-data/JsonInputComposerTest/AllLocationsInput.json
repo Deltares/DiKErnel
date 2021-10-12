@@ -188,10 +188,6 @@
                             }
                         }
                     ]
-                },
-                "Profielschematisatie":
-                {
-                    "TanA": 0.25
                 }
             },
             {
@@ -208,10 +204,6 @@
                             "RekenmethodeSoort": "Natuursteen"
                         }
                     ]
-                },
-                "Profielschematisatie":
-                {
-                    "TanA": 0.3
                 }
             },
             {
