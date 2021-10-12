@@ -74,6 +74,8 @@ set(SOURCEFILES_INTERNAL_DATA_REVETMENT
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassRevetmentWaveRunupProfileSchematizationData.h
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassRevetmentWaveRunupRayleighLocationData.cpp
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassRevetmentWaveRunupRayleighLocationData.h
+  ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassWaveImpactLocationData.cpp
+  ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassWaveImpactLocationData.h
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputNaturalStoneLocationData.cpp
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputNaturalStoneLocationData.h
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputNaturalStoneRevetmentLocationData.cpp
