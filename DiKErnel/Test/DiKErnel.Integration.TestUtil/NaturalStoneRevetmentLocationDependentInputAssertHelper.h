@@ -30,7 +30,6 @@ namespace DiKErnel::Integration::TestUtil
             static void AssertGeneralProperties(
                 const std::string& name,
                 double x,
-                double outerSlope,
                 double relativeDensity,
                 double thicknessTopLayer,
                 const NaturalStoneRevetmentLocationDependentInput& locationDependentInput);

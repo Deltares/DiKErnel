@@ -29,14 +29,12 @@ namespace DiKErnel::Integration::TestUtil
     void NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertGeneralProperties(
         const string& name,
         const double x,
-        const double outerSlope,
         const double relativeDensity,
         const double thicknessTopLayer,
         const NaturalStoneRevetmentLocationDependentInput& locationDependentInput)
     {
         ASSERT_EQ(name, locationDependentInput.GetName());
         ASSERT_DOUBLE_EQ(x, locationDependentInput.GetX());
-        ASSERT_DOUBLE_EQ(outerSlope, locationDependentInput.GetOuterSlope());
         ASSERT_DOUBLE_EQ(relativeDensity, locationDependentInput.GetRelativeDensity());
         ASSERT_DOUBLE_EQ(thicknessTopLayer, locationDependentInput.GetThicknessTopLayer());
     }
