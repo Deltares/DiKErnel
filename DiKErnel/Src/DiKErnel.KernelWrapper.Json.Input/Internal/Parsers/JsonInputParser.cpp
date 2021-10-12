@@ -221,6 +221,11 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 parser = make_unique<JsonInputAsphaltWaveImpactParser>(readLocation, readRevetment, readCalculationMethod);
             }
 
+            if(calculationType == JsonInputCalculationType::GrassWaveImpact)
+            {
+                parser = make_unique<JsonInputGrassWaveImpactParser>(readLocation, readRevetment, readCalculationMethod);
+            }
+
             if(parser != nullptr)
             {
                 parsedLocations.push_back(forward<unique_ptr<JsonInputLocationData>>(parser->Parse()));
@@ -247,11 +252,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
         const JsonInputCalculationType calculationType)
     {
         unique_ptr<IJsonInputRevetmentLocationData> revetmentLocationData;
-
-        if (calculationType == JsonInputCalculationType::GrassWaveImpact)
-        {
-            revetmentLocationData = JsonInputGrassWaveImpactParser::ParseRevetmentLocationData(readRevetment, readCalculationMethod);
-        }
 
         if (calculationType == JsonInputCalculationType::GrassWaveRunup)
         {

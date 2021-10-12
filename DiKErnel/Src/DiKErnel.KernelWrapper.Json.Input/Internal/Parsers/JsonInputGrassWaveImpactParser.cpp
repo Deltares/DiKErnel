@@ -23,6 +23,7 @@
 #include "JsonInputDefinitions.h"
 #include "JsonInputGrassRevetmentDefinitions.h"
 #include "JsonInputGrassWaveImpactDefinitions.h"
+#include "JsonInputGrassWaveImpactLocationData.h"
 #include "JsonInputParserHelper.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
@@ -43,10 +44,26 @@ namespace DiKErnel::KernelWrapper::Json::Input
             }
         });
 
-    unique_ptr<JsonInputGrassRevetmentWaveImpactLocationData> JsonInputGrassWaveImpactParser::ParseRevetmentLocationData(
+    JsonInputGrassWaveImpactParser::JsonInputGrassWaveImpactParser(
+        const json& readLocation,
         const json& readRevetment,
         const json& readCalculationMethod)
+        : JsonInputLocationParser(readLocation, readRevetment, readCalculationMethod) {}
+
+    unique_ptr<JsonInputLocationData> JsonInputGrassWaveImpactParser::ParseLocationData(
+        string name,
+        double x,
+        unique_ptr<JsonInputDamageData> damageData)
     {
+        return make_unique<JsonInputGrassWaveImpactLocationData>(move(name), x, move(damageData), ParseRevetmentLocationData(),
+                                                                 ParseProfileSchematizationData());
+    }
+
+    unique_ptr<JsonInputGrassRevetmentWaveImpactLocationData> JsonInputGrassWaveImpactParser::ParseRevetmentLocationData() const
+    {
+        const auto& readRevetment = GetReadRevetment();
+        const auto& readCalculationMethod = GetReadCalculationMethod();
+
         auto locationData = make_unique<JsonInputGrassRevetmentWaveImpactLocationData>(
             readRevetment[JsonInputDefinitions::TYPE_TOP_LAYER].get<JsonInputGrassRevetmentTopLayerType>());
 
@@ -114,5 +131,13 @@ namespace DiKErnel::KernelWrapper::Json::Input
         }
 
         return locationData;
+    }
+
+    unique_ptr<JsonInputProfileSchematizationData> JsonInputGrassWaveImpactParser::ParseProfileSchematizationData() const
+    {
+        const auto& readProfileSchematization = GetReadLocation()[JsonInputDefinitions::PROFILE_SCHEMATIZATION];
+
+        return make_unique<JsonInputProfileSchematizationData>(
+            readProfileSchematization[JsonInputDefinitions::OUTER_SLOPE].get<double>());
     }
 }
