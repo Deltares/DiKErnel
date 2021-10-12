@@ -36,7 +36,6 @@ namespace DiKErnel::Integration
                 double x,
                 double initialDamage,
                 double failureNumber,
-                double positionZ,
                 std::unique_ptr<GrassRevetmentWaveImpactWaveAngleImpact> waveAngleImpact,
                 double minimumWaveHeightTemax,
                 double maximumWaveHeightTemin,

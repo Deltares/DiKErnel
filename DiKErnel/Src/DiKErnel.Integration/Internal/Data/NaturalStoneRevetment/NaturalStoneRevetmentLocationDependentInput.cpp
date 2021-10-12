@@ -40,7 +40,6 @@ namespace DiKErnel::Integration
         const double initialDamage,
         const double failureNumber,
         const double outerSlope,
-        const double positionZ,
         const double relativeDensity,
         const double thicknessTopLayer,
         unique_ptr<NaturalStoneRevetmentHydraulicLoads> hydraulicLoads,
@@ -50,7 +49,7 @@ namespace DiKErnel::Integration
         unique_ptr<NaturalStoneRevetmentDistanceMaximumWaveElevation> distanceMaximumWaveElevation,
         unique_ptr<NaturalStoneRevetmentNormativeWidthOfWaveImpact> normativeWidthOfWaveImpact,
         unique_ptr<NaturalStoneRevetmentWaveAngleImpact> waveAngleImpact)
-        : LocationDependentInput(move(name), x, initialDamage, failureNumber, positionZ),
+        : LocationDependentInput(move(name), x, initialDamage, failureNumber),
           _outerSlope(outerSlope),
           _relativeDensity(relativeDensity),
           _thicknessTopLayer(thicknessTopLayer),

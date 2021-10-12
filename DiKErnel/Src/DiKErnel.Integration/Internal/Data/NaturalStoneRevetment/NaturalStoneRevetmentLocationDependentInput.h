@@ -42,7 +42,6 @@ namespace DiKErnel::Integration
                 double initialDamage,
                 double failureNumber,
                 double outerSlope,
-                double positionZ,
                 double relativeDensity,
                 double thicknessTopLayer,
                 std::unique_ptr<NaturalStoneRevetmentHydraulicLoads> hydraulicLoads,

@@ -35,7 +35,6 @@ namespace DiKErnel::Integration
                 double initialDamage,
                 double failureNumber,
                 double outerSlope,
-                double positionZ,
                 double criticalCumulativeOverload,
                 double criticalFrontVelocity,
                 double increasedLoadTransitionAlphaM,

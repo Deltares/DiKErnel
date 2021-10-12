@@ -38,7 +38,6 @@ namespace DiKErnel::Integration
         const double initialDamage,
         const double failureNumber,
         const double outerSlope,
-        const double positionZ,
         const double failureTension,
         const double densityOfWater,
         const double soilElasticity,

@@ -33,9 +33,8 @@ namespace DiKErnel::Integration::TestUtil
                 std::string name,
                 const double x,
                 const double initialDamage,
-                const double failureNumber,
-                const double positionZ)
-                : LocationDependentInput(move(name), x, initialDamage, failureNumber, positionZ) {}
+                const double failureNumber)
+                : LocationDependentInput(move(name), x, initialDamage, failureNumber) {}
 
             MOCK_METHOD(std::unique_ptr<Core::TimeDependentOutput>, Calculate,
                         (double initialDamage,
