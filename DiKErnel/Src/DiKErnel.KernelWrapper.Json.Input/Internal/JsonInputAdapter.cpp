@@ -64,7 +64,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
         for (const auto& locationReference : locationReferences)
         {
             const auto& location = locationReference.get();
-            const auto& revetmentLocationData = location.GetRevetmentLocationData();
 
             if (const auto* asphaltWaveImpactLocationData = dynamic_cast<const JsonInputAsphaltWaveImpactLocationData*>(&location);
                 asphaltWaveImpactLocationData != nullptr)
@@ -80,11 +79,10 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 builder.AddGrassWaveImpactLocation(*constructionProperties);
             }
 
-            if (const auto* grassRevetmentWaveRunupRayleighLocationData = dynamic_cast<const JsonInputGrassRevetmentWaveRunupRayleighLocationData*>(
-                &revetmentLocationData); grassRevetmentWaveRunupRayleighLocationData != nullptr)
+            if (const auto* grassWaveRunupRayleighLocationData = dynamic_cast<const JsonInputGrassWaveRunupRayleighLocationData*>(&location);
+                grassWaveRunupRayleighLocationData != nullptr)
             {
-                const auto constructionProperties = CreateGrassWaveRunupRayleighConstructionProperties(
-                    location, *grassRevetmentWaveRunupRayleighLocationData);
+                const auto constructionProperties = CreateGrassWaveRunupRayleighConstructionProperties(*grassWaveRunupRayleighLocationData);
                 builder.AddGrassWaveRunupRayleighLocation(*constructionProperties);
             }
 
@@ -222,51 +220,49 @@ namespace DiKErnel::KernelWrapper::Json::Input
     }
 
     unique_ptr<GrassRevetmentWaveRunupRayleighLocationConstructionProperties> JsonInputAdapter::CreateGrassWaveRunupRayleighConstructionProperties(
-        const JsonInputLocationData& location,
-        const JsonInputGrassRevetmentWaveRunupRayleighLocationData& grassRevetmentWaveRunupRayleighLocationData)
+        const JsonInputGrassWaveRunupRayleighLocationData& location)
     {
         const auto& damageData = location.GetDamageData();
-        const auto& profileSchematizationData = dynamic_cast<const JsonInputGrassRevetmentWaveRunupProfileSchematizationData&>(
-            location.GetProfileSchematizationData());
+        const auto& revetmentData = location.GetRevetmentLocationData();
+        const auto& profileSchematizationData = location.GetProfileSchematizationData();
 
         auto constructionProperties = make_unique<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(
-            location.GetName(), location.GetX(), profileSchematizationData.GetOuterSlope(),
-            ConvertTopLayerType(grassRevetmentWaveRunupRayleighLocationData.GetTopLayerType()));
+            location.GetName(), location.GetX(), profileSchematizationData.GetOuterSlope(), ConvertTopLayerType(revetmentData.GetTopLayerType()));
 
         constructionProperties->SetInitialDamage(forward<unique_ptr<double>>(CreatePointerOfValue(damageData.GetInitialDamage())));
         constructionProperties->SetFailureNumber(forward<unique_ptr<double>>(CreatePointerOfValue(damageData.GetFailureNumber())));
 
         constructionProperties->SetCriticalCumulativeOverload(
-            forward<unique_ptr<double>>(CreatePointerOfValue(grassRevetmentWaveRunupRayleighLocationData.GetCriticalCumulativeOverload())));
+            forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetCriticalCumulativeOverload())));
         constructionProperties->SetCriticalFrontVelocity(
-            forward<unique_ptr<double>>(CreatePointerOfValue(grassRevetmentWaveRunupRayleighLocationData.GetCriticalFrontVelocity())));
+            forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetCriticalFrontVelocity())));
         constructionProperties->SetIncreasedLoadTransitionAlphaM(
-            forward<unique_ptr<double>>(CreatePointerOfValue(grassRevetmentWaveRunupRayleighLocationData.GetIncreasedLoadTransitionAlphaM())));
+            forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetIncreasedLoadTransitionAlphaM())));
         constructionProperties->SetReducedStrengthTransitionAlphaS(
-            forward<unique_ptr<double>>(CreatePointerOfValue(grassRevetmentWaveRunupRayleighLocationData.GetReducedStrengthTransitionAlphaS())));
+            forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetReducedStrengthTransitionAlphaS())));
         constructionProperties->SetAverageNumberOfWavesCtm(
-            forward<unique_ptr<double>>(CreatePointerOfValue(grassRevetmentWaveRunupRayleighLocationData.GetAverageNumberOfWavesCtm())));
+            forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetAverageNumberOfWavesCtm())));
 
         constructionProperties->SetRepresentativeWaveRunup2PAru(
-            forward<unique_ptr<double>>(CreatePointerOfValue(grassRevetmentWaveRunupRayleighLocationData.GetRepresentativeWaveRunup2PAru())));
+            forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetRepresentativeWaveRunup2PAru())));
         constructionProperties->SetRepresentativeWaveRunup2PBru(
-            forward<unique_ptr<double>>(CreatePointerOfValue(grassRevetmentWaveRunupRayleighLocationData.GetRepresentativeWaveRunup2PBru())));
+            forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetRepresentativeWaveRunup2PBru())));
         constructionProperties->SetRepresentativeWaveRunup2PCru(
-            forward<unique_ptr<double>>(CreatePointerOfValue(grassRevetmentWaveRunupRayleighLocationData.GetRepresentativeWaveRunup2PCru())));
+            forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetRepresentativeWaveRunup2PCru())));
         constructionProperties->SetRepresentativeWaveRunup2PGammab(
             forward<unique_ptr<double>>(CreatePointerOfValue(profileSchematizationData.GetRepresentativeWaveRunup2PGammab())));
         constructionProperties->SetRepresentativeWaveRunup2PGammaf(
             forward<unique_ptr<double>>(CreatePointerOfValue(profileSchematizationData.GetRepresentativeWaveRunup2PGammaf())));
 
         constructionProperties->SetWaveAngleImpactAbeta(
-            forward<unique_ptr<double>>(CreatePointerOfValue(grassRevetmentWaveRunupRayleighLocationData.GetWaveAngleImpactAbeta())));
+            forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetWaveAngleImpactAbeta())));
         constructionProperties->SetWaveAngleImpactBetamax(
-            forward<unique_ptr<double>>(CreatePointerOfValue(grassRevetmentWaveRunupRayleighLocationData.GetWaveAngleImpactBetamax())));
+            forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetWaveAngleImpactBetamax())));
 
         constructionProperties->SetFixedNumberOfWaves(
-            forward<unique_ptr<int>>(CreatePointerOfValue(grassRevetmentWaveRunupRayleighLocationData.GetFixedNumberOfWaves())));
+            forward<unique_ptr<int>>(CreatePointerOfValue(revetmentData.GetFixedNumberOfWaves())));
         constructionProperties->SetFrontVelocityCu(
-            forward<unique_ptr<double>>(CreatePointerOfValue(grassRevetmentWaveRunupRayleighLocationData.GetFrontVelocityCu())));
+            forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetFrontVelocityCu())));
 
         return constructionProperties;
     }
