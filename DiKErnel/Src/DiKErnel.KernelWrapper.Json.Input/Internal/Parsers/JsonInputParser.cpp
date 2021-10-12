@@ -23,6 +23,7 @@
 #include <fstream>
 
 #include "JsonInputAsphaltWaveImpactParser.h"
+#include "JsonInputCalculationType.h"
 #include "JsonInputDefinitions.h"
 #include "JsonInputGrassWaveImpactParser.h"
 #include "JsonInputGrassWaveRunupParser.h"
@@ -194,27 +195,11 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
         for (const auto& readLocation : readLocations)
         {
-            unique_ptr<double> initialDamage = nullptr;
-            unique_ptr<double> failureNumber = nullptr;
-
-            if (readLocation.contains(JsonInputDefinitions::DAMAGE))
-            {
-                const auto& readDamageVariables = readLocation[JsonInputDefinitions::DAMAGE];
-
-                initialDamage = JsonInputParserHelper::ParseOptionalDouble(readDamageVariables, JsonInputDefinitions::INITIAL_DAMAGE);
-                failureNumber = JsonInputParserHelper::ParseOptionalDouble(readDamageVariables, JsonInputDefinitions::FAILURE_NUMBER);
-            }
-
             const auto& readRevetment = readLocation[JsonInputDefinitions::REVETMENT];
             const auto& readCalculationMethod = readRevetment[JsonInputDefinitions::CALCULATION_METHOD][0];
             const auto& calculationType = readCalculationMethod[JsonInputDefinitions::CALCULATION_METHOD_TYPE].get<JsonInputCalculationType>();
 
             unique_ptr<JsonInputLocationParser> parser = nullptr;
-
-            if (calculationType == JsonInputCalculationType::NaturalStone)
-            {
-                parser = make_unique<JsonInputNaturalStoneParser>(readLocation, readRevetment, readCalculationMethod);
-            }
 
             if (calculationType == JsonInputCalculationType::AsphaltWaveImpact)
             {
@@ -231,27 +216,14 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 parser = make_unique<JsonInputGrassWaveRunupParser>(readLocation, readRevetment, readCalculationMethod);
             }
 
+            if (calculationType == JsonInputCalculationType::NaturalStone)
+            {
+                parser = make_unique<JsonInputNaturalStoneParser>(readLocation, readRevetment, readCalculationMethod);
+            }
+
             parsedLocations.push_back(forward<unique_ptr<JsonInputLocationData>>(parser->Parse()));
         }
 
         return parsedLocations;
-    }
-
-    unique_ptr<IJsonInputRevetmentLocationData> JsonInputParser::ParseRevetmentLocationData(
-        const json& readRevetment,
-        const json& readCalculationMethod,
-        const JsonInputCalculationType calculationType)
-    {
-        unique_ptr<IJsonInputRevetmentLocationData> revetmentLocationData;
-
-        return revetmentLocationData;
-    }
-
-    unique_ptr<JsonInputProfileSchematizationData> JsonInputParser::ParseProfileSchematizationData(
-        const json& readProfileSchematization,
-        const JsonInputCalculationType calculationType)
-    {
-        return make_unique<JsonInputProfileSchematizationData>(
-            readProfileSchematization[JsonInputDefinitions::OUTER_SLOPE].get<double>());
     }
 }

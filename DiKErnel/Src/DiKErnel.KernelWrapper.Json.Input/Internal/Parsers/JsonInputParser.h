@@ -25,7 +25,6 @@
 
 #include <nlohmann/json.hpp>
 
-#include "JsonInputCalculationType.h"
 #include "JsonInputData.h"
 #include "JsonInputDikeProfileData.h"
 
@@ -55,14 +54,5 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
             static std::vector<std::unique_ptr<JsonInputLocationData>> ParseLocationData(
                 const nlohmann::json& readCalculationData);
-
-            static std::unique_ptr<IJsonInputRevetmentLocationData> ParseRevetmentLocationData(
-                const nlohmann::json& readRevetment,
-                const nlohmann::json& readCalculationMethod,
-                JsonInputCalculationType calculationType);
-
-            static std::unique_ptr<JsonInputProfileSchematizationData> ParseProfileSchematizationData(
-                const nlohmann::json& readProfileSchematization,
-                JsonInputCalculationType calculationType);
     };
 }
