@@ -26,7 +26,7 @@
 #include "GrassRevetmentWaveImpactLocationConstructionProperties.h"
 #include "GrassRevetmentWaveRunupRayleighLocationConstructionProperties.h"
 #include "ICalculationInput.h"
-#include "JsonInputAsphaltRevetmentWaveImpactLocationData.h"
+#include "JsonInputAsphaltWaveImpactLocationData.h"
 #include "JsonInputData.h"
 #include "JsonInputGrassRevetmentWaveImpactLocationData.h"
 #include "JsonInputGrassRevetmentWaveRunupRayleighLocationData.h"
@@ -48,8 +48,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
             static std::unique_ptr<Integration::AsphaltRevetmentWaveImpactLocationConstructionProperties>
             CreateAsphaltWaveImpactConstructionProperties(
-                const JsonInputLocationData& location,
-                const JsonInputAsphaltRevetmentWaveImpactLocationData& asphaltRevetmentWaveImpactLocationData);
+                const JsonInputAsphaltWaveImpactLocationData& location);
 
             static Integration::AsphaltRevetmentTopLayerType ConvertTopLayerType(
                 JsonInputAsphaltRevetmentTopLayerType topLayerType);
