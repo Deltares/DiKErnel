@@ -30,7 +30,6 @@ namespace DiKErnel::Integration::TestUtil
         const string& name,
         const double x,
         const double outerSlope,
-        const double positionZ,
         const GrassRevetmentWaveRunupLocationDependentInput& locationDependentInput)
     {
         ASSERT_EQ(name, locationDependentInput.GetName());

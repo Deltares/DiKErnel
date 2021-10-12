@@ -31,7 +31,6 @@ namespace DiKErnel::Integration::TestUtil
                 const std::string& name,
                 double x,
                 double outerSlope,
-                double positionZ,
                 const GrassRevetmentWaveRunupLocationDependentInput& locationDependentInput);
 
             static void AssertRepresentative2P(
