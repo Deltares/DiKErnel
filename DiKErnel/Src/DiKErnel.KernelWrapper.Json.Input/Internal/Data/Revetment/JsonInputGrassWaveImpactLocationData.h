@@ -22,6 +22,7 @@
 
 #include "JsonInputGrassRevetmentWaveImpactLocationData.h"
 #include "JsonInputLocationData.h"
+#include "JsonInputProfileSchematizationData.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {

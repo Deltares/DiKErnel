@@ -23,9 +23,7 @@
 #include <memory>
 #include <string>
 
-#include "IJsonInputRevetmentLocationData.h"
 #include "JsonInputDamageData.h"
-#include "JsonInputProfileSchematizationData.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
@@ -33,13 +31,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
     {
         public:
             virtual ~JsonInputLocationData() = default;
-
-            explicit JsonInputLocationData(
-                std::string name,
-                double x,
-                std::unique_ptr<JsonInputDamageData> damageData,
-                std::unique_ptr<IJsonInputRevetmentLocationData> revetmentLocationData,
-                std::unique_ptr<JsonInputProfileSchematizationData> profileSchematizationData);
 
             explicit JsonInputLocationData(
                 std::string name,
@@ -52,15 +43,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
             const JsonInputDamageData& GetDamageData() const;
 
-            const IJsonInputRevetmentLocationData& GetRevetmentLocationData() const;
-
-            const JsonInputProfileSchematizationData& GetProfileSchematizationData() const;
-
         private:
             std::string _name;
             double _x;
             std::unique_ptr<JsonInputDamageData> _damageData;
-            std::unique_ptr<IJsonInputRevetmentLocationData> _revetmentLocationData;
-            std::unique_ptr<JsonInputProfileSchematizationData> _profileSchematizationData;
     };
 }
