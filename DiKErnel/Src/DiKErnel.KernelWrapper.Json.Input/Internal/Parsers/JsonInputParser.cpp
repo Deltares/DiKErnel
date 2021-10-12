@@ -209,14 +209,23 @@ namespace DiKErnel::KernelWrapper::Json::Input
             const auto& readCalculationMethod = readRevetment[JsonInputDefinitions::CALCULATION_METHOD][0];
             const auto& calculationType = readCalculationMethod[JsonInputDefinitions::CALCULATION_METHOD_TYPE].get<JsonInputCalculationType>();
 
-            auto parsedLocation = make_unique<JsonInputLocationData>(
-                readLocation[JsonInputDefinitions::NAME].get<string>(),
-                readLocation[JsonInputDefinitions::X].get<double>(),
-                make_unique<JsonInputDamageData>(move(initialDamage), move(failureNumber)),
-                ParseRevetmentLocationData(readRevetment, readCalculationMethod, calculationType),
-                ParseProfileSchematizationData(readLocation[JsonInputDefinitions::PROFILE_SCHEMATIZATION], calculationType));
+            if (calculationType == JsonInputCalculationType::NaturalStone)
+            {
+                unique_ptr<JsonInputLocationParser> parser = make_unique<JsonInputNaturalStoneParser>(
+                    readLocation, readRevetment, readCalculationMethod);
+                parsedLocations.push_back(forward<unique_ptr<JsonInputLocationData>>(parser->Parse()));
+            }
+            else
+            {
+                auto parsedLocation = make_unique<JsonInputLocationData>(
+                    readLocation[JsonInputDefinitions::NAME].get<string>(),
+                    readLocation[JsonInputDefinitions::X].get<double>(),
+                    make_unique<JsonInputDamageData>(move(initialDamage), move(failureNumber)),
+                    ParseRevetmentLocationData(readRevetment, readCalculationMethod, calculationType),
+                    ParseProfileSchematizationData(readLocation[JsonInputDefinitions::PROFILE_SCHEMATIZATION], calculationType));
 
-            parsedLocations.push_back(move(parsedLocation));
+                parsedLocations.push_back(move(parsedLocation));
+            }
         }
 
         return parsedLocations;
@@ -242,11 +251,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
         if (calculationType == JsonInputCalculationType::GrassWaveRunup)
         {
             revetmentLocationData = JsonInputGrassWaveRunupParser::ParseRevetmentLocationData(readRevetment, readCalculationMethod);
-        }
-
-        if (calculationType == JsonInputCalculationType::NaturalStone)
-        {
-            revetmentLocationData = JsonInputNaturalStoneParser::ParseRevetmentLocationData(readRevetment, readCalculationMethod);
         }
 
         return revetmentLocationData;
