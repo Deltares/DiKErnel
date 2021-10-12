@@ -299,8 +299,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
         const auto& profileSchematizationData = location.GetProfileSchematizationData();
 
         auto constructionProperties = make_unique<NaturalStoneRevetmentLocationConstructionProperties>(
-            location.GetName(), location.GetX(), profileSchematizationData.GetOuterSlope(),
-            ConvertTopLayerType(naturalStoneRevetmentLocationData.GetTopLayerType()),
+            location.GetName(), location.GetX(), ConvertTopLayerType(naturalStoneRevetmentLocationData.GetTopLayerType()),
             naturalStoneRevetmentLocationData.GetThicknessTopLayer(), naturalStoneRevetmentLocationData.GetRelativeDensity());
 
         constructionProperties->SetInitialDamage(forward<unique_ptr<double>>(CreatePointerOfValue(damageData.GetInitialDamage())));
