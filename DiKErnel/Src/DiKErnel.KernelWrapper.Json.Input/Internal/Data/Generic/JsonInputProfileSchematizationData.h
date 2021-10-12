@@ -28,16 +28,12 @@ namespace DiKErnel::KernelWrapper::Json::Input
             virtual ~JsonInputProfileSchematizationData() = default;
 
             explicit JsonInputProfileSchematizationData(
-                double outerSlope,
-                double positionZ
+                double outerSlope
             );
 
             double GetOuterSlope() const;
 
-            double GetPositionZ() const;
-
         private:
             double _outerSlope;
-            double _positionZ;
     };
 }

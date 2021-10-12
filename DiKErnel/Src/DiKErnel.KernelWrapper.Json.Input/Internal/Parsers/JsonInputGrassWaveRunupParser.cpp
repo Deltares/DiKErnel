@@ -80,8 +80,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
         const json& readProfileSchematization)
     {
         auto profileSchematization = make_unique<JsonInputGrassRevetmentWaveRunupProfileSchematizationData>(
-            readProfileSchematization[JsonInputDefinitions::OUTER_SLOPE].get<double>(),
-            readProfileSchematization[JsonInputDefinitions::POSITION_Z].get<double>());
+            readProfileSchematization[JsonInputDefinitions::OUTER_SLOPE].get<double>());
 
         profileSchematization->SetRepresentativeWaveRunup2PGammab(
             forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(

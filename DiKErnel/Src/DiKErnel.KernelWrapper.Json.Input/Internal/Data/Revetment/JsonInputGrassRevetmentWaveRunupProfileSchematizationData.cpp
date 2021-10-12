@@ -25,9 +25,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
     using namespace std;
 
     JsonInputGrassRevetmentWaveRunupProfileSchematizationData::JsonInputGrassRevetmentWaveRunupProfileSchematizationData(
-        const double outerSlope,
-        const double positionZ)
-        : JsonInputProfileSchematizationData(outerSlope, positionZ) { }
+        const double outerSlope)
+        : JsonInputProfileSchematizationData(outerSlope) { }
 
     void JsonInputGrassRevetmentWaveRunupProfileSchematizationData::SetRepresentativeWaveRunup2PGammab(
         unique_ptr<double> representativeWaveRunup2PGammab)
