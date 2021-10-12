@@ -20,8 +20,8 @@
 
 #include "JsonInputAsphaltWaveImpactParser.h"
 
-#include "JsonInputAsphaltLocationData.h"
 #include "JsonInputAsphaltWaveImpactDefinitions.h"
+#include "JsonInputAsphaltWaveImpactLocationData.h"
 #include "JsonInputDefinitions.h"
 #include "JsonInputParserHelper.h"
 
@@ -52,8 +52,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
         double x,
         unique_ptr<JsonInputDamageData> damageData)
     {
-        return make_unique<JsonInputAsphaltLocationData>(move(name), x, move(damageData), ParseRevetmentLocationData(),
-                                                         ParseProfileSchematizationData());
+        return make_unique<JsonInputAsphaltWaveImpactLocationData>(move(name), x, move(damageData), ParseRevetmentLocationData(),
+                                                                   ParseProfileSchematizationData());
     }
 
     unique_ptr<JsonInputAsphaltRevetmentWaveImpactLocationData> JsonInputAsphaltWaveImpactParser::ParseRevetmentLocationData() const

@@ -27,10 +27,10 @@
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
-    class JsonInputAsphaltLocationData : public JsonInputLocationData
+    class JsonInputAsphaltWaveImpactLocationData : public JsonInputLocationData
     {
         public:
-            explicit JsonInputAsphaltLocationData(
+            explicit JsonInputAsphaltWaveImpactLocationData(
                 std::string name,
                 double x,
                 std::unique_ptr<JsonInputDamageData> damageData,
