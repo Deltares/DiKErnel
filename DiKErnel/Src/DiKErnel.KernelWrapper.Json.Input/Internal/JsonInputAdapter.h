@@ -30,6 +30,7 @@
 #include "JsonInputData.h"
 #include "JsonInputGrassRevetmentWaveImpactLocationData.h"
 #include "JsonInputGrassRevetmentWaveRunupRayleighLocationData.h"
+#include "JsonInputNaturalStoneLocationData.h"
 #include "JsonInputNaturalStoneRevetmentLocationData.h"
 #include "NaturalStoneRevetmentLocationConstructionProperties.h"
 
@@ -66,8 +67,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 JsonInputGrassRevetmentTopLayerType topLayerType);
 
             static std::unique_ptr<Integration::NaturalStoneRevetmentLocationConstructionProperties> CreateNaturalStoneConstructionProperties(
-                const JsonInputLocationData& location,
-                const JsonInputNaturalStoneRevetmentLocationData& naturalStoneRevetmentLocationData);
+                const JsonInputNaturalStoneLocationData& location);
 
             static Integration::NaturalStoneRevetmentTopLayerType ConvertTopLayerType(
                 JsonInputNaturalStoneRevetmentTopLayerType topLayerType);

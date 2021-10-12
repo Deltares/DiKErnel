@@ -22,7 +22,7 @@
 
 #include "JsonInputConversionException.h"
 #include "JsonInputGrassRevetmentWaveRunupProfileSchematizationData.h"
-#include "JsonInputNaturalStoneRevetmentLocationData.h"
+#include "JsonInputNaturalStoneLocationData.h"
 #include "NaturalStoneRevetmentLocationConstructionProperties.h"
 #include "RevetmentCalculationInputBuilder.h"
 
@@ -91,10 +91,10 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 builder.AddGrassWaveRunupRayleighLocation(*constructionProperties);
             }
 
-            if (const auto* naturalStoneRevetmentLocationData = dynamic_cast<const JsonInputNaturalStoneRevetmentLocationData*>(
-                &revetmentLocationData); naturalStoneRevetmentLocationData != nullptr)
+            if (const auto* naturalStoneLocationData = dynamic_cast<const JsonInputNaturalStoneLocationData*>(&location);
+                naturalStoneLocationData != nullptr)
             {
-                const auto constructionProperties = CreateNaturalStoneConstructionProperties(location, *naturalStoneRevetmentLocationData);
+                const auto constructionProperties = CreateNaturalStoneConstructionProperties(*naturalStoneLocationData);
                 builder.AddNaturalStoneLocation(*constructionProperties);
             }
         }
@@ -292,69 +292,68 @@ namespace DiKErnel::KernelWrapper::Json::Input
     }
 
     unique_ptr<NaturalStoneRevetmentLocationConstructionProperties> JsonInputAdapter::CreateNaturalStoneConstructionProperties(
-        const JsonInputLocationData& location,
-        const JsonInputNaturalStoneRevetmentLocationData& naturalStoneRevetmentLocationData)
+        const JsonInputNaturalStoneLocationData& location)
     {
         const auto& damageData = location.GetDamageData();
-        const auto& profileSchematizationData = location.GetProfileSchematizationData();
+        const auto& revetmentData = location.GetRevetmentLocationData();
 
         auto constructionProperties = make_unique<NaturalStoneRevetmentLocationConstructionProperties>(
-            location.GetName(), location.GetX(), ConvertTopLayerType(naturalStoneRevetmentLocationData.GetTopLayerType()),
-            naturalStoneRevetmentLocationData.GetThicknessTopLayer(), naturalStoneRevetmentLocationData.GetRelativeDensity());
+            location.GetName(), location.GetX(), ConvertTopLayerType(revetmentData.GetTopLayerType()), revetmentData.GetThicknessTopLayer(),
+            revetmentData.GetRelativeDensity());
 
         constructionProperties->SetInitialDamage(forward<unique_ptr<double>>(CreatePointerOfValue(damageData.GetInitialDamage())));
         constructionProperties->SetFailureNumber(forward<unique_ptr<double>>(CreatePointerOfValue(damageData.GetFailureNumber())));
 
         constructionProperties->SetHydraulicLoadAp(
-            forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData.GetHydraulicLoadAp())));
+            forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetHydraulicLoadAp())));
         constructionProperties->SetHydraulicLoadBp(
-            forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData.GetHydraulicLoadBp())));
+            forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetHydraulicLoadBp())));
         constructionProperties->SetHydraulicLoadCp(
-            forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData.GetHydraulicLoadCp())));
+            forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetHydraulicLoadCp())));
         constructionProperties->SetHydraulicLoadNp(
-            forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData.GetHydraulicLoadNp())));
+            forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetHydraulicLoadNp())));
         constructionProperties->SetHydraulicLoadAs(
-            forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData.GetHydraulicLoadAs())));
+            forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetHydraulicLoadAs())));
         constructionProperties->SetHydraulicLoadBs(
-            forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData.GetHydraulicLoadBs())));
+            forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetHydraulicLoadBs())));
         constructionProperties->SetHydraulicLoadCs(
-            forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData.GetHydraulicLoadCs())));
+            forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetHydraulicLoadCs())));
         constructionProperties->SetHydraulicLoadNs(
-            forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData.GetHydraulicLoadNs())));
+            forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetHydraulicLoadNs())));
         constructionProperties->SetHydraulicLoadXib(
-            forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData.GetHydraulicLoadXib())));
+            forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetHydraulicLoadXib())));
 
         constructionProperties->SetSlopeUpperLevelAus(
-            forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData.GetSlopeUpperLevelAus())));
+            forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetSlopeUpperLevelAus())));
         constructionProperties->SetSlopeLowerLevelAls(
-            forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData.GetSlopeLowerLevelAls())));
+            forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetSlopeLowerLevelAls())));
 
         constructionProperties->SetUpperLimitLoadingAul(
-            forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData.GetUpperLimitLoadingAul())));
+            forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetUpperLimitLoadingAul())));
         constructionProperties->SetUpperLimitLoadingBul(
-            forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData.GetUpperLimitLoadingBul())));
+            forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetUpperLimitLoadingBul())));
         constructionProperties->SetUpperLimitLoadingCul(
-            forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData.GetUpperLimitLoadingCul())));
+            forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetUpperLimitLoadingCul())));
 
         constructionProperties->SetLowerLimitLoadingAll(
-            forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData.GetLowerLimitLoadingAll())));
+            forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetLowerLimitLoadingAll())));
         constructionProperties->SetLowerLimitLoadingBll(
-            forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData.GetLowerLimitLoadingBll())));
+            forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetLowerLimitLoadingBll())));
         constructionProperties->SetLowerLimitLoadingCll(
-            forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData.GetLowerLimitLoadingCll())));
+            forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetLowerLimitLoadingCll())));
 
         constructionProperties->SetDistanceMaximumWaveElevationAsmax(
-            forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData.GetDistanceMaximumWaveElevationAsmax())));
+            forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetDistanceMaximumWaveElevationAsmax())));
         constructionProperties->SetDistanceMaximumWaveElevationBsmax(
-            forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData.GetDistanceMaximumWaveElevationBsmax())));
+            forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetDistanceMaximumWaveElevationBsmax())));
 
         constructionProperties->SetNormativeWidthOfWaveImpactAwi(
-            forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData.GetNormativeWidthOfWaveImpactAwi())));
+            forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetNormativeWidthOfWaveImpactAwi())));
         constructionProperties->SetNormativeWidthOfWaveImpactBwi(
-            forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData.GetNormativeWidthOfWaveImpactBwi())));
+            forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetNormativeWidthOfWaveImpactBwi())));
 
         constructionProperties->SetWaveAngleImpactBetamax(
-            forward<unique_ptr<double>>(CreatePointerOfValue(naturalStoneRevetmentLocationData.GetWaveAngleImpactBetamax())));
+            forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetWaveAngleImpactBetamax())));
 
         return constructionProperties;
     }
