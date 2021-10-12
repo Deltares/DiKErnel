@@ -183,7 +183,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
 
         LocationDependentInputAssertHelper::AssertDamageProperties(0.1, 1.06, *naturalStoneRevetmentLocationDependentInputItem1);
         NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertGeneralProperties(
-            "NatuursteenAlleOptiesAan", 11, 0.25, 0.9, 1.65, 0.3, *naturalStoneRevetmentLocationDependentInputItem1);
+            "NatuursteenAlleOptiesAan", 11, 0.25, 1.65, 0.3, *naturalStoneRevetmentLocationDependentInputItem1);
         NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertHydraulicLoads(
             5, 1.3, 1.7, 0.9, -0.8, 10, -8, 6, 4.9, naturalStoneRevetmentLocationDependentInputItem1->GetHydraulicLoads());
         NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertSlope(
@@ -205,7 +205,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
 
         LocationDependentInputAssertHelper::AssertDamageProperties(0, 1, *naturalStoneRevetmentLocationDependentInputItem2);
         NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertGeneralProperties(
-            "NatuursteenAlleOptiesUit", 8.79, 0.3, 1, 1.65, 0.7, *naturalStoneRevetmentLocationDependentInputItem2);
+            "NatuursteenAlleOptiesUit", 8.79, 0.3, 1.65, 0.7, *naturalStoneRevetmentLocationDependentInputItem2);
         NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertHydraulicLoads(
             4, 0, 0, -0.9, 0.8, 0, 0, 0.6, 2.9, naturalStoneRevetmentLocationDependentInputItem2->GetHydraulicLoads());
         NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertSlope(
@@ -227,7 +227,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
 
         LocationDependentInputAssertHelper::AssertDamageProperties(0.04, 1.07, *grassRevetmentWaveImpactLocationDependentInputItem1);
         GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertGeneralProperties(
-            "GrasGolfklapAlleOptiesAan", 0, 1, *grassRevetmentWaveImpactLocationDependentInputItem1);
+            "GrasGolfklapAlleOptiesAan", 0, *grassRevetmentWaveImpactLocationDependentInputItem1);
         GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertMinimumWaveHeight(
             2500000, *grassRevetmentWaveImpactLocationDependentInputItem1);
         GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertMaximumWaveHeight(
@@ -247,7 +247,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
 
         LocationDependentInputAssertHelper::AssertDamageProperties(0, 1, *grassRevetmentWaveImpactLocationDependentInputItem2);
         GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertGeneralProperties(
-            "GrasGolfklapGeslotenZodeAlleOptiesUit", -18.4, 0, *grassRevetmentWaveImpactLocationDependentInputItem2);
+            "GrasGolfklapGeslotenZodeAlleOptiesUit", -18.4, *grassRevetmentWaveImpactLocationDependentInputItem2);
         GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertMinimumWaveHeight(
             3600000, *grassRevetmentWaveImpactLocationDependentInputItem2);
         GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertMaximumWaveHeight(
@@ -267,7 +267,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
 
         LocationDependentInputAssertHelper::AssertDamageProperties(0, 1, *grassRevetmentWaveImpactLocationDependentInputItem3);
         GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertGeneralProperties(
-            "GrasGolfklapOpenZodeAlleOptiesUit", 4, 0, *grassRevetmentWaveImpactLocationDependentInputItem3);
+            "GrasGolfklapOpenZodeAlleOptiesUit", 4, *grassRevetmentWaveImpactLocationDependentInputItem3);
         GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertMinimumWaveHeight(
             3600000, *grassRevetmentWaveImpactLocationDependentInputItem3);
         GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertMaximumWaveHeight(
@@ -287,7 +287,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
 
         LocationDependentInputAssertHelper::AssertDamageProperties(0.0006, 0.45, *grassRevetmentWaveRunupRayleighLocationDependentInputItem1);
         GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertGeneralProperties(
-            "GrasGolfoploopRayleighDiscreetAlleOptiesAan", 157, 0.7, 5, *grassRevetmentWaveRunupRayleighLocationDependentInputItem1);
+            "GrasGolfoploopRayleighDiscreetAlleOptiesAan", 157, 0.7, *grassRevetmentWaveRunupRayleighLocationDependentInputItem1);
         GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertRepresentative2P(
             1.56, 4.6, 3.5, 3.2, 4.1, grassRevetmentWaveRunupRayleighLocationDependentInputItem1->GetRepresentative2P());
         GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertWaveAngleImpact(
@@ -307,7 +307,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
 
         LocationDependentInputAssertHelper::AssertDamageProperties(0, 1, *grassRevetmentWaveRunupRayleighLocationDependentInputItem2);
         GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertGeneralProperties(
-            "GrasGolfoploopRayleighDiscreetGeslotenZodeAlleOptiesUit", 0.98, 0.8, 5.1, *grassRevetmentWaveRunupRayleighLocationDependentInputItem2);
+            "GrasGolfoploopRayleighDiscreetGeslotenZodeAlleOptiesUit", 0.98, 0.8, *grassRevetmentWaveRunupRayleighLocationDependentInputItem2);
         GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertRepresentative2P(
             1.65, 4, 1.5, 1, 1, grassRevetmentWaveRunupRayleighLocationDependentInputItem2->GetRepresentative2P());
         GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertWaveAngleImpact(
@@ -327,7 +327,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
 
         LocationDependentInputAssertHelper::AssertDamageProperties(0, 1, *grassRevetmentWaveRunupRayleighLocationDependentInputItem3);
         GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertGeneralProperties(
-            "GrasGolfoploopRayleighDiscreetOpenZodeAlleOptiesUit", 7.698, 0.9, 5.2, *grassRevetmentWaveRunupRayleighLocationDependentInputItem3);
+            "GrasGolfoploopRayleighDiscreetOpenZodeAlleOptiesUit", 7.698, 0.9, *grassRevetmentWaveRunupRayleighLocationDependentInputItem3);
         GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertRepresentative2P(
             1.65, 4, 1.5, 1, 1, grassRevetmentWaveRunupRayleighLocationDependentInputItem3->GetRepresentative2P());
         GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertWaveAngleImpact(
@@ -347,7 +347,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
 
         LocationDependentInputAssertHelper::AssertDamageProperties(1, 0.0098, *asphaltRevetmentWaveImpactLocationDependentInputItem1);
         AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertGeneralProperties(
-            "AsfaltAlleOptiesAan", 25, 0.6548, 7.6, 5.6, 0.25, 53, 1.1, 4, 0.58, *asphaltRevetmentWaveImpactLocationDependentInputItem1);
+            "AsfaltAlleOptiesAan", 25, 0.6548, 5.6, 0.25, 53, 1.1, 4, 0.58, *asphaltRevetmentWaveImpactLocationDependentInputItem1);
         AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertLayer(
             0.16, 18214, asphaltRevetmentWaveImpactLocationDependentInputItem1->GetUpperLayer());
         AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertLayer(
@@ -382,7 +382,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
 
         LocationDependentInputAssertHelper::AssertDamageProperties(0, 1, *asphaltRevetmentWaveImpactLocationDependentInputItem2);
         AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertGeneralProperties(
-            "AsfaltAlleOptiesUit", 19, 0.233, 2.988, 1.56, 1.25, 56, 1, 1, 0.35, *asphaltRevetmentWaveImpactLocationDependentInputItem2);
+            "AsfaltAlleOptiesUit", 19, 0.233, 1.56, 1.25, 56, 1, 1, 0.35, *asphaltRevetmentWaveImpactLocationDependentInputItem2);
         AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertLayer(
             0.16, 18214, asphaltRevetmentWaveImpactLocationDependentInputItem2->GetUpperLayer());
         AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertLayer(
