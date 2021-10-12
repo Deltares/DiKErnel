@@ -203,27 +203,36 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
             if (calculationType == JsonInputCalculationType::AsphaltWaveImpact)
             {
-                parser = make_unique<JsonInputAsphaltWaveImpactParser>(readLocation, readRevetment, readCalculationMethod);
+                parser = CreateParser<JsonInputAsphaltWaveImpactParser>(readLocation, readRevetment, readCalculationMethod);
             }
 
             if (calculationType == JsonInputCalculationType::GrassWaveImpact)
             {
-                parser = make_unique<JsonInputGrassWaveImpactParser>(readLocation, readRevetment, readCalculationMethod);
+                parser = CreateParser<JsonInputGrassWaveImpactParser>(readLocation, readRevetment, readCalculationMethod);
             }
 
             if (calculationType == JsonInputCalculationType::GrassWaveRunup)
             {
-                parser = make_unique<JsonInputGrassWaveRunupParser>(readLocation, readRevetment, readCalculationMethod);
+                parser = CreateParser<JsonInputGrassWaveRunupParser>(readLocation, readRevetment, readCalculationMethod);
             }
 
             if (calculationType == JsonInputCalculationType::NaturalStone)
             {
-                parser = make_unique<JsonInputNaturalStoneParser>(readLocation, readRevetment, readCalculationMethod);
+                parser = CreateParser<JsonInputNaturalStoneParser>(readLocation, readRevetment, readCalculationMethod);
             }
 
             parsedLocations.push_back(forward<unique_ptr<JsonInputLocationData>>(parser->Parse()));
         }
 
         return parsedLocations;
+    }
+
+    template <class T>
+    unique_ptr<T> JsonInputParser::CreateParser(
+        const json& readLocation,
+        const json& readRevetment,
+        const json& readCalculationMethod)
+    {
+        return make_unique<T>(readLocation, readRevetment, readCalculationMethod);
     }
 }
