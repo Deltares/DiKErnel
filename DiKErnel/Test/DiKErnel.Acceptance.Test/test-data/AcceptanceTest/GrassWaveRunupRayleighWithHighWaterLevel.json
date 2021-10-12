@@ -192,7 +192,6 @@
                 "Profielschematisatie": 
                 {
                     "TanA": 0.25,
-                    "PositieZ": 1.0,
                     "BermfactorGammab": 1.0,
                     "RuwheidsfactorGammaf": 1.0
                 }

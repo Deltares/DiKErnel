@@ -57,7 +57,7 @@ namespace DiKErnel::KernelWrapper::Json::Output
             const auto* outputItem = _timeDependentOutputItems[i];
 
             physicsJson[JsonOutputGrassRevetmentWaveRunupRayleighDefinitions::INCREMENT_DAMAGE][i] = outputItem->GetIncrementDamage();
-            physicsJson[JsonOutputGrassRevetmentWaveRunupRayleighDefinitions::VERTICAL_DISTANCE_WATER_LEVELE_LEVATION][i] =
+            physicsJson[JsonOutputGrassRevetmentWaveRunupRayleighDefinitions::VERTICAL_DISTANCE_WATER_LEVEL_ELEVATION][i] =
                     outputItem->GetVerticalDistanceWaterLevelElevation();
 
             CalculationOutputAdapterHelper::SetPropertyWhenApplicable(

@@ -191,8 +191,7 @@
                 },
                 "Profielschematisatie":
                 {
-                    "TanA": 0.25,
-                    "PositieZ": 0.9
+                    "TanA": 0.25
                 }
             },
             {
@@ -212,8 +211,7 @@
                 },
                 "Profielschematisatie":
                 {
-                    "TanA": 0.3,
-                    "PositieZ": 1.0
+                    "TanA": 0.3
                 }
             },
             {
@@ -261,8 +259,7 @@
                 },
                 "Profielschematisatie":
                 {
-                    "TanA": 0.2,
-                    "PositieZ": 1.0
+                    "TanA": 0.2
                 }
             },
             {
@@ -280,8 +277,7 @@
                 },
                 "Profielschematisatie":
                 {
-                    "TanA": 0.3,
-                    "PositieZ": 0.0
+                    "TanA": 0.3
                 }
             },
             {
@@ -299,8 +295,7 @@
                 },
                 "Profielschematisatie":
                 {
-                    "TanA": 0.3,
-                    "PositieZ": 0.0
+                    "TanA": 0.3
                 }
             },
             {
@@ -352,7 +347,6 @@
                 "Profielschematisatie":
                 {
                     "TanA": 0.7,
-                    "PositieZ": 5.0,
                     "BermfactorGammab": 3.2,
                     "RuwheidsfactorGammaf": 4.1
                 }
@@ -376,8 +370,7 @@
                 },
                 "Profielschematisatie":
                 {
-                    "TanA": 0.8,
-                    "PositieZ": 5.1
+                    "TanA": 0.8
                 }
             },
             {
@@ -399,8 +392,7 @@
                 },
                 "Profielschematisatie":
                 {
-                    "TanA": 0.9,
-                    "PositieZ": 5.2
+                    "TanA": 0.9
                 }
             },
             {
@@ -486,8 +478,7 @@
                 },
                 "Profielschematisatie":
                 {
-                    "TanA": 0.6548,
-                    "PositieZ": 7.6
+                    "TanA": 0.6548
                 }
             },
             {
@@ -513,8 +504,7 @@
                 },
                 "Profielschematisatie":
                 {
-                    "TanA": 0.233,
-                    "PositieZ": 2.988
+                    "TanA": 0.233
                 }
             }
         ]

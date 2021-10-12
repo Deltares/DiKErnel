@@ -320,8 +320,7 @@
                 },
                 "Profielschematisatie":
                 {
-                    "TanA": 0.233,
-                    "PositieZ": 2.988
+                    "TanA": 0.233
                 }
             },
             {
@@ -531,8 +530,7 @@
                 },
                 "Profielschematisatie":
                 {
-                    "TanA": 0.233,
-                    "PositieZ": 2.988
+                    "TanA": 0.233
                 }
             }
         ]

@@ -1,41 +1,40 @@
 {
-	"Rekendata":
-	{
-		"Tijd": [],
-		"HydraulischeBelastingen": 
-		{
-			"RandvoorwaardenPerTijdstap": []
-		},
-		"Dijkprofiel": [],
-		"Locaties":
-		[
-			{
-				"Naam": "AsfaltGolfklap",
-				"PositieLocatie": 0,
-				"Bekleding":
-				{
-					"TypeToplaag": "WaterbouwAsfaltZonderBeton",
-					"BreuksterkteAsfalt": 1.56,
-					"SoortelijkeDichtheidWater": 1.25,
-					"VeerconstanteOndergrond": 56,
-					"Toplaag":
-					{
-						"Dikte": 0.16,
-						"Stijfheidsmodulus": 18214
-					},
-					"Rekenmethoden":
-					[
-						{
-							"RekenmethodeSoort": "AsfaltGolfklap"
-						}
-					]
-				},
-				"Profielschematisatie":
-				{
-					"TanA": 0.3,
-					"PositieZ": 0.0
-				}
-			}
-		]
-	}
+    "Rekendata":
+    {
+        "Tijd": [],
+        "HydraulischeBelastingen": 
+        {
+            "RandvoorwaardenPerTijdstap": []
+        },
+        "Dijkprofiel": [],
+        "Locaties":
+        [
+            {
+                "Naam": "AsfaltGolfklap",
+                "PositieLocatie": 0,
+                "Bekleding":
+                {
+                    "TypeToplaag": "WaterbouwAsfaltZonderBeton",
+                    "BreuksterkteAsfalt": 1.56,
+                    "SoortelijkeDichtheidWater": 1.25,
+                    "VeerconstanteOndergrond": 56,
+                    "Toplaag":
+                    {
+                        "Dikte": 0.16,
+                        "Stijfheidsmodulus": 18214
+                    },
+                    "Rekenmethoden":
+                    [
+                        {
+                            "RekenmethodeSoort": "AsfaltGolfklap"
+                        }
+                    ]
+                },
+                "Profielschematisatie":
+                {
+                    "TanA": 0.3
+                }
+            }
+        ]
+    }
 }

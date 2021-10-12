@@ -1,35 +1,34 @@
 {
-	"Rekendata":
-	{
-		"Tijd": [],
-		"HydraulischeBelastingen": 
-		{
-			"RandvoorwaardenPerTijdstap": []
-		},
-		"Dijkprofiel": [],
-		"Locaties":
-		[
-			{
-				"Naam": "Natuursteen",
-				"PositieLocatie": 0,
-				"Bekleding":
-				{
-					"TypeToplaag": "OngeldigeSteen",
-					"RelatieveDichtheid": 1.65,
-					"DikteToplaag": 0.3,
-					"Rekenmethoden": 
-					[
-						{
-							"RekenmethodeSoort": "Natuursteen"
-						}
-					]
-				},
-				"Profielschematisatie":
-				{
-					"TanA": 0.25,
-					"PositieZ": 0.9
-				}
-			}
-		]
-	}
+    "Rekendata":
+    {
+        "Tijd": [],
+        "HydraulischeBelastingen": 
+        {
+            "RandvoorwaardenPerTijdstap": []
+        },
+        "Dijkprofiel": [],
+        "Locaties":
+        [
+            {
+                "Naam": "Natuursteen",
+                "PositieLocatie": 0,
+                "Bekleding":
+                {
+                    "TypeToplaag": "OngeldigeSteen",
+                    "RelatieveDichtheid": 1.65,
+                    "DikteToplaag": 0.3,
+                    "Rekenmethoden": 
+                    [
+                        {
+                            "RekenmethodeSoort": "Natuursteen"
+                        }
+                    ]
+                },
+                "Profielschematisatie":
+                {
+                    "TanA": 0.25
+                }
+            }
+        ]
+    }
 }

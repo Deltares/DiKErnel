@@ -223,8 +223,7 @@
                 },
                 "Profielschematisatie":
                 {
-                    "TanA": 0.25,
-                    "PositieZ": 1.6
+                    "TanA": 0.25
                 }
             },
             {
@@ -272,8 +271,7 @@
                 },
                 "Profielschematisatie":
                 {
-                    "TanA": 0.2,
-                    "PositieZ": 1.0
+                    "TanA": 0.2
                 }
             },
             {
@@ -325,7 +323,6 @@
                 "Profielschematisatie":
                 {
                     "TanA": 0.7,
-                    "PositieZ": 5.0,
                     "BermfactorGammab": 3.2,
                     "RuwheidsfactorGammaf": 4.1
                 }
@@ -413,8 +410,7 @@
                 },
                 "Profielschematisatie":
                 {
-                    "TanA": 0.6548,
-                    "PositieZ": 7.6
+                    "TanA": 0.6548
                 }
             }
         ]

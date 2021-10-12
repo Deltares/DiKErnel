@@ -30,7 +30,7 @@ namespace DiKErnel::KernelWrapper::Json::Output
             inline static const std::string CALCULATION_TYPE = "GrasGolfoploop";
 
             inline static const std::string INCREMENT_DAMAGE = "ToenameSchadeGrasGolfoploop";
-            inline static const std::string VERTICAL_DISTANCE_WATER_LEVELE_LEVATION = "VerticaleAfstandWaterstandPositieZ";
+            inline static const std::string VERTICAL_DISTANCE_WATER_LEVEL_ELEVATION = "VerticaleAfstandWaterstandPositieZ";
             inline static const std::string WAVE_ANGLE_IMPACT = "ImpactGolfhoekGolfoploop";
             inline static const std::string REPRESENTATIVE_WAVE_RUNUP_2P = "RepresentatieveGolfoploop2p";
             inline static const std::string CUMULATIVE_OVERLOAD = "CumulatieveOverbelastingTijdstapRD";
