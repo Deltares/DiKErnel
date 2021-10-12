@@ -57,6 +57,13 @@ namespace DiKErnel::KernelWrapper::Json::Output
             const auto* outputItem = _timeDependentOutputItems[i];
 
             physicsJson[JsonOutputNaturalStoneRevetmentDefinitions::INCREMENT_DAMAGE][i] = outputItem->GetIncrementDamage();
+
+            physicsJson[JsonOutputNaturalStoneRevetmentDefinitions::OUTER_SLOPE][i] = outputItem->GetOuterSlope();
+            physicsJson[JsonOutputNaturalStoneRevetmentDefinitions::SLOPE_UPPER_LEVEL][i] = outputItem->GetSlopeUpperLevel();
+            physicsJson[JsonOutputNaturalStoneRevetmentDefinitions::SLOPE_UPPER_POSITION][i] = outputItem->GetSlopeUpperPosition();
+            physicsJson[JsonOutputNaturalStoneRevetmentDefinitions::SLOPE_LOWER_LEVEL][i] = outputItem->GetSlopeLowerLevel();
+            physicsJson[JsonOutputNaturalStoneRevetmentDefinitions::SLOPE_LOWER_POSITION][i] = outputItem->GetSlopeLowerPosition();
+
             physicsJson[JsonOutputDefinitions::HYDRAULIC_LOAD][i] = outputItem->GetLoadingRevetment();
             physicsJson[JsonOutputNaturalStoneRevetmentDefinitions::SURF_SIMILARITY_PARAMETER][i] = outputItem->GetSurfSimilarityParameter();
             physicsJson[JsonOutputNaturalStoneRevetmentDefinitions::WAVE_STEEPNESS_DEEP_WATER][i] = outputItem->GetWaveSteepnessDeepWater();
