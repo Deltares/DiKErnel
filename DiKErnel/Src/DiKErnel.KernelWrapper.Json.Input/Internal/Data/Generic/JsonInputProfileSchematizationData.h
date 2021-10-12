@@ -25,6 +25,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
     class JsonInputProfileSchematizationData
     {
         public:
+            virtual ~JsonInputProfileSchematizationData() = default;
+
             explicit JsonInputProfileSchematizationData(
                 double outerSlope);
 
