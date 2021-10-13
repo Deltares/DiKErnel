@@ -65,6 +65,6 @@ namespace DiKErnel::Integration
             const double _initialDamage;
             const double _failureNumber;
             bool _derivedLocationDependentInputInitialized = false;
-            double _positionZ = std::numeric_limits<double>::infinity();
+            double _z = std::numeric_limits<double>::infinity();
     };
 }

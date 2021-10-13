@@ -27,6 +27,7 @@
 namespace DiKErnel::Integration
 {
     using namespace Core;
+    using namespace FunctionLibrary;
     using namespace std;
 
     LocationDependentInput::LocationDependentInput(
@@ -76,7 +77,7 @@ namespace DiKErnel::Integration
 
     double LocationDependentInput::GetPositionZ() const
     {
-        return _positionZ;
+        return _z;
     }
 
     void LocationDependentInput::InitializeDerivedLocationDependentInput(
@@ -91,6 +92,6 @@ namespace DiKErnel::Integration
             dikeProfile.emplace_back(profilePoint.GetX(), profilePoint.GetZ());
         }
 
-        _positionZ = FunctionLibrary::Revetment::InterpolationVerticalHeight(_x, dikeProfile);
+        _z = Revetment::InterpolationVerticalHeight(_x, dikeProfile);
     }
 }
