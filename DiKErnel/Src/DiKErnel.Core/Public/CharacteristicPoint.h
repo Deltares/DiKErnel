@@ -20,15 +20,13 @@
 
 #pragma once
 
-#include <memory>
-
 #include "CharacteristicPointType.h"
 #include "ProfilePoint.h"
 
 namespace DiKErnel::Core
 {
     /*!
-     * \brief Interface defining all profile data that is needed to perform a calculation.
+     * \brief Class containing a characteristic point that is needed to perform a calculation.
      */
     class CharacteristicPoint
     {
@@ -36,7 +34,7 @@ namespace DiKErnel::Core
             /*!
              * \brief Creates a new instance.
              * \param profilePoint
-             *        The profile point of the characteristic point.
+             *        The profile point corresponding with the characteristic point.
              * \param characteristicPointType
              *        The type of the characteristic point.
              */

@@ -20,6 +20,8 @@
 
 #pragma once
 
+#include <memory>
+
 #include "IProfileData.h"
 
 namespace DiKErnel::Integration

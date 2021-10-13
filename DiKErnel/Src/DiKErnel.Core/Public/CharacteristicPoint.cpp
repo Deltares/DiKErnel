@@ -22,8 +22,6 @@
 
 namespace DiKErnel::Core
 {
-    using namespace std;
-
     CharacteristicPoint::CharacteristicPoint(
         ProfilePoint& profilePoint,
         const CharacteristicPointType characteristicPointType)

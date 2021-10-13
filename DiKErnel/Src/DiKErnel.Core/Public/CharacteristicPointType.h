@@ -23,7 +23,7 @@
 namespace DiKErnel::Core
 {
     /*!
-     * \brief Enum defining all characteristic point types that can be used in a calculations.
+     * \brief Enum defining all characteristic point types that can be used in a calculation.
      */
     enum class CharacteristicPointType
     {
