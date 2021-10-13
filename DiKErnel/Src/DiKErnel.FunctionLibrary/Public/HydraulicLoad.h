@@ -47,7 +47,7 @@ namespace DiKErnel::FunctionLibrary
              * \param upperLimitLoadingRevetment
              *        The upper limit of loading.
              *        Unit = [m]
-             * \param positionZ
+             * \param z
              *        The vertical position.
              *        Unit = [m]
              * \return Whether there is loading of the revetment.
@@ -55,7 +55,7 @@ namespace DiKErnel::FunctionLibrary
             static bool LoadingRevetment(
                 double lowerLimitLoadingRevetment,
                 double upperLimitLoadingRevetment,
-                double positionZ);
+                double z);
 
             /*!
              * \brief Calculates the surf similarity parameter.
@@ -101,7 +101,7 @@ namespace DiKErnel::FunctionLibrary
 
             /*!
              * \brief Calculates the vertical distance of the water elevation.
-             * \param positionZ
+             * \param z
              *        The vertical position.
              *        Unit = [m]
              * \param waterLevel
@@ -111,7 +111,7 @@ namespace DiKErnel::FunctionLibrary
              *         Unit = [m]
              */
             static double VerticalDistanceWaterLevelElevation(
-                double positionZ,
+                double z,
                 double waterLevel);
     };
 }

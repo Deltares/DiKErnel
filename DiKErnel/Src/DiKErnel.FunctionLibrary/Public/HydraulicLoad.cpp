@@ -35,9 +35,9 @@ namespace DiKErnel::FunctionLibrary
     bool HydraulicLoad::LoadingRevetment(
         const double lowerLimitLoadingRevetment,
         const double upperLimitLoadingRevetment,
-        const double positionZ)
+        const double z)
     {
-        return positionZ >= lowerLimitLoadingRevetment && positionZ <= upperLimitLoadingRevetment;
+        return z >= lowerLimitLoadingRevetment && z <= upperLimitLoadingRevetment;
     }
 
     double HydraulicLoad::SurfSimilarityParameter(
@@ -58,9 +58,9 @@ namespace DiKErnel::FunctionLibrary
     }
 
     double HydraulicLoad::VerticalDistanceWaterLevelElevation(
-        const double positionZ,
+        const double z,
         const double waterLevel)
     {
-        return positionZ - waterLevel;
+        return z - waterLevel;
     }
 }

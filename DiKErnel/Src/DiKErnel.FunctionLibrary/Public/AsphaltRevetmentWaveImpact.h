@@ -59,7 +59,7 @@ namespace DiKErnel::FunctionLibrary
              * \param impactFactors
              *        The impact factors.
              *        Unit = [-]
-             * \param positionZ
+             * \param z
              *        The vertical position.
              *        Unit = [m]
              * \param waterLevel
@@ -90,7 +90,7 @@ namespace DiKErnel::FunctionLibrary
                 const std::vector<std::tuple<double, double>>& widthFactors,
                 const std::vector<std::tuple<double, double>>& depthFactors,
                 const std::vector<std::tuple<double, double>>& impactFactors,
-                double positionZ,
+                double z,
                 double waterLevel,
                 double waveHeightHm0,
                 double fatigueAlpha,
@@ -185,7 +185,7 @@ namespace DiKErnel::FunctionLibrary
                 double sinA,
                 const std::vector<std::tuple<double, double>>& depthFactors,
                 const std::vector<std::tuple<double, double>>& impactFactors,
-                double positionZ,
+                double z,
                 double waterLevel,
                 double waveHeightHm0,
                 double fatigueAlpha,
@@ -229,7 +229,7 @@ namespace DiKErnel::FunctionLibrary
                 double relativeWidthWaveImpact,
                 double sinA,
                 double depthFactorValue,
-                double positionZ,
+                double z,
                 double waterLevel,
                 double waveHeightHm0);
 
@@ -238,7 +238,7 @@ namespace DiKErnel::FunctionLibrary
                 double relativeWidthWaveImpact,
                 double sinA,
                 double depthFactorValue,
-                double positionZ,
+                double z,
                 double waterLevel,
                 double waveHeightHm0);
 
@@ -251,7 +251,7 @@ namespace DiKErnel::FunctionLibrary
                 double stiffnessRelation,
                 double depthFactorValue,
                 double sinA,
-                double positionZ,
+                double z,
                 double waterLevel,
                 double waveHeightHm0);
     };

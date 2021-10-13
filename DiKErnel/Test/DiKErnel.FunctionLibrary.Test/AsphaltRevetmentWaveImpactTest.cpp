@@ -85,7 +85,7 @@ namespace DiKErnel::FunctionLibrary::Test
             tuple(6.0, 0.001)
         };
 
-        const auto positionZ = 2.988;
+        const auto z = 2.988;
         const auto waterLevel = 3.8;
         const auto waveHeightHm0 = 1.6;
         const auto fatigueAlpha = 0.42;
@@ -103,7 +103,7 @@ namespace DiKErnel::FunctionLibrary::Test
             widthFactors,
             depthFactors,
             impactFactors,
-            positionZ,
+            z,
             waterLevel,
             waveHeightHm0,
             fatigueAlpha,
