@@ -30,19 +30,12 @@ namespace DiKErnel::KernelWrapper::Json::Input
         string name,
         const double x,
         unique_ptr<JsonInputDamageData> damageData,
-        unique_ptr<JsonInputGrassRevetmentWaveImpactLocationData> revetmentLocationData,
-        unique_ptr<JsonInputProfileSchematizationData> profileSchematizationData)
+        unique_ptr<JsonInputGrassRevetmentWaveImpactLocationData> revetmentLocationData)
         : JsonInputLocationData(move(name), x, move(damageData)),
-          _revetmentLocationData(move(revetmentLocationData)),
-          _profileSchematizationData(move(profileSchematizationData)) {}
+          _revetmentLocationData(move(revetmentLocationData)) {}
 
     const JsonInputGrassRevetmentWaveImpactLocationData& JsonInputGrassWaveImpactLocationData::GetRevetmentLocationData() const
     {
         return *_revetmentLocationData;
-    }
-
-    const JsonInputProfileSchematizationData& JsonInputGrassWaveImpactLocationData::GetProfileSchematizationData() const
-    {
-        return *_profileSchematizationData;
     }
 }

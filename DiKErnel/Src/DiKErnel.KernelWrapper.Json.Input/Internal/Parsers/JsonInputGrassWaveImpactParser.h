@@ -22,7 +22,6 @@
 
 #include "JsonInputGrassRevetmentWaveImpactLocationData.h"
 #include "JsonInputLocationParser.h"
-#include "JsonInputProfileSchematizationData.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
@@ -42,7 +41,5 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
         private:
             std::unique_ptr<JsonInputGrassRevetmentWaveImpactLocationData> ParseRevetmentLocationData() const;
-
-            std::unique_ptr<JsonInputProfileSchematizationData> ParseProfileSchematizationData() const;
     };
 }

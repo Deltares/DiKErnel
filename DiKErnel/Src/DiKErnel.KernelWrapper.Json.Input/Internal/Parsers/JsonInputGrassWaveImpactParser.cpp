@@ -55,8 +55,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
         double x,
         unique_ptr<JsonInputDamageData> damageData)
     {
-        return make_unique<JsonInputGrassWaveImpactLocationData>(move(name), x, move(damageData), ParseRevetmentLocationData(),
-                                                                 ParseProfileSchematizationData());
+        return make_unique<JsonInputGrassWaveImpactLocationData>(move(name), x, move(damageData), ParseRevetmentLocationData());
     }
 
     unique_ptr<JsonInputGrassRevetmentWaveImpactLocationData> JsonInputGrassWaveImpactParser::ParseRevetmentLocationData() const
@@ -131,13 +130,5 @@ namespace DiKErnel::KernelWrapper::Json::Input
         }
 
         return locationData;
-    }
-
-    unique_ptr<JsonInputProfileSchematizationData> JsonInputGrassWaveImpactParser::ParseProfileSchematizationData() const
-    {
-        const auto& readProfileSchematization = GetReadLocation()[JsonInputDefinitions::PROFILE_SCHEMATIZATION];
-
-        return make_unique<JsonInputProfileSchematizationData>(
-            readProfileSchematization[JsonInputDefinitions::OUTER_SLOPE].get<double>());
     }
 }
