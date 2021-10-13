@@ -58,7 +58,7 @@ namespace DiKErnel::Core::Test
 
         // Call
         const LocationDependentOutput locationDependentOutput(move(timeDependentOutputItems));
-    
+
         // Assert
         ASSERT_EQ(vector<double> { damage }, locationDependentOutput.GetDamages());
         ASSERT_EQ(nullptr, locationDependentOutput.GetTimeOfFailure());
