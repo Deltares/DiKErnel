@@ -21,7 +21,6 @@
 #include "JsonInputLocationParser.h"
 
 #include "JsonInputDefinitions.h"
-#include "JsonInputNaturalStoneParser.h"
 #include "JsonInputParserHelper.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input

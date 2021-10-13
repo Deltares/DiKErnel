@@ -37,7 +37,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
             inline static const std::string SUB_LAYER = "Onderlaag";
 
             inline static const std::string THICKNESS = "Dikte";
-            inline static const std::string ELASTIC_MODULUS= "Stijfheidsmodulus";
+            inline static const std::string ELASTIC_MODULUS = "Stijfheidsmodulus";
 
             inline static const std::string FATIGUE = "VermoeiingAsfaltbekleding";
             inline static const std::string FATIGUE_ALPHA = "VermoeiingAsfaltbekledingAlfa";

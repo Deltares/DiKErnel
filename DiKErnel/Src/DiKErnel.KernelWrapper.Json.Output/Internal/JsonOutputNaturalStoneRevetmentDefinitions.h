@@ -46,7 +46,7 @@ namespace DiKErnel::KernelWrapper::Json::Output
             inline static const std::string DISTANCE_MAXIMUM_WAVE_ELEVATION = "AfstandMaximaleStijghoogteNatuursteen";
             inline static const std::string NORMATIVE_WIDTH_WAVE_IMPACT = "MaatgevendeBreedteGolfklapNatuursteen";
             inline static const std::string HYDRAULIC_LOAD = "HydraulischeBelastingNatuursteen";
-            inline static const std::string WAVE_ANGLE_IMPACT= "ImpactGolfhoekBekledingNatuursteen";
+            inline static const std::string WAVE_ANGLE_IMPACT = "ImpactGolfhoekBekledingNatuursteen";
             inline static const std::string RESISTANCE = "SterkteBekledingNatuursteen";
             inline static const std::string REFERENCE_TIME_DEGRADATION = "ReferentieTijdDegradatieNatuursteen";
             inline static const std::string REFERENCE_DEGRADATION = "ReferentieDegradatieNatuursteen";

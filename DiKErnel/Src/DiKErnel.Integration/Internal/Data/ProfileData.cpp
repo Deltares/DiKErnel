@@ -60,12 +60,12 @@ namespace DiKErnel::Integration
         for (const auto& characteristicPoint : _characteristicPoints)
         {
             const auto characteristicPointType = characteristicPoint->GetCharacteristicPointType();
-            if(characteristicPointType == CharacteristicPointType::CrestOuterBerm)
+            if (characteristicPointType == CharacteristicPointType::CrestOuterBerm)
             {
                 hasBermCrest = true;
             }
 
-            if(characteristicPointType == CharacteristicPointType::NotchOuterBerm)
+            if (characteristicPointType == CharacteristicPointType::NotchOuterBerm)
             {
                 hasBermNotch = true;
             }

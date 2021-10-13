@@ -47,5 +47,5 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 const nlohmann::json& factorsTable) const;
 
             std::unique_ptr<JsonInputProfileSchematizationData> ParseProfileSchematizationData() const;
-    };    
+    };
 }
