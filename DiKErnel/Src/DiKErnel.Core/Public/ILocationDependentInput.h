@@ -80,9 +80,9 @@ namespace DiKErnel::Core
             virtual double GetFailureNumber() const = 0;
 
             /*!
-             * \brief Gets the vertical position.
-             * \return The vertical position.
+             * \brief Gets the z coordinate.
+             * \return The z coordinate.
              */
-            virtual double GetPositionZ() const = 0;
+            virtual double GetZ() const = 0;
     };
 }

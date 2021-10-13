@@ -171,7 +171,7 @@ namespace DiKErnel::Integration
                                                                                 waveHeightHm0, _upperLimitLoading->GetUpperLimitAul(),
                                                                                 _upperLimitLoading->GetUpperLimitBul(),
                                                                                 _upperLimitLoading->GetUpperLimitCul());
-        const auto loadingRevetment = HydraulicLoad::LoadingRevetment(lowerLimitLoading, upperLimitLoading, GetPositionZ());
+        const auto loadingRevetment = HydraulicLoad::LoadingRevetment(lowerLimitLoading, upperLimitLoading, GetZ());
 
         auto incrementDamage = 0.0;
         auto damage = initialDamage;

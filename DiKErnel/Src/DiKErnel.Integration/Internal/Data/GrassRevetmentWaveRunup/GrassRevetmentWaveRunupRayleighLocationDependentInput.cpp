@@ -79,7 +79,7 @@ namespace DiKErnel::Integration
         unique_ptr<double> cumulativeOverload = nullptr;
 
         const auto verticalDistanceWaterLevelElevation = HydraulicLoad::VerticalDistanceWaterLevelElevation(
-            GetPositionZ(), timeDependentInput.GetWaterLevel());
+            GetZ(), timeDependentInput.GetWaterLevel());
 
         if (verticalDistanceWaterLevelElevation > 0)
         {

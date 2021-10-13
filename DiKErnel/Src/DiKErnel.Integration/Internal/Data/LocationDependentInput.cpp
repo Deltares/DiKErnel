@@ -75,7 +75,7 @@ namespace DiKErnel::Integration
         return _failureNumber;
     }
 
-    double LocationDependentInput::GetPositionZ() const
+    double LocationDependentInput::GetZ() const
     {
         return _z;
     }

@@ -42,7 +42,7 @@ namespace DiKErnel::Integration
 
             double GetFailureNumber() const override;
 
-            double GetPositionZ() const override;
+            double GetZ() const override;
 
         protected:
             explicit LocationDependentInput(

@@ -158,7 +158,7 @@ namespace DiKErnel::Integration
                                                                                      _densityOfWater);
         const auto incrementDamage = AsphaltRevetmentWaveImpact::IncrementDamage(_logFailureTension, averageNumberOfWaves, maximumPeakStress,
                                                                                  _stiffnessRelation, _computationalThickness, _outerSlope,
-                                                                                 _widthFactors, _depthFactors, _impactFactors, GetPositionZ(),
+                                                                                 _widthFactors, _depthFactors, _impactFactors, GetZ(),
                                                                                  timeDependentInput.GetWaterLevel(), waveHeightHm0,
                                                                                  _fatigue->GetAlpha(), _fatigue->GetBeta(), _impactNumberC);
         const auto damage = Revetment::Damage(incrementDamage, initialDamage);
