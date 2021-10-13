@@ -60,7 +60,7 @@ namespace DiKErnel::FunctionLibrary
              *        The impact factors.
              *        Unit = [-]
              * \param z
-             *        The vertical position.
+             *        The z coordinate.
              *        Unit = [m]
              * \param waterLevel
              *        The water level.

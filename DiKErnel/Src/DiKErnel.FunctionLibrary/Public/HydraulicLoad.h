@@ -48,7 +48,7 @@ namespace DiKErnel::FunctionLibrary
              *        The upper limit of loading.
              *        Unit = [m]
              * \param z
-             *        The vertical position.
+             *        The z coordinate.
              *        Unit = [m]
              * \return Whether there is loading of the revetment.
              */
@@ -102,7 +102,7 @@ namespace DiKErnel::FunctionLibrary
             /*!
              * \brief Calculates the vertical distance of the water elevation.
              * \param z
-             *        The vertical position.
+             *        The z coordinate.
              *        Unit = [m]
              * \param waterLevel
              *        The water level.
