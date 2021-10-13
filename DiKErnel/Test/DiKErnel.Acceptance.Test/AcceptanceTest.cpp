@@ -181,4 +181,14 @@ namespace DiKErnel::Acceptance::Test
         // When & Then
         PerformTest(inputFilePath, 1.1709670425264469, make_unique<int>(3833).get());
     }
+
+    TEST_F(AcceptanceTest, GivenJsonInputWithDikeProfileWithoutBermWithNaturalStoneLocation_WhenCalculating_ThenExpectedOutputJsonCreated)
+    {
+        // Given
+        const auto inputFilePath = (TestDataPathHelper::GetTestDataPath("DiKErnel.Acceptance.Test") / "AcceptanceTest"
+            / "NaturalStoneDikeProfileWithoutBerm.json").string();
+
+        // When & Then
+        PerformTest(inputFilePath, 1.1494612002264992, make_unique<int>(3654).get());
+    }
 }
