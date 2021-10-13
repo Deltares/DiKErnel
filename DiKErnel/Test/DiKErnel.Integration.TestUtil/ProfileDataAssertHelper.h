@@ -30,13 +30,13 @@ namespace DiKErnel::Integration::TestUtil
     {
         public:
             static void AssertProfilePoint(
-                double x,
-                double z,
-                const Core::ProfilePoint& profilePoint);
+                double expectedX,
+                double expectedZ,
+                const Core::ProfilePoint& actualProfilePoint);
 
             static void AssertCharacteristicPoint(
-                const Core::ProfilePoint& profilePoint,
-                Core::CharacteristicPointType characteristicPointType,
-                const Core::CharacteristicPoint& characteristicPoint);
+                const Core::ProfilePoint& expectedProfilePoint,
+                Core::CharacteristicPointType expectedCharacteristicPointType,
+                const Core::CharacteristicPoint& actualCharacteristicPoint);
     };
 }

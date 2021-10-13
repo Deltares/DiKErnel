@@ -117,7 +117,7 @@ namespace DiKErnel::Integration::Test
         ASSERT_EQ(0, calculationInput->GetLocationDependentInputItems().size());
     }
 
-    #pragma region Profile Point
+    #pragma region Profile point
 
     TEST_F(RevetmentCalculationInputBuilderTest,
            GivenBuilderWithDikeProfilePointWithoutCharacteristicPointTypeAdded_WhenBuild_ThenReturnsCalculationInput)
@@ -147,10 +147,10 @@ namespace DiKErnel::Integration::Test
         // Given
         const auto x = 10;
         const auto z = 20;
-        const auto characteristicPointType = make_unique<CharacteristicPointType>(CharacteristicPointType::NotchOuterBerm);
+        const auto characteristicPointType = CharacteristicPointType::NotchOuterBerm;
 
         RevetmentCalculationInputBuilder builder;
-        builder.AddDikeProfilePoint(x, z, characteristicPointType.get());
+        builder.AddDikeProfilePoint(x, z, &characteristicPointType);
 
         // When
         const auto calculationInput = builder.Build();
@@ -163,7 +163,7 @@ namespace DiKErnel::Integration::Test
         ASSERT_EQ(1, actualCharacteristicPoints.size());
 
         ProfileDataAssertHelper::AssertProfilePoint(x, z, actualProfilePoints[0]);
-        ProfileDataAssertHelper::AssertCharacteristicPoint(actualProfilePoints[0], *characteristicPointType, actualCharacteristicPoints[0]);
+        ProfileDataAssertHelper::AssertCharacteristicPoint(actualProfilePoints[0], characteristicPointType, actualCharacteristicPoints[0]);
     }
 
     #pragma endregion

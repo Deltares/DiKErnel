@@ -27,20 +27,20 @@ namespace DiKErnel::Integration::TestUtil
     using namespace Core;
 
     void ProfileDataAssertHelper::AssertProfilePoint(
-        const double x,
-        const double z,
-        const ProfilePoint& profilePoint)
+        const double expectedX,
+        const double expectedZ,
+        const ProfilePoint& actualProfilePoint)
     {
-        ASSERT_EQ(x, profilePoint.GetX());
-        ASSERT_EQ(z, profilePoint.GetZ());
+        ASSERT_EQ(expectedX, actualProfilePoint.GetX());
+        ASSERT_EQ(expectedZ, actualProfilePoint.GetZ());
     }
 
     void ProfileDataAssertHelper::AssertCharacteristicPoint(
-        const ProfilePoint& profilePoint,
-        const CharacteristicPointType characteristicPointType,
-        const CharacteristicPoint& characteristicPoint)
+        const ProfilePoint& expectedProfilePoint,
+        const CharacteristicPointType expectedCharacteristicPointType,
+        const CharacteristicPoint& actualCharacteristicPoint)
     {
-        ASSERT_EQ(std::addressof(profilePoint), std::addressof(characteristicPoint.GetProfilePoint()));
-        ASSERT_EQ(characteristicPointType, characteristicPoint.GetCharacteristicPointType());
+        ASSERT_EQ(&expectedProfilePoint, &actualCharacteristicPoint.GetProfilePoint());
+        ASSERT_EQ(expectedCharacteristicPointType, actualCharacteristicPoint.GetCharacteristicPointType());
     }
 }
