@@ -18,23 +18,25 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
+#include <gtest/gtest.h>
+
 #include "CharacteristicPoint.h"
 
-namespace DiKErnel::Core
+namespace DiKErnel::Core::Test
 {
-    CharacteristicPoint::CharacteristicPoint(
-        const ProfilePoint& profilePoint,
-        const CharacteristicPointType characteristicPointType)
-        : _profilePoint(profilePoint),
-          _characteristicPointType(characteristicPointType) {}
+    using namespace std;
 
-    const ProfilePoint& CharacteristicPoint::GetProfilePoint() const
+    TEST(CharacteristicPointTest, Constructor_ExpectedValues)
     {
-        return _profilePoint;
-    }
+        // Setup
+        const auto profilePoint = make_unique<ProfilePoint>(0.0, 1.1);
+        const auto characteristicPointType = CharacteristicPointType::OuterCrest;
 
-    CharacteristicPointType CharacteristicPoint::GetCharacteristicPointType() const
-    {
-        return _characteristicPointType;
+        // Call
+        const CharacteristicPoint characteristicPoint(*profilePoint, characteristicPointType);
+
+        // Assert
+        ASSERT_EQ(profilePoint.get(), &characteristicPoint.GetProfilePoint());
+        ASSERT_EQ(characteristicPointType, characteristicPoint.GetCharacteristicPointType());
     }
 }

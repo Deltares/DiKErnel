@@ -39,7 +39,7 @@ namespace DiKErnel::Core
              *        The type of the characteristic point.
              */
             explicit CharacteristicPoint(
-                ProfilePoint& profilePoint,
+                const ProfilePoint& profilePoint,
                 CharacteristicPointType characteristicPointType);
 
             /*!
@@ -55,7 +55,7 @@ namespace DiKErnel::Core
             CharacteristicPointType GetCharacteristicPointType() const;
 
         private:
-            ProfilePoint& _profilePoint;
+            const ProfilePoint& _profilePoint;
             CharacteristicPointType _characteristicPointType;
     };
 }

@@ -5,8 +5,10 @@ set(EXENAME DiKErnel.Core.Test)
 set(SOURCEFILES
   CalculationOutputTest.cpp
   CalculatorTest.cpp
+  CharacteristicPointTest.cpp
   LocationDependentOutputTest.cpp
   Main.cpp
+  ProfilePointTest.cpp
   TimeDependentOutputTest.cpp
 )
 
