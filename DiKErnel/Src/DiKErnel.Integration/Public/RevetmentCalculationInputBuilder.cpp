@@ -279,9 +279,8 @@ namespace DiKErnel::Integration
     {
         try
         {
-            return make_unique<CalculationInput>(
-                make_unique<ProfileData>(move(_profilePoints), move(_characteristicPoints)),
-                move(_locationDependentInputItems), move(_timeDependentInputItems));
+            return make_unique<CalculationInput>(make_unique<ProfileData>(move(_profilePoints), move(_characteristicPoints)),
+                                                 move(_locationDependentInputItems), move(_timeDependentInputItems));
         }
         catch (const InvalidCalculationDataException&)
         {

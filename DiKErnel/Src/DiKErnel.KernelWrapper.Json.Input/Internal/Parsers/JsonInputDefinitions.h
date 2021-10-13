@@ -53,8 +53,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
             inline static const std::string CHARACTERISTIC_POINT = "KarakteristiekPunt";
             inline static const std::string CHARACTERISTIC_POINT_TYPE_OUTER_TOE = "TeenBuitenzijde";
             inline static const std::string CHARACTERISTIC_POINT_TYPE_OUTER_CREST = "KruinBuitenzijde";
-            inline static const std::string CHARACTERISTIC_POINT_TYPE_CREST_OUTER_BERM= "KruinBermBuitenzijde";
-            inline static const std::string CHARACTERISTIC_POINT_TYPE_NOTCH_OUTER_BERM= "InsteekBermBuitenzijde";
+            inline static const std::string CHARACTERISTIC_POINT_TYPE_CREST_OUTER_BERM = "KruinBermBuitenzijde";
+            inline static const std::string CHARACTERISTIC_POINT_TYPE_NOTCH_OUTER_BERM = "InsteekBermBuitenzijde";
 
             inline static const std::string NAME = "Naam";
             inline static const std::string X = "PositieLocatie";
