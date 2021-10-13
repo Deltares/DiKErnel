@@ -83,15 +83,18 @@ namespace DiKErnel::Integration
     void LocationDependentInput::InitializeDerivedLocationDependentInput(
         const IProfileData& profileData)
     {
-        auto dikeProfile = vector<pair<double, double>>();
-
         for (const auto& profilePointReference : profileData.GetProfilePoints())
         {
             const auto& profilePoint = profilePointReference.get();
 
-            dikeProfile.emplace_back(profilePoint.GetX(), profilePoint.GetZ());
+            _dikeProfilePoints.emplace_back(profilePoint.GetX(), profilePoint.GetZ());
         }
 
-        _z = Revetment::InterpolationVerticalHeight(_x, dikeProfile);
+        _z = Revetment::InterpolationVerticalHeight(_x, _dikeProfilePoints);
+    }
+
+    vector<pair<double, double>>& LocationDependentInput::GetDikeProfilePoints()
+    {
+        return _dikeProfilePoints;
     }
 }

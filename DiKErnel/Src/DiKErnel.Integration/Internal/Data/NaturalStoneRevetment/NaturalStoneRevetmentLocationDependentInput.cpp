@@ -109,12 +109,6 @@ namespace DiKErnel::Integration
     {
         LocationDependentInput::InitializeDerivedLocationDependentInput(profileData);
 
-        for (const auto& profilePointReference : profileData.GetProfilePoints())
-        {
-            const auto& profilePoint = profilePointReference.get();
-            _dikeProfilePoints.emplace_back(profilePoint.GetX(), profilePoint.GetZ());
-        }
-
         const auto& characteristicPoints = profileData.GetCharacteristicPoints();
 
         _outerToeHeight = GetCharacteristicPointCoordinates(characteristicPoints, CharacteristicPointType::OuterToe).second;
@@ -130,6 +124,7 @@ namespace DiKErnel::Integration
         const ITimeDependentInput& timeDependentInput,
         const IProfileData& profileData)
     {
+        const auto& dikeProfilePoints = GetDikeProfilePoints();
         const auto waterLevel = timeDependentInput.GetWaterLevel();
         const auto waveHeightHm0 = timeDependentInput.GetWaveHeightHm0();
         const auto wavePeriodTm10 = timeDependentInput.GetWavePeriodTm10();
@@ -140,8 +135,8 @@ namespace DiKErnel::Integration
                                                                             naturalStoneRevetmentSlope.GetUpperLevelAus());
         const auto slopeLowerLevel = NaturalStoneRevetment::SlopeLowerLevel(_outerToeHeight, slopeUpperLevel, waveHeightHm0,
                                                                             naturalStoneRevetmentSlope.GetLowerLevelAls());
-        const auto slopeUpperPosition = Revetment::InterpolationHorizontalPosition(slopeUpperLevel, _dikeProfilePoints);
-        const auto slopeLowerPosition = Revetment::InterpolationHorizontalPosition(slopeLowerLevel, _dikeProfilePoints);
+        const auto slopeUpperPosition = Revetment::InterpolationHorizontalPosition(slopeUpperLevel, dikeProfilePoints);
+        const auto slopeLowerPosition = Revetment::InterpolationHorizontalPosition(slopeLowerLevel, dikeProfilePoints);
 
         const auto outerSlope = profileData.HasBerm()
                                     ? NaturalStoneRevetment::OuterSlopeWithBerm(_outerToeHeight, _outerCrestHeight, _notchOuterBerm,

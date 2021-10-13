@@ -59,12 +59,15 @@ namespace DiKErnel::Integration
                 const Core::ITimeDependentInput& timeDependentInput,
                 const Core::IProfileData& profileData) = 0;
 
+            std::vector<std::pair<double, double>>& GetDikeProfilePoints();
+
         private:
             const std::string _name;
             const double _x;
             const double _initialDamage;
             const double _failureNumber;
             bool _derivedLocationDependentInputInitialized = false;
+            std::vector<std::pair<double, double>> _dikeProfilePoints = std::vector<std::pair<double, double>>();
             double _z = std::numeric_limits<double>::infinity();
     };
 }
