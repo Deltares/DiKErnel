@@ -20,4 +20,23 @@
 
 #include "Event.h"
 
-namespace DiKErnel::Util {}
+namespace DiKErnel::Util
+{
+    using namespace std;
+
+    Event::Event(
+        string message,
+        const EventType eventType)
+        : _message(move(message)),
+          _eventType(eventType) {}
+
+    string Event::GetMessage() const
+    {
+        return _message;
+    }
+
+    EventType Event::GetEventType() const
+    {
+        return _eventType;
+    }
+}

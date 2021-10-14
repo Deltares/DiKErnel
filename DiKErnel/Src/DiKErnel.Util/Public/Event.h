@@ -20,6 +20,10 @@
 
 #pragma once
 
+#include <string>
+
+#include "EventType.h"
+
 namespace DiKErnel::Util
 {
     /*!
@@ -28,6 +32,31 @@ namespace DiKErnel::Util
     class Event
     {
         public:
-            explicit Event();
+            /*!
+             * \brief Creates a new instance.
+             * \param message
+             *        The message.
+             * \param eventType
+             *        The event type.
+             */
+            explicit Event(
+                std::string message,
+                EventType eventType);
+
+            /*!
+             * \brief Gets the message.
+             * \return The message.
+             */
+            std::string GetMessage() const;
+
+            /*!
+             * \brief Gets the event type.
+             * \return The event type.
+             */
+            EventType GetEventType() const;
+
+        private:
+            std::string _message;
+            EventType _eventType;
     };
 }
