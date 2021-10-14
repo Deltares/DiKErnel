@@ -8,6 +8,7 @@ set(PUBLIC_FOLDER Public)
 set(SOURCEFILES_PUBLIC
   ${PUBLIC_FOLDER}/Event.cpp
   ${PUBLIC_FOLDER}/Event.h
+  ${PUBLIC_FOLDER}/EventType.h
 )
 
 # Add library
