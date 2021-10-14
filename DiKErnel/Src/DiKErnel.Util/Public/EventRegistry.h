@@ -20,6 +20,11 @@
 
 #pragma once
 
+#include <memory>
+#include <vector>
+
+#include "Event.h"
+
 namespace DiKErnel::Util
 {
     /*!
@@ -28,8 +33,6 @@ namespace DiKErnel::Util
     class EventRegistry
     {
         public:
-            static EventRegistry* GetInstance();
-
             EventRegistry(
                 EventRegistry& eventRegistry) = delete;
 
@@ -41,12 +44,31 @@ namespace DiKErnel::Util
 
             void operator=(
                 EventRegistry&& eventRegistry) = delete;
+
+            /*!
+             * \brief Registers an event.
+             * \param event
+             *        The event to register.
+             */
+            static void Register(
+                std::unique_ptr<Event> event);
+
+            /*!
+             * \brief Gets all the registered events.
+             * \return The registered events.
+             */
+            static const std::vector<std::reference_wrapper<Event>>& GetEvents();
 
         private:
             EventRegistry() = default;
 
             ~EventRegistry() = default;
 
+            static EventRegistry* GetInstance();
+
             static thread_local EventRegistry* _eventRegistry;
+
+            std::vector<std::unique_ptr<Event>> _events = std::vector<std::unique_ptr<Event>>();
+            std::vector<std::reference_wrapper<Event>> _eventReferences = std::vector<std::reference_wrapper<Event>>();
     };
 }
