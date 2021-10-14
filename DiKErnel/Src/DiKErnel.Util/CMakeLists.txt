@@ -6,8 +6,8 @@ set(PUBLIC_FOLDER Public)
 
 # Define sources
 set(SOURCEFILES_PUBLIC
-  ${PUBLIC_FOLDER}/Placeholder.cpp
-  ${PUBLIC_FOLDER}/Placeholder.h
+  ${PUBLIC_FOLDER}/Event.cpp
+  ${PUBLIC_FOLDER}/Event.h
 )
 
 # Add library
