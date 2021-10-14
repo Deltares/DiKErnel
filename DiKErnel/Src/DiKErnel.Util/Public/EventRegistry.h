@@ -47,6 +47,6 @@ namespace DiKErnel::Util
 
             ~EventRegistry() = default;
 
-            static EventRegistry* _eventRegistry;
+            static thread_local EventRegistry* _eventRegistry;
     };
 }
