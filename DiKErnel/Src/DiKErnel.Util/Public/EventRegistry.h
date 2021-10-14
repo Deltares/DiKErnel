@@ -30,6 +30,18 @@ namespace DiKErnel::Util
         public:
             static EventRegistry* GetInstance();
 
+            EventRegistry(
+                EventRegistry& eventRegistry) = delete;
+
+            EventRegistry(
+                EventRegistry&& eventRegistry) = delete;
+
+            void operator=(
+                EventRegistry& eventRegistry) = delete;
+
+            void operator=(
+                EventRegistry&& eventRegistry) = delete;
+
         private:
             EventRegistry() = default;
 
