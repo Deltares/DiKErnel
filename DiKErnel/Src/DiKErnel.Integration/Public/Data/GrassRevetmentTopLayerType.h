@@ -23,7 +23,7 @@
 namespace DiKErnel::Integration
 {
     /*!
-     * \brief The types of the top layer for grass revetments.
+     * \brief The top layer types for grass revetments.
      */
     enum class GrassRevetmentTopLayerType
     {

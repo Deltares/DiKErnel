@@ -23,7 +23,7 @@
 namespace DiKErnel::Util
 {
     /*!
-     * \brief Enum defining all event types that can be registered.
+     * \brief The event types that can be registered.
      */
     enum class EventType
     {

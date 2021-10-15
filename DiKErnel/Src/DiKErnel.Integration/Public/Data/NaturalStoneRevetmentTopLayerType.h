@@ -23,7 +23,7 @@
 namespace DiKErnel::Integration
 {
     /*!
-     * \brief The types of the top layer for natural stone revetments.
+     * \brief The top layer types for natural stone revetments.
      */
     enum class NaturalStoneRevetmentTopLayerType
     {

@@ -23,7 +23,7 @@
 namespace DiKErnel::Integration
 {
     /*!
-     * \brief The types of the top layer for asphalt revetments.
+     * \brief The top layer types for asphalt revetments.
      */
     enum class AsphaltRevetmentTopLayerType
     {
