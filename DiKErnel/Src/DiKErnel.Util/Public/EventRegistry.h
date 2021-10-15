@@ -58,15 +58,10 @@ namespace DiKErnel::Util
                 std::unique_ptr<Event> event);
 
             /*!
-             * \brief Gets all registered events.
+             * \brief Flushes all registered events.
              * \return The registered events.
              */
-            static const std::vector<std::reference_wrapper<Event>>& GetEvents();
-
-            /*!
-             * \brief Flushes all registered events.
-             */
-            static void Flush();
+            static std::vector<std::unique_ptr<Event>> Flush();
 
         private:
             EventRegistry() = default;
@@ -78,6 +73,5 @@ namespace DiKErnel::Util
             inline static thread_local EventRegistry* _eventRegistry;
 
             std::vector<std::unique_ptr<Event>> _events = std::vector<std::unique_ptr<Event>>();
-            std::vector<std::reference_wrapper<Event>> _eventReferences = std::vector<std::reference_wrapper<Event>>();
     };
 }

@@ -58,6 +58,9 @@ namespace DiKErnel::Util::TestUtil
             EventRegistry::Register(make_unique<Event>("Event " + to_string(i), EventType::Error));
         }
 
-        registeredEvents = EventRegistry::GetEvents();
+        for (const auto& registeredEvent : EventRegistry::Flush())
+        {
+            registeredEvents.emplace_back(*registeredEvent);
+        }
     }
 }

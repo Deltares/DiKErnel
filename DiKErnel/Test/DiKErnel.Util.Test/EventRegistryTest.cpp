@@ -28,32 +28,18 @@
 namespace DiKErnel::Util::Test
 {
     using namespace std;
-    using namespace testing;
     using namespace TestUtil;
 
-    struct EventRegistryTest : Test
-    {
-        /*!
-         * \brief Creates a new instance.
-         * \remarks This makes sure that the event registry is always flushed before a test is done
-         *          to prevent interference from other tests.
-         */
-        explicit EventRegistryTest()
-        {
-            EventRegistry::Flush();
-        }
-    };
-
-    TEST_F(EventRegistryTest, GivenEventRegistryWithoutEventsRegistered_WhenGetEvents_ThenReturnsEmptyCollection)
+    TEST(EventRegistryTest, GivenEventRegistryWithoutEventsRegistered_WhenGetEvents_ThenReturnsEmptyCollection)
     {
         // When
-        const auto& registeredEvents = EventRegistry::GetEvents();
+        const auto& registeredEvents = EventRegistry::Flush();
 
         // Then
         ASSERT_EQ(0, registeredEvents.size());
     }
 
-    TEST_F(EventRegistryTest, GivenEventRegistryWithEventsRegistered_WhenGetEvents_ThenReturnsRegisteredEvents)
+    TEST(EventRegistryTest, GivenEventRegistryWithEventsRegistered_WhenGetEvents_ThenReturnsRegisteredEvents)
     {
         // Given
         const auto message1 = "Warning message";
@@ -65,21 +51,21 @@ namespace DiKErnel::Util::Test
         EventRegistry::Register(make_unique<Event>(message2, eventType2));
 
         // When
-        const auto& registeredEvents = EventRegistry::GetEvents();
+        const auto& registeredEvents = EventRegistry::Flush();
 
         // Then
         ASSERT_EQ(2, registeredEvents.size());
 
-        const auto& registeredEvent1 = registeredEvents.at(0).get();
-        ASSERT_EQ(message1, registeredEvent1.GetMessage());
-        ASSERT_EQ(eventType1, registeredEvent1.GetEventType());
+        const auto* registeredEvent1 = registeredEvents.at(0).get();
+        ASSERT_EQ(message1, registeredEvent1->GetMessage());
+        ASSERT_EQ(eventType1, registeredEvent1->GetEventType());
 
-        const auto& registeredEvent2 = registeredEvents.at(1).get();
-        ASSERT_EQ(message2, registeredEvent2.GetMessage());
-        ASSERT_EQ(eventType2, registeredEvent2.GetEventType());
+        const auto* registeredEvent2 = registeredEvents.at(1).get();
+        ASSERT_EQ(message2, registeredEvent2->GetMessage());
+        ASSERT_EQ(eventType2, registeredEvent2->GetEventType());
     }
 
-    TEST_F(EventRegistryTest, GivenEventRegistryWithEventsRegisteredOnDifferentThreads_WhenGetEvents_ThenReturnsDifferentEventsPerThread)
+    TEST(EventRegistryTest, GivenEventRegistryWithEventsRegisteredOnDifferentThreads_WhenGetEvents_ThenReturnsDifferentEventsPerThread)
     {
         // Given
         EventRegistryTestHelper testHelperThread1(10000);
@@ -94,22 +80,22 @@ namespace DiKErnel::Util::Test
         // Then
         ASSERT_EQ(10000, registeredEvents1.size());
         ASSERT_EQ(20000, registeredEvents2.size());
-        ASSERT_EQ(0, EventRegistry::GetEvents().size());
+        ASSERT_EQ(0, EventRegistry::Flush().size());
     }
 
-    TEST_F(EventRegistryTest, GivenEventRegistryWithEventsRegistered_WhenFlush_ThenRegisteredEventsCleared)
+    TEST(EventRegistryTest, GivenEventRegistryWithEventsRegisteredAndFlushed_WhenFlush_ThenNoRegisteredEvents)
     {
         // Given
         EventRegistry::Register(make_unique<Event>("Warning message", EventType::Warning));
         EventRegistry::Register(make_unique<Event>("Error message", EventType::Error));
 
         // Precondition
-        ASSERT_EQ(2, EventRegistry::GetEvents().size());
+        ASSERT_EQ(2, EventRegistry::Flush().size());
 
         // When
-        EventRegistry::Flush();
+        const auto& registeredEvents = EventRegistry::Flush();
 
         // Then
-        ASSERT_EQ(0, EventRegistry::GetEvents().size());
+        ASSERT_EQ(0, registeredEvents.size());
     }
 }
