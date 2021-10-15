@@ -49,11 +49,11 @@ namespace DiKErnel::Util::Test
         // When
         const auto& registeredEvents = EventRegistry::GetEvents();
 
-        // // Then
+        // Then
         ASSERT_EQ(0, registeredEvents.size());
     }
 
-    TEST_F(EventRegistryTest, GivenEventRegistryWithEventsRegistered_WhenEvents_ThenReturnsRegisteredEvents)
+    TEST_F(EventRegistryTest, GivenEventRegistryWithEventsRegistered_WhenGetEvents_ThenReturnsRegisteredEvents)
     {
         // Given
         const auto message1 = "Warning message";
@@ -61,26 +61,25 @@ namespace DiKErnel::Util::Test
         const auto message2 = "Error message";
         const auto eventType2 = EventType::Error;
 
-        // When
         EventRegistry::Register(make_unique<Event>(message1, eventType1));
         EventRegistry::Register(make_unique<Event>(message2, eventType2));
+
+        // When
         const auto& registeredEvents = EventRegistry::GetEvents();
 
-        // // Then
+        // Then
         ASSERT_EQ(2, registeredEvents.size());
 
-        const auto& registeredEventReference1 = registeredEvents.at(0);
-        const auto& registeredEvent1 = registeredEventReference1.get();
+        const auto& registeredEvent1 = registeredEvents.at(0).get();
         ASSERT_EQ(message1, registeredEvent1.GetMessage());
         ASSERT_EQ(eventType1, registeredEvent1.GetEventType());
 
-        const auto& registeredEventReference2 = registeredEvents.at(1);
-        const auto& registeredEvent2 = registeredEventReference2.get();
+        const auto& registeredEvent2 = registeredEvents.at(1).get();
         ASSERT_EQ(message2, registeredEvent2.GetMessage());
         ASSERT_EQ(eventType2, registeredEvent2.GetEventType());
     }
 
-    TEST_F(EventRegistryTest, GivenEventRegistry_WhenRegisteringEventsOnDifferentThreads_ThenReturnsDifferentEventsPerThread)
+    TEST_F(EventRegistryTest, GivenEventRegistryWithEventsRegisteredOnDifferentThreads_WhenGetEvents_ThenReturnsDifferentEventsPerThread)
     {
         // Given
         EventRegistryTestHelper testHelperThread1(10000);
@@ -89,8 +88,8 @@ namespace DiKErnel::Util::Test
         testHelperThread2.WaitForCompletion();
 
         // When
-        const auto registeredEvents1 = testHelperThread1.GetRegisteredEvents();
-        const auto registeredEvents2 = testHelperThread2.GetRegisteredEvents();
+        const auto& registeredEvents1 = testHelperThread1.GetRegisteredEvents();
+        const auto& registeredEvents2 = testHelperThread2.GetRegisteredEvents();
 
         // Then
         ASSERT_EQ(10000, registeredEvents1.size());
@@ -104,12 +103,13 @@ namespace DiKErnel::Util::Test
         EventRegistry::Register(make_unique<Event>("Warning message", EventType::Warning));
         EventRegistry::Register(make_unique<Event>("Error message", EventType::Error));
 
+        // Precondition
         ASSERT_EQ(2, EventRegistry::GetEvents().size());
 
         // When
         EventRegistry::Flush();
 
-        // // Then
+        // Then
         ASSERT_EQ(0, EventRegistry::GetEvents().size());
     }
 }
