@@ -33,7 +33,7 @@ namespace DiKErnel::Util
     class EventRegistry
     {
         public:
-            #pragma region Disable copy and assignment constructor and operator API
+            #pragma region Disable copy and assignment API
 
             EventRegistry(
                 EventRegistry& eventRegistry) = delete;
@@ -58,7 +58,7 @@ namespace DiKErnel::Util
                 std::unique_ptr<Event> event);
 
             /*!
-             * \brief Gets all the registered events.
+             * \brief Gets all registered events.
              * \return The registered events.
              */
             static const std::vector<std::reference_wrapper<Event>>& GetEvents();

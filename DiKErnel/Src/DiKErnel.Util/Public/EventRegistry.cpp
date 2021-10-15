@@ -37,8 +37,7 @@ namespace DiKErnel::Util
 
     const vector<reference_wrapper<Event>>& EventRegistry::GetEvents()
     {
-        const auto& eventRegistryInstance = GetInstance();
-        return eventRegistryInstance._eventReferences;
+        return GetInstance()._eventReferences;
     }
 
     void EventRegistry::Flush()
