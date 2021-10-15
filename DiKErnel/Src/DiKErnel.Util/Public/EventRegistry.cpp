@@ -24,8 +24,6 @@ namespace DiKErnel::Util
 {
     using namespace std;
 
-    thread_local EventRegistry* EventRegistry::_eventRegistry;
-
     void EventRegistry::Register(
         unique_ptr<Event> event)
     {
