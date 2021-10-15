@@ -20,6 +20,7 @@
 
 #include "JsonInputComposer.h"
 
+#include "EventRegistry.h"
 #include "JsonInputAdapter.h"
 #include "JsonInputParser.h"
 
@@ -27,17 +28,30 @@ namespace DiKErnel::KernelWrapper::Json::Input
 {
     using namespace Core;
     using namespace std;
+    using namespace Util;
 
-    tuple<unique_ptr<ICalculationInput>, JsonInputProcessType> JsonInputComposer::GetInputDataFromJson(
+    tuple<unique_ptr<ICalculationInput>, JsonInputProcessType, vector<unique_ptr<Event>>> JsonInputComposer::GetInputDataFromJson(
         const string& filePath)
     {
-        const auto jsonInputData = JsonInputParser::GetJsonInputData(filePath);
+        unique_ptr<ICalculationInput> calculationInput = nullptr;
+        auto processType = JsonInputProcessType::Damage;
 
-        const auto* readProcessType = jsonInputData->GetProcessData().GetProcessType();
-        const auto processType = readProcessType == nullptr
-                                     ? JsonInputProcessType::Damage
-                                     : *readProcessType;
+        try
+        {
+            const auto jsonInputData = JsonInputParser::GetJsonInputData(filePath);
 
-        return tuple(JsonInputAdapter::AdaptJsonInputData(*jsonInputData), processType);
+            if (const auto* readProcessType = jsonInputData->GetProcessData().GetProcessType(); readProcessType != nullptr)
+            {
+                processType = *readProcessType;
+            }
+
+            calculationInput = JsonInputAdapter::AdaptJsonInputData(*jsonInputData);
+        }
+        catch (const exception& e)
+        {
+            EventRegistry::Register(make_unique<Event>(e.what(), EventType::Error));
+        }
+
+        return make_tuple(move(calculationInput), processType, EventRegistry::Flush());
     }
 }
