@@ -11,6 +11,7 @@ add_subdirectory(DiKErnel.KernelWrapper.Json.Integration.Test)
 add_subdirectory(DiKErnel.KernelWrapper.Json.Output.Test)
 add_subdirectory(DiKErnel.TestUtil)
 add_subdirectory(DiKErnel.Util.Test)
+add_subdirectory(DiKErnel.Util.TestUtil)
 
 # Fetch third party libraries
 Include(FetchContent)

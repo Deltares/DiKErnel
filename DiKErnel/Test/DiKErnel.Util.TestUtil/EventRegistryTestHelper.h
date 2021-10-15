@@ -18,36 +18,32 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include "EventRegistry.h"
+#pragma once
 
-namespace DiKErnel::Util
+#include <memory>
+#include <thread>
+#include <vector>
+
+#include "Event.h"
+
+namespace DiKErnel::Util::TestUtil
 {
-    using namespace std;
-
-    thread_local EventRegistry* EventRegistry::_eventRegistry;
-
-    void EventRegistry::Register(
-        std::unique_ptr<Event> event)
+    class EventRegistryTestHelper
     {
-        const auto eventRegistryInstance = GetInstance();
+        public:
+            explicit EventRegistryTestHelper(
+                int numberOfEventsToRegister);
 
-        eventRegistryInstance->_events.push_back(move(event));
-        eventRegistryInstance->_eventReferences.emplace_back(*eventRegistryInstance->_events.back());
-    }
+            void WaitForCompletion();
 
-    const std::vector<std::reference_wrapper<Event>>& EventRegistry::GetEvents()
-    {
-        const auto eventRegistryInstance = GetInstance();
-        return eventRegistryInstance->_eventReferences;
-    }
+            const std::vector<std::reference_wrapper<Event>>& GetRegisteredEvents() const;
 
-    EventRegistry* EventRegistry::GetInstance()
-    {
-        if (_eventRegistry == nullptr)
-        {
-            _eventRegistry = new EventRegistry();
-        }
+        private:
+            std::thread _thread;
+            std::vector<std::reference_wrapper<Event>> _registeredEvents = std::vector<std::reference_wrapper<Event>>();
 
-        return _eventRegistry;
-    }
+            void PerformTest(
+                int numberOfEventsToRegister,
+                std::vector<std::reference_wrapper<Event>>& registeredEvents) const;
+    };
 }

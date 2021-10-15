@@ -18,36 +18,46 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
+#include "EventRegistryTestHelper.h"
+
 #include "EventRegistry.h"
 
-namespace DiKErnel::Util
+namespace DiKErnel::Util::TestUtil
 {
     using namespace std;
 
-    thread_local EventRegistry* EventRegistry::_eventRegistry;
-
-    void EventRegistry::Register(
-        std::unique_ptr<Event> event)
+    EventRegistryTestHelper::EventRegistryTestHelper(
+        int numberOfEventsToRegister)
     {
-        const auto eventRegistryInstance = GetInstance();
-
-        eventRegistryInstance->_events.push_back(move(event));
-        eventRegistryInstance->_eventReferences.emplace_back(*eventRegistryInstance->_events.back());
+        _thread = thread(
+            &EventRegistryTestHelper::PerformTest,
+            this,
+            ref(numberOfEventsToRegister),
+            ref(_registeredEvents));
     }
 
-    const std::vector<std::reference_wrapper<Event>>& EventRegistry::GetEvents()
+    void EventRegistryTestHelper::WaitForCompletion()
     {
-        const auto eventRegistryInstance = GetInstance();
-        return eventRegistryInstance->_eventReferences;
-    }
-
-    EventRegistry* EventRegistry::GetInstance()
-    {
-        if (_eventRegistry == nullptr)
+        if (_thread.joinable())
         {
-            _eventRegistry = new EventRegistry();
+            _thread.join();
+        }
+    }
+
+    const vector<reference_wrapper<Event>>& EventRegistryTestHelper::GetRegisteredEvents() const
+    {
+        return _registeredEvents;
+    }
+
+    void EventRegistryTestHelper::PerformTest(
+        const int numberOfEventsToRegister,
+        vector<reference_wrapper<Event>>& registeredEvents) const
+    {
+        for (auto i = 0; i < numberOfEventsToRegister; ++i)
+        {
+            EventRegistry::Register(make_unique<Event>("Event " + to_string(i), EventType::Error));
         }
 
-        return _eventRegistry;
+        registeredEvents = EventRegistry::GetEvents();
     }
 }
