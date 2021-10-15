@@ -29,25 +29,25 @@ namespace DiKErnel::Util
     void EventRegistry::Register(
         std::unique_ptr<Event> event)
     {
-        const auto eventRegistryInstance = GetInstance();
+        auto& eventRegistryInstance = GetInstance();
 
-        eventRegistryInstance->_events.push_back(move(event));
-        eventRegistryInstance->_eventReferences.emplace_back(*eventRegistryInstance->_events.back());
+        eventRegistryInstance._events.push_back(move(event));
+        eventRegistryInstance._eventReferences.emplace_back(*eventRegistryInstance._events.back());
     }
 
     const std::vector<std::reference_wrapper<Event>>& EventRegistry::GetEvents()
     {
-        const auto eventRegistryInstance = GetInstance();
-        return eventRegistryInstance->_eventReferences;
+        const auto& eventRegistryInstance = GetInstance();
+        return eventRegistryInstance._eventReferences;
     }
 
-    EventRegistry* EventRegistry::GetInstance()
+    EventRegistry& EventRegistry::GetInstance()
     {
         if (_eventRegistry == nullptr)
         {
             _eventRegistry = new EventRegistry();
         }
 
-        return _eventRegistry;
+        return *_eventRegistry;
     }
 }
