@@ -89,13 +89,13 @@ namespace DiKErnel::KernelWrapper::Json::Input
     }
 
     void JsonInputNaturalStoneRevetmentLocationData::SetSlopeUpperLevelAus(
-        std::unique_ptr<double> slopeUpperLevelAus)
+        unique_ptr<double> slopeUpperLevelAus)
     {
         _slopeUpperLevelAus = move(slopeUpperLevelAus);
     }
 
     void JsonInputNaturalStoneRevetmentLocationData::SetSlopeLowerLevelAls(
-        std::unique_ptr<double> slopeLowerLevelAls)
+        unique_ptr<double> slopeLowerLevelAls)
     {
         _slopeLowerLevelAls = move(slopeLowerLevelAls);
     }

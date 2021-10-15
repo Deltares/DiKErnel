@@ -56,7 +56,7 @@ namespace DiKErnel::Core
         return _timeOfFailure.get();
     }
 
-    const std::vector<std::reference_wrapper<TimeDependentOutput>>& LocationDependentOutput::GetTimeDependentOutputItems() const
+    const vector<reference_wrapper<TimeDependentOutput>>& LocationDependentOutput::GetTimeDependentOutputItems() const
     {
         return _timeDependentOutputItemReferences;
     }

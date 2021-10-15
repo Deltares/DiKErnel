@@ -22,9 +22,11 @@
 
 namespace DiKErnel::Core::TestUtil
 {
+    using namespace std;
+
     TimeDependentOutputMock::TimeDependentOutputMock(
         const double incrementDamage,
         const double damage,
-        std::unique_ptr<int> timeOfFailure)
+        unique_ptr<int> timeOfFailure)
         : TimeDependentOutput(incrementDamage, damage, move(timeOfFailure)) {}
 }

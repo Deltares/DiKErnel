@@ -63,8 +63,8 @@ namespace DiKErnel::FunctionLibrary
     double NaturalStoneRevetment::OuterSlopeWithBerm(
         const double outerToeHeight,
         const double outerCrestHeight,
-        const std::pair<double, double> notchOuterBerm,
-        const std::pair<double, double> crestOuterBerm,
+        const pair<double, double> notchOuterBerm,
+        const pair<double, double> crestOuterBerm,
         const double slopeUpperLevel,
         const double slopeLowerLevel,
         const double slopeUpperPosition,

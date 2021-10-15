@@ -94,13 +94,13 @@ namespace DiKErnel::Integration
     }
 
     void NaturalStoneRevetmentLocationConstructionProperties::SetSlopeUpperLevelAus(
-        std::unique_ptr<double> slopeUpperLevelAus)
+        unique_ptr<double> slopeUpperLevelAus)
     {
         _slopeUpperLevelAus = move(slopeUpperLevelAus);
     }
 
     void NaturalStoneRevetmentLocationConstructionProperties::SetSlopeLowerLevelAls(
-        std::unique_ptr<double> slopeLowerLevelAls)
+        unique_ptr<double> slopeLowerLevelAls)
     {
         _slopeLowerLevelAls = move(slopeLowerLevelAls);
     }

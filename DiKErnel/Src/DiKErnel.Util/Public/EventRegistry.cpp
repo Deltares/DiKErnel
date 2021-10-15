@@ -27,7 +27,7 @@ namespace DiKErnel::Util
     thread_local EventRegistry* EventRegistry::_eventRegistry;
 
     void EventRegistry::Register(
-        std::unique_ptr<Event> event)
+        unique_ptr<Event> event)
     {
         auto& eventRegistryInstance = GetInstance();
 
@@ -35,7 +35,7 @@ namespace DiKErnel::Util
         eventRegistryInstance._eventReferences.emplace_back(*eventRegistryInstance._events.back());
     }
 
-    const std::vector<std::reference_wrapper<Event>>& EventRegistry::GetEvents()
+    const vector<reference_wrapper<Event>>& EventRegistry::GetEvents()
     {
         const auto& eventRegistryInstance = GetInstance();
         return eventRegistryInstance._eventReferences;
