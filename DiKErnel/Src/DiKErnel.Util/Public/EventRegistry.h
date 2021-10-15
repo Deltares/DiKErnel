@@ -63,6 +63,11 @@ namespace DiKErnel::Util
              */
             static const std::vector<std::reference_wrapper<Event>>& GetEvents();
 
+            /*!
+             * \brief Flushes all registered events.
+             */
+            static void Flush();
+
         private:
             EventRegistry() = default;
 

@@ -41,6 +41,14 @@ namespace DiKErnel::Util
         return eventRegistryInstance._eventReferences;
     }
 
+    void EventRegistry::Flush()
+    {
+        auto& eventRegistryInstance = GetInstance();
+
+        eventRegistryInstance._events.clear();
+        eventRegistryInstance._eventReferences.clear();
+    }
+
     EventRegistry& EventRegistry::GetInstance()
     {
         if (_eventRegistry == nullptr)

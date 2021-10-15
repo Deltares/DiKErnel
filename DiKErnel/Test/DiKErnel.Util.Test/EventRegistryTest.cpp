@@ -28,9 +28,23 @@
 namespace DiKErnel::Util::Test
 {
     using namespace std;
+    using namespace testing;
     using namespace TestUtil;
 
-    TEST(EventRegistryTest, GivenEventRegistryWithoutEventsRegistered_WhenGetEvents_ThenReturnsEmptyCollection)
+    struct EventRegistryTest : Test
+    {
+        /*!
+         * \brief Creates a new instance.
+         * \remarks This makes sure that the event registry is always flushed before a test is done
+         *          to prevent interference from other tests.
+         */
+        explicit EventRegistryTest()
+        {
+            EventRegistry::Flush();
+        }
+    };
+
+    TEST_F(EventRegistryTest, GivenEventRegistryWithoutEventsRegistered_WhenGetEvents_ThenReturnsEmptyCollection)
     {
         // When
         const auto& registeredEvents = EventRegistry::GetEvents();
@@ -39,7 +53,7 @@ namespace DiKErnel::Util::Test
         ASSERT_EQ(0, registeredEvents.size());
     }
 
-    TEST(EventRegistryTest, GivenEventRegistry_WhenEventsRegisteredAndGetEvents_ThenReturnsRegisteredEvents)
+    TEST_F(EventRegistryTest, GivenEventRegistryWithEventsRegistered_WhenEvents_ThenReturnsRegisteredEvents)
     {
         // Given
         const auto message1 = "Warning message";
@@ -66,7 +80,7 @@ namespace DiKErnel::Util::Test
         ASSERT_EQ(eventType2, registeredEvent2.GetEventType());
     }
 
-    TEST(EventRegistryTest, GivenEventRegistry_WhenRegisteringEventsOnDifferentThreads_ThenReturnsDifferentEventsPerThread)
+    TEST_F(EventRegistryTest, GivenEventRegistry_WhenRegisteringEventsOnDifferentThreads_ThenReturnsDifferentEventsPerThread)
     {
         // Given
         EventRegistryTestHelper testHelperThread1(10000);
@@ -81,6 +95,21 @@ namespace DiKErnel::Util::Test
         // Then
         ASSERT_EQ(10000, registeredEvents1.size());
         ASSERT_EQ(20000, registeredEvents2.size());
+        ASSERT_EQ(0, EventRegistry::GetEvents().size());
+    }
+
+    TEST_F(EventRegistryTest, GivenEventRegistryWithEventsRegistered_WhenFlush_ThenRegisteredEventsCleared)
+    {
+        // Given
+        EventRegistry::Register(make_unique<Event>("Warning message", EventType::Warning));
+        EventRegistry::Register(make_unique<Event>("Error message", EventType::Error));
+
+        ASSERT_EQ(2, EventRegistry::GetEvents().size());
+
+        // When
+        EventRegistry::Flush();
+
+        // // Then
         ASSERT_EQ(0, EventRegistry::GetEvents().size());
     }
 }
