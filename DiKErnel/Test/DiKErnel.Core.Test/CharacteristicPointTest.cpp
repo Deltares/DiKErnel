@@ -24,19 +24,17 @@
 
 namespace DiKErnel::Core::Test
 {
-    using namespace std;
-
     TEST(CharacteristicPointTest, Constructor_ExpectedValues)
     {
         // Setup
-        const auto profilePoint = make_unique<ProfilePoint>(0.0, 1.1);
+        const ProfilePoint profilePoint(0.0, 1.1);
         const auto characteristicPointType = CharacteristicPointType::OuterCrest;
 
         // Call
-        const CharacteristicPoint characteristicPoint(*profilePoint, characteristicPointType);
+        const CharacteristicPoint characteristicPoint(profilePoint, characteristicPointType);
 
         // Assert
-        ASSERT_EQ(profilePoint.get(), &characteristicPoint.GetProfilePoint());
+        ASSERT_EQ(&profilePoint, &characteristicPoint.GetProfilePoint());
         ASSERT_EQ(characteristicPointType, characteristicPoint.GetCharacteristicPointType());
     }
 }

@@ -34,7 +34,7 @@ namespace DiKErnel::Core::Test
         const ProfilePoint profilePoint(x, z);
 
         // Assert
-        ASSERT_EQ(x, profilePoint.GetX());
-        ASSERT_EQ(z, profilePoint.GetZ());
+        ASSERT_DOUBLE_EQ(x, profilePoint.GetX());
+        ASSERT_DOUBLE_EQ(z, profilePoint.GetZ());
     }
 }
