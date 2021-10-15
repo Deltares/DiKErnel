@@ -33,6 +33,8 @@ namespace DiKErnel::Util
     class EventRegistry
     {
         public:
+            #pragma region Disable copy and assignment constructor and operator API
+
             EventRegistry(
                 EventRegistry& eventRegistry) = delete;
 
@@ -44,6 +46,8 @@ namespace DiKErnel::Util
 
             void operator=(
                 EventRegistry&& eventRegistry) = delete;
+
+            #pragma endregion
 
             /*!
              * \brief Registers an event.
