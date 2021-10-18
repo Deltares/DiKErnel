@@ -24,9 +24,6 @@
 
 #include "AssertHelper.h"
 #include "FileAssert.h"
-#include "ICalculationInputMock.h"
-#include "ILocationDependentInputMock.h"
-#include "ITimeDependentInputMock.h"
 #include "JsonOutputComposer.h"
 #include "JsonOutputConversionException.h"
 #include "TestDataPathHelper.h"
@@ -43,64 +40,6 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
     struct JsonOutputComposerTest : Test
     {
         const string _actualOutputFilePath = (filesystem::temp_directory_path() / "actualOutput.json").string();
-
-        vector<unique_ptr<ILocationDependentInput>> _locationDependentInputItems = vector<unique_ptr<ILocationDependentInput>>();
-        vector<unique_ptr<ITimeDependentInput>> _timeDependentInputItems = vector<unique_ptr<ITimeDependentInput>>();
-
-        vector<reference_wrapper<ILocationDependentInput>> _locationDependentInputItemReferences
-                = vector<reference_wrapper<ILocationDependentInput>>();
-        vector<reference_wrapper<ITimeDependentInput>> _timeDependentInputItemReferences = vector<reference_wrapper<ITimeDependentInput>>();
-
-        explicit JsonOutputComposerTest()
-        {
-            InitializeLocationDependentInputItems();
-            InitializeTimeDependentInputItems();
-        }
-
-        void InitializeLocationDependentInputItems()
-        {
-            auto locationDependentInput1 = make_unique<NiceMock<ILocationDependentInputMock>>();
-            auto locationDependentInput2 = make_unique<NiceMock<ILocationDependentInputMock>>();
-
-            ON_CALL(*locationDependentInput1, GetName).WillByDefault(Return("testName1"));
-            ON_CALL(*locationDependentInput2, GetName).WillByDefault(Return("testName2"));
-
-            ON_CALL(*locationDependentInput1, GetX).WillByDefault(Return(5.6));
-            ON_CALL(*locationDependentInput2, GetX).WillByDefault(Return(0));
-
-            ON_CALL(*locationDependentInput1, GetInitialDamage).WillByDefault(Return(0));
-            ON_CALL(*locationDependentInput2, GetInitialDamage).WillByDefault(Return(0.05));
-
-            ON_CALL(*locationDependentInput1, GetFailureNumber).WillByDefault(Return(0.95));
-            ON_CALL(*locationDependentInput2, GetFailureNumber).WillByDefault(Return(1));
-
-            _locationDependentInputItems.push_back(move(locationDependentInput1));
-            _locationDependentInputItems.push_back(move(locationDependentInput2));
-
-            for (const auto& locationDependentInput : _locationDependentInputItems)
-            {
-                _locationDependentInputItemReferences.emplace_back(*locationDependentInput);
-            }
-        }
-
-        void InitializeTimeDependentInputItems()
-        {
-            auto timeDependentInput1 = make_unique<NiceMock<ITimeDependentInputMock>>();
-            auto timeDependentInput2 = make_unique<NiceMock<ITimeDependentInputMock>>();
-
-            ON_CALL(*timeDependentInput1, GetBeginTime).WillByDefault(Return(0));
-            ON_CALL(*timeDependentInput1, GetEndTime).WillByDefault(Return(10));
-            ON_CALL(*timeDependentInput2, GetBeginTime).WillByDefault(Return(10));
-            ON_CALL(*timeDependentInput2, GetEndTime).WillByDefault(Return(100));
-
-            _timeDependentInputItems.push_back(move(timeDependentInput1));
-            _timeDependentInputItems.push_back(move(timeDependentInput2));
-
-            for (const auto& timeDependentInput : _timeDependentInputItems)
-            {
-                _timeDependentInputItemReferences.emplace_back(*timeDependentInput);
-            }
-        }
 
         void PerformTest(
             const string& filename,
@@ -124,12 +63,8 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
 
             const CalculationOutput calculationOutput(move(locations));
 
-            const NiceMock<ICalculationInputMock> calculationInput;
-            ON_CALL(calculationInput, GetLocationDependentInputItems).WillByDefault(ReturnRef(_locationDependentInputItemReferences));
-            ON_CALL(calculationInput, GetTimeDependentInputItems).WillByDefault(ReturnRef(_timeDependentInputItemReferences));
-
             // Call
-            JsonOutputComposer::WriteCalculationOutputToJson(_actualOutputFilePath, calculationOutput, calculationInput, outputType);
+            JsonOutputComposer::WriteCalculationOutputToJson(_actualOutputFilePath, calculationOutput, outputType);
 
             // Assert
             FileAssert::AssertFileContents(expectedOutputFilePath, _actualOutputFilePath);
@@ -146,41 +81,15 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
 
             const CalculationOutput calculationOutput(move(locations));
 
-            auto locationDependentInputItems = vector<unique_ptr<ILocationDependentInput>>();
-            auto timeDependentInputItems = vector<unique_ptr<ITimeDependentInput>>();
-
-            auto locationDependentInputItemReferences = vector<reference_wrapper<ILocationDependentInput>>();
-            auto timeDependentInputItemReferences = vector<reference_wrapper<ITimeDependentInput>>();
-
-            auto locationDependentInput1 = make_unique<NiceMock<ILocationDependentInputMock>>();
-
-            locationDependentInputItems.push_back(move(locationDependentInput1));
-
-            for (const auto& locationDependentInput : locationDependentInputItems)
-            {
-                locationDependentInputItemReferences.emplace_back(*locationDependentInput);
-            }
-
-            const NiceMock<ICalculationInputMock> calculationInput;
-            ON_CALL(calculationInput, GetLocationDependentInputItems).WillByDefault(ReturnRef(locationDependentInputItemReferences));
-            ON_CALL(calculationInput, GetTimeDependentInputItems).WillByDefault(ReturnRef(timeDependentInputItemReferences));
-
             // Call
-            JsonOutputComposer::WriteCalculationOutputToJson("", calculationOutput, calculationInput, JsonOutputType::Physics);
+            JsonOutputComposer::WriteCalculationOutputToJson("", calculationOutput, JsonOutputType::Physics);
         }
 
         static void WriteCalculationOutputToJsonWithInvalidJsonOutputType()
         {
-            auto locationDependentInputItemReferences = vector<reference_wrapper<ILocationDependentInput>>();
-            auto timeDependentInputItemReferences = vector<reference_wrapper<ITimeDependentInput>>();
-
-            const NiceMock<ICalculationInputMock> calculationInput;
-            ON_CALL(calculationInput, GetLocationDependentInputItems).WillByDefault(ReturnRef(locationDependentInputItemReferences));
-            ON_CALL(calculationInput, GetTimeDependentInputItems).WillByDefault(ReturnRef(timeDependentInputItemReferences));
-
             const CalculationOutput calculationOutput((vector<unique_ptr<LocationDependentOutput>>()));
 
-            JsonOutputComposer::WriteCalculationOutputToJson("", calculationOutput, calculationInput, static_cast<JsonOutputType>(99));
+            JsonOutputComposer::WriteCalculationOutputToJson("", calculationOutput, static_cast<JsonOutputType>(99));
         }
 
         ~JsonOutputComposerTest() override
