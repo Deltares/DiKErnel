@@ -78,8 +78,6 @@ namespace DiKErnel::KernelWrapper::Json::Integration::Test
             const auto& expectedDamage = expectedLocation["SchadeBekleding"];
             const auto& actualDamage = actualLocation["SchadeBekleding"];
 
-            ASSERT_EQ(expectedDamage["Beginschade"], actualDamage["Beginschade"]);
-            ASSERT_EQ(expectedDamage["Faalgetal"], actualDamage["Faalgetal"]);
             AssertHelper::AssertAreAlmostEqual(expectedDamage["SchadegetalPerTijd"].get<vector<double>>(),
                                                actualDamage["SchadegetalPerTijd"].get<vector<double>>());
         }

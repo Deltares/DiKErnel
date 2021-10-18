@@ -7,8 +7,6 @@
                     "Faaltijd": 60
                 },
                 "SchadeBekleding": {
-                    "Beginschade": 0.0,
-                    "Faalgetal": 0.95,
                     "SchadegetalPerTijd": [
                         0.15,
                         0.253
@@ -21,8 +19,6 @@
                     "Faaltijd": null
                 },
                 "SchadeBekleding": {
-                    "Beginschade": 0.05,
-                    "Faalgetal": 1.0,
                     "SchadegetalPerTijd": [
                         0.28,
                         0.512

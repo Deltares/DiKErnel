@@ -36,8 +36,6 @@ namespace DiKErnel::KernelWrapper::Json::Output
             inline static const std::string TIME_OF_FAILURE = "Faaltijd";
 
             inline static const std::string DAMAGE_REVETMENT = "SchadeBekleding";
-            inline static const std::string INITIAL_DAMAGE = "Beginschade";
-            inline static const std::string FAILURE_NUMBER = "Faalgetal";
             inline static const std::string DAMAGE_OVER_TIME = "SchadegetalPerTijd";
 
             inline static const std::string PHYSICS_REVETMENT = "FysicaBekleding";

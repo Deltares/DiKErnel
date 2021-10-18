@@ -42,14 +42,6 @@ namespace DiKErnel::KernelWrapper::Json::Output
         output[JsonOutputDefinitions::DAMAGE_REVETMENT] = ordered_json::object(
             {
                 {
-                    JsonOutputDefinitions::INITIAL_DAMAGE,
-                    locationInput.GetInitialDamage()
-                },
-                {
-                    JsonOutputDefinitions::FAILURE_NUMBER,
-                    locationInput.GetFailureNumber()
-                },
-                {
                     JsonOutputDefinitions::DAMAGE_OVER_TIME,
                     locationOutput.GetDamages()
                 }
