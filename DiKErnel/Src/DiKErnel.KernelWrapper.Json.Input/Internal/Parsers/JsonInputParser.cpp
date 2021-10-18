@@ -227,7 +227,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
         return parsedLocations;
     }
 
-    template <class T>
+    template <typename T>
     unique_ptr<T> JsonInputParser::CreateParser(
         const json& readLocation,
         const json& readRevetment,

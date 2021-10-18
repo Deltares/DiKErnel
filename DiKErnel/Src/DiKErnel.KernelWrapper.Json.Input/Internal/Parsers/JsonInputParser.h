@@ -55,7 +55,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
             static std::vector<std::unique_ptr<JsonInputLocationData>> ParseLocationData(
                 const nlohmann::json& readCalculationData);
 
-            template <class T>
+            template <typename T>
             static std::unique_ptr<T> CreateParser(
                 const nlohmann::json& readLocation,
                 const nlohmann::json& readRevetment,

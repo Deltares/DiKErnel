@@ -39,7 +39,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
         return forward<unique_ptr<int>>(ParseOptionalValue<int>(object, propertyName));
     }
 
-    template <class T>
+    template <typename T>
     unique_ptr<T> JsonInputParserHelper::ParseOptionalValue(
         const json& object,
         const string& propertyName)
