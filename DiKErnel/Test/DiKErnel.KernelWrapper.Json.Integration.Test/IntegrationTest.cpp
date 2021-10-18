@@ -64,9 +64,6 @@ namespace DiKErnel::KernelWrapper::Json::Integration::Test
             const json& expectedLocation,
             const json& actualLocation) const
         {
-            ASSERT_EQ(expectedLocation["Naam"], actualLocation["Naam"]);
-            ASSERT_DOUBLE_EQ(expectedLocation["PositieLocatie"], actualLocation["PositieLocatie"]);
-
             const auto& expectedFailure = expectedLocation["FalenBekleding"];
             const auto& actualFailure = actualLocation["FalenBekleding"];
 
