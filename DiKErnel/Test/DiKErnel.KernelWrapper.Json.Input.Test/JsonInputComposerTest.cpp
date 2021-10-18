@@ -29,7 +29,6 @@
 #include "GrassRevetmentWaveRunupLocationDependentInputAssertHelper.h"
 #include "GrassRevetmentWaveRunupRayleighLocationDependentInput.h"
 #include "GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper.h"
-#include "JsonInputConversionException.h"
 #include "JsonInputComposer.h"
 #include "LocationDependentInputAssertHelper.h"
 #include "NaturalStoneRevetmentLocationDependentInput.h"
@@ -46,62 +45,45 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
     using namespace Integration::TestUtil;
     using namespace std;
     using namespace testing;
+    using namespace Util;
 
     struct JsonInputComposerTest : Test
     {
         static void PerformProcessTypeTest(
-            const string& filename,
+            const string& fileName,
             const JsonInputProcessType expectedProcessType)
         {
             // Given
             const auto filePath = (TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Input.Test") / "JsonInputComposerTest"
-                / filename).string();
+                / fileName).string();
 
             // When
-            const auto processType = get<1>(JsonInputComposer::GetInputDataFromJson(filePath));
+            const auto processType = get<1>(move(*JsonInputComposer::GetInputDataFromJson(filePath)->GetResult()));
 
             // Then
             ASSERT_EQ(expectedProcessType, processType);
         }
 
-        static void GetInputDataFromJsonWithInvalidAsphaltRevetmentWaveImpactTopLayerType()
+        static void PerformInvalidJsonTest(
+            const string& fileName,
+            const string& expectedMessage)
         {
+            // Given
             const auto filePath = (TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Input.Test") / "JsonInputComposerTest"
-                / "InvalidAsphaltRevetmentWaveImpactTopLayerType.json").string();
+                / fileName).string();
 
-            JsonInputComposer::GetInputDataFromJson(filePath);
-        }
+            // When
+            const auto result = JsonInputComposer::GetInputDataFromJson(filePath);
 
-        static void GetInputDataFromJsonWithInvalidNaturalStoneRevetmentTopLayerType()
-        {
-            const auto filePath = (TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Input.Test") / "JsonInputComposerTest"
-                / "InvalidNaturalStoneRevetmentTopLayerType.json").string();
+            // Assert
+            ASSERT_EQ(nullptr, result->GetResult());
 
-            JsonInputComposer::GetInputDataFromJson(filePath);
-        }
+            const auto events = result->GetEvents();
+            ASSERT_EQ(1, events.size());
 
-        static void GetInputDataFromJsonWithInvalidGrassRevetmentWaveImpactTopLayerType()
-        {
-            const auto filePath = (TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Input.Test") / "JsonInputComposerTest"
-                / "InvalidGrassRevetmentWaveImpactTopLayerType.json").string();
-
-            JsonInputComposer::GetInputDataFromJson(filePath);
-        }
-
-        static void GetInputDataFromJsonWithInvalidGrassRevetmentWaveRunupRayleighTopLayerType()
-        {
-            const auto filePath = (TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Input.Test") / "JsonInputComposerTest"
-                / "InvalidGrassRevetmentWaveRunupRayleighTopLayerType.json").string();
-
-            JsonInputComposer::GetInputDataFromJson(filePath);
-        }
-
-        static void GetInputDataFromJsonWithInvalidCharacteristicPointType()
-        {
-            const auto filePath = (TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Input.Test") / "JsonInputComposerTest"
-                / "InvalidCharacteristicPointType.json").string();
-
-            JsonInputComposer::GetInputDataFromJson(filePath);
+            const auto event = events[0].get();
+            ASSERT_EQ(EventType::Error, event.GetEventType());
+            ASSERT_EQ(expectedMessage, event.GetMessage());
         }
     };
 
@@ -132,7 +114,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
             / "AllLocationsInput.json").string();
 
         // When
-        const auto calculationInput = get<0>(JsonInputComposer::GetInputDataFromJson(filePath));
+        const auto calculationInput = get<0>(move(*JsonInputComposer::GetInputDataFromJson(filePath)->GetResult()));
 
         // Then
         AssertHelper::AssertIsInstanceOf<CalculationInput>(calculationInput.get());
@@ -446,50 +428,30 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
     TEST_F(JsonInputComposerTest,
            GivenJsonInputWithInvalidCharacteristicPointType_WhenGetInputDataFromJson_ThenThrowsJsonInputConversionException)
     {
-        // Given & When
-        const auto action = &JsonInputComposerTest::GetInputDataFromJsonWithInvalidCharacteristicPointType;
-
-        // Then
-        AssertHelper::AssertThrowsWithMessage<JsonInputConversionException>(action, "Cannot convert characteristic point type.");
+        PerformInvalidJsonTest("InvalidCharacteristicPointType.json", "Cannot convert characteristic point type.");
     }
 
     TEST_F(JsonInputComposerTest,
            GivenJsonInputWithInvalidAsphaltRevetmentWaveImpactTypeTopLayer_WhenGetInputDataFromJson_ThenThrowsJsonInputConversionException)
     {
-        // Given & When
-        const auto action = &JsonInputComposerTest::GetInputDataFromJsonWithInvalidAsphaltRevetmentWaveImpactTopLayerType;
-
-        // Then
-        AssertHelper::AssertThrowsWithMessage<JsonInputConversionException>(action, "Cannot convert top layer type.");
+        PerformInvalidJsonTest("InvalidAsphaltRevetmentWaveImpactTopLayerType.json", "Cannot convert top layer type.");
     }
 
     TEST_F(JsonInputComposerTest,
            GivenJsonInputWithInvalidGrassRevetmentWaveImpactTypeTopLayer_WhenGetInputDataFromJson_ThenThrowsJsonInputConversionException)
     {
-        // Given & When
-        const auto action = &JsonInputComposerTest::GetInputDataFromJsonWithInvalidGrassRevetmentWaveImpactTopLayerType;
-
-        // Then
-        AssertHelper::AssertThrowsWithMessage<JsonInputConversionException>(action, "Cannot convert top layer type.");
+        PerformInvalidJsonTest("InvalidGrassRevetmentWaveImpactTopLayerType.json", "Cannot convert top layer type.");
     }
 
     TEST_F(JsonInputComposerTest,
            GivenJsonInputWithInvalidGrassRevetmentWaveRunupRayleighTypeTopLayer_WhenGetInputDataFromJson_ThenThrowsJsonInputConversionException)
     {
-        // Given & When
-        const auto action = &JsonInputComposerTest::GetInputDataFromJsonWithInvalidGrassRevetmentWaveRunupRayleighTopLayerType;
-
-        // Then
-        AssertHelper::AssertThrowsWithMessage<JsonInputConversionException>(action, "Cannot convert top layer type.");
+        PerformInvalidJsonTest("InvalidGrassRevetmentWaveRunupRayleighTopLayerType.json", "Cannot convert top layer type.");
     }
 
     TEST_F(JsonInputComposerTest,
            GivenJsonInputWithInvalidNaturalStoneRevetmentTypeTopLayer_WhenGetInputDataFromJson_ThenThrowsJsonInputConversionException)
     {
-        // Given & When
-        const auto action = &JsonInputComposerTest::GetInputDataFromJsonWithInvalidNaturalStoneRevetmentTopLayerType;
-
-        // Then
-        AssertHelper::AssertThrowsWithMessage<JsonInputConversionException>(action, "Cannot convert top layer type.");
+        PerformInvalidJsonTest("InvalidNaturalStoneRevetmentTopLayerType.json", "Cannot convert top layer type.");
     }
 }
