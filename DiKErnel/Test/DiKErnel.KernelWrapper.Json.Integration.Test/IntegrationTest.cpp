@@ -119,12 +119,13 @@ namespace DiKErnel::KernelWrapper::Json::Integration::Test
         {
             // When
             const auto inputData = JsonInputComposer::GetInputDataFromJson(inputFilePath);
-            auto* calculationInput = get<0>(inputData).get();
+            const auto result = move(*inputData->GetResult());
+            auto* calculationInput = get<0>(result).get();
 
             Calculator calculator(*calculationInput);
             calculator.WaitForCompletion();
 
-            const auto outputType = ConvertProcessType(get<1>(inputData));
+            const auto outputType = ConvertProcessType(get<1>(result));
 
             const auto outputData = calculator.GetCalculationOutput();
             JsonOutputComposer::WriteCalculationOutputToJson(_actualOutputFilePath, *outputData, *calculationInput,
