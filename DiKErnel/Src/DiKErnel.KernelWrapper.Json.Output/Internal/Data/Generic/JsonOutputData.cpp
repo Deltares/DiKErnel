@@ -48,10 +48,6 @@ namespace DiKErnel::KernelWrapper::Json::Output
                     JsonOutputDefinitions::OUTPUT_DATA,
                     {
                         {
-                            JsonOutputDefinitions::TIME,
-                            _times
-                        },
-                        {
                             JsonOutputDefinitions::LOCATIONS,
                             locationOutputJsonItems
                         }

@@ -135,8 +135,6 @@ namespace DiKErnel::KernelWrapper::Json::Integration::Test
             ifstream ifs2(_actualOutputFilePath);
             const auto actualJson = json::parse(ifs2);
 
-            ASSERT_EQ(expectedJson["Uitvoerdata"]["Tijd"], actualJson["Uitvoerdata"]["Tijd"]);
-
             const auto& expectedLocations = expectedJson["Uitvoerdata"]["Locaties"];
             const auto& actualLocations = actualJson["Uitvoerdata"]["Locaties"];
 

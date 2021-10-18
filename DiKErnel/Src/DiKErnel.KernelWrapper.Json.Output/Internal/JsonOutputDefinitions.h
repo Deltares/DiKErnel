@@ -29,8 +29,6 @@ namespace DiKErnel::KernelWrapper::Json::Output
         public:
             inline static const std::string OUTPUT_DATA = "Uitvoerdata";
 
-            inline static const std::string TIME = "Tijd";
-
             inline static const std::string LOCATIONS = "Locaties";
 
             inline static const std::string FAILURE_REVETMENT = "FalenBekleding";
