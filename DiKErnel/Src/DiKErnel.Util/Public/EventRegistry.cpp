@@ -24,16 +24,16 @@ namespace DiKErnel::Util
 {
     using namespace std;
 
-    thread_local EventRegistry* EventRegistry::_eventRegistry = new EventRegistry();
+    thread_local EventRegistry EventRegistry::_instance;
 
     void EventRegistry::Register(
         unique_ptr<Event> event)
     {
-        (*_eventRegistry)._events.push_back(move(event));
+        _instance._events.push_back(move(event));
     }
 
     vector<unique_ptr<Event>> EventRegistry::Flush()
     {
-        return move((*_eventRegistry)._events);
+        return move(_instance._events);
     }
 }

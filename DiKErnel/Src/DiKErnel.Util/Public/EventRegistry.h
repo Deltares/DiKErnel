@@ -68,7 +68,7 @@ namespace DiKErnel::Util
 
             ~EventRegistry() = default;
 
-            static thread_local EventRegistry* _eventRegistry;
+            thread_local static EventRegistry _instance;
 
             std::vector<std::unique_ptr<Event>> _events = std::vector<std::unique_ptr<Event>>();
     };
