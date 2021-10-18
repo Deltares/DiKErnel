@@ -134,8 +134,7 @@ int main()
 
             // Write Json output to file
             const auto outputData = calculator.GetCalculationOutput();
-            JsonOutputComposer::WriteCalculationOutputToJson(outputPath.u8string(), *outputData, *calculationInput,
-                                                             ConvertProcessType(get<1>(inputData)));
+            JsonOutputComposer::WriteCalculationOutputToJson(outputPath.u8string(), *outputData, ConvertProcessType(get<1>(inputData)));
 
             cout << endl;
             cout << "|========================|" << endl;

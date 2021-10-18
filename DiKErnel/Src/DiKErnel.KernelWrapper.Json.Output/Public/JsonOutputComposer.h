@@ -40,15 +40,12 @@ namespace DiKErnel::KernelWrapper::Json::Output
              *        The file to the Json file.
              * \param calculationOutput
              *        The calculation output to write.
-             * \param calculationInput
-             *        The calculation input that corresponds to the calculation output.
              * \param outputType
              *        The output type.
              */
             static void WriteCalculationOutputToJson(
                 const std::string& filePath,
                 const Core::CalculationOutput& calculationOutput,
-                const Core::ICalculationInput& calculationInput,
                 JsonOutputType outputType);
     };
 }

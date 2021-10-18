@@ -33,7 +33,6 @@ namespace DiKErnel::KernelWrapper::Json::Output
     void JsonOutputComposer::WriteCalculationOutputToJson(
         const string& filePath,
         const CalculationOutput& calculationOutput,
-        const ICalculationInput& calculationInput,
         const JsonOutputType outputType)
     {
         const auto jsonOutput = CalculationOutputAdapter::AdaptCalculationOutput(calculationOutput, outputType);

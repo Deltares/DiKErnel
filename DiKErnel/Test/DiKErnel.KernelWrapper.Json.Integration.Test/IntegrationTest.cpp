@@ -123,8 +123,7 @@ namespace DiKErnel::KernelWrapper::Json::Integration::Test
             const auto outputType = ConvertProcessType(get<1>(result));
 
             const auto outputData = calculator.GetCalculationOutput();
-            JsonOutputComposer::WriteCalculationOutputToJson(_actualOutputFilePath, *outputData, *calculationInput,
-                                                             outputType);
+            JsonOutputComposer::WriteCalculationOutputToJson(_actualOutputFilePath, *outputData, outputType);
 
             // Then
             ifstream ifs1(expectedOutputFilePath);
