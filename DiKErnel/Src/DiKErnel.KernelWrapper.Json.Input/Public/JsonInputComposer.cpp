@@ -30,10 +30,10 @@ namespace DiKErnel::KernelWrapper::Json::Input
     using namespace std;
     using namespace Util;
 
-    tuple<unique_ptr<ICalculationInput>, JsonInputProcessType, vector<unique_ptr<Event>>> JsonInputComposer::GetInputDataFromJson(
+    unique_ptr<Result<tuple<unique_ptr<ICalculationInput>, JsonInputProcessType>>> JsonInputComposer::GetInputDataFromJson(
         const string& filePath)
     {
-        unique_ptr<ICalculationInput> calculationInput = nullptr;
+        unique_ptr<tuple<unique_ptr<ICalculationInput>, JsonInputProcessType>> readInput = nullptr;
         auto processType = JsonInputProcessType::Damage;
 
         try
@@ -45,13 +45,14 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 processType = *readProcessType;
             }
 
-            calculationInput = JsonInputAdapter::AdaptJsonInputData(*jsonInputData);
+            readInput = make_unique<tuple<unique_ptr<ICalculationInput>, JsonInputProcessType>>(JsonInputAdapter::AdaptJsonInputData(*jsonInputData),
+                                                                                            processType);
         }
         catch (const exception& e)
         {
             EventRegistry::Register(make_unique<Event>(e.what(), EventType::Error));
         }
 
-        return make_tuple(move(calculationInput), processType, EventRegistry::Flush());
+        return make_unique<Result<tuple<unique_ptr<ICalculationInput>, JsonInputProcessType>>>(move(readInput), EventRegistry::Flush());
     }
 }
