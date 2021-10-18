@@ -21,7 +21,6 @@
 #pragma once
 
 #include "IJsonOutputData.h"
-#include "ILocationDependentInput.h"
 #include "LocationDependentOutput.h"
 
 namespace DiKErnel::KernelWrapper::Json::Output
@@ -30,18 +29,14 @@ namespace DiKErnel::KernelWrapper::Json::Output
     {
         public:
             explicit JsonOutputFailureLocationData(
-                const Core::LocationDependentOutput& locationOutput,
-                const Core::ILocationDependentInput& locationInput);
+                const Core::LocationDependentOutput& locationOutput);
 
             nlohmann::ordered_json CreateJson() const override;
 
         protected:
             const Core::LocationDependentOutput& GetLocationOutput() const;
 
-            const Core::ILocationDependentInput& GetLocationInput() const;
-
         private:
             const Core::LocationDependentOutput& _locationOutput;
-            const Core::ILocationDependentInput& _locationInput;
     };
 }

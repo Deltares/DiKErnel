@@ -32,32 +32,26 @@ namespace DiKErnel::KernelWrapper::Json::Output
         public:
             static std::unique_ptr<JsonOutputData> AdaptCalculationOutput(
                 const Core::CalculationOutput& calculationOutput,
-                const Core::ICalculationInput& calculationInput,
                 JsonOutputType outputType);
 
         private:
             static std::vector<std::unique_ptr<JsonOutputFailureLocationData>> GetJsonOutputLocations(
                 const std::vector<std::reference_wrapper<Core::LocationDependentOutput>>& locationDependentOutputItems,
-                const std::vector<std::reference_wrapper<Core::ILocationDependentInput>>& locationDependentInputItems,
                 JsonOutputType outputType);
 
             typedef std::unique_ptr<JsonOutputFailureLocationData> (*FuncPtr)(
-                const Core::LocationDependentOutput&,
-                const Core::ILocationDependentInput&);
+                const Core::LocationDependentOutput&);
 
             static FuncPtr GetCreateLocationDataMethod(
                 JsonOutputType outputType);
 
             static std::unique_ptr<JsonOutputFailureLocationData> CreateJsonOutputFailureLocationData(
-                const Core::LocationDependentOutput& locationOutput,
-                const Core::ILocationDependentInput& locationInput);
+                const Core::LocationDependentOutput& locationOutput);
 
             static std::unique_ptr<JsonOutputFailureLocationData> CreateJsonOutputDamageLocationData(
-                const Core::LocationDependentOutput& locationOutput,
-                const Core::ILocationDependentInput& locationInput);
+                const Core::LocationDependentOutput& locationOutput);
 
             static std::unique_ptr<JsonOutputFailureLocationData> CreateJsonOutputPhysicsLocationData(
-                const Core::LocationDependentOutput& locationOutput,
-                const Core::ILocationDependentInput& locationInput);
+                const Core::LocationDependentOutput& locationOutput);
     };
 }

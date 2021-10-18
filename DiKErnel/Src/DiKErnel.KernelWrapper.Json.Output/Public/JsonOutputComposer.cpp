@@ -36,7 +36,7 @@ namespace DiKErnel::KernelWrapper::Json::Output
         const ICalculationInput& calculationInput,
         const JsonOutputType outputType)
     {
-        const auto jsonOutput = CalculationOutputAdapter::AdaptCalculationOutput(calculationOutput, calculationInput, outputType);
+        const auto jsonOutput = CalculationOutputAdapter::AdaptCalculationOutput(calculationOutput, outputType);
 
         ofstream outfile(filePath, ios::trunc);
         outfile << setw(4) << jsonOutput->CreateJson() << endl;
