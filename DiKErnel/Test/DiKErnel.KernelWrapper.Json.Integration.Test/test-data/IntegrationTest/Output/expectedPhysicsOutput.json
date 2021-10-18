@@ -14,8 +14,6 @@
         ],
         "Locaties": [
             {
-                "Naam": "NaturalStoneExtended",
-                "PositieLocatie": 12.0,
                 "FalenBekleding": {
                     "Faalgebeurtenis": true,
                     "Faaltijd": 1165
@@ -249,8 +247,6 @@
                 }
             },
             {
-                "Naam": "GrasGolfklapAlleOptiesAan",
-                "PositieLocatie": 13.5,
                 "FalenBekleding": {
                     "Faalgebeurtenis": false,
                     "Faaltijd": null
@@ -363,8 +359,6 @@
                 }
             },
             {
-                "Naam": "GrasGolfoploopRayleighDiscreetAlleOptiesAan",
-                "PositieLocatie": 0.0,
                 "FalenBekleding": {
                     "Faalgebeurtenis": false,
                     "Faaltijd": null
@@ -444,8 +438,6 @@
                 }
             },
             {
-                "Naam": "AsfaltAlleOptiesAan",
-                "PositieLocatie": 4.0,
                 "FalenBekleding": {
                     "Faalgebeurtenis": false,
                     "Faaltijd": null

@@ -7,8 +7,6 @@
         ],
         "Locaties": [
             {
-                "Naam": "testName1",
-                "PositieLocatie": 5.6,
                 "FalenBekleding": {
                     "Faalgebeurtenis": true,
                     "Faaltijd": 60
@@ -23,8 +21,6 @@
                 }
             },
             {
-                "Naam": "testName2",
-                "PositieLocatie": 0.0,
                 "FalenBekleding": {
                     "Faalgebeurtenis": false,
                     "Faaltijd": null

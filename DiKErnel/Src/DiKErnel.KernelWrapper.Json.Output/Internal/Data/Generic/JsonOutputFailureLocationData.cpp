@@ -40,14 +40,6 @@ namespace DiKErnel::KernelWrapper::Json::Output
         auto output = ordered_json::object(
             {
                 {
-                    JsonOutputDefinitions::NAME,
-                    _locationInput.GetName()
-                },
-                {
-                    JsonOutputDefinitions::X,
-                    _locationInput.GetX()
-                },
-                {
                     JsonOutputDefinitions::FAILURE_REVETMENT,
                     {
                         {
