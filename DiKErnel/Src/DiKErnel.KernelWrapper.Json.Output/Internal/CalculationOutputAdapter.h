@@ -21,7 +21,6 @@
 #pragma once
 
 #include "CalculationOutput.h"
-#include "ICalculationInput.h"
 #include "JsonOutputData.h"
 #include "JsonOutputType.h"
 

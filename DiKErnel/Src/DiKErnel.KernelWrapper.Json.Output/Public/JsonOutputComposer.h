@@ -23,7 +23,6 @@
 #include <string>
 
 #include "CalculationOutput.h"
-#include "ICalculationInput.h"
 #include "JsonOutputType.h"
 
 namespace DiKErnel::KernelWrapper::Json::Output
