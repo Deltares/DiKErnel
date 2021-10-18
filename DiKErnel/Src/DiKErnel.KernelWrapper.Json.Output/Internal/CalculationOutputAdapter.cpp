@@ -38,29 +38,8 @@ namespace DiKErnel::KernelWrapper::Json::Output
         const JsonOutputType outputType)
     {
         return make_unique<JsonOutputData>(
-            GetTimes(calculationInput.GetTimeDependentInputItems()),
             GetJsonOutputLocations(calculationOutput.GetLocationDependentOutputItems(), calculationInput.GetLocationDependentInputItems(),
                                    outputType));
-    }
-
-    vector<int> CalculationOutputAdapter::GetTimes(
-        const vector<reference_wrapper<ITimeDependentInput>>& timeDependentInputItems)
-    {
-        vector<int> times;
-
-        for (auto i = 0; i < static_cast<int>(timeDependentInputItems.size()); ++i)
-        {
-            const auto& timeDependentInput = timeDependentInputItems[i].get();
-
-            if (i == 0)
-            {
-                times.push_back(timeDependentInput.GetBeginTime());
-            }
-
-            times.push_back(timeDependentInput.GetEndTime());
-        }
-
-        return times;
     }
 
     vector<unique_ptr<JsonOutputFailureLocationData>> CalculationOutputAdapter::GetJsonOutputLocations(

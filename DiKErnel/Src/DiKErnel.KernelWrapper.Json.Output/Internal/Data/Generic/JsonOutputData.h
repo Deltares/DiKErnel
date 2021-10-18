@@ -32,13 +32,11 @@ namespace DiKErnel::KernelWrapper::Json::Output
     {
         public:
             explicit JsonOutputData(
-                std::vector<int> times,
                 std::vector<std::unique_ptr<JsonOutputFailureLocationData>> locationDataItems);
 
             nlohmann::ordered_json CreateJson() const override;
 
         private:
-            std::vector<int> _times;
             std::vector<std::unique_ptr<JsonOutputFailureLocationData>> _locationDataItems;
     };
 }
