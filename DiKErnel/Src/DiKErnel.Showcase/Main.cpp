@@ -67,7 +67,8 @@ int main()
         cout << endl;
 
         // Read input Json file
-        const auto inputData = JsonInputComposer::GetInputDataFromJson(jsonFilePath);
+        const auto inputComposerResult = JsonInputComposer::GetInputDataFromJson(jsonFilePath);
+        const auto& inputData = inputComposerResult->GetResult();
         auto* calculationInput = get<0>(inputData).get();
 
         // Write user feedback
