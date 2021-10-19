@@ -25,6 +25,7 @@
 
 #include "CalculationOutput.h"
 #include "ICalculationInput.h"
+#include "Result.h"
 
 namespace DiKErnel::Core
 {
@@ -79,7 +80,7 @@ namespace DiKErnel::Core
              * \return The output of the calculation when the calculation is finished, nullptr
              *         otherwise.
              */
-            std::shared_ptr<CalculationOutput> GetCalculationOutput() const;
+            std::shared_ptr<Util::Result<CalculationOutput>> GetCalculationOutput();
 
         private:
             std::thread _calculationThread;
@@ -87,7 +88,7 @@ namespace DiKErnel::Core
             std::atomic<bool> _isFinished = false;
             std::atomic<bool> _isCancelled = false;
             std::atomic<bool> _fatalErrorOccurred = false;
-            std::shared_ptr<CalculationOutput> _calculationOutput;
+            std::unique_ptr<CalculationOutput> _calculationOutput;
 
             void PerformCalculation(
                 const ICalculationInput& calculationInput,
