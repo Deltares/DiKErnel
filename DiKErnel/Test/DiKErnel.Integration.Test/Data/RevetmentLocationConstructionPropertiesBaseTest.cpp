@@ -31,14 +31,12 @@ namespace DiKErnel::Integration::Test
     TEST(RevetmentLocationConstructionPropertiesBaseTest, Constructor_ExpectedValues)
     {
         // Setup
-        const string name = "Test";
         const auto x = 0.1;
 
         // Call
-        const RevetmentLocationConstructionPropertiesMock constructionProperties(name, x);
+        const RevetmentLocationConstructionPropertiesMock constructionProperties(x);
 
         // Assert
-        ASSERT_EQ(name, constructionProperties.GetName());
         ASSERT_DOUBLE_EQ(x, constructionProperties.GetX());
         ASSERT_EQ(nullptr, constructionProperties.GetInitialDamage());
         ASSERT_EQ(nullptr, constructionProperties.GetFailureNumber());
@@ -47,19 +45,17 @@ namespace DiKErnel::Integration::Test
     TEST(RevetmentLocationConstructionPropertiesBaseTest, GivenConstructionProperties_WhenAllInputSet_ThenExpectedValues)
     {
         // Given
-        const string name = "Test";
         const auto x = 0.1;
         const auto initialDamage = 0.2;
         const auto failureNumber = 0.3;
 
-        RevetmentLocationConstructionPropertiesMock constructionProperties(name, x);
+        RevetmentLocationConstructionPropertiesMock constructionProperties(x);
 
         // When
         constructionProperties.SetInitialDamage(make_unique<double>(initialDamage));
         constructionProperties.SetFailureNumber(make_unique<double>(failureNumber));
 
         // Then
-        ASSERT_EQ(name, constructionProperties.GetName());
         ASSERT_DOUBLE_EQ(x, constructionProperties.GetX());
         ASSERT_DOUBLE_EQ(initialDamage, *constructionProperties.GetInitialDamage());
         ASSERT_DOUBLE_EQ(failureNumber, *constructionProperties.GetFailureNumber());

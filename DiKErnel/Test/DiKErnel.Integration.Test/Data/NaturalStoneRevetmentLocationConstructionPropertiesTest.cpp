@@ -32,19 +32,17 @@ namespace DiKErnel::Integration::Test
     {
         // Setup
         const auto topLayerType = NaturalStoneRevetmentTopLayerType::NordicStone;
-        const string name = "Test";
         const auto x = 0.1;
         const auto thicknessTopLayer = 0.2;
         const auto relativeDensity = 0.3;
 
         // Call
         const NaturalStoneRevetmentLocationConstructionProperties constructionProperties(
-            name, x, topLayerType, thicknessTopLayer, relativeDensity);
+            x, topLayerType, thicknessTopLayer, relativeDensity);
 
         // Assert
         AssertHelper::AssertIsInstanceOf<RevetmentLocationConstructionPropertiesBase>(&constructionProperties);
         ASSERT_EQ(topLayerType, constructionProperties.GetTopLayerType());
-        ASSERT_EQ(name, constructionProperties.GetName());
         ASSERT_DOUBLE_EQ(x, constructionProperties.GetX());
         ASSERT_DOUBLE_EQ(thicknessTopLayer, constructionProperties.GetThicknessTopLayer());
         ASSERT_DOUBLE_EQ(relativeDensity, constructionProperties.GetRelativeDensity());
@@ -78,7 +76,6 @@ namespace DiKErnel::Integration::Test
     {
         // Given
         const auto topLayerType = NaturalStoneRevetmentTopLayerType::NordicStone;
-        const string name = "Test";
         const auto x = 0.1;
         const auto thicknessTopLayer = 0.2;
         const auto relativeDensity = 0.3;
@@ -108,7 +105,7 @@ namespace DiKErnel::Integration::Test
         const auto waveAngleImpactBetamax = 2.7;
 
         NaturalStoneRevetmentLocationConstructionProperties constructionProperties(
-            name, x, topLayerType, thicknessTopLayer, relativeDensity);
+            x, topLayerType, thicknessTopLayer, relativeDensity);
 
         // When
         constructionProperties.SetInitialDamage(make_unique<double>(initialDamage));
@@ -138,7 +135,6 @@ namespace DiKErnel::Integration::Test
 
         // Then
         ASSERT_EQ(topLayerType, constructionProperties.GetTopLayerType());
-        ASSERT_EQ(name, constructionProperties.GetName());
         ASSERT_DOUBLE_EQ(x, constructionProperties.GetX());
         ASSERT_DOUBLE_EQ(thicknessTopLayer, constructionProperties.GetThicknessTopLayer());
         ASSERT_DOUBLE_EQ(relativeDensity, constructionProperties.GetRelativeDensity());
