@@ -20,8 +20,6 @@
 
 #pragma once
 
-#include <string>
-
 #include "IProfileData.h"
 #include "ITimeDependentInput.h"
 #include "TimeDependentOutput.h"
@@ -54,12 +52,6 @@ namespace DiKErnel::Core
                 double initialDamage,
                 const ITimeDependentInput& timeDependentInput,
                 const IProfileData& profileData) = 0;
-
-            /*!
-             * \brief Gets the name.
-             * \return The name.
-             */
-            virtual std::string GetName() const = 0;
 
             /*!
              * \brief Gets the x coordinate.

@@ -34,8 +34,6 @@ namespace DiKErnel::Integration
                 const Core::ITimeDependentInput& timeDependentInput,
                 const Core::IProfileData& profileData) override;
 
-            std::string GetName() const override;
-
             double GetX() const override;
 
             double GetInitialDamage() const override;
@@ -46,7 +44,6 @@ namespace DiKErnel::Integration
 
         protected:
             explicit LocationDependentInput(
-                std::string name,
                 double x,
                 double initialDamage,
                 double failureNumber);
@@ -62,7 +59,6 @@ namespace DiKErnel::Integration
             std::vector<std::pair<double, double>>& GetDikeProfilePoints();
 
         private:
-            const std::string _name;
             const double _x;
             const double _initialDamage;
             const double _failureNumber;

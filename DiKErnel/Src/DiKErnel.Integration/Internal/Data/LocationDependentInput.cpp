@@ -31,12 +31,10 @@ namespace DiKErnel::Integration
     using namespace std;
 
     LocationDependentInput::LocationDependentInput(
-        string name,
         const double x,
         const double initialDamage,
         const double failureNumber)
-        : _name(move(name)),
-          _x(x),
+        : _x(x),
           _initialDamage(initialDamage),
           _failureNumber(failureNumber) { }
 
@@ -53,11 +51,6 @@ namespace DiKErnel::Integration
         }
 
         return CalculateTimeDependentOutput(initialDamage, timeDependentInput, profileData);
-    }
-
-    string LocationDependentInput::GetName() const
-    {
-        return _name;
     }
 
     double LocationDependentInput::GetX() const

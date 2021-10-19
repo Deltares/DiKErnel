@@ -33,7 +33,6 @@ namespace DiKErnel::Integration
     {
         public:
             explicit AsphaltRevetmentWaveImpactLocationDependentInput(
-                std::string name,
                 double x,
                 double initialDamage,
                 double failureNumber,

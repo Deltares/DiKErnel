@@ -34,7 +34,6 @@ namespace DiKErnel::Core::TestUtil
                 const ITimeDependentInput& timeDependentInput,
                 const IProfileData& profileData) override;
 
-            MOCK_METHOD(std::string, GetName, (), (const, override));
             MOCK_METHOD(double, GetX, (), (const, override));
             MOCK_METHOD(double, GetInitialDamage, (), (const, override));
             MOCK_METHOD(double, GetFailureNumber, (), (const, override));

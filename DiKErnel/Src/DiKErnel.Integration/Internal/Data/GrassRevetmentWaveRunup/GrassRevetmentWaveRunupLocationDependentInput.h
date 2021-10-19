@@ -49,7 +49,6 @@ namespace DiKErnel::Integration
 
         protected:
             explicit GrassRevetmentWaveRunupLocationDependentInput(
-                std::string name,
                 double x,
                 double initialDamage,
                 double failureNumber,

@@ -32,7 +32,6 @@ namespace DiKErnel::Integration
     {
         public:
             explicit GrassRevetmentWaveImpactLocationDependentInput(
-                std::string name,
                 double x,
                 double initialDamage,
                 double failureNumber,
