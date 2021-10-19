@@ -117,8 +117,8 @@ namespace DiKErnel::FunctionLibrary
         const double slopeUpperLevelAus)
     {
         return min(outerCrestHeight,
-                   max(outerToeHeight + slopeUpperLevelAus * waveHeightHm0,
-                       waterLevel));
+                   max(waterLevel,
+                       outerToeHeight + slopeUpperLevelAus * waveHeightHm0));
     }
 
     double NaturalStoneRevetment::SlopeLowerLevel(
@@ -127,8 +127,7 @@ namespace DiKErnel::FunctionLibrary
         const double waveHeightHm0,
         const double slopeLowerLevelAls)
     {
-        return max(slopeUpperLevel - slopeLowerLevelAls * waveHeightHm0,
-                   outerToeHeight);
+        return max(outerToeHeight, slopeUpperLevel - slopeLowerLevelAls * waveHeightHm0);
     }
 
     double NaturalStoneRevetment::UpperLimitLoading(
@@ -297,7 +296,7 @@ namespace DiKErnel::FunctionLibrary
         const double slopeUpperPosition)
     {
         return (slopeUpperLevel - 0.5 * (crestOuterBermHeight + notchOuterBermHeight))
-                * ((slopeUpperPosition - notchOuterBermPosition) / (slopeUpperLevel - notchOuterBermHeight));
+                * (slopeUpperPosition - notchOuterBermPosition) / (slopeUpperLevel - notchOuterBermHeight);
     }
 
     double NaturalStoneRevetment::DistanceBermLowerSlope(
@@ -308,7 +307,7 @@ namespace DiKErnel::FunctionLibrary
         const double slopeLowerPosition)
     {
         return (0.5 * (crestOuterBermHeight + notchOuterBermHeight) - slopeLowerLevel)
-                * ((crestOuterBermPosition - slopeLowerPosition) / (crestOuterBermHeight - slopeLowerLevel));
+                * (crestOuterBermPosition - slopeLowerPosition) / (crestOuterBermHeight - slopeLowerLevel);
     }
 
     double NaturalStoneRevetment::Degradation(
