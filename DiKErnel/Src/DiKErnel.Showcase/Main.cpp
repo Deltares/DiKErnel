@@ -175,7 +175,22 @@ int main()
                 return -1;
             }
 
-            JsonOutputComposer::WriteCalculationOutputToJson(jsonOutputPath.u8string(), *outputData, ConvertProcessType(get<1>(*inputData)));
+            const auto outputComposerResult = JsonOutputComposer::WriteCalculationOutputToJson(jsonOutputPath.u8string(), *outputData,
+                                                                                               ConvertProcessType(get<1>(*inputData)));
+
+            const auto* writeSucceeded = outputComposerResult->GetResult();
+            WriteLogFile(logOutputPath.u8string(), outputComposerResult->GetEvents());
+
+            if(!*writeSucceeded)
+            {
+                cout << endl;
+                cout << "|================|" << endl;
+                cout << "| Writing failed |" << endl;
+                cout << "|================|" << endl;
+                cout << "-> An error occurred. See the log file for details" << endl;
+                cout << "-> The log file is written to: " << logOutputPath << endl;
+                return -1;
+            }
 
             cout << endl;
             cout << "|========================|" << endl;
