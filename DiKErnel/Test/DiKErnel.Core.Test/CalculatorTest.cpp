@@ -103,7 +103,8 @@ namespace DiKErnel::Core::Test
         calculator.WaitForCompletion();
 
         // Then
-        const auto output = calculator.GetCalculationOutput();
+        const auto calculatorResult = calculator.GetCalculationOutput();
+        const auto* output = calculatorResult->GetResult();
 
         const auto& locationDependentOutputItems = output->GetLocationDependentOutputItems();
         ASSERT_EQ(1, locationDependentOutputItems.size());
@@ -142,7 +143,8 @@ namespace DiKErnel::Core::Test
         calculator.WaitForCompletion();
 
         // Then
-        const auto output = calculator.GetCalculationOutput();
+        const auto calculatorResult = calculator.GetCalculationOutput();
+        const auto* output = calculatorResult->GetResult();
 
         const auto& locationDependentOutputItems = output->GetLocationDependentOutputItems();
         ASSERT_EQ(1, locationDependentOutputItems.size());
@@ -211,7 +213,8 @@ namespace DiKErnel::Core::Test
         calculator.WaitForCompletion();
 
         // When
-        const auto output = calculator.GetCalculationOutput();
+        const auto calculatorResult = calculator.GetCalculationOutput();
+        const auto* output = calculatorResult->GetResult();
 
         // Then
         ASSERT_EQ(nullptr, output);
