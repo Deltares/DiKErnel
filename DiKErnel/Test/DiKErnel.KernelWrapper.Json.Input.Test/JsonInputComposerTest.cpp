@@ -87,27 +87,27 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
         }
     };
 
-    TEST_F(JsonInputComposerTest, GivenJsonInputWithoutProcessType_WhenGetInputDataFromJson_ThenReturnDefaultJsonInputProcessType)
+    TEST_F(JsonInputComposerTest, GivenJsonInputWithoutProcessType_WhenGetInputDataFromJson_ThenReturnResultWithDefaultJsonInputProcessType)
     {
         PerformProcessTypeTest("AllLocationsInput.json", JsonInputProcessType::Damage);
     }
 
-    TEST_F(JsonInputComposerTest, GivenJsonFileWithProcessTypeFailure_WhenGetInputDataFromJson_ThenReturnExpectedJsonInputProcessType)
+    TEST_F(JsonInputComposerTest, GivenJsonFileWithProcessTypeFailure_WhenGetInputDataFromJson_ThenReturnResultWithExpectedJsonInputProcessType)
     {
         PerformProcessTypeTest("ProcessTypeFailure.json", JsonInputProcessType::Failure);
     }
 
-    TEST_F(JsonInputComposerTest, GivenJsonFileWithProcessTypeDamage_WhenGetInputDataFromJson_ThenReturnExpectedJsonInputProcessType)
+    TEST_F(JsonInputComposerTest, GivenJsonFileWithProcessTypeDamage_WhenGetInputDataFromJson_ThenReturnResultWithExpectedJsonInputProcessType)
     {
         PerformProcessTypeTest("ProcessTypeDamage.json", JsonInputProcessType::Damage);
     }
 
-    TEST_F(JsonInputComposerTest, GivenJsonFileWithProcessTypePhysics_WhenGetInputDataFromJson_ThenReturnExpectedJsonInputProcessType)
+    TEST_F(JsonInputComposerTest, GivenJsonFileWithProcessTypePhysics_WhenGetInputDataFromJson_ThenReturnResultWithExpectedJsonInputProcessType)
     {
         PerformProcessTypeTest("ProcessTypePhysics.json", JsonInputProcessType::Physics);
     }
 
-    TEST_F(JsonInputComposerTest, GivenJsonFile_WhenGetInputDataFromJson_ThenReturnICalculationInputWithExpectedValues)
+    TEST_F(JsonInputComposerTest, GivenJsonFile_WhenGetInputDataFromJson_ThenReturnsResultWithICalculationInputWithExpectedValues)
     {
         // Given
         const auto filePath = (TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Input.Test") / "JsonInputComposerTest"
@@ -428,31 +428,31 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
     }
 
     TEST_F(JsonInputComposerTest,
-           GivenJsonInputWithInvalidCharacteristicPointType_WhenGetInputDataFromJson_ThenThrowsJsonInputConversionException)
+           GivenJsonInputWithInvalidCharacteristicPointType_WhenGetInputDataFromJson_ThenReturnsResultWithNullPtrAndEvent)
     {
         PerformInvalidJsonTest("InvalidCharacteristicPointType.json", "Cannot convert characteristic point type.");
     }
 
     TEST_F(JsonInputComposerTest,
-           GivenJsonInputWithInvalidAsphaltRevetmentWaveImpactTypeTopLayer_WhenGetInputDataFromJson_ThenThrowsJsonInputConversionException)
+           GivenJsonInputWithInvalidAsphaltRevetmentWaveImpactTypeTopLayer_WhenGetInputDataFromJson_ThenReturnsResultWithNullPtrAndEvent)
     {
         PerformInvalidJsonTest("InvalidAsphaltRevetmentWaveImpactTopLayerType.json", "Cannot convert top layer type.");
     }
 
     TEST_F(JsonInputComposerTest,
-           GivenJsonInputWithInvalidGrassRevetmentWaveImpactTypeTopLayer_WhenGetInputDataFromJson_ThenThrowsJsonInputConversionException)
+           GivenJsonInputWithInvalidGrassRevetmentWaveImpactTypeTopLayer_WhenGetInputDataFromJson_ThenReturnsResultWithNullPtrAndEvent)
     {
         PerformInvalidJsonTest("InvalidGrassRevetmentWaveImpactTopLayerType.json", "Cannot convert top layer type.");
     }
 
     TEST_F(JsonInputComposerTest,
-           GivenJsonInputWithInvalidGrassRevetmentWaveRunupRayleighTypeTopLayer_WhenGetInputDataFromJson_ThenThrowsJsonInputConversionException)
+           GivenJsonInputWithInvalidGrassRevetmentWaveRunupRayleighTypeTopLayer_WhenGetInputDataFromJson_ThenReturnsResultWithNullPtrAndEvent)
     {
         PerformInvalidJsonTest("InvalidGrassRevetmentWaveRunupRayleighTopLayerType.json", "Cannot convert top layer type.");
     }
 
     TEST_F(JsonInputComposerTest,
-           GivenJsonInputWithInvalidNaturalStoneRevetmentTypeTopLayer_WhenGetInputDataFromJson_ThenThrowsJsonInputConversionException)
+           GivenJsonInputWithInvalidNaturalStoneRevetmentTypeTopLayer_WhenGetInputDataFromJson_ThenReturnsResultWithNullPtrAndEvent)
     {
         PerformInvalidJsonTest("InvalidNaturalStoneRevetmentTopLayerType.json", "Cannot convert top layer type.");
     }
