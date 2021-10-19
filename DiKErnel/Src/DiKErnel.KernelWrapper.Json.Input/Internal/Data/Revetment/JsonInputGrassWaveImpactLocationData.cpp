@@ -27,11 +27,10 @@ namespace DiKErnel::KernelWrapper::Json::Input
     using namespace std;
 
     JsonInputGrassWaveImpactLocationData::JsonInputGrassWaveImpactLocationData(
-        string name,
         const double x,
         unique_ptr<JsonInputDamageData> damageData,
         unique_ptr<JsonInputGrassRevetmentWaveImpactLocationData> revetmentLocationData)
-        : JsonInputLocationData(move(name), x, move(damageData)),
+        : JsonInputLocationData(x, move(damageData)),
           _revetmentLocationData(move(revetmentLocationData)) {}
 
     const JsonInputGrassRevetmentWaveImpactLocationData& JsonInputGrassWaveImpactLocationData::GetRevetmentLocationData() const

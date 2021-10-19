@@ -47,11 +47,10 @@ namespace DiKErnel::KernelWrapper::Json::Input
         : JsonInputLocationParser(readLocation, readRevetment, readCalculationMethod) {}
 
     unique_ptr<JsonInputLocationData> JsonInputNaturalStoneParser::ParseLocationData(
-        string name,
         double x,
         unique_ptr<JsonInputDamageData> damageData)
     {
-        return make_unique<JsonInputNaturalStoneLocationData>(move(name), x, move(damageData), ParseRevetmentLocationData());
+        return make_unique<JsonInputNaturalStoneLocationData>(x, move(damageData), ParseRevetmentLocationData());
     }
 
     unique_ptr<JsonInputNaturalStoneRevetmentLocationData> JsonInputNaturalStoneParser::ParseRevetmentLocationData() const

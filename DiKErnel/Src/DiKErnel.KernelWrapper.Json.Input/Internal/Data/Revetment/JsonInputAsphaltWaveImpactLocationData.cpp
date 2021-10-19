@@ -27,12 +27,11 @@ namespace DiKErnel::KernelWrapper::Json::Input
     using namespace std;
 
     JsonInputAsphaltWaveImpactLocationData::JsonInputAsphaltWaveImpactLocationData(
-        string name,
         const double x,
         unique_ptr<JsonInputDamageData> damageData,
         unique_ptr<JsonInputAsphaltRevetmentWaveImpactLocationData> revetmentLocationData,
         unique_ptr<JsonInputProfileSchematizationData> profileSchematizationData)
-        : JsonInputLocationData(move(name), x, move(damageData)),
+        : JsonInputLocationData(x, move(damageData)),
           _revetmentLocationData(move(revetmentLocationData)),
           _profileSchematizationData(move(profileSchematizationData)) {}
 

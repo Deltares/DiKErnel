@@ -29,7 +29,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
     {
         public:
             explicit JsonInputGrassWaveImpactLocationData(
-                std::string name,
                 double x,
                 std::unique_ptr<JsonInputDamageData> damageData,
                 std::unique_ptr<JsonInputGrassRevetmentWaveImpactLocationData> revetmentLocationData);

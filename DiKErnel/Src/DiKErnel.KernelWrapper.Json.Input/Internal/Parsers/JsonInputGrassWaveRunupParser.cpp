@@ -64,7 +64,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
         : JsonInputLocationParser(readLocation, readRevetment, readCalculationMethod) {}
 
     unique_ptr<JsonInputLocationData> JsonInputGrassWaveRunupParser::ParseLocationData(
-        string name,
         double x,
         unique_ptr<JsonInputDamageData> damageData)
     {
@@ -78,7 +77,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
             return nullptr;
         }
 
-        return make_unique<JsonInputGrassWaveRunupRayleighLocationData>(move(name), x, move(damageData),
+        return make_unique<JsonInputGrassWaveRunupRayleighLocationData>(x, move(damageData),
                                                                         ParseRevetmentLocationData(readCalculationMethod, readCalculationProtocol),
                                                                         ParseProfileSchematizationData());
     }

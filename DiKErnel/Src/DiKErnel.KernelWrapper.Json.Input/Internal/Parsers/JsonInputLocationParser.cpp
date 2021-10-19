@@ -49,11 +49,10 @@ namespace DiKErnel::KernelWrapper::Json::Input
             failureNumber = JsonInputParserHelper::ParseOptionalDouble(readDamageVariables, JsonInputDefinitions::FAILURE_NUMBER);
         }
 
-        auto name = _readLocation[JsonInputDefinitions::NAME].get<string>();
         const auto x = _readLocation[JsonInputDefinitions::X].get<double>();
         auto damage = make_unique<JsonInputDamageData>(move(initialDamage), move(failureNumber));
 
-        return ParseLocationData(move(name), x, move(damage));
+        return ParseLocationData(x, move(damage));
     }
 
     const json& JsonInputLocationParser::GetReadLocation() const
