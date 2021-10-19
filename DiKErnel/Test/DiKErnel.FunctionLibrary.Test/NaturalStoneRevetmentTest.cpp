@@ -215,6 +215,52 @@ namespace DiKErnel::FunctionLibrary::Test
         AssertHelper::AssertAreAlmostEqual(0.208714810281518, outerSlope);
     }
 
+    TEST(NaturalStoneRevetmentTets, OuterSlopeWithBerm_UpperSlopeAboveOuterToe_ExpectedValue)
+    {
+        // Setup
+        const auto outerToeHeight = 0.5;
+        const auto outerCrestHeight = 7.0;
+        const auto notchOuterBermPosition = 25.0;
+        const auto notchOuterBermHeight = 4.1;
+        const auto crestOuterBermPosition = 15.0;
+        const auto crestOuterBermHeight = 3.5;
+        const auto slopeUpperLevel = 7.1;
+        const auto slopeLowerLevel = 2.8;
+        const auto slopeUpperPosition = 45.0;
+        const auto slopeLowerPosition = 12.5;
+
+        // Call
+        const auto outerSlope = NaturalStoneRevetment::OuterSlope(outerToeHeight, outerCrestHeight, notchOuterBermPosition, notchOuterBermHeight,
+                                                                  crestOuterBermPosition, crestOuterBermHeight, slopeUpperLevel, slopeLowerLevel,
+                                                                  slopeUpperPosition, slopeLowerPosition);
+
+        // Assert
+        ASSERT_DOUBLE_EQ(numeric_limits<double>::infinity(), outerSlope);
+    }
+
+    TEST(NaturalStoneRevetmentTets, OuterSlopeWithBerm_LowerSlopeBelowOuterCrest_ExpectedValue)
+    {
+        // Setup
+        const auto outerToeHeight = 0.5;
+        const auto outerCrestHeight = 7.0;
+        const auto notchOuterBermPosition = 25.0;
+        const auto notchOuterBermHeight = 4.1;
+        const auto crestOuterBermPosition = 15.0;
+        const auto crestOuterBermHeight = 3.5;
+        const auto slopeUpperLevel = 7.0;
+        const auto slopeLowerLevel = 0.4;
+        const auto slopeUpperPosition = 40.0;
+        const auto slopeLowerPosition = 0.0;
+
+        // Call
+        const auto outerSlope = NaturalStoneRevetment::OuterSlope(outerToeHeight, outerCrestHeight, notchOuterBermPosition, notchOuterBermHeight,
+                                                                  crestOuterBermPosition, crestOuterBermHeight, slopeUpperLevel, slopeLowerLevel,
+                                                                  slopeUpperPosition, slopeLowerPosition);
+
+        // Assert
+        ASSERT_DOUBLE_EQ(numeric_limits<double>::infinity(), outerSlope);
+    }
+
     TEST(NaturalStoneRevetmentTest, SlopeUpperLevel_ValidInput_ExpectedValue)
     {
         // Setup

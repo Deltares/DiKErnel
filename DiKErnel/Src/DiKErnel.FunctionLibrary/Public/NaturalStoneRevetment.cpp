@@ -72,25 +72,23 @@ namespace DiKErnel::FunctionLibrary
         const double slopeUpperPosition,
         const double slopeLowerPosition)
     {
-        const bool slopeLowerLevelOnLowerSlope = outerToeHeight <= slopeLowerLevel && slopeLowerLevel < crestOuterBermHeight;
-        const bool slopeUpperLevelOnLowerSlope = outerToeHeight <= slopeUpperLevel && slopeUpperLevel < crestOuterBermHeight;
-        const bool slopeLowerLevelOnBerm = crestOuterBermHeight <= slopeLowerLevel && slopeLowerLevel <= notchOuterBermHeight;
-        const bool slopeUpperLevelOnBerm = crestOuterBermHeight <= slopeUpperLevel && slopeUpperLevel <= notchOuterBermHeight;
-        const bool slopeLowerLevelOnUpperSlope = notchOuterBermHeight < slopeLowerLevel && slopeLowerLevel <= outerCrestHeight;
-        const bool slopeUpperLevelOnUpperSlope = notchOuterBermHeight < slopeUpperLevel && slopeUpperLevel <= outerCrestHeight;
-
-        auto outerSlope = numeric_limits<double>::infinity();
+        const auto slopeLowerLevelOnLowerSlope = outerToeHeight <= slopeLowerLevel && slopeLowerLevel < crestOuterBermHeight;
+        const auto slopeUpperLevelOnLowerSlope = outerToeHeight <= slopeUpperLevel && slopeUpperLevel < crestOuterBermHeight;
+        const auto slopeLowerLevelOnBerm = crestOuterBermHeight <= slopeLowerLevel && slopeLowerLevel <= notchOuterBermHeight;
+        const auto slopeUpperLevelOnBerm = crestOuterBermHeight <= slopeUpperLevel && slopeUpperLevel <= notchOuterBermHeight;
+        const auto slopeLowerLevelOnUpperSlope = notchOuterBermHeight < slopeLowerLevel && slopeLowerLevel <= outerCrestHeight;
+        const auto slopeUpperLevelOnUpperSlope = notchOuterBermHeight < slopeUpperLevel && slopeUpperLevel <= outerCrestHeight;
 
         if (slopeLowerLevelOnLowerSlope && slopeUpperLevelOnLowerSlope
             || slopeLowerLevelOnBerm && slopeUpperLevelOnBerm
             || slopeLowerLevelOnUpperSlope && slopeUpperLevelOnUpperSlope)
         {
-            outerSlope = SingleSlopePart(slopeUpperLevel, slopeLowerLevel, slopeUpperPosition, slopeLowerPosition);
+            return SingleSlopePart(slopeUpperLevel, slopeLowerLevel, slopeUpperPosition, slopeLowerPosition);
         }
 
         if (slopeLowerLevelOnLowerSlope && slopeUpperLevelOnBerm)
         {
-            outerSlope = SlopeLowerSlopeBerm(crestOuterBermPosition, crestOuterBermHeight, slopeLowerLevel, slopeLowerPosition);
+            return SlopeLowerSlopeBerm(crestOuterBermPosition, crestOuterBermHeight, slopeLowerLevel, slopeLowerPosition);
         }
 
         if (slopeLowerLevelOnLowerSlope && slopeUpperLevelOnUpperSlope)
@@ -100,15 +98,15 @@ namespace DiKErnel::FunctionLibrary
             const auto distanceBermLowerSlope = DistanceBermLowerSlope(crestOuterBermPosition, crestOuterBermHeight, notchOuterBermHeight,
                                                                        slopeLowerLevel, slopeLowerPosition);
 
-            outerSlope = SlopeLowerUpperSlope(slopeUpperLevel, slopeLowerLevel, distanceBermUpperSlope, distanceBermLowerSlope);
+            return SlopeLowerUpperSlope(slopeUpperLevel, slopeLowerLevel, distanceBermUpperSlope, distanceBermLowerSlope);
         }
 
         if (slopeLowerLevelOnBerm && slopeUpperLevelOnUpperSlope)
         {
-            outerSlope = SlopeBermUpperSlope(notchOuterBermPosition, notchOuterBermHeight, slopeUpperLevel, slopeUpperPosition);
+            return SlopeBermUpperSlope(notchOuterBermPosition, notchOuterBermHeight, slopeUpperLevel, slopeUpperPosition);
         }
 
-        return outerSlope;
+        return numeric_limits<double>::infinity();
     }
 
     double NaturalStoneRevetment::SlopeUpperLevel(
