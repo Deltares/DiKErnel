@@ -15,8 +15,6 @@ set(SOURCEFILES
   GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper.h
   LocationDependentInputAssertHelper.cpp
   LocationDependentInputAssertHelper.h
-  LocationDependentInputMock.cpp
-  LocationDependentInputMock.h
   NaturalStoneRevetmentLocationDependentInputAssertHelper.cpp
   NaturalStoneRevetmentLocationDependentInputAssertHelper.h
   ProfileDataAssertHelper.cpp
