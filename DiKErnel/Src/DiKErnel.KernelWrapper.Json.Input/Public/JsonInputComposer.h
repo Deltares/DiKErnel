@@ -39,7 +39,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
              * \brief Gets input data based on Json.
              * \param filePath
              *        The path to the Json file.
-             * \return A result with the created ICalculationInput and the JsonInputProcessType.
+             * \return A result with the created ICalculationInput and the JsonInputProcessType;
+             *         or with nullptr when an error occurred.
             */
             static std::unique_ptr<Util::Result<std::tuple<std::unique_ptr<Core::ICalculationInput>, JsonInputProcessType>>> GetInputDataFromJson(
                 const std::string& filePath);
