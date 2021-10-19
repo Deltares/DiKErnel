@@ -58,7 +58,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
                 / fileName).string();
 
             // When
-            const auto processType = get<1>(move(*JsonInputComposer::GetInputDataFromJson(filePath)->GetResult()));
+            const auto processType = get<1>(*JsonInputComposer::GetInputDataFromJson(filePath)->GetResult());
 
             // Then
             ASSERT_EQ(expectedProcessType, processType);
@@ -114,10 +114,12 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
             / "AllLocationsInput.json").string();
 
         // When
-        const auto calculationInput = get<0>(move(*JsonInputComposer::GetInputDataFromJson(filePath)->GetResult()));
+        const auto inputComposerResult = JsonInputComposer::GetInputDataFromJson(filePath);
+        const auto* result = inputComposerResult->GetResult();
+        const auto calculationInput = get<0>(*result).get();
 
         // Then
-        AssertHelper::AssertIsInstanceOf<CalculationInput>(calculationInput.get());
+        AssertHelper::AssertIsInstanceOf<CalculationInput>(calculationInput);
 
         const auto& profileData = calculationInput->GetProfileData();
 

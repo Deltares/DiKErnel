@@ -68,8 +68,8 @@ int main()
 
         // Read input Json file
         const auto inputComposerResult = JsonInputComposer::GetInputDataFromJson(jsonFilePath);
-        const auto& inputData = move(*inputComposerResult->GetResult());
-        auto* calculationInput = get<0>(inputData).get();
+        const auto* inputData = inputComposerResult->GetResult();
+        const auto calculationInput = get<0>(*inputData).get();
 
         // Write user feedback
         cout << "|===========|" << endl;
@@ -134,7 +134,7 @@ int main()
 
             // Write Json output to file
             const auto outputData = calculator.GetCalculationOutput();
-            JsonOutputComposer::WriteCalculationOutputToJson(outputPath.u8string(), *outputData, ConvertProcessType(get<1>(inputData)));
+            JsonOutputComposer::WriteCalculationOutputToJson(outputPath.u8string(), *outputData, ConvertProcessType(get<1>(*inputData)));
 
             cout << endl;
             cout << "|========================|" << endl;
