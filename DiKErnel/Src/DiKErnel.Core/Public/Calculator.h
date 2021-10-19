@@ -77,8 +77,8 @@ namespace DiKErnel::Core
 
             /*!
              * \brief Gets the output of the calculation.
-             * \return The output of the calculation when the calculation is finished, nullptr
-             *         otherwise.
+             * \return A result with the output of the calculation when the calculation is
+             *         successfully finished, or a result with nullptr otherwise.
              */
             std::shared_ptr<Util::Result<CalculationOutput>> GetCalculationOutput();
 
