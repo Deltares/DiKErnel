@@ -6,6 +6,7 @@ set(SOURCEFILES
   EventRegistryTest.cpp
   EventTest.cpp
   Main.cpp
+  ResultTest.cpp
 )
 
 # Add executable
