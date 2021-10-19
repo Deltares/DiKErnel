@@ -58,7 +58,7 @@ namespace DiKErnel::Util
              * \brief Gets the result.
              * \return The result.
              */
-            T* GetResult() const
+            const T* GetResult() const
             {
                 return _result.get();
             }
