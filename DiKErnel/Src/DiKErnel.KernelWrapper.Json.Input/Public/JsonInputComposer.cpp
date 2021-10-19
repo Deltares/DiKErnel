@@ -45,8 +45,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 processType = *readProcessType;
             }
 
-            readInput = make_unique<tuple<unique_ptr<ICalculationInput>, JsonInputProcessType>>(JsonInputAdapter::AdaptJsonInputData(*jsonInputData),
-                                                                                            processType);
+            readInput = make_unique<tuple<unique_ptr<ICalculationInput>, JsonInputProcessType>>(
+                JsonInputAdapter::AdaptJsonInputData(*jsonInputData),
+                processType);
         }
         catch (const exception& e)
         {
