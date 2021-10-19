@@ -41,7 +41,7 @@ namespace DiKErnel::Core::Test
         vector<unique_ptr<ILocationDependentInput>> _locationDependentInputItems = vector<unique_ptr<ILocationDependentInput>>();
         vector<unique_ptr<ITimeDependentInput>> _timeDependentInputItems = vector<unique_ptr<ITimeDependentInput>>();
         vector<reference_wrapper<ILocationDependentInput>> _locationDependentInputItemReferences =
-            vector<reference_wrapper<ILocationDependentInput>>();
+                vector<reference_wrapper<ILocationDependentInput>>();
         vector<reference_wrapper<ITimeDependentInput>> _timeDependentInputItemReferences = vector<reference_wrapper<ITimeDependentInput>>();
 
         explicit CalculatorTest()
