@@ -162,6 +162,19 @@ int main()
             // Write Json output to file
             const auto calculatorResult = calculator.GetCalculationOutput();
             const auto* outputData = calculatorResult->GetResult();
+
+            WriteLogFile(logOutputPath.u8string(), calculatorResult->GetEvents());
+
+            if (outputData == nullptr)
+            {
+                cout << "|====================|" << endl;
+                cout << "| Calculation failed |" << endl;
+                cout << "|====================|" << endl;
+                cout << "-> An error occurred. See the log file for details" << endl;
+                cout << "-> The log file is written to: " << logOutputPath << endl;
+                return -1;
+            }
+
             JsonOutputComposer::WriteCalculationOutputToJson(jsonOutputPath.u8string(), *outputData, ConvertProcessType(get<1>(*inputData)));
 
             cout << endl;
