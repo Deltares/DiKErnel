@@ -24,20 +24,34 @@
 #include <iomanip>
 
 #include "CalculationOutputAdapter.h"
+#include "EventRegistry.h"
 
 namespace DiKErnel::KernelWrapper::Json::Output
 {
     using namespace Core;
     using namespace std;
+    using namespace Util;
 
-    void JsonOutputComposer::WriteCalculationOutputToJson(
+    unique_ptr<Result<bool>> JsonOutputComposer::WriteCalculationOutputToJson(
         const string& filePath,
         const CalculationOutput& calculationOutput,
         const JsonOutputType outputType)
     {
-        const auto jsonOutput = CalculationOutputAdapter::AdaptCalculationOutput(calculationOutput, outputType);
+        auto succeeded = false;
 
-        ofstream outfile(filePath, ios::trunc);
-        outfile << setw(4) << jsonOutput->CreateJson() << endl;
+        try
+        {
+            const auto jsonOutput = CalculationOutputAdapter::AdaptCalculationOutput(calculationOutput, outputType);
+
+            ofstream outfile(filePath, ios::trunc);
+            outfile << setw(4) << jsonOutput->CreateJson() << endl;
+            succeeded = true;
+        }
+        catch (const exception& e)
+        {
+            EventRegistry::Register(make_unique<Event>(e.what(), EventType::Error));
+        }
+
+        return make_unique<Result<bool>>(make_unique<bool>(succeeded), EventRegistry::Flush());
     }
 }

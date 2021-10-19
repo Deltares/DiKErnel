@@ -22,10 +22,8 @@
 
 #include <gtest/gtest.h>
 
-#include "AssertHelper.h"
 #include "FileAssert.h"
 #include "JsonOutputComposer.h"
-#include "JsonOutputConversionException.h"
 #include "TestDataPathHelper.h"
 #include "TimeDependentOutputMock.h"
 
@@ -36,6 +34,7 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
     using namespace DiKErnel::TestUtil;
     using namespace std;
     using namespace testing;
+    using namespace Util;
 
     struct JsonOutputComposerTest : Test
     {
@@ -43,7 +42,7 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
 
         void PerformTest(
             const string& filename,
-            const JsonOutputType outputType)
+            const JsonOutputType outputType) const
         {
             // Setup
             const auto expectedOutputFilePath = (TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Output.Test")
@@ -64,32 +63,14 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
             const CalculationOutput calculationOutput(move(locations));
 
             // Call
-            JsonOutputComposer::WriteCalculationOutputToJson(_actualOutputFilePath, calculationOutput, outputType);
+            const auto outputComposerResult = JsonOutputComposer::WriteCalculationOutputToJson(_actualOutputFilePath, calculationOutput,
+                                                                                               outputType);
 
             // Assert
             FileAssert::AssertFileContents(expectedOutputFilePath, _actualOutputFilePath);
-        }
-
-        static void WriteCalculationOutputToJsonWithNotSupportedLocationData()
-        {
-            // Setup
-            auto location1TimeDependentOutputItems = vector<unique_ptr<TimeDependentOutput>>();
-            location1TimeDependentOutputItems.push_back(make_unique<TimeDependentOutputMock>(0, 0.15, nullptr));
-
-            vector<unique_ptr<LocationDependentOutput>> locations;
-            locations.push_back(make_unique<LocationDependentOutput>(move(location1TimeDependentOutputItems)));
-
-            const CalculationOutput calculationOutput(move(locations));
-
-            // Call
-            JsonOutputComposer::WriteCalculationOutputToJson("", calculationOutput, JsonOutputType::Physics);
-        }
-
-        static void WriteCalculationOutputToJsonWithInvalidJsonOutputType()
-        {
-            const CalculationOutput calculationOutput((vector<unique_ptr<LocationDependentOutput>>()));
-
-            JsonOutputComposer::WriteCalculationOutputToJson("", calculationOutput, static_cast<JsonOutputType>(99));
+            const auto* result = outputComposerResult->GetResult();
+            ASSERT_TRUE(*result);
+            ASSERT_EQ(0, outputComposerResult->GetEvents().size());
         }
 
         ~JsonOutputComposerTest() override
@@ -100,19 +81,29 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
 
     TEST_F(JsonOutputComposerTest, WriteCalculationOutputToJson_InvalidJsonOutputType_ThrowsJsonOutputConversionException)
     {
-        // Setup & Call
-        const auto action = &JsonOutputComposerTest::WriteCalculationOutputToJsonWithInvalidJsonOutputType;
+        /// Setup
+        const CalculationOutput calculationOutput((vector<unique_ptr<LocationDependentOutput>>()));
+
+        // Call
+        const auto outputComposerResult = JsonOutputComposer::WriteCalculationOutputToJson("", calculationOutput, static_cast<JsonOutputType>(99));
 
         // Assert
-        AssertHelper::AssertThrowsWithMessage<JsonOutputConversionException>(action, "Invalid JsonOutputType.");
+        const auto* result = outputComposerResult->GetResult();
+        ASSERT_FALSE(*result);
+
+        const auto& events = outputComposerResult->GetEvents();
+        ASSERT_EQ(1, events.size());
+        const auto& event = events[0].get();
+        ASSERT_EQ("Invalid JsonOutputType.", event.GetMessage());
+        ASSERT_EQ(EventType::Error, event.GetEventType());
     }
 
-    TEST_F(JsonOutputComposerTest, WriteCalculationOutputToJson_JsonOutputTypeFailure_WritesExpectedValues)
+    TEST_F(JsonOutputComposerTest, WriteCalculationOutputToJson_JsonOutputTypeFailure_ReturnsResultWithTrueAndNoEventsAndWritesExpectedValues)
     {
         PerformTest("ExpectedFailureOutput.json", JsonOutputType::Failure);
     }
 
-    TEST_F(JsonOutputComposerTest, WriteCalculationOutputToJson_JsonOutputTypeDamage_WritesExpectedValues)
+    TEST_F(JsonOutputComposerTest, WriteCalculationOutputToJson_JsonOutputTypeDamage_ReturnsResultWithTrueAndNoEventsAndWritesExpectedValues)
     {
         PerformTest("ExpectedDamageOutput.json", JsonOutputType::Damage);
     }
@@ -120,10 +111,26 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
     TEST_F(JsonOutputComposerTest,
            WriteCalculationOutputToJson_JsonOutputTypePhysicsAndLocationDataNotSupported_ThrowsJsonOutputConversionException)
     {
-        // Setup & Call
-        const auto action = &JsonOutputComposerTest::WriteCalculationOutputToJsonWithNotSupportedLocationData;
+        // Setup
+        auto location1TimeDependentOutputItems = vector<unique_ptr<TimeDependentOutput>>();
+        location1TimeDependentOutputItems.push_back(make_unique<TimeDependentOutputMock>(0, 0.15, nullptr));
+
+        vector<unique_ptr<LocationDependentOutput>> locations;
+        locations.push_back(make_unique<LocationDependentOutput>(move(location1TimeDependentOutputItems)));
+
+        const CalculationOutput calculationOutput(move(locations));
+
+        // Call
+        const auto outputComposerResult = JsonOutputComposer::WriteCalculationOutputToJson("", calculationOutput, JsonOutputType::Physics);
 
         // Assert
-        AssertHelper::AssertThrowsWithMessage<JsonOutputConversionException>(action, "Invalid revetment type.");
+        const auto* result = outputComposerResult->GetResult();
+        ASSERT_FALSE(*result);
+
+        const auto& events = outputComposerResult->GetEvents();
+        ASSERT_EQ(1, events.size());
+        const auto& event = events[0].get();
+        ASSERT_EQ("Invalid revetment type.", event.GetMessage());
+        ASSERT_EQ(EventType::Error, event.GetEventType());
     }
 }
