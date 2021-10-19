@@ -70,13 +70,14 @@ namespace DiKErnel::FunctionLibrary::Test
         const auto slopeLowerPosition = 30.0;
 
         // Call
-        const auto outerSlope = NaturalStoneRevetment::OuterSlopeWithoutBerm(slopeUpperLevel, slopeLowerLevel, slopeUpperPosition, slopeLowerPosition);
+        const auto outerSlope = NaturalStoneRevetment::OuterSlopeWithoutBerm(slopeUpperLevel, slopeLowerLevel, slopeUpperPosition,
+                                                                             slopeLowerPosition);
 
         // Assert
         ASSERT_DOUBLE_EQ(0.25, outerSlope);
     }
 
-    TEST(NaturalStoneRevetmentTest, OuterSlope_UpperAndLowerSlopeLevelOnLowerSlope_ExpectedValue)
+    TEST(NaturalStoneRevetmentTest, OuterSlopeWithBerm_UpperAndLowerSlopeLevelOnLowerSlope_ExpectedValue)
     {
         // Setup
         const auto outerToeHeight = 0.5;

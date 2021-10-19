@@ -49,7 +49,7 @@ namespace DiKErnel::FunctionLibrary::Test
         {
             {
                 1.0,
-                1.1
+                3.3
             },
             {
                 2.0,
@@ -57,7 +57,7 @@ namespace DiKErnel::FunctionLibrary::Test
             },
             {
                 3.0,
-                -1.1
+                1.1
             }
         };
     };
@@ -141,7 +141,7 @@ namespace DiKErnel::FunctionLibrary::Test
     TEST_F(RevetmentTest, InterpolationVerticalHeight_HorizontalPositionBetweenAscendingDikeProfilePoints_ExpectedValue)
     {
         // Call
-        const auto verticalHeight = Revetment::InterpolationVerticalHeight(1.5, _testDikeProfileWithDescendingHeight);
+        const auto verticalHeight = Revetment::InterpolationVerticalHeight(1.5, _testDikeProfile);
 
         // Assert
         ASSERT_DOUBLE_EQ(1.65, verticalHeight);
@@ -153,7 +153,7 @@ namespace DiKErnel::FunctionLibrary::Test
         const auto verticalHeight = Revetment::InterpolationVerticalHeight(2.5, _testDikeProfileWithDescendingHeight);
 
         // Assert
-        ASSERT_DOUBLE_EQ(0.55, verticalHeight);
+        ASSERT_DOUBLE_EQ(1.65, verticalHeight);
     }
 
     TEST_F(RevetmentTest, InterpolationVerticalHeight_HorizontalPositionRightOfDikeProfile_ExpectedValue)

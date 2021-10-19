@@ -95,8 +95,8 @@ namespace DiKErnel::FunctionLibrary
                 const auto& [xPreviousDikeProfilePoint, zPreviousDikeProfilePoint] = dikeProfile[i - 1];
 
                 return xPreviousDikeProfilePoint + (xCurrentDikeProfilePoint - xPreviousDikeProfilePoint)
-                    / (zCurrentDikeProfilePoint - zPreviousDikeProfilePoint)
-                    * (verticalHeight - zPreviousDikeProfilePoint);
+                        / (zCurrentDikeProfilePoint - zPreviousDikeProfilePoint)
+                        * (verticalHeight - zPreviousDikeProfilePoint);
             }
         }
 
