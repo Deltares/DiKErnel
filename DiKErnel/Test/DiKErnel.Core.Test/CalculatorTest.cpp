@@ -33,6 +33,7 @@ namespace DiKErnel::Core::Test
     using namespace std;
     using namespace testing;
     using namespace TestUtil;
+    using namespace Util;
 
     struct CalculatorTest : Test
     {
@@ -82,7 +83,7 @@ namespace DiKErnel::Core::Test
         ASSERT_FALSE(calculator.IsCancelled());
     }
 
-    TEST_F(CalculatorTest, GivenCalculator_WhenCalculationPerformedAndNoTimeOfFailure_ThenExpectedOutput)
+    TEST_F(CalculatorTest, GivenCalculator_WhenCalculationPerformedAndNoTimeOfFailure_ThenResultWithExpectedOutput)
     {
         // Given
         const auto damage = 0.5;
@@ -120,7 +121,7 @@ namespace DiKErnel::Core::Test
         ASSERT_EQ(nullptr, locationDependentOutputItems[0].get().GetTimeOfFailure());
     }
 
-    TEST_F(CalculatorTest, GivenCalculator_WhenCalculationPerformedAndTimeOfFailure_ThenExpectedOutput)
+    TEST_F(CalculatorTest, GivenCalculator_WhenCalculationPerformedAndTimeOfFailure_ThenResultWithExpectedOutput)
     {
         // Given
         const auto damage = 0.5;
@@ -200,7 +201,7 @@ namespace DiKErnel::Core::Test
         ASSERT_EQ(100, calculator.GetProgress());
     }
 
-    TEST_F(CalculatorTest, GivenCalculatorWithUnfinishedCalculation_WhenGetCalculationOutput_ThenNullPtrReturned)
+    TEST_F(CalculatorTest, GivenCalculatorWithUnfinishedCalculation_WhenGetCalculationOutput_ThenReturnResultWithNullPtr)
     {
         // Given
         NiceMock<ICalculationInputMock> calculationInput;
@@ -214,9 +215,37 @@ namespace DiKErnel::Core::Test
 
         // When
         const auto calculatorResult = calculator.GetCalculationOutput();
-        const auto* output = calculatorResult->GetResult();
 
         // Then
+        const auto* output = calculatorResult->GetResult();
         ASSERT_EQ(nullptr, output);
+    }
+
+    TEST_F(CalculatorTest, GivenCalculatorWithExceptionDuringCalculation_WhenGetCalculationOutput_ThenReturnResultWithNullPtrAndEvent)
+    {
+        // Given
+        const auto exceptionMessage = "Exception message";
+
+        NiceMock<ICalculationInputMock> calculationInput;
+        EXPECT_CALL(calculationInput, GetProfileData).WillRepeatedly(ReturnRef(*_profileData));
+        EXPECT_CALL(calculationInput, GetLocationDependentInputItems).WillRepeatedly(ReturnRef(_locationDependentInputItemReferences));
+        EXPECT_CALL(calculationInput, GetTimeDependentInputItems).WillRepeatedly(Throw(exception(exceptionMessage)));
+
+        Calculator calculator(calculationInput);
+        calculator.Cancel();
+        calculator.WaitForCompletion();
+
+        // When
+        const auto calculatorResult = calculator.GetCalculationOutput();
+
+        // Then
+        const auto* output = calculatorResult->GetResult();
+        ASSERT_EQ(nullptr, output);
+
+        const auto& events = calculatorResult->GetEvents();
+        ASSERT_EQ(1, events.size());
+        const auto event = events[0].get();
+        ASSERT_EQ(EventType::Error, event.GetEventType());
+        ASSERT_EQ(exceptionMessage, event.GetMessage());
     }
 }

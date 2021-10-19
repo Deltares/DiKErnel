@@ -89,6 +89,7 @@ namespace DiKErnel::Core
             std::atomic<bool> _isCancelled = false;
             std::atomic<bool> _fatalErrorOccurred = false;
             std::unique_ptr<CalculationOutput> _calculationOutput;
+            std::vector<std::unique_ptr<Util::Event>> _events;
 
             void PerformCalculation(
                 const ICalculationInput& calculationInput,

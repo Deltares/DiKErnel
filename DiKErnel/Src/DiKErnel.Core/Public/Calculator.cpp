@@ -82,7 +82,7 @@ namespace DiKErnel::Core
             output = move(_calculationOutput);
         }
 
-        return make_shared<Result<CalculationOutput>>(move(output), EventRegistry::Flush());
+        return make_shared<Result<CalculationOutput>>(move(output), move(_events));
     }
 
     void Calculator::PerformCalculation(
@@ -92,18 +92,18 @@ namespace DiKErnel::Core
         const atomic<bool>& isCancelled,
         atomic<bool>& fatalErrorOccurred)
     {
-        const auto& profileData = calculationInput.GetProfileData();
-        const auto& timeDependentInputItems = calculationInput.GetTimeDependentInputItems();
-        const auto& locationDependentInputItems = calculationInput.GetLocationDependentInputItems();
-
-        auto timeDependentOutputItems = vector<vector<unique_ptr<TimeDependentOutput>>>(locationDependentInputItems.size());
-
-        const auto progressPerCalculationStep = 1.0
-                / static_cast<double>(timeDependentInputItems.size())
-                / static_cast<double>(locationDependentInputItems.size());
-
         try
         {
+            const auto& profileData = calculationInput.GetProfileData();
+            const auto& timeDependentInputItems = calculationInput.GetTimeDependentInputItems();
+            const auto& locationDependentInputItems = calculationInput.GetLocationDependentInputItems();
+
+            auto timeDependentOutputItems = vector<vector<unique_ptr<TimeDependentOutput>>>(locationDependentInputItems.size());
+
+            const auto progressPerCalculationStep = 1.0
+                    / static_cast<double>(timeDependentInputItems.size())
+                    / static_cast<double>(locationDependentInputItems.size());
+
             for (auto i = 0; i < static_cast<int>(timeDependentInputItems.size()); ++i)
             {
                 if (isCancelled)
@@ -145,6 +145,8 @@ namespace DiKErnel::Core
             EventRegistry::Register(make_unique<Event>(e.what(), EventType::Error));
             fatalErrorOccurred = true;
         }
+
+        _events = EventRegistry::Flush();
     }
 
     void Calculator::CreateOutput(
