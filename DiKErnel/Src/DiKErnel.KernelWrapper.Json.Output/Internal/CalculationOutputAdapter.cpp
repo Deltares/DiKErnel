@@ -49,10 +49,10 @@ namespace DiKErnel::KernelWrapper::Json::Output
         vector<unique_ptr<JsonOutputFailureLocationData>> jsonOutputLocationDataItems;
 
         jsonOutputLocationDataItems.reserve(static_cast<int>(locationDependentOutputItems.size()));
-        for (auto i = 0; i < static_cast<int>(locationDependentOutputItems.size()); ++i)
+
+        for (const auto& locationDependentOutputItem : locationDependentOutputItems)
         {
-            jsonOutputLocationDataItems.push_back(
-                createLocationDataFuncPtr(locationDependentOutputItems[i].get()));
+            jsonOutputLocationDataItems.push_back(createLocationDataFuncPtr(locationDependentOutputItem.get()));
         }
 
         return jsonOutputLocationDataItems;
