@@ -110,18 +110,12 @@ namespace DiKErnel::Integration
 
         const auto& characteristicPoints = profileData.GetCharacteristicPoints();
 
-        _outerToeHeight = GetCharacteristicPointCoordinates(characteristicPoints, CharacteristicPointType::OuterToe).second;
-        _outerCrestHeight = GetCharacteristicPointCoordinates(characteristicPoints, CharacteristicPointType::OuterCrest).second;
+        _outerToeHeight = GetCharacteristicPointCoordinates(characteristicPoints, CharacteristicPointType::OuterToe)->second;
+        _outerCrestHeight = GetCharacteristicPointCoordinates(characteristicPoints, CharacteristicPointType::OuterCrest)->second;
+        _notchOuterBerm = GetCharacteristicPointCoordinates(characteristicPoints, CharacteristicPointType::NotchOuterBerm);
+        _crestOuterBerm = GetCharacteristicPointCoordinates(characteristicPoints, CharacteristicPointType::CrestOuterBerm);
 
-        _hasBerm = HasBerm(characteristicPoints);
-
-        if (_hasBerm)
-        {
-            _notchOuterBerm = make_unique<pair<double, double>>(
-                GetCharacteristicPointCoordinates(characteristicPoints, CharacteristicPointType::NotchOuterBerm));
-            _crestOuterBerm = make_unique<pair<double, double>>(
-                GetCharacteristicPointCoordinates(characteristicPoints, CharacteristicPointType::CrestOuterBerm));
-        }
+        _hasBerm = _notchOuterBerm != nullptr && _crestOuterBerm != nullptr;
 
         _resistance = NaturalStoneRevetment::Resistance(_relativeDensity, _thicknessTopLayer);
     }
@@ -234,7 +228,7 @@ namespace DiKErnel::Integration
             move(referenceTimeDegradation), move(referenceDegradation));
     }
 
-    pair<double, double> NaturalStoneRevetmentLocationDependentInput::GetCharacteristicPointCoordinates(
+    unique_ptr<pair<double, double>> NaturalStoneRevetmentLocationDependentInput::GetCharacteristicPointCoordinates(
         const vector<reference_wrapper<CharacteristicPoint>>& characteristicPoints,
         const CharacteristicPointType characteristicPointType)
     {
@@ -245,34 +239,10 @@ namespace DiKErnel::Integration
             {
                 const auto& profilePoint = characteristicPoint.GetProfilePoint();
 
-                return pair(profilePoint.GetX(), profilePoint.GetZ());
+                return make_unique<pair<double, double>>(pair(profilePoint.GetX(), profilePoint.GetZ()));
             }
         }
 
-        return pair(numeric_limits<double>::infinity(), numeric_limits<double>::infinity());
-    }
-
-    bool NaturalStoneRevetmentLocationDependentInput::HasBerm(
-        const vector<reference_wrapper<CharacteristicPoint>>& characteristicPoints)
-    {
-        auto hasBermCrest = false;
-        auto hasBermNotch = false;
-
-        for (const auto& characteristicPointReference : characteristicPoints)
-        {
-            const auto characteristicPoint = characteristicPointReference.get();
-            const auto characteristicPointType = characteristicPoint.GetCharacteristicPointType();
-            if (characteristicPointType == CharacteristicPointType::CrestOuterBerm)
-            {
-                hasBermCrest = true;
-            }
-
-            if (characteristicPointType == CharacteristicPointType::NotchOuterBerm)
-            {
-                hasBermNotch = true;
-            }
-        }
-
-        return hasBermCrest && hasBermNotch;
+        return nullptr;
     }
 }
