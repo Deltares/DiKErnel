@@ -51,7 +51,7 @@ namespace DiKErnel::FunctionLibrary
             + hydraulicLoadC);
     }
 
-    double NaturalStoneRevetment::OuterSlopeWithoutBerm(
+    double NaturalStoneRevetment::OuterSlope(
         const double slopeUpperLevel,
         const double slopeLowerLevel,
         const double slopeUpperPosition,
@@ -60,22 +60,18 @@ namespace DiKErnel::FunctionLibrary
         return SingleSlopePart(slopeUpperLevel, slopeLowerLevel, slopeUpperPosition, slopeLowerPosition);
     }
 
-    double NaturalStoneRevetment::OuterSlopeWithBerm(
+    double NaturalStoneRevetment::OuterSlope(
         const double outerToeHeight,
         const double outerCrestHeight,
-        const pair<double, double> notchOuterBerm,
-        const pair<double, double> crestOuterBerm,
+        const double notchOuterBermPosition,
+        const double notchOuterBermHeight,
+        const double crestOuterBermPosition,
+        const double crestOuterBermHeight,
         const double slopeUpperLevel,
         const double slopeLowerLevel,
         const double slopeUpperPosition,
         const double slopeLowerPosition)
     {
-        const auto crestOuterBermPosition = crestOuterBerm.first;
-        const auto crestOuterBermHeight = crestOuterBerm.second;
-
-        const auto notchOuterBermPosition = notchOuterBerm.first;
-        const auto notchOuterBermHeight = notchOuterBerm.second;
-
         const bool slopeLowerLevelOnLowerSlope = outerToeHeight <= slopeLowerLevel && slopeLowerLevel < crestOuterBermHeight;
         const bool slopeUpperLevelOnLowerSlope = outerToeHeight <= slopeUpperLevel && slopeUpperLevel < crestOuterBermHeight;
         const bool slopeLowerLevelOnBerm = crestOuterBermHeight <= slopeLowerLevel && slopeLowerLevel <= notchOuterBermHeight;
