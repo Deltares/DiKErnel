@@ -124,7 +124,6 @@
         "Locaties":
         [
             {
-                "Naam": "NatuursteenAlleOptiesAan",
                 "PositieLocatie": 11,
                 "Schade":
                 {
@@ -191,7 +190,6 @@
                 }
             },
             {
-                "Naam": "NatuursteenAlleOptiesUit",
                 "PositieLocatie": 8.79,
                 "Bekleding":
                 {
@@ -207,7 +205,6 @@
                 }
             },
             {
-                "Naam": "GrasGolfklapAlleOptiesAan",
                 "PositieLocatie": 0,
                 "Schade":
                 {
@@ -255,7 +252,6 @@
                 }
             },
             {
-                "Naam": "GrasGolfklapGeslotenZodeAlleOptiesUit",
                 "PositieLocatie": -18.4,
                 "Bekleding":
                 {
@@ -273,7 +269,6 @@
                 }
             },
             {
-                "Naam": "GrasGolfklapOpenZodeAlleOptiesUit",
                 "PositieLocatie": 4,
                 "Bekleding":
                 {
@@ -291,7 +286,6 @@
                 }
             },
             {
-                "Naam": "GrasGolfoploopRayleighDiscreetAlleOptiesAan",
                 "PositieLocatie": 157,
                 "Schade":
                 {
@@ -344,7 +338,6 @@
                 }
             },
             {
-                "Naam": "GrasGolfoploopRayleighDiscreetGeslotenZodeAlleOptiesUit",
                 "PositieLocatie": 0.98,
                 "Bekleding":
                 {
@@ -366,7 +359,6 @@
                 }
             },
             {
-                "Naam": "GrasGolfoploopRayleighDiscreetOpenZodeAlleOptiesUit",
                 "PositieLocatie": 7.698,
                 "Bekleding":
                 {
@@ -388,7 +380,6 @@
                 }
             },
             {
-                "Naam": "AsfaltAlleOptiesAan",
                 "PositieLocatie": 25,
                 "Schade":
                 {
@@ -474,7 +465,6 @@
                 }
             },
             {
-                "Naam": "AsfaltAlleOptiesUit",
                 "PositieLocatie": 19,
                 "Bekleding":
                 {

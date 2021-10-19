@@ -156,7 +156,6 @@
         "Locaties":
         [
             {
-                "Naam": "NaturalStoneExtended",
                 "PositieLocatie": 12,
                 "Schade":
                 {
@@ -223,7 +222,6 @@
                 }
             },
             {
-                "Naam": "GrasGolfklapAlleOptiesAan",
                 "PositieLocatie": 13.5,
                 "Schade":
                 {
@@ -271,7 +269,6 @@
                 }
             },
             {
-                "Naam": "GrasGolfoploopRayleighDiscreetAlleOptiesAan",
                 "PositieLocatie": 0,
                 "Schade":
                 {
@@ -324,7 +321,6 @@
                 }
             },
             {
-                "Naam": "AsfaltAlleOptiesAan",
                 "PositieLocatie": 4,
                 "Schade":
                 {

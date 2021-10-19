@@ -250,7 +250,6 @@
         "Locaties":
         [
             {
-                "Naam": "GrasbekledingGeslotenZode",
                 "PositieLocatie": 5.0,
                 "Bekleding":
                 {
@@ -293,7 +292,6 @@
                 }
             },
             {
-                "Naam": "GrasbekledingOpenZode",
                 "PositieLocatie": 5.0,
                 "Bekleding":
                 {

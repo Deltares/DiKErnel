@@ -119,7 +119,6 @@
         "Locaties":
         [
             {
-                "Naam": "AsfaltAlleOptiesAanEnkelLaags",
                 "PositieLocatie": 5.40,
                 "Schade":
                 {
@@ -324,7 +323,6 @@
                 }
             },
             {
-                "Naam": "AsfaltAlleOptiesAanDubbelLaags",
                 "PositieLocatie": 5.40,
                 "Schade":
                 {
