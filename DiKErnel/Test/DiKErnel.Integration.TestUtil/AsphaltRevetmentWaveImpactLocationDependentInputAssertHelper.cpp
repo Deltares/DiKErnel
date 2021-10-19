@@ -27,7 +27,6 @@ namespace DiKErnel::Integration::TestUtil
     using namespace std;
 
     void AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertGeneralProperties(
-        const string& name,
         const double x,
         const double outerSlope,
         const double failureTension,
@@ -38,7 +37,6 @@ namespace DiKErnel::Integration::TestUtil
         const double stiffnessRelationNu,
         const AsphaltRevetmentWaveImpactLocationDependentInput& locationDependentInput)
     {
-        ASSERT_EQ(name, locationDependentInput.GetName());
         ASSERT_DOUBLE_EQ(outerSlope, locationDependentInput.GetOuterSlope());
         ASSERT_DOUBLE_EQ(x, locationDependentInput.GetX());
         ASSERT_DOUBLE_EQ(failureTension, locationDependentInput.GetFailureTension());

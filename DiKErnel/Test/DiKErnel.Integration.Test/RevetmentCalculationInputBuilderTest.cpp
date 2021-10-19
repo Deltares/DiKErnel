@@ -303,7 +303,7 @@ namespace DiKErnel::Integration::Test
 
         LocationDependentInputAssertHelper::AssertDamageProperties(initialDamage, failureNumber, *locationDependentInput);
 
-        AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertGeneralProperties(name, x, outerSlope, failureTension, densityOfWater,
+        AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertGeneralProperties(x, outerSlope, failureTension, densityOfWater,
                                                                                               soilElasticity, averageNumberOfWavesCtm,
                                                                                               impactNumberC, stiffnessRelationNu,
                                                                                               *locationDependentInput);
@@ -356,7 +356,7 @@ namespace DiKErnel::Integration::Test
 
         LocationDependentInputAssertHelper::AssertDamageProperties(0, 1, *locationDependentInput);
 
-        AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertGeneralProperties(name, x, outerSlope, failureTension, densityOfWater,
+        AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertGeneralProperties(x, outerSlope, failureTension, densityOfWater,
                                                                                               soilElasticity, 1, 1, 0.35, *locationDependentInput);
 
         AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertLayer(thicknessUpperLayer, elasticModulusUpperLayer,
@@ -488,7 +488,7 @@ namespace DiKErnel::Integration::Test
         LocationDependentInputAssertHelper::AssertDamageProperties(initialDamage, failureNumber, *locationDependentInput);
 
         GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertGeneralProperties(
-            name, x, *locationDependentInput);
+            x, *locationDependentInput);
 
         GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertMinimumWaveHeight(
             minimumWaveHeightTemax, *locationDependentInput);
@@ -538,7 +538,7 @@ namespace DiKErnel::Integration::Test
         LocationDependentInputAssertHelper::AssertDamageProperties(0, 1, *locationDependentInput);
 
         GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertGeneralProperties(
-            name, x, *locationDependentInput);
+            x, *locationDependentInput);
 
         GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertMinimumWaveHeight(
             3600000, *locationDependentInput);
@@ -588,7 +588,7 @@ namespace DiKErnel::Integration::Test
         LocationDependentInputAssertHelper::AssertDamageProperties(0, 1, *locationDependentInput);
 
         GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertGeneralProperties(
-            name, x, *locationDependentInput);
+            x, *locationDependentInput);
 
         GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertMinimumWaveHeight(
             3600000, *locationDependentInput);
@@ -687,7 +687,7 @@ namespace DiKErnel::Integration::Test
         LocationDependentInputAssertHelper::AssertDamageProperties(initialDamage, failureNumber, *locationDependentInput);
 
         GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertGeneralProperties(
-            name, x, outerSlope, *locationDependentInput);
+            x, outerSlope, *locationDependentInput);
 
         GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertRepresentative2P(
             representativeWaveRunup2PAru, representativeWaveRunup2PBru, representativeWaveRunup2PCru,
@@ -739,7 +739,7 @@ namespace DiKErnel::Integration::Test
         LocationDependentInputAssertHelper::AssertDamageProperties(0, 1, *locationDependentInput);
 
         GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertGeneralProperties(
-            name, x, outerSlope, *locationDependentInput);
+            x, outerSlope, *locationDependentInput);
 
         GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertRepresentative2P(
             1.65, 4, 1.5, 1, 1, locationDependentInput->GetRepresentative2P());
@@ -790,7 +790,7 @@ namespace DiKErnel::Integration::Test
         LocationDependentInputAssertHelper::AssertDamageProperties(0, 1, *locationDependentInput);
 
         GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertGeneralProperties(
-            name, x, outerSlope, *locationDependentInput);
+            x, outerSlope, *locationDependentInput);
 
         GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertRepresentative2P(
             1.65, 4, 1.5, 1, 1, locationDependentInput->GetRepresentative2P());
@@ -905,7 +905,7 @@ namespace DiKErnel::Integration::Test
         LocationDependentInputAssertHelper::AssertDamageProperties(initialDamage, failureNumber, *locationDependentInput);
 
         NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertGeneralProperties(
-            name, x, relativeDensity, thicknessTopLayer, *locationDependentInput);
+            x, relativeDensity, thicknessTopLayer, *locationDependentInput);
 
         NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertHydraulicLoads(
             hydraulicLoadAp, hydraulicLoadBp, hydraulicLoadCp, hydraulicLoadNp, hydraulicLoadAs, hydraulicLoadBs,
@@ -961,7 +961,7 @@ namespace DiKErnel::Integration::Test
         ASSERT_TRUE(locationDependentInput != nullptr);
 
         NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertGeneralProperties(
-            name, x, relativeDensity, thicknessTopLayer, *locationDependentInput);
+            x, relativeDensity, thicknessTopLayer, *locationDependentInput);
 
         LocationDependentInputAssertHelper::AssertDamageProperties(0, 1, *locationDependentInput);
         NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertHydraulicLoads(
