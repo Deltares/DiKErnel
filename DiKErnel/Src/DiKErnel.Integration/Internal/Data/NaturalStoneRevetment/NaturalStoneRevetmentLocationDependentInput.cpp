@@ -115,8 +115,6 @@ namespace DiKErnel::Integration
         _notchOuterBerm = GetCharacteristicPointCoordinates(characteristicPoints, CharacteristicPointType::NotchOuterBerm);
         _crestOuterBerm = GetCharacteristicPointCoordinates(characteristicPoints, CharacteristicPointType::CrestOuterBerm);
 
-        _hasBerm = _notchOuterBerm != nullptr && _crestOuterBerm != nullptr;
-
         _resistance = NaturalStoneRevetment::Resistance(_relativeDensity, _thicknessTopLayer);
     }
 
@@ -139,7 +137,7 @@ namespace DiKErnel::Integration
         const auto slopeUpperPosition = Revetment::InterpolationHorizontalPosition(slopeUpperLevel, dikeProfilePoints);
         const auto slopeLowerPosition = Revetment::InterpolationHorizontalPosition(slopeLowerLevel, dikeProfilePoints);
 
-        const auto outerSlope = _hasBerm
+        const auto outerSlope = _notchOuterBerm != nullptr && _crestOuterBerm != nullptr
                                     ? NaturalStoneRevetment::OuterSlope(_outerToeHeight, _outerCrestHeight, _notchOuterBerm->first,
                                                                         _notchOuterBerm->second, _crestOuterBerm->first, _crestOuterBerm->second,
                                                                         slopeUpperLevel, slopeLowerLevel, slopeUpperPosition, slopeLowerPosition)
