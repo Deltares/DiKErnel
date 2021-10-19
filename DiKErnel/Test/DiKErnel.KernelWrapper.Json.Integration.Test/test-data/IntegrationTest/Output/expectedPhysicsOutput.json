@@ -7,8 +7,6 @@
                     "Faaltijd": 1165
                 },
                 "SchadeBekleding": {
-                    "Beginschade": 0.2,
-                    "Faalgetal": 0.95,
                     "SchadegetalPerTijd": [
                         0.9078489152557485,
                         1.0116296785639434,
@@ -240,8 +238,6 @@
                     "Faaltijd": null
                 },
                 "SchadeBekleding": {
-                    "Beginschade": 0.04,
-                    "Faalgetal": 1.07,
                     "SchadegetalPerTijd": [
                         0.04,
                         0.04,
@@ -352,8 +348,6 @@
                     "Faaltijd": null
                 },
                 "SchadeBekleding": {
-                    "Beginschade": 0.0006,
-                    "Faalgetal": 0.45,
                     "SchadegetalPerTijd": [
                         0.0006,
                         0.0006,
@@ -431,8 +425,6 @@
                     "Faaltijd": null
                 },
                 "SchadeBekleding": {
-                    "Beginschade": 0.0,
-                    "Faalgetal": 1.0,
                     "SchadegetalPerTijd": [
                         2.501563218934745e-18,
                         1.1473219340392508e-15,
