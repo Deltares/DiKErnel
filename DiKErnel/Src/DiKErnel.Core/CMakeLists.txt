@@ -34,3 +34,6 @@ source_group(${PUBLIC_FOLDER} FILES ${SOURCEFILES_PUBLIC})
 
 # Expose header files
 target_include_directories(${LIBNAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/${PUBLIC_FOLDER})
+
+# Link dependencies
+target_link_libraries(${LIBNAME} DiKErnel.Util)

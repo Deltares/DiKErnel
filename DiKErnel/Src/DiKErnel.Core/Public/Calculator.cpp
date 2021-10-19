@@ -22,9 +22,12 @@
 
 #include <cmath>
 
+#include "EventRegistry.h"
+
 namespace DiKErnel::Core
 {
     using namespace std;
+    using namespace Util;
 
     Calculator::Calculator(
         ICalculationInput& calculationInput)
@@ -35,7 +38,8 @@ namespace DiKErnel::Core
             ref(calculationInput),
             ref(_progress),
             ref(_isFinished),
-            ref(_isCancelled));
+            ref(_isCancelled),
+            ref(_fatalErrorOccurred));
     }
 
     void Calculator::WaitForCompletion()
@@ -71,6 +75,8 @@ namespace DiKErnel::Core
 
     shared_ptr<CalculationOutput> Calculator::GetCalculationOutput() const
     {
+        shared_ptr<CalculationOutput> output = nullptr;
+
         if (!_isFinished)
         {
             return nullptr;
@@ -83,7 +89,8 @@ namespace DiKErnel::Core
         const ICalculationInput& calculationInput,
         atomic<double>& progress,
         atomic<bool>& isFinished,
-        const atomic<bool>& isCancelled)
+        const atomic<bool>& isCancelled,
+        atomic<bool>& fatalErrorOccurred)
     {
         const auto& profileData = calculationInput.GetProfileData();
         const auto& timeDependentInputItems = calculationInput.GetTimeDependentInputItems();
@@ -95,40 +102,48 @@ namespace DiKErnel::Core
                 / static_cast<double>(timeDependentInputItems.size())
                 / static_cast<double>(locationDependentInputItems.size());
 
-        for (auto i = 0; i < static_cast<int>(timeDependentInputItems.size()); ++i)
+        try
         {
-            if (isCancelled)
-            {
-                break;
-            }
-
-            const auto& timeDependentInput = timeDependentInputItems[i].get();
-
-            for (auto j = 0; j < static_cast<int>(locationDependentInputItems.size()); ++j)
+            for (auto i = 0; i < static_cast<int>(timeDependentInputItems.size()); ++i)
             {
                 if (isCancelled)
                 {
                     break;
                 }
 
-                auto& locationDependentInput = locationDependentInputItems[j].get();
+                const auto& timeDependentInput = timeDependentInputItems[i].get();
 
-                const auto initialDamage = i == 0
-                                               ? locationDependentInput.GetInitialDamage()
-                                               : timeDependentOutputItems[j].back()->GetDamage();
+                for (auto j = 0; j < static_cast<int>(locationDependentInputItems.size()); ++j)
+                {
+                    if (isCancelled)
+                    {
+                        break;
+                    }
 
-                auto timeDependentOutput = locationDependentInput.Calculate(initialDamage, timeDependentInput, profileData);
+                    auto& locationDependentInput = locationDependentInputItems[j].get();
 
-                timeDependentOutputItems[j].push_back(move(timeDependentOutput));
+                    const auto initialDamage = i == 0
+                                                   ? locationDependentInput.GetInitialDamage()
+                                                   : timeDependentOutputItems[j].back()->GetDamage();
 
-                progress = progress + progressPerCalculationStep;
+                    auto timeDependentOutput = locationDependentInput.Calculate(initialDamage, timeDependentInput, profileData);
+
+                    timeDependentOutputItems[j].push_back(move(timeDependentOutput));
+
+                    progress = progress + progressPerCalculationStep;
+                }
+            }
+
+            if (!isCancelled)
+            {
+                CreateOutput(timeDependentOutputItems);
+                isFinished = true;
             }
         }
-
-        if (!isCancelled)
+        catch (const exception& e)
         {
-            CreateOutput(timeDependentOutputItems);
-            isFinished = true;
+            EventRegistry::Register(make_unique<Event>(e.what(), EventType::Error));
+            fatalErrorOccurred = true;
         }
     }
 

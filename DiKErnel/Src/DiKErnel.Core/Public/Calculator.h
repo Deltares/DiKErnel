@@ -86,13 +86,15 @@ namespace DiKErnel::Core
             std::atomic<double> _progress = 0;
             std::atomic<bool> _isFinished = false;
             std::atomic<bool> _isCancelled = false;
+            std::atomic<bool> _fatalErrorOccurred = false;
             std::shared_ptr<CalculationOutput> _calculationOutput;
 
             void PerformCalculation(
                 const ICalculationInput& calculationInput,
                 std::atomic<double>& progress,
                 std::atomic<bool>& isFinished,
-                const std::atomic<bool>& isCancelled);
+                const std::atomic<bool>& isCancelled,
+                std::atomic<bool>& fatalErrorOccurred);
 
             void CreateOutput(
                 std::vector<std::vector<std::unique_ptr<TimeDependentOutput>>>& timeDependentOutputItems);
