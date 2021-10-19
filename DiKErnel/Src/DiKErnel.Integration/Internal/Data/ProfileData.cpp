@@ -51,26 +51,4 @@ namespace DiKErnel::Integration
     {
         return _characteristicPointReferences;
     }
-
-    bool ProfileData::HasBerm() const
-    {
-        auto hasBermCrest = false;
-        auto hasBermNotch = false;
-
-        for (const auto& characteristicPoint : _characteristicPoints)
-        {
-            const auto characteristicPointType = characteristicPoint->GetCharacteristicPointType();
-            if (characteristicPointType == CharacteristicPointType::CrestOuterBerm)
-            {
-                hasBermCrest = true;
-            }
-
-            if (characteristicPointType == CharacteristicPointType::NotchOuterBerm)
-            {
-                hasBermNotch = true;
-            }
-        }
-
-        return hasBermCrest && hasBermNotch;
-    }
 }

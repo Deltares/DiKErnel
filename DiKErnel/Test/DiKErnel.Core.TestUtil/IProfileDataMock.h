@@ -31,6 +31,5 @@ namespace DiKErnel::Core::TestUtil
         public:
             MOCK_METHOD(std::vector<std::reference_wrapper<ProfilePoint>>&, GetProfilePoints, (), (const, override));
             MOCK_METHOD(std::vector<std::reference_wrapper<CharacteristicPoint>>&, GetCharacteristicPoints, (), (const, override));
-            MOCK_METHOD(bool, HasBerm, (), (const, override));
     };
 }

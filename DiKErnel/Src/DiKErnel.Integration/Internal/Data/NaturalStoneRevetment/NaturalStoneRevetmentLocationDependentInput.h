@@ -92,9 +92,13 @@ namespace DiKErnel::Integration
             std::unique_ptr<std::pair<double, double>> _notchOuterBerm = nullptr;
             std::unique_ptr<std::pair<double, double>> _crestOuterBerm = nullptr;
             double _resistance = std::numeric_limits<double>::infinity();
+            bool _hasBerm = false;
 
             static std::pair<double, double> GetCharacteristicPointCoordinates(
                 const std::vector<std::reference_wrapper<Core::CharacteristicPoint>>& characteristicPoints,
                 Core::CharacteristicPointType characteristicPointType);
+
+            static bool HasBerm(
+                const std::vector<std::reference_wrapper<Core::CharacteristicPoint>>& characteristicPoints);
     };
 }

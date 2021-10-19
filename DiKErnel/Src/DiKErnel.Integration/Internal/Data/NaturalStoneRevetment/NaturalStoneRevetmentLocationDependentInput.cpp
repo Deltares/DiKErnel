@@ -112,10 +112,16 @@ namespace DiKErnel::Integration
 
         _outerToeHeight = GetCharacteristicPointCoordinates(characteristicPoints, CharacteristicPointType::OuterToe).second;
         _outerCrestHeight = GetCharacteristicPointCoordinates(characteristicPoints, CharacteristicPointType::OuterCrest).second;
-        _notchOuterBerm = make_unique<pair<double, double>>(
-            GetCharacteristicPointCoordinates(characteristicPoints, CharacteristicPointType::NotchOuterBerm));
-        _crestOuterBerm = make_unique<pair<double, double>>(
-            GetCharacteristicPointCoordinates(characteristicPoints, CharacteristicPointType::CrestOuterBerm));
+
+        _hasBerm = HasBerm(characteristicPoints);
+
+        if (_hasBerm)
+        {
+            _notchOuterBerm = make_unique<pair<double, double>>(
+                GetCharacteristicPointCoordinates(characteristicPoints, CharacteristicPointType::NotchOuterBerm));
+            _crestOuterBerm = make_unique<pair<double, double>>(
+                GetCharacteristicPointCoordinates(characteristicPoints, CharacteristicPointType::CrestOuterBerm));
+        }
 
         _resistance = NaturalStoneRevetment::Resistance(_relativeDensity, _thicknessTopLayer);
     }
@@ -139,7 +145,7 @@ namespace DiKErnel::Integration
         const auto slopeUpperPosition = Revetment::InterpolationHorizontalPosition(slopeUpperLevel, dikeProfilePoints);
         const auto slopeLowerPosition = Revetment::InterpolationHorizontalPosition(slopeLowerLevel, dikeProfilePoints);
 
-        const auto outerSlope = profileData.HasBerm()
+        const auto outerSlope = _hasBerm
                                     ? NaturalStoneRevetment::OuterSlopeWithBerm(_outerToeHeight, _outerCrestHeight, *_notchOuterBerm,
                                                                                 *_crestOuterBerm, slopeUpperLevel, slopeLowerLevel,
                                                                                 slopeUpperPosition, slopeLowerPosition)
@@ -245,5 +251,29 @@ namespace DiKErnel::Integration
         }
 
         return pair(numeric_limits<double>::infinity(), numeric_limits<double>::infinity());
+    }
+
+    bool NaturalStoneRevetmentLocationDependentInput::HasBerm(
+        const vector<reference_wrapper<CharacteristicPoint>>& characteristicPoints)
+    {
+        auto hasBermCrest = false;
+        auto hasBermNotch = false;
+
+        for (const auto& characteristicPointReference : characteristicPoints)
+        {
+            const auto characteristicPoint = characteristicPointReference.get();
+            const auto characteristicPointType = characteristicPoint.GetCharacteristicPointType();
+            if (characteristicPointType == CharacteristicPointType::CrestOuterBerm)
+            {
+                hasBermCrest = true;
+            }
+
+            if (characteristicPointType == CharacteristicPointType::NotchOuterBerm)
+            {
+                hasBermNotch = true;
+            }
+        }
+
+        return hasBermCrest && hasBermNotch;
     }
 }
