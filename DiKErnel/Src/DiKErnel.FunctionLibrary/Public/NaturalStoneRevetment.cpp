@@ -127,7 +127,8 @@ namespace DiKErnel::FunctionLibrary
         const double waveHeightHm0,
         const double slopeLowerLevelAls)
     {
-        return max(outerToeHeight, slopeUpperLevel - slopeLowerLevelAls * waveHeightHm0);
+        return max(outerToeHeight,
+                   slopeUpperLevel - slopeLowerLevelAls * waveHeightHm0);
     }
 
     double NaturalStoneRevetment::UpperLimitLoading(
