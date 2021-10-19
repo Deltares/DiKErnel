@@ -25,7 +25,6 @@ namespace DiKErnel::Integration::TestUtil
     using namespace std;
 
     RevetmentLocationConstructionPropertiesMock::RevetmentLocationConstructionPropertiesMock(
-        string name,
         const double x)
-        : RevetmentLocationConstructionPropertiesBase(move(name), x) {}
+        : RevetmentLocationConstructionPropertiesBase(x) {}
 }

@@ -27,11 +27,10 @@ namespace DiKErnel::Integration
     using namespace std;
 
     GrassRevetmentWaveRunupLocationConstructionProperties::GrassRevetmentWaveRunupLocationConstructionProperties(
-        string name,
         const double x,
         const double outerSlope,
         const GrassRevetmentTopLayerType topLayerType)
-        : RevetmentLocationConstructionPropertiesBase(move(name), x),
+        : RevetmentLocationConstructionPropertiesBase(x),
           _outerSlope(outerSlope),
           _topLayerType(topLayerType) { }
 

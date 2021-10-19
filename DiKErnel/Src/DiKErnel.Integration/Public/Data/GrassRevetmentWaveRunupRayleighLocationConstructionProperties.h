@@ -33,8 +33,6 @@ namespace DiKErnel::Integration
         public:
             /*!
              * \brief Creates a new instance.
-             * \param name
-             *        The name.
              * \param x
              *        The x coordinate.
              * \param outerSlope
@@ -43,7 +41,6 @@ namespace DiKErnel::Integration
              *        The type of the top layer.
              */
             explicit GrassRevetmentWaveRunupRayleighLocationConstructionProperties(
-                std::string name,
                 double x,
                 double outerSlope,
                 GrassRevetmentTopLayerType topLayerType);

@@ -20,8 +20,6 @@
 
 #pragma once
 
-#include <string>
-
 #include "GrassRevetmentTopLayerType.h"
 #include "RevetmentLocationConstructionPropertiesBase.h"
 
@@ -36,15 +34,12 @@ namespace DiKErnel::Integration
         public:
             /*!
              * \brief Creates a new instance.
-             * \param name
-             *        The name.
              * \param x
              *        The x coordinate.
              * \param topLayerType
              *        The type of the top layer.
              */
             explicit GrassRevetmentWaveImpactLocationConstructionProperties(
-                std::string name,
                 double x,
                 GrassRevetmentTopLayerType topLayerType);
 

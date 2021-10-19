@@ -34,17 +34,15 @@ namespace DiKErnel::Integration::Test
     {
         // Setup
         const auto topLayerType = static_cast<GrassRevetmentTopLayerType>(rand() % 2);
-        const string name = "Test";
         const auto x = 0.1;
         const auto outerSlope = 0.2;
 
         // Call
-        const GrassRevetmentWaveRunupRayleighLocationConstructionProperties constructionProperties(name, x, outerSlope, topLayerType);
+        const GrassRevetmentWaveRunupRayleighLocationConstructionProperties constructionProperties(x, outerSlope, topLayerType);
 
         // Assert
         AssertHelper::AssertIsInstanceOf<GrassRevetmentWaveRunupLocationConstructionProperties>(&constructionProperties);
         ASSERT_EQ(topLayerType, constructionProperties.GetTopLayerType());
-        ASSERT_EQ(name, constructionProperties.GetName());
         ASSERT_DOUBLE_EQ(x, constructionProperties.GetX());
         ASSERT_DOUBLE_EQ(outerSlope, constructionProperties.GetOuterSlope());
         ASSERT_EQ(nullptr, constructionProperties.GetInitialDamage());
@@ -69,7 +67,6 @@ namespace DiKErnel::Integration::Test
     {
         // Given
         const auto topLayerType = static_cast<GrassRevetmentTopLayerType>(rand() % 2);
-        const string name = "Test";
         const auto x = 0.1;
         const auto outerSlope = 0.2;
         const auto initialDamage = 0.3;
@@ -89,7 +86,7 @@ namespace DiKErnel::Integration::Test
         const auto fixedNumberOfWaves = 17;
         const auto frontVelocityCu = 1.8;
 
-        GrassRevetmentWaveRunupRayleighLocationConstructionProperties constructionProperties(name, x, outerSlope, topLayerType);
+        GrassRevetmentWaveRunupRayleighLocationConstructionProperties constructionProperties(x, outerSlope, topLayerType);
 
         // When
         constructionProperties.SetInitialDamage(make_unique<double>(initialDamage));
@@ -111,7 +108,6 @@ namespace DiKErnel::Integration::Test
 
         // Then
         ASSERT_EQ(topLayerType, constructionProperties.GetTopLayerType());
-        ASSERT_EQ(name, constructionProperties.GetName());
         ASSERT_DOUBLE_EQ(x, constructionProperties.GetX());
         ASSERT_DOUBLE_EQ(outerSlope, constructionProperties.GetOuterSlope());
         ASSERT_DOUBLE_EQ(initialDamage, *constructionProperties.GetInitialDamage());

@@ -28,7 +28,6 @@ namespace DiKErnel::Integration::TestUtil
     {
         public:
             explicit RevetmentLocationConstructionPropertiesMock(
-                std::string name,
                 double x);
     };
 }

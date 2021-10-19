@@ -20,7 +20,6 @@
 
 #pragma once
 
-#include <string>
 #include <vector>
 
 #include "AsphaltRevetmentTopLayerType.h"
@@ -37,8 +36,6 @@ namespace DiKErnel::Integration
         public:
             /*!
              * \brief Creates a new instance.
-             * \param name
-             *        The name.
              * \param x
              *        The x coordinate.
              * \param outerSlope
@@ -57,7 +54,6 @@ namespace DiKErnel::Integration
              *        The elastic modulus of the upper layer.
              */
             explicit AsphaltRevetmentWaveImpactLocationConstructionProperties(
-                std::string name,
                 double x,
                 double outerSlope,
                 AsphaltRevetmentTopLayerType topLayerType,

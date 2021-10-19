@@ -134,7 +134,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
         const auto& profileSchematizationData = location.GetProfileSchematizationData();
 
         auto constructionProperties = make_unique<AsphaltRevetmentWaveImpactLocationConstructionProperties>(
-            location.GetName(), location.GetX(), profileSchematizationData.GetOuterSlope(), ConvertTopLayerType(revetmentData.GetTopLayerType()),
+            location.GetX(), profileSchematizationData.GetOuterSlope(), ConvertTopLayerType(revetmentData.GetTopLayerType()),
             revetmentData.GetFailureTension(), revetmentData.GetDensityOfWater(), revetmentData.GetSoilElasticity(),
             revetmentData.GetThicknessUpperLayer(), revetmentData.GetElasticModulusUpperLayer());
 
@@ -187,7 +187,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
         const auto& revetmentData = location.GetRevetmentLocationData();
 
         auto constructionProperties = make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(
-            location.GetName(), location.GetX(), ConvertTopLayerType(revetmentData.GetTopLayerType()));
+            location.GetX(), ConvertTopLayerType(revetmentData.GetTopLayerType()));
 
         constructionProperties->SetInitialDamage(forward<unique_ptr<double>>(CreatePointerOfValue(damageData.GetInitialDamage())));
         constructionProperties->SetFailureNumber(forward<unique_ptr<double>>(CreatePointerOfValue(damageData.GetFailureNumber())));
@@ -227,7 +227,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
         const auto& profileSchematizationData = location.GetProfileSchematizationData();
 
         auto constructionProperties = make_unique<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(
-            location.GetName(), location.GetX(), profileSchematizationData.GetOuterSlope(), ConvertTopLayerType(revetmentData.GetTopLayerType()));
+            location.GetX(), profileSchematizationData.GetOuterSlope(), ConvertTopLayerType(revetmentData.GetTopLayerType()));
 
         constructionProperties->SetInitialDamage(forward<unique_ptr<double>>(CreatePointerOfValue(damageData.GetInitialDamage())));
         constructionProperties->SetFailureNumber(forward<unique_ptr<double>>(CreatePointerOfValue(damageData.GetFailureNumber())));
@@ -289,7 +289,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
         const auto& revetmentData = location.GetRevetmentLocationData();
 
         auto constructionProperties = make_unique<NaturalStoneRevetmentLocationConstructionProperties>(
-            location.GetName(), location.GetX(), ConvertTopLayerType(revetmentData.GetTopLayerType()), revetmentData.GetThicknessTopLayer(),
+            location.GetX(), ConvertTopLayerType(revetmentData.GetTopLayerType()), revetmentData.GetThicknessTopLayer(),
             revetmentData.GetRelativeDensity());
 
         constructionProperties->SetInitialDamage(forward<unique_ptr<double>>(CreatePointerOfValue(damageData.GetInitialDamage())));

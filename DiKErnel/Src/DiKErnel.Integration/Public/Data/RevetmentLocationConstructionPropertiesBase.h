@@ -21,7 +21,6 @@
 #pragma once
 
 #include <memory>
-#include <string>
 
 namespace DiKErnel::Integration
 {
@@ -48,12 +47,6 @@ namespace DiKErnel::Integration
                 std::unique_ptr<double> failureNumber);
 
             /*!
-             * \brief Gets the name.
-             * \return The name.
-             */
-            std::string GetName() const;
-
-            /*!
              * \brief Gets the x coordinate.
              * \return The x coordinate.
              */
@@ -74,17 +67,13 @@ namespace DiKErnel::Integration
         protected:
             /*!
              * \brief Creates a new instance.
-             * \param name
-             *        The name.
              * \param x
              *        The x coordinate.
              */
             explicit RevetmentLocationConstructionPropertiesBase(
-                std::string name,
                 double x);
 
         private:
-            std::string _name;
             double _x;
             std::unique_ptr<double> _initialDamage = nullptr;
             std::unique_ptr<double> _failureNumber = nullptr;

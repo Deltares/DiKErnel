@@ -33,16 +33,14 @@ namespace DiKErnel::Integration::Test
     {
         // Setup
         const auto topLayerType = static_cast<GrassRevetmentTopLayerType>(rand() % 2);
-        const string name = "Test";
         const auto x = 0.1;
 
         // Call
-        const GrassRevetmentWaveImpactLocationConstructionProperties constructionProperties(name, x, topLayerType);
+        const GrassRevetmentWaveImpactLocationConstructionProperties constructionProperties(x, topLayerType);
 
         // Assert
         AssertHelper::AssertIsInstanceOf<RevetmentLocationConstructionPropertiesBase>(&constructionProperties);
         ASSERT_EQ(topLayerType, constructionProperties.GetTopLayerType());
-        ASSERT_EQ(name, constructionProperties.GetName());
         ASSERT_DOUBLE_EQ(x, constructionProperties.GetX());
         ASSERT_EQ(nullptr, constructionProperties.GetInitialDamage());
         ASSERT_EQ(nullptr, constructionProperties.GetFailureNumber());
@@ -62,7 +60,6 @@ namespace DiKErnel::Integration::Test
     {
         // Given
         const auto topLayerType = static_cast<GrassRevetmentTopLayerType>(rand() % 2);
-        const string name = "Test";
         const auto x = 0.1;
         const auto initialDamage = 0.2;
         const auto failureNumber = 0.3;
@@ -77,7 +74,7 @@ namespace DiKErnel::Integration::Test
         const auto upperLimitLoadingAul = 1.2;
         const auto lowerLimitLoadingAll = 1.3;
 
-        GrassRevetmentWaveImpactLocationConstructionProperties constructionProperties(name, x, topLayerType);
+        GrassRevetmentWaveImpactLocationConstructionProperties constructionProperties(x, topLayerType);
 
         // When
         constructionProperties.SetInitialDamage(make_unique<double>(initialDamage));
@@ -95,7 +92,6 @@ namespace DiKErnel::Integration::Test
 
         // Then
         ASSERT_EQ(topLayerType, constructionProperties.GetTopLayerType());
-        ASSERT_EQ(name, constructionProperties.GetName());
         ASSERT_DOUBLE_EQ(x, constructionProperties.GetX());
         ASSERT_DOUBLE_EQ(initialDamage, *constructionProperties.GetInitialDamage());
         ASSERT_DOUBLE_EQ(failureNumber, *constructionProperties.GetFailureNumber());

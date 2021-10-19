@@ -21,7 +21,6 @@
 #pragma once
 
 #include <memory>
-#include <string>
 
 #include "NaturalStoneRevetmentTopLayerType.h"
 #include "RevetmentLocationConstructionPropertiesBase.h"
@@ -37,8 +36,6 @@ namespace DiKErnel::Integration
         public:
             /*!
              * \brief Creates a new instance.
-             * \param name
-             *        The name.
              * \param x
              *        The x coordinate.
              * \param topLayerType
@@ -49,7 +46,6 @@ namespace DiKErnel::Integration
              *        The relative density.
              */
             explicit NaturalStoneRevetmentLocationConstructionProperties(
-                std::string name,
                 double x,
                 NaturalStoneRevetmentTopLayerType topLayerType,
                 double thicknessTopLayer,

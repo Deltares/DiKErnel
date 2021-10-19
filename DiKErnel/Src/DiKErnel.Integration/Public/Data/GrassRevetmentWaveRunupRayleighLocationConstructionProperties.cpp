@@ -25,11 +25,10 @@ namespace DiKErnel::Integration
     using namespace std;
 
     GrassRevetmentWaveRunupRayleighLocationConstructionProperties::GrassRevetmentWaveRunupRayleighLocationConstructionProperties(
-        string name,
         const double x,
         const double outerSlope,
         const GrassRevetmentTopLayerType topLayerType)
-        : GrassRevetmentWaveRunupLocationConstructionProperties(move(name), x, outerSlope, topLayerType) {}
+        : GrassRevetmentWaveRunupLocationConstructionProperties(x, outerSlope, topLayerType) {}
 
     #pragma region Set methods
 
