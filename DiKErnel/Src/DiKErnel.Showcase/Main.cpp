@@ -19,6 +19,7 @@
 // All rights reserved.
 
 #include <filesystem>
+#include <fstream>
 #include <iostream>
 #include <string>
 #include <thread>
@@ -30,6 +31,7 @@
 using namespace DiKErnel::Core;
 using namespace DiKErnel::KernelWrapper::Json::Input;
 using namespace DiKErnel::KernelWrapper::Json::Output;
+using namespace DiKErnel::Util;
 using namespace std;
 
 enum class UserInput
@@ -48,6 +50,13 @@ void InputMethod(
 JsonOutputType ConvertProcessType(
     JsonInputProcessType);
 
+void WriteLogFile(
+    const string& filePath,
+    const vector<reference_wrapper<Event>>& events);
+
+string GetEventTypeString(
+    EventType eventType);
+
 #pragma endregion
 
 int main()
@@ -56,7 +65,7 @@ int main()
     {
         string jsonFilePath;
         atomic<UserInput> userInput;
-        atomic<bool> calculationFinished(false);
+        atomic calculationFinished(false);
 
         // Obtain user input
         cout << "|===================|" << endl;
@@ -66,9 +75,30 @@ int main()
         getline(cin, jsonFilePath);
         cout << endl;
 
+        // Determine output file path
+        const auto timeStamp = chrono::system_clock::now();
+        const auto milliseconds = chrono::duration_cast<chrono::milliseconds>(timeStamp.time_since_epoch());
+        const auto outputDirectory = filesystem::path(jsonFilePath).parent_path();
+        const auto outputFileNameBase = "output-" + to_string(milliseconds.count() % 1000);
+
         // Read input Json file
         const auto inputComposerResult = JsonInputComposer::GetInputDataFromJson(jsonFilePath);
         const auto* inputData = inputComposerResult->GetResult();
+
+        // Write log file
+        const auto logOutputPath = outputDirectory / (outputFileNameBase + ".txt");
+        WriteLogFile(logOutputPath.u8string(), inputComposerResult->GetEvents());
+
+        if (inputData == nullptr)
+        {
+            cout << "|=====================|" << endl;
+            cout << "| Reading data failed |" << endl;
+            cout << "|=====================|" << endl;
+            cout << "-> An error occurred. See the log file for details" << endl;
+            cout << "-> The log file is written to: " << logOutputPath << endl;
+            return -1;
+        }
+
         const auto calculationInput = get<0>(*inputData).get();
 
         // Write user feedback
@@ -127,20 +157,17 @@ int main()
         else
         {
             // Determine output file path
-            const auto timeStamp = chrono::system_clock::now();
-            const auto milliseconds = chrono::duration_cast<chrono::milliseconds>(timeStamp.time_since_epoch());
-            const auto outputDirectory = filesystem::path(jsonFilePath).parent_path();
-            const auto outputPath = outputDirectory / ("output-" + to_string(milliseconds.count() % 1000) + ".json");
+            const auto jsonOutputPath = outputDirectory / (outputFileNameBase + ".json");
 
             // Write Json output to file
             const auto outputData = calculator.GetCalculationOutput();
-            JsonOutputComposer::WriteCalculationOutputToJson(outputPath.u8string(), *outputData, ConvertProcessType(get<1>(*inputData)));
+            JsonOutputComposer::WriteCalculationOutputToJson(jsonOutputPath.u8string(), *outputData, ConvertProcessType(get<1>(*inputData)));
 
             cout << endl;
             cout << "|========================|" << endl;
             cout << "| Calculation successful |" << endl;
             cout << "|========================|" << endl;
-            cout << "=> Calculation output is written to: " << outputPath << endl;
+            cout << "-> Calculation output is written to: " << jsonOutputPath << endl;
         }
 
         // End stopwatch and write the elapsed time since the start of the calculation
@@ -169,10 +196,9 @@ void InputMethod(
     const atomic<bool>& calculationFinished,
     atomic<UserInput>& userInput)
 {
-    string input;
-
     while (!calculationFinished)
     {
+        string input;
         getline(cin, input);
 
         if (input == "c")
@@ -201,4 +227,36 @@ JsonOutputType ConvertProcessType(
         default:
             throw runtime_error("Unsupported processType");
     }
+}
+
+void WriteLogFile(
+    const string& filePath,
+    const vector<reference_wrapper<Event>>& events)
+{
+    ofstream logFile;
+
+    // Open file and append if already exists.
+    logFile.open(filePath, ios::app);
+
+    for (const auto& eventReference : events)
+    {
+        const auto event = eventReference.get();
+
+        logFile << GetEventTypeString(event.GetEventType()) << ": " << event.GetMessage();
+    }
+
+    logFile.close();
+}
+
+string GetEventTypeString(
+    const EventType eventType)
+{
+    switch (eventType)
+    {
+        case EventType::Warning:
+            return "Warning";
+        case EventType::Error:
+            return "Error";
+    }
+    return "";
 }
