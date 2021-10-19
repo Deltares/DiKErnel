@@ -89,8 +89,8 @@ namespace DiKErnel::Integration
             std::unique_ptr<NaturalStoneRevetmentWaveAngleImpact> _waveAngleImpact;
             double _outerToeHeight = std::numeric_limits<double>::infinity();
             double _outerCrestHeight = std::numeric_limits<double>::infinity();
-            std::pair<double, double> _notchOuterBerm = std::pair<double, double>();
-            std::pair<double, double> _crestOuterBerm = std::pair<double, double>();
+            std::unique_ptr<std::pair<double, double>> _notchOuterBerm = nullptr;
+            std::unique_ptr<std::pair<double, double>> _crestOuterBerm = nullptr;
             double _resistance = std::numeric_limits<double>::infinity();
 
             static std::pair<double, double> GetCharacteristicPointCoordinates(

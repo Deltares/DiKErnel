@@ -112,8 +112,10 @@ namespace DiKErnel::Integration
 
         _outerToeHeight = GetCharacteristicPointCoordinates(characteristicPoints, CharacteristicPointType::OuterToe).second;
         _outerCrestHeight = GetCharacteristicPointCoordinates(characteristicPoints, CharacteristicPointType::OuterCrest).second;
-        _notchOuterBerm = GetCharacteristicPointCoordinates(characteristicPoints, CharacteristicPointType::NotchOuterBerm);
-        _crestOuterBerm = GetCharacteristicPointCoordinates(characteristicPoints, CharacteristicPointType::CrestOuterBerm);
+        _notchOuterBerm = make_unique<pair<double, double>>(
+            GetCharacteristicPointCoordinates(characteristicPoints, CharacteristicPointType::NotchOuterBerm));
+        _crestOuterBerm = make_unique<pair<double, double>>(
+            GetCharacteristicPointCoordinates(characteristicPoints, CharacteristicPointType::CrestOuterBerm));
 
         _resistance = NaturalStoneRevetment::Resistance(_relativeDensity, _thicknessTopLayer);
     }
@@ -138,8 +140,8 @@ namespace DiKErnel::Integration
         const auto slopeLowerPosition = Revetment::InterpolationHorizontalPosition(slopeLowerLevel, dikeProfilePoints);
 
         const auto outerSlope = profileData.HasBerm()
-                                    ? NaturalStoneRevetment::OuterSlopeWithBerm(_outerToeHeight, _outerCrestHeight, _notchOuterBerm,
-                                                                                _crestOuterBerm, slopeUpperLevel, slopeLowerLevel,
+                                    ? NaturalStoneRevetment::OuterSlopeWithBerm(_outerToeHeight, _outerCrestHeight, *_notchOuterBerm,
+                                                                                *_crestOuterBerm, slopeUpperLevel, slopeLowerLevel,
                                                                                 slopeUpperPosition, slopeLowerPosition)
                                     : NaturalStoneRevetment::OuterSlopeWithoutBerm(slopeUpperLevel, slopeLowerLevel, slopeUpperPosition,
                                                                                    slopeLowerPosition);
