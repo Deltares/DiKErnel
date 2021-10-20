@@ -181,7 +181,7 @@ int main()
             const auto* writeSucceeded = outputComposerResult->GetResult();
             WriteLogFile(logOutputPath.u8string(), outputComposerResult->GetEvents());
 
-            if(!*writeSucceeded)
+            if (!*writeSucceeded)
             {
                 cout << endl;
                 cout << "|================|" << endl;
