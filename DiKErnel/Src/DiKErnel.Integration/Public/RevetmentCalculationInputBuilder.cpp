@@ -107,8 +107,8 @@ namespace DiKErnel::Integration
         _locationDependentInputItems.push_back(
             make_unique<AsphaltRevetmentWaveImpactLocationDependentInput>(
                 constructionProperties.GetX(),
-                GetValue(constructionProperties.GetInitialDamage(), RevetmentDefaults::INITIAL_DAMAGE),
-                GetValue(constructionProperties.GetFailureNumber(), RevetmentDefaults::FAILURE_NUMBER),
+                GetValue(constructionProperties.GetInitialDamage(), RevetmentDefaults::GetInitialDamage()),
+                GetValue(constructionProperties.GetFailureNumber(), RevetmentDefaults::GetFailureNumber()),
                 constructionProperties.GetOuterSlope(),
                 constructionProperties.GetFailureTension(),
                 constructionProperties.GetDensityOfWater(),
@@ -151,8 +151,8 @@ namespace DiKErnel::Integration
         _locationDependentInputItems.push_back(
             make_unique<GrassRevetmentWaveImpactLocationDependentInput>(
                 constructionProperties.GetX(),
-                GetValue(constructionProperties.GetInitialDamage(), RevetmentDefaults::INITIAL_DAMAGE),
-                GetValue(constructionProperties.GetFailureNumber(), RevetmentDefaults::FAILURE_NUMBER),
+                GetValue(constructionProperties.GetInitialDamage(), RevetmentDefaults::GetInitialDamage()),
+                GetValue(constructionProperties.GetFailureNumber(), RevetmentDefaults::GetFailureNumber()),
                 move(waveAngleImpact),
                 GetValue(constructionProperties.GetMinimumWaveHeightTemax(), defaults->GetMinimumWaveHeightTemax()),
                 GetValue(constructionProperties.GetMaximumWaveHeightTemin(), defaults->GetMaximumWaveHeightTemin()),
@@ -189,8 +189,8 @@ namespace DiKErnel::Integration
         _locationDependentInputItems.push_back(
             make_unique<GrassRevetmentWaveRunupRayleighLocationDependentInput>(
                 constructionProperties.GetX(),
-                GetValue(constructionProperties.GetInitialDamage(), RevetmentDefaults::INITIAL_DAMAGE),
-                GetValue(constructionProperties.GetFailureNumber(), RevetmentDefaults::FAILURE_NUMBER),
+                GetValue(constructionProperties.GetInitialDamage(), RevetmentDefaults::GetInitialDamage()),
+                GetValue(constructionProperties.GetFailureNumber(), RevetmentDefaults::GetFailureNumber()),
                 constructionProperties.GetOuterSlope(),
                 GetValue(constructionProperties.GetCriticalCumulativeOverload(), defaults->GetCriticalCumulativeOverload()),
                 GetValue(constructionProperties.GetCriticalFrontVelocity(), defaults->GetCriticalFrontVelocity()),
@@ -258,8 +258,8 @@ namespace DiKErnel::Integration
         _locationDependentInputItems.push_back(
             make_unique<NaturalStoneRevetmentLocationDependentInput>(
                 constructionProperties.GetX(),
-                GetValue(constructionProperties.GetInitialDamage(), RevetmentDefaults::INITIAL_DAMAGE),
-                GetValue(constructionProperties.GetFailureNumber(), RevetmentDefaults::FAILURE_NUMBER),
+                GetValue(constructionProperties.GetInitialDamage(), RevetmentDefaults::GetInitialDamage()),
+                GetValue(constructionProperties.GetFailureNumber(), RevetmentDefaults::GetFailureNumber()),
                 constructionProperties.GetRelativeDensity(),
                 constructionProperties.GetThicknessTopLayer(),
                 move(hydraulicLoads),

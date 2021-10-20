@@ -18,28 +18,17 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#pragma once
+#include "RevetmentDefaults.h"
 
 namespace DiKErnel::DomainLibrary
 {
-    /*!
-     * \brief Class that contains default values that apply to all revetments.
-     */
-    class RevetmentDefaults
+    double RevetmentDefaults::GetInitialDamage()
     {
-        public:
-            /*!
-             * \brief Gets the default value of the initial damage.
-             * \return The default value of the initial damage.
-             *         Unit = [-]
-             */
-            static double GetInitialDamage();
+        return 0;
+    }
 
-            /*!
-             * \brief Gets the default value of the failure number.
-             * \return The default value of the failure number.
-             *         Unit = [-]
-             */
-            static double GetFailureNumber();
-    };
+    double RevetmentDefaults::GetFailureNumber()
+    {
+        return 1;
+    }
 }
