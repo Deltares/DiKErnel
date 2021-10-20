@@ -88,9 +88,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
     {
         const auto& readRevetment = GetReadRevetment();
 
-        unique_ptr<JsonInputGrassRevetmentWaveRunupRayleighLocationData> locationData = ParseRayleighRevetmentLocationData(
-            readRevetment, readCalculationProtocol);
-
+        auto locationData = ParseRayleighRevetmentLocationData(readRevetment, readCalculationProtocol);
         ParseGenericRevetmentLocationData(readRevetment, readCalculationMethod, *locationData);
 
         return locationData;
