@@ -101,13 +101,13 @@ namespace DiKErnel::Integration::Test
         const auto slopeLowerLevel = 0.6;
         const auto slopeLowerPosition = 0.7;
         const auto loadingRevetment = false;
-        const auto surfSimilarityParameter = 0.9;
-        const auto waveSteepnessDeepWater = 1.0;
-        const auto upperLimitLoading = 1.1;
-        const auto lowerLimitLoading = 1.2;
-        const auto depthMaximumWaveLoad = 1.3;
-        const auto distanceMaximumWaveElevation = 1.4;
-        const auto normativeWidthOfWaveImpact = 1.5;
+        const auto surfSimilarityParameter = 0.8;
+        const auto waveSteepnessDeepWater = 0.9;
+        const auto upperLimitLoading = 1.0;
+        const auto lowerLimitLoading = 1.1;
+        const auto depthMaximumWaveLoad = 1.2;
+        const auto distanceMaximumWaveElevation = 1.3;
+        const auto normativeWidthOfWaveImpact = 1.4;
 
         // Call
         const auto output = NaturalStoneRevetmentTimeDependentOutput(incrementDamage, damage, nullptr, outerSlope, slopeUpperLevel,

@@ -31,7 +31,7 @@ namespace DiKErnel::KernelWrapper::Json::Output
 
             inline static const std::string INCREMENT_DAMAGE = "ToenameSchadeNatuursteen";
 
-            inline static const std::string OUTER_SLOPE = "HellingBuitentaladNatuursteen";
+            inline static const std::string OUTER_SLOPE = "HellingBuitentaludNatuursteen";
             inline static const std::string SLOPE_UPPER_LEVEL = "BovenzijdeHellingvlakNatuursteen";
             inline static const std::string SLOPE_UPPER_POSITION = "RechterzijdeHellingvlakNatuursteen";
             inline static const std::string SLOPE_LOWER_LEVEL = "OnderzijdeHellingvlakNatuursteen";
