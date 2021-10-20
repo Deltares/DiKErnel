@@ -48,9 +48,13 @@ namespace DiKErnel::Core::TestUtil
             void SetTimeOfFailure(
                 int* timeOfFailure);
 
+            void SetThrowExceptionOnCalculate(
+                bool throwExceptionOnCalculate);
+
         private:
             double _incrementDamage = 0;
             double _damage = 0;
             int* _timeOfFailure = nullptr;
+            bool _throwExceptionOnCalculate = false;
     };
 }

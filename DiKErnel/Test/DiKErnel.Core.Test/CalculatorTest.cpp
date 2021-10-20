@@ -224,15 +224,18 @@ namespace DiKErnel::Core::Test
     TEST_F(CalculatorTest, GivenCalculatorWithExceptionDuringCalculation_WhenGetCalculationOutput_ThenReturnResultWithNullPtrAndEvent)
     {
         // Given
-        const auto exceptionMessage = "Exception message";
+        const auto locationDependentInputMock = make_unique<NiceMock<ILocationDependentInputMock>>();
+        locationDependentInputMock->SetThrowExceptionOnCalculate(true);
+
+        auto locationDependentInputItemReferences = vector<reference_wrapper<ILocationDependentInput>>();
+        locationDependentInputItemReferences.emplace_back(*locationDependentInputMock);
 
         NiceMock<ICalculationInputMock> calculationInput;
         EXPECT_CALL(calculationInput, GetProfileData).WillRepeatedly(ReturnRef(*_profileData));
-        EXPECT_CALL(calculationInput, GetLocationDependentInputItems).WillRepeatedly(ReturnRef(_locationDependentInputItemReferences));
-        EXPECT_CALL(calculationInput, GetTimeDependentInputItems).WillRepeatedly(Throw(exception(exceptionMessage)));
+        EXPECT_CALL(calculationInput, GetLocationDependentInputItems).WillRepeatedly(ReturnRef(locationDependentInputItemReferences));
+        EXPECT_CALL(calculationInput, GetTimeDependentInputItems).WillRepeatedly(ReturnRef(_timeDependentInputItemReferences));
 
         Calculator calculator(calculationInput);
-        calculator.Cancel();
         calculator.WaitForCompletion();
 
         // When
@@ -246,6 +249,6 @@ namespace DiKErnel::Core::Test
         ASSERT_EQ(1, events.size());
         const auto event = events[0].get();
         ASSERT_EQ(EventType::Error, event.GetEventType());
-        ASSERT_EQ(exceptionMessage, event.GetMessage());
+        ASSERT_EQ("Exception message", event.GetMessage());
     }
 }

@@ -31,6 +31,11 @@ namespace DiKErnel::Core::TestUtil
         const ITimeDependentInput& timeDependentInput,
         const IProfileData& profileData)
     {
+        if(_throwExceptionOnCalculate)
+        {
+            throw runtime_error("Exception message");
+        }
+
         return make_unique<TimeDependentOutputMock>(_incrementDamage, _damage, _timeOfFailure != nullptr
                                                                                    ? make_unique<int>(*_timeOfFailure)
                                                                                    : nullptr);
@@ -52,5 +57,11 @@ namespace DiKErnel::Core::TestUtil
         int* timeOfFailure)
     {
         _timeOfFailure = timeOfFailure;
+    }
+
+    void ILocationDependentInputMock::SetThrowExceptionOnCalculate(
+        const bool throwExceptionOnCalculate)
+    {
+        _throwExceptionOnCalculate = throwExceptionOnCalculate;
     }
 }
