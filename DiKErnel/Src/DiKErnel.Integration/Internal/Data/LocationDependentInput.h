@@ -22,7 +22,7 @@
 
 #include "ILocationDependentInput.h"
 
-#include <cmath>
+#include <limits>
 
 namespace DiKErnel::Integration
 {

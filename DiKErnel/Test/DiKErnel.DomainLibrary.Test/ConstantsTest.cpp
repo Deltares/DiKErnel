@@ -18,8 +18,6 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include <cmath>
-
 #include <gtest/gtest.h>
 
 #include "Constants.h"
