@@ -285,10 +285,6 @@
                             }
                         }
                     ]
-                },
-                "Profielschematisatie":
-                {
-                    "TanA": 0.3
                 }
             },
             {
@@ -327,10 +323,6 @@
                             }
                         }
                     ]
-                },
-                "Profielschematisatie":
-                {
-                    "TanA": 0.3
                 }
             }
         ]

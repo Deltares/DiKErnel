@@ -245,10 +245,6 @@
                             }
                         }
                     ]
-                },
-                "Profielschematisatie":
-                {
-                    "TanA": 0.2
                 }
             },
             {
@@ -262,10 +258,6 @@
                             "RekenmethodeSoort": "GrasGolfklap"
                         }
                     ]
-                },
-                "Profielschematisatie":
-                {
-                    "TanA": 0.3
                 }
             },
             {
@@ -279,10 +271,6 @@
                             "RekenmethodeSoort": "GrasGolfklap"
                         }
                     ]
-                },
-                "Profielschematisatie":
-                {
-                    "TanA": 0.3
                 }
             },
             {
