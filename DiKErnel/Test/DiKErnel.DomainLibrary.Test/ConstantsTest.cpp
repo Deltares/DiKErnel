@@ -18,21 +18,15 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#pragma once
+#include <gtest/gtest.h>
 
-namespace DiKErnel::DomainLibrary::Constants
+#include "Constants.h"
+
+namespace DiKErnel::DomainLibrary::Test
 {
-    /*!
-     * \brief Class that contains domain constants.
-     */
-    class Constants
+    TEST(ConstantsTest, GetGravitationalAcceleration_ExpectedValue)
     {
-        public:
-            /*!
-             * \brief Gets the gravitational acceleration.
-             * \return The gravitational acceleration.
-             *         Unit = [m/s^2]
-             */
-            static double GetGravitationalAcceleration();
-    };
+        // Call & Assert
+        ASSERT_DOUBLE_EQ(9.81, Constants::GetGravitationalAcceleration());
+    }
 }

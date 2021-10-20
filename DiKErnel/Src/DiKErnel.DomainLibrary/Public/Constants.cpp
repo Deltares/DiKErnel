@@ -18,13 +18,12 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include <gtest/gtest.h>
+#include "Constants.h"
 
-int main(
-    int ac,
-    char* av[])
+namespace DiKErnel::DomainLibrary
 {
-    testing::InitGoogleTest(&ac, av);
-    RUN_ALL_TESTS();
-    return 0;
+    double Constants::GetGravitationalAcceleration()
+    {
+        return 9.81;
+    }
 }

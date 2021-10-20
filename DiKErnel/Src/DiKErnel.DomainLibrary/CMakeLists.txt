@@ -10,6 +10,8 @@ set(PUBLIC_NATURAL_STONE_REVETMENT_FOLDER ${PUBLIC_FOLDER}/NaturalStoneRevetment
 
 # Define sources
 set(SOURCEFILES_PUBLIC
+  ${PUBLIC_FOLDER}/Constants.cpp
+  ${PUBLIC_FOLDER}/Constants.h
   ${PUBLIC_FOLDER}/RevetmentDefaults.cpp
   ${PUBLIC_FOLDER}/RevetmentDefaults.h
 )
