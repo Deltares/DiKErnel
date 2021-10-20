@@ -56,8 +56,6 @@ set(SOURCEFILES_INTERNAL_DATA_GENERIC
 )
 
 set(SOURCEFILES_INTERNAL_DATA_REVETMENT
-  ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputAsphaltWaveImpactLocationData.cpp
-  ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputAsphaltWaveImpactLocationData.h
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputAsphaltRevetmentTopLayerType.h
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputAsphaltWaveImpactLocationData.cpp
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputAsphaltWaveImpactLocationData.h
