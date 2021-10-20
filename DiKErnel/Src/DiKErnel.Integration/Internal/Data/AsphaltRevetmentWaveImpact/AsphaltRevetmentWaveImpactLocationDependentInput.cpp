@@ -153,7 +153,7 @@ namespace DiKErnel::Integration
         const auto incrementTime = Revetment::IncrementTime(beginTime, timeDependentInput.GetEndTime());
         const auto averageNumberOfWaves = Revetment::AverageNumberOfWaves(incrementTime, timeDependentInput.GetWavePeriodTm10(),
                                                                           _averageNumberOfWavesCtm);
-        const auto maximumPeakStress = AsphaltRevetmentWaveImpact::MaximumPeakStress(waveHeightHm0, Constants::GRAVITATIONAL_ACCELERATION,
+        const auto maximumPeakStress = AsphaltRevetmentWaveImpact::MaximumPeakStress(waveHeightHm0, Constants::GetGravitationalAcceleration(),
                                                                                      _densityOfWater);
         const auto incrementDamage = AsphaltRevetmentWaveImpact::IncrementDamage(_logFailureTension, averageNumberOfWaves, maximumPeakStress,
                                                                                  _stiffnessRelation, _computationalThickness, _outerSlope,

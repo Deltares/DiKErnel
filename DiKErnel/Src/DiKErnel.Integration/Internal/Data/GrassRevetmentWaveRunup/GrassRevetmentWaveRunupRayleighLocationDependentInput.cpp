@@ -90,7 +90,7 @@ namespace DiKErnel::Integration
 
             const auto surfSimilarityParameter = HydraulicLoad::SurfSimilarityParameter(GetOuterSlope(), timeDependentInput.GetWaveHeightHm0(),
                                                                                         timeDependentInput.GetWavePeriodTm10(),
-                                                                                        Constants::GRAVITATIONAL_ACCELERATION);
+                                                                                        Constants::GetGravitationalAcceleration());
 
             waveAngleImpact = make_unique<double>(GrassRevetmentWaveRunup::WaveAngleImpact(timeDependentInput.GetWaveAngle(),
                                                                                            GetWaveAngleImpact().GetAbeta(),
@@ -105,7 +105,7 @@ namespace DiKErnel::Integration
             cumulativeOverload = make_unique<double>(GrassRevetmentWaveRunupRayleigh::CumulativeOverload(
                 averageNumberOfWaves, *representativeWaveRunup2P, _fixedNumberOfWaves, verticalDistanceWaterLevelElevation,
                 GetCriticalFrontVelocity(), GetIncreasedLoadTransitionAlphaM(), GetReducedStrengthTransitionAlphaS(), _frontVelocityCu,
-                Constants::GRAVITATIONAL_ACCELERATION));
+                Constants::GetGravitationalAcceleration()));
 
             incrementDamage = GrassRevetmentWaveRunup::IncrementDamage(*cumulativeOverload, GetCriticalCumulativeOverload());
 

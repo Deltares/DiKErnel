@@ -24,9 +24,9 @@
 
 namespace DiKErnel::DomainLibrary::Test
 {
-    TEST(ConstantsTest, GravitationalAcceleration_ExpectedValue)
+    TEST(ConstantsTest, GetGravitationalAcceleration_ExpectedValue)
     {
         // Call & Assert
-        ASSERT_DOUBLE_EQ(9.81, Constants::GRAVITATIONAL_ACCELERATION);
+        ASSERT_DOUBLE_EQ(9.81, Constants::GetGravitationalAcceleration());
     }
 }
