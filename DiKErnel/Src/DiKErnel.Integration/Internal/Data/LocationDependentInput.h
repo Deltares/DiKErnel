@@ -20,9 +20,9 @@
 
 #pragma once
 
-#include "ILocationDependentInput.h"
-
 #include <limits>
+
+#include "ILocationDependentInput.h"
 
 namespace DiKErnel::Integration
 {

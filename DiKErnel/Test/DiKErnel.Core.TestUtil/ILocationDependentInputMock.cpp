@@ -31,7 +31,7 @@ namespace DiKErnel::Core::TestUtil
         const ITimeDependentInput& timeDependentInput,
         const IProfileData& profileData)
     {
-        if(_throwExceptionOnCalculate)
+        if (_throwExceptionOnCalculate)
         {
             throw runtime_error("Exception message");
         }

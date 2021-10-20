@@ -29,7 +29,7 @@ namespace DiKErnel::Util::Test
     TEST(ResultTest, Constructor_ExpectedValues)
     {
         // Setup
-        const int resultNumber = 45;
+        const auto resultNumber = 45;
         const auto message = "Test message";
         const auto eventType = EventType::Error;
         auto event = make_unique<Event>(message, eventType);

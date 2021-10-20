@@ -18,9 +18,9 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include <gtest/gtest.h>
-
 #include "AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper.h"
+
+#include <gtest/gtest.h>
 
 namespace DiKErnel::Integration::TestUtil
 {
