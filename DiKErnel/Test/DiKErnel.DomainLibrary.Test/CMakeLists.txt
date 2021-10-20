@@ -9,7 +9,6 @@ set(NATURAL_STONE_REVETMENT_FOLDER NaturalStoneRevetment)
 
 # Define sources
 set(SOURCEFILES_ROOT
-  ConstantsTest.cpp
   Main.cpp
   RevetmentDefaultsTest.cpp
 )

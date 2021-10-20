@@ -18,21 +18,12 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#pragma once
+#include "Constants.h"
 
-namespace DiKErnel::DomainLibrary
+namespace DiKErnel::DomainLibrary::Constants
 {
-    /*!
-     * \brief Class that contains domain constants.
-     */
-    class Constants
+    double Constants::GetGravitationalAcceleration()
     {
-        public:
-            /*!
-             * \brief Gets the gravitational acceleration.
-             * \return The gravitational acceleration.
-             *         Unit = [m/s^2]
-             */
-            static double GetGravitationalAcceleration();
-    };
+        return 9.81;
+    }
 }

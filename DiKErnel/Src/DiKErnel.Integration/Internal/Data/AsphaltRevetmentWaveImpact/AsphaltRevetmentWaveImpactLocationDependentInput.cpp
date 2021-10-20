@@ -28,7 +28,7 @@
 namespace DiKErnel::Integration
 {
     using namespace Core;
-    using namespace DomainLibrary;
+    using namespace DomainLibrary::Constants;
     using namespace FunctionLibrary;
     using namespace std;
 
