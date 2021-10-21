@@ -48,6 +48,10 @@ namespace DiKErnel::KernelWrapper::Json::Output
                 {
                     JsonOutputDefinitions::CALCULATION_TYPE,
                     JsonOutputNaturalStoneRevetmentDefinitions::CALCULATION_TYPE
+                },
+                {
+                    JsonOutputDefinitions::Z,
+                    GetLocationOutput().GetZ()
                 }
             });
 

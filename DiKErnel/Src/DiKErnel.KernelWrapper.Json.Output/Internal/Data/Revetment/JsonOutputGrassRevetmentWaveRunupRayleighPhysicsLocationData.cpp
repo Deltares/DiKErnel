@@ -48,6 +48,10 @@ namespace DiKErnel::KernelWrapper::Json::Output
                 {
                     JsonOutputDefinitions::CALCULATION_TYPE,
                     JsonOutputGrassRevetmentWaveRunupRayleighDefinitions::CALCULATION_TYPE
+                },
+                {
+                    JsonOutputDefinitions::Z,
+                    GetLocationOutput().GetZ()
                 }
             });
 

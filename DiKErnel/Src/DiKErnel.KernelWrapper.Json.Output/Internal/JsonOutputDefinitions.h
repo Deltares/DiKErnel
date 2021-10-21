@@ -40,6 +40,7 @@ namespace DiKErnel::KernelWrapper::Json::Output
 
             inline static const std::string PHYSICS_REVETMENT = "FysicaBekleding";
             inline static const std::string CALCULATION_TYPE = "RekenmethodeSoort";
+            inline static const std::string Z = "HoogteLocatie";
 
             inline static const std::string HYDRAULIC_LOAD = "BelastingBekleding";
     };
