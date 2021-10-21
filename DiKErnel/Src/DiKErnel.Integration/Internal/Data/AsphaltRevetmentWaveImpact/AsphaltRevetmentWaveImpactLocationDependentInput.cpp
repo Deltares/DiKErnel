@@ -20,7 +20,7 @@
 
 #include "AsphaltRevetmentWaveImpactLocationDependentInput.h"
 
-#include "AsphaltRevetmentWaveImpact.h"
+#include "AsphaltRevetmentWaveImpactFunctions.h"
 #include "AsphaltRevetmentWaveImpactTimeDependentOutput.h"
 #include "Constants.h"
 #include "RevetmentFunctions.h"
@@ -134,12 +134,13 @@ namespace DiKErnel::Integration
     {
         LocationDependentInput::InitializeDerivedLocationDependentInput(profileData);
 
-        _logFailureTension = AsphaltRevetmentWaveImpact::LogFailureTension(_failureTension);
-        _computationalThickness = AsphaltRevetmentWaveImpact::ComputationalThickness(_upperLayer->GetThickness(), _subLayer->GetThickness(),
-                                                                                     _upperLayer->GetElasticModulus(),
-                                                                                     _subLayer->GetElasticModulus());
-        _stiffnessRelation = AsphaltRevetmentWaveImpact::StiffnessRelation(_computationalThickness, _subLayer->GetElasticModulus(),
-                                                                           _soilElasticity, _stiffnessRelationNu);
+        _logFailureTension = AsphaltRevetmentWaveImpactFunctions::LogFailureTension(_failureTension);
+        _computationalThickness = AsphaltRevetmentWaveImpactFunctions::ComputationalThickness(_upperLayer->GetThickness(),
+                                                                                              _subLayer->GetThickness(),
+                                                                                              _upperLayer->GetElasticModulus(),
+                                                                                              _subLayer->GetElasticModulus());
+        _stiffnessRelation = AsphaltRevetmentWaveImpactFunctions::StiffnessRelation(_computationalThickness, _subLayer->GetElasticModulus(),
+                                                                                    _soilElasticity, _stiffnessRelationNu);
     }
 
     unique_ptr<TimeDependentOutput> AsphaltRevetmentWaveImpactLocationDependentInput::CalculateTimeDependentOutput(
@@ -153,13 +154,16 @@ namespace DiKErnel::Integration
         const auto incrementTime = RevetmentFunctions::IncrementTime(beginTime, timeDependentInput.GetEndTime());
         const auto averageNumberOfWaves = RevetmentFunctions::AverageNumberOfWaves(incrementTime, timeDependentInput.GetWavePeriodTm10(),
                                                                                    _averageNumberOfWavesCtm);
-        const auto maximumPeakStress = AsphaltRevetmentWaveImpact::MaximumPeakStress(waveHeightHm0, Constants::GetGravitationalAcceleration(),
-                                                                                     _densityOfWater);
-        const auto incrementDamage = AsphaltRevetmentWaveImpact::IncrementDamage(_logFailureTension, averageNumberOfWaves, maximumPeakStress,
-                                                                                 _stiffnessRelation, _computationalThickness, _outerSlope,
-                                                                                 _widthFactors, _depthFactors, _impactFactors, GetZ(),
-                                                                                 timeDependentInput.GetWaterLevel(), waveHeightHm0,
-                                                                                 _fatigue->GetAlpha(), _fatigue->GetBeta(), _impactNumberC);
+        const auto maximumPeakStress = AsphaltRevetmentWaveImpactFunctions::MaximumPeakStress(waveHeightHm0,
+                                                                                              Constants::GetGravitationalAcceleration(),
+                                                                                              _densityOfWater);
+        const auto incrementDamage = AsphaltRevetmentWaveImpactFunctions::IncrementDamage(_logFailureTension, averageNumberOfWaves,
+                                                                                          maximumPeakStress, _stiffnessRelation,
+                                                                                          _computationalThickness, _outerSlope,
+                                                                                          _widthFactors, _depthFactors, _impactFactors, GetZ(),
+                                                                                          timeDependentInput.GetWaterLevel(), waveHeightHm0,
+                                                                                          _fatigue->GetAlpha(), _fatigue->GetBeta(),
+                                                                                          _impactNumberC);
         const auto damage = RevetmentFunctions::Damage(incrementDamage, initialDamage);
 
         const auto failureNumber = GetFailureNumber();

@@ -27,7 +27,7 @@ namespace DiKErnel::FunctionLibrary
     /*!
      * \brief Class that holds all asphalt revetment wave impact specific calculation routines.
      */
-    class AsphaltRevetmentWaveImpact
+    class AsphaltRevetmentWaveImpactFunctions
     {
         public:
             /*!
