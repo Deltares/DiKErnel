@@ -18,7 +18,7 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include "NaturalStoneRevetment.h"
+#include "NaturalStoneRevetmentFunctions.h"
 
 #include <algorithm>
 #include <cmath>
@@ -29,7 +29,7 @@ namespace DiKErnel::FunctionLibrary
 {
     using namespace std;
 
-    double NaturalStoneRevetment::IncrementDamage(
+    double NaturalStoneRevetmentFunctions::IncrementDamage(
         const double hydraulicLoad,
         const double resistance,
         const double incrementDegradation,
@@ -38,7 +38,7 @@ namespace DiKErnel::FunctionLibrary
         return hydraulicLoad / resistance * incrementDegradation * waveAngleImpact;
     }
 
-    double NaturalStoneRevetment::HydraulicLoad(
+    double NaturalStoneRevetmentFunctions::HydraulicLoad(
         const double surfSimilarityParameter,
         const double waveHeightHm0,
         const double hydraulicLoadA,
@@ -51,7 +51,7 @@ namespace DiKErnel::FunctionLibrary
             + hydraulicLoadC);
     }
 
-    double NaturalStoneRevetment::OuterSlope(
+    double NaturalStoneRevetmentFunctions::OuterSlope(
         const double slopeUpperLevel,
         const double slopeLowerLevel,
         const double slopeUpperPosition,
@@ -60,7 +60,7 @@ namespace DiKErnel::FunctionLibrary
         return SingleSlopePart(slopeUpperLevel, slopeLowerLevel, slopeUpperPosition, slopeLowerPosition);
     }
 
-    double NaturalStoneRevetment::OuterSlope(
+    double NaturalStoneRevetmentFunctions::OuterSlope(
         const double outerToeHeight,
         const double outerCrestHeight,
         const double notchOuterBermPosition,
@@ -109,7 +109,7 @@ namespace DiKErnel::FunctionLibrary
         return numeric_limits<double>::infinity();
     }
 
-    double NaturalStoneRevetment::SlopeUpperLevel(
+    double NaturalStoneRevetmentFunctions::SlopeUpperLevel(
         const double outerToeHeight,
         const double outerCrestHeight,
         const double waterLevel,
@@ -121,7 +121,7 @@ namespace DiKErnel::FunctionLibrary
                        outerToeHeight + slopeUpperLevelAus * waveHeightHm0));
     }
 
-    double NaturalStoneRevetment::SlopeLowerLevel(
+    double NaturalStoneRevetmentFunctions::SlopeLowerLevel(
         const double outerToeHeight,
         const double slopeUpperLevel,
         const double waveHeightHm0,
@@ -131,7 +131,7 @@ namespace DiKErnel::FunctionLibrary
                    slopeUpperLevel - slopeLowerLevelAls * waveHeightHm0);
     }
 
-    double NaturalStoneRevetment::UpperLimitLoading(
+    double NaturalStoneRevetmentFunctions::UpperLimitLoading(
         const double depthMaximumWaveLoad,
         const double surfSimilarityParameter,
         const double waterLevel,
@@ -146,7 +146,7 @@ namespace DiKErnel::FunctionLibrary
                       upperLimitLoadingBul * waveHeightHm0 * min(surfSimilarityParameter, upperLimitLoadingCul));
     }
 
-    double NaturalStoneRevetment::LowerLimitLoading(
+    double NaturalStoneRevetmentFunctions::LowerLimitLoading(
         const double depthMaximumWaveLoad,
         const double surfSimilarityParameter,
         const double waterLevel,
@@ -161,7 +161,7 @@ namespace DiKErnel::FunctionLibrary
                       lowerLimitLoadingBll * waveHeightHm0 * min(surfSimilarityParameter, lowerLimitLoadingCll));
     }
 
-    double NaturalStoneRevetment::DepthMaximumWaveLoad(
+    double NaturalStoneRevetmentFunctions::DepthMaximumWaveLoad(
         const double distanceMaximumWaveElevation,
         const double normativeWidthWaveImpact,
         const double slopeAngle)
@@ -171,7 +171,7 @@ namespace DiKErnel::FunctionLibrary
         return (distanceMaximumWaveElevation - 0.5 * normativeWidthWaveImpact * cos(slopeAngleRadians)) * tan(slopeAngleRadians);
     }
 
-    double NaturalStoneRevetment::DistanceMaximumWaveElevation(
+    double NaturalStoneRevetmentFunctions::DistanceMaximumWaveElevation(
         const double impactShallowWater,
         const double waveSteepnessDeepWater,
         const double waveHeightHm0,
@@ -183,7 +183,7 @@ namespace DiKErnel::FunctionLibrary
                 * impactShallowWater;
     }
 
-    double NaturalStoneRevetment::NormativeWidthWaveImpact(
+    double NaturalStoneRevetmentFunctions::NormativeWidthWaveImpact(
         const double surfSimilarityParameter,
         const double waveHeightHm0,
         const double normativeWidthWaveImpactAwi,
@@ -192,21 +192,21 @@ namespace DiKErnel::FunctionLibrary
         return (normativeWidthWaveImpactAwi - normativeWidthWaveImpactBwi * surfSimilarityParameter) * waveHeightHm0;
     }
 
-    double NaturalStoneRevetment::WaveAngleImpact(
+    double NaturalStoneRevetmentFunctions::WaveAngleImpact(
         const double waveAngle,
         const double waveAngleImpactBetamax)
     {
         return pow(cos(GenericFunctions::Radians(min(waveAngleImpactBetamax, abs(waveAngle)))), 2.0 / 3.0);
     }
 
-    double NaturalStoneRevetment::Resistance(
+    double NaturalStoneRevetmentFunctions::Resistance(
         const double relativeDensity,
         const double thicknessTopLayer)
     {
         return relativeDensity * thicknessTopLayer;
     }
 
-    double NaturalStoneRevetment::IncrementDegradation(
+    double NaturalStoneRevetmentFunctions::IncrementDegradation(
         const double referenceTimeDegradation,
         const double incrementTime,
         const double wavePeriodTm10)
@@ -214,14 +214,14 @@ namespace DiKErnel::FunctionLibrary
         return Degradation(referenceTimeDegradation + incrementTime, wavePeriodTm10) - Degradation(referenceTimeDegradation, wavePeriodTm10);
     }
 
-    double NaturalStoneRevetment::ReferenceTimeDegradation(
+    double NaturalStoneRevetmentFunctions::ReferenceTimeDegradation(
         const double referenceDegradation,
         const double wavePeriodTm10)
     {
         return ReferenceTime(referenceDegradation, wavePeriodTm10);
     }
 
-    double NaturalStoneRevetment::ReferenceDegradation(
+    double NaturalStoneRevetmentFunctions::ReferenceDegradation(
         const double resistance,
         const double hydraulicLoad,
         const double waveAngleImpact,
@@ -230,21 +230,21 @@ namespace DiKErnel::FunctionLibrary
         return Reference(resistance, hydraulicLoad, waveAngleImpact, initialDamage);
     }
 
-    double NaturalStoneRevetment::DurationInTimeStepFailure(
+    double NaturalStoneRevetmentFunctions::DurationInTimeStepFailure(
         const double referenceTimeFailure,
         const double referenceTimeDegradation)
     {
         return referenceTimeFailure - referenceTimeDegradation;
     }
 
-    double NaturalStoneRevetment::ReferenceTimeFailure(
+    double NaturalStoneRevetmentFunctions::ReferenceTimeFailure(
         const double referenceFailure,
         const double wavePeriodTm10)
     {
         return ReferenceTime(referenceFailure, wavePeriodTm10);
     }
 
-    double NaturalStoneRevetment::ReferenceFailure(
+    double NaturalStoneRevetmentFunctions::ReferenceFailure(
         const double resistance,
         const double hydraulicLoad,
         const double waveAngleImpact,
@@ -253,7 +253,7 @@ namespace DiKErnel::FunctionLibrary
         return Reference(resistance, hydraulicLoad, waveAngleImpact, failureNumber);
     }
 
-    double NaturalStoneRevetment::SingleSlopePart(
+    double NaturalStoneRevetmentFunctions::SingleSlopePart(
         const double slopeUpperLevel,
         const double slopeLowerLevel,
         const double slopeUpperPosition,
@@ -262,7 +262,7 @@ namespace DiKErnel::FunctionLibrary
         return (slopeUpperLevel - slopeLowerLevel) / (slopeUpperPosition - slopeLowerPosition);
     }
 
-    double NaturalStoneRevetment::SlopeLowerSlopeBerm(
+    double NaturalStoneRevetmentFunctions::SlopeLowerSlopeBerm(
         const double crestOuterBermPosition,
         const double crestOuterBermHeight,
         const double slopeLowerLevel,
@@ -271,7 +271,7 @@ namespace DiKErnel::FunctionLibrary
         return (crestOuterBermHeight - slopeLowerLevel) / (crestOuterBermPosition - slopeLowerPosition);
     }
 
-    double NaturalStoneRevetment::SlopeBermUpperSlope(
+    double NaturalStoneRevetmentFunctions::SlopeBermUpperSlope(
         const double notchOuterBermPosition,
         const double notchOuterBermHeight,
         const double slopeUpperLevel,
@@ -280,7 +280,7 @@ namespace DiKErnel::FunctionLibrary
         return (slopeUpperLevel - notchOuterBermHeight) / (slopeUpperPosition - notchOuterBermPosition);
     }
 
-    double NaturalStoneRevetment::SlopeLowerUpperSlope(
+    double NaturalStoneRevetmentFunctions::SlopeLowerUpperSlope(
         const double slopeUpperLevel,
         const double slopeLowerLevel,
         const double distanceBermUpperSlope,
@@ -289,7 +289,7 @@ namespace DiKErnel::FunctionLibrary
         return (slopeUpperLevel - slopeLowerLevel) / (distanceBermUpperSlope + distanceBermLowerSlope);
     }
 
-    double NaturalStoneRevetment::DistanceBermUpperSlope(
+    double NaturalStoneRevetmentFunctions::DistanceBermUpperSlope(
         const double crestOuterBermHeight,
         const double notchOuterBermPosition,
         const double notchOuterBermHeight,
@@ -300,7 +300,7 @@ namespace DiKErnel::FunctionLibrary
                 * (slopeUpperPosition - notchOuterBermPosition) / (slopeUpperLevel - notchOuterBermHeight);
     }
 
-    double NaturalStoneRevetment::DistanceBermLowerSlope(
+    double NaturalStoneRevetmentFunctions::DistanceBermLowerSlope(
         const double crestOuterBermPosition,
         const double crestOuterBermHeight,
         const double notchOuterBermHeight,
@@ -311,21 +311,21 @@ namespace DiKErnel::FunctionLibrary
                 * (crestOuterBermPosition - slopeLowerPosition) / (crestOuterBermHeight - slopeLowerLevel);
     }
 
-    double NaturalStoneRevetment::Degradation(
+    double NaturalStoneRevetmentFunctions::Degradation(
         const double referenceTimeDegradation,
         const double wavePeriodTm10)
     {
         return pow(referenceTimeDegradation / (wavePeriodTm10 * 1000.0), 0.1);
     }
 
-    double NaturalStoneRevetment::ReferenceTime(
+    double NaturalStoneRevetmentFunctions::ReferenceTime(
         const double reference,
         const double wavePeriodTm10)
     {
         return 1000.0 * wavePeriodTm10 * pow(reference, 10.0);
     }
 
-    double NaturalStoneRevetment::Reference(
+    double NaturalStoneRevetmentFunctions::Reference(
         const double resistance,
         const double hydraulicLoad,
         const double waveAngleImpact,

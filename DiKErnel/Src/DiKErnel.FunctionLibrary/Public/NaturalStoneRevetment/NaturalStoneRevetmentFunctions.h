@@ -25,7 +25,7 @@ namespace DiKErnel::FunctionLibrary
     /*!
      * \brief Class that holds all natural stone revetment specific calculation routines.
      */
-    class NaturalStoneRevetment
+    class NaturalStoneRevetmentFunctions
     {
         public:
             /*!
