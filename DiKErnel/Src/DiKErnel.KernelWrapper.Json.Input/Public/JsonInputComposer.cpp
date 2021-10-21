@@ -51,7 +51,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
         }
         catch (const exception& e)
         {
-            EventRegistry::Register(make_unique<Event>(e.what(), EventType::Error));
+            EventRegistry::Register(make_unique<Event>("An unhandled error occurred while composing calculation data from the Json input. See "
+                                                       "stack trace for more information:\n" + static_cast<string>(e.what()), EventType::Error));
         }
 
         return make_unique<Result<tuple<unique_ptr<ICalculationInput>, JsonInputProcessType>>>(move(readInput), EventRegistry::Flush());

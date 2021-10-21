@@ -66,7 +66,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
 
         static void PerformInvalidJsonTest(
             const string& fileName,
-            const string& expectedMessage)
+            const string& expectedStackTrace)
         {
             // Given
             const auto filePath = (TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Input.Test") / "JsonInputComposerTest"
@@ -83,7 +83,9 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
 
             const auto event = events[0].get();
             ASSERT_EQ(EventType::Error, event.GetEventType());
-            ASSERT_EQ(expectedMessage, event.GetMessage());
+
+            ASSERT_EQ("An unhandled error occurred while composing calculation data from the Json input. See stack trace for more information:\n"
+                      + expectedStackTrace, event.GetMessage());
         }
     };
 
