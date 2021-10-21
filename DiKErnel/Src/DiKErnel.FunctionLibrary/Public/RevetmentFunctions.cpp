@@ -18,7 +18,7 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include "Revetment.h"
+#include "RevetmentFunctions.h"
 
 #include <cmath>
 
@@ -26,14 +26,14 @@ namespace DiKErnel::FunctionLibrary
 {
     using namespace std;
 
-    int Revetment::IncrementTime(
+    int RevetmentFunctions::IncrementTime(
         const int beginTime,
         const int endTime)
     {
         return endTime - beginTime;
     }
 
-    double Revetment::AverageNumberOfWaves(
+    double RevetmentFunctions::AverageNumberOfWaves(
         const double incrementTime,
         const double wavePeriodTm10,
         const double averageNumberOfWavesCtm)
@@ -41,7 +41,7 @@ namespace DiKErnel::FunctionLibrary
         return incrementTime / (averageNumberOfWavesCtm * wavePeriodTm10);
     }
 
-    double Revetment::InterpolationVerticalHeight(
+    double RevetmentFunctions::InterpolationVerticalHeight(
         const double horizontalPosition,
         vector<pair<double, double>> dikeProfile)
     {
@@ -72,7 +72,7 @@ namespace DiKErnel::FunctionLibrary
         return numeric_limits<double>::infinity();
     }
 
-    double Revetment::InterpolationHorizontalPosition(
+    double RevetmentFunctions::InterpolationHorizontalPosition(
         const double verticalHeight,
         vector<pair<double, double>> dikeProfile)
     {
@@ -103,14 +103,14 @@ namespace DiKErnel::FunctionLibrary
         return numeric_limits<double>::infinity();
     }
 
-    double Revetment::Damage(
+    double RevetmentFunctions::Damage(
         const double incrementDamage,
         const double initialDamage)
     {
         return initialDamage + incrementDamage;
     }
 
-    bool Revetment::FailureRevetment(
+    bool RevetmentFunctions::FailureRevetment(
         const double damage,
         const double initialDamage,
         const double failureNumber)
@@ -118,7 +118,7 @@ namespace DiKErnel::FunctionLibrary
         return initialDamage < failureNumber && damage >= failureNumber;
     }
 
-    double Revetment::DurationInTimeStepFailure(
+    double RevetmentFunctions::DurationInTimeStepFailure(
         const double incrementTime,
         const double incrementDamage,
         const double failureNumber,
@@ -127,7 +127,7 @@ namespace DiKErnel::FunctionLibrary
         return (failureNumber - initialDamage) / incrementDamage * incrementTime;
     }
 
-    int Revetment::TimeOfFailure(
+    int RevetmentFunctions::TimeOfFailure(
         const double durationInTimeStepFailure,
         const double beginTime)
     {

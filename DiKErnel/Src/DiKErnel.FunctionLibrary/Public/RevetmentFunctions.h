@@ -27,7 +27,7 @@ namespace DiKErnel::FunctionLibrary
     /*!
      * \brief Class that holds all generic revetment calculation routines.
      */
-    class Revetment
+    class RevetmentFunctions
     {
         public:
             /*!

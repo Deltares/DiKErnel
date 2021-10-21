@@ -25,7 +25,7 @@
 #include "GrassRevetmentWaveRunupRayleigh.h"
 #include "GrassRevetmentWaveRunupRayleighTimeDependentOutput.h"
 #include "HydraulicLoadFunctions.h"
-#include "Revetment.h"
+#include "RevetmentFunctions.h"
 
 namespace DiKErnel::Integration
 {
@@ -84,9 +84,9 @@ namespace DiKErnel::Integration
         {
             const auto beginTime = timeDependentInput.GetBeginTime();
 
-            const auto incrementTime = Revetment::IncrementTime(beginTime, timeDependentInput.GetEndTime());
-            const auto averageNumberOfWaves = Revetment::AverageNumberOfWaves(incrementTime, timeDependentInput.GetWavePeriodTm10(),
-                                                                              GetAverageNumberOfWavesCtm());
+            const auto incrementTime = RevetmentFunctions::IncrementTime(beginTime, timeDependentInput.GetEndTime());
+            const auto averageNumberOfWaves = RevetmentFunctions::AverageNumberOfWaves(incrementTime, timeDependentInput.GetWavePeriodTm10(),
+                                                                                       GetAverageNumberOfWavesCtm());
 
             const auto surfSimilarityParameter = HydraulicLoadFunctions::SurfSimilarityParameter(GetOuterSlope(),
                                                                                                  timeDependentInput.GetWaveHeightHm0(),
@@ -110,16 +110,16 @@ namespace DiKErnel::Integration
 
             incrementDamage = GrassRevetmentWaveRunup::IncrementDamage(*cumulativeOverload, GetCriticalCumulativeOverload());
 
-            damage = Revetment::Damage(incrementDamage, initialDamage);
+            damage = RevetmentFunctions::Damage(incrementDamage, initialDamage);
 
             const auto failureNumber = GetFailureNumber();
 
-            if (Revetment::FailureRevetment(damage, initialDamage, failureNumber))
+            if (RevetmentFunctions::FailureRevetment(damage, initialDamage, failureNumber))
             {
-                const auto durationInTimeStepFailure = Revetment::DurationInTimeStepFailure(incrementTime, incrementDamage, failureNumber,
-                                                                                            initialDamage);
+                const auto durationInTimeStepFailure = RevetmentFunctions::DurationInTimeStepFailure(incrementTime, incrementDamage, failureNumber,
+                    initialDamage);
 
-                timeOfFailure = make_unique<int>(Revetment::TimeOfFailure(durationInTimeStepFailure, beginTime));
+                timeOfFailure = make_unique<int>(RevetmentFunctions::TimeOfFailure(durationInTimeStepFailure, beginTime));
             }
         }
 

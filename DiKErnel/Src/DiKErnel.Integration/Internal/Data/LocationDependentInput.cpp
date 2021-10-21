@@ -22,7 +22,7 @@
 
 #include <utility>
 
-#include "Revetment.h"
+#include "RevetmentFunctions.h"
 
 namespace DiKErnel::Integration
 {
@@ -83,7 +83,7 @@ namespace DiKErnel::Integration
             _dikeProfilePoints.emplace_back(profilePoint.GetX(), profilePoint.GetZ());
         }
 
-        _z = Revetment::InterpolationVerticalHeight(_x, _dikeProfilePoints);
+        _z = RevetmentFunctions::InterpolationVerticalHeight(_x, _dikeProfilePoints);
     }
 
     vector<pair<double, double>>& LocationDependentInput::GetDikeProfilePoints()

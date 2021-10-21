@@ -20,14 +20,14 @@
 
 #include <gtest/gtest.h>
 
-#include "Revetment.h"
+#include "RevetmentFunctions.h"
 
 namespace DiKErnel::FunctionLibrary::Test
 {
     using namespace std;
     using namespace testing;
 
-    struct RevetmentTest : Test
+    struct RevetmentFunctionsTest : Test
     {
         const vector<pair<double, double>> _testDikeProfile
         {
@@ -62,20 +62,20 @@ namespace DiKErnel::FunctionLibrary::Test
         };
     };
 
-    TEST_F(RevetmentTest, IncrementTime_ValidInput_ExpectedValue)
+    TEST_F(RevetmentFunctionsTest, IncrementTime_ValidInput_ExpectedValue)
     {
         // Setup
         const auto beginTime = 1200;
         const auto endTime = 1500;
 
         // Call
-        const auto incrementTime = Revetment::IncrementTime(beginTime, endTime);
+        const auto incrementTime = RevetmentFunctions::IncrementTime(beginTime, endTime);
 
         // Assert
         ASSERT_EQ(300, incrementTime);
     }
 
-    TEST_F(RevetmentTest, AverageNumberOfWaves_ValidInput_ExpectedValue)
+    TEST_F(RevetmentFunctionsTest, AverageNumberOfWaves_ValidInput_ExpectedValue)
     {
         // Setup
         const auto incrementTime = 900.0;
@@ -83,143 +83,143 @@ namespace DiKErnel::FunctionLibrary::Test
         const auto averageNumberOfWavesCtm = 6.5;
 
         // Call
-        const auto averageNumberOfWaves = Revetment::AverageNumberOfWaves(incrementTime, wavePeriodTm10, averageNumberOfWavesCtm);
+        const auto averageNumberOfWaves = RevetmentFunctions::AverageNumberOfWaves(incrementTime, wavePeriodTm10, averageNumberOfWavesCtm);
 
         // Assert
         ASSERT_DOUBLE_EQ(115.38461538461539, averageNumberOfWaves);
     }
 
-    TEST_F(RevetmentTest, Damage_ValidInput_ExpectedValue)
+    TEST_F(RevetmentFunctionsTest, Damage_ValidInput_ExpectedValue)
     {
         // Setup
         const auto incrementDamage = 0.12;
         const auto initialDamage = 0.23;
 
         // Call
-        const auto damage = Revetment::Damage(incrementDamage, initialDamage);
+        const auto damage = RevetmentFunctions::Damage(incrementDamage, initialDamage);
 
         // Assert
         ASSERT_DOUBLE_EQ(0.35, damage);
     }
 
-    TEST_F(RevetmentTest, InterpolationVerticalHeight_HorizontalPositionLeftOfDikeProfile_ExpectedValue)
+    TEST_F(RevetmentFunctionsTest, InterpolationVerticalHeight_HorizontalPositionLeftOfDikeProfile_ExpectedValue)
     {
         // Call
-        const auto verticalHeight = Revetment::InterpolationVerticalHeight(0.0, _testDikeProfile);
+        const auto verticalHeight = RevetmentFunctions::InterpolationVerticalHeight(0.0, _testDikeProfile);
 
         // Assert
         ASSERT_DOUBLE_EQ(numeric_limits<double>::infinity(), verticalHeight);
     }
 
-    TEST_F(RevetmentTest, InterpolationVerticalHeight_HorizontalPositionOnFirstDikeProfilePoint_ExpectedValue)
+    TEST_F(RevetmentFunctionsTest, InterpolationVerticalHeight_HorizontalPositionOnFirstDikeProfilePoint_ExpectedValue)
     {
         // Call
-        const auto verticalHeight = Revetment::InterpolationVerticalHeight(1.0, _testDikeProfile);
+        const auto verticalHeight = RevetmentFunctions::InterpolationVerticalHeight(1.0, _testDikeProfile);
 
         // Assert
         ASSERT_DOUBLE_EQ(1.1, verticalHeight);
     }
 
-    TEST_F(RevetmentTest, InterpolationVerticalHeight_HorizontalPositionOnRandomDikeProfilePoint_ExpectedValue)
+    TEST_F(RevetmentFunctionsTest, InterpolationVerticalHeight_HorizontalPositionOnRandomDikeProfilePoint_ExpectedValue)
     {
         // Call
-        const auto verticalHeight = Revetment::InterpolationVerticalHeight(2.0, _testDikeProfile);
+        const auto verticalHeight = RevetmentFunctions::InterpolationVerticalHeight(2.0, _testDikeProfile);
 
         // Assert
         ASSERT_DOUBLE_EQ(2.2, verticalHeight);
     }
 
-    TEST_F(RevetmentTest, InterpolationVerticalHeight_HorizontalPositionOnLastDikeProfilePoint_ExpectedValue)
+    TEST_F(RevetmentFunctionsTest, InterpolationVerticalHeight_HorizontalPositionOnLastDikeProfilePoint_ExpectedValue)
     {
         // Call
-        const auto verticalHeight = Revetment::InterpolationVerticalHeight(3.0, _testDikeProfile);
+        const auto verticalHeight = RevetmentFunctions::InterpolationVerticalHeight(3.0, _testDikeProfile);
 
         // Assert
         ASSERT_DOUBLE_EQ(3.3, verticalHeight);
     }
 
-    TEST_F(RevetmentTest, InterpolationVerticalHeight_HorizontalPositionBetweenAscendingDikeProfilePoints_ExpectedValue)
+    TEST_F(RevetmentFunctionsTest, InterpolationVerticalHeight_HorizontalPositionBetweenAscendingDikeProfilePoints_ExpectedValue)
     {
         // Call
-        const auto verticalHeight = Revetment::InterpolationVerticalHeight(1.5, _testDikeProfile);
+        const auto verticalHeight = RevetmentFunctions::InterpolationVerticalHeight(1.5, _testDikeProfile);
 
         // Assert
         ASSERT_DOUBLE_EQ(1.65, verticalHeight);
     }
 
-    TEST_F(RevetmentTest, InterpolationVerticalHeight_HorizontalPositionBetweenDescendingDikeProfilePoints_ExpectedValue)
+    TEST_F(RevetmentFunctionsTest, InterpolationVerticalHeight_HorizontalPositionBetweenDescendingDikeProfilePoints_ExpectedValue)
     {
         // Call
-        const auto verticalHeight = Revetment::InterpolationVerticalHeight(2.5, _testDikeProfileWithDescendingHeight);
+        const auto verticalHeight = RevetmentFunctions::InterpolationVerticalHeight(2.5, _testDikeProfileWithDescendingHeight);
 
         // Assert
         ASSERT_DOUBLE_EQ(1.65, verticalHeight);
     }
 
-    TEST_F(RevetmentTest, InterpolationVerticalHeight_HorizontalPositionRightOfDikeProfile_ExpectedValue)
+    TEST_F(RevetmentFunctionsTest, InterpolationVerticalHeight_HorizontalPositionRightOfDikeProfile_ExpectedValue)
     {
         // Call
-        const auto verticalHeight = Revetment::InterpolationVerticalHeight(4.0, _testDikeProfile);
+        const auto verticalHeight = RevetmentFunctions::InterpolationVerticalHeight(4.0, _testDikeProfile);
 
         // Assert
         ASSERT_DOUBLE_EQ(numeric_limits<double>::infinity(), verticalHeight);
     }
 
-    TEST_F(RevetmentTest, InterpolationHorizontalPosition_VerticalHeightBelowDikeProfile_ExpectedValue)
+    TEST_F(RevetmentFunctionsTest, InterpolationHorizontalPosition_VerticalHeightBelowDikeProfile_ExpectedValue)
     {
         // Call
-        const auto horizontalPosition = Revetment::InterpolationHorizontalPosition(0.0, _testDikeProfile);
+        const auto horizontalPosition = RevetmentFunctions::InterpolationHorizontalPosition(0.0, _testDikeProfile);
 
         // Assert
         ASSERT_DOUBLE_EQ(numeric_limits<double>::infinity(), horizontalPosition);
     }
 
-    TEST_F(RevetmentTest, InterpolationHorizontalPosition_VerticalHeightOnFirstDikeProfilePoint_ExpectedValue)
+    TEST_F(RevetmentFunctionsTest, InterpolationHorizontalPosition_VerticalHeightOnFirstDikeProfilePoint_ExpectedValue)
     {
         // Call
-        const auto horizontalPosition = Revetment::InterpolationHorizontalPosition(1.1, _testDikeProfile);
+        const auto horizontalPosition = RevetmentFunctions::InterpolationHorizontalPosition(1.1, _testDikeProfile);
 
         // Assert
         ASSERT_DOUBLE_EQ(1.0, horizontalPosition);
     }
 
-    TEST_F(RevetmentTest, InterpolationHorizontalPosition_VerticalHeightOnRandomDikeProfilePoint_ExpectedValue)
+    TEST_F(RevetmentFunctionsTest, InterpolationHorizontalPosition_VerticalHeightOnRandomDikeProfilePoint_ExpectedValue)
     {
         // Call
-        const auto horizontalPosition = Revetment::InterpolationHorizontalPosition(2.2, _testDikeProfile);
+        const auto horizontalPosition = RevetmentFunctions::InterpolationHorizontalPosition(2.2, _testDikeProfile);
 
         // Assert
         ASSERT_DOUBLE_EQ(2.0, horizontalPosition);
     }
 
-    TEST_F(RevetmentTest, InterpolationHorizontalPosition_VerticalHeightOnLastDikeProfilePoint_ExpectedValue)
+    TEST_F(RevetmentFunctionsTest, InterpolationHorizontalPosition_VerticalHeightOnLastDikeProfilePoint_ExpectedValue)
     {
         // Call
-        const auto horizontalPosition = Revetment::InterpolationHorizontalPosition(3.3, _testDikeProfile);
+        const auto horizontalPosition = RevetmentFunctions::InterpolationHorizontalPosition(3.3, _testDikeProfile);
 
         // Assert
         ASSERT_DOUBLE_EQ(3.0, horizontalPosition);
     }
 
-    TEST_F(RevetmentTest, InterpolationHorizontalPosition_VerticalHeightBetweenProfilePoints_ExpectedValue)
+    TEST_F(RevetmentFunctionsTest, InterpolationHorizontalPosition_VerticalHeightBetweenProfilePoints_ExpectedValue)
     {
         // Call
-        const auto horizontalPosition = Revetment::InterpolationHorizontalPosition(1.65, _testDikeProfile);
+        const auto horizontalPosition = RevetmentFunctions::InterpolationHorizontalPosition(1.65, _testDikeProfile);
 
         // Assert
         ASSERT_DOUBLE_EQ(1.5, horizontalPosition);
     }
 
-    TEST_F(RevetmentTest, InterpolationHorizontalPosition_VerticalHeightAboveDikeProfile_ExpectedValue)
+    TEST_F(RevetmentFunctionsTest, InterpolationHorizontalPosition_VerticalHeightAboveDikeProfile_ExpectedValue)
     {
         // Call
-        const auto horizontalPosition = Revetment::InterpolationHorizontalPosition(4.0, _testDikeProfile);
+        const auto horizontalPosition = RevetmentFunctions::InterpolationHorizontalPosition(4.0, _testDikeProfile);
 
         // Assert
         ASSERT_DOUBLE_EQ(numeric_limits<double>::infinity(), horizontalPosition);
     }
 
-    TEST_F(RevetmentTest, FailureRevetment_DamageAndInitialDamageSmallerThanFailureNumber_ExpectedFalse)
+    TEST_F(RevetmentFunctionsTest, FailureRevetment_DamageAndInitialDamageSmallerThanFailureNumber_ExpectedFalse)
     {
         // Setup
         const auto initialDamage = 0.1;
@@ -227,13 +227,13 @@ namespace DiKErnel::FunctionLibrary::Test
         const auto failureNumber = 0.3;
 
         // Call
-        const auto failureRevetment = Revetment::FailureRevetment(damage, initialDamage, failureNumber);
+        const auto failureRevetment = RevetmentFunctions::FailureRevetment(damage, initialDamage, failureNumber);
 
         // Assert
         ASSERT_FALSE(failureRevetment);
     }
 
-    TEST_F(RevetmentTest, FailureRevetment_InitialDamageEqualToFailureNumber_ExpectedFalse)
+    TEST_F(RevetmentFunctionsTest, FailureRevetment_InitialDamageEqualToFailureNumber_ExpectedFalse)
     {
         // Setup
         const auto initialDamage = 0.3;
@@ -241,13 +241,13 @@ namespace DiKErnel::FunctionLibrary::Test
         const auto failureNumber = 0.3;
 
         // Call
-        const auto failureRevetment = Revetment::FailureRevetment(damage, initialDamage, failureNumber);
+        const auto failureRevetment = RevetmentFunctions::FailureRevetment(damage, initialDamage, failureNumber);
 
         // Assert
         ASSERT_FALSE(failureRevetment);
     }
 
-    TEST_F(RevetmentTest, FailureRevetment_DamageEqualToFailureNumber_ExpectedTrue)
+    TEST_F(RevetmentFunctionsTest, FailureRevetment_DamageEqualToFailureNumber_ExpectedTrue)
     {
         // Setup
         const auto initialDamage = 0.2;
@@ -255,13 +255,13 @@ namespace DiKErnel::FunctionLibrary::Test
         const auto failureNumber = 0.3;
 
         // Call
-        const auto failureRevetment = Revetment::FailureRevetment(damage, initialDamage, failureNumber);
+        const auto failureRevetment = RevetmentFunctions::FailureRevetment(damage, initialDamage, failureNumber);
 
         // Assert
         ASSERT_TRUE(failureRevetment);
     }
 
-    TEST_F(RevetmentTest, FailureRevetment_DamageLargerAndInitialDamageSmallerThanFailureNumber_ExpectedTrue)
+    TEST_F(RevetmentFunctionsTest, FailureRevetment_DamageLargerAndInitialDamageSmallerThanFailureNumber_ExpectedTrue)
     {
         // Setup
         const auto initialDamage = 0.2;
@@ -269,13 +269,13 @@ namespace DiKErnel::FunctionLibrary::Test
         const auto failureNumber = 0.3;
 
         // Call
-        const auto failureRevetment = Revetment::FailureRevetment(damage, initialDamage, failureNumber);
+        const auto failureRevetment = RevetmentFunctions::FailureRevetment(damage, initialDamage, failureNumber);
 
         // Assert
         ASSERT_TRUE(failureRevetment);
     }
 
-    TEST_F(RevetmentTest, FailureRevetment_DamageAndInitialDamageLargerThanFailureNumber_ExpectedFalse)
+    TEST_F(RevetmentFunctionsTest, FailureRevetment_DamageAndInitialDamageLargerThanFailureNumber_ExpectedFalse)
     {
         // Setup
         const auto initialDamage = 0.4;
@@ -283,26 +283,26 @@ namespace DiKErnel::FunctionLibrary::Test
         const auto failureNumber = 0.3;
 
         // Call
-        const auto failureRevetment = Revetment::FailureRevetment(damage, initialDamage, failureNumber);
+        const auto failureRevetment = RevetmentFunctions::FailureRevetment(damage, initialDamage, failureNumber);
 
         // Assert
         ASSERT_FALSE(failureRevetment);
     }
 
-    TEST_F(RevetmentTest, TimeOfFailure_ValidUnroundedInput_ExpectedValue)
+    TEST_F(RevetmentFunctionsTest, TimeOfFailure_ValidUnroundedInput_ExpectedValue)
     {
         // Setup
         const auto durationInTimeStepFailure = 254.001;
         const auto beginTime = 1568;
 
         // Call
-        const auto timeOfFailure = Revetment::TimeOfFailure(durationInTimeStepFailure, beginTime);
+        const auto timeOfFailure = RevetmentFunctions::TimeOfFailure(durationInTimeStepFailure, beginTime);
 
         // Assert
         ASSERT_EQ(1823, timeOfFailure);
     }
 
-    TEST_F(RevetmentTest, DurationInTimeStepFailure_ValidInput_ExpectedValue)
+    TEST_F(RevetmentFunctionsTest, DurationInTimeStepFailure_ValidInput_ExpectedValue)
     {
         // Setup
         const auto incrementTime = 550;
@@ -311,20 +311,21 @@ namespace DiKErnel::FunctionLibrary::Test
         const auto initialDamage = 0.836;
 
         // Call
-        const auto durationInTimeStepFailure = Revetment::DurationInTimeStepFailure(incrementTime, incrementDamage, failureNumber, initialDamage);
+        const auto durationInTimeStepFailure = RevetmentFunctions::DurationInTimeStepFailure(
+            incrementTime, incrementDamage, failureNumber, initialDamage);
 
         // Assert
         ASSERT_DOUBLE_EQ(385.47008547008551, durationInTimeStepFailure);
     }
 
-    TEST_F(RevetmentTest, TimeOfFailure_ValidRoundedInput_ExpectedValue)
+    TEST_F(RevetmentFunctionsTest, TimeOfFailure_ValidRoundedInput_ExpectedValue)
     {
         // Setup
         const auto durationInTimeStepFailure = 254;
         const auto beginTime = 1568;
 
         // Call
-        const auto timeOfFailure = Revetment::TimeOfFailure(durationInTimeStepFailure, beginTime);
+        const auto timeOfFailure = RevetmentFunctions::TimeOfFailure(durationInTimeStepFailure, beginTime);
 
         // Assert
         ASSERT_EQ(1822, timeOfFailure);

@@ -24,7 +24,7 @@
 #include "HydraulicLoadFunctions.h"
 #include "NaturalStoneRevetment.h"
 #include "NaturalStoneRevetmentTimeDependentOutput.h"
-#include "Revetment.h"
+#include "RevetmentFunctions.h"
 #include "TimeDependentInput.h"
 
 namespace DiKErnel::Integration
@@ -134,8 +134,8 @@ namespace DiKErnel::Integration
                                                                             naturalStoneRevetmentSlope.GetUpperLevelAus());
         const auto slopeLowerLevel = NaturalStoneRevetment::SlopeLowerLevel(_outerToeHeight, slopeUpperLevel, waveHeightHm0,
                                                                             naturalStoneRevetmentSlope.GetLowerLevelAls());
-        const auto slopeUpperPosition = Revetment::InterpolationHorizontalPosition(slopeUpperLevel, dikeProfilePoints);
-        const auto slopeLowerPosition = Revetment::InterpolationHorizontalPosition(slopeLowerLevel, dikeProfilePoints);
+        const auto slopeUpperPosition = RevetmentFunctions::InterpolationHorizontalPosition(slopeUpperLevel, dikeProfilePoints);
+        const auto slopeLowerPosition = RevetmentFunctions::InterpolationHorizontalPosition(slopeLowerLevel, dikeProfilePoints);
 
         const auto outerSlope = _notchOuterBerm != nullptr && _crestOuterBerm != nullptr
                                     ? NaturalStoneRevetment::OuterSlope(_outerToeHeight, _outerCrestHeight, _notchOuterBerm->first,
@@ -200,22 +200,22 @@ namespace DiKErnel::Integration
             referenceDegradation = make_unique<double>(
                 NaturalStoneRevetment::ReferenceDegradation(*resistance, *hydraulicLoad, *waveAngleImpact, initialDamage));
             referenceTimeDegradation = make_unique<double>(NaturalStoneRevetment::ReferenceTimeDegradation(*referenceDegradation, wavePeriodTm10));
-            const auto incrementTime = Revetment::IncrementTime(timeDependentInput.GetBeginTime(), timeDependentInput.GetEndTime());
+            const auto incrementTime = RevetmentFunctions::IncrementTime(timeDependentInput.GetBeginTime(), timeDependentInput.GetEndTime());
             const auto incrementDegradation = NaturalStoneRevetment::IncrementDegradation(*referenceTimeDegradation, incrementTime, wavePeriodTm10);
             incrementDamage = NaturalStoneRevetment::IncrementDamage(*hydraulicLoad, *resistance, incrementDegradation, *waveAngleImpact);
 
-            damage = Revetment::Damage(incrementDamage, initialDamage);
+            damage = RevetmentFunctions::Damage(incrementDamage, initialDamage);
 
             const auto failureNumber = GetFailureNumber();
 
-            if (Revetment::FailureRevetment(damage, initialDamage, failureNumber))
+            if (RevetmentFunctions::FailureRevetment(damage, initialDamage, failureNumber))
             {
                 const auto referenceFailure = NaturalStoneRevetment::ReferenceFailure(*resistance, *hydraulicLoad, *waveAngleImpact, failureNumber);
                 const auto referenceTimeFailure = NaturalStoneRevetment::ReferenceTimeFailure(referenceFailure, wavePeriodTm10);
                 const auto durationInTimeStepFailure = NaturalStoneRevetment::DurationInTimeStepFailure(
                     referenceTimeFailure, *referenceTimeDegradation);
 
-                timeOfFailure = make_unique<int>(Revetment::TimeOfFailure(durationInTimeStepFailure, timeDependentInput.GetBeginTime()));
+                timeOfFailure = make_unique<int>(RevetmentFunctions::TimeOfFailure(durationInTimeStepFailure, timeDependentInput.GetBeginTime()));
             }
         }
 

@@ -23,7 +23,7 @@
 #include "GrassRevetmentWaveImpact.h"
 #include "GrassRevetmentWaveImpactTimeDependentOutput.h"
 #include "HydraulicLoadFunctions.h"
-#include "Revetment.h"
+#include "RevetmentFunctions.h"
 
 namespace DiKErnel::Integration
 {
@@ -118,7 +118,7 @@ namespace DiKErnel::Integration
         {
             const auto beginTime = timeDependentInput.GetBeginTime();
 
-            const auto incrementTime = Revetment::IncrementTime(beginTime, timeDependentInput.GetEndTime());
+            const auto incrementTime = RevetmentFunctions::IncrementTime(beginTime, timeDependentInput.GetEndTime());
             waveAngleImpact = make_unique<double>(GrassRevetmentWaveImpact::WaveAngleImpact(timeDependentInput.GetWaveAngle(),
                                                                                             _waveAngleImpact->GetWaveAngleImpactNwa(),
                                                                                             _waveAngleImpact->GetWaveAngleImpactQwa(),
@@ -129,16 +129,16 @@ namespace DiKErnel::Integration
                                                                      _timeLine->GetTimeLineCgwi());
             incrementDamage = GrassRevetmentWaveImpact::IncrementDamage(incrementTime, timeLine);
 
-            damage = Revetment::Damage(incrementDamage, initialDamage);
+            damage = RevetmentFunctions::Damage(incrementDamage, initialDamage);
 
             const auto failureNumber = GetFailureNumber();
 
-            if (Revetment::FailureRevetment(damage, initialDamage, failureNumber))
+            if (RevetmentFunctions::FailureRevetment(damage, initialDamage, failureNumber))
             {
-                const auto durationInTimeStepFailure = Revetment::DurationInTimeStepFailure(
+                const auto durationInTimeStepFailure = RevetmentFunctions::DurationInTimeStepFailure(
                     incrementTime, incrementDamage, failureNumber, initialDamage);
 
-                timeOfFailure = make_unique<int>(Revetment::TimeOfFailure(durationInTimeStepFailure, beginTime));
+                timeOfFailure = make_unique<int>(RevetmentFunctions::TimeOfFailure(durationInTimeStepFailure, beginTime));
             }
         }
 

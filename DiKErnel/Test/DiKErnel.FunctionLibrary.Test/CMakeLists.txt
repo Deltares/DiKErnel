@@ -12,7 +12,7 @@ set(SOURCEFILES_ROOT
   GenericFunctionsTest.cpp
   HydraulicLoadFunctionsTest.cpp
   Main.cpp
-  RevetmentTest.cpp
+  RevetmentFunctionsTest.cpp
 )
 
 set(SOURCEFILES_ASPHALT_REVETMENT_WAVE_IMPACT

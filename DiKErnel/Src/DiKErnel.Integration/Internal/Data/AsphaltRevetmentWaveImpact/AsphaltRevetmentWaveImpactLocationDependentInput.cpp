@@ -23,7 +23,7 @@
 #include "AsphaltRevetmentWaveImpact.h"
 #include "AsphaltRevetmentWaveImpactTimeDependentOutput.h"
 #include "Constants.h"
-#include "Revetment.h"
+#include "RevetmentFunctions.h"
 
 namespace DiKErnel::Integration
 {
@@ -150,9 +150,9 @@ namespace DiKErnel::Integration
         const auto beginTime = timeDependentInput.GetBeginTime();
         const auto waveHeightHm0 = timeDependentInput.GetWaveHeightHm0();
 
-        const auto incrementTime = Revetment::IncrementTime(beginTime, timeDependentInput.GetEndTime());
-        const auto averageNumberOfWaves = Revetment::AverageNumberOfWaves(incrementTime, timeDependentInput.GetWavePeriodTm10(),
-                                                                          _averageNumberOfWavesCtm);
+        const auto incrementTime = RevetmentFunctions::IncrementTime(beginTime, timeDependentInput.GetEndTime());
+        const auto averageNumberOfWaves = RevetmentFunctions::AverageNumberOfWaves(incrementTime, timeDependentInput.GetWavePeriodTm10(),
+                                                                                   _averageNumberOfWavesCtm);
         const auto maximumPeakStress = AsphaltRevetmentWaveImpact::MaximumPeakStress(waveHeightHm0, Constants::GetGravitationalAcceleration(),
                                                                                      _densityOfWater);
         const auto incrementDamage = AsphaltRevetmentWaveImpact::IncrementDamage(_logFailureTension, averageNumberOfWaves, maximumPeakStress,
@@ -160,16 +160,16 @@ namespace DiKErnel::Integration
                                                                                  _widthFactors, _depthFactors, _impactFactors, GetZ(),
                                                                                  timeDependentInput.GetWaterLevel(), waveHeightHm0,
                                                                                  _fatigue->GetAlpha(), _fatigue->GetBeta(), _impactNumberC);
-        const auto damage = Revetment::Damage(incrementDamage, initialDamage);
+        const auto damage = RevetmentFunctions::Damage(incrementDamage, initialDamage);
 
         const auto failureNumber = GetFailureNumber();
         unique_ptr<int> timeOfFailure = nullptr;
 
-        if (Revetment::FailureRevetment(damage, initialDamage, failureNumber))
+        if (RevetmentFunctions::FailureRevetment(damage, initialDamage, failureNumber))
         {
-            const auto durationInTimeStepFailure = Revetment::DurationInTimeStepFailure(incrementTime, incrementDamage, failureNumber,
-                                                                                        initialDamage);
-            timeOfFailure = make_unique<int>(Revetment::TimeOfFailure(durationInTimeStepFailure, beginTime));
+            const auto durationInTimeStepFailure = RevetmentFunctions::DurationInTimeStepFailure(incrementTime, incrementDamage, failureNumber,
+                                                                                                 initialDamage);
+            timeOfFailure = make_unique<int>(RevetmentFunctions::TimeOfFailure(durationInTimeStepFailure, beginTime));
         }
 
         return make_unique<AsphaltRevetmentWaveImpactTimeDependentOutput>(incrementDamage, damage, move(timeOfFailure), _logFailureTension,

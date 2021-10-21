@@ -14,8 +14,8 @@ set(SOURCEFILES_PUBLIC
   ${PUBLIC_FOLDER}/GenericFunctions.h
   ${PUBLIC_FOLDER}/HydraulicLoadFunctions.cpp
   ${PUBLIC_FOLDER}/HydraulicLoadFunctions.h
-  ${PUBLIC_FOLDER}/Revetment.cpp
-  ${PUBLIC_FOLDER}/Revetment.h
+  ${PUBLIC_FOLDER}/RevetmentFunctions.cpp
+  ${PUBLIC_FOLDER}/RevetmentFunctions.h
 )
 
 set(SOURCEFILES_PUBLIC_ASPHALT_REVETMENT_WAVE_IMPACT
