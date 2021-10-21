@@ -21,11 +21,11 @@
 #pragma once
 
 #include "AsphaltRevetmentWaveImpactTimeDependentOutput.h"
-#include "JsonOutputDamageLocationData.h"
+#include "JsonOutputPhysicsLocationData.h"
 
 namespace DiKErnel::KernelWrapper::Json::Output
 {
-    class JsonOutputAsphaltRevetmentWaveImpactPhysicsLocationData : public JsonOutputDamageLocationData
+    class JsonOutputAsphaltRevetmentWaveImpactPhysicsLocationData : public JsonOutputPhysicsLocationData
     {
         public:
             explicit JsonOutputAsphaltRevetmentWaveImpactPhysicsLocationData(

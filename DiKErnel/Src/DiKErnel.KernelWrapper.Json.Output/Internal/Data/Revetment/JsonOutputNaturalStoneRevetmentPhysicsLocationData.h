@@ -20,12 +20,12 @@
 
 #pragma once
 
-#include "JsonOutputDamageLocationData.h"
+#include "JsonOutputPhysicsLocationData.h"
 #include "NaturalStoneRevetmentTimeDependentOutput.h"
 
 namespace DiKErnel::KernelWrapper::Json::Output
 {
-    class JsonOutputNaturalStoneRevetmentPhysicsLocationData : public JsonOutputDamageLocationData
+    class JsonOutputNaturalStoneRevetmentPhysicsLocationData : public JsonOutputPhysicsLocationData
     {
         public:
             explicit JsonOutputNaturalStoneRevetmentPhysicsLocationData(

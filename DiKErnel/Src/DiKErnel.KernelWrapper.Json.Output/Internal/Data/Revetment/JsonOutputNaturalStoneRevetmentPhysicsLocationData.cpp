@@ -33,7 +33,7 @@ namespace DiKErnel::KernelWrapper::Json::Output
 
     JsonOutputNaturalStoneRevetmentPhysicsLocationData::JsonOutputNaturalStoneRevetmentPhysicsLocationData(
         const LocationDependentOutput& locationOutput)
-        : JsonOutputDamageLocationData(locationOutput)
+        : JsonOutputPhysicsLocationData(locationOutput)
     {
         for (const auto& timeDependentOutput : locationOutput.GetTimeDependentOutputItems())
         {
@@ -85,7 +85,7 @@ namespace DiKErnel::KernelWrapper::Json::Output
                 physicsJson[JsonOutputNaturalStoneRevetmentDefinitions::REFERENCE_DEGRADATION][i], outputItem->GetReferenceDegradation());
         }
 
-        auto output = JsonOutputDamageLocationData::CreateJson();
+        auto output = JsonOutputPhysicsLocationData::CreateJson();
         output[JsonOutputDefinitions::PHYSICS_REVETMENT] = physicsJson;
         return output;
     }

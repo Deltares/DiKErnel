@@ -33,7 +33,7 @@ namespace DiKErnel::KernelWrapper::Json::Output
 
     JsonOutputGrassRevetmentWaveRunupRayleighPhysicsLocationData::JsonOutputGrassRevetmentWaveRunupRayleighPhysicsLocationData(
         const LocationDependentOutput& locationOutput)
-        : JsonOutputDamageLocationData(locationOutput)
+        : JsonOutputPhysicsLocationData(locationOutput)
     {
         for (const auto& timeDependentOutput : locationOutput.GetTimeDependentOutputItems())
         {
@@ -70,7 +70,7 @@ namespace DiKErnel::KernelWrapper::Json::Output
                 outputItem->GetCumulativeOverload());
         }
 
-        auto output = JsonOutputDamageLocationData::CreateJson();
+        auto output = JsonOutputPhysicsLocationData::CreateJson();
         output[JsonOutputDefinitions::PHYSICS_REVETMENT] = physicsJson;
         return output;
     }

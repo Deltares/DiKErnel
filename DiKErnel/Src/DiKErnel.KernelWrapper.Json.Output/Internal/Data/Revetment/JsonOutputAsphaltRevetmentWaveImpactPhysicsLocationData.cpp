@@ -33,7 +33,7 @@ namespace DiKErnel::KernelWrapper::Json::Output
 
     JsonOutputAsphaltRevetmentWaveImpactPhysicsLocationData::JsonOutputAsphaltRevetmentWaveImpactPhysicsLocationData(
         const LocationDependentOutput& locationOutput)
-        : JsonOutputDamageLocationData(locationOutput)
+        : JsonOutputPhysicsLocationData(locationOutput)
     {
         for (const auto& timeDependentOutput : locationOutput.GetTimeDependentOutputItems())
         {
@@ -64,7 +64,7 @@ namespace DiKErnel::KernelWrapper::Json::Output
                     outputItem->GetEquivalentElasticModulus();
         }
 
-        auto output = JsonOutputDamageLocationData::CreateJson();
+        auto output = JsonOutputPhysicsLocationData::CreateJson();
         output[JsonOutputDefinitions::PHYSICS_REVETMENT] = physicsJson;
         return output;
     }
