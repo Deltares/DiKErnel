@@ -27,8 +27,6 @@ namespace DiKErnel::KernelWrapper::Json::Output
     class JsonOutputGrassRevetmentWaveRunupRayleighDefinitions
     {
         public:
-            inline static const std::string CALCULATION_TYPE = "GrasGolfoploop";
-
             inline static const std::string INCREMENT_DAMAGE = "ToenameSchadeGrasGolfoploop";
             inline static const std::string VERTICAL_DISTANCE_WATER_LEVEL_ELEVATION = "VerticaleAfstandWaterstandPositieZ";
             inline static const std::string WAVE_ANGLE_IMPACT = "ImpactGolfhoekGolfoploop";

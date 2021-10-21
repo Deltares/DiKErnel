@@ -46,10 +46,6 @@ namespace DiKErnel::KernelWrapper::Json::Output
         auto physicsJson = ordered_json(
             {
                 {
-                    JsonOutputDefinitions::CALCULATION_TYPE,
-                    JsonOutputGrassRevetmentWaveRunupRayleighDefinitions::CALCULATION_TYPE
-                },
-                {
                     JsonOutputDefinitions::Z,
                     GetLocationOutput().GetZ()
                 }

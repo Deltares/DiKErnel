@@ -20,7 +20,6 @@
                     ]
                 },
                 "FysicaBekleding": {
-                    "RekenmethodeSoort": "Natuursteen",
                     "HoogteLocatie": 0.32999999999999996,
                     "ToenameSchadeNatuursteen": [
                         0.7078489152557484,
@@ -252,7 +251,6 @@
                     ]
                 },
                 "FysicaBekleding": {
-                    "RekenmethodeSoort": "GrasGolfklap",
                     "HoogteLocatie": 0.7649999999999999,
                     "ToenameSchadeGrasGolfklap": [
                         0.0,
@@ -363,7 +361,6 @@
                     ]
                 },
                 "FysicaBekleding": {
-                    "RekenmethodeSoort": "GrasGolfoploop",
                     "HoogteLocatie": -3.15,
                     "ToenameSchadeGrasGolfoploop": [
                         0.0,
@@ -441,7 +438,6 @@
                     ]
                 },
                 "FysicaBekleding": {
-                    "RekenmethodeSoort": "AsfaltGolfklap",
                     "HoogteLocatie": -1.99,
                     "ToenameSchadeAsfaltbekleding": [
                         2.501563218934745e-18,

@@ -27,8 +27,6 @@ namespace DiKErnel::KernelWrapper::Json::Output
     class JsonOutputGrassRevetmentWaveImpactDefinitions
     {
         public:
-            inline static const std::string CALCULATION_TYPE = "GrasGolfklap";
-
             inline static const std::string INCREMENT_DAMAGE = "ToenameSchadeGrasGolfklap";
             inline static const std::string UPPER_LIMIT_LOADING = "BovengrensBelastingGrasGolfklap";
             inline static const std::string LOWER_LIMIT_LOADING = "OndergrensBelastingGrasGolfklap";

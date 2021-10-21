@@ -27,8 +27,6 @@ namespace DiKErnel::KernelWrapper::Json::Output
     class JsonOutputNaturalStoneRevetmentDefinitions
     {
         public:
-            inline static const std::string CALCULATION_TYPE = "Natuursteen";
-
             inline static const std::string INCREMENT_DAMAGE = "ToenameSchadeNatuursteen";
 
             inline static const std::string OUTER_SLOPE = "HellingBuitentaludNatuursteen";
