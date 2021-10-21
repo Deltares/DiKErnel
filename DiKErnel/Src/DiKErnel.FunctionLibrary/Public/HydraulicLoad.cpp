@@ -22,14 +22,14 @@
 
 #include <cmath>
 
-#include "Generic.h"
+#include "GenericFunctions.h"
 
 namespace DiKErnel::FunctionLibrary
 {
     double HydraulicLoad::SlopeAngle(
         const double outerSlope)
     {
-        return Generic::Degrees(atan(outerSlope));
+        return GenericFunctions::Degrees(atan(outerSlope));
     }
 
     bool HydraulicLoad::LoadingRevetment(
@@ -46,7 +46,7 @@ namespace DiKErnel::FunctionLibrary
         const double wavePeriodTm10,
         const double gravitationalAcceleration)
     {
-        return outerSlope / sqrt(2.0 * Generic::Pi() * waveHeightHm0 / (gravitationalAcceleration * pow(wavePeriodTm10, 2.0)));
+        return outerSlope / sqrt(2.0 * GenericFunctions::Pi() * waveHeightHm0 / (gravitationalAcceleration * pow(wavePeriodTm10, 2.0)));
     }
 
     double HydraulicLoad::WaveSteepnessDeepWater(
@@ -54,7 +54,7 @@ namespace DiKErnel::FunctionLibrary
         const double wavePeriodTm10,
         const double gravitationalAcceleration)
     {
-        return waveHeightHm0 / (gravitationalAcceleration / (2.0 * Generic::Pi()) * pow(wavePeriodTm10, 2.0));
+        return waveHeightHm0 / (gravitationalAcceleration / (2.0 * GenericFunctions::Pi()) * pow(wavePeriodTm10, 2.0));
     }
 
     double HydraulicLoad::VerticalDistanceWaterLevelElevation(

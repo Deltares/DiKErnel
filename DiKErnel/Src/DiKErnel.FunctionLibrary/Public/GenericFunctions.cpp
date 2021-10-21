@@ -18,42 +18,26 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include <gtest/gtest.h>
+#include "GenericFunctions.h"
 
-#include "Generic.h"
+#include <cmath>
 
-namespace DiKErnel::FunctionLibrary::Test
+namespace DiKErnel::FunctionLibrary
 {
-    TEST(GenericTest, Pi_ExpectedValue)
+    double GenericFunctions::Pi()
     {
-        // Call
-        const auto pi = Generic::Pi();
-
-        // Assert
-        ASSERT_DOUBLE_EQ(3.1415926535897931, pi);
+        return 2.0 * acos(0.0);
     }
 
-    TEST(GenericTest, Radians_ValidInput_ExpectedValue)
+    double GenericFunctions::Radians(
+        const double degrees)
     {
-        // Setup
-        const auto degrees = 123.45;
-
-        // Call
-        const auto radians = Generic::Radians(degrees);
-
-        // Assert
-        ASSERT_DOUBLE_EQ(2.1546089615869999, radians);
+        return degrees * (Pi() / 180.0);
     }
 
-    TEST(GenericTest, Degrees_ValidInput_ExpectedValue)
+    double GenericFunctions::Degrees(
+        const double radians)
     {
-        // Setup
-        const auto radians = 1.2345;
-
-        // Call
-        const auto degrees = Generic::Degrees(radians);
-
-        // Assert
-        ASSERT_DOUBLE_EQ(70.731639808900127, degrees);
+        return radians / (Pi() / 180.0);
     }
 }

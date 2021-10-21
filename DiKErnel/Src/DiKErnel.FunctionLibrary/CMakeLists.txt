@@ -10,8 +10,8 @@ set(PUBLIC_NATURAL_STONE_REVETMENT_FOLDER ${PUBLIC_FOLDER}/NaturalStoneRevetment
 
 # Define sources
 set(SOURCEFILES_PUBLIC
-  ${PUBLIC_FOLDER}/Generic.cpp
-  ${PUBLIC_FOLDER}/Generic.h
+  ${PUBLIC_FOLDER}/GenericFunctions.cpp
+  ${PUBLIC_FOLDER}/GenericFunctions.h
   ${PUBLIC_FOLDER}/HydraulicLoad.cpp
   ${PUBLIC_FOLDER}/HydraulicLoad.h
   ${PUBLIC_FOLDER}/Revetment.cpp

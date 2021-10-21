@@ -25,7 +25,7 @@ namespace DiKErnel::FunctionLibrary
     /*!
      * \brief Class that holds all generic calculation routines.
      */
-    class Generic
+    class GenericFunctions
     {
         public:
 

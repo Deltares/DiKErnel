@@ -23,7 +23,7 @@
 #include <algorithm>
 #include <cmath>
 
-#include "Generic.h"
+#include "GenericFunctions.h"
 
 namespace DiKErnel::FunctionLibrary
 {
@@ -80,7 +80,7 @@ namespace DiKErnel::FunctionLibrary
     {
         if (abs(waveAngle) <= 90.0)
         {
-            return max(pow(cos(Generic::Radians(waveAngle)), waveAngleImpactNwa), waveAngleImpactQwa);
+            return max(pow(cos(GenericFunctions::Radians(waveAngle)), waveAngleImpactNwa), waveAngleImpactQwa);
         }
 
         return max(waveAngleImpactQwa * ((90.0 + waveAngleImpactRwa - abs(waveAngle)) / waveAngleImpactRwa), 0.0);

@@ -9,7 +9,7 @@ set(NATURAL_STONE_REVETMENT_FOLDER NaturalStoneRevetment)
 
 # Define sources
 set(SOURCEFILES_ROOT
-  GenericTest.cpp
+  GenericFunctionsTest.cpp
   HydraulicLoadTest.cpp
   Main.cpp
   RevetmentTest.cpp

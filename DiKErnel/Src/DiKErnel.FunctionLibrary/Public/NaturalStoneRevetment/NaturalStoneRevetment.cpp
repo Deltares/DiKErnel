@@ -23,7 +23,7 @@
 #include <algorithm>
 #include <cmath>
 
-#include "Generic.h"
+#include "GenericFunctions.h"
 
 namespace DiKErnel::FunctionLibrary
 {
@@ -166,7 +166,7 @@ namespace DiKErnel::FunctionLibrary
         const double normativeWidthWaveImpact,
         const double slopeAngle)
     {
-        const auto slopeAngleRadians = Generic::Radians(slopeAngle);
+        const auto slopeAngleRadians = GenericFunctions::Radians(slopeAngle);
 
         return (distanceMaximumWaveElevation - 0.5 * normativeWidthWaveImpact * cos(slopeAngleRadians)) * tan(slopeAngleRadians);
     }
@@ -196,7 +196,7 @@ namespace DiKErnel::FunctionLibrary
         const double waveAngle,
         const double waveAngleImpactBetamax)
     {
-        return pow(cos(Generic::Radians(min(waveAngleImpactBetamax, abs(waveAngle)))), 2.0 / 3.0);
+        return pow(cos(GenericFunctions::Radians(min(waveAngleImpactBetamax, abs(waveAngle)))), 2.0 / 3.0);
     }
 
     double NaturalStoneRevetment::Resistance(
