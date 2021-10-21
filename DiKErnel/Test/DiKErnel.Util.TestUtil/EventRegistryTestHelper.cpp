@@ -33,7 +33,8 @@ namespace DiKErnel::Util::TestUtil
             &EventRegistryTestHelper::PerformTest,
             this,
             ref(numberOfEventsToRegister),
-            ref(_registeredEvents));
+            ref(_registeredEvents),
+            ref(_registeredEventReferences));
     }
 
     void EventRegistryTestHelper::WaitForCompletion()
@@ -46,21 +47,23 @@ namespace DiKErnel::Util::TestUtil
 
     const vector<reference_wrapper<Event>>& EventRegistryTestHelper::GetRegisteredEvents() const
     {
-        return _registeredEvents;
+        return _registeredEventReferences;
     }
 
     void EventRegistryTestHelper::PerformTest(
         const int numberOfEventsToRegister,
-        vector<reference_wrapper<Event>>& registeredEvents) const
+        vector<unique_ptr<Event>>& registeredEvents,
+        vector<reference_wrapper<Event>>& registeredEventReferences) const
     {
         for (auto i = 0; i < numberOfEventsToRegister; ++i)
         {
             EventRegistry::Register(make_unique<Event>("Event " + to_string(i), EventType::Error));
         }
 
-        for (const auto& registeredEvent : EventRegistry::Flush())
+        for (std::unique_ptr<Event>& registeredEvent : EventRegistry::Flush())
         {
-            registeredEvents.emplace_back(*registeredEvent);
+            registeredEvents.push_back(move(registeredEvent));
+            registeredEventReferences.emplace_back(*registeredEvents.back());
         }
     }
 }

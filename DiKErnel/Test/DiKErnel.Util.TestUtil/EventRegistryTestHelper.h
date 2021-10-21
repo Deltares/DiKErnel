@@ -40,10 +40,12 @@ namespace DiKErnel::Util::TestUtil
 
         private:
             std::thread _thread;
-            std::vector<std::reference_wrapper<Event>> _registeredEvents = std::vector<std::reference_wrapper<Event>>();
+            std::vector<std::unique_ptr<Event>> _registeredEvents = std::vector<std::unique_ptr<Event>>();
+            std::vector<std::reference_wrapper<Event>> _registeredEventReferences = std::vector<std::reference_wrapper<Event>>();
 
             void PerformTest(
                 int numberOfEventsToRegister,
-                std::vector<std::reference_wrapper<Event>>& registeredEvents) const;
+                std::vector<std::unique_ptr<Event>>& registeredEvents,
+                std::vector<std::reference_wrapper<Event>>& registeredEventReferences) const;
     };
 }
