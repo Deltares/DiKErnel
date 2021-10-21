@@ -30,7 +30,7 @@ namespace DiKErnel::Util::Test
     using namespace std;
     using namespace TestUtil;
 
-    TEST(EventRegistryTest, GivenEventRegistryWithoutEventsRegistered_WhenGetEvents_ThenReturnsEmptyCollection)
+    TEST(EventRegistryTest, GivenEventRegistryWithoutEventsRegistered_WhenFlush_ThenReturnsEmptyCollection)
     {
         // When
         const auto& registeredEvents = EventRegistry::Flush();
@@ -39,13 +39,13 @@ namespace DiKErnel::Util::Test
         ASSERT_EQ(0, registeredEvents.size());
     }
 
-    TEST(EventRegistryTest, GivenEventRegistryWithEventsRegistered_WhenGetEvents_ThenReturnsRegisteredEvents)
+    TEST(EventRegistryTest, GivenEventRegistryWithEventsRegistered_WhenFlush_ThenReturnsRegisteredEvents)
     {
         // Given
-        const auto message1 = "Warning message";
-        const auto eventType1 = EventType::Warning;
-        const auto message2 = "Error message";
-        const auto eventType2 = EventType::Error;
+        constexpr auto message1 = "Warning message";
+        constexpr auto eventType1 = EventType::Warning;
+        constexpr auto message2 = "Error message";
+        constexpr auto eventType2 = EventType::Error;
 
         EventRegistry::Register(make_unique<Event>(message1, eventType1));
         EventRegistry::Register(make_unique<Event>(message2, eventType2));
@@ -65,7 +65,7 @@ namespace DiKErnel::Util::Test
         ASSERT_EQ(eventType2, registeredEvent2->GetEventType());
     }
 
-    TEST(EventRegistryTest, GivenEventRegistryWithEventsRegisteredOnDifferentThreads_WhenGetEvents_ThenReturnsDifferentEventsPerThread)
+    TEST(EventRegistryTest, GivenEventRegistryWithEventsRegisteredOnDifferentThreads_WhenFlush_ThenReturnsDifferentEventsPerThread)
     {
         // Given
         EventRegistryTestHelper testHelperThread1(10000);
@@ -76,11 +76,12 @@ namespace DiKErnel::Util::Test
         // When
         const auto& registeredEvents1 = testHelperThread1.GetRegisteredEvents();
         const auto& registeredEvents2 = testHelperThread2.GetRegisteredEvents();
+        const auto& registeredEvents3 = EventRegistry::Flush();
 
         // Then
         ASSERT_EQ(10000, registeredEvents1.size());
         ASSERT_EQ(20000, registeredEvents2.size());
-        ASSERT_EQ(0, EventRegistry::Flush().size());
+        ASSERT_EQ(0, registeredEvents3.size());
     }
 
     TEST(EventRegistryTest, GivenEventRegistryWithEventsRegisteredAndFlushed_WhenFlush_ThenNoRegisteredEvents)

@@ -28,7 +28,7 @@
 namespace DiKErnel::Util
 {
     /*!
-     * \brief Class where events can be registered and tracked.
+     * \brief Class where events can be registered and tracked on a per thread basis.
      */
     class EventRegistry
     {
