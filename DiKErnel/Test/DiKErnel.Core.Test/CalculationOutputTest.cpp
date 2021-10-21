@@ -30,8 +30,8 @@ namespace DiKErnel::Core::Test
     {
         // Setup
         auto locationDependentOutputItems = vector<unique_ptr<LocationDependentOutput>>();
-        locationDependentOutputItems.push_back(make_unique<LocationDependentOutput>(vector<unique_ptr<TimeDependentOutput>>()));
-        locationDependentOutputItems.push_back(make_unique<LocationDependentOutput>(vector<unique_ptr<TimeDependentOutput>>()));
+        locationDependentOutputItems.push_back(make_unique<LocationDependentOutput>(1.1, vector<unique_ptr<TimeDependentOutput>>()));
+        locationDependentOutputItems.push_back(make_unique<LocationDependentOutput>(2.2, vector<unique_ptr<TimeDependentOutput>>()));
 
         // Call
         const CalculationOutput output(move(locationDependentOutputItems));

@@ -156,7 +156,7 @@ namespace DiKErnel::Core
 
         for (auto& timeDependentOutputItemsPerLocation : timeDependentOutputItems)
         {
-            locationDependentOutputItems.push_back(make_unique<LocationDependentOutput>(move(timeDependentOutputItemsPerLocation)));
+            locationDependentOutputItems.push_back(make_unique<LocationDependentOutput>(1.1, move(timeDependentOutputItemsPerLocation)));
         }
 
         _calculationOutput = make_unique<CalculationOutput>(move(locationDependentOutputItems));
