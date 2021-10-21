@@ -91,6 +91,7 @@ namespace DiKErnel::KernelWrapper::Json::Integration::Test
 
             ASSERT_EQ(expectedPhysics.size(), actualPhysics.size());
             ASSERT_EQ(expectedPhysics["RekenmethodeSoort"], actualPhysics["RekenmethodeSoort"]);
+            ASSERT_EQ(expectedPhysics["HoogteLocatie"], actualPhysics["HoogteLocatie"]);
 
             for (const auto& [key, value] : expectedPhysics.items())
             {
