@@ -25,6 +25,7 @@
 #include "EventRegistry.h"
 #include "RevetmentFunctions.h"
 #include "RevetmentValidator.h"
+#include "ValidationHelper.h"
 
 namespace DiKErnel::Integration
 {
@@ -44,8 +45,8 @@ namespace DiKErnel::Integration
 
     bool LocationDependentInput::Validate()
     {
-        return RegisterValidationIssue(RevetmentValidator::InitialDamage(_initialDamage))
-            && RegisterValidationIssue(RevetmentValidator::FailureNumber(_failureNumber, _initialDamage));
+        return ValidationHelper::RegisterValidationIssue(RevetmentValidator::InitialDamage(_initialDamage))
+                && ValidationHelper::RegisterValidationIssue(RevetmentValidator::FailureNumber(_failureNumber, _initialDamage));
     }
 
     unique_ptr<TimeDependentOutput> LocationDependentInput::Calculate(
@@ -99,38 +100,5 @@ namespace DiKErnel::Integration
     vector<pair<double, double>>& LocationDependentInput::GetDikeProfilePoints()
     {
         return _dikeProfilePoints;
-    }
-
-    bool LocationDependentInput::RegisterValidationIssue(
-        const unique_ptr<ValidationIssue>& validationIssue) const
-    {
-        if (validationIssue != nullptr)
-        {
-            const auto validationIssueType = validationIssue->GetValidationIssueType();
-
-            EventRegistry::Register(make_unique<Event>(validationIssue->GetMessage(),
-                                                       ConvertValidationIssueType(validationIssueType)));
-
-            if (validationIssueType == ValidationIssueType::Error)
-            {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    EventType LocationDependentInput::ConvertValidationIssueType(
-        const ValidationIssueType validationIssueType)
-    {
-        switch (validationIssueType)
-        {
-            case ValidationIssueType::Warning:
-                return EventType::Warning;
-            case ValidationIssueType::Error:
-                return EventType::Error;
-            default: 
-                throw;
-        }
     }
 }

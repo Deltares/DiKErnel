@@ -69,11 +69,5 @@ namespace DiKErnel::Integration
             bool _derivedLocationDependentInputInitialized = false;
             std::vector<std::pair<double, double>> _dikeProfilePoints = std::vector<std::pair<double, double>>();
             double _z = std::numeric_limits<double>::infinity();
-
-            bool RegisterValidationIssue(
-                const std::unique_ptr<DomainLibrary::ValidationIssue>& validationIssue) const;
-
-            static Util::EventType ConvertValidationIssueType(
-                DomainLibrary::ValidationIssueType validationIssueType);
     };
 }
