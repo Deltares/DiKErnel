@@ -21,8 +21,8 @@
 #include "GrassRevetmentWaveRunupRayleighLocationDependentInput.h"
 
 #include "Constants.h"
-#include "GrassRevetmentWaveRunup.h"
-#include "GrassRevetmentWaveRunupRayleigh.h"
+#include "GrassRevetmentWaveRunupFunctions.h"
+#include "GrassRevetmentWaveRunupRayleighFunctions.h"
 #include "GrassRevetmentWaveRunupRayleighTimeDependentOutput.h"
 #include "HydraulicLoadFunctions.h"
 #include "RevetmentFunctions.h"
@@ -93,22 +93,21 @@ namespace DiKErnel::Integration
                                                                                                  timeDependentInput.GetWavePeriodTm10(),
                                                                                                  Constants::GetGravitationalAcceleration());
 
-            waveAngleImpact = make_unique<double>(GrassRevetmentWaveRunup::WaveAngleImpact(timeDependentInput.GetWaveAngle(),
-                                                                                           GetWaveAngleImpact().GetAbeta(),
-                                                                                           GetWaveAngleImpact().GetBetamax()));
+            waveAngleImpact = make_unique<double>(GrassRevetmentWaveRunupFunctions::WaveAngleImpact(
+                timeDependentInput.GetWaveAngle(), GetWaveAngleImpact().GetAbeta(), GetWaveAngleImpact().GetBetamax()));
 
             const auto& representative2P = GetRepresentative2P();
-            representativeWaveRunup2P = make_unique<double>(GrassRevetmentWaveRunup::RepresentativeWaveRunup2P(
+            representativeWaveRunup2P = make_unique<double>(GrassRevetmentWaveRunupFunctions::RepresentativeWaveRunup2P(
                 surfSimilarityParameter, *waveAngleImpact, timeDependentInput.GetWaveHeightHm0(), representative2P.GetGammaB(),
                 representative2P.GetGammaF(), representative2P.GetRepresentative2PAru(), representative2P.GetRepresentative2PBru(),
                 representative2P.GetRepresentative2PCru()));
 
-            cumulativeOverload = make_unique<double>(GrassRevetmentWaveRunupRayleigh::CumulativeOverload(
+            cumulativeOverload = make_unique<double>(GrassRevetmentWaveRunupRayleighFunctions::CumulativeOverload(
                 averageNumberOfWaves, *representativeWaveRunup2P, _fixedNumberOfWaves, verticalDistanceWaterLevelElevation,
                 GetCriticalFrontVelocity(), GetIncreasedLoadTransitionAlphaM(), GetReducedStrengthTransitionAlphaS(), _frontVelocityCu,
                 Constants::GetGravitationalAcceleration()));
 
-            incrementDamage = GrassRevetmentWaveRunup::IncrementDamage(*cumulativeOverload, GetCriticalCumulativeOverload());
+            incrementDamage = GrassRevetmentWaveRunupFunctions::IncrementDamage(*cumulativeOverload, GetCriticalCumulativeOverload());
 
             damage = RevetmentFunctions::Damage(incrementDamage, initialDamage);
 

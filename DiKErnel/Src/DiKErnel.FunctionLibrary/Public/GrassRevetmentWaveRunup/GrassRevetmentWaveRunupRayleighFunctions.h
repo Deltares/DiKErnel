@@ -26,7 +26,7 @@ namespace DiKErnel::FunctionLibrary
      * \brief Class that holds all grass revetment wave run-up specific calculation routines for
      *        the Rayleigh protocol.
      */
-    class GrassRevetmentWaveRunupRayleigh
+    class GrassRevetmentWaveRunupRayleighFunctions
     {
         public:
             /*!

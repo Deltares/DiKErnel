@@ -20,11 +20,11 @@
 
 #include <gtest/gtest.h>
 
-#include "GrassRevetmentWaveRunupRayleigh.h"
+#include "GrassRevetmentWaveRunupRayleighFunctions.h"
 
 namespace DiKErnel::FunctionLibrary::Test
 {
-    TEST(GrassRevetmentWaveRunupRayleighTest, CumulativeOverload_ValidInput_ExpectedValue)
+    TEST(GrassRevetmentWaveRunupRayleighFunctionsTest, CumulativeOverload_ValidInput_ExpectedValue)
     {
         // Setup
         const auto averageNumberOfWaves = 225;
@@ -38,7 +38,7 @@ namespace DiKErnel::FunctionLibrary::Test
         const auto gravitationalAcceleration = 9.81;
 
         // Call
-        const auto cumulativeOverload = GrassRevetmentWaveRunupRayleigh::CumulativeOverload(
+        const auto cumulativeOverload = GrassRevetmentWaveRunupRayleighFunctions::CumulativeOverload(
             averageNumberOfWaves,
             representativeWaveRunup2P,
             fixedNumberOfWaves,

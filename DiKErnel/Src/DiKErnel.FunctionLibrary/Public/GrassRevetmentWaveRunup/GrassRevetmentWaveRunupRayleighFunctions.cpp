@@ -18,7 +18,7 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include "GrassRevetmentWaveRunupRayleigh.h"
+#include "GrassRevetmentWaveRunupRayleighFunctions.h"
 
 #include <algorithm>
 #include <cmath>
@@ -27,7 +27,7 @@ namespace DiKErnel::FunctionLibrary
 {
     using namespace std;
 
-    double GrassRevetmentWaveRunupRayleigh::CumulativeOverload(
+    double GrassRevetmentWaveRunupRayleighFunctions::CumulativeOverload(
         const double averageNumberOfWaves,
         const double representativeWaveRunup2P,
         const int fixedNumberOfWaves,
@@ -52,7 +52,7 @@ namespace DiKErnel::FunctionLibrary
         return averageNumberOfWaves / fixedNumberOfWaves * cumulativeFrontVelocity;
     }
 
-    double GrassRevetmentWaveRunupRayleigh::FrontVelocity(
+    double GrassRevetmentWaveRunupRayleighFunctions::FrontVelocity(
         const double waveRunup,
         const double verticalDistanceWaterLevelElevation,
         const double frontVelocityCu,
@@ -62,7 +62,7 @@ namespace DiKErnel::FunctionLibrary
                 * max(0.0, min(1.0, (waveRunup - verticalDistanceWaterLevelElevation) / (0.25 * waveRunup)));
     }
 
-    double GrassRevetmentWaveRunupRayleigh::WaveRunup(
+    double GrassRevetmentWaveRunupRayleighFunctions::WaveRunup(
         const double representativeWaveRunup2P,
         const int fixedNumberOfWaves,
         const int waveNumber)

@@ -25,7 +25,7 @@ namespace DiKErnel::FunctionLibrary
     /*!
      * \brief Class that holds all grass revetment wave run-up specific calculation routines.
      */
-    class GrassRevetmentWaveRunup
+    class GrassRevetmentWaveRunupFunctions
     {
         public:
             /*!

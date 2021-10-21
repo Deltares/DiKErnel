@@ -20,24 +20,24 @@
 
 #include <gtest/gtest.h>
 
-#include "GrassRevetmentWaveRunup.h"
+#include "GrassRevetmentWaveRunupFunctions.h"
 
 namespace DiKErnel::FunctionLibrary::Test
 {
-    TEST(GrassRevetmentWaveRunupTest, IncrementDamage_ValidInput_ExpectedValue)
+    TEST(GrassRevetmentWaveRunupFunctionsTest, IncrementDamage_ValidInput_ExpectedValue)
     {
         // Setup
         const auto cumulativeOverload = 1063.89;
         const auto criticalCumulativeOverload = 7000.0;
 
         // Call
-        const auto incrementDamage = GrassRevetmentWaveRunup::IncrementDamage(cumulativeOverload, criticalCumulativeOverload);
+        const auto incrementDamage = GrassRevetmentWaveRunupFunctions::IncrementDamage(cumulativeOverload, criticalCumulativeOverload);
 
         // Assert
         ASSERT_DOUBLE_EQ(0.15198428571428574, incrementDamage);
     }
 
-    TEST(GrassRevetmentWaveRunupTest, RepresentativeWaveRunup2P_ValidInput_ExpectedValue)
+    TEST(GrassRevetmentWaveRunupFunctionsTest, RepresentativeWaveRunup2P_ValidInput_ExpectedValue)
     {
         // Setup
         const auto surfSimilarityParameter = 1.436;
@@ -50,7 +50,8 @@ namespace DiKErnel::FunctionLibrary::Test
         const auto representativeWaveRunup2PCru = 1.5;
 
         // Call
-        const auto representativeWaveRunup2P = GrassRevetmentWaveRunup::RepresentativeWaveRunup2P(surfSimilarityParameter,
+        const auto representativeWaveRunup2P = GrassRevetmentWaveRunupFunctions::RepresentativeWaveRunup2P(
+            surfSimilarityParameter,
             waveAngleImpact,
             waveHeightHm0,
             representativeWaveRunup2PGammab,
@@ -63,7 +64,7 @@ namespace DiKErnel::FunctionLibrary::Test
         ASSERT_DOUBLE_EQ(5.635949616, representativeWaveRunup2P);
     }
 
-    TEST(GrassRevetmentWaveRunupTest, WaveAngleImpact_ValidInput_ExpectedValue)
+    TEST(GrassRevetmentWaveRunupFunctionsTest, WaveAngleImpact_ValidInput_ExpectedValue)
     {
         // Setup
         const auto waveAngle = 45.0;
@@ -71,7 +72,7 @@ namespace DiKErnel::FunctionLibrary::Test
         const auto waveAngleImpactBetamax = 80.0;
 
         // Call
-        const auto waveAngleImpact = GrassRevetmentWaveRunup::WaveAngleImpact(waveAngle, waveAngleImpactAbeta, waveAngleImpactBetamax);
+        const auto waveAngleImpact = GrassRevetmentWaveRunupFunctions::WaveAngleImpact(waveAngle, waveAngleImpactAbeta, waveAngleImpactBetamax);
 
         // Assert
         ASSERT_DOUBLE_EQ(0.901, waveAngleImpact);

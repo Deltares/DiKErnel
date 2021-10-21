@@ -18,7 +18,7 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include "GrassRevetmentWaveRunup.h"
+#include "GrassRevetmentWaveRunupFunctions.h"
 
 #include <algorithm>
 #include <cmath>
@@ -27,14 +27,14 @@ namespace DiKErnel::FunctionLibrary
 {
     using namespace std;
 
-    double GrassRevetmentWaveRunup::IncrementDamage(
+    double GrassRevetmentWaveRunupFunctions::IncrementDamage(
         const double cumulativeOverload,
         const double criticalCumulativeOverload)
     {
         return cumulativeOverload / criticalCumulativeOverload;
     }
 
-    double GrassRevetmentWaveRunup::RepresentativeWaveRunup2P(
+    double GrassRevetmentWaveRunupFunctions::RepresentativeWaveRunup2P(
         const double surfSimilarityParameter,
         const double waveAngleImpact,
         const double waveHeightHm0,
@@ -49,7 +49,7 @@ namespace DiKErnel::FunctionLibrary
                                    * (representativeWaveRunup2PBru - representativeWaveRunup2PCru / sqrt(surfSimilarityParameter)));
     }
 
-    double GrassRevetmentWaveRunup::WaveAngleImpact(
+    double GrassRevetmentWaveRunupFunctions::WaveAngleImpact(
         const double waveAngle,
         const double waveAngleImpactAbeta,
         const double waveAngleImpactBetamax)
