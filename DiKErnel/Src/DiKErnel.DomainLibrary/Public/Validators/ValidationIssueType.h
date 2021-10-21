@@ -20,43 +20,14 @@
 
 #pragma once
 
-#include <string>
-
-#include "ValidatorResultType.h"
-
 namespace DiKErnel::DomainLibrary
 {
     /*!
-     * \brief Class that contains a validator result.
+     * \brief The validation issue types.
      */
-    class ValidatorResult
+    enum class ValidationIssueType
     {
-        public:
-            /*!
-             * \brief Creates a new instance.
-             * \param resultType
-             *        The result type.
-             * \param message
-             *        The message.
-             */
-            explicit ValidatorResult(
-                ValidatorResultType resultType,
-                std::string message);
-
-            /*!
-             * \brief Gets the result type.
-             * \return The result type.
-             */
-            ValidatorResultType GetResultType() const;
-
-            /*!
-             * \brief Gets the message.
-             * \return The message.
-             */
-            std::string GetMessage() const;
-
-        private:
-            ValidatorResultType _resultType;
-            std::string _message;
+        Warning,
+        Error
     };
 }

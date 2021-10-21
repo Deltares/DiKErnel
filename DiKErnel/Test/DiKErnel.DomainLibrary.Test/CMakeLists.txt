@@ -40,7 +40,7 @@ set(SOURCEFILES_DEFAULTS_NATURAL_STONE_REVETMENT
 )
 
 set(SOURCEFILES_VALIDATORS
-  ${VALIDATORS_FOLDER}/ValidatorResultTest.cpp
+  ${VALIDATORS_FOLDER}/ValidationIssueTest.cpp
 )
 
 # Add executable

@@ -18,23 +18,27 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include <gtest/gtest.h>
+#include "ValidationIssue.h"
 
-#include "ValidatorResult.h"
+#include <utility>
 
-namespace DiKErnel::DomainLibrary::Test
+namespace DiKErnel::DomainLibrary
 {
-    TEST(ValidatorResultTest, Constructor_ExpectedValues)
+    using namespace std;
+
+    ValidationIssue::ValidationIssue(
+        const ValidationIssueType validationIssueType,
+        string message)
+        : _validationIssueType(validationIssueType),
+          _message(move(message)) {}
+
+    ValidationIssueType ValidationIssue::GetValidationIssueType() const
     {
-        // Setup
-        constexpr auto validatorResultType = ValidatorResultType::Error;
-        constexpr auto message = "Message";
+        return _validationIssueType;
+    }
 
-        // Call
-        const ValidatorResult validatorResult(validatorResultType, message);
-
-        // Assert
-        ASSERT_EQ(validatorResultType, validatorResult.GetResultType());
-        ASSERT_EQ(message, validatorResult.GetMessage());
+    string ValidationIssue::GetMessage() const
+    {
+        return _message;
     }
 }

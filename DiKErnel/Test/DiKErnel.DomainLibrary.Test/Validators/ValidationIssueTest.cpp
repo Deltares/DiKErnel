@@ -18,17 +18,25 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#pragma once
+#include <gtest/gtest.h>
 
-namespace DiKErnel::DomainLibrary
+#include "ValidationIssue.h"
+
+namespace DiKErnel::DomainLibrary::Test
 {
-    /*!
-     * \brief The validator result types.
-     */
-    enum class ValidatorResultType
+    using namespace std;
+
+    TEST(ValidationIssueTest, Constructor_ExpectedValues)
     {
-        Valid,
-        Warning,
-        Error
-    };
+        // Setup
+        constexpr auto validationIssueType = ValidationIssueType::Error;
+        constexpr auto message = "Message";
+
+        // Call
+        const ValidationIssue validationIssue(validationIssueType, message);
+
+        // Assert
+        ASSERT_EQ(validationIssueType, validationIssue.GetValidationIssueType());
+        ASSERT_EQ(message, validationIssue.GetMessage());
+    }
 }
