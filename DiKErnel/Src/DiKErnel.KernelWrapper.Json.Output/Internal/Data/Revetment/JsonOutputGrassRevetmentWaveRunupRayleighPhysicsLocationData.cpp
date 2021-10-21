@@ -43,13 +43,8 @@ namespace DiKErnel::KernelWrapper::Json::Output
 
     ordered_json JsonOutputGrassRevetmentWaveRunupRayleighPhysicsLocationData::CreateJson() const
     {
-        auto physicsJson = ordered_json(
-            {
-                {
-                    JsonOutputDefinitions::Z,
-                    GetLocationOutput().GetZ()
-                }
-            });
+        auto output = JsonOutputPhysicsLocationData::CreateJson();
+        auto& physicsJson = output[JsonOutputDefinitions::PHYSICS_REVETMENT];
 
         for (auto i = 0; i < static_cast<int>(_timeDependentOutputItems.size()); ++i)
         {
@@ -70,8 +65,6 @@ namespace DiKErnel::KernelWrapper::Json::Output
                 outputItem->GetCumulativeOverload());
         }
 
-        auto output = JsonOutputPhysicsLocationData::CreateJson();
-        output[JsonOutputDefinitions::PHYSICS_REVETMENT] = physicsJson;
         return output;
     }
 }
