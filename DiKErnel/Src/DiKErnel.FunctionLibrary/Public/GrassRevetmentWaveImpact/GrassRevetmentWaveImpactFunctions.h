@@ -25,7 +25,7 @@ namespace DiKErnel::FunctionLibrary
     /*!
      * \brief Class that holds all grass revetment wave impact specific calculation routines.
      */
-    class GrassRevetmentWaveImpact
+    class GrassRevetmentWaveImpactFunctions
     {
         public:
             /*!

@@ -18,7 +18,7 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include "GrassRevetmentWaveImpact.h"
+#include "GrassRevetmentWaveImpactFunctions.h"
 
 #include <algorithm>
 #include <cmath>
@@ -29,14 +29,14 @@ namespace DiKErnel::FunctionLibrary
 {
     using namespace std;
 
-    double GrassRevetmentWaveImpact::IncrementDamage(
+    double GrassRevetmentWaveImpactFunctions::IncrementDamage(
         const double incrementTime,
         const double timeLine)
     {
         return incrementTime / timeLine;
     }
 
-    double GrassRevetmentWaveImpact::TimeLine(
+    double GrassRevetmentWaveImpactFunctions::TimeLine(
         const double waveHeightImpact,
         const double timeLineAgwi,
         const double timeLineBgwi,
@@ -45,7 +45,7 @@ namespace DiKErnel::FunctionLibrary
         return 1.0 / timeLineBgwi * log((waveHeightImpact - timeLineCgwi) / timeLineAgwi);
     }
 
-    double GrassRevetmentWaveImpact::WaveHeightImpact(
+    double GrassRevetmentWaveImpactFunctions::WaveHeightImpact(
         const double minimumWaveHeight,
         const double maximumWaveHeight,
         const double waveAngleImpact,
@@ -54,7 +54,7 @@ namespace DiKErnel::FunctionLibrary
         return min(maximumWaveHeight, max(waveAngleImpact * waveHeightHm0, minimumWaveHeight));
     }
 
-    double GrassRevetmentWaveImpact::MinimumWaveHeight(
+    double GrassRevetmentWaveImpactFunctions::MinimumWaveHeight(
         const double timeLineAgwi,
         const double timeLineBgwi,
         const double timeLineCgwi,
@@ -63,7 +63,7 @@ namespace DiKErnel::FunctionLibrary
         return WaveHeightBoundary(timeLineAgwi, timeLineBgwi, timeLineCgwi, minimumWaveHeightTemax);
     }
 
-    double GrassRevetmentWaveImpact::MaximumWaveHeight(
+    double GrassRevetmentWaveImpactFunctions::MaximumWaveHeight(
         const double timeLineAgwi,
         const double timeLineBgwi,
         const double timeLineCgwi,
@@ -72,7 +72,7 @@ namespace DiKErnel::FunctionLibrary
         return WaveHeightBoundary(timeLineAgwi, timeLineBgwi, timeLineCgwi, maximumWaveHeightTemin);
     }
 
-    double GrassRevetmentWaveImpact::WaveAngleImpact(
+    double GrassRevetmentWaveImpactFunctions::WaveAngleImpact(
         const double waveAngle,
         const double waveAngleImpactNwa,
         const double waveAngleImpactQwa,
@@ -86,7 +86,7 @@ namespace DiKErnel::FunctionLibrary
         return max(waveAngleImpactQwa * ((90.0 + waveAngleImpactRwa - abs(waveAngle)) / waveAngleImpactRwa), 0.0);
     }
 
-    double GrassRevetmentWaveImpact::UpperLimitLoading(
+    double GrassRevetmentWaveImpactFunctions::UpperLimitLoading(
         const double waterLevel,
         const double waveHeightHm0,
         const double upperLimitLoadingAul)
@@ -94,7 +94,7 @@ namespace DiKErnel::FunctionLibrary
         return LimitLoading(waterLevel, waveHeightHm0, upperLimitLoadingAul);
     }
 
-    double GrassRevetmentWaveImpact::LowerLimitLoading(
+    double GrassRevetmentWaveImpactFunctions::LowerLimitLoading(
         const double waterLevel,
         const double waveHeightHm0,
         const double lowerLimitLoadingAll)
@@ -102,7 +102,7 @@ namespace DiKErnel::FunctionLibrary
         return LimitLoading(waterLevel, waveHeightHm0, lowerLimitLoadingAll);
     }
 
-    double GrassRevetmentWaveImpact::WaveHeightBoundary(
+    double GrassRevetmentWaveImpactFunctions::WaveHeightBoundary(
         const double timeLineAgwi,
         const double timeLineBgwi,
         const double timeLineCgwi,
@@ -111,7 +111,7 @@ namespace DiKErnel::FunctionLibrary
         return timeLineAgwi * exp(timeLineBgwi * waveHeightCoefficient) + timeLineCgwi;
     }
 
-    double GrassRevetmentWaveImpact::LimitLoading(
+    double GrassRevetmentWaveImpactFunctions::LimitLoading(
         const double waterLevel,
         const double waveHeightHm0,
         const double coefficientA)
