@@ -19,6 +19,7 @@
 // All rights reserved.
 
 #include "JsonOutputPhysicsLocationData.h"
+
 #include "JsonOutputDefinitions.h"
 
 namespace DiKErnel::KernelWrapper::Json::Output

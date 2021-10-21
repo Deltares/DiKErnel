@@ -20,7 +20,6 @@
 
 #pragma once
 
-#include "IJsonOutputData.h"
 #include "JsonOutputFailureLocationData.h"
 
 namespace DiKErnel::KernelWrapper::Json::Output
