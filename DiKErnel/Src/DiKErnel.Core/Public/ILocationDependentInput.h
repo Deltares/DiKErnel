@@ -39,6 +39,12 @@ namespace DiKErnel::Core
             virtual ~ILocationDependentInput() = default;
 
             /*!
+             * \brief Performs a location dependent validation.
+             * \return Indicator whether the validation succeeded.
+             */
+            virtual bool Validate() = 0;
+
+            /*!
              * \brief Performs a location dependent calculation.
              * \param initialDamage
              *        The damage at the start of the calculation.

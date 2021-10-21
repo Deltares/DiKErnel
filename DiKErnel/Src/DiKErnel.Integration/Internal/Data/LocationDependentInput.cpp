@@ -22,13 +22,17 @@
 
 #include <utility>
 
+#include "EventRegistry.h"
 #include "RevetmentFunctions.h"
+#include "RevetmentValidator.h"
 
 namespace DiKErnel::Integration
 {
     using namespace Core;
+    using namespace DomainLibrary;
     using namespace FunctionLibrary;
     using namespace std;
+    using namespace Util;
 
     LocationDependentInput::LocationDependentInput(
         const double x,
@@ -37,6 +41,12 @@ namespace DiKErnel::Integration
         : _x(x),
           _initialDamage(initialDamage),
           _failureNumber(failureNumber) { }
+
+    bool LocationDependentInput::Validate()
+    {
+        return RegisterValidationIssue(RevetmentValidator::InitialDamage(_initialDamage))
+            && RegisterValidationIssue(RevetmentValidator::FailureNumber(_failureNumber, _initialDamage));
+    }
 
     unique_ptr<TimeDependentOutput> LocationDependentInput::Calculate(
         const double initialDamage,
@@ -89,5 +99,38 @@ namespace DiKErnel::Integration
     vector<pair<double, double>>& LocationDependentInput::GetDikeProfilePoints()
     {
         return _dikeProfilePoints;
+    }
+
+    bool LocationDependentInput::RegisterValidationIssue(
+        const unique_ptr<ValidationIssue>& validationIssue) const
+    {
+        if (validationIssue != nullptr)
+        {
+            const auto validationIssueType = validationIssue->GetValidationIssueType();
+
+            EventRegistry::Register(make_unique<Event>(validationIssue->GetMessage(),
+                                                       ConvertValidationIssueType(validationIssueType)));
+
+            if (validationIssueType == ValidationIssueType::Error)
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    EventType LocationDependentInput::ConvertValidationIssueType(
+        const ValidationIssueType validationIssueType)
+    {
+        switch (validationIssueType)
+        {
+            case ValidationIssueType::Warning:
+                return EventType::Warning;
+            case ValidationIssueType::Error:
+                return EventType::Error;
+            default: 
+                throw;
+        }
     }
 }
