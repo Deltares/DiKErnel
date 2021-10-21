@@ -35,21 +35,30 @@ namespace DiKErnel::Core
         public:
             /*!
              * \brief Creates a new instance.
+             * \param z
+             *        The calculated z.
              * \param timeDependentOutputItems
              *        The time dependent output items of the location.
              */
             explicit LocationDependentOutput(
+                double z,
                 std::vector<std::unique_ptr<TimeDependentOutput>> timeDependentOutputItems);
 
             /*!
-             * \brief Gets the damages.
-             * \return The damages.
+             * \brief Gets the calculated z.
+             * \return The calculated z.
+             */
+            double GetZ() const;
+
+            /*!
+             * \brief Gets the calculated damages.
+             * \return The calculated damages.
              */
             const std::vector<double>& GetDamages() const;
 
             /*!
-             * \brief Gets the time of failure.
-             * \return The time of failure.
+             * \brief Gets the calculated time of failure.
+             * \return The calculated time of failure.
              */
             const int* GetTimeOfFailure() const;
 
@@ -60,6 +69,7 @@ namespace DiKErnel::Core
             const std::vector<std::reference_wrapper<TimeDependentOutput>>& GetTimeDependentOutputItems() const;
 
         private:
+            double _z;
             std::vector<double> _damages = std::vector<double>();
             std::unique_ptr<int> _timeOfFailure;
             std::vector<std::unique_ptr<TimeDependentOutput>> _timeDependentOutputItems;
