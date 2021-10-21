@@ -31,10 +31,10 @@ namespace DiKErnel::DomainLibrary
     {
         public:
             /*!
-            * \brief Gets the default value of the Xib coefficient.
-            * \return The default value of the Xib coefficient.
-            *         Unit = [-]
-            */
+             * \brief Gets the default value of the Xib coefficient.
+             * \return The default value of the Xib coefficient.
+             *         Unit = [-]
+             */
             double GetHydraulicLoadXib() const override;
 
             /*!

@@ -39,9 +39,9 @@ namespace DiKErnel::KernelWrapper::Json::Output
                 std::string message);
 
             /*!
-            * \brief Gets the message of the exception.
-            * \return The message of the exception.
-            */
+             * \brief Gets the message of the exception.
+             * \return The message of the exception.
+             */
             const char* what() const throw () override;
 
         private:

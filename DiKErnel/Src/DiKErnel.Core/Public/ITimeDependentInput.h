@@ -36,7 +36,7 @@ namespace DiKErnel::Core
             /*!
              * \brief Gets the begin time.
              * \return The begin time.
-            */
+             */
             virtual int GetBeginTime() const = 0;
 
             /*!

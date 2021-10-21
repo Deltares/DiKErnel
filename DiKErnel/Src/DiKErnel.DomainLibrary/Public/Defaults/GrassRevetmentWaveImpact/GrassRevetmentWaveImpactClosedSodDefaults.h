@@ -31,10 +31,10 @@ namespace DiKErnel::DomainLibrary
     {
         public:
             /*!
-              * \brief Gets the default value of the Agwi coefficient.
-              * \return The default value of the Agwi coefficient.
-              *         Unit = [m]
-              */
+             * \brief Gets the default value of the Agwi coefficient.
+             * \return The default value of the Agwi coefficient.
+             *         Unit = [m]
+             */
             double GetTimeLineAgwi() const override;
 
             /*!

@@ -31,7 +31,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
 {
     /*!
      * \brief Class responsible for reading Json and turning it into input data.
-    */
+     */
     class JsonInputComposer
     {
         public:
@@ -41,7 +41,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
              *        The path to the Json file.
              * \return A result with the created ICalculationInput and the JsonInputProcessType;
              *         or with nullptr when an error occurred.
-            */
+             */
             static std::unique_ptr<Util::Result<std::tuple<std::unique_ptr<Core::ICalculationInput>, JsonInputProcessType>>> GetInputDataFromJson(
                 const std::string& filePath);
     };
