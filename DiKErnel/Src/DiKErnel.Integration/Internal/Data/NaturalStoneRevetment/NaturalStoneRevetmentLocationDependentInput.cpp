@@ -21,7 +21,7 @@
 #include "NaturalStoneRevetmentLocationDependentInput.h"
 
 #include "Constants.h"
-#include "HydraulicLoad.h"
+#include "HydraulicLoadFunctions.h"
 #include "NaturalStoneRevetment.h"
 #include "NaturalStoneRevetmentTimeDependentOutput.h"
 #include "Revetment.h"
@@ -143,17 +143,17 @@ namespace DiKErnel::Integration
                                                                         slopeUpperLevel, slopeLowerLevel, slopeUpperPosition, slopeLowerPosition)
                                     : NaturalStoneRevetment::OuterSlope(slopeUpperLevel, slopeLowerLevel, slopeUpperPosition, slopeLowerPosition);
 
-        const auto waveSteepnessDeepWater = HydraulicLoad::WaveSteepnessDeepWater(waveHeightHm0, wavePeriodTm10,
-                                                                                  Constants::GetGravitationalAcceleration());
+        const auto waveSteepnessDeepWater = HydraulicLoadFunctions::WaveSteepnessDeepWater(waveHeightHm0, wavePeriodTm10,
+                                                                                           Constants::GetGravitationalAcceleration());
         const auto distanceMaximumWaveElevation = NaturalStoneRevetment::DistanceMaximumWaveElevation(
             1.0, waveSteepnessDeepWater, waveHeightHm0, _distanceMaximumWaveElevation->GetDistanceMaximumWaveElevationAsmax(),
             _distanceMaximumWaveElevation->GetDistanceMaximumWaveElevationBsmax());
-        const auto surfSimilarityParameter = HydraulicLoad::SurfSimilarityParameter(outerSlope, waveHeightHm0, wavePeriodTm10,
-                                                                                    Constants::GetGravitationalAcceleration());
+        const auto surfSimilarityParameter = HydraulicLoadFunctions::SurfSimilarityParameter(outerSlope, waveHeightHm0, wavePeriodTm10,
+                                                                                             Constants::GetGravitationalAcceleration());
         const auto normativeWidthWaveImpact = NaturalStoneRevetment::NormativeWidthWaveImpact(
             surfSimilarityParameter, waveHeightHm0, _normativeWidthOfWaveImpact->GetNormativeWidthOfWaveImpactAwi(),
             _normativeWidthOfWaveImpact->GetNormativeWidthOfWaveImpactBwi());
-        const auto slopeAngle = HydraulicLoad::SlopeAngle(outerSlope);
+        const auto slopeAngle = HydraulicLoadFunctions::SlopeAngle(outerSlope);
         const auto depthMaximumWaveLoad = NaturalStoneRevetment::DepthMaximumWaveLoad(distanceMaximumWaveElevation, normativeWidthWaveImpact,
                                                                                       slopeAngle);
         const auto lowerLimitLoading = NaturalStoneRevetment::LowerLimitLoading(depthMaximumWaveLoad, surfSimilarityParameter, waterLevel,
@@ -164,7 +164,7 @@ namespace DiKErnel::Integration
                                                                                 waveHeightHm0, _upperLimitLoading->GetUpperLimitAul(),
                                                                                 _upperLimitLoading->GetUpperLimitBul(),
                                                                                 _upperLimitLoading->GetUpperLimitCul());
-        const auto loadingRevetment = HydraulicLoad::LoadingRevetment(lowerLimitLoading, upperLimitLoading, GetZ());
+        const auto loadingRevetment = HydraulicLoadFunctions::LoadingRevetment(lowerLimitLoading, upperLimitLoading, GetZ());
 
         auto incrementDamage = 0.0;
         auto damage = initialDamage;

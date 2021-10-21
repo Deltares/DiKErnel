@@ -12,8 +12,8 @@ set(PUBLIC_NATURAL_STONE_REVETMENT_FOLDER ${PUBLIC_FOLDER}/NaturalStoneRevetment
 set(SOURCEFILES_PUBLIC
   ${PUBLIC_FOLDER}/GenericFunctions.cpp
   ${PUBLIC_FOLDER}/GenericFunctions.h
-  ${PUBLIC_FOLDER}/HydraulicLoad.cpp
-  ${PUBLIC_FOLDER}/HydraulicLoad.h
+  ${PUBLIC_FOLDER}/HydraulicLoadFunctions.cpp
+  ${PUBLIC_FOLDER}/HydraulicLoadFunctions.h
   ${PUBLIC_FOLDER}/Revetment.cpp
   ${PUBLIC_FOLDER}/Revetment.h
 )

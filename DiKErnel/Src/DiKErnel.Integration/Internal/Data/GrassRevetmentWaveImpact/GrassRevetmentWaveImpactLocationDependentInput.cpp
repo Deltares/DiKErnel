@@ -22,7 +22,7 @@
 
 #include "GrassRevetmentWaveImpact.h"
 #include "GrassRevetmentWaveImpactTimeDependentOutput.h"
-#include "HydraulicLoad.h"
+#include "HydraulicLoadFunctions.h"
 #include "Revetment.h"
 
 namespace DiKErnel::Integration
@@ -102,7 +102,7 @@ namespace DiKErnel::Integration
 
         const auto lowerLimitLoading = GrassRevetmentWaveImpact::LowerLimitLoading(waterLevel, waveHeightHm0, _lowerLimitLoadingAll);
         const auto upperLimitLoading = GrassRevetmentWaveImpact::UpperLimitLoading(waterLevel, waveHeightHm0, _upperLimitLoadingAul);
-        const auto loadingRevetment = HydraulicLoad::LoadingRevetment(lowerLimitLoading, upperLimitLoading, GetZ());
+        const auto loadingRevetment = HydraulicLoadFunctions::LoadingRevetment(lowerLimitLoading, upperLimitLoading, GetZ());
 
         auto incrementDamage = 0.0;
         auto damage = initialDamage;

@@ -24,7 +24,7 @@
 #include "GrassRevetmentWaveRunup.h"
 #include "GrassRevetmentWaveRunupRayleigh.h"
 #include "GrassRevetmentWaveRunupRayleighTimeDependentOutput.h"
-#include "HydraulicLoad.h"
+#include "HydraulicLoadFunctions.h"
 #include "Revetment.h"
 
 namespace DiKErnel::Integration
@@ -77,7 +77,7 @@ namespace DiKErnel::Integration
         unique_ptr<double> representativeWaveRunup2P = nullptr;
         unique_ptr<double> cumulativeOverload = nullptr;
 
-        const auto verticalDistanceWaterLevelElevation = HydraulicLoad::VerticalDistanceWaterLevelElevation(
+        const auto verticalDistanceWaterLevelElevation = HydraulicLoadFunctions::VerticalDistanceWaterLevelElevation(
             GetZ(), timeDependentInput.GetWaterLevel());
 
         if (verticalDistanceWaterLevelElevation > 0)
@@ -88,9 +88,10 @@ namespace DiKErnel::Integration
             const auto averageNumberOfWaves = Revetment::AverageNumberOfWaves(incrementTime, timeDependentInput.GetWavePeriodTm10(),
                                                                               GetAverageNumberOfWavesCtm());
 
-            const auto surfSimilarityParameter = HydraulicLoad::SurfSimilarityParameter(GetOuterSlope(), timeDependentInput.GetWaveHeightHm0(),
-                                                                                        timeDependentInput.GetWavePeriodTm10(),
-                                                                                        Constants::GetGravitationalAcceleration());
+            const auto surfSimilarityParameter = HydraulicLoadFunctions::SurfSimilarityParameter(GetOuterSlope(),
+                                                                                                 timeDependentInput.GetWaveHeightHm0(),
+                                                                                                 timeDependentInput.GetWavePeriodTm10(),
+                                                                                                 Constants::GetGravitationalAcceleration());
 
             waveAngleImpact = make_unique<double>(GrassRevetmentWaveRunup::WaveAngleImpact(timeDependentInput.GetWaveAngle(),
                                                                                            GetWaveAngleImpact().GetAbeta(),

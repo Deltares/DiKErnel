@@ -20,23 +20,23 @@
 
 #include <gtest/gtest.h>
 
-#include "HydraulicLoad.h"
+#include "HydraulicLoadFunctions.h"
 
 namespace DiKErnel::FunctionLibrary::Test
 {
-    TEST(HydraulicLoadTest, SlopeAngle_ValidInput_ExpectedValue)
+    TEST(HydraulicLoadFunctionsTest, SlopeAngle_ValidInput_ExpectedValue)
     {
         // Setup
         const auto outerSlope = 0.25;
 
         // Call
-        const auto slopeAngle = HydraulicLoad::SlopeAngle(outerSlope);
+        const auto slopeAngle = HydraulicLoadFunctions::SlopeAngle(outerSlope);
 
         // Assert
         ASSERT_DOUBLE_EQ(14.036243467926479, slopeAngle);
     }
 
-    TEST(HydraulicLoadTest, LoadingRevetment_LowerLimitAndUpperLimitSmallerThanZ_ExpectedFalse)
+    TEST(HydraulicLoadFunctionsTest, LoadingRevetment_LowerLimitAndUpperLimitSmallerThanZ_ExpectedFalse)
     {
         // Setup
         const auto lowerLimitLoadingRevetment = 1.3;
@@ -44,13 +44,13 @@ namespace DiKErnel::FunctionLibrary::Test
         const auto z = 1.5;
 
         // Call
-        const auto loadingRevetment = HydraulicLoad::LoadingRevetment(lowerLimitLoadingRevetment, upperLimitLoadingRevetment, z);
+        const auto loadingRevetment = HydraulicLoadFunctions::LoadingRevetment(lowerLimitLoadingRevetment, upperLimitLoadingRevetment, z);
 
         // Assert
         ASSERT_FALSE(loadingRevetment);
     }
 
-    TEST(HydraulicLoadTest, LoadingRevetment_LowerLimitSmallerThanAndUpperLimitEqualToZ_ExpectedTrue)
+    TEST(HydraulicLoadFunctionsTest, LoadingRevetment_LowerLimitSmallerThanAndUpperLimitEqualToZ_ExpectedTrue)
     {
         // Setup
         const auto lowerLimitLoadingRevetment = 1.4;
@@ -58,13 +58,13 @@ namespace DiKErnel::FunctionLibrary::Test
         const auto z = 1.5;
 
         // Call
-        const auto loadingRevetment = HydraulicLoad::LoadingRevetment(lowerLimitLoadingRevetment, upperLimitLoadingRevetment, z);
+        const auto loadingRevetment = HydraulicLoadFunctions::LoadingRevetment(lowerLimitLoadingRevetment, upperLimitLoadingRevetment, z);
 
         // Assert
         ASSERT_TRUE(loadingRevetment);
     }
 
-    TEST(HydraulicLoadTest, LoadingRevetment_LowerLimitSmallerAndUpperLimitLargerThanZ_ExpectedTrue)
+    TEST(HydraulicLoadFunctionsTest, LoadingRevetment_LowerLimitSmallerAndUpperLimitLargerThanZ_ExpectedTrue)
     {
         // Setup
         const auto lowerLimitLoadingRevetment = 1.4;
@@ -72,13 +72,13 @@ namespace DiKErnel::FunctionLibrary::Test
         const auto z = 1.5;
 
         // Call
-        const auto loadingRevetment = HydraulicLoad::LoadingRevetment(lowerLimitLoadingRevetment, upperLimitLoadingRevetment, z);
+        const auto loadingRevetment = HydraulicLoadFunctions::LoadingRevetment(lowerLimitLoadingRevetment, upperLimitLoadingRevetment, z);
 
         // Assert
         ASSERT_TRUE(loadingRevetment);
     }
 
-    TEST(HydraulicLoadTest, LoadingRevetment_LowerLimitEqualToAndUpperLimitLargerThanZ_ExpectedTrue)
+    TEST(HydraulicLoadFunctionsTest, LoadingRevetment_LowerLimitEqualToAndUpperLimitLargerThanZ_ExpectedTrue)
     {
         // Setup
         const auto lowerLimitLoadingRevetment = 1.5;
@@ -86,13 +86,13 @@ namespace DiKErnel::FunctionLibrary::Test
         const auto z = 1.5;
 
         // Call
-        const auto loadingRevetment = HydraulicLoad::LoadingRevetment(lowerLimitLoadingRevetment, upperLimitLoadingRevetment, z);
+        const auto loadingRevetment = HydraulicLoadFunctions::LoadingRevetment(lowerLimitLoadingRevetment, upperLimitLoadingRevetment, z);
 
         // Assert
         ASSERT_TRUE(loadingRevetment);
     }
 
-    TEST(HydraulicLoadTest, LoadingRevetment_LowerLimitAndUpperLimitLargerThanZ_ExpectedFalse)
+    TEST(HydraulicLoadFunctionsTest, LoadingRevetment_LowerLimitAndUpperLimitLargerThanZ_ExpectedFalse)
     {
         // Setup
         const auto lowerLimitLoadingRevetment = 1.6;
@@ -100,13 +100,13 @@ namespace DiKErnel::FunctionLibrary::Test
         const auto z = 1.5;
 
         // Call
-        const auto loadingRevetment = HydraulicLoad::LoadingRevetment(lowerLimitLoadingRevetment, upperLimitLoadingRevetment, z);
+        const auto loadingRevetment = HydraulicLoadFunctions::LoadingRevetment(lowerLimitLoadingRevetment, upperLimitLoadingRevetment, z);
 
         // Assert
         ASSERT_FALSE(loadingRevetment);
     }
 
-    TEST(HydraulicLoadTest, WaveSteepnessDeepWater_ValidInput_ExpectedValue)
+    TEST(HydraulicLoadFunctionsTest, WaveSteepnessDeepWater_ValidInput_ExpectedValue)
     {
         // Setup
         const auto waveHeightHm0 = 1.6;
@@ -114,13 +114,13 @@ namespace DiKErnel::FunctionLibrary::Test
         const auto gravitationalAcceleration = 9.81;
 
         // Call
-        const auto waveSteepnessDeepWater = HydraulicLoad::WaveSteepnessDeepWater(waveHeightHm0, wavePeriodTm10, gravitationalAcceleration);
+        const auto waveSteepnessDeepWater = HydraulicLoadFunctions::WaveSteepnessDeepWater(waveHeightHm0, wavePeriodTm10, gravitationalAcceleration);
 
         // Assert
         ASSERT_DOUBLE_EQ(0.037898686325266363, waveSteepnessDeepWater);
     }
 
-    TEST(HydraulicLoadTest, SurfSimilarityParameter_ValidInput_ExpectedValue)
+    TEST(HydraulicLoadFunctionsTest, SurfSimilarityParameter_ValidInput_ExpectedValue)
     {
         // Setup
         const auto outerSlope = 0.25;
@@ -129,21 +129,21 @@ namespace DiKErnel::FunctionLibrary::Test
         const auto gravitationalAcceleration = 9.81;
 
         // Call
-        const auto surfSimilarityParameter = HydraulicLoad::SurfSimilarityParameter(outerSlope, waveHeightHm0, wavePeriodTm10,
+        const auto surfSimilarityParameter = HydraulicLoadFunctions::SurfSimilarityParameter(outerSlope, waveHeightHm0, wavePeriodTm10,
                                                                                     gravitationalAcceleration);
 
         // Assert
         ASSERT_DOUBLE_EQ(1.2841859985089348, surfSimilarityParameter);
     }
 
-    TEST(HydraulicLoadTest, VerticalDistanceWaterLevelElevation_ValidInput_ExpectedValue)
+    TEST(HydraulicLoadFunctionsTest, VerticalDistanceWaterLevelElevation_ValidInput_ExpectedValue)
     {
         // Setup
         const auto z = 1.12;
         const auto waterLevel = 0.03;
 
         // Call
-        const auto verticalDistanceWaterLevelElevation = HydraulicLoad::VerticalDistanceWaterLevelElevation(z, waterLevel);
+        const auto verticalDistanceWaterLevelElevation = HydraulicLoadFunctions::VerticalDistanceWaterLevelElevation(z, waterLevel);
 
         // Assert
         ASSERT_DOUBLE_EQ(1.09, verticalDistanceWaterLevelElevation);

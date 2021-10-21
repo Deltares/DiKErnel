@@ -18,7 +18,7 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include "HydraulicLoad.h"
+#include "HydraulicLoadFunctions.h"
 
 #include <cmath>
 
@@ -26,13 +26,13 @@
 
 namespace DiKErnel::FunctionLibrary
 {
-    double HydraulicLoad::SlopeAngle(
+    double HydraulicLoadFunctions::SlopeAngle(
         const double outerSlope)
     {
         return GenericFunctions::Degrees(atan(outerSlope));
     }
 
-    bool HydraulicLoad::LoadingRevetment(
+    bool HydraulicLoadFunctions::LoadingRevetment(
         const double lowerLimitLoadingRevetment,
         const double upperLimitLoadingRevetment,
         const double z)
@@ -40,7 +40,7 @@ namespace DiKErnel::FunctionLibrary
         return z >= lowerLimitLoadingRevetment && z <= upperLimitLoadingRevetment;
     }
 
-    double HydraulicLoad::SurfSimilarityParameter(
+    double HydraulicLoadFunctions::SurfSimilarityParameter(
         const double outerSlope,
         const double waveHeightHm0,
         const double wavePeriodTm10,
@@ -49,7 +49,7 @@ namespace DiKErnel::FunctionLibrary
         return outerSlope / sqrt(2.0 * GenericFunctions::Pi() * waveHeightHm0 / (gravitationalAcceleration * pow(wavePeriodTm10, 2.0)));
     }
 
-    double HydraulicLoad::WaveSteepnessDeepWater(
+    double HydraulicLoadFunctions::WaveSteepnessDeepWater(
         const double waveHeightHm0,
         const double wavePeriodTm10,
         const double gravitationalAcceleration)
@@ -57,7 +57,7 @@ namespace DiKErnel::FunctionLibrary
         return waveHeightHm0 / (gravitationalAcceleration / (2.0 * GenericFunctions::Pi()) * pow(wavePeriodTm10, 2.0));
     }
 
-    double HydraulicLoad::VerticalDistanceWaterLevelElevation(
+    double HydraulicLoadFunctions::VerticalDistanceWaterLevelElevation(
         const double z,
         const double waterLevel)
     {
