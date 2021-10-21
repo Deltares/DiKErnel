@@ -136,7 +136,7 @@ namespace DiKErnel::Core
 
             if (!isCancelled)
             {
-                CreateOutput(timeDependentOutputItems);
+                CreateOutput(locationDependentInputItems, timeDependentOutputItems);
                 isFinished = true;
             }
         }
@@ -150,13 +150,15 @@ namespace DiKErnel::Core
     }
 
     void Calculator::CreateOutput(
+        const vector<reference_wrapper<ILocationDependentInput>>& locationDependentInputItems,
         vector<vector<unique_ptr<TimeDependentOutput>>>& timeDependentOutputItems)
     {
         auto locationDependentOutputItems = vector<unique_ptr<LocationDependentOutput>>();
 
-        for (auto& timeDependentOutputItemsPerLocation : timeDependentOutputItems)
+        for (auto i = 0; i < static_cast<int>(locationDependentInputItems.size()); ++i)
         {
-            locationDependentOutputItems.push_back(make_unique<LocationDependentOutput>(1.1, move(timeDependentOutputItemsPerLocation)));
+            locationDependentOutputItems.push_back(make_unique<LocationDependentOutput>(locationDependentInputItems[i].get().GetZ(),
+                                                                                        move(timeDependentOutputItems[i])));
         }
 
         _calculationOutput = make_unique<CalculationOutput>(move(locationDependentOutputItems));

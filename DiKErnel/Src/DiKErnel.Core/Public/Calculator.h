@@ -99,6 +99,7 @@ namespace DiKErnel::Core
                 std::atomic<bool>& fatalErrorOccurred);
 
             void CreateOutput(
+                const std::vector<std::reference_wrapper<ILocationDependentInput>>& locationDependentInputItems,
                 std::vector<std::vector<std::unique_ptr<TimeDependentOutput>>>& timeDependentOutputItems);
     };
 }
