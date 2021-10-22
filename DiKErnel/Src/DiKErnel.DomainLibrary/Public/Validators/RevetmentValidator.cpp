@@ -34,7 +34,7 @@ namespace DiKErnel::DomainLibrary
 
         if (initialDamage >= 1)
         {
-            return make_unique<ValidationIssue>(ValidationIssueType::Warning, "InitialDamage should be smaller than 1.");
+            return make_unique<ValidationIssue>(ValidationIssueType::Warning, "InitialDamage should be in range [0, 1}.");
         }
 
         return nullptr;

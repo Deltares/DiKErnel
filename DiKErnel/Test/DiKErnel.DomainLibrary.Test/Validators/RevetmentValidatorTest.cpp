@@ -18,78 +18,62 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
+#include <limits>
+
 #include <gtest/gtest.h>
 
 #include "RevetmentValidator.h"
+#include "ValidatorAssertHelper.h"
 
 namespace DiKErnel::DomainLibrary::Test
 {
-    TEST(RevetmentValidatorTest, InitialDamage_BelowZero_ReturnValidationIssueWithError)
-    {
-        // Call
-        const auto validationIssue = RevetmentValidator::InitialDamage(-0.0000000001);
+    using namespace std;
+    using namespace testing;
+    using namespace TestUtil;
 
-        // Assert
-        ASSERT_NE(nullptr, validationIssue);
-        ASSERT_EQ(ValidationIssueType::Error, validationIssue->GetValidationIssueType());
-        ASSERT_EQ("InitialDamage must be a positive number.", validationIssue->GetMessage());
+    struct RevetmentValidatorTest : Test
+    {
+        static unique_ptr<ValidationIssue> FailureNumber(
+            const double failureNumber)
+        {
+            return RevetmentValidator::FailureNumber(failureNumber, 0);
+        }
+    };
+
+    TEST_F(RevetmentValidatorTest, InitialDamage_VariousScenarios_ExpectedValues)
+    {
+        const auto validateAction = RevetmentValidator::InitialDamage;
+
+        constexpr auto errorMessage = "InitialDamage must be a positive number.";
+        constexpr auto warningMessage = "InitialDamage should be in range [0, 1}.";
+
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, -1 * numeric_limits<double>::infinity(), ValidationIssueType::Error,
+                                                  errorMessage);
+
+        ValidatorAssertHelper::AssertBelowBound(validateAction, 0, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, 0);
+        ValidatorAssertHelper::AssertAboveBound(validateAction, 0);
+
+        ValidatorAssertHelper::AssertBelowBound(validateAction, 1);
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, 1, ValidationIssueType::Warning, warningMessage);
+        ValidatorAssertHelper::AssertAboveBound(validateAction, 1, ValidationIssueType::Warning, warningMessage);
+
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, numeric_limits<double>::infinity(), ValidationIssueType::Warning, warningMessage);
     }
 
-    TEST(RevetmentValidatorTest, InitialDamage_One_ReturnValidationIssueWithWarning)
+    TEST_F(RevetmentValidatorTest, FailureNumber_VariousScenarios_ExpectedValues)
     {
-        // Call
-        const auto validationIssue = RevetmentValidator::InitialDamage(1);
+        const auto validateAction = FailureNumber;
 
-        // Assert
-        ASSERT_NE(nullptr, validationIssue);
-        ASSERT_EQ(ValidationIssueType::Warning, validationIssue->GetValidationIssueType());
-        ASSERT_EQ("InitialDamage should be smaller than 1.", validationIssue->GetMessage());
-    }
+        constexpr auto errorMessage = "FailureNumber must be larger than InitialDamage.";
 
-    TEST(RevetmentValidatorTest, InitialDamage_Zero_ReturnNullPtr)
-    {
-        // Call
-        const auto validationIssue = RevetmentValidator::InitialDamage(0);
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, -1 * numeric_limits<double>::infinity(), ValidationIssueType::Error,
+            errorMessage);
 
-        // Assert
-        ASSERT_EQ(nullptr, validationIssue);
-    }
+        ValidatorAssertHelper::AssertBelowBound(validateAction, 0, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, 0);
+        ValidatorAssertHelper::AssertAboveBound(validateAction, 0);
 
-    TEST(RevetmentValidatorTest, InitialDamage_SmallerThanOne_ReturnNullPtr)
-    {
-        // Call
-        const auto validationIssue = RevetmentValidator::InitialDamage(0.99999999999);
-
-        // Assert
-        ASSERT_EQ(nullptr, validationIssue);
-    }
-
-    TEST(RevetmentValidatorTest, FailureNumber_SmallerThanInitialDamage_ReturnValidationIssueWithError)
-    {
-        // Call
-        const auto validationIssue = RevetmentValidator::FailureNumber(0.199999999999, 0.2);
-
-        // Assert
-        ASSERT_NE(nullptr, validationIssue);
-        ASSERT_EQ(ValidationIssueType::Error, validationIssue->GetValidationIssueType());
-        ASSERT_EQ("FailureNumber must be larger than InitialDamage.", validationIssue->GetMessage());
-    }
-
-    TEST(RevetmentValidatorTest, FailureNumber_EqualToInitialDamage_ReturnNullPtr)
-    {
-        // Call
-        const auto validationIssue = RevetmentValidator::FailureNumber(0, 0);
-
-        // Assert
-        ASSERT_EQ(nullptr, validationIssue);
-    }
-
-    TEST(RevetmentValidatorTest, FailureNumber_LargerThanInitialDamage_ReturnNullPtr)
-    {
-        // Call
-        const auto validationIssue = RevetmentValidator::FailureNumber(0.0000000000001, 0);
-
-        // Assert
-        ASSERT_EQ(nullptr, validationIssue);
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, numeric_limits<double>::infinity());
     }
 }
