@@ -198,6 +198,25 @@ namespace DiKErnel::Core::Test
         ASSERT_EQ(100, calculator.GetProgress());
     }
 
+    TEST_F(CalculatorTest, GivenCalculatorWithRunningCalculation_WhenGetGetCalculationState_ThenExpectedResult)
+    {
+        // Given
+        NiceMock<ICalculationInputMock> calculationInput;
+        EXPECT_CALL(calculationInput, GetProfileData).WillRepeatedly(ReturnRef(*_profileData));
+        EXPECT_CALL(calculationInput, GetLocationDependentInputItems).WillRepeatedly(ReturnRef(_locationDependentInputItemReferences));
+        EXPECT_CALL(calculationInput, GetTimeDependentInputItems).WillRepeatedly(ReturnRef(_timeDependentInputItemReferences));
+
+        Calculator calculator(calculationInput);
+
+        // When
+        const auto calculationState = calculator.GetCalculationState();
+
+        // Then
+        ASSERT_EQ(CalculationState::Running, calculationState);
+
+        calculator.WaitForCompletion();
+    }
+
     TEST_F(CalculatorTest, GivenCalculatorWithRunningCalculation_WhenGetCalculatorResult_ThenReturnNullPtr)
     {
         // Given
@@ -217,6 +236,25 @@ namespace DiKErnel::Core::Test
         calculator.WaitForCompletion();
     }
 
+    TEST_F(CalculatorTest, GivenCalculatorWithCancelledCalculation_WhenGetGetCalculationState_ThenExpectedResult)
+    {
+        // Given
+        NiceMock<ICalculationInputMock> calculationInput;
+        EXPECT_CALL(calculationInput, GetProfileData).WillRepeatedly(ReturnRef(*_profileData));
+        EXPECT_CALL(calculationInput, GetLocationDependentInputItems).WillRepeatedly(ReturnRef(_locationDependentInputItemReferences));
+        EXPECT_CALL(calculationInput, GetTimeDependentInputItems).WillRepeatedly(ReturnRef(_timeDependentInputItemReferences));
+
+        Calculator calculator(calculationInput);
+        calculator.Cancel();
+        calculator.WaitForCompletion();
+
+        // When
+        const auto calculationState = calculator.GetCalculationState();
+
+        // Then
+        ASSERT_EQ(CalculationState::Cancelled, calculationState);
+    }
+
     TEST_F(CalculatorTest, GivenCalculatorWithCancelledCalculation_WhenGetCalculatorResult_ThenReturnResultWithNullPtr)
     {
         // Given
@@ -234,6 +272,30 @@ namespace DiKErnel::Core::Test
 
         // Then
         ASSERT_EQ(nullptr, calculatorResult->GetResult());
+    }
+
+    TEST_F(CalculatorTest, GivenCalculatorWithExceptionDuringCalculation_WhenGetGetCalculationState_ThenExpectedResult)
+    {
+        // Given
+        const auto locationDependentInputMock = make_unique<NiceMock<ILocationDependentInputMock>>();
+        locationDependentInputMock->SetThrowExceptionOnCalculate(true);
+
+        auto locationDependentInputItemReferences = vector<reference_wrapper<ILocationDependentInput>>();
+        locationDependentInputItemReferences.emplace_back(*locationDependentInputMock);
+
+        NiceMock<ICalculationInputMock> calculationInput;
+        EXPECT_CALL(calculationInput, GetProfileData).WillRepeatedly(ReturnRef(*_profileData));
+        EXPECT_CALL(calculationInput, GetLocationDependentInputItems).WillRepeatedly(ReturnRef(locationDependentInputItemReferences));
+        EXPECT_CALL(calculationInput, GetTimeDependentInputItems).WillRepeatedly(ReturnRef(_timeDependentInputItemReferences));
+
+        Calculator calculator(calculationInput);
+        calculator.WaitForCompletion();
+
+        // When
+        const auto calculationState = calculator.GetCalculationState();
+
+        // Then
+        ASSERT_EQ(CalculationState::FinishedInError, calculationState);
     }
 
     TEST_F(CalculatorTest, GivenCalculatorWithExceptionDuringCalculation_WhenGetCalculatorResult_ThenReturnResultWithNullPtrAndEvent)
