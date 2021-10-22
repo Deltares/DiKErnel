@@ -79,14 +79,13 @@ namespace DiKErnel::Core::Test
 
         // Then
         ASSERT_EQ(100, calculator.GetProgress());
-        ASSERT_TRUE(calculator.IsFinished());
-        ASSERT_FALSE(calculator.IsCancelled());
+        ASSERT_EQ(CalculationState::FinishedSuccessfully, calculator.GetCalculationState());
     }
 
     TEST_F(CalculatorTest, GivenCalculator_WhenCalculationPerformedAndNoTimeOfFailure_ThenReturnResultWithExpectedOutput)
     {
         // Given
-        const auto damage = 0.5;
+        constexpr auto damage = 0.5;
 
         NiceMock<ICalculationInputMock> calculationInput;
         ON_CALL(calculationInput, GetProfileData).WillByDefault(ReturnRef(*_profileData));
@@ -124,7 +123,7 @@ namespace DiKErnel::Core::Test
     TEST_F(CalculatorTest, GivenCalculator_WhenCalculationPerformedAndTimeOfFailure_ThenReturnResultWithExpectedOutput)
     {
         // Given
-        const auto damage = 0.5;
+        constexpr auto damage = 0.5;
         auto timeOfFailure = 20;
 
         NiceMock<ICalculationInputMock> calculationInput;
@@ -176,8 +175,7 @@ namespace DiKErnel::Core::Test
         calculator.WaitForCompletion();
 
         // Then
-        ASSERT_TRUE(calculator.IsCancelled());
-        ASSERT_FALSE(calculator.IsFinished());
+        ASSERT_EQ(CalculationState::Cancelled, calculator.GetCalculationState());
         ASSERT_NE(100, calculator.GetProgress());
     }
 
@@ -196,12 +194,28 @@ namespace DiKErnel::Core::Test
         calculator.Cancel();
 
         // Then
-        ASSERT_FALSE(calculator.IsCancelled());
-        ASSERT_TRUE(calculator.IsFinished());
+        ASSERT_EQ(CalculationState::FinishedSuccessfully, calculator.GetCalculationState());
         ASSERT_EQ(100, calculator.GetProgress());
     }
 
-    TEST_F(CalculatorTest, GivenCalculatorWithUnfinishedCalculation_WhenGetCalculatorResult_ThenReturnResultWithNullPtr)
+    TEST_F(CalculatorTest, GivenCalculatorWithRunningCalculation_WhenGetCalculatorResult_ThenReturnNullPtr)
+    {
+        // Given
+        NiceMock<ICalculationInputMock> calculationInput;
+        EXPECT_CALL(calculationInput, GetProfileData).WillRepeatedly(ReturnRef(*_profileData));
+        EXPECT_CALL(calculationInput, GetLocationDependentInputItems).WillRepeatedly(ReturnRef(_locationDependentInputItemReferences));
+        EXPECT_CALL(calculationInput, GetTimeDependentInputItems).WillRepeatedly(ReturnRef(_timeDependentInputItemReferences));
+
+        const Calculator calculator(calculationInput);
+
+        // When
+        const auto calculatorResult = calculator.GetCalculatorResult();
+
+        // Then
+        ASSERT_EQ(nullptr, calculatorResult);
+    }
+
+    TEST_F(CalculatorTest, GivenCalculatorWithCancelledCalculation_WhenGetCalculatorResult_ThenReturnResultWithNullPtr)
     {
         // Given
         NiceMock<ICalculationInputMock> calculationInput;
