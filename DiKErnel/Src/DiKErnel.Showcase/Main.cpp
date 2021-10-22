@@ -50,7 +50,7 @@ void InputMethod(
 JsonOutputType ConvertProcessType(
     JsonInputProcessType);
 
-void WriteLogFile(
+void WriteToLogFile(
     const string& filePath,
     const vector<reference_wrapper<Event>>& events);
 
@@ -87,7 +87,7 @@ int main()
 
         // Write log file
         const auto logOutputPath = outputDirectory / (outputFileNameBase + ".txt");
-        WriteLogFile(logOutputPath.u8string(), inputComposerResult->GetEvents());
+        WriteToLogFile(logOutputPath.u8string(), inputComposerResult->GetEvents());
 
         if (inputData == nullptr)
         {
@@ -163,7 +163,7 @@ int main()
             const auto calculatorResult = calculator.GetCalculationOutput();
             const auto* outputData = calculatorResult->GetResult();
 
-            WriteLogFile(logOutputPath.u8string(), calculatorResult->GetEvents());
+            WriteToLogFile(logOutputPath.u8string(), calculatorResult->GetEvents());
 
             if (outputData == nullptr)
             {
@@ -179,7 +179,7 @@ int main()
                                                                                                ConvertProcessType(get<1>(*inputData)));
 
             const auto* writeSucceeded = outputComposerResult->GetResult();
-            WriteLogFile(logOutputPath.u8string(), outputComposerResult->GetEvents());
+            WriteToLogFile(logOutputPath.u8string(), outputComposerResult->GetEvents());
 
             if (!*writeSucceeded)
             {
@@ -225,9 +225,10 @@ void InputMethod(
     const atomic<bool>& calculationFinished,
     atomic<UserInput>& userInput)
 {
+    string input;
+
     while (!calculationFinished)
     {
-        string input;
         getline(cin, input);
 
         if (input == "c")
@@ -258,10 +259,15 @@ JsonOutputType ConvertProcessType(
     }
 }
 
-void WriteLogFile(
+void WriteToLogFile(
     const string& filePath,
     const vector<reference_wrapper<Event>>& events)
 {
+    if (events.empty())
+    {
+        return;
+    }
+
     ofstream logFile;
 
     // Open file and append if already exists.
@@ -269,12 +275,10 @@ void WriteLogFile(
 
     for (const auto& eventReference : events)
     {
-        const auto event = eventReference.get();
+        const auto& event = eventReference.get();
 
-        logFile << GetEventTypeString(event.GetEventType()) << ": " << event.GetMessage();
+        logFile << GetEventTypeString(event.GetEventType()) << ": " << event.GetMessage() << endl;
     }
-
-    logFile.close();
 }
 
 string GetEventTypeString(
