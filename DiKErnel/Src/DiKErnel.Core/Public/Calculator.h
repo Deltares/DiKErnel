@@ -24,6 +24,7 @@
 #include <thread>
 
 #include "CalculationOutput.h"
+#include "CalculatorState.h"
 #include "ICalculationInput.h"
 #include "Result.h"
 
@@ -58,22 +59,10 @@ namespace DiKErnel::Core
             int GetProgress() const;
 
             /*!
-             * \brief Gets whether or not the calculation is finished.
-             * \return Whether or not the calculation is finished.
-             */
-            bool IsFinished() const;
-
-            /*!
              * \brief Cancels the calculation.
-             * \remarks A calculation can only be cancelled when it is not finished yet.
+             * \remarks A calculation can only be cancelled when it is still running.
              */
             void Cancel();
-
-            /*!
-             * \brief Gets whether or not the calculation is cancelled.
-             * \return Whether or not the calculation is cancelled.
-             */
-            bool IsCancelled() const;
 
             /*!
              * \brief Gets the output of the calculation.
@@ -85,17 +74,13 @@ namespace DiKErnel::Core
         private:
             std::thread _calculationThread;
             std::atomic<double> _progress = 0;
-            std::atomic<bool> _isFinished = false;
-            std::atomic<bool> _isCancelled = false;
-            std::atomic<bool> _unhandledErrorOccurred = false;
+            std::atomic<CalculatorState> _calculatorState = CalculatorState::Running;
             std::shared_ptr<Util::Result<CalculationOutput>> _result;
 
             void PerformCalculation(
                 const ICalculationInput& calculationInput,
                 std::atomic<double>& progress,
-                std::atomic<bool>& isFinished,
-                const std::atomic<bool>& isCancelled,
-                std::atomic<bool>& unhandledErrorOccurred);
+                std::atomic<CalculatorState>& calculatorState);
 
             void CreateResultWithCalculationOutput(
                 const std::vector<std::reference_wrapper<ILocationDependentInput>>& locationDependentInputItems,
