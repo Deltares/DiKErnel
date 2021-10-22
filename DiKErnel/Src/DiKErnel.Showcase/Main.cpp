@@ -160,7 +160,7 @@ int main()
             const auto jsonOutputPath = outputDirectory / (outputFileNameBase + ".json");
 
             // Write Json output to file
-            const auto calculatorResult = calculator.GetCalculationOutput();
+            const auto calculatorResult = calculator.GetCalculatorResult();
             const auto* outputData = calculatorResult->GetResult();
 
             WriteToLogFile(logOutputPath.u8string(), calculatorResult->GetEvents());

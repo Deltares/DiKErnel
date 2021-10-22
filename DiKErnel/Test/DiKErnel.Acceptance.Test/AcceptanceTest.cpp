@@ -63,7 +63,7 @@ namespace DiKErnel::Acceptance::Test
             Calculator calculator(*calculationInput);
             calculator.WaitForCompletion();
 
-            const auto calculatorResult = calculator.GetCalculationOutput();
+            const auto calculatorResult = calculator.GetCalculatorResult();
             const auto* outputData = calculatorResult->GetResult();
             JsonOutputComposer::WriteCalculationOutputToJson(_actualOutputFilePath, *outputData, JsonOutputType::Damage);
 

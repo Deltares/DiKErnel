@@ -66,16 +66,16 @@ namespace DiKErnel::Core
 
             /*!
              * \brief Cancels the calculation.
-             * \remarks A calculation can only be cancelled when it is still running.
+             * \remarks A calculation can only be cancelled when it is actually still running.
              */
             void Cancel();
 
             /*!
-             * \brief Gets the output of the calculation.
+             * \brief Gets the result of the calculator.
              * \return A result with the output of the calculation when the calculation is
              *         successfully finished, or with nullptr otherwise.
              */
-            std::shared_ptr<Util::Result<CalculationOutput>> GetCalculationOutput() const;
+            std::shared_ptr<Util::Result<CalculationOutput>> GetCalculatorResult() const;
 
         private:
             std::thread _calculationThread;

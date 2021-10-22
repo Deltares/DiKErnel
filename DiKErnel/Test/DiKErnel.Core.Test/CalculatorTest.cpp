@@ -104,7 +104,7 @@ namespace DiKErnel::Core::Test
         calculator.WaitForCompletion();
 
         // Then
-        const auto calculatorResult = calculator.GetCalculationOutput();
+        const auto calculatorResult = calculator.GetCalculatorResult();
         const auto* output = calculatorResult->GetResult();
 
         const auto& locationDependentOutputItems = output->GetLocationDependentOutputItems();
@@ -144,7 +144,7 @@ namespace DiKErnel::Core::Test
         calculator.WaitForCompletion();
 
         // Then
-        const auto calculatorResult = calculator.GetCalculationOutput();
+        const auto calculatorResult = calculator.GetCalculatorResult();
         const auto* output = calculatorResult->GetResult();
 
         const auto& locationDependentOutputItems = output->GetLocationDependentOutputItems();
@@ -201,7 +201,7 @@ namespace DiKErnel::Core::Test
         ASSERT_EQ(100, calculator.GetProgress());
     }
 
-    TEST_F(CalculatorTest, GivenCalculatorWithUnfinishedCalculation_WhenGetCalculationOutput_ThenReturnResultWithNullPtr)
+    TEST_F(CalculatorTest, GivenCalculatorWithUnfinishedCalculation_WhenGetCalculatorResult_ThenReturnResultWithNullPtr)
     {
         // Given
         NiceMock<ICalculationInputMock> calculationInput;
@@ -214,13 +214,13 @@ namespace DiKErnel::Core::Test
         calculator.WaitForCompletion();
 
         // When
-        const auto calculatorResult = calculator.GetCalculationOutput();
+        const auto calculatorResult = calculator.GetCalculatorResult();
 
         // Then
         ASSERT_EQ(nullptr, calculatorResult->GetResult());
     }
 
-    TEST_F(CalculatorTest, GivenCalculatorWithExceptionDuringCalculation_WhenGetCalculationOutput_ThenReturnResultWithNullPtrAndEvent)
+    TEST_F(CalculatorTest, GivenCalculatorWithExceptionDuringCalculation_WhenGetCalculatorResult_ThenReturnResultWithNullPtrAndEvent)
     {
         // Given
         const auto locationDependentInputMock = make_unique<NiceMock<ILocationDependentInputMock>>();
@@ -238,7 +238,7 @@ namespace DiKErnel::Core::Test
         calculator.WaitForCompletion();
 
         // When
-        const auto calculatorResult = calculator.GetCalculationOutput();
+        const auto calculatorResult = calculator.GetCalculatorResult();
 
         ASSERT_EQ(nullptr, calculatorResult->GetResult());
 
