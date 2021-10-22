@@ -94,8 +94,9 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
         const auto& events = outputComposerResult->GetEvents();
         ASSERT_EQ(1, events.size());
         const auto& event = events[0].get();
-        ASSERT_EQ("Invalid JsonOutputType.", event.GetMessage());
         ASSERT_EQ(EventType::Error, event.GetEventType());
+        ASSERT_EQ("An unhandled error occurred while composing Json output from the calculation data. See stack trace for more information:\n"
+                  "Invalid JsonOutputType.", event.GetMessage());
     }
 
     TEST_F(JsonOutputComposerTest, WriteCalculationOutputToJson_JsonOutputTypeFailure_ReturnsResultWithTrueAndNoEventsAndWritesExpectedValues)
@@ -130,7 +131,8 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
         const auto& events = outputComposerResult->GetEvents();
         ASSERT_EQ(1, events.size());
         const auto& event = events[0].get();
-        ASSERT_EQ("Invalid revetment type.", event.GetMessage());
         ASSERT_EQ(EventType::Error, event.GetEventType());
+        ASSERT_EQ("An unhandled error occurred while composing Json output from the calculation data. See stack trace for more information:\n"
+                  "Invalid revetment type.", event.GetMessage());
     }
 }
