@@ -18,185 +18,75 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
+#include <limits>
+
 #include <gtest/gtest.h>
 
 #include "NaturalStoneRevetmentValidator.h"
+#include "ValidatorAssertHelper.h"
 
 namespace DiKErnel::DomainLibrary::Test
 {
-    #pragma region RelativeDensity
+    using namespace std;
+    using namespace TestUtil;
 
-    TEST(NaturalStoneRevetmentValidatorTest, RelativeDensity_Zero_ReturnValidationIssueWithError)
+    TEST(NaturalStoneRevetmentValidatorTest, RelativeDensity_VariousScenarios_ExpectedValues)
     {
-        // Call
-        const auto validationIssue = NaturalStoneRevetmentValidator::RelativeDensity(0);
+        const auto validateAction = NaturalStoneRevetmentValidator::RelativeDensity;
 
-        // Assert
-        ASSERT_NE(nullptr, validationIssue);
-        ASSERT_EQ(ValidationIssueType::Error, validationIssue->GetValidationIssueType());
-        ASSERT_EQ("RelativeDensity must be in range {0, 10}.", validationIssue->GetMessage());
+        constexpr auto errorMessage = "RelativeDensity must be in range {0, 10}.";
+        constexpr auto warningMessage = "RelativeDensity should be in range [0.1, 5].";
+
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, -1 * numeric_limits<double>::infinity(), ValidationIssueType::Error,
+                                                  errorMessage);
+
+        ValidatorAssertHelper::AssertBelowBound(validateAction, 0, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, 0, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertAboveBound(validateAction, 0, ValidationIssueType::Warning, warningMessage);
+
+        ValidatorAssertHelper::AssertBelowBound(validateAction, 0.1, ValidationIssueType::Warning, warningMessage);
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, 0.1);
+        ValidatorAssertHelper::AssertAboveBound(validateAction, 0.1);
+
+        ValidatorAssertHelper::AssertBelowBound(validateAction, 5);
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, 5);
+        ValidatorAssertHelper::AssertAboveBound(validateAction, 5, ValidationIssueType::Warning, warningMessage);
+
+        ValidatorAssertHelper::AssertBelowBound(validateAction, 10, ValidationIssueType::Warning, warningMessage);
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, 10, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertAboveBound(validateAction, 10, ValidationIssueType::Error, errorMessage);
+
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, -1 * numeric_limits<double>::infinity(), ValidationIssueType::Error,
+                                                  errorMessage);
     }
 
-    TEST(NaturalStoneRevetmentValidatorTest, RelativeDensity_Ten_ReturnValidationIssueWithError)
+    TEST(NaturalStoneRevetmentValidatorTest, ThicknessTopLayer_VariousScenarios_ExpectedValues)
     {
-        // Call
-        const auto validationIssue = NaturalStoneRevetmentValidator::RelativeDensity(10);
+        const auto validateAction = NaturalStoneRevetmentValidator::ThicknessTopLayer;
 
-        // Assert
-        ASSERT_NE(nullptr, validationIssue);
-        ASSERT_EQ(ValidationIssueType::Error, validationIssue->GetValidationIssueType());
-        ASSERT_EQ("RelativeDensity must be in range {0, 10}.", validationIssue->GetMessage());
+        constexpr auto errorMessage = "ThicknessTopLayer must be in range {0, 1}.";
+        constexpr auto warningMessage = "ThicknessTopLayer should be in range [0.04, 0.6].";
+
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, -1 * numeric_limits<double>::infinity(), ValidationIssueType::Error,
+                                                  errorMessage);
+
+        ValidatorAssertHelper::AssertBelowBound(validateAction, 0, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, 0, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertAboveBound(validateAction, 0, ValidationIssueType::Warning, warningMessage);
+
+        ValidatorAssertHelper::AssertBelowBound(validateAction, 0.04, ValidationIssueType::Warning, warningMessage);
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, 0.04);
+        ValidatorAssertHelper::AssertAboveBound(validateAction, 0.04);
+
+        ValidatorAssertHelper::AssertBelowBound(validateAction, 0.6);
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, 0.6);
+        ValidatorAssertHelper::AssertAboveBound(validateAction, 0.6, ValidationIssueType::Warning, warningMessage);
+
+        ValidatorAssertHelper::AssertBelowBound(validateAction, 1, ValidationIssueType::Warning, warningMessage);
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, 1, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertAboveBound(validateAction, 1, ValidationIssueType::Error, errorMessage);
+
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, -1 * numeric_limits<double>::infinity(), ValidationIssueType::Error,
+                                                  errorMessage);
     }
-
-    TEST(NaturalStoneRevetmentValidatorTest, RelativeDensity_AboveZero_ReturnValidationIssueWithWarning)
-    {
-        // Call
-        const auto validationIssue = NaturalStoneRevetmentValidator::RelativeDensity(0.0000000001);
-
-        // Assert
-        ASSERT_NE(nullptr, validationIssue);
-        ASSERT_EQ(ValidationIssueType::Warning, validationIssue->GetValidationIssueType());
-        ASSERT_EQ("RelativeDensity should be in range [0.1, 5].", validationIssue->GetMessage());
-    }
-
-    TEST(NaturalStoneRevetmentValidatorTest, RelativeDensity_BelowZeroPointOne_ReturnValidationIssueWithWarning)
-    {
-        // Call
-        const auto validationIssue = NaturalStoneRevetmentValidator::RelativeDensity(0.0000000009);
-
-        // Assert
-        ASSERT_NE(nullptr, validationIssue);
-        ASSERT_EQ(ValidationIssueType::Warning, validationIssue->GetValidationIssueType());
-        ASSERT_EQ("RelativeDensity should be in range [0.1, 5].", validationIssue->GetMessage());
-    }
-
-    TEST(NaturalStoneRevetmentValidatorTest, RelativeDensity_AboveFive_ReturnValidationIssueWithWarning)
-    {
-        // Call
-        const auto validationIssue = NaturalStoneRevetmentValidator::RelativeDensity(5.0000000001);
-
-        // Assert
-        ASSERT_NE(nullptr, validationIssue);
-        ASSERT_EQ(ValidationIssueType::Warning, validationIssue->GetValidationIssueType());
-        ASSERT_EQ("RelativeDensity should be in range [0.1, 5].", validationIssue->GetMessage());
-    }
-
-    TEST(NaturalStoneRevetmentValidatorTest, RelativeDensity_BelowTen_ReturnValidationIssueWithWarning)
-    {
-        // Call
-        const auto validationIssue = NaturalStoneRevetmentValidator::RelativeDensity(9.9999999999);
-
-        // Assert
-        ASSERT_NE(nullptr, validationIssue);
-        ASSERT_EQ(ValidationIssueType::Warning, validationIssue->GetValidationIssueType());
-        ASSERT_EQ("RelativeDensity should be in range [0.1, 5].", validationIssue->GetMessage());
-    }
-
-    TEST(NaturalStoneRevetmentValidatorTest, RelativeDensity_ZeroPointOne_ReturnNullPtr)
-    {
-        // Call
-        const auto validationIssue = NaturalStoneRevetmentValidator::RelativeDensity(0.1);
-
-        // Assert
-        ASSERT_EQ(nullptr, validationIssue);
-    }
-
-    TEST(NaturalStoneRevetmentValidatorTest, RelativeDensity_Five_ReturnNullPtr)
-    {
-        // Call
-        const auto validationIssue = NaturalStoneRevetmentValidator::RelativeDensity(5);
-
-        // Assert
-        ASSERT_EQ(nullptr, validationIssue);
-    }
-
-    #pragma endregion
-
-    #pragma region ThicknessTopLayer
-
-    TEST(NaturalStoneRevetmentValidatorTest, ThicknessTopLayer_Zero_ReturnValidationIssueWithError)
-    {
-        // Call
-        const auto validationIssue = NaturalStoneRevetmentValidator::ThicknessTopLayer(0);
-
-        // Assert
-        ASSERT_NE(nullptr, validationIssue);
-        ASSERT_EQ(ValidationIssueType::Error, validationIssue->GetValidationIssueType());
-        ASSERT_EQ("ThicknessTopLayer must be in range {0, 1}.", validationIssue->GetMessage());
-    }
-
-    TEST(NaturalStoneRevetmentValidatorTest, ThicknessTopLayer_One_ReturnValidationIssueWithError)
-    {
-        // Call
-        const auto validationIssue = NaturalStoneRevetmentValidator::ThicknessTopLayer(1);
-
-        // Assert
-        ASSERT_NE(nullptr, validationIssue);
-        ASSERT_EQ(ValidationIssueType::Error, validationIssue->GetValidationIssueType());
-        ASSERT_EQ("ThicknessTopLayer must be in range {0, 1}.", validationIssue->GetMessage());
-    }
-
-    TEST(NaturalStoneRevetmentValidatorTest, ThicknessTopLayer_AboveZero_ReturnValidationIssueWithWarning)
-    {
-        // Call
-        const auto validationIssue = NaturalStoneRevetmentValidator::ThicknessTopLayer(0.0000000001);
-
-        // Assert
-        ASSERT_NE(nullptr, validationIssue);
-        ASSERT_EQ(ValidationIssueType::Warning, validationIssue->GetValidationIssueType());
-        ASSERT_EQ("ThicknessTopLayer should be in range [0.04, 0.6].", validationIssue->GetMessage());
-    }
-
-    TEST(NaturalStoneRevetmentValidatorTest, ThicknessTopLayer_BelowZeroPointZeroFour_ReturnValidationIssueWithWarning)
-    {
-        // Call
-        const auto validationIssue = NaturalStoneRevetmentValidator::ThicknessTopLayer(0.0333333339);
-
-        // Assert
-        ASSERT_NE(nullptr, validationIssue);
-        ASSERT_EQ(ValidationIssueType::Warning, validationIssue->GetValidationIssueType());
-        ASSERT_EQ("ThicknessTopLayer should be in range [0.04, 0.6].", validationIssue->GetMessage());
-    }
-
-    TEST(NaturalStoneRevetmentValidatorTest, ThicknessTopLayer_AboveZeroPointSix_ReturnValidationIssueWithWarning)
-    {
-        // Call
-        const auto validationIssue = NaturalStoneRevetmentValidator::ThicknessTopLayer(0.6000000001);
-
-        // Assert
-        ASSERT_NE(nullptr, validationIssue);
-        ASSERT_EQ(ValidationIssueType::Warning, validationIssue->GetValidationIssueType());
-        ASSERT_EQ("ThicknessTopLayer should be in range [0.04, 0.6].", validationIssue->GetMessage());
-    }
-
-    TEST(NaturalStoneRevetmentValidatorTest, ThicknessTopLayer_BelowOne_ReturnValidationIssueWithWarning)
-    {
-        // Call
-        const auto validationIssue = NaturalStoneRevetmentValidator::ThicknessTopLayer(0.9999999999);
-
-        // Assert
-        ASSERT_NE(nullptr, validationIssue);
-        ASSERT_EQ(ValidationIssueType::Warning, validationIssue->GetValidationIssueType());
-        ASSERT_EQ("ThicknessTopLayer should be in range [0.04, 0.6].", validationIssue->GetMessage());
-    }
-
-    TEST(NaturalStoneRevetmentValidatorTest, ThicknessTopLayer_ZeroPointZeroFour_ReturnNullPtr)
-    {
-        // Call
-        const auto validationIssue = NaturalStoneRevetmentValidator::ThicknessTopLayer(0.04);
-
-        // Assert
-        ASSERT_EQ(nullptr, validationIssue);
-    }
-
-    TEST(NaturalStoneRevetmentValidatorTest, ThicknessTopLayer_ZeroPointSix_ReturnNullPtr)
-    {
-        // Call
-        const auto validationIssue = NaturalStoneRevetmentValidator::ThicknessTopLayer(0.6);
-
-        // Assert
-        ASSERT_EQ(nullptr, validationIssue);
-    }
-
-    #pragma endregion
 }

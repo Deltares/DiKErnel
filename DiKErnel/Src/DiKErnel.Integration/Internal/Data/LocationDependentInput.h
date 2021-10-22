@@ -22,7 +22,6 @@
 
 #include <limits>
 
-#include "EventType.h"
 #include "ILocationDependentInput.h"
 #include "ValidationIssue.h"
 
