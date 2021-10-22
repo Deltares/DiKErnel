@@ -49,5 +49,14 @@ namespace DiKErnel::DomainLibrary
              */
             static std::unique_ptr<ValidationIssue> ThicknessTopLayer(
                 double thicknessTopLayer);
+
+            /*!
+             * \brief Validates the Aus coefficient.
+             * \param slopeUpperLevelAus
+             *        The Aus coefficient.
+             * \return A validation issue when the Aus coefficient is not valid; nullptr otherwise.
+             */
+            static std::unique_ptr<ValidationIssue> SlopeUpperLevelAus(
+                double slopeUpperLevelAus);
     };
 }

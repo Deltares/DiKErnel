@@ -55,4 +55,20 @@ namespace DiKErnel::DomainLibrary
 
         return nullptr;
     }
+
+    unique_ptr<ValidationIssue> NaturalStoneRevetmentValidator::SlopeUpperLevelAus(
+        const double slopeUpperLevelAus)
+    {
+        if(slopeUpperLevelAus <= 0)
+        {
+            return make_unique<ValidationIssue>(ValidationIssueType::Error, "SlopeUpperLevelAus must be above 0.");
+        }
+
+        if(slopeUpperLevelAus < 0.01 || slopeUpperLevelAus > 0.2)
+        {
+            return make_unique<ValidationIssue>(ValidationIssueType::Warning, "SlopeUpperLevelAus should be in range [0.01, 0.2].");
+        }
+
+        return nullptr;
+    }
 }

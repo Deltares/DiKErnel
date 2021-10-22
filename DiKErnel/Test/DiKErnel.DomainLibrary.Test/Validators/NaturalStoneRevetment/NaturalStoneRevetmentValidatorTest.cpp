@@ -56,8 +56,7 @@ namespace DiKErnel::DomainLibrary::Test
         ValidatorAssertHelper::AssertEqualToBound(validateAction, 10, ValidationIssueType::Error, errorMessage);
         ValidatorAssertHelper::AssertAboveBound(validateAction, 10, ValidationIssueType::Error, errorMessage);
 
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, -1 * numeric_limits<double>::infinity(), ValidationIssueType::Error,
-                                                  errorMessage);
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, numeric_limits<double>::infinity(), ValidationIssueType::Error, errorMessage);
     }
 
     TEST(NaturalStoneRevetmentValidatorTest, ThicknessTopLayer_VariousScenarios_ExpectedValues)
@@ -86,7 +85,31 @@ namespace DiKErnel::DomainLibrary::Test
         ValidatorAssertHelper::AssertEqualToBound(validateAction, 1, ValidationIssueType::Error, errorMessage);
         ValidatorAssertHelper::AssertAboveBound(validateAction, 1, ValidationIssueType::Error, errorMessage);
 
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, numeric_limits<double>::infinity(), ValidationIssueType::Error, errorMessage);
+    }
+
+    TEST(NaturalStoneRevetmentValidatorTest, SlopeUpperLevelAus_VariousScenarios_ExpectedValues)
+    {
+        const auto validateAction = NaturalStoneRevetmentValidator::SlopeUpperLevelAus;
+
+        constexpr auto errorMessage = "SlopeUpperLevelAus must be above 0.";
+        constexpr auto warningMessage = "SlopeUpperLevelAus should be in range [0.01, 0.2].";
+
         ValidatorAssertHelper::AssertEqualToBound(validateAction, -1 * numeric_limits<double>::infinity(), ValidationIssueType::Error,
                                                   errorMessage);
+
+        ValidatorAssertHelper::AssertBelowBound(validateAction, 0, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, 0, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertAboveBound(validateAction, 0, ValidationIssueType::Warning, warningMessage);
+
+        ValidatorAssertHelper::AssertBelowBound(validateAction, 0.01, ValidationIssueType::Warning, warningMessage);
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, 0.01);
+        ValidatorAssertHelper::AssertAboveBound(validateAction, 0.01);
+
+        ValidatorAssertHelper::AssertBelowBound(validateAction, 0.2);
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, 0.2);
+        ValidatorAssertHelper::AssertAboveBound(validateAction, 0.2, ValidationIssueType::Warning, warningMessage);
+
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, numeric_limits<double>::infinity(), ValidationIssueType::Warning, warningMessage);
     }
 }
