@@ -42,7 +42,8 @@ namespace DiKErnel::KernelWrapper::Json::Output
              *        The calculation output to write.
              * \param outputType
              *        The output type.
-             * \return A result with true when the file is successfully written or false otherwise.
+             * \return A result with true when the file is successfully written, or false
+             *         otherwise.
              */
             static std::unique_ptr<Util::Result<bool>> WriteCalculationOutputToJson(
                 const std::string& filePath,
