@@ -83,7 +83,7 @@ namespace DiKErnel::Core::Test
         ASSERT_FALSE(calculator.IsCancelled());
     }
 
-    TEST_F(CalculatorTest, GivenCalculator_WhenCalculationPerformedAndNoTimeOfFailure_ThenResultWithExpectedOutput)
+    TEST_F(CalculatorTest, GivenCalculator_WhenCalculationPerformedAndNoTimeOfFailure_ThenReturnResultWithExpectedOutput)
     {
         // Given
         const auto damage = 0.5;
@@ -121,7 +121,7 @@ namespace DiKErnel::Core::Test
         ASSERT_EQ(nullptr, locationDependentOutputItems[0].get().GetTimeOfFailure());
     }
 
-    TEST_F(CalculatorTest, GivenCalculator_WhenCalculationPerformedAndTimeOfFailure_ThenResultWithExpectedOutput)
+    TEST_F(CalculatorTest, GivenCalculator_WhenCalculationPerformedAndTimeOfFailure_ThenReturnResultWithExpectedOutput)
     {
         // Given
         const auto damage = 0.5;
@@ -217,8 +217,7 @@ namespace DiKErnel::Core::Test
         const auto calculatorResult = calculator.GetCalculationOutput();
 
         // Then
-        const auto* output = calculatorResult->GetResult();
-        ASSERT_EQ(nullptr, output);
+        ASSERT_EQ(nullptr, calculatorResult->GetResult());
     }
 
     TEST_F(CalculatorTest, GivenCalculatorWithExceptionDuringCalculation_WhenGetCalculationOutput_ThenReturnResultWithNullPtrAndEvent)
@@ -241,13 +240,12 @@ namespace DiKErnel::Core::Test
         // When
         const auto calculatorResult = calculator.GetCalculationOutput();
 
-        // Then
-        const auto* output = calculatorResult->GetResult();
-        ASSERT_EQ(nullptr, output);
+        ASSERT_EQ(nullptr, calculatorResult->GetResult());
 
         const auto& events = calculatorResult->GetEvents();
         ASSERT_EQ(1, events.size());
-        const auto event = events[0].get();
+
+        const auto& event = events[0].get();
         ASSERT_EQ(EventType::Error, event.GetEventType());
         ASSERT_EQ("An unhandled error occurred while performing the calculation. See stack trace for more information:\nException message",
                   event.GetMessage());
