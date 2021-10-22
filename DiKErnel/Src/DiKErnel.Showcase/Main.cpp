@@ -67,6 +67,8 @@ int main()
         atomic<UserInput> userInput;
         atomic calculationFinished(false);
 
+        #pragma region Obtaining calculation input
+
         // Obtain user input
         cout << "|===================|" << endl;
         cout << "| Calculation input |" << endl;
@@ -85,7 +87,7 @@ int main()
         const auto inputComposerResult = JsonInputComposer::GetInputDataFromJson(jsonFilePath);
         const auto* inputData = inputComposerResult->GetResult();
 
-        // Write log file
+        // Write to log file
         const auto logOutputPath = outputDirectory / (outputFileNameBase + ".txt");
         WriteToLogFile(logOutputPath.u8string(), inputComposerResult->GetEvents());
 
@@ -96,6 +98,10 @@ int main()
             cout << "|=====================|" << endl;
             cout << "-> An error occurred. See the log file for details" << endl;
             cout << "-> The log file is written to: " << logOutputPath << endl;
+
+            cout << endl << "Press 'Enter' to exit the application.";
+            cin.get();
+
             return -1;
         }
 
@@ -107,6 +113,10 @@ int main()
         cout << "|===========|" << endl;
         cout << "-> Number of read time steps: " << calculationInput->GetTimeDependentInputItems().size() - 1 << endl;
         cout << "-> Number of read locations: " << calculationInput->GetLocationDependentInputItems().size() << endl << endl;
+
+        #pragma endregion
+
+        #pragma region Performing calculation
 
         // Start stopwatch
         const auto start = chrono::high_resolution_clock::now();
@@ -146,60 +156,74 @@ int main()
         // Wait for actual completion of the calculation thread
         calculator.WaitForCompletion();
 
-        // Write log file
+        // Write to log file
         const auto calculatorResult = calculator.GetCalculatorResult();
         WriteToLogFile(logOutputPath.u8string(), calculatorResult->GetEvents());
 
-        // Write end message for the calculation
+        #pragma endregion
+
+        #pragma region Handling cancelled calculation
+
         if (calculator.GetCalculationState() == CalculationState::Cancelled)
         {
             cout << endl;
             cout << "|=======================|" << endl;
             cout << "| Calculation cancelled |" << endl;
             cout << "|=======================|" << endl;
+
+            cout << endl << "Press 'Enter' to exit the application.";
+            cin.get();
+
+            return -1;
         }
-        else
+
+        #pragma endregion
+
+        #pragma region Handling calculation that finished with errors
+
+        if (calculator.GetCalculationState() == CalculationState::FinishedWithErrors)
         {
-            // Determine output file path
-            const auto jsonOutputPath = outputDirectory / (outputFileNameBase + ".json");
-
-            // Write Json output to file
-            const auto* outputData = calculatorResult->GetResult();
-
-            if (outputData == nullptr)
-            {
-                cout << endl;
-                cout << "|====================|" << endl;
-                cout << "| Calculation failed |" << endl;
-                cout << "|====================|" << endl;
-                cout << "-> An error occurred. See the log file for details" << endl;
-                cout << "-> The log file is written to: " << logOutputPath << endl;
-                return -1;
-            }
-
-            const auto outputComposerResult = JsonOutputComposer::WriteCalculationOutputToJson(jsonOutputPath.u8string(), *outputData,
-                                                                                               ConvertProcessType(get<1>(*inputData)));
-
-            const auto* writeSucceeded = outputComposerResult->GetResult();
-            WriteToLogFile(logOutputPath.u8string(), outputComposerResult->GetEvents());
-
-            if (!*writeSucceeded)
-            {
-                cout << endl;
-                cout << "|================|" << endl;
-                cout << "| Writing failed |" << endl;
-                cout << "|================|" << endl;
-                cout << "-> An error occurred. See the log file for details" << endl;
-                cout << "-> The log file is written to: " << logOutputPath << endl;
-                return -1;
-            }
-
             cout << endl;
-            cout << "|========================|" << endl;
-            cout << "| Calculation successful |" << endl;
-            cout << "|========================|" << endl;
-            cout << "-> Calculation output is written to: " << jsonOutputPath << endl;
+            cout << "|====================|" << endl;
+            cout << "| Calculation failed |" << endl;
+            cout << "|====================|" << endl;
+            cout << "-> An error occurred. See the log file for details" << endl;
+            cout << "-> The log file is written to: " << logOutputPath << endl;
+
+            cout << endl << "Press 'Enter' to exit the application.";
+            cin.get();
+
+            return -1;
         }
+
+        #pragma endregion
+
+        // Determine output file path
+        const auto jsonOutputPath = outputDirectory / (outputFileNameBase + ".json");
+
+        const auto outputComposerResult = JsonOutputComposer::WriteCalculationOutputToJson(jsonOutputPath.u8string(),
+                                                                                           *calculatorResult->GetResult(),
+                                                                                           ConvertProcessType(get<1>(*inputData)));
+
+        // Write to log file
+        WriteToLogFile(logOutputPath.u8string(), outputComposerResult->GetEvents());
+
+        if (!*outputComposerResult->GetResult())
+        {
+            cout << endl;
+            cout << "|================|" << endl;
+            cout << "| Writing failed |" << endl;
+            cout << "|================|" << endl;
+            cout << "-> An error occurred. See the log file for details" << endl;
+            cout << "-> The log file is written to: " << logOutputPath << endl;
+            return -1;
+        }
+
+        cout << endl;
+        cout << "|========================|" << endl;
+        cout << "| Calculation successful |" << endl;
+        cout << "|========================|" << endl;
+        cout << "-> Calculation output is written to: " << jsonOutputPath << endl;
 
         // End stopwatch and write the elapsed time since the start of the calculation
         const auto end = chrono::high_resolution_clock::now();
