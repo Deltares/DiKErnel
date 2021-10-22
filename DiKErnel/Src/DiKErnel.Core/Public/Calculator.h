@@ -72,8 +72,10 @@ namespace DiKErnel::Core
 
             /*!
              * \brief Gets the result of the calculator.
-             * \return A result with the output of the calculation when the calculation is
-             *         successfully finished, or with nullptr otherwise.
+             * \return A result instance with output when the calculation is successfully finished,
+             *         or a result instance with nullptr when the calculation is either cancelled
+             *         or finished with errors. When the calculation is still running, a nullptr is
+             *         returned.
              */
             std::shared_ptr<Util::Result<CalculationOutput>> GetCalculatorResult() const;
 
@@ -81,7 +83,7 @@ namespace DiKErnel::Core
             std::thread _calculationThread;
             std::atomic<double> _progress = 0;
             std::atomic<CalculationState> _calculationState = CalculationState::Running;
-            std::shared_ptr<Util::Result<CalculationOutput>> _result;
+            std::shared_ptr<Util::Result<CalculationOutput>> _result = nullptr;
 
             void PerformCalculation(
                 const ICalculationInput& calculationInput,

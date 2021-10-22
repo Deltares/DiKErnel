@@ -123,8 +123,10 @@ namespace DiKErnel::Core
                 CreateResultWithCalculationOutput(locationDependentInputItems, timeDependentOutputItems);
 
                 calculationState = CalculationState::FinishedSuccessfully;
-
-                return;
+            }
+            else
+            {
+                CreateResultWithoutCalculationOutput();
             }
         }
         catch (const exception& e)
@@ -132,10 +134,10 @@ namespace DiKErnel::Core
             EventRegistry::Register(make_unique<Event>("An unhandled error occurred while performing the calculation. See stack trace for more "
                                                        "information:\n" + static_cast<string>(e.what()), EventType::Error));
 
+            CreateResultWithoutCalculationOutput();
+
             calculationState = CalculationState::FinishedWithErrors;
         }
-
-        CreateResultWithoutCalculationOutput();
     }
 
     void Calculator::CreateResultWithCalculationOutput(
