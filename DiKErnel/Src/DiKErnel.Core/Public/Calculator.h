@@ -87,7 +87,7 @@ namespace DiKErnel::Core
             std::atomic<double> _progress = 0;
             std::atomic<bool> _isFinished = false;
             std::atomic<bool> _isCancelled = false;
-            std::atomic<bool> _fatalErrorOccurred = false;
+            std::atomic<bool> _unhandledErrorOccurred = false;
             std::unique_ptr<CalculationOutput> _calculationOutput;
             std::vector<std::unique_ptr<Util::Event>> _events;
 
@@ -96,7 +96,7 @@ namespace DiKErnel::Core
                 std::atomic<double>& progress,
                 std::atomic<bool>& isFinished,
                 const std::atomic<bool>& isCancelled,
-                std::atomic<bool>& fatalErrorOccurred);
+                std::atomic<bool>& unhandledErrorOccurred);
 
             void CreateOutput(
                 const std::vector<std::reference_wrapper<ILocationDependentInput>>& locationDependentInputItems,

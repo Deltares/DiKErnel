@@ -39,7 +39,7 @@ namespace DiKErnel::Core
             ref(_progress),
             ref(_isFinished),
             ref(_isCancelled),
-            ref(_fatalErrorOccurred));
+            ref(_unhandledErrorOccurred));
     }
 
     void Calculator::WaitForCompletion()
@@ -77,7 +77,7 @@ namespace DiKErnel::Core
     {
         unique_ptr<CalculationOutput> output = nullptr;
 
-        if (_isFinished && !_fatalErrorOccurred)
+        if (_isFinished && !_unhandledErrorOccurred)
         {
             output = move(_calculationOutput);
         }
@@ -90,7 +90,7 @@ namespace DiKErnel::Core
         atomic<double>& progress,
         atomic<bool>& isFinished,
         const atomic<bool>& isCancelled,
-        atomic<bool>& fatalErrorOccurred)
+        atomic<bool>& unhandledErrorOccurred)
     {
         try
         {
@@ -145,7 +145,7 @@ namespace DiKErnel::Core
             EventRegistry::Register(make_unique<Event>("An unhandled error occurred while performing the calculation. See stack trace for more "
                                                        "information:\n" + static_cast<string>(e.what()), EventType::Error));
 
-            fatalErrorOccurred = true;
+            unhandledErrorOccurred = true;
         }
 
         _events = EventRegistry::Flush();
