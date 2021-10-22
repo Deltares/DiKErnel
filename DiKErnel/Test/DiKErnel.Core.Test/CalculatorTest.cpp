@@ -206,13 +206,15 @@ namespace DiKErnel::Core::Test
         EXPECT_CALL(calculationInput, GetLocationDependentInputItems).WillRepeatedly(ReturnRef(_locationDependentInputItemReferences));
         EXPECT_CALL(calculationInput, GetTimeDependentInputItems).WillRepeatedly(ReturnRef(_timeDependentInputItemReferences));
 
-        const Calculator calculator(calculationInput);
+        Calculator calculator(calculationInput);
 
         // When
         const auto calculatorResult = calculator.GetCalculatorResult();
 
         // Then
         ASSERT_EQ(nullptr, calculatorResult);
+
+        calculator.WaitForCompletion();
     }
 
     TEST_F(CalculatorTest, GivenCalculatorWithCancelledCalculation_WhenGetCalculatorResult_ThenReturnResultWithNullPtr)
