@@ -136,7 +136,7 @@ namespace DiKErnel::Core
 
             CreateResultWithoutCalculationOutput();
 
-            calculationState = CalculationState::FinishedWithErrors;
+            calculationState = CalculationState::FinishedInError;
         }
     }
 

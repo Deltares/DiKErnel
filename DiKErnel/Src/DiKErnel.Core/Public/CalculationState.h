@@ -30,6 +30,6 @@ namespace DiKErnel::Core
         Running,
         Cancelled,
         FinishedSuccessfully,
-        FinishedWithErrors
+        FinishedInError
     };
 }

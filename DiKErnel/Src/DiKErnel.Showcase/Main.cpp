@@ -67,9 +67,9 @@ int main()
         atomic<UserInput> userInput;
         atomic calculationFinished(false);
 
-        #pragma region Obtaining calculation input
+        #pragma region Reading calculation input
 
-        // Obtain user input
+        // Obtain input file path
         cout << "|===================|" << endl;
         cout << "| Calculation input |" << endl;
         cout << "|===================|" << endl;
@@ -91,6 +91,7 @@ int main()
         const auto logOutputPath = outputDirectory / (outputFileNameBase + ".txt");
         WriteToLogFile(logOutputPath.u8string(), inputComposerResult->GetEvents());
 
+        // Handle error during read operation
         if (inputData == nullptr)
         {
             cout << "|=====================|" << endl;
@@ -179,9 +180,9 @@ int main()
 
         #pragma endregion
 
-        #pragma region Handling calculation that finished with errors
+        #pragma region Handling calculation that finished in error
 
-        if (calculator.GetCalculationState() == CalculationState::FinishedWithErrors)
+        if (calculator.GetCalculationState() == CalculationState::FinishedInError)
         {
             cout << endl;
             cout << "|====================|" << endl;
@@ -198,9 +199,12 @@ int main()
 
         #pragma endregion
 
+        #pragma region Writing calculation output
+
         // Determine output file path
         const auto jsonOutputPath = outputDirectory / (outputFileNameBase + ".json");
 
+        // Write output Json file
         const auto outputComposerResult = JsonOutputComposer::WriteCalculationOutputToJson(jsonOutputPath.u8string(),
                                                                                            *calculatorResult->GetResult(),
                                                                                            ConvertProcessType(get<1>(*inputData)));
@@ -208,6 +212,7 @@ int main()
         // Write to log file
         WriteToLogFile(logOutputPath.u8string(), outputComposerResult->GetEvents());
 
+        // Handle error during write operation
         if (!*outputComposerResult->GetResult())
         {
             cout << endl;
@@ -218,6 +223,10 @@ int main()
             cout << "-> The log file is written to: " << logOutputPath << endl;
             return -1;
         }
+
+        #pragma endregion
+
+        #pragma region Writing final user feedback
 
         cout << endl;
         cout << "|========================|" << endl;
@@ -238,6 +247,8 @@ int main()
 
         // Wait for actual completion of the user input thread
         inputThread.join();
+
+        #pragma endregion
 
         return 0;
     }

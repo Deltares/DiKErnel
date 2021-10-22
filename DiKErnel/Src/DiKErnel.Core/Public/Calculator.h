@@ -74,7 +74,7 @@ namespace DiKErnel::Core
              * \brief Gets the result of the calculator.
              * \return A result instance with output when the calculation is successfully finished,
              *         or a result instance with nullptr when the calculation is either cancelled
-             *         or finished with errors. When the calculation is still running, a nullptr is
+             *         or finished in error. When the calculation is still running, a nullptr is
              *         returned.
              */
             std::shared_ptr<Util::Result<CalculationOutput>> GetCalculatorResult() const;
