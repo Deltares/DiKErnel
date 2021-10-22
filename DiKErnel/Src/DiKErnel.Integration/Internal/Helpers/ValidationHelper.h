@@ -20,8 +20,6 @@
 
 #pragma once
 
-#include <memory>
-
 #include "EventType.h"
 #include "ValidationIssue.h"
 
@@ -31,7 +29,7 @@ namespace DiKErnel::Integration
     {
         public:
             static bool RegisterValidationIssue(
-                const std::unique_ptr<DomainLibrary::ValidationIssue>& validationIssue);
+                const DomainLibrary::ValidationIssue* validationIssue);
 
         private:
             static Util::EventType ConvertValidationIssueType(

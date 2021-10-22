@@ -45,8 +45,11 @@ namespace DiKErnel::Integration
 
     bool LocationDependentInput::Validate()
     {
-        return ValidationHelper::RegisterValidationIssue(RevetmentValidator::InitialDamage(_initialDamage))
-                && ValidationHelper::RegisterValidationIssue(RevetmentValidator::FailureNumber(_failureNumber, _initialDamage));
+        const auto initialDamage = RevetmentValidator::InitialDamage(_initialDamage);
+        const auto failureNumber = RevetmentValidator::FailureNumber(_failureNumber, _initialDamage);
+
+        return ValidationHelper::RegisterValidationIssue(initialDamage.get())
+                && ValidationHelper::RegisterValidationIssue(failureNumber.get());
     }
 
     unique_ptr<TimeDependentOutput> LocationDependentInput::Calculate(

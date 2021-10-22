@@ -31,7 +31,7 @@ namespace DiKErnel::Integration
     using namespace Util;
 
     bool ValidationHelper::RegisterValidationIssue(
-        const unique_ptr<ValidationIssue>& validationIssue)
+        const ValidationIssue* validationIssue)
     {
         if (validationIssue != nullptr)
         {
@@ -58,8 +58,8 @@ namespace DiKErnel::Integration
                 return EventType::Warning;
             case ValidationIssueType::Error:
                 return EventType::Error;
+            default:
+                throw out_of_range("Invalid ValidationIssueType.");
         }
-
-        throw out_of_range("Invalid ValidationIssueType.");
     }
 }
