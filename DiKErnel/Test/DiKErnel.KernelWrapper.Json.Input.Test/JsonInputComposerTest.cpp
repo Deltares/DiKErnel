@@ -83,7 +83,6 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
 
             const auto& event = events[0].get();
             ASSERT_EQ(EventType::Error, event.GetEventType());
-
             ASSERT_EQ("An unhandled error occurred while composing calculation data from the Json input. See stack trace for more information:\n"
                       + expectedStackTrace, event.GetMessage());
         }

@@ -142,7 +142,9 @@ namespace DiKErnel::Core
         }
         catch (const exception& e)
         {
-            EventRegistry::Register(make_unique<Event>(e.what(), EventType::Error));
+            EventRegistry::Register(make_unique<Event>("An unhandled error occurred while performing the calculation. See stack trace for more "
+                                                       "information:\n" + static_cast<string>(e.what()), EventType::Error));
+
             fatalErrorOccurred = true;
         }
 

@@ -249,6 +249,7 @@ namespace DiKErnel::Core::Test
         ASSERT_EQ(1, events.size());
         const auto event = events[0].get();
         ASSERT_EQ(EventType::Error, event.GetEventType());
-        ASSERT_EQ("Exception message", event.GetMessage());
+        ASSERT_EQ("An unhandled error occurred while performing the calculation. See stack trace for more information:\nException message",
+                  event.GetMessage());
     }
 }
