@@ -58,5 +58,14 @@ namespace DiKErnel::DomainLibrary
              */
             static std::unique_ptr<ValidationIssue> SlopeUpperLevelAus(
                 double slopeUpperLevelAus);
+
+            /*!
+             * \brief Validates the Als coefficient.
+             * \param slopeLowerLevelAls
+             *        The Als coefficient.
+             * \return A validation issue when the Als coefficient is not valid; nullptr otherwise.
+             */
+            static std::unique_ptr<ValidationIssue> SlopeLowerLevelAls(
+                double slopeLowerLevelAls);
     };
 }

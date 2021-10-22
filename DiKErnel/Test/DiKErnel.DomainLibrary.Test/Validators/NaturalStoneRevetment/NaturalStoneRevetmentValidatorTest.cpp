@@ -112,4 +112,29 @@ namespace DiKErnel::DomainLibrary::Test
 
         ValidatorAssertHelper::AssertEqualToBound(validateAction, numeric_limits<double>::infinity(), ValidationIssueType::Warning, warningMessage);
     }
+
+    TEST(NaturalStoneRevetmentValidatorTest, SlopeLowerLevelAls_VariousScenarios_ExpectedValues)
+    {
+        const auto validateAction = NaturalStoneRevetmentValidator::SlopeLowerLevelAls;
+
+        constexpr auto errorMessage = "SlopeLowerLevelAls must be above 0.";
+        constexpr auto warningMessage = "SlopeLowerLevelAls should be in range [1, 2].";
+
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, -1 * numeric_limits<double>::infinity(), ValidationIssueType::Error,
+                                                  errorMessage);
+
+        ValidatorAssertHelper::AssertBelowBound(validateAction, 0, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, 0, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertAboveBound(validateAction, 0, ValidationIssueType::Warning, warningMessage);
+
+        ValidatorAssertHelper::AssertBelowBound(validateAction, 1, ValidationIssueType::Warning, warningMessage);
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, 1);
+        ValidatorAssertHelper::AssertAboveBound(validateAction, 1);
+
+        ValidatorAssertHelper::AssertBelowBound(validateAction, 2);
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, 2);
+        ValidatorAssertHelper::AssertAboveBound(validateAction, 2, ValidationIssueType::Warning, warningMessage);
+
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, numeric_limits<double>::infinity(), ValidationIssueType::Warning, warningMessage);
+    }
 }

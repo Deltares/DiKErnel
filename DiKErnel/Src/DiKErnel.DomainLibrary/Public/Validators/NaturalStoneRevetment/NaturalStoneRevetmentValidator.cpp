@@ -71,4 +71,20 @@ namespace DiKErnel::DomainLibrary
 
         return nullptr;
     }
+
+    std::unique_ptr<ValidationIssue> NaturalStoneRevetmentValidator::SlopeLowerLevelAls(
+        const double slopeLowerLevelAls)
+    {
+        if (slopeLowerLevelAls <= 0)
+        {
+            return make_unique<ValidationIssue>(ValidationIssueType::Error, "SlopeLowerLevelAls must be above 0.");
+        }
+
+        if (slopeLowerLevelAls < 1 || slopeLowerLevelAls > 2)
+        {
+            return make_unique<ValidationIssue>(ValidationIssueType::Warning, "SlopeLowerLevelAls should be in range [1, 2].");
+        }
+
+        return nullptr;
+    }
 }
