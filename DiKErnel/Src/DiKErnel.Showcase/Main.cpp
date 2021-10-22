@@ -128,7 +128,7 @@ int main()
             ref(userInput));
 
         // Handle user input until the calculation is finished
-        while (!calculator.IsFinished())
+        while (calculator.GetCalculationState() == CalculationState::Running)
         {
             if (userInput == UserInput::Cancel)
             {
@@ -147,7 +147,7 @@ int main()
         calculator.WaitForCompletion();
 
         // Write end message for the calculation
-        if (calculator.IsCancelled())
+        if (calculator.GetCalculationState() == CalculationState::Cancelled)
         {
             cout << endl;
             cout << "|=======================|" << endl;
