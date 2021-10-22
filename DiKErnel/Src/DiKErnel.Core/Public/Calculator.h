@@ -80,7 +80,7 @@ namespace DiKErnel::Core
              * \return A result with the output of the calculation when the calculation is
              *         successfully finished, or with nullptr otherwise.
              */
-            std::shared_ptr<Util::Result<CalculationOutput>> GetCalculationOutput();
+            std::shared_ptr<Util::Result<CalculationOutput>> GetCalculationOutput() const;
 
         private:
             std::thread _calculationThread;
@@ -88,8 +88,6 @@ namespace DiKErnel::Core
             std::atomic<bool> _isFinished = false;
             std::atomic<bool> _isCancelled = false;
             std::atomic<bool> _unhandledErrorOccurred = false;
-            std::unique_ptr<CalculationOutput> _calculationOutput;
-            std::vector<std::unique_ptr<Util::Event>> _events;
             std::shared_ptr<Util::Result<CalculationOutput>> _result;
 
             void PerformCalculation(
@@ -102,5 +100,7 @@ namespace DiKErnel::Core
             void CreateResultWithCalculationOutput(
                 const std::vector<std::reference_wrapper<ILocationDependentInput>>& locationDependentInputItems,
                 std::vector<std::vector<std::unique_ptr<TimeDependentOutput>>>& timeDependentOutputItems);
+
+            void CreateResultWithoutCalculationOutput();
     };
 }

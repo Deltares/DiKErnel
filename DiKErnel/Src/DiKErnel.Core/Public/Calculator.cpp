@@ -73,15 +73,8 @@ namespace DiKErnel::Core
         return _isCancelled;
     }
 
-    shared_ptr<Result<CalculationOutput>> Calculator::GetCalculationOutput()
+    shared_ptr<Result<CalculationOutput>> Calculator::GetCalculationOutput() const
     {
-        unique_ptr<CalculationOutput> output = nullptr;
-
-        if (_isFinished && !_unhandledErrorOccurred)
-        {
-            output = move(_calculationOutput);
-        }
-
         return _result;
     }
 
@@ -137,7 +130,10 @@ namespace DiKErnel::Core
             if (!isCancelled)
             {
                 CreateResultWithCalculationOutput(locationDependentInputItems, timeDependentOutputItems);
+
                 isFinished = true;
+
+                return;
             }
         }
         catch (const exception& e)
@@ -148,7 +144,7 @@ namespace DiKErnel::Core
             unhandledErrorOccurred = true;
         }
 
-        _events = EventRegistry::Flush();
+        CreateResultWithoutCalculationOutput();
     }
 
     void Calculator::CreateResultWithCalculationOutput(
@@ -165,5 +161,10 @@ namespace DiKErnel::Core
 
         _result = make_shared<Result<CalculationOutput>>(make_unique<CalculationOutput>(move(locationDependentOutputItems)),
                                                          EventRegistry::Flush());
+    }
+
+    void Calculator::CreateResultWithoutCalculationOutput()
+    {
+        _result = make_shared<Result<CalculationOutput>>(nullptr, EventRegistry::Flush());
     }
 }
