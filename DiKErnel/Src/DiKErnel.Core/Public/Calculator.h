@@ -90,6 +90,7 @@ namespace DiKErnel::Core
             std::atomic<bool> _unhandledErrorOccurred = false;
             std::unique_ptr<CalculationOutput> _calculationOutput;
             std::vector<std::unique_ptr<Util::Event>> _events;
+            std::shared_ptr<Util::Result<CalculationOutput>> _result;
 
             void PerformCalculation(
                 const ICalculationInput& calculationInput,
@@ -98,7 +99,7 @@ namespace DiKErnel::Core
                 const std::atomic<bool>& isCancelled,
                 std::atomic<bool>& unhandledErrorOccurred);
 
-            void CreateOutput(
+            void CreateResultWithCalculationOutput(
                 const std::vector<std::reference_wrapper<ILocationDependentInput>>& locationDependentInputItems,
                 std::vector<std::vector<std::unique_ptr<TimeDependentOutput>>>& timeDependentOutputItems);
     };
