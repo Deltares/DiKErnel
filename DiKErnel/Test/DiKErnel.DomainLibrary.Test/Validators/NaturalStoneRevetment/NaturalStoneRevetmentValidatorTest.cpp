@@ -24,6 +24,8 @@
 
 namespace DiKErnel::DomainLibrary::Test
 {
+    #pragma region RelativeDensity
+
     TEST(NaturalStoneRevetmentValidatorTest, RelativeDensity_Zero_ReturnValidationIssueWithError)
     {
         // Call
@@ -107,4 +109,94 @@ namespace DiKErnel::DomainLibrary::Test
         // Assert
         ASSERT_EQ(nullptr, validationIssue);
     }
+
+    #pragma endregion
+
+    #pragma region ThicknessTopLayer
+
+    TEST(NaturalStoneRevetmentValidatorTest, ThicknessTopLayer_Zero_ReturnValidationIssueWithError)
+    {
+        // Call
+        const auto validationIssue = NaturalStoneRevetmentValidator::ThicknessTopLayer(0);
+
+        // Assert
+        ASSERT_NE(nullptr, validationIssue);
+        ASSERT_EQ(ValidationIssueType::Error, validationIssue->GetValidationIssueType());
+        ASSERT_EQ("ThicknessTopLayer must be in range {0, 1}.", validationIssue->GetMessage());
+    }
+
+    TEST(NaturalStoneRevetmentValidatorTest, ThicknessTopLayer_One_ReturnValidationIssueWithError)
+    {
+        // Call
+        const auto validationIssue = NaturalStoneRevetmentValidator::ThicknessTopLayer(1);
+
+        // Assert
+        ASSERT_NE(nullptr, validationIssue);
+        ASSERT_EQ(ValidationIssueType::Error, validationIssue->GetValidationIssueType());
+        ASSERT_EQ("ThicknessTopLayer must be in range {0, 1}.", validationIssue->GetMessage());
+    }
+
+    TEST(NaturalStoneRevetmentValidatorTest, ThicknessTopLayer_AboveZero_ReturnValidationIssueWithWarning)
+    {
+        // Call
+        const auto validationIssue = NaturalStoneRevetmentValidator::ThicknessTopLayer(0.0000000001);
+
+        // Assert
+        ASSERT_NE(nullptr, validationIssue);
+        ASSERT_EQ(ValidationIssueType::Warning, validationIssue->GetValidationIssueType());
+        ASSERT_EQ("ThicknessTopLayer should be in range [0.04, 0.6].", validationIssue->GetMessage());
+    }
+
+    TEST(NaturalStoneRevetmentValidatorTest, ThicknessTopLayer_BelowZeroPointZeroFour_ReturnValidationIssueWithWarning)
+    {
+        // Call
+        const auto validationIssue = NaturalStoneRevetmentValidator::ThicknessTopLayer(0.0333333339);
+
+        // Assert
+        ASSERT_NE(nullptr, validationIssue);
+        ASSERT_EQ(ValidationIssueType::Warning, validationIssue->GetValidationIssueType());
+        ASSERT_EQ("ThicknessTopLayer should be in range [0.04, 0.6].", validationIssue->GetMessage());
+    }
+
+    TEST(NaturalStoneRevetmentValidatorTest, ThicknessTopLayer_AboveZeroPointSix_ReturnValidationIssueWithWarning)
+    {
+        // Call
+        const auto validationIssue = NaturalStoneRevetmentValidator::ThicknessTopLayer(0.6000000001);
+
+        // Assert
+        ASSERT_NE(nullptr, validationIssue);
+        ASSERT_EQ(ValidationIssueType::Warning, validationIssue->GetValidationIssueType());
+        ASSERT_EQ("ThicknessTopLayer should be in range [0.04, 0.6].", validationIssue->GetMessage());
+    }
+
+    TEST(NaturalStoneRevetmentValidatorTest, ThicknessTopLayer_BelowOne_ReturnValidationIssueWithWarning)
+    {
+        // Call
+        const auto validationIssue = NaturalStoneRevetmentValidator::ThicknessTopLayer(0.9999999999);
+
+        // Assert
+        ASSERT_NE(nullptr, validationIssue);
+        ASSERT_EQ(ValidationIssueType::Warning, validationIssue->GetValidationIssueType());
+        ASSERT_EQ("ThicknessTopLayer should be in range [0.04, 0.6].", validationIssue->GetMessage());
+    }
+
+    TEST(NaturalStoneRevetmentValidatorTest, ThicknessTopLayer_ZeroPointZeroFour_ReturnNullPtr)
+    {
+        // Call
+        const auto validationIssue = NaturalStoneRevetmentValidator::ThicknessTopLayer(0.04);
+
+        // Assert
+        ASSERT_EQ(nullptr, validationIssue);
+    }
+
+    TEST(NaturalStoneRevetmentValidatorTest, ThicknessTopLayer_ZeroPointSix_ReturnNullPtr)
+    {
+        // Call
+        const auto validationIssue = NaturalStoneRevetmentValidator::ThicknessTopLayer(0.6);
+
+        // Assert
+        ASSERT_EQ(nullptr, validationIssue);
+    }
+
+    #pragma endregion
 }

@@ -40,4 +40,19 @@ namespace DiKErnel::DomainLibrary
         return nullptr;
     }
 
+    unique_ptr<ValidationIssue> NaturalStoneRevetmentValidator::ThicknessTopLayer(
+        const double thicknessTopLayer)
+    {
+        if(thicknessTopLayer <= 0 || thicknessTopLayer >= 1)
+        {
+            return make_unique<ValidationIssue>(ValidationIssueType::Error, "ThicknessTopLayer must be in range {0, 1}.");
+        }
+
+        if(thicknessTopLayer < 0.04 || thicknessTopLayer > 0.6)
+        {
+            return make_unique<ValidationIssue>(ValidationIssueType::Warning, "ThicknessTopLayer should be in range [0.04, 0.6].");
+        }
+
+        return nullptr;
+    }
 }
