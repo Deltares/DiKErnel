@@ -53,7 +53,7 @@ namespace DiKErnel::DomainLibrary::Test
 
         // Assert
         ASSERT_NE(nullptr, validationIssue);
-        ASSERT_EQ(ValidationIssueType::Error, validationIssue->GetValidationIssueType());
+        ASSERT_EQ(ValidationIssueType::Warning, validationIssue->GetValidationIssueType());
         ASSERT_EQ("RelativeDensity should be in range [0.1, 5].", validationIssue->GetMessage());
     }
 
@@ -64,7 +64,7 @@ namespace DiKErnel::DomainLibrary::Test
 
         // Assert
         ASSERT_NE(nullptr, validationIssue);
-        ASSERT_EQ(ValidationIssueType::Error, validationIssue->GetValidationIssueType());
+        ASSERT_EQ(ValidationIssueType::Warning, validationIssue->GetValidationIssueType());
         ASSERT_EQ("RelativeDensity should be in range [0.1, 5].", validationIssue->GetMessage());
     }
 
@@ -75,7 +75,7 @@ namespace DiKErnel::DomainLibrary::Test
 
         // Assert
         ASSERT_NE(nullptr, validationIssue);
-        ASSERT_EQ(ValidationIssueType::Error, validationIssue->GetValidationIssueType());
+        ASSERT_EQ(ValidationIssueType::Warning, validationIssue->GetValidationIssueType());
         ASSERT_EQ("RelativeDensity should be in range [0.1, 5].", validationIssue->GetMessage());
     }
 
@@ -86,7 +86,7 @@ namespace DiKErnel::DomainLibrary::Test
 
         // Assert
         ASSERT_NE(nullptr, validationIssue);
-        ASSERT_EQ(ValidationIssueType::Error, validationIssue->GetValidationIssueType());
+        ASSERT_EQ(ValidationIssueType::Warning, validationIssue->GetValidationIssueType());
         ASSERT_EQ("RelativeDensity should be in range [0.1, 5].", validationIssue->GetMessage());
     }
 

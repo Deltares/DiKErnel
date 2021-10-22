@@ -34,7 +34,7 @@ namespace DiKErnel::DomainLibrary
 
         if(relativeDensity < 0.1 || relativeDensity > 5)
         {
-            return make_unique<ValidationIssue>(ValidationIssueType::Error, "RelativeDensity should be in range [0.1, 5].");
+            return make_unique<ValidationIssue>(ValidationIssueType::Warning, "RelativeDensity should be in range [0.1, 5].");
         }
 
         return nullptr;
