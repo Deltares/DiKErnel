@@ -127,7 +127,7 @@ int main()
             ref(calculationFinished),
             ref(userInput));
 
-        // Handle user input until the calculation is finished
+        // Handle user input while the calculation is running
         while (calculator.GetCalculationState() == CalculationState::Running)
         {
             if (userInput == UserInput::Cancel)
@@ -146,6 +146,10 @@ int main()
         // Wait for actual completion of the calculation thread
         calculator.WaitForCompletion();
 
+        // Write log file
+        const auto calculatorResult = calculator.GetCalculatorResult();
+        WriteToLogFile(logOutputPath.u8string(), calculatorResult->GetEvents());
+
         // Write end message for the calculation
         if (calculator.GetCalculationState() == CalculationState::Cancelled)
         {
@@ -160,13 +164,11 @@ int main()
             const auto jsonOutputPath = outputDirectory / (outputFileNameBase + ".json");
 
             // Write Json output to file
-            const auto calculatorResult = calculator.GetCalculatorResult();
             const auto* outputData = calculatorResult->GetResult();
-
-            WriteToLogFile(logOutputPath.u8string(), calculatorResult->GetEvents());
 
             if (outputData == nullptr)
             {
+                cout << endl;
                 cout << "|====================|" << endl;
                 cout << "| Calculation failed |" << endl;
                 cout << "|====================|" << endl;
