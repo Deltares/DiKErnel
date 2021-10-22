@@ -26,23 +26,49 @@ namespace DiKErnel::Util::Test
 {
     using namespace std;
 
-    TEST(ResultTest, Constructor_ExpectedValues)
+    TEST(ResultTest, Constructor_WithResultSet_ExpectedValues)
     {
         // Setup
-        const auto resultNumber = 45;
-        const auto message = "Test message";
-        const auto eventType = EventType::Error;
-        auto event = make_unique<Event>(message, eventType);
+        constexpr auto resultNumber = 45;
+        constexpr auto message = "Test message";
+        constexpr auto eventType = EventType::Error;
+
         auto events = vector<unique_ptr<Event>>();
-        events.push_back(move(event));
+
+        events.push_back(make_unique<Event>(message, eventType));
 
         // Call
         const Result result(make_unique<int>(resultNumber), move(events));
 
         // Assert
         ASSERT_EQ(resultNumber, *result.GetResult());
+
         ASSERT_EQ(1, result.GetEvents().size());
-        const auto eventResult = result.GetEvents()[0].get();
+
+        const auto& eventResult = result.GetEvents()[0].get();
+        ASSERT_EQ(message, eventResult.GetMessage());
+        ASSERT_EQ(eventType, eventResult.GetEventType());
+    }
+
+    TEST(ResultTest, Constructor_WithResultNotSet_ExpectedValues)
+    {
+        // Setup
+        constexpr auto message = "Test message";
+        constexpr auto eventType = EventType::Error;
+
+        auto events = vector<unique_ptr<Event>>();
+
+        events.push_back(make_unique<Event>(message, eventType));
+
+        // Call
+        const Result<int> result(nullptr, move(events));
+
+        // Assert
+        ASSERT_EQ(nullptr, result.GetResult());
+
+        ASSERT_EQ(1, result.GetEvents().size());
+
+        const auto& eventResult = result.GetEvents()[0].get();
         ASSERT_EQ(message, eventResult.GetMessage());
         ASSERT_EQ(eventType, eventResult.GetEventType());
     }
