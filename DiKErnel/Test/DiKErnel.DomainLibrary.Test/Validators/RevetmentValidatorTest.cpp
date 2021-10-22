@@ -46,17 +46,6 @@ namespace DiKErnel::DomainLibrary::Test
         ASSERT_EQ("InitialDamage should be smaller than 1.", validationIssue->GetMessage());
     }
 
-    TEST(RevetmentValidatorTest, InitialDamage_LargerThanOne_ReturnValidationIssueWithWarning)
-    {
-        // Call
-        const auto validationIssue = RevetmentValidator::InitialDamage(1.1);
-
-        // Assert
-        ASSERT_NE(nullptr, validationIssue);
-        ASSERT_EQ(ValidationIssueType::Warning, validationIssue->GetValidationIssueType());
-        ASSERT_EQ("InitialDamage should be smaller than 1.", validationIssue->GetMessage());
-    }
-
     TEST(RevetmentValidatorTest, InitialDamage_Zero_ReturnNullPtr)
     {
         // Call

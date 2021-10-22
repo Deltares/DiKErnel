@@ -24,17 +24,6 @@
 
 namespace DiKErnel::DomainLibrary::Test
 {
-    TEST(NaturalStoneRevetmentValidatorTest, RelativeDensity_BelowZero_ReturnValidationIssueWithError)
-    {
-        // Call
-        const auto validationIssue = NaturalStoneRevetmentValidator::RelativeDensity(-0.0000000001);
-
-        // Assert
-        ASSERT_NE(nullptr, validationIssue);
-        ASSERT_EQ(ValidationIssueType::Error, validationIssue->GetValidationIssueType());
-        ASSERT_EQ("RelativeDensity must be in range {0, 10}.", validationIssue->GetMessage());
-    }
-
     TEST(NaturalStoneRevetmentValidatorTest, RelativeDensity_Zero_ReturnValidationIssueWithError)
     {
         // Call
@@ -57,15 +46,15 @@ namespace DiKErnel::DomainLibrary::Test
         ASSERT_EQ("RelativeDensity must be in range {0, 10}.", validationIssue->GetMessage());
     }
 
-    TEST(NaturalStoneRevetmentValidatorTest, RelativeDensity_AboveTen_ReturnValidationIssueWithError)
+    TEST(NaturalStoneRevetmentValidatorTest, RelativeDensity_AboveZero_ReturnValidationIssueWithWarning)
     {
         // Call
-        const auto validationIssue = NaturalStoneRevetmentValidator::RelativeDensity(10.0000000001);
+        const auto validationIssue = NaturalStoneRevetmentValidator::RelativeDensity(0.0000000001);
 
         // Assert
         ASSERT_NE(nullptr, validationIssue);
         ASSERT_EQ(ValidationIssueType::Error, validationIssue->GetValidationIssueType());
-        ASSERT_EQ("RelativeDensity must be in range {0, 10}.", validationIssue->GetMessage());
+        ASSERT_EQ("RelativeDensity should be in range [0.1, 5].", validationIssue->GetMessage());
     }
 
     TEST(NaturalStoneRevetmentValidatorTest, RelativeDensity_BelowZeroPointOne_ReturnValidationIssueWithWarning)
@@ -83,6 +72,17 @@ namespace DiKErnel::DomainLibrary::Test
     {
         // Call
         const auto validationIssue = NaturalStoneRevetmentValidator::RelativeDensity(5.0000000001);
+
+        // Assert
+        ASSERT_NE(nullptr, validationIssue);
+        ASSERT_EQ(ValidationIssueType::Error, validationIssue->GetValidationIssueType());
+        ASSERT_EQ("RelativeDensity should be in range [0.1, 5].", validationIssue->GetMessage());
+    }
+
+    TEST(NaturalStoneRevetmentValidatorTest, RelativeDensity_BelowTen_ReturnValidationIssueWithWarning)
+    {
+        // Call
+        const auto validationIssue = NaturalStoneRevetmentValidator::RelativeDensity(9.9999999999);
 
         // Assert
         ASSERT_NE(nullptr, validationIssue);
