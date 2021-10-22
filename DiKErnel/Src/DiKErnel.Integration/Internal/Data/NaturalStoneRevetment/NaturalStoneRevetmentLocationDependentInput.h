@@ -68,6 +68,8 @@ namespace DiKErnel::Integration
 
             NaturalStoneRevetmentWaveAngleImpact& GetWaveAngleImpact() const;
 
+            bool Validate() override;
+
         protected:
             void InitializeDerivedLocationDependentInput(
                 const Core::IProfileData& profileData) override;

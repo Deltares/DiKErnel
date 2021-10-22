@@ -24,8 +24,10 @@
 #include "HydraulicLoadFunctions.h"
 #include "NaturalStoneRevetmentFunctions.h"
 #include "NaturalStoneRevetmentTimeDependentOutput.h"
+#include "NaturalStoneRevetmentValidator.h"
 #include "RevetmentFunctions.h"
 #include "TimeDependentInput.h"
+#include "ValidationHelper.h"
 
 namespace DiKErnel::Integration
 {
@@ -101,6 +103,22 @@ namespace DiKErnel::Integration
     NaturalStoneRevetmentWaveAngleImpact& NaturalStoneRevetmentLocationDependentInput::GetWaveAngleImpact() const
     {
         return *_waveAngleImpact;
+    }
+
+    bool NaturalStoneRevetmentLocationDependentInput::Validate()
+    {
+        const auto baseValidationSucceeded = LocationDependentInput::Validate();
+
+        const auto relativeDensity = NaturalStoneRevetmentValidator::RelativeDensity(_relativeDensity);
+        const auto thicknessTopLayer = NaturalStoneRevetmentValidator::ThicknessTopLayer(_thicknessTopLayer);
+        const auto slopeUpperLevelAus = NaturalStoneRevetmentValidator::SlopeUpperLevelAus(_slope->GetUpperLevelAus());
+        const auto slopeLowerLevelAls = NaturalStoneRevetmentValidator::SlopeLowerLevelAls(_slope->GetLowerLevelAls());
+
+        return ValidationHelper::RegisterValidationIssue(relativeDensity.get())
+                && ValidationHelper::RegisterValidationIssue(thicknessTopLayer.get())
+                && ValidationHelper::RegisterValidationIssue(slopeUpperLevelAus.get())
+                && ValidationHelper::RegisterValidationIssue(slopeLowerLevelAls.get())
+                && baseValidationSucceeded;
     }
 
     void NaturalStoneRevetmentLocationDependentInput::InitializeDerivedLocationDependentInput(
