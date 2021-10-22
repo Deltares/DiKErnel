@@ -22,5 +22,22 @@
 
 namespace DiKErnel::DomainLibrary
 {
-    
+    using namespace std;
+
+    unique_ptr<ValidationIssue> NaturalStoneRevetmentValidator::RelativeDensity(
+        const double relativeDensity)
+    {
+        if(relativeDensity <= 0 || relativeDensity >= 10)
+        {
+            return make_unique<ValidationIssue>(ValidationIssueType::Error, "RelativeDensity must be in range {0, 10}.");
+        }
+
+        if(relativeDensity < 0.1 || relativeDensity > 5)
+        {
+            return make_unique<ValidationIssue>(ValidationIssueType::Error, "RelativeDensity should be in range [0.1, 5].");
+        }
+
+        return nullptr;
+    }
+
 }

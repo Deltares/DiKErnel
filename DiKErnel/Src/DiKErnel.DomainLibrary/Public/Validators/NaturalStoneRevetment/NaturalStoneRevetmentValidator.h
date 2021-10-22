@@ -32,6 +32,14 @@ namespace DiKErnel::DomainLibrary
     class NaturalStoneRevetmentValidator
     {
         public:
-            
+            /*!
+             * \brief Validates the relative density.
+             * \param relativeDensity
+             *        The relative density.
+             * \return A validation issue when relative density is not valid; nullptr otherwise.
+             */
+            static std::unique_ptr<ValidationIssue> RelativeDensity(
+                double relativeDensity);
+
     };
 }
