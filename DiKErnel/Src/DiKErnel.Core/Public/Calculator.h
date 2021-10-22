@@ -24,7 +24,7 @@
 #include <thread>
 
 #include "CalculationOutput.h"
-#include "CalculatorState.h"
+#include "CalculationState.h"
 #include "ICalculationInput.h"
 #include "Result.h"
 
@@ -51,10 +51,10 @@ namespace DiKErnel::Core
             void WaitForCompletion();
 
             /*!
-             * \brief Gets the state of the calculator.
-             * \return The state of the calculator.
+             * \brief Gets the state of the calculation.
+             * \return The state of the calculation.
              */
-            CalculatorState GetCalculatorState() const;
+            CalculationState GetCalculationState() const;
 
             /*!
              * \brief Gets the current progress of the calculation.
@@ -80,13 +80,13 @@ namespace DiKErnel::Core
         private:
             std::thread _calculationThread;
             std::atomic<double> _progress = 0;
-            std::atomic<CalculatorState> _calculatorState = CalculatorState::Running;
+            std::atomic<CalculationState> _calculationState = CalculationState::Running;
             std::shared_ptr<Util::Result<CalculationOutput>> _result;
 
             void PerformCalculation(
                 const ICalculationInput& calculationInput,
                 std::atomic<double>& progress,
-                std::atomic<CalculatorState>& calculatorState);
+                std::atomic<CalculationState>& calculationState);
 
             void CreateResultWithCalculationOutput(
                 const std::vector<std::reference_wrapper<ILocationDependentInput>>& locationDependentInputItems,

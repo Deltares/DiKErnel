@@ -23,9 +23,9 @@
 namespace DiKErnel::Core
 {
     /*!
-     * \brief The different states a calculator instance can be in.
+     * \brief The different states a calculation can be in.
      */
-    enum class CalculatorState
+    enum class CalculationState
     {
         Running,
         Cancelled,

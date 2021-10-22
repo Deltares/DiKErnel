@@ -37,7 +37,7 @@ namespace DiKErnel::Core
             this,
             ref(calculationInput),
             ref(_progress),
-            ref(_calculatorState));
+            ref(_calculationState));
     }
 
     void Calculator::WaitForCompletion()
@@ -48,9 +48,9 @@ namespace DiKErnel::Core
         }
     }
 
-    CalculatorState Calculator::GetCalculatorState() const
+    CalculationState Calculator::GetCalculationState() const
     {
-        return _calculatorState;
+        return _calculationState;
     }
 
     int Calculator::GetProgress() const
@@ -60,9 +60,9 @@ namespace DiKErnel::Core
 
     void Calculator::Cancel()
     {
-        if (_calculatorState == CalculatorState::Running)
+        if (_calculationState == CalculationState::Running)
         {
-            _calculatorState = CalculatorState::Cancelled;
+            _calculationState = CalculationState::Cancelled;
         }
     }
 
@@ -74,7 +74,7 @@ namespace DiKErnel::Core
     void Calculator::PerformCalculation(
         const ICalculationInput& calculationInput,
         atomic<double>& progress,
-        std::atomic<CalculatorState>& calculatorState)
+        std::atomic<CalculationState>& calculationState)
     {
         try
         {
@@ -90,7 +90,7 @@ namespace DiKErnel::Core
 
             for (auto i = 0; i < static_cast<int>(timeDependentInputItems.size()); ++i)
             {
-                if (calculatorState == CalculatorState::Cancelled)
+                if (calculationState == CalculationState::Cancelled)
                 {
                     break;
                 }
@@ -99,7 +99,7 @@ namespace DiKErnel::Core
 
                 for (auto j = 0; j < static_cast<int>(locationDependentInputItems.size()); ++j)
                 {
-                    if (calculatorState == CalculatorState::Cancelled)
+                    if (calculationState == CalculationState::Cancelled)
                     {
                         break;
                     }
@@ -118,11 +118,11 @@ namespace DiKErnel::Core
                 }
             }
 
-            if (calculatorState != CalculatorState::Cancelled)
+            if (calculationState != CalculationState::Cancelled)
             {
                 CreateResultWithCalculationOutput(locationDependentInputItems, timeDependentOutputItems);
 
-                calculatorState = CalculatorState::FinishedSuccessfully;
+                calculationState = CalculationState::FinishedSuccessfully;
 
                 return;
             }
@@ -132,7 +132,7 @@ namespace DiKErnel::Core
             EventRegistry::Register(make_unique<Event>("An unhandled error occurred while performing the calculation. See stack trace for more "
                                                        "information:\n" + static_cast<string>(e.what()), EventType::Error));
 
-            calculatorState = CalculatorState::FinishedWithErrors;
+            calculationState = CalculationState::FinishedWithErrors;
         }
 
         CreateResultWithoutCalculationOutput();
