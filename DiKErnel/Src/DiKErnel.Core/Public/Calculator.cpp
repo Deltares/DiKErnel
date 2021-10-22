@@ -48,6 +48,11 @@ namespace DiKErnel::Core
         }
     }
 
+    CalculatorState Calculator::GetCalculatorState() const
+    {
+        return _calculatorState;
+    }
+
     int Calculator::GetProgress() const
     {
         return static_cast<int>(round(_progress * 100));

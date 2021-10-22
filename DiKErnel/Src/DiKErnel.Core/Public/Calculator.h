@@ -51,6 +51,12 @@ namespace DiKErnel::Core
             void WaitForCompletion();
 
             /*!
+             * \brief Gets the state of the calculator.
+             * \return The state of the calculator.
+             */
+            CalculatorState GetCalculatorState() const;
+
+            /*!
              * \brief Gets the current progress of the calculation.
              * \return The current progress of the calculation.
              *         Unit = [%]
