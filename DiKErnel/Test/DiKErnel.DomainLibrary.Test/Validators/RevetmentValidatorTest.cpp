@@ -24,8 +24,6 @@
 
 namespace DiKErnel::DomainLibrary::Test
 {
-    using namespace std;
-
     TEST(RevetmentValidatorTest, InitialDamage_BelowZero_ReturnValidationIssueWithError)
     {
         // Call
