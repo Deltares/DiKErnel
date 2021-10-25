@@ -57,5 +57,15 @@ namespace DiKErnel::DomainLibrary
              */
             static std::unique_ptr<ValidationIssue> FailureTension(
                 double failureTension);
+
+            /*!
+             * \brief Validates the impact number C coefficient.
+             * \param impactNumberC
+             *        The impact number C coefficient.
+             * \return A validation issue when the impact number C coefficient is not valid;
+             *         nullptr otherwise.
+             */
+            static std::unique_ptr<ValidationIssue> ImpactNumberC(
+                double impactNumberC);
     };
 }

@@ -77,4 +77,20 @@ namespace DiKErnel::DomainLibrary::Test
 
         ValidatorAssertHelper::AssertEqualToBound(validateAction, numeric_limits<double>::infinity());
     }
+
+    TEST(AsphaltRevetmentWaveImpactValidatorTest, ImpactNumberC_VariousScenarios_ExpectedValues)
+    {
+        const auto validateAction = AsphaltRevetmentWaveImpactValidator::ImpactNumberC;
+
+        constexpr auto errorMessage = "ImpactNumberC must be larger than 0.";
+
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, -1 * numeric_limits<double>::infinity(), ValidationIssueType::Error,
+                                                  errorMessage);
+
+        ValidatorAssertHelper::AssertBelowBound(validateAction, 0, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, 0, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertAboveBound(validateAction, 0);
+
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, numeric_limits<double>::infinity());
+    }
 }

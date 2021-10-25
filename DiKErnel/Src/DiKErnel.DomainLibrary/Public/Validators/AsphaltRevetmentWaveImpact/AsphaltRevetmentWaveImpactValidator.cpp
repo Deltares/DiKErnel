@@ -56,4 +56,15 @@ namespace DiKErnel::DomainLibrary
 
         return nullptr;
     }
+
+    unique_ptr<ValidationIssue> AsphaltRevetmentWaveImpactValidator::ImpactNumberC(
+        const double impactNumberC)
+    {
+        if (impactNumberC <= 0)
+        {
+            return make_unique<ValidationIssue>(ValidationIssueType::Error, "ImpactNumberC must be larger than 0.");
+        }
+
+        return nullptr;
+    }
 }
