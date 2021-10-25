@@ -32,7 +32,7 @@ namespace DiKErnel::KernelWrapper::Json::Output
     using namespace std;
     using namespace Util;
 
-    unique_ptr<Resuld> JsonOutputComposer::WriteCalculationOutputToJson(
+    unique_ptr<SimpleResult> JsonOutputComposer::WriteCalculationOutputToJson(
         const string& filePath,
         const CalculationOutput& calculationOutput,
         const JsonOutputType outputType)
@@ -54,6 +54,6 @@ namespace DiKErnel::KernelWrapper::Json::Output
                                                        "stack trace for more information:\n" + static_cast<string>(e.what()), EventType::Error));
         }
 
-        return make_unique<Resuld>(successful, EventRegistry::Flush());
+        return make_unique<SimpleResult>(successful, EventRegistry::Flush());
     }
 }

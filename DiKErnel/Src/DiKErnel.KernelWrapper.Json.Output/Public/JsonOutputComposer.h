@@ -24,7 +24,7 @@
 
 #include "CalculationOutput.h"
 #include "JsonOutputType.h"
-#include "Resuld.h"
+#include "SimpleResult.h"
 
 namespace DiKErnel::KernelWrapper::Json::Output
 {
@@ -44,7 +44,7 @@ namespace DiKErnel::KernelWrapper::Json::Output
              *        The output type.
              * \return The result of the operation.
              */
-            static std::unique_ptr<Util::Resuld> WriteCalculationOutputToJson(
+            static std::unique_ptr<Util::SimpleResult> WriteCalculationOutputToJson(
                 const std::string& filePath,
                 const Core::CalculationOutput& calculationOutput,
                 JsonOutputType outputType);
