@@ -67,8 +67,10 @@ namespace DiKErnel::Integration
         }
 
         const auto timeSteps = GenericValidator::TimeSteps(timeStepTimes);
+        const auto numberOfLocations = GenericValidator::NumberOfLocations(static_cast<int>(_locationDependentInputItems.size()));
 
-        return ValidationHelper::RegisterValidationIssue(timeSteps.get());
+        return ValidationHelper::RegisterValidationIssue(timeSteps.get())
+                && ValidationHelper::RegisterValidationIssue(numberOfLocations.get());
     }
 
     const IProfileData& CalculationInput::GetProfileData() const
