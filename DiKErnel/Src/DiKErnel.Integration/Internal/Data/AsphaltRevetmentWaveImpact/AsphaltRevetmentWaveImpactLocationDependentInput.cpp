@@ -22,8 +22,10 @@
 
 #include "AsphaltRevetmentWaveImpactFunctions.h"
 #include "AsphaltRevetmentWaveImpactTimeDependentOutput.h"
+#include "AsphaltRevetmentWaveImpactValidator.h"
 #include "Constants.h"
 #include "RevetmentFunctions.h"
+#include "ValidationHelper.h"
 
 namespace DiKErnel::Integration
 {
@@ -127,6 +129,36 @@ namespace DiKErnel::Integration
     const vector<tuple<double, double>>& AsphaltRevetmentWaveImpactLocationDependentInput::GetImpactFactors() const
     {
         return _impactFactors;
+    }
+
+    bool AsphaltRevetmentWaveImpactLocationDependentInput::Validate()
+    {
+        const auto baseValidationSucceeded = LocationDependentInput::Validate();
+
+        const auto fatigueAlpha = AsphaltRevetmentWaveImpactValidator::FatigueAlpha(_fatigue->GetAlpha());
+        const auto fatigueBeta = AsphaltRevetmentWaveImpactValidator::FatigueAlpha(_fatigue->GetBeta());
+        const auto failureTension = AsphaltRevetmentWaveImpactValidator::FailureTension(_failureTension);
+        const auto impactNumberC = AsphaltRevetmentWaveImpactValidator::ImpactNumberC(_impactNumberC);
+        const auto densityOfWater = AsphaltRevetmentWaveImpactValidator::DensityOfWater(_densityOfWater);
+        const auto soilElasticity = AsphaltRevetmentWaveImpactValidator::SoilElasticity(_soilElasticity);
+        const auto stiffnessRelationNu = AsphaltRevetmentWaveImpactValidator::StiffnessRelationNu(_stiffnessRelationNu);
+        const auto upperLayerThickness = AsphaltRevetmentWaveImpactValidator::Thickness(_upperLayer->GetThickness());
+        const auto upperLayerElasticModulus = AsphaltRevetmentWaveImpactValidator::Thickness(_upperLayer->GetElasticModulus());
+        const auto subLayerThickness = AsphaltRevetmentWaveImpactValidator::Thickness(_subLayer->GetThickness());
+        const auto subLayerElasticModulus = AsphaltRevetmentWaveImpactValidator::Thickness(_subLayer->GetElasticModulus());
+
+        return ValidationHelper::RegisterValidationIssue(fatigueAlpha.get())
+                && ValidationHelper::RegisterValidationIssue(fatigueBeta.get())
+                && ValidationHelper::RegisterValidationIssue(failureTension.get())
+                && ValidationHelper::RegisterValidationIssue(impactNumberC.get())
+                && ValidationHelper::RegisterValidationIssue(densityOfWater.get())
+                && ValidationHelper::RegisterValidationIssue(soilElasticity.get())
+                && ValidationHelper::RegisterValidationIssue(stiffnessRelationNu.get())
+                && ValidationHelper::RegisterValidationIssue(upperLayerThickness.get())
+                && ValidationHelper::RegisterValidationIssue(upperLayerElasticModulus.get())
+                && ValidationHelper::RegisterValidationIssue(subLayerThickness.get())
+                && ValidationHelper::RegisterValidationIssue(subLayerElasticModulus.get())
+                && baseValidationSucceeded;
     }
 
     void AsphaltRevetmentWaveImpactLocationDependentInput::InitializeDerivedLocationDependentInput(
