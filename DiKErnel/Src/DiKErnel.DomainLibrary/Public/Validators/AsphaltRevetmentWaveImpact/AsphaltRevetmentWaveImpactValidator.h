@@ -38,5 +38,15 @@ namespace DiKErnel::DomainLibrary
              */
             static std::unique_ptr<ValidationIssue> FatigueAlpha(
                 double fatigueAlpha);
+
+            /*!
+             * \brief Validates the fatigue beta coefficient.
+             * \param fatigueBeta
+             *        The fatigue beta coefficient.
+             * \return A validation issue when the fatigue beta coefficient is not valid;
+             *         nullptr otherwise.
+             */
+            static std::unique_ptr<ValidationIssue> FatigueBeta(
+                double fatigueBeta);
     };
 }

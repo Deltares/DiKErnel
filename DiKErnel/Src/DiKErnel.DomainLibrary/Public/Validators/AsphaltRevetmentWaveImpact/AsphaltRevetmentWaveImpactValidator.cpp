@@ -34,4 +34,15 @@ namespace DiKErnel::DomainLibrary
 
         return nullptr;
     }
+
+    unique_ptr<ValidationIssue> AsphaltRevetmentWaveImpactValidator::FatigueBeta(
+        const double fatigueBeta)
+    {
+        if (fatigueBeta <= 0)
+        {
+            return make_unique<ValidationIssue>(ValidationIssueType::Error, "FatigueBeta must be larger than 0.");
+        }
+
+        return nullptr;
+    }
 }
