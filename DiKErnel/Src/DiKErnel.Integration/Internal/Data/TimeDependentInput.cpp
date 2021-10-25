@@ -20,10 +20,15 @@
 
 #include "TimeDependentInput.h"
 
+#include "HydraulicLoadsValidator.h"
 #include "InvalidCalculationDataException.h"
+#include "TimeStepValidator.h"
+#include "ValidationHelper.h"
 
 namespace DiKErnel::Integration
 {
+    using namespace DomainLibrary;
+
     TimeDependentInput::TimeDependentInput(
         const int beginTime,
         const int endTime,
@@ -42,6 +47,19 @@ namespace DiKErnel::Integration
         {
             throw InvalidCalculationDataException("'beginTime' should be smaller than 'endTime'.");
         }
+    }
+
+    bool TimeDependentInput::Validate()
+    {
+        const auto incrementOfTime = TimeStepValidator::IncrementOfTime(_beginTime, _endTime);
+        const auto waveHeightHm0 = HydraulicLoadsValidator::WaveHeightHm0(_waveHeightHm0);
+        const auto wavePeriodTm10 = HydraulicLoadsValidator::WavePeriodTm10(_wavePeriodTm10);
+        const auto waveAngle = HydraulicLoadsValidator::WaveAngle(_waveAngle);
+
+        return ValidationHelper::RegisterValidationIssue(incrementOfTime.get())
+                && ValidationHelper::RegisterValidationIssue(waveHeightHm0.get())
+                && ValidationHelper::RegisterValidationIssue(wavePeriodTm10.get())
+                && ValidationHelper::RegisterValidationIssue(waveAngle.get());
     }
 
     int TimeDependentInput::GetBeginTime() const

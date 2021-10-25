@@ -34,6 +34,12 @@ namespace DiKErnel::Core
             virtual ~ITimeDependentInput() = default;
 
             /*!
+             * \brief Performs a time dependent validation.
+             * \return Indicator whether the validation succeeded.
+             */
+            virtual bool Validate() = 0;
+
+            /*!
              * \brief Gets the begin time.
              * \return The begin time.
              */
