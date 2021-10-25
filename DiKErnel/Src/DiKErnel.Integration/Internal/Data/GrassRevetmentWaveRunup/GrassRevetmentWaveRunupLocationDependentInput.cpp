@@ -20,9 +20,13 @@
 
 #include "GrassRevetmentWaveRunupLocationDependentInput.h"
 
+#include "GrassRevetmentWaveRunupValidator.h"
+#include "ValidationHelper.h"
+
 namespace DiKErnel::Integration
 {
     using namespace Core;
+    using namespace DomainLibrary;
     using namespace std;
 
     GrassRevetmentWaveRunupLocationDependentInput::GrassRevetmentWaveRunupLocationDependentInput(
@@ -85,5 +89,28 @@ namespace DiKErnel::Integration
     GrassRevetmentWaveRunupWaveAngleImpact& GrassRevetmentWaveRunupLocationDependentInput::GetWaveAngleImpact() const
     {
         return *_waveAngleImpact;
+    }
+
+    bool GrassRevetmentWaveRunupLocationDependentInput::Validate()
+    {
+        const auto baseValidationSucceeded = LocationDependentInput::Validate();
+
+        const auto representativeWaveRunup2PGammab = GrassRevetmentWaveRunupValidator::RepresentativeWaveRunup2PGammab(
+            _representative2P->GetGammab());
+        const auto representativeWaveRunup2PGammaf = GrassRevetmentWaveRunupValidator::RepresentativeWaveRunup2PGammaf(
+            _representative2P->GetGammaf());
+        const auto outerSlope = GrassRevetmentWaveRunupValidator::OuterSlope(_outerSlope);
+        const auto criticalFrontVelocity = GrassRevetmentWaveRunupValidator::CriticalFrontVelocity(_criticalFrontVelocity);
+        const auto increasedLoadTransitionAlphaM = GrassRevetmentWaveRunupValidator::IncreasedLoadTransitionAlphaM(_increasedLoadTransitionAlphaM);
+        const auto reducedStrengthTransitionAlphaS = GrassRevetmentWaveRunupValidator::ReducedStrengthTransitionAlphaS(
+            _reducedStrengthTransitionAlphaS);
+
+        return ValidationHelper::RegisterValidationIssue(representativeWaveRunup2PGammab.get())
+                && ValidationHelper::RegisterValidationIssue(representativeWaveRunup2PGammaf.get())
+                && ValidationHelper::RegisterValidationIssue(outerSlope.get())
+                && ValidationHelper::RegisterValidationIssue(criticalFrontVelocity.get())
+                && ValidationHelper::RegisterValidationIssue(increasedLoadTransitionAlphaM.get())
+                && ValidationHelper::RegisterValidationIssue(reducedStrengthTransitionAlphaS.get())
+                && baseValidationSucceeded;
     }
 }

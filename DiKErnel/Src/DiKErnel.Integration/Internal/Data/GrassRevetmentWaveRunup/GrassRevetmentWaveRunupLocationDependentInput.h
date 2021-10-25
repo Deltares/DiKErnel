@@ -47,6 +47,8 @@ namespace DiKErnel::Integration
 
             GrassRevetmentWaveRunupWaveAngleImpact& GetWaveAngleImpact() const;
 
+            bool Validate() override;
+
         protected:
             explicit GrassRevetmentWaveRunupLocationDependentInput(
                 double x,
