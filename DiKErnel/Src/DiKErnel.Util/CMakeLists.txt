@@ -11,6 +11,8 @@ set(SOURCEFILES_PUBLIC
   ${PUBLIC_FOLDER}/EventRegistry.cpp
   ${PUBLIC_FOLDER}/EventRegistry.h
   ${PUBLIC_FOLDER}/EventType.h
+  ${PUBLIC_FOLDER}/Resuld.cpp
+  ${PUBLIC_FOLDER}/Resuld.h
   ${PUBLIC_FOLDER}/Result.h
 )
 
