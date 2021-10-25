@@ -21,6 +21,7 @@
 #include <gtest/gtest.h>
 
 #include "ICalculationInputMock.h"
+#include "IProfileDataMock.h"
 #include "JsonInputComposerResult.h"
 #include "JsonInputProcessType.h"
 
@@ -28,17 +29,24 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
 {
     using namespace std;
     using namespace testing;
-    using namespace Core::TestUtil;
+    using namespace Core;
+    using namespace TestUtil;
 
     TEST(JsonInputComposerResultTest, Constructor_ExpectedValues)
     {
         // Setup
+        auto calculationInput = make_unique<ICalculationInputMock>();
+        unique_ptr<IProfileData> profileData = make_unique<IProfileDataMock>();
+
+        ON_CALL(*calculationInput, GetProfileData).WillByDefault(ReturnRef(*profileData));
+
         constexpr auto processType = JsonInputProcessType::Physics;
 
         // Call
-        const auto result = JsonInputComposerResult(make_unique<ICalculationInputMock>(), processType);
+        const auto result = JsonInputComposerResult(move(calculationInput), processType);
 
         // Assert
+        ASSERT_EQ(profileData.get(), &result.GetCalculationInput().GetProfileData());
         ASSERT_EQ(processType, result.GetProcessType());
     }
 }
