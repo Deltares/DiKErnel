@@ -68,6 +68,16 @@ namespace DiKErnel::DomainLibrary
             static std::unique_ptr<ValidationIssue> ImpactNumberC(
                 double impactNumberC);
 
+            /*!
+             * \brief Validates the density of water.
+             * \param densityOfWater
+             *        The density of water.
+             * \return A validation issue when the density of water is not valid;
+             *         nullptr otherwise.
+             */
+            static std::unique_ptr<ValidationIssue> DensityOfWater(
+                double densityOfWater);
+
         private:
             static std::unique_ptr<ValidationIssue> ValidateLargerThanZero(
                 double propertyToValidate,

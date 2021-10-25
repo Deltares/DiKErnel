@@ -48,11 +48,22 @@ namespace DiKErnel::DomainLibrary
         return ValidateLargerThanZero(impactNumberC, "ImpactNumberC");
     }
 
+    unique_ptr<ValidationIssue> AsphaltRevetmentWaveImpactValidator::DensityOfWater(
+        const double densityOfWater)
+    {
+        if (densityOfWater < 950 || densityOfWater > 1050)
+        {
+            return make_unique<ValidationIssue>(ValidationIssueType::Error, "DensityOfWater must be in range [950, 1050].");
+        }
+
+        return nullptr;
+    }
+
     unique_ptr<ValidationIssue> AsphaltRevetmentWaveImpactValidator::ValidateLargerThanZero(
         const double propertyToValidate,
         const string& propertyName)
     {
-        if(propertyToValidate <= 0)
+        if (propertyToValidate <= 0)
         {
             return make_unique<ValidationIssue>(ValidationIssueType::Error, propertyName + " must be larger than 0.");
         }

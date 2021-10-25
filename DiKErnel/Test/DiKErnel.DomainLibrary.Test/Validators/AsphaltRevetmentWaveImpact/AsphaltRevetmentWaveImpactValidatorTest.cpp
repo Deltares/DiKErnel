@@ -93,4 +93,24 @@ namespace DiKErnel::DomainLibrary::Test
 
         ValidatorAssertHelper::AssertEqualToBound(validateAction, numeric_limits<double>::infinity());
     }
+
+    TEST(AsphaltRevetmentWaveImpactValidatorTest, DensityOfWater_VariousScenarios_ExpectedValues)
+    {
+        const auto validateAction = AsphaltRevetmentWaveImpactValidator::DensityOfWater;
+
+        constexpr auto errorMessage = "DensityOfWater must be in range [950, 1050].";
+
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, -1 * numeric_limits<double>::infinity(), ValidationIssueType::Error,
+                                                  errorMessage);
+
+        ValidatorAssertHelper::AssertBelowBound(validateAction, 950, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, 950);
+        ValidatorAssertHelper::AssertAboveBound(validateAction, 950);
+
+        ValidatorAssertHelper::AssertBelowBound(validateAction, 1050);
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, 1050);
+        ValidatorAssertHelper::AssertAboveBound(validateAction, 1050, ValidationIssueType::Error, errorMessage);
+
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, numeric_limits<double>::infinity(), ValidationIssueType::Error, errorMessage);
+    }
 }
