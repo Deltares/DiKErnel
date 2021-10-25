@@ -23,4 +23,36 @@
 namespace DiKErnel::DomainLibrary
 {
     using namespace std;
+
+    unique_ptr<ValidationIssue> HydraulicLoadsValidator::WaveHeightHm0(
+        const double waveHeightHm0)
+    {
+        if (waveHeightHm0 <= 0)
+        {
+            return make_unique<ValidationIssue>(ValidationIssueType::Error, "WaveHeightHm0 must be larger than 0.");
+        }
+
+        if (waveHeightHm0 <= 0.1 || waveHeightHm0 >= 10)
+        {
+            return make_unique<ValidationIssue>(ValidationIssueType::Warning, "WaveHeightHm0 should be in range {0.1, 10}.");
+        }
+
+        return nullptr;
+    }
+
+    unique_ptr<ValidationIssue> HydraulicLoadsValidator::WavePeriodTm10(
+        const double wavePeriodTm10)
+    {
+        if (wavePeriodTm10 <= 0)
+        {
+            return make_unique<ValidationIssue>(ValidationIssueType::Error, "WavePeriodTm10 must be larger than 0.");
+        }
+
+        if (wavePeriodTm10 <= 0.5 || wavePeriodTm10 >= 25)
+        {
+            return make_unique<ValidationIssue>(ValidationIssueType::Warning, "WavePeriodTm10 should be in range {0.5, 25}.");
+        }
+
+        return nullptr;
+    }
 }

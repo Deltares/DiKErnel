@@ -25,7 +25,55 @@
 
 namespace DiKErnel::DomainLibrary::Test
 {
+    using namespace TestUtil;
     using namespace std;
 
-    
+    TEST(HydraulicLoadsTest, WaveHeightHm0_VariousScenarios_ExpectedValues)
+    {
+        const auto validateAction = HydraulicLoadsValidator::WaveHeightHm0;
+
+        constexpr auto errorMessage = "WaveHeightHm0 must be larger than 0.";
+        constexpr auto warningMessage = "WaveHeightHm0 should be in range {0.1, 10}.";
+
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, -1 * numeric_limits<double>::infinity(), ValidationIssueType::Error,
+                                                  errorMessage);
+
+        ValidatorAssertHelper::AssertBelowBound(validateAction, 0, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, 0, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertAboveBound(validateAction, 0, ValidationIssueType::Warning, warningMessage);
+
+        ValidatorAssertHelper::AssertBelowBound(validateAction, 0.1, ValidationIssueType::Warning, warningMessage);
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, 0.1, ValidationIssueType::Warning, warningMessage);
+        ValidatorAssertHelper::AssertAboveBound(validateAction, 0.1);
+
+        ValidatorAssertHelper::AssertBelowBound(validateAction, 10);
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, 10, ValidationIssueType::Warning, warningMessage);
+        ValidatorAssertHelper::AssertAboveBound(validateAction, 10, ValidationIssueType::Warning, warningMessage);
+
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, numeric_limits<double>::infinity(), ValidationIssueType::Warning, warningMessage);
+    }
+
+    TEST(HydraulicLoadsTest, WavePeriodTm10_VariousScenarios_ExpectedValues)
+    {
+        const auto validateAction = HydraulicLoadsValidator::WavePeriodTm10;
+
+        constexpr auto errorMessage = "WavePeriodTm10 must be larger than 0.";
+        constexpr auto warningMessage = "WavePeriodTm10 should be in range {0.5, 25}.";
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, -1 * numeric_limits<double>::infinity(), ValidationIssueType::Error,
+                                                  errorMessage);
+
+        ValidatorAssertHelper::AssertBelowBound(validateAction, 0, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, 0, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertAboveBound(validateAction, 0, ValidationIssueType::Warning, warningMessage);
+
+        ValidatorAssertHelper::AssertBelowBound(validateAction, 0.5, ValidationIssueType::Warning, warningMessage);
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, 0.5, ValidationIssueType::Warning, warningMessage);
+        ValidatorAssertHelper::AssertAboveBound(validateAction, 0.5);
+
+        ValidatorAssertHelper::AssertBelowBound(validateAction, 25);
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, 25, ValidationIssueType::Warning, warningMessage);
+        ValidatorAssertHelper::AssertAboveBound(validateAction, 25, ValidationIssueType::Warning, warningMessage);
+
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, numeric_limits<double>::infinity(), ValidationIssueType::Warning, warningMessage);
+    }
 }

@@ -32,5 +32,22 @@ namespace DiKErnel::DomainLibrary
     class HydraulicLoadsValidator
     {
         public:
+            /*!
+             * \brief Validates the wave height Hm0.
+             * \param waveHeightHm0
+             *        The wave height Hm0.
+             * \return A validation issue when the wave height Hm0 is not valid; nullptr otherwise.
+             */
+            static std::unique_ptr<ValidationIssue> WaveHeightHm0(
+                double waveHeightHm0);
+
+            /*!
+             * \brief Validates the wave period Tm10.
+             * \param wavePeriodTm10
+             *        The wave period Tm10.
+             * \return A validation issue when the wave period Tm10 is not valid; nullptr otherwise.
+             */
+            static std::unique_ptr<ValidationIssue> WavePeriodTm10(
+                double wavePeriodTm10);
     };
 }
