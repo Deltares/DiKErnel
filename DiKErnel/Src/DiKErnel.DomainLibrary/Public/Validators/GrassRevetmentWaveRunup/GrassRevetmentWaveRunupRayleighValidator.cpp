@@ -24,5 +24,25 @@ namespace DiKErnel::DomainLibrary
 {
     using namespace std;
 
-    
+    unique_ptr<ValidationIssue> GrassRevetmentWaveRunupRayleighValidator::FixedNumberOfWaves(
+        const int fixedNumberOfWaves)
+    {
+        if(fixedNumberOfWaves <= 0)
+        {
+            return make_unique<ValidationIssue>(ValidationIssueType::Error, "FixedNumberOfWaves must be larger than 0.");
+        }
+
+        return nullptr;
+    }
+
+    unique_ptr<ValidationIssue> GrassRevetmentWaveRunupRayleighValidator::FrontVelocityCu(
+        const double frontVelocityCu)
+    {
+        if (frontVelocityCu <= 0)
+        {
+            return make_unique<ValidationIssue>(ValidationIssueType::Error, "FrontVelocityCu must be larger than 0.");
+        }
+
+        return nullptr;
+    }
 }

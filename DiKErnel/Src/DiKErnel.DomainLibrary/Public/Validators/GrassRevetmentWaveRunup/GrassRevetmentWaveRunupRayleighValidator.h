@@ -30,9 +30,26 @@ namespace DiKErnel::DomainLibrary
      * \brief Class that holds all grass revetment wave run-up specific validation routines for
      *        the rayleigh protocol.
      */
-    class GrassRevetmentWaveRayleighRunupValidator
+    class GrassRevetmentWaveRunupRayleighValidator
     {
         public:
-           
+            /*!
+             * \brief Validates the fixed number of waves.
+             * \param fixedNumberOfWaves
+             *        The fixed number of waves.
+             * \return A validation issue when the fixed number of waves is not valid;
+             *         nullptr otherwise.
+             */
+            static std::unique_ptr<ValidationIssue> FixedNumberOfWaves(
+                int fixedNumberOfWaves);
+
+            /*!
+             * \brief Validates the Cu coefficient.
+             * \param frontVelocityCu
+             *        The Cu coefficient.
+             * \return A validation issue when the Cu coefficient is not valid; nullptr otherwise.
+             */
+            static std::unique_ptr<ValidationIssue> FrontVelocityCu(
+                double frontVelocityCu);
     };
 }

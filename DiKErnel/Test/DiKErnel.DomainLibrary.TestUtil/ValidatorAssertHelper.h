@@ -29,49 +29,85 @@ namespace DiKErnel::DomainLibrary::TestUtil
     class ValidatorAssertHelper
     {
         public:
-            typedef std::unique_ptr<ValidationIssue> (*Action)(double);
+            typedef std::unique_ptr<ValidationIssue> (*ActionWithDouble)(
+                double);
+
+            typedef std::unique_ptr<ValidationIssue> (*ActionWithInt)(
+                int);
 
             static void AssertBelowBound(
-                Action validateAction,
+                ActionWithDouble validateAction,
                 double bound);
 
             static void AssertBelowBound(
-                Action validateAction,
+                ActionWithDouble validateAction,
                 double bound,
                 ValidationIssueType validationIssueType,
                 const std::string& message);
 
             static void AssertEqualToBound(
-                Action validateAction,
+                ActionWithDouble validateAction,
                 double bound);
 
             static void AssertEqualToBound(
-                Action validateAction,
+                ActionWithDouble validateAction,
                 double bound,
                 ValidationIssueType validationIssueType,
                 const std::string& message);
 
             static void AssertAboveBound(
-                Action validateAction,
+                ActionWithDouble validateAction,
                 double bound);
 
             static void AssertAboveBound(
-                Action validateAction,
+                ActionWithDouble validateAction,
                 double bound,
+                ValidationIssueType validationIssueType,
+                const std::string& message);
+
+            static void AssertBelowBound(
+                ActionWithInt validateAction,
+                int bound);
+
+            static void AssertBelowBound(
+                ActionWithInt validateAction,
+                int bound,
+                ValidationIssueType validationIssueType,
+                const std::string& message);
+
+            static void AssertEqualToBound(
+                ActionWithInt validateAction,
+                int bound);
+
+            static void AssertEqualToBound(
+                ActionWithInt validateAction,
+                int bound,
+                ValidationIssueType validationIssueType,
+                const std::string& message);
+
+            static void AssertAboveBound(
+                ActionWithInt validateAction,
+                int bound);
+
+            static void AssertAboveBound(
+                ActionWithInt validateAction,
+                int bound,
                 ValidationIssueType validationIssueType,
                 const std::string& message);
 
         private:
+            template <typename TAction, typename TBound>
             static void AssertValidBound(
-                Action validateAction,
-                double bound);
+                TAction validateAction,
+                TBound bound);
 
+            template <typename TAction, typename TBound>
             static void AssertInvalidBound(
-                Action validateAction,
-                double bound,
+                TAction validateAction,
+                TBound bound,
                 ValidationIssueType validationIssueType,
                 const std::string& message);
 
-            inline static double _epsilon = 1e-6;
+            inline static double _doubleEpsilon = 1e-6;
     };
 }

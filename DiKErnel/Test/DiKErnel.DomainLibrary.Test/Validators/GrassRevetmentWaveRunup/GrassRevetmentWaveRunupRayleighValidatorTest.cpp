@@ -30,6 +30,34 @@ namespace DiKErnel::DomainLibrary::Test
     using namespace std;
     using namespace TestUtil;
 
-    
+    TEST(GrassRevetmentWaveRunupRayleighValidatorTest, FixedNumberOfWaves_VariousScenarios_ExpectedValues)
+    {
+        const auto validateAction = GrassRevetmentWaveRunupRayleighValidator::FixedNumberOfWaves;
 
+        constexpr auto errorMessage = "FixedNumberOfWaves must be larger than 0.";
+
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, numeric_limits<int>::min(), ValidationIssueType::Error, errorMessage);
+
+        ValidatorAssertHelper::AssertBelowBound(validateAction, 0, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, 0, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertAboveBound(validateAction, 0);
+
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, numeric_limits<int>::max());
+    }
+
+    TEST(GrassRevetmentWaveRunupRayleighValidatorTest, FrontVelocityCu_VariousScenarios_ExpectedValues)
+    {
+        const auto validateAction = GrassRevetmentWaveRunupRayleighValidator::FrontVelocityCu;
+
+        constexpr auto errorMessage = "FrontVelocityCu must be larger than 0.";
+
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, -1 * numeric_limits<double>::infinity(), ValidationIssueType::Error,
+                                                  errorMessage);
+
+        ValidatorAssertHelper::AssertBelowBound(validateAction, 0, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, 0, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertAboveBound(validateAction, 0);
+
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, numeric_limits<double>::infinity());
+    }
 }

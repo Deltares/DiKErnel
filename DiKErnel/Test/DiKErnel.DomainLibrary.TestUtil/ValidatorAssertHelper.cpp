@@ -25,30 +25,30 @@
 namespace DiKErnel::DomainLibrary::TestUtil
 {
     void ValidatorAssertHelper::AssertBelowBound(
-        const Action validateAction,
+        const ActionWithDouble validateAction,
         const double bound)
     {
-        AssertValidBound(validateAction, bound - _epsilon);
+        AssertValidBound(validateAction, bound - _doubleEpsilon);
     }
 
     void ValidatorAssertHelper::AssertBelowBound(
-        const Action validateAction,
+        const ActionWithDouble validateAction,
         const double bound,
         const ValidationIssueType validationIssueType,
         const std::string& message)
     {
-        AssertInvalidBound(validateAction, bound - _epsilon, validationIssueType, message);
+        AssertInvalidBound(validateAction, bound - _doubleEpsilon, validationIssueType, message);
     }
 
     void ValidatorAssertHelper::AssertEqualToBound(
-        const Action validateAction,
+        const ActionWithDouble validateAction,
         const double bound)
     {
         AssertValidBound(validateAction, bound);
     }
 
     void ValidatorAssertHelper::AssertEqualToBound(
-        const Action validateAction,
+        const ActionWithDouble validateAction,
         const double bound,
         const ValidationIssueType validationIssueType,
         const std::string& message)
@@ -57,24 +57,73 @@ namespace DiKErnel::DomainLibrary::TestUtil
     }
 
     void ValidatorAssertHelper::AssertAboveBound(
-        const Action validateAction,
+        const ActionWithDouble validateAction,
         const double bound)
     {
-        AssertValidBound(validateAction, bound + _epsilon);
+        AssertValidBound(validateAction, bound + _doubleEpsilon);
     }
 
     void ValidatorAssertHelper::AssertAboveBound(
-        const Action validateAction,
+        const ActionWithDouble validateAction,
         const double bound,
         const ValidationIssueType validationIssueType,
         const std::string& message)
     {
-        AssertInvalidBound(validateAction, bound + _epsilon, validationIssueType, message);
+        AssertInvalidBound(validateAction, bound + _doubleEpsilon, validationIssueType, message);
     }
 
+    void ValidatorAssertHelper::AssertBelowBound(
+        const ActionWithInt validateAction,
+        const int bound)
+    {
+        AssertValidBound(validateAction, bound - 1);
+    }
+
+    void ValidatorAssertHelper::AssertBelowBound(
+        const ActionWithInt validateAction,
+        const int bound,
+        const ValidationIssueType validationIssueType,
+        const std::string& message)
+    {
+        AssertInvalidBound(validateAction, bound - 1, validationIssueType, message);
+    }
+
+    void ValidatorAssertHelper::AssertEqualToBound(
+        const ActionWithInt validateAction,
+        const int bound)
+    {
+        AssertValidBound(validateAction, bound);
+    }
+
+    void ValidatorAssertHelper::AssertEqualToBound(
+        const ActionWithInt validateAction,
+        const int bound,
+        const ValidationIssueType validationIssueType,
+        const std::string& message)
+    {
+        AssertInvalidBound(validateAction, bound, validationIssueType, message);
+    }
+
+    void ValidatorAssertHelper::AssertAboveBound(
+        const ActionWithInt validateAction,
+        const int bound)
+    {
+        AssertValidBound(validateAction, bound + 1);
+    }
+
+    void ValidatorAssertHelper::AssertAboveBound(
+        const ActionWithInt validateAction,
+        const int bound,
+        const ValidationIssueType validationIssueType,
+        const std::string& message)
+    {
+        AssertInvalidBound(validateAction, bound + 1, validationIssueType, message);
+    }
+
+    template <typename TAction, typename TBound>
     void ValidatorAssertHelper::AssertValidBound(
-        const Action validateAction,
-        const double bound)
+        const TAction validateAction,
+        const TBound bound)
     {
         // Call
         const auto validationIssue = validateAction(bound);
@@ -83,9 +132,10 @@ namespace DiKErnel::DomainLibrary::TestUtil
         ASSERT_EQ(nullptr, validationIssue);
     }
 
+    template <typename TAction, typename TBound>
     void ValidatorAssertHelper::AssertInvalidBound(
-        const Action validateAction,
-        const double bound,
+        const TAction validateAction,
+        const TBound bound,
         const ValidationIssueType validationIssueType,
         const std::string& message)
     {
