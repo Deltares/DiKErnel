@@ -49,5 +49,14 @@ namespace DiKErnel::DomainLibrary
              */
             static std::unique_ptr<ValidationIssue> WavePeriodTm10(
                 double wavePeriodTm10);
+
+            /*!
+             * \brief Validates the wave angle.
+             * \param waveAngle
+             *        The wave angle.
+             * \return A validation issue when the wave angle is not valid; nullptr otherwise.
+             */
+            static std::unique_ptr<ValidationIssue> WaveAngle(
+                double waveAngle);
     };
 }

@@ -76,4 +76,24 @@ namespace DiKErnel::DomainLibrary::Test
 
         ValidatorAssertHelper::AssertEqualToBound(validateAction, numeric_limits<double>::infinity(), ValidationIssueType::Warning, warningMessage);
     }
+
+    TEST(HydraulicLoadsTest, WaveAngle_VariousScenarios_ExpectedValues)
+    {
+        const auto validateAction = HydraulicLoadsValidator::WaveAngle;
+
+        constexpr auto errorMessage = "WaveAngle must be in range {-180, 180}.";
+
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, -1 * numeric_limits<double>::infinity(), ValidationIssueType::Error,
+                                                  errorMessage);
+
+        ValidatorAssertHelper::AssertBelowBound(validateAction, -180, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, -180, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertAboveBound(validateAction, -180);
+
+        ValidatorAssertHelper::AssertBelowBound(validateAction, 180);
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, 180, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertAboveBound(validateAction, 180, ValidationIssueType::Error, errorMessage);
+
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, numeric_limits<double>::infinity(), ValidationIssueType::Error, errorMessage);
+    }
 }
