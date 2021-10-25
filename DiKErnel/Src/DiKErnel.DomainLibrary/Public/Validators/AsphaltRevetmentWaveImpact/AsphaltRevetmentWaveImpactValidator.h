@@ -96,6 +96,24 @@ namespace DiKErnel::DomainLibrary
             static std::unique_ptr<ValidationIssue> StiffnessRelationNu(
                 double stiffnessRelationNu);
 
+            /*!
+             * \brief Validates the thickness.
+             * \param thickness
+             *        The thickness.
+             * \return A validation issue when the thickness is not valid; nullptr otherwise.
+             */
+            static std::unique_ptr<ValidationIssue> Thickness(
+                double thickness);
+
+            /*!
+             * \brief Validates the elastic modulus.
+             * \param elasticModulus
+             *        The elastic modulus.
+             * \return A validation issue when the elastic modulus is not valid; nullptr otherwise.
+             */
+            static std::unique_ptr<ValidationIssue> ElasticModulus(
+                double elasticModulus);
+
         private:
             static std::unique_ptr<ValidationIssue> ValidateLargerThanZero(
                 double propertyToValidate,

@@ -71,6 +71,18 @@ namespace DiKErnel::DomainLibrary
         return ValidateLargerThanZero(stiffnessRelationNu, "StiffnessRelationNu");
     }
 
+    unique_ptr<ValidationIssue> AsphaltRevetmentWaveImpactValidator::Thickness(
+        const double thickness)
+    {
+        return ValidateLargerThanZero(thickness, "Thickness");
+    }
+
+    unique_ptr<ValidationIssue> AsphaltRevetmentWaveImpactValidator::ElasticModulus(
+        const double elasticModulus)
+    {
+        return ValidateLargerThanZero(elasticModulus, "ElasticModulus");
+    }
+
     unique_ptr<ValidationIssue> AsphaltRevetmentWaveImpactValidator::ValidateLargerThanZero(
         const double propertyToValidate,
         const string& propertyName)
