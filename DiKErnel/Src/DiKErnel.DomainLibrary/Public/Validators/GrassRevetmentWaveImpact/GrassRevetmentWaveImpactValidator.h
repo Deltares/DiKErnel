@@ -32,6 +32,37 @@ namespace DiKErnel::DomainLibrary
     class GrassRevetmentWaveImpactValidator
     {
         public:
+            /*!
+             * \brief Validates the Agwi coefficient.
+             * \param timeLineAgwi
+             *        The Agwi coefficient.
+             * \param timeLineCgwi
+             *        The Cgwi coefficient.
+             * \return A validation issue when the Agwi coefficient is not valid;
+             *         nullptr otherwise.
+             */
+            static std::unique_ptr<ValidationIssue> TimeLineAgwi(
+                double timeLineAgwi,
+                double timeLineCgwi);
 
+            /*!
+             * \brief Validates the Bgwi coefficient.
+             * \param timeLineBgwi
+             *        The Bgwi coefficient.
+             * \return A validation issue when the Bgwi coefficient is not valid;
+             *         nullptr otherwise.
+             */
+            static std::unique_ptr<ValidationIssue> TimeLineBgwi(
+                double timeLineBgwi);
+
+            /*!
+             * \brief Validates the Cgwi coefficient.
+             * \param timeLineCgwi
+             *        The Cgwi coefficient.
+             * \return A validation issue when the Cgwi coefficient is not valid;
+             *         nullptr otherwise.
+             */
+            static std::unique_ptr<ValidationIssue> TimeLineCgwi(
+                double timeLineCgwi);
     };
 }

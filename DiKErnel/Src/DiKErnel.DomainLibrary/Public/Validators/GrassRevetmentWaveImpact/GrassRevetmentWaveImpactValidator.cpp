@@ -24,5 +24,37 @@ namespace DiKErnel::DomainLibrary
 {
     using namespace std;
 
-    
+    unique_ptr<ValidationIssue> GrassRevetmentWaveImpactValidator::TimeLineAgwi(
+        const double timeLineAgwi,
+        const double timeLineCgwi)
+    {
+        if (timeLineAgwi <= timeLineCgwi) 
+        {
+            return make_unique<ValidationIssue>(ValidationIssueType::Error, "TimeLineAgwi must be larger than TimeLineCgwi.");
+        }
+
+        return nullptr;
+    }
+
+    unique_ptr<ValidationIssue> GrassRevetmentWaveImpactValidator::TimeLineBgwi(
+        const double timeLineBgwi)
+    {
+        if(timeLineBgwi >= 0)
+        {
+            return make_unique<ValidationIssue>(ValidationIssueType::Error, "TimeLineBgwi must be smaller than 0");
+        }
+
+        return nullptr;
+    }
+
+    unique_ptr<ValidationIssue> GrassRevetmentWaveImpactValidator::TimeLineCgwi(
+        const double timeLineCgwi)
+    {
+        if(timeLineCgwi < 0)
+        {
+            return make_unique<ValidationIssue>(ValidationIssueType::Error, "TimeLineCgwi must be equal to 0 or larger.");
+        }
+
+        return nullptr;
+    }
 }
