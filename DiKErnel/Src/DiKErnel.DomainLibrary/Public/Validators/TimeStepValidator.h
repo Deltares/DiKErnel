@@ -32,6 +32,16 @@ namespace DiKErnel::DomainLibrary
     class TimeStepValidator
     {
         public:
-            
+            /*!
+             * \brief Validates the increment of time.
+             * \param beginTime
+             *        The begin time.
+             * \param endTime
+             *        The end time.
+             * \return A validation issue when increment of time is not valid; nullptr otherwise.
+             */
+            static std::unique_ptr<ValidationIssue> IncrementOfTime(
+                int beginTime,
+                int endTime);
     };
 }

@@ -24,5 +24,15 @@ namespace DiKErnel::DomainLibrary
 {
     using namespace std;
 
-   
+    unique_ptr<ValidationIssue> TimeStepValidator::IncrementOfTime(
+        const int beginTime,
+        const int endTime)
+    {
+        if (beginTime >= endTime)
+        {
+            return make_unique<ValidationIssue>(ValidationIssueType::Error, "BeginTime must be smaller than EndTime.");
+        }
+
+        return nullptr;
+    }
 }

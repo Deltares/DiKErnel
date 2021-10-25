@@ -20,9 +20,36 @@
 
 #include <gtest/gtest.h>
 
+#include "TimeStepValidator.h"
 #include "ValidatorAssertHelper.h"
 
 namespace DiKErnel::DomainLibrary::Test
 {
-   
+    using namespace std;
+    using namespace testing;
+    using namespace TestUtil;
+
+    struct TimeStepValidatorTest : Test
+    {
+        static unique_ptr<ValidationIssue> IncrementOfTime(
+            const int beginTime)
+        {
+            return TimeStepValidator::IncrementOfTime(beginTime, 100);
+        }
+    };
+
+    TEST_F(TimeStepValidatorTest, IncrementOfTime_VariousScenarios_ExpectedValues)
+    {
+        const auto validateAction = IncrementOfTime;
+
+        constexpr auto errorMessage = "BeginTime must be smaller than EndTime.";
+
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, numeric_limits<int>::min());
+
+        ValidatorAssertHelper::AssertBelowBound(validateAction, 100);
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, 100, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertAboveBound(validateAction, 100, ValidationIssueType::Error, errorMessage);
+
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, numeric_limits<int>::max(), ValidationIssueType::Error, errorMessage);
+    }
 }
