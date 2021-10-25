@@ -213,7 +213,7 @@ int main()
         WriteToLogFile(logOutputPath.u8string(), outputComposerResult->GetEvents());
 
         // Handle error during write operation
-        if (!*outputComposerResult->GetResult())
+        if (!outputComposerResult->GetSuccessful())
         {
             cout << endl;
             cout << "|================|" << endl;
