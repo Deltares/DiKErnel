@@ -22,5 +22,16 @@
 
 namespace DiKErnel::DomainLibrary
 {
-   
+    using namespace std;
+
+    unique_ptr<ValidationIssue> AsphaltRevetmentWaveImpactValidator::FatigueAlpha(
+        const double fatigueAlpha)
+    {
+        if (fatigueAlpha <= 0)
+        {
+            return make_unique<ValidationIssue>(ValidationIssueType::Error, "FatigueAlpha must be larger than 0.");
+        }
+
+        return nullptr;
+    }
 }

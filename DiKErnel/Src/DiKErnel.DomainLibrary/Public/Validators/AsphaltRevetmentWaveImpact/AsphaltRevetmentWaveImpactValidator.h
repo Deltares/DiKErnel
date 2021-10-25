@@ -19,6 +19,7 @@
 // All rights reserved.
 
 #pragma once
+#include "ValidationIssue.h"
 
 namespace DiKErnel::DomainLibrary
 {
@@ -28,5 +29,14 @@ namespace DiKErnel::DomainLibrary
     class AsphaltRevetmentWaveImpactValidator
     {
         public:
+            /*!
+             * \brief Validates the fatigue alpha coefficient.
+             * \param fatigueAlpha
+             *        The fatigue alpha coefficient.
+             * \return A validation issue when the fatigue alpha coefficient is not valid;
+             *         nullptr otherwise.
+             */
+            static std::unique_ptr<ValidationIssue> FatigueAlpha(
+                double fatigueAlpha);
     };
 }
