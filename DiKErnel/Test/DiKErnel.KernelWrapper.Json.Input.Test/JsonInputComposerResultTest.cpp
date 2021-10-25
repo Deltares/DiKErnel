@@ -27,16 +27,16 @@
 
 namespace DiKErnel::KernelWrapper::Json::Input::Test
 {
+    using namespace Core;
     using namespace std;
     using namespace testing;
-    using namespace Core;
     using namespace TestUtil;
 
     TEST(JsonInputComposerResultTest, Constructor_ExpectedValues)
     {
         // Setup
+        auto profileData = make_unique<IProfileDataMock>();
         auto calculationInput = make_unique<ICalculationInputMock>();
-        unique_ptr<IProfileData> profileData = make_unique<IProfileDataMock>();
 
         ON_CALL(*calculationInput, GetProfileData).WillByDefault(ReturnRef(*profileData));
 

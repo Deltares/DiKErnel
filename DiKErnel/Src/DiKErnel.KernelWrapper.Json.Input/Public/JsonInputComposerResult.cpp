@@ -29,9 +29,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
         unique_ptr<ICalculationInput> calculationInput,
         const JsonInputProcessType processType)
         : _calculationInput(move(calculationInput)),
-          _processType(processType)
-    {
-    }
+          _processType(processType) { }
 
     const ICalculationInput& JsonInputComposerResult::GetCalculationInput() const
     {
