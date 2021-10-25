@@ -25,6 +25,7 @@
 #include "AsphaltRevetmentWaveImpactValidator.h"
 #include "Constants.h"
 #include "RevetmentFunctions.h"
+#include "RevetmentValidator.h"
 #include "ValidationHelper.h"
 
 namespace DiKErnel::Integration
@@ -146,6 +147,7 @@ namespace DiKErnel::Integration
         const auto upperLayerElasticModulus = AsphaltRevetmentWaveImpactValidator::Thickness(_upperLayer->GetElasticModulus());
         const auto subLayerThickness = AsphaltRevetmentWaveImpactValidator::Thickness(_subLayer->GetThickness());
         const auto subLayerElasticModulus = AsphaltRevetmentWaveImpactValidator::Thickness(_subLayer->GetElasticModulus());
+        const auto averageNumberOfWavesCtm = RevetmentValidator::AverageNumberOfWavesCtm(_averageNumberOfWavesCtm);
 
         return ValidationHelper::RegisterValidationIssue(fatigueAlpha.get())
                 && ValidationHelper::RegisterValidationIssue(fatigueBeta.get())
@@ -158,6 +160,7 @@ namespace DiKErnel::Integration
                 && ValidationHelper::RegisterValidationIssue(upperLayerElasticModulus.get())
                 && ValidationHelper::RegisterValidationIssue(subLayerThickness.get())
                 && ValidationHelper::RegisterValidationIssue(subLayerElasticModulus.get())
+                && ValidationHelper::RegisterValidationIssue(averageNumberOfWavesCtm.get())
                 && baseValidationSucceeded;
     }
 

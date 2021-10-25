@@ -21,6 +21,7 @@
 #include "GrassRevetmentWaveRunupLocationDependentInput.h"
 
 #include "GrassRevetmentWaveRunupValidator.h"
+#include "RevetmentValidator.h"
 #include "ValidationHelper.h"
 
 namespace DiKErnel::Integration
@@ -105,6 +106,7 @@ namespace DiKErnel::Integration
         const auto increasedLoadTransitionAlphaM = GrassRevetmentWaveRunupValidator::IncreasedLoadTransitionAlphaM(_increasedLoadTransitionAlphaM);
         const auto reducedStrengthTransitionAlphaS = GrassRevetmentWaveRunupValidator::ReducedStrengthTransitionAlphaS(
             _reducedStrengthTransitionAlphaS);
+        const auto averageNumberOfWavesCtm = RevetmentValidator::AverageNumberOfWavesCtm(_averageNumberOfWavesCtm);
 
         return ValidationHelper::RegisterValidationIssue(criticalCumulativeOverload.get())
                 && ValidationHelper::RegisterValidationIssue(representativeWaveRunup2PGammab.get())
@@ -113,6 +115,7 @@ namespace DiKErnel::Integration
                 && ValidationHelper::RegisterValidationIssue(criticalFrontVelocity.get())
                 && ValidationHelper::RegisterValidationIssue(increasedLoadTransitionAlphaM.get())
                 && ValidationHelper::RegisterValidationIssue(reducedStrengthTransitionAlphaS.get())
+                && ValidationHelper::RegisterValidationIssue(averageNumberOfWavesCtm.get())
                 && baseValidationSucceeded;
     }
 }
