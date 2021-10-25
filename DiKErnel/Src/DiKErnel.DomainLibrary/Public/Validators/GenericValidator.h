@@ -21,27 +21,25 @@
 #pragma once
 
 #include <memory>
+#include <vector>
 
 #include "ValidationIssue.h"
 
 namespace DiKErnel::DomainLibrary
 {
     /*!
-     * \brief Class that holds all time step related validation routines.
+     * \brief Class that holds all generic validation routines.
      */
-    class TimeStepValidator
+    class GenericValidator
     {
         public:
             /*!
-             * \brief Validates the increment of time.
-             * \param beginTime
-             *        The begin time.
-             * \param endTime
-             *        The end time.
-             * \return A validation issue when increment of time is not valid; nullptr otherwise.
+             * \brief Validates whether the time steps are valid.
+             * \param timeSteps
+             *        The time steps.
+             * \return A validation issue when the time steps are not valid; nullptr otherwise.
              */
-            static std::unique_ptr<ValidationIssue> IncrementOfTime(
-                int beginTime,
-                int endTime);
+            static std::unique_ptr<ValidationIssue> TimeSteps(
+                const std::vector<std::pair<int, int>>& timeSteps);
     };
 }

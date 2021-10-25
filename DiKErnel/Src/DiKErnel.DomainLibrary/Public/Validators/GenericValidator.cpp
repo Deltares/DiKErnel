@@ -18,30 +18,34 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#pragma once
+#include <limits>
 
-#include <memory>
-
-#include "ValidationIssue.h"
+#include "GenericValidator.h"
 
 namespace DiKErnel::DomainLibrary
 {
-    /*!
-     * \brief Class that holds all time step related validation routines.
-     */
-    class TimeStepValidator
+    using namespace std;
+
+    unique_ptr<ValidationIssue> GenericValidator::TimeSteps(
+        const vector<pair<int, int>>& timeSteps)
     {
-        public:
-            /*!
-             * \brief Validates the increment of time.
-             * \param beginTime
-             *        The begin time.
-             * \param endTime
-             *        The end time.
-             * \return A validation issue when increment of time is not valid; nullptr otherwise.
-             */
-            static std::unique_ptr<ValidationIssue> IncrementOfTime(
-                int beginTime,
-                int endTime);
-    };
+        if(timeSteps.empty())
+        {
+            return make_unique<ValidationIssue>(ValidationIssueType::Error, "There must be at least 1 time step defined.");
+        }
+
+        auto previousEndTime = numeric_limits<int>::min();
+
+        for (const auto& [beginTime, endTime] : timeSteps)
+        {
+            if(previousEndTime != numeric_limits<int>::min() && beginTime != previousEndTime)
+            {
+                return make_unique<ValidationIssue>(ValidationIssueType::Error, "The begin time of a successive element must equal the end time of the previous element.");
+            }
+
+            previousEndTime = endTime;
+        }
+
+        return nullptr;
+    }
 }
