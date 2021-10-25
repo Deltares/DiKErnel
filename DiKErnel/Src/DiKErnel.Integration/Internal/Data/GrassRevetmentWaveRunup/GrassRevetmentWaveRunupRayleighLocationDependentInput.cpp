@@ -24,8 +24,10 @@
 #include "GrassRevetmentWaveRunupFunctions.h"
 #include "GrassRevetmentWaveRunupRayleighFunctions.h"
 #include "GrassRevetmentWaveRunupRayleighTimeDependentOutput.h"
+#include "GrassRevetmentWaveRunupRayleighValidator.h"
 #include "HydraulicLoadFunctions.h"
 #include "RevetmentFunctions.h"
+#include "ValidationHelper.h"
 
 namespace DiKErnel::Integration
 {
@@ -62,6 +64,18 @@ namespace DiKErnel::Integration
     double GrassRevetmentWaveRunupRayleighLocationDependentInput::GetFrontVelocityCu() const
     {
         return _frontVelocityCu;
+    }
+
+    bool GrassRevetmentWaveRunupRayleighLocationDependentInput::Validate()
+    {
+        const auto baseValidationSucceeded = GrassRevetmentWaveRunupLocationDependentInput::Validate();
+
+        const auto fixedNumberOfWaves = GrassRevetmentWaveRunupRayleighValidator::FixedNumberOfWaves(_fixedNumberOfWaves);
+        const auto frontVelocityCu = GrassRevetmentWaveRunupRayleighValidator::FrontVelocityCu(_frontVelocityCu);
+
+        return ValidationHelper::RegisterValidationIssue(fixedNumberOfWaves.get())
+                && ValidationHelper::RegisterValidationIssue(frontVelocityCu.get())
+                && baseValidationSucceeded;
     }
 
     unique_ptr<TimeDependentOutput> GrassRevetmentWaveRunupRayleighLocationDependentInput::CalculateTimeDependentOutput(
