@@ -6,6 +6,7 @@ set(SOURCEFILES
   EventRegistryTest.cpp
   EventTest.cpp
   Main.cpp
+  ResuldTest.cpp
   ResultTest.cpp
 )
 
