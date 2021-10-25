@@ -45,4 +45,15 @@ namespace DiKErnel::DomainLibrary
 
         return nullptr;
     }
+
+    unique_ptr<ValidationIssue> AsphaltRevetmentWaveImpactValidator::FailureTension(
+        const double failureTension)
+    {
+        if (failureTension <= 0)
+        {
+            return make_unique<ValidationIssue>(ValidationIssueType::Error, "FailureTension must be larger than 0.");
+        }
+
+        return nullptr;
+    }
 }

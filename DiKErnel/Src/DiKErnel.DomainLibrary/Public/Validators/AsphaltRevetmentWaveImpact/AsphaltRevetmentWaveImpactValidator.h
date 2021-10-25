@@ -48,5 +48,14 @@ namespace DiKErnel::DomainLibrary
              */
             static std::unique_ptr<ValidationIssue> FatigueBeta(
                 double fatigueBeta);
+
+            /*!
+             * \brief Validates the failure tension.
+             * \param failureTension
+             *        The failure tension.
+             * \return A validation issue when the failure tension is not valid; nullptr otherwise.
+             */
+            static std::unique_ptr<ValidationIssue> FailureTension(
+                double failureTension);
     };
 }
