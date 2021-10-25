@@ -78,6 +78,24 @@ namespace DiKErnel::DomainLibrary
             static std::unique_ptr<ValidationIssue> DensityOfWater(
                 double densityOfWater);
 
+            /*!
+             * \brief Validates the soil elasticity.
+             * \param soilElasticity
+             *        The soil elasticity.
+             * \return A validation issue when the soil elasticity is not valid; nullptr otherwise.
+             */
+            static std::unique_ptr<ValidationIssue> SoilElasticity(
+                double soilElasticity);
+
+            /*!
+             * \brief Validates the Nu coefficient.
+             * \param stiffnessRelationNu
+             *        The Nu coefficient.
+             * \return A validation issue when the Nu coefficient is not valid; nullptr otherwise.
+             */
+            static std::unique_ptr<ValidationIssue> StiffnessRelationNu(
+                double stiffnessRelationNu);
+
         private:
             static std::unique_ptr<ValidationIssue> ValidateLargerThanZero(
                 double propertyToValidate,

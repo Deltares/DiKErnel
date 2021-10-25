@@ -59,6 +59,18 @@ namespace DiKErnel::DomainLibrary
         return nullptr;
     }
 
+    unique_ptr<ValidationIssue> AsphaltRevetmentWaveImpactValidator::SoilElasticity(
+        const double soilElasticity)
+    {
+        return ValidateLargerThanZero(soilElasticity, "SoilElasticity");
+    }
+
+    unique_ptr<ValidationIssue> AsphaltRevetmentWaveImpactValidator::StiffnessRelationNu(
+        const double stiffnessRelationNu)
+    {
+        return ValidateLargerThanZero(stiffnessRelationNu, "StiffnessRelationNu");
+    }
+
     unique_ptr<ValidationIssue> AsphaltRevetmentWaveImpactValidator::ValidateLargerThanZero(
         const double propertyToValidate,
         const string& propertyName)
