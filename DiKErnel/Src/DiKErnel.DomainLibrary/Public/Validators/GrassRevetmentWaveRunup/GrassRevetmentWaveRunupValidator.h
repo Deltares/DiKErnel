@@ -60,5 +60,35 @@ namespace DiKErnel::DomainLibrary
              */
             static std::unique_ptr<ValidationIssue> OuterSlope(
                 double outerSlope);
+
+            /*!
+             * \brief Validates the critical front velocity.
+             * \param criticalFrontVelocity
+             *        The critical front velocity.
+             * \return A validation issue when the critical front velocity is not valid;
+             *         nullptr otherwise.
+             */
+            static std::unique_ptr<ValidationIssue> CriticalFrontVelocity(
+                double criticalFrontVelocity);
+
+            /*!
+             * \brief Validates the alpha M coefficient.
+             * \param increasedLoadTransitionAlphaM
+             *        The alpha M coefficient.
+             * \return A validation issue when the alpha M coefficient is not valid;
+             *         nullptr otherwise.
+             */
+            static std::unique_ptr<ValidationIssue> IncreasedLoadTransitionAlphaM(
+                double increasedLoadTransitionAlphaM);
+
+            /*!
+             * \brief Validates the alpha S coefficient.
+             * \param reducedStrengthTransitionAlphaS
+             *        The alpha S coefficient.
+             * \return A validation issue when the alpha S coefficient is not valid;
+             *         nullptr otherwise.
+             */
+            static std::unique_ptr<ValidationIssue> ReducedStrengthTransitionAlphaS(
+                double reducedStrengthTransitionAlphaS);
     };
 }

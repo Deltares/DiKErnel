@@ -56,4 +56,37 @@ namespace DiKErnel::DomainLibrary
 
         return nullptr;
     }
+
+    unique_ptr<ValidationIssue> GrassRevetmentWaveRunupValidator::CriticalFrontVelocity(
+        const double criticalFrontVelocity)
+    {
+        if (criticalFrontVelocity < 0)
+        {
+            return make_unique<ValidationIssue>(ValidationIssueType::Error, "CriticalFrontVelocity must be positive.");
+        }
+
+        return nullptr;
+    }
+
+    unique_ptr<ValidationIssue> GrassRevetmentWaveRunupValidator::IncreasedLoadTransitionAlphaM(
+        const double increasedLoadTransitionAlphaM)
+    {
+        if (increasedLoadTransitionAlphaM < 0)
+        {
+            return make_unique<ValidationIssue>(ValidationIssueType::Error, "IncreasedLoadTransitionAlphaM must be positive.");
+        }
+
+        return nullptr;
+    }
+
+    unique_ptr<ValidationIssue> GrassRevetmentWaveRunupValidator::ReducedStrengthTransitionAlphaS(
+        const double reducedStrengthTransitionAlphaS)
+    {
+        if (reducedStrengthTransitionAlphaS < 0)
+        {
+            return make_unique<ValidationIssue>(ValidationIssueType::Error, "ReducedStrengthTransitionAlphaS must be positive.");
+        }
+
+        return nullptr;
+    }
 }

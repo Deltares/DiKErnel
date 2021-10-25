@@ -70,7 +70,7 @@ namespace DiKErnel::DomainLibrary::Test
         ValidatorAssertHelper::AssertEqualToBound(validateAction, numeric_limits<double>::infinity(), ValidationIssueType::Error, errorMessage);
     }
 
-    TEST(GrassRevetmentWaveRunupValidatorTest, OuterSlop_VariousScenarios_ExpectedValues)
+    TEST(GrassRevetmentWaveRunupValidatorTest, OuterSlope_VariousScenarios_ExpectedValues)
     {
         const auto validateAction = GrassRevetmentWaveRunupValidator::OuterSlope;
 
@@ -88,5 +88,53 @@ namespace DiKErnel::DomainLibrary::Test
         ValidatorAssertHelper::AssertAboveBound(validateAction, 1, ValidationIssueType::Error, errorMessage);
 
         ValidatorAssertHelper::AssertEqualToBound(validateAction, numeric_limits<double>::infinity(), ValidationIssueType::Error, errorMessage);
+    }
+
+    TEST(GrassRevetmentWaveRunupValidatorTest, CriticalFrontVelocity_VariousScenarios_ExpectedValues)
+    {
+        const auto validateAction = GrassRevetmentWaveRunupValidator::CriticalFrontVelocity;
+
+        constexpr auto errorMessage = "CriticalFrontVelocity must be positive.";
+
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, -1 * numeric_limits<double>::infinity(), ValidationIssueType::Error,
+                                                  errorMessage);
+
+        ValidatorAssertHelper::AssertBelowBound(validateAction, 0, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, 0);
+        ValidatorAssertHelper::AssertAboveBound(validateAction, 0);
+
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, numeric_limits<double>::infinity());
+    }
+
+    TEST(GrassRevetmentWaveRunupValidatorTest, IncreasedLoadTransitionAlphaM_VariousScenarios_ExpectedValues)
+    {
+        const auto validateAction = GrassRevetmentWaveRunupValidator::IncreasedLoadTransitionAlphaM;
+
+        constexpr auto errorMessage = "IncreasedLoadTransitionAlphaM must be positive.";
+
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, -1 * numeric_limits<double>::infinity(), ValidationIssueType::Error,
+                                                  errorMessage);
+
+        ValidatorAssertHelper::AssertBelowBound(validateAction, 0, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, 0);
+        ValidatorAssertHelper::AssertAboveBound(validateAction, 0);
+
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, numeric_limits<double>::infinity());
+    }
+
+    TEST(GrassRevetmentWaveRunupValidatorTest, ReducedStrengthTransitionAlphaS_VariousScenarios_ExpectedValues)
+    {
+        const auto validateAction = GrassRevetmentWaveRunupValidator::ReducedStrengthTransitionAlphaS;
+
+        constexpr auto errorMessage = "ReducedStrengthTransitionAlphaS must be positive.";
+
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, -1 * numeric_limits<double>::infinity(), ValidationIssueType::Error,
+                                                  errorMessage);
+
+        ValidatorAssertHelper::AssertBelowBound(validateAction, 0, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, 0);
+        ValidatorAssertHelper::AssertAboveBound(validateAction, 0);
+
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, numeric_limits<double>::infinity());
     }
 }
