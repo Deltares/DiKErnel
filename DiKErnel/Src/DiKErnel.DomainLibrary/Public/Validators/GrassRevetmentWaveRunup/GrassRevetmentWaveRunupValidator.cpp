@@ -24,6 +24,17 @@ namespace DiKErnel::DomainLibrary
 {
     using namespace std;
 
+    unique_ptr<ValidationIssue> GrassRevetmentWaveRunupValidator::CriticalCumulativeOverload(
+        const double criticalCumulativeOverload)
+    {
+        if (criticalCumulativeOverload <= 0)
+        {
+            return make_unique<ValidationIssue>(ValidationIssueType::Error, "CriticalCumulativeOverload must be larger than 0.");
+        }
+
+        return nullptr;
+    }
+
     unique_ptr<ValidationIssue> GrassRevetmentWaveRunupValidator::RepresentativeWaveRunup2PGammab(
         const double representativeWaveRunup2PGammab)
     {

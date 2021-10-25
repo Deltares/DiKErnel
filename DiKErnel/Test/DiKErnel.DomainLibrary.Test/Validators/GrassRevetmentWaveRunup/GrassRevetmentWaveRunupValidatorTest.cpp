@@ -30,6 +30,22 @@ namespace DiKErnel::DomainLibrary::Test
     using namespace std;
     using namespace TestUtil;
 
+    TEST(GrassRevetmentWaveRunupValidatorTest, CriticalCumulativeOverload_VariousScenarios_ExpectedValues)
+    {
+        const auto validateAction = GrassRevetmentWaveRunupValidator::CriticalCumulativeOverload;
+
+        constexpr auto errorMessage = "CriticalCumulativeOverload must be larger than 0.";
+
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, -1 * numeric_limits<double>::infinity(), ValidationIssueType::Error,
+                                                  errorMessage);
+
+        ValidatorAssertHelper::AssertBelowBound(validateAction, 0, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, 0, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertAboveBound(validateAction, 0);
+
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, numeric_limits<double>::infinity());
+    }
+
     TEST(GrassRevetmentWaveRunupValidatorTest, RepresentativeWaveRunup2PGammab_VariousScenarios_ExpectedValues)
     {
         const auto validateAction = GrassRevetmentWaveRunupValidator::RepresentativeWaveRunup2PGammab;

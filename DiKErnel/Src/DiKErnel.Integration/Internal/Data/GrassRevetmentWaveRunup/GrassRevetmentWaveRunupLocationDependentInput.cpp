@@ -95,6 +95,7 @@ namespace DiKErnel::Integration
     {
         const auto baseValidationSucceeded = LocationDependentInput::Validate();
 
+        const auto criticalCumulativeOverload = GrassRevetmentWaveRunupValidator::CriticalCumulativeOverload(_criticalCumulativeOverload);
         const auto representativeWaveRunup2PGammab = GrassRevetmentWaveRunupValidator::RepresentativeWaveRunup2PGammab(
             _representative2P->GetGammab());
         const auto representativeWaveRunup2PGammaf = GrassRevetmentWaveRunupValidator::RepresentativeWaveRunup2PGammaf(
@@ -105,7 +106,8 @@ namespace DiKErnel::Integration
         const auto reducedStrengthTransitionAlphaS = GrassRevetmentWaveRunupValidator::ReducedStrengthTransitionAlphaS(
             _reducedStrengthTransitionAlphaS);
 
-        return ValidationHelper::RegisterValidationIssue(representativeWaveRunup2PGammab.get())
+        return ValidationHelper::RegisterValidationIssue(criticalCumulativeOverload.get())
+                && ValidationHelper::RegisterValidationIssue(representativeWaveRunup2PGammab.get())
                 && ValidationHelper::RegisterValidationIssue(representativeWaveRunup2PGammaf.get())
                 && ValidationHelper::RegisterValidationIssue(outerSlope.get())
                 && ValidationHelper::RegisterValidationIssue(criticalFrontVelocity.get())

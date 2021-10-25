@@ -33,6 +33,16 @@ namespace DiKErnel::DomainLibrary
     {
         public:
             /*!
+             * \brief Validates the critical cumulative overload.
+             * \param criticalCumulativeOverload
+             *        The critical cumulative overload.
+             * \return A validation issue when the critical cumulative overload is not valid;
+             *         nullptr otherwise.
+             */
+            static std::unique_ptr<ValidationIssue> CriticalCumulativeOverload(
+                double criticalCumulativeOverload);
+
+            /*!
              * \brief Validates the 2P Gammab coefficient.
              * \param representativeWaveRunup2PGammab
              *        The 2P Gammab coefficient.
