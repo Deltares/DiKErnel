@@ -29,8 +29,8 @@ namespace DiKErnel::Integration
                 double representative2PAru,
                 double representative2PBru,
                 double representative2PCru,
-                double gammaB,
-                double gammaF);
+                double gammab,
+                double gammaf);
 
             double GetRepresentative2PAru() const;
 
@@ -38,15 +38,15 @@ namespace DiKErnel::Integration
 
             double GetRepresentative2PCru() const;
 
-            double GetGammaB() const;
+            double GetGammab() const;
 
-            double GetGammaF() const;
+            double GetGammaf() const;
 
         private:
             double _representative2PAru;
             double _representative2PBru;
             double _representative2PCru;
-            double _gammaB;
-            double _gammaF;
+            double _gammab;
+            double _gammaf;
     };
 }

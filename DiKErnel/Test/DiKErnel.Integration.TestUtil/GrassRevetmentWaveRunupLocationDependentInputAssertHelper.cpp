@@ -39,15 +39,15 @@ namespace DiKErnel::Integration::TestUtil
         const double representative2PAru,
         const double representative2PBru,
         const double representative2PCru,
-        const double gammaB,
-        const double gammaF,
+        const double gammab,
+        const double gammaf,
         const GrassRevetmentWaveRunupRepresentative2P& representative2P)
     {
         ASSERT_DOUBLE_EQ(representative2PAru, representative2P.GetRepresentative2PAru());
         ASSERT_DOUBLE_EQ(representative2PBru, representative2P.GetRepresentative2PBru());
         ASSERT_DOUBLE_EQ(representative2PCru, representative2P.GetRepresentative2PCru());
-        ASSERT_DOUBLE_EQ(gammaB, representative2P.GetGammaB());
-        ASSERT_DOUBLE_EQ(gammaF, representative2P.GetGammaF());
+        ASSERT_DOUBLE_EQ(gammab, representative2P.GetGammab());
+        ASSERT_DOUBLE_EQ(gammaf, representative2P.GetGammaf());
     }
 
     void GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertWaveAngleImpact(

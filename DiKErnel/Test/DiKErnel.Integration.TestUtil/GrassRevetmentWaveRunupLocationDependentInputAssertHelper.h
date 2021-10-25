@@ -36,8 +36,8 @@ namespace DiKErnel::Integration::TestUtil
                 double representative2PAru,
                 double representative2PBru,
                 double representative2PCru,
-                double gammaB,
-                double gammaF,
+                double gammab,
+                double gammaf,
                 const GrassRevetmentWaveRunupRepresentative2P& representative2P);
 
             static void AssertWaveAngleImpact(

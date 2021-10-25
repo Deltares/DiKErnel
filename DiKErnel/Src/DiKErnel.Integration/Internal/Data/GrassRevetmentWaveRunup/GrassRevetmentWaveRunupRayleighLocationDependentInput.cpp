@@ -98,8 +98,8 @@ namespace DiKErnel::Integration
 
             const auto& representative2P = GetRepresentative2P();
             representativeWaveRunup2P = make_unique<double>(GrassRevetmentWaveRunupFunctions::RepresentativeWaveRunup2P(
-                surfSimilarityParameter, *waveAngleImpact, timeDependentInput.GetWaveHeightHm0(), representative2P.GetGammaB(),
-                representative2P.GetGammaF(), representative2P.GetRepresentative2PAru(), representative2P.GetRepresentative2PBru(),
+                surfSimilarityParameter, *waveAngleImpact, timeDependentInput.GetWaveHeightHm0(), representative2P.GetGammab(),
+                representative2P.GetGammaf(), representative2P.GetRepresentative2PAru(), representative2P.GetRepresentative2PBru(),
                 representative2P.GetRepresentative2PCru()));
 
             cumulativeOverload = make_unique<double>(GrassRevetmentWaveRunupRayleighFunctions::CumulativeOverload(

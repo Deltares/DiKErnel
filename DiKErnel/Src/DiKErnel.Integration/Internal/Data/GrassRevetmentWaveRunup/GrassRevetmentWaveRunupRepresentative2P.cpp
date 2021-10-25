@@ -26,13 +26,13 @@ namespace DiKErnel::Integration
         const double representative2PAru,
         const double representative2PBru,
         const double representative2PCru,
-        const double gammaB,
-        const double gammaF):
+        const double gammab,
+        const double gammaf):
         _representative2PAru(representative2PAru),
         _representative2PBru(representative2PBru),
         _representative2PCru(representative2PCru),
-        _gammaB(gammaB),
-        _gammaF(gammaF) {}
+        _gammab(gammab),
+        _gammaf(gammaf) {}
 
     double GrassRevetmentWaveRunupRepresentative2P::GetRepresentative2PAru() const
     {
@@ -49,13 +49,13 @@ namespace DiKErnel::Integration
         return _representative2PCru;
     }
 
-    double GrassRevetmentWaveRunupRepresentative2P::GetGammaB() const
+    double GrassRevetmentWaveRunupRepresentative2P::GetGammab() const
     {
-        return _gammaB;
+        return _gammab;
     }
 
-    double GrassRevetmentWaveRunupRepresentative2P::GetGammaF() const
+    double GrassRevetmentWaveRunupRepresentative2P::GetGammaf() const
     {
-        return _gammaF;
+        return _gammaf;
     }
 }
