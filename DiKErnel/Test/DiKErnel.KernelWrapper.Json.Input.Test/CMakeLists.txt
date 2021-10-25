@@ -7,6 +7,7 @@ set(EXCEPTIONS_FOLDER Exceptions)
 # Define sources
 set(SOURCEFILES_ROOT
   JsonInputComposerTest.cpp
+  JsonInputComposerResultTest.cpp
   Main.cpp
 )
 
@@ -27,4 +28,4 @@ source_group("" FILES ${SOURCEFILES_ROOT})
 source_group(${EXCEPTIONS_FOLDER} FILES ${SOURCEFILES_EXCEPTIONS})
 
 # Link dependencies
-target_link_libraries(${EXENAME} PUBLIC gtest DiKErnel.Integration DiKErnel.Integration.TestUtil DiKErnel.KernelWrapper.Json.Input DiKErnel.TestUtil)
+target_link_libraries(${EXENAME} PUBLIC gtest DiKErnel.Integration DiKErnel.Integration.TestUtil DiKErnel.KernelWrapper.Json.Input DiKErnel.TestUtil DiKErnel.Core.TestUtil)

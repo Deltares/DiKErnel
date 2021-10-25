@@ -18,28 +18,27 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
+#include <gtest/gtest.h>
+
+#include "ICalculationInputMock.h"
 #include "JsonInputComposerResult.h"
+#include "JsonInputProcessType.h"
 
-namespace DiKErnel::KernelWrapper::Json::Input
+namespace DiKErnel::KernelWrapper::Json::Input::Test
 {
-    using namespace Core;
     using namespace std;
+    using namespace testing;
+    using namespace Core::TestUtil;
 
-    JsonInputComposerResult::JsonInputComposerResult(
-        unique_ptr<ICalculationInput> calculationInput,
-        const JsonInputProcessType processType)
-        : _calculationInput(move(calculationInput)),
-          _processType(processType)
+    TEST(JsonInputComposerResultTest, Constructor_ExpectedValues)
     {
-    }
+        // Setup
+        constexpr auto processType = JsonInputProcessType::Physics;
 
-    const ICalculationInput& JsonInputComposerResult::GetCalculationInput() const
-    {
-        return *_calculationInput;
-    }
+        // Call
+        const auto result = JsonInputComposerResult(make_unique<ICalculationInputMock>(), processType);
 
-    const JsonInputProcessType& JsonInputComposerResult::GetProcessType() const
-    {
-        return _processType;
+        // Assert
+        ASSERT_EQ(processType, result.GetProcessType());
     }
 }

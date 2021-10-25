@@ -22,15 +22,13 @@
 
 #include <memory>
 
-#include "Event.h"
 #include "ICalculationInput.h"
 #include "JsonInputProcessType.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
     /*!
-     * \brief Class that holds all results (including any events that occurred) related to getting
-     *        calculation input based on JsonInputComposer.
+     * \brief Class that holds results as produced by JsonInputComposer.
      */
     class JsonInputComposerResult
     {
@@ -41,13 +39,10 @@ namespace DiKErnel::KernelWrapper::Json::Input
              *        The composed calculation input.
              * \param processType
              *        The read process type.
-             * \param events
-             *        The events that occurred during the process.
              */
             JsonInputComposerResult(
                 std::unique_ptr<Core::ICalculationInput> calculationInput,
-                JsonInputProcessType processType,
-                std::vector<std::unique_ptr<Util::Event>> events);
+                JsonInputProcessType processType);
 
             /*!
              * \brief Gets the composed calculation input.
@@ -61,16 +56,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
              */
             const JsonInputProcessType& GetProcessType() const;
 
-            /*!
-             * \brief Gets the events that occurred during the process.
-             * \return The events that occurred during the process.
-             */
-            const std::vector<std::reference_wrapper<Util::Event>>& GetEvents() const;
-
         private:
             std::unique_ptr<Core::ICalculationInput> _calculationInput;
             JsonInputProcessType _processType;
-            std::vector<std::unique_ptr<Util::Event>> _events;
-            std::vector<std::reference_wrapper<Util::Event>> _eventReferences;
     };
 }
