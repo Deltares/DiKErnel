@@ -14,6 +14,8 @@ set(INTERNAL_PARSERS_FOLDER ${INTERNAL_FOLDER}/Parsers)
 set(SOURCEFILES_PUBLIC
   ${PUBLIC_FOLDER}/JsonInputComposer.cpp
   ${PUBLIC_FOLDER}/JsonInputComposer.h
+  ${PUBLIC_FOLDER}/JsonInputComposerResult.cpp
+  ${PUBLIC_FOLDER}/JsonInputComposerResult.h
 )
 
 set(SOURCEFILES_PUBLIC_DATA
