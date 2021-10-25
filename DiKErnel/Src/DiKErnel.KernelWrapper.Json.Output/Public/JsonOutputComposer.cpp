@@ -37,8 +37,6 @@ namespace DiKErnel::KernelWrapper::Json::Output
         const CalculationOutput& calculationOutput,
         const JsonOutputType outputType)
     {
-        auto successful = false;
-
         try
         {
             const auto jsonOutput = CalculationOutputAdapter::AdaptCalculationOutput(calculationOutput, outputType);
@@ -46,14 +44,14 @@ namespace DiKErnel::KernelWrapper::Json::Output
             ofstream outfile(filePath, ios::trunc);
             outfile << setw(4) << jsonOutput->CreateJson() << endl;
 
-            successful = true;
+            return make_unique<SimpleResult>(true, EventRegistry::Flush());
         }
         catch (const exception& e)
         {
             EventRegistry::Register(make_unique<Event>("An unhandled error occurred while composing Json output from the calculation data. See "
                                                        "stack trace for more information:\n" + static_cast<string>(e.what()), EventType::Error));
-        }
 
-        return make_unique<SimpleResult>(successful, EventRegistry::Flush());
+            return make_unique<SimpleResult>(false, EventRegistry::Flush());
+        }
     }
 }

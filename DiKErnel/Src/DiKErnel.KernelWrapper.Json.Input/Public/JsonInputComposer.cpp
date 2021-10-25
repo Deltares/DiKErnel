@@ -30,14 +30,13 @@ namespace DiKErnel::KernelWrapper::Json::Input
     using namespace std;
     using namespace Util;
 
-    unique_ptr<Result<tuple<unique_ptr<ICalculationInput>, JsonInputProcessType>>> JsonInputComposer::GetInputDataFromJson(
+    unique_ptr<DataResult<JsonInputComposerResult>> JsonInputComposer::GetInputDataFromJson(
         const string& filePath)
     {
-        unique_ptr<tuple<unique_ptr<ICalculationInput>, JsonInputProcessType>> readInput = nullptr;
-        auto processType = JsonInputProcessType::Damage;
-
         try
         {
+            auto processType = JsonInputProcessType::Damage;
+
             const auto jsonInputData = JsonInputParser::GetJsonInputData(filePath);
 
             if (const auto* readProcessType = jsonInputData->GetProcessData().GetProcessType(); readProcessType != nullptr)
@@ -45,16 +44,16 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 processType = *readProcessType;
             }
 
-            readInput = make_unique<tuple<unique_ptr<ICalculationInput>, JsonInputProcessType>>(
-                JsonInputAdapter::AdaptJsonInputData(*jsonInputData),
-                processType);
+            auto inputComposerResult = make_unique<JsonInputComposerResult>(JsonInputAdapter::AdaptJsonInputData(*jsonInputData), processType);
+
+            return make_unique<DataResult<JsonInputComposerResult>>(inputComposerResult, EventRegistry::Flush());
         }
         catch (const exception& e)
         {
             EventRegistry::Register(make_unique<Event>("An unhandled error occurred while composing calculation data from the Json input. See "
                                                        "stack trace for more information:\n" + static_cast<string>(e.what()), EventType::Error));
-        }
 
-        return make_unique<Result<tuple<unique_ptr<ICalculationInput>, JsonInputProcessType>>>(move(readInput), EventRegistry::Flush());
+            return make_unique<DataResult<JsonInputComposerResult>>(EventRegistry::Flush());
+        }
     }
 }
