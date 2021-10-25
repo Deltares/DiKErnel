@@ -92,7 +92,7 @@ namespace DiKErnel::DomainLibrary::Test
     {
         const auto validateAction = NaturalStoneRevetmentValidator::SlopeUpperLevelAus;
 
-        constexpr auto errorMessage = "SlopeUpperLevelAus must be above 0.";
+        constexpr auto errorMessage = "SlopeUpperLevelAus must be larger than 0.";
         constexpr auto warningMessage = "SlopeUpperLevelAus should be in range [0.01, 0.2].";
 
         ValidatorAssertHelper::AssertEqualToBound(validateAction, -1 * numeric_limits<double>::infinity(), ValidationIssueType::Error,
@@ -117,7 +117,7 @@ namespace DiKErnel::DomainLibrary::Test
     {
         const auto validateAction = NaturalStoneRevetmentValidator::SlopeLowerLevelAls;
 
-        constexpr auto errorMessage = "SlopeLowerLevelAls must be above 0.";
+        constexpr auto errorMessage = "SlopeLowerLevelAls must be larger than 0.";
         constexpr auto warningMessage = "SlopeLowerLevelAls should be in range [1, 2].";
 
         ValidatorAssertHelper::AssertEqualToBound(validateAction, -1 * numeric_limits<double>::infinity(), ValidationIssueType::Error,

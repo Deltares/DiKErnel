@@ -73,7 +73,7 @@ namespace DiKErnel::DomainLibrary
     {
         if (criticalFrontVelocity < 0)
         {
-            return make_unique<ValidationIssue>(ValidationIssueType::Error, "CriticalFrontVelocity must be positive.");
+            return make_unique<ValidationIssue>(ValidationIssueType::Error, "CriticalFrontVelocity must be equal to 0 or larger.");
         }
 
         return nullptr;
@@ -84,7 +84,7 @@ namespace DiKErnel::DomainLibrary
     {
         if (increasedLoadTransitionAlphaM < 0)
         {
-            return make_unique<ValidationIssue>(ValidationIssueType::Error, "IncreasedLoadTransitionAlphaM must be positive.");
+            return make_unique<ValidationIssue>(ValidationIssueType::Error, "IncreasedLoadTransitionAlphaM must be equal to 0 or larger.");
         }
 
         return nullptr;
@@ -95,7 +95,7 @@ namespace DiKErnel::DomainLibrary
     {
         if (reducedStrengthTransitionAlphaS < 0)
         {
-            return make_unique<ValidationIssue>(ValidationIssueType::Error, "ReducedStrengthTransitionAlphaS must be positive.");
+            return make_unique<ValidationIssue>(ValidationIssueType::Error, "ReducedStrengthTransitionAlphaS must be equal to 0 or larger.");
         }
 
         return nullptr;

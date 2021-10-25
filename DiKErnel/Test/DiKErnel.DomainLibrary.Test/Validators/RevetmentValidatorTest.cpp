@@ -44,7 +44,7 @@ namespace DiKErnel::DomainLibrary::Test
     {
         const auto validateAction = RevetmentValidator::InitialDamage;
 
-        constexpr auto errorMessage = "InitialDamage must be a positive number.";
+        constexpr auto errorMessage = "InitialDamage must be equal to 0 or larger.";
         constexpr auto warningMessage = "InitialDamage should be in range [0, 1}.";
 
         ValidatorAssertHelper::AssertEqualToBound(validateAction, -1 * numeric_limits<double>::infinity(), ValidationIssueType::Error,

@@ -110,7 +110,7 @@ namespace DiKErnel::DomainLibrary::Test
     {
         const auto validateAction = GrassRevetmentWaveRunupValidator::CriticalFrontVelocity;
 
-        constexpr auto errorMessage = "CriticalFrontVelocity must be positive.";
+        constexpr auto errorMessage = "CriticalFrontVelocity must be equal to 0 or larger.";
 
         ValidatorAssertHelper::AssertEqualToBound(validateAction, -1 * numeric_limits<double>::infinity(), ValidationIssueType::Error,
                                                   errorMessage);
@@ -126,7 +126,7 @@ namespace DiKErnel::DomainLibrary::Test
     {
         const auto validateAction = GrassRevetmentWaveRunupValidator::IncreasedLoadTransitionAlphaM;
 
-        constexpr auto errorMessage = "IncreasedLoadTransitionAlphaM must be positive.";
+        constexpr auto errorMessage = "IncreasedLoadTransitionAlphaM must be equal to 0 or larger.";
 
         ValidatorAssertHelper::AssertEqualToBound(validateAction, -1 * numeric_limits<double>::infinity(), ValidationIssueType::Error,
                                                   errorMessage);
@@ -142,7 +142,7 @@ namespace DiKErnel::DomainLibrary::Test
     {
         const auto validateAction = GrassRevetmentWaveRunupValidator::ReducedStrengthTransitionAlphaS;
 
-        constexpr auto errorMessage = "ReducedStrengthTransitionAlphaS must be positive.";
+        constexpr auto errorMessage = "ReducedStrengthTransitionAlphaS must be equal to 0 or larger.";
 
         ValidatorAssertHelper::AssertEqualToBound(validateAction, -1 * numeric_limits<double>::infinity(), ValidationIssueType::Error,
                                                   errorMessage);

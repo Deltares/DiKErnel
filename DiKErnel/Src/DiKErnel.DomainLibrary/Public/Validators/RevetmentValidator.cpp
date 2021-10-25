@@ -29,7 +29,7 @@ namespace DiKErnel::DomainLibrary
     {
         if (initialDamage < 0)
         {
-            return make_unique<ValidationIssue>(ValidationIssueType::Error, "InitialDamage must be a positive number.");
+            return make_unique<ValidationIssue>(ValidationIssueType::Error, "InitialDamage must be equal to 0 or larger.");
         }
 
         if (initialDamage >= 1)

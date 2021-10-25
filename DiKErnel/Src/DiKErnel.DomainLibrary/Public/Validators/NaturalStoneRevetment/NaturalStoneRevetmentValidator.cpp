@@ -61,7 +61,7 @@ namespace DiKErnel::DomainLibrary
     {
         if(slopeUpperLevelAus <= 0)
         {
-            return make_unique<ValidationIssue>(ValidationIssueType::Error, "SlopeUpperLevelAus must be above 0.");
+            return make_unique<ValidationIssue>(ValidationIssueType::Error, "SlopeUpperLevelAus must be larger than 0.");
         }
 
         if(slopeUpperLevelAus < 0.01 || slopeUpperLevelAus > 0.2)
@@ -77,7 +77,7 @@ namespace DiKErnel::DomainLibrary
     {
         if (slopeLowerLevelAls <= 0)
         {
-            return make_unique<ValidationIssue>(ValidationIssueType::Error, "SlopeLowerLevelAls must be above 0.");
+            return make_unique<ValidationIssue>(ValidationIssueType::Error, "SlopeLowerLevelAls must be larger than 0.");
         }
 
         if (slopeLowerLevelAls < 1 || slopeLowerLevelAls > 2)
