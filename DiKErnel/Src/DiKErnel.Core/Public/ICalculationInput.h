@@ -40,6 +40,12 @@ namespace DiKErnel::Core
             virtual ~ICalculationInput() = default;
 
             /*!
+             * \brief Performs calculation input validation.
+             * \return Indicator whether the validation succeeded.
+             */
+            virtual bool Validate() = 0;
+
+            /*!
              * \brief Gets the profile data to use in the calculation.
              * \return The profile data to use in the calculation.
              */

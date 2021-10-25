@@ -20,11 +20,14 @@
 
 #include "CalculationInput.h"
 
+#include "GenericValidator.h"
 #include "InvalidCalculationDataException.h"
+#include "ValidationHelper.h"
 
 namespace DiKErnel::Integration
 {
     using namespace Core;
+    using namespace DomainLibrary;
     using namespace std;
 
     CalculationInput::CalculationInput(
@@ -52,6 +55,20 @@ namespace DiKErnel::Integration
         {
             _locationDependentInputItemReferences.emplace_back(*locationDependentInput);
         }
+    }
+
+    bool CalculationInput::Validate()
+    {
+        auto timeStepTimes = vector<pair<int, int>>();
+
+        for (const auto& timeDependentInputItem : _timeDependentInputItems)
+        {
+            timeStepTimes.emplace_back(pair(timeDependentInputItem->GetBeginTime(), timeDependentInputItem->GetEndTime()));
+        }
+
+        const auto timeSteps = GenericValidator::TimeSteps(timeStepTimes);
+
+        return ValidationHelper::RegisterValidationIssue(timeSteps.get());
     }
 
     const IProfileData& CalculationInput::GetProfileData() const
