@@ -6,6 +6,7 @@ set(PUBLIC_FOLDER Public)
 
 # Define sources
 set(SOURCEFILES_PUBLIC
+  ${PUBLIC_FOLDER}/DataResult.h
   ${PUBLIC_FOLDER}/Event.cpp
   ${PUBLIC_FOLDER}/Event.h
   ${PUBLIC_FOLDER}/EventRegistry.cpp

@@ -40,7 +40,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
              * \param processType
              *        The read process type.
              */
-            JsonInputComposerResult(
+            explicit JsonInputComposerResult(
                 std::unique_ptr<Core::ICalculationInput> calculationInput,
                 JsonInputProcessType processType);
 

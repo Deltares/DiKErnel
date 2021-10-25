@@ -28,7 +28,7 @@
 namespace DiKErnel::Util
 {
     /*!
-     * \brief Class that holds all information about the result of an operation and the events that
+     * \brief Class that holds information about the result of an operation and the events that
      *        occurred.
      */
     class Resuld
