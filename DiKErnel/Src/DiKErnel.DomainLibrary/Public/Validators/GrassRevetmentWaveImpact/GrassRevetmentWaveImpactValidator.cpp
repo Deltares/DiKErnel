@@ -28,7 +28,7 @@ namespace DiKErnel::DomainLibrary
         const double timeLineAgwi,
         const double timeLineCgwi)
     {
-        if (timeLineAgwi <= timeLineCgwi) 
+        if (timeLineAgwi <= timeLineCgwi)
         {
             return make_unique<ValidationIssue>(ValidationIssueType::Error, "TimeLineAgwi must be larger than TimeLineCgwi.");
         }
@@ -39,7 +39,7 @@ namespace DiKErnel::DomainLibrary
     unique_ptr<ValidationIssue> GrassRevetmentWaveImpactValidator::TimeLineBgwi(
         const double timeLineBgwi)
     {
-        if(timeLineBgwi >= 0)
+        if (timeLineBgwi >= 0)
         {
             return make_unique<ValidationIssue>(ValidationIssueType::Error, "TimeLineBgwi must be smaller than 0");
         }
@@ -50,9 +50,41 @@ namespace DiKErnel::DomainLibrary
     unique_ptr<ValidationIssue> GrassRevetmentWaveImpactValidator::TimeLineCgwi(
         const double timeLineCgwi)
     {
-        if(timeLineCgwi < 0)
+        if (timeLineCgwi < 0)
         {
             return make_unique<ValidationIssue>(ValidationIssueType::Error, "TimeLineCgwi must be equal to 0 or larger.");
+        }
+
+        return nullptr;
+    }
+
+    unique_ptr<ValidationIssue> GrassRevetmentWaveImpactValidator::MinimumWaveHeightTemax(
+        const double minimumWaveHeightTemax)
+    {
+        if (minimumWaveHeightTemax > 3600000)
+        {
+            return make_unique<ValidationIssue>(ValidationIssueType::Error, "MinimumWaveHeightTemax must be equal to 3600000 or smaller.");
+        }
+
+        if (minimumWaveHeightTemax <= 1000000)
+        {
+            return make_unique<ValidationIssue>(ValidationIssueType::Warning, "MinimumWaveHeightTemax should be in range {1000000, 3600000].");
+        }
+
+        return nullptr;
+    }
+
+    unique_ptr<ValidationIssue> GrassRevetmentWaveImpactValidator::MaximumWaveHeightTemin(
+        const double maximumWaveHeightTemin)
+    {
+        if (maximumWaveHeightTemin < 3.6)
+        {
+            return make_unique<ValidationIssue>(ValidationIssueType::Error, "MaximumWaveHeightTemin must be equal to 3.6 or larger.");
+        }
+
+        if (maximumWaveHeightTemin >= 10)
+        {
+            return make_unique<ValidationIssue>(ValidationIssueType::Warning, "MaximumWaveHeightTemin should be in range [3.6, 10}.");
         }
 
         return nullptr;

@@ -86,4 +86,46 @@ namespace DiKErnel::DomainLibrary::Test
 
         ValidatorAssertHelper::AssertEqualToBound(validateAction, numeric_limits<double>::infinity());
     }
+
+    TEST_F(GrassRevetmentWaveImpactValidatorTest, MinimumWaveHeightTemax_VariousScenarios_ExpectedValues)
+    {
+        const auto validateAction = GrassRevetmentWaveImpactValidator::MinimumWaveHeightTemax;
+
+        constexpr auto errorMessage = "MinimumWaveHeightTemax must be equal to 3600000 or smaller.";
+        constexpr auto warningMessage = "MinimumWaveHeightTemax should be in range {1000000, 3600000].";
+
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, -1 * numeric_limits<double>::infinity(), ValidationIssueType::Warning,
+                                                  warningMessage);
+
+        ValidatorAssertHelper::AssertBelowBound(validateAction, 1000000, ValidationIssueType::Warning, warningMessage);
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, 1000000, ValidationIssueType::Warning, warningMessage);
+        ValidatorAssertHelper::AssertAboveBound(validateAction, 1000000);
+
+        ValidatorAssertHelper::AssertBelowBound(validateAction, 3600000);
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, 3600000);
+        ValidatorAssertHelper::AssertAboveBound(validateAction, 3600000, ValidationIssueType::Error, errorMessage);
+
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, numeric_limits<double>::infinity(), ValidationIssueType::Error, errorMessage);
+    }
+
+    TEST_F(GrassRevetmentWaveImpactValidatorTest, MaximumWaveHeightTemin_VariousScenarios_ExpectedValues)
+    {
+        const auto validateAction = GrassRevetmentWaveImpactValidator::MaximumWaveHeightTemin;
+
+        constexpr auto errorMessage = "MaximumWaveHeightTemin must be equal to 3.6 or larger.";
+        constexpr auto warningMessage = "MaximumWaveHeightTemin should be in range [3.6, 10}.";
+
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, -1 * numeric_limits<double>::infinity(), ValidationIssueType::Error,
+                                                  errorMessage);
+
+        ValidatorAssertHelper::AssertBelowBound(validateAction, 3.6, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, 3.6);
+        ValidatorAssertHelper::AssertAboveBound(validateAction, 3.6);
+
+        ValidatorAssertHelper::AssertBelowBound(validateAction, 10);
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, 10, ValidationIssueType::Warning, warningMessage);
+        ValidatorAssertHelper::AssertAboveBound(validateAction, 10, ValidationIssueType::Warning, warningMessage);
+
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, numeric_limits<double>::infinity(), ValidationIssueType::Warning, warningMessage);
+    }
 }

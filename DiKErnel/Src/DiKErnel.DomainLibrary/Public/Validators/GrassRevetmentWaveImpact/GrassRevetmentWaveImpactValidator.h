@@ -64,5 +64,25 @@ namespace DiKErnel::DomainLibrary
              */
             static std::unique_ptr<ValidationIssue> TimeLineCgwi(
                 double timeLineCgwi);
+
+            /*!
+             * \brief Validates the Temax coefficient.
+             * \param minimumWaveHeightTemax
+             *        The Temax coefficient.
+             * \return A validation issue when the Temax coefficient is not valid;
+             *         nullptr otherwise.
+             */
+            static std::unique_ptr<ValidationIssue> MinimumWaveHeightTemax(
+                double minimumWaveHeightTemax);
+
+            /*!
+             * \brief Validates the Temin coefficient.
+             * \param maximumWaveHeightTemin
+             *        The Temin coefficient.
+             * \return A validation issue when the Temin coefficient is not valid;
+             *         nullptr otherwise.
+             */
+            static std::unique_ptr<ValidationIssue> MaximumWaveHeightTemin(
+                double maximumWaveHeightTemin);
     };
 }
