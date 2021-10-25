@@ -18,11 +18,55 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
+#include <limits>
+
 #include <gtest/gtest.h>
 
 #include "GrassRevetmentWaveRunupValidator.h"
+#include "ValidatorAssertHelper.h"
 
 namespace DiKErnel::DomainLibrary::Test
 {
-    
+    using namespace std;
+    using namespace TestUtil;
+
+    TEST(GrassRevetmentWaveRunupValidatorTest, RepresentativeWaveRunup2PGammab_VariousScenarios_ExpectedValues)
+    {
+        const auto validateAction = GrassRevetmentWaveRunupValidator::RepresentativeWaveRunup2PGammab;
+
+        constexpr auto errorMessage = "RepresentativeWaveRunup2PGammab must be in range [0.6, 1].";
+
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, -1 * numeric_limits<double>::infinity(), ValidationIssueType::Error,
+                                                  errorMessage);
+
+        ValidatorAssertHelper::AssertBelowBound(validateAction, 0.6, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, 0.6);
+        ValidatorAssertHelper::AssertAboveBound(validateAction, 0.6);
+
+        ValidatorAssertHelper::AssertBelowBound(validateAction, 1);
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, 1);
+        ValidatorAssertHelper::AssertAboveBound(validateAction, 1, ValidationIssueType::Error, errorMessage);
+
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, numeric_limits<double>::infinity(), ValidationIssueType::Error, errorMessage);
+    }
+
+    TEST(GrassRevetmentWaveRunupValidatorTest, RepresentativeWaveRunup2PGammaf_VariousScenarios_ExpectedValues)
+    {
+        const auto validateAction = GrassRevetmentWaveRunupValidator::RepresentativeWaveRunup2PGammaf;
+
+        constexpr auto errorMessage = "RepresentativeWaveRunup2PGammaf must be in range [0.5, 1].";
+
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, -1 * numeric_limits<double>::infinity(), ValidationIssueType::Error,
+                                                  errorMessage);
+
+        ValidatorAssertHelper::AssertBelowBound(validateAction, 0.5, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, 0.5);
+        ValidatorAssertHelper::AssertAboveBound(validateAction, 0.5);
+
+        ValidatorAssertHelper::AssertBelowBound(validateAction, 1);
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, 1);
+        ValidatorAssertHelper::AssertAboveBound(validateAction, 1, ValidationIssueType::Error, errorMessage);
+
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, numeric_limits<double>::infinity(), ValidationIssueType::Error, errorMessage);
+    }
 }

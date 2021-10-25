@@ -23,4 +23,26 @@
 namespace DiKErnel::DomainLibrary
 {
     using namespace std;
+
+    unique_ptr<ValidationIssue> GrassRevetmentWaveRunupValidator::RepresentativeWaveRunup2PGammab(
+        const double representativeWaveRunup2PGammab)
+    {
+        if (representativeWaveRunup2PGammab < 0.6 || representativeWaveRunup2PGammab > 1)
+        {
+            return make_unique<ValidationIssue>(ValidationIssueType::Error, "RepresentativeWaveRunup2PGammab must be in range [0.6, 1].");
+        }
+
+        return nullptr;
+    }
+
+    unique_ptr<ValidationIssue> GrassRevetmentWaveRunupValidator::RepresentativeWaveRunup2PGammaf(
+        const double representativeWaveRunup2PGammaf)
+    {
+        if (representativeWaveRunup2PGammaf < 0.5 || representativeWaveRunup2PGammaf > 1)
+        {
+            return make_unique<ValidationIssue>(ValidationIssueType::Error, "RepresentativeWaveRunup2PGammaf must be in range [0.5, 1].");
+        }
+
+        return nullptr;
+    }
 }

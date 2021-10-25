@@ -32,6 +32,24 @@ namespace DiKErnel::DomainLibrary
     class GrassRevetmentWaveRunupValidator
     {
         public:
-            
+            /*!
+             * \brief Validates the 2P Gammab coefficient.
+             * \param representativeWaveRunup2PGammab
+             *        The 2P Gammab coefficient.
+             * \return A validation issue when the 2P Gammab coefficient is not valid;
+             *         nullptr otherwise.
+             */
+            static std::unique_ptr<ValidationIssue> RepresentativeWaveRunup2PGammab(
+                double representativeWaveRunup2PGammab);
+
+            /*!
+             * \brief Validates the 2P Gammaf coefficient.
+             * \param representativeWaveRunup2PGammaf
+             *        The 2P Gammaf coefficient.
+             * \return A validation issue when the 2P Gammaf coefficient is not valid;
+             *         nullptr otherwise.
+             */
+            static std::unique_ptr<ValidationIssue> RepresentativeWaveRunup2PGammaf(
+                double representativeWaveRunup2PGammaf);
     };
 }
