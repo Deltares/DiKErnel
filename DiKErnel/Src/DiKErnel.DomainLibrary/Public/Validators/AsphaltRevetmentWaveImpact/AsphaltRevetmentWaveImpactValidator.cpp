@@ -27,42 +27,34 @@ namespace DiKErnel::DomainLibrary
     unique_ptr<ValidationIssue> AsphaltRevetmentWaveImpactValidator::FatigueAlpha(
         const double fatigueAlpha)
     {
-        if (fatigueAlpha <= 0)
-        {
-            return make_unique<ValidationIssue>(ValidationIssueType::Error, "FatigueAlpha must be larger than 0.");
-        }
-
-        return nullptr;
+        return ValidateLargerThanZero(fatigueAlpha, "FatigueAlpha");
     }
 
     unique_ptr<ValidationIssue> AsphaltRevetmentWaveImpactValidator::FatigueBeta(
         const double fatigueBeta)
     {
-        if (fatigueBeta <= 0)
-        {
-            return make_unique<ValidationIssue>(ValidationIssueType::Error, "FatigueBeta must be larger than 0.");
-        }
-
-        return nullptr;
+        return ValidateLargerThanZero(fatigueBeta, "FatigueBeta");
     }
 
     unique_ptr<ValidationIssue> AsphaltRevetmentWaveImpactValidator::FailureTension(
         const double failureTension)
     {
-        if (failureTension <= 0)
-        {
-            return make_unique<ValidationIssue>(ValidationIssueType::Error, "FailureTension must be larger than 0.");
-        }
-
-        return nullptr;
+        return ValidateLargerThanZero(failureTension, "FailureTension");
     }
 
     unique_ptr<ValidationIssue> AsphaltRevetmentWaveImpactValidator::ImpactNumberC(
         const double impactNumberC)
     {
-        if (impactNumberC <= 0)
+        return ValidateLargerThanZero(impactNumberC, "ImpactNumberC");
+    }
+
+    unique_ptr<ValidationIssue> AsphaltRevetmentWaveImpactValidator::ValidateLargerThanZero(
+        const double propertyToValidate,
+        const string& propertyName)
+    {
+        if(propertyToValidate <= 0)
         {
-            return make_unique<ValidationIssue>(ValidationIssueType::Error, "ImpactNumberC must be larger than 0.");
+            return make_unique<ValidationIssue>(ValidationIssueType::Error, propertyName + " must be larger than 0.");
         }
 
         return nullptr;

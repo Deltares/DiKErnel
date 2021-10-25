@@ -67,5 +67,10 @@ namespace DiKErnel::DomainLibrary
              */
             static std::unique_ptr<ValidationIssue> ImpactNumberC(
                 double impactNumberC);
+
+        private:
+            static std::unique_ptr<ValidationIssue> ValidateLargerThanZero(
+                double propertyToValidate,
+                const std::string& propertyName);
     };
 }
