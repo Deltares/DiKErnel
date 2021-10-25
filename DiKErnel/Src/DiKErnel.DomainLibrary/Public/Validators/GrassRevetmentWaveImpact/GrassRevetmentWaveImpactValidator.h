@@ -84,5 +84,35 @@ namespace DiKErnel::DomainLibrary
              */
             static std::unique_ptr<ValidationIssue> MaximumWaveHeightTemin(
                 double maximumWaveHeightTemin);
+
+            /*!
+             * \brief Validates the Nwa coefficient.
+             * \param waveAngleImpactNwa
+             *        The Nwa coefficient.
+             * \return A validation issue when the Nwa coefficient is not valid;
+             *         nullptr otherwise.
+             */
+            static std::unique_ptr<ValidationIssue> WaveAngleImpactNwa(
+                double waveAngleImpactNwa);
+
+            /*!
+             * \brief Validates the Qwa coefficient.
+             * \param waveAngleImpactQwa
+             *        The Qwa coefficient.
+             * \return A validation issue when the Qwa coefficient is not valid;
+             *         nullptr otherwise.
+             */
+            static std::unique_ptr<ValidationIssue> WaveAngleImpactQwa(
+                double waveAngleImpactQwa);
+
+            /*!
+             * \brief Validates the Rwa coefficient.
+             * \param waveAngleImpactRwa
+             *        The Rwa coefficient.
+             * \return A validation issue when the Rwa coefficient is not valid;
+             *         nullptr otherwise.
+             */
+            static std::unique_ptr<ValidationIssue> WaveAngleImpactRwa(
+                double waveAngleImpactRwa);
     };
 }

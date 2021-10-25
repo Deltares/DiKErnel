@@ -89,4 +89,37 @@ namespace DiKErnel::DomainLibrary
 
         return nullptr;
     }
+
+    unique_ptr<ValidationIssue> GrassRevetmentWaveImpactValidator::WaveAngleImpactNwa(
+        const double waveAngleImpactNwa)
+    {
+        if (waveAngleImpactNwa > 1)
+        {
+            return make_unique<ValidationIssue>(ValidationIssueType::Error, "WaveAngleImpactNwa must be equal to 1 or smaller.");
+        }
+
+        return nullptr;
+    }
+
+    unique_ptr<ValidationIssue> GrassRevetmentWaveImpactValidator::WaveAngleImpactQwa(
+        const double waveAngleImpactQwa)
+    {
+        if (waveAngleImpactQwa < 0 || waveAngleImpactQwa > 1)
+        {
+            return make_unique<ValidationIssue>(ValidationIssueType::Error, "WaveAngleImpactQwa must be in range [0, 1].");
+        }
+
+        return nullptr;
+    }
+
+    unique_ptr<ValidationIssue> GrassRevetmentWaveImpactValidator::WaveAngleImpactRwa(
+        const double waveAngleImpactRwa)
+    {
+        if (waveAngleImpactRwa <= 0)
+        {
+            return make_unique<ValidationIssue>(ValidationIssueType::Error, "WaveAngleImpactRwa must be larger than 0.");
+        }
+
+        return nullptr;
+    }
 }
