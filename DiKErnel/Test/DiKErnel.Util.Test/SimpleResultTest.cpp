@@ -20,13 +20,13 @@
 
 #include <gtest/gtest.h>
 
-#include "Resuld.h"
+#include "SimpleResult.h"
 
 namespace DiKErnel::Util::Test
 {
     using namespace std;
 
-    TEST(ResuldTest, Constructor_ExpectedValues)
+    TEST(SimpleResultTest, Constructor_ExpectedValues)
     {
         // Setup
         constexpr auto message = "Test message";
@@ -36,7 +36,7 @@ namespace DiKErnel::Util::Test
         events.emplace_back(make_unique<Event>(message, eventType));
 
         // Call
-        const Resuld result(true, move(events));
+        const SimpleResult result(true, move(events));
 
         // Assert
         ASSERT_TRUE(result.GetSuccessful());
