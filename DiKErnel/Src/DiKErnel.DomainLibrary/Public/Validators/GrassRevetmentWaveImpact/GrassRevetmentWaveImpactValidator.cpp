@@ -122,4 +122,16 @@ namespace DiKErnel::DomainLibrary
 
         return nullptr;
     }
+
+    unique_ptr<ValidationIssue> GrassRevetmentWaveImpactValidator::UpperLimitLoadingAul(
+        const double upperLimitLoadingAul,
+        const double lowerLimitLoadingAll)
+    {
+        if(upperLimitLoadingAul >= lowerLimitLoadingAll)
+        {
+            return make_unique<ValidationIssue>(ValidationIssueType::Error, "UpperLimitLoadingAul must be smaller than LowerLimitLoadingAll.");
+        }
+
+        return nullptr;
+    }
 }

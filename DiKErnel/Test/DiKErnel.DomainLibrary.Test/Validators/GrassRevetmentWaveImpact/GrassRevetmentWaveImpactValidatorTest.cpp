@@ -38,6 +38,12 @@ namespace DiKErnel::DomainLibrary::Test
         {
             return GrassRevetmentWaveImpactValidator::TimeLineAgwi(timeLineAgwi, 3);
         }
+
+        static unique_ptr<ValidationIssue> UpperLimitLoadingAul(
+            const double upperLimitLoadingAul)
+        {
+            return GrassRevetmentWaveImpactValidator::UpperLimitLoadingAul(upperLimitLoadingAul, 2);
+        }
     };
 
     TEST_F(GrassRevetmentWaveImpactValidatorTest, TimeLineAgwi_VariousScenarios_ExpectedValues)
@@ -150,7 +156,8 @@ namespace DiKErnel::DomainLibrary::Test
 
         constexpr auto errorMessage = "WaveAngleImpactQwa must be in range [0, 1].";
 
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, -1 * numeric_limits<double>::infinity(), ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, -1 * numeric_limits<double>::infinity(), ValidationIssueType::Error,
+                                                  errorMessage);
 
         ValidatorAssertHelper::AssertBelowBound(validateAction, 0, ValidationIssueType::Error, errorMessage);
         ValidatorAssertHelper::AssertEqualToBound(validateAction, 0);
@@ -169,12 +176,28 @@ namespace DiKErnel::DomainLibrary::Test
 
         constexpr auto errorMessage = "WaveAngleImpactRwa must be larger than 0.";
 
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, -1 * numeric_limits<double>::infinity(), ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, -1 * numeric_limits<double>::infinity(), ValidationIssueType::Error,
+                                                  errorMessage);
 
         ValidatorAssertHelper::AssertBelowBound(validateAction, 0, ValidationIssueType::Error, errorMessage);
         ValidatorAssertHelper::AssertEqualToBound(validateAction, 0, ValidationIssueType::Error, errorMessage);
         ValidatorAssertHelper::AssertAboveBound(validateAction, 0);
 
         ValidatorAssertHelper::AssertEqualToBound(validateAction, numeric_limits<double>::infinity());
+    }
+
+    TEST_F(GrassRevetmentWaveImpactValidatorTest, UpperLimitLoadingAul_VariousScenarios_ExpectedValues)
+    {
+        const auto validateAction = UpperLimitLoadingAul;
+
+        constexpr auto errorMessage = "UpperLimitLoadingAul must be smaller than LowerLimitLoadingAll.";
+
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, -1 * numeric_limits<double>::infinity());
+
+        ValidatorAssertHelper::AssertBelowBound(validateAction, 2);
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, 2, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertAboveBound(validateAction, 2, ValidationIssueType::Error, errorMessage);
+
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, numeric_limits<double>::infinity(), ValidationIssueType::Error, errorMessage);
     }
 }

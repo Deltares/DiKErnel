@@ -114,5 +114,18 @@ namespace DiKErnel::DomainLibrary
              */
             static std::unique_ptr<ValidationIssue> WaveAngleImpactRwa(
                 double waveAngleImpactRwa);
+
+            /*!
+             * \brief Validates the Aul coefficient.
+             * \param upperLimitLoadingAul
+             *        The Aul coefficient.
+             * \param lowerLimitLoadingAll
+             *        The All coefficient.
+             * \return A validation issue when the Aul coefficient is not valid;
+             *         nullptr otherwise.
+             */
+            static std::unique_ptr<ValidationIssue> UpperLimitLoadingAul(
+                double upperLimitLoadingAul,
+                double lowerLimitLoadingAll);
     };
 }
