@@ -18,13 +18,13 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include "Resuld.h"
+#include "SimpleResult.h"
 
 namespace DiKErnel::Util
 {
     using namespace std;
 
-    Resuld::Resuld(
+    SimpleResult::SimpleResult(
         const bool successful,
         vector<unique_ptr<Event>> events)
         : _successful(successful),
@@ -36,12 +36,12 @@ namespace DiKErnel::Util
         }
     }
 
-    bool Resuld::GetSuccessful() const
+    bool SimpleResult::GetSuccessful() const
     {
         return _successful;
     }
 
-    const vector<reference_wrapper<Event>>& Resuld::GetEvents() const
+    const vector<reference_wrapper<Event>>& SimpleResult::GetEvents() const
     {
         return _eventReferences;
     }

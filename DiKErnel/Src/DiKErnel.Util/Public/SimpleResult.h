@@ -31,7 +31,7 @@ namespace DiKErnel::Util
      * \brief Class that holds information about the result of an operation and the events that
      *        occurred.
      */
-    class Resuld
+    class SimpleResult
     {
         public:
             /*!
@@ -41,7 +41,7 @@ namespace DiKErnel::Util
              * \param events
              *        The events that occurred.
              */
-            Resuld(
+            SimpleResult(
                 bool successful,
                 std::vector<std::unique_ptr<Event>> events);
 

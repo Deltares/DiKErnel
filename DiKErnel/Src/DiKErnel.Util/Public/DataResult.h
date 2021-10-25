@@ -20,7 +20,7 @@
 
 #pragma once
 
-#include "Resuld.h"
+#include "SimpleResult.h"
 
 namespace DiKErnel::Util
 {
@@ -30,7 +30,7 @@ namespace DiKErnel::Util
      * \tparam T The type of the data that was produced.
      */
     template <typename T>
-    class DataResult : Resuld
+    class DataResult : SimpleResult
     {
         public:
             /*!
@@ -40,7 +40,7 @@ namespace DiKErnel::Util
              */
             explicit DataResult(
                 const std::vector<std::unique_ptr<Event>> events)
-                : Resuld(false, events),
+                : SimpleResult(false, events),
                   _data(nullptr) { }
 
             /*!
@@ -53,7 +53,7 @@ namespace DiKErnel::Util
             explicit DataResult(
                 std::unique_ptr<T> data,
                 const std::vector<std::unique_ptr<Event>> events)
-                : Resuld(true, events),
+                : SimpleResult(true, events),
                   _data(std::move(data)) { }
 
             /*!
