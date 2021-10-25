@@ -20,56 +20,58 @@
 
 #include <gtest/gtest.h>
 
-#include "Result.h"
+#include "DataResult.h"
 
 namespace DiKErnel::Util::Test
 {
     using namespace std;
 
-    TEST(ResultTest, Constructor_WithResultSet_ExpectedValues)
+    TEST(DataResultTest, Constructor_WithData_ExpectedValues)
     {
         // Setup
-        constexpr auto resultNumber = 45;
+        constexpr auto data = 45;
         constexpr auto message = "Test message";
         constexpr auto eventType = EventType::Error;
 
         auto events = vector<unique_ptr<Event>>();
-
-        events.push_back(make_unique<Event>(message, eventType));
+        events.emplace_back(make_unique<Event>(message, eventType));
 
         // Call
-        const Result result(make_unique<int>(resultNumber), move(events));
+        const DataResult result(make_unique<int>(data), move(events));
 
         // Assert
-        ASSERT_EQ(resultNumber, *result.GetResult());
+        ASSERT_TRUE(result.GetSuccessful());
 
         ASSERT_EQ(1, result.GetEvents().size());
 
-        const auto& eventResult = result.GetEvents()[0].get();
-        ASSERT_EQ(message, eventResult.GetMessage());
-        ASSERT_EQ(eventType, eventResult.GetEventType());
+        const auto& event = result.GetEvents()[0].get();
+        ASSERT_EQ(message, event.GetMessage());
+        ASSERT_EQ(eventType, event.GetEventType());
+
+        ASSERT_EQ(data, *result.GetData());
     }
 
-    TEST(ResultTest, Constructor_WithResultNotSet_ExpectedValues)
+    TEST(DataResultTest, Constructor_WithoutData_ExpectedValues)
     {
         // Setup
         constexpr auto message = "Test message";
         constexpr auto eventType = EventType::Error;
 
         auto events = vector<unique_ptr<Event>>();
-
-        events.push_back(make_unique<Event>(message, eventType));
+        events.emplace_back(make_unique<Event>(message, eventType));
 
         // Call
-        const Result<int> result(nullptr, move(events));
+        const DataResult<int> result(move(events));
 
         // Assert
-        ASSERT_EQ(nullptr, result.GetResult());
+        ASSERT_FALSE(result.GetSuccessful());
 
         ASSERT_EQ(1, result.GetEvents().size());
 
-        const auto& eventResult = result.GetEvents()[0].get();
-        ASSERT_EQ(message, eventResult.GetMessage());
-        ASSERT_EQ(eventType, eventResult.GetEventType());
+        const auto& event = result.GetEvents()[0].get();
+        ASSERT_EQ(message, event.GetMessage());
+        ASSERT_EQ(eventType, event.GetEventType());
+
+        ASSERT_EQ(nullptr, result.GetData());
     }
 }

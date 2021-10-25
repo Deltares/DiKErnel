@@ -3,10 +3,10 @@ set(EXENAME DiKErnel.Util.Test)
 
 # Define sources
 set(SOURCEFILES
+  DataResultTest.cpp
   EventRegistryTest.cpp
   EventTest.cpp
   Main.cpp
-  ResultTest.cpp
   SimpleResultTest.cpp
 )
 

@@ -30,7 +30,7 @@ namespace DiKErnel::Util
      * \tparam T The type of the data that was produced.
      */
     template <typename T>
-    class DataResult : SimpleResult
+    class DataResult : public SimpleResult
     {
         public:
             /*!
@@ -39,8 +39,8 @@ namespace DiKErnel::Util
              *        The events that occurred.
              */
             explicit DataResult(
-                const std::vector<std::unique_ptr<Event>> events)
-                : SimpleResult(false, events),
+                std::vector<std::unique_ptr<Event>> events)
+                : SimpleResult(false, std::move(events)),
                   _data(nullptr) { }
 
             /*!
@@ -52,8 +52,8 @@ namespace DiKErnel::Util
              */
             explicit DataResult(
                 std::unique_ptr<T> data,
-                const std::vector<std::unique_ptr<Event>> events)
-                : SimpleResult(true, events),
+                std::vector<std::unique_ptr<Event>> events)
+                : SimpleResult(true, std::move(events)),
                   _data(std::move(data)) { }
 
             /*!
