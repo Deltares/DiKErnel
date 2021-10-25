@@ -68,7 +68,7 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
 
             // Assert
             FileAssert::AssertFileContents(expectedOutputFilePath, _actualOutputFilePath);
-            ASSERT_TRUE(*outputComposerResult->GetResult());
+            ASSERT_TRUE(outputComposerResult->GetSuccessful());
             ASSERT_EQ(0, outputComposerResult->GetEvents().size());
         }
 
@@ -78,7 +78,7 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
         }
     };
 
-    TEST_F(JsonOutputComposerTest, WriteCalculationOutputToJson_InvalidJsonOutputType_ReturnsResultWithFalseAndWithExpectedEvent)
+    TEST_F(JsonOutputComposerTest, WriteCalculationOutputToJson_InvalidJsonOutputType_ReturnsResultWithSuccessfulFalseAndWithExpectedEvent)
     {
         /// Setup
         const CalculationOutput calculationOutput((vector<unique_ptr<LocationDependentOutput>>()));
@@ -87,7 +87,7 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
         const auto outputComposerResult = JsonOutputComposer::WriteCalculationOutputToJson("", calculationOutput, static_cast<JsonOutputType>(99));
 
         // Assert
-        ASSERT_FALSE(*outputComposerResult->GetResult());
+        ASSERT_FALSE(outputComposerResult->GetSuccessful());
 
         const auto& events = outputComposerResult->GetEvents();
         ASSERT_EQ(1, events.size());
@@ -97,18 +97,20 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
                   "Invalid JsonOutputType.", event.GetMessage());
     }
 
-    TEST_F(JsonOutputComposerTest, WriteCalculationOutputToJson_JsonOutputTypeFailure_ReturnsResultWithTrueAndNoEventsAndWritesExpectedValues)
+    TEST_F(JsonOutputComposerTest,
+           WriteCalculationOutputToJson_JsonOutputTypeFailure_ReturnsResultWithSuccessfulTrueAndNoEventsAndWritesExpectedValues)
     {
         PerformTest("ExpectedFailureOutput.json", JsonOutputType::Failure);
     }
 
-    TEST_F(JsonOutputComposerTest, WriteCalculationOutputToJson_JsonOutputTypeDamage_ReturnsResultWithTrueAndNoEventsAndWritesExpectedValues)
+    TEST_F(JsonOutputComposerTest,
+           WriteCalculationOutputToJson_JsonOutputTypeDamage_ReturnsResultWithSuccessfulTrueAndNoEventsAndWritesExpectedValues)
     {
         PerformTest("ExpectedDamageOutput.json", JsonOutputType::Damage);
     }
 
     TEST_F(JsonOutputComposerTest,
-           WriteCalculationOutputToJson_JsonOutputTypePhysicsAndLocationDataNotSupported_ReturnsResultWithFalseAndWithExpectedEvent)
+           WriteCalculationOutputToJson_JsonOutputTypePhysicsAndLocationDataNotSupported_ReturnsResultWithSuccessfulFalseAndWithExpectedEvent)
     {
         // Setup
         auto location1TimeDependentOutputItems = vector<unique_ptr<TimeDependentOutput>>();
@@ -123,7 +125,7 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
         const auto outputComposerResult = JsonOutputComposer::WriteCalculationOutputToJson("", calculationOutput, JsonOutputType::Physics);
 
         // Assert
-        ASSERT_FALSE(*outputComposerResult->GetResult());
+        ASSERT_FALSE(outputComposerResult->GetSuccessful());
 
         const auto& events = outputComposerResult->GetEvents();
         ASSERT_EQ(1, events.size());
