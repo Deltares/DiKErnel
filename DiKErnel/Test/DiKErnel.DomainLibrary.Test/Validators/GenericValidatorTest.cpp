@@ -26,6 +26,7 @@
 namespace DiKErnel::DomainLibrary::Test
 {
     using namespace std;
+    using namespace TestUtil;
 
     TEST(GenericValidatorTest, TimeSteps_NoTimeSteps_ReturnValidationIssue)
     {
@@ -35,7 +36,7 @@ namespace DiKErnel::DomainLibrary::Test
         // Assert
         ASSERT_NE(nullptr, validationIssue);
         ASSERT_EQ(ValidationIssueType::Error, validationIssue->GetValidationIssueType());
-        ASSERT_EQ("There must be at least 1 time step defined.", validationIssue->GetMessage());
+        ASSERT_EQ("At least 1 time step must be defined.", validationIssue->GetMessage());
     }
 
     TEST(GenericValidatorTest, TimeSteps_TimeStepsNotConnecting_ReturnValidationIssue)
@@ -70,5 +71,20 @@ namespace DiKErnel::DomainLibrary::Test
 
         // Assert
         ASSERT_EQ(nullptr, validationIssue);
+    }
+
+    TEST(GenericValidatorTest, NumberOfLocations_VariousScenarios_ExpectedValues)
+    {
+        const auto validateAction = GenericValidator::NumberOfLocations;
+
+        constexpr auto errorMessage = "At least 1 location must be defined.";
+
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, numeric_limits<int>::min(), ValidationIssueType::Error, errorMessage);
+
+        ValidatorAssertHelper::AssertBelowBound(validateAction, 0, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, 0, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertAboveBound(validateAction, 0);
+
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, numeric_limits<int>::max());
     }
 }

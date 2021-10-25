@@ -29,21 +29,33 @@ namespace DiKErnel::DomainLibrary
     unique_ptr<ValidationIssue> GenericValidator::TimeSteps(
         const vector<pair<int, int>>& timeSteps)
     {
-        if(timeSteps.empty())
+        if (timeSteps.empty())
         {
-            return make_unique<ValidationIssue>(ValidationIssueType::Error, "There must be at least 1 time step defined.");
+            return make_unique<ValidationIssue>(ValidationIssueType::Error, "At least 1 time step must be defined.");
         }
 
         auto previousEndTime = numeric_limits<int>::min();
 
         for (const auto& [beginTime, endTime] : timeSteps)
         {
-            if(previousEndTime != numeric_limits<int>::min() && beginTime != previousEndTime)
+            if (previousEndTime != numeric_limits<int>::min() && beginTime != previousEndTime)
             {
-                return make_unique<ValidationIssue>(ValidationIssueType::Error, "The begin time of a successive element must equal the end time of the previous element.");
+                return make_unique<ValidationIssue>(ValidationIssueType::Error,
+                                                    "The begin time of a successive element must equal the end time of the previous element.");
             }
 
             previousEndTime = endTime;
+        }
+
+        return nullptr;
+    }
+
+    unique_ptr<ValidationIssue> GenericValidator::NumberOfLocations(
+        const int numberOfLocations)
+    {
+        if (numberOfLocations <= 0)
+        {
+            return make_unique<ValidationIssue>(ValidationIssueType::Error, "At least 1 location must be defined.");
         }
 
         return nullptr;
