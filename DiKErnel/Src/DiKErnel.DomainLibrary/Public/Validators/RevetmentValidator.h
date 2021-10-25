@@ -52,5 +52,14 @@ namespace DiKErnel::DomainLibrary
             static std::unique_ptr<ValidationIssue> FailureNumber(
                 double failureNumber,
                 double initialDamage);
+
+            /*!
+             * \brief Validates the Ctm coefficient.
+             * \param averageNumberOfWavesCtm
+             *        The Ctm coefficient.
+             * \return A validation issue when the Ctm coefficient is not valid; nullptr otherwise.
+             */
+            static std::unique_ptr<ValidationIssue> AverageNumberOfWavesCtm(
+                double averageNumberOfWavesCtm);
     };
 }

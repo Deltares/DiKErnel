@@ -68,10 +68,26 @@ namespace DiKErnel::DomainLibrary::Test
         constexpr auto errorMessage = "FailureNumber must be larger than InitialDamage.";
 
         ValidatorAssertHelper::AssertEqualToBound(validateAction, -1 * numeric_limits<double>::infinity(), ValidationIssueType::Error,
-            errorMessage);
+                                                  errorMessage);
 
         ValidatorAssertHelper::AssertBelowBound(validateAction, 0, ValidationIssueType::Error, errorMessage);
         ValidatorAssertHelper::AssertEqualToBound(validateAction, 0);
+        ValidatorAssertHelper::AssertAboveBound(validateAction, 0);
+
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, numeric_limits<double>::infinity());
+    }
+
+    TEST_F(RevetmentValidatorTest, AverageNumberOfWavesCtm_VariousScenarios_ExpectedValues)
+    {
+        const auto validateAction = RevetmentValidator::AverageNumberOfWavesCtm;
+
+        constexpr auto errorMessage = "AverageNumberOfWavesCtm must be larger than 0.";
+
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, -1 * numeric_limits<double>::infinity(), ValidationIssueType::Error,
+                                                  errorMessage);
+
+        ValidatorAssertHelper::AssertBelowBound(validateAction, 0, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, 0, ValidationIssueType::Error, errorMessage);
         ValidatorAssertHelper::AssertAboveBound(validateAction, 0);
 
         ValidatorAssertHelper::AssertEqualToBound(validateAction, numeric_limits<double>::infinity());

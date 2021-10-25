@@ -51,4 +51,15 @@ namespace DiKErnel::DomainLibrary
 
         return nullptr;
     }
+
+    unique_ptr<ValidationIssue> RevetmentValidator::AverageNumberOfWavesCtm(
+        const double averageNumberOfWavesCtm)
+    {
+        if (averageNumberOfWavesCtm <= 0)
+        {
+            return make_unique<ValidationIssue>(ValidationIssueType::Error, "AverageNumberOfWavesCtm must be larger than 0.");
+        }
+
+        return nullptr;
+    }
 }
