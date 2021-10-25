@@ -54,6 +54,8 @@ namespace DiKErnel::Integration
 
             double GetLowerLimitLoadingAll() const;
 
+            bool Validate() override;
+
         protected:
             void InitializeDerivedLocationDependentInput(
                 const Core::IProfileData& profileData) override;

@@ -22,12 +22,15 @@
 
 #include "GrassRevetmentWaveImpactFunctions.h"
 #include "GrassRevetmentWaveImpactTimeDependentOutput.h"
+#include "GrassRevetmentWaveImpactValidator.h"
 #include "HydraulicLoadFunctions.h"
 #include "RevetmentFunctions.h"
+#include "ValidationHelper.h"
 
 namespace DiKErnel::Integration
 {
     using namespace Core;
+    using namespace DomainLibrary;
     using namespace FunctionLibrary;
     using namespace std;
 
@@ -77,6 +80,32 @@ namespace DiKErnel::Integration
     double GrassRevetmentWaveImpactLocationDependentInput::GetLowerLimitLoadingAll() const
     {
         return _lowerLimitLoadingAll;
+    }
+
+    bool GrassRevetmentWaveImpactLocationDependentInput::Validate()
+    {
+        const auto baseValidationSucceeded = LocationDependentInput::Validate();
+
+        const auto timeLineAgwi = GrassRevetmentWaveImpactValidator::TimeLineAgwi(_timeLine->GetTimeLineAgwi(), _timeLine->GetTimeLineCgwi());
+        const auto timeLineBgwi = GrassRevetmentWaveImpactValidator::TimeLineBgwi(_timeLine->GetTimeLineBgwi());
+        const auto timeLineCgwi = GrassRevetmentWaveImpactValidator::TimeLineCgwi(_timeLine->GetTimeLineCgwi());
+        const auto minimumWaveHeightTemax = GrassRevetmentWaveImpactValidator::MinimumWaveHeightTemax(_minimumWaveHeightTemax);
+        const auto maximumWaveHeightTemin = GrassRevetmentWaveImpactValidator::MaximumWaveHeightTemin(_maximumWaveHeightTemin);
+        const auto waveAngeImpactNwa = GrassRevetmentWaveImpactValidator::WaveAngleImpactNwa(_waveAngleImpact->GetWaveAngleImpactNwa());
+        const auto waveAngeImpactQwa = GrassRevetmentWaveImpactValidator::WaveAngleImpactQwa(_waveAngleImpact->GetWaveAngleImpactQwa());
+        const auto waveAngeImpactRwa = GrassRevetmentWaveImpactValidator::WaveAngleImpactRwa(_waveAngleImpact->GetWaveAngleImpactRwa());
+        const auto upperLimitLoadingAul = GrassRevetmentWaveImpactValidator::UpperLimitLoadingAul(_upperLimitLoadingAul, _lowerLimitLoadingAll);
+
+        return ValidationHelper::RegisterValidationIssue(timeLineAgwi.get())
+                && ValidationHelper::RegisterValidationIssue(timeLineBgwi.get())
+                && ValidationHelper::RegisterValidationIssue(timeLineCgwi.get())
+                && ValidationHelper::RegisterValidationIssue(minimumWaveHeightTemax.get())
+                && ValidationHelper::RegisterValidationIssue(maximumWaveHeightTemin.get())
+                && ValidationHelper::RegisterValidationIssue(waveAngeImpactNwa.get())
+                && ValidationHelper::RegisterValidationIssue(waveAngeImpactQwa.get())
+                && ValidationHelper::RegisterValidationIssue(waveAngeImpactRwa.get())
+                && ValidationHelper::RegisterValidationIssue(upperLimitLoadingAul.get())
+                && baseValidationSucceeded;
     }
 
     void GrassRevetmentWaveImpactLocationDependentInput::InitializeDerivedLocationDependentInput(
