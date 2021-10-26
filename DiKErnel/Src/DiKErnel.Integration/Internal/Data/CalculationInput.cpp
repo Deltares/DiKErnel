@@ -59,18 +59,18 @@ namespace DiKErnel::Integration
 
     bool CalculationInput::Validate() const
     {
-        auto timeStepTimes = vector<pair<int, int>>();
+        auto timeSteps = vector<pair<int, int>>();
 
         for (const auto& timeDependentInputItem : _timeDependentInputItems)
         {
-            timeStepTimes.emplace_back(pair(timeDependentInputItem->GetBeginTime(), timeDependentInputItem->GetEndTime()));
+            timeSteps.emplace_back(pair(timeDependentInputItem->GetBeginTime(), timeDependentInputItem->GetEndTime()));
         }
 
-        const auto timeSteps = GenericValidator::TimeSteps(timeStepTimes);
-        const auto numberOfLocations = GenericValidator::NumberOfLocations(static_cast<int>(_locationDependentInputItems.size()));
+        const auto validationIssueTimeSteps = GenericValidator::TimeSteps(timeSteps);
+        const auto validationIssueNumberOfLocations = GenericValidator::NumberOfLocations(static_cast<int>(_locationDependentInputItems.size()));
 
-        return ValidationHelper::RegisterValidationIssue(timeSteps.get())
-                && ValidationHelper::RegisterValidationIssue(numberOfLocations.get());
+        return ValidationHelper::RegisterValidationIssue(validationIssueTimeSteps)
+                && ValidationHelper::RegisterValidationIssue(validationIssueNumberOfLocations);
     }
 
     const IProfileData& CalculationInput::GetProfileData() const

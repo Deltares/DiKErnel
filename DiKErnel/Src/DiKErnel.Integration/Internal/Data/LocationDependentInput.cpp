@@ -50,15 +50,16 @@ namespace DiKErnel::Integration
         const auto& characteristicPoints = profileData.GetCharacteristicPoints();
 
         const auto outerToeX = CharacteristicPointsHelper::GetCoordinatesForType(characteristicPoints, CharacteristicPointType::OuterToe)->first;
-        const auto outerCrestX = CharacteristicPointsHelper::GetCoordinatesForType(characteristicPoints, CharacteristicPointType::OuterCrest)->first;
+        const auto outerCrestX = CharacteristicPointsHelper::GetCoordinatesForType(characteristicPoints, CharacteristicPointType::OuterCrest)->
+                first;
 
-        const auto x = RevetmentValidator::X(_x, outerToeX, outerCrestX);
-        const auto initialDamage = RevetmentValidator::InitialDamage(_initialDamage);
-        const auto failureNumber = RevetmentValidator::FailureNumber(_failureNumber, _initialDamage);
+        const auto validationIssueX = RevetmentValidator::X(_x, outerToeX, outerCrestX);
+        const auto validationIssueInitialDamage = RevetmentValidator::InitialDamage(_initialDamage);
+        const auto validationIssueFailureNumber = RevetmentValidator::FailureNumber(_failureNumber, _initialDamage);
 
-        return ValidationHelper::RegisterValidationIssue(x.get())
-                && ValidationHelper::RegisterValidationIssue(initialDamage.get())
-                && ValidationHelper::RegisterValidationIssue(failureNumber.get());
+        return ValidationHelper::RegisterValidationIssue(validationIssueX)
+                && ValidationHelper::RegisterValidationIssue(validationIssueInitialDamage)
+                && ValidationHelper::RegisterValidationIssue(validationIssueFailureNumber);
     }
 
     unique_ptr<TimeDependentOutput> LocationDependentInput::Calculate(
