@@ -40,9 +40,12 @@ namespace DiKErnel::Core
 
             /*!
              * \brief Performs a location dependent validation.
+             * \param profileData
+             *        The profile data to use in the calculation.
              * \return Indicator whether the validation succeeded.
              */
-            virtual bool Validate() = 0;
+            virtual bool Validate(
+                const IProfileData& profileData) const = 0;
 
             /*!
              * \brief Performs a location dependent calculation.

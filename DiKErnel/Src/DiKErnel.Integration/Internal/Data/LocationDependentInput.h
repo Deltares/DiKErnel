@@ -30,7 +30,7 @@ namespace DiKErnel::Integration
     class LocationDependentInput : public Core::ILocationDependentInput
     {
         public:
-            bool Validate() override;
+            bool Validate(const Core::IProfileData& profileData) const override;
 
             std::unique_ptr<Core::TimeDependentOutput> Calculate(
                 double initialDamage,

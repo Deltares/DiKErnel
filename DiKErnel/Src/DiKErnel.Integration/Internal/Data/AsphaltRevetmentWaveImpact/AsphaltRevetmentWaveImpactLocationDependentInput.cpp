@@ -132,9 +132,10 @@ namespace DiKErnel::Integration
         return _impactFactors;
     }
 
-    bool AsphaltRevetmentWaveImpactLocationDependentInput::Validate()
+    bool AsphaltRevetmentWaveImpactLocationDependentInput::Validate(
+        const IProfileData& profileData) const
     {
-        const auto baseValidationSucceeded = LocationDependentInput::Validate();
+        const auto baseValidationSucceeded = LocationDependentInput::Validate(profileData);
 
         const auto fatigueAlpha = AsphaltRevetmentWaveImpactValidator::FatigueAlpha(_fatigue->GetAlpha());
         const auto fatigueBeta = AsphaltRevetmentWaveImpactValidator::FatigueAlpha(_fatigue->GetBeta());

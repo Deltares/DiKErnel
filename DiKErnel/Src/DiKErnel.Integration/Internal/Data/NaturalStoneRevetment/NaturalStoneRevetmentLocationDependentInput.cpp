@@ -20,6 +20,7 @@
 
 #include "NaturalStoneRevetmentLocationDependentInput.h"
 
+#include "CharacteristicPointsHelper.h"
 #include "Constants.h"
 #include "HydraulicLoadFunctions.h"
 #include "NaturalStoneRevetmentFunctions.h"
@@ -105,9 +106,10 @@ namespace DiKErnel::Integration
         return *_waveAngleImpact;
     }
 
-    bool NaturalStoneRevetmentLocationDependentInput::Validate()
+    bool NaturalStoneRevetmentLocationDependentInput::Validate(
+        const IProfileData& profileData) const
     {
-        const auto baseValidationSucceeded = LocationDependentInput::Validate();
+        const auto baseValidationSucceeded = LocationDependentInput::Validate(profileData);
 
         const auto relativeDensity = NaturalStoneRevetmentValidator::RelativeDensity(_relativeDensity);
         const auto thicknessTopLayer = NaturalStoneRevetmentValidator::ThicknessTopLayer(_thicknessTopLayer);
@@ -128,10 +130,10 @@ namespace DiKErnel::Integration
 
         const auto& characteristicPoints = profileData.GetCharacteristicPoints();
 
-        _outerToeHeight = GetCharacteristicPointCoordinates(characteristicPoints, CharacteristicPointType::OuterToe)->second;
-        _outerCrestHeight = GetCharacteristicPointCoordinates(characteristicPoints, CharacteristicPointType::OuterCrest)->second;
-        _notchOuterBerm = GetCharacteristicPointCoordinates(characteristicPoints, CharacteristicPointType::NotchOuterBerm);
-        _crestOuterBerm = GetCharacteristicPointCoordinates(characteristicPoints, CharacteristicPointType::CrestOuterBerm);
+        _outerToeHeight = CharacteristicPointsHelper::GetCoordinatesForType(characteristicPoints, CharacteristicPointType::OuterToe)->second;
+        _outerCrestHeight = CharacteristicPointsHelper::GetCoordinatesForType(characteristicPoints, CharacteristicPointType::OuterCrest)->second;
+        _notchOuterBerm = CharacteristicPointsHelper::GetCoordinatesForType(characteristicPoints, CharacteristicPointType::NotchOuterBerm);
+        _crestOuterBerm = CharacteristicPointsHelper::GetCoordinatesForType(characteristicPoints, CharacteristicPointType::CrestOuterBerm);
 
         _resistance = NaturalStoneRevetmentFunctions::Resistance(_relativeDensity, _thicknessTopLayer);
     }
@@ -248,23 +250,5 @@ namespace DiKErnel::Integration
             loadingRevetment, surfSimilarityParameter, waveSteepnessDeepWater, upperLimitLoading, lowerLimitLoading, depthMaximumWaveLoad,
             distanceMaximumWaveElevation, normativeWidthWaveImpact, move(hydraulicLoad), move(waveAngleImpact), move(resistance),
             move(referenceTimeDegradation), move(referenceDegradation));
-    }
-
-    unique_ptr<pair<double, double>> NaturalStoneRevetmentLocationDependentInput::GetCharacteristicPointCoordinates(
-        const vector<reference_wrapper<CharacteristicPoint>>& characteristicPoints,
-        const CharacteristicPointType characteristicPointType)
-    {
-        for (const auto& characteristicPointReference : characteristicPoints)
-        {
-            if (const auto characteristicPoint = characteristicPointReference.get(); characteristicPoint.GetCharacteristicPointType() ==
-                characteristicPointType)
-            {
-                const auto& profilePoint = characteristicPoint.GetProfilePoint();
-
-                return make_unique<pair<double, double>>(pair(profilePoint.GetX(), profilePoint.GetZ()));
-            }
-        }
-
-        return nullptr;
     }
 }

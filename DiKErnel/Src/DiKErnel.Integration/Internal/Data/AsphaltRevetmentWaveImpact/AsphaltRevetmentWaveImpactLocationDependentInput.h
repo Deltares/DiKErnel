@@ -76,7 +76,8 @@ namespace DiKErnel::Integration
 
             const std::vector<std::tuple<double, double>>& GetImpactFactors() const;
 
-            bool Validate() override;
+            bool Validate(
+                const Core::IProfileData& profileData) const override;
 
         protected:
             void InitializeDerivedLocationDependentInput(

@@ -92,9 +92,10 @@ namespace DiKErnel::Integration
         return *_waveAngleImpact;
     }
 
-    bool GrassRevetmentWaveRunupLocationDependentInput::Validate()
+    bool GrassRevetmentWaveRunupLocationDependentInput::Validate(
+        const IProfileData& profileData) const
     {
-        const auto baseValidationSucceeded = LocationDependentInput::Validate();
+        const auto baseValidationSucceeded = LocationDependentInput::Validate(profileData);
 
         const auto criticalCumulativeOverload = GrassRevetmentWaveRunupValidator::CriticalCumulativeOverload(_criticalCumulativeOverload);
         const auto representativeWaveRunup2PGammab = GrassRevetmentWaveRunupValidator::RepresentativeWaveRunup2PGammab(

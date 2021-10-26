@@ -22,6 +22,7 @@
 
 #include <utility>
 
+#include "CharacteristicPointsHelper.h"
 #include "EventRegistry.h"
 #include "RevetmentFunctions.h"
 #include "RevetmentValidator.h"
@@ -43,12 +44,20 @@ namespace DiKErnel::Integration
           _initialDamage(initialDamage),
           _failureNumber(failureNumber) { }
 
-    bool LocationDependentInput::Validate()
+    bool LocationDependentInput::Validate(
+        const IProfileData& profileData) const
     {
+        const auto& characteristicPoints = profileData.GetCharacteristicPoints();
+
+        const auto outerToeX = CharacteristicPointsHelper::GetCoordinatesForType(characteristicPoints, CharacteristicPointType::OuterToe)->first;
+        const auto outerCrestX = CharacteristicPointsHelper::GetCoordinatesForType(characteristicPoints, CharacteristicPointType::OuterCrest)->first;
+
+        const auto x = RevetmentValidator::X(_x, outerToeX, outerCrestX);
         const auto initialDamage = RevetmentValidator::InitialDamage(_initialDamage);
         const auto failureNumber = RevetmentValidator::FailureNumber(_failureNumber, _initialDamage);
 
-        return ValidationHelper::RegisterValidationIssue(initialDamage.get())
+        return ValidationHelper::RegisterValidationIssue(x.get())
+                && ValidationHelper::RegisterValidationIssue(initialDamage.get())
                 && ValidationHelper::RegisterValidationIssue(failureNumber.get());
     }
 

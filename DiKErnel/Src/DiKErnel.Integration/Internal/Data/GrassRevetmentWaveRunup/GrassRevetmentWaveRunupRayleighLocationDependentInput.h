@@ -48,7 +48,8 @@ namespace DiKErnel::Integration
 
             double GetFrontVelocityCu() const;
 
-            bool Validate() override;
+            bool Validate(
+                const Core::IProfileData& profileData) const override;
 
         protected:
             std::unique_ptr<Core::TimeDependentOutput> CalculateTimeDependentOutput(

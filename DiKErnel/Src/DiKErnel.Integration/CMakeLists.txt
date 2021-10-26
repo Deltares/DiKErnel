@@ -133,6 +133,8 @@ set(SOURCEFILES_INTERNAL_FACTORIES
 )
 
 set(SOURCEFILES_INTERNAL_HELPERS
+  ${INTERNAL_HELPERS_FOLDER}/CharacteristicPointsHelper.cpp
+  ${INTERNAL_HELPERS_FOLDER}/CharacteristicPointsHelper.h
   ${INTERNAL_HELPERS_FOLDER}/ValidationHelper.cpp
   ${INTERNAL_HELPERS_FOLDER}/ValidationHelper.h
 )

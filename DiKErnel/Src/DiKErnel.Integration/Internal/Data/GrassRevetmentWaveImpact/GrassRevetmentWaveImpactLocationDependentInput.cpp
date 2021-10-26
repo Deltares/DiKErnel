@@ -82,9 +82,10 @@ namespace DiKErnel::Integration
         return _lowerLimitLoadingAll;
     }
 
-    bool GrassRevetmentWaveImpactLocationDependentInput::Validate()
+    bool GrassRevetmentWaveImpactLocationDependentInput::Validate(
+        const IProfileData& profileData) const
     {
-        const auto baseValidationSucceeded = LocationDependentInput::Validate();
+        const auto baseValidationSucceeded = LocationDependentInput::Validate(profileData);
 
         const auto timeLineAgwi = GrassRevetmentWaveImpactValidator::TimeLineAgwi(_timeLine->GetTimeLineAgwi(), _timeLine->GetTimeLineCgwi());
         const auto timeLineBgwi = GrassRevetmentWaveImpactValidator::TimeLineBgwi(_timeLine->GetTimeLineBgwi());
