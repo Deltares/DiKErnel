@@ -65,12 +65,6 @@ namespace DiKErnel::DomainLibrary::TestUtil
                 ValidationIssueType validationIssueType,
                 const std::string& message);
 
-            static void AssertBelowBound(
-                ActionWithInt validateAction,
-                int bound,
-                ValidationIssueType validationIssueType,
-                const std::string& message);
-
             static void AssertEqualToBound(
                 ActionWithInt validateAction,
                 int bound);

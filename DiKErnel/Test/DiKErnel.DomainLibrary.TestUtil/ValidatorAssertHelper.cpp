@@ -72,15 +72,6 @@ namespace DiKErnel::DomainLibrary::TestUtil
         AssertInvalidBound(validateAction, bound + _doubleEpsilon, validationIssueType, message);
     }
 
-    void ValidatorAssertHelper::AssertBelowBound(
-        const ActionWithInt validateAction,
-        const int bound,
-        const ValidationIssueType validationIssueType,
-        const std::string& message)
-    {
-        AssertInvalidBound(validateAction, bound - 1, validationIssueType, message);
-    }
-
     void ValidatorAssertHelper::AssertEqualToBound(
         const ActionWithInt validateAction,
         const int bound)
