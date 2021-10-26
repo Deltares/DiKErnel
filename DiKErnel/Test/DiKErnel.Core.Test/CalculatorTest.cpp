@@ -104,7 +104,7 @@ namespace DiKErnel::Core::Test
 
         // Then
         const auto result = calculator.GetResult();
-        const auto output = result->GetData();
+        const auto* output = result->GetData();
 
         const auto& locationDependentOutputItems = output->GetLocationDependentOutputItems();
         ASSERT_EQ(1, locationDependentOutputItems.size());
@@ -144,7 +144,7 @@ namespace DiKErnel::Core::Test
 
         // Then
         const auto result = calculator.GetResult();
-        const auto output = result->GetData();
+        const auto* output = result->GetData();
 
         const auto& locationDependentOutputItems = output->GetLocationDependentOutputItems();
         ASSERT_EQ(1, locationDependentOutputItems.size());

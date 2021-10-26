@@ -105,7 +105,7 @@ int main()
             return -1;
         }
 
-        const auto inputData = inputComposerResult->GetData();
+        const auto* inputData = inputComposerResult->GetData();
         const auto& calculationInput = inputData->GetCalculationInput();
 
         // Write user feedback

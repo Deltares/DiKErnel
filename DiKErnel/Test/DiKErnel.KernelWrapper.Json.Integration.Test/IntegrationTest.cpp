@@ -114,7 +114,7 @@ namespace DiKErnel::KernelWrapper::Json::Integration::Test
         {
             // When
             const auto result = JsonInputComposer::GetInputDataFromJson(inputFilePath);
-            const auto inputData = result->GetData();
+            const auto* inputData = result->GetData();
 
             Calculator calculator(inputData->GetCalculationInput());
 
