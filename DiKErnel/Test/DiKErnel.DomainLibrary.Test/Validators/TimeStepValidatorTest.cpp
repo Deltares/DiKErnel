@@ -48,7 +48,7 @@ namespace DiKErnel::DomainLibrary::Test
 
         ValidatorAssertHelper::AssertEqualToBound(validateAction, 99);
         ValidatorAssertHelper::AssertEqualToBound(validateAction, 100, ValidationIssueType::Error, errorMessage);
-        ValidatorAssertHelper::AssertAboveBound(validateAction, 100, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, 101, ValidationIssueType::Error, errorMessage);
 
         ValidatorAssertHelper::AssertEqualToBound(validateAction, numeric_limits<int>::max(), ValidationIssueType::Error, errorMessage);
     }

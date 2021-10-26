@@ -88,15 +88,6 @@ namespace DiKErnel::DomainLibrary::TestUtil
         AssertInvalidBound(validateAction, bound, validationIssueType, message);
     }
 
-    void ValidatorAssertHelper::AssertAboveBound(
-        const ActionWithInt validateAction,
-        const int bound,
-        const ValidationIssueType validationIssueType,
-        const std::string& message)
-    {
-        AssertInvalidBound(validateAction, bound + 1, validationIssueType, message);
-    }
-
     template <typename TAction, typename TBound>
     void ValidatorAssertHelper::AssertValidBound(
         const TAction validateAction,
