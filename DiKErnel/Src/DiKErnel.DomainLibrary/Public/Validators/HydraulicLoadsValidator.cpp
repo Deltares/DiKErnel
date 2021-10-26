@@ -59,9 +59,9 @@ namespace DiKErnel::DomainLibrary
     unique_ptr<ValidationIssue> HydraulicLoadsValidator::WaveAngle(
         const double waveAngle)
     {
-        if (waveAngle <= -180 || waveAngle >= 180)
+        if (waveAngle <= -180 || waveAngle > 180)
         {
-            return make_unique<ValidationIssue>(ValidationIssueType::Error, "WaveAngle must be in range {-180, 180}.");
+            return make_unique<ValidationIssue>(ValidationIssueType::Error, "WaveAngle must be in range {-180, 180].");
         }
 
         return nullptr;

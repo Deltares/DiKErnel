@@ -46,8 +46,8 @@ namespace DiKErnel::DomainLibrary
              * \brief Validates whether the number of locations is valid.
              * \param numberOfLocations
              *        The number of locations.
-             * \return A validation issue when the number of locations is not valid;
-             *         nullptr otherwise.
+             * \return A validation issue when the number of locations is not valid; nullptr
+             *         otherwise.
              */
             static std::unique_ptr<ValidationIssue> NumberOfLocations(
                 int numberOfLocations);

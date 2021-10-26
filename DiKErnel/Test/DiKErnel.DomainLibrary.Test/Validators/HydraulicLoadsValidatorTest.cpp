@@ -28,7 +28,7 @@ namespace DiKErnel::DomainLibrary::Test
     using namespace TestUtil;
     using namespace std;
 
-    TEST(HydraulicLoadsTest, WaveHeightHm0_VariousScenarios_ExpectedValues)
+    TEST(HydraulicLoadsValidatorTest, WaveHeightHm0_VariousScenarios_ExpectedValues)
     {
         const auto validateAction = HydraulicLoadsValidator::WaveHeightHm0;
 
@@ -52,7 +52,7 @@ namespace DiKErnel::DomainLibrary::Test
         ValidatorAssertHelper::AssertValue(validateAction, ValidatorAssertHelper::DOUBLE_MAX, ValidationIssueType::Warning, warningMessage);
     }
 
-    TEST(HydraulicLoadsTest, WavePeriodTm10_VariousScenarios_ExpectedValues)
+    TEST(HydraulicLoadsValidatorTest, WavePeriodTm10_VariousScenarios_ExpectedValues)
     {
         const auto validateAction = HydraulicLoadsValidator::WavePeriodTm10;
 
@@ -76,11 +76,11 @@ namespace DiKErnel::DomainLibrary::Test
         ValidatorAssertHelper::AssertValue(validateAction, ValidatorAssertHelper::DOUBLE_MAX, ValidationIssueType::Warning, warningMessage);
     }
 
-    TEST(HydraulicLoadsTest, WaveAngle_VariousScenarios_ExpectedValues)
+    TEST(HydraulicLoadsValidatorTest, WaveAngle_VariousScenarios_ExpectedValues)
     {
         const auto validateAction = HydraulicLoadsValidator::WaveAngle;
 
-        constexpr auto errorMessage = "WaveAngle must be in range {-180, 180}.";
+        constexpr auto errorMessage = "WaveAngle must be in range {-180, 180].";
 
         ValidatorAssertHelper::AssertValue(validateAction, ValidatorAssertHelper::DOUBLE_MIN, ValidationIssueType::Error, errorMessage);
 
@@ -89,7 +89,7 @@ namespace DiKErnel::DomainLibrary::Test
         ValidatorAssertHelper::AssertValue(validateAction, -180.0 + ValidatorAssertHelper::EPSILON);
 
         ValidatorAssertHelper::AssertValue(validateAction, 180.0 - ValidatorAssertHelper::EPSILON);
-        ValidatorAssertHelper::AssertValue(validateAction, 180.0, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertValue(validateAction, 180.0);
         ValidatorAssertHelper::AssertValue(validateAction, 180.0 + ValidatorAssertHelper::EPSILON, ValidationIssueType::Error, errorMessage);
 
         ValidatorAssertHelper::AssertValue(validateAction, ValidatorAssertHelper::DOUBLE_MAX, ValidationIssueType::Error, errorMessage);
