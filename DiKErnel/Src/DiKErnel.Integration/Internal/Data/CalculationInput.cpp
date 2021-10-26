@@ -21,7 +21,6 @@
 #include "CalculationInput.h"
 
 #include "GenericValidator.h"
-#include "InvalidCalculationDataException.h"
 #include "ValidationHelper.h"
 
 namespace DiKErnel::Integration
@@ -38,16 +37,8 @@ namespace DiKErnel::Integration
           _locationDependentInputItems(move(locationDependentInputItems)),
           _timeDependentInputItems(move(timeDependentInputItems))
     {
-        auto previousEndTime = INT_MIN;
         for (const auto& timeDependentInput : _timeDependentInputItems)
         {
-            if (previousEndTime != INT_MIN && timeDependentInput->GetBeginTime() != previousEndTime)
-            {
-                throw InvalidCalculationDataException("The begin time of a successive element must equal the end time of the previous element.");
-            }
-
-            previousEndTime = timeDependentInput->GetEndTime();
-
             _timeDependentInputItemReferences.emplace_back(*timeDependentInput);
         }
 

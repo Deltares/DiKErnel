@@ -62,8 +62,6 @@ namespace DiKErnel::Integration
              *        The wave period.
              * \param waveAngle
              *        The wave angle.
-             * \exception RevetmentCalculationInputBuilderException
-             *            Thrown when beginTime is equal to or larger than endTime.
              */
             void AddTimeStep(
                 int beginTime,
@@ -116,8 +114,6 @@ namespace DiKErnel::Integration
             /*!
              * \brief Builds the calculation input.
              * \return The created calculation input.
-             * \exception RevetmentCalculationInputBuilderException
-             *            Thrown when the time steps are not successive.
              */
             std::unique_ptr<Core::ICalculationInput> Build();
 

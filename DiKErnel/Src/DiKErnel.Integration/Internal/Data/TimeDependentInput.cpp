@@ -21,7 +21,6 @@
 #include "TimeDependentInput.h"
 
 #include "HydraulicLoadsValidator.h"
-#include "InvalidCalculationDataException.h"
 #include "TimeStepValidator.h"
 #include "ValidationHelper.h"
 
@@ -41,13 +40,7 @@ namespace DiKErnel::Integration
           _waterLevel(waterLevel),
           _waveHeightHm0(waveHeightHm0),
           _wavePeriodTm10(wavePeriodTm10),
-          _waveAngle(waveAngle)
-    {
-        if (_beginTime >= _endTime)
-        {
-            throw InvalidCalculationDataException("'beginTime' should be smaller than 'endTime'.");
-        }
-    }
+          _waveAngle(waveAngle) { }
 
     bool TimeDependentInput::Validate()
     {

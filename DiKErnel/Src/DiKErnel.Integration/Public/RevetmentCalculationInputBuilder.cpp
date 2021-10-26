@@ -29,7 +29,6 @@
 #include "GrassRevetmentWaveRunupRayleighLocationDependentInput.h"
 #include "IAsphaltRevetmentWaveImpactDefaults.h"
 #include "IGrassRevetmentWaveRunupRayleighDefaults.h"
-#include "InvalidCalculationDataException.h"
 #include "NaturalStoneRevetmentDefaultsFactory.h"
 #include "NaturalStoneRevetmentLocationConstructionProperties.h"
 #include "NaturalStoneRevetmentLocationDependentInput.h"
@@ -65,15 +64,8 @@ namespace DiKErnel::Integration
         double wavePeriodTm10,
         double waveAngle)
     {
-        try
-        {
-            _timeDependentInputItems.push_back(
-                make_unique<TimeDependentInput>(beginTime, endTime, waterLevel, waveHeightHm0, wavePeriodTm10, waveAngle));
-        }
-        catch (const InvalidCalculationDataException&)
-        {
-            ThrowWithMessage();
-        }
+        _timeDependentInputItems.push_back(
+            make_unique<TimeDependentInput>(beginTime, endTime, waterLevel, waveHeightHm0, wavePeriodTm10, waveAngle));
     }
 
     void RevetmentCalculationInputBuilder::AddAsphaltWaveImpactLocation(
@@ -273,15 +265,8 @@ namespace DiKErnel::Integration
 
     unique_ptr<ICalculationInput> RevetmentCalculationInputBuilder::Build()
     {
-        try
-        {
-            return make_unique<CalculationInput>(make_unique<ProfileData>(move(_profilePoints), move(_characteristicPoints)),
-                                                 move(_locationDependentInputItems), move(_timeDependentInputItems));
-        }
-        catch (const InvalidCalculationDataException&)
-        {
-            ThrowWithMessage();
-        }
+        return make_unique<CalculationInput>(make_unique<ProfileData>(move(_profilePoints), move(_characteristicPoints)),
+                                             move(_locationDependentInputItems), move(_timeDependentInputItems));
     }
 
     template <typename TValue>

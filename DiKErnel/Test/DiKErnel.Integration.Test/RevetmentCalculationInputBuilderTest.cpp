@@ -49,20 +49,6 @@ namespace DiKErnel::Integration::Test
 
     struct RevetmentCalculationInputBuilderTest : Test
     {
-        static void CreateBuilderAndAddInvalidTimeStep()
-        {
-            RevetmentCalculationInputBuilder builder;
-            builder.AddTimeStep(10, 5, 0, 0, 0, 0);
-        }
-
-        static void CreateBuilderAndAddNonSuccessiveTimeSteps()
-        {
-            RevetmentCalculationInputBuilder builder;
-            builder.AddTimeStep(0, 5, 0, 0, 0, 0);
-            builder.AddTimeStep(10, 20, 0, 0, 0, 0);
-            builder.Build();
-        }
-
         static void CreateBuilderAndAddAsphaltRevetmentWaveImpactLocationWithInvalidTopLayerType()
         {
             const auto topLayerType = static_cast<AsphaltRevetmentTopLayerType>(99);
@@ -195,27 +181,6 @@ namespace DiKErnel::Integration::Test
                                                                      timeDependentInput);
 
         ASSERT_EQ(0, calculationInput->GetLocationDependentInputItems().size());
-    }
-
-    TEST_F(RevetmentCalculationInputBuilderTest,
-           GivenBuilder_WhenAddTimeStepWithInvalidEndTime_ThenThrowsRevetmentCalculationInputBuilderException)
-    {
-        // Given & When
-        const auto action = &RevetmentCalculationInputBuilderTest::CreateBuilderAndAddInvalidTimeStep;
-
-        // Then
-        AssertHelper::AssertThrowsWithMessageAndInnerException<RevetmentCalculationInputBuilderException, InvalidCalculationDataException>(
-            action, "Could not create instance.", "'beginTime' should be smaller than 'endTime'.");
-    }
-
-    TEST_F(RevetmentCalculationInputBuilderTest, GivenBuilderWithInvalidTimeSteps_WhenBuild_ThenThrowsRevetmentCalculationInputBuilderException)
-    {
-        // Given & When
-        const auto action = &RevetmentCalculationInputBuilderTest::CreateBuilderAndAddNonSuccessiveTimeSteps;
-
-        // Then
-        AssertHelper::AssertThrowsWithMessageAndInnerException<RevetmentCalculationInputBuilderException, InvalidCalculationDataException>(
-            action, "Could not create instance.", "The begin time of a successive element must equal the end time of the previous element.");
     }
 
     #pragma endregion
