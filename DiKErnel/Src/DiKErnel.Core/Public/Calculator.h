@@ -76,7 +76,7 @@ namespace DiKErnel::Core
              *         finished in error. When the calculation is still running, a nullptr is
              *         returned.
              */
-            std::shared_ptr<Util::DataResult<CalculationOutput>> GetCalculatorResult() const;
+            std::shared_ptr<Util::DataResult<CalculationOutput>> GetResult() const;
 
         private:
             std::thread _calculationThread;
