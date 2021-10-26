@@ -33,12 +33,38 @@ namespace DiKErnel::DomainLibrary::Test
 
     struct RevetmentValidatorTest : Test
     {
+        static unique_ptr<ValidationIssue> X(
+            const double x)
+        {
+            return RevetmentValidator::X(x, 0, 10);
+        }
+
         static unique_ptr<ValidationIssue> FailureNumber(
             const double failureNumber)
         {
             return RevetmentValidator::FailureNumber(failureNumber, 0);
         }
     };
+
+    TEST_F(RevetmentValidatorTest, X_VariousScenarios_ExpectedValues)
+    {
+        const auto validateAction = X;
+
+        constexpr auto errorMessage = "X must be in range {OuterToeX, OuterCrestX}.";
+
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, -1 * numeric_limits<double>::infinity(), ValidationIssueType::Error,
+                                                  errorMessage);
+
+        ValidatorAssertHelper::AssertBelowBound(validateAction, 0, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, 0, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertAboveBound(validateAction, 0);
+
+        ValidatorAssertHelper::AssertBelowBound(validateAction, 10);
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, 10, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertAboveBound(validateAction, 10, ValidationIssueType::Error, errorMessage);
+
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, numeric_limits<double>::infinity(), ValidationIssueType::Error, errorMessage);
+    }
 
     TEST_F(RevetmentValidatorTest, InitialDamage_VariousScenarios_ExpectedValues)
     {
