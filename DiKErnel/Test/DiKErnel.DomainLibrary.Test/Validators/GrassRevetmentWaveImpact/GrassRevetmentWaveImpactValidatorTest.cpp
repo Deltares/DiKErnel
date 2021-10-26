@@ -34,13 +34,13 @@ namespace DiKErnel::DomainLibrary::Test
     struct GrassRevetmentWaveImpactValidatorTest : Test
     {
         static unique_ptr<ValidationIssue> TimeLineAgwi(
-            double timeLineAgwi)
+            const double timeLineAgwi)
         {
             return GrassRevetmentWaveImpactValidator::TimeLineAgwi(timeLineAgwi, 3);
         }
 
         static unique_ptr<ValidationIssue> UpperLimitLoadingAul(
-            double upperLimitLoadingAul)
+            const double upperLimitLoadingAul)
         {
             return GrassRevetmentWaveImpactValidator::UpperLimitLoadingAul(upperLimitLoadingAul, 2);
         }
@@ -52,13 +52,13 @@ namespace DiKErnel::DomainLibrary::Test
 
         constexpr auto errorMessage = "TimeLineAgwi must be larger than TimeLineCgwi.";
 
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, ValidatorAssertHelper::DOUBLE_MIN, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertEqualToBound<double>(validateAction, ValidatorAssertHelper::DOUBLE_MIN, ValidationIssueType::Error, errorMessage);
 
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, 3.0 - ValidatorAssertHelper::EPSILON, ValidationIssueType::Error, errorMessage);
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, 3.0, ValidationIssueType::Error, errorMessage);
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, 3.0 + ValidatorAssertHelper::EPSILON);
+        ValidatorAssertHelper::AssertEqualToBound<double>(validateAction, 3.0 - ValidatorAssertHelper::EPSILON, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertEqualToBound<double>(validateAction, 3.0, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertEqualToBound<double>(validateAction, 3.0 + ValidatorAssertHelper::EPSILON);
 
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, ValidatorAssertHelper::DOUBLE_MAX);
+        ValidatorAssertHelper::AssertEqualToBound<double>(validateAction, ValidatorAssertHelper::DOUBLE_MAX);
     }
 
     TEST_F(GrassRevetmentWaveImpactValidatorTest, TimeLineB1gwi_VariousScenarios_ExpectedValues)
@@ -189,12 +189,12 @@ namespace DiKErnel::DomainLibrary::Test
 
         constexpr auto errorMessage = "UpperLimitLoadingAul must be smaller than LowerLimitLoadingAll.";
 
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, ValidatorAssertHelper::DOUBLE_MIN);
+        ValidatorAssertHelper::AssertEqualToBound<double>(validateAction, ValidatorAssertHelper::DOUBLE_MIN);
 
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, 2.0 - ValidatorAssertHelper::EPSILON);
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, 2.0, ValidationIssueType::Error, errorMessage);
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, 2.0 + ValidatorAssertHelper::EPSILON, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertEqualToBound<double>(validateAction, 2.0 - ValidatorAssertHelper::EPSILON);
+        ValidatorAssertHelper::AssertEqualToBound<double>(validateAction, 2.0, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertEqualToBound<double>(validateAction, 2.0 + ValidatorAssertHelper::EPSILON, ValidationIssueType::Error, errorMessage);
 
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, ValidatorAssertHelper::DOUBLE_MAX, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertEqualToBound<double>(validateAction, ValidatorAssertHelper::DOUBLE_MAX, ValidationIssueType::Error, errorMessage);
     }
 }

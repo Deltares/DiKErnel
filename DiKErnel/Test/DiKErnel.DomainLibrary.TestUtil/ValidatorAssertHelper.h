@@ -44,7 +44,7 @@ namespace DiKErnel::DomainLibrary::TestUtil
             template <typename T>
             static void AssertEqualToBound(
                 std::unique_ptr<ValidationIssue> (*const validateAction)(T),
-                T bound)
+                const T bound)
             {
                 // Call
                 const auto validationIssue = validateAction(bound);
@@ -56,8 +56,8 @@ namespace DiKErnel::DomainLibrary::TestUtil
             template <typename T>
             static void AssertEqualToBound(
                 std::unique_ptr<ValidationIssue> (*const validateAction)(T),
-                T bound,
-                ValidationIssueType validationIssueType,
+                const T bound,
+                const ValidationIssueType validationIssueType,
                 const std::string& message)
             {
                 // Call

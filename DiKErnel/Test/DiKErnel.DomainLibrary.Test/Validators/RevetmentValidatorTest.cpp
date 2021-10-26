@@ -34,13 +34,13 @@ namespace DiKErnel::DomainLibrary::Test
     struct RevetmentValidatorTest : Test
     {
         static unique_ptr<ValidationIssue> X(
-            double x)
+            const double x)
         {
             return RevetmentValidator::X(x, 0, 10);
         }
 
         static unique_ptr<ValidationIssue> FailureNumber(
-            double failureNumber)
+            const double failureNumber)
         {
             return RevetmentValidator::FailureNumber(failureNumber, 0);
         }
@@ -52,17 +52,17 @@ namespace DiKErnel::DomainLibrary::Test
 
         constexpr auto errorMessage = "X must be in range {OuterToeX, OuterCrestX}.";
 
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, ValidatorAssertHelper::DOUBLE_MIN, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertEqualToBound<double>(validateAction, ValidatorAssertHelper::DOUBLE_MIN, ValidationIssueType::Error, errorMessage);
 
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, 0.0 - ValidatorAssertHelper::EPSILON, ValidationIssueType::Error, errorMessage);
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, 0.0, ValidationIssueType::Error, errorMessage);
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, 0.0 + ValidatorAssertHelper::EPSILON);
+        ValidatorAssertHelper::AssertEqualToBound<double>(validateAction, 0.0 - ValidatorAssertHelper::EPSILON, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertEqualToBound<double>(validateAction, 0.0, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertEqualToBound<double>(validateAction, 0.0 + ValidatorAssertHelper::EPSILON);
 
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, 10.0 - ValidatorAssertHelper::EPSILON);
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, 10.0, ValidationIssueType::Error, errorMessage);
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, 10.0 + ValidatorAssertHelper::EPSILON, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertEqualToBound<double>(validateAction, 10.0 - ValidatorAssertHelper::EPSILON);
+        ValidatorAssertHelper::AssertEqualToBound<double>(validateAction, 10.0, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertEqualToBound<double>(validateAction, 10.0 + ValidatorAssertHelper::EPSILON, ValidationIssueType::Error, errorMessage);
 
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, ValidatorAssertHelper::DOUBLE_MAX, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertEqualToBound<double>(validateAction, ValidatorAssertHelper::DOUBLE_MAX, ValidationIssueType::Error, errorMessage);
     }
 
     TEST_F(RevetmentValidatorTest, InitialDamage_VariousScenarios_ExpectedValues)
@@ -91,13 +91,13 @@ namespace DiKErnel::DomainLibrary::Test
 
         constexpr auto errorMessage = "FailureNumber must be larger than InitialDamage.";
 
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, ValidatorAssertHelper::DOUBLE_MIN, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertEqualToBound<double>(validateAction, ValidatorAssertHelper::DOUBLE_MIN, ValidationIssueType::Error, errorMessage);
 
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, 0.0 - ValidatorAssertHelper::EPSILON, ValidationIssueType::Error, errorMessage);
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, 0.0);
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, 0.0 + ValidatorAssertHelper::EPSILON);
+        ValidatorAssertHelper::AssertEqualToBound<double>(validateAction, 0.0 - ValidatorAssertHelper::EPSILON, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertEqualToBound<double>(validateAction, 0.0);
+        ValidatorAssertHelper::AssertEqualToBound<double>(validateAction, 0.0 + ValidatorAssertHelper::EPSILON);
 
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, ValidatorAssertHelper::DOUBLE_MAX);
+        ValidatorAssertHelper::AssertEqualToBound<double>(validateAction, ValidatorAssertHelper::DOUBLE_MAX);
     }
 
     TEST_F(RevetmentValidatorTest, AverageNumberOfWavesCtm_VariousScenarios_ExpectedValues)
