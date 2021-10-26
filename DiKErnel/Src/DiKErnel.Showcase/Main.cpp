@@ -27,6 +27,7 @@
 #include "Calculator.h"
 #include "JsonInputComposer.h"
 #include "JsonOutputComposer.h"
+#include "Validator.h"
 
 using namespace DiKErnel::Core;
 using namespace DiKErnel::KernelWrapper::Json::Input;
@@ -114,6 +115,45 @@ int main()
         cout << "|===========|" << endl;
         cout << "-> Number of read time steps: " << calculationInput.GetTimeDependentInputItems().size() - 1 << endl;
         cout << "-> Number of read locations: " << calculationInput.GetLocationDependentInputItems().size() << endl << endl;
+
+        #pragma endregion
+
+        #pragma region Performing validation
+
+        const auto validationResult = Validator::Validate(calculationInput);
+
+        // Write to log file
+        WriteToLogFile(logOutputPath.u8string(), validationResult->GetEvents());
+
+        // Handle error during validation
+        if (!validationResult->GetSuccessful())
+        {
+            cout << "|===================|" << endl;
+            cout << "| Validation failed |" << endl;
+            cout << "|===================|" << endl;
+            cout << "-> An error occurred. See the log file for details" << endl;
+            cout << "-> The log file is written to: " << logOutputPath << endl;
+
+            cout << endl << "Press 'Enter' to exit the application.";
+            cin.get();
+
+            return -1;
+        }
+
+        cout << "|=======================|" << endl;
+        cout << "| Validation successful |" << endl;
+        cout << "|=======================|" << endl;
+
+        if(*validationResult->GetData() == ValidationResultType::Succeeded)
+        {
+            cout << "-> Data is valid" << endl << endl;
+        }
+        else
+        {
+            cout << "-> Data is invalid" << endl;
+            cout << "-> See the log file for details" << endl;
+            cout << "-> The log file is written to: " << logOutputPath << endl << endl;
+        }
 
         #pragma endregion
 
