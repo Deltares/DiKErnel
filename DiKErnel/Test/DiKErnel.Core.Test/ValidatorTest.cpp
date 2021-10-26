@@ -20,6 +20,7 @@
 
 #include <gtest/gtest.h>
 
+#include "EventAssertHelper.h"
 #include "ICalculationInputMock.h"
 #include "ILocationDependentInputMock.h"
 #include "IProfileDataMock.h"
@@ -32,6 +33,7 @@ namespace DiKErnel::Core::Test
     using namespace testing;
     using namespace TestUtil;
     using namespace Util;
+    using namespace Util::TestUtil;
 
     TEST(ValidatorTest, Validate_ValidData_ReturnExpectedResult)
     {
@@ -189,8 +191,9 @@ namespace DiKErnel::Core::Test
         const auto& events = validationResult->GetEvents();
         ASSERT_EQ(1, events.size());
         const auto& event = events[0].get();
-        ASSERT_EQ(EventType::Error, event.GetEventType());
-        ASSERT_EQ("An unhandled error occurred while validating the calculation input. See stack trace for more information:\n"
-                  + errorMessage, event.GetMessage());
+        EventAssertHelper::AssertEvent(
+            EventType::Error,
+            "An unhandled error occurred while validating the calculation input. See stack trace for more information:\n" + errorMessage,
+            event);
     }
 }

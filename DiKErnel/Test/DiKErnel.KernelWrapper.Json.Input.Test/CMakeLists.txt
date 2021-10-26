@@ -34,5 +34,6 @@ target_link_libraries(${EXENAME} PUBLIC
   DiKErnel.Integration.TestUtil
   DiKErnel.KernelWrapper.Json.Input
   DiKErnel.TestUtil
+  DiKErnel.Util.TestUtil
   gtest
 )

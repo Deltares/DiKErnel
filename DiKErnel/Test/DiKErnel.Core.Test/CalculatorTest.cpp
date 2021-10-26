@@ -23,6 +23,7 @@
 #include <gtest/gtest.h>
 
 #include "Calculator.h"
+#include "EventAssertHelper.h"
 #include "ICalculationInputMock.h"
 #include "ILocationDependentInputMock.h"
 #include "IProfileDataMock.h"
@@ -34,6 +35,7 @@ namespace DiKErnel::Core::Test
     using namespace testing;
     using namespace TestUtil;
     using namespace Util;
+    using namespace Util::TestUtil;
 
     struct CalculatorTest : Test
     {
@@ -324,8 +326,9 @@ namespace DiKErnel::Core::Test
         ASSERT_EQ(1, events.size());
 
         const auto& event = events[0].get();
-        ASSERT_EQ(EventType::Error, event.GetEventType());
-        ASSERT_EQ("An unhandled error occurred while performing the calculation. See stack trace for more information:\nException message",
-                  event.GetMessage());
+        EventAssertHelper::AssertEvent(
+            EventType::Error,
+            "An unhandled error occurred while performing the calculation. See stack trace for more information:\nException message",
+            event);
     }
 }

@@ -20,23 +20,16 @@
 
 #include <gtest/gtest.h>
 
-#include "Event.h"
+#include "EventAssertHelper.h"
 
-namespace DiKErnel::Util::Test
+namespace DiKErnel::Util::TestUtil
 {
-    using namespace std;
-
-    TEST(EventTest, Constructor_ExpectedValues)
+    void EventAssertHelper::AssertEvent(
+        const EventType expectedEventType,
+        const std::string& expectedMessage,
+        const Event& actualEvent)
     {
-        // Setup
-        constexpr auto message = "Test message";
-        constexpr auto eventType = EventType::Error;
-
-        // Call
-        const Event event(message, eventType);
-
-        // Assert
-        ASSERT_EQ(message, event.GetMessage());
-        ASSERT_EQ(eventType, event.GetEventType());
+        ASSERT_EQ(expectedEventType, actualEvent.GetEventType());
+        ASSERT_EQ(expectedMessage, actualEvent.GetMessage());
     }
 }

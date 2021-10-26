@@ -18,25 +18,18 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include <gtest/gtest.h>
+#pragma once
 
 #include "Event.h"
 
-namespace DiKErnel::Util::Test
+namespace DiKErnel::Util::TestUtil
 {
-    using namespace std;
-
-    TEST(EventTest, Constructor_ExpectedValues)
+    class EventAssertHelper
     {
-        // Setup
-        constexpr auto message = "Test message";
-        constexpr auto eventType = EventType::Error;
-
-        // Call
-        const Event event(message, eventType);
-
-        // Assert
-        ASSERT_EQ(message, event.GetMessage());
-        ASSERT_EQ(eventType, event.GetEventType());
-    }
+        public:
+            static void AssertEvent(
+                EventType expectedEventType,
+                const std::string& expectedMessage,
+                const Event& actualEvent);
+    };
 }

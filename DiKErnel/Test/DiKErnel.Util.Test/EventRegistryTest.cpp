@@ -22,6 +22,7 @@
 
 #include <gtest/gtest.h>
 
+#include "EventAssertHelper.h"
 #include "EventRegistry.h"
 #include "EventRegistryTestHelper.h"
 
@@ -56,13 +57,8 @@ namespace DiKErnel::Util::Test
         // Then
         ASSERT_EQ(2, registeredEvents.size());
 
-        const auto* registeredEvent1 = registeredEvents.at(0).get();
-        ASSERT_EQ(message1, registeredEvent1->GetMessage());
-        ASSERT_EQ(eventType1, registeredEvent1->GetEventType());
-
-        const auto* registeredEvent2 = registeredEvents.at(1).get();
-        ASSERT_EQ(message2, registeredEvent2->GetMessage());
-        ASSERT_EQ(eventType2, registeredEvent2->GetEventType());
+        EventAssertHelper::AssertEvent(eventType1, message1, *registeredEvents.at(0));
+        EventAssertHelper::AssertEvent(eventType2, message2, *registeredEvents.at(1));
     }
 
     TEST(EventRegistryTest, GivenEventRegistryWithEventsRegisteredOnDifferentThreads_WhenFlush_ThenReturnsDifferentEventsPerThread)

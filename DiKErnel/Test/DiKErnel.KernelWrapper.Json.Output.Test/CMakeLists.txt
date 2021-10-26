@@ -31,6 +31,7 @@ target_link_libraries(${EXENAME} PUBLIC
   DiKErnel.Core.TestUtil
   DiKErnel.KernelWrapper.Json.Output
   DiKErnel.TestUtil
+  DiKErnel.Util.TestUtil
   gmock
   gtest
 )

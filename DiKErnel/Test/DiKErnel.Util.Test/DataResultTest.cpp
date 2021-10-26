@@ -21,10 +21,12 @@
 #include <gtest/gtest.h>
 
 #include "DataResult.h"
+#include "EventAssertHelper.h"
 
 namespace DiKErnel::Util::Test
 {
     using namespace std;
+    using namespace TestUtil;
 
     TEST(DataResultTest, Constructor_WithData_ExpectedValues)
     {
@@ -43,10 +45,7 @@ namespace DiKErnel::Util::Test
         ASSERT_TRUE(result.GetSuccessful());
 
         ASSERT_EQ(1, result.GetEvents().size());
-
-        const auto& event = result.GetEvents()[0].get();
-        ASSERT_EQ(message, event.GetMessage());
-        ASSERT_EQ(eventType, event.GetEventType());
+        EventAssertHelper::AssertEvent(eventType, message, result.GetEvents()[0].get());
 
         ASSERT_EQ(data, *result.GetData());
     }
@@ -67,10 +66,7 @@ namespace DiKErnel::Util::Test
         ASSERT_FALSE(result.GetSuccessful());
 
         ASSERT_EQ(1, result.GetEvents().size());
-
-        const auto& event = result.GetEvents()[0].get();
-        ASSERT_EQ(message, event.GetMessage());
-        ASSERT_EQ(eventType, event.GetEventType());
+        EventAssertHelper::AssertEvent(eventType, message, result.GetEvents()[0].get());
 
         ASSERT_EQ(nullptr, result.GetData());
     }

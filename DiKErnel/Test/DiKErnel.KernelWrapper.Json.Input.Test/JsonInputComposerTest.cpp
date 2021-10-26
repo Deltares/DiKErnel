@@ -24,6 +24,7 @@
 #include "AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper.h"
 #include "AssertHelper.h"
 #include "CalculationInput.h"
+#include "EventAssertHelper.h"
 #include "GrassRevetmentWaveImpactLocationDependentInput.h"
 #include "GrassRevetmentWaveImpactLocationDependentInputAssertHelper.h"
 #include "GrassRevetmentWaveRunupLocationDependentInputAssertHelper.h"
@@ -46,6 +47,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
     using namespace std;
     using namespace testing;
     using namespace Util;
+    using namespace Util::TestUtil;
 
     struct JsonInputComposerTest : Test
     {
@@ -82,9 +84,10 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
             ASSERT_EQ(1, events.size());
 
             const auto& event = events[0].get();
-            ASSERT_EQ(EventType::Error, event.GetEventType());
-            ASSERT_EQ("An unhandled error occurred while composing calculation data from the Json input. See stack trace for more information:\n"
-                      + expectedStackTrace, event.GetMessage());
+            EventAssertHelper::AssertEvent(
+                EventType::Error,
+                "An unhandled error occurred while composing calculation data from the Json input. See stack trace for more information:\n"
+                + expectedStackTrace, event);
         }
     };
 

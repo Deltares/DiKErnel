@@ -3,6 +3,8 @@ set(LIBNAME DiKErnel.Util.TestUtil)
 
 # Define sources
 set(SOURCEFILES
+  EventAssertHelper.cpp
+  EventAssertHelper.h
   EventRegistryTestHelper.cpp
   EventRegistryTestHelper.h
 )

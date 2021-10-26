@@ -26,6 +26,7 @@ target_link_libraries(${EXENAME} PUBLIC
   DiKErnel.Core.TestUtil
   DiKErnel.FunctionLibrary
   DiKErnel.TestUtil
+  DiKErnel.Util.TestUtil
   gmock
   gtest
 )

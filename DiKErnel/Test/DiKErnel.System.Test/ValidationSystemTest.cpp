@@ -20,6 +20,7 @@
 
 #include <gtest/gtest.h>
 
+#include "EventAssertHelper.h"
 #include "RevetmentCalculationInputBuilder.h"
 #include "Validator.h"
 
@@ -29,21 +30,10 @@ namespace DiKErnel::System::Test
     using namespace Integration;
     using namespace std;
     using namespace testing;
+    using namespace Util::TestUtil;
     using namespace Util;
 
-    struct ValidationSystemTest : Test
-    {
-        static void AssertEvent(
-            const EventType expectedEventType,
-            const string& expectedMessage,
-            const Event& actualEvent)
-        {
-            ASSERT_EQ(expectedEventType, actualEvent.GetEventType());
-            ASSERT_EQ(expectedMessage, actualEvent.GetMessage());
-        }
-    };
-
-    TEST_F(ValidationSystemTest, GivenCalculationInputWithoutTimeStepsAndLocations_WhenValidating_ThenReturnsValidationResult)
+    TEST(ValidationSystemTest, GivenCalculationInputWithoutTimeStepsAndLocations_WhenValidating_ThenReturnsValidationResult)
     {
         // Given
         RevetmentCalculationInputBuilder builder;
@@ -57,7 +47,7 @@ namespace DiKErnel::System::Test
         ASSERT_EQ(ValidationResultType::Failed, *validationResult->GetData());
         const auto& events = validationResult->GetEvents();
         ASSERT_EQ(2, events.size());
-        AssertEvent(EventType::Error, "At least 1 time step must be defined.", events[0]);
-        AssertEvent(EventType::Error, "At least 1 location must be defined.", events[1]);
+        EventAssertHelper::AssertEvent(EventType::Error, "At least 1 time step must be defined.", events[0]);
+        EventAssertHelper::AssertEvent(EventType::Error, "At least 1 location must be defined.", events[1]);
     }
 }
