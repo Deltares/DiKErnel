@@ -50,4 +50,26 @@ namespace DiKErnel::System::Test
         EventAssertHelper::AssertEvent(EventType::Error, "At least 1 time step must be defined.", events[0]);
         EventAssertHelper::AssertEvent(EventType::Error, "At least 1 location must be defined.", events[1]);
     }
+
+    TEST(ValidationSystemTest, GivenCalculationInputWithInvalidTimeStep_WhenValidating_ThenReturnsValidationResult)
+    {
+        // Given
+        RevetmentCalculationInputBuilder builder;
+        builder.AddTimeStep(100, 90, 10, -1, 30, 200);
+
+        const auto calculationInput = builder.Build();
+
+        // When
+        const auto validationResult = Validator::Validate(*calculationInput);
+
+        // Then
+        ASSERT_TRUE(validationResult->GetSuccessful());
+        ASSERT_EQ(ValidationResultType::Failed, *validationResult->GetData());
+        const auto& events = validationResult->GetEvents();
+        ASSERT_EQ(5, events.size());
+        EventAssertHelper::AssertEvent(EventType::Error, "BeginTime must be smaller than EndTime.", events[1]);
+        EventAssertHelper::AssertEvent(EventType::Error, "WaveHeightHm0 must be larger than 0.", events[2]);
+        EventAssertHelper::AssertEvent(EventType::Warning, "WavePeriodTm10 should be in range {0.5, 25}.", events[3]);
+        EventAssertHelper::AssertEvent(EventType::Error, "WaveAngle must be in range {-180, 180}.", events[4]);
+    }
 }
