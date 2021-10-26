@@ -69,14 +69,14 @@ namespace DiKErnel::Integration
     bool GrassRevetmentWaveRunupRayleighLocationDependentInput::Validate(
         const IProfileData& profileData) const
     {
-        const auto baseValidationSucceeded = GrassRevetmentWaveRunupLocationDependentInput::Validate(profileData);
+        const auto baseValidationSuccessful = GrassRevetmentWaveRunupLocationDependentInput::Validate(profileData);
 
         const auto fixedNumberOfWaves = GrassRevetmentWaveRunupRayleighValidator::FixedNumberOfWaves(_fixedNumberOfWaves);
         const auto frontVelocityCu = GrassRevetmentWaveRunupRayleighValidator::FrontVelocityCu(_frontVelocityCu);
 
         return ValidationHelper::RegisterValidationIssue(fixedNumberOfWaves.get())
                 && ValidationHelper::RegisterValidationIssue(frontVelocityCu.get())
-                && baseValidationSucceeded;
+                && baseValidationSuccessful;
     }
 
     unique_ptr<TimeDependentOutput> GrassRevetmentWaveRunupRayleighLocationDependentInput::CalculateTimeDependentOutput(

@@ -135,7 +135,7 @@ namespace DiKErnel::Integration
     bool AsphaltRevetmentWaveImpactLocationDependentInput::Validate(
         const IProfileData& profileData) const
     {
-        const auto baseValidationSucceeded = LocationDependentInput::Validate(profileData);
+        const auto baseValidationSuccessful = LocationDependentInput::Validate(profileData);
 
         const auto fatigueAlpha = AsphaltRevetmentWaveImpactValidator::FatigueAlpha(_fatigue->GetAlpha());
         const auto fatigueBeta = AsphaltRevetmentWaveImpactValidator::FatigueAlpha(_fatigue->GetBeta());
@@ -162,7 +162,7 @@ namespace DiKErnel::Integration
                 && ValidationHelper::RegisterValidationIssue(subLayerThickness.get())
                 && ValidationHelper::RegisterValidationIssue(subLayerElasticModulus.get())
                 && ValidationHelper::RegisterValidationIssue(averageNumberOfWavesCtm.get())
-                && baseValidationSucceeded;
+                && baseValidationSuccessful;
     }
 
     void AsphaltRevetmentWaveImpactLocationDependentInput::InitializeDerivedLocationDependentInput(

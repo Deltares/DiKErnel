@@ -109,7 +109,7 @@ namespace DiKErnel::Integration
     bool NaturalStoneRevetmentLocationDependentInput::Validate(
         const IProfileData& profileData) const
     {
-        const auto baseValidationSucceeded = LocationDependentInput::Validate(profileData);
+        const auto baseValidationSuccessful = LocationDependentInput::Validate(profileData);
 
         const auto relativeDensity = NaturalStoneRevetmentValidator::RelativeDensity(_relativeDensity);
         const auto thicknessTopLayer = NaturalStoneRevetmentValidator::ThicknessTopLayer(_thicknessTopLayer);
@@ -120,7 +120,7 @@ namespace DiKErnel::Integration
                 && ValidationHelper::RegisterValidationIssue(thicknessTopLayer.get())
                 && ValidationHelper::RegisterValidationIssue(slopeUpperLevelAus.get())
                 && ValidationHelper::RegisterValidationIssue(slopeLowerLevelAls.get())
-                && baseValidationSucceeded;
+                && baseValidationSuccessful;
     }
 
     void NaturalStoneRevetmentLocationDependentInput::InitializeDerivedLocationDependentInput(

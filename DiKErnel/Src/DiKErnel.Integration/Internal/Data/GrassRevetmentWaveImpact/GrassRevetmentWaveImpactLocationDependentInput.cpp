@@ -85,7 +85,7 @@ namespace DiKErnel::Integration
     bool GrassRevetmentWaveImpactLocationDependentInput::Validate(
         const IProfileData& profileData) const
     {
-        const auto baseValidationSucceeded = LocationDependentInput::Validate(profileData);
+        const auto baseValidationSuccessful = LocationDependentInput::Validate(profileData);
 
         const auto timeLineAgwi = GrassRevetmentWaveImpactValidator::TimeLineAgwi(_timeLine->GetTimeLineAgwi(), _timeLine->GetTimeLineCgwi());
         const auto timeLineBgwi = GrassRevetmentWaveImpactValidator::TimeLineBgwi(_timeLine->GetTimeLineBgwi());
@@ -106,7 +106,7 @@ namespace DiKErnel::Integration
                 && ValidationHelper::RegisterValidationIssue(waveAngeImpactQwa.get())
                 && ValidationHelper::RegisterValidationIssue(waveAngeImpactRwa.get())
                 && ValidationHelper::RegisterValidationIssue(upperLimitLoadingAul.get())
-                && baseValidationSucceeded;
+                && baseValidationSuccessful;
     }
 
     void GrassRevetmentWaveImpactLocationDependentInput::InitializeDerivedLocationDependentInput(

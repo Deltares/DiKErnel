@@ -95,7 +95,7 @@ namespace DiKErnel::Integration
     bool GrassRevetmentWaveRunupLocationDependentInput::Validate(
         const IProfileData& profileData) const
     {
-        const auto baseValidationSucceeded = LocationDependentInput::Validate(profileData);
+        const auto baseValidationSuccessful = LocationDependentInput::Validate(profileData);
 
         const auto criticalCumulativeOverload = GrassRevetmentWaveRunupValidator::CriticalCumulativeOverload(_criticalCumulativeOverload);
         const auto representativeWaveRunup2PGammab = GrassRevetmentWaveRunupValidator::RepresentativeWaveRunup2PGammab(
@@ -117,6 +117,6 @@ namespace DiKErnel::Integration
                 && ValidationHelper::RegisterValidationIssue(increasedLoadTransitionAlphaM.get())
                 && ValidationHelper::RegisterValidationIssue(reducedStrengthTransitionAlphaS.get())
                 && ValidationHelper::RegisterValidationIssue(averageNumberOfWavesCtm.get())
-                && baseValidationSucceeded;
+                && baseValidationSuccessful;
     }
 }
