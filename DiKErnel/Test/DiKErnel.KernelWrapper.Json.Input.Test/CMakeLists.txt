@@ -28,4 +28,11 @@ source_group("" FILES ${SOURCEFILES_ROOT})
 source_group(${EXCEPTIONS_FOLDER} FILES ${SOURCEFILES_EXCEPTIONS})
 
 # Link dependencies
-target_link_libraries(${EXENAME} PUBLIC gtest DiKErnel.Integration DiKErnel.Integration.TestUtil DiKErnel.KernelWrapper.Json.Input DiKErnel.TestUtil DiKErnel.Core.TestUtil)
+target_link_libraries(${EXENAME} PUBLIC
+  DiKErnel.Core.TestUtil
+  DiKErnel.Integration
+  DiKErnel.Integration.TestUtil
+  DiKErnel.KernelWrapper.Json.Input
+  DiKErnel.TestUtil
+  gtest
+)

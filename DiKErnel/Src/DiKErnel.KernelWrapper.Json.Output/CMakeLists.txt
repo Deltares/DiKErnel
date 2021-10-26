@@ -88,9 +88,6 @@ if(NOT json_POPULATED)
   add_subdirectory(${json_SOURCE_DIR} ${json_BINARY_DIR} EXCLUDE_FROM_ALL)
 endif()
 
-# Link dependencies
-target_link_libraries(${LIBNAME} nlohmann_json::nlohmann_json DiKErnel.Core DiKErnel.Integration DiKErnel.Util)
-
 # Expose header files
 if(BUILD_WITH_TESTS)
   target_include_directories(${LIBNAME} PUBLIC
@@ -109,3 +106,11 @@ else()
     PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/${PUBLIC_EXCEPTIONS_FOLDER}
   )
 endif()
+
+# Link dependencies
+target_link_libraries(${LIBNAME}
+  DiKErnel.Core
+  DiKErnel.Integration
+  DiKErnel.Util
+  nlohmann_json::nlohmann_json
+)

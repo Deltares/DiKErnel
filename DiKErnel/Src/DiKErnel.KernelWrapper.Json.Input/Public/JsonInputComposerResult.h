@@ -54,7 +54,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
              * \brief Gets the read process type.
              * \return The read process type.
              */
-            const JsonInputProcessType& GetProcessType() const;
+            JsonInputProcessType GetProcessType() const;
 
         private:
             std::unique_ptr<Core::ICalculationInput> _calculationInput;

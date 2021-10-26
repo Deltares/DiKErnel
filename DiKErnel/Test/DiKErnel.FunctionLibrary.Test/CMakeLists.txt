@@ -50,4 +50,8 @@ source_group(${GRASS_REVETMENT_WAVE_RUNUP_FOLDER} FILES ${SOURCEFILES_GRASS_REVE
 source_group(${NATURAL_STONE_REVETMENT_FOLDER} FILES ${SOURCEFILES_NATURAL_STONE_REVETMENT})
 
 # Link dependencies
-target_link_libraries(${EXENAME} gtest DiKErnel.FunctionLibrary DiKErnel.TestUtil)
+target_link_libraries(${EXENAME} 
+  DiKErnel.FunctionLibrary
+  DiKErnel.TestUtil
+  gtest
+)

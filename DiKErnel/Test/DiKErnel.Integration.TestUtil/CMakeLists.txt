@@ -36,4 +36,8 @@ source_group("" FILES ${SOURCEFILES})
 target_include_directories(${LIBNAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
 # Link dependencies
-target_link_libraries(${LIBNAME} gmock DiKErnel.Core DiKErnel.Integration)
+target_link_libraries(${LIBNAME}
+  DiKErnel.Core
+  DiKErnel.Integration
+  gmock
+)

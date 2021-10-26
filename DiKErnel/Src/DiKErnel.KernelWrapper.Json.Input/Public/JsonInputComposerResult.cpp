@@ -36,7 +36,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
         return *_calculationInput;
     }
 
-    const JsonInputProcessType& JsonInputComposerResult::GetProcessType() const
+    JsonInputProcessType JsonInputComposerResult::GetProcessType() const
     {
         return _processType;
     }

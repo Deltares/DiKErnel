@@ -18,4 +18,8 @@ set_target_properties(${EXENAME} PROPERTIES FOLDER Test)
 source_group("" FILES ${SOURCEFILES})
 
 # Link dependencies
-target_link_libraries(${EXENAME} PUBLIC gtest DiKErnel.Util DiKErnel.Util.TestUtil)
+target_link_libraries(${EXENAME} PUBLIC
+  DiKErnel.Util
+  DiKErnel.Util.TestUtil
+  gtest
+)

@@ -35,10 +35,10 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
     TEST(JsonInputComposerResultTest, Constructor_ExpectedValues)
     {
         // Setup
-        auto profileData = make_unique<IProfileDataMock>();
-        auto calculationInput = make_unique<ICalculationInputMock>();
+        NiceMock<IProfileDataMock> profileData;
 
-        ON_CALL(*calculationInput, GetProfileData).WillByDefault(ReturnRef(*profileData));
+        auto calculationInput = make_unique<ICalculationInputMock>();
+        EXPECT_CALL(*calculationInput, GetProfileData).WillRepeatedly(ReturnRef(profileData));
 
         constexpr auto processType = JsonInputProcessType::Physics;
 
@@ -46,7 +46,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
         const auto result = JsonInputComposerResult(move(calculationInput), processType);
 
         // Assert
-        ASSERT_EQ(profileData.get(), &result.GetCalculationInput().GetProfileData());
+        ASSERT_EQ(&profileData, &result.GetCalculationInput().GetProfileData());
         ASSERT_EQ(processType, result.GetProcessType());
     }
 }

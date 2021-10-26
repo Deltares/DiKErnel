@@ -204,4 +204,8 @@ else()
 endif()
 
 # Link dependencies
-target_link_libraries(${LIBNAME} DiKErnel.Core DiKErnel.DomainLibrary DiKErnel.FunctionLibrary)
+target_link_libraries(${LIBNAME}
+  DiKErnel.Core
+  DiKErnel.DomainLibrary
+  DiKErnel.FunctionLibrary
+)

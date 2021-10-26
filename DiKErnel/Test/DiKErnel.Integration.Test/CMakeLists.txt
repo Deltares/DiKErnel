@@ -48,4 +48,9 @@ source_group(${DATA_OUTPUT_FOLDER} FILES ${SOURCEFILES_DATA_OUTPUT})
 source_group(${EXCEPTIONS_FOLDER} FILES ${SOURCEFILES_EXCEPTIONS})
 
 # Link dependencies
-target_link_libraries(${EXENAME} PUBLIC gtest DiKErnel.Integration DiKErnel.Integration.TestUtil DiKErnel.TestUtil)
+target_link_libraries(${EXENAME} PUBLIC
+  DiKErnel.Integration
+  DiKErnel.Integration.TestUtil
+  DiKErnel.TestUtil
+  gtest
+)
