@@ -4,6 +4,7 @@ set(EXENAME DiKErnel.System.Test)
 # Define sources
 set(SOURCEFILES
   Main.cpp
+  ValidationSystemTest.cpp
 )
 
 # Add executable
