@@ -57,9 +57,9 @@ namespace DiKErnel::Acceptance::Test
             const vector<const int*>& expectedTimesOfFailure) const
         {
             // When
-            const auto inputComposerResult = JsonInputComposer::GetInputDataFromJson(inputFilePath);
+            const auto result = JsonInputComposer::GetInputDataFromJson(inputFilePath);
 
-            Calculator calculator(inputComposerResult->GetData()->GetCalculationInput());
+            Calculator calculator(result->GetData()->GetCalculationInput());
             calculator.WaitForCompletion();
 
             const auto calculatorResult = calculator.GetCalculatorResult();

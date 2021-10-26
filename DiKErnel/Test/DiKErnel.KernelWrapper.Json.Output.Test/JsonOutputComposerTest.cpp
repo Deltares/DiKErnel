@@ -63,13 +63,12 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
             const CalculationOutput calculationOutput(move(locations));
 
             // Call
-            const auto outputComposerResult = JsonOutputComposer::WriteCalculationOutputToJson(_actualOutputFilePath, calculationOutput,
-                                                                                               outputType);
+            const auto result = JsonOutputComposer::WriteCalculationOutputToJson(_actualOutputFilePath, calculationOutput, outputType);
 
             // Assert
             FileAssert::AssertFileContents(expectedOutputFilePath, _actualOutputFilePath);
-            ASSERT_TRUE(outputComposerResult->GetSuccessful());
-            ASSERT_EQ(0, outputComposerResult->GetEvents().size());
+            ASSERT_TRUE(result->GetSuccessful());
+            ASSERT_EQ(0, result->GetEvents().size());
         }
 
         ~JsonOutputComposerTest() override
@@ -84,12 +83,12 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
         const CalculationOutput calculationOutput((vector<unique_ptr<LocationDependentOutput>>()));
 
         // Call
-        const auto outputComposerResult = JsonOutputComposer::WriteCalculationOutputToJson("", calculationOutput, static_cast<JsonOutputType>(99));
+        const auto result = JsonOutputComposer::WriteCalculationOutputToJson("", calculationOutput, static_cast<JsonOutputType>(99));
 
         // Assert
-        ASSERT_FALSE(outputComposerResult->GetSuccessful());
+        ASSERT_FALSE(result->GetSuccessful());
 
-        const auto& events = outputComposerResult->GetEvents();
+        const auto& events = result->GetEvents();
         ASSERT_EQ(1, events.size());
         const auto& event = events[0].get();
         ASSERT_EQ(EventType::Error, event.GetEventType());
@@ -122,12 +121,12 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
         const CalculationOutput calculationOutput(move(locations));
 
         // Call
-        const auto outputComposerResult = JsonOutputComposer::WriteCalculationOutputToJson("", calculationOutput, JsonOutputType::Physics);
+        const auto result = JsonOutputComposer::WriteCalculationOutputToJson("", calculationOutput, JsonOutputType::Physics);
 
         // Assert
-        ASSERT_FALSE(outputComposerResult->GetSuccessful());
+        ASSERT_FALSE(result->GetSuccessful());
 
-        const auto& events = outputComposerResult->GetEvents();
+        const auto& events = result->GetEvents();
         ASSERT_EQ(1, events.size());
         const auto& event = events[0].get();
         ASSERT_EQ(EventType::Error, event.GetEventType());
