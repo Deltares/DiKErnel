@@ -222,7 +222,7 @@ namespace DiKErnel::FunctionLibrary::Test
         AssertHelper::AssertAreAlmostEqual(0.208714810281518, outerSlope);
     }
 
-    TEST(NaturalStoneRevetmentTets, OuterSlopeWithBerm_UpperSlopeAboveOuterCrest_ExpectedValue)
+    TEST(NaturalStoneRevetmentFunctionsTest, OuterSlopeWithBerm_UpperSlopeAboveOuterCrest_ExpectedValue)
     {
         // Setup
         const auto outerToeHeight = 0.5;
@@ -246,7 +246,7 @@ namespace DiKErnel::FunctionLibrary::Test
         ASSERT_DOUBLE_EQ(numeric_limits<double>::infinity(), outerSlope);
     }
 
-    TEST(NaturalStoneRevetmentTets, OuterSlopeWithBerm_LowerSlopeBelowOuterToe_ExpectedValue)
+    TEST(NaturalStoneRevetmentFunctionsTest, OuterSlopeWithBerm_LowerSlopeBelowOuterToe_ExpectedValue)
     {
         // Setup
         const auto outerToeHeight = 0.5;
