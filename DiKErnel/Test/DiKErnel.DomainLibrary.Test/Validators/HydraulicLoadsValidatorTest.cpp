@@ -38,17 +38,17 @@ namespace DiKErnel::DomainLibrary::Test
         ValidatorAssertHelper::AssertEqualToBound(validateAction, -1 * numeric_limits<double>::infinity(), ValidationIssueType::Error,
                                                   errorMessage);
 
-        ValidatorAssertHelper::AssertBelowBound(validateAction, 0, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, 0 - ValidatorAssertHelper::EPSILON, ValidationIssueType::Error, errorMessage);
         ValidatorAssertHelper::AssertEqualToBound(validateAction, 0, ValidationIssueType::Error, errorMessage);
-        ValidatorAssertHelper::AssertAboveBound(validateAction, 0, ValidationIssueType::Warning, warningMessage);
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, 0 + ValidatorAssertHelper::EPSILON, ValidationIssueType::Warning, warningMessage);
 
-        ValidatorAssertHelper::AssertBelowBound(validateAction, 0.1, ValidationIssueType::Warning, warningMessage);
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, 0.1 - ValidatorAssertHelper::EPSILON, ValidationIssueType::Warning, warningMessage);
         ValidatorAssertHelper::AssertEqualToBound(validateAction, 0.1, ValidationIssueType::Warning, warningMessage);
-        ValidatorAssertHelper::AssertAboveBound(validateAction, 0.1);
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, 0.1 + ValidatorAssertHelper::EPSILON);
 
-        ValidatorAssertHelper::AssertBelowBound(validateAction, 10);
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, 10 - ValidatorAssertHelper::EPSILON);
         ValidatorAssertHelper::AssertEqualToBound(validateAction, 10, ValidationIssueType::Warning, warningMessage);
-        ValidatorAssertHelper::AssertAboveBound(validateAction, 10, ValidationIssueType::Warning, warningMessage);
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, 10 + ValidatorAssertHelper::EPSILON, ValidationIssueType::Warning, warningMessage);
 
         ValidatorAssertHelper::AssertEqualToBound(validateAction, numeric_limits<double>::infinity(), ValidationIssueType::Warning, warningMessage);
     }
@@ -62,17 +62,17 @@ namespace DiKErnel::DomainLibrary::Test
         ValidatorAssertHelper::AssertEqualToBound(validateAction, -1 * numeric_limits<double>::infinity(), ValidationIssueType::Error,
                                                   errorMessage);
 
-        ValidatorAssertHelper::AssertBelowBound(validateAction, 0, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, 0 - ValidatorAssertHelper::EPSILON, ValidationIssueType::Error, errorMessage);
         ValidatorAssertHelper::AssertEqualToBound(validateAction, 0, ValidationIssueType::Error, errorMessage);
-        ValidatorAssertHelper::AssertAboveBound(validateAction, 0, ValidationIssueType::Warning, warningMessage);
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, 0 + ValidatorAssertHelper::EPSILON, ValidationIssueType::Warning, warningMessage);
 
-        ValidatorAssertHelper::AssertBelowBound(validateAction, 0.5, ValidationIssueType::Warning, warningMessage);
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, 0.5 - ValidatorAssertHelper::EPSILON, ValidationIssueType::Warning, warningMessage);
         ValidatorAssertHelper::AssertEqualToBound(validateAction, 0.5, ValidationIssueType::Warning, warningMessage);
-        ValidatorAssertHelper::AssertAboveBound(validateAction, 0.5);
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, 0.5 + ValidatorAssertHelper::EPSILON);
 
-        ValidatorAssertHelper::AssertBelowBound(validateAction, 25);
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, 25 - ValidatorAssertHelper::EPSILON);
         ValidatorAssertHelper::AssertEqualToBound(validateAction, 25, ValidationIssueType::Warning, warningMessage);
-        ValidatorAssertHelper::AssertAboveBound(validateAction, 25, ValidationIssueType::Warning, warningMessage);
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, 25 + ValidatorAssertHelper::EPSILON, ValidationIssueType::Warning, warningMessage);
 
         ValidatorAssertHelper::AssertEqualToBound(validateAction, numeric_limits<double>::infinity(), ValidationIssueType::Warning, warningMessage);
     }
@@ -86,13 +86,13 @@ namespace DiKErnel::DomainLibrary::Test
         ValidatorAssertHelper::AssertEqualToBound(validateAction, -1 * numeric_limits<double>::infinity(), ValidationIssueType::Error,
                                                   errorMessage);
 
-        ValidatorAssertHelper::AssertBelowBound(validateAction, -180, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, -180 - ValidatorAssertHelper::EPSILON, ValidationIssueType::Error, errorMessage);
         ValidatorAssertHelper::AssertEqualToBound(validateAction, -180, ValidationIssueType::Error, errorMessage);
-        ValidatorAssertHelper::AssertAboveBound(validateAction, -180);
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, -180 + ValidatorAssertHelper::EPSILON);
 
-        ValidatorAssertHelper::AssertBelowBound(validateAction, 180);
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, 180 - ValidatorAssertHelper::EPSILON);
         ValidatorAssertHelper::AssertEqualToBound(validateAction, 180, ValidationIssueType::Error, errorMessage);
-        ValidatorAssertHelper::AssertAboveBound(validateAction, 180, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, 180 + ValidatorAssertHelper::EPSILON, ValidationIssueType::Error, errorMessage);
 
         ValidatorAssertHelper::AssertEqualToBound(validateAction, numeric_limits<double>::infinity(), ValidationIssueType::Error, errorMessage);
     }
