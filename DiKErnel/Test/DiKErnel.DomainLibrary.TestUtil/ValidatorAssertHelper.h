@@ -41,43 +41,32 @@ namespace DiKErnel::DomainLibrary::TestUtil
 
             inline constexpr static int INTEGER_MAX = std::numeric_limits<int>::max();
 
-            typedef std::unique_ptr<ValidationIssue> (*ActionWithDouble)(
-                double);
-
-            typedef std::unique_ptr<ValidationIssue> (*ActionWithInt)(
-                int);
-
+            template <typename T>
             static void AssertEqualToBound(
-                ActionWithDouble validateAction,
-                double bound);
+                std::unique_ptr<ValidationIssue> (*const validateAction)(T),
+                T bound)
+            {
+                // Call
+                const auto validationIssue = validateAction(bound);
 
+                // Assert
+                ASSERT_EQ(nullptr, validationIssue);
+            }
+
+            template <typename T>
             static void AssertEqualToBound(
-                ActionWithDouble validateAction,
-                double bound,
+                std::unique_ptr<ValidationIssue> (*const validateAction)(T),
+                T bound,
                 ValidationIssueType validationIssueType,
-                const std::string& message);
+                const std::string& message)
+            {
+                // Call
+                const auto validationIssue = validateAction(bound);
 
-            static void AssertEqualToBound(
-                ActionWithInt validateAction,
-                int bound);
-
-            static void AssertEqualToBound(
-                ActionWithInt validateAction,
-                int bound,
-                ValidationIssueType validationIssueType,
-                const std::string& message);
-
-        private:
-            template <typename TAction, typename TBound>
-            static void AssertValidBound(
-                TAction validateAction,
-                TBound bound);
-
-            template <typename TAction, typename TBound>
-            static void AssertInvalidBound(
-                TAction validateAction,
-                TBound bound,
-                ValidationIssueType validationIssueType,
-                const std::string& message);
+                // Assert
+                ASSERT_NE(nullptr, validationIssue);
+                ASSERT_EQ(validationIssueType, validationIssue->GetValidationIssueType());
+                ASSERT_EQ(message, validationIssue->GetMessage());
+            }
     };
 }
