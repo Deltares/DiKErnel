@@ -32,7 +32,7 @@ namespace DiKErnel::DomainLibrary::Test
     struct TimeStepValidatorTest : Test
     {
         static unique_ptr<ValidationIssue> IncrementOfTime(
-            int beginTime)
+            const int beginTime)
         {
             return TimeStepValidator::IncrementOfTime(beginTime, 100);
         }
@@ -44,12 +44,12 @@ namespace DiKErnel::DomainLibrary::Test
 
         constexpr auto errorMessage = "BeginTime must be smaller than EndTime.";
 
-        ValidatorAssertHelper::AssertValue(validateAction, ValidatorAssertHelper::INTEGER_MIN);
+        ValidatorAssertHelper::AssertValue<int>(validateAction, ValidatorAssertHelper::INTEGER_MIN);
 
-        ValidatorAssertHelper::AssertValue(validateAction, 99);
-        ValidatorAssertHelper::AssertValue(validateAction, 100, ValidationIssueType::Error, errorMessage);
-        ValidatorAssertHelper::AssertValue(validateAction, 101, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertValue<int>(validateAction, 99);
+        ValidatorAssertHelper::AssertValue<int>(validateAction, 100, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertValue<int>(validateAction, 101, ValidationIssueType::Error, errorMessage);
 
-        ValidatorAssertHelper::AssertValue(validateAction, ValidatorAssertHelper::INTEGER_MAX, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertValue<int>(validateAction, ValidatorAssertHelper::INTEGER_MAX, ValidationIssueType::Error, errorMessage);
     }
 }

@@ -101,14 +101,13 @@ namespace DiKErnel::DomainLibrary::Test
         ValidatorAssertHelper::AssertValue(validateAction, ValidatorAssertHelper::DOUBLE_MIN, ValidationIssueType::Warning, warningMessage);
 
         ValidatorAssertHelper::AssertValue(validateAction, 1000000.0 - ValidatorAssertHelper::EPSILON, ValidationIssueType::Warning,
-                                                  warningMessage);
+                                           warningMessage);
         ValidatorAssertHelper::AssertValue(validateAction, 1000000.0, ValidationIssueType::Warning, warningMessage);
         ValidatorAssertHelper::AssertValue(validateAction, 1000000.0 + ValidatorAssertHelper::EPSILON);
 
         ValidatorAssertHelper::AssertValue(validateAction, 3600000.0 - ValidatorAssertHelper::EPSILON);
         ValidatorAssertHelper::AssertValue(validateAction, 3600000.0);
-        ValidatorAssertHelper::AssertValue(validateAction, 3600000.0 + ValidatorAssertHelper::EPSILON, ValidationIssueType::Error,
-                                                  errorMessage);
+        ValidatorAssertHelper::AssertValue(validateAction, 3600000.0 + ValidatorAssertHelper::EPSILON, ValidationIssueType::Error, errorMessage);
 
         ValidatorAssertHelper::AssertValue(validateAction, ValidatorAssertHelper::DOUBLE_MAX, ValidationIssueType::Error, errorMessage);
     }
@@ -128,8 +127,7 @@ namespace DiKErnel::DomainLibrary::Test
 
         ValidatorAssertHelper::AssertValue(validateAction, 10.0 - ValidatorAssertHelper::EPSILON);
         ValidatorAssertHelper::AssertValue(validateAction, 10.0, ValidationIssueType::Warning, warningMessage);
-        ValidatorAssertHelper::AssertValue(validateAction, 10.0 + ValidatorAssertHelper::EPSILON, ValidationIssueType::Warning,
-                                                  warningMessage);
+        ValidatorAssertHelper::AssertValue(validateAction, 10.0 + ValidatorAssertHelper::EPSILON, ValidationIssueType::Warning, warningMessage);
 
         ValidatorAssertHelper::AssertValue(validateAction, ValidatorAssertHelper::DOUBLE_MAX, ValidationIssueType::Warning, warningMessage);
     }

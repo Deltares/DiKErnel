@@ -41,15 +41,13 @@ namespace DiKErnel::DomainLibrary::Test
         ValidatorAssertHelper::AssertValue(validateAction, 0.0, ValidationIssueType::Error, errorMessage);
         ValidatorAssertHelper::AssertValue(validateAction, 0.0 + ValidatorAssertHelper::EPSILON, ValidationIssueType::Warning, warningMessage);
 
-        ValidatorAssertHelper::AssertValue(validateAction, 0.1 - ValidatorAssertHelper::EPSILON, ValidationIssueType::Warning,
-                                                  warningMessage);
+        ValidatorAssertHelper::AssertValue(validateAction, 0.1 - ValidatorAssertHelper::EPSILON, ValidationIssueType::Warning, warningMessage);
         ValidatorAssertHelper::AssertValue(validateAction, 0.1, ValidationIssueType::Warning, warningMessage);
         ValidatorAssertHelper::AssertValue(validateAction, 0.1 + ValidatorAssertHelper::EPSILON);
 
         ValidatorAssertHelper::AssertValue(validateAction, 10.0 - ValidatorAssertHelper::EPSILON);
         ValidatorAssertHelper::AssertValue(validateAction, 10.0, ValidationIssueType::Warning, warningMessage);
-        ValidatorAssertHelper::AssertValue(validateAction, 10.0 + ValidatorAssertHelper::EPSILON, ValidationIssueType::Warning,
-                                                  warningMessage);
+        ValidatorAssertHelper::AssertValue(validateAction, 10.0 + ValidatorAssertHelper::EPSILON, ValidationIssueType::Warning, warningMessage);
 
         ValidatorAssertHelper::AssertValue(validateAction, ValidatorAssertHelper::DOUBLE_MAX, ValidationIssueType::Warning, warningMessage);
     }
@@ -67,15 +65,13 @@ namespace DiKErnel::DomainLibrary::Test
         ValidatorAssertHelper::AssertValue(validateAction, 0.0, ValidationIssueType::Error, errorMessage);
         ValidatorAssertHelper::AssertValue(validateAction, 0.0 + ValidatorAssertHelper::EPSILON, ValidationIssueType::Warning, warningMessage);
 
-        ValidatorAssertHelper::AssertValue(validateAction, 0.5 - ValidatorAssertHelper::EPSILON, ValidationIssueType::Warning,
-                                                  warningMessage);
+        ValidatorAssertHelper::AssertValue(validateAction, 0.5 - ValidatorAssertHelper::EPSILON, ValidationIssueType::Warning, warningMessage);
         ValidatorAssertHelper::AssertValue(validateAction, 0.5, ValidationIssueType::Warning, warningMessage);
         ValidatorAssertHelper::AssertValue(validateAction, 0.5 + ValidatorAssertHelper::EPSILON);
 
         ValidatorAssertHelper::AssertValue(validateAction, 25.0 - ValidatorAssertHelper::EPSILON);
         ValidatorAssertHelper::AssertValue(validateAction, 25.0, ValidationIssueType::Warning, warningMessage);
-        ValidatorAssertHelper::AssertValue(validateAction, 25.0 + ValidatorAssertHelper::EPSILON, ValidationIssueType::Warning,
-                                                  warningMessage);
+        ValidatorAssertHelper::AssertValue(validateAction, 25.0 + ValidatorAssertHelper::EPSILON, ValidationIssueType::Warning, warningMessage);
 
         ValidatorAssertHelper::AssertValue(validateAction, ValidatorAssertHelper::DOUBLE_MAX, ValidationIssueType::Warning, warningMessage);
     }
