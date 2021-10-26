@@ -58,7 +58,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
                 / fileName).string();
 
             // When
-            const auto processType = get<1>(*JsonInputComposer::GetInputDataFromJson(filePath)->GetResult());
+            const auto processType = JsonInputComposer::GetInputDataFromJson(filePath)->GetData()->GetProcessType();
 
             // Then
             ASSERT_EQ(expectedProcessType, processType);
@@ -76,7 +76,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
             const auto result = JsonInputComposer::GetInputDataFromJson(filePath);
 
             // Then
-            ASSERT_EQ(nullptr, result->GetResult());
+            ASSERT_FALSE(result->GetSuccessful());
 
             const auto& events = result->GetEvents();
             ASSERT_EQ(1, events.size());
@@ -115,14 +115,13 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
             / "AllLocationsInput.json").string();
 
         // When
-        const auto inputComposerResult = JsonInputComposer::GetInputDataFromJson(filePath);
-        const auto* result = inputComposerResult->GetResult();
-        const auto calculationInput = get<0>(*result).get();
+        const auto result = JsonInputComposer::GetInputDataFromJson(filePath);
+        const auto& calculationInput = result->GetData()->GetCalculationInput();
 
         // Then
-        AssertHelper::AssertIsInstanceOf<CalculationInput>(calculationInput);
+        AssertHelper::AssertIsInstanceOf<CalculationInput>(&calculationInput);
 
-        const auto& profileData = calculationInput->GetProfileData();
+        const auto& profileData = calculationInput.GetProfileData();
 
         const auto& profilePoints = profileData.GetProfilePoints();
         ASSERT_EQ(17, profilePoints.size());
@@ -151,7 +150,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
         ProfileDataAssertHelper::AssertCharacteristicPoint(profilePoints[13], CharacteristicPointType::NotchOuterBerm, characteristicPoints[2]);
         ProfileDataAssertHelper::AssertCharacteristicPoint(profilePoints[16], CharacteristicPointType::OuterCrest, characteristicPoints[3]);
 
-        const auto& timeDependentInputItems = calculationInput->GetTimeDependentInputItems();
+        const auto& timeDependentInputItems = calculationInput.GetTimeDependentInputItems();
         ASSERT_EQ(5, timeDependentInputItems.size());
         TimeDependentInputAssertHelper::AssertTimeDependentInputItem(0, 100, 0.1, 0.5, 2, -10, timeDependentInputItems[0].get());
         TimeDependentInputAssertHelper::AssertTimeDependentInputItem(100, 500, 0.5, 0.8, 6, -5, timeDependentInputItems[1].get());
@@ -159,7 +158,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
         TimeDependentInputAssertHelper::AssertTimeDependentInputItem(800, 1200, 1.77, 1.5, 7, 7, timeDependentInputItems[3].get());
         TimeDependentInputAssertHelper::AssertTimeDependentInputItem(1200, 2000, 2, 0.5, 4, 8, timeDependentInputItems[4].get());
 
-        const auto& locationDependentInputItems = calculationInput->GetLocationDependentInputItems();
+        const auto& locationDependentInputItems = calculationInput.GetLocationDependentInputItems();
         ASSERT_EQ(10, locationDependentInputItems.size());
 
         const auto* naturalStoneRevetmentLocationDependentInputItem1 = dynamic_cast<NaturalStoneRevetmentLocationDependentInput*>(
@@ -429,31 +428,31 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
     }
 
     TEST_F(JsonInputComposerTest,
-           GivenJsonInputWithInvalidCharacteristicPointType_WhenGetInputDataFromJson_ThenReturnsResultWithNullPtrAndEvent)
+           GivenJsonInputWithInvalidCharacteristicPointType_WhenGetInputDataFromJson_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         PerformInvalidJsonTest("InvalidCharacteristicPointType.json", "Cannot convert characteristic point type.");
     }
 
     TEST_F(JsonInputComposerTest,
-           GivenJsonInputWithInvalidAsphaltRevetmentWaveImpactTypeTopLayer_WhenGetInputDataFromJson_ThenReturnsResultWithNullPtrAndEvent)
+           GivenJsonInputWithInvalidAsphaltRevetmentWaveImpactTypeTopLayer_WhenGetInputDataFromJson_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         PerformInvalidJsonTest("InvalidAsphaltRevetmentWaveImpactTopLayerType.json", "Cannot convert top layer type.");
     }
 
     TEST_F(JsonInputComposerTest,
-           GivenJsonInputWithInvalidGrassRevetmentWaveImpactTypeTopLayer_WhenGetInputDataFromJson_ThenReturnsResultWithNullPtrAndEvent)
+           GivenJsonInputWithInvalidGrassRevetmentWaveImpactTypeTopLayer_WhenGetInputDataFromJson_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         PerformInvalidJsonTest("InvalidGrassRevetmentWaveImpactTopLayerType.json", "Cannot convert top layer type.");
     }
 
     TEST_F(JsonInputComposerTest,
-           GivenJsonInputWithInvalidGrassRevetmentWaveRunupRayleighTypeTopLayer_WhenGetInputDataFromJson_ThenReturnsResultWithNullPtrAndEvent)
+           GivenJsonInputWithInvalidGrassRevetmentWaveRunupRayleighTypeTopLayer_WhenGetInputDataFromJson_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         PerformInvalidJsonTest("InvalidGrassRevetmentWaveRunupRayleighTopLayerType.json", "Cannot convert top layer type.");
     }
 
     TEST_F(JsonInputComposerTest,
-           GivenJsonInputWithInvalidNaturalStoneRevetmentTypeTopLayer_WhenGetInputDataFromJson_ThenReturnsResultWithNullPtrAndEvent)
+           GivenJsonInputWithInvalidNaturalStoneRevetmentTypeTopLayer_WhenGetInputDataFromJson_TThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         PerformInvalidJsonTest("InvalidNaturalStoneRevetmentTopLayerType.json", "Cannot convert top layer type.");
     }
