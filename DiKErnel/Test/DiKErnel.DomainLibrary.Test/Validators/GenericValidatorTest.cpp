@@ -79,12 +79,12 @@ namespace DiKErnel::DomainLibrary::Test
 
         constexpr auto errorMessage = "At least 1 location must be defined.";
 
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, numeric_limits<int>::min(), ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, ValidatorAssertHelper::INTEGER_MIN, ValidationIssueType::Error, errorMessage);
 
         ValidatorAssertHelper::AssertEqualToBound(validateAction, -1, ValidationIssueType::Error, errorMessage);
         ValidatorAssertHelper::AssertEqualToBound(validateAction, 0, ValidationIssueType::Error, errorMessage);
         ValidatorAssertHelper::AssertEqualToBound(validateAction, 1);
 
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, numeric_limits<int>::max());
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, ValidatorAssertHelper::INTEGER_MAX);
     }
 }
