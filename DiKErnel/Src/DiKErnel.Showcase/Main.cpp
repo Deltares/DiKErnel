@@ -85,14 +85,13 @@ int main()
 
         // Read input Json file
         const auto inputComposerResult = JsonInputComposer::GetInputDataFromJson(jsonFilePath);
-        const auto* inputData = inputComposerResult->GetResult();
 
         // Write to log file
         const auto logOutputPath = outputDirectory / (outputFileNameBase + ".txt");
         WriteToLogFile(logOutputPath.u8string(), inputComposerResult->GetEvents());
 
         // Handle error during read operation
-        if (inputData == nullptr)
+        if (!inputComposerResult->GetSuccessful())
         {
             cout << "|=====================|" << endl;
             cout << "| Reading data failed |" << endl;
@@ -106,14 +105,15 @@ int main()
             return -1;
         }
 
-        const auto calculationInput = get<0>(*inputData).get();
+        const auto inputData = inputComposerResult->GetData();
+        const auto& calculationInput = inputData->GetCalculationInput();
 
         // Write user feedback
         cout << "|===========|" << endl;
         cout << "| Read data |" << endl;
         cout << "|===========|" << endl;
-        cout << "-> Number of read time steps: " << calculationInput->GetTimeDependentInputItems().size() - 1 << endl;
-        cout << "-> Number of read locations: " << calculationInput->GetLocationDependentInputItems().size() << endl << endl;
+        cout << "-> Number of read time steps: " << calculationInput.GetTimeDependentInputItems().size() - 1 << endl;
+        cout << "-> Number of read locations: " << calculationInput.GetLocationDependentInputItems().size() << endl << endl;
 
         #pragma endregion
 
@@ -130,7 +130,7 @@ int main()
         cout << "-> Enter 'c' to cancel the calculation" << endl << endl;
 
         // Start calculation on separate thread
-        Calculator calculator(*calculationInput);
+        Calculator calculator(calculationInput);
 
         // Start obtaining user input on separate thread
         thread inputThread(
@@ -207,7 +207,7 @@ int main()
         // Write output Json file
         const auto outputComposerResult = JsonOutputComposer::WriteCalculationOutputToJson(jsonOutputPath.u8string(),
                                                                                            *calculatorResult->GetResult(),
-                                                                                           ConvertProcessType(get<1>(*inputData)));
+                                                                                           ConvertProcessType(inputData->GetProcessType()));
 
         // Write to log file
         WriteToLogFile(logOutputPath.u8string(), outputComposerResult->GetEvents());

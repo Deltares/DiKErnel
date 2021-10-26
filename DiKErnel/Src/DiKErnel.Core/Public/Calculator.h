@@ -42,7 +42,7 @@ namespace DiKErnel::Core
              *        The input used in the calculation.
              */
             explicit Calculator(
-                ICalculationInput& calculationInput);
+                const ICalculationInput& calculationInput);
 
             /*!
              * \brief Handle that enables a calling instance to wait for the calculation to

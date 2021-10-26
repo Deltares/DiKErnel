@@ -30,7 +30,7 @@ namespace DiKErnel::Core
     using namespace Util;
 
     Calculator::Calculator(
-        ICalculationInput& calculationInput)
+        const ICalculationInput& calculationInput)
     {
         _calculationThread = thread(
             &Calculator::PerformCalculation,
