@@ -114,13 +114,12 @@ namespace DiKErnel::KernelWrapper::Json::Integration::Test
         {
             // When
             const auto inputComposerResult = JsonInputComposer::GetInputDataFromJson(inputFilePath);
-            const auto* inputData = inputComposerResult->GetResult();
-            const auto calculationInput = get<0>(*inputData).get();
+            const auto inputData = inputComposerResult->GetData();
 
-            Calculator calculator(*calculationInput);
+            Calculator calculator(inputData->GetCalculationInput());
             calculator.WaitForCompletion();
 
-            const auto outputType = ConvertProcessType(get<1>(*inputData));
+            const auto outputType = ConvertProcessType(inputData->GetProcessType());
 
             const auto calculatorResult = calculator.GetCalculatorResult();
             const auto* outputData = calculatorResult->GetResult();
