@@ -35,7 +35,7 @@ namespace DiKErnel::Core
 
             /*!
              * \brief Performs a time dependent validation.
-             * \return Indicator whether the validation succeeded.
+             * \return Whether the validation was successful.
              */
             virtual bool Validate() = 0;
 

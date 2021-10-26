@@ -41,7 +41,7 @@ namespace DiKErnel::Core
 
             /*!
              * \brief Performs calculation input validation.
-             * \return Indicator whether the validation succeeded.
+             * \return Whether the validation was successful.
              */
             virtual bool Validate() const = 0;
 
