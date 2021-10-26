@@ -253,4 +253,45 @@ namespace DiKErnel::System::Test
         EventAssertHelper::AssertEvent(EventType::Warning, "SlopeUpperLevelAus should be in range [0.01, 0.2].", events[6]);
         EventAssertHelper::AssertEvent(EventType::Error, "SlopeLowerLevelAls must be larger than 0.", events[7]);
     }
+
+    TEST(ValidationSystemTest, GivenValidCalculationInput_WhenValidating_ThenReturnsValidationResult)
+    {
+        // Given
+        RevetmentCalculationInputBuilder builder;
+        constexpr auto outerToe = CharacteristicPointType::OuterToe;
+        constexpr auto outerCrest = CharacteristicPointType::OuterCrest;
+        builder.AddDikeProfilePoint(10, 5, &outerToe);
+        builder.AddDikeProfilePoint(20, 10, &outerCrest);
+
+        builder.AddTimeStep(0, 100, 10, 5, 10, 30);
+
+        AsphaltRevetmentWaveImpactLocationConstructionProperties asphaltRevetmentWaveImpactLocationConstructionProperties(
+            12, 0.3, AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete, 1, 970, 0.5, 3, 2);
+        asphaltRevetmentWaveImpactLocationConstructionProperties.SetThicknessSubLayer(make_unique<double>(0.000001));
+
+        const GrassRevetmentWaveImpactLocationConstructionProperties grassRevetmentWaveImpactLocationConstructionProperties(
+            14, GrassRevetmentTopLayerType::ClosedSod);
+
+        const GrassRevetmentWaveRunupRayleighLocationConstructionProperties grassRevetmentWaveRunupRayleighLocationConstructionProperties
+                (19, 0.71, GrassRevetmentTopLayerType::ClosedSod);
+
+        const NaturalStoneRevetmentLocationConstructionProperties naturalStoneRevetmentLocationConstructionProperties(
+            15, NaturalStoneRevetmentTopLayerType::NordicStone, 0.5, 4.6);
+
+        builder.AddAsphaltWaveImpactLocation(asphaltRevetmentWaveImpactLocationConstructionProperties);
+        builder.AddGrassWaveImpactLocation(grassRevetmentWaveImpactLocationConstructionProperties);
+        builder.AddGrassWaveRunupRayleighLocation(grassRevetmentWaveRunupRayleighLocationConstructionProperties);
+        builder.AddNaturalStoneLocation(naturalStoneRevetmentLocationConstructionProperties);
+
+        const auto calculationInput = builder.Build();
+
+        // When
+        const auto validationResult = Validator::Validate(*calculationInput);
+
+        // Then
+        ASSERT_TRUE(validationResult->GetSuccessful());
+        ASSERT_EQ(ValidationResultType::Successful, *validationResult->GetData());
+        const auto& events = validationResult->GetEvents();
+        ASSERT_EQ(0, events.size());
+    }
 }
