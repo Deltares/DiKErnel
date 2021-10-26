@@ -60,11 +60,10 @@ namespace DiKErnel::Acceptance::Test
             const auto result = JsonInputComposer::GetInputDataFromJson(inputFilePath);
 
             Calculator calculator(result->GetData()->GetCalculationInput());
+
             calculator.WaitForCompletion();
 
-            const auto calculatorResult = calculator.GetCalculatorResult();
-            const auto* outputData = calculatorResult->GetResult();
-            JsonOutputComposer::WriteCalculationOutputToJson(_actualOutputFilePath, *outputData, JsonOutputType::Damage);
+            JsonOutputComposer::WriteCalculationOutputToJson(_actualOutputFilePath, *calculator.GetResult()->GetData(), JsonOutputType::Damage);
 
             // Then
             ifstream ifs(_actualOutputFilePath);

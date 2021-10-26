@@ -117,13 +117,12 @@ namespace DiKErnel::KernelWrapper::Json::Integration::Test
             const auto inputData = result->GetData();
 
             Calculator calculator(inputData->GetCalculationInput());
+
             calculator.WaitForCompletion();
 
             const auto outputType = ConvertProcessType(inputData->GetProcessType());
 
-            const auto calculatorResult = calculator.GetCalculatorResult();
-            const auto* outputData = calculatorResult->GetResult();
-            JsonOutputComposer::WriteCalculationOutputToJson(_actualOutputFilePath, *outputData, outputType);
+            JsonOutputComposer::WriteCalculationOutputToJson(_actualOutputFilePath, *calculator.GetResult()->GetData(), outputType);
 
             // Then
             ifstream ifs1(expectedOutputFilePath);

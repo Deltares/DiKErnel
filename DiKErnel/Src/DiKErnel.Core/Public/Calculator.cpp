@@ -66,7 +66,7 @@ namespace DiKErnel::Core
         }
     }
 
-    shared_ptr<DataResult<CalculationOutput>> Calculator::GetCalculatorResult() const
+    shared_ptr<DataResult<CalculationOutput>> Calculator::GetResult() const
     {
         return _result;
     }

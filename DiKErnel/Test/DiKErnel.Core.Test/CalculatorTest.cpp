@@ -103,7 +103,7 @@ namespace DiKErnel::Core::Test
         calculator.WaitForCompletion();
 
         // Then
-        const auto result = calculator.GetCalculatorResult();
+        const auto result = calculator.GetResult();
         const auto output = result->GetData();
 
         const auto& locationDependentOutputItems = output->GetLocationDependentOutputItems();
@@ -143,7 +143,7 @@ namespace DiKErnel::Core::Test
         calculator.WaitForCompletion();
 
         // Then
-        const auto result = calculator.GetCalculatorResult();
+        const auto result = calculator.GetResult();
         const auto output = result->GetData();
 
         const auto& locationDependentOutputItems = output->GetLocationDependentOutputItems();
@@ -217,7 +217,7 @@ namespace DiKErnel::Core::Test
         calculator.WaitForCompletion();
     }
 
-    TEST_F(CalculatorTest, GivenCalculatorWithRunningCalculation_WhenGetCalculatorResult_ThenReturnNullPtr)
+    TEST_F(CalculatorTest, GivenCalculatorWithRunningCalculation_WhenGetResult_ThenReturnNullPtr)
     {
         // Given
         const NiceMock<ICalculationInputMock> calculationInput;
@@ -228,7 +228,7 @@ namespace DiKErnel::Core::Test
         Calculator calculator(calculationInput);
 
         // When
-        const auto result = calculator.GetCalculatorResult();
+        const auto result = calculator.GetResult();
 
         // Then
         ASSERT_EQ(nullptr, result);
@@ -255,7 +255,7 @@ namespace DiKErnel::Core::Test
         ASSERT_EQ(CalculationState::Cancelled, calculationState);
     }
 
-    TEST_F(CalculatorTest, GivenCalculatorWithCancelledCalculation_WhenGetCalculatorResult_ThenReturnResultWithSuccessfulFalse)
+    TEST_F(CalculatorTest, GivenCalculatorWithCancelledCalculation_WhenGetResult_ThenReturnResultWithSuccessfulFalse)
     {
         // Given
         const NiceMock<ICalculationInputMock> calculationInput;
@@ -268,7 +268,7 @@ namespace DiKErnel::Core::Test
         calculator.WaitForCompletion();
 
         // When
-        const auto result = calculator.GetCalculatorResult();
+        const auto result = calculator.GetResult();
 
         // Then
         ASSERT_FALSE(result->GetSuccessful());
@@ -298,7 +298,7 @@ namespace DiKErnel::Core::Test
         ASSERT_EQ(CalculationState::FinishedInError, calculationState);
     }
 
-    TEST_F(CalculatorTest, GivenCalculatorWithExceptionDuringCalculation_WhenGetCalculatorResult_ThenReturnResultWithSuccessfulFalseAndEvent)
+    TEST_F(CalculatorTest, GivenCalculatorWithExceptionDuringCalculation_WhenGetResult_ThenReturnResultWithSuccessfulFalseAndEvent)
     {
         // Given
         const auto locationDependentInputMock = make_unique<NiceMock<ILocationDependentInputMock>>();
@@ -316,7 +316,7 @@ namespace DiKErnel::Core::Test
         calculator.WaitForCompletion();
 
         // When
-        const auto result = calculator.GetCalculatorResult();
+        const auto result = calculator.GetResult();
 
         ASSERT_FALSE(result->GetSuccessful());
 

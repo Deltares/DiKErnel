@@ -158,7 +158,7 @@ int main()
         calculator.WaitForCompletion();
 
         // Write to log file
-        const auto calculatorResult = calculator.GetCalculatorResult();
+        const auto calculatorResult = calculator.GetResult();
         WriteToLogFile(logOutputPath.u8string(), calculatorResult->GetEvents());
 
         #pragma endregion
@@ -206,7 +206,7 @@ int main()
 
         // Write output Json file
         const auto outputComposerResult = JsonOutputComposer::WriteCalculationOutputToJson(jsonOutputPath.u8string(),
-                                                                                           *calculatorResult->GetResult(),
+                                                                                           *calculatorResult->GetData(),
                                                                                            ConvertProcessType(inputData->GetProcessType()));
 
         // Write to log file
