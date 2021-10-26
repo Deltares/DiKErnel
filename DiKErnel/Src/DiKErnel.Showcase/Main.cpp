@@ -144,7 +144,7 @@ int main()
         cout << "| Validation successful |" << endl;
         cout << "|=======================|" << endl;
 
-        if(*validationResult->GetData() == ValidationResultType::Succeeded)
+        if(*validationResult->GetData() == ValidationResultType::Successful)
         {
             cout << "-> Data is valid" << endl << endl;
         }
