@@ -43,7 +43,7 @@ namespace DiKErnel::Core
              * \brief Performs calculation input validation.
              * \return Indicator whether the validation succeeded.
              */
-            virtual bool Validate() = 0;
+            virtual bool Validate() const = 0;
 
             /*!
              * \brief Gets the profile data to use in the calculation.

@@ -37,7 +37,7 @@ namespace DiKErnel::Integration
                 std::vector<std::unique_ptr<LocationDependentInput>> locationDependentInputItems,
                 std::vector<std::unique_ptr<TimeDependentInput>> timeDependentInputItems);
 
-            bool Validate() override;
+            bool Validate() const override;
 
             const Core::IProfileData& GetProfileData() const override;
 

@@ -57,7 +57,7 @@ namespace DiKErnel::Integration
         }
     }
 
-    bool CalculationInput::Validate()
+    bool CalculationInput::Validate() const
     {
         auto timeStepTimes = vector<pair<int, int>>();
 
