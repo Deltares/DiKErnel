@@ -70,7 +70,7 @@ namespace DiKErnel::System::Test
         EventAssertHelper::AssertEvent(EventType::Error, "BeginTime must be smaller than EndTime.", events[1]);
         EventAssertHelper::AssertEvent(EventType::Error, "WaveHeightHm0 must be larger than 0.", events[2]);
         EventAssertHelper::AssertEvent(EventType::Warning, "WavePeriodTm10 should be in range {0.5, 25}.", events[3]);
-        EventAssertHelper::AssertEvent(EventType::Error, "WaveAngle must be in range {-180, 180}.", events[4]);
+        EventAssertHelper::AssertEvent(EventType::Error, "WaveAngle must be in range {-180, 180].", events[4]);
     }
 
     TEST(ValidationSystemTest, GivenCalculationInputWithInvalidAsphaltRevetmentWaveImpactLocation_WhenValidating_ThenReturnsValidationResult)
