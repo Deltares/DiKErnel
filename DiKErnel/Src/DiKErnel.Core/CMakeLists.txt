@@ -8,9 +8,9 @@ set(PUBLIC_FOLDER Public)
 set(SOURCEFILES_PUBLIC
   ${PUBLIC_FOLDER}/CalculationOutput.cpp
   ${PUBLIC_FOLDER}/CalculationOutput.h
+  ${PUBLIC_FOLDER}/CalculationState.h
   ${PUBLIC_FOLDER}/Calculator.cpp
   ${PUBLIC_FOLDER}/Calculator.h
-  ${PUBLIC_FOLDER}/CalculationState.h
   ${PUBLIC_FOLDER}/CharacteristicPoint.cpp
   ${PUBLIC_FOLDER}/CharacteristicPoint.h
   ${PUBLIC_FOLDER}/CharacteristicPointType.h

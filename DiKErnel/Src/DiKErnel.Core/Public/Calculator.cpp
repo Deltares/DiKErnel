@@ -74,7 +74,7 @@ namespace DiKErnel::Core
     void Calculator::PerformCalculation(
         const ICalculationInput& calculationInput,
         atomic<double>& progress,
-        std::atomic<CalculationState>& calculationState)
+        atomic<CalculationState>& calculationState)
     {
         try
         {
