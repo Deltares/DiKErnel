@@ -33,7 +33,7 @@ namespace DiKErnel::DomainLibrary::TestUtil
         public:
             inline constexpr static double EPSILON = 1e-6;
 
-            inline constexpr static double DOUBLE_MIN = std::numeric_limits<double>::min();
+            inline constexpr static double DOUBLE_MIN = -std::numeric_limits<double>::max();
 
             inline constexpr static double DOUBLE_MAX = std::numeric_limits<double>::max();
 
