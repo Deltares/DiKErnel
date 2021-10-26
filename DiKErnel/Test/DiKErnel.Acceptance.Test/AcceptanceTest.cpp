@@ -58,9 +58,8 @@ namespace DiKErnel::Acceptance::Test
         {
             // When
             const auto inputComposerResult = JsonInputComposer::GetInputDataFromJson(inputFilePath);
-            const auto calculationInput = get<0>(*inputComposerResult->GetResult()).get();
 
-            Calculator calculator(*calculationInput);
+            Calculator calculator(inputComposerResult->GetData()->GetCalculationInput());
             calculator.WaitForCompletion();
 
             const auto calculatorResult = calculator.GetCalculatorResult();
