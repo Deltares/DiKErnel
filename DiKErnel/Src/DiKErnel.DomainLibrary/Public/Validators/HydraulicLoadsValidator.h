@@ -45,7 +45,8 @@ namespace DiKErnel::DomainLibrary
              * \brief Validates the wave period Tm10.
              * \param wavePeriodTm10
              *        The wave period Tm10.
-             * \return A validation issue when the wave period Tm10 is not valid; nullptr otherwise.
+             * \return A validation issue when the wave period Tm10 is not valid; nullptr
+             *         otherwise.
              */
             static std::unique_ptr<ValidationIssue> WavePeriodTm10(
                 double wavePeriodTm10);

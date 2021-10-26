@@ -38,7 +38,8 @@ namespace DiKErnel::DomainLibrary
              *        The begin time.
              * \param endTime
              *        The end time.
-             * \return A validation issue when increment of time is not valid; nullptr otherwise.
+             * \return A validation issue when the increment of time is not valid; nullptr
+             *         otherwise.
              */
             static std::unique_ptr<ValidationIssue> IncrementOfTime(
                 int beginTime,
