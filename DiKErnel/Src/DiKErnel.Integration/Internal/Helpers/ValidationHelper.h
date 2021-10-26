@@ -29,7 +29,7 @@ namespace DiKErnel::Integration
     {
         public:
             static bool RegisterValidationIssue(
-                const DomainLibrary::ValidationIssue* validationIssue);
+                const std::unique_ptr<DomainLibrary::ValidationIssue>& validationIssue);
 
         private:
             static Util::EventType ConvertValidationIssueType(

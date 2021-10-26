@@ -31,7 +31,7 @@ namespace DiKErnel::Integration
     using namespace Util;
 
     bool ValidationHelper::RegisterValidationIssue(
-        const ValidationIssue* validationIssue)
+        const unique_ptr<ValidationIssue>& validationIssue)
     {
         if (validationIssue != nullptr)
         {
