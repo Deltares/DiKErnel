@@ -76,7 +76,8 @@ namespace DiKErnel::System::Test
     TEST(ValidationSystemTest, GivenCalculationInputWithInvalidAsphaltRevetmentWaveImpactLocation_WhenValidating_ThenReturnsValidationResult)
     {
         // Given
-        AsphaltRevetmentWaveImpactLocationConstructionProperties constructionProperties(10, 2, AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete, 0, 800, 0, -1, -8);
+        AsphaltRevetmentWaveImpactLocationConstructionProperties constructionProperties(
+            10, 2, AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete, 0, 800, 0, -1, -8);
         constructionProperties.SetInitialDamage(make_unique<double>(-0.1));
         constructionProperties.SetFailureNumber(make_unique<double>(-1));
         constructionProperties.SetFatigueAlpha(make_unique<double>(0));
@@ -168,6 +169,54 @@ namespace DiKErnel::System::Test
         EventAssertHelper::AssertEvent(EventType::Error, "WaveAngleImpactQwa must be in range [0, 1].", events[10]);
         EventAssertHelper::AssertEvent(EventType::Error, "WaveAngleImpactRwa must be larger than 0.", events[11]);
         EventAssertHelper::AssertEvent(EventType::Error, "UpperLimitLoadingAul must be smaller than LowerLimitLoadingAll.", events[12]);
+    }
+
+    TEST(ValidationSystemTest, GivenCalculationInputWithInvalidGrassRevetmentWaveRunupRayleighLocation_WhenValidating_ThenReturnsValidationResult)
+    {
+        // Given
+        GrassRevetmentWaveRunupRayleighLocationConstructionProperties constructionProperties(10, 20, GrassRevetmentTopLayerType::ClosedSod);
+        constructionProperties.SetInitialDamage(make_unique<double>(-0.1));
+        constructionProperties.SetFailureNumber(make_unique<double>(-1));
+        constructionProperties.SetCriticalCumulativeOverload(make_unique<double>(-2));
+        constructionProperties.SetRepresentativeWaveRunup2PGammab(make_unique<double>(0));
+        constructionProperties.SetRepresentativeWaveRunup2PGammaf(make_unique<double>(-0.5));
+        constructionProperties.SetCriticalFrontVelocity(make_unique<double>(-1));
+        constructionProperties.SetIncreasedLoadTransitionAlphaM(make_unique<double>(-11));
+        constructionProperties.SetReducedStrengthTransitionAlphaS(make_unique<double>(-3));
+        constructionProperties.SetAverageNumberOfWavesCtm(make_unique<double>(0));
+        constructionProperties.SetFixedNumberOfWaves(make_unique<int>(0));
+        constructionProperties.SetFrontVelocityCu(make_unique<double>(-1));
+
+        RevetmentCalculationInputBuilder builder;
+        constexpr auto outerToe = CharacteristicPointType::OuterToe;
+        constexpr auto outerCrest = CharacteristicPointType::OuterCrest;
+        builder.AddDikeProfilePoint(10, 5, &outerToe);
+        builder.AddDikeProfilePoint(20, 10, &outerCrest);
+        builder.AddGrassWaveRunupRayleighLocation(constructionProperties);
+
+        const auto calculationInput = builder.Build();
+
+        // When
+        const auto validationResult = Validator::Validate(*calculationInput);
+
+        // Then
+        ASSERT_TRUE(validationResult->GetSuccessful());
+        ASSERT_EQ(ValidationResultType::Failed, *validationResult->GetData());
+        const auto& events = validationResult->GetEvents();
+        ASSERT_EQ(14, events.size());
+        EventAssertHelper::AssertEvent(EventType::Error, "X must be in range {OuterToeX, OuterCrestX}.", events[1]);
+        EventAssertHelper::AssertEvent(EventType::Error, "InitialDamage must be equal to 0 or larger.", events[2]);
+        EventAssertHelper::AssertEvent(EventType::Error, "FailureNumber must be larger than InitialDamage.", events[3]);
+        EventAssertHelper::AssertEvent(EventType::Error, "CriticalCumulativeOverload must be larger than 0.", events[4]);
+        EventAssertHelper::AssertEvent(EventType::Error, "RepresentativeWaveRunup2PGammab must be in range [0.6, 1].", events[5]);
+        EventAssertHelper::AssertEvent(EventType::Error, "RepresentativeWaveRunup2PGammaf must be in range [0.5, 1].", events[6]);
+        EventAssertHelper::AssertEvent(EventType::Error, "CriticalFrontVelocity must be equal to 0 or larger.", events[7]);
+        EventAssertHelper::AssertEvent(EventType::Error, "IncreasedLoadTransitionAlphaM must be equal to 0 or larger.", events[8]);
+        EventAssertHelper::AssertEvent(EventType::Error, "ReducedStrengthTransitionAlphaS must be equal to 0 or larger.", events[9]);
+        EventAssertHelper::AssertEvent(EventType::Error, "AverageNumberOfWavesCtm must be larger than 0.", events[10]);
+        EventAssertHelper::AssertEvent(EventType::Error, "OuterSlope must be in range {0, 1}.", events[11]);
+        EventAssertHelper::AssertEvent(EventType::Error, "FixedNumberOfWaves must be larger than 0.", events[12]);
+        EventAssertHelper::AssertEvent(EventType::Error, "FrontVelocityCu must be larger than 0.", events[13]);
     }
 
     TEST(ValidationSystemTest, GivenCalculationInputWithInvalidNaturalStoneRevetmentLocation_WhenValidating_ThenReturnsValidationResult)
