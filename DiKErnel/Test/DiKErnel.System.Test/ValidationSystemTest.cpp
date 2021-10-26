@@ -72,4 +72,39 @@ namespace DiKErnel::System::Test
         EventAssertHelper::AssertEvent(EventType::Warning, "WavePeriodTm10 should be in range {0.5, 25}.", events[3]);
         EventAssertHelper::AssertEvent(EventType::Error, "WaveAngle must be in range {-180, 180}.", events[4]);
     }
+
+    TEST(ValidationSystemTest, GivenCalculationInputWithInvalidNaturalStoneRevetmentLocation_WhenValidating_ThenReturnsValidationResult)
+    {
+        // Given
+        NaturalStoneRevetmentLocationConstructionProperties constructionProperties(10, NaturalStoneRevetmentTopLayerType::NordicStone, 0, 10);
+        constructionProperties.SetInitialDamage(make_unique<double>(-0.1));
+        constructionProperties.SetFailureNumber(make_unique<double>(-1));
+        constructionProperties.SetSlopeUpperLevelAus(make_unique<double>(0.3));
+        constructionProperties.SetSlopeLowerLevelAls(make_unique<double>(0));
+
+        RevetmentCalculationInputBuilder builder;
+        constexpr auto outerToe = CharacteristicPointType::OuterToe;
+        constexpr auto outerCrest = CharacteristicPointType::OuterCrest;
+        builder.AddDikeProfilePoint(10, 5, &outerToe);
+        builder.AddDikeProfilePoint(20, 10, &outerCrest);
+        builder.AddNaturalStoneLocation(constructionProperties);
+
+        const auto calculationInput = builder.Build();
+
+        // When
+        const auto validationResult = Validator::Validate(*calculationInput);
+
+        // Then
+        ASSERT_TRUE(validationResult->GetSuccessful());
+        ASSERT_EQ(ValidationResultType::Failed, *validationResult->GetData());
+        const auto& events = validationResult->GetEvents();
+        ASSERT_EQ(8, events.size());
+        EventAssertHelper::AssertEvent(EventType::Error, "X must be in range {OuterToeX, OuterCrestX}.", events[1]);
+        EventAssertHelper::AssertEvent(EventType::Error, "InitialDamage must be equal to 0 or larger.", events[2]);
+        EventAssertHelper::AssertEvent(EventType::Error, "FailureNumber must be larger than InitialDamage.", events[3]);
+        EventAssertHelper::AssertEvent(EventType::Error, "RelativeDensity must be in range {0, 10}.", events[4]);
+        EventAssertHelper::AssertEvent(EventType::Error, "ThicknessTopLayer must be in range {0, 1}.", events[5]);
+        EventAssertHelper::AssertEvent(EventType::Warning, "SlopeUpperLevelAus should be in range [0.01, 0.2].", events[6]);
+        EventAssertHelper::AssertEvent(EventType::Error, "SlopeLowerLevelAls must be larger than 0.", events[7]);
+    }
 }
