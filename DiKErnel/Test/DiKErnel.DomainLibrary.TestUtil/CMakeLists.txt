@@ -3,6 +3,7 @@ set(LIBNAME DiKErnel.DomainLibrary.TestUtil)
 
 # Define sources
 set(SOURCEFILES
+  ValidatorAssertHelper.cpp
   ValidatorAssertHelper.h
 )
 
