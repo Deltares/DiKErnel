@@ -19,27 +19,15 @@
 // All rights reserved.
 
 #pragma once
-#include <memory>
-
-#include "DataResult.h"
-#include "ICalculationInput.h"
-#include "ValidationResultType.h"
 
 namespace DiKErnel::Core
 {
     /*!
-     * \brief Class responsible for performing validation.
+     * \brief The validation result types.
      */
-    class Validator
+    enum class ValidationResultType
     {
-        public:
-            /*!
-             * \brief Performs the validation
-             * \param calculationInput
-             *        The input to validate.
-             * \return The result of the validation.
-             */
-            static std::unique_ptr<Util::DataResult<ValidationResultType>> Validate(
-                const ICalculationInput& calculationInput);
+        Succeeded,
+        Failed
     };
 }

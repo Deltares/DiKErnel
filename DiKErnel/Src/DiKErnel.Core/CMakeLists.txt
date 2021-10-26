@@ -24,6 +24,7 @@ set(SOURCEFILES_PUBLIC
   ${PUBLIC_FOLDER}/ProfilePoint.h
   ${PUBLIC_FOLDER}/TimeDependentOutput.cpp
   ${PUBLIC_FOLDER}/TimeDependentOutput.h
+  ${PUBLIC_FOLDER}/ValidationResultType.h
   ${PUBLIC_FOLDER}/Validator.cpp
   ${PUBLIC_FOLDER}/Validator.h
 )

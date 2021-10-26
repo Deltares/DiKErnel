@@ -60,6 +60,7 @@ namespace DiKErnel::Core::Test
 
         // Assert
         ASSERT_TRUE(validationResult->GetSuccessful());
+        ASSERT_EQ(ValidationResultType::Succeeded, *validationResult->GetData());
         ASSERT_EQ(0, validationResult->GetEvents().size());
     }
 
@@ -89,7 +90,8 @@ namespace DiKErnel::Core::Test
         const auto validationResult = Validator::Validate(calculationInput);
 
         // Assert
-        ASSERT_FALSE(validationResult->GetSuccessful());
+        ASSERT_TRUE(validationResult->GetSuccessful());
+        ASSERT_EQ(ValidationResultType::Failed, *validationResult->GetData());
         ASSERT_EQ(0, validationResult->GetEvents().size());
     }
 
@@ -119,7 +121,8 @@ namespace DiKErnel::Core::Test
         const auto validationResult = Validator::Validate(calculationInput);
 
         // Assert
-        ASSERT_FALSE(validationResult->GetSuccessful());
+        ASSERT_TRUE(validationResult->GetSuccessful());
+        ASSERT_EQ(ValidationResultType::Failed, *validationResult->GetData());
         ASSERT_EQ(0, validationResult->GetEvents().size());
     }
 
@@ -149,7 +152,8 @@ namespace DiKErnel::Core::Test
         const auto validationResult = Validator::Validate(calculationInput);
 
         // Assert
-        ASSERT_FALSE(validationResult->GetSuccessful());
+        ASSERT_TRUE(validationResult->GetSuccessful());
+        ASSERT_EQ(ValidationResultType::Failed, *validationResult->GetData());
         ASSERT_EQ(0, validationResult->GetEvents().size());
     }
 

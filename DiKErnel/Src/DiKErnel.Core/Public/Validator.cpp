@@ -27,22 +27,23 @@ namespace DiKErnel::Core
     using namespace std;
     using namespace Util;
 
-    unique_ptr<SimpleResult> Validator::Validate(
-        ICalculationInput& calculationInput)
+    unique_ptr<DataResult<ValidationResultType>> Validator::Validate(
+        const ICalculationInput& calculationInput)
     {
-        auto successful = false;
+        auto validationResult = ValidationResultType::Succeeded;
 
         try
         {
-            const auto calculationInputValidationResult = calculationInput.Validate();
-            auto timeDependentInputValidationResult = true;
-            auto locationDependentInputValidationResult = true;
+            if (!calculationInput.Validate())
+            {
+                validationResult = ValidationResultType::Failed;
+            }
 
             for (const auto& timeDependentInputItem : calculationInput.GetTimeDependentInputItems())
             {
                 if (!timeDependentInputItem.get().Validate())
                 {
-                    timeDependentInputValidationResult = false;
+                    validationResult = ValidationResultType::Failed;
                 }
             }
 
@@ -52,20 +53,18 @@ namespace DiKErnel::Core
             {
                 if (!locationDependentInputItem.get().Validate(profileData))
                 {
-                    locationDependentInputValidationResult = false;
+                    validationResult = ValidationResultType::Failed;
                 }
             }
 
-            successful = calculationInputValidationResult
-                    && timeDependentInputValidationResult
-                    && locationDependentInputValidationResult;
+            return make_unique<DataResult<ValidationResultType>>(make_unique<ValidationResultType>(validationResult), EventRegistry::Flush());
         }
         catch (const exception& e)
         {
             EventRegistry::Register(make_unique<Event>("An unhandled error occurred while validating the calculation input. See "
                                                        "stack trace for more information:\n" + static_cast<string>(e.what()), EventType::Error));
-        }
 
-        return make_unique<SimpleResult>(successful, EventRegistry::Flush());
+            return make_unique<DataResult<ValidationResultType>>(EventRegistry::Flush());
+        }
     }
 }
