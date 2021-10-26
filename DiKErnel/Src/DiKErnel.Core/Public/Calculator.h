@@ -25,8 +25,8 @@
 
 #include "CalculationOutput.h"
 #include "CalculationState.h"
+#include "DataResult.h"
 #include "ICalculationInput.h"
-#include "Result.h"
 
 namespace DiKErnel::Core
 {
@@ -72,18 +72,17 @@ namespace DiKErnel::Core
 
             /*!
              * \brief Gets the result of the calculator.
-             * \return A result instance with output when the calculation is successfully finished,
-             *         or a result instance with nullptr when the calculation is either cancelled
-             *         or finished in error. When the calculation is still running, a nullptr is
+             * \return The result of the operation after being finished successfully, cancelled or
+             *         finished in error. When the calculation is still running, a nullptr is
              *         returned.
              */
-            std::shared_ptr<Util::Result<CalculationOutput>> GetCalculatorResult() const;
+            std::shared_ptr<Util::DataResult<CalculationOutput>> GetCalculatorResult() const;
 
         private:
             std::thread _calculationThread;
             std::atomic<double> _progress = 0;
             std::atomic<CalculationState> _calculationState = CalculationState::Running;
-            std::shared_ptr<Util::Result<CalculationOutput>> _result = nullptr;
+            std::shared_ptr<Util::DataResult<CalculationOutput>> _result = nullptr;
 
             void PerformCalculation(
                 const ICalculationInput& calculationInput,

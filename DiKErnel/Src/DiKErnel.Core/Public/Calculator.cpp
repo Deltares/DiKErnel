@@ -66,7 +66,7 @@ namespace DiKErnel::Core
         }
     }
 
-    shared_ptr<Result<CalculationOutput>> Calculator::GetCalculatorResult() const
+    shared_ptr<DataResult<CalculationOutput>> Calculator::GetCalculatorResult() const
     {
         return _result;
     }
@@ -152,12 +152,12 @@ namespace DiKErnel::Core
                                                                                         move(timeDependentOutputItems[i])));
         }
 
-        _result = make_shared<Result<CalculationOutput>>(make_unique<CalculationOutput>(move(locationDependentOutputItems)),
-                                                         EventRegistry::Flush());
+        _result = make_shared<DataResult<CalculationOutput>>(make_unique<CalculationOutput>(move(locationDependentOutputItems)),
+                                                             EventRegistry::Flush());
     }
 
     void Calculator::CreateResultWithoutCalculationOutput()
     {
-        _result = make_shared<Result<CalculationOutput>>(nullptr, EventRegistry::Flush());
+        _result = make_shared<DataResult<CalculationOutput>>(EventRegistry::Flush());
     }
 }
