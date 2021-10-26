@@ -139,16 +139,16 @@ namespace DiKErnel::Integration
 
         vector<unique_ptr<ValidationIssue>> validationIssues;
         validationIssues.emplace_back(AsphaltRevetmentWaveImpactValidator::FatigueAlpha(_fatigue->GetAlpha()));
-        validationIssues.emplace_back(AsphaltRevetmentWaveImpactValidator::FatigueAlpha(_fatigue->GetBeta()));
+        validationIssues.emplace_back(AsphaltRevetmentWaveImpactValidator::FatigueBeta(_fatigue->GetBeta()));
         validationIssues.emplace_back(AsphaltRevetmentWaveImpactValidator::FailureTension(_failureTension));
         validationIssues.emplace_back(AsphaltRevetmentWaveImpactValidator::ImpactNumberC(_impactNumberC));
         validationIssues.emplace_back(AsphaltRevetmentWaveImpactValidator::DensityOfWater(_densityOfWater));
         validationIssues.emplace_back(AsphaltRevetmentWaveImpactValidator::SoilElasticity(_soilElasticity));
         validationIssues.emplace_back(AsphaltRevetmentWaveImpactValidator::StiffnessRelationNu(_stiffnessRelationNu));
         validationIssues.emplace_back(AsphaltRevetmentWaveImpactValidator::Thickness(_upperLayer->GetThickness()));
-        validationIssues.emplace_back(AsphaltRevetmentWaveImpactValidator::Thickness(_upperLayer->GetElasticModulus()));
+        validationIssues.emplace_back(AsphaltRevetmentWaveImpactValidator::ElasticModulus(_upperLayer->GetElasticModulus()));
         validationIssues.emplace_back(AsphaltRevetmentWaveImpactValidator::Thickness(_subLayer->GetThickness()));
-        validationIssues.emplace_back(AsphaltRevetmentWaveImpactValidator::Thickness(_subLayer->GetElasticModulus()));
+        validationIssues.emplace_back(AsphaltRevetmentWaveImpactValidator::ElasticModulus(_subLayer->GetElasticModulus()));
         validationIssues.emplace_back(RevetmentValidator::AverageNumberOfWavesCtm(_averageNumberOfWavesCtm));
 
         return ValidationHelper::RegisterValidationIssues(validationIssues) && baseValidationSuccessful;

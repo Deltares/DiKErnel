@@ -73,6 +73,54 @@ namespace DiKErnel::System::Test
         EventAssertHelper::AssertEvent(EventType::Error, "WaveAngle must be in range {-180, 180}.", events[4]);
     }
 
+    TEST(ValidationSystemTest, GivenCalculationInputWithInvalidAsphaltRevetmentWaveImpactLocation_WhenValidating_ThenReturnsValidationResult)
+    {
+        // Given
+        AsphaltRevetmentWaveImpactLocationConstructionProperties constructionProperties(10, 2, AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete, 0, 800, 0, -1, -8);
+        constructionProperties.SetInitialDamage(make_unique<double>(-0.1));
+        constructionProperties.SetFailureNumber(make_unique<double>(-1));
+        constructionProperties.SetFatigueAlpha(make_unique<double>(0));
+        constructionProperties.SetFatigueBeta(make_unique<double>(0));
+        constructionProperties.SetImpactNumberC(make_unique<double>(-0.5));
+        constructionProperties.SetStiffnessRelationNu(make_unique<double>(-10));
+        constructionProperties.SetThicknessSubLayer(make_unique<double>(0));
+        constructionProperties.SetElasticModulusSubLayer(make_unique<double>(0));
+        constructionProperties.SetAverageNumberOfWavesCtm(make_unique<double>(0));
+
+        RevetmentCalculationInputBuilder builder;
+        constexpr auto outerToe = CharacteristicPointType::OuterToe;
+        constexpr auto outerCrest = CharacteristicPointType::OuterCrest;
+        builder.AddDikeProfilePoint(10, 5, &outerToe);
+        builder.AddDikeProfilePoint(20, 10, &outerCrest);
+        builder.AddAsphaltWaveImpactLocation(constructionProperties);
+
+        const auto calculationInput = builder.Build();
+
+        // When
+        const auto validationResult = Validator::Validate(*calculationInput);
+
+        // Then
+        ASSERT_TRUE(validationResult->GetSuccessful());
+        ASSERT_EQ(ValidationResultType::Failed, *validationResult->GetData());
+        const auto& events = validationResult->GetEvents();
+        ASSERT_EQ(16, events.size());
+        EventAssertHelper::AssertEvent(EventType::Error, "X must be in range {OuterToeX, OuterCrestX}.", events[1]);
+        EventAssertHelper::AssertEvent(EventType::Error, "InitialDamage must be equal to 0 or larger.", events[2]);
+        EventAssertHelper::AssertEvent(EventType::Error, "FailureNumber must be larger than InitialDamage.", events[3]);
+        EventAssertHelper::AssertEvent(EventType::Error, "FatigueAlpha must be larger than 0.", events[4]);
+        EventAssertHelper::AssertEvent(EventType::Error, "FatigueBeta must be larger than 0.", events[5]);
+        EventAssertHelper::AssertEvent(EventType::Error, "FailureTension must be larger than 0.", events[6]);
+        EventAssertHelper::AssertEvent(EventType::Error, "ImpactNumberC must be larger than 0.", events[7]);
+        EventAssertHelper::AssertEvent(EventType::Error, "DensityOfWater must be in range [950, 1050].", events[8]);
+        EventAssertHelper::AssertEvent(EventType::Error, "SoilElasticity must be larger than 0.", events[9]);
+        EventAssertHelper::AssertEvent(EventType::Error, "StiffnessRelationNu must be larger than 0.", events[10]);
+        EventAssertHelper::AssertEvent(EventType::Error, "Thickness must be larger than 0.", events[11]);
+        EventAssertHelper::AssertEvent(EventType::Error, "ElasticModulus must be larger than 0.", events[12]);
+        EventAssertHelper::AssertEvent(EventType::Error, "Thickness must be larger than 0.", events[13]);
+        EventAssertHelper::AssertEvent(EventType::Error, "ElasticModulus must be larger than 0.", events[14]);
+        EventAssertHelper::AssertEvent(EventType::Error, "AverageNumberOfWavesCtm must be larger than 0.", events[15]);
+    }
+
     TEST(ValidationSystemTest, GivenCalculationInputWithInvalidNaturalStoneRevetmentLocation_WhenValidating_ThenReturnsValidationResult)
     {
         // Given
