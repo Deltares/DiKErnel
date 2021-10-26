@@ -57,17 +57,6 @@ namespace DiKErnel::DomainLibrary
         return nullptr;
     }
 
-    unique_ptr<ValidationIssue> GrassRevetmentWaveRunupValidator::OuterSlope(
-        const double outerSlope)
-    {
-        if (outerSlope <= 0 || outerSlope >= 1)
-        {
-            return make_unique<ValidationIssue>(ValidationIssueType::Error, "OuterSlope must be in range {0, 1}.");
-        }
-
-        return nullptr;
-    }
-
     unique_ptr<ValidationIssue> GrassRevetmentWaveRunupValidator::CriticalFrontVelocity(
         const double criticalFrontVelocity)
     {

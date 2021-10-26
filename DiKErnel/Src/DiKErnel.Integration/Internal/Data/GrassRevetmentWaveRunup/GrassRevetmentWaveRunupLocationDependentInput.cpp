@@ -101,11 +101,11 @@ namespace DiKErnel::Integration
         validationIssues.emplace_back(GrassRevetmentWaveRunupValidator::CriticalCumulativeOverload(_criticalCumulativeOverload));
         validationIssues.emplace_back(GrassRevetmentWaveRunupValidator::RepresentativeWaveRunup2PGammab(_representative2P->GetGammab()));
         validationIssues.emplace_back(GrassRevetmentWaveRunupValidator::RepresentativeWaveRunup2PGammaf(_representative2P->GetGammaf()));
-        validationIssues.emplace_back(GrassRevetmentWaveRunupValidator::OuterSlope(_outerSlope));
         validationIssues.emplace_back(GrassRevetmentWaveRunupValidator::CriticalFrontVelocity(_criticalFrontVelocity));
         validationIssues.emplace_back(GrassRevetmentWaveRunupValidator::IncreasedLoadTransitionAlphaM(_increasedLoadTransitionAlphaM));
         validationIssues.emplace_back(GrassRevetmentWaveRunupValidator::ReducedStrengthTransitionAlphaS(_reducedStrengthTransitionAlphaS));
         validationIssues.emplace_back(RevetmentValidator::AverageNumberOfWavesCtm(_averageNumberOfWavesCtm));
+        validationIssues.emplace_back(RevetmentValidator::OuterSlope(_outerSlope));
 
         return ValidationHelper::RegisterValidationIssues(validationIssues) && baseValidationSuccessful;
     }

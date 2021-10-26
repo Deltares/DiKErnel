@@ -114,4 +114,23 @@ namespace DiKErnel::DomainLibrary::Test
 
         ValidatorAssertHelper::AssertValue(validateAction, ValidatorAssertHelper::DOUBLE_MAX);
     }
+
+    TEST_F(RevetmentValidatorTest, OuterSlope_VariousScenarios_ExpectedValues)
+    {
+        const auto validateAction = RevetmentValidator::OuterSlope;
+
+        constexpr auto errorMessage = "OuterSlope must be in range {0, 1}.";
+
+        ValidatorAssertHelper::AssertValue(validateAction, ValidatorAssertHelper::DOUBLE_MIN, ValidationIssueType::Error, errorMessage);
+
+        ValidatorAssertHelper::AssertValue(validateAction, 0.0 - ValidatorAssertHelper::EPSILON, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertValue(validateAction, 0.0, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertValue(validateAction, 0.0 + ValidatorAssertHelper::EPSILON);
+
+        ValidatorAssertHelper::AssertValue(validateAction, 1.0 - ValidatorAssertHelper::EPSILON);
+        ValidatorAssertHelper::AssertValue(validateAction, 1.0, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertValue(validateAction, 1.0 + ValidatorAssertHelper::EPSILON, ValidationIssueType::Error, errorMessage);
+
+        ValidatorAssertHelper::AssertValue(validateAction, ValidatorAssertHelper::DOUBLE_MAX, ValidationIssueType::Error, errorMessage);
+    }
 }
