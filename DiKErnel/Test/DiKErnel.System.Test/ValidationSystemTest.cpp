@@ -103,7 +103,7 @@ namespace DiKErnel::System::Test
         ASSERT_TRUE(validationResult->GetSuccessful());
         ASSERT_EQ(ValidationResultType::Failed, *validationResult->GetData());
         const auto& events = validationResult->GetEvents();
-        ASSERT_EQ(16, events.size());
+        ASSERT_EQ(17, events.size());
         EventAssertHelper::AssertEvent(EventType::Error, "X must be in range {OuterToeX, OuterCrestX}.", events[1]);
         EventAssertHelper::AssertEvent(EventType::Error, "InitialDamage must be equal to 0 or larger.", events[2]);
         EventAssertHelper::AssertEvent(EventType::Error, "FailureNumber must be larger than InitialDamage.", events[3]);
@@ -119,6 +119,7 @@ namespace DiKErnel::System::Test
         EventAssertHelper::AssertEvent(EventType::Error, "Thickness must be larger than 0.", events[13]);
         EventAssertHelper::AssertEvent(EventType::Error, "ElasticModulus must be larger than 0.", events[14]);
         EventAssertHelper::AssertEvent(EventType::Error, "AverageNumberOfWavesCtm must be larger than 0.", events[15]);
+        EventAssertHelper::AssertEvent(EventType::Error, "OuterSlope must be in range {0, 1}.", events[16]);
     }
 
     TEST(ValidationSystemTest, GivenCalculationInputWithInvalidNaturalStoneRevetmentLocation_WhenValidating_ThenReturnsValidationResult)
