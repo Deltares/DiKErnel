@@ -137,31 +137,31 @@ namespace DiKErnel::Integration
     {
         const auto baseValidationSuccessful = LocationDependentInput::Validate(profileData);
 
-        const auto fatigueAlpha = AsphaltRevetmentWaveImpactValidator::FatigueAlpha(_fatigue->GetAlpha());
-        const auto fatigueBeta = AsphaltRevetmentWaveImpactValidator::FatigueAlpha(_fatigue->GetBeta());
-        const auto failureTension = AsphaltRevetmentWaveImpactValidator::FailureTension(_failureTension);
-        const auto impactNumberC = AsphaltRevetmentWaveImpactValidator::ImpactNumberC(_impactNumberC);
-        const auto densityOfWater = AsphaltRevetmentWaveImpactValidator::DensityOfWater(_densityOfWater);
-        const auto soilElasticity = AsphaltRevetmentWaveImpactValidator::SoilElasticity(_soilElasticity);
-        const auto stiffnessRelationNu = AsphaltRevetmentWaveImpactValidator::StiffnessRelationNu(_stiffnessRelationNu);
-        const auto upperLayerThickness = AsphaltRevetmentWaveImpactValidator::Thickness(_upperLayer->GetThickness());
-        const auto upperLayerElasticModulus = AsphaltRevetmentWaveImpactValidator::Thickness(_upperLayer->GetElasticModulus());
-        const auto subLayerThickness = AsphaltRevetmentWaveImpactValidator::Thickness(_subLayer->GetThickness());
-        const auto subLayerElasticModulus = AsphaltRevetmentWaveImpactValidator::Thickness(_subLayer->GetElasticModulus());
-        const auto averageNumberOfWavesCtm = RevetmentValidator::AverageNumberOfWavesCtm(_averageNumberOfWavesCtm);
+        const auto validationIssueFatigueAlpha = AsphaltRevetmentWaveImpactValidator::FatigueAlpha(_fatigue->GetAlpha());
+        const auto validationIssueFatigueBeta = AsphaltRevetmentWaveImpactValidator::FatigueAlpha(_fatigue->GetBeta());
+        const auto validationIssueFailureTension = AsphaltRevetmentWaveImpactValidator::FailureTension(_failureTension);
+        const auto validationIssueImpactNumberC = AsphaltRevetmentWaveImpactValidator::ImpactNumberC(_impactNumberC);
+        const auto validationIssueDensityOfWater = AsphaltRevetmentWaveImpactValidator::DensityOfWater(_densityOfWater);
+        const auto validationIssueSoilElasticity = AsphaltRevetmentWaveImpactValidator::SoilElasticity(_soilElasticity);
+        const auto validationIssueStiffnessRelationNu = AsphaltRevetmentWaveImpactValidator::StiffnessRelationNu(_stiffnessRelationNu);
+        const auto validationIssueUpperLayerThickness = AsphaltRevetmentWaveImpactValidator::Thickness(_upperLayer->GetThickness());
+        const auto validationIssueUpperLayerElasticModulus = AsphaltRevetmentWaveImpactValidator::Thickness(_upperLayer->GetElasticModulus());
+        const auto validationIssueSubLayerThickness = AsphaltRevetmentWaveImpactValidator::Thickness(_subLayer->GetThickness());
+        const auto validationIssueSubLayerElasticModulus = AsphaltRevetmentWaveImpactValidator::Thickness(_subLayer->GetElasticModulus());
+        const auto validationIssueAverageNumberOfWavesCtm = RevetmentValidator::AverageNumberOfWavesCtm(_averageNumberOfWavesCtm);
 
-        return ValidationHelper::RegisterValidationIssue(fatigueAlpha.get())
-                && ValidationHelper::RegisterValidationIssue(fatigueBeta.get())
-                && ValidationHelper::RegisterValidationIssue(failureTension.get())
-                && ValidationHelper::RegisterValidationIssue(impactNumberC.get())
-                && ValidationHelper::RegisterValidationIssue(densityOfWater.get())
-                && ValidationHelper::RegisterValidationIssue(soilElasticity.get())
-                && ValidationHelper::RegisterValidationIssue(stiffnessRelationNu.get())
-                && ValidationHelper::RegisterValidationIssue(upperLayerThickness.get())
-                && ValidationHelper::RegisterValidationIssue(upperLayerElasticModulus.get())
-                && ValidationHelper::RegisterValidationIssue(subLayerThickness.get())
-                && ValidationHelper::RegisterValidationIssue(subLayerElasticModulus.get())
-                && ValidationHelper::RegisterValidationIssue(averageNumberOfWavesCtm.get())
+        return ValidationHelper::RegisterValidationIssue(validationIssueFatigueAlpha)
+                && ValidationHelper::RegisterValidationIssue(validationIssueFatigueBeta)
+                && ValidationHelper::RegisterValidationIssue(validationIssueFailureTension)
+                && ValidationHelper::RegisterValidationIssue(validationIssueImpactNumberC)
+                && ValidationHelper::RegisterValidationIssue(validationIssueDensityOfWater)
+                && ValidationHelper::RegisterValidationIssue(validationIssueSoilElasticity)
+                && ValidationHelper::RegisterValidationIssue(validationIssueStiffnessRelationNu)
+                && ValidationHelper::RegisterValidationIssue(validationIssueUpperLayerThickness)
+                && ValidationHelper::RegisterValidationIssue(validationIssueUpperLayerElasticModulus)
+                && ValidationHelper::RegisterValidationIssue(validationIssueSubLayerThickness)
+                && ValidationHelper::RegisterValidationIssue(validationIssueSubLayerElasticModulus)
+                && ValidationHelper::RegisterValidationIssue(validationIssueAverageNumberOfWavesCtm)
                 && baseValidationSuccessful;
     }
 
