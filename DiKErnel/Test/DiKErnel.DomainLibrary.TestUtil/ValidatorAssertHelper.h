@@ -75,6 +75,8 @@ namespace DiKErnel::DomainLibrary::TestUtil
                 ValidationIssueType validationIssueType,
                 const std::string& message);
 
+            inline static double EPSILON = 1e-6;
+
         private:
             template <typename TAction, typename TBound>
             static void AssertValidBound(
@@ -87,7 +89,5 @@ namespace DiKErnel::DomainLibrary::TestUtil
                 TBound bound,
                 ValidationIssueType validationIssueType,
                 const std::string& message);
-
-            inline static double _doubleEpsilon = 1e-6;
     };
 }

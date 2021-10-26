@@ -28,7 +28,7 @@ namespace DiKErnel::DomainLibrary::TestUtil
         const ActionWithDouble validateAction,
         const double bound)
     {
-        AssertValidBound(validateAction, bound - _doubleEpsilon);
+        AssertValidBound(validateAction, bound - EPSILON);
     }
 
     void ValidatorAssertHelper::AssertBelowBound(
@@ -37,7 +37,7 @@ namespace DiKErnel::DomainLibrary::TestUtil
         const ValidationIssueType validationIssueType,
         const std::string& message)
     {
-        AssertInvalidBound(validateAction, bound - _doubleEpsilon, validationIssueType, message);
+        AssertInvalidBound(validateAction, bound - EPSILON, validationIssueType, message);
     }
 
     void ValidatorAssertHelper::AssertEqualToBound(
@@ -60,7 +60,7 @@ namespace DiKErnel::DomainLibrary::TestUtil
         const ActionWithDouble validateAction,
         const double bound)
     {
-        AssertValidBound(validateAction, bound + _doubleEpsilon);
+        AssertValidBound(validateAction, bound + EPSILON);
     }
 
     void ValidatorAssertHelper::AssertAboveBound(
@@ -69,7 +69,7 @@ namespace DiKErnel::DomainLibrary::TestUtil
         const ValidationIssueType validationIssueType,
         const std::string& message)
     {
-        AssertInvalidBound(validateAction, bound + _doubleEpsilon, validationIssueType, message);
+        AssertInvalidBound(validateAction, bound + EPSILON, validationIssueType, message);
     }
 
     void ValidatorAssertHelper::AssertEqualToBound(
