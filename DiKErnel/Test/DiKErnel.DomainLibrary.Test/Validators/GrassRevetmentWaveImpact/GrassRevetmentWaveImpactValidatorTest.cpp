@@ -52,14 +52,14 @@ namespace DiKErnel::DomainLibrary::Test
 
         constexpr auto errorMessage = "TimeLineAgwi must be larger than TimeLineCgwi.";
 
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, -1 * numeric_limits<double>::infinity(), ValidationIssueType::Error,
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, ValidatorAssertHelper::DOUBLE_MIN, ValidationIssueType::Error,
                                                   errorMessage);
 
         ValidatorAssertHelper::AssertEqualToBound(validateAction, 3 - ValidatorAssertHelper::EPSILON, ValidationIssueType::Error, errorMessage);
         ValidatorAssertHelper::AssertEqualToBound(validateAction, 3, ValidationIssueType::Error, errorMessage);
         ValidatorAssertHelper::AssertEqualToBound(validateAction, 3 + ValidatorAssertHelper::EPSILON);
 
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, numeric_limits<double>::infinity());
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, ValidatorAssertHelper::DOUBLE_MAX);
     }
 
     TEST_F(GrassRevetmentWaveImpactValidatorTest, TimeLineB1gwi_VariousScenarios_ExpectedValues)
@@ -68,13 +68,13 @@ namespace DiKErnel::DomainLibrary::Test
 
         constexpr auto errorMessage = "TimeLineBgwi must be smaller than 0";
 
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, -1 * numeric_limits<double>::infinity());
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, ValidatorAssertHelper::DOUBLE_MIN);
 
         ValidatorAssertHelper::AssertEqualToBound(validateAction, 0 - ValidatorAssertHelper::EPSILON);
         ValidatorAssertHelper::AssertEqualToBound(validateAction, 0, ValidationIssueType::Error, errorMessage);
         ValidatorAssertHelper::AssertEqualToBound(validateAction, 0 + ValidatorAssertHelper::EPSILON, ValidationIssueType::Error, errorMessage);
 
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, numeric_limits<double>::infinity(), ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, ValidatorAssertHelper::DOUBLE_MAX, ValidationIssueType::Error, errorMessage);
     }
 
     TEST_F(GrassRevetmentWaveImpactValidatorTest, TimeLineCgwi_VariousScenarios_ExpectedValues)
@@ -83,14 +83,14 @@ namespace DiKErnel::DomainLibrary::Test
 
         constexpr auto errorMessage = "TimeLineCgwi must be equal to 0 or larger.";
 
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, -1 * numeric_limits<double>::infinity(), ValidationIssueType::Error,
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, ValidatorAssertHelper::DOUBLE_MIN, ValidationIssueType::Error,
                                                   errorMessage);
 
         ValidatorAssertHelper::AssertEqualToBound(validateAction, 0 - ValidatorAssertHelper::EPSILON, ValidationIssueType::Error, errorMessage);
         ValidatorAssertHelper::AssertEqualToBound(validateAction, 0);
         ValidatorAssertHelper::AssertEqualToBound(validateAction, 0 + ValidatorAssertHelper::EPSILON);
 
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, numeric_limits<double>::infinity());
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, ValidatorAssertHelper::DOUBLE_MAX);
     }
 
     TEST_F(GrassRevetmentWaveImpactValidatorTest, MinimumWaveHeightTemax_VariousScenarios_ExpectedValues)
@@ -100,7 +100,7 @@ namespace DiKErnel::DomainLibrary::Test
         constexpr auto errorMessage = "MinimumWaveHeightTemax must be equal to 3600000 or smaller.";
         constexpr auto warningMessage = "MinimumWaveHeightTemax should be in range {1000000, 3600000].";
 
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, -1 * numeric_limits<double>::infinity(), ValidationIssueType::Warning,
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, ValidatorAssertHelper::DOUBLE_MIN, ValidationIssueType::Warning,
                                                   warningMessage);
 
         ValidatorAssertHelper::AssertEqualToBound(validateAction, 1000000 - ValidatorAssertHelper::EPSILON, ValidationIssueType::Warning,
@@ -113,7 +113,7 @@ namespace DiKErnel::DomainLibrary::Test
         ValidatorAssertHelper::AssertEqualToBound(validateAction, 3600000 + ValidatorAssertHelper::EPSILON, ValidationIssueType::Error,
                                                   errorMessage);
 
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, numeric_limits<double>::infinity(), ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, ValidatorAssertHelper::DOUBLE_MAX, ValidationIssueType::Error, errorMessage);
     }
 
     TEST_F(GrassRevetmentWaveImpactValidatorTest, MaximumWaveHeightTemin_VariousScenarios_ExpectedValues)
@@ -123,7 +123,7 @@ namespace DiKErnel::DomainLibrary::Test
         constexpr auto errorMessage = "MaximumWaveHeightTemin must be equal to 3.6 or larger.";
         constexpr auto warningMessage = "MaximumWaveHeightTemin should be in range [3.6, 10}.";
 
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, -1 * numeric_limits<double>::infinity(), ValidationIssueType::Error,
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, ValidatorAssertHelper::DOUBLE_MIN, ValidationIssueType::Error,
                                                   errorMessage);
 
         ValidatorAssertHelper::AssertEqualToBound(validateAction, 3.6 - ValidatorAssertHelper::EPSILON, ValidationIssueType::Error, errorMessage);
@@ -135,7 +135,7 @@ namespace DiKErnel::DomainLibrary::Test
         ValidatorAssertHelper::AssertEqualToBound(validateAction, 10 + ValidatorAssertHelper::EPSILON, ValidationIssueType::Warning,
                                                   warningMessage);
 
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, numeric_limits<double>::infinity(), ValidationIssueType::Warning, warningMessage);
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, ValidatorAssertHelper::DOUBLE_MAX, ValidationIssueType::Warning, warningMessage);
     }
 
     TEST_F(GrassRevetmentWaveImpactValidatorTest, WaveAngleImpactNwa_VariousScenarios_ExpectedValues)
@@ -144,13 +144,13 @@ namespace DiKErnel::DomainLibrary::Test
 
         constexpr auto errorMessage = "WaveAngleImpactNwa must be equal to 1 or smaller.";
 
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, -1 * numeric_limits<double>::infinity());
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, ValidatorAssertHelper::DOUBLE_MIN);
 
         ValidatorAssertHelper::AssertEqualToBound(validateAction, 1 - ValidatorAssertHelper::EPSILON);
         ValidatorAssertHelper::AssertEqualToBound(validateAction, 1);
         ValidatorAssertHelper::AssertEqualToBound(validateAction, 1 + ValidatorAssertHelper::EPSILON, ValidationIssueType::Error, errorMessage);
 
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, numeric_limits<double>::infinity(), ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, ValidatorAssertHelper::DOUBLE_MAX, ValidationIssueType::Error, errorMessage);
     }
 
     TEST_F(GrassRevetmentWaveImpactValidatorTest, WaveAngleImpactQwa_VariousScenarios_ExpectedValues)
@@ -159,7 +159,7 @@ namespace DiKErnel::DomainLibrary::Test
 
         constexpr auto errorMessage = "WaveAngleImpactQwa must be in range [0, 1].";
 
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, -1 * numeric_limits<double>::infinity(), ValidationIssueType::Error,
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, ValidatorAssertHelper::DOUBLE_MIN, ValidationIssueType::Error,
                                                   errorMessage);
 
         ValidatorAssertHelper::AssertEqualToBound(validateAction, 0 - ValidatorAssertHelper::EPSILON, ValidationIssueType::Error, errorMessage);
@@ -170,7 +170,7 @@ namespace DiKErnel::DomainLibrary::Test
         ValidatorAssertHelper::AssertEqualToBound(validateAction, 1);
         ValidatorAssertHelper::AssertEqualToBound(validateAction, 1 + ValidatorAssertHelper::EPSILON, ValidationIssueType::Error, errorMessage);
 
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, numeric_limits<double>::infinity(), ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, ValidatorAssertHelper::DOUBLE_MAX, ValidationIssueType::Error, errorMessage);
     }
 
     TEST_F(GrassRevetmentWaveImpactValidatorTest, WaveAngleImpactRwa_VariousScenarios_ExpectedValues)
@@ -179,14 +179,14 @@ namespace DiKErnel::DomainLibrary::Test
 
         constexpr auto errorMessage = "WaveAngleImpactRwa must be larger than 0.";
 
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, -1 * numeric_limits<double>::infinity(), ValidationIssueType::Error,
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, ValidatorAssertHelper::DOUBLE_MIN, ValidationIssueType::Error,
                                                   errorMessage);
 
         ValidatorAssertHelper::AssertEqualToBound(validateAction, 0 - ValidatorAssertHelper::EPSILON, ValidationIssueType::Error, errorMessage);
         ValidatorAssertHelper::AssertEqualToBound(validateAction, 0, ValidationIssueType::Error, errorMessage);
         ValidatorAssertHelper::AssertEqualToBound(validateAction, 0 + ValidatorAssertHelper::EPSILON);
 
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, numeric_limits<double>::infinity());
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, ValidatorAssertHelper::DOUBLE_MAX);
     }
 
     TEST_F(GrassRevetmentWaveImpactValidatorTest, UpperLimitLoadingAul_VariousScenarios_ExpectedValues)
@@ -195,12 +195,12 @@ namespace DiKErnel::DomainLibrary::Test
 
         constexpr auto errorMessage = "UpperLimitLoadingAul must be smaller than LowerLimitLoadingAll.";
 
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, -1 * numeric_limits<double>::infinity());
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, ValidatorAssertHelper::DOUBLE_MIN);
 
         ValidatorAssertHelper::AssertEqualToBound(validateAction, 2 - ValidatorAssertHelper::EPSILON);
         ValidatorAssertHelper::AssertEqualToBound(validateAction, 2, ValidationIssueType::Error, errorMessage);
         ValidatorAssertHelper::AssertEqualToBound(validateAction, 2 + ValidatorAssertHelper::EPSILON, ValidationIssueType::Error, errorMessage);
 
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, numeric_limits<double>::infinity(), ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, ValidatorAssertHelper::DOUBLE_MAX, ValidationIssueType::Error, errorMessage);
     }
 }

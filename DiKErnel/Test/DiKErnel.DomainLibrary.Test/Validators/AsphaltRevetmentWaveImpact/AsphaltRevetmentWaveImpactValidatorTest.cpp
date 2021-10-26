@@ -36,14 +36,14 @@ namespace DiKErnel::DomainLibrary::Test
 
         constexpr auto errorMessage = "FatigueAlpha must be larger than 0.";
 
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, -1 * numeric_limits<double>::infinity(), ValidationIssueType::Error,
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, ValidatorAssertHelper::DOUBLE_MIN, ValidationIssueType::Error,
                                                   errorMessage);
 
         ValidatorAssertHelper::AssertEqualToBound(validateAction, 0 - ValidatorAssertHelper::EPSILON, ValidationIssueType::Error, errorMessage);
         ValidatorAssertHelper::AssertEqualToBound(validateAction, 0, ValidationIssueType::Error, errorMessage);
         ValidatorAssertHelper::AssertEqualToBound(validateAction, 0 + ValidatorAssertHelper::EPSILON);
 
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, numeric_limits<double>::infinity());
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, ValidatorAssertHelper::DOUBLE_MAX);
     }
 
     TEST(AsphaltRevetmentWaveImpactValidatorTest, FatigueBeta_VariousScenarios_ExpectedValues)
@@ -52,14 +52,14 @@ namespace DiKErnel::DomainLibrary::Test
 
         constexpr auto errorMessage = "FatigueBeta must be larger than 0.";
 
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, -1 * numeric_limits<double>::infinity(), ValidationIssueType::Error,
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, ValidatorAssertHelper::DOUBLE_MIN, ValidationIssueType::Error,
                                                   errorMessage);
 
         ValidatorAssertHelper::AssertEqualToBound(validateAction, 0 - ValidatorAssertHelper::EPSILON, ValidationIssueType::Error, errorMessage);
         ValidatorAssertHelper::AssertEqualToBound(validateAction, 0, ValidationIssueType::Error, errorMessage);
         ValidatorAssertHelper::AssertEqualToBound(validateAction, 0 + ValidatorAssertHelper::EPSILON);
 
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, numeric_limits<double>::infinity());
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, ValidatorAssertHelper::DOUBLE_MAX);
     }
 
     TEST(AsphaltRevetmentWaveImpactValidatorTest, FailureTension_VariousScenarios_ExpectedValues)
@@ -68,14 +68,14 @@ namespace DiKErnel::DomainLibrary::Test
 
         constexpr auto errorMessage = "FailureTension must be larger than 0.";
 
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, -1 * numeric_limits<double>::infinity(), ValidationIssueType::Error,
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, ValidatorAssertHelper::DOUBLE_MIN, ValidationIssueType::Error,
                                                   errorMessage);
 
         ValidatorAssertHelper::AssertEqualToBound(validateAction, 0 - ValidatorAssertHelper::EPSILON, ValidationIssueType::Error, errorMessage);
         ValidatorAssertHelper::AssertEqualToBound(validateAction, 0, ValidationIssueType::Error, errorMessage);
         ValidatorAssertHelper::AssertEqualToBound(validateAction, 0 + ValidatorAssertHelper::EPSILON);
 
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, numeric_limits<double>::infinity());
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, ValidatorAssertHelper::DOUBLE_MAX);
     }
 
     TEST(AsphaltRevetmentWaveImpactValidatorTest, ImpactNumberC_VariousScenarios_ExpectedValues)
@@ -84,14 +84,14 @@ namespace DiKErnel::DomainLibrary::Test
 
         constexpr auto errorMessage = "ImpactNumberC must be larger than 0.";
 
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, -1 * numeric_limits<double>::infinity(), ValidationIssueType::Error,
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, ValidatorAssertHelper::DOUBLE_MIN, ValidationIssueType::Error,
                                                   errorMessage);
 
         ValidatorAssertHelper::AssertEqualToBound(validateAction, 0 - ValidatorAssertHelper::EPSILON, ValidationIssueType::Error, errorMessage);
         ValidatorAssertHelper::AssertEqualToBound(validateAction, 0, ValidationIssueType::Error, errorMessage);
         ValidatorAssertHelper::AssertEqualToBound(validateAction, 0 + ValidatorAssertHelper::EPSILON);
 
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, numeric_limits<double>::infinity());
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, ValidatorAssertHelper::DOUBLE_MAX);
     }
 
     TEST(AsphaltRevetmentWaveImpactValidatorTest, DensityOfWater_VariousScenarios_ExpectedValues)
@@ -100,7 +100,7 @@ namespace DiKErnel::DomainLibrary::Test
 
         constexpr auto errorMessage = "DensityOfWater must be in range [950, 1050].";
 
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, -1 * numeric_limits<double>::infinity(), ValidationIssueType::Error,
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, ValidatorAssertHelper::DOUBLE_MIN, ValidationIssueType::Error,
                                                   errorMessage);
 
         ValidatorAssertHelper::AssertEqualToBound(validateAction, 950 - ValidatorAssertHelper::EPSILON, ValidationIssueType::Error, errorMessage);
@@ -111,7 +111,7 @@ namespace DiKErnel::DomainLibrary::Test
         ValidatorAssertHelper::AssertEqualToBound(validateAction, 1050);
         ValidatorAssertHelper::AssertEqualToBound(validateAction, 1050 + ValidatorAssertHelper::EPSILON, ValidationIssueType::Error, errorMessage);
 
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, numeric_limits<double>::infinity(), ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, ValidatorAssertHelper::DOUBLE_MAX, ValidationIssueType::Error, errorMessage);
     }
 
     TEST(AsphaltRevetmentWaveImpactValidatorTest, SoilElasticity_VariousScenarios_ExpectedValues)
@@ -120,14 +120,14 @@ namespace DiKErnel::DomainLibrary::Test
 
         constexpr auto errorMessage = "SoilElasticity must be larger than 0.";
 
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, -1 * numeric_limits<double>::infinity(), ValidationIssueType::Error,
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, ValidatorAssertHelper::DOUBLE_MIN, ValidationIssueType::Error,
                                                   errorMessage);
 
         ValidatorAssertHelper::AssertEqualToBound(validateAction, 0 - ValidatorAssertHelper::EPSILON, ValidationIssueType::Error, errorMessage);
         ValidatorAssertHelper::AssertEqualToBound(validateAction, 0, ValidationIssueType::Error, errorMessage);
         ValidatorAssertHelper::AssertEqualToBound(validateAction, 0 + ValidatorAssertHelper::EPSILON);
 
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, numeric_limits<double>::infinity());
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, ValidatorAssertHelper::DOUBLE_MAX);
     }
 
     TEST(AsphaltRevetmentWaveImpactValidatorTest, StiffnessRelationNu_VariousScenarios_ExpectedValues)
@@ -136,14 +136,14 @@ namespace DiKErnel::DomainLibrary::Test
 
         constexpr auto errorMessage = "StiffnessRelationNu must be larger than 0.";
 
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, -1 * numeric_limits<double>::infinity(), ValidationIssueType::Error,
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, ValidatorAssertHelper::DOUBLE_MIN, ValidationIssueType::Error,
                                                   errorMessage);
 
         ValidatorAssertHelper::AssertEqualToBound(validateAction, 0 - ValidatorAssertHelper::EPSILON, ValidationIssueType::Error, errorMessage);
         ValidatorAssertHelper::AssertEqualToBound(validateAction, 0, ValidationIssueType::Error, errorMessage);
         ValidatorAssertHelper::AssertEqualToBound(validateAction, 0 + ValidatorAssertHelper::EPSILON);
 
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, numeric_limits<double>::infinity());
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, ValidatorAssertHelper::DOUBLE_MAX);
     }
 
     TEST(AsphaltRevetmentWaveImpactValidatorTest, Thickness_VariousScenarios_ExpectedValues)
@@ -152,14 +152,14 @@ namespace DiKErnel::DomainLibrary::Test
 
         constexpr auto errorMessage = "Thickness must be larger than 0.";
 
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, -1 * numeric_limits<double>::infinity(), ValidationIssueType::Error,
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, ValidatorAssertHelper::DOUBLE_MIN, ValidationIssueType::Error,
                                                   errorMessage);
 
         ValidatorAssertHelper::AssertEqualToBound(validateAction, 0 - ValidatorAssertHelper::EPSILON, ValidationIssueType::Error, errorMessage);
         ValidatorAssertHelper::AssertEqualToBound(validateAction, 0, ValidationIssueType::Error, errorMessage);
         ValidatorAssertHelper::AssertEqualToBound(validateAction, 0 + ValidatorAssertHelper::EPSILON);
 
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, numeric_limits<double>::infinity());
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, ValidatorAssertHelper::DOUBLE_MAX);
     }
 
     TEST(AsphaltRevetmentWaveImpactValidatorTest, ElasticModulus_VariousScenarios_ExpectedValues)
@@ -168,13 +168,13 @@ namespace DiKErnel::DomainLibrary::Test
 
         constexpr auto errorMessage = "ElasticModulus must be larger than 0.";
 
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, -1 * numeric_limits<double>::infinity(), ValidationIssueType::Error,
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, ValidatorAssertHelper::DOUBLE_MIN, ValidationIssueType::Error,
                                                   errorMessage);
 
         ValidatorAssertHelper::AssertEqualToBound(validateAction, 0 - ValidatorAssertHelper::EPSILON, ValidationIssueType::Error, errorMessage);
         ValidatorAssertHelper::AssertEqualToBound(validateAction, 0, ValidationIssueType::Error, errorMessage);
         ValidatorAssertHelper::AssertEqualToBound(validateAction, 0 + ValidatorAssertHelper::EPSILON);
 
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, numeric_limits<double>::infinity());
+        ValidatorAssertHelper::AssertEqualToBound(validateAction, ValidatorAssertHelper::DOUBLE_MAX);
     }
 }
