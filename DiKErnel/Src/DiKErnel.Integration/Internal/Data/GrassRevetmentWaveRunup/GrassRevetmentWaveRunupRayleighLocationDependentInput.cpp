@@ -71,11 +71,11 @@ namespace DiKErnel::Integration
     {
         const auto baseValidationSuccessful = GrassRevetmentWaveRunupLocationDependentInput::Validate(profileData);
 
-        const auto fixedNumberOfWaves = GrassRevetmentWaveRunupRayleighValidator::FixedNumberOfWaves(_fixedNumberOfWaves);
-        const auto frontVelocityCu = GrassRevetmentWaveRunupRayleighValidator::FrontVelocityCu(_frontVelocityCu);
+        const auto validationIssueFixedNumberOfWaves = GrassRevetmentWaveRunupRayleighValidator::FixedNumberOfWaves(_fixedNumberOfWaves);
+        const auto validationIssueFrontVelocityCu = GrassRevetmentWaveRunupRayleighValidator::FrontVelocityCu(_frontVelocityCu);
 
-        return ValidationHelper::RegisterValidationIssue(fixedNumberOfWaves.get())
-                && ValidationHelper::RegisterValidationIssue(frontVelocityCu.get())
+        return ValidationHelper::RegisterValidationIssue(validationIssueFixedNumberOfWaves)
+                && ValidationHelper::RegisterValidationIssue(validationIssueFrontVelocityCu)
                 && baseValidationSuccessful;
     }
 

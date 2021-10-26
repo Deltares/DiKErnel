@@ -97,26 +97,28 @@ namespace DiKErnel::Integration
     {
         const auto baseValidationSuccessful = LocationDependentInput::Validate(profileData);
 
-        const auto criticalCumulativeOverload = GrassRevetmentWaveRunupValidator::CriticalCumulativeOverload(_criticalCumulativeOverload);
-        const auto representativeWaveRunup2PGammab = GrassRevetmentWaveRunupValidator::RepresentativeWaveRunup2PGammab(
+        const auto validationIssueCriticalCumulativeOverload = GrassRevetmentWaveRunupValidator::CriticalCumulativeOverload(
+            _criticalCumulativeOverload);
+        const auto validationIssueRepresentativeWaveRunup2PGammab = GrassRevetmentWaveRunupValidator::RepresentativeWaveRunup2PGammab(
             _representative2P->GetGammab());
-        const auto representativeWaveRunup2PGammaf = GrassRevetmentWaveRunupValidator::RepresentativeWaveRunup2PGammaf(
+        const auto validationIssueRepresentativeWaveRunup2PGammaf = GrassRevetmentWaveRunupValidator::RepresentativeWaveRunup2PGammaf(
             _representative2P->GetGammaf());
-        const auto outerSlope = GrassRevetmentWaveRunupValidator::OuterSlope(_outerSlope);
-        const auto criticalFrontVelocity = GrassRevetmentWaveRunupValidator::CriticalFrontVelocity(_criticalFrontVelocity);
-        const auto increasedLoadTransitionAlphaM = GrassRevetmentWaveRunupValidator::IncreasedLoadTransitionAlphaM(_increasedLoadTransitionAlphaM);
-        const auto reducedStrengthTransitionAlphaS = GrassRevetmentWaveRunupValidator::ReducedStrengthTransitionAlphaS(
+        const auto validationIssueOuterSlope = GrassRevetmentWaveRunupValidator::OuterSlope(_outerSlope);
+        const auto validationIssueCriticalFrontVelocity = GrassRevetmentWaveRunupValidator::CriticalFrontVelocity(_criticalFrontVelocity);
+        const auto validationIssueIncreasedLoadTransitionAlphaM = GrassRevetmentWaveRunupValidator::IncreasedLoadTransitionAlphaM(
+            _increasedLoadTransitionAlphaM);
+        const auto validationIssueReducedStrengthTransitionAlphaS = GrassRevetmentWaveRunupValidator::ReducedStrengthTransitionAlphaS(
             _reducedStrengthTransitionAlphaS);
-        const auto averageNumberOfWavesCtm = RevetmentValidator::AverageNumberOfWavesCtm(_averageNumberOfWavesCtm);
+        const auto validationIssueAverageNumberOfWavesCtm = RevetmentValidator::AverageNumberOfWavesCtm(_averageNumberOfWavesCtm);
 
-        return ValidationHelper::RegisterValidationIssue(criticalCumulativeOverload.get())
-                && ValidationHelper::RegisterValidationIssue(representativeWaveRunup2PGammab.get())
-                && ValidationHelper::RegisterValidationIssue(representativeWaveRunup2PGammaf.get())
-                && ValidationHelper::RegisterValidationIssue(outerSlope.get())
-                && ValidationHelper::RegisterValidationIssue(criticalFrontVelocity.get())
-                && ValidationHelper::RegisterValidationIssue(increasedLoadTransitionAlphaM.get())
-                && ValidationHelper::RegisterValidationIssue(reducedStrengthTransitionAlphaS.get())
-                && ValidationHelper::RegisterValidationIssue(averageNumberOfWavesCtm.get())
+        return ValidationHelper::RegisterValidationIssue(validationIssueCriticalCumulativeOverload)
+                && ValidationHelper::RegisterValidationIssue(validationIssueRepresentativeWaveRunup2PGammab)
+                && ValidationHelper::RegisterValidationIssue(validationIssueRepresentativeWaveRunup2PGammaf)
+                && ValidationHelper::RegisterValidationIssue(validationIssueOuterSlope)
+                && ValidationHelper::RegisterValidationIssue(validationIssueCriticalFrontVelocity)
+                && ValidationHelper::RegisterValidationIssue(validationIssueIncreasedLoadTransitionAlphaM)
+                && ValidationHelper::RegisterValidationIssue(validationIssueReducedStrengthTransitionAlphaS)
+                && ValidationHelper::RegisterValidationIssue(validationIssueAverageNumberOfWavesCtm)
                 && baseValidationSuccessful;
     }
 }

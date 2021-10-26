@@ -87,25 +87,30 @@ namespace DiKErnel::Integration
     {
         const auto baseValidationSuccessful = LocationDependentInput::Validate(profileData);
 
-        const auto timeLineAgwi = GrassRevetmentWaveImpactValidator::TimeLineAgwi(_timeLine->GetTimeLineAgwi(), _timeLine->GetTimeLineCgwi());
-        const auto timeLineBgwi = GrassRevetmentWaveImpactValidator::TimeLineBgwi(_timeLine->GetTimeLineBgwi());
-        const auto timeLineCgwi = GrassRevetmentWaveImpactValidator::TimeLineCgwi(_timeLine->GetTimeLineCgwi());
-        const auto minimumWaveHeightTemax = GrassRevetmentWaveImpactValidator::MinimumWaveHeightTemax(_minimumWaveHeightTemax);
-        const auto maximumWaveHeightTemin = GrassRevetmentWaveImpactValidator::MaximumWaveHeightTemin(_maximumWaveHeightTemin);
-        const auto waveAngeImpactNwa = GrassRevetmentWaveImpactValidator::WaveAngleImpactNwa(_waveAngleImpact->GetWaveAngleImpactNwa());
-        const auto waveAngeImpactQwa = GrassRevetmentWaveImpactValidator::WaveAngleImpactQwa(_waveAngleImpact->GetWaveAngleImpactQwa());
-        const auto waveAngeImpactRwa = GrassRevetmentWaveImpactValidator::WaveAngleImpactRwa(_waveAngleImpact->GetWaveAngleImpactRwa());
-        const auto upperLimitLoadingAul = GrassRevetmentWaveImpactValidator::UpperLimitLoadingAul(_upperLimitLoadingAul, _lowerLimitLoadingAll);
+        const auto validationIssueTimeLineAgwi = GrassRevetmentWaveImpactValidator::TimeLineAgwi(
+            _timeLine->GetTimeLineAgwi(), _timeLine->GetTimeLineCgwi());
+        const auto validationIssueTimeLineBgwi = GrassRevetmentWaveImpactValidator::TimeLineBgwi(_timeLine->GetTimeLineBgwi());
+        const auto validationIssueTimeLineCgwi = GrassRevetmentWaveImpactValidator::TimeLineCgwi(_timeLine->GetTimeLineCgwi());
+        const auto validationIssueMinimumWaveHeightTemax = GrassRevetmentWaveImpactValidator::MinimumWaveHeightTemax(_minimumWaveHeightTemax);
+        const auto validationIssueMaximumWaveHeightTemin = GrassRevetmentWaveImpactValidator::MaximumWaveHeightTemin(_maximumWaveHeightTemin);
+        const auto validationIssueWaveAngeImpactNwa = GrassRevetmentWaveImpactValidator::WaveAngleImpactNwa(
+            _waveAngleImpact->GetWaveAngleImpactNwa());
+        const auto validationIssueWaveAngeImpactQwa = GrassRevetmentWaveImpactValidator::WaveAngleImpactQwa(
+            _waveAngleImpact->GetWaveAngleImpactQwa());
+        const auto validationIssueWaveAngeImpactRwa = GrassRevetmentWaveImpactValidator::WaveAngleImpactRwa(
+            _waveAngleImpact->GetWaveAngleImpactRwa());
+        const auto validationIssueUpperLimitLoadingAul = GrassRevetmentWaveImpactValidator::UpperLimitLoadingAul(
+            _upperLimitLoadingAul, _lowerLimitLoadingAll);
 
-        return ValidationHelper::RegisterValidationIssue(timeLineAgwi.get())
-                && ValidationHelper::RegisterValidationIssue(timeLineBgwi.get())
-                && ValidationHelper::RegisterValidationIssue(timeLineCgwi.get())
-                && ValidationHelper::RegisterValidationIssue(minimumWaveHeightTemax.get())
-                && ValidationHelper::RegisterValidationIssue(maximumWaveHeightTemin.get())
-                && ValidationHelper::RegisterValidationIssue(waveAngeImpactNwa.get())
-                && ValidationHelper::RegisterValidationIssue(waveAngeImpactQwa.get())
-                && ValidationHelper::RegisterValidationIssue(waveAngeImpactRwa.get())
-                && ValidationHelper::RegisterValidationIssue(upperLimitLoadingAul.get())
+        return ValidationHelper::RegisterValidationIssue(validationIssueTimeLineAgwi)
+                && ValidationHelper::RegisterValidationIssue(validationIssueTimeLineBgwi)
+                && ValidationHelper::RegisterValidationIssue(validationIssueTimeLineCgwi)
+                && ValidationHelper::RegisterValidationIssue(validationIssueMinimumWaveHeightTemax)
+                && ValidationHelper::RegisterValidationIssue(validationIssueMaximumWaveHeightTemin)
+                && ValidationHelper::RegisterValidationIssue(validationIssueWaveAngeImpactNwa)
+                && ValidationHelper::RegisterValidationIssue(validationIssueWaveAngeImpactQwa)
+                && ValidationHelper::RegisterValidationIssue(validationIssueWaveAngeImpactRwa)
+                && ValidationHelper::RegisterValidationIssue(validationIssueUpperLimitLoadingAul)
                 && baseValidationSuccessful;
     }
 
