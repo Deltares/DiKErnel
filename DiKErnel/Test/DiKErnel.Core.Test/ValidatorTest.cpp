@@ -60,7 +60,7 @@ namespace DiKErnel::Core::Test
 
         // Assert
         ASSERT_TRUE(validationResult->GetSuccessful());
-        ASSERT_EQ(ValidationResultType::Succeeded, *validationResult->GetData());
+        ASSERT_EQ(ValidationResultType::Successful, *validationResult->GetData());
         ASSERT_EQ(0, validationResult->GetEvents().size());
     }
 

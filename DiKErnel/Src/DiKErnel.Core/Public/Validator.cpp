@@ -30,7 +30,7 @@ namespace DiKErnel::Core
     unique_ptr<DataResult<ValidationResultType>> Validator::Validate(
         const ICalculationInput& calculationInput)
     {
-        auto validationResult = ValidationResultType::Succeeded;
+        auto validationResult = ValidationResultType::Successful;
 
         try
         {

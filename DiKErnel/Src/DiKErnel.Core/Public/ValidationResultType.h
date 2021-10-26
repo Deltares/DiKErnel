@@ -27,7 +27,7 @@ namespace DiKErnel::Core
      */
     enum class ValidationResultType
     {
-        Succeeded,
+        Successful,
         Failed
     };
 }
