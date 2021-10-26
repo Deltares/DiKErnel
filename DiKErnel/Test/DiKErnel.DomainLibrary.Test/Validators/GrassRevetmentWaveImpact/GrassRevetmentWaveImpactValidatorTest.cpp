@@ -65,7 +65,7 @@ namespace DiKErnel::DomainLibrary::Test
     {
         const auto validateAction = GrassRevetmentWaveImpactValidator::TimeLineBgwi;
 
-        constexpr auto errorMessage = "TimeLineBgwi must be smaller than 0";
+        constexpr auto errorMessage = "TimeLineBgwi must be smaller than 0.";
 
         ValidatorAssertHelper::AssertValue(validateAction, ValidatorAssertHelper::DOUBLE_MIN);
 

@@ -122,6 +122,54 @@ namespace DiKErnel::System::Test
         EventAssertHelper::AssertEvent(EventType::Error, "OuterSlope must be in range {0, 1}.", events[16]);
     }
 
+    TEST(ValidationSystemTest, GivenCalculationInputWithInvalidGrassRevetmentWaveImpactLocation_WhenValidating_ThenReturnsValidationResult)
+    {
+        // Given
+        GrassRevetmentWaveImpactLocationConstructionProperties constructionProperties(10, GrassRevetmentTopLayerType::ClosedSod);
+        constructionProperties.SetInitialDamage(make_unique<double>(-0.1));
+        constructionProperties.SetFailureNumber(make_unique<double>(-1));
+        constructionProperties.SetTimeLineAgwi(make_unique<double>(-2));
+        constructionProperties.SetTimeLineBgwi(make_unique<double>(0));
+        constructionProperties.SetTimeLineCgwi(make_unique<double>(-0.5));
+        constructionProperties.SetMinimumWaveHeightTemax(make_unique<double>(8000));
+        constructionProperties.SetMaximumWaveHeightTemin(make_unique<double>(11));
+        constructionProperties.SetWaveAngleImpactNwa(make_unique<double>(3));
+        constructionProperties.SetWaveAngleImpactQwa(make_unique<double>(6));
+        constructionProperties.SetWaveAngleImpactRwa(make_unique<double>(0));
+        constructionProperties.SetUpperLimitLoadingAul(make_unique<double>(1));
+        constructionProperties.SetLowerLimitLoadingAll(make_unique<double>(1));
+
+        RevetmentCalculationInputBuilder builder;
+        constexpr auto outerToe = CharacteristicPointType::OuterToe;
+        constexpr auto outerCrest = CharacteristicPointType::OuterCrest;
+        builder.AddDikeProfilePoint(10, 5, &outerToe);
+        builder.AddDikeProfilePoint(20, 10, &outerCrest);
+        builder.AddGrassWaveImpactLocation(constructionProperties);
+
+        const auto calculationInput = builder.Build();
+
+        // When
+        const auto validationResult = Validator::Validate(*calculationInput);
+
+        // Then
+        ASSERT_TRUE(validationResult->GetSuccessful());
+        ASSERT_EQ(ValidationResultType::Failed, *validationResult->GetData());
+        const auto& events = validationResult->GetEvents();
+        ASSERT_EQ(13, events.size());
+        EventAssertHelper::AssertEvent(EventType::Error, "X must be in range {OuterToeX, OuterCrestX}.", events[1]);
+        EventAssertHelper::AssertEvent(EventType::Error, "InitialDamage must be equal to 0 or larger.", events[2]);
+        EventAssertHelper::AssertEvent(EventType::Error, "FailureNumber must be larger than InitialDamage.", events[3]);
+        EventAssertHelper::AssertEvent(EventType::Error, "TimeLineAgwi must be larger than TimeLineCgwi.", events[4]);
+        EventAssertHelper::AssertEvent(EventType::Error, "TimeLineBgwi must be smaller than 0.", events[5]);
+        EventAssertHelper::AssertEvent(EventType::Error, "TimeLineCgwi must be equal to 0 or larger.", events[6]);
+        EventAssertHelper::AssertEvent(EventType::Warning, "MinimumWaveHeightTemax should be in range {1000000, 3600000].", events[7]);
+        EventAssertHelper::AssertEvent(EventType::Warning, "MaximumWaveHeightTemin should be in range [3.6, 10}.", events[8]);
+        EventAssertHelper::AssertEvent(EventType::Error, "WaveAngleImpactNwa must be equal to 1 or smaller.", events[9]);
+        EventAssertHelper::AssertEvent(EventType::Error, "WaveAngleImpactQwa must be in range [0, 1].", events[10]);
+        EventAssertHelper::AssertEvent(EventType::Error, "WaveAngleImpactRwa must be larger than 0.", events[11]);
+        EventAssertHelper::AssertEvent(EventType::Error, "UpperLimitLoadingAul must be smaller than LowerLimitLoadingAll.", events[12]);
+    }
+
     TEST(ValidationSystemTest, GivenCalculationInputWithInvalidNaturalStoneRevetmentLocation_WhenValidating_ThenReturnsValidationResult)
     {
         // Given

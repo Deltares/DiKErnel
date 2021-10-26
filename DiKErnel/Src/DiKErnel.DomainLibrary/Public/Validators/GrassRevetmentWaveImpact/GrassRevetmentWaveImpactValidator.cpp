@@ -41,7 +41,7 @@ namespace DiKErnel::DomainLibrary
     {
         if (timeLineBgwi >= 0)
         {
-            return make_unique<ValidationIssue>(ValidationIssueType::Error, "TimeLineBgwi must be smaller than 0");
+            return make_unique<ValidationIssue>(ValidationIssueType::Error, "TimeLineBgwi must be smaller than 0.");
         }
 
         return nullptr;
