@@ -46,7 +46,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
             auto inputComposerResult = make_unique<JsonInputComposerResult>(JsonInputAdapter::AdaptJsonInputData(*jsonInputData), processType);
 
-            return make_unique<DataResult<JsonInputComposerResult>>(inputComposerResult, EventRegistry::Flush());
+            return make_unique<DataResult<JsonInputComposerResult>>(move(inputComposerResult), EventRegistry::Flush());
         }
         catch (const exception& e)
         {
