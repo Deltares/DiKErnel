@@ -74,13 +74,6 @@ namespace DiKErnel::DomainLibrary::TestUtil
 
     void ValidatorAssertHelper::AssertBelowBound(
         const ActionWithInt validateAction,
-        const int bound)
-    {
-        AssertValidBound(validateAction, bound - 1);
-    }
-
-    void ValidatorAssertHelper::AssertBelowBound(
-        const ActionWithInt validateAction,
         const int bound,
         const ValidationIssueType validationIssueType,
         const std::string& message)
