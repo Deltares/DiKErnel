@@ -45,10 +45,10 @@ namespace DiKErnel::DomainLibrary::TestUtil
             static void AssertValue(
                 std::unique_ptr<ValidationIssue> (*const validateAction)(
                     T),
-                const T bound)
+                const T value)
             {
                 // Call
-                const auto validationIssue = validateAction(bound);
+                const auto validationIssue = validateAction(value);
 
                 // Assert
                 ASSERT_EQ(nullptr, validationIssue);
@@ -58,12 +58,12 @@ namespace DiKErnel::DomainLibrary::TestUtil
             static void AssertValue(
                 std::unique_ptr<ValidationIssue> (*const validateAction)(
                     T),
-                const T bound,
+                const T value,
                 const ValidationIssueType validationIssueType,
                 const std::string& message)
             {
                 // Call
-                const auto validationIssue = validateAction(bound);
+                const auto validationIssue = validateAction(value);
 
                 // Assert
                 ASSERT_NE(nullptr, validationIssue);
