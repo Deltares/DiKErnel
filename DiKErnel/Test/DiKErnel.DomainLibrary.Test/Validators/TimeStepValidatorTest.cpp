@@ -32,7 +32,7 @@ namespace DiKErnel::DomainLibrary::Test
     struct TimeStepValidatorTest : Test
     {
         static unique_ptr<ValidationIssue> IncrementOfTime(
-            const int beginTime)
+            int beginTime)
         {
             return TimeStepValidator::IncrementOfTime(beginTime, 100);
         }
