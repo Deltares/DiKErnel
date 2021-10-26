@@ -111,16 +111,13 @@ namespace DiKErnel::Integration
     {
         const auto baseValidationSuccessful = LocationDependentInput::Validate(profileData);
 
-        const auto validationIssueRelativeDensity = NaturalStoneRevetmentValidator::RelativeDensity(_relativeDensity);
-        const auto validationIssueThicknessTopLayer = NaturalStoneRevetmentValidator::ThicknessTopLayer(_thicknessTopLayer);
-        const auto validationIssueSlopeUpperLevelAus = NaturalStoneRevetmentValidator::SlopeUpperLevelAus(_slope->GetUpperLevelAus());
-        const auto validationIssueSlopeLowerLevelAls = NaturalStoneRevetmentValidator::SlopeLowerLevelAls(_slope->GetLowerLevelAls());
+        vector<unique_ptr<ValidationIssue>> validationIssues;
+        validationIssues.emplace_back(NaturalStoneRevetmentValidator::RelativeDensity(_relativeDensity));
+        validationIssues.emplace_back(NaturalStoneRevetmentValidator::ThicknessTopLayer(_thicknessTopLayer));
+        validationIssues.emplace_back(NaturalStoneRevetmentValidator::SlopeUpperLevelAus(_slope->GetUpperLevelAus()));
+        validationIssues.emplace_back(NaturalStoneRevetmentValidator::SlopeLowerLevelAls(_slope->GetLowerLevelAls()));
 
-        return ValidationHelper::RegisterValidationIssue(validationIssueRelativeDensity)
-                && ValidationHelper::RegisterValidationIssue(validationIssueThicknessTopLayer)
-                && ValidationHelper::RegisterValidationIssue(validationIssueSlopeUpperLevelAus)
-                && ValidationHelper::RegisterValidationIssue(validationIssueSlopeLowerLevelAls)
-                && baseValidationSuccessful;
+        return ValidationHelper::RegisterValidationIssues(validationIssues) && baseValidationSuccessful;
     }
 
     void NaturalStoneRevetmentLocationDependentInput::InitializeDerivedLocationDependentInput(

@@ -57,11 +57,11 @@ namespace DiKErnel::Integration
             timeSteps.emplace_back(pair(timeDependentInputItem->GetBeginTime(), timeDependentInputItem->GetEndTime()));
         }
 
-        const auto validationIssueTimeSteps = GenericValidator::TimeSteps(timeSteps);
-        const auto validationIssueNumberOfLocations = GenericValidator::NumberOfLocations(static_cast<int>(_locationDependentInputItems.size()));
+        vector<unique_ptr<ValidationIssue>> validationIssues;
+        validationIssues.emplace_back(GenericValidator::TimeSteps(timeSteps));
+        validationIssues.emplace_back(GenericValidator::NumberOfLocations(static_cast<int>(_locationDependentInputItems.size())));
 
-        return ValidationHelper::RegisterValidationIssue(validationIssueTimeSteps)
-                && ValidationHelper::RegisterValidationIssue(validationIssueNumberOfLocations);
+        return ValidationHelper::RegisterValidationIssues(validationIssues);
     }
 
     const IProfileData& CalculationInput::GetProfileData() const

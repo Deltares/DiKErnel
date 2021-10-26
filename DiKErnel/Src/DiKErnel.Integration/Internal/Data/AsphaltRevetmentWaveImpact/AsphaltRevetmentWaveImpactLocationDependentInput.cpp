@@ -137,32 +137,21 @@ namespace DiKErnel::Integration
     {
         const auto baseValidationSuccessful = LocationDependentInput::Validate(profileData);
 
-        const auto validationIssueFatigueAlpha = AsphaltRevetmentWaveImpactValidator::FatigueAlpha(_fatigue->GetAlpha());
-        const auto validationIssueFatigueBeta = AsphaltRevetmentWaveImpactValidator::FatigueAlpha(_fatigue->GetBeta());
-        const auto validationIssueFailureTension = AsphaltRevetmentWaveImpactValidator::FailureTension(_failureTension);
-        const auto validationIssueImpactNumberC = AsphaltRevetmentWaveImpactValidator::ImpactNumberC(_impactNumberC);
-        const auto validationIssueDensityOfWater = AsphaltRevetmentWaveImpactValidator::DensityOfWater(_densityOfWater);
-        const auto validationIssueSoilElasticity = AsphaltRevetmentWaveImpactValidator::SoilElasticity(_soilElasticity);
-        const auto validationIssueStiffnessRelationNu = AsphaltRevetmentWaveImpactValidator::StiffnessRelationNu(_stiffnessRelationNu);
-        const auto validationIssueUpperLayerThickness = AsphaltRevetmentWaveImpactValidator::Thickness(_upperLayer->GetThickness());
-        const auto validationIssueUpperLayerElasticModulus = AsphaltRevetmentWaveImpactValidator::Thickness(_upperLayer->GetElasticModulus());
-        const auto validationIssueSubLayerThickness = AsphaltRevetmentWaveImpactValidator::Thickness(_subLayer->GetThickness());
-        const auto validationIssueSubLayerElasticModulus = AsphaltRevetmentWaveImpactValidator::Thickness(_subLayer->GetElasticModulus());
-        const auto validationIssueAverageNumberOfWavesCtm = RevetmentValidator::AverageNumberOfWavesCtm(_averageNumberOfWavesCtm);
+        vector<unique_ptr<ValidationIssue>> validationIssues;
+        validationIssues.emplace_back(AsphaltRevetmentWaveImpactValidator::FatigueAlpha(_fatigue->GetAlpha()));
+        validationIssues.emplace_back(AsphaltRevetmentWaveImpactValidator::FatigueAlpha(_fatigue->GetBeta()));
+        validationIssues.emplace_back(AsphaltRevetmentWaveImpactValidator::FailureTension(_failureTension));
+        validationIssues.emplace_back(AsphaltRevetmentWaveImpactValidator::ImpactNumberC(_impactNumberC));
+        validationIssues.emplace_back(AsphaltRevetmentWaveImpactValidator::DensityOfWater(_densityOfWater));
+        validationIssues.emplace_back(AsphaltRevetmentWaveImpactValidator::SoilElasticity(_soilElasticity));
+        validationIssues.emplace_back(AsphaltRevetmentWaveImpactValidator::StiffnessRelationNu(_stiffnessRelationNu));
+        validationIssues.emplace_back(AsphaltRevetmentWaveImpactValidator::Thickness(_upperLayer->GetThickness()));
+        validationIssues.emplace_back(AsphaltRevetmentWaveImpactValidator::Thickness(_upperLayer->GetElasticModulus()));
+        validationIssues.emplace_back(AsphaltRevetmentWaveImpactValidator::Thickness(_subLayer->GetThickness()));
+        validationIssues.emplace_back(AsphaltRevetmentWaveImpactValidator::Thickness(_subLayer->GetElasticModulus()));
+        validationIssues.emplace_back(RevetmentValidator::AverageNumberOfWavesCtm(_averageNumberOfWavesCtm));
 
-        return ValidationHelper::RegisterValidationIssue(validationIssueFatigueAlpha)
-                && ValidationHelper::RegisterValidationIssue(validationIssueFatigueBeta)
-                && ValidationHelper::RegisterValidationIssue(validationIssueFailureTension)
-                && ValidationHelper::RegisterValidationIssue(validationIssueImpactNumberC)
-                && ValidationHelper::RegisterValidationIssue(validationIssueDensityOfWater)
-                && ValidationHelper::RegisterValidationIssue(validationIssueSoilElasticity)
-                && ValidationHelper::RegisterValidationIssue(validationIssueStiffnessRelationNu)
-                && ValidationHelper::RegisterValidationIssue(validationIssueUpperLayerThickness)
-                && ValidationHelper::RegisterValidationIssue(validationIssueUpperLayerElasticModulus)
-                && ValidationHelper::RegisterValidationIssue(validationIssueSubLayerThickness)
-                && ValidationHelper::RegisterValidationIssue(validationIssueSubLayerElasticModulus)
-                && ValidationHelper::RegisterValidationIssue(validationIssueAverageNumberOfWavesCtm)
-                && baseValidationSuccessful;
+        return ValidationHelper::RegisterValidationIssues(validationIssues) && baseValidationSuccessful;
     }
 
     void AsphaltRevetmentWaveImpactLocationDependentInput::InitializeDerivedLocationDependentInput(

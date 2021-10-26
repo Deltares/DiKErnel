@@ -27,6 +27,7 @@
 namespace DiKErnel::Integration
 {
     using namespace DomainLibrary;
+    using namespace std;
 
     TimeDependentInput::TimeDependentInput(
         const int beginTime,
@@ -44,15 +45,13 @@ namespace DiKErnel::Integration
 
     bool TimeDependentInput::Validate()
     {
-        const auto validationIssueIncrementOfTime = TimeStepValidator::IncrementOfTime(_beginTime, _endTime);
-        const auto validationIssueWaveHeightHm0 = HydraulicLoadsValidator::WaveHeightHm0(_waveHeightHm0);
-        const auto validationIssueWavePeriodTm10 = HydraulicLoadsValidator::WavePeriodTm10(_wavePeriodTm10);
-        const auto validationIssueWaveAngle = HydraulicLoadsValidator::WaveAngle(_waveAngle);
+        vector<unique_ptr<ValidationIssue>> validationIssues;
+        validationIssues.emplace_back(TimeStepValidator::IncrementOfTime(_beginTime, _endTime));
+        validationIssues.emplace_back(HydraulicLoadsValidator::WaveHeightHm0(_waveHeightHm0));
+        validationIssues.emplace_back(HydraulicLoadsValidator::WavePeriodTm10(_wavePeriodTm10));
+        validationIssues.emplace_back(HydraulicLoadsValidator::WaveAngle(_waveAngle));
 
-        return ValidationHelper::RegisterValidationIssue(validationIssueIncrementOfTime)
-                && ValidationHelper::RegisterValidationIssue(validationIssueWaveHeightHm0)
-                && ValidationHelper::RegisterValidationIssue(validationIssueWavePeriodTm10)
-                && ValidationHelper::RegisterValidationIssue(validationIssueWaveAngle);
+        return ValidationHelper::RegisterValidationIssues(validationIssues);
     }
 
     int TimeDependentInput::GetBeginTime() const

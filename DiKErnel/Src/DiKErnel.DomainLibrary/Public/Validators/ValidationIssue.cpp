@@ -20,8 +20,6 @@
 
 #include "ValidationIssue.h"
 
-#include <utility>
-
 namespace DiKErnel::DomainLibrary
 {
     using namespace std;

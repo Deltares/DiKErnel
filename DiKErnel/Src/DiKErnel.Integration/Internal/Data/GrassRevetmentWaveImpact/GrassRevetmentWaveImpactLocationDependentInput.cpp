@@ -87,31 +87,18 @@ namespace DiKErnel::Integration
     {
         const auto baseValidationSuccessful = LocationDependentInput::Validate(profileData);
 
-        const auto validationIssueTimeLineAgwi = GrassRevetmentWaveImpactValidator::TimeLineAgwi(
-            _timeLine->GetTimeLineAgwi(), _timeLine->GetTimeLineCgwi());
-        const auto validationIssueTimeLineBgwi = GrassRevetmentWaveImpactValidator::TimeLineBgwi(_timeLine->GetTimeLineBgwi());
-        const auto validationIssueTimeLineCgwi = GrassRevetmentWaveImpactValidator::TimeLineCgwi(_timeLine->GetTimeLineCgwi());
-        const auto validationIssueMinimumWaveHeightTemax = GrassRevetmentWaveImpactValidator::MinimumWaveHeightTemax(_minimumWaveHeightTemax);
-        const auto validationIssueMaximumWaveHeightTemin = GrassRevetmentWaveImpactValidator::MaximumWaveHeightTemin(_maximumWaveHeightTemin);
-        const auto validationIssueWaveAngeImpactNwa = GrassRevetmentWaveImpactValidator::WaveAngleImpactNwa(
-            _waveAngleImpact->GetWaveAngleImpactNwa());
-        const auto validationIssueWaveAngeImpactQwa = GrassRevetmentWaveImpactValidator::WaveAngleImpactQwa(
-            _waveAngleImpact->GetWaveAngleImpactQwa());
-        const auto validationIssueWaveAngeImpactRwa = GrassRevetmentWaveImpactValidator::WaveAngleImpactRwa(
-            _waveAngleImpact->GetWaveAngleImpactRwa());
-        const auto validationIssueUpperLimitLoadingAul = GrassRevetmentWaveImpactValidator::UpperLimitLoadingAul(
-            _upperLimitLoadingAul, _lowerLimitLoadingAll);
+        vector<unique_ptr<ValidationIssue>> validationIssues;
+        validationIssues.emplace_back(GrassRevetmentWaveImpactValidator::TimeLineAgwi(_timeLine->GetTimeLineAgwi(), _timeLine->GetTimeLineCgwi()));
+        validationIssues.emplace_back(GrassRevetmentWaveImpactValidator::TimeLineBgwi(_timeLine->GetTimeLineBgwi()));
+        validationIssues.emplace_back(GrassRevetmentWaveImpactValidator::TimeLineCgwi(_timeLine->GetTimeLineCgwi()));
+        validationIssues.emplace_back(GrassRevetmentWaveImpactValidator::MinimumWaveHeightTemax(_minimumWaveHeightTemax));
+        validationIssues.emplace_back(GrassRevetmentWaveImpactValidator::MaximumWaveHeightTemin(_maximumWaveHeightTemin));
+        validationIssues.emplace_back(GrassRevetmentWaveImpactValidator::WaveAngleImpactNwa(_waveAngleImpact->GetWaveAngleImpactNwa()));
+        validationIssues.emplace_back(GrassRevetmentWaveImpactValidator::WaveAngleImpactQwa(_waveAngleImpact->GetWaveAngleImpactQwa()));
+        validationIssues.emplace_back(GrassRevetmentWaveImpactValidator::WaveAngleImpactRwa(_waveAngleImpact->GetWaveAngleImpactRwa()));
+        validationIssues.emplace_back(GrassRevetmentWaveImpactValidator::UpperLimitLoadingAul(_upperLimitLoadingAul, _lowerLimitLoadingAll));
 
-        return ValidationHelper::RegisterValidationIssue(validationIssueTimeLineAgwi)
-                && ValidationHelper::RegisterValidationIssue(validationIssueTimeLineBgwi)
-                && ValidationHelper::RegisterValidationIssue(validationIssueTimeLineCgwi)
-                && ValidationHelper::RegisterValidationIssue(validationIssueMinimumWaveHeightTemax)
-                && ValidationHelper::RegisterValidationIssue(validationIssueMaximumWaveHeightTemin)
-                && ValidationHelper::RegisterValidationIssue(validationIssueWaveAngeImpactNwa)
-                && ValidationHelper::RegisterValidationIssue(validationIssueWaveAngeImpactQwa)
-                && ValidationHelper::RegisterValidationIssue(validationIssueWaveAngeImpactRwa)
-                && ValidationHelper::RegisterValidationIssue(validationIssueUpperLimitLoadingAul)
-                && baseValidationSuccessful;
+        return ValidationHelper::RegisterValidationIssues(validationIssues) && baseValidationSuccessful;
     }
 
     void GrassRevetmentWaveImpactLocationDependentInput::InitializeDerivedLocationDependentInput(

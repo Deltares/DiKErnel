@@ -53,13 +53,12 @@ namespace DiKErnel::Integration
         const auto outerCrestX = CharacteristicPointsHelper::GetCoordinatesForType(characteristicPoints, CharacteristicPointType::OuterCrest)->
                 first;
 
-        const auto validationIssueX = RevetmentValidator::X(_x, outerToeX, outerCrestX);
-        const auto validationIssueInitialDamage = RevetmentValidator::InitialDamage(_initialDamage);
-        const auto validationIssueFailureNumber = RevetmentValidator::FailureNumber(_failureNumber, _initialDamage);
+        vector<unique_ptr<ValidationIssue>> validationIssues;
+        validationIssues.emplace_back(RevetmentValidator::X(_x, outerToeX, outerCrestX));
+        validationIssues.emplace_back(RevetmentValidator::InitialDamage(_initialDamage));
+        validationIssues.emplace_back(RevetmentValidator::FailureNumber(_failureNumber, _initialDamage));
 
-        return ValidationHelper::RegisterValidationIssue(validationIssueX)
-                && ValidationHelper::RegisterValidationIssue(validationIssueInitialDamage)
-                && ValidationHelper::RegisterValidationIssue(validationIssueFailureNumber);
+        return ValidationHelper::RegisterValidationIssues(validationIssues);
     }
 
     unique_ptr<TimeDependentOutput> LocationDependentInput::Calculate(

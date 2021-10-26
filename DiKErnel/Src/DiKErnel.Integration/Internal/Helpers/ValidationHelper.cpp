@@ -30,6 +30,19 @@ namespace DiKErnel::Integration
     using namespace std;
     using namespace Util;
 
+    bool ValidationHelper::RegisterValidationIssues(
+        const vector<unique_ptr<ValidationIssue>>& validationIssues)
+    {
+        auto validationSuccessful = true;
+
+        for (auto& validationIssue : validationIssues)
+        {
+            validationSuccessful = RegisterValidationIssue(validationIssue) && validationSuccessful;
+        }
+
+        return validationSuccessful;
+    }
+
     bool ValidationHelper::RegisterValidationIssue(
         const unique_ptr<ValidationIssue>& validationIssue)
     {

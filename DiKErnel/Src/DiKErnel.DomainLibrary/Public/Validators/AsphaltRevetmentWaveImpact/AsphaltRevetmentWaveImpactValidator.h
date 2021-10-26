@@ -19,6 +19,9 @@
 // All rights reserved.
 
 #pragma once
+
+#include <memory>
+
 #include "ValidationIssue.h"
 
 namespace DiKErnel::DomainLibrary
