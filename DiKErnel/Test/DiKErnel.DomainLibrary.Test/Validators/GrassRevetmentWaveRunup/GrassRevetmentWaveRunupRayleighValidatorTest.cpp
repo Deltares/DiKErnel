@@ -36,13 +36,13 @@ namespace DiKErnel::DomainLibrary::Test
 
         constexpr auto errorMessage = "FixedNumberOfWaves must be larger than 0.";
 
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, ValidatorAssertHelper::INTEGER_MIN, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertValue(validateAction, ValidatorAssertHelper::INTEGER_MIN, ValidationIssueType::Error, errorMessage);
 
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, -1, ValidationIssueType::Error, errorMessage);
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, 0, ValidationIssueType::Error, errorMessage);
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, 1);
+        ValidatorAssertHelper::AssertValue(validateAction, -1, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertValue(validateAction, 0, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertValue(validateAction, 1);
 
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, ValidatorAssertHelper::INTEGER_MAX);
+        ValidatorAssertHelper::AssertValue(validateAction, ValidatorAssertHelper::INTEGER_MAX);
     }
 
     TEST(GrassRevetmentWaveRunupRayleighValidatorTest, FrontVelocityCu_VariousScenarios_ExpectedValues)
@@ -51,12 +51,12 @@ namespace DiKErnel::DomainLibrary::Test
 
         constexpr auto errorMessage = "FrontVelocityCu must be larger than 0.";
 
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, ValidatorAssertHelper::DOUBLE_MIN, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertValue(validateAction, ValidatorAssertHelper::DOUBLE_MIN, ValidationIssueType::Error, errorMessage);
 
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, 0.0 - ValidatorAssertHelper::EPSILON, ValidationIssueType::Error, errorMessage);
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, 0.0, ValidationIssueType::Error, errorMessage);
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, 0.0 + ValidatorAssertHelper::EPSILON);
+        ValidatorAssertHelper::AssertValue(validateAction, 0.0 - ValidatorAssertHelper::EPSILON, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertValue(validateAction, 0.0, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertValue(validateAction, 0.0 + ValidatorAssertHelper::EPSILON);
 
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, ValidatorAssertHelper::DOUBLE_MAX);
+        ValidatorAssertHelper::AssertValue(validateAction, ValidatorAssertHelper::DOUBLE_MAX);
     }
 }

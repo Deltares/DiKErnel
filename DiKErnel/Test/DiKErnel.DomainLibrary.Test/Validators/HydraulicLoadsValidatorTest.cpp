@@ -35,23 +35,23 @@ namespace DiKErnel::DomainLibrary::Test
         constexpr auto errorMessage = "WaveHeightHm0 must be larger than 0.";
         constexpr auto warningMessage = "WaveHeightHm0 should be in range {0.1, 10}.";
 
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, ValidatorAssertHelper::DOUBLE_MIN, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertValue(validateAction, ValidatorAssertHelper::DOUBLE_MIN, ValidationIssueType::Error, errorMessage);
 
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, 0.0 - ValidatorAssertHelper::EPSILON, ValidationIssueType::Error, errorMessage);
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, 0.0, ValidationIssueType::Error, errorMessage);
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, 0.0 + ValidatorAssertHelper::EPSILON, ValidationIssueType::Warning, warningMessage);
+        ValidatorAssertHelper::AssertValue(validateAction, 0.0 - ValidatorAssertHelper::EPSILON, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertValue(validateAction, 0.0, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertValue(validateAction, 0.0 + ValidatorAssertHelper::EPSILON, ValidationIssueType::Warning, warningMessage);
 
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, 0.1 - ValidatorAssertHelper::EPSILON, ValidationIssueType::Warning,
+        ValidatorAssertHelper::AssertValue(validateAction, 0.1 - ValidatorAssertHelper::EPSILON, ValidationIssueType::Warning,
                                                   warningMessage);
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, 0.1, ValidationIssueType::Warning, warningMessage);
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, 0.1 + ValidatorAssertHelper::EPSILON);
+        ValidatorAssertHelper::AssertValue(validateAction, 0.1, ValidationIssueType::Warning, warningMessage);
+        ValidatorAssertHelper::AssertValue(validateAction, 0.1 + ValidatorAssertHelper::EPSILON);
 
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, 10.0 - ValidatorAssertHelper::EPSILON);
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, 10.0, ValidationIssueType::Warning, warningMessage);
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, 10.0 + ValidatorAssertHelper::EPSILON, ValidationIssueType::Warning,
+        ValidatorAssertHelper::AssertValue(validateAction, 10.0 - ValidatorAssertHelper::EPSILON);
+        ValidatorAssertHelper::AssertValue(validateAction, 10.0, ValidationIssueType::Warning, warningMessage);
+        ValidatorAssertHelper::AssertValue(validateAction, 10.0 + ValidatorAssertHelper::EPSILON, ValidationIssueType::Warning,
                                                   warningMessage);
 
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, ValidatorAssertHelper::DOUBLE_MAX, ValidationIssueType::Warning, warningMessage);
+        ValidatorAssertHelper::AssertValue(validateAction, ValidatorAssertHelper::DOUBLE_MAX, ValidationIssueType::Warning, warningMessage);
     }
 
     TEST(HydraulicLoadsTest, WavePeriodTm10_VariousScenarios_ExpectedValues)
@@ -61,23 +61,23 @@ namespace DiKErnel::DomainLibrary::Test
         constexpr auto errorMessage = "WavePeriodTm10 must be larger than 0.";
         constexpr auto warningMessage = "WavePeriodTm10 should be in range {0.5, 25}.";
 
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, ValidatorAssertHelper::DOUBLE_MIN, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertValue(validateAction, ValidatorAssertHelper::DOUBLE_MIN, ValidationIssueType::Error, errorMessage);
 
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, 0.0 - ValidatorAssertHelper::EPSILON, ValidationIssueType::Error, errorMessage);
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, 0.0, ValidationIssueType::Error, errorMessage);
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, 0.0 + ValidatorAssertHelper::EPSILON, ValidationIssueType::Warning, warningMessage);
+        ValidatorAssertHelper::AssertValue(validateAction, 0.0 - ValidatorAssertHelper::EPSILON, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertValue(validateAction, 0.0, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertValue(validateAction, 0.0 + ValidatorAssertHelper::EPSILON, ValidationIssueType::Warning, warningMessage);
 
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, 0.5 - ValidatorAssertHelper::EPSILON, ValidationIssueType::Warning,
+        ValidatorAssertHelper::AssertValue(validateAction, 0.5 - ValidatorAssertHelper::EPSILON, ValidationIssueType::Warning,
                                                   warningMessage);
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, 0.5, ValidationIssueType::Warning, warningMessage);
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, 0.5 + ValidatorAssertHelper::EPSILON);
+        ValidatorAssertHelper::AssertValue(validateAction, 0.5, ValidationIssueType::Warning, warningMessage);
+        ValidatorAssertHelper::AssertValue(validateAction, 0.5 + ValidatorAssertHelper::EPSILON);
 
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, 25.0 - ValidatorAssertHelper::EPSILON);
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, 25.0, ValidationIssueType::Warning, warningMessage);
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, 25.0 + ValidatorAssertHelper::EPSILON, ValidationIssueType::Warning,
+        ValidatorAssertHelper::AssertValue(validateAction, 25.0 - ValidatorAssertHelper::EPSILON);
+        ValidatorAssertHelper::AssertValue(validateAction, 25.0, ValidationIssueType::Warning, warningMessage);
+        ValidatorAssertHelper::AssertValue(validateAction, 25.0 + ValidatorAssertHelper::EPSILON, ValidationIssueType::Warning,
                                                   warningMessage);
 
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, ValidatorAssertHelper::DOUBLE_MAX, ValidationIssueType::Warning, warningMessage);
+        ValidatorAssertHelper::AssertValue(validateAction, ValidatorAssertHelper::DOUBLE_MAX, ValidationIssueType::Warning, warningMessage);
     }
 
     TEST(HydraulicLoadsTest, WaveAngle_VariousScenarios_ExpectedValues)
@@ -86,16 +86,16 @@ namespace DiKErnel::DomainLibrary::Test
 
         constexpr auto errorMessage = "WaveAngle must be in range {-180, 180}.";
 
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, ValidatorAssertHelper::DOUBLE_MIN, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertValue(validateAction, ValidatorAssertHelper::DOUBLE_MIN, ValidationIssueType::Error, errorMessage);
 
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, -180.0 - ValidatorAssertHelper::EPSILON, ValidationIssueType::Error, errorMessage);
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, -180.0, ValidationIssueType::Error, errorMessage);
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, -180.0 + ValidatorAssertHelper::EPSILON);
+        ValidatorAssertHelper::AssertValue(validateAction, -180.0 - ValidatorAssertHelper::EPSILON, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertValue(validateAction, -180.0, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertValue(validateAction, -180.0 + ValidatorAssertHelper::EPSILON);
 
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, 180.0 - ValidatorAssertHelper::EPSILON);
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, 180.0, ValidationIssueType::Error, errorMessage);
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, 180.0 + ValidatorAssertHelper::EPSILON, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertValue(validateAction, 180.0 - ValidatorAssertHelper::EPSILON);
+        ValidatorAssertHelper::AssertValue(validateAction, 180.0, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertValue(validateAction, 180.0 + ValidatorAssertHelper::EPSILON, ValidationIssueType::Error, errorMessage);
 
-        ValidatorAssertHelper::AssertEqualToBound(validateAction, ValidatorAssertHelper::DOUBLE_MAX, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertValue(validateAction, ValidatorAssertHelper::DOUBLE_MAX, ValidationIssueType::Error, errorMessage);
     }
 }

@@ -42,8 +42,9 @@ namespace DiKErnel::DomainLibrary::TestUtil
             inline constexpr static int INTEGER_MAX = std::numeric_limits<int>::max();
 
             template <typename T>
-            static void AssertEqualToBound(
-                std::unique_ptr<ValidationIssue> (*const validateAction)(T),
+            static void AssertValue(
+                std::unique_ptr<ValidationIssue> (*const validateAction)(
+                    T),
                 const T bound)
             {
                 // Call
@@ -54,8 +55,9 @@ namespace DiKErnel::DomainLibrary::TestUtil
             }
 
             template <typename T>
-            static void AssertEqualToBound(
-                std::unique_ptr<ValidationIssue> (*const validateAction)(T),
+            static void AssertValue(
+                std::unique_ptr<ValidationIssue> (*const validateAction)(
+                    T),
                 const T bound,
                 const ValidationIssueType validationIssueType,
                 const std::string& message)
