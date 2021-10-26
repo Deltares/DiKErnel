@@ -10,6 +10,7 @@ set(SOURCEFILES
   Main.cpp
   ProfilePointTest.cpp
   TimeDependentOutputTest.cpp
+  ValidatorTest.cpp
 )
 
 # Add executable
