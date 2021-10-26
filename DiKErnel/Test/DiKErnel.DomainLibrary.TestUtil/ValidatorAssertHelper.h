@@ -35,31 +35,11 @@ namespace DiKErnel::DomainLibrary::TestUtil
             typedef std::unique_ptr<ValidationIssue> (*ActionWithInt)(
                 int);
 
-            static void AssertBelowBound(
-                ActionWithDouble validateAction,
-                double bound);
-
-            static void AssertBelowBound(
-                ActionWithDouble validateAction,
-                double bound,
-                ValidationIssueType validationIssueType,
-                const std::string& message);
-
             static void AssertEqualToBound(
                 ActionWithDouble validateAction,
                 double bound);
 
             static void AssertEqualToBound(
-                ActionWithDouble validateAction,
-                double bound,
-                ValidationIssueType validationIssueType,
-                const std::string& message);
-
-            static void AssertAboveBound(
-                ActionWithDouble validateAction,
-                double bound);
-
-            static void AssertAboveBound(
                 ActionWithDouble validateAction,
                 double bound,
                 ValidationIssueType validationIssueType,
