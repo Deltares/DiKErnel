@@ -82,7 +82,7 @@ namespace DiKErnel::Core::Test
         ASSERT_EQ(CalculationState::FinishedSuccessfully, calculator.GetCalculationState());
     }
 
-    TEST_F(CalculatorTest, GivenCalculator_WhenCalculationPerformedAndNoTimeOfFailure_ThenReturnResultWithExpectedOutput)
+    TEST_F(CalculatorTest, GivenCalculator_WhenCalculationPerformedAndNoTimeOfFailure_ThenReturnsResultWithExpectedOutput)
     {
         // Given
         constexpr auto damage = 0.5;
@@ -120,7 +120,7 @@ namespace DiKErnel::Core::Test
         ASSERT_EQ(nullptr, locationDependentOutputItems[0].get().GetTimeOfFailure());
     }
 
-    TEST_F(CalculatorTest, GivenCalculator_WhenCalculationPerformedAndTimeOfFailure_ThenReturnResultWithExpectedOutput)
+    TEST_F(CalculatorTest, GivenCalculator_WhenCalculationPerformedAndTimeOfFailure_ThenReturnsResultWithExpectedOutput)
     {
         // Given
         constexpr auto damage = 0.5;
@@ -217,7 +217,7 @@ namespace DiKErnel::Core::Test
         calculator.WaitForCompletion();
     }
 
-    TEST_F(CalculatorTest, GivenCalculatorWithRunningCalculation_WhenGetResult_ThenReturnNullPtr)
+    TEST_F(CalculatorTest, GivenCalculatorWithRunningCalculation_WhenGetResult_ThenReturnsNullPtr)
     {
         // Given
         const NiceMock<ICalculationInputMock> calculationInput;
@@ -255,7 +255,7 @@ namespace DiKErnel::Core::Test
         ASSERT_EQ(CalculationState::Cancelled, calculationState);
     }
 
-    TEST_F(CalculatorTest, GivenCalculatorWithCancelledCalculation_WhenGetResult_ThenReturnResultWithSuccessfulFalse)
+    TEST_F(CalculatorTest, GivenCalculatorWithCancelledCalculation_WhenGetResult_ThenReturnsResultWithSuccessfulFalse)
     {
         // Given
         const NiceMock<ICalculationInputMock> calculationInput;
@@ -298,7 +298,7 @@ namespace DiKErnel::Core::Test
         ASSERT_EQ(CalculationState::FinishedInError, calculationState);
     }
 
-    TEST_F(CalculatorTest, GivenCalculatorWithExceptionDuringCalculation_WhenGetResult_ThenReturnResultWithSuccessfulFalseAndEvent)
+    TEST_F(CalculatorTest, GivenCalculatorWithExceptionDuringCalculation_WhenGetResult_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         // Given
         const auto locationDependentInputMock = make_unique<NiceMock<ILocationDependentInputMock>>();
