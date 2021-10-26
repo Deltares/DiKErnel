@@ -34,7 +34,7 @@ namespace DiKErnel::Core
     {
         public:
             /*!
-             * \brief Performs the validation
+             * \brief Performs the validation.
              * \param calculationInput
              *        The input to validate.
              * \return The result of the validation.

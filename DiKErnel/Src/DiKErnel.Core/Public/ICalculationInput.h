@@ -40,7 +40,7 @@ namespace DiKErnel::Core
             virtual ~ICalculationInput() = default;
 
             /*!
-             * \brief Performs calculation input validation.
+             * \brief Performs validation on the input.
              * \return Whether the validation was successful.
              */
             virtual bool Validate() const = 0;

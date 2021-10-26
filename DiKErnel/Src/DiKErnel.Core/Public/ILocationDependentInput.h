@@ -39,9 +39,9 @@ namespace DiKErnel::Core
             virtual ~ILocationDependentInput() = default;
 
             /*!
-             * \brief Performs a location dependent validation.
+             * \brief Performs validation on the input.
              * \param profileData
-             *        The profile data to use in the calculation.
+             *        The profile data to use in the validation.
              * \return Whether the validation was successful.
              */
             virtual bool Validate(
