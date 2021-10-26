@@ -22,6 +22,8 @@
 
 #include <gtest/gtest.h>
 
+#include <limits>
+
 #include "ValidationIssue.h"
 
 namespace DiKErnel::DomainLibrary::TestUtil
@@ -29,6 +31,16 @@ namespace DiKErnel::DomainLibrary::TestUtil
     class ValidatorAssertHelper
     {
         public:
+            inline constexpr static double EPSILON = 1e-6;
+
+            inline constexpr static double DOUBLE_MIN = std::numeric_limits<double>::min();
+
+            inline constexpr static double DOUBLE_MAX = std::numeric_limits<double>::max();
+
+            inline constexpr static int INTEGER_MIN = std::numeric_limits<int>::min();
+
+            inline constexpr static int INTEGER_MAX = std::numeric_limits<int>::max();
+
             typedef std::unique_ptr<ValidationIssue> (*ActionWithDouble)(
                 double);
 
@@ -54,8 +66,6 @@ namespace DiKErnel::DomainLibrary::TestUtil
                 int bound,
                 ValidationIssueType validationIssueType,
                 const std::string& message);
-
-            inline static double EPSILON = 1e-6;
 
         private:
             template <typename TAction, typename TBound>
