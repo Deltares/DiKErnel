@@ -37,29 +37,28 @@ namespace DiKErnel::Integration
 
         for (auto& validationIssue : validationIssues)
         {
-            validationSuccessful = RegisterValidationIssue(validationIssue.get()) && validationSuccessful;
+            auto validationForIssueSuccessful = true;
+
+            if (validationIssue != nullptr)
+            {
+                validationForIssueSuccessful = RegisterValidationIssue(*validationIssue);
+            }
+
+            validationSuccessful = validationForIssueSuccessful && validationSuccessful;
         }
 
         return validationSuccessful;
     }
 
     bool ValidationHelper::RegisterValidationIssue(
-        ValidationIssue* validationIssue)
+        const ValidationIssue& validationIssue)
     {
-        if (validationIssue != nullptr)
-        {
-            const auto validationIssueType = validationIssue->GetValidationIssueType();
+        const auto validationIssueType = validationIssue.GetValidationIssueType();
 
-            EventRegistry::Register(make_unique<Event>(validationIssue->GetMessage(),
-                                                       ConvertValidationIssueType(validationIssueType)));
+        EventRegistry::Register(make_unique<Event>(validationIssue.GetMessage(),
+                                                   ConvertValidationIssueType(validationIssueType)));
 
-            if (validationIssueType == ValidationIssueType::Error)
-            {
-                return false;
-            }
-        }
-
-        return true;
+        return validationIssueType != ValidationIssueType::Error;
     }
 
     EventType ValidationHelper::ConvertValidationIssueType(
