@@ -37,14 +37,14 @@ namespace DiKErnel::Integration
 
         for (auto& validationIssue : validationIssues)
         {
-            validationSuccessful = RegisterValidationIssue(validationIssue) && validationSuccessful;
+            validationSuccessful = RegisterValidationIssue(validationIssue.get()) && validationSuccessful;
         }
 
         return validationSuccessful;
     }
 
     bool ValidationHelper::RegisterValidationIssue(
-        const unique_ptr<ValidationIssue>& validationIssue)
+        ValidationIssue* validationIssue)
     {
         if (validationIssue != nullptr)
         {
