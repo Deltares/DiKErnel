@@ -29,7 +29,6 @@
 #include "GrassRevetmentWaveRunupLocationDependentInputAssertHelper.h"
 #include "GrassRevetmentWaveRunupRayleighLocationDependentInput.h"
 #include "GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper.h"
-#include "InvalidCalculationDataException.h"
 #include "LocationDependentInputAssertHelper.h"
 #include "NaturalStoneRevetmentLocationConstructionProperties.h"
 #include "NaturalStoneRevetmentLocationDependentInput.h"
