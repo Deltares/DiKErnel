@@ -28,7 +28,7 @@ namespace DiKErnel::DomainLibrary::Test
     using namespace std;
     using namespace TestUtil;
 
-    TEST(GenericValidatorTest, TimeSteps_NoTimeSteps_ReturnExpectedValidationIssue)
+    TEST(GenericValidatorTest, TimeSteps_NoTimeSteps_ReturnsExpectedValidationIssue)
     {
         // Call
         const auto validationIssue = GenericValidator::TimeSteps(vector<pair<int, int>>());
@@ -39,7 +39,7 @@ namespace DiKErnel::DomainLibrary::Test
         ASSERT_EQ("At least 1 time step must be defined.", validationIssue->GetMessage());
     }
 
-    TEST(GenericValidatorTest, TimeSteps_TimeStepsNotSuccessive_ReturnExpectedValidationIssue)
+    TEST(GenericValidatorTest, TimeSteps_TimeStepsNotSuccessive_ReturnsExpectedValidationIssue)
     {
         // Setup
         const auto timeSteps = vector
@@ -57,7 +57,7 @@ namespace DiKErnel::DomainLibrary::Test
         ASSERT_EQ("The begin time of a successive element must equal the end time of the previous element.", validationIssue->GetMessage());
     }
 
-    TEST(GenericValidatorTest, TimeSteps_ValidTimeSteps_ReturnNullPtr)
+    TEST(GenericValidatorTest, TimeSteps_ValidTimeSteps_ReturnsNullPtr)
     {
         // Setup
         const auto timeSteps = vector

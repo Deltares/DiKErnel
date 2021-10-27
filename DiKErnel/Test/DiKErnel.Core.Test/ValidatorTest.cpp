@@ -35,7 +35,7 @@ namespace DiKErnel::Core::Test
     using namespace Util;
     using namespace Util::TestUtil;
 
-    TEST(ValidatorTest, Validate_ValidData_ReturnExpectedResult)
+    TEST(ValidatorTest, Validate_ValidData_ReturnsExpectedResult)
     {
         // Setup
         NiceMock<IProfileDataMock> profileData;
@@ -66,7 +66,7 @@ namespace DiKErnel::Core::Test
         ASSERT_EQ(0, validationResult->GetEvents().size());
     }
 
-    TEST(ValidatorTest, Validate_InvalidCalculationInput_ReturnExpectedResult)
+    TEST(ValidatorTest, Validate_InvalidCalculationInput_ReturnsExpectedResult)
     {
         // Setup
         NiceMock<IProfileDataMock> profileData;
@@ -97,7 +97,7 @@ namespace DiKErnel::Core::Test
         ASSERT_EQ(0, validationResult->GetEvents().size());
     }
 
-    TEST(ValidatorTest, Validate_InvalidLocationDependentInputItem_ReturnExpectedResult)
+    TEST(ValidatorTest, Validate_InvalidLocationDependentInputItem_ReturnsExpectedResult)
     {
         // Setup
         NiceMock<IProfileDataMock> profileData;
@@ -128,7 +128,7 @@ namespace DiKErnel::Core::Test
         ASSERT_EQ(0, validationResult->GetEvents().size());
     }
 
-    TEST(ValidatorTest, Validate_InvalidTimeDependentInputItem_ReturnExpectedResult)
+    TEST(ValidatorTest, Validate_InvalidTimeDependentInputItem_ReturnsExpectedResult)
     {
         // Setup
         NiceMock<IProfileDataMock> profileData;
@@ -159,7 +159,7 @@ namespace DiKErnel::Core::Test
         ASSERT_EQ(0, validationResult->GetEvents().size());
     }
 
-    TEST(ValidatorTest, Validate_ExceptionOccurred_ReturnExpectedResult)
+    TEST(ValidatorTest, Validate_ExceptionOccurred_ReturnsExpectedResult)
     {
         // Setup
         const string errorMessage = "Error in validation!";
