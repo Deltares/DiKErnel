@@ -38,7 +38,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
         NiceMock<IProfileDataMock> profileData;
 
         auto calculationInput = make_unique<ICalculationInputMock>();
-        EXPECT_CALL(*calculationInput, GetProfileData).WillRepeatedly(ReturnRef(profileData));
+        ON_CALL(*calculationInput, GetProfileData).WillByDefault(ReturnRef(profileData));
 
         constexpr auto processType = JsonInputProcessType::Physics;
 
