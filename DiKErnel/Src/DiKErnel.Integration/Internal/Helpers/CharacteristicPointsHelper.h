@@ -24,7 +24,6 @@
 #include <vector>
 
 #include "CharacteristicPoint.h"
-#include "ValidationIssue.h"
 
 namespace DiKErnel::Integration
 {

@@ -27,13 +27,13 @@
 namespace DiKErnel::DomainLibrary
 {
     /*!
-     * \brief Class that contains a validation issue.
+     * \brief Class that represents a validation issue.
      */
     class ValidationIssue
     {
         public:
             /*!
-             * \brief Creates a new instance with message.
+             * \brief Creates a new instance.
              * \param validationIssueType
              *        The validation issue type.
              * \param message
