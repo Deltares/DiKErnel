@@ -20,8 +20,6 @@
 
 #include "CharacteristicPointsHelper.h"
 
-#include "NaturalStoneRevetmentLocationDependentInput.h"
-
 namespace DiKErnel::Integration
 {
     using namespace Core;

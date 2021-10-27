@@ -23,14 +23,14 @@
 #include <limits>
 
 #include "ILocationDependentInput.h"
-#include "ValidationIssue.h"
 
 namespace DiKErnel::Integration
 {
     class LocationDependentInput : public Core::ILocationDependentInput
     {
         public:
-            bool Validate(const Core::IProfileData& profileData) const override;
+            bool Validate(
+                const Core::IProfileData& profileData) const override;
 
             std::unique_ptr<Core::TimeDependentOutput> Calculate(
                 double initialDamage,
