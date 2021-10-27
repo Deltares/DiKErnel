@@ -59,7 +59,7 @@ namespace DiKErnel::DomainLibrary
     {
         if (failureNumber < initialDamage)
         {
-            return make_unique<ValidationIssue>(ValidationIssueType::Error, "FailureNumber must be larger than InitialDamage.");
+            return make_unique<ValidationIssue>(ValidationIssueType::Error, "FailureNumber must be equal to InitialDamage or larger.");
         }
 
         return nullptr;

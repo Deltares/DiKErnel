@@ -18,8 +18,6 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include <limits>
-
 #include <gtest/gtest.h>
 
 #include "RevetmentValidator.h"
@@ -89,7 +87,7 @@ namespace DiKErnel::DomainLibrary::Test
     {
         const auto validateAction = FailureNumber;
 
-        constexpr auto errorMessage = "FailureNumber must be larger than InitialDamage.";
+        constexpr auto errorMessage = "FailureNumber must be equal to InitialDamage or larger.";
 
         ValidatorAssertHelper::AssertValue<double>(validateAction, ValidatorAssertHelper::DOUBLE_MIN, ValidationIssueType::Error, errorMessage);
 

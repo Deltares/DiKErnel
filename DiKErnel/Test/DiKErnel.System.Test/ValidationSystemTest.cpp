@@ -107,7 +107,7 @@ namespace DiKErnel::System::Test
         ASSERT_EQ(17, events.size());
         EventAssertHelper::AssertEvent(EventType::Error, "X must be in range {OuterToeX, OuterCrestX}.", events[1]);
         EventAssertHelper::AssertEvent(EventType::Error, "InitialDamage must be equal to 0 or larger.", events[2]);
-        EventAssertHelper::AssertEvent(EventType::Error, "FailureNumber must be larger than InitialDamage.", events[3]);
+        EventAssertHelper::AssertEvent(EventType::Error, "FailureNumber must be equal to InitialDamage or larger.", events[3]);
         EventAssertHelper::AssertEvent(EventType::Error, "FatigueAlpha must be larger than 0.", events[4]);
         EventAssertHelper::AssertEvent(EventType::Error, "FatigueBeta must be larger than 0.", events[5]);
         EventAssertHelper::AssertEvent(EventType::Error, "FailureTension must be larger than 0.", events[6]);
@@ -159,7 +159,7 @@ namespace DiKErnel::System::Test
         ASSERT_EQ(13, events.size());
         EventAssertHelper::AssertEvent(EventType::Error, "X must be in range {OuterToeX, OuterCrestX}.", events[1]);
         EventAssertHelper::AssertEvent(EventType::Error, "InitialDamage must be equal to 0 or larger.", events[2]);
-        EventAssertHelper::AssertEvent(EventType::Error, "FailureNumber must be larger than InitialDamage.", events[3]);
+        EventAssertHelper::AssertEvent(EventType::Error, "FailureNumber must be equal to InitialDamage or larger.", events[3]);
         EventAssertHelper::AssertEvent(EventType::Error, "TimeLineAgwi must be larger than TimeLineCgwi.", events[4]);
         EventAssertHelper::AssertEvent(EventType::Error, "TimeLineBgwi must be smaller than 0.", events[5]);
         EventAssertHelper::AssertEvent(EventType::Error, "TimeLineCgwi must be equal to 0 or larger.", events[6]);
@@ -206,7 +206,7 @@ namespace DiKErnel::System::Test
         ASSERT_EQ(14, events.size());
         EventAssertHelper::AssertEvent(EventType::Error, "X must be in range {OuterToeX, OuterCrestX}.", events[1]);
         EventAssertHelper::AssertEvent(EventType::Error, "InitialDamage must be equal to 0 or larger.", events[2]);
-        EventAssertHelper::AssertEvent(EventType::Error, "FailureNumber must be larger than InitialDamage.", events[3]);
+        EventAssertHelper::AssertEvent(EventType::Error, "FailureNumber must be equal to InitialDamage or larger.", events[3]);
         EventAssertHelper::AssertEvent(EventType::Error, "CriticalCumulativeOverload must be larger than 0.", events[4]);
         EventAssertHelper::AssertEvent(EventType::Error, "RepresentativeWaveRunup2PGammab must be in range [0.6, 1].", events[5]);
         EventAssertHelper::AssertEvent(EventType::Error, "RepresentativeWaveRunup2PGammaf must be in range [0.5, 1].", events[6]);
@@ -247,7 +247,7 @@ namespace DiKErnel::System::Test
         ASSERT_EQ(8, events.size());
         EventAssertHelper::AssertEvent(EventType::Error, "X must be in range {OuterToeX, OuterCrestX}.", events[1]);
         EventAssertHelper::AssertEvent(EventType::Error, "InitialDamage must be equal to 0 or larger.", events[2]);
-        EventAssertHelper::AssertEvent(EventType::Error, "FailureNumber must be larger than InitialDamage.", events[3]);
+        EventAssertHelper::AssertEvent(EventType::Error, "FailureNumber must be equal to InitialDamage or larger.", events[3]);
         EventAssertHelper::AssertEvent(EventType::Error, "RelativeDensity must be in range {0, 10}.", events[4]);
         EventAssertHelper::AssertEvent(EventType::Error, "ThicknessTopLayer must be in range {0, 1}.", events[5]);
         EventAssertHelper::AssertEvent(EventType::Warning, "SlopeUpperLevelAus should be in range [0.01, 0.2].", events[6]);
