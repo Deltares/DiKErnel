@@ -51,7 +51,7 @@ namespace DiKErnel::DomainLibrary
              * \brief Validates the initial damage.
              * \param initialDamage
              *        The initial damage.
-             * \return A validation issue when initial damage is not valid; nullptr otherwise.
+             * \return A validation issue when the initial damage is not valid; nullptr otherwise.
              */
             static std::unique_ptr<ValidationIssue> InitialDamage(
                 double initialDamage);
@@ -62,7 +62,7 @@ namespace DiKErnel::DomainLibrary
              *        The failure number.
              * \param initialDamage
              *        The initial damage.
-             * \return A validation issue when failure number is not valid; nullptr otherwise.
+             * \return A validation issue when the failure number is not valid; nullptr otherwise.
              */
             static std::unique_ptr<ValidationIssue> FailureNumber(
                 double failureNumber,
