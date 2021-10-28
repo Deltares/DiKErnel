@@ -36,7 +36,7 @@ namespace DiKErnel::FunctionLibrary::Test
     TEST(GenericFunctionsTest, Radians_ValidInput_ExpectedValue)
     {
         // Setup
-        const auto degrees = 123.45;
+        constexpr auto degrees = 123.45;
 
         // Call
         const auto radians = GenericFunctions::Radians(degrees);
@@ -48,7 +48,7 @@ namespace DiKErnel::FunctionLibrary::Test
     TEST(GenericFunctionsTest, Degrees_ValidInput_ExpectedValue)
     {
         // Setup
-        const auto radians = 1.2345;
+        constexpr auto radians = 1.2345;
 
         // Call
         const auto degrees = GenericFunctions::Degrees(radians);

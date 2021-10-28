@@ -27,8 +27,8 @@ namespace DiKErnel::FunctionLibrary::Test
     TEST(GrassRevetmentWaveRunupFunctionsTest, IncrementDamage_ValidInput_ExpectedValue)
     {
         // Setup
-        const auto cumulativeOverload = 1063.89;
-        const auto criticalCumulativeOverload = 7000.0;
+        constexpr auto cumulativeOverload = 1063.89;
+        constexpr auto criticalCumulativeOverload = 7000.0;
 
         // Call
         const auto incrementDamage = GrassRevetmentWaveRunupFunctions::IncrementDamage(cumulativeOverload, criticalCumulativeOverload);
@@ -40,14 +40,14 @@ namespace DiKErnel::FunctionLibrary::Test
     TEST(GrassRevetmentWaveRunupFunctionsTest, RepresentativeWaveRunup2P_ValidInput_ExpectedValue)
     {
         // Setup
-        const auto surfSimilarityParameter = 1.436;
-        const auto waveAngleImpact = 0.901;
-        const auto waveHeightHm0 = 2.0;
-        const auto representativeWaveRunup2PGammab = 1.1;
-        const auto representativeWaveRunup2PGammaf = 1.2;
-        const auto representativeWaveRunup2PAru = 1.65;
-        const auto representativeWaveRunup2PBru = 4.0;
-        const auto representativeWaveRunup2PCru = 1.5;
+        constexpr auto surfSimilarityParameter = 1.436;
+        constexpr auto waveAngleImpact = 0.901;
+        constexpr auto waveHeightHm0 = 2.0;
+        constexpr auto representativeWaveRunup2PGammab = 1.1;
+        constexpr auto representativeWaveRunup2PGammaf = 1.2;
+        constexpr auto representativeWaveRunup2PAru = 1.65;
+        constexpr auto representativeWaveRunup2PBru = 4.0;
+        constexpr auto representativeWaveRunup2PCru = 1.5;
 
         // Call
         const auto representativeWaveRunup2P = GrassRevetmentWaveRunupFunctions::RepresentativeWaveRunup2P(
@@ -67,9 +67,9 @@ namespace DiKErnel::FunctionLibrary::Test
     TEST(GrassRevetmentWaveRunupFunctionsTest, WaveAngleImpact_ValidInput_ExpectedValue)
     {
         // Setup
-        const auto waveAngle = 45.0;
-        const auto waveAngleImpactAbeta = 0.0022;
-        const auto waveAngleImpactBetamax = 80.0;
+        constexpr auto waveAngle = 45.0;
+        constexpr auto waveAngleImpactAbeta = 0.0022;
+        constexpr auto waveAngleImpactBetamax = 80.0;
 
         // Call
         const auto waveAngleImpact = GrassRevetmentWaveRunupFunctions::WaveAngleImpact(waveAngle, waveAngleImpactAbeta, waveAngleImpactBetamax);

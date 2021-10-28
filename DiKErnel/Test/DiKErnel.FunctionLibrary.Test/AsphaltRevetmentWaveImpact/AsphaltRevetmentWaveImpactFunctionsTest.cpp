@@ -29,12 +29,12 @@ namespace DiKErnel::FunctionLibrary::Test
     TEST(AsphaltRevetmentWaveImpactFunctionsTest, IncrementDamage_ValidInput_ExpectedValue)
     {
         // Setup
-        const auto logFailureTension = 0.193124598;
-        const auto averageNumberOfWaves = 6492.937853;
-        const auto maximumPeakStress = 0.0160884;
-        const auto stiffnessRelation = 1.185626183;
-        const auto computationalThickness = 0.16;
-        const auto outerSlope = 0.232914161;
+        constexpr auto logFailureTension = 0.193124598;
+        constexpr auto averageNumberOfWaves = 6492.937853;
+        constexpr auto maximumPeakStress = 0.0160884;
+        constexpr auto stiffnessRelation = 1.185626183;
+        constexpr auto computationalThickness = 0.16;
+        constexpr auto outerSlope = 0.232914161;
 
         const vector widthFactors
         {
@@ -85,12 +85,12 @@ namespace DiKErnel::FunctionLibrary::Test
             pair(6.0, 0.001)
         };
 
-        const auto z = 2.988;
-        const auto waterLevel = 3.8;
-        const auto waveHeightHm0 = 1.6;
-        const auto fatigueAlpha = 0.42;
-        const auto fatigueBeta = 4.76;
-        const auto impactNumberC = 1.0;
+        constexpr auto z = 2.988;
+        constexpr auto waterLevel = 3.8;
+        constexpr auto waveHeightHm0 = 1.6;
+        constexpr auto fatigueAlpha = 0.42;
+        constexpr auto fatigueBeta = 4.76;
+        constexpr auto impactNumberC = 1.0;
 
         // Call
         const auto incrementDamage = AsphaltRevetmentWaveImpactFunctions::IncrementDamage(
@@ -117,7 +117,7 @@ namespace DiKErnel::FunctionLibrary::Test
     TEST(AsphaltRevetmentWaveImpactFunctionsTest, LogFailureTension_ValidInput_ExpectedValue)
     {
         // Setup
-        const auto failureTension = 1.56;
+        constexpr auto failureTension = 1.56;
 
         // Call
         const auto logFailureTension = AsphaltRevetmentWaveImpactFunctions::LogFailureTension(
@@ -130,9 +130,9 @@ namespace DiKErnel::FunctionLibrary::Test
     TEST(AsphaltRevetmentWaveImpactFunctionsTest, MaximumPeakStress_ValidInput_ExpectedValue)
     {
         // Setup
-        const auto waveHeightHm0 = 1.6;
-        const auto gravitationalAcceleration = 9.81;
-        const auto densityOfWater = 1025;
+        constexpr auto waveHeightHm0 = 1.6;
+        constexpr auto gravitationalAcceleration = 9.81;
+        constexpr auto densityOfWater = 1025;
 
         // Call
         const auto maximumPeakStress = AsphaltRevetmentWaveImpactFunctions::MaximumPeakStress(
@@ -147,10 +147,10 @@ namespace DiKErnel::FunctionLibrary::Test
     TEST(AsphaltRevetmentWaveImpactFunctionsTest, StiffnessRelation_ValidInput_ExpectedValue)
     {
         // Setup
-        const auto computationalThickness = 0.16;
-        const auto equivalentElasticModulus = 18214;
-        const auto soilElasticity = 56.0;
-        const auto stiffnessRelationNu = 0.35;
+        constexpr auto computationalThickness = 0.16;
+        constexpr auto equivalentElasticModulus = 18214;
+        constexpr auto soilElasticity = 56.0;
+        constexpr auto stiffnessRelationNu = 0.35;
 
         // Call
         const auto stiffnessRelation = AsphaltRevetmentWaveImpactFunctions::StiffnessRelation(
@@ -166,10 +166,10 @@ namespace DiKErnel::FunctionLibrary::Test
     TEST(AsphaltRevetmentWaveImpactFunctionsTest, ComputationalThickness_ValidInput_ExpectedValue)
     {
         // Setup
-        const auto thicknessUpperLayer = 0.16;
-        const auto thicknessSubLayer = 0.23;
-        const auto elasticModulusUpperLayer = 18214;
-        const auto elasticModulusSubLayer = 19214;
+        constexpr auto thicknessUpperLayer = 0.16;
+        constexpr auto thicknessSubLayer = 0.23;
+        constexpr auto elasticModulusUpperLayer = 18214;
+        constexpr auto elasticModulusSubLayer = 19214;
 
         // Call
         const auto computationalThickness = AsphaltRevetmentWaveImpactFunctions::ComputationalThickness(

@@ -65,8 +65,8 @@ namespace DiKErnel::FunctionLibrary::Test
     TEST_F(RevetmentFunctionsTest, IncrementTime_ValidInput_ExpectedValue)
     {
         // Setup
-        const auto beginTime = 1200;
-        const auto endTime = 1500;
+        constexpr auto beginTime = 1200;
+        constexpr auto endTime = 1500;
 
         // Call
         const auto incrementTime = RevetmentFunctions::IncrementTime(beginTime, endTime);
@@ -78,9 +78,9 @@ namespace DiKErnel::FunctionLibrary::Test
     TEST_F(RevetmentFunctionsTest, AverageNumberOfWaves_ValidInput_ExpectedValue)
     {
         // Setup
-        const auto incrementTime = 900.0;
-        const auto wavePeriodTm10 = 1.2;
-        const auto averageNumberOfWavesCtm = 6.5;
+        constexpr auto incrementTime = 900.0;
+        constexpr auto wavePeriodTm10 = 1.2;
+        constexpr auto averageNumberOfWavesCtm = 6.5;
 
         // Call
         const auto averageNumberOfWaves = RevetmentFunctions::AverageNumberOfWaves(incrementTime, wavePeriodTm10, averageNumberOfWavesCtm);
@@ -92,8 +92,8 @@ namespace DiKErnel::FunctionLibrary::Test
     TEST_F(RevetmentFunctionsTest, Damage_ValidInput_ExpectedValue)
     {
         // Setup
-        const auto incrementDamage = 0.12;
-        const auto initialDamage = 0.23;
+        constexpr auto incrementDamage = 0.12;
+        constexpr auto initialDamage = 0.23;
 
         // Call
         const auto damage = RevetmentFunctions::Damage(incrementDamage, initialDamage);
@@ -222,9 +222,9 @@ namespace DiKErnel::FunctionLibrary::Test
     TEST_F(RevetmentFunctionsTest, FailureRevetment_DamageAndInitialDamageSmallerThanFailureNumber_ExpectedFalse)
     {
         // Setup
-        const auto initialDamage = 0.1;
-        const auto damage = 0.2;
-        const auto failureNumber = 0.3;
+        constexpr auto initialDamage = 0.1;
+        constexpr auto damage = 0.2;
+        constexpr auto failureNumber = 0.3;
 
         // Call
         const auto failureRevetment = RevetmentFunctions::FailureRevetment(damage, initialDamage, failureNumber);
@@ -236,9 +236,9 @@ namespace DiKErnel::FunctionLibrary::Test
     TEST_F(RevetmentFunctionsTest, FailureRevetment_InitialDamageEqualToFailureNumber_ExpectedFalse)
     {
         // Setup
-        const auto initialDamage = 0.3;
-        const auto damage = 0.4;
-        const auto failureNumber = 0.3;
+        constexpr auto initialDamage = 0.3;
+        constexpr auto damage = 0.4;
+        constexpr auto failureNumber = 0.3;
 
         // Call
         const auto failureRevetment = RevetmentFunctions::FailureRevetment(damage, initialDamage, failureNumber);
@@ -250,9 +250,9 @@ namespace DiKErnel::FunctionLibrary::Test
     TEST_F(RevetmentFunctionsTest, FailureRevetment_DamageEqualToFailureNumber_ExpectedTrue)
     {
         // Setup
-        const auto initialDamage = 0.2;
-        const auto damage = 0.3;
-        const auto failureNumber = 0.3;
+        constexpr auto initialDamage = 0.2;
+        constexpr auto damage = 0.3;
+        constexpr auto failureNumber = 0.3;
 
         // Call
         const auto failureRevetment = RevetmentFunctions::FailureRevetment(damage, initialDamage, failureNumber);
@@ -264,9 +264,9 @@ namespace DiKErnel::FunctionLibrary::Test
     TEST_F(RevetmentFunctionsTest, FailureRevetment_DamageLargerAndInitialDamageSmallerThanFailureNumber_ExpectedTrue)
     {
         // Setup
-        const auto initialDamage = 0.2;
-        const auto damage = 0.4;
-        const auto failureNumber = 0.3;
+        constexpr auto initialDamage = 0.2;
+        constexpr auto damage = 0.4;
+        constexpr auto failureNumber = 0.3;
 
         // Call
         const auto failureRevetment = RevetmentFunctions::FailureRevetment(damage, initialDamage, failureNumber);
@@ -278,9 +278,9 @@ namespace DiKErnel::FunctionLibrary::Test
     TEST_F(RevetmentFunctionsTest, FailureRevetment_DamageAndInitialDamageLargerThanFailureNumber_ExpectedFalse)
     {
         // Setup
-        const auto initialDamage = 0.4;
-        const auto damage = 0.5;
-        const auto failureNumber = 0.3;
+        constexpr auto initialDamage = 0.4;
+        constexpr auto damage = 0.5;
+        constexpr auto failureNumber = 0.3;
 
         // Call
         const auto failureRevetment = RevetmentFunctions::FailureRevetment(damage, initialDamage, failureNumber);
@@ -292,8 +292,8 @@ namespace DiKErnel::FunctionLibrary::Test
     TEST_F(RevetmentFunctionsTest, TimeOfFailure_ValidUnroundedInput_ExpectedValue)
     {
         // Setup
-        const auto durationInTimeStepFailure = 254.001;
-        const auto beginTime = 1568;
+        constexpr auto durationInTimeStepFailure = 254.001;
+        constexpr auto beginTime = 1568;
 
         // Call
         const auto timeOfFailure = RevetmentFunctions::TimeOfFailure(durationInTimeStepFailure, beginTime);
@@ -305,10 +305,10 @@ namespace DiKErnel::FunctionLibrary::Test
     TEST_F(RevetmentFunctionsTest, DurationInTimeStepFailure_ValidInput_ExpectedValue)
     {
         // Setup
-        const auto incrementTime = 550;
-        const auto incrementDamage = 0.234;
-        const auto failureNumber = 1.0;
-        const auto initialDamage = 0.836;
+        constexpr auto incrementTime = 550;
+        constexpr auto incrementDamage = 0.234;
+        constexpr auto failureNumber = 1.0;
+        constexpr auto initialDamage = 0.836;
 
         // Call
         const auto durationInTimeStepFailure = RevetmentFunctions::DurationInTimeStepFailure(
@@ -321,8 +321,8 @@ namespace DiKErnel::FunctionLibrary::Test
     TEST_F(RevetmentFunctionsTest, TimeOfFailure_ValidRoundedInput_ExpectedValue)
     {
         // Setup
-        const auto durationInTimeStepFailure = 254;
-        const auto beginTime = 1568;
+        constexpr auto durationInTimeStepFailure = 254;
+        constexpr auto beginTime = 1568;
 
         // Call
         const auto timeOfFailure = RevetmentFunctions::TimeOfFailure(durationInTimeStepFailure, beginTime);

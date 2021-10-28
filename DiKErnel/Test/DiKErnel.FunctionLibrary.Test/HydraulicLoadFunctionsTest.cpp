@@ -27,7 +27,7 @@ namespace DiKErnel::FunctionLibrary::Test
     TEST(HydraulicLoadFunctionsTest, SlopeAngle_ValidInput_ExpectedValue)
     {
         // Setup
-        const auto outerSlope = 0.25;
+        constexpr auto outerSlope = 0.25;
 
         // Call
         const auto slopeAngle = HydraulicLoadFunctions::SlopeAngle(outerSlope);
@@ -39,9 +39,9 @@ namespace DiKErnel::FunctionLibrary::Test
     TEST(HydraulicLoadFunctionsTest, LoadingRevetment_LowerLimitAndUpperLimitSmallerThanZ_ExpectedFalse)
     {
         // Setup
-        const auto lowerLimitLoadingRevetment = 1.3;
-        const auto upperLimitLoadingRevetment = 1.4;
-        const auto z = 1.5;
+        constexpr auto lowerLimitLoadingRevetment = 1.3;
+        constexpr auto upperLimitLoadingRevetment = 1.4;
+        constexpr auto z = 1.5;
 
         // Call
         const auto loadingRevetment = HydraulicLoadFunctions::LoadingRevetment(lowerLimitLoadingRevetment, upperLimitLoadingRevetment, z);
@@ -53,9 +53,9 @@ namespace DiKErnel::FunctionLibrary::Test
     TEST(HydraulicLoadFunctionsTest, LoadingRevetment_LowerLimitSmallerThanAndUpperLimitEqualToZ_ExpectedTrue)
     {
         // Setup
-        const auto lowerLimitLoadingRevetment = 1.4;
-        const auto upperLimitLoadingRevetment = 1.5;
-        const auto z = 1.5;
+        constexpr auto lowerLimitLoadingRevetment = 1.4;
+        constexpr auto upperLimitLoadingRevetment = 1.5;
+        constexpr auto z = 1.5;
 
         // Call
         const auto loadingRevetment = HydraulicLoadFunctions::LoadingRevetment(lowerLimitLoadingRevetment, upperLimitLoadingRevetment, z);
@@ -67,9 +67,9 @@ namespace DiKErnel::FunctionLibrary::Test
     TEST(HydraulicLoadFunctionsTest, LoadingRevetment_LowerLimitSmallerAndUpperLimitLargerThanZ_ExpectedTrue)
     {
         // Setup
-        const auto lowerLimitLoadingRevetment = 1.4;
-        const auto upperLimitLoadingRevetment = 1.6;
-        const auto z = 1.5;
+        constexpr auto lowerLimitLoadingRevetment = 1.4;
+        constexpr auto upperLimitLoadingRevetment = 1.6;
+        constexpr auto z = 1.5;
 
         // Call
         const auto loadingRevetment = HydraulicLoadFunctions::LoadingRevetment(lowerLimitLoadingRevetment, upperLimitLoadingRevetment, z);
@@ -81,9 +81,9 @@ namespace DiKErnel::FunctionLibrary::Test
     TEST(HydraulicLoadFunctionsTest, LoadingRevetment_LowerLimitEqualToAndUpperLimitLargerThanZ_ExpectedTrue)
     {
         // Setup
-        const auto lowerLimitLoadingRevetment = 1.5;
-        const auto upperLimitLoadingRevetment = 1.6;
-        const auto z = 1.5;
+        constexpr auto lowerLimitLoadingRevetment = 1.5;
+        constexpr auto upperLimitLoadingRevetment = 1.6;
+        constexpr auto z = 1.5;
 
         // Call
         const auto loadingRevetment = HydraulicLoadFunctions::LoadingRevetment(lowerLimitLoadingRevetment, upperLimitLoadingRevetment, z);
@@ -95,9 +95,9 @@ namespace DiKErnel::FunctionLibrary::Test
     TEST(HydraulicLoadFunctionsTest, LoadingRevetment_LowerLimitAndUpperLimitLargerThanZ_ExpectedFalse)
     {
         // Setup
-        const auto lowerLimitLoadingRevetment = 1.6;
-        const auto upperLimitLoadingRevetment = 1.7;
-        const auto z = 1.5;
+        constexpr auto lowerLimitLoadingRevetment = 1.6;
+        constexpr auto upperLimitLoadingRevetment = 1.7;
+        constexpr auto z = 1.5;
 
         // Call
         const auto loadingRevetment = HydraulicLoadFunctions::LoadingRevetment(lowerLimitLoadingRevetment, upperLimitLoadingRevetment, z);
@@ -109,12 +109,13 @@ namespace DiKErnel::FunctionLibrary::Test
     TEST(HydraulicLoadFunctionsTest, WaveSteepnessDeepWater_ValidInput_ExpectedValue)
     {
         // Setup
-        const auto waveHeightHm0 = 1.6;
-        const auto wavePeriodTm10 = 5.2;
-        const auto gravitationalAcceleration = 9.81;
+        constexpr auto waveHeightHm0 = 1.6;
+        constexpr auto wavePeriodTm10 = 5.2;
+        constexpr auto gravitationalAcceleration = 9.81;
 
         // Call
-        const auto waveSteepnessDeepWater = HydraulicLoadFunctions::WaveSteepnessDeepWater(waveHeightHm0, wavePeriodTm10, gravitationalAcceleration);
+        const auto waveSteepnessDeepWater = HydraulicLoadFunctions::WaveSteepnessDeepWater(waveHeightHm0, wavePeriodTm10,
+                                                                                           gravitationalAcceleration);
 
         // Assert
         ASSERT_DOUBLE_EQ(0.037898686325266363, waveSteepnessDeepWater);
@@ -123,14 +124,14 @@ namespace DiKErnel::FunctionLibrary::Test
     TEST(HydraulicLoadFunctionsTest, SurfSimilarityParameter_ValidInput_ExpectedValue)
     {
         // Setup
-        const auto outerSlope = 0.25;
-        const auto waveHeightHm0 = 1.6;
-        const auto wavePeriodTm10 = 5.2;
-        const auto gravitationalAcceleration = 9.81;
+        constexpr auto outerSlope = 0.25;
+        constexpr auto waveHeightHm0 = 1.6;
+        constexpr auto wavePeriodTm10 = 5.2;
+        constexpr auto gravitationalAcceleration = 9.81;
 
         // Call
         const auto surfSimilarityParameter = HydraulicLoadFunctions::SurfSimilarityParameter(outerSlope, waveHeightHm0, wavePeriodTm10,
-                                                                                    gravitationalAcceleration);
+                                                                                             gravitationalAcceleration);
 
         // Assert
         ASSERT_DOUBLE_EQ(1.2841859985089348, surfSimilarityParameter);
@@ -139,8 +140,8 @@ namespace DiKErnel::FunctionLibrary::Test
     TEST(HydraulicLoadFunctionsTest, VerticalDistanceWaterLevelElevation_ValidInput_ExpectedValue)
     {
         // Setup
-        const auto z = 1.12;
-        const auto waterLevel = 0.03;
+        constexpr auto z = 1.12;
+        constexpr auto waterLevel = 0.03;
 
         // Call
         const auto verticalDistanceWaterLevelElevation = HydraulicLoadFunctions::VerticalDistanceWaterLevelElevation(z, waterLevel);
