@@ -160,11 +160,24 @@ namespace DiKErnel::Integration
     {
         LocationDependentInput::InitializeDerivedLocationDependentInput(profileData);
 
+        double subLayerThickness;
+        double subLayerElasticModulus;
+
+        if (_subLayer != nullptr)
+        {
+            subLayerThickness = _subLayer->GetThickness();
+            subLayerElasticModulus = _subLayer->GetElasticModulus();
+        }
+        else
+        {
+            subLayerThickness = 0;
+            subLayerElasticModulus = _upperLayer->GetElasticModulus();
+        }
+
         _logFailureTension = AsphaltRevetmentWaveImpactFunctions::LogFailureTension(_failureTension);
-        _computationalThickness = AsphaltRevetmentWaveImpactFunctions::ComputationalThickness(_upperLayer->GetThickness(),
-                                                                                              _subLayer->GetThickness(),
+        _computationalThickness = AsphaltRevetmentWaveImpactFunctions::ComputationalThickness(_upperLayer->GetThickness(), subLayerThickness,
                                                                                               _upperLayer->GetElasticModulus(),
-                                                                                              _subLayer->GetElasticModulus());
+                                                                                              subLayerElasticModulus);
         _stiffnessRelation = AsphaltRevetmentWaveImpactFunctions::StiffnessRelation(_computationalThickness, _subLayer->GetElasticModulus(),
                                                                                     _soilElasticity, _stiffnessRelationNu);
     }
