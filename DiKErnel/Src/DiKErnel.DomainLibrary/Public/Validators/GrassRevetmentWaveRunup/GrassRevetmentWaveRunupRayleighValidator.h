@@ -28,7 +28,7 @@ namespace DiKErnel::DomainLibrary
 {
     /*!
      * \brief Class that holds all grass revetment wave run-up specific validation routines for
-     *        the rayleigh protocol.
+     *        the Rayleigh protocol.
      */
     class GrassRevetmentWaveRunupRayleighValidator
     {
@@ -38,8 +38,8 @@ namespace DiKErnel::DomainLibrary
              * \param fixedNumberOfWaves
              *        The fixed number of waves.
              *        Unit = [-]
-             * \return A validation issue when the fixed number of waves is not valid;
-             *         nullptr otherwise.
+             * \return A validation issue when the fixed number of waves is not valid; nullptr
+             *         otherwise.
              */
             static std::unique_ptr<ValidationIssue> FixedNumberOfWaves(
                 int fixedNumberOfWaves);

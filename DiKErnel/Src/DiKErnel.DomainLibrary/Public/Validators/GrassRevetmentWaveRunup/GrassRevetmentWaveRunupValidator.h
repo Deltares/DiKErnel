@@ -48,8 +48,8 @@ namespace DiKErnel::DomainLibrary
              * \param representativeWaveRunup2PGammab
              *        The 2P Gammab coefficient.
              *        Unit = [-]
-             * \return A validation issue when the 2P Gammab coefficient is not valid;
-             *         nullptr otherwise.
+             * \return A validation issue when the 2P Gammab coefficient is not valid; nullptr
+             *         otherwise.
              */
             static std::unique_ptr<ValidationIssue> RepresentativeWaveRunup2PGammab(
                 double representativeWaveRunup2PGammab);
@@ -59,8 +59,8 @@ namespace DiKErnel::DomainLibrary
              * \param representativeWaveRunup2PGammaf
              *        The 2P Gammaf coefficient.
              *        Unit = [-]
-             * \return A validation issue when the 2P Gammaf coefficient is not valid;
-             *         nullptr otherwise.
+             * \return A validation issue when the 2P Gammaf coefficient is not valid; nullptr
+             *         otherwise.
              */
             static std::unique_ptr<ValidationIssue> RepresentativeWaveRunup2PGammaf(
                 double representativeWaveRunup2PGammaf);
@@ -70,8 +70,8 @@ namespace DiKErnel::DomainLibrary
              * \param criticalFrontVelocity
              *        The critical front velocity.
              *        Unit = [m/s]
-             * \return A validation issue when the critical front velocity is not valid;
-             *         nullptr otherwise.
+             * \return A validation issue when the critical front velocity is not valid; nullptr
+             *         otherwise.
              */
             static std::unique_ptr<ValidationIssue> CriticalFrontVelocity(
                 double criticalFrontVelocity);
@@ -81,8 +81,8 @@ namespace DiKErnel::DomainLibrary
              * \param increasedLoadTransitionAlphaM
              *        The alpha M coefficient.
              *        Unit = [-]
-             * \return A validation issue when the alpha M coefficient is not valid;
-             *         nullptr otherwise.
+             * \return A validation issue when the alpha M coefficient is not valid; nullptr
+             *         otherwise.
              */
             static std::unique_ptr<ValidationIssue> IncreasedLoadTransitionAlphaM(
                 double increasedLoadTransitionAlphaM);
@@ -92,8 +92,8 @@ namespace DiKErnel::DomainLibrary
              * \param reducedStrengthTransitionAlphaS
              *        The alpha S coefficient.
              *        Unit = [-]
-             * \return A validation issue when the alpha S coefficient is not valid;
-             *         nullptr otherwise.
+             * \return A validation issue when the alpha S coefficient is not valid; nullptr
+             *         otherwise.
              */
             static std::unique_ptr<ValidationIssue> ReducedStrengthTransitionAlphaS(
                 double reducedStrengthTransitionAlphaS);
