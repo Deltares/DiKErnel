@@ -60,6 +60,9 @@ string GetEventTypeString(
 
 #pragma endregion
 
+void CloseApplication(
+    const string& logOutputPath);
+
 int main()
 {
     try
@@ -88,8 +91,8 @@ int main()
         const auto inputComposerResult = JsonInputComposer::GetInputDataFromJson(jsonFilePath);
 
         // Write to log file
-        const auto logOutputPath = outputDirectory / (outputFileNameBase + ".txt");
-        WriteToLogFile(logOutputPath.u8string(), inputComposerResult->GetEvents());
+        const auto logOutputPath = (outputDirectory / (outputFileNameBase + ".txt")).u8string();
+        WriteToLogFile(logOutputPath, inputComposerResult->GetEvents());
 
         // Handle error during read operation
         if (!inputComposerResult->GetSuccessful())
@@ -98,11 +101,8 @@ int main()
             cout << "| Reading data failed |" << endl;
             cout << "|=====================|" << endl;
             cout << "-> An error occurred. See the log file for details" << endl;
-            cout << "-> The log file is written to: " << logOutputPath << endl;
 
-            cout << endl << "Press 'Enter' to exit the application.";
-            cin.get();
-
+            CloseApplication(logOutputPath);
             return -1;
         }
 
@@ -123,7 +123,7 @@ int main()
         const auto validationResult = Validator::Validate(calculationInput);
 
         // Write to log file
-        WriteToLogFile(logOutputPath.u8string(), validationResult->GetEvents());
+        WriteToLogFile(logOutputPath, validationResult->GetEvents());
 
         // Handle error during validation
         if (!validationResult->GetSuccessful())
@@ -132,11 +132,8 @@ int main()
             cout << "| Validation failed |" << endl;
             cout << "|===================|" << endl;
             cout << "-> An error occurred. See the log file for details" << endl;
-            cout << "-> The log file is written to: " << logOutputPath << endl;
 
-            cout << endl << "Press 'Enter' to exit the application.";
-            cin.get();
-
+            CloseApplication(logOutputPath);
             return -1;
         }
 
@@ -144,7 +141,7 @@ int main()
         cout << "| Validation successful |" << endl;
         cout << "|=======================|" << endl;
 
-        if(*validationResult->GetData() == ValidationResultType::Successful)
+        if (*validationResult->GetData() == ValidationResultType::Successful)
         {
             cout << "-> Data is valid" << endl << endl;
         }
@@ -152,7 +149,6 @@ int main()
         {
             cout << "-> Data is invalid" << endl;
             cout << "-> See the log file for details" << endl;
-            cout << "-> The log file is written to: " << logOutputPath << endl << endl;
         }
 
         #pragma endregion
@@ -199,7 +195,7 @@ int main()
 
         // Write to log file
         const auto calculatorResult = calculator.GetResult();
-        WriteToLogFile(logOutputPath.u8string(), calculatorResult->GetEvents());
+        WriteToLogFile(logOutputPath, calculatorResult->GetEvents());
 
         #pragma endregion
 
@@ -207,14 +203,11 @@ int main()
 
         if (calculator.GetCalculationState() == CalculationState::Cancelled)
         {
-            cout << endl;
             cout << "|=======================|" << endl;
             cout << "| Calculation cancelled |" << endl;
             cout << "|=======================|" << endl;
 
-            cout << endl << "Press 'Enter' to exit the application.";
-            cin.get();
-
+            CloseApplication(logOutputPath);
             return -1;
         }
 
@@ -224,16 +217,12 @@ int main()
 
         if (calculator.GetCalculationState() == CalculationState::FinishedInError)
         {
-            cout << endl;
             cout << "|====================|" << endl;
             cout << "| Calculation failed |" << endl;
             cout << "|====================|" << endl;
             cout << "-> An error occurred. See the log file for details" << endl;
-            cout << "-> The log file is written to: " << logOutputPath << endl;
 
-            cout << endl << "Press 'Enter' to exit the application.";
-            cin.get();
-
+            CloseApplication(logOutputPath);
             return -1;
         }
 
@@ -250,17 +239,17 @@ int main()
                                                                                            ConvertProcessType(inputData->GetProcessType()));
 
         // Write to log file
-        WriteToLogFile(logOutputPath.u8string(), outputComposerResult->GetEvents());
+        WriteToLogFile(logOutputPath, outputComposerResult->GetEvents());
 
         // Handle error during write operation
         if (!outputComposerResult->GetSuccessful())
         {
-            cout << endl;
             cout << "|================|" << endl;
             cout << "| Writing failed |" << endl;
             cout << "|================|" << endl;
             cout << "-> An error occurred. See the log file for details" << endl;
-            cout << "-> The log file is written to: " << logOutputPath << endl;
+
+            CloseApplication(logOutputPath);
             return -1;
         }
 
@@ -268,7 +257,6 @@ int main()
 
         #pragma region Writing final user feedback
 
-        cout << endl;
         cout << "|========================|" << endl;
         cout << "| Calculation successful |" << endl;
         cout << "|========================|" << endl;
@@ -277,13 +265,13 @@ int main()
         // End stopwatch and write the elapsed time since the start of the calculation
         const auto end = chrono::high_resolution_clock::now();
         const chrono::duration<double> elapsed = end - start;
-        cout << "=> Time elapsed: " << elapsed.count() << endl << endl;
+        cout << "-> Time elapsed: " << elapsed.count() << endl << endl;
 
         // Notify calculation thread being finished
         calculationFinished = true;
 
         // Write closing message
-        cout << endl << "Press 'Enter' to exit the application.";
+        CloseApplication(logOutputPath);
 
         // Wait for actual completion of the user input thread
         inputThread.join();
@@ -369,4 +357,12 @@ string GetEventTypeString(
             return "Error";
     }
     return "";
+}
+
+void CloseApplication(
+    const string& logOutputPath)
+{
+    cout << "-> The log file is written to: " << logOutputPath << endl;
+    cout << endl << "Press 'Enter' to exit the application.";
+    cin.get();
 }
