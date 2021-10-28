@@ -21,7 +21,6 @@
 #include "AsphaltRevetmentWaveImpactFunctions.h"
 
 #include <cmath>
-#include <tuple>
 #include <utility>
 
 namespace DiKErnel::FunctionLibrary
@@ -35,9 +34,9 @@ namespace DiKErnel::FunctionLibrary
         const double stiffnessRelation,
         const double computationalThickness,
         const double outerSlope,
-        const vector<tuple<double, double>>& widthFactors,
-        const vector<tuple<double, double>>& depthFactors,
-        const vector<tuple<double, double>>& impactFactors,
+        const vector<pair<double, double>>& widthFactors,
+        const vector<pair<double, double>>& depthFactors,
+        const vector<pair<double, double>>& impactFactors,
         const double z,
         const double waterLevel,
         const double waveHeightHm0,
@@ -105,8 +104,8 @@ namespace DiKErnel::FunctionLibrary
         const double relativeWidthWaveImpact,
         const double outerSlope,
         const double sinA,
-        const vector<tuple<double, double>>& depthFactors,
-        const vector<tuple<double, double>>& impactFactors,
+        const vector<pair<double, double>>& depthFactors,
+        const vector<pair<double, double>>& impactFactors,
         const double z,
         const double waterLevel,
         const double waveHeightHm0,
@@ -134,7 +133,7 @@ namespace DiKErnel::FunctionLibrary
         const double averageNumberOfWaves,
         const double bendingStress,
         const double outerSlope,
-        const vector<tuple<double, double>>& impactFactors,
+        const vector<pair<double, double>>& impactFactors,
         const double fatigueAlpha,
         const double fatigueBeta,
         const double impactNumberC)
