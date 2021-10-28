@@ -92,9 +92,9 @@ namespace DiKErnel::Integration
         return *_upperLayer;
     }
 
-    AsphaltRevetmentWaveImpactLayer& AsphaltRevetmentWaveImpactLocationDependentInput::GetSubLayer() const
+    AsphaltRevetmentWaveImpactLayer* AsphaltRevetmentWaveImpactLocationDependentInput::GetSubLayer() const
     {
-        return *_subLayer;
+        return _subLayer.get();
     }
 
     double AsphaltRevetmentWaveImpactLocationDependentInput::GetAverageNumberOfWavesCtm() const
@@ -166,24 +166,23 @@ namespace DiKErnel::Integration
         LocationDependentInput::InitializeDerivedLocationDependentInput(profileData);
 
         double subLayerThickness;
-        double subLayerElasticModulus;
 
         if (_subLayer != nullptr)
         {
             subLayerThickness = _subLayer->GetThickness();
-            subLayerElasticModulus = _subLayer->GetElasticModulus();
+            _subLayerElasticModulus = _subLayer->GetElasticModulus();
         }
         else
         {
             subLayerThickness = 0;
-            subLayerElasticModulus = _upperLayer->GetElasticModulus();
+            _subLayerElasticModulus = _upperLayer->GetElasticModulus();
         }
 
         _logFailureTension = AsphaltRevetmentWaveImpactFunctions::LogFailureTension(_failureTension);
         _computationalThickness = AsphaltRevetmentWaveImpactFunctions::ComputationalThickness(_upperLayer->GetThickness(), subLayerThickness,
                                                                                               _upperLayer->GetElasticModulus(),
-                                                                                              subLayerElasticModulus);
-        _stiffnessRelation = AsphaltRevetmentWaveImpactFunctions::StiffnessRelation(_computationalThickness, _subLayer->GetElasticModulus(),
+                                                                                              _subLayerElasticModulus);
+        _stiffnessRelation = AsphaltRevetmentWaveImpactFunctions::StiffnessRelation(_computationalThickness, _subLayerElasticModulus,
                                                                                     _soilElasticity, _stiffnessRelationNu);
     }
 
@@ -222,6 +221,6 @@ namespace DiKErnel::Integration
 
         return make_unique<AsphaltRevetmentWaveImpactTimeDependentOutput>(incrementDamage, damage, move(timeOfFailure), _logFailureTension,
                                                                           maximumPeakStress, _stiffnessRelation, _computationalThickness,
-                                                                          _subLayer->GetElasticModulus());
+                                                                          _subLayerElasticModulus);
     }
 }

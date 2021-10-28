@@ -88,9 +88,13 @@ namespace DiKErnel::Integration
             constructionProperties.GetThicknessUpperLayer(),
             elasticModulusUpperLayer);
 
-        auto subLayer = make_unique<AsphaltRevetmentWaveImpactLayer>(
-            GetValue(constructionProperties.GetThicknessSubLayer(), defaults->GetSubLayerThickness()),
-            GetValue(constructionProperties.GetElasticModulusSubLayer(), elasticModulusUpperLayer));
+        auto thicknessSubLayer = constructionProperties.GetThicknessSubLayer();
+        auto elasticModulusSubLayer = constructionProperties.GetElasticModulusSubLayer();
+        unique_ptr<AsphaltRevetmentWaveImpactLayer> subLayer = nullptr;
+        if (thicknessSubLayer != nullptr && elasticModulusSubLayer != nullptr)
+        {
+            subLayer = make_unique<AsphaltRevetmentWaveImpactLayer>(*thicknessSubLayer, *elasticModulusSubLayer);
+        }
 
         auto fatigue = make_unique<AsphaltRevetmentWaveImpactFatigue>(
             GetValue(constructionProperties.GetFatigueAlpha(), defaults->GetFatigueAlpha()),

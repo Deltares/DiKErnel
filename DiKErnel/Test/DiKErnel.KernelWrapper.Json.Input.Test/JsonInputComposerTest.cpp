@@ -338,7 +338,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
         AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertLayer(
             0.16, 18214, asphaltRevetmentWaveImpactLocationDependentInputItem1->GetUpperLayer());
         AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertLayer(
-            0.2, 15000, asphaltRevetmentWaveImpactLocationDependentInputItem1->GetSubLayer());
+            0.2, 15000, *asphaltRevetmentWaveImpactLocationDependentInputItem1->GetSubLayer());
         AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertFatigue(
             0.723, 7.2, asphaltRevetmentWaveImpactLocationDependentInputItem1->GetFatigue());
 
@@ -372,8 +372,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
             19, 0.233, 1.56, 1.25, 56, 1, 1, 0.35, *asphaltRevetmentWaveImpactLocationDependentInputItem2);
         AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertLayer(
             0.16, 18214, asphaltRevetmentWaveImpactLocationDependentInputItem2->GetUpperLayer());
-        AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertLayer(
-            0, 18214, asphaltRevetmentWaveImpactLocationDependentInputItem2->GetSubLayer());
+        ASSERT_EQ(nullptr, asphaltRevetmentWaveImpactLocationDependentInputItem2->GetSubLayer());
         AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertFatigue(
             0.42, 4.76, asphaltRevetmentWaveImpactLocationDependentInputItem2->GetFatigue());
 

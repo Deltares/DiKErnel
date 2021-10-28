@@ -60,7 +60,7 @@ namespace DiKErnel::Integration
 
             AsphaltRevetmentWaveImpactLayer& GetUpperLayer() const;
 
-            AsphaltRevetmentWaveImpactLayer& GetSubLayer() const;
+            AsphaltRevetmentWaveImpactLayer* GetSubLayer() const;
 
             double GetAverageNumberOfWavesCtm() const;
 
@@ -105,5 +105,6 @@ namespace DiKErnel::Integration
             double _logFailureTension = std::numeric_limits<double>::infinity();
             double _computationalThickness = std::numeric_limits<double>::infinity();
             double _stiffnessRelation = std::numeric_limits<double>::infinity();
+            double _subLayerElasticModulus = std::numeric_limits<double>::infinity();
     };
 }

@@ -275,7 +275,7 @@ namespace DiKErnel::Integration::Test
                                                                                   locationDependentInput->GetUpperLayer());
 
         AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertLayer(thicknessSubLayer, elasticModulusSubLayer,
-                                                                                  locationDependentInput->GetSubLayer());
+                                                                                  *locationDependentInput->GetSubLayer());
 
         AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertFatigue(fatigueAlpha, fatigueBeta,
                                                                                     locationDependentInput->GetFatigue());
@@ -324,8 +324,7 @@ namespace DiKErnel::Integration::Test
         AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertLayer(thicknessUpperLayer, elasticModulusUpperLayer,
                                                                                   locationDependentInput->GetUpperLayer());
 
-        AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertLayer(0, elasticModulusUpperLayer,
-                                                                                  locationDependentInput->GetSubLayer());
+        ASSERT_EQ(nullptr, locationDependentInput->GetSubLayer());
 
         AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertFatigue(0.42, 4.76,
                                                                                     locationDependentInput->GetFatigue());
