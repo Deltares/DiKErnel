@@ -33,18 +33,18 @@ namespace DiKErnel::Integration
     bool ValidationHelper::RegisterValidationIssues(
         const vector<unique_ptr<ValidationIssue>>& validationIssues)
     {
-        auto validationSuccessful = true;
+        auto overallValidationSuccessful = true;
 
         for (const auto& validationIssue : validationIssues)
         {
-            const auto validationForIssueSuccessful = validationIssue != nullptr
-                                                          ? RegisterValidationIssue(*validationIssue)
-                                                          : true;
+            const auto individualValidationSuccessful = validationIssue != nullptr
+                                                            ? RegisterValidationIssue(*validationIssue)
+                                                            : true;
 
-            validationSuccessful = validationForIssueSuccessful && validationSuccessful;
+            overallValidationSuccessful = individualValidationSuccessful && overallValidationSuccessful;
         }
 
-        return validationSuccessful;
+        return overallValidationSuccessful;
     }
 
     bool ValidationHelper::RegisterValidationIssue(
