@@ -39,17 +39,18 @@ namespace DiKErnel::Core::Test
     {
         // Setup
         NiceMock<IProfileDataMock> profileData;
-        auto locationDependentInput = make_unique<NiceMock<ILocationDependentInputMock>>();
-        ON_CALL(*locationDependentInput, Validate).WillByDefault(Return(true));
+
+        auto locationDependentInput = NiceMock<ILocationDependentInputMock>();
+        ON_CALL(locationDependentInput, Validate).WillByDefault(Return(true));
 
         auto locationDependentInputItemReferences = vector<reference_wrapper<ILocationDependentInput>>();
-        locationDependentInputItemReferences.emplace_back(*locationDependentInput);
+        locationDependentInputItemReferences.emplace_back(locationDependentInput);
 
-        auto timeDependentInput = make_unique<NiceMock<ITimeDependentInputMock>>();
-        ON_CALL(*timeDependentInput, Validate).WillByDefault(Return(true));
+        auto timeDependentInput = NiceMock<ITimeDependentInputMock>();
+        ON_CALL(timeDependentInput, Validate).WillByDefault(Return(true));
 
         auto timeDependentInputItemReferences = vector<reference_wrapper<ITimeDependentInput>>();
-        timeDependentInputItemReferences.emplace_back(*timeDependentInput);
+        timeDependentInputItemReferences.emplace_back(timeDependentInput);
 
         const NiceMock<ICalculationInputMock> calculationInput;
         ON_CALL(calculationInput, Validate).WillByDefault(Return(true));
@@ -70,17 +71,18 @@ namespace DiKErnel::Core::Test
     {
         // Setup
         NiceMock<IProfileDataMock> profileData;
-        auto locationDependentInput = make_unique<NiceMock<ILocationDependentInputMock>>();
-        ON_CALL(*locationDependentInput, Validate).WillByDefault(Return(true));
+
+        auto locationDependentInput = NiceMock<ILocationDependentInputMock>();
+        ON_CALL(locationDependentInput, Validate).WillByDefault(Return(true));
 
         auto locationDependentInputItemReferences = vector<reference_wrapper<ILocationDependentInput>>();
-        locationDependentInputItemReferences.emplace_back(*locationDependentInput);
+        locationDependentInputItemReferences.emplace_back(locationDependentInput);
 
-        auto timeDependentInput = make_unique<NiceMock<ITimeDependentInputMock>>();
-        ON_CALL(*timeDependentInput, Validate).WillByDefault(Return(true));
+        auto timeDependentInput = NiceMock<ITimeDependentInputMock>();
+        ON_CALL(timeDependentInput, Validate).WillByDefault(Return(true));
 
         auto timeDependentInputItemReferences = vector<reference_wrapper<ITimeDependentInput>>();
-        timeDependentInputItemReferences.emplace_back(*timeDependentInput);
+        timeDependentInputItemReferences.emplace_back(timeDependentInput);
 
         const NiceMock<ICalculationInputMock> calculationInput;
         ON_CALL(calculationInput, Validate).WillByDefault(Return(false));
@@ -101,17 +103,18 @@ namespace DiKErnel::Core::Test
     {
         // Setup
         NiceMock<IProfileDataMock> profileData;
-        auto locationDependentInput = make_unique<NiceMock<ILocationDependentInputMock>>();
-        ON_CALL(*locationDependentInput, Validate).WillByDefault(Return(false));
+
+        auto locationDependentInput = NiceMock<ILocationDependentInputMock>();
+        ON_CALL(locationDependentInput, Validate).WillByDefault(Return(false));
 
         auto locationDependentInputItemReferences = vector<reference_wrapper<ILocationDependentInput>>();
-        locationDependentInputItemReferences.emplace_back(*locationDependentInput);
+        locationDependentInputItemReferences.emplace_back(locationDependentInput);
 
-        auto timeDependentInput = make_unique<NiceMock<ITimeDependentInputMock>>();
-        ON_CALL(*timeDependentInput, Validate).WillByDefault(Return(true));
+        auto timeDependentInput = NiceMock<ITimeDependentInputMock>();
+        ON_CALL(timeDependentInput, Validate).WillByDefault(Return(true));
 
         auto timeDependentInputItemReferences = vector<reference_wrapper<ITimeDependentInput>>();
-        timeDependentInputItemReferences.emplace_back(*timeDependentInput);
+        timeDependentInputItemReferences.emplace_back(timeDependentInput);
 
         const NiceMock<ICalculationInputMock> calculationInput;
         ON_CALL(calculationInput, Validate).WillByDefault(Return(true));
@@ -132,17 +135,18 @@ namespace DiKErnel::Core::Test
     {
         // Setup
         NiceMock<IProfileDataMock> profileData;
-        auto locationDependentInput = make_unique<NiceMock<ILocationDependentInputMock>>();
-        ON_CALL(*locationDependentInput, Validate).WillByDefault(Return(true));
+
+        auto locationDependentInput = NiceMock<ILocationDependentInputMock>();
+        ON_CALL(locationDependentInput, Validate).WillByDefault(Return(true));
 
         auto locationDependentInputItemReferences = vector<reference_wrapper<ILocationDependentInput>>();
-        locationDependentInputItemReferences.emplace_back(*locationDependentInput);
+        locationDependentInputItemReferences.emplace_back(locationDependentInput);
 
-        auto timeDependentInput = make_unique<NiceMock<ITimeDependentInputMock>>();
-        ON_CALL(*timeDependentInput, Validate).WillByDefault(Return(false));
+        auto timeDependentInput = NiceMock<ITimeDependentInputMock>();
+        ON_CALL(timeDependentInput, Validate).WillByDefault(Return(false));
 
         auto timeDependentInputItemReferences = vector<reference_wrapper<ITimeDependentInput>>();
-        timeDependentInputItemReferences.emplace_back(*timeDependentInput);
+        timeDependentInputItemReferences.emplace_back(timeDependentInput);
 
         const NiceMock<ICalculationInputMock> calculationInput;
         ON_CALL(calculationInput, Validate).WillByDefault(Return(true));
@@ -165,17 +169,18 @@ namespace DiKErnel::Core::Test
         const string errorMessage = "Error in validation!";
 
         NiceMock<IProfileDataMock> profileData;
-        auto locationDependentInput = make_unique<NiceMock<ILocationDependentInputMock>>();
-        ON_CALL(*locationDependentInput, Validate).WillByDefault(Throw(runtime_error(errorMessage)));
+
+        auto locationDependentInput = NiceMock<ILocationDependentInputMock>();
+        ON_CALL(locationDependentInput, Validate).WillByDefault(Throw(runtime_error(errorMessage)));
 
         auto locationDependentInputItemReferences = vector<reference_wrapper<ILocationDependentInput>>();
-        locationDependentInputItemReferences.emplace_back(*locationDependentInput);
+        locationDependentInputItemReferences.emplace_back(locationDependentInput);
 
-        auto timeDependentInput = make_unique<NiceMock<ITimeDependentInputMock>>();
-        ON_CALL(*timeDependentInput, Validate).WillByDefault(Return(false));
+        auto timeDependentInput = NiceMock<ITimeDependentInputMock>();
+        ON_CALL(timeDependentInput, Validate).WillByDefault(Return(false));
 
         auto timeDependentInputItemReferences = vector<reference_wrapper<ITimeDependentInput>>();
-        timeDependentInputItemReferences.emplace_back(*timeDependentInput);
+        timeDependentInputItemReferences.emplace_back(timeDependentInput);
 
         const NiceMock<ICalculationInputMock> calculationInput;
         ON_CALL(calculationInput, Validate).WillByDefault(Return(true));
