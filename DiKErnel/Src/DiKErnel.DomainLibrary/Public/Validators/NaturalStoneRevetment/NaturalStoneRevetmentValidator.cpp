@@ -27,12 +27,12 @@ namespace DiKErnel::DomainLibrary
     unique_ptr<ValidationIssue> NaturalStoneRevetmentValidator::RelativeDensity(
         const double relativeDensity)
     {
-        if(relativeDensity <= 0 || relativeDensity >= 10)
+        if (relativeDensity <= 0 || relativeDensity >= 10)
         {
             return make_unique<ValidationIssue>(ValidationIssueType::Error, "RelativeDensity must be in range {0, 10}.");
         }
 
-        if(relativeDensity < 0.1 || relativeDensity > 5)
+        if (relativeDensity < 0.1 || relativeDensity > 5)
         {
             return make_unique<ValidationIssue>(ValidationIssueType::Warning, "RelativeDensity should be in range [0.1, 5].");
         }
@@ -43,12 +43,12 @@ namespace DiKErnel::DomainLibrary
     unique_ptr<ValidationIssue> NaturalStoneRevetmentValidator::ThicknessTopLayer(
         const double thicknessTopLayer)
     {
-        if(thicknessTopLayer <= 0 || thicknessTopLayer >= 1)
+        if (thicknessTopLayer <= 0 || thicknessTopLayer >= 1)
         {
             return make_unique<ValidationIssue>(ValidationIssueType::Error, "ThicknessTopLayer must be in range {0, 1}.");
         }
 
-        if(thicknessTopLayer < 0.04 || thicknessTopLayer > 0.6)
+        if (thicknessTopLayer < 0.04 || thicknessTopLayer > 0.6)
         {
             return make_unique<ValidationIssue>(ValidationIssueType::Warning, "ThicknessTopLayer should be in range [0.04, 0.6].");
         }
@@ -59,12 +59,12 @@ namespace DiKErnel::DomainLibrary
     unique_ptr<ValidationIssue> NaturalStoneRevetmentValidator::SlopeUpperLevelAus(
         const double slopeUpperLevelAus)
     {
-        if(slopeUpperLevelAus <= 0)
+        if (slopeUpperLevelAus <= 0)
         {
             return make_unique<ValidationIssue>(ValidationIssueType::Error, "SlopeUpperLevelAus must be larger than 0.");
         }
 
-        if(slopeUpperLevelAus < 0.01 || slopeUpperLevelAus > 0.2)
+        if (slopeUpperLevelAus < 0.01 || slopeUpperLevelAus > 0.2)
         {
             return make_unique<ValidationIssue>(ValidationIssueType::Warning, "SlopeUpperLevelAus should be in range [0.01, 0.2].");
         }

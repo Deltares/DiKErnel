@@ -37,17 +37,19 @@ namespace DiKErnel::DomainLibrary
              * \param relativeDensity
              *        The relative density.
              *        Unit = [-]
-             * \return A validation issue when relative density is not valid; nullptr otherwise.
+             * \return A validation issue when the relative density is not valid; nullptr
+             *         otherwise.
              */
             static std::unique_ptr<ValidationIssue> RelativeDensity(
                 double relativeDensity);
 
             /*!
-             * \brief Validates the thickness top layer.
+             * \brief Validates the thickness of the top layer.
              * \param thicknessTopLayer
-             *        The thickness top layer.
+             *        The thickness of the top layer.
              *        Unit = [m]
-             * \return A validation issue when thickness top layer is not valid; nullptr otherwise.
+             * \return A validation issue when the thickness of the top layer is not valid; nullptr
+             *         otherwise.
              */
             static std::unique_ptr<ValidationIssue> ThicknessTopLayer(
                 double thicknessTopLayer);
