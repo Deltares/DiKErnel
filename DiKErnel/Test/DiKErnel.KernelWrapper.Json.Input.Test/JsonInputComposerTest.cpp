@@ -83,11 +83,11 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
             const auto& events = result->GetEvents();
             ASSERT_EQ(1, events.size());
 
-            const auto& event = events[0].get();
             EventAssertHelper::AssertEvent(
                 EventType::Error,
                 "An unhandled error occurred while composing calculation data from the Json input. See stack trace for more information:\n"
-                + expectedStackTrace, event);
+                + expectedStackTrace,
+                events[0].get());
         }
     };
 

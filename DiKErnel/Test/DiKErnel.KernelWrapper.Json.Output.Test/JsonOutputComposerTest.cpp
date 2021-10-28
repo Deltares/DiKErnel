@@ -92,11 +92,12 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
 
         const auto& events = result->GetEvents();
         ASSERT_EQ(1, events.size());
-        const auto& event = events[0].get();
+
         EventAssertHelper::AssertEvent(
             EventType::Error,
             "An unhandled error occurred while composing Json output from the calculation data. See stack trace for more information:\n"
-            "Invalid JsonOutputType.", event);
+            "Invalid JsonOutputType.",
+            events[0].get());
     }
 
     TEST_F(JsonOutputComposerTest,
@@ -131,10 +132,11 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
 
         const auto& events = result->GetEvents();
         ASSERT_EQ(1, events.size());
-        const auto& event = events[0].get();
+
         EventAssertHelper::AssertEvent(
             EventType::Error,
             "An unhandled error occurred while composing Json output from the calculation data. See stack trace for more information:\n"
-            "Invalid revetment type.", event);
+            "Invalid revetment type.",
+            events[0].get());
     }
 }

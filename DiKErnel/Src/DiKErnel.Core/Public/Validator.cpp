@@ -61,8 +61,8 @@ namespace DiKErnel::Core
         }
         catch (const exception& e)
         {
-            EventRegistry::Register(make_unique<Event>("An unhandled error occurred while validating the calculation input. See "
-                                                       "stack trace for more information:\n" + static_cast<string>(e.what()), EventType::Error));
+            EventRegistry::Register(make_unique<Event>("An unhandled error occurred while validating the calculation input. See stack trace for "
+                                                       "more information:\n" + static_cast<string>(e.what()), EventType::Error));
 
             return make_unique<DataResult<ValidationResultType>>(EventRegistry::Flush());
         }

@@ -188,12 +188,13 @@ namespace DiKErnel::Core::Test
 
         // Assert
         ASSERT_FALSE(validationResult->GetSuccessful());
+
         const auto& events = validationResult->GetEvents();
         ASSERT_EQ(1, events.size());
-        const auto& event = events[0].get();
+
         EventAssertHelper::AssertEvent(
             EventType::Error,
             "An unhandled error occurred while validating the calculation input. See stack trace for more information:\n" + errorMessage,
-            event);
+            events[0].get());
     }
 }

@@ -325,10 +325,9 @@ namespace DiKErnel::Core::Test
         const auto& events = result->GetEvents();
         ASSERT_EQ(1, events.size());
 
-        const auto& event = events[0].get();
         EventAssertHelper::AssertEvent(
             EventType::Error,
             "An unhandled error occurred while performing the calculation. See stack trace for more information:\nException message",
-            event);
+            events[0].get());
     }
 }
