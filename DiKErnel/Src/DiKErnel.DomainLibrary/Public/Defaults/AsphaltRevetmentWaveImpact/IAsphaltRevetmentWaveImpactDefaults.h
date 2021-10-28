@@ -75,20 +75,20 @@ namespace DiKErnel::DomainLibrary
              * \return The default values of the width factors.
              *         Unit = [-]
              */
-            virtual const std::vector<std::tuple<double, double>>& GetWidthFactors() const = 0;
+            virtual const std::vector<std::pair<double, double>>& GetWidthFactors() const = 0;
 
             /*!
              * \brief Gets the default values of the depth factors.
              * \return The default values of the depth factors.
              *         Unit = [-]
              */
-            virtual const std::vector<std::tuple<double, double>>& GetDepthFactors() const = 0;
+            virtual const std::vector<std::pair<double, double>>& GetDepthFactors() const = 0;
 
             /*!
              * \brief Gets the default values of the impact factors.
              * \return The default values of the impact factors.
              *         Unit = [-]
              */
-            virtual const std::vector<std::tuple<double, double>>& GetImpactFactors() const = 0;
+            virtual const std::vector<std::pair<double, double>>& GetImpactFactors() const = 0;
     };
 }

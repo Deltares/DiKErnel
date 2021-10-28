@@ -49,17 +49,17 @@ namespace DiKErnel::DomainLibrary
         return 0.35;
     }
 
-    const vector<tuple<double, double>>& AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteDefaults::GetWidthFactors() const
+    const vector<pair<double, double>>& AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteDefaults::GetWidthFactors() const
     {
         return _widthFactors;
     }
 
-    const vector<tuple<double, double>>& AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteDefaults::GetDepthFactors() const
+    const vector<pair<double, double>>& AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteDefaults::GetDepthFactors() const
     {
         return _depthFactors;
     }
 
-    const vector<tuple<double, double>>& AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteDefaults::GetImpactFactors() const
+    const vector<pair<double, double>>& AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteDefaults::GetImpactFactors() const
     {
         return _impactFactors;
     }
