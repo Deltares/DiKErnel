@@ -43,7 +43,7 @@ namespace DiKErnel::Integration
         }
     };
 
-    TEST_F(ValidationHelperTest, RegisterValidationIssues_ValidationIssueWithInvalidValidationIssueType_ThrowsOutOfRangeException)
+    TEST_F(ValidationHelperTest, GivenValidationIssueWithInvalidValidationIssueType_WhenRegisterValidationIssues_ThenThrowsOutOfRangeException)
     {
         // Given & When
         const auto action = &RegisterIssueWithInvalidValidationIssueType;

@@ -35,14 +35,11 @@ namespace DiKErnel::Integration
     {
         auto validationSuccessful = true;
 
-        for (auto& validationIssue : validationIssues)
+        for (const auto& validationIssue : validationIssues)
         {
-            auto validationForIssueSuccessful = true;
-
-            if (validationIssue != nullptr)
-            {
-                validationForIssueSuccessful = RegisterValidationIssue(*validationIssue);
-            }
+            const auto validationForIssueSuccessful = validationIssue != nullptr
+                                                          ? RegisterValidationIssue(*validationIssue)
+                                                          : true;
 
             validationSuccessful = validationForIssueSuccessful && validationSuccessful;
         }
