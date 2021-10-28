@@ -83,19 +83,19 @@ namespace DiKErnel::KernelWrapper::Json::Input
     }
 
     void JsonInputAsphaltRevetmentWaveImpactLocationData::SetWidthFactors(
-        unique_ptr<vector<tuple<double, double>>> widthFactors)
+        unique_ptr<vector<pair<double, double>>> widthFactors)
     {
         _widthFactors = move(widthFactors);
     }
 
     void JsonInputAsphaltRevetmentWaveImpactLocationData::SetDepthFactors(
-        unique_ptr<vector<tuple<double, double>>> depthFactors)
+        unique_ptr<vector<pair<double, double>>> depthFactors)
     {
         _depthFactors = move(depthFactors);
     }
 
     void JsonInputAsphaltRevetmentWaveImpactLocationData::SetImpactFactors(
-        unique_ptr<vector<tuple<double, double>>> impactFactors)
+        unique_ptr<vector<pair<double, double>>> impactFactors)
     {
         _impactFactors = move(impactFactors);
     }
@@ -169,17 +169,17 @@ namespace DiKErnel::KernelWrapper::Json::Input
         return _stiffnessRelationNu.get();
     }
 
-    const vector<tuple<double, double>>* JsonInputAsphaltRevetmentWaveImpactLocationData::GetWidthFactors() const
+    const vector<pair<double, double>>* JsonInputAsphaltRevetmentWaveImpactLocationData::GetWidthFactors() const
     {
         return _widthFactors.get();
     }
 
-    const vector<tuple<double, double>>* JsonInputAsphaltRevetmentWaveImpactLocationData::GetDepthFactors() const
+    const vector<pair<double, double>>* JsonInputAsphaltRevetmentWaveImpactLocationData::GetDepthFactors() const
     {
         return _depthFactors.get();
     }
 
-    const vector<tuple<double, double>>* JsonInputAsphaltRevetmentWaveImpactLocationData::GetImpactFactors() const
+    const vector<pair<double, double>>* JsonInputAsphaltRevetmentWaveImpactLocationData::GetImpactFactors() const
     {
         return _impactFactors.get();
     }
