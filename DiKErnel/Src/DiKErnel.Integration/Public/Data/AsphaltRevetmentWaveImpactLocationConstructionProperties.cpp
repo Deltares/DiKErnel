@@ -87,19 +87,19 @@ namespace DiKErnel::Integration
     }
 
     void AsphaltRevetmentWaveImpactLocationConstructionProperties::SetWidthFactors(
-        unique_ptr<vector<tuple<double, double>>> widthFactors)
+        unique_ptr<vector<pair<double, double>>> widthFactors)
     {
         _widthFactors = move(widthFactors);
     }
 
     void AsphaltRevetmentWaveImpactLocationConstructionProperties::SetDepthFactors(
-        unique_ptr<vector<tuple<double, double>>> depthFactors)
+        unique_ptr<vector<pair<double, double>>> depthFactors)
     {
         _depthFactors = move(depthFactors);
     }
 
     void AsphaltRevetmentWaveImpactLocationConstructionProperties::SetImpactFactors(
-        unique_ptr<vector<tuple<double, double>>> impactFactors)
+        unique_ptr<vector<pair<double, double>>> impactFactors)
     {
         _impactFactors = move(impactFactors);
     }
@@ -178,17 +178,17 @@ namespace DiKErnel::Integration
         return _stiffnessRelationNu.get();
     }
 
-    const vector<tuple<double, double>>* AsphaltRevetmentWaveImpactLocationConstructionProperties::GetWidthFactors() const
+    const vector<pair<double, double>>* AsphaltRevetmentWaveImpactLocationConstructionProperties::GetWidthFactors() const
     {
         return _widthFactors.get();
     }
 
-    const vector<tuple<double, double>>* AsphaltRevetmentWaveImpactLocationConstructionProperties::GetDepthFactors() const
+    const vector<pair<double, double>>* AsphaltRevetmentWaveImpactLocationConstructionProperties::GetDepthFactors() const
     {
         return _depthFactors.get();
     }
 
-    const vector<tuple<double, double>>* AsphaltRevetmentWaveImpactLocationConstructionProperties::GetImpactFactors() const
+    const vector<pair<double, double>>* AsphaltRevetmentWaveImpactLocationConstructionProperties::GetImpactFactors() const
     {
         return _impactFactors.get();
     }

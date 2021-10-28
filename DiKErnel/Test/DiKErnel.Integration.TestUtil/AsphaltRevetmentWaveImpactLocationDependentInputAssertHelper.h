@@ -49,9 +49,9 @@ namespace DiKErnel::Integration::TestUtil
                 const AsphaltRevetmentWaveImpactFatigue& fatigue);
 
             static void AssertFactors(
-                const std::vector<std::tuple<double, double>>& widthFactors,
-                const std::vector<std::tuple<double, double>>& depthFactors,
-                const std::vector<std::tuple<double, double>>& impactFactors,
+                const std::vector<std::pair<double, double>>& widthFactors,
+                const std::vector<std::pair<double, double>>& depthFactors,
+                const std::vector<std::pair<double, double>>& impactFactors,
                 const AsphaltRevetmentWaveImpactLocationDependentInput& locationDependentInput);
     };
 }

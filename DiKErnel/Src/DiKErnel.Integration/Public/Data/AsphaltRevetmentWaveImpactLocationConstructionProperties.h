@@ -127,7 +127,7 @@ namespace DiKErnel::Integration
              *        The width factors.
              */
             void SetWidthFactors(
-                std::unique_ptr<std::vector<std::tuple<double, double>>> widthFactors);
+                std::unique_ptr<std::vector<std::pair<double, double>>> widthFactors);
 
             /*!
              * \brief Sets the depth factors.
@@ -135,7 +135,7 @@ namespace DiKErnel::Integration
              *        The depth factors.
              */
             void SetDepthFactors(
-                std::unique_ptr<std::vector<std::tuple<double, double>>> depthFactors);
+                std::unique_ptr<std::vector<std::pair<double, double>>> depthFactors);
 
             /*!
              * \brief Sets the impact factors.
@@ -143,7 +143,7 @@ namespace DiKErnel::Integration
              *        The impact factors.
              */
             void SetImpactFactors(
-                std::unique_ptr<std::vector<std::tuple<double, double>>> impactFactors);
+                std::unique_ptr<std::vector<std::pair<double, double>>> impactFactors);
 
             #pragma endregion
 
@@ -237,19 +237,19 @@ namespace DiKErnel::Integration
              * \brief Gets the width factors.
              * \return The width factors.
              */
-            const std::vector<std::tuple<double, double>>* GetWidthFactors() const;
+            const std::vector<std::pair<double, double>>* GetWidthFactors() const;
 
             /*!
              * \brief Gets the depth factors.
              * \return The depth factors.
              */
-            const std::vector<std::tuple<double, double>>* GetDepthFactors() const;
+            const std::vector<std::pair<double, double>>* GetDepthFactors() const;
 
             /*!
              * \brief Gets the impact factors.
              * \return The impact factors.
              */
-            const std::vector<std::tuple<double, double>>* GetImpactFactors() const;
+            const std::vector<std::pair<double, double>>* GetImpactFactors() const;
 
             #pragma endregion
 
@@ -268,8 +268,8 @@ namespace DiKErnel::Integration
             std::unique_ptr<double> _fatigueBeta = nullptr;
             std::unique_ptr<double> _impactNumberC = nullptr;
             std::unique_ptr<double> _stiffnessRelationNu = nullptr;
-            std::unique_ptr<std::vector<std::tuple<double, double>>> _widthFactors = nullptr;
-            std::unique_ptr<std::vector<std::tuple<double, double>>> _depthFactors = nullptr;
-            std::unique_ptr<std::vector<std::tuple<double, double>>> _impactFactors = nullptr;
+            std::unique_ptr<std::vector<std::pair<double, double>>> _widthFactors = nullptr;
+            std::unique_ptr<std::vector<std::pair<double, double>>> _depthFactors = nullptr;
+            std::unique_ptr<std::vector<std::pair<double, double>>> _impactFactors = nullptr;
     };
 }

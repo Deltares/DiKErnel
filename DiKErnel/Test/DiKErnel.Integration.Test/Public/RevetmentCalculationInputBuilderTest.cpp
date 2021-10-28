@@ -220,15 +220,15 @@ namespace DiKErnel::Integration::Test
         const auto stiffnessRelationNu = 1.6;
         const auto widthFactors = vector
         {
-            tuple(1.7, 1.8)
+            pair(1.7, 1.8)
         };
         const auto depthFactors = vector
         {
-            tuple(1.9, 2.0)
+            pair(1.9, 2.0)
         };
         const auto impactFactors = vector
         {
-            tuple(2.1, 2.2)
+            pair(2.1, 2.2)
         };
 
         AsphaltRevetmentWaveImpactLocationConstructionProperties constructionProperties(
@@ -244,9 +244,9 @@ namespace DiKErnel::Integration::Test
         constructionProperties.SetFatigueBeta(make_unique<double>(fatigueBeta));
         constructionProperties.SetImpactNumberC(make_unique<double>(impactNumberC));
         constructionProperties.SetStiffnessRelationNu(make_unique<double>(stiffnessRelationNu));
-        constructionProperties.SetWidthFactors(make_unique<vector<tuple<double, double>>>(widthFactors));
-        constructionProperties.SetDepthFactors(make_unique<vector<tuple<double, double>>>(depthFactors));
-        constructionProperties.SetImpactFactors(make_unique<vector<tuple<double, double>>>(impactFactors));
+        constructionProperties.SetWidthFactors(make_unique<vector<pair<double, double>>>(widthFactors));
+        constructionProperties.SetDepthFactors(make_unique<vector<pair<double, double>>>(depthFactors));
+        constructionProperties.SetImpactFactors(make_unique<vector<pair<double, double>>>(impactFactors));
 
         RevetmentCalculationInputBuilder builder;
         builder.AddAsphaltWaveImpactLocation(constructionProperties);
@@ -331,51 +331,51 @@ namespace DiKErnel::Integration::Test
 
         const auto expectedWidthFactors = vector
         {
-            tuple(0.1, 0.0392),
-            tuple(0.2, 0.0738),
-            tuple(0.3, 0.1002),
-            tuple(0.4, 0.1162),
-            tuple(0.5, 0.1213),
-            tuple(0.6, 0.1168),
-            tuple(0.7, 0.1051),
-            tuple(0.8, 0.0890),
-            tuple(0.9, 0.0712),
-            tuple(1.0, 0.0541),
-            tuple(1.1, 0.0391),
-            tuple(1.2, 0.0269),
-            tuple(1.3, 0.0216),
-            tuple(1.4, 0.0150),
-            tuple(1.5, 0.0105)
+            pair(0.1, 0.0392),
+            pair(0.2, 0.0738),
+            pair(0.3, 0.1002),
+            pair(0.4, 0.1162),
+            pair(0.5, 0.1213),
+            pair(0.6, 0.1168),
+            pair(0.7, 0.1051),
+            pair(0.8, 0.0890),
+            pair(0.9, 0.0712),
+            pair(1.0, 0.0541),
+            pair(1.1, 0.0391),
+            pair(1.2, 0.0269),
+            pair(1.3, 0.0216),
+            pair(1.4, 0.0150),
+            pair(1.5, 0.0105)
         };
 
         const auto expectedDepthFactors = vector
         {
-            tuple(-1.0, 0.0244),
-            tuple(-0.875, 0.0544),
-            tuple(-0.750, 0.0938),
-            tuple(-0.625, 0.1407),
-            tuple(-0.500, 0.1801),
-            tuple(-0.375, 0.1632),
-            tuple(-0.250, 0.1426),
-            tuple(-0.125, 0.0994),
-            tuple(0.0, 0.06),
-            tuple(0.125, 0.0244),
-            tuple(0.250, 0.0169)
+            pair(-1.0, 0.0244),
+            pair(-0.875, 0.0544),
+            pair(-0.750, 0.0938),
+            pair(-0.625, 0.1407),
+            pair(-0.500, 0.1801),
+            pair(-0.375, 0.1632),
+            pair(-0.250, 0.1426),
+            pair(-0.125, 0.0994),
+            pair(0.0, 0.06),
+            pair(0.125, 0.0244),
+            pair(0.250, 0.0169)
         };
 
         const auto expectedImpactFactors = vector
         {
-            tuple(2.0, 0.039),
-            tuple(2.4, 0.1),
-            tuple(2.8, 0.18),
-            tuple(3.2, 0.235),
-            tuple(3.6, 0.2),
-            tuple(4.0, 0.13),
-            tuple(4.4, 0.08),
-            tuple(4.8, 0.02),
-            tuple(5.2, 0.01),
-            tuple(5.6, 0.005),
-            tuple(6.0, 0.001)
+            pair(2.0, 0.039),
+            pair(2.4, 0.1),
+            pair(2.8, 0.18),
+            pair(3.2, 0.235),
+            pair(3.6, 0.2),
+            pair(4.0, 0.13),
+            pair(4.4, 0.08),
+            pair(4.8, 0.02),
+            pair(5.2, 0.01),
+            pair(5.6, 0.005),
+            pair(6.0, 0.001)
         };
 
         AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertFactors(expectedWidthFactors, expectedDepthFactors,

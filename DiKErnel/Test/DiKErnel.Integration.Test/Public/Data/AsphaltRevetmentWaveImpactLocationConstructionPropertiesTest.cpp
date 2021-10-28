@@ -90,15 +90,15 @@ namespace DiKErnel::Integration::Test
         const auto stiffnessRelationNu = 1.6;
         const auto widthFactors = vector
         {
-            tuple(1.7, 1.8)
+            pair(1.7, 1.8)
         };
         const auto depthFactors = vector
         {
-            tuple(1.9, 2.0)
+            pair(1.9, 2.0)
         };
         const auto impactFactors = vector
         {
-            tuple(2.1, 2.2)
+            pair(2.1, 2.2)
         };
 
         AsphaltRevetmentWaveImpactLocationConstructionProperties constructionProperties(
@@ -114,9 +114,9 @@ namespace DiKErnel::Integration::Test
         constructionProperties.SetFatigueBeta(make_unique<double>(fatigueBeta));
         constructionProperties.SetImpactNumberC(make_unique<double>(impactNumberC));
         constructionProperties.SetStiffnessRelationNu(make_unique<double>(stiffnessRelationNu));
-        constructionProperties.SetWidthFactors(make_unique<vector<tuple<double, double>>>(widthFactors));
-        constructionProperties.SetDepthFactors(make_unique<vector<tuple<double, double>>>(depthFactors));
-        constructionProperties.SetImpactFactors(make_unique<vector<tuple<double, double>>>(impactFactors));
+        constructionProperties.SetWidthFactors(make_unique<vector<pair<double, double>>>(widthFactors));
+        constructionProperties.SetDepthFactors(make_unique<vector<pair<double, double>>>(depthFactors));
+        constructionProperties.SetImpactFactors(make_unique<vector<pair<double, double>>>(impactFactors));
 
         // Then
         ASSERT_EQ(topLayerType, constructionProperties.GetTopLayerType());
