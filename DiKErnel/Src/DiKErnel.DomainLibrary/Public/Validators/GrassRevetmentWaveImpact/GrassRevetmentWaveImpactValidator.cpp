@@ -127,7 +127,7 @@ namespace DiKErnel::DomainLibrary
         const double upperLimitLoadingAul,
         const double lowerLimitLoadingAll)
     {
-        if(upperLimitLoadingAul >= lowerLimitLoadingAll)
+        if (upperLimitLoadingAul >= lowerLimitLoadingAll)
         {
             return make_unique<ValidationIssue>(ValidationIssueType::Error, "UpperLimitLoadingAul must be smaller than LowerLimitLoadingAll.");
         }
