@@ -23,7 +23,6 @@
 #include <utility>
 
 #include "CharacteristicPointsHelper.h"
-#include "EventRegistry.h"
 #include "RevetmentFunctions.h"
 #include "RevetmentValidator.h"
 #include "ValidationHelper.h"
