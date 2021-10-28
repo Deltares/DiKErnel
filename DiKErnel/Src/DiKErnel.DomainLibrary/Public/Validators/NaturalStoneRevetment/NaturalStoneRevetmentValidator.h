@@ -36,6 +36,7 @@ namespace DiKErnel::DomainLibrary
              * \brief Validates the relative density.
              * \param relativeDensity
              *        The relative density.
+             *        Unit = [-]
              * \return A validation issue when relative density is not valid; nullptr otherwise.
              */
             static std::unique_ptr<ValidationIssue> RelativeDensity(
@@ -45,6 +46,7 @@ namespace DiKErnel::DomainLibrary
              * \brief Validates the thickness top layer.
              * \param thicknessTopLayer
              *        The thickness top layer.
+             *        Unit = [m]
              * \return A validation issue when thickness top layer is not valid; nullptr otherwise.
              */
             static std::unique_ptr<ValidationIssue> ThicknessTopLayer(
@@ -54,6 +56,7 @@ namespace DiKErnel::DomainLibrary
              * \brief Validates the Aus coefficient.
              * \param slopeUpperLevelAus
              *        The Aus coefficient.
+             *        Unit = [-]
              * \return A validation issue when the Aus coefficient is not valid; nullptr otherwise.
              */
             static std::unique_ptr<ValidationIssue> SlopeUpperLevelAus(
@@ -63,6 +66,7 @@ namespace DiKErnel::DomainLibrary
              * \brief Validates the Als coefficient.
              * \param slopeLowerLevelAls
              *        The Als coefficient.
+             *        Unit = [-]
              * \return A validation issue when the Als coefficient is not valid; nullptr otherwise.
              */
             static std::unique_ptr<ValidationIssue> SlopeLowerLevelAls(
