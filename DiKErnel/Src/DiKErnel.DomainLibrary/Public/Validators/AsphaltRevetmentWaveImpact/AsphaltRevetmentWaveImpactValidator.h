@@ -36,6 +36,7 @@ namespace DiKErnel::DomainLibrary
              * \brief Validates the fatigue alpha coefficient.
              * \param fatigueAlpha
              *        The fatigue alpha coefficient.
+             *        Unit = [-]
              * \return A validation issue when the fatigue alpha coefficient is not valid;
              *         nullptr otherwise.
              */
@@ -46,6 +47,7 @@ namespace DiKErnel::DomainLibrary
              * \brief Validates the fatigue beta coefficient.
              * \param fatigueBeta
              *        The fatigue beta coefficient.
+             *        Unit = [-]
              * \return A validation issue when the fatigue beta coefficient is not valid;
              *         nullptr otherwise.
              */
@@ -56,6 +58,7 @@ namespace DiKErnel::DomainLibrary
              * \brief Validates the failure tension.
              * \param failureTension
              *        The failure tension.
+             *        Unit = [MPa]
              * \return A validation issue when the failure tension is not valid; nullptr otherwise.
              */
             static std::unique_ptr<ValidationIssue> FailureTension(
@@ -65,6 +68,7 @@ namespace DiKErnel::DomainLibrary
              * \brief Validates the impact number C coefficient.
              * \param impactNumberC
              *        The impact number C coefficient.
+             *        Unit = [-]
              * \return A validation issue when the impact number C coefficient is not valid;
              *         nullptr otherwise.
              */
@@ -75,6 +79,7 @@ namespace DiKErnel::DomainLibrary
              * \brief Validates the density of water.
              * \param densityOfWater
              *        The density of water.
+             *        Unit = [kg/m^3]
              * \return A validation issue when the density of water is not valid;
              *         nullptr otherwise.
              */
@@ -85,6 +90,7 @@ namespace DiKErnel::DomainLibrary
              * \brief Validates the soil elasticity.
              * \param soilElasticity
              *        The soil elasticity.
+             *        Unit = [MPa/m]
              * \return A validation issue when the soil elasticity is not valid; nullptr otherwise.
              */
             static std::unique_ptr<ValidationIssue> SoilElasticity(
@@ -94,6 +100,7 @@ namespace DiKErnel::DomainLibrary
              * \brief Validates the Nu coefficient.
              * \param stiffnessRelationNu
              *        The Nu coefficient.
+             *         Unit = [m^-1]
              * \return A validation issue when the Nu coefficient is not valid; nullptr otherwise.
              */
             static std::unique_ptr<ValidationIssue> StiffnessRelationNu(
@@ -103,6 +110,7 @@ namespace DiKErnel::DomainLibrary
              * \brief Validates the thickness.
              * \param thickness
              *        The thickness.
+             *        Unit = [m]
              * \return A validation issue when the thickness is not valid; nullptr otherwise.
              */
             static std::unique_ptr<ValidationIssue> Thickness(
@@ -112,6 +120,7 @@ namespace DiKErnel::DomainLibrary
              * \brief Validates the elastic modulus.
              * \param elasticModulus
              *        The elastic modulus.
+             *        Unit = [MPa]
              * \return A validation issue when the elastic modulus is not valid; nullptr otherwise.
              */
             static std::unique_ptr<ValidationIssue> ElasticModulus(
