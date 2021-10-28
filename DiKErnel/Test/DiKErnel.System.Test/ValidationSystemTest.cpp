@@ -267,7 +267,6 @@ namespace DiKErnel::System::Test
 
         AsphaltRevetmentWaveImpactLocationConstructionProperties asphaltRevetmentWaveImpactLocationConstructionProperties(
             12, 0.3, AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete, 1, 970, 0.5, 3, 2);
-        asphaltRevetmentWaveImpactLocationConstructionProperties.SetThicknessSubLayer(make_unique<double>(0.000001));
 
         const GrassRevetmentWaveImpactLocationConstructionProperties grassRevetmentWaveImpactLocationConstructionProperties(
             14, GrassRevetmentTopLayerType::ClosedSod);
