@@ -53,9 +53,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
         for (auto i = 0; i < static_cast<int>(times.size()) - 1; ++i)
         {
-            const auto& timeDependentDataItem = timeDependentData[i].get();
+            const auto& timeDependentDataItem = timeDependentData.at(i).get();
 
-            builder.AddTimeStep(times[i], times[i + 1], timeDependentDataItem.GetWaterLevel(), timeDependentDataItem.GetWaveHeightHm0(),
+            builder.AddTimeStep(times.at(i), times.at(i + 1), timeDependentDataItem.GetWaterLevel(), timeDependentDataItem.GetWaveHeightHm0(),
                                 timeDependentDataItem.GetWavePeriodTm10(), timeDependentDataItem.GetWaveAngle());
         }
 
