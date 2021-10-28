@@ -36,8 +36,10 @@ namespace DiKErnel::DomainLibrary
              * \brief Validates the Agwi coefficient.
              * \param timeLineAgwi
              *        The Agwi coefficient.
+             *        Unit = [m]
              * \param timeLineCgwi
              *        The Cgwi coefficient.
+             *        Unit = [m]
              * \return A validation issue when the Agwi coefficient is not valid;
              *         nullptr otherwise.
              */
@@ -49,6 +51,7 @@ namespace DiKErnel::DomainLibrary
              * \brief Validates the Bgwi coefficient.
              * \param timeLineBgwi
              *        The Bgwi coefficient.
+             *        Unit = [s^-1]
              * \return A validation issue when the Bgwi coefficient is not valid;
              *         nullptr otherwise.
              */
@@ -59,6 +62,7 @@ namespace DiKErnel::DomainLibrary
              * \brief Validates the Cgwi coefficient.
              * \param timeLineCgwi
              *        The Cgwi coefficient.
+             *        Unit = [m]
              * \return A validation issue when the Cgwi coefficient is not valid;
              *         nullptr otherwise.
              */
@@ -69,6 +73,7 @@ namespace DiKErnel::DomainLibrary
              * \brief Validates the Temax coefficient.
              * \param minimumWaveHeightTemax
              *        The Temax coefficient.
+             *        Unit = [s]
              * \return A validation issue when the Temax coefficient is not valid;
              *         nullptr otherwise.
              */
@@ -79,6 +84,7 @@ namespace DiKErnel::DomainLibrary
              * \brief Validates the Temin coefficient.
              * \param maximumWaveHeightTemin
              *        The Temin coefficient.
+             *        Unit = [s]
              * \return A validation issue when the Temin coefficient is not valid;
              *         nullptr otherwise.
              */
@@ -89,6 +95,7 @@ namespace DiKErnel::DomainLibrary
              * \brief Validates the Nwa coefficient.
              * \param waveAngleImpactNwa
              *        The Nwa coefficient.
+             *        Unit = [-]
              * \return A validation issue when the Nwa coefficient is not valid;
              *         nullptr otherwise.
              */
@@ -99,6 +106,7 @@ namespace DiKErnel::DomainLibrary
              * \brief Validates the Qwa coefficient.
              * \param waveAngleImpactQwa
              *        The Qwa coefficient.
+             *        Unit = [-]
              * \return A validation issue when the Qwa coefficient is not valid;
              *         nullptr otherwise.
              */
@@ -109,6 +117,7 @@ namespace DiKErnel::DomainLibrary
              * \brief Validates the Rwa coefficient.
              * \param waveAngleImpactRwa
              *        The Rwa coefficient.
+             *        Unit = [-]
              * \return A validation issue when the Rwa coefficient is not valid;
              *         nullptr otherwise.
              */
@@ -119,8 +128,10 @@ namespace DiKErnel::DomainLibrary
              * \brief Validates the Aul coefficient.
              * \param upperLimitLoadingAul
              *        The Aul coefficient.
+             *        Unit = [-]
              * \param lowerLimitLoadingAll
              *        The All coefficient.
+             *        Unit = [-]
              * \return A validation issue when the Aul coefficient is not valid;
              *         nullptr otherwise.
              */
