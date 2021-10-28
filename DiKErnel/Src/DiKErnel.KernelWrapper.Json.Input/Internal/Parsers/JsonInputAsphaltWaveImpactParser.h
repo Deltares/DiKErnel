@@ -42,7 +42,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
         private:
             std::unique_ptr<JsonInputAsphaltRevetmentWaveImpactLocationData> ParseRevetmentLocationData() const;
 
-            std::unique_ptr<std::vector<std::tuple<double, double>>> ParseFactorsTable(
+            std::unique_ptr<std::vector<std::pair<double, double>>> ParseFactorsTable(
                 const nlohmann::json& factorsTable) const;
 
             std::unique_ptr<JsonInputProfileSchematizationData> ParseProfileSchematizationData() const;

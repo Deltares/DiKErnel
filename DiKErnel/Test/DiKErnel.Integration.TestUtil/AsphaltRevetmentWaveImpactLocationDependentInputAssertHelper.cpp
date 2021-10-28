@@ -66,9 +66,9 @@ namespace DiKErnel::Integration::TestUtil
     }
 
     void AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertFactors(
-        const vector<tuple<double, double>>& widthFactors,
-        const vector<tuple<double, double>>& depthFactors,
-        const vector<tuple<double, double>>& impactFactors,
+        const vector<pair<double, double>>& widthFactors,
+        const vector<pair<double, double>>& depthFactors,
+        const vector<pair<double, double>>& impactFactors,
         const AsphaltRevetmentWaveImpactLocationDependentInput& locationDependentInput)
     {
         ASSERT_EQ(widthFactors, locationDependentInput.GetWidthFactors());

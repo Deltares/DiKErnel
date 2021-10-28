@@ -120,21 +120,21 @@ namespace DiKErnel::KernelWrapper::Json::Input
         if (readCalculationMethod.contains(JsonInputAsphaltWaveImpactDefinitions::WIDTH_FACTORS))
         {
             locationData->SetWidthFactors(
-                forward<unique_ptr<vector<tuple<double, double>>>>(
+                forward<unique_ptr<vector<pair<double, double>>>>(
                     ParseFactorsTable(readCalculationMethod[JsonInputAsphaltWaveImpactDefinitions::WIDTH_FACTORS])));
         }
 
         if (readCalculationMethod.contains(JsonInputAsphaltWaveImpactDefinitions::DEPTH_FACTORS))
         {
             locationData->SetDepthFactors(
-                forward<unique_ptr<vector<tuple<double, double>>>>(
+                forward<unique_ptr<vector<pair<double, double>>>>(
                     ParseFactorsTable(readCalculationMethod[JsonInputAsphaltWaveImpactDefinitions::DEPTH_FACTORS])));
         }
 
         if (readCalculationMethod.contains(JsonInputAsphaltWaveImpactDefinitions::IMPACT_FACTORS))
         {
             locationData->SetImpactFactors(
-                forward<unique_ptr<vector<tuple<double, double>>>>(
+                forward<unique_ptr<vector<pair<double, double>>>>(
                     ParseFactorsTable(readCalculationMethod[JsonInputAsphaltWaveImpactDefinitions::IMPACT_FACTORS])));
         }
 
@@ -149,14 +149,14 @@ namespace DiKErnel::KernelWrapper::Json::Input
             readProfileSchematization[JsonInputDefinitions::OUTER_SLOPE].get<double>());
     }
 
-    unique_ptr<vector<tuple<double, double>>> JsonInputAsphaltWaveImpactParser::ParseFactorsTable(
+    unique_ptr<vector<pair<double, double>>> JsonInputAsphaltWaveImpactParser::ParseFactorsTable(
         const json& factorsTable) const
     {
-        auto readFactors = make_unique<vector<tuple<double, double>>>();
+        auto readFactors = make_unique<vector<pair<double, double>>>();
 
         for (const auto& factor : factorsTable)
         {
-            readFactors->push_back(factor.get<tuple<double, double>>());
+            readFactors->push_back(factor.get<pair<double, double>>());
         }
 
         return readFactors;

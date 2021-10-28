@@ -160,11 +160,11 @@ namespace DiKErnel::KernelWrapper::Json::Input
             forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetStiffnessRelationNu())));
 
         constructionProperties->SetWidthFactors(
-            forward<unique_ptr<vector<tuple<double, double>>>>(CreatePointerOfValue(revetmentData.GetWidthFactors())));
+            forward<unique_ptr<vector<pair<double, double>>>>(CreatePointerOfValue(revetmentData.GetWidthFactors())));
         constructionProperties->SetDepthFactors(
-            forward<unique_ptr<vector<tuple<double, double>>>>(CreatePointerOfValue(revetmentData.GetDepthFactors())));
+            forward<unique_ptr<vector<pair<double, double>>>>(CreatePointerOfValue(revetmentData.GetDepthFactors())));
         constructionProperties->SetImpactFactors(
-            forward<unique_ptr<vector<tuple<double, double>>>>(CreatePointerOfValue(revetmentData.GetImpactFactors())));
+            forward<unique_ptr<vector<pair<double, double>>>>(CreatePointerOfValue(revetmentData.GetImpactFactors())));
 
         return constructionProperties;
     }
