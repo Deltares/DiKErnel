@@ -27,8 +27,8 @@ namespace DiKErnel::Core::Test
     TEST(ProfilePointTest, Constructor_ExpectedValues)
     {
         // Setup
-        const auto x = 0.0;
-        const auto z = 1.1;
+        constexpr auto x = 0.0;
+        constexpr auto z = 1.1;
 
         // Call
         const ProfilePoint profilePoint(x, z);

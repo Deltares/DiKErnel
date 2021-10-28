@@ -28,7 +28,7 @@ namespace DiKErnel::Core::Test
     {
         // Setup
         const ProfilePoint profilePoint(0.0, 1.1);
-        const auto characteristicPointType = CharacteristicPointType::OuterCrest;
+        constexpr auto characteristicPointType = CharacteristicPointType::OuterCrest;
 
         // Call
         const CharacteristicPoint characteristicPoint(profilePoint, characteristicPointType);

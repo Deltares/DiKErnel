@@ -30,8 +30,8 @@ namespace DiKErnel::Core::Test
     TEST(TimeDependentOutputTest, Constructor_WithParameters_ExpectedValues)
     {
         // Setup
-        const auto incrementDamage = 0.1;
-        const auto damage = 0.2;
+        constexpr auto incrementDamage = 0.1;
+        constexpr auto damage = 0.2;
         auto timeOfFailure = 3;
 
         // Call
