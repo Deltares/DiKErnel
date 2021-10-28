@@ -36,10 +36,13 @@ namespace DiKErnel::DomainLibrary
              * \brief Validates the x coordinate.
              * \param x
              *        The x coordinate.
+             *        Unit = [m]
              * \param outerToeX
              *        The x coordinate of the outer toe.
+             *        Unit = [m]
              * \param outerCrestX
              *        The x coordinate of the outer crest.
+             *        Unit = [m]
              * \return A validation issue when the x coordinate is not valid; nullptr otherwise.
              */
             static std::unique_ptr<ValidationIssue> X(
@@ -51,6 +54,7 @@ namespace DiKErnel::DomainLibrary
              * \brief Validates the initial damage.
              * \param initialDamage
              *        The initial damage.
+             *        Unit = [-]
              * \return A validation issue when the initial damage is not valid; nullptr otherwise.
              */
             static std::unique_ptr<ValidationIssue> InitialDamage(
@@ -60,8 +64,10 @@ namespace DiKErnel::DomainLibrary
              * \brief Validates the failure number.
              * \param failureNumber
              *        The failure number.
+             *        Unit = [-]
              * \param initialDamage
              *        The initial damage.
+             *        Unit = [-]
              * \return A validation issue when the failure number is not valid; nullptr otherwise.
              */
             static std::unique_ptr<ValidationIssue> FailureNumber(
@@ -72,6 +78,7 @@ namespace DiKErnel::DomainLibrary
              * \brief Validates the Ctm coefficient.
              * \param averageNumberOfWavesCtm
              *        The Ctm coefficient.
+             *        Unit = [-]
              * \return A validation issue when the Ctm coefficient is not valid; nullptr otherwise.
              */
             static std::unique_ptr<ValidationIssue> AverageNumberOfWavesCtm(
@@ -81,6 +88,7 @@ namespace DiKErnel::DomainLibrary
              * \brief Validates the outer slope.
              * \param outerSlope
              *        The outer slope.
+             *        Unit = [-]
              * \return A validation issue when the outer slope is not valid; nullptr otherwise.
              */
             static std::unique_ptr<ValidationIssue> OuterSlope(

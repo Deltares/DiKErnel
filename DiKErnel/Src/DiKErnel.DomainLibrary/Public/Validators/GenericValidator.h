@@ -37,6 +37,7 @@ namespace DiKErnel::DomainLibrary
              * \brief Validates whether the time steps are valid.
              * \param timeSteps
              *        The time steps.
+             *        Unit = [s, s]
              * \return A validation issue when the time steps are not valid; nullptr otherwise.
              */
             static std::unique_ptr<ValidationIssue> TimeSteps(
@@ -46,6 +47,7 @@ namespace DiKErnel::DomainLibrary
              * \brief Validates whether the number of locations is valid.
              * \param numberOfLocations
              *        The number of locations.
+             *        Unit = [-]
              * \return A validation issue when the number of locations is not valid; nullptr
              *         otherwise.
              */

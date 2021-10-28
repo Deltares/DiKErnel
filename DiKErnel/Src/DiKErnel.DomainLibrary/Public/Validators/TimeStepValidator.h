@@ -36,8 +36,10 @@ namespace DiKErnel::DomainLibrary
              * \brief Validates the increment of time.
              * \param beginTime
              *        The begin time.
+             *        Unit = [s]
              * \param endTime
              *        The end time.
+             *        Unit = [s]
              * \return A validation issue when the increment of time is not valid; nullptr
              *         otherwise.
              */
