@@ -49,9 +49,9 @@ namespace DiKErnel::Integration
         unique_ptr<AsphaltRevetmentWaveImpactFatigue> fatigue,
         const double impactNumberC,
         const double stiffnessRelationNu,
-        vector<tuple<double, double>> widthFactors,
-        vector<tuple<double, double>> depthFactors,
-        vector<tuple<double, double>> impactFactors)
+        vector<pair<double, double>> widthFactors,
+        vector<pair<double, double>> depthFactors,
+        vector<pair<double, double>> impactFactors)
         : LocationDependentInput(x, initialDamage, failureNumber),
           _outerSlope(outerSlope),
           _failureTension(failureTension),
@@ -117,17 +117,17 @@ namespace DiKErnel::Integration
         return _stiffnessRelationNu;
     }
 
-    const vector<tuple<double, double>>& AsphaltRevetmentWaveImpactLocationDependentInput::GetWidthFactors() const
+    const vector<pair<double, double>>& AsphaltRevetmentWaveImpactLocationDependentInput::GetWidthFactors() const
     {
         return _widthFactors;
     }
 
-    const vector<tuple<double, double>>& AsphaltRevetmentWaveImpactLocationDependentInput::GetDepthFactors() const
+    const vector<pair<double, double>>& AsphaltRevetmentWaveImpactLocationDependentInput::GetDepthFactors() const
     {
         return _depthFactors;
     }
 
-    const vector<tuple<double, double>>& AsphaltRevetmentWaveImpactLocationDependentInput::GetImpactFactors() const
+    const vector<pair<double, double>>& AsphaltRevetmentWaveImpactLocationDependentInput::GetImpactFactors() const
     {
         return _impactFactors;
     }

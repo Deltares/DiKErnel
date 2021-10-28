@@ -46,9 +46,9 @@ namespace DiKErnel::Integration
                 std::unique_ptr<AsphaltRevetmentWaveImpactFatigue> fatigue,
                 double impactNumberC,
                 double stiffnessRelationNu,
-                std::vector<std::tuple<double, double>> widthFactors,
-                std::vector<std::tuple<double, double>> depthFactors,
-                std::vector<std::tuple<double, double>> impactFactors);
+                std::vector<std::pair<double, double>> widthFactors,
+                std::vector<std::pair<double, double>> depthFactors,
+                std::vector<std::pair<double, double>> impactFactors);
 
             double GetOuterSlope() const;
 
@@ -70,11 +70,11 @@ namespace DiKErnel::Integration
 
             double GetStiffnessRelationNu() const;
 
-            const std::vector<std::tuple<double, double>>& GetWidthFactors() const;
+            const std::vector<std::pair<double, double>>& GetWidthFactors() const;
 
-            const std::vector<std::tuple<double, double>>& GetDepthFactors() const;
+            const std::vector<std::pair<double, double>>& GetDepthFactors() const;
 
-            const std::vector<std::tuple<double, double>>& GetImpactFactors() const;
+            const std::vector<std::pair<double, double>>& GetImpactFactors() const;
 
             bool Validate(
                 const Core::IProfileData& profileData) const override;
@@ -99,9 +99,9 @@ namespace DiKErnel::Integration
             std::unique_ptr<AsphaltRevetmentWaveImpactFatigue> _fatigue;
             const double _impactNumberC;
             const double _stiffnessRelationNu;
-            std::vector<std::tuple<double, double>> _widthFactors;
-            std::vector<std::tuple<double, double>> _depthFactors;
-            std::vector<std::tuple<double, double>> _impactFactors;
+            std::vector<std::pair<double, double>> _widthFactors;
+            std::vector<std::pair<double, double>> _depthFactors;
+            std::vector<std::pair<double, double>> _impactFactors;
             double _logFailureTension = std::numeric_limits<double>::infinity();
             double _computationalThickness = std::numeric_limits<double>::infinity();
             double _stiffnessRelation = std::numeric_limits<double>::infinity();
