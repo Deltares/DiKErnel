@@ -22,19 +22,17 @@
 
 #include "AssertHelper.h"
 #include "ValidationHelper.h"
-#include "ValidationIssue.h"
 
 namespace DiKErnel::Integration
 {
     using namespace DomainLibrary;
-    using namespace Integration;
     using namespace std;
     using namespace testing;
     using namespace TestUtil;
 
     struct ValidationHelperTest : Test
     {
-        static void RegisterIssueWithInvalidValidationIssueType()
+        static void RegisterValidationIssueWithInvalidValidationIssueType()
         {
             auto validationIssues = vector<unique_ptr<ValidationIssue>>();
             validationIssues.emplace_back(make_unique<ValidationIssue>(static_cast<ValidationIssueType>(99), "Message"));
@@ -46,7 +44,7 @@ namespace DiKErnel::Integration
     TEST_F(ValidationHelperTest, GivenValidationIssueWithInvalidValidationIssueType_WhenRegisterValidationIssues_ThenThrowsOutOfRangeException)
     {
         // Given & When
-        const auto action = &RegisterIssueWithInvalidValidationIssueType;
+        const auto action = &RegisterValidationIssueWithInvalidValidationIssueType;
 
         // Then
         AssertHelper::AssertThrowsWithMessage<out_of_range>(action, "Invalid ValidationIssueType.");
