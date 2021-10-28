@@ -37,7 +37,7 @@ namespace DiKErnel::Core
              * \brief Performs validation on the input.
              * \return Whether the validation was successful.
              */
-            virtual bool Validate() = 0;
+            virtual bool Validate() const = 0;
 
             /*!
              * \brief Gets the begin time.

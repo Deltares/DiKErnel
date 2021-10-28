@@ -29,7 +29,7 @@ namespace DiKErnel::Core::TestUtil
     class ITimeDependentInputMock : public ITimeDependentInput
     {
         public:
-            MOCK_METHOD(bool, Validate, (), (override));
+            MOCK_METHOD(bool, Validate, (), (const, override));
             MOCK_METHOD(int, GetBeginTime, (), (const, override));
             MOCK_METHOD(int, GetEndTime, (), (const, override));
             MOCK_METHOD(double, GetWaterLevel, (), (const, override));

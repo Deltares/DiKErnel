@@ -35,7 +35,7 @@ namespace DiKErnel::Integration
                 double wavePeriodTm10,
                 double waveAngle);
 
-            bool Validate() override;
+            bool Validate() const override;
 
             int GetBeginTime() const override;
 

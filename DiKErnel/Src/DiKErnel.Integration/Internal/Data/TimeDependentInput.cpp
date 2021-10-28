@@ -43,7 +43,7 @@ namespace DiKErnel::Integration
           _wavePeriodTm10(wavePeriodTm10),
           _waveAngle(waveAngle) { }
 
-    bool TimeDependentInput::Validate()
+    bool TimeDependentInput::Validate() const
     {
         vector<unique_ptr<ValidationIssue>> validationIssues;
         validationIssues.emplace_back(TimeStepValidator::IncrementOfTime(_beginTime, _endTime));
