@@ -36,13 +36,6 @@ namespace DiKErnel::DomainLibrary
             virtual ~IAsphaltRevetmentWaveImpactDefaults() = default;
 
             /*!
-             * \brief Gets the default value of the sub layer thickness.
-             * \return The default value of the sub layer thickness.
-             *         Unit = [m]
-             */
-            virtual double GetSubLayerThickness() const = 0;
-
-            /*!
              * \brief Gets the default value of the Ctm coefficient.
              * \return The default value of the Ctm coefficient.
              *         Unit = [-]

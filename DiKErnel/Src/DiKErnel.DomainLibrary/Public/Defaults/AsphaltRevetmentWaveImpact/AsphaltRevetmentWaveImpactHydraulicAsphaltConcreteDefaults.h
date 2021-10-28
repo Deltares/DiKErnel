@@ -35,13 +35,6 @@ namespace DiKErnel::DomainLibrary
     {
         public:
             /*!
-             * \brief Gets the default value of the sub layer thickness.
-             * \return The default value of the sub layer thickness.
-             *         Unit = [m]
-             */
-            double GetSubLayerThickness() const override;
-
-            /*!
              * \brief Gets the default value of the Ctm coefficient.
              * \return The default value of the Ctm coefficient.
              *         Unit = [-]
