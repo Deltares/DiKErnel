@@ -25,6 +25,7 @@
 #include <thread>
 
 #include "Calculator.h"
+#include "EventRegistry.h"
 #include "JsonInputComposer.h"
 #include "JsonOutputComposer.h"
 #include "Validator.h"
@@ -58,13 +59,19 @@ void WriteToLogFile(
 string GetEventTypeString(
     EventType eventType);
 
-#pragma endregion
-
 void CloseApplication(
     const string& logOutputPath);
 
+void UnhandledErrorHandler();
+
+#pragma endregion
+
+string logOutputPath;
+
 int main()
 {
+    set_terminate(UnhandledErrorHandler);
+
     try
     {
         string jsonFilePath;
@@ -91,7 +98,7 @@ int main()
         const auto inputComposerResult = JsonInputComposer::GetInputDataFromJson(jsonFilePath);
 
         // Write to log file
-        const auto logOutputPath = (outputDirectory / (outputFileNameBase + ".txt")).u8string();
+        logOutputPath = (outputDirectory / (outputFileNameBase + ".txt")).u8string();
         WriteToLogFile(logOutputPath, inputComposerResult->GetEvents());
 
         // Handle error during read operation
@@ -280,8 +287,17 @@ int main()
 
         return 0;
     }
-    catch (...)
+    catch (const exception& e)
     {
+        EventRegistry::Register(make_unique<Event>("An unhandled error occurred in the showcase. See stack trace for more information:\n"
+                                                   + static_cast<string>(e.what()), EventType::Error));
+        const auto result = make_unique<SimpleResult>(false, EventRegistry::Flush());
+        WriteToLogFile(logOutputPath, result->GetEvents());
+
+        cout << "-> An error occurred. See the log file for details" << endl;
+
+        CloseApplication(logOutputPath);
+
         return -1;
     }
 }
@@ -365,4 +381,17 @@ void CloseApplication(
     cout << "-> The log file is written to: " << logOutputPath << endl;
     cout << endl << "Press 'Enter' to exit the application.";
     cin.get();
+}
+
+void UnhandledErrorHandler()
+{
+    EventRegistry::Register(make_unique<Event>("An unhandled error occurred in the Showcase. No stacktrace available.", EventType::Error));
+    const auto result = make_unique<SimpleResult>(false, EventRegistry::Flush());
+    WriteToLogFile(logOutputPath, result->GetEvents());
+
+    cout << "-> An error occurred. See the log file for details" << endl;
+
+    CloseApplication(logOutputPath);
+
+    exit(-1);
 }
