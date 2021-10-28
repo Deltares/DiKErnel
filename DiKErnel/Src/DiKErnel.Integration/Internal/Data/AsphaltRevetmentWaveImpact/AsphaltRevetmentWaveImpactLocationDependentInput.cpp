@@ -147,8 +147,13 @@ namespace DiKErnel::Integration
         validationIssues.emplace_back(AsphaltRevetmentWaveImpactValidator::StiffnessRelationNu(_stiffnessRelationNu));
         validationIssues.emplace_back(AsphaltRevetmentWaveImpactValidator::Thickness(_upperLayer->GetThickness()));
         validationIssues.emplace_back(AsphaltRevetmentWaveImpactValidator::ElasticModulus(_upperLayer->GetElasticModulus()));
-        validationIssues.emplace_back(AsphaltRevetmentWaveImpactValidator::Thickness(_subLayer->GetThickness()));
-        validationIssues.emplace_back(AsphaltRevetmentWaveImpactValidator::ElasticModulus(_subLayer->GetElasticModulus()));
+
+        if (_subLayer != nullptr)
+        {
+            validationIssues.emplace_back(AsphaltRevetmentWaveImpactValidator::Thickness(_subLayer->GetThickness()));
+            validationIssues.emplace_back(AsphaltRevetmentWaveImpactValidator::ElasticModulus(_subLayer->GetElasticModulus()));
+        }
+
         validationIssues.emplace_back(RevetmentValidator::AverageNumberOfWavesCtm(_averageNumberOfWavesCtm));
         validationIssues.emplace_back(RevetmentValidator::OuterSlope(_outerSlope));
 
