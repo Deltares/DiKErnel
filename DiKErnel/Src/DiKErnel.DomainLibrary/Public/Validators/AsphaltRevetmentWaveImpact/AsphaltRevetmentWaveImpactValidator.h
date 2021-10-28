@@ -37,8 +37,8 @@ namespace DiKErnel::DomainLibrary
              * \param fatigueAlpha
              *        The fatigue alpha coefficient.
              *        Unit = [-]
-             * \return A validation issue when the fatigue alpha coefficient is not valid;
-             *         nullptr otherwise.
+             * \return A validation issue when the fatigue alpha coefficient is not valid; nullptr
+             *         otherwise.
              */
             static std::unique_ptr<ValidationIssue> FatigueAlpha(
                 double fatigueAlpha);
@@ -48,8 +48,8 @@ namespace DiKErnel::DomainLibrary
              * \param fatigueBeta
              *        The fatigue beta coefficient.
              *        Unit = [-]
-             * \return A validation issue when the fatigue beta coefficient is not valid;
-             *         nullptr otherwise.
+             * \return A validation issue when the fatigue beta coefficient is not valid; nullptr
+             *         otherwise.
              */
             static std::unique_ptr<ValidationIssue> FatigueBeta(
                 double fatigueBeta);
@@ -80,8 +80,8 @@ namespace DiKErnel::DomainLibrary
              * \param densityOfWater
              *        The density of water.
              *        Unit = [kg/m^3]
-             * \return A validation issue when the density of water is not valid;
-             *         nullptr otherwise.
+             * \return A validation issue when the density of water is not valid; nullptr
+             *         otherwise.
              */
             static std::unique_ptr<ValidationIssue> DensityOfWater(
                 double densityOfWater);
@@ -100,7 +100,7 @@ namespace DiKErnel::DomainLibrary
              * \brief Validates the Nu coefficient.
              * \param stiffnessRelationNu
              *        The Nu coefficient.
-             *         Unit = [m^-1]
+             *        Unit = [m^-1]
              * \return A validation issue when the Nu coefficient is not valid; nullptr otherwise.
              */
             static std::unique_ptr<ValidationIssue> StiffnessRelationNu(
