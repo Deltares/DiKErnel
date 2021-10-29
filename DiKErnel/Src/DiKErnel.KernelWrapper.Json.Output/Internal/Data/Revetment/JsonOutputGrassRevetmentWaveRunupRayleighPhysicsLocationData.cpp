@@ -46,22 +46,20 @@ namespace DiKErnel::KernelWrapper::Json::Output
         auto output = JsonOutputPhysicsLocationData::CreateJson();
         auto& physicsJson = output[JsonOutputDefinitions::PHYSICS_REVETMENT];
 
-        for (auto i = 0; i < static_cast<int>(_timeDependentOutputItems.size()); ++i)
+        for (const auto* outputItem : _timeDependentOutputItems)
         {
-            const auto* outputItem = _timeDependentOutputItems.at(i);
+            physicsJson[JsonOutputGrassRevetmentWaveRunupRayleighDefinitions::INCREMENT_DAMAGE].push_back(outputItem->GetIncrementDamage());
+            physicsJson[JsonOutputGrassRevetmentWaveRunupRayleighDefinitions::VERTICAL_DISTANCE_WATER_LEVEL_ELEVATION].push_back(
+                outputItem->GetVerticalDistanceWaterLevelElevation());
 
-            physicsJson[JsonOutputGrassRevetmentWaveRunupRayleighDefinitions::INCREMENT_DAMAGE].at(i) = outputItem->GetIncrementDamage();
-            physicsJson[JsonOutputGrassRevetmentWaveRunupRayleighDefinitions::VERTICAL_DISTANCE_WATER_LEVEL_ELEVATION].at(i) =
-                    outputItem->GetVerticalDistanceWaterLevelElevation();
-
-            CalculationOutputAdapterHelper::SetPropertyWhenApplicable(
-                physicsJson[JsonOutputGrassRevetmentWaveRunupRayleighDefinitions::WAVE_ANGLE_IMPACT].at(i),
+            CalculationOutputAdapterHelper::PushPropertyWhenApplicable(
+                physicsJson[JsonOutputGrassRevetmentWaveRunupRayleighDefinitions::WAVE_ANGLE_IMPACT],
                 outputItem->GetWaveAngleImpact());
-            CalculationOutputAdapterHelper::SetPropertyWhenApplicable(
-                physicsJson[JsonOutputGrassRevetmentWaveRunupRayleighDefinitions::REPRESENTATIVE_WAVE_RUNUP_2P].at(i),
+            CalculationOutputAdapterHelper::PushPropertyWhenApplicable(
+                physicsJson[JsonOutputGrassRevetmentWaveRunupRayleighDefinitions::REPRESENTATIVE_WAVE_RUNUP_2P],
                 outputItem->GetRepresentativeWaveRunup2P());
-            CalculationOutputAdapterHelper::SetPropertyWhenApplicable(
-                physicsJson[JsonOutputGrassRevetmentWaveRunupRayleighDefinitions::CUMULATIVE_OVERLOAD].at(i),
+            CalculationOutputAdapterHelper::PushPropertyWhenApplicable(
+                physicsJson[JsonOutputGrassRevetmentWaveRunupRayleighDefinitions::CUMULATIVE_OVERLOAD],
                 outputItem->GetCumulativeOverload());
         }
 

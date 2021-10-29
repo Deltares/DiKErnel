@@ -46,17 +46,16 @@ namespace DiKErnel::KernelWrapper::Json::Output
         auto output = JsonOutputPhysicsLocationData::CreateJson();
         auto& physicsJson = output[JsonOutputDefinitions::PHYSICS_REVETMENT];
 
-        for (auto i = 0; i < static_cast<int>(_timeDependentOutputItems.size()); ++i)
+        for (const auto* outputItem : _timeDependentOutputItems)
         {
-            const auto* outputItem = _timeDependentOutputItems.at(i);
-
-            physicsJson[JsonOutputAsphaltRevetmentWaveImpactDefinitions::INCREMENT_DAMAGE].at(i) = outputItem->GetIncrementDamage();
-            physicsJson[JsonOutputAsphaltRevetmentWaveImpactDefinitions::LOG_FAILURE_TENSION].at(i) = outputItem->GetLogFailureTension();
-            physicsJson[JsonOutputAsphaltRevetmentWaveImpactDefinitions::MAXIMUM_PEAK_STRESS].at(i) = outputItem->GetMaximumPeakStress();
-            physicsJson[JsonOutputAsphaltRevetmentWaveImpactDefinitions::STIFFNESS_RELATION].at(i) = outputItem->GetStiffnessRelation();
-            physicsJson[JsonOutputAsphaltRevetmentWaveImpactDefinitions::COMPUTATIONAL_THICKNESS].at(i) = outputItem->GetComputationalThickness();
-            physicsJson[JsonOutputAsphaltRevetmentWaveImpactDefinitions::EQUIVALENT_ELASTIC_MODULUS].at(i) =
-                    outputItem->GetEquivalentElasticModulus();
+            physicsJson[JsonOutputAsphaltRevetmentWaveImpactDefinitions::INCREMENT_DAMAGE].push_back(outputItem->GetIncrementDamage());
+            physicsJson[JsonOutputAsphaltRevetmentWaveImpactDefinitions::LOG_FAILURE_TENSION].push_back(outputItem->GetLogFailureTension());
+            physicsJson[JsonOutputAsphaltRevetmentWaveImpactDefinitions::MAXIMUM_PEAK_STRESS].push_back(outputItem->GetMaximumPeakStress());
+            physicsJson[JsonOutputAsphaltRevetmentWaveImpactDefinitions::STIFFNESS_RELATION].push_back(outputItem->GetStiffnessRelation());
+            physicsJson[JsonOutputAsphaltRevetmentWaveImpactDefinitions::COMPUTATIONAL_THICKNESS].
+                    push_back(outputItem->GetComputationalThickness());
+            physicsJson[JsonOutputAsphaltRevetmentWaveImpactDefinitions::EQUIVALENT_ELASTIC_MODULUS].push_back(
+                outputItem->GetEquivalentElasticModulus());
         }
 
         return output;

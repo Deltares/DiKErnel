@@ -30,5 +30,9 @@ namespace DiKErnel::KernelWrapper::Json::Output
             static void SetPropertyWhenApplicable(
                 nlohmann::ordered_json& jsonObject,
                 const double* value);
+
+            static void PushPropertyWhenApplicable(
+                nlohmann::ordered_json& jsonObject,
+                const double* value);
     };
 }

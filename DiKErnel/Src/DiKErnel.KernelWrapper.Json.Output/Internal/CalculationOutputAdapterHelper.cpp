@@ -37,4 +37,18 @@ namespace DiKErnel::KernelWrapper::Json::Output
             jsonObject = nullptr;
         }
     }
+
+    void CalculationOutputAdapterHelper::PushPropertyWhenApplicable(
+        ordered_json& jsonObject,
+        const double* value)
+    {
+        if (value != nullptr)
+        {
+            jsonObject.push_back(*value);
+        }
+        else
+        {
+            jsonObject.push_back(nullptr);
+        }
+    }
 }
