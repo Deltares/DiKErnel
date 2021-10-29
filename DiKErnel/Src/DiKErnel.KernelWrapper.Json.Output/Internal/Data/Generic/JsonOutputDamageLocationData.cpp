@@ -37,12 +37,16 @@ namespace DiKErnel::KernelWrapper::Json::Output
 
         auto output = JsonOutputFailureLocationData::CreateJson();
 
-        output[JsonOutputDefinitions::DAMAGE_REVETMENT] = ordered_json::object(
+        output.push_back(
             {
-                {
-                    JsonOutputDefinitions::DAMAGE_OVER_TIME,
-                    locationOutput.GetDamages()
-                }
+                JsonOutputDefinitions::DAMAGE_REVETMENT,
+                ordered_json::object(
+                    {
+                        {
+                            JsonOutputDefinitions::DAMAGE_OVER_TIME,
+                            locationOutput.GetDamages()
+                        }
+                    })
             });
 
         return output;

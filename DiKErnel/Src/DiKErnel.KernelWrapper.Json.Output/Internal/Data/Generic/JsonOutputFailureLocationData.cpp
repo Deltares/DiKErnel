@@ -54,7 +54,7 @@ namespace DiKErnel::KernelWrapper::Json::Output
 
         if (timeOfFailure != nullptr)
         {
-            output[JsonOutputDefinitions::FAILURE_REVETMENT][JsonOutputDefinitions::TIME_OF_FAILURE] = *timeOfFailure;
+            output.at(JsonOutputDefinitions::FAILURE_REVETMENT).at(JsonOutputDefinitions::TIME_OF_FAILURE) = *timeOfFailure;
         }
 
         return output;

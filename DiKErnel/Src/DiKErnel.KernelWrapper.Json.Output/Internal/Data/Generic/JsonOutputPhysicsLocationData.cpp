@@ -35,12 +35,16 @@ namespace DiKErnel::KernelWrapper::Json::Output
     {
         auto output = JsonOutputDamageLocationData::CreateJson();
 
-        output[JsonOutputDefinitions::PHYSICS_REVETMENT] = ordered_json(
+        output.push_back(
             {
-                {
-                    JsonOutputDefinitions::Z,
-                    GetLocationOutput().GetZ()
-                }
+                JsonOutputDefinitions::PHYSICS_REVETMENT,
+                ordered_json(
+                    {
+                        {
+                            JsonOutputDefinitions::Z,
+                            GetLocationOutput().GetZ()
+                        }
+                    })
             });
 
         return output;
