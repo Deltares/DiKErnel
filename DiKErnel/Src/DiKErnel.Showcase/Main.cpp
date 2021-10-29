@@ -60,8 +60,14 @@ string GetEventTypeString(
 
 void CloseApplication();
 
+void CloseApplicationAfterUnhandledError();
+
 [[noreturn]]
 void UnhandledErrorHandler();
+
+vector<reference_wrapper<Event>> GetEventReferences(
+    const vector<unique_ptr<Event>>& events
+);
 
 #pragma endregion
 
@@ -288,15 +294,10 @@ int main()
     }
     catch (const exception& e)
     {
-        EventRegistry::Register(make_unique<Event>("An unhandled error occurred in the showcase. See stack trace for more information:\n"
+        EventRegistry::Register(make_unique<Event>("An unhandled error occurred in the Showcase. See stack trace for more information:\n"
                                                    + static_cast<string>(e.what()), EventType::Error));
-        const auto result = make_unique<SimpleResult>(false, EventRegistry::Flush());
-        WriteToLogFile(result->GetEvents());
 
-        cout << "-> An error occurred. See the log file for details" << endl;
-
-        CloseApplication();
-
+        CloseApplicationAfterUnhandledError();
         return -1;
     }
 }
@@ -380,15 +381,36 @@ void CloseApplication()
     cin.get();
 }
 
-void UnhandledErrorHandler()
+void CloseApplicationAfterUnhandledError()
 {
-    EventRegistry::Register(make_unique<Event>("An unhandled error occurred in the Showcase. No stacktrace available.", EventType::Error));
-    const auto result = make_unique<SimpleResult>(false, EventRegistry::Flush());
-    WriteToLogFile(result->GetEvents());
+    const auto events = EventRegistry::Flush();
+    WriteToLogFile(GetEventReferences(events));
 
     cout << "-> An error occurred. See the log file for details" << endl;
 
     CloseApplication();
+}
 
+void UnhandledErrorHandler()
+{
+    EventRegistry::Register(make_unique<Event>("An unhandled error occurred in the Showcase. No stacktrace available.", EventType::Error));
+
+    CloseApplicationAfterUnhandledError();
     exit(-1);
+}
+
+vector<reference_wrapper<Event>> GetEventReferences(
+    const vector<unique_ptr<Event>>& events
+)
+{
+    vector<reference_wrapper<Event>> eventReferences;
+
+    eventReferences.reserve(events.size());
+
+    for (const auto& event : events)
+    {
+        eventReferences.emplace_back(*event);
+    }
+
+    return eventReferences;
 }
