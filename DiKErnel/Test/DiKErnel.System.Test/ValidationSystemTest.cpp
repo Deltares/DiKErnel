@@ -33,7 +33,7 @@ namespace DiKErnel::System::Test
     using namespace Util::TestUtil;
     using namespace Util;
 
-    TEST(ValidationSystemTest, GivenCalculationInputWithoutTimeStepsAndLocations_WhenValidating_ThenReturnsValidationResult)
+    TEST(ValidationSystemTest, GivenCalculationInputWithoutTimeStepsAndLocations_WhenValidating_ThenReturnsExpectedValidationResult)
     {
         // Given
         RevetmentCalculationInputBuilder builder;
@@ -51,7 +51,7 @@ namespace DiKErnel::System::Test
         EventAssertHelper::AssertEvent(EventType::Error, "At least 1 location must be defined.", events[1]);
     }
 
-    TEST(ValidationSystemTest, GivenCalculationInputWithInvalidTimeStep_WhenValidating_ThenReturnsValidationResult)
+    TEST(ValidationSystemTest, GivenCalculationInputWithInvalidTimeStep_WhenValidating_ThenReturnsExpectedValidationResult)
     {
         // Given
         RevetmentCalculationInputBuilder builder;
@@ -73,7 +73,8 @@ namespace DiKErnel::System::Test
         EventAssertHelper::AssertEvent(EventType::Error, "WaveAngle must be in range {-180, 180].", events[4]);
     }
 
-    TEST(ValidationSystemTest, GivenCalculationInputWithInvalidAsphaltRevetmentWaveImpactLocation_WhenValidating_ThenReturnsValidationResult)
+    TEST(ValidationSystemTest,
+         GivenCalculationInputWithInvalidAsphaltRevetmentWaveImpactLocation_WhenValidating_ThenReturnsExpectedValidationResult)
     {
         // Given
         AsphaltRevetmentWaveImpactLocationConstructionProperties constructionProperties(
@@ -123,7 +124,7 @@ namespace DiKErnel::System::Test
         EventAssertHelper::AssertEvent(EventType::Error, "OuterSlope must be in range {0, 1}.", events[16]);
     }
 
-    TEST(ValidationSystemTest, GivenCalculationInputWithInvalidGrassRevetmentWaveImpactLocation_WhenValidating_ThenReturnsValidationResult)
+    TEST(ValidationSystemTest, GivenCalculationInputWithInvalidGrassRevetmentWaveImpactLocation_WhenValidating_ThenReturnsExpectedValidationResult)
     {
         // Given
         GrassRevetmentWaveImpactLocationConstructionProperties constructionProperties(10, GrassRevetmentTopLayerType::ClosedSod);
@@ -171,7 +172,8 @@ namespace DiKErnel::System::Test
         EventAssertHelper::AssertEvent(EventType::Error, "UpperLimitLoadingAul must be smaller than LowerLimitLoadingAll.", events[12]);
     }
 
-    TEST(ValidationSystemTest, GivenCalculationInputWithInvalidGrassRevetmentWaveRunupRayleighLocation_WhenValidating_ThenReturnsValidationResult)
+    TEST(ValidationSystemTest,
+         GivenCalculationInputWithInvalidGrassRevetmentWaveRunupRayleighLocation_WhenValidating_ThenReturnsExpectedValidationResult)
     {
         // Given
         GrassRevetmentWaveRunupRayleighLocationConstructionProperties constructionProperties(10, 20, GrassRevetmentTopLayerType::ClosedSod);
@@ -219,7 +221,7 @@ namespace DiKErnel::System::Test
         EventAssertHelper::AssertEvent(EventType::Error, "FrontVelocityCu must be larger than 0.", events[13]);
     }
 
-    TEST(ValidationSystemTest, GivenCalculationInputWithInvalidNaturalStoneRevetmentLocation_WhenValidating_ThenReturnsValidationResult)
+    TEST(ValidationSystemTest, GivenCalculationInputWithInvalidNaturalStoneRevetmentLocation_WhenValidating_ThenReturnsExpectedValidationResult)
     {
         // Given
         NaturalStoneRevetmentLocationConstructionProperties constructionProperties(10, NaturalStoneRevetmentTopLayerType::NordicStone, 0, 10);
@@ -290,7 +292,6 @@ namespace DiKErnel::System::Test
         // Then
         ASSERT_TRUE(validationResult->GetSuccessful());
         ASSERT_EQ(ValidationResultType::Successful, *validationResult->GetData());
-        const auto& events = validationResult->GetEvents();
-        ASSERT_EQ(0, events.size());
+        ASSERT_EQ(0, validationResult->GetEvents().size());
     }
 }
