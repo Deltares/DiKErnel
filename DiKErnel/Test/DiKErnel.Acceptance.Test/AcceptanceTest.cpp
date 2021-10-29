@@ -76,7 +76,7 @@ namespace DiKErnel::Acceptance::Test
 
             for (auto i = 0; i < static_cast<int>(readLocations.size()); ++i)
             {
-                const auto readLocation = readLocations[i];
+                const auto readLocation = readLocations.at(i);
 
                 const auto& actualDamages = readLocation["SchadeBekleding"]["SchadegetalPerTijd"].get<vector<double>>();
 
@@ -87,7 +87,7 @@ namespace DiKErnel::Acceptance::Test
                     actualTimeOfFailure = make_unique<int>(readLocation["FalenBekleding"]["Faaltijd"].get<int>());
                 }
 
-                AssertOutput(expectedDamages[i], expectedTimesOfFailure[i], actualDamages.back(), actualTimeOfFailure.get());
+                AssertOutput(expectedDamages.at(i), expectedTimesOfFailure.at(i), actualDamages.back(), actualTimeOfFailure.get());
             }
         }
 

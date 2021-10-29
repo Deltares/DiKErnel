@@ -34,7 +34,7 @@ namespace DiKErnel::TestUtil
 
         for (auto i = 0; i < static_cast<int>(expectedCollection.size()); ++i)
         {
-            AssertAreAlmostEqual(expectedCollection[i], actualCollection[i]);
+            AssertAreAlmostEqual(expectedCollection.at(i), actualCollection.at(i));
         }
     }
 

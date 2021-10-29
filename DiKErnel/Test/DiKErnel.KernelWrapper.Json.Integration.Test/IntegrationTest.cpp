@@ -96,13 +96,13 @@ namespace DiKErnel::KernelWrapper::Json::Integration::Test
             {
                 for (auto j = 1; j < static_cast<int>(value.size()); ++j)
                 {
-                    if (value[j].type() == json::value_t::number_float)
+                    if (value.at(j).type() == json::value_t::number_float)
                     {
-                        AssertHelper::AssertAreAlmostEqual(value[j].get<double>(), actualPhysics[key][j].get<double>());
+                        AssertHelper::AssertAreAlmostEqual(value.at(j).get<double>(), actualPhysics.at(key).at(j).get<double>());
                     }
                     else
                     {
-                        ASSERT_EQ(value[j], actualPhysics[key][j]);
+                        ASSERT_EQ(value.at(j), actualPhysics.at(key).at(j));
                     }
                 }
             }
@@ -138,8 +138,8 @@ namespace DiKErnel::KernelWrapper::Json::Integration::Test
 
             for (auto i = 0; i < static_cast<int>(expectedLocations.size()); ++i)
             {
-                const auto& expectedLocation = expectedLocations[i];
-                const auto& actualLocation = actualLocations[i];
+                const auto& expectedLocation = expectedLocations.at(i);
+                const auto& actualLocation = actualLocations.at(i);
 
                 AssertFailure(expectedLocation, actualLocation);
 

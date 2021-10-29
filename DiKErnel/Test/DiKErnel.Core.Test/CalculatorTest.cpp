@@ -116,7 +116,7 @@ namespace DiKErnel::Core::Test
 
         for (auto j = 0; j < static_cast<int>(_timeDependentInputItemReferences.size()); ++j)
         {
-            ASSERT_DOUBLE_EQ(damage, actualDamages[j]);
+            ASSERT_DOUBLE_EQ(damage, actualDamages.at(j));
         }
 
         ASSERT_EQ(nullptr, locationDependentOutputItems[0].get().GetTimeOfFailure());
@@ -156,7 +156,7 @@ namespace DiKErnel::Core::Test
 
         for (auto j = 0; j < static_cast<int>(_timeDependentInputItemReferences.size()); ++j)
         {
-            ASSERT_DOUBLE_EQ(damage, actualDamages[j]);
+            ASSERT_DOUBLE_EQ(damage, actualDamages.at(j));
         }
 
         ASSERT_EQ(timeOfFailure, *locationDependentOutputItems[0].get().GetTimeOfFailure());
