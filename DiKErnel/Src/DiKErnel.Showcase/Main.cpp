@@ -53,7 +53,6 @@ JsonOutputType ConvertProcessType(
     JsonInputProcessType);
 
 void WriteToLogFile(
-    const string& filePath,
     const vector<reference_wrapper<Event>>& events);
 
 string GetEventTypeString(
@@ -61,6 +60,7 @@ string GetEventTypeString(
 
 void CloseApplication();
 
+[[noreturn]]
 void UnhandledErrorHandler();
 
 #pragma endregion
@@ -98,7 +98,7 @@ int main()
 
         // Write to log file
         logOutputPath = (outputDirectory / (outputFileNameBase + ".txt")).u8string();
-        WriteToLogFile(logOutputPath, inputComposerResult->GetEvents());
+        WriteToLogFile(inputComposerResult->GetEvents());
 
         // Handle error during read operation
         if (!inputComposerResult->GetSuccessful())
@@ -129,7 +129,7 @@ int main()
         const auto validationResult = Validator::Validate(calculationInput);
 
         // Write to log file
-        WriteToLogFile(logOutputPath, validationResult->GetEvents());
+        WriteToLogFile(validationResult->GetEvents());
 
         // Handle error during validation
         if (!validationResult->GetSuccessful())
@@ -201,7 +201,7 @@ int main()
 
         // Write to log file
         const auto calculatorResult = calculator.GetResult();
-        WriteToLogFile(logOutputPath, calculatorResult->GetEvents());
+        WriteToLogFile(calculatorResult->GetEvents());
 
         #pragma endregion
 
@@ -245,7 +245,7 @@ int main()
                                                                                            ConvertProcessType(inputData->GetProcessType()));
 
         // Write to log file
-        WriteToLogFile(logOutputPath, outputComposerResult->GetEvents());
+        WriteToLogFile(outputComposerResult->GetEvents());
 
         // Handle error during write operation
         if (!outputComposerResult->GetSuccessful())
@@ -291,7 +291,7 @@ int main()
         EventRegistry::Register(make_unique<Event>("An unhandled error occurred in the showcase. See stack trace for more information:\n"
                                                    + static_cast<string>(e.what()), EventType::Error));
         const auto result = make_unique<SimpleResult>(false, EventRegistry::Flush());
-        WriteToLogFile(logOutputPath, result->GetEvents());
+        WriteToLogFile(result->GetEvents());
 
         cout << "-> An error occurred. See the log file for details" << endl;
 
@@ -340,7 +340,6 @@ JsonOutputType ConvertProcessType(
 }
 
 void WriteToLogFile(
-    const string& filePath,
     const vector<reference_wrapper<Event>>& events)
 {
     if (events.empty())
@@ -351,7 +350,7 @@ void WriteToLogFile(
     ofstream logFile;
 
     // Open file and append if already exists.
-    logFile.open(filePath, ios::app);
+    logFile.open(logOutputPath, ios::app);
 
     for (const auto& eventReference : events)
     {
@@ -385,7 +384,7 @@ void UnhandledErrorHandler()
 {
     EventRegistry::Register(make_unique<Event>("An unhandled error occurred in the Showcase. No stacktrace available.", EventType::Error));
     const auto result = make_unique<SimpleResult>(false, EventRegistry::Flush());
-    WriteToLogFile(logOutputPath, result->GetEvents());
+    WriteToLogFile(result->GetEvents());
 
     cout << "-> An error occurred. See the log file for details" << endl;
 
