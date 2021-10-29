@@ -59,8 +59,7 @@ void WriteToLogFile(
 string GetEventTypeString(
     EventType eventType);
 
-void CloseApplication(
-    const string& logOutputPath);
+void CloseApplication();
 
 void UnhandledErrorHandler();
 
@@ -109,7 +108,7 @@ int main()
             cout << "|=====================|" << endl;
             cout << "-> An error occurred. See the log file for details" << endl;
 
-            CloseApplication(logOutputPath);
+            CloseApplication();
             return -1;
         }
 
@@ -140,7 +139,7 @@ int main()
             cout << "|===================|" << endl;
             cout << "-> An error occurred. See the log file for details" << endl;
 
-            CloseApplication(logOutputPath);
+            CloseApplication();
             return -1;
         }
 
@@ -214,7 +213,7 @@ int main()
             cout << "| Calculation cancelled |" << endl;
             cout << "|=======================|" << endl;
 
-            CloseApplication(logOutputPath);
+            CloseApplication();
             return -1;
         }
 
@@ -229,7 +228,7 @@ int main()
             cout << "|====================|" << endl;
             cout << "-> An error occurred. See the log file for details" << endl;
 
-            CloseApplication(logOutputPath);
+            CloseApplication();
             return -1;
         }
 
@@ -256,7 +255,7 @@ int main()
             cout << "|================|" << endl;
             cout << "-> An error occurred. See the log file for details" << endl;
 
-            CloseApplication(logOutputPath);
+            CloseApplication();
             return -1;
         }
 
@@ -278,7 +277,7 @@ int main()
         calculationFinished = true;
 
         // Write closing message
-        CloseApplication(logOutputPath);
+        CloseApplication();
 
         // Wait for actual completion of the user input thread
         inputThread.join();
@@ -296,7 +295,7 @@ int main()
 
         cout << "-> An error occurred. See the log file for details" << endl;
 
-        CloseApplication(logOutputPath);
+        CloseApplication();
 
         return -1;
     }
@@ -375,8 +374,7 @@ string GetEventTypeString(
     return "";
 }
 
-void CloseApplication(
-    const string& logOutputPath)
+void CloseApplication()
 {
     cout << "-> The log file is written to: " << logOutputPath << endl;
     cout << endl << "Press 'Enter' to exit the application.";
@@ -391,7 +389,7 @@ void UnhandledErrorHandler()
 
     cout << "-> An error occurred. See the log file for details" << endl;
 
-    CloseApplication(logOutputPath);
+    CloseApplication();
 
     exit(-1);
 }
