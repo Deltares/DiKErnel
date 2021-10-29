@@ -44,17 +44,23 @@ namespace DiKErnel::KernelWrapper::Json::Output
     ordered_json JsonOutputAsphaltRevetmentWaveImpactPhysicsLocationData::CreateJson() const
     {
         auto output = JsonOutputPhysicsLocationData::CreateJson();
-        auto& physicsJson = output[JsonOutputDefinitions::PHYSICS_REVETMENT];
+        auto& physicsJson = output.at(JsonOutputDefinitions::PHYSICS_REVETMENT);
 
         for (const auto* outputItem : _timeDependentOutputItems)
         {
-            physicsJson[JsonOutputAsphaltRevetmentWaveImpactDefinitions::INCREMENT_DAMAGE].push_back(outputItem->GetIncrementDamage());
-            physicsJson[JsonOutputAsphaltRevetmentWaveImpactDefinitions::LOG_FAILURE_TENSION].push_back(outputItem->GetLogFailureTension());
-            physicsJson[JsonOutputAsphaltRevetmentWaveImpactDefinitions::MAXIMUM_PEAK_STRESS].push_back(outputItem->GetMaximumPeakStress());
-            physicsJson[JsonOutputAsphaltRevetmentWaveImpactDefinitions::STIFFNESS_RELATION].push_back(outputItem->GetStiffnessRelation());
-            physicsJson[JsonOutputAsphaltRevetmentWaveImpactDefinitions::COMPUTATIONAL_THICKNESS].
-                    push_back(outputItem->GetComputationalThickness());
-            physicsJson[JsonOutputAsphaltRevetmentWaveImpactDefinitions::EQUIVALENT_ELASTIC_MODULUS].push_back(
+            CalculationOutputAdapterHelper::GetJsonElement(
+                physicsJson, JsonOutputAsphaltRevetmentWaveImpactDefinitions::INCREMENT_DAMAGE).push_back(outputItem->GetIncrementDamage());
+            CalculationOutputAdapterHelper::GetJsonElement(
+                physicsJson, JsonOutputAsphaltRevetmentWaveImpactDefinitions::LOG_FAILURE_TENSION).push_back(outputItem->GetLogFailureTension());
+            CalculationOutputAdapterHelper::GetJsonElement(
+                physicsJson, JsonOutputAsphaltRevetmentWaveImpactDefinitions::MAXIMUM_PEAK_STRESS).push_back(outputItem->GetMaximumPeakStress());
+            CalculationOutputAdapterHelper::GetJsonElement(
+                physicsJson, JsonOutputAsphaltRevetmentWaveImpactDefinitions::STIFFNESS_RELATION).push_back(outputItem->GetStiffnessRelation());
+            CalculationOutputAdapterHelper::GetJsonElement(
+                physicsJson, JsonOutputAsphaltRevetmentWaveImpactDefinitions::COMPUTATIONAL_THICKNESS).push_back(
+                outputItem->GetComputationalThickness());
+            CalculationOutputAdapterHelper::GetJsonElement(
+                physicsJson, JsonOutputAsphaltRevetmentWaveImpactDefinitions::EQUIVALENT_ELASTIC_MODULUS).push_back(
                 outputItem->GetEquivalentElasticModulus());
         }
 

@@ -51,4 +51,20 @@ namespace DiKErnel::KernelWrapper::Json::Output
             jsonObject.push_back(nullptr);
         }
     }
+
+    ordered_json& CalculationOutputAdapterHelper::GetJsonElement(
+        ordered_json& jsonObject,
+        const std::string& elementName)
+    {
+        if (!jsonObject.contains(elementName))
+        {
+            jsonObject.push_back(
+                {
+                    elementName,
+                    json::array()
+                });
+        }
+
+        return jsonObject.at(elementName);
+    }
 }
