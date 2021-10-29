@@ -69,7 +69,7 @@ namespace DiKErnel::Acceptance::Test
             ifstream ifs(_actualOutputFilePath);
             const auto json = json::parse(ifs);
 
-            const auto& readLocations = json["Uitvoerdata"]["Locaties"];
+            const auto& readLocations = json.at("Uitvoerdata").at("Locaties");
 
             ASSERT_EQ(expectedDamages.size(), readLocations.size());
             ASSERT_EQ(expectedTimesOfFailure.size(), readLocations.size());
@@ -78,13 +78,13 @@ namespace DiKErnel::Acceptance::Test
             {
                 const auto readLocation = readLocations.at(i);
 
-                const auto& actualDamages = readLocation["SchadeBekleding"]["SchadegetalPerTijd"].get<vector<double>>();
+                const auto& actualDamages = readLocation.at("SchadeBekleding").at("SchadegetalPerTijd").get<vector<double>>();
 
                 unique_ptr<int> actualTimeOfFailure = nullptr;
 
-                if (!readLocation["FalenBekleding"]["Faaltijd"].is_null())
+                if (!readLocation.at("FalenBekleding").at("Faaltijd").is_null())
                 {
-                    actualTimeOfFailure = make_unique<int>(readLocation["FalenBekleding"]["Faaltijd"].get<int>());
+                    actualTimeOfFailure = make_unique<int>(readLocation.at("FalenBekleding").at("Faaltijd").get<int>());
                 }
 
                 AssertOutput(expectedDamages.at(i), expectedTimesOfFailure.at(i), actualDamages.back(), actualTimeOfFailure.get());

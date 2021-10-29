@@ -64,33 +64,33 @@ namespace DiKErnel::KernelWrapper::Json::Integration::Test
             const json& expectedLocation,
             const json& actualLocation) const
         {
-            const auto& expectedFailure = expectedLocation["FalenBekleding"];
-            const auto& actualFailure = actualLocation["FalenBekleding"];
+            const auto& expectedFailure = expectedLocation.at("FalenBekleding");
+            const auto& actualFailure = actualLocation.at("FalenBekleding");
 
-            ASSERT_EQ(expectedFailure["Faalgebeurtenis"], actualFailure["Faalgebeurtenis"]);
-            ASSERT_EQ(expectedFailure["Faaltijd"], actualFailure["Faaltijd"]);
+            ASSERT_EQ(expectedFailure.at("Faalgebeurtenis"), actualFailure.at("Faalgebeurtenis"));
+            ASSERT_EQ(expectedFailure.at("Faaltijd"), actualFailure.at("Faaltijd"));
         }
 
         void AssertDamage(
             const json& expectedLocation,
             const json& actualLocation) const
         {
-            const auto& expectedDamage = expectedLocation["SchadeBekleding"];
-            const auto& actualDamage = actualLocation["SchadeBekleding"];
+            const auto& expectedDamage = expectedLocation.at("SchadeBekleding");
+            const auto& actualDamage = actualLocation.at("SchadeBekleding");
 
-            AssertHelper::AssertAreAlmostEqual(expectedDamage["SchadegetalPerTijd"].get<vector<double>>(),
-                                               actualDamage["SchadegetalPerTijd"].get<vector<double>>());
+            AssertHelper::AssertAreAlmostEqual(expectedDamage.at("SchadegetalPerTijd").get<vector<double>>(),
+                                               actualDamage.at("SchadegetalPerTijd").get<vector<double>>());
         }
 
         void AssertPhysics(
             const json& expectedLocation,
             const json& actualLocation) const
         {
-            const auto& expectedPhysics = expectedLocation["FysicaBekleding"];
-            const auto& actualPhysics = actualLocation["FysicaBekleding"];
+            const auto& expectedPhysics = expectedLocation.at("FysicaBekleding");
+            const auto& actualPhysics = actualLocation.at("FysicaBekleding");
 
             ASSERT_EQ(expectedPhysics.size(), actualPhysics.size());
-            ASSERT_EQ(expectedPhysics["HoogteLocatie"], actualPhysics["HoogteLocatie"]);
+            ASSERT_EQ(expectedPhysics.at("HoogteLocatie"), actualPhysics.at("HoogteLocatie"));
 
             for (const auto& [key, value] : expectedPhysics.items())
             {
@@ -131,8 +131,8 @@ namespace DiKErnel::KernelWrapper::Json::Integration::Test
             ifstream ifs2(_actualOutputFilePath);
             const auto actualJson = json::parse(ifs2);
 
-            const auto& expectedLocations = expectedJson["Uitvoerdata"]["Locaties"];
-            const auto& actualLocations = actualJson["Uitvoerdata"]["Locaties"];
+            const auto& expectedLocations = expectedJson.at("Uitvoerdata").at("Locaties");
+            const auto& actualLocations = actualJson.at("Uitvoerdata").at("Locaties");
 
             ASSERT_EQ(expectedLocations.size(), actualLocations.size());
 
