@@ -47,7 +47,7 @@ namespace DiKErnel::FunctionLibrary
     {
         for (auto i = 0; i < static_cast<int>(dikeProfile.size()); ++i)
         {
-            const auto& [xCurrentDikeProfilePoint, zCurrentDikeProfilePoint] = dikeProfile[i];
+            const auto& [xCurrentDikeProfilePoint, zCurrentDikeProfilePoint] = dikeProfile.at(i);
 
             if (abs(xCurrentDikeProfilePoint - horizontalPosition) <= numeric_limits<double>::epsilon())
             {
@@ -61,7 +61,7 @@ namespace DiKErnel::FunctionLibrary
                     return numeric_limits<double>::infinity();
                 }
 
-                const auto& [xPreviousDikeProfilePoint, zPreviousDikeProfilePoint] = dikeProfile[i - 1];
+                const auto& [xPreviousDikeProfilePoint, zPreviousDikeProfilePoint] = dikeProfile.at(i - 1);
 
                 return zPreviousDikeProfilePoint + (zCurrentDikeProfilePoint - zPreviousDikeProfilePoint)
                         / (xCurrentDikeProfilePoint - xPreviousDikeProfilePoint)
@@ -78,7 +78,7 @@ namespace DiKErnel::FunctionLibrary
     {
         for (auto i = 0; i < static_cast<int>(dikeProfile.size()); ++i)
         {
-            const auto& [xCurrentDikeProfilePoint, zCurrentDikeProfilePoint] = dikeProfile[i];
+            const auto& [xCurrentDikeProfilePoint, zCurrentDikeProfilePoint] = dikeProfile.at(i);
 
             if (abs(zCurrentDikeProfilePoint - verticalHeight) <= numeric_limits<double>::epsilon())
             {

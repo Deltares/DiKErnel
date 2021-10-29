@@ -48,24 +48,24 @@ namespace DiKErnel::KernelWrapper::Json::Output
 
         for (auto i = 0; i < static_cast<int>(_timeDependentOutputItems.size()); ++i)
         {
-            const auto* outputItem = _timeDependentOutputItems[i];
+            const auto* outputItem = _timeDependentOutputItems.at(i);
 
-            physicsJson[JsonOutputGrassRevetmentWaveImpactDefinitions::INCREMENT_DAMAGE][i] = outputItem->GetIncrementDamage();
-            physicsJson[JsonOutputDefinitions::HYDRAULIC_LOAD][i] = outputItem->GetLoadingRevetment();
-            physicsJson[JsonOutputGrassRevetmentWaveImpactDefinitions::UPPER_LIMIT_LOADING][i] = outputItem->GetUpperLimitLoading();
-            physicsJson[JsonOutputGrassRevetmentWaveImpactDefinitions::LOWER_LIMIT_LOADING][i] = outputItem->GetLowerLimitLoading();
+            physicsJson[JsonOutputGrassRevetmentWaveImpactDefinitions::INCREMENT_DAMAGE].at(i) = outputItem->GetIncrementDamage();
+            physicsJson[JsonOutputDefinitions::HYDRAULIC_LOAD].at(i) = outputItem->GetLoadingRevetment();
+            physicsJson[JsonOutputGrassRevetmentWaveImpactDefinitions::UPPER_LIMIT_LOADING].at(i) = outputItem->GetUpperLimitLoading();
+            physicsJson[JsonOutputGrassRevetmentWaveImpactDefinitions::LOWER_LIMIT_LOADING].at(i) = outputItem->GetLowerLimitLoading();
 
             CalculationOutputAdapterHelper::SetPropertyWhenApplicable(
-                physicsJson[JsonOutputGrassRevetmentWaveImpactDefinitions::MAXIMUM_WAVE_HEIGHT][i],
+                physicsJson[JsonOutputGrassRevetmentWaveImpactDefinitions::MAXIMUM_WAVE_HEIGHT].at(i),
                 outputItem->GetMaximumWaveHeight());
             CalculationOutputAdapterHelper::SetPropertyWhenApplicable(
-                physicsJson[JsonOutputGrassRevetmentWaveImpactDefinitions::MINIMUM_WAVE_HEIGHT][i],
+                physicsJson[JsonOutputGrassRevetmentWaveImpactDefinitions::MINIMUM_WAVE_HEIGHT].at(i),
                 outputItem->GetMinimumWaveHeight());
             CalculationOutputAdapterHelper::SetPropertyWhenApplicable(
-                physicsJson[JsonOutputGrassRevetmentWaveImpactDefinitions::WAVE_ANGLE_IMPACT][i],
+                physicsJson[JsonOutputGrassRevetmentWaveImpactDefinitions::WAVE_ANGLE_IMPACT].at(i),
                 outputItem->GetWaveAngleImpact());
             CalculationOutputAdapterHelper::SetPropertyWhenApplicable(
-                physicsJson[JsonOutputGrassRevetmentWaveImpactDefinitions::WAVE_HEIGHT_IMPACT][i],
+                physicsJson[JsonOutputGrassRevetmentWaveImpactDefinitions::WAVE_HEIGHT_IMPACT].at(i),
                 outputItem->GetWaveHeightImpact());
         }
 

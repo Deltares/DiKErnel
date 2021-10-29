@@ -48,36 +48,39 @@ namespace DiKErnel::KernelWrapper::Json::Output
 
         for (auto i = 0; i < static_cast<int>(_timeDependentOutputItems.size()); ++i)
         {
-            const auto* outputItem = _timeDependentOutputItems[i];
+            const auto* outputItem = _timeDependentOutputItems.at(i);
 
-            physicsJson[JsonOutputNaturalStoneRevetmentDefinitions::INCREMENT_DAMAGE][i] = outputItem->GetIncrementDamage();
+            physicsJson[JsonOutputNaturalStoneRevetmentDefinitions::INCREMENT_DAMAGE].at(i) = outputItem->GetIncrementDamage();
 
-            physicsJson[JsonOutputNaturalStoneRevetmentDefinitions::OUTER_SLOPE][i] = outputItem->GetOuterSlope();
-            physicsJson[JsonOutputNaturalStoneRevetmentDefinitions::SLOPE_UPPER_LEVEL][i] = outputItem->GetSlopeUpperLevel();
-            physicsJson[JsonOutputNaturalStoneRevetmentDefinitions::SLOPE_UPPER_POSITION][i] = outputItem->GetSlopeUpperPosition();
-            physicsJson[JsonOutputNaturalStoneRevetmentDefinitions::SLOPE_LOWER_LEVEL][i] = outputItem->GetSlopeLowerLevel();
-            physicsJson[JsonOutputNaturalStoneRevetmentDefinitions::SLOPE_LOWER_POSITION][i] = outputItem->GetSlopeLowerPosition();
+            physicsJson[JsonOutputNaturalStoneRevetmentDefinitions::OUTER_SLOPE].at(i) = outputItem->GetOuterSlope();
+            physicsJson[JsonOutputNaturalStoneRevetmentDefinitions::SLOPE_UPPER_LEVEL].at(i) = outputItem->GetSlopeUpperLevel();
+            physicsJson[JsonOutputNaturalStoneRevetmentDefinitions::SLOPE_UPPER_POSITION].at(i) = outputItem->GetSlopeUpperPosition();
+            physicsJson[JsonOutputNaturalStoneRevetmentDefinitions::SLOPE_LOWER_LEVEL].at(i) = outputItem->GetSlopeLowerLevel();
+            physicsJson[JsonOutputNaturalStoneRevetmentDefinitions::SLOPE_LOWER_POSITION].at(i) = outputItem->GetSlopeLowerPosition();
 
-            physicsJson[JsonOutputDefinitions::HYDRAULIC_LOAD][i] = outputItem->GetLoadingRevetment();
-            physicsJson[JsonOutputNaturalStoneRevetmentDefinitions::SURF_SIMILARITY_PARAMETER][i] = outputItem->GetSurfSimilarityParameter();
-            physicsJson[JsonOutputNaturalStoneRevetmentDefinitions::WAVE_STEEPNESS_DEEP_WATER][i] = outputItem->GetWaveSteepnessDeepWater();
-            physicsJson[JsonOutputNaturalStoneRevetmentDefinitions::UPPER_LIMIT_LOADING][i] = outputItem->GetUpperLimitLoading();
-            physicsJson[JsonOutputNaturalStoneRevetmentDefinitions::LOWER_LIMIT_LOADING][i] = outputItem->GetLowerLimitLoading();
-            physicsJson[JsonOutputNaturalStoneRevetmentDefinitions::DEPTH_MAXIMUM_WAVE_LOAD][i] = outputItem->GetDepthMaximumWaveLoad();
-            physicsJson[JsonOutputNaturalStoneRevetmentDefinitions::DISTANCE_MAXIMUM_WAVE_ELEVATION][i] =
+            physicsJson[JsonOutputDefinitions::HYDRAULIC_LOAD].at(i) = outputItem->GetLoadingRevetment();
+            physicsJson[JsonOutputNaturalStoneRevetmentDefinitions::SURF_SIMILARITY_PARAMETER].at(i) = outputItem->GetSurfSimilarityParameter();
+            physicsJson[JsonOutputNaturalStoneRevetmentDefinitions::WAVE_STEEPNESS_DEEP_WATER].at(i) = outputItem->GetWaveSteepnessDeepWater();
+            physicsJson[JsonOutputNaturalStoneRevetmentDefinitions::UPPER_LIMIT_LOADING].at(i) = outputItem->GetUpperLimitLoading();
+            physicsJson[JsonOutputNaturalStoneRevetmentDefinitions::LOWER_LIMIT_LOADING].at(i) = outputItem->GetLowerLimitLoading();
+            physicsJson[JsonOutputNaturalStoneRevetmentDefinitions::DEPTH_MAXIMUM_WAVE_LOAD].at(i) = outputItem->GetDepthMaximumWaveLoad();
+            physicsJson[JsonOutputNaturalStoneRevetmentDefinitions::DISTANCE_MAXIMUM_WAVE_ELEVATION].at(i) =
                     outputItem->GetDistanceMaximumWaveElevation();
-            physicsJson[JsonOutputNaturalStoneRevetmentDefinitions::NORMATIVE_WIDTH_WAVE_IMPACT][i] = outputItem->GetNormativeWidthOfWaveImpact();
+            physicsJson[JsonOutputNaturalStoneRevetmentDefinitions::NORMATIVE_WIDTH_WAVE_IMPACT].at(i) = outputItem->
+                    GetNormativeWidthOfWaveImpact();
 
-            CalculationOutputAdapterHelper::SetPropertyWhenApplicable(physicsJson[JsonOutputNaturalStoneRevetmentDefinitions::HYDRAULIC_LOAD][i],
+            CalculationOutputAdapterHelper::SetPropertyWhenApplicable(physicsJson[JsonOutputNaturalStoneRevetmentDefinitions::HYDRAULIC_LOAD].at(i),
                                                                       outputItem->GetHydraulicLoad());
-            CalculationOutputAdapterHelper::SetPropertyWhenApplicable(physicsJson[JsonOutputNaturalStoneRevetmentDefinitions::WAVE_ANGLE_IMPACT][i],
-                                                                      outputItem->GetWaveAngleImpact());
-            CalculationOutputAdapterHelper::SetPropertyWhenApplicable(physicsJson[JsonOutputNaturalStoneRevetmentDefinitions::RESISTANCE][i],
+            CalculationOutputAdapterHelper::SetPropertyWhenApplicable(
+                physicsJson[JsonOutputNaturalStoneRevetmentDefinitions::WAVE_ANGLE_IMPACT].at(i),
+                outputItem->GetWaveAngleImpact());
+            CalculationOutputAdapterHelper::SetPropertyWhenApplicable(physicsJson[JsonOutputNaturalStoneRevetmentDefinitions::RESISTANCE].at(i),
                                                                       outputItem->GetResistance());
             CalculationOutputAdapterHelper::SetPropertyWhenApplicable(
-                physicsJson[JsonOutputNaturalStoneRevetmentDefinitions::REFERENCE_TIME_DEGRADATION][i], outputItem->GetReferenceTimeDegradation());
+                physicsJson[JsonOutputNaturalStoneRevetmentDefinitions::REFERENCE_TIME_DEGRADATION].at(i),
+                outputItem->GetReferenceTimeDegradation());
             CalculationOutputAdapterHelper::SetPropertyWhenApplicable(
-                physicsJson[JsonOutputNaturalStoneRevetmentDefinitions::REFERENCE_DEGRADATION][i], outputItem->GetReferenceDegradation());
+                physicsJson[JsonOutputNaturalStoneRevetmentDefinitions::REFERENCE_DEGRADATION].at(i), outputItem->GetReferenceDegradation());
         }
 
         return output;

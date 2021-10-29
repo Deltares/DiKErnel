@@ -48,14 +48,14 @@ namespace DiKErnel::KernelWrapper::Json::Output
 
         for (auto i = 0; i < static_cast<int>(_timeDependentOutputItems.size()); ++i)
         {
-            const auto* outputItem = _timeDependentOutputItems[i];
+            const auto* outputItem = _timeDependentOutputItems.at(i);
 
-            physicsJson[JsonOutputAsphaltRevetmentWaveImpactDefinitions::INCREMENT_DAMAGE][i] = outputItem->GetIncrementDamage();
-            physicsJson[JsonOutputAsphaltRevetmentWaveImpactDefinitions::LOG_FAILURE_TENSION][i] = outputItem->GetLogFailureTension();
-            physicsJson[JsonOutputAsphaltRevetmentWaveImpactDefinitions::MAXIMUM_PEAK_STRESS][i] = outputItem->GetMaximumPeakStress();
-            physicsJson[JsonOutputAsphaltRevetmentWaveImpactDefinitions::STIFFNESS_RELATION][i] = outputItem->GetStiffnessRelation();
-            physicsJson[JsonOutputAsphaltRevetmentWaveImpactDefinitions::COMPUTATIONAL_THICKNESS][i] = outputItem->GetComputationalThickness();
-            physicsJson[JsonOutputAsphaltRevetmentWaveImpactDefinitions::EQUIVALENT_ELASTIC_MODULUS][i] =
+            physicsJson[JsonOutputAsphaltRevetmentWaveImpactDefinitions::INCREMENT_DAMAGE].at(i) = outputItem->GetIncrementDamage();
+            physicsJson[JsonOutputAsphaltRevetmentWaveImpactDefinitions::LOG_FAILURE_TENSION].at(i) = outputItem->GetLogFailureTension();
+            physicsJson[JsonOutputAsphaltRevetmentWaveImpactDefinitions::MAXIMUM_PEAK_STRESS].at(i) = outputItem->GetMaximumPeakStress();
+            physicsJson[JsonOutputAsphaltRevetmentWaveImpactDefinitions::STIFFNESS_RELATION].at(i) = outputItem->GetStiffnessRelation();
+            physicsJson[JsonOutputAsphaltRevetmentWaveImpactDefinitions::COMPUTATIONAL_THICKNESS].at(i) = outputItem->GetComputationalThickness();
+            physicsJson[JsonOutputAsphaltRevetmentWaveImpactDefinitions::EQUIVALENT_ELASTIC_MODULUS].at(i) =
                     outputItem->GetEquivalentElasticModulus();
         }
 

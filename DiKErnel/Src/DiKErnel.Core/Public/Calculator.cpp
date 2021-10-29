@@ -95,7 +95,7 @@ namespace DiKErnel::Core
                     break;
                 }
 
-                const auto& timeDependentInput = timeDependentInputItems[i].get();
+                const auto& timeDependentInput = timeDependentInputItems.at(i).get();
 
                 for (auto j = 0; j < static_cast<int>(locationDependentInputItems.size()); ++j)
                 {
@@ -104,15 +104,15 @@ namespace DiKErnel::Core
                         break;
                     }
 
-                    auto& locationDependentInput = locationDependentInputItems[j].get();
+                    auto& locationDependentInput = locationDependentInputItems.at(j).get();
 
                     const auto initialDamage = i == 0
                                                    ? locationDependentInput.GetInitialDamage()
-                                                   : timeDependentOutputItems[j].back()->GetDamage();
+                                                   : timeDependentOutputItems.at(j).back()->GetDamage();
 
                     auto timeDependentOutput = locationDependentInput.Calculate(initialDamage, timeDependentInput, profileData);
 
-                    timeDependentOutputItems[j].push_back(move(timeDependentOutput));
+                    timeDependentOutputItems.at(j).push_back(move(timeDependentOutput));
 
                     progress = progress + progressPerCalculationStep;
                 }
@@ -148,8 +148,8 @@ namespace DiKErnel::Core
 
         for (auto i = 0; i < static_cast<int>(locationDependentInputItems.size()); ++i)
         {
-            locationDependentOutputItems.push_back(make_unique<LocationDependentOutput>(locationDependentInputItems[i].get().GetZ(),
-                                                                                        move(timeDependentOutputItems[i])));
+            locationDependentOutputItems.push_back(make_unique<LocationDependentOutput>(locationDependentInputItems.at(i).get().GetZ(),
+                                                                                        move(timeDependentOutputItems.at(i))));
         }
 
         _result = make_shared<DataResult<CalculationOutput>>(make_unique<CalculationOutput>(move(locationDependentOutputItems)),
