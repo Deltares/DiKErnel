@@ -59,13 +59,13 @@ namespace DiKErnel::KernelWrapper::Json::Input
         const auto& readCalculationMethod = GetReadCalculationMethod();
 
         auto locationData = make_unique<JsonInputNaturalStoneRevetmentLocationData>(
-            readRevetment[JsonInputDefinitions::TYPE_TOP_LAYER].get<JsonInputNaturalStoneRevetmentTopLayerType>(),
-            readRevetment[JsonInputNaturalStoneDefinitions::RELATIVE_DENSITY],
-            readRevetment[JsonInputNaturalStoneDefinitions::THICKNESS_TOP_LAYER]);
+            readRevetment.at(JsonInputDefinitions::TYPE_TOP_LAYER).get<JsonInputNaturalStoneRevetmentTopLayerType>(),
+            readRevetment.at(JsonInputNaturalStoneDefinitions::RELATIVE_DENSITY),
+            readRevetment.at(JsonInputNaturalStoneDefinitions::THICKNESS_TOP_LAYER));
 
         if (readCalculationMethod.contains(JsonInputNaturalStoneDefinitions::HYDRAULIC_LOAD))
         {
-            const auto& readHydraulicLoads = readCalculationMethod[JsonInputNaturalStoneDefinitions::HYDRAULIC_LOAD];
+            const auto& readHydraulicLoads = readCalculationMethod.at(JsonInputNaturalStoneDefinitions::HYDRAULIC_LOAD);
 
             locationData->SetHydraulicLoadAp(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
@@ -98,7 +98,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
         if (readCalculationMethod.contains(JsonInputNaturalStoneDefinitions::SLOPE_UPPER_LEVEL))
         {
-            const auto& readSlopeUpperLevel = readCalculationMethod[JsonInputNaturalStoneDefinitions::SLOPE_UPPER_LEVEL];
+            const auto& readSlopeUpperLevel = readCalculationMethod.at(JsonInputNaturalStoneDefinitions::SLOPE_UPPER_LEVEL);
 
             locationData->SetSlopeUpperLevelAus(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
@@ -107,7 +107,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
         if (readCalculationMethod.contains(JsonInputNaturalStoneDefinitions::SLOPE_LOWER_LEVEL))
         {
-            const auto& readSlopeLowerLevel = readCalculationMethod[JsonInputNaturalStoneDefinitions::SLOPE_LOWER_LEVEL];
+            const auto& readSlopeLowerLevel = readCalculationMethod.at(JsonInputNaturalStoneDefinitions::SLOPE_LOWER_LEVEL);
 
             locationData->SetSlopeLowerLevelAls(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
@@ -116,7 +116,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
         if (readCalculationMethod.contains(JsonInputNaturalStoneDefinitions::UPPER_LIMIT_LOADING))
         {
-            const auto& readUpperLimitLoading = readCalculationMethod[JsonInputNaturalStoneDefinitions::UPPER_LIMIT_LOADING];
+            const auto& readUpperLimitLoading = readCalculationMethod.at(JsonInputNaturalStoneDefinitions::UPPER_LIMIT_LOADING);
 
             locationData->SetUpperLimitLoadingAul(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
@@ -131,7 +131,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
         if (readCalculationMethod.contains(JsonInputNaturalStoneDefinitions::LOWER_LIMIT_LOADING))
         {
-            const auto& readLowerLimitLoading = readCalculationMethod[JsonInputNaturalStoneDefinitions::LOWER_LIMIT_LOADING];
+            const auto& readLowerLimitLoading = readCalculationMethod.at(JsonInputNaturalStoneDefinitions::LOWER_LIMIT_LOADING);
 
             locationData->SetLowerLimitLoadingAll(
                 forward<unique_ptr<double>>(
@@ -146,8 +146,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
         if (readCalculationMethod.contains(JsonInputNaturalStoneDefinitions::DISTANCE_MAXIMUM_WAVE_ELEVATION))
         {
-            const auto& readDistanceMaxWaveElevation = readCalculationMethod[
-                JsonInputNaturalStoneDefinitions::DISTANCE_MAXIMUM_WAVE_ELEVATION];
+            const auto& readDistanceMaxWaveElevation = readCalculationMethod.at(JsonInputNaturalStoneDefinitions::DISTANCE_MAXIMUM_WAVE_ELEVATION);
 
             locationData->SetDistanceMaximumWaveElevationAsmax(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
@@ -159,8 +158,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
         if (readCalculationMethod.contains(JsonInputNaturalStoneDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT))
         {
-            const auto& readNormativeWidthOfWaveImpact =
-                    readCalculationMethod[JsonInputNaturalStoneDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT];
+            const auto& readNormativeWidthOfWaveImpact = readCalculationMethod.at(JsonInputNaturalStoneDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT);
 
             locationData->SetNormativeWidthOfWaveImpactAwi(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
@@ -172,7 +170,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
         if (readCalculationMethod.contains(JsonInputNaturalStoneDefinitions::WAVE_ANGLE_IMPACT))
         {
-            const auto& readWaveAngleImpact = readCalculationMethod[JsonInputNaturalStoneDefinitions::WAVE_ANGLE_IMPACT];
+            const auto& readWaveAngleImpact = readCalculationMethod.at(JsonInputNaturalStoneDefinitions::WAVE_ANGLE_IMPACT);
 
             locationData->SetWaveAngleImpactBetamax(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
