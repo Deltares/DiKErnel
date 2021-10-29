@@ -94,7 +94,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
     {
         const auto json = ReadJson(filePath);
 
-        const auto& readCalculationData = json[JsonInputDefinitions::CALCULATION_DATA];
+        const auto& readCalculationData = json.at(JsonInputDefinitions::CALCULATION_DATA);
 
         return make_unique<JsonInputData>(
             ParseProcessData(json),
@@ -121,8 +121,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
         if (readJson.contains(JsonInputDefinitions::PROCESS_DATA))
         {
-            const auto& readProcessData = readJson[JsonInputDefinitions::PROCESS_DATA];
-            readProcessType = make_unique<JsonInputProcessType>(readProcessData[JsonInputDefinitions::PROCESS_TYPE].get<JsonInputProcessType>());
+            const auto& readProcessData = readJson.at(JsonInputDefinitions::PROCESS_DATA);
+            readProcessType = make_unique<JsonInputProcessType>(readProcessData.at(JsonInputDefinitions::PROCESS_TYPE).get<JsonInputProcessType>());
         }
 
         auto processData = make_unique<JsonInputProcessData>();
@@ -134,14 +134,14 @@ namespace DiKErnel::KernelWrapper::Json::Input
     vector<int> JsonInputParser::ParseTime(
         const json& readCalculationData)
     {
-        return readCalculationData[JsonInputDefinitions::TIME].get<vector<int>>();
+        return readCalculationData.at(JsonInputDefinitions::TIME).get<vector<int>>();
     }
 
     unique_ptr<JsonInputHydraulicData> JsonInputParser::ParseHydraulicData(
         const json& readCalculationData)
     {
-        const auto& readHydraulicLoads = readCalculationData[JsonInputDefinitions::HYDRAULIC_LOADS];
-        const auto& readBoundaryConditionsPerTimeStep = readHydraulicLoads[JsonInputDefinitions::BOUNDARY_CONDITIONS_PER_TIME_STEP];
+        const auto& readHydraulicLoads = readCalculationData.at(JsonInputDefinitions::HYDRAULIC_LOADS);
+        const auto& readBoundaryConditionsPerTimeStep = readHydraulicLoads.at(JsonInputDefinitions::BOUNDARY_CONDITIONS_PER_TIME_STEP);
 
         vector<unique_ptr<JsonInputTimeDependentHydraulicData>> timeDependentHydraulicData;
 
@@ -149,10 +149,10 @@ namespace DiKErnel::KernelWrapper::Json::Input
         {
             timeDependentHydraulicData.push_back(
                 make_unique<JsonInputTimeDependentHydraulicData>(
-                    readBoundaryConditionsForTimeStep[JsonInputDefinitions::WATER_LEVEL].get<double>(),
-                    readBoundaryConditionsForTimeStep[JsonInputDefinitions::WAVE_HEIGHT_HM0].get<double>(),
-                    readBoundaryConditionsForTimeStep[JsonInputDefinitions::WAVE_PERIOD_TM10].get<double>(),
-                    readBoundaryConditionsForTimeStep[JsonInputDefinitions::WAVE_ANGLE].get<double>()));
+                    readBoundaryConditionsForTimeStep.at(JsonInputDefinitions::WATER_LEVEL).get<double>(),
+                    readBoundaryConditionsForTimeStep.at(JsonInputDefinitions::WAVE_HEIGHT_HM0).get<double>(),
+                    readBoundaryConditionsForTimeStep.at(JsonInputDefinitions::WAVE_PERIOD_TM10).get<double>(),
+                    readBoundaryConditionsForTimeStep.at(JsonInputDefinitions::WAVE_ANGLE).get<double>()));
         }
 
         return make_unique<JsonInputHydraulicData>(
@@ -162,20 +162,20 @@ namespace DiKErnel::KernelWrapper::Json::Input
     unique_ptr<JsonInputDikeProfileData> JsonInputParser::ParseDikeProfileData(
         const json& readCalculationData)
     {
-        const auto& readDikeProfile = readCalculationData[JsonInputDefinitions::DIKE_PROFILE];
+        const auto& readDikeProfile = readCalculationData.at(JsonInputDefinitions::DIKE_PROFILE);
 
         vector<unique_ptr<JsonInputDikeProfilePoint>> dikeProfilePoints;
 
         for (const auto& readDikeProfilePoint : readDikeProfile)
         {
             auto dikeProfilePoint = make_unique<JsonInputDikeProfilePoint>(
-                readDikeProfilePoint[JsonInputDefinitions::DIKE_PROFILE_POINT_X].get<double>(),
-                readDikeProfilePoint[JsonInputDefinitions::DIKE_PROFILE_POINT_Z].get<double>());
+                readDikeProfilePoint.at(JsonInputDefinitions::DIKE_PROFILE_POINT_X).get<double>(),
+                readDikeProfilePoint.at(JsonInputDefinitions::DIKE_PROFILE_POINT_Z).get<double>());
 
             if (readDikeProfilePoint.contains(JsonInputDefinitions::CHARACTERISTIC_POINT))
             {
                 auto readCharacteristicPointType = make_unique<JsonInputCharacteristicPointType>(
-                    readDikeProfilePoint[JsonInputDefinitions::CHARACTERISTIC_POINT].get<JsonInputCharacteristicPointType>());
+                    readDikeProfilePoint.at(JsonInputDefinitions::CHARACTERISTIC_POINT).get<JsonInputCharacteristicPointType>());
 
                 dikeProfilePoint->SetCharacteristicPointType(move(readCharacteristicPointType));
             }
@@ -191,13 +191,13 @@ namespace DiKErnel::KernelWrapper::Json::Input
     {
         auto parsedLocations = vector<unique_ptr<JsonInputLocationData>>();
 
-        const auto& readLocations = readCalculationData[JsonInputDefinitions::LOCATIONS];
+        const auto& readLocations = readCalculationData.at(JsonInputDefinitions::LOCATIONS);
 
         for (const auto& readLocation : readLocations)
         {
-            const auto& readRevetment = readLocation[JsonInputDefinitions::REVETMENT];
-            const auto& readCalculationMethod = readRevetment[JsonInputDefinitions::CALCULATION_METHOD].at(0);
-            const auto& calculationType = readCalculationMethod[JsonInputDefinitions::CALCULATION_METHOD_TYPE].get<JsonInputCalculationType>();
+            const auto& readRevetment = readLocation.at(JsonInputDefinitions::REVETMENT);
+            const auto& readCalculationMethod = readRevetment.at(JsonInputDefinitions::CALCULATION_METHOD).at(0);
+            const auto& calculationType = readCalculationMethod.at(JsonInputDefinitions::CALCULATION_METHOD_TYPE).get<JsonInputCalculationType>();
 
             unique_ptr<JsonInputLocationParser> parser = nullptr;
 
