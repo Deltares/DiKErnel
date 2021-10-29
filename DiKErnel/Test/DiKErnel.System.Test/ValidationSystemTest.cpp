@@ -48,7 +48,7 @@ namespace DiKErnel::System::Test
         const auto& events = validationResult->GetEvents();
         ASSERT_EQ(2, events.size());
         EventAssertHelper::AssertEvent(EventType::Error, "At least 1 time step must be defined.", events.at(0));
-        EventAssertHelper::AssertEvent(EventType::Error, "At least 1 location must be defined.", events[1]);
+        EventAssertHelper::AssertEvent(EventType::Error, "At least 1 location must be defined.", events.at(1));
     }
 
     TEST(ValidationSystemTest, GivenCalculationInputWithInvalidTimeStep_WhenValidating_ThenReturnsExpectedValidationResult)
@@ -67,10 +67,10 @@ namespace DiKErnel::System::Test
         ASSERT_EQ(ValidationResultType::Failed, *validationResult->GetData());
         const auto& events = validationResult->GetEvents();
         ASSERT_EQ(5, events.size());
-        EventAssertHelper::AssertEvent(EventType::Error, "BeginTime must be smaller than EndTime.", events[1]);
-        EventAssertHelper::AssertEvent(EventType::Error, "WaveHeightHm0 must be larger than 0.", events[2]);
-        EventAssertHelper::AssertEvent(EventType::Warning, "WavePeriodTm10 should be in range {0.5, 25}.", events[3]);
-        EventAssertHelper::AssertEvent(EventType::Error, "WaveAngle must be in range {-180, 180].", events[4]);
+        EventAssertHelper::AssertEvent(EventType::Error, "BeginTime must be smaller than EndTime.", events.at(1));
+        EventAssertHelper::AssertEvent(EventType::Error, "WaveHeightHm0 must be larger than 0.", events.at(2));
+        EventAssertHelper::AssertEvent(EventType::Warning, "WavePeriodTm10 should be in range {0.5, 25}.", events.at(3));
+        EventAssertHelper::AssertEvent(EventType::Error, "WaveAngle must be in range {-180, 180].", events.at(4));
     }
 
     TEST(ValidationSystemTest,
@@ -106,22 +106,22 @@ namespace DiKErnel::System::Test
         ASSERT_EQ(ValidationResultType::Failed, *validationResult->GetData());
         const auto& events = validationResult->GetEvents();
         ASSERT_EQ(17, events.size());
-        EventAssertHelper::AssertEvent(EventType::Error, "X must be in range {OuterToeX, OuterCrestX}.", events[1]);
-        EventAssertHelper::AssertEvent(EventType::Error, "InitialDamage must be equal to 0 or larger.", events[2]);
-        EventAssertHelper::AssertEvent(EventType::Error, "FailureNumber must be equal to InitialDamage or larger.", events[3]);
-        EventAssertHelper::AssertEvent(EventType::Error, "FatigueAlpha must be larger than 0.", events[4]);
-        EventAssertHelper::AssertEvent(EventType::Error, "FatigueBeta must be larger than 0.", events[5]);
-        EventAssertHelper::AssertEvent(EventType::Error, "FailureTension must be larger than 0.", events[6]);
-        EventAssertHelper::AssertEvent(EventType::Error, "ImpactNumberC must be larger than 0.", events[7]);
-        EventAssertHelper::AssertEvent(EventType::Error, "DensityOfWater must be in range [950, 1050].", events[8]);
-        EventAssertHelper::AssertEvent(EventType::Error, "SoilElasticity must be larger than 0.", events[9]);
-        EventAssertHelper::AssertEvent(EventType::Error, "StiffnessRelationNu must be larger than 0.", events[10]);
-        EventAssertHelper::AssertEvent(EventType::Error, "Thickness must be larger than 0.", events[11]);
-        EventAssertHelper::AssertEvent(EventType::Error, "ElasticModulus must be larger than 0.", events[12]);
-        EventAssertHelper::AssertEvent(EventType::Error, "Thickness must be larger than 0.", events[13]);
-        EventAssertHelper::AssertEvent(EventType::Error, "ElasticModulus must be larger than 0.", events[14]);
-        EventAssertHelper::AssertEvent(EventType::Error, "AverageNumberOfWavesCtm must be larger than 0.", events[15]);
-        EventAssertHelper::AssertEvent(EventType::Error, "OuterSlope must be in range {0, 1}.", events[16]);
+        EventAssertHelper::AssertEvent(EventType::Error, "X must be in range {OuterToeX, OuterCrestX}.", events.at(1));
+        EventAssertHelper::AssertEvent(EventType::Error, "InitialDamage must be equal to 0 or larger.", events.at(2));
+        EventAssertHelper::AssertEvent(EventType::Error, "FailureNumber must be equal to InitialDamage or larger.", events.at(3));
+        EventAssertHelper::AssertEvent(EventType::Error, "FatigueAlpha must be larger than 0.", events.at(4));
+        EventAssertHelper::AssertEvent(EventType::Error, "FatigueBeta must be larger than 0.", events.at(5));
+        EventAssertHelper::AssertEvent(EventType::Error, "FailureTension must be larger than 0.", events.at(6));
+        EventAssertHelper::AssertEvent(EventType::Error, "ImpactNumberC must be larger than 0.", events.at(7));
+        EventAssertHelper::AssertEvent(EventType::Error, "DensityOfWater must be in range [950, 1050].", events.at(8));
+        EventAssertHelper::AssertEvent(EventType::Error, "SoilElasticity must be larger than 0.", events.at(9));
+        EventAssertHelper::AssertEvent(EventType::Error, "StiffnessRelationNu must be larger than 0.", events.at(10));
+        EventAssertHelper::AssertEvent(EventType::Error, "Thickness must be larger than 0.", events.at(11));
+        EventAssertHelper::AssertEvent(EventType::Error, "ElasticModulus must be larger than 0.", events.at(12));
+        EventAssertHelper::AssertEvent(EventType::Error, "Thickness must be larger than 0.", events.at(13));
+        EventAssertHelper::AssertEvent(EventType::Error, "ElasticModulus must be larger than 0.", events.at(14));
+        EventAssertHelper::AssertEvent(EventType::Error, "AverageNumberOfWavesCtm must be larger than 0.", events.at(15));
+        EventAssertHelper::AssertEvent(EventType::Error, "OuterSlope must be in range {0, 1}.", events.at(16));
     }
 
     TEST(ValidationSystemTest, GivenCalculationInputWithInvalidGrassRevetmentWaveImpactLocation_WhenValidating_ThenReturnsExpectedValidationResult)
@@ -158,18 +158,18 @@ namespace DiKErnel::System::Test
         ASSERT_EQ(ValidationResultType::Failed, *validationResult->GetData());
         const auto& events = validationResult->GetEvents();
         ASSERT_EQ(13, events.size());
-        EventAssertHelper::AssertEvent(EventType::Error, "X must be in range {OuterToeX, OuterCrestX}.", events[1]);
-        EventAssertHelper::AssertEvent(EventType::Error, "InitialDamage must be equal to 0 or larger.", events[2]);
-        EventAssertHelper::AssertEvent(EventType::Error, "FailureNumber must be equal to InitialDamage or larger.", events[3]);
-        EventAssertHelper::AssertEvent(EventType::Error, "TimeLineAgwi must be larger than TimeLineCgwi.", events[4]);
-        EventAssertHelper::AssertEvent(EventType::Error, "TimeLineBgwi must be smaller than 0.", events[5]);
-        EventAssertHelper::AssertEvent(EventType::Error, "TimeLineCgwi must be equal to 0 or larger.", events[6]);
-        EventAssertHelper::AssertEvent(EventType::Warning, "MinimumWaveHeightTemax should be in range {1000000, 3600000].", events[7]);
-        EventAssertHelper::AssertEvent(EventType::Warning, "MaximumWaveHeightTemin should be in range [3.6, 10}.", events[8]);
-        EventAssertHelper::AssertEvent(EventType::Error, "WaveAngleImpactNwa must be equal to 1 or smaller.", events[9]);
-        EventAssertHelper::AssertEvent(EventType::Error, "WaveAngleImpactQwa must be in range [0, 1].", events[10]);
-        EventAssertHelper::AssertEvent(EventType::Error, "WaveAngleImpactRwa must be larger than 0.", events[11]);
-        EventAssertHelper::AssertEvent(EventType::Error, "UpperLimitLoadingAul must be smaller than LowerLimitLoadingAll.", events[12]);
+        EventAssertHelper::AssertEvent(EventType::Error, "X must be in range {OuterToeX, OuterCrestX}.", events.at(1));
+        EventAssertHelper::AssertEvent(EventType::Error, "InitialDamage must be equal to 0 or larger.", events.at(2));
+        EventAssertHelper::AssertEvent(EventType::Error, "FailureNumber must be equal to InitialDamage or larger.", events.at(3));
+        EventAssertHelper::AssertEvent(EventType::Error, "TimeLineAgwi must be larger than TimeLineCgwi.", events.at(4));
+        EventAssertHelper::AssertEvent(EventType::Error, "TimeLineBgwi must be smaller than 0.", events.at(5));
+        EventAssertHelper::AssertEvent(EventType::Error, "TimeLineCgwi must be equal to 0 or larger.", events.at(6));
+        EventAssertHelper::AssertEvent(EventType::Warning, "MinimumWaveHeightTemax should be in range {1000000, 3600000].", events.at(7));
+        EventAssertHelper::AssertEvent(EventType::Warning, "MaximumWaveHeightTemin should be in range [3.6, 10}.", events.at(8));
+        EventAssertHelper::AssertEvent(EventType::Error, "WaveAngleImpactNwa must be equal to 1 or smaller.", events.at(9));
+        EventAssertHelper::AssertEvent(EventType::Error, "WaveAngleImpactQwa must be in range [0, 1].", events.at(10));
+        EventAssertHelper::AssertEvent(EventType::Error, "WaveAngleImpactRwa must be larger than 0.", events.at(11));
+        EventAssertHelper::AssertEvent(EventType::Error, "UpperLimitLoadingAul must be smaller than LowerLimitLoadingAll.", events.at(12));
     }
 
     TEST(ValidationSystemTest,
@@ -206,19 +206,19 @@ namespace DiKErnel::System::Test
         ASSERT_EQ(ValidationResultType::Failed, *validationResult->GetData());
         const auto& events = validationResult->GetEvents();
         ASSERT_EQ(14, events.size());
-        EventAssertHelper::AssertEvent(EventType::Error, "X must be in range {OuterToeX, OuterCrestX}.", events[1]);
-        EventAssertHelper::AssertEvent(EventType::Error, "InitialDamage must be equal to 0 or larger.", events[2]);
-        EventAssertHelper::AssertEvent(EventType::Error, "FailureNumber must be equal to InitialDamage or larger.", events[3]);
-        EventAssertHelper::AssertEvent(EventType::Error, "CriticalCumulativeOverload must be larger than 0.", events[4]);
-        EventAssertHelper::AssertEvent(EventType::Error, "RepresentativeWaveRunup2PGammab must be in range [0.6, 1].", events[5]);
-        EventAssertHelper::AssertEvent(EventType::Error, "RepresentativeWaveRunup2PGammaf must be in range [0.5, 1].", events[6]);
-        EventAssertHelper::AssertEvent(EventType::Error, "CriticalFrontVelocity must be equal to 0 or larger.", events[7]);
-        EventAssertHelper::AssertEvent(EventType::Error, "IncreasedLoadTransitionAlphaM must be equal to 0 or larger.", events[8]);
-        EventAssertHelper::AssertEvent(EventType::Error, "ReducedStrengthTransitionAlphaS must be equal to 0 or larger.", events[9]);
-        EventAssertHelper::AssertEvent(EventType::Error, "AverageNumberOfWavesCtm must be larger than 0.", events[10]);
-        EventAssertHelper::AssertEvent(EventType::Error, "OuterSlope must be in range {0, 1}.", events[11]);
-        EventAssertHelper::AssertEvent(EventType::Error, "FixedNumberOfWaves must be larger than 0.", events[12]);
-        EventAssertHelper::AssertEvent(EventType::Error, "FrontVelocityCu must be larger than 0.", events[13]);
+        EventAssertHelper::AssertEvent(EventType::Error, "X must be in range {OuterToeX, OuterCrestX}.", events.at(1));
+        EventAssertHelper::AssertEvent(EventType::Error, "InitialDamage must be equal to 0 or larger.", events.at(2));
+        EventAssertHelper::AssertEvent(EventType::Error, "FailureNumber must be equal to InitialDamage or larger.", events.at(3));
+        EventAssertHelper::AssertEvent(EventType::Error, "CriticalCumulativeOverload must be larger than 0.", events.at(4));
+        EventAssertHelper::AssertEvent(EventType::Error, "RepresentativeWaveRunup2PGammab must be in range [0.6, 1].", events.at(5));
+        EventAssertHelper::AssertEvent(EventType::Error, "RepresentativeWaveRunup2PGammaf must be in range [0.5, 1].", events.at(6));
+        EventAssertHelper::AssertEvent(EventType::Error, "CriticalFrontVelocity must be equal to 0 or larger.", events.at(7));
+        EventAssertHelper::AssertEvent(EventType::Error, "IncreasedLoadTransitionAlphaM must be equal to 0 or larger.", events.at(8));
+        EventAssertHelper::AssertEvent(EventType::Error, "ReducedStrengthTransitionAlphaS must be equal to 0 or larger.", events.at(9));
+        EventAssertHelper::AssertEvent(EventType::Error, "AverageNumberOfWavesCtm must be larger than 0.", events.at(10));
+        EventAssertHelper::AssertEvent(EventType::Error, "OuterSlope must be in range {0, 1}.", events.at(11));
+        EventAssertHelper::AssertEvent(EventType::Error, "FixedNumberOfWaves must be larger than 0.", events.at(12));
+        EventAssertHelper::AssertEvent(EventType::Error, "FrontVelocityCu must be larger than 0.", events.at(13));
     }
 
     TEST(ValidationSystemTest, GivenCalculationInputWithInvalidNaturalStoneRevetmentLocation_WhenValidating_ThenReturnsExpectedValidationResult)
@@ -247,13 +247,13 @@ namespace DiKErnel::System::Test
         ASSERT_EQ(ValidationResultType::Failed, *validationResult->GetData());
         const auto& events = validationResult->GetEvents();
         ASSERT_EQ(8, events.size());
-        EventAssertHelper::AssertEvent(EventType::Error, "X must be in range {OuterToeX, OuterCrestX}.", events[1]);
-        EventAssertHelper::AssertEvent(EventType::Error, "InitialDamage must be equal to 0 or larger.", events[2]);
-        EventAssertHelper::AssertEvent(EventType::Error, "FailureNumber must be equal to InitialDamage or larger.", events[3]);
-        EventAssertHelper::AssertEvent(EventType::Error, "RelativeDensity must be in range {0, 10}.", events[4]);
-        EventAssertHelper::AssertEvent(EventType::Error, "ThicknessTopLayer must be in range {0, 1}.", events[5]);
-        EventAssertHelper::AssertEvent(EventType::Warning, "SlopeUpperLevelAus should be in range [0.01, 0.2].", events[6]);
-        EventAssertHelper::AssertEvent(EventType::Error, "SlopeLowerLevelAls must be larger than 0.", events[7]);
+        EventAssertHelper::AssertEvent(EventType::Error, "X must be in range {OuterToeX, OuterCrestX}.", events.at(1));
+        EventAssertHelper::AssertEvent(EventType::Error, "InitialDamage must be equal to 0 or larger.", events.at(2));
+        EventAssertHelper::AssertEvent(EventType::Error, "FailureNumber must be equal to InitialDamage or larger.", events.at(3));
+        EventAssertHelper::AssertEvent(EventType::Error, "RelativeDensity must be in range {0, 10}.", events.at(4));
+        EventAssertHelper::AssertEvent(EventType::Error, "ThicknessTopLayer must be in range {0, 1}.", events.at(5));
+        EventAssertHelper::AssertEvent(EventType::Warning, "SlopeUpperLevelAus should be in range [0.01, 0.2].", events.at(6));
+        EventAssertHelper::AssertEvent(EventType::Error, "SlopeLowerLevelAls must be larger than 0.", events.at(7));
     }
 
     TEST(ValidationSystemTest, GivenValidCalculationInput_WhenValidating_ThenReturnsValidationResult)

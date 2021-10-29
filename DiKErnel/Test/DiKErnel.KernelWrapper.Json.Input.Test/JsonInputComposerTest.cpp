@@ -129,37 +129,37 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
         const auto& profilePoints = profileData.GetProfilePoints();
         ASSERT_EQ(17, profilePoints.size());
         ProfileDataAssertHelper::AssertProfilePoint(-30, -11.85, profilePoints.at(0).get());
-        ProfileDataAssertHelper::AssertProfilePoint(-20, -8.95, profilePoints[1].get());
-        ProfileDataAssertHelper::AssertProfilePoint(-10, -6.05, profilePoints[2].get());
-        ProfileDataAssertHelper::AssertProfilePoint(0, -3.15, profilePoints[3].get());
-        ProfileDataAssertHelper::AssertProfilePoint(5, -1.7, profilePoints[4].get());
-        ProfileDataAssertHelper::AssertProfilePoint(10, -0.25, profilePoints[5].get());
-        ProfileDataAssertHelper::AssertProfilePoint(15, 1.2, profilePoints[6].get());
-        ProfileDataAssertHelper::AssertProfilePoint(20, 2.65, profilePoints[7].get());
-        ProfileDataAssertHelper::AssertProfilePoint(25, 4.1, profilePoints[8].get());
-        ProfileDataAssertHelper::AssertProfilePoint(30, 5.55, profilePoints[9].get());
-        ProfileDataAssertHelper::AssertProfilePoint(35, 7, profilePoints[10].get());
-        ProfileDataAssertHelper::AssertProfilePoint(40, 8.45, profilePoints[11].get());
-        ProfileDataAssertHelper::AssertProfilePoint(45, 9.9, profilePoints[12].get());
-        ProfileDataAssertHelper::AssertProfilePoint(50, 11.35, profilePoints[13].get());
-        ProfileDataAssertHelper::AssertProfilePoint(55, 12.8, profilePoints[14].get());
-        ProfileDataAssertHelper::AssertProfilePoint(60, 14.25, profilePoints[15].get());
-        ProfileDataAssertHelper::AssertProfilePoint(65, 15.7, profilePoints[16].get());
+        ProfileDataAssertHelper::AssertProfilePoint(-20, -8.95, profilePoints.at(1).get());
+        ProfileDataAssertHelper::AssertProfilePoint(-10, -6.05, profilePoints.at(2).get());
+        ProfileDataAssertHelper::AssertProfilePoint(0, -3.15, profilePoints.at(3).get());
+        ProfileDataAssertHelper::AssertProfilePoint(5, -1.7, profilePoints.at(4).get());
+        ProfileDataAssertHelper::AssertProfilePoint(10, -0.25, profilePoints.at(5).get());
+        ProfileDataAssertHelper::AssertProfilePoint(15, 1.2, profilePoints.at(6).get());
+        ProfileDataAssertHelper::AssertProfilePoint(20, 2.65, profilePoints.at(7).get());
+        ProfileDataAssertHelper::AssertProfilePoint(25, 4.1, profilePoints.at(8).get());
+        ProfileDataAssertHelper::AssertProfilePoint(30, 5.55, profilePoints.at(9).get());
+        ProfileDataAssertHelper::AssertProfilePoint(35, 7, profilePoints.at(10).get());
+        ProfileDataAssertHelper::AssertProfilePoint(40, 8.45, profilePoints.at(11).get());
+        ProfileDataAssertHelper::AssertProfilePoint(45, 9.9, profilePoints.at(12).get());
+        ProfileDataAssertHelper::AssertProfilePoint(50, 11.35, profilePoints.at(13).get());
+        ProfileDataAssertHelper::AssertProfilePoint(55, 12.8, profilePoints.at(14).get());
+        ProfileDataAssertHelper::AssertProfilePoint(60, 14.25, profilePoints.at(15).get());
+        ProfileDataAssertHelper::AssertProfilePoint(65, 15.7, profilePoints.at(16).get());
 
         const auto& characteristicPoints = profileData.GetCharacteristicPoints();
         ASSERT_EQ(4, characteristicPoints.size());
-        ProfileDataAssertHelper::AssertCharacteristicPoint(profilePoints[9], CharacteristicPointType::OuterToe, characteristicPoints.at(0));
-        ProfileDataAssertHelper::AssertCharacteristicPoint(profilePoints[11], CharacteristicPointType::CrestOuterBerm, characteristicPoints[1]);
-        ProfileDataAssertHelper::AssertCharacteristicPoint(profilePoints[13], CharacteristicPointType::NotchOuterBerm, characteristicPoints[2]);
-        ProfileDataAssertHelper::AssertCharacteristicPoint(profilePoints[16], CharacteristicPointType::OuterCrest, characteristicPoints[3]);
+        ProfileDataAssertHelper::AssertCharacteristicPoint(profilePoints.at(9), CharacteristicPointType::OuterToe, characteristicPoints.at(0));
+        ProfileDataAssertHelper::AssertCharacteristicPoint(profilePoints.at(11), CharacteristicPointType::CrestOuterBerm, characteristicPoints.at(1));
+        ProfileDataAssertHelper::AssertCharacteristicPoint(profilePoints.at(13), CharacteristicPointType::NotchOuterBerm, characteristicPoints.at(2));
+        ProfileDataAssertHelper::AssertCharacteristicPoint(profilePoints.at(16), CharacteristicPointType::OuterCrest, characteristicPoints.at(3));
 
         const auto& timeDependentInputItems = calculationInput.GetTimeDependentInputItems();
         ASSERT_EQ(5, timeDependentInputItems.size());
         TimeDependentInputAssertHelper::AssertTimeDependentInputItem(0, 100, 0.1, 0.5, 2, -10, timeDependentInputItems.at(0).get());
-        TimeDependentInputAssertHelper::AssertTimeDependentInputItem(100, 500, 0.5, 0.8, 6, -5, timeDependentInputItems[1].get());
-        TimeDependentInputAssertHelper::AssertTimeDependentInputItem(500, 800, 1.15, 1.2, 6, 0, timeDependentInputItems[2].get());
-        TimeDependentInputAssertHelper::AssertTimeDependentInputItem(800, 1200, 1.77, 1.5, 7, 7, timeDependentInputItems[3].get());
-        TimeDependentInputAssertHelper::AssertTimeDependentInputItem(1200, 2000, 2, 0.5, 4, 8, timeDependentInputItems[4].get());
+        TimeDependentInputAssertHelper::AssertTimeDependentInputItem(100, 500, 0.5, 0.8, 6, -5, timeDependentInputItems.at(1).get());
+        TimeDependentInputAssertHelper::AssertTimeDependentInputItem(500, 800, 1.15, 1.2, 6, 0, timeDependentInputItems.at(2).get());
+        TimeDependentInputAssertHelper::AssertTimeDependentInputItem(800, 1200, 1.77, 1.5, 7, 7, timeDependentInputItems.at(3).get());
+        TimeDependentInputAssertHelper::AssertTimeDependentInputItem(1200, 2000, 2, 0.5, 4, 8, timeDependentInputItems.at(4).get());
 
         const auto& locationDependentInputItems = calculationInput.GetLocationDependentInputItems();
         ASSERT_EQ(10, locationDependentInputItems.size());
@@ -187,7 +187,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
             30, naturalStoneRevetmentLocationDependentInputItem1->GetWaveAngleImpact());
 
         const auto* naturalStoneRevetmentLocationDependentInputItem2 = dynamic_cast<NaturalStoneRevetmentLocationDependentInput*>(
-            &locationDependentInputItems[1].get());
+            &locationDependentInputItems.at(1).get());
         ASSERT_NE(nullptr, naturalStoneRevetmentLocationDependentInputItem2);
 
         LocationDependentInputAssertHelper::AssertDamageProperties(0, 1, *naturalStoneRevetmentLocationDependentInputItem2);
@@ -209,7 +209,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
             78, naturalStoneRevetmentLocationDependentInputItem2->GetWaveAngleImpact());
 
         const auto* grassRevetmentWaveImpactLocationDependentInputItem1 = dynamic_cast<GrassRevetmentWaveImpactLocationDependentInput*>(
-            &locationDependentInputItems[2].get());
+            &locationDependentInputItems.at(2).get());
         ASSERT_NE(nullptr, grassRevetmentWaveImpactLocationDependentInputItem1);
 
         LocationDependentInputAssertHelper::AssertDamageProperties(0.04, 1.07, *grassRevetmentWaveImpactLocationDependentInputItem1);
@@ -229,7 +229,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
             3.5, *grassRevetmentWaveImpactLocationDependentInputItem1);
 
         const auto* grassRevetmentWaveImpactLocationDependentInputItem2 = dynamic_cast<GrassRevetmentWaveImpactLocationDependentInput*>(
-            &locationDependentInputItems[3].get());
+            &locationDependentInputItems.at(3).get());
         ASSERT_NE(nullptr, grassRevetmentWaveImpactLocationDependentInputItem2);
 
         LocationDependentInputAssertHelper::AssertDamageProperties(0, 1, *grassRevetmentWaveImpactLocationDependentInputItem2);
@@ -249,7 +249,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
             0.5, *grassRevetmentWaveImpactLocationDependentInputItem2);
 
         const auto* grassRevetmentWaveImpactLocationDependentInputItem3 = dynamic_cast<GrassRevetmentWaveImpactLocationDependentInput*>(
-            &locationDependentInputItems[4].get());
+            &locationDependentInputItems.at(4).get());
         ASSERT_NE(nullptr, grassRevetmentWaveImpactLocationDependentInputItem3);
 
         LocationDependentInputAssertHelper::AssertDamageProperties(0, 1, *grassRevetmentWaveImpactLocationDependentInputItem3);
@@ -269,7 +269,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
             0.5, *grassRevetmentWaveImpactLocationDependentInputItem3);
 
         const auto* grassRevetmentWaveRunupRayleighLocationDependentInputItem1 = dynamic_cast
-                <GrassRevetmentWaveRunupRayleighLocationDependentInput*>(&locationDependentInputItems[5].get());
+                <GrassRevetmentWaveRunupRayleighLocationDependentInput*>(&locationDependentInputItems.at(5).get());
         ASSERT_NE(nullptr, grassRevetmentWaveRunupRayleighLocationDependentInputItem1);
 
         LocationDependentInputAssertHelper::AssertDamageProperties(0.0006, 0.45, *grassRevetmentWaveRunupRayleighLocationDependentInputItem1);
@@ -289,7 +289,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
             8.3, 3.5, *grassRevetmentWaveRunupRayleighLocationDependentInputItem1);
 
         const auto* grassRevetmentWaveRunupRayleighLocationDependentInputItem2 = dynamic_cast
-                <GrassRevetmentWaveRunupRayleighLocationDependentInput*>(&locationDependentInputItems[6].get());
+                <GrassRevetmentWaveRunupRayleighLocationDependentInput*>(&locationDependentInputItems.at(6).get());
         ASSERT_NE(nullptr, grassRevetmentWaveRunupRayleighLocationDependentInputItem2);
 
         LocationDependentInputAssertHelper::AssertDamageProperties(0, 1, *grassRevetmentWaveRunupRayleighLocationDependentInputItem2);
@@ -309,7 +309,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
             6.6, 1.1, *grassRevetmentWaveRunupRayleighLocationDependentInputItem2);
 
         const auto* grassRevetmentWaveRunupRayleighLocationDependentInputItem3 = dynamic_cast
-                <GrassRevetmentWaveRunupRayleighLocationDependentInput*>(&locationDependentInputItems[7].get());
+                <GrassRevetmentWaveRunupRayleighLocationDependentInput*>(&locationDependentInputItems.at(7).get());
         ASSERT_NE(nullptr, grassRevetmentWaveRunupRayleighLocationDependentInputItem3);
 
         LocationDependentInputAssertHelper::AssertDamageProperties(0, 1, *grassRevetmentWaveRunupRayleighLocationDependentInputItem3);
@@ -329,7 +329,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
             4.3, 1.1, *grassRevetmentWaveRunupRayleighLocationDependentInputItem3);
 
         const auto* asphaltRevetmentWaveImpactLocationDependentInputItem1 = dynamic_cast
-                <AsphaltRevetmentWaveImpactLocationDependentInput*>(&locationDependentInputItems[8].get());
+                <AsphaltRevetmentWaveImpactLocationDependentInput*>(&locationDependentInputItems.at(8).get());
         ASSERT_NE(nullptr, asphaltRevetmentWaveImpactLocationDependentInputItem1);
 
         LocationDependentInputAssertHelper::AssertDamageProperties(1, 0.0098, *asphaltRevetmentWaveImpactLocationDependentInputItem1);
@@ -364,7 +364,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
             expectedWidthFactors1, expectedDepthFactors1, expectedImpactFactors1, *asphaltRevetmentWaveImpactLocationDependentInputItem1);
 
         const auto* asphaltRevetmentWaveImpactLocationDependentInputItem2 = dynamic_cast
-                <AsphaltRevetmentWaveImpactLocationDependentInput*>(&locationDependentInputItems[9].get());
+                <AsphaltRevetmentWaveImpactLocationDependentInput*>(&locationDependentInputItems.at(9).get());
         ASSERT_NE(nullptr, asphaltRevetmentWaveImpactLocationDependentInputItem2);
 
         LocationDependentInputAssertHelper::AssertDamageProperties(0, 1, *asphaltRevetmentWaveImpactLocationDependentInputItem2);
