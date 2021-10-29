@@ -33,13 +33,13 @@ namespace DiKErnel::Integration::Test
     TEST(GrassRevetmentWaveRunupRayleighTimeDependentOutputTest, Constructor_WithAllValuesSet_ExpectedValues)
     {
         // Setup
-        const auto incrementDamage = 0.1;
-        const auto damage = 0.2;
-        const auto timeOfFailure = 3;
-        const auto verticalDistanceWaterLevelElevation = 0.4;
-        const auto waveAngleImpact = 0.5;
-        const auto representativeWaveRunup2P = 0.6;
-        const auto cumulativeOverload = 0.7;
+        constexpr auto incrementDamage = 0.1;
+        constexpr auto damage = 0.2;
+        constexpr auto timeOfFailure = 3;
+        constexpr auto verticalDistanceWaterLevelElevation = 0.4;
+        constexpr auto waveAngleImpact = 0.5;
+        constexpr auto representativeWaveRunup2P = 0.6;
+        constexpr auto cumulativeOverload = 0.7;
 
         // Call
         const auto output = GrassRevetmentWaveRunupRayleighTimeDependentOutput(incrementDamage, damage, make_unique<int>(timeOfFailure),

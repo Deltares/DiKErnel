@@ -33,27 +33,27 @@ namespace DiKErnel::Integration::Test
     TEST(NaturalStoneRevetmentTimeDependentOutputTest, Constructor_WithAllValuesSet_ExpectedValues)
     {
         // Setup
-        const auto incrementDamage = 0.1;
-        const auto damage = 0.2;
-        const auto timeOfFailure = 3;
-        const auto outerSlope = 0.4;
-        const auto slopeUpperLevel = 0.5;
-        const auto slopeUpperPosition = 0.6;
-        const auto slopeLowerLevel = 0.7;
-        const auto slopeLowerPosition = 0.8;
-        const auto loadingRevetment = true;
-        const auto surfSimilarityParameter = 0.9;
-        const auto waveSteepnessDeepWater = 1.0;
-        const auto upperLimitLoading = 1.1;
-        const auto lowerLimitLoading = 1.2;
-        const auto depthMaximumWaveLoad = 1.3;
-        const auto distanceMaximumWaveElevation = 1.4;
-        const auto normativeWidthOfWaveImpact = 1.5;
-        const auto hydraulicLoad = 1.6;
-        const auto waveAngleImpact = 1.7;
-        const auto resistance = 1.8;
-        const auto referenceTimeDegradation = 1.9;
-        const auto referenceDegradation = 2.0;
+        constexpr auto incrementDamage = 0.1;
+        constexpr auto damage = 0.2;
+        constexpr auto timeOfFailure = 3;
+        constexpr auto outerSlope = 0.4;
+        constexpr auto slopeUpperLevel = 0.5;
+        constexpr auto slopeUpperPosition = 0.6;
+        constexpr auto slopeLowerLevel = 0.7;
+        constexpr auto slopeLowerPosition = 0.8;
+        constexpr auto loadingRevetment = true;
+        constexpr auto surfSimilarityParameter = 0.9;
+        constexpr auto waveSteepnessDeepWater = 1.0;
+        constexpr auto upperLimitLoading = 1.1;
+        constexpr auto lowerLimitLoading = 1.2;
+        constexpr auto depthMaximumWaveLoad = 1.3;
+        constexpr auto distanceMaximumWaveElevation = 1.4;
+        constexpr auto normativeWidthOfWaveImpact = 1.5;
+        constexpr auto hydraulicLoad = 1.6;
+        constexpr auto waveAngleImpact = 1.7;
+        constexpr auto resistance = 1.8;
+        constexpr auto referenceTimeDegradation = 1.9;
+        constexpr auto referenceDegradation = 2.0;
 
         // Call
         const auto output = NaturalStoneRevetmentTimeDependentOutput(incrementDamage, damage, make_unique<int>(timeOfFailure), outerSlope,
@@ -93,21 +93,21 @@ namespace DiKErnel::Integration::Test
     TEST(NaturalStoneRevetmentTimeDependentOutputTest, Constructor_WithNullPtrValues_ExpectedValues)
     {
         // Setup
-        const auto incrementDamage = 0.1;
-        const auto damage = 0.2;
-        const auto outerSlope = 0.3;
-        const auto slopeUpperLevel = 0.4;
-        const auto slopeUpperPosition = 0.5;
-        const auto slopeLowerLevel = 0.6;
-        const auto slopeLowerPosition = 0.7;
-        const auto loadingRevetment = false;
-        const auto surfSimilarityParameter = 0.8;
-        const auto waveSteepnessDeepWater = 0.9;
-        const auto upperLimitLoading = 1.0;
-        const auto lowerLimitLoading = 1.1;
-        const auto depthMaximumWaveLoad = 1.2;
-        const auto distanceMaximumWaveElevation = 1.3;
-        const auto normativeWidthOfWaveImpact = 1.4;
+        constexpr auto incrementDamage = 0.1;
+        constexpr auto damage = 0.2;
+        constexpr auto outerSlope = 0.3;
+        constexpr auto slopeUpperLevel = 0.4;
+        constexpr auto slopeUpperPosition = 0.5;
+        constexpr auto slopeLowerLevel = 0.6;
+        constexpr auto slopeLowerPosition = 0.7;
+        constexpr auto loadingRevetment = false;
+        constexpr auto surfSimilarityParameter = 0.8;
+        constexpr auto waveSteepnessDeepWater = 0.9;
+        constexpr auto upperLimitLoading = 1.0;
+        constexpr auto lowerLimitLoading = 1.1;
+        constexpr auto depthMaximumWaveLoad = 1.2;
+        constexpr auto distanceMaximumWaveElevation = 1.3;
+        constexpr auto normativeWidthOfWaveImpact = 1.4;
 
         // Call
         const auto output = NaturalStoneRevetmentTimeDependentOutput(incrementDamage, damage, nullptr, outerSlope, slopeUpperLevel,

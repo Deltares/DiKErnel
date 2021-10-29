@@ -33,16 +33,16 @@ namespace DiKErnel::Integration::Test
     TEST(GrassRevetmentWaveImpactTimeDependentOutputTest, Constructor_WithAllValuesSet_ExpectedValues)
     {
         // Setup
-        const auto incrementDamage = 0.1;
-        const auto damage = 0.2;
-        const auto timeOfFailure = 3;
-        const auto loadingRevetment = true;
-        const auto upperLimitLoading = 0.4;
-        const auto lowerLimitLoading = 0.5;
-        const auto minimumWaveHeight = 0.6;
-        const auto maximumWaveHeight = 0.7;
-        const auto waveAngleImpact = 0.8;
-        const auto waveHeightImpact = 0.9;
+        constexpr auto incrementDamage = 0.1;
+        constexpr auto damage = 0.2;
+        constexpr auto timeOfFailure = 3;
+        constexpr auto loadingRevetment = true;
+        constexpr auto upperLimitLoading = 0.4;
+        constexpr auto lowerLimitLoading = 0.5;
+        constexpr auto minimumWaveHeight = 0.6;
+        constexpr auto maximumWaveHeight = 0.7;
+        constexpr auto waveAngleImpact = 0.8;
+        constexpr auto waveHeightImpact = 0.9;
 
         // Call
         const auto output = GrassRevetmentWaveImpactTimeDependentOutput(incrementDamage, damage, make_unique<int>(timeOfFailure), loadingRevetment,
@@ -69,11 +69,11 @@ namespace DiKErnel::Integration::Test
     TEST(GrassRevetmentWaveImpactTimeDependentOutputTest, Constructor_WithNullPtrValues_ExpectedValues)
     {
         // Setup
-        const auto incrementDamage = 0.1;
-        const auto damage = 0.2;
-        const auto loadingRevetment = false;
-        const auto upperLimitLoading = 0.3;
-        const auto lowerLimitLoading = 0.4;
+        constexpr auto incrementDamage = 0.1;
+        constexpr auto damage = 0.2;
+        constexpr auto loadingRevetment = false;
+        constexpr auto upperLimitLoading = 0.3;
+        constexpr auto lowerLimitLoading = 0.4;
 
         // Call
         const auto output = GrassRevetmentWaveImpactTimeDependentOutput(incrementDamage, damage, nullptr, loadingRevetment, upperLimitLoading,

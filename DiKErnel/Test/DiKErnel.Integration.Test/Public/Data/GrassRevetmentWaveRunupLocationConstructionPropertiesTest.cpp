@@ -34,8 +34,8 @@ namespace DiKErnel::Integration::Test
     {
         // Setup
         const auto topLayerType = static_cast<GrassRevetmentTopLayerType>(rand() % 2);
-        const auto x = 0.1;
-        const auto outerSlope = 0.2;
+        constexpr auto x = 0.1;
+        constexpr auto outerSlope = 0.2;
 
         // Call
         const GrassRevetmentWaveRunupLocationConstructionPropertiesMock constructionProperties(x, outerSlope, topLayerType);
@@ -65,22 +65,22 @@ namespace DiKErnel::Integration::Test
     {
         // Given
         const auto topLayerType = static_cast<GrassRevetmentTopLayerType>(rand() % 2);
-        const auto x = 0.1;
-        const auto outerSlope = 0.2;
-        const auto initialDamage = 0.3;
-        const auto failureNumber = 0.4;
-        const auto criticalCumulativeOverload = 0.5;
-        const auto criticalFrontVelocity = 0.6;
-        const auto increasedLoadTransitionAlphaM = 0.7;
-        const auto reducedStrengthTransitionAlphaS = 0.8;
-        const auto averageNumberOfWavesCtm = 0.9;
-        const auto representativeWaveRunup2PAru = 1.0;
-        const auto representativeWaveRunup2PBru = 1.1;
-        const auto representativeWaveRunup2PCru = 1.2;
-        const auto representativeWaveRunup2PGammab = 1.3;
-        const auto representativeWaveRunup2PGammaf = 1.4;
-        const auto waveAngleImpactAbeta = 1.5;
-        const auto waveAngleImpactBetamax = 1.6;
+        constexpr auto x = 0.1;
+        constexpr auto outerSlope = 0.2;
+        constexpr auto initialDamage = 0.3;
+        constexpr auto failureNumber = 0.4;
+        constexpr auto criticalCumulativeOverload = 0.5;
+        constexpr auto criticalFrontVelocity = 0.6;
+        constexpr auto increasedLoadTransitionAlphaM = 0.7;
+        constexpr auto reducedStrengthTransitionAlphaS = 0.8;
+        constexpr auto averageNumberOfWavesCtm = 0.9;
+        constexpr auto representativeWaveRunup2PAru = 1.0;
+        constexpr auto representativeWaveRunup2PBru = 1.1;
+        constexpr auto representativeWaveRunup2PCru = 1.2;
+        constexpr auto representativeWaveRunup2PGammab = 1.3;
+        constexpr auto representativeWaveRunup2PGammaf = 1.4;
+        constexpr auto waveAngleImpactAbeta = 1.5;
+        constexpr auto waveAngleImpactBetamax = 1.6;
 
         GrassRevetmentWaveRunupLocationConstructionPropertiesMock constructionProperties(x, outerSlope, topLayerType);
 

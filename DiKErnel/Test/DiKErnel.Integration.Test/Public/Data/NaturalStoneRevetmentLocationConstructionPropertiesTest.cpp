@@ -31,10 +31,10 @@ namespace DiKErnel::Integration::Test
     TEST(NaturalStoneRevetmentLocationConstructionPropertiesTest, Constructor_ExpectedValues)
     {
         // Setup
-        const auto topLayerType = NaturalStoneRevetmentTopLayerType::NordicStone;
-        const auto x = 0.1;
-        const auto thicknessTopLayer = 0.2;
-        const auto relativeDensity = 0.3;
+        constexpr auto topLayerType = NaturalStoneRevetmentTopLayerType::NordicStone;
+        constexpr auto x = 0.1;
+        constexpr auto thicknessTopLayer = 0.2;
+        constexpr auto relativeDensity = 0.3;
 
         // Call
         const NaturalStoneRevetmentLocationConstructionProperties constructionProperties(
@@ -75,34 +75,34 @@ namespace DiKErnel::Integration::Test
     TEST(NaturalStoneRevetmentLocationConstructionPropertiesTest, GivenConstructionProperties_WhenAllInputSet_ThenExpectedValues)
     {
         // Given
-        const auto topLayerType = NaturalStoneRevetmentTopLayerType::NordicStone;
-        const auto x = 0.1;
-        const auto thicknessTopLayer = 0.2;
-        const auto relativeDensity = 0.3;
-        const auto initialDamage = 0.4;
-        const auto failureNumber = 0.5;
-        const auto hydraulicLoadXib = 0.6;
-        const auto hydraulicLoadAp = 0.7;
-        const auto hydraulicLoadBp = 0.8;
-        const auto hydraulicLoadCp = 0.9;
-        const auto hydraulicLoadNp = 1.0;
-        const auto hydraulicLoadAs = 1.1;
-        const auto hydraulicLoadBs = 1.2;
-        const auto hydraulicLoadCs = 1.3;
-        const auto hydraulicLoadNs = 1.4;
-        const auto slopeUpperLevelAus = 1.5;
-        const auto slopeLowerLevelAls = 1.6;
-        const auto upperLimitLoadingAul = 1.7;
-        const auto upperLimitLoadingBul = 1.8;
-        const auto upperLimitLoadingCul = 1.9;
-        const auto lowerLimitLoadingAll = 2.0;
-        const auto lowerLimitLoadingBll = 2.1;
-        const auto lowerLimitLoadingCll = 2.2;
-        const auto distanceMaximumWaveElevationAsmax = 2.3;
-        const auto distanceMaximumWaveElevationBsmax = 2.4;
-        const auto normativeWidthOfWaveImpactAwi = 2.5;
-        const auto normativeWidthOfWaveImpactBwi = 2.6;
-        const auto waveAngleImpactBetamax = 2.7;
+        constexpr auto topLayerType = NaturalStoneRevetmentTopLayerType::NordicStone;
+        constexpr auto x = 0.1;
+        constexpr auto thicknessTopLayer = 0.2;
+        constexpr auto relativeDensity = 0.3;
+        constexpr auto initialDamage = 0.4;
+        constexpr auto failureNumber = 0.5;
+        constexpr auto hydraulicLoadXib = 0.6;
+        constexpr auto hydraulicLoadAp = 0.7;
+        constexpr auto hydraulicLoadBp = 0.8;
+        constexpr auto hydraulicLoadCp = 0.9;
+        constexpr auto hydraulicLoadNp = 1.0;
+        constexpr auto hydraulicLoadAs = 1.1;
+        constexpr auto hydraulicLoadBs = 1.2;
+        constexpr auto hydraulicLoadCs = 1.3;
+        constexpr auto hydraulicLoadNs = 1.4;
+        constexpr auto slopeUpperLevelAus = 1.5;
+        constexpr auto slopeLowerLevelAls = 1.6;
+        constexpr auto upperLimitLoadingAul = 1.7;
+        constexpr auto upperLimitLoadingBul = 1.8;
+        constexpr auto upperLimitLoadingCul = 1.9;
+        constexpr auto lowerLimitLoadingAll = 2.0;
+        constexpr auto lowerLimitLoadingBll = 2.1;
+        constexpr auto lowerLimitLoadingCll = 2.2;
+        constexpr auto distanceMaximumWaveElevationAsmax = 2.3;
+        constexpr auto distanceMaximumWaveElevationBsmax = 2.4;
+        constexpr auto normativeWidthOfWaveImpactAwi = 2.5;
+        constexpr auto normativeWidthOfWaveImpactBwi = 2.6;
+        constexpr auto waveAngleImpactBetamax = 2.7;
 
         NaturalStoneRevetmentLocationConstructionProperties constructionProperties(
             x, topLayerType, thicknessTopLayer, relativeDensity);

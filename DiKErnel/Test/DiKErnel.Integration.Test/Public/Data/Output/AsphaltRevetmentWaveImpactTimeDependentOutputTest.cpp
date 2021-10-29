@@ -33,14 +33,14 @@ namespace DiKErnel::Integration::Test
     TEST(AsphaltRevetmentWaveImpactTimeDependentOutputTest, Constructor_WithAllValuesSet_ExpectedValues)
     {
         // Setup
-        const auto incrementDamage = 0.1;
-        const auto damage = 0.2;
-        const auto timeOfFailure = 3;
-        const auto logFailureTension = 0.4;
-        const auto maximumPeakStress = 0.5;
-        const auto stiffnessRelation = 0.6;
-        const auto computationalThickness = 0.7;
-        const auto equivalentElasticModulus = 0.8;
+        constexpr auto incrementDamage = 0.1;
+        constexpr auto damage = 0.2;
+        constexpr auto timeOfFailure = 3;
+        constexpr auto logFailureTension = 0.4;
+        constexpr auto maximumPeakStress = 0.5;
+        constexpr auto stiffnessRelation = 0.6;
+        constexpr auto computationalThickness = 0.7;
+        constexpr auto equivalentElasticModulus = 0.8;
 
         // Call
         const auto output = AsphaltRevetmentWaveImpactTimeDependentOutput(incrementDamage, damage, make_unique<int>(timeOfFailure),
@@ -61,13 +61,13 @@ namespace DiKErnel::Integration::Test
     TEST(AsphaltRevetmentWaveImpactTimeDependentOutputTest, Constructor_WithNullPtrValues_ExpectedValues)
     {
         // Setup
-        const auto incrementDamage = 0.1;
-        const auto damage = 0.2;
-        const auto logFailureTension = 0.3;
-        const auto maximumPeakStress = 0.4;
-        const auto stiffnessRelation = 0.5;
-        const auto computationalThickness = 0.6;
-        const auto equivalentElasticModulus = 0.7;
+        constexpr auto incrementDamage = 0.1;
+        constexpr auto damage = 0.2;
+        constexpr auto logFailureTension = 0.3;
+        constexpr auto maximumPeakStress = 0.4;
+        constexpr auto stiffnessRelation = 0.5;
+        constexpr auto computationalThickness = 0.6;
+        constexpr auto equivalentElasticModulus = 0.7;
 
         // Call
         const auto output = AsphaltRevetmentWaveImpactTimeDependentOutput(incrementDamage, damage, nullptr, logFailureTension, maximumPeakStress,

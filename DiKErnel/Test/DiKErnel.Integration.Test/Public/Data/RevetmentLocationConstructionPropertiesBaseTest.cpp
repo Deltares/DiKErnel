@@ -31,7 +31,7 @@ namespace DiKErnel::Integration::Test
     TEST(RevetmentLocationConstructionPropertiesBaseTest, Constructor_ExpectedValues)
     {
         // Setup
-        const auto x = 0.1;
+        constexpr auto x = 0.1;
 
         // Call
         const RevetmentLocationConstructionPropertiesMock constructionProperties(x);
@@ -45,9 +45,9 @@ namespace DiKErnel::Integration::Test
     TEST(RevetmentLocationConstructionPropertiesBaseTest, GivenConstructionProperties_WhenAllInputSet_ThenExpectedValues)
     {
         // Given
-        const auto x = 0.1;
-        const auto initialDamage = 0.2;
-        const auto failureNumber = 0.3;
+        constexpr auto x = 0.1;
+        constexpr auto initialDamage = 0.2;
+        constexpr auto failureNumber = 0.3;
 
         RevetmentLocationConstructionPropertiesMock constructionProperties(x);
 
