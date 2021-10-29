@@ -28,7 +28,6 @@ namespace DiKErnel::FunctionLibrary
     class GenericFunctions
     {
         public:
-
             /*!
              * \brief Calculates the value of Pi.
              * \return The value of Pi.
