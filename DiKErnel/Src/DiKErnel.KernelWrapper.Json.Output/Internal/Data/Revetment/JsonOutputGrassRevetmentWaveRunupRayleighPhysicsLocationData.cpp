@@ -48,20 +48,20 @@ namespace DiKErnel::KernelWrapper::Json::Output
 
         for (auto i = 0; i < static_cast<int>(_timeDependentOutputItems.size()); ++i)
         {
-            const auto* outputItem = _timeDependentOutputItems[i];
+            const auto* outputItem = _timeDependentOutputItems.at(i);
 
-            physicsJson[JsonOutputGrassRevetmentWaveRunupRayleighDefinitions::INCREMENT_DAMAGE][i] = outputItem->GetIncrementDamage();
-            physicsJson[JsonOutputGrassRevetmentWaveRunupRayleighDefinitions::VERTICAL_DISTANCE_WATER_LEVEL_ELEVATION][i] =
+            physicsJson[JsonOutputGrassRevetmentWaveRunupRayleighDefinitions::INCREMENT_DAMAGE].at(i) = outputItem->GetIncrementDamage();
+            physicsJson[JsonOutputGrassRevetmentWaveRunupRayleighDefinitions::VERTICAL_DISTANCE_WATER_LEVEL_ELEVATION].at(i) =
                     outputItem->GetVerticalDistanceWaterLevelElevation();
 
             CalculationOutputAdapterHelper::SetPropertyWhenApplicable(
-                physicsJson[JsonOutputGrassRevetmentWaveRunupRayleighDefinitions::WAVE_ANGLE_IMPACT][i],
+                physicsJson[JsonOutputGrassRevetmentWaveRunupRayleighDefinitions::WAVE_ANGLE_IMPACT].at(i),
                 outputItem->GetWaveAngleImpact());
             CalculationOutputAdapterHelper::SetPropertyWhenApplicable(
-                physicsJson[JsonOutputGrassRevetmentWaveRunupRayleighDefinitions::REPRESENTATIVE_WAVE_RUNUP_2P][i],
+                physicsJson[JsonOutputGrassRevetmentWaveRunupRayleighDefinitions::REPRESENTATIVE_WAVE_RUNUP_2P].at(i),
                 outputItem->GetRepresentativeWaveRunup2P());
             CalculationOutputAdapterHelper::SetPropertyWhenApplicable(
-                physicsJson[JsonOutputGrassRevetmentWaveRunupRayleighDefinitions::CUMULATIVE_OVERLOAD][i],
+                physicsJson[JsonOutputGrassRevetmentWaveRunupRayleighDefinitions::CUMULATIVE_OVERLOAD].at(i),
                 outputItem->GetCumulativeOverload());
         }
 

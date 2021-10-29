@@ -47,7 +47,7 @@ namespace DiKErnel::System::Test
         ASSERT_EQ(ValidationResultType::Failed, *validationResult->GetData());
         const auto& events = validationResult->GetEvents();
         ASSERT_EQ(2, events.size());
-        EventAssertHelper::AssertEvent(EventType::Error, "At least 1 time step must be defined.", events[0]);
+        EventAssertHelper::AssertEvent(EventType::Error, "At least 1 time step must be defined.", events.at(0));
         EventAssertHelper::AssertEvent(EventType::Error, "At least 1 location must be defined.", events[1]);
     }
 

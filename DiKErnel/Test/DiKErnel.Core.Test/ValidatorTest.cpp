@@ -200,6 +200,6 @@ namespace DiKErnel::Core::Test
         EventAssertHelper::AssertEvent(
             EventType::Error,
             "An unhandled error occurred while validating the calculation input. See stack trace for more information:\n" + errorMessage,
-            events[0].get());
+            events.at(0).get());
     }
 }

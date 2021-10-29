@@ -44,6 +44,6 @@ namespace DiKErnel::Util::Test
         ASSERT_TRUE(result.GetSuccessful());
 
         ASSERT_EQ(1, result.GetEvents().size());
-        EventAssertHelper::AssertEvent(eventType, message, result.GetEvents()[0].get());
+        EventAssertHelper::AssertEvent(eventType, message, result.GetEvents().at(0).get());
     }
 }

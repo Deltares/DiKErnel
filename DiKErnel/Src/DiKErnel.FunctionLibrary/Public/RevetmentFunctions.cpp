@@ -92,7 +92,7 @@ namespace DiKErnel::FunctionLibrary
                     return numeric_limits<double>::infinity();
                 }
 
-                const auto& [xPreviousDikeProfilePoint, zPreviousDikeProfilePoint] = dikeProfile[i - 1];
+                const auto& [xPreviousDikeProfilePoint, zPreviousDikeProfilePoint] = dikeProfile.at(i - 1);
 
                 return xPreviousDikeProfilePoint + (xCurrentDikeProfilePoint - xPreviousDikeProfilePoint)
                         / (zCurrentDikeProfilePoint - zPreviousDikeProfilePoint)

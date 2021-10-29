@@ -97,7 +97,7 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
             EventType::Error,
             "An unhandled error occurred while composing Json output from the calculation data. See stack trace for more information:\n"
             "Invalid JsonOutputType.",
-            events[0].get());
+            events.at(0).get());
     }
 
     TEST_F(JsonOutputComposerTest,
@@ -137,6 +137,6 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
             EventType::Error,
             "An unhandled error occurred while composing Json output from the calculation data. See stack trace for more information:\n"
             "Invalid revetment type.",
-            events[0].get());
+            events.at(0).get());
     }
 }

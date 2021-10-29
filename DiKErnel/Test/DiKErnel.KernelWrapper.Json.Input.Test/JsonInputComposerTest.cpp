@@ -87,7 +87,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
                 EventType::Error,
                 "An unhandled error occurred while composing calculation data from the Json input. See stack trace for more information:\n"
                 + expectedStackTrace,
-                events[0].get());
+                events.at(0).get());
         }
     };
 
@@ -128,7 +128,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
 
         const auto& profilePoints = profileData.GetProfilePoints();
         ASSERT_EQ(17, profilePoints.size());
-        ProfileDataAssertHelper::AssertProfilePoint(-30, -11.85, profilePoints[0].get());
+        ProfileDataAssertHelper::AssertProfilePoint(-30, -11.85, profilePoints.at(0).get());
         ProfileDataAssertHelper::AssertProfilePoint(-20, -8.95, profilePoints[1].get());
         ProfileDataAssertHelper::AssertProfilePoint(-10, -6.05, profilePoints[2].get());
         ProfileDataAssertHelper::AssertProfilePoint(0, -3.15, profilePoints[3].get());
@@ -148,14 +148,14 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
 
         const auto& characteristicPoints = profileData.GetCharacteristicPoints();
         ASSERT_EQ(4, characteristicPoints.size());
-        ProfileDataAssertHelper::AssertCharacteristicPoint(profilePoints[9], CharacteristicPointType::OuterToe, characteristicPoints[0]);
+        ProfileDataAssertHelper::AssertCharacteristicPoint(profilePoints[9], CharacteristicPointType::OuterToe, characteristicPoints.at(0));
         ProfileDataAssertHelper::AssertCharacteristicPoint(profilePoints[11], CharacteristicPointType::CrestOuterBerm, characteristicPoints[1]);
         ProfileDataAssertHelper::AssertCharacteristicPoint(profilePoints[13], CharacteristicPointType::NotchOuterBerm, characteristicPoints[2]);
         ProfileDataAssertHelper::AssertCharacteristicPoint(profilePoints[16], CharacteristicPointType::OuterCrest, characteristicPoints[3]);
 
         const auto& timeDependentInputItems = calculationInput.GetTimeDependentInputItems();
         ASSERT_EQ(5, timeDependentInputItems.size());
-        TimeDependentInputAssertHelper::AssertTimeDependentInputItem(0, 100, 0.1, 0.5, 2, -10, timeDependentInputItems[0].get());
+        TimeDependentInputAssertHelper::AssertTimeDependentInputItem(0, 100, 0.1, 0.5, 2, -10, timeDependentInputItems.at(0).get());
         TimeDependentInputAssertHelper::AssertTimeDependentInputItem(100, 500, 0.5, 0.8, 6, -5, timeDependentInputItems[1].get());
         TimeDependentInputAssertHelper::AssertTimeDependentInputItem(500, 800, 1.15, 1.2, 6, 0, timeDependentInputItems[2].get());
         TimeDependentInputAssertHelper::AssertTimeDependentInputItem(800, 1200, 1.77, 1.5, 7, 7, timeDependentInputItems[3].get());
@@ -165,7 +165,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
         ASSERT_EQ(10, locationDependentInputItems.size());
 
         const auto* naturalStoneRevetmentLocationDependentInputItem1 = dynamic_cast<NaturalStoneRevetmentLocationDependentInput*>(
-            &locationDependentInputItems[0].get());
+            &locationDependentInputItems.at(0).get());
         ASSERT_NE(nullptr, naturalStoneRevetmentLocationDependentInputItem1);
 
         LocationDependentInputAssertHelper::AssertDamageProperties(0.1, 1.06, *naturalStoneRevetmentLocationDependentInputItem1);

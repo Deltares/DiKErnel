@@ -123,7 +123,7 @@ namespace DiKErnel::Integration::Test
         ASSERT_EQ(1, actualProfilePoints.size());
         ASSERT_EQ(0, actualProfileData.GetCharacteristicPoints().size());
 
-        ProfileDataAssertHelper::AssertProfilePoint(x, z, actualProfilePoints[0]);
+        ProfileDataAssertHelper::AssertProfilePoint(x, z, actualProfilePoints.at(0));
     }
 
     TEST_F(RevetmentCalculationInputBuilderTest,
@@ -147,8 +147,8 @@ namespace DiKErnel::Integration::Test
         ASSERT_EQ(1, actualProfilePoints.size());
         ASSERT_EQ(1, actualCharacteristicPoints.size());
 
-        ProfileDataAssertHelper::AssertProfilePoint(x, z, actualProfilePoints[0]);
-        ProfileDataAssertHelper::AssertCharacteristicPoint(actualProfilePoints[0], characteristicPointType, actualCharacteristicPoints[0]);
+        ProfileDataAssertHelper::AssertProfilePoint(x, z, actualProfilePoints.at(0));
+        ProfileDataAssertHelper::AssertCharacteristicPoint(actualProfilePoints.at(0), characteristicPointType, actualCharacteristicPoints.at(0));
     }
 
     #pragma endregion
@@ -174,7 +174,7 @@ namespace DiKErnel::Integration::Test
         // Then
         const auto& actualTimeDependentInputItems = calculationInput->GetTimeDependentInputItems();
         ASSERT_EQ(1, actualTimeDependentInputItems.size());
-        const auto& timeDependentInput = actualTimeDependentInputItems[0].get();
+        const auto& timeDependentInput = actualTimeDependentInputItems.at(0).get();
 
         TimeDependentInputAssertHelper::AssertTimeDependentInputItem(beginTime, endTime, waterLevel, waveHeightHm0, wavePeriodTm10, waveAngle,
                                                                      timeDependentInput);
@@ -261,7 +261,7 @@ namespace DiKErnel::Integration::Test
         ASSERT_EQ(1, actualLocationDependentInputItems.size());
 
         const auto* locationDependentInput = dynamic_cast<AsphaltRevetmentWaveImpactLocationDependentInput*>(
-            &actualLocationDependentInputItems[0].get());
+            &actualLocationDependentInputItems.at(0).get());
         ASSERT_TRUE(locationDependentInput != nullptr);
 
         LocationDependentInputAssertHelper::AssertDamageProperties(initialDamage, failureNumber, *locationDependentInput);
@@ -313,7 +313,7 @@ namespace DiKErnel::Integration::Test
         ASSERT_EQ(1, actualLocationDependentInputItems.size());
 
         const auto* locationDependentInput = dynamic_cast<AsphaltRevetmentWaveImpactLocationDependentInput*>(
-            &actualLocationDependentInputItems[0].get());
+            &actualLocationDependentInputItems.at(0).get());
         ASSERT_TRUE(locationDependentInput != nullptr);
 
         LocationDependentInputAssertHelper::AssertDamageProperties(0, 1, *locationDependentInput);
@@ -442,7 +442,7 @@ namespace DiKErnel::Integration::Test
         ASSERT_EQ(1, actualLocationDependentInputItems.size());
 
         const auto* locationDependentInput = dynamic_cast<GrassRevetmentWaveImpactLocationDependentInput*>(
-            &actualLocationDependentInputItems[0].get());
+            &actualLocationDependentInputItems.at(0).get());
         ASSERT_TRUE(locationDependentInput != nullptr);
 
         LocationDependentInputAssertHelper::AssertDamageProperties(initialDamage, failureNumber, *locationDependentInput);
@@ -491,7 +491,7 @@ namespace DiKErnel::Integration::Test
         ASSERT_EQ(1, actualLocationDependentInputItems.size());
 
         const auto* locationDependentInput = dynamic_cast<GrassRevetmentWaveImpactLocationDependentInput*>(
-            &actualLocationDependentInputItems[0].get());
+            &actualLocationDependentInputItems.at(0).get());
         ASSERT_TRUE(locationDependentInput != nullptr);
 
         LocationDependentInputAssertHelper::AssertDamageProperties(0, 1, *locationDependentInput);
@@ -540,7 +540,7 @@ namespace DiKErnel::Integration::Test
         ASSERT_EQ(1, actualLocationDependentInputItems.size());
 
         const auto* locationDependentInput = dynamic_cast<GrassRevetmentWaveImpactLocationDependentInput*>(
-            &actualLocationDependentInputItems[0].get());
+            &actualLocationDependentInputItems.at(0).get());
         ASSERT_TRUE(locationDependentInput != nullptr);
 
         LocationDependentInputAssertHelper::AssertDamageProperties(0, 1, *locationDependentInput);
@@ -638,7 +638,7 @@ namespace DiKErnel::Integration::Test
         ASSERT_EQ(1, actualLocationDependentInputItems.size());
 
         const auto* locationDependentInput = dynamic_cast<GrassRevetmentWaveRunupRayleighLocationDependentInput*>(
-            &actualLocationDependentInputItems[0].get());
+            &actualLocationDependentInputItems.at(0).get());
         ASSERT_TRUE(locationDependentInput != nullptr);
 
         LocationDependentInputAssertHelper::AssertDamageProperties(initialDamage, failureNumber, *locationDependentInput);
@@ -689,7 +689,7 @@ namespace DiKErnel::Integration::Test
         ASSERT_EQ(1, actualLocationDependentInputItems.size());
 
         const auto* locationDependentInput = dynamic_cast<GrassRevetmentWaveRunupRayleighLocationDependentInput*>(
-            &actualLocationDependentInputItems[0].get());
+            &actualLocationDependentInputItems.at(0).get());
         ASSERT_TRUE(locationDependentInput != nullptr);
 
         LocationDependentInputAssertHelper::AssertDamageProperties(0, 1, *locationDependentInput);
@@ -739,7 +739,7 @@ namespace DiKErnel::Integration::Test
         ASSERT_EQ(1, actualLocationDependentInputItems.size());
 
         const auto* locationDependentInput = dynamic_cast<GrassRevetmentWaveRunupRayleighLocationDependentInput*>(
-            &actualLocationDependentInputItems[0].get());
+            &actualLocationDependentInputItems.at(0).get());
         ASSERT_TRUE(locationDependentInput != nullptr);
 
         LocationDependentInputAssertHelper::AssertDamageProperties(0, 1, *locationDependentInput);
@@ -853,7 +853,7 @@ namespace DiKErnel::Integration::Test
         ASSERT_EQ(1, actualLocationDependentInputItems.size());
 
         const auto* locationDependentInput = dynamic_cast<NaturalStoneRevetmentLocationDependentInput*>(
-            &actualLocationDependentInputItems[0].get());
+            &actualLocationDependentInputItems.at(0).get());
         ASSERT_TRUE(locationDependentInput != nullptr);
 
         LocationDependentInputAssertHelper::AssertDamageProperties(initialDamage, failureNumber, *locationDependentInput);
@@ -910,7 +910,7 @@ namespace DiKErnel::Integration::Test
         ASSERT_EQ(1, actualLocationDependentInputItems.size());
 
         const auto* locationDependentInput = dynamic_cast<NaturalStoneRevetmentLocationDependentInput*>(
-            &actualLocationDependentInputItems[0].get());
+            &actualLocationDependentInputItems.at(0).get());
         ASSERT_TRUE(locationDependentInput != nullptr);
 
         NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertGeneralProperties(

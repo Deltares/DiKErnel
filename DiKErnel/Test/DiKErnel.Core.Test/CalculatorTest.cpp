@@ -94,7 +94,7 @@ namespace DiKErnel::Core::Test
         ON_CALL(calculationInput, GetLocationDependentInputItems).WillByDefault(ReturnRef(_locationDependentInputItemReferences));
         ON_CALL(calculationInput, GetTimeDependentInputItems).WillByDefault(ReturnRef(_timeDependentInputItemReferences));
 
-        auto* locationDependentInput = dynamic_cast<ILocationDependentInputMock*>(&_locationDependentInputItemReferences[0].get());
+        auto* locationDependentInput = dynamic_cast<ILocationDependentInputMock*>(&_locationDependentInputItemReferences.at(0).get());
         ASSERT_TRUE(locationDependentInput != nullptr);
 
         locationDependentInput->SetDamage(damage);
@@ -111,7 +111,7 @@ namespace DiKErnel::Core::Test
         const auto& locationDependentOutputItems = output->GetLocationDependentOutputItems();
         ASSERT_EQ(1, locationDependentOutputItems.size());
 
-        const auto& actualDamages = locationDependentOutputItems[0].get().GetDamages();
+        const auto& actualDamages = locationDependentOutputItems.at(0).get().GetDamages();
         ASSERT_EQ(_timeDependentInputItemReferences.size(), actualDamages.size());
 
         for (auto j = 0; j < static_cast<int>(_timeDependentInputItemReferences.size()); ++j)
@@ -119,7 +119,7 @@ namespace DiKErnel::Core::Test
             ASSERT_DOUBLE_EQ(damage, actualDamages.at(j));
         }
 
-        ASSERT_EQ(nullptr, locationDependentOutputItems[0].get().GetTimeOfFailure());
+        ASSERT_EQ(nullptr, locationDependentOutputItems.at(0).get().GetTimeOfFailure());
     }
 
     TEST_F(CalculatorTest, GivenCalculator_WhenCalculationPerformedAndTimeOfFailure_ThenReturnsResultWithExpectedOutput)
@@ -133,7 +133,7 @@ namespace DiKErnel::Core::Test
         ON_CALL(calculationInput, GetLocationDependentInputItems).WillByDefault(ReturnRef(_locationDependentInputItemReferences));
         ON_CALL(calculationInput, GetTimeDependentInputItems).WillByDefault(ReturnRef(_timeDependentInputItemReferences));
 
-        auto* locationDependentInput = dynamic_cast<ILocationDependentInputMock*>(&_locationDependentInputItemReferences[0].get());
+        auto* locationDependentInput = dynamic_cast<ILocationDependentInputMock*>(&_locationDependentInputItemReferences.at(0).get());
         ASSERT_TRUE(locationDependentInput != nullptr);
 
         locationDependentInput->SetDamage(damage);
@@ -151,7 +151,7 @@ namespace DiKErnel::Core::Test
         const auto& locationDependentOutputItems = output->GetLocationDependentOutputItems();
         ASSERT_EQ(1, locationDependentOutputItems.size());
 
-        const auto& actualDamages = locationDependentOutputItems[0].get().GetDamages();
+        const auto& actualDamages = locationDependentOutputItems.at(0).get().GetDamages();
         ASSERT_EQ(_timeDependentInputItemReferences.size(), actualDamages.size());
 
         for (auto j = 0; j < static_cast<int>(_timeDependentInputItemReferences.size()); ++j)
@@ -159,7 +159,7 @@ namespace DiKErnel::Core::Test
             ASSERT_DOUBLE_EQ(damage, actualDamages.at(j));
         }
 
-        ASSERT_EQ(timeOfFailure, *locationDependentOutputItems[0].get().GetTimeOfFailure());
+        ASSERT_EQ(timeOfFailure, *locationDependentOutputItems.at(0).get().GetTimeOfFailure());
     }
 
     TEST_F(CalculatorTest, GivenCalculatorWithRunningCalculation_WhenCancelCalled_ThenCalculationCancelled)
@@ -328,6 +328,6 @@ namespace DiKErnel::Core::Test
         EventAssertHelper::AssertEvent(
             EventType::Error,
             "An unhandled error occurred while performing the calculation. See stack trace for more information:\nException message",
-            events[0].get());
+            events.at(0).get());
     }
 }
