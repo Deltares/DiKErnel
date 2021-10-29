@@ -396,7 +396,8 @@ void UnhandledErrorHandler()
     EventRegistry::Register(make_unique<Event>("An unhandled error occurred in the Showcase. No stacktrace available.", EventType::Error));
 
     CloseApplicationAfterUnhandledError();
-    exit(-1);
+
+    _exit(-1);
 }
 
 vector<reference_wrapper<Event>> GetEventReferences(
