@@ -43,13 +43,13 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
         if (_readLocation.contains(JsonInputDefinitions::DAMAGE))
         {
-            const auto& readDamageVariables = _readLocation[JsonInputDefinitions::DAMAGE];
+            const auto& readDamageVariables = _readLocation.at(JsonInputDefinitions::DAMAGE);
 
             initialDamage = JsonInputParserHelper::ParseOptionalDouble(readDamageVariables, JsonInputDefinitions::INITIAL_DAMAGE);
             failureNumber = JsonInputParserHelper::ParseOptionalDouble(readDamageVariables, JsonInputDefinitions::FAILURE_NUMBER);
         }
 
-        const auto x = _readLocation[JsonInputDefinitions::X].get<double>();
+        const auto x = _readLocation.at(JsonInputDefinitions::X).get<double>();
         auto damage = make_unique<JsonInputDamageData>(move(initialDamage), move(failureNumber));
 
         return ParseLocationData(x, move(damage));

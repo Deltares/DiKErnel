@@ -45,7 +45,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
         const string& propertyName)
     {
         return object.contains(propertyName)
-                   ? make_unique<T>(object[propertyName].get<T>())
+                   ? make_unique<T>(object.at(propertyName).get<T>())
                    : nullptr;
     }
 }
