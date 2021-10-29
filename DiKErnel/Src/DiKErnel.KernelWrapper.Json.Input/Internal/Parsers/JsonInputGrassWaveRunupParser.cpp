@@ -68,10 +68,10 @@ namespace DiKErnel::KernelWrapper::Json::Input
         unique_ptr<JsonInputDamageData> damageData)
     {
         const auto& readCalculationMethod = GetReadCalculationMethod();
-        const auto& readCalculationProtocol = readCalculationMethod[JsonInputGrassWaveRunupDefinitions::CALCULATION_PROTOCOL];
+        const auto& readCalculationProtocol = readCalculationMethod.at(JsonInputGrassWaveRunupDefinitions::CALCULATION_PROTOCOL);
 
-        if (const auto& calculationProtocolType = readCalculationProtocol[JsonInputGrassWaveRunupDefinitions::CALCULATION_PROTOCOL_TYPE]
-                    .get<JsonInputGrassRevetmentWaveRunupCalculationProtocolType>();
+        if (const auto& calculationProtocolType = readCalculationProtocol.at(JsonInputGrassWaveRunupDefinitions::CALCULATION_PROTOCOL_TYPE)
+                                                                         .get<JsonInputGrassRevetmentWaveRunupCalculationProtocolType>();
             calculationProtocolType != JsonInputGrassRevetmentWaveRunupCalculationProtocolType::RayleighDiscrete)
         {
             return nullptr;
@@ -96,10 +96,10 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
     unique_ptr<JsonInputGrassRevetmentWaveRunupProfileSchematizationData> JsonInputGrassWaveRunupParser::ParseProfileSchematizationData() const
     {
-        const auto& readProfileSchematization = GetReadLocation()[JsonInputDefinitions::PROFILE_SCHEMATIZATION];
+        const auto& readProfileSchematization = GetReadLocation().at(JsonInputDefinitions::PROFILE_SCHEMATIZATION);
 
         auto profileSchematization = make_unique<JsonInputGrassRevetmentWaveRunupProfileSchematizationData>(
-            readProfileSchematization[JsonInputDefinitions::OUTER_SLOPE].get<double>());
+            readProfileSchematization.at(JsonInputDefinitions::OUTER_SLOPE).get<double>());
 
         profileSchematization->SetRepresentativeWaveRunup2PGammab(
             forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
@@ -117,7 +117,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
         const json& readCalculationProtocol)
     {
         auto rayleighLocationData = make_unique<JsonInputGrassRevetmentWaveRunupRayleighLocationData>(
-            readRevetment[JsonInputDefinitions::TYPE_TOP_LAYER].get<JsonInputGrassRevetmentTopLayerType>());
+            readRevetment.at(JsonInputDefinitions::TYPE_TOP_LAYER).get<JsonInputGrassRevetmentTopLayerType>());
 
         rayleighLocationData->SetFixedNumberOfWaves(
             forward<unique_ptr<int>>(JsonInputParserHelper::ParseOptionalInteger(
@@ -125,7 +125,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
         if (readCalculationProtocol.contains(JsonInputGrassWaveRunupRayleighDefinitions::FRONT_VELOCITY))
         {
-            const auto& readFrontVelocity = readCalculationProtocol[JsonInputGrassWaveRunupRayleighDefinitions::FRONT_VELOCITY];
+            const auto& readFrontVelocity = readCalculationProtocol.at(JsonInputGrassWaveRunupRayleighDefinitions::FRONT_VELOCITY);
 
             rayleighLocationData->SetFrontVelocityCu(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
@@ -155,7 +155,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
         if (readCalculationMethod.contains(JsonInputDefinitions::AVERAGE_NUMBER_OF_WAVES))
         {
-            const auto& readAverageNumberWaveTimeStep = readCalculationMethod[JsonInputDefinitions::AVERAGE_NUMBER_OF_WAVES];
+            const auto& readAverageNumberWaveTimeStep = readCalculationMethod.at(JsonInputDefinitions::AVERAGE_NUMBER_OF_WAVES);
 
             locationData.SetAverageNumberOfWavesCtm(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
@@ -164,7 +164,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
         if (readCalculationMethod.contains(JsonInputGrassWaveRunupDefinitions::REPRESENTATIVE_WAVE_RUNUP_2P))
         {
-            const auto& readRepresentativeWaveRunup2P = readCalculationMethod[JsonInputGrassWaveRunupDefinitions::REPRESENTATIVE_WAVE_RUNUP_2P];
+            const auto& readRepresentativeWaveRunup2P = readCalculationMethod.at(JsonInputGrassWaveRunupDefinitions::REPRESENTATIVE_WAVE_RUNUP_2P);
 
             locationData.SetRepresentativeWaveRunup2PAru(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
@@ -181,7 +181,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
         if (readCalculationMethod.contains(JsonInputGrassWaveRunupDefinitions::WAVE_ANGLE_IMPACT))
         {
-            const auto& readWaveAngleImpact = readCalculationMethod[JsonInputGrassWaveRunupDefinitions::WAVE_ANGLE_IMPACT];
+            const auto& readWaveAngleImpact = readCalculationMethod.at(JsonInputGrassWaveRunupDefinitions::WAVE_ANGLE_IMPACT);
 
             locationData.SetWaveAngleImpactAbeta(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
