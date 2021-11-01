@@ -72,6 +72,7 @@ vector<reference_wrapper<Event>> GetEventReferences(
 #pragma endregion
 
 string logOutputPath;
+bool logFileExists = false;
 
 int main()
 {
@@ -348,6 +349,8 @@ void WriteToLogFile(
         return;
     }
 
+    logFileExists = true;
+
     ofstream logFile;
 
     // Open file and append if already exists.
@@ -376,7 +379,16 @@ string GetEventTypeString(
 
 void CloseApplication()
 {
-    cout << "-> The log file is written to: " << logOutputPath << endl;
+    if (logFileExists)
+    {
+        cout << "-> The log file is written to: " << logOutputPath << endl;
+    }
+    else
+    {
+        cout << "-> There was nothing to log." << endl;
+        cout << "-> No log file is written." << endl;
+    }
+
     cout << endl << "Press 'Enter' to exit the application.";
     cin.get();
 }
