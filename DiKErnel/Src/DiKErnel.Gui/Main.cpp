@@ -2,14 +2,16 @@
 
 #include "MainWindow.h"
 
+using namespace DiKErnel::Gui;
+
 int main(
     int argc,
     char* argv[])
 {
     QApplication app(argc, argv);
 
-    DiKErnel::Gui::MainWindow window;
+    MainWindow window;
     window.show();
 
-    return app.exec();
+    return QApplication::exec();
 }
