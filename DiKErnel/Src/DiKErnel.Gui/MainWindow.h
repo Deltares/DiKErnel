@@ -20,7 +20,30 @@
 
 #pragma once
 
+#include <QMainWindow>
+
+QT_BEGIN_NAMESPACE
+
+namespace Ui
+{
+    class MainWindow;
+}
+
+QT_END_NAMESPACE
+
 namespace DiKErnel::Gui
 {
-    class MainWindow { };
+    class MainWindow : public QMainWindow
+    {
+            Q_OBJECT
+
+        public:
+            explicit MainWindow(
+                QWidget* parent = nullptr);
+
+            ~MainWindow() override;
+
+        private:
+            Ui::MainWindow* _ui;
+    };
 }

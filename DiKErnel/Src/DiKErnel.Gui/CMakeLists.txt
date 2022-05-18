@@ -15,6 +15,7 @@ set(SOURCEFILES
   Main.cpp
   MainWindow.cpp
   MainWindow.h
+  MainWindow.ui
 )
 
 # Add executable
