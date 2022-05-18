@@ -13,6 +13,8 @@ qt_standard_project_setup()
 # Define sources
 set(SOURCEFILES
   Main.cpp
+  MainWindow.cpp
+  MainWindow.h
 )
 
 # Add executable
