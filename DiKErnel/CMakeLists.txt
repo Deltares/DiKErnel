@@ -26,6 +26,11 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 # Add directories
 add_subdirectory(Src)
 
+# Set startup project in Visual Studio
+if (CMAKE_GENERATOR MATCHES "Visual Studio")
+  set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT DiKErnel.Gui)
+endif()
+
 if (BUILD_WITH_TESTS)
   add_subdirectory(Test)
 endif()

@@ -30,8 +30,8 @@ set(QMLFILES
   ${QML_FOLDER}/MainScreen.ui.qml
 )
 
-# Add executable
-qt_add_executable(${EXENAME}
+# Add windows executable
+qt_add_executable(${EXENAME} WIN32
   ${INTERNAL_SOURCEFILES}
   ${SOURCEFILES}
 )
@@ -61,11 +61,9 @@ source_group(${QML_FOLDER} FILES ${QMLFILES})
 # - Configure executable output name
 # - Conifgure Qt variables
 #   => Prevent the creation of a console window on Windows.
-#   => Create an application bundle on macOS.
 set_target_properties(${EXENAME} PROPERTIES
   OUTPUT_NAME ${OUTPUTNAME}
   WIN32_EXECUTABLE ON
-  MACOSX_BUNDLE ON
 )
 
 # Expose header files

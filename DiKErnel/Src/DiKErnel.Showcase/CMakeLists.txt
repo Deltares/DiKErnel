@@ -19,8 +19,3 @@ target_link_libraries(${EXENAME}
   DiKErnel.KernelWrapper.Json.Input
   DiKErnel.KernelWrapper.Json.Output
 )
-
-# Set startup project in Visual Studio
-if (CMAKE_GENERATOR MATCHES "Visual Studio")
-  set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT ${EXENAME})
-endif()
