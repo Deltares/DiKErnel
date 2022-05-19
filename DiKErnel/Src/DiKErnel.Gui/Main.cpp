@@ -27,7 +27,7 @@ int main(
 {
     QGuiApplication app(argc, argv);
     QQmlApplicationEngine engine;
-    engine.addImportPath(":/resources");
-    engine.load(QUrl("qrc:/resources/main/main.qml"));
+    engine.addImportPath(":/layout");
+    engine.load(QUrl("qrc:/layout/main/qml/main.qml"));
     return QGuiApplication::exec();
 }
