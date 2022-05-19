@@ -1,4 +1,4 @@
-// Copyright (C) Stichting Deltares 2020. All rights reserved.
+﻿// Copyright (C) Stichting Deltares 2020. All rights reserved.
 //
 // This file is part of DiKErnel.
 //
@@ -18,20 +18,16 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include <QApplication>
-
-#include "MainWindow.h"
-
-using namespace DiKErnel::Gui;
+#include <QGuiApplication>
+#include <QQmlApplicationEngine>
 
 int main(
     int argc,
     char* argv[])
 {
-    QApplication app(argc, argv);
-
-    MainWindow window;
-    window.show();
-
-    return QApplication::exec();
+    QGuiApplication app(argc, argv);
+    QQmlApplicationEngine engine;
+    engine.addImportPath(":/resources");
+    engine.load(QUrl("qrc:/resources/main/main.qml"));
+    return QGuiApplication::exec();
 }

@@ -4,23 +4,28 @@ set(OUTPUTNAME DiKErnel-gui)
 
 # Set properties to include Qt
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
+set(CMAKE_AUTORCC ON)
 set(CMAKE_PREFIX_PATH $ENV{QTDIR})
 
 # Find package Qt
-find_package(Qt6 COMPONENTS Widgets REQUIRED)
+find_package(Qt6 COMPONENTS Qml Quick REQUIRED)
 qt_standard_project_setup()
 
 # Define sources
 set(SOURCEFILES
   Main.cpp
-  MainWindow.cpp
-  MainWindow.h
-  MainWindow.ui
 )
 
 # Add executable
-add_executable(${EXENAME}
+qt_add_executable(${EXENAME}
   ${SOURCEFILES}
+)
+
+qt_add_qml_module(${EXENAME}
+  URI "main"
+  VERSION 1.0
+  RESOURCE_PREFIX "/resources"
+  QML_FILES main.qml
 )
 
 # Configure folder structure
@@ -38,4 +43,7 @@ set_target_properties(${EXENAME} PROPERTIES
 )
 
 # Link dependencies
-target_link_libraries(${EXENAME} Qt6::Widgets)
+target_link_libraries(${EXENAME} PRIVATE
+  Qt6::Qml
+  Qt6::Quick
+)
