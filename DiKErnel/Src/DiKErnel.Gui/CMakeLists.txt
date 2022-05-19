@@ -5,7 +5,7 @@ set(OUTPUTNAME DiKErnel-gui)
 # Set properties to include Qt
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTORCC ON)
-set(CMAKE_PREFIX_PATH $ENV{QTDIR})
+set(CMAKE_PREFIX_PATH $ENV{QT6DIR64})
 
 # Find package Qt
 find_package(Qt6 COMPONENTS Qml Quick REQUIRED)
