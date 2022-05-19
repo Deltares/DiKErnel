@@ -2,7 +2,8 @@
 add_subdirectory(DiKErnel.Core)
 add_subdirectory(DiKErnel.DomainLibrary)
 add_subdirectory(DiKErnel.FunctionLibrary)
-if(WIN32)
+# Only add the GUI in Visual Studio
+if(NOT CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
   add_subdirectory(DiKErnel.Gui)
 endif()
 add_subdirectory(DiKErnel.Integration)
