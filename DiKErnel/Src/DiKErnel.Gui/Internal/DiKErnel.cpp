@@ -33,9 +33,8 @@ namespace DiKErnel::Gui
 
         QQmlApplicationEngine engine;
         engine.addImportPath(":/layout");
-        engine.load(QUrl("qrc:/layout/main/qml/main.qml"));
+        engine.load(QUrl("qrc:/layout/main/Qml/Main.qml"));
 
         QGuiApplication::exec();
     }
-
 }
