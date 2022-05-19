@@ -21,11 +21,23 @@ qt_add_executable(${EXENAME}
   ${SOURCEFILES}
 )
 
-qt_add_qml_module(${EXENAME}
+set(QMLFILES
+  main.qml
+  MainScreen.ui.qml
+)
+
+qt6_add_qml_module(${EXENAME}
   URI "main"
   VERSION 1.0
   RESOURCE_PREFIX "/resources"
-  QML_FILES main.qml
+  QML_FILES ${QMLFILES}
+)
+
+qt_add_resources(${EXENAME} "resources"
+  PREFIX "/"
+  FILES
+    qtquickcontrols2.conf
+    logo.svg
 )
 
 # Configure folder structure
