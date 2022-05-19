@@ -18,13 +18,18 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include "DiKErnel.h"
+#pragma once
+#include <QObject>
 
-int main(
-    int argc,
-    char* argv[])
+namespace DiKErnel::Gui
 {
-    DiKErnel::Gui::DiKErnel DiKErnel(argc, argv);
+    class DiKErnel : public QObject
+    {
+        Q_OBJECT
 
-    return 0;
+        public:
+            DiKErnel(
+                int argc,
+                char** argv);
+    };
 }

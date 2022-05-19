@@ -11,21 +11,32 @@ set(CMAKE_PREFIX_PATH $ENV{QTDIR})
 find_package(Qt6 COMPONENTS Qml Quick REQUIRED)
 qt_standard_project_setup()
 
+# Set folder names
+set(INTERNAL_FOLDER Internal)
+set(QML_FOLDER Qml)
+
 # Define sources
 set(SOURCEFILES
   Main.cpp
 )
 
-# Add executable
-qt_add_executable(${EXENAME}
-  ${SOURCEFILES}
+set(INTERNAL_SOURCEFILES
+  ${INTERNAL_FOLDER}/DiKErnel.cpp
+  ${INTERNAL_FOLDER}/DiKErnel.h
 )
 
 set(QMLFILES
-  qml/main.qml
-  qml/MainScreen.ui.qml
+  ${QML_FOLDER}/Main.qml
+  ${QML_FOLDER}/MainScreen.ui.qml
 )
 
+# Add executable
+qt_add_executable(${EXENAME}
+  ${INTERNAL_SOURCEFILES}
+  ${SOURCEFILES}
+)
+
+# Add qml module
 qt6_add_qml_module(${EXENAME}
   URI "main"
   VERSION 1.0
@@ -33,16 +44,19 @@ qt6_add_qml_module(${EXENAME}
   QML_FILES ${QMLFILES}
 )
 
+# Add resources
 qt_add_resources(${EXENAME} "resources"
   PREFIX "/"
   FILES
     qtquickcontrols2.conf
-    resources/logo.svg
+    Resources/logo.svg
 )
 
 # Configure folder structure
 set_target_properties(${EXENAME} PROPERTIES FOLDER Src)
 source_group("" FILES ${SOURCEFILES})
+source_group(${INTERNAL_FOLDER} FILES ${INTERNAL_SOURCEFILES})
+source_group(${QML_FOLDER} FILES ${QMLFILES})
 
 # - Configure executable output name
 # - Conifgure Qt variables
@@ -53,6 +67,17 @@ set_target_properties(${EXENAME} PROPERTIES
   WIN32_EXECUTABLE ON
   MACOSX_BUNDLE ON
 )
+
+# Expose header files
+if (BUILD_WITH_TESTS)
+  target_include_directories(${EXENAME} PUBLIC
+    ${CMAKE_CURRENT_SOURCE_DIR}/${INTERNAL_FOLDER}
+  )
+else()
+  target_include_directories(${EXENAME}
+    PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/${INTERNAL_FOLDER}
+  )
+endif()
 
 # Link dependencies
 target_link_libraries(${EXENAME} PRIVATE

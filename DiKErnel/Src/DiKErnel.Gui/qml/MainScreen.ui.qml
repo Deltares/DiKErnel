@@ -24,7 +24,7 @@ Rectangle {
         y: 20
         width: 178
         height: 178
-        source: "/resources/logo.svg"
+        source: "/Resources/logo.svg"
         fillMode: Image.PreserveAspectFit
     }
 

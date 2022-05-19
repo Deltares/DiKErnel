@@ -20,11 +20,22 @@
 
 #include "DiKErnel.h"
 
-int main(
-    int argc,
-    char* argv[])
-{
-    DiKErnel::Gui::DiKErnel DiKErnel(argc, argv);
+#include <QGuiApplication>
+#include <QQmlApplicationEngine>
 
-    return 0;
+namespace DiKErnel::Gui
+{
+    DiKErnel::DiKErnel(
+        int argc,
+        char** argv)
+    {
+        QGuiApplication app(argc, argv);
+
+        QQmlApplicationEngine engine;
+        engine.addImportPath(":/layout");
+        engine.load(QUrl("qrc:/layout/main/qml/main.qml"));
+
+        QGuiApplication::exec();
+    }
+
 }
