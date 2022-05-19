@@ -16,6 +16,7 @@ Rectangle {
     height: 650
     color: "#e6e6e6"
     border.width: 0
+    anchors.fill: parent
 
     Image {
         id: image
@@ -99,9 +100,11 @@ Rectangle {
     ToolSeparator {
         id: toolSeparator
         x: 516
-        y: 0
         width: 32
-        height: 650
+        anchors.top: parent.top
+        anchors.bottom: parent.bottom
+        anchors.topMargin: 0
+        anchors.bottomMargin: 0
         bottomPadding: 0
         topPadding: 0
     }
@@ -179,6 +182,10 @@ Rectangle {
         x: 1137
         y: 597
         text: qsTr("Wissen")
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: 21
+        anchors.rightMargin: 22
         rightPadding: 22
         leftPadding: 22
     }
@@ -188,6 +195,10 @@ Rectangle {
         x: 919
         y: 597
         text: qsTr("Kopieer naar klembord")
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: 21
+        anchors.rightMargin: 136
         rightPadding: 22
         leftPadding: 22
         spacing: 8
@@ -204,17 +215,18 @@ Rectangle {
 
     ScrollView {
         id: scrollView
-        x: 554
-        y: 49
-        width: 674
-        height: 532
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.top: parent.top
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: 69
+        anchors.topMargin: 49
+        anchors.leftMargin: 554
+        anchors.rightMargin: 22
 
         TextArea {
             id: textArea
-            x: 0
-            y: 0
-            width: 674
-            height: 532
+            anchors.fill: parent
             placeholderText: qsTr("Text Area")
         }
     }
@@ -222,7 +234,7 @@ Rectangle {
 
 /*##^##
 Designer {
-    D{i:0;formeditorZoom:0.9}D{i:23}
+    D{i:0;formeditorZoom:0.2}
 }
 ##^##*/
 
