@@ -42,6 +42,13 @@ qt6_add_qml_module(${EXENAME}
   VERSION 1.0
   RESOURCE_PREFIX "/layout"
   QML_FILES ${QMLFILES}
+  NO_PLUGIN_OPTIONAL
+  NO_CREATE_PLUGIN_TARGET
+  NO_GENERATE_PLUGIN_SOURCE
+  NO_GENERATE_QMLDIR
+  NO_GENERATE_QMLTYPES
+  NO_LINT
+  NO_CACHEGEN
 )
 
 # Add resources
@@ -59,7 +66,7 @@ source_group(${INTERNAL_FOLDER} FILES ${INTERNAL_SOURCEFILES})
 source_group(${QML_FOLDER} FILES ${QMLFILES})
 
 # - Configure executable output name
-# - Conifgure Qt variables
+# - Configure Qt variables
 #   => Prevent the creation of a console window on Windows.
 set_target_properties(${EXENAME} PROPERTIES
   OUTPUT_NAME ${OUTPUTNAME}
