@@ -20,26 +20,38 @@
 
 #pragma once
 #include <QObject>
+#include <QProperty>
+#include <QUrl>
 
 namespace DiKErnel::Gui
 {
     class DiKErnel : public QObject
     {
-        Q_OBJECT
+            Q_OBJECT
 
-        Q_PROPERTY(QString InputFilePath MEMBER _inputFilePath NOTIFY InputFilePathChanged)
+            Q_PROPERTY(QUrl InputFilePath
+                READ InputFilePath
+                WRITE SetInputFilePath
+                BINDABLE BindableInputFilePath)
 
         public:
-            DiKErnel(
+            explicit DiKErnel(
                 int argc,
                 char** argv);
 
-            Q_INVOKABLE void SetInputFilePath(const QUrl& filePath);
+            QUrl InputFilePath() const;
+
+            QBindable<QUrl> BindableInputFilePath();
+
+        public slots:
+            void SetInputFilePath(
+                const QUrl& filePath);
 
         signals:
             void InputFilePathChanged();
 
         private:
-            QString _inputFilePath;
+            Q_OBJECT_BINDABLE_PROPERTY(
+                DiKErnel, QUrl, _inputFilePath, &DiKErnel::InputFilePathChanged)
     };
 }

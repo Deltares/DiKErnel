@@ -51,6 +51,15 @@ namespace DiKErnel::Gui
         const QUrl& filePath)
     {
         _inputFilePath = filePath.path();
-        InputFilePathChanged();
+    }
+
+    QUrl DiKErnel::InputFilePath() const
+    {
+        return _inputFilePath.value();
+    }
+
+    QBindable<QUrl> DiKErnel::BindableInputFilePath()
+    {
+        return &_inputFilePath;
     }
 }

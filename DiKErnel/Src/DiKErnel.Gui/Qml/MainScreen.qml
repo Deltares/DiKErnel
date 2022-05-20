@@ -10,7 +10,6 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Dialogs
 import QtQuick.Layouts 1.0
-import DiKErnel 1.0
 
 Rectangle {
     id: rectangle
@@ -169,7 +168,6 @@ Rectangle {
         id: fileDialog
         nameFilters : ["Json Files (*.json)"]
         title: "Please choose a file"
-        currentFolder: StandardPaths.writableLocation(StandardPaths.DocumentsLocation)
         onAccepted: {
             dikernelApplication.SetInputFilePath(fileDialog.selectedFile)
         }
