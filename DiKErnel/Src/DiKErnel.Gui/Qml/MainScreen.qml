@@ -1,252 +1,207 @@
-
-
-/*
-This is a UI file (.ui.qml) that is intended to be edited in Qt Design Studio only.
-It is supposed to be strictly declarative and only uses a subset of QML. If you edit
-this file manually, you might introduce QML code that is not supported by Qt Design Studio.
-Check out https://doc.qt.io/qtcreator/creator-quick-ui-forms.html for details on .ui.qml files.
-*/
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Dialogs
 import QtQuick.Layouts 1.0
 
 Rectangle {
-    id: rectangle
-    width: 1250
-    height: 650
+    width: 1024
+    height: 768
     color: "#e6e6e6"
     border.width: 0
     anchors.fill: parent
 
     Image {
-        id: image
-        x: 20
-        y: 20
-        width: 178
-        height: 178
+        x: 25
+        y: 25
+        width: 110
+        height: 110
         source: "/Resources/logo.svg"
         fillMode: Image.PreserveAspectFit
     }
 
     ColumnLayout {
-        x: 241
-        y: 49
-        width: 68
-        height: 121
+        x: 165
+        y: 25
+        width: 70
+        height: 110
 
         Label {
-            id: label
             text: qsTr("Applicatie")
+            font.pointSize: 10
         }
 
         Label {
-            id: label2
             text: qsTr("Versie")
+            font.pointSize: 10
         }
 
         Label {
-            id: label4
             text: qsTr("Bedrijf")
+            font.pointSize: 10
         }
 
         Label {
-            id: label6
             text: qsTr("Contact")
+            font.pointSize: 10
         }
     }
 
     ColumnLayout {
-        x: 353
-        y: 49
-        width: 172
-        height: 121
+        x: 254
+        y: 25
+        width: 125
+        height: 110
 
         Label {
-            id: label1
             text: qsTr("DiKernel-gui")
+            font.pointSize: 10
         }
 
         Label {
-            id: label3
             text: qsTr("22.1.1.0 (ALPHA)")
+            font.pointSize: 10
         }
 
         Label {
-            id: label5
             text: qsTr("Deltares")
+            font.pointSize: 10
         }
 
         Label {
-            id: label7
             color: "#2a47b8"
             text: qsTr("dikernel@deltares.nl")
+            font.pointSize: 10
         }
     }
 
-    RowLayout {}
-
-    Text {
-        id: text1
-        x: 20
-        y: 221
-        width: 490
-        height: 166
-        text: qsTr("Disclaimer: De ALPHA versie van DiKErnel is nog in de testfase en zal op vele onderdelen nog moeten worden verbeterd en uitgebreid. Het doel van deze ALPHA versie is om feedback te ontvangen op het huidige functioneren en om tekortkomingen te detecteren. DiKErnel dient met de grootst mogelijke voorzichtigheid te worden geïnstalleerd en gebruikt. Op geen enkele manier mag er worden vertrouwd op de beschikbare resultaten, de bijgeleverde softwaredocumentatie en al het andere materiaal dat bij deze versie beschikbaar wordt gesteld.")
-        horizontalAlignment: Text.AlignJustify
-        wrapMode: Text.Wrap
-        font.pointSize: 11
-    }
-
     ToolSeparator {
-        id: toolSeparator
-        x: 516
-        width: 32
-        anchors.top: parent.top
-        anchors.bottom: parent.bottom
-        anchors.topMargin: 0
-        anchors.bottomMargin: 0
+        x: 0
+        y: 160
+        width: 1024
+        rightPadding: 20
+        leftPadding: 20
         bottomPadding: 0
         topPadding: 0
-    }
-
-    ToolSeparator {
-        id: toolSeparator1
-        x: 0
-        y: 393
-        width: 532
-        height: 32
-        rightPadding: 0
-        leftPadding: 0
         orientation: Qt.Horizontal
     }
 
+    ToolSeparator {
+        x: 380
+        y: 0
+        width: 32
+        height: 160
+        bottomPadding: 20
+        topPadding: 20
+    }
+
+    Text {
+        x: 420
+        y: 25
+        width: 580
+        height: 110
+        text: qsTr("Disclaimer: De ALPHA versie van DiKErnel is nog in de testfase en zal op vele onderdelen nog moeten worden verbeterd en uitgebreid. Het doel van deze ALPHA versie is om feedback te ontvangen op het huidige functioneren en om tekortkomingen te detecteren. DiKErnel dient met de grootst mogelijke voorzichtigheid te worden geïnstalleerd en gebruikt. Op geen enkele manier mag er worden vertrouwd op de beschikbare resultaten, de bijgeleverde softwaredocumentatie en al het andere materiaal dat bij deze versie beschikbaar wordt gesteld.")
+        horizontalAlignment: Text.AlignJustify
+        wrapMode: Text.Wrap
+        font.pointSize: 10
+    }
+
     TextField {
-        id: textField
-        x: 20
-        y: 455
-        width: 442
+        x: 25
+        y: 209
+        width: 375
         height: 32
-        placeholderText: qsTr("Text Field")
+        placeholderText: qsTr("Invoerbestand")
         text: dikernelApplication.InputFilePath
     }
 
-    TextField {
-        id: textField1
-        x: 20
-        y: 532
-        width: 442
-        height: 32
-        placeholderText: qsTr("Text Field")
-    }
-
     Label {
-        id: label8
-        x: 20
-        y: 431
+        x: 25
+        y: 185
         text: qsTr("Invoerbestand")
+        font.pointSize: 10
+    }
+
+    TextField {
+        x: 468
+        y: 209
+        width: 375
+        height: 32
+        placeholderText: qsTr("Uitvoerbestand")
     }
 
     Label {
-        id: label9
-        x: 20
-        y: 507
+        x: 468
+        y: 185
         text: qsTr("Uitvoerbestand")
+        font.pointSize: 10
     }
 
     Button {
-        id: button
-        x: 474
-        y: 457
-        width: 36
+        x: 406
+        y: 209
+        width: 32
         height: 32
         text: qsTr("...")
-        onClicked: fileDialog.open()
+        onClicked: inputFileDialog.open()
     }
 
     FileDialog {
-        id: fileDialog
+        id: inputFileDialog
         nameFilters : ["Json Files (*.json)"]
         title: "Please choose a file"
         onAccepted: {
-            dikernelApplication.SetInputFilePath(fileDialog.selectedFile)
+            dikernelApplication.SetInputFilePath(inputFileDialog.selectedFile)
         }
     }
 
     Button {
-        id: button1
-        x: 474
-        y: 532
-        width: 36
+        x: 849
+        y: 209
+        width: 32
         height: 32
         text: qsTr("...")
     }
 
-    Label {
-        id: label10
-        x: 554
-        y: 20
-        text: qsTr("Berichten")
-    }
-
     Button {
-        id: button3
-        x: 1137
-        y: 597
-        text: qsTr("Wissen")
-        anchors.right: parent.right
-        anchors.bottom: parent.bottom
-        anchors.bottomMargin: 21
-        anchors.rightMargin: 22
-        rightPadding: 22
-        leftPadding: 22
-    }
-
-    Button {
-        id: button4
-        x: 919
-        y: 597
-        text: qsTr("Kopieer naar klembord")
-        anchors.right: parent.right
-        anchors.bottom: parent.bottom
-        anchors.bottomMargin: 21
-        anchors.rightMargin: 136
-        rightPadding: 22
-        leftPadding: 22
-        spacing: 8
-    }
-
-    Button {
-        id: button2
-        x: 436
-        y: 597
+        x: 930
+        y: 209
         text: qsTr("Start")
-        rightPadding: 22
-        leftPadding: 22
+        rightPadding: 20
+        leftPadding: 20
     }
 
-    ScrollView {
-        id: scrollView
-        anchors.left: parent.left
-        anchors.right: parent.right
-        anchors.top: parent.top
-        anchors.bottom: parent.bottom
-        anchors.bottomMargin: 69
-        anchors.topMargin: 49
-        anchors.leftMargin: 554
-        anchors.rightMargin: 22
+    Button {
+        x: 914
+        y: 711
+        text: qsTr("Wissen")
+        leftPadding: 20
+        rightPadding: 20
+    }
 
-        TextArea {
-            id: textArea
+    Button {
+        x: 716
+        y: 711
+        text: qsTr("Kopieer naar klembord")
+        leftPadding: 20
+        rightPadding: 20
+    }
+
+    Rectangle {
+        x: 25
+        y: 247
+        width: 975
+        height: 458
+        color: "#ffffff"
+
+        ScrollView {
             anchors.fill: parent
-            placeholderText: qsTr("Text Area")
+            Text {
+                anchors.fill: parent
+                leftPadding: 8
+                topPadding: 8
+                font.pointSize: 10
+                textFormat: Text.RichText
+            }
         }
     }
 }
-
-/*##^##
-Designer {
-    D{i:0;formeditorZoom:0.2}
-}
-##^##*/
-
