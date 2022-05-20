@@ -20,8 +20,12 @@
 
 #include "DiKErnel.h"
 
+#include <QFileInfo>
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include <QQmlContext>
+
+using namespace std;
 
 namespace DiKErnel::Gui
 {
@@ -30,11 +34,24 @@ namespace DiKErnel::Gui
         char** argv)
     {
         QGuiApplication app(argc, argv);
+        QGuiApplication::setApplicationName("DiKErnel");
 
         QQmlApplicationEngine engine;
+
+        QQmlContext* context = engine.rootContext();
+        context->setContextProperty("dikernelApplication", this);
+
         engine.addImportPath(":/layout");
-        engine.load(QUrl("qrc:/layout/main/Qml/Main.qml"));
+        engine.load(QUrl("qrc:/layout/DiKErnel/Qml/Main.qml"));
 
         QGuiApplication::exec();
+    }
+
+    void DiKErnel::SetInputFilePath(
+        const QUrl& filePath)
+    {
+        _inputFilePath = QUrl::fromLocalFile(QFileInfo(QUrl(filePath).toLocalFile()).absolutePath()).toString();
+
+        qDebug() << "FILEPATH SELECTED: " << _inputFilePath;
     }
 }

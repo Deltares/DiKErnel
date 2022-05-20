@@ -31,5 +31,10 @@ namespace DiKErnel::Gui
             DiKErnel(
                 int argc,
                 char** argv);
+
+            Q_INVOKABLE void SetInputFilePath(const QUrl& filePath);
+
+        private:
+            QString _inputFilePath;
     };
 }

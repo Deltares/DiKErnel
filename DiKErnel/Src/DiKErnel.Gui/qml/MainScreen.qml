@@ -8,7 +8,9 @@ Check out https://doc.qt.io/qtcreator/creator-quick-ui-forms.html for details on
 */
 import QtQuick
 import QtQuick.Controls
+import QtQuick.Dialogs
 import QtQuick.Layouts 1.0
+import DiKErnel 1.0
 
 Rectangle {
     id: rectangle
@@ -159,6 +161,17 @@ Rectangle {
         width: 36
         height: 32
         text: qsTr("...")
+        onClicked: fileDialog.open()
+    }
+
+    FileDialog {
+        id: fileDialog
+        nameFilters : ["Json Files (*.json)"]
+        title: "Please choose a file"
+        currentFolder: StandardPaths.writableLocation(StandardPaths.DocumentsLocation)
+        onAccepted: {
+            dikernelApplication.SetInputFilePath(fileDialog.selectedFile)
+        }
     }
 
     Button {

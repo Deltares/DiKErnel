@@ -27,7 +27,7 @@ set(INTERNAL_SOURCEFILES
 
 set(QMLFILES
   ${QML_FOLDER}/Main.qml
-  ${QML_FOLDER}/MainScreen.ui.qml
+  ${QML_FOLDER}/MainScreen.qml
 )
 
 # Add windows executable
@@ -38,7 +38,7 @@ qt_add_executable(${EXENAME} WIN32
 
 # Add qml module
 qt6_add_qml_module(${EXENAME}
-  URI "main"
+  URI "DiKErnel"
   VERSION 1.0
   RESOURCE_PREFIX "/layout"
   QML_FILES ${QMLFILES}
