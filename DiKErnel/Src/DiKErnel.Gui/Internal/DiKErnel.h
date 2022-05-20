@@ -27,12 +27,17 @@ namespace DiKErnel::Gui
     {
         Q_OBJECT
 
+        Q_PROPERTY(QString InputFilePath MEMBER _inputFilePath NOTIFY InputFilePathChanged)
+
         public:
             DiKErnel(
                 int argc,
                 char** argv);
 
             Q_INVOKABLE void SetInputFilePath(const QUrl& filePath);
+
+        signals:
+            void InputFilePathChanged();
 
         private:
             QString _inputFilePath;

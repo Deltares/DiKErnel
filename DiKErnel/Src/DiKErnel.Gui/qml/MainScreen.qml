@@ -129,6 +129,7 @@ Rectangle {
         width: 442
         height: 32
         placeholderText: qsTr("Text Field")
+        text: dikernelApplication.InputFilePath
     }
 
     TextField {

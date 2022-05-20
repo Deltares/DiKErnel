@@ -50,8 +50,7 @@ namespace DiKErnel::Gui
     void DiKErnel::SetInputFilePath(
         const QUrl& filePath)
     {
-        _inputFilePath = QUrl::fromLocalFile(QFileInfo(QUrl(filePath).toLocalFile()).absolutePath()).toString();
-
-        qDebug() << "FILEPATH SELECTED: " << _inputFilePath;
+        _inputFilePath = filePath.path();
+        InputFilePathChanged();
     }
 }
