@@ -19,14 +19,3 @@ extensions: .cs .cpp .h
 // All names, logos, and references to "Deltares" are registered trademarks of
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
-
-extensions: .aspx .ascx
-<%-- 
-Copyright (c) 2011 rubicon IT GmbH
---%>
-extensions: .vb
-'Sample license text.
-extensions:  .xml .config .xsd
-<!--
-Sample license text.
--->
