@@ -48,9 +48,15 @@ namespace DiKErnel::Gui
     }
 
     void DiKErnel::SetInputFilePath(
-        const QUrl& filePath)
+        const QUrl& inputFilePath)
     {
-        _inputFilePath = filePath.path();
+        _inputFilePath = inputFilePath.path();
+    }
+
+    void DiKErnel::SetOutputFilePath(
+        const QUrl& outputFilePath)
+    {
+        _outputFilePath = outputFilePath.path();
     }
 
     QUrl DiKErnel::InputFilePath() const
@@ -58,8 +64,18 @@ namespace DiKErnel::Gui
         return _inputFilePath.value();
     }
 
+    QUrl DiKErnel::OutputFilePath() const
+    {
+        return _outputFilePath.value();
+    }
+
     QBindable<QUrl> DiKErnel::BindableInputFilePath()
     {
         return &_inputFilePath;
+    }
+
+    QBindable<QUrl> DiKErnel::BindableOutputFilePath()
+    {
+        return &_outputFilePath;
     }
 }

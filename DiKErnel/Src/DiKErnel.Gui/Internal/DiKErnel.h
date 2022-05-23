@@ -34,6 +34,11 @@ namespace DiKErnel::Gui
                 WRITE SetInputFilePath
                 BINDABLE BindableInputFilePath)
 
+            Q_PROPERTY(QUrl OutputFilePath
+                READ OutputFilePath
+                WRITE SetOutputFilePath
+                BINDABLE BindableOutputFilePath)
+
         public:
             explicit DiKErnel(
                 int argc,
@@ -41,17 +46,29 @@ namespace DiKErnel::Gui
 
             QUrl InputFilePath() const;
 
+            QUrl OutputFilePath() const;
+
             QBindable<QUrl> BindableInputFilePath();
+
+            QBindable<QUrl> BindableOutputFilePath();
 
         public slots:
             void SetInputFilePath(
-                const QUrl& filePath);
+                const QUrl& inputFilePath);
+
+            void SetOutputFilePath(
+                const QUrl& outputFilePath);
 
         signals:
             void InputFilePathChanged();
 
+            void OutputFilePathChanged();
+
         private:
             Q_OBJECT_BINDABLE_PROPERTY(
                 DiKErnel, QUrl, _inputFilePath, &DiKErnel::InputFilePathChanged)
+
+            Q_OBJECT_BINDABLE_PROPERTY(
+                DiKErnel, QUrl, _outputFilePath, &DiKErnel::OutputFilePathChanged)
     };
 }

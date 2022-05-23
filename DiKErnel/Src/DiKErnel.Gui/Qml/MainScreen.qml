@@ -147,6 +147,7 @@ Rectangle {
         width: 375
         height: 32
         placeholderText: qsTr("Uitvoerbestand")
+        text: dikernelApplication.OutputFilePath
     }
 
     Label {
@@ -165,21 +166,13 @@ Rectangle {
         onClicked: inputFileDialog.open()
     }
 
-    FileDialog {
-        id: inputFileDialog
-        nameFilters : ["Json Files (*.json)"]
-        title: "Please choose a file"
-        onAccepted: {
-            dikernelApplication.SetInputFilePath(inputFileDialog.selectedFile)
-        }
-    }
-
     Button {
         x: 849
         y: 209
         width: 32
         height: 32
         text: qsTr("...")
+        onClicked: outputFileDialog.open()
     }
 
     Button {
@@ -222,6 +215,26 @@ Rectangle {
                 font.pointSize: 10
                 textFormat: Text.RichText
             }
+        }
+    }
+
+    FileDialog {
+        id: inputFileDialog
+        nameFilters : ["Json Files (*.json)"]
+        title: "Please choose a file"
+        fileMode: FileDialog.OpenFile
+        onAccepted: {
+            dikernelApplication.SetInputFilePath(inputFileDialog.selectedFile)
+        }
+    }
+
+    FileDialog {
+        id: outputFileDialog
+        nameFilters : ["Json Files (*.json)"]
+        title: "Please choose a file"
+        fileMode: FileDialog.SaveFile
+        onAccepted: {
+            dikernelApplication.SetOutputFilePath(outputFileDialog.selectedFile)
         }
     }
 }
