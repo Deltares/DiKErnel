@@ -43,7 +43,6 @@ qt6_add_qml_module(${EXENAME}
   RESOURCE_PREFIX "/layout"
   QML_FILES ${QMLFILES}
   NO_PLUGIN_OPTIONAL
-  NO_CREATE_PLUGIN_TARGET
   NO_GENERATE_PLUGIN_SOURCE
   NO_GENERATE_QMLDIR
   NO_GENERATE_QMLTYPES
@@ -86,6 +85,9 @@ endif()
 
 # Link dependencies
 target_link_libraries(${EXENAME} PRIVATE
+  DiKErnel.Core
+  DiKErnel.KernelWrapper.Json.Input
+  DiKErnel.KernelWrapper.Json.Output
   Qt6::Qml
   Qt6::Quick
 )

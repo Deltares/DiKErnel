@@ -181,6 +181,7 @@ Rectangle {
         text: qsTr("Start")
         rightPadding: 20
         leftPadding: 20
+        onClicked: dikernelApplication.StartCalculation()
     }
 
     Button {

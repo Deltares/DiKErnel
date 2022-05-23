@@ -23,6 +23,9 @@
 #include <QProperty>
 #include <QUrl>
 
+#include "JsonInputProcessType.h"
+#include "JsonOutputType.h"
+
 namespace DiKErnel::Gui
 {
     class DiKErnel : public QObject
@@ -58,6 +61,11 @@ namespace DiKErnel::Gui
 
             void SetOutputFilePath(
                 const QUrl& outputFilePath);
+
+            void StartCalculation() const;
+
+            static KernelWrapper::Json::Output::JsonOutputType ConvertProcessType(
+                KernelWrapper::Json::Input::JsonInputProcessType processType);
 
         signals:
             void InputFilePathChanged();

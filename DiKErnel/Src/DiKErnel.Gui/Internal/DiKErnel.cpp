@@ -20,11 +20,19 @@
 
 #include "DiKErnel.h"
 
-#include <QFileInfo>
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
+#include <stdexcept>
 
+#include "Calculator.h"
+#include "JsonInputComposer.h"
+#include "JsonOutputComposer.h"
+#include "Validator.h"
+
+using namespace DiKErnel::Core;
+using namespace DiKErnel::KernelWrapper::Json::Input;
+using namespace DiKErnel::KernelWrapper::Json::Output;
 using namespace std;
 
 namespace DiKErnel::Gui
@@ -50,13 +58,112 @@ namespace DiKErnel::Gui
     void DiKErnel::SetInputFilePath(
         const QUrl& inputFilePath)
     {
-        _inputFilePath = inputFilePath.path();
+        _inputFilePath = inputFilePath.toLocalFile();
     }
 
     void DiKErnel::SetOutputFilePath(
         const QUrl& outputFilePath)
     {
-        _outputFilePath = outputFilePath.path();
+        _outputFilePath = outputFilePath.toLocalFile();
+    }
+
+    void DiKErnel::StartCalculation() const
+    {
+        qDebug() << "Fetching input";
+
+        const auto filePath = InputFilePath().toString().toStdString();
+
+        // Read input Json file
+        const auto inputComposerResult = JsonInputComposer::GetInputDataFromJson(filePath);
+
+        for (auto& logEvent : inputComposerResult->GetEvents())
+        {
+            qDebug() << QString::fromUtf8(logEvent.get().GetMessage());
+        }
+
+        if (!inputComposerResult->GetSuccessful())
+        {
+            qDebug() << "Fetching input failed";
+            return;
+        }
+
+        const auto* inputData = inputComposerResult->GetData();
+        const auto& calculationInput = inputData->GetCalculationInput();
+
+        qDebug() << "Validating input";
+
+        const auto validationResult = Validator::Validate(calculationInput);
+
+        for (auto& logEvent : validationResult->GetEvents())
+        {
+            qDebug() << QString::fromUtf8(logEvent.get().GetMessage());
+        }
+
+        if (*validationResult->GetData() == ValidationResultType::Failed)
+        {
+            qDebug() << "Validation failed";
+        }
+
+        if (!validationResult->GetSuccessful())
+        {
+            qDebug() << "Validating input unsuccessful";
+            return;
+        }
+
+        qDebug() << "Performing calculation";
+        // Start calculation on separate thread
+        Calculator calculator(calculationInput);
+        calculator.WaitForCompletion();
+
+        const auto calculatorResult = calculator.GetResult();
+
+        for (auto& logEvent : calculatorResult->GetEvents())
+        {
+            qDebug() << QString::fromUtf8(logEvent.get().GetMessage());
+        }
+
+        if (calculator.GetCalculationState() != CalculationState::FinishedSuccessfully)
+        {
+            qDebug() << "Calculation not finished successfully";
+            return;
+        }
+
+        if (!calculatorResult->GetSuccessful())
+        {
+            qDebug() << "Calculation failed";
+            return;
+        }
+
+        qDebug() << "Writing output";
+        const auto outputComposerResult = JsonOutputComposer::WriteCalculationOutputToJson(OutputFilePath().toString().toStdString(),
+                                                                                           *calculatorResult->GetData(),
+                                                                                           ConvertProcessType(inputData->GetProcessType()));
+
+        for (auto& logEvent : outputComposerResult->GetEvents())
+        {
+            qDebug() << QString::fromUtf8(logEvent.get().GetMessage());
+        }
+
+        if (!outputComposerResult->GetSuccessful())
+        {
+            qDebug() << "Writing output failed";
+        }
+    }
+
+    JsonOutputType DiKErnel::ConvertProcessType(
+        const JsonInputProcessType processType)
+    {
+        switch (processType)
+        {
+            case JsonInputProcessType::Failure:
+                return JsonOutputType::Failure;
+            case JsonInputProcessType::Damage:
+                return JsonOutputType::Damage;
+            case JsonInputProcessType::Physics:
+                return JsonOutputType::Physics;
+            default:
+                throw runtime_error("Unsupported processType");
+        }
     }
 
     QUrl DiKErnel::InputFilePath() const
