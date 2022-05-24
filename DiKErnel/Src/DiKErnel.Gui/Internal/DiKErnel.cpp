@@ -1,4 +1,4 @@
-// Copyright (C) Stichting Deltares 2022. All rights reserved.
+﻿// Copyright (C) Stichting Deltares 2022. All rights reserved.
 //
 // This file is part of DiKErnel.
 //
@@ -154,6 +154,12 @@ namespace DiKErnel::Gui
         {
             AddMessage("Writing output failed");
         }
+    }
+
+    void DiKErnel::ClearLogMessages()
+    {
+        _stringList.clear();
+        _logMessages->setStringList(_stringList);
     }
 
     JsonOutputType DiKErnel::ConvertProcessType(

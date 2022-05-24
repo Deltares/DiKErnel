@@ -190,6 +190,7 @@ Rectangle {
         text: qsTr("Wissen")
         leftPadding: 20
         rightPadding: 20
+        onClicked: dikernelApplication.ClearLogMessages()
     }
 
     Button {

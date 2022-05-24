@@ -1,4 +1,4 @@
-// Copyright (C) Stichting Deltares 2022. All rights reserved.
+﻿// Copyright (C) Stichting Deltares 2022. All rights reserved.
 //
 // This file is part of DiKErnel.
 //
@@ -72,6 +72,8 @@ namespace DiKErnel::Gui
                 const QUrl& outputFilePath);
 
             void StartCalculation();
+
+            void ClearLogMessages();
 
         signals:
             void InputFilePathChanged();
