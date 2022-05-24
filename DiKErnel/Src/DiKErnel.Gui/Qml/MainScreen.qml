@@ -207,14 +207,22 @@ Rectangle {
         height: 458
         color: "#ffffff"
 
-        ScrollView {
+        ListView {
             anchors.fill: parent
-            Text {
-                anchors.fill: parent
-                leftPadding: 8
-                topPadding: 8
-                font.pointSize: 10
-                textFormat: Text.RichText
+            clip: true
+            ScrollBar.vertical: ScrollBar { }
+            model: dikernelApplication.LogMessages
+
+            delegate: Rectangle {
+                width: parent.Width
+                height: 20
+
+                Text {
+                    leftPadding: 8
+                    topPadding: 8
+                    font.pointSize: 10
+                    text: display
+                }
             }
         }
     }

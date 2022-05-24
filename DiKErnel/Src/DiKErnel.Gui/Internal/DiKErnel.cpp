@@ -40,6 +40,7 @@ namespace DiKErnel::Gui
     DiKErnel::DiKErnel(
         int argc,
         char** argv)
+        : _stringList(QStringList())
     {
         QGuiApplication app(argc, argv);
         QGuiApplication::setApplicationName("DiKErnel");
@@ -55,6 +56,11 @@ namespace DiKErnel::Gui
         QGuiApplication::exec();
     }
 
+    DiKErnel::~DiKErnel()
+    {
+        delete _logMessages;
+    }
+
     void DiKErnel::SetInputFilePath(
         const QUrl& inputFilePath)
     {
@@ -67,9 +73,9 @@ namespace DiKErnel::Gui
         _outputFilePath = outputFilePath.toLocalFile();
     }
 
-    void DiKErnel::StartCalculation() const
+    void DiKErnel::StartCalculation()
     {
-        qDebug() << "Fetching input";
+        AddMessage("Fetching input");
 
         const auto filePath = InputFilePath().toString().toStdString();
 
@@ -78,40 +84,40 @@ namespace DiKErnel::Gui
 
         for (auto& logEvent : inputComposerResult->GetEvents())
         {
-            qDebug() << QString::fromUtf8(logEvent.get().GetMessage());
+            AddMessage(QString::fromUtf8(logEvent.get().GetMessage()));
         }
 
         if (!inputComposerResult->GetSuccessful())
         {
-            qDebug() << "Fetching input failed";
+            AddMessage("Fetching input failed");
             return;
         }
 
         const auto* inputData = inputComposerResult->GetData();
         const auto& calculationInput = inputData->GetCalculationInput();
 
-        qDebug() << "Validating input";
+        AddMessage("Validating input");
 
         const auto validationResult = Validator::Validate(calculationInput);
 
         for (auto& logEvent : validationResult->GetEvents())
         {
-            qDebug() << QString::fromUtf8(logEvent.get().GetMessage());
+            AddMessage(QString::fromUtf8(logEvent.get().GetMessage()));
         }
 
         if (*validationResult->GetData() == ValidationResultType::Failed)
         {
-            qDebug() << "Validation failed";
+            AddMessage("Validation failed");
         }
 
         if (!validationResult->GetSuccessful())
         {
-            qDebug() << "Validating input unsuccessful";
+            AddMessage("Validating input unsuccessful");
             return;
         }
 
-        qDebug() << "Performing calculation";
-        // Start calculation on separate thread
+        AddMessage("Performing calculation");
+
         Calculator calculator(calculationInput);
         calculator.WaitForCompletion();
 
@@ -119,34 +125,34 @@ namespace DiKErnel::Gui
 
         for (auto& logEvent : calculatorResult->GetEvents())
         {
-            qDebug() << QString::fromUtf8(logEvent.get().GetMessage());
+            AddMessage(QString::fromUtf8(logEvent.get().GetMessage()));
         }
 
         if (calculator.GetCalculationState() != CalculationState::FinishedSuccessfully)
         {
-            qDebug() << "Calculation not finished successfully";
+            AddMessage("Calculation not finished successfully");
             return;
         }
 
         if (!calculatorResult->GetSuccessful())
         {
-            qDebug() << "Calculation failed";
+            AddMessage("Calculation failed");
             return;
         }
 
-        qDebug() << "Writing output";
+        AddMessage("Writing output");
         const auto outputComposerResult = JsonOutputComposer::WriteCalculationOutputToJson(OutputFilePath().toString().toStdString(),
                                                                                            *calculatorResult->GetData(),
                                                                                            ConvertProcessType(inputData->GetProcessType()));
 
         for (auto& logEvent : outputComposerResult->GetEvents())
         {
-            qDebug() << QString::fromUtf8(logEvent.get().GetMessage());
+            AddMessage(QString::fromUtf8(logEvent.get().GetMessage()));
         }
 
         if (!outputComposerResult->GetSuccessful())
         {
-            qDebug() << "Writing output failed";
+            AddMessage("Writing output failed");
         }
     }
 
@@ -166,6 +172,13 @@ namespace DiKErnel::Gui
         }
     }
 
+    void DiKErnel::AddMessage(
+        const QString& message)
+    {
+        _stringList.append(message);
+        _logMessages->setStringList(_stringList);
+    }
+
     QUrl DiKErnel::InputFilePath() const
     {
         return _inputFilePath.value();
@@ -176,6 +189,11 @@ namespace DiKErnel::Gui
         return _outputFilePath.value();
     }
 
+    QStringListModel* DiKErnel::LogMessages() const
+    {
+        return _logMessages.value();
+    }
+
     QBindable<QUrl> DiKErnel::BindableInputFilePath()
     {
         return &_inputFilePath;
@@ -184,5 +202,10 @@ namespace DiKErnel::Gui
     QBindable<QUrl> DiKErnel::BindableOutputFilePath()
     {
         return &_outputFilePath;
+    }
+
+    QBindable<QStringListModel*> DiKErnel::BindableLogMessages()
+    {
+        return &_logMessages;
     }
 }

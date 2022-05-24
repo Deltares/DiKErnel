@@ -21,6 +21,7 @@
 #pragma once
 #include <QObject>
 #include <QProperty>
+#include <QStringListModel>
 #include <QUrl>
 
 #include "JsonInputProcessType.h"
@@ -42,18 +43,29 @@ namespace DiKErnel::Gui
                 WRITE SetOutputFilePath
                 BINDABLE BindableOutputFilePath)
 
+            Q_PROPERTY(QStringListModel* LogMessages
+                READ LogMessages
+                BINDABLE BindableLogMessages
+                CONSTANT)
+
         public:
             explicit DiKErnel(
                 int argc,
                 char** argv);
 
+            ~DiKErnel() override;
+
             QUrl InputFilePath() const;
 
             QUrl OutputFilePath() const;
 
+            QStringListModel* LogMessages() const;
+
             QBindable<QUrl> BindableInputFilePath();
 
             QBindable<QUrl> BindableOutputFilePath();
+
+            QBindable<QStringListModel*> BindableLogMessages();
 
         public slots:
             void SetInputFilePath(
@@ -62,21 +74,32 @@ namespace DiKErnel::Gui
             void SetOutputFilePath(
                 const QUrl& outputFilePath);
 
-            void StartCalculation() const;
-
-            static KernelWrapper::Json::Output::JsonOutputType ConvertProcessType(
-                KernelWrapper::Json::Input::JsonInputProcessType processType);
+            void StartCalculation();
 
         signals:
             void InputFilePathChanged();
 
             void OutputFilePathChanged();
 
+            void LogMessagesChanged();
+
         private:
+            static KernelWrapper::Json::Output::JsonOutputType ConvertProcessType(
+                KernelWrapper::Json::Input::JsonInputProcessType processType);
+
+            QStringList _stringList;
+
             Q_OBJECT_BINDABLE_PROPERTY(
                 DiKErnel, QUrl, _inputFilePath, &DiKErnel::InputFilePathChanged)
 
             Q_OBJECT_BINDABLE_PROPERTY(
                 DiKErnel, QUrl, _outputFilePath, &DiKErnel::OutputFilePathChanged)
+
+            Q_OBJECT_BINDABLE_PROPERTY_WITH_ARGS(
+                DiKErnel, QStringListModel*, _logMessages, new QStringListModel(this), &DiKErnel::LogMessagesChanged)
+
+        private slots:
+            void AddMessage(
+                const QString& message);
     };
 }
