@@ -24,6 +24,7 @@
 #include <QStringListModel>
 #include <QUrl>
 
+#include "Event.h"
 #include "JsonInputProcessType.h"
 #include "JsonOutputType.h"
 
@@ -85,11 +86,15 @@ namespace DiKErnel::Gui
             void LogMessagesChanged();
 
         private:
-            static KernelWrapper::Json::Output::JsonOutputType ConvertProcessType(
-                KernelWrapper::Json::Input::JsonInputProcessType processType);
+            void LogEventsWhenApplicable(
+                const QString& message,
+                const std::vector<std::reference_wrapper<Util::Event>>& events);
 
             void AddMessage(
                 const QString& message);
+
+            static KernelWrapper::Json::Output::JsonOutputType ConvertProcessType(
+                KernelWrapper::Json::Input::JsonInputProcessType processType);
 
             QStringList _stringList;
 

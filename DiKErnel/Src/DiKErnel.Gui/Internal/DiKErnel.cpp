@@ -1,4 +1,4 @@
-// Copyright (C) Stichting Deltares 2022. All rights reserved.
+﻿// Copyright (C) Stichting Deltares 2022. All rights reserved.
 //
 // This file is part of DiKErnel.
 //
@@ -76,86 +76,96 @@ namespace DiKErnel::Gui
         _outputFilePath = outputFilePath.toLocalFile();
     }
 
+    void DiKErnel::LogEventsWhenApplicable(
+        const QString& message,
+        const vector<reference_wrapper<Util::Event>>& events)
+    {
+        if (!events.empty())
+        {
+            AddMessage(message);
+
+            for (const auto& logEvent : events)
+            {
+                AddMessage(QString("- %1").arg(QString::fromUtf8(logEvent.get().GetMessage())));
+            }
+        }
+    }
+
     void DiKErnel::StartCalculation()
     {
-        AddMessage("Fetching input");
+        const auto inputFilePathString = InputFilePath().toString();
+        AddMessage(QString("Invoer uit bestand \"%1\" wordt gelezen...").arg(inputFilePathString));
 
-        const auto filePath = InputFilePath().toString().toStdString();
+        const auto inputComposerResult = JsonInputComposer::GetInputDataFromJson(
+            inputFilePathString.toStdString());
 
-        const auto inputComposerResult = JsonInputComposer::GetInputDataFromJson(filePath);
-
-        for (auto& logEvent : inputComposerResult->GetEvents())
-        {
-            AddMessage(QString::fromUtf8(logEvent.get().GetMessage()));
-        }
+        LogEventsWhenApplicable("De volgende meldingen zijn opgetreden tijdens het lezen van de invoer:", inputComposerResult->GetEvents());
 
         if (!inputComposerResult->GetSuccessful())
         {
-            AddMessage("Fetching input failed");
+            AddMessage("Het lezen van de invoer is mislukt.");
             return;
         }
+
+        AddMessage("Het lezen van de invoer is voltooid.");
 
         const auto* inputData = inputComposerResult->GetData();
         const auto& calculationInput = inputData->GetCalculationInput();
 
-        AddMessage("Validating input");
+        AddMessage("Invoer wordt gevalideerd...");
 
         const auto validationResult = Validator::Validate(calculationInput);
 
-        for (auto& logEvent : validationResult->GetEvents())
-        {
-            AddMessage(QString::fromUtf8(logEvent.get().GetMessage()));
-        }
+        LogEventsWhenApplicable("De volgende meldingen zijn opgetreden tijdens het valideren van de invoer:", validationResult->GetEvents());
 
         if (*validationResult->GetData() == ValidationResultType::Failed)
         {
-            AddMessage("Validation failed");
+            AddMessage("De invoer is ongeldig.");
+            return;
         }
 
         if (!validationResult->GetSuccessful())
         {
-            AddMessage("Validating input unsuccessful");
+            AddMessage("Het valideren van de invoer is mislukt.");
             return;
         }
 
-        AddMessage("Performing calculation");
+        AddMessage("Het valideren van de invoer is voltooid.");
+
+        AddMessage("De berekening wordt gestart...");
 
         Calculator calculator(calculationInput);
         calculator.WaitForCompletion();
 
         const auto calculatorResult = calculator.GetResult();
 
-        for (auto& logEvent : calculatorResult->GetEvents())
-        {
-            AddMessage(QString::fromUtf8(logEvent.get().GetMessage()));
-        }
+        LogEventsWhenApplicable("De volgende meldingen zijn opgetreden tijdens de berekening:", calculatorResult->GetEvents());
 
-        if (calculator.GetCalculationState() != CalculationState::FinishedSuccessfully)
+        if (calculator.GetCalculationState() != CalculationState::FinishedSuccessfully || !calculatorResult->GetSuccessful())
         {
-            AddMessage("Calculation not finished successfully");
+            AddMessage("De berekening is mislukt.");
             return;
         }
 
-        if (!calculatorResult->GetSuccessful())
-        {
-            AddMessage("Calculation failed");
-            return;
-        }
+        AddMessage("De berekening is voltooid.");
 
-        AddMessage("Writing output");
-        const auto outputComposerResult = JsonOutputComposer::WriteCalculationOutputToJson(OutputFilePath().toString().toStdString(),
-                                                                                           *calculatorResult->GetData(),
-                                                                                           ConvertProcessType(inputData->GetProcessType()));
+        const auto outputFilePathString = OutputFilePath().toString();
+        AddMessage(QString("De resultaten van de berekeningen worden naar bestand \"%1\" geschreven...").arg(outputFilePathString));
 
-        for (auto& logEvent : outputComposerResult->GetEvents())
-        {
-            AddMessage(QString::fromUtf8(logEvent.get().GetMessage()));
-        }
+        const auto outputComposerResult = JsonOutputComposer::WriteCalculationOutputToJson(
+            outputFilePathString.toStdString(),
+            *calculatorResult->GetData(),
+            ConvertProcessType(inputData->GetProcessType()));
+
+        LogEventsWhenApplicable("De volgende meldingen zijn opgetreden tijdens het schrijven van de resultaten:", outputComposerResult->GetEvents());
 
         if (!outputComposerResult->GetSuccessful())
         {
-            AddMessage("Writing output failed");
+            AddMessage("Het schrijven van de resultaten is mislukt.");
+            return;
         }
+
+        AddMessage("Het schrijven van de resultaten is voltooid.");
     }
 
     void DiKErnel::ClearLogMessages()
