@@ -22,6 +22,7 @@
 
 #include <QClipboard>
 #include <QGuiApplication>
+#include <QIcon>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 #include <stdexcept>
@@ -45,6 +46,7 @@ namespace DiKErnel::Gui
     {
         QGuiApplication app(argc, argv);
         QGuiApplication::setApplicationName("DiKErnel");
+        QGuiApplication::setWindowIcon(QIcon(":/Resources/logo.svg"));
 
         QQmlApplicationEngine engine;
 
