@@ -219,6 +219,7 @@ Rectangle {
             ScrollBar.vertical: ScrollBar { }
             ScrollBar.horizontal: ScrollBar { }
             flickableDirection: Flickable.HorizontalAndVerticalFlick
+            contentWidth: 1500
             model: dikernelApplication.LogMessages
             delegate: Rectangle {
                 height: messageText.implicitHeight + 4
@@ -228,6 +229,9 @@ Rectangle {
                     font.pointSize: 10
                     text: display
                 }
+            }
+            onCountChanged: {
+                positionViewAtEnd()
             }
         }
     }
