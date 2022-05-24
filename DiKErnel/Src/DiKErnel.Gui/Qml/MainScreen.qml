@@ -199,6 +199,7 @@ Rectangle {
         text: qsTr("Kopieer naar klembord")
         leftPadding: 20
         rightPadding: 20
+        onClicked: dikernelApplication.CopyToClipboard()
     }
 
     Rectangle {

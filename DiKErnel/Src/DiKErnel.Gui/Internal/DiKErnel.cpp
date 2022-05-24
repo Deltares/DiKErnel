@@ -20,6 +20,7 @@
 
 #include "DiKErnel.h"
 
+#include <QClipboard>
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
@@ -159,6 +160,12 @@ namespace DiKErnel::Gui
     {
         _stringList.clear();
         _logMessages->setStringList(_stringList);
+    }
+
+    void DiKErnel::CopyToClipboard() const
+    {
+        QClipboard* clipboard = QGuiApplication::clipboard();
+        clipboard->setText(_stringList.join("\n"));
     }
 
     JsonOutputType DiKErnel::ConvertProcessType(

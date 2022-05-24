@@ -75,6 +75,8 @@ namespace DiKErnel::Gui
 
             void ClearLogMessages();
 
+            void CopyToClipboard() const;
+
         signals:
             void InputFilePathChanged();
 
