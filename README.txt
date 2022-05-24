@@ -1,4 +1,5 @@
 "Build" contains files for deploying specific parts of the development environment (static code analysis, documentation, etc.).
+"Deployment" contains files for deploying DiKErnel on different platforms (currently only Windows).
 "Design" contains UML diagrams that elaborate on the architecture of DiKErnel.
 "Development" contains files for deploying different IDEs (currently only Visual Studio).
 "DiKErnel" contains the actual source files and test code of DiKErnel.
