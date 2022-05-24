@@ -79,7 +79,6 @@ namespace DiKErnel::Gui
 
         const auto filePath = InputFilePath().toString().toStdString();
 
-        // Read input Json file
         const auto inputComposerResult = JsonInputComposer::GetInputDataFromJson(filePath);
 
         for (auto& logEvent : inputComposerResult->GetEvents())
