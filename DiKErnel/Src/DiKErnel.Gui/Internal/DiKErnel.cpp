@@ -1,4 +1,4 @@
-﻿// Copyright (C) Stichting Deltares 2022. All rights reserved.
+// Copyright (C) Stichting Deltares 2022. All rights reserved.
 //
 // This file is part of DiKErnel.
 //
@@ -32,13 +32,13 @@
 #include "JsonOutputComposer.h"
 #include "Validator.h"
 
-using namespace DiKErnel::Core;
-using namespace DiKErnel::KernelWrapper::Json::Input;
-using namespace DiKErnel::KernelWrapper::Json::Output;
-using namespace std;
-
 namespace DiKErnel::Gui
 {
+    using namespace Core;
+    using namespace KernelWrapper::Json::Input;
+    using namespace KernelWrapper::Json::Output;
+    using namespace std;
+
     DiKErnel::DiKErnel(
         int argc,
         char** argv)
