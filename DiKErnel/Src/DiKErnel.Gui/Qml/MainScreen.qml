@@ -211,18 +211,20 @@ Rectangle {
 
         ListView {
             id: lv
-            anchors.fill: parent
+            anchors {
+                fill: parent
+                margins: 8
+            }
             clip: true
             ScrollBar.vertical: ScrollBar { }
+            ScrollBar.horizontal: ScrollBar { }
+            flickableDirection: Flickable.HorizontalAndVerticalFlick
             model: dikernelApplication.LogMessages
-
             delegate: Rectangle {
-                width: lv.width
-                height: 25
+                height: messageText.implicitHeight + 4
 
                 Text {
-                    leftPadding: 8
-                    topPadding: 8
+                    id: messageText
                     font.pointSize: 10
                     text: display
                 }
