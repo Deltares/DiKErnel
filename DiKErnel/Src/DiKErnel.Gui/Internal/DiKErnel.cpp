@@ -64,6 +64,31 @@ namespace DiKErnel::Gui
         delete _logMessages;
     }
 
+    QUrl DiKErnel::InputFilePath() const
+    {
+        return _inputFilePath.value();
+    }
+
+    QUrl DiKErnel::OutputFilePath() const
+    {
+        return _outputFilePath.value();
+    }
+
+    QStringListModel* DiKErnel::LogMessages() const
+    {
+        return _logMessages.value();
+    }
+
+    QBindable<QUrl> DiKErnel::BindableInputFilePath()
+    {
+        return &_inputFilePath;
+    }
+
+    QBindable<QUrl> DiKErnel::BindableOutputFilePath()
+    {
+        return &_outputFilePath;
+    }
+
     void DiKErnel::SetInputFilePath(
         const QUrl& inputFilePath)
     {
@@ -74,21 +99,6 @@ namespace DiKErnel::Gui
         const QUrl& outputFilePath)
     {
         _outputFilePath = outputFilePath.toLocalFile();
-    }
-
-    void DiKErnel::LogEventsWhenApplicable(
-        const QString& message,
-        const vector<reference_wrapper<Util::Event>>& events)
-    {
-        if (!events.empty())
-        {
-            AddMessage(message);
-
-            for (const auto& logEvent : events)
-            {
-                AddMessage(QString("- %1").arg(QString::fromUtf8(logEvent.get().GetMessage())));
-            }
-        }
     }
 
     void DiKErnel::StartCalculation()
@@ -157,7 +167,8 @@ namespace DiKErnel::Gui
             *calculatorResult->GetData(),
             ConvertProcessType(inputData->GetProcessType()));
 
-        LogEventsWhenApplicable("De volgende meldingen zijn opgetreden tijdens het schrijven van de resultaten:", outputComposerResult->GetEvents());
+        LogEventsWhenApplicable("De volgende meldingen zijn opgetreden tijdens het schrijven van de resultaten:",
+                                outputComposerResult->GetEvents());
 
         if (!outputComposerResult->GetSuccessful())
         {
@@ -180,6 +191,28 @@ namespace DiKErnel::Gui
         clipboard->setText(_stringList.join("\n"));
     }
 
+    void DiKErnel::AddMessage(
+        const QString& message)
+    {
+        _stringList.append(message);
+        _logMessages->setStringList(_stringList);
+    }
+
+    void DiKErnel::LogEventsWhenApplicable(
+        const QString& message,
+        const vector<reference_wrapper<Util::Event>>& events)
+    {
+        if (!events.empty())
+        {
+            AddMessage(message);
+
+            for (const auto& logEvent : events)
+            {
+                AddMessage(QString("- %1").arg(QString::fromUtf8(logEvent.get().GetMessage())));
+            }
+        }
+    }
+
     JsonOutputType DiKErnel::ConvertProcessType(
         const JsonInputProcessType processType)
     {
@@ -194,37 +227,5 @@ namespace DiKErnel::Gui
             default:
                 throw runtime_error("Unsupported processType");
         }
-    }
-
-    void DiKErnel::AddMessage(
-        const QString& message)
-    {
-        _stringList.append(message);
-        _logMessages->setStringList(_stringList);
-    }
-
-    QUrl DiKErnel::InputFilePath() const
-    {
-        return _inputFilePath.value();
-    }
-
-    QUrl DiKErnel::OutputFilePath() const
-    {
-        return _outputFilePath.value();
-    }
-
-    QStringListModel* DiKErnel::LogMessages() const
-    {
-        return _logMessages.value();
-    }
-
-    QBindable<QUrl> DiKErnel::BindableInputFilePath()
-    {
-        return &_inputFilePath;
-    }
-
-    QBindable<QUrl> DiKErnel::BindableOutputFilePath()
-    {
-        return &_outputFilePath;
     }
 }
