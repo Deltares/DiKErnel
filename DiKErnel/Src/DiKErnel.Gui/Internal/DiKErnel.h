@@ -53,8 +53,6 @@ namespace DiKErnel::Gui
                 int argc,
                 char** argv);
 
-            ~DiKErnel() override;
-
             QUrl InputFilePath() const;
 
             QUrl OutputFilePath() const;
@@ -105,7 +103,7 @@ namespace DiKErnel::Gui
                 DiKErnel, QUrl, _outputFilePath, &DiKErnel::OutputFilePathChanged)
 
             Q_OBJECT_BINDABLE_PROPERTY_WITH_ARGS(
-                DiKErnel, QStringListModel*, _logMessages,
-                new QStringListModel(this), &DiKErnel::LogMessagesChanged)
+                DiKErnel, std::unique_ptr<QStringListModel>, _logMessages,
+                std::make_unique<QStringListModel>(this), &DiKErnel::LogMessagesChanged)
     };
 }

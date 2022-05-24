@@ -59,11 +59,6 @@ namespace DiKErnel::Gui
         QGuiApplication::exec();
     }
 
-    DiKErnel::~DiKErnel()
-    {
-        delete _logMessages;
-    }
-
     QUrl DiKErnel::InputFilePath() const
     {
         return _inputFilePath.value();
@@ -76,7 +71,7 @@ namespace DiKErnel::Gui
 
     QStringListModel* DiKErnel::LogMessages() const
     {
-        return _logMessages.value();
+        return _logMessages.value().get();
     }
 
     QBindable<QUrl> DiKErnel::BindableInputFilePath()
