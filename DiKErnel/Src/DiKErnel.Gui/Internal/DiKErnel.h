@@ -1,4 +1,4 @@
-﻿// Copyright (C) Stichting Deltares 2022. All rights reserved.
+// Copyright (C) Stichting Deltares 2022. All rights reserved.
 //
 // This file is part of DiKErnel.
 //
@@ -45,7 +45,6 @@ namespace DiKErnel::Gui
 
             Q_PROPERTY(QStringListModel* LogMessages
                 READ LogMessages
-                BINDABLE BindableLogMessages
                 CONSTANT)
 
         public:
@@ -64,8 +63,6 @@ namespace DiKErnel::Gui
             QBindable<QUrl> BindableInputFilePath();
 
             QBindable<QUrl> BindableOutputFilePath();
-
-            QBindable<QStringListModel*> BindableLogMessages();
 
         public slots:
             void SetInputFilePath(
@@ -87,6 +84,9 @@ namespace DiKErnel::Gui
             static KernelWrapper::Json::Output::JsonOutputType ConvertProcessType(
                 KernelWrapper::Json::Input::JsonInputProcessType processType);
 
+            void AddMessage(
+                const QString& message);
+
             QStringList _stringList;
 
             Q_OBJECT_BINDABLE_PROPERTY(
@@ -96,10 +96,7 @@ namespace DiKErnel::Gui
                 DiKErnel, QUrl, _outputFilePath, &DiKErnel::OutputFilePathChanged)
 
             Q_OBJECT_BINDABLE_PROPERTY_WITH_ARGS(
-                DiKErnel, QStringListModel*, _logMessages, new QStringListModel(this), &DiKErnel::LogMessagesChanged)
-
-        private slots:
-            void AddMessage(
-                const QString& message);
+                DiKErnel, QStringListModel*, _logMessages,
+                new QStringListModel(this), &DiKErnel::LogMessagesChanged)
     };
 }

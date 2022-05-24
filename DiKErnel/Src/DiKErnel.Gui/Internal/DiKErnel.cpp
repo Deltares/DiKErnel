@@ -1,4 +1,4 @@
-﻿// Copyright (C) Stichting Deltares 2022. All rights reserved.
+// Copyright (C) Stichting Deltares 2022. All rights reserved.
 //
 // This file is part of DiKErnel.
 //
@@ -202,10 +202,5 @@ namespace DiKErnel::Gui
     QBindable<QUrl> DiKErnel::BindableOutputFilePath()
     {
         return &_outputFilePath;
-    }
-
-    QBindable<QStringListModel*> DiKErnel::BindableLogMessages()
-    {
-        return &_logMessages;
     }
 }

@@ -208,14 +208,15 @@ Rectangle {
         color: "#ffffff"
 
         ListView {
+            id: lv
             anchors.fill: parent
             clip: true
             ScrollBar.vertical: ScrollBar { }
             model: dikernelApplication.LogMessages
 
             delegate: Rectangle {
-                width: parent.Width
-                height: 20
+                width: lv.width
+                height: 25
 
                 Text {
                     leftPadding: 8
