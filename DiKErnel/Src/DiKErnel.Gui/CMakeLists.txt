@@ -16,16 +16,28 @@ set(INTERNAL_FOLDER Internal)
 set(QML_FOLDER Qml)
 
 if (WIN32)
-  add_definitions(-DVER_FILEVERSION=22,1,1,1)
-  add_definitions(-DVER_PRODUCTVERSION=22,1,1,1)
-  add_definitions(-DVER_COMPANYNAME_STR="Deltares")
-  add_definitions(-DVER_FILEDESCRIPTION_STR="DiKErnel graphical user interface")
-  add_definitions(-DVER_FILEVERSION_STR="22.1.1.1")
-  add_definitions(-DVER_LEGALCOPYRIGHT_STR="Copyright © Deltares 2022")
-  add_definitions(-DVER_ORIGINALFILENAME_STR="DiKErnel-gui.exe")
-  add_definitions(-DVER_PRODUCTNAME_STR="DiKErnel-gui")
-  add_definitions(-DVER_PRODUCTVERSION_STR="22.1.1.1")
-  set(VERSION_RESOURCES "${CMAKE_CURRENT_SOURCE_DIR}/../../../Deployment/Windows/version.rc")
+
+  if (NOT DEFINED ${BUILDNUMBER})
+    set(BUILDNUMBER 0)
+  endif ()
+
+  set(VER_FILEVERSION 22,1,1,${BUILDNUMBER})
+  set(VER_PRODUCTVERSION 22,1,1)
+  set(VER_COMPANYNAME_STR "Deltares")
+  set(VER_FILEDESCRIPTION_STR "DiKErnel graphical user interface")
+  set(VER_FILEVERSION_STR "22.1.1.${BUILDNUMBER}")
+  set(VER_LEGALCOPYRIGHT_STR "Copyright (C) Deltares 2022")
+  set(VER_ORIGINALFILENAME_STR "DiKErnel-gui.exe")
+  set(VER_PRODUCTNAME_STR "DiKErnel-gui")
+  set(VER_PRODUCTVERSION_STR "22.1.1")
+
+  configure_file(
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../../Deployment/Windows/version.rc.in
+    ${CMAKE_CURRENT_BINARY_DIR}/version.rc
+    @ONLY)
+
+  set(VERSION_RESOURCES ${CMAKE_CURRENT_BINARY_DIR}/version.rc)
+
 endif ()
 
 # Define sources
