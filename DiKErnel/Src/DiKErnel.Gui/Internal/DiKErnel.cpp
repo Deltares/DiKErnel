@@ -117,7 +117,7 @@ namespace DiKErnel::Gui
     void DiKErnel::StartCalculation()
     {
         const auto inputFilePathString = InputFilePath().toString();
-        AddMessage(QString("Invoer uit bestand \"%1\" wordt gelezen...").arg(inputFilePathString));
+        AddMessage(QString("De invoer uit bestand \"%1\" wordt gelezen...").arg(inputFilePathString));
 
         const auto inputComposerResult = JsonInputComposer::GetInputDataFromJson(
             inputFilePathString.toStdString());
@@ -135,7 +135,7 @@ namespace DiKErnel::Gui
         const auto* inputData = inputComposerResult->GetData();
         const auto& calculationInput = inputData->GetCalculationInput();
 
-        AddMessage("Invoer wordt gevalideerd...");
+        AddMessage("De invoer wordt gevalideerd...");
 
         const auto validationResult = Validator::Validate(calculationInput);
 
@@ -155,7 +155,7 @@ namespace DiKErnel::Gui
 
         AddMessage("Het valideren van de invoer is voltooid.");
 
-        AddMessage("De berekening wordt gestart...");
+        AddMessage("De berekening wordt uitgevoerd...");
 
         const auto startTime = chrono::high_resolution_clock::now();
 
