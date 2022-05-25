@@ -48,6 +48,10 @@ namespace DiKErnel::Gui
                 READ LogMessages
                 CONSTANT)
 
+            Q_PROPERTY(bool StartEnabled
+                READ StartEnabled
+                BINDABLE BindableStartEnabled)
+
         public:
             explicit DiKErnel(
                 int argc,
@@ -57,11 +61,15 @@ namespace DiKErnel::Gui
 
             QUrl OutputFilePath() const;
 
+            bool StartEnabled() const;
+
             QStringListModel* LogMessages() const;
 
             QBindable<QUrl> BindableInputFilePath();
 
             QBindable<QUrl> BindableOutputFilePath();
+
+            QBindable<bool> BindableStartEnabled();
 
         public slots:
             void SetInputFilePath(
@@ -69,6 +77,8 @@ namespace DiKErnel::Gui
 
             void SetOutputFilePath(
                 const QUrl& outputFilePath);
+
+            void SetStartEnabled();
 
             void StartCalculation();
 
@@ -80,6 +90,8 @@ namespace DiKErnel::Gui
             void InputFilePathChanged();
 
             void OutputFilePathChanged();
+
+            void StartEnabledChanged();
 
             void LogMessagesChanged();
 
@@ -104,6 +116,9 @@ namespace DiKErnel::Gui
 
             Q_OBJECT_BINDABLE_PROPERTY(
                 DiKErnel, QUrl, _outputFilePath, &DiKErnel::OutputFilePathChanged)
+
+            Q_OBJECT_BINDABLE_PROPERTY(
+                DiKErnel, bool, _startEnabled, &DiKErnel::StartEnabledChanged)
 
             Q_OBJECT_BINDABLE_PROPERTY_WITH_ARGS(
                 DiKErnel, std::unique_ptr<QStringListModel>, _logMessages,

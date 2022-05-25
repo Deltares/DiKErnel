@@ -56,6 +56,9 @@ namespace DiKErnel::Gui
         engine.addImportPath(":/layout");
         engine.load(QUrl("qrc:/layout/DiKErnel/Qml/Main.qml"));
 
+        connect(this, &DiKErnel::InputFilePathChanged, this, &DiKErnel::SetStartEnabled);
+        connect(this, &DiKErnel::OutputFilePathChanged, this, &DiKErnel::SetStartEnabled);
+
         QGuiApplication::exec();
     }
 
@@ -67,6 +70,11 @@ namespace DiKErnel::Gui
     QUrl DiKErnel::OutputFilePath() const
     {
         return _outputFilePath.value();
+    }
+
+    bool DiKErnel::StartEnabled() const
+    {
+        return _startEnabled.value();
     }
 
     QStringListModel* DiKErnel::LogMessages() const
@@ -84,6 +92,11 @@ namespace DiKErnel::Gui
         return &_outputFilePath;
     }
 
+    QBindable<bool> DiKErnel::BindableStartEnabled()
+    {
+        return &_startEnabled;
+    }
+
     void DiKErnel::SetInputFilePath(
         const QUrl& inputFilePath)
     {
@@ -94,6 +107,11 @@ namespace DiKErnel::Gui
         const QUrl& outputFilePath)
     {
         _outputFilePath = outputFilePath.toLocalFile();
+    }
+
+    void DiKErnel::SetStartEnabled()
+    {
+        _startEnabled = !_inputFilePath.value().isEmpty() && !_outputFilePath.value().isEmpty();
     }
 
     void DiKErnel::StartCalculation()
