@@ -18,9 +18,40 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
+#include <filesystem>
+#include <iostream>
+using namespace std;
+
+#pragma region Forward declarations
+
+string GetLogOutputFilePath(
+    const string& jsonOutputFilePath);
+
+#pragma endregion
+
 int main(
     int argc,
     char* argv[])
 {
-    
+    if(argc != 3)
+    {
+        cout << "You have entered an invalid number of arguments." << endl;
+        return 0;
+    }
+
+    const string jsonInputFilePath(argv[1]);
+    const string jsonOutputFilePath(argv[2]);
+    const auto logOutputFilePath = GetLogOutputFilePath(jsonOutputFilePath);
+
+    return 0;
+}
+
+string GetLogOutputFilePath(
+    const string& jsonOutputFilePath)
+{
+    const auto outputFilePath = filesystem::path(jsonOutputFilePath);
+    const auto outputDirectory = outputFilePath.parent_path();
+    const auto outputFileName = outputFilePath.stem().u8string();
+
+    return (outputDirectory / (outputFileName + ".log")).u8string();
 }
