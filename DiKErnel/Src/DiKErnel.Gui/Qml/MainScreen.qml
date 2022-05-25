@@ -130,6 +130,7 @@ Rectangle {
         y: 209
         width: 375
         height: 32
+        readOnly: true
         placeholderText: qsTr("Invoerbestand")
         text: dikernelApplication.InputFilePath
     }
@@ -146,6 +147,7 @@ Rectangle {
         y: 209
         width: 375
         height: 32
+        readOnly: true
         placeholderText: qsTr("Uitvoerbestand")
         text: dikernelApplication.OutputFilePath
     }
