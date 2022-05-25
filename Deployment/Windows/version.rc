@@ -1,0 +1,22 @@
+1 VERSIONINFO
+    FILEVERSION    22,1,1,1
+    PRODUCTVERSION 22,1,1,1
+{
+    BLOCK "StringFileInfo"
+    {
+        BLOCK "000004B0"
+        {
+            VALUE "CompanyName",        "Deltares"
+            VALUE "FileDescription",    "DiKErnel graphical user interface"
+            VALUE "FileVersion",        "22.1.1.1"
+            VALUE "LegalCopyright",     "Copyright (C) Deltares 2022"
+            VALUE "OriginalFilename",   "DiKErnel-gui.exe"
+            VALUE "ProductName",        "DiKErnel-gui"
+            VALUE "ProductVersion",     "22.1.1.1"
+        }
+    }
+    BLOCK "VarFileInfo"
+    {
+        VALUE "Translation", 0x0000, 0x04B0
+    }
+}

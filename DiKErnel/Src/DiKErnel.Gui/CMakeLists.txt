@@ -15,9 +15,14 @@ qt_standard_project_setup()
 set(INTERNAL_FOLDER Internal)
 set(QML_FOLDER Qml)
 
+if (WIN32)
+  set(VERSION_RESOURCES "${CMAKE_CURRENT_SOURCE_DIR}/../../../Deployment/Windows/version.rc")
+endif ()
+
 # Define sources
 set(SOURCEFILES
   Main.cpp
+  ${VERSION_RESOURCES}
 )
 
 set(INTERNAL_SOURCEFILES
