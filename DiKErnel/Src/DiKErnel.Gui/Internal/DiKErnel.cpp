@@ -108,7 +108,7 @@ namespace DiKErnel::Gui
 
         if (!inputComposerResult->GetSuccessful())
         {
-            AddMessage("Het lezen van de invoer is mislukt.");
+            LogClosingMessage("Het lezen van de invoer is mislukt.");
             return;
         }
 
@@ -125,19 +125,21 @@ namespace DiKErnel::Gui
 
         if (*validationResult->GetData() == ValidationResultType::Failed)
         {
-            AddMessage("De invoer is ongeldig.");
+            LogClosingMessage("De invoer is ongeldig.");
             return;
         }
 
         if (!validationResult->GetSuccessful())
         {
-            AddMessage("Het valideren van de invoer is mislukt.");
+            LogClosingMessage("Het valideren van de invoer is mislukt.");
             return;
         }
 
         AddMessage("Het valideren van de invoer is voltooid.");
 
         AddMessage("De berekening wordt gestart...");
+
+        const auto startTime = chrono::high_resolution_clock::now();
 
         Calculator calculator(calculationInput);
         calculator.WaitForCompletion();
@@ -148,11 +150,25 @@ namespace DiKErnel::Gui
 
         if (calculator.GetCalculationState() != CalculationState::FinishedSuccessfully || !calculatorResult->GetSuccessful())
         {
-            AddMessage("De berekening is mislukt.");
+            LogClosingMessage("De berekening is mislukt.");
             return;
         }
 
         AddMessage("De berekening is voltooid.");
+
+        const auto endTime = chrono::high_resolution_clock::now();
+        const chrono::duration<double> elapsed = endTime - startTime;
+
+        const auto numberOfLocations = calculationInput.GetLocationDependentInputItems().size();
+        const auto numberOfTimeSteps = calculationInput.GetTimeDependentInputItems().size() - 1;
+
+        const QString locationString = QString(numberOfLocations == 1 ? "is %1 locatie" : "zijn %1 locaties")
+                .arg(numberOfLocations);
+
+        AddMessage(QString("Er %1 voor %2 %3 berekend in %4 seconden.").arg(locationString)
+                                                                       .arg(numberOfTimeSteps)
+                                                                       .arg(numberOfTimeSteps == 1 ? "tijdstap" : "tijdstappen")
+                                                                       .arg(elapsed.count()));
 
         const auto outputFilePathString = OutputFilePath().toString();
         AddMessage(QString("De resultaten van de berekeningen worden naar bestand \"%1\" geschreven...").arg(outputFilePathString));
@@ -167,11 +183,11 @@ namespace DiKErnel::Gui
 
         if (!outputComposerResult->GetSuccessful())
         {
-            AddMessage("Het schrijven van de resultaten is mislukt.");
+            LogClosingMessage("Het schrijven van de resultaten is mislukt.");
             return;
         }
 
-        AddMessage("Het schrijven van de resultaten is voltooid.");
+        LogClosingMessage("Het schrijven van de resultaten is voltooid.");
     }
 
     void DiKErnel::ClearLogMessages()
@@ -206,6 +222,13 @@ namespace DiKErnel::Gui
                 AddMessage(QString("- %1").arg(QString::fromUtf8(logEvent.get().GetMessage())));
             }
         }
+    }
+
+    void DiKErnel::LogClosingMessage(
+        const QString& message)
+    {
+        AddMessage(message);
+        AddMessage("-----------------------------------------------------------------");
     }
 
     JsonOutputType DiKErnel::ConvertProcessType(

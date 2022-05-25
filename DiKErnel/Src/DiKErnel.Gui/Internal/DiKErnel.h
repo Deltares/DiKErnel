@@ -91,6 +91,9 @@ namespace DiKErnel::Gui
                 const QString& message,
                 const std::vector<std::reference_wrapper<Util::Event>>& events);
 
+            void LogClosingMessage(
+                const QString& message);
+
             static KernelWrapper::Json::Output::JsonOutputType ConvertProcessType(
                 KernelWrapper::Json::Input::JsonInputProcessType processType);
 
