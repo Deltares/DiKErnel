@@ -129,7 +129,7 @@ int main(
     }
     catch (const exception& e)
     {
-        EventRegistry::Register(make_unique<Event>("An unhandled error occurred in the Showcase. See stack trace for more information:\n"
+        EventRegistry::Register(make_unique<Event>("Er is een onverwachte fout opgetreden. Bekijk de stack trace voor meer informatie:\n"
                                                    + static_cast<string>(e.what()), EventType::Error));
 
         CloseApplicationAfterUnhandledError();
@@ -196,7 +196,7 @@ void CloseApplicationAfterUnhandledError()
 
 void UnhandledErrorHandler()
 {
-    EventRegistry::Register(make_unique<Event>("An unhandled error occurred in the Showcase. No stacktrace available.", EventType::Error));
+    EventRegistry::Register(make_unique<Event>("Er is een onverwachte fout opgetreden. Er is geen stack trace beschikbaar.", EventType::Error));
 
     CloseApplicationAfterUnhandledError();
 
