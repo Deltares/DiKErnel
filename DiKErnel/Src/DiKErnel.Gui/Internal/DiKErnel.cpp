@@ -38,6 +38,7 @@ namespace DiKErnel::Gui
     using namespace KernelWrapper::Json::Input;
     using namespace KernelWrapper::Json::Output;
     using namespace std;
+    using namespace Util;
 
     DiKErnel::DiKErnel(
         int argc,
@@ -229,16 +230,33 @@ namespace DiKErnel::Gui
 
     void DiKErnel::LogEventsWhenApplicable(
         const QString& message,
-        const vector<reference_wrapper<Util::Event>>& events)
+        const vector<reference_wrapper<Event>>& events)
     {
         if (!events.empty())
         {
             AddMessage(message);
 
-            for (const auto& logEvent : events)
+            for (const auto& logEventReference : events)
             {
-                AddMessage(QString("- %1").arg(QString::fromUtf8(logEvent.get().GetMessage())));
+                const auto& logEvent = logEventReference.get();
+                AddMessage(QString("- %1: %2")
+                    .arg(QString::fromUtf8(GetEventTypeString(logEvent.GetEventType())))
+                    .arg(QString::fromUtf8(logEvent.GetMessage())));
             }
+        }
+    }
+
+    string DiKErnel::GetEventTypeString(
+        const EventType eventType)
+    {
+        switch (eventType)
+        {
+            case EventType::Warning:
+                return "Waarschuwing";
+            case EventType::Error:
+                return "Fout";
+            default:
+                throw runtime_error("Unsupported EventType");
         }
     }
 

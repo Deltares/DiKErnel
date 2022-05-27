@@ -103,6 +103,9 @@ namespace DiKErnel::Gui
                 const QString& message,
                 const std::vector<std::reference_wrapper<Util::Event>>& events);
 
+            static std::string GetEventTypeString(
+                Util::EventType eventType);
+
             void LogClosingMessage(
                 const QString& message);
 
