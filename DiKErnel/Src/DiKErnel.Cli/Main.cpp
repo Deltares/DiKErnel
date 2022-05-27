@@ -20,16 +20,17 @@
 
 #include <filesystem>
 #include <fstream>
-#include <iostream>
 #include <string>
 #include <thread>
 
 #include "Calculator.h"
+#include "CommandLineArgumentParser.h"
 #include "EventRegistry.h"
 #include "JsonInputComposer.h"
 #include "JsonOutputComposer.h"
 #include "Validator.h"
 
+using namespace DiKErnel::Cli;
 using namespace DiKErnel::Core;
 using namespace DiKErnel::KernelWrapper::Json::Input;
 using namespace DiKErnel::KernelWrapper::Json::Output;
@@ -37,9 +38,6 @@ using namespace DiKErnel::Util;
 using namespace std;
 
 #pragma region Forward declarations
-
-string GetLogOutputFilePath(
-    const string& jsonOutputFilePath);
 
 JsonOutputType ConvertProcessType(
     JsonInputProcessType);
@@ -64,24 +62,22 @@ vector<reference_wrapper<Event>> GetEventReferences(
 string logOutputFilePath;
 
 int main(
-    int argc,
-    char* argv[])
+    const int argc,
+    char** argv)
 {
     set_terminate(UnhandledErrorHandler);
 
     try
     {
-        if (argc != 3)
+        const CommandLineArgumentParser parser(argc, argv);
+        if (!parser.ArgumentsAreValid())
         {
-            cout << "You have entered an invalid number of arguments." << endl;
-            return 0;
+            return -1;
         }
 
-        const string jsonInputFilePath(argv[1]);
-        const string jsonOutputFilePath(argv[2]);
-        logOutputFilePath = GetLogOutputFilePath(jsonOutputFilePath);
+        logOutputFilePath = parser.GetLogOutputFilePath();
 
-        const auto inputComposerResult = JsonInputComposer::GetInputDataFromJson(jsonInputFilePath);
+        const auto inputComposerResult = JsonInputComposer::GetInputDataFromJson(parser.GetJsonInputFilePath());
         WriteToLogFile(inputComposerResult->GetEvents());
 
         if (!inputComposerResult->GetSuccessful())
@@ -117,7 +113,7 @@ int main(
         }
 
         const auto outputComposerResult = JsonOutputComposer::WriteCalculationOutputToJson(
-            jsonOutputFilePath, *calculatorResult->GetData(),
+            parser.GetJsonOutputFilePath(), *calculatorResult->GetData(),
             ConvertProcessType(inputData->GetProcessType()));
 
         WriteToLogFile(outputComposerResult->GetEvents());
@@ -137,16 +133,6 @@ int main(
         CloseApplicationAfterUnhandledError();
         return -1;
     }
-}
-
-string GetLogOutputFilePath(
-    const string& jsonOutputFilePath)
-{
-    const auto outputFilePath = filesystem::path(jsonOutputFilePath);
-    const auto outputDirectory = outputFilePath.parent_path();
-    const auto outputFileName = outputFilePath.stem().u8string();
-
-    return (outputDirectory / (outputFileName + ".log")).u8string();
 }
 
 JsonOutputType ConvertProcessType(

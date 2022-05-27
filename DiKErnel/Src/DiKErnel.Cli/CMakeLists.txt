@@ -2,17 +2,40 @@
 set(EXENAME DiKErnel.Cli)
 set(OUTPUTNAME DiKErnel-cli)
 
+# Set folder names
+set(INTERNAL_FOLDER Internal)
+
 # Define sources
 set(SOURCEFILES
   Main.cpp
 )
 
+set(INTERNAL_SOURCEFILES
+  ${INTERNAL_FOLDER}/CommandLineArgumentParser.cpp
+  ${INTERNAL_FOLDER}/CommandLineArgumentParser.h
+)
+
 # Add executable
-add_executable(${EXENAME} ${SOURCEFILES})
+add_executable(${EXENAME}
+  ${SOURCEFILES}
+  ${INTERNAL_SOURCEFILES}
+)
 
 # Configure folder structure
 set_target_properties(${EXENAME} PROPERTIES FOLDER Src)
 source_group("" FILES ${SOURCEFILES})
+source_group(${INTERNAL_FOLDER} FILES ${INTERNAL_SOURCEFILES})
+
+# Expose header files
+if (BUILD_WITH_TESTS)
+  target_include_directories(${EXENAME} PUBLIC
+    ${CMAKE_CURRENT_SOURCE_DIR}/${INTERNAL_FOLDER}
+  )
+else()
+  target_include_directories(${EXENAME}
+    PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/${INTERNAL_FOLDER}
+  )
+endif()
 
 # Configure executable output name
 set_target_properties(${EXENAME} PROPERTIES
