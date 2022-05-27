@@ -38,6 +38,8 @@ namespace DiKErnel::Cli
 
             [[nodiscard]] std::string GetLogOutputFilePath() const;
 
+            static std::string GetHelpMessage();
+
         private:
             bool _argumentsAreValid = true;
             std::string _jsonInputFilePath;

@@ -21,6 +21,7 @@
 #include "CommandLineArgumentParser.h"
 
 #include <filesystem>
+#include <sstream>
 
 namespace DiKErnel::Cli
 {
@@ -60,6 +61,19 @@ namespace DiKErnel::Cli
     string CommandLineArgumentParser::GetLogOutputFilePath() const
     {
         return _logOutputFilePath;
+    }
+
+    string CommandLineArgumentParser::GetHelpMessage()
+    {
+        stringstream message;
+        message << "********************** DiKErnel instructies **********************" << endl;
+        message << "DiKErnel heeft 2 argumenten nodig om te kunnen draaien" << endl;
+        message << "    <pad_naar_input.json>" << endl;
+        message << "    <pad_naar_output.json>" << endl;
+        message << "DiKErnel kan gebruikt worden door DiKErnel-cli.exe te starten vanuit de command line met deze argumenten" << endl;
+        message << "Voorbeeld: DiKernel.exe Berekening1.json UitvoerBerekening1.json" << endl << endl;
+
+        return message.str();
     }
 
     bool CommandLineArgumentParser::ValidateArguments(

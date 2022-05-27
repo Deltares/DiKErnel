@@ -20,6 +20,7 @@
 
 #include <filesystem>
 #include <fstream>
+#include <iostream>
 #include <string>
 #include <thread>
 
@@ -72,6 +73,7 @@ int main(
         const CommandLineArgumentParser parser(argc, argv);
         if (!parser.ArgumentsAreValid())
         {
+            cout << CommandLineArgumentParser::GetHelpMessage();
             return -1;
         }
 
