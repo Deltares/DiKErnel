@@ -16,7 +16,7 @@ if (WIN32)
     ${CMAKE_CURRENT_SOURCE_DIR}/../../../Deployment/Windows/version.rc.in
     ${CMAKE_CURRENT_BINARY_DIR}/version.rc
     @ONLY)
-   set(PLATFORM_SPECIFIC_VERSION_RESOURCES
+  set(PLATFORM_SPECIFIC_VERSION_RESOURCES
     ${CMAKE_CURRENT_BINARY_DIR}/version.rc
   )
 endif ()
