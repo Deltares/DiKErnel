@@ -23,6 +23,17 @@ endif()
 # Set global properties
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
+# Set generic version parameters
+set(VER_COMPANYNAME_STR "Deltares")
+set(VER_LEGALCOPYRIGHT_STR "Copyright \\xA9 Deltares 2022")
+set(VER_PRODUCTVERSION 22,1,1)
+set(VER_PRODUCTVERSION_STR "22.1.1")
+if (NOT DEFINED VER_BUILDNUMBER)
+  set(VER_BUILDNUMBER 0)
+endif ()
+set(VER_FILEVERSION 22,1,1,${VER_BUILDNUMBER})
+set(VER_FILEVERSION_STR "22.1.1.${VER_BUILDNUMBER}")
+
 # Add directories
 add_subdirectory(Src)
 

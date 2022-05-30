@@ -15,43 +15,33 @@ qt_standard_project_setup()
 set(INTERNAL_FOLDER Internal)
 set(QML_FOLDER Qml)
 
+# Set application specific version parameters
+set(VER_FILEDESCRIPTION_STR "DiKErnel graphical user interface")
+set(VER_ORIGINALFILENAME_STR "DiKErnel-gui.exe")
+set(VER_PRODUCTNAME_STR "DiKErnel-gui")
+
+# Create version header file
+configure_file(
+  Version.h.in
+  ${CMAKE_CURRENT_BINARY_DIR}/Version.h
+  @ONLY)
+
+# Create platform specific version resources
 if (WIN32)
-
-  if (NOT DEFINED VER_BUILDNUMBER)
-    set(VER_BUILDNUMBER 0)
-  endif ()
-
-  set(VER_FILEVERSION 22,1,1,${VER_BUILDNUMBER})
-  set(VER_PRODUCTVERSION 22,1,1)
-  set(VER_COMPANYNAME_STR "Deltares")
-  set(VER_FILEDESCRIPTION_STR "DiKErnel graphical user interface")
-  set(VER_FILEVERSION_STR "22.1.1.${VER_BUILDNUMBER}")
-  set(VER_LEGALCOPYRIGHT_STR "Copyright \\xA9 Deltares 2022")
-  set(VER_ORIGINALFILENAME_STR "DiKErnel-gui.exe")
-  set(VER_PRODUCTNAME_STR "DiKErnel-gui")
-  set(VER_PRODUCTVERSION_STR "22.1.1")
-
   configure_file(
     ${CMAKE_CURRENT_SOURCE_DIR}/../../../Deployment/Windows/version.rc.in
     ${CMAKE_CURRENT_BINARY_DIR}/version.rc
     @ONLY)
-
-  configure_file(
-    Version.h.in
-    ${CMAKE_CURRENT_BINARY_DIR}/Version.h
-    @ONLY)
-
-  set(VERSION_RESOURCES
+   set(PLATFORM_SPECIFIC_VERSION_RESOURCES
     ${CMAKE_CURRENT_BINARY_DIR}/version.rc
-    ${CMAKE_CURRENT_BINARY_DIR}/Version.h
   )
-
 endif ()
 
 # Define sources
 set(SOURCEFILES
   Main.cpp
-  ${VERSION_RESOURCES}
+  ${CMAKE_CURRENT_BINARY_DIR}/Version.h
+  ${PLATFORM_SPECIFIC_VERSION_RESOURCES}
 )
 
 set(INTERNAL_SOURCEFILES
