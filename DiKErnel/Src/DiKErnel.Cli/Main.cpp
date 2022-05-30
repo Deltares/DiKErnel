@@ -55,8 +55,7 @@ void CloseApplicationAfterUnhandledError();
 void UnhandledErrorHandler();
 
 vector<reference_wrapper<Event>> GetEventReferences(
-    const vector<unique_ptr<Event>>& events
-);
+    const vector<unique_ptr<Event>>& events);
 
 #pragma endregion
 
@@ -204,8 +203,7 @@ void UnhandledErrorHandler()
 }
 
 vector<reference_wrapper<Event>> GetEventReferences(
-    const vector<unique_ptr<Event>>& events
-)
+    const vector<unique_ptr<Event>>& events)
 {
     vector<reference_wrapper<Event>> eventReferences;
 
