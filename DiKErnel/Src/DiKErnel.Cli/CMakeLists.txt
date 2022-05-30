@@ -5,9 +5,26 @@ set(OUTPUTNAME DiKErnel-cli)
 # Set folder names
 set(INTERNAL_FOLDER Internal)
 
+# Set application specific version parameters
+set(VER_FILEDESCRIPTION_STR "DiKErnel command line interface")
+set(VER_ORIGINALFILENAME_STR "DiKErnel-cli.exe")
+set(VER_PRODUCTNAME_STR "DiKErnel-cli")
+
+# Create platform specific version resources
+if (WIN32)
+  configure_file(
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../../Deployment/Windows/version.rc.in
+    ${CMAKE_CURRENT_BINARY_DIR}/version.rc
+    @ONLY)
+   set(PLATFORM_SPECIFIC_VERSION_RESOURCES
+    ${CMAKE_CURRENT_BINARY_DIR}/version.rc
+  )
+endif ()
+
 # Define sources
 set(SOURCEFILES
   Main.cpp
+  ${PLATFORM_SPECIFIC_VERSION_RESOURCES}
 )
 
 set(INTERNAL_SOURCEFILES
