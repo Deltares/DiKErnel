@@ -36,7 +36,15 @@ if (WIN32)
     ${CMAKE_CURRENT_BINARY_DIR}/version.rc
     @ONLY)
 
-  set(VERSION_RESOURCES ${CMAKE_CURRENT_BINARY_DIR}/version.rc)
+  configure_file(
+    Version.h.in
+    ${CMAKE_CURRENT_BINARY_DIR}/Version.h
+    @ONLY)
+
+  set(VERSION_RESOURCES
+    ${CMAKE_CURRENT_BINARY_DIR}/version.rc
+    ${CMAKE_CURRENT_BINARY_DIR}/Version.h
+  )
 
 endif ()
 

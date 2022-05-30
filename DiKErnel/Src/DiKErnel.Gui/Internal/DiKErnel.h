@@ -52,6 +52,10 @@ namespace DiKErnel::Gui
                 READ StartEnabled
                 BINDABLE BindableStartEnabled)
 
+            Q_PROPERTY(QString VersionNumber
+                READ VersionNumber
+                CONSTANT)
+
         public:
             explicit DiKErnel(
                 int argc,
@@ -64,6 +68,8 @@ namespace DiKErnel::Gui
             bool StartEnabled() const;
 
             QStringListModel* LogMessages() const;
+
+            static QString VersionNumber();
 
             QBindable<QUrl> BindableInputFilePath();
 

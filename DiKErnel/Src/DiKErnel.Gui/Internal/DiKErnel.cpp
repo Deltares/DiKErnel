@@ -31,6 +31,7 @@
 #include "JsonInputComposer.h"
 #include "JsonOutputComposer.h"
 #include "Validator.h"
+#include "Version.h"
 
 namespace DiKErnel::Gui
 {
@@ -81,6 +82,11 @@ namespace DiKErnel::Gui
     QStringListModel* DiKErnel::LogMessages() const
     {
         return _logMessages.value().get();
+    }
+
+    QString DiKErnel::VersionNumber()
+    {
+        return QString::fromStdString(Version::VersionString);
     }
 
     QBindable<QUrl> DiKErnel::BindableInputFilePath()

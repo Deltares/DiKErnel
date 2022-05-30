@@ -78,7 +78,7 @@ Rectangle {
         }
 
         Label {
-            text: qsTr("22.1.1.0 (ALPHA)")
+            text: dikernelApplication.VersionNumber
             font.pointSize: 10
         }
 
