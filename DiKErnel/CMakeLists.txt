@@ -41,14 +41,21 @@ set(VER_FILEVERSION_STR "22.1.1.${VER_BUILDNUMBER}")
 # Macro for configuring a platform specific version resource file
 macro(CONFIGURE_PLATFORM_SPECIFIC_VERSION_RESOURCE_FILE)
   if (WIN32)
+    set(PLATFORM_SPECIFIC_VERSION_RESOURCE_FILE ${CMAKE_CURRENT_BINARY_DIR}/version.rc)
     configure_file(
       ${CMAKE_CURRENT_SOURCE_DIR}/../../../Deployment/Windows/version.rc.in
-      ${CMAKE_CURRENT_BINARY_DIR}/version.rc
+      ${PLATFORM_SPECIFIC_VERSION_RESOURCE_FILE}
       @ONLY)
-    set(PLATFORM_SPECIFIC_VERSION_RESOURCE_FILE
-      ${CMAKE_CURRENT_BINARY_DIR}/version.rc
-    )
   endif ()
+endmacro()
+
+# Macro for configuring a version header file
+macro(CONFIGURE_VERSION_HEADER_FILE)
+  set(VERSION_HEADER_FILE ${CMAKE_CURRENT_BINARY_DIR}/Version.h)
+  configure_file(
+    Version.h.in
+    ${VERSION_HEADER_FILE}
+    @ONLY)
 endmacro()
 
 # Add directories

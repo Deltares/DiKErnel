@@ -20,11 +20,8 @@ set(VER_FILEDESCRIPTION_STR "DiKErnel graphical user interface")
 set(VER_ORIGINALFILENAME_STR "DiKErnel-gui.exe")
 set(VER_PRODUCTNAME_STR "DiKErnel-gui")
 
-# Create version header file
-configure_file(
-  Version.h.in
-  ${CMAKE_CURRENT_BINARY_DIR}/Version.h
-  @ONLY)
+# Configure version header file
+CONFIGURE_VERSION_HEADER_FILE()
 
 # Configure platform specific version resources
 CONFIGURE_PLATFORM_SPECIFIC_VERSION_RESOURCE_FILE()
@@ -32,7 +29,7 @@ CONFIGURE_PLATFORM_SPECIFIC_VERSION_RESOURCE_FILE()
 # Define sources
 set(SOURCEFILES
   Main.cpp
-  ${CMAKE_CURRENT_BINARY_DIR}/Version.h
+  ${VERSION_HEADER_FILE}
   ${PLATFORM_SPECIFIC_VERSION_RESOURCE_FILE}
 )
 
