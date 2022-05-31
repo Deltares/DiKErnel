@@ -26,16 +26,8 @@ configure_file(
   ${CMAKE_CURRENT_BINARY_DIR}/Version.h
   @ONLY)
 
-# Create platform specific version resources
-if (WIN32)
-  configure_file(
-    ${CMAKE_CURRENT_SOURCE_DIR}/../../../Deployment/Windows/version.rc.in
-    ${CMAKE_CURRENT_BINARY_DIR}/version.rc
-    @ONLY)
-  set(PLATFORM_SPECIFIC_VERSION_RESOURCES
-    ${CMAKE_CURRENT_BINARY_DIR}/version.rc
-  )
-endif ()
+# Set platform specific version resources
+SET_PLATFORM_SPECIFIC_VERSION_RESOURCES()
 
 # Define sources
 set(SOURCEFILES

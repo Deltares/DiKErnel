@@ -38,6 +38,19 @@ endif ()
 set(VER_FILEVERSION 22,1,1,${VER_BUILDNUMBER})
 set(VER_FILEVERSION_STR "22.1.1.${VER_BUILDNUMBER}")
 
+# Macro for setting platform specific version resources
+macro(SET_PLATFORM_SPECIFIC_VERSION_RESOURCES)
+  if (WIN32)
+    configure_file(
+      ${CMAKE_CURRENT_SOURCE_DIR}/../../../Deployment/Windows/version.rc.in
+      ${CMAKE_CURRENT_BINARY_DIR}/version.rc
+      @ONLY)
+    set(PLATFORM_SPECIFIC_VERSION_RESOURCES
+      ${CMAKE_CURRENT_BINARY_DIR}/version.rc
+    )
+  endif ()
+endmacro()
+
 # Add directories
 add_subdirectory(Src)
 
