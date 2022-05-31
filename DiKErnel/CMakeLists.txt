@@ -43,7 +43,7 @@ macro(CONFIGURE_PLATFORM_SPECIFIC_VERSION_RESOURCE_FILE)
   if (WIN32)
     set(PLATFORM_SPECIFIC_VERSION_RESOURCE_FILE ${CMAKE_CURRENT_BINARY_DIR}/version.rc)
     configure_file(
-      ${CMAKE_CURRENT_SOURCE_DIR}/../../../Deployment/Windows/version.rc.in
+      ${CMAKE_SOURCE_DIR}/../Deployment/Windows/version.rc.in
       ${PLATFORM_SPECIFIC_VERSION_RESOURCE_FILE}
       @ONLY)
   endif ()
