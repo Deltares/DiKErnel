@@ -53,7 +53,7 @@ endmacro()
 macro(CONFIGURE_VERSION_HEADER_FILE)
   set(VERSION_HEADER_FILE ${CMAKE_CURRENT_BINARY_DIR}/Version.h)
   configure_file(
-    Version.h.in
+    ${CMAKE_SOURCE_DIR}/../Deployment/Version.h.in
     ${VERSION_HEADER_FILE}
     @ONLY)
 endmacro()
