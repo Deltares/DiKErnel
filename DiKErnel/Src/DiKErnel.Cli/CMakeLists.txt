@@ -36,7 +36,7 @@ source_group("" FILES ${SOURCEFILES})
 source_group(${INTERNAL_FOLDER} FILES ${INTERNAL_SOURCEFILES})
 
 # Expose header files
-if (BUILD_WITH_TESTS)
+if(BUILD_WITH_TESTS)
   target_include_directories(${EXENAME} PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/${INTERNAL_FOLDER}
   )

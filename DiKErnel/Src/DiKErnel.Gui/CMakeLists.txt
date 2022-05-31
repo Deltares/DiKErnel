@@ -86,7 +86,7 @@ set_target_properties(${EXENAME} PROPERTIES
 )
 
 # Expose header files
-if (BUILD_WITH_TESTS)
+if(BUILD_WITH_TESTS)
   target_include_directories(${EXENAME} PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/${INTERNAL_FOLDER}
   )
