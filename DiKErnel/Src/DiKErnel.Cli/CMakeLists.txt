@@ -10,13 +10,13 @@ set(VER_FILEDESCRIPTION_STR "DiKErnel command line interface")
 set(VER_ORIGINALFILENAME_STR "DiKErnel-cli.exe")
 set(VER_PRODUCTNAME_STR "DiKErnel-cli")
 
-# Set platform specific version resources
-SET_PLATFORM_SPECIFIC_VERSION_RESOURCES()
+# Configure platform specific version resources
+CONFIGURE_PLATFORM_SPECIFIC_VERSION_RESOURCE_FILE()
 
 # Define sources
 set(SOURCEFILES
   Main.cpp
-  ${PLATFORM_SPECIFIC_VERSION_RESOURCES}
+  ${PLATFORM_SPECIFIC_VERSION_RESOURCE_FILE}
 )
 
 set(INTERNAL_SOURCEFILES

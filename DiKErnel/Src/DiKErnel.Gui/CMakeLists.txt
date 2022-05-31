@@ -26,14 +26,14 @@ configure_file(
   ${CMAKE_CURRENT_BINARY_DIR}/Version.h
   @ONLY)
 
-# Set platform specific version resources
-SET_PLATFORM_SPECIFIC_VERSION_RESOURCES()
+# Configure platform specific version resources
+CONFIGURE_PLATFORM_SPECIFIC_VERSION_RESOURCE_FILE()
 
 # Define sources
 set(SOURCEFILES
   Main.cpp
   ${CMAKE_CURRENT_BINARY_DIR}/Version.h
-  ${PLATFORM_SPECIFIC_VERSION_RESOURCES}
+  ${PLATFORM_SPECIFIC_VERSION_RESOURCE_FILE}
 )
 
 set(INTERNAL_SOURCEFILES
