@@ -30,13 +30,17 @@ namespace DiKErnel::Cli
                 int argc,
                 char** argv);
 
-            [[nodiscard]] bool ArgumentsAreValid() const;
+            [[nodiscard]]
+            bool ArgumentsAreValid() const;
 
-            [[nodiscard]] std::string GetJsonInputFilePath() const;
+            [[nodiscard]]
+            std::string GetJsonInputFilePath() const;
 
-            [[nodiscard]] std::string GetJsonOutputFilePath() const;
+            [[nodiscard]]
+            std::string GetJsonOutputFilePath() const;
 
-            [[nodiscard]] std::string GetLogOutputFilePath() const;
+            [[nodiscard]]
+            std::string GetLogOutputFilePath() const;
 
             static std::string GetHelpMessage();
 
@@ -53,6 +57,7 @@ namespace DiKErnel::Cli
             static bool ArgumentHasValidExtension(
                 const std::string& filePathArgument);
 
-            [[nodiscard]] std::string CreateLogOutputFilePath() const;
+            [[nodiscard]]
+            std::string CreateLogOutputFilePath() const;
     };
 }

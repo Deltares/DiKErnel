@@ -44,6 +44,7 @@ namespace DiKErnel::Core
              *        The profile data to use in the validation.
              * \return Whether the validation was successful.
              */
+            [[nodiscard]]
             virtual bool Validate(
                 const IProfileData& profileData) const = 0;
 
@@ -66,24 +67,28 @@ namespace DiKErnel::Core
              * \brief Gets the x coordinate.
              * \return The x coordinate.
              */
+            [[nodiscard]]
             virtual double GetX() const = 0;
 
             /*!
              * \brief Gets the initial damage.
              * \return The initial damage.
              */
+            [[nodiscard]]
             virtual double GetInitialDamage() const = 0;
 
             /*!
              * \brief Gets the failure number.
              * \return The failure number.
              */
+            [[nodiscard]]
             virtual double GetFailureNumber() const = 0;
 
             /*!
              * \brief Gets the z coordinate.
              * \return The z coordinate.
              */
+            [[nodiscard]]
             virtual double GetZ() const = 0;
     };
 }

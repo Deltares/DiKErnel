@@ -39,18 +39,21 @@ namespace DiKErnel::Core
              * \brief Gets the increment damage.
              * \return The increment damage.
              */
+            [[nodiscard]]
             double GetIncrementDamage() const;
 
             /*!
              * \brief Gets the damage.
              * \return The damage.
              */
+            [[nodiscard]]
             double GetDamage() const;
 
             /*!
              * \brief Gets the time of failure.
              * \return The time of failure.
              */
+            [[nodiscard]]
             const int* GetTimeOfFailure() const;
 
         protected:

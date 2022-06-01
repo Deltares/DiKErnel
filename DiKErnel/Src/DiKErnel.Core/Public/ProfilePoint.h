@@ -43,12 +43,14 @@ namespace DiKErnel::Core
              * \brief Gets the x coordinate of the point.
              * \return The x coordinate of the point.
              */
+            [[nodiscard]]
             double GetX() const;
 
             /*!
              * \brief Gets the z coordinate of the point.
              * \return The z coordinate of the point.
              */
+            [[nodiscard]]
             double GetZ() const;
 
         private:

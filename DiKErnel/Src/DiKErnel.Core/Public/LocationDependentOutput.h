@@ -48,24 +48,28 @@ namespace DiKErnel::Core
              * \brief Gets the calculated z.
              * \return The calculated z.
              */
+            [[nodiscard]]
             double GetZ() const;
 
             /*!
              * \brief Gets the calculated damages.
              * \return The calculated damages.
              */
+            [[nodiscard]]
             const std::vector<double>& GetDamages() const;
 
             /*!
              * \brief Gets the calculated time of failure.
              * \return The calculated time of failure.
              */
+            [[nodiscard]]
             const int* GetTimeOfFailure() const;
 
             /*!
              * \brief Gets the time dependent output items.
              * \return The time dependent output items.
              */
+            [[nodiscard]]
             const std::vector<std::reference_wrapper<TimeDependentOutput>>& GetTimeDependentOutputItems() const;
 
         private:

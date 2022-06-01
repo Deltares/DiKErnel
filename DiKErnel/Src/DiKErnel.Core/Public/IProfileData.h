@@ -42,12 +42,14 @@ namespace DiKErnel::Core
              * \brief Gets the profile points to use in the calculation.
              * \return The profile points to use in the calculation.
              */
+            [[nodiscard]]
             virtual const std::vector<std::reference_wrapper<ProfilePoint>>& GetProfilePoints() const = 0;
 
             /*!
              * \brief Gets the characteristic points to use in the calculation.
              * \return The characteristic points to use in the calculation.
              */
+            [[nodiscard]]
             virtual const std::vector<std::reference_wrapper<CharacteristicPoint>>& GetCharacteristicPoints() const = 0;
     };
 }

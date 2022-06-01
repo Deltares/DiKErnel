@@ -37,42 +37,49 @@ namespace DiKErnel::Core
              * \brief Performs validation on the input.
              * \return Whether the validation was successful.
              */
+            [[nodiscard]]
             virtual bool Validate() const = 0;
 
             /*!
              * \brief Gets the begin time.
              * \return The begin time.
              */
+            [[nodiscard]]
             virtual int GetBeginTime() const = 0;
 
             /*!
              * \brief Gets the end time.
              * \return The end time.
              */
+            [[nodiscard]]
             virtual int GetEndTime() const = 0;
 
             /*!
              * \brief Gets the water level.
              * \return The water level.
              */
+            [[nodiscard]]
             virtual double GetWaterLevel() const = 0;
 
             /*!
              * \brief Gets the wave height.
              * \return The wave height.
              */
+            [[nodiscard]]
             virtual double GetWaveHeightHm0() const = 0;
 
             /*!
              * \brief Gets the wave period.
              * \return The wave period.
              */
+            [[nodiscard]]
             virtual double GetWavePeriodTm10() const = 0;
 
             /*!
              * \brief Gets the wave angle.
              * \return The wave angle.
              */
+            [[nodiscard]]
             virtual double GetWaveAngle() const = 0;
     };
 }

@@ -46,12 +46,14 @@ namespace DiKErnel::Core
              * \brief Gets the profile point.
              * \return The profile point.
              */
+            [[nodiscard]]
             const ProfilePoint& GetProfilePoint() const;
 
             /*!
              * \brief Gets the characteristic point type.
              * \return The characteristic point type.
              */
+            [[nodiscard]]
             CharacteristicPointType GetCharacteristicPointType() const;
 
         private:

@@ -44,6 +44,7 @@ namespace DiKErnel::Core
              * \brief Gets the location dependent output items.
              * \return The location dependent output items.
              */
+            [[nodiscard]]
             const std::vector<std::reference_wrapper<LocationDependentOutput>>& GetLocationDependentOutputItems() const;
 
         private:

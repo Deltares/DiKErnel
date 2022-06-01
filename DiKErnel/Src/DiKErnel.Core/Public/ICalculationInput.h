@@ -43,24 +43,28 @@ namespace DiKErnel::Core
              * \brief Performs validation on the input.
              * \return Whether the validation was successful.
              */
+            [[nodiscard]]
             virtual bool Validate() const = 0;
 
             /*!
              * \brief Gets the profile data to use in the calculation.
              * \return The profile data to use in the calculation.
              */
+            [[nodiscard]]
             virtual const IProfileData& GetProfileData() const = 0;
 
             /*!
              * \brief Gets the location dependent input items to use in the calculation.
              * \return The location dependent input items to use in the calculation.
              */
+            [[nodiscard]]
             virtual const std::vector<std::reference_wrapper<ILocationDependentInput>>& GetLocationDependentInputItems() const = 0;
 
             /*!
              * \brief Gets the time dependent input items to use in the calculation.
              * \return The time dependent input items to use in the calculation.
              */
+            [[nodiscard]]
             virtual const std::vector<std::reference_wrapper<ITimeDependentInput>>& GetTimeDependentInputItems() const = 0;
     };
 }
