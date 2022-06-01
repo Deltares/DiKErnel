@@ -34,6 +34,7 @@ namespace DiKErnel::KernelWrapper::Json::Output
             explicit JsonOutputData(
                 std::vector<std::unique_ptr<JsonOutputFailureLocationData>> locationDataItems);
 
+            [[nodiscard]]
             nlohmann::ordered_json CreateJson() const override;
 
         private:

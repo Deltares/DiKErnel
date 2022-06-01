@@ -30,6 +30,7 @@ namespace DiKErnel::KernelWrapper::Json::Output
             explicit JsonOutputDamageLocationData(
                 const Core::LocationDependentOutput& locationOutput);
 
+            [[nodiscard]]
             nlohmann::ordered_json CreateJson() const override;
     };
 }
