@@ -38,6 +38,7 @@ namespace DiKErnel::DomainLibrary
              * \return The default value of the critical cumulative overload.
              *         Unit = [m^2/s^2]
              */
+            [[nodiscard]]
             virtual double GetCriticalCumulativeOverload() const = 0;
 
             /*!
@@ -45,6 +46,7 @@ namespace DiKErnel::DomainLibrary
              * \return The default value of the critical front velocity.
              *         Unit = [m/s]
              */
+            [[nodiscard]]
             virtual double GetCriticalFrontVelocity() const = 0;
 
             /*!
@@ -52,6 +54,7 @@ namespace DiKErnel::DomainLibrary
              * \return The default value of the increased load transition alpha M.
              *         Unit = [-]
              */
+            [[nodiscard]]
             virtual double GetIncreasedLoadTransitionAlphaM() const = 0;
 
             /*!
@@ -59,6 +62,7 @@ namespace DiKErnel::DomainLibrary
              * \return The default value of the reduced strength transition alpha S.
              *         Unit = [-]
              */
+            [[nodiscard]]
             virtual double GetReducedStrengthTransitionAlphaS() const = 0;
 
             /*!
@@ -66,6 +70,7 @@ namespace DiKErnel::DomainLibrary
              * \return The default value of the Ctm coefficient.
              *         Unit = [-]
              */
+            [[nodiscard]]
             virtual double GetAverageNumberOfWavesCtm() const = 0;
 
             /*!
@@ -73,6 +78,7 @@ namespace DiKErnel::DomainLibrary
              * \return The default value of the representative 2P Aru coefficient.
              *         Unit = [-]
              */
+            [[nodiscard]]
             virtual double GetRepresentativeWaveRunup2PAru() const = 0;
 
             /*!
@@ -80,6 +86,7 @@ namespace DiKErnel::DomainLibrary
              * \return The default value of the representative 2P Bru coefficient.
              *         Unit = [-]
              */
+            [[nodiscard]]
             virtual double GetRepresentativeWaveRunup2PBru() const = 0;
 
             /*!
@@ -87,6 +94,7 @@ namespace DiKErnel::DomainLibrary
              * \return The default value of the representative 2P Cru coefficient.
              *         Unit = [-]
              */
+            [[nodiscard]]
             virtual double GetRepresentativeWaveRunup2PCru() const = 0;
 
             /*!
@@ -94,6 +102,7 @@ namespace DiKErnel::DomainLibrary
              * \return The default value of the representative 2P Gammab coefficient.
              *         Unit = [-]
              */
+            [[nodiscard]]
             virtual double GetRepresentativeWaveRunup2PGammab() const = 0;
 
             /*!
@@ -101,6 +110,7 @@ namespace DiKErnel::DomainLibrary
              * \return The default value of the representative 2P Gammaf coefficient.
              *         Unit = [-]
              */
+            [[nodiscard]]
             virtual double GetRepresentativeWaveRunup2PGammaf() const = 0;
 
             /*!
@@ -108,6 +118,7 @@ namespace DiKErnel::DomainLibrary
              * \return The default value of the Abeta coefficient.
              *         Unit = [-]
              */
+            [[nodiscard]]
             virtual double GetWaveAngleImpactAbeta() const = 0;
 
             /*!
@@ -115,6 +126,7 @@ namespace DiKErnel::DomainLibrary
              * \return The default value of the Betamax coefficient.
              *         Unit = [-]
              */
+            [[nodiscard]]
             virtual double GetWaveAngleImpactBetamax() const = 0;
     };
 }

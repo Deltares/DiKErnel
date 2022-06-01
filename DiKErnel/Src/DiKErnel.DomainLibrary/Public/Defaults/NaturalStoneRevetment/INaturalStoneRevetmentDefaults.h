@@ -38,6 +38,7 @@ namespace DiKErnel::DomainLibrary
              * \return The default value of the Xib coefficient.
              *         Unit = [-]
              */
+            [[nodiscard]]
             virtual double GetHydraulicLoadXib() const = 0;
 
             /*!
@@ -45,6 +46,7 @@ namespace DiKErnel::DomainLibrary
              * \return The default value of the Ap coefficient.
              *         Unit = [-]
              */
+            [[nodiscard]]
             virtual double GetHydraulicLoadAp() const = 0;
 
             /*!
@@ -52,6 +54,7 @@ namespace DiKErnel::DomainLibrary
              * \return The default value of the Bp coefficient.
              *         Unit = [-]
              */
+            [[nodiscard]]
             virtual double GetHydraulicLoadBp() const = 0;
 
             /*!
@@ -59,6 +62,7 @@ namespace DiKErnel::DomainLibrary
              * \return The default value of the Cp coefficient.
              *         Unit = [-]
              */
+            [[nodiscard]]
             virtual double GetHydraulicLoadCp() const = 0;
 
             /*!
@@ -66,6 +70,7 @@ namespace DiKErnel::DomainLibrary
              * \return The default value of the Np coefficient.
              *         Unit = [-]
              */
+            [[nodiscard]]
             virtual double GetHydraulicLoadNp() const = 0;
 
             /*!
@@ -73,6 +78,7 @@ namespace DiKErnel::DomainLibrary
              * \return The default value of the As coefficient.
              *         Unit = [-]
              */
+            [[nodiscard]]
             virtual double GetHydraulicLoadAs() const = 0;
 
             /*!
@@ -80,6 +86,7 @@ namespace DiKErnel::DomainLibrary
              * \return The default value of the Bs coefficient.
              *         Unit = [-]
              */
+            [[nodiscard]]
             virtual double GetHydraulicLoadBs() const = 0;
 
             /*!
@@ -87,6 +94,7 @@ namespace DiKErnel::DomainLibrary
              * \return The default value of the Cs coefficient.
              *         Unit = [-]
              */
+            [[nodiscard]]
             virtual double GetHydraulicLoadCs() const = 0;
 
             /*!
@@ -94,6 +102,7 @@ namespace DiKErnel::DomainLibrary
              * \return The default value of the Ns coefficient.
              *         Unit = [-]
              */
+            [[nodiscard]]
             virtual double GetHydraulicLoadNs() const = 0;
 
             /*!
@@ -101,6 +110,7 @@ namespace DiKErnel::DomainLibrary
              * \return The default value of the Aus coefficient.
              *         Unit = [-]
              */
+            [[nodiscard]]
             virtual double GetSlopeUpperLevelAus() const = 0;
 
             /*!
@@ -108,6 +118,7 @@ namespace DiKErnel::DomainLibrary
              * \return The default value of the Als coefficient.
              *         Unit = [-]
              */
+            [[nodiscard]]
             virtual double GetSlopeLowerLevelAls() const = 0;
 
             /*!
@@ -115,6 +126,7 @@ namespace DiKErnel::DomainLibrary
              * \return The default value of the Aul coefficient.
              *         Unit = [-]
              */
+            [[nodiscard]]
             virtual double GetUpperLimitLoadingAul() const = 0;
 
             /*!
@@ -122,6 +134,7 @@ namespace DiKErnel::DomainLibrary
              * \return The default value of the Bul coefficient.
              *         Unit = [-]
              */
+            [[nodiscard]]
             virtual double GetUpperLimitLoadingBul() const = 0;
 
             /*!
@@ -129,6 +142,7 @@ namespace DiKErnel::DomainLibrary
              * \return The default value of the Cul coefficient.
              *         Unit = [-]
              */
+            [[nodiscard]]
             virtual double GetUpperLimitLoadingCul() const = 0;
 
             /*!
@@ -136,6 +150,7 @@ namespace DiKErnel::DomainLibrary
              * \return The default value of the All coefficient.
              *         Unit = [-]
              */
+            [[nodiscard]]
             virtual double GetLowerLimitLoadingAll() const = 0;
 
             /*!
@@ -143,6 +158,7 @@ namespace DiKErnel::DomainLibrary
              * \return The default value of the Bll coefficient.
              *         Unit = [-]
              */
+            [[nodiscard]]
             virtual double GetLowerLimitLoadingBll() const = 0;
 
             /*!
@@ -150,6 +166,7 @@ namespace DiKErnel::DomainLibrary
              * \return The default value of the Cll coefficient.
              *         Unit = [-]
              */
+            [[nodiscard]]
             virtual double GetLowerLimitLoadingCll() const = 0;
 
             /*!
@@ -157,6 +174,7 @@ namespace DiKErnel::DomainLibrary
              * \return The default value of the Asmax coefficient.
              *         Unit = [-]
              */
+            [[nodiscard]]
             virtual double GetDistanceMaximumWaveElevationAsmax() const = 0;
 
             /*!
@@ -164,6 +182,7 @@ namespace DiKErnel::DomainLibrary
              * \return The default value of the Bsmax coefficient.
              *         Unit = [-]
              */
+            [[nodiscard]]
             virtual double GetDistanceMaximumWaveElevationBsmax() const = 0;
 
             /*!
@@ -171,6 +190,7 @@ namespace DiKErnel::DomainLibrary
              * \return The default value of the Awi coefficient.
              *         Unit = [-]
              */
+            [[nodiscard]]
             virtual double GetNormativeWidthOfWaveImpactAwi() const = 0;
 
             /*!
@@ -178,6 +198,7 @@ namespace DiKErnel::DomainLibrary
              * \return The default value of the Bwi coefficient.
              *         Unit = [-]
              */
+            [[nodiscard]]
             virtual double GetNormativeWidthOfWaveImpactBwi() const = 0;
 
             /*!
@@ -185,6 +206,7 @@ namespace DiKErnel::DomainLibrary
              * \return The default value of the Betamax coefficient.
              *         Unit = [deg]
              */
+            [[nodiscard]]
             virtual double GetWaveAngleImpactBetamax() const = 0;
     };
 }

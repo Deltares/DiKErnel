@@ -36,6 +36,7 @@ namespace DiKErnel::DomainLibrary
              * \return The default value of the fixed number of waves.
              *         Unit = [-]
              */
+            [[nodiscard]]
             virtual int GetFixedNumberOfWaves() const = 0;
 
             /*!
@@ -43,6 +44,7 @@ namespace DiKErnel::DomainLibrary
              * \return The default value of the Cu coefficient.
              *         Unit = [-]
              */
+            [[nodiscard]]
             virtual double GetFrontVelocityCu() const = 0;
     };
 }

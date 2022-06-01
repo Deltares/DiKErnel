@@ -40,6 +40,7 @@ namespace DiKErnel::DomainLibrary
              * \return The default value of the Ctm coefficient.
              *         Unit = [-]
              */
+            [[nodiscard]]
             virtual double GetAverageNumberOfWavesCtm() const = 0;
 
             /*!
@@ -47,6 +48,7 @@ namespace DiKErnel::DomainLibrary
              * \return The default value of the fatigue alpha coefficient.
              *         Unit = [-]
              */
+            [[nodiscard]]
             virtual double GetFatigueAlpha() const = 0;
 
             /*!
@@ -54,6 +56,7 @@ namespace DiKErnel::DomainLibrary
              * \return The default value of the fatigue beta coefficient.
              *         Unit = [-]
              */
+            [[nodiscard]]
             virtual double GetFatigueBeta() const = 0;
 
             /*!
@@ -61,6 +64,7 @@ namespace DiKErnel::DomainLibrary
              * \return The default value of the impact number C coefficient.
              *         Unit = [-]
              */
+            [[nodiscard]]
             virtual double GetImpactNumberC() const = 0;
 
             /*!
@@ -68,6 +72,7 @@ namespace DiKErnel::DomainLibrary
              * \return The default value of the stiffness relation Nu coefficient.
              *         Unit = [-]
              */
+            [[nodiscard]]
             virtual double GetStiffnessRelationNu() const = 0;
 
             /*!
@@ -75,6 +80,7 @@ namespace DiKErnel::DomainLibrary
              * \return The default values of the width factors.
              *         Unit = [-]
              */
+            [[nodiscard]]
             virtual const std::vector<std::pair<double, double>>& GetWidthFactors() const = 0;
 
             /*!
@@ -82,6 +88,7 @@ namespace DiKErnel::DomainLibrary
              * \return The default values of the depth factors.
              *         Unit = [-]
              */
+            [[nodiscard]]
             virtual const std::vector<std::pair<double, double>>& GetDepthFactors() const = 0;
 
             /*!
@@ -89,6 +96,7 @@ namespace DiKErnel::DomainLibrary
              * \return The default values of the impact factors.
              *         Unit = [-]
              */
+            [[nodiscard]]
             virtual const std::vector<std::pair<double, double>>& GetImpactFactors() const = 0;
     };
 }

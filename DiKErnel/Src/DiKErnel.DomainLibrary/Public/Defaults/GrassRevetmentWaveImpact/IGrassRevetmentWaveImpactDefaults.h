@@ -38,6 +38,7 @@ namespace DiKErnel::DomainLibrary
              * \return The default value of the Agwi coefficient.
              *         Unit = [m]
              */
+            [[nodiscard]]
             virtual double GetTimeLineAgwi() const = 0;
 
             /*!
@@ -45,6 +46,7 @@ namespace DiKErnel::DomainLibrary
              * \return The default value of the Bgwi coefficient.
              *         Unit = [s^-1]
              */
+            [[nodiscard]]
             virtual double GetTimeLineBgwi() const = 0;
 
             /*!
@@ -52,6 +54,7 @@ namespace DiKErnel::DomainLibrary
              * \return The default value of the Cgwi coefficient.
              *         Unit = [m]
              */
+            [[nodiscard]]
             virtual double GetTimeLineCgwi() const = 0;
 
             /*!
@@ -59,6 +62,7 @@ namespace DiKErnel::DomainLibrary
              * \return The default value of the Temax coefficient.
              *         Unit = [s]
              */
+            [[nodiscard]]
             virtual double GetMinimumWaveHeightTemax() const = 0;
 
             /*!
@@ -66,6 +70,7 @@ namespace DiKErnel::DomainLibrary
              * \return The default value of the Temin coefficient.
              *         Unit = [s]
              */
+            [[nodiscard]]
             virtual double GetMaximumWaveHeightTemin() const = 0;
 
             /*!
@@ -73,6 +78,7 @@ namespace DiKErnel::DomainLibrary
              * \return The default value of the Nwa coefficient.
              *         Unit = [-]
              */
+            [[nodiscard]]
             virtual double GetWaveAngleImpactNwa() const = 0;
 
             /*!
@@ -80,6 +86,7 @@ namespace DiKErnel::DomainLibrary
              * \return The default value of the Qwa coefficient.
              *         Unit = [-]
              */
+            [[nodiscard]]
             virtual double GetWaveAngleImpactQwa() const = 0;
 
             /*!
@@ -87,6 +94,7 @@ namespace DiKErnel::DomainLibrary
              * \return The default value of the Rwa coefficient.
              *         Unit = [-]
              */
+            [[nodiscard]]
             virtual double GetWaveAngleImpactRwa() const = 0;
 
             /*!
@@ -94,6 +102,7 @@ namespace DiKErnel::DomainLibrary
              * \return The default value of the Aul coefficient.
              *         Unit = [-]
              */
+            [[nodiscard]]
             virtual double GetUpperLimitLoadingAul() const = 0;
 
             /*!
@@ -101,6 +110,7 @@ namespace DiKErnel::DomainLibrary
              * \return The default value of the All coefficient.
              *         Unit = [-]
              */
+            [[nodiscard]]
             virtual double GetLowerLimitLoadingAll() const = 0;
     };
 }

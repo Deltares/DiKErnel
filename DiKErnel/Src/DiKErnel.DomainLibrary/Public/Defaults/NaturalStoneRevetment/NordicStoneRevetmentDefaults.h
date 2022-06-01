@@ -35,6 +35,7 @@ namespace DiKErnel::DomainLibrary
              * \return The default value of the Xib coefficient.
              *         Unit = [-]
              */
+            [[nodiscard]]
             double GetHydraulicLoadXib() const override;
 
             /*!
@@ -42,6 +43,7 @@ namespace DiKErnel::DomainLibrary
              * \return The default value of the Ap coefficient.
              *         Unit = [-]
              */
+            [[nodiscard]]
             double GetHydraulicLoadAp() const override;
 
             /*!
@@ -49,6 +51,7 @@ namespace DiKErnel::DomainLibrary
              * \return The default value of the Bp coefficient.
              *         Unit = [-]
              */
+            [[nodiscard]]
             double GetHydraulicLoadBp() const override;
 
             /*!
@@ -56,6 +59,7 @@ namespace DiKErnel::DomainLibrary
              * \return The default value of the Cp coefficient.
              *         Unit = [-]
              */
+            [[nodiscard]]
             double GetHydraulicLoadCp() const override;
 
             /*!
@@ -63,6 +67,7 @@ namespace DiKErnel::DomainLibrary
              * \return The default value of the Np coefficient.
              *         Unit = [-]
              */
+            [[nodiscard]]
             double GetHydraulicLoadNp() const override;
 
             /*!
@@ -70,6 +75,7 @@ namespace DiKErnel::DomainLibrary
              * \return The default value of the As coefficient.
              *         Unit = [-]
              */
+            [[nodiscard]]
             double GetHydraulicLoadAs() const override;
 
             /*!
@@ -77,6 +83,7 @@ namespace DiKErnel::DomainLibrary
              * \return The default value of the Bs coefficient.
              *         Unit = [-]
              */
+            [[nodiscard]]
             double GetHydraulicLoadBs() const override;
 
             /*!
@@ -84,6 +91,7 @@ namespace DiKErnel::DomainLibrary
              * \return The default value of the Cs coefficient.
              *         Unit = [-]
              */
+            [[nodiscard]]
             double GetHydraulicLoadCs() const override;
 
             /*!
@@ -91,6 +99,7 @@ namespace DiKErnel::DomainLibrary
              * \return The default value of the Ns coefficient.
              *         Unit = [-]
              */
+            [[nodiscard]]
             double GetHydraulicLoadNs() const override;
 
             /*!
@@ -98,6 +107,7 @@ namespace DiKErnel::DomainLibrary
              * \return The default value of the Aus coefficient.
              *         Unit = [-]
              */
+            [[nodiscard]]
             double GetSlopeUpperLevelAus() const override;
 
             /*!
@@ -105,6 +115,7 @@ namespace DiKErnel::DomainLibrary
              * \return The default value of the Als coefficient.
              *         Unit = [-]
              */
+            [[nodiscard]]
             double GetSlopeLowerLevelAls() const override;
 
             /*!
@@ -112,6 +123,7 @@ namespace DiKErnel::DomainLibrary
              * \return The default value of the Aul coefficient.
              *         Unit = [-]
              */
+            [[nodiscard]]
             double GetUpperLimitLoadingAul() const override;
 
             /*!
@@ -119,6 +131,7 @@ namespace DiKErnel::DomainLibrary
              * \return The default value of the Bul coefficient.
              *         Unit = [-]
              */
+            [[nodiscard]]
             double GetUpperLimitLoadingBul() const override;
 
             /*!
@@ -126,6 +139,7 @@ namespace DiKErnel::DomainLibrary
              * \return The default value of the Cul coefficient.
              *         Unit = [-]
              */
+            [[nodiscard]]
             double GetUpperLimitLoadingCul() const override;
 
             /*!
@@ -133,6 +147,7 @@ namespace DiKErnel::DomainLibrary
              * \return The default value of the All coefficient.
              *         Unit = [-]
              */
+            [[nodiscard]]
             double GetLowerLimitLoadingAll() const override;
 
             /*!
@@ -140,6 +155,7 @@ namespace DiKErnel::DomainLibrary
              * \return The default value of the Bll coefficient.
              *         Unit = [-]
              */
+            [[nodiscard]]
             double GetLowerLimitLoadingBll() const override;
 
             /*!
@@ -147,6 +163,7 @@ namespace DiKErnel::DomainLibrary
              * \return The default value of the Cll coefficient.
              *         Unit = [-]
              */
+            [[nodiscard]]
             double GetLowerLimitLoadingCll() const override;
 
             /*!
@@ -154,6 +171,7 @@ namespace DiKErnel::DomainLibrary
              * \return The default value of the Asmax coefficient.
              *         Unit = [-]
              */
+            [[nodiscard]]
             double GetDistanceMaximumWaveElevationAsmax() const override;
 
             /*!
@@ -161,6 +179,7 @@ namespace DiKErnel::DomainLibrary
              * \return The default value of the Bsmax coefficient.
              *         Unit = [-]
              */
+            [[nodiscard]]
             double GetDistanceMaximumWaveElevationBsmax() const override;
 
             /*!
@@ -168,6 +187,7 @@ namespace DiKErnel::DomainLibrary
              * \return The default value of the Awi coefficient.
              *         Unit = [-]
              */
+            [[nodiscard]]
             double GetNormativeWidthOfWaveImpactAwi() const override;
 
             /*!
@@ -175,6 +195,7 @@ namespace DiKErnel::DomainLibrary
              * \return The default value of the Bwi coefficient.
              *         Unit = [-]
              */
+            [[nodiscard]]
             double GetNormativeWidthOfWaveImpactBwi() const override;
 
             /*!
@@ -182,6 +203,7 @@ namespace DiKErnel::DomainLibrary
              * \return The default value of the Betamax coefficient.
              *         Unit = [deg]
              */
+            [[nodiscard]]
             double GetWaveAngleImpactBetamax() const override;
     };
 }
