@@ -19,6 +19,7 @@
 // All rights reserved.
 
 #pragma once
+
 #include <QObject>
 #include <QProperty>
 #include <QStringListModel>

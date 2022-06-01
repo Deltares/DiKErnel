@@ -196,7 +196,7 @@ namespace DiKErnel::Gui
                                                                        .arg(elapsed.count()));
 
         const auto outputFilePathString = OutputFilePath().toString();
-        AddMessage(QString("De resultaten van de berekeningen worden naar bestand \"%1\" geschreven...").arg(outputFilePathString));
+        AddMessage(QString("De resultaten van de berekening worden naar bestand \"%1\" geschreven...").arg(outputFilePathString));
 
         const auto outputComposerResult = JsonOutputComposer::WriteCalculationOutputToJson(
             outputFilePathString.toStdString(),

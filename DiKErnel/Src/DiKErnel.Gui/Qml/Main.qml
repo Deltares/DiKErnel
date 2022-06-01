@@ -22,7 +22,6 @@ import QtQuick
 import QtQuick.Controls
 
 ApplicationWindow {
-    id: root
     minimumWidth: 1024
     minimumHeight: 768
     maximumWidth: 1024
@@ -30,7 +29,5 @@ ApplicationWindow {
     visible: true
     title: "DiKErnel-gui"
 
-    MainScreen {
-        id: mainScreen
-    }
+    MainScreen { }
 }

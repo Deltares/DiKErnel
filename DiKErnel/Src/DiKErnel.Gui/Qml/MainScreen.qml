@@ -36,7 +36,6 @@ Rectangle {
         width: 110
         height: 110
         source: "/Resources/logo.svg"
-        fillMode: Image.PreserveAspectFit
     }
 
     ColumnLayout {
@@ -89,8 +88,14 @@ Rectangle {
 
         Label {
             color: "#2a47b8"
-            text: qsTr("dikernel@deltares.nl")
+            text: qsTr("<a href='mailto:dikernel@deltares.nl'>dikernel@deltares.nl</a>")
             font.pointSize: 10
+            onLinkActivated: Qt.openUrlExternally(link)
+            MouseArea {
+                anchors.fill: parent
+                acceptedButtons: Qt.NoButton
+                cursorShape: parent.hoveredLink ? Qt.PointingHandCursor : Qt.ArrowCursor
+            }
         }
     }
 
@@ -131,7 +136,7 @@ Rectangle {
         width: 375
         height: 32
         readOnly: true
-        placeholderText: qsTr("Invoerbestand")
+        placeholderText: qsTr("Invoerbestand.json")
         text: dikernelApplication.InputFilePath
     }
 
@@ -148,7 +153,7 @@ Rectangle {
         width: 375
         height: 32
         readOnly: true
-        placeholderText: qsTr("Uitvoerbestand")
+        placeholderText: qsTr("Uitvoerbestand.json")
         text: dikernelApplication.OutputFilePath
     }
 
@@ -213,7 +218,6 @@ Rectangle {
         color: "#ffffff"
 
         ListView {
-            id: lv
             anchors {
                 fill: parent
                 margins: 8
@@ -241,8 +245,8 @@ Rectangle {
 
     FileDialog {
         id: inputFileDialog
-        nameFilters : ["Json Files (*.json)"]
-        title: "Please choose a file"
+        nameFilters : ["Json-bestanden (*.json)"]
+        title: "Selecteer een bestand"
         fileMode: FileDialog.OpenFile
         onAccepted: {
             dikernelApplication.SetInputFilePath(inputFileDialog.selectedFile)
@@ -251,8 +255,8 @@ Rectangle {
 
     FileDialog {
         id: outputFileDialog
-        nameFilters : ["Json Files (*.json)"]
-        title: "Please choose a file"
+        nameFilters : ["Json-bestanden (*.json)"]
+        title: "Selecteer een bestand"
         fileMode: FileDialog.SaveFile
         onAccepted: {
             dikernelApplication.SetOutputFilePath(outputFileDialog.selectedFile)
