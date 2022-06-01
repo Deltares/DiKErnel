@@ -63,30 +63,35 @@ namespace DiKErnel::Integration
              * \brief Gets the log failure tension.
              * \return The log failure tension.
              */
+            [[nodiscard]]
             double GetLogFailureTension() const;
 
             /*!
              * \brief Gets the maximum peak stress.
              * \return The maximum peak stress.
              */
+            [[nodiscard]]
             double GetMaximumPeakStress() const;
 
             /*!
              * \brief Gets the stiffness relation.
              * \return The stiffness relation.
              */
+            [[nodiscard]]
             double GetStiffnessRelation() const;
 
             /*!
              * \brief Gets the computational thickness.
              * \return The computational thickness.
              */
+            [[nodiscard]]
             double GetComputationalThickness() const;
 
             /*!
              * \brief Gets the equivalent elastic modulus.
              * \return The equivalent elastic modulus.
              */
+            [[nodiscard]]
             double GetEquivalentElasticModulus() const;
 
         private:

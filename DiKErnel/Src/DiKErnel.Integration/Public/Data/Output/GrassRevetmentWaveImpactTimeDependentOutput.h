@@ -69,42 +69,49 @@ namespace DiKErnel::Integration
              * \brief Gets the loading revetment.
              * \return The loading revetment.
              */
+            [[nodiscard]]
             bool GetLoadingRevetment() const;
 
             /*!
              * \brief Gets the upper limit loading.
              * \return The upper limit loading.
              */
+            [[nodiscard]]
             double GetUpperLimitLoading() const;
 
             /*!
              * \brief Gets the lower limit loading.
              * \return The lower limit loading.
              */
+            [[nodiscard]]
             double GetLowerLimitLoading() const;
 
             /*!
              * \brief Gets the minimum wave height.
              * \return The minimum wave height.
              */
+            [[nodiscard]]
             const double* GetMinimumWaveHeight() const;
 
             /*!
              * \brief Gets the maximum wave height.
              * \return The maximum wave height.
              */
+            [[nodiscard]]
             const double* GetMaximumWaveHeight() const;
 
             /*!
              * \brief Gets the wave angle impact.
              * \return The wave angle impact.
              */
+            [[nodiscard]]
             const double* GetWaveAngleImpact() const;
 
             /*!
              * \brief Gets the wave height impact.
              * \return The wave height impact.
              */
+            [[nodiscard]]
             const double* GetWaveHeightImpact() const;
 
         private:

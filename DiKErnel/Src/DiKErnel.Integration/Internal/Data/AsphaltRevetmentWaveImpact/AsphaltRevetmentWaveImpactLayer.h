@@ -29,8 +29,10 @@ namespace DiKErnel::Integration
                 double thickness,
                 double elasticModulus);
 
+            [[nodiscard]]
             double GetThickness() const;
 
+            [[nodiscard]]
             double GetElasticModulus() const;
 
         private:

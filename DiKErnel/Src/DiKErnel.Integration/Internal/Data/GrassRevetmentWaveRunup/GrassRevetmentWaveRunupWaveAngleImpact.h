@@ -29,8 +29,10 @@ namespace DiKErnel::Integration
                 double abeta,
                 double betamax);
 
+            [[nodiscard]]
             double GetAbeta() const;
 
+            [[nodiscard]]
             double GetBetamax() const;
 
         private:

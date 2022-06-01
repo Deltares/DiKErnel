@@ -31,22 +31,31 @@ namespace DiKErnel::Integration
     class GrassRevetmentWaveRunupLocationDependentInput : public LocationDependentInput
     {
         public:
+            [[nodiscard]]
             double GetOuterSlope() const;
 
+            [[nodiscard]]
             double GetCriticalCumulativeOverload() const;
 
+            [[nodiscard]]
             double GetCriticalFrontVelocity() const;
 
+            [[nodiscard]]
             double GetIncreasedLoadTransitionAlphaM() const;
 
+            [[nodiscard]]
             double GetReducedStrengthTransitionAlphaS() const;
 
+            [[nodiscard]]
             double GetAverageNumberOfWavesCtm() const;
 
+            [[nodiscard]]
             GrassRevetmentWaveRunupRepresentative2P& GetRepresentative2P() const;
 
+            [[nodiscard]]
             GrassRevetmentWaveRunupWaveAngleImpact& GetWaveAngleImpact() const;
 
+            [[nodiscard]]
             bool Validate(
                 const Core::IProfileData& profileData) const override;
 

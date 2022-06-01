@@ -42,18 +42,25 @@ namespace DiKErnel::Integration
                 double upperLimitLoadingAul,
                 double lowerLimitLoadingAll);
 
+            [[nodiscard]]
             GrassRevetmentWaveImpactWaveAngleImpact& GetWaveAngleImpact() const;
 
+            [[nodiscard]]
             double GetMinimumWaveHeightTemax() const;
 
+            [[nodiscard]]
             double GetMaximumWaveHeightTemin() const;
 
+            [[nodiscard]]
             GrassRevetmentWaveImpactTimeLine& GetTimeLine() const;
 
+            [[nodiscard]]
             double GetUpperLimitLoadingAul() const;
 
+            [[nodiscard]]
             double GetLowerLimitLoadingAll() const;
 
+            [[nodiscard]]
             bool Validate(
                 const Core::IProfileData& profileData) const override;
 

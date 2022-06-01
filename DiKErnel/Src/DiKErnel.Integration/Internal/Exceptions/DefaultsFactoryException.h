@@ -30,7 +30,8 @@ namespace DiKErnel::Integration
             explicit DefaultsFactoryException(
                 std::string message);
 
-            const char* what() const throw () override;
+            [[nodiscard]]
+            const char* what() const noexcept override;
 
         private:
             std::string _message;

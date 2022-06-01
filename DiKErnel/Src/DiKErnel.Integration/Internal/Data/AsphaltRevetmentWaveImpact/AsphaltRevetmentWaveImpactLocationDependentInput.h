@@ -50,32 +50,46 @@ namespace DiKErnel::Integration
                 std::vector<std::pair<double, double>> depthFactors,
                 std::vector<std::pair<double, double>> impactFactors);
 
+            [[nodiscard]]
             double GetOuterSlope() const;
 
+            [[nodiscard]]
             double GetFailureTension() const;
 
+            [[nodiscard]]
             double GetDensityOfWater() const;
 
+            [[nodiscard]]
             double GetSoilElasticity() const;
 
+            [[nodiscard]]
             AsphaltRevetmentWaveImpactLayer& GetUpperLayer() const;
 
+            [[nodiscard]]
             AsphaltRevetmentWaveImpactLayer* GetSubLayer() const;
 
+            [[nodiscard]]
             double GetAverageNumberOfWavesCtm() const;
 
+            [[nodiscard]]
             AsphaltRevetmentWaveImpactFatigue& GetFatigue() const;
 
+            [[nodiscard]]
             double GetImpactNumberC() const;
 
+            [[nodiscard]]
             double GetStiffnessRelationNu() const;
 
+            [[nodiscard]]
             const std::vector<std::pair<double, double>>& GetWidthFactors() const;
 
+            [[nodiscard]]
             const std::vector<std::pair<double, double>>& GetDepthFactors() const;
 
+            [[nodiscard]]
             const std::vector<std::pair<double, double>>& GetImpactFactors() const;
 
+            [[nodiscard]]
             bool Validate(
                 const Core::IProfileData& profileData) const override;
 

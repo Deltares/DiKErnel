@@ -61,24 +61,28 @@ namespace DiKErnel::Integration
              * \brief Gets the vertical distance water level elevation.
              * \return The vertical distance water level elevation.
              */
+            [[nodiscard]]
             double GetVerticalDistanceWaterLevelElevation() const;
 
             /*!
              * \brief Gets the wave angle impact.
              * \return The wave angle impact.
              */
+            [[nodiscard]]
             const double* GetWaveAngleImpact() const;
 
             /*!
              * \brief Gets the representative wave run-up 2P.
              * \return The representative wave run-up 2P.
              */
+            [[nodiscard]]
             const double* GetRepresentativeWaveRunup2P() const;
 
             /*!
              * \brief Gets the cumulative overload.
              * \return The cumulative overload.
              */
+            [[nodiscard]]
             const double* GetCumulativeOverload() const;
 
         private:

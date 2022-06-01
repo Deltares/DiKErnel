@@ -133,66 +133,77 @@ namespace DiKErnel::Integration
              * \brief Gets the type of the top layer.
              * \return The type of the top layer.
              */
+            [[nodiscard]]
             GrassRevetmentTopLayerType GetTopLayerType() const;
 
             /*!
              * \brief Gets the Agwi coefficient.
              * \return The Agwi coefficient.
              */
+            [[nodiscard]]
             const double* GetTimeLineAgwi() const;
 
             /*!
              * \brief Gets the Bgwi coefficient.
              * \return The Bgwi coefficient.
              */
+            [[nodiscard]]
             const double* GetTimeLineBgwi() const;
 
             /*!
              * \brief Gets the Cgwi coefficient.
              * \return The Cgwi coefficient.
              */
+            [[nodiscard]]
             const double* GetTimeLineCgwi() const;
 
             /*!
              * \brief Gets the Temax coefficient.
              * \return The Temax coefficient.
              */
+            [[nodiscard]]
             const double* GetMinimumWaveHeightTemax() const;
 
             /*!
              * \brief Gets the Temin coefficient.
              * \return The Temin coefficient.
              */
+            [[nodiscard]]
             const double* GetMaximumWaveHeightTemin() const;
 
             /*!
              * \brief Gets the Nwa coefficient.
              * \return The Nwa coefficient.
              */
+            [[nodiscard]]
             const double* GetWaveAngleImpactNwa() const;
 
             /*!
              * \brief Gets the Qwa coefficient.
              * \return The Qwa coefficient.
              */
+            [[nodiscard]]
             const double* GetWaveAngleImpactQwa() const;
 
             /*!
              * \brief Gets the Rwa coefficient.
              * \return The Rwa coefficient.
              */
+            [[nodiscard]]
             const double* GetWaveAngleImpactRwa() const;
 
             /*!
              * \brief Gets the Aul coefficient.
              * \return The Aul coefficient.
              */
+            [[nodiscard]]
             const double* GetUpperLimitLoadingAul() const;
 
             /*!
              * \brief Gets the All coefficient.
              * \return The All coefficient.
              */
+            [[nodiscard]]
             const double* GetLowerLimitLoadingAll() const;
 
             #pragma endregion

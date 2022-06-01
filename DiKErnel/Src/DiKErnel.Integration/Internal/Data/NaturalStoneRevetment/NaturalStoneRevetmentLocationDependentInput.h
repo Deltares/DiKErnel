@@ -50,24 +50,34 @@ namespace DiKErnel::Integration
                 std::unique_ptr<NaturalStoneRevetmentNormativeWidthOfWaveImpact> normativeWidthOfWaveImpact,
                 std::unique_ptr<NaturalStoneRevetmentWaveAngleImpact> waveAngleImpact);
 
+            [[nodiscard]]
             double GetRelativeDensity() const;
 
+            [[nodiscard]]
             double GetThicknessTopLayer() const;
 
+            [[nodiscard]]
             NaturalStoneRevetmentHydraulicLoads& GetHydraulicLoads() const;
 
+            [[nodiscard]]
             NaturalStoneRevetmentSlope& GetSlope() const;
 
+            [[nodiscard]]
             NaturalStoneRevetmentUpperLimitLoading& GetUpperLimitLoading() const;
 
+            [[nodiscard]]
             NaturalStoneRevetmentLowerLimitLoading& GetLowerLimitLoading() const;
 
+            [[nodiscard]]
             NaturalStoneRevetmentDistanceMaximumWaveElevation& GetDistanceMaximumWaveElevation() const;
 
+            [[nodiscard]]
             NaturalStoneRevetmentNormativeWidthOfWaveImpact& GetNormativeWidthOfWaveImpact() const;
 
+            [[nodiscard]]
             NaturalStoneRevetmentWaveAngleImpact& GetWaveAngleImpact() const;
 
+            [[nodiscard]]
             bool Validate(
                 const Core::IProfileData& profileData) const override;
 

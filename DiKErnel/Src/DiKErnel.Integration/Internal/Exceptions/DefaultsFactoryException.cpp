@@ -28,7 +28,7 @@ namespace DiKErnel::Integration
         string message) :
         _message(move(message)) {}
 
-    const char* DefaultsFactoryException::what() const throw()
+    const char* DefaultsFactoryException::what() const noexcept
     {
         return _message.c_str();
     }

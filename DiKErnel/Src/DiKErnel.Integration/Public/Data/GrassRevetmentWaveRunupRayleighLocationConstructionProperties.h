@@ -71,12 +71,14 @@ namespace DiKErnel::Integration
              * \brief Gets the fixed number of waves.
              * \return The fixed number of waves.
              */
+            [[nodiscard]]
             const int* GetFixedNumberOfWaves() const;
 
             /*!
              * \brief Gets the Cu coefficient.
              * \return The Cu coefficient.
              */
+            [[nodiscard]]
             const double* GetFrontVelocityCu() const;
 
             #pragma endregion

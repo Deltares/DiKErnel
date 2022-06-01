@@ -29,6 +29,7 @@ namespace DiKErnel::Integration
     class LocationDependentInput : public Core::ILocationDependentInput
     {
         public:
+            [[nodiscard]]
             bool Validate(
                 const Core::IProfileData& profileData) const override;
 
@@ -37,12 +38,16 @@ namespace DiKErnel::Integration
                 const Core::ITimeDependentInput& timeDependentInput,
                 const Core::IProfileData& profileData) override;
 
+            [[nodiscard]]
             double GetX() const override;
 
+            [[nodiscard]]
             double GetInitialDamage() const override;
 
+            [[nodiscard]]
             double GetFailureNumber() const override;
 
+            [[nodiscard]]
             double GetZ() const override;
 
         protected:

@@ -50,18 +50,21 @@ namespace DiKErnel::Integration
              * \brief Gets the x coordinate.
              * \return The x coordinate.
              */
+            [[nodiscard]]
             double GetX() const;
 
             /*!
              * \brief Gets the initial damage.
              * \return The initial damage.
              */
+            [[nodiscard]]
             const double* GetInitialDamage() const;
 
             /*!
              * \brief Gets the failure number.
              * \return The failure number.
              */
+            [[nodiscard]]
             const double* GetFailureNumber() const;
 
         protected:

@@ -28,7 +28,7 @@ namespace DiKErnel::Integration
         string message)
         : _message(move(message)) {}
 
-    const char* RevetmentCalculationInputBuilderException::what() const throw()
+    const char* RevetmentCalculationInputBuilderException::what() const noexcept
     {
         return _message.c_str();
     }

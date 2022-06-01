@@ -29,8 +29,10 @@ namespace DiKErnel::Integration
                 double alpha,
                 double beta);
 
+            [[nodiscard]]
             double GetAlpha() const;
 
+            [[nodiscard]]
             double GetBeta() const;
 
         private:

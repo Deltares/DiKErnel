@@ -102,108 +102,126 @@ namespace DiKErnel::Integration
              * \brief Gets the outer slope.
              * \return The outer slope.
              */
+            [[nodiscard]]
             double GetOuterSlope() const;
 
             /*!
              * \brief Gets the slope upper level.
              * \return The slope upper level.
              */
+            [[nodiscard]]
             double GetSlopeUpperLevel() const;
 
             /*!
              * \brief Gets the slope upper position.
              * \return The slope upper position.
              */
+            [[nodiscard]]
             double GetSlopeUpperPosition() const;
 
             /*!
              * \brief Gets the slope lower level.
              * \return The slope lower level.
              */
+            [[nodiscard]]
             double GetSlopeLowerLevel() const;
 
             /*!
              * \brief Gets the slope lower position.
              * \return The slope lower position.
              */
+            [[nodiscard]]
             double GetSlopeLowerPosition() const;
 
             /*!
              * \brief Gets the loading revetment.
              * \return The loading revetment.
              */
+            [[nodiscard]]
             bool GetLoadingRevetment() const;
 
             /*!
              * \brief Gets the surf similarity parameter.
              * \return The surf similarity parameter.
              */
+            [[nodiscard]]
             double GetSurfSimilarityParameter() const;
 
             /*!
              * \brief Gets the wave steepness deep water.
              * \return The wave steepness deep water.
              */
+            [[nodiscard]]
             double GetWaveSteepnessDeepWater() const;
 
             /*!
              * \brief Gets the upper limit loading.
              * \return The upper limit loading.
              */
+            [[nodiscard]]
             double GetUpperLimitLoading() const;
 
             /*!
              * \brief Gets the lower limit loading.
              * \return The lower limit loading.
              */
+            [[nodiscard]]
             double GetLowerLimitLoading() const;
 
             /*!
              * \brief Gets the depth maximum wave load.
              * \return The depth maximum wave load.
              */
+            [[nodiscard]]
             double GetDepthMaximumWaveLoad() const;
 
             /*!
              * \brief Gets the distance maximum wave elevation.
              * \return The distance maximum wave elevation.
              */
+            [[nodiscard]]
             double GetDistanceMaximumWaveElevation() const;
 
             /*!
              * \brief Gets the normative width of wave impact.
              * \return The normative width of wave impact.
              */
+            [[nodiscard]]
             double GetNormativeWidthOfWaveImpact() const;
 
             /*!
              * \brief Gets the hydraulic load.
              * \return The hydraulic load.
              */
+            [[nodiscard]]
             const double* GetHydraulicLoad() const;
 
             /*!
              * \brief Gets the wave angle impact.
              * \return The wave angle impact.
              */
+            [[nodiscard]]
             const double* GetWaveAngleImpact() const;
 
             /*!
              * \brief Gets the resistance.
              * \return The resistance.
              */
+            [[nodiscard]]
             const double* GetResistance() const;
 
             /*!
              * \brief Gets the reference time degradation.
              * \return The reference time degradation.
              */
+            [[nodiscard]]
             const double* GetReferenceTimeDegradation() const;
 
             /*!
              * \brief Gets the reference degradation.
              * \return The reference degradation.
              */
+            [[nodiscard]]
             const double* GetReferenceDegradation() const;
 
         private:

@@ -138,84 +138,98 @@ namespace DiKErnel::Integration
              * \brief Gets the outer slope.
              * \return The outer slope.
              */
+            [[nodiscard]]
             double GetOuterSlope() const;
 
             /*!
              * \brief Gets the type of the top layer.
              * \return The type of the top layer.
              */
+            [[nodiscard]]
             GrassRevetmentTopLayerType GetTopLayerType() const;
 
             /*!
              * \brief Gets the critical cumulative overload.
              * \return The critical cumulative overload.
              */
+            [[nodiscard]]
             const double* GetCriticalCumulativeOverload() const;
 
             /*!
              * \brief Gets the critical front velocity.
              * \return The critical front velocity.
              */
+            [[nodiscard]]
             const double* GetCriticalFrontVelocity() const;
 
             /*!
              * \brief Gets the alpha M coefficient.
              * \return The alpha M coefficient.
              */
+            [[nodiscard]]
             const double* GetIncreasedLoadTransitionAlphaM() const;
 
             /*!
              * \brief Gets the alpha S coefficient.
              * \return The alpha S coefficient.
              */
+            [[nodiscard]]
             const double* GetReducedStrengthTransitionAlphaS() const;
 
             /*!
              * \brief Gets the Ctm coefficient.
              * \return The Ctm coefficient.
              */
+            [[nodiscard]]
             const double* GetAverageNumberOfWavesCtm() const;
 
             /*!
              * \brief Gets the 2P Aru coefficient.
              * \return The 2P Aru coefficient.
              */
+            [[nodiscard]]
             const double* GetRepresentativeWaveRunup2PAru() const;
 
             /*!
              * \brief Gets the 2P Bru coefficient.
              * \return The 2P Bru coefficient.
              */
+            [[nodiscard]]
             const double* GetRepresentativeWaveRunup2PBru() const;
 
             /*!
              * \brief Gets the 2P Cru coefficient.
              * \return The 2P Cru coefficient.
              */
+            [[nodiscard]]
             const double* GetRepresentativeWaveRunup2PCru() const;
 
             /*!
              * \brief Gets the 2P Gammab coefficient.
              * \return The 2P Gammab coefficient.
              */
+            [[nodiscard]]
             const double* GetRepresentativeWaveRunup2PGammab() const;
 
             /*!
              * \brief Gets the 2P Gammaf coefficient.
              * \return The 2P Gammaf coefficient.
              */
+            [[nodiscard]]
             const double* GetRepresentativeWaveRunup2PGammaf() const;
 
             /*!
              * \brief Gets the Abeta coefficient.
              * \return The Abeta coefficient.
              */
+            [[nodiscard]]
             const double* GetWaveAngleImpactAbeta() const;
 
             /*!
              * \brief Gets the Betamax coefficient.
              * \return The Betamax coefficient.
              */
+            [[nodiscard]]
             const double* GetWaveAngleImpactBetamax() const;
 
             #pragma endregion

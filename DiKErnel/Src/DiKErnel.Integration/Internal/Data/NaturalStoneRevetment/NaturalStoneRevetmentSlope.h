@@ -29,8 +29,10 @@ namespace DiKErnel::Integration
                 double upperLevelAus,
                 double lowerLevelAls);
 
+            [[nodiscard]]
             double GetUpperLevelAus() const;
 
+            [[nodiscard]]
             double GetLowerLevelAls() const;
 
         private:

@@ -153,102 +153,119 @@ namespace DiKErnel::Integration
              * \brief Gets the outer slope.
              * \return The outer slope.
              */
+            [[nodiscard]]
             double GetOuterSlope() const;
 
             /*!
              * \brief Gets the type of the top layer.
              * \return The type of the top layer.
              */
+            [[nodiscard]]
             AsphaltRevetmentTopLayerType GetTopLayerType() const;
 
             /*!
              * \brief Gets the failure tension.
              * \return The failure tension.
              */
+            [[nodiscard]]
             double GetFailureTension() const;
 
             /*!
              * \brief Gets the density of water.
              * \return The density of water.
              */
+            [[nodiscard]]
             double GetDensityOfWater() const;
 
             /*!
              * \brief Gets the soil elasticity.
              * \return The soil elasticity.
              */
+            [[nodiscard]]
             double GetSoilElasticity() const;
 
             /*!
              * \brief Gets the thickness of the upper layer.
              * \return The thickness of the upper layer.
              */
+            [[nodiscard]]
             double GetThicknessUpperLayer() const;
 
             /*!
              * \brief Gets the elastic modulus of the upper layer.
              * \return The elastic modulus of the upper layer.
              */
+            [[nodiscard]]
             double GetElasticModulusUpperLayer() const;
 
             /*!
              * \brief Gets the thickness of the sub layer.
              * \return The thickness of the sub layer.
              */
+            [[nodiscard]]
             const double* GetThicknessSubLayer() const;
 
             /*!
              * \brief Gets the elastic modulus of the sub layer.
              * \return The elastic modulus of the sub layer.
              */
+            [[nodiscard]]
             const double* GetElasticModulusSubLayer() const;
 
             /*!
              * \brief Gets the Ctm coefficient.
              * \return The Ctm coefficient.
              */
+            [[nodiscard]]
             const double* GetAverageNumberOfWavesCtm() const;
 
             /*!
              * \brief Gets the fatigue alpha coefficient.
              * \return The fatigue alpha coefficient.
              */
+            [[nodiscard]]
             const double* GetFatigueAlpha() const;
 
             /*!
              * \brief Gets the fatigue beta coefficient.
              * \return The fatigue beta coefficient.
              */
+            [[nodiscard]]
             const double* GetFatigueBeta() const;
 
             /*!
              * \brief Gets the impact number C coefficient.
              * \return The impact number C coefficient.
              */
+            [[nodiscard]]
             const double* GetImpactNumberC() const;
 
             /*!
              * \brief Gets the Nu coefficient.
              * \return The Nu coefficient.
              */
+            [[nodiscard]]
             const double* GetStiffnessRelationNu() const;
 
             /*!
              * \brief Gets the width factors.
              * \return The width factors.
              */
+            [[nodiscard]]
             const std::vector<std::pair<double, double>>* GetWidthFactors() const;
 
             /*!
              * \brief Gets the depth factors.
              * \return The depth factors.
              */
+            [[nodiscard]]
             const std::vector<std::pair<double, double>>* GetDepthFactors() const;
 
             /*!
              * \brief Gets the impact factors.
              * \return The impact factors.
              */
+            [[nodiscard]]
             const std::vector<std::pair<double, double>>* GetImpactFactors() const;
 
             #pragma endregion

@@ -237,150 +237,175 @@ namespace DiKErnel::Integration
              * \brief Gets the type of the top layer.
              * \return The type of the top layer.
              */
+            [[nodiscard]]
             NaturalStoneRevetmentTopLayerType GetTopLayerType() const;
 
             /*!
              * \brief Gets the thickness of the top layer.
              * \return The thickness of the top layer.
              */
+            [[nodiscard]]
             double GetThicknessTopLayer() const;
 
             /*!
              * \brief Gets the relative density.
              * \return The relative density.
              */
+            [[nodiscard]]
             double GetRelativeDensity() const;
 
             /*!
              * \brief Gets the Ap coefficient.
              * \return The Ap coefficient.
              */
+            [[nodiscard]]
             const double* GetHydraulicLoadAp() const;
 
             /*!
              * \brief Gets the Bp coefficient.
              * \return The Bp coefficient.
              */
+            [[nodiscard]]
             const double* GetHydraulicLoadBp() const;
 
             /*!
              * \brief Gets the Cp coefficient.
              * \return The Cp coefficient.
              */
+            [[nodiscard]]
             const double* GetHydraulicLoadCp() const;
 
             /*!
              * \brief Gets the Np coefficient.
              * \return The Np coefficient.
              */
+            [[nodiscard]]
             const double* GetHydraulicLoadNp() const;
 
             /*!
              * \brief Gets the As coefficient.
              * \return The As coefficient.
              */
+            [[nodiscard]]
             const double* GetHydraulicLoadAs() const;
 
             /*!
              * \brief Gets the Bs coefficient.
              * \return The Bs coefficient.
              */
+            [[nodiscard]]
             const double* GetHydraulicLoadBs() const;
 
             /*!
              * \brief Gets the Cs coefficient.
              * \return The Cs coefficient.
              */
+            [[nodiscard]]
             const double* GetHydraulicLoadCs() const;
 
             /*!
              * \brief Gets the Ns coefficient.
              * \return The Ns coefficient.
              */
+            [[nodiscard]]
             const double* GetHydraulicLoadNs() const;
 
             /*!
              * \brief Gets the Xib coefficient.
              * \return The Xib coefficient.
              */
+            [[nodiscard]]
             const double* GetHydraulicLoadXib() const;
 
             /*!
              * \brief Gets the Aus coefficient.
              * \return The Aus coefficient.
              */
+            [[nodiscard]]
             const double* GetSlopeUpperLevelAus() const;
 
             /*!
              * \brief Gets the Als coefficient.
              * \return The Als coefficient.
              */
+            [[nodiscard]]
             const double* GetSlopeLowerLevelAls() const;
 
             /*!
              * \brief Gets the Aul coefficient.
              * \return The Aul coefficient.
              */
+            [[nodiscard]]
             const double* GetUpperLimitLoadingAul() const;
 
             /*!
              * \brief Gets the Bul coefficient.
              * \return The Bul coefficient.
              */
+            [[nodiscard]]
             const double* GetUpperLimitLoadingBul() const;
 
             /*!
              * \brief Gets the Cul coefficient.
              * \return The Cul coefficient.
              */
+            [[nodiscard]]
             const double* GetUpperLimitLoadingCul() const;
 
             /*!
              * \brief Gets the All coefficient.
              * \return The All coefficient.
              */
+            [[nodiscard]]
             const double* GetLowerLimitLoadingAll() const;
 
             /*!
              * \brief Gets the Bll coefficient.
              * \return The Bll coefficient.
              */
+            [[nodiscard]]
             const double* GetLowerLimitLoadingBll() const;
 
             /*!
              * \brief Gets the Cll coefficient.
              * \return The Cll coefficient.
              */
+            [[nodiscard]]
             const double* GetLowerLimitLoadingCll() const;
 
             /*!
              * \brief Gets the Asmax coefficient.
              * \return The Asmax coefficient.
              */
+            [[nodiscard]]
             const double* GetDistanceMaximumWaveElevationAsmax() const;
 
             /*!
              * \brief Gets the Bsmax coefficient.
              * \return The Bsmax coefficient.
              */
+            [[nodiscard]]
             const double* GetDistanceMaximumWaveElevationBsmax() const;
 
             /*!
              * \brief Gets the Awi coefficient.
              * \return The Awi coefficient.
              */
+            [[nodiscard]]
             const double* GetNormativeWidthOfWaveImpactAwi() const;
 
             /*!
              * \brief Gets the Bwi coefficient.
              * \return The Bwi coefficient.
              */
+            [[nodiscard]]
             const double* GetNormativeWidthOfWaveImpactBwi() const;
 
             /*!
              * \brief Gets the Betamax coefficient.
              * \return The Betmax coefficient.
              */
+            [[nodiscard]]
             const double* GetWaveAngleImpactBetamax() const;
 
             #pragma endregion

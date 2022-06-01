@@ -44,10 +44,13 @@ namespace DiKErnel::Integration
                 int fixedNumberOfWaves,
                 double frontVelocityCu);
 
+            [[nodiscard]]
             int GetFixedNumberOfWaves() const;
 
+            [[nodiscard]]
             double GetFrontVelocityCu() const;
 
+            [[nodiscard]]
             bool Validate(
                 const Core::IProfileData& profileData) const override;
 

@@ -29,8 +29,10 @@ namespace DiKErnel::Integration
                 double normativeWidthOfWaveImpactAwi,
                 double normativeWidthOfWaveImpactBwi);
 
+            [[nodiscard]]
             double GetNormativeWidthOfWaveImpactAwi() const;
 
+            [[nodiscard]]
             double GetNormativeWidthOfWaveImpactBwi() const;
 
         private:
