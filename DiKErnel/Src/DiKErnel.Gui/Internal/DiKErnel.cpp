@@ -86,7 +86,7 @@ namespace DiKErnel::Gui
 
     QString DiKErnel::VersionNumber()
     {
-        return QString::fromStdString(VersionString);
+        return QString::fromStdString(VERSION_STRING);
     }
 
     QBindable<QUrl> DiKErnel::BindableInputFilePath()
