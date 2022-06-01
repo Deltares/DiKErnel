@@ -40,11 +40,14 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 std::unique_ptr<JsonInputDamageData> damageData) override;
 
         private:
+            [[nodiscard]]
             std::unique_ptr<JsonInputAsphaltRevetmentWaveImpactLocationData> ParseRevetmentLocationData() const;
 
+            [[nodiscard]]
             std::unique_ptr<std::vector<std::pair<double, double>>> ParseFactorsTable(
                 const nlohmann::json& factorsTable) const;
 
+            [[nodiscard]]
             std::unique_ptr<JsonInputProfileSchematizationData> ParseProfileSchematizationData() const;
     };
 }

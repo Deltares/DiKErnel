@@ -35,8 +35,10 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 std::unique_ptr<JsonInputGrassRevetmentWaveRunupRayleighLocationData> revetmentLocationData,
                 std::unique_ptr<JsonInputGrassRevetmentWaveRunupProfileSchematizationData> profileSchematizationData);
 
+            [[nodiscard]]
             const JsonInputGrassRevetmentWaveRunupRayleighLocationData& GetRevetmentLocationData() const;
 
+            [[nodiscard]]
             const JsonInputGrassRevetmentWaveRunupProfileSchematizationData& GetProfileSchematizationData() const;
 
         private:

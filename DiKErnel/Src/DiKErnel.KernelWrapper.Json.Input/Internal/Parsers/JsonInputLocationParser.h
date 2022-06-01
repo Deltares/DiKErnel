@@ -45,10 +45,13 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 double x,
                 std::unique_ptr<JsonInputDamageData> damageData) = 0;
 
+            [[nodiscard]]
             const nlohmann::json& GetReadLocation() const;
 
+            [[nodiscard]]
             const nlohmann::json& GetReadRevetment() const;
 
+            [[nodiscard]]
             const nlohmann::json& GetReadCalculationMethod() const;
 
         private:

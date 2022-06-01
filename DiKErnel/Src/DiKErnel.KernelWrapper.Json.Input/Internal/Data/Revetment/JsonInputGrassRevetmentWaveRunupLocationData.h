@@ -65,26 +65,37 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
             #pragma region Get methods
 
+            [[nodiscard]]
             JsonInputGrassRevetmentTopLayerType GetTopLayerType() const;
 
+            [[nodiscard]]
             const double* GetCriticalCumulativeOverload() const;
 
+            [[nodiscard]]
             const double* GetCriticalFrontVelocity() const;
 
+            [[nodiscard]]
             const double* GetIncreasedLoadTransitionAlphaM() const;
 
+            [[nodiscard]]
             const double* GetReducedStrengthTransitionAlphaS() const;
 
+            [[nodiscard]]
             const double* GetAverageNumberOfWavesCtm() const;
 
+            [[nodiscard]]
             const double* GetRepresentativeWaveRunup2PAru() const;
 
+            [[nodiscard]]
             const double* GetRepresentativeWaveRunup2PBru() const;
 
+            [[nodiscard]]
             const double* GetRepresentativeWaveRunup2PCru() const;
 
+            [[nodiscard]]
             const double* GetWaveAngleImpactAbeta() const;
 
+            [[nodiscard]]
             const double* GetWaveAngleImpactBetamax() const;
 
             #pragma endregion

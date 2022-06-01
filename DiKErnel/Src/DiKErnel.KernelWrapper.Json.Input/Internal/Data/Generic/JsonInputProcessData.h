@@ -32,6 +32,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
             void SetProcessType(
                 std::unique_ptr<JsonInputProcessType> processType);
 
+            [[nodiscard]]
             const JsonInputProcessType* GetProcessType() const;
 
         private:

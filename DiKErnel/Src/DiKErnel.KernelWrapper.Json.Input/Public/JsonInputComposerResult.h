@@ -48,12 +48,14 @@ namespace DiKErnel::KernelWrapper::Json::Input
              * \brief Gets the composed calculation input.
              * \return The composed calculation input.
              */
+            [[nodiscard]]
             const Core::ICalculationInput& GetCalculationInput() const;
 
             /*!
              * \brief Gets the read process type.
              * \return The read process type.
              */
+            [[nodiscard]]
             JsonInputProcessType GetProcessType() const;
 
         private:

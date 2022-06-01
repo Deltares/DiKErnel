@@ -39,12 +39,16 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 std::vector<std::unique_ptr<JsonInputLocationData>> locationData
             );
 
+            [[nodiscard]]
             const std::vector<int>& GetTimes() const;
 
+            [[nodiscard]]
             const JsonInputHydraulicData& GetHydraulicData() const;
 
+            [[nodiscard]]
             const JsonInputDikeProfileData& GetDikeProfileData() const;
 
+            [[nodiscard]]
             const std::vector<std::reference_wrapper<JsonInputLocationData>>& GetLocationData() const;
 
         private:

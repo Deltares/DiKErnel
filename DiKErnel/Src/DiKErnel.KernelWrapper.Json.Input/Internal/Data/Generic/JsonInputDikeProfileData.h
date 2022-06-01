@@ -33,6 +33,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
             explicit JsonInputDikeProfileData(
                 std::vector<std::unique_ptr<JsonInputDikeProfilePoint>> dikeProfilePoints);
 
+            [[nodiscard]]
             const std::vector<std::reference_wrapper<JsonInputDikeProfilePoint>>& GetDikeProfilePoints() const;
 
         private:

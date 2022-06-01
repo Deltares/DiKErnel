@@ -31,8 +31,10 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 std::unique_ptr<double> initialDamage,
                 std::unique_ptr<double> failureNumber);
 
+            [[nodiscard]]
             const double* GetInitialDamage() const;
 
+            [[nodiscard]]
             const double* GetFailureNumber() const;
 
         private:

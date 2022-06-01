@@ -31,12 +31,16 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 double wavePeriodTm10,
                 double waveAngle);
 
+            [[nodiscard]]
             double GetWaterLevel() const;
 
+            [[nodiscard]]
             double GetWaveHeightHm0() const;
 
+            [[nodiscard]]
             double GetWavePeriodTm10() const;
 
+            [[nodiscard]]
             double GetWaveAngle() const;
 
         private:

@@ -35,8 +35,10 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 std::unique_ptr<JsonInputAsphaltRevetmentWaveImpactLocationData> revetmentLocationData,
                 std::unique_ptr<JsonInputProfileSchematizationData> profileSchematizationData);
 
+            [[nodiscard]]
             const JsonInputAsphaltRevetmentWaveImpactLocationData& GetRevetmentLocationData() const;
 
+            [[nodiscard]]
             const JsonInputProfileSchematizationData& GetProfileSchematizationData() const;
 
         private:

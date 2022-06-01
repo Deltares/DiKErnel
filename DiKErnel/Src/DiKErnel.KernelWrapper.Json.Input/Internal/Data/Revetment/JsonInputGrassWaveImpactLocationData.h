@@ -33,6 +33,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 std::unique_ptr<JsonInputDamageData> damageData,
                 std::unique_ptr<JsonInputGrassRevetmentWaveImpactLocationData> revetmentLocationData);
 
+            [[nodiscard]]
             const JsonInputGrassRevetmentWaveImpactLocationData& GetRevetmentLocationData() const;
 
         private:

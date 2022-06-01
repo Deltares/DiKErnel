@@ -35,8 +35,10 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 double x,
                 std::unique_ptr<JsonInputDamageData> damageData);
 
+            [[nodiscard]]
             double GetX() const;
 
+            [[nodiscard]]
             const JsonInputDamageData& GetDamageData() const;
 
         private:

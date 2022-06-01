@@ -41,10 +41,12 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 std::unique_ptr<JsonInputDamageData> damageData) override;
 
         private:
+            [[nodiscard]]
             std::unique_ptr<JsonInputGrassRevetmentWaveRunupRayleighLocationData> ParseRevetmentLocationData(
                 const nlohmann::json& readCalculationMethod,
                 const nlohmann::json& readCalculationProtocol) const;
 
+            [[nodiscard]]
             std::unique_ptr<JsonInputGrassRevetmentWaveRunupProfileSchematizationData> ParseProfileSchematizationData() const;
 
             static std::unique_ptr<JsonInputGrassRevetmentWaveRunupRayleighLocationData> ParseRayleighRevetmentLocationData(

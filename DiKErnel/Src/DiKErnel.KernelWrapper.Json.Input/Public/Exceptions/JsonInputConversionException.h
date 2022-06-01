@@ -42,7 +42,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
              * \brief Gets the message of the exception.
              * \return The message of the exception.
              */
-            const char* what() const throw () override;
+            [[nodiscard]]
+            const char* what() const noexcept override;
 
         private:
             std::string _message;

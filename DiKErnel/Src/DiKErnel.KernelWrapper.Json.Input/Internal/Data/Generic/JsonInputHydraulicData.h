@@ -34,6 +34,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 std::vector<std::unique_ptr<JsonInputTimeDependentHydraulicData>> timeDependentHydraulicData
             );
 
+            [[nodiscard]]
             const std::vector<std::reference_wrapper<JsonInputTimeDependentHydraulicData>>& GetTimeDependentHydraulicData() const;
 
         private:

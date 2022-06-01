@@ -68,26 +68,37 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
             #pragma region Get methods
 
+            [[nodiscard]]
             JsonInputGrassRevetmentTopLayerType GetTopLayerType() const;
 
+            [[nodiscard]]
             const double* GetTimeLineAgwi() const;
 
+            [[nodiscard]]
             const double* GetTimeLineBgwi() const;
 
+            [[nodiscard]]
             const double* GetTimeLineCgwi() const;
 
+            [[nodiscard]]
             const double* GetMinimumWaveHeightTemax() const;
 
+            [[nodiscard]]
             const double* GetMaximumWaveHeightTemin() const;
 
+            [[nodiscard]]
             const double* GetWaveAngleImpactNwa() const;
 
+            [[nodiscard]]
             const double* GetWaveAngleImpactQwa() const;
 
+            [[nodiscard]]
             const double* GetWaveAngleImpactRwa() const;
 
+            [[nodiscard]]
             const double* GetUpperLimitLoadingAul() const;
 
+            [[nodiscard]]
             const double* GetLowerLimitLoadingAll() const;
 
             #pragma endregion

@@ -28,7 +28,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
         string message)
         : _message(move(message)) {}
 
-    const char* JsonInputConversionException::what() const throw()
+    const char* JsonInputConversionException::what() const noexcept
     {
         return _message.c_str();
     }

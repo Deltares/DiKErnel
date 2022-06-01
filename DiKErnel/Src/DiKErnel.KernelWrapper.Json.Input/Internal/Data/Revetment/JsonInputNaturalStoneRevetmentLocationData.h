@@ -106,54 +106,79 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
             #pragma region Get methods
 
+            [[nodiscard]]
             JsonInputNaturalStoneRevetmentTopLayerType GetTopLayerType() const;
 
+            [[nodiscard]]
             double GetRelativeDensity() const;
 
+            [[nodiscard]]
             double GetThicknessTopLayer() const;
 
+            [[nodiscard]]
             const double* GetHydraulicLoadXib() const;
 
+            [[nodiscard]]
             const double* GetHydraulicLoadAp() const;
 
+            [[nodiscard]]
             const double* GetHydraulicLoadBp() const;
 
+            [[nodiscard]]
             const double* GetHydraulicLoadCp() const;
 
+            [[nodiscard]]
             const double* GetHydraulicLoadNp() const;
 
+            [[nodiscard]]
             const double* GetHydraulicLoadAs() const;
 
+            [[nodiscard]]
             const double* GetHydraulicLoadBs() const;
 
+            [[nodiscard]]
             const double* GetHydraulicLoadCs() const;
 
+            [[nodiscard]]
             const double* GetHydraulicLoadNs() const;
 
+            [[nodiscard]]
             const double* GetSlopeUpperLevelAus() const;
 
+            [[nodiscard]]
             const double* GetSlopeLowerLevelAls() const;
 
+            [[nodiscard]]
             const double* GetUpperLimitLoadingAul() const;
 
+            [[nodiscard]]
             const double* GetUpperLimitLoadingBul() const;
 
+            [[nodiscard]]
             const double* GetUpperLimitLoadingCul() const;
 
+            [[nodiscard]]
             const double* GetLowerLimitLoadingAll() const;
 
+            [[nodiscard]]
             const double* GetLowerLimitLoadingBll() const;
 
+            [[nodiscard]]
             const double* GetLowerLimitLoadingCll() const;
 
+            [[nodiscard]]
             const double* GetDistanceMaximumWaveElevationAsmax() const;
 
+            [[nodiscard]]
             const double* GetDistanceMaximumWaveElevationBsmax() const;
 
+            [[nodiscard]]
             const double* GetNormativeWidthOfWaveImpactAwi() const;
 
+            [[nodiscard]]
             const double* GetNormativeWidthOfWaveImpactBwi() const;
 
+            [[nodiscard]]
             const double* GetWaveAngleImpactBetamax() const;
 
             #pragma endregion

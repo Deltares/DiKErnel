@@ -74,36 +74,52 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
             #pragma region Get methods
 
+            [[nodiscard]]
             JsonInputAsphaltRevetmentTopLayerType GetTopLayerType() const;
 
+            [[nodiscard]]
             double GetFailureTension() const;
 
+            [[nodiscard]]
             double GetDensityOfWater() const;
 
+            [[nodiscard]]
             double GetSoilElasticity() const;
 
+            [[nodiscard]]
             double GetThicknessUpperLayer() const;
 
+            [[nodiscard]]
             double GetElasticModulusUpperLayer() const;
 
+            [[nodiscard]]
             const double* GetThicknessSubLayer() const;
 
+            [[nodiscard]]
             const double* GetElasticModulusSubLayer() const;
 
+            [[nodiscard]]
             const double* GetAverageNumberOfWavesCtm() const;
 
+            [[nodiscard]]
             const double* GetFatigueAlpha() const;
 
+            [[nodiscard]]
             const double* GetFatigueBeta() const;
 
+            [[nodiscard]]
             const double* GetImpactNumberC() const;
 
+            [[nodiscard]]
             const double* GetStiffnessRelationNu() const;
 
+            [[nodiscard]]
             const std::vector<std::pair<double, double>>* GetWidthFactors() const;
 
+            [[nodiscard]]
             const std::vector<std::pair<double, double>>* GetDepthFactors() const;
 
+            [[nodiscard]]
             const std::vector<std::pair<double, double>>* GetImpactFactors() const;
 
             #pragma endregion

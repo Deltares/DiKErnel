@@ -30,6 +30,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
             explicit JsonInputProfileSchematizationData(
                 double outerSlope);
 
+            [[nodiscard]]
             double GetOuterSlope() const;
 
         private:

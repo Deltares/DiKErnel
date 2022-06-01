@@ -45,8 +45,10 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
             #pragma region Get methods
 
+            [[nodiscard]]
             const int* GetFixedNumberOfWaves() const;
 
+            [[nodiscard]]
             const double* GetFrontVelocityCu() const;
 
             #pragma endregion

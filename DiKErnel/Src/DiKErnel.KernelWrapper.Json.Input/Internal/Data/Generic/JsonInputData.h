@@ -34,8 +34,10 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 std::unique_ptr<JsonInputProcessData> processData,
                 std::unique_ptr<JsonInputCalculationData> calculationData);
 
+            [[nodiscard]]
             const JsonInputProcessData& GetProcessData() const;
 
+            [[nodiscard]]
             const JsonInputCalculationData& GetCalculationData() const;
 
         private:

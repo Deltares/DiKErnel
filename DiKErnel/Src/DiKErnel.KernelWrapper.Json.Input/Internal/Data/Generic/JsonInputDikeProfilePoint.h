@@ -36,10 +36,13 @@ namespace DiKErnel::KernelWrapper::Json::Input
             void SetCharacteristicPointType(
                 std::unique_ptr<JsonInputCharacteristicPointType> characteristicPointType);
 
+            [[nodiscard]]
             double GetX() const;
 
+            [[nodiscard]]
             double GetZ() const;
 
+            [[nodiscard]]
             const JsonInputCharacteristicPointType* GetCharacteristicPointType() const;
 
         private:
