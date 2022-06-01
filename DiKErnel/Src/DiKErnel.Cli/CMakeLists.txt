@@ -36,13 +36,13 @@ source_group("" FILES ${SOURCEFILES})
 source_group(${INTERNAL_FOLDER} FILES ${INTERNAL_SOURCEFILES})
 
 # Expose header files
-if(NOT BUILD_FOR_RELEASE)
-  target_include_directories(${EXENAME} PUBLIC
-    ${CMAKE_CURRENT_SOURCE_DIR}/${INTERNAL_FOLDER}
-  )
-else()
+if(BUILD_FOR_RELEASE)
   target_include_directories(${EXENAME}
     PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/${INTERNAL_FOLDER}
+  )
+else()
+  target_include_directories(${EXENAME} PUBLIC
+    ${CMAKE_CURRENT_SOURCE_DIR}/${INTERNAL_FOLDER}
   )
 endif()
 
