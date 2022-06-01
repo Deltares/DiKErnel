@@ -24,8 +24,6 @@
 #include <vector>
 
 #include "ICalculationInput.h"
-#include "LocationDependentInput.h"
-#include "TimeDependentInput.h"
 
 namespace DiKErnel::Integration
 {
@@ -34,8 +32,8 @@ namespace DiKErnel::Integration
         public:
             explicit CalculationInput(
                 std::unique_ptr<Core::IProfileData> profileData,
-                std::vector<std::unique_ptr<LocationDependentInput>> locationDependentInputItems,
-                std::vector<std::unique_ptr<TimeDependentInput>> timeDependentInputItems);
+                std::vector<std::unique_ptr<Core::ILocationDependentInput>> locationDependentInputItems,
+                std::vector<std::unique_ptr<Core::ITimeDependentInput>> timeDependentInputItems);
 
             bool Validate() const override;
 
@@ -47,9 +45,9 @@ namespace DiKErnel::Integration
 
         private:
             std::unique_ptr<Core::IProfileData> _profileData;
-            std::vector<std::unique_ptr<LocationDependentInput>> _locationDependentInputItems;
+            std::vector<std::unique_ptr<Core::ILocationDependentInput>> _locationDependentInputItems;
             std::vector<std::reference_wrapper<Core::ILocationDependentInput>> _locationDependentInputItemReferences;
-            std::vector<std::unique_ptr<TimeDependentInput>> _timeDependentInputItems;
+            std::vector<std::unique_ptr<Core::ITimeDependentInput>> _timeDependentInputItems;
             std::vector<std::reference_wrapper<Core::ITimeDependentInput>> _timeDependentInputItemReferences;
     };
 }

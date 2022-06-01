@@ -21,7 +21,7 @@
 #pragma once
 
 #include "AsphaltRevetmentWaveImpactLocationConstructionProperties.h"
-#include "CalculationInput.h"
+#include "ICalculationInput.h"
 #include "GrassRevetmentWaveImpactLocationConstructionProperties.h"
 #include "GrassRevetmentWaveRunupRayleighLocationConstructionProperties.h"
 #include "NaturalStoneRevetmentLocationConstructionProperties.h"
@@ -121,9 +121,10 @@ namespace DiKErnel::Integration
             std::vector<std::unique_ptr<Core::ProfilePoint>> _profilePoints = std::vector<std::unique_ptr<Core::ProfilePoint>>();
             std::vector<std::unique_ptr<Core::CharacteristicPoint>> _characteristicPoints
                     = std::vector<std::unique_ptr<Core::CharacteristicPoint>>();
-            std::vector<std::unique_ptr<TimeDependentInput>> _timeDependentInputItems = std::vector<std::unique_ptr<TimeDependentInput>>();
-            std::vector<std::unique_ptr<LocationDependentInput>> _locationDependentInputItems
-                    = std::vector<std::unique_ptr<LocationDependentInput>>();
+            std::vector<std::unique_ptr<Core::ITimeDependentInput>> _timeDependentInputItems
+                    = std::vector<std::unique_ptr<Core::ITimeDependentInput>>();
+            std::vector<std::unique_ptr<Core::ILocationDependentInput>> _locationDependentInputItems
+                    = std::vector<std::unique_ptr<Core::ILocationDependentInput>>();
 
             template <typename TValue>
             static TValue GetValue(

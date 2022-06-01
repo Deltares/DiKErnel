@@ -31,8 +31,8 @@ namespace DiKErnel::Integration
 
     CalculationInput::CalculationInput(
         unique_ptr<IProfileData> profileData,
-        vector<unique_ptr<LocationDependentInput>> locationDependentInputItems,
-        vector<unique_ptr<TimeDependentInput>> timeDependentInputItems)
+        vector<unique_ptr<ILocationDependentInput>> locationDependentInputItems,
+        vector<unique_ptr<ITimeDependentInput>> timeDependentInputItems)
         : _profileData(move(profileData)),
           _locationDependentInputItems(move(locationDependentInputItems)),
           _timeDependentInputItems(move(timeDependentInputItems))

@@ -22,6 +22,7 @@
 
 #include "AsphaltRevetmentWaveImpactDefaultsFactory.h"
 #include "AsphaltRevetmentWaveImpactLocationDependentInput.h"
+#include "CalculationInput.h"
 #include "DefaultsFactoryException.h"
 #include "GrassRevetmentWaveImpactDefaultsFactory.h"
 #include "GrassRevetmentWaveImpactLocationDependentInput.h"
@@ -36,6 +37,7 @@
 #include "ProfileData.h"
 #include "RevetmentCalculationInputBuilderException.h"
 #include "RevetmentDefaults.h"
+#include "TimeDependentInput.h"
 
 namespace DiKErnel::Integration
 {
@@ -88,8 +90,8 @@ namespace DiKErnel::Integration
             constructionProperties.GetThicknessUpperLayer(),
             elasticModulusUpperLayer);
 
-        auto thicknessSubLayer = constructionProperties.GetThicknessSubLayer();
-        auto elasticModulusSubLayer = constructionProperties.GetElasticModulusSubLayer();
+        const auto thicknessSubLayer = constructionProperties.GetThicknessSubLayer();
+        const auto elasticModulusSubLayer = constructionProperties.GetElasticModulusSubLayer();
         unique_ptr<AsphaltRevetmentWaveImpactLayer> subLayer = nullptr;
         if (thicknessSubLayer != nullptr && elasticModulusSubLayer != nullptr)
         {
