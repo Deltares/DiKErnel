@@ -47,12 +47,14 @@ namespace DiKErnel::Util
              * \brief Gets the message.
              * \return The message.
              */
+            [[nodiscard]]
             std::string GetMessage() const;
 
             /*!
              * \brief Gets the event type.
              * \return The event type.
              */
+            [[nodiscard]]
             EventType GetEventType() const;
 
         private:

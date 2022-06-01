@@ -49,12 +49,14 @@ namespace DiKErnel::Util
              * \brief Gets whether the operation was successful.
              * \return Whether the operation was successful.
              */
+            [[nodiscard]]
             bool GetSuccessful() const;
 
             /*!
              * \brief Gets the events.
              * \return The events.
              */
+            [[nodiscard]]
             const std::vector<std::reference_wrapper<Event>>& GetEvents() const;
 
         private:

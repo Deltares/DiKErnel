@@ -60,6 +60,7 @@ namespace DiKErnel::Util
              * \brief Gets the data that was produced.
              * \return The data that was produced.
              */
+            [[nodiscard]]
             const T* GetData() const
             {
                 return _data.get();
