@@ -36,6 +36,7 @@ Rectangle {
         width: 110
         height: 110
         source: "/Resources/logo.svg"
+        sourceSize: Qt.size(110, 110)
     }
 
     ColumnLayout {
