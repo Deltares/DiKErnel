@@ -66,12 +66,20 @@ namespace DiKErnel::Cli
     string CommandLineArgumentParser::GetHelpMessage()
     {
         stringstream message;
-        message << "********************** DiKErnel instructies **********************" << endl;
-        message << "DiKErnel heeft 2 argumenten nodig om te kunnen draaien" << endl;
-        message << "    <pad_naar_input.json>" << endl;
-        message << "    <pad_naar_output.json>" << endl;
-        message << "DiKErnel kan gebruikt worden door DiKErnel-cli.exe te starten vanuit de command line met deze argumenten" << endl;
-        message << "Voorbeeld: DiKernel.exe Berekening1.json UitvoerBerekening1.json" << endl << endl;
+
+        message << endl;
+        message << "   Deze executable kan worden gebruikt voor het uitvoeren van een command line berekening met DiKErnel." << endl;
+        message << endl;
+        message << "   Verplichte argumenten (in deze volgorde):" << endl;
+        message << "   -----------------------------------------" << endl;
+        message << "   <pad_naar_input.json>    = het pad van het invoerbestand" << endl;
+        message << "   <pad_naar_output.json>   = het pad van het uitvoerbestand (dat ook de locatie van het eventuele logbestand bepaalt)" << endl;
+        message << endl;
+        message << "   Voorbeeld:" << endl;
+        message << "   ----------" << endl;
+        message << "   DiKErnel-cli.exe Berekening1.json UitvoerBerekening1.json" << endl;
+        message << endl;
+        message << "   Bij vragen of onduidelijkheden kunt u contact met ons opnemen via dikernel@deltares.nl." << endl;
 
         return message.str();
     }
