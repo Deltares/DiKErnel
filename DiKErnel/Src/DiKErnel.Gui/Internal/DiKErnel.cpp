@@ -218,7 +218,7 @@ namespace DiKErnel::Gui
         }
         catch (const exception&)
         {
-            LogClosingMessage("Er is een onverwachte fout opgetreden.");
+            LogClosingMessage("Er is een onverwachte fout opgetreden. Indien gewenst kunt u contact met ons opnemen via dikernel@deltares.nl.");
         }
     }
 
