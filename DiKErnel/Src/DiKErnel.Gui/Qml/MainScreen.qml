@@ -47,22 +47,34 @@ Rectangle {
 
         Label {
             text: qsTr("Applicatie")
-            font.pointSize: 10
+            font {
+                pointSize: 10
+                weight: Font.DemiBold
+            }
         }
 
         Label {
             text: qsTr("Versie")
-            font.pointSize: 10
+            font {
+                pointSize: 10
+                weight: Font.DemiBold
+            }
         }
 
         Label {
             text: qsTr("Bedrijf")
-            font.pointSize: 10
+            font {
+                pointSize: 10
+                weight: Font.DemiBold
+            }
         }
 
         Label {
             text: qsTr("Contact")
-            font.pointSize: 10
+            font {
+                pointSize: 10
+                weight: Font.DemiBold
+            }
         }
     }
 
@@ -102,10 +114,12 @@ Rectangle {
 
     ToolSeparator {
         y: 160
-        anchors.left: parent.left
-        anchors.right: parent.right
-        anchors.leftMargin: 25
-        anchors.rightMargin: 25
+        anchors {
+            left: parent.left
+            right: parent.right
+            leftMargin: 25
+            rightMargin: 25
+        }
         rightPadding: 0
         leftPadding: 0
         bottomPadding: 0
@@ -119,18 +133,30 @@ Rectangle {
         width: 600
         height: 110
         color: "#00ffffff"
-        border.width: 1
-        border.color: "#d3d3d3"
+        border {
+            width: 1
+            color: "#d3d3d3"
+        }
 
         Text {
-            text: qsTr("Disclaimer: De ALPHA versie van DiKErnel is nog in de testfase en zal op vele onderdelen nog moeten worden verbeterd en uitgebreid. Het doel van deze ALPHA versie is om feedback te ontvangen op het huidige functioneren en om tekortkomingen te detecteren. DiKErnel dient met de grootst mogelijke voorzichtigheid te worden geïnstalleerd en gebruikt. Op geen enkele manier mag er worden vertrouwd op de beschikbare resultaten, de bijgeleverde softwaredocumentatie en al het andere materiaal dat bij deze versie beschikbaar wordt gesteld.")
-            anchors.fill: parent
+            textFormat: Text.RichText
+            text: "<html>
+                        <div style='font-weight: 600;'>Disclaimer: </div>
+                        De ALPHA versie van DiKErnel is nog in de testfase en zal op vele onderdelen nog moeten worden verbeterd en uitgebreid. 
+                        Het doel van deze ALPHA versie is om feedback te ontvangen op het huidige functioneren en om tekortkomingen te detecteren. 
+                        DiKErnel dient met de grootst mogelijke voorzichtigheid te worden geïnstalleerd en gebruikt. Op geen enkele manier mag er 
+                        worden vertrouwd op de beschikbare resultaten, de bijgeleverde softwaredocumentatie en al het andere materiaal dat bij 
+                        deze versie beschikbaar wordt gesteld.
+                  </html>"
             horizontalAlignment: Text.AlignJustify
             wrapMode: Text.Wrap
-            anchors.rightMargin: 10
-            anchors.bottomMargin: 6
-            anchors.leftMargin: 10
-            anchors.topMargin: 6
+            anchors {
+                fill: parent
+                rightMargin: 10
+                bottomMargin: 6
+                leftMargin: 10
+                topMargin: 6
+            }
             font.pointSize: 9
         }
     }
@@ -190,8 +216,10 @@ Rectangle {
     Button {
         y: 209
         text: qsTr("Start")
-        anchors.right: parent.right
-        anchors.rightMargin: 25
+        anchors {
+            right: parent.right
+            rightMargin: 25
+        }
         rightPadding: 20
         leftPadding: 20
         enabled: dikernelApplication.StartEnabled
@@ -200,10 +228,12 @@ Rectangle {
 
     Button {
         text: qsTr("Wissen")
-        anchors.right: parent.right
-        anchors.bottom: parent.bottom
-        anchors.rightMargin: 25
-        anchors.bottomMargin: 25
+        anchors {
+            right: parent.right
+            bottom: parent.bottom
+            rightMargin: 25
+            bottomMargin: 25
+        }
         leftPadding: 20
         rightPadding: 20
         onClicked: dikernelApplication.ClearLogMessages()
@@ -211,10 +241,12 @@ Rectangle {
 
     Button {
         text: qsTr("Kopieer naar klembord")
-        anchors.right: parent.right
-        anchors.bottom: parent.bottom
-        anchors.bottomMargin: 25
-        anchors.rightMargin: 117
+        anchors {
+            right: parent.right
+            bottom: parent.bottom
+            bottomMargin: 25
+            rightMargin: 117
+        }
         leftPadding: 20
         rightPadding: 20
         onClicked: dikernelApplication.CopyToClipboard()
@@ -222,14 +254,16 @@ Rectangle {
 
     Rectangle {
         color: "#ffffff"
-        anchors.left: parent.left
-        anchors.right: parent.right
-        anchors.top: parent.top
-        anchors.bottom: parent.bottom
-        anchors.leftMargin: 25
-        anchors.topMargin: 247
-        anchors.rightMargin: 25
-        anchors.bottomMargin: 63
+        anchors {
+            left: parent.left
+            right: parent.right
+            top: parent.top
+            bottom: parent.bottom
+            leftMargin: 25
+            topMargin: 247
+            rightMargin: 25
+            bottomMargin: 63
+        }
 
         ListView {
             anchors {
