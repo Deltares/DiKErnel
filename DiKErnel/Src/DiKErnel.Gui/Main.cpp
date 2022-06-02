@@ -24,11 +24,6 @@ int main(
     int argc,
     char* argv[])
 {
-    set_terminate([]
-    {
-        _exit(-1);
-    });
-
     DiKErnel::Gui::DiKErnel diKErnel(argc, argv);
 
     return 0;

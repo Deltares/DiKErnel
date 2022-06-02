@@ -1,4 +1,4 @@
-﻿// Copyright (C) Stichting Deltares 2022. All rights reserved.
+// Copyright (C) Stichting Deltares 2022. All rights reserved.
 //
 // This file is part of DiKErnel.
 //
@@ -123,96 +123,103 @@ namespace DiKErnel::Gui
 
     void DiKErnel::StartCalculation()
     {
-        const auto inputFilePathString = InputFilePath().toString();
-        AddMessage(QString("De invoer uit bestand \"%1\" wordt gelezen...").arg(inputFilePathString));
-
-        const auto inputComposerResult = JsonInputComposer::GetInputDataFromJson(
-            inputFilePathString.toStdString());
-
-        LogEventsWhenApplicable("De volgende meldingen zijn opgetreden tijdens het lezen van de invoer:", inputComposerResult->GetEvents());
-
-        if (!inputComposerResult->GetSuccessful())
+        try
         {
-            LogClosingMessage("Het lezen van de invoer is mislukt.");
-            return;
+            const auto inputFilePathString = InputFilePath().toString();
+            AddMessage(QString("De invoer uit bestand \"%1\" wordt gelezen...").arg(inputFilePathString));
+
+            const auto inputComposerResult = JsonInputComposer::GetInputDataFromJson(
+                inputFilePathString.toStdString());
+
+            LogEventsWhenApplicable("De volgende meldingen zijn opgetreden tijdens het lezen van de invoer:", inputComposerResult->GetEvents());
+
+            if (!inputComposerResult->GetSuccessful())
+            {
+                LogClosingMessage("Het lezen van de invoer is mislukt.");
+                return;
+            }
+
+            AddMessage("Het lezen van de invoer is voltooid.");
+
+            const auto* inputData = inputComposerResult->GetData();
+            const auto& calculationInput = inputData->GetCalculationInput();
+
+            AddMessage("De invoer wordt gevalideerd...");
+
+            const auto validationResult = Validator::Validate(calculationInput);
+
+            LogEventsWhenApplicable("De volgende meldingen zijn opgetreden tijdens het valideren van de invoer:", validationResult->GetEvents());
+
+            if (*validationResult->GetData() == ValidationResultType::Failed)
+            {
+                LogClosingMessage("De invoer is ongeldig.");
+                return;
+            }
+
+            if (!validationResult->GetSuccessful())
+            {
+                LogClosingMessage("Het valideren van de invoer is mislukt.");
+                return;
+            }
+
+            AddMessage("Het valideren van de invoer is voltooid.");
+
+            AddMessage("De berekening wordt uitgevoerd...");
+
+            const auto startTime = chrono::high_resolution_clock::now();
+
+            Calculator calculator(calculationInput);
+            calculator.WaitForCompletion();
+
+            const auto calculatorResult = calculator.GetResult();
+
+            LogEventsWhenApplicable("De volgende meldingen zijn opgetreden tijdens de berekening:", calculatorResult->GetEvents());
+
+            if (calculator.GetCalculationState() != CalculationState::FinishedSuccessfully || !calculatorResult->GetSuccessful())
+            {
+                LogClosingMessage("De berekening is mislukt.");
+                return;
+            }
+
+            AddMessage("De berekening is voltooid.");
+
+            const auto endTime = chrono::high_resolution_clock::now();
+            const chrono::duration<double> elapsed = endTime - startTime;
+
+            const auto numberOfLocations = calculationInput.GetLocationDependentInputItems().size();
+            const auto numberOfTimeSteps = calculationInput.GetTimeDependentInputItems().size() - 1;
+
+            const QString locationString = QString(numberOfLocations == 1 ? "is %1 locatie" : "zijn %1 locaties")
+                    .arg(numberOfLocations);
+
+            AddMessage(QString("Er %1 voor %2 %3 berekend in %4 seconden.").arg(locationString)
+                                                                           .arg(numberOfTimeSteps)
+                                                                           .arg(numberOfTimeSteps == 1 ? "tijdstap" : "tijdstappen")
+                                                                           .arg(elapsed.count()));
+
+            const auto outputFilePathString = OutputFilePath().toString();
+            AddMessage(QString("De resultaten van de berekening worden naar bestand \"%1\" geschreven...").arg(outputFilePathString));
+
+            const auto outputComposerResult = JsonOutputComposer::WriteCalculationOutputToJson(
+                outputFilePathString.toStdString(),
+                *calculatorResult->GetData(),
+                ConvertProcessType(inputData->GetProcessType()));
+
+            LogEventsWhenApplicable("De volgende meldingen zijn opgetreden tijdens het schrijven van de resultaten:",
+                                    outputComposerResult->GetEvents());
+
+            if (!outputComposerResult->GetSuccessful())
+            {
+                LogClosingMessage("Het schrijven van de resultaten is mislukt.");
+                return;
+            }
+
+            LogClosingMessage("Het schrijven van de resultaten is voltooid.");
         }
-
-        AddMessage("Het lezen van de invoer is voltooid.");
-
-        const auto* inputData = inputComposerResult->GetData();
-        const auto& calculationInput = inputData->GetCalculationInput();
-
-        AddMessage("De invoer wordt gevalideerd...");
-
-        const auto validationResult = Validator::Validate(calculationInput);
-
-        LogEventsWhenApplicable("De volgende meldingen zijn opgetreden tijdens het valideren van de invoer:", validationResult->GetEvents());
-
-        if (*validationResult->GetData() == ValidationResultType::Failed)
+        catch (const exception&)
         {
-            LogClosingMessage("De invoer is ongeldig.");
-            return;
+            LogClosingMessage("Er is een onverwachte fout opgetreden.");
         }
-
-        if (!validationResult->GetSuccessful())
-        {
-            LogClosingMessage("Het valideren van de invoer is mislukt.");
-            return;
-        }
-
-        AddMessage("Het valideren van de invoer is voltooid.");
-
-        AddMessage("De berekening wordt uitgevoerd...");
-
-        const auto startTime = chrono::high_resolution_clock::now();
-
-        Calculator calculator(calculationInput);
-        calculator.WaitForCompletion();
-
-        const auto calculatorResult = calculator.GetResult();
-
-        LogEventsWhenApplicable("De volgende meldingen zijn opgetreden tijdens de berekening:", calculatorResult->GetEvents());
-
-        if (calculator.GetCalculationState() != CalculationState::FinishedSuccessfully || !calculatorResult->GetSuccessful())
-        {
-            LogClosingMessage("De berekening is mislukt.");
-            return;
-        }
-
-        AddMessage("De berekening is voltooid.");
-
-        const auto endTime = chrono::high_resolution_clock::now();
-        const chrono::duration<double> elapsed = endTime - startTime;
-
-        const auto numberOfLocations = calculationInput.GetLocationDependentInputItems().size();
-        const auto numberOfTimeSteps = calculationInput.GetTimeDependentInputItems().size() - 1;
-
-        const QString locationString = QString(numberOfLocations == 1 ? "is %1 locatie" : "zijn %1 locaties")
-                .arg(numberOfLocations);
-
-        AddMessage(QString("Er %1 voor %2 %3 berekend in %4 seconden.").arg(locationString)
-                                                                       .arg(numberOfTimeSteps)
-                                                                       .arg(numberOfTimeSteps == 1 ? "tijdstap" : "tijdstappen")
-                                                                       .arg(elapsed.count()));
-
-        const auto outputFilePathString = OutputFilePath().toString();
-        AddMessage(QString("De resultaten van de berekening worden naar bestand \"%1\" geschreven...").arg(outputFilePathString));
-
-        const auto outputComposerResult = JsonOutputComposer::WriteCalculationOutputToJson(
-            outputFilePathString.toStdString(),
-            *calculatorResult->GetData(),
-            ConvertProcessType(inputData->GetProcessType()));
-
-        LogEventsWhenApplicable("De volgende meldingen zijn opgetreden tijdens het schrijven van de resultaten:",
-                                outputComposerResult->GetEvents());
-
-        if (!outputComposerResult->GetSuccessful())
-        {
-            LogClosingMessage("Het schrijven van de resultaten is mislukt.");
-            return;
-        }
-
-        LogClosingMessage("Het schrijven van de resultaten is voltooid.");
     }
 
     void DiKErnel::ClearLogMessages()
