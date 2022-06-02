@@ -60,6 +60,7 @@ vector<reference_wrapper<Event>> GetEventReferences(
 #pragma endregion
 
 string logOutputFilePath;
+string unexpectedErrorMessage = "Er is een onverwachte fout opgetreden. Indien gewenst kunt u contact met ons opnemen via dikernel@deltares.nl.";
 
 int main(
     const int argc,
@@ -126,10 +127,9 @@ int main(
 
         return 0;
     }
-    catch (const exception& e)
+    catch (const exception&)
     {
-        EventRegistry::Register(make_unique<Event>("Er is een onverwachte fout opgetreden. Bekijk de stack trace voor meer informatie:\n"
-                                                   + static_cast<string>(e.what()), EventType::Error));
+        EventRegistry::Register(make_unique<Event>(unexpectedErrorMessage, EventType::Error));
 
         CloseApplicationAfterUnhandledError();
         return -1;
@@ -195,7 +195,7 @@ void CloseApplicationAfterUnhandledError()
 
 void UnhandledErrorHandler()
 {
-    EventRegistry::Register(make_unique<Event>("Er is een onverwachte fout opgetreden. Er is geen stack trace beschikbaar.", EventType::Error));
+    EventRegistry::Register(make_unique<Event>(unexpectedErrorMessage, EventType::Error));
 
     CloseApplicationAfterUnhandledError();
 
