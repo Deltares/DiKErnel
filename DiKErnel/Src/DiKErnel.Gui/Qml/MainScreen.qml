@@ -101,11 +101,13 @@ Rectangle {
     }
 
     ToolSeparator {
-        x: 0
         y: 160
-        width: 1024
-        rightPadding: 24
-        leftPadding: 24
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.leftMargin: 24
+        anchors.rightMargin: 24
+        rightPadding: 0
+        leftPadding: 0
         bottomPadding: 0
         topPadding: 0
         orientation: Qt.Horizontal
