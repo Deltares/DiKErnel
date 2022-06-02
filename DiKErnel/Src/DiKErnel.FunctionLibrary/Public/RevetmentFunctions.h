@@ -41,6 +41,7 @@ namespace DiKErnel::FunctionLibrary
              * \return The increment of time.
              *         Unit = [s]
              */
+            [[nodiscard]]
             static int IncrementTime(
                 int beginTime,
                 int endTime);
@@ -59,6 +60,7 @@ namespace DiKErnel::FunctionLibrary
              * \return The average number of waves.
              *         Unit = [-]
              */
+            [[nodiscard]]
             static double AverageNumberOfWaves(
                 double incrementTime,
                 double wavePeriodTm10,
@@ -76,6 +78,7 @@ namespace DiKErnel::FunctionLibrary
              *         fitted with the dike profile.
              *         Unit = [m]
              */
+            [[nodiscard]]
             static double InterpolationVerticalHeight(
                 double horizontalPosition,
                 std::vector<std::pair<double, double>> dikeProfile);
@@ -92,6 +95,7 @@ namespace DiKErnel::FunctionLibrary
              *         fitted with the dike profile.
              *         Unit = [m]
              */
+            [[nodiscard]]
             static double InterpolationHorizontalPosition(
                 double verticalHeight,
                 std::vector<std::pair<double, double>> dikeProfile);
@@ -107,6 +111,7 @@ namespace DiKErnel::FunctionLibrary
              * \return The damage.
              *         Unit = [-]
              */
+            [[nodiscard]]
             static double Damage(
                 double incrementDamage,
                 double initialDamage);
@@ -124,6 +129,7 @@ namespace DiKErnel::FunctionLibrary
              *        Unit = [-]
              * \return Whether the revetment has failed or not.
              */
+            [[nodiscard]]
             static bool FailureRevetment(
                 double damage,
                 double initialDamage,
@@ -146,6 +152,7 @@ namespace DiKErnel::FunctionLibrary
              * \return The duration in the time step of failure.
              *         Unit = [s]
              */
+            [[nodiscard]]
             static double DurationInTimeStepFailure(
                 double incrementTime,
                 double incrementDamage,
@@ -163,6 +170,7 @@ namespace DiKErnel::FunctionLibrary
              * \return The time of failure.
              *         Unit = [s]
              */
+            [[nodiscard]]
             static int TimeOfFailure(
                 double durationInTimeStepFailure,
                 double beginTime);

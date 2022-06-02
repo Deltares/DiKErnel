@@ -45,6 +45,7 @@ namespace DiKErnel::FunctionLibrary
              * \return The increment of damage.
              *         Unit = [-]
              */
+            [[nodiscard]]
             static double IncrementDamage(
                 double hydraulicLoad,
                 double resistance,
@@ -74,6 +75,7 @@ namespace DiKErnel::FunctionLibrary
              * \return The hydraulic load.
              *         Unit = [m]
              */
+            [[nodiscard]]
             static double HydraulicLoad(
                 double surfSimilarityParameter,
                 double waveHeightHm0,
@@ -99,6 +101,7 @@ namespace DiKErnel::FunctionLibrary
              * \return The outer slope.
              *         Unit = [-]
              */
+            [[nodiscard]]
             static double OuterSlope(
                 double slopeUpperLevel,
                 double slopeLowerLevel,
@@ -140,6 +143,7 @@ namespace DiKErnel::FunctionLibrary
              * \return The outer slope.
              *         Unit = [-]
              */
+            [[nodiscard]]
             static double OuterSlope(
                 double outerToeHeight,
                 double outerCrestHeight,
@@ -172,6 +176,7 @@ namespace DiKErnel::FunctionLibrary
              * \return The slope upper level.
              *         Unit = [m]
              */
+            [[nodiscard]]
             static double SlopeUpperLevel(
                 double outerToeHeight,
                 double outerCrestHeight,
@@ -196,6 +201,7 @@ namespace DiKErnel::FunctionLibrary
              * \return The slope lower level.
              *         Unit = [m]
              */
+            [[nodiscard]]
             static double SlopeLowerLevel(
                 double outerToeHeight,
                 double slopeUpperLevel,
@@ -228,6 +234,7 @@ namespace DiKErnel::FunctionLibrary
              * \return The upper limit of loading.
              *         Unit = [m]
              */
+            [[nodiscard]]
             static double UpperLimitLoading(
                 double depthMaximumWaveLoad,
                 double surfSimilarityParameter,
@@ -263,6 +270,7 @@ namespace DiKErnel::FunctionLibrary
              * \return The lower limit of loading.
              *         Unit = [m]
              */
+            [[nodiscard]]
             static double LowerLimitLoading(
                 double depthMaximumWaveLoad,
                 double surfSimilarityParameter,
@@ -286,6 +294,7 @@ namespace DiKErnel::FunctionLibrary
              * \return The depth of the maximum wave load.
              *         Unit = [m]
              */
+            [[nodiscard]]
             static double DepthMaximumWaveLoad(
                 double distanceMaximumWaveElevation,
                 double normativeWidthWaveImpact,
@@ -311,6 +320,7 @@ namespace DiKErnel::FunctionLibrary
              * \return The maximum distance of wave elevation.
              *         Unit = [m]
              */
+            [[nodiscard]]
             static double DistanceMaximumWaveElevation(
                 double impactShallowWater,
                 double waveSteepnessDeepWater,
@@ -335,6 +345,7 @@ namespace DiKErnel::FunctionLibrary
              * \return The normative width of wave impact.
              *         Unit = [m]
              */
+            [[nodiscard]]
             static double NormativeWidthWaveImpact(
                 double surfSimilarityParameter,
                 double waveHeightHm0,
@@ -352,6 +363,7 @@ namespace DiKErnel::FunctionLibrary
              * \return The wave impact with respect to the wave angle.
              *         Unit = [-]
              */
+            [[nodiscard]]
             static double WaveAngleImpact(
                 double waveAngle,
                 double waveAngleImpactBetamax);
@@ -367,6 +379,7 @@ namespace DiKErnel::FunctionLibrary
              * \return The resistance.
              *         Unit = [m]
              */
+            [[nodiscard]]
             static double Resistance(
                 double relativeDensity,
                 double thicknessTopLayer);
@@ -385,6 +398,7 @@ namespace DiKErnel::FunctionLibrary
              * \return The increment of degradation.
              *         Unit = [-]
              */
+            [[nodiscard]]
             static double IncrementDegradation(
                 double referenceTimeDegradation,
                 double incrementTime,
@@ -401,6 +415,7 @@ namespace DiKErnel::FunctionLibrary
              * \return The reference time of degradation.
              *         Unit = [s]
              */
+            [[nodiscard]]
             static double ReferenceTimeDegradation(
                 double referenceDegradation,
                 double wavePeriodTm10);
@@ -422,6 +437,7 @@ namespace DiKErnel::FunctionLibrary
              * \return The reference of degradation.
              *         Unit = [-]
              */
+            [[nodiscard]]
             static double ReferenceDegradation(
                 double resistance,
                 double hydraulicLoad,
@@ -439,6 +455,7 @@ namespace DiKErnel::FunctionLibrary
              * \return The duration in the time step of failure.
              *         Unit = [s]
              */
+            [[nodiscard]]
             static double DurationInTimeStepFailure(
                 double referenceTimeFailure,
                 double referenceTimeDegradation);
@@ -454,6 +471,7 @@ namespace DiKErnel::FunctionLibrary
              * \return The reference time of failure.
              *         Unit = [s]
              */
+            [[nodiscard]]
             static double ReferenceTimeFailure(
                 double referenceFailure,
                 double wavePeriodTm10);
@@ -475,6 +493,7 @@ namespace DiKErnel::FunctionLibrary
              * \return The reference of failure.
              *         Unit = [-]
              */
+            [[nodiscard]]
             static double ReferenceFailure(
                 double resistance,
                 double hydraulicLoad,
@@ -482,30 +501,35 @@ namespace DiKErnel::FunctionLibrary
                 double failureNumber);
 
         private:
+            [[nodiscard]]
             static double SingleSlopePart(
                 double slopeUpperLevel,
                 double slopeLowerLevel,
                 double slopeUpperPosition,
                 double slopeLowerPosition);
 
+            [[nodiscard]]
             static double SlopeLowerSlopeBerm(
                 double crestOuterBermPosition,
                 double crestOuterBermHeight,
                 double slopeLowerLevel,
                 double slopeLowerPosition);
 
+            [[nodiscard]]
             static double SlopeBermUpperSlope(
                 double notchOuterBermPosition,
                 double notchOuterBermHeight,
                 double slopeUpperLevel,
                 double slopeUpperPosition);
 
+            [[nodiscard]]
             static double SlopeLowerUpperSlope(
                 double slopeUpperLevel,
                 double slopeLowerLevel,
                 double distanceBermUpperSlope,
                 double distanceBermLowerSlope);
 
+            [[nodiscard]]
             static double DistanceBermUpperSlope(
                 double crestOuterBermHeight,
                 double notchOuterBermPosition,
@@ -513,6 +537,7 @@ namespace DiKErnel::FunctionLibrary
                 double slopeUpperLevel,
                 double slopeUpperPosition);
 
+            [[nodiscard]]
             static double DistanceBermLowerSlope(
                 double crestOuterBermPosition,
                 double crestOuterBermHeight,
@@ -520,14 +545,17 @@ namespace DiKErnel::FunctionLibrary
                 double slopeLowerLevel,
                 double slopeLowerPosition);
 
+            [[nodiscard]]
             static double Degradation(
                 double referenceTimeDegradation,
                 double wavePeriodTm10);
 
+            [[nodiscard]]
             static double ReferenceTime(
                 double reference,
                 double wavePeriodTm10);
 
+            [[nodiscard]]
             static double Reference(
                 double resistance,
                 double hydraulicLoad,

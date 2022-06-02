@@ -28,6 +28,7 @@ namespace DiKErnel::Integration
             explicit NaturalStoneRevetmentWaveAngleImpact(
                 double betamax);
 
+            [[nodiscard]]
             double GetBetamax() const;
 
         private:

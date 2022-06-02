@@ -33,6 +33,7 @@ namespace DiKErnel::DomainLibrary
              * \return The default value of the initial damage.
              *         Unit = [-]
              */
+            [[nodiscard]]
             static double GetInitialDamage();
 
             /*!
@@ -40,6 +41,7 @@ namespace DiKErnel::DomainLibrary
              * \return The default value of the failure number.
              *         Unit = [-]
              */
+            [[nodiscard]]
             static double GetFailureNumber();
     };
 }

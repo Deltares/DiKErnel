@@ -39,6 +39,7 @@ namespace DiKErnel::FunctionLibrary
              * \return The increment of damage.
              *         Unit = [-]
              */
+            [[nodiscard]]
             static double IncrementDamage(
                 double incrementTime,
                 double timeLine);
@@ -60,6 +61,7 @@ namespace DiKErnel::FunctionLibrary
              * \return The time line.
              *         Unit = [-]
              */
+            [[nodiscard]]
             static double TimeLine(
                 double waveHeightImpact,
                 double timeLineAgwi,
@@ -83,6 +85,7 @@ namespace DiKErnel::FunctionLibrary
              * \return The wave height with respect to the wave impact.
              *         Unit = [m]
              */
+            [[nodiscard]]
             static double WaveHeightImpact(
                 double minimumWaveHeight,
                 double maximumWaveHeight,
@@ -106,6 +109,7 @@ namespace DiKErnel::FunctionLibrary
              * \return The minimum wave height.
              *         Unit = [m]
              */
+            [[nodiscard]]
             static double MinimumWaveHeight(
                 double timeLineAgwi,
                 double timeLineBgwi,
@@ -129,6 +133,7 @@ namespace DiKErnel::FunctionLibrary
              * \return The maximum wave height.
              *         Unit = [m]
              */
+            [[nodiscard]]
             static double MaximumWaveHeight(
                 double timeLineAgwi,
                 double timeLineBgwi,
@@ -152,6 +157,7 @@ namespace DiKErnel::FunctionLibrary
              * \return The wave impact with respect to the wave angle.
              *         Unit = [-]
              */
+            [[nodiscard]]
             static double WaveAngleImpact(
                 double waveAngle,
                 double waveAngleImpactNwa,
@@ -172,6 +178,7 @@ namespace DiKErnel::FunctionLibrary
              * \return The upper limit of loading.
              *         Unit = [m]
              */
+            [[nodiscard]]
             static double UpperLimitLoading(
                 double waterLevel,
                 double waveHeightHm0,
@@ -191,18 +198,21 @@ namespace DiKErnel::FunctionLibrary
              * \return The lower limit of loading.
              *         Unit = [m]
              */
+            [[nodiscard]]
             static double LowerLimitLoading(
                 double waterLevel,
                 double waveHeightHm0,
                 double lowerLimitLoadingAll);
 
         private:
+            [[nodiscard]]
             static double WaveHeightBoundary(
                 double timeLineAgwi,
                 double timeLineBgwi,
                 double timeLineCgwi,
                 double waveHeightCoefficient);
 
+            [[nodiscard]]
             static double LimitLoading(
                 double waterLevel,
                 double waveHeightHm0,

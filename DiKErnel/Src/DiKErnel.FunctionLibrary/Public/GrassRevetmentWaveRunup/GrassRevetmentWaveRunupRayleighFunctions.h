@@ -61,6 +61,7 @@ namespace DiKErnel::FunctionLibrary
              * \return The cumulative overload.
              *         Unit = [m^2/s^2]
              */
+            [[nodiscard]]
             static double CumulativeOverload(
                 double averageNumberOfWaves,
                 double representativeWaveRunup2P,
@@ -73,12 +74,14 @@ namespace DiKErnel::FunctionLibrary
                 double gravitationalAcceleration);
 
         private:
+            [[nodiscard]]
             static double FrontVelocity(
                 double waveRunup,
                 double verticalDistanceWaterLevelElevation,
                 double frontVelocityCu,
                 double gravitationalAcceleration);
 
+            [[nodiscard]]
             static double WaveRunup(
                 double representativeWaveRunup2P,
                 int fixedNumberOfWaves,

@@ -59,11 +59,13 @@ namespace DiKErnel::Integration
             virtual void InitializeDerivedLocationDependentInput(
                 const Core::IProfileData& profileData);
 
+            [[nodiscard]]
             virtual std::unique_ptr<Core::TimeDependentOutput> CalculateTimeDependentOutput(
                 double initialDamage,
                 const Core::ITimeDependentInput& timeDependentInput,
                 const Core::IProfileData& profileData) = 0;
 
+            [[nodiscard]]
             std::vector<std::pair<double, double>>& GetDikeProfilePoints();
 
         private:

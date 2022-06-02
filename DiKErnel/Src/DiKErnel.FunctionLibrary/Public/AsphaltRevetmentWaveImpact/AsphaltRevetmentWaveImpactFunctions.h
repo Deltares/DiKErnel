@@ -80,6 +80,7 @@ namespace DiKErnel::FunctionLibrary
              * \return The increment of damage.
              *         Unit = [-]
              */
+            [[nodiscard]]
             static double IncrementDamage(
                 double logFailureTension,
                 double averageNumberOfWaves,
@@ -105,6 +106,7 @@ namespace DiKErnel::FunctionLibrary
              * \return The logarithm of the failure tension.
              *         Unit = [MPa]
              */
+            [[nodiscard]]
             static double LogFailureTension(
                 double failureTension);
 
@@ -122,6 +124,7 @@ namespace DiKErnel::FunctionLibrary
              * \return The maximum peak stress.
              *         Unit = [MPa]
              */
+            [[nodiscard]]
             static double MaximumPeakStress(
                 double waveHeightHm0,
                 double gravitationalAcceleration,
@@ -144,6 +147,7 @@ namespace DiKErnel::FunctionLibrary
              * \return The stiffness relation.
              *         Unit = [m^-1]
              */
+            [[nodiscard]]
             static double StiffnessRelation(
                 double computationalThickness,
                 double equivalentElasticModulus,
@@ -167,6 +171,7 @@ namespace DiKErnel::FunctionLibrary
              * \return The computational thickness.
              *         Unit = [m]
              */
+            [[nodiscard]]
             static double ComputationalThickness(
                 double thicknessUpperLayer,
                 double thicknessSubLayer,
@@ -174,6 +179,7 @@ namespace DiKErnel::FunctionLibrary
                 double elasticModulusSubLayer);
 
         private:
+            [[nodiscard]]
             static double DepthFactorAccumulation(
                 double logFailureTension,
                 double averageNumberOfWaves,
@@ -192,6 +198,7 @@ namespace DiKErnel::FunctionLibrary
                 double fatigueBeta,
                 double impactNumberC);
 
+            [[nodiscard]]
             static double ImpactFactorAccumulation(
                 double logFailureTension,
                 double averageNumberOfWaves,
@@ -202,6 +209,7 @@ namespace DiKErnel::FunctionLibrary
                 double fatigueBeta,
                 double impactNumberC);
 
+            [[nodiscard]]
             static double Fatigue(
                 double logFailureTension,
                 double bendingStress,
@@ -211,17 +219,20 @@ namespace DiKErnel::FunctionLibrary
                 double fatigueBeta,
                 double impactNumberC);
 
+            [[nodiscard]]
             static double LogTension(
                 double bendingStress,
                 double outerSlope,
                 double impactFactorValue,
                 double impactNumberC);
 
+            [[nodiscard]]
             static double ImpactNumber(
                 double outerSlope,
                 double impactFactorValue,
                 double impactNumberC);
 
+            [[nodiscard]]
             static double BendingStress(
                 double maximumPeakStress,
                 double stiffnessRelation,
@@ -233,6 +244,7 @@ namespace DiKErnel::FunctionLibrary
                 double waterLevel,
                 double waveHeightHm0);
 
+            [[nodiscard]]
             static double SpatialDistributionBendingStress(
                 double stiffnessRelation,
                 double relativeWidthWaveImpact,
@@ -242,11 +254,13 @@ namespace DiKErnel::FunctionLibrary
                 double waterLevel,
                 double waveHeightHm0);
 
+            [[nodiscard]]
             static double RelativeWidthWaveImpact(
                 double stiffnessRelation,
                 double widthFactorValue,
                 double waveHeightHm0);
 
+            [[nodiscard]]
             static double RelativeDistanceCenterWaveImpact(
                 double stiffnessRelation,
                 double depthFactorValue,

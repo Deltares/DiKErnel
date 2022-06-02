@@ -33,6 +33,7 @@ namespace DiKErnel::FunctionLibrary
              * \return The value of Pi.
              *         Unit = [-]
              */
+            [[nodiscard]]
             static double Pi();
 
             /*!
@@ -43,6 +44,7 @@ namespace DiKErnel::FunctionLibrary
              * \return The converted value.
              *         Unit = [rad]
              */
+            [[nodiscard]]
             static double Radians(
                 double degrees);
 
@@ -54,6 +56,7 @@ namespace DiKErnel::FunctionLibrary
              * \return The converted value.
              *         Unit = [deg]
              */
+            [[nodiscard]]
             static double Degrees(
                 double radians);
     };

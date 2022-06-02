@@ -39,6 +39,7 @@ namespace DiKErnel::FunctionLibrary
              * \return The increment of damage.
              *         Unit = [-]
              */
+            [[nodiscard]]
             static double IncrementDamage(
                 double cumulativeOverload,
                 double criticalCumulativeOverload);
@@ -72,6 +73,7 @@ namespace DiKErnel::FunctionLibrary
              * \return The representative wave run-up (2 percent).
              *         Unit = [m]
              */
+            [[nodiscard]]
             static double RepresentativeWaveRunup2P(
                 double surfSimilarityParameter,
                 double waveAngleImpact,
@@ -96,6 +98,7 @@ namespace DiKErnel::FunctionLibrary
              * \return The wave impact with respect to the wave angle.
              *         Unit = [-]
              */
+            [[nodiscard]]
             static double WaveAngleImpact(
                 double waveAngle,
                 double waveAngleImpactAbeta,

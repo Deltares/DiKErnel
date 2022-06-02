@@ -97,6 +97,7 @@ namespace DiKErnel::Integration
             void InitializeDerivedLocationDependentInput(
                 const Core::IProfileData& profileData) override;
 
+            [[nodiscard]]
             std::unique_ptr<Core::TimeDependentOutput> CalculateTimeDependentOutput(
                 double initialDamage,
                 const Core::ITimeDependentInput& timeDependentInput,

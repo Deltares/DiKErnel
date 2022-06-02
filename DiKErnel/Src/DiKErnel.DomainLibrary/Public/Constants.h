@@ -33,6 +33,7 @@ namespace DiKErnel::DomainLibrary
              * \return The gravitational acceleration.
              *         Unit = [m/s^2]
              */
+            [[nodiscard]]
             static double GetGravitationalAcceleration();
     };
 }

@@ -73,6 +73,7 @@ namespace DiKErnel::Integration
                 std::unique_ptr<GrassRevetmentWaveRunupRepresentative2P> representative2P,
                 std::unique_ptr<GrassRevetmentWaveRunupWaveAngleImpact> waveAngleImpact);
 
+            [[nodiscard]]
             std::unique_ptr<Core::TimeDependentOutput> CalculateTimeDependentOutput(
                 double initialDamage,
                 const Core::ITimeDependentInput& timeDependentInput,

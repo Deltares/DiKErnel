@@ -55,6 +55,7 @@ namespace DiKErnel::Integration
                 const Core::IProfileData& profileData) const override;
 
         protected:
+            [[nodiscard]]
             std::unique_ptr<Core::TimeDependentOutput> CalculateTimeDependentOutput(
                 double initialDamage,
                 const Core::ITimeDependentInput& timeDependentInput,

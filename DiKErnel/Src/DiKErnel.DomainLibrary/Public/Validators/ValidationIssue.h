@@ -47,12 +47,14 @@ namespace DiKErnel::DomainLibrary
              * \brief Gets the validation issue type.
              * \return The validation issue type.
              */
+            [[nodiscard]]
             ValidationIssueType GetValidationIssueType() const;
 
             /*!
              * \brief Gets the message.
              * \return The message.
              */
+            [[nodiscard]]
             std::string GetMessage() const;
 
         private:

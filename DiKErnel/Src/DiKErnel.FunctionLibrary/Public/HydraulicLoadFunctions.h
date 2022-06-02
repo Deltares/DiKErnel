@@ -36,6 +36,7 @@ namespace DiKErnel::FunctionLibrary
              * \return The slope angle.
              *         Unit = [deg]
              */
+            [[nodiscard]]
             static double SlopeAngle(
                 double outerSlope);
 
@@ -52,6 +53,7 @@ namespace DiKErnel::FunctionLibrary
              *        Unit = [m]
              * \return Whether there is loading of the revetment.
              */
+            [[nodiscard]]
             static bool LoadingRevetment(
                 double lowerLimitLoadingRevetment,
                 double upperLimitLoadingRevetment,
@@ -74,6 +76,7 @@ namespace DiKErnel::FunctionLibrary
              * \return The surf similarity parameter.
              *         Unit = [-]
              */
+            [[nodiscard]]
             static double SurfSimilarityParameter(
                 double outerSlope,
                 double waveHeightHm0,
@@ -94,6 +97,7 @@ namespace DiKErnel::FunctionLibrary
              * \return The wave steepness in deep water.
              *         Unit = [-]
              */
+            [[nodiscard]]
             static double WaveSteepnessDeepWater(
                 double waveHeightHm0,
                 double wavePeriodTm10,
@@ -110,6 +114,7 @@ namespace DiKErnel::FunctionLibrary
              * \return The vertical distance of the water elevation.
              *         Unit = [m]
              */
+            [[nodiscard]]
             static double VerticalDistanceWaterLevelElevation(
                 double z,
                 double waterLevel);
