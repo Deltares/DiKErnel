@@ -188,9 +188,10 @@ Rectangle {
     }
 
     Button {
-        x: 930
         y: 209
         text: qsTr("Start")
+        anchors.right: parent.right
+        anchors.rightMargin: 24
         rightPadding: 20
         leftPadding: 20
         enabled: dikernelApplication.StartEnabled
@@ -198,9 +199,11 @@ Rectangle {
     }
 
     Button {
-        x: 914
-        y: 711
         text: qsTr("Wissen")
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
+        anchors.rightMargin: 24
+        anchors.bottomMargin: 24
         leftPadding: 20
         rightPadding: 20
         onClicked: dikernelApplication.ClearLogMessages()
