@@ -104,8 +104,8 @@ Rectangle {
         y: 160
         anchors.left: parent.left
         anchors.right: parent.right
-        anchors.leftMargin: 24
-        anchors.rightMargin: 24
+        anchors.leftMargin: 25
+        anchors.rightMargin: 25
         rightPadding: 0
         leftPadding: 0
         bottomPadding: 0
@@ -191,7 +191,7 @@ Rectangle {
         y: 209
         text: qsTr("Start")
         anchors.right: parent.right
-        anchors.rightMargin: 24
+        anchors.rightMargin: 25
         rightPadding: 20
         leftPadding: 20
         enabled: dikernelApplication.StartEnabled
@@ -202,28 +202,34 @@ Rectangle {
         text: qsTr("Wissen")
         anchors.right: parent.right
         anchors.bottom: parent.bottom
-        anchors.rightMargin: 24
-        anchors.bottomMargin: 24
+        anchors.rightMargin: 25
+        anchors.bottomMargin: 25
         leftPadding: 20
         rightPadding: 20
         onClicked: dikernelApplication.ClearLogMessages()
     }
 
     Button {
-        x: 716
-        y: 711
         text: qsTr("Kopieer naar klembord")
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: 25
+        anchors.rightMargin: 117
         leftPadding: 20
         rightPadding: 20
         onClicked: dikernelApplication.CopyToClipboard()
     }
 
     Rectangle {
-        x: 25
-        y: 247
-        width: 975
-        height: 458
         color: "#ffffff"
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.top: parent.top
+        anchors.bottom: parent.bottom
+        anchors.leftMargin: 25
+        anchors.topMargin: 247
+        anchors.rightMargin: 25
+        anchors.bottomMargin: 63
 
         ListView {
             anchors {
