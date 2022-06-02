@@ -104,31 +104,33 @@ Rectangle {
         x: 0
         y: 160
         width: 1024
-        rightPadding: 20
-        leftPadding: 20
+        rightPadding: 24
+        leftPadding: 24
         bottomPadding: 0
         topPadding: 0
         orientation: Qt.Horizontal
     }
 
-    ToolSeparator {
-        x: 380
-        y: 0
-        width: 32
-        height: 160
-        bottomPadding: 20
-        topPadding: 20
-    }
-
-    Text {
-        x: 420
+    Rectangle {
+        x: 400
         y: 25
-        width: 580
+        width: 600
         height: 110
-        text: qsTr("Disclaimer: De ALPHA versie van DiKErnel is nog in de testfase en zal op vele onderdelen nog moeten worden verbeterd en uitgebreid. Het doel van deze ALPHA versie is om feedback te ontvangen op het huidige functioneren en om tekortkomingen te detecteren. DiKErnel dient met de grootst mogelijke voorzichtigheid te worden geïnstalleerd en gebruikt. Op geen enkele manier mag er worden vertrouwd op de beschikbare resultaten, de bijgeleverde softwaredocumentatie en al het andere materiaal dat bij deze versie beschikbaar wordt gesteld.")
-        horizontalAlignment: Text.AlignJustify
-        wrapMode: Text.Wrap
-        font.pointSize: 10
+        color: "#00ffffff"
+        border.width: 1
+        border.color: "#d3d3d3"
+
+        Text {
+            text: qsTr("Disclaimer: De ALPHA versie van DiKErnel is nog in de testfase en zal op vele onderdelen nog moeten worden verbeterd en uitgebreid. Het doel van deze ALPHA versie is om feedback te ontvangen op het huidige functioneren en om tekortkomingen te detecteren. DiKErnel dient met de grootst mogelijke voorzichtigheid te worden geïnstalleerd en gebruikt. Op geen enkele manier mag er worden vertrouwd op de beschikbare resultaten, de bijgeleverde softwaredocumentatie en al het andere materiaal dat bij deze versie beschikbaar wordt gesteld.")
+            anchors.fill: parent
+            horizontalAlignment: Text.AlignJustify
+            wrapMode: Text.Wrap
+            anchors.rightMargin: 10
+            anchors.bottomMargin: 6
+            anchors.leftMargin: 10
+            anchors.topMargin: 6
+            font.pointSize: 9
+        }
     }
 
     TextField {
