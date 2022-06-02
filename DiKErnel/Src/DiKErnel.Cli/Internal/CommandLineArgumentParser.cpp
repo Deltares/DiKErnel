@@ -89,11 +89,11 @@ namespace DiKErnel::Cli
         char** argv)
     {
         return argc == 3
-                && ArgumentHasValidExtension(argv[1])
-                && ArgumentHasValidExtension(argv[2]);
+                && FilePathArgumentHasValidExtension(argv[1])
+                && FilePathArgumentHasValidExtension(argv[2]);
     }
 
-    bool CommandLineArgumentParser::ArgumentHasValidExtension(
+    bool CommandLineArgumentParser::FilePathArgumentHasValidExtension(
         const string& filePathArgument)
     {
         return path(filePathArgument).extension() == ".json";

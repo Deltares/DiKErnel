@@ -55,7 +55,7 @@ namespace DiKErnel::Cli
                 int argc,
                 char** argv);
 
-            static bool ArgumentHasValidExtension(
+            static bool FilePathArgumentHasValidExtension(
                 const std::string& filePathArgument);
 
             [[nodiscard]]
