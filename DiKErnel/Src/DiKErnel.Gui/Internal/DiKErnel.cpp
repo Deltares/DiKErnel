@@ -20,6 +20,7 @@
 
 #include "DiKErnel.h"
 
+#include <filesystem>
 #include <QClipboard>
 #include <QGuiApplication>
 #include <QIcon>
@@ -125,6 +126,13 @@ namespace DiKErnel::Gui
     {
         try
         {
+            const auto outputFilePathString = OutputFilePath().toString();
+            const auto outputFilePathStdString = outputFilePathString.toStdString();
+            if (filesystem::exists(outputFilePathStdString))
+            {
+                filesystem::remove(outputFilePathStdString);
+            }
+
             const auto inputFilePathString = InputFilePath().toString();
             AddMessage(QString("De invoer uit bestand \"%1\" wordt gelezen...").arg(inputFilePathString));
 
@@ -197,13 +205,10 @@ namespace DiKErnel::Gui
                                                                            .arg(numberOfTimeSteps == 1 ? "tijdstap" : "tijdstappen")
                                                                            .arg(elapsed.count()));
 
-            const auto outputFilePathString = OutputFilePath().toString();
             AddMessage(QString("De resultaten van de berekening worden naar bestand \"%1\" geschreven...").arg(outputFilePathString));
 
             const auto outputComposerResult = JsonOutputComposer::WriteCalculationOutputToJson(
-                outputFilePathString.toStdString(),
-                *calculatorResult->GetData(),
-                ConvertProcessType(inputData->GetProcessType()));
+                outputFilePathStdString, *calculatorResult->GetData(), ConvertProcessType(inputData->GetProcessType()));
 
             LogEventsWhenApplicable("De volgende meldingen zijn opgetreden tijdens het schrijven van de resultaten:",
                                     outputComposerResult->GetEvents());
