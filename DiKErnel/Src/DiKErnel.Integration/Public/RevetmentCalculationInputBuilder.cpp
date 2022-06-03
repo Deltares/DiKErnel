@@ -85,7 +85,7 @@ namespace DiKErnel::Integration
             ThrowWithMessage();
         }
 
-        auto elasticModulusUpperLayer = constructionProperties.GetElasticModulusUpperLayer();
+        const auto elasticModulusUpperLayer = constructionProperties.GetElasticModulusUpperLayer();
         auto upperLayer = make_unique<AsphaltRevetmentWaveImpactLayer>(
             constructionProperties.GetThicknessUpperLayer(),
             elasticModulusUpperLayer);

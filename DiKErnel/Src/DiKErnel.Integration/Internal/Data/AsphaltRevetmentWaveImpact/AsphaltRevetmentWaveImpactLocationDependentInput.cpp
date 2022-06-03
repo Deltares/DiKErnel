@@ -209,10 +209,9 @@ namespace DiKErnel::Integration
                                                                                           _impactNumberC);
         const auto damage = RevetmentFunctions::Damage(incrementDamage, initialDamage);
 
-        const auto failureNumber = GetFailureNumber();
         unique_ptr<int> timeOfFailure = nullptr;
 
-        if (RevetmentFunctions::FailureRevetment(damage, initialDamage, failureNumber))
+        if (const auto failureNumber = GetFailureNumber(); RevetmentFunctions::FailureRevetment(damage, initialDamage, failureNumber))
         {
             const auto durationInTimeStepFailure = RevetmentFunctions::DurationInTimeStepFailure(incrementTime, incrementDamage, failureNumber,
                                                                                                  initialDamage);

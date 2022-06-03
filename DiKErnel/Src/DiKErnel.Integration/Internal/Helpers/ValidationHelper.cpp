@@ -52,8 +52,7 @@ namespace DiKErnel::Integration
     {
         const auto validationIssueType = validationIssue.GetValidationIssueType();
 
-        EventRegistry::Register(make_unique<Event>(validationIssue.GetMessage(),
-                                                   ConvertValidationIssueType(validationIssueType)));
+        EventRegistry::Register(make_unique<Event>(validationIssue.GetMessage(), ConvertValidationIssueType(validationIssueType)));
 
         return validationIssueType != ValidationIssueType::Error;
     }

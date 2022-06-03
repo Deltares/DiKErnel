@@ -228,9 +228,7 @@ namespace DiKErnel::Integration
 
             damage = RevetmentFunctions::Damage(incrementDamage, initialDamage);
 
-            const auto failureNumber = GetFailureNumber();
-
-            if (RevetmentFunctions::FailureRevetment(damage, initialDamage, failureNumber))
+            if (const auto failureNumber = GetFailureNumber(); RevetmentFunctions::FailureRevetment(damage, initialDamage, failureNumber))
             {
                 const auto referenceFailure = NaturalStoneRevetmentFunctions::ReferenceFailure(
                     *resistance, *hydraulicLoad, *waveAngleImpact, failureNumber);
