@@ -37,7 +37,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
         {
             auto processType = JsonInputProcessType::Damage;
 
-            const auto jsonInputData = JsonInputParser::GetJsonInputData(filePath);
+            const auto& jsonInputData = JsonInputParser::GetJsonInputData(filePath);
 
             if (const auto* readProcessType = jsonInputData->GetProcessData().GetProcessType(); readProcessType != nullptr)
             {

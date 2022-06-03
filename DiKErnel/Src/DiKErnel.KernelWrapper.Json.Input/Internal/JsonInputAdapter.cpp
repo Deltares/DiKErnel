@@ -68,28 +68,28 @@ namespace DiKErnel::KernelWrapper::Json::Input
             if (const auto* asphaltWaveImpactLocationData = dynamic_cast<const JsonInputAsphaltWaveImpactLocationData*>(&location);
                 asphaltWaveImpactLocationData != nullptr)
             {
-                const auto constructionProperties = CreateAsphaltWaveImpactConstructionProperties(*asphaltWaveImpactLocationData);
+                const auto& constructionProperties = CreateAsphaltWaveImpactConstructionProperties(*asphaltWaveImpactLocationData);
                 builder.AddAsphaltWaveImpactLocation(*constructionProperties);
             }
 
             if (const auto* grassWaveImpactLocationData = dynamic_cast<const JsonInputGrassWaveImpactLocationData*>(&location);
                 grassWaveImpactLocationData != nullptr)
             {
-                const auto constructionProperties = CreateGrassWaveImpactConstructionProperties(*grassWaveImpactLocationData);
+                const auto& constructionProperties = CreateGrassWaveImpactConstructionProperties(*grassWaveImpactLocationData);
                 builder.AddGrassWaveImpactLocation(*constructionProperties);
             }
 
             if (const auto* grassWaveRunupRayleighLocationData = dynamic_cast<const JsonInputGrassWaveRunupRayleighLocationData*>(&location);
                 grassWaveRunupRayleighLocationData != nullptr)
             {
-                const auto constructionProperties = CreateGrassWaveRunupRayleighConstructionProperties(*grassWaveRunupRayleighLocationData);
+                const auto& constructionProperties = CreateGrassWaveRunupRayleighConstructionProperties(*grassWaveRunupRayleighLocationData);
                 builder.AddGrassWaveRunupRayleighLocation(*constructionProperties);
             }
 
             if (const auto* naturalStoneLocationData = dynamic_cast<const JsonInputNaturalStoneLocationData*>(&location);
                 naturalStoneLocationData != nullptr)
             {
-                const auto constructionProperties = CreateNaturalStoneConstructionProperties(*naturalStoneLocationData);
+                const auto& constructionProperties = CreateNaturalStoneConstructionProperties(*naturalStoneLocationData);
                 builder.AddNaturalStoneLocation(*constructionProperties);
             }
         }

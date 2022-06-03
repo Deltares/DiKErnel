@@ -44,7 +44,7 @@ namespace DiKErnel::KernelWrapper::Json::Output
         const vector<reference_wrapper<LocationDependentOutput>>& locationDependentOutputItems,
         const JsonOutputType outputType)
     {
-        const auto createLocationDataFuncPtr = GetCreateLocationDataMethod(outputType);
+        const auto& createLocationDataFuncPtr = GetCreateLocationDataMethod(outputType);
 
         vector<unique_ptr<JsonOutputFailureLocationData>> jsonOutputLocationDataItems;
 
