@@ -40,6 +40,9 @@ using namespace std;
 
 #pragma region Forward declarations
 
+void RemoveFileWhenExists(
+    const string& filePath);
+
 JsonOutputType ConvertProcessType(
     JsonInputProcessType);
 
@@ -77,7 +80,11 @@ int main(
             return -1;
         }
 
+        const auto jsonOutputFilePath = parser.GetJsonOutputFilePath();
         logOutputFilePath = parser.GetLogOutputFilePath();
+
+        RemoveFileWhenExists(jsonOutputFilePath);
+        RemoveFileWhenExists(logOutputFilePath);
 
         const auto inputComposerResult = JsonInputComposer::GetInputDataFromJson(parser.GetJsonInputFilePath());
         WriteToLogFile(inputComposerResult->GetEvents());
@@ -115,8 +122,7 @@ int main(
         }
 
         const auto outputComposerResult = JsonOutputComposer::WriteCalculationOutputToJson(
-            parser.GetJsonOutputFilePath(), *calculatorResult->GetData(),
-            ConvertProcessType(inputData->GetProcessType()));
+            jsonOutputFilePath, *calculatorResult->GetData(), ConvertProcessType(inputData->GetProcessType()));
 
         WriteToLogFile(outputComposerResult->GetEvents());
 
@@ -133,6 +139,15 @@ int main(
 
         CloseApplicationAfterUnhandledError();
         return -1;
+    }
+}
+
+void RemoveFileWhenExists(
+    const string& filePath)
+{
+    if (filesystem::exists(filePath))
+    {
+        filesystem::remove(filePath);
     }
 }
 
