@@ -43,9 +43,9 @@ namespace DiKErnel::Integration::Test
         constexpr auto equivalentElasticModulus = 0.8;
 
         // Call
-        const auto output = AsphaltRevetmentWaveImpactTimeDependentOutput(incrementDamage, damage, make_unique<int>(timeOfFailure),
-                                                                          logFailureTension, maximumPeakStress, stiffnessRelation,
-                                                                          computationalThickness, equivalentElasticModulus);
+        const AsphaltRevetmentWaveImpactTimeDependentOutput output(incrementDamage, damage, make_unique<int>(timeOfFailure), logFailureTension,
+                                                                   maximumPeakStress, stiffnessRelation, computationalThickness,
+                                                                   equivalentElasticModulus);
         // Assert
         AssertHelper::AssertIsInstanceOf<TimeDependentOutput>(&output);
         ASSERT_DOUBLE_EQ(incrementDamage, output.GetIncrementDamage());
@@ -70,8 +70,8 @@ namespace DiKErnel::Integration::Test
         constexpr auto equivalentElasticModulus = 0.7;
 
         // Call
-        const auto output = AsphaltRevetmentWaveImpactTimeDependentOutput(incrementDamage, damage, nullptr, logFailureTension, maximumPeakStress,
-                                                                          stiffnessRelation, computationalThickness, equivalentElasticModulus);
+        const AsphaltRevetmentWaveImpactTimeDependentOutput output(incrementDamage, damage, nullptr, logFailureTension, maximumPeakStress,
+                                                                   stiffnessRelation, computationalThickness, equivalentElasticModulus);
         // Assert
         AssertHelper::AssertIsInstanceOf<TimeDependentOutput>(&output);
         ASSERT_DOUBLE_EQ(incrementDamage, output.GetIncrementDamage());

@@ -56,14 +56,14 @@ namespace DiKErnel::Integration::Test
         constexpr auto referenceDegradation = 2.0;
 
         // Call
-        const auto output = NaturalStoneRevetmentTimeDependentOutput(incrementDamage, damage, make_unique<int>(timeOfFailure), outerSlope,
-                                                                     slopeUpperLevel, slopeUpperPosition, slopeLowerLevel, slopeLowerPosition,
-                                                                     loadingRevetment, surfSimilarityParameter, waveSteepnessDeepWater,
-                                                                     upperLimitLoading, lowerLimitLoading, depthMaximumWaveLoad,
-                                                                     distanceMaximumWaveElevation, normativeWidthOfWaveImpact,
-                                                                     make_unique<double>(hydraulicLoad), make_unique<double>(waveAngleImpact),
-                                                                     make_unique<double>(resistance), make_unique<double>(referenceTimeDegradation),
-                                                                     make_unique<double>(referenceDegradation));
+        const NaturalStoneRevetmentTimeDependentOutput output(incrementDamage, damage, make_unique<int>(timeOfFailure), outerSlope,
+                                                              slopeUpperLevel, slopeUpperPosition, slopeLowerLevel, slopeLowerPosition,
+                                                              loadingRevetment, surfSimilarityParameter, waveSteepnessDeepWater, upperLimitLoading,
+                                                              lowerLimitLoading, depthMaximumWaveLoad, distanceMaximumWaveElevation,
+                                                              normativeWidthOfWaveImpact, make_unique<double>(hydraulicLoad),
+                                                              make_unique<double>(waveAngleImpact), make_unique<double>(resistance),
+                                                              make_unique<double>(referenceTimeDegradation),
+                                                              make_unique<double>(referenceDegradation));
 
         // Assert
         AssertHelper::AssertIsInstanceOf<TimeDependentOutput>(&output);
@@ -110,11 +110,12 @@ namespace DiKErnel::Integration::Test
         constexpr auto normativeWidthOfWaveImpact = 1.4;
 
         // Call
-        const auto output = NaturalStoneRevetmentTimeDependentOutput(incrementDamage, damage, nullptr, outerSlope, slopeUpperLevel,
-                                                                     slopeUpperPosition, slopeLowerLevel, slopeLowerPosition, loadingRevetment,
-                                                                     surfSimilarityParameter, waveSteepnessDeepWater, upperLimitLoading,
-                                                                     lowerLimitLoading, depthMaximumWaveLoad, distanceMaximumWaveElevation,
-                                                                     normativeWidthOfWaveImpact, nullptr, nullptr, nullptr, nullptr, nullptr);
+        const NaturalStoneRevetmentTimeDependentOutput output(incrementDamage, damage, nullptr, outerSlope, slopeUpperLevel, slopeUpperPosition,
+                                                              slopeLowerLevel, slopeLowerPosition, loadingRevetment, surfSimilarityParameter,
+                                                              waveSteepnessDeepWater, upperLimitLoading, lowerLimitLoading, depthMaximumWaveLoad,
+                                                              distanceMaximumWaveElevation, normativeWidthOfWaveImpact, nullptr, nullptr, nullptr,
+                                                              nullptr, nullptr);
+
         // Assert
         AssertHelper::AssertIsInstanceOf<TimeDependentOutput>(&output);
         ASSERT_DOUBLE_EQ(incrementDamage, output.GetIncrementDamage());

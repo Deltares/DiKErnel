@@ -37,8 +37,7 @@ namespace DiKErnel::Integration::Test
         constexpr auto relativeDensity = 0.3;
 
         // Call
-        const NaturalStoneRevetmentLocationConstructionProperties constructionProperties(
-            x, topLayerType, thicknessTopLayer, relativeDensity);
+        const NaturalStoneRevetmentLocationConstructionProperties constructionProperties(x, topLayerType, thicknessTopLayer, relativeDensity);
 
         // Assert
         AssertHelper::AssertIsInstanceOf<RevetmentLocationConstructionPropertiesBase>(&constructionProperties);
@@ -104,8 +103,7 @@ namespace DiKErnel::Integration::Test
         constexpr auto normativeWidthOfWaveImpactBwi = 2.6;
         constexpr auto waveAngleImpactBetamax = 2.7;
 
-        NaturalStoneRevetmentLocationConstructionProperties constructionProperties(
-            x, topLayerType, thicknessTopLayer, relativeDensity);
+        NaturalStoneRevetmentLocationConstructionProperties constructionProperties(x, topLayerType, thicknessTopLayer, relativeDensity);
 
         // When
         constructionProperties.SetInitialDamage(make_unique<double>(initialDamage));

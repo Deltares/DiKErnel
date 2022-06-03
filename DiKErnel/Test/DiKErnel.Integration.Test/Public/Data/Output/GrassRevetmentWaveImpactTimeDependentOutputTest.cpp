@@ -45,12 +45,10 @@ namespace DiKErnel::Integration::Test
         constexpr auto waveHeightImpact = 0.9;
 
         // Call
-        const auto output = GrassRevetmentWaveImpactTimeDependentOutput(incrementDamage, damage, make_unique<int>(timeOfFailure), loadingRevetment,
-                                                                        upperLimitLoading, lowerLimitLoading,
-                                                                        make_unique<double>(minimumWaveHeight),
-                                                                        make_unique<double>(maximumWaveHeight),
-                                                                        make_unique<double>(waveAngleImpact),
-                                                                        make_unique<double>(waveHeightImpact));
+        const GrassRevetmentWaveImpactTimeDependentOutput output(incrementDamage, damage, make_unique<int>(timeOfFailure), loadingRevetment,
+                                                                 upperLimitLoading, lowerLimitLoading, make_unique<double>(minimumWaveHeight),
+                                                                 make_unique<double>(maximumWaveHeight), make_unique<double>(waveAngleImpact),
+                                                                 make_unique<double>(waveHeightImpact));
 
         // Assert
         AssertHelper::AssertIsInstanceOf<TimeDependentOutput>(&output);
@@ -76,8 +74,8 @@ namespace DiKErnel::Integration::Test
         constexpr auto lowerLimitLoading = 0.4;
 
         // Call
-        const auto output = GrassRevetmentWaveImpactTimeDependentOutput(incrementDamage, damage, nullptr, loadingRevetment, upperLimitLoading,
-                                                                        lowerLimitLoading, nullptr, nullptr, nullptr, nullptr);
+        const GrassRevetmentWaveImpactTimeDependentOutput output(incrementDamage, damage, nullptr, loadingRevetment, upperLimitLoading,
+                                                                 lowerLimitLoading, nullptr, nullptr, nullptr, nullptr);
 
         // Assert
         AssertHelper::AssertIsInstanceOf<TimeDependentOutput>(&output);

@@ -42,11 +42,11 @@ namespace DiKErnel::Integration::Test
         constexpr auto cumulativeOverload = 0.7;
 
         // Call
-        const auto output = GrassRevetmentWaveRunupRayleighTimeDependentOutput(incrementDamage, damage, make_unique<int>(timeOfFailure),
-                                                                               verticalDistanceWaterLevelElevation,
-                                                                               make_unique<double>(waveAngleImpact),
-                                                                               make_unique<double>(representativeWaveRunup2P),
-                                                                               make_unique<double>(cumulativeOverload));
+        const GrassRevetmentWaveRunupRayleighTimeDependentOutput output(incrementDamage, damage, make_unique<int>(timeOfFailure),
+                                                                        verticalDistanceWaterLevelElevation, make_unique<double>(waveAngleImpact),
+                                                                        make_unique<double>(representativeWaveRunup2P),
+                                                                        make_unique<double>(cumulativeOverload));
+
         // Assert
         AssertHelper::AssertIsInstanceOf<TimeDependentOutput>(&output);
         ASSERT_DOUBLE_EQ(incrementDamage, output.GetIncrementDamage());
@@ -61,13 +61,14 @@ namespace DiKErnel::Integration::Test
     TEST(GrassRevetmentWaveRunupRayleighTimeDependentOutputTest, Constructor_WithNullPtrValues_ExpectedValues)
     {
         // Setup
-        const auto incrementDamage = 0.1;
-        const auto damage = 0.2;
-        const auto verticalDistanceWaterLevelElevation = 0.3;
+        constexpr auto incrementDamage = 0.1;
+        constexpr auto damage = 0.2;
+        constexpr auto verticalDistanceWaterLevelElevation = 0.3;
 
         // Call
-        const auto output = GrassRevetmentWaveRunupRayleighTimeDependentOutput(incrementDamage, damage, nullptr,
-                                                                               verticalDistanceWaterLevelElevation, nullptr, nullptr, nullptr);
+        const GrassRevetmentWaveRunupRayleighTimeDependentOutput output(incrementDamage, damage, nullptr, verticalDistanceWaterLevelElevation,
+                                                                        nullptr, nullptr, nullptr);
+
         // Assert
         AssertHelper::AssertIsInstanceOf<TimeDependentOutput>(&output);
         ASSERT_DOUBLE_EQ(incrementDamage, output.GetIncrementDamage());

@@ -93,8 +93,8 @@ namespace DiKErnel::FunctionLibrary::Test
         constexpr auto maximumWaveHeightTemin = 3.6;
 
         // Call
-        const auto maximumWaveHeight =
-                GrassRevetmentWaveImpactFunctions::MaximumWaveHeight(timeLineAgwi, timeLineBgwi, timeLineCgwi, maximumWaveHeightTemin);
+        const auto maximumWaveHeight = GrassRevetmentWaveImpactFunctions::MaximumWaveHeight(
+            timeLineAgwi, timeLineBgwi, timeLineCgwi, maximumWaveHeightTemin);
 
         // Assert
         ASSERT_DOUBLE_EQ(1.0499440147590584, maximumWaveHeight);

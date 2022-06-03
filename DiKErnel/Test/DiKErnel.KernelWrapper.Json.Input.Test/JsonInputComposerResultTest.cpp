@@ -43,7 +43,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
         constexpr auto processType = JsonInputProcessType::Physics;
 
         // Call
-        const auto result = JsonInputComposerResult(move(calculationInput), processType);
+        const JsonInputComposerResult result(move(calculationInput), processType);
 
         // Assert
         ASSERT_EQ(&profileData, &result.GetCalculationInput().GetProfileData());
