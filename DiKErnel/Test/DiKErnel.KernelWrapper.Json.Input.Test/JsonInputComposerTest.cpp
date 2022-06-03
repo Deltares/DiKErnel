@@ -75,7 +75,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
                 / fileName).string();
 
             // When
-            const auto result = JsonInputComposer::GetInputDataFromJson(filePath);
+            const auto& result = JsonInputComposer::GetInputDataFromJson(filePath);
 
             // Then
             ASSERT_FALSE(result->GetSuccessful());
@@ -118,7 +118,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
             / "AllLocationsInput.json").string();
 
         // When
-        const auto result = JsonInputComposer::GetInputDataFromJson(filePath);
+        const auto& result = JsonInputComposer::GetInputDataFromJson(filePath);
         const auto& calculationInput = result->GetData()->GetCalculationInput();
 
         // Then

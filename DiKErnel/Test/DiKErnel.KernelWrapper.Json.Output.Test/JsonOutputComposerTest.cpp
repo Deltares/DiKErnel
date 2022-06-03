@@ -65,7 +65,7 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
             const CalculationOutput calculationOutput(move(locations));
 
             // Call
-            const auto result = JsonOutputComposer::WriteCalculationOutputToJson(_actualOutputFilePath, calculationOutput, outputType);
+            const auto& result = JsonOutputComposer::WriteCalculationOutputToJson(_actualOutputFilePath, calculationOutput, outputType);
 
             // Assert
             FileAssert::AssertFileContents(expectedOutputFilePath, _actualOutputFilePath);
@@ -85,7 +85,7 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
         const CalculationOutput calculationOutput((vector<unique_ptr<LocationDependentOutput>>()));
 
         // Call
-        const auto result = JsonOutputComposer::WriteCalculationOutputToJson("", calculationOutput, static_cast<JsonOutputType>(99));
+        const auto& result = JsonOutputComposer::WriteCalculationOutputToJson("", calculationOutput, static_cast<JsonOutputType>(99));
 
         // Assert
         ASSERT_FALSE(result->GetSuccessful());
@@ -125,7 +125,7 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
         const CalculationOutput calculationOutput(move(locations));
 
         // Call
-        const auto result = JsonOutputComposer::WriteCalculationOutputToJson("", calculationOutput, JsonOutputType::Physics);
+        const auto& result = JsonOutputComposer::WriteCalculationOutputToJson("", calculationOutput, JsonOutputType::Physics);
 
         // Assert
         ASSERT_FALSE(result->GetSuccessful());

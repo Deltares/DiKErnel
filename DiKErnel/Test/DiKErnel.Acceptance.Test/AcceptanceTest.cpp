@@ -76,7 +76,7 @@ namespace DiKErnel::Acceptance::Test
 
             for (auto i = 0; i < static_cast<int>(readLocations.size()); ++i)
             {
-                const auto readLocation = readLocations.at(i);
+                const auto& readLocation = readLocations.at(i);
 
                 const auto& actualDamages = readLocation.at("SchadeBekleding").at("SchadegetalPerTijd").get<vector<double>>();
 

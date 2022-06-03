@@ -59,7 +59,7 @@ namespace DiKErnel::Core::Test
         ON_CALL(calculationInput, GetTimeDependentInputItems).WillByDefault(ReturnRef(timeDependentInputItemReferences));
 
         // Call
-        const auto validationResult = Validator::Validate(calculationInput);
+        const auto& validationResult = Validator::Validate(calculationInput);
 
         // Assert
         ASSERT_TRUE(validationResult->GetSuccessful());
@@ -91,7 +91,7 @@ namespace DiKErnel::Core::Test
         ON_CALL(calculationInput, GetTimeDependentInputItems).WillByDefault(ReturnRef(timeDependentInputItemReferences));
 
         // Call
-        const auto validationResult = Validator::Validate(calculationInput);
+        const auto& validationResult = Validator::Validate(calculationInput);
 
         // Assert
         ASSERT_TRUE(validationResult->GetSuccessful());
@@ -123,7 +123,7 @@ namespace DiKErnel::Core::Test
         ON_CALL(calculationInput, GetTimeDependentInputItems).WillByDefault(ReturnRef(timeDependentInputItemReferences));
 
         // Call
-        const auto validationResult = Validator::Validate(calculationInput);
+        const auto& validationResult = Validator::Validate(calculationInput);
 
         // Assert
         ASSERT_TRUE(validationResult->GetSuccessful());
@@ -155,7 +155,7 @@ namespace DiKErnel::Core::Test
         ON_CALL(calculationInput, GetTimeDependentInputItems).WillByDefault(ReturnRef(timeDependentInputItemReferences));
 
         // Call
-        const auto validationResult = Validator::Validate(calculationInput);
+        const auto& validationResult = Validator::Validate(calculationInput);
 
         // Assert
         ASSERT_TRUE(validationResult->GetSuccessful());
@@ -189,7 +189,7 @@ namespace DiKErnel::Core::Test
         ON_CALL(calculationInput, GetTimeDependentInputItems).WillByDefault(ReturnRef(timeDependentInputItemReferences));
 
         // Call
-        const auto validationResult = Validator::Validate(calculationInput);
+        const auto& validationResult = Validator::Validate(calculationInput);
 
         // Assert
         ASSERT_FALSE(validationResult->GetSuccessful());

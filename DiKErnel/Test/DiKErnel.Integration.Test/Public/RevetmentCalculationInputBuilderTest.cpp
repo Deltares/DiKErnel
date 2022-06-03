@@ -92,7 +92,7 @@ namespace DiKErnel::Integration::Test
         RevetmentCalculationInputBuilder builder;
 
         // When
-        const auto calculationInput = builder.Build();
+        const auto& calculationInput = builder.Build();
 
         // Then
         const auto& profileData = calculationInput->GetProfileData();
@@ -115,7 +115,7 @@ namespace DiKErnel::Integration::Test
         builder.AddDikeProfilePoint(x, z, nullptr);
 
         // When
-        const auto calculationInput = builder.Build();
+        const auto& calculationInput = builder.Build();
 
         // Then
         const auto& actualProfileData = calculationInput->GetProfileData();
@@ -138,7 +138,7 @@ namespace DiKErnel::Integration::Test
         builder.AddDikeProfilePoint(x, z, &characteristicPointType);
 
         // When
-        const auto calculationInput = builder.Build();
+        const auto& calculationInput = builder.Build();
 
         // Then
         const auto& actualProfileData = calculationInput->GetProfileData();
@@ -169,7 +169,7 @@ namespace DiKErnel::Integration::Test
         builder.AddTimeStep(beginTime, endTime, waterLevel, waveHeightHm0, wavePeriodTm10, waveAngle);
 
         // When
-        const auto calculationInput = builder.Build();
+        const auto& calculationInput = builder.Build();
 
         // Then
         const auto& actualTimeDependentInputItems = calculationInput->GetTimeDependentInputItems();
@@ -252,7 +252,7 @@ namespace DiKErnel::Integration::Test
         builder.AddAsphaltWaveImpactLocation(constructionProperties);
 
         // When
-        const auto calculationInput = builder.Build();
+        const auto& calculationInput = builder.Build();
 
         // Then
         ASSERT_EQ(0, calculationInput->GetTimeDependentInputItems().size());
@@ -304,7 +304,7 @@ namespace DiKErnel::Integration::Test
         builder.AddAsphaltWaveImpactLocation(constructionProperties);
 
         // When
-        const auto calculationInput = builder.Build();
+        const auto& calculationInput = builder.Build();
 
         // Then
         ASSERT_EQ(0, calculationInput->GetTimeDependentInputItems().size());
@@ -433,7 +433,7 @@ namespace DiKErnel::Integration::Test
         builder.AddGrassWaveImpactLocation(constructionProperties);
 
         // When
-        const auto calculationInput = builder.Build();
+        const auto& calculationInput = builder.Build();
 
         // Then
         ASSERT_EQ(0, calculationInput->GetTimeDependentInputItems().size());
@@ -482,7 +482,7 @@ namespace DiKErnel::Integration::Test
         builder.AddGrassWaveImpactLocation(constructionProperties);
 
         // When
-        const auto calculationInput = builder.Build();
+        const auto& calculationInput = builder.Build();
 
         // Then
         ASSERT_EQ(0, calculationInput->GetTimeDependentInputItems().size());
@@ -531,7 +531,7 @@ namespace DiKErnel::Integration::Test
         builder.AddGrassWaveImpactLocation(constructionProperties);
 
         // When
-        const auto calculationInput = builder.Build();
+        const auto& calculationInput = builder.Build();
 
         // Then
         ASSERT_EQ(0, calculationInput->GetTimeDependentInputItems().size());
@@ -629,7 +629,7 @@ namespace DiKErnel::Integration::Test
         builder.AddGrassWaveRunupRayleighLocation(constructionProperties);
 
         // When
-        const auto calculationInput = builder.Build();
+        const auto& calculationInput = builder.Build();
 
         // Then
         ASSERT_EQ(0, calculationInput->GetTimeDependentInputItems().size());
@@ -680,7 +680,7 @@ namespace DiKErnel::Integration::Test
         builder.AddGrassWaveRunupRayleighLocation(constructionProperties);
 
         // When
-        const auto calculationInput = builder.Build();
+        const auto& calculationInput = builder.Build();
 
         // Then
         ASSERT_EQ(0, calculationInput->GetTimeDependentInputItems().size());
@@ -730,7 +730,7 @@ namespace DiKErnel::Integration::Test
         builder.AddGrassWaveRunupRayleighLocation(constructionProperties);
 
         // When
-        const auto calculationInput = builder.Build();
+        const auto& calculationInput = builder.Build();
 
         // Then
         ASSERT_EQ(0, calculationInput->GetTimeDependentInputItems().size());
@@ -844,7 +844,7 @@ namespace DiKErnel::Integration::Test
         builder.AddNaturalStoneLocation(naturalStoneConstructionProperties);
 
         // When
-        const auto calculationInput = builder.Build();
+        const auto& calculationInput = builder.Build();
 
         // Then
         ASSERT_EQ(0, calculationInput->GetTimeDependentInputItems().size());
@@ -901,7 +901,7 @@ namespace DiKErnel::Integration::Test
         builder.AddNaturalStoneLocation(naturalStoneConstructionProperties);
 
         // When
-        const auto calculationInput = builder.Build();
+        const auto& calculationInput = builder.Build();
 
         // Then
         ASSERT_EQ(0, calculationInput->GetTimeDependentInputItems().size());
