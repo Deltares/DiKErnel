@@ -33,9 +33,9 @@ A listing of the terms that are shipped with the third party components used by 
 ### Requirements to build the Gui
 - Qt6.3
 - Set an environment variable with the name "QT6DIR64" and the path to the Qt installation\
-- ![EnvironmentVariableQt](https://user-images.githubusercontent.com/5822688/172304265-6e3120aa-2d8e-4805-9e9b-506f59bb4ea4.png)
+![EnvironmentVariableQt](https://user-images.githubusercontent.com/5822688/172304265-6e3120aa-2d8e-4805-9e9b-506f59bb4ea4.png)
 - Add the lib and bin folder to the Path variable\
-- ![PathVariableQt](https://user-images.githubusercontent.com/5822688/172304423-d277c0ac-366f-4e4b-9d95-672e8731446a.png)
+![PathVariableQt](https://user-images.githubusercontent.com/5822688/172304423-d277c0ac-366f-4e4b-9d95-672e8731446a.png)
 
 ### IDE
 To use an IDE, such as Visual Studio:
