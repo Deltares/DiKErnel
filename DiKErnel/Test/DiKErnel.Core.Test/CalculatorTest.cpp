@@ -294,7 +294,7 @@ namespace DiKErnel::Core::Test
         calculator.WaitForCompletion();
 
         // When
-        const auto& calculationState = calculator.GetCalculationState();
+        const auto calculationState = calculator.GetCalculationState();
 
         // Then
         ASSERT_EQ(CalculationState::FinishedInError, calculationState);
