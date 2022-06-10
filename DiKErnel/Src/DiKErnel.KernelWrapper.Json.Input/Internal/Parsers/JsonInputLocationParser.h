@@ -43,7 +43,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
         protected:
             virtual std::unique_ptr<JsonInputLocationData> ParseLocationData(
                 double x,
-                std::unique_ptr<JsonInputDamageData> damageData) = 0;
+                std::unique_ptr<JsonInputDamageData> damageData,
+                std::unique_ptr<double> initialDamage) = 0;
 
             [[nodiscard]]
             const nlohmann::json& GetReadLocation() const;
