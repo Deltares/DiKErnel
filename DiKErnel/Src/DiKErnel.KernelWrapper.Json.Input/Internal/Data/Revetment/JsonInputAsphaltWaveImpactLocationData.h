@@ -38,9 +38,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 double soilElasticity,
                 double thicknessUpperLayer,
                 double elasticModulusUpperLayer,
+                double outerSlope,
                 std::unique_ptr<JsonInputDamageData> damageData,
-                std::unique_ptr<JsonInputAsphaltRevetmentWaveImpactLocationData> revetmentLocationData,
-                std::unique_ptr<JsonInputProfileSchematizationData> profileSchematizationData);
+                std::unique_ptr<JsonInputAsphaltRevetmentWaveImpactLocationData> revetmentLocationData);
 
             void SetThicknessSubLayer(
                 std::unique_ptr<double> thicknessSubLayer);
@@ -64,6 +64,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
             double GetElasticModulusUpperLayer() const;
 
             [[nodiscard]]
+            double GetOuterSlope() const;
+
+            [[nodiscard]]
             const double* GetThicknessSubLayer() const;
 
             [[nodiscard]]
@@ -72,18 +75,15 @@ namespace DiKErnel::KernelWrapper::Json::Input
             [[nodiscard]]
             const JsonInputAsphaltRevetmentWaveImpactLocationData& GetRevetmentLocationData() const;
 
-            [[nodiscard]]
-            const JsonInputProfileSchematizationData& GetProfileSchematizationData() const;
-
         private:
             JsonInputAsphaltRevetmentTopLayerType _topLayerType;
             double _failureTension;
             double _soilElasticity;
             double _thicknessUpperLayer;
             double _elasticModulusUpperLayer;
+            double _outerSlope;
             std::unique_ptr<double> _thicknessSubLayer = nullptr;
             std::unique_ptr<double> _elasticModulusSubLayer = nullptr;
             std::unique_ptr<JsonInputAsphaltRevetmentWaveImpactLocationData> _revetmentLocationData;
-            std::unique_ptr<JsonInputProfileSchematizationData> _profileSchematizationData;
     };
 }

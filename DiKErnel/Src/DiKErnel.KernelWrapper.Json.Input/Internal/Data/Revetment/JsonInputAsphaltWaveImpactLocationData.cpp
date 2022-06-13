@@ -34,17 +34,17 @@ namespace DiKErnel::KernelWrapper::Json::Input
         const double soilElasticity,
         const double thicknessUpperLayer,
         const double elasticModulusUpperLayer,
+        const double outerSlope,
         unique_ptr<JsonInputDamageData> damageData,
-        unique_ptr<JsonInputAsphaltRevetmentWaveImpactLocationData> revetmentLocationData,
-        unique_ptr<JsonInputProfileSchematizationData> profileSchematizationData)
+        unique_ptr<JsonInputAsphaltRevetmentWaveImpactLocationData> revetmentLocationData)
         : JsonInputLocationData(x, move(initialDamage), move(damageData)),
           _topLayerType(topLayerType),
           _failureTension(failureTension),
           _soilElasticity(soilElasticity),
           _thicknessUpperLayer(thicknessUpperLayer),
           _elasticModulusUpperLayer(elasticModulusUpperLayer),
-          _revetmentLocationData(move(revetmentLocationData)),
-          _profileSchematizationData(move(profileSchematizationData)) {}
+          _outerSlope(outerSlope),
+          _revetmentLocationData(move(revetmentLocationData)) {}
 
     void JsonInputAsphaltWaveImpactLocationData::SetThicknessSubLayer(
         unique_ptr<double> thicknessSubLayer)
@@ -83,6 +83,11 @@ namespace DiKErnel::KernelWrapper::Json::Input
         return _elasticModulusUpperLayer;
     }
 
+    double JsonInputAsphaltWaveImpactLocationData::GetOuterSlope() const
+    {
+        return _outerSlope;
+    }
+
     const double* JsonInputAsphaltWaveImpactLocationData::GetThicknessSubLayer() const
     {
         return _thicknessSubLayer.get();
@@ -96,10 +101,5 @@ namespace DiKErnel::KernelWrapper::Json::Input
     const JsonInputAsphaltRevetmentWaveImpactLocationData& JsonInputAsphaltWaveImpactLocationData::GetRevetmentLocationData() const
     {
         return *_revetmentLocationData;
-    }
-
-    const JsonInputProfileSchematizationData& JsonInputAsphaltWaveImpactLocationData::GetProfileSchematizationData() const
-    {
-        return *_profileSchematizationData;
     }
 }

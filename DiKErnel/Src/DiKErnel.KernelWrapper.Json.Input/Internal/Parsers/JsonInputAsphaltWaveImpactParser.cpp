@@ -62,7 +62,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
             readLocation.at(JsonInputAsphaltWaveImpactDefinitions::SOIL_ELASTICITY),
             readUpperLayer.at(JsonInputAsphaltWaveImpactDefinitions::THICKNESS),
             readUpperLayer.at(JsonInputAsphaltWaveImpactDefinitions::ELASTIC_MODULUS),
-            move(damageData), ParseRevetmentLocationData(), ParseProfileSchematizationData());
+            readLocation.at(JsonInputDefinitions::OUTER_SLOPE),
+            move(damageData), ParseRevetmentLocationData());
 
         if (readLocation.contains(JsonInputAsphaltWaveImpactDefinitions::SUB_LAYER))
         {
@@ -144,14 +145,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
         }
 
         return revetmentLocationData;
-    }
-
-    unique_ptr<JsonInputProfileSchematizationData> JsonInputAsphaltWaveImpactParser::ParseProfileSchematizationData() const
-    {
-        const auto& readProfileSchematization = GetReadLocation().at(JsonInputDefinitions::PROFILE_SCHEMATIZATION);
-
-        return make_unique<JsonInputProfileSchematizationData>(
-            readProfileSchematization.at(JsonInputDefinitions::OUTER_SLOPE).get<double>());
     }
 
     unique_ptr<vector<pair<double, double>>> JsonInputAsphaltWaveImpactParser::ParseFactorsTable(
