@@ -26,10 +26,11 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
     JsonInputGrassWaveRunupRayleighLocationData::JsonInputGrassWaveRunupRayleighLocationData(
         const double x,
+        unique_ptr<double> initialDamage,
         unique_ptr<JsonInputDamageData> damageData,
         unique_ptr<JsonInputGrassRevetmentWaveRunupRayleighLocationData> revetmentLocationData,
         unique_ptr<JsonInputGrassRevetmentWaveRunupProfileSchematizationData> profileSchematizationData)
-        : JsonInputLocationData(x, move(damageData)),
+        : JsonInputLocationData(x, move(initialDamage), move(damageData)),
           _revetmentLocationData(move(revetmentLocationData)),
           _profileSchematizationData(move(profileSchematizationData)) {}
 

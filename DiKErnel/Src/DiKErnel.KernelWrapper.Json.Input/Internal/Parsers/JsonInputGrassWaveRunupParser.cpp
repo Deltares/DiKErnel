@@ -78,7 +78,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
             return nullptr;
         }
 
-        return make_unique<JsonInputGrassWaveRunupRayleighLocationData>(x, move(damageData),
+        return make_unique<JsonInputGrassWaveRunupRayleighLocationData>(x, move(initialDamage), move(damageData),
                                                                         ParseRevetmentLocationData(readCalculationMethod, readCalculationProtocol),
                                                                         ParseProfileSchematizationData());
     }

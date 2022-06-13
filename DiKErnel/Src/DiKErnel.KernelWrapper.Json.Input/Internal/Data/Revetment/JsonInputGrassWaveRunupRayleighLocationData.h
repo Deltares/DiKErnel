@@ -31,6 +31,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
         public:
             explicit JsonInputGrassWaveRunupRayleighLocationData(
                 double x,
+                std::unique_ptr<double> initialDamage,
                 std::unique_ptr<JsonInputDamageData> damageData,
                 std::unique_ptr<JsonInputGrassRevetmentWaveRunupRayleighLocationData> revetmentLocationData,
                 std::unique_ptr<JsonInputGrassRevetmentWaveRunupProfileSchematizationData> profileSchematizationData);
