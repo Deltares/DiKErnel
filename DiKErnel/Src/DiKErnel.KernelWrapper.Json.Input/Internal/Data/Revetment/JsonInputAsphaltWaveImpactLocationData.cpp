@@ -29,18 +29,68 @@ namespace DiKErnel::KernelWrapper::Json::Input
     JsonInputAsphaltWaveImpactLocationData::JsonInputAsphaltWaveImpactLocationData(
         const double x,
         unique_ptr<double> initialDamage,
-        JsonInputAsphaltRevetmentTopLayerType topLayerType,
+        const JsonInputAsphaltRevetmentTopLayerType topLayerType,
+        const double failureTension,
+        const double soilElasticity,
+        const double thicknessUpperLayer,
+        const double elasticModulusUpperLayer,
         unique_ptr<JsonInputDamageData> damageData,
         unique_ptr<JsonInputAsphaltRevetmentWaveImpactLocationData> revetmentLocationData,
         unique_ptr<JsonInputProfileSchematizationData> profileSchematizationData)
         : JsonInputLocationData(x, move(initialDamage), move(damageData)),
           _topLayerType(topLayerType),
+          _failureTension(failureTension),
+          _soilElasticity(soilElasticity),
+          _thicknessUpperLayer(thicknessUpperLayer),
+          _elasticModulusUpperLayer(elasticModulusUpperLayer),
           _revetmentLocationData(move(revetmentLocationData)),
           _profileSchematizationData(move(profileSchematizationData)) {}
+
+    void JsonInputAsphaltWaveImpactLocationData::SetThicknessSubLayer(
+        unique_ptr<double> thicknessSubLayer)
+    {
+        _thicknessSubLayer = move(thicknessSubLayer);
+    }
+
+    void JsonInputAsphaltWaveImpactLocationData::SetElasticModulusSubLayer(
+        unique_ptr<double> elasticModulusSubLayer)
+    {
+        _elasticModulusSubLayer = move(elasticModulusSubLayer);
+    }
 
     JsonInputAsphaltRevetmentTopLayerType JsonInputAsphaltWaveImpactLocationData::GetTopLayerType() const
     {
         return _topLayerType;
+    }
+
+    double JsonInputAsphaltWaveImpactLocationData::GetFailureTension() const
+    {
+        return _failureTension;
+    }
+
+    double JsonInputAsphaltWaveImpactLocationData::GetSoilElasticity() const
+    {
+        return _soilElasticity;
+    }
+
+    double JsonInputAsphaltWaveImpactLocationData::GetThicknessUpperLayer() const
+    {
+        return _thicknessUpperLayer;
+    }
+
+    double JsonInputAsphaltWaveImpactLocationData::GetElasticModulusUpperLayer() const
+    {
+        return _elasticModulusUpperLayer;
+    }
+
+    const double* JsonInputAsphaltWaveImpactLocationData::GetThicknessSubLayer() const
+    {
+        return _thicknessSubLayer.get();
+    }
+
+    const double* JsonInputAsphaltWaveImpactLocationData::GetElasticModulusSubLayer() const
+    {
+        return _elasticModulusSubLayer.get();
     }
 
     const JsonInputAsphaltRevetmentWaveImpactLocationData& JsonInputAsphaltWaveImpactLocationData::GetRevetmentLocationData() const

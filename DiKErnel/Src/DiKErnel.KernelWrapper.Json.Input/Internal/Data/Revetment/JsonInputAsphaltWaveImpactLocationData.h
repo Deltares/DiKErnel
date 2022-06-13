@@ -34,12 +34,40 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 double x,
                 std::unique_ptr<double> initialDamage,
                 JsonInputAsphaltRevetmentTopLayerType topLayerType,
+                double failureTension,
+                double soilElasticity,
+                double thicknessUpperLayer,
+                double elasticModulusUpperLayer,
                 std::unique_ptr<JsonInputDamageData> damageData,
                 std::unique_ptr<JsonInputAsphaltRevetmentWaveImpactLocationData> revetmentLocationData,
                 std::unique_ptr<JsonInputProfileSchematizationData> profileSchematizationData);
 
+            void SetThicknessSubLayer(
+                std::unique_ptr<double> thicknessSubLayer);
+
+            void SetElasticModulusSubLayer(
+                std::unique_ptr<double> elasticModulusSubLayer);
+
             [[nodiscard]]
             JsonInputAsphaltRevetmentTopLayerType GetTopLayerType() const;
+
+            [[nodiscard]]
+            double GetFailureTension() const;
+
+            [[nodiscard]]
+            double GetSoilElasticity() const;
+
+            [[nodiscard]]
+            double GetThicknessUpperLayer() const;
+
+            [[nodiscard]]
+            double GetElasticModulusUpperLayer() const;
+
+            [[nodiscard]]
+            const double* GetThicknessSubLayer() const;
+
+            [[nodiscard]]
+            const double* GetElasticModulusSubLayer() const;
 
             [[nodiscard]]
             const JsonInputAsphaltRevetmentWaveImpactLocationData& GetRevetmentLocationData() const;
@@ -49,6 +77,12 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
         private:
             JsonInputAsphaltRevetmentTopLayerType _topLayerType;
+            double _failureTension;
+            double _soilElasticity;
+            double _thicknessUpperLayer;
+            double _elasticModulusUpperLayer;
+            std::unique_ptr<double> _thicknessSubLayer = nullptr;
+            std::unique_ptr<double> _elasticModulusSubLayer = nullptr;
             std::unique_ptr<JsonInputAsphaltRevetmentWaveImpactLocationData> _revetmentLocationData;
             std::unique_ptr<JsonInputProfileSchematizationData> _profileSchematizationData;
     };

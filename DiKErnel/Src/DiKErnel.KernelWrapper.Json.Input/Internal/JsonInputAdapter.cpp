@@ -135,16 +135,16 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
         auto constructionProperties = make_unique<AsphaltRevetmentWaveImpactLocationConstructionProperties>(
             location.GetX(), profileSchematizationData.GetOuterSlope(), ConvertTopLayerType(location.GetTopLayerType()),
-            revetmentData.GetFailureTension(), revetmentData.GetDensityOfWater(), revetmentData.GetSoilElasticity(),
-            revetmentData.GetThicknessUpperLayer(), revetmentData.GetElasticModulusUpperLayer());
+            location.GetFailureTension(), revetmentData.GetDensityOfWater(), location.GetSoilElasticity(),
+            location.GetThicknessUpperLayer(), location.GetElasticModulusUpperLayer());
 
         constructionProperties->SetInitialDamage(forward<unique_ptr<double>>(CreatePointerOfValue(damageData.GetInitialDamage())));
         constructionProperties->SetFailureNumber(forward<unique_ptr<double>>(CreatePointerOfValue(damageData.GetFailureNumber())));
 
         constructionProperties->SetThicknessSubLayer(
-            forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetThicknessSubLayer())));
+            forward<unique_ptr<double>>(CreatePointerOfValue(location.GetThicknessSubLayer())));
         constructionProperties->SetElasticModulusSubLayer(
-            forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetElasticModulusSubLayer())));
+            forward<unique_ptr<double>>(CreatePointerOfValue(location.GetElasticModulusSubLayer())));
 
         constructionProperties->SetAverageNumberOfWavesCtm(
             forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetAverageNumberOfWavesCtm())));

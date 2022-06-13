@@ -25,30 +25,10 @@ namespace DiKErnel::KernelWrapper::Json::Input
     using namespace std;
 
     JsonInputAsphaltRevetmentWaveImpactLocationData::JsonInputAsphaltRevetmentWaveImpactLocationData(
-        const double failureTension,
-        const double densityOfWater,
-        const double soilElasticity,
-        const double thicknessUpperLayer,
-        const double elasticModulusUpperLayer)
-        : _failureTension(failureTension),
-          _densityOfWater(densityOfWater),
-          _soilElasticity(soilElasticity),
-          _thicknessUpperLayer(thicknessUpperLayer),
-          _elasticModulusUpperLayer(elasticModulusUpperLayer) { }
+        const double densityOfWater)
+        : _densityOfWater(densityOfWater) { }
 
     #pragma region Set methods
-
-    void JsonInputAsphaltRevetmentWaveImpactLocationData::SetThicknessSubLayer(
-        unique_ptr<double> thicknessSubLayer)
-    {
-        _thicknessSubLayer = move(thicknessSubLayer);
-    }
-
-    void JsonInputAsphaltRevetmentWaveImpactLocationData::SetElasticModulusSubLayer(
-        unique_ptr<double> elasticModulusSubLayer)
-    {
-        _elasticModulusSubLayer = move(elasticModulusSubLayer);
-    }
 
     void JsonInputAsphaltRevetmentWaveImpactLocationData::SetAverageNumberOfWavesCtm(
         unique_ptr<double> averageNumberOfWavesCtm)
@@ -102,39 +82,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
     #pragma region Get methods
 
-    double JsonInputAsphaltRevetmentWaveImpactLocationData::GetFailureTension() const
-    {
-        return _failureTension;
-    }
-
     double JsonInputAsphaltRevetmentWaveImpactLocationData::GetDensityOfWater() const
     {
         return _densityOfWater;
-    }
-
-    double JsonInputAsphaltRevetmentWaveImpactLocationData::GetSoilElasticity() const
-    {
-        return _soilElasticity;
-    }
-
-    double JsonInputAsphaltRevetmentWaveImpactLocationData::GetThicknessUpperLayer() const
-    {
-        return _thicknessUpperLayer;
-    }
-
-    double JsonInputAsphaltRevetmentWaveImpactLocationData::GetElasticModulusUpperLayer() const
-    {
-        return _elasticModulusUpperLayer;
-    }
-
-    const double* JsonInputAsphaltRevetmentWaveImpactLocationData::GetThicknessSubLayer() const
-    {
-        return _thicknessSubLayer.get();
-    }
-
-    const double* JsonInputAsphaltRevetmentWaveImpactLocationData::GetElasticModulusSubLayer() const
-    {
-        return _elasticModulusSubLayer.get();
     }
 
     const double* JsonInputAsphaltRevetmentWaveImpactLocationData::GetAverageNumberOfWavesCtm() const
