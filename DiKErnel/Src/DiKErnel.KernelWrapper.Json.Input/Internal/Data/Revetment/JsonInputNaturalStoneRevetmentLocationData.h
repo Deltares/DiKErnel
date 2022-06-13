@@ -22,18 +22,11 @@
 
 #include <memory>
 
-#include "JsonInputNaturalStoneRevetmentTopLayerType.h"
-
 namespace DiKErnel::KernelWrapper::Json::Input
 {
     class JsonInputNaturalStoneRevetmentLocationData
     {
         public:
-            explicit JsonInputNaturalStoneRevetmentLocationData(
-                JsonInputNaturalStoneRevetmentTopLayerType topLayerType,
-                double relativeDensity,
-                double thicknessTopLayer);
-
             #pragma region Set methods
 
             void SetHydraulicLoadAp(
@@ -107,15 +100,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
             #pragma region Get methods
 
             [[nodiscard]]
-            JsonInputNaturalStoneRevetmentTopLayerType GetTopLayerType() const;
-
-            [[nodiscard]]
-            double GetRelativeDensity() const;
-
-            [[nodiscard]]
-            double GetThicknessTopLayer() const;
-
-            [[nodiscard]]
             const double* GetHydraulicLoadXib() const;
 
             [[nodiscard]]
@@ -184,9 +168,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
             #pragma endregion
 
         private:
-            JsonInputNaturalStoneRevetmentTopLayerType _topLayerType;
-            double _relativeDensity;
-            double _thicknessTopLayer;
             std::unique_ptr<double> _hydraulicLoadXib = nullptr;
             std::unique_ptr<double> _hydraulicLoadAp = nullptr;
             std::unique_ptr<double> _hydraulicLoadBp = nullptr;

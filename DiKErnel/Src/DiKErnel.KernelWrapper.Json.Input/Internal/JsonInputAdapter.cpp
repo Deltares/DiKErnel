@@ -289,10 +289,10 @@ namespace DiKErnel::KernelWrapper::Json::Input
         const auto& revetmentData = location.GetRevetmentLocationData();
 
         auto constructionProperties = make_unique<NaturalStoneRevetmentLocationConstructionProperties>(
-            location.GetX(), ConvertTopLayerType(revetmentData.GetTopLayerType()), revetmentData.GetThicknessTopLayer(),
-            revetmentData.GetRelativeDensity());
+            location.GetX(), ConvertTopLayerType(location.GetTopLayerType()), location.GetThicknessTopLayer(),
+            location.GetRelativeDensity());
 
-        constructionProperties->SetInitialDamage(forward<unique_ptr<double>>(CreatePointerOfValue(damageData.GetInitialDamage())));
+        constructionProperties->SetInitialDamage(forward<unique_ptr<double>>(CreatePointerOfValue(location.GetInitialDamage())));
         constructionProperties->SetFailureNumber(forward<unique_ptr<double>>(CreatePointerOfValue(damageData.GetFailureNumber())));
 
         constructionProperties->SetHydraulicLoadAp(

@@ -52,21 +52,20 @@ namespace DiKErnel::KernelWrapper::Json::Input
         unique_ptr<double> initialDamage)
     {
         const auto& readLocation = GetReadLocation();
+        const auto& readRevetment = GetReadRevetment();
 
         return make_unique<JsonInputNaturalStoneLocationData>(
             x, move(initialDamage), readLocation.at(JsonInputDefinitions::TYPE_TOP_LAYER).get<JsonInputNaturalStoneRevetmentTopLayerType>(),
+            readLocation.at(JsonInputNaturalStoneDefinitions::RELATIVE_DENSITY),
+            readLocation.at(JsonInputNaturalStoneDefinitions::THICKNESS_TOP_LAYER),
             move(damageData), ParseRevetmentLocationData());
     }
 
     unique_ptr<JsonInputNaturalStoneRevetmentLocationData> JsonInputNaturalStoneParser::ParseRevetmentLocationData() const
     {
-        const auto& readRevetment = GetReadRevetment();
         const auto& readCalculationMethod = GetReadCalculationMethod();
 
-        auto locationData = make_unique<JsonInputNaturalStoneRevetmentLocationData>(
-            readRevetment.at(JsonInputDefinitions::TYPE_TOP_LAYER).get<JsonInputNaturalStoneRevetmentTopLayerType>(),
-            readRevetment.at(JsonInputNaturalStoneDefinitions::RELATIVE_DENSITY),
-            readRevetment.at(JsonInputNaturalStoneDefinitions::THICKNESS_TOP_LAYER));
+        auto locationData = make_unique<JsonInputNaturalStoneRevetmentLocationData>();
 
         if (readCalculationMethod.contains(JsonInputNaturalStoneDefinitions::HYDRAULIC_LOAD))
         {

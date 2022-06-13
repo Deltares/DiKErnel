@@ -24,14 +24,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
 {
     using namespace std;
 
-    JsonInputNaturalStoneRevetmentLocationData::JsonInputNaturalStoneRevetmentLocationData(
-        const JsonInputNaturalStoneRevetmentTopLayerType topLayerType,
-        const double relativeDensity,
-        const double thicknessTopLayer)
-        : _topLayerType(topLayerType),
-          _relativeDensity(relativeDensity),
-          _thicknessTopLayer(thicknessTopLayer) { }
-
     #pragma region Set methods
 
     void JsonInputNaturalStoneRevetmentLocationData::SetHydraulicLoadAp(
@@ -169,21 +161,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
     #pragma endregion
 
     #pragma region Get methods
-
-    JsonInputNaturalStoneRevetmentTopLayerType JsonInputNaturalStoneRevetmentLocationData::GetTopLayerType() const
-    {
-        return _topLayerType;
-    }
-
-    double JsonInputNaturalStoneRevetmentLocationData::GetRelativeDensity() const
-    {
-        return _relativeDensity;
-    }
-
-    double JsonInputNaturalStoneRevetmentLocationData::GetThicknessTopLayer() const
-    {
-        return _thicknessTopLayer;
-    }
 
     const double* JsonInputNaturalStoneRevetmentLocationData::GetHydraulicLoadXib() const
     {
