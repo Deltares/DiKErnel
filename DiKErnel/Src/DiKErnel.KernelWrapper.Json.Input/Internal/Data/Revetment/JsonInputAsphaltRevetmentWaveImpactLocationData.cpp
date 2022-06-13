@@ -25,14 +25,12 @@ namespace DiKErnel::KernelWrapper::Json::Input
     using namespace std;
 
     JsonInputAsphaltRevetmentWaveImpactLocationData::JsonInputAsphaltRevetmentWaveImpactLocationData(
-        const JsonInputAsphaltRevetmentTopLayerType topLayerType,
         const double failureTension,
         const double densityOfWater,
         const double soilElasticity,
         const double thicknessUpperLayer,
         const double elasticModulusUpperLayer)
-        : _topLayerType(topLayerType),
-          _failureTension(failureTension),
+        : _failureTension(failureTension),
           _densityOfWater(densityOfWater),
           _soilElasticity(soilElasticity),
           _thicknessUpperLayer(thicknessUpperLayer),
@@ -103,11 +101,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
     #pragma endregion
 
     #pragma region Get methods
-
-    JsonInputAsphaltRevetmentTopLayerType JsonInputAsphaltRevetmentWaveImpactLocationData::GetTopLayerType() const
-    {
-        return _topLayerType;
-    }
 
     double JsonInputAsphaltRevetmentWaveImpactLocationData::GetFailureTension() const
     {

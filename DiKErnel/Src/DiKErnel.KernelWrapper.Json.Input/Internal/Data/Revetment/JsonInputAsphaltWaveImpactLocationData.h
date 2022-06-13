@@ -20,6 +20,7 @@
 
 #pragma once
 
+#include "JsonInputAsphaltRevetmentTopLayerType.h"
 #include "JsonInputAsphaltRevetmentWaveImpactLocationData.h"
 #include "JsonInputLocationData.h"
 #include "JsonInputProfileSchematizationData.h"
@@ -32,9 +33,13 @@ namespace DiKErnel::KernelWrapper::Json::Input
             explicit JsonInputAsphaltWaveImpactLocationData(
                 double x,
                 std::unique_ptr<double> initialDamage,
+                JsonInputAsphaltRevetmentTopLayerType topLayerType,
                 std::unique_ptr<JsonInputDamageData> damageData,
                 std::unique_ptr<JsonInputAsphaltRevetmentWaveImpactLocationData> revetmentLocationData,
                 std::unique_ptr<JsonInputProfileSchematizationData> profileSchematizationData);
+
+            [[nodiscard]]
+            JsonInputAsphaltRevetmentTopLayerType GetTopLayerType() const;
 
             [[nodiscard]]
             const JsonInputAsphaltRevetmentWaveImpactLocationData& GetRevetmentLocationData() const;
@@ -43,6 +48,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
             const JsonInputProfileSchematizationData& GetProfileSchematizationData() const;
 
         private:
+            JsonInputAsphaltRevetmentTopLayerType _topLayerType;
             std::unique_ptr<JsonInputAsphaltRevetmentWaveImpactLocationData> _revetmentLocationData;
             std::unique_ptr<JsonInputProfileSchematizationData> _profileSchematizationData;
     };

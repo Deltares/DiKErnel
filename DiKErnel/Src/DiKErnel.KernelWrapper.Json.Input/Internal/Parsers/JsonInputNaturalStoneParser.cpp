@@ -52,7 +52,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
         unique_ptr<double> initialDamage)
     {
         const auto& readLocation = GetReadLocation();
-        const auto& readRevetment = GetReadRevetment();
 
         return make_unique<JsonInputNaturalStoneLocationData>(
             x, move(initialDamage), readLocation.at(JsonInputDefinitions::TYPE_TOP_LAYER).get<JsonInputNaturalStoneRevetmentTopLayerType>(),

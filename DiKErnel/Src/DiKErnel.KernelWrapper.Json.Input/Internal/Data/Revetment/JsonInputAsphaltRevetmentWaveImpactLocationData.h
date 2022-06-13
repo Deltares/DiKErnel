@@ -23,15 +23,12 @@
 #include <memory>
 #include <vector>
 
-#include "JsonInputAsphaltRevetmentTopLayerType.h"
-
 namespace DiKErnel::KernelWrapper::Json::Input
 {
     class JsonInputAsphaltRevetmentWaveImpactLocationData
     {
         public:
             explicit JsonInputAsphaltRevetmentWaveImpactLocationData(
-                JsonInputAsphaltRevetmentTopLayerType topLayerType,
                 double failureTension,
                 double densityOfWater,
                 double soilElasticity,
@@ -73,9 +70,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
             #pragma endregion
 
             #pragma region Get methods
-
-            [[nodiscard]]
-            JsonInputAsphaltRevetmentTopLayerType GetTopLayerType() const;
 
             [[nodiscard]]
             double GetFailureTension() const;
@@ -125,7 +119,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
             #pragma endregion
 
         private:
-            JsonInputAsphaltRevetmentTopLayerType _topLayerType;
             double _failureTension;
             double _densityOfWater;
             double _soilElasticity;

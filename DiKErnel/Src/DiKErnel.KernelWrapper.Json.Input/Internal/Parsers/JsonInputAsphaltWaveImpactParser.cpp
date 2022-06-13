@@ -52,8 +52,11 @@ namespace DiKErnel::KernelWrapper::Json::Input
         unique_ptr<JsonInputDamageData> damageData,
         unique_ptr<double> initialDamage)
     {
-        return make_unique<JsonInputAsphaltWaveImpactLocationData>(x, move(initialDamage), move(damageData), ParseRevetmentLocationData(),
-                                                                   ParseProfileSchematizationData());
+        const auto& readLocation = GetReadLocation();
+
+        return make_unique<JsonInputAsphaltWaveImpactLocationData>(
+            x, move(initialDamage), readLocation.at(JsonInputDefinitions::TYPE_TOP_LAYER).get<JsonInputAsphaltRevetmentTopLayerType>(),
+            move(damageData), ParseRevetmentLocationData(), ParseProfileSchematizationData());
     }
 
     unique_ptr<JsonInputAsphaltRevetmentWaveImpactLocationData> JsonInputAsphaltWaveImpactParser::ParseRevetmentLocationData() const
@@ -64,7 +67,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
         const auto& readUpperLayer = readRevetment.at(JsonInputAsphaltWaveImpactDefinitions::UPPER_LAYER);
 
         auto locationData = make_unique<JsonInputAsphaltRevetmentWaveImpactLocationData>(
-            readRevetment.at(JsonInputDefinitions::TYPE_TOP_LAYER).get<JsonInputAsphaltRevetmentTopLayerType>(),
             readRevetment.at(JsonInputAsphaltWaveImpactDefinitions::FAILURE_TENSION),
             readRevetment.at(JsonInputAsphaltWaveImpactDefinitions::DENSITY_OF_WATER),
             readRevetment.at(JsonInputAsphaltWaveImpactDefinitions::SOIL_ELASTICITY),

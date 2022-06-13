@@ -134,7 +134,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
         const auto& profileSchematizationData = location.GetProfileSchematizationData();
 
         auto constructionProperties = make_unique<AsphaltRevetmentWaveImpactLocationConstructionProperties>(
-            location.GetX(), profileSchematizationData.GetOuterSlope(), ConvertTopLayerType(revetmentData.GetTopLayerType()),
+            location.GetX(), profileSchematizationData.GetOuterSlope(), ConvertTopLayerType(location.GetTopLayerType()),
             revetmentData.GetFailureTension(), revetmentData.GetDensityOfWater(), revetmentData.GetSoilElasticity(),
             revetmentData.GetThicknessUpperLayer(), revetmentData.GetElasticModulusUpperLayer());
 

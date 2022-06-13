@@ -29,12 +29,19 @@ namespace DiKErnel::KernelWrapper::Json::Input
     JsonInputAsphaltWaveImpactLocationData::JsonInputAsphaltWaveImpactLocationData(
         const double x,
         unique_ptr<double> initialDamage,
+        JsonInputAsphaltRevetmentTopLayerType topLayerType,
         unique_ptr<JsonInputDamageData> damageData,
         unique_ptr<JsonInputAsphaltRevetmentWaveImpactLocationData> revetmentLocationData,
         unique_ptr<JsonInputProfileSchematizationData> profileSchematizationData)
         : JsonInputLocationData(x, move(initialDamage), move(damageData)),
+          _topLayerType(topLayerType),
           _revetmentLocationData(move(revetmentLocationData)),
           _profileSchematizationData(move(profileSchematizationData)) {}
+
+    JsonInputAsphaltRevetmentTopLayerType JsonInputAsphaltWaveImpactLocationData::GetTopLayerType() const
+    {
+        return _topLayerType;
+    }
 
     const JsonInputAsphaltRevetmentWaveImpactLocationData& JsonInputAsphaltWaveImpactLocationData::GetRevetmentLocationData() const
     {
