@@ -24,10 +24,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
 {
     using namespace std;
 
-    JsonInputGrassRevetmentWaveImpactLocationData::JsonInputGrassRevetmentWaveImpactLocationData(
-        const JsonInputGrassRevetmentTopLayerType topLayerType)
-        : _topLayerType(topLayerType) { }
-
     #pragma region Set methods
 
     void JsonInputGrassRevetmentWaveImpactLocationData::SetTimeLineAgwi(
@@ -93,11 +89,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
     #pragma endregion
 
     #pragma region Get methods
-
-    JsonInputGrassRevetmentTopLayerType JsonInputGrassRevetmentWaveImpactLocationData::GetTopLayerType() const
-    {
-        return _topLayerType;
-    }
 
     const double* JsonInputGrassRevetmentWaveImpactLocationData::GetTimeLineAgwi() const
     {

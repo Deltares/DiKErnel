@@ -55,7 +55,11 @@ namespace DiKErnel::KernelWrapper::Json::Input
         unique_ptr<JsonInputDamageData> damageData,
         unique_ptr<double> initialDamage)
     {
-        return make_unique<JsonInputGrassWaveImpactLocationData>(x, move(initialDamage), move(damageData), ParseRevetmentLocationData());
+        const auto& readLocation = GetReadLocation();
+
+        return make_unique<JsonInputGrassWaveImpactLocationData>(
+            x, move(initialDamage), readLocation.at(JsonInputDefinitions::TYPE_TOP_LAYER).get<JsonInputGrassRevetmentTopLayerType>(),
+            move(damageData), ParseRevetmentLocationData());
     }
 
     unique_ptr<JsonInputGrassRevetmentWaveImpactLocationData> JsonInputGrassWaveImpactParser::ParseRevetmentLocationData() const
@@ -63,8 +67,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
         const auto& readRevetment = GetReadRevetment();
         const auto& readCalculationMethod = GetReadCalculationMethod();
 
-        auto locationData = make_unique<JsonInputGrassRevetmentWaveImpactLocationData>(
-            readRevetment.at(JsonInputDefinitions::TYPE_TOP_LAYER).get<JsonInputGrassRevetmentTopLayerType>());
+        auto locationData = make_unique<JsonInputGrassRevetmentWaveImpactLocationData>();
 
         locationData->SetTimeLineAgwi(
             forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(

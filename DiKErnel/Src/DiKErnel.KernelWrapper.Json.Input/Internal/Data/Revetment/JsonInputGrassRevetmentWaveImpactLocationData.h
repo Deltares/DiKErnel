@@ -22,16 +22,11 @@
 
 #include <memory>
 
-#include "JsonInputGrassRevetmentTopLayerType.h"
-
 namespace DiKErnel::KernelWrapper::Json::Input
 {
     class JsonInputGrassRevetmentWaveImpactLocationData
     {
         public:
-            explicit JsonInputGrassRevetmentWaveImpactLocationData(
-                JsonInputGrassRevetmentTopLayerType topLayerType);
-
             #pragma region Set methods
 
             void SetTimeLineAgwi(
@@ -69,9 +64,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
             #pragma region Get methods
 
             [[nodiscard]]
-            JsonInputGrassRevetmentTopLayerType GetTopLayerType() const;
-
-            [[nodiscard]]
             const double* GetTimeLineAgwi() const;
 
             [[nodiscard]]
@@ -104,7 +96,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
             #pragma endregion
 
         private:
-            JsonInputGrassRevetmentTopLayerType _topLayerType;
             std::unique_ptr<double> _timeLineAgwi = nullptr;
             std::unique_ptr<double> _timeLineBgwi = nullptr;
             std::unique_ptr<double> _timeLineCgwi = nullptr;

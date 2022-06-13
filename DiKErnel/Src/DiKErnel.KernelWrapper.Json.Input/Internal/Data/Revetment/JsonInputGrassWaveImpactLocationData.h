@@ -20,6 +20,7 @@
 
 #pragma once
 
+#include "JsonInputGrassRevetmentTopLayerType.h"
 #include "JsonInputGrassRevetmentWaveImpactLocationData.h"
 #include "JsonInputLocationData.h"
 
@@ -31,13 +32,18 @@ namespace DiKErnel::KernelWrapper::Json::Input
             explicit JsonInputGrassWaveImpactLocationData(
                 double x,
                 std::unique_ptr<double> initialDamage,
+                JsonInputGrassRevetmentTopLayerType topLayerType,
                 std::unique_ptr<JsonInputDamageData> damageData,
                 std::unique_ptr<JsonInputGrassRevetmentWaveImpactLocationData> revetmentLocationData);
+
+            [[nodiscard]]
+            JsonInputGrassRevetmentTopLayerType GetTopLayerType() const;
 
             [[nodiscard]]
             const JsonInputGrassRevetmentWaveImpactLocationData& GetRevetmentLocationData() const;
 
         private:
+            JsonInputGrassRevetmentTopLayerType _topLayerType;
             std::unique_ptr<JsonInputGrassRevetmentWaveImpactLocationData> _revetmentLocationData;
     };
 }

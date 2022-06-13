@@ -29,10 +29,17 @@ namespace DiKErnel::KernelWrapper::Json::Input
     JsonInputGrassWaveImpactLocationData::JsonInputGrassWaveImpactLocationData(
         const double x,
         unique_ptr<double> initialDamage,
+        const JsonInputGrassRevetmentTopLayerType topLayerType,
         unique_ptr<JsonInputDamageData> damageData,
         unique_ptr<JsonInputGrassRevetmentWaveImpactLocationData> revetmentLocationData)
         : JsonInputLocationData(x, move(initialDamage), move(damageData)),
+          _topLayerType(topLayerType),
           _revetmentLocationData(move(revetmentLocationData)) {}
+
+    JsonInputGrassRevetmentTopLayerType JsonInputGrassWaveImpactLocationData::GetTopLayerType() const
+    {
+        return _topLayerType;
+    }
 
     const JsonInputGrassRevetmentWaveImpactLocationData& JsonInputGrassWaveImpactLocationData::GetRevetmentLocationData() const
     {

@@ -186,7 +186,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
         const auto& revetmentData = location.GetRevetmentLocationData();
 
         auto constructionProperties = make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(
-            location.GetX(), ConvertTopLayerType(revetmentData.GetTopLayerType()));
+            location.GetX(), ConvertTopLayerType(location.GetTopLayerType()));
 
         constructionProperties->SetInitialDamage(forward<unique_ptr<double>>(CreatePointerOfValue(location.GetInitialDamage())));
         constructionProperties->SetFailureNumber(forward<unique_ptr<double>>(CreatePointerOfValue(damageData.GetFailureNumber())));
