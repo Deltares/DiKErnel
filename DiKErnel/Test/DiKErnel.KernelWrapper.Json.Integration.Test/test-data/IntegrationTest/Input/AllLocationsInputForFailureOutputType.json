@@ -319,27 +319,29 @@
             },
             {
                 "PositieLocatie": 4,
+                "BeginSchade": 0,
                 "Schade":
                 {
-                    "BeginSchade": 0,
                     "Faalgetal": 1
                 },
+                "RekenmethodeSoort": "AsfaltGolfklap",
+                "TypeToplaag": "WaterbouwAsfaltBeton",
+                "BreuksterkteAsfalt": 5.6,
+                "VeerconstanteOndergrond": 53,
+                "Toplaag":
+                {
+                    "Dikte": 0.16,
+                    "Stijfheidsmodulus": 18214
+                },
+                "Onderlaag":
+                {
+                    "Dikte": 0.20,
+                    "Stijfheidsmodulus": 15000
+                },
+                "TanA": 0.6548,
                 "Bekleding":
                 {
-                    "TypeToplaag": "WaterbouwAsfaltBeton",
-                    "BreuksterkteAsfalt": 5.6,
                     "SoortelijkeDichtheidWater": 0.25,
-                    "VeerconstanteOndergrond": 53,
-                    "Toplaag":
-                    {
-                        "Dikte": 0.16,
-                        "Stijfheidsmodulus": 18214
-                    },
-                    "Onderlaag":
-                    {
-                        "Dikte": 0.20,
-                        "Stijfheidsmodulus": 15000
-                    },
                     "Rekenmethoden":
                     [
                         {
@@ -396,10 +398,6 @@
                             ]
                         }
                     ]
-                },
-                "Profielschematisatie":
-                {
-                    "TanA": 0.6548
                 }
             }
         ]

@@ -120,22 +120,24 @@
         [
             {
                 "PositieLocatie": 5.40,
+                "BeginSchade": 0.0,
                 "Schade":
                 {
-                    "BeginSchade": 0.0,
                     "Faalgetal": 1.0
                 },
+                "RekenmethodeSoort": "AsfaltGolfklap",
+                "TypeToplaag": "WaterbouwAsfaltBeton",
+                "BreuksterkteAsfalt": 1.56,
+                "VeerconstanteOndergrond": 56,
+                "Toplaag": 
+                {
+                    "Dikte": 0.16,
+                    "Stijfheidsmodulus": 18214
+                },
+                "TanA": 0.233,
                 "Bekleding":
                 {
-                    "TypeToplaag": "WaterbouwAsfaltBeton",
-                    "BreuksterkteAsfalt": 1.56,
                     "SoortelijkeDichtheidWater": 1025,
-                    "VeerconstanteOndergrond": 56,
-                    "Toplaag": 
-                    {
-                        "Dikte": 0.16,
-                        "Stijfheidsmodulus": 18214
-                    },
                     "Rekenmethoden":
                     [
                         {
@@ -316,35 +318,33 @@
                             ]
                         }
                     ]
-                },
-                "Profielschematisatie":
-                {
-                    "TanA": 0.233
                 }
             },
             {
                 "PositieLocatie": 5.40,
+                "BeginSchade": 0.0,
                 "Schade":
                 {
-                    "BeginSchade": 0.0,
                     "Faalgetal": 1.0
                 },
+                "RekenmethodeSoort": "AsfaltGolfklap",
+                "TypeToplaag": "WaterbouwAsfaltBeton",
+                "BreuksterkteAsfalt": 1.56,
+                "VeerconstanteOndergrond": 56,
+                "Toplaag": 
+                {
+                    "Dikte": 0.16,
+                    "Stijfheidsmodulus": 18214
+                },
+                "Onderlaag": 
+                {
+                    "Dikte": 0.25,
+                    "Stijfheidsmodulus": 15500
+                },
+                "TanA": 0.233,
                 "Bekleding":
                 {
-                    "TypeToplaag": "WaterbouwAsfaltBeton",
-                    "BreuksterkteAsfalt": 1.56,
                     "SoortelijkeDichtheidWater": 1025,
-                    "VeerconstanteOndergrond": 56,
-                    "Toplaag": 
-                    {
-                        "Dikte": 0.16,
-                        "Stijfheidsmodulus": 18214
-                    },
-                    "Onderlaag": 
-                    {
-                        "Dikte": 0.25,
-                        "Stijfheidsmodulus": 15500
-                    },
                     "Rekenmethoden":
                     [
                         {
@@ -525,10 +525,6 @@
                             ]
                         }
                     ]
-                },
-                "Profielschematisatie":
-                {
-                    "TanA": 0.233
                 }
             }
         ]
