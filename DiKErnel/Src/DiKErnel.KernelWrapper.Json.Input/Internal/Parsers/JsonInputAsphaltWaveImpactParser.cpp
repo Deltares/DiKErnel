@@ -52,7 +52,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
         unique_ptr<JsonInputDamageData> damageData,
         unique_ptr<double> initialDamage)
     {
-        return make_unique<JsonInputAsphaltWaveImpactLocationData>(x, move(damageData), ParseRevetmentLocationData(),
+        return make_unique<JsonInputAsphaltWaveImpactLocationData>(x, move(initialDamage), move(damageData), ParseRevetmentLocationData(),
                                                                    ParseProfileSchematizationData());
     }
 

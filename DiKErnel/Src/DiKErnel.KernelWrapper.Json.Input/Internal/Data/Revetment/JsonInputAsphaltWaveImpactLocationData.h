@@ -31,6 +31,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
         public:
             explicit JsonInputAsphaltWaveImpactLocationData(
                 double x,
+                std::unique_ptr<double> initialDamage,
                 std::unique_ptr<JsonInputDamageData> damageData,
                 std::unique_ptr<JsonInputAsphaltRevetmentWaveImpactLocationData> revetmentLocationData,
                 std::unique_ptr<JsonInputProfileSchematizationData> profileSchematizationData);
