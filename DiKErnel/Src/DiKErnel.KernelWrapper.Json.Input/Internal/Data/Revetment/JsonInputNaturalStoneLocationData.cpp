@@ -28,9 +28,10 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
     JsonInputNaturalStoneLocationData::JsonInputNaturalStoneLocationData(
         const double x,
+        unique_ptr<double> initialDamage,
         unique_ptr<JsonInputDamageData> damageData,
         unique_ptr<JsonInputNaturalStoneRevetmentLocationData> revetmentLocationData)
-        : JsonInputLocationData(x, move(damageData)),
+        : JsonInputLocationData(x, move(initialDamage), move(damageData)),
           _revetmentLocationData(move(revetmentLocationData)) {}
 
     const JsonInputNaturalStoneRevetmentLocationData& JsonInputNaturalStoneLocationData::GetRevetmentLocationData() const

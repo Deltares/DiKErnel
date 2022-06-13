@@ -30,6 +30,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
         public:
             explicit JsonInputNaturalStoneLocationData(
                 double x,
+                std::unique_ptr<double> initialDamage,
                 std::unique_ptr<JsonInputDamageData> damageData,
                 std::unique_ptr<JsonInputNaturalStoneRevetmentLocationData> revetmentLocationData);
 
