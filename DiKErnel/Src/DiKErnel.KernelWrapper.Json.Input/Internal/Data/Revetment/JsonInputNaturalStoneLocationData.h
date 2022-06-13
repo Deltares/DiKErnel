@@ -31,13 +31,18 @@ namespace DiKErnel::KernelWrapper::Json::Input
             explicit JsonInputNaturalStoneLocationData(
                 double x,
                 std::unique_ptr<double> initialDamage,
+                JsonInputNaturalStoneRevetmentTopLayerType topLayerType,
                 std::unique_ptr<JsonInputDamageData> damageData,
                 std::unique_ptr<JsonInputNaturalStoneRevetmentLocationData> revetmentLocationData);
+
+            [[nodiscard]]
+            JsonInputNaturalStoneRevetmentTopLayerType GetTopLayerType() const;
 
             [[nodiscard]]
             const JsonInputNaturalStoneRevetmentLocationData& GetRevetmentLocationData() const;
 
         private:
+            JsonInputNaturalStoneRevetmentTopLayerType _topLayerType;
             std::unique_ptr<JsonInputNaturalStoneRevetmentLocationData> _revetmentLocationData;
     };
 }
