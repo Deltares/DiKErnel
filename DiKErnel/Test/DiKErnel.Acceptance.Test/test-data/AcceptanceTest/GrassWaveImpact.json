@@ -251,9 +251,10 @@
         [
             {
                 "PositieLocatie": 5.0,
+                "RekenmethodeSoort": "GrasGolfklap",
+                "TypeToplaag": "GrasGeslotenZode",
                 "Bekleding":
                 {
-                    "TypeToplaag": "GrasGeslotenZode",
                     "StandtijdlijnGrasGolfklapAgwi": 1.0,
                     "StandtijdlijnGrasGolfklapBgwi": -0.00000972222222,
                     "StandtijdlijnGrasGolfklapCgwi": 0.25,
@@ -289,9 +290,10 @@
             },
             {
                 "PositieLocatie": 5.0,
+                "RekenmethodeSoort": "GrasGolfklap",
+                "TypeToplaag": "GrasOpenZode",
                 "Bekleding":
                 {
-                    "TypeToplaag": "GrasOpenZode",
                     "StandtijdlijnGrasGolfklapAgwi": 0.8,
                     "StandtijdlijnGrasGolfklapBgwi": -0.0000194444444,
                     "StandtijdlijnGrasGolfklapCgwi": 0.25,

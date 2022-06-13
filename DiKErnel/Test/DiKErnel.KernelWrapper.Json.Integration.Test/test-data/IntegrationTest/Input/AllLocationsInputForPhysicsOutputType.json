@@ -224,14 +224,15 @@
             },
             {
                 "PositieLocatie": 13.5,
+                "BeginSchade": 0.04,
                 "Schade":
                 {
-                    "BeginSchade": 0.04,
                     "Faalgetal": 1.07
                 },
+                "RekenmethodeSoort": "GrasGolfklap",
+                "TypeToplaag": "GrasGeslotenZode",
                 "Bekleding":
                 {
-                    "TypeToplaag": "GrasGeslotenZode",
                     "StandtijdlijnGrasGolfklapAgwi": 0.3,
                     "StandtijdlijnGrasGolfklapBgwi": -0.1,
                     "StandtijdlijnGrasGolfklapCgwi": 0.96,

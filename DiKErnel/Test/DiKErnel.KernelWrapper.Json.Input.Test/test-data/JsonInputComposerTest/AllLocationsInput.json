@@ -206,14 +206,15 @@
             },
             {
                 "PositieLocatie": 0,
+                "BeginSchade": 0.04,
                 "Schade":
                 {
-                    "BeginSchade": 0.04,
                     "Faalgetal": 1.07
                 },
+                "RekenmethodeSoort": "GrasGolfklap",
+                "TypeToplaag": "GrasGeslotenZode",
                 "Bekleding":
                 {
-                    "TypeToplaag": "GrasGeslotenZode",
                     "StandtijdlijnGrasGolfklapAgwi": 0.3,
                     "StandtijdlijnGrasGolfklapBgwi": -0.1,
                     "StandtijdlijnGrasGolfklapCgwi": 0.96,
@@ -249,9 +250,10 @@
             },
             {
                 "PositieLocatie": -18.4,
+                "RekenmethodeSoort": "GrasGolfklap",
+                "TypeToplaag": "GrasGeslotenZode",
                 "Bekleding":
                 {
-                    "TypeToplaag": "GrasGeslotenZode",
                     "Rekenmethoden": 
                     [
                         {
@@ -262,9 +264,10 @@
             },
             {
                 "PositieLocatie": 4,
+                "RekenmethodeSoort": "GrasGolfklap",
+                "TypeToplaag": "GrasOpenZode",
                 "Bekleding":
                 {
-                    "TypeToplaag": "GrasOpenZode",
                     "Rekenmethoden": 
                     [
                         {
