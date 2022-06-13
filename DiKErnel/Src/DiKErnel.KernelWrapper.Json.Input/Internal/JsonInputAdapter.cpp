@@ -226,7 +226,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
         const auto& profileSchematizationData = location.GetProfileSchematizationData();
 
         auto constructionProperties = make_unique<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(
-            location.GetX(), profileSchematizationData.GetOuterSlope(), ConvertTopLayerType(revetmentData.GetTopLayerType()));
+            location.GetX(), profileSchematizationData.GetOuterSlope(), ConvertTopLayerType(location.GetTopLayerType()));
 
         constructionProperties->SetInitialDamage(forward<unique_ptr<double>>(CreatePointerOfValue(location.GetInitialDamage())));
         constructionProperties->SetFailureNumber(forward<unique_ptr<double>>(CreatePointerOfValue(damageData.GetFailureNumber())));

@@ -20,6 +20,7 @@
 
 #pragma once
 
+#include "JsonInputGrassRevetmentTopLayerType.h"
 #include "JsonInputGrassRevetmentWaveRunupProfileSchematizationData.h"
 #include "JsonInputGrassRevetmentWaveRunupRayleighLocationData.h"
 #include "JsonInputLocationData.h"
@@ -32,9 +33,13 @@ namespace DiKErnel::KernelWrapper::Json::Input
             explicit JsonInputGrassWaveRunupRayleighLocationData(
                 double x,
                 std::unique_ptr<double> initialDamage,
+                JsonInputGrassRevetmentTopLayerType topLayerType,
                 std::unique_ptr<JsonInputDamageData> damageData,
                 std::unique_ptr<JsonInputGrassRevetmentWaveRunupRayleighLocationData> revetmentLocationData,
                 std::unique_ptr<JsonInputGrassRevetmentWaveRunupProfileSchematizationData> profileSchematizationData);
+
+            [[nodiscard]]
+            JsonInputGrassRevetmentTopLayerType GetTopLayerType() const;
 
             [[nodiscard]]
             const JsonInputGrassRevetmentWaveRunupRayleighLocationData& GetRevetmentLocationData() const;
@@ -43,6 +48,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
             const JsonInputGrassRevetmentWaveRunupProfileSchematizationData& GetProfileSchematizationData() const;
 
         private:
+            JsonInputGrassRevetmentTopLayerType _topLayerType;
             std::unique_ptr<JsonInputGrassRevetmentWaveRunupRayleighLocationData> _revetmentLocationData;
             std::unique_ptr<JsonInputGrassRevetmentWaveRunupProfileSchematizationData> _profileSchematizationData;
     };

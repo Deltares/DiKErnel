@@ -51,7 +51,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
             std::unique_ptr<JsonInputGrassRevetmentWaveRunupProfileSchematizationData> ParseProfileSchematizationData() const;
 
             static std::unique_ptr<JsonInputGrassRevetmentWaveRunupRayleighLocationData> ParseRayleighRevetmentLocationData(
-                const nlohmann::json& readRevetment,
                 const nlohmann::json& readCalculationProtocol);
 
             static void ParseGenericRevetmentLocationData(

@@ -22,7 +22,6 @@
 
 #include <memory>
 
-#include "JsonInputGrassRevetmentTopLayerType.h"
 #include "JsonInputGrassRevetmentWaveRunupLocationData.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
@@ -30,9 +29,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
     class JsonInputGrassRevetmentWaveRunupRayleighLocationData : public JsonInputGrassRevetmentWaveRunupLocationData
     {
         public:
-            explicit JsonInputGrassRevetmentWaveRunupRayleighLocationData(
-                JsonInputGrassRevetmentTopLayerType topLayerType);
-
             #pragma region Set methods
 
             void SetFixedNumberOfWaves(

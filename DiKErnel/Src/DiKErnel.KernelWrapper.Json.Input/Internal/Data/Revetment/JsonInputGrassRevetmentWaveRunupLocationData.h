@@ -22,8 +22,6 @@
 
 #include <memory>
 
-#include "JsonInputGrassRevetmentTopLayerType.h"
-
 namespace DiKErnel::KernelWrapper::Json::Input
 {
     class JsonInputGrassRevetmentWaveRunupLocationData
@@ -66,9 +64,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
             #pragma region Get methods
 
             [[nodiscard]]
-            JsonInputGrassRevetmentTopLayerType GetTopLayerType() const;
-
-            [[nodiscard]]
             const double* GetCriticalCumulativeOverload() const;
 
             [[nodiscard]]
@@ -100,12 +95,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
             #pragma endregion
 
-        protected:
-            explicit JsonInputGrassRevetmentWaveRunupLocationData(
-                JsonInputGrassRevetmentTopLayerType topLayerType);
-
         private:
-            JsonInputGrassRevetmentTopLayerType _topLayerType;
             std::unique_ptr<double> _criticalCumulativeOverload = nullptr;
             std::unique_ptr<double> _criticalFrontVelocity = nullptr;
             std::unique_ptr<double> _increasedLoadTransitionAlphaM = nullptr;

@@ -78,9 +78,11 @@ namespace DiKErnel::KernelWrapper::Json::Input
             return nullptr;
         }
 
-        return make_unique<JsonInputGrassWaveRunupRayleighLocationData>(x, move(initialDamage), move(damageData),
-                                                                        ParseRevetmentLocationData(readCalculationMethod, readCalculationProtocol),
-                                                                        ParseProfileSchematizationData());
+        const auto& readLocation = GetReadLocation();
+
+        return make_unique<JsonInputGrassWaveRunupRayleighLocationData>(
+            x, move(initialDamage), readLocation.at(JsonInputDefinitions::TYPE_TOP_LAYER).get<JsonInputGrassRevetmentTopLayerType>(),
+            move(damageData), ParseRevetmentLocationData(readCalculationMethod, readCalculationProtocol), ParseProfileSchematizationData());
     }
 
     unique_ptr<JsonInputGrassRevetmentWaveRunupRayleighLocationData> JsonInputGrassWaveRunupParser::ParseRevetmentLocationData(
@@ -89,7 +91,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
     {
         const auto& readRevetment = GetReadRevetment();
 
-        auto locationData = ParseRayleighRevetmentLocationData(readRevetment, readCalculationProtocol);
+        auto locationData = ParseRayleighRevetmentLocationData(readCalculationProtocol);
         ParseGenericRevetmentLocationData(readRevetment, readCalculationMethod, *locationData);
 
         return locationData;
@@ -114,11 +116,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
     }
 
     unique_ptr<JsonInputGrassRevetmentWaveRunupRayleighLocationData> JsonInputGrassWaveRunupParser::ParseRayleighRevetmentLocationData(
-        const json& readRevetment,
         const json& readCalculationProtocol)
     {
-        auto rayleighLocationData = make_unique<JsonInputGrassRevetmentWaveRunupRayleighLocationData>(
-            readRevetment.at(JsonInputDefinitions::TYPE_TOP_LAYER).get<JsonInputGrassRevetmentTopLayerType>());
+        auto rayleighLocationData = make_unique<JsonInputGrassRevetmentWaveRunupRayleighLocationData>();
 
         rayleighLocationData->SetFixedNumberOfWaves(
             forward<unique_ptr<int>>(JsonInputParserHelper::ParseOptionalInteger(

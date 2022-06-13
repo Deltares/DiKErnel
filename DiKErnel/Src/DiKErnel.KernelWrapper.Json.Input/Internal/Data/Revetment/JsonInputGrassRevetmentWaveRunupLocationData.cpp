@@ -24,10 +24,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
 {
     using namespace std;
 
-    JsonInputGrassRevetmentWaveRunupLocationData::JsonInputGrassRevetmentWaveRunupLocationData(
-        const JsonInputGrassRevetmentTopLayerType topLayerType)
-        : _topLayerType(topLayerType) { }
-
     #pragma region Set methods
 
     void JsonInputGrassRevetmentWaveRunupLocationData::SetCriticalCumulativeOverload(
@@ -93,11 +89,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
     #pragma endregion
 
     #pragma region Get methods
-
-    JsonInputGrassRevetmentTopLayerType JsonInputGrassRevetmentWaveRunupLocationData::GetTopLayerType() const
-    {
-        return _topLayerType;
-    }
 
     const double* JsonInputGrassRevetmentWaveRunupLocationData::GetCriticalCumulativeOverload() const
     {

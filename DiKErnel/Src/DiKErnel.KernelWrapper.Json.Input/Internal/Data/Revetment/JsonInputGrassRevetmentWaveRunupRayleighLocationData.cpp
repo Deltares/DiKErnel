@@ -24,10 +24,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
 {
     using namespace std;
 
-    JsonInputGrassRevetmentWaveRunupRayleighLocationData::JsonInputGrassRevetmentWaveRunupRayleighLocationData(
-        const JsonInputGrassRevetmentTopLayerType topLayerType)
-        : JsonInputGrassRevetmentWaveRunupLocationData(topLayerType) {}
-
     #pragma region Set methods
 
     void JsonInputGrassRevetmentWaveRunupRayleighLocationData::SetFixedNumberOfWaves(
