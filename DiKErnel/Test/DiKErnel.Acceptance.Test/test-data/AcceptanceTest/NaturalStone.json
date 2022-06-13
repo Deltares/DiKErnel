@@ -153,16 +153,17 @@
         [
             {
                 "PositieLocatie": 15.0,
+                "BeginSchade": 0.2,
                 "Schade":
                 {
-                    "BeginSchade": 0.2,
                     "Faalgetal": 0.95
                 },
+                "RekenmethodeSoort": "Natuursteen",
+                "TypeToplaag": "NoorseSteen",
+                "RelatieveDichtheid": 1.65,
+                "DikteToplaag": 0.3,
                 "Bekleding":
                 {
-                    "TypeToplaag": "NoorseSteen",
-                    "RelatieveDichtheid": 1.65,
-                    "DikteToplaag": 0.3,
                     "Rekenmethoden":
                     [
                         {

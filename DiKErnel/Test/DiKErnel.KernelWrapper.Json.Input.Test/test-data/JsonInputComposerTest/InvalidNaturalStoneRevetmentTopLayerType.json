@@ -11,11 +11,12 @@
         [
             {
                 "PositieLocatie": 0,
+                "RekenmethodeSoort": "Natuursteen",
+                "TypeToplaag": "OngeldigeSteen",
+                "DikteToplaag": 0.3,
+                "RelatieveDichtheid": 1.65,
                 "Bekleding":
                 {
-                    "TypeToplaag": "OngeldigeSteen",
-                    "RelatieveDichtheid": 1.65,
-                    "DikteToplaag": 0.3,
                     "Rekenmethoden": 
                     [
                         {

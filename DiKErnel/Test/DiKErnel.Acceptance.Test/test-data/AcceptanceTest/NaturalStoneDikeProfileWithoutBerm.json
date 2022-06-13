@@ -155,11 +155,13 @@
         [
             {
                 "PositieLocatie": 5.0,
-                "Bekleding": {
-                    "TypeToplaag": "NoorseSteen",
-                    "RelatieveDichtheid": 1.65,
-                    "DikteToplaag": 0.3,
-                    "Rekenmethoden": 
+                "RekenmethodeSoort": "Natuursteen",
+                "TypeToplaag": "NoorseSteen",
+                "RelatieveDichtheid": 1.65,
+                "DikteToplaag": 0.3,
+                "Bekleding":
+                {
+                    "Rekenmethoden":
                     [
                         {
                             "RekenmethodeSoort": "Natuursteen",
