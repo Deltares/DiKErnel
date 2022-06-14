@@ -56,6 +56,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
             static void ParseGenericRevetmentLocationData(
                 const nlohmann::json& readRevetment,
                 const nlohmann::json& readCalculationMethod,
-                JsonInputGrassRevetmentWaveRunupLocationData& locationData);
+                JsonInputGrassRevetmentWaveRunupLocationData& revetmentLocationData);
     };
 }

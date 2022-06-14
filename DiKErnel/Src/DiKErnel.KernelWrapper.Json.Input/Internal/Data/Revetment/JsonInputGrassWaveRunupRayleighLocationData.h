@@ -38,8 +38,20 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 std::unique_ptr<JsonInputGrassRevetmentWaveRunupRayleighLocationData> revetmentLocationData,
                 std::unique_ptr<JsonInputGrassRevetmentWaveRunupProfileSchematizationData> profileSchematizationData);
 
+            void SetIncreasedLoadTransitionAlphaM(
+                std::unique_ptr<double> increasedLoadTransitionAlphaM);
+
+            void SetReducedStrengthTransitionAlphaS(
+                std::unique_ptr<double> reducedStrengthTransitionAlphaS);
+
             [[nodiscard]]
             JsonInputGrassRevetmentTopLayerType GetTopLayerType() const;
+
+            [[nodiscard]]
+            const double* GetIncreasedLoadTransitionAlphaM() const;
+
+            [[nodiscard]]
+            const double* GetReducedStrengthTransitionAlphaS() const;
 
             [[nodiscard]]
             const JsonInputGrassRevetmentWaveRunupRayleighLocationData& GetRevetmentLocationData() const;
@@ -49,6 +61,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
         private:
             JsonInputGrassRevetmentTopLayerType _topLayerType;
+            std::unique_ptr<double> _increasedLoadTransitionAlphaM = nullptr;
+            std::unique_ptr<double> _reducedStrengthTransitionAlphaS = nullptr;
             std::unique_ptr<JsonInputGrassRevetmentWaveRunupRayleighLocationData> _revetmentLocationData;
             std::unique_ptr<JsonInputGrassRevetmentWaveRunupProfileSchematizationData> _profileSchematizationData;
     };

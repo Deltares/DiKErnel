@@ -80,9 +80,18 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
         const auto& readLocation = GetReadLocation();
 
-        return make_unique<JsonInputGrassWaveRunupRayleighLocationData>(
+        auto locationData = make_unique<JsonInputGrassWaveRunupRayleighLocationData>(
             x, move(initialDamage), readLocation.at(JsonInputDefinitions::TYPE_TOP_LAYER).get<JsonInputGrassRevetmentTopLayerType>(),
             move(damageData), ParseRevetmentLocationData(readCalculationMethod, readCalculationProtocol), ParseProfileSchematizationData());
+
+        locationData->SetIncreasedLoadTransitionAlphaM(
+            forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
+                readLocation, JsonInputGrassWaveRunupDefinitions::INCREASED_LOAD_TRANSITION_ALPHA_M)));
+        locationData->SetReducedStrengthTransitionAlphaS(
+            forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
+                readLocation, JsonInputGrassWaveRunupDefinitions::REDUCED_STRENGTH_TRANSITION_ALPHA_S)));
+
+        return locationData;
     }
 
     unique_ptr<JsonInputGrassRevetmentWaveRunupRayleighLocationData> JsonInputGrassWaveRunupParser::ParseRevetmentLocationData(
@@ -91,10 +100,10 @@ namespace DiKErnel::KernelWrapper::Json::Input
     {
         const auto& readRevetment = GetReadRevetment();
 
-        auto locationData = ParseRayleighRevetmentLocationData(readCalculationProtocol);
-        ParseGenericRevetmentLocationData(readRevetment, readCalculationMethod, *locationData);
+        auto revetmentLocationData = ParseRayleighRevetmentLocationData(readCalculationProtocol);
+        ParseGenericRevetmentLocationData(readRevetment, readCalculationMethod, *revetmentLocationData);
 
-        return locationData;
+        return revetmentLocationData;
     }
 
     unique_ptr<JsonInputGrassRevetmentWaveRunupProfileSchematizationData> JsonInputGrassWaveRunupParser::ParseProfileSchematizationData() const
@@ -139,26 +148,20 @@ namespace DiKErnel::KernelWrapper::Json::Input
     void JsonInputGrassWaveRunupParser::ParseGenericRevetmentLocationData(
         const json& readRevetment,
         const json& readCalculationMethod,
-        JsonInputGrassRevetmentWaveRunupLocationData& locationData)
+        JsonInputGrassRevetmentWaveRunupLocationData& revetmentLocationData)
     {
-        locationData.SetCriticalCumulativeOverload(
+        revetmentLocationData.SetCriticalCumulativeOverload(
             forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
                 readRevetment, JsonInputGrassWaveRunupDefinitions::CRITICAL_CUMULATIVE_OVERLOAD)));
-        locationData.SetCriticalFrontVelocity(
+        revetmentLocationData.SetCriticalFrontVelocity(
             forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
                 readRevetment, JsonInputGrassWaveRunupDefinitions::CRITICAL_FRONT_VELOCITY)));
-        locationData.SetIncreasedLoadTransitionAlphaM(
-            forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
-                readRevetment, JsonInputGrassWaveRunupDefinitions::INCREASED_LOAD_TRANSITION_ALPHA_M)));
-        locationData.SetReducedStrengthTransitionAlphaS(
-            forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
-                readRevetment, JsonInputGrassWaveRunupDefinitions::REDUCED_STRENGTH_TRANSITION_ALPHA_S)));
 
         if (readCalculationMethod.contains(JsonInputDefinitions::AVERAGE_NUMBER_OF_WAVES))
         {
             const auto& readAverageNumberWaveTimeStep = readCalculationMethod.at(JsonInputDefinitions::AVERAGE_NUMBER_OF_WAVES);
 
-            locationData.SetAverageNumberOfWavesCtm(
+            revetmentLocationData.SetAverageNumberOfWavesCtm(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
                     readAverageNumberWaveTimeStep, JsonInputDefinitions::AVERAGE_NUMBER_OF_WAVES_CTM)));
         }
@@ -167,15 +170,15 @@ namespace DiKErnel::KernelWrapper::Json::Input
         {
             const auto& readRepresentativeWaveRunup2P = readCalculationMethod.at(JsonInputGrassWaveRunupDefinitions::REPRESENTATIVE_WAVE_RUNUP_2P);
 
-            locationData.SetRepresentativeWaveRunup2PAru(
+            revetmentLocationData.SetRepresentativeWaveRunup2PAru(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
                     readRepresentativeWaveRunup2P, JsonInputGrassWaveRunupDefinitions::REPRESENTATIVE_WAVE_RUNUP_2P_ARU)));
 
-            locationData.SetRepresentativeWaveRunup2PBru(
+            revetmentLocationData.SetRepresentativeWaveRunup2PBru(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
                     readRepresentativeWaveRunup2P, JsonInputGrassWaveRunupDefinitions::REPRESENTATIVE_WAVE_RUNUP_2P_BRU)));
 
-            locationData.SetRepresentativeWaveRunup2PCru(
+            revetmentLocationData.SetRepresentativeWaveRunup2PCru(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
                     readRepresentativeWaveRunup2P, JsonInputGrassWaveRunupDefinitions::REPRESENTATIVE_WAVE_RUNUP_2P_CRU)));
         }
@@ -184,11 +187,11 @@ namespace DiKErnel::KernelWrapper::Json::Input
         {
             const auto& readWaveAngleImpact = readCalculationMethod.at(JsonInputGrassWaveRunupDefinitions::WAVE_ANGLE_IMPACT);
 
-            locationData.SetWaveAngleImpactAbeta(
+            revetmentLocationData.SetWaveAngleImpactAbeta(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
                     readWaveAngleImpact, JsonInputGrassWaveRunupDefinitions::WAVE_ANGLE_IMPACT_ABETA)));
 
-            locationData.SetWaveAngleImpactBetamax(
+            revetmentLocationData.SetWaveAngleImpactBetamax(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
                     readWaveAngleImpact, JsonInputGrassWaveRunupDefinitions::WAVE_ANGLE_IMPACT_BETAMAX)));
         }

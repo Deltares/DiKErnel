@@ -236,9 +236,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
         constructionProperties->SetCriticalFrontVelocity(
             forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetCriticalFrontVelocity())));
         constructionProperties->SetIncreasedLoadTransitionAlphaM(
-            forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetIncreasedLoadTransitionAlphaM())));
+            forward<unique_ptr<double>>(CreatePointerOfValue(location.GetIncreasedLoadTransitionAlphaM())));
         constructionProperties->SetReducedStrengthTransitionAlphaS(
-            forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetReducedStrengthTransitionAlphaS())));
+            forward<unique_ptr<double>>(CreatePointerOfValue(location.GetReducedStrengthTransitionAlphaS())));
         constructionProperties->SetAverageNumberOfWavesCtm(
             forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetAverageNumberOfWavesCtm())));
 

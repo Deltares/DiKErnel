@@ -35,12 +35,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
             void SetCriticalFrontVelocity(
                 std::unique_ptr<double> criticalFrontVelocity);
 
-            void SetIncreasedLoadTransitionAlphaM(
-                std::unique_ptr<double> increasedLoadTransitionAlphaM);
-
-            void SetReducedStrengthTransitionAlphaS(
-                std::unique_ptr<double> reducedStrengthTransitionAlphaS);
-
             void SetAverageNumberOfWavesCtm(
                 std::unique_ptr<double> averageNumberOfWavesCtm);
 
@@ -70,12 +64,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
             const double* GetCriticalFrontVelocity() const;
 
             [[nodiscard]]
-            const double* GetIncreasedLoadTransitionAlphaM() const;
-
-            [[nodiscard]]
-            const double* GetReducedStrengthTransitionAlphaS() const;
-
-            [[nodiscard]]
             const double* GetAverageNumberOfWavesCtm() const;
 
             [[nodiscard]]
@@ -98,8 +86,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
         private:
             std::unique_ptr<double> _criticalCumulativeOverload = nullptr;
             std::unique_ptr<double> _criticalFrontVelocity = nullptr;
-            std::unique_ptr<double> _increasedLoadTransitionAlphaM = nullptr;
-            std::unique_ptr<double> _reducedStrengthTransitionAlphaS = nullptr;
             std::unique_ptr<double> _averageNumberOfWavesCtm = nullptr;
             std::unique_ptr<double> _representativeWaveRunup2PAru = nullptr;
             std::unique_ptr<double> _representativeWaveRunup2PBru = nullptr;

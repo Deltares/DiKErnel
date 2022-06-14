@@ -38,18 +38,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
         _criticalFrontVelocity = move(criticalFrontVelocity);
     }
 
-    void JsonInputGrassRevetmentWaveRunupLocationData::SetIncreasedLoadTransitionAlphaM(
-        unique_ptr<double> increasedLoadTransitionAlphaM)
-    {
-        _increasedLoadTransitionAlphaM = move(increasedLoadTransitionAlphaM);
-    }
-
-    void JsonInputGrassRevetmentWaveRunupLocationData::SetReducedStrengthTransitionAlphaS(
-        unique_ptr<double> reducedStrengthTransitionAlphaS)
-    {
-        _reducedStrengthTransitionAlphaS = move(reducedStrengthTransitionAlphaS);
-    }
-
     void JsonInputGrassRevetmentWaveRunupLocationData::SetAverageNumberOfWavesCtm(
         unique_ptr<double> averageNumberOfWavesCtm)
     {
@@ -98,16 +86,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
     const double* JsonInputGrassRevetmentWaveRunupLocationData::GetCriticalFrontVelocity() const
     {
         return _criticalFrontVelocity.get();
-    }
-
-    const double* JsonInputGrassRevetmentWaveRunupLocationData::GetIncreasedLoadTransitionAlphaM() const
-    {
-        return _increasedLoadTransitionAlphaM.get();
-    }
-
-    const double* JsonInputGrassRevetmentWaveRunupLocationData::GetReducedStrengthTransitionAlphaS() const
-    {
-        return _reducedStrengthTransitionAlphaS.get();
     }
 
     const double* JsonInputGrassRevetmentWaveRunupLocationData::GetAverageNumberOfWavesCtm() const
