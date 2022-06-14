@@ -55,8 +55,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
         return make_unique<JsonInputNaturalStoneLocationData>(
             x, move(initialDamage), readLocation.at(JsonInputDefinitions::TYPE_TOP_LAYER).get<JsonInputNaturalStoneRevetmentTopLayerType>(),
-            readLocation.at(JsonInputNaturalStoneDefinitions::RELATIVE_DENSITY),
-            readLocation.at(JsonInputNaturalStoneDefinitions::THICKNESS_TOP_LAYER),
+            readLocation.at(JsonInputNaturalStoneDefinitions::RELATIVE_DENSITY).get<double>(),
+            readLocation.at(JsonInputNaturalStoneDefinitions::THICKNESS_TOP_LAYER).get<double>(),
             move(damageData), ParseRevetmentLocationData());
     }
 

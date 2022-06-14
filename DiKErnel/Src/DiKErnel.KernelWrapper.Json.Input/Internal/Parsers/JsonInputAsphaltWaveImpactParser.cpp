@@ -58,11 +58,11 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
         auto locationData = make_unique<JsonInputAsphaltWaveImpactLocationData>(
             x, move(initialDamage), readLocation.at(JsonInputDefinitions::TYPE_TOP_LAYER).get<JsonInputAsphaltRevetmentTopLayerType>(),
-            readLocation.at(JsonInputAsphaltWaveImpactDefinitions::FAILURE_TENSION),
-            readLocation.at(JsonInputAsphaltWaveImpactDefinitions::SOIL_ELASTICITY),
-            readUpperLayer.at(JsonInputAsphaltWaveImpactDefinitions::THICKNESS),
-            readUpperLayer.at(JsonInputAsphaltWaveImpactDefinitions::ELASTIC_MODULUS),
-            readLocation.at(JsonInputDefinitions::OUTER_SLOPE),
+            readLocation.at(JsonInputAsphaltWaveImpactDefinitions::FAILURE_TENSION).get<double>(),
+            readLocation.at(JsonInputAsphaltWaveImpactDefinitions::SOIL_ELASTICITY).get<double>(),
+            readUpperLayer.at(JsonInputAsphaltWaveImpactDefinitions::THICKNESS).get<double>(),
+            readUpperLayer.at(JsonInputAsphaltWaveImpactDefinitions::ELASTIC_MODULUS).get<double>(),
+            readLocation.at(JsonInputDefinitions::OUTER_SLOPE).get<double>(),
             move(damageData), ParseRevetmentLocationData());
 
         if (readLocation.contains(JsonInputAsphaltWaveImpactDefinitions::SUB_LAYER))
@@ -82,7 +82,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
         const auto& readCalculationMethod = GetReadCalculationMethod();
 
         auto revetmentLocationData = make_unique<JsonInputAsphaltRevetmentWaveImpactLocationData>(
-            readRevetment.at(JsonInputAsphaltWaveImpactDefinitions::DENSITY_OF_WATER));
+            readRevetment.at(JsonInputAsphaltWaveImpactDefinitions::DENSITY_OF_WATER).get<double>());
 
         if (readCalculationMethod.contains(JsonInputDefinitions::AVERAGE_NUMBER_OF_WAVES))
         {
