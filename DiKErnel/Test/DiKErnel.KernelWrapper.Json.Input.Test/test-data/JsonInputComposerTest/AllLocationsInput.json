@@ -278,18 +278,22 @@
             },
             {
                 "PositieLocatie": 157,
+                "BeginSchade": 0.0006,
                 "Schade":
                 {
-                    "BeginSchade": 0.0006,
                     "Faalgetal": 0.45
                 },
+                "RekenmethodeSoort": "GrasGolfoploop",
+                "TypeToplaag": "GrasGeslotenZode",
+                "VerhogingBelastingOvergangAlfaM": 1.5,
+                "VerlagingSterkteOvergangAlfaS": 0.8,
+                "TanA": 0.7,
+                "BermfactorGammab": 3.2,
+                "RuwheidsfactorGammaf": 4.1,
                 "Bekleding":
                 {
-                    "TypeToplaag": "GrasGeslotenZode",
                     "KritiekeCumulatieveOverbelasting": 7213.0,
                     "KritiekeFrontsnelheidGrasGolfoploop": 8.3,
-                    "VerhogingBelastingOvergangAlfaM": 1.5,
-                    "VerlagingSterkteOvergangAlfaS": 0.8,
                     "Rekenmethoden":
                     [
                         {
@@ -320,19 +324,15 @@
                             }
                         }
                     ]
-                },
-                "Profielschematisatie":
-                {
-                    "TanA": 0.7,
-                    "BermfactorGammab": 3.2,
-                    "RuwheidsfactorGammaf": 4.1
                 }
             },
             {
                 "PositieLocatie": 0.98,
+                "RekenmethodeSoort": "GrasGolfoploop",
+                "TypeToplaag": "GrasGeslotenZode",
+                "TanA": 0.8,
                 "Bekleding":
                 {
-                    "TypeToplaag": "GrasGeslotenZode",
                     "Rekenmethoden":
                     [
                         {
@@ -343,17 +343,15 @@
                             }
                         }
                     ]
-                },
-                "Profielschematisatie":
-                {
-                    "TanA": 0.8
                 }
             },
             {
                 "PositieLocatie": 7.698,
+                "RekenmethodeSoort": "GrasGolfoploop",
+                "TypeToplaag": "GrasOpenZode",
+                "TanA": 0.9,
                 "Bekleding":
                 {
-                    "TypeToplaag": "GrasOpenZode",
                     "Rekenmethoden":
                     [
                         {
@@ -364,10 +362,6 @@
                             }
                         }
                     ]
-                },
-                "Profielschematisatie":
-                {
-                    "TanA": 0.9
                 }
             },
             {

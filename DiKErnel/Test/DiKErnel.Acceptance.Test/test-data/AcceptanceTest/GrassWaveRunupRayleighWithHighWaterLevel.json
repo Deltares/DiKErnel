@@ -144,19 +144,22 @@
         [
             {
                 "PositieLocatie": 4.0,
+                "BeginSchade": 0.0,
                 "Schade": 
                 {
-                    "BeginSchade": 0.0,
                     "Faalgetal": 1.0
                 },
+                "RekenmethodeSoort": "GrasGolfoploop",
+                "TypeToplaag": "GrasGeslotenZode",
+                "VerhogingBelastingOvergangAlfaM": 1.0,
+                "VerlagingSterkteOvergangAlfaS": 1.0,
+                "TanA": 0.25,
+                "BermfactorGammab": 1.0,
+                "RuwheidsfactorGammaf": 1.0,
                 "Bekleding":
                  {
-                    "TypeToplaag": "GrasGeslotenZode",
                     "KritiekeCumulatieveOverbelasting": 7000,
                     "KritiekeFrontsnelheidGrasGolfoploop": 6.6,
-                    "VerhogingBelastingOvergangAlfaM": 1.0,
-                    "VerlagingSterkteOvergangAlfaS": 1.0,
-                    "FactorFrontSnelheidGolfoploop": 1.1,
                     "Rekenmethoden":
                     [
                         {
@@ -187,12 +190,6 @@
                             }
                         }
                     ]
-                },
-                "Profielschematisatie": 
-                {
-                    "TanA": 0.25,
-                    "BermfactorGammab": 1.0,
-                    "RuwheidsfactorGammaf": 1.0
                 }
             }
         ]

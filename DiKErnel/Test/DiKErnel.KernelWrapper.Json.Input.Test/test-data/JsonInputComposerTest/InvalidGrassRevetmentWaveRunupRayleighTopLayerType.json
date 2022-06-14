@@ -11,8 +11,10 @@
         [
             {
                 "PositieLocatie": 0,
+                "RekenmethodeSoort": "GrasGolfoploop",
+                "TypeToplaag": "GrasHalveZode",
+                "TanA": 0.3,
                 "Bekleding": {
-                    "TypeToplaag": "GrasHalveZode",
                     "Rekenmethoden": 
                     [
                         {
@@ -22,9 +24,6 @@
                             }
                         }
                     ]
-                },
-                "Profielschematisatie": {
-                    "TanA": 0.3
                 }
             }
         ]
