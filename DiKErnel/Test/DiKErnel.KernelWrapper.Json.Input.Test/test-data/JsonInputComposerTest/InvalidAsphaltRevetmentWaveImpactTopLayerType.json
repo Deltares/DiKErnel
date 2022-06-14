@@ -11,6 +11,7 @@
         [
             {
                 "PositieLocatie": 0,
+                "RekenmethodeSoort": "AsfaltGolfklap",
                 "TypeToplaag": "WaterbouwAsfaltZonderBeton",
                 "BreuksterkteAsfalt": 1.56,
                 "VeerconstanteOndergrond": 56,

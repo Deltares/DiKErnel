@@ -130,6 +130,7 @@
                 {
                     "Faalgetal": 1.06
                 },
+                "RekenmethodeSoort": "Natuursteen",
                 "TypeToplaag": "NoorseSteen",
                 "RelatieveDichtheid": 1.65,
                 "DikteToplaag": 0.3,
@@ -191,6 +192,7 @@
             },
             {
                 "PositieLocatie": 8.79,
+                "RekenmethodeSoort": "Natuursteen",
                 "TypeToplaag": "NoorseSteen",
                 "RelatieveDichtheid": 1.65,
                 "DikteToplaag": 0.7,
@@ -449,6 +451,7 @@
             },
             {
                 "PositieLocatie": 19,
+                "RekenmethodeSoort": "AsfaltGolfklap",
                 "TypeToplaag": "WaterbouwAsfaltBeton",
                 "BreuksterkteAsfalt": 1.56,
                 "VeerconstanteOndergrond": 56,

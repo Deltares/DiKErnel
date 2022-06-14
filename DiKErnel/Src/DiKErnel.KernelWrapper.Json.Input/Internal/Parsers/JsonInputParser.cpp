@@ -195,9 +195,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
         for (const auto& readLocation : readLocations)
         {
+            const auto& calculationType = readLocation.at(JsonInputDefinitions::CALCULATION_METHOD_TYPE).get<JsonInputCalculationType>();
             const auto& readRevetment = readLocation.at(JsonInputDefinitions::REVETMENT);
             const auto& readCalculationMethod = readRevetment.at(JsonInputDefinitions::CALCULATION_METHOD).at(0);
-            const auto& calculationType = readCalculationMethod.at(JsonInputDefinitions::CALCULATION_METHOD_TYPE).get<JsonInputCalculationType>();
 
             unique_ptr<JsonInputLocationParser> parser = nullptr;
 
