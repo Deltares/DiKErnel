@@ -18,7 +18,7 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include "JsonInputNaturalStoneRevetmentLocationData.h"
+#include "JsonInputNaturalStoneCalculationDefinitionData.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
@@ -26,133 +26,133 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
     #pragma region Set methods
 
-    void JsonInputNaturalStoneRevetmentLocationData::SetHydraulicLoadAp(
+    void JsonInputNaturalStoneCalculationDefinitionData::SetHydraulicLoadAp(
         unique_ptr<double> hydraulicLoadAp)
     {
         _hydraulicLoadAp = move(hydraulicLoadAp);
     }
 
-    void JsonInputNaturalStoneRevetmentLocationData::SetHydraulicLoadBp(
+    void JsonInputNaturalStoneCalculationDefinitionData::SetHydraulicLoadBp(
         unique_ptr<double> hydraulicLoadBp)
     {
         _hydraulicLoadBp = move(hydraulicLoadBp);
     }
 
-    void JsonInputNaturalStoneRevetmentLocationData::SetHydraulicLoadCp(
+    void JsonInputNaturalStoneCalculationDefinitionData::SetHydraulicLoadCp(
         unique_ptr<double> hydraulicLoadCp)
     {
         _hydraulicLoadCp = move(hydraulicLoadCp);
     }
 
-    void JsonInputNaturalStoneRevetmentLocationData::SetHydraulicLoadNp(
+    void JsonInputNaturalStoneCalculationDefinitionData::SetHydraulicLoadNp(
         unique_ptr<double> hydraulicLoadNp)
     {
         _hydraulicLoadNp = move(hydraulicLoadNp);
     }
 
-    void JsonInputNaturalStoneRevetmentLocationData::SetHydraulicLoadAs(
+    void JsonInputNaturalStoneCalculationDefinitionData::SetHydraulicLoadAs(
         unique_ptr<double> hydraulicLoadAs)
     {
         _hydraulicLoadAs = move(hydraulicLoadAs);
     }
 
-    void JsonInputNaturalStoneRevetmentLocationData::SetHydraulicLoadBs(
+    void JsonInputNaturalStoneCalculationDefinitionData::SetHydraulicLoadBs(
         unique_ptr<double> hydraulicLoadBs)
     {
         _hydraulicLoadBs = move(hydraulicLoadBs);
     }
 
-    void JsonInputNaturalStoneRevetmentLocationData::SetHydraulicLoadCs(
+    void JsonInputNaturalStoneCalculationDefinitionData::SetHydraulicLoadCs(
         unique_ptr<double> hydraulicLoadCs)
     {
         _hydraulicLoadCs = move(hydraulicLoadCs);
     }
 
-    void JsonInputNaturalStoneRevetmentLocationData::SetHydraulicLoadNs(
+    void JsonInputNaturalStoneCalculationDefinitionData::SetHydraulicLoadNs(
         unique_ptr<double> hydraulicLoadNs)
     {
         _hydraulicLoadNs = move(hydraulicLoadNs);
     }
 
-    void JsonInputNaturalStoneRevetmentLocationData::SetHydraulicLoadXib(
+    void JsonInputNaturalStoneCalculationDefinitionData::SetHydraulicLoadXib(
         unique_ptr<double> hydraulicLoadXib)
     {
         _hydraulicLoadXib = move(hydraulicLoadXib);
     }
 
-    void JsonInputNaturalStoneRevetmentLocationData::SetSlopeUpperLevelAus(
+    void JsonInputNaturalStoneCalculationDefinitionData::SetSlopeUpperLevelAus(
         unique_ptr<double> slopeUpperLevelAus)
     {
         _slopeUpperLevelAus = move(slopeUpperLevelAus);
     }
 
-    void JsonInputNaturalStoneRevetmentLocationData::SetSlopeLowerLevelAls(
+    void JsonInputNaturalStoneCalculationDefinitionData::SetSlopeLowerLevelAls(
         unique_ptr<double> slopeLowerLevelAls)
     {
         _slopeLowerLevelAls = move(slopeLowerLevelAls);
     }
 
-    void JsonInputNaturalStoneRevetmentLocationData::SetUpperLimitLoadingAul(
+    void JsonInputNaturalStoneCalculationDefinitionData::SetUpperLimitLoadingAul(
         unique_ptr<double> upperLimitLoadingAul)
     {
         _upperLimitLoadingAul = move(upperLimitLoadingAul);
     }
 
-    void JsonInputNaturalStoneRevetmentLocationData::SetUpperLimitLoadingBul(
+    void JsonInputNaturalStoneCalculationDefinitionData::SetUpperLimitLoadingBul(
         unique_ptr<double> upperLimitLoadingBul)
     {
         _upperLimitLoadingBul = move(upperLimitLoadingBul);
     }
 
-    void JsonInputNaturalStoneRevetmentLocationData::SetUpperLimitLoadingCul(
+    void JsonInputNaturalStoneCalculationDefinitionData::SetUpperLimitLoadingCul(
         unique_ptr<double> upperLimitLoadingCul)
     {
         _upperLimitLoadingCul = move(upperLimitLoadingCul);
     }
 
-    void JsonInputNaturalStoneRevetmentLocationData::SetLowerLimitLoadingAll(
+    void JsonInputNaturalStoneCalculationDefinitionData::SetLowerLimitLoadingAll(
         unique_ptr<double> lowerLimitLoadingAll)
     {
         _lowerLimitLoadingAll = move(lowerLimitLoadingAll);
     }
 
-    void JsonInputNaturalStoneRevetmentLocationData::SetLowerLimitLoadingBll(
+    void JsonInputNaturalStoneCalculationDefinitionData::SetLowerLimitLoadingBll(
         unique_ptr<double> lowerLimitLoadingBll)
     {
         _lowerLimitLoadingBll = move(lowerLimitLoadingBll);
     }
 
-    void JsonInputNaturalStoneRevetmentLocationData::SetLowerLimitLoadingCll(
+    void JsonInputNaturalStoneCalculationDefinitionData::SetLowerLimitLoadingCll(
         unique_ptr<double> lowerLimitLoadingCll)
     {
         _lowerLimitLoadingCll = move(lowerLimitLoadingCll);
     }
 
-    void JsonInputNaturalStoneRevetmentLocationData::SetDistanceMaximumWaveElevationAsmax(
+    void JsonInputNaturalStoneCalculationDefinitionData::SetDistanceMaximumWaveElevationAsmax(
         unique_ptr<double> distanceMaximumWaveElevationAsmax)
     {
         _distanceMaximumWaveElevationAsmax = move(distanceMaximumWaveElevationAsmax);
     }
 
-    void JsonInputNaturalStoneRevetmentLocationData::SetDistanceMaximumWaveElevationBsmax(
+    void JsonInputNaturalStoneCalculationDefinitionData::SetDistanceMaximumWaveElevationBsmax(
         unique_ptr<double> distanceMaximumWaveElevationBsmax)
     {
         _distanceMaximumWaveElevationBsmax = move(distanceMaximumWaveElevationBsmax);
     }
 
-    void JsonInputNaturalStoneRevetmentLocationData::SetNormativeWidthOfWaveImpactAwi(
+    void JsonInputNaturalStoneCalculationDefinitionData::SetNormativeWidthOfWaveImpactAwi(
         unique_ptr<double> normativeWidthOfWaveImpactAwi)
     {
         _normativeWidthOfWaveImpactAwi = move(normativeWidthOfWaveImpactAwi);
     }
 
-    void JsonInputNaturalStoneRevetmentLocationData::SetNormativeWidthOfWaveImpactBwi(
+    void JsonInputNaturalStoneCalculationDefinitionData::SetNormativeWidthOfWaveImpactBwi(
         unique_ptr<double> normativeWidthOfWaveImpactBwi)
     {
         _normativeWidthOfWaveImpactBwi = move(normativeWidthOfWaveImpactBwi);
     }
 
-    void JsonInputNaturalStoneRevetmentLocationData::SetWaveAngleImpactBetamax(
+    void JsonInputNaturalStoneCalculationDefinitionData::SetWaveAngleImpactBetamax(
         unique_ptr<double> waveAngleImpactBetamax)
     {
         _waveAngleImpactBetamax = move(waveAngleImpactBetamax);
@@ -162,112 +162,112 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
     #pragma region Get methods
 
-    const double* JsonInputNaturalStoneRevetmentLocationData::GetHydraulicLoadXib() const
+    const double* JsonInputNaturalStoneCalculationDefinitionData::GetHydraulicLoadXib() const
     {
         return _hydraulicLoadXib.get();
     }
 
-    const double* JsonInputNaturalStoneRevetmentLocationData::GetHydraulicLoadAp() const
+    const double* JsonInputNaturalStoneCalculationDefinitionData::GetHydraulicLoadAp() const
     {
         return _hydraulicLoadAp.get();
     }
 
-    const double* JsonInputNaturalStoneRevetmentLocationData::GetHydraulicLoadBp() const
+    const double* JsonInputNaturalStoneCalculationDefinitionData::GetHydraulicLoadBp() const
     {
         return _hydraulicLoadBp.get();
     }
 
-    const double* JsonInputNaturalStoneRevetmentLocationData::GetHydraulicLoadCp() const
+    const double* JsonInputNaturalStoneCalculationDefinitionData::GetHydraulicLoadCp() const
     {
         return _hydraulicLoadCp.get();
     }
 
-    const double* JsonInputNaturalStoneRevetmentLocationData::GetHydraulicLoadNp() const
+    const double* JsonInputNaturalStoneCalculationDefinitionData::GetHydraulicLoadNp() const
     {
         return _hydraulicLoadNp.get();
     }
 
-    const double* JsonInputNaturalStoneRevetmentLocationData::GetHydraulicLoadAs() const
+    const double* JsonInputNaturalStoneCalculationDefinitionData::GetHydraulicLoadAs() const
     {
         return _hydraulicLoadAs.get();
     }
 
-    const double* JsonInputNaturalStoneRevetmentLocationData::GetHydraulicLoadBs() const
+    const double* JsonInputNaturalStoneCalculationDefinitionData::GetHydraulicLoadBs() const
     {
         return _hydraulicLoadBs.get();
     }
 
-    const double* JsonInputNaturalStoneRevetmentLocationData::GetHydraulicLoadCs() const
+    const double* JsonInputNaturalStoneCalculationDefinitionData::GetHydraulicLoadCs() const
     {
         return _hydraulicLoadCs.get();
     }
 
-    const double* JsonInputNaturalStoneRevetmentLocationData::GetHydraulicLoadNs() const
+    const double* JsonInputNaturalStoneCalculationDefinitionData::GetHydraulicLoadNs() const
     {
         return _hydraulicLoadNs.get();
     }
 
-    const double* JsonInputNaturalStoneRevetmentLocationData::GetSlopeUpperLevelAus() const
+    const double* JsonInputNaturalStoneCalculationDefinitionData::GetSlopeUpperLevelAus() const
     {
         return _slopeUpperLevelAus.get();
     }
 
-    const double* JsonInputNaturalStoneRevetmentLocationData::GetSlopeLowerLevelAls() const
+    const double* JsonInputNaturalStoneCalculationDefinitionData::GetSlopeLowerLevelAls() const
     {
         return _slopeLowerLevelAls.get();
     }
 
-    const double* JsonInputNaturalStoneRevetmentLocationData::GetUpperLimitLoadingAul() const
+    const double* JsonInputNaturalStoneCalculationDefinitionData::GetUpperLimitLoadingAul() const
     {
         return _upperLimitLoadingAul.get();
     }
 
-    const double* JsonInputNaturalStoneRevetmentLocationData::GetUpperLimitLoadingBul() const
+    const double* JsonInputNaturalStoneCalculationDefinitionData::GetUpperLimitLoadingBul() const
     {
         return _upperLimitLoadingBul.get();
     }
 
-    const double* JsonInputNaturalStoneRevetmentLocationData::GetUpperLimitLoadingCul() const
+    const double* JsonInputNaturalStoneCalculationDefinitionData::GetUpperLimitLoadingCul() const
     {
         return _upperLimitLoadingCul.get();
     }
 
-    const double* JsonInputNaturalStoneRevetmentLocationData::GetLowerLimitLoadingAll() const
+    const double* JsonInputNaturalStoneCalculationDefinitionData::GetLowerLimitLoadingAll() const
     {
         return _lowerLimitLoadingAll.get();
     }
 
-    const double* JsonInputNaturalStoneRevetmentLocationData::GetLowerLimitLoadingBll() const
+    const double* JsonInputNaturalStoneCalculationDefinitionData::GetLowerLimitLoadingBll() const
     {
         return _lowerLimitLoadingBll.get();
     }
 
-    const double* JsonInputNaturalStoneRevetmentLocationData::GetLowerLimitLoadingCll() const
+    const double* JsonInputNaturalStoneCalculationDefinitionData::GetLowerLimitLoadingCll() const
     {
         return _lowerLimitLoadingCll.get();
     }
 
-    const double* JsonInputNaturalStoneRevetmentLocationData::GetDistanceMaximumWaveElevationAsmax() const
+    const double* JsonInputNaturalStoneCalculationDefinitionData::GetDistanceMaximumWaveElevationAsmax() const
     {
         return _distanceMaximumWaveElevationAsmax.get();
     }
 
-    const double* JsonInputNaturalStoneRevetmentLocationData::GetDistanceMaximumWaveElevationBsmax() const
+    const double* JsonInputNaturalStoneCalculationDefinitionData::GetDistanceMaximumWaveElevationBsmax() const
     {
         return _distanceMaximumWaveElevationBsmax.get();
     }
 
-    const double* JsonInputNaturalStoneRevetmentLocationData::GetNormativeWidthOfWaveImpactAwi() const
+    const double* JsonInputNaturalStoneCalculationDefinitionData::GetNormativeWidthOfWaveImpactAwi() const
     {
         return _normativeWidthOfWaveImpactAwi.get();
     }
 
-    const double* JsonInputNaturalStoneRevetmentLocationData::GetNormativeWidthOfWaveImpactBwi() const
+    const double* JsonInputNaturalStoneCalculationDefinitionData::GetNormativeWidthOfWaveImpactBwi() const
     {
         return _normativeWidthOfWaveImpactBwi.get();
     }
 
-    const double* JsonInputNaturalStoneRevetmentLocationData::GetWaveAngleImpactBetamax() const
+    const double* JsonInputNaturalStoneCalculationDefinitionData::GetWaveAngleImpactBetamax() const
     {
         return _waveAngleImpactBetamax.get();
     }

@@ -24,7 +24,7 @@
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
-    class JsonInputNaturalStoneRevetmentLocationData
+    class JsonInputNaturalStoneCalculationDefinitionData
     {
         public:
             #pragma region Set methods

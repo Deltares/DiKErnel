@@ -33,7 +33,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
         const double relativeDensity,
         const double thicknessTopLayer,
         unique_ptr<JsonInputDamageData> damageData,
-        unique_ptr<JsonInputNaturalStoneRevetmentLocationData> revetmentLocationData)
+        unique_ptr<JsonInputNaturalStoneCalculationDefinitionData> revetmentLocationData)
         : JsonInputLocationData(x, move(initialDamage), move(damageData)),
           _topLayerType(topLayerType),
           _relativeDensity(relativeDensity),
@@ -55,7 +55,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
         return _thicknessTopLayer;
     }
 
-    const JsonInputNaturalStoneRevetmentLocationData& JsonInputNaturalStoneLocationData::GetRevetmentLocationData() const
+    const JsonInputNaturalStoneCalculationDefinitionData& JsonInputNaturalStoneLocationData::GetRevetmentLocationData() const
     {
         return *_revetmentLocationData;
     }

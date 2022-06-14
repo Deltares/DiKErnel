@@ -21,7 +21,7 @@
 #pragma once
 
 #include "JsonInputLocationParser.h"
-#include "JsonInputNaturalStoneRevetmentLocationData.h"
+#include "JsonInputNaturalStoneCalculationDefinitionData.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
@@ -41,6 +41,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
         private:
             [[nodiscard]]
-            std::unique_ptr<JsonInputNaturalStoneRevetmentLocationData> ParseRevetmentLocationData() const;
+            std::unique_ptr<JsonInputNaturalStoneCalculationDefinitionData> ParseRevetmentLocationData() const;
     };
 }

@@ -60,11 +60,11 @@ namespace DiKErnel::KernelWrapper::Json::Input
             move(damageData), ParseRevetmentLocationData());
     }
 
-    unique_ptr<JsonInputNaturalStoneRevetmentLocationData> JsonInputNaturalStoneParser::ParseRevetmentLocationData() const
+    unique_ptr<JsonInputNaturalStoneCalculationDefinitionData> JsonInputNaturalStoneParser::ParseRevetmentLocationData() const
     {
         const auto& readCalculationMethod = GetReadCalculationMethod();
 
-        auto locationData = make_unique<JsonInputNaturalStoneRevetmentLocationData>();
+        auto locationData = make_unique<JsonInputNaturalStoneCalculationDefinitionData>();
 
         if (readCalculationMethod.contains(JsonInputNaturalStoneDefinitions::HYDRAULIC_LOAD))
         {

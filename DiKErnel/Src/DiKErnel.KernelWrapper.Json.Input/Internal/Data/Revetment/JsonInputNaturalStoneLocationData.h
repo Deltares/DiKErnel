@@ -21,7 +21,7 @@
 #pragma once
 
 #include "JsonInputLocationData.h"
-#include "JsonInputNaturalStoneRevetmentLocationData.h"
+#include "JsonInputNaturalStoneCalculationDefinitionData.h"
 #include "JsonInputNaturalStoneRevetmentTopLayerType.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
@@ -36,7 +36,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 double relativeDensity,
                 double thicknessTopLayer,
                 std::unique_ptr<JsonInputDamageData> damageData,
-                std::unique_ptr<JsonInputNaturalStoneRevetmentLocationData> revetmentLocationData);
+                std::unique_ptr<JsonInputNaturalStoneCalculationDefinitionData> revetmentLocationData);
 
             [[nodiscard]]
             JsonInputNaturalStoneRevetmentTopLayerType GetTopLayerType() const;
@@ -48,12 +48,12 @@ namespace DiKErnel::KernelWrapper::Json::Input
             double GetThicknessTopLayer() const;
 
             [[nodiscard]]
-            const JsonInputNaturalStoneRevetmentLocationData& GetRevetmentLocationData() const;
+            const JsonInputNaturalStoneCalculationDefinitionData& GetRevetmentLocationData() const;
 
         private:
             JsonInputNaturalStoneRevetmentTopLayerType _topLayerType;
             double _relativeDensity;
             double _thicknessTopLayer;
-            std::unique_ptr<JsonInputNaturalStoneRevetmentLocationData> _revetmentLocationData;
+            std::unique_ptr<JsonInputNaturalStoneCalculationDefinitionData> _revetmentLocationData;
     };
 }
