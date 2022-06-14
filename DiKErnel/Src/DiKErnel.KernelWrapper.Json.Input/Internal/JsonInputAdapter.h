@@ -45,6 +45,10 @@ namespace DiKErnel::KernelWrapper::Json::Input
             static std::unique_ptr<Core::CharacteristicPointType> ConvertCharacteristicPointType(
                 const JsonInputCharacteristicPointType* jsonCharacteristicPointType);
 
+            template <typename T>
+            static const T* GetCalculationDefinition(
+                const std::vector<std::reference_wrapper<JsonInputCalculationDefinitionData>>& calculationDefinitions);
+
             static std::unique_ptr<Integration::AsphaltRevetmentWaveImpactLocationConstructionProperties>
             CreateAsphaltWaveImpactConstructionProperties(
                 const JsonInputAsphaltWaveImpactLocationData& location);
@@ -63,7 +67,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 JsonInputGrassRevetmentTopLayerType topLayerType);
 
             static std::unique_ptr<Integration::NaturalStoneRevetmentLocationConstructionProperties> CreateNaturalStoneConstructionProperties(
-                const JsonInputNaturalStoneLocationData& location);
+                const JsonInputNaturalStoneLocationData& location,
+                const JsonInputNaturalStoneCalculationDefinitionData* calculationDefinition);
 
             static Integration::NaturalStoneRevetmentTopLayerType ConvertTopLayerType(
                 JsonInputNaturalStoneRevetmentTopLayerType topLayerType);

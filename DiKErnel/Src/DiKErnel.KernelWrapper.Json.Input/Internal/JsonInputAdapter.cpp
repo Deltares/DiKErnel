@@ -59,6 +59,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
         }
 
         const auto& locationReferences = calculationData.GetLocationData();
+        const auto& calculationDefinitionReferences = calculationData.GetCalculationDefinitionData();
 
         for (const auto& locationReference : locationReferences)
         {
@@ -88,12 +89,31 @@ namespace DiKErnel::KernelWrapper::Json::Input
             if (const auto* naturalStoneLocationData = dynamic_cast<const JsonInputNaturalStoneLocationData*>(&location);
                 naturalStoneLocationData != nullptr)
             {
-                const auto& constructionProperties = CreateNaturalStoneConstructionProperties(*naturalStoneLocationData);
+                const auto& constructionProperties = CreateNaturalStoneConstructionProperties(
+                    *naturalStoneLocationData,
+                    GetCalculationDefinition<JsonInputNaturalStoneCalculationDefinitionData>(calculationDefinitionReferences));
                 builder.AddNaturalStoneLocation(*constructionProperties);
             }
         }
 
         return builder.Build();
+    }
+
+    template <typename T>
+    const T* JsonInputAdapter::GetCalculationDefinition(
+        const vector<reference_wrapper<JsonInputCalculationDefinitionData>>& calculationDefinitions)
+    {
+        for (const auto& calculationDefinitionReference : calculationDefinitions)
+        {
+            const auto& calculationDefinition = calculationDefinitionReference.get();
+
+            if (const auto* typedCalculationDefinition = dynamic_cast<const T*>(&calculationDefinition); typedCalculationDefinition != nullptr)
+            {
+                return typedCalculationDefinition;
+            }
+        }
+
+        return nullptr;
     }
 
     unique_ptr<CharacteristicPointType> JsonInputAdapter::ConvertCharacteristicPointType(
@@ -280,68 +300,70 @@ namespace DiKErnel::KernelWrapper::Json::Input
     }
 
     unique_ptr<NaturalStoneRevetmentLocationConstructionProperties> JsonInputAdapter::CreateNaturalStoneConstructionProperties(
-        const JsonInputNaturalStoneLocationData& location)
+        const JsonInputNaturalStoneLocationData& location,
+        const JsonInputNaturalStoneCalculationDefinitionData* calculationDefinition)
     {
-        const auto& damageData = location.GetDamageData();
-        const auto& revetmentData = location.GetRevetmentLocationData();
-
         auto constructionProperties = make_unique<NaturalStoneRevetmentLocationConstructionProperties>(
             location.GetX(), ConvertTopLayerType(location.GetTopLayerType()), location.GetThicknessTopLayer(),
             location.GetRelativeDensity());
 
         constructionProperties->SetInitialDamage(forward<unique_ptr<double>>(CreatePointerOfValue(location.GetInitialDamage())));
-        constructionProperties->SetFailureNumber(forward<unique_ptr<double>>(CreatePointerOfValue(damageData.GetFailureNumber())));
 
-        constructionProperties->SetHydraulicLoadAp(
-            forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetHydraulicLoadAp())));
-        constructionProperties->SetHydraulicLoadBp(
-            forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetHydraulicLoadBp())));
-        constructionProperties->SetHydraulicLoadCp(
-            forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetHydraulicLoadCp())));
-        constructionProperties->SetHydraulicLoadNp(
-            forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetHydraulicLoadNp())));
-        constructionProperties->SetHydraulicLoadAs(
-            forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetHydraulicLoadAs())));
-        constructionProperties->SetHydraulicLoadBs(
-            forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetHydraulicLoadBs())));
-        constructionProperties->SetHydraulicLoadCs(
-            forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetHydraulicLoadCs())));
-        constructionProperties->SetHydraulicLoadNs(
-            forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetHydraulicLoadNs())));
-        constructionProperties->SetHydraulicLoadXib(
-            forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetHydraulicLoadXib())));
+        if (calculationDefinition != nullptr)
+        {
+            constructionProperties->SetFailureNumber(forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetFailureNumber())));
 
-        constructionProperties->SetSlopeUpperLevelAus(
-            forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetSlopeUpperLevelAus())));
-        constructionProperties->SetSlopeLowerLevelAls(
-            forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetSlopeLowerLevelAls())));
+            constructionProperties->SetHydraulicLoadAp(
+                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetHydraulicLoadAp())));
+            constructionProperties->SetHydraulicLoadBp(
+                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetHydraulicLoadBp())));
+            constructionProperties->SetHydraulicLoadCp(
+                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetHydraulicLoadCp())));
+            constructionProperties->SetHydraulicLoadNp(
+                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetHydraulicLoadNp())));
+            constructionProperties->SetHydraulicLoadAs(
+                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetHydraulicLoadAs())));
+            constructionProperties->SetHydraulicLoadBs(
+                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetHydraulicLoadBs())));
+            constructionProperties->SetHydraulicLoadCs(
+                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetHydraulicLoadCs())));
+            constructionProperties->SetHydraulicLoadNs(
+                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetHydraulicLoadNs())));
+            constructionProperties->SetHydraulicLoadXib(
+                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetHydraulicLoadXib())));
 
-        constructionProperties->SetUpperLimitLoadingAul(
-            forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetUpperLimitLoadingAul())));
-        constructionProperties->SetUpperLimitLoadingBul(
-            forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetUpperLimitLoadingBul())));
-        constructionProperties->SetUpperLimitLoadingCul(
-            forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetUpperLimitLoadingCul())));
+            constructionProperties->SetSlopeUpperLevelAus(
+                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetSlopeUpperLevelAus())));
+            constructionProperties->SetSlopeLowerLevelAls(
+                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetSlopeLowerLevelAls())));
 
-        constructionProperties->SetLowerLimitLoadingAll(
-            forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetLowerLimitLoadingAll())));
-        constructionProperties->SetLowerLimitLoadingBll(
-            forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetLowerLimitLoadingBll())));
-        constructionProperties->SetLowerLimitLoadingCll(
-            forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetLowerLimitLoadingCll())));
+            constructionProperties->SetUpperLimitLoadingAul(
+                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetUpperLimitLoadingAul())));
+            constructionProperties->SetUpperLimitLoadingBul(
+                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetUpperLimitLoadingBul())));
+            constructionProperties->SetUpperLimitLoadingCul(
+                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetUpperLimitLoadingCul())));
 
-        constructionProperties->SetDistanceMaximumWaveElevationAsmax(
-            forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetDistanceMaximumWaveElevationAsmax())));
-        constructionProperties->SetDistanceMaximumWaveElevationBsmax(
-            forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetDistanceMaximumWaveElevationBsmax())));
+            constructionProperties->SetLowerLimitLoadingAll(
+                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetLowerLimitLoadingAll())));
+            constructionProperties->SetLowerLimitLoadingBll(
+                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetLowerLimitLoadingBll())));
+            constructionProperties->SetLowerLimitLoadingCll(
+                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetLowerLimitLoadingCll())));
 
-        constructionProperties->SetNormativeWidthOfWaveImpactAwi(
-            forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetNormativeWidthOfWaveImpactAwi())));
-        constructionProperties->SetNormativeWidthOfWaveImpactBwi(
-            forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetNormativeWidthOfWaveImpactBwi())));
+            constructionProperties->SetDistanceMaximumWaveElevationAsmax(
+                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetDistanceMaximumWaveElevationAsmax())));
+            constructionProperties->SetDistanceMaximumWaveElevationBsmax(
+                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetDistanceMaximumWaveElevationBsmax())));
 
-        constructionProperties->SetWaveAngleImpactBetamax(
-            forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetWaveAngleImpactBetamax())));
+            constructionProperties->SetNormativeWidthOfWaveImpactAwi(
+                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetNormativeWidthOfWaveImpactAwi())));
+            constructionProperties->SetNormativeWidthOfWaveImpactBwi(
+                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetNormativeWidthOfWaveImpactBwi())));
+
+            constructionProperties->SetWaveAngleImpactBetamax(
+                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetWaveAngleImpactBetamax())));
+        }
 
         return constructionProperties;
     }
