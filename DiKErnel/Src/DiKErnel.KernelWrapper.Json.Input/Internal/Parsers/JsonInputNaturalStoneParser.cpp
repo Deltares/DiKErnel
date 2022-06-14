@@ -64,7 +64,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
     {
         const auto& readCalculationMethod = GetReadCalculationMethod();
 
-        auto locationData = make_unique<JsonInputNaturalStoneCalculationDefinitionData>();
+        auto locationData = make_unique<JsonInputNaturalStoneCalculationDefinitionData>(nullptr);
 
         if (readCalculationMethod.contains(JsonInputNaturalStoneDefinitions::HYDRAULIC_LOAD))
         {

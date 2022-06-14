@@ -36,7 +36,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
     {
         unique_ptr<double> failureNumber = JsonInputParserHelper::ParseOptionalDouble(_readCalculationMethod, JsonInputDefinitions::FAILURE_NUMBER);
 
-        return ParseLocationData(move(failureNumber));
+        return ParseCalculationDefinition(move(failureNumber));
     }
 
     const json& JsonInputCalculationDefinitionParser::GetReadCalculationMethod() const

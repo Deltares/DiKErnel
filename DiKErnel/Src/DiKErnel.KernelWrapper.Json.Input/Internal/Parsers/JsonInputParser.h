@@ -55,10 +55,17 @@ namespace DiKErnel::KernelWrapper::Json::Input
             static std::vector<std::unique_ptr<JsonInputLocationData>> ParseLocationData(
                 const nlohmann::json& readCalculationData);
 
+            static std::vector<std::unique_ptr<JsonInputCalculationDefinitionData>> ParseCalculationDefinitionData(
+                const nlohmann::json& readCalculationData);
+
             template <typename T>
-            static std::unique_ptr<T> CreateParser(
+            static std::unique_ptr<T> CreateLocationParser(
                 const nlohmann::json& readLocation,
                 const nlohmann::json& readRevetment,
                 const nlohmann::json& readCalculationMethod);
+
+            template <typename T>
+            static std::unique_ptr<T> CreateCalculationDefinitionParser(
+                const nlohmann::json& readCalculationDefinition);
     };
 }
