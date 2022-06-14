@@ -21,7 +21,6 @@
 #pragma once
 
 #include "JsonInputGrassRevetmentTopLayerType.h"
-#include "JsonInputGrassRevetmentWaveRunupProfileSchematizationData.h"
 #include "JsonInputGrassRevetmentWaveRunupRayleighLocationData.h"
 #include "JsonInputLocationData.h"
 
@@ -36,8 +35,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 JsonInputGrassRevetmentTopLayerType topLayerType,
                 double outerSlope,
                 std::unique_ptr<JsonInputDamageData> damageData,
-                std::unique_ptr<JsonInputGrassRevetmentWaveRunupRayleighLocationData> revetmentLocationData,
-                std::unique_ptr<JsonInputGrassRevetmentWaveRunupProfileSchematizationData> profileSchematizationData);
+                std::unique_ptr<JsonInputGrassRevetmentWaveRunupRayleighLocationData> revetmentLocationData);
 
             void SetIncreasedLoadTransitionAlphaM(
                 std::unique_ptr<double> increasedLoadTransitionAlphaM);
@@ -72,9 +70,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
             [[nodiscard]]
             const JsonInputGrassRevetmentWaveRunupRayleighLocationData& GetRevetmentLocationData() const;
 
-            [[nodiscard]]
-            const JsonInputGrassRevetmentWaveRunupProfileSchematizationData& GetProfileSchematizationData() const;
-
         private:
             JsonInputGrassRevetmentTopLayerType _topLayerType;
             double _outerSlope;
@@ -83,6 +78,5 @@ namespace DiKErnel::KernelWrapper::Json::Input
             std::unique_ptr<double> _representativeWaveRunup2PGammab = nullptr;
             std::unique_ptr<double> _representativeWaveRunup2PGammaf = nullptr;
             std::unique_ptr<JsonInputGrassRevetmentWaveRunupRayleighLocationData> _revetmentLocationData;
-            std::unique_ptr<JsonInputGrassRevetmentWaveRunupProfileSchematizationData> _profileSchematizationData;
     };
 }

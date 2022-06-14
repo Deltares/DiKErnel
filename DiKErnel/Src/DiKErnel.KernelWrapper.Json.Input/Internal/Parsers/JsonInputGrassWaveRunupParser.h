@@ -21,7 +21,6 @@
 #pragma once
 
 #include "JsonInputGrassRevetmentWaveRunupLocationData.h"
-#include "JsonInputGrassRevetmentWaveRunupProfileSchematizationData.h"
 #include "JsonInputGrassRevetmentWaveRunupRayleighLocationData.h"
 #include "JsonInputLocationParser.h"
 
@@ -46,9 +45,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
             std::unique_ptr<JsonInputGrassRevetmentWaveRunupRayleighLocationData> ParseRevetmentLocationData(
                 const nlohmann::json& readCalculationMethod,
                 const nlohmann::json& readCalculationProtocol) const;
-
-            [[nodiscard]]
-            std::unique_ptr<JsonInputGrassRevetmentWaveRunupProfileSchematizationData> ParseProfileSchematizationData() const;
 
             static std::unique_ptr<JsonInputGrassRevetmentWaveRunupRayleighLocationData> ParseRayleighRevetmentLocationData(
                 const nlohmann::json& readCalculationProtocol);

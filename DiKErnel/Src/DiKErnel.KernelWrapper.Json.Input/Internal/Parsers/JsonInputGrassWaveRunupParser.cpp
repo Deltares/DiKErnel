@@ -83,7 +83,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
         auto locationData = make_unique<JsonInputGrassWaveRunupRayleighLocationData>(
             x, move(initialDamage), readLocation.at(JsonInputDefinitions::TYPE_TOP_LAYER).get<JsonInputGrassRevetmentTopLayerType>(),
             readLocation.at(JsonInputDefinitions::OUTER_SLOPE).get<double>(), move(damageData),
-            ParseRevetmentLocationData(readCalculationMethod, readCalculationProtocol), ParseProfileSchematizationData());
+            ParseRevetmentLocationData(readCalculationMethod, readCalculationProtocol));
 
         locationData->SetIncreasedLoadTransitionAlphaM(
             forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
@@ -113,16 +113,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
         ParseGenericRevetmentLocationData(readRevetment, readCalculationMethod, *revetmentLocationData);
 
         return revetmentLocationData;
-    }
-
-    unique_ptr<JsonInputGrassRevetmentWaveRunupProfileSchematizationData> JsonInputGrassWaveRunupParser::ParseProfileSchematizationData() const
-    {
-        const auto& readProfileSchematization = GetReadLocation().at(JsonInputDefinitions::PROFILE_SCHEMATIZATION);
-
-        auto profileSchematization = make_unique<JsonInputGrassRevetmentWaveRunupProfileSchematizationData>(
-            readProfileSchematization.at(JsonInputDefinitions::OUTER_SLOPE).get<double>());
-
-        return profileSchematization;
     }
 
     unique_ptr<JsonInputGrassRevetmentWaveRunupRayleighLocationData> JsonInputGrassWaveRunupParser::ParseRayleighRevetmentLocationData(

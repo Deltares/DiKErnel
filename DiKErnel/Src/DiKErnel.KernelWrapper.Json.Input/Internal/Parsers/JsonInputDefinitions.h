@@ -75,7 +75,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
             inline static const std::string CALCULATION_METHOD_TYPE_GRASS_WAVE_RUNUP = "GrasGolfoploop";
             inline static const std::string CALCULATION_METHOD_TYPE_NATURAL_STONE = "Natuursteen";
 
-            inline static const std::string PROFILE_SCHEMATIZATION = "Profielschematisatie";
             inline static const std::string OUTER_SLOPE = "TanA";
     };
 }

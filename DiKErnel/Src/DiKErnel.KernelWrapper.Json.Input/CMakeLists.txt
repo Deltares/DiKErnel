@@ -51,8 +51,6 @@ set(SOURCEFILES_INTERNAL_DATA_GENERIC
   ${INTERNAL_DATA_GENERIC_FOLDER}/JsonInputLocationData.h
   ${INTERNAL_DATA_GENERIC_FOLDER}/JsonInputProcessData.cpp
   ${INTERNAL_DATA_GENERIC_FOLDER}/JsonInputProcessData.h
-  ${INTERNAL_DATA_GENERIC_FOLDER}/JsonInputProfileSchematizationData.cpp
-  ${INTERNAL_DATA_GENERIC_FOLDER}/JsonInputProfileSchematizationData.h
   ${INTERNAL_DATA_GENERIC_FOLDER}/JsonInputTimeDependentHydraulicData.cpp
   ${INTERNAL_DATA_GENERIC_FOLDER}/JsonInputTimeDependentHydraulicData.h
 )
@@ -69,8 +67,6 @@ set(SOURCEFILES_INTERNAL_DATA_REVETMENT
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassRevetmentWaveRunupCalculationProtocolType.h
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassRevetmentWaveRunupLocationData.cpp
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassRevetmentWaveRunupLocationData.h
-  ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassRevetmentWaveRunupProfileSchematizationData.cpp
-  ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassRevetmentWaveRunupProfileSchematizationData.h
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassRevetmentWaveRunupRayleighLocationData.cpp
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassRevetmentWaveRunupRayleighLocationData.h
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassWaveImpactLocationData.cpp
