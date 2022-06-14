@@ -27,26 +27,4 @@ namespace DiKErnel::KernelWrapper::Json::Input
     JsonInputGrassRevetmentWaveRunupProfileSchematizationData::JsonInputGrassRevetmentWaveRunupProfileSchematizationData(
         const double outerSlope)
         : JsonInputProfileSchematizationData(outerSlope) { }
-
-    void JsonInputGrassRevetmentWaveRunupProfileSchematizationData::SetRepresentativeWaveRunup2PGammab(
-        unique_ptr<double> representativeWaveRunup2PGammab)
-    {
-        _representativeWaveRunup2PGammab = move(representativeWaveRunup2PGammab);
-    }
-
-    void JsonInputGrassRevetmentWaveRunupProfileSchematizationData::SetRepresentativeWaveRunup2PGammaf(
-        unique_ptr<double> representativeWaveRunup2PGammaf)
-    {
-        _representativeWaveRunup2PGammaf = move(representativeWaveRunup2PGammaf);
-    }
-
-    const double* JsonInputGrassRevetmentWaveRunupProfileSchematizationData::GetRepresentativeWaveRunup2PGammab() const
-    {
-        return _representativeWaveRunup2PGammab.get();
-    }
-
-    const double* JsonInputGrassRevetmentWaveRunupProfileSchematizationData::GetRepresentativeWaveRunup2PGammaf() const
-    {
-        return _representativeWaveRunup2PGammaf.get();
-    }
 }

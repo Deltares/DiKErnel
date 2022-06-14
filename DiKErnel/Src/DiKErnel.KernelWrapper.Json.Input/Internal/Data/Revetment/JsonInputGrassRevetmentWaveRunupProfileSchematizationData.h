@@ -31,21 +31,5 @@ namespace DiKErnel::KernelWrapper::Json::Input
         public:
             explicit JsonInputGrassRevetmentWaveRunupProfileSchematizationData(
                 double outerSlope);
-
-            void SetRepresentativeWaveRunup2PGammab(
-                std::unique_ptr<double> representativeWaveRunup2PGammab);
-
-            void SetRepresentativeWaveRunup2PGammaf(
-                std::unique_ptr<double> representativeWaveRunup2PGammaf);
-
-            [[nodiscard]]
-            const double* GetRepresentativeWaveRunup2PGammab() const;
-
-            [[nodiscard]]
-            const double* GetRepresentativeWaveRunup2PGammaf() const;
-
-        private:
-            std::unique_ptr<double> _representativeWaveRunup2PGammab;
-            std::unique_ptr<double> _representativeWaveRunup2PGammaf;
     };
 }

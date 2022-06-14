@@ -21,7 +21,6 @@
 #include "JsonInputAdapter.h"
 
 #include "JsonInputConversionException.h"
-#include "JsonInputGrassRevetmentWaveRunupProfileSchematizationData.h"
 #include "RevetmentCalculationInputBuilder.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
@@ -223,10 +222,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
     {
         const auto& damageData = location.GetDamageData();
         const auto& revetmentData = location.GetRevetmentLocationData();
-        const auto& profileSchematizationData = location.GetProfileSchematizationData();
 
         auto constructionProperties = make_unique<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(
-            location.GetX(), profileSchematizationData.GetOuterSlope(), ConvertTopLayerType(location.GetTopLayerType()));
+            location.GetX(), location.GetOuterSlope(), ConvertTopLayerType(location.GetTopLayerType()));
 
         constructionProperties->SetInitialDamage(forward<unique_ptr<double>>(CreatePointerOfValue(location.GetInitialDamage())));
         constructionProperties->SetFailureNumber(forward<unique_ptr<double>>(CreatePointerOfValue(damageData.GetFailureNumber())));
@@ -249,9 +247,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
         constructionProperties->SetRepresentativeWaveRunup2PCru(
             forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetRepresentativeWaveRunup2PCru())));
         constructionProperties->SetRepresentativeWaveRunup2PGammab(
-            forward<unique_ptr<double>>(CreatePointerOfValue(profileSchematizationData.GetRepresentativeWaveRunup2PGammab())));
+            forward<unique_ptr<double>>(CreatePointerOfValue(location.GetRepresentativeWaveRunup2PGammab())));
         constructionProperties->SetRepresentativeWaveRunup2PGammaf(
-            forward<unique_ptr<double>>(CreatePointerOfValue(profileSchematizationData.GetRepresentativeWaveRunup2PGammaf())));
+            forward<unique_ptr<double>>(CreatePointerOfValue(location.GetRepresentativeWaveRunup2PGammaf())));
 
         constructionProperties->SetWaveAngleImpactAbeta(
             forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetWaveAngleImpactAbeta())));

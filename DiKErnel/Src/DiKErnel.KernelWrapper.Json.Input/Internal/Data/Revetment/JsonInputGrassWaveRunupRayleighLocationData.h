@@ -34,6 +34,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 double x,
                 std::unique_ptr<double> initialDamage,
                 JsonInputGrassRevetmentTopLayerType topLayerType,
+                double outerSlope,
                 std::unique_ptr<JsonInputDamageData> damageData,
                 std::unique_ptr<JsonInputGrassRevetmentWaveRunupRayleighLocationData> revetmentLocationData,
                 std::unique_ptr<JsonInputGrassRevetmentWaveRunupProfileSchematizationData> profileSchematizationData);
@@ -44,14 +45,29 @@ namespace DiKErnel::KernelWrapper::Json::Input
             void SetReducedStrengthTransitionAlphaS(
                 std::unique_ptr<double> reducedStrengthTransitionAlphaS);
 
+            void SetRepresentativeWaveRunup2PGammab(
+                std::unique_ptr<double> representativeWaveRunup2PGammab);
+
+            void SetRepresentativeWaveRunup2PGammaf(
+                std::unique_ptr<double> representativeWaveRunup2PGammaf);
+
             [[nodiscard]]
             JsonInputGrassRevetmentTopLayerType GetTopLayerType() const;
+
+            [[nodiscard]]
+            double GetOuterSlope() const;
 
             [[nodiscard]]
             const double* GetIncreasedLoadTransitionAlphaM() const;
 
             [[nodiscard]]
             const double* GetReducedStrengthTransitionAlphaS() const;
+
+            [[nodiscard]]
+            const double* GetRepresentativeWaveRunup2PGammab() const;
+
+            [[nodiscard]]
+            const double* GetRepresentativeWaveRunup2PGammaf() const;
 
             [[nodiscard]]
             const JsonInputGrassRevetmentWaveRunupRayleighLocationData& GetRevetmentLocationData() const;
@@ -61,8 +77,11 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
         private:
             JsonInputGrassRevetmentTopLayerType _topLayerType;
+            double _outerSlope;
             std::unique_ptr<double> _increasedLoadTransitionAlphaM = nullptr;
             std::unique_ptr<double> _reducedStrengthTransitionAlphaS = nullptr;
+            std::unique_ptr<double> _representativeWaveRunup2PGammab = nullptr;
+            std::unique_ptr<double> _representativeWaveRunup2PGammaf = nullptr;
             std::unique_ptr<JsonInputGrassRevetmentWaveRunupRayleighLocationData> _revetmentLocationData;
             std::unique_ptr<JsonInputGrassRevetmentWaveRunupProfileSchematizationData> _profileSchematizationData;
     };

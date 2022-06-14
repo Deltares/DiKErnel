@@ -82,7 +82,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
         auto locationData = make_unique<JsonInputGrassWaveRunupRayleighLocationData>(
             x, move(initialDamage), readLocation.at(JsonInputDefinitions::TYPE_TOP_LAYER).get<JsonInputGrassRevetmentTopLayerType>(),
-            move(damageData), ParseRevetmentLocationData(readCalculationMethod, readCalculationProtocol), ParseProfileSchematizationData());
+            readLocation.at(JsonInputDefinitions::OUTER_SLOPE).get<double>(), move(damageData),
+            ParseRevetmentLocationData(readCalculationMethod, readCalculationProtocol), ParseProfileSchematizationData());
 
         locationData->SetIncreasedLoadTransitionAlphaM(
             forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
@@ -90,6 +91,14 @@ namespace DiKErnel::KernelWrapper::Json::Input
         locationData->SetReducedStrengthTransitionAlphaS(
             forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
                 readLocation, JsonInputGrassWaveRunupDefinitions::REDUCED_STRENGTH_TRANSITION_ALPHA_S)));
+
+        locationData->SetRepresentativeWaveRunup2PGammab(
+            forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
+                readLocation, JsonInputGrassWaveRunupDefinitions::REPRESENTATIVE_WAVE_RUNUP_2P_GAMMA_B)));
+
+        locationData->SetRepresentativeWaveRunup2PGammaf(
+            forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
+                readLocation, JsonInputGrassWaveRunupDefinitions::REPRESENTATIVE_WAVE_RUNUP_2P_GAMMA_F)));
 
         return locationData;
     }
@@ -112,14 +121,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
         auto profileSchematization = make_unique<JsonInputGrassRevetmentWaveRunupProfileSchematizationData>(
             readProfileSchematization.at(JsonInputDefinitions::OUTER_SLOPE).get<double>());
-
-        profileSchematization->SetRepresentativeWaveRunup2PGammab(
-            forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
-                readProfileSchematization, JsonInputGrassWaveRunupDefinitions::REPRESENTATIVE_WAVE_RUNUP_2P_GAMMA_B)));
-
-        profileSchematization->SetRepresentativeWaveRunup2PGammaf(
-            forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
-                readProfileSchematization, JsonInputGrassWaveRunupDefinitions::REPRESENTATIVE_WAVE_RUNUP_2P_GAMMA_F)));
 
         return profileSchematization;
     }

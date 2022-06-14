@@ -28,11 +28,13 @@ namespace DiKErnel::KernelWrapper::Json::Input
         const double x,
         unique_ptr<double> initialDamage,
         const JsonInputGrassRevetmentTopLayerType topLayerType,
+        const double outerSlope,
         unique_ptr<JsonInputDamageData> damageData,
         unique_ptr<JsonInputGrassRevetmentWaveRunupRayleighLocationData> revetmentLocationData,
         unique_ptr<JsonInputGrassRevetmentWaveRunupProfileSchematizationData> profileSchematizationData)
         : JsonInputLocationData(x, move(initialDamage), move(damageData)),
           _topLayerType(topLayerType),
+          _outerSlope(outerSlope),
           _revetmentLocationData(move(revetmentLocationData)),
           _profileSchematizationData(move(profileSchematizationData)) {}
 
@@ -48,9 +50,26 @@ namespace DiKErnel::KernelWrapper::Json::Input
         _reducedStrengthTransitionAlphaS = move(reducedStrengthTransitionAlphaS);
     }
 
+    void JsonInputGrassWaveRunupRayleighLocationData::SetRepresentativeWaveRunup2PGammab(
+        unique_ptr<double> representativeWaveRunup2PGammab)
+    {
+        _representativeWaveRunup2PGammab = move(representativeWaveRunup2PGammab);
+    }
+
+    void JsonInputGrassWaveRunupRayleighLocationData::SetRepresentativeWaveRunup2PGammaf(
+        unique_ptr<double> representativeWaveRunup2PGammaf)
+    {
+        _representativeWaveRunup2PGammaf = move(representativeWaveRunup2PGammaf);
+    }
+
     JsonInputGrassRevetmentTopLayerType JsonInputGrassWaveRunupRayleighLocationData::GetTopLayerType() const
     {
         return _topLayerType;
+    }
+
+    double JsonInputGrassWaveRunupRayleighLocationData::GetOuterSlope() const
+    {
+        return _outerSlope;
     }
 
     const double* JsonInputGrassWaveRunupRayleighLocationData::GetIncreasedLoadTransitionAlphaM() const
@@ -61,6 +80,16 @@ namespace DiKErnel::KernelWrapper::Json::Input
     const double* JsonInputGrassWaveRunupRayleighLocationData::GetReducedStrengthTransitionAlphaS() const
     {
         return _reducedStrengthTransitionAlphaS.get();
+    }
+
+    const double* JsonInputGrassWaveRunupRayleighLocationData::GetRepresentativeWaveRunup2PGammab() const
+    {
+        return _representativeWaveRunup2PGammab.get();
+    }
+
+    const double* JsonInputGrassWaveRunupRayleighLocationData::GetRepresentativeWaveRunup2PGammaf() const
+    {
+        return _representativeWaveRunup2PGammaf.get();
     }
 
     const JsonInputGrassRevetmentWaveRunupRayleighLocationData& JsonInputGrassWaveRunupRayleighLocationData::GetRevetmentLocationData() const
