@@ -24,6 +24,10 @@ namespace DiKErnel::KernelWrapper::Json::Input
 {
     using namespace std;
 
+    JsonInputNaturalStoneCalculationDefinitionData::JsonInputNaturalStoneCalculationDefinitionData(
+        unique_ptr<double> failureNumber)
+        : JsonInputCalculationDefinitionData(move(failureNumber)) {}
+
     #pragma region Set methods
 
     void JsonInputNaturalStoneCalculationDefinitionData::SetHydraulicLoadAp(

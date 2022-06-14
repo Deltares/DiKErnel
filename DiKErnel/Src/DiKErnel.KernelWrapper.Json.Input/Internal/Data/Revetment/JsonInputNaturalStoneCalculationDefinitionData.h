@@ -22,11 +22,16 @@
 
 #include <memory>
 
+#include "JsonInputCalculationDefinitionData.h"
+
 namespace DiKErnel::KernelWrapper::Json::Input
 {
-    class JsonInputNaturalStoneCalculationDefinitionData
+    class JsonInputNaturalStoneCalculationDefinitionData : public JsonInputCalculationDefinitionData
     {
         public:
+            explicit JsonInputNaturalStoneCalculationDefinitionData(
+                std::unique_ptr<double> failureNumber);
+
             #pragma region Set methods
 
             void SetHydraulicLoadAp(
