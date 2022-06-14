@@ -36,7 +36,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 const nlohmann::json& readCalculationMethod);
 
         protected:
-            std::unique_ptr<JsonInputCalculationDefinitionData> ParseLocationData(
+            std::unique_ptr<JsonInputCalculationDefinitionData> ParseCalculationDefinition(
                 std::unique_ptr<double> failureNumber) override;
     };
 }

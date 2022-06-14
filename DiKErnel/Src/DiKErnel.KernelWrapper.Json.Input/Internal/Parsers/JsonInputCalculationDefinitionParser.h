@@ -39,7 +39,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
             std::unique_ptr<JsonInputCalculationDefinitionData> Parse();
 
         protected:
-            virtual std::unique_ptr<JsonInputCalculationDefinitionData> ParseLocationData(
+            virtual std::unique_ptr<JsonInputCalculationDefinitionData> ParseCalculationDefinition(
                 std::unique_ptr<double> failureNumber) = 0;
 
             [[nodiscard]]
