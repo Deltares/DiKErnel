@@ -86,6 +86,8 @@ set(SOURCEFILES_INTERNAL_PARSERS
   ${INTERNAL_PARSERS_FOLDER}/JsonInputAsphaltWaveImpactDefinitions.h
   ${INTERNAL_PARSERS_FOLDER}/JsonInputAsphaltWaveImpactParser.cpp
   ${INTERNAL_PARSERS_FOLDER}/JsonInputAsphaltWaveImpactParser.h
+  ${INTERNAL_PARSERS_FOLDER}/JsonInputCalculationDefinitionParser.cpp
+  ${INTERNAL_PARSERS_FOLDER}/JsonInputCalculationDefinitionParser.h
   ${INTERNAL_PARSERS_FOLDER}/JsonInputDefinitions.h
   ${INTERNAL_PARSERS_FOLDER}/JsonInputGrassRevetmentDefinitions.h
   ${INTERNAL_PARSERS_FOLDER}/JsonInputGrassWaveImpactDefinitions.h
