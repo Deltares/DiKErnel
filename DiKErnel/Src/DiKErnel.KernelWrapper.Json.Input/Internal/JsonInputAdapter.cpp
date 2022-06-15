@@ -317,10 +317,10 @@ namespace DiKErnel::KernelWrapper::Json::Input
         {
             constructionProperties->SetFailureNumber(forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetFailureNumber())));
 
-            const auto& topLayerDefinitions = calculationDefinition->GetTopLayerDefinitions();
-            if (const auto& keyExists = topLayerDefinitions.find(jsonInputTopLayerType); keyExists != topLayerDefinitions.end())
+            const auto& topLayerDefinitionData = calculationDefinition->GetTopLayerDefinitionData();
+            if (const auto& keyExists = topLayerDefinitionData.find(jsonInputTopLayerType); keyExists != topLayerDefinitionData.end())
             {
-                const auto& topLayerDefinition = topLayerDefinitions.at(jsonInputTopLayerType).get();
+                const auto& topLayerDefinition = topLayerDefinitionData.at(jsonInputTopLayerType).get();
 
                 constructionProperties->SetHydraulicLoadAp(
                     forward<unique_ptr<double>>(CreatePointerOfValue(topLayerDefinition.GetHydraulicLoadAp())));

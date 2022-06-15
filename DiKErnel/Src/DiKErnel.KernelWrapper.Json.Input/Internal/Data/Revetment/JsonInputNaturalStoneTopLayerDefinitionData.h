@@ -24,7 +24,7 @@
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
-    class JsonInputNaturalStoneTopLayerDefinition
+    class JsonInputNaturalStoneTopLayerDefinitionData
     {
         public:
             #pragma region Set methods

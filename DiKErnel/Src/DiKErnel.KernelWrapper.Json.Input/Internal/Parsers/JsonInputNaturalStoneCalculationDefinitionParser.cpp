@@ -136,11 +136,11 @@ namespace DiKErnel::KernelWrapper::Json::Input
         return calculationDefinition;
     }
 
-    map<JsonInputNaturalStoneRevetmentTopLayerType, unique_ptr<JsonInputNaturalStoneTopLayerDefinition>>
+    map<JsonInputNaturalStoneRevetmentTopLayerType, unique_ptr<JsonInputNaturalStoneTopLayerDefinitionData>>
     JsonInputNaturalStoneCalculationDefinitionParser::ReadTopLayerDefinitions(
         const json& readCalculationMethod)
     {
-        auto topLayers = map<JsonInputNaturalStoneRevetmentTopLayerType, unique_ptr<JsonInputNaturalStoneTopLayerDefinition>>();
+        auto topLayers = map<JsonInputNaturalStoneRevetmentTopLayerType, unique_ptr<JsonInputNaturalStoneTopLayerDefinitionData>>();
 
         if (readCalculationMethod.contains(JsonInputDefinitions::TOP_LAYERS))
         {
@@ -148,7 +148,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
             for (const auto& readTopLayer : readTopLayers)
             {
-                auto topLayer = make_unique<JsonInputNaturalStoneTopLayerDefinition>();
+                auto topLayer = make_unique<JsonInputNaturalStoneTopLayerDefinitionData>();
 
                 if (readTopLayer.contains(JsonInputNaturalStoneDefinitions::HYDRAULIC_LOAD))
                 {

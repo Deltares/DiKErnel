@@ -25,7 +25,7 @@
 
 #include "JsonInputCalculationDefinitionData.h"
 #include "JsonInputNaturalStoneRevetmentTopLayerType.h"
-#include "JsonInputNaturalStoneTopLayerDefinition.h"
+#include "JsonInputNaturalStoneTopLayerDefinitionData.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
@@ -34,7 +34,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
         public:
             explicit JsonInputNaturalStoneCalculationDefinitionData(
                 std::unique_ptr<double> failureNumber,
-                std::map<JsonInputNaturalStoneRevetmentTopLayerType, std::unique_ptr<JsonInputNaturalStoneTopLayerDefinition>> topLayerDefinitions);
+                std::map<JsonInputNaturalStoneRevetmentTopLayerType, std::unique_ptr<JsonInputNaturalStoneTopLayerDefinitionData>>
+                topLayerDefinitionData);
 
             #pragma region Set methods
 
@@ -82,8 +83,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
             #pragma region Get methods
 
             [[nodiscard]]
-            const std::map<JsonInputNaturalStoneRevetmentTopLayerType, std::reference_wrapper<JsonInputNaturalStoneTopLayerDefinition>>&
-            GetTopLayerDefinitions() const;
+            const std::map<JsonInputNaturalStoneRevetmentTopLayerType, std::reference_wrapper<JsonInputNaturalStoneTopLayerDefinitionData>>&
+            GetTopLayerDefinitionData() const;
 
             [[nodiscard]]
             const double* GetSlopeUpperLevelAus() const;
@@ -127,9 +128,10 @@ namespace DiKErnel::KernelWrapper::Json::Input
             #pragma endregion
 
         private:
-            std::map<JsonInputNaturalStoneRevetmentTopLayerType, std::unique_ptr<JsonInputNaturalStoneTopLayerDefinition>> _topLayerDefinitions;
-            std::map<JsonInputNaturalStoneRevetmentTopLayerType, std::reference_wrapper<JsonInputNaturalStoneTopLayerDefinition>>
-            _topLayerDefinitionReferences;
+            std::map<JsonInputNaturalStoneRevetmentTopLayerType, std::unique_ptr<JsonInputNaturalStoneTopLayerDefinitionData>>
+            _topLayerDefinitionData;
+            std::map<JsonInputNaturalStoneRevetmentTopLayerType, std::reference_wrapper<JsonInputNaturalStoneTopLayerDefinitionData>>
+            _topLayerDefinitionDataReferences;
             std::unique_ptr<double> _slopeUpperLevelAus = nullptr;
             std::unique_ptr<double> _slopeLowerLevelAls = nullptr;
             std::unique_ptr<double> _upperLimitLoadingAul = nullptr;

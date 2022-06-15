@@ -18,7 +18,7 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include "JsonInputNaturalStoneTopLayerDefinition.h"
+#include "JsonInputNaturalStoneTopLayerDefinitionData.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
@@ -26,55 +26,55 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
     #pragma region Set methods
 
-    void JsonInputNaturalStoneTopLayerDefinition::SetHydraulicLoadAp(
+    void JsonInputNaturalStoneTopLayerDefinitionData::SetHydraulicLoadAp(
         unique_ptr<double> hydraulicLoadAp)
     {
         _hydraulicLoadAp = move(hydraulicLoadAp);
     }
 
-    void JsonInputNaturalStoneTopLayerDefinition::SetHydraulicLoadBp(
+    void JsonInputNaturalStoneTopLayerDefinitionData::SetHydraulicLoadBp(
         unique_ptr<double> hydraulicLoadBp)
     {
         _hydraulicLoadBp = move(hydraulicLoadBp);
     }
 
-    void JsonInputNaturalStoneTopLayerDefinition::SetHydraulicLoadCp(
+    void JsonInputNaturalStoneTopLayerDefinitionData::SetHydraulicLoadCp(
         unique_ptr<double> hydraulicLoadCp)
     {
         _hydraulicLoadCp = move(hydraulicLoadCp);
     }
 
-    void JsonInputNaturalStoneTopLayerDefinition::SetHydraulicLoadNp(
+    void JsonInputNaturalStoneTopLayerDefinitionData::SetHydraulicLoadNp(
         unique_ptr<double> hydraulicLoadNp)
     {
         _hydraulicLoadNp = move(hydraulicLoadNp);
     }
 
-    void JsonInputNaturalStoneTopLayerDefinition::SetHydraulicLoadAs(
+    void JsonInputNaturalStoneTopLayerDefinitionData::SetHydraulicLoadAs(
         unique_ptr<double> hydraulicLoadAs)
     {
         _hydraulicLoadAs = move(hydraulicLoadAs);
     }
 
-    void JsonInputNaturalStoneTopLayerDefinition::SetHydraulicLoadBs(
+    void JsonInputNaturalStoneTopLayerDefinitionData::SetHydraulicLoadBs(
         unique_ptr<double> hydraulicLoadBs)
     {
         _hydraulicLoadBs = move(hydraulicLoadBs);
     }
 
-    void JsonInputNaturalStoneTopLayerDefinition::SetHydraulicLoadCs(
+    void JsonInputNaturalStoneTopLayerDefinitionData::SetHydraulicLoadCs(
         unique_ptr<double> hydraulicLoadCs)
     {
         _hydraulicLoadCs = move(hydraulicLoadCs);
     }
 
-    void JsonInputNaturalStoneTopLayerDefinition::SetHydraulicLoadNs(
+    void JsonInputNaturalStoneTopLayerDefinitionData::SetHydraulicLoadNs(
         unique_ptr<double> hydraulicLoadNs)
     {
         _hydraulicLoadNs = move(hydraulicLoadNs);
     }
 
-    void JsonInputNaturalStoneTopLayerDefinition::SetHydraulicLoadXib(
+    void JsonInputNaturalStoneTopLayerDefinitionData::SetHydraulicLoadXib(
         unique_ptr<double> hydraulicLoadXib)
     {
         _hydraulicLoadXib = move(hydraulicLoadXib);
@@ -84,47 +84,47 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
     #pragma region Get methods
 
-    const double* JsonInputNaturalStoneTopLayerDefinition::GetHydraulicLoadXib() const
+    const double* JsonInputNaturalStoneTopLayerDefinitionData::GetHydraulicLoadXib() const
     {
         return _hydraulicLoadXib.get();
     }
 
-    const double* JsonInputNaturalStoneTopLayerDefinition::GetHydraulicLoadAp() const
+    const double* JsonInputNaturalStoneTopLayerDefinitionData::GetHydraulicLoadAp() const
     {
         return _hydraulicLoadAp.get();
     }
 
-    const double* JsonInputNaturalStoneTopLayerDefinition::GetHydraulicLoadBp() const
+    const double* JsonInputNaturalStoneTopLayerDefinitionData::GetHydraulicLoadBp() const
     {
         return _hydraulicLoadBp.get();
     }
 
-    const double* JsonInputNaturalStoneTopLayerDefinition::GetHydraulicLoadCp() const
+    const double* JsonInputNaturalStoneTopLayerDefinitionData::GetHydraulicLoadCp() const
     {
         return _hydraulicLoadCp.get();
     }
 
-    const double* JsonInputNaturalStoneTopLayerDefinition::GetHydraulicLoadNp() const
+    const double* JsonInputNaturalStoneTopLayerDefinitionData::GetHydraulicLoadNp() const
     {
         return _hydraulicLoadNp.get();
     }
 
-    const double* JsonInputNaturalStoneTopLayerDefinition::GetHydraulicLoadAs() const
+    const double* JsonInputNaturalStoneTopLayerDefinitionData::GetHydraulicLoadAs() const
     {
         return _hydraulicLoadAs.get();
     }
 
-    const double* JsonInputNaturalStoneTopLayerDefinition::GetHydraulicLoadBs() const
+    const double* JsonInputNaturalStoneTopLayerDefinitionData::GetHydraulicLoadBs() const
     {
         return _hydraulicLoadBs.get();
     }
 
-    const double* JsonInputNaturalStoneTopLayerDefinition::GetHydraulicLoadCs() const
+    const double* JsonInputNaturalStoneTopLayerDefinitionData::GetHydraulicLoadCs() const
     {
         return _hydraulicLoadCs.get();
     }
 
-    const double* JsonInputNaturalStoneTopLayerDefinition::GetHydraulicLoadNs() const
+    const double* JsonInputNaturalStoneTopLayerDefinitionData::GetHydraulicLoadNs() const
     {
         return _hydraulicLoadNs.get();
     }

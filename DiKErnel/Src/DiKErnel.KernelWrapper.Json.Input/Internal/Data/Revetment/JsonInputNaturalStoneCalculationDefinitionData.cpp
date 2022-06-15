@@ -26,14 +26,14 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
     JsonInputNaturalStoneCalculationDefinitionData::JsonInputNaturalStoneCalculationDefinitionData(
         unique_ptr<double> failureNumber,
-        map<JsonInputNaturalStoneRevetmentTopLayerType, unique_ptr<JsonInputNaturalStoneTopLayerDefinition>> topLayerDefinitions)
+        map<JsonInputNaturalStoneRevetmentTopLayerType, unique_ptr<JsonInputNaturalStoneTopLayerDefinitionData>> topLayerDefinitionData)
         : JsonInputCalculationDefinitionData(move(failureNumber)),
-          _topLayerDefinitions(move(topLayerDefinitions))
+          _topLayerDefinitionData(move(topLayerDefinitionData))
     {
-        for (const auto& [topLayerType, topLayerDefinition] : _topLayerDefinitions)
+        for (const auto& [topLayerType, topLayerDefinition] : _topLayerDefinitionData)
         {
-            _topLayerDefinitionReferences.insert(
-                pair<JsonInputNaturalStoneRevetmentTopLayerType, reference_wrapper<JsonInputNaturalStoneTopLayerDefinition>>(
+            _topLayerDefinitionDataReferences.insert(
+                pair<JsonInputNaturalStoneRevetmentTopLayerType, reference_wrapper<JsonInputNaturalStoneTopLayerDefinitionData>>(
                     topLayerType, *topLayerDefinition));
         }
     }
@@ -122,10 +122,10 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
     #pragma region Get methods
 
-    const map<JsonInputNaturalStoneRevetmentTopLayerType, reference_wrapper<JsonInputNaturalStoneTopLayerDefinition>>&
-    JsonInputNaturalStoneCalculationDefinitionData::GetTopLayerDefinitions() const
+    const map<JsonInputNaturalStoneRevetmentTopLayerType, reference_wrapper<JsonInputNaturalStoneTopLayerDefinitionData>>&
+    JsonInputNaturalStoneCalculationDefinitionData::GetTopLayerDefinitionData() const
     {
-        return _topLayerDefinitionReferences;
+        return _topLayerDefinitionDataReferences;
     }
 
     const double* JsonInputNaturalStoneCalculationDefinitionData::GetSlopeUpperLevelAus() const
