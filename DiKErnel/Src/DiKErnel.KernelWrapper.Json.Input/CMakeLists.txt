@@ -85,6 +85,8 @@ set(SOURCEFILES_INTERNAL_DATA_REVETMENT
 )
 
 set(SOURCEFILES_INTERNAL_PARSERS
+  ${INTERNAL_PARSERS_FOLDER}/JsonInputAsphaltWaveImpactCalculationDefinitionParser.cpp
+  ${INTERNAL_PARSERS_FOLDER}/JsonInputAsphaltWaveImpactCalculationDefinitionParser.h
   ${INTERNAL_PARSERS_FOLDER}/JsonInputAsphaltWaveImpactDefinitions.h
   ${INTERNAL_PARSERS_FOLDER}/JsonInputAsphaltWaveImpactParser.cpp
   ${INTERNAL_PARSERS_FOLDER}/JsonInputAsphaltWaveImpactParser.h
