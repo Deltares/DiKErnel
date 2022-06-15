@@ -35,6 +35,15 @@ namespace DiKErnel::KernelWrapper::Json::Output
 
     ordered_json JsonOutputData::CreateJson() const
     {
+        auto outputJson = ordered_json::object();
+
+        outputJson[JsonOutputDefinitions::OUTPUT_DATA][JsonOutputDefinitions::LOCATIONS] = GetLocationOutputJsonItems();
+
+        return outputJson;
+    }
+
+    vector<basic_json<ordered_map>> JsonOutputData::GetLocationOutputJsonItems() const
+    {
         vector<basic_json<ordered_map>> locationOutputJsonItems;
 
         for (const auto& location : _locationDataItems)
@@ -42,17 +51,6 @@ namespace DiKErnel::KernelWrapper::Json::Output
             locationOutputJsonItems.push_back(location->CreateJson());
         }
 
-        return ordered_json::object(
-            {
-                {
-                    JsonOutputDefinitions::OUTPUT_DATA,
-                    {
-                        {
-                            JsonOutputDefinitions::LOCATIONS,
-                            locationOutputJsonItems
-                        }
-                    }
-                }
-            });
+        return locationOutputJsonItems;
     }
 }
