@@ -24,7 +24,6 @@
 
 #include <nlohmann/json.hpp>
 
-#include "JsonInputCalculationDefinitionData.h"
 #include "JsonInputCalculationDefinitionParser.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input

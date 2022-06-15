@@ -24,7 +24,6 @@
 
 #include <nlohmann/json.hpp>
 
-#include "JsonInputCalculationDefinitionData.h"
 #include "JsonInputCalculationDefinitionParser.h"
 #include "JsonInputNaturalStoneRevetmentTopLayerType.h"
 #include "JsonInputNaturalStoneTopLayerDefinition.h"

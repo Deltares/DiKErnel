@@ -21,7 +21,6 @@
 #pragma once
 
 #include "JsonInputLocationParser.h"
-#include "JsonInputNaturalStoneCalculationDefinitionData.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
