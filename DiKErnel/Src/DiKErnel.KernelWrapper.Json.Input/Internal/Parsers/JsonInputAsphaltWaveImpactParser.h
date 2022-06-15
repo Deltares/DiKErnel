@@ -20,7 +20,7 @@
 
 #pragma once
 
-#include "JsonInputAsphaltRevetmentWaveImpactLocationData.h"
+#include "JsonInputAsphaltWaveImpactCalculationDefinitionData.h"
 #include "JsonInputLocationParser.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
@@ -41,7 +41,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
         private:
             [[nodiscard]]
-            std::unique_ptr<JsonInputAsphaltRevetmentWaveImpactLocationData> ParseRevetmentLocationData() const;
+            std::unique_ptr<JsonInputAsphaltWaveImpactCalculationDefinitionData> ParseRevetmentLocationData() const;
 
             [[nodiscard]]
             std::unique_ptr<std::vector<std::pair<double, double>>> ParseFactorsTable(

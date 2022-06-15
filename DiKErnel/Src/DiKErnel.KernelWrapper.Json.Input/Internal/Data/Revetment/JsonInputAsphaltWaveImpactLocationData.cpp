@@ -36,7 +36,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
         const double elasticModulusUpperLayer,
         const double outerSlope,
         unique_ptr<JsonInputDamageData> damageData,
-        unique_ptr<JsonInputAsphaltRevetmentWaveImpactLocationData> revetmentLocationData)
+        unique_ptr<JsonInputAsphaltWaveImpactCalculationDefinitionData> revetmentLocationData)
         : JsonInputLocationData(x, move(initialDamage), move(damageData)),
           _topLayerType(topLayerType),
           _failureTension(failureTension),
@@ -98,7 +98,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
         return _elasticModulusSubLayer.get();
     }
 
-    const JsonInputAsphaltRevetmentWaveImpactLocationData& JsonInputAsphaltWaveImpactLocationData::GetRevetmentLocationData() const
+    const JsonInputAsphaltWaveImpactCalculationDefinitionData& JsonInputAsphaltWaveImpactLocationData::GetRevetmentLocationData() const
     {
         return *_revetmentLocationData;
     }

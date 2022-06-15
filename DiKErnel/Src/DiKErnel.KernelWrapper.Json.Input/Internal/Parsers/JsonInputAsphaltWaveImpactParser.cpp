@@ -76,12 +76,12 @@ namespace DiKErnel::KernelWrapper::Json::Input
         return locationData;
     }
 
-    unique_ptr<JsonInputAsphaltRevetmentWaveImpactLocationData> JsonInputAsphaltWaveImpactParser::ParseRevetmentLocationData() const
+    unique_ptr<JsonInputAsphaltWaveImpactCalculationDefinitionData> JsonInputAsphaltWaveImpactParser::ParseRevetmentLocationData() const
     {
         const auto& readRevetment = GetReadRevetment();
         const auto& readCalculationMethod = GetReadCalculationMethod();
 
-        auto revetmentLocationData = make_unique<JsonInputAsphaltRevetmentWaveImpactLocationData>(
+        auto revetmentLocationData = make_unique<JsonInputAsphaltWaveImpactCalculationDefinitionData>(nullptr,
             readRevetment.at(JsonInputAsphaltWaveImpactDefinitions::DENSITY_OF_WATER).get<double>());
 
         if (readCalculationMethod.contains(JsonInputDefinitions::AVERAGE_NUMBER_OF_WAVES))

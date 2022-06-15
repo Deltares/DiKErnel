@@ -23,12 +23,15 @@
 #include <memory>
 #include <vector>
 
+#include "JsonInputCalculationDefinitionData.h"
+
 namespace DiKErnel::KernelWrapper::Json::Input
 {
-    class JsonInputAsphaltRevetmentWaveImpactLocationData
+    class JsonInputAsphaltWaveImpactCalculationDefinitionData : public JsonInputCalculationDefinitionData
     {
         public:
-            explicit JsonInputAsphaltRevetmentWaveImpactLocationData(
+            explicit JsonInputAsphaltWaveImpactCalculationDefinitionData(
+                std::unique_ptr<double> failureNumber,
                 double densityOfWater);
 
             #pragma region Set methods
