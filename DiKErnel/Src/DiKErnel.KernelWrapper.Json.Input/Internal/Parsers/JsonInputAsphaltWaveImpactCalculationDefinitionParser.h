@@ -24,6 +24,8 @@
 
 #include <nlohmann/json.hpp>
 
+#include "JsonInputAsphaltRevetmentTopLayerType.h"
+#include "JsonInputAsphaltWaveImpactTopLayerDefinitionData.h"
 #include "JsonInputCalculationDefinitionParser.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
@@ -39,6 +41,10 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 std::unique_ptr<double> failureNumber) override;
 
         private:
+            static std::map<JsonInputAsphaltRevetmentTopLayerType, std::unique_ptr<JsonInputAsphaltWaveImpactTopLayerDefinitionData>>
+            ReadTopLayerDefinitionData(
+                const nlohmann::json& readCalculationMethod);
+
             [[nodiscard]]
             std::unique_ptr<std::vector<std::pair<double, double>>> ParseFactorsTable(
                 const nlohmann::json& factorsTable) const;

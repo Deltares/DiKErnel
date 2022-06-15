@@ -25,8 +25,18 @@ namespace DiKErnel::KernelWrapper::Json::Input
     using namespace std;
 
     JsonInputAsphaltWaveImpactCalculationDefinitionData::JsonInputAsphaltWaveImpactCalculationDefinitionData(
-        unique_ptr<double> failureNumber)
-        : JsonInputCalculationDefinitionData(move(failureNumber)) { }
+        unique_ptr<double> failureNumber,
+        map<JsonInputAsphaltRevetmentTopLayerType, unique_ptr<JsonInputAsphaltWaveImpactTopLayerDefinitionData>> topLayerDefinitionData)
+        : JsonInputCalculationDefinitionData(move(failureNumber)),
+          _topLayerDefinitionData(move(topLayerDefinitionData))
+    {
+        for (const auto& [topLayerType, topLayerDefinition] : _topLayerDefinitionData)
+        {
+            _topLayerDefinitionDataReferences.insert(
+                pair<JsonInputAsphaltRevetmentTopLayerType, reference_wrapper<JsonInputAsphaltWaveImpactTopLayerDefinitionData>>(
+                    topLayerType, *topLayerDefinition));
+        }
+    }
 
     #pragma region Set methods
 
@@ -42,28 +52,10 @@ namespace DiKErnel::KernelWrapper::Json::Input
         _averageNumberOfWavesCtm = move(averageNumberOfWavesCtm);
     }
 
-    void JsonInputAsphaltWaveImpactCalculationDefinitionData::SetFatigueAlpha(
-        unique_ptr<double> fatigueAlpha)
-    {
-        _fatigueAlpha = move(fatigueAlpha);
-    }
-
-    void JsonInputAsphaltWaveImpactCalculationDefinitionData::SetFatigueBeta(
-        unique_ptr<double> fatigueBeta)
-    {
-        _fatigueBeta = move(fatigueBeta);
-    }
-
     void JsonInputAsphaltWaveImpactCalculationDefinitionData::SetImpactNumberC(
         unique_ptr<double> impactNumberC)
     {
         _impactNumberC = move(impactNumberC);
-    }
-
-    void JsonInputAsphaltWaveImpactCalculationDefinitionData::SetStiffnessRelationNu(
-        unique_ptr<double> stiffnessRelationNu)
-    {
-        _stiffnessRelationNu = move(stiffnessRelationNu);
     }
 
     void JsonInputAsphaltWaveImpactCalculationDefinitionData::SetWidthFactors(
@@ -88,6 +80,12 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
     #pragma region Get methods
 
+    const map<JsonInputAsphaltRevetmentTopLayerType, reference_wrapper<JsonInputAsphaltWaveImpactTopLayerDefinitionData>>&
+    JsonInputAsphaltWaveImpactCalculationDefinitionData::GetTopLayerDefinitionData() const
+    {
+        return _topLayerDefinitionDataReferences;
+    }
+
     const double* JsonInputAsphaltWaveImpactCalculationDefinitionData::GetDensityOfWater() const
     {
         return _densityOfWater.get();
@@ -98,24 +96,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
         return _averageNumberOfWavesCtm.get();
     }
 
-    const double* JsonInputAsphaltWaveImpactCalculationDefinitionData::GetFatigueAlpha() const
-    {
-        return _fatigueAlpha.get();
-    }
-
-    const double* JsonInputAsphaltWaveImpactCalculationDefinitionData::GetFatigueBeta() const
-    {
-        return _fatigueBeta.get();
-    }
-
     const double* JsonInputAsphaltWaveImpactCalculationDefinitionData::GetImpactNumberC() const
     {
         return _impactNumberC.get();
-    }
-
-    const double* JsonInputAsphaltWaveImpactCalculationDefinitionData::GetStiffnessRelationNu() const
-    {
-        return _stiffnessRelationNu.get();
     }
 
     const vector<pair<double, double>>* JsonInputAsphaltWaveImpactCalculationDefinitionData::GetWidthFactors() const

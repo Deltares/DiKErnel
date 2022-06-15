@@ -41,7 +41,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 std::unique_ptr<double> failureNumber) override;
 
         private:
-            static std::map<JsonInputNaturalStoneRevetmentTopLayerType, std::unique_ptr<JsonInputNaturalStoneTopLayerDefinitionData>> ReadTopLayerDefinitions(
+            static std::map<JsonInputNaturalStoneRevetmentTopLayerType, std::unique_ptr<JsonInputNaturalStoneTopLayerDefinitionData>> ReadTopLayerDefinitionData(
                 const nlohmann::json& readCalculationMethod);
     };
 }

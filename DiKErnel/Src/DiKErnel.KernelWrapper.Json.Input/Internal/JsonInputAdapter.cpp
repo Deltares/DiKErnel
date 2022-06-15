@@ -149,8 +149,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
         const JsonInputAsphaltWaveImpactLocationData& location,
         const JsonInputAsphaltWaveImpactCalculationDefinitionData* calculationDefinition)
     {
+        const auto jsonInputTopLayerType = location.GetTopLayerType();
         auto constructionProperties = make_unique<AsphaltRevetmentWaveImpactLocationConstructionProperties>(
-            location.GetX(), location.GetOuterSlope(), ConvertTopLayerType(location.GetTopLayerType()), location.GetFailureTension(),
+            location.GetX(), location.GetOuterSlope(), ConvertTopLayerType(jsonInputTopLayerType), location.GetFailureTension(),
             location.GetSoilElasticity(), location.GetThicknessUpperLayer(), location.GetElasticModulusUpperLayer());
 
         constructionProperties->SetInitialDamage(forward<unique_ptr<double>>(CreatePointerOfValue(location.GetInitialDamage())));
@@ -169,15 +170,22 @@ namespace DiKErnel::KernelWrapper::Json::Input
             constructionProperties->SetAverageNumberOfWavesCtm(
                 forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetAverageNumberOfWavesCtm())));
 
-            constructionProperties->SetFatigueAlpha(
-                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetFatigueAlpha())));
-            constructionProperties->SetFatigueBeta(
-                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetFatigueBeta())));
+            const auto& topLayerDefinitionData = calculationDefinition->GetTopLayerDefinitionData();
+            if (const auto& keyExists = topLayerDefinitionData.find(jsonInputTopLayerType); keyExists != topLayerDefinitionData.end())
+            {
+                const auto& topLayerDefinition = topLayerDefinitionData.at(jsonInputTopLayerType).get();
+
+                constructionProperties->SetFatigueAlpha(
+                    forward<unique_ptr<double>>(CreatePointerOfValue(topLayerDefinition.GetFatigueAlpha())));
+                constructionProperties->SetFatigueBeta(
+                    forward<unique_ptr<double>>(CreatePointerOfValue(topLayerDefinition.GetFatigueBeta())));
+
+                constructionProperties->SetStiffnessRelationNu(
+                    forward<unique_ptr<double>>(CreatePointerOfValue(topLayerDefinition.GetStiffnessRelationNu())));
+            }
 
             constructionProperties->SetImpactNumberC(
                 forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetImpactNumberC())));
-            constructionProperties->SetStiffnessRelationNu(
-                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetStiffnessRelationNu())));
 
             constructionProperties->SetWidthFactors(
                 forward<unique_ptr<vector<pair<double, double>>>>(CreatePointerOfValue(calculationDefinition->GetWidthFactors())));

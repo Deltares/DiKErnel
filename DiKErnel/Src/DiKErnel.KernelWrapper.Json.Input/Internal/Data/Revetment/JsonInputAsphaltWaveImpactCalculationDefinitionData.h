@@ -20,9 +20,12 @@
 
 #pragma once
 
+#include <map>
 #include <memory>
 #include <vector>
 
+#include "JsonInputAsphaltRevetmentTopLayerType.h"
+#include "JsonInputAsphaltWaveImpactTopLayerDefinitionData.h"
 #include "JsonInputCalculationDefinitionData.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
@@ -31,7 +34,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
     {
         public:
             explicit JsonInputAsphaltWaveImpactCalculationDefinitionData(
-                std::unique_ptr<double> failureNumber);
+                std::unique_ptr<double> failureNumber,
+                std::map<JsonInputAsphaltRevetmentTopLayerType, std::unique_ptr<JsonInputAsphaltWaveImpactTopLayerDefinitionData>>
+                topLayerDefinitionData);
 
             #pragma region Set methods
 
@@ -41,17 +46,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
             void SetAverageNumberOfWavesCtm(
                 std::unique_ptr<double> averageNumberOfWavesCtm);
 
-            void SetFatigueAlpha(
-                std::unique_ptr<double> fatigueAlpha);
-
-            void SetFatigueBeta(
-                std::unique_ptr<double> fatigueBeta);
-
             void SetImpactNumberC(
                 std::unique_ptr<double> impactNumberC);
-
-            void SetStiffnessRelationNu(
-                std::unique_ptr<double> stiffnessRelationNu);
 
             void SetWidthFactors(
                 std::unique_ptr<std::vector<std::pair<double, double>>> widthFactors);
@@ -67,22 +63,16 @@ namespace DiKErnel::KernelWrapper::Json::Input
             #pragma region Get methods
 
             [[nodiscard]]
+            const std::map<JsonInputAsphaltRevetmentTopLayerType, std::reference_wrapper<JsonInputAsphaltWaveImpactTopLayerDefinitionData>>& GetTopLayerDefinitionData() const;
+
+            [[nodiscard]]
             const double* GetDensityOfWater() const;
 
             [[nodiscard]]
             const double* GetAverageNumberOfWavesCtm() const;
 
             [[nodiscard]]
-            const double* GetFatigueAlpha() const;
-
-            [[nodiscard]]
-            const double* GetFatigueBeta() const;
-
-            [[nodiscard]]
             const double* GetImpactNumberC() const;
-
-            [[nodiscard]]
-            const double* GetStiffnessRelationNu() const;
 
             [[nodiscard]]
             const std::vector<std::pair<double, double>>* GetWidthFactors() const;
@@ -96,12 +86,13 @@ namespace DiKErnel::KernelWrapper::Json::Input
             #pragma endregion
 
         private:
+            std::map<JsonInputAsphaltRevetmentTopLayerType, std::unique_ptr<JsonInputAsphaltWaveImpactTopLayerDefinitionData>>
+                _topLayerDefinitionData;
+            std::map<JsonInputAsphaltRevetmentTopLayerType, std::reference_wrapper<JsonInputAsphaltWaveImpactTopLayerDefinitionData>>
+                _topLayerDefinitionDataReferences;
             std::unique_ptr<double> _densityOfWater;
             std::unique_ptr<double> _averageNumberOfWavesCtm = nullptr;
-            std::unique_ptr<double> _fatigueAlpha = nullptr;
-            std::unique_ptr<double> _fatigueBeta = nullptr;
             std::unique_ptr<double> _impactNumberC = nullptr;
-            std::unique_ptr<double> _stiffnessRelationNu = nullptr;
             std::unique_ptr<std::vector<std::pair<double, double>>> _widthFactors = nullptr;
             std::unique_ptr<std::vector<std::pair<double, double>>> _depthFactors = nullptr;
             std::unique_ptr<std::vector<std::pair<double, double>>> _impactFactors = nullptr;

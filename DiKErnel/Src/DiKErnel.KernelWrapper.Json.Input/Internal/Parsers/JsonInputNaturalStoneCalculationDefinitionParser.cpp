@@ -50,7 +50,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
         const auto& readCalculationMethod = GetReadCalculationMethod();
 
         auto calculationDefinition = make_unique<JsonInputNaturalStoneCalculationDefinitionData>(
-            move(failureNumber), ReadTopLayerDefinitions(readCalculationMethod));
+            move(failureNumber), ReadTopLayerDefinitionData(readCalculationMethod));
 
         if (readCalculationMethod.contains(JsonInputNaturalStoneDefinitions::SLOPE_UPPER_LEVEL))
         {
@@ -137,7 +137,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
     }
 
     map<JsonInputNaturalStoneRevetmentTopLayerType, unique_ptr<JsonInputNaturalStoneTopLayerDefinitionData>>
-    JsonInputNaturalStoneCalculationDefinitionParser::ReadTopLayerDefinitions(
+    JsonInputNaturalStoneCalculationDefinitionParser::ReadTopLayerDefinitionData(
         const json& readCalculationMethod)
     {
         auto topLayers = map<JsonInputNaturalStoneRevetmentTopLayerType, unique_ptr<JsonInputNaturalStoneTopLayerDefinitionData>>();

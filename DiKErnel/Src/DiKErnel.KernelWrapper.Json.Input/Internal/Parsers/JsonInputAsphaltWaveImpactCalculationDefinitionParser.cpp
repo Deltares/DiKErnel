@@ -30,6 +30,17 @@ namespace DiKErnel::KernelWrapper::Json::Input
     using namespace nlohmann;
     using namespace std;
 
+    NLOHMANN_JSON_SERIALIZE_ENUM(JsonInputAsphaltRevetmentTopLayerType,
+        {
+            {
+                JsonInputAsphaltRevetmentTopLayerType::Unknown, nullptr
+            },
+            {
+                JsonInputAsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete,
+                JsonInputAsphaltWaveImpactDefinitions::TOP_LAYER_TYPE_HYDRAULIC_ASPHALT_CONCRETE
+            }
+        });
+
     JsonInputAsphaltWaveImpactCalculationDefinitionParser::JsonInputAsphaltWaveImpactCalculationDefinitionParser(
         const json& readCalculationMethod)
         : JsonInputCalculationDefinitionParser(readCalculationMethod) { }
@@ -39,7 +50,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
     {
         const auto& readCalculationMethod = GetReadCalculationMethod();
 
-        auto calculationDefinition = make_unique<JsonInputAsphaltWaveImpactCalculationDefinitionData>(move(failureNumber));
+        auto calculationDefinition = make_unique<JsonInputAsphaltWaveImpactCalculationDefinitionData>(
+            move(failureNumber), ReadTopLayerDefinitionData(readCalculationMethod));
 
         calculationDefinition->SetDensityOfWater(
             forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
@@ -54,18 +66,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
                     readAverageNumberWaveTimeStep, JsonInputDefinitions::AVERAGE_NUMBER_OF_WAVES_CTM)));
         }
 
-        if (readCalculationMethod.contains(JsonInputAsphaltWaveImpactDefinitions::FATIGUE))
-        {
-            const auto& readFatigue = readCalculationMethod.at(JsonInputAsphaltWaveImpactDefinitions::FATIGUE);
-
-            calculationDefinition->SetFatigueAlpha(
-                forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
-                    readFatigue, JsonInputAsphaltWaveImpactDefinitions::FATIGUE_ALPHA)));
-            calculationDefinition->SetFatigueBeta(
-                forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
-                    readFatigue, JsonInputAsphaltWaveImpactDefinitions::FATIGUE_BETA)));
-        }
-
         if (readCalculationMethod.contains(JsonInputAsphaltWaveImpactDefinitions::IMPACT_NUMBER))
         {
             const auto& readImpactNumber = readCalculationMethod.at(JsonInputAsphaltWaveImpactDefinitions::IMPACT_NUMBER);
@@ -73,15 +73,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
             calculationDefinition->SetImpactNumberC(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
                     readImpactNumber, JsonInputAsphaltWaveImpactDefinitions::IMPACT_NUMBER_C)));
-        }
-
-        if (readCalculationMethod.contains(JsonInputAsphaltWaveImpactDefinitions::STIFFNESS_RELATION))
-        {
-            const auto& readStiffnessRelation = readCalculationMethod.at(JsonInputAsphaltWaveImpactDefinitions::STIFFNESS_RELATION);
-
-            calculationDefinition->SetStiffnessRelationNu(
-                forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
-                    readStiffnessRelation, JsonInputAsphaltWaveImpactDefinitions::STIFFNESS_RELATION_NU)));
         }
 
         if (readCalculationMethod.contains(JsonInputAsphaltWaveImpactDefinitions::WIDTH_FACTORS))
@@ -106,6 +97,49 @@ namespace DiKErnel::KernelWrapper::Json::Input
         }
 
         return calculationDefinition;
+    }
+
+    map<JsonInputAsphaltRevetmentTopLayerType, unique_ptr<JsonInputAsphaltWaveImpactTopLayerDefinitionData>>
+    JsonInputAsphaltWaveImpactCalculationDefinitionParser::ReadTopLayerDefinitionData(
+        const json& readCalculationMethod)
+    {
+        auto topLayers = map<JsonInputAsphaltRevetmentTopLayerType, unique_ptr<JsonInputAsphaltWaveImpactTopLayerDefinitionData>>();
+
+        if (readCalculationMethod.contains(JsonInputDefinitions::TOP_LAYERS))
+        {
+            const auto& readTopLayers = readCalculationMethod.at(JsonInputDefinitions::TOP_LAYERS);
+
+            for (const auto& readTopLayer : readTopLayers)
+            {
+                auto topLayer = make_unique<JsonInputAsphaltWaveImpactTopLayerDefinitionData>();
+
+                if (readTopLayer.contains(JsonInputAsphaltWaveImpactDefinitions::FATIGUE))
+                {
+                    const auto& readFatigue = readTopLayer.at(JsonInputAsphaltWaveImpactDefinitions::FATIGUE);
+
+                    topLayer->SetFatigueAlpha(
+                        forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
+                            readFatigue, JsonInputAsphaltWaveImpactDefinitions::FATIGUE_ALPHA)));
+                    topLayer->SetFatigueBeta(
+                        forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
+                            readFatigue, JsonInputAsphaltWaveImpactDefinitions::FATIGUE_BETA)));
+                }
+
+                if (readTopLayer.contains(JsonInputAsphaltWaveImpactDefinitions::STIFFNESS_RELATION))
+                {
+                    const auto& readStiffnessRelation = readTopLayer.at(JsonInputAsphaltWaveImpactDefinitions::STIFFNESS_RELATION);
+
+                    topLayer->SetStiffnessRelationNu(
+                        forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
+                            readStiffnessRelation, JsonInputAsphaltWaveImpactDefinitions::STIFFNESS_RELATION_NU)));
+                }
+
+                topLayers.insert(pair(readTopLayer.at(JsonInputDefinitions::TYPE_TOP_LAYER).get<JsonInputAsphaltRevetmentTopLayerType>(),
+                                      move(topLayer)));
+            }
+        }
+
+        return topLayers;
     }
 
     unique_ptr<vector<pair<double, double>>> JsonInputAsphaltWaveImpactCalculationDefinitionParser::ParseFactorsTable(
