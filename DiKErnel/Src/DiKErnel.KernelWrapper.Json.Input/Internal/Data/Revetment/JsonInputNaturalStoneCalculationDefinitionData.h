@@ -20,9 +20,12 @@
 
 #pragma once
 
+#include <map>
 #include <memory>
 
 #include "JsonInputCalculationDefinitionData.h"
+#include "JsonInputNaturalStoneRevetmentTopLayerType.h"
+#include "JsonInputNaturalStoneTopLayerDefinition.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
@@ -30,36 +33,10 @@ namespace DiKErnel::KernelWrapper::Json::Input
     {
         public:
             explicit JsonInputNaturalStoneCalculationDefinitionData(
-                std::unique_ptr<double> failureNumber);
+                std::unique_ptr<double> failureNumber,
+                std::map<JsonInputNaturalStoneRevetmentTopLayerType, std::unique_ptr<JsonInputNaturalStoneTopLayerDefinition>> topLayerDefinitions);
 
             #pragma region Set methods
-
-            void SetHydraulicLoadAp(
-                std::unique_ptr<double> hydraulicLoadAp);
-
-            void SetHydraulicLoadBp(
-                std::unique_ptr<double> hydraulicLoadBp);
-
-            void SetHydraulicLoadCp(
-                std::unique_ptr<double> hydraulicLoadCp);
-
-            void SetHydraulicLoadNp(
-                std::unique_ptr<double> hydraulicLoadNp);
-
-            void SetHydraulicLoadAs(
-                std::unique_ptr<double> hydraulicLoadAs);
-
-            void SetHydraulicLoadBs(
-                std::unique_ptr<double> hydraulicLoadBs);
-
-            void SetHydraulicLoadCs(
-                std::unique_ptr<double> hydraulicLoadCs);
-
-            void SetHydraulicLoadNs(
-                std::unique_ptr<double> hydraulicLoadNs);
-
-            void SetHydraulicLoadXib(
-                std::unique_ptr<double> hydraulicLoadXib);
 
             void SetSlopeUpperLevelAus(
                 std::unique_ptr<double> slopeUpperLevelAus);
@@ -105,31 +82,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
             #pragma region Get methods
 
             [[nodiscard]]
-            const double* GetHydraulicLoadXib() const;
-
-            [[nodiscard]]
-            const double* GetHydraulicLoadAp() const;
-
-            [[nodiscard]]
-            const double* GetHydraulicLoadBp() const;
-
-            [[nodiscard]]
-            const double* GetHydraulicLoadCp() const;
-
-            [[nodiscard]]
-            const double* GetHydraulicLoadNp() const;
-
-            [[nodiscard]]
-            const double* GetHydraulicLoadAs() const;
-
-            [[nodiscard]]
-            const double* GetHydraulicLoadBs() const;
-
-            [[nodiscard]]
-            const double* GetHydraulicLoadCs() const;
-
-            [[nodiscard]]
-            const double* GetHydraulicLoadNs() const;
+            const std::map<JsonInputNaturalStoneRevetmentTopLayerType, std::reference_wrapper<JsonInputNaturalStoneTopLayerDefinition>>&
+            GetTopLayerDefinitions() const;
 
             [[nodiscard]]
             const double* GetSlopeUpperLevelAus() const;
@@ -173,15 +127,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
             #pragma endregion
 
         private:
-            std::unique_ptr<double> _hydraulicLoadXib = nullptr;
-            std::unique_ptr<double> _hydraulicLoadAp = nullptr;
-            std::unique_ptr<double> _hydraulicLoadBp = nullptr;
-            std::unique_ptr<double> _hydraulicLoadCp = nullptr;
-            std::unique_ptr<double> _hydraulicLoadNp = nullptr;
-            std::unique_ptr<double> _hydraulicLoadAs = nullptr;
-            std::unique_ptr<double> _hydraulicLoadBs = nullptr;
-            std::unique_ptr<double> _hydraulicLoadCs = nullptr;
-            std::unique_ptr<double> _hydraulicLoadNs = nullptr;
+            std::map<JsonInputNaturalStoneRevetmentTopLayerType, std::unique_ptr<JsonInputNaturalStoneTopLayerDefinition>> _topLayerDefinitions;
+            std::map<JsonInputNaturalStoneRevetmentTopLayerType, std::reference_wrapper<JsonInputNaturalStoneTopLayerDefinition>>
+            _topLayerDefinitionReferences;
             std::unique_ptr<double> _slopeUpperLevelAus = nullptr;
             std::unique_ptr<double> _slopeLowerLevelAls = nullptr;
             std::unique_ptr<double> _upperLimitLoadingAul = nullptr;

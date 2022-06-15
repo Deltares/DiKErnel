@@ -62,6 +62,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
             inline static const std::string FAILURE_NUMBER = "Faalgetal";
 
             inline static const std::string REVETMENT = "Bekleding";
+            inline static const std::string TOP_LAYERS = "Toplagen";
             inline static const std::string TYPE_TOP_LAYER = "TypeToplaag";
 
             inline static const std::string AVERAGE_NUMBER_OF_WAVES = "GemiddeldAantalGolvenPerTijdstap";

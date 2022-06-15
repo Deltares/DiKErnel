@@ -300,8 +300,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
         const JsonInputNaturalStoneLocationData& location,
         const JsonInputNaturalStoneCalculationDefinitionData* calculationDefinition)
     {
+        const auto jsonInputTopLayerType = location.GetTopLayerType();
         auto constructionProperties = make_unique<NaturalStoneRevetmentLocationConstructionProperties>(
-            location.GetX(), ConvertTopLayerType(location.GetTopLayerType()), location.GetThicknessTopLayer(),
+            location.GetX(), ConvertTopLayerType(jsonInputTopLayerType), location.GetThicknessTopLayer(),
             location.GetRelativeDensity());
 
         constructionProperties->SetInitialDamage(forward<unique_ptr<double>>(CreatePointerOfValue(location.GetInitialDamage())));
@@ -310,24 +311,30 @@ namespace DiKErnel::KernelWrapper::Json::Input
         {
             constructionProperties->SetFailureNumber(forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetFailureNumber())));
 
-            constructionProperties->SetHydraulicLoadAp(
-                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetHydraulicLoadAp())));
-            constructionProperties->SetHydraulicLoadBp(
-                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetHydraulicLoadBp())));
-            constructionProperties->SetHydraulicLoadCp(
-                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetHydraulicLoadCp())));
-            constructionProperties->SetHydraulicLoadNp(
-                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetHydraulicLoadNp())));
-            constructionProperties->SetHydraulicLoadAs(
-                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetHydraulicLoadAs())));
-            constructionProperties->SetHydraulicLoadBs(
-                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetHydraulicLoadBs())));
-            constructionProperties->SetHydraulicLoadCs(
-                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetHydraulicLoadCs())));
-            constructionProperties->SetHydraulicLoadNs(
-                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetHydraulicLoadNs())));
-            constructionProperties->SetHydraulicLoadXib(
-                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetHydraulicLoadXib())));
+            const auto& topLayerDefinitions = calculationDefinition->GetTopLayerDefinitions();
+            if (const auto& keyExists = topLayerDefinitions.find(jsonInputTopLayerType); keyExists != topLayerDefinitions.end())
+            {
+                const auto& topLayerDefinition = topLayerDefinitions.at(jsonInputTopLayerType).get();
+
+                constructionProperties->SetHydraulicLoadAp(
+                    forward<unique_ptr<double>>(CreatePointerOfValue(topLayerDefinition.GetHydraulicLoadAp())));
+                constructionProperties->SetHydraulicLoadBp(
+                    forward<unique_ptr<double>>(CreatePointerOfValue(topLayerDefinition.GetHydraulicLoadBp())));
+                constructionProperties->SetHydraulicLoadCp(
+                    forward<unique_ptr<double>>(CreatePointerOfValue(topLayerDefinition.GetHydraulicLoadCp())));
+                constructionProperties->SetHydraulicLoadNp(
+                    forward<unique_ptr<double>>(CreatePointerOfValue(topLayerDefinition.GetHydraulicLoadNp())));
+                constructionProperties->SetHydraulicLoadAs(
+                    forward<unique_ptr<double>>(CreatePointerOfValue(topLayerDefinition.GetHydraulicLoadAs())));
+                constructionProperties->SetHydraulicLoadBs(
+                    forward<unique_ptr<double>>(CreatePointerOfValue(topLayerDefinition.GetHydraulicLoadBs())));
+                constructionProperties->SetHydraulicLoadCs(
+                    forward<unique_ptr<double>>(CreatePointerOfValue(topLayerDefinition.GetHydraulicLoadCs())));
+                constructionProperties->SetHydraulicLoadNs(
+                    forward<unique_ptr<double>>(CreatePointerOfValue(topLayerDefinition.GetHydraulicLoadNs())));
+                constructionProperties->SetHydraulicLoadXib(
+                    forward<unique_ptr<double>>(CreatePointerOfValue(topLayerDefinition.GetHydraulicLoadXib())));
+            }
 
             constructionProperties->SetSlopeUpperLevelAus(
                 forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetSlopeUpperLevelAus())));

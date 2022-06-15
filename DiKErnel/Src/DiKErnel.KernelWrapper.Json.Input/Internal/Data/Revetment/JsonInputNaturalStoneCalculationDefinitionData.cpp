@@ -25,64 +25,20 @@ namespace DiKErnel::KernelWrapper::Json::Input
     using namespace std;
 
     JsonInputNaturalStoneCalculationDefinitionData::JsonInputNaturalStoneCalculationDefinitionData(
-        unique_ptr<double> failureNumber)
-        : JsonInputCalculationDefinitionData(move(failureNumber)) {}
+        unique_ptr<double> failureNumber,
+        map<JsonInputNaturalStoneRevetmentTopLayerType, unique_ptr<JsonInputNaturalStoneTopLayerDefinition>> topLayerDefinitions)
+        : JsonInputCalculationDefinitionData(move(failureNumber)),
+          _topLayerDefinitions(move(topLayerDefinitions))
+    {
+        for (const auto& [topLayerType, topLayerDefinition] : _topLayerDefinitions)
+        {
+            _topLayerDefinitionReferences.insert(
+                pair<JsonInputNaturalStoneRevetmentTopLayerType, reference_wrapper<JsonInputNaturalStoneTopLayerDefinition>>(
+                    topLayerType, *topLayerDefinition));
+        }
+    }
 
     #pragma region Set methods
-
-    void JsonInputNaturalStoneCalculationDefinitionData::SetHydraulicLoadAp(
-        unique_ptr<double> hydraulicLoadAp)
-    {
-        _hydraulicLoadAp = move(hydraulicLoadAp);
-    }
-
-    void JsonInputNaturalStoneCalculationDefinitionData::SetHydraulicLoadBp(
-        unique_ptr<double> hydraulicLoadBp)
-    {
-        _hydraulicLoadBp = move(hydraulicLoadBp);
-    }
-
-    void JsonInputNaturalStoneCalculationDefinitionData::SetHydraulicLoadCp(
-        unique_ptr<double> hydraulicLoadCp)
-    {
-        _hydraulicLoadCp = move(hydraulicLoadCp);
-    }
-
-    void JsonInputNaturalStoneCalculationDefinitionData::SetHydraulicLoadNp(
-        unique_ptr<double> hydraulicLoadNp)
-    {
-        _hydraulicLoadNp = move(hydraulicLoadNp);
-    }
-
-    void JsonInputNaturalStoneCalculationDefinitionData::SetHydraulicLoadAs(
-        unique_ptr<double> hydraulicLoadAs)
-    {
-        _hydraulicLoadAs = move(hydraulicLoadAs);
-    }
-
-    void JsonInputNaturalStoneCalculationDefinitionData::SetHydraulicLoadBs(
-        unique_ptr<double> hydraulicLoadBs)
-    {
-        _hydraulicLoadBs = move(hydraulicLoadBs);
-    }
-
-    void JsonInputNaturalStoneCalculationDefinitionData::SetHydraulicLoadCs(
-        unique_ptr<double> hydraulicLoadCs)
-    {
-        _hydraulicLoadCs = move(hydraulicLoadCs);
-    }
-
-    void JsonInputNaturalStoneCalculationDefinitionData::SetHydraulicLoadNs(
-        unique_ptr<double> hydraulicLoadNs)
-    {
-        _hydraulicLoadNs = move(hydraulicLoadNs);
-    }
-
-    void JsonInputNaturalStoneCalculationDefinitionData::SetHydraulicLoadXib(
-        unique_ptr<double> hydraulicLoadXib)
-    {
-        _hydraulicLoadXib = move(hydraulicLoadXib);
-    }
 
     void JsonInputNaturalStoneCalculationDefinitionData::SetSlopeUpperLevelAus(
         unique_ptr<double> slopeUpperLevelAus)
@@ -166,49 +122,10 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
     #pragma region Get methods
 
-    const double* JsonInputNaturalStoneCalculationDefinitionData::GetHydraulicLoadXib() const
+    const map<JsonInputNaturalStoneRevetmentTopLayerType, reference_wrapper<JsonInputNaturalStoneTopLayerDefinition>>&
+    JsonInputNaturalStoneCalculationDefinitionData::GetTopLayerDefinitions() const
     {
-        return _hydraulicLoadXib.get();
-    }
-
-    const double* JsonInputNaturalStoneCalculationDefinitionData::GetHydraulicLoadAp() const
-    {
-        return _hydraulicLoadAp.get();
-    }
-
-    const double* JsonInputNaturalStoneCalculationDefinitionData::GetHydraulicLoadBp() const
-    {
-        return _hydraulicLoadBp.get();
-    }
-
-    const double* JsonInputNaturalStoneCalculationDefinitionData::GetHydraulicLoadCp() const
-    {
-        return _hydraulicLoadCp.get();
-    }
-
-    const double* JsonInputNaturalStoneCalculationDefinitionData::GetHydraulicLoadNp() const
-    {
-        return _hydraulicLoadNp.get();
-    }
-
-    const double* JsonInputNaturalStoneCalculationDefinitionData::GetHydraulicLoadAs() const
-    {
-        return _hydraulicLoadAs.get();
-    }
-
-    const double* JsonInputNaturalStoneCalculationDefinitionData::GetHydraulicLoadBs() const
-    {
-        return _hydraulicLoadBs.get();
-    }
-
-    const double* JsonInputNaturalStoneCalculationDefinitionData::GetHydraulicLoadCs() const
-    {
-        return _hydraulicLoadCs.get();
-    }
-
-    const double* JsonInputNaturalStoneCalculationDefinitionData::GetHydraulicLoadNs() const
-    {
-        return _hydraulicLoadNs.get();
+        return _topLayerDefinitionReferences;
     }
 
     const double* JsonInputNaturalStoneCalculationDefinitionData::GetSlopeUpperLevelAus() const

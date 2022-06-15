@@ -20,6 +20,7 @@
 
 #include "JsonInputNaturalStoneCalculationDefinitionParser.h"
 
+#include "JsonInputDefinitions.h"
 #include "JsonInputNaturalStoneCalculationDefinitionData.h"
 #include "JsonInputNaturalStoneDefinitions.h"
 #include "JsonInputParserHelper.h"
@@ -28,6 +29,16 @@ namespace DiKErnel::KernelWrapper::Json::Input
 {
     using namespace nlohmann;
     using namespace std;
+
+    NLOHMANN_JSON_SERIALIZE_ENUM(JsonInputNaturalStoneRevetmentTopLayerType,
+        {
+            {
+                JsonInputNaturalStoneRevetmentTopLayerType::Unknown, nullptr
+            },
+            {
+                JsonInputNaturalStoneRevetmentTopLayerType::NordicStone, JsonInputNaturalStoneDefinitions::TOP_LAYER_TYPE_NORDIC_STONE
+            }
+        });
 
     JsonInputNaturalStoneCalculationDefinitionParser::JsonInputNaturalStoneCalculationDefinitionParser(
         const json& readCalculationMethod)
@@ -38,40 +49,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
     {
         const auto& readCalculationMethod = GetReadCalculationMethod();
 
-        auto calculationDefinition = make_unique<JsonInputNaturalStoneCalculationDefinitionData>(move(failureNumber));
-
-        if (readCalculationMethod.contains(JsonInputNaturalStoneDefinitions::HYDRAULIC_LOAD))
-        {
-            const auto& readHydraulicLoads = readCalculationMethod.at(JsonInputNaturalStoneDefinitions::HYDRAULIC_LOAD);
-
-            calculationDefinition->SetHydraulicLoadAp(
-                forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
-                    readHydraulicLoads, JsonInputNaturalStoneDefinitions::HYDRAULIC_LOAD_AP)));
-            calculationDefinition->SetHydraulicLoadBp(
-                forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
-                    readHydraulicLoads, JsonInputNaturalStoneDefinitions::HYDRAULIC_LOAD_BP)));
-            calculationDefinition->SetHydraulicLoadCp(
-                forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
-                    readHydraulicLoads, JsonInputNaturalStoneDefinitions::HYDRAULIC_LOAD_CP)));
-            calculationDefinition->SetHydraulicLoadNp(
-                forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
-                    readHydraulicLoads, JsonInputNaturalStoneDefinitions::HYDRAULIC_LOAD_NP)));
-            calculationDefinition->SetHydraulicLoadAs(
-                forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
-                    readHydraulicLoads, JsonInputNaturalStoneDefinitions::HYDRAULIC_LOAD_AS)));
-            calculationDefinition->SetHydraulicLoadBs(
-                forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
-                    readHydraulicLoads, JsonInputNaturalStoneDefinitions::HYDRAULIC_LOAD_BS)));
-            calculationDefinition->SetHydraulicLoadCs(
-                forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
-                    readHydraulicLoads, JsonInputNaturalStoneDefinitions::HYDRAULIC_LOAD_CS)));
-            calculationDefinition->SetHydraulicLoadNs(
-                forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
-                    readHydraulicLoads, JsonInputNaturalStoneDefinitions::HYDRAULIC_LOAD_NS)));
-            calculationDefinition->SetHydraulicLoadXib(
-                forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
-                    readHydraulicLoads, JsonInputNaturalStoneDefinitions::HYDRAULIC_LOAD_XIB)));
-        }
+        auto calculationDefinition = make_unique<JsonInputNaturalStoneCalculationDefinitionData>(
+            move(failureNumber), ReadTopLayerDefinitions(readCalculationMethod));
 
         if (readCalculationMethod.contains(JsonInputNaturalStoneDefinitions::SLOPE_UPPER_LEVEL))
         {
@@ -155,5 +134,60 @@ namespace DiKErnel::KernelWrapper::Json::Input
         }
 
         return calculationDefinition;
+    }
+
+    map<JsonInputNaturalStoneRevetmentTopLayerType, unique_ptr<JsonInputNaturalStoneTopLayerDefinition>>
+    JsonInputNaturalStoneCalculationDefinitionParser::ReadTopLayerDefinitions(
+        const json& readCalculationMethod)
+    {
+        auto topLayers = map<JsonInputNaturalStoneRevetmentTopLayerType, unique_ptr<JsonInputNaturalStoneTopLayerDefinition>>();
+
+        if (readCalculationMethod.contains(JsonInputDefinitions::TOP_LAYERS))
+        {
+            const auto& readTopLayers = readCalculationMethod.at(JsonInputDefinitions::TOP_LAYERS);
+
+            for (const auto& readTopLayer : readTopLayers)
+            {
+                auto topLayer = make_unique<JsonInputNaturalStoneTopLayerDefinition>();
+
+                if (readTopLayer.contains(JsonInputNaturalStoneDefinitions::HYDRAULIC_LOAD))
+                {
+                    const auto& readHydraulicLoads = readCalculationMethod.at(JsonInputNaturalStoneDefinitions::HYDRAULIC_LOAD);
+
+                    topLayer->SetHydraulicLoadAp(
+                        forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
+                            readHydraulicLoads, JsonInputNaturalStoneDefinitions::HYDRAULIC_LOAD_AP)));
+                    topLayer->SetHydraulicLoadBp(
+                        forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
+                            readHydraulicLoads, JsonInputNaturalStoneDefinitions::HYDRAULIC_LOAD_BP)));
+                    topLayer->SetHydraulicLoadCp(
+                        forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
+                            readHydraulicLoads, JsonInputNaturalStoneDefinitions::HYDRAULIC_LOAD_CP)));
+                    topLayer->SetHydraulicLoadNp(
+                        forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
+                            readHydraulicLoads, JsonInputNaturalStoneDefinitions::HYDRAULIC_LOAD_NP)));
+                    topLayer->SetHydraulicLoadAs(
+                        forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
+                            readHydraulicLoads, JsonInputNaturalStoneDefinitions::HYDRAULIC_LOAD_AS)));
+                    topLayer->SetHydraulicLoadBs(
+                        forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
+                            readHydraulicLoads, JsonInputNaturalStoneDefinitions::HYDRAULIC_LOAD_BS)));
+                    topLayer->SetHydraulicLoadCs(
+                        forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
+                            readHydraulicLoads, JsonInputNaturalStoneDefinitions::HYDRAULIC_LOAD_CS)));
+                    topLayer->SetHydraulicLoadNs(
+                        forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
+                            readHydraulicLoads, JsonInputNaturalStoneDefinitions::HYDRAULIC_LOAD_NS)));
+                    topLayer->SetHydraulicLoadXib(
+                        forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
+                            readHydraulicLoads, JsonInputNaturalStoneDefinitions::HYDRAULIC_LOAD_XIB)));
+                }
+
+                topLayers.insert(pair(readTopLayer.at(JsonInputDefinitions::TYPE_TOP_LAYER).get<JsonInputNaturalStoneRevetmentTopLayerType>(),
+                                      move(topLayer)));
+            }
+        }
+
+        return topLayers;
     }
 }

@@ -26,6 +26,8 @@
 
 #include "JsonInputCalculationDefinitionData.h"
 #include "JsonInputCalculationDefinitionParser.h"
+#include "JsonInputNaturalStoneRevetmentTopLayerType.h"
+#include "JsonInputNaturalStoneTopLayerDefinition.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
@@ -38,5 +40,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
         protected:
             std::unique_ptr<JsonInputCalculationDefinitionData> ParseCalculationDefinition(
                 std::unique_ptr<double> failureNumber) override;
+
+        private:
+            static std::map<JsonInputNaturalStoneRevetmentTopLayerType, std::unique_ptr<JsonInputNaturalStoneTopLayerDefinition>> ReadTopLayerDefinitions(
+                const nlohmann::json& readCalculationMethod);
     };
 }
