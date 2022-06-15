@@ -68,7 +68,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
             inline static const std::string AVERAGE_NUMBER_OF_WAVES = "GemiddeldAantalGolvenPerTijdstap";
             inline static const std::string AVERAGE_NUMBER_OF_WAVES_CTM = "GemiddeldAantalGolvenPerTijdstapCtm";
 
-            inline static const std::string CALCULATION_METHOD = "Rekenmethoden";
+            inline static const std::string CALCULATION_METHODS = "Rekenmethoden";
             inline static const std::string CALCULATION_METHOD_TYPE = "RekenmethodeSoort";
 
             inline static const std::string CALCULATION_METHOD_TYPE_ASPHALT_WAVE_IMPACT = "AsfaltGolfklap";
