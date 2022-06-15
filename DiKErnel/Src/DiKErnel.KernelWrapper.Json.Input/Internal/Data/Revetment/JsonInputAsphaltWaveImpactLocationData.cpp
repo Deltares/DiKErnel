@@ -34,17 +34,14 @@ namespace DiKErnel::KernelWrapper::Json::Input
         const double soilElasticity,
         const double thicknessUpperLayer,
         const double elasticModulusUpperLayer,
-        const double outerSlope,
-        unique_ptr<JsonInputDamageData> damageData,
-        unique_ptr<JsonInputAsphaltWaveImpactCalculationDefinitionData> revetmentLocationData)
-        : JsonInputLocationData(x, move(initialDamage), move(damageData)),
+        const double outerSlope)
+        : JsonInputLocationData(x, move(initialDamage)),
           _topLayerType(topLayerType),
           _failureTension(failureTension),
           _soilElasticity(soilElasticity),
           _thicknessUpperLayer(thicknessUpperLayer),
           _elasticModulusUpperLayer(elasticModulusUpperLayer),
-          _outerSlope(outerSlope),
-          _revetmentLocationData(move(revetmentLocationData)) {}
+          _outerSlope(outerSlope) {}
 
     void JsonInputAsphaltWaveImpactLocationData::SetThicknessSubLayer(
         unique_ptr<double> thicknessSubLayer)
@@ -96,10 +93,5 @@ namespace DiKErnel::KernelWrapper::Json::Input
     const double* JsonInputAsphaltWaveImpactLocationData::GetElasticModulusSubLayer() const
     {
         return _elasticModulusSubLayer.get();
-    }
-
-    const JsonInputAsphaltWaveImpactCalculationDefinitionData& JsonInputAsphaltWaveImpactLocationData::GetRevetmentLocationData() const
-    {
-        return *_revetmentLocationData;
     }
 }
