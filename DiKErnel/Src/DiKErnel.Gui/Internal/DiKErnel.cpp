@@ -40,6 +40,7 @@ namespace DiKErnel::Gui
     using namespace KernelWrapper::Json::Input;
     using namespace KernelWrapper::Json::Output;
     using namespace std;
+    using namespace std::chrono;
     using namespace Util;
 
     DiKErnel::DiKErnel(
@@ -174,7 +175,7 @@ namespace DiKErnel::Gui
 
             AddMessage("De berekening wordt uitgevoerd...");
 
-            const auto startTime = chrono::high_resolution_clock::now();
+            const auto startTime = high_resolution_clock::now();
 
             Calculator calculator(calculationInput);
             calculator.WaitForCompletion();
@@ -191,8 +192,8 @@ namespace DiKErnel::Gui
 
             AddMessage("De berekening is voltooid.");
 
-            const auto endTime = chrono::high_resolution_clock::now();
-            const chrono::duration<double> elapsed = endTime - startTime;
+            const auto endTime = high_resolution_clock::now();
+            const duration<double> elapsed = endTime - startTime;
 
             const auto numberOfLocations = calculationInput.GetLocationDependentInputItems().size();
             const auto numberOfTimeSteps = calculationInput.GetTimeDependentInputItems().size() - 1;
@@ -215,7 +216,7 @@ namespace DiKErnel::Gui
                 {
                     pair<string, variant<double, string>>("Versie", VERSION_STRING),
                     pair<string, variant<double, string>>("Besturingssysteem", "Windows - 64 bits"),
-                    pair<string, variant<double, string>>("DatumTijd", "2022-01-24T16:26:58Z"),
+                    pair<string, variant<double, string>>("DatumTijd", GetFormattedDateTimeString()),
                     pair<string, variant<double, string>>("Rekentijd", elapsed.count())
                 }
             );
@@ -309,5 +310,20 @@ namespace DiKErnel::Gui
             default:
                 throw runtime_error("Unsupported processType");
         }
+    }
+
+    string DiKErnel::GetFormattedDateTimeString()
+    {
+        tm tm{};
+
+        const auto nowAsTime = system_clock::to_time_t(system_clock::now());
+
+        localtime_s(&tm, &nowAsTime);
+
+        char formattedTime[20];
+
+        strftime(formattedTime, sizeof formattedTime, "%FT%TZ", &tm);
+
+        return formattedTime;
     }
 }
