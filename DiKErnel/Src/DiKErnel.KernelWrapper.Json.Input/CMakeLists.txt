@@ -80,6 +80,8 @@ set(SOURCEFILES_INTERNAL_DATA_REVETMENT
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputNaturalStoneLocationData.cpp
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputNaturalStoneLocationData.h
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputNaturalStoneRevetmentTopLayerType.h
+  ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputNaturalStoneTopLayerDefinition.cpp
+  ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputNaturalStoneTopLayerDefinition.h
 )
 
 set(SOURCEFILES_INTERNAL_PARSERS
