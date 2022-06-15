@@ -37,6 +37,11 @@ namespace DiKErnel::KernelWrapper::Json::Output
     {
         auto outputJson = ordered_json::object();
 
+        if (!_metaData.empty())
+        {
+            outputJson[JsonOutputDefinitions::META_DATA] = GetMetaDataJsonItems();
+        }
+
         outputJson[JsonOutputDefinitions::OUTPUT_DATA][JsonOutputDefinitions::LOCATIONS] = GetLocationOutputJsonItems();
 
         return outputJson;
@@ -46,11 +51,23 @@ namespace DiKErnel::KernelWrapper::Json::Output
     {
         vector<basic_json<ordered_map>> locationOutputJsonItems;
 
-        for (const auto& location : _locationDataItems)
+        for (const auto& locationDataItem : _locationDataItems)
         {
-            locationOutputJsonItems.push_back(location->CreateJson());
+            locationOutputJsonItems.push_back(locationDataItem->CreateJson());
         }
 
         return locationOutputJsonItems;
+    }
+
+    ordered_json JsonOutputData::GetMetaDataJsonItems() const
+    {
+        ordered_json metaDataJsonItems = ordered_json::object();
+
+        for (const auto& [key, value] : _metaData)
+        {
+            metaDataJsonItems[key] = 10;
+        }
+
+        return metaDataJsonItems;
     }
 }

@@ -27,6 +27,8 @@ namespace DiKErnel::KernelWrapper::Json::Output
     class JsonOutputDefinitions
     {
         public:
+            inline static const std::string META_DATA = "MetaInformatie";
+
             inline static const std::string OUTPUT_DATA = "Uitvoerdata";
 
             inline static const std::string LOCATIONS = "Locaties";
