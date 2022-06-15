@@ -152,7 +152,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
                 if (readTopLayer.contains(JsonInputNaturalStoneDefinitions::HYDRAULIC_LOAD))
                 {
-                    const auto& readHydraulicLoads = readCalculationMethod.at(JsonInputNaturalStoneDefinitions::HYDRAULIC_LOAD);
+                    const auto& readHydraulicLoads = readTopLayer.at(JsonInputNaturalStoneDefinitions::HYDRAULIC_LOAD);
 
                     topLayer->SetHydraulicLoadAp(
                         forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(

@@ -1,0 +1,12 @@
+{
+    "Rekendata":
+    {
+        "Tijd": [],
+		"HydraulischeBelastingen": 
+		{
+			"RandvoorwaardenPerTijdstap": []
+		},
+		"Dijkprofiel": [],
+		"Locaties": []
+    }
+}

@@ -126,76 +126,10 @@
             {
                 "PositieLocatie": 11,
                 "BeginSchade": 0.1,
-                "Schade":
-                {
-                    "Faalgetal": 1.06
-                },
                 "RekenmethodeSoort": "Natuursteen",
                 "TypeToplaag": "NoorseSteen",
                 "RelatieveDichtheid": 1.65,
                 "DikteToplaag": 0.3,
-                "Bekleding":
-                {
-                    "Rekenmethoden": 
-                    [
-                        {
-                            "RekenmethodeSoort": "Natuursteen",
-                            "HydraulischeBelastingNatuursteen":
-                            {
-                                "HydraulischeBelastingNatuursteenXib": 4.9,
-                                "HydraulischeBelastingNatuursteenAp": 5,
-                                "HydraulischeBelastingNatuursteenBp": 1.3,
-                                "HydraulischeBelastingNatuursteenCp": 1.7,
-                                "HydraulischeBelastingNatuursteenNp": 0.9,
-                                "HydraulischeBelastingNatuursteenAs": -0.8,
-                                "HydraulischeBelastingNatuursteenBs": 10,
-                                "HydraulischeBelastingNatuursteenCs": -8,
-                                "HydraulischeBelastingNatuursteenNs": 6
-                            },
-                            "BovenzijdeHellingvlakNatuursteen":
-                            {
-                                "BovenzijdeHellingvlakNatuursteenAus": 0.95
-                            },
-                            "OnderzijdeHellingvlakNatuursteen":
-                            {
-                                "OnderzijdeHellingvlakNatuursteenAls": 1.8
-                            },
-                            "BovengrensBelastingNatuursteen":
-                            {
-                                "BovengrensBelastingNatuursteenAul": 6.1,
-                                "BovengrensBelastingNatuursteenBul": 3.6,
-                                "BovengrensBelastingNatuursteenCul": 4.5
-                            },
-                            "OndergrensBelastingNatuursteen":
-                            {
-                                "OndergrensBelastingNatuursteenAll": 4.1,
-                                "OndergrensBelastingNatuursteenBll": 8,
-                                "OndergrensBelastingNatuursteenCll": 0.5
-                            },
-                            "AfstandMaximaleStijghoogteNatuursteen":
-                            {
-                                "AfstandMaximaleStijghoogteNatuursteenAsmax": 0.7,
-                                "AfstandMaximaleStijghoogteNatuursteenBsmax": 0.319
-                            },
-                            "MaatgevendeBreedteGolfklapNatuursteen":
-                            {
-                                "MaatgevendeBreedteGolfklapNatuursteenAwi": 1,
-                                "MaatgevendeBreedteGolfklapNatuursteenBwi": 0.01
-                            },
-                            "ImpactGolfhoekBekledingNatuursteen":
-                            {
-                                "ImpactGolfhoekBekledingNatuursteenBetamax": 30
-                            }
-                        }
-                    ]
-                }
-            },
-            {
-                "PositieLocatie": 8.79,
-                "RekenmethodeSoort": "Natuursteen",
-                "TypeToplaag": "NoorseSteen",
-                "RelatieveDichtheid": 1.65,
-                "DikteToplaag": 0.7,
                 "Bekleding":
                 {
                     "Rekenmethoden":
@@ -470,6 +404,65 @@
                             "RekenmethodeSoort": "AsfaltGolfklap"
                         }
                     ]
+                }
+            }
+        ],
+        "Rekenmethoden": 
+        [
+            {
+                "RekenmethodeSoort": "Natuursteen",
+                "Faalgetal": 1.06,
+                "Toplagen":
+                [
+                    {
+                        "TypeToplaag": "NoorseSteen",
+                        "HydraulischeBelastingNatuursteen":
+                        {
+                            "HydraulischeBelastingNatuursteenXib": 4.9,
+                            "HydraulischeBelastingNatuursteenAp": 5,
+                            "HydraulischeBelastingNatuursteenBp": 1.3,
+                            "HydraulischeBelastingNatuursteenCp": 1.7,
+                            "HydraulischeBelastingNatuursteenNp": 0.9,
+                            "HydraulischeBelastingNatuursteenAs": -0.8,
+                            "HydraulischeBelastingNatuursteenBs": 10,
+                            "HydraulischeBelastingNatuursteenCs": -8,
+                            "HydraulischeBelastingNatuursteenNs": 6
+                        }
+                    }
+                ],
+                "BovenzijdeHellingvlakNatuursteen":
+                {
+                    "BovenzijdeHellingvlakNatuursteenAus": 0.95
+                },
+                "OnderzijdeHellingvlakNatuursteen":
+                {
+                    "OnderzijdeHellingvlakNatuursteenAls": 1.8
+                },
+                "BovengrensBelastingNatuursteen":
+                {
+                    "BovengrensBelastingNatuursteenAul": 6.1,
+                    "BovengrensBelastingNatuursteenBul": 3.6,
+                    "BovengrensBelastingNatuursteenCul": 4.5
+                },
+                "OndergrensBelastingNatuursteen":
+                {
+                    "OndergrensBelastingNatuursteenAll": 4.1,
+                    "OndergrensBelastingNatuursteenBll": 8,
+                    "OndergrensBelastingNatuursteenCll": 0.5
+                },
+                "AfstandMaximaleStijghoogteNatuursteen":
+                {
+                    "AfstandMaximaleStijghoogteNatuursteenAsmax": 0.7,
+                    "AfstandMaximaleStijghoogteNatuursteenBsmax": 0.319
+                },
+                "MaatgevendeBreedteGolfklapNatuursteen":
+                {
+                    "MaatgevendeBreedteGolfklapNatuursteenAwi": 1,
+                    "MaatgevendeBreedteGolfklapNatuursteenBwi": 0.01
+                },
+                "ImpactGolfhoekBekledingNatuursteen":
+                {
+                    "ImpactGolfhoekBekledingNatuursteenBetamax": 30
                 }
             }
         ]
