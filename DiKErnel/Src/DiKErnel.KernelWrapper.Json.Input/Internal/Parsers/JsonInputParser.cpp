@@ -22,6 +22,7 @@
 
 #include <fstream>
 
+#include "JsonInputAsphaltWaveImpactCalculationDefinitionParser.h"
 #include "JsonInputAsphaltWaveImpactParser.h"
 #include "JsonInputCalculationDefinitionParser.h"
 #include "JsonInputDefinitions.h"
@@ -243,6 +244,11 @@ namespace DiKErnel::KernelWrapper::Json::Input
                     JsonInputCalculationType>();
 
                 unique_ptr<JsonInputCalculationDefinitionParser> parser = nullptr;
+
+                if (calculationType == JsonInputCalculationType::AsphaltWaveImpact)
+                {
+                    parser = CreateCalculationDefinitionParser<JsonInputAsphaltWaveImpactCalculationDefinitionParser>(readCalculationDefinition);
+                }
 
                 if (calculationType == JsonInputCalculationType::NaturalStone)
                 {
