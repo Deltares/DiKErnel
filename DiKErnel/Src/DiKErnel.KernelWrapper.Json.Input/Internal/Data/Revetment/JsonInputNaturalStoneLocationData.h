@@ -34,9 +34,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 std::unique_ptr<double> initialDamage,
                 JsonInputNaturalStoneRevetmentTopLayerType topLayerType,
                 double relativeDensity,
-                double thicknessTopLayer,
-                std::unique_ptr<JsonInputDamageData> damageData,
-                std::unique_ptr<JsonInputNaturalStoneCalculationDefinitionData> revetmentLocationData);
+                double thicknessTopLayer);
 
             [[nodiscard]]
             JsonInputNaturalStoneRevetmentTopLayerType GetTopLayerType() const;
@@ -47,13 +45,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
             [[nodiscard]]
             double GetThicknessTopLayer() const;
 
-            [[nodiscard]]
-            const JsonInputNaturalStoneCalculationDefinitionData& GetRevetmentLocationData() const;
-
         private:
             JsonInputNaturalStoneRevetmentTopLayerType _topLayerType;
             double _relativeDensity;
             double _thicknessTopLayer;
-            std::unique_ptr<JsonInputNaturalStoneCalculationDefinitionData> _revetmentLocationData;
     };
 }

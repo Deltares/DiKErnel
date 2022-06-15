@@ -38,9 +38,5 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 double x,
                 std::unique_ptr<JsonInputDamageData> damageData,
                 std::unique_ptr<double> initialDamage) override;
-
-        private:
-            [[nodiscard]]
-            std::unique_ptr<JsonInputNaturalStoneCalculationDefinitionData> ParseRevetmentLocationData() const;
     };
 }
