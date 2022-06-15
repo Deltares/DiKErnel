@@ -34,10 +34,10 @@ namespace DiKErnel::KernelWrapper::Json::Output
 
     unique_ptr<JsonOutputData> CalculationOutputAdapter::AdaptCalculationOutput(
         const CalculationOutput& calculationOutput,
-        const JsonOutputType outputType)
+        const JsonOutputType outputType,
+        const vector<pair<string, variant<double, string>>>& metaData)
     {
-        return make_unique<JsonOutputData>(
-            GetJsonOutputLocations(calculationOutput.GetLocationDependentOutputItems(), outputType));
+        return make_unique<JsonOutputData>(GetJsonOutputLocations(calculationOutput.GetLocationDependentOutputItems(), outputType), metaData);
     }
 
     vector<unique_ptr<JsonOutputFailureLocationData>> CalculationOutputAdapter::GetJsonOutputLocations(

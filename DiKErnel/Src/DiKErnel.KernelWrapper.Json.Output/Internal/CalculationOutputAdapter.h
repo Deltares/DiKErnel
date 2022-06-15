@@ -20,6 +20,8 @@
 
 #pragma once
 
+#include <variant>
+
 #include "CalculationOutput.h"
 #include "JsonOutputData.h"
 #include "JsonOutputType.h"
@@ -31,7 +33,9 @@ namespace DiKErnel::KernelWrapper::Json::Output
         public:
             static std::unique_ptr<JsonOutputData> AdaptCalculationOutput(
                 const Core::CalculationOutput& calculationOutput,
-                JsonOutputType outputType);
+                JsonOutputType outputType,
+                const std::vector<std::pair<std::string, std::variant<double, std::string>>>& metaData =
+                        std::vector<std::pair<std::string, std::variant<double, std::string>>>());
 
         private:
             static std::vector<std::unique_ptr<JsonOutputFailureLocationData>> GetJsonOutputLocations(

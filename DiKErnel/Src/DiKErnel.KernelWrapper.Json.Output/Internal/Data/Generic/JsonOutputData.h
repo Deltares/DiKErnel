@@ -21,6 +21,7 @@
 #pragma once
 
 #include <memory>
+#include <variant>
 #include <vector>
 
 #include "IJsonOutputData.h"
@@ -32,12 +33,15 @@ namespace DiKErnel::KernelWrapper::Json::Output
     {
         public:
             explicit JsonOutputData(
-                std::vector<std::unique_ptr<JsonOutputFailureLocationData>> locationDataItems);
+                std::vector<std::unique_ptr<JsonOutputFailureLocationData>> locationDataItems,
+                const std::vector<std::pair<std::string, std::variant<double, std::string>>>& metaData =
+                        std::vector<std::pair<std::string, std::variant<double, std::string>>>());
 
             [[nodiscard]]
             nlohmann::ordered_json CreateJson() const override;
 
         private:
             std::vector<std::unique_ptr<JsonOutputFailureLocationData>> _locationDataItems;
+            const std::vector<std::pair<std::string, std::variant<double, std::string>>>& _metaData;
     };
 }

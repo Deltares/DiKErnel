@@ -28,8 +28,10 @@ namespace DiKErnel::KernelWrapper::Json::Output
     using namespace std;
 
     JsonOutputData::JsonOutputData(
-        vector<unique_ptr<JsonOutputFailureLocationData>> locationDataItems)
-        : _locationDataItems(move(locationDataItems)) { }
+        vector<unique_ptr<JsonOutputFailureLocationData>> locationDataItems,
+        const vector<pair<string, variant<double, string>>>& metaData)
+        : _locationDataItems(move(locationDataItems)),
+          _metaData(metaData) { }
 
     ordered_json JsonOutputData::CreateJson() const
     {
