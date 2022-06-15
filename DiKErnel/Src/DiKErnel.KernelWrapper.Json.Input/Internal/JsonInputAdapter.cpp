@@ -150,11 +150,12 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
         auto constructionProperties = make_unique<AsphaltRevetmentWaveImpactLocationConstructionProperties>(
             location.GetX(), location.GetOuterSlope(), ConvertTopLayerType(location.GetTopLayerType()), location.GetFailureTension(),
-            revetmentData.GetDensityOfWater(), location.GetSoilElasticity(), location.GetThicknessUpperLayer(),
-            location.GetElasticModulusUpperLayer());
+            location.GetSoilElasticity(), location.GetThicknessUpperLayer(), location.GetElasticModulusUpperLayer());
 
         constructionProperties->SetInitialDamage(forward<unique_ptr<double>>(CreatePointerOfValue(location.GetInitialDamage())));
         constructionProperties->SetFailureNumber(forward<unique_ptr<double>>(CreatePointerOfValue(damageData.GetFailureNumber())));
+
+        constructionProperties->SetDensityOfWater(forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetDensityOfWater())));
 
         constructionProperties->SetThicknessSubLayer(
             forward<unique_ptr<double>>(CreatePointerOfValue(location.GetThicknessSubLayer())));

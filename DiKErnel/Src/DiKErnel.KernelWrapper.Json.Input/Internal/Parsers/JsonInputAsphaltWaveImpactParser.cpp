@@ -81,8 +81,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
         const auto& readRevetment = GetReadRevetment();
         const auto& readCalculationMethod = GetReadCalculationMethod();
 
-        auto revetmentLocationData = make_unique<JsonInputAsphaltWaveImpactCalculationDefinitionData>(nullptr,
-            readRevetment.at(JsonInputAsphaltWaveImpactDefinitions::DENSITY_OF_WATER).get<double>());
+        auto revetmentLocationData = make_unique<JsonInputAsphaltWaveImpactCalculationDefinitionData>(nullptr);
 
         if (readCalculationMethod.contains(JsonInputDefinitions::AVERAGE_NUMBER_OF_WAVES))
         {

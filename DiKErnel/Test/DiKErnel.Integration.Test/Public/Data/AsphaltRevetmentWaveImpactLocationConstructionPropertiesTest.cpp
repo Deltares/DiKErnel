@@ -35,14 +35,13 @@ namespace DiKErnel::Integration::Test
         constexpr auto x = 0.1;
         constexpr auto outerSlope = 0.2;
         constexpr auto failureTension = 0.3;
-        constexpr auto densityOfWater = 0.4;
-        constexpr auto soilElasticity = 0.5;
-        constexpr auto thicknessUpperLayer = 0.6;
-        constexpr auto elasticModulusUpperLayer = 0.7;
+        constexpr auto soilElasticity = 0.4;
+        constexpr auto thicknessUpperLayer = 0.5;
+        constexpr auto elasticModulusUpperLayer = 0.6;
 
         // Call
         const AsphaltRevetmentWaveImpactLocationConstructionProperties constructionProperties(
-            x, outerSlope, topLayerType, failureTension, densityOfWater, soilElasticity, thicknessUpperLayer, elasticModulusUpperLayer);
+            x, outerSlope, topLayerType, failureTension, soilElasticity, thicknessUpperLayer, elasticModulusUpperLayer);
 
         // Assert
         AssertHelper::AssertIsInstanceOf<RevetmentLocationConstructionPropertiesBase>(&constructionProperties);
@@ -50,12 +49,12 @@ namespace DiKErnel::Integration::Test
         ASSERT_DOUBLE_EQ(x, constructionProperties.GetX());
         ASSERT_DOUBLE_EQ(outerSlope, constructionProperties.GetOuterSlope());
         ASSERT_DOUBLE_EQ(failureTension, constructionProperties.GetFailureTension());
-        ASSERT_DOUBLE_EQ(densityOfWater, constructionProperties.GetDensityOfWater());
         ASSERT_DOUBLE_EQ(soilElasticity, constructionProperties.GetSoilElasticity());
         ASSERT_DOUBLE_EQ(thicknessUpperLayer, constructionProperties.GetThicknessUpperLayer());
         ASSERT_DOUBLE_EQ(elasticModulusUpperLayer, constructionProperties.GetElasticModulusUpperLayer());
         ASSERT_EQ(nullptr, constructionProperties.GetInitialDamage());
         ASSERT_EQ(nullptr, constructionProperties.GetFailureNumber());
+        ASSERT_EQ(nullptr, constructionProperties.GetDensityOfWater());
         ASSERT_EQ(nullptr, constructionProperties.GetThicknessSubLayer());
         ASSERT_EQ(nullptr, constructionProperties.GetElasticModulusSubLayer());
         ASSERT_EQ(nullptr, constructionProperties.GetAverageNumberOfWavesCtm());
@@ -75,12 +74,12 @@ namespace DiKErnel::Integration::Test
         constexpr auto x = 0.1;
         constexpr auto outerSlope = 0.2;
         constexpr auto failureTension = 0.3;
-        constexpr auto densityOfWater = 0.4;
-        constexpr auto soilElasticity = 0.5;
-        constexpr auto thicknessUpperLayer = 0.6;
-        constexpr auto elasticModulusUpperLayer = 0.7;
-        constexpr auto initialDamage = 0.8;
-        constexpr auto failureNumber = 0.9;
+        constexpr auto soilElasticity = 0.4;
+        constexpr auto thicknessUpperLayer = 0.5;
+        constexpr auto elasticModulusUpperLayer = 0.6;
+        constexpr auto initialDamage = 0.7;
+        constexpr auto failureNumber = 0.8;
+        constexpr auto densityOfWater = 0.9;
         constexpr auto thicknessSubLayer = 1.0;
         constexpr auto elasticModulusSubLayer = 1.1;
         constexpr auto averageNumberOfWavesCtm = 1.2;
@@ -102,11 +101,12 @@ namespace DiKErnel::Integration::Test
         };
 
         AsphaltRevetmentWaveImpactLocationConstructionProperties constructionProperties(
-            x, outerSlope, topLayerType, failureTension, densityOfWater, soilElasticity, thicknessUpperLayer, elasticModulusUpperLayer);
+            x, outerSlope, topLayerType, failureTension, soilElasticity, thicknessUpperLayer, elasticModulusUpperLayer);
 
         // When
         constructionProperties.SetInitialDamage(make_unique<double>(initialDamage));
         constructionProperties.SetFailureNumber(make_unique<double>(failureNumber));
+        constructionProperties.SetDensityOfWater(make_unique<double>(densityOfWater));
         constructionProperties.SetThicknessSubLayer(make_unique<double>(thicknessSubLayer));
         constructionProperties.SetElasticModulusSubLayer(make_unique<double>(elasticModulusSubLayer));
         constructionProperties.SetAverageNumberOfWavesCtm(make_unique<double>(averageNumberOfWavesCtm));
@@ -123,12 +123,12 @@ namespace DiKErnel::Integration::Test
         ASSERT_DOUBLE_EQ(x, constructionProperties.GetX());
         ASSERT_DOUBLE_EQ(outerSlope, constructionProperties.GetOuterSlope());
         ASSERT_DOUBLE_EQ(failureTension, constructionProperties.GetFailureTension());
-        ASSERT_DOUBLE_EQ(densityOfWater, constructionProperties.GetDensityOfWater());
         ASSERT_DOUBLE_EQ(soilElasticity, constructionProperties.GetSoilElasticity());
         ASSERT_DOUBLE_EQ(thicknessUpperLayer, constructionProperties.GetThicknessUpperLayer());
         ASSERT_DOUBLE_EQ(elasticModulusUpperLayer, constructionProperties.GetElasticModulusUpperLayer());
         ASSERT_DOUBLE_EQ(initialDamage, *constructionProperties.GetInitialDamage());
         ASSERT_DOUBLE_EQ(failureNumber, *constructionProperties.GetFailureNumber());
+        ASSERT_DOUBLE_EQ(densityOfWater, *constructionProperties.GetDensityOfWater());
         ASSERT_DOUBLE_EQ(thicknessSubLayer, *constructionProperties.GetThicknessSubLayer());
         ASSERT_DOUBLE_EQ(elasticModulusSubLayer, *constructionProperties.GetElasticModulusSubLayer());
         ASSERT_DOUBLE_EQ(averageNumberOfWavesCtm, *constructionProperties.GetAverageNumberOfWavesCtm());

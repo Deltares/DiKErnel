@@ -31,10 +31,12 @@ namespace DiKErnel::KernelWrapper::Json::Input
     {
         public:
             explicit JsonInputAsphaltWaveImpactCalculationDefinitionData(
-                std::unique_ptr<double> failureNumber,
-                double densityOfWater);
+                std::unique_ptr<double> failureNumber);
 
             #pragma region Set methods
+
+            void SetDensityOfWater(
+                std::unique_ptr<double> densityOfWater);
 
             void SetAverageNumberOfWavesCtm(
                 std::unique_ptr<double> averageNumberOfWavesCtm);
@@ -65,7 +67,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
             #pragma region Get methods
 
             [[nodiscard]]
-            double GetDensityOfWater() const;
+            const double* GetDensityOfWater() const;
 
             [[nodiscard]]
             const double* GetAverageNumberOfWavesCtm() const;
@@ -94,7 +96,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
             #pragma endregion
 
         private:
-            double _densityOfWater;
+            std::unique_ptr<double> _densityOfWater;
             std::unique_ptr<double> _averageNumberOfWavesCtm = nullptr;
             std::unique_ptr<double> _fatigueAlpha = nullptr;
             std::unique_ptr<double> _fatigueBeta = nullptr;

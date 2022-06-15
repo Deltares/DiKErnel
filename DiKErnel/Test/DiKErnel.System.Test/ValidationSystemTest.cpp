@@ -78,9 +78,10 @@ namespace DiKErnel::System::Test
     {
         // Given
         AsphaltRevetmentWaveImpactLocationConstructionProperties constructionProperties(
-            10, 2, AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete, 0, 800, 0, -1, -8);
+            10, 2, AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete, 0, 0, -1, -8);
         constructionProperties.SetInitialDamage(make_unique<double>(-0.1));
         constructionProperties.SetFailureNumber(make_unique<double>(-1));
+        constructionProperties.SetDensityOfWater(make_unique<double>(800));
         constructionProperties.SetFatigueAlpha(make_unique<double>(0));
         constructionProperties.SetFatigueBeta(make_unique<double>(0));
         constructionProperties.SetImpactNumberC(make_unique<double>(-0.5));
@@ -268,7 +269,7 @@ namespace DiKErnel::System::Test
         builder.AddTimeStep(0, 100, 10, 5, 10, 30);
 
         AsphaltRevetmentWaveImpactLocationConstructionProperties asphaltRevetmentWaveImpactLocationConstructionProperties(
-            12, 0.3, AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete, 1, 970, 0.5, 3, 2);
+            12, 0.3, AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete, 1, 0.5, 3, 2);
 
         const GrassRevetmentWaveImpactLocationConstructionProperties grassRevetmentWaveImpactLocationConstructionProperties(
             14, GrassRevetmentTopLayerType::ClosedSod);

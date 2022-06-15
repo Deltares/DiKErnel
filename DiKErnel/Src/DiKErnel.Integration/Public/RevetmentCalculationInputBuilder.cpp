@@ -109,7 +109,7 @@ namespace DiKErnel::Integration
                 GetValue(constructionProperties.GetFailureNumber(), RevetmentDefaults::GetFailureNumber()),
                 constructionProperties.GetOuterSlope(),
                 constructionProperties.GetFailureTension(),
-                constructionProperties.GetDensityOfWater(),
+                GetValue(constructionProperties.GetDensityOfWater(), defaults->GetDensityOfWater()),
                 constructionProperties.GetSoilElasticity(),
                 move(upperLayer),
                 move(subLayer),

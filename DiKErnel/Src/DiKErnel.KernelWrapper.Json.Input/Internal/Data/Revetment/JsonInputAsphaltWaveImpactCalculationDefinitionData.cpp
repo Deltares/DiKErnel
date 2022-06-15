@@ -25,12 +25,16 @@ namespace DiKErnel::KernelWrapper::Json::Input
     using namespace std;
 
     JsonInputAsphaltWaveImpactCalculationDefinitionData::JsonInputAsphaltWaveImpactCalculationDefinitionData(
-        unique_ptr<double> failureNumber,
-        const double densityOfWater)
-        : JsonInputCalculationDefinitionData(move(failureNumber)),
-          _densityOfWater(densityOfWater) { }
+        unique_ptr<double> failureNumber)
+        : JsonInputCalculationDefinitionData(move(failureNumber)) { }
 
     #pragma region Set methods
+
+    void JsonInputAsphaltWaveImpactCalculationDefinitionData::SetDensityOfWater(
+        unique_ptr<double> densityOfWater)
+    {
+        _densityOfWater = move(densityOfWater);
+    }
 
     void JsonInputAsphaltWaveImpactCalculationDefinitionData::SetAverageNumberOfWavesCtm(
         unique_ptr<double> averageNumberOfWavesCtm)
@@ -84,9 +88,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
     #pragma region Get methods
 
-    double JsonInputAsphaltWaveImpactCalculationDefinitionData::GetDensityOfWater() const
+    const double* JsonInputAsphaltWaveImpactCalculationDefinitionData::GetDensityOfWater() const
     {
-        return _densityOfWater;
+        return _densityOfWater.get();
     }
 
     const double* JsonInputAsphaltWaveImpactCalculationDefinitionData::GetAverageNumberOfWavesCtm() const

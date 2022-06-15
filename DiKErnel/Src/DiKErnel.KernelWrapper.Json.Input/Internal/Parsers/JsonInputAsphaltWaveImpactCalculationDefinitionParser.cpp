@@ -39,8 +39,11 @@ namespace DiKErnel::KernelWrapper::Json::Input
     {
         const auto& readCalculationMethod = GetReadCalculationMethod();
 
-        auto calculationDefinition = make_unique<JsonInputAsphaltWaveImpactCalculationDefinitionData>(
-            move(failureNumber), readCalculationMethod.at(JsonInputAsphaltWaveImpactDefinitions::DENSITY_OF_WATER).get<double>());
+        auto calculationDefinition = make_unique<JsonInputAsphaltWaveImpactCalculationDefinitionData>(move(failureNumber));
+
+        calculationDefinition->SetDensityOfWater(
+            forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
+                readCalculationMethod, JsonInputAsphaltWaveImpactDefinitions::DENSITY_OF_WATER)));
 
         if (readCalculationMethod.contains(JsonInputDefinitions::AVERAGE_NUMBER_OF_WAVES))
         {

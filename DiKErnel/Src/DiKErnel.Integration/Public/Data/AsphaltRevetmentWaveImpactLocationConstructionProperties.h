@@ -44,8 +44,6 @@ namespace DiKErnel::Integration
              *        The type of the top layer.
              * \param failureTension
              *        The failure tension.
-             * \param densityOfWater
-             *        The density of water.
              * \param soilElasticity
              *        The elasticity of the soil.
              * \param thicknessUpperLayer
@@ -58,12 +56,19 @@ namespace DiKErnel::Integration
                 double outerSlope,
                 AsphaltRevetmentTopLayerType topLayerType,
                 double failureTension,
-                double densityOfWater,
                 double soilElasticity,
                 double thicknessUpperLayer,
                 double elasticModulusUpperLayer);
 
             #pragma region Set methods
+
+            /*!
+             * \brief Sets the density of water.
+             * \param densityOfWater
+             *        The density of water.
+             */
+            void SetDensityOfWater(
+                std::unique_ptr<double> densityOfWater);
 
             /*!
              * \brief Sets the thickness of the sub layer.
@@ -171,13 +176,6 @@ namespace DiKErnel::Integration
             double GetFailureTension() const;
 
             /*!
-             * \brief Gets the density of water.
-             * \return The density of water.
-             */
-            [[nodiscard]]
-            double GetDensityOfWater() const;
-
-            /*!
              * \brief Gets the soil elasticity.
              * \return The soil elasticity.
              */
@@ -197,6 +195,13 @@ namespace DiKErnel::Integration
              */
             [[nodiscard]]
             double GetElasticModulusUpperLayer() const;
+
+            /*!
+             * \brief Gets the density of water.
+             * \return The density of water.
+             */
+            [[nodiscard]]
+            const double* GetDensityOfWater() const;
 
             /*!
              * \brief Gets the thickness of the sub layer.
@@ -274,10 +279,10 @@ namespace DiKErnel::Integration
             double _outerSlope;
             AsphaltRevetmentTopLayerType _topLayerType;
             double _failureTension;
-            double _densityOfWater;
             double _soilElasticity;
             double _thicknessUpperLayer;
             double _elasticModulusUpperLayer;
+            std::unique_ptr<double> _densityOfWater;
             std::unique_ptr<double> _thicknessSubLayer = nullptr;
             std::unique_ptr<double> _elasticModulusSubLayer = nullptr;
             std::unique_ptr<double> _averageNumberOfWavesCtm = nullptr;

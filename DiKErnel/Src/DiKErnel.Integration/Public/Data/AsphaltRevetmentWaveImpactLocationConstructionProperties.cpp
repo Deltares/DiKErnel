@@ -29,7 +29,6 @@ namespace DiKErnel::Integration
         const double outerSlope,
         const AsphaltRevetmentTopLayerType topLayerType,
         const double failureTension,
-        const double densityOfWater,
         const double soilElasticity,
         const double thicknessUpperLayer,
         const double elasticModulusUpperLayer)
@@ -37,12 +36,17 @@ namespace DiKErnel::Integration
           _outerSlope(outerSlope),
           _topLayerType(topLayerType),
           _failureTension(failureTension),
-          _densityOfWater(densityOfWater),
           _soilElasticity(soilElasticity),
           _thicknessUpperLayer(thicknessUpperLayer),
           _elasticModulusUpperLayer(elasticModulusUpperLayer) {}
 
     #pragma region Set methods
+
+    void AsphaltRevetmentWaveImpactLocationConstructionProperties::SetDensityOfWater(
+        unique_ptr<double> densityOfWater)
+    {
+        _densityOfWater = move(densityOfWater);
+    }
 
     void AsphaltRevetmentWaveImpactLocationConstructionProperties::SetThicknessSubLayer(
         unique_ptr<double> thicknessSubLayer)
@@ -123,11 +127,6 @@ namespace DiKErnel::Integration
         return _failureTension;
     }
 
-    double AsphaltRevetmentWaveImpactLocationConstructionProperties::GetDensityOfWater() const
-    {
-        return _densityOfWater;
-    }
-
     double AsphaltRevetmentWaveImpactLocationConstructionProperties::GetSoilElasticity() const
     {
         return _soilElasticity;
@@ -141,6 +140,11 @@ namespace DiKErnel::Integration
     double AsphaltRevetmentWaveImpactLocationConstructionProperties::GetElasticModulusUpperLayer() const
     {
         return _elasticModulusUpperLayer;
+    }
+
+    const double*  AsphaltRevetmentWaveImpactLocationConstructionProperties::GetDensityOfWater() const
+    {
+        return _densityOfWater.get();
     }
 
     const double* AsphaltRevetmentWaveImpactLocationConstructionProperties::GetThicknessSubLayer() const

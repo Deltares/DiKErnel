@@ -52,7 +52,7 @@ namespace DiKErnel::Integration::Test
         {
             constexpr auto topLayerType = static_cast<AsphaltRevetmentTopLayerType>(99);
             const AsphaltRevetmentWaveImpactLocationConstructionProperties constructionProperties(
-                0.1, 0.2, topLayerType, 0.3, 0.4, 0.5, 0.6, 0.7);
+                0.1, 0.2, topLayerType, 0.3, 0.4, 0.5, 0.6);
 
             RevetmentCalculationInputBuilder builder;
             builder.AddAsphaltWaveImpactLocation(constructionProperties);
@@ -205,12 +205,12 @@ namespace DiKErnel::Integration::Test
         constexpr auto x = 0.1;
         constexpr auto outerSlope = 0.2;
         constexpr auto failureTension = 0.3;
-        constexpr auto densityOfWater = 0.4;
-        constexpr auto soilElasticity = 0.5;
-        constexpr auto thicknessUpperLayer = 0.6;
-        constexpr auto elasticModulusUpperLayer = 0.7;
-        constexpr auto initialDamage = 0.8;
-        constexpr auto failureNumber = 0.9;
+        constexpr auto soilElasticity = 0.4;
+        constexpr auto thicknessUpperLayer = 0.5;
+        constexpr auto elasticModulusUpperLayer = 0.6;
+        constexpr auto initialDamage = 0.7;
+        constexpr auto failureNumber = 0.8;
+        constexpr auto densityOfWater = 0.9;
         constexpr auto thicknessSubLayer = 1.0;
         constexpr auto elasticModulusSubLayer = 1.1;
         constexpr auto averageNumberOfWavesCtm = 1.2;
@@ -232,11 +232,11 @@ namespace DiKErnel::Integration::Test
         };
 
         AsphaltRevetmentWaveImpactLocationConstructionProperties constructionProperties(
-            x, outerSlope, topLayerType, failureTension, densityOfWater, soilElasticity, thicknessUpperLayer,
-            elasticModulusUpperLayer);
+            x, outerSlope, topLayerType, failureTension, soilElasticity, thicknessUpperLayer, elasticModulusUpperLayer);
 
         constructionProperties.SetInitialDamage(make_unique<double>(initialDamage));
         constructionProperties.SetFailureNumber(make_unique<double>(failureNumber));
+        constructionProperties.SetDensityOfWater(make_unique<double>(densityOfWater));
         constructionProperties.SetThicknessSubLayer(make_unique<double>(thicknessSubLayer));
         constructionProperties.SetElasticModulusSubLayer(make_unique<double>(elasticModulusSubLayer));
         constructionProperties.SetAverageNumberOfWavesCtm(make_unique<double>(averageNumberOfWavesCtm));
@@ -291,14 +291,12 @@ namespace DiKErnel::Integration::Test
         constexpr auto x = 0.1;
         constexpr auto outerSlope = 0.2;
         constexpr auto failureTension = 0.3;
-        constexpr auto densityOfWater = 0.4;
-        constexpr auto soilElasticity = 0.5;
-        constexpr auto thicknessUpperLayer = 0.6;
-        constexpr auto elasticModulusUpperLayer = 0.7;
+        constexpr auto soilElasticity = 0.4;
+        constexpr auto thicknessUpperLayer = 0.5;
+        constexpr auto elasticModulusUpperLayer = 0.6;
 
         AsphaltRevetmentWaveImpactLocationConstructionProperties constructionProperties(
-            x, outerSlope, topLayerType, failureTension, densityOfWater, soilElasticity, thicknessUpperLayer,
-            elasticModulusUpperLayer);
+            x, outerSlope, topLayerType, failureTension, soilElasticity, thicknessUpperLayer, elasticModulusUpperLayer);
 
         RevetmentCalculationInputBuilder builder;
         builder.AddAsphaltWaveImpactLocation(constructionProperties);
@@ -318,7 +316,7 @@ namespace DiKErnel::Integration::Test
 
         LocationDependentInputAssertHelper::AssertDamageProperties(0, 1, *locationDependentInput);
 
-        AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertGeneralProperties(x, outerSlope, failureTension, densityOfWater,
+        AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertGeneralProperties(x, outerSlope, failureTension, 1025,
                                                                                               soilElasticity, 1, 1, 0.35, *locationDependentInput);
 
         AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertLayer(thicknessUpperLayer, elasticModulusUpperLayer,
