@@ -208,7 +208,17 @@ namespace DiKErnel::Gui
             AddMessage(QString("De resultaten van de berekening worden naar bestand \"%1\" geschreven...").arg(outputFilePathString));
 
             const auto outputComposerResult = JsonOutputComposer::WriteCalculationOutputToJson(
-                outputFilePathStdString, *calculatorResult->GetData(), ConvertProcessType(inputData->GetProcessType()));
+                outputFilePathStdString,
+                *calculatorResult->GetData(),
+                ConvertProcessType(inputData->GetProcessType()),
+                vector
+                {
+                    pair<string, variant<double, string>>("Versie", VERSION_STRING),
+                    pair<string, variant<double, string>>("Besturingssysteem", "Windows - 64 bits"),
+                    pair<string, variant<double, string>>("DatumTijd", "2022-01-24T16:26:58Z"),
+                    pair<string, variant<double, string>>("Rekentijd", elapsed.count())
+                }
+            );
 
             LogEventsWhenApplicable("De volgende meldingen zijn opgetreden tijdens het schrijven van de resultaten:",
                                     outputComposerResult->GetEvents());
