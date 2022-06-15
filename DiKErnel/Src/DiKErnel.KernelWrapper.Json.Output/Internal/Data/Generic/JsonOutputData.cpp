@@ -65,7 +65,14 @@ namespace DiKErnel::KernelWrapper::Json::Output
 
         for (const auto& [key, value] : _metaDataItems)
         {
-            metaDataJsonItems[key] = 10;
+            if (auto* doubleValue = get_if<double>(&value); doubleValue != nullptr)
+            {
+                metaDataJsonItems[key] = *doubleValue;
+            }
+            else
+            {
+                metaDataJsonItems[key] = get<string>(value);
+            }
         }
 
         return metaDataJsonItems;
