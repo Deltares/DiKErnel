@@ -21,6 +21,7 @@
 #pragma once
 
 #include <string>
+#include <variant>
 
 #include "CalculationOutput.h"
 #include "JsonOutputType.h"
@@ -42,11 +43,15 @@ namespace DiKErnel::KernelWrapper::Json::Output
              *        The calculation output to write.
              * \param outputType
              *        The output type.
+             * \param metaData
+             *        The (optional) meta data to write.
              * \return The result of the operation.
              */
             static std::unique_ptr<Util::SimpleResult> WriteCalculationOutputToJson(
                 const std::string& filePath,
                 const Core::CalculationOutput& calculationOutput,
-                JsonOutputType outputType);
+                JsonOutputType outputType,
+                const std::vector<std::pair<std::string, std::variant<double, std::string>>>& metaData =
+                        std::vector<std::pair<std::string, std::variant<double, std::string>>>());
     };
 }

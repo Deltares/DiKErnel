@@ -35,7 +35,8 @@ namespace DiKErnel::KernelWrapper::Json::Output
     unique_ptr<SimpleResult> JsonOutputComposer::WriteCalculationOutputToJson(
         const string& filePath,
         const CalculationOutput& calculationOutput,
-        const JsonOutputType outputType)
+        const JsonOutputType outputType,
+        const vector<pair<string, variant<double, string>>>& metaData)
     {
         try
         {
