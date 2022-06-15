@@ -68,7 +68,10 @@ namespace DiKErnel::KernelWrapper::Json::Input
             if (const auto* asphaltWaveImpactLocationData = dynamic_cast<const JsonInputAsphaltWaveImpactLocationData*>(&location);
                 asphaltWaveImpactLocationData != nullptr)
             {
-                const auto& constructionProperties = CreateAsphaltWaveImpactConstructionProperties(*asphaltWaveImpactLocationData);
+                const auto& constructionProperties = CreateAsphaltWaveImpactConstructionProperties(
+                    *asphaltWaveImpactLocationData,
+                    GetCalculationDefinition<JsonInputAsphaltWaveImpactCalculationDefinitionData>(
+                        calculationDefinitionReferences, JsonInputCalculationType::AsphaltWaveImpact));
                 builder.AddAsphaltWaveImpactLocation(*constructionProperties);
             }
 
@@ -143,44 +146,46 @@ namespace DiKErnel::KernelWrapper::Json::Input
     }
 
     unique_ptr<AsphaltRevetmentWaveImpactLocationConstructionProperties> JsonInputAdapter::CreateAsphaltWaveImpactConstructionProperties(
-        const JsonInputAsphaltWaveImpactLocationData& location)
+        const JsonInputAsphaltWaveImpactLocationData& location,
+        const JsonInputAsphaltWaveImpactCalculationDefinitionData* calculationDefinition)
     {
-        const auto& damageData = location.GetDamageData();
-        const auto& revetmentData = location.GetRevetmentLocationData();
-
         auto constructionProperties = make_unique<AsphaltRevetmentWaveImpactLocationConstructionProperties>(
             location.GetX(), location.GetOuterSlope(), ConvertTopLayerType(location.GetTopLayerType()), location.GetFailureTension(),
             location.GetSoilElasticity(), location.GetThicknessUpperLayer(), location.GetElasticModulusUpperLayer());
 
         constructionProperties->SetInitialDamage(forward<unique_ptr<double>>(CreatePointerOfValue(location.GetInitialDamage())));
-        constructionProperties->SetFailureNumber(forward<unique_ptr<double>>(CreatePointerOfValue(damageData.GetFailureNumber())));
-
-        constructionProperties->SetDensityOfWater(forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetDensityOfWater())));
 
         constructionProperties->SetThicknessSubLayer(
             forward<unique_ptr<double>>(CreatePointerOfValue(location.GetThicknessSubLayer())));
         constructionProperties->SetElasticModulusSubLayer(
             forward<unique_ptr<double>>(CreatePointerOfValue(location.GetElasticModulusSubLayer())));
 
-        constructionProperties->SetAverageNumberOfWavesCtm(
-            forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetAverageNumberOfWavesCtm())));
+        if (calculationDefinition != nullptr)
+        {
+            constructionProperties->SetFailureNumber(forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetFailureNumber())));
+            constructionProperties->SetDensityOfWater(
+                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetDensityOfWater())));
 
-        constructionProperties->SetFatigueAlpha(
-            forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetFatigueAlpha())));
-        constructionProperties->SetFatigueBeta(
-            forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetFatigueBeta())));
+            constructionProperties->SetAverageNumberOfWavesCtm(
+                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetAverageNumberOfWavesCtm())));
 
-        constructionProperties->SetImpactNumberC(
-            forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetImpactNumberC())));
-        constructionProperties->SetStiffnessRelationNu(
-            forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetStiffnessRelationNu())));
+            constructionProperties->SetFatigueAlpha(
+                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetFatigueAlpha())));
+            constructionProperties->SetFatigueBeta(
+                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetFatigueBeta())));
 
-        constructionProperties->SetWidthFactors(
-            forward<unique_ptr<vector<pair<double, double>>>>(CreatePointerOfValue(revetmentData.GetWidthFactors())));
-        constructionProperties->SetDepthFactors(
-            forward<unique_ptr<vector<pair<double, double>>>>(CreatePointerOfValue(revetmentData.GetDepthFactors())));
-        constructionProperties->SetImpactFactors(
-            forward<unique_ptr<vector<pair<double, double>>>>(CreatePointerOfValue(revetmentData.GetImpactFactors())));
+            constructionProperties->SetImpactNumberC(
+                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetImpactNumberC())));
+            constructionProperties->SetStiffnessRelationNu(
+                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetStiffnessRelationNu())));
+
+            constructionProperties->SetWidthFactors(
+                forward<unique_ptr<vector<pair<double, double>>>>(CreatePointerOfValue(calculationDefinition->GetWidthFactors())));
+            constructionProperties->SetDepthFactors(
+                forward<unique_ptr<vector<pair<double, double>>>>(CreatePointerOfValue(calculationDefinition->GetDepthFactors())));
+            constructionProperties->SetImpactFactors(
+                forward<unique_ptr<vector<pair<double, double>>>>(CreatePointerOfValue(calculationDefinition->GetImpactFactors())));
+        }
 
         return constructionProperties;
     }

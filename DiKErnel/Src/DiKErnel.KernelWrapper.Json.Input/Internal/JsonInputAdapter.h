@@ -52,7 +52,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
             static std::unique_ptr<Integration::AsphaltRevetmentWaveImpactLocationConstructionProperties>
             CreateAsphaltWaveImpactConstructionProperties(
-                const JsonInputAsphaltWaveImpactLocationData& location);
+                const JsonInputAsphaltWaveImpactLocationData& location,
+                const JsonInputAsphaltWaveImpactCalculationDefinitionData* calculationDefinition);
 
             static Integration::AsphaltRevetmentTopLayerType ConvertTopLayerType(
                 JsonInputAsphaltRevetmentTopLayerType topLayerType);
