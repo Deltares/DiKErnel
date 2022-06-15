@@ -165,7 +165,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
         TimeDependentInputAssertHelper::AssertTimeDependentInputItem(1200, 2000, 2, 0.5, 4, 8, timeDependentInputItems.at(4).get());
 
         const auto& locationDependentInputItems = calculationInput.GetLocationDependentInputItems();
-        ASSERT_EQ(9, locationDependentInputItems.size());
+        ASSERT_EQ(8, locationDependentInputItems.size());
 
         const auto* naturalStoneRevetmentLocationDependentInputItem = dynamic_cast<NaturalStoneRevetmentLocationDependentInput*>(
             &locationDependentInputItems.at(0).get());
@@ -309,105 +309,40 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
         GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper::AssertFrontVelocity(
             4.3, 1.1, *grassRevetmentWaveRunupRayleighLocationDependentInputItem3);
 
-        const auto* asphaltRevetmentWaveImpactLocationDependentInputItem1 = dynamic_cast
+        const auto* asphaltRevetmentWaveImpactLocationDependentInputItem = dynamic_cast
                 <AsphaltRevetmentWaveImpactLocationDependentInput*>(&locationDependentInputItems.at(7).get());
-        ASSERT_NE(nullptr, asphaltRevetmentWaveImpactLocationDependentInputItem1);
+        ASSERT_NE(nullptr, asphaltRevetmentWaveImpactLocationDependentInputItem);
 
-        LocationDependentInputAssertHelper::AssertDamageProperties(1, 0.0098, *asphaltRevetmentWaveImpactLocationDependentInputItem1);
+        LocationDependentInputAssertHelper::AssertDamageProperties(1, 0.0098, *asphaltRevetmentWaveImpactLocationDependentInputItem);
         AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertGeneralProperties(
-            25, 0.6548, 5.6, 0.25, 53, 1.1, 4, 0.58, *asphaltRevetmentWaveImpactLocationDependentInputItem1);
+            25, 0.6548, 5.6, 0.25, 53, 1.1, 4, 0.58, *asphaltRevetmentWaveImpactLocationDependentInputItem);
         AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertLayer(
-            0.16, 18214, asphaltRevetmentWaveImpactLocationDependentInputItem1->GetUpperLayer());
+            0.16, 18214, asphaltRevetmentWaveImpactLocationDependentInputItem->GetUpperLayer());
         AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertLayer(
-            0.2, 15000, *asphaltRevetmentWaveImpactLocationDependentInputItem1->GetSubLayer());
+            0.2, 15000, *asphaltRevetmentWaveImpactLocationDependentInputItem->GetSubLayer());
         AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertFatigue(
-            0.723, 7.2, asphaltRevetmentWaveImpactLocationDependentInputItem1->GetFatigue());
+            0.723, 7.2, asphaltRevetmentWaveImpactLocationDependentInputItem->GetFatigue());
 
-        const auto expectedWidthFactors1 = vector
+        const auto expectedWidthFactors = vector
         {
             pair(1.6, 1.0392),
             pair(1.7, 1.0738)
         };
 
-        const auto expectedDepthFactors1 = vector
+        const auto expectedDepthFactors = vector
         {
             pair(-2.0, 1.0244),
             pair(-1.875, 1.0544)
         };
 
-        const auto expectedImpactFactors1 = vector
+        const auto expectedImpactFactors = vector
         {
             pair(6.0, 2.039),
             pair(6.4, 2.1)
         };
 
         AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertFactors(
-            expectedWidthFactors1, expectedDepthFactors1, expectedImpactFactors1, *asphaltRevetmentWaveImpactLocationDependentInputItem1);
-
-        const auto* asphaltRevetmentWaveImpactLocationDependentInputItem2 = dynamic_cast
-                <AsphaltRevetmentWaveImpactLocationDependentInput*>(&locationDependentInputItems.at(8).get());
-        ASSERT_NE(nullptr, asphaltRevetmentWaveImpactLocationDependentInputItem2);
-
-        LocationDependentInputAssertHelper::AssertDamageProperties(0, 1, *asphaltRevetmentWaveImpactLocationDependentInputItem2);
-        AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertGeneralProperties(
-            19, 0.233, 1.56, 1.25, 56, 1, 1, 0.35, *asphaltRevetmentWaveImpactLocationDependentInputItem2);
-        AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertLayer(
-            0.16, 18214, asphaltRevetmentWaveImpactLocationDependentInputItem2->GetUpperLayer());
-        ASSERT_EQ(nullptr, asphaltRevetmentWaveImpactLocationDependentInputItem2->GetSubLayer());
-        AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertFatigue(
-            0.42, 4.76, asphaltRevetmentWaveImpactLocationDependentInputItem2->GetFatigue());
-
-        const auto expectedWidthFactors2 = vector
-        {
-            pair(0.1, 0.0392),
-            pair(0.2, 0.0738),
-            pair(0.3, 0.1002),
-            pair(0.4, 0.1162),
-            pair(0.5, 0.1213),
-            pair(0.6, 0.1168),
-            pair(0.7, 0.1051),
-            pair(0.8, 0.0890),
-            pair(0.9, 0.0712),
-            pair(1.0, 0.0541),
-            pair(1.1, 0.0391),
-            pair(1.2, 0.0269),
-            pair(1.3, 0.0216),
-            pair(1.4, 0.0150),
-            pair(1.5, 0.0105)
-        };
-
-        const auto expectedDepthFactors2 = vector
-        {
-            pair(-1.0, 0.0244),
-            pair(-0.875, 0.0544),
-            pair(-0.750, 0.0938),
-            pair(-0.625, 0.1407),
-            pair(-0.500, 0.1801),
-            pair(-0.375, 0.1632),
-            pair(-0.250, 0.1426),
-            pair(-0.125, 0.0994),
-            pair(0.0, 0.06),
-            pair(0.125, 0.0244),
-            pair(0.250, 0.0169)
-        };
-
-        const auto expectedImpactFactors2 = vector
-        {
-            pair(2.0, 0.039),
-            pair(2.4, 0.1),
-            pair(2.8, 0.18),
-            pair(3.2, 0.235),
-            pair(3.6, 0.2),
-            pair(4.0, 0.13),
-            pair(4.4, 0.08),
-            pair(4.8, 0.02),
-            pair(5.2, 0.01),
-            pair(5.6, 0.005),
-            pair(6.0, 0.001)
-        };
-
-        AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertFactors(
-            expectedWidthFactors2, expectedDepthFactors2, expectedImpactFactors2, *asphaltRevetmentWaveImpactLocationDependentInputItem2);
+            expectedWidthFactors, expectedDepthFactors, expectedImpactFactors, *asphaltRevetmentWaveImpactLocationDependentInputItem);
     }
 
     TEST_F(JsonInputComposerTest,
@@ -464,7 +399,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
         TimeDependentInputAssertHelper::AssertTimeDependentInputItem(1200, 2000, 2, 0.5, 4, 8, timeDependentInputItems.at(4).get());
 
         const auto& locationDependentInputItems = calculationInput.GetLocationDependentInputItems();
-        ASSERT_EQ(9, locationDependentInputItems.size());
+        ASSERT_EQ(8, locationDependentInputItems.size());
 
         const auto* naturalStoneRevetmentLocationDependentInputItem = dynamic_cast<NaturalStoneRevetmentLocationDependentInput*>(
             &locationDependentInputItems.at(0).get());
@@ -608,55 +543,20 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
         GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper::AssertFrontVelocity(
             4.3, 1.1, *grassRevetmentWaveRunupRayleighLocationDependentInputItem3);
 
-        const auto* asphaltRevetmentWaveImpactLocationDependentInputItem1 = dynamic_cast
+        const auto* asphaltRevetmentWaveImpactLocationDependentInputItem = dynamic_cast
                 <AsphaltRevetmentWaveImpactLocationDependentInput*>(&locationDependentInputItems.at(7).get());
-        ASSERT_NE(nullptr, asphaltRevetmentWaveImpactLocationDependentInputItem1);
+        ASSERT_NE(nullptr, asphaltRevetmentWaveImpactLocationDependentInputItem);
 
-        LocationDependentInputAssertHelper::AssertDamageProperties(1, 0.0098, *asphaltRevetmentWaveImpactLocationDependentInputItem1);
+        LocationDependentInputAssertHelper::AssertDamageProperties(0, 1, *asphaltRevetmentWaveImpactLocationDependentInputItem);
         AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertGeneralProperties(
-            25, 0.6548, 5.6, 0.25, 53, 1.1, 4, 0.58, *asphaltRevetmentWaveImpactLocationDependentInputItem1);
+            19, 0.233, 1.56, 1025, 56, 1, 1, 0.35, *asphaltRevetmentWaveImpactLocationDependentInputItem);
         AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertLayer(
-            0.16, 18214, asphaltRevetmentWaveImpactLocationDependentInputItem1->GetUpperLayer());
-        AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertLayer(
-            0.2, 15000, *asphaltRevetmentWaveImpactLocationDependentInputItem1->GetSubLayer());
+            0.16, 18214, asphaltRevetmentWaveImpactLocationDependentInputItem->GetUpperLayer());
+        ASSERT_EQ(nullptr, asphaltRevetmentWaveImpactLocationDependentInputItem->GetSubLayer());
         AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertFatigue(
-            0.723, 7.2, asphaltRevetmentWaveImpactLocationDependentInputItem1->GetFatigue());
+            0.42, 4.76, asphaltRevetmentWaveImpactLocationDependentInputItem->GetFatigue());
 
-        const auto expectedWidthFactors1 = vector
-        {
-            pair(1.6, 1.0392),
-            pair(1.7, 1.0738)
-        };
-
-        const auto expectedDepthFactors1 = vector
-        {
-            pair(-2.0, 1.0244),
-            pair(-1.875, 1.0544)
-        };
-
-        const auto expectedImpactFactors1 = vector
-        {
-            pair(6.0, 2.039),
-            pair(6.4, 2.1)
-        };
-
-        AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertFactors(
-            expectedWidthFactors1, expectedDepthFactors1, expectedImpactFactors1, *asphaltRevetmentWaveImpactLocationDependentInputItem1);
-
-        const auto* asphaltRevetmentWaveImpactLocationDependentInputItem2 = dynamic_cast
-                <AsphaltRevetmentWaveImpactLocationDependentInput*>(&locationDependentInputItems.at(8).get());
-        ASSERT_NE(nullptr, asphaltRevetmentWaveImpactLocationDependentInputItem2);
-
-        LocationDependentInputAssertHelper::AssertDamageProperties(0, 1, *asphaltRevetmentWaveImpactLocationDependentInputItem2);
-        AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertGeneralProperties(
-            19, 0.233, 1.56, 1.25, 56, 1, 1, 0.35, *asphaltRevetmentWaveImpactLocationDependentInputItem2);
-        AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertLayer(
-            0.16, 18214, asphaltRevetmentWaveImpactLocationDependentInputItem2->GetUpperLayer());
-        ASSERT_EQ(nullptr, asphaltRevetmentWaveImpactLocationDependentInputItem2->GetSubLayer());
-        AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertFatigue(
-            0.42, 4.76, asphaltRevetmentWaveImpactLocationDependentInputItem2->GetFatigue());
-
-        const auto expectedWidthFactors2 = vector
+        const auto expectedWidthFactors = vector
         {
             pair(0.1, 0.0392),
             pair(0.2, 0.0738),
@@ -675,7 +575,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
             pair(1.5, 0.0105)
         };
 
-        const auto expectedDepthFactors2 = vector
+        const auto expectedDepthFactors = vector
         {
             pair(-1.0, 0.0244),
             pair(-0.875, 0.0544),
@@ -690,7 +590,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
             pair(0.250, 0.0169)
         };
 
-        const auto expectedImpactFactors2 = vector
+        const auto expectedImpactFactors = vector
         {
             pair(2.0, 0.039),
             pair(2.4, 0.1),
@@ -706,7 +606,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
         };
 
         AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertFactors(
-            expectedWidthFactors2, expectedDepthFactors2, expectedImpactFactors2, *asphaltRevetmentWaveImpactLocationDependentInputItem2);
+            expectedWidthFactors, expectedDepthFactors, expectedImpactFactors, *asphaltRevetmentWaveImpactLocationDependentInputItem);
     }
 
     TEST_F(JsonInputComposerTest,

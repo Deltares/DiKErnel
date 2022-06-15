@@ -269,10 +269,6 @@
             {
                 "PositieLocatie": 4,
                 "BeginSchade": 0,
-                "Schade":
-                {
-                    "Faalgetal": 1
-                },
                 "RekenmethodeSoort": "AsfaltGolfklap",
                 "TypeToplaag": "WaterbouwAsfaltBeton",
                 "BreuksterkteAsfalt": 5.6,
@@ -290,61 +286,10 @@
                 "TanA": 0.6548,
                 "Bekleding":
                 {
-                    "SoortelijkeDichtheidWater": 0.25,
                     "Rekenmethoden":
                     [
                         {
-                            "RekenmethodeSoort": "AsfaltGolfklap",
-                            "GemiddeldAantalGolvenPerTijdstap":
-                            {
-                                "GemiddeldAantalGolvenPerTijdstapCtm": 1.1
-                            },
-                            "VermoeiingAsfaltbekleding":
-                            {
-                                "VermoeiingAsfaltbekledingAlfa": 0.723,
-                                "VermoeiingAsfaltbekledingBeta": 7.2
-                            },
-                            "Stootgetal":
-                            {
-                                "StootgetalC": 4.0
-                            },
-                            "Stijfheidsverhouding":
-                            {
-                                "StijfheidsverhoudingNu": 0.58
-                            },
-                            "BreedteFactorenTabel":
-                            [
-                                [
-                                    1.6,
-                                    1.0392
-                                ],
-                                [
-                                    1.7,
-                                    1.0738
-                                ]
-                            ],
-                            "DiepteFactorenTabel":
-                            [
-                                [
-                                    -2.0,
-                                    1.0244
-                                ],
-                                [
-                                    -1.875,
-                                    1.0544
-                                ]
-                            ],
-                            "StootFactorenTabel":
-                            [
-                                [
-                                    6.0,
-                                    2.039
-                                ],
-                                [
-                                    6.4,
-                                    2.1
-                                ]
-                            ]
+                            "RekenmethodeSoort": "AsfaltGolfklap"
                         }
                     ]
                 }
@@ -407,6 +352,67 @@
                 {
                     "ImpactGolfhoekBekledingNatuursteenBetamax": 78
                 }
+            },
+            {
+                "RekenmethodeSoort": "AsfaltGolfklap",
+                "Faalgetal": 1.0,
+                "Toplagen":
+                [
+                    {
+                        "TypeToplaag": "WaterbouwAsfaltBeton",
+                        "Stijfheidsverhouding":
+                        {
+                            "StijfheidsverhoudingNu": 0.58
+                        },
+                        "VermoeiingAsfaltbekleding":
+                        {
+                            "VermoeiingAsfaltbekledingAlfa": 0.723,
+                            "VermoeiingAsfaltbekledingBeta": 7.2
+                        }
+                    }
+                ],
+                "SoortelijkeDichtheidWater": 0.25,
+                "GemiddeldAantalGolvenPerTijdstap":
+                {
+                    "GemiddeldAantalGolvenPerTijdstapCtm": 1.1
+                },
+                "Stootgetal":
+                {
+                    "StootgetalC": 4.0
+                },
+                "BreedteFactorenTabel":
+                [
+                    [
+                        1.6,
+                        1.0392
+                    ],
+                    [
+                        1.7,
+                        1.0738
+                    ]
+                ],
+                "DiepteFactorenTabel":
+                [
+                    [
+                        -2.0,
+                        1.0244
+                    ],
+                    [
+                        -1.875,
+                        1.0544
+                    ]
+                ],
+                "StootFactorenTabel":
+                [
+                    [
+                        6.0,
+                        2.039
+                    ],
+                    [
+                        6.4,
+                        2.1
+                    ]
+                ]
             }
         ]
     }
