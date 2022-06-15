@@ -24,6 +24,11 @@ namespace DiKErnel::DomainLibrary
 {
     using namespace std;
 
+    double AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteDefaults::GetDensityOfWater() const
+    {
+        return 1025;
+    }
+
     double AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteDefaults::GetAverageNumberOfWavesCtm() const
     {
         return 1;

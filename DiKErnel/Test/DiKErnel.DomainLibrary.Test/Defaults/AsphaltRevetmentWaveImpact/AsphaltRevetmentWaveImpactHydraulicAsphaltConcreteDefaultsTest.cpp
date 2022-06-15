@@ -35,6 +35,7 @@ namespace DiKErnel::DomainLibrary::Test
 
         // Assert
         AssertHelper::AssertIsInstanceOf<IAsphaltRevetmentWaveImpactDefaults>(&defaults);
+        ASSERT_DOUBLE_EQ(1025, defaults.GetDensityOfWater());
         ASSERT_DOUBLE_EQ(1, defaults.GetAverageNumberOfWavesCtm());
         ASSERT_DOUBLE_EQ(0.42, defaults.GetFatigueAlpha());
         ASSERT_DOUBLE_EQ(4.76, defaults.GetFatigueBeta());

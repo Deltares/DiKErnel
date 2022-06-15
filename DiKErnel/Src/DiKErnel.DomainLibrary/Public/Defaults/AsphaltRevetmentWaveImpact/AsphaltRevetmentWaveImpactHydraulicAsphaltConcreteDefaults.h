@@ -34,6 +34,14 @@ namespace DiKErnel::DomainLibrary
     {
         public:
             /*!
+             * \brief Gets the default value of the density of water.
+             * \return The default value of the density of water.
+             *         Unit = [kg/m^3]
+             */
+            [[nodiscard]]
+            double GetDensityOfWater() const override;
+
+            /*!
              * \brief Gets the default value of the Ctm coefficient.
              * \return The default value of the Ctm coefficient.
              *         Unit = [-]
