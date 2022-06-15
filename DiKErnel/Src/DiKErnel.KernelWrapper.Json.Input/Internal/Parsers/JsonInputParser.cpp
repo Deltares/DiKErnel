@@ -24,7 +24,6 @@
 
 #include "JsonInputAsphaltWaveImpactParser.h"
 #include "JsonInputCalculationDefinitionParser.h"
-#include "JsonInputCalculationType.h"
 #include "JsonInputDefinitions.h"
 #include "JsonInputGrassWaveImpactParser.h"
 #include "JsonInputGrassWaveRunupParser.h"
@@ -229,10 +228,10 @@ namespace DiKErnel::KernelWrapper::Json::Input
         return parsedLocations;
     }
 
-    vector<unique_ptr<JsonInputCalculationDefinitionData>> JsonInputParser::ParseCalculationDefinitionData(
+    map<JsonInputCalculationType, unique_ptr<JsonInputCalculationDefinitionData>> JsonInputParser::ParseCalculationDefinitionData(
         const json& readCalculationData)
     {
-        auto parsedCalculationDefinitions = vector<unique_ptr<JsonInputCalculationDefinitionData>>();
+        auto parsedCalculationDefinitions = map<JsonInputCalculationType, unique_ptr<JsonInputCalculationDefinitionData>>();
 
         if (readCalculationData.contains(JsonInputDefinitions::CALCULATION_METHOD))
         {
@@ -250,7 +249,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
                     parser = CreateCalculationDefinitionParser<JsonInputNaturalStoneCalculationDefinitionParser>(readCalculationDefinition);
                 }
 
-                parsedCalculationDefinitions.push_back(forward<unique_ptr<JsonInputCalculationDefinitionData>>(parser->Parse()));
+                parsedCalculationDefinitions.insert(pair(calculationType,
+                                                         forward<unique_ptr<JsonInputCalculationDefinitionData>>(parser->Parse())));
             }
         }
 

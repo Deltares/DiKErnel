@@ -31,7 +31,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
         unique_ptr<JsonInputHydraulicData> hydraulicData,
         unique_ptr<JsonInputDikeProfileData> dikeProfileData,
         vector<unique_ptr<JsonInputLocationData>> locationData,
-        vector<unique_ptr<JsonInputCalculationDefinitionData>> calculationDefinitionData)
+        map<JsonInputCalculationType, unique_ptr<JsonInputCalculationDefinitionData>> calculationDefinitionData)
         : _times(move(times)),
           _hydraulicData(move(hydraulicData)),
           _dikeProfileData(move(dikeProfileData)),
@@ -43,9 +43,10 @@ namespace DiKErnel::KernelWrapper::Json::Input
             _locationDataReferences.emplace_back(*locationDataItem);
         }
 
-        for (const auto& calculationDefinitionDataItem : _calculationDefinitionData)
+        for (const auto& [calculationType, calculationDefinition] : _calculationDefinitionData)
         {
-            _calculationDefinitionDataReferences.emplace_back(*calculationDefinitionDataItem);
+            _calculationDefinitionDataReferences.insert(
+                pair<JsonInputCalculationType, reference_wrapper<JsonInputCalculationDefinitionData>>(calculationType, *calculationDefinition));
         }
     }
 
@@ -69,7 +70,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
         return _locationDataReferences;
     }
 
-    const vector<reference_wrapper<JsonInputCalculationDefinitionData>>& JsonInputCalculationData::GetCalculationDefinitionData() const
+    const map<JsonInputCalculationType, reference_wrapper<JsonInputCalculationDefinitionData>>&
+    JsonInputCalculationData::GetCalculationDefinitionData() const
     {
         return _calculationDefinitionDataReferences;
     }

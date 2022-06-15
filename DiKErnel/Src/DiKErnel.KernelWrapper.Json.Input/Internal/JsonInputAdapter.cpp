@@ -91,7 +91,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
             {
                 const auto& constructionProperties = CreateNaturalStoneConstructionProperties(
                     *naturalStoneLocationData,
-                    GetCalculationDefinition<JsonInputNaturalStoneCalculationDefinitionData>(calculationDefinitionReferences));
+                    GetCalculationDefinition<JsonInputNaturalStoneCalculationDefinitionData>(
+                        calculationDefinitionReferences, JsonInputCalculationType::NaturalStone));
                 builder.AddNaturalStoneLocation(*constructionProperties);
             }
         }
@@ -101,16 +102,12 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
     template <typename T>
     const T* JsonInputAdapter::GetCalculationDefinition(
-        const vector<reference_wrapper<JsonInputCalculationDefinitionData>>& calculationDefinitions)
+        const map<JsonInputCalculationType, reference_wrapper<JsonInputCalculationDefinitionData>>& calculationDefinitions,
+        const JsonInputCalculationType calculationType)
     {
-        for (const auto& calculationDefinitionReference : calculationDefinitions)
+        if (const auto& keyExists = calculationDefinitions.find(calculationType); keyExists != calculationDefinitions.end())
         {
-            const auto& calculationDefinition = calculationDefinitionReference.get();
-
-            if (const auto* typedCalculationDefinition = dynamic_cast<const T*>(&calculationDefinition); typedCalculationDefinition != nullptr)
-            {
-                return typedCalculationDefinition;
-            }
+            return dynamic_cast<const T*>(&calculationDefinitions.at(calculationType).get());
         }
 
         return nullptr;
