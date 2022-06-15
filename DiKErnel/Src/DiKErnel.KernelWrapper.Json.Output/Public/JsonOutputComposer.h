@@ -43,15 +43,15 @@ namespace DiKErnel::KernelWrapper::Json::Output
              *        The calculation output to write.
              * \param outputType
              *        The output type.
-             * \param metaData
-             *        The (optional) meta data to write.
+             * \param metaDataItems
+             *        The (optional) meta data items to write.
              * \return The result of the operation.
              */
             static std::unique_ptr<Util::SimpleResult> WriteCalculationOutputToJson(
                 const std::string& filePath,
                 const Core::CalculationOutput& calculationOutput,
                 JsonOutputType outputType,
-                const std::vector<std::pair<std::string, std::variant<double, std::string>>>& metaData =
+                const std::vector<std::pair<std::string, std::variant<double, std::string>>>& metaDataItems =
                         std::vector<std::pair<std::string, std::variant<double, std::string>>>());
     };
 }

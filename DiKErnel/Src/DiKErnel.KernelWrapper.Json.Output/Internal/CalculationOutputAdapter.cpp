@@ -35,9 +35,9 @@ namespace DiKErnel::KernelWrapper::Json::Output
     unique_ptr<JsonOutputData> CalculationOutputAdapter::AdaptCalculationOutput(
         const CalculationOutput& calculationOutput,
         const JsonOutputType outputType,
-        const vector<pair<string, variant<double, string>>>& metaData)
+        const vector<pair<string, variant<double, string>>>& metaDataItems)
     {
-        return make_unique<JsonOutputData>(GetJsonOutputLocations(calculationOutput.GetLocationDependentOutputItems(), outputType), metaData);
+        return make_unique<JsonOutputData>(GetJsonOutputLocations(calculationOutput.GetLocationDependentOutputItems(), outputType), metaDataItems);
     }
 
     vector<unique_ptr<JsonOutputFailureLocationData>> CalculationOutputAdapter::GetJsonOutputLocations(

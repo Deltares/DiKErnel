@@ -34,7 +34,7 @@ namespace DiKErnel::KernelWrapper::Json::Output
             static std::unique_ptr<JsonOutputData> AdaptCalculationOutput(
                 const Core::CalculationOutput& calculationOutput,
                 JsonOutputType outputType,
-                const std::vector<std::pair<std::string, std::variant<double, std::string>>>& metaData =
+                const std::vector<std::pair<std::string, std::variant<double, std::string>>>& metaDataItems =
                         std::vector<std::pair<std::string, std::variant<double, std::string>>>());
 
         private:

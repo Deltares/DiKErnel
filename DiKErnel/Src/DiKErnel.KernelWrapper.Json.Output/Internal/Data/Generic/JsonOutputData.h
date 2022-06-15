@@ -34,7 +34,7 @@ namespace DiKErnel::KernelWrapper::Json::Output
         public:
             explicit JsonOutputData(
                 std::vector<std::unique_ptr<JsonOutputFailureLocationData>> locationDataItems,
-                const std::vector<std::pair<std::string, std::variant<double, std::string>>>& metaData =
+                const std::vector<std::pair<std::string, std::variant<double, std::string>>>& metaDataItems =
                         std::vector<std::pair<std::string, std::variant<double, std::string>>>());
 
             [[nodiscard]]
@@ -42,7 +42,7 @@ namespace DiKErnel::KernelWrapper::Json::Output
 
         private:
             std::vector<std::unique_ptr<JsonOutputFailureLocationData>> _locationDataItems;
-            const std::vector<std::pair<std::string, std::variant<double, std::string>>>& _metaData;
+            const std::vector<std::pair<std::string, std::variant<double, std::string>>>& _metaDataItems;
 
             std::vector<nlohmann::basic_json<nlohmann::ordered_map>> GetLocationOutputJsonItems() const;
 

@@ -29,15 +29,15 @@ namespace DiKErnel::KernelWrapper::Json::Output
 
     JsonOutputData::JsonOutputData(
         vector<unique_ptr<JsonOutputFailureLocationData>> locationDataItems,
-        const vector<pair<string, variant<double, string>>>& metaData)
+        const vector<pair<string, variant<double, string>>>& metaDataItems)
         : _locationDataItems(move(locationDataItems)),
-          _metaData(metaData) { }
+          _metaDataItems(metaDataItems) { }
 
     ordered_json JsonOutputData::CreateJson() const
     {
         auto outputJson = ordered_json::object();
 
-        if (!_metaData.empty())
+        if (!_metaDataItems.empty())
         {
             outputJson[JsonOutputDefinitions::META_DATA] = GetMetaDataJsonItems();
         }
@@ -63,7 +63,7 @@ namespace DiKErnel::KernelWrapper::Json::Output
     {
         ordered_json metaDataJsonItems = ordered_json::object();
 
-        for (const auto& [key, value] : _metaData)
+        for (const auto& [key, value] : _metaDataItems)
         {
             metaDataJsonItems[key] = 10;
         }

@@ -36,11 +36,11 @@ namespace DiKErnel::KernelWrapper::Json::Output
         const string& filePath,
         const CalculationOutput& calculationOutput,
         const JsonOutputType outputType,
-        const vector<pair<string, variant<double, string>>>& metaData)
+        const vector<pair<string, variant<double, string>>>& metaDataItems)
     {
         try
         {
-            const auto& jsonOutput = CalculationOutputAdapter::AdaptCalculationOutput(calculationOutput, outputType, metaData);
+            const auto& jsonOutput = CalculationOutputAdapter::AdaptCalculationOutput(calculationOutput, outputType, metaDataItems);
 
             ofstream outfile(filePath, ios::trunc);
             outfile << setw(4) << jsonOutput->CreateJson() << endl;
