@@ -322,12 +322,8 @@ namespace DiKErnel::Gui
         return "Mac OSX";
         #elif __linux__
         return "Linux";
-        #elif __FreeBSD__
-        return "FreeBSD";
-        #elif __unix || __unix__
-        return "Unix";
         #else
-        return "Other";
+        return "Onbekend";
         #endif
     }
 
