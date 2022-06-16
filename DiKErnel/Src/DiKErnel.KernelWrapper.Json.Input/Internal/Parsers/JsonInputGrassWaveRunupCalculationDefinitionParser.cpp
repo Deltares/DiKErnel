@@ -21,6 +21,7 @@
 #include "JsonInputGrassWaveRunupCalculationDefinitionParser.h"
 
 #include "JsonInputDefinitions.h"
+#include "JsonInputGrassRevetmentDefinitions.h"
 #include "JsonInputGrassRevetmentWaveRunupCalculationProtocolType.h"
 #include "JsonInputGrassWaveRunupCalculationDefinitionData.h"
 #include "JsonInputGrassWaveRunupDefinitions.h"
@@ -33,6 +34,30 @@ namespace DiKErnel::KernelWrapper::Json::Input
     using namespace nlohmann;
     using namespace std;
 
+    NLOHMANN_JSON_SERIALIZE_ENUM(JsonInputGrassRevetmentTopLayerType,
+        {
+            {
+                JsonInputGrassRevetmentTopLayerType::Unknown, nullptr
+            },
+            {
+                JsonInputGrassRevetmentTopLayerType::ClosedSod, JsonInputGrassRevetmentDefinitions::TOP_LAYER_TYPE_CLOSED_SOD
+            },
+            {
+                JsonInputGrassRevetmentTopLayerType::OpenSod, JsonInputGrassRevetmentDefinitions::TOP_LAYER_TYPE_OPEN_SOD
+            }
+        });
+
+    NLOHMANN_JSON_SERIALIZE_ENUM(JsonInputGrassRevetmentWaveRunupCalculationProtocolType,
+        {
+            {
+                JsonInputGrassRevetmentWaveRunupCalculationProtocolType::Unknown, nullptr
+            },
+            {
+                JsonInputGrassRevetmentWaveRunupCalculationProtocolType::RayleighDiscrete,
+                JsonInputGrassWaveRunupDefinitions::CALCULATION_PROTOCOL_TYPE_RAYLEIGH_DISCRETE
+            }
+        });
+
     JsonInputGrassWaveRunupCalculationDefinitionParser::JsonInputGrassWaveRunupCalculationDefinitionParser(
         const json& readCalculationMethod)
         : JsonInputCalculationDefinitionParser(readCalculationMethod) { }
@@ -44,7 +69,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
         auto calculationDefinition = make_unique<JsonInputGrassWaveRunupCalculationDefinitionData>(
             move(failureNumber), forward<unique_ptr<JsonInputGrassWaveRunupCalculationProtocolData>>(
-                ReadCalculationProtocolData(readCalculationMethod)));
+                ReadCalculationProtocolData(readCalculationMethod)), ReadTopLayerDefinitionData(readCalculationMethod));
 
         if (readCalculationMethod.contains(JsonInputDefinitions::AVERAGE_NUMBER_OF_WAVES))
         {
@@ -116,5 +141,34 @@ namespace DiKErnel::KernelWrapper::Json::Input
         }
 
         return nullptr;
+    }
+
+    map<JsonInputGrassRevetmentTopLayerType, unique_ptr<JsonInputGrassWaveRunupTopLayerDefinitionData>>
+    JsonInputGrassWaveRunupCalculationDefinitionParser::ReadTopLayerDefinitionData(
+        const json& readCalculationMethod)
+    {
+        auto topLayers = map<JsonInputGrassRevetmentTopLayerType, unique_ptr<JsonInputGrassWaveRunupTopLayerDefinitionData>>();
+
+        if (readCalculationMethod.contains(JsonInputDefinitions::TOP_LAYERS))
+        {
+            const auto& readTopLayers = readCalculationMethod.at(JsonInputDefinitions::TOP_LAYERS);
+
+            for (const auto& readTopLayer : readTopLayers)
+            {
+                auto topLayer = make_unique<JsonInputGrassWaveRunupTopLayerDefinitionData>();
+
+                topLayer->SetCriticalCumulativeOverload(
+                    forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
+                        readTopLayer, JsonInputGrassWaveRunupDefinitions::CRITICAL_CUMULATIVE_OVERLOAD)));
+                topLayer->SetCriticalFrontVelocity(
+                    forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
+                        readTopLayer, JsonInputGrassWaveRunupDefinitions::CRITICAL_FRONT_VELOCITY)));
+
+                topLayers.insert(pair(readTopLayer.at(JsonInputDefinitions::TYPE_TOP_LAYER).get<JsonInputGrassRevetmentTopLayerType>(),
+                                      move(topLayer)));
+            }
+        }
+
+        return topLayers;
     }
 }

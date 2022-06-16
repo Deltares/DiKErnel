@@ -20,10 +20,13 @@
 
 #pragma once
 
+#include <map>
 #include <memory>
 
 #include "JsonInputCalculationDefinitionData.h"
+#include "JsonInputGrassRevetmentTopLayerType.h"
 #include "JsonInputGrassWaveRunupCalculationProtocolData.h"
+#include "JsonInputGrassWaveRunupTopLayerDefinitionData.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
@@ -32,7 +35,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
         public:
             explicit JsonInputGrassWaveRunupCalculationDefinitionData(
                 std::unique_ptr<double> failureNumber,
-                std::unique_ptr<JsonInputGrassWaveRunupCalculationProtocolData> calculationProtocolData);
+                std::unique_ptr<JsonInputGrassWaveRunupCalculationProtocolData> calculationProtocolData,
+                std::map<JsonInputGrassRevetmentTopLayerType, std::unique_ptr<JsonInputGrassWaveRunupTopLayerDefinitionData>>
+                topLayerDefinitionData);
 
             #pragma region Set methods
 
@@ -68,6 +73,10 @@ namespace DiKErnel::KernelWrapper::Json::Input
             const JsonInputGrassWaveRunupCalculationProtocolData& GetCalculationProtocolData() const;
 
             [[nodiscard]]
+            const std::map<JsonInputGrassRevetmentTopLayerType, std::reference_wrapper<JsonInputGrassWaveRunupTopLayerDefinitionData>>&
+            GetTopLayerDefinitionData() const;
+
+            [[nodiscard]]
             const double* GetCriticalCumulativeOverload() const;
 
             [[nodiscard]]
@@ -95,6 +104,10 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
         private:
             std::unique_ptr<JsonInputGrassWaveRunupCalculationProtocolData> _calculationProtocolData;
+            std::map<JsonInputGrassRevetmentTopLayerType, std::unique_ptr<JsonInputGrassWaveRunupTopLayerDefinitionData>>
+            _topLayerDefinitionData;
+            std::map<JsonInputGrassRevetmentTopLayerType, std::reference_wrapper<JsonInputGrassWaveRunupTopLayerDefinitionData>>
+            _topLayerDefinitionDataReferences;
             std::unique_ptr<double> _criticalCumulativeOverload = nullptr;
             std::unique_ptr<double> _criticalFrontVelocity = nullptr;
             std::unique_ptr<double> _averageNumberOfWavesCtm = nullptr;

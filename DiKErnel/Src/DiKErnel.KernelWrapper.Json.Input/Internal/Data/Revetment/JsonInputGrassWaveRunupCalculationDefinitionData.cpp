@@ -26,9 +26,19 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
     JsonInputGrassWaveRunupCalculationDefinitionData::JsonInputGrassWaveRunupCalculationDefinitionData(
         unique_ptr<double> failureNumber,
-        unique_ptr<JsonInputGrassWaveRunupCalculationProtocolData> calculationProtocolData)
+        unique_ptr<JsonInputGrassWaveRunupCalculationProtocolData> calculationProtocolData,
+        map<JsonInputGrassRevetmentTopLayerType, unique_ptr<JsonInputGrassWaveRunupTopLayerDefinitionData>> topLayerDefinitionData)
         : JsonInputCalculationDefinitionData(move(failureNumber)),
-          _calculationProtocolData(move(calculationProtocolData)) {}
+          _calculationProtocolData(move(calculationProtocolData)),
+          _topLayerDefinitionData(move(topLayerDefinitionData))
+    {
+        for (const auto& [topLayerType, topLayerDefinition] : _topLayerDefinitionData)
+        {
+            _topLayerDefinitionDataReferences.insert(
+                pair<JsonInputGrassRevetmentTopLayerType, reference_wrapper<JsonInputGrassWaveRunupTopLayerDefinitionData>>(
+                    topLayerType, *topLayerDefinition));
+        }
+    }
 
     #pragma region Set methods
 
@@ -83,6 +93,12 @@ namespace DiKErnel::KernelWrapper::Json::Input
     const JsonInputGrassWaveRunupCalculationProtocolData& JsonInputGrassWaveRunupCalculationDefinitionData::GetCalculationProtocolData() const
     {
         return *_calculationProtocolData;
+    }
+
+    const std::map<JsonInputGrassRevetmentTopLayerType, std::reference_wrapper<JsonInputGrassWaveRunupTopLayerDefinitionData>>&
+    JsonInputGrassWaveRunupCalculationDefinitionData::GetTopLayerDefinitionData() const
+    {
+        return _topLayerDefinitionDataReferences;
     }
 
     #pragma endregion
