@@ -255,35 +255,10 @@
                 "TypeToplaag": "GrasGeslotenZode",
                 "Bekleding":
                 {
-                    "StandtijdlijnGrasGolfklapAgwi": 1.0,
-                    "StandtijdlijnGrasGolfklapBgwi": -0.00000972222222,
-                    "StandtijdlijnGrasGolfklapCgwi": 0.25,
                     "Rekenmethoden":
                     [
                         {
-                            "RekenmethodeSoort": "GrasGolfklap",
-                            "MinimumGolfhoogteGrasGolfklap":
-                            {
-                                "MinimumGolfhoogteGrasGolfklapTemax": 3600000
-                            },
-                            "MaximumGolfhoogteGrasGolfklap":
-                            {
-                                "MaximumGolfhoogteGrasGolfklapTemin": 3.6
-                            },
-                            "ImpactGolfhoekBekledingGrasGolfklap":
-                            {
-                                "ImpactGolfhoekBekledingGrasGolfklapNwa": 0.67,
-                                "ImpactGolfhoekBekledingGrasGolfklapQwa": 0.35,
-                                "ImpactGolfhoekBekledingGrasGolfklapRwa": 10.0
-                            },
-                            "BovengrensBelastingGrasGolfklap":
-                            {
-                                "BovengrensBelastingGrasGolfklapAul": 0.0
-                            },
-                            "OndergrensBelastingGrasGolfklap":
-                            {
-                                "OndergrensBelastingGrasGolfklapAll": 0.5
-                            }
+                            "RekenmethodeSoort": "GrasGolfklap"
                         }
                     ]
                 }
@@ -294,37 +269,55 @@
                 "TypeToplaag": "GrasOpenZode",
                 "Bekleding":
                 {
-                    "StandtijdlijnGrasGolfklapAgwi": 0.8,
-                    "StandtijdlijnGrasGolfklapBgwi": -0.0000194444444,
-                    "StandtijdlijnGrasGolfklapCgwi": 0.25,
                     "Rekenmethoden":
                     [
                         {
-                            "RekenmethodeSoort": "GrasGolfklap",
-                            "MinimumGolfhoogteGrasGolfklap":
-                            {
-                                "MinimumGolfhoogteGrasGolfklapTemax": 3600000
-                            },
-                            "MaximumGolfhoogteGrasGolfklap":
-                            {
-                                "MaximumGolfhoogteGrasGolfklapTemin": 3.6
-                            },
-                            "ImpactGolfhoekBekledingGrasGolfklap":
-                            {
-                                "ImpactGolfhoekBekledingGrasGolfklapNwa": 0.67,
-                                "ImpactGolfhoekBekledingGrasGolfklapQwa": 0.35,
-                                "ImpactGolfhoekBekledingGrasGolfklapRwa": 10.0
-                            },
-                            "BovengrensBelastingGrasGolfklap":
-                            {
-                                "BovengrensBelastingGrasGolfklapAul": 0.0
-                            },
-                            "OndergrensBelastingGrasGolfklap":
-                            {
-                                "OndergrensBelastingGrasGolfklapAll": 0.5
-                            }
+                            "RekenmethodeSoort": "GrasGolfklap"
                         }
                     ]
+                }
+            }
+        ],
+        "Rekenmethoden":
+        [
+            {
+                "RekenmethodeSoort": "GrasGolfklap",
+                "Toplagen":
+                [
+                    {
+                        "TypeToplaag": "GrasGeslotenZode",
+                        "StandtijdlijnGrasGolfklapAgwi": 1.0,
+                        "StandtijdlijnGrasGolfklapBgwi": -0.00000972222222,
+                        "StandtijdlijnGrasGolfklapCgwi": 0.25
+                    },
+                    {
+                        "TypeToplaag": "GrasOpenZode",
+                        "StandtijdlijnGrasGolfklapAgwi": 0.8,
+                        "StandtijdlijnGrasGolfklapBgwi": -0.0000194444444,
+                        "StandtijdlijnGrasGolfklapCgwi": 0.25
+                    }
+                ],
+                "MinimumGolfhoogteGrasGolfklap":
+                {
+                    "MinimumGolfhoogteGrasGolfklapTemax": 3600000
+                },
+                "MaximumGolfhoogteGrasGolfklap":
+                {
+                    "MaximumGolfhoogteGrasGolfklapTemin": 3.6
+                },
+                "ImpactGolfhoekBekledingGrasGolfklap":
+                {
+                    "ImpactGolfhoekBekledingGrasGolfklapNwa": 0.67,
+                    "ImpactGolfhoekBekledingGrasGolfklapQwa": 0.35,
+                    "ImpactGolfhoekBekledingGrasGolfklapRwa": 10.0
+                },
+                "BovengrensBelastingGrasGolfklap":
+                {
+                    "BovengrensBelastingGrasGolfklapAul": 0.0
+                },
+                "OndergrensBelastingGrasGolfklap":
+                {
+                    "OndergrensBelastingGrasGolfklapAll": 0.5
                 }
             }
         ]

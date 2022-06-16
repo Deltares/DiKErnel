@@ -143,68 +143,11 @@
             {
                 "PositieLocatie": 0,
                 "BeginSchade": 0.04,
-                "Schade":
-                {
-                    "Faalgetal": 1.07
-                },
                 "RekenmethodeSoort": "GrasGolfklap",
                 "TypeToplaag": "GrasGeslotenZode",
                 "Bekleding":
                 {
-                    "StandtijdlijnGrasGolfklapAgwi": 0.3,
-                    "StandtijdlijnGrasGolfklapBgwi": -0.1,
-                    "StandtijdlijnGrasGolfklapCgwi": 0.96,
                     "Rekenmethoden":
-                    [
-                        {
-                            "RekenmethodeSoort": "GrasGolfklap",
-                            "MinimumGolfhoogteGrasGolfklap":
-                            {
-                                "MinimumGolfhoogteGrasGolfklapTemax": 2500000
-                            },
-                            "MaximumGolfhoogteGrasGolfklap":
-                            {
-                                "MaximumGolfhoogteGrasGolfklapTemin": 3.1
-                            },
-                            "ImpactGolfhoekBekledingGrasGolfklap":
-                            {
-                                "ImpactGolfhoekBekledingGrasGolfklapNwa": 0.9,
-                                "ImpactGolfhoekBekledingGrasGolfklapQwa": 0.1,
-                                "ImpactGolfhoekBekledingGrasGolfklapRwa": 8.0
-                            },
-                            "BovengrensBelastingGrasGolfklap":
-                            {
-                                "BovengrensBelastingGrasGolfklapAul": 1.0
-                            },
-                            "OndergrensBelastingGrasGolfklap":
-                            {
-                                "OndergrensBelastingGrasGolfklapAll": 3.5
-                            }
-                        }
-                    ]
-                }
-            },
-            {
-                "PositieLocatie": -18.4,
-                "RekenmethodeSoort": "GrasGolfklap",
-                "TypeToplaag": "GrasGeslotenZode",
-                "Bekleding":
-                {
-                    "Rekenmethoden": 
-                    [
-                        {
-                            "RekenmethodeSoort": "GrasGolfklap"
-                        }
-                    ]
-                }
-            },
-            {
-                "PositieLocatie": 4,
-                "RekenmethodeSoort": "GrasGolfklap",
-                "TypeToplaag": "GrasOpenZode",
-                "Bekleding":
-                {
-                    "Rekenmethoden": 
                     [
                         {
                             "RekenmethodeSoort": "GrasGolfklap"
@@ -385,6 +328,41 @@
                 "ImpactGolfhoekBekledingNatuursteen":
                 {
                     "ImpactGolfhoekBekledingNatuursteenBetamax": 30
+                }
+            },
+            {
+                "RekenmethodeSoort": "GrasGolfklap",
+                "Faalgetal": 1.07,
+                "Toplagen":
+                [
+                    {
+                        "TypeToplaag": "GrasGeslotenZode",
+                        "StandtijdlijnGrasGolfklapAgwi": 0.3,
+                        "StandtijdlijnGrasGolfklapBgwi": -0.1,
+                        "StandtijdlijnGrasGolfklapCgwi": 0.96
+                    }
+                ],
+                "MinimumGolfhoogteGrasGolfklap":
+                {
+                    "MinimumGolfhoogteGrasGolfklapTemax": 2500000
+                },
+                "MaximumGolfhoogteGrasGolfklap":
+                {
+                    "MaximumGolfhoogteGrasGolfklapTemin": 3.1
+                },
+                "ImpactGolfhoekBekledingGrasGolfklap":
+                {
+                    "ImpactGolfhoekBekledingGrasGolfklapNwa": 0.9,
+                    "ImpactGolfhoekBekledingGrasGolfklapQwa": 0.1,
+                    "ImpactGolfhoekBekledingGrasGolfklapRwa": 8.0
+                },
+                "BovengrensBelastingGrasGolfklap":
+                {
+                    "BovengrensBelastingGrasGolfklapAul": 1.0
+                },
+                "OndergrensBelastingGrasGolfklap":
+                {
+                    "OndergrensBelastingGrasGolfklapAll": 3.5
                 }
             },
             {

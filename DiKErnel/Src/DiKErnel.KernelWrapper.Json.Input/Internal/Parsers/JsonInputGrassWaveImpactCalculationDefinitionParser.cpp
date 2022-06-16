@@ -128,13 +128,13 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
                 topLayer->SetTimeLineAgwi(
                     forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
-                        readCalculationMethod, JsonInputGrassWaveImpactDefinitions::TIME_LINE_AGWI)));
+                        readTopLayer, JsonInputGrassWaveImpactDefinitions::TIME_LINE_AGWI)));
                 topLayer->SetTimeLineBgwi(
                     forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
-                        readCalculationMethod, JsonInputGrassWaveImpactDefinitions::TIME_LINE_BGWI)));
+                        readTopLayer, JsonInputGrassWaveImpactDefinitions::TIME_LINE_BGWI)));
                 topLayer->SetTimeLineCgwi(
                     forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
-                        readCalculationMethod, JsonInputGrassWaveImpactDefinitions::TIME_LINE_CGWI)));
+                        readTopLayer, JsonInputGrassWaveImpactDefinitions::TIME_LINE_CGWI)));
 
                 topLayers.insert(pair(readTopLayer.at(JsonInputDefinitions::TYPE_TOP_LAYER).get<JsonInputGrassRevetmentTopLayerType>(),
                                       move(topLayer)));
