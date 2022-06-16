@@ -20,4 +20,6 @@
 
 #pragma once
 
+#include <string>
+
 static const std::string VERSION_STRING = "@VER_PRODUCTVERSION_STR@";

@@ -10,12 +10,16 @@ set(VER_FILEDESCRIPTION_STR "DiKErnel command line interface")
 set(VER_ORIGINALFILENAME_STR "DiKErnel-cli.exe")
 set(VER_PRODUCTNAME_STR "DiKErnel-cli")
 
+# Configure version header file
+CONFIGURE_VERSION_HEADER_FILE()
+
 # Configure platform specific version resources
 CONFIGURE_PLATFORM_SPECIFIC_VERSION_RESOURCE_FILE()
 
 # Define sources
 set(SOURCEFILES
   Main.cpp
+  ${VERSION_HEADER_FILE}
   ${PLATFORM_SPECIFIC_VERSION_RESOURCE_FILE}
 )
 
@@ -37,11 +41,13 @@ source_group(${INTERNAL_FOLDER} FILES ${INTERNAL_SOURCEFILES})
 
 # Expose header files
 if(BUILD_FOR_RELEASE)
-  target_include_directories(${EXENAME}
-    PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/${INTERNAL_FOLDER}
+  target_include_directories(${EXENAME} PRIVATE
+    ${CMAKE_CURRENT_BINARY_DIR}
+    ${CMAKE_CURRENT_SOURCE_DIR}/${INTERNAL_FOLDER}
   )
 else()
   target_include_directories(${EXENAME} PUBLIC
+    ${CMAKE_CURRENT_BINARY_DIR}
     ${CMAKE_CURRENT_SOURCE_DIR}/${INTERNAL_FOLDER}
   )
 endif()

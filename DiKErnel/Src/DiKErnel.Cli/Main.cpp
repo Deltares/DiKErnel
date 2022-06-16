@@ -30,6 +30,7 @@
 #include "JsonInputComposer.h"
 #include "JsonOutputComposer.h"
 #include "Validator.h"
+#include "Version.h"
 
 using namespace DiKErnel::Cli;
 using namespace DiKErnel::Core;
