@@ -90,9 +90,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
         _waveAngleImpactBetamax = move(waveAngleImpactBetamax);
     }
 
-    const JsonInputGrassWaveRunupCalculationProtocolData& JsonInputGrassWaveRunupCalculationDefinitionData::GetCalculationProtocolData() const
+    const JsonInputGrassWaveRunupCalculationProtocolData* JsonInputGrassWaveRunupCalculationDefinitionData::GetCalculationProtocolData() const
     {
-        return *_calculationProtocolData;
+        return _calculationProtocolData.get();
     }
 
     const std::map<JsonInputGrassRevetmentTopLayerType, std::reference_wrapper<JsonInputGrassWaveRunupTopLayerDefinitionData>>&

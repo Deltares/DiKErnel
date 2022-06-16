@@ -70,7 +70,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
             #pragma region Get methods
 
             [[nodiscard]]
-            const JsonInputGrassWaveRunupCalculationProtocolData& GetCalculationProtocolData() const;
+            const JsonInputGrassWaveRunupCalculationProtocolData* GetCalculationProtocolData() const;
 
             [[nodiscard]]
             const std::map<JsonInputGrassRevetmentTopLayerType, std::reference_wrapper<JsonInputGrassWaveRunupTopLayerDefinitionData>>&

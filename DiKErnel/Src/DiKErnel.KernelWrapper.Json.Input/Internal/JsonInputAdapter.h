@@ -67,7 +67,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
             static std::unique_ptr<Integration::GrassRevetmentWaveRunupRayleighLocationConstructionProperties>
             CreateGrassWaveRunupRayleighConstructionProperties(
-                const JsonInputGrassWaveRunupRayleighLocationData& location);
+                const JsonInputGrassWaveRunupRayleighLocationData& location,
+                const JsonInputGrassWaveRunupCalculationDefinitionData* calculationDefinition);
 
             static Integration::GrassRevetmentTopLayerType ConvertTopLayerType(
                 JsonInputGrassRevetmentTopLayerType topLayerType);
