@@ -33,7 +33,6 @@
 #include "JsonInputComposer.h"
 #include "JsonOutputComposer.h"
 #include "Validator.h"
-#include "Version.h"
 
 namespace DiKErnel::Gui
 {
@@ -90,7 +89,7 @@ namespace DiKErnel::Gui
 
     QString DiKErnel::VersionNumber()
     {
-        return QString::fromStdString(VERSION_STRING);
+        return QString::fromStdString(ApplicationHelper::GetApplicationVersionString());
     }
 
     QBindable<QUrl> DiKErnel::BindableInputFilePath()
@@ -216,7 +215,7 @@ namespace DiKErnel::Gui
                 ConvertProcessType(inputData->GetProcessType()),
                 vector
                 {
-                    pair<string, variant<double, string>>("Versie", VERSION_STRING),
+                    pair<string, variant<double, string>>("Versie", ApplicationHelper::GetApplicationVersionString()),
                     pair<string, variant<double, string>>("Besturingssysteem", ApplicationHelper::GetOperatingSystemName()),
                     pair<string, variant<double, string>>("DatumTijd", ApplicationHelper::GetFormattedDateTimeString()),
                     pair<string, variant<double, string>>("Rekentijd", elapsed.count())

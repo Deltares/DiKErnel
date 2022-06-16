@@ -30,6 +30,8 @@ namespace DiKErnel::Application
     class ApplicationHelper
     {
         public:
+            static std::string GetApplicationVersionString();
+
             static std::string GetOperatingSystemName();
 
             static std::string GetFormattedDateTimeString();

@@ -19,6 +19,7 @@
 // All rights reserved.
 
 #include "ApplicationHelper.h"
+#include "Version.h"
 
 #include <chrono>
 
@@ -26,6 +27,11 @@ namespace DiKErnel::Application
 {
     using namespace std;
     using namespace std::chrono;
+
+    string ApplicationHelper::GetApplicationVersionString()
+    {
+        return VERSION_STRING;
+    }
 
     string ApplicationHelper::GetOperatingSystemName()
     {

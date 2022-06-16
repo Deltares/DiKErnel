@@ -22,6 +22,6 @@ set_target_properties(${LIBNAME} PROPERTIES FOLDER Src)
 source_group(${PUBLIC_FOLDER} FILES ${SOURCEFILES_PUBLIC})
 
 # Expose header files
-target_include_directories(${LIBNAME} PUBLIC
-  ${CMAKE_CURRENT_BINARY_DIR}
-  ${CMAKE_CURRENT_SOURCE_DIR}/${PUBLIC_FOLDER})
+target_include_directories(${LIBNAME}
+  PRIVATE ${CMAKE_CURRENT_BINARY_DIR}
+  PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/${PUBLIC_FOLDER})
