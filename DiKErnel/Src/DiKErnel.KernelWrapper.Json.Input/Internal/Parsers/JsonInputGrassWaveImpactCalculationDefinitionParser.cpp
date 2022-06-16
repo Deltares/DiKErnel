@@ -21,6 +21,7 @@
 #include "JsonInputGrassWaveImpactCalculationDefinitionParser.h"
 
 #include "JsonInputDefinitions.h"
+#include "JsonInputGrassRevetmentDefinitions.h"
 #include "JsonInputGrassWaveImpactCalculationDefinitionData.h"
 #include "JsonInputGrassWaveImpactDefinitions.h"
 #include "JsonInputParserHelper.h"
@@ -29,6 +30,19 @@ namespace DiKErnel::KernelWrapper::Json::Input
 {
     using namespace nlohmann;
     using namespace std;
+
+    NLOHMANN_JSON_SERIALIZE_ENUM(JsonInputGrassRevetmentTopLayerType,
+        {
+            {
+                JsonInputGrassRevetmentTopLayerType::Unknown, nullptr
+            },
+            {
+                JsonInputGrassRevetmentTopLayerType::ClosedSod, JsonInputGrassRevetmentDefinitions::TOP_LAYER_TYPE_CLOSED_SOD
+            },
+            {
+                JsonInputGrassRevetmentTopLayerType::OpenSod, JsonInputGrassRevetmentDefinitions::TOP_LAYER_TYPE_OPEN_SOD
+            }
+        });
 
     JsonInputGrassWaveImpactCalculationDefinitionParser::JsonInputGrassWaveImpactCalculationDefinitionParser(
         const json& readCalculationMethod)
