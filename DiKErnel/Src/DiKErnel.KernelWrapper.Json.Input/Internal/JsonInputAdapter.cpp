@@ -21,7 +21,6 @@
 #include "JsonInputAdapter.h"
 
 #include "JsonInputConversionException.h"
-#include "JsonInputGrassWaveRunupRayleighCalculationProtocolData.h"
 #include "RevetmentCalculationInputBuilder.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
@@ -89,11 +88,17 @@ namespace DiKErnel::KernelWrapper::Json::Input
             if (const auto* grassWaveRunupLocationData = dynamic_cast<const JsonInputGrassWaveRunupLocationData*>(&location);
                 grassWaveRunupLocationData != nullptr)
             {
-                const auto& constructionProperties = CreateGrassWaveRunupRayleighConstructionProperties(
+                const auto& constructionProperties = CreateGrassWaveRunupConstructionProperties(
                     *grassWaveRunupLocationData,
                     GetCalculationDefinition<JsonInputGrassWaveRunupCalculationDefinitionData>(
                         calculationDefinitionReferences, JsonInputCalculationType::GrassWaveRunup));
-                builder.AddGrassWaveRunupRayleighLocation(*constructionProperties);
+
+                if (const auto* grassWaveRunupRayleighConstructionProperties = dynamic_cast<const
+                        GrassRevetmentWaveRunupRayleighLocationConstructionProperties*>(constructionProperties.get());
+                    grassWaveRunupRayleighConstructionProperties != nullptr)
+                {
+                    builder.AddGrassWaveRunupRayleighLocation(*grassWaveRunupRayleighConstructionProperties);
+                }
             }
 
             if (const auto* naturalStoneLocationData = dynamic_cast<const JsonInputNaturalStoneLocationData*>(&location);
@@ -264,69 +269,83 @@ namespace DiKErnel::KernelWrapper::Json::Input
         return constructionProperties;
     }
 
-    unique_ptr<GrassRevetmentWaveRunupRayleighLocationConstructionProperties> JsonInputAdapter::CreateGrassWaveRunupRayleighConstructionProperties(
+    unique_ptr<GrassRevetmentWaveRunupLocationConstructionProperties> JsonInputAdapter::CreateGrassWaveRunupConstructionProperties(
         const JsonInputGrassWaveRunupLocationData& location,
         const JsonInputGrassWaveRunupCalculationDefinitionData* calculationDefinition)
     {
-        if(calculationDefinition == nullptr)
+        if (calculationDefinition == nullptr)
         {
-            throw JsonInputConversionException("Cannot convert calculation protocol.");
+            throw JsonInputConversionException("Cannot convert calculation protocol type.");
         }
+
+        unique_ptr<GrassRevetmentWaveRunupLocationConstructionProperties> constructionProperties;
 
         const auto& jsonInputGrassWaveRunupCalculationProtocolData = calculationDefinition->GetCalculationProtocolData();
 
-        if(const auto* grassWaveRunupRayleighCalculationProtocol = dynamic_cast<const JsonInputGrassWaveRunupRayleighCalculationProtocolData*>(jsonInputGrassWaveRunupCalculationProtocolData);
+        if (const auto* grassWaveRunupRayleighCalculationProtocol = dynamic_cast<const JsonInputGrassWaveRunupRayleighCalculationProtocolData*>(
+                jsonInputGrassWaveRunupCalculationProtocolData);
             grassWaveRunupRayleighCalculationProtocol != nullptr)
         {
-            auto jsonInputTopLayerType = location.GetTopLayerType();
-            auto constructionProperties = make_unique<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(
-                location.GetX(), location.GetOuterSlope(), ConvertTopLayerType(jsonInputTopLayerType));
-
-            constructionProperties->SetInitialDamage(forward<unique_ptr<double>>(CreatePointerOfValue(location.GetInitialDamage())));
-            constructionProperties->SetFailureNumber(forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetFailureNumber())));
-
-            constructionProperties->SetIncreasedLoadTransitionAlphaM(
-                forward<unique_ptr<double>>(CreatePointerOfValue(location.GetIncreasedLoadTransitionAlphaM())));
-            constructionProperties->SetReducedStrengthTransitionAlphaS(
-                forward<unique_ptr<double>>(CreatePointerOfValue(location.GetReducedStrengthTransitionAlphaS())));
-            constructionProperties->SetRepresentativeWaveRunup2PGammab(
-                forward<unique_ptr<double>>(CreatePointerOfValue(location.GetRepresentativeWaveRunup2PGammab())));
-            constructionProperties->SetRepresentativeWaveRunup2PGammaf(
-                forward<unique_ptr<double>>(CreatePointerOfValue(location.GetRepresentativeWaveRunup2PGammaf())));
-
-            constructionProperties->SetAverageNumberOfWavesCtm(
-                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetAverageNumberOfWavesCtm())));
-            constructionProperties->SetRepresentativeWaveRunup2PAru(
-                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetRepresentativeWaveRunup2PAru())));
-            constructionProperties->SetRepresentativeWaveRunup2PBru(
-                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetRepresentativeWaveRunup2PBru())));
-            constructionProperties->SetRepresentativeWaveRunup2PCru(
-                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetRepresentativeWaveRunup2PCru())));
-            constructionProperties->SetWaveAngleImpactAbeta(
-                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetWaveAngleImpactAbeta())));
-            constructionProperties->SetWaveAngleImpactBetamax(
-                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetWaveAngleImpactBetamax())));
-
-            const auto& topLayerDefinitionData = calculationDefinition->GetTopLayerDefinitionData();
-            if (const auto& keyExists = topLayerDefinitionData.find(jsonInputTopLayerType); keyExists != topLayerDefinitionData.end())
-            {
-                const auto& topLayerDefinition = topLayerDefinitionData.at(jsonInputTopLayerType).get();
-
-                constructionProperties->SetCriticalCumulativeOverload(
-                    forward<unique_ptr<double>>(CreatePointerOfValue(topLayerDefinition.GetCriticalCumulativeOverload())));
-                constructionProperties->SetCriticalFrontVelocity(
-                    forward<unique_ptr<double>>(CreatePointerOfValue(topLayerDefinition.GetCriticalFrontVelocity())));
-            }
-
-            constructionProperties->SetFixedNumberOfWaves(
-                forward<unique_ptr<int>>(CreatePointerOfValue(grassWaveRunupRayleighCalculationProtocol->GetFixedNumberOfWaves())));
-            constructionProperties->SetFrontVelocityCu(
-                forward<unique_ptr<double>>(CreatePointerOfValue(grassWaveRunupRayleighCalculationProtocol->GetFrontVelocityCu())));
-
-            return constructionProperties;
+            constructionProperties = CreateGrassWaveRunupRayleighConstructionProperties(location, *grassWaveRunupRayleighCalculationProtocol);
+        }
+        else
+        {
+            throw JsonInputConversionException("Cannot convert calculation protocol type.");
         }
 
-        throw JsonInputConversionException("Cannot convert calculation protocol type.");
+        constructionProperties->SetInitialDamage(forward<unique_ptr<double>>(CreatePointerOfValue(location.GetInitialDamage())));
+        constructionProperties->SetFailureNumber(forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetFailureNumber())));
+
+        constructionProperties->SetIncreasedLoadTransitionAlphaM(
+            forward<unique_ptr<double>>(CreatePointerOfValue(location.GetIncreasedLoadTransitionAlphaM())));
+        constructionProperties->SetReducedStrengthTransitionAlphaS(
+            forward<unique_ptr<double>>(CreatePointerOfValue(location.GetReducedStrengthTransitionAlphaS())));
+        constructionProperties->SetRepresentativeWaveRunup2PGammab(
+            forward<unique_ptr<double>>(CreatePointerOfValue(location.GetRepresentativeWaveRunup2PGammab())));
+        constructionProperties->SetRepresentativeWaveRunup2PGammaf(
+            forward<unique_ptr<double>>(CreatePointerOfValue(location.GetRepresentativeWaveRunup2PGammaf())));
+
+        constructionProperties->SetAverageNumberOfWavesCtm(
+            forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetAverageNumberOfWavesCtm())));
+        constructionProperties->SetRepresentativeWaveRunup2PAru(
+            forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetRepresentativeWaveRunup2PAru())));
+        constructionProperties->SetRepresentativeWaveRunup2PBru(
+            forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetRepresentativeWaveRunup2PBru())));
+        constructionProperties->SetRepresentativeWaveRunup2PCru(
+            forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetRepresentativeWaveRunup2PCru())));
+        constructionProperties->SetWaveAngleImpactAbeta(
+            forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetWaveAngleImpactAbeta())));
+        constructionProperties->SetWaveAngleImpactBetamax(
+            forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetWaveAngleImpactBetamax())));
+
+        const auto jsonInputTopLayerType = location.GetTopLayerType();
+        const auto& topLayerDefinitionData = calculationDefinition->GetTopLayerDefinitionData();
+        if (const auto& keyExists = topLayerDefinitionData.find(jsonInputTopLayerType); keyExists != topLayerDefinitionData.end())
+        {
+            const auto& topLayerDefinition = topLayerDefinitionData.at(jsonInputTopLayerType).get();
+
+            constructionProperties->SetCriticalCumulativeOverload(
+                forward<unique_ptr<double>>(CreatePointerOfValue(topLayerDefinition.GetCriticalCumulativeOverload())));
+            constructionProperties->SetCriticalFrontVelocity(
+                forward<unique_ptr<double>>(CreatePointerOfValue(topLayerDefinition.GetCriticalFrontVelocity())));
+        }
+
+        return constructionProperties;
+    }
+
+    unique_ptr<GrassRevetmentWaveRunupRayleighLocationConstructionProperties> JsonInputAdapter::CreateGrassWaveRunupRayleighConstructionProperties(
+        const JsonInputGrassWaveRunupLocationData& location,
+        const JsonInputGrassWaveRunupRayleighCalculationProtocolData& calculationProtocol)
+    {
+        auto constructionProperties = make_unique<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(
+            location.GetX(), location.GetOuterSlope(), ConvertTopLayerType(location.GetTopLayerType()));
+
+        constructionProperties->SetFixedNumberOfWaves(
+            forward<unique_ptr<int>>(CreatePointerOfValue(calculationProtocol.GetFixedNumberOfWaves())));
+        constructionProperties->SetFrontVelocityCu(
+            forward<unique_ptr<double>>(CreatePointerOfValue(calculationProtocol.GetFrontVelocityCu())));
+
+        return constructionProperties;
     }
 
     GrassRevetmentTopLayerType JsonInputAdapter::ConvertTopLayerType(

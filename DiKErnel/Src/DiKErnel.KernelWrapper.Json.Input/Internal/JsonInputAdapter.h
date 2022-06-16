@@ -24,6 +24,7 @@
 
 #include "AsphaltRevetmentWaveImpactLocationConstructionProperties.h"
 #include "GrassRevetmentWaveImpactLocationConstructionProperties.h"
+#include "GrassRevetmentWaveRunupLocationConstructionProperties.h"
 #include "GrassRevetmentWaveRunupRayleighLocationConstructionProperties.h"
 #include "ICalculationInput.h"
 #include "JsonInputAsphaltWaveImpactCalculationDefinitionData.h"
@@ -33,9 +34,11 @@
 #include "JsonInputGrassWaveImpactLocationData.h"
 #include "JsonInputGrassWaveRunupCalculationDefinitionData.h"
 #include "JsonInputGrassWaveRunupLocationData.h"
+#include "JsonInputGrassWaveRunupRayleighCalculationProtocolData.h"
 #include "JsonInputNaturalStoneCalculationDefinitionData.h"
 #include "JsonInputNaturalStoneLocationData.h"
 #include "NaturalStoneRevetmentLocationConstructionProperties.h"
+#include "RevetmentLocationConstructionPropertiesBase.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
@@ -66,10 +69,14 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 const JsonInputGrassWaveImpactLocationData& location,
                 const JsonInputGrassWaveImpactCalculationDefinitionData* calculationDefinition);
 
+            static std::unique_ptr<Integration::GrassRevetmentWaveRunupLocationConstructionProperties> CreateGrassWaveRunupConstructionProperties(
+                const JsonInputGrassWaveRunupLocationData& location,
+                const JsonInputGrassWaveRunupCalculationDefinitionData* calculationDefinition);
+
             static std::unique_ptr<Integration::GrassRevetmentWaveRunupRayleighLocationConstructionProperties>
             CreateGrassWaveRunupRayleighConstructionProperties(
                 const JsonInputGrassWaveRunupLocationData& location,
-                const JsonInputGrassWaveRunupCalculationDefinitionData* calculationDefinition);
+                const JsonInputGrassWaveRunupRayleighCalculationProtocolData& calculationProtocol);
 
             static Integration::GrassRevetmentTopLayerType ConvertTopLayerType(
                 JsonInputGrassRevetmentTopLayerType topLayerType);
