@@ -30,10 +30,19 @@ namespace DiKErnel::Application
     class ApplicationHelper
     {
         public:
+            /*!
+             * \brief Gets the application version as a string.
+             */
             static std::string GetApplicationVersionString();
 
+            /*!
+             * \brief Gets the operating system name.
+             */
             static std::string GetOperatingSystemName();
 
+            /*!
+             * \brief Gets the current date and time as a formatted string.
+             */
             static std::string GetFormattedDateTimeString();
     };
 }
