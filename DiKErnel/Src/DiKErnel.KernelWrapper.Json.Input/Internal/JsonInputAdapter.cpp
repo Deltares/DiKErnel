@@ -86,11 +86,11 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 builder.AddGrassWaveImpactLocation(*constructionProperties);
             }
 
-            if (const auto* grassWaveRunupRayleighLocationData = dynamic_cast<const JsonInputGrassWaveRunupRayleighLocationData*>(&location);
-                grassWaveRunupRayleighLocationData != nullptr)
+            if (const auto* grassWaveRunupLocationData = dynamic_cast<const JsonInputGrassWaveRunupLocationData*>(&location);
+                grassWaveRunupLocationData != nullptr)
             {
                 const auto& constructionProperties = CreateGrassWaveRunupRayleighConstructionProperties(
-                    *grassWaveRunupRayleighLocationData,
+                    *grassWaveRunupLocationData,
                     GetCalculationDefinition<JsonInputGrassWaveRunupCalculationDefinitionData>(
                         calculationDefinitionReferences, JsonInputCalculationType::GrassWaveRunup));
                 builder.AddGrassWaveRunupRayleighLocation(*constructionProperties);
@@ -265,7 +265,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
     }
 
     unique_ptr<GrassRevetmentWaveRunupRayleighLocationConstructionProperties> JsonInputAdapter::CreateGrassWaveRunupRayleighConstructionProperties(
-        const JsonInputGrassWaveRunupRayleighLocationData& location,
+        const JsonInputGrassWaveRunupLocationData& location,
         const JsonInputGrassWaveRunupCalculationDefinitionData* calculationDefinition)
     {
         if(calculationDefinition == nullptr)

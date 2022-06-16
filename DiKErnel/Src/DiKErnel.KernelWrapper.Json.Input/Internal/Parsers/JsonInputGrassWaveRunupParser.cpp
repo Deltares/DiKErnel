@@ -23,7 +23,7 @@
 #include "JsonInputDefinitions.h"
 #include "JsonInputGrassRevetmentDefinitions.h"
 #include "JsonInputGrassWaveRunupDefinitions.h"
-#include "JsonInputGrassWaveRunupRayleighLocationData.h"
+#include "JsonInputGrassWaveRunupLocationData.h"
 #include "JsonInputParserHelper.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
@@ -57,7 +57,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
     {
         const auto& readLocation = GetReadLocation();
 
-        auto locationData = make_unique<JsonInputGrassWaveRunupRayleighLocationData>(
+        auto locationData = make_unique<JsonInputGrassWaveRunupLocationData>(
             x, move(initialDamage), readLocation.at(JsonInputDefinitions::TYPE_TOP_LAYER).get<JsonInputGrassRevetmentTopLayerType>(),
             readLocation.at(JsonInputDefinitions::OUTER_SLOPE).get<double>());
 

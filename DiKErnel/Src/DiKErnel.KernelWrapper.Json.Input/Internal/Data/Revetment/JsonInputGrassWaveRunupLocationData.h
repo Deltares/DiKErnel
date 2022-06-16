@@ -25,10 +25,10 @@
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
-    class JsonInputGrassWaveRunupRayleighLocationData : public JsonInputLocationData
+    class JsonInputGrassWaveRunupLocationData : public JsonInputLocationData
     {
         public:
-            explicit JsonInputGrassWaveRunupRayleighLocationData(
+            explicit JsonInputGrassWaveRunupLocationData(
                 double x,
                 std::unique_ptr<double> initialDamage,
                 JsonInputGrassRevetmentTopLayerType topLayerType,
