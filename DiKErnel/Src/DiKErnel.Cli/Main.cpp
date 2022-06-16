@@ -39,6 +39,7 @@ using namespace DiKErnel::KernelWrapper::Json::Input;
 using namespace DiKErnel::KernelWrapper::Json::Output;
 using namespace DiKErnel::Util;
 using namespace std;
+using namespace std::chrono;
 
 #pragma region Forward declarations
 
@@ -112,6 +113,8 @@ int main(
             return -1;
         }
 
+        const auto startTime = high_resolution_clock::now();
+
         Calculator calculator(calculationInput);
         calculator.WaitForCompletion();
 
@@ -123,6 +126,8 @@ int main(
             return -1;
         }
 
+        const duration<double> elapsed = high_resolution_clock::now() - startTime;
+
         const auto outputComposerResult = JsonOutputComposer::WriteCalculationOutputToJson(
             jsonOutputFilePath,
             *calculatorResult->GetData(),
@@ -132,7 +137,7 @@ int main(
                 pair<string, variant<double, string>>("Versie", ApplicationHelper::GetApplicationVersionString()),
                 pair<string, variant<double, string>>("Besturingssysteem", ApplicationHelper::GetOperatingSystemName()),
                 pair<string, variant<double, string>>("DatumTijd", ApplicationHelper::GetFormattedDateTimeString()),
-                pair<string, variant<double, string>>("Rekentijd", "")
+                pair<string, variant<double, string>>("Rekentijd", elapsed.count())
             });
 
         WriteToLogFile(outputComposerResult->GetEvents());

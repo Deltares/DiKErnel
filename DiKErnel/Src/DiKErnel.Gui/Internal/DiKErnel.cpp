@@ -193,8 +193,7 @@ namespace DiKErnel::Gui
 
             AddMessage("De berekening is voltooid.");
 
-            const auto endTime = high_resolution_clock::now();
-            const duration<double> elapsed = endTime - startTime;
+            const duration<double> elapsed = high_resolution_clock::now() - startTime;
 
             const auto numberOfLocations = calculationInput.GetLocationDependentInputItems().size();
             const auto numberOfTimeSteps = calculationInput.GetTimeDependentInputItems().size() - 1;
