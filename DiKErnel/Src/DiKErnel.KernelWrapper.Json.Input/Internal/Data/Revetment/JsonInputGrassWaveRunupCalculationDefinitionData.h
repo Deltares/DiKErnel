@@ -22,11 +22,16 @@
 
 #include <memory>
 
+#include "JsonInputCalculationDefinitionData.h"
+
 namespace DiKErnel::KernelWrapper::Json::Input
 {
-    class JsonInputGrassWaveRunupCalculationDefinitionData
+    class JsonInputGrassWaveRunupCalculationDefinitionData : public JsonInputCalculationDefinitionData
     {
         public:
+            explicit JsonInputGrassWaveRunupCalculationDefinitionData(
+                std::unique_ptr<double> failureNumber);
+
             #pragma region Set methods
 
             void SetCriticalCumulativeOverload(

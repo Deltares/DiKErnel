@@ -118,7 +118,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
     unique_ptr<JsonInputGrassWaveRunupRayleighCalculationDefinitionData> JsonInputGrassWaveRunupParser::ParseRayleighRevetmentLocationData(
         const json& readCalculationProtocol)
     {
-        auto rayleighLocationData = make_unique<JsonInputGrassWaveRunupRayleighCalculationDefinitionData>();
+        auto rayleighLocationData = make_unique<JsonInputGrassWaveRunupRayleighCalculationDefinitionData>(nullptr);
 
         rayleighLocationData->SetFixedNumberOfWaves(
             forward<unique_ptr<int>>(JsonInputParserHelper::ParseOptionalInteger(

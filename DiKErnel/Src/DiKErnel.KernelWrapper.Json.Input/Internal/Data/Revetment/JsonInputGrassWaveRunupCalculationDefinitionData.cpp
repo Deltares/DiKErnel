@@ -24,6 +24,10 @@ namespace DiKErnel::KernelWrapper::Json::Input
 {
     using namespace std;
 
+    JsonInputGrassWaveRunupCalculationDefinitionData::JsonInputGrassWaveRunupCalculationDefinitionData(
+        unique_ptr<double> failureNumber)
+        : JsonInputCalculationDefinitionData(move(failureNumber)) {}
+
     #pragma region Set methods
 
     void JsonInputGrassWaveRunupCalculationDefinitionData::SetCriticalCumulativeOverload(

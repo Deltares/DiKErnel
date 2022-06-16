@@ -29,6 +29,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
     class JsonInputGrassWaveRunupRayleighCalculationDefinitionData : public JsonInputGrassWaveRunupCalculationDefinitionData
     {
         public:
+            explicit JsonInputGrassWaveRunupRayleighCalculationDefinitionData(
+                std::unique_ptr<double> failureNumber);
+
             #pragma region Set methods
 
             void SetFixedNumberOfWaves(

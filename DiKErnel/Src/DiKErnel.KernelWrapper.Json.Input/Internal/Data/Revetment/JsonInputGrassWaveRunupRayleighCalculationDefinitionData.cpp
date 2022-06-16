@@ -26,6 +26,10 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
     #pragma region Set methods
 
+    JsonInputGrassWaveRunupRayleighCalculationDefinitionData::JsonInputGrassWaveRunupRayleighCalculationDefinitionData(
+        unique_ptr<double> failureNumber)
+        : JsonInputGrassWaveRunupCalculationDefinitionData(move(failureNumber)) {}
+
     void JsonInputGrassWaveRunupRayleighCalculationDefinitionData::SetFixedNumberOfWaves(
         unique_ptr<int> fixedNumberOfWaves)
     {
