@@ -1,4 +1,5 @@
 # Add directories
+add_subdirectory(DiKErnel.Application)
 add_subdirectory(DiKErnel.Cli)
 add_subdirectory(DiKErnel.Core)
 add_subdirectory(DiKErnel.DomainLibrary)
