@@ -30,14 +30,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
         : _x(x),
           _initialDamage(move(initialDamage)) {}
 
-    JsonInputLocationData::JsonInputLocationData(
-        const double x,
-        unique_ptr<double> initialDamage,
-        unique_ptr<JsonInputDamageData> damageData)
-        : _x(x),
-          _initialDamage(move(initialDamage)),
-          _damageData(move(damageData)) {}
-
     double JsonInputLocationData::GetX() const
     {
         return _x;
@@ -46,10 +38,5 @@ namespace DiKErnel::KernelWrapper::Json::Input
     const double* JsonInputLocationData::GetInitialDamage() const
     {
         return _initialDamage.get();
-    }
-
-    const JsonInputDamageData& JsonInputLocationData::GetDamageData() const
-    {
-        return *_damageData;
     }
 }

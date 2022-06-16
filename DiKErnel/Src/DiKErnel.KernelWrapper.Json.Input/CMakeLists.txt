@@ -39,8 +39,6 @@ set(SOURCEFILES_INTERNAL_DATA_GENERIC
   ${INTERNAL_DATA_GENERIC_FOLDER}/JsonInputCalculationDefinitionData.h
   ${INTERNAL_DATA_GENERIC_FOLDER}/JsonInputCalculationType.h
   ${INTERNAL_DATA_GENERIC_FOLDER}/JsonInputCharacteristicPointType.h
-  ${INTERNAL_DATA_GENERIC_FOLDER}/JsonInputDamageData.cpp
-  ${INTERNAL_DATA_GENERIC_FOLDER}/JsonInputDamageData.h
   ${INTERNAL_DATA_GENERIC_FOLDER}/JsonInputData.cpp
   ${INTERNAL_DATA_GENERIC_FOLDER}/JsonInputData.h
   ${INTERNAL_DATA_GENERIC_FOLDER}/JsonInputDikeProfileData.cpp

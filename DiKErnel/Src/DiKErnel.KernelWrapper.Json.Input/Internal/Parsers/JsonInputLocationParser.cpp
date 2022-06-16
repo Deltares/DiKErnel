@@ -38,19 +38,10 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
     unique_ptr<JsonInputLocationData> JsonInputLocationParser::Parse()
     {
-        unique_ptr<double> failureNumber = nullptr;
-
-        if (_readLocation.contains(JsonInputDefinitions::DAMAGE))
-        {
-            const auto& readDamageVariables = _readLocation.at(JsonInputDefinitions::DAMAGE);
-            failureNumber = JsonInputParserHelper::ParseOptionalDouble(readDamageVariables, JsonInputDefinitions::FAILURE_NUMBER);
-        }
-
         const auto x = _readLocation.at(JsonInputDefinitions::X).get<double>();
         auto initialDamage = JsonInputParserHelper::ParseOptionalDouble(_readLocation, JsonInputDefinitions::INITIAL_DAMAGE);
-        auto damage = make_unique<JsonInputDamageData>(move(failureNumber));
 
-        return ParseLocationData(x, move(damage), move(initialDamage));
+        return ParseLocationData(x, move(initialDamage));
     }
 
     const json& JsonInputLocationParser::GetReadLocation() const

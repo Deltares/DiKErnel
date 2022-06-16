@@ -48,7 +48,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
     unique_ptr<JsonInputLocationData> JsonInputAsphaltWaveImpactParser::ParseLocationData(
         double x,
-        unique_ptr<JsonInputDamageData> damageData,
         unique_ptr<double> initialDamage)
     {
         const auto& readLocation = GetReadLocation();

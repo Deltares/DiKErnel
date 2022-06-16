@@ -22,8 +22,6 @@
 
 #include <memory>
 
-#include "JsonInputDamageData.h"
-
 namespace DiKErnel::KernelWrapper::Json::Input
 {
     class JsonInputLocationData
@@ -35,23 +33,14 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 double x,
                 std::unique_ptr<double> initialDamage);
 
-            explicit JsonInputLocationData(
-                double x,
-                std::unique_ptr<double> initialDamage,
-                std::unique_ptr<JsonInputDamageData> damageData);
-
             [[nodiscard]]
             double GetX() const;
 
             [[nodiscard]]
             const double* GetInitialDamage() const;
 
-            [[nodiscard]]
-            const JsonInputDamageData& GetDamageData() const;
-
         private:
             double _x;
             std::unique_ptr<double> _initialDamage;
-            std::unique_ptr<JsonInputDamageData> _damageData;
     };
 }

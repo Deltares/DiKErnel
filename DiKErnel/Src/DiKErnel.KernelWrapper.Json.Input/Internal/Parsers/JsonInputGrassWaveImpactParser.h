@@ -36,7 +36,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
         protected:
             std::unique_ptr<JsonInputLocationData> ParseLocationData(
                 double x,
-                std::unique_ptr<JsonInputDamageData> damageData,
                 std::unique_ptr<double> initialDamage) override;
     };
 }
