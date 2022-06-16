@@ -44,7 +44,8 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
 
         void PerformTest(
             const string& filename,
-            const JsonOutputType outputType) const
+            const JsonOutputType outputType,
+            const bool withMetaData) const
         {
             // Setup
             const auto expectedOutputFilePath = (TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Output.Test")
@@ -64,8 +65,17 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
 
             const CalculationOutput calculationOutput(move(locations));
 
+            auto metaDataItems = vector<pair<string, variant<double, string>>>();
+
+            if (withMetaData)
+            {
+                metaDataItems.emplace_back("Test 1", 1.23);
+                metaDataItems.emplace_back("Test 2", "4.56");
+            }
+
             // Call
-            const auto& result = JsonOutputComposer::WriteCalculationOutputToJson(_actualOutputFilePath, calculationOutput, outputType);
+            const auto& result = JsonOutputComposer::WriteCalculationOutputToJson(_actualOutputFilePath, calculationOutput, outputType,
+                                                                                  metaDataItems);
 
             // Assert
             FileAssert::AssertFileContents(expectedOutputFilePath, _actualOutputFilePath);
@@ -101,15 +111,27 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
     }
 
     TEST_F(JsonOutputComposerTest,
-           WriteCalculationOutputToJson_JsonOutputTypeFailure_ReturnsResultWithSuccessfulTrueAndNoEventsAndWritesExpectedValues)
+           WriteCalculationOutputToJson_JsonOutputTypeFailureWithoutMetaData_ReturnsResultWithSuccessfulTrueAndNoEventsAndWritesExpectedValues)
     {
-        PerformTest("ExpectedFailureOutput.json", JsonOutputType::Failure);
+        PerformTest("ExpectedFailureOutputWithoutMetaData.json", JsonOutputType::Failure, false);
     }
 
     TEST_F(JsonOutputComposerTest,
-           WriteCalculationOutputToJson_JsonOutputTypeDamage_ReturnsResultWithSuccessfulTrueAndNoEventsAndWritesExpectedValues)
+           WriteCalculationOutputToJson_JsonOutputTypeFailureWithMetaData_ReturnsResultWithSuccessfulTrueAndNoEventsAndWritesExpectedValues)
     {
-        PerformTest("ExpectedDamageOutput.json", JsonOutputType::Damage);
+        PerformTest("ExpectedFailureOutputWithMetaData.json", JsonOutputType::Failure, true);
+    }
+
+    TEST_F(JsonOutputComposerTest,
+           WriteCalculationOutputToJson_JsonOutputTypeDamageWithoutMetaData_ReturnsResultWithSuccessfulTrueAndNoEventsAndWritesExpectedValues)
+    {
+        PerformTest("ExpectedDamageOutputWithoutMetaData.json", JsonOutputType::Damage, false);
+    }
+
+    TEST_F(JsonOutputComposerTest,
+           WriteCalculationOutputToJson_JsonOutputTypeDamageWithMetaData_ReturnsResultWithSuccessfulTrueAndNoEventsAndWritesExpectedValues)
+    {
+        PerformTest("ExpectedDamageOutputWithMetaData.json", JsonOutputType::Damage, true);
     }
 
     TEST_F(JsonOutputComposerTest,

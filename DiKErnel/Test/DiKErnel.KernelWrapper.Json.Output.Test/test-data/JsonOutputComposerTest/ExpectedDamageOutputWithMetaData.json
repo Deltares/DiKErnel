@@ -1,0 +1,34 @@
+{
+    "MetaInformatie": {
+        "Test 1": 1.23,
+        "Test 2": "4.56"
+    },
+    "Uitvoerdata": {
+        "Locaties": [
+            {
+                "FalenBekleding": {
+                    "Faalgebeurtenis": true,
+                    "Faaltijd": 60
+                },
+                "SchadeBekleding": {
+                    "SchadegetalPerTijd": [
+                        0.15,
+                        0.253
+                    ]
+                }
+            },
+            {
+                "FalenBekleding": {
+                    "Faalgebeurtenis": false,
+                    "Faaltijd": null
+                },
+                "SchadeBekleding": {
+                    "SchadegetalPerTijd": [
+                        0.28,
+                        0.512
+                    ]
+                }
+            }
+        ]
+    }
+}
