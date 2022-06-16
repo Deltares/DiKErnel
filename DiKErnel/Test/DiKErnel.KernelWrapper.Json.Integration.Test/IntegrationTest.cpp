@@ -151,6 +151,10 @@ namespace DiKErnel::KernelWrapper::Json::Integration::Test
             {
                 AssertMetaData(actualJson.at("MetaInformatie"));
             }
+            else
+            {
+                ASSERT_FALSE(actualJson.contains("MetaInformatie"));
+            }
 
             const auto& expectedLocations = expectedJson.at("Uitvoerdata").at("Locaties");
             const auto& actualLocations = actualJson.at("Uitvoerdata").at("Locaties");
