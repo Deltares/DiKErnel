@@ -59,7 +59,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 JsonInputAsphaltRevetmentTopLayerType topLayerType);
 
             static std::unique_ptr<Integration::GrassRevetmentWaveImpactLocationConstructionProperties> CreateGrassWaveImpactConstructionProperties(
-                const JsonInputGrassWaveImpactLocationData& location);
+                const JsonInputGrassWaveImpactLocationData& location,
+                const JsonInputGrassWaveImpactCalculationDefinitionData* calculationDefinition);
 
             static std::unique_ptr<Integration::GrassRevetmentWaveRunupRayleighLocationConstructionProperties>
             CreateGrassWaveRunupRayleighConstructionProperties(

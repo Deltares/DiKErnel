@@ -78,7 +78,10 @@ namespace DiKErnel::KernelWrapper::Json::Input
             if (const auto* grassWaveImpactLocationData = dynamic_cast<const JsonInputGrassWaveImpactLocationData*>(&location);
                 grassWaveImpactLocationData != nullptr)
             {
-                const auto& constructionProperties = CreateGrassWaveImpactConstructionProperties(*grassWaveImpactLocationData);
+                const auto& constructionProperties = CreateGrassWaveImpactConstructionProperties(
+                    *grassWaveImpactLocationData,
+                    GetCalculationDefinition<JsonInputGrassWaveImpactCalculationDefinitionData>(
+                        calculationDefinitionReferences, JsonInputCalculationType::GrassWaveImpact));
                 builder.AddGrassWaveImpactLocation(*constructionProperties);
             }
 
@@ -210,40 +213,42 @@ namespace DiKErnel::KernelWrapper::Json::Input
     }
 
     unique_ptr<GrassRevetmentWaveImpactLocationConstructionProperties> JsonInputAdapter::CreateGrassWaveImpactConstructionProperties(
-        const JsonInputGrassWaveImpactLocationData& location)
+        const JsonInputGrassWaveImpactLocationData& location,
+        const JsonInputGrassWaveImpactCalculationDefinitionData* calculationDefinition)
     {
-        const auto& damageData = location.GetDamageData();
-        const auto& revetmentData = location.GetRevetmentLocationData();
-
         auto constructionProperties = make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(
             location.GetX(), ConvertTopLayerType(location.GetTopLayerType()));
 
         constructionProperties->SetInitialDamage(forward<unique_ptr<double>>(CreatePointerOfValue(location.GetInitialDamage())));
-        constructionProperties->SetFailureNumber(forward<unique_ptr<double>>(CreatePointerOfValue(damageData.GetFailureNumber())));
 
-        constructionProperties->SetTimeLineAgwi(
-            forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetTimeLineAgwi())));
-        constructionProperties->SetTimeLineBgwi(
-            forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetTimeLineBgwi())));
-        constructionProperties->SetTimeLineCgwi(
-            forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetTimeLineCgwi())));
+        if (calculationDefinition != nullptr)
+        {
+            constructionProperties->SetFailureNumber(forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetFailureNumber())));
 
-        constructionProperties->SetMinimumWaveHeightTemax(
-            forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetMinimumWaveHeightTemax())));
-        constructionProperties->SetMaximumWaveHeightTemin(
-            forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetMaximumWaveHeightTemin())));
+            constructionProperties->SetTimeLineAgwi(
+                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetTimeLineAgwi())));
+            constructionProperties->SetTimeLineBgwi(
+                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetTimeLineBgwi())));
+            constructionProperties->SetTimeLineCgwi(
+                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetTimeLineCgwi())));
 
-        constructionProperties->SetWaveAngleImpactNwa(
-            forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetWaveAngleImpactNwa())));
-        constructionProperties->SetWaveAngleImpactQwa(
-            forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetWaveAngleImpactQwa())));
-        constructionProperties->SetWaveAngleImpactRwa(
-            forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetWaveAngleImpactRwa())));
+            constructionProperties->SetMinimumWaveHeightTemax(
+                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetMinimumWaveHeightTemax())));
+            constructionProperties->SetMaximumWaveHeightTemin(
+                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetMaximumWaveHeightTemin())));
 
-        constructionProperties->SetUpperLimitLoadingAul(
-            forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetUpperLimitLoadingAul())));
-        constructionProperties->SetLowerLimitLoadingAll(
-            forward<unique_ptr<double>>(CreatePointerOfValue(revetmentData.GetLowerLimitLoadingAll())));
+            constructionProperties->SetWaveAngleImpactNwa(
+                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetWaveAngleImpactNwa())));
+            constructionProperties->SetWaveAngleImpactQwa(
+                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetWaveAngleImpactQwa())));
+            constructionProperties->SetWaveAngleImpactRwa(
+                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetWaveAngleImpactRwa())));
+
+            constructionProperties->SetUpperLimitLoadingAul(
+                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetUpperLimitLoadingAul())));
+            constructionProperties->SetLowerLimitLoadingAll(
+                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetLowerLimitLoadingAll())));
+        }
 
         return constructionProperties;
     }
