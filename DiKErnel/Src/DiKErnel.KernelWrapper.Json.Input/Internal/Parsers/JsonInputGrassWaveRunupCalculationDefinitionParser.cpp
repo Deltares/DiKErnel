@@ -113,7 +113,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
         return calculationDefinition;
     }
 
-    unique_ptr<JsonInputGrassWaveRunupCalculationProtocolData> ReadCalculationProtocolData(
+    unique_ptr<JsonInputGrassWaveRunupCalculationProtocolData> JsonInputGrassWaveRunupCalculationDefinitionParser::ReadCalculationProtocolData(
         const json& readCalculationMethod)
     {
         const auto& readCalculationProtocol = readCalculationMethod.at(JsonInputGrassWaveRunupDefinitions::CALCULATION_PROTOCOL);

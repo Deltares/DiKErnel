@@ -43,7 +43,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
         private:
             static std::unique_ptr<JsonInputGrassWaveRunupCalculationProtocolData> ReadCalculationProtocolData(
-                const nlohmann::json& json);
+                const nlohmann::json& readCalculationMethod);
         
             static std::map<JsonInputGrassRevetmentTopLayerType, std::unique_ptr<JsonInputGrassWaveRunupTopLayerDefinitionData>>
                 ReadTopLayerDefinitionData(
