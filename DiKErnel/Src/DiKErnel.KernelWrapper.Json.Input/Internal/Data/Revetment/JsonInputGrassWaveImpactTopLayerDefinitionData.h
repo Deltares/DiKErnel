@@ -26,6 +26,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
 {
     class JsonInputGrassWaveImpactTopLayerDefinitionData
     {
+        public:
             #pragma region Set methods
 
             void SetTimeLineAgwi(

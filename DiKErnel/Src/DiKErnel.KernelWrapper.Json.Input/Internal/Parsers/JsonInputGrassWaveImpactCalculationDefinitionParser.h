@@ -25,6 +25,8 @@
 #include <nlohmann/json.hpp>
 
 #include "JsonInputCalculationDefinitionParser.h"
+#include "JsonInputGrassRevetmentTopLayerType.h"
+#include "JsonInputGrassWaveImpactTopLayerDefinitionData.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
@@ -37,5 +39,10 @@ namespace DiKErnel::KernelWrapper::Json::Input
         protected:
             std::unique_ptr<JsonInputCalculationDefinitionData> ParseCalculationDefinition(
                 std::unique_ptr<double> failureNumber) override;
+
+        private:
+            static std::map<JsonInputGrassRevetmentTopLayerType, std::unique_ptr<JsonInputGrassWaveImpactTopLayerDefinitionData>>
+            ReadTopLayerDefinitionData(
+                const nlohmann::json& readCalculationMethod);
     };
 }

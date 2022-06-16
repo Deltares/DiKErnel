@@ -25,8 +25,18 @@ namespace DiKErnel::KernelWrapper::Json::Input
     using namespace std;
 
     JsonInputGrassWaveImpactCalculationDefinitionData::JsonInputGrassWaveImpactCalculationDefinitionData(
-        unique_ptr<double> failureNumber)
-        : JsonInputCalculationDefinitionData(move(failureNumber)) {}
+        unique_ptr<double> failureNumber,
+        map<JsonInputGrassRevetmentTopLayerType, unique_ptr<JsonInputGrassWaveImpactTopLayerDefinitionData>> topLayerDefinitionData)
+        : JsonInputCalculationDefinitionData(move(failureNumber)),
+          _topLayerDefinitionData(move(topLayerDefinitionData))
+    {
+        for (const auto& [topLayerType, topLayerDefinition] : _topLayerDefinitionData)
+        {
+            _topLayerDefinitionDataReferences.insert(
+                pair<JsonInputGrassRevetmentTopLayerType, reference_wrapper<JsonInputGrassWaveImpactTopLayerDefinitionData>>(
+                    topLayerType, *topLayerDefinition));
+        }
+    }
 
     #pragma region Set methods
 
@@ -88,6 +98,12 @@ namespace DiKErnel::KernelWrapper::Json::Input
         unique_ptr<double> lowerLimitLoadingAll)
     {
         _lowerLimitLoadingAll = move(lowerLimitLoadingAll);
+    }
+
+    const map<JsonInputGrassRevetmentTopLayerType, reference_wrapper<JsonInputGrassWaveImpactTopLayerDefinitionData>>&
+    JsonInputGrassWaveImpactCalculationDefinitionData::GetTopLayerDefinitionData() const
+    {
+        return _topLayerDefinitionDataReferences;
     }
 
     #pragma endregion

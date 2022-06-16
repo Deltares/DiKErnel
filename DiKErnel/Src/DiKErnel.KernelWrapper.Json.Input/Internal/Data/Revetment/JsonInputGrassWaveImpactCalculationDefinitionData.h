@@ -20,9 +20,12 @@
 
 #pragma once
 
+#include <map>
 #include <memory>
 
 #include "JsonInputCalculationDefinitionData.h"
+#include "JsonInputGrassRevetmentTopLayerType.h"
+#include "JsonInputGrassWaveImpactTopLayerDefinitionData.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
@@ -30,7 +33,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
     {
         public:
             explicit JsonInputGrassWaveImpactCalculationDefinitionData(
-                std::unique_ptr<double> failureNumber);
+                std::unique_ptr<double> failureNumber,
+                std::map<JsonInputGrassRevetmentTopLayerType, std::unique_ptr<JsonInputGrassWaveImpactTopLayerDefinitionData>>
+                topLayerDefinitionData);
 
             #pragma region Set methods
 
@@ -69,6 +74,10 @@ namespace DiKErnel::KernelWrapper::Json::Input
             #pragma region Get methods
 
             [[nodiscard]]
+            const std::map<JsonInputGrassRevetmentTopLayerType, std::reference_wrapper<JsonInputGrassWaveImpactTopLayerDefinitionData>>&
+            GetTopLayerDefinitionData() const;
+
+            [[nodiscard]]
             const double* GetTimeLineAgwi() const;
 
             [[nodiscard]]
@@ -101,6 +110,10 @@ namespace DiKErnel::KernelWrapper::Json::Input
             #pragma endregion
 
         private:
+            std::map<JsonInputGrassRevetmentTopLayerType, std::unique_ptr<JsonInputGrassWaveImpactTopLayerDefinitionData>>
+            _topLayerDefinitionData;
+            std::map<JsonInputGrassRevetmentTopLayerType, std::reference_wrapper<JsonInputGrassWaveImpactTopLayerDefinitionData>>
+            _topLayerDefinitionDataReferences;
             std::unique_ptr<double> _timeLineAgwi = nullptr;
             std::unique_ptr<double> _timeLineBgwi = nullptr;
             std::unique_ptr<double> _timeLineCgwi = nullptr;
