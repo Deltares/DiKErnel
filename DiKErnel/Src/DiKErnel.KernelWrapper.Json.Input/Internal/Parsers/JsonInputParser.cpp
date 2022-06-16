@@ -200,29 +200,27 @@ namespace DiKErnel::KernelWrapper::Json::Input
         for (const auto& readLocation : readLocations)
         {
             const auto& calculationType = readLocation.at(JsonInputDefinitions::CALCULATION_METHOD_TYPE).get<JsonInputCalculationType>();
-            const auto& readRevetment = readLocation.at(JsonInputDefinitions::REVETMENT);
-            const auto& readCalculationMethod = readRevetment.at(JsonInputDefinitions::CALCULATION_METHODS).at(0);
 
             unique_ptr<JsonInputLocationParser> parser = nullptr;
 
             if (calculationType == JsonInputCalculationType::AsphaltWaveImpact)
             {
-                parser = CreateLocationParser<JsonInputAsphaltWaveImpactParser>(readLocation, readRevetment, readCalculationMethod);
+                parser = CreateLocationParser<JsonInputAsphaltWaveImpactParser>(readLocation);
             }
 
             if (calculationType == JsonInputCalculationType::GrassWaveImpact)
             {
-                parser = CreateLocationParser<JsonInputGrassWaveImpactParser>(readLocation, readRevetment, readCalculationMethod);
+                parser = CreateLocationParser<JsonInputGrassWaveImpactParser>(readLocation);
             }
 
             if (calculationType == JsonInputCalculationType::GrassWaveRunup)
             {
-                parser = CreateLocationParser<JsonInputGrassWaveRunupParser>(readLocation, readRevetment, readCalculationMethod);
+                parser = CreateLocationParser<JsonInputGrassWaveRunupParser>(readLocation);
             }
 
             if (calculationType == JsonInputCalculationType::NaturalStone)
             {
-                parser = CreateLocationParser<JsonInputNaturalStoneParser>(readLocation, readRevetment, readCalculationMethod);
+                parser = CreateLocationParser<JsonInputNaturalStoneParser>(readLocation);
             }
 
             parsedLocations.push_back(forward<unique_ptr<JsonInputLocationData>>(parser->Parse()));
@@ -242,8 +240,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
             for (const auto& readCalculationDefinition : readCalculationDefinitions)
             {
-                const auto& calculationType = readCalculationDefinition.at(JsonInputDefinitions::CALCULATION_METHOD_TYPE).get<
-                    JsonInputCalculationType>();
+                const auto& calculationType = readCalculationDefinition.at(JsonInputDefinitions::CALCULATION_METHOD_TYPE)
+                                                                       .get<JsonInputCalculationType>();
 
                 unique_ptr<JsonInputCalculationDefinitionParser> parser = nullptr;
 
@@ -277,11 +275,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
     template <typename T>
     unique_ptr<T> JsonInputParser::CreateLocationParser(
-        const json& readLocation,
-        const json& readRevetment,
-        const json& readCalculationMethod)
+        const json& readLocation)
     {
-        return make_unique<T>(readLocation, readRevetment, readCalculationMethod);
+        return make_unique<T>(readLocation);
     }
 
     template <typename T>

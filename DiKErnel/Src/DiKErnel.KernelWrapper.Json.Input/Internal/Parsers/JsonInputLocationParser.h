@@ -34,9 +34,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
             virtual ~JsonInputLocationParser() = default;
 
             explicit JsonInputLocationParser(
-                const nlohmann::json& readLocation,
-                const nlohmann::json& readRevetment,
-                const nlohmann::json& readCalculationMethod);
+                const nlohmann::json& readLocation);
 
             std::unique_ptr<JsonInputLocationData> Parse();
 
@@ -48,15 +46,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
             [[nodiscard]]
             const nlohmann::json& GetReadLocation() const;
 
-            [[nodiscard]]
-            const nlohmann::json& GetReadRevetment() const;
-
-            [[nodiscard]]
-            const nlohmann::json& GetReadCalculationMethod() const;
-
         private:
             const nlohmann::json& _readLocation;
-            const nlohmann::json& _readRevetment;
-            const nlohmann::json& _readCalculationMethod;
     };
 }

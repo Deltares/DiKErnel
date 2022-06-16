@@ -28,9 +28,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
     {
         public:
             explicit JsonInputGrassWaveRunupParser(
-                const nlohmann::json& readLocation,
-                const nlohmann::json& readRevetment,
-                const nlohmann::json& readCalculationMethod);
+                const nlohmann::json& readLocation);
 
         protected:
             std::unique_ptr<JsonInputLocationData> ParseLocationData(

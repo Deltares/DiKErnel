@@ -29,12 +29,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
     using namespace std;
 
     JsonInputLocationParser::JsonInputLocationParser(
-        const json& readLocation,
-        const json& readRevetment,
-        const json& readCalculationMethod)
-        : _readLocation(readLocation),
-          _readRevetment(readRevetment),
-          _readCalculationMethod(readCalculationMethod) { }
+        const json& readLocation)
+        : _readLocation(readLocation) { }
 
     unique_ptr<JsonInputLocationData> JsonInputLocationParser::Parse()
     {
@@ -47,15 +43,5 @@ namespace DiKErnel::KernelWrapper::Json::Input
     const json& JsonInputLocationParser::GetReadLocation() const
     {
         return _readLocation;
-    }
-
-    const json& JsonInputLocationParser::GetReadRevetment() const
-    {
-        return _readRevetment;
-    }
-
-    const json& JsonInputLocationParser::GetReadCalculationMethod() const
-    {
-        return _readCalculationMethod;
     }
 }

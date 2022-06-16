@@ -43,10 +43,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
         });
 
     JsonInputGrassWaveImpactParser::JsonInputGrassWaveImpactParser(
-        const json& readLocation,
-        const json& readRevetment,
-        const json& readCalculationMethod)
-        : JsonInputLocationParser(readLocation, readRevetment, readCalculationMethod) {}
+        const json& readLocation)
+        : JsonInputLocationParser(readLocation) {}
 
     unique_ptr<JsonInputLocationData> JsonInputGrassWaveImpactParser::ParseLocationData(
         double x,

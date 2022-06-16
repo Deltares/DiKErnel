@@ -40,10 +40,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
         });
 
     JsonInputNaturalStoneParser::JsonInputNaturalStoneParser(
-        const json& readLocation,
-        const json& readRevetment,
-        const json& readCalculationMethod)
-        : JsonInputLocationParser(readLocation, readRevetment, readCalculationMethod) {}
+        const json& readLocation)
+        : JsonInputLocationParser(readLocation) {}
 
     unique_ptr<JsonInputLocationData> JsonInputNaturalStoneParser::ParseLocationData(
         double x,
