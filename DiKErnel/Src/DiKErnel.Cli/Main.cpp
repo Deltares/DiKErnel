@@ -123,7 +123,16 @@ int main(
         }
 
         const auto outputComposerResult = JsonOutputComposer::WriteCalculationOutputToJson(
-            jsonOutputFilePath, *calculatorResult->GetData(), ConvertProcessType(inputData->GetProcessType()));
+            jsonOutputFilePath,
+            *calculatorResult->GetData(),
+            ConvertProcessType(inputData->GetProcessType()),
+            vector
+            {
+                pair<string, variant<double, string>>("Versie", VERSION_STRING),
+                pair<string, variant<double, string>>("Besturingssysteem", ""),
+                pair<string, variant<double, string>>("DatumTijd", ""),
+                pair<string, variant<double, string>>("Rekentijd", "")
+            });
 
         WriteToLogFile(outputComposerResult->GetEvents());
 
