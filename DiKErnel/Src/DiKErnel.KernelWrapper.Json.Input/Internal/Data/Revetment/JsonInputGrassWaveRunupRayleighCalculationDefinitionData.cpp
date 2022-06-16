@@ -28,7 +28,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
     JsonInputGrassWaveRunupRayleighCalculationDefinitionData::JsonInputGrassWaveRunupRayleighCalculationDefinitionData(
         unique_ptr<double> failureNumber)
-        : JsonInputGrassWaveRunupCalculationDefinitionData(move(failureNumber)) {}
+        : JsonInputGrassWaveRunupCalculationDefinitionData(move(failureNumber), nullptr) {}
 
     void JsonInputGrassWaveRunupRayleighCalculationDefinitionData::SetFixedNumberOfWaves(
         unique_ptr<int> fixedNumberOfWaves)

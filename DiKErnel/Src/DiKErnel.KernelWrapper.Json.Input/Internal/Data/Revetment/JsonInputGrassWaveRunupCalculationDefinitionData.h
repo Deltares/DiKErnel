@@ -23,6 +23,7 @@
 #include <memory>
 
 #include "JsonInputCalculationDefinitionData.h"
+#include "JsonInputGrassWaveRunupCalculationProtocolData.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
@@ -30,7 +31,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
     {
         public:
             explicit JsonInputGrassWaveRunupCalculationDefinitionData(
-                std::unique_ptr<double> failureNumber);
+                std::unique_ptr<double> failureNumber,
+                std::unique_ptr<JsonInputGrassWaveRunupCalculationProtocolData> calculationProtocolData);
 
             #pragma region Set methods
 
@@ -63,6 +65,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
             #pragma region Get methods
 
             [[nodiscard]]
+            const JsonInputGrassWaveRunupCalculationProtocolData& GetCalculationProtocolData() const;
+
+            [[nodiscard]]
             const double* GetCriticalCumulativeOverload() const;
 
             [[nodiscard]]
@@ -89,6 +94,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
             #pragma endregion
 
         private:
+            std::unique_ptr<JsonInputGrassWaveRunupCalculationProtocolData> _calculationProtocolData;
             std::unique_ptr<double> _criticalCumulativeOverload = nullptr;
             std::unique_ptr<double> _criticalFrontVelocity = nullptr;
             std::unique_ptr<double> _averageNumberOfWavesCtm = nullptr;

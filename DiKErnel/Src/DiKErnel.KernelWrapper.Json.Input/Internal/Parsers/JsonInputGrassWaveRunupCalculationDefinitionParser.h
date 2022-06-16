@@ -25,6 +25,7 @@
 #include <nlohmann/json.hpp>
 
 #include "JsonInputCalculationDefinitionParser.h"
+#include "JsonInputGrassWaveRunupCalculationProtocolData.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
@@ -37,5 +38,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
         protected:
             std::unique_ptr<JsonInputCalculationDefinitionData> ParseCalculationDefinition(
                 std::unique_ptr<double> failureNumber) override;
+
+        private:
+            std::unique_ptr<JsonInputGrassWaveRunupCalculationProtocolData> ReadCalculationProtocolData(
+                const nlohmann::json& json);
     };
 }

@@ -25,8 +25,10 @@ namespace DiKErnel::KernelWrapper::Json::Input
     using namespace std;
 
     JsonInputGrassWaveRunupCalculationDefinitionData::JsonInputGrassWaveRunupCalculationDefinitionData(
-        unique_ptr<double> failureNumber)
-        : JsonInputCalculationDefinitionData(move(failureNumber)) {}
+        unique_ptr<double> failureNumber,
+        unique_ptr<JsonInputGrassWaveRunupCalculationProtocolData> calculationProtocolData)
+        : JsonInputCalculationDefinitionData(move(failureNumber)),
+          _calculationProtocolData(move(calculationProtocolData)) {}
 
     #pragma region Set methods
 
@@ -76,6 +78,11 @@ namespace DiKErnel::KernelWrapper::Json::Input
         unique_ptr<double> waveAngleImpactBetamax)
     {
         _waveAngleImpactBetamax = move(waveAngleImpactBetamax);
+    }
+
+    const JsonInputGrassWaveRunupCalculationProtocolData& JsonInputGrassWaveRunupCalculationDefinitionData::GetCalculationProtocolData() const
+    {
+        return *_calculationProtocolData;
     }
 
     #pragma endregion
