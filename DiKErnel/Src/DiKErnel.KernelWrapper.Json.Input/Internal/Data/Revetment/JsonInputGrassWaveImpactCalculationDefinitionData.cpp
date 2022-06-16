@@ -18,7 +18,7 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include "JsonInputGrassRevetmentWaveImpactLocationData.h"
+#include "JsonInputGrassWaveImpactCalculationDefinitionData.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
@@ -26,61 +26,61 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
     #pragma region Set methods
 
-    void JsonInputGrassRevetmentWaveImpactLocationData::SetTimeLineAgwi(
+    void JsonInputGrassWaveImpactCalculationDefinitionData::SetTimeLineAgwi(
         unique_ptr<double> timeLineAgwi)
     {
         _timeLineAgwi = move(timeLineAgwi);
     }
 
-    void JsonInputGrassRevetmentWaveImpactLocationData::SetTimeLineBgwi(
+    void JsonInputGrassWaveImpactCalculationDefinitionData::SetTimeLineBgwi(
         unique_ptr<double> timeLineBgwi)
     {
         _timeLineBgwi = move(timeLineBgwi);
     }
 
-    void JsonInputGrassRevetmentWaveImpactLocationData::SetTimeLineCgwi(
+    void JsonInputGrassWaveImpactCalculationDefinitionData::SetTimeLineCgwi(
         unique_ptr<double> timeLineCgwi)
     {
         _timeLineCgwi = move(timeLineCgwi);
     }
 
-    void JsonInputGrassRevetmentWaveImpactLocationData::SetMinimumWaveHeightTemax(
+    void JsonInputGrassWaveImpactCalculationDefinitionData::SetMinimumWaveHeightTemax(
         unique_ptr<double> minimumWaveHeightTemax)
     {
         _minimumWaveHeightTemax = move(minimumWaveHeightTemax);
     }
 
-    void JsonInputGrassRevetmentWaveImpactLocationData::SetMaximumWaveHeightTemin(
+    void JsonInputGrassWaveImpactCalculationDefinitionData::SetMaximumWaveHeightTemin(
         unique_ptr<double> maximumWaveHeightTemin)
     {
         _maximumWaveHeightTemin = move(maximumWaveHeightTemin);
     }
 
-    void JsonInputGrassRevetmentWaveImpactLocationData::SetWaveAngleImpactNwa(
+    void JsonInputGrassWaveImpactCalculationDefinitionData::SetWaveAngleImpactNwa(
         unique_ptr<double> waveAngleImpactNwa)
     {
         _waveAngleImpactNwa = move(waveAngleImpactNwa);
     }
 
-    void JsonInputGrassRevetmentWaveImpactLocationData::SetWaveAngleImpactQwa(
+    void JsonInputGrassWaveImpactCalculationDefinitionData::SetWaveAngleImpactQwa(
         unique_ptr<double> waveAngleImpactQwa)
     {
         _waveAngleImpactQwa = move(waveAngleImpactQwa);
     }
 
-    void JsonInputGrassRevetmentWaveImpactLocationData::SetWaveAngleImpactRwa(
+    void JsonInputGrassWaveImpactCalculationDefinitionData::SetWaveAngleImpactRwa(
         unique_ptr<double> waveAngleImpactRwa)
     {
         _waveAngleImpactRwa = move(waveAngleImpactRwa);
     }
 
-    void JsonInputGrassRevetmentWaveImpactLocationData::SetUpperLimitLoadingAul(
+    void JsonInputGrassWaveImpactCalculationDefinitionData::SetUpperLimitLoadingAul(
         unique_ptr<double> upperLimitLoadingAul)
     {
         _upperLimitLoadingAul = move(upperLimitLoadingAul);
     }
 
-    void JsonInputGrassRevetmentWaveImpactLocationData::SetLowerLimitLoadingAll(
+    void JsonInputGrassWaveImpactCalculationDefinitionData::SetLowerLimitLoadingAll(
         unique_ptr<double> lowerLimitLoadingAll)
     {
         _lowerLimitLoadingAll = move(lowerLimitLoadingAll);
@@ -90,52 +90,52 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
     #pragma region Get methods
 
-    const double* JsonInputGrassRevetmentWaveImpactLocationData::GetTimeLineAgwi() const
+    const double* JsonInputGrassWaveImpactCalculationDefinitionData::GetTimeLineAgwi() const
     {
         return _timeLineAgwi.get();
     }
 
-    const double* JsonInputGrassRevetmentWaveImpactLocationData::GetTimeLineBgwi() const
+    const double* JsonInputGrassWaveImpactCalculationDefinitionData::GetTimeLineBgwi() const
     {
         return _timeLineBgwi.get();
     }
 
-    const double* JsonInputGrassRevetmentWaveImpactLocationData::GetTimeLineCgwi() const
+    const double* JsonInputGrassWaveImpactCalculationDefinitionData::GetTimeLineCgwi() const
     {
         return _timeLineCgwi.get();
     }
 
-    const double* JsonInputGrassRevetmentWaveImpactLocationData::GetMinimumWaveHeightTemax() const
+    const double* JsonInputGrassWaveImpactCalculationDefinitionData::GetMinimumWaveHeightTemax() const
     {
         return _minimumWaveHeightTemax.get();
     }
 
-    const double* JsonInputGrassRevetmentWaveImpactLocationData::GetMaximumWaveHeightTemin() const
+    const double* JsonInputGrassWaveImpactCalculationDefinitionData::GetMaximumWaveHeightTemin() const
     {
         return _maximumWaveHeightTemin.get();
     }
 
-    const double* JsonInputGrassRevetmentWaveImpactLocationData::GetWaveAngleImpactNwa() const
+    const double* JsonInputGrassWaveImpactCalculationDefinitionData::GetWaveAngleImpactNwa() const
     {
         return _waveAngleImpactNwa.get();
     }
 
-    const double* JsonInputGrassRevetmentWaveImpactLocationData::GetWaveAngleImpactQwa() const
+    const double* JsonInputGrassWaveImpactCalculationDefinitionData::GetWaveAngleImpactQwa() const
     {
         return _waveAngleImpactQwa.get();
     }
 
-    const double* JsonInputGrassRevetmentWaveImpactLocationData::GetWaveAngleImpactRwa() const
+    const double* JsonInputGrassWaveImpactCalculationDefinitionData::GetWaveAngleImpactRwa() const
     {
         return _waveAngleImpactRwa.get();
     }
 
-    const double* JsonInputGrassRevetmentWaveImpactLocationData::GetUpperLimitLoadingAul() const
+    const double* JsonInputGrassWaveImpactCalculationDefinitionData::GetUpperLimitLoadingAul() const
     {
         return _upperLimitLoadingAul.get();
     }
 
-    const double* JsonInputGrassRevetmentWaveImpactLocationData::GetLowerLimitLoadingAll() const
+    const double* JsonInputGrassWaveImpactCalculationDefinitionData::GetLowerLimitLoadingAll() const
     {
         return _lowerLimitLoadingAll.get();
     }

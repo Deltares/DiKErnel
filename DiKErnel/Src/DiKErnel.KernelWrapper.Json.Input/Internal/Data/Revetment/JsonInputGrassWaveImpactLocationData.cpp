@@ -31,7 +31,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
         unique_ptr<double> initialDamage,
         const JsonInputGrassRevetmentTopLayerType topLayerType,
         unique_ptr<JsonInputDamageData> damageData,
-        unique_ptr<JsonInputGrassRevetmentWaveImpactLocationData> revetmentLocationData)
+        unique_ptr<JsonInputGrassWaveImpactCalculationDefinitionData> revetmentLocationData)
         : JsonInputLocationData(x, move(initialDamage), move(damageData)),
           _topLayerType(topLayerType),
           _revetmentLocationData(move(revetmentLocationData)) {}
@@ -41,7 +41,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
         return _topLayerType;
     }
 
-    const JsonInputGrassRevetmentWaveImpactLocationData& JsonInputGrassWaveImpactLocationData::GetRevetmentLocationData() const
+    const JsonInputGrassWaveImpactCalculationDefinitionData& JsonInputGrassWaveImpactLocationData::GetRevetmentLocationData() const
     {
         return *_revetmentLocationData;
     }

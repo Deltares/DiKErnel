@@ -62,12 +62,12 @@ namespace DiKErnel::KernelWrapper::Json::Input
             move(damageData), ParseRevetmentLocationData());
     }
 
-    unique_ptr<JsonInputGrassRevetmentWaveImpactLocationData> JsonInputGrassWaveImpactParser::ParseRevetmentLocationData() const
+    unique_ptr<JsonInputGrassWaveImpactCalculationDefinitionData> JsonInputGrassWaveImpactParser::ParseRevetmentLocationData() const
     {
         const auto& readRevetment = GetReadRevetment();
         const auto& readCalculationMethod = GetReadCalculationMethod();
 
-        auto locationData = make_unique<JsonInputGrassRevetmentWaveImpactLocationData>();
+        auto locationData = make_unique<JsonInputGrassWaveImpactCalculationDefinitionData>();
 
         locationData->SetTimeLineAgwi(
             forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
