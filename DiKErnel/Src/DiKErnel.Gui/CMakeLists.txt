@@ -87,11 +87,13 @@ set_target_properties(${EXENAME} PROPERTIES
 
 # Expose header files
 if(BUILD_FOR_RELEASE)
-  target_include_directories(${EXENAME}
-    PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/${INTERNAL_FOLDER}
+  target_include_directories(${EXENAME} PRIVATE
+    ${CMAKE_CURRENT_BINARY_DIR}
+    ${CMAKE_CURRENT_SOURCE_DIR}/${INTERNAL_FOLDER}
   )
 else()
   target_include_directories(${EXENAME} PUBLIC
+    ${CMAKE_CURRENT_BINARY_DIR}
     ${CMAKE_CURRENT_SOURCE_DIR}/${INTERNAL_FOLDER}
   )
 endif()
