@@ -100,6 +100,7 @@ endif()
 
 # Link dependencies
 target_link_libraries(${EXENAME} PRIVATE
+  DiKErnel.Application
   DiKErnel.Core
   DiKErnel.KernelWrapper.Json.Input
   DiKErnel.KernelWrapper.Json.Output

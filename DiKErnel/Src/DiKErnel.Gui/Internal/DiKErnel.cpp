@@ -28,6 +28,7 @@
 #include <QQmlContext>
 #include <stdexcept>
 
+#include "ApplicationHelper.h"
 #include "Calculator.h"
 #include "JsonInputComposer.h"
 #include "JsonOutputComposer.h"
@@ -36,6 +37,7 @@
 
 namespace DiKErnel::Gui
 {
+    using namespace Application;
     using namespace Core;
     using namespace KernelWrapper::Json::Input;
     using namespace KernelWrapper::Json::Output;
@@ -215,8 +217,8 @@ namespace DiKErnel::Gui
                 vector
                 {
                     pair<string, variant<double, string>>("Versie", VERSION_STRING),
-                    pair<string, variant<double, string>>("Besturingssysteem", ""),
-                    pair<string, variant<double, string>>("DatumTijd", ""),
+                    pair<string, variant<double, string>>("Besturingssysteem", ApplicationHelper::GetOperatingSystemName()),
+                    pair<string, variant<double, string>>("DatumTijd", ApplicationHelper::GetFormattedDateTimeString()),
                     pair<string, variant<double, string>>("Rekentijd", elapsed.count())
                 }
             );
