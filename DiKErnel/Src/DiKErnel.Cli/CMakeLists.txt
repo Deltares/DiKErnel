@@ -59,6 +59,7 @@ set_target_properties(${EXENAME} PROPERTIES
 
 # Link dependencies
 target_link_libraries(${EXENAME}
+  DiKErnel.Application
   DiKErnel.Core
   DiKErnel.KernelWrapper.Json.Input
   DiKErnel.KernelWrapper.Json.Output

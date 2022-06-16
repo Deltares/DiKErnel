@@ -24,6 +24,7 @@
 #include <string>
 #include <thread>
 
+#include "ApplicationHelper.h"
 #include "Calculator.h"
 #include "CommandLineArgumentParser.h"
 #include "EventRegistry.h"
@@ -32,6 +33,7 @@
 #include "Validator.h"
 #include "Version.h"
 
+using namespace DiKErnel::Application;
 using namespace DiKErnel::Cli;
 using namespace DiKErnel::Core;
 using namespace DiKErnel::KernelWrapper::Json::Input;
@@ -129,8 +131,8 @@ int main(
             vector
             {
                 pair<string, variant<double, string>>("Versie", VERSION_STRING),
-                pair<string, variant<double, string>>("Besturingssysteem", ""),
-                pair<string, variant<double, string>>("DatumTijd", ""),
+                pair<string, variant<double, string>>("Besturingssysteem", ApplicationHelper::GetOperatingSystemName()),
+                pair<string, variant<double, string>>("DatumTijd", ApplicationHelper::GetFormattedDateTimeString()),
                 pair<string, variant<double, string>>("Rekentijd", "")
             });
 
