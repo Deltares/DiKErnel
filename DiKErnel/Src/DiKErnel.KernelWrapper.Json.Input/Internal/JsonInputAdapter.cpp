@@ -216,8 +216,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
         const JsonInputGrassWaveImpactLocationData& location,
         const JsonInputGrassWaveImpactCalculationDefinitionData* calculationDefinition)
     {
+        const auto jsonInputTopLayerType = location.GetTopLayerType();
         auto constructionProperties = make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(
-            location.GetX(), ConvertTopLayerType(location.GetTopLayerType()));
+            location.GetX(), ConvertTopLayerType(jsonInputTopLayerType));
 
         constructionProperties->SetInitialDamage(forward<unique_ptr<double>>(CreatePointerOfValue(location.GetInitialDamage())));
 
@@ -225,12 +226,18 @@ namespace DiKErnel::KernelWrapper::Json::Input
         {
             constructionProperties->SetFailureNumber(forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetFailureNumber())));
 
-            constructionProperties->SetTimeLineAgwi(
-                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetTimeLineAgwi())));
-            constructionProperties->SetTimeLineBgwi(
-                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetTimeLineBgwi())));
-            constructionProperties->SetTimeLineCgwi(
-                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetTimeLineCgwi())));
+            const auto& topLayerDefinitionData = calculationDefinition->GetTopLayerDefinitionData();
+            if (const auto& keyExists = topLayerDefinitionData.find(jsonInputTopLayerType); keyExists != topLayerDefinitionData.end())
+            {
+                const auto& topLayerDefinition = topLayerDefinitionData.at(jsonInputTopLayerType).get();
+
+                constructionProperties->SetTimeLineAgwi(
+                    forward<unique_ptr<double>>(CreatePointerOfValue(topLayerDefinition.GetTimeLineAgwi())));
+                constructionProperties->SetTimeLineBgwi(
+                    forward<unique_ptr<double>>(CreatePointerOfValue(topLayerDefinition.GetTimeLineBgwi())));
+                constructionProperties->SetTimeLineCgwi(
+                    forward<unique_ptr<double>>(CreatePointerOfValue(topLayerDefinition.GetTimeLineCgwi())));
+            }
 
             constructionProperties->SetMinimumWaveHeightTemax(
                 forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetMinimumWaveHeightTemax())));
