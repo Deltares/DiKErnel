@@ -40,24 +40,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
     #pragma region Set methods
 
-    void JsonInputGrassWaveImpactCalculationDefinitionData::SetTimeLineAgwi(
-        unique_ptr<double> timeLineAgwi)
-    {
-        _timeLineAgwi = move(timeLineAgwi);
-    }
-
-    void JsonInputGrassWaveImpactCalculationDefinitionData::SetTimeLineBgwi(
-        unique_ptr<double> timeLineBgwi)
-    {
-        _timeLineBgwi = move(timeLineBgwi);
-    }
-
-    void JsonInputGrassWaveImpactCalculationDefinitionData::SetTimeLineCgwi(
-        unique_ptr<double> timeLineCgwi)
-    {
-        _timeLineCgwi = move(timeLineCgwi);
-    }
-
     void JsonInputGrassWaveImpactCalculationDefinitionData::SetMinimumWaveHeightTemax(
         unique_ptr<double> minimumWaveHeightTemax)
     {
@@ -109,21 +91,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
     #pragma endregion
 
     #pragma region Get methods
-
-    const double* JsonInputGrassWaveImpactCalculationDefinitionData::GetTimeLineAgwi() const
-    {
-        return _timeLineAgwi.get();
-    }
-
-    const double* JsonInputGrassWaveImpactCalculationDefinitionData::GetTimeLineBgwi() const
-    {
-        return _timeLineBgwi.get();
-    }
-
-    const double* JsonInputGrassWaveImpactCalculationDefinitionData::GetTimeLineCgwi() const
-    {
-        return _timeLineCgwi.get();
-    }
 
     const double* JsonInputGrassWaveImpactCalculationDefinitionData::GetMinimumWaveHeightTemax() const
     {

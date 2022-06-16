@@ -39,15 +39,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
             #pragma region Set methods
 
-            void SetTimeLineAgwi(
-                std::unique_ptr<double> timeLineAgwi);
-
-            void SetTimeLineBgwi(
-                std::unique_ptr<double> timeLineBgwi);
-
-            void SetTimeLineCgwi(
-                std::unique_ptr<double> timeLineCgwi);
-
             void SetMinimumWaveHeightTemax(
                 std::unique_ptr<double> minimumWaveHeightTemax);
 
@@ -78,15 +69,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
             GetTopLayerDefinitionData() const;
 
             [[nodiscard]]
-            const double* GetTimeLineAgwi() const;
-
-            [[nodiscard]]
-            const double* GetTimeLineBgwi() const;
-
-            [[nodiscard]]
-            const double* GetTimeLineCgwi() const;
-
-            [[nodiscard]]
             const double* GetMinimumWaveHeightTemax() const;
 
             [[nodiscard]]
@@ -114,9 +96,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
             _topLayerDefinitionData;
             std::map<JsonInputGrassRevetmentTopLayerType, std::reference_wrapper<JsonInputGrassWaveImpactTopLayerDefinitionData>>
             _topLayerDefinitionDataReferences;
-            std::unique_ptr<double> _timeLineAgwi = nullptr;
-            std::unique_ptr<double> _timeLineBgwi = nullptr;
-            std::unique_ptr<double> _timeLineCgwi = nullptr;
             std::unique_ptr<double> _minimumWaveHeightTemax = nullptr;
             std::unique_ptr<double> _maximumWaveHeightTemin = nullptr;
             std::unique_ptr<double> _waveAngleImpactNwa = nullptr;
