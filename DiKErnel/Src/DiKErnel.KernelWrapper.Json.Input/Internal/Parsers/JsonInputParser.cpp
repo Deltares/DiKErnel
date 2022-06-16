@@ -26,6 +26,7 @@
 #include "JsonInputAsphaltWaveImpactParser.h"
 #include "JsonInputCalculationDefinitionParser.h"
 #include "JsonInputDefinitions.h"
+#include "JsonInputGrassWaveImpactCalculationDefinitionParser.h"
 #include "JsonInputGrassWaveImpactParser.h"
 #include "JsonInputGrassWaveRunupParser.h"
 #include "JsonInputNaturalStoneCalculationDefinitionParser.h"
@@ -248,6 +249,11 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 if (calculationType == JsonInputCalculationType::AsphaltWaveImpact)
                 {
                     parser = CreateCalculationDefinitionParser<JsonInputAsphaltWaveImpactCalculationDefinitionParser>(readCalculationDefinition);
+                }
+
+                if (calculationType == JsonInputCalculationType::GrassWaveImpact)
+                {
+                    parser = CreateCalculationDefinitionParser<JsonInputGrassWaveImpactCalculationDefinitionParser>(readCalculationDefinition);
                 }
 
                 if (calculationType == JsonInputCalculationType::NaturalStone)
