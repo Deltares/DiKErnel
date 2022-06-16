@@ -20,16 +20,7 @@
                     "Dikte": 0.16,
                     "Stijfheidsmodulus": 18214
                 },
-                "TanA": 0.3,
-                "Bekleding":
-                {
-                    "Rekenmethoden":
-                    [
-                        {
-                            "RekenmethodeSoort": "AsfaltGolfklap"
-                        }
-                    ]
-                }
+                "TanA": 0.3
             }
         ]
     }

@@ -14,16 +14,7 @@
                 "RekenmethodeSoort": "Natuursteen",
                 "TypeToplaag": "OngeldigeSteen",
                 "DikteToplaag": 0.3,
-                "RelatieveDichtheid": 1.65,
-                "Bekleding":
-                {
-                    "Rekenmethoden": 
-                    [
-                        {
-                            "RekenmethodeSoort": "Natuursteen"
-                        }
-                    ]
-                }
+                "RelatieveDichtheid": 1.65
             }
         ]
     }

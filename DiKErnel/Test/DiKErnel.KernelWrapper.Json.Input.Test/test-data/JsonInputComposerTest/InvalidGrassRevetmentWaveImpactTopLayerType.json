@@ -12,15 +12,7 @@
             {
                 "PositieLocatie": 0,
                 "RekenmethodeSoort": "GrasGolfklap",
-                "TypeToplaag": "GrasHalveZode",
-                "Bekleding": {
-                    "Rekenmethoden": 
-                    [
-                        {
-                            "RekenmethodeSoort": "GrasGolfklap"
-                        }
-                    ]
-                }
+                "TypeToplaag": "GrasHalveZode"
             }
         ]
     }

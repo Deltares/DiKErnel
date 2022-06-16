@@ -161,31 +161,13 @@
                 "RekenmethodeSoort": "Natuursteen",
                 "TypeToplaag": "NoorseSteen",
                 "RelatieveDichtheid": 1.65,
-                "DikteToplaag": 0.3,
-                "Bekleding":
-                {
-                    "Rekenmethoden":
-                    [
-                        {
-                            "RekenmethodeSoort": "Natuursteen"
-                        }
-                    ]
-                }
+                "DikteToplaag": 0.3
             },
             {
                 "PositieLocatie": 13.5,
                 "BeginSchade": 0.04,
                 "RekenmethodeSoort": "GrasGolfklap",
-                "TypeToplaag": "GrasGeslotenZode",
-                "Bekleding":
-                {
-                    "Rekenmethoden":
-                    [
-                        {
-                            "RekenmethodeSoort": "GrasGolfklap"
-                        }
-                    ]
-                }
+                "TypeToplaag": "GrasGeslotenZode"
             },
             {
                 "PositieLocatie": 0,
@@ -196,16 +178,7 @@
                 "VerlagingSterkteOvergangAlfaS": 0.8,
                 "TanA": 0.7,
                 "BermfactorGammab": 3.2,
-                "RuwheidsfactorGammaf": 4.1,
-                "Bekleding":
-                {
-                    "Rekenmethoden":
-                    [
-                        {
-                            "RekenmethodeSoort": "GrasGolfoploop"
-                        }
-                    ]
-                }
+                "RuwheidsfactorGammaf": 4.1
             },
             {
                 "PositieLocatie": 4,
@@ -224,16 +197,7 @@
                     "Dikte": 0.20,
                     "Stijfheidsmodulus": 15000
                 },
-                "TanA": 0.6548,
-                "Bekleding":
-                {
-                    "Rekenmethoden":
-                    [
-                        {
-                            "RekenmethodeSoort": "AsfaltGolfklap"
-                        }
-                    ]
-                }
+                "TanA": 0.6548
             }
         ],
         "Rekenmethoden":

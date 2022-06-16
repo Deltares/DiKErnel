@@ -151,16 +151,7 @@
                 "VerlagingSterkteOvergangAlfaS": 1.0,
                 "TanA": 0.25,
                 "BermfactorGammab": 1.0,
-                "RuwheidsfactorGammaf": 1.0,
-                "Bekleding":
-                 {
-                    "Rekenmethoden":
-                    [
-                        {
-                            "RekenmethodeSoort": "GrasGolfoploop"
-                        }
-                    ]
-                }
+                "RuwheidsfactorGammaf": 1.0
             }
         ],
         "Rekenmethoden":

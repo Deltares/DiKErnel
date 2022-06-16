@@ -130,16 +130,7 @@
                     "Dikte": 0.16,
                     "Stijfheidsmodulus": 18214
                 },
-                "TanA": 0.233,
-                "Bekleding":
-                {
-                    "Rekenmethoden":
-                    [
-                        {
-                            "RekenmethodeSoort": "AsfaltGolfklap"
-                        }
-                    ]
-                }
+                "TanA": 0.233
             },
             {
                 "PositieLocatie": 5.40,
@@ -158,16 +149,7 @@
                     "Dikte": 0.25,
                     "Stijfheidsmodulus": 15500
                 },
-                "TanA": 0.233,
-                "Bekleding":
-                {
-                    "Rekenmethoden":
-                    [
-                        {
-                            "RekenmethodeSoort": "AsfaltGolfklap"
-                        }
-                    ]
-                }
+                "TanA": 0.233
             }
         ],
         "Rekenmethoden":

@@ -13,16 +13,7 @@
                 "PositieLocatie": 0,
                 "RekenmethodeSoort": "GrasGolfoploop",
                 "TypeToplaag": "GrasGeslotenZode",
-                "TanA": 0.3,
-                "Bekleding": 
-                {
-                    "Rekenmethoden": 
-                    [
-                        {
-                            "RekenmethodeSoort": "GrasGolfoploop"
-                        }
-                    ]
-                }
+                "TanA": 0.3
             }
         ],
         "Rekenmethoden": 

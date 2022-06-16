@@ -128,74 +128,29 @@
                 "RekenmethodeSoort": "Natuursteen",
                 "TypeToplaag": "NoorseSteen",
                 "RelatieveDichtheid": 1.65,
-                "DikteToplaag": 0.7,
-                "Bekleding":
-                {
-                    "Rekenmethoden":
-                    [
-                        {
-                            "RekenmethodeSoort": "Natuursteen"
-                        }
-                    ]
-                }
+                "DikteToplaag": 0.7
             },
             {
                 "PositieLocatie": -18.4,
                 "RekenmethodeSoort": "GrasGolfklap",
-                "TypeToplaag": "GrasGeslotenZode",
-                "Bekleding":
-                {
-                    "Rekenmethoden": 
-                    [
-                        {
-                            "RekenmethodeSoort": "GrasGolfklap"
-                        }
-                    ]
-                }
+                "TypeToplaag": "GrasGeslotenZode"
             },
             {
                 "PositieLocatie": 4,
                 "RekenmethodeSoort": "GrasGolfklap",
-                "TypeToplaag": "GrasOpenZode",
-                "Bekleding":
-                {
-                    "Rekenmethoden": 
-                    [
-                        {
-                            "RekenmethodeSoort": "GrasGolfklap"
-                        }
-                    ]
-                }
+                "TypeToplaag": "GrasOpenZode"
             },
             {
                 "PositieLocatie": 0.98,
                 "RekenmethodeSoort": "GrasGolfoploop",
                 "TypeToplaag": "GrasGeslotenZode",
-                "TanA": 0.8,
-                "Bekleding":
-                {
-                    "Rekenmethoden":
-                    [
-                        {
-                            "RekenmethodeSoort": "GrasGolfoploop"
-                        }
-                    ]
-                }
+                "TanA": 0.8
             },
             {
                 "PositieLocatie": 7.698,
                 "RekenmethodeSoort": "GrasGolfoploop",
                 "TypeToplaag": "GrasOpenZode",
-                "TanA": 0.9,
-                "Bekleding":
-                {
-                    "Rekenmethoden":
-                    [
-                        {
-                            "RekenmethodeSoort": "GrasGolfoploop"
-                        }
-                    ]
-                }
+                "TanA": 0.9
             },
             {
                 "PositieLocatie": 19,
@@ -208,16 +163,7 @@
                     "Dikte": 0.16,
                     "Stijfheidsmodulus": 18214
                 },
-                "TanA": 0.233,
-                "Bekleding":
-                {
-                    "Rekenmethoden":
-                    [
-                        {
-                            "RekenmethodeSoort": "AsfaltGolfklap"
-                        }
-                    ]
-                }
+                "TanA": 0.233
             }
         ],
         "Rekenmethoden":

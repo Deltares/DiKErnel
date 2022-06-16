@@ -252,30 +252,12 @@
             {
                 "PositieLocatie": 5.0,
                 "RekenmethodeSoort": "GrasGolfklap",
-                "TypeToplaag": "GrasGeslotenZode",
-                "Bekleding":
-                {
-                    "Rekenmethoden":
-                    [
-                        {
-                            "RekenmethodeSoort": "GrasGolfklap"
-                        }
-                    ]
-                }
+                "TypeToplaag": "GrasGeslotenZode"
             },
             {
                 "PositieLocatie": 5.0,
                 "RekenmethodeSoort": "GrasGolfklap",
-                "TypeToplaag": "GrasOpenZode",
-                "Bekleding":
-                {
-                    "Rekenmethoden":
-                    [
-                        {
-                            "RekenmethodeSoort": "GrasGolfklap"
-                        }
-                    ]
-                }
+                "TypeToplaag": "GrasOpenZode"
             }
         ],
         "Rekenmethoden":
