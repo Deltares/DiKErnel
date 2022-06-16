@@ -103,7 +103,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
         return locationData;
     }
 
-    unique_ptr<JsonInputGrassRevetmentWaveRunupRayleighLocationData> JsonInputGrassWaveRunupParser::ParseRevetmentLocationData(
+    unique_ptr<JsonInputGrassWaveRunupRayleighCalculationDefinitionData> JsonInputGrassWaveRunupParser::ParseRevetmentLocationData(
         const json& readCalculationMethod,
         const json& readCalculationProtocol) const
     {
@@ -115,10 +115,10 @@ namespace DiKErnel::KernelWrapper::Json::Input
         return revetmentLocationData;
     }
 
-    unique_ptr<JsonInputGrassRevetmentWaveRunupRayleighLocationData> JsonInputGrassWaveRunupParser::ParseRayleighRevetmentLocationData(
+    unique_ptr<JsonInputGrassWaveRunupRayleighCalculationDefinitionData> JsonInputGrassWaveRunupParser::ParseRayleighRevetmentLocationData(
         const json& readCalculationProtocol)
     {
-        auto rayleighLocationData = make_unique<JsonInputGrassRevetmentWaveRunupRayleighLocationData>();
+        auto rayleighLocationData = make_unique<JsonInputGrassWaveRunupRayleighCalculationDefinitionData>();
 
         rayleighLocationData->SetFixedNumberOfWaves(
             forward<unique_ptr<int>>(JsonInputParserHelper::ParseOptionalInteger(
@@ -139,7 +139,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
     void JsonInputGrassWaveRunupParser::ParseGenericRevetmentLocationData(
         const json& readRevetment,
         const json& readCalculationMethod,
-        JsonInputGrassRevetmentWaveRunupLocationData& revetmentLocationData)
+        JsonInputGrassWaveRunupCalculationDefinitionData& revetmentLocationData)
     {
         revetmentLocationData.SetCriticalCumulativeOverload(
             forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(

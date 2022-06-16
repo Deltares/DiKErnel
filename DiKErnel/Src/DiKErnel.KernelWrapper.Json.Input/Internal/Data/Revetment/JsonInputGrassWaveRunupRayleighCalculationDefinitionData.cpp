@@ -18,39 +18,39 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#pragma once
-
-#include <memory>
-
-#include "JsonInputGrassRevetmentWaveRunupLocationData.h"
+#include "JsonInputGrassWaveRunupRayleighCalculationDefinitionData.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
-    class JsonInputGrassRevetmentWaveRunupRayleighLocationData : public JsonInputGrassRevetmentWaveRunupLocationData
+    using namespace std;
+
+    #pragma region Set methods
+
+    void JsonInputGrassWaveRunupRayleighCalculationDefinitionData::SetFixedNumberOfWaves(
+        unique_ptr<int> fixedNumberOfWaves)
     {
-        public:
-            #pragma region Set methods
+        _fixedNumberOfWaves = move(fixedNumberOfWaves);
+    }
 
-            void SetFixedNumberOfWaves(
-                std::unique_ptr<int> fixedNumberOfWaves);
+    void JsonInputGrassWaveRunupRayleighCalculationDefinitionData::SetFrontVelocityCu(
+        unique_ptr<double> frontVelocityCu)
+    {
+        _frontVelocityCu = move(frontVelocityCu);
+    }
 
-            void SetFrontVelocityCu(
-                std::unique_ptr<double> frontVelocityCu);
+    #pragma endregion
 
-            #pragma endregion
+    #pragma region Get methods
 
-            #pragma region Get methods
+    const int* JsonInputGrassWaveRunupRayleighCalculationDefinitionData::GetFixedNumberOfWaves() const
+    {
+        return _fixedNumberOfWaves.get();
+    }
 
-            [[nodiscard]]
-            const int* GetFixedNumberOfWaves() const;
+    const double* JsonInputGrassWaveRunupRayleighCalculationDefinitionData::GetFrontVelocityCu() const
+    {
+        return _frontVelocityCu.get();
+    }
 
-            [[nodiscard]]
-            const double* GetFrontVelocityCu() const;
-
-            #pragma endregion
-
-        private:
-            std::unique_ptr<int> _fixedNumberOfWaves = nullptr;
-            std::unique_ptr<double> _frontVelocityCu = nullptr;
-    };
+    #pragma endregion
 }

@@ -18,7 +18,7 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include "JsonInputGrassRevetmentWaveRunupLocationData.h"
+#include "JsonInputGrassWaveRunupCalculationDefinitionData.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
@@ -26,49 +26,49 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
     #pragma region Set methods
 
-    void JsonInputGrassRevetmentWaveRunupLocationData::SetCriticalCumulativeOverload(
+    void JsonInputGrassWaveRunupCalculationDefinitionData::SetCriticalCumulativeOverload(
         unique_ptr<double> criticalCumulativeOverload)
     {
         _criticalCumulativeOverload = move(criticalCumulativeOverload);
     }
 
-    void JsonInputGrassRevetmentWaveRunupLocationData::SetCriticalFrontVelocity(
+    void JsonInputGrassWaveRunupCalculationDefinitionData::SetCriticalFrontVelocity(
         unique_ptr<double> criticalFrontVelocity)
     {
         _criticalFrontVelocity = move(criticalFrontVelocity);
     }
 
-    void JsonInputGrassRevetmentWaveRunupLocationData::SetAverageNumberOfWavesCtm(
+    void JsonInputGrassWaveRunupCalculationDefinitionData::SetAverageNumberOfWavesCtm(
         unique_ptr<double> averageNumberOfWavesCtm)
     {
         _averageNumberOfWavesCtm = move(averageNumberOfWavesCtm);
     }
 
-    void JsonInputGrassRevetmentWaveRunupLocationData::SetRepresentativeWaveRunup2PAru(
+    void JsonInputGrassWaveRunupCalculationDefinitionData::SetRepresentativeWaveRunup2PAru(
         unique_ptr<double> representativeWaveRunup2PAru)
     {
         _representativeWaveRunup2PAru = move(representativeWaveRunup2PAru);
     }
 
-    void JsonInputGrassRevetmentWaveRunupLocationData::SetRepresentativeWaveRunup2PBru(
+    void JsonInputGrassWaveRunupCalculationDefinitionData::SetRepresentativeWaveRunup2PBru(
         unique_ptr<double> representativeWaveRunup2PBru)
     {
         _representativeWaveRunup2PBru = move(representativeWaveRunup2PBru);
     }
 
-    void JsonInputGrassRevetmentWaveRunupLocationData::SetRepresentativeWaveRunup2PCru(
+    void JsonInputGrassWaveRunupCalculationDefinitionData::SetRepresentativeWaveRunup2PCru(
         unique_ptr<double> representativeWaveRunup2PCru)
     {
         _representativeWaveRunup2PCru = move(representativeWaveRunup2PCru);
     }
 
-    void JsonInputGrassRevetmentWaveRunupLocationData::SetWaveAngleImpactAbeta(
+    void JsonInputGrassWaveRunupCalculationDefinitionData::SetWaveAngleImpactAbeta(
         unique_ptr<double> waveAngleImpactAbeta)
     {
         _waveAngleImpactAbeta = move(waveAngleImpactAbeta);
     }
 
-    void JsonInputGrassRevetmentWaveRunupLocationData::SetWaveAngleImpactBetamax(
+    void JsonInputGrassWaveRunupCalculationDefinitionData::SetWaveAngleImpactBetamax(
         unique_ptr<double> waveAngleImpactBetamax)
     {
         _waveAngleImpactBetamax = move(waveAngleImpactBetamax);
@@ -78,42 +78,42 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
     #pragma region Get methods
 
-    const double* JsonInputGrassRevetmentWaveRunupLocationData::GetCriticalCumulativeOverload() const
+    const double* JsonInputGrassWaveRunupCalculationDefinitionData::GetCriticalCumulativeOverload() const
     {
         return _criticalCumulativeOverload.get();
     }
 
-    const double* JsonInputGrassRevetmentWaveRunupLocationData::GetCriticalFrontVelocity() const
+    const double* JsonInputGrassWaveRunupCalculationDefinitionData::GetCriticalFrontVelocity() const
     {
         return _criticalFrontVelocity.get();
     }
 
-    const double* JsonInputGrassRevetmentWaveRunupLocationData::GetAverageNumberOfWavesCtm() const
+    const double* JsonInputGrassWaveRunupCalculationDefinitionData::GetAverageNumberOfWavesCtm() const
     {
         return _averageNumberOfWavesCtm.get();
     }
 
-    const double* JsonInputGrassRevetmentWaveRunupLocationData::GetRepresentativeWaveRunup2PAru() const
+    const double* JsonInputGrassWaveRunupCalculationDefinitionData::GetRepresentativeWaveRunup2PAru() const
     {
         return _representativeWaveRunup2PAru.get();
     }
 
-    const double* JsonInputGrassRevetmentWaveRunupLocationData::GetRepresentativeWaveRunup2PBru() const
+    const double* JsonInputGrassWaveRunupCalculationDefinitionData::GetRepresentativeWaveRunup2PBru() const
     {
         return _representativeWaveRunup2PBru.get();
     }
 
-    const double* JsonInputGrassRevetmentWaveRunupLocationData::GetRepresentativeWaveRunup2PCru() const
+    const double* JsonInputGrassWaveRunupCalculationDefinitionData::GetRepresentativeWaveRunup2PCru() const
     {
         return _representativeWaveRunup2PCru.get();
     }
 
-    const double* JsonInputGrassRevetmentWaveRunupLocationData::GetWaveAngleImpactAbeta() const
+    const double* JsonInputGrassWaveRunupCalculationDefinitionData::GetWaveAngleImpactAbeta() const
     {
         return _waveAngleImpactAbeta.get();
     }
 
-    const double* JsonInputGrassRevetmentWaveRunupLocationData::GetWaveAngleImpactBetamax() const
+    const double* JsonInputGrassWaveRunupCalculationDefinitionData::GetWaveAngleImpactBetamax() const
     {
         return _waveAngleImpactBetamax.get();
     }

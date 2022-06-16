@@ -24,7 +24,7 @@
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
-    class JsonInputGrassRevetmentWaveRunupLocationData
+    class JsonInputGrassWaveRunupCalculationDefinitionData
     {
         public:
             #pragma region Set methods

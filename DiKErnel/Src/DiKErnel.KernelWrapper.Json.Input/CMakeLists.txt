@@ -67,16 +67,16 @@ set(SOURCEFILES_INTERNAL_DATA_REVETMENT
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputAsphaltWaveImpactTopLayerDefinitionData.h
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassRevetmentTopLayerType.h
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassRevetmentWaveRunupCalculationProtocolType.h
-  ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassRevetmentWaveRunupLocationData.cpp
-  ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassRevetmentWaveRunupLocationData.h
-  ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassRevetmentWaveRunupRayleighLocationData.cpp
-  ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassRevetmentWaveRunupRayleighLocationData.h
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassWaveImpactCalculationDefinitionData.cpp
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassWaveImpactCalculationDefinitionData.h
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassWaveImpactLocationData.cpp
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassWaveImpactLocationData.h
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassWaveImpactTopLayerDefinitionData.cpp
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassWaveImpactTopLayerDefinitionData.h
+  ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassWaveRunupCalculationDefinitionData.cpp
+  ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassWaveRunupCalculationDefinitionData.h
+  ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassWaveRunupRayleighCalculationDefinitionData.cpp
+  ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassWaveRunupRayleighCalculationDefinitionData.h
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassWaveRunupRayleighLocationData.cpp
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassWaveRunupRayleighLocationData.h
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputNaturalStoneCalculationDefinitionData.cpp
