@@ -67,7 +67,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
         const auto& readRevetment = GetReadRevetment();
         const auto& readCalculationMethod = GetReadCalculationMethod();
 
-        auto locationData = make_unique<JsonInputGrassWaveImpactCalculationDefinitionData>();
+        auto locationData = make_unique<JsonInputGrassWaveImpactCalculationDefinitionData>(nullptr);
 
         locationData->SetTimeLineAgwi(
             forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(

@@ -22,11 +22,16 @@
 
 #include <memory>
 
+#include "JsonInputCalculationDefinitionData.h"
+
 namespace DiKErnel::KernelWrapper::Json::Input
 {
-    class JsonInputGrassWaveImpactCalculationDefinitionData
+    class JsonInputGrassWaveImpactCalculationDefinitionData : public JsonInputCalculationDefinitionData
     {
         public:
+            explicit JsonInputGrassWaveImpactCalculationDefinitionData(
+                std::unique_ptr<double> failureNumber);
+
             #pragma region Set methods
 
             void SetTimeLineAgwi(
