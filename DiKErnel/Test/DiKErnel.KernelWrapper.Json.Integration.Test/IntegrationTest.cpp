@@ -60,6 +60,13 @@ namespace DiKErnel::KernelWrapper::Json::Integration::Test
             }
         }
 
+        void AssertMetaData(
+            const json& actualMetaData) const
+        {
+            ASSERT_EQ(1.23, actualMetaData.at("Test 1"));
+            ASSERT_EQ("4.56", actualMetaData.at("Test 2"));
+        }
+
         void AssertFailure(
             const json& expectedLocation,
             const json& actualLocation) const
@@ -110,7 +117,8 @@ namespace DiKErnel::KernelWrapper::Json::Integration::Test
 
         void PerformTest(
             const string& inputFilePath,
-            const string& expectedOutputFilePath) const
+            const string& expectedOutputFilePath,
+            const bool withMetaData) const
         {
             // When
             const auto& result = JsonInputComposer::GetInputDataFromJson(inputFilePath);
@@ -122,7 +130,15 @@ namespace DiKErnel::KernelWrapper::Json::Integration::Test
 
             const auto outputType = ConvertProcessType(inputData->GetProcessType());
 
-            JsonOutputComposer::WriteCalculationOutputToJson(_actualOutputFilePath, *calculator.GetResult()->GetData(), outputType);
+            auto metaDataItems = vector<pair<string, variant<double, string>>>();
+
+            if (withMetaData)
+            {
+                metaDataItems.emplace_back("Test 1", 1.23);
+                metaDataItems.emplace_back("Test 2", "4.56");
+            }
+
+            JsonOutputComposer::WriteCalculationOutputToJson(_actualOutputFilePath, *calculator.GetResult()->GetData(), outputType, metaDataItems);
 
             // Then
             ifstream ifs1(expectedOutputFilePath);
@@ -130,6 +146,11 @@ namespace DiKErnel::KernelWrapper::Json::Integration::Test
 
             ifstream ifs2(_actualOutputFilePath);
             const auto actualJson = json::parse(ifs2);
+
+            if (withMetaData)
+            {
+                AssertMetaData(actualJson.at("MetaInformatie"));
+            }
 
             const auto& expectedLocations = expectedJson.at("Uitvoerdata").at("Locaties");
             const auto& actualLocations = actualJson.at("Uitvoerdata").at("Locaties");
@@ -161,7 +182,7 @@ namespace DiKErnel::KernelWrapper::Json::Integration::Test
         }
     };
 
-    TEST_F(IntegrationTest, GivenJsonFileWithFailureOutputType_WhenCalculating_ThenExpectedOutputJsonCreated)
+    TEST_F(IntegrationTest, GivenJsonFileWithFailureOutputTypeWithoutMetaData_WhenCalculating_ThenExpectedOutputJsonCreated)
     {
         // Given
         const auto inputFilePath = (TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Integration.Test") / "IntegrationTest" /
@@ -171,10 +192,23 @@ namespace DiKErnel::KernelWrapper::Json::Integration::Test
             / "Output" / "expectedFailureOutput.json").string();
 
         // When & Then
-        PerformTest(inputFilePath, expectedOutputFilePath);
+        PerformTest(inputFilePath, expectedOutputFilePath, false);
     }
 
-    TEST_F(IntegrationTest, GivenJsonFileWithDamageOutputType_WhenCalculating_ThenExpectedOutputJsonCreated)
+    TEST_F(IntegrationTest, GivenJsonFileWithFailureOutputTypeWithMetaData_WhenCalculating_ThenExpectedOutputJsonCreated)
+    {
+        // Given
+        const auto inputFilePath = (TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Integration.Test") / "IntegrationTest" /
+            "Input" / "AllLocationsInputForFailureOutputType.json").string();
+
+        const auto expectedOutputFilePath = (TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Integration.Test") / "IntegrationTest"
+            / "Output" / "expectedFailureOutput.json").string();
+
+        // When & Then
+        PerformTest(inputFilePath, expectedOutputFilePath, true);
+    }
+
+    TEST_F(IntegrationTest, GivenJsonFileWithDamageOutputTypeWithoutMetaData_WhenCalculating_ThenExpectedOutputJsonCreated)
     {
         // Given
         const auto inputFilePath = (TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Integration.Test") / "IntegrationTest" /
@@ -184,10 +218,23 @@ namespace DiKErnel::KernelWrapper::Json::Integration::Test
             / "Output" / "expectedDamageOutput.json").string();
 
         // When & Then
-        PerformTest(inputFilePath, expectedOutputFilePath);
+        PerformTest(inputFilePath, expectedOutputFilePath, false);
     }
 
-    TEST_F(IntegrationTest, GivenJsonFileWithPhysicsOutputType_WhenCalculating_ThenExpectedOutputJsonCreated)
+    TEST_F(IntegrationTest, GivenJsonFileWithDamageOutputTypeWithMetaData_WhenCalculating_ThenExpectedOutputJsonCreated)
+    {
+        // Given
+        const auto inputFilePath = (TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Integration.Test") / "IntegrationTest" /
+            "Input" / "AllLocationsInputForDamageOutputType.json").string();
+
+        const auto expectedOutputFilePath = (TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Integration.Test") / "IntegrationTest"
+            / "Output" / "expectedDamageOutput.json").string();
+
+        // When & Then
+        PerformTest(inputFilePath, expectedOutputFilePath, true);
+    }
+
+    TEST_F(IntegrationTest, GivenJsonFileWithPhysicsOutputTypeWithoutMetaData_WhenCalculating_ThenExpectedOutputJsonCreated)
     {
         // Given
         const auto inputFilePath = (TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Integration.Test") / "IntegrationTest" /
@@ -197,6 +244,19 @@ namespace DiKErnel::KernelWrapper::Json::Integration::Test
             / "Output" / "expectedPhysicsOutput.json").string();
 
         // When & Then
-        PerformTest(inputFilePath, expectedOutputFilePath);
+        PerformTest(inputFilePath, expectedOutputFilePath, false);
+    }
+
+    TEST_F(IntegrationTest, GivenJsonFileWithPhysicsOutputTypeWithMetaData_WhenCalculating_ThenExpectedOutputJsonCreated)
+    {
+        // Given
+        const auto inputFilePath = (TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Integration.Test") / "IntegrationTest" /
+            "Input" / "AllLocationsInputForPhysicsOutputType.json").string();
+
+        const auto expectedOutputFilePath = (TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Integration.Test") / "IntegrationTest"
+            / "Output" / "expectedPhysicsOutput.json").string();
+
+        // When & Then
+        PerformTest(inputFilePath, expectedOutputFilePath, true);
     }
 }
