@@ -215,8 +215,8 @@ namespace DiKErnel::Gui
                 vector
                 {
                     pair<string, variant<double, string>>("Versie", VERSION_STRING),
-                    pair<string, variant<double, string>>("Besturingssysteem", GetOperatingSystemName()),
-                    pair<string, variant<double, string>>("DatumTijd", GetFormattedDateTimeString()),
+                    pair<string, variant<double, string>>("Besturingssysteem", ""),
+                    pair<string, variant<double, string>>("DatumTijd", ""),
                     pair<string, variant<double, string>>("Rekentijd", elapsed.count())
                 }
             );
@@ -310,35 +310,5 @@ namespace DiKErnel::Gui
             default:
                 throw runtime_error("Unsupported processType");
         }
-    }
-
-    string DiKErnel::GetOperatingSystemName()
-    {
-        #ifdef _WIN64
-        return "Windows 64-bit";
-        #elif _WIN32
-        return "Windows 32-bit";
-        #elif __APPLE__ || __MACH__
-        return "Mac OSX";
-        #elif __linux__
-        return "Linux";
-        #else
-        return "Onbekend";
-        #endif
-    }
-
-    string DiKErnel::GetFormattedDateTimeString()
-    {
-        tm tm{};
-
-        const auto nowAsTime = system_clock::to_time_t(system_clock::now());
-
-        localtime_s(&tm, &nowAsTime);
-
-        char formattedTime[20];
-
-        strftime(formattedTime, sizeof formattedTime, "%FT%TZ", &tm);
-
-        return formattedTime;
     }
 }

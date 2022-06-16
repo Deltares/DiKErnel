@@ -20,6 +20,8 @@
 
 #pragma once
 
+#include <string>
+
 namespace DiKErnel::Application
 {
     /*!
@@ -28,5 +30,8 @@ namespace DiKErnel::Application
     class ApplicationHelper
     {
         public:
+            static std::string GetOperatingSystemName();
+
+            static std::string GetFormattedDateTimeString();
     };
 }

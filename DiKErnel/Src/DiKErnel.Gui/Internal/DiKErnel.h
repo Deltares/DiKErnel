@@ -119,10 +119,6 @@ namespace DiKErnel::Gui
             static KernelWrapper::Json::Output::JsonOutputType ConvertProcessType(
                 KernelWrapper::Json::Input::JsonInputProcessType processType);
 
-            static std::string GetOperatingSystemName();
-
-            static std::string GetFormattedDateTimeString();
-
             QStringList _stringList;
 
             Q_OBJECT_BINDABLE_PROPERTY(

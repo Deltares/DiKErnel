@@ -18,7 +18,42 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
+#include "ApplicationHelper.h"
+
+#include <chrono>
+
 namespace DiKErnel::Application
 {
     using namespace std;
+    using namespace std::chrono;
+
+    string ApplicationHelper::GetOperatingSystemName()
+    {
+        #ifdef _WIN64
+        return "Windows 64-bit";
+        #elif _WIN32
+        return "Windows 32-bit";
+        #elif __APPLE__ || __MACH__
+        return "Mac OSX";
+        #elif __linux__
+        return "Linux";
+        #else
+        return "Onbekend";
+        #endif
+    }
+
+    string ApplicationHelper::GetFormattedDateTimeString()
+    {
+        tm tm{};
+
+        const auto nowAsTime = system_clock::to_time_t(system_clock::now());
+
+        localtime_s(&tm, &nowAsTime);
+
+        char formattedTime[20];
+
+        strftime(formattedTime, sizeof formattedTime, "%FT%TZ", &tm);
+
+        return formattedTime;
+    }
 }
