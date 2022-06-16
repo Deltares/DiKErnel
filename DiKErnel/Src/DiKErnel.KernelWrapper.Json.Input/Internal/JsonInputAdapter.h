@@ -31,6 +31,7 @@
 #include "JsonInputData.h"
 #include "JsonInputGrassWaveImpactCalculationDefinitionData.h"
 #include "JsonInputGrassWaveImpactLocationData.h"
+#include "JsonInputGrassWaveRunupCalculationDefinitionData.h"
 #include "JsonInputGrassWaveRunupRayleighLocationData.h"
 #include "JsonInputNaturalStoneCalculationDefinitionData.h"
 #include "JsonInputNaturalStoneLocationData.h"

@@ -28,13 +28,10 @@ namespace DiKErnel::KernelWrapper::Json::Input
         const double x,
         unique_ptr<double> initialDamage,
         const JsonInputGrassRevetmentTopLayerType topLayerType,
-        const double outerSlope,
-        unique_ptr<JsonInputDamageData> damageData,
-        unique_ptr<JsonInputGrassWaveRunupRayleighCalculationDefinitionData> revetmentLocationData)
-        : JsonInputLocationData(x, move(initialDamage), move(damageData)),
+        const double outerSlope)
+        : JsonInputLocationData(x, move(initialDamage)),
           _topLayerType(topLayerType),
-          _outerSlope(outerSlope),
-          _revetmentLocationData(move(revetmentLocationData)) {}
+          _outerSlope(outerSlope) {}
 
     void JsonInputGrassWaveRunupRayleighLocationData::SetIncreasedLoadTransitionAlphaM(
         unique_ptr<double> increasedLoadTransitionAlphaM)
@@ -88,10 +85,5 @@ namespace DiKErnel::KernelWrapper::Json::Input
     const double* JsonInputGrassWaveRunupRayleighLocationData::GetRepresentativeWaveRunup2PGammaf() const
     {
         return _representativeWaveRunup2PGammaf.get();
-    }
-
-    const JsonInputGrassWaveRunupRayleighCalculationDefinitionData& JsonInputGrassWaveRunupRayleighLocationData::GetRevetmentLocationData() const
-    {
-        return *_revetmentLocationData;
     }
 }

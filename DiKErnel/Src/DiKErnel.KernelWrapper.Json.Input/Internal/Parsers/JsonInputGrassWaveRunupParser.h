@@ -20,7 +20,6 @@
 
 #pragma once
 
-#include "JsonInputGrassWaveRunupRayleighCalculationDefinitionData.h"
 #include "JsonInputLocationParser.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
@@ -38,19 +37,5 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 double x,
                 std::unique_ptr<JsonInputDamageData> damageData,
                 std::unique_ptr<double> initialDamage) override;
-
-        private:
-            [[nodiscard]]
-            std::unique_ptr<JsonInputGrassWaveRunupRayleighCalculationDefinitionData> ParseRevetmentLocationData(
-                const nlohmann::json& readCalculationMethod,
-                const nlohmann::json& readCalculationProtocol) const;
-
-            static std::unique_ptr<JsonInputGrassWaveRunupRayleighCalculationDefinitionData> ParseRayleighRevetmentLocationData(
-                const nlohmann::json& readCalculationProtocol);
-
-            static void ParseGenericRevetmentLocationData(
-                const nlohmann::json& readRevetment,
-                const nlohmann::json& readCalculationMethod,
-                JsonInputGrassWaveRunupCalculationDefinitionData& revetmentLocationData);
     };
 }
