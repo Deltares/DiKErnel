@@ -26,10 +26,13 @@
 #include "GrassRevetmentWaveImpactLocationConstructionProperties.h"
 #include "GrassRevetmentWaveRunupRayleighLocationConstructionProperties.h"
 #include "ICalculationInput.h"
+#include "JsonInputAsphaltWaveImpactCalculationDefinitionData.h"
 #include "JsonInputAsphaltWaveImpactLocationData.h"
 #include "JsonInputData.h"
+#include "JsonInputGrassWaveImpactCalculationDefinitionData.h"
 #include "JsonInputGrassWaveImpactLocationData.h"
 #include "JsonInputGrassWaveRunupRayleighLocationData.h"
+#include "JsonInputNaturalStoneCalculationDefinitionData.h"
 #include "JsonInputNaturalStoneLocationData.h"
 #include "NaturalStoneRevetmentLocationConstructionProperties.h"
 

@@ -21,7 +21,6 @@
 #pragma once
 
 #include "JsonInputAsphaltRevetmentTopLayerType.h"
-#include "JsonInputAsphaltWaveImpactCalculationDefinitionData.h"
 #include "JsonInputLocationData.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input

@@ -21,7 +21,6 @@
 #pragma once
 
 #include "JsonInputLocationData.h"
-#include "JsonInputNaturalStoneCalculationDefinitionData.h"
 #include "JsonInputNaturalStoneRevetmentTopLayerType.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
