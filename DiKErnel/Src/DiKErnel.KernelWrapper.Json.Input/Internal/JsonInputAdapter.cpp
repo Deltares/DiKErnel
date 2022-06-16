@@ -326,7 +326,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
             return constructionProperties;
         }
 
-        throw JsonInputConversionException("Cannot convert calculation protocol.");
+        throw JsonInputConversionException("Cannot convert calculation protocol type.");
     }
 
     GrassRevetmentTopLayerType JsonInputAdapter::ConvertTopLayerType(

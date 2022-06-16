@@ -165,7 +165,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
         TimeDependentInputAssertHelper::AssertTimeDependentInputItem(1200, 2000, 2, 0.5, 4, 8, timeDependentInputItems.at(4).get());
 
         const auto& locationDependentInputItems = calculationInput.GetLocationDependentInputItems();
-        ASSERT_EQ(6, locationDependentInputItems.size());
+        ASSERT_EQ(4, locationDependentInputItems.size());
 
         const auto* naturalStoneRevetmentLocationDependentInputItem = dynamic_cast<NaturalStoneRevetmentLocationDependentInput*>(
             &locationDependentInputItems.at(0).get());
@@ -209,68 +209,28 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
         GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertLowerLimitLoading(
             3.5, *grassRevetmentWaveImpactLocationDependentInputItem);
 
-        const auto* grassRevetmentWaveRunupRayleighLocationDependentInputItem1 = dynamic_cast
+        const auto* grassRevetmentWaveRunupRayleighLocationDependentInputItem = dynamic_cast
                 <GrassRevetmentWaveRunupRayleighLocationDependentInput*>(&locationDependentInputItems.at(2).get());
-        ASSERT_NE(nullptr, grassRevetmentWaveRunupRayleighLocationDependentInputItem1);
+        ASSERT_NE(nullptr, grassRevetmentWaveRunupRayleighLocationDependentInputItem);
 
-        LocationDependentInputAssertHelper::AssertDamageProperties(0.0006, 0.45, *grassRevetmentWaveRunupRayleighLocationDependentInputItem1);
+        LocationDependentInputAssertHelper::AssertDamageProperties(0.0006, 0.45, *grassRevetmentWaveRunupRayleighLocationDependentInputItem);
         GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertGeneralProperties(
-            157, 0.7, *grassRevetmentWaveRunupRayleighLocationDependentInputItem1);
+            157, 0.7, *grassRevetmentWaveRunupRayleighLocationDependentInputItem);
         GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertRepresentative2P(
-            1.56, 4.6, 3.5, 3.2, 4.1, grassRevetmentWaveRunupRayleighLocationDependentInputItem1->GetRepresentative2P());
+            1.56, 4.6, 3.5, 3.2, 4.1, grassRevetmentWaveRunupRayleighLocationDependentInputItem->GetRepresentative2P());
         GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertWaveAngleImpact(
-            0.0011, 89, grassRevetmentWaveRunupRayleighLocationDependentInputItem1->GetWaveAngleImpact());
+            0.0011, 89, grassRevetmentWaveRunupRayleighLocationDependentInputItem->GetWaveAngleImpact());
         GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertTransitionAlpha(
-            1.5, 0.8, *grassRevetmentWaveRunupRayleighLocationDependentInputItem1);
+            1.5, 0.8, *grassRevetmentWaveRunupRayleighLocationDependentInputItem);
         GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertAverageNumberOfWaves(
-            0.99, *grassRevetmentWaveRunupRayleighLocationDependentInputItem1);
+            0.99, *grassRevetmentWaveRunupRayleighLocationDependentInputItem);
         GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper::AssertCumulativeOverload(
-            7213, 5000, *grassRevetmentWaveRunupRayleighLocationDependentInputItem1);
+            7213, 5000, *grassRevetmentWaveRunupRayleighLocationDependentInputItem);
         GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper::AssertFrontVelocity(
-            8.3, 3.5, *grassRevetmentWaveRunupRayleighLocationDependentInputItem1);
-
-        const auto* grassRevetmentWaveRunupRayleighLocationDependentInputItem2 = dynamic_cast
-                <GrassRevetmentWaveRunupRayleighLocationDependentInput*>(&locationDependentInputItems.at(3).get());
-        ASSERT_NE(nullptr, grassRevetmentWaveRunupRayleighLocationDependentInputItem2);
-
-        LocationDependentInputAssertHelper::AssertDamageProperties(0, 1, *grassRevetmentWaveRunupRayleighLocationDependentInputItem2);
-        GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertGeneralProperties(
-            0.98, 0.8, *grassRevetmentWaveRunupRayleighLocationDependentInputItem2);
-        GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertRepresentative2P(
-            1.65, 4, 1.5, 1, 1, grassRevetmentWaveRunupRayleighLocationDependentInputItem2->GetRepresentative2P());
-        GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertWaveAngleImpact(
-            0.0022, 80, grassRevetmentWaveRunupRayleighLocationDependentInputItem2->GetWaveAngleImpact());
-        GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertTransitionAlpha(
-            1, 1, *grassRevetmentWaveRunupRayleighLocationDependentInputItem2);
-        GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertAverageNumberOfWaves(
-            0.92, *grassRevetmentWaveRunupRayleighLocationDependentInputItem2);
-        GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper::AssertCumulativeOverload(
-            7000, 10000, *grassRevetmentWaveRunupRayleighLocationDependentInputItem2);
-        GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper::AssertFrontVelocity(
-            6.6, 1.1, *grassRevetmentWaveRunupRayleighLocationDependentInputItem2);
-
-        const auto* grassRevetmentWaveRunupRayleighLocationDependentInputItem3 = dynamic_cast
-                <GrassRevetmentWaveRunupRayleighLocationDependentInput*>(&locationDependentInputItems.at(4).get());
-        ASSERT_NE(nullptr, grassRevetmentWaveRunupRayleighLocationDependentInputItem3);
-
-        LocationDependentInputAssertHelper::AssertDamageProperties(0, 1, *grassRevetmentWaveRunupRayleighLocationDependentInputItem3);
-        GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertGeneralProperties(
-            7.698, 0.9, *grassRevetmentWaveRunupRayleighLocationDependentInputItem3);
-        GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertRepresentative2P(
-            1.65, 4, 1.5, 1, 1, grassRevetmentWaveRunupRayleighLocationDependentInputItem3->GetRepresentative2P());
-        GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertWaveAngleImpact(
-            0.0022, 80, grassRevetmentWaveRunupRayleighLocationDependentInputItem3->GetWaveAngleImpact());
-        GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertTransitionAlpha(
-            1, 1, *grassRevetmentWaveRunupRayleighLocationDependentInputItem3);
-        GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertAverageNumberOfWaves(
-            0.92, *grassRevetmentWaveRunupRayleighLocationDependentInputItem3);
-        GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper::AssertCumulativeOverload(
-            7000, 10000, *grassRevetmentWaveRunupRayleighLocationDependentInputItem3);
-        GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper::AssertFrontVelocity(
-            4.3, 1.1, *grassRevetmentWaveRunupRayleighLocationDependentInputItem3);
+            8.3, 3.5, *grassRevetmentWaveRunupRayleighLocationDependentInputItem);
 
         const auto* asphaltRevetmentWaveImpactLocationDependentInputItem = dynamic_cast
-                <AsphaltRevetmentWaveImpactLocationDependentInput*>(&locationDependentInputItems.at(5).get());
+                <AsphaltRevetmentWaveImpactLocationDependentInput*>(&locationDependentInputItems.at(3).get());
         ASSERT_NE(nullptr, asphaltRevetmentWaveImpactLocationDependentInputItem);
 
         LocationDependentInputAssertHelper::AssertDamageProperties(1, 0.0098, *asphaltRevetmentWaveImpactLocationDependentInputItem);
@@ -359,7 +319,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
         TimeDependentInputAssertHelper::AssertTimeDependentInputItem(1200, 2000, 2, 0.5, 4, 8, timeDependentInputItems.at(4).get());
 
         const auto& locationDependentInputItems = calculationInput.GetLocationDependentInputItems();
-        ASSERT_EQ(7, locationDependentInputItems.size());
+        ASSERT_EQ(6, locationDependentInputItems.size());
 
         const auto* naturalStoneRevetmentLocationDependentInputItem = dynamic_cast<NaturalStoneRevetmentLocationDependentInput*>(
             &locationDependentInputItems.at(0).get());
@@ -427,21 +387,21 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
                 <GrassRevetmentWaveRunupRayleighLocationDependentInput*>(&locationDependentInputItems.at(3).get());
         ASSERT_NE(nullptr, grassRevetmentWaveRunupRayleighLocationDependentInputItem1);
 
-        LocationDependentInputAssertHelper::AssertDamageProperties(0.0006, 0.45, *grassRevetmentWaveRunupRayleighLocationDependentInputItem1);
+        LocationDependentInputAssertHelper::AssertDamageProperties(0, 1, *grassRevetmentWaveRunupRayleighLocationDependentInputItem1);
         GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertGeneralProperties(
-            157, 0.7, *grassRevetmentWaveRunupRayleighLocationDependentInputItem1);
+            0.98, 0.8, *grassRevetmentWaveRunupRayleighLocationDependentInputItem1);
         GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertRepresentative2P(
-            1.56, 4.6, 3.5, 3.2, 4.1, grassRevetmentWaveRunupRayleighLocationDependentInputItem1->GetRepresentative2P());
+            1.65, 4, 1.5, 1, 1, grassRevetmentWaveRunupRayleighLocationDependentInputItem1->GetRepresentative2P());
         GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertWaveAngleImpact(
-            0.0011, 89, grassRevetmentWaveRunupRayleighLocationDependentInputItem1->GetWaveAngleImpact());
+            0.0022, 80, grassRevetmentWaveRunupRayleighLocationDependentInputItem1->GetWaveAngleImpact());
         GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertTransitionAlpha(
-            1.5, 0.8, *grassRevetmentWaveRunupRayleighLocationDependentInputItem1);
+            1, 1, *grassRevetmentWaveRunupRayleighLocationDependentInputItem1);
         GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertAverageNumberOfWaves(
-            0.99, *grassRevetmentWaveRunupRayleighLocationDependentInputItem1);
+            0.92, *grassRevetmentWaveRunupRayleighLocationDependentInputItem1);
         GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper::AssertCumulativeOverload(
-            7213, 5000, *grassRevetmentWaveRunupRayleighLocationDependentInputItem1);
+            7000, 10000, *grassRevetmentWaveRunupRayleighLocationDependentInputItem1);
         GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper::AssertFrontVelocity(
-            8.3, 3.5, *grassRevetmentWaveRunupRayleighLocationDependentInputItem1);
+            6.6, 1.1, *grassRevetmentWaveRunupRayleighLocationDependentInputItem1);
 
         const auto* grassRevetmentWaveRunupRayleighLocationDependentInputItem2 = dynamic_cast
                 <GrassRevetmentWaveRunupRayleighLocationDependentInput*>(&locationDependentInputItems.at(4).get());
@@ -449,7 +409,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
 
         LocationDependentInputAssertHelper::AssertDamageProperties(0, 1, *grassRevetmentWaveRunupRayleighLocationDependentInputItem2);
         GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertGeneralProperties(
-            0.98, 0.8, *grassRevetmentWaveRunupRayleighLocationDependentInputItem2);
+            7.698, 0.9, *grassRevetmentWaveRunupRayleighLocationDependentInputItem2);
         GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertRepresentative2P(
             1.65, 4, 1.5, 1, 1, grassRevetmentWaveRunupRayleighLocationDependentInputItem2->GetRepresentative2P());
         GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertWaveAngleImpact(
@@ -461,30 +421,10 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
         GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper::AssertCumulativeOverload(
             7000, 10000, *grassRevetmentWaveRunupRayleighLocationDependentInputItem2);
         GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper::AssertFrontVelocity(
-            6.6, 1.1, *grassRevetmentWaveRunupRayleighLocationDependentInputItem2);
-
-        const auto* grassRevetmentWaveRunupRayleighLocationDependentInputItem3 = dynamic_cast
-                <GrassRevetmentWaveRunupRayleighLocationDependentInput*>(&locationDependentInputItems.at(5).get());
-        ASSERT_NE(nullptr, grassRevetmentWaveRunupRayleighLocationDependentInputItem3);
-
-        LocationDependentInputAssertHelper::AssertDamageProperties(0, 1, *grassRevetmentWaveRunupRayleighLocationDependentInputItem3);
-        GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertGeneralProperties(
-            7.698, 0.9, *grassRevetmentWaveRunupRayleighLocationDependentInputItem3);
-        GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertRepresentative2P(
-            1.65, 4, 1.5, 1, 1, grassRevetmentWaveRunupRayleighLocationDependentInputItem3->GetRepresentative2P());
-        GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertWaveAngleImpact(
-            0.0022, 80, grassRevetmentWaveRunupRayleighLocationDependentInputItem3->GetWaveAngleImpact());
-        GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertTransitionAlpha(
-            1, 1, *grassRevetmentWaveRunupRayleighLocationDependentInputItem3);
-        GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertAverageNumberOfWaves(
-            0.92, *grassRevetmentWaveRunupRayleighLocationDependentInputItem3);
-        GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper::AssertCumulativeOverload(
-            7000, 10000, *grassRevetmentWaveRunupRayleighLocationDependentInputItem3);
-        GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper::AssertFrontVelocity(
-            4.3, 1.1, *grassRevetmentWaveRunupRayleighLocationDependentInputItem3);
+            4.3, 1.1, *grassRevetmentWaveRunupRayleighLocationDependentInputItem2);
 
         const auto* asphaltRevetmentWaveImpactLocationDependentInputItem = dynamic_cast
-                <AsphaltRevetmentWaveImpactLocationDependentInput*>(&locationDependentInputItems.at(6).get());
+                <AsphaltRevetmentWaveImpactLocationDependentInput*>(&locationDependentInputItems.at(5).get());
         ASSERT_NE(nullptr, asphaltRevetmentWaveImpactLocationDependentInputItem);
 
         LocationDependentInputAssertHelper::AssertDamageProperties(0, 1, *asphaltRevetmentWaveImpactLocationDependentInputItem);
@@ -571,6 +511,12 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
            GivenJsonInputWithInvalidGrassRevetmentWaveRunupRayleighTypeTopLayer_WhenGetInputDataFromJson_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         PerformInvalidJsonTest("InvalidGrassRevetmentWaveRunupRayleighTopLayerType.json", "Cannot convert top layer type.");
+    }
+
+    TEST_F(JsonInputComposerTest,
+           GivenJsonInputWithInvalidGrassRevetmentWaveRunupCalculationProtocolType_WhenGetInputDataFromJson_ThenReturnsResultWithSuccessfulFalseAndEvent)
+    {
+        PerformInvalidJsonTest("InvalidGrassRevetmentWaveRunupCalculationProtocolType.json", "Cannot convert calculation protocol type.");
     }
 
     TEST_F(JsonInputComposerTest,

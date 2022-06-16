@@ -12,7 +12,7 @@
             {
                 "PositieLocatie": 0,
                 "RekenmethodeSoort": "GrasGolfoploop",
-                "TypeToplaag": "GrasHalveZode",
+                "TypeToplaag": "GrasGeslotenZode",
                 "TanA": 0.3,
                 "Bekleding": 
                 {
@@ -31,7 +31,7 @@
                 "RekenmethodeSoort": "GrasGolfoploop",
                 "Rekenprotocol": 
                 {
-                    "Rekenprotocolsoort": "RayleighDiscreet"
+                    "Rekenprotocolsoort": "RayleighNietZoDiscreet"
                 }
             }
         ]

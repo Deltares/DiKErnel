@@ -145,10 +145,6 @@
             {
                 "PositieLocatie": 4.0,
                 "BeginSchade": 0.0,
-                "Schade": 
-                {
-                    "Faalgetal": 1.0
-                },
                 "RekenmethodeSoort": "GrasGolfoploop",
                 "TypeToplaag": "GrasGeslotenZode",
                 "VerhogingBelastingOvergangAlfaM": 1.0,
@@ -158,38 +154,51 @@
                 "RuwheidsfactorGammaf": 1.0,
                 "Bekleding":
                  {
-                    "KritiekeCumulatieveOverbelasting": 7000,
-                    "KritiekeFrontsnelheidGrasGolfoploop": 4.0,
                     "Rekenmethoden":
                     [
                         {
-                            "RekenmethodeSoort": "GrasGolfoploop",
-                            "GemiddeldAantalGolvenPerTijdstap": 
-                            {
-                                "GemiddeldAantalGolvenPerTijdstapCtm": 0.92
-                            },
-                            "RepresentatieveGolfoploop2p": 
-                            {
-                                "RepresentatieveGolfoploop2pAru": 1.65,
-                                "RepresentatieveGolfoploop2pBru": 4.0,
-                                "RepresentatieveGolfoploop2pCru": 1.5
-                            },
-                            "ImpactGolfhoekGolfoploop": 
-                            {
-                                "ImpactGolfhoekGolfoploopAbeta": 0.0022,
-                                "ImpactGolfhoekGolfoploopBetamax": 80.0
-                            },
-                            "Rekenprotocol": 
-                            {
-                                "Rekenprotocolsoort": "RayleighDiscreet",
-                                "AantalGolvenVastRD": 10000,
-                                "FrontsnelheidGolfOploopRD":
-                                {
-                                    "FrontsnelheidGolfOploopRDCu": 1.1
-                                }
-                            }
+                            "RekenmethodeSoort": "GrasGolfoploop"
                         }
                     ]
+                }
+            }
+        ],
+        "Rekenmethoden":
+        [
+            {
+                "RekenmethodeSoort": "GrasGolfoploop",
+                "Faalgetal": 1.0,
+                "Toplagen":
+                [
+                    {
+                        "TypeToplaag": "GrasGeslotenZode",
+                        "KritiekeCumulatieveOverbelasting": 7000,
+                        "KritiekeFrontsnelheidGrasGolfoploop": 4.0
+                    }
+                ],
+                "GemiddeldAantalGolvenPerTijdstap": 
+                {
+                    "GemiddeldAantalGolvenPerTijdstapCtm": 0.92
+                },
+                "RepresentatieveGolfoploop2p": 
+                {
+                    "RepresentatieveGolfoploop2pAru": 1.65,
+                    "RepresentatieveGolfoploop2pBru": 4.0,
+                    "RepresentatieveGolfoploop2pCru": 1.5
+                },
+                "ImpactGolfhoekGolfoploop": 
+                {
+                    "ImpactGolfhoekGolfoploopAbeta": 0.0022,
+                    "ImpactGolfhoekGolfoploopBetamax": 80.0
+                },
+                "Rekenprotocol": 
+                {
+                    "Rekenprotocolsoort": "RayleighDiscreet",
+                    "AantalGolvenVastRD": 10000,
+                    "FrontsnelheidGolfOploopRD":
+                    {
+                        "FrontsnelheidGolfOploopRDCu": 1.1
+                    }
                 }
             }
         ]
