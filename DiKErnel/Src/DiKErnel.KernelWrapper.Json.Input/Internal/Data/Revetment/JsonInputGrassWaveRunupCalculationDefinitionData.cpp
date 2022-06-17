@@ -83,7 +83,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
         return _calculationProtocolData.get();
     }
 
-    const std::map<JsonInputGrassRevetmentTopLayerType, std::reference_wrapper<JsonInputGrassWaveRunupTopLayerDefinitionData>>&
+    const map<JsonInputGrassRevetmentTopLayerType, reference_wrapper<JsonInputGrassWaveRunupTopLayerDefinitionData>>&
     JsonInputGrassWaveRunupCalculationDefinitionData::GetTopLayerDefinitionData() const
     {
         return _topLayerDefinitionDataReferences;

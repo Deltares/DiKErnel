@@ -72,7 +72,7 @@ namespace DiKErnel::DomainLibrary
         return nullptr;
     }
 
-    std::unique_ptr<ValidationIssue> NaturalStoneRevetmentValidator::SlopeLowerLevelAls(
+    unique_ptr<ValidationIssue> NaturalStoneRevetmentValidator::SlopeLowerLevelAls(
         const double slopeLowerLevelAls)
     {
         if (slopeLowerLevelAls <= 0)

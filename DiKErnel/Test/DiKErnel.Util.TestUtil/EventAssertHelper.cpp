@@ -24,9 +24,11 @@
 
 namespace DiKErnel::Util::TestUtil
 {
+    using namespace std;
+
     void EventAssertHelper::AssertEvent(
         const EventType expectedEventType,
-        const std::string& expectedMessage,
+        const string& expectedMessage,
         const Event& actualEvent)
     {
         ASSERT_EQ(expectedEventType, actualEvent.GetEventType());

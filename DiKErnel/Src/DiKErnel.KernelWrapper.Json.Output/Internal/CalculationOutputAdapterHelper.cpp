@@ -23,6 +23,7 @@
 namespace DiKErnel::KernelWrapper::Json::Output
 {
     using namespace nlohmann;
+    using namespace std;
 
     void CalculationOutputAdapterHelper::SetPropertyWhenApplicable(
         ordered_json& jsonObject,
@@ -54,7 +55,7 @@ namespace DiKErnel::KernelWrapper::Json::Output
 
     ordered_json& CalculationOutputAdapterHelper::GetJsonElement(
         ordered_json& jsonObject,
-        const std::string& elementName)
+        const string& elementName)
     {
         if (!jsonObject.contains(elementName))
         {

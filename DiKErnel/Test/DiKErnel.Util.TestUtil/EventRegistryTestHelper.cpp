@@ -60,7 +60,7 @@ namespace DiKErnel::Util::TestUtil
             EventRegistry::Register(make_unique<Event>("Event " + to_string(i), EventType::Error));
         }
 
-        for (std::unique_ptr<Event>& registeredEvent : EventRegistry::Flush())
+        for (unique_ptr<Event>& registeredEvent : EventRegistry::Flush())
         {
             registeredEvents.push_back(move(registeredEvent));
             registeredEventReferences.emplace_back(*registeredEvents.back());
