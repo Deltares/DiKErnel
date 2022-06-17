@@ -520,6 +520,12 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
     }
 
     TEST_F(JsonInputComposerTest,
+           GivenJsonInputWithGrassRevetmentWaveRunupNoCalculationMethod_WhenGetInputDataFromJson_ThenReturnsResultWithSuccessfulFalseAndEvent)
+    {
+        PerformInvalidJsonTest("GrassRevetmentWaveRunupNoCalculationMethod.json", "Cannot convert calculation protocol type.");
+    }
+
+    TEST_F(JsonInputComposerTest,
            GivenJsonInputWithInvalidNaturalStoneRevetmentTypeTopLayer_WhenGetInputDataFromJson_TThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         PerformInvalidJsonTest("InvalidNaturalStoneRevetmentTopLayerType.json", "Cannot convert top layer type.");

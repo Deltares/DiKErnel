@@ -1,0 +1,20 @@
+{
+    "Rekendata":
+    {
+        "Tijd": [],
+        "HydraulischeBelastingen": 
+        {
+            "RandvoorwaardenPerTijdstap": []
+        },
+        "Dijkprofiel": [],
+        "Locaties":
+        [
+            {
+                "PositieLocatie": 0,
+                "RekenmethodeSoort": "GrasGolfoploop",
+                "TypeToplaag": "GrasGeslotenZode",
+                "TanA": 0.3
+            }
+        ]
+    }
+}
