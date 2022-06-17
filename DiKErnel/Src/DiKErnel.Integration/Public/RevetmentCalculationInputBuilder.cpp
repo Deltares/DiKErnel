@@ -29,9 +29,9 @@
 #include "GrassRevetmentWaveImpactDefaultsFactory.h"
 #include "GrassRevetmentWaveImpactLocationDependentInput.h"
 #include "GrassRevetmentWaveRunupDefaultsFactory.h"
+#include "GrassRevetmentWaveRunupRayleighDefaults.h"
 #include "GrassRevetmentWaveRunupRayleighLocationDependentInput.h"
 #include "IAsphaltRevetmentWaveImpactTopLayerDefaults.h"
-#include "IGrassRevetmentWaveRunupRayleighDefaults.h"
 #include "NaturalStoneRevetmentDefaults.h"
 #include "NaturalStoneRevetmentDefaultsFactory.h"
 #include "NaturalStoneRevetmentLocationConstructionProperties.h"
@@ -165,7 +165,7 @@ namespace DiKErnel::Integration
     void RevetmentCalculationInputBuilder::AddGrassWaveRunupRayleighLocation(
         const GrassRevetmentWaveRunupRayleighLocationConstructionProperties& constructionProperties)
     {
-        unique_ptr<IGrassRevetmentWaveRunupRayleighDefaults> defaults;
+        unique_ptr<IGrassRevetmentWaveRunupDefaults> defaults;
 
         try
         {
@@ -200,8 +200,8 @@ namespace DiKErnel::Integration
                 GetValue(constructionProperties.GetAverageNumberOfWavesCtm(), defaults->GetAverageNumberOfWavesCtm()),
                 move(representative2P),
                 move(waveAngleImpact),
-                GetValue(constructionProperties.GetFixedNumberOfWaves(), defaults->GetFixedNumberOfWaves()),
-                GetValue(constructionProperties.GetFrontVelocityCu(), defaults->GetFrontVelocityCu())));
+                GetValue(constructionProperties.GetFixedNumberOfWaves(), GrassRevetmentWaveRunupRayleighDefaults::GetFixedNumberOfWaves()),
+                GetValue(constructionProperties.GetFrontVelocityCu(), GrassRevetmentWaveRunupRayleighDefaults::GetFrontVelocityCu())));
     }
 
     void RevetmentCalculationInputBuilder::AddNaturalStoneLocation(

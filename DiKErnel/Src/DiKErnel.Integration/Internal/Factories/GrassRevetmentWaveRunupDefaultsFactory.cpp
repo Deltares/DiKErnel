@@ -21,23 +21,23 @@
 #include "GrassRevetmentWaveRunupDefaultsFactory.h"
 
 #include "DefaultsFactoryException.h"
-#include "GrassRevetmentWaveRunupRayleighClosedSodDefaults.h"
-#include "GrassRevetmentWaveRunupRayleighOpenSodDefaults.h"
+#include "GrassRevetmentWaveRunupClosedSodDefaults.h"
+#include "GrassRevetmentWaveRunupOpenSodDefaults.h"
 
 namespace DiKErnel::Integration
 {
     using namespace DomainLibrary;
     using namespace std;
 
-    unique_ptr<IGrassRevetmentWaveRunupRayleighDefaults> GrassRevetmentWaveRunupDefaultsFactory::CreateForRayleigh(
+    unique_ptr<IGrassRevetmentWaveRunupDefaults> GrassRevetmentWaveRunupDefaultsFactory::CreateForRayleigh(
         const GrassRevetmentTopLayerType topLayerType)
     {
         switch (topLayerType)
         {
             case GrassRevetmentTopLayerType::ClosedSod:
-                return make_unique<GrassRevetmentWaveRunupRayleighClosedSodDefaults>();
+                return make_unique<GrassRevetmentWaveRunupClosedSodDefaults>();
             case GrassRevetmentTopLayerType::OpenSod:
-                return make_unique<GrassRevetmentWaveRunupRayleighOpenSodDefaults>();
+                return make_unique<GrassRevetmentWaveRunupOpenSodDefaults>();
             default:
                 throw DefaultsFactoryException("Couldn't create defaults for the given top layer type.");
         }

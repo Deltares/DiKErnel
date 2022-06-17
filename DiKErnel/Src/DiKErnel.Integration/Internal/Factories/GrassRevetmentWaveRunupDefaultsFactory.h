@@ -23,14 +23,14 @@
 #include <memory>
 
 #include "GrassRevetmentTopLayerType.h"
-#include "IGrassRevetmentWaveRunupRayleighDefaults.h"
+#include "IGrassRevetmentWaveRunupDefaults.h"
 
 namespace DiKErnel::Integration
 {
     class GrassRevetmentWaveRunupDefaultsFactory
     {
         public:
-            static std::unique_ptr<DomainLibrary::IGrassRevetmentWaveRunupRayleighDefaults> CreateForRayleigh(
+            static std::unique_ptr<DomainLibrary::IGrassRevetmentWaveRunupDefaults> CreateForRayleigh(
                 GrassRevetmentTopLayerType topLayerType);
     };
 }

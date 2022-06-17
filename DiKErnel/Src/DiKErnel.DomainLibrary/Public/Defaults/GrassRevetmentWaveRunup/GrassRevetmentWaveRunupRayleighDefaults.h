@@ -20,17 +20,13 @@
 
 #pragma once
 
-#include "GrassRevetmentWaveRunupOpenSodDefaults.h"
-#include "IGrassRevetmentWaveRunupRayleighDefaults.h"
-
 namespace DiKErnel::DomainLibrary
 {
     /*!
-     * \brief Class that contains default values for grass revetment wave run-up with open sod
-     *        for the Rayleigh protocol.
+     * \brief Class that contains default values for grass revetment wave run-up for the
+     *        Rayleigh protocol
      */
-    class GrassRevetmentWaveRunupRayleighOpenSodDefaults : public GrassRevetmentWaveRunupOpenSodDefaults,
-                                                           public IGrassRevetmentWaveRunupRayleighDefaults
+    class GrassRevetmentWaveRunupRayleighDefaults
     {
         public:
             /*!
@@ -39,7 +35,7 @@ namespace DiKErnel::DomainLibrary
              *         Unit = [-]
              */
             [[nodiscard]]
-            int GetFixedNumberOfWaves() const override;
+            static int GetFixedNumberOfWaves();
 
             /*!
              * \brief Gets the default value of the Cu coefficient.
@@ -47,6 +43,6 @@ namespace DiKErnel::DomainLibrary
              *         Unit = [-]
              */
             [[nodiscard]]
-            double GetFrontVelocityCu() const override;
+            static double GetFrontVelocityCu();
     };
 }

@@ -18,17 +18,21 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include "GrassRevetmentWaveRunupRayleighClosedSodDefaults.h"
+#include <gtest/gtest.h>
 
-namespace DiKErnel::DomainLibrary
+#include "GrassRevetmentWaveRunupRayleighDefaults.h"
+
+namespace DiKErnel::DomainLibrary::Test
 {
-    int GrassRevetmentWaveRunupRayleighClosedSodDefaults::GetFixedNumberOfWaves() const
+    TEST(GrassRevetmentWaveRunupRayleighDefaultsTest, GetFixedNumberOfWaves_ExpectedValue)
     {
-        return 10000;
+        // Call & Assert
+        ASSERT_EQ(10000, GrassRevetmentWaveRunupRayleighDefaults::GetFixedNumberOfWaves());
     }
 
-    double GrassRevetmentWaveRunupRayleighClosedSodDefaults::GetFrontVelocityCu() const
+    TEST(GrassRevetmentWaveRunupRayleighDefaultsTest, GetFrontVelocityCu_ExpectedValue)
     {
-        return 1.1;
+        // Call & Assert
+        ASSERT_DOUBLE_EQ(1.1, GrassRevetmentWaveRunupRayleighDefaults::GetFrontVelocityCu());
     }
 }

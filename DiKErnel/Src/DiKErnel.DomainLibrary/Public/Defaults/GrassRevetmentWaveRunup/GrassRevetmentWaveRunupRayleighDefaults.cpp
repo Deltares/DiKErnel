@@ -18,16 +18,16 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include "GrassRevetmentWaveRunupRayleighOpenSodDefaults.h"
+#include "GrassRevetmentWaveRunupRayleighDefaults.h"
 
 namespace DiKErnel::DomainLibrary
 {
-    int GrassRevetmentWaveRunupRayleighOpenSodDefaults::GetFixedNumberOfWaves() const
+    int GrassRevetmentWaveRunupRayleighDefaults::GetFixedNumberOfWaves()
     {
         return 10000;
     }
 
-    double GrassRevetmentWaveRunupRayleighOpenSodDefaults::GetFrontVelocityCu() const
+    double GrassRevetmentWaveRunupRayleighDefaults::GetFrontVelocityCu()
     {
         return 1.1;
     }
