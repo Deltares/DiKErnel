@@ -37,12 +37,5 @@ namespace DiKErnel::DomainLibrary::Test
         ASSERT_DOUBLE_EQ(1, defaults.GetTimeLineAgwi());
         ASSERT_DOUBLE_EQ(-0.000009722, defaults.GetTimeLineBgwi());
         ASSERT_DOUBLE_EQ(0.25, defaults.GetTimeLineCgwi());
-        ASSERT_DOUBLE_EQ(3600000, defaults.GetMinimumWaveHeightTemax());
-        ASSERT_DOUBLE_EQ(3.6, defaults.GetMaximumWaveHeightTemin());
-        ASSERT_DOUBLE_EQ(2.0 / 3.0, defaults.GetWaveAngleImpactNwa());
-        ASSERT_DOUBLE_EQ(0.35, defaults.GetWaveAngleImpactQwa());
-        ASSERT_DOUBLE_EQ(10, defaults.GetWaveAngleImpactRwa());
-        ASSERT_DOUBLE_EQ(0, defaults.GetUpperLimitLoadingAul());
-        ASSERT_DOUBLE_EQ(0.5, defaults.GetLowerLimitLoadingAll());
     }
 }

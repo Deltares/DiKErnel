@@ -36,39 +36,4 @@ namespace DiKErnel::DomainLibrary
     {
         return 0.25;
     }
-
-    double GrassRevetmentWaveImpactOpenSodTopLayerDefaults::GetMinimumWaveHeightTemax() const
-    {
-        return 3600000;
-    }
-
-    double GrassRevetmentWaveImpactOpenSodTopLayerDefaults::GetMaximumWaveHeightTemin() const
-    {
-        return 3.6;
-    }
-
-    double GrassRevetmentWaveImpactOpenSodTopLayerDefaults::GetWaveAngleImpactNwa() const
-    {
-        return 2.0 / 3.0;
-    }
-
-    double GrassRevetmentWaveImpactOpenSodTopLayerDefaults::GetWaveAngleImpactQwa() const
-    {
-        return 0.35;
-    }
-
-    double GrassRevetmentWaveImpactOpenSodTopLayerDefaults::GetWaveAngleImpactRwa() const
-    {
-        return 10;
-    }
-
-    double GrassRevetmentWaveImpactOpenSodTopLayerDefaults::GetUpperLimitLoadingAul() const
-    {
-        return 0;
-    }
-
-    double GrassRevetmentWaveImpactOpenSodTopLayerDefaults::GetLowerLimitLoadingAll() const
-    {
-        return 0.5;
-    }
 }

@@ -25,6 +25,7 @@
 #include "AsphaltRevetmentWaveImpactLocationDependentInput.h"
 #include "CalculationInput.h"
 #include "DefaultsFactoryException.h"
+#include "GrassRevetmentWaveImpactDefaults.h"
 #include "GrassRevetmentWaveImpactDefaultsFactory.h"
 #include "GrassRevetmentWaveImpactLocationDependentInput.h"
 #include "GrassRevetmentWaveRunupDefaultsFactory.h"
@@ -139,9 +140,9 @@ namespace DiKErnel::Integration
         }
 
         auto waveAngleImpact = make_unique<GrassRevetmentWaveImpactWaveAngleImpact>(
-            GetValue(constructionProperties.GetWaveAngleImpactNwa(), topLayerDefaults->GetWaveAngleImpactNwa()),
-            GetValue(constructionProperties.GetWaveAngleImpactQwa(), topLayerDefaults->GetWaveAngleImpactQwa()),
-            GetValue(constructionProperties.GetWaveAngleImpactRwa(), topLayerDefaults->GetWaveAngleImpactRwa()));
+            GetValue(constructionProperties.GetWaveAngleImpactNwa(), GrassRevetmentWaveImpactDefaults::GetWaveAngleImpactNwa()),
+            GetValue(constructionProperties.GetWaveAngleImpactQwa(), GrassRevetmentWaveImpactDefaults::GetWaveAngleImpactQwa()),
+            GetValue(constructionProperties.GetWaveAngleImpactRwa(), GrassRevetmentWaveImpactDefaults::GetWaveAngleImpactRwa()));
 
         auto timeLine = make_unique<GrassRevetmentWaveImpactTimeLine>(
             GetValue(constructionProperties.GetTimeLineAgwi(), topLayerDefaults->GetTimeLineAgwi()),
@@ -154,11 +155,11 @@ namespace DiKErnel::Integration
                 GetValue(constructionProperties.GetInitialDamage(), RevetmentDefaults::GetInitialDamage()),
                 GetValue(constructionProperties.GetFailureNumber(), RevetmentDefaults::GetFailureNumber()),
                 move(waveAngleImpact),
-                GetValue(constructionProperties.GetMinimumWaveHeightTemax(), topLayerDefaults->GetMinimumWaveHeightTemax()),
-                GetValue(constructionProperties.GetMaximumWaveHeightTemin(), topLayerDefaults->GetMaximumWaveHeightTemin()),
+                GetValue(constructionProperties.GetMinimumWaveHeightTemax(), GrassRevetmentWaveImpactDefaults::GetMinimumWaveHeightTemax()),
+                GetValue(constructionProperties.GetMaximumWaveHeightTemin(), GrassRevetmentWaveImpactDefaults::GetMaximumWaveHeightTemin()),
                 move(timeLine),
-                GetValue(constructionProperties.GetUpperLimitLoadingAul(), topLayerDefaults->GetUpperLimitLoadingAul()),
-                GetValue(constructionProperties.GetLowerLimitLoadingAll(), topLayerDefaults->GetLowerLimitLoadingAll())));
+                GetValue(constructionProperties.GetUpperLimitLoadingAul(), GrassRevetmentWaveImpactDefaults::GetUpperLimitLoadingAul()),
+                GetValue(constructionProperties.GetLowerLimitLoadingAll(), GrassRevetmentWaveImpactDefaults::GetLowerLimitLoadingAll())));
     }
 
     void RevetmentCalculationInputBuilder::AddGrassWaveRunupRayleighLocation(
