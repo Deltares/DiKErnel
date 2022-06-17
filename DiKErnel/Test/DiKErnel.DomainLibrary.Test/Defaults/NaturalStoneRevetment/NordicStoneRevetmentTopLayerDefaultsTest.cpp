@@ -43,18 +43,5 @@ namespace DiKErnel::DomainLibrary::Test
         ASSERT_DOUBLE_EQ(0, defaults.GetHydraulicLoadBs());
         ASSERT_DOUBLE_EQ(0, defaults.GetHydraulicLoadCs());
         ASSERT_DOUBLE_EQ(0.6, defaults.GetHydraulicLoadNs());
-        ASSERT_DOUBLE_EQ(0.05, defaults.GetSlopeUpperLevelAus());
-        ASSERT_DOUBLE_EQ(1.5, defaults.GetSlopeLowerLevelAls());
-        ASSERT_DOUBLE_EQ(0.1, defaults.GetUpperLimitLoadingAul());
-        ASSERT_DOUBLE_EQ(0.6, defaults.GetUpperLimitLoadingBul());
-        ASSERT_DOUBLE_EQ(4, defaults.GetUpperLimitLoadingCul());
-        ASSERT_DOUBLE_EQ(0.1, defaults.GetLowerLimitLoadingAll());
-        ASSERT_DOUBLE_EQ(0.2, defaults.GetLowerLimitLoadingBll());
-        ASSERT_DOUBLE_EQ(4, defaults.GetLowerLimitLoadingCll());
-        ASSERT_DOUBLE_EQ(0.42, defaults.GetDistanceMaximumWaveElevationAsmax());
-        ASSERT_DOUBLE_EQ(0.9, defaults.GetDistanceMaximumWaveElevationBsmax());
-        ASSERT_DOUBLE_EQ(0.96, defaults.GetNormativeWidthOfWaveImpactAwi());
-        ASSERT_DOUBLE_EQ(0.11, defaults.GetNormativeWidthOfWaveImpactBwi());
-        ASSERT_DOUBLE_EQ(78, defaults.GetWaveAngleImpactBetamax());
     }
 }
