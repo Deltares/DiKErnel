@@ -23,15 +23,16 @@
 namespace DiKErnel::DomainLibrary
 {
     /*!
-     * \brief Interface that contains default value definitions for grass revetment wave impact.
+     * \brief Interface that contains default value definitions for grass revetment wave impact top
+     *        layers.
      */
-    class IGrassRevetmentWaveImpactDefaults
+    class IGrassRevetmentWaveImpactTopLayerDefaults
     {
         public:
             /*!
              * \brief Destructs the instance.
              */
-            virtual ~IGrassRevetmentWaveImpactDefaults() = default;
+            virtual ~IGrassRevetmentWaveImpactTopLayerDefaults() = default;
 
             /*!
              * \brief Gets the default value of the Agwi coefficient.

@@ -18,56 +18,56 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include "GrassRevetmentWaveImpactOpenSodDefaults.h"
+#include "GrassRevetmentWaveImpactClosedSodTopLayerDefaults.h"
 
 namespace DiKErnel::DomainLibrary
 {
-    double GrassRevetmentWaveImpactOpenSodDefaults::GetTimeLineAgwi() const
+    double GrassRevetmentWaveImpactClosedSodTopLayerDefaults::GetTimeLineAgwi() const
     {
-        return 0.8;
+        return 1;
     }
 
-    double GrassRevetmentWaveImpactOpenSodDefaults::GetTimeLineBgwi() const
+    double GrassRevetmentWaveImpactClosedSodTopLayerDefaults::GetTimeLineBgwi() const
     {
-        return -0.00001944;
+        return -0.000009722;
     }
 
-    double GrassRevetmentWaveImpactOpenSodDefaults::GetTimeLineCgwi() const
+    double GrassRevetmentWaveImpactClosedSodTopLayerDefaults::GetTimeLineCgwi() const
     {
         return 0.25;
     }
 
-    double GrassRevetmentWaveImpactOpenSodDefaults::GetMinimumWaveHeightTemax() const
+    double GrassRevetmentWaveImpactClosedSodTopLayerDefaults::GetMinimumWaveHeightTemax() const
     {
         return 3600000;
     }
 
-    double GrassRevetmentWaveImpactOpenSodDefaults::GetMaximumWaveHeightTemin() const
+    double GrassRevetmentWaveImpactClosedSodTopLayerDefaults::GetMaximumWaveHeightTemin() const
     {
         return 3.6;
     }
 
-    double GrassRevetmentWaveImpactOpenSodDefaults::GetWaveAngleImpactNwa() const
+    double GrassRevetmentWaveImpactClosedSodTopLayerDefaults::GetWaveAngleImpactNwa() const
     {
         return 2.0 / 3.0;
     }
 
-    double GrassRevetmentWaveImpactOpenSodDefaults::GetWaveAngleImpactQwa() const
+    double GrassRevetmentWaveImpactClosedSodTopLayerDefaults::GetWaveAngleImpactQwa() const
     {
         return 0.35;
     }
 
-    double GrassRevetmentWaveImpactOpenSodDefaults::GetWaveAngleImpactRwa() const
+    double GrassRevetmentWaveImpactClosedSodTopLayerDefaults::GetWaveAngleImpactRwa() const
     {
         return 10;
     }
 
-    double GrassRevetmentWaveImpactOpenSodDefaults::GetUpperLimitLoadingAul() const
+    double GrassRevetmentWaveImpactClosedSodTopLayerDefaults::GetUpperLimitLoadingAul() const
     {
         return 0;
     }
 
-    double GrassRevetmentWaveImpactOpenSodDefaults::GetLowerLimitLoadingAll() const
+    double GrassRevetmentWaveImpactClosedSodTopLayerDefaults::GetLowerLimitLoadingAll() const
     {
         return 0.5;
     }

@@ -127,11 +127,11 @@ namespace DiKErnel::Integration
     void RevetmentCalculationInputBuilder::AddGrassWaveImpactLocation(
         const GrassRevetmentWaveImpactLocationConstructionProperties& constructionProperties)
     {
-        unique_ptr<IGrassRevetmentWaveImpactDefaults> defaults;
+        unique_ptr<IGrassRevetmentWaveImpactTopLayerDefaults> topLayerDefaults;
 
         try
         {
-            defaults = GrassRevetmentWaveImpactDefaultsFactory::Create(constructionProperties.GetTopLayerType());
+            topLayerDefaults = GrassRevetmentWaveImpactDefaultsFactory::CreateTopLayerDefaults(constructionProperties.GetTopLayerType());
         }
         catch (const DefaultsFactoryException&)
         {
@@ -139,14 +139,14 @@ namespace DiKErnel::Integration
         }
 
         auto waveAngleImpact = make_unique<GrassRevetmentWaveImpactWaveAngleImpact>(
-            GetValue(constructionProperties.GetWaveAngleImpactNwa(), defaults->GetWaveAngleImpactNwa()),
-            GetValue(constructionProperties.GetWaveAngleImpactQwa(), defaults->GetWaveAngleImpactQwa()),
-            GetValue(constructionProperties.GetWaveAngleImpactRwa(), defaults->GetWaveAngleImpactRwa()));
+            GetValue(constructionProperties.GetWaveAngleImpactNwa(), topLayerDefaults->GetWaveAngleImpactNwa()),
+            GetValue(constructionProperties.GetWaveAngleImpactQwa(), topLayerDefaults->GetWaveAngleImpactQwa()),
+            GetValue(constructionProperties.GetWaveAngleImpactRwa(), topLayerDefaults->GetWaveAngleImpactRwa()));
 
         auto timeLine = make_unique<GrassRevetmentWaveImpactTimeLine>(
-            GetValue(constructionProperties.GetTimeLineAgwi(), defaults->GetTimeLineAgwi()),
-            GetValue(constructionProperties.GetTimeLineBgwi(), defaults->GetTimeLineBgwi()),
-            GetValue(constructionProperties.GetTimeLineCgwi(), defaults->GetTimeLineCgwi()));
+            GetValue(constructionProperties.GetTimeLineAgwi(), topLayerDefaults->GetTimeLineAgwi()),
+            GetValue(constructionProperties.GetTimeLineBgwi(), topLayerDefaults->GetTimeLineBgwi()),
+            GetValue(constructionProperties.GetTimeLineCgwi(), topLayerDefaults->GetTimeLineCgwi()));
 
         _locationDependentInputItems.push_back(
             make_unique<GrassRevetmentWaveImpactLocationDependentInput>(
@@ -154,11 +154,11 @@ namespace DiKErnel::Integration
                 GetValue(constructionProperties.GetInitialDamage(), RevetmentDefaults::GetInitialDamage()),
                 GetValue(constructionProperties.GetFailureNumber(), RevetmentDefaults::GetFailureNumber()),
                 move(waveAngleImpact),
-                GetValue(constructionProperties.GetMinimumWaveHeightTemax(), defaults->GetMinimumWaveHeightTemax()),
-                GetValue(constructionProperties.GetMaximumWaveHeightTemin(), defaults->GetMaximumWaveHeightTemin()),
+                GetValue(constructionProperties.GetMinimumWaveHeightTemax(), topLayerDefaults->GetMinimumWaveHeightTemax()),
+                GetValue(constructionProperties.GetMaximumWaveHeightTemin(), topLayerDefaults->GetMaximumWaveHeightTemin()),
                 move(timeLine),
-                GetValue(constructionProperties.GetUpperLimitLoadingAul(), defaults->GetUpperLimitLoadingAul()),
-                GetValue(constructionProperties.GetLowerLimitLoadingAll(), defaults->GetLowerLimitLoadingAll())));
+                GetValue(constructionProperties.GetUpperLimitLoadingAul(), topLayerDefaults->GetUpperLimitLoadingAul()),
+                GetValue(constructionProperties.GetLowerLimitLoadingAll(), topLayerDefaults->GetLowerLimitLoadingAll())));
     }
 
     void RevetmentCalculationInputBuilder::AddGrassWaveRunupRayleighLocation(

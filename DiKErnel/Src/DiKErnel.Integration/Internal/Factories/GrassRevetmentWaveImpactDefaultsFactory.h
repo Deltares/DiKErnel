@@ -23,14 +23,14 @@
 #include <memory>
 
 #include "GrassRevetmentTopLayerType.h"
-#include "IGrassRevetmentWaveImpactDefaults.h"
+#include "IGrassRevetmentWaveImpactTopLayerDefaults.h"
 
 namespace DiKErnel::Integration
 {
     class GrassRevetmentWaveImpactDefaultsFactory
     {
         public:
-            static std::unique_ptr<DomainLibrary::IGrassRevetmentWaveImpactDefaults> Create(
+            static std::unique_ptr<DomainLibrary::IGrassRevetmentWaveImpactTopLayerDefaults> CreateTopLayerDefaults(
                 GrassRevetmentTopLayerType topLayerType);
     };
 }

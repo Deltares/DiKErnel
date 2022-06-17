@@ -21,19 +21,19 @@
 #include <gtest/gtest.h>
 
 #include "AssertHelper.h"
-#include "GrassRevetmentWaveImpactOpenSodDefaults.h"
+#include "GrassRevetmentWaveImpactOpenSodTopLayerDefaults.h"
 
 namespace DiKErnel::DomainLibrary::Test
 {
     using namespace TestUtil;
 
-    TEST(GrassRevetmentWaveImpactOpenSodDefaultsTest, Constructor_ExpectedValues)
+    TEST(GrassRevetmentWaveImpactOpenSodTopLayerDefaultsTest, Constructor_ExpectedValues)
     {
         // Call
-        const GrassRevetmentWaveImpactOpenSodDefaults defaults;
+        const GrassRevetmentWaveImpactOpenSodTopLayerDefaults defaults;
 
         // Assert
-        AssertHelper::AssertIsInstanceOf<IGrassRevetmentWaveImpactDefaults>(&defaults);
+        AssertHelper::AssertIsInstanceOf<IGrassRevetmentWaveImpactTopLayerDefaults>(&defaults);
         ASSERT_DOUBLE_EQ(0.8, defaults.GetTimeLineAgwi());
         ASSERT_DOUBLE_EQ(-0.00001944, defaults.GetTimeLineBgwi());
         ASSERT_DOUBLE_EQ(0.25, defaults.GetTimeLineCgwi());

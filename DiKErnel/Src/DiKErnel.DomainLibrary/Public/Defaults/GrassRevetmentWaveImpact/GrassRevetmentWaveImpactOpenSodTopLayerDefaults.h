@@ -20,14 +20,15 @@
 
 #pragma once
 
-#include "IGrassRevetmentWaveImpactDefaults.h"
+#include "IGrassRevetmentWaveImpactTopLayerDefaults.h"
 
 namespace DiKErnel::DomainLibrary
 {
     /*!
-     * \brief Class that contains default values for grass revetment wave impact with closed sod.
+     * \brief Class that contains default values for grass revetment wave impact with an open sod
+     *        top layer.
      */
-    class GrassRevetmentWaveImpactClosedSodDefaults : public IGrassRevetmentWaveImpactDefaults
+    class GrassRevetmentWaveImpactOpenSodTopLayerDefaults : public IGrassRevetmentWaveImpactTopLayerDefaults
     {
         public:
             /*!
