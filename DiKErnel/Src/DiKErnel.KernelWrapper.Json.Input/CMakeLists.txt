@@ -73,7 +73,6 @@ set(SOURCEFILES_INTERNAL_DATA_REVETMENT
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassWaveImpactTopLayerDefinitionData.h
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassWaveRunupCalculationDefinitionData.cpp
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassWaveRunupCalculationDefinitionData.h
-  ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassWaveRunupCalculationProtocolData.cpp
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassWaveRunupCalculationProtocolData.h
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassWaveRunupLocationData.cpp
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassWaveRunupLocationData.h
