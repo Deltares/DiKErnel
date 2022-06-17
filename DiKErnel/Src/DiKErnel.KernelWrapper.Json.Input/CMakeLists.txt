@@ -159,6 +159,18 @@ if(NOT json_POPULATED)
   add_subdirectory(${json_SOURCE_DIR} ${json_BINARY_DIR} EXCLUDE_FROM_ALL)
 endif()
 
+FetchContent_Declare(
+  json_validator
+  GIT_REPOSITORY https://github.com/pboettch/json-schema-validator.git
+  GIT_TAG 2.1.0
+)
+
+FetchContent_GetProperties(json_validator)
+if(NOT json_validator_POPULATED)
+  FetchContent_Populate(json_validator)
+  add_subdirectory(${json_validator_SOURCE_DIR} ${json_validator_BINARY_DIR} EXCLUDE_FROM_ALL)
+endif()
+
 # Expose header files
 if(BUILD_FOR_RELEASE)
   target_include_directories(${LIBNAME}
@@ -187,5 +199,6 @@ target_link_libraries(${LIBNAME}
   DiKErnel.Core
   DiKErnel.Integration
   DiKErnel.Util
+  nlohmann_json_schema_validator
   nlohmann_json::nlohmann_json
 )
