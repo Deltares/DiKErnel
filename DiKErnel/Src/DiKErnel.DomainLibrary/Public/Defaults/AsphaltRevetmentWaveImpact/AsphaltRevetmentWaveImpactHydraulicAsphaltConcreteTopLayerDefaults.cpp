@@ -18,53 +18,53 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include "AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteDefaults.h"
+#include "AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteTopLayerDefaults.h"
 
 namespace DiKErnel::DomainLibrary
 {
     using namespace std;
 
-    double AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteDefaults::GetDensityOfWater() const
+    double AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteTopLayerDefaults::GetDensityOfWater() const
     {
         return 1025;
     }
 
-    double AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteDefaults::GetAverageNumberOfWavesCtm() const
+    double AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteTopLayerDefaults::GetAverageNumberOfWavesCtm() const
     {
         return 1;
     }
 
-    double AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteDefaults::GetFatigueAlpha() const
+    double AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteTopLayerDefaults::GetFatigueAlpha() const
     {
         return 0.42;
     }
 
-    double AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteDefaults::GetFatigueBeta() const
+    double AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteTopLayerDefaults::GetFatigueBeta() const
     {
         return 4.76;
     }
 
-    double AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteDefaults::GetImpactNumberC() const
+    double AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteTopLayerDefaults::GetImpactNumberC() const
     {
         return 1;
     }
 
-    double AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteDefaults::GetStiffnessRelationNu() const
+    double AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteTopLayerDefaults::GetStiffnessRelationNu() const
     {
         return 0.35;
     }
 
-    const vector<pair<double, double>>& AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteDefaults::GetWidthFactors() const
+    const vector<pair<double, double>>& AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteTopLayerDefaults::GetWidthFactors() const
     {
         return _widthFactors;
     }
 
-    const vector<pair<double, double>>& AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteDefaults::GetDepthFactors() const
+    const vector<pair<double, double>>& AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteTopLayerDefaults::GetDepthFactors() const
     {
         return _depthFactors;
     }
 
-    const vector<pair<double, double>>& AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteDefaults::GetImpactFactors() const
+    const vector<pair<double, double>>& AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteTopLayerDefaults::GetImpactFactors() const
     {
         return _impactFactors;
     }

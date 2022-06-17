@@ -20,7 +20,7 @@
 
 #include <gtest/gtest.h>
 
-#include "AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteDefaults.h"
+#include "AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteTopLayerDefaults.h"
 #include "AssertHelper.h"
 
 namespace DiKErnel::DomainLibrary::Test
@@ -28,13 +28,13 @@ namespace DiKErnel::DomainLibrary::Test
     using namespace std;
     using namespace TestUtil;
 
-    TEST(AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteDefaults, Constructor_ExpectedValues)
+    TEST(AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteTopLayerDefaults, Constructor_ExpectedValues)
     {
         // Call
-        const AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteDefaults defaults;
+        const AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteTopLayerDefaults defaults;
 
         // Assert
-        AssertHelper::AssertIsInstanceOf<IAsphaltRevetmentWaveImpactDefaults>(&defaults);
+        AssertHelper::AssertIsInstanceOf<IAsphaltRevetmentWaveImpactTopLayerDefaults>(&defaults);
         ASSERT_DOUBLE_EQ(1025, defaults.GetDensityOfWater());
         ASSERT_DOUBLE_EQ(1, defaults.GetAverageNumberOfWavesCtm());
         ASSERT_DOUBLE_EQ(0.42, defaults.GetFatigueAlpha());

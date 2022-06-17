@@ -22,15 +22,15 @@
 
 #include <vector>
 
-#include "IAsphaltRevetmentWaveImpactDefaults.h"
+#include "IAsphaltRevetmentWaveImpactTopLayerDefaults.h"
 
 namespace DiKErnel::DomainLibrary
 {
     /*!
      * \brief Class that contains default values for asphalt revetment wave impact with hydraulic
-     *        asphalt concrete.
+     *        asphalt concrete top layer.
      */
-    class AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteDefaults : public IAsphaltRevetmentWaveImpactDefaults
+    class AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteTopLayerDefaults : public IAsphaltRevetmentWaveImpactTopLayerDefaults
     {
         public:
             /*!

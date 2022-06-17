@@ -25,15 +25,16 @@
 namespace DiKErnel::DomainLibrary
 {
     /*!
-     * \brief Interface that contains default value definitions for asphalt revetment wave impact.
+     * \brief Interface that contains default value definitions for asphalt revetment wave impact
+     *        top layers.
      */
-    class IAsphaltRevetmentWaveImpactDefaults
+    class IAsphaltRevetmentWaveImpactTopLayerDefaults
     {
         public:
             /*!
              * \brief Destructs the instance.
              */
-            virtual ~IAsphaltRevetmentWaveImpactDefaults() = default;
+            virtual ~IAsphaltRevetmentWaveImpactTopLayerDefaults() = default;
 
             /*!
              * \brief Gets the default value of the density of water.
