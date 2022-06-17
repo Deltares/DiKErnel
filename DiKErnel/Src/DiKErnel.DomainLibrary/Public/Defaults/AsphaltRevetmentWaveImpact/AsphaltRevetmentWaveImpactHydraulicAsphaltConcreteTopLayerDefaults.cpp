@@ -24,16 +24,6 @@ namespace DiKErnel::DomainLibrary
 {
     using namespace std;
 
-    double AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteTopLayerDefaults::GetDensityOfWater() const
-    {
-        return 1025;
-    }
-
-    double AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteTopLayerDefaults::GetAverageNumberOfWavesCtm() const
-    {
-        return 1;
-    }
-
     double AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteTopLayerDefaults::GetFatigueAlpha() const
     {
         return 0.42;
@@ -44,28 +34,8 @@ namespace DiKErnel::DomainLibrary
         return 4.76;
     }
 
-    double AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteTopLayerDefaults::GetImpactNumberC() const
-    {
-        return 1;
-    }
-
     double AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteTopLayerDefaults::GetStiffnessRelationNu() const
     {
         return 0.35;
-    }
-
-    const vector<pair<double, double>>& AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteTopLayerDefaults::GetWidthFactors() const
-    {
-        return _widthFactors;
-    }
-
-    const vector<pair<double, double>>& AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteTopLayerDefaults::GetDepthFactors() const
-    {
-        return _depthFactors;
-    }
-
-    const vector<pair<double, double>>& AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteTopLayerDefaults::GetImpactFactors() const
-    {
-        return _impactFactors;
     }
 }

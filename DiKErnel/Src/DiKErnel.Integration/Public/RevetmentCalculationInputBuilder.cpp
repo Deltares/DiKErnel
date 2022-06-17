@@ -20,6 +20,7 @@
 
 #include "RevetmentCalculationInputBuilder.h"
 
+#include "AsphaltRevetmentWaveImpactDefaults.h"
 #include "AsphaltRevetmentWaveImpactDefaultsFactory.h"
 #include "AsphaltRevetmentWaveImpactLocationDependentInput.h"
 #include "CalculationInput.h"
@@ -110,17 +111,17 @@ namespace DiKErnel::Integration
                 GetValue(constructionProperties.GetFailureNumber(), RevetmentDefaults::GetFailureNumber()),
                 constructionProperties.GetOuterSlope(),
                 constructionProperties.GetFailureTension(),
-                GetValue(constructionProperties.GetDensityOfWater(), topLayerDefaults->GetDensityOfWater()),
+                GetValue(constructionProperties.GetDensityOfWater(), AsphaltRevetmentWaveImpactDefaults::GetDensityOfWater()),
                 constructionProperties.GetSoilElasticity(),
                 move(upperLayer),
                 move(subLayer),
-                GetValue(constructionProperties.GetAverageNumberOfWavesCtm(), topLayerDefaults->GetAverageNumberOfWavesCtm()),
+                GetValue(constructionProperties.GetAverageNumberOfWavesCtm(), AsphaltRevetmentWaveImpactDefaults::GetAverageNumberOfWavesCtm()),
                 move(fatigue),
-                GetValue(constructionProperties.GetImpactNumberC(), topLayerDefaults->GetImpactNumberC()),
+                GetValue(constructionProperties.GetImpactNumberC(), AsphaltRevetmentWaveImpactDefaults::GetImpactNumberC()),
                 GetValue(constructionProperties.GetStiffnessRelationNu(), topLayerDefaults->GetStiffnessRelationNu()),
-                GetValue(constructionProperties.GetWidthFactors(), topLayerDefaults->GetWidthFactors()),
-                GetValue(constructionProperties.GetDepthFactors(), topLayerDefaults->GetDepthFactors()),
-                GetValue(constructionProperties.GetImpactFactors(), topLayerDefaults->GetImpactFactors())));
+                GetValue(constructionProperties.GetWidthFactors(), AsphaltRevetmentWaveImpactDefaults::GetWidthFactors()),
+                GetValue(constructionProperties.GetDepthFactors(), AsphaltRevetmentWaveImpactDefaults::GetDepthFactors()),
+                GetValue(constructionProperties.GetImpactFactors(), AsphaltRevetmentWaveImpactDefaults::GetImpactFactors())));
     }
 
     void RevetmentCalculationInputBuilder::AddGrassWaveImpactLocation(

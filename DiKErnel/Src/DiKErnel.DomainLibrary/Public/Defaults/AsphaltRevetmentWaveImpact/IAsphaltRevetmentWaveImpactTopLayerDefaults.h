@@ -20,8 +20,6 @@
 
 #pragma once
 
-#include <vector>
-
 namespace DiKErnel::DomainLibrary
 {
     /*!
@@ -35,22 +33,6 @@ namespace DiKErnel::DomainLibrary
              * \brief Destructs the instance.
              */
             virtual ~IAsphaltRevetmentWaveImpactTopLayerDefaults() = default;
-
-            /*!
-             * \brief Gets the default value of the density of water.
-             * \return The default value of the density of water.
-             *         Unit = [kg/m^3]
-             */
-            [[nodiscard]]
-            virtual double GetDensityOfWater() const = 0;
-
-            /*!
-             * \brief Gets the default value of the Ctm coefficient.
-             * \return The default value of the Ctm coefficient.
-             *         Unit = [-]
-             */
-            [[nodiscard]]
-            virtual double GetAverageNumberOfWavesCtm() const = 0;
 
             /*!
              * \brief Gets the default value of the fatigue alpha coefficient.
@@ -69,43 +51,11 @@ namespace DiKErnel::DomainLibrary
             virtual double GetFatigueBeta() const = 0;
 
             /*!
-             * \brief Gets the default value of the impact number C coefficient.
-             * \return The default value of the impact number C coefficient.
-             *         Unit = [-]
-             */
-            [[nodiscard]]
-            virtual double GetImpactNumberC() const = 0;
-
-            /*!
              * \brief Gets the default value of the stiffness relation Nu coefficient.
              * \return The default value of the stiffness relation Nu coefficient.
              *         Unit = [-]
              */
             [[nodiscard]]
             virtual double GetStiffnessRelationNu() const = 0;
-
-            /*!
-             * \brief Gets the default values of the width factors.
-             * \return The default values of the width factors.
-             *         Unit = [-]
-             */
-            [[nodiscard]]
-            virtual const std::vector<std::pair<double, double>>& GetWidthFactors() const = 0;
-
-            /*!
-             * \brief Gets the default values of the depth factors.
-             * \return The default values of the depth factors.
-             *         Unit = [-]
-             */
-            [[nodiscard]]
-            virtual const std::vector<std::pair<double, double>>& GetDepthFactors() const = 0;
-
-            /*!
-             * \brief Gets the default values of the impact factors.
-             * \return The default values of the impact factors.
-             *         Unit = [-]
-             */
-            [[nodiscard]]
-            virtual const std::vector<std::pair<double, double>>& GetImpactFactors() const = 0;
     };
 }
