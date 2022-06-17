@@ -30,6 +30,12 @@ namespace DiKErnel::KernelWrapper::Json::Input
     using namespace std;
     using namespace Util;
 
+    string JsonInputComposer::ValidateJson(
+        const string& filePath)
+    {
+        return {};
+    }
+
     unique_ptr<DataResult<JsonInputComposerResult>> JsonInputComposer::GetInputDataFromJson(
         const string& filePath)
     {

@@ -20,9 +20,6 @@
 
 #pragma once
 
-#include <memory>
-#include <string>
-
 #include "DataResult.h"
 #include "JsonInputComposerResult.h"
 
@@ -35,9 +32,18 @@ namespace DiKErnel::KernelWrapper::Json::Input
     {
         public:
             /*!
+             * \brief Performs a Json schema based validation.
+             * \param filePath
+             *        The path to the Json file to validate.
+             * \return The result of the operation.
+             */
+            static std::string ValidateJson(
+                const std::string& filePath);
+
+            /*!
              * \brief Gets input data based on Json.
              * \param filePath
-             *        The path to the Json file.
+             *        The path to the Json file to get the input from.
              * \return The result of the operation.
              */
             static std::unique_ptr<Util::DataResult<JsonInputComposerResult>> GetInputDataFromJson(
