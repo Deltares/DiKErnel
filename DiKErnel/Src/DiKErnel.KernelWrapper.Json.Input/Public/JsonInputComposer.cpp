@@ -20,6 +20,9 @@
 
 #include "JsonInputComposer.h"
 
+#include <fstream>
+#include <nlohmann/json-schema.hpp>
+
 #include "EventRegistry.h"
 #include "JsonInputAdapter.h"
 #include "JsonInputParser.h"
@@ -27,13 +30,19 @@
 namespace DiKErnel::KernelWrapper::Json::Input
 {
     using namespace Core;
+    using namespace nlohmann;
+    using namespace json_schema;
     using namespace std;
     using namespace Util;
 
-    string JsonInputComposer::ValidateJson(
+    bool JsonInputComposer::ValidateJson(
         const string& filePath)
     {
-        return {};
+        const json_validator validator;
+
+        auto results = validator.validate(json::parse(ifstream(filePath)));
+
+        return false;
     }
 
     unique_ptr<DataResult<JsonInputComposerResult>> JsonInputComposer::GetInputDataFromJson(

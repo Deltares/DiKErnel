@@ -26,7 +26,7 @@
 namespace DiKErnel::KernelWrapper::Json::Input
 {
     /*!
-     * \brief Class responsible for reading Json and turning it into input data.
+     * \brief Class responsible for validating/reading Json and turning it into input data.
      */
     class JsonInputComposer
     {
@@ -37,7 +37,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
              *        The path to the Json file to validate.
              * \return The result of the operation.
              */
-            static std::string ValidateJson(
+            static bool ValidateJson(
                 const std::string& filePath);
 
             /*!
