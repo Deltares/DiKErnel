@@ -27,7 +27,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
     class JsonInputGrassWaveRunupTopLayerDefinitionData
     {
         public:
-
             #pragma region Set methods
 
             void SetCriticalCumulativeOverload(

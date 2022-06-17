@@ -27,7 +27,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
     class JsonInputAsphaltWaveImpactTopLayerDefinitionData
     {
         public:
-            
             #pragma region Set methods
 
             void SetFatigueAlpha(
