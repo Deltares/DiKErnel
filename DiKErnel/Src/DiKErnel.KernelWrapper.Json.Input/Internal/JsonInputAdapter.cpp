@@ -48,14 +48,15 @@ namespace DiKErnel::KernelWrapper::Json::Input
         }
 
         const auto& times = calculationData.GetTimes();
-        const auto& timeDependentData = hydraulicData.GetTimeDependentHydraulicData();
+
+        const auto& waterLevels = hydraulicData.GetWaterLevels();
+        const auto& waveHeightsHm0 = hydraulicData.GetWaveHeightsHm0();
+        const auto& wavePeriodsTm10 = hydraulicData.GetWavePeriodsTm10();
+        const auto& waveAngles = hydraulicData.GetWaveAngles();
 
         for (auto i = 0; i < static_cast<int>(times.size()) - 1; ++i)
         {
-            const auto& timeDependentDataItem = timeDependentData.at(i).get();
-
-            builder.AddTimeStep(times.at(i), times.at(i + 1), timeDependentDataItem.GetWaterLevel(), timeDependentDataItem.GetWaveHeightHm0(),
-                                timeDependentDataItem.GetWavePeriodTm10(), timeDependentDataItem.GetWaveAngle());
+            builder.AddTimeStep(times.at(i), times.at(i + 1), waterLevels.at(i), waveHeightsHm0.at(i), wavePeriodsTm10.at(i), waveAngles.at(i));
         }
 
         const auto& locationReferences = calculationData.GetLocationData();
