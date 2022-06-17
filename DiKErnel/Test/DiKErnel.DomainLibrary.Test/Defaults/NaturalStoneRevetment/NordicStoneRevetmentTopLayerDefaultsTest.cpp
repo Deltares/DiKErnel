@@ -21,7 +21,7 @@
 #include <gtest/gtest.h>
 
 #include "AssertHelper.h"
-#include "NordicStoneRevetmentDefaults.h"
+#include "NordicStoneRevetmentTopLayerDefaults.h"
 
 namespace DiKErnel::DomainLibrary::Test
 {
@@ -30,10 +30,10 @@ namespace DiKErnel::DomainLibrary::Test
     TEST(NordicStoneRevetmentDefaultsTest, Constructor_ExpectedValues)
     {
         // Call
-        const NordicStoneRevetmentDefaults defaults;
+        const NordicStoneRevetmentTopLayerDefaults defaults;
 
         // Assert
-        AssertHelper::AssertIsInstanceOf<INaturalStoneRevetmentDefaults>(&defaults);
+        AssertHelper::AssertIsInstanceOf<INaturalStoneRevetmentTopLayerDefaults>(&defaults);
         ASSERT_DOUBLE_EQ(2.9, defaults.GetHydraulicLoadXib());
         ASSERT_DOUBLE_EQ(4, defaults.GetHydraulicLoadAp());
         ASSERT_DOUBLE_EQ(0, defaults.GetHydraulicLoadBp());

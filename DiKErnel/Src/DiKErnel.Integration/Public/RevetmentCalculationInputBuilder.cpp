@@ -33,7 +33,7 @@
 #include "NaturalStoneRevetmentDefaultsFactory.h"
 #include "NaturalStoneRevetmentLocationConstructionProperties.h"
 #include "NaturalStoneRevetmentLocationDependentInput.h"
-#include "NordicStoneRevetmentDefaults.h"
+#include "NordicStoneRevetmentTopLayerDefaults.h"
 #include "ProfileData.h"
 #include "RevetmentCalculationInputBuilderException.h"
 #include "RevetmentDefaults.h"
@@ -204,11 +204,11 @@ namespace DiKErnel::Integration
     void RevetmentCalculationInputBuilder::AddNaturalStoneLocation(
         const NaturalStoneRevetmentLocationConstructionProperties& constructionProperties)
     {
-        unique_ptr<INaturalStoneRevetmentDefaults> defaults;
+        unique_ptr<INaturalStoneRevetmentTopLayerDefaults> defaults;
 
         try
         {
-            defaults = NaturalStoneRevetmentDefaultsFactory::Create(constructionProperties.GetTopLayerType());
+            defaults = NaturalStoneRevetmentDefaultsFactory::CreateTopLayerDefaults(constructionProperties.GetTopLayerType());
         }
         catch (const DefaultsFactoryException&)
         {

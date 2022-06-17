@@ -20,26 +20,23 @@
 
 #pragma once
 
+#include "INaturalStoneRevetmentTopLayerDefaults.h"
+
 namespace DiKErnel::DomainLibrary
 {
     /*!
-     * \brief Interface that contains default value definitions for natural stone revetments.
+     * \brief Class that contains default values for nordic stone revetment top layers.
      */
-    class INaturalStoneRevetmentDefaults
+    class NordicStoneRevetmentTopLayerDefaults : public INaturalStoneRevetmentTopLayerDefaults
     {
         public:
-            /*!
-             * \brief Destructs the instance.
-             */
-            virtual ~INaturalStoneRevetmentDefaults() = default;
-
             /*!
              * \brief Gets the default value of the Xib coefficient.
              * \return The default value of the Xib coefficient.
              *         Unit = [-]
              */
             [[nodiscard]]
-            virtual double GetHydraulicLoadXib() const = 0;
+            double GetHydraulicLoadXib() const override;
 
             /*!
              * \brief Gets the default value of the Ap coefficient.
@@ -47,7 +44,7 @@ namespace DiKErnel::DomainLibrary
              *         Unit = [-]
              */
             [[nodiscard]]
-            virtual double GetHydraulicLoadAp() const = 0;
+            double GetHydraulicLoadAp() const override;
 
             /*!
              * \brief Gets the default value of the Bp coefficient.
@@ -55,7 +52,7 @@ namespace DiKErnel::DomainLibrary
              *         Unit = [-]
              */
             [[nodiscard]]
-            virtual double GetHydraulicLoadBp() const = 0;
+            double GetHydraulicLoadBp() const override;
 
             /*!
              * \brief Gets the default value of the Cp coefficient.
@@ -63,7 +60,7 @@ namespace DiKErnel::DomainLibrary
              *         Unit = [-]
              */
             [[nodiscard]]
-            virtual double GetHydraulicLoadCp() const = 0;
+            double GetHydraulicLoadCp() const override;
 
             /*!
              * \brief Gets the default value of the Np coefficient.
@@ -71,7 +68,7 @@ namespace DiKErnel::DomainLibrary
              *         Unit = [-]
              */
             [[nodiscard]]
-            virtual double GetHydraulicLoadNp() const = 0;
+            double GetHydraulicLoadNp() const override;
 
             /*!
              * \brief Gets the default value of the As coefficient.
@@ -79,7 +76,7 @@ namespace DiKErnel::DomainLibrary
              *         Unit = [-]
              */
             [[nodiscard]]
-            virtual double GetHydraulicLoadAs() const = 0;
+            double GetHydraulicLoadAs() const override;
 
             /*!
              * \brief Gets the default value of the Bs coefficient.
@@ -87,7 +84,7 @@ namespace DiKErnel::DomainLibrary
              *         Unit = [-]
              */
             [[nodiscard]]
-            virtual double GetHydraulicLoadBs() const = 0;
+            double GetHydraulicLoadBs() const override;
 
             /*!
              * \brief Gets the default value of the Cs coefficient.
@@ -95,7 +92,7 @@ namespace DiKErnel::DomainLibrary
              *         Unit = [-]
              */
             [[nodiscard]]
-            virtual double GetHydraulicLoadCs() const = 0;
+            double GetHydraulicLoadCs() const override;
 
             /*!
              * \brief Gets the default value of the Ns coefficient.
@@ -103,7 +100,7 @@ namespace DiKErnel::DomainLibrary
              *         Unit = [-]
              */
             [[nodiscard]]
-            virtual double GetHydraulicLoadNs() const = 0;
+            double GetHydraulicLoadNs() const override;
 
             /*!
              * \brief Gets the default value of the Aus coefficient.
@@ -111,7 +108,7 @@ namespace DiKErnel::DomainLibrary
              *         Unit = [-]
              */
             [[nodiscard]]
-            virtual double GetSlopeUpperLevelAus() const = 0;
+            double GetSlopeUpperLevelAus() const override;
 
             /*!
              * \brief Gets the default value of the Als coefficient.
@@ -119,7 +116,7 @@ namespace DiKErnel::DomainLibrary
              *         Unit = [-]
              */
             [[nodiscard]]
-            virtual double GetSlopeLowerLevelAls() const = 0;
+            double GetSlopeLowerLevelAls() const override;
 
             /*!
              * \brief Gets the default value of the Aul coefficient.
@@ -127,7 +124,7 @@ namespace DiKErnel::DomainLibrary
              *         Unit = [-]
              */
             [[nodiscard]]
-            virtual double GetUpperLimitLoadingAul() const = 0;
+            double GetUpperLimitLoadingAul() const override;
 
             /*!
              * \brief Gets the default value of the Bul coefficient.
@@ -135,7 +132,7 @@ namespace DiKErnel::DomainLibrary
              *         Unit = [-]
              */
             [[nodiscard]]
-            virtual double GetUpperLimitLoadingBul() const = 0;
+            double GetUpperLimitLoadingBul() const override;
 
             /*!
              * \brief Gets the default value of the Cul coefficient.
@@ -143,7 +140,7 @@ namespace DiKErnel::DomainLibrary
              *         Unit = [-]
              */
             [[nodiscard]]
-            virtual double GetUpperLimitLoadingCul() const = 0;
+            double GetUpperLimitLoadingCul() const override;
 
             /*!
              * \brief Gets the default value of the All coefficient.
@@ -151,7 +148,7 @@ namespace DiKErnel::DomainLibrary
              *         Unit = [-]
              */
             [[nodiscard]]
-            virtual double GetLowerLimitLoadingAll() const = 0;
+            double GetLowerLimitLoadingAll() const override;
 
             /*!
              * \brief Gets the default value of the Bll coefficient.
@@ -159,7 +156,7 @@ namespace DiKErnel::DomainLibrary
              *         Unit = [-]
              */
             [[nodiscard]]
-            virtual double GetLowerLimitLoadingBll() const = 0;
+            double GetLowerLimitLoadingBll() const override;
 
             /*!
              * \brief Gets the default value of the Cll coefficient.
@@ -167,7 +164,7 @@ namespace DiKErnel::DomainLibrary
              *         Unit = [-]
              */
             [[nodiscard]]
-            virtual double GetLowerLimitLoadingCll() const = 0;
+            double GetLowerLimitLoadingCll() const override;
 
             /*!
              * \brief Gets the default value of the Asmax coefficient.
@@ -175,7 +172,7 @@ namespace DiKErnel::DomainLibrary
              *         Unit = [-]
              */
             [[nodiscard]]
-            virtual double GetDistanceMaximumWaveElevationAsmax() const = 0;
+            double GetDistanceMaximumWaveElevationAsmax() const override;
 
             /*!
              * \brief Gets the default value of the Bsmax coefficient.
@@ -183,7 +180,7 @@ namespace DiKErnel::DomainLibrary
              *         Unit = [-]
              */
             [[nodiscard]]
-            virtual double GetDistanceMaximumWaveElevationBsmax() const = 0;
+            double GetDistanceMaximumWaveElevationBsmax() const override;
 
             /*!
              * \brief Gets the default value of the Awi coefficient.
@@ -191,7 +188,7 @@ namespace DiKErnel::DomainLibrary
              *         Unit = [-]
              */
             [[nodiscard]]
-            virtual double GetNormativeWidthOfWaveImpactAwi() const = 0;
+            double GetNormativeWidthOfWaveImpactAwi() const override;
 
             /*!
              * \brief Gets the default value of the Bwi coefficient.
@@ -199,7 +196,7 @@ namespace DiKErnel::DomainLibrary
              *         Unit = [-]
              */
             [[nodiscard]]
-            virtual double GetNormativeWidthOfWaveImpactBwi() const = 0;
+            double GetNormativeWidthOfWaveImpactBwi() const override;
 
             /*!
              * \brief Gets the default value of the Betamax coefficient.
@@ -207,6 +204,6 @@ namespace DiKErnel::DomainLibrary
              *         Unit = [deg]
              */
             [[nodiscard]]
-            virtual double GetWaveAngleImpactBetamax() const = 0;
+            double GetWaveAngleImpactBetamax() const override;
     };
 }
