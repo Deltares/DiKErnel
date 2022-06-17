@@ -41,12 +41,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
             #pragma region Set methods
 
-            void SetCriticalCumulativeOverload(
-                std::unique_ptr<double> criticalCumulativeOverload);
-
-            void SetCriticalFrontVelocity(
-                std::unique_ptr<double> criticalFrontVelocity);
-
             void SetAverageNumberOfWavesCtm(
                 std::unique_ptr<double> averageNumberOfWavesCtm);
 
@@ -77,12 +71,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
             GetTopLayerDefinitionData() const;
 
             [[nodiscard]]
-            const double* GetCriticalCumulativeOverload() const;
-
-            [[nodiscard]]
-            const double* GetCriticalFrontVelocity() const;
-
-            [[nodiscard]]
             const double* GetAverageNumberOfWavesCtm() const;
 
             [[nodiscard]]
@@ -108,8 +96,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
             _topLayerDefinitionData;
             std::map<JsonInputGrassRevetmentTopLayerType, std::reference_wrapper<JsonInputGrassWaveRunupTopLayerDefinitionData>>
             _topLayerDefinitionDataReferences;
-            std::unique_ptr<double> _criticalCumulativeOverload = nullptr;
-            std::unique_ptr<double> _criticalFrontVelocity = nullptr;
             std::unique_ptr<double> _averageNumberOfWavesCtm = nullptr;
             std::unique_ptr<double> _representativeWaveRunup2PAru = nullptr;
             std::unique_ptr<double> _representativeWaveRunup2PBru = nullptr;

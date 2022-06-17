@@ -42,18 +42,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
     #pragma region Set methods
 
-    void JsonInputGrassWaveRunupCalculationDefinitionData::SetCriticalCumulativeOverload(
-        unique_ptr<double> criticalCumulativeOverload)
-    {
-        _criticalCumulativeOverload = move(criticalCumulativeOverload);
-    }
-
-    void JsonInputGrassWaveRunupCalculationDefinitionData::SetCriticalFrontVelocity(
-        unique_ptr<double> criticalFrontVelocity)
-    {
-        _criticalFrontVelocity = move(criticalFrontVelocity);
-    }
-
     void JsonInputGrassWaveRunupCalculationDefinitionData::SetAverageNumberOfWavesCtm(
         unique_ptr<double> averageNumberOfWavesCtm)
     {
@@ -104,16 +92,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
     #pragma endregion
 
     #pragma region Get methods
-
-    const double* JsonInputGrassWaveRunupCalculationDefinitionData::GetCriticalCumulativeOverload() const
-    {
-        return _criticalCumulativeOverload.get();
-    }
-
-    const double* JsonInputGrassWaveRunupCalculationDefinitionData::GetCriticalFrontVelocity() const
-    {
-        return _criticalFrontVelocity.get();
-    }
 
     const double* JsonInputGrassWaveRunupCalculationDefinitionData::GetAverageNumberOfWavesCtm() const
     {
