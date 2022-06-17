@@ -145,26 +145,12 @@ namespace DiKErnel::KernelWrapper::Json::Input
         const json& readCalculationData)
     {
         const auto& readHydraulicLoads = readCalculationData.at(JsonInputDefinitions::HYDRAULIC_LOADS);
-        const auto& readBoundaryConditionsPerTimeStep = readHydraulicLoads.at(JsonInputDefinitions::BOUNDARY_CONDITIONS_PER_TIME_STEP);
-
-        vector<unique_ptr<JsonInputTimeDependentHydraulicData>> timeDependentHydraulicData;
-
-        for (const auto& readBoundaryConditionsForTimeStep : readBoundaryConditionsPerTimeStep)
-        {
-            timeDependentHydraulicData.push_back(
-                make_unique<JsonInputTimeDependentHydraulicData>(
-                    readBoundaryConditionsForTimeStep.at(JsonInputDefinitions::WATER_LEVEL).get<double>(),
-                    readBoundaryConditionsForTimeStep.at(JsonInputDefinitions::WAVE_HEIGHT_HM0).get<double>(),
-                    readBoundaryConditionsForTimeStep.at(JsonInputDefinitions::WAVE_PERIOD_TM10).get<double>(),
-                    readBoundaryConditionsForTimeStep.at(JsonInputDefinitions::WAVE_ANGLE).get<double>()));
-        }
-
+        
         return make_unique<JsonInputHydraulicData>(
             readHydraulicLoads.at(JsonInputDefinitions::WATER_LEVEL).get<vector<double>>(),
             readHydraulicLoads.at(JsonInputDefinitions::WAVE_HEIGHT_HM0).get<vector<double>>(),
             readHydraulicLoads.at(JsonInputDefinitions::WAVE_PERIOD_TM10).get<vector<double>>(),
-            readHydraulicLoads.at(JsonInputDefinitions::WAVE_ANGLE).get<vector<double>>(),
-            move(timeDependentHydraulicData));
+            readHydraulicLoads.at(JsonInputDefinitions::WAVE_ANGLE).get<vector<double>>());
     }
 
     unique_ptr<JsonInputDikeProfileData> JsonInputParser::ParseDikeProfileData(
