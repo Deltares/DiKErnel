@@ -20,28 +20,33 @@
 
 #include <gtest/gtest.h>
 
-#include "AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteTopLayerDefaults.h"
-#include "AssertHelper.h"
+#include "AsphaltRevetmentWaveImpactDefaults.h"
 
 namespace DiKErnel::DomainLibrary::Test
 {
     using namespace std;
-    using namespace TestUtil;
 
-    TEST(AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteTopLayerDefaultsTest, Constructor_ExpectedValues)
+    TEST(AsphaltRevetmentWaveImpactDefaultsTest, GetDensityOfWater_ExpectedValue)
     {
-        // Call
-        const AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteTopLayerDefaults defaults;
+        // Call & Assert
+        ASSERT_DOUBLE_EQ(1025, AsphaltRevetmentWaveImpactDefaults::GetDensityOfWater());
+    }
 
-        // Assert
-        AssertHelper::AssertIsInstanceOf<IAsphaltRevetmentWaveImpactTopLayerDefaults>(&defaults);
-        ASSERT_DOUBLE_EQ(1025, defaults.GetDensityOfWater());
-        ASSERT_DOUBLE_EQ(1, defaults.GetAverageNumberOfWavesCtm());
-        ASSERT_DOUBLE_EQ(0.42, defaults.GetFatigueAlpha());
-        ASSERT_DOUBLE_EQ(4.76, defaults.GetFatigueBeta());
-        ASSERT_DOUBLE_EQ(1, defaults.GetImpactNumberC());
-        ASSERT_DOUBLE_EQ(0.35, defaults.GetStiffnessRelationNu());
+    TEST(AsphaltRevetmentWaveImpactDefaultsTest, GetAverageNumberOfWavesCtm_ExpectedValue)
+    {
+        // Call & Assert
+        ASSERT_DOUBLE_EQ(1, AsphaltRevetmentWaveImpactDefaults::GetAverageNumberOfWavesCtm());
+    }
 
+    TEST(AsphaltRevetmentWaveImpactDefaultsTest, GetImpactNumberC_ExpectedValue)
+    {
+        // Call & Assert
+        ASSERT_DOUBLE_EQ(1, AsphaltRevetmentWaveImpactDefaults::GetImpactNumberC());
+    }
+
+    TEST(AsphaltRevetmentWaveImpactDefaultsTest, GetWidthFactors_ExpectedValue)
+    {
+        // Setup
         const auto expectedWidthFactors = vector
         {
             pair(0.1, 0.0392),
@@ -61,6 +66,13 @@ namespace DiKErnel::DomainLibrary::Test
             pair(1.5, 0.0105)
         };
 
+        // Call & Assert
+        ASSERT_EQ(expectedWidthFactors, AsphaltRevetmentWaveImpactDefaults::GetWidthFactors());
+    }
+
+    TEST(AsphaltRevetmentWaveImpactDefaultsTest, GetDepthFactors_ExpectedValue)
+    {
+        // Setup
         const auto expectedDepthFactors = vector
         {
             pair(-1.0, 0.0244),
@@ -76,6 +88,13 @@ namespace DiKErnel::DomainLibrary::Test
             pair(0.250, 0.0169)
         };
 
+        // Call & Assert
+        ASSERT_EQ(expectedDepthFactors, AsphaltRevetmentWaveImpactDefaults::GetDepthFactors());
+    }
+
+    TEST(AsphaltRevetmentWaveImpactDefaultsTest, GetImpactFactors_ExpectedValue)
+    {
+        // Setup
         const auto expectedImpactFactors = vector
         {
             pair(2.0, 0.039),
@@ -91,8 +110,7 @@ namespace DiKErnel::DomainLibrary::Test
             pair(6.0, 0.001)
         };
 
-        ASSERT_EQ(expectedWidthFactors, defaults.GetWidthFactors());
-        ASSERT_EQ(expectedDepthFactors, defaults.GetDepthFactors());
-        ASSERT_EQ(expectedImpactFactors, defaults.GetImpactFactors());
+        // Call & Assert
+        ASSERT_EQ(expectedImpactFactors, AsphaltRevetmentWaveImpactDefaults::GetImpactFactors());
     }
 }
