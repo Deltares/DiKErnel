@@ -28,7 +28,7 @@ namespace DiKErnel::DomainLibrary
      * \brief Class that contains default values for grass revetment wave run-up with an open sod
      *        top layer.
      */
-    class GrassRevetmentWaveRunupOpenSodTopLayerDefaults : public virtual IGrassRevetmentWaveRunupTopLayerDefaults
+    class GrassRevetmentWaveRunupOpenSodTopLayerDefaults : public IGrassRevetmentWaveRunupTopLayerDefaults
     {
         public:
             /*!
@@ -46,85 +46,5 @@ namespace DiKErnel::DomainLibrary
              */
             [[nodiscard]]
             double GetCriticalFrontVelocity() const override;
-
-            /*!
-             * \brief Gets the default value of the increased load transition alpha M.
-             * \return The default value of the increased load transition alpha M.
-             *         Unit = [-]
-             */
-            [[nodiscard]]
-            double GetIncreasedLoadTransitionAlphaM() const override;
-
-            /*!
-             * \brief Gets the default value of the reduced strength transition alpha S.
-             * \return The default value of the reduced strength transition alpha S.
-             *         Unit = [-]
-             */
-            [[nodiscard]]
-            double GetReducedStrengthTransitionAlphaS() const override;
-
-            /*!
-             * \brief Gets the default value of the Ctm coefficient.
-             * \return The default value of the Ctm coefficient.
-             *         Unit = [-]
-             */
-            [[nodiscard]]
-            double GetAverageNumberOfWavesCtm() const override;
-
-            /*!
-             * \brief Gets the default value of the representative 2P Aru coefficient.
-             * \return The default value of the representative 2P Aru coefficient.
-             *         Unit = [-]
-             */
-            [[nodiscard]]
-            double GetRepresentativeWaveRunup2PAru() const override;
-
-            /*!
-             * \brief Gets the default value of the representative 2P Bru coefficient.
-             * \return The default value of the representative 2P Bru coefficient.
-             *         Unit = [-]
-             */
-            [[nodiscard]]
-            double GetRepresentativeWaveRunup2PBru() const override;
-
-            /*!
-             * \brief Gets the default value of the representative 2P Cru coefficient.
-             * \return The default value of the representative 2P Cru coefficient.
-             *         Unit = [-]
-             */
-            [[nodiscard]]
-            double GetRepresentativeWaveRunup2PCru() const override;
-
-            /*!
-             * \brief Gets the default value of the representative 2P Gammab coefficient.
-             * \return The default value of the representative 2P Gammab coefficient.
-             *         Unit = [-]
-             */
-            [[nodiscard]]
-            double GetRepresentativeWaveRunup2PGammab() const override;
-
-            /*!
-             * \brief Gets the default value of the representative 2P Gammaf coefficient.
-             * \return The default value of the representative 2P Gammaf coefficient.
-             *         Unit = [-]
-             */
-            [[nodiscard]]
-            double GetRepresentativeWaveRunup2PGammaf() const override;
-
-            /*!
-             * \brief Gets the default value of the Abeta coefficient.
-             * \return The default value of the Abeta coefficient.
-             *         Unit = [-]
-             */
-            [[nodiscard]]
-            double GetWaveAngleImpactAbeta() const override;
-
-            /*!
-             * \brief Gets the default value of the Betamax coefficient.
-             * \return The default value of the Betamax coefficient.
-             *         Unit = [-]
-             */
-            [[nodiscard]]
-            double GetWaveAngleImpactBetamax() const override;
     };
 }

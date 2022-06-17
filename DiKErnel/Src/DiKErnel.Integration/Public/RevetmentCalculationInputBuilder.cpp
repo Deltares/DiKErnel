@@ -28,15 +28,13 @@
 #include "GrassRevetmentWaveImpactDefaults.h"
 #include "GrassRevetmentWaveImpactDefaultsFactory.h"
 #include "GrassRevetmentWaveImpactLocationDependentInput.h"
+#include "GrassRevetmentWaveRunupDefaults.h"
 #include "GrassRevetmentWaveRunupDefaultsFactory.h"
 #include "GrassRevetmentWaveRunupRayleighDefaults.h"
 #include "GrassRevetmentWaveRunupRayleighLocationDependentInput.h"
-#include "IAsphaltRevetmentWaveImpactTopLayerDefaults.h"
 #include "NaturalStoneRevetmentDefaults.h"
 #include "NaturalStoneRevetmentDefaultsFactory.h"
-#include "NaturalStoneRevetmentLocationConstructionProperties.h"
 #include "NaturalStoneRevetmentLocationDependentInput.h"
-#include "NordicStoneRevetmentTopLayerDefaults.h"
 #include "ProfileData.h"
 #include "RevetmentCalculationInputBuilderException.h"
 #include "RevetmentDefaults.h"
@@ -177,15 +175,15 @@ namespace DiKErnel::Integration
         }
 
         auto representative2P = make_unique<GrassRevetmentWaveRunupRepresentative2P>(
-            GetValue(constructionProperties.GetRepresentativeWaveRunup2PAru(), topLayerDefaults->GetRepresentativeWaveRunup2PAru()),
-            GetValue(constructionProperties.GetRepresentativeWaveRunup2PBru(), topLayerDefaults->GetRepresentativeWaveRunup2PBru()),
-            GetValue(constructionProperties.GetRepresentativeWaveRunup2PCru(), topLayerDefaults->GetRepresentativeWaveRunup2PCru()),
-            GetValue(constructionProperties.GetRepresentativeWaveRunup2PGammab(), topLayerDefaults->GetRepresentativeWaveRunup2PGammab()),
-            GetValue(constructionProperties.GetRepresentativeWaveRunup2PGammaf(), topLayerDefaults->GetRepresentativeWaveRunup2PGammaf()));
+            GetValue(constructionProperties.GetRepresentativeWaveRunup2PAru(), GrassRevetmentWaveRunupDefaults::GetRepresentativeWaveRunup2PAru()),
+            GetValue(constructionProperties.GetRepresentativeWaveRunup2PBru(), GrassRevetmentWaveRunupDefaults::GetRepresentativeWaveRunup2PBru()),
+            GetValue(constructionProperties.GetRepresentativeWaveRunup2PCru(), GrassRevetmentWaveRunupDefaults::GetRepresentativeWaveRunup2PCru()),
+            GetValue(constructionProperties.GetRepresentativeWaveRunup2PGammab(), GrassRevetmentWaveRunupDefaults::GetRepresentativeWaveRunup2PGammab()),
+            GetValue(constructionProperties.GetRepresentativeWaveRunup2PGammaf(), GrassRevetmentWaveRunupDefaults::GetRepresentativeWaveRunup2PGammaf()));
 
         auto waveAngleImpact = make_unique<GrassRevetmentWaveRunupWaveAngleImpact>(
-            GetValue(constructionProperties.GetWaveAngleImpactAbeta(), topLayerDefaults->GetWaveAngleImpactAbeta()),
-            GetValue(constructionProperties.GetWaveAngleImpactBetamax(), topLayerDefaults->GetWaveAngleImpactBetamax()));
+            GetValue(constructionProperties.GetWaveAngleImpactAbeta(), GrassRevetmentWaveRunupDefaults::GetWaveAngleImpactAbeta()),
+            GetValue(constructionProperties.GetWaveAngleImpactBetamax(), GrassRevetmentWaveRunupDefaults::GetWaveAngleImpactBetamax()));
 
         _locationDependentInputItems.push_back(
             make_unique<GrassRevetmentWaveRunupRayleighLocationDependentInput>(
@@ -195,9 +193,9 @@ namespace DiKErnel::Integration
                 constructionProperties.GetOuterSlope(),
                 GetValue(constructionProperties.GetCriticalCumulativeOverload(), topLayerDefaults->GetCriticalCumulativeOverload()),
                 GetValue(constructionProperties.GetCriticalFrontVelocity(), topLayerDefaults->GetCriticalFrontVelocity()),
-                GetValue(constructionProperties.GetIncreasedLoadTransitionAlphaM(), topLayerDefaults->GetIncreasedLoadTransitionAlphaM()),
-                GetValue(constructionProperties.GetReducedStrengthTransitionAlphaS(), topLayerDefaults->GetReducedStrengthTransitionAlphaS()),
-                GetValue(constructionProperties.GetAverageNumberOfWavesCtm(), topLayerDefaults->GetAverageNumberOfWavesCtm()),
+                GetValue(constructionProperties.GetIncreasedLoadTransitionAlphaM(), GrassRevetmentWaveRunupDefaults::GetIncreasedLoadTransitionAlphaM()),
+                GetValue(constructionProperties.GetReducedStrengthTransitionAlphaS(), GrassRevetmentWaveRunupDefaults::GetReducedStrengthTransitionAlphaS()),
+                GetValue(constructionProperties.GetAverageNumberOfWavesCtm(), GrassRevetmentWaveRunupDefaults::GetAverageNumberOfWavesCtm()),
                 move(representative2P),
                 move(waveAngleImpact),
                 GetValue(constructionProperties.GetFixedNumberOfWaves(), GrassRevetmentWaveRunupRayleighDefaults::GetFixedNumberOfWaves()),

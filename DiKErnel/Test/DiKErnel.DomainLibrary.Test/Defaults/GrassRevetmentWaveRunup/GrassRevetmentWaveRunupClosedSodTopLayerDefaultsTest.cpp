@@ -36,15 +36,5 @@ namespace DiKErnel::DomainLibrary::Test
         AssertHelper::AssertIsInstanceOf<IGrassRevetmentWaveRunupTopLayerDefaults>(&defaults);
         ASSERT_DOUBLE_EQ(7000, defaults.GetCriticalCumulativeOverload());
         ASSERT_DOUBLE_EQ(6.6, defaults.GetCriticalFrontVelocity());
-        ASSERT_DOUBLE_EQ(1, defaults.GetIncreasedLoadTransitionAlphaM());
-        ASSERT_DOUBLE_EQ(1, defaults.GetReducedStrengthTransitionAlphaS());
-        ASSERT_DOUBLE_EQ(0.92, defaults.GetAverageNumberOfWavesCtm());
-        ASSERT_DOUBLE_EQ(1.65, defaults.GetRepresentativeWaveRunup2PAru());
-        ASSERT_DOUBLE_EQ(4, defaults.GetRepresentativeWaveRunup2PBru());
-        ASSERT_DOUBLE_EQ(1.5, defaults.GetRepresentativeWaveRunup2PCru());
-        ASSERT_DOUBLE_EQ(1, defaults.GetRepresentativeWaveRunup2PGammab());
-        ASSERT_DOUBLE_EQ(1, defaults.GetRepresentativeWaveRunup2PGammaf());
-        ASSERT_DOUBLE_EQ(0.0022, defaults.GetWaveAngleImpactAbeta());
-        ASSERT_DOUBLE_EQ(80, defaults.GetWaveAngleImpactBetamax());
     }
 }
