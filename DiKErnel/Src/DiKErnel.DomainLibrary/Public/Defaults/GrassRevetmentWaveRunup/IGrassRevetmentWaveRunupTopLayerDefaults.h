@@ -20,23 +20,27 @@
 
 #pragma once
 
-#include "IGrassRevetmentWaveRunupDefaults.h"
-
 namespace DiKErnel::DomainLibrary
 {
     /*!
-     * \brief Class that contains default values for grass revetment wave run-up with open sod.
+     * \brief Interface that contains default value definitions for grass revetment wave run-up top
+     *        layers.
      */
-    class GrassRevetmentWaveRunupOpenSodDefaults : public virtual IGrassRevetmentWaveRunupDefaults
+    class IGrassRevetmentWaveRunupTopLayerDefaults
     {
         public:
+            /*!
+             * \brief Destructs the instance.
+             */
+            virtual ~IGrassRevetmentWaveRunupTopLayerDefaults() = default;
+
             /*!
              * \brief Gets the default value of the critical cumulative overload.
              * \return The default value of the critical cumulative overload.
              *         Unit = [m^2/s^2]
              */
             [[nodiscard]]
-            double GetCriticalCumulativeOverload() const override;
+            virtual double GetCriticalCumulativeOverload() const = 0;
 
             /*!
              * \brief Gets the default value of the critical front velocity.
@@ -44,7 +48,7 @@ namespace DiKErnel::DomainLibrary
              *         Unit = [m/s]
              */
             [[nodiscard]]
-            double GetCriticalFrontVelocity() const override;
+            virtual double GetCriticalFrontVelocity() const = 0;
 
             /*!
              * \brief Gets the default value of the increased load transition alpha M.
@@ -52,7 +56,7 @@ namespace DiKErnel::DomainLibrary
              *         Unit = [-]
              */
             [[nodiscard]]
-            double GetIncreasedLoadTransitionAlphaM() const override;
+            virtual double GetIncreasedLoadTransitionAlphaM() const = 0;
 
             /*!
              * \brief Gets the default value of the reduced strength transition alpha S.
@@ -60,7 +64,7 @@ namespace DiKErnel::DomainLibrary
              *         Unit = [-]
              */
             [[nodiscard]]
-            double GetReducedStrengthTransitionAlphaS() const override;
+            virtual double GetReducedStrengthTransitionAlphaS() const = 0;
 
             /*!
              * \brief Gets the default value of the Ctm coefficient.
@@ -68,7 +72,7 @@ namespace DiKErnel::DomainLibrary
              *         Unit = [-]
              */
             [[nodiscard]]
-            double GetAverageNumberOfWavesCtm() const override;
+            virtual double GetAverageNumberOfWavesCtm() const = 0;
 
             /*!
              * \brief Gets the default value of the representative 2P Aru coefficient.
@@ -76,7 +80,7 @@ namespace DiKErnel::DomainLibrary
              *         Unit = [-]
              */
             [[nodiscard]]
-            double GetRepresentativeWaveRunup2PAru() const override;
+            virtual double GetRepresentativeWaveRunup2PAru() const = 0;
 
             /*!
              * \brief Gets the default value of the representative 2P Bru coefficient.
@@ -84,7 +88,7 @@ namespace DiKErnel::DomainLibrary
              *         Unit = [-]
              */
             [[nodiscard]]
-            double GetRepresentativeWaveRunup2PBru() const override;
+            virtual double GetRepresentativeWaveRunup2PBru() const = 0;
 
             /*!
              * \brief Gets the default value of the representative 2P Cru coefficient.
@@ -92,7 +96,7 @@ namespace DiKErnel::DomainLibrary
              *         Unit = [-]
              */
             [[nodiscard]]
-            double GetRepresentativeWaveRunup2PCru() const override;
+            virtual double GetRepresentativeWaveRunup2PCru() const = 0;
 
             /*!
              * \brief Gets the default value of the representative 2P Gammab coefficient.
@@ -100,7 +104,7 @@ namespace DiKErnel::DomainLibrary
              *         Unit = [-]
              */
             [[nodiscard]]
-            double GetRepresentativeWaveRunup2PGammab() const override;
+            virtual double GetRepresentativeWaveRunup2PGammab() const = 0;
 
             /*!
              * \brief Gets the default value of the representative 2P Gammaf coefficient.
@@ -108,7 +112,7 @@ namespace DiKErnel::DomainLibrary
              *         Unit = [-]
              */
             [[nodiscard]]
-            double GetRepresentativeWaveRunup2PGammaf() const override;
+            virtual double GetRepresentativeWaveRunup2PGammaf() const = 0;
 
             /*!
              * \brief Gets the default value of the Abeta coefficient.
@@ -116,7 +120,7 @@ namespace DiKErnel::DomainLibrary
              *         Unit = [-]
              */
             [[nodiscard]]
-            double GetWaveAngleImpactAbeta() const override;
+            virtual double GetWaveAngleImpactAbeta() const = 0;
 
             /*!
              * \brief Gets the default value of the Betamax coefficient.
@@ -124,6 +128,6 @@ namespace DiKErnel::DomainLibrary
              *         Unit = [-]
              */
             [[nodiscard]]
-            double GetWaveAngleImpactBetamax() const override;
+            virtual double GetWaveAngleImpactBetamax() const = 0;
     };
 }

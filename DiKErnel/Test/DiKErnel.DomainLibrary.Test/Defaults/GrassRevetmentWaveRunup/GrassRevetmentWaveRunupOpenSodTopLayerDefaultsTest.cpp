@@ -21,21 +21,21 @@
 #include <gtest/gtest.h>
 
 #include "AssertHelper.h"
-#include "GrassRevetmentWaveRunupClosedSodDefaults.h"
+#include "GrassRevetmentWaveRunupOpenSodTopLayerDefaults.h"
 
 namespace DiKErnel::DomainLibrary::Test
 {
     using namespace TestUtil;
 
-    TEST(GrassRevetmentWaveRunupClosedSodDefaultsTest, Constructor_ExpectedValues)
+    TEST(GrassRevetmentWaveRunupOpenSodTopLayerDefaultsTest, Constructor_ExpectedValues)
     {
         // Call
-        const GrassRevetmentWaveRunupClosedSodDefaults defaults;
+        const GrassRevetmentWaveRunupOpenSodTopLayerDefaults defaults;
 
         // Assert
-        AssertHelper::AssertIsInstanceOf<IGrassRevetmentWaveRunupDefaults>(&defaults);
+        AssertHelper::AssertIsInstanceOf<IGrassRevetmentWaveRunupTopLayerDefaults>(&defaults);
         ASSERT_DOUBLE_EQ(7000, defaults.GetCriticalCumulativeOverload());
-        ASSERT_DOUBLE_EQ(6.6, defaults.GetCriticalFrontVelocity());
+        ASSERT_DOUBLE_EQ(4.3, defaults.GetCriticalFrontVelocity());
         ASSERT_DOUBLE_EQ(1, defaults.GetIncreasedLoadTransitionAlphaM());
         ASSERT_DOUBLE_EQ(1, defaults.GetReducedStrengthTransitionAlphaS());
         ASSERT_DOUBLE_EQ(0.92, defaults.GetAverageNumberOfWavesCtm());

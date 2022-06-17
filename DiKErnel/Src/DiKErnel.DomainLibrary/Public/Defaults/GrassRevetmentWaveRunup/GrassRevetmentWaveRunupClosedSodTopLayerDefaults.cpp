@@ -18,66 +18,66 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include "GrassRevetmentWaveRunupOpenSodDefaults.h"
+#include "GrassRevetmentWaveRunupClosedSodTopLayerDefaults.h"
 
 namespace DiKErnel::DomainLibrary
 {
-    double GrassRevetmentWaveRunupOpenSodDefaults::GetCriticalCumulativeOverload() const
+    double GrassRevetmentWaveRunupClosedSodTopLayerDefaults::GetCriticalCumulativeOverload() const
     {
         return 7000;
     }
 
-    double GrassRevetmentWaveRunupOpenSodDefaults::GetCriticalFrontVelocity() const
+    double GrassRevetmentWaveRunupClosedSodTopLayerDefaults::GetCriticalFrontVelocity() const
     {
-        return 4.3;
+        return 6.6;
     }
 
-    double GrassRevetmentWaveRunupOpenSodDefaults::GetIncreasedLoadTransitionAlphaM() const
-    {
-        return 1;
-    }
-
-    double GrassRevetmentWaveRunupOpenSodDefaults::GetReducedStrengthTransitionAlphaS() const
+    double GrassRevetmentWaveRunupClosedSodTopLayerDefaults::GetIncreasedLoadTransitionAlphaM() const
     {
         return 1;
     }
 
-    double GrassRevetmentWaveRunupOpenSodDefaults::GetAverageNumberOfWavesCtm() const
+    double GrassRevetmentWaveRunupClosedSodTopLayerDefaults::GetReducedStrengthTransitionAlphaS() const
+    {
+        return 1;
+    }
+
+    double GrassRevetmentWaveRunupClosedSodTopLayerDefaults::GetAverageNumberOfWavesCtm() const
     {
         return 0.92;
     }
 
-    double GrassRevetmentWaveRunupOpenSodDefaults::GetRepresentativeWaveRunup2PAru() const
+    double GrassRevetmentWaveRunupClosedSodTopLayerDefaults::GetRepresentativeWaveRunup2PAru() const
     {
         return 1.65;
     }
 
-    double GrassRevetmentWaveRunupOpenSodDefaults::GetRepresentativeWaveRunup2PBru() const
+    double GrassRevetmentWaveRunupClosedSodTopLayerDefaults::GetRepresentativeWaveRunup2PBru() const
     {
         return 4;
     }
 
-    double GrassRevetmentWaveRunupOpenSodDefaults::GetRepresentativeWaveRunup2PCru() const
+    double GrassRevetmentWaveRunupClosedSodTopLayerDefaults::GetRepresentativeWaveRunup2PCru() const
     {
         return 1.5;
     }
 
-    double GrassRevetmentWaveRunupOpenSodDefaults::GetRepresentativeWaveRunup2PGammab() const
+    double GrassRevetmentWaveRunupClosedSodTopLayerDefaults::GetRepresentativeWaveRunup2PGammab() const
     {
         return 1;
     }
 
-    double GrassRevetmentWaveRunupOpenSodDefaults::GetRepresentativeWaveRunup2PGammaf() const
+    double GrassRevetmentWaveRunupClosedSodTopLayerDefaults::GetRepresentativeWaveRunup2PGammaf() const
     {
         return 1;
     }
 
-    double GrassRevetmentWaveRunupOpenSodDefaults::GetWaveAngleImpactAbeta() const
+    double GrassRevetmentWaveRunupClosedSodTopLayerDefaults::GetWaveAngleImpactAbeta() const
     {
         return 0.0022;
     }
 
-    double GrassRevetmentWaveRunupOpenSodDefaults::GetWaveAngleImpactBetamax() const
+    double GrassRevetmentWaveRunupClosedSodTopLayerDefaults::GetWaveAngleImpactBetamax() const
     {
         return 80;
     }

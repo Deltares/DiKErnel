@@ -20,14 +20,15 @@
 
 #pragma once
 
-#include "IGrassRevetmentWaveRunupDefaults.h"
+#include "IGrassRevetmentWaveRunupTopLayerDefaults.h"
 
 namespace DiKErnel::DomainLibrary
 {
     /*!
-     * \brief Class that contains default values for grass revetment wave run-up with closed sod.
+     * \brief Class that contains default values for grass revetment wave run-up with a closed sod
+     *        top layer.
      */
-    class GrassRevetmentWaveRunupClosedSodDefaults : public virtual IGrassRevetmentWaveRunupDefaults
+    class GrassRevetmentWaveRunupClosedSodTopLayerDefaults : public virtual IGrassRevetmentWaveRunupTopLayerDefaults
     {
         public:
             /*!
