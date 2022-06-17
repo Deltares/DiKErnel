@@ -42,7 +42,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
         auto results = validator.validate(json::parse(ifstream(filePath)));
 
-        return false;
+        return true;
     }
 
     unique_ptr<DataResult<JsonInputComposerResult>> JsonInputComposer::GetInputDataFromJson(
