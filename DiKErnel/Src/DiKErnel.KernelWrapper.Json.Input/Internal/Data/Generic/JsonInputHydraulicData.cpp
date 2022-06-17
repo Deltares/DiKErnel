@@ -25,13 +25,41 @@ namespace DiKErnel::KernelWrapper::Json::Input
     using namespace std;
 
     JsonInputHydraulicData::JsonInputHydraulicData(
+        vector<double> waterLevels,
+        vector<double> waveHeightsHm0,
+        vector<double> wavePeriodsTm10,
+        vector<double> waveAngles,
         vector<unique_ptr<JsonInputTimeDependentHydraulicData>> timeDependentHydraulicData)
-        : _timeDependentHydraulicData(move(timeDependentHydraulicData))
+        : _waterLevels(move(waterLevels)),
+          _waveHeightsHm0(move(waveHeightsHm0)),
+          _wavePeriodsTm10(move(wavePeriodsTm10)),
+          _waveAngles(move(waveAngles)),
+          _timeDependentHydraulicData(move(timeDependentHydraulicData))
     {
         for (const auto& timeDependentHydraulicDataItem : _timeDependentHydraulicData)
         {
             _timeDependentHydraulicDataReferences.emplace_back(*timeDependentHydraulicDataItem);
         }
+    }
+
+    const vector<double>& JsonInputHydraulicData::GetWaterLevels() const
+    {
+        return _waterLevels;
+    }
+
+    const vector<double>& JsonInputHydraulicData::GetWaveHeightsHm0() const
+    {
+        return _waveHeightsHm0;
+    }
+
+    const std::vector<double>& JsonInputHydraulicData::GetWavePeriodsTm10() const
+    {
+        return _wavePeriodsTm10;
+    }
+
+    const std::vector<double>& JsonInputHydraulicData::GetWaveAngles() const
+    {
+        return _waveAngles;
     }
 
     const vector<reference_wrapper<JsonInputTimeDependentHydraulicData>>& JsonInputHydraulicData::GetTimeDependentHydraulicData() const

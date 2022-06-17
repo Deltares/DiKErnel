@@ -160,6 +160,10 @@ namespace DiKErnel::KernelWrapper::Json::Input
         }
 
         return make_unique<JsonInputHydraulicData>(
+            readHydraulicLoads.at(JsonInputDefinitions::WATER_LEVEL).get<vector<double>>(),
+            readHydraulicLoads.at(JsonInputDefinitions::WAVE_HEIGHT_HM0).get<vector<double>>(),
+            readHydraulicLoads.at(JsonInputDefinitions::WAVE_PERIOD_TM10).get<vector<double>>(),
+            readHydraulicLoads.at(JsonInputDefinitions::WAVE_ANGLE).get<vector<double>>(),
             move(timeDependentHydraulicData));
     }
 

@@ -31,13 +31,34 @@ namespace DiKErnel::KernelWrapper::Json::Input
     {
         public:
             explicit JsonInputHydraulicData(
+                std::vector<double> waterLevels,
+                std::vector<double> waveHeightsHm0,
+                std::vector<double> wavePeriodsTm10,
+                std::vector<double> waveAngles,
                 std::vector<std::unique_ptr<JsonInputTimeDependentHydraulicData>> timeDependentHydraulicData
             );
+
+            [[nodiscard]]
+            const std::vector<double>& GetWaterLevels() const;
+
+            [[nodiscard]]
+            const std::vector<double>& GetWaveHeightsHm0() const;
+
+            [[nodiscard]]
+            const std::vector<double>& GetWavePeriodsTm10() const;
+
+            [[nodiscard]]
+            const std::vector<double>& GetWaveAngles() const;
 
             [[nodiscard]]
             const std::vector<std::reference_wrapper<JsonInputTimeDependentHydraulicData>>& GetTimeDependentHydraulicData() const;
 
         private:
+            std::vector<double> _waterLevels;
+            std::vector<double> _waveHeightsHm0;
+            std::vector<double> _wavePeriodsTm10;
+            std::vector<double> _waveAngles;
+
             std::vector<std::unique_ptr<JsonInputTimeDependentHydraulicData>> _timeDependentHydraulicData;
             std::vector<std::reference_wrapper<JsonInputTimeDependentHydraulicData>> _timeDependentHydraulicDataReferences;
     };
