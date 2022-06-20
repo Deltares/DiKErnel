@@ -22,6 +22,7 @@
 
 #include <fstream>
 #include <nlohmann/json-schema.hpp>
+#include <sstream>
 
 #include "EventRegistry.h"
 #include "JsonInputAdapter.h"
@@ -30,19 +31,27 @@
 namespace DiKErnel::KernelWrapper::Json::Input
 {
     using namespace Core;
+    using namespace DomainLibrary;
     using namespace nlohmann;
     using namespace json_schema;
     using namespace std;
     using namespace Util;
 
-    bool JsonInputComposer::ValidateJson(
+    unique_ptr<ValidationIssue> JsonInputComposer::ValidateJson(
         const string& filePath)
     {
-        const json_validator validator;
+        stringstream jsonSchema;
+
+        json_validator validator;
+
+        const ifstream streamToJsonSchema("schema_definition.json");
+        jsonSchema << streamToJsonSchema.rdbuf();
+
+        validator.set_root_schema(jsonSchema.str());
 
         auto results = validator.validate(json::parse(ifstream(filePath)));
 
-        return true;
+        return nullptr;
     }
 
     unique_ptr<DataResult<JsonInputComposerResult>> JsonInputComposer::GetInputDataFromJson(
