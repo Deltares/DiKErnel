@@ -65,81 +65,53 @@
                 0
             ]
         },
-        "Dijkprofiel": 
-        [
-            {
-                "Positie": -30,
-                "Hoogte": -9.65
-            },
-            {
-                "Positie": -20,
-                "Hoogte": -7.15
-            },
-            {
-                "Positie": -10,
-                "Hoogte": -4.65
-            },
-            {
-                "Positie": 0,
-                "Hoogte": -2.15
-            },
-            {
-                "Positie": 5,
-                "Hoogte": -0.9
-            },
-            {
-                "Positie": 10,
-                "Hoogte": 0.35
-            },
-            {
-                "Positie": 15,
-                "Hoogte": 1.6
-            },
-            {
-                "Positie": 20,
-                "Hoogte": 2.85
-            },
-            {
-                "Positie": 25,
-                "Hoogte": 4.1
-            },
-            {
-                "Positie": 30,
-                "Hoogte": 5.35,
-                "KarakteristiekPunt": "TeenBuitenzijde"
-            },
-            {
-                "Positie": 35,
-                "Hoogte": 6.6
-            },
-            {
-                "Positie": 40,
-                "Hoogte": 7.85,
-                "KarakteristiekPunt": "KruinBermBuitenzijde"
-            },
-            {
-                "Positie": 45,
-                "Hoogte": 9.1
-            },
-            {
-                "Positie": 50,
-                "Hoogte": 10.35,
-                "KarakteristiekPunt": "InsteekBermBuitenzijde"
-            },
-            {
-                "Positie": 55,
-                "Hoogte": 11.6
-            },
-            {
-                "Positie": 60,
-                "Hoogte": 12.85
-            },
-            {
-                "Positie": 65,
-                "Hoogte": 14.1,
-                "KarakteristiekPunt": "KruinBuitenzijde"
-            }
-        ],
+        "Dijkprofiel":
+        {
+            "Positie":
+            [
+                -30,
+                -20,
+                -10,
+                0,
+                5,
+                10,
+                15,
+                20,
+                25,
+                30,
+                35,
+                40,
+                45,
+                50,
+                55,
+                60,
+                65
+            ],
+            "Hoogte":
+            [
+                -9.65,
+                -7.15,
+                -4.65,
+                -2.15,
+                -0.9,
+                0.35,
+                1.6,
+                2.85,
+                4.1,
+                5.35,
+                6.6,
+                7.85,
+                9.1,
+                10.35,
+                11.6,
+                12.85,
+                14.1
+            ],
+            "TeenBuitenzijde": 30,
+            "KruinBermBuitenzijde": 40,
+            "InsteekBermBuitenzijde": 50,
+            "KruinBuitenzijde": 65
+        },
         "Locaties":
         [
             {

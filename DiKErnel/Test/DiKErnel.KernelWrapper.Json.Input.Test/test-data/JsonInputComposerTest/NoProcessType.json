@@ -9,7 +9,11 @@
             "GolfperiodeTm10": [],
             "Golfhoek": []
         },
-		"Dijkprofiel": [],
+		"Dijkprofiel":
+        {
+            "Positie": [],
+            "Hoogte": []
+        },
 		"Locaties": []
     }
 }

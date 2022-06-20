@@ -490,12 +490,6 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
     }
 
     TEST_F(JsonInputComposerTest,
-           GivenJsonInputWithInvalidCharacteristicPointType_WhenGetInputDataFromJson_ThenReturnsResultWithSuccessfulFalseAndEvent)
-    {
-        PerformInvalidJsonTest("InvalidCharacteristicPointType.json", "Cannot convert characteristic point type.");
-    }
-
-    TEST_F(JsonInputComposerTest,
            GivenJsonInputWithInvalidAsphaltRevetmentWaveImpactTypeTopLayer_WhenGetInputDataFromJson_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         PerformInvalidJsonTest("InvalidAsphaltRevetmentWaveImpactTopLayerType.json", "Cannot convert top layer type.");

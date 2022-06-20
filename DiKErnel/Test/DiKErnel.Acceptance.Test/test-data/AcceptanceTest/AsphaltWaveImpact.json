@@ -71,40 +71,32 @@
             ]
         },
         "Dijkprofiel":
-        [
-            {
-                "Positie": -30,
-                "Hoogte": 0
-            },
-            {
-                "Positie": 0,
-                "Hoogte": 1.73,
-                "KarakteristiekPunt": "TeenBuitenzijde"
-            },
-            {
-                "Positie": 18.29,
-                "Hoogte": 5.99,
-                "KarakteristiekPunt": "KruinBermBuitenzijde"
-            },
-            {
-                "Positie": 30,
-                "Hoogte": 6.99,
-                "KarakteristiekPunt": "InsteekBermBuitenzijde"
-            },
-            {
-                "Positie": 40,
-                "Hoogte": 9,
-                "KarakteristiekPunt": "KruinBuitenzijde"
-            },
-            {
-                "Positie": 45,
-                "Hoogte": 9
-            },
-            {
-                "Positie": 65,
-                "Hoogte": 0
-            }
-        ],
+        {
+            "Positie":
+            [
+                -30,
+                0,
+                18.29,
+                30,
+                40,
+                45,
+                65
+            ],
+            "Hoogte":
+            [
+                0,
+                1.73,
+                5.99,
+                6.99,
+                9,
+                9,
+                0
+            ],
+            "TeenBuitenzijde": 0,
+            "KruinBermBuitenzijde": 18.29,
+            "InsteekBermBuitenzijde": 30,
+            "KruinBuitenzijde": 40
+        },
         "Locaties":
         [
             {

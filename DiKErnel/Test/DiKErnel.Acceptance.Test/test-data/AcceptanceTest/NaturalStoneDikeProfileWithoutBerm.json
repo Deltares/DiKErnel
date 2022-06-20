@@ -70,78 +70,50 @@
             ]
         },
         "Dijkprofiel":
-        [
-            {
-                "Positie": -30.0,
-                "Hoogte": -2.0
-            },
-            {
-                "Positie": -20.0,
-                "Hoogte": -1.8
-            },
-            {
-                "Positie": -10.0,
-                "Hoogte": -1.5,
-                "KarakteristiekPunt": "TeenBuitenzijde"
-            },
-            {
-                "Positie": 0.0,
-                "Hoogte": 0.0
-            },
-            {
-                "Positie": 5.0,
-                "Hoogte": 1.6
-            },
-            {
-                "Positie": 10.0,
-                "Hoogte": 3.3
-            },
-            {
-                "Positie": 15.0,
-                "Hoogte": 4.7
-            },
-            {
-                "Positie": 20.0,
-                "Hoogte": 5.9
-            },
-            {
-                "Positie": 25.0,
-                "Hoogte": 7.2
-            },
-            {
-                "Positie": 30.0,
-                "Hoogte": 8.5
-            },
-            {
-                "Positie": 35.0,
-                "Hoogte": 9.2
-            },
-            {
-                "Positie": 40.0,
-                "Hoogte": 9.3,
-                "KarakteristiekPunt": "KruinBuitenzijde"
-            },
-            {
-                "Positie": 45.0,
-                "Hoogte": 9.4
-            },
-            {
-                "Positie": 50.0,
-                "Hoogte": 9.4
-            },
-            {
-                "Positie": 55.0,
-                "Hoogte": 9.0
-            },
-            {
-                "Positie": 60.0,
-                "Hoogte": 8.6
-            },
-            {
-                "Positie": 65.0,
-                "Hoogte": 8.0
-            }
-        ],
+        {
+            "Positie":
+            [
+                -30,
+                -20,
+                -10,
+                0,
+                5,
+                10,
+                15,
+                20,
+                25,
+                30,
+                35,
+                40,
+                45,
+                50,
+                55,
+                60,
+                65
+            ],
+            "Hoogte":
+            [
+                -2,
+                -1.8,
+                -1.5,
+                0,
+                1.6,
+                3.3,
+                4.7,
+                5.9,
+                7.2,
+                8.5,
+                9.2,
+                9.3,
+                9.4,
+                9.4,
+                9,
+                8.6,
+                8
+            ],
+            "TeenBuitenzijde": -10.0,
+            "KruinBuitenzijde": 40.0
+        },
         "Locaties":
         [
             {

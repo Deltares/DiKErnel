@@ -101,22 +101,22 @@
             ]
         },
         "Dijkprofiel":
-        [
-            {
-                "Positie": 0.0,
-                "Hoogte": 0.0,
-                "KarakteristiekPunt": "TeenBuitenzijde"
-            },
-            {
-                "Positie": 6.0,
-                "Hoogte": 1.5
-            },
-            {
-                "Positie": 12,
-                "Hoogte": 3.0,
-                "KarakteristiekPunt": "KruinBuitenzijde"
-            }
-        ],
+        {
+            "Positie":
+            [
+                0.0,
+                6.0,
+                12
+            ],
+            "Hoogte":
+            [
+                0.0,
+                1.5,
+                3.0
+            ],
+            "TeenBuitenzijde": 0.0,
+            "KruinBuitenzijde": 12
+        },
         "Locaties": 
         [
             {
