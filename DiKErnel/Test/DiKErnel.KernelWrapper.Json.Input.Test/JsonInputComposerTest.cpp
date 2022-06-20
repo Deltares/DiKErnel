@@ -531,7 +531,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
         PerformInvalidJsonTest("InvalidNaturalStoneRevetmentTopLayerType.json", "Cannot convert top layer type.");
     }
 
-    TEST_F(JsonInputComposerTest, GivenValidJsonInputFile_WhenValidatingJson_ThenReturnsTrue)
+    TEST_F(JsonInputComposerTest, GivenValidJsonInputFile_WhenValidatingJson_ThenReturnsNullPtr)
     {
         // Given
         const auto filePath = (TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Input.Test") / "JsonInputComposerTest"
@@ -541,6 +541,6 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
         const auto result = JsonInputComposer::ValidateJson(filePath);
 
         // Then
-        ASSERT_TRUE(result);
+        ASSERT_EQ(nullptr, result);
     }
 }

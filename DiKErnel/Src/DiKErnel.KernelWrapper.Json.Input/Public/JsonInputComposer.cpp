@@ -26,10 +26,10 @@
 #include "EventRegistry.h"
 #include "JsonInputAdapter.h"
 #include "JsonInputParser.h"
+#include "JsonSchemaDefinition.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
-    using namespace Core;
     using namespace DomainLibrary;
     using namespace nlohmann;
     using namespace json_schema;
@@ -41,15 +41,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
     {
         json_validator validator;
 
-        static json jsonSchema = R"(
-        {
-          "$schema": "https://json-schema.org/draft-07/schema#",
-          "title": "DiKErnel schema",
-          "type": "object"
-        }
-        )"_json;
-
-        validator.set_root_schema(jsonSchema);
+        validator.set_root_schema(json::parse(JSON_SCHEMA_DEFINITION));
 
         auto results = validator.validate(json::parse(ifstream(filePath)));
 
