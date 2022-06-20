@@ -24,7 +24,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
 {
     enum class JsonInputCharacteristicPointType
     {
-        Unknown,
         OuterToe,
         OuterCrest,
         CrestOuterBerm,

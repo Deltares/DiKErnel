@@ -61,14 +61,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
             builder.AddDikeProfilePoint(xLocation, zLocations.at(i), characteristicPoint.get());
         }
 
-        for (const auto& dikeProfilePointReference : dikeProfileData.GetDikeProfilePoints())
-        {
-            const auto& dikeProfilePoint = dikeProfilePointReference.get();
-            const auto characteristicPointType = ConvertCharacteristicPointType(dikeProfilePoint.GetCharacteristicPointType());
-
-            builder.AddDikeProfilePoint(dikeProfilePoint.GetX(), dikeProfilePoint.GetZ(), characteristicPointType.get());
-        }
-
         const auto& times = calculationData.GetTimes();
 
         const auto& waterLevels = hydraulicData.GetWaterLevels();

@@ -43,8 +43,6 @@ set(SOURCEFILES_INTERNAL_DATA_GENERIC
   ${INTERNAL_DATA_GENERIC_FOLDER}/JsonInputData.h
   ${INTERNAL_DATA_GENERIC_FOLDER}/JsonInputDikeProfileData.cpp
   ${INTERNAL_DATA_GENERIC_FOLDER}/JsonInputDikeProfileData.h
-  ${INTERNAL_DATA_GENERIC_FOLDER}/JsonInputDikeProfilePoint.cpp
-  ${INTERNAL_DATA_GENERIC_FOLDER}/JsonInputDikeProfilePoint.h
   ${INTERNAL_DATA_GENERIC_FOLDER}/JsonInputHydraulicData.cpp
   ${INTERNAL_DATA_GENERIC_FOLDER}/JsonInputHydraulicData.h
   ${INTERNAL_DATA_GENERIC_FOLDER}/JsonInputLocationData.cpp

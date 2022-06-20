@@ -73,25 +73,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
             }
         });
 
-    NLOHMANN_JSON_SERIALIZE_ENUM(JsonInputCharacteristicPointType,
-        {
-            {
-                JsonInputCharacteristicPointType::Unknown, nullptr
-            },
-            {
-                JsonInputCharacteristicPointType::OuterToe, JsonInputDefinitions::CHARACTERISTIC_POINT_TYPE_OUTER_TOE
-            },
-            {
-                JsonInputCharacteristicPointType::OuterCrest, JsonInputDefinitions::CHARACTERISTIC_POINT_TYPE_OUTER_CREST
-            },
-            {
-                JsonInputCharacteristicPointType::CrestOuterBerm, JsonInputDefinitions::CHARACTERISTIC_POINT_TYPE_CREST_OUTER_BERM
-            },
-            {
-                JsonInputCharacteristicPointType::NotchOuterBerm, JsonInputDefinitions::CHARACTERISTIC_POINT_TYPE_NOTCH_OUTER_BERM
-            }
-        });
-
     unique_ptr<JsonInputData> JsonInputParser::GetJsonInputData(
         const string& filePath)
     {
