@@ -6,10 +6,13 @@
 	"Rekendata":
 	{
 		"Tijd": [],
-		"HydraulischeBelastingen": 
-		{
-			"RandvoorwaardenPerTijdstap": []
-		},
+		"HydraulischeBelastingen":
+        {
+            "Waterstand": [],
+            "GolfhoogteHm0": [],
+            "GolfperiodeTm10": [],
+            "Golfhoek": []
+        },
 		"Dijkprofiel": [],
 		"Locaties": []
 	}

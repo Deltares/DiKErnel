@@ -20,62 +20,53 @@
         ],
         "HydraulischeBelastingen":
         {
-            "RandvoorwaardenPerTijdstap":
+            "Waterstand":
             [
-                {
-                    "Waterstand": 1.0,
-                    "GolfhoogteHm0": 1.5,
-                    "GolfperiodeTm10": 4.8,
-                    "Golfhoek": 0.0
-                },
-                {
-                    "Waterstand": 1.5,
-                    "GolfhoogteHm0": 1.7,
-                    "GolfperiodeTm10": 5.0,
-                    "Golfhoek": 0.0
-                },
-                {
-                    "Waterstand": 1.7,
-                    "GolfhoogteHm0": 2.2,
-                    "GolfperiodeTm10": 5.3,
-                    "Golfhoek": 2.0
-                },
-                {
-                    "Waterstand": 1.9,
-                    "GolfhoogteHm0": 2.4,
-                    "GolfperiodeTm10": 5.4,
-                    "Golfhoek": 5.0
-                },
-                {
-                    "Waterstand": 2.0,
-                    "GolfhoogteHm0": 2.6,
-                    "GolfperiodeTm10": 5.7,
-                    "Golfhoek": 10.0
-                },
-                {
-                    "Waterstand": 1.9,
-                    "GolfhoogteHm0": 2.4,
-                    "GolfperiodeTm10": 5.8,
-                    "Golfhoek": 5.0
-                },
-                {
-                    "Waterstand": 1.7,
-                    "GolfhoogteHm0": 2.1,
-                    "GolfperiodeTm10": 5.8,
-                    "Golfhoek": 2.0
-                },
-                {
-                    "Waterstand": 1.5,
-                    "GolfhoogteHm0": 1.9,
-                    "GolfperiodeTm10": 5.6,
-                    "Golfhoek": 0.0
-                },
-                {
-                    "Waterstand": 1.0,
-                    "GolfhoogteHm0": 1.8,
-                    "GolfperiodeTm10": 5.5,
-                    "Golfhoek": 0.0
-                }
+                1,
+                1.5,
+                1.7,
+                1.9,
+                2,
+                1.9,
+                1.7,
+                1.5,
+                1
+            ],
+            "GolfhoogteHm0":
+            [
+                1.5,
+                1.7,
+                2.2,
+                2.4,
+                2.6,
+                2.4,
+                2.1,
+                1.9,
+                1.8
+            ],
+            "GolfperiodeTm10":
+            [
+                4.8,
+                5,
+                5.3,
+                5.4,
+                5.7,
+                5.8,
+                5.8,
+                5.6,
+                5.5
+            ],
+            "Golfhoek":
+            [
+                0,
+                0,
+                2,
+                5,
+                10,
+                5,
+                2,
+                0,
+                0
             ]
         },
         "Dijkprofiel":
