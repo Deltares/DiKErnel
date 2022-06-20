@@ -31,12 +31,30 @@ namespace DiKErnel::KernelWrapper::Json::Input
     {
         public:
             explicit JsonInputDikeProfileData(
+                std::vector<double> xLocations,
+                std::vector<double> zLocations,
+                std::vector<std::pair<JsonInputCharacteristicPointType, double>> characteristicPoints);
+
+            explicit JsonInputDikeProfileData(
                 std::vector<std::unique_ptr<JsonInputDikeProfilePoint>> dikeProfilePoints);
+
+            [[nodiscard]]
+            const std::vector<double>& GetXLocations() const;
+
+            [[nodiscard]]
+            const std::vector<double>& GetZLocations() const;
+
+            [[nodiscard]]
+            const std::vector<std::pair<JsonInputCharacteristicPointType, double>>& GetCharacteristicPoints() const;
 
             [[nodiscard]]
             const std::vector<std::reference_wrapper<JsonInputDikeProfilePoint>>& GetDikeProfilePoints() const;
 
         private:
+            std::vector<double> _xLocations;
+            std::vector<double> _zLocations;
+            std::vector<std::pair<JsonInputCharacteristicPointType, double>> _characteristicPoints;
+
             std::vector<std::unique_ptr<JsonInputDikeProfilePoint>> _dikeProfilePoints;
             std::vector<std::reference_wrapper<JsonInputDikeProfilePoint>> _dikeProfilePointReferences;
     };

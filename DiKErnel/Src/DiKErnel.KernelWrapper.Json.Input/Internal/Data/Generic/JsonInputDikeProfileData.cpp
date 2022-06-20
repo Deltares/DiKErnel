@@ -27,6 +27,14 @@ namespace DiKErnel::KernelWrapper::Json::Input
     using namespace std;
 
     JsonInputDikeProfileData::JsonInputDikeProfileData(
+        vector<double> xLocations,
+        vector<double> zLocations,
+        vector<std::pair<JsonInputCharacteristicPointType, double>> characteristicPoints)
+        : _xLocations(move(xLocations)),
+          _zLocations(move(zLocations)),
+          _characteristicPoints(move(characteristicPoints)) {}
+
+    JsonInputDikeProfileData::JsonInputDikeProfileData(
         vector<unique_ptr<JsonInputDikeProfilePoint>> dikeProfilePoints)
         : _dikeProfilePoints(move(dikeProfilePoints))
     {
@@ -34,6 +42,21 @@ namespace DiKErnel::KernelWrapper::Json::Input
         {
             _dikeProfilePointReferences.emplace_back(*dikeProfilePoint);
         }
+    }
+
+    const vector<double>& JsonInputDikeProfileData::GetXLocations() const
+    {
+        return _xLocations;
+    }
+
+    const vector<double>& JsonInputDikeProfileData::GetZLocations() const
+    {
+        return _zLocations;
+    }
+
+    const vector<pair<JsonInputCharacteristicPointType, double>>& JsonInputDikeProfileData::GetCharacteristicPoints() const
+    {
+        return _characteristicPoints;
     }
 
     const vector<reference_wrapper<JsonInputDikeProfilePoint>>& JsonInputDikeProfileData::GetDikeProfilePoints() const
