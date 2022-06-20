@@ -20,6 +20,8 @@
 
 #include "JsonInputAdapter.h"
 
+#include <cmath>
+
 #include "JsonInputConversionException.h"
 #include "RevetmentCalculationInputBuilder.h"
 
@@ -38,6 +40,26 @@ namespace DiKErnel::KernelWrapper::Json::Input
         RevetmentCalculationInputBuilder builder;
 
         const auto& dikeProfileData = calculationData.GetDikeProfileData();
+
+        const auto& xLocations = dikeProfileData.GetXLocations();
+        const auto& zLocations = dikeProfileData.GetZLocations();
+        const auto& characteristicPoints = dikeProfileData.GetCharacteristicPoints();
+
+        for(auto i = 0; i < static_cast<int>(xLocations.size()); ++i)
+        {
+            const double xLocation = xLocations.at(i);
+            unique_ptr<CharacteristicPointType> characteristicPoint = nullptr;
+
+            for (const auto& [characteristicPointType, characteristicPointLocation] : characteristicPoints)
+            {
+                if(abs(characteristicPointLocation - xLocation) <= numeric_limits<double>::epsilon())
+                {
+                    characteristicPoint = ConvertCharacteristicPointType(&characteristicPointType);
+                }
+            }
+
+            builder.AddDikeProfilePoint(xLocation, zLocations.at(i), characteristicPoint.get());
+        }
 
         for (const auto& dikeProfilePointReference : dikeProfileData.GetDikeProfilePoints())
         {
