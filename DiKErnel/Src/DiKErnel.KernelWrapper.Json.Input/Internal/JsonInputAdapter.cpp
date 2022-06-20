@@ -45,16 +45,16 @@ namespace DiKErnel::KernelWrapper::Json::Input
         const auto& zLocations = dikeProfileData.GetZLocations();
         const auto& characteristicPoints = dikeProfileData.GetCharacteristicPoints();
 
-        for(auto i = 0; i < static_cast<int>(xLocations.size()); ++i)
+        for (auto i = 0; i < static_cast<int>(xLocations.size()); ++i)
         {
             const double xLocation = xLocations.at(i);
             unique_ptr<CharacteristicPointType> characteristicPoint = nullptr;
 
             for (const auto& [characteristicPointType, characteristicPointLocation] : characteristicPoints)
             {
-                if(abs(characteristicPointLocation - xLocation) <= numeric_limits<double>::epsilon())
+                if (abs(characteristicPointLocation - xLocation) <= numeric_limits<double>::epsilon())
                 {
-                    characteristicPoint = ConvertCharacteristicPointType(&characteristicPointType);
+                    characteristicPoint = ConvertCharacteristicPointType(characteristicPointType);
                 }
             }
 
@@ -144,29 +144,26 @@ namespace DiKErnel::KernelWrapper::Json::Input
     }
 
     unique_ptr<CharacteristicPointType> JsonInputAdapter::ConvertCharacteristicPointType(
-        const JsonInputCharacteristicPointType* jsonCharacteristicPointType)
+        const JsonInputCharacteristicPointType jsonCharacteristicPointType)
     {
         unique_ptr<CharacteristicPointType> characteristicPointType = nullptr;
 
-        if (jsonCharacteristicPointType != nullptr)
+        switch (jsonCharacteristicPointType)
         {
-            switch (*jsonCharacteristicPointType)
-            {
-                case JsonInputCharacteristicPointType::OuterToe:
-                    characteristicPointType = make_unique<CharacteristicPointType>(CharacteristicPointType::OuterToe);
-                    break;
-                case JsonInputCharacteristicPointType::OuterCrest:
-                    characteristicPointType = make_unique<CharacteristicPointType>(CharacteristicPointType::OuterCrest);
-                    break;
-                case JsonInputCharacteristicPointType::CrestOuterBerm:
-                    characteristicPointType = make_unique<CharacteristicPointType>(CharacteristicPointType::CrestOuterBerm);
-                    break;
-                case JsonInputCharacteristicPointType::NotchOuterBerm:
-                    characteristicPointType = make_unique<CharacteristicPointType>(CharacteristicPointType::NotchOuterBerm);
-                    break;
-                default:
-                    throw JsonInputConversionException("Cannot convert characteristic point type.");
-            }
+            case JsonInputCharacteristicPointType::OuterToe:
+                characteristicPointType = make_unique<CharacteristicPointType>(CharacteristicPointType::OuterToe);
+                break;
+            case JsonInputCharacteristicPointType::OuterCrest:
+                characteristicPointType = make_unique<CharacteristicPointType>(CharacteristicPointType::OuterCrest);
+                break;
+            case JsonInputCharacteristicPointType::CrestOuterBerm:
+                characteristicPointType = make_unique<CharacteristicPointType>(CharacteristicPointType::CrestOuterBerm);
+                break;
+            case JsonInputCharacteristicPointType::NotchOuterBerm:
+                characteristicPointType = make_unique<CharacteristicPointType>(CharacteristicPointType::NotchOuterBerm);
+                break;
+            default:
+                throw JsonInputConversionException("Cannot convert characteristic point type.");
         }
 
         return characteristicPointType;

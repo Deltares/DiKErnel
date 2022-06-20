@@ -24,7 +24,6 @@
 
 #include "AsphaltRevetmentWaveImpactLocationConstructionProperties.h"
 #include "GrassRevetmentWaveImpactLocationConstructionProperties.h"
-#include "GrassRevetmentWaveRunupLocationConstructionProperties.h"
 #include "GrassRevetmentWaveRunupRayleighLocationConstructionProperties.h"
 #include "ICalculationInput.h"
 #include "JsonInputAsphaltWaveImpactCalculationDefinitionData.h"
@@ -38,7 +37,6 @@
 #include "JsonInputNaturalStoneCalculationDefinitionData.h"
 #include "JsonInputNaturalStoneLocationData.h"
 #include "NaturalStoneRevetmentLocationConstructionProperties.h"
-#include "RevetmentLocationConstructionPropertiesBase.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
@@ -50,7 +48,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
         private:
             static std::unique_ptr<Core::CharacteristicPointType> ConvertCharacteristicPointType(
-                const JsonInputCharacteristicPointType* jsonCharacteristicPointType);
+                JsonInputCharacteristicPointType jsonCharacteristicPointType);
 
             template<typename T>
             static const T* GetCalculationDefinition(
