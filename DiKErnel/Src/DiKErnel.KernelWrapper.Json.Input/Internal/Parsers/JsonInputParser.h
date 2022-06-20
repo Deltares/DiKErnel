@@ -51,6 +51,12 @@ namespace DiKErnel::KernelWrapper::Json::Input
             static std::unique_ptr<JsonInputDikeProfileData> ParseDikeProfileData(
                 const nlohmann::json& readCalculationData);
 
+            static void TryParseCharacteristicPoint(
+                const nlohmann::json& readDikeProfile,
+                std::vector<std::pair<JsonInputCharacteristicPointType, double>>& characteristicPoints,
+                const std::string& characteristicPointDefinition,
+                JsonInputCharacteristicPointType characteristicPointType);
+
             static std::vector<std::unique_ptr<JsonInputLocationData>> ParseLocationData(
                 const nlohmann::json& readCalculationData);
 

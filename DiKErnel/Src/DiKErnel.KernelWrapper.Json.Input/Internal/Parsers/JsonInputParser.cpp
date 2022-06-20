@@ -145,7 +145,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
         const json& readCalculationData)
     {
         const auto& readHydraulicLoads = readCalculationData.at(JsonInputDefinitions::HYDRAULIC_LOADS);
-        
+
         return make_unique<JsonInputHydraulicData>(
             readHydraulicLoads.at(JsonInputDefinitions::WATER_LEVEL).get<vector<double>>(),
             readHydraulicLoads.at(JsonInputDefinitions::WAVE_HEIGHT_HM0).get<vector<double>>(),
@@ -158,26 +158,32 @@ namespace DiKErnel::KernelWrapper::Json::Input
     {
         const auto& readDikeProfile = readCalculationData.at(JsonInputDefinitions::DIKE_PROFILE);
 
-        vector<unique_ptr<JsonInputDikeProfilePoint>> dikeProfilePoints;
+        auto characteristicPoints = vector<pair<JsonInputCharacteristicPointType, double>>();
+        TryParseCharacteristicPoint(readDikeProfile, characteristicPoints, JsonInputDefinitions::CHARACTERISTIC_POINT_TYPE_OUTER_TOE,
+                                    JsonInputCharacteristicPointType::OuterToe);
+        TryParseCharacteristicPoint(readDikeProfile, characteristicPoints, JsonInputDefinitions::CHARACTERISTIC_POINT_TYPE_OUTER_CREST,
+                                    JsonInputCharacteristicPointType::OuterCrest);
+        TryParseCharacteristicPoint(readDikeProfile, characteristicPoints, JsonInputDefinitions::CHARACTERISTIC_POINT_TYPE_NOTCH_OUTER_BERM,
+                                    JsonInputCharacteristicPointType::NotchOuterBerm);
+        TryParseCharacteristicPoint(readDikeProfile, characteristicPoints, JsonInputDefinitions::CHARACTERISTIC_POINT_TYPE_CREST_OUTER_BERM,
+                                    JsonInputCharacteristicPointType::CrestOuterBerm);
 
-        for (const auto& readDikeProfilePoint : readDikeProfile)
+        return make_unique<JsonInputDikeProfileData>(
+            readDikeProfile.at(JsonInputDefinitions::DIKE_PROFILE_POINT_X).get<vector<double>>(),
+            readDikeProfile.at(JsonInputDefinitions::DIKE_PROFILE_POINT_Z).get<vector<double>>(),
+            move(characteristicPoints));
+    }
+
+    void JsonInputParser::TryParseCharacteristicPoint(
+        const json& readDikeProfile,
+        vector<pair<JsonInputCharacteristicPointType, double>>& characteristicPoints,
+        const string& characteristicPointDefinition,
+        JsonInputCharacteristicPointType characteristicPointType)
+    {
+        if (readDikeProfile.contains(characteristicPointDefinition))
         {
-            auto dikeProfilePoint = make_unique<JsonInputDikeProfilePoint>(
-                readDikeProfilePoint.at(JsonInputDefinitions::DIKE_PROFILE_POINT_X).get<double>(),
-                readDikeProfilePoint.at(JsonInputDefinitions::DIKE_PROFILE_POINT_Z).get<double>());
-
-            if (readDikeProfilePoint.contains(JsonInputDefinitions::CHARACTERISTIC_POINT))
-            {
-                auto readCharacteristicPointType = make_unique<JsonInputCharacteristicPointType>(
-                    readDikeProfilePoint.at(JsonInputDefinitions::CHARACTERISTIC_POINT).get<JsonInputCharacteristicPointType>());
-
-                dikeProfilePoint->SetCharacteristicPointType(move(readCharacteristicPointType));
-            }
-
-            dikeProfilePoints.push_back(move(dikeProfilePoint));
+            characteristicPoints.emplace_back(characteristicPointType, readDikeProfile.at(characteristicPointDefinition).get<double>());
         }
-
-        return make_unique<JsonInputDikeProfileData>(move(dikeProfilePoints));
     }
 
     vector<unique_ptr<JsonInputLocationData>> JsonInputParser::ParseLocationData(
