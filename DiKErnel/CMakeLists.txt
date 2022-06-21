@@ -51,7 +51,8 @@ endmacro()
 
 # Macro for configuring a version header file
 macro(CONFIGURE_VERSION_HEADER_FILE)
-  set(VERSION_HEADER_FILE ${CMAKE_CURRENT_BINARY_DIR}/Version.h)
+  set(VERSION_HEADER_DIR ${CMAKE_CURRENT_BINARY_DIR})
+  set(VERSION_HEADER_FILE ${VERSION_HEADER_DIR}/Version.h)
   configure_file(
     ${CMAKE_SOURCE_DIR}/../Deployment/Version.h.in
     ${VERSION_HEADER_FILE}
