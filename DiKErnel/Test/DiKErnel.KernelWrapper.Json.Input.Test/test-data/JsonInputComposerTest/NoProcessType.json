@@ -1,19 +1,19 @@
 {
-    "Rekendata":
+    "rekendata":
     {
         "Tijd": [],
-		"HydraulischeBelastingen":
+        "HydraulischeBelastingen":
         {
             "Waterstand": [],
             "GolfhoogteHm0": [],
             "GolfperiodeTm10": [],
             "Golfhoek": []
         },
-		"Dijkprofiel":
+        "Dijkprofiel":
         {
             "Positie": [],
             "Hoogte": []
         },
-		"Locaties": []
+        "Locaties": []
     }
 }

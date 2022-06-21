@@ -1,9 +1,9 @@
 {
-    "Procesdata":
+    "procesdata":
     {
-        "UitvoerRekenresultaten": "FysicaBekleding"
+        "uitvoerRekenresultaten": "fysica"
     },
-    "Rekendata":
+    "rekendata":
     {
         "Tijd":
         [

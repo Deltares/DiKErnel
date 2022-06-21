@@ -1,23 +1,23 @@
 {
-	"Procesdata": 
-	{
-		"UitvoerRekenresultaten": "FysicaBekleding"
-	},
-	"Rekendata":
-	{
-		"Tijd": [],
-		"HydraulischeBelastingen":
+    "procesdata": 
+    {
+        "uitvoerRekenresultaten": "fysica"
+    },
+    "rekendata":
+    {
+        "Tijd": [],
+        "HydraulischeBelastingen":
         {
             "Waterstand": [],
             "GolfhoogteHm0": [],
             "GolfperiodeTm10": [],
             "Golfhoek": []
         },
-		"Dijkprofiel":
+        "Dijkprofiel":
         {
             "Positie": [],
             "Hoogte": []
         },
-		"Locaties": []
-	}
+        "Locaties": []
+    }
 }

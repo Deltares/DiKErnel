@@ -1,9 +1,9 @@
 {
-    "Procesdata":
+    "procesdata":
     {
-        "UitvoerRekenresultaten": "SchadeBekleding"
+        "uitvoerRekenresultaten": "schade"
     },
-    "Rekendata": 
+    "rekendata": 
     {
         "Tijd":
         [

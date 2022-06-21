@@ -3,6 +3,6 @@
   "title": "DiKErnel schema",
   "type": "object",
   "required": [
-    "Rekendata"
+    "rekendata"
   ]
 }

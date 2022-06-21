@@ -27,14 +27,14 @@ namespace DiKErnel::KernelWrapper::Json::Input
     class JsonInputDefinitions
     {
         public:
-            inline static const std::string PROCESS_DATA = "Procesdata";
+            inline static const std::string PROCESS_DATA = "procesdata";
 
-            inline static const std::string PROCESS_TYPE = "UitvoerRekenresultaten";
-            inline static const std::string PROCESS_TYPE_FAILURE = "FalenBekleding";
-            inline static const std::string PROCESS_TYPE_DAMAGE = "SchadeBekleding";
-            inline static const std::string PROCESS_TYPE_PHYSICS = "FysicaBekleding";
+            inline static const std::string PROCESS_TYPE = "uitvoerRekenresultaten";
+            inline static const std::string PROCESS_TYPE_FAILURE = "falen";
+            inline static const std::string PROCESS_TYPE_DAMAGE = "schade";
+            inline static const std::string PROCESS_TYPE_PHYSICS = "fysica";
 
-            inline static const std::string CALCULATION_DATA = "Rekendata";
+            inline static const std::string CALCULATION_DATA = "rekendata";
 
             inline static const std::string HYDRAULIC_LOADS = "HydraulischeBelastingen";
             inline static const std::string LOCATIONS = "Locaties";
