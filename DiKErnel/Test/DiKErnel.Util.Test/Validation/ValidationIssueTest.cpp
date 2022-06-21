@@ -22,10 +22,9 @@
 
 #include "ValidationIssue.h"
 
-namespace DiKErnel::DomainLibrary::Test
+namespace DiKErnel::Util::Test
 {
     using namespace std;
-    using namespace Util;
 
     TEST(ValidationIssueTest, Constructor_ExpectedValues)
     {

@@ -51,7 +51,6 @@ set(SOURCEFILES_VALIDATORS
   ${VALIDATORS_FOLDER}/HydraulicLoadsValidatorTest.cpp
   ${VALIDATORS_FOLDER}/RevetmentValidatorTest.cpp
   ${VALIDATORS_FOLDER}/TimeStepValidatorTest.cpp
-  ${VALIDATORS_FOLDER}/ValidationIssueTest.cpp
 )
 
 set(SOURCEFILES_VALIDATORS_ASPHALT_REVETMENT_WAVE_IMPACT
