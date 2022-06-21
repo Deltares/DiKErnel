@@ -59,14 +59,16 @@ macro(CONFIGURE_VERSION_HEADER_FILE)
     @ONLY)
 endmacro()
 
-# Function for embedding a textual resource
-function(EMBED_TEXTUAL_RESOURCE RESOURCE_FILE_PATH HEADER_FILE_NAME RESOURCE_NAME)
+# Macro for embedding a textual resource
+macro(EMBED_TEXTUAL_RESOURCE RESOURCE_FILE_PATH HEADER_FILE_NAME RESOURCE_NAME)
+  set(EMBEDDED_RESOURCES_DIR ${CMAKE_CURRENT_BINARY_DIR})
+  set(RESOURCE_NAME ${RESOURCE_NAME})
   file(READ ${RESOURCE_FILE_PATH} TEXTUAL_CONTENT)
   configure_file(
     ${CMAKE_SOURCE_DIR}/../Deployment/EmbeddedResources/Textual.h.in
-    ${CMAKE_CURRENT_BINARY_DIR}/${HEADER_FILE_NAME}
+    ${EMBEDDED_RESOURCES_DIR}/${HEADER_FILE_NAME}
     @ONLY)
-endfunction()
+endmacro()
 
 # Add directories
 add_subdirectory(Src)
