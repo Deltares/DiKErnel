@@ -3,7 +3,7 @@
         "uitvoerRekenresultaten": "fysica"
     },
     "rekendata": {
-        "tijd": [],
+        "tijdstippen": [],
         "hydraulischeBelastingen": {
             "waterstand": [],
             "golfhoogteHm0": [],

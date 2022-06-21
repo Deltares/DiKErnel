@@ -39,7 +39,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
             inline static const std::string HYDRAULIC_LOADS = "hydraulischeBelastingen";
             inline static const std::string LOCATIONS = "locaties";
 
-            inline static const std::string TIME = "tijd";
+            inline static const std::string TIME = "tijdstippen";
             inline static const std::string WATER_LEVEL = "waterstand";
             inline static const std::string WAVE_HEIGHT_HM0 = "golfhoogteHm0";
             inline static const std::string WAVE_PERIOD_TM10 = "golfperiodeTm10";

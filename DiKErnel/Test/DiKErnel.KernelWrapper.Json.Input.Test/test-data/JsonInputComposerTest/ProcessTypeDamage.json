@@ -3,7 +3,7 @@
         "uitvoerRekenresultaten": "schade"
     },
     "rekendata": {
-        "tijd": [],
+        "tijdstippen": [],
         "hydraulischeBelastingen": {
             "waterstand": [],
             "golfhoogteHm0": [],
