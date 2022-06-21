@@ -150,11 +150,9 @@
                         }
                     }
                 ],
-                "bovenzijdeHellingvlakNatuursteen": {
-                    "bovenzijdeHellingvlakNatuursteenAus": 0.95
-                },
-                "onderzijdeHellingvlakNatuursteen": {
-                    "onderzijdeHellingvlakNatuursteenAls": 1.8
+                "hellingvlak": {
+                    "bovenzijde": 0.95,
+                    "onderzijde": 1.8
                 },
                 "bovengrensBelastingNatuursteen": {
                     "bovengrensBelastingNatuursteenAul": 6.1,

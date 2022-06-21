@@ -52,22 +52,17 @@ namespace DiKErnel::KernelWrapper::Json::Input
         auto calculationDefinition = make_unique<JsonInputNaturalStoneCalculationDefinitionData>(
             move(failureNumber), ReadTopLayerDefinitionData(readCalculationMethod));
 
-        if (readCalculationMethod.contains(JsonInputNaturalStoneDefinitions::SLOPE_UPPER_LEVEL))
+        if (readCalculationMethod.contains(JsonInputNaturalStoneDefinitions::SLOPE))
         {
-            const auto& readSlopeUpperLevel = readCalculationMethod.at(JsonInputNaturalStoneDefinitions::SLOPE_UPPER_LEVEL);
+            const auto& readSlope = readCalculationMethod.at(JsonInputNaturalStoneDefinitions::SLOPE);
 
             calculationDefinition->SetSlopeUpperLevelAus(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
-                    readSlopeUpperLevel, JsonInputNaturalStoneDefinitions::SLOPE_UPPER_LEVEL_AUS)));
-        }
-
-        if (readCalculationMethod.contains(JsonInputNaturalStoneDefinitions::SLOPE_LOWER_LEVEL))
-        {
-            const auto& readSlopeLowerLevel = readCalculationMethod.at(JsonInputNaturalStoneDefinitions::SLOPE_LOWER_LEVEL);
-
+                    readSlope, JsonInputNaturalStoneDefinitions::SLOPE_UPPER_LEVEL)));
             calculationDefinition->SetSlopeLowerLevelAls(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
-                    readSlopeLowerLevel, JsonInputNaturalStoneDefinitions::SLOPE_LOWER_LEVEL_ALS)));
+                    readSlope, JsonInputNaturalStoneDefinitions::SLOPE_LOWER_LEVEL)));
+
         }
 
         if (readCalculationMethod.contains(JsonInputNaturalStoneDefinitions::UPPER_LIMIT_LOADING))

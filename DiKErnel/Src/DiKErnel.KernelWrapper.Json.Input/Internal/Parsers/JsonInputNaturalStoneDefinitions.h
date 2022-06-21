@@ -37,11 +37,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
             inline static const std::string N_COEFFICIENT = "n";
             inline static const std::string XIB_COEFFICIENT = "xib";
 
-            inline static const std::string SLOPE_UPPER_LEVEL = "bovenzijdeHellingvlakNatuursteen";
-            inline static const std::string SLOPE_UPPER_LEVEL_AUS = "bovenzijdeHellingvlakNatuursteenAus";
-
-            inline static const std::string SLOPE_LOWER_LEVEL = "onderzijdeHellingvlakNatuursteen";
-            inline static const std::string SLOPE_LOWER_LEVEL_ALS = "onderzijdeHellingvlakNatuursteenAls";
+            inline static const std::string SLOPE = "hellingvlak";
+            inline static const std::string SLOPE_UPPER_LEVEL = "bovenzijde";
+            inline static const std::string SLOPE_LOWER_LEVEL = "onderzijde";
 
             inline static const std::string UPPER_LIMIT_LOADING = "bovengrensBelastingNatuursteen";
             inline static const std::string UPPER_LIMIT_LOADING_AUL = "bovengrensBelastingNatuursteenAul";
