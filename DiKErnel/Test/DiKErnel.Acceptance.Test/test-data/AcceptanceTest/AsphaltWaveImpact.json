@@ -89,9 +89,9 @@
         },
         "locaties": [
             {
-                "positieLocatie": 5.40,
-                "beginSchade": 0.0,
-                "rekenmethodeSoort": "asfaltGolfklap",
+                "positie": 5.40,
+                "beginschade": 0.0,
+                "rekenmethode": "asfaltGolfklap",
                 "typeToplaag": "waterbouwAsfaltBeton",
                 "breuksterkteAsfalt": 1.56,
                 "veerconstanteOndergrond": 56,
@@ -102,9 +102,9 @@
                 "tanA": 0.233
             },
             {
-                "positieLocatie": 5.40,
-                "beginSchade": 0.0,
-                "rekenmethodeSoort": "asfaltGolfklap",
+                "positie": 5.40,
+                "beginschade": 0.0,
+                "rekenmethode": "asfaltGolfklap",
                 "typeToplaag": "waterbouwAsfaltBeton",
                 "breuksterkteAsfalt": 1.56,
                 "veerconstanteOndergrond": 56,
@@ -121,7 +121,7 @@
         ],
         "rekenmethoden": [
             {
-                "rekenmethodeSoort": "asfaltGolfklap",
+                "rekenmethode": "asfaltGolfklap",
                 "faalgetal": 1.0,
                 "soortelijkeDichtheidWater": 1025,
                 "toplagen": [

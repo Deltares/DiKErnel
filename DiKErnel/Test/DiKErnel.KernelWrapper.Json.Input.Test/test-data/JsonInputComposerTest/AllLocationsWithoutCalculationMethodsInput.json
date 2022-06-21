@@ -84,37 +84,37 @@
         },
         "locaties": [
             {
-                "positieLocatie": 8.79,
-                "rekenmethodeSoort": "natuursteen",
+                "positie": 8.79,
+                "rekenmethode": "natuursteen",
                 "typeToplaag": "noorseSteen",
                 "relatieveDichtheid": 1.65,
                 "dikteToplaag": 0.7
             },
             {
-                "positieLocatie": -18.4,
-                "rekenmethodeSoort": "grasGolfklap",
+                "positie": -18.4,
+                "rekenmethode": "grasGolfklap",
                 "typeToplaag": "grasGeslotenZode"
             },
             {
-                "positieLocatie": 4,
-                "rekenmethodeSoort": "grasGolfklap",
+                "positie": 4,
+                "rekenmethode": "grasGolfklap",
                 "typeToplaag": "grasOpenZode"
             },
             {
-                "positieLocatie": 0.98,
-                "rekenmethodeSoort": "grasGolfoploop",
+                "positie": 0.98,
+                "rekenmethode": "grasGolfoploop",
                 "typeToplaag": "grasGeslotenZode",
                 "tanA": 0.8
             },
             {
-                "positieLocatie": 7.698,
-                "rekenmethodeSoort": "grasGolfoploop",
+                "positie": 7.698,
+                "rekenmethode": "grasGolfoploop",
                 "typeToplaag": "grasOpenZode",
                 "tanA": 0.9
             },
             {
-                "positieLocatie": 19,
-                "rekenmethodeSoort": "asfaltGolfklap",
+                "positie": 19,
+                "rekenmethode": "asfaltGolfklap",
                 "typeToplaag": "waterbouwAsfaltBeton",
                 "breuksterkteAsfalt": 1.56,
                 "veerconstanteOndergrond": 56,
@@ -127,7 +127,7 @@
         ],
         "rekenmethoden": [
             {
-                "rekenmethodeSoort": "grasGolfoploop",
+                "rekenmethode": "grasGolfoploop",
                 "rekenprotocol": {
                     "rekenprotocolsoort": "rayleighDiscreet"
                 }

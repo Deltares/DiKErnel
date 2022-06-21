@@ -105,8 +105,8 @@
         },
         "locaties": [
             {
-                "positieLocatie": 5.0,
-                "rekenmethodeSoort": "natuursteen",
+                "positie": 5.0,
+                "rekenmethode": "natuursteen",
                 "typeToplaag": "noorseSteen",
                 "relatieveDichtheid": 1.65,
                 "dikteToplaag": 0.3
@@ -114,7 +114,7 @@
         ],
         "rekenmethoden": [
             {
-                "rekenmethodeSoort": "natuursteen",
+                "rekenmethode": "natuursteen",
                 "toplagen": [
                     {
                         "typeToplaag": "noorseSteen",

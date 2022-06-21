@@ -13,8 +13,8 @@
         },
         "locaties": [
             {
-                "positieLocatie": 0,
-                "rekenmethodeSoort": "natuursteen",
+                "positie": 0,
+                "rekenmethode": "natuursteen",
                 "typeToplaag": "ongeldigeSteen",
                 "dikteToplaag": 0.3,
                 "relatieveDichtheid": 1.65

@@ -84,23 +84,23 @@
         },
         "locaties": [
             {
-                "positieLocatie": 11,
-                "beginSchade": 0.1,
-                "rekenmethodeSoort": "natuursteen",
+                "positie": 11,
+                "beginschade": 0.1,
+                "rekenmethode": "natuursteen",
                 "typeToplaag": "noorseSteen",
                 "relatieveDichtheid": 1.65,
                 "dikteToplaag": 0.3
             },
             {
-                "positieLocatie": 0,
-                "beginSchade": 0.04,
-                "rekenmethodeSoort": "grasGolfklap",
+                "positie": 0,
+                "beginschade": 0.04,
+                "rekenmethode": "grasGolfklap",
                 "typeToplaag": "grasGeslotenZode"
             },
             {
-                "positieLocatie": 157,
-                "beginSchade": 0.0006,
-                "rekenmethodeSoort": "grasGolfoploop",
+                "positie": 157,
+                "beginschade": 0.0006,
+                "rekenmethode": "grasGolfoploop",
                 "typeToplaag": "grasGeslotenZode",
                 "verhogingBelastingOvergangAlfaM": 1.5,
                 "verlagingSterkteOvergangAlfaS": 0.8,
@@ -109,9 +109,9 @@
                 "ruwheidsfactorGammaf": 4.1
             },
             {
-                "positieLocatie": 25,
-                "beginSchade": 1.0,
-                "rekenmethodeSoort": "asfaltGolfklap",
+                "positie": 25,
+                "beginschade": 1.0,
+                "rekenmethode": "asfaltGolfklap",
                 "typeToplaag": "waterbouwAsfaltBeton",
                 "breuksterkteAsfalt": 5.6,
                 "veerconstanteOndergrond": 53,
@@ -128,7 +128,7 @@
         ],
         "rekenmethoden": [
             {
-                "rekenmethodeSoort": "natuursteen",
+                "rekenmethode": "natuursteen",
                 "faalgetal": 1.06,
                 "toplagen": [
                     {
@@ -175,7 +175,7 @@
                 }
             },
             {
-                "rekenmethodeSoort": "grasGolfklap",
+                "rekenmethode": "grasGolfklap",
                 "faalgetal": 1.07,
                 "toplagen": [
                     {
@@ -204,7 +204,7 @@
                 }
             },
             {
-                "rekenmethodeSoort": "grasGolfoploop",
+                "rekenmethode": "grasGolfoploop",
                 "faalgetal": 0.45,
                 "toplagen": [
                     {
@@ -234,7 +234,7 @@
                 }
             },
             {
-                "rekenmethodeSoort": "asfaltGolfklap",
+                "rekenmethode": "asfaltGolfklap",
                 "faalgetal": 0.0098,
                 "toplagen": [
                     {

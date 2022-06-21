@@ -174,19 +174,19 @@
         },
         "locaties": [
             {
-                "positieLocatie": 5.0,
-                "rekenmethodeSoort": "grasGolfklap",
+                "positie": 5.0,
+                "rekenmethode": "grasGolfklap",
                 "typeToplaag": "grasGeslotenZode"
             },
             {
-                "positieLocatie": 5.0,
-                "rekenmethodeSoort": "grasGolfklap",
+                "positie": 5.0,
+                "rekenmethode": "grasGolfklap",
                 "typeToplaag": "grasOpenZode"
             }
         ],
         "rekenmethoden": [
             {
-                "rekenmethodeSoort": "grasGolfklap",
+                "rekenmethode": "grasGolfklap",
                 "toplagen": [
                     {
                         "typeToplaag": "grasGeslotenZode",

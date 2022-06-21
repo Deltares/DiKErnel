@@ -13,8 +13,8 @@
         },
         "locaties": [
             {
-                "positieLocatie": 0,
-                "rekenmethodeSoort": "grasGolfklap",
+                "positie": 0,
+                "rekenmethode": "grasGolfklap",
                 "typeToplaag": "grasHalveZode"
             }
         ]
