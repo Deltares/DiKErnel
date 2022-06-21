@@ -40,7 +40,7 @@ namespace DiKErnel::DomainLibrary
              *        Unit = [s, s]
              * \return A validation issue when the time steps are not valid; nullptr otherwise.
              */
-            static std::unique_ptr<ValidationIssue> TimeSteps(
+            static std::unique_ptr<Util::ValidationIssue> TimeSteps(
                 const std::vector<std::pair<int, int>>& timeSteps);
 
             /*!
@@ -51,7 +51,7 @@ namespace DiKErnel::DomainLibrary
              * \return A validation issue when the number of locations is not valid; nullptr
              *         otherwise.
              */
-            static std::unique_ptr<ValidationIssue> NumberOfLocations(
+            static std::unique_ptr<Util::ValidationIssue> NumberOfLocations(
                 int numberOfLocations);
     };
 }

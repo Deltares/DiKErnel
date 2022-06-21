@@ -43,7 +43,7 @@ namespace DiKErnel::DomainLibrary
              * \return A validation issue when the Agwi coefficient is not valid; nullptr
              *         otherwise.
              */
-            static std::unique_ptr<ValidationIssue> TimeLineAgwi(
+            static std::unique_ptr<Util::ValidationIssue> TimeLineAgwi(
                 double timeLineAgwi,
                 double timeLineCgwi);
 
@@ -55,7 +55,7 @@ namespace DiKErnel::DomainLibrary
              * \return A validation issue when the Bgwi coefficient is not valid; nullptr
              *         otherwise.
              */
-            static std::unique_ptr<ValidationIssue> TimeLineBgwi(
+            static std::unique_ptr<Util::ValidationIssue> TimeLineBgwi(
                 double timeLineBgwi);
 
             /*!
@@ -66,7 +66,7 @@ namespace DiKErnel::DomainLibrary
              * \return A validation issue when the Cgwi coefficient is not valid; nullptr
              *         otherwise.
              */
-            static std::unique_ptr<ValidationIssue> TimeLineCgwi(
+            static std::unique_ptr<Util::ValidationIssue> TimeLineCgwi(
                 double timeLineCgwi);
 
             /*!
@@ -77,7 +77,7 @@ namespace DiKErnel::DomainLibrary
              * \return A validation issue when the Temax coefficient is not valid; nullptr
              *         otherwise.
              */
-            static std::unique_ptr<ValidationIssue> MinimumWaveHeightTemax(
+            static std::unique_ptr<Util::ValidationIssue> MinimumWaveHeightTemax(
                 double minimumWaveHeightTemax);
 
             /*!
@@ -88,7 +88,7 @@ namespace DiKErnel::DomainLibrary
              * \return A validation issue when the Temin coefficient is not valid; nullptr
              *         otherwise.
              */
-            static std::unique_ptr<ValidationIssue> MaximumWaveHeightTemin(
+            static std::unique_ptr<Util::ValidationIssue> MaximumWaveHeightTemin(
                 double maximumWaveHeightTemin);
 
             /*!
@@ -98,7 +98,7 @@ namespace DiKErnel::DomainLibrary
              *        Unit = [-]
              * \return A validation issue when the Nwa coefficient is not valid; nullptr otherwise.
              */
-            static std::unique_ptr<ValidationIssue> WaveAngleImpactNwa(
+            static std::unique_ptr<Util::ValidationIssue> WaveAngleImpactNwa(
                 double waveAngleImpactNwa);
 
             /*!
@@ -108,7 +108,7 @@ namespace DiKErnel::DomainLibrary
              *        Unit = [-]
              * \return A validation issue when the Qwa coefficient is not valid; nullptr otherwise.
              */
-            static std::unique_ptr<ValidationIssue> WaveAngleImpactQwa(
+            static std::unique_ptr<Util::ValidationIssue> WaveAngleImpactQwa(
                 double waveAngleImpactQwa);
 
             /*!
@@ -118,7 +118,7 @@ namespace DiKErnel::DomainLibrary
              *        Unit = [-]
              * \return A validation issue when the Rwa coefficient is not valid; nullptr otherwise.
              */
-            static std::unique_ptr<ValidationIssue> WaveAngleImpactRwa(
+            static std::unique_ptr<Util::ValidationIssue> WaveAngleImpactRwa(
                 double waveAngleImpactRwa);
 
             /*!
@@ -131,7 +131,7 @@ namespace DiKErnel::DomainLibrary
              *        Unit = [-]
              * \return A validation issue when the Aul coefficient is not valid; nullptr otherwise.
              */
-            static std::unique_ptr<ValidationIssue> UpperLimitLoadingAul(
+            static std::unique_ptr<Util::ValidationIssue> UpperLimitLoadingAul(
                 double upperLimitLoadingAul,
                 double lowerLimitLoadingAll);
     };

@@ -23,6 +23,7 @@
 namespace DiKErnel::DomainLibrary
 {
     using namespace std;
+    using namespace Util;
 
     unique_ptr<ValidationIssue> NaturalStoneRevetmentValidator::RelativeDensity(
         const double relativeDensity)

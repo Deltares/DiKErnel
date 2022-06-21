@@ -25,6 +25,7 @@
 namespace DiKErnel::DomainLibrary
 {
     using namespace std;
+    using namespace Util;
 
     unique_ptr<ValidationIssue> GenericValidator::TimeSteps(
         const vector<pair<int, int>>& timeSteps)

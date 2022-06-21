@@ -40,7 +40,7 @@ namespace DiKErnel::DomainLibrary
              * \return A validation issue when the fatigue alpha coefficient is not valid; nullptr
              *         otherwise.
              */
-            static std::unique_ptr<ValidationIssue> FatigueAlpha(
+            static std::unique_ptr<Util::ValidationIssue> FatigueAlpha(
                 double fatigueAlpha);
 
             /*!
@@ -51,7 +51,7 @@ namespace DiKErnel::DomainLibrary
              * \return A validation issue when the fatigue beta coefficient is not valid; nullptr
              *         otherwise.
              */
-            static std::unique_ptr<ValidationIssue> FatigueBeta(
+            static std::unique_ptr<Util::ValidationIssue> FatigueBeta(
                 double fatigueBeta);
 
             /*!
@@ -61,7 +61,7 @@ namespace DiKErnel::DomainLibrary
              *        Unit = [MPa]
              * \return A validation issue when the failure tension is not valid; nullptr otherwise.
              */
-            static std::unique_ptr<ValidationIssue> FailureTension(
+            static std::unique_ptr<Util::ValidationIssue> FailureTension(
                 double failureTension);
 
             /*!
@@ -72,7 +72,7 @@ namespace DiKErnel::DomainLibrary
              * \return A validation issue when the impact number C coefficient is not valid;
              *         nullptr otherwise.
              */
-            static std::unique_ptr<ValidationIssue> ImpactNumberC(
+            static std::unique_ptr<Util::ValidationIssue> ImpactNumberC(
                 double impactNumberC);
 
             /*!
@@ -83,7 +83,7 @@ namespace DiKErnel::DomainLibrary
              * \return A validation issue when the density of water is not valid; nullptr
              *         otherwise.
              */
-            static std::unique_ptr<ValidationIssue> DensityOfWater(
+            static std::unique_ptr<Util::ValidationIssue> DensityOfWater(
                 double densityOfWater);
 
             /*!
@@ -93,7 +93,7 @@ namespace DiKErnel::DomainLibrary
              *        Unit = [MPa/m]
              * \return A validation issue when the soil elasticity is not valid; nullptr otherwise.
              */
-            static std::unique_ptr<ValidationIssue> SoilElasticity(
+            static std::unique_ptr<Util::ValidationIssue> SoilElasticity(
                 double soilElasticity);
 
             /*!
@@ -103,7 +103,7 @@ namespace DiKErnel::DomainLibrary
              *        Unit = [m^-1]
              * \return A validation issue when the Nu coefficient is not valid; nullptr otherwise.
              */
-            static std::unique_ptr<ValidationIssue> StiffnessRelationNu(
+            static std::unique_ptr<Util::ValidationIssue> StiffnessRelationNu(
                 double stiffnessRelationNu);
 
             /*!
@@ -113,7 +113,7 @@ namespace DiKErnel::DomainLibrary
              *        Unit = [m]
              * \return A validation issue when the thickness is not valid; nullptr otherwise.
              */
-            static std::unique_ptr<ValidationIssue> Thickness(
+            static std::unique_ptr<Util::ValidationIssue> Thickness(
                 double thickness);
 
             /*!
@@ -123,11 +123,11 @@ namespace DiKErnel::DomainLibrary
              *        Unit = [MPa]
              * \return A validation issue when the elastic modulus is not valid; nullptr otherwise.
              */
-            static std::unique_ptr<ValidationIssue> ElasticModulus(
+            static std::unique_ptr<Util::ValidationIssue> ElasticModulus(
                 double elasticModulus);
 
         private:
-            static std::unique_ptr<ValidationIssue> ValidateLargerThanZero(
+            static std::unique_ptr<Util::ValidationIssue> ValidateLargerThanZero(
                 double propertyToValidate,
                 const std::string& propertyName);
     };

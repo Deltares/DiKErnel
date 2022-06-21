@@ -43,7 +43,7 @@ namespace DiKErnel::DomainLibrary
              * \return A validation issue when the increment of time is not valid; nullptr
              *         otherwise.
              */
-            static std::unique_ptr<ValidationIssue> IncrementOfTime(
+            static std::unique_ptr<Util::ValidationIssue> IncrementOfTime(
                 int beginTime,
                 int endTime);
     };

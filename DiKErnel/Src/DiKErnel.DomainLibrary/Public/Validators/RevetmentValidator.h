@@ -45,7 +45,7 @@ namespace DiKErnel::DomainLibrary
              *        Unit = [m]
              * \return A validation issue when the x coordinate is not valid; nullptr otherwise.
              */
-            static std::unique_ptr<ValidationIssue> X(
+            static std::unique_ptr<Util::ValidationIssue> X(
                 double x,
                 double outerToeX,
                 double outerCrestX);
@@ -57,7 +57,7 @@ namespace DiKErnel::DomainLibrary
              *        Unit = [-]
              * \return A validation issue when the initial damage is not valid; nullptr otherwise.
              */
-            static std::unique_ptr<ValidationIssue> InitialDamage(
+            static std::unique_ptr<Util::ValidationIssue> InitialDamage(
                 double initialDamage);
 
             /*!
@@ -70,7 +70,7 @@ namespace DiKErnel::DomainLibrary
              *        Unit = [-]
              * \return A validation issue when the failure number is not valid; nullptr otherwise.
              */
-            static std::unique_ptr<ValidationIssue> FailureNumber(
+            static std::unique_ptr<Util::ValidationIssue> FailureNumber(
                 double failureNumber,
                 double initialDamage);
 
@@ -81,7 +81,7 @@ namespace DiKErnel::DomainLibrary
              *        Unit = [-]
              * \return A validation issue when the Ctm coefficient is not valid; nullptr otherwise.
              */
-            static std::unique_ptr<ValidationIssue> AverageNumberOfWavesCtm(
+            static std::unique_ptr<Util::ValidationIssue> AverageNumberOfWavesCtm(
                 double averageNumberOfWavesCtm);
 
             /*!
@@ -91,7 +91,7 @@ namespace DiKErnel::DomainLibrary
              *        Unit = [-]
              * \return A validation issue when the outer slope is not valid; nullptr otherwise.
              */
-            static std::unique_ptr<ValidationIssue> OuterSlope(
+            static std::unique_ptr<Util::ValidationIssue> OuterSlope(
                 double outerSlope);
     };
 }

@@ -40,7 +40,7 @@ namespace DiKErnel::DomainLibrary
              * \return A validation issue when the critical cumulative overload is not valid;
              *         nullptr otherwise.
              */
-            static std::unique_ptr<ValidationIssue> CriticalCumulativeOverload(
+            static std::unique_ptr<Util::ValidationIssue> CriticalCumulativeOverload(
                 double criticalCumulativeOverload);
 
             /*!
@@ -51,7 +51,7 @@ namespace DiKErnel::DomainLibrary
              * \return A validation issue when the 2P Gammab coefficient is not valid; nullptr
              *         otherwise.
              */
-            static std::unique_ptr<ValidationIssue> RepresentativeWaveRunup2PGammab(
+            static std::unique_ptr<Util::ValidationIssue> RepresentativeWaveRunup2PGammab(
                 double representativeWaveRunup2PGammab);
 
             /*!
@@ -62,7 +62,7 @@ namespace DiKErnel::DomainLibrary
              * \return A validation issue when the 2P Gammaf coefficient is not valid; nullptr
              *         otherwise.
              */
-            static std::unique_ptr<ValidationIssue> RepresentativeWaveRunup2PGammaf(
+            static std::unique_ptr<Util::ValidationIssue> RepresentativeWaveRunup2PGammaf(
                 double representativeWaveRunup2PGammaf);
 
             /*!
@@ -73,7 +73,7 @@ namespace DiKErnel::DomainLibrary
              * \return A validation issue when the critical front velocity is not valid; nullptr
              *         otherwise.
              */
-            static std::unique_ptr<ValidationIssue> CriticalFrontVelocity(
+            static std::unique_ptr<Util::ValidationIssue> CriticalFrontVelocity(
                 double criticalFrontVelocity);
 
             /*!
@@ -84,7 +84,7 @@ namespace DiKErnel::DomainLibrary
              * \return A validation issue when the alpha M coefficient is not valid; nullptr
              *         otherwise.
              */
-            static std::unique_ptr<ValidationIssue> IncreasedLoadTransitionAlphaM(
+            static std::unique_ptr<Util::ValidationIssue> IncreasedLoadTransitionAlphaM(
                 double increasedLoadTransitionAlphaM);
 
             /*!
@@ -95,7 +95,7 @@ namespace DiKErnel::DomainLibrary
              * \return A validation issue when the alpha S coefficient is not valid; nullptr
              *         otherwise.
              */
-            static std::unique_ptr<ValidationIssue> ReducedStrengthTransitionAlphaS(
+            static std::unique_ptr<Util::ValidationIssue> ReducedStrengthTransitionAlphaS(
                 double reducedStrengthTransitionAlphaS);
     };
 }

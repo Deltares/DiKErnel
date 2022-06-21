@@ -39,7 +39,7 @@ namespace DiKErnel::DomainLibrary
              *        Unit = [m]
              * \return A validation issue when the wave height Hm0 is not valid; nullptr otherwise.
              */
-            static std::unique_ptr<ValidationIssue> WaveHeightHm0(
+            static std::unique_ptr<Util::ValidationIssue> WaveHeightHm0(
                 double waveHeightHm0);
 
             /*!
@@ -50,7 +50,7 @@ namespace DiKErnel::DomainLibrary
              * \return A validation issue when the wave period Tm10 is not valid; nullptr
              *         otherwise.
              */
-            static std::unique_ptr<ValidationIssue> WavePeriodTm10(
+            static std::unique_ptr<Util::ValidationIssue> WavePeriodTm10(
                 double wavePeriodTm10);
 
             /*!
@@ -60,7 +60,7 @@ namespace DiKErnel::DomainLibrary
              *        Unit = [deg]
              * \return A validation issue when the wave angle is not valid; nullptr otherwise.
              */
-            static std::unique_ptr<ValidationIssue> WaveAngle(
+            static std::unique_ptr<Util::ValidationIssue> WaveAngle(
                 double waveAngle);
     };
 }

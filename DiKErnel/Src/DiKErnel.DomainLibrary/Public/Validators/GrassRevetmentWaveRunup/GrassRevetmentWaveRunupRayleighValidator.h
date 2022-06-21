@@ -41,7 +41,7 @@ namespace DiKErnel::DomainLibrary
              * \return A validation issue when the fixed number of waves is not valid; nullptr
              *         otherwise.
              */
-            static std::unique_ptr<ValidationIssue> FixedNumberOfWaves(
+            static std::unique_ptr<Util::ValidationIssue> FixedNumberOfWaves(
                 int fixedNumberOfWaves);
 
             /*!
@@ -51,7 +51,7 @@ namespace DiKErnel::DomainLibrary
              *        Unit = [-]
              * \return A validation issue when the Cu coefficient is not valid; nullptr otherwise.
              */
-            static std::unique_ptr<ValidationIssue> FrontVelocityCu(
+            static std::unique_ptr<Util::ValidationIssue> FrontVelocityCu(
                 double frontVelocityCu);
     };
 }
