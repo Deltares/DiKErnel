@@ -150,8 +150,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
                                     JsonInputCharacteristicPointType::CrestOuterBerm);
 
         return make_unique<JsonInputDikeProfileData>(
-            readDikeProfile.at(JsonInputDefinitions::DIKE_PROFILE_POINT_X).get<vector<double>>(),
-            readDikeProfile.at(JsonInputDefinitions::DIKE_PROFILE_POINT_Z).get<vector<double>>(),
+            readDikeProfile.at(JsonInputDefinitions::DIKE_PROFILE_POINTS_X).get<vector<double>>(),
+            readDikeProfile.at(JsonInputDefinitions::DIKE_PROFILE_POINTS_Z).get<vector<double>>(),
             move(characteristicPoints));
     }
 

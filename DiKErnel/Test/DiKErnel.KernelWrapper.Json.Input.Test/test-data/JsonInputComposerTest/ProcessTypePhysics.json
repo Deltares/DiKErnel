@@ -11,8 +11,8 @@
             "golfhoeken": []
         },
         "dijkprofiel": {
-            "positie": [],
-            "hoogte": []
+            "posities": [],
+            "hoogten": []
         },
         "locaties": []
     }

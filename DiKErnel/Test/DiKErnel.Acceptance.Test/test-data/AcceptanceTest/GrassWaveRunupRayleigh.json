@@ -94,12 +94,12 @@
             ]
         },
         "dijkprofiel": {
-            "positie": [
+            "posities": [
                 0.0,
                 6.0,
                 12
             ],
-            "hoogte": [
+            "hoogten": [
                 0.0,
                 1.5,
                 3.0
