@@ -40,10 +40,10 @@ namespace DiKErnel::KernelWrapper::Json::Input
             inline static const std::string LOCATIONS = "locaties";
 
             inline static const std::string TIME = "tijdstippen";
-            inline static const std::string WATER_LEVEL = "waterstand";
-            inline static const std::string WAVE_HEIGHT_HM0 = "golfhoogteHm0";
-            inline static const std::string WAVE_PERIOD_TM10 = "golfperiodeTm10";
-            inline static const std::string WAVE_ANGLE = "golfhoek";
+            inline static const std::string WATER_LEVELS = "waterstanden";
+            inline static const std::string WAVE_HEIGHTS_HM0 = "golfhoogtenHm0";
+            inline static const std::string WAVE_PERIODS_TM10 = "golfperiodenTm10";
+            inline static const std::string WAVE_ANGLES = "golfhoeken";
 
             inline static const std::string DIKE_PROFILE = "dijkprofiel";
             inline static const std::string DIKE_PROFILE_POINT_X = "positie";

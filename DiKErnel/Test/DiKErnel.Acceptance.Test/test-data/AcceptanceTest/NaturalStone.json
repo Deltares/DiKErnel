@@ -13,7 +13,7 @@
             8100
         ],
         "hydraulischeBelastingen": {
-            "waterstand": [
+            "waterstanden": [
                 0.1,
                 0.5,
                 1.15,
@@ -24,7 +24,7 @@
                 0.5,
                 0.1
             ],
-            "golfhoogteHm0": [
+            "golfhoogtenHm0": [
                 1.5,
                 1.6,
                 1.7,
@@ -35,7 +35,7 @@
                 1.9,
                 1.8
             ],
-            "golfperiodeTm10": [
+            "golfperiodenTm10": [
                 5,
                 5.2,
                 5.4,
@@ -46,7 +46,7 @@
                 6,
                 5.8
             ],
-            "golfhoek": [
+            "golfhoeken": [
                 0,
                 0,
                 2,

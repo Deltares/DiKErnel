@@ -128,10 +128,10 @@ namespace DiKErnel::KernelWrapper::Json::Input
         const auto& readHydraulicLoads = readCalculationData.at(JsonInputDefinitions::HYDRAULIC_LOADS);
 
         return make_unique<JsonInputHydraulicData>(
-            readHydraulicLoads.at(JsonInputDefinitions::WATER_LEVEL).get<vector<double>>(),
-            readHydraulicLoads.at(JsonInputDefinitions::WAVE_HEIGHT_HM0).get<vector<double>>(),
-            readHydraulicLoads.at(JsonInputDefinitions::WAVE_PERIOD_TM10).get<vector<double>>(),
-            readHydraulicLoads.at(JsonInputDefinitions::WAVE_ANGLE).get<vector<double>>());
+            readHydraulicLoads.at(JsonInputDefinitions::WATER_LEVELS).get<vector<double>>(),
+            readHydraulicLoads.at(JsonInputDefinitions::WAVE_HEIGHTS_HM0).get<vector<double>>(),
+            readHydraulicLoads.at(JsonInputDefinitions::WAVE_PERIODS_TM10).get<vector<double>>(),
+            readHydraulicLoads.at(JsonInputDefinitions::WAVE_ANGLES).get<vector<double>>());
     }
 
     unique_ptr<JsonInputDikeProfileData> JsonInputParser::ParseDikeProfileData(
