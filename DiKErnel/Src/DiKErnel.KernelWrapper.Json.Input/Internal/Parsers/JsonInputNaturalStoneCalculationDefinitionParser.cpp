@@ -105,10 +105,10 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
             calculationDefinition->SetDistanceMaximumWaveElevationAsmax(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
-                    readDistanceMaxWaveElevation, JsonInputNaturalStoneDefinitions::DISTANCE_MAXIMUM_WAVE_ELEVATION_ASMAX)));
+                    readDistanceMaxWaveElevation, JsonInputDefinitions::A_COEFFICIENT)));
             calculationDefinition->SetDistanceMaximumWaveElevationBsmax(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
-                    readDistanceMaxWaveElevation, JsonInputNaturalStoneDefinitions::DISTANCE_MAXIMUM_WAVE_ELEVATION_BSMAX)));
+                    readDistanceMaxWaveElevation, JsonInputDefinitions::B_COEFFICIENT)));
         }
 
         if (readCalculationMethod.contains(JsonInputNaturalStoneDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT))
@@ -117,20 +117,15 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
             calculationDefinition->SetNormativeWidthOfWaveImpactAwi(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
-                    readNormativeWidthOfWaveImpact, JsonInputNaturalStoneDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT_AWI)));
+                    readNormativeWidthOfWaveImpact, JsonInputDefinitions::A_COEFFICIENT)));
             calculationDefinition->SetNormativeWidthOfWaveImpactBwi(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
-                    readNormativeWidthOfWaveImpact, JsonInputNaturalStoneDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT_BWI)));
+                    readNormativeWidthOfWaveImpact, JsonInputDefinitions::B_COEFFICIENT)));
         }
 
-        if (readCalculationMethod.contains(JsonInputNaturalStoneDefinitions::WAVE_ANGLE_IMPACT))
-        {
-            const auto& readWaveAngleImpact = readCalculationMethod.at(JsonInputNaturalStoneDefinitions::WAVE_ANGLE_IMPACT);
-
-            calculationDefinition->SetWaveAngleImpactBetamax(
-                forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
-                    readWaveAngleImpact, JsonInputNaturalStoneDefinitions::WAVE_ANGLE_IMPACT_BETAMAX)));
-        }
+        calculationDefinition->SetWaveAngleImpactBetamax(
+            forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
+                readCalculationMethod, JsonInputNaturalStoneDefinitions::WAVE_ANGLE_IMPACT_BETA_MAX)));
 
         return calculationDefinition;
     }

@@ -27,6 +27,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
     class JsonInputNaturalStoneDefinitions
     {
         public:
+            inline static const std::string TOP_LAYER_TYPE_NORDIC_STONE = "noorseSteen";
+
             inline static const std::string RELATIVE_DENSITY = "relatieveDichtheid";
             inline static const std::string THICKNESS_TOP_LAYER = "dikteToplaag";
 
@@ -41,17 +43,10 @@ namespace DiKErnel::KernelWrapper::Json::Input
             inline static const std::string SLOPE_UPPER_LEVEL = "bovenzijde";
             inline static const std::string SLOPE_LOWER_LEVEL = "onderzijde";
 
-            inline static const std::string DISTANCE_MAXIMUM_WAVE_ELEVATION = "afstandMaximaleStijghoogteNatuursteen";
-            inline static const std::string DISTANCE_MAXIMUM_WAVE_ELEVATION_ASMAX = "afstandMaximaleStijghoogteNatuursteenAsmax";
-            inline static const std::string DISTANCE_MAXIMUM_WAVE_ELEVATION_BSMAX = "afstandMaximaleStijghoogteNatuursteenBsmax";
+            inline static const std::string DISTANCE_MAXIMUM_WAVE_ELEVATION = "afstandMaximaleStijghoogte";
 
-            inline static const std::string NORMATIVE_WIDTH_OF_WAVE_IMPACT = "maatgevendeBreedteGolfklapNatuursteen";
-            inline static const std::string NORMATIVE_WIDTH_OF_WAVE_IMPACT_AWI = "maatgevendeBreedteGolfklapNatuursteenAwi";
-            inline static const std::string NORMATIVE_WIDTH_OF_WAVE_IMPACT_BWI = "maatgevendeBreedteGolfklapNatuursteenBwi";
+            inline static const std::string NORMATIVE_WIDTH_OF_WAVE_IMPACT = "maatgevendeBreedteGolfklap";
 
-            inline static const std::string WAVE_ANGLE_IMPACT = "impactGolfhoekBekledingNatuursteen";
-            inline static const std::string WAVE_ANGLE_IMPACT_BETAMAX = "impactGolfhoekBekledingNatuursteenBetamax";
-
-            inline static const std::string TOP_LAYER_TYPE_NORDIC_STONE = "noorseSteen";
+            inline static const std::string WAVE_ANGLE_IMPACT_BETA_MAX = "impactGolfhoekBetaMax";
     };
 }

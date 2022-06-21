@@ -166,17 +166,15 @@
                         "c": 0.5
                     }
                 },
-                "afstandMaximaleStijghoogteNatuursteen": {
-                    "afstandMaximaleStijghoogteNatuursteenAsmax": 0.7,
-                    "afstandMaximaleStijghoogteNatuursteenBsmax": 0.319
+                "afstandMaximaleStijghoogte": {
+                    "a": 0.7,
+                    "b": 0.319
                 },
-                "maatgevendeBreedteGolfklapNatuursteen": {
-                    "maatgevendeBreedteGolfklapNatuursteenAwi": 1,
-                    "maatgevendeBreedteGolfklapNatuursteenBwi": 0.01
+                "maatgevendeBreedteGolfklap": {
+                    "a": 1,
+                    "b": 0.01
                 },
-                "impactGolfhoekBekledingNatuursteen": {
-                    "impactGolfhoekBekledingNatuursteenBetamax": 30
-                }
+                "impactGolfhoekBetaMax": 30
             },
             {
                 "rekenmethode": "grasGolfklap",
