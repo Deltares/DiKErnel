@@ -555,7 +555,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
         const auto& registeredEvents = EventRegistry::Flush();
         ASSERT_EQ(1, registeredEvents.size());
         EventAssertHelper::AssertEvent(EventType::Error,
-                                       "At  of {} - required property 'Rekendata' not found in object\n",
+                                       "At  of {} - required property 'rekendata' not found in object\n",
                                        *registeredEvents.at(0));
     }
 }
