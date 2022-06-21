@@ -1,8 +1,6 @@
 {
-    "rekendata":
-    {
-        "Tijd":
-        [
+    "rekendata": {
+        "tijd": [
             0,
             100,
             500,
@@ -10,34 +8,29 @@
             1200,
             2000
         ],
-        "HydraulischeBelastingen": 
-        {
-            "Waterstand":
-            [
+        "hydraulischeBelastingen": {
+            "waterstand": [
                 0.1,
                 0.5,
                 1.15,
                 1.77,
                 2
             ],
-            "GolfhoogteHm0":
-            [
+            "golfhoogteHm0": [
                 0.5,
                 0.8,
                 1.2,
                 1.5,
                 0.5
             ],
-            "GolfperiodeTm10":
-            [
+            "golfperiodeTm10": [
                 2,
                 6,
                 6,
                 7,
                 4
             ],
-            "Golfhoek":
-            [
+            "golfhoek": [
                 -10,
                 -5,
                 0,
@@ -45,10 +38,8 @@
                 8
             ]
         },
-        "Dijkprofiel":
-        {
-            "Positie":
-            [
+        "dijkprofiel": {
+            "positie": [
                 -30,
                 -20,
                 -10,
@@ -67,8 +58,7 @@
                 60,
                 65
             ],
-            "Hoogte":
-            [
+            "hoogte": [
                 -11.85,
                 -8.95,
                 -6.05,
@@ -87,63 +77,59 @@
                 14.25,
                 15.7
             ],
-            "TeenBuitenzijde": 30,
-            "KruinBermBuitenzijde": 40,
-            "InsteekBermBuitenzijde": 50,
-            "KruinBuitenzijde": 65
+            "teenBuitenzijde": 30,
+            "kruinBermBuitenzijde": 40,
+            "insteekBermBuitenzijde": 50,
+            "kruinBuitenzijde": 65
         },
-        "Locaties":
-        [
+        "locaties": [
             {
-                "PositieLocatie": 8.79,
-                "RekenmethodeSoort": "Natuursteen",
-                "TypeToplaag": "NoorseSteen",
-                "RelatieveDichtheid": 1.65,
-                "DikteToplaag": 0.7
+                "positieLocatie": 8.79,
+                "rekenmethodeSoort": "natuursteen",
+                "typeToplaag": "noorseSteen",
+                "relatieveDichtheid": 1.65,
+                "dikteToplaag": 0.7
             },
             {
-                "PositieLocatie": -18.4,
-                "RekenmethodeSoort": "GrasGolfklap",
-                "TypeToplaag": "GrasGeslotenZode"
+                "positieLocatie": -18.4,
+                "rekenmethodeSoort": "grasGolfklap",
+                "typeToplaag": "grasGeslotenZode"
             },
             {
-                "PositieLocatie": 4,
-                "RekenmethodeSoort": "GrasGolfklap",
-                "TypeToplaag": "GrasOpenZode"
+                "positieLocatie": 4,
+                "rekenmethodeSoort": "grasGolfklap",
+                "typeToplaag": "grasOpenZode"
             },
             {
-                "PositieLocatie": 0.98,
-                "RekenmethodeSoort": "GrasGolfoploop",
-                "TypeToplaag": "GrasGeslotenZode",
-                "TanA": 0.8
+                "positieLocatie": 0.98,
+                "rekenmethodeSoort": "grasGolfoploop",
+                "typeToplaag": "grasGeslotenZode",
+                "tanA": 0.8
             },
             {
-                "PositieLocatie": 7.698,
-                "RekenmethodeSoort": "GrasGolfoploop",
-                "TypeToplaag": "GrasOpenZode",
-                "TanA": 0.9
+                "positieLocatie": 7.698,
+                "rekenmethodeSoort": "grasGolfoploop",
+                "typeToplaag": "grasOpenZode",
+                "tanA": 0.9
             },
             {
-                "PositieLocatie": 19,
-                "RekenmethodeSoort": "AsfaltGolfklap",
-                "TypeToplaag": "WaterbouwAsfaltBeton",
-                "BreuksterkteAsfalt": 1.56,
-                "VeerconstanteOndergrond": 56,
-                "Toplaag":
-                {
-                    "Dikte": 0.16,
-                    "Stijfheidsmodulus": 18214
+                "positieLocatie": 19,
+                "rekenmethodeSoort": "asfaltGolfklap",
+                "typeToplaag": "waterbouwAsfaltBeton",
+                "breuksterkteAsfalt": 1.56,
+                "veerconstanteOndergrond": 56,
+                "toplaag": {
+                    "dikte": 0.16,
+                    "stijfheidsmodulus": 18214
                 },
-                "TanA": 0.233
+                "tanA": 0.233
             }
         ],
-        "Rekenmethoden":
-        [
+        "rekenmethoden": [
             {
-                "RekenmethodeSoort": "GrasGolfoploop",
-                "Rekenprotocol":
-                {
-                    "Rekenprotocolsoort": "RayleighDiscreet"
+                "rekenmethodeSoort": "grasGolfoploop",
+                "rekenprotocol": {
+                    "rekenprotocolsoort": "rayleighDiscreet"
                 }
             }
         ]

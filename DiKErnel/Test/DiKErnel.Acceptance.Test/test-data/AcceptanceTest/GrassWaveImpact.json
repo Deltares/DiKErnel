@@ -1,8 +1,6 @@
 {
-    "rekendata":
-    {
-        "Tijd":
-        [
+    "rekendata": {
+        "tijd": [
             0,
             900,
             1800,
@@ -28,10 +26,8 @@
             19800,
             20700
         ],
-        "HydraulischeBelastingen":
-        {
-            "Waterstand":
-            [
+        "hydraulischeBelastingen": {
+            "waterstand": [
                 0.5,
                 0.55,
                 0.6,
@@ -56,8 +52,7 @@
                 0.55,
                 0.5
             ],
-            "GolfhoogteHm0":
-            [
+            "golfhoogteHm0": [
                 0.5,
                 0.6,
                 0.65,
@@ -82,8 +77,7 @@
                 0.95,
                 0.9
             ],
-            "GolfperiodeTm10":
-            [
+            "golfperiodeTm10": [
                 5,
                 5,
                 5,
@@ -108,8 +102,7 @@
                 5,
                 5
             ],
-            "Golfhoek":
-            [
+            "golfhoek": [
                 0,
                 10,
                 10,
@@ -135,10 +128,8 @@
                 0
             ]
         },
-        "Dijkprofiel":
-        {
-            "Positie":
-            [
+        "dijkprofiel": {
+            "positie": [
                 -30,
                 -20,
                 -10,
@@ -157,8 +148,7 @@
                 60,
                 65
             ],
-            "Hoogte":
-            [
+            "hoogte": [
                 -0.3,
                 0,
                 0.2,
@@ -177,64 +167,56 @@
                 5,
                 4.2
             ],
-            "TeenBuitenzijde": 0,
-            "KruinBermBuitenzijde": 15,
-            "InsteekBermBuitenzijde": 25,
-            "KruinBuitenzijde": 40
+            "teenBuitenzijde": 0,
+            "kruinBermBuitenzijde": 15,
+            "insteekBermBuitenzijde": 25,
+            "kruinBuitenzijde": 40
         },
-        "Locaties":
-        [
+        "locaties": [
             {
-                "PositieLocatie": 5.0,
-                "RekenmethodeSoort": "GrasGolfklap",
-                "TypeToplaag": "GrasGeslotenZode"
+                "positieLocatie": 5.0,
+                "rekenmethodeSoort": "grasGolfklap",
+                "typeToplaag": "grasGeslotenZode"
             },
             {
-                "PositieLocatie": 5.0,
-                "RekenmethodeSoort": "GrasGolfklap",
-                "TypeToplaag": "GrasOpenZode"
+                "positieLocatie": 5.0,
+                "rekenmethodeSoort": "grasGolfklap",
+                "typeToplaag": "grasOpenZode"
             }
         ],
-        "Rekenmethoden":
-        [
+        "rekenmethoden": [
             {
-                "RekenmethodeSoort": "GrasGolfklap",
-                "Toplagen":
-                [
+                "rekenmethodeSoort": "grasGolfklap",
+                "toplagen": [
                     {
-                        "TypeToplaag": "GrasGeslotenZode",
-                        "StandtijdlijnGrasGolfklapAgwi": 1.0,
-                        "StandtijdlijnGrasGolfklapBgwi": -0.00000972222222,
-                        "StandtijdlijnGrasGolfklapCgwi": 0.25
+                        "typeToplaag": "grasGeslotenZode",
+                        "standtijdlijnGrasGolfklapAgwi": 1.0,
+                        "standtijdlijnGrasGolfklapBgwi": -0.00000972222222,
+                        "standtijdlijnGrasGolfklapCgwi": 0.25
                     },
                     {
-                        "TypeToplaag": "GrasOpenZode",
-                        "StandtijdlijnGrasGolfklapAgwi": 0.8,
-                        "StandtijdlijnGrasGolfklapBgwi": -0.0000194444444,
-                        "StandtijdlijnGrasGolfklapCgwi": 0.25
+                        "typeToplaag": "grasOpenZode",
+                        "standtijdlijnGrasGolfklapAgwi": 0.8,
+                        "standtijdlijnGrasGolfklapBgwi": -0.0000194444444,
+                        "standtijdlijnGrasGolfklapCgwi": 0.25
                     }
                 ],
-                "MinimumGolfhoogteGrasGolfklap":
-                {
-                    "MinimumGolfhoogteGrasGolfklapTemax": 3600000
+                "minimumGolfhoogteGrasGolfklap": {
+                    "minimumGolfhoogteGrasGolfklapTemax": 3600000
                 },
-                "MaximumGolfhoogteGrasGolfklap":
-                {
-                    "MaximumGolfhoogteGrasGolfklapTemin": 3.6
+                "maximumGolfhoogteGrasGolfklap": {
+                    "maximumGolfhoogteGrasGolfklapTemin": 3.6
                 },
-                "ImpactGolfhoekBekledingGrasGolfklap":
-                {
-                    "ImpactGolfhoekBekledingGrasGolfklapNwa": 0.67,
-                    "ImpactGolfhoekBekledingGrasGolfklapQwa": 0.35,
-                    "ImpactGolfhoekBekledingGrasGolfklapRwa": 10.0
+                "impactGolfhoekBekledingGrasGolfklap": {
+                    "impactGolfhoekBekledingGrasGolfklapNwa": 0.67,
+                    "impactGolfhoekBekledingGrasGolfklapQwa": 0.35,
+                    "impactGolfhoekBekledingGrasGolfklapRwa": 10.0
                 },
-                "BovengrensBelastingGrasGolfklap":
-                {
-                    "BovengrensBelastingGrasGolfklapAul": 0.0
+                "bovengrensBelastingGrasGolfklap": {
+                    "bovengrensBelastingGrasGolfklapAul": 0.0
                 },
-                "OndergrensBelastingGrasGolfklap":
-                {
-                    "OndergrensBelastingGrasGolfklapAll": 0.5
+                "ondergrensBelastingGrasGolfklap": {
+                    "ondergrensBelastingGrasGolfklapAll": 0.5
                 }
             }
         ]

@@ -1,8 +1,6 @@
 {
-    "rekendata": 
-    {
-        "Tijd":
-        [
+    "rekendata": {
+        "tijd": [
             0,
             22985,
             34431,
@@ -15,10 +13,8 @@
             114553,
             126000
         ],
-        "HydraulischeBelastingen":
-        {
-            "Waterstand":
-            [
+        "hydraulischeBelastingen": {
+            "waterstand": [
                 3.8,
                 3.4,
                 3,
@@ -30,8 +26,7 @@
                 0.6,
                 0.2
             ],
-            "GolfhoogteHm0":
-            [
+            "golfhoogteHm0": [
                 1.6,
                 1.6,
                 1.6,
@@ -43,8 +38,7 @@
                 1.6,
                 1.6
             ],
-            "GolfperiodeTm10":
-            [
+            "golfperiodeTm10": [
                 3.54,
                 3.54,
                 3.54,
@@ -56,8 +50,7 @@
                 3.54,
                 3.54
             ],
-            "Golfhoek":
-            [
+            "golfhoek": [
                 0,
                 0,
                 0,
@@ -70,10 +63,8 @@
                 0
             ]
         },
-        "Dijkprofiel":
-        {
-            "Positie":
-            [
+        "dijkprofiel": {
+            "positie": [
                 -30,
                 0,
                 18.29,
@@ -82,8 +73,7 @@
                 45,
                 65
             ],
-            "Hoogte":
-            [
+            "hoogte": [
                 0,
                 1.73,
                 5.99,
@@ -92,78 +82,67 @@
                 9,
                 0
             ],
-            "TeenBuitenzijde": 0,
-            "KruinBermBuitenzijde": 18.29,
-            "InsteekBermBuitenzijde": 30,
-            "KruinBuitenzijde": 40
+            "teenBuitenzijde": 0,
+            "kruinBermBuitenzijde": 18.29,
+            "insteekBermBuitenzijde": 30,
+            "kruinBuitenzijde": 40
         },
-        "Locaties":
-        [
+        "locaties": [
             {
-                "PositieLocatie": 5.40,
-                "BeginSchade": 0.0,
-                "RekenmethodeSoort": "AsfaltGolfklap",
-                "TypeToplaag": "WaterbouwAsfaltBeton",
-                "BreuksterkteAsfalt": 1.56,
-                "VeerconstanteOndergrond": 56,
-                "Toplaag": 
-                {
-                    "Dikte": 0.16,
-                    "Stijfheidsmodulus": 18214
+                "positieLocatie": 5.40,
+                "beginSchade": 0.0,
+                "rekenmethodeSoort": "asfaltGolfklap",
+                "typeToplaag": "waterbouwAsfaltBeton",
+                "breuksterkteAsfalt": 1.56,
+                "veerconstanteOndergrond": 56,
+                "toplaag": {
+                    "dikte": 0.16,
+                    "stijfheidsmodulus": 18214
                 },
-                "TanA": 0.233
+                "tanA": 0.233
             },
             {
-                "PositieLocatie": 5.40,
-                "BeginSchade": 0.0,
-                "RekenmethodeSoort": "AsfaltGolfklap",
-                "TypeToplaag": "WaterbouwAsfaltBeton",
-                "BreuksterkteAsfalt": 1.56,
-                "VeerconstanteOndergrond": 56,
-                "Toplaag": 
-                {
-                    "Dikte": 0.16,
-                    "Stijfheidsmodulus": 18214
+                "positieLocatie": 5.40,
+                "beginSchade": 0.0,
+                "rekenmethodeSoort": "asfaltGolfklap",
+                "typeToplaag": "waterbouwAsfaltBeton",
+                "breuksterkteAsfalt": 1.56,
+                "veerconstanteOndergrond": 56,
+                "toplaag": {
+                    "dikte": 0.16,
+                    "stijfheidsmodulus": 18214
                 },
-                "Onderlaag": 
-                {
-                    "Dikte": 0.25,
-                    "Stijfheidsmodulus": 15500
+                "onderlaag": {
+                    "dikte": 0.25,
+                    "stijfheidsmodulus": 15500
                 },
-                "TanA": 0.233
+                "tanA": 0.233
             }
         ],
-        "Rekenmethoden":
-        [
+        "rekenmethoden": [
             {
-                "RekenmethodeSoort": "AsfaltGolfklap",
-                "Faalgetal": 1.0,
-                "SoortelijkeDichtheidWater": 1025,
-                "Toplagen":
-                [
+                "rekenmethodeSoort": "asfaltGolfklap",
+                "faalgetal": 1.0,
+                "soortelijkeDichtheidWater": 1025,
+                "toplagen": [
                     {
-                        "TypeToplaag": "WaterbouwAsfaltBeton",
-                        "VermoeiingAsfaltbekleding":
-                        {
-                            "VermoeiingAsfaltbekledingAlfa": 0.42,
-                            "VermoeiingAsfaltbekledingBeta": 4.76
+                        "typeToplaag": "waterbouwAsfaltBeton",
+                        "vermoeiingAsfaltbekleding": {
+                            "vermoeiingAsfaltbekledingAlfa": 0.42,
+                            "vermoeiingAsfaltbekledingBeta": 4.76
                         },
-                        "Stijfheidsverhouding":
-                        {
-                            "StijfheidsverhoudingNu": 0.35
+                        "stijfheidsverhouding": {
+                            "stijfheidsverhoudingNu": 0.35
                         }
                     }
                 ],
-                "GemiddeldAantalGolvenPerTijdstap":
-                {
-                    "GemiddeldAantalGolvenPerTijdstapCtm": 1.0
+                "gemiddeldAantalGolvenPerTijdstap": {
+                    "gemiddeldAantalGolvenPerTijdstapCtm": 1.0
                 },
-                "Stootgetal":
-                {
-                    "StootgetalC": 1.0
+                "stootgetal": {
+                    "stootgetalC": 1.0
                 },
-                "BreedteFactorenTabel":
-                [
+                "breedteFactorenTabel": [
                     [
                         0.1,
                         0.0392
@@ -225,8 +204,7 @@
                         0.0105
                     ]
                 ],
-                "DiepteFactorenTabel":
-                [
+                "diepteFactorenTabel": [
                     [
                         -1.0,
                         0.0244
@@ -272,8 +250,7 @@
                         0.0169
                     ]
                 ],
-                "StootFactorenTabel":
-                [
+                "stootFactorenTabel": [
                     [
                         2.0,
                         0.039

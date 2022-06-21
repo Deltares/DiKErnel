@@ -1,12 +1,9 @@
 {
-    "procesdata":
-    {
+    "procesdata": {
         "uitvoerRekenresultaten": "schade"
     },
-    "rekendata": 
-    {
-        "Tijd":
-        [
+    "rekendata": {
+        "tijd": [
             0,
             900,
             1800,
@@ -18,10 +15,8 @@
             7200,
             8100
         ],
-        "HydraulischeBelastingen":
-        {
-            "Waterstand":
-            [
+        "hydraulischeBelastingen": {
+            "waterstand": [
                 0.1,
                 0.5,
                 1.15,
@@ -32,8 +27,7 @@
                 0.5,
                 10
             ],
-            "GolfhoogteHm0":
-            [
+            "golfhoogteHm0": [
                 1.5,
                 1.6,
                 1.7,
@@ -44,8 +38,7 @@
                 1.9,
                 1.8
             ],
-            "GolfperiodeTm10":
-            [
+            "golfperiodeTm10": [
                 5,
                 5.2,
                 5.4,
@@ -56,8 +49,7 @@
                 6,
                 5.8
             ],
-            "Golfhoek":
-            [
+            "golfhoek": [
                 0,
                 0,
                 2,
@@ -69,10 +61,8 @@
                 0
             ]
         },
-        "Dijkprofiel":
-        {
-            "Positie":
-            [
+        "dijkprofiel": {
+            "positie": [
                 -30,
                 -20,
                 -10,
@@ -91,8 +81,7 @@
                 60,
                 65
             ],
-            "Hoogte":
-            [
+            "hoogte": [
                 -11.85,
                 -8.95,
                 -6.05,
@@ -111,216 +100,185 @@
                 14.25,
                 15.7
             ],
-            "TeenBuitenzijde": 30,
-            "KruinBermBuitenzijde": 40,
-            "InsteekBermBuitenzijde": 50,
-            "KruinBuitenzijde": 65
+            "teenBuitenzijde": 30,
+            "kruinBermBuitenzijde": 40,
+            "insteekBermBuitenzijde": 50,
+            "kruinBuitenzijde": 65
         },
-        "Locaties":
-        [
+        "locaties": [
             {
-                "PositieLocatie": 12,
-                "BeginSchade": 0.2,
-                "RekenmethodeSoort": "Natuursteen",
-                "TypeToplaag": "NoorseSteen",
-                "RelatieveDichtheid": 1.65,
-                "DikteToplaag": 0.3
+                "positieLocatie": 12,
+                "beginSchade": 0.2,
+                "rekenmethodeSoort": "natuursteen",
+                "typeToplaag": "noorseSteen",
+                "relatieveDichtheid": 1.65,
+                "dikteToplaag": 0.3
             },
             {
-                "PositieLocatie": 13.5,
-                "BeginSchade": 0.04,
-                "RekenmethodeSoort": "GrasGolfklap",
-                "TypeToplaag": "GrasGeslotenZode"
+                "positieLocatie": 13.5,
+                "beginSchade": 0.04,
+                "rekenmethodeSoort": "grasGolfklap",
+                "typeToplaag": "grasGeslotenZode"
             },
             {
-                "PositieLocatie": 0,
-                "BeginSchade": 0.0006,
-                "RekenmethodeSoort": "GrasGolfoploop",
-                "TypeToplaag": "GrasGeslotenZode",
-                "VerhogingBelastingOvergangAlfaM": 1.5,
-                "VerlagingSterkteOvergangAlfaS": 0.8,
-                "TanA": 0.7,
-                "BermfactorGammab": 3.2,
-                "RuwheidsfactorGammaf": 4.1
+                "positieLocatie": 0,
+                "beginSchade": 0.0006,
+                "rekenmethodeSoort": "grasGolfoploop",
+                "typeToplaag": "grasGeslotenZode",
+                "verhogingBelastingOvergangAlfaM": 1.5,
+                "verlagingSterkteOvergangAlfaS": 0.8,
+                "tanA": 0.7,
+                "bermfactorGammab": 3.2,
+                "ruwheidsfactorGammaf": 4.1
             },
             {
-                "PositieLocatie": 4,
-                "BeginSchade": 0,
-                "RekenmethodeSoort": "AsfaltGolfklap",
-                "TypeToplaag": "WaterbouwAsfaltBeton",
-                "BreuksterkteAsfalt": 5.6,
-                "VeerconstanteOndergrond": 53,
-                "Toplaag":
-                {
-                    "Dikte": 0.16,
-                    "Stijfheidsmodulus": 18214
+                "positieLocatie": 4,
+                "beginSchade": 0,
+                "rekenmethodeSoort": "asfaltGolfklap",
+                "typeToplaag": "waterbouwAsfaltBeton",
+                "breuksterkteAsfalt": 5.6,
+                "veerconstanteOndergrond": 53,
+                "toplaag": {
+                    "dikte": 0.16,
+                    "stijfheidsmodulus": 18214
                 },
-                "Onderlaag":
-                {
-                    "Dikte": 0.20,
-                    "Stijfheidsmodulus": 15000
+                "onderlaag": {
+                    "dikte": 0.20,
+                    "stijfheidsmodulus": 15000
                 },
-                "TanA": 0.6548
+                "tanA": 0.6548
             }
         ],
-        "Rekenmethoden":
-        [
+        "rekenmethoden": [
             {
-                "RekenmethodeSoort": "Natuursteen",
-                "Faalgetal": 0.95,
-                "Toplagen":
-                [
+                "rekenmethodeSoort": "natuursteen",
+                "faalgetal": 0.95,
+                "toplagen": [
                     {
-                        "TypeToplaag": "NoorseSteen",
-                        "HydraulischeBelastingNatuursteen":
-                        {
-                            "HydraulischeBelastingNatuursteenXib": 2.9,
-                            "HydraulischeBelastingNatuursteenAp": 4,
-                            "HydraulischeBelastingNatuursteenBp": 0,
-                            "HydraulischeBelastingNatuursteenCp": 0,
-                            "HydraulischeBelastingNatuursteenNp": -0.9,
-                            "HydraulischeBelastingNatuursteenAs": 0.8,
-                            "HydraulischeBelastingNatuursteenBs": 0,
-                            "HydraulischeBelastingNatuursteenCs": 0,
-                            "HydraulischeBelastingNatuursteenNs": 0.6
+                        "typeToplaag": "noorseSteen",
+                        "hydraulischeBelastingNatuursteen": {
+                            "hydraulischeBelastingNatuursteenXib": 2.9,
+                            "hydraulischeBelastingNatuursteenAp": 4,
+                            "hydraulischeBelastingNatuursteenBp": 0,
+                            "hydraulischeBelastingNatuursteenCp": 0,
+                            "hydraulischeBelastingNatuursteenNp": -0.9,
+                            "hydraulischeBelastingNatuursteenAs": 0.8,
+                            "hydraulischeBelastingNatuursteenBs": 0,
+                            "hydraulischeBelastingNatuursteenCs": 0,
+                            "hydraulischeBelastingNatuursteenNs": 0.6
                         }
                     }
                 ],
-                "BovenzijdeHellingvlakNatuursteen":
-                {
-                    "BovenzijdeHellingvlakNatuursteenAus": 0.05
+                "bovenzijdeHellingvlakNatuursteen": {
+                    "bovenzijdeHellingvlakNatuursteenAus": 0.05
                 },
-                "OnderzijdeHellingvlakNatuursteen":
-                {
-                    "OnderzijdeHellingvlakNatuursteenAls": 1.5
+                "onderzijdeHellingvlakNatuursteen": {
+                    "onderzijdeHellingvlakNatuursteenAls": 1.5
                 },
-                "BovengrensBelastingNatuursteen":
-                {
-                    "BovengrensBelastingNatuursteenAul": 0.1,
-                    "BovengrensBelastingNatuursteenBul": 0.6,
-                    "BovengrensBelastingNatuursteenCul": 4.0
+                "bovengrensBelastingNatuursteen": {
+                    "bovengrensBelastingNatuursteenAul": 0.1,
+                    "bovengrensBelastingNatuursteenBul": 0.6,
+                    "bovengrensBelastingNatuursteenCul": 4.0
                 },
-                "OndergrensBelastingNatuursteen":
-                {
-                    "OndergrensBelastingNatuursteenAll": 0.1,
-                    "OndergrensBelastingNatuursteenBll": 0.2,
-                    "OndergrensBelastingNatuursteenCll": 4.0
+                "ondergrensBelastingNatuursteen": {
+                    "ondergrensBelastingNatuursteenAll": 0.1,
+                    "ondergrensBelastingNatuursteenBll": 0.2,
+                    "ondergrensBelastingNatuursteenCll": 4.0
                 },
-                "AfstandMaximaleStijghoogteNatuursteen":
-                {
-                    "AfstandMaximaleStijghoogteNatuursteenAsmax": 0.42,
-                    "AfstandMaximaleStijghoogteNatuursteenBsmax": 0.9
+                "afstandMaximaleStijghoogteNatuursteen": {
+                    "afstandMaximaleStijghoogteNatuursteenAsmax": 0.42,
+                    "afstandMaximaleStijghoogteNatuursteenBsmax": 0.9
                 },
-                "MaatgevendeBreedteGolfklapNatuursteen":
-                {
-                    "MaatgevendeBreedteGolfklapNatuursteenAwi": 0.96,
-                    "MaatgevendeBreedteGolfklapNatuursteenBwi": 0.11
+                "maatgevendeBreedteGolfklapNatuursteen": {
+                    "maatgevendeBreedteGolfklapNatuursteenAwi": 0.96,
+                    "maatgevendeBreedteGolfklapNatuursteenBwi": 0.11
                 },
-                "ImpactGolfhoekBekledingNatuursteen":
-                {
-                    "ImpactGolfhoekBekledingNatuursteenBetamax": 78
+                "impactGolfhoekBekledingNatuursteen": {
+                    "impactGolfhoekBekledingNatuursteenBetamax": 78
                 }
             },
             {
-                "RekenmethodeSoort": "GrasGolfklap",
-                "Faalgetal": 1.07,
-                "Toplagen":
-                [
+                "rekenmethodeSoort": "grasGolfklap",
+                "faalgetal": 1.07,
+                "toplagen": [
                     {
-                        "TypeToplaag": "GrasGeslotenZode",
-                        "StandtijdlijnGrasGolfklapAgwi": 0.3,
-                        "StandtijdlijnGrasGolfklapBgwi": -0.1,
-                        "StandtijdlijnGrasGolfklapCgwi": 0.96
+                        "typeToplaag": "grasGeslotenZode",
+                        "standtijdlijnGrasGolfklapAgwi": 0.3,
+                        "standtijdlijnGrasGolfklapBgwi": -0.1,
+                        "standtijdlijnGrasGolfklapCgwi": 0.96
                     }
                 ],
-                "MinimumGolfhoogteGrasGolfklap":
-                {
-                    "MinimumGolfhoogteGrasGolfklapTemax": 2500000
+                "minimumGolfhoogteGrasGolfklap": {
+                    "minimumGolfhoogteGrasGolfklapTemax": 2500000
                 },
-                "MaximumGolfhoogteGrasGolfklap":
-                {
-                    "MaximumGolfhoogteGrasGolfklapTemin": 3.1
+                "maximumGolfhoogteGrasGolfklap": {
+                    "maximumGolfhoogteGrasGolfklapTemin": 3.1
                 },
-                "ImpactGolfhoekBekledingGrasGolfklap":
-                {
-                    "ImpactGolfhoekBekledingGrasGolfklapNwa": 0.9,
-                    "ImpactGolfhoekBekledingGrasGolfklapQwa": 0.1,
-                    "ImpactGolfhoekBekledingGrasGolfklapRwa": 8.0
+                "impactGolfhoekBekledingGrasGolfklap": {
+                    "impactGolfhoekBekledingGrasGolfklapNwa": 0.9,
+                    "impactGolfhoekBekledingGrasGolfklapQwa": 0.1,
+                    "impactGolfhoekBekledingGrasGolfklapRwa": 8.0
                 },
-                "BovengrensBelastingGrasGolfklap":
-                {
-                    "BovengrensBelastingGrasGolfklapAul": 1.0
+                "bovengrensBelastingGrasGolfklap": {
+                    "bovengrensBelastingGrasGolfklapAul": 1.0
                 },
-                "OndergrensBelastingGrasGolfklap":
-                {
-                    "OndergrensBelastingGrasGolfklapAll": 3.5
+                "ondergrensBelastingGrasGolfklap": {
+                    "ondergrensBelastingGrasGolfklapAll": 3.5
                 }
             },
             {
-                "RekenmethodeSoort": "GrasGolfoploop",
-                "Faalgetal": 0.45,
-                "Toplagen":
-                [
+                "rekenmethodeSoort": "grasGolfoploop",
+                "faalgetal": 0.45,
+                "toplagen": [
                     {
-                        "TypeToplaag": "GrasGeslotenZode",
-                        "KritiekeCumulatieveOverbelasting": 7213.0,
-                        "KritiekeFrontsnelheidGrasGolfoploop": 8.3
+                        "typeToplaag": "grasGeslotenZode",
+                        "kritiekeCumulatieveOverbelasting": 7213.0,
+                        "kritiekeFrontsnelheidGrasGolfoploop": 8.3
                     }
                 ],
-                "GemiddeldAantalGolvenPerTijdstap":
-                {
-                    "GemiddeldAantalGolvenPerTijdstapCtm": 0.99
+                "gemiddeldAantalGolvenPerTijdstap": {
+                    "gemiddeldAantalGolvenPerTijdstapCtm": 0.99
                 },
-                "RepresentatieveGolfoploop2p":
-                {
-                    "RepresentatieveGolfoploop2pAru": 1.56,
-                    "RepresentatieveGolfoploop2pBru": 4.6,
-                    "RepresentatieveGolfoploop2pCru": 3.5
+                "representatieveGolfoploop2p": {
+                    "representatieveGolfoploop2pAru": 1.56,
+                    "representatieveGolfoploop2pBru": 4.6,
+                    "representatieveGolfoploop2pCru": 3.5
                 },
-                "ImpactGolfhoekGolfoploop":
-                {
-                    "ImpactGolfhoekGolfoploopAbeta": 0.0011,
-                    "ImpactGolfhoekGolfoploopBetamax": 89.0
+                "impactGolfhoekGolfoploop": {
+                    "impactGolfhoekGolfoploopAbeta": 0.0011,
+                    "impactGolfhoekGolfoploopBetamax": 89.0
                 },
-                "Rekenprotocol":
-                {
-                    "Rekenprotocolsoort": "RayleighDiscreet",
-                    "AantalGolvenVastRD": 5000,
-                    "FrontsnelheidGolfOploopRD":
-                    {
-                        "FrontsnelheidGolfOploopRDCu": 3.5
+                "rekenprotocol": {
+                    "rekenprotocolsoort": "rayleighDiscreet",
+                    "aantalGolvenVastRD": 5000,
+                    "frontsnelheidGolfOploopRD": {
+                        "frontsnelheidGolfOploopRDCu": 3.5
                     }
                 }
             },
             {
-                "RekenmethodeSoort": "AsfaltGolfklap",
-                "Faalgetal": 1.0,
-                "Toplagen":
-                [
+                "rekenmethodeSoort": "asfaltGolfklap",
+                "faalgetal": 1.0,
+                "toplagen": [
                     {
-                        "TypeToplaag": "WaterbouwAsfaltBeton",
-                        "Stijfheidsverhouding":
-                        {
-                            "StijfheidsverhoudingNu": 0.58
+                        "typeToplaag": "waterbouwAsfaltBeton",
+                        "stijfheidsverhouding": {
+                            "stijfheidsverhoudingNu": 0.58
                         },
-                        "VermoeiingAsfaltbekleding":
-                        {
-                            "VermoeiingAsfaltbekledingAlfa": 0.723,
-                            "VermoeiingAsfaltbekledingBeta": 7.2
+                        "vermoeiingAsfaltbekleding": {
+                            "vermoeiingAsfaltbekledingAlfa": 0.723,
+                            "vermoeiingAsfaltbekledingBeta": 7.2
                         }
                     }
                 ],
-                "SoortelijkeDichtheidWater": 0.25,
-                "GemiddeldAantalGolvenPerTijdstap":
-                {
-                    "GemiddeldAantalGolvenPerTijdstapCtm": 1.1
+                "soortelijkeDichtheidWater": 0.25,
+                "gemiddeldAantalGolvenPerTijdstap": {
+                    "gemiddeldAantalGolvenPerTijdstapCtm": 1.1
                 },
-                "Stootgetal":
-                {
-                    "StootgetalC": 4.0
+                "stootgetal": {
+                    "stootgetalC": 4.0
                 },
-                "BreedteFactorenTabel":
-                [
+                "breedteFactorenTabel": [
                     [
                         1.6,
                         1.0392
@@ -330,8 +288,7 @@
                         1.0738
                     ]
                 ],
-                "DiepteFactorenTabel":
-                [
+                "diepteFactorenTabel": [
                     [
                         -2.0,
                         1.0244
@@ -341,8 +298,7 @@
                         1.0544
                     ]
                 ],
-                "StootFactorenTabel":
-                [
+                "stootFactorenTabel": [
                     [
                         6.0,
                         2.039

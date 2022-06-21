@@ -1,27 +1,23 @@
 {
-    "rekendata":
-    {
-        "Tijd": [],
-        "HydraulischeBelastingen":
-        {
-            "Waterstand": [],
-            "GolfhoogteHm0": [],
-            "GolfperiodeTm10": [],
-            "Golfhoek": []
+    "rekendata": {
+        "tijd": [],
+        "hydraulischeBelastingen": {
+            "waterstand": [],
+            "golfhoogteHm0": [],
+            "golfperiodeTm10": [],
+            "golfhoek": []
         },
-        "Dijkprofiel":
-        {
-            "Positie": [],
-            "Hoogte": []
+        "dijkprofiel": {
+            "positie": [],
+            "hoogte": []
         },
-        "Locaties":
-        [
+        "locaties": [
             {
-                "PositieLocatie": 0,
-                "RekenmethodeSoort": "Natuursteen",
-                "TypeToplaag": "OngeldigeSteen",
-                "DikteToplaag": 0.3,
-                "RelatieveDichtheid": 1.65
+                "positieLocatie": 0,
+                "rekenmethodeSoort": "natuursteen",
+                "typeToplaag": "ongeldigeSteen",
+                "dikteToplaag": 0.3,
+                "relatieveDichtheid": 1.65
             }
         ]
     }

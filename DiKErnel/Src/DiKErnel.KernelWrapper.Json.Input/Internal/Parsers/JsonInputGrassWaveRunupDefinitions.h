@@ -27,25 +27,25 @@ namespace DiKErnel::KernelWrapper::Json::Input
     class JsonInputGrassWaveRunupDefinitions
     {
         public:
-            inline static const std::string CRITICAL_CUMULATIVE_OVERLOAD = "KritiekeCumulatieveOverbelasting";
-            inline static const std::string CRITICAL_FRONT_VELOCITY = "KritiekeFrontsnelheidGrasGolfoploop";
-            inline static const std::string INCREASED_LOAD_TRANSITION_ALPHA_M = "VerhogingBelastingOvergangAlfaM";
-            inline static const std::string REDUCED_STRENGTH_TRANSITION_ALPHA_S = "VerlagingSterkteOvergangAlfaS";
+            inline static const std::string CRITICAL_CUMULATIVE_OVERLOAD = "kritiekeCumulatieveOverbelasting";
+            inline static const std::string CRITICAL_FRONT_VELOCITY = "kritiekeFrontsnelheidGrasGolfoploop";
+            inline static const std::string INCREASED_LOAD_TRANSITION_ALPHA_M = "verhogingBelastingOvergangAlfaM";
+            inline static const std::string REDUCED_STRENGTH_TRANSITION_ALPHA_S = "verlagingSterkteOvergangAlfaS";
 
-            inline static const std::string REPRESENTATIVE_WAVE_RUNUP_2P = "RepresentatieveGolfoploop2p";
-            inline static const std::string REPRESENTATIVE_WAVE_RUNUP_2P_ARU = "RepresentatieveGolfoploop2pAru";
-            inline static const std::string REPRESENTATIVE_WAVE_RUNUP_2P_BRU = "RepresentatieveGolfoploop2pBru";
-            inline static const std::string REPRESENTATIVE_WAVE_RUNUP_2P_CRU = "RepresentatieveGolfoploop2pCru";
+            inline static const std::string REPRESENTATIVE_WAVE_RUNUP_2P = "representatieveGolfoploop2p";
+            inline static const std::string REPRESENTATIVE_WAVE_RUNUP_2P_ARU = "representatieveGolfoploop2pAru";
+            inline static const std::string REPRESENTATIVE_WAVE_RUNUP_2P_BRU = "representatieveGolfoploop2pBru";
+            inline static const std::string REPRESENTATIVE_WAVE_RUNUP_2P_CRU = "representatieveGolfoploop2pCru";
 
-            inline static const std::string WAVE_ANGLE_IMPACT = "ImpactGolfhoekGolfoploop";
-            inline static const std::string WAVE_ANGLE_IMPACT_ABETA = "ImpactGolfhoekGolfoploopAbeta";
-            inline static const std::string WAVE_ANGLE_IMPACT_BETAMAX = "ImpactGolfhoekGolfoploopBetamax";
+            inline static const std::string WAVE_ANGLE_IMPACT = "impactGolfhoekGolfoploop";
+            inline static const std::string WAVE_ANGLE_IMPACT_ABETA = "impactGolfhoekGolfoploopAbeta";
+            inline static const std::string WAVE_ANGLE_IMPACT_BETAMAX = "impactGolfhoekGolfoploopBetamax";
 
-            inline static const std::string CALCULATION_PROTOCOL = "Rekenprotocol";
-            inline static const std::string CALCULATION_PROTOCOL_TYPE = "Rekenprotocolsoort";
-            inline static const std::string CALCULATION_PROTOCOL_TYPE_RAYLEIGH_DISCRETE = "RayleighDiscreet";
+            inline static const std::string CALCULATION_PROTOCOL = "rekenprotocol";
+            inline static const std::string CALCULATION_PROTOCOL_TYPE = "rekenprotocolsoort";
+            inline static const std::string CALCULATION_PROTOCOL_TYPE_RAYLEIGH_DISCRETE = "rayleighDiscreet";
 
-            inline static const std::string REPRESENTATIVE_WAVE_RUNUP_2P_GAMMA_B = "BermfactorGammab";
-            inline static const std::string REPRESENTATIVE_WAVE_RUNUP_2P_GAMMA_F = "RuwheidsfactorGammaf";
+            inline static const std::string REPRESENTATIVE_WAVE_RUNUP_2P_GAMMA_B = "bermfactorGammab";
+            inline static const std::string REPRESENTATIVE_WAVE_RUNUP_2P_GAMMA_F = "ruwheidsfactorGammaf";
     };
 }

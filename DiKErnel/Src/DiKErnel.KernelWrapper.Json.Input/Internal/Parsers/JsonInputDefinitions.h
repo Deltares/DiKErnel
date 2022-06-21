@@ -36,43 +36,43 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
             inline static const std::string CALCULATION_DATA = "rekendata";
 
-            inline static const std::string HYDRAULIC_LOADS = "HydraulischeBelastingen";
-            inline static const std::string LOCATIONS = "Locaties";
+            inline static const std::string HYDRAULIC_LOADS = "hydraulischeBelastingen";
+            inline static const std::string LOCATIONS = "locaties";
 
-            inline static const std::string TIME = "Tijd";
-            inline static const std::string WATER_LEVEL = "Waterstand";
-            inline static const std::string WAVE_HEIGHT_HM0 = "GolfhoogteHm0";
-            inline static const std::string WAVE_PERIOD_TM10 = "GolfperiodeTm10";
-            inline static const std::string WAVE_ANGLE = "Golfhoek";
+            inline static const std::string TIME = "tijd";
+            inline static const std::string WATER_LEVEL = "waterstand";
+            inline static const std::string WAVE_HEIGHT_HM0 = "golfhoogteHm0";
+            inline static const std::string WAVE_PERIOD_TM10 = "golfperiodeTm10";
+            inline static const std::string WAVE_ANGLE = "golfhoek";
 
-            inline static const std::string DIKE_PROFILE = "Dijkprofiel";
-            inline static const std::string DIKE_PROFILE_POINT_X = "Positie";
-            inline static const std::string DIKE_PROFILE_POINT_Z = "Hoogte";
+            inline static const std::string DIKE_PROFILE = "dijkprofiel";
+            inline static const std::string DIKE_PROFILE_POINT_X = "positie";
+            inline static const std::string DIKE_PROFILE_POINT_Z = "hoogte";
 
-            inline static const std::string CHARACTERISTIC_POINT = "KarakteristiekPunt";
-            inline static const std::string CHARACTERISTIC_POINT_TYPE_OUTER_TOE = "TeenBuitenzijde";
-            inline static const std::string CHARACTERISTIC_POINT_TYPE_OUTER_CREST = "KruinBuitenzijde";
-            inline static const std::string CHARACTERISTIC_POINT_TYPE_CREST_OUTER_BERM = "KruinBermBuitenzijde";
-            inline static const std::string CHARACTERISTIC_POINT_TYPE_NOTCH_OUTER_BERM = "InsteekBermBuitenzijde";
+            inline static const std::string CHARACTERISTIC_POINT = "karakteristiekPunt";
+            inline static const std::string CHARACTERISTIC_POINT_TYPE_OUTER_TOE = "teenBuitenzijde";
+            inline static const std::string CHARACTERISTIC_POINT_TYPE_OUTER_CREST = "kruinBuitenzijde";
+            inline static const std::string CHARACTERISTIC_POINT_TYPE_CREST_OUTER_BERM = "kruinBermBuitenzijde";
+            inline static const std::string CHARACTERISTIC_POINT_TYPE_NOTCH_OUTER_BERM = "insteekBermBuitenzijde";
 
-            inline static const std::string X = "PositieLocatie";
-            inline static const std::string INITIAL_DAMAGE = "BeginSchade";
-            inline static const std::string FAILURE_NUMBER = "Faalgetal";
+            inline static const std::string X = "positieLocatie";
+            inline static const std::string INITIAL_DAMAGE = "beginSchade";
+            inline static const std::string FAILURE_NUMBER = "faalgetal";
 
-            inline static const std::string TOP_LAYERS = "Toplagen";
-            inline static const std::string TYPE_TOP_LAYER = "TypeToplaag";
+            inline static const std::string TOP_LAYERS = "toplagen";
+            inline static const std::string TYPE_TOP_LAYER = "typeToplaag";
 
-            inline static const std::string AVERAGE_NUMBER_OF_WAVES = "GemiddeldAantalGolvenPerTijdstap";
-            inline static const std::string AVERAGE_NUMBER_OF_WAVES_CTM = "GemiddeldAantalGolvenPerTijdstapCtm";
+            inline static const std::string AVERAGE_NUMBER_OF_WAVES = "gemiddeldAantalGolvenPerTijdstap";
+            inline static const std::string AVERAGE_NUMBER_OF_WAVES_CTM = "gemiddeldAantalGolvenPerTijdstapCtm";
 
-            inline static const std::string CALCULATION_METHODS = "Rekenmethoden";
-            inline static const std::string CALCULATION_METHOD_TYPE = "RekenmethodeSoort";
+            inline static const std::string CALCULATION_METHODS = "rekenmethoden";
+            inline static const std::string CALCULATION_METHOD_TYPE = "rekenmethodeSoort";
 
-            inline static const std::string CALCULATION_METHOD_TYPE_ASPHALT_WAVE_IMPACT = "AsfaltGolfklap";
-            inline static const std::string CALCULATION_METHOD_TYPE_GRASS_WAVE_IMPACT = "GrasGolfklap";
-            inline static const std::string CALCULATION_METHOD_TYPE_GRASS_WAVE_RUNUP = "GrasGolfoploop";
-            inline static const std::string CALCULATION_METHOD_TYPE_NATURAL_STONE = "Natuursteen";
+            inline static const std::string CALCULATION_METHOD_TYPE_ASPHALT_WAVE_IMPACT = "asfaltGolfklap";
+            inline static const std::string CALCULATION_METHOD_TYPE_GRASS_WAVE_IMPACT = "grasGolfklap";
+            inline static const std::string CALCULATION_METHOD_TYPE_GRASS_WAVE_RUNUP = "grasGolfoploop";
+            inline static const std::string CALCULATION_METHOD_TYPE_NATURAL_STONE = "natuursteen";
 
-            inline static const std::string OUTER_SLOPE = "TanA";
+            inline static const std::string OUTER_SLOPE = "tanA";
     };
 }

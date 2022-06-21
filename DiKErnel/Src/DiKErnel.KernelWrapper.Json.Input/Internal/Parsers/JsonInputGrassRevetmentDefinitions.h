@@ -27,7 +27,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
     class JsonInputGrassRevetmentDefinitions
     {
         public:
-            inline static const std::string TOP_LAYER_TYPE_CLOSED_SOD = "GrasGeslotenZode";
-            inline static const std::string TOP_LAYER_TYPE_OPEN_SOD = "GrasOpenZode";
+            inline static const std::string TOP_LAYER_TYPE_CLOSED_SOD = "grasGeslotenZode";
+            inline static const std::string TOP_LAYER_TYPE_OPEN_SOD = "grasOpenZode";
     };
 }

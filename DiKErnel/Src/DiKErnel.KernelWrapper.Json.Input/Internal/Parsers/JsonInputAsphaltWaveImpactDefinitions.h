@@ -27,30 +27,30 @@ namespace DiKErnel::KernelWrapper::Json::Input
     class JsonInputAsphaltWaveImpactDefinitions
     {
         public:
-            inline static const std::string TOP_LAYER_TYPE_HYDRAULIC_ASPHALT_CONCRETE = "WaterbouwAsfaltBeton";
+            inline static const std::string TOP_LAYER_TYPE_HYDRAULIC_ASPHALT_CONCRETE = "waterbouwAsfaltBeton";
 
-            inline static const std::string FAILURE_TENSION = "BreuksterkteAsfalt";
-            inline static const std::string DENSITY_OF_WATER = "SoortelijkeDichtheidWater";
-            inline static const std::string SOIL_ELASTICITY = "VeerconstanteOndergrond";
+            inline static const std::string FAILURE_TENSION = "breuksterkteAsfalt";
+            inline static const std::string DENSITY_OF_WATER = "soortelijkeDichtheidWater";
+            inline static const std::string SOIL_ELASTICITY = "veerconstanteOndergrond";
 
-            inline static const std::string UPPER_LAYER = "Toplaag";
-            inline static const std::string SUB_LAYER = "Onderlaag";
+            inline static const std::string UPPER_LAYER = "toplaag";
+            inline static const std::string SUB_LAYER = "onderlaag";
 
-            inline static const std::string THICKNESS = "Dikte";
-            inline static const std::string ELASTIC_MODULUS = "Stijfheidsmodulus";
+            inline static const std::string THICKNESS = "dikte";
+            inline static const std::string ELASTIC_MODULUS = "stijfheidsmodulus";
 
-            inline static const std::string FATIGUE = "VermoeiingAsfaltbekleding";
-            inline static const std::string FATIGUE_ALPHA = "VermoeiingAsfaltbekledingAlfa";
-            inline static const std::string FATIGUE_BETA = "VermoeiingAsfaltbekledingBeta";
+            inline static const std::string FATIGUE = "vermoeiingAsfaltbekleding";
+            inline static const std::string FATIGUE_ALPHA = "vermoeiingAsfaltbekledingAlfa";
+            inline static const std::string FATIGUE_BETA = "vermoeiingAsfaltbekledingBeta";
 
-            inline static const std::string IMPACT_NUMBER = "Stootgetal";
-            inline static const std::string IMPACT_NUMBER_C = "StootgetalC";
+            inline static const std::string IMPACT_NUMBER = "stootgetal";
+            inline static const std::string IMPACT_NUMBER_C = "stootgetalC";
 
-            inline static const std::string STIFFNESS_RELATION = "Stijfheidsverhouding";
-            inline static const std::string STIFFNESS_RELATION_NU = "StijfheidsverhoudingNu";
+            inline static const std::string STIFFNESS_RELATION = "stijfheidsverhouding";
+            inline static const std::string STIFFNESS_RELATION_NU = "stijfheidsverhoudingNu";
 
-            inline static const std::string WIDTH_FACTORS = "BreedteFactorenTabel";
-            inline static const std::string DEPTH_FACTORS = "DiepteFactorenTabel";
-            inline static const std::string IMPACT_FACTORS = "StootFactorenTabel";
+            inline static const std::string WIDTH_FACTORS = "breedteFactorenTabel";
+            inline static const std::string DEPTH_FACTORS = "diepteFactorenTabel";
+            inline static const std::string IMPACT_FACTORS = "stootFactorenTabel";
     };
 }
