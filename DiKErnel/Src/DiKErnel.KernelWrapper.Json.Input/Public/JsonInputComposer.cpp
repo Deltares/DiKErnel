@@ -32,7 +32,6 @@
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
-    using namespace DomainLibrary;
     using namespace Integration;
     using namespace nlohmann;
     using namespace json_schema;
