@@ -22,7 +22,6 @@
 
 #include "DataResult.h"
 #include "JsonInputComposerResult.h"
-#include "ValidationIssue.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
@@ -36,9 +35,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
              * \brief Performs a Json schema based validation.
              * \param filePath
              *        The path to the Json file to validate.
-             * \return A validation issue when the Json file is not valid; nullptr otherwise.
+             * \return Whether the validation was successful.
              */
-            static std::unique_ptr<DomainLibrary::ValidationIssue> ValidateJson(
+            static bool ValidateJson(
                 const std::string& filePath);
 
             /*!

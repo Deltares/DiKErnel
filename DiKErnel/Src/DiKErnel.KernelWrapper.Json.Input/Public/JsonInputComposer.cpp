@@ -27,21 +27,26 @@
 #include "JsonInputAdapter.h"
 #include "JsonInputParser.h"
 #include "JsonSchemaDefinition.h"
+#include "ValidationHelper.h"
+#include "ValidationIssue.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
     using namespace DomainLibrary;
+    using namespace Integration;
     using namespace nlohmann;
     using namespace json_schema;
     using namespace std;
     using namespace Util;
 
-    unique_ptr<ValidationIssue> JsonInputComposer::ValidateJson(
+    bool JsonInputComposer::ValidateJson(
         const string& filePath)
     {
         json_validator validator;
 
         validator.set_root_schema(json::parse(JSON_SCHEMA_DEFINITION));
+
+        vector<unique_ptr<ValidationIssue>> validationIssues;
 
         try
         {
@@ -49,10 +54,10 @@ namespace DiKErnel::KernelWrapper::Json::Input
         }
         catch (const exception& e)
         {
-            return make_unique<ValidationIssue>(ValidationIssueType::Error, e.what());
+            validationIssues.emplace_back(make_unique<ValidationIssue>(ValidationIssueType::Error, e.what()));
         }
 
-        return nullptr;
+        return ValidationHelper::RegisterValidationIssues(validationIssues);
     }
 
     unique_ptr<DataResult<JsonInputComposerResult>> JsonInputComposer::GetInputDataFromJson(
