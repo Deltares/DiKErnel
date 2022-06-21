@@ -34,6 +34,7 @@ namespace DiKErnel::Integration
     using namespace DomainLibrary;
     using namespace FunctionLibrary;
     using namespace std;
+    using namespace Util;
 
     AsphaltRevetmentWaveImpactLocationDependentInput::AsphaltRevetmentWaveImpactLocationDependentInput(
         const double x,

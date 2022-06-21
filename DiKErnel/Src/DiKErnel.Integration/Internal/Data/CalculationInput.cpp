@@ -28,6 +28,7 @@ namespace DiKErnel::Integration
     using namespace Core;
     using namespace DomainLibrary;
     using namespace std;
+    using namespace Util;
 
     CalculationInput::CalculationInput(
         unique_ptr<IProfileData> profileData,

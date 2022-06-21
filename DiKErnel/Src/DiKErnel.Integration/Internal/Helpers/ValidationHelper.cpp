@@ -26,7 +26,6 @@
 
 namespace DiKErnel::Integration
 {
-    using namespace DomainLibrary;
     using namespace std;
     using namespace Util;
 

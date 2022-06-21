@@ -28,6 +28,7 @@ namespace DiKErnel::Integration
 {
     using namespace DomainLibrary;
     using namespace std;
+    using namespace Util;
 
     TimeDependentInput::TimeDependentInput(
         const int beginTime,

@@ -33,6 +33,7 @@ namespace DiKErnel::Integration
     using namespace DomainLibrary;
     using namespace FunctionLibrary;
     using namespace std;
+    using namespace Util;
 
     GrassRevetmentWaveImpactLocationDependentInput::GrassRevetmentWaveImpactLocationDependentInput(
         const double x,

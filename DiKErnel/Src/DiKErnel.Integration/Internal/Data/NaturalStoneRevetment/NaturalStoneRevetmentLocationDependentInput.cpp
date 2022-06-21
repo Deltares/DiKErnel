@@ -36,6 +36,7 @@ namespace DiKErnel::Integration
     using namespace DomainLibrary;
     using namespace FunctionLibrary;
     using namespace std;
+    using namespace Util;
 
     NaturalStoneRevetmentLocationDependentInput::NaturalStoneRevetmentLocationDependentInput(
         const double x,

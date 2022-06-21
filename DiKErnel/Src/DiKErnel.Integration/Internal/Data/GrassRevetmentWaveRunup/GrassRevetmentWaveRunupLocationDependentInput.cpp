@@ -29,6 +29,7 @@ namespace DiKErnel::Integration
     using namespace Core;
     using namespace DomainLibrary;
     using namespace std;
+    using namespace Util;
 
     GrassRevetmentWaveRunupLocationDependentInput::GrassRevetmentWaveRunupLocationDependentInput(
         const double x,

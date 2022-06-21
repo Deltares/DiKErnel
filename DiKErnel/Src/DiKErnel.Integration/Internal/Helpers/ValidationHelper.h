@@ -32,13 +32,13 @@ namespace DiKErnel::Integration
     {
         public:
             static bool RegisterValidationIssues(
-                const std::vector<std::unique_ptr<DomainLibrary::ValidationIssue>>& validationIssues);
+                const std::vector<std::unique_ptr<Util::ValidationIssue>>& validationIssues);
 
         private:
             static bool RegisterValidationIssue(
-                const DomainLibrary::ValidationIssue& validationIssue);
+                const Util::ValidationIssue& validationIssue);
 
             static Util::EventType ConvertValidationIssueType(
-                DomainLibrary::ValidationIssueType validationIssueType);
+                Util::ValidationIssueType validationIssueType);
     };
 }
