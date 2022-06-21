@@ -62,37 +62,41 @@ namespace DiKErnel::KernelWrapper::Json::Input
             calculationDefinition->SetSlopeLowerLevelAls(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
                     readSlope, JsonInputNaturalStoneDefinitions::SLOPE_LOWER_LEVEL)));
-
         }
 
-        if (readCalculationMethod.contains(JsonInputNaturalStoneDefinitions::UPPER_LIMIT_LOADING))
+        if (readCalculationMethod.contains(JsonInputDefinitions::LOADING_AREA))
         {
-            const auto& readUpperLimitLoading = readCalculationMethod.at(JsonInputNaturalStoneDefinitions::UPPER_LIMIT_LOADING);
+            const auto& readLoadingArea = readCalculationMethod.at(JsonInputDefinitions::LOADING_AREA);
 
-            calculationDefinition->SetUpperLimitLoadingAul(
-                forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
-                    readUpperLimitLoading, JsonInputNaturalStoneDefinitions::UPPER_LIMIT_LOADING_AUL)));
-            calculationDefinition->SetUpperLimitLoadingBul(
-                forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
-                    readUpperLimitLoading, JsonInputNaturalStoneDefinitions::UPPER_LIMIT_LOADING_BUL)));
-            calculationDefinition->SetUpperLimitLoadingCul(
-                forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
-                    readUpperLimitLoading, JsonInputNaturalStoneDefinitions::UPPER_LIMIT_LOADING_CUL)));
-        }
+            if (readLoadingArea.contains(JsonInputDefinitions::UPPER_LIMIT))
+            {
+                const auto& readUpperLimitLoading = readLoadingArea.at(JsonInputDefinitions::UPPER_LIMIT);
 
-        if (readCalculationMethod.contains(JsonInputNaturalStoneDefinitions::LOWER_LIMIT_LOADING))
-        {
-            const auto& readLowerLimitLoading = readCalculationMethod.at(JsonInputNaturalStoneDefinitions::LOWER_LIMIT_LOADING);
+                calculationDefinition->SetUpperLimitLoadingAul(
+                    forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
+                        readUpperLimitLoading, JsonInputDefinitions::A_COEFFICIENT)));
+                calculationDefinition->SetUpperLimitLoadingBul(
+                    forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
+                        readUpperLimitLoading, JsonInputDefinitions::B_COEFFICIENT)));
+                calculationDefinition->SetUpperLimitLoadingCul(
+                    forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
+                        readUpperLimitLoading, JsonInputDefinitions::C_COEFFICIENT)));
+            }
 
-            calculationDefinition->SetLowerLimitLoadingAll(
-                forward<unique_ptr<double>>(
-                    JsonInputParserHelper::ParseOptionalDouble(readLowerLimitLoading, JsonInputNaturalStoneDefinitions::LOWER_LIMIT_LOADING_ALL)));
-            calculationDefinition->SetLowerLimitLoadingBll(
-                forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
-                    readLowerLimitLoading, JsonInputNaturalStoneDefinitions::LOWER_LIMIT_LOADING_BLL)));
-            calculationDefinition->SetLowerLimitLoadingCll(
-                forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
-                    readLowerLimitLoading, JsonInputNaturalStoneDefinitions::LOWER_LIMIT_LOADING_CLL)));
+            if (readLoadingArea.contains(JsonInputDefinitions::LOWER_LIMIT))
+            {
+                const auto& readLowerLimitLoading = readLoadingArea.at(JsonInputDefinitions::LOWER_LIMIT);
+
+                calculationDefinition->SetLowerLimitLoadingAll(
+                    forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
+                        readLowerLimitLoading, JsonInputDefinitions::A_COEFFICIENT)));
+                calculationDefinition->SetLowerLimitLoadingBll(
+                    forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
+                        readLowerLimitLoading, JsonInputDefinitions::B_COEFFICIENT)));
+                calculationDefinition->SetLowerLimitLoadingCll(
+                    forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
+                        readLowerLimitLoading, JsonInputDefinitions::C_COEFFICIENT)));
+            }
         }
 
         if (readCalculationMethod.contains(JsonInputNaturalStoneDefinitions::DISTANCE_MAXIMUM_WAVE_ELEVATION))
@@ -149,7 +153,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 {
                     const auto& readStability = readTopLayer.at(JsonInputNaturalStoneDefinitions::STABILITY);
 
-                    if(readStability.contains(JsonInputNaturalStoneDefinitions::STABILITY_PLUNGING))
+                    if (readStability.contains(JsonInputNaturalStoneDefinitions::STABILITY_PLUNGING))
                     {
                         const auto& readPlunging = readStability.at(JsonInputNaturalStoneDefinitions::STABILITY_PLUNGING);
 
@@ -167,7 +171,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
                                 readPlunging, JsonInputNaturalStoneDefinitions::N_COEFFICIENT)));
                     }
 
-                    if(readStability.contains(JsonInputNaturalStoneDefinitions::STABILITY_SURGING))
+                    if (readStability.contains(JsonInputNaturalStoneDefinitions::STABILITY_SURGING))
                     {
                         const auto& readSurging = readStability.at(JsonInputNaturalStoneDefinitions::STABILITY_SURGING);
 

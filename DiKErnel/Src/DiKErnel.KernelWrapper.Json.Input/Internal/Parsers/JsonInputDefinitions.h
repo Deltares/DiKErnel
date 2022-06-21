@@ -73,6 +73,10 @@ namespace DiKErnel::KernelWrapper::Json::Input
             inline static const std::string B_COEFFICIENT = "b";
             inline static const std::string C_COEFFICIENT = "c";
 
+            inline static const std::string LOADING_AREA = "belastingzone";
+            inline static const std::string UPPER_LIMIT = "bovengrens";
+            inline static const std::string LOWER_LIMIT = "ondergrens";
+
             inline static const std::string AVERAGE_NUMBER_OF_WAVES = "gemiddeldAantalGolvenPerTijdstap";
             inline static const std::string AVERAGE_NUMBER_OF_WAVES_CTM = "gemiddeldAantalGolvenPerTijdstapCtm";
 

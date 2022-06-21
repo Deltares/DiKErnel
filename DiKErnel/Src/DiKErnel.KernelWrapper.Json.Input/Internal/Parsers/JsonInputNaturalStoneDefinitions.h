@@ -41,16 +41,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
             inline static const std::string SLOPE_UPPER_LEVEL = "bovenzijde";
             inline static const std::string SLOPE_LOWER_LEVEL = "onderzijde";
 
-            inline static const std::string UPPER_LIMIT_LOADING = "bovengrensBelastingNatuursteen";
-            inline static const std::string UPPER_LIMIT_LOADING_AUL = "bovengrensBelastingNatuursteenAul";
-            inline static const std::string UPPER_LIMIT_LOADING_BUL = "bovengrensBelastingNatuursteenBul";
-            inline static const std::string UPPER_LIMIT_LOADING_CUL = "bovengrensBelastingNatuursteenCul";
-
-            inline static const std::string LOWER_LIMIT_LOADING = "ondergrensBelastingNatuursteen";
-            inline static const std::string LOWER_LIMIT_LOADING_ALL = "ondergrensBelastingNatuursteenAll";
-            inline static const std::string LOWER_LIMIT_LOADING_BLL = "ondergrensBelastingNatuursteenBll";
-            inline static const std::string LOWER_LIMIT_LOADING_CLL = "ondergrensBelastingNatuursteenCll";
-
             inline static const std::string DISTANCE_MAXIMUM_WAVE_ELEVATION = "afstandMaximaleStijghoogteNatuursteen";
             inline static const std::string DISTANCE_MAXIMUM_WAVE_ELEVATION_ASMAX = "afstandMaximaleStijghoogteNatuursteenAsmax";
             inline static const std::string DISTANCE_MAXIMUM_WAVE_ELEVATION_BSMAX = "afstandMaximaleStijghoogteNatuursteenBsmax";

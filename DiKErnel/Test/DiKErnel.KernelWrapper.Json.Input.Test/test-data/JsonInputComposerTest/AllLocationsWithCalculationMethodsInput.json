@@ -154,15 +154,17 @@
                     "bovenzijde": 0.95,
                     "onderzijde": 1.8
                 },
-                "bovengrensBelastingNatuursteen": {
-                    "bovengrensBelastingNatuursteenAul": 6.1,
-                    "bovengrensBelastingNatuursteenBul": 3.6,
-                    "bovengrensBelastingNatuursteenCul": 4.5
-                },
-                "ondergrensBelastingNatuursteen": {
-                    "ondergrensBelastingNatuursteenAll": 4.1,
-                    "ondergrensBelastingNatuursteenBll": 8,
-                    "ondergrensBelastingNatuursteenCll": 0.5
+                "belastingzone": {
+                    "bovengrens": {
+                        "a": 6.1,
+                        "b": 3.6,
+                        "c": 4.5
+                    },
+                    "ondergrens": {
+                        "a": 4.1,
+                        "b": 8,
+                        "c": 0.5
+                    }
                 },
                 "afstandMaximaleStijghoogteNatuursteen": {
                     "afstandMaximaleStijghoogteNatuursteenAsmax": 0.7,
