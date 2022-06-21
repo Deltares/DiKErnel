@@ -41,6 +41,7 @@
 namespace DiKErnel::KernelWrapper::Json::Input::Test
 {
     using namespace Core;
+    using namespace DomainLibrary;
     using namespace DiKErnel::TestUtil;
     using namespace Integration;
     using namespace Integration::TestUtil;
@@ -532,7 +533,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
             / "AllLocationsWithCalculationMethodsInput.json").string();
 
         // When
-        const auto result = JsonInputComposer::ValidateJson(filePath);
+        const unique_ptr<ValidationIssue> result = JsonInputComposer::ValidateJson(filePath);
 
         // Then
         ASSERT_EQ(nullptr, result);
@@ -545,9 +546,11 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
             / "InvalidFormat.json").string();
 
         // When
-        const auto result = JsonInputComposer::ValidateJson(filePath);
+        const unique_ptr<ValidationIssue> result = JsonInputComposer::ValidateJson(filePath);
 
         // Then
-        ASSERT_EQ(nullptr, result);
+        ASSERT_NE(nullptr, result);
+        ASSERT_EQ(ValidationIssueType::Error, result->GetValidationIssueType());
+        ASSERT_EQ("At  of {} - required property 'Rekendata' not found in object\n", result->GetMessage());
     }
 }
