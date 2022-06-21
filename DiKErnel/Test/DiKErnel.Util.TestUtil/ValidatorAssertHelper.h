@@ -26,7 +26,7 @@
 
 #include "ValidationIssue.h"
 
-namespace DiKErnel::DomainLibrary::TestUtil
+namespace DiKErnel::Util::TestUtil
 {
     class ValidatorAssertHelper
     {
