@@ -25,6 +25,7 @@
 #include "AssertHelper.h"
 #include "CalculationInput.h"
 #include "EventAssertHelper.h"
+#include "EventRegistry.h"
 #include "GrassRevetmentWaveImpactLocationDependentInput.h"
 #include "GrassRevetmentWaveImpactLocationDependentInputAssertHelper.h"
 #include "GrassRevetmentWaveRunupLocationDependentInputAssertHelper.h"
@@ -525,7 +526,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
         PerformInvalidJsonTest("InvalidNaturalStoneRevetmentTopLayerType.json", "Cannot convert top layer type.");
     }
 
-    TEST_F(JsonInputComposerTest, GivenCompleteAndValidJsonInputFile_WhenValidatingJson_ThenReturnsTrue)
+    TEST_F(JsonInputComposerTest, GivenCompleteAndValidJsonInputFile_WhenValidatingJson_ThenReturnsTrueAndNoEventsRegistered)
     {
         // Given
         const auto filePath = (TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Input.Test") / "JsonInputComposerTest"
@@ -536,9 +537,10 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
 
         // Then
         ASSERT_TRUE(result);
+        ASSERT_EQ(0, EventRegistry::Flush().size());
     }
 
-    TEST_F(JsonInputComposerTest, GivenInvalidJsonInputFile_WhenValidatingJson_ThenReturnsFalse)
+    TEST_F(JsonInputComposerTest, GivenInvalidJsonInputFile_WhenValidatingJson_ThenReturnsFalseAndExpectedEventsRegistered)
     {
         // Given
         const auto filePath = (TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Input.Test") / "JsonInputComposerTest"
@@ -549,5 +551,11 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
 
         // Then
         ASSERT_FALSE(result);
+
+        const auto& registeredEvents = EventRegistry::Flush();
+        ASSERT_EQ(1, registeredEvents.size());
+        EventAssertHelper::AssertEvent(EventType::Error,
+                                       "At  of {} - required property 'Rekendata' not found in object\n",
+                                       *registeredEvents.at(0));
     }
 }
