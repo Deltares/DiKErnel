@@ -128,8 +128,8 @@
                 "verhogingBelastingOvergangAlfaM": 1.5,
                 "verlagingSterkteOvergangAlfaS": 0.8,
                 "tanA": 0.7,
-                "bermfactorGammab": 3.2,
-                "ruwheidsfactorGammaf": 4.1
+                "bermFactorGammaB": 3.2,
+                "ruwheidsFactorGammaF": 4.1
             },
             {
                 "positie": 4,

@@ -116,8 +116,8 @@
                 "verhogingBelastingOvergangAlfaM": 1.0,
                 "verlagingSterkteOvergangAlfaS": 1.0,
                 "tanA": 0.25,
-                "bermfactorGammab": 1.0,
-                "ruwheidsfactorGammaf": 1.0
+                "bermFactorGammaB": 1.0,
+                "ruwheidsFactorGammaF": 1.0
             }
         ],
         "rekenmethoden": [

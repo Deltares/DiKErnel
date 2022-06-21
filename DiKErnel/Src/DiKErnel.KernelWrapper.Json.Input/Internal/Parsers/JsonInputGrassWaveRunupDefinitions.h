@@ -32,6 +32,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
             inline static const std::string INCREASED_LOAD_TRANSITION_ALPHA_M = "verhogingBelastingOvergangAlfaM";
             inline static const std::string REDUCED_STRENGTH_TRANSITION_ALPHA_S = "verlagingSterkteOvergangAlfaS";
 
+            inline static const std::string REPRESENTATIVE_WAVE_RUNUP_2P_GAMMA_B = "bermFactorGammaB";
+            inline static const std::string REPRESENTATIVE_WAVE_RUNUP_2P_GAMMA_F = "ruwheidsFactorGammaF";
+
             inline static const std::string REPRESENTATIVE_WAVE_RUNUP_2P = "representatieveGolfoploop2p";
             inline static const std::string REPRESENTATIVE_WAVE_RUNUP_2P_ARU = "representatieveGolfoploop2pAru";
             inline static const std::string REPRESENTATIVE_WAVE_RUNUP_2P_BRU = "representatieveGolfoploop2pBru";
@@ -44,8 +47,5 @@ namespace DiKErnel::KernelWrapper::Json::Input
             inline static const std::string CALCULATION_PROTOCOL = "rekenprotocol";
             inline static const std::string CALCULATION_PROTOCOL_TYPE = "rekenprotocolsoort";
             inline static const std::string CALCULATION_PROTOCOL_TYPE_RAYLEIGH_DISCRETE = "rayleighDiscreet";
-
-            inline static const std::string REPRESENTATIVE_WAVE_RUNUP_2P_GAMMA_B = "bermfactorGammab";
-            inline static const std::string REPRESENTATIVE_WAVE_RUNUP_2P_GAMMA_F = "ruwheidsfactorGammaf";
     };
 }
