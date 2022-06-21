@@ -69,6 +69,10 @@ namespace DiKErnel::KernelWrapper::Json::Input
             inline static const std::string TOP_LAYERS = "toplagen";
             inline static const std::string TYPE_TOP_LAYER = "typeToplaag";
 
+            inline static const std::string A_COEFFICIENT = "a";
+            inline static const std::string B_COEFFICIENT = "b";
+            inline static const std::string C_COEFFICIENT = "c";
+
             inline static const std::string AVERAGE_NUMBER_OF_WAVES = "gemiddeldAantalGolvenPerTijdstap";
             inline static const std::string AVERAGE_NUMBER_OF_WAVES_CTM = "gemiddeldAantalGolvenPerTijdstapCtm";
 

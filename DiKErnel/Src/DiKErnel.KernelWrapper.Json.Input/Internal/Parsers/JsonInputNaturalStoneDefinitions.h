@@ -30,16 +30,12 @@ namespace DiKErnel::KernelWrapper::Json::Input
             inline static const std::string RELATIVE_DENSITY = "relatieveDichtheid";
             inline static const std::string THICKNESS_TOP_LAYER = "dikteToplaag";
 
-            inline static const std::string HYDRAULIC_LOAD = "hydraulischeBelastingNatuursteen";
-            inline static const std::string HYDRAULIC_LOAD_XIB = "hydraulischeBelastingNatuursteenXib";
-            inline static const std::string HYDRAULIC_LOAD_AP = "hydraulischeBelastingNatuursteenAp";
-            inline static const std::string HYDRAULIC_LOAD_BP = "hydraulischeBelastingNatuursteenBp";
-            inline static const std::string HYDRAULIC_LOAD_CP = "hydraulischeBelastingNatuursteenCp";
-            inline static const std::string HYDRAULIC_LOAD_NP = "hydraulischeBelastingNatuursteenNp";
-            inline static const std::string HYDRAULIC_LOAD_AS = "hydraulischeBelastingNatuursteenAs";
-            inline static const std::string HYDRAULIC_LOAD_BS = "hydraulischeBelastingNatuursteenBs";
-            inline static const std::string HYDRAULIC_LOAD_CS = "hydraulischeBelastingNatuursteenCs";
-            inline static const std::string HYDRAULIC_LOAD_NS = "hydraulischeBelastingNatuursteenNs";
+            inline static const std::string STABILITY = "stabiliteit";
+            inline static const std::string STABILITY_PLUNGING = "plunging";
+            inline static const std::string STABILITY_SURGING = "surging";
+
+            inline static const std::string N_COEFFICIENT = "n";
+            inline static const std::string XIB_COEFFICIENT = "xib";
 
             inline static const std::string SLOPE_UPPER_LEVEL = "bovenzijdeHellingvlakNatuursteen";
             inline static const std::string SLOPE_UPPER_LEVEL_AUS = "bovenzijdeHellingvlakNatuursteenAus";

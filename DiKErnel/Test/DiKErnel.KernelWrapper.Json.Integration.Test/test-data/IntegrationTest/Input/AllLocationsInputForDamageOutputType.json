@@ -156,16 +156,20 @@
                 "toplagen": [
                     {
                         "typeToplaag": "noorseSteen",
-                        "hydraulischeBelastingNatuursteen": {
-                            "hydraulischeBelastingNatuursteenXib": 2.9,
-                            "hydraulischeBelastingNatuursteenAp": 4,
-                            "hydraulischeBelastingNatuursteenBp": 0,
-                            "hydraulischeBelastingNatuursteenCp": 0,
-                            "hydraulischeBelastingNatuursteenNp": -0.9,
-                            "hydraulischeBelastingNatuursteenAs": 0.8,
-                            "hydraulischeBelastingNatuursteenBs": 0,
-                            "hydraulischeBelastingNatuursteenCs": 0,
-                            "hydraulischeBelastingNatuursteenNs": 0.6
+                        "stabiliteit": {
+                            "xib": 2.9,
+                            "plunging": {
+                                "a": 4,
+                                "b": 0,
+                                "c": 0,
+                                "n": -0.9
+                            },
+                            "surging": {
+                                "a": 0.8,
+                                "b": 0,
+                                "c": 0,
+                                "n": 0.6
+                            }
                         }
                     }
                 ],
