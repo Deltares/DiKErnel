@@ -25,20 +25,6 @@ namespace DiKErnel::KernelWrapper::Json::Output
     using namespace nlohmann;
     using namespace std;
 
-    void CalculationOutputAdapterHelper::SetPropertyWhenApplicable(
-        ordered_json& jsonObject,
-        const double* value)
-    {
-        if (value != nullptr)
-        {
-            jsonObject = *value;
-        }
-        else
-        {
-            jsonObject = nullptr;
-        }
-    }
-
     void CalculationOutputAdapterHelper::PushPropertyWhenApplicable(
         ordered_json& jsonObject,
         const double* value)

@@ -27,10 +27,6 @@ namespace DiKErnel::KernelWrapper::Json::Output
     class CalculationOutputAdapterHelper
     {
         public:
-            static void SetPropertyWhenApplicable(
-                nlohmann::ordered_json& jsonObject,
-                const double* value);
-
             static void PushPropertyWhenApplicable(
                 nlohmann::ordered_json& jsonObject,
                 const double* value);
