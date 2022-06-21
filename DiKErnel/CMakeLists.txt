@@ -49,16 +49,6 @@ macro(CONFIGURE_PLATFORM_SPECIFIC_VERSION_RESOURCE_FILE)
   endif()
 endmacro()
 
-# Macro for configuring a version header file
-macro(CONFIGURE_VERSION_HEADER_FILE)
-  set(VERSION_HEADER_DIR ${CMAKE_CURRENT_BINARY_DIR})
-  set(VERSION_HEADER_FILE ${VERSION_HEADER_DIR}/Version.h)
-  configure_file(
-    ${CMAKE_SOURCE_DIR}/../Deployment/Version.h.in
-    ${VERSION_HEADER_FILE}
-    @ONLY)
-endmacro()
-
 # Macro for embedding a textual resource
 macro(EMBED_TEXTUAL_RESOURCE RESOURCE_FILE_PATH HEADER_FILE_NAME RESOURCE_NAME)
   set(EMBEDDED_RESOURCES_DIR ${CMAKE_CURRENT_BINARY_DIR})

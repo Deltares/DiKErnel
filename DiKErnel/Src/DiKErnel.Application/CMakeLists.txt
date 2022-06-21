@@ -5,7 +5,12 @@ set(LIBNAME DiKErnel.Application)
 set(PUBLIC_FOLDER Public)
 
 # Configure version header file
-CONFIGURE_VERSION_HEADER_FILE()
+set(VERSION_HEADER_DIR ${CMAKE_CURRENT_BINARY_DIR})
+set(VERSION_HEADER_FILE ${VERSION_HEADER_DIR}/Version.h)
+configure_file(
+  ${CMAKE_SOURCE_DIR}/../Deployment/Version.h.in
+  ${VERSION_HEADER_FILE}
+  @ONLY)
 
 # Define sources
 set(SOURCEFILES_PUBLIC
