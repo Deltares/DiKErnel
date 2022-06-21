@@ -25,6 +25,7 @@
 namespace DiKErnel::DomainLibrary::Test
 {
     using namespace std;
+    using namespace Util;
 
     TEST(ValidationIssueTest, Constructor_ExpectedValues)
     {

@@ -25,8 +25,9 @@
 
 namespace DiKErnel::DomainLibrary::Test
 {
-    using namespace TestUtil;
     using namespace std;
+    using namespace Util;
+    using namespace TestUtil;
 
     TEST(HydraulicLoadsValidatorTest, WaveHeightHm0_VariousScenarios_ExpectedValues)
     {

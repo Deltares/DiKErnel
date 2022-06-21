@@ -26,6 +26,7 @@
 namespace DiKErnel::DomainLibrary::Test
 {
     using namespace std;
+    using namespace Util;
     using namespace TestUtil;
 
     TEST(NaturalStoneRevetmentValidatorTest, RelativeDensity_VariousScenarios_ExpectedValues)

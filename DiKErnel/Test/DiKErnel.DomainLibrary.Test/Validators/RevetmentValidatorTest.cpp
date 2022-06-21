@@ -27,6 +27,7 @@ namespace DiKErnel::DomainLibrary::Test
 {
     using namespace std;
     using namespace testing;
+    using namespace Util;
     using namespace TestUtil;
 
     struct RevetmentValidatorTest : Test
