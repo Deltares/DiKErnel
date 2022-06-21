@@ -44,8 +44,10 @@ namespace DiKErnel::KernelWrapper::Json::Output
             std::vector<std::unique_ptr<JsonOutputFailureLocationData>> _locationDataItems;
             const std::vector<std::pair<std::string, std::variant<double, std::string>>>& _metaDataItems;
 
+            [[nodiscard]]
             std::vector<nlohmann::basic_json<nlohmann::ordered_map>> GetLocationOutputJsonItems() const;
 
+            [[nodiscard]]
             nlohmann::ordered_json GetMetaDataJsonItems() const;
     };
 }
