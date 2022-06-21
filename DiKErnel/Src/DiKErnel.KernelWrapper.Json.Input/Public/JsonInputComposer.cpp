@@ -43,7 +43,14 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
         validator.set_root_schema(json::parse(JSON_SCHEMA_DEFINITION));
 
-        auto results = validator.validate(json::parse(ifstream(filePath)));
+        try
+        {
+            validator.validate(json::parse(ifstream(filePath)));
+        }
+        catch (const exception& e)
+        {
+            return make_unique<ValidationIssue>(ValidationIssueType::Error, e.what());
+        }
 
         return nullptr;
     }
