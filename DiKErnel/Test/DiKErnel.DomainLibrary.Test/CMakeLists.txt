@@ -103,7 +103,7 @@ source_group(${VALIDATORS_NATURAL_STONE_REVETMENT_FOLDER} FILES ${SOURCEFILES_VA
 # Link dependencies
 target_link_libraries(${EXENAME}
   DiKErnel.DomainLibrary
-  DiKErnel.DomainLibrary.TestUtil
   DiKErnel.TestUtil
+  DiKErnel.Util.TestUtil
   gtest
 )

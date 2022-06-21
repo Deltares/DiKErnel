@@ -41,7 +41,6 @@
 namespace DiKErnel::KernelWrapper::Json::Input::Test
 {
     using namespace Core;
-    using namespace DomainLibrary;
     using namespace DiKErnel::TestUtil;
     using namespace Integration;
     using namespace Integration::TestUtil;
@@ -526,31 +525,29 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
         PerformInvalidJsonTest("InvalidNaturalStoneRevetmentTopLayerType.json", "Cannot convert top layer type.");
     }
 
-    TEST_F(JsonInputComposerTest, GivenCompleteAndValidJsonInputFile_WhenValidatingJson_ThenReturnsNullPtr)
+    TEST_F(JsonInputComposerTest, GivenCompleteAndValidJsonInputFile_WhenValidatingJson_ThenReturnsTrue)
     {
         // Given
         const auto filePath = (TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Input.Test") / "JsonInputComposerTest"
             / "AllLocationsWithCalculationMethodsInput.json").string();
 
         // When
-        const unique_ptr<ValidationIssue> result = JsonInputComposer::ValidateJson(filePath);
+        const auto result = JsonInputComposer::ValidateJson(filePath);
 
         // Then
-        ASSERT_EQ(nullptr, result);
+        ASSERT_TRUE(result);
     }
 
-    TEST_F(JsonInputComposerTest, GivenInvalidJsonInputFile_WhenValidatingJson_ThenReturnsValidationIssue)
+    TEST_F(JsonInputComposerTest, GivenInvalidJsonInputFile_WhenValidatingJson_ThenReturnsFalse)
     {
         // Given
         const auto filePath = (TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Input.Test") / "JsonInputComposerTest"
             / "InvalidFormat.json").string();
 
         // When
-        const unique_ptr<ValidationIssue> result = JsonInputComposer::ValidateJson(filePath);
+        const auto result = JsonInputComposer::ValidateJson(filePath);
 
         // Then
-        ASSERT_NE(nullptr, result);
-        ASSERT_EQ(ValidationIssueType::Error, result->GetValidationIssueType());
-        ASSERT_EQ("At  of {} - required property 'Rekendata' not found in object\n", result->GetMessage());
+        ASSERT_FALSE(result);
     }
 }

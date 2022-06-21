@@ -25,10 +25,10 @@
 
 namespace DiKErnel::Integration
 {
-    using namespace DomainLibrary;
     using namespace std;
     using namespace testing;
     using namespace TestUtil;
+    using namespace Util;
 
     struct ValidationHelperTest : Test
     {
