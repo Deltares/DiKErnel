@@ -32,6 +32,9 @@ namespace DiKErnel::Integration
     class GrassRevetmentWaveRunupLocationConstructionProperties : public RevetmentLocationConstructionPropertiesBase
     {
         public:
+            /*!
+             * \brief Destructs the instance.
+             */
             virtual ~GrassRevetmentWaveRunupLocationConstructionProperties() = default;
 
             #pragma region Set methods
