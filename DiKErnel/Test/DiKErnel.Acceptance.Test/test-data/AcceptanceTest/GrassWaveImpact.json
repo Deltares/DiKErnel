@@ -190,33 +190,31 @@
                 "toplagen": [
                     {
                         "typeToplaag": "grasGeslotenZode",
-                        "standtijdlijnGrasGolfklapAgwi": 1.0,
-                        "standtijdlijnGrasGolfklapBgwi": -0.00000972222222,
-                        "standtijdlijnGrasGolfklapCgwi": 0.25
+                        "standtijdlijn": {
+                            "a": 1.0,
+                            "b": -0.00000972222222,
+                            "c": 0.25
+                        }
                     },
                     {
                         "typeToplaag": "grasOpenZode",
-                        "standtijdlijnGrasGolfklapAgwi": 0.8,
-                        "standtijdlijnGrasGolfklapBgwi": -0.0000194444444,
-                        "standtijdlijnGrasGolfklapCgwi": 0.25
+                        "standtijdlijn": {
+                            "a": 0.8,
+                            "b": -0.0000194444444,
+                            "c": 0.25
+                        }
                     }
                 ],
-                "minimumGolfhoogteGrasGolfklap": {
-                    "minimumGolfhoogteGrasGolfklapTemax": 3600000
+                "temax": 3600000,
+                "temin": 3.6,
+                "impactGolfhoek": {
+                    "n": 0.67,
+                    "q": 0.35,
+                    "r": 10.0
                 },
-                "maximumGolfhoogteGrasGolfklap": {
-                    "maximumGolfhoogteGrasGolfklapTemin": 3.6
-                },
-                "impactGolfhoekBekledingGrasGolfklap": {
-                    "impactGolfhoekBekledingGrasGolfklapNwa": 0.67,
-                    "impactGolfhoekBekledingGrasGolfklapQwa": 0.35,
-                    "impactGolfhoekBekledingGrasGolfklapRwa": 10.0
-                },
-                "bovengrensBelastingGrasGolfklap": {
-                    "bovengrensBelastingGrasGolfklapAul": 0.0
-                },
-                "ondergrensBelastingGrasGolfklap": {
-                    "ondergrensBelastingGrasGolfklapAll": 0.5
+                "belastingzone": {
+                    "bovengrens": 0.0,
+                    "ondergrens": 0.5
                 }
             }
         ]

@@ -27,25 +27,13 @@ namespace DiKErnel::KernelWrapper::Json::Input
     class JsonInputGrassWaveImpactDefinitions
     {
         public:
-            inline static const std::string TIME_LINE_AGWI = "standtijdlijnGrasGolfklapAgwi";
-            inline static const std::string TIME_LINE_BGWI = "standtijdlijnGrasGolfklapBgwi";
-            inline static const std::string TIME_LINE_CGWI = "standtijdlijnGrasGolfklapCgwi";
+            inline static const std::string TIME_LINE = "standtijdlijn";
 
-            inline static const std::string MINIMUM_WAVE_HEIGHT = "minimumGolfhoogteGrasGolfklap";
-            inline static const std::string MINIMUM_WAVE_HEIGHT_TEMAX = "minimumGolfhoogteGrasGolfklapTemax";
+            inline static const std::string TEMAX = "temax";
+            inline static const std::string TEMIN = "temin";
 
-            inline static const std::string MAXIMUM_WAVE_HEIGHT = "maximumGolfhoogteGrasGolfklap";
-            inline static const std::string MAXIMUM_WAVE_HEIGHT_TEMIN = "maximumGolfhoogteGrasGolfklapTemin";
-
-            inline static const std::string WAVE_ANGLE_IMPACT = "impactGolfhoekBekledingGrasGolfklap";
-            inline static const std::string WAVE_ANGLE_IMPACT_NWA = "impactGolfhoekBekledingGrasGolfklapNwa";
-            inline static const std::string WAVE_ANGLE_IMPACT_QWA = "impactGolfhoekBekledingGrasGolfklapQwa";
-            inline static const std::string WAVE_ANGLE_IMPACT_RWA = "impactGolfhoekBekledingGrasGolfklapRwa";
-
-            inline static const std::string UPPER_LIMIT_LOADING = "bovengrensBelastingGrasGolfklap";
-            inline static const std::string UPPER_LIMIT_LOADING_AUL = "bovengrensBelastingGrasGolfklapAul";
-
-            inline static const std::string LOWER_LIMIT_LOADING = "ondergrensBelastingGrasGolfklap";
-            inline static const std::string LOWER_LIMIT_LOADING_ALL = "ondergrensBelastingGrasGolfklapAll";
+            inline static const std::string N_COEFFICIENT = "n";
+            inline static const std::string Q_COEFFICIENT = "q";
+            inline static const std::string R_COEFFICIENT = "r";
     };
 }

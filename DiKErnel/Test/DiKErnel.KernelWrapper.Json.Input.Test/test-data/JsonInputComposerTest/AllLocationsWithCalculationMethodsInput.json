@@ -182,27 +182,23 @@
                 "toplagen": [
                     {
                         "typeToplaag": "grasGeslotenZode",
-                        "standtijdlijnGrasGolfklapAgwi": 0.3,
-                        "standtijdlijnGrasGolfklapBgwi": -0.1,
-                        "standtijdlijnGrasGolfklapCgwi": 0.96
+                        "standtijdlijn": {
+                            "a": 0.3,
+                            "b": -0.1,
+                            "c": 0.96
+                        }
                     }
                 ],
-                "minimumGolfhoogteGrasGolfklap": {
-                    "minimumGolfhoogteGrasGolfklapTemax": 2500000
+                "temax": 2500000,
+                "temin": 3.1,
+                "impactGolfhoek": {
+                    "n": 0.9,
+                    "q": 0.1,
+                    "r": 8.0
                 },
-                "maximumGolfhoogteGrasGolfklap": {
-                    "maximumGolfhoogteGrasGolfklapTemin": 3.1
-                },
-                "impactGolfhoekBekledingGrasGolfklap": {
-                    "impactGolfhoekBekledingGrasGolfklapNwa": 0.9,
-                    "impactGolfhoekBekledingGrasGolfklapQwa": 0.1,
-                    "impactGolfhoekBekledingGrasGolfklapRwa": 8.0
-                },
-                "bovengrensBelastingGrasGolfklap": {
-                    "bovengrensBelastingGrasGolfklapAul": 1.0
-                },
-                "ondergrensBelastingGrasGolfklap": {
-                    "ondergrensBelastingGrasGolfklapAll": 3.5
+                "belastingzone": {
+                    "bovengrens": 1.0,
+                    "ondergrens": 3.5
                 }
             },
             {

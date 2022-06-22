@@ -56,57 +56,42 @@ namespace DiKErnel::KernelWrapper::Json::Input
         auto calculationDefinition = make_unique<JsonInputGrassWaveImpactCalculationDefinitionData>(
             move(failureNumber), ReadTopLayerDefinitionData(readCalculationMethod));
 
-        if (readCalculationMethod.contains(JsonInputGrassWaveImpactDefinitions::MINIMUM_WAVE_HEIGHT))
+        calculationDefinition->SetMinimumWaveHeightTemax(
+            forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
+                readCalculationMethod, JsonInputGrassWaveImpactDefinitions::TEMAX)));
+
+        calculationDefinition->SetMaximumWaveHeightTemin(
+            forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
+                readCalculationMethod, JsonInputGrassWaveImpactDefinitions::TEMIN)));
+
+        if (readCalculationMethod.contains(JsonInputDefinitions::WAVE_ANGLE_IMPACT))
         {
-            const auto& readMinimumWaveHeight = readCalculationMethod.at(JsonInputGrassWaveImpactDefinitions::MINIMUM_WAVE_HEIGHT);
-
-            calculationDefinition->SetMinimumWaveHeightTemax(
-                forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
-                    readMinimumWaveHeight, JsonInputGrassWaveImpactDefinitions::MINIMUM_WAVE_HEIGHT_TEMAX)));
-        }
-
-        if (readCalculationMethod.contains(JsonInputGrassWaveImpactDefinitions::MAXIMUM_WAVE_HEIGHT))
-        {
-            const auto& readMaximumWaveHeight = readCalculationMethod.at(JsonInputGrassWaveImpactDefinitions::MAXIMUM_WAVE_HEIGHT);
-
-            calculationDefinition->SetMaximumWaveHeightTemin(
-                forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
-                    readMaximumWaveHeight, JsonInputGrassWaveImpactDefinitions::MAXIMUM_WAVE_HEIGHT_TEMIN)));
-        }
-
-        if (readCalculationMethod.contains(JsonInputGrassWaveImpactDefinitions::WAVE_ANGLE_IMPACT))
-        {
-            const auto& readWaveAngleImpact = readCalculationMethod.at(JsonInputGrassWaveImpactDefinitions::WAVE_ANGLE_IMPACT);
+            const auto& readWaveAngleImpact = readCalculationMethod.at(JsonInputDefinitions::WAVE_ANGLE_IMPACT);
 
             calculationDefinition->SetWaveAngleImpactNwa(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
-                    readWaveAngleImpact, JsonInputGrassWaveImpactDefinitions::WAVE_ANGLE_IMPACT_NWA)));
+                    readWaveAngleImpact, JsonInputGrassWaveImpactDefinitions::N_COEFFICIENT)));
 
             calculationDefinition->SetWaveAngleImpactQwa(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
-                    readWaveAngleImpact, JsonInputGrassWaveImpactDefinitions::WAVE_ANGLE_IMPACT_QWA)));
+                    readWaveAngleImpact, JsonInputGrassWaveImpactDefinitions::Q_COEFFICIENT)));
 
             calculationDefinition->SetWaveAngleImpactRwa(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
-                    readWaveAngleImpact, JsonInputGrassWaveImpactDefinitions::WAVE_ANGLE_IMPACT_RWA)));
+                    readWaveAngleImpact, JsonInputGrassWaveImpactDefinitions::R_COEFFICIENT)));
         }
 
-        if (readCalculationMethod.contains(JsonInputGrassWaveImpactDefinitions::UPPER_LIMIT_LOADING))
+        if (readCalculationMethod.contains(JsonInputDefinitions::LOADING_AREA))
         {
-            const auto& readUpperLimitLoading = readCalculationMethod.at(JsonInputGrassWaveImpactDefinitions::UPPER_LIMIT_LOADING);
+            const auto& readLoadingArea = readCalculationMethod.at(JsonInputDefinitions::LOADING_AREA);
 
             calculationDefinition->SetUpperLimitLoadingAul(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
-                    readUpperLimitLoading, JsonInputGrassWaveImpactDefinitions::UPPER_LIMIT_LOADING_AUL)));
-        }
-
-        if (readCalculationMethod.contains(JsonInputGrassWaveImpactDefinitions::LOWER_LIMIT_LOADING))
-        {
-            const auto& readLowerLimitLoading = readCalculationMethod.at(JsonInputGrassWaveImpactDefinitions::LOWER_LIMIT_LOADING);
+                    readLoadingArea, JsonInputDefinitions::UPPER_LIMIT)));
 
             calculationDefinition->SetLowerLimitLoadingAll(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
-                    readLowerLimitLoading, JsonInputGrassWaveImpactDefinitions::LOWER_LIMIT_LOADING_ALL)));
+                    readLoadingArea, JsonInputDefinitions::LOWER_LIMIT)));
         }
 
         return calculationDefinition;
@@ -126,15 +111,20 @@ namespace DiKErnel::KernelWrapper::Json::Input
             {
                 auto topLayer = make_unique<JsonInputGrassWaveImpactTopLayerDefinitionData>();
 
-                topLayer->SetTimeLineAgwi(
-                    forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
-                        readTopLayer, JsonInputGrassWaveImpactDefinitions::TIME_LINE_AGWI)));
-                topLayer->SetTimeLineBgwi(
-                    forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
-                        readTopLayer, JsonInputGrassWaveImpactDefinitions::TIME_LINE_BGWI)));
-                topLayer->SetTimeLineCgwi(
-                    forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
-                        readTopLayer, JsonInputGrassWaveImpactDefinitions::TIME_LINE_CGWI)));
+                if (readTopLayer.contains(JsonInputGrassWaveImpactDefinitions::TIME_LINE))
+                {
+                    const auto& readTimeLine = readTopLayer.at(JsonInputGrassWaveImpactDefinitions::TIME_LINE);
+
+                    topLayer->SetTimeLineAgwi(
+                        forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
+                            readTimeLine, JsonInputDefinitions::A_COEFFICIENT)));
+                    topLayer->SetTimeLineBgwi(
+                        forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
+                            readTimeLine, JsonInputDefinitions::B_COEFFICIENT)));
+                    topLayer->SetTimeLineCgwi(
+                        forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
+                            readTimeLine, JsonInputDefinitions::C_COEFFICIENT)));
+                }
 
                 topLayers.insert(pair(readTopLayer.at(JsonInputDefinitions::TYPE_TOP_LAYER).get<JsonInputGrassRevetmentTopLayerType>(),
                                       move(topLayer)));

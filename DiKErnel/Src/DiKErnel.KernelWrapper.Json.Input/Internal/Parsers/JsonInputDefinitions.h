@@ -77,6 +77,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
             inline static const std::string UPPER_LIMIT = "bovengrens";
             inline static const std::string LOWER_LIMIT = "ondergrens";
 
+            inline static const std::string WAVE_ANGLE_IMPACT = "impactGolfhoek";
+
             inline static const std::string AVERAGE_NUMBER_OF_WAVES = "gemiddeldAantalGolvenPerTijdstap";
             inline static const std::string AVERAGE_NUMBER_OF_WAVES_CTM = "gemiddeldAantalGolvenPerTijdstapCtm";
 
