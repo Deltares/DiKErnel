@@ -40,11 +40,11 @@ namespace DiKErnel::KernelWrapper::Json::Input
             void SetReducedStrengthTransitionAlphaS(
                 std::unique_ptr<double> reducedStrengthTransitionAlphaS);
 
-            void SetRepresentativeWaveRunup2PGammab(
-                std::unique_ptr<double> representativeWaveRunup2PGammab);
+            void SetRepresentativeWaveRunup2PGammaB(
+                std::unique_ptr<double> representativeWaveRunup2PGammaB);
 
-            void SetRepresentativeWaveRunup2PGammaf(
-                std::unique_ptr<double> representativeWaveRunup2PGammaf);
+            void SetRepresentativeWaveRunup2PGammaF(
+                std::unique_ptr<double> representativeWaveRunup2PGammaF);
 
             [[nodiscard]]
             JsonInputGrassRevetmentTopLayerType GetTopLayerType() const;
@@ -59,17 +59,17 @@ namespace DiKErnel::KernelWrapper::Json::Input
             const double* GetReducedStrengthTransitionAlphaS() const;
 
             [[nodiscard]]
-            const double* GetRepresentativeWaveRunup2PGammab() const;
+            const double* GetRepresentativeWaveRunup2PGammaG() const;
 
             [[nodiscard]]
-            const double* GetRepresentativeWaveRunup2PGammaf() const;
+            const double* GetRepresentativeWaveRunup2PGammaF() const;
 
         private:
             JsonInputGrassRevetmentTopLayerType _topLayerType;
             double _outerSlope;
             std::unique_ptr<double> _increasedLoadTransitionAlphaM = nullptr;
             std::unique_ptr<double> _reducedStrengthTransitionAlphaS = nullptr;
-            std::unique_ptr<double> _representativeWaveRunup2PGammab = nullptr;
-            std::unique_ptr<double> _representativeWaveRunup2PGammaf = nullptr;
+            std::unique_ptr<double> _representativeWaveRunup2PGammaB = nullptr;
+            std::unique_ptr<double> _representativeWaveRunup2PGammaF = nullptr;
     };
 }

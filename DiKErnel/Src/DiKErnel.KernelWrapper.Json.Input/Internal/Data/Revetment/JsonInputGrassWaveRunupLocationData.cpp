@@ -45,16 +45,16 @@ namespace DiKErnel::KernelWrapper::Json::Input
         _reducedStrengthTransitionAlphaS = move(reducedStrengthTransitionAlphaS);
     }
 
-    void JsonInputGrassWaveRunupLocationData::SetRepresentativeWaveRunup2PGammab(
-        unique_ptr<double> representativeWaveRunup2PGammab)
+    void JsonInputGrassWaveRunupLocationData::SetRepresentativeWaveRunup2PGammaB(
+        unique_ptr<double> representativeWaveRunup2PGammaB)
     {
-        _representativeWaveRunup2PGammab = move(representativeWaveRunup2PGammab);
+        _representativeWaveRunup2PGammaB = move(representativeWaveRunup2PGammaB);
     }
 
-    void JsonInputGrassWaveRunupLocationData::SetRepresentativeWaveRunup2PGammaf(
-        unique_ptr<double> representativeWaveRunup2PGammaf)
+    void JsonInputGrassWaveRunupLocationData::SetRepresentativeWaveRunup2PGammaF(
+        unique_ptr<double> representativeWaveRunup2PGammaF)
     {
-        _representativeWaveRunup2PGammaf = move(representativeWaveRunup2PGammaf);
+        _representativeWaveRunup2PGammaF = move(representativeWaveRunup2PGammaF);
     }
 
     JsonInputGrassRevetmentTopLayerType JsonInputGrassWaveRunupLocationData::GetTopLayerType() const
@@ -77,13 +77,13 @@ namespace DiKErnel::KernelWrapper::Json::Input
         return _reducedStrengthTransitionAlphaS.get();
     }
 
-    const double* JsonInputGrassWaveRunupLocationData::GetRepresentativeWaveRunup2PGammab() const
+    const double* JsonInputGrassWaveRunupLocationData::GetRepresentativeWaveRunup2PGammaG() const
     {
-        return _representativeWaveRunup2PGammab.get();
+        return _representativeWaveRunup2PGammaB.get();
     }
 
-    const double* JsonInputGrassWaveRunupLocationData::GetRepresentativeWaveRunup2PGammaf() const
+    const double* JsonInputGrassWaveRunupLocationData::GetRepresentativeWaveRunup2PGammaF() const
     {
-        return _representativeWaveRunup2PGammaf.get();
+        return _representativeWaveRunup2PGammaF.get();
     }
 }

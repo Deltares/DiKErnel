@@ -313,9 +313,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
         constructionProperties->SetReducedStrengthTransitionAlphaS(
             forward<unique_ptr<double>>(CreatePointerOfValue(location.GetReducedStrengthTransitionAlphaS())));
         constructionProperties->SetRepresentativeWaveRunup2PGammab(
-            forward<unique_ptr<double>>(CreatePointerOfValue(location.GetRepresentativeWaveRunup2PGammab())));
+            forward<unique_ptr<double>>(CreatePointerOfValue(location.GetRepresentativeWaveRunup2PGammaG())));
         constructionProperties->SetRepresentativeWaveRunup2PGammaf(
-            forward<unique_ptr<double>>(CreatePointerOfValue(location.GetRepresentativeWaveRunup2PGammaf())));
+            forward<unique_ptr<double>>(CreatePointerOfValue(location.GetRepresentativeWaveRunup2PGammaF())));
 
         constructionProperties->SetAverageNumberOfWavesCtm(
             forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetFactorCtm())));

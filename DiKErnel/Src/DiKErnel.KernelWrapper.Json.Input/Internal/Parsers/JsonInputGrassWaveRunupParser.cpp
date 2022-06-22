@@ -65,11 +65,11 @@ namespace DiKErnel::KernelWrapper::Json::Input
             forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
                 readLocation, JsonInputGrassWaveRunupDefinitions::REDUCED_STRENGTH_TRANSITION_ALPHA_S)));
 
-        locationData->SetRepresentativeWaveRunup2PGammab(
+        locationData->SetRepresentativeWaveRunup2PGammaB(
             forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
                 readLocation, JsonInputGrassWaveRunupDefinitions::REPRESENTATIVE_WAVE_RUNUP_2P_GAMMA_B)));
 
-        locationData->SetRepresentativeWaveRunup2PGammaf(
+        locationData->SetRepresentativeWaveRunup2PGammaF(
             forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
                 readLocation, JsonInputGrassWaveRunupDefinitions::REPRESENTATIVE_WAVE_RUNUP_2P_GAMMA_F)));
 
