@@ -144,7 +144,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
             {
                 auto topLayer = make_unique<JsonInputNaturalStoneTopLayerDefinitionData>();
 
-                ReadTopLayerStability(readTopLayer, topLayer);
+                ReadTopLayerStability(readTopLayer, *topLayer);
 
                 topLayers.insert(pair(readTopLayer.at(JsonInputDefinitions::TYPE_TOP_LAYER).get<JsonInputNaturalStoneRevetmentTopLayerType>(),
                                       move(topLayer)));
@@ -156,7 +156,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
     void JsonInputNaturalStoneCalculationDefinitionParser::ReadTopLayerStability(
         const json& readTopLayer,
-        const unique_ptr<JsonInputNaturalStoneTopLayerDefinitionData>& topLayer)
+        JsonInputNaturalStoneTopLayerDefinitionData& topLayer)
     {
         if (readTopLayer.contains(JsonInputNaturalStoneDefinitions::STABILITY))
         {
@@ -166,16 +166,16 @@ namespace DiKErnel::KernelWrapper::Json::Input
             {
                 const auto& readPlunging = readStability.at(JsonInputNaturalStoneDefinitions::STABILITY_PLUNGING);
 
-                topLayer->SetStabilityPlungingA(
+                topLayer.SetStabilityPlungingA(
                     forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
                         readPlunging, JsonInputDefinitions::A_COEFFICIENT)));
-                topLayer->SetStabilityPlungingB(
+                topLayer.SetStabilityPlungingB(
                     forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
                         readPlunging, JsonInputDefinitions::B_COEFFICIENT)));
-                topLayer->SetStabilityPlungingC(
+                topLayer.SetStabilityPlungingC(
                     forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
                         readPlunging, JsonInputDefinitions::C_COEFFICIENT)));
-                topLayer->SetStabilityPlungingN(
+                topLayer.SetStabilityPlungingN(
                     forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
                         readPlunging, JsonInputNaturalStoneDefinitions::N_COEFFICIENT)));
             }
@@ -184,21 +184,21 @@ namespace DiKErnel::KernelWrapper::Json::Input
             {
                 const auto& readSurging = readStability.at(JsonInputNaturalStoneDefinitions::STABILITY_SURGING);
 
-                topLayer->SetStabilitySurgingA(
+                topLayer.SetStabilitySurgingA(
                     forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
                         readSurging, JsonInputDefinitions::A_COEFFICIENT)));
-                topLayer->SetStabilitySurgingB(
+                topLayer.SetStabilitySurgingB(
                     forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
                         readSurging, JsonInputDefinitions::B_COEFFICIENT)));
-                topLayer->SetStabilitySurgingC(
+                topLayer.SetStabilitySurgingC(
                     forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
                         readSurging, JsonInputDefinitions::C_COEFFICIENT)));
-                topLayer->SetStabilitySurgingN(
+                topLayer.SetStabilitySurgingN(
                     forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
                         readSurging, JsonInputNaturalStoneDefinitions::N_COEFFICIENT)));
             }
 
-            topLayer->SetStabilityXib(
+            topLayer.SetStabilityXib(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
                     readStability, JsonInputNaturalStoneDefinitions::XIB_COEFFICIENT)));
         }

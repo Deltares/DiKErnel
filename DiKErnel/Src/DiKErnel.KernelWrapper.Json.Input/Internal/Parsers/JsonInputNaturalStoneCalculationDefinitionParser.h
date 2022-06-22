@@ -46,6 +46,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
             static void ReadTopLayerStability(
                 const nlohmann::json& readTopLayer,
-                const std::unique_ptr<JsonInputNaturalStoneTopLayerDefinitionData>& topLayer);
+                JsonInputNaturalStoneTopLayerDefinitionData& topLayer);
     };
 }
