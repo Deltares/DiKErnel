@@ -32,10 +32,10 @@ namespace DiKErnel::KernelWrapper::Json::Input
         _fixedNumberOfWaves = move(fixedNumberOfWaves);
     }
 
-    void JsonInputGrassWaveRunupRayleighCalculationProtocolData::SetFrontVelocityCu(
-        unique_ptr<double> frontVelocityCu)
+    void JsonInputGrassWaveRunupRayleighCalculationProtocolData::SetFrontVelocity(
+        unique_ptr<double> frontVelocity)
     {
-        _frontVelocityCu = move(frontVelocityCu);
+        _frontVelocity = move(frontVelocity);
     }
 
     #pragma endregion
@@ -47,9 +47,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
         return _fixedNumberOfWaves.get();
     }
 
-    const double* JsonInputGrassWaveRunupRayleighCalculationProtocolData::GetFrontVelocityCu() const
+    const double* JsonInputGrassWaveRunupRayleighCalculationProtocolData::GetFrontVelocity() const
     {
-        return _frontVelocityCu.get();
+        return _frontVelocity.get();
     }
 
     #pragma endregion

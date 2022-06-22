@@ -42,40 +42,40 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
     #pragma region Set methods
 
-    void JsonInputGrassWaveRunupCalculationDefinitionData::SetAverageNumberOfWavesCtm(
-        unique_ptr<double> averageNumberOfWavesCtm)
+    void JsonInputGrassWaveRunupCalculationDefinitionData::SetFactorCtm(
+        unique_ptr<double> factorCtm)
     {
-        _averageNumberOfWavesCtm = move(averageNumberOfWavesCtm);
+        _factorCtm = move(factorCtm);
     }
 
-    void JsonInputGrassWaveRunupCalculationDefinitionData::SetRepresentativeWaveRunup2PAru(
-        unique_ptr<double> representativeWaveRunup2PAru)
+    void JsonInputGrassWaveRunupCalculationDefinitionData::SetRepresentativeWaveRunup2PA(
+        unique_ptr<double> representativeWaveRunup2PA)
     {
-        _representativeWaveRunup2PAru = move(representativeWaveRunup2PAru);
+        _representativeWaveRunup2PA = move(representativeWaveRunup2PA);
     }
 
-    void JsonInputGrassWaveRunupCalculationDefinitionData::SetRepresentativeWaveRunup2PBru(
-        unique_ptr<double> representativeWaveRunup2PBru)
+    void JsonInputGrassWaveRunupCalculationDefinitionData::SetRepresentativeWaveRunup2PB(
+        unique_ptr<double> representativeWaveRunup2PB)
     {
-        _representativeWaveRunup2PBru = move(representativeWaveRunup2PBru);
+        _representativeWaveRunup2PB = move(representativeWaveRunup2PB);
     }
 
-    void JsonInputGrassWaveRunupCalculationDefinitionData::SetRepresentativeWaveRunup2PCru(
-        unique_ptr<double> representativeWaveRunup2PCru)
+    void JsonInputGrassWaveRunupCalculationDefinitionData::SetRepresentativeWaveRunup2PC(
+        unique_ptr<double> representativeWaveRunup2PC)
     {
-        _representativeWaveRunup2PCru = move(representativeWaveRunup2PCru);
+        _representativeWaveRunup2PC = move(representativeWaveRunup2PC);
     }
 
-    void JsonInputGrassWaveRunupCalculationDefinitionData::SetWaveAngleImpactAbeta(
-        unique_ptr<double> waveAngleImpactAbeta)
+    void JsonInputGrassWaveRunupCalculationDefinitionData::SetWaveAngleImpactABeta(
+        unique_ptr<double> waveAngleImpactABeta)
     {
-        _waveAngleImpactAbeta = move(waveAngleImpactAbeta);
+        _waveAngleImpactABeta = move(waveAngleImpactABeta);
     }
 
-    void JsonInputGrassWaveRunupCalculationDefinitionData::SetWaveAngleImpactBetamax(
-        unique_ptr<double> waveAngleImpactBetamax)
+    void JsonInputGrassWaveRunupCalculationDefinitionData::SetWaveAngleImpactBetaMax(
+        unique_ptr<double> waveAngleImpactBetaMax)
     {
-        _waveAngleImpactBetamax = move(waveAngleImpactBetamax);
+        _waveAngleImpactBetaMax = move(waveAngleImpactBetaMax);
     }
 
     const JsonInputGrassWaveRunupCalculationProtocolData* JsonInputGrassWaveRunupCalculationDefinitionData::GetCalculationProtocolData() const
@@ -93,34 +93,34 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
     #pragma region Get methods
 
-    const double* JsonInputGrassWaveRunupCalculationDefinitionData::GetAverageNumberOfWavesCtm() const
+    const double* JsonInputGrassWaveRunupCalculationDefinitionData::GetFactorCtm() const
     {
-        return _averageNumberOfWavesCtm.get();
+        return _factorCtm.get();
     }
 
-    const double* JsonInputGrassWaveRunupCalculationDefinitionData::GetRepresentativeWaveRunup2PAru() const
+    const double* JsonInputGrassWaveRunupCalculationDefinitionData::GetRepresentativeWaveRunup2PA() const
     {
-        return _representativeWaveRunup2PAru.get();
+        return _representativeWaveRunup2PA.get();
     }
 
-    const double* JsonInputGrassWaveRunupCalculationDefinitionData::GetRepresentativeWaveRunup2PBru() const
+    const double* JsonInputGrassWaveRunupCalculationDefinitionData::GetRepresentativeWaveRunup2PB() const
     {
-        return _representativeWaveRunup2PBru.get();
+        return _representativeWaveRunup2PB.get();
     }
 
-    const double* JsonInputGrassWaveRunupCalculationDefinitionData::GetRepresentativeWaveRunup2PCru() const
+    const double* JsonInputGrassWaveRunupCalculationDefinitionData::GetRepresentativeWaveRunup2PC() const
     {
-        return _representativeWaveRunup2PCru.get();
+        return _representativeWaveRunup2PC.get();
     }
 
-    const double* JsonInputGrassWaveRunupCalculationDefinitionData::GetWaveAngleImpactAbeta() const
+    const double* JsonInputGrassWaveRunupCalculationDefinitionData::GetWaveAngleImpactABeta() const
     {
-        return _waveAngleImpactAbeta.get();
+        return _waveAngleImpactABeta.get();
     }
 
-    const double* JsonInputGrassWaveRunupCalculationDefinitionData::GetWaveAngleImpactBetamax() const
+    const double* JsonInputGrassWaveRunupCalculationDefinitionData::GetWaveAngleImpactBetaMax() const
     {
-        return _waveAngleImpactBetamax.get();
+        return _waveAngleImpactBetaMax.get();
     }
 
     #pragma endregion

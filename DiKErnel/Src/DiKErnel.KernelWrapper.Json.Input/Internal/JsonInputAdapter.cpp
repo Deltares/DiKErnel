@@ -318,17 +318,17 @@ namespace DiKErnel::KernelWrapper::Json::Input
             forward<unique_ptr<double>>(CreatePointerOfValue(location.GetRepresentativeWaveRunup2PGammaf())));
 
         constructionProperties->SetAverageNumberOfWavesCtm(
-            forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetAverageNumberOfWavesCtm())));
+            forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetFactorCtm())));
         constructionProperties->SetRepresentativeWaveRunup2PAru(
-            forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetRepresentativeWaveRunup2PAru())));
+            forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetRepresentativeWaveRunup2PA())));
         constructionProperties->SetRepresentativeWaveRunup2PBru(
-            forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetRepresentativeWaveRunup2PBru())));
+            forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetRepresentativeWaveRunup2PB())));
         constructionProperties->SetRepresentativeWaveRunup2PCru(
-            forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetRepresentativeWaveRunup2PCru())));
+            forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetRepresentativeWaveRunup2PC())));
         constructionProperties->SetWaveAngleImpactAbeta(
-            forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetWaveAngleImpactAbeta())));
+            forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetWaveAngleImpactABeta())));
         constructionProperties->SetWaveAngleImpactBetamax(
-            forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetWaveAngleImpactBetamax())));
+            forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetWaveAngleImpactBetaMax())));
 
         const auto jsonInputTopLayerType = location.GetTopLayerType();
         const auto& topLayerDefinitionData = calculationDefinition->GetTopLayerDefinitionData();
@@ -355,7 +355,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
         constructionProperties->SetFixedNumberOfWaves(
             forward<unique_ptr<int>>(CreatePointerOfValue(calculationProtocol.GetFixedNumberOfWaves())));
         constructionProperties->SetFrontVelocityCu(
-            forward<unique_ptr<double>>(CreatePointerOfValue(calculationProtocol.GetFrontVelocityCu())));
+            forward<unique_ptr<double>>(CreatePointerOfValue(calculationProtocol.GetFrontVelocity())));
 
         return constructionProperties;
     }

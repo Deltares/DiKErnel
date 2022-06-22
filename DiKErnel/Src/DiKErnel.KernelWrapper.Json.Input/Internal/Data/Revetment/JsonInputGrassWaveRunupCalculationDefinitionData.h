@@ -41,23 +41,23 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
             #pragma region Set methods
 
-            void SetAverageNumberOfWavesCtm(
-                std::unique_ptr<double> averageNumberOfWavesCtm);
+            void SetFactorCtm(
+                std::unique_ptr<double> factorCtm);
 
-            void SetRepresentativeWaveRunup2PAru(
-                std::unique_ptr<double> representativeWaveRunup2PAru);
+            void SetRepresentativeWaveRunup2PA(
+                std::unique_ptr<double> representativeWaveRunup2PA);
 
-            void SetRepresentativeWaveRunup2PBru(
-                std::unique_ptr<double> representativeWaveRunup2PBru);
+            void SetRepresentativeWaveRunup2PB(
+                std::unique_ptr<double> representativeWaveRunup2PB);
 
-            void SetRepresentativeWaveRunup2PCru(
-                std::unique_ptr<double> representativeWaveRunup2PCru);
+            void SetRepresentativeWaveRunup2PC(
+                std::unique_ptr<double> representativeWaveRunup2PC);
 
-            void SetWaveAngleImpactAbeta(
-                std::unique_ptr<double> waveAngleImpactAbeta);
+            void SetWaveAngleImpactABeta(
+                std::unique_ptr<double> waveAngleImpactABeta);
 
-            void SetWaveAngleImpactBetamax(
-                std::unique_ptr<double> waveAngleImpactBetamax);
+            void SetWaveAngleImpactBetaMax(
+                std::unique_ptr<double> waveAngleImpactBetaMax);
 
             #pragma endregion
 
@@ -71,22 +71,22 @@ namespace DiKErnel::KernelWrapper::Json::Input
             GetTopLayerDefinitionData() const;
 
             [[nodiscard]]
-            const double* GetAverageNumberOfWavesCtm() const;
+            const double* GetFactorCtm() const;
 
             [[nodiscard]]
-            const double* GetRepresentativeWaveRunup2PAru() const;
+            const double* GetRepresentativeWaveRunup2PA() const;
 
             [[nodiscard]]
-            const double* GetRepresentativeWaveRunup2PBru() const;
+            const double* GetRepresentativeWaveRunup2PB() const;
 
             [[nodiscard]]
-            const double* GetRepresentativeWaveRunup2PCru() const;
+            const double* GetRepresentativeWaveRunup2PC() const;
 
             [[nodiscard]]
-            const double* GetWaveAngleImpactAbeta() const;
+            const double* GetWaveAngleImpactABeta() const;
 
             [[nodiscard]]
-            const double* GetWaveAngleImpactBetamax() const;
+            const double* GetWaveAngleImpactBetaMax() const;
 
             #pragma endregion
 
@@ -96,11 +96,11 @@ namespace DiKErnel::KernelWrapper::Json::Input
             _topLayerDefinitionData;
             std::map<JsonInputGrassRevetmentTopLayerType, std::reference_wrapper<JsonInputGrassWaveRunupTopLayerDefinitionData>>
             _topLayerDefinitionDataReferences;
-            std::unique_ptr<double> _averageNumberOfWavesCtm = nullptr;
-            std::unique_ptr<double> _representativeWaveRunup2PAru = nullptr;
-            std::unique_ptr<double> _representativeWaveRunup2PBru = nullptr;
-            std::unique_ptr<double> _representativeWaveRunup2PCru = nullptr;
-            std::unique_ptr<double> _waveAngleImpactAbeta = nullptr;
-            std::unique_ptr<double> _waveAngleImpactBetamax = nullptr;
+            std::unique_ptr<double> _factorCtm = nullptr;
+            std::unique_ptr<double> _representativeWaveRunup2PA = nullptr;
+            std::unique_ptr<double> _representativeWaveRunup2PB = nullptr;
+            std::unique_ptr<double> _representativeWaveRunup2PC = nullptr;
+            std::unique_ptr<double> _waveAngleImpactABeta = nullptr;
+            std::unique_ptr<double> _waveAngleImpactBetaMax = nullptr;
     };
 }

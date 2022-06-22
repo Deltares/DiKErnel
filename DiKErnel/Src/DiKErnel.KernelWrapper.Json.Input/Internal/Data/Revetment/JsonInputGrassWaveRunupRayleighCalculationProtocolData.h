@@ -34,8 +34,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
             void SetFixedNumberOfWaves(
                 std::unique_ptr<int> fixedNumberOfWaves);
 
-            void SetFrontVelocityCu(
-                std::unique_ptr<double> frontVelocityCu);
+            void SetFrontVelocity(
+                std::unique_ptr<double> frontVelocity);
 
             #pragma endregion
 
@@ -45,12 +45,12 @@ namespace DiKErnel::KernelWrapper::Json::Input
             const int* GetFixedNumberOfWaves() const;
 
             [[nodiscard]]
-            const double* GetFrontVelocityCu() const;
+            const double* GetFrontVelocity() const;
 
             #pragma endregion
 
         private:
             std::unique_ptr<int> _fixedNumberOfWaves = nullptr;
-            std::unique_ptr<double> _frontVelocityCu = nullptr;
+            std::unique_ptr<double> _frontVelocity = nullptr;
     };
 }
