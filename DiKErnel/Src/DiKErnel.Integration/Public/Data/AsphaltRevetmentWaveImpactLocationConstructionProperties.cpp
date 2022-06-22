@@ -142,7 +142,7 @@ namespace DiKErnel::Integration
         return _elasticModulusUpperLayer;
     }
 
-    const double*  AsphaltRevetmentWaveImpactLocationConstructionProperties::GetDensityOfWater() const
+    const double* AsphaltRevetmentWaveImpactLocationConstructionProperties::GetDensityOfWater() const
     {
         return _densityOfWater.get();
     }

@@ -20,7 +20,6 @@
 
 #pragma once
 
-#include "JsonInputGrassWaveImpactCalculationDefinitionData.h"
 #include "JsonInputLocationParser.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input

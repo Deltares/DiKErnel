@@ -50,7 +50,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
             static std::unique_ptr<Core::CharacteristicPointType> ConvertCharacteristicPointType(
                 JsonInputCharacteristicPointType jsonCharacteristicPointType);
 
-            template<typename T>
+            template <typename T>
             static const T* GetCalculationDefinition(
                 const std::map<JsonInputCalculationType, std::reference_wrapper<JsonInputCalculationDefinitionData>>& calculationDefinitions,
                 JsonInputCalculationType calculationType);

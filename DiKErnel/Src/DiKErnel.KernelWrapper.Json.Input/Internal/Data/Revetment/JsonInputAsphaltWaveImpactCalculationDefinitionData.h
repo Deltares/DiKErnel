@@ -63,7 +63,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
             #pragma region Get methods
 
             [[nodiscard]]
-            const std::map<JsonInputAsphaltRevetmentTopLayerType, std::reference_wrapper<JsonInputAsphaltWaveImpactTopLayerDefinitionData>>& GetTopLayerDefinitionData() const;
+            const std::map<JsonInputAsphaltRevetmentTopLayerType, std::reference_wrapper<JsonInputAsphaltWaveImpactTopLayerDefinitionData>>&
+            GetTopLayerDefinitionData() const;
 
             [[nodiscard]]
             const double* GetDensityOfWater() const;
@@ -87,9 +88,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
         private:
             std::map<JsonInputAsphaltRevetmentTopLayerType, std::unique_ptr<JsonInputAsphaltWaveImpactTopLayerDefinitionData>>
-                _topLayerDefinitionData;
+            _topLayerDefinitionData;
             std::map<JsonInputAsphaltRevetmentTopLayerType, std::reference_wrapper<JsonInputAsphaltWaveImpactTopLayerDefinitionData>>
-                _topLayerDefinitionDataReferences;
+            _topLayerDefinitionDataReferences;
             std::unique_ptr<double> _densityOfWater;
             std::unique_ptr<double> _factorCtm = nullptr;
             std::unique_ptr<double> _impactNumberC = nullptr;
