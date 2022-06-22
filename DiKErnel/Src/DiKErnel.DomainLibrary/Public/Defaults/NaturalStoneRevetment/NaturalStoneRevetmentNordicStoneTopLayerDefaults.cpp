@@ -18,51 +18,51 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include "NordicStoneRevetmentTopLayerDefaults.h"
+#include "NaturalStoneRevetmentNordicStoneTopLayerDefaults.h"
 
 namespace DiKErnel::DomainLibrary
 {
-    double NordicStoneRevetmentTopLayerDefaults::GetHydraulicLoadXib() const
+    double NaturalStoneRevetmentNordicStoneTopLayerDefaults::GetHydraulicLoadXib() const
     {
         return 2.9;
     }
 
-    double NordicStoneRevetmentTopLayerDefaults::GetHydraulicLoadAp() const
+    double NaturalStoneRevetmentNordicStoneTopLayerDefaults::GetHydraulicLoadAp() const
     {
         return 4;
     }
 
-    double NordicStoneRevetmentTopLayerDefaults::GetHydraulicLoadBp() const
+    double NaturalStoneRevetmentNordicStoneTopLayerDefaults::GetHydraulicLoadBp() const
     {
         return 0;
     }
 
-    double NordicStoneRevetmentTopLayerDefaults::GetHydraulicLoadCp() const
+    double NaturalStoneRevetmentNordicStoneTopLayerDefaults::GetHydraulicLoadCp() const
     {
         return 0;
     }
 
-    double NordicStoneRevetmentTopLayerDefaults::GetHydraulicLoadNp() const
+    double NaturalStoneRevetmentNordicStoneTopLayerDefaults::GetHydraulicLoadNp() const
     {
         return -0.9;
     }
 
-    double NordicStoneRevetmentTopLayerDefaults::GetHydraulicLoadAs() const
+    double NaturalStoneRevetmentNordicStoneTopLayerDefaults::GetHydraulicLoadAs() const
     {
         return 0.8;
     }
 
-    double NordicStoneRevetmentTopLayerDefaults::GetHydraulicLoadBs() const
+    double NaturalStoneRevetmentNordicStoneTopLayerDefaults::GetHydraulicLoadBs() const
     {
         return 0;
     }
 
-    double NordicStoneRevetmentTopLayerDefaults::GetHydraulicLoadCs() const
+    double NaturalStoneRevetmentNordicStoneTopLayerDefaults::GetHydraulicLoadCs() const
     {
         return 0;
     }
 
-    double NordicStoneRevetmentTopLayerDefaults::GetHydraulicLoadNs() const
+    double NaturalStoneRevetmentNordicStoneTopLayerDefaults::GetHydraulicLoadNs() const
     {
         return 0.6;
     }

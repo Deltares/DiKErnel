@@ -28,7 +28,7 @@ namespace DiKErnel::DomainLibrary
      * \brief Class that contains default values for natural stone revetments with a nordic stone
      *        top layer.
      */
-    class NordicStoneRevetmentTopLayerDefaults : public INaturalStoneRevetmentTopLayerDefaults
+    class NaturalStoneRevetmentNordicStoneTopLayerDefaults : public INaturalStoneRevetmentTopLayerDefaults
     {
         public:
             /*!

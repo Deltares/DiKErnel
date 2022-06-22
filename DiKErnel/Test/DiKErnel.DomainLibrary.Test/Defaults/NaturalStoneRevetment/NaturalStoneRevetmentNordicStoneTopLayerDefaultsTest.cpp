@@ -21,16 +21,16 @@
 #include <gtest/gtest.h>
 
 #include "AssertHelper.h"
-#include "NordicStoneRevetmentTopLayerDefaults.h"
+#include "NaturalStoneRevetmentNordicStoneTopLayerDefaults.h"
 
 namespace DiKErnel::DomainLibrary::Test
 {
     using namespace TestUtil;
 
-    TEST(NordicStoneRevetmentDefaultsTest, Constructor_ExpectedValues)
+    TEST(NaturalStoneRevetmentNordicStoneTopLayerDefaultsTest, Constructor_ExpectedValues)
     {
         // Call
-        const NordicStoneRevetmentTopLayerDefaults defaults;
+        const NaturalStoneRevetmentNordicStoneTopLayerDefaults defaults;
 
         // Assert
         AssertHelper::AssertIsInstanceOf<INaturalStoneRevetmentTopLayerDefaults>(&defaults);

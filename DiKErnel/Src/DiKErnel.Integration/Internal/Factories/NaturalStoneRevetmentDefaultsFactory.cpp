@@ -21,7 +21,7 @@
 #include "NaturalStoneRevetmentDefaultsFactory.h"
 
 #include "DefaultsFactoryException.h"
-#include "NordicStoneRevetmentTopLayerDefaults.h"
+#include "NaturalStoneRevetmentNordicStoneTopLayerDefaults.h"
 
 namespace DiKErnel::Integration
 {
@@ -34,7 +34,7 @@ namespace DiKErnel::Integration
         switch (topLayerType)
         {
             case NaturalStoneRevetmentTopLayerType::NordicStone:
-                return make_unique<NordicStoneRevetmentTopLayerDefaults>();
+                return make_unique<NaturalStoneRevetmentNordicStoneTopLayerDefaults>();
             default:
                 throw DefaultsFactoryException("Couldn't create defaults for the given top layer type.");
         }
