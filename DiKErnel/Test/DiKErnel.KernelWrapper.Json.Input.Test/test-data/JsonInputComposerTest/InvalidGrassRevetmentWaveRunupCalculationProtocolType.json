@@ -23,7 +23,7 @@
             {
                 "rekenmethode": "grasGolfoploop",
                 "rekenprotocol": {
-                    "rekenprotocolsoort": "rayleighNietZoDiscreet"
+                    "typeRekenprotocol": "rayleighNietZoDiscreet"
                 }
             }
         ]

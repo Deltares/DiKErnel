@@ -27,9 +27,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
     class JsonInputGrassWaveRunupRayleighDefinitions
     {
         public:
-            inline static const std::string FIXED_NUMBER_OF_WAVES = "aantalGolvenVastRD";
-
-            inline static const std::string FRONT_VELOCITY = "frontsnelheidGolfOploopRD";
-            inline static const std::string FRONT_VELOCITY_CU = "frontsnelheidGolfOploopRDCu";
+            inline static const std::string FIXED_NUMBER_OF_WAVES = "aantalGolvenVast";
+            inline static const std::string FRONT_VELOCITY = "frontsnelheid";
     };
 }

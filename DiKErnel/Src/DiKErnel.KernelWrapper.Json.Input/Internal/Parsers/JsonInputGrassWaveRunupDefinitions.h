@@ -28,7 +28,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
     {
         public:
             inline static const std::string CRITICAL_CUMULATIVE_OVERLOAD = "kritiekeCumulatieveOverbelasting";
-            inline static const std::string CRITICAL_FRONT_VELOCITY = "kritiekeFrontsnelheidGrasGolfoploop";
+            inline static const std::string CRITICAL_FRONT_VELOCITY = "kritiekeFrontsnelheid";
             inline static const std::string INCREASED_LOAD_TRANSITION_ALPHA_M = "verhogingBelastingOvergangAlfaM";
             inline static const std::string REDUCED_STRENGTH_TRANSITION_ALPHA_S = "verlagingSterkteOvergangAlfaS";
 
@@ -36,16 +36,12 @@ namespace DiKErnel::KernelWrapper::Json::Input
             inline static const std::string REPRESENTATIVE_WAVE_RUNUP_2P_GAMMA_F = "ruwheidsFactorGammaF";
 
             inline static const std::string REPRESENTATIVE_WAVE_RUNUP_2P = "representatieveGolfoploop2p";
-            inline static const std::string REPRESENTATIVE_WAVE_RUNUP_2P_ARU = "representatieveGolfoploop2pAru";
-            inline static const std::string REPRESENTATIVE_WAVE_RUNUP_2P_BRU = "representatieveGolfoploop2pBru";
-            inline static const std::string REPRESENTATIVE_WAVE_RUNUP_2P_CRU = "representatieveGolfoploop2pCru";
 
-            inline static const std::string WAVE_ANGLE_IMPACT = "impactGolfhoekGolfoploop";
-            inline static const std::string WAVE_ANGLE_IMPACT_ABETA = "impactGolfhoekGolfoploopAbeta";
-            inline static const std::string WAVE_ANGLE_IMPACT_BETAMAX = "impactGolfhoekGolfoploopBetamax";
+            inline static const std::string A_BETA = "aBeta";
+            inline static const std::string BETA_MAX = "betaMax";
 
             inline static const std::string CALCULATION_PROTOCOL = "rekenprotocol";
-            inline static const std::string CALCULATION_PROTOCOL_TYPE = "rekenprotocolsoort";
+            inline static const std::string CALCULATION_PROTOCOL_TYPE = "typeRekenprotocol";
             inline static const std::string CALCULATION_PROTOCOL_TYPE_RAYLEIGH_DISCRETE = "rayleighDiscreet";
     };
 }

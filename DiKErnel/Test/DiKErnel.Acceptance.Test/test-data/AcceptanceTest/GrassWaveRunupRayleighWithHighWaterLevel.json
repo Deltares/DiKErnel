@@ -128,27 +128,23 @@
                     {
                         "typeToplaag": "grasGeslotenZode",
                         "kritiekeCumulatieveOverbelasting": 7000,
-                        "kritiekeFrontsnelheidGrasGolfoploop": 6.6
+                        "kritiekeFrontsnelheid": 6.6
                     }
                 ],
-                "gemiddeldAantalGolvenPerTijdstap": {
-                    "gemiddeldAantalGolvenPerTijdstapCtm": 0.92
-                },
+                "factorCtm": 0.92,
                 "representatieveGolfoploop2p": {
-                    "representatieveGolfoploop2pAru": 1.65,
-                    "representatieveGolfoploop2pBru": 4.0,
-                    "representatieveGolfoploop2pCru": 1.5
+                    "a": 1.65,
+                    "b": 4.0,
+                    "c": 1.5
                 },
-                "impactGolfhoekGolfoploop": {
-                    "impactGolfhoekGolfoploopAbeta": 0.0022,
-                    "impactGolfhoekGolfoploopBetamax": 80.0
+                "impactGolfhoek": {
+                    "aBeta": 0.0022,
+                    "betaMax": 80.0
                 },
                 "rekenprotocol": {
-                    "rekenprotocolsoort": "rayleighDiscreet",
-                    "aantalGolvenVastRD": 10000,
-                    "frontsnelheidGolfOploopRD": {
-                        "frontsnelheidGolfOploopRDCu": 1.1
-                    }
+                    "typeRekenprotocol": "rayleighDiscreet",
+                    "aantalGolvenVast": 10000,
+                    "frontsnelheid": 1.1
                 }
             }
         ]

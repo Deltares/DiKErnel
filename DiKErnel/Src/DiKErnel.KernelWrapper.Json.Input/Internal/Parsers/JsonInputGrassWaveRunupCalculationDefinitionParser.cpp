@@ -71,14 +71,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
             move(failureNumber), forward<unique_ptr<JsonInputGrassWaveRunupCalculationProtocolData>>(
                 ReadCalculationProtocolData(readCalculationMethod)), ReadTopLayerDefinitionData(readCalculationMethod));
 
-        if (readCalculationMethod.contains(JsonInputDefinitions::AVERAGE_NUMBER_OF_WAVES))
-        {
-            const auto& readAverageNumberWaveTimeStep = readCalculationMethod.at(JsonInputDefinitions::AVERAGE_NUMBER_OF_WAVES);
-
-            calculationDefinition->SetAverageNumberOfWavesCtm(
-                forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
-                    readAverageNumberWaveTimeStep, JsonInputDefinitions::AVERAGE_NUMBER_OF_WAVES_CTM)));
-        }
+        calculationDefinition->SetAverageNumberOfWavesCtm(
+            forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
+                readCalculationMethod, JsonInputDefinitions::FACTOR_CTM)));
 
         if (readCalculationMethod.contains(JsonInputGrassWaveRunupDefinitions::REPRESENTATIVE_WAVE_RUNUP_2P))
         {
@@ -86,28 +81,28 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
             calculationDefinition->SetRepresentativeWaveRunup2PAru(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
-                    readRepresentativeWaveRunup2P, JsonInputGrassWaveRunupDefinitions::REPRESENTATIVE_WAVE_RUNUP_2P_ARU)));
+                    readRepresentativeWaveRunup2P, JsonInputDefinitions::A_COEFFICIENT)));
 
             calculationDefinition->SetRepresentativeWaveRunup2PBru(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
-                    readRepresentativeWaveRunup2P, JsonInputGrassWaveRunupDefinitions::REPRESENTATIVE_WAVE_RUNUP_2P_BRU)));
+                    readRepresentativeWaveRunup2P, JsonInputDefinitions::B_COEFFICIENT)));
 
             calculationDefinition->SetRepresentativeWaveRunup2PCru(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
-                    readRepresentativeWaveRunup2P, JsonInputGrassWaveRunupDefinitions::REPRESENTATIVE_WAVE_RUNUP_2P_CRU)));
+                    readRepresentativeWaveRunup2P, JsonInputDefinitions::C_COEFFICIENT)));
         }
 
-        if (readCalculationMethod.contains(JsonInputGrassWaveRunupDefinitions::WAVE_ANGLE_IMPACT))
+        if (readCalculationMethod.contains(JsonInputDefinitions::WAVE_ANGLE_IMPACT))
         {
-            const auto& readWaveAngleImpact = readCalculationMethod.at(JsonInputGrassWaveRunupDefinitions::WAVE_ANGLE_IMPACT);
+            const auto& readWaveAngleImpact = readCalculationMethod.at(JsonInputDefinitions::WAVE_ANGLE_IMPACT);
 
             calculationDefinition->SetWaveAngleImpactAbeta(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
-                    readWaveAngleImpact, JsonInputGrassWaveRunupDefinitions::WAVE_ANGLE_IMPACT_ABETA)));
+                    readWaveAngleImpact, JsonInputGrassWaveRunupDefinitions::A_BETA)));
 
             calculationDefinition->SetWaveAngleImpactBetamax(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
-                    readWaveAngleImpact, JsonInputGrassWaveRunupDefinitions::WAVE_ANGLE_IMPACT_BETAMAX)));
+                    readWaveAngleImpact, JsonInputGrassWaveRunupDefinitions::BETA_MAX)));
         }
 
         return calculationDefinition;
@@ -128,14 +123,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 forward<unique_ptr<int>>(JsonInputParserHelper::ParseOptionalInteger(
                     readCalculationProtocol, JsonInputGrassWaveRunupRayleighDefinitions::FIXED_NUMBER_OF_WAVES)));
 
-            if (readCalculationProtocol.contains(JsonInputGrassWaveRunupRayleighDefinitions::FRONT_VELOCITY))
-            {
-                const auto& readFrontVelocity = readCalculationProtocol.at(JsonInputGrassWaveRunupRayleighDefinitions::FRONT_VELOCITY);
-
-                calculationProtocolData->SetFrontVelocityCu(
-                    forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
-                        readFrontVelocity, JsonInputGrassWaveRunupRayleighDefinitions::FRONT_VELOCITY_CU)));
-            }
+            calculationProtocolData->SetFrontVelocityCu(
+                forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
+                    readCalculationProtocol, JsonInputGrassWaveRunupRayleighDefinitions::FRONT_VELOCITY)));
 
             return calculationProtocolData;
         }
