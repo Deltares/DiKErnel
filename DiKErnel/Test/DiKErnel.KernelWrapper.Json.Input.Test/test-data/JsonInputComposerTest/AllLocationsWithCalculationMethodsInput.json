@@ -233,23 +233,17 @@
                 "toplagen": [
                     {
                         "typeToplaag": "waterbouwAsfaltBeton",
-                        "stijfheidsverhouding": {
-                            "stijfheidsverhoudingNu": 0.58
-                        },
-                        "vermoeiingAsfaltbekleding": {
-                            "vermoeiingAsfaltbekledingAlfa": 0.723,
-                            "vermoeiingAsfaltbekledingBeta": 7.2
+                        "stijfheidsverhoudingNu": 0.58,
+                        "vermoeiingAsfalt": {
+                            "alfa": 0.723,
+                            "beta": 7.2
                         }
                     }
                 ],
                 "soortelijkeDichtheidWater": 0.25,
-                "gemiddeldAantalGolvenPerTijdstap": {
-                    "gemiddeldAantalGolvenPerTijdstapCtm": 1.1
-                },
-                "stootgetal": {
-                    "stootgetalC": 4.0
-                },
-                "breedteFactorenTabel": [
+                "factorCtm": 1.1,
+                "stootgetalC": 4.0,
+                "breedteFactoren": [
                     [
                         1.6,
                         1.0392
@@ -259,7 +253,7 @@
                         1.0738
                     ]
                 ],
-                "diepteFactorenTabel": [
+                "diepteFactoren": [
                     [
                         -2.0,
                         1.0244
@@ -269,7 +263,7 @@
                         1.0544
                     ]
                 ],
-                "stootFactorenTabel": [
+                "stootFactoren": [
                     [
                         6.0,
                         2.039

@@ -39,18 +39,15 @@ namespace DiKErnel::KernelWrapper::Json::Input
             inline static const std::string THICKNESS = "dikte";
             inline static const std::string ELASTIC_MODULUS = "stijfheidsmodulus";
 
-            inline static const std::string FATIGUE = "vermoeiingAsfaltbekleding";
-            inline static const std::string FATIGUE_ALPHA = "vermoeiingAsfaltbekledingAlfa";
-            inline static const std::string FATIGUE_BETA = "vermoeiingAsfaltbekledingBeta";
+            inline static const std::string FATIGUE = "vermoeiingAsfalt";
+            inline static const std::string ALPHA = "alfa";
+            inline static const std::string BETA = "beta";
 
-            inline static const std::string IMPACT_NUMBER = "stootgetal";
             inline static const std::string IMPACT_NUMBER_C = "stootgetalC";
-
-            inline static const std::string STIFFNESS_RELATION = "stijfheidsverhouding";
             inline static const std::string STIFFNESS_RELATION_NU = "stijfheidsverhoudingNu";
 
-            inline static const std::string WIDTH_FACTORS = "breedteFactorenTabel";
-            inline static const std::string DEPTH_FACTORS = "diepteFactorenTabel";
-            inline static const std::string IMPACT_FACTORS = "stootFactorenTabel";
+            inline static const std::string WIDTH_FACTORS = "breedteFactoren";
+            inline static const std::string DEPTH_FACTORS = "diepteFactoren";
+            inline static const std::string IMPACT_FACTORS = "stootFactoren";
     };
 }
