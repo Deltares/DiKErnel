@@ -42,8 +42,8 @@
 namespace DiKErnel::KernelWrapper::Json::Input::Test
 {
     using namespace Core;
-    using namespace DiKErnel::TestUtil;
     using namespace Integration;
+    using namespace DiKErnel::TestUtil;
     using namespace Integration::TestUtil;
     using namespace std;
     using namespace testing;
