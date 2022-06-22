@@ -26,107 +26,107 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
     #pragma region Set methods
 
-    void JsonInputNaturalStoneTopLayerDefinitionData::SetHydraulicLoadAp(
-        unique_ptr<double> hydraulicLoadAp)
+    void JsonInputNaturalStoneTopLayerDefinitionData::SetStabilityPlungingA(
+        unique_ptr<double> stabilityPlungingA)
     {
-        _hydraulicLoadAp = move(hydraulicLoadAp);
+        _stabilityPlungingA = move(stabilityPlungingA);
     }
 
-    void JsonInputNaturalStoneTopLayerDefinitionData::SetHydraulicLoadBp(
-        unique_ptr<double> hydraulicLoadBp)
+    void JsonInputNaturalStoneTopLayerDefinitionData::SetStabilityPlungingB(
+        unique_ptr<double> stabilityPlungingB)
     {
-        _hydraulicLoadBp = move(hydraulicLoadBp);
+        _stabilityPlungingB = move(stabilityPlungingB);
     }
 
-    void JsonInputNaturalStoneTopLayerDefinitionData::SetHydraulicLoadCp(
-        unique_ptr<double> hydraulicLoadCp)
+    void JsonInputNaturalStoneTopLayerDefinitionData::SetStabilityPlungingC(
+        unique_ptr<double> stabilityPlungingC)
     {
-        _hydraulicLoadCp = move(hydraulicLoadCp);
+        _stabilityPlungingC = move(stabilityPlungingC);
     }
 
-    void JsonInputNaturalStoneTopLayerDefinitionData::SetHydraulicLoadNp(
-        unique_ptr<double> hydraulicLoadNp)
+    void JsonInputNaturalStoneTopLayerDefinitionData::SetStabilityPlungingN(
+        unique_ptr<double> stabilityPlungingN)
     {
-        _hydraulicLoadNp = move(hydraulicLoadNp);
+        _stabilityPlungingN = move(stabilityPlungingN);
     }
 
-    void JsonInputNaturalStoneTopLayerDefinitionData::SetHydraulicLoadAs(
-        unique_ptr<double> hydraulicLoadAs)
+    void JsonInputNaturalStoneTopLayerDefinitionData::SetStabilitySurgingA(
+        unique_ptr<double> stabilitySurgingA)
     {
-        _hydraulicLoadAs = move(hydraulicLoadAs);
+        _stabilitySurgingA = move(stabilitySurgingA);
     }
 
-    void JsonInputNaturalStoneTopLayerDefinitionData::SetHydraulicLoadBs(
-        unique_ptr<double> hydraulicLoadBs)
+    void JsonInputNaturalStoneTopLayerDefinitionData::SetStabilitySurgingB(
+        unique_ptr<double> stabilitySurgingB)
     {
-        _hydraulicLoadBs = move(hydraulicLoadBs);
+        _stabilitySurgingB = move(stabilitySurgingB);
     }
 
-    void JsonInputNaturalStoneTopLayerDefinitionData::SetHydraulicLoadCs(
-        unique_ptr<double> hydraulicLoadCs)
+    void JsonInputNaturalStoneTopLayerDefinitionData::SetStabilitySurgingC(
+        unique_ptr<double> stabilitySurgingC)
     {
-        _hydraulicLoadCs = move(hydraulicLoadCs);
+        _stabilitySurgingC = move(stabilitySurgingC);
     }
 
-    void JsonInputNaturalStoneTopLayerDefinitionData::SetHydraulicLoadNs(
-        unique_ptr<double> hydraulicLoadNs)
+    void JsonInputNaturalStoneTopLayerDefinitionData::SetStabilitySurgingN(
+        unique_ptr<double> stabilitySurgingN)
     {
-        _hydraulicLoadNs = move(hydraulicLoadNs);
+        _stabilitySurgingN = move(stabilitySurgingN);
     }
 
-    void JsonInputNaturalStoneTopLayerDefinitionData::SetHydraulicLoadXib(
-        unique_ptr<double> hydraulicLoadXib)
+    void JsonInputNaturalStoneTopLayerDefinitionData::SetStabilityXib(
+        unique_ptr<double> stabilityXib)
     {
-        _hydraulicLoadXib = move(hydraulicLoadXib);
+        _stabilityXib = move(stabilityXib);
     }
 
     #pragma endregion
 
     #pragma region Get methods
 
-    const double* JsonInputNaturalStoneTopLayerDefinitionData::GetHydraulicLoadXib() const
+    const double* JsonInputNaturalStoneTopLayerDefinitionData::GetStabilityXib() const
     {
-        return _hydraulicLoadXib.get();
+        return _stabilityXib.get();
     }
 
-    const double* JsonInputNaturalStoneTopLayerDefinitionData::GetHydraulicLoadAp() const
+    const double* JsonInputNaturalStoneTopLayerDefinitionData::GetStabilityPlungingA() const
     {
-        return _hydraulicLoadAp.get();
+        return _stabilityPlungingA.get();
     }
 
-    const double* JsonInputNaturalStoneTopLayerDefinitionData::GetHydraulicLoadBp() const
+    const double* JsonInputNaturalStoneTopLayerDefinitionData::GetStabilityPlungingB() const
     {
-        return _hydraulicLoadBp.get();
+        return _stabilityPlungingB.get();
     }
 
-    const double* JsonInputNaturalStoneTopLayerDefinitionData::GetHydraulicLoadCp() const
+    const double* JsonInputNaturalStoneTopLayerDefinitionData::GetStabilityPlungingC() const
     {
-        return _hydraulicLoadCp.get();
+        return _stabilityPlungingC.get();
     }
 
-    const double* JsonInputNaturalStoneTopLayerDefinitionData::GetHydraulicLoadNp() const
+    const double* JsonInputNaturalStoneTopLayerDefinitionData::GetStabilityPlungingN() const
     {
-        return _hydraulicLoadNp.get();
+        return _stabilityPlungingN.get();
     }
 
-    const double* JsonInputNaturalStoneTopLayerDefinitionData::GetHydraulicLoadAs() const
+    const double* JsonInputNaturalStoneTopLayerDefinitionData::GetStabilitySurgingA() const
     {
-        return _hydraulicLoadAs.get();
+        return _stabilitySurgingA.get();
     }
 
-    const double* JsonInputNaturalStoneTopLayerDefinitionData::GetHydraulicLoadBs() const
+    const double* JsonInputNaturalStoneTopLayerDefinitionData::GetStabilitySurgingB() const
     {
-        return _hydraulicLoadBs.get();
+        return _stabilitySurgingB.get();
     }
 
-    const double* JsonInputNaturalStoneTopLayerDefinitionData::GetHydraulicLoadCs() const
+    const double* JsonInputNaturalStoneTopLayerDefinitionData::GetStabilitySurgingC() const
     {
-        return _hydraulicLoadCs.get();
+        return _stabilitySurgingC.get();
     }
 
-    const double* JsonInputNaturalStoneTopLayerDefinitionData::GetHydraulicLoadNs() const
+    const double* JsonInputNaturalStoneTopLayerDefinitionData::GetStabilitySurgingN() const
     {
-        return _hydraulicLoadNs.get();
+        return _stabilitySurgingN.get();
     }
 
     #pragma endregion

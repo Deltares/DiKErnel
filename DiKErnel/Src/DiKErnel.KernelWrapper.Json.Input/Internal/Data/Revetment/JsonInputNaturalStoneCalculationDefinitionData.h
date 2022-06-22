@@ -39,44 +39,44 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
             #pragma region Set methods
 
-            void SetSlopeUpperLevelAus(
-                std::unique_ptr<double> slopeUpperLevelAus);
+            void SetSlopeUpperLevel(
+                std::unique_ptr<double> slopeUpperLevel);
 
-            void SetSlopeLowerLevelAls(
-                std::unique_ptr<double> slopeLowerLevelAls);
+            void SetSlopeLowerLevel(
+                std::unique_ptr<double> slopeLowerLevel);
 
-            void SetUpperLimitLoadingAul(
-                std::unique_ptr<double> upperLimitLoadingAul);
+            void SetUpperLimitLoadingA(
+                std::unique_ptr<double> upperLimitLoadingA);
 
-            void SetUpperLimitLoadingBul(
-                std::unique_ptr<double> upperLimitLoadingBul);
+            void SetUpperLimitLoadingB(
+                std::unique_ptr<double> upperLimitLoadingB);
 
-            void SetUpperLimitLoadingCul(
-                std::unique_ptr<double> upperLimitLoadingCul);
+            void SetUpperLimitLoadingC(
+                std::unique_ptr<double> upperLimitLoadingC);
 
-            void SetLowerLimitLoadingAll(
-                std::unique_ptr<double> lowerLimitLoadingAll);
+            void SetLowerLimitLoadingA(
+                std::unique_ptr<double> lowerLimitLoadingA);
 
-            void SetLowerLimitLoadingBll(
-                std::unique_ptr<double> lowerLimitLoadingBll);
+            void SetLowerLimitLoadingB(
+                std::unique_ptr<double> lowerLimitLoadingB);
 
-            void SetLowerLimitLoadingCll(
-                std::unique_ptr<double> lowerLimitLoadingCll);
+            void SetLowerLimitLoadingC(
+                std::unique_ptr<double> lowerLimitLoadingC);
 
-            void SetDistanceMaximumWaveElevationAsmax(
-                std::unique_ptr<double> distanceMaximumWaveElevationAsmax);
+            void SetDistanceMaximumWaveElevationA(
+                std::unique_ptr<double> distanceMaximumWaveElevationA);
 
-            void SetDistanceMaximumWaveElevationBsmax(
-                std::unique_ptr<double> distanceMaximumWaveElevationBsmax);
+            void SetDistanceMaximumWaveElevationB(
+                std::unique_ptr<double> distanceMaximumWaveElevationB);
 
-            void SetNormativeWidthOfWaveImpactAwi(
-                std::unique_ptr<double> normativeWidthOfWaveImpactAwi);
+            void SetNormativeWidthOfWaveImpactA(
+                std::unique_ptr<double> normativeWidthOfWaveImpactA);
 
-            void SetNormativeWidthOfWaveImpactBwi(
-                std::unique_ptr<double> normativeWidthOfWaveImpactBwi);
+            void SetNormativeWidthOfWaveImpactB(
+                std::unique_ptr<double> normativeWidthOfWaveImpactB);
 
-            void SetWaveAngleImpactBetamax(
-                std::unique_ptr<double> waveAngleImpactBetamax);
+            void SetWaveAngleImpactBetaMax(
+                std::unique_ptr<double> waveAngleImpactBetaMax);
 
             #pragma endregion
 
@@ -87,43 +87,43 @@ namespace DiKErnel::KernelWrapper::Json::Input
             GetTopLayerDefinitionData() const;
 
             [[nodiscard]]
-            const double* GetSlopeUpperLevelAus() const;
+            const double* GetSlopeUpperLevelA() const;
 
             [[nodiscard]]
-            const double* GetSlopeLowerLevelAls() const;
+            const double* GetSlopeLowerLevelA() const;
 
             [[nodiscard]]
-            const double* GetUpperLimitLoadingAul() const;
+            const double* GetUpperLimitLoadingA() const;
 
             [[nodiscard]]
-            const double* GetUpperLimitLoadingBul() const;
+            const double* GetUpperLimitLoadingB() const;
 
             [[nodiscard]]
-            const double* GetUpperLimitLoadingCul() const;
+            const double* GetUpperLimitLoadingC() const;
 
             [[nodiscard]]
-            const double* GetLowerLimitLoadingAll() const;
+            const double* GetLowerLimitLoadingA() const;
 
             [[nodiscard]]
-            const double* GetLowerLimitLoadingBll() const;
+            const double* GetLowerLimitLoadingB() const;
 
             [[nodiscard]]
-            const double* GetLowerLimitLoadingCll() const;
+            const double* GetLowerLimitLoadingC() const;
 
             [[nodiscard]]
-            const double* GetDistanceMaximumWaveElevationAsmax() const;
+            const double* GetDistanceMaximumWaveElevationA() const;
 
             [[nodiscard]]
-            const double* GetDistanceMaximumWaveElevationBsmax() const;
+            const double* GetDistanceMaximumWaveElevationB() const;
 
             [[nodiscard]]
-            const double* GetNormativeWidthOfWaveImpactAwi() const;
+            const double* GetNormativeWidthOfWaveImpactA() const;
 
             [[nodiscard]]
-            const double* GetNormativeWidthOfWaveImpactBwi() const;
+            const double* GetNormativeWidthOfWaveImpactB() const;
 
             [[nodiscard]]
-            const double* GetWaveAngleImpactBetamax() const;
+            const double* GetWaveAngleImpactBetaMax() const;
 
             #pragma endregion
 
@@ -132,18 +132,18 @@ namespace DiKErnel::KernelWrapper::Json::Input
             _topLayerDefinitionData;
             std::map<JsonInputNaturalStoneRevetmentTopLayerType, std::reference_wrapper<JsonInputNaturalStoneTopLayerDefinitionData>>
             _topLayerDefinitionDataReferences;
-            std::unique_ptr<double> _slopeUpperLevelAus = nullptr;
-            std::unique_ptr<double> _slopeLowerLevelAls = nullptr;
-            std::unique_ptr<double> _upperLimitLoadingAul = nullptr;
-            std::unique_ptr<double> _upperLimitLoadingBul = nullptr;
-            std::unique_ptr<double> _upperLimitLoadingCul = nullptr;
-            std::unique_ptr<double> _lowerLimitLoadingAll = nullptr;
-            std::unique_ptr<double> _lowerLimitLoadingBll = nullptr;
-            std::unique_ptr<double> _lowerLimitLoadingCll = nullptr;
-            std::unique_ptr<double> _distanceMaximumWaveElevationAsmax = nullptr;
-            std::unique_ptr<double> _distanceMaximumWaveElevationBsmax = nullptr;
-            std::unique_ptr<double> _normativeWidthOfWaveImpactAwi = nullptr;
-            std::unique_ptr<double> _normativeWidthOfWaveImpactBwi = nullptr;
-            std::unique_ptr<double> _waveAngleImpactBetamax = nullptr;
+            std::unique_ptr<double> _slopeUpperLevel = nullptr;
+            std::unique_ptr<double> _slopeLowerLevel = nullptr;
+            std::unique_ptr<double> _upperLimitLoadingA = nullptr;
+            std::unique_ptr<double> _upperLimitLoadingB = nullptr;
+            std::unique_ptr<double> _upperLimitLoadingC = nullptr;
+            std::unique_ptr<double> _lowerLimitLoadingA = nullptr;
+            std::unique_ptr<double> _lowerLimitLoadingB = nullptr;
+            std::unique_ptr<double> _lowerLimitLoadingC = nullptr;
+            std::unique_ptr<double> _distanceMaximumWaveElevationA = nullptr;
+            std::unique_ptr<double> _distanceMaximumWaveElevationB = nullptr;
+            std::unique_ptr<double> _normativeWidthOfWaveImpactA = nullptr;
+            std::unique_ptr<double> _normativeWidthOfWaveImpactB = nullptr;
+            std::unique_ptr<double> _waveAngleImpactBetaMax = nullptr;
     };
 }

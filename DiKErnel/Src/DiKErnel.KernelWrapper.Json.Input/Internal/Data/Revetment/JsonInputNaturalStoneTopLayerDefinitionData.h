@@ -29,75 +29,75 @@ namespace DiKErnel::KernelWrapper::Json::Input
         public:
             #pragma region Set methods
 
-            void SetHydraulicLoadAp(
-                std::unique_ptr<double> hydraulicLoadAp);
+            void SetStabilityPlungingA(
+                std::unique_ptr<double> stabilityPlungingA);
 
-            void SetHydraulicLoadBp(
-                std::unique_ptr<double> hydraulicLoadBp);
+            void SetStabilityPlungingB(
+                std::unique_ptr<double> stabilityPlungingB);
 
-            void SetHydraulicLoadCp(
-                std::unique_ptr<double> hydraulicLoadCp);
+            void SetStabilityPlungingC(
+                std::unique_ptr<double> stabilityPlungingC);
 
-            void SetHydraulicLoadNp(
-                std::unique_ptr<double> hydraulicLoadNp);
+            void SetStabilityPlungingN(
+                std::unique_ptr<double> stabilityPlungingN);
 
-            void SetHydraulicLoadAs(
-                std::unique_ptr<double> hydraulicLoadAs);
+            void SetStabilitySurgingA(
+                std::unique_ptr<double> stabilitySurgingA);
 
-            void SetHydraulicLoadBs(
-                std::unique_ptr<double> hydraulicLoadBs);
+            void SetStabilitySurgingB(
+                std::unique_ptr<double> stabilitySurgingB);
 
-            void SetHydraulicLoadCs(
-                std::unique_ptr<double> hydraulicLoadCs);
+            void SetStabilitySurgingC(
+                std::unique_ptr<double> stabilitySurgingC);
 
-            void SetHydraulicLoadNs(
-                std::unique_ptr<double> hydraulicLoadNs);
+            void SetStabilitySurgingN(
+                std::unique_ptr<double> stabilitySurgingN);
 
-            void SetHydraulicLoadXib(
-                std::unique_ptr<double> hydraulicLoadXib);
+            void SetStabilityXib(
+                std::unique_ptr<double> stabilityXib);
 
             #pragma endregion
 
             #pragma region Get methods
 
             [[nodiscard]]
-            const double* GetHydraulicLoadXib() const;
+            const double* GetStabilityXib() const;
 
             [[nodiscard]]
-            const double* GetHydraulicLoadAp() const;
+            const double* GetStabilityPlungingA() const;
 
             [[nodiscard]]
-            const double* GetHydraulicLoadBp() const;
+            const double* GetStabilityPlungingB() const;
 
             [[nodiscard]]
-            const double* GetHydraulicLoadCp() const;
+            const double* GetStabilityPlungingC() const;
 
             [[nodiscard]]
-            const double* GetHydraulicLoadNp() const;
+            const double* GetStabilityPlungingN() const;
 
             [[nodiscard]]
-            const double* GetHydraulicLoadAs() const;
+            const double* GetStabilitySurgingA() const;
 
             [[nodiscard]]
-            const double* GetHydraulicLoadBs() const;
+            const double* GetStabilitySurgingB() const;
 
             [[nodiscard]]
-            const double* GetHydraulicLoadCs() const;
+            const double* GetStabilitySurgingC() const;
 
             [[nodiscard]]
-            const double* GetHydraulicLoadNs() const;
+            const double* GetStabilitySurgingN() const;
 
             #pragma endregion
 
         private:
-            std::unique_ptr<double> _hydraulicLoadXib = nullptr;
-            std::unique_ptr<double> _hydraulicLoadAp = nullptr;
-            std::unique_ptr<double> _hydraulicLoadBp = nullptr;
-            std::unique_ptr<double> _hydraulicLoadCp = nullptr;
-            std::unique_ptr<double> _hydraulicLoadNp = nullptr;
-            std::unique_ptr<double> _hydraulicLoadAs = nullptr;
-            std::unique_ptr<double> _hydraulicLoadBs = nullptr;
-            std::unique_ptr<double> _hydraulicLoadCs = nullptr;
-            std::unique_ptr<double> _hydraulicLoadNs = nullptr;
+            std::unique_ptr<double> _stabilityXib = nullptr;
+            std::unique_ptr<double> _stabilityPlungingA = nullptr;
+            std::unique_ptr<double> _stabilityPlungingB = nullptr;
+            std::unique_ptr<double> _stabilityPlungingC = nullptr;
+            std::unique_ptr<double> _stabilityPlungingN = nullptr;
+            std::unique_ptr<double> _stabilitySurgingA = nullptr;
+            std::unique_ptr<double> _stabilitySurgingB = nullptr;
+            std::unique_ptr<double> _stabilitySurgingC = nullptr;
+            std::unique_ptr<double> _stabilitySurgingN = nullptr;
     };
 }

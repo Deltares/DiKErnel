@@ -396,56 +396,56 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 const auto& topLayerDefinition = topLayerDefinitionData.at(jsonInputTopLayerType).get();
 
                 constructionProperties->SetHydraulicLoadAp(
-                    forward<unique_ptr<double>>(CreatePointerOfValue(topLayerDefinition.GetHydraulicLoadAp())));
+                    forward<unique_ptr<double>>(CreatePointerOfValue(topLayerDefinition.GetStabilityPlungingA())));
                 constructionProperties->SetHydraulicLoadBp(
-                    forward<unique_ptr<double>>(CreatePointerOfValue(topLayerDefinition.GetHydraulicLoadBp())));
+                    forward<unique_ptr<double>>(CreatePointerOfValue(topLayerDefinition.GetStabilityPlungingB())));
                 constructionProperties->SetHydraulicLoadCp(
-                    forward<unique_ptr<double>>(CreatePointerOfValue(topLayerDefinition.GetHydraulicLoadCp())));
+                    forward<unique_ptr<double>>(CreatePointerOfValue(topLayerDefinition.GetStabilityPlungingC())));
                 constructionProperties->SetHydraulicLoadNp(
-                    forward<unique_ptr<double>>(CreatePointerOfValue(topLayerDefinition.GetHydraulicLoadNp())));
+                    forward<unique_ptr<double>>(CreatePointerOfValue(topLayerDefinition.GetStabilityPlungingN())));
                 constructionProperties->SetHydraulicLoadAs(
-                    forward<unique_ptr<double>>(CreatePointerOfValue(topLayerDefinition.GetHydraulicLoadAs())));
+                    forward<unique_ptr<double>>(CreatePointerOfValue(topLayerDefinition.GetStabilitySurgingA())));
                 constructionProperties->SetHydraulicLoadBs(
-                    forward<unique_ptr<double>>(CreatePointerOfValue(topLayerDefinition.GetHydraulicLoadBs())));
+                    forward<unique_ptr<double>>(CreatePointerOfValue(topLayerDefinition.GetStabilitySurgingB())));
                 constructionProperties->SetHydraulicLoadCs(
-                    forward<unique_ptr<double>>(CreatePointerOfValue(topLayerDefinition.GetHydraulicLoadCs())));
+                    forward<unique_ptr<double>>(CreatePointerOfValue(topLayerDefinition.GetStabilitySurgingC())));
                 constructionProperties->SetHydraulicLoadNs(
-                    forward<unique_ptr<double>>(CreatePointerOfValue(topLayerDefinition.GetHydraulicLoadNs())));
+                    forward<unique_ptr<double>>(CreatePointerOfValue(topLayerDefinition.GetStabilitySurgingN())));
                 constructionProperties->SetHydraulicLoadXib(
-                    forward<unique_ptr<double>>(CreatePointerOfValue(topLayerDefinition.GetHydraulicLoadXib())));
+                    forward<unique_ptr<double>>(CreatePointerOfValue(topLayerDefinition.GetStabilityXib())));
             }
 
             constructionProperties->SetSlopeUpperLevelAus(
-                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetSlopeUpperLevelAus())));
+                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetSlopeUpperLevelA())));
             constructionProperties->SetSlopeLowerLevelAls(
-                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetSlopeLowerLevelAls())));
+                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetSlopeLowerLevelA())));
 
             constructionProperties->SetUpperLimitLoadingAul(
-                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetUpperLimitLoadingAul())));
+                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetUpperLimitLoadingA())));
             constructionProperties->SetUpperLimitLoadingBul(
-                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetUpperLimitLoadingBul())));
+                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetUpperLimitLoadingB())));
             constructionProperties->SetUpperLimitLoadingCul(
-                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetUpperLimitLoadingCul())));
+                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetUpperLimitLoadingC())));
 
             constructionProperties->SetLowerLimitLoadingAll(
-                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetLowerLimitLoadingAll())));
+                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetLowerLimitLoadingA())));
             constructionProperties->SetLowerLimitLoadingBll(
-                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetLowerLimitLoadingBll())));
+                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetLowerLimitLoadingB())));
             constructionProperties->SetLowerLimitLoadingCll(
-                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetLowerLimitLoadingCll())));
+                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetLowerLimitLoadingC())));
 
             constructionProperties->SetDistanceMaximumWaveElevationAsmax(
-                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetDistanceMaximumWaveElevationAsmax())));
+                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetDistanceMaximumWaveElevationA())));
             constructionProperties->SetDistanceMaximumWaveElevationBsmax(
-                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetDistanceMaximumWaveElevationBsmax())));
+                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetDistanceMaximumWaveElevationB())));
 
             constructionProperties->SetNormativeWidthOfWaveImpactAwi(
-                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetNormativeWidthOfWaveImpactAwi())));
+                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetNormativeWidthOfWaveImpactA())));
             constructionProperties->SetNormativeWidthOfWaveImpactBwi(
-                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetNormativeWidthOfWaveImpactBwi())));
+                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetNormativeWidthOfWaveImpactB())));
 
             constructionProperties->SetWaveAngleImpactBetamax(
-                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetWaveAngleImpactBetamax())));
+                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetWaveAngleImpactBetaMax())));
         }
 
         return constructionProperties;

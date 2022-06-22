@@ -56,10 +56,10 @@ namespace DiKErnel::KernelWrapper::Json::Input
         {
             const auto& readSlope = readCalculationMethod.at(JsonInputNaturalStoneDefinitions::SLOPE);
 
-            calculationDefinition->SetSlopeUpperLevelAus(
+            calculationDefinition->SetSlopeUpperLevel(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
                     readSlope, JsonInputNaturalStoneDefinitions::SLOPE_UPPER_LEVEL)));
-            calculationDefinition->SetSlopeLowerLevelAls(
+            calculationDefinition->SetSlopeLowerLevel(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
                     readSlope, JsonInputNaturalStoneDefinitions::SLOPE_LOWER_LEVEL)));
         }
@@ -72,13 +72,13 @@ namespace DiKErnel::KernelWrapper::Json::Input
             {
                 const auto& readUpperLimitLoading = readLoadingArea.at(JsonInputDefinitions::UPPER_LIMIT);
 
-                calculationDefinition->SetUpperLimitLoadingAul(
+                calculationDefinition->SetUpperLimitLoadingA(
                     forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
                         readUpperLimitLoading, JsonInputDefinitions::A_COEFFICIENT)));
-                calculationDefinition->SetUpperLimitLoadingBul(
+                calculationDefinition->SetUpperLimitLoadingB(
                     forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
                         readUpperLimitLoading, JsonInputDefinitions::B_COEFFICIENT)));
-                calculationDefinition->SetUpperLimitLoadingCul(
+                calculationDefinition->SetUpperLimitLoadingC(
                     forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
                         readUpperLimitLoading, JsonInputDefinitions::C_COEFFICIENT)));
             }
@@ -87,13 +87,13 @@ namespace DiKErnel::KernelWrapper::Json::Input
             {
                 const auto& readLowerLimitLoading = readLoadingArea.at(JsonInputDefinitions::LOWER_LIMIT);
 
-                calculationDefinition->SetLowerLimitLoadingAll(
+                calculationDefinition->SetLowerLimitLoadingA(
                     forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
                         readLowerLimitLoading, JsonInputDefinitions::A_COEFFICIENT)));
-                calculationDefinition->SetLowerLimitLoadingBll(
+                calculationDefinition->SetLowerLimitLoadingB(
                     forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
                         readLowerLimitLoading, JsonInputDefinitions::B_COEFFICIENT)));
-                calculationDefinition->SetLowerLimitLoadingCll(
+                calculationDefinition->SetLowerLimitLoadingC(
                     forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
                         readLowerLimitLoading, JsonInputDefinitions::C_COEFFICIENT)));
             }
@@ -103,10 +103,10 @@ namespace DiKErnel::KernelWrapper::Json::Input
         {
             const auto& readDistanceMaxWaveElevation = readCalculationMethod.at(JsonInputNaturalStoneDefinitions::DISTANCE_MAXIMUM_WAVE_ELEVATION);
 
-            calculationDefinition->SetDistanceMaximumWaveElevationAsmax(
+            calculationDefinition->SetDistanceMaximumWaveElevationA(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
                     readDistanceMaxWaveElevation, JsonInputDefinitions::A_COEFFICIENT)));
-            calculationDefinition->SetDistanceMaximumWaveElevationBsmax(
+            calculationDefinition->SetDistanceMaximumWaveElevationB(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
                     readDistanceMaxWaveElevation, JsonInputDefinitions::B_COEFFICIENT)));
         }
@@ -115,15 +115,15 @@ namespace DiKErnel::KernelWrapper::Json::Input
         {
             const auto& readNormativeWidthOfWaveImpact = readCalculationMethod.at(JsonInputNaturalStoneDefinitions::NORMATIVE_WIDTH_OF_WAVE_IMPACT);
 
-            calculationDefinition->SetNormativeWidthOfWaveImpactAwi(
+            calculationDefinition->SetNormativeWidthOfWaveImpactA(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
                     readNormativeWidthOfWaveImpact, JsonInputDefinitions::A_COEFFICIENT)));
-            calculationDefinition->SetNormativeWidthOfWaveImpactBwi(
+            calculationDefinition->SetNormativeWidthOfWaveImpactB(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
                     readNormativeWidthOfWaveImpact, JsonInputDefinitions::B_COEFFICIENT)));
         }
 
-        calculationDefinition->SetWaveAngleImpactBetamax(
+        calculationDefinition->SetWaveAngleImpactBetaMax(
             forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
                 readCalculationMethod, JsonInputNaturalStoneDefinitions::WAVE_ANGLE_IMPACT_BETA_MAX)));
 
@@ -152,16 +152,16 @@ namespace DiKErnel::KernelWrapper::Json::Input
                     {
                         const auto& readPlunging = readStability.at(JsonInputNaturalStoneDefinitions::STABILITY_PLUNGING);
 
-                        topLayer->SetHydraulicLoadAp(
+                        topLayer->SetStabilityPlungingA(
                             forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
                                 readPlunging, JsonInputDefinitions::A_COEFFICIENT)));
-                        topLayer->SetHydraulicLoadBp(
+                        topLayer->SetStabilityPlungingB(
                             forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
                                 readPlunging, JsonInputDefinitions::B_COEFFICIENT)));
-                        topLayer->SetHydraulicLoadCp(
+                        topLayer->SetStabilityPlungingC(
                             forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
                                 readPlunging, JsonInputDefinitions::C_COEFFICIENT)));
-                        topLayer->SetHydraulicLoadNp(
+                        topLayer->SetStabilityPlungingN(
                             forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
                                 readPlunging, JsonInputNaturalStoneDefinitions::N_COEFFICIENT)));
                     }
@@ -170,21 +170,21 @@ namespace DiKErnel::KernelWrapper::Json::Input
                     {
                         const auto& readSurging = readStability.at(JsonInputNaturalStoneDefinitions::STABILITY_SURGING);
 
-                        topLayer->SetHydraulicLoadAs(
+                        topLayer->SetStabilitySurgingA(
                             forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
                                 readSurging, JsonInputDefinitions::A_COEFFICIENT)));
-                        topLayer->SetHydraulicLoadBs(
+                        topLayer->SetStabilitySurgingB(
                             forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
                                 readSurging, JsonInputDefinitions::B_COEFFICIENT)));
-                        topLayer->SetHydraulicLoadCs(
+                        topLayer->SetStabilitySurgingC(
                             forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
                                 readSurging, JsonInputDefinitions::C_COEFFICIENT)));
-                        topLayer->SetHydraulicLoadNs(
+                        topLayer->SetStabilitySurgingN(
                             forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
                                 readSurging, JsonInputNaturalStoneDefinitions::N_COEFFICIENT)));
                     }
 
-                    topLayer->SetHydraulicLoadXib(
+                    topLayer->SetStabilityXib(
                         forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
                             readStability, JsonInputNaturalStoneDefinitions::XIB_COEFFICIENT)));
                 }
