@@ -192,7 +192,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetDensityOfWater())));
 
             constructionProperties->SetAverageNumberOfWavesCtm(
-                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetAverageNumberOfWavesCtm())));
+                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetFactorCtm())));
 
             const auto& topLayerDefinitionData = calculationDefinition->GetTopLayerDefinitionData();
             if (const auto& keyExists = topLayerDefinitionData.find(jsonInputTopLayerType); keyExists != topLayerDefinitionData.end())

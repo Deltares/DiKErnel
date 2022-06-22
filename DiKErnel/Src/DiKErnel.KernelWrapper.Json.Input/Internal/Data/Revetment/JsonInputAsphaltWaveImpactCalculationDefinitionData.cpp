@@ -46,10 +46,10 @@ namespace DiKErnel::KernelWrapper::Json::Input
         _densityOfWater = move(densityOfWater);
     }
 
-    void JsonInputAsphaltWaveImpactCalculationDefinitionData::SetAverageNumberOfWavesCtm(
-        unique_ptr<double> averageNumberOfWavesCtm)
+    void JsonInputAsphaltWaveImpactCalculationDefinitionData::SetFactorCtm(
+        unique_ptr<double> factorCtm)
     {
-        _averageNumberOfWavesCtm = move(averageNumberOfWavesCtm);
+        _factorCtm = move(factorCtm);
     }
 
     void JsonInputAsphaltWaveImpactCalculationDefinitionData::SetImpactNumberC(
@@ -91,9 +91,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
         return _densityOfWater.get();
     }
 
-    const double* JsonInputAsphaltWaveImpactCalculationDefinitionData::GetAverageNumberOfWavesCtm() const
+    const double* JsonInputAsphaltWaveImpactCalculationDefinitionData::GetFactorCtm() const
     {
-        return _averageNumberOfWavesCtm.get();
+        return _factorCtm.get();
     }
 
     const double* JsonInputAsphaltWaveImpactCalculationDefinitionData::GetImpactNumberC() const

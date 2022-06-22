@@ -43,8 +43,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
             void SetDensityOfWater(
                 std::unique_ptr<double> densityOfWater);
 
-            void SetAverageNumberOfWavesCtm(
-                std::unique_ptr<double> averageNumberOfWavesCtm);
+            void SetFactorCtm(
+                std::unique_ptr<double> factorCtm);
 
             void SetImpactNumberC(
                 std::unique_ptr<double> impactNumberC);
@@ -69,7 +69,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
             const double* GetDensityOfWater() const;
 
             [[nodiscard]]
-            const double* GetAverageNumberOfWavesCtm() const;
+            const double* GetFactorCtm() const;
 
             [[nodiscard]]
             const double* GetImpactNumberC() const;
@@ -91,7 +91,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
             std::map<JsonInputAsphaltRevetmentTopLayerType, std::reference_wrapper<JsonInputAsphaltWaveImpactTopLayerDefinitionData>>
                 _topLayerDefinitionDataReferences;
             std::unique_ptr<double> _densityOfWater;
-            std::unique_ptr<double> _averageNumberOfWavesCtm = nullptr;
+            std::unique_ptr<double> _factorCtm = nullptr;
             std::unique_ptr<double> _impactNumberC = nullptr;
             std::unique_ptr<std::vector<std::pair<double, double>>> _widthFactors = nullptr;
             std::unique_ptr<std::vector<std::pair<double, double>>> _depthFactors = nullptr;

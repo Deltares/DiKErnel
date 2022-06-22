@@ -57,7 +57,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
             forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
                 readCalculationMethod, JsonInputAsphaltWaveImpactDefinitions::DENSITY_OF_WATER)));
 
-        calculationDefinition->SetAverageNumberOfWavesCtm(
+        calculationDefinition->SetFactorCtm(
             forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
                 readCalculationMethod, JsonInputDefinitions::FACTOR_CTM)));
 
