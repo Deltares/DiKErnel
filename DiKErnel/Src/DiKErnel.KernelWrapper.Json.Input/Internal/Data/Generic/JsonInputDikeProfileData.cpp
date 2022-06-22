@@ -29,7 +29,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
     JsonInputDikeProfileData::JsonInputDikeProfileData(
         vector<double> xLocations,
         vector<double> zLocations,
-        vector<std::pair<JsonInputCharacteristicPointType, double>> characteristicPoints)
+        vector<pair<JsonInputCharacteristicPointType, double>> characteristicPoints)
         : _xLocations(move(xLocations)),
           _zLocations(move(zLocations)),
           _characteristicPoints(move(characteristicPoints)) {}

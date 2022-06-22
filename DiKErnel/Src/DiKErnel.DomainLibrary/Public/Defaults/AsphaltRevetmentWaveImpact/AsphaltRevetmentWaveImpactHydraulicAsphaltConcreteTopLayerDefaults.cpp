@@ -22,8 +22,6 @@
 
 namespace DiKErnel::DomainLibrary
 {
-    using namespace std;
-
     double AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteTopLayerDefaults::GetFatigueAlpha() const
     {
         return 0.42;

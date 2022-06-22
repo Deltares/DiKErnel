@@ -44,12 +44,12 @@ namespace DiKErnel::KernelWrapper::Json::Input
         return _waveHeightsHm0;
     }
 
-    const std::vector<double>& JsonInputHydraulicData::GetWavePeriodsTm10() const
+    const vector<double>& JsonInputHydraulicData::GetWavePeriodsTm10() const
     {
         return _wavePeriodsTm10;
     }
 
-    const std::vector<double>& JsonInputHydraulicData::GetWaveAngles() const
+    const vector<double>& JsonInputHydraulicData::GetWaveAngles() const
     {
         return _waveAngles;
     }
