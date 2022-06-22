@@ -43,5 +43,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
         private:
             static std::map<JsonInputNaturalStoneRevetmentTopLayerType, std::unique_ptr<JsonInputNaturalStoneTopLayerDefinitionData>> ReadTopLayerDefinitionData(
                 const nlohmann::json& readCalculationMethod);
+
+            static void ReadTopLayerStability(
+                const nlohmann::json& readTopLayer,
+                const std::unique_ptr<JsonInputNaturalStoneTopLayerDefinitionData>& topLayer);
     };
 }
