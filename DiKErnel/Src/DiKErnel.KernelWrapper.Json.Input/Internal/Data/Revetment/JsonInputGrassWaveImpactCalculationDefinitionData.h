@@ -39,26 +39,26 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
             #pragma region Set methods
 
-            void SetMinimumWaveHeightTemax(
-                std::unique_ptr<double> minimumWaveHeightTemax);
+            void SetTemax(
+                std::unique_ptr<double> temax);
 
-            void SetMaximumWaveHeightTemin(
-                std::unique_ptr<double> maximumWaveHeightTemin);
+            void SetTemin(
+                std::unique_ptr<double> temin);
 
-            void SetWaveAngleImpactNwa(
-                std::unique_ptr<double> waveAngleImpactNwa);
+            void SetWaveAngleImpactN(
+                std::unique_ptr<double> waveAngleImpactN);
 
-            void SetWaveAngleImpactQwa(
-                std::unique_ptr<double> waveAngleImpactQwa);
+            void SetWaveAngleImpactQ(
+                std::unique_ptr<double> waveAngleImpactQ);
 
-            void SetWaveAngleImpactRwa(
-                std::unique_ptr<double> waveAngleImpactRwa);
+            void SetWaveAngleImpactR(
+                std::unique_ptr<double> waveAngleImpactR);
 
-            void SetUpperLimitLoadingAul(
-                std::unique_ptr<double> upperLimitLoadingAul);
+            void SetUpperLimitLoading(
+                std::unique_ptr<double> upperLimitLoading);
 
-            void SetLowerLimitLoadingAll(
-                std::unique_ptr<double> lowerLimitLoadingAll);
+            void SetLowerLimitLoading(
+                std::unique_ptr<double> lowerLimitLoading);
 
             #pragma endregion
 
@@ -69,25 +69,25 @@ namespace DiKErnel::KernelWrapper::Json::Input
             GetTopLayerDefinitionData() const;
 
             [[nodiscard]]
-            const double* GetMinimumWaveHeightTemax() const;
+            const double* GetTemax() const;
 
             [[nodiscard]]
-            const double* GetMaximumWaveHeightTemin() const;
+            const double* GetTemin() const;
 
             [[nodiscard]]
-            const double* GetWaveAngleImpactNwa() const;
+            const double* GetWaveAngleImpactN() const;
 
             [[nodiscard]]
-            const double* GetWaveAngleImpactQwa() const;
+            const double* GetWaveAngleImpactQ() const;
 
             [[nodiscard]]
-            const double* GetWaveAngleImpactRwa() const;
+            const double* GetWaveAngleImpactR() const;
 
             [[nodiscard]]
-            const double* GetUpperLimitLoadingAul() const;
+            const double* GetUpperLimitLoading() const;
 
             [[nodiscard]]
-            const double* GetLowerLimitLoadingAll() const;
+            const double* GetLowerLimitLoading() const;
 
             #pragma endregion
 
@@ -96,12 +96,12 @@ namespace DiKErnel::KernelWrapper::Json::Input
             _topLayerDefinitionData;
             std::map<JsonInputGrassRevetmentTopLayerType, std::reference_wrapper<JsonInputGrassWaveImpactTopLayerDefinitionData>>
             _topLayerDefinitionDataReferences;
-            std::unique_ptr<double> _minimumWaveHeightTemax = nullptr;
-            std::unique_ptr<double> _maximumWaveHeightTemin = nullptr;
-            std::unique_ptr<double> _waveAngleImpactNwa = nullptr;
-            std::unique_ptr<double> _waveAngleImpactQwa = nullptr;
-            std::unique_ptr<double> _waveAngleImpactRwa = nullptr;
-            std::unique_ptr<double> _upperLimitLoadingAul = nullptr;
-            std::unique_ptr<double> _lowerLimitLoadingAll = nullptr;
+            std::unique_ptr<double> _temax = nullptr;
+            std::unique_ptr<double> _temin = nullptr;
+            std::unique_ptr<double> _waveAngleImpactN = nullptr;
+            std::unique_ptr<double> _waveAngleImpactQ = nullptr;
+            std::unique_ptr<double> _waveAngleImpactR = nullptr;
+            std::unique_ptr<double> _upperLimitLoading = nullptr;
+            std::unique_ptr<double> _lowerLimitLoading = nullptr;
     };
 }

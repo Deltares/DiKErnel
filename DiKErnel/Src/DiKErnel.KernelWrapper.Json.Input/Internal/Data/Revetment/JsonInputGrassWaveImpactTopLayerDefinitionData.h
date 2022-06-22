@@ -29,33 +29,33 @@ namespace DiKErnel::KernelWrapper::Json::Input
         public:
             #pragma region Set methods
 
-            void SetTimeLineAgwi(
-                std::unique_ptr<double> timeLineAgwi);
+            void SetTimeLineA(
+                std::unique_ptr<double> timeLineA);
 
-            void SetTimeLineBgwi(
-                std::unique_ptr<double> timeLineBgwi);
+            void SetTimeLineB(
+                std::unique_ptr<double> timeLineB);
 
-            void SetTimeLineCgwi(
-                std::unique_ptr<double> timeLineCgwi);
+            void SetTimeLineC(
+                std::unique_ptr<double> timeLineC);
 
             #pragma endregion
 
             #pragma region Get methods
 
             [[nodiscard]]
-            const double* GetTimeLineAgwi() const;
+            const double* GetTimeLineA() const;
 
             [[nodiscard]]
-            const double* GetTimeLineBgwi() const;
+            const double* GetTimeLineB() const;
 
             [[nodiscard]]
-            const double* GetTimeLineCgwi() const;
+            const double* GetTimeLineC() const;
 
             #pragma endregion
 
         private:
-            std::unique_ptr<double> _timeLineAgwi = nullptr;
-            std::unique_ptr<double> _timeLineBgwi = nullptr;
-            std::unique_ptr<double> _timeLineCgwi = nullptr;
+            std::unique_ptr<double> _timeLineA = nullptr;
+            std::unique_ptr<double> _timeLineB = nullptr;
+            std::unique_ptr<double> _timeLineC = nullptr;
     };
 }

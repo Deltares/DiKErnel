@@ -56,11 +56,11 @@ namespace DiKErnel::KernelWrapper::Json::Input
         auto calculationDefinition = make_unique<JsonInputGrassWaveImpactCalculationDefinitionData>(
             move(failureNumber), ReadTopLayerDefinitionData(readCalculationMethod));
 
-        calculationDefinition->SetMinimumWaveHeightTemax(
+        calculationDefinition->SetTemax(
             forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
                 readCalculationMethod, JsonInputGrassWaveImpactDefinitions::TEMAX)));
 
-        calculationDefinition->SetMaximumWaveHeightTemin(
+        calculationDefinition->SetTemin(
             forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
                 readCalculationMethod, JsonInputGrassWaveImpactDefinitions::TEMIN)));
 
@@ -68,15 +68,15 @@ namespace DiKErnel::KernelWrapper::Json::Input
         {
             const auto& readWaveAngleImpact = readCalculationMethod.at(JsonInputDefinitions::WAVE_ANGLE_IMPACT);
 
-            calculationDefinition->SetWaveAngleImpactNwa(
+            calculationDefinition->SetWaveAngleImpactN(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
                     readWaveAngleImpact, JsonInputGrassWaveImpactDefinitions::N_COEFFICIENT)));
 
-            calculationDefinition->SetWaveAngleImpactQwa(
+            calculationDefinition->SetWaveAngleImpactQ(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
                     readWaveAngleImpact, JsonInputGrassWaveImpactDefinitions::Q_COEFFICIENT)));
 
-            calculationDefinition->SetWaveAngleImpactRwa(
+            calculationDefinition->SetWaveAngleImpactR(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
                     readWaveAngleImpact, JsonInputGrassWaveImpactDefinitions::R_COEFFICIENT)));
         }
@@ -85,11 +85,11 @@ namespace DiKErnel::KernelWrapper::Json::Input
         {
             const auto& readLoadingArea = readCalculationMethod.at(JsonInputDefinitions::LOADING_AREA);
 
-            calculationDefinition->SetUpperLimitLoadingAul(
+            calculationDefinition->SetUpperLimitLoading(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
                     readLoadingArea, JsonInputDefinitions::UPPER_LIMIT)));
 
-            calculationDefinition->SetLowerLimitLoadingAll(
+            calculationDefinition->SetLowerLimitLoading(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
                     readLoadingArea, JsonInputDefinitions::LOWER_LIMIT)));
         }
@@ -115,13 +115,13 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 {
                     const auto& readTimeLine = readTopLayer.at(JsonInputGrassWaveImpactDefinitions::TIME_LINE);
 
-                    topLayer->SetTimeLineAgwi(
+                    topLayer->SetTimeLineA(
                         forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
                             readTimeLine, JsonInputDefinitions::A_COEFFICIENT)));
-                    topLayer->SetTimeLineBgwi(
+                    topLayer->SetTimeLineB(
                         forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
                             readTimeLine, JsonInputDefinitions::B_COEFFICIENT)));
-                    topLayer->SetTimeLineCgwi(
+                    topLayer->SetTimeLineC(
                         forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
                             readTimeLine, JsonInputDefinitions::C_COEFFICIENT)));
                 }

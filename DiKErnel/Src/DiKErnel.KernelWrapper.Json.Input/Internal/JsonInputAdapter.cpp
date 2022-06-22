@@ -253,29 +253,29 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 const auto& topLayerDefinition = topLayerDefinitionData.at(jsonInputTopLayerType).get();
 
                 constructionProperties->SetTimeLineAgwi(
-                    forward<unique_ptr<double>>(CreatePointerOfValue(topLayerDefinition.GetTimeLineAgwi())));
+                    forward<unique_ptr<double>>(CreatePointerOfValue(topLayerDefinition.GetTimeLineA())));
                 constructionProperties->SetTimeLineBgwi(
-                    forward<unique_ptr<double>>(CreatePointerOfValue(topLayerDefinition.GetTimeLineBgwi())));
+                    forward<unique_ptr<double>>(CreatePointerOfValue(topLayerDefinition.GetTimeLineB())));
                 constructionProperties->SetTimeLineCgwi(
-                    forward<unique_ptr<double>>(CreatePointerOfValue(topLayerDefinition.GetTimeLineCgwi())));
+                    forward<unique_ptr<double>>(CreatePointerOfValue(topLayerDefinition.GetTimeLineC())));
             }
 
             constructionProperties->SetMinimumWaveHeightTemax(
-                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetMinimumWaveHeightTemax())));
+                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetTemax())));
             constructionProperties->SetMaximumWaveHeightTemin(
-                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetMaximumWaveHeightTemin())));
+                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetTemin())));
 
             constructionProperties->SetWaveAngleImpactNwa(
-                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetWaveAngleImpactNwa())));
+                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetWaveAngleImpactN())));
             constructionProperties->SetWaveAngleImpactQwa(
-                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetWaveAngleImpactQwa())));
+                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetWaveAngleImpactQ())));
             constructionProperties->SetWaveAngleImpactRwa(
-                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetWaveAngleImpactRwa())));
+                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetWaveAngleImpactR())));
 
             constructionProperties->SetUpperLimitLoadingAul(
-                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetUpperLimitLoadingAul())));
+                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetUpperLimitLoading())));
             constructionProperties->SetLowerLimitLoadingAll(
-                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetLowerLimitLoadingAll())));
+                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetLowerLimitLoading())));
         }
 
         return constructionProperties;

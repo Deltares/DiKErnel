@@ -26,41 +26,41 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
     #pragma region Set methods
 
-    void JsonInputGrassWaveImpactTopLayerDefinitionData::SetTimeLineAgwi(
-        unique_ptr<double> timeLineAgwi)
+    void JsonInputGrassWaveImpactTopLayerDefinitionData::SetTimeLineA(
+        unique_ptr<double> timeLineA)
     {
-        _timeLineAgwi = move(timeLineAgwi);
+        _timeLineA = move(timeLineA);
     }
 
-    void JsonInputGrassWaveImpactTopLayerDefinitionData::SetTimeLineBgwi(
-        unique_ptr<double> timeLineBgwi)
+    void JsonInputGrassWaveImpactTopLayerDefinitionData::SetTimeLineB(
+        unique_ptr<double> timeLineB)
     {
-        _timeLineBgwi = move(timeLineBgwi);
+        _timeLineB = move(timeLineB);
     }
 
-    void JsonInputGrassWaveImpactTopLayerDefinitionData::SetTimeLineCgwi(
-        unique_ptr<double> timeLineCgwi)
+    void JsonInputGrassWaveImpactTopLayerDefinitionData::SetTimeLineC(
+        unique_ptr<double> timeLineC)
     {
-        _timeLineCgwi = move(timeLineCgwi);
+        _timeLineC = move(timeLineC);
     }
 
     #pragma endregion
 
     #pragma region Get methods
 
-    const double* JsonInputGrassWaveImpactTopLayerDefinitionData::GetTimeLineAgwi() const
+    const double* JsonInputGrassWaveImpactTopLayerDefinitionData::GetTimeLineA() const
     {
-        return _timeLineAgwi.get();
+        return _timeLineA.get();
     }
 
-    const double* JsonInputGrassWaveImpactTopLayerDefinitionData::GetTimeLineBgwi() const
+    const double* JsonInputGrassWaveImpactTopLayerDefinitionData::GetTimeLineB() const
     {
-        return _timeLineBgwi.get();
+        return _timeLineB.get();
     }
 
-    const double* JsonInputGrassWaveImpactTopLayerDefinitionData::GetTimeLineCgwi() const
+    const double* JsonInputGrassWaveImpactTopLayerDefinitionData::GetTimeLineC() const
     {
-        return _timeLineCgwi.get();
+        return _timeLineC.get();
     }
 
     #pragma endregion
