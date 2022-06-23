@@ -51,7 +51,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
         {
             validator.validate(json::parse(ifstream(filePath)));
         }
-        catch (const exception& e)
+        catch (const invalid_argument& e)
         {
             validationIssues.emplace_back(make_unique<ValidationIssue>(ValidationIssueType::Error, e.what()));
         }
