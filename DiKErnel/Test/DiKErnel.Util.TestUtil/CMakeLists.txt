@@ -7,7 +7,6 @@ set(SOURCEFILES
   EventAssertHelper.h
   EventRegistryTestHelper.cpp
   EventRegistryTestHelper.h
-  ValidatorAssertHelper.cpp
   ValidatorAssertHelper.h
 )
 

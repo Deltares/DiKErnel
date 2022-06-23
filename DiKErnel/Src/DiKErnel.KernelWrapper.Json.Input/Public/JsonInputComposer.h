@@ -20,13 +20,17 @@
 
 #pragma once
 
+#include <nlohmann/json-schema.hpp>
+#include <nlohmann/json.hpp>
+
 #include "DataResult.h"
 #include "JsonInputComposerResult.h"
+#include "JsonSchemaDefinition.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
     /*!
-     * \brief Class responsible for validating/reading Json and turning it into input data.
+     * \brief Class responsible for validating and parsing Json input.
      */
     class JsonInputComposer
     {
@@ -48,5 +52,11 @@ namespace DiKErnel::KernelWrapper::Json::Input
              */
             static std::unique_ptr<Util::DataResult<JsonInputComposerResult>> GetInputDataFromJson(
                 const std::string& filePath);
+
+        private:
+            inline static nlohmann::json_schema::json_validator _validator
+            {
+                nlohmann::json::parse(JSON_SCHEMA_DEFINITION)
+            };
     };
 }

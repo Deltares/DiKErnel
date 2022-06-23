@@ -30,7 +30,7 @@
 namespace DiKErnel::KernelWrapper::Json::Output
 {
     /*!
-     * \brief Class responsible for writing CalculationOutput to Json.
+     * \brief Class responsible for writing Json output.
      */
     class JsonOutputComposer
     {

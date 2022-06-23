@@ -21,12 +21,10 @@
 #include "JsonInputComposer.h"
 
 #include <fstream>
-#include <nlohmann/json-schema.hpp>
 
 #include "EventRegistry.h"
 #include "JsonInputAdapter.h"
 #include "JsonInputParser.h"
-#include "JsonSchemaDefinition.h"
 #include "ValidationHelper.h"
 #include "ValidationIssue.h"
 
@@ -41,15 +39,11 @@ namespace DiKErnel::KernelWrapper::Json::Input
     bool JsonInputComposer::ValidateJson(
         const string& filePath)
     {
-        json_validator validator;
-
-        validator.set_root_schema(json::parse(JSON_SCHEMA_DEFINITION));
-
         vector<unique_ptr<ValidationIssue>> validationIssues;
 
         try
         {
-            validator.validate(json::parse(ifstream(filePath)));
+            _validator.validate(json::parse(ifstream(filePath)));
         }
         catch (const invalid_argument& e)
         {
