@@ -56,7 +56,7 @@ namespace DiKErnel::Application
 
         localtime_s(&tm, &nowAsTime);
 
-        char formattedTime[20];
+        char formattedTime[80];
 
         strftime(formattedTime, sizeof formattedTime, "%FT%TZ", &tm);
 
