@@ -102,7 +102,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
             calculationDefinition->SetWaveAngleImpactBetaMax(
                 forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
-                    readWaveAngleImpact, JsonInputGrassWaveRunupDefinitions::BETA_MAX)));
+                    readWaveAngleImpact, JsonInputDefinitions::BETA_MAX)));
         }
 
         return calculationDefinition;

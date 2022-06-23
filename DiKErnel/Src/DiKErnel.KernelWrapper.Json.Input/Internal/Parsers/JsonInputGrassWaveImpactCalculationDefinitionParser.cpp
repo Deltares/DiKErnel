@@ -85,13 +85,23 @@ namespace DiKErnel::KernelWrapper::Json::Input
         {
             const auto& readLoadingArea = readCalculationMethod.at(JsonInputDefinitions::LOADING_AREA);
 
-            calculationDefinition->SetUpperLimitLoading(
-                forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
-                    readLoadingArea, JsonInputDefinitions::UPPER_LIMIT)));
+            if (readLoadingArea.contains(JsonInputDefinitions::UPPER_LIMIT))
+            {
+                const auto& readUpperLimitLoadingArea = readLoadingArea.at(JsonInputDefinitions::UPPER_LIMIT);
 
-            calculationDefinition->SetLowerLimitLoading(
-                forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
-                    readLoadingArea, JsonInputDefinitions::LOWER_LIMIT)));
+                calculationDefinition->SetUpperLimitLoading(
+                    forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
+                        readUpperLimitLoadingArea, JsonInputDefinitions::A_COEFFICIENT)));
+            }
+
+            if (readLoadingArea.contains(JsonInputDefinitions::LOWER_LIMIT))
+            {
+                const auto& readLowerLimitLoadingArea = readLoadingArea.at(JsonInputDefinitions::LOWER_LIMIT);
+
+                calculationDefinition->SetLowerLimitLoading(
+                    forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
+                        readLowerLimitLoadingArea, JsonInputDefinitions::A_COEFFICIENT)));
+            }
         }
 
         return calculationDefinition;

@@ -174,7 +174,9 @@
                     "a": 1,
                     "b": 0.01
                 },
-                "impactGolfhoekBetaMax": 30
+                "impactGolfhoek": {
+                    "betaMax": 30
+                }
             },
             {
                 "rekenmethode": "grasGolfklap",
@@ -197,8 +199,12 @@
                     "r": 8.0
                 },
                 "belastingzone": {
-                    "bovengrens": 1.0,
-                    "ondergrens": 3.5
+                    "bovengrens": {
+                        "a": 1.0
+                    },
+                    "ondergrens": {
+                        "a": 3.5
+                    }
                 }
             },
             {

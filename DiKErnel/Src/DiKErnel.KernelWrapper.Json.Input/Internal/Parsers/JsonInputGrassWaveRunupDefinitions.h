@@ -38,7 +38,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
             inline static const std::string REPRESENTATIVE_WAVE_RUNUP_2P = "representatieveGolfoploop2p";
 
             inline static const std::string A_BETA = "aBeta";
-            inline static const std::string BETA_MAX = "betaMax";
 
             inline static const std::string CALCULATION_PROTOCOL = "rekenprotocol";
             inline static const std::string CALCULATION_PROTOCOL_TYPE = "typeRekenprotocol";

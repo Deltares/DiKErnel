@@ -123,9 +123,14 @@ namespace DiKErnel::KernelWrapper::Json::Input
                     readNormativeWidthOfWaveImpact, JsonInputDefinitions::B_COEFFICIENT)));
         }
 
-        calculationDefinition->SetWaveAngleImpactBetaMax(
-            forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
-                readCalculationMethod, JsonInputNaturalStoneDefinitions::WAVE_ANGLE_IMPACT_BETA_MAX)));
+        if (readCalculationMethod.contains(JsonInputDefinitions::WAVE_ANGLE_IMPACT))
+        {
+            const auto& readWaveAngleImpact = readCalculationMethod.at(JsonInputDefinitions::WAVE_ANGLE_IMPACT);
+
+            calculationDefinition->SetWaveAngleImpactBetaMax(
+                forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
+                    readWaveAngleImpact, JsonInputDefinitions::BETA_MAX)));
+        }
 
         return calculationDefinition;
     }

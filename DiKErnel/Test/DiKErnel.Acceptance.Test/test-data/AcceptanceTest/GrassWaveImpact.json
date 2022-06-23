@@ -213,8 +213,12 @@
                     "r": 10.0
                 },
                 "belastingzone": {
-                    "bovengrens": 0.0,
-                    "ondergrens": 0.5
+                    "bovengrens": {
+                        "a": 0.0
+                    },
+                    "ondergrens": {
+                        "a": 0.5
+                    }
                 }
             }
         ]

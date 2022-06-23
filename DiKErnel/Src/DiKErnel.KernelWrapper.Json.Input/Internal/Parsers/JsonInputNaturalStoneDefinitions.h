@@ -46,7 +46,5 @@ namespace DiKErnel::KernelWrapper::Json::Input
             inline static const std::string DISTANCE_MAXIMUM_WAVE_ELEVATION = "afstandMaximaleStijghoogte";
 
             inline static const std::string NORMATIVE_WIDTH_OF_WAVE_IMPACT = "maatgevendeBreedteGolfklap";
-
-            inline static const std::string WAVE_ANGLE_IMPACT_BETA_MAX = "impactGolfhoekBetaMax";
     };
 }
