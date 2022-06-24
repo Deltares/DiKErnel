@@ -151,8 +151,7 @@ namespace DiKErnel::Gui
 
             AddMessage("Het lezen van de invoer is voltooid.");
 
-            const auto* inputData = inputComposerResult->GetData();
-            const auto& calculationInput = inputData->GetCalculationInput();
+            const auto& calculationInput = *inputComposerResult->GetData();
 
             AddMessage("De invoer wordt gevalideerd...");
 

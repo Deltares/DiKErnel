@@ -44,22 +44,6 @@ namespace DiKErnel::KernelWrapper::Json::Integration::Test
     {
         const string _actualOutputFilePath = (filesystem::temp_directory_path() / "actualOutput.json").string();
 
-        static JsonOutputType ConvertProcessType(
-            const JsonInputProcessType processType)
-        {
-            switch (processType)
-            {
-                case JsonInputProcessType::Failure:
-                    return JsonOutputType::Failure;
-                case JsonInputProcessType::Damage:
-                    return JsonOutputType::Damage;
-                case JsonInputProcessType::Physics:
-                    return JsonOutputType::Physics;
-                default:
-                    throw runtime_error("Unsupported processType");
-            }
-        }
-
         void AssertMetaData(
             const json& actualMetaData) const
         {
@@ -118,17 +102,16 @@ namespace DiKErnel::KernelWrapper::Json::Integration::Test
         void PerformTest(
             const string& inputFilePath,
             const string& expectedOutputFilePath,
+            const JsonOutputType outputType,
             const bool withMetaData) const
         {
             // When
             const auto& result = JsonInputComposer::GetInputDataFromJson(inputFilePath);
-            const auto* inputData = result->GetData();
+            const auto& inputData = *result->GetData();
 
-            Calculator calculator(inputData->GetCalculationInput());
+            Calculator calculator(inputData);
 
             calculator.WaitForCompletion();
-
-            const auto outputType = ConvertProcessType(inputData->GetProcessType());
 
             auto metaDataItems = vector<pair<string, variant<double, string>>>();
 
@@ -196,7 +179,7 @@ namespace DiKErnel::KernelWrapper::Json::Integration::Test
             / "Output" / "expectedFailureOutput.json").string();
 
         // When & Then
-        PerformTest(inputFilePath, expectedOutputFilePath, false);
+        PerformTest(inputFilePath, expectedOutputFilePath, JsonOutputType::Failure, false);
     }
 
     TEST_F(IntegrationTest, GivenJsonFileWithFailureOutputTypeWithMetaData_WhenCalculating_ThenExpectedOutputJsonCreated)
@@ -209,7 +192,7 @@ namespace DiKErnel::KernelWrapper::Json::Integration::Test
             / "Output" / "expectedFailureOutput.json").string();
 
         // When & Then
-        PerformTest(inputFilePath, expectedOutputFilePath, true);
+        PerformTest(inputFilePath, expectedOutputFilePath, JsonOutputType::Failure, true);
     }
 
     TEST_F(IntegrationTest, GivenJsonFileWithDamageOutputTypeWithoutMetaData_WhenCalculating_ThenExpectedOutputJsonCreated)
@@ -222,7 +205,7 @@ namespace DiKErnel::KernelWrapper::Json::Integration::Test
             / "Output" / "expectedDamageOutput.json").string();
 
         // When & Then
-        PerformTest(inputFilePath, expectedOutputFilePath, false);
+        PerformTest(inputFilePath, expectedOutputFilePath, JsonOutputType::Damage, false);
     }
 
     TEST_F(IntegrationTest, GivenJsonFileWithDamageOutputTypeWithMetaData_WhenCalculating_ThenExpectedOutputJsonCreated)
@@ -235,7 +218,7 @@ namespace DiKErnel::KernelWrapper::Json::Integration::Test
             / "Output" / "expectedDamageOutput.json").string();
 
         // When & Then
-        PerformTest(inputFilePath, expectedOutputFilePath, true);
+        PerformTest(inputFilePath, expectedOutputFilePath, JsonOutputType::Damage, true);
     }
 
     TEST_F(IntegrationTest, GivenJsonFileWithPhysicsOutputTypeWithoutMetaData_WhenCalculating_ThenExpectedOutputJsonCreated)
@@ -248,7 +231,7 @@ namespace DiKErnel::KernelWrapper::Json::Integration::Test
             / "Output" / "expectedPhysicsOutput.json").string();
 
         // When & Then
-        PerformTest(inputFilePath, expectedOutputFilePath, false);
+        PerformTest(inputFilePath, expectedOutputFilePath, JsonOutputType::Physics, false);
     }
 
     TEST_F(IntegrationTest, GivenJsonFileWithPhysicsOutputTypeWithMetaData_WhenCalculating_ThenExpectedOutputJsonCreated)
@@ -261,6 +244,6 @@ namespace DiKErnel::KernelWrapper::Json::Integration::Test
             / "Output" / "expectedPhysicsOutput.json").string();
 
         // When & Then
-        PerformTest(inputFilePath, expectedOutputFilePath, true);
+        PerformTest(inputFilePath, expectedOutputFilePath, JsonOutputType::Physics, true);
     }
 }

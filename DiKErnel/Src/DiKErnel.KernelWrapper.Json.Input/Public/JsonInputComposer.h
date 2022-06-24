@@ -50,7 +50,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
              *        The path to the Json file to get the input from.
              * \return The result of the operation.
              */
-            static std::unique_ptr<Util::DataResult<JsonInputComposerResult>> GetInputDataFromJson(
+            static std::unique_ptr<Util::DataResult<Core::ICalculationInput>> GetInputDataFromJson(
                 const std::string& filePath);
 
         private:

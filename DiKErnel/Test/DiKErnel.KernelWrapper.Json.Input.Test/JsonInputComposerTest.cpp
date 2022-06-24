@@ -52,21 +52,6 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
 
     struct JsonInputComposerTest : Test
     {
-        static void PerformProcessTypeTest(
-            const string& fileName,
-            const JsonInputProcessType expectedProcessType)
-        {
-            // Given
-            const auto filePath = (TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Input.Test") / "JsonInputComposerTest"
-                / fileName).string();
-
-            // When
-            const auto processType = JsonInputComposer::GetInputDataFromJson(filePath)->GetData()->GetProcessType();
-
-            // Then
-            ASSERT_EQ(expectedProcessType, processType);
-        }
-
         static void PerformInvalidJsonTest(
             const string& fileName,
             const string& expectedStackTrace)
@@ -92,26 +77,6 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
         }
     };
 
-    TEST_F(JsonInputComposerTest, GivenJsonInputWithoutProcessType_WhenGetInputDataFromJson_ThenReturnsResultWithDefaultJsonInputProcessType)
-    {
-        PerformProcessTypeTest("NoProcessType.json", JsonInputProcessType::Damage);
-    }
-
-    TEST_F(JsonInputComposerTest, GivenJsonFileWithProcessTypeFailure_WhenGetInputDataFromJson_ThenReturnsResultWithExpectedJsonInputProcessType)
-    {
-        PerformProcessTypeTest("ProcessTypeFailure.json", JsonInputProcessType::Failure);
-    }
-
-    TEST_F(JsonInputComposerTest, GivenJsonFileWithProcessTypeDamage_WhenGetInputDataFromJson_ThenReturnsResultWithExpectedJsonInputProcessType)
-    {
-        PerformProcessTypeTest("ProcessTypeDamage.json", JsonInputProcessType::Damage);
-    }
-
-    TEST_F(JsonInputComposerTest, GivenJsonFileWithProcessTypePhysics_WhenGetInputDataFromJson_ThenReturnsResultWithExpectedJsonInputProcessType)
-    {
-        PerformProcessTypeTest("ProcessTypePhysics.json", JsonInputProcessType::Physics);
-    }
-
     TEST_F(JsonInputComposerTest,
            GivenJsonFileWithAllLocationAndCalculationMethods_WhenGetInputDataFromJson_ThenReturnsResultWithICalculationInputWithExpectedValues)
     {
@@ -121,7 +86,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
 
         // When
         const auto& result = JsonInputComposer::GetInputDataFromJson(filePath);
-        const auto& calculationInput = result->GetData()->GetCalculationInput();
+        const auto& calculationInput = *result->GetData();
 
         // Then
         AssertHelper::AssertIsInstanceOf<CalculationInput>(&calculationInput);
@@ -275,7 +240,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
 
         // When
         const auto& result = JsonInputComposer::GetInputDataFromJson(filePath);
-        const auto& calculationInput = result->GetData()->GetCalculationInput();
+        const auto& calculationInput = *result->GetData();
 
         // Then
         AssertHelper::AssertIsInstanceOf<CalculationInput>(&calculationInput);

@@ -94,8 +94,7 @@ int main(
             return -1;
         }
 
-        const auto* inputData = inputComposerResult->GetData();
-        const auto& calculationInput = inputData->GetCalculationInput();
+        const auto& calculationInput = *inputComposerResult->GetData();
 
         const auto validationResult = Validator::Validate(calculationInput);
         WriteToLogFile(validationResult->GetEvents());

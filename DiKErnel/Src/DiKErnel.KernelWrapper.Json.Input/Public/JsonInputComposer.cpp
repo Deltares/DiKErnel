@@ -30,6 +30,7 @@
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
+    using namespace Core;
     using namespace Integration;
     using namespace nlohmann;
     using namespace json_schema;
@@ -53,7 +54,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
         return ValidationHelper::RegisterValidationIssues(validationIssues);
     }
 
-    unique_ptr<DataResult<JsonInputComposerResult>> JsonInputComposer::GetInputDataFromJson(
+    unique_ptr<DataResult<ICalculationInput>> JsonInputComposer::GetInputDataFromJson(
         const string& filePath)
     {
         try
@@ -67,16 +68,14 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 processType = *readProcessType;
             }
 
-            auto inputComposerResult = make_unique<JsonInputComposerResult>(JsonInputAdapter::AdaptJsonInputData(*jsonInputData), processType);
-
-            return make_unique<DataResult<JsonInputComposerResult>>(move(inputComposerResult), EventRegistry::Flush());
+            return make_unique<DataResult<ICalculationInput>>(JsonInputAdapter::AdaptJsonInputData(*jsonInputData), EventRegistry::Flush());
         }
         catch (const exception& e)
         {
             EventRegistry::Register(make_unique<Event>("An unhandled error occurred while composing calculation data from the Json input. See "
                                                        "stack trace for more information:\n" + static_cast<string>(e.what()), EventType::Error));
 
-            return make_unique<DataResult<JsonInputComposerResult>>(EventRegistry::Flush());
+            return make_unique<DataResult<ICalculationInput>>(EventRegistry::Flush());
         }
     }
 }
