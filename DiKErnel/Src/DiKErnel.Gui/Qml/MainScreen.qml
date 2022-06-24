@@ -339,22 +339,14 @@ Rectangle {
         width: 413
         height: 32
 
-        Switch {
+        CustomSwitch {
             text: qsTr("Valideren Json-formaat")
             checked: true
-            font.pointSize: 10
-            padding: 0
-            Layout.fillHeight: true
-            Layout.fillWidth: true
         }
 
-        Switch {
+        CustomSwitch {
             text: qsTr("Schrijven meta-informatie")
             checked: true
-            font.pointSize: 10
-            padding: 0
-            Layout.fillHeight: true
-            Layout.fillWidth: true
         }
     }
 

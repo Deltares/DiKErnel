@@ -23,20 +23,22 @@ import QtQuick.Controls
 import QtQuick.Layouts 1.0
 
 Button {
-    id: button
+    id: control
     checkable: true
     Layout.fillHeight: true
     Layout.fillWidth: true
     font.pointSize: 10
+
     contentItem: Text {
         smooth: true
-        text: button.text
-        font: button.font
-        color: button.checked ? "white" : "black"
+        text: control.text
+        font: control.font
+        color: control.checked ? "#FFFFFF" : "#000000"
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
     }
+
     background: Rectangle {
-        color: button.checked ? "#199CD8" : "#B8B8B8"
+        color: control.checked ? "#199CD8" : "#B8B8B8"
     }
 }
