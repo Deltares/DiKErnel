@@ -366,18 +366,18 @@ Rectangle {
         height: 32
         spacing: 0
 
-        ToggleButton {
+        CustomCheckableButton {
             text: qsTr("Falen")
             checked: true
             Layout.preferredWidth: parent.width / 3
         }
 
-        ToggleButton {
+        CustomCheckableButton {
             text: qsTr("Schade")
             Layout.preferredWidth: parent.width / 3
         }
 
-        ToggleButton {
+        CustomCheckableButton {
             text: qsTr("Fysica")
             Layout.preferredWidth: parent.width / 3
         }
