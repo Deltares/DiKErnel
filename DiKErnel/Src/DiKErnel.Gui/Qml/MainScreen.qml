@@ -175,12 +175,14 @@ Rectangle {
         x: 25
         y: 185
         text: qsTr("Invoerbestand")
+        font.weight: Font.DemiBold
+        font.bold: true
         font.pointSize: 10
     }
 
     TextField {
-        x: 468
-        y: 209
+        x: 25
+        y: 283
         width: 375
         height: 32
         readOnly: true
@@ -189,9 +191,11 @@ Rectangle {
     }
 
     Label {
-        x: 468
-        y: 185
+        x: 25
+        y: 259
         text: qsTr("Uitvoerbestand")
+        font.weight: Font.DemiBold
+        font.bold: true
         font.pointSize: 10
     }
 
@@ -205,8 +209,8 @@ Rectangle {
     }
 
     Button {
-        x: 849
-        y: 209
+        x: 406
+        y: 283
         width: 32
         height: 32
         text: qsTr("...")
@@ -214,7 +218,7 @@ Rectangle {
     }
 
     Button {
-        y: 209
+        y: 283
         text: qsTr("Start")
         anchors {
             right: parent.right
@@ -260,9 +264,9 @@ Rectangle {
             top: parent.top
             bottom: parent.bottom
             leftMargin: 25
-            topMargin: 247
+            topMargin: 327
             rightMargin: 25
-            bottomMargin: 63
+            bottomMargin: 69
         }
 
         ListView {
@@ -308,6 +312,84 @@ Rectangle {
         fileMode: FileDialog.SaveFile
         onAccepted: {
             dikernelApplication.SetOutputFilePath(outputFileDialog.selectedFile)
+        }
+    }
+
+    Label {
+        x: 471
+        y: 185
+        text: qsTr("Opties")
+        font.weight: Font.DemiBold
+        font.bold: true
+        font.pointSize: 10
+    }
+
+    Label {
+        x: 471
+        y: 259
+        text: qsTr("Uitvoerniveau")
+        font.weight: Font.DemiBold
+        font.bold: true
+        font.pointSize: 10
+    }
+
+    RowLayout {
+        x: 471
+        y: 209
+        width: 413
+        height: 32
+
+        Switch {
+            text: qsTr("Valideren Json-formaat")
+            checked: true
+            font.pointSize: 10
+            padding: 0
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+        }
+
+        Switch {
+            text: qsTr("Schrijven meta-informatie")
+            checked: true
+            font.pointSize: 10
+            padding: 0
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+        }
+    }
+
+    RowLayout {
+        x: 471
+        y: 283
+        width: 413
+        height: 32
+        spacing: 0
+
+        Button {
+            text: qsTr("Falen")
+            checked: true
+            checkable: true
+            Layout.fillHeight: true
+            Layout.preferredWidth: parent.width / 3
+            font.pointSize: 10
+        }
+
+        Button {
+            text: qsTr("Schade")
+            checkable: true
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+            Layout.preferredWidth: parent.width / 3
+            font.pointSize: 10
+        }
+
+        Button {
+            text: qsTr("Fysica")
+            checkable: true
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+            Layout.preferredWidth: parent.width / 3
+            font.pointSize: 10
         }
     }
 }
