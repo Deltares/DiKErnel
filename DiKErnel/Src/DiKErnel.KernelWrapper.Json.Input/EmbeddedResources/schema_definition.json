@@ -9,6 +9,7 @@
   "additionalProperties": false,
   "properties": {
     "procesdata": {
+      "type": "object",
       "additionalProperties": false,
       "properties": {
         "uitvoerRekenresultaten": {
@@ -21,6 +22,7 @@
       }
     },
     "rekendata": {
+      "type": "object",
       "required": [
         "tijdstippen",
         "hydraulischeBelastingen",
@@ -88,14 +90,14 @@
           "properties": {
             "posities": {
               "type": "array",
-              "minItems": 1,
+              "minItems": 2,
               "items": {
                 "type": "number"
               }
             },
             "hoogten": {
               "type": "array",
-              "minItems": 1,
+              "minItems": 2,
               "items": {
                 "type": "number"
               }
@@ -153,11 +155,11 @@
               },
               "toplaag": {
                 "type": "object",
-                "additionalProperties": false,
                 "required": [
                   "dikte",
                   "stijfheidsmodulus"
                 ],
+                "additionalProperties": false,
                 "properties": {
                   "dikte": {
                     "type": "number"
@@ -169,11 +171,11 @@
               },
               "onderlaag": {
                 "type": "object",
-                "additionalProperties": false,
                 "required": [
                   "dikte",
                   "stijfheidsmodulus"
                 ],
+                "additionalProperties": false,
                 "properties": {
                   "dikte": {
                     "type": "number"
@@ -310,12 +312,14 @@
                     },
                     "stabiliteit": {
                       "type": "object",
+                      "additionalProperties": false,
                       "properties": {
                         "xib": {
                           "type": "number"
                         },
                         "plunging": {
                           "type": "object",
+                          "additionalProperties": false,
                           "properties": {
                             "a": {
                               "type": "number"
@@ -333,6 +337,7 @@
                         },
                         "surging": {
                           "type": "object",
+                          "additionalProperties": false,
                           "properties": {
                             "a": {
                               "type": "number"
@@ -355,6 +360,7 @@
                     },
                     "vermoeiingAsfalt": {
                       "type": "object",
+                      "additionalProperties": false,
                       "properties": {
                         "alfa": {
                           "type": "number"
@@ -531,10 +537,10 @@
               },
               "rekenprotocol": {
                 "type": "object",
-                "additionalProperties": false,
                 "required": [
                   "typeRekenprotocol"
                 ],
+                "additionalProperties": false,
                 "properties": {
                   "typeRekenprotocol": {
                     "const": "rayleighDiscreet"
