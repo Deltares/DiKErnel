@@ -37,6 +37,7 @@ set(INTERNAL_SOURCEFILES
 set(QMLFILES
   ${QML_FOLDER}/Main.qml
   ${QML_FOLDER}/MainScreen.qml
+  ${QML_FOLDER}/ToggleButton.qml
 )
 
 # Add windows executable

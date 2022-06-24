@@ -365,31 +365,20 @@ Rectangle {
         height: 32
         spacing: 0
 
-        Button {
+        ToggleButton {
             text: qsTr("Falen")
             checked: true
-            checkable: true
-            Layout.fillHeight: true
             Layout.preferredWidth: parent.width / 3
-            font.pointSize: 10
         }
 
-        Button {
+        ToggleButton {
             text: qsTr("Schade")
-            checkable: true
-            Layout.fillHeight: true
-            Layout.fillWidth: true
             Layout.preferredWidth: parent.width / 3
-            font.pointSize: 10
         }
 
-        Button {
+        ToggleButton {
             text: qsTr("Fysica")
-            checkable: true
-            Layout.fillHeight: true
-            Layout.fillWidth: true
             Layout.preferredWidth: parent.width / 3
-            font.pointSize: 10
         }
     }
 }
