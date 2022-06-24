@@ -31,17 +31,12 @@ namespace DiKErnel::KernelWrapper::Json::Input
     {
         public:
             explicit JsonInputData(
-                std::unique_ptr<JsonInputProcessData> processData,
                 std::unique_ptr<JsonInputCalculationData> calculationData);
-
-            [[nodiscard]]
-            const JsonInputProcessData& GetProcessData() const;
 
             [[nodiscard]]
             const JsonInputCalculationData& GetCalculationData() const;
 
         private:
-            std::unique_ptr<JsonInputProcessData> _processData;
             std::unique_ptr<JsonInputCalculationData> _calculationData;
     };
 }

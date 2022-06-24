@@ -27,15 +27,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
     using namespace std;
 
     JsonInputData::JsonInputData(
-        unique_ptr<JsonInputProcessData> processData,
         unique_ptr<JsonInputCalculationData> calculationData)
-        : _processData(move(processData)),
-          _calculationData(move(calculationData)) { }
-
-    const JsonInputProcessData& JsonInputData::GetProcessData() const
-    {
-        return *_processData;
-    }
+        : _calculationData(move(calculationData)) { }
 
     const JsonInputCalculationData& JsonInputData::GetCalculationData() const
     {

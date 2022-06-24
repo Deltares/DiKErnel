@@ -59,15 +59,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
     {
         try
         {
-            auto processType = JsonInputProcessType::Damage;
-
             const auto& jsonInputData = JsonInputParser::GetJsonInputData(filePath);
-
-            if (const auto* readProcessType = jsonInputData->GetProcessData().GetProcessType(); readProcessType != nullptr)
-            {
-                processType = *readProcessType;
-            }
-
             return make_unique<DataResult<ICalculationInput>>(JsonInputAdapter::AdaptJsonInputData(*jsonInputData), EventRegistry::Flush());
         }
         catch (const exception& e)
