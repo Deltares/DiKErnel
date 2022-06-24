@@ -46,9 +46,6 @@ using namespace std::chrono;
 void RemoveFileWhenExists(
     const string& filePath);
 
-JsonOutputType ConvertProcessType(
-    JsonInputProcessType);
-
 void WriteToLogFile(
     const vector<reference_wrapper<Event>>& events);
 
@@ -131,7 +128,7 @@ int main(
         const auto outputComposerResult = JsonOutputComposer::WriteCalculationOutputToJson(
             jsonOutputFilePath,
             *calculatorResult->GetData(),
-            ConvertProcessType(inputData->GetProcessType()),
+            JsonOutputType::Damage,
             vector
             {
                 pair<string, variant<double, string>>("Versie", ApplicationHelper::GetApplicationVersionString()),
@@ -164,22 +161,6 @@ void RemoveFileWhenExists(
     if (filesystem::exists(filePath))
     {
         filesystem::remove(filePath);
-    }
-}
-
-JsonOutputType ConvertProcessType(
-    const JsonInputProcessType processType)
-{
-    switch (processType)
-    {
-        case JsonInputProcessType::Failure:
-            return JsonOutputType::Failure;
-        case JsonInputProcessType::Damage:
-            return JsonOutputType::Damage;
-        case JsonInputProcessType::Physics:
-            return JsonOutputType::Physics;
-        default:
-            throw runtime_error("Unsupported processType");
     }
 }
 

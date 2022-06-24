@@ -116,9 +116,6 @@ namespace DiKErnel::Gui
             void LogClosingMessage(
                 const QString& message);
 
-            static KernelWrapper::Json::Output::JsonOutputType ConvertProcessType(
-                KernelWrapper::Json::Input::JsonInputProcessType processType);
-
             QStringList _stringList;
 
             Q_OBJECT_BINDABLE_PROPERTY(

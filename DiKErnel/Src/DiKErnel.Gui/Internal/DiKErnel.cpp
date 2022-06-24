@@ -211,7 +211,7 @@ namespace DiKErnel::Gui
             const auto outputComposerResult = JsonOutputComposer::WriteCalculationOutputToJson(
                 outputFilePathStdString,
                 *calculatorResult->GetData(),
-                ConvertProcessType(inputData->GetProcessType()),
+                JsonOutputType::Damage,
                 vector
                 {
                     pair<string, variant<double, string>>("Versie", ApplicationHelper::GetApplicationVersionString()),
@@ -294,21 +294,5 @@ namespace DiKErnel::Gui
     {
         AddMessage(message);
         AddMessage("-----------------------------------------------------------------");
-    }
-
-    JsonOutputType DiKErnel::ConvertProcessType(
-        const JsonInputProcessType processType)
-    {
-        switch (processType)
-        {
-            case JsonInputProcessType::Failure:
-                return JsonOutputType::Failure;
-            case JsonInputProcessType::Damage:
-                return JsonOutputType::Damage;
-            case JsonInputProcessType::Physics:
-                return JsonOutputType::Physics;
-            default:
-                throw runtime_error("Unsupported processType");
-        }
     }
 }
