@@ -39,4 +39,13 @@ Button {
     background: Rectangle {
         color: button.checked ? "#199CD8" : "#B8B8B8"
     }
+    MouseArea {
+        anchors.fill: parent
+        onClicked: {
+            if (!button.checked)
+            {
+                button.checked = true;
+            }
+        }
+    }
 }
