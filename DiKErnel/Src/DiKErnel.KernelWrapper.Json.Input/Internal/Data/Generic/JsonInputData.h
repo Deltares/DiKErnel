@@ -20,9 +20,15 @@
 
 #pragma once
 
+#include <map>
 #include <memory>
+#include <vector>
 
-#include "JsonInputCalculationData.h"
+#include "JsonInputCalculationDefinitionData.h"
+#include "JsonInputCalculationType.h"
+#include "JsonInputDikeProfileData.h"
+#include "JsonInputHydraulicData.h"
+#include "JsonInputLocationData.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
@@ -30,12 +36,35 @@ namespace DiKErnel::KernelWrapper::Json::Input
     {
         public:
             explicit JsonInputData(
-                std::unique_ptr<JsonInputCalculationData> calculationData);
+                std::vector<int> times,
+                std::unique_ptr<JsonInputHydraulicData> hydraulicData,
+                std::unique_ptr<JsonInputDikeProfileData> dikeProfileData,
+                std::vector<std::unique_ptr<JsonInputLocationData>> locationData,
+                std::map<JsonInputCalculationType, std::unique_ptr<JsonInputCalculationDefinitionData>> calculationDefinitionData);
 
             [[nodiscard]]
-            const JsonInputCalculationData& GetCalculationData() const;
+            const std::vector<int>& GetTimes() const;
+
+            [[nodiscard]]
+            const JsonInputHydraulicData& GetHydraulicData() const;
+
+            [[nodiscard]]
+            const JsonInputDikeProfileData& GetDikeProfileData() const;
+
+            [[nodiscard]]
+            const std::vector<std::reference_wrapper<JsonInputLocationData>>& GetLocationData() const;
+
+            [[nodiscard]]
+            const std::map<JsonInputCalculationType, std::reference_wrapper<JsonInputCalculationDefinitionData>>&
+            GetCalculationDefinitionData() const;
 
         private:
-            std::unique_ptr<JsonInputCalculationData> _calculationData;
+            std::vector<int> _times;
+            std::unique_ptr<JsonInputHydraulicData> _hydraulicData;
+            std::unique_ptr<JsonInputDikeProfileData> _dikeProfileData;
+            std::vector<std::unique_ptr<JsonInputLocationData>> _locationData;
+            std::vector<std::reference_wrapper<JsonInputLocationData>> _locationDataReferences;
+            std::map<JsonInputCalculationType, std::unique_ptr<JsonInputCalculationDefinitionData>> _calculationDefinitionData;
+            std::map<JsonInputCalculationType, std::reference_wrapper<JsonInputCalculationDefinitionData>> _calculationDefinitionDataReferences;
     };
 }

@@ -34,12 +34,11 @@ namespace DiKErnel::KernelWrapper::Json::Input
     unique_ptr<ICalculationInput> JsonInputAdapter::AdaptJsonInputData(
         const JsonInputData& jsonInputData)
     {
-        const auto& calculationData = jsonInputData.GetCalculationData();
-        const auto& hydraulicData = calculationData.GetHydraulicData();
+        const auto& hydraulicData = jsonInputData.GetHydraulicData();
 
         RevetmentCalculationInputBuilder builder;
 
-        const auto& dikeProfileData = calculationData.GetDikeProfileData();
+        const auto& dikeProfileData = jsonInputData.GetDikeProfileData();
 
         const auto& xLocations = dikeProfileData.GetXLocations();
         const auto& zLocations = dikeProfileData.GetZLocations();
@@ -61,7 +60,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
             builder.AddDikeProfilePoint(xLocation, zLocations.at(i), characteristicPoint.get());
         }
 
-        const auto& times = calculationData.GetTimes();
+        const auto& times = jsonInputData.GetTimes();
 
         const auto& waterLevels = hydraulicData.GetWaterLevels();
         const auto& waveHeightsHm0 = hydraulicData.GetWaveHeightsHm0();
@@ -73,8 +72,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
             builder.AddTimeStep(times.at(i), times.at(i + 1), waterLevels.at(i), waveHeightsHm0.at(i), wavePeriodsTm10.at(i), waveAngles.at(i));
         }
 
-        const auto& locationReferences = calculationData.GetLocationData();
-        const auto& calculationDefinitionReferences = calculationData.GetCalculationDefinitionData();
+        const auto& locationReferences = jsonInputData.GetLocationData();
+        const auto& calculationDefinitionReferences = jsonInputData.GetCalculationDefinitionData();
 
         for (const auto& locationReference : locationReferences)
         {

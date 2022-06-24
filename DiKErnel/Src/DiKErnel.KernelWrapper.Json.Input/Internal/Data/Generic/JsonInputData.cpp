@@ -27,11 +27,52 @@ namespace DiKErnel::KernelWrapper::Json::Input
     using namespace std;
 
     JsonInputData::JsonInputData(
-        unique_ptr<JsonInputCalculationData> calculationData)
-        : _calculationData(move(calculationData)) { }
-
-    const JsonInputCalculationData& JsonInputData::GetCalculationData() const
+        vector<int> times,
+        unique_ptr<JsonInputHydraulicData> hydraulicData,
+        unique_ptr<JsonInputDikeProfileData> dikeProfileData,
+        vector<unique_ptr<JsonInputLocationData>> locationData,
+        map<JsonInputCalculationType, unique_ptr<JsonInputCalculationDefinitionData>> calculationDefinitionData)
+        : _times(move(times)),
+          _hydraulicData(move(hydraulicData)),
+          _dikeProfileData(move(dikeProfileData)),
+          _locationData(move(locationData)),
+          _calculationDefinitionData(move(calculationDefinitionData))
     {
-        return *_calculationData;
+        for (const auto& locationDataItem : _locationData)
+        {
+            _locationDataReferences.emplace_back(*locationDataItem);
+        }
+
+        for (const auto& [calculationType, calculationDefinition] : _calculationDefinitionData)
+        {
+            _calculationDefinitionDataReferences.insert(
+                pair<JsonInputCalculationType, reference_wrapper<JsonInputCalculationDefinitionData>>(calculationType, *calculationDefinition));
+        }
+    }
+
+    const vector<int>& JsonInputData::GetTimes() const
+    {
+        return _times;
+    }
+
+    const JsonInputHydraulicData& JsonInputData::GetHydraulicData() const
+    {
+        return *_hydraulicData;
+    }
+
+    const JsonInputDikeProfileData& JsonInputData::GetDikeProfileData() const
+    {
+        return *_dikeProfileData;
+    }
+
+    const vector<reference_wrapper<JsonInputLocationData>>& JsonInputData::GetLocationData() const
+    {
+        return _locationDataReferences;
+    }
+
+    const map<JsonInputCalculationType, reference_wrapper<JsonInputCalculationDefinitionData>>&
+        JsonInputData::GetCalculationDefinitionData() const
+    {
+        return _calculationDefinitionDataReferences;
     }
 }

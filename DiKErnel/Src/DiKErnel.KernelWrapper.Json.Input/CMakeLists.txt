@@ -27,8 +27,6 @@ set(SOURCEFILES_INTERNAL
 )
 
 set(SOURCEFILES_INTERNAL_DATA_GENERIC
-  ${INTERNAL_DATA_GENERIC_FOLDER}/JsonInputCalculationData.cpp
-  ${INTERNAL_DATA_GENERIC_FOLDER}/JsonInputCalculationData.h
   ${INTERNAL_DATA_GENERIC_FOLDER}/JsonInputCalculationDefinitionData.cpp
   ${INTERNAL_DATA_GENERIC_FOLDER}/JsonInputCalculationDefinitionData.h
   ${INTERNAL_DATA_GENERIC_FOLDER}/JsonInputCalculationType.h

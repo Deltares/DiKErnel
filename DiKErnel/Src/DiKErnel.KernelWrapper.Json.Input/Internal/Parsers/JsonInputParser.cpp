@@ -65,14 +65,11 @@ namespace DiKErnel::KernelWrapper::Json::Input
         const auto& readCalculationData = json.at(JsonInputDefinitions::CALCULATION_DATA);
 
         return make_unique<JsonInputData>(
-            make_unique<JsonInputCalculationData>(
-                ParseTime(readCalculationData),
-                ParseHydraulicData(readCalculationData),
-                ParseDikeProfileData(readCalculationData),
-                ParseLocationData(readCalculationData),
-                ParseCalculationDefinitionData(readCalculationData)
-            )
-        );
+            ParseTime(readCalculationData),
+            ParseHydraulicData(readCalculationData),
+            ParseDikeProfileData(readCalculationData),
+            ParseLocationData(readCalculationData),
+            ParseCalculationDefinitionData(readCalculationData));
     }
 
     json JsonInputParser::ReadJson(
