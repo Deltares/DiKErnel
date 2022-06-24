@@ -28,7 +28,6 @@ Switch {
     padding: 0
     Layout.fillHeight: true
     Layout.fillWidth: true
-
     indicator: Rectangle {
         implicitWidth: 44
         implicitHeight: 20
@@ -37,7 +36,6 @@ Switch {
         radius: 10
         color: control.checked ? "#199CD8" : "#B8B8B8"
         border.color: control.checked ? "#199CD8" : "#B8B8B8"
-
         Rectangle {
             x: control.checked ? parent.width - width - 4 : 4
             y: parent.height / 2 - height / 2
@@ -48,7 +46,6 @@ Switch {
             border.color: control.checked ? "#199CD8" : "#B8B8B8"
         }
     }
-
     contentItem: Text {
         text: control.text
         font: control.font

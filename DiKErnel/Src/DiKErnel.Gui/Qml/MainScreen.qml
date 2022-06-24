@@ -169,6 +169,7 @@ Rectangle {
         readOnly: true
         placeholderText: qsTr("Invoerbestand.json")
         text: dikernelApplication.InputFilePath
+        font.pointSize: 10
     }
 
     Label {
@@ -188,6 +189,7 @@ Rectangle {
         readOnly: true
         placeholderText: qsTr("Uitvoerbestand.json")
         text: dikernelApplication.OutputFilePath
+        font.pointSize: 10
     }
 
     Label {
@@ -220,6 +222,7 @@ Rectangle {
     Button {
         y: 283
         text: qsTr("Start")
+        font.pointSize: 10
         anchors {
             right: parent.right
             rightMargin: 25
@@ -232,6 +235,7 @@ Rectangle {
 
     Button {
         text: qsTr("Wissen")
+        font.pointSize: 10
         anchors {
             right: parent.right
             bottom: parent.bottom
@@ -245,6 +249,7 @@ Rectangle {
 
     Button {
         text: qsTr("Kopieer naar klembord")
+        font.pointSize: 10
         anchors {
             right: parent.right
             bottom: parent.bottom

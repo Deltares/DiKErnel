@@ -28,7 +28,6 @@ Button {
     Layout.fillHeight: true
     Layout.fillWidth: true
     font.pointSize: 10
-
     contentItem: Text {
         smooth: true
         text: control.text
@@ -37,7 +36,6 @@ Button {
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
     }
-
     background: Rectangle {
         color: control.checked ? "#199CD8" : "#B8B8B8"
     }
