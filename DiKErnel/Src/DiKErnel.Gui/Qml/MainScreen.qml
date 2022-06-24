@@ -230,7 +230,7 @@ Rectangle {
         rightPadding: 20
         leftPadding: 20
         enabled: dikernelApplication.StartEnabled
-        onClicked: dikernelApplication.StartCalculation()
+        onClicked: dikernelApplication.StartCalculation(validateJsonFormatSwitch.checked, writeMetaDataSwitch.checked)
     }
 
     Button {
@@ -345,11 +345,13 @@ Rectangle {
         height: 32
 
         CustomSwitch {
+            id: validateJsonFormatSwitch
             text: qsTr("Valideren Json-formaat")
             checked: true
         }
 
         CustomSwitch {
+            id: writeMetaDataSwitch
             text: qsTr("Schrijven meta-informatie")
             checked: true
         }

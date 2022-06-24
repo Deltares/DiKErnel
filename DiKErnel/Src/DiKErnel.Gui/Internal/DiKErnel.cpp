@@ -124,7 +124,9 @@ namespace DiKErnel::Gui
         _startEnabled = !_inputFilePath.value().isEmpty() && !_outputFilePath.value().isEmpty();
     }
 
-    void DiKErnel::StartCalculation()
+    void DiKErnel::StartCalculation(
+        const bool validateJsonFormat,
+        const bool writeMetaData)
     {
         try
         {
@@ -207,17 +209,21 @@ namespace DiKErnel::Gui
 
             AddMessage(QString("De resultaten van de berekening worden naar bestand \"%1\" geschreven...").arg(outputFilePathString));
 
+            vector<pair<string, variant<double, string>>> metaDataItems;
+
+            if (writeMetaData)
+            {
+                metaDataItems.emplace_back(pair<string, variant<double, string>>("Versie", ApplicationHelper::GetApplicationVersionString()));
+                metaDataItems.emplace_back(pair<string, variant<double, string>>("Besturingssysteem", ApplicationHelper::GetOperatingSystemName()));
+                metaDataItems.emplace_back(pair<string, variant<double, string>>("DatumTijd", ApplicationHelper::GetFormattedDateTimeString()));
+                metaDataItems.emplace_back(pair<string, variant<double, string>>("Rekentijd", elapsed.count()));
+            }
+
             const auto outputComposerResult = JsonOutputComposer::WriteCalculationOutputToJson(
                 outputFilePathStdString,
                 *calculatorResult->GetData(),
                 JsonOutputType::Damage,
-                vector
-                {
-                    pair<string, variant<double, string>>("Versie", ApplicationHelper::GetApplicationVersionString()),
-                    pair<string, variant<double, string>>("Besturingssysteem", ApplicationHelper::GetOperatingSystemName()),
-                    pair<string, variant<double, string>>("DatumTijd", ApplicationHelper::GetFormattedDateTimeString()),
-                    pair<string, variant<double, string>>("Rekentijd", elapsed.count())
-                }
+                metaDataItems
             );
 
             LogEventsWhenApplicable("De volgende meldingen zijn opgetreden tijdens het schrijven van de resultaten:",

@@ -85,7 +85,9 @@ namespace DiKErnel::Gui
 
             void SetStartEnabled();
 
-            void StartCalculation();
+            void StartCalculation(
+                bool validateJsonFormat,
+                bool writeMetaData);
 
             void ClearLogMessages();
 
