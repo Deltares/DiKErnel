@@ -8,19 +8,6 @@
   ],
   "additionalProperties": false,
   "properties": {
-    "procesdata": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "uitvoerRekenresultaten": {
-          "enum": [
-            "falen",
-            "schade",
-            "fysica"
-          ]
-        }
-      }
-    },
     "rekendata": {
       "type": "object",
       "required": [
