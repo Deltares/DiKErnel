@@ -145,7 +145,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
     unique_ptr<CharacteristicPointType> JsonInputAdapter::ConvertCharacteristicPointType(
         const JsonInputCharacteristicPointType jsonCharacteristicPointType)
     {
-        unique_ptr<CharacteristicPointType> characteristicPointType = nullptr;
+        unique_ptr<CharacteristicPointType> characteristicPointType;
 
         switch (jsonCharacteristicPointType)
         {
