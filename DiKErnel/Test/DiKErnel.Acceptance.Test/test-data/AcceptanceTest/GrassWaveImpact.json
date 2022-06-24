@@ -1,226 +1,224 @@
 {
-    "rekendata": {
-        "tijdstippen": [
+    "tijdstippen": [
+        0,
+        900,
+        1800,
+        2700,
+        3600,
+        4500,
+        5400,
+        6300,
+        7200,
+        8100,
+        9000,
+        9900,
+        10800,
+        11700,
+        12600,
+        13500,
+        14400,
+        15300,
+        16200,
+        17100,
+        18000,
+        18900,
+        19800,
+        20700
+    ],
+    "hydraulischeBelastingen": {
+        "waterstanden": [
+            0.5,
+            0.55,
+            0.6,
+            0.65,
+            0.7,
+            0.75,
+            0.8,
+            0.85,
+            0.9,
+            0.95,
+            1,
+            1,
+            1,
+            0.95,
+            0.9,
+            0.85,
+            0.8,
+            0.75,
+            0.7,
+            0.65,
+            0.6,
+            0.55,
+            0.5
+        ],
+        "golfhoogtenHm0": [
+            0.5,
+            0.6,
+            0.65,
+            0.7,
+            0.75,
+            0.8,
+            0.85,
+            0.9,
+            0.95,
+            1,
+            1.1,
+            1.1,
+            1.1,
+            1.2,
+            1.2,
+            1.2,
+            1.1,
+            1.1,
+            1,
+            1,
+            0.95,
+            0.95,
+            0.9
+        ],
+        "golfperiodenTm10": [
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5
+        ],
+        "golfhoeken": [
             0,
-            900,
-            1800,
-            2700,
-            3600,
-            4500,
-            5400,
-            6300,
-            7200,
-            8100,
-            9000,
-            9900,
-            10800,
-            11700,
-            12600,
-            13500,
-            14400,
-            15300,
-            16200,
-            17100,
-            18000,
-            18900,
-            19800,
-            20700
+            10,
+            10,
+            15,
+            15,
+            20,
+            20,
+            15,
+            10,
+            5,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ]
+    },
+    "dijkprofiel": {
+        "posities": [
+            -30,
+            -20,
+            -10,
+            0,
+            5,
+            10,
+            15,
+            20,
+            25,
+            30,
+            35,
+            40,
+            45,
+            50,
+            55,
+            60,
+            65
         ],
-        "hydraulischeBelastingen": {
-            "waterstanden": [
-                0.5,
-                0.55,
-                0.6,
-                0.65,
-                0.7,
-                0.75,
-                0.8,
-                0.85,
-                0.9,
-                0.95,
-                1,
-                1,
-                1,
-                0.95,
-                0.9,
-                0.85,
-                0.8,
-                0.75,
-                0.7,
-                0.65,
-                0.6,
-                0.55,
-                0.5
-            ],
-            "golfhoogtenHm0": [
-                0.5,
-                0.6,
-                0.65,
-                0.7,
-                0.75,
-                0.8,
-                0.85,
-                0.9,
-                0.95,
-                1,
-                1.1,
-                1.1,
-                1.1,
-                1.2,
-                1.2,
-                1.2,
-                1.1,
-                1.1,
-                1,
-                1,
-                0.95,
-                0.95,
-                0.9
-            ],
-            "golfperiodenTm10": [
-                5,
-                5,
-                5,
-                5,
-                5,
-                5,
-                5,
-                5,
-                5,
-                5,
-                5,
-                5,
-                5,
-                5,
-                5,
-                5,
-                5,
-                5,
-                5,
-                5,
-                5,
-                5,
-                5
-            ],
-            "golfhoeken": [
-                0,
-                10,
-                10,
-                15,
-                15,
-                20,
-                20,
-                15,
-                10,
-                5,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0
-            ]
-        },
-        "dijkprofiel": {
-            "posities": [
-                -30,
-                -20,
-                -10,
-                0,
-                5,
-                10,
-                15,
-                20,
-                25,
-                30,
-                35,
-                40,
-                45,
-                50,
-                55,
-                60,
-                65
-            ],
-            "hoogten": [
-                -0.3,
-                0,
-                0.2,
-                0.4,
-                0.5,
-                2.1,
-                3.5,
-                3.9,
-                4.1,
-                5.2,
-                6.1,
-                7,
-                7.1,
-                6.9,
-                5.9,
-                5,
-                4.2
-            ],
-            "teenBuitenzijde": 0,
-            "kruinBermBuitenzijde": 15,
-            "insteekBermBuitenzijde": 25,
-            "kruinBuitenzijde": 40
-        },
-        "locaties": [
-            {
-                "positie": 5.0,
-                "rekenmethode": "grasGolfklap",
-                "typeToplaag": "grasGeslotenZode"
-            },
-            {
-                "positie": 5.0,
-                "rekenmethode": "grasGolfklap",
-                "typeToplaag": "grasOpenZode"
-            }
+        "hoogten": [
+            -0.3,
+            0,
+            0.2,
+            0.4,
+            0.5,
+            2.1,
+            3.5,
+            3.9,
+            4.1,
+            5.2,
+            6.1,
+            7,
+            7.1,
+            6.9,
+            5.9,
+            5,
+            4.2
         ],
-        "rekenmethoden": [
-            {
-                "rekenmethode": "grasGolfklap",
-                "toplagen": [
-                    {
-                        "typeToplaag": "grasGeslotenZode",
-                        "standtijdlijn": {
-                            "a": 1.0,
-                            "b": -0.00000972222222,
-                            "c": 0.25
-                        }
-                    },
-                    {
-                        "typeToplaag": "grasOpenZode",
-                        "standtijdlijn": {
-                            "a": 0.8,
-                            "b": -0.0000194444444,
-                            "c": 0.25
-                        }
+        "teenBuitenzijde": 0,
+        "kruinBermBuitenzijde": 15,
+        "insteekBermBuitenzijde": 25,
+        "kruinBuitenzijde": 40
+    },
+    "locaties": [
+        {
+            "positie": 5.0,
+            "rekenmethode": "grasGolfklap",
+            "typeToplaag": "grasGeslotenZode"
+        },
+        {
+            "positie": 5.0,
+            "rekenmethode": "grasGolfklap",
+            "typeToplaag": "grasOpenZode"
+        }
+    ],
+    "rekenmethoden": [
+        {
+            "rekenmethode": "grasGolfklap",
+            "toplagen": [
+                {
+                    "typeToplaag": "grasGeslotenZode",
+                    "standtijdlijn": {
+                        "a": 1.0,
+                        "b": -0.00000972222222,
+                        "c": 0.25
                     }
-                ],
-                "temax": 3600000,
-                "temin": 3.6,
-                "impactGolfhoek": {
-                    "n": 0.67,
-                    "q": 0.35,
-                    "r": 10.0
                 },
-                "belastingzone": {
-                    "bovengrens": {
-                        "a": 0.0
-                    },
-                    "ondergrens": {
-                        "a": 0.5
+                {
+                    "typeToplaag": "grasOpenZode",
+                    "standtijdlijn": {
+                        "a": 0.8,
+                        "b": -0.0000194444444,
+                        "c": 0.25
                     }
                 }
+            ],
+            "temax": 3600000,
+            "temin": 3.6,
+            "impactGolfhoek": {
+                "n": 0.67,
+                "q": 0.35,
+                "r": 10.0
+            },
+            "belastingzone": {
+                "bovengrens": {
+                    "a": 0.0
+                },
+                "ondergrens": {
+                    "a": 0.5
+                }
             }
-        ]
-    }
+        }
+    ]
 }

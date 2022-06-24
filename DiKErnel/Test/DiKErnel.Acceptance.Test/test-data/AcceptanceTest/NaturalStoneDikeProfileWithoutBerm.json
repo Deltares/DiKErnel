@@ -1,165 +1,163 @@
 {
-    "rekendata": {
-        "tijdstippen": [
+    "tijdstippen": [
+        0,
+        900,
+        1800,
+        2700,
+        3600,
+        4500,
+        5400,
+        6300,
+        7200,
+        8100
+    ],
+    "hydraulischeBelastingen": {
+        "waterstanden": [
+            1,
+            1.5,
+            1.7,
+            1.9,
+            2,
+            1.9,
+            1.7,
+            1.5,
+            1
+        ],
+        "golfhoogtenHm0": [
+            1.5,
+            1.7,
+            2.2,
+            2.4,
+            2.6,
+            2.4,
+            2.1,
+            1.9,
+            1.8
+        ],
+        "golfperiodenTm10": [
+            4.8,
+            5,
+            5.3,
+            5.4,
+            5.7,
+            5.8,
+            5.8,
+            5.6,
+            5.5
+        ],
+        "golfhoeken": [
             0,
-            900,
-            1800,
-            2700,
-            3600,
-            4500,
-            5400,
-            6300,
-            7200,
-            8100
+            0,
+            2,
+            5,
+            10,
+            5,
+            2,
+            0,
+            0
+        ]
+    },
+    "dijkprofiel": {
+        "posities": [
+            -30,
+            -20,
+            -10,
+            0,
+            5,
+            10,
+            15,
+            20,
+            25,
+            30,
+            35,
+            40,
+            45,
+            50,
+            55,
+            60,
+            65
         ],
-        "hydraulischeBelastingen": {
-            "waterstanden": [
-                1,
-                1.5,
-                1.7,
-                1.9,
-                2,
-                1.9,
-                1.7,
-                1.5,
-                1
-            ],
-            "golfhoogtenHm0": [
-                1.5,
-                1.7,
-                2.2,
-                2.4,
-                2.6,
-                2.4,
-                2.1,
-                1.9,
-                1.8
-            ],
-            "golfperiodenTm10": [
-                4.8,
-                5,
-                5.3,
-                5.4,
-                5.7,
-                5.8,
-                5.8,
-                5.6,
-                5.5
-            ],
-            "golfhoeken": [
-                0,
-                0,
-                2,
-                5,
-                10,
-                5,
-                2,
-                0,
-                0
-            ]
-        },
-        "dijkprofiel": {
-            "posities": [
-                -30,
-                -20,
-                -10,
-                0,
-                5,
-                10,
-                15,
-                20,
-                25,
-                30,
-                35,
-                40,
-                45,
-                50,
-                55,
-                60,
-                65
-            ],
-            "hoogten": [
-                -2,
-                -1.8,
-                -1.5,
-                0,
-                1.6,
-                3.3,
-                4.7,
-                5.9,
-                7.2,
-                8.5,
-                9.2,
-                9.3,
-                9.4,
-                9.4,
-                9,
-                8.6,
-                8
-            ],
-            "teenBuitenzijde": -10.0,
-            "kruinBuitenzijde": 40.0
-        },
-        "locaties": [
-            {
-                "positie": 5.0,
-                "rekenmethode": "natuursteen",
-                "typeToplaag": "noorseSteen",
-                "relatieveDichtheid": 1.65,
-                "dikteToplaag": 0.3
-            }
+        "hoogten": [
+            -2,
+            -1.8,
+            -1.5,
+            0,
+            1.6,
+            3.3,
+            4.7,
+            5.9,
+            7.2,
+            8.5,
+            9.2,
+            9.3,
+            9.4,
+            9.4,
+            9,
+            8.6,
+            8
         ],
-        "rekenmethoden": [
-            {
-                "rekenmethode": "natuursteen",
-                "toplagen": [
-                    {
-                        "typeToplaag": "noorseSteen",
-                        "stabiliteit": {
-                            "xib": 2.9,
-                            "plunging": {
-                                "a": 4,
-                                "b": 0,
-                                "c": 0,
-                                "n": -0.9
-                            },
-                            "surging": {
-                                "a": 0.8,
-                                "b": 0,
-                                "c": 0,
-                                "n": 0.6
-                            }
+        "teenBuitenzijde": -10.0,
+        "kruinBuitenzijde": 40.0
+    },
+    "locaties": [
+        {
+            "positie": 5.0,
+            "rekenmethode": "natuursteen",
+            "typeToplaag": "noorseSteen",
+            "relatieveDichtheid": 1.65,
+            "dikteToplaag": 0.3
+        }
+    ],
+    "rekenmethoden": [
+        {
+            "rekenmethode": "natuursteen",
+            "toplagen": [
+                {
+                    "typeToplaag": "noorseSteen",
+                    "stabiliteit": {
+                        "xib": 2.9,
+                        "plunging": {
+                            "a": 4,
+                            "b": 0,
+                            "c": 0,
+                            "n": -0.9
+                        },
+                        "surging": {
+                            "a": 0.8,
+                            "b": 0,
+                            "c": 0,
+                            "n": 0.6
                         }
                     }
-                ],
-                "hellingvlak": {
-                    "bovenzijde": 0.05,
-                    "onderzijde": 1.5
-                },
-                "belastingzone": {
-                    "bovengrens": {
-                        "a": 0.1,
-                        "b": 0.6,
-                        "c": 4.0
-                    },
-                    "ondergrens": {
-                        "a": 0.1,
-                        "b": 0.2,
-                        "c": 4.0
-                    }
-                },
-                "afstandMaximaleStijghoogte": {
-                    "a": 0.42,
-                    "b": 0.9
-                },
-                "maatgevendeBreedteGolfklap": {
-                    "a": 0.96,
-                    "b": 0.11
-                },
-                "impactGolfhoek": {
-                    "betaMax": 78
                 }
+            ],
+            "hellingvlak": {
+                "bovenzijde": 0.05,
+                "onderzijde": 1.5
+            },
+            "belastingzone": {
+                "bovengrens": {
+                    "a": 0.1,
+                    "b": 0.6,
+                    "c": 4.0
+                },
+                "ondergrens": {
+                    "a": 0.1,
+                    "b": 0.2,
+                    "c": 4.0
+                }
+            },
+            "afstandMaximaleStijghoogte": {
+                "a": 0.42,
+                "b": 0.9
+            },
+            "maatgevendeBreedteGolfklap": {
+                "a": 0.96,
+                "b": 0.11
+            },
+            "impactGolfhoek": {
+                "betaMax": 78
             }
-        ]
-    }
+        }
+    ]
 }

@@ -1,23 +1,21 @@
 {
-    "rekendata": {
-        "tijdstippen": [],
-        "hydraulischeBelastingen": {
-            "waterstanden": [],
-            "golfhoogtenHm0": [],
-            "golfperiodenTm10": [],
-            "golfhoeken": []
-        },
-        "dijkprofiel": {
-            "posities": [],
-            "hoogten": []
-        },
-        "locaties": [
-            {
-                "positie": 0,
-                "rekenmethode": "grasGolfoploop",
-                "typeToplaag": "grasGeslotenZode",
-                "tanA": 0.3
-            }
-        ]
-    }
+    "tijdstippen": [],
+    "hydraulischeBelastingen": {
+        "waterstanden": [],
+        "golfhoogtenHm0": [],
+        "golfperiodenTm10": [],
+        "golfhoeken": []
+    },
+    "dijkprofiel": {
+        "posities": [],
+        "hoogten": []
+    },
+    "locaties": [
+        {
+            "positie": 0,
+            "rekenmethode": "grasGolfoploop",
+            "typeToplaag": "grasGeslotenZode",
+            "tanA": 0.3
+        }
+    ]
 }

@@ -1,152 +1,150 @@
 {
-    "rekendata": {
-        "tijdstippen": [
+    "tijdstippen": [
+        0,
+        900,
+        1800,
+        2700,
+        3600,
+        4500,
+        5400,
+        6300,
+        7200,
+        8100,
+        9000,
+        9900,
+        10800,
+        11700,
+        12600,
+        13500,
+        14400
+    ],
+    "hydraulischeBelastingen": {
+        "waterstanden": [
             0,
-            900,
-            1800,
-            2700,
-            3600,
-            4500,
-            5400,
-            6300,
-            7200,
-            8100,
-            9000,
-            9900,
-            10800,
-            11700,
-            12600,
-            13500,
-            14400
+            0.01,
+            0.02,
+            0.03,
+            0.04,
+            0.05,
+            0.06,
+            0.07,
+            0.08,
+            0.09,
+            0.1,
+            0.11,
+            0.12,
+            0.13,
+            0.14,
+            0.15
         ],
-        "hydraulischeBelastingen": {
-            "waterstanden": [
-                0,
-                0.01,
-                0.02,
-                0.03,
-                0.04,
-                0.05,
-                0.06,
-                0.07,
-                0.08,
-                0.09,
-                0.1,
-                0.11,
-                0.12,
-                0.13,
-                0.14,
-                0.15
-            ],
-            "golfhoogtenHm0": [
-                0.8,
-                0.8,
-                0.8,
-                1.2,
-                1.2,
-                1.2,
-                1.6,
-                1.6,
-                1.6,
-                2,
-                2,
-                2,
-                2.4,
-                2.4,
-                2.4,
-                2.8
-            ],
-            "golfperiodenTm10": [
-                3,
-                4,
-                3,
-                4,
-                5,
-                4,
-                5,
-                6,
-                5,
-                6,
-                9,
-                6,
-                9,
-                10,
-                9,
-                10
-            ],
-            "golfhoeken": [
-                0,
-                0,
-                45,
-                0,
-                0,
-                45,
-                0,
-                0,
-                45,
-                0,
-                0,
-                45,
-                0,
-                0,
-                45,
-                0
-            ]
-        },
-        "dijkprofiel": {
-            "posities": [
-                0.0,
-                6.0,
-                12
-            ],
-            "hoogten": [
-                0.0,
-                1.5,
-                3.0
-            ],
-            "teenBuitenzijde": 0.0,
-            "kruinBuitenzijde": 12
-        },
-        "locaties": [
-            {
-                "positie": 4.0,
-                "beginschade": 0.0,
-                "rekenmethode": "grasGolfoploop",
-                "typeToplaag": "grasGeslotenZode",
-                "verhogingBelastingOvergangAlfaM": 1.0,
-                "verlagingSterkteOvergangAlfaS": 1.0,
-                "tanA": 0.25,
-                "bermFactorGammaB": 1.0,
-                "ruwheidsFactorGammaF": 1.0
-            }
+        "golfhoogtenHm0": [
+            0.8,
+            0.8,
+            0.8,
+            1.2,
+            1.2,
+            1.2,
+            1.6,
+            1.6,
+            1.6,
+            2,
+            2,
+            2,
+            2.4,
+            2.4,
+            2.4,
+            2.8
         ],
-        "rekenmethoden": [
-            {
-                "rekenmethode": "grasGolfoploop",
-                "faalgetal": 1.0,
-                "toplagen": [
-                    {
-                        "typeToplaag": "grasGeslotenZode",
-                        "kritiekeCumulatieveOverbelasting": 7000,
-                        "kritiekeFrontsnelheid": 4.0
-                    }
-                ],
-                "factorCtm": 0.92,
-                "representatieveGolfoploop2p": {
-                    "a": 1.65,
-                    "b": 4.0,
-                    "c": 1.5
-                },
-                "impactGolfhoek": {
-                    "aBeta": 0.0022,
-                    "betaMax": 80.0
-                },
-                "rekenprotocol": {
-                    "typeRekenprotocol": "rayleighDiscreet",
-                    "aantalGolvenVast": 10000,
-                    "frontsnelheid": 1.1
-                }
-            }
+        "golfperiodenTm10": [
+            3,
+            4,
+            3,
+            4,
+            5,
+            4,
+            5,
+            6,
+            5,
+            6,
+            9,
+            6,
+            9,
+            10,
+            9,
+            10
+        ],
+        "golfhoeken": [
+            0,
+            0,
+            45,
+            0,
+            0,
+            45,
+            0,
+            0,
+            45,
+            0,
+            0,
+            45,
+            0,
+            0,
+            45,
+            0
         ]
-    }
+    },
+    "dijkprofiel": {
+        "posities": [
+            0.0,
+            6.0,
+            12
+        ],
+        "hoogten": [
+            0.0,
+            1.5,
+            3.0
+        ],
+        "teenBuitenzijde": 0.0,
+        "kruinBuitenzijde": 12
+    },
+    "locaties": [
+        {
+            "positie": 4.0,
+            "beginschade": 0.0,
+            "rekenmethode": "grasGolfoploop",
+            "typeToplaag": "grasGeslotenZode",
+            "verhogingBelastingOvergangAlfaM": 1.0,
+            "verlagingSterkteOvergangAlfaS": 1.0,
+            "tanA": 0.25,
+            "bermFactorGammaB": 1.0,
+            "ruwheidsFactorGammaF": 1.0
+        }
+    ],
+    "rekenmethoden": [
+        {
+            "rekenmethode": "grasGolfoploop",
+            "faalgetal": 1.0,
+            "toplagen": [
+                {
+                    "typeToplaag": "grasGeslotenZode",
+                    "kritiekeCumulatieveOverbelasting": 7000,
+                    "kritiekeFrontsnelheid": 4.0
+                }
+            ],
+            "factorCtm": 0.92,
+            "representatieveGolfoploop2p": {
+                "a": 1.65,
+                "b": 4.0,
+                "c": 1.5
+            },
+            "impactGolfhoek": {
+                "aBeta": 0.0022,
+                "betaMax": 80.0
+            },
+            "rekenprotocol": {
+                "typeRekenprotocol": "rayleighDiscreet",
+                "aantalGolvenVast": 10000,
+                "frontsnelheid": 1.1
+            }
+        }
+    ]
 }

@@ -27,8 +27,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
     class JsonInputDefinitions
     {
         public:
-            inline static const std::string CALCULATION_DATA = "rekendata";
-
             inline static const std::string HYDRAULIC_LOADS = "hydraulischeBelastingen";
             inline static const std::string LOCATIONS = "locaties";
 

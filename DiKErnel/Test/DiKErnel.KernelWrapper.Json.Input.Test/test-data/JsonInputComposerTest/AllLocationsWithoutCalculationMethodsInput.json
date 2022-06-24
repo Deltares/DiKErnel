@@ -1,137 +1,135 @@
 {
-    "rekendata": {
-        "tijdstippen": [
+    "tijdstippen": [
+        0,
+        100,
+        500,
+        800,
+        1200,
+        2000
+    ],
+    "hydraulischeBelastingen": {
+        "waterstanden": [
+            0.1,
+            0.5,
+            1.15,
+            1.77,
+            2
+        ],
+        "golfhoogtenHm0": [
+            0.5,
+            0.8,
+            1.2,
+            1.5,
+            0.5
+        ],
+        "golfperiodenTm10": [
+            2,
+            6,
+            6,
+            7,
+            4
+        ],
+        "golfhoeken": [
+            -10,
+            -5,
             0,
-            100,
-            500,
-            800,
-            1200,
-            2000
-        ],
-        "hydraulischeBelastingen": {
-            "waterstanden": [
-                0.1,
-                0.5,
-                1.15,
-                1.77,
-                2
-            ],
-            "golfhoogtenHm0": [
-                0.5,
-                0.8,
-                1.2,
-                1.5,
-                0.5
-            ],
-            "golfperiodenTm10": [
-                2,
-                6,
-                6,
-                7,
-                4
-            ],
-            "golfhoeken": [
-                -10,
-                -5,
-                0,
-                7,
-                8
-            ]
-        },
-        "dijkprofiel": {
-            "posities": [
-                -30,
-                -20,
-                -10,
-                0,
-                5,
-                10,
-                15,
-                20,
-                25,
-                30,
-                35,
-                40,
-                45,
-                50,
-                55,
-                60,
-                65
-            ],
-            "hoogten": [
-                -11.85,
-                -8.95,
-                -6.05,
-                -3.15,
-                -1.7,
-                -0.25,
-                1.2,
-                2.65,
-                4.1,
-                5.55,
-                7,
-                8.45,
-                9.9,
-                11.35,
-                12.8,
-                14.25,
-                15.7
-            ],
-            "teenBuitenzijde": 30,
-            "kruinBermBuitenzijde": 40,
-            "insteekBermBuitenzijde": 50,
-            "kruinBuitenzijde": 65
-        },
-        "locaties": [
-            {
-                "positie": 8.79,
-                "rekenmethode": "natuursteen",
-                "typeToplaag": "noorseSteen",
-                "relatieveDichtheid": 1.65,
-                "dikteToplaag": 0.7
-            },
-            {
-                "positie": -18.4,
-                "rekenmethode": "grasGolfklap",
-                "typeToplaag": "grasGeslotenZode"
-            },
-            {
-                "positie": 4,
-                "rekenmethode": "grasGolfklap",
-                "typeToplaag": "grasOpenZode"
-            },
-            {
-                "positie": 0.98,
-                "rekenmethode": "grasGolfoploop",
-                "typeToplaag": "grasGeslotenZode",
-                "tanA": 0.8
-            },
-            {
-                "positie": 7.698,
-                "rekenmethode": "grasGolfoploop",
-                "typeToplaag": "grasOpenZode",
-                "tanA": 0.9
-            },
-            {
-                "positie": 19,
-                "rekenmethode": "asfaltGolfklap",
-                "typeToplaag": "waterbouwAsfaltBeton",
-                "breuksterkteAsfalt": 1.56,
-                "veerconstanteOndergrond": 56,
-                "toplaag": {
-                    "dikte": 0.16,
-                    "stijfheidsmodulus": 18214
-                },
-                "tanA": 0.233
-            }
-        ],
-        "rekenmethoden": [
-            {
-                "rekenmethode": "grasGolfoploop",
-                "rekenprotocol": {
-                    "typeRekenprotocol": "rayleighDiscreet"
-                }
-            }
+            7,
+            8
         ]
-    }
+    },
+    "dijkprofiel": {
+        "posities": [
+            -30,
+            -20,
+            -10,
+            0,
+            5,
+            10,
+            15,
+            20,
+            25,
+            30,
+            35,
+            40,
+            45,
+            50,
+            55,
+            60,
+            65
+        ],
+        "hoogten": [
+            -11.85,
+            -8.95,
+            -6.05,
+            -3.15,
+            -1.7,
+            -0.25,
+            1.2,
+            2.65,
+            4.1,
+            5.55,
+            7,
+            8.45,
+            9.9,
+            11.35,
+            12.8,
+            14.25,
+            15.7
+        ],
+        "teenBuitenzijde": 30,
+        "kruinBermBuitenzijde": 40,
+        "insteekBermBuitenzijde": 50,
+        "kruinBuitenzijde": 65
+    },
+    "locaties": [
+        {
+            "positie": 8.79,
+            "rekenmethode": "natuursteen",
+            "typeToplaag": "noorseSteen",
+            "relatieveDichtheid": 1.65,
+            "dikteToplaag": 0.7
+        },
+        {
+            "positie": -18.4,
+            "rekenmethode": "grasGolfklap",
+            "typeToplaag": "grasGeslotenZode"
+        },
+        {
+            "positie": 4,
+            "rekenmethode": "grasGolfklap",
+            "typeToplaag": "grasOpenZode"
+        },
+        {
+            "positie": 0.98,
+            "rekenmethode": "grasGolfoploop",
+            "typeToplaag": "grasGeslotenZode",
+            "tanA": 0.8
+        },
+        {
+            "positie": 7.698,
+            "rekenmethode": "grasGolfoploop",
+            "typeToplaag": "grasOpenZode",
+            "tanA": 0.9
+        },
+        {
+            "positie": 19,
+            "rekenmethode": "asfaltGolfklap",
+            "typeToplaag": "waterbouwAsfaltBeton",
+            "breuksterkteAsfalt": 1.56,
+            "veerconstanteOndergrond": 56,
+            "toplaag": {
+                "dikte": 0.16,
+                "stijfheidsmodulus": 18214
+            },
+            "tanA": 0.233
+        }
+    ],
+    "rekenmethoden": [
+        {
+            "rekenmethode": "grasGolfoploop",
+            "rekenprotocol": {
+                "typeRekenprotocol": "rayleighDiscreet"
+            }
+        }
+    ]
 }
