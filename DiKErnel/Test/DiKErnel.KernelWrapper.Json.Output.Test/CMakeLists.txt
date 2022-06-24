@@ -29,6 +29,7 @@ source_group(${EXCEPTIONS_FOLDER} FILES ${SOURCEFILES_EXCEPTIONS})
 target_link_libraries(${EXENAME} PUBLIC
   DiKErnel.Core
   DiKErnel.Core.TestUtil
+  DiKErnel.Integration
   DiKErnel.KernelWrapper.Json.Output
   DiKErnel.TestUtil
   DiKErnel.Util.TestUtil
