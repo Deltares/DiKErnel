@@ -24,7 +24,7 @@
 #include <nlohmann/json.hpp>
 
 #include "DataResult.h"
-#include "JsonInputComposerResult.h"
+#include "ICalculationInput.h"
 #include "JsonSchemaDefinition.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input

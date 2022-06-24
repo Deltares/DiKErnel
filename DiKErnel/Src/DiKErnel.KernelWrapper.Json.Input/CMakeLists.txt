@@ -15,8 +15,6 @@ set(EMBEDDED_RESOURCES_FOLDER EmbeddedResources)
 set(SOURCEFILES_PUBLIC
   ${PUBLIC_FOLDER}/JsonInputComposer.cpp
   ${PUBLIC_FOLDER}/JsonInputComposer.h
-  ${PUBLIC_FOLDER}/JsonInputComposerResult.cpp
-  ${PUBLIC_FOLDER}/JsonInputComposerResult.h
 )
 
 set(SOURCEFILES_PUBLIC_DATA

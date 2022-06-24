@@ -7,7 +7,6 @@ set(EXCEPTIONS_FOLDER Exceptions)
 # Define sources
 set(SOURCEFILES_ROOT
   JsonInputComposerTest.cpp
-  JsonInputComposerResultTest.cpp
   Main.cpp
 )
 
