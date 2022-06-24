@@ -359,6 +359,7 @@ Rectangle {
     }
 
     RowLayout {
+        id: buttonGroup
         x: 471
         y: 283
         width: 413
@@ -380,5 +381,9 @@ Rectangle {
             text: qsTr("Fysica")
             Layout.preferredWidth: parent.width / 3
         }
+    }
+
+    ButtonGroup {
+        buttons: buttonGroup.children
     }
 }
