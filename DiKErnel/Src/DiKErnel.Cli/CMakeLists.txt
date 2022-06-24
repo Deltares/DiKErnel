@@ -20,6 +20,7 @@ set(SOURCEFILES
 )
 
 set(INTERNAL_SOURCEFILES
+  ${INTERNAL_FOLDER}/ArgumentType.h
   ${INTERNAL_FOLDER}/CommandLineArgumentParser.cpp
   ${INTERNAL_FOLDER}/CommandLineArgumentParser.h
 )

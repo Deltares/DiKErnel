@@ -21,6 +21,9 @@
 #pragma once
 
 #include <string>
+#include <vector>
+
+#include "ArgumentType.h"
 
 namespace DiKErnel::Cli
 {
@@ -50,6 +53,15 @@ namespace DiKErnel::Cli
             std::string _jsonInputFilePath;
             std::string _jsonOutputFilePath;
             std::string _logOutputFilePath;
+
+            static inline std::vector<std::pair<std::string, unsigned int>> _argumentOptions =
+            {
+                std::pair<std::string, unsigned int>("invoerbestand", Required | WithArgument),
+                std::pair<std::string, unsigned int>("uitvoerbestand", Required | WithArgument),
+                std::pair<std::string, unsigned int>("uitvoerniveau ", Optional | WithArgument),
+                std::pair<std::string, unsigned int>("niet-schrijven-meta-informatie ", Optional),
+                std::pair<std::string, unsigned int>("niet-valideren-json-formaat  ", Optional),
+            };
 
             static bool ValidateArguments(
                 int argc,
