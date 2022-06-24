@@ -57,22 +57,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
             },
         });
 
-    NLOHMANN_JSON_SERIALIZE_ENUM(JsonInputProcessType,
-        {
-            {
-                JsonInputProcessType::Unknown, nullptr
-            },
-            {
-                JsonInputProcessType::Failure, JsonInputDefinitions::PROCESS_TYPE_FAILURE
-            },
-            {
-                JsonInputProcessType::Damage, JsonInputDefinitions::PROCESS_TYPE_DAMAGE
-            },
-            {
-                JsonInputProcessType::Physics, JsonInputDefinitions::PROCESS_TYPE_PHYSICS
-            }
-        });
-
     unique_ptr<JsonInputData> JsonInputParser::GetJsonInputData(
         const string& filePath)
     {
@@ -96,23 +80,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
     {
         ifstream ifs(filePath);
         return json::parse(ifs);
-    }
-
-    unique_ptr<JsonInputProcessData> JsonInputParser::ParseProcessData(
-        const json& readJson)
-    {
-        unique_ptr<JsonInputProcessType> readProcessType = nullptr;
-
-        if (readJson.contains(JsonInputDefinitions::PROCESS_DATA))
-        {
-            const auto& readProcessData = readJson.at(JsonInputDefinitions::PROCESS_DATA);
-            readProcessType = make_unique<JsonInputProcessType>(readProcessData.at(JsonInputDefinitions::PROCESS_TYPE).get<JsonInputProcessType>());
-        }
-
-        auto processData = make_unique<JsonInputProcessData>();
-        processData->SetProcessType(move(readProcessType));
-
-        return processData;
     }
 
     vector<int> JsonInputParser::ParseTime(

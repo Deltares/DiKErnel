@@ -23,7 +23,6 @@
 #include <memory>
 
 #include "JsonInputCalculationData.h"
-#include "JsonInputProcessData.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {

@@ -26,8 +26,6 @@
 #include <QUrl>
 
 #include "Event.h"
-#include "JsonInputProcessType.h"
-#include "JsonOutputType.h"
 
 namespace DiKErnel::Gui
 {
