@@ -46,6 +46,9 @@ namespace DiKErnel::Cli
             [[nodiscard]]
             std::string GetLogOutputFilePath() const;
 
+            [[nodiscard]]
+            std::string GetOutputLevel() const;
+
             static std::string GetHelpMessage();
 
         private:
@@ -68,7 +71,7 @@ namespace DiKErnel::Cli
                 std::pair<std::string, unsigned int>(_noMetaInformationKey, Optional),
                 std::pair<std::string, unsigned int>(_noJsonSchemaValidationKey, Optional)
             };
-            
+
             bool ReadArguments(
                 int argc,
                 char** argv);
@@ -78,9 +81,14 @@ namespace DiKErnel::Cli
             static bool FilePathArgumentHasValidExtension(
                 const std::string& filePathArgument);
 
-            bool OutputLevelHasValidValue();
+            bool OutputLevelHasValidValue() const;
 
             [[nodiscard]]
             std::string CreateLogOutputFilePath() const;
+
+            template <typename TKey, typename TValue>
+            static bool ContainsKey(
+                std::map<TKey, TValue> map,
+                TKey key);
     };
 }

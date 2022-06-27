@@ -46,6 +46,9 @@ using namespace std::chrono;
 void RemoveFileWhenExists(
     const string& filePath);
 
+JsonOutputType ConvertOutputType(
+    const string& outputTypeString);
+
 void WriteToLogFile(
     const vector<reference_wrapper<Event>>& events);
 
@@ -127,7 +130,7 @@ int main(
         const auto outputComposerResult = JsonOutputComposer::WriteCalculationOutputToJson(
             jsonOutputFilePath,
             *calculatorResult->GetData(),
-            JsonOutputType::Damage,
+            ConvertOutputType(parser.GetOutputLevel()),
             vector
             {
                 pair<string, variant<double, string>>("Versie", ApplicationHelper::GetApplicationVersionString()),
@@ -161,6 +164,27 @@ void RemoveFileWhenExists(
     {
         filesystem::remove(filePath);
     }
+}
+
+JsonOutputType ConvertOutputType(
+    const string& outputTypeString)
+{
+    if(outputTypeString == "falen")
+    {
+        return JsonOutputType::Failure;
+    }
+
+    if(outputTypeString == "schade")
+    {
+        return JsonOutputType::Damage;
+    }
+
+    if(outputTypeString == "fysica")
+    {
+        return JsonOutputType::Physics;
+    }
+
+    return JsonOutputType::Damage;
 }
 
 void WriteToLogFile(

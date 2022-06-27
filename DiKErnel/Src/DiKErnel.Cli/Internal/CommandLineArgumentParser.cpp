@@ -61,6 +61,13 @@ namespace DiKErnel::Cli
         return _logOutputFilePath;
     }
 
+    string CommandLineArgumentParser::GetOutputLevel() const
+    {
+        return ContainsKey(_readArguments, _outputLevelKey)
+            ? _readArguments.at(_outputLevelKey)
+            : "";
+    }
+
     string CommandLineArgumentParser::GetHelpMessage()
     {
         stringstream message;
@@ -93,9 +100,9 @@ namespace DiKErnel::Cli
                 auto key = readArgument.substr(2);
                 string value;
 
-                if (const auto& foundArgument = _argumentOptions.find(key); foundArgument != _argumentOptions.end())
+                if (ContainsKey(_argumentOptions, key))
                 {
-                    if (foundArgument->second & WithArgument)
+                    if (_argumentOptions.at(readArgument) & WithArgument)
                     {
                         value = argv[++i];
                     }
@@ -133,11 +140,11 @@ namespace DiKErnel::Cli
         return path(filePathArgument).extension() == ".json";
     }
 
-    bool CommandLineArgumentParser::OutputLevelHasValidValue()
+    bool CommandLineArgumentParser::OutputLevelHasValidValue() const
     {
-        if (const auto& readArgument = _readArguments.find(_outputLevelKey); readArgument == _readArguments.end())
+        if (ContainsKey(_readArguments, _outputLevelKey))
         {
-            const auto& value = readArgument->second;
+            const auto& value = _readArguments.at(_outputLevelKey);
             return value == "falen" || value == "schade" || value == "fysica";
         }
         return true;
@@ -150,5 +157,13 @@ namespace DiKErnel::Cli
         const auto outputFileName = outputFilePath.stem().u8string();
 
         return (outputDirectory / (outputFileName + ".log")).u8string();
+    }
+
+    template <typename TKey, typename TValue>
+    bool CommandLineArgumentParser::ContainsKey(
+        std::map<TKey, TValue> map,
+        TKey key)
+    {
+        return map.find(key) != map.end();
     }
 }
