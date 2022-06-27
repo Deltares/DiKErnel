@@ -300,9 +300,7 @@ Rectangle {
                     text: display
                 }
             }
-            onCountChanged: {
-                positionViewAtEnd()
-            }
+            onCountChanged: positionViewAtEnd()
         }
     }
 
@@ -311,9 +309,7 @@ Rectangle {
         nameFilters : ["Json-bestanden (*.json)"]
         title: "Selecteer een bestand"
         fileMode: FileDialog.OpenFile
-        onAccepted: {
-            dikernelApplication.SetInputFilePath(inputFileDialog.selectedFile)
-        }
+        onAccepted: dikernelApplication.SetInputFilePath(inputFileDialog.selectedFile)
     }
 
     FileDialog {
@@ -321,9 +317,7 @@ Rectangle {
         nameFilters : ["Json-bestanden (*.json)"]
         title: "Selecteer een bestand"
         fileMode: FileDialog.SaveFile
-        onAccepted: {
-            dikernelApplication.SetOutputFilePath(outputFileDialog.selectedFile)
-        }
+        onAccepted: dikernelApplication.SetOutputFilePath(outputFileDialog.selectedFile)
     }
 
     Label {
