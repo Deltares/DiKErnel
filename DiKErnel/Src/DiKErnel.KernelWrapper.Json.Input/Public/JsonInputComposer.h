@@ -54,6 +54,19 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 const std::string& filePath);
 
         private:
+            class CustomErrorHandler final : public nlohmann::json_schema::basic_error_handler
+            {
+                void error(
+                    const nlohmann::json_pointer<nlohmann::basic_json<>>& pointer,
+                    const nlohmann::json& instance,
+                    const std::string& message) override
+                {
+                    throw std::invalid_argument(std::string("At ") + pointer.to_string() + " of " + instance.dump() + " - " + message);
+                }
+            };
+
+            inline static std::unique_ptr<CustomErrorHandler> _customErrorHandler = std::make_unique<CustomErrorHandler>();
+
             inline static nlohmann::json_schema::json_validator _validator
             {
                 nlohmann::json::parse(JSON_SCHEMA_DEFINITION)

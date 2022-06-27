@@ -44,7 +44,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
         try
         {
-            _validator.validate(json::parse(ifstream(filePath)));
+            _validator.validate(json::parse(ifstream(filePath)), *_customErrorHandler);
         }
         catch (const json::parse_error& e)
         {
