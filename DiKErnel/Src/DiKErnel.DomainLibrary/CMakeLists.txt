@@ -68,6 +68,8 @@ set(SOURCEFILES_PUBLIC_VALIDATORS
   ${PUBLIC_VALIDATORS_FOLDER}/GenericValidator.h
   ${PUBLIC_VALIDATORS_FOLDER}/HydraulicLoadsValidator.cpp
   ${PUBLIC_VALIDATORS_FOLDER}/HydraulicLoadsValidator.h
+  ${PUBLIC_VALIDATORS_FOLDER}/ProfileValidator.cpp
+  ${PUBLIC_VALIDATORS_FOLDER}/ProfileValidator.h
   ${PUBLIC_VALIDATORS_FOLDER}/RevetmentValidator.cpp
   ${PUBLIC_VALIDATORS_FOLDER}/RevetmentValidator.h
   ${PUBLIC_VALIDATORS_FOLDER}/TimeStepValidator.cpp
