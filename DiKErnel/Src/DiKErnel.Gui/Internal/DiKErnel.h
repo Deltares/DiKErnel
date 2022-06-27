@@ -26,6 +26,7 @@
 #include <QUrl>
 
 #include "Event.h"
+#include "JsonOutputType.h"
 
 namespace DiKErnel::Gui
 {
@@ -104,6 +105,9 @@ namespace DiKErnel::Gui
             void LogMessagesChanged();
 
         private:
+            static KernelWrapper::Json::Output::JsonOutputType GetOutputType(
+                int outputTypeId);
+
             void AddMessage(
                 const QString& message);
 

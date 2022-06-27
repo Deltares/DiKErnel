@@ -241,7 +241,7 @@ namespace DiKErnel::Gui
             const auto outputComposerResult = JsonOutputComposer::WriteCalculationOutputToJson(
                 outputFilePathStdString,
                 *calculatorResult->GetData(),
-                JsonOutputType::Damage,
+                GetOutputType(outputTypeId),
                 metaDataItems
             );
 
@@ -272,6 +272,22 @@ namespace DiKErnel::Gui
     {
         QClipboard* clipboard = QGuiApplication::clipboard();
         clipboard->setText(_stringList.join("\n"));
+    }
+
+    JsonOutputType DiKErnel::GetOutputType(
+        const int outputTypeId)
+    {
+        if (outputTypeId == 0)
+        {
+            return JsonOutputType::Failure;
+        }
+
+        if (outputTypeId == 1)
+        {
+            return JsonOutputType::Damage;
+        }
+
+        return JsonOutputType::Physics;
     }
 
     void DiKErnel::AddMessage(
