@@ -308,7 +308,7 @@ namespace DiKErnel::Gui
             for (const auto& logEventReference : events)
             {
                 const auto& logEvent = logEventReference.get();
-                AddMessage(QString("- %1: %2")
+                AddMessage(QString("- [%1] <i>%2</i>")
                            .arg(QString::fromUtf8(GetEventTypeString(logEvent.GetEventType())))
                            .arg(QString::fromUtf8(logEvent.GetMessage())));
             }
