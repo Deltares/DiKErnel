@@ -230,7 +230,13 @@ Rectangle {
         rightPadding: 20
         leftPadding: 20
         enabled: dikernelApplication.StartEnabled
-        onClicked: dikernelApplication.StartCalculation(validateJsonFormatSwitch.checked, writeMetaDataSwitch.checked)
+        onClicked: dikernelApplication.StartCalculation(validateJsonFormatSwitch.checked,
+                                                        writeMetaDataSwitch.checked,
+                                                        buttonGroup.checkedButton == failureButton
+                                                            ? 0
+                                                            : buttonGroup.checkedButton == damageButton
+                                                                 ? 1
+                                                                 : 2)
     }
 
     Button {
@@ -358,7 +364,7 @@ Rectangle {
     }
 
     RowLayout {
-        id: buttonGroup
+        id: buttonGroupLayout
         x: 471
         y: 283
         width: 413
@@ -366,23 +372,27 @@ Rectangle {
         spacing: 0
 
         CustomCheckableButton {
+            id: failureButton
             text: qsTr("Falen")
             checked: true
             Layout.preferredWidth: parent.width / 3
         }
 
         CustomCheckableButton {
+            id: damageButton
             text: qsTr("Schade")
             Layout.preferredWidth: parent.width / 3
         }
 
         CustomCheckableButton {
+            id: fysicsButton
             text: qsTr("Fysica")
             Layout.preferredWidth: parent.width / 3
         }
     }
 
     ButtonGroup {
-        buttons: buttonGroup.children
+        id: buttonGroup
+        buttons: buttonGroupLayout.children
     }
 }

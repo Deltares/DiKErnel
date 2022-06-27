@@ -127,7 +127,8 @@ namespace DiKErnel::Gui
 
     void DiKErnel::StartCalculation(
         const bool validateJsonFormat,
-        const bool writeMetaData)
+        const bool writeMetaData,
+        const int outputTypeId)
     {
         try
         {
