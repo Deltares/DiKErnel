@@ -39,6 +39,13 @@ namespace DiKErnel::Core
             virtual ~IProfileData() = default;
 
             /*!
+             * \brief Performs validation on the input.
+             * \return Whether the validation was successful.
+             */
+            [[nodiscard]]
+            virtual bool Validate() const = 0;
+
+            /*!
              * \brief Gets the profile points to use in the calculation.
              * \return The profile points to use in the calculation.
              */

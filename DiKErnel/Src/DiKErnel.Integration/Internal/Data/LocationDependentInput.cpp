@@ -48,8 +48,8 @@ namespace DiKErnel::Integration
     {
         const auto& characteristicPoints = profileData.GetCharacteristicPoints();
 
-        const auto outerToe = CharacteristicPointsHelper::GetCoordinatesForType(characteristicPoints, CharacteristicPointType::OuterToe);
-        const auto outerCrest = CharacteristicPointsHelper::GetCoordinatesForType(characteristicPoints, CharacteristicPointType::OuterCrest);
+        const auto& outerToe = CharacteristicPointsHelper::GetCoordinatesForType(characteristicPoints, CharacteristicPointType::OuterToe);
+        const auto& outerCrest = CharacteristicPointsHelper::GetCoordinatesForType(characteristicPoints, CharacteristicPointType::OuterCrest);
 
         vector<unique_ptr<ValidationIssue>> validationIssues;
         validationIssues.emplace_back(RevetmentValidator::X(_x, outerToe->first, outerCrest->first));
