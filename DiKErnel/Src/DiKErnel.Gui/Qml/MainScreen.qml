@@ -85,7 +85,7 @@ Rectangle {
         height: 110
 
         Label {
-            text: qsTr("DiKernel-gui")
+            text: qsTr("DiKErnel-gui")
             font.pointSize: 10
         }
 
