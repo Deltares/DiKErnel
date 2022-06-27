@@ -29,6 +29,7 @@ namespace DiKErnel::Core::TestUtil
     class IProfileDataMock : public IProfileData
     {
         public:
+            MOCK_METHOD(bool, Validate, (), (const, override));
             MOCK_METHOD(std::vector<std::reference_wrapper<ProfilePoint>>&, GetProfilePoints, (), (const, override));
             MOCK_METHOD(std::vector<std::reference_wrapper<CharacteristicPoint>>&, GetCharacteristicPoints, (), (const, override));
     };

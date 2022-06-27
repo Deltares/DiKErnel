@@ -73,6 +73,31 @@ namespace DiKErnel::System::Test
         EventAssertHelper::AssertEvent(EventType::Error, "WaveAngle must be in range {-180, 180].", events.at(4));
     }
 
+    TEST(ValidationSystemTest, GivenCalculationInputWithInvalidProfileData_WhenValidating_ThenReturnsExpectedValidationResult)
+    {
+        // Given
+        RevetmentCalculationInputBuilder builder;
+        builder.AddTimeStep(0, 100, 10, 5, 10, 30);
+
+        const AsphaltRevetmentWaveImpactLocationConstructionProperties asphaltRevetmentWaveImpactLocationConstructionProperties(
+            12, 0.3, AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete, 1, 0.5, 3, 2);
+
+        builder.AddAsphaltWaveImpactLocation(asphaltRevetmentWaveImpactLocationConstructionProperties);
+
+        const auto& calculationInput = builder.Build();
+
+        // When
+        const auto& validationResult = Validator::Validate(*calculationInput);
+
+        // Then
+        ASSERT_TRUE(validationResult->GetSuccessful());
+        ASSERT_EQ(ValidationResultType::Failed, *validationResult->GetData());
+        const auto& events = validationResult->GetEvents();
+        ASSERT_EQ(2, events.size());
+        EventAssertHelper::AssertEvent(EventType::Error, "The OuterToe must be defined.", events.at(0));
+        EventAssertHelper::AssertEvent(EventType::Error, "The OuterCrest must be defined.", events.at(1));
+    }
+
     TEST(ValidationSystemTest,
          GivenCalculationInputWithInvalidAsphaltRevetmentWaveImpactLocation_WhenValidating_ThenReturnsExpectedValidationResult)
     {

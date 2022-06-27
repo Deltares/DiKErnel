@@ -52,7 +52,10 @@ namespace DiKErnel::Integration
         const auto& outerCrest = CharacteristicPointsHelper::GetCoordinatesForType(characteristicPoints, CharacteristicPointType::OuterCrest);
 
         vector<unique_ptr<ValidationIssue>> validationIssues;
-        validationIssues.emplace_back(RevetmentValidator::X(_x, outerToe->first, outerCrest->first));
+        if (outerToe != nullptr && outerCrest != nullptr)
+        {
+            validationIssues.emplace_back(RevetmentValidator::X(_x, outerToe->first, outerCrest->first));
+        }
         validationIssues.emplace_back(RevetmentValidator::InitialDamage(_initialDamage));
         validationIssues.emplace_back(RevetmentValidator::FailureNumber(_failureNumber, _initialDamage));
 
