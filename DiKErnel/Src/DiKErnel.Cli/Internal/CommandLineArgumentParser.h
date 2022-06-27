@@ -20,8 +20,8 @@
 
 #pragma once
 
+#include <map>
 #include <string>
-#include <vector>
 
 #include "ArgumentType.h"
 
@@ -54,21 +54,23 @@ namespace DiKErnel::Cli
             std::string _jsonOutputFilePath;
             std::string _logOutputFilePath;
 
-            static inline std::vector<std::pair<std::string, unsigned int>> _argumentOptions =
+            std::map<std::string, std::string> _readArguments = std::map<std::string, std::string>();
+
+            static inline std::map<std::string, unsigned int> _argumentOptions =
             {
                 std::pair<std::string, unsigned int>("invoerbestand", Required | WithArgument),
                 std::pair<std::string, unsigned int>("uitvoerbestand", Required | WithArgument),
-                std::pair<std::string, unsigned int>("uitvoerniveau ", Optional | WithArgument),
-                std::pair<std::string, unsigned int>("niet-schrijven-meta-informatie ", Optional),
-                std::pair<std::string, unsigned int>("niet-valideren-json-formaat  ", Optional),
+                std::pair<std::string, unsigned int>("uitvoerniveau", Optional | WithArgument),
+                std::pair<std::string, unsigned int>("niet-schrijven-meta-informatie", Optional),
+                std::pair<std::string, unsigned int>("niet-valideren-json-formaat", Optional),
             };
 
-            static bool ValidateArguments(
-                int argc,
-                char** argv);
+            bool ValidateReadArguments();
 
             static bool FilePathArgumentHasValidExtension(
                 const std::string& filePathArgument);
+
+            bool OutputLevelHasValidValue();
 
             [[nodiscard]]
             std::string CreateLogOutputFilePath() const;

@@ -32,7 +32,31 @@ namespace DiKErnel::Cli
         const int argc,
         char** argv)
     {
-        if (!ValidateArguments(argc, argv))
+        for (int i = 1; i < argc; ++i)
+        {
+            if (string readArgument = argv[i]; readArgument.rfind("--", 0) != string::npos)
+            {
+                auto key = readArgument.substr(2);
+                string value;
+
+                if (const auto& foundArgument = _argumentOptions.find(key); foundArgument != _argumentOptions.end())
+                {
+                    if (foundArgument->second & WithArgument)
+                    {
+                        value = argv[++i];
+                    }
+                }
+                else
+                {
+                    _argumentsAreValid = false;
+                    return;
+                }
+
+                _readArguments.insert(pair(key, value));
+            }
+        }
+
+        if (!ValidateReadArguments())
         {
             _argumentsAreValid = false;
             return;
@@ -84,19 +108,35 @@ namespace DiKErnel::Cli
         return message.str();
     }
 
-    bool CommandLineArgumentParser::ValidateArguments(
-        const int argc,
-        char** argv)
+    bool CommandLineArgumentParser::ValidateReadArguments()
     {
-        return argc == 3
-                && FilePathArgumentHasValidExtension(argv[1])
-                && FilePathArgumentHasValidExtension(argv[2]);
+        for (const auto& [optionKey, optionType] : _argumentOptions)
+        {
+            if (const auto& readArgument = _readArguments.find(optionKey); readArgument == _readArguments.end() && optionType & Required)
+            {
+                return false;
+            }
+        }
+
+        return FilePathArgumentHasValidExtension(_readArguments["invoerbestand"])
+                && FilePathArgumentHasValidExtension(_readArguments["uitvoerbestand"])
+                && OutputLevelHasValidValue();
     }
 
     bool CommandLineArgumentParser::FilePathArgumentHasValidExtension(
         const string& filePathArgument)
     {
         return path(filePathArgument).extension() == ".json";
+    }
+
+    bool CommandLineArgumentParser::OutputLevelHasValidValue()
+    {
+        if (const auto& readArgument = _readArguments.find("uitvoerniveau"); readArgument == _readArguments.end())
+        {
+            const auto& value = readArgument->second;
+            return value == "falen" || value == "schade" || value == "fysica";
+        }
+        return true;
     }
 
     string CommandLineArgumentParser::CreateLogOutputFilePath() const
