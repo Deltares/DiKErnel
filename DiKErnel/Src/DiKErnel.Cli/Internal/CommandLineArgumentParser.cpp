@@ -71,6 +71,16 @@ namespace DiKErnel::Cli
             : "";
     }
 
+    bool CommandLineArgumentParser::GetWriteMetaData() const
+    {
+        return !MapHelper::ContainsKey(_readArguments, _noMetaInformationKey);
+    }
+
+    bool CommandLineArgumentParser::GetValidateJsonFormat() const
+    {
+        return !MapHelper::ContainsKey(_readArguments, _noJsonFormatValidationKey);
+    }
+
     string CommandLineArgumentParser::GetHelpMessage()
     {
         stringstream message;
@@ -105,7 +115,7 @@ namespace DiKErnel::Cli
 
                 if (MapHelper::ContainsKey(_argumentOptions, key))
                 {
-                    if (_argumentOptions.at(readArgument) & WithArgument)
+                    if (_argumentOptions.at(key) & WithArgument)
                     {
                         value = argv[++i];
                     }

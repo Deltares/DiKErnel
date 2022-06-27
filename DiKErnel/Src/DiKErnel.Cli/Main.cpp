@@ -83,13 +83,28 @@ int main(
             return -1;
         }
 
+        const auto jsonInputFilePath = parser.GetJsonInputFilePath();
         const auto jsonOutputFilePath = parser.GetJsonOutputFilePath();
         logOutputFilePath = parser.GetLogOutputFilePath();
 
         RemoveFileWhenExists(jsonOutputFilePath);
         RemoveFileWhenExists(logOutputFilePath);
 
-        const auto inputComposerResult = JsonInputComposer::GetInputDataFromJson(parser.GetJsonInputFilePath());
+        if (parser.GetValidateJsonFormat())
+        {
+            const auto validationResult = JsonInputComposer::ValidateJson(jsonInputFilePath);
+
+            const auto validationEvents = EventRegistry::Flush();
+
+            WriteToLogFile(GetEventReferences(validationEvents));
+
+            if (!validationResult)
+            {
+                return -1;
+            }
+        }
+
+        const auto inputComposerResult = JsonInputComposer::GetInputDataFromJson(jsonInputFilePath);
         WriteToLogFile(inputComposerResult->GetEvents());
 
         if (!inputComposerResult->GetSuccessful())
@@ -127,17 +142,21 @@ int main(
 
         const duration<double> elapsed = high_resolution_clock::now() - startTime;
 
+        vector<pair<string, variant<double, string>>> metaDataItems;
+
+        if (parser.GetWriteMetaData())
+        {
+            metaDataItems.emplace_back(pair<string, variant<double, string>>("Versie", ApplicationHelper::GetApplicationVersionString()));
+            metaDataItems.emplace_back(pair<string, variant<double, string>>("Besturingssysteem", ApplicationHelper::GetOperatingSystemName()));
+            metaDataItems.emplace_back(pair<string, variant<double, string>>("DatumTijd", ApplicationHelper::GetFormattedDateTimeString()));
+            metaDataItems.emplace_back(pair<string, variant<double, string>>("Rekentijd", elapsed.count()));
+        }
+
         const auto outputComposerResult = JsonOutputComposer::WriteCalculationOutputToJson(
             jsonOutputFilePath,
             *calculatorResult->GetData(),
             ConvertOutputType(parser.GetOutputLevel()),
-            vector
-            {
-                pair<string, variant<double, string>>("Versie", ApplicationHelper::GetApplicationVersionString()),
-                pair<string, variant<double, string>>("Besturingssysteem", ApplicationHelper::GetOperatingSystemName()),
-                pair<string, variant<double, string>>("DatumTijd", ApplicationHelper::GetFormattedDateTimeString()),
-                pair<string, variant<double, string>>("Rekentijd", elapsed.count())
-            });
+            metaDataItems);
 
         WriteToLogFile(outputComposerResult->GetEvents());
 
@@ -169,17 +188,17 @@ void RemoveFileWhenExists(
 JsonOutputType ConvertOutputType(
     const string& outputTypeString)
 {
-    if(outputTypeString == "falen")
+    if (outputTypeString == "falen")
     {
         return JsonOutputType::Failure;
     }
 
-    if(outputTypeString == "schade")
+    if (outputTypeString == "schade")
     {
         return JsonOutputType::Damage;
     }
 
-    if(outputTypeString == "fysica")
+    if (outputTypeString == "fysica")
     {
         return JsonOutputType::Physics;
     }
