@@ -38,8 +38,6 @@ namespace DiKErnel::Cli
             return;
         }
 
-        _jsonInputFilePath = argv[1];
-        _jsonOutputFilePath = argv[2];
         _logOutputFilePath = CreateLogOutputFilePath();
     }
 
@@ -50,12 +48,12 @@ namespace DiKErnel::Cli
 
     string CommandLineArgumentParser::GetJsonInputFilePath() const
     {
-        return _jsonInputFilePath;
+        return _readArguments.at(_inputFilePathKey);
     }
 
     string CommandLineArgumentParser::GetJsonOutputFilePath() const
     {
-        return _jsonOutputFilePath;
+        return _readArguments.at(_outputFilePathKey);
     }
 
     string CommandLineArgumentParser::GetLogOutputFilePath() const
@@ -124,8 +122,8 @@ namespace DiKErnel::Cli
                                                         });
 
         return requiredArgumentsArePresent
-                && FilePathArgumentHasValidExtension(_readArguments[_inputFilePathKey])
-                && FilePathArgumentHasValidExtension(_readArguments[_outputFilePathKey])
+                && FilePathArgumentHasValidExtension(_readArguments.at(_inputFilePathKey))
+                && FilePathArgumentHasValidExtension(_readArguments.at(_outputFilePathKey))
                 && OutputLevelHasValidValue();
     }
 
@@ -147,7 +145,7 @@ namespace DiKErnel::Cli
 
     string CommandLineArgumentParser::CreateLogOutputFilePath() const
     {
-        const auto outputFilePath = path(_jsonOutputFilePath);
+        const auto outputFilePath = path(_readArguments.at(_outputFilePathKey));
         const auto outputDirectory = outputFilePath.parent_path();
         const auto outputFileName = outputFilePath.stem().u8string();
 

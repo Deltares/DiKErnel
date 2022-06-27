@@ -56,8 +56,6 @@ namespace DiKErnel::Cli
             static inline std::string _noJsonSchemaValidationKey = "niet-valideren-json-formaat";
 
             bool _argumentsAreValid = true;
-            std::string _jsonInputFilePath;
-            std::string _jsonOutputFilePath;
             std::string _logOutputFilePath;
 
             std::map<std::string, std::string> _readArguments = std::map<std::string, std::string>();
