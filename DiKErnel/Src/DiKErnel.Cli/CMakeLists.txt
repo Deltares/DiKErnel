@@ -58,4 +58,5 @@ target_link_libraries(${EXENAME}
   DiKErnel.Core
   DiKErnel.KernelWrapper.Json.Input
   DiKErnel.KernelWrapper.Json.Output
+  DiKErnel.Util
 )

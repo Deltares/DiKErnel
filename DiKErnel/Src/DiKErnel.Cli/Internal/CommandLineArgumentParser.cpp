@@ -23,10 +23,13 @@
 #include <filesystem>
 #include <sstream>
 
+#include "MapHelper.h"
+
 namespace DiKErnel::Cli
 {
     using namespace std;
     using namespace std::filesystem;
+    using namespace Util;
 
     CommandLineArgumentParser::CommandLineArgumentParser(
         const int argc,
@@ -63,7 +66,7 @@ namespace DiKErnel::Cli
 
     string CommandLineArgumentParser::GetOutputLevel() const
     {
-        return ContainsKey(_readArguments, _outputLevelKey)
+        return MapHelper::ContainsKey(_readArguments, _outputLevelKey)
             ? _readArguments.at(_outputLevelKey)
             : "";
     }
@@ -100,7 +103,7 @@ namespace DiKErnel::Cli
                 auto key = readArgument.substr(2);
                 string value;
 
-                if (ContainsKey(_argumentOptions, key))
+                if (MapHelper::ContainsKey(_argumentOptions, key))
                 {
                     if (_argumentOptions.at(readArgument) & WithArgument)
                     {
@@ -142,7 +145,7 @@ namespace DiKErnel::Cli
 
     bool CommandLineArgumentParser::OutputLevelHasValidValue() const
     {
-        if (ContainsKey(_readArguments, _outputLevelKey))
+        if (MapHelper::ContainsKey(_readArguments, _outputLevelKey))
         {
             const auto& value = _readArguments.at(_outputLevelKey);
             return value == "falen" || value == "schade" || value == "fysica";
@@ -157,13 +160,5 @@ namespace DiKErnel::Cli
         const auto outputFileName = outputFilePath.stem().u8string();
 
         return (outputDirectory / (outputFileName + ".log")).u8string();
-    }
-
-    template <typename TKey, typename TValue>
-    bool CommandLineArgumentParser::ContainsKey(
-        std::map<TKey, TValue> map,
-        TKey key)
-    {
-        return map.find(key) != map.end();
     }
 }

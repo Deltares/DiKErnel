@@ -85,10 +85,5 @@ namespace DiKErnel::Cli
 
             [[nodiscard]]
             std::string CreateLogOutputFilePath() const;
-
-            template <typename TKey, typename TValue>
-            static bool ContainsKey(
-                std::map<TKey, TValue> map,
-                TKey key);
     };
 }
