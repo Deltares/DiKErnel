@@ -49,6 +49,12 @@ namespace DiKErnel::Cli
             static std::string GetHelpMessage();
 
         private:
+            static inline std::string _inputFilePathKey = "invoerbestand";
+            static inline std::string _outputFilePathKey = "uitvoerbestand";
+            static inline std::string _outputLevelKey = "uitvoerniveau";
+            static inline std::string _noMetaInformationKey = "niet-schrijven-meta-informatie";
+            static inline std::string _noJsonSchemaValidationKey = "niet-valideren-json-formaat";
+
             bool _argumentsAreValid = true;
             std::string _jsonInputFilePath;
             std::string _jsonOutputFilePath;
@@ -58,12 +64,16 @@ namespace DiKErnel::Cli
 
             static inline std::map<std::string, unsigned int> _argumentOptions =
             {
-                std::pair<std::string, unsigned int>("invoerbestand", Required | WithArgument),
-                std::pair<std::string, unsigned int>("uitvoerbestand", Required | WithArgument),
-                std::pair<std::string, unsigned int>("uitvoerniveau", Optional | WithArgument),
-                std::pair<std::string, unsigned int>("niet-schrijven-meta-informatie", Optional),
-                std::pair<std::string, unsigned int>("niet-valideren-json-formaat", Optional),
+                std::pair<std::string, unsigned int>(_inputFilePathKey, Required | WithArgument),
+                std::pair<std::string, unsigned int>(_outputFilePathKey, Required | WithArgument),
+                std::pair<std::string, unsigned int>(_outputLevelKey, Optional | WithArgument),
+                std::pair<std::string, unsigned int>(_noMetaInformationKey, Optional),
+                std::pair<std::string, unsigned int>(_noJsonSchemaValidationKey, Optional)
             };
+            
+            bool ReadArguments(
+                int argc,
+                char** argv);
 
             bool ValidateReadArguments();
 

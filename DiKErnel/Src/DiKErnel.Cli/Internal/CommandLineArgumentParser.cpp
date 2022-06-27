@@ -32,31 +32,7 @@ namespace DiKErnel::Cli
         const int argc,
         char** argv)
     {
-        for (int i = 1; i < argc; ++i)
-        {
-            if (string readArgument = argv[i]; readArgument.rfind("--", 0) != string::npos)
-            {
-                auto key = readArgument.substr(2);
-                string value;
-
-                if (const auto& foundArgument = _argumentOptions.find(key); foundArgument != _argumentOptions.end())
-                {
-                    if (foundArgument->second & WithArgument)
-                    {
-                        value = argv[++i];
-                    }
-                }
-                else
-                {
-                    _argumentsAreValid = false;
-                    return;
-                }
-
-                _readArguments.insert(pair(key, value));
-            }
-        }
-
-        if (!ValidateReadArguments())
+        if (!ReadArguments(argc, argv) && !ValidateReadArguments())
         {
             _argumentsAreValid = false;
             return;
@@ -108,18 +84,48 @@ namespace DiKErnel::Cli
         return message.str();
     }
 
-    bool CommandLineArgumentParser::ValidateReadArguments()
+    bool CommandLineArgumentParser::ReadArguments(
+        const int argc,
+        char** argv)
     {
-        for (const auto& [optionKey, optionType] : _argumentOptions)
+        for (int i = 1; i < argc; ++i)
         {
-            if (const auto& readArgument = _readArguments.find(optionKey); readArgument == _readArguments.end() && optionType & Required)
+            if (string readArgument = argv[i]; readArgument.rfind("--", 0) != string::npos)
             {
-                return false;
+                auto key = readArgument.substr(2);
+                string value;
+
+                if (const auto& foundArgument = _argumentOptions.find(key); foundArgument != _argumentOptions.end())
+                {
+                    if (foundArgument->second & WithArgument)
+                    {
+                        value = argv[++i];
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+
+                _readArguments.insert(pair(key, value));
             }
         }
 
-        return FilePathArgumentHasValidExtension(_readArguments["invoerbestand"])
-                && FilePathArgumentHasValidExtension(_readArguments["uitvoerbestand"])
+        return true;
+    }
+
+    bool CommandLineArgumentParser::ValidateReadArguments()
+    {
+        const auto requiredArgumentsArePresent = all_of(_argumentOptions.begin(), _argumentOptions.end(), [this](
+                                                    const pair<string, unsigned int>& argumentOption)
+                                                        {
+                                                            const auto& readArgument = _readArguments.find(argumentOption.first);
+                                                            return argumentOption.second & Required && readArgument == _readArguments.end();
+                                                        });
+
+        return requiredArgumentsArePresent
+                && FilePathArgumentHasValidExtension(_readArguments[_inputFilePathKey])
+                && FilePathArgumentHasValidExtension(_readArguments[_outputFilePathKey])
                 && OutputLevelHasValidValue();
     }
 
@@ -131,7 +137,7 @@ namespace DiKErnel::Cli
 
     bool CommandLineArgumentParser::OutputLevelHasValidValue()
     {
-        if (const auto& readArgument = _readArguments.find("uitvoerniveau"); readArgument == _readArguments.end())
+        if (const auto& readArgument = _readArguments.find(_outputLevelKey); readArgument == _readArguments.end())
         {
             const auto& value = readArgument->second;
             return value == "falen" || value == "schade" || value == "fysica";
