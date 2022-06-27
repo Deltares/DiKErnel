@@ -30,6 +30,7 @@
 
 #include "ApplicationHelper.h"
 #include "Calculator.h"
+#include "EventRegistry.h"
 #include "JsonInputComposer.h"
 #include "JsonOutputComposer.h"
 #include "Validator.h"
@@ -139,6 +140,23 @@ namespace DiKErnel::Gui
 
             const auto inputFilePathString = InputFilePath().toString();
             AddMessage(QString("De invoer uit bestand \"%1\" wordt gelezen...").arg(inputFilePathString));
+
+            if (validateJsonFormat)
+            {
+                const auto validationResult = JsonInputComposer::ValidateJson(inputFilePathString.toStdString());
+
+                const auto validationEvents = EventRegistry::Flush();
+
+                LogEventsWhenApplicable("De volgende meldingen zijn opgetreden tijdens het valideren van het Json-formaat:",
+                                        GetEventReferences(validationEvents));
+
+                if (!validationResult)
+                {
+                    LogClosingMessage("Het lezen van de invoer is mislukt.");
+
+                    return;
+                }
+            }
 
             const auto inputComposerResult = JsonInputComposer::GetInputDataFromJson(
                 inputFilePathString.toStdString());
@@ -278,6 +296,19 @@ namespace DiKErnel::Gui
                            .arg(QString::fromUtf8(logEvent.GetMessage())));
             }
         }
+    }
+
+    vector<reference_wrapper<Event>> DiKErnel::GetEventReferences(
+        const std::vector<std::unique_ptr<Event>>& events)
+    {
+        vector<reference_wrapper<Event>> eventReferences;
+
+        for (const auto& event : events)
+        {
+            eventReferences.emplace_back(*event);
+        }
+
+        return eventReferences;
     }
 
     string DiKErnel::GetEventTypeString(
