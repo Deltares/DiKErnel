@@ -67,8 +67,8 @@ namespace DiKErnel::Cli
     string CommandLineArgumentParser::GetOutputLevel() const
     {
         return MapHelper::ContainsKey(_readArguments, _outputLevelKey)
-            ? _readArguments.at(_outputLevelKey)
-            : "";
+                   ? _readArguments.at(_outputLevelKey)
+                   : "";
     }
 
     bool CommandLineArgumentParser::GetWriteMetaData() const
@@ -86,18 +86,34 @@ namespace DiKErnel::Cli
         stringstream message;
 
         message << endl;
-        message << "   Deze executable kan worden gebruikt voor het uitvoeren van een command line berekening met DiKErnel." << endl;
+        message << "Deze executable kan worden gebruikt voor het uitvoeren van een command line berekening met DiKErnel." << endl;
         message << endl;
-        message << "   Verplichte argumenten (in deze volgorde):" << endl;
-        message << "   -----------------------------------------" << endl;
-        message << "   <pad_naar_input.json>    = het pad van het invoerbestand" << endl;
-        message << "   <pad_naar_output.json>   = het pad van het uitvoerbestand (dat ook de locatie van het eventuele logbestand bepaalt)" << endl;
+        message << "Verplichte argumenten:" << endl;
+        message << "----------------------" << endl;
+        message << "--invoerbestand <pad_naar_invoerbestand>" << endl;
+        message << "  = Het pad van het invoerbestand" << endl;
+        message << "--uitvoerbestand <pad_naar_uitvoerbestand>" << endl;
+        message << "  = Het pad van het uitvoerbestand" << endl;
+        message << "    -> Dit bepaalt ook de locatie van het eventuele logbestand" << endl;
         message << endl;
-        message << "   Voorbeeld:" << endl;
-        message << "   ----------" << endl;
-        message << "   DiKErnel-cli.exe Berekening1.json UitvoerBerekening1.json" << endl;
+        message << "Optionele argumenten:" << endl;
+        message << "---------------------" << endl;
+        message << "--uitvoerniveau <niveau>" << endl;
+        message << "  = Maat voor de hoeveelheid uitvoer die wordt weggeschreven" << endl;
+        message << "    -> Opties voor <niveau>: falen, schade, fysica" << endl;
+        message << "    -> Standaardwaarde: schade" << endl;
+        message << "--niet-schrijven-meta-informatie" << endl;
+        message << "  = Schakelt het schrijven van meta - informatie uit" << endl;
+        message << "--niet-valideren-json-formaat" << endl;
+        message << "  = Schakelt het valideren van het json invoer formaat uit" << endl;
         message << endl;
-        message << "   Bij vragen of onduidelijkheden kunt u contact met ons opnemen via dikernel@deltares.nl." << endl;
+        message << "Voorbeeld:" << endl;
+        message << "----------" << endl;
+        message << "DiKErnel-cli.exe --invoerbestand Berekening1.json --uitvoerbestand UitvoerBerekening1.json --uitvoerniveau fysica ";
+        message << "--niet-schrijven-meta-informatie --niet-valideren-json-formaat" << endl;
+        message << endl;
+        message << "Bij vragen of onduidelijkheden kunt u contact met ons opnemen via dikernel@deltares.nl." << endl;
+        message << endl;
 
         return message.str();
     }
