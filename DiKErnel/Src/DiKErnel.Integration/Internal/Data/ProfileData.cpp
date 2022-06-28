@@ -132,6 +132,25 @@ namespace DiKErnel::Integration
         return numeric_limits<double>::infinity();
     }
 
+    unique_ptr<ProfileSegment> ProfileData::GetProfileSegment(
+        const double horizontalPosition) const
+    {
+        for (auto i = 0; i < static_cast<int>(_profilePoints.size()); ++i)
+        {
+            if(const auto& profilePoint = _profilePoints.at(i); profilePoint->GetX() >= horizontalPosition)
+            {
+                if(i == 0)
+                {
+                    return nullptr;
+                }
+
+                return make_unique<ProfileSegment>(*profilePoint, *_profilePoints.at(i - 1));
+            }
+        }
+
+        return nullptr;
+    }
+
     const vector<reference_wrapper<ProfilePoint>>& ProfileData::GetProfilePoints() const
     {
         return _profilePointReferences;

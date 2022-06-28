@@ -20,10 +20,12 @@
 
 #pragma once
 
+#include <memory>
 #include <vector>
 
 #include "CharacteristicPoint.h"
 #include "ProfilePoint.h"
+#include "ProfileSegment.h"
 
 namespace DiKErnel::Core
 {
@@ -49,10 +51,8 @@ namespace DiKErnel::Core
              * \brief Calculates the vertical height based on linear interpolation.
              * \param horizontalPosition
              *        The horizontal position.
-             *        Unit = [m]
              * \return The vertical height or INFINITY when the horizontal position cannot be
              *         fitted with the dike profile.
-             *         Unit = [m]
              */
             [[nodiscard]]
             virtual double InterpolationVerticalHeight(
@@ -62,14 +62,23 @@ namespace DiKErnel::Core
              * \brief Calculates the horizontal position based on linear interpolation.
              * \param verticalHeight
              *        The vertical height.
-             *        Unit = [m]
              * \return The horizontal position or INFINITY when the vertical height cannot be
              *         fitted with the dike profile.
-             *         Unit = [m]
              */
             [[nodiscard]]
             virtual double InterpolationHorizontalPosition(
                 double verticalHeight) const = 0;
+
+            /*!
+             * \brief Gets the profile segment where the horizontal position is located on.
+             * \param horizontalPosition
+             *        The horizontal position.
+             * \return The profile segment or NULLPTR when the horizontal position cannot be fitted
+             *         on a profile segment.
+             */
+            [[nodiscard]]
+            virtual std::unique_ptr<ProfileSegment> GetProfileSegment(
+                double horizontalPosition) const = 0;
 
             /*!
              * \brief Gets the profile points to use in the calculation.
