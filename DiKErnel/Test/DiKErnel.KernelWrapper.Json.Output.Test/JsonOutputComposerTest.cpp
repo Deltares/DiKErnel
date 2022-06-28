@@ -92,6 +92,38 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
         {
             remove(_actualOutputFilePath.c_str());
         }
+
+        [[nodiscard]]
+        unique_ptr<CalculationOutput> CreateCalculationOutputWithRevetmentSpecificTimeDependentOutput() const
+        {
+            auto asphaltWaveImpactTimeDependentOutput = make_unique<AsphaltRevetmentWaveImpactTimeDependentOutput>(
+                0.1, 0.2, make_unique<int>(3), 0.4, 0.5, 0.6, 0.7, 0.8);
+            auto grassWaveImpactTimeDependentOutput = make_unique<GrassRevetmentWaveImpactTimeDependentOutput>(
+                0.9, 1.0, make_unique<int>(11), 1.2, 1.3, 1.4, make_unique<double>(1.5), make_unique<double>(1.6), make_unique<double>(1.7),
+                make_unique<double>(1.8));
+            auto grassWaveRunupRayleighTimeDependentOutput = make_unique<GrassRevetmentWaveRunupRayleighTimeDependentOutput>(
+                1.9, 2.0, make_unique<int>(21), 2.2, make_unique<double>(2.3), make_unique<double>(2.4), make_unique<double>(2.5));
+            auto naturalStoneTimeDependentOutput = make_unique<NaturalStoneRevetmentTimeDependentOutput>(
+                2.6, 2.7, make_unique<int>(28), 2.9, 3.0, 3.1, 3.2, 3.3, true, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 4.0, make_unique<double>(4.1),
+                make_unique<double>(4.2), make_unique<double>(4.3), make_unique<double>(4.4), make_unique<double>(4.5));
+
+            vector<unique_ptr<TimeDependentOutput>> asphaltWaveImpactTimeDependentOutputs;
+            asphaltWaveImpactTimeDependentOutputs.push_back(move(asphaltWaveImpactTimeDependentOutput));
+            vector<unique_ptr<TimeDependentOutput>> grassWaveImpactTimeDependentOutputs;
+            grassWaveImpactTimeDependentOutputs.push_back(move(grassWaveImpactTimeDependentOutput));
+            vector<unique_ptr<TimeDependentOutput>> grassWaveRunupRayleighTimeDependentOutputs;
+            grassWaveRunupRayleighTimeDependentOutputs.push_back(move(grassWaveRunupRayleighTimeDependentOutput));
+            vector<unique_ptr<TimeDependentOutput>> naturalStoneTimeDependentOutputs;
+            naturalStoneTimeDependentOutputs.push_back(move(naturalStoneTimeDependentOutput));
+
+            vector<unique_ptr<LocationDependentOutput>> locations;
+            locations.push_back(make_unique<LocationDependentOutput>(4.6, move(asphaltWaveImpactTimeDependentOutputs)));
+            locations.push_back(make_unique<LocationDependentOutput>(4.7, move(grassWaveImpactTimeDependentOutputs)));
+            locations.push_back(make_unique<LocationDependentOutput>(4.8, move(grassWaveRunupRayleighTimeDependentOutputs)));
+            locations.push_back(make_unique<LocationDependentOutput>(4.9, move(naturalStoneTimeDependentOutputs)));
+
+            return make_unique<CalculationOutput>(move(locations));
+        }
     };
 
     TEST_F(JsonOutputComposerTest, WriteCalculationOutputToJson_InvalidJsonOutputType_ReturnsResultWithSuccessfulFalseAndWithExpectedEvent)
@@ -143,11 +175,11 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
            WriteCalculationOutputToJson_JsonOutputTypePhysicsAndTimeDependentOutputNotSupported_ReturnsResultWithSuccessfulFalseAndWithExpectedEvent)
     {
         // Setup
-        auto location1TimeDependentOutputItems = vector<unique_ptr<TimeDependentOutput>>();
-        location1TimeDependentOutputItems.push_back(make_unique<TimeDependentOutputMock>(0, 0.15, nullptr));
+        auto locationTimeDependentOutputItems = vector<unique_ptr<TimeDependentOutput>>();
+        locationTimeDependentOutputItems.push_back(make_unique<TimeDependentOutputMock>(0, 0.15, nullptr));
 
         vector<unique_ptr<LocationDependentOutput>> locations;
-        locations.push_back(make_unique<LocationDependentOutput>(1.1, move(location1TimeDependentOutputItems)));
+        locations.push_back(make_unique<LocationDependentOutput>(1.1, move(locationTimeDependentOutputItems)));
 
         const CalculationOutput calculationOutput(move(locations));
 
@@ -171,34 +203,7 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
            WriteCalculationOutputToJson_JsonOutputTypePhysicsWithMetaDataAndTimeDependentOutputSupported_ReturnsResultWithSuccessfulTrueAndNoEventsAndWritesExpectedValues)
     {
         // Setup
-        auto asphaltWaveImpactTimeDependentOutput = make_unique<AsphaltRevetmentWaveImpactTimeDependentOutput>(
-            0.1, 0.2, make_unique<int>(3), 0.4, 0.5, 0.6, 0.7, 0.8);
-        auto grassWaveImpactTimeDependentOutput = make_unique<GrassRevetmentWaveImpactTimeDependentOutput>(
-            0.9, 1.0, make_unique<int>(11), 1.2, 1.3, 1.4, make_unique<double>(1.5), make_unique<double>(1.6), make_unique<double>(1.7),
-            make_unique<double>(1.8));
-        auto grassWaveRunupRayleighTimeDependentOutput = make_unique<GrassRevetmentWaveRunupRayleighTimeDependentOutput>(
-            1.9, 2.0, make_unique<int>(21), 2.2, make_unique<double>(2.3), make_unique<double>(2.4), make_unique<double>(2.5));
-        auto naturalStoneTimeDependentOutput = make_unique<NaturalStoneRevetmentTimeDependentOutput>(
-            2.6, 2.7, make_unique<int>(28), 2.9, 3.0, 3.1, 3.2, 3.3, true, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 4.0, make_unique<double>(4.1),
-            make_unique<double>(4.2), make_unique<double>(4.3), make_unique<double>(4.4), make_unique<double>(4.5));
-
-        vector<unique_ptr<TimeDependentOutput>> asphaltWaveImpactTimeDependentOutputs;
-        asphaltWaveImpactTimeDependentOutputs.push_back(move(asphaltWaveImpactTimeDependentOutput));
-        vector<unique_ptr<TimeDependentOutput>> grassWaveImpactTimeDependentOutputs;
-        grassWaveImpactTimeDependentOutputs.push_back(move(grassWaveImpactTimeDependentOutput));
-        vector<unique_ptr<TimeDependentOutput>> grassWaveRunupRayleighTimeDependentOutputs;
-        grassWaveRunupRayleighTimeDependentOutputs.push_back(move(grassWaveRunupRayleighTimeDependentOutput));
-        vector<unique_ptr<TimeDependentOutput>> naturalStoneTimeDependentOutputs;
-        naturalStoneTimeDependentOutputs.push_back(move(naturalStoneTimeDependentOutput));
-
-        vector<unique_ptr<LocationDependentOutput>> locations;
-        locations.push_back(make_unique<LocationDependentOutput>(4.6, move(asphaltWaveImpactTimeDependentOutputs)));
-        locations.push_back(make_unique<LocationDependentOutput>(4.7, move(grassWaveImpactTimeDependentOutputs)));
-        locations.push_back(make_unique<LocationDependentOutput>(4.8, move(grassWaveRunupRayleighTimeDependentOutputs)));
-        locations.push_back(make_unique<LocationDependentOutput>(4.9, move(naturalStoneTimeDependentOutputs)));
-
-        const CalculationOutput calculationOutput(move(locations));
-
+        const auto calculationOutput = CreateCalculationOutputWithRevetmentSpecificTimeDependentOutput();
         const auto metaDataItems = vector<pair<string, variant<double, string>>>
         {
             pair("Test 1", 1.23),
@@ -206,7 +211,7 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
         };
 
         // Call
-        const auto& result = JsonOutputComposer::WriteCalculationOutputToJson(_actualOutputFilePath, calculationOutput, JsonOutputType::Physics,
+        const auto& result = JsonOutputComposer::WriteCalculationOutputToJson(_actualOutputFilePath, *calculationOutput, JsonOutputType::Physics,
                                                                               metaDataItems);
 
         // Assert
@@ -221,35 +226,10 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
            WriteCalculationOutputToJson_JsonOutputTypePhysicsWithoutMetaDataAndTimeDependentOutputSupported_ReturnsResultWithSuccessfulTrueAndNoEventsAndWritesExpectedValues)
     {
         // Setup
-        auto asphaltWaveImpactTimeDependentOutput = make_unique<AsphaltRevetmentWaveImpactTimeDependentOutput>(
-            0.1, 0.2, make_unique<int>(3), 0.4, 0.5, 0.6, 0.7, 0.8);
-        auto grassWaveImpactTimeDependentOutput = make_unique<GrassRevetmentWaveImpactTimeDependentOutput>(
-            0.9, 1.0, make_unique<int>(11), 1.2, 1.3, 1.4, make_unique<double>(1.5), make_unique<double>(1.6), make_unique<double>(1.7),
-            make_unique<double>(1.8));
-        auto grassWaveRunupRayleighTimeDependentOutput = make_unique<GrassRevetmentWaveRunupRayleighTimeDependentOutput>(
-            1.9, 2.0, make_unique<int>(21), 2.2, make_unique<double>(2.3), make_unique<double>(2.4), make_unique<double>(2.5));
-        auto naturalStoneTimeDependentOutput = make_unique<NaturalStoneRevetmentTimeDependentOutput>(
-            2.6, 2.7, make_unique<int>(28), 2.9, 3.0, 3.1, 3.2, 3.3, true, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 4.0, make_unique<double>(4.1),
-            make_unique<double>(4.2), make_unique<double>(4.3), make_unique<double>(4.4), make_unique<double>(4.5));
+        const auto calculationOutput = CreateCalculationOutputWithRevetmentSpecificTimeDependentOutput();
 
-        vector<unique_ptr<TimeDependentOutput>> asphaltWaveImpactTimeDependentOutputs;
-        asphaltWaveImpactTimeDependentOutputs.push_back(move(asphaltWaveImpactTimeDependentOutput));
-        vector<unique_ptr<TimeDependentOutput>> grassWaveImpactTimeDependentOutputs;
-        grassWaveImpactTimeDependentOutputs.push_back(move(grassWaveImpactTimeDependentOutput));
-        vector<unique_ptr<TimeDependentOutput>> grassWaveRunupRayleighTimeDependentOutputs;
-        grassWaveRunupRayleighTimeDependentOutputs.push_back(move(grassWaveRunupRayleighTimeDependentOutput));
-        vector<unique_ptr<TimeDependentOutput>> naturalStoneTimeDependentOutputs;
-        naturalStoneTimeDependentOutputs.push_back(move(naturalStoneTimeDependentOutput));
-
-        vector<unique_ptr<LocationDependentOutput>> locations;
-        locations.push_back(make_unique<LocationDependentOutput>(4.6, move(asphaltWaveImpactTimeDependentOutputs)));
-        locations.push_back(make_unique<LocationDependentOutput>(4.7, move(grassWaveImpactTimeDependentOutputs)));
-        locations.push_back(make_unique<LocationDependentOutput>(4.8, move(grassWaveRunupRayleighTimeDependentOutputs)));
-        locations.push_back(make_unique<LocationDependentOutput>(4.9, move(naturalStoneTimeDependentOutputs)));
-
-        const CalculationOutput calculationOutput(move(locations));
         // Call
-        const auto& result = JsonOutputComposer::WriteCalculationOutputToJson(_actualOutputFilePath, calculationOutput, JsonOutputType::Physics);
+        const auto& result = JsonOutputComposer::WriteCalculationOutputToJson(_actualOutputFilePath, *calculationOutput, JsonOutputType::Physics);
 
         // Assert
         const auto expectedOutputFilePath = (TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Output.Test")

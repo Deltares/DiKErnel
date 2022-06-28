@@ -70,8 +70,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
         return _locationDataReferences;
     }
 
-    const map<JsonInputCalculationType, reference_wrapper<JsonInputCalculationDefinitionData>>&
-        JsonInputData::GetCalculationDefinitionData() const
+    const map<JsonInputCalculationType, reference_wrapper<JsonInputCalculationDefinitionData>>& JsonInputData::GetCalculationDefinitionData() const
     {
         return _calculationDefinitionDataReferences;
     }
