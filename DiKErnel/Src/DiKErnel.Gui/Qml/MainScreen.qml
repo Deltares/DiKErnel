@@ -231,7 +231,6 @@ Rectangle {
         leftPadding: 20
         enabled: dikernelApplication.StartEnabled
         onClicked: dikernelApplication.StartCalculation(validateJsonFormatSwitch.checked,
-                                                        writeMetaDataSwitch.checked,
                                                         buttonGroup.checkedButton == failureButton
                                                             ? 0
                                                             : buttonGroup.checkedButton == damageButton
@@ -353,7 +352,8 @@ Rectangle {
         CustomSwitch {
             id: writeMetaDataSwitch
             text: qsTr("Schrijven meta-informatie")
-            checked: true
+            checked: dikernelApplication.WriteMetaData
+            onClicked: dikernelApplication.SetWriteMetaData(writeMetaDataSwitch.checked)
         }
     }
 

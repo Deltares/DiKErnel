@@ -34,6 +34,10 @@ namespace DiKErnel::Gui
     {
             Q_OBJECT
 
+            Q_PROPERTY(QString VersionNumber
+                READ VersionNumber
+                CONSTANT)
+
             Q_PROPERTY(QUrl InputFilePath
                 READ InputFilePath
                 WRITE SetInputFilePath
@@ -44,16 +48,17 @@ namespace DiKErnel::Gui
                 WRITE SetOutputFilePath
                 BINDABLE BindableOutputFilePath)
 
-            Q_PROPERTY(QStringListModel* LogMessages
-                READ LogMessages
-                CONSTANT)
+            Q_PROPERTY(bool WriteMetaData
+                READ WriteMetaData
+                WRITE SetWriteMetaData
+                BINDABLE BindableWriteMetaData)
 
             Q_PROPERTY(bool StartEnabled
                 READ StartEnabled
                 BINDABLE BindableStartEnabled)
 
-            Q_PROPERTY(QString VersionNumber
-                READ VersionNumber
+            Q_PROPERTY(QStringListModel* LogMessages
+                READ LogMessages
                 CONSTANT)
 
         public:
@@ -61,21 +66,25 @@ namespace DiKErnel::Gui
                 int argc,
                 char** argv);
 
+            static QString VersionNumber();
+
             QUrl InputFilePath() const;
 
             QUrl OutputFilePath() const;
 
+            bool WriteMetaData() const;
+
             bool StartEnabled() const;
 
             QStringListModel* LogMessages() const;
-
-            static QString VersionNumber();
 
             QBindable<QUrl> BindableInputFilePath();
 
             QBindable<QUrl> BindableOutputFilePath();
 
             QBindable<bool> BindableStartEnabled();
+
+            QBindable<bool> BindableWriteMetaData();
 
         public slots:
             void SetInputFilePath(
@@ -84,11 +93,13 @@ namespace DiKErnel::Gui
             void SetOutputFilePath(
                 const QUrl& outputFilePath);
 
+            void SetWriteMetaData(
+                bool writeMetaData);
+
             void SetStartEnabled();
 
             void StartCalculation(
                 bool validateJsonFormat,
-                bool writeMetaData,
                 int outputTypeId);
 
             void ClearLogMessages();
@@ -99,6 +110,8 @@ namespace DiKErnel::Gui
             void InputFilePathChanged();
 
             void OutputFilePathChanged();
+
+            void WriteMetaDataChanged();
 
             void StartEnabledChanged();
 
@@ -131,6 +144,9 @@ namespace DiKErnel::Gui
 
             Q_OBJECT_BINDABLE_PROPERTY(
                 DiKErnel, QUrl, _outputFilePath, &DiKErnel::OutputFilePathChanged)
+
+            Q_OBJECT_BINDABLE_PROPERTY_WITH_ARGS(
+                DiKErnel, bool, _writeMetaData, true, &DiKErnel::WriteMetaDataChanged)
 
             Q_OBJECT_BINDABLE_PROPERTY(
                 DiKErnel, bool, _startEnabled, &DiKErnel::StartEnabledChanged)

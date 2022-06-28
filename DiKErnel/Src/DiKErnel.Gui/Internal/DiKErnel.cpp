@@ -78,6 +78,11 @@ namespace DiKErnel::Gui
         return _outputFilePath.value();
     }
 
+    bool DiKErnel::WriteMetaData() const
+    {
+        return _writeMetaData.value();
+    }
+
     bool DiKErnel::StartEnabled() const
     {
         return _startEnabled.value();
@@ -108,6 +113,11 @@ namespace DiKErnel::Gui
         return &_startEnabled;
     }
 
+    QBindable<bool> DiKErnel::BindableWriteMetaData()
+    {
+        return &_writeMetaData;
+    }
+
     void DiKErnel::SetInputFilePath(
         const QUrl& inputFilePath)
     {
@@ -120,6 +130,12 @@ namespace DiKErnel::Gui
         _outputFilePath = outputFilePath.toLocalFile();
     }
 
+    void DiKErnel::SetWriteMetaData(
+        const bool writeMetaData)
+    {
+        _writeMetaData = writeMetaData;
+    }
+
     void DiKErnel::SetStartEnabled()
     {
         _startEnabled = !_inputFilePath.value().isEmpty() && !_outputFilePath.value().isEmpty();
@@ -127,7 +143,6 @@ namespace DiKErnel::Gui
 
     void DiKErnel::StartCalculation(
         const bool validateJsonFormat,
-        const bool writeMetaData,
         const int outputTypeId)
     {
         try
@@ -230,7 +245,7 @@ namespace DiKErnel::Gui
 
             vector<pair<string, variant<double, string>>> metaDataItems;
 
-            if (writeMetaData)
+            if (WriteMetaData())
             {
                 metaDataItems.emplace_back(pair<string, variant<double, string>>("Versie", ApplicationHelper::GetApplicationVersionString()));
                 metaDataItems.emplace_back(pair<string, variant<double, string>>("Besturingssysteem", ApplicationHelper::GetOperatingSystemName()));
