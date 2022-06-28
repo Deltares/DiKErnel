@@ -198,12 +198,7 @@ JsonOutputType ConvertOutputType(
         return JsonOutputType::Damage;
     }
 
-    if (outputTypeString == "fysica")
-    {
-        return JsonOutputType::Physics;
-    }
-
-    return JsonOutputType::Damage;
+    return JsonOutputType::Physics;
 }
 
 void WriteToLogFile(

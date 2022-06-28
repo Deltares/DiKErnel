@@ -68,7 +68,7 @@ namespace DiKErnel::Cli
     {
         return MapHelper::ContainsKey(_readArguments, _outputLevelKey)
                    ? _readArguments.at(_outputLevelKey)
-                   : "";
+                   : "schade";
     }
 
     bool CommandLineArgumentParser::GetWriteMetaData() const
