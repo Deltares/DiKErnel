@@ -86,7 +86,7 @@ namespace DiKErnel::Cli
         stringstream message;
 
         message << endl;
-        message << "Deze executable kan worden gebruikt voor het uitvoeren van een command line berekening met DiKErnel" << endl;
+        message << "Deze executable kan worden gebruikt voor het uitvoeren van een command-line berekening met DiKErnel" << endl;
         message << endl;
         message << "Verplichte argumenten:" << endl;
         message << "----------------------" << endl;
@@ -145,7 +145,7 @@ namespace DiKErnel::Cli
                 }
                 else
                 {
-                    return false; // Undefined key
+                    return false; // Unsupported key
                 }
 
                 _readArguments.insert(pair(key, value));
