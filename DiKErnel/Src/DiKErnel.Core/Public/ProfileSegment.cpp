@@ -23,18 +23,18 @@
 namespace DiKErnel::Core
 {
     ProfileSegment::ProfileSegment(
-        const ProfilePoint& upperPoint,
-        const ProfilePoint& lowerPoint)
-        : _upperPoint(upperPoint),
-          _lowerPoint(lowerPoint) {}
-
-    const ProfilePoint& ProfileSegment::GetUpperPoint() const
-    {
-        return _upperPoint;
-    }
+        const ProfilePoint& lowerPoint,
+        const ProfilePoint& upperPoint)
+        : _lowerPoint(lowerPoint),
+          _upperPoint(upperPoint) {}
 
     const ProfilePoint& ProfileSegment::GetLowerPoint() const
     {
         return _lowerPoint;
+    }
+
+    const ProfilePoint& ProfileSegment::GetUpperPoint() const
+    {
+        return _upperPoint;
     }
 }

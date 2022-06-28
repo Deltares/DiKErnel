@@ -19,6 +19,7 @@
 // All rights reserved.
 
 #pragma once
+
 #include "ProfilePoint.h"
 
 namespace DiKErnel::Core
@@ -31,21 +32,14 @@ namespace DiKErnel::Core
         public:
             /*!
              * \brief Creates a new instance.
-             * \param upperPoint
-             *        The upper profile point.
              * \param lowerPoint
              *        The lower profile point
+             * \param upperPoint
+             *        The upper profile point.
              */
             explicit ProfileSegment(
-                const ProfilePoint& upperPoint,
-                const ProfilePoint& lowerPoint);
-
-            /*!
-             * \brief Gets the upper point of the segment.
-             * \return The upper point of the segment.
-             */
-            [[nodiscard]]
-            const ProfilePoint& GetUpperPoint() const;
+                const ProfilePoint& lowerPoint,
+                const ProfilePoint& upperPoint);
 
             /*!
              * \brief Gets the lower point of the segment.
@@ -54,8 +48,15 @@ namespace DiKErnel::Core
             [[nodiscard]]
             const ProfilePoint& GetLowerPoint() const;
 
+            /*!
+             * \brief Gets the upper point of the segment.
+             * \return The upper point of the segment.
+             */
+            [[nodiscard]]
+            const ProfilePoint& GetUpperPoint() const;
+
         private:
-            const ProfilePoint& _upperPoint;
             const ProfilePoint& _lowerPoint;
+            const ProfilePoint& _upperPoint;
     };
 }

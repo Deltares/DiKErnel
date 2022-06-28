@@ -27,18 +27,14 @@ namespace DiKErnel::Core::Test
     TEST(ProfileSegmentTest, Constructor_ExpectedValues)
     {
         // Setup
-        constexpr auto x1 = 0.0;
-        constexpr auto z1 = 1.1;
-        constexpr auto x2 = 2.2;
-        constexpr auto z2 = 3.3;
-        const ProfilePoint upperPoint(x1, z1);
-        const ProfilePoint lowerPoint(x2, z2);
+        const ProfilePoint lowerPoint(0.0, 1.1);
+        const ProfilePoint upperPoint(2.2, 3.3);
 
         // Call
-        const ProfileSegment profileSegment(upperPoint, lowerPoint);
+        const ProfileSegment profileSegment(lowerPoint, upperPoint);
 
         // Assert
-        ASSERT_EQ(&upperPoint, &profileSegment.GetUpperPoint());
         ASSERT_EQ(&lowerPoint, &profileSegment.GetLowerPoint());
+        ASSERT_EQ(&upperPoint, &profileSegment.GetUpperPoint());
     }
 }
