@@ -104,7 +104,7 @@ namespace DiKErnel::Integration
                 const Core::IProfileData& profileData) override;
 
         private:
-            const double _outerSlope;
+            double _outerSlope;
             const double _failureTension;
             const double _densityOfWater;
             const double _soilElasticity;

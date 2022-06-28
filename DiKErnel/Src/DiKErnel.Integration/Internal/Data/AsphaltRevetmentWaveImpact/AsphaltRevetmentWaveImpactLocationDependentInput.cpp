@@ -23,6 +23,7 @@
 #include "AsphaltRevetmentWaveImpactFunctions.h"
 #include "AsphaltRevetmentWaveImpactTimeDependentOutput.h"
 #include "AsphaltRevetmentWaveImpactValidator.h"
+#include "CharacteristicPointsHelper.h"
 #include "Constants.h"
 #include "RevetmentFunctions.h"
 #include "RevetmentValidator.h"
@@ -185,6 +186,26 @@ namespace DiKErnel::Integration
                                                                                               _subLayerElasticModulus);
         _stiffnessRelation = AsphaltRevetmentWaveImpactFunctions::StiffnessRelation(_computationalThickness, _subLayerElasticModulus,
                                                                                     _soilElasticity, _stiffnessRelationNu);
+
+        const auto& characteristicPoints = profileData.GetCharacteristicPoints();
+        const auto notchOuterBerm =
+                CharacteristicPointsHelper::GetCoordinatesForType(characteristicPoints, CharacteristicPointType::NotchOuterBerm);
+        const auto crestOuterBerm =
+                CharacteristicPointsHelper::GetCoordinatesForType(characteristicPoints, CharacteristicPointType::CrestOuterBerm);
+
+        auto positionOnProfileSegment = GetX();
+        if (notchOuterBerm != nullptr && crestOuterBerm != nullptr
+            && (positionOnProfileSegment > crestOuterBerm->first && positionOnProfileSegment <= notchOuterBerm->first))
+        {
+            positionOnProfileSegment = crestOuterBerm->first;
+        }
+
+        const auto profileSegment = profileData.GetProfileSegment(positionOnProfileSegment);
+        const auto& profileSegmentUpperPoint = profileSegment->GetUpperPoint();
+        const auto& profileSegmentLowerPoint = profileSegment->GetLowerPoint();
+
+        _outerSlope = AsphaltRevetmentWaveImpactFunctions::OuterSlope(profileSegmentUpperPoint.GetX(), profileSegmentUpperPoint.GetZ(),
+                                                                      profileSegmentLowerPoint.GetX(), profileSegmentLowerPoint.GetZ());
     }
 
     unique_ptr<TimeDependentOutput> AsphaltRevetmentWaveImpactLocationDependentInput::CalculateTimeDependentOutput(
