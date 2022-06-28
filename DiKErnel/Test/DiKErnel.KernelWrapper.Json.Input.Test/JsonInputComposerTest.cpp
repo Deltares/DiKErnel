@@ -520,7 +520,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
         const auto& registeredEvents = EventRegistry::Flush();
         ASSERT_EQ(1, registeredEvents.size());
         EventAssertHelper::AssertEvent(EventType::Error,
-                                       "At  of {} - required property 'tijdstippen' not found in object\n",
+                                       "At  of {} - required property 'tijdstippen' not found in object",
                                        *registeredEvents.at(0));
     }
 }
