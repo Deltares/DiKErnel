@@ -48,6 +48,11 @@ namespace DiKErnel::Gui
                 WRITE SetOutputFilePath
                 BINDABLE BindableOutputFilePath)
 
+            Q_PROPERTY(bool ValidateJsonFormat
+                READ ValidateJsonFormat
+                WRITE SetValidateJsonFormat
+                BINDABLE BindableValidateJsonFormat)
+
             Q_PROPERTY(bool WriteMetaData
                 READ WriteMetaData
                 WRITE SetWriteMetaData
@@ -72,6 +77,8 @@ namespace DiKErnel::Gui
 
             QUrl OutputFilePath() const;
 
+            bool ValidateJsonFormat() const;
+
             bool WriteMetaData() const;
 
             bool StartEnabled() const;
@@ -84,6 +91,8 @@ namespace DiKErnel::Gui
 
             QBindable<bool> BindableStartEnabled();
 
+            QBindable<bool> BindableValidateJsonFormat();
+
             QBindable<bool> BindableWriteMetaData();
 
         public slots:
@@ -93,13 +102,15 @@ namespace DiKErnel::Gui
             void SetOutputFilePath(
                 const QUrl& outputFilePath);
 
+            void SetValidateJsonFormat(
+                bool validateJsonFormat);
+
             void SetWriteMetaData(
                 bool writeMetaData);
 
             void SetStartEnabled();
 
             void StartCalculation(
-                bool validateJsonFormat,
                 int outputTypeId);
 
             void ClearLogMessages();
@@ -110,6 +121,8 @@ namespace DiKErnel::Gui
             void InputFilePathChanged();
 
             void OutputFilePathChanged();
+
+            void ValidateJsonFormatChanged();
 
             void WriteMetaDataChanged();
 
@@ -144,6 +157,9 @@ namespace DiKErnel::Gui
 
             Q_OBJECT_BINDABLE_PROPERTY(
                 DiKErnel, QUrl, _outputFilePath, &DiKErnel::OutputFilePathChanged)
+
+            Q_OBJECT_BINDABLE_PROPERTY_WITH_ARGS(
+                DiKErnel, bool, _validateJsonFormat, true, &DiKErnel::ValidateJsonFormatChanged)
 
             Q_OBJECT_BINDABLE_PROPERTY_WITH_ARGS(
                 DiKErnel, bool, _writeMetaData, true, &DiKErnel::WriteMetaDataChanged)

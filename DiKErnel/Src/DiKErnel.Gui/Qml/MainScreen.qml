@@ -230,8 +230,7 @@ Rectangle {
         rightPadding: 20
         leftPadding: 20
         enabled: dikernelApplication.StartEnabled
-        onClicked: dikernelApplication.StartCalculation(validateJsonFormatSwitch.checked,
-                                                        buttonGroup.checkedButton == failureButton
+        onClicked: dikernelApplication.StartCalculation(buttonGroup.checkedButton == failureButton
                                                             ? 0
                                                             : buttonGroup.checkedButton == damageButton
                                                                  ? 1
@@ -346,7 +345,8 @@ Rectangle {
         CustomSwitch {
             id: validateJsonFormatSwitch
             text: qsTr("Valideren Json-formaat")
-            checked: true
+            checked: dikernelApplication.ValidateJsonFormat
+            onClicked: dikernelApplication.SetValidateJsonFormat(validateJsonFormatSwitch.checked)
         }
 
         CustomSwitch {

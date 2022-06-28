@@ -78,6 +78,11 @@ namespace DiKErnel::Gui
         return _outputFilePath.value();
     }
 
+    bool DiKErnel::ValidateJsonFormat() const
+    {
+        return _validateJsonFormat.value();
+    }
+
     bool DiKErnel::WriteMetaData() const
     {
         return _writeMetaData.value();
@@ -113,6 +118,11 @@ namespace DiKErnel::Gui
         return &_startEnabled;
     }
 
+    QBindable<bool> DiKErnel::BindableValidateJsonFormat()
+    {
+        return &_validateJsonFormat;
+    }
+
     QBindable<bool> DiKErnel::BindableWriteMetaData()
     {
         return &_writeMetaData;
@@ -130,6 +140,12 @@ namespace DiKErnel::Gui
         _outputFilePath = outputFilePath.toLocalFile();
     }
 
+    void DiKErnel::SetValidateJsonFormat(
+        const bool validateJsonFormat)
+    {
+        _validateJsonFormat = validateJsonFormat;
+    }
+
     void DiKErnel::SetWriteMetaData(
         const bool writeMetaData)
     {
@@ -142,7 +158,6 @@ namespace DiKErnel::Gui
     }
 
     void DiKErnel::StartCalculation(
-        const bool validateJsonFormat,
         const int outputTypeId)
     {
         try
@@ -157,7 +172,7 @@ namespace DiKErnel::Gui
             const auto inputFilePathString = InputFilePath().toString();
             AddMessage(QString("De invoer uit bestand \"%1\" wordt gelezen...").arg(inputFilePathString));
 
-            if (validateJsonFormat)
+            if (ValidateJsonFormat())
             {
                 const auto validationResult = JsonInputComposer::ValidateJson(inputFilePathString.toStdString());
 
