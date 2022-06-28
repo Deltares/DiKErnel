@@ -82,6 +82,7 @@ namespace DiKErnel::Cli
                 int argc,
                 char** argv);
 
+            [[nodiscard]]
             bool ValidateReadArguments() const;
 
             static bool FilePathArgumentHasValidExtension(

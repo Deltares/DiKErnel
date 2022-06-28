@@ -86,7 +86,7 @@ namespace DiKErnel::Cli
         stringstream message;
 
         message << endl;
-        message << "Deze executable kan worden gebruikt voor het uitvoeren van een command line berekening met DiKErnel." << endl;
+        message << "Deze executable kan worden gebruikt voor het uitvoeren van een command line berekening met DiKErnel" << endl;
         message << endl;
         message << "Verplichte argumenten:" << endl;
         message << "----------------------" << endl;
@@ -103,16 +103,16 @@ namespace DiKErnel::Cli
         message << "    -> Opties voor <niveau>: falen, schade, fysica" << endl;
         message << "    -> Standaardwaarde: schade" << endl;
         message << "--niet-schrijven-meta-informatie" << endl;
-        message << "  = Schakelt het schrijven van meta - informatie uit" << endl;
+        message << "  = Schakelt het schrijven van meta-informatie uit" << endl;
         message << "--niet-valideren-json-formaat" << endl;
-        message << "  = Schakelt het valideren van het json invoer formaat uit" << endl;
+        message << "  = Schakelt het valideren van het Json-formaat uit" << endl;
         message << endl;
         message << "Voorbeeld:" << endl;
         message << "----------" << endl;
         message << "DiKErnel-cli.exe --invoerbestand Berekening1.json --uitvoerbestand UitvoerBerekening1.json --uitvoerniveau fysica ";
         message << "--niet-schrijven-meta-informatie --niet-valideren-json-formaat" << endl;
         message << endl;
-        message << "Bij vragen of onduidelijkheden kunt u contact met ons opnemen via dikernel@deltares.nl." << endl;
+        message << "Bij vragen of onduidelijkheden kunt u contact met ons opnemen via dikernel@deltares.nl" << endl;
         message << endl;
 
         return message.str();
@@ -182,17 +182,14 @@ namespace DiKErnel::Cli
 
     bool CommandLineArgumentParser::OutputLevelHasValidValue() const
     {
-        if (MapHelper::ContainsKey(_readArguments, _outputLevelKey))
-        {
-            const auto& value = _readArguments.at(_outputLevelKey);
-            return value == "falen" || value == "schade" || value == "fysica";
-        }
-        return true;
+        const auto outputLevel = GetOutputLevel();
+
+        return outputLevel == "falen" || outputLevel == "schade" || outputLevel == "fysica";
     }
 
     string CommandLineArgumentParser::CreateLogOutputFilePath() const
     {
-        const auto outputFilePath = path(_readArguments.at(_outputFilePathKey));
+        const auto outputFilePath = path(GetJsonOutputFilePath());
         const auto outputDirectory = outputFilePath.parent_path();
         const auto outputFileName = outputFilePath.stem().u8string();
 
