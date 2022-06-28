@@ -30,11 +30,11 @@ namespace DiKErnel::Util
     class MapHelper
     {
         public:
-            /**
+            /*!
              * \brief Checks whether the given map contains an element with the given key.
              * \tparam TKey The type of the key.
              * \tparam TValue The type of the value.
-             * \param map The map to check
+             * \param map The map to check.
              * \param key The key to check.
              * \return Whether the map contains the key.
              */
