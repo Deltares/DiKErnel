@@ -27,6 +27,7 @@ set(SOURCEFILES_PUBLIC_DATA
 )
 
 set(SOURCEFILES_PUBLIC_DATA_OUTPUT
+  ${PUBLIC_DATA_OUTPUT_FOLDER}/AsphaltRevetmentWaveImpactLocationDependentOutputTest.cpp
   ${PUBLIC_DATA_OUTPUT_FOLDER}/AsphaltRevetmentWaveImpactTimeDependentOutputTest.cpp
   ${PUBLIC_DATA_OUTPUT_FOLDER}/GrassRevetmentWaveImpactTimeDependentOutputTest.cpp
   ${PUBLIC_DATA_OUTPUT_FOLDER}/GrassRevetmentWaveRunupRayleighTimeDependentOutputTest.cpp
@@ -62,6 +63,7 @@ source_group(${INTERNAL_HELPERS_FOLDER} FILES ${SOURCEFILES_INTERNAL_HELPERS})
 
 # Link dependencies
 target_link_libraries(${EXENAME} PUBLIC
+  DiKErnel.Core.TestUtil
   DiKErnel.Integration
   DiKErnel.Integration.TestUtil
   DiKErnel.TestUtil
