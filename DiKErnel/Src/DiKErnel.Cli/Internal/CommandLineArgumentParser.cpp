@@ -159,13 +159,13 @@ namespace DiKErnel::Cli
         return true;
     }
 
-    bool CommandLineArgumentParser::ValidateReadArguments()
+    bool CommandLineArgumentParser::ValidateReadArguments() const
     {
         const auto requiredArgumentsArePresent = all_of(_argumentOptions.begin(), _argumentOptions.end(), [this](
                                                     const pair<string, unsigned int>& argumentOption)
                                                         {
-                                                            const auto& readArgument = _readArguments.find(argumentOption.first);
-                                                            return argumentOption.second & Required && readArgument == _readArguments.end();
+                                                            return !(argumentOption.second & Required)
+                                                                    || MapHelper::ContainsKey(_readArguments, argumentOption.first);
                                                         });
 
         return requiredArgumentsArePresent

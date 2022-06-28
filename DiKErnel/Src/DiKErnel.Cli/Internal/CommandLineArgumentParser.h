@@ -82,7 +82,7 @@ namespace DiKErnel::Cli
                 int argc,
                 char** argv);
 
-            bool ValidateReadArguments();
+            bool ValidateReadArguments() const;
 
             static bool FilePathArgumentHasValidExtension(
                 const std::string& filePathArgument);
