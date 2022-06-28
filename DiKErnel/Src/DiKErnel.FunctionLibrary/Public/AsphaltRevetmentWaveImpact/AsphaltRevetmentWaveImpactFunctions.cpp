@@ -95,6 +95,15 @@ namespace DiKErnel::FunctionLibrary
         return thicknessUpperLayer * pow(elasticModulusUpperLayer / elasticModulusSubLayer, 1.0 / 3.0) + thicknessSubLayer;
     }
 
+    double AsphaltRevetmentWaveImpactFunctions::OuterSlope(
+        const double slopeUpperPosition,
+        const double slopeUpperLevel,
+        const double slopeLowerPosition,
+        const double slopeLowerLevel)
+    {
+        return (slopeUpperLevel - slopeLowerLevel) / (slopeUpperPosition - slopeLowerPosition);
+    }
+
     double AsphaltRevetmentWaveImpactFunctions::DepthFactorAccumulation(
         const double logFailureTension,
         const double averageNumberOfWaves,
