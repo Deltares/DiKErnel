@@ -73,7 +73,6 @@ namespace DiKErnel::Integration
             const double _initialDamage;
             const double _failureNumber;
             bool _derivedLocationDependentInputInitialized = false;
-            std::vector<std::pair<double, double>> _dikeProfilePoints = std::vector<std::pair<double, double>>();
             double _z = std::numeric_limits<double>::infinity();
     };
 }

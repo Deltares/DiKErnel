@@ -46,6 +46,32 @@ namespace DiKErnel::Core
             virtual bool Validate() const = 0;
 
             /*!
+             * \brief Calculates the vertical height based on linear interpolation.
+             * \param horizontalPosition
+             *        The horizontal position.
+             *        Unit = [m]
+             * \return The vertical height or INFINITY when the horizontal position cannot be
+             *         fitted with the dike profile.
+             *         Unit = [m]
+             */
+            [[nodiscard]]
+            virtual double InterpolationVerticalHeight(
+                double horizontalPosition) const = 0;
+
+            /*!
+             * \brief Calculates the horizontal position based on linear interpolation.
+             * \param verticalHeight
+             *        The vertical height.
+             *        Unit = [m]
+             * \return The horizontal position or INFINITY when the vertical height cannot be
+             *         fitted with the dike profile.
+             *         Unit = [m]
+             */
+            [[nodiscard]]
+            virtual double InterpolationHorizontalPosition(
+                double verticalHeight) const = 0;
+
+            /*!
              * \brief Gets the profile points to use in the calculation.
              * \return The profile points to use in the calculation.
              */

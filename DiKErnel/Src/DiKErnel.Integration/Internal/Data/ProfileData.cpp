@@ -20,6 +20,8 @@
 
 #include "ProfileData.h"
 
+#include <cmath>
+
 #include "CharacteristicPointsHelper.h"
 #include "ProfileValidator.h"
 #include "ValidationHelper.h"
@@ -51,14 +53,83 @@ namespace DiKErnel::Integration
 
     bool ProfileData::Validate() const
     {
-        const auto& outerToe = CharacteristicPointsHelper::GetCoordinatesForType(_characteristicPointReferences, CharacteristicPointType::OuterToe);
-        const auto& outerCrest = CharacteristicPointsHelper::GetCoordinatesForType(_characteristicPointReferences, CharacteristicPointType::OuterCrest);
+        const auto outerToe = CharacteristicPointsHelper::GetCoordinatesForType(_characteristicPointReferences, CharacteristicPointType::OuterToe);
+        const auto outerCrest = CharacteristicPointsHelper::GetCoordinatesForType(_characteristicPointReferences,
+                                                                                   CharacteristicPointType::OuterCrest);
 
         vector<unique_ptr<ValidationIssue>> validationIssues;
         validationIssues.emplace_back(ProfileValidator::OuterToe(outerToe.get()));
         validationIssues.emplace_back(ProfileValidator::OuterCrest(outerCrest.get()));
 
         return ValidationHelper::RegisterValidationIssues(validationIssues);
+    }
+
+    double ProfileData::InterpolationVerticalHeight(
+        const double horizontalPosition) const
+    {
+        for (auto i = 0; i < static_cast<int>(_profilePoints.size()); ++i)
+        {
+            const auto& profilePoint = _profilePoints.at(i);
+            const auto xCurrentDikeProfilePoint = profilePoint->GetX();
+            const auto zCurrentDikeProfilePoint = profilePoint->GetZ();
+
+            if (abs(xCurrentDikeProfilePoint - horizontalPosition) <= numeric_limits<double>::epsilon())
+            {
+                return zCurrentDikeProfilePoint;
+            }
+
+            if (xCurrentDikeProfilePoint > horizontalPosition)
+            {
+                if (i == 0)
+                {
+                    return numeric_limits<double>::infinity();
+                }
+
+                const auto& previousProfilePoint = _profilePoints.at(i - 1);
+                const auto xPreviousDikeProfilePoint = previousProfilePoint->GetX();
+                const auto zPreviousDikeProfilePoint = previousProfilePoint->GetZ();
+
+                return zPreviousDikeProfilePoint + (zCurrentDikeProfilePoint - zPreviousDikeProfilePoint)
+                        / (xCurrentDikeProfilePoint - xPreviousDikeProfilePoint)
+                        * (horizontalPosition - xPreviousDikeProfilePoint);
+            }
+        }
+
+        return numeric_limits<double>::infinity();
+    }
+
+    double ProfileData::InterpolationHorizontalPosition(
+        const double verticalHeight) const
+    {
+        for (auto i = 0; i < static_cast<int>(_profilePoints.size()); ++i)
+        {
+            const auto& profilePoint = _profilePoints.at(i);
+            const auto xCurrentDikeProfilePoint = profilePoint->GetX();
+            const auto zCurrentDikeProfilePoint = profilePoint->GetZ();
+
+            if (abs(zCurrentDikeProfilePoint - verticalHeight) <= numeric_limits<double>::epsilon())
+            {
+                return xCurrentDikeProfilePoint;
+            }
+
+            if (zCurrentDikeProfilePoint > verticalHeight)
+            {
+                if (i == 0)
+                {
+                    return numeric_limits<double>::infinity();
+                }
+
+                const auto& previousProfilePoint = _profilePoints.at(i - 1);
+                const auto xPreviousDikeProfilePoint = previousProfilePoint->GetX();
+                const auto zPreviousDikeProfilePoint = previousProfilePoint->GetZ();
+
+                return xPreviousDikeProfilePoint + (xCurrentDikeProfilePoint - xPreviousDikeProfilePoint)
+                        / (zCurrentDikeProfilePoint - zPreviousDikeProfilePoint)
+                        * (verticalHeight - zPreviousDikeProfilePoint);
+            }
+        }
+
+        return numeric_limits<double>::infinity();
     }
 
     const vector<reference_wrapper<ProfilePoint>>& ProfileData::GetProfilePoints() const

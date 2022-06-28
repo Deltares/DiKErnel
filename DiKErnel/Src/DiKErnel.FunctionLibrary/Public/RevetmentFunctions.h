@@ -20,8 +20,6 @@
 
 #pragma once
 
-#include <vector>
-
 namespace DiKErnel::FunctionLibrary
 {
     /*!
@@ -65,40 +63,6 @@ namespace DiKErnel::FunctionLibrary
                 double incrementTime,
                 double wavePeriodTm10,
                 double averageNumberOfWavesCtm);
-
-            /*!
-             * \brief Calculates the vertical height based on linear interpolation.
-             * \param horizontalPosition
-             *        The horizontal position.
-             *        Unit = [m]
-             * \param dikeProfile
-             *        The dike profile.
-             *        Unit = [-]
-             * \return The vertical height or INFINITY when the horizontal position cannot be
-             *         fitted with the dike profile.
-             *         Unit = [m]
-             */
-            [[nodiscard]]
-            static double InterpolationVerticalHeight(
-                double horizontalPosition,
-                std::vector<std::pair<double, double>> dikeProfile);
-
-            /*!
-             * \brief Calculates the horizontal position based on linear interpolation.
-             * \param verticalHeight
-             *        The vertical height.
-             *        Unit = [m]
-             * \param dikeProfile
-             *        The dike profile.
-             *        Unit = [-]
-             * \return The horizontal position or INFINITY when the vertical height cannot be
-             *         fitted with the dike profile.
-             *         Unit = [m]
-             */
-            [[nodiscard]]
-            static double InterpolationHorizontalPosition(
-                double verticalHeight,
-                std::vector<std::pair<double, double>> dikeProfile);
 
             /*!
              * \brief Calculates the damage.

@@ -37,6 +37,14 @@ namespace DiKErnel::Integration
             bool Validate() const override;
 
             [[nodiscard]]
+            double InterpolationVerticalHeight(
+                double horizontalPosition) const override;
+
+            [[nodiscard]]
+            double InterpolationHorizontalPosition(
+                double verticalHeight) const override;
+
+            [[nodiscard]]
             const std::vector<std::reference_wrapper<Core::ProfilePoint>>& GetProfilePoints() const override;
 
             [[nodiscard]]

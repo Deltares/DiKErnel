@@ -41,68 +41,6 @@ namespace DiKErnel::FunctionLibrary
         return incrementTime / (averageNumberOfWavesCtm * wavePeriodTm10);
     }
 
-    double RevetmentFunctions::InterpolationVerticalHeight(
-        const double horizontalPosition,
-        vector<pair<double, double>> dikeProfile)
-    {
-        for (auto i = 0; i < static_cast<int>(dikeProfile.size()); ++i)
-        {
-            const auto& [xCurrentDikeProfilePoint, zCurrentDikeProfilePoint] = dikeProfile.at(i);
-
-            if (abs(xCurrentDikeProfilePoint - horizontalPosition) <= numeric_limits<double>::epsilon())
-            {
-                return zCurrentDikeProfilePoint;
-            }
-
-            if (xCurrentDikeProfilePoint > horizontalPosition)
-            {
-                if (i == 0)
-                {
-                    return numeric_limits<double>::infinity();
-                }
-
-                const auto& [xPreviousDikeProfilePoint, zPreviousDikeProfilePoint] = dikeProfile.at(i - 1);
-
-                return zPreviousDikeProfilePoint + (zCurrentDikeProfilePoint - zPreviousDikeProfilePoint)
-                        / (xCurrentDikeProfilePoint - xPreviousDikeProfilePoint)
-                        * (horizontalPosition - xPreviousDikeProfilePoint);
-            }
-        }
-
-        return numeric_limits<double>::infinity();
-    }
-
-    double RevetmentFunctions::InterpolationHorizontalPosition(
-        const double verticalHeight,
-        vector<pair<double, double>> dikeProfile)
-    {
-        for (auto i = 0; i < static_cast<int>(dikeProfile.size()); ++i)
-        {
-            const auto& [xCurrentDikeProfilePoint, zCurrentDikeProfilePoint] = dikeProfile.at(i);
-
-            if (abs(zCurrentDikeProfilePoint - verticalHeight) <= numeric_limits<double>::epsilon())
-            {
-                return xCurrentDikeProfilePoint;
-            }
-
-            if (zCurrentDikeProfilePoint > verticalHeight)
-            {
-                if (i == 0)
-                {
-                    return numeric_limits<double>::infinity();
-                }
-
-                const auto& [xPreviousDikeProfilePoint, zPreviousDikeProfilePoint] = dikeProfile.at(i - 1);
-
-                return xPreviousDikeProfilePoint + (xCurrentDikeProfilePoint - xPreviousDikeProfilePoint)
-                        / (zCurrentDikeProfilePoint - zPreviousDikeProfilePoint)
-                        * (verticalHeight - zPreviousDikeProfilePoint);
-            }
-        }
-
-        return numeric_limits<double>::infinity();
-    }
-
     double RevetmentFunctions::Damage(
         const double incrementDamage,
         const double initialDamage)

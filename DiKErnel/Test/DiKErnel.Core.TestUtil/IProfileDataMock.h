@@ -30,6 +30,8 @@ namespace DiKErnel::Core::TestUtil
     {
         public:
             MOCK_METHOD(bool, Validate, (), (const, override));
+            MOCK_METHOD(double, InterpolationVerticalHeight, (double), (const, override));
+            MOCK_METHOD(double, InterpolationHorizontalPosition, (double), (const, override));
             MOCK_METHOD(std::vector<std::reference_wrapper<ProfilePoint>>&, GetProfilePoints, (), (const, override));
             MOCK_METHOD(std::vector<std::reference_wrapper<CharacteristicPoint>>&, GetCharacteristicPoints, (), (const, override));
     };

@@ -48,8 +48,8 @@ namespace DiKErnel::Integration
     {
         const auto& characteristicPoints = profileData.GetCharacteristicPoints();
 
-        const auto& outerToe = CharacteristicPointsHelper::GetCoordinatesForType(characteristicPoints, CharacteristicPointType::OuterToe);
-        const auto& outerCrest = CharacteristicPointsHelper::GetCoordinatesForType(characteristicPoints, CharacteristicPointType::OuterCrest);
+        const auto outerToe = CharacteristicPointsHelper::GetCoordinatesForType(characteristicPoints, CharacteristicPointType::OuterToe);
+        const auto outerCrest = CharacteristicPointsHelper::GetCoordinatesForType(characteristicPoints, CharacteristicPointType::OuterCrest);
 
         vector<unique_ptr<ValidationIssue>> validationIssues;
         if (outerToe != nullptr && outerCrest != nullptr)
@@ -100,18 +100,6 @@ namespace DiKErnel::Integration
     void LocationDependentInput::InitializeDerivedLocationDependentInput(
         const IProfileData& profileData)
     {
-        for (const auto& profilePointReference : profileData.GetProfilePoints())
-        {
-            const auto& profilePoint = profilePointReference.get();
-
-            _dikeProfilePoints.emplace_back(profilePoint.GetX(), profilePoint.GetZ());
-        }
-
-        _z = RevetmentFunctions::InterpolationVerticalHeight(_x, _dikeProfilePoints);
-    }
-
-    vector<pair<double, double>>& LocationDependentInput::GetDikeProfilePoints()
-    {
-        return _dikeProfilePoints;
+        _z = profileData.InterpolationVerticalHeight(_x);
     }
 }

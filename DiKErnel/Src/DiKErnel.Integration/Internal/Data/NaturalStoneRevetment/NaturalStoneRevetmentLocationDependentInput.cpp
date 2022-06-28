@@ -141,7 +141,6 @@ namespace DiKErnel::Integration
         const ITimeDependentInput& timeDependentInput,
         const IProfileData& profileData)
     {
-        const auto& dikeProfilePoints = GetDikeProfilePoints();
         const auto waterLevel = timeDependentInput.GetWaterLevel();
         const auto waveHeightHm0 = timeDependentInput.GetWaveHeightHm0();
         const auto wavePeriodTm10 = timeDependentInput.GetWavePeriodTm10();
@@ -152,8 +151,8 @@ namespace DiKErnel::Integration
                                                                                      naturalStoneRevetmentSlope.GetUpperLevelAus());
         const auto slopeLowerLevel = NaturalStoneRevetmentFunctions::SlopeLowerLevel(_outerToeHeight, slopeUpperLevel, waveHeightHm0,
                                                                                      naturalStoneRevetmentSlope.GetLowerLevelAls());
-        const auto slopeUpperPosition = RevetmentFunctions::InterpolationHorizontalPosition(slopeUpperLevel, dikeProfilePoints);
-        const auto slopeLowerPosition = RevetmentFunctions::InterpolationHorizontalPosition(slopeLowerLevel, dikeProfilePoints);
+        const auto slopeUpperPosition = profileData.InterpolationHorizontalPosition(slopeUpperLevel);
+        const auto slopeLowerPosition = profileData.InterpolationHorizontalPosition(slopeLowerLevel);
 
         const auto outerSlope = _notchOuterBerm != nullptr && _crestOuterBerm != nullptr
                                     ? NaturalStoneRevetmentFunctions::OuterSlope(_outerToeHeight, _outerCrestHeight, _notchOuterBerm->first,
