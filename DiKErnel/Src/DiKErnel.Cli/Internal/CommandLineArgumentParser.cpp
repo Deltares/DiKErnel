@@ -35,7 +35,7 @@ namespace DiKErnel::Cli
         const int argc,
         char** argv)
     {
-        if (!ReadArguments(argc, argv) && !ValidateReadArguments())
+        if (!ReadArguments(argc, argv) || !ValidateReadArguments())
         {
             _argumentsAreValid = false;
             return;
@@ -124,24 +124,35 @@ namespace DiKErnel::Cli
     {
         for (int i = 1; i < argc; ++i)
         {
-            if (string readArgument = argv[i]; readArgument.rfind("--", 0) != string::npos)
+            if (string readKey = argv[i]; readKey.rfind("--", 0) != string::npos)
             {
-                auto key = readArgument.substr(2);
+                auto key = readKey.substr(2);
                 string value;
 
                 if (MapHelper::ContainsKey(_argumentOptions, key))
                 {
-                    if (_argumentOptions.at(key) & WithArgument)
+                    if (_argumentOptions.at(key) & WithValue)
                     {
-                        value = argv[++i];
+                        if (i < argc - 1)
+                        {
+                            value = argv[++i];
+                        }
+                        else
+                        {
+                            return false; // Value missing
+                        }
                     }
                 }
                 else
                 {
-                    return false;
+                    return false; // Undefined key
                 }
 
                 _readArguments.insert(pair(key, value));
+            }
+            else
+            {
+                return false; // Key not starting with "--"
             }
         }
 

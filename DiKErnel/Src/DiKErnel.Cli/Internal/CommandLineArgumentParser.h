@@ -71,9 +71,9 @@ namespace DiKErnel::Cli
 
             static inline std::map<std::string, unsigned int> _argumentOptions =
             {
-                std::pair<std::string, unsigned int>(_inputFilePathKey, Required | WithArgument),
-                std::pair<std::string, unsigned int>(_outputFilePathKey, Required | WithArgument),
-                std::pair<std::string, unsigned int>(_outputLevelKey, Optional | WithArgument),
+                std::pair<std::string, unsigned int>(_inputFilePathKey, Required | WithValue),
+                std::pair<std::string, unsigned int>(_outputFilePathKey, Required | WithValue),
+                std::pair<std::string, unsigned int>(_outputLevelKey, Optional | WithValue),
                 std::pair<std::string, unsigned int>(_noMetaInformationKey, Optional),
                 std::pair<std::string, unsigned int>(_noJsonFormatValidationKey, Optional)
             };
@@ -87,6 +87,7 @@ namespace DiKErnel::Cli
             static bool FilePathArgumentHasValidExtension(
                 const std::string& filePathArgument);
 
+            [[nodiscard]]
             bool OutputLevelHasValidValue() const;
 
             [[nodiscard]]

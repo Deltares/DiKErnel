@@ -26,6 +26,6 @@ namespace DiKErnel::Cli
     {
         Optional = 0x01,
         Required = 0x02,
-        WithArgument = 0x04
+        WithValue = 0x04
     };
 }
