@@ -20,6 +20,7 @@
 
 #include "JsonInputComposer.h"
 
+#include <filesystem>
 #include <fstream>
 
 #include "EventRegistry.h"
@@ -35,6 +36,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
     using namespace nlohmann;
     using namespace json_schema;
     using namespace std;
+    using namespace std::filesystem;
     using namespace Util;
 
     bool JsonInputComposer::ValidateJson(
@@ -42,17 +44,24 @@ namespace DiKErnel::KernelWrapper::Json::Input
     {
         vector<unique_ptr<ValidationIssue>> validationIssues;
 
-        try
+        if (!exists(filePath))
         {
-            _validator.validate(json::parse(ifstream(filePath)), *_customErrorHandler);
+            validationIssues.emplace_back(make_unique<ValidationIssue>(ValidationIssueType::Error, "The provided input file does not exist"));
         }
-        catch (const json::parse_error& e)
+        else
         {
-            validationIssues.emplace_back(make_unique<ValidationIssue>(ValidationIssueType::Error, e.what()));
-        }
-        catch (const invalid_argument& e)
-        {
-            validationIssues.emplace_back(make_unique<ValidationIssue>(ValidationIssueType::Error, e.what()));
+            try
+            {
+                _validator.validate(json::parse(ifstream(filePath)), *_customErrorHandler);
+            }
+            catch (const json::parse_error& e)
+            {
+                validationIssues.emplace_back(make_unique<ValidationIssue>(ValidationIssueType::Error, e.what()));
+            }
+            catch (const invalid_argument& e)
+            {
+                validationIssues.emplace_back(make_unique<ValidationIssue>(ValidationIssueType::Error, e.what()));
+            }
         }
 
         return ValidationHelper::RegisterValidationIssues(validationIssues);
@@ -61,17 +70,24 @@ namespace DiKErnel::KernelWrapper::Json::Input
     unique_ptr<DataResult<ICalculationInput>> JsonInputComposer::GetInputDataFromJson(
         const string& filePath)
     {
-        try
+        if (!exists(filePath))
         {
-            const auto& jsonInputData = JsonInputParser::GetJsonInputData(filePath);
-            return make_unique<DataResult<ICalculationInput>>(JsonInputAdapter::AdaptJsonInputData(*jsonInputData), EventRegistry::Flush());
+            EventRegistry::Register(make_unique<Event>("The provided input file does not exist", EventType::Error));
         }
-        catch (const exception& e)
+        else
         {
-            EventRegistry::Register(make_unique<Event>("An unhandled error occurred while composing calculation data from the Json input. See "
-                                                       "stack trace for more information:\n" + static_cast<string>(e.what()), EventType::Error));
+            try
+            {
+                const auto& jsonInputData = JsonInputParser::GetJsonInputData(filePath);
+                return make_unique<DataResult<ICalculationInput>>(JsonInputAdapter::AdaptJsonInputData(*jsonInputData), EventRegistry::Flush());
+            }
+            catch (const exception& e)
+            {
+                EventRegistry::Register(make_unique<Event>("An unhandled error occurred while composing calculation data from the Json input. See "
+                    "stack trace for more information:\n" + static_cast<string>(e.what()), EventType::Error));
+            }
+        }
 
-            return make_unique<DataResult<ICalculationInput>>(EventRegistry::Flush());
-        }
+        return make_unique<DataResult<ICalculationInput>>(EventRegistry::Flush());
     }
 }
