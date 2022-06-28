@@ -491,6 +491,22 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
         PerformInvalidJsonTest("InvalidNaturalStoneRevetmentTopLayerType.json", "Cannot convert top layer type.");
     }
 
+    TEST_F(JsonInputComposerTest, GivenNotExistingJsonInputFile_WhenGetInputDataFromJson_ThenReturnsResultWithSuccessfulFalseAndEvent)
+    {
+        // Given
+        const auto filePath = "NotExisting";
+
+        // When
+        const auto& result = JsonInputComposer::GetInputDataFromJson(filePath);
+
+        // Then
+        ASSERT_FALSE(result->GetSuccessful());
+
+        const auto& events = result->GetEvents();
+        ASSERT_EQ(1, events.size());
+        EventAssertHelper::AssertEvent(EventType::Error, "The provided input file does not exist", events.at(0).get());
+    }
+
     TEST_F(JsonInputComposerTest, GivenCompleteAndValidJsonInputFile_WhenValidatingJson_ThenReturnsTrueAndNoEventsRegistered)
     {
         // Given
@@ -519,8 +535,23 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
 
         const auto& registeredEvents = EventRegistry::Flush();
         ASSERT_EQ(1, registeredEvents.size());
-        EventAssertHelper::AssertEvent(EventType::Error,
-                                       "At  of {} - required property 'tijdstippen' not found in object",
+        EventAssertHelper::AssertEvent(EventType::Error, "At  of {} - required property 'tijdstippen' not found in object",
                                        *registeredEvents.at(0));
+    }
+
+    TEST_F(JsonInputComposerTest, GivenNotExistingJsonInputFile_WhenValidatingJson_ThenReturnsFalseAndExpectedEventsRegistered)
+    {
+        // Given
+        const auto filePath = "NotExisting.json";
+
+        // When
+        const auto result = JsonInputComposer::ValidateJson(filePath);
+
+        // Then
+        ASSERT_FALSE(result);
+
+        const auto& registeredEvents = EventRegistry::Flush();
+        ASSERT_EQ(1, registeredEvents.size());
+        EventAssertHelper::AssertEvent(EventType::Error, "The provided input file does not exist", *registeredEvents.at(0));
     }
 }
