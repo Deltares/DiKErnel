@@ -230,11 +230,7 @@ Rectangle {
         rightPadding: 20
         leftPadding: 20
         enabled: dikernelApplication.StartEnabled
-        onClicked: dikernelApplication.StartCalculation(buttonGroup.checkedButton == failureButton
-                                                            ? 0
-                                                            : buttonGroup.checkedButton == damageButton
-                                                                 ? 1
-                                                                 : 2)
+        onClicked: dikernelApplication.StartCalculation()
     }
 
     Button {
@@ -368,18 +364,18 @@ Rectangle {
         CustomCheckableButton {
             id: failureButton
             text: qsTr("Falen")
-            checked: true
             Layout.preferredWidth: parent.width / 3
         }
 
         CustomCheckableButton {
             id: damageButton
             text: qsTr("Schade")
+            checked: true
             Layout.preferredWidth: parent.width / 3
         }
 
         CustomCheckableButton {
-            id: fysicsButton
+            id: physicsButton
             text: qsTr("Fysica")
             Layout.preferredWidth: parent.width / 3
         }
@@ -388,5 +384,6 @@ Rectangle {
     ButtonGroup {
         id: buttonGroup
         buttons: buttonGroupLayout.children
+        onClicked: dikernelApplication.SetOutputLevel(button.text)
     }
 }
