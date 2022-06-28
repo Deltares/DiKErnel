@@ -64,31 +64,35 @@
     },
     "dijkprofiel": {
         "posities": [
-            -30,
-            0,
-            18.29,
-            30,
-            40,
-            45,
+            -8.5,
+            2.4,
+            10.2,
+            18.3,
+            24.2,
+            30.2,
+            37.4,
+            45.3,
             65
         ],
         "hoogten": [
-            0,
-            1.73,
-            5.99,
-            6.99,
-            9,
-            9,
-            0
+            0.35,
+            1.75,
+            2.95,
+            5.95,
+            6.3,
+            7.1,
+            7.85,
+            9.05,
+            9.1
         ],
-        "teenBuitenzijde": 0,
-        "kruinBermBuitenzijde": 18.29,
-        "insteekBermBuitenzijde": 30,
-        "kruinBuitenzijde": 40
+        "teenBuitenzijde": 2.4,
+        "kruinBermBuitenzijde": 18.3,
+        "insteekBermBuitenzijde": 30.2,
+        "kruinBuitenzijde": 45.3
     },
     "locaties": [
         {
-            "positie": 5.40,
+            "positie": 5.4,
             "beginschade": 0.0,
             "rekenmethode": "asfaltGolfklap",
             "typeToplaag": "waterbouwAsfaltBeton",
@@ -101,7 +105,20 @@
             "tanA": 0.233
         },
         {
-            "positie": 5.40,
+            "positie": 32.45,
+            "beginschade": 0.0,
+            "rekenmethode": "asfaltGolfklap",
+            "typeToplaag": "waterbouwAsfaltBeton",
+            "breuksterkteAsfalt": 1.56,
+            "veerconstanteOndergrond": 56,
+            "toplaag": {
+                "dikte": 0.16,
+                "stijfheidsmodulus": 18214
+            },
+            "tanA": 0.233
+        },
+        {
+            "positie": 5.4,
             "beginschade": 0.0,
             "rekenmethode": "asfaltGolfklap",
             "typeToplaag": "waterbouwAsfaltBeton",
