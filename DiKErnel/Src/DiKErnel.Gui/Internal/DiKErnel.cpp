@@ -113,11 +113,6 @@ namespace DiKErnel::Gui
         return &_outputFilePath;
     }
 
-    QBindable<bool> DiKErnel::BindableStartEnabled()
-    {
-        return &_startEnabled;
-    }
-
     QBindable<bool> DiKErnel::BindableValidateJsonFormat()
     {
         return &_validateJsonFormat;
@@ -126,6 +121,11 @@ namespace DiKErnel::Gui
     QBindable<bool> DiKErnel::BindableWriteMetaData()
     {
         return &_writeMetaData;
+    }
+
+    QBindable<bool> DiKErnel::BindableStartEnabled()
+    {
+        return &_startEnabled;
     }
 
     void DiKErnel::SetInputFilePath(
