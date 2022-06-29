@@ -28,7 +28,7 @@ namespace DiKErnel::KernelWrapper::Json::Output
     {
         public:
             explicit JsonOutputPhysicsLocationData(
-                const Core::LocationDependentOutput& locationOutput);
+                const Core::LocationDependentOutput& locationDependentOutput);
 
             [[nodiscard]]
             nlohmann::ordered_json CreateJson() const override;

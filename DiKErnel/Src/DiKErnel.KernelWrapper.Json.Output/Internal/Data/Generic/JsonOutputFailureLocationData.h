@@ -29,16 +29,16 @@ namespace DiKErnel::KernelWrapper::Json::Output
     {
         public:
             explicit JsonOutputFailureLocationData(
-                const Core::LocationDependentOutput& locationOutput);
+                const Core::LocationDependentOutput& locationDependentOutput);
 
             [[nodiscard]]
             nlohmann::ordered_json CreateJson() const override;
 
         protected:
             [[nodiscard]]
-            const Core::LocationDependentOutput& GetLocationOutput() const;
+            const Core::LocationDependentOutput& GetLocationDependentOutput() const;
 
         private:
-            const Core::LocationDependentOutput& _locationOutput;
+            const Core::LocationDependentOutput& _locationDependentOutput;
     };
 }

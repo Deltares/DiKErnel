@@ -28,8 +28,8 @@ namespace DiKErnel::KernelWrapper::Json::Output
     using namespace nlohmann;
 
     JsonOutputPhysicsLocationData::JsonOutputPhysicsLocationData(
-        const LocationDependentOutput& locationOutput)
-        : JsonOutputDamageLocationData(locationOutput) {}
+        const LocationDependentOutput& locationDependentOutput)
+        : JsonOutputDamageLocationData(locationDependentOutput) {}
 
     ordered_json JsonOutputPhysicsLocationData::CreateJson() const
     {
@@ -42,7 +42,7 @@ namespace DiKErnel::KernelWrapper::Json::Output
                     {
                         {
                             JsonOutputDefinitions::Z,
-                            GetLocationOutput().GetZ()
+                            GetLocationDependentOutput().GetZ()
                         }
                     })
             });

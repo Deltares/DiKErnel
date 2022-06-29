@@ -28,12 +28,12 @@ namespace DiKErnel::KernelWrapper::Json::Output
     using namespace nlohmann;
 
     JsonOutputDamageLocationData::JsonOutputDamageLocationData(
-        const LocationDependentOutput& locationOutput)
-        : JsonOutputFailureLocationData(locationOutput) {}
+        const LocationDependentOutput& locationDependentOutput)
+        : JsonOutputFailureLocationData(locationDependentOutput) {}
 
     ordered_json JsonOutputDamageLocationData::CreateJson() const
     {
-        const auto& locationOutput = GetLocationOutput();
+        const auto& locationDependentOutput = GetLocationDependentOutput();
 
         auto output = JsonOutputFailureLocationData::CreateJson();
 
@@ -44,7 +44,7 @@ namespace DiKErnel::KernelWrapper::Json::Output
                     {
                         {
                             JsonOutputDefinitions::DAMAGE_OVER_TIME,
-                            locationOutput.GetDamages()
+                            locationDependentOutput.GetDamages()
                         }
                     })
             });
