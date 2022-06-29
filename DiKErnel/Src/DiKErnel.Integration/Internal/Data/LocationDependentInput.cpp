@@ -77,6 +77,12 @@ namespace DiKErnel::Integration
         return CalculateTimeDependentOutput(initialDamage, timeDependentInput, profileData);
     }
 
+    unique_ptr<LocationDependentOutput> LocationDependentInput::GetLocationDependentOutput(
+        vector<unique_ptr<TimeDependentOutput>> timeDependentOutputItems)
+    {
+        return make_unique<LocationDependentOutput>(GetZ(), timeDependentOutputItems);
+    }
+
     double LocationDependentInput::GetX() const
     {
         return _x;

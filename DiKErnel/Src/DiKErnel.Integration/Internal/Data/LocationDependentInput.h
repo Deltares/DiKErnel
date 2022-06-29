@@ -38,6 +38,9 @@ namespace DiKErnel::Integration
                 const Core::ITimeDependentInput& timeDependentInput,
                 const Core::IProfileData& profileData) override;
 
+            std::unique_ptr<Core::LocationDependentOutput> GetLocationDependentOutput(
+                std::vector<std::unique_ptr<Core::TimeDependentOutput>> timeDependentOutputItems) override;
+
             [[nodiscard]]
             double GetX() const override;
 

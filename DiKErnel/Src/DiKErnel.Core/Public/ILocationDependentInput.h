@@ -22,6 +22,7 @@
 
 #include "IProfileData.h"
 #include "ITimeDependentInput.h"
+#include "LocationDependentOutput.h"
 #include "TimeDependentOutput.h"
 
 namespace DiKErnel::Core
@@ -62,6 +63,16 @@ namespace DiKErnel::Core
                 double initialDamage,
                 const ITimeDependentInput& timeDependentInput,
                 const IProfileData& profileData) = 0;
+
+            /*!
+             * \brief Gets location dependent output based on the derived location dependent input
+             *        and the provided time dependent output items.
+             * \param timeDependentOutputItems
+             *        Zero or more time dependent output items of the location.
+             * \return The location dependent output.
+             */
+            virtual std::unique_ptr<LocationDependentOutput> GetLocationDependentOutput(
+                std::vector<std::unique_ptr<TimeDependentOutput>> timeDependentOutputItems) = 0;
 
             /*!
              * \brief Gets the x coordinate.
