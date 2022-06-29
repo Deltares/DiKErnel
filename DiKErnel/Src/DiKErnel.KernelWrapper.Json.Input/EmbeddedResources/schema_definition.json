@@ -199,8 +199,7 @@
             "required": [
               "breuksterkteAsfalt",
               "veerconstanteOndergrond",
-              "toplaag",
-              "tanA"
+              "toplaag"
             ]
           },
           {
