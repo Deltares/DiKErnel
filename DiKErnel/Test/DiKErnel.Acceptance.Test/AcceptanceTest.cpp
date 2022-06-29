@@ -115,26 +115,6 @@ namespace DiKErnel::Acceptance::Test
         }
     };
 
-    TEST_F(AcceptanceTest, GivenJsonInputWithAsphaltWaveImpactLocations_WhenCalculating_ThenExpectedOutputJsonCreated)
-    {
-        // Given
-        const auto inputFilePath = (TestDataPathHelper::GetTestDataPath("DiKErnel.Acceptance.Test") / "AcceptanceTest"
-            / "AsphaltWaveImpact.json").string();
-
-        // When & Then
-        PerformTest(inputFilePath, vector
-                    {
-                        0.78399877642994242,
-                        1.1274579384533067E-13,
-                        0.056627316489490043
-                    }, vector<const int*>
-                    {
-                        nullptr,
-                        nullptr,
-                        nullptr
-                    });
-    }
-
     TEST_F(AcceptanceTest, GivenJsonInputWithAsphaltWaveImpactLocationsBelowBerm_WhenCalculating_ThenExpectedOutputJsonCreated)
     {
         // Given
