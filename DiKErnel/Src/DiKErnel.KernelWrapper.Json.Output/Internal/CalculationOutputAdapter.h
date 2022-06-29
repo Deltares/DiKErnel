@@ -49,12 +49,12 @@ namespace DiKErnel::KernelWrapper::Json::Output
                 JsonOutputType outputType);
 
             static std::unique_ptr<JsonOutputFailureLocationData> CreateJsonOutputFailureLocationData(
-                const Core::LocationDependentOutput& locationOutput);
+                const Core::LocationDependentOutput& locationDependentOutput);
 
             static std::unique_ptr<JsonOutputFailureLocationData> CreateJsonOutputDamageLocationData(
-                const Core::LocationDependentOutput& locationOutput);
+                const Core::LocationDependentOutput& locationDependentOutput);
 
             static std::unique_ptr<JsonOutputFailureLocationData> CreateJsonOutputPhysicsLocationData(
-                const Core::LocationDependentOutput& locationOutput);
+                const Core::LocationDependentOutput& locationDependentOutput);
     };
 }

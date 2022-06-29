@@ -79,36 +79,36 @@ namespace DiKErnel::KernelWrapper::Json::Output
     }
 
     unique_ptr<JsonOutputFailureLocationData> CalculationOutputAdapter::CreateJsonOutputFailureLocationData(
-        const LocationDependentOutput& locationOutput)
+        const LocationDependentOutput& locationDependentOutput)
     {
-        return make_unique<JsonOutputFailureLocationData>(locationOutput);
+        return make_unique<JsonOutputFailureLocationData>(locationDependentOutput);
     }
 
     unique_ptr<JsonOutputFailureLocationData> CalculationOutputAdapter::CreateJsonOutputDamageLocationData(
-        const LocationDependentOutput& locationOutput)
+        const LocationDependentOutput& locationDependentOutput)
     {
-        return make_unique<JsonOutputDamageLocationData>(locationOutput);
+        return make_unique<JsonOutputDamageLocationData>(locationDependentOutput);
     }
 
     unique_ptr<JsonOutputFailureLocationData> CalculationOutputAdapter::CreateJsonOutputPhysicsLocationData(
-        const LocationDependentOutput& locationOutput)
+        const LocationDependentOutput& locationDependentOutput)
     {
         if (const auto* asphaltRevetmentWaveImpactLocationDependentOutput =
-                    dynamic_cast<const AsphaltRevetmentWaveImpactLocationDependentOutput*>(&locationOutput);
+                    dynamic_cast<const AsphaltRevetmentWaveImpactLocationDependentOutput*>(&locationDependentOutput);
             asphaltRevetmentWaveImpactLocationDependentOutput != nullptr)
         {
             return make_unique<JsonOutputAsphaltRevetmentWaveImpactPhysicsLocationData>(*asphaltRevetmentWaveImpactLocationDependentOutput);
         }
 
         if (const auto* grassRevetmentWaveImpactLocationDependentOutput =
-                    dynamic_cast<const GrassRevetmentWaveImpactLocationDependentOutput*>(&locationOutput);
+                    dynamic_cast<const GrassRevetmentWaveImpactLocationDependentOutput*>(&locationDependentOutput);
             grassRevetmentWaveImpactLocationDependentOutput != nullptr)
         {
             return make_unique<JsonOutputGrassRevetmentWaveImpactPhysicsLocationData>(*grassRevetmentWaveImpactLocationDependentOutput);
         }
 
         if (const auto* grassRevetmentWaveRunupRayleighLocationDependentOutput =
-                    dynamic_cast<const GrassRevetmentWaveRunupRayleighLocationDependentOutput*>(&locationOutput);
+                    dynamic_cast<const GrassRevetmentWaveRunupRayleighLocationDependentOutput*>(&locationDependentOutput);
             grassRevetmentWaveRunupRayleighLocationDependentOutput != nullptr)
         {
             return make_unique<JsonOutputGrassRevetmentWaveRunupRayleighPhysicsLocationData>(
@@ -116,7 +116,7 @@ namespace DiKErnel::KernelWrapper::Json::Output
         }
 
         if (const auto* naturalStoneRevetmentLocationDependentOutput =
-                    dynamic_cast<const NaturalStoneRevetmentLocationDependentOutput*>(&locationOutput);
+                    dynamic_cast<const NaturalStoneRevetmentLocationDependentOutput*>(&locationDependentOutput);
             naturalStoneRevetmentLocationDependentOutput != nullptr)
         {
             return make_unique<JsonOutputNaturalStoneRevetmentPhysicsLocationData>(*naturalStoneRevetmentLocationDependentOutput);
