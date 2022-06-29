@@ -141,7 +141,7 @@ namespace DiKErnel::System::Test
         ASSERT_TRUE(validationResult->GetSuccessful());
         ASSERT_EQ(ValidationResultType::Failed, *validationResult->GetData());
         const auto& events = validationResult->GetEvents();
-        ASSERT_EQ(16, events.size());
+        ASSERT_EQ(15, events.size());
         EventAssertHelper::AssertEvent(EventType::Error, "X must be in range {OuterToeX, OuterCrestX}.", events.at(0));
         EventAssertHelper::AssertEvent(EventType::Error, "InitialDamage must be equal to 0 or larger.", events.at(1));
         EventAssertHelper::AssertEvent(EventType::Error, "FailureNumber must be equal to InitialDamage or larger.", events.at(2));
@@ -157,7 +157,6 @@ namespace DiKErnel::System::Test
         EventAssertHelper::AssertEvent(EventType::Error, "Thickness must be larger than 0.", events.at(12));
         EventAssertHelper::AssertEvent(EventType::Error, "ElasticModulus must be larger than 0.", events.at(13));
         EventAssertHelper::AssertEvent(EventType::Error, "AverageNumberOfWavesCtm must be larger than 0.", events.at(14));
-        EventAssertHelper::AssertEvent(EventType::Error, "OuterSlope must be in range {0, 1}.", events.at(15));
     }
 
     TEST(ValidationSystemTest, GivenCalculationInputWithInvalidGrassRevetmentWaveImpactLocation_WhenValidating_ThenReturnsExpectedValidationResult)

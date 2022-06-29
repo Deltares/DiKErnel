@@ -42,7 +42,6 @@ namespace DiKErnel::Integration
         const double x,
         const double initialDamage,
         const double failureNumber,
-        const double outerSlope,
         const double failureTension,
         const double densityOfWater,
         const double soilElasticity,
@@ -56,7 +55,6 @@ namespace DiKErnel::Integration
         vector<pair<double, double>> depthFactors,
         vector<pair<double, double>> impactFactors)
         : LocationDependentInput(x, initialDamage, failureNumber),
-          _outerSlope(outerSlope),
           _failureTension(failureTension),
           _densityOfWater(densityOfWater),
           _soilElasticity(soilElasticity),
@@ -158,7 +156,6 @@ namespace DiKErnel::Integration
         }
 
         validationIssues.emplace_back(RevetmentValidator::AverageNumberOfWavesCtm(_averageNumberOfWavesCtm));
-        validationIssues.emplace_back(RevetmentValidator::OuterSlope(_outerSlope));
 
         return ValidationHelper::RegisterValidationIssues(validationIssues) && baseValidationSuccessful;
     }

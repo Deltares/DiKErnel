@@ -108,7 +108,6 @@ namespace DiKErnel::Integration
                 constructionProperties.GetX(),
                 GetValue(constructionProperties.GetInitialDamage(), RevetmentDefaults::GetInitialDamage()),
                 GetValue(constructionProperties.GetFailureNumber(), RevetmentDefaults::GetFailureNumber()),
-                constructionProperties.GetOuterSlope(),
                 constructionProperties.GetFailureTension(),
                 GetValue(constructionProperties.GetDensityOfWater(), AsphaltRevetmentWaveImpactDefaults::GetDensityOfWater()),
                 constructionProperties.GetSoilElasticity(),

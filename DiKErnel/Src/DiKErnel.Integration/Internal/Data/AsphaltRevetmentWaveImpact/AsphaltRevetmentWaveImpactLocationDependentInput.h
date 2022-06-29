@@ -36,7 +36,6 @@ namespace DiKErnel::Integration
                 double x,
                 double initialDamage,
                 double failureNumber,
-                double outerSlope,
                 double failureTension,
                 double densityOfWater,
                 double soilElasticity,
