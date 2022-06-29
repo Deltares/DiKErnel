@@ -17,6 +17,7 @@
                 },
                 "FysicaBekleding": {
                     "HoogteLocatie": 4.6,
+                    "HellingBuitentaludAsfaltbekleding": 4.7,
                     "ToenameSchadeAsfaltbekleding": [
                         0.1
                     ],

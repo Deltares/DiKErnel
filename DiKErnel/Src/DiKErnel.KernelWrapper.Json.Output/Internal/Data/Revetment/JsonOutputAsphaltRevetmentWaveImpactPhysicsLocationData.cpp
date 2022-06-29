@@ -46,6 +46,12 @@ namespace DiKErnel::KernelWrapper::Json::Output
         auto output = JsonOutputPhysicsLocationData::CreateJson();
         auto& physicsJson = output.at(JsonOutputDefinitions::PHYSICS_REVETMENT);
 
+        const auto asphaltRevetmentWaveImpactLocationDependentOutput = dynamic_cast<const AsphaltRevetmentWaveImpactLocationDependentOutput*>(
+            &GetLocationOutput());
+
+        CalculationOutputAdapterHelper::GetJsonElement(physicsJson, JsonOutputAsphaltRevetmentWaveImpactDefinitions::OUTER_SLOPE) =
+                asphaltRevetmentWaveImpactLocationDependentOutput->GetOuterSlope();
+
         for (const auto* outputItem : _timeDependentOutputItems)
         {
             CalculationOutputAdapterHelper::GetJsonElement(

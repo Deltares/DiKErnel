@@ -27,6 +27,7 @@ namespace DiKErnel::KernelWrapper::Json::Output
     class JsonOutputAsphaltRevetmentWaveImpactDefinitions
     {
         public:
+            inline static const std::string OUTER_SLOPE = "HellingBuitentaludAsfaltbekleding";
             inline static const std::string INCREMENT_DAMAGE = "ToenameSchadeAsfaltbekleding";
             inline static const std::string LOG_FAILURE_TENSION = "LogBreukspanning";
             inline static const std::string MAXIMUM_PEAK_STRESS = "MaximalePiekdruk";
