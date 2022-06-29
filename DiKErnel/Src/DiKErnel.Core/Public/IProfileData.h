@@ -41,7 +41,7 @@ namespace DiKErnel::Core
             virtual ~IProfileData() = default;
 
             /*!
-             * \brief Performs validation on the input.
+             * \brief Performs validation on the data.
              * \return Whether the validation was successful.
              */
             [[nodiscard]]
