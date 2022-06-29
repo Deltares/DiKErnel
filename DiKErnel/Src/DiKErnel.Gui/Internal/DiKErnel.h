@@ -58,11 +58,6 @@ namespace DiKErnel::Gui
                 WRITE SetWriteMetaData
                 BINDABLE BindableWriteMetaData)
 
-            Q_PROPERTY(QString OutputLevel
-                READ OutputLevel
-                WRITE SetOutputLevel
-                BINDABLE BindableOutputLevel)
-
             Q_PROPERTY(bool StartEnabled
                 READ StartEnabled
                 BINDABLE BindableStartEnabled)
@@ -86,8 +81,6 @@ namespace DiKErnel::Gui
 
             bool WriteMetaData() const;
 
-            QString OutputLevel() const;
-
             bool StartEnabled() const;
 
             QStringListModel* LogMessages() const;
@@ -99,8 +92,6 @@ namespace DiKErnel::Gui
             QBindable<bool> BindableValidateJsonFormat();
 
             QBindable<bool> BindableWriteMetaData();
-
-            QBindable<QString> BindableOutputLevel();
 
             QBindable<bool> BindableStartEnabled();
 
@@ -117,8 +108,11 @@ namespace DiKErnel::Gui
             void SetWriteMetaData(
                 bool writeMetaData);
 
-            void SetOutputLevel(
-                const QString& outputLevel);
+            void SetOutputLevelToFailure();
+
+            void SetOutputLevelToDamage();
+
+            void SetOutputLevelToPhysics();
 
             void SetStartEnabled();
 
@@ -137,15 +131,11 @@ namespace DiKErnel::Gui
 
             void WriteMetaDataChanged();
 
-            void OutputLevelChanged();
-
             void StartEnabledChanged();
 
             void LogMessagesChanged();
 
         private:
-            KernelWrapper::Json::Output::JsonOutputType GetOutputType() const;
-
             void AddMessage(
                 const QString& message);
 
@@ -163,6 +153,7 @@ namespace DiKErnel::Gui
                 const QString& message);
 
             QStringList _stringList;
+            KernelWrapper::Json::Output::JsonOutputType _outputLevel = KernelWrapper::Json::Output::JsonOutputType::Damage;
 
             Q_OBJECT_BINDABLE_PROPERTY(
                 DiKErnel, QUrl, _inputFilePath, &DiKErnel::InputFilePathChanged)
@@ -175,9 +166,6 @@ namespace DiKErnel::Gui
 
             Q_OBJECT_BINDABLE_PROPERTY_WITH_ARGS(
                 DiKErnel, bool, _writeMetaData, true, &DiKErnel::WriteMetaDataChanged)
-
-            Q_OBJECT_BINDABLE_PROPERTY_WITH_ARGS(
-                DiKErnel, QString, _outputLevel, "Schade", &DiKErnel::OutputLevelChanged)
 
             Q_OBJECT_BINDABLE_PROPERTY(
                 DiKErnel, bool, _startEnabled, &DiKErnel::StartEnabledChanged)

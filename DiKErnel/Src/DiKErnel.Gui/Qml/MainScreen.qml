@@ -365,6 +365,7 @@ Rectangle {
             id: failureButton
             text: qsTr("Falen")
             Layout.preferredWidth: parent.width / 3
+            onClicked: dikernelApplication.SetOutputLevelToFailure()
         }
 
         CustomCheckableButton {
@@ -372,18 +373,19 @@ Rectangle {
             text: qsTr("Schade")
             checked: true
             Layout.preferredWidth: parent.width / 3
+            onClicked: dikernelApplication.SetOutputLevelToDamage()
         }
 
         CustomCheckableButton {
             id: physicsButton
             text: qsTr("Fysica")
             Layout.preferredWidth: parent.width / 3
+            onClicked: dikernelApplication.SetOutputLevelToPhysics()
         }
     }
 
     ButtonGroup {
         id: buttonGroup
         buttons: buttonGroupLayout.children
-        onClicked: dikernelApplication.SetOutputLevel(button.text)
     }
 }

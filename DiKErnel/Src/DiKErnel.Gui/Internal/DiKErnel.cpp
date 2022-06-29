@@ -88,11 +88,6 @@ namespace DiKErnel::Gui
         return _writeMetaData.value();
     }
 
-    QString DiKErnel::OutputLevel() const
-    {
-        return _outputLevel.value();
-    }
-
     bool DiKErnel::StartEnabled() const
     {
         return _startEnabled.value();
@@ -133,11 +128,6 @@ namespace DiKErnel::Gui
         return &_writeMetaData;
     }
 
-    QBindable<QString> DiKErnel::BindableOutputLevel()
-    {
-        return &_outputLevel;
-    }
-
     void DiKErnel::SetInputFilePath(
         const QUrl& inputFilePath)
     {
@@ -162,10 +152,19 @@ namespace DiKErnel::Gui
         _writeMetaData = writeMetaData;
     }
 
-    void DiKErnel::SetOutputLevel(
-        const QString& outputLevel)
+    void DiKErnel::SetOutputLevelToFailure()
     {
-        _outputLevel = outputLevel;
+        _outputLevel = JsonOutputType::Failure;
+    }
+
+    void DiKErnel::SetOutputLevelToDamage()
+    {
+        _outputLevel = JsonOutputType::Damage;
+    }
+
+    void DiKErnel::SetOutputLevelToPhysics()
+    {
+        _outputLevel = JsonOutputType::Physics;
     }
 
     void DiKErnel::SetStartEnabled()
@@ -286,7 +285,7 @@ namespace DiKErnel::Gui
             const auto outputComposerResult = JsonOutputComposer::WriteCalculationOutputToJson(
                 outputFilePathStdString,
                 *calculatorResult->GetData(),
-                GetOutputType(),
+                _outputLevel,
                 metaDataItems
             );
 
@@ -317,21 +316,6 @@ namespace DiKErnel::Gui
     {
         QClipboard* clipboard = QGuiApplication::clipboard();
         clipboard->setText(_stringList.join("\n"));
-    }
-
-    JsonOutputType DiKErnel::GetOutputType() const
-    {
-        if (_outputLevel == "Falen")
-        {
-            return JsonOutputType::Failure;
-        }
-
-        if (_outputLevel == "Schade")
-        {
-            return JsonOutputType::Damage;
-        }
-
-        return JsonOutputType::Physics;
     }
 
     void DiKErnel::AddMessage(
