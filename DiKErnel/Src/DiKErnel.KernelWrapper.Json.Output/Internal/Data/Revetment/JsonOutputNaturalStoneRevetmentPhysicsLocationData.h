@@ -30,7 +30,7 @@ namespace DiKErnel::KernelWrapper::Json::Output
     {
         public:
             explicit JsonOutputNaturalStoneRevetmentPhysicsLocationData(
-                const Integration::NaturalStoneRevetmentLocationDependentOutput& locationOutput);
+                const Integration::NaturalStoneRevetmentLocationDependentOutput& locationDependentOutput);
 
             [[nodiscard]]
             nlohmann::ordered_json CreateJson() const override;

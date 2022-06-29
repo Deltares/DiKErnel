@@ -32,10 +32,10 @@ namespace DiKErnel::KernelWrapper::Json::Output
     using namespace std;
 
     JsonOutputGrassRevetmentWaveImpactPhysicsLocationData::JsonOutputGrassRevetmentWaveImpactPhysicsLocationData(
-        const GrassRevetmentWaveImpactLocationDependentOutput& locationOutput)
-        : JsonOutputPhysicsLocationData(locationOutput)
+        const GrassRevetmentWaveImpactLocationDependentOutput& locationDependentOutput)
+        : JsonOutputPhysicsLocationData(locationDependentOutput)
     {
-        for (const auto& timeDependentOutput : locationOutput.GetTimeDependentOutputItems())
+        for (const auto& timeDependentOutput : locationDependentOutput.GetTimeDependentOutputItems())
         {
             _timeDependentOutputItems.push_back(dynamic_cast<GrassRevetmentWaveImpactTimeDependentOutput*>(&timeDependentOutput.get()));
         }

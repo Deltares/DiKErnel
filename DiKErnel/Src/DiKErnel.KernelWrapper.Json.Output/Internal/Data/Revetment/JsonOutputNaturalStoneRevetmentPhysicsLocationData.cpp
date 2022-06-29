@@ -32,10 +32,10 @@ namespace DiKErnel::KernelWrapper::Json::Output
     using namespace std;
 
     JsonOutputNaturalStoneRevetmentPhysicsLocationData::JsonOutputNaturalStoneRevetmentPhysicsLocationData(
-        const NaturalStoneRevetmentLocationDependentOutput& locationOutput)
-        : JsonOutputPhysicsLocationData(locationOutput)
+        const NaturalStoneRevetmentLocationDependentOutput& locationDependentOutput)
+        : JsonOutputPhysicsLocationData(locationDependentOutput)
     {
-        for (const auto& timeDependentOutput : locationOutput.GetTimeDependentOutputItems())
+        for (const auto& timeDependentOutput : locationDependentOutput.GetTimeDependentOutputItems())
         {
             _timeDependentOutputItems.push_back(dynamic_cast<NaturalStoneRevetmentTimeDependentOutput*>(&timeDependentOutput.get()));
         }

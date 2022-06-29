@@ -30,7 +30,7 @@ namespace DiKErnel::KernelWrapper::Json::Output
     {
         public:
             explicit JsonOutputGrassRevetmentWaveRunupRayleighPhysicsLocationData(
-                const Integration::GrassRevetmentWaveRunupRayleighLocationDependentOutput& locationOutput);
+                const Integration::GrassRevetmentWaveRunupRayleighLocationDependentOutput& locationDependentOutput);
 
             [[nodiscard]]
             nlohmann::ordered_json CreateJson() const override;
