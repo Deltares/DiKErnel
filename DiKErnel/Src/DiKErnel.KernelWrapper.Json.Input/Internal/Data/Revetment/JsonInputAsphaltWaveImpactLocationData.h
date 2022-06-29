@@ -35,8 +35,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 double failureTension,
                 double soilElasticity,
                 double thicknessUpperLayer,
-                double elasticModulusUpperLayer,
-                double outerSlope);
+                double elasticModulusUpperLayer);
 
             void SetThicknessSubLayer(
                 std::unique_ptr<double> thicknessSubLayer);
@@ -60,9 +59,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
             double GetElasticModulusUpperLayer() const;
 
             [[nodiscard]]
-            double GetOuterSlope() const;
-
-            [[nodiscard]]
             const double* GetThicknessSubLayer() const;
 
             [[nodiscard]]
@@ -74,7 +70,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
             double _soilElasticity;
             double _thicknessUpperLayer;
             double _elasticModulusUpperLayer;
-            double _outerSlope;
             std::unique_ptr<double> _thicknessSubLayer = nullptr;
             std::unique_ptr<double> _elasticModulusSubLayer = nullptr;
     };

@@ -57,8 +57,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
             readLocation.at(JsonInputAsphaltWaveImpactDefinitions::FAILURE_TENSION).get<double>(),
             readLocation.at(JsonInputAsphaltWaveImpactDefinitions::SOIL_ELASTICITY).get<double>(),
             readUpperLayer.at(JsonInputAsphaltWaveImpactDefinitions::THICKNESS).get<double>(),
-            readUpperLayer.at(JsonInputAsphaltWaveImpactDefinitions::ELASTIC_MODULUS).get<double>(),
-            readLocation.at(JsonInputDefinitions::OUTER_SLOPE).get<double>());
+            readUpperLayer.at(JsonInputAsphaltWaveImpactDefinitions::ELASTIC_MODULUS).get<double>());
 
         if (readLocation.contains(JsonInputAsphaltWaveImpactDefinitions::SUB_LAYER))
         {
