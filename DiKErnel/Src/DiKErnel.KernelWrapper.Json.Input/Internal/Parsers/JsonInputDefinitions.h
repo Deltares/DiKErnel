@@ -72,7 +72,5 @@ namespace DiKErnel::KernelWrapper::Json::Input
             inline static const std::string BETA_MAX = "betaMax";
 
             inline static const std::string FACTOR_CTM = "factorCtm";
-
-            inline static const std::string OUTER_SLOPE = "tanA";
     };
 }

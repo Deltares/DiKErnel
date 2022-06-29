@@ -56,7 +56,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
         auto locationData = make_unique<JsonInputGrassWaveRunupLocationData>(
             x, move(initialDamage), readLocation.at(JsonInputDefinitions::TYPE_TOP_LAYER).get<JsonInputGrassRevetmentTopLayerType>(),
-            readLocation.at(JsonInputDefinitions::OUTER_SLOPE).get<double>());
+            readLocation.at(JsonInputGrassWaveRunupDefinitions::OUTER_SLOPE).get<double>());
 
         locationData->SetIncreasedLoadTransitionAlphaM(
             forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(

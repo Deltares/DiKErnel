@@ -27,6 +27,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
     class JsonInputGrassWaveRunupDefinitions
     {
         public:
+            inline static const std::string OUTER_SLOPE = "tanA";
+
             inline static const std::string CRITICAL_CUMULATIVE_OVERLOAD = "kritiekeCumulatieveOverbelasting";
             inline static const std::string CRITICAL_FRONT_VELOCITY = "kritiekeFrontsnelheid";
             inline static const std::string INCREASED_LOAD_TRANSITION_ALPHA_M = "verhogingBelastingOvergangAlfaM";
