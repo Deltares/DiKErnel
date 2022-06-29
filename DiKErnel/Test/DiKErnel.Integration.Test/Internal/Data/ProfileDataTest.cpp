@@ -57,50 +57,50 @@ namespace DiKErnel::Integration
     {
         // Setup
         const auto profileData = CreateDefaultProfileData();
-    
+
         // Call
         const auto verticalHeight = profileData->InterpolationVerticalHeight(1.0);
-    
+
         // Assert
         ASSERT_DOUBLE_EQ(1.1, verticalHeight);
     }
-    
+
     TEST_F(ProfileDataTest, InterpolationVerticalHeight_HorizontalPositionOnRandomDikeProfilePoint_ExpectedValue)
     {
         // Setup
         const auto profileData = CreateDefaultProfileData();
-    
+
         // Call
         const auto verticalHeight = profileData->InterpolationVerticalHeight(2.0);
-    
+
         // Assert
         ASSERT_DOUBLE_EQ(2.2, verticalHeight);
     }
-    
+
     TEST_F(ProfileDataTest, InterpolationVerticalHeight_HorizontalPositionOnLastDikeProfilePoint_ExpectedValue)
     {
         // Setup
         const auto profileData = CreateDefaultProfileData();
-    
+
         // Call
         const auto verticalHeight = profileData->InterpolationVerticalHeight(3.0);
-    
+
         // Assert
         ASSERT_DOUBLE_EQ(3.3, verticalHeight);
     }
-    
+
     TEST_F(ProfileDataTest, InterpolationVerticalHeight_HorizontalPositionBetweenAscendingDikeProfilePoints_ExpectedValue)
     {
         // Setup
         const auto profileData = CreateDefaultProfileData();
-    
+
         // Call
         const auto verticalHeight = profileData->InterpolationVerticalHeight(1.5);
-    
+
         // Assert
         ASSERT_DOUBLE_EQ(1.65, verticalHeight);
     }
-    
+
     TEST_F(ProfileDataTest, InterpolationVerticalHeight_HorizontalPositionBetweenDescendingDikeProfilePoints_ExpectedValue)
     {
         // Setup
@@ -108,96 +108,96 @@ namespace DiKErnel::Integration
         testDikeProfileWithDescendingHeight.push_back(make_unique<ProfilePoint>(1.0, 3.3));
         testDikeProfileWithDescendingHeight.push_back(make_unique<ProfilePoint>(2.0, 2.2));
         testDikeProfileWithDescendingHeight.push_back(make_unique<ProfilePoint>(3.0, 1.1));
-            
+
         const ProfileData profileData(move(testDikeProfileWithDescendingHeight), vector<unique_ptr<CharacteristicPoint>>());
-    
+
         // Call
         const auto verticalHeight = profileData.InterpolationVerticalHeight(2.5);
-    
+
         // Assert
         ASSERT_DOUBLE_EQ(1.65, verticalHeight);
     }
-    
+
     TEST_F(ProfileDataTest, InterpolationVerticalHeight_HorizontalPositionRightOfDikeProfile_ExpectedValue)
     {
         // Setup
         const auto profileData = CreateDefaultProfileData();
-    
+
         // Call
         const auto verticalHeight = profileData->InterpolationVerticalHeight(4.0);
-    
+
         // Assert
         ASSERT_DOUBLE_EQ(numeric_limits<double>::infinity(), verticalHeight);
     }
-    
+
     TEST_F(ProfileDataTest, InterpolationHorizontalPosition_VerticalHeightBelowDikeProfile_ExpectedValue)
     {
         // Setup
         const auto profileData = CreateDefaultProfileData();
-    
+
         // Call
         const auto horizontalPosition = profileData->InterpolationHorizontalPosition(0.0);
-    
+
         // Assert
         ASSERT_DOUBLE_EQ(numeric_limits<double>::infinity(), horizontalPosition);
     }
-    
+
     TEST_F(ProfileDataTest, InterpolationHorizontalPosition_VerticalHeightOnFirstDikeProfilePoint_ExpectedValue)
     {
         // Setup
         const auto profileData = CreateDefaultProfileData();
-    
+
         // Call
         const auto horizontalPosition = profileData->InterpolationHorizontalPosition(1.1);
-    
+
         // Assert
         ASSERT_DOUBLE_EQ(1.0, horizontalPosition);
     }
-    
+
     TEST_F(ProfileDataTest, InterpolationHorizontalPosition_VerticalHeightOnRandomDikeProfilePoint_ExpectedValue)
     {
         // Setup
         const auto profileData = CreateDefaultProfileData();
-    
+
         // Call
         const auto horizontalPosition = profileData->InterpolationHorizontalPosition(2.2);
-    
+
         // Assert
         ASSERT_DOUBLE_EQ(2.0, horizontalPosition);
     }
-    
+
     TEST_F(ProfileDataTest, InterpolationHorizontalPosition_VerticalHeightOnLastDikeProfilePoint_ExpectedValue)
     {
         // Setup
         const auto profileData = CreateDefaultProfileData();
-    
+
         // Call
         const auto horizontalPosition = profileData->InterpolationHorizontalPosition(3.3);
-    
+
         // Assert
         ASSERT_DOUBLE_EQ(3.0, horizontalPosition);
     }
-    
+
     TEST_F(ProfileDataTest, InterpolationHorizontalPosition_VerticalHeightBetweenProfilePoints_ExpectedValue)
     {
         // Setup
         const auto profileData = CreateDefaultProfileData();
-    
+
         // Call
         const auto horizontalPosition = profileData->InterpolationHorizontalPosition(1.65);
-    
+
         // Assert
         ASSERT_DOUBLE_EQ(1.5, horizontalPosition);
     }
-    
+
     TEST_F(ProfileDataTest, InterpolationHorizontalPosition_VerticalHeightAboveDikeProfile_ExpectedValue)
     {
         // Setup
         const auto profileData = CreateDefaultProfileData();
-    
+
         // Call
         const auto horizontalPosition = profileData->InterpolationHorizontalPosition(4.0);
-    
+
         // Assert
         ASSERT_DOUBLE_EQ(numeric_limits<double>::infinity(), horizontalPosition);
     }

@@ -29,16 +29,16 @@ namespace DiKErnel::Integration
      */
     class NaturalStoneRevetmentLocationDependentOutput : public Core::LocationDependentOutput
     {
-    public:
-        /*!
-         * \brief Creates a new instance.
-         * \param z
-         *        The calculated z.
-         * \param timeDependentOutputItems
-         *        The time dependent output items of the location.
-         */
-        explicit NaturalStoneRevetmentLocationDependentOutput(
-            double z,
-            std::vector<std::unique_ptr<Core::TimeDependentOutput>> timeDependentOutputItems);
+        public:
+            /*!
+             * \brief Creates a new instance.
+             * \param z
+             *        The calculated z.
+             * \param timeDependentOutputItems
+             *        The time dependent output items of the location.
+             */
+            explicit NaturalStoneRevetmentLocationDependentOutput(
+                double z,
+                std::vector<std::unique_ptr<Core::TimeDependentOutput>> timeDependentOutputItems);
     };
 }

@@ -55,7 +55,7 @@ namespace DiKErnel::Integration
     {
         const auto outerToe = CharacteristicPointsHelper::GetCoordinatesForType(_characteristicPointReferences, CharacteristicPointType::OuterToe);
         const auto outerCrest = CharacteristicPointsHelper::GetCoordinatesForType(_characteristicPointReferences,
-                                                                                   CharacteristicPointType::OuterCrest);
+                                                                                  CharacteristicPointType::OuterCrest);
 
         vector<unique_ptr<ValidationIssue>> validationIssues;
         validationIssues.emplace_back(ProfileValidator::OuterToe(outerToe.get()));
@@ -137,9 +137,9 @@ namespace DiKErnel::Integration
     {
         for (auto i = 0; i < static_cast<int>(_profilePoints.size()); ++i)
         {
-            if(const auto& profilePoint = _profilePoints.at(i); profilePoint->GetX() >= horizontalPosition)
+            if (const auto& profilePoint = _profilePoints.at(i); profilePoint->GetX() >= horizontalPosition)
             {
-                if(i == 0)
+                if (i == 0)
                 {
                     return nullptr;
                 }

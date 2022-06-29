@@ -84,7 +84,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
             catch (const exception& e)
             {
                 EventRegistry::Register(make_unique<Event>("An unhandled error occurred while composing calculation data from the Json input. See "
-                    "stack trace for more information:\n" + static_cast<string>(e.what()), EventType::Error));
+                                                           "stack trace for more information:\n" + static_cast<string>(e.what()),
+                                                           EventType::Error));
             }
         }
 

@@ -122,9 +122,11 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
             naturalStoneTimeDependentOutputs.push_back(move(naturalStoneTimeDependentOutput));
 
             vector<unique_ptr<LocationDependentOutput>> locations;
-            locations.push_back(make_unique<AsphaltRevetmentWaveImpactLocationDependentOutput>(4.6, move(asphaltWaveImpactTimeDependentOutputs), 4.7));
+            locations.push_back(
+                make_unique<AsphaltRevetmentWaveImpactLocationDependentOutput>(4.6, move(asphaltWaveImpactTimeDependentOutputs), 4.7));
             locations.push_back(make_unique<GrassRevetmentWaveImpactLocationDependentOutput>(4.8, move(grassWaveImpactTimeDependentOutputs)));
-            locations.push_back(make_unique<GrassRevetmentWaveRunupRayleighLocationDependentOutput>(4.9, move(grassWaveRunupRayleighTimeDependentOutputs)));
+            locations.push_back(
+                make_unique<GrassRevetmentWaveRunupRayleighLocationDependentOutput>(4.9, move(grassWaveRunupRayleighTimeDependentOutputs)));
             locations.push_back(make_unique<NaturalStoneRevetmentLocationDependentOutput>(5.0, move(naturalStoneTimeDependentOutputs)));
 
             return make_unique<CalculationOutput>(move(locations));
