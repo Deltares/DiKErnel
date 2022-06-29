@@ -22,13 +22,17 @@
 
 #include <gtest/gtest.h>
 
+#include "AsphaltRevetmentWaveImpactLocationDependentOutput.h"
 #include "AsphaltRevetmentWaveImpactTimeDependentOutput.h"
 #include "EventAssertHelper.h"
 #include "FileAssert.h"
+#include "GrassRevetmentWaveImpactLocationDependentOutput.h"
 #include "GrassRevetmentWaveImpactTimeDependentOutput.h"
+#include "GrassRevetmentWaveRunupRayleighLocationDependentOutput.h"
 #include "GrassRevetmentWaveRunupRayleighTimeDependentOutput.h"
 #include "JsonOutputComposer.h"
 #include "LocationDependentOutputMock.h"
+#include "NaturalStoneRevetmentLocationDependentOutput.h"
 #include "NaturalStoneRevetmentTimeDependentOutput.h"
 #include "TestDataPathHelper.h"
 #include "TimeDependentOutputMock.h"
@@ -118,10 +122,10 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
             naturalStoneTimeDependentOutputs.push_back(move(naturalStoneTimeDependentOutput));
 
             vector<unique_ptr<LocationDependentOutput>> locations;
-            locations.push_back(make_unique<LocationDependentOutputMock>(4.6, move(asphaltWaveImpactTimeDependentOutputs)));
-            locations.push_back(make_unique<LocationDependentOutputMock>(4.7, move(grassWaveImpactTimeDependentOutputs)));
-            locations.push_back(make_unique<LocationDependentOutputMock>(4.8, move(grassWaveRunupRayleighTimeDependentOutputs)));
-            locations.push_back(make_unique<LocationDependentOutputMock>(4.9, move(naturalStoneTimeDependentOutputs)));
+            locations.push_back(make_unique<AsphaltRevetmentWaveImpactLocationDependentOutput>(4.6, move(asphaltWaveImpactTimeDependentOutputs), 4.7));
+            locations.push_back(make_unique<GrassRevetmentWaveImpactLocationDependentOutput>(4.8, move(grassWaveImpactTimeDependentOutputs)));
+            locations.push_back(make_unique<GrassRevetmentWaveRunupRayleighLocationDependentOutput>(4.9, move(grassWaveRunupRayleighTimeDependentOutputs)));
+            locations.push_back(make_unique<NaturalStoneRevetmentLocationDependentOutput>(5.0, move(naturalStoneTimeDependentOutputs)));
 
             return make_unique<CalculationOutput>(move(locations));
         }

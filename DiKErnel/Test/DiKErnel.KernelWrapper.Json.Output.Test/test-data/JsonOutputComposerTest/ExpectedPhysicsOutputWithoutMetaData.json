@@ -44,7 +44,7 @@
                     ]
                 },
                 "FysicaBekleding": {
-                    "HoogteLocatie": 4.7,
+                    "HoogteLocatie": 4.8,
                     "ToenameSchadeGrasGolfklap": [
                         0.9
                     ],
@@ -82,7 +82,7 @@
                     ]
                 },
                 "FysicaBekleding": {
-                    "HoogteLocatie": 4.8,
+                    "HoogteLocatie": 4.9,
                     "ToenameSchadeGrasGolfoploop": [
                         1.9
                     ],
@@ -111,7 +111,7 @@
                     ]
                 },
                 "FysicaBekleding": {
-                    "HoogteLocatie": 4.9,
+                    "HoogteLocatie": 5.0,
                     "ToenameSchadeNatuursteen": [
                         2.6
                     ],
