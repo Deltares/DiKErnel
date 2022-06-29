@@ -169,7 +169,12 @@ namespace DiKErnel::Gui
 
     void DiKErnel::SetStartEnabled()
     {
-        _startEnabled = !_inputFilePath.value().isEmpty() && !_outputFilePath.value().isEmpty();
+        const auto& inputFilePathValue = _inputFilePath.value();
+        const auto& outputFilePathValue = _outputFilePath.value();
+
+        _startEnabled = !inputFilePathValue.isEmpty()
+                && !outputFilePathValue.isEmpty()
+                && inputFilePathValue != outputFilePathValue;
     }
 
     void DiKErnel::StartCalculation()
