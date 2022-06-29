@@ -50,9 +50,6 @@ namespace DiKErnel::Integration
                 std::vector<std::pair<double, double>> impactFactors);
 
             [[nodiscard]]
-            double GetOuterSlope() const;
-
-            [[nodiscard]]
             double GetFailureTension() const;
 
             [[nodiscard]]
@@ -106,7 +103,6 @@ namespace DiKErnel::Integration
                 const Core::IProfileData& profileData) override;
 
         private:
-            double _outerSlope;
             const double _failureTension;
             const double _densityOfWater;
             const double _soilElasticity;
@@ -119,6 +115,7 @@ namespace DiKErnel::Integration
             std::vector<std::pair<double, double>> _widthFactors;
             std::vector<std::pair<double, double>> _depthFactors;
             std::vector<std::pair<double, double>> _impactFactors;
+            double _outerSlope = std::numeric_limits<double>::infinity();;
             double _logFailureTension = std::numeric_limits<double>::infinity();
             double _computationalThickness = std::numeric_limits<double>::infinity();
             double _stiffnessRelation = std::numeric_limits<double>::infinity();
