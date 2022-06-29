@@ -21,6 +21,7 @@
 #include "GrassRevetmentWaveImpactLocationDependentInput.h"
 
 #include "GrassRevetmentWaveImpactFunctions.h"
+#include "GrassRevetmentWaveImpactLocationDependentOutput.h"
 #include "GrassRevetmentWaveImpactTimeDependentOutput.h"
 #include "GrassRevetmentWaveImpactValidator.h"
 #include "HydraulicLoadFunctions.h"
@@ -100,6 +101,12 @@ namespace DiKErnel::Integration
         validationIssues.emplace_back(GrassRevetmentWaveImpactValidator::UpperLimitLoadingAul(_upperLimitLoadingAul, _lowerLimitLoadingAll));
 
         return ValidationHelper::RegisterValidationIssues(validationIssues) && baseValidationSuccessful;
+    }
+
+    unique_ptr<LocationDependentOutput> GrassRevetmentWaveImpactLocationDependentInput::GetLocationDependentOutput(
+        vector<unique_ptr<TimeDependentOutput>> timeDependentOutputItems)
+    {
+        return make_unique<GrassRevetmentWaveImpactLocationDependentOutput>(GetZ(), move(timeDependentOutputItems));
     }
 
     void GrassRevetmentWaveImpactLocationDependentInput::InitializeDerivedLocationDependentInput(

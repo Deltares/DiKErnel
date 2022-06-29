@@ -23,6 +23,7 @@
 #include "Constants.h"
 #include "GrassRevetmentWaveRunupFunctions.h"
 #include "GrassRevetmentWaveRunupRayleighFunctions.h"
+#include "GrassRevetmentWaveRunupRayleighLocationDependentOutput.h"
 #include "GrassRevetmentWaveRunupRayleighTimeDependentOutput.h"
 #include "GrassRevetmentWaveRunupRayleighValidator.h"
 #include "HydraulicLoadFunctions.h"
@@ -77,6 +78,12 @@ namespace DiKErnel::Integration
         validationIssues.emplace_back(GrassRevetmentWaveRunupRayleighValidator::FrontVelocityCu(_frontVelocityCu));
 
         return ValidationHelper::RegisterValidationIssues(validationIssues) && baseValidationSuccessful;
+    }
+
+    unique_ptr<LocationDependentOutput> GrassRevetmentWaveRunupRayleighLocationDependentInput::GetLocationDependentOutput(
+        vector<unique_ptr<TimeDependentOutput>> timeDependentOutputItems)
+    {
+        return make_unique<GrassRevetmentWaveRunupRayleighLocationDependentOutput>(GetZ(), move(timeDependentOutputItems));
     }
 
     unique_ptr<TimeDependentOutput> GrassRevetmentWaveRunupRayleighLocationDependentInput::CalculateTimeDependentOutput(

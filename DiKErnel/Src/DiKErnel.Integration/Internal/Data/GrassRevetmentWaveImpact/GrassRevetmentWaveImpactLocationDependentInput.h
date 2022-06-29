@@ -64,6 +64,9 @@ namespace DiKErnel::Integration
             bool Validate(
                 const Core::IProfileData& profileData) const override;
 
+            std::unique_ptr<Core::LocationDependentOutput> GetLocationDependentOutput(
+                std::vector<std::unique_ptr<Core::TimeDependentOutput>> timeDependentOutputItems) override;
+
         protected:
             void InitializeDerivedLocationDependentInput(
                 const Core::IProfileData& profileData) override;

@@ -21,6 +21,7 @@
 #include "AsphaltRevetmentWaveImpactLocationDependentInput.h"
 
 #include "AsphaltRevetmentWaveImpactFunctions.h"
+#include "AsphaltRevetmentWaveImpactLocationDependentOutput.h"
 #include "AsphaltRevetmentWaveImpactTimeDependentOutput.h"
 #include "AsphaltRevetmentWaveImpactValidator.h"
 #include "CharacteristicPointsHelper.h"
@@ -160,6 +161,12 @@ namespace DiKErnel::Integration
         validationIssues.emplace_back(RevetmentValidator::OuterSlope(_outerSlope));
 
         return ValidationHelper::RegisterValidationIssues(validationIssues) && baseValidationSuccessful;
+    }
+
+    unique_ptr<LocationDependentOutput> AsphaltRevetmentWaveImpactLocationDependentInput::GetLocationDependentOutput(
+        vector<unique_ptr<TimeDependentOutput>> timeDependentOutputItems)
+    {
+        return make_unique<AsphaltRevetmentWaveImpactLocationDependentOutput>(GetZ(), move(timeDependentOutputItems), GetOuterSlope());
     }
 
     void AsphaltRevetmentWaveImpactLocationDependentInput::InitializeDerivedLocationDependentInput(

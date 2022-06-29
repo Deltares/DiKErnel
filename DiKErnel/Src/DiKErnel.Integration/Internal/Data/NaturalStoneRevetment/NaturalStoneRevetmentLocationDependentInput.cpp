@@ -24,6 +24,7 @@
 #include "Constants.h"
 #include "HydraulicLoadFunctions.h"
 #include "NaturalStoneRevetmentFunctions.h"
+#include "NaturalStoneRevetmentLocationDependentOutput.h"
 #include "NaturalStoneRevetmentTimeDependentOutput.h"
 #include "NaturalStoneRevetmentValidator.h"
 #include "RevetmentFunctions.h"
@@ -119,6 +120,12 @@ namespace DiKErnel::Integration
         validationIssues.emplace_back(NaturalStoneRevetmentValidator::SlopeLowerLevelAls(_slope->GetLowerLevelAls()));
 
         return ValidationHelper::RegisterValidationIssues(validationIssues) && baseValidationSuccessful;
+    }
+
+    unique_ptr<LocationDependentOutput> NaturalStoneRevetmentLocationDependentInput::GetLocationDependentOutput(
+        vector<unique_ptr<TimeDependentOutput>> timeDependentOutputItems)
+    {
+        return make_unique<NaturalStoneRevetmentLocationDependentOutput>(GetZ(), move(timeDependentOutputItems));
     }
 
     void NaturalStoneRevetmentLocationDependentInput::InitializeDerivedLocationDependentInput(
