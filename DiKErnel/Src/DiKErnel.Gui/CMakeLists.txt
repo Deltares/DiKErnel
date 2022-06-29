@@ -39,6 +39,8 @@ set(QMLFILES
   ${QML_FOLDER}/CustomSwitch.qml
   ${QML_FOLDER}/Main.qml
   ${QML_FOLDER}/MainScreen.qml
+  ${QML_FOLDER}/qmldir
+  ${QML_FOLDER}/Style.qml
 )
 
 # Add windows executable

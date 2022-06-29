@@ -21,13 +21,14 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts 1.0
+import "."
 
 Button {
     id: control
     checkable: true
     Layout.fillHeight: true
     Layout.fillWidth: true
-    font.pointSize: 10
+    font.pointSize: Style.pointSize
     contentItem: Text {
         smooth: true
         text: control.text

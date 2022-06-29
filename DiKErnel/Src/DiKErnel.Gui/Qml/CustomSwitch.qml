@@ -21,10 +21,11 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts 1.0
+import "."
 
 Switch {
     id: control
-    font.pointSize: 10
+    font.pointSize: Style.pointSize
     padding: 0
     Layout.fillHeight: true
     Layout.fillWidth: true

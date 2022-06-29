@@ -22,6 +22,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Dialogs
 import QtQuick.Layouts 1.0
+import "."
 
 Rectangle {
     width: 1024
@@ -48,7 +49,7 @@ Rectangle {
         Label {
             text: qsTr("Applicatie")
             font {
-                pointSize: 10
+                pointSize: Style.pointSize
                 weight: Font.DemiBold
             }
         }
@@ -56,7 +57,7 @@ Rectangle {
         Label {
             text: qsTr("Versie")
             font {
-                pointSize: 10
+                pointSize: Style.pointSize
                 weight: Font.DemiBold
             }
         }
@@ -64,7 +65,7 @@ Rectangle {
         Label {
             text: qsTr("Bedrijf")
             font {
-                pointSize: 10
+                pointSize: Style.pointSize
                 weight: Font.DemiBold
             }
         }
@@ -72,7 +73,7 @@ Rectangle {
         Label {
             text: qsTr("Contact")
             font {
-                pointSize: 10
+                pointSize: Style.pointSize
                 weight: Font.DemiBold
             }
         }
@@ -86,23 +87,23 @@ Rectangle {
 
         Label {
             text: qsTr("DiKErnel-gui")
-            font.pointSize: 10
+            font.pointSize: Style.pointSize
         }
 
         Label {
             text: dikernelApplication.VersionNumber
-            font.pointSize: 10
+            font.pointSize: Style.pointSize
         }
 
         Label {
             text: qsTr("Deltares")
-            font.pointSize: 10
+            font.pointSize: Style.pointSize
         }
 
         Label {
             color: "#2a47b8"
             text: qsTr("<a href='mailto:dikernel@deltares.nl'>dikernel@deltares.nl</a>")
-            font.pointSize: 10
+            font.pointSize: Style.pointSize
             onLinkActivated: Qt.openUrlExternally(link)
             MouseArea {
                 anchors.fill: parent
@@ -169,7 +170,7 @@ Rectangle {
         readOnly: true
         placeholderText: qsTr("Invoerbestand.json")
         text: dikernelApplication.InputFilePath
-        font.pointSize: 10
+        font.pointSize: Style.pointSize
     }
 
     Label {
@@ -178,7 +179,7 @@ Rectangle {
         text: qsTr("Invoerbestand")
         font.weight: Font.DemiBold
         font.bold: true
-        font.pointSize: 10
+        font.pointSize: Style.pointSize
     }
 
     TextField {
@@ -189,7 +190,7 @@ Rectangle {
         readOnly: true
         placeholderText: qsTr("Uitvoerbestand.json")
         text: dikernelApplication.OutputFilePath
-        font.pointSize: 10
+        font.pointSize: Style.pointSize
     }
 
     Label {
@@ -198,7 +199,7 @@ Rectangle {
         text: qsTr("Uitvoerbestand")
         font.weight: Font.DemiBold
         font.bold: true
-        font.pointSize: 10
+        font.pointSize: Style.pointSize
     }
 
     Button {
@@ -207,6 +208,7 @@ Rectangle {
         width: 32
         height: 32
         text: qsTr("...")
+        font.pointSize: Style.pointSize
         onClicked: inputFileDialog.open()
     }
 
@@ -216,13 +218,14 @@ Rectangle {
         width: 32
         height: 32
         text: qsTr("...")
+        font.pointSize: Style.pointSize
         onClicked: outputFileDialog.open()
     }
 
     Button {
         y: 283
         text: qsTr("Start")
-        font.pointSize: 10
+        font.pointSize: Style.pointSize
         anchors {
             right: parent.right
             rightMargin: 25
@@ -235,7 +238,7 @@ Rectangle {
 
     Button {
         text: qsTr("Wissen")
-        font.pointSize: 10
+        font.pointSize: Style.pointSize
         anchors {
             right: parent.right
             bottom: parent.bottom
@@ -249,7 +252,7 @@ Rectangle {
 
     Button {
         text: qsTr("Kopieer naar klembord")
-        font.pointSize: 10
+        font.pointSize: Style.pointSize
         anchors {
             right: parent.right
             bottom: parent.bottom
@@ -290,7 +293,7 @@ Rectangle {
 
                 Text {
                     id: messageText
-                    font.pointSize: 10
+                    font.pointSize: Style.pointSize
                     text: display
                 }
             }
@@ -320,7 +323,7 @@ Rectangle {
         text: qsTr("Opties")
         font.weight: Font.DemiBold
         font.bold: true
-        font.pointSize: 10
+        font.pointSize: Style.pointSize
     }
 
     Label {
@@ -329,7 +332,7 @@ Rectangle {
         text: qsTr("Uitvoerniveau")
         font.weight: Font.DemiBold
         font.bold: true
-        font.pointSize: 10
+        font.pointSize: Style.pointSize
     }
 
     RowLayout {
