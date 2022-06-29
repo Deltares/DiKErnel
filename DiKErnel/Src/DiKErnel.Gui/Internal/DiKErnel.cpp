@@ -60,7 +60,7 @@ namespace DiKErnel::Gui
         context->setContextProperty("dikernelApplication", this);
 
         engine.addImportPath(":/layout");
-        engine.load(QUrl("qrc:/layout/DiKErnel/Qml/Main.qml"));
+        engine.load(QUrl("qrc:/layout/QtDiKErnel/Qml/Main.qml"));
 
         connect(this, &DiKErnel::InputFilePathChanged, this, &DiKErnel::SetStartEnabled);
         connect(this, &DiKErnel::OutputFilePathChanged, this, &DiKErnel::SetStartEnabled);

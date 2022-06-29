@@ -39,7 +39,6 @@ set(QMLFILES
   ${QML_FOLDER}/CustomSwitch.qml
   ${QML_FOLDER}/Main.qml
   ${QML_FOLDER}/MainScreen.qml
-  ${QML_FOLDER}/qmldir
   ${QML_FOLDER}/Style.qml
 )
 
@@ -49,15 +48,18 @@ qt_add_executable(${EXENAME} WIN32
   ${SOURCEFILES}
 )
 
+set_source_files_properties(${QML_FOLDER}/Style.qml PROPERTIES
+    QT_QML_SINGLETON_TYPE TRUE
+)
+
 # Add qml module
 qt6_add_qml_module(${EXENAME}
-  URI "DiKErnel"
+  URI QtDiKErnel
   VERSION 1.0
   RESOURCE_PREFIX "/layout"
   QML_FILES ${QMLFILES}
   NO_PLUGIN_OPTIONAL
   NO_GENERATE_PLUGIN_SOURCE
-  NO_GENERATE_QMLDIR
   NO_GENERATE_QMLTYPES
   NO_LINT
   NO_CACHEGEN

@@ -22,7 +22,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Dialogs
 import QtQuick.Layouts 1.0
-import "."
+import QtDiKErnel 1.0
 
 Rectangle {
     width: 1024
