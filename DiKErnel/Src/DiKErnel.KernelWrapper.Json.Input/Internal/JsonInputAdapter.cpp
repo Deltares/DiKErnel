@@ -176,8 +176,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
     {
         const auto jsonInputTopLayerType = location.GetTopLayerType();
         auto constructionProperties = make_unique<AsphaltRevetmentWaveImpactLocationConstructionProperties>(
-            location.GetX(), location.GetOuterSlope(), ConvertTopLayerType(jsonInputTopLayerType), location.GetFailureTension(),
-            location.GetSoilElasticity(), location.GetThicknessUpperLayer(), location.GetElasticModulusUpperLayer());
+            location.GetX(), ConvertTopLayerType(jsonInputTopLayerType), location.GetFailureTension(), location.GetSoilElasticity(),
+            location.GetThicknessUpperLayer(), location.GetElasticModulusUpperLayer());
 
         constructionProperties->SetInitialDamage(forward<unique_ptr<double>>(CreatePointerOfValue(location.GetInitialDamage())));
 

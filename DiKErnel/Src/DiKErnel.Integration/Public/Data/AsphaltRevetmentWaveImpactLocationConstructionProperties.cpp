@@ -26,14 +26,12 @@ namespace DiKErnel::Integration
 
     AsphaltRevetmentWaveImpactLocationConstructionProperties::AsphaltRevetmentWaveImpactLocationConstructionProperties(
         const double x,
-        const double outerSlope,
         const AsphaltRevetmentTopLayerType topLayerType,
         const double failureTension,
         const double soilElasticity,
         const double thicknessUpperLayer,
         const double elasticModulusUpperLayer)
         : RevetmentLocationConstructionPropertiesBase(x),
-          _outerSlope(outerSlope),
           _topLayerType(topLayerType),
           _failureTension(failureTension),
           _soilElasticity(soilElasticity),
@@ -111,11 +109,6 @@ namespace DiKErnel::Integration
     #pragma endregion
 
     #pragma region Get methods
-
-    double AsphaltRevetmentWaveImpactLocationConstructionProperties::GetOuterSlope() const
-    {
-        return _outerSlope;
-    }
 
     AsphaltRevetmentTopLayerType AsphaltRevetmentWaveImpactLocationConstructionProperties::GetTopLayerType() const
     {

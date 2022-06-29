@@ -52,7 +52,7 @@ namespace DiKErnel::Integration::Test
         {
             constexpr auto topLayerType = static_cast<AsphaltRevetmentTopLayerType>(99);
             const AsphaltRevetmentWaveImpactLocationConstructionProperties constructionProperties(
-                0.1, 0.2, topLayerType, 0.3, 0.4, 0.5, 0.6);
+                0.1, topLayerType, 0.2, 0.3, 0.4, 0.5);
 
             RevetmentCalculationInputBuilder builder;
             builder.AddAsphaltWaveImpactLocation(constructionProperties);
@@ -203,36 +203,35 @@ namespace DiKErnel::Integration::Test
     {
         constexpr auto topLayerType = AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete;
         constexpr auto x = 0.1;
-        constexpr auto outerSlope = 0.2;
-        constexpr auto failureTension = 0.3;
-        constexpr auto soilElasticity = 0.4;
-        constexpr auto thicknessUpperLayer = 0.5;
-        constexpr auto elasticModulusUpperLayer = 0.6;
-        constexpr auto initialDamage = 0.7;
-        constexpr auto failureNumber = 0.8;
-        constexpr auto densityOfWater = 0.9;
-        constexpr auto thicknessSubLayer = 1.0;
-        constexpr auto elasticModulusSubLayer = 1.1;
-        constexpr auto averageNumberOfWavesCtm = 1.2;
-        constexpr auto fatigueAlpha = 1.3;
-        constexpr auto fatigueBeta = 1.4;
-        constexpr auto impactNumberC = 1.5;
-        constexpr auto stiffnessRelationNu = 1.6;
+        constexpr auto failureTension = 0.2;
+        constexpr auto soilElasticity = 0.3;
+        constexpr auto thicknessUpperLayer = 0.4;
+        constexpr auto elasticModulusUpperLayer = 0.5;
+        constexpr auto initialDamage = 0.6;
+        constexpr auto failureNumber = 0.7;
+        constexpr auto densityOfWater = 0.8;
+        constexpr auto thicknessSubLayer = 0.9;
+        constexpr auto elasticModulusSubLayer = 1.0;
+        constexpr auto averageNumberOfWavesCtm = 1.1;
+        constexpr auto fatigueAlpha = 1.2;
+        constexpr auto fatigueBeta = 1.3;
+        constexpr auto impactNumberC = 1.4;
+        constexpr auto stiffnessRelationNu = 1.5;
         const auto widthFactors = vector
         {
-            pair(1.7, 1.8)
+            pair(1.6, 1.7)
         };
         const auto depthFactors = vector
         {
-            pair(1.9, 2.0)
+            pair(1.8, 1.9)
         };
         const auto impactFactors = vector
         {
-            pair(2.1, 2.2)
+            pair(2.0, 2.1)
         };
 
         AsphaltRevetmentWaveImpactLocationConstructionProperties constructionProperties(
-            x, outerSlope, topLayerType, failureTension, soilElasticity, thicknessUpperLayer, elasticModulusUpperLayer);
+            x, topLayerType, failureTension, soilElasticity, thicknessUpperLayer, elasticModulusUpperLayer);
 
         constructionProperties.SetInitialDamage(make_unique<double>(initialDamage));
         constructionProperties.SetFailureNumber(make_unique<double>(failureNumber));
@@ -266,10 +265,9 @@ namespace DiKErnel::Integration::Test
 
         LocationDependentInputAssertHelper::AssertDamageProperties(initialDamage, failureNumber, *locationDependentInput);
 
-        AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertGeneralProperties(x, outerSlope, failureTension, densityOfWater,
-                                                                                              soilElasticity, averageNumberOfWavesCtm,
-                                                                                              impactNumberC, stiffnessRelationNu,
-                                                                                              *locationDependentInput);
+        AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertGeneralProperties(
+            x, failureTension, densityOfWater, soilElasticity, averageNumberOfWavesCtm,
+            impactNumberC, stiffnessRelationNu, *locationDependentInput);
 
         AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertLayer(thicknessUpperLayer, elasticModulusUpperLayer,
                                                                                   locationDependentInput->GetUpperLayer());
@@ -289,14 +287,13 @@ namespace DiKErnel::Integration::Test
     {
         constexpr auto topLayerType = AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete;
         constexpr auto x = 0.1;
-        constexpr auto outerSlope = 0.2;
-        constexpr auto failureTension = 0.3;
-        constexpr auto soilElasticity = 0.4;
-        constexpr auto thicknessUpperLayer = 0.5;
-        constexpr auto elasticModulusUpperLayer = 0.6;
+        constexpr auto failureTension = 0.2;
+        constexpr auto soilElasticity = 0.3;
+        constexpr auto thicknessUpperLayer = 0.4;
+        constexpr auto elasticModulusUpperLayer = 0.5;
 
         AsphaltRevetmentWaveImpactLocationConstructionProperties constructionProperties(
-            x, outerSlope, topLayerType, failureTension, soilElasticity, thicknessUpperLayer, elasticModulusUpperLayer);
+            x, topLayerType, failureTension, soilElasticity, thicknessUpperLayer, elasticModulusUpperLayer);
 
         RevetmentCalculationInputBuilder builder;
         builder.AddAsphaltWaveImpactLocation(constructionProperties);
@@ -316,8 +313,8 @@ namespace DiKErnel::Integration::Test
 
         LocationDependentInputAssertHelper::AssertDamageProperties(0, 1, *locationDependentInput);
 
-        AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertGeneralProperties(x, outerSlope, failureTension, 1025,
-                                                                                              soilElasticity, 1, 1, 0.35, *locationDependentInput);
+        AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertGeneralProperties(
+            x, failureTension, 1025, soilElasticity, 1, 1, 0.35, *locationDependentInput);
 
         AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertLayer(thicknessUpperLayer, elasticModulusUpperLayer,
                                                                                   locationDependentInput->GetUpperLayer());

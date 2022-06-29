@@ -38,8 +38,6 @@ namespace DiKErnel::Integration
              * \brief Creates a new instance.
              * \param x
              *        The x coordinate.
-             * \param outerSlope
-             *        The outer slope.
              * \param topLayerType
              *        The type of the top layer.
              * \param failureTension
@@ -53,7 +51,6 @@ namespace DiKErnel::Integration
              */
             explicit AsphaltRevetmentWaveImpactLocationConstructionProperties(
                 double x,
-                double outerSlope,
                 AsphaltRevetmentTopLayerType topLayerType,
                 double failureTension,
                 double soilElasticity,
@@ -153,13 +150,6 @@ namespace DiKErnel::Integration
             #pragma endregion
 
             #pragma region Get methods
-
-            /*!
-             * \brief Gets the outer slope.
-             * \return The outer slope.
-             */
-            [[nodiscard]]
-            double GetOuterSlope() const;
 
             /*!
              * \brief Gets the type of the top layer.
@@ -276,7 +266,6 @@ namespace DiKErnel::Integration
             #pragma endregion
 
         private:
-            double _outerSlope;
             AsphaltRevetmentTopLayerType _topLayerType;
             double _failureTension;
             double _soilElasticity;

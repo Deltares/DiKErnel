@@ -29,7 +29,6 @@ namespace DiKErnel::Integration::TestUtil
         public:
             static void AssertGeneralProperties(
                 double x,
-                double outerSlope,
                 double failureTension,
                 double densityOfWater,
                 double soilElasticity,
