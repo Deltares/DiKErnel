@@ -14,16 +14,16 @@
     ],
     "hydraulischeBelastingen": {
         "waterstanden": [
-            3.8,
-            3.4,
-            3,
-            2.6,
-            2.2,
-            1.8,
-            1.4,
-            1,
-            0.6,
-            0.2
+            7.2,
+            6.8,
+            6.4,
+            6,
+            5.6,
+            5.2,
+            4.8,
+            4.4,
+            4,
+            3.6
         ],
         "golfhoogtenHm0": [
             1.6,
@@ -92,47 +92,32 @@
     },
     "locaties": [
         {
-            "positie": 5.4,
-            "beginschade": 0.0,
+            "positie": 25.1,
             "rekenmethode": "asfaltGolfklap",
             "typeToplaag": "waterbouwAsfaltBeton",
-            "breuksterkteAsfalt": 1.56,
+            "breuksterkteAsfalt": 2.25,
             "veerconstanteOndergrond": 56,
             "toplaag": {
-                "dikte": 0.16,
+                "dikte": 0.3,
                 "stijfheidsmodulus": 18214
             },
-            "tanA": 0.233
+            "tanA": 0.23
         },
         {
-            "positie": 32.45,
-            "beginschade": 0.0,
+            "positie": 25.1,
             "rekenmethode": "asfaltGolfklap",
             "typeToplaag": "waterbouwAsfaltBeton",
-            "breuksterkteAsfalt": 1.56,
+            "breuksterkteAsfalt": 2.25,
             "veerconstanteOndergrond": 56,
             "toplaag": {
-                "dikte": 0.16,
-                "stijfheidsmodulus": 18214
-            },
-            "tanA": 0.233
-        },
-        {
-            "positie": 5.4,
-            "beginschade": 0.0,
-            "rekenmethode": "asfaltGolfklap",
-            "typeToplaag": "waterbouwAsfaltBeton",
-            "breuksterkteAsfalt": 1.56,
-            "veerconstanteOndergrond": 56,
-            "toplaag": {
-                "dikte": 0.16,
+                "dikte": 0.15,
                 "stijfheidsmodulus": 18214
             },
             "onderlaag": {
-                "dikte": 0.25,
-                "stijfheidsmodulus": 15500
+                "dikte": 0.12,
+                "stijfheidsmodulus": 16786
             },
-            "tanA": 0.233
+            "tanA": 0.23
         }
     ],
     "rekenmethoden": [

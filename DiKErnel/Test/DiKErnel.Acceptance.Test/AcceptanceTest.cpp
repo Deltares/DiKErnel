@@ -135,6 +135,44 @@ namespace DiKErnel::Acceptance::Test
                     });
     }
 
+    TEST_F(AcceptanceTest, GivenJsonInputWithAsphaltWaveImpactLocationsBelowBerm_WhenCalculating_ThenExpectedOutputJsonCreated)
+    {
+        // Given
+        const auto inputFilePath = (TestDataPathHelper::GetTestDataPath("DiKErnel.Acceptance.Test") / "AcceptanceTest"
+            / "AsphaltWaveImpactBelowBerm.json").string();
+
+        // When & Then
+        PerformTest(inputFilePath, 1.2083569101835512, make_unique<int>(55992).get());
+    }
+
+    TEST_F(AcceptanceTest, GivenJsonInputWithAsphaltWaveImpactLocationsOnBerm_WhenCalculating_ThenExpectedOutputJsonCreated)
+    {
+        // Given
+        const auto inputFilePath = (TestDataPathHelper::GetTestDataPath("DiKErnel.Acceptance.Test") / "AcceptanceTest"
+            / "AsphaltWaveImpactOnBerm.json").string();
+
+        // When & Then
+        PerformTest(inputFilePath, vector
+                    {
+                        1.0211410825504219,
+                        1.201708191670589
+                    }, vector<const int*>
+                    {
+                        make_unique<int>(48692).get(),
+                        make_unique<int>(32664).get(),
+                    });
+    }
+
+    TEST_F(AcceptanceTest, GivenJsonInputWithAsphaltWaveImpactLocationsAboveBerm_WhenCalculating_ThenExpectedOutputJsonCreated)
+    {
+        // Given
+        const auto inputFilePath = (TestDataPathHelper::GetTestDataPath("DiKErnel.Acceptance.Test") / "AcceptanceTest"
+            / "AsphaltWaveImpactAboveBerm.json").string();
+
+        // When & Then
+        PerformTest(inputFilePath, 1.3416472507685535, make_unique<int>(21733).get());
+    }
+
     TEST_F(AcceptanceTest, GivenJsonInputWithGrassWaveImpactLocation_WhenCalculating_ThenExpectedOutputJsonCreated)
     {
         // Given
