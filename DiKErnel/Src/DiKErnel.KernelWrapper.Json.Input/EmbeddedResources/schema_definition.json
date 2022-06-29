@@ -103,7 +103,6 @@
         "type": "object",
         "required": [
           "positie",
-          "beginschade",
           "rekenmethode",
           "typeToplaag"
         ],
@@ -266,9 +265,7 @@
       "items": {
         "type": "object",
         "required": [
-          "rekenmethode",
-          "faalgetal",
-          "toplagen"
+          "rekenmethode"
         ],
         "additionalProperties": false,
         "properties": {
