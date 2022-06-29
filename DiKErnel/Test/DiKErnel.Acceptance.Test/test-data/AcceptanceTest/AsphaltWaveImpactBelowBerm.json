@@ -100,8 +100,7 @@
             "toplaag": {
                 "dikte": 0.16,
                 "stijfheidsmodulus": 18214
-            },
-            "tanA": 0.23
+            }
         }
     ],
     "rekenmethoden": [

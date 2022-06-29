@@ -121,8 +121,7 @@
             "onderlaag": {
                 "dikte": 0.20,
                 "stijfheidsmodulus": 15000
-            },
-            "tanA": 0.6548
+            }
         }
     ],
     "rekenmethoden": [

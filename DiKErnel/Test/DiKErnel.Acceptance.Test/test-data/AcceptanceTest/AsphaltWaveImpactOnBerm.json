@@ -100,8 +100,7 @@
             "toplaag": {
                 "dikte": 0.3,
                 "stijfheidsmodulus": 18214
-            },
-            "tanA": 0.23
+            }
         },
         {
             "positie": 25.1,
@@ -116,8 +115,7 @@
             "onderlaag": {
                 "dikte": 0.12,
                 "stijfheidsmodulus": 16786
-            },
-            "tanA": 0.23
+            }
         }
     ],
     "rekenmethoden": [
