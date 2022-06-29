@@ -36,6 +36,9 @@ namespace DiKErnel::Core::TestUtil
                 const ITimeDependentInput& timeDependentInput,
                 const IProfileData& profileData) override;
 
+            std::unique_ptr<LocationDependentOutput> GetLocationDependentOutput(
+                std::vector<std::unique_ptr<TimeDependentOutput>> timeDependentOutputItems) override;
+
             MOCK_METHOD(double, GetX, (), (const, override));
             MOCK_METHOD(double, GetInitialDamage, (), (const, override));
             MOCK_METHOD(double, GetFailureNumber, (), (const, override));

@@ -80,7 +80,7 @@ namespace DiKErnel::Integration
     unique_ptr<LocationDependentOutput> LocationDependentInput::GetLocationDependentOutput(
         vector<unique_ptr<TimeDependentOutput>> timeDependentOutputItems)
     {
-        return make_unique<LocationDependentOutput>(GetZ(), timeDependentOutputItems);
+        return make_unique<LocationDependentOutput>(GetZ(), move(timeDependentOutputItems));
     }
 
     double LocationDependentInput::GetX() const
