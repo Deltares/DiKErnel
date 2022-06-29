@@ -68,7 +68,8 @@ namespace DiKErnel::Core
              * \brief Gets location dependent output based on the derived location dependent input
              *        and the provided time dependent output items.
              * \param timeDependentOutputItems
-             *        Zero or more time dependent output items of the location.
+             *        One or more time dependent output items that were calculated for the
+             *        location.
              * \return The location dependent output.
              */
             virtual std::unique_ptr<LocationDependentOutput> GetLocationDependentOutput(

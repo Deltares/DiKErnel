@@ -148,7 +148,8 @@ namespace DiKErnel::Core
 
         for (auto i = 0; i < static_cast<int>(locationDependentInputItems.size()); ++i)
         {
-            locationDependentOutputItems.push_back(locationDependentInputItems.at(i).get().GetLocationDependentOutput(move(timeDependentOutputItems.at(i))));
+            locationDependentOutputItems.push_back(
+                locationDependentInputItems.at(i).get().GetLocationDependentOutput(move(timeDependentOutputItems.at(i))));
         }
 
         _result = make_shared<DataResult<CalculationOutput>>(make_unique<CalculationOutput>(move(locationDependentOutputItems)),
