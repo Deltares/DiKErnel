@@ -21,6 +21,7 @@
 #pragma once
 
 #include "JsonOutputPhysicsLocationData.h"
+#include "NaturalStoneRevetmentLocationDependentOutput.h"
 #include "NaturalStoneRevetmentTimeDependentOutput.h"
 
 namespace DiKErnel::KernelWrapper::Json::Output
@@ -29,7 +30,7 @@ namespace DiKErnel::KernelWrapper::Json::Output
     {
         public:
             explicit JsonOutputNaturalStoneRevetmentPhysicsLocationData(
-                const Core::LocationDependentOutput& locationOutput);
+                const Integration::NaturalStoneRevetmentLocationDependentOutput& locationOutput);
 
             [[nodiscard]]
             nlohmann::ordered_json CreateJson() const override;

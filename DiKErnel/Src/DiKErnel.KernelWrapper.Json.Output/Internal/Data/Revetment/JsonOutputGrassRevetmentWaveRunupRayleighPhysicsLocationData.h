@@ -20,6 +20,7 @@
 
 #pragma once
 
+#include "GrassRevetmentWaveRunupRayleighLocationDependentOutput.h"
 #include "GrassRevetmentWaveRunupRayleighTimeDependentOutput.h"
 #include "JsonOutputPhysicsLocationData.h"
 
@@ -29,7 +30,7 @@ namespace DiKErnel::KernelWrapper::Json::Output
     {
         public:
             explicit JsonOutputGrassRevetmentWaveRunupRayleighPhysicsLocationData(
-                const Core::LocationDependentOutput& locationOutput);
+                const Integration::GrassRevetmentWaveRunupRayleighLocationDependentOutput& locationOutput);
 
             [[nodiscard]]
             nlohmann::ordered_json CreateJson() const override;

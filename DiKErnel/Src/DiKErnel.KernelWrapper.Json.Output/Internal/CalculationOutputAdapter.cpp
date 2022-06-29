@@ -97,28 +97,29 @@ namespace DiKErnel::KernelWrapper::Json::Output
                     dynamic_cast<const AsphaltRevetmentWaveImpactLocationDependentOutput*>(&locationOutput);
             asphaltRevetmentWaveImpactLocationDependentOutput != nullptr)
         {
-            return make_unique<JsonOutputAsphaltRevetmentWaveImpactPhysicsLocationData>(locationOutput);
+            return make_unique<JsonOutputAsphaltRevetmentWaveImpactPhysicsLocationData>(*asphaltRevetmentWaveImpactLocationDependentOutput);
         }
 
         if (const auto* grassRevetmentWaveImpactLocationDependentOutput =
                     dynamic_cast<const GrassRevetmentWaveImpactLocationDependentOutput*>(&locationOutput);
             grassRevetmentWaveImpactLocationDependentOutput != nullptr)
         {
-            return make_unique<JsonOutputGrassRevetmentWaveImpactPhysicsLocationData>(locationOutput);
+            return make_unique<JsonOutputGrassRevetmentWaveImpactPhysicsLocationData>(*grassRevetmentWaveImpactLocationDependentOutput);
         }
 
         if (const auto* grassRevetmentWaveRunupRayleighLocationDependentOutput =
                     dynamic_cast<const GrassRevetmentWaveRunupRayleighLocationDependentOutput*>(&locationOutput);
             grassRevetmentWaveRunupRayleighLocationDependentOutput != nullptr)
         {
-            return make_unique<JsonOutputGrassRevetmentWaveRunupRayleighPhysicsLocationData>(locationOutput);
+            return make_unique<JsonOutputGrassRevetmentWaveRunupRayleighPhysicsLocationData>(
+                *grassRevetmentWaveRunupRayleighLocationDependentOutput);
         }
 
         if (const auto* naturalStoneRevetmentLocationDependentOutput =
                     dynamic_cast<const NaturalStoneRevetmentLocationDependentOutput*>(&locationOutput);
             naturalStoneRevetmentLocationDependentOutput != nullptr)
         {
-            return make_unique<JsonOutputNaturalStoneRevetmentPhysicsLocationData>(locationOutput);
+            return make_unique<JsonOutputNaturalStoneRevetmentPhysicsLocationData>(*naturalStoneRevetmentLocationDependentOutput);
         }
 
         throw JsonOutputConversionException("Invalid revetment type.");

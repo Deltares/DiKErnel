@@ -32,7 +32,7 @@ namespace DiKErnel::KernelWrapper::Json::Output
     using namespace std;
 
     JsonOutputAsphaltRevetmentWaveImpactPhysicsLocationData::JsonOutputAsphaltRevetmentWaveImpactPhysicsLocationData(
-        const LocationDependentOutput& locationOutput)
+        const AsphaltRevetmentWaveImpactLocationDependentOutput& locationOutput)
         : JsonOutputPhysicsLocationData(locationOutput)
     {
         for (const auto& timeDependentOutput : locationOutput.GetTimeDependentOutputItems())
