@@ -34,15 +34,9 @@ namespace DiKErnel::Core
     {
         public:
             /*!
-             * \brief Creates a new instance.
-             * \param z
-             *        The calculated z.
-             * \param timeDependentOutputItems
-             *        The time dependent output items of the location.
+             * \brief Destructs the instance.
              */
-            explicit LocationDependentOutput(
-                double z,
-                std::vector<std::unique_ptr<TimeDependentOutput>> timeDependentOutputItems);
+            virtual ~LocationDependentOutput() = default;
 
             /*!
              * \brief Gets the calculated z.
@@ -71,6 +65,18 @@ namespace DiKErnel::Core
              */
             [[nodiscard]]
             const std::vector<std::reference_wrapper<TimeDependentOutput>>& GetTimeDependentOutputItems() const;
+
+        protected:
+            /*!
+             * \brief Creates a new instance.
+             * \param z
+             *        The calculated z.
+             * \param timeDependentOutputItems
+             *        The time dependent output items of the location.
+             */
+            explicit LocationDependentOutput(
+                double z,
+                std::vector<std::unique_ptr<TimeDependentOutput>> timeDependentOutputItems);
 
         private:
             double _z;

@@ -20,11 +20,15 @@
 
 #include "CalculationOutputAdapter.h"
 
+#include "AsphaltRevetmentWaveImpactLocationDependentOutput.h"
+#include "GrassRevetmentWaveImpactLocationDependentOutput.h"
+#include "GrassRevetmentWaveRunupRayleighLocationDependentOutput.h"
 #include "JsonOutputAsphaltRevetmentWaveImpactPhysicsLocationData.h"
 #include "JsonOutputConversionException.h"
 #include "JsonOutputGrassRevetmentWaveImpactPhysicsLocationData.h"
 #include "JsonOutputGrassRevetmentWaveRunupRayleighPhysicsLocationData.h"
 #include "JsonOutputNaturalStoneRevetmentPhysicsLocationData.h"
+#include "NaturalStoneRevetmentLocationDependentOutput.h"
 
 namespace DiKErnel::KernelWrapper::Json::Output
 {
@@ -89,30 +93,30 @@ namespace DiKErnel::KernelWrapper::Json::Output
     unique_ptr<JsonOutputFailureLocationData> CalculationOutputAdapter::CreateJsonOutputPhysicsLocationData(
         const LocationDependentOutput& locationOutput)
     {
-        const auto& locationTimeDependentOutputItem = locationOutput.GetTimeDependentOutputItems().front();
-
-        if (const auto* asphaltRevetmentWaveImpactLocationTimeDependentOutputItem = dynamic_cast<const
-            AsphaltRevetmentWaveImpactTimeDependentOutput*>(
-            &locationTimeDependentOutputItem.get()); asphaltRevetmentWaveImpactLocationTimeDependentOutputItem != nullptr)
+        if (const auto* asphaltRevetmentWaveImpactLocationDependentOutput =
+                    dynamic_cast<const AsphaltRevetmentWaveImpactLocationDependentOutput*>(&locationOutput);
+            asphaltRevetmentWaveImpactLocationDependentOutput != nullptr)
         {
             return make_unique<JsonOutputAsphaltRevetmentWaveImpactPhysicsLocationData>(locationOutput);
         }
 
-        if (const auto* grassRevetmentWaveImpactLocationTimeDependentOutputItem = dynamic_cast<const GrassRevetmentWaveImpactTimeDependentOutput*>(
-            &locationTimeDependentOutputItem.get()); grassRevetmentWaveImpactLocationTimeDependentOutputItem != nullptr)
+        if (const auto* grassRevetmentWaveImpactLocationDependentOutput =
+                    dynamic_cast<const GrassRevetmentWaveImpactLocationDependentOutput*>(&locationOutput);
+            grassRevetmentWaveImpactLocationDependentOutput != nullptr)
         {
             return make_unique<JsonOutputGrassRevetmentWaveImpactPhysicsLocationData>(locationOutput);
         }
 
-        if (const auto* grassRevetmentWaveRunupRayleighLocationTimeDependentOutputItem =
-                    dynamic_cast<const GrassRevetmentWaveRunupRayleighTimeDependentOutput*>(&locationTimeDependentOutputItem.get());
-            grassRevetmentWaveRunupRayleighLocationTimeDependentOutputItem != nullptr)
+        if (const auto* grassRevetmentWaveRunupRayleighLocationDependentOutput =
+                    dynamic_cast<const GrassRevetmentWaveRunupRayleighLocationDependentOutput*>(&locationOutput);
+            grassRevetmentWaveRunupRayleighLocationDependentOutput != nullptr)
         {
             return make_unique<JsonOutputGrassRevetmentWaveRunupRayleighPhysicsLocationData>(locationOutput);
         }
 
-        if (const auto* naturalStoneRevetmentLocationTimeDependentOutputItem = dynamic_cast<const NaturalStoneRevetmentTimeDependentOutput*>(
-            &locationTimeDependentOutputItem.get()); naturalStoneRevetmentLocationTimeDependentOutputItem != nullptr)
+        if (const auto* naturalStoneRevetmentLocationDependentOutput =
+                    dynamic_cast<const NaturalStoneRevetmentLocationDependentOutput*>(&locationOutput);
+            naturalStoneRevetmentLocationDependentOutput != nullptr)
         {
             return make_unique<JsonOutputNaturalStoneRevetmentPhysicsLocationData>(locationOutput);
         }
