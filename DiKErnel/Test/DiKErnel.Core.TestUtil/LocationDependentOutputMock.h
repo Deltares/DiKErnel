@@ -20,16 +20,15 @@
 
 #pragma once
 
-#include "TimeDependentOutput.h"
+#include "LocationDependentOutput.h"
 
 namespace DiKErnel::Core::TestUtil
 {
-    class TimeDependentOutputMock : public TimeDependentOutput
+    class LocationDependentOutputMock : public LocationDependentOutput
     {
         public:
-            explicit TimeDependentOutputMock(
-                double incrementDamage,
-                double damage,
-                std::unique_ptr<int> timeOfFailure);
+            explicit LocationDependentOutputMock(
+                double z,
+                std::vector<std::unique_ptr<TimeDependentOutput>> timeDependentOutputItems);
     };
 }

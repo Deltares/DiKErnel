@@ -18,18 +18,14 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#pragma once
-
-#include "TimeDependentOutput.h"
+#include "LocationDependentOutputMock.h"
 
 namespace DiKErnel::Core::TestUtil
 {
-    class TimeDependentOutputMock : public TimeDependentOutput
-    {
-        public:
-            explicit TimeDependentOutputMock(
-                double incrementDamage,
-                double damage,
-                std::unique_ptr<int> timeOfFailure);
-    };
+    using namespace std;
+
+    LocationDependentOutputMock::LocationDependentOutputMock(
+        const double z,
+        vector<unique_ptr<TimeDependentOutput>> timeDependentOutputItems)
+        : LocationDependentOutput(z, move(timeDependentOutputItems)) {}
 }

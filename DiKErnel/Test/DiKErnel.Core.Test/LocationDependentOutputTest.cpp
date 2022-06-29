@@ -21,6 +21,7 @@
 #include <gtest/gtest.h>
 
 #include "LocationDependentOutput.h"
+#include "LocationDependentOutputMock.h"
 #include "TimeDependentOutputMock.h"
 
 namespace DiKErnel::Core::Test
@@ -40,7 +41,7 @@ namespace DiKErnel::Core::Test
         timeDependentOutputItems.push_back(make_unique<TimeDependentOutputMock>(incrementDamage, damage, make_unique<int>(timeOfFailure)));
 
         // Call
-        const LocationDependentOutput locationDependentOutput(z, move(timeDependentOutputItems));
+        const LocationDependentOutputMock locationDependentOutput(z, move(timeDependentOutputItems));
 
         // Assert
         ASSERT_DOUBLE_EQ(z, locationDependentOutput.GetZ());
@@ -60,7 +61,7 @@ namespace DiKErnel::Core::Test
         timeDependentOutputItems.push_back(make_unique<TimeDependentOutputMock>(incrementDamage, damage, nullptr));
 
         // Call
-        const LocationDependentOutput locationDependentOutput(z, move(timeDependentOutputItems));
+        const LocationDependentOutputMock locationDependentOutput(z, move(timeDependentOutputItems));
 
         // Assert
         ASSERT_DOUBLE_EQ(z, locationDependentOutput.GetZ());

@@ -28,6 +28,7 @@
 #include "GrassRevetmentWaveImpactTimeDependentOutput.h"
 #include "GrassRevetmentWaveRunupRayleighTimeDependentOutput.h"
 #include "JsonOutputComposer.h"
+#include "LocationDependentOutputMock.h"
 #include "NaturalStoneRevetmentTimeDependentOutput.h"
 #include "TestDataPathHelper.h"
 #include "TimeDependentOutputMock.h"
@@ -65,8 +66,8 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
             location2TimeDependentOutputItems.push_back(make_unique<TimeDependentOutputMock>(0, 0.512, nullptr));
 
             vector<unique_ptr<LocationDependentOutput>> locations;
-            locations.push_back(make_unique<LocationDependentOutput>(1.1, move(location1TimeDependentOutputItems)));
-            locations.push_back(make_unique<LocationDependentOutput>(2.2, move(location2TimeDependentOutputItems)));
+            locations.push_back(make_unique<LocationDependentOutputMock>(1.1, move(location1TimeDependentOutputItems)));
+            locations.push_back(make_unique<LocationDependentOutputMock>(2.2, move(location2TimeDependentOutputItems)));
 
             const CalculationOutput calculationOutput(move(locations));
 
@@ -117,10 +118,10 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
             naturalStoneTimeDependentOutputs.push_back(move(naturalStoneTimeDependentOutput));
 
             vector<unique_ptr<LocationDependentOutput>> locations;
-            locations.push_back(make_unique<LocationDependentOutput>(4.6, move(asphaltWaveImpactTimeDependentOutputs)));
-            locations.push_back(make_unique<LocationDependentOutput>(4.7, move(grassWaveImpactTimeDependentOutputs)));
-            locations.push_back(make_unique<LocationDependentOutput>(4.8, move(grassWaveRunupRayleighTimeDependentOutputs)));
-            locations.push_back(make_unique<LocationDependentOutput>(4.9, move(naturalStoneTimeDependentOutputs)));
+            locations.push_back(make_unique<LocationDependentOutputMock>(4.6, move(asphaltWaveImpactTimeDependentOutputs)));
+            locations.push_back(make_unique<LocationDependentOutputMock>(4.7, move(grassWaveImpactTimeDependentOutputs)));
+            locations.push_back(make_unique<LocationDependentOutputMock>(4.8, move(grassWaveRunupRayleighTimeDependentOutputs)));
+            locations.push_back(make_unique<LocationDependentOutputMock>(4.9, move(naturalStoneTimeDependentOutputs)));
 
             return make_unique<CalculationOutput>(move(locations));
         }
@@ -179,7 +180,7 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
         locationTimeDependentOutputItems.push_back(make_unique<TimeDependentOutputMock>(0, 0.15, nullptr));
 
         vector<unique_ptr<LocationDependentOutput>> locations;
-        locations.push_back(make_unique<LocationDependentOutput>(1.1, move(locationTimeDependentOutputItems)));
+        locations.push_back(make_unique<LocationDependentOutputMock>(1.1, move(locationTimeDependentOutputItems)));
 
         const CalculationOutput calculationOutput(move(locations));
 

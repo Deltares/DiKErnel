@@ -11,6 +11,8 @@ set(SOURCEFILES
   IProfileDataMock.h
   ITimeDependentInputMock.cpp
   ITimeDependentInputMock.h
+  LocationDependentOutputMock.cpp
+  LocationDependentOutputMock.h
   TimeDependentOutputMock.cpp
   TimeDependentOutputMock.h
 )

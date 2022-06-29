@@ -20,6 +20,7 @@
 
 #include "ILocationDependentInputMock.h"
 
+#include "LocationDependentOutputMock.h"
 #include "TimeDependentOutputMock.h"
 
 namespace DiKErnel::Core::TestUtil
@@ -44,7 +45,7 @@ namespace DiKErnel::Core::TestUtil
     unique_ptr<LocationDependentOutput> ILocationDependentInputMock::GetLocationDependentOutput(
         vector<unique_ptr<TimeDependentOutput>> timeDependentOutputItems)
     {
-        return make_unique<LocationDependentOutput>(GetZ(), move(timeDependentOutputItems));
+        return make_unique<LocationDependentOutputMock>(GetZ(), move(timeDependentOutputItems));
     }
 
     void ILocationDependentInputMock::SetIncrementDamage(
