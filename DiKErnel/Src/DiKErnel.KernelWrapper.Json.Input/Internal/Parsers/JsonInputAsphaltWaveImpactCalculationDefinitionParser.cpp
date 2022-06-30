@@ -43,36 +43,30 @@ namespace DiKErnel::KernelWrapper::Json::Input
             move(failureNumber), ReadTopLayerDefinitionData(readCalculationMethod));
 
         calculationDefinition->SetDensityOfWater(
-            forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
-                readCalculationMethod, JsonInputAsphaltWaveImpactDefinitions::DENSITY_OF_WATER)));
+            JsonInputParserHelper::ParseOptionalDouble(readCalculationMethod, JsonInputAsphaltWaveImpactDefinitions::DENSITY_OF_WATER));
 
         calculationDefinition->SetFactorCtm(
-            forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
-                readCalculationMethod, JsonInputDefinitions::FACTOR_CTM)));
+            JsonInputParserHelper::ParseOptionalDouble(readCalculationMethod, JsonInputDefinitions::FACTOR_CTM));
 
         calculationDefinition->SetImpactNumberC(
-            forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
-                readCalculationMethod, JsonInputAsphaltWaveImpactDefinitions::IMPACT_NUMBER_C)));
+            JsonInputParserHelper::ParseOptionalDouble(readCalculationMethod, JsonInputAsphaltWaveImpactDefinitions::IMPACT_NUMBER_C));
 
         if (readCalculationMethod.contains(JsonInputAsphaltWaveImpactDefinitions::WIDTH_FACTORS))
         {
             calculationDefinition->SetWidthFactors(
-                forward<unique_ptr<vector<pair<double, double>>>>(
-                    ParseFactorsTable(readCalculationMethod.at(JsonInputAsphaltWaveImpactDefinitions::WIDTH_FACTORS))));
+                ParseFactorsTable(readCalculationMethod.at(JsonInputAsphaltWaveImpactDefinitions::WIDTH_FACTORS)));
         }
 
         if (readCalculationMethod.contains(JsonInputAsphaltWaveImpactDefinitions::DEPTH_FACTORS))
         {
             calculationDefinition->SetDepthFactors(
-                forward<unique_ptr<vector<pair<double, double>>>>(
-                    ParseFactorsTable(readCalculationMethod.at(JsonInputAsphaltWaveImpactDefinitions::DEPTH_FACTORS))));
+                ParseFactorsTable(readCalculationMethod.at(JsonInputAsphaltWaveImpactDefinitions::DEPTH_FACTORS)));
         }
 
         if (readCalculationMethod.contains(JsonInputAsphaltWaveImpactDefinitions::IMPACT_FACTORS))
         {
             calculationDefinition->SetImpactFactors(
-                forward<unique_ptr<vector<pair<double, double>>>>(
-                    ParseFactorsTable(readCalculationMethod.at(JsonInputAsphaltWaveImpactDefinitions::IMPACT_FACTORS))));
+                ParseFactorsTable(readCalculationMethod.at(JsonInputAsphaltWaveImpactDefinitions::IMPACT_FACTORS)));
         }
 
         return calculationDefinition;
@@ -97,16 +91,13 @@ namespace DiKErnel::KernelWrapper::Json::Input
                     const auto& readFatigue = readTopLayer.at(JsonInputAsphaltWaveImpactDefinitions::FATIGUE);
 
                     topLayer->SetFatigueAlpha(
-                        forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
-                            readFatigue, JsonInputAsphaltWaveImpactDefinitions::ALPHA)));
+                        JsonInputParserHelper::ParseOptionalDouble(readFatigue, JsonInputAsphaltWaveImpactDefinitions::ALPHA));
                     topLayer->SetFatigueBeta(
-                        forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
-                            readFatigue, JsonInputAsphaltWaveImpactDefinitions::BETA)));
+                        JsonInputParserHelper::ParseOptionalDouble(readFatigue, JsonInputAsphaltWaveImpactDefinitions::BETA));
                 }
 
                 topLayer->SetStiffnessRelationNu(
-                    forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
-                        readTopLayer, JsonInputAsphaltWaveImpactDefinitions::STIFFNESS_RELATION_NU)));
+                    JsonInputParserHelper::ParseOptionalDouble(readTopLayer, JsonInputAsphaltWaveImpactDefinitions::STIFFNESS_RELATION_NU));
 
                 topLayers.insert(pair(readTopLayer.at(JsonInputDefinitions::TYPE_TOP_LAYER).get<JsonInputAsphaltRevetmentTopLayerType>(),
                                       move(topLayer)));
