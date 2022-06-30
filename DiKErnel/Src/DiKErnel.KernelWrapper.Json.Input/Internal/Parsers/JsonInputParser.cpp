@@ -142,7 +142,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 parser = CreateLocationParser<JsonInputNaturalStoneParser>(readLocation);
             }
 
-            parsedLocations.push_back(forward<unique_ptr<JsonInputLocationData>>(parser->Parse()));
+            parsedLocations.push_back(parser->Parse());
         }
 
         return parsedLocations;
@@ -184,8 +184,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
                     parser = CreateCalculationDefinitionParser<JsonInputNaturalStoneCalculationDefinitionParser>(readCalculationDefinition);
                 }
 
-                parsedCalculationDefinitions.insert(pair(calculationType,
-                                                         forward<unique_ptr<JsonInputCalculationDefinitionData>>(parser->Parse())));
+                parsedCalculationDefinitions.insert(pair(calculationType, parser->Parse()));
             }
         }
 
