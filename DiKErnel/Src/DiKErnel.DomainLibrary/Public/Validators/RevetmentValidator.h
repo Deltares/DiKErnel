@@ -83,15 +83,5 @@ namespace DiKErnel::DomainLibrary
              */
             static std::unique_ptr<Util::ValidationIssue> AverageNumberOfWavesCtm(
                 double averageNumberOfWavesCtm);
-
-            /*!
-             * \brief Validates the outer slope.
-             * \param outerSlope
-             *        The outer slope.
-             *        Unit = [-]
-             * \return A validation issue when the outer slope is not valid; nullptr otherwise.
-             */
-            static std::unique_ptr<Util::ValidationIssue> OuterSlope(
-                double outerSlope);
     };
 }

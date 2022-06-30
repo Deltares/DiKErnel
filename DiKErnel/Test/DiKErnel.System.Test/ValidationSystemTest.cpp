@@ -252,8 +252,8 @@ namespace DiKErnel::System::Test
         EventAssertHelper::AssertEvent(EventType::Error, "CriticalFrontVelocity must be equal to 0 or larger.", events.at(6));
         EventAssertHelper::AssertEvent(EventType::Error, "IncreasedLoadTransitionAlphaM must be equal to 0 or larger.", events.at(7));
         EventAssertHelper::AssertEvent(EventType::Error, "ReducedStrengthTransitionAlphaS must be equal to 0 or larger.", events.at(8));
-        EventAssertHelper::AssertEvent(EventType::Error, "AverageNumberOfWavesCtm must be larger than 0.", events.at(9));
-        EventAssertHelper::AssertEvent(EventType::Error, "OuterSlope must be in range {0, 1}.", events.at(10));
+        EventAssertHelper::AssertEvent(EventType::Error, "OuterSlope must be in range {0, 1}.", events.at(9));
+        EventAssertHelper::AssertEvent(EventType::Error, "AverageNumberOfWavesCtm must be larger than 0.", events.at(10));
         EventAssertHelper::AssertEvent(EventType::Error, "FixedNumberOfWaves must be larger than 0.", events.at(11));
         EventAssertHelper::AssertEvent(EventType::Error, "FrontVelocityCu must be larger than 0.", events.at(12));
     }
