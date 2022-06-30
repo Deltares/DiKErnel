@@ -179,45 +179,34 @@ namespace DiKErnel::KernelWrapper::Json::Input
             location.GetX(), ConvertTopLayerType(jsonInputTopLayerType), location.GetFailureTension(), location.GetSoilElasticity(),
             location.GetThicknessUpperLayer(), location.GetElasticModulusUpperLayer());
 
-        constructionProperties->SetInitialDamage(forward<unique_ptr<double>>(CreatePointerOfValue(location.GetInitialDamage())));
+        constructionProperties->SetInitialDamage(CreatePointerOfValue(location.GetInitialDamage()));
 
-        constructionProperties->SetThicknessSubLayer(
-            forward<unique_ptr<double>>(CreatePointerOfValue(location.GetThicknessSubLayer())));
-        constructionProperties->SetElasticModulusSubLayer(
-            forward<unique_ptr<double>>(CreatePointerOfValue(location.GetElasticModulusSubLayer())));
+        constructionProperties->SetThicknessSubLayer(CreatePointerOfValue(location.GetThicknessSubLayer()));
+        constructionProperties->SetElasticModulusSubLayer(CreatePointerOfValue(location.GetElasticModulusSubLayer()));
 
         if (calculationDefinition != nullptr)
         {
-            constructionProperties->SetFailureNumber(forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetFailureNumber())));
-            constructionProperties->SetDensityOfWater(
-                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetDensityOfWater())));
+            constructionProperties->SetFailureNumber(CreatePointerOfValue(calculationDefinition->GetFailureNumber()));
+            constructionProperties->SetDensityOfWater(CreatePointerOfValue(calculationDefinition->GetDensityOfWater()));
 
-            constructionProperties->SetAverageNumberOfWavesCtm(
-                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetFactorCtm())));
+            constructionProperties->SetAverageNumberOfWavesCtm(CreatePointerOfValue(calculationDefinition->GetFactorCtm()));
 
             if (const auto& topLayerDefinitionData = calculationDefinition->GetTopLayerDefinitionData();
                 MapHelper::ContainsKey(topLayerDefinitionData, jsonInputTopLayerType))
             {
                 const auto& topLayerDefinition = topLayerDefinitionData.at(jsonInputTopLayerType).get();
 
-                constructionProperties->SetFatigueAlpha(
-                    forward<unique_ptr<double>>(CreatePointerOfValue(topLayerDefinition.GetFatigueAlpha())));
-                constructionProperties->SetFatigueBeta(
-                    forward<unique_ptr<double>>(CreatePointerOfValue(topLayerDefinition.GetFatigueBeta())));
+                constructionProperties->SetFatigueAlpha(CreatePointerOfValue(topLayerDefinition.GetFatigueAlpha()));
+                constructionProperties->SetFatigueBeta(CreatePointerOfValue(topLayerDefinition.GetFatigueBeta()));
 
-                constructionProperties->SetStiffnessRelationNu(
-                    forward<unique_ptr<double>>(CreatePointerOfValue(topLayerDefinition.GetStiffnessRelationNu())));
+                constructionProperties->SetStiffnessRelationNu(CreatePointerOfValue(topLayerDefinition.GetStiffnessRelationNu()));
             }
 
-            constructionProperties->SetImpactNumberC(
-                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetImpactNumberC())));
+            constructionProperties->SetImpactNumberC(CreatePointerOfValue(calculationDefinition->GetImpactNumberC()));
 
-            constructionProperties->SetWidthFactors(
-                forward<unique_ptr<vector<pair<double, double>>>>(CreatePointerOfValue(calculationDefinition->GetWidthFactors())));
-            constructionProperties->SetDepthFactors(
-                forward<unique_ptr<vector<pair<double, double>>>>(CreatePointerOfValue(calculationDefinition->GetDepthFactors())));
-            constructionProperties->SetImpactFactors(
-                forward<unique_ptr<vector<pair<double, double>>>>(CreatePointerOfValue(calculationDefinition->GetImpactFactors())));
+            constructionProperties->SetWidthFactors(CreatePointerOfValue(calculationDefinition->GetWidthFactors()));
+            constructionProperties->SetDepthFactors(CreatePointerOfValue(calculationDefinition->GetDepthFactors()));
+            constructionProperties->SetImpactFactors(CreatePointerOfValue(calculationDefinition->GetImpactFactors()));
         }
 
         return constructionProperties;
@@ -242,41 +231,31 @@ namespace DiKErnel::KernelWrapper::Json::Input
         auto constructionProperties = make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(
             location.GetX(), ConvertTopLayerType(jsonInputTopLayerType));
 
-        constructionProperties->SetInitialDamage(forward<unique_ptr<double>>(CreatePointerOfValue(location.GetInitialDamage())));
+        constructionProperties->SetInitialDamage(CreatePointerOfValue(location.GetInitialDamage()));
 
         if (calculationDefinition != nullptr)
         {
-            constructionProperties->SetFailureNumber(forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetFailureNumber())));
+            constructionProperties->SetFailureNumber(CreatePointerOfValue(calculationDefinition->GetFailureNumber()));
 
             if (const auto& topLayerDefinitionData = calculationDefinition->GetTopLayerDefinitionData();
                 MapHelper::ContainsKey(topLayerDefinitionData, jsonInputTopLayerType))
             {
                 const auto& topLayerDefinition = topLayerDefinitionData.at(jsonInputTopLayerType).get();
 
-                constructionProperties->SetTimeLineAgwi(
-                    forward<unique_ptr<double>>(CreatePointerOfValue(topLayerDefinition.GetTimeLineA())));
-                constructionProperties->SetTimeLineBgwi(
-                    forward<unique_ptr<double>>(CreatePointerOfValue(topLayerDefinition.GetTimeLineB())));
-                constructionProperties->SetTimeLineCgwi(
-                    forward<unique_ptr<double>>(CreatePointerOfValue(topLayerDefinition.GetTimeLineC())));
+                constructionProperties->SetTimeLineAgwi(CreatePointerOfValue(topLayerDefinition.GetTimeLineA()));
+                constructionProperties->SetTimeLineBgwi(CreatePointerOfValue(topLayerDefinition.GetTimeLineB()));
+                constructionProperties->SetTimeLineCgwi(CreatePointerOfValue(topLayerDefinition.GetTimeLineC()));
             }
 
-            constructionProperties->SetMinimumWaveHeightTemax(
-                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetTemax())));
-            constructionProperties->SetMaximumWaveHeightTemin(
-                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetTemin())));
+            constructionProperties->SetMinimumWaveHeightTemax(CreatePointerOfValue(calculationDefinition->GetTemax()));
+            constructionProperties->SetMaximumWaveHeightTemin(CreatePointerOfValue(calculationDefinition->GetTemin()));
 
-            constructionProperties->SetWaveAngleImpactNwa(
-                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetWaveAngleImpactN())));
-            constructionProperties->SetWaveAngleImpactQwa(
-                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetWaveAngleImpactQ())));
-            constructionProperties->SetWaveAngleImpactRwa(
-                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetWaveAngleImpactR())));
+            constructionProperties->SetWaveAngleImpactNwa(CreatePointerOfValue(calculationDefinition->GetWaveAngleImpactN()));
+            constructionProperties->SetWaveAngleImpactQwa(CreatePointerOfValue(calculationDefinition->GetWaveAngleImpactQ()));
+            constructionProperties->SetWaveAngleImpactRwa(CreatePointerOfValue(calculationDefinition->GetWaveAngleImpactR()));
 
-            constructionProperties->SetUpperLimitLoadingAul(
-                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetUpperLimitLoading())));
-            constructionProperties->SetLowerLimitLoadingAll(
-                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetLowerLimitLoading())));
+            constructionProperties->SetUpperLimitLoadingAul(CreatePointerOfValue(calculationDefinition->GetUpperLimitLoading()));
+            constructionProperties->SetLowerLimitLoadingAll(CreatePointerOfValue(calculationDefinition->GetLowerLimitLoading()));
         }
 
         return constructionProperties;
@@ -306,30 +285,20 @@ namespace DiKErnel::KernelWrapper::Json::Input
             throw JsonInputConversionException("Cannot convert calculation protocol type.");
         }
 
-        constructionProperties->SetInitialDamage(forward<unique_ptr<double>>(CreatePointerOfValue(location.GetInitialDamage())));
-        constructionProperties->SetFailureNumber(forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetFailureNumber())));
+        constructionProperties->SetInitialDamage(CreatePointerOfValue(location.GetInitialDamage()));
+        constructionProperties->SetFailureNumber(CreatePointerOfValue(calculationDefinition->GetFailureNumber()));
 
-        constructionProperties->SetIncreasedLoadTransitionAlphaM(
-            forward<unique_ptr<double>>(CreatePointerOfValue(location.GetIncreasedLoadTransitionAlphaM())));
-        constructionProperties->SetReducedStrengthTransitionAlphaS(
-            forward<unique_ptr<double>>(CreatePointerOfValue(location.GetReducedStrengthTransitionAlphaS())));
-        constructionProperties->SetRepresentativeWaveRunup2PGammab(
-            forward<unique_ptr<double>>(CreatePointerOfValue(location.GetRepresentativeWaveRunup2PGammaG())));
-        constructionProperties->SetRepresentativeWaveRunup2PGammaf(
-            forward<unique_ptr<double>>(CreatePointerOfValue(location.GetRepresentativeWaveRunup2PGammaF())));
+        constructionProperties->SetIncreasedLoadTransitionAlphaM(CreatePointerOfValue(location.GetIncreasedLoadTransitionAlphaM()));
+        constructionProperties->SetReducedStrengthTransitionAlphaS(CreatePointerOfValue(location.GetReducedStrengthTransitionAlphaS()));
+        constructionProperties->SetRepresentativeWaveRunup2PGammab(CreatePointerOfValue(location.GetRepresentativeWaveRunup2PGammaG()));
+        constructionProperties->SetRepresentativeWaveRunup2PGammaf(CreatePointerOfValue(location.GetRepresentativeWaveRunup2PGammaF()));
 
-        constructionProperties->SetAverageNumberOfWavesCtm(
-            forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetFactorCtm())));
-        constructionProperties->SetRepresentativeWaveRunup2PAru(
-            forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetRepresentativeWaveRunup2PA())));
-        constructionProperties->SetRepresentativeWaveRunup2PBru(
-            forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetRepresentativeWaveRunup2PB())));
-        constructionProperties->SetRepresentativeWaveRunup2PCru(
-            forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetRepresentativeWaveRunup2PC())));
-        constructionProperties->SetWaveAngleImpactAbeta(
-            forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetWaveAngleImpactABeta())));
-        constructionProperties->SetWaveAngleImpactBetamax(
-            forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetWaveAngleImpactBetaMax())));
+        constructionProperties->SetAverageNumberOfWavesCtm(CreatePointerOfValue(calculationDefinition->GetFactorCtm()));
+        constructionProperties->SetRepresentativeWaveRunup2PAru(CreatePointerOfValue(calculationDefinition->GetRepresentativeWaveRunup2PA()));
+        constructionProperties->SetRepresentativeWaveRunup2PBru(CreatePointerOfValue(calculationDefinition->GetRepresentativeWaveRunup2PB()));
+        constructionProperties->SetRepresentativeWaveRunup2PCru(CreatePointerOfValue(calculationDefinition->GetRepresentativeWaveRunup2PC()));
+        constructionProperties->SetWaveAngleImpactAbeta(CreatePointerOfValue(calculationDefinition->GetWaveAngleImpactABeta()));
+        constructionProperties->SetWaveAngleImpactBetamax(CreatePointerOfValue(calculationDefinition->GetWaveAngleImpactBetaMax()));
 
         const auto jsonInputTopLayerType = location.GetTopLayerType();
         if (const auto& topLayerDefinitionData = calculationDefinition->GetTopLayerDefinitionData();
@@ -337,10 +306,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
         {
             const auto& topLayerDefinition = topLayerDefinitionData.at(jsonInputTopLayerType).get();
 
-            constructionProperties->SetCriticalCumulativeOverload(
-                forward<unique_ptr<double>>(CreatePointerOfValue(topLayerDefinition.GetCriticalCumulativeOverload())));
-            constructionProperties->SetCriticalFrontVelocity(
-                forward<unique_ptr<double>>(CreatePointerOfValue(topLayerDefinition.GetCriticalFrontVelocity())));
+            constructionProperties->SetCriticalCumulativeOverload(CreatePointerOfValue(topLayerDefinition.GetCriticalCumulativeOverload()));
+            constructionProperties->SetCriticalFrontVelocity(CreatePointerOfValue(topLayerDefinition.GetCriticalFrontVelocity()));
         }
 
         return constructionProperties;
@@ -353,10 +320,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
         auto constructionProperties = make_unique<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(
             location.GetX(), location.GetOuterSlope(), ConvertTopLayerType(location.GetTopLayerType()));
 
-        constructionProperties->SetFixedNumberOfWaves(
-            forward<unique_ptr<int>>(CreatePointerOfValue(calculationProtocol.GetFixedNumberOfWaves())));
-        constructionProperties->SetFrontVelocityCu(
-            forward<unique_ptr<double>>(CreatePointerOfValue(calculationProtocol.GetFrontVelocity())));
+        constructionProperties->SetFixedNumberOfWaves(CreatePointerOfValue(calculationProtocol.GetFixedNumberOfWaves()));
+        constructionProperties->SetFrontVelocityCu(CreatePointerOfValue(calculationProtocol.GetFrontVelocity()));
 
         return constructionProperties;
     }
@@ -385,68 +350,48 @@ namespace DiKErnel::KernelWrapper::Json::Input
             location.GetX(), ConvertTopLayerType(jsonInputTopLayerType), location.GetThicknessTopLayer(),
             location.GetRelativeDensity());
 
-        constructionProperties->SetInitialDamage(forward<unique_ptr<double>>(CreatePointerOfValue(location.GetInitialDamage())));
+        constructionProperties->SetInitialDamage(CreatePointerOfValue(location.GetInitialDamage()));
 
         if (calculationDefinition != nullptr)
         {
-            constructionProperties->SetFailureNumber(forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetFailureNumber())));
+            constructionProperties->SetFailureNumber(CreatePointerOfValue(calculationDefinition->GetFailureNumber()));
 
             if (const auto& topLayerDefinitionData = calculationDefinition->GetTopLayerDefinitionData();
                 MapHelper::ContainsKey(topLayerDefinitionData, jsonInputTopLayerType))
             {
                 const auto& topLayerDefinition = topLayerDefinitionData.at(jsonInputTopLayerType).get();
 
-                constructionProperties->SetHydraulicLoadAp(
-                    forward<unique_ptr<double>>(CreatePointerOfValue(topLayerDefinition.GetStabilityPlungingA())));
-                constructionProperties->SetHydraulicLoadBp(
-                    forward<unique_ptr<double>>(CreatePointerOfValue(topLayerDefinition.GetStabilityPlungingB())));
-                constructionProperties->SetHydraulicLoadCp(
-                    forward<unique_ptr<double>>(CreatePointerOfValue(topLayerDefinition.GetStabilityPlungingC())));
-                constructionProperties->SetHydraulicLoadNp(
-                    forward<unique_ptr<double>>(CreatePointerOfValue(topLayerDefinition.GetStabilityPlungingN())));
-                constructionProperties->SetHydraulicLoadAs(
-                    forward<unique_ptr<double>>(CreatePointerOfValue(topLayerDefinition.GetStabilitySurgingA())));
-                constructionProperties->SetHydraulicLoadBs(
-                    forward<unique_ptr<double>>(CreatePointerOfValue(topLayerDefinition.GetStabilitySurgingB())));
-                constructionProperties->SetHydraulicLoadCs(
-                    forward<unique_ptr<double>>(CreatePointerOfValue(topLayerDefinition.GetStabilitySurgingC())));
-                constructionProperties->SetHydraulicLoadNs(
-                    forward<unique_ptr<double>>(CreatePointerOfValue(topLayerDefinition.GetStabilitySurgingN())));
-                constructionProperties->SetHydraulicLoadXib(
-                    forward<unique_ptr<double>>(CreatePointerOfValue(topLayerDefinition.GetStabilityXib())));
+                constructionProperties->SetHydraulicLoadAp(CreatePointerOfValue(topLayerDefinition.GetStabilityPlungingA()));
+                constructionProperties->SetHydraulicLoadBp(CreatePointerOfValue(topLayerDefinition.GetStabilityPlungingB()));
+                constructionProperties->SetHydraulicLoadCp(CreatePointerOfValue(topLayerDefinition.GetStabilityPlungingC()));
+                constructionProperties->SetHydraulicLoadNp(CreatePointerOfValue(topLayerDefinition.GetStabilityPlungingN()));
+                constructionProperties->SetHydraulicLoadAs(CreatePointerOfValue(topLayerDefinition.GetStabilitySurgingA()));
+                constructionProperties->SetHydraulicLoadBs(CreatePointerOfValue(topLayerDefinition.GetStabilitySurgingB()));
+                constructionProperties->SetHydraulicLoadCs(CreatePointerOfValue(topLayerDefinition.GetStabilitySurgingC()));
+                constructionProperties->SetHydraulicLoadNs(CreatePointerOfValue(topLayerDefinition.GetStabilitySurgingN()));
+                constructionProperties->SetHydraulicLoadXib(CreatePointerOfValue(topLayerDefinition.GetStabilityXib()));
             }
 
-            constructionProperties->SetSlopeUpperLevelAus(
-                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetSlopeUpperLevelA())));
-            constructionProperties->SetSlopeLowerLevelAls(
-                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetSlopeLowerLevelA())));
+            constructionProperties->SetSlopeUpperLevelAus(CreatePointerOfValue(calculationDefinition->GetSlopeUpperLevelA()));
+            constructionProperties->SetSlopeLowerLevelAls(CreatePointerOfValue(calculationDefinition->GetSlopeLowerLevelA()));
 
-            constructionProperties->SetUpperLimitLoadingAul(
-                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetUpperLimitLoadingA())));
-            constructionProperties->SetUpperLimitLoadingBul(
-                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetUpperLimitLoadingB())));
-            constructionProperties->SetUpperLimitLoadingCul(
-                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetUpperLimitLoadingC())));
+            constructionProperties->SetUpperLimitLoadingAul(CreatePointerOfValue(calculationDefinition->GetUpperLimitLoadingA()));
+            constructionProperties->SetUpperLimitLoadingBul(CreatePointerOfValue(calculationDefinition->GetUpperLimitLoadingB()));
+            constructionProperties->SetUpperLimitLoadingCul(CreatePointerOfValue(calculationDefinition->GetUpperLimitLoadingC()));
 
-            constructionProperties->SetLowerLimitLoadingAll(
-                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetLowerLimitLoadingA())));
-            constructionProperties->SetLowerLimitLoadingBll(
-                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetLowerLimitLoadingB())));
-            constructionProperties->SetLowerLimitLoadingCll(
-                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetLowerLimitLoadingC())));
+            constructionProperties->SetLowerLimitLoadingAll(CreatePointerOfValue(calculationDefinition->GetLowerLimitLoadingA()));
+            constructionProperties->SetLowerLimitLoadingBll(CreatePointerOfValue(calculationDefinition->GetLowerLimitLoadingB()));
+            constructionProperties->SetLowerLimitLoadingCll(CreatePointerOfValue(calculationDefinition->GetLowerLimitLoadingC()));
 
             constructionProperties->SetDistanceMaximumWaveElevationAsmax(
-                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetDistanceMaximumWaveElevationA())));
+                CreatePointerOfValue(calculationDefinition->GetDistanceMaximumWaveElevationA()));
             constructionProperties->SetDistanceMaximumWaveElevationBsmax(
-                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetDistanceMaximumWaveElevationB())));
+                CreatePointerOfValue(calculationDefinition->GetDistanceMaximumWaveElevationB()));
 
-            constructionProperties->SetNormativeWidthOfWaveImpactAwi(
-                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetNormativeWidthOfWaveImpactA())));
-            constructionProperties->SetNormativeWidthOfWaveImpactBwi(
-                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetNormativeWidthOfWaveImpactB())));
+            constructionProperties->SetNormativeWidthOfWaveImpactAwi(CreatePointerOfValue(calculationDefinition->GetNormativeWidthOfWaveImpactA()));
+            constructionProperties->SetNormativeWidthOfWaveImpactBwi(CreatePointerOfValue(calculationDefinition->GetNormativeWidthOfWaveImpactB()));
 
-            constructionProperties->SetWaveAngleImpactBetamax(
-                forward<unique_ptr<double>>(CreatePointerOfValue(calculationDefinition->GetWaveAngleImpactBetaMax())));
+            constructionProperties->SetWaveAngleImpactBetamax(CreatePointerOfValue(calculationDefinition->GetWaveAngleImpactBetaMax()));
         }
 
         return constructionProperties;
@@ -467,8 +412,11 @@ namespace DiKErnel::KernelWrapper::Json::Input
     unique_ptr<TValue> JsonInputAdapter::CreatePointerOfValue(
         const TValue* value)
     {
-        return value != nullptr
-                   ? make_unique<TValue>(*value)
-                   : nullptr;
+        if (value != nullptr)
+        {
+            return make_unique<TValue>(*value);
+        }
+
+        return nullptr;
     }
 }
