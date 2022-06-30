@@ -67,10 +67,10 @@ namespace DiKErnel::FunctionLibrary
         const double notchOuterBermHeight,
         const double crestOuterBermPosition,
         const double crestOuterBermHeight,
-        const double slopeUpperLevel,
+        const double slopeLowerPosition,
         const double slopeLowerLevel,
         const double slopeUpperPosition,
-        const double slopeLowerPosition)
+        const double slopeUpperLevel)
     {
         const auto slopeLowerLevelOnLowerSlope = outerToeHeight <= slopeLowerLevel && slopeLowerLevel < crestOuterBermHeight;
         const auto slopeUpperLevelOnLowerSlope = outerToeHeight <= slopeUpperLevel && slopeUpperLevel < crestOuterBermHeight;

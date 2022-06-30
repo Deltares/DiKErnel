@@ -165,8 +165,8 @@ namespace DiKErnel::Integration
                                     ? NaturalStoneRevetmentFunctions::OuterSlope(_outerToeHeight, _outerCrestHeight, _notchOuterBerm->first,
                                                                                  _notchOuterBerm->second, _crestOuterBerm->first,
                                                                                  _crestOuterBerm->second,
-                                                                                 slopeUpperLevel, slopeLowerLevel, slopeUpperPosition,
-                                                                                 slopeLowerPosition)
+                                                                                 slopeLowerPosition, slopeLowerLevel, slopeUpperPosition,
+                                                                                 slopeUpperLevel)
                                     : NaturalStoneRevetmentFunctions::OuterSlope(slopeLowerPosition, slopeLowerLevel, slopeUpperPosition,
                                                                                  slopeUpperLevel);
 

@@ -87,16 +87,16 @@ namespace DiKErnel::FunctionLibrary::Test
         constexpr auto notchOuterBermHeight = 4.1;
         constexpr auto crestOuterBermPosition = 15.0;
         constexpr auto crestOuterBermHeight = 3.5;
-        constexpr auto slopeUpperLevel = 0.55;
+        constexpr auto slopeLowerPosition = 5.0;
         constexpr auto slopeLowerLevel = 0.5;
         constexpr auto slopeUpperPosition = 5.15625;
-        constexpr auto slopeLowerPosition = 5.0;
+        constexpr auto slopeUpperLevel = 0.55;
 
         // Call
         const auto outerSlope = NaturalStoneRevetmentFunctions::OuterSlope(outerToeHeight, outerCrestHeight, notchOuterBermPosition,
                                                                            notchOuterBermHeight, crestOuterBermPosition, crestOuterBermHeight,
-                                                                           slopeUpperLevel, slopeLowerLevel, slopeUpperPosition,
-                                                                           slopeLowerPosition);
+                                                                           slopeLowerPosition, slopeLowerLevel, slopeUpperPosition,
+                                                                           slopeUpperLevel);
 
         // Assert
         AssertHelper::AssertAreAlmostEqual(0.32, outerSlope);
@@ -111,16 +111,16 @@ namespace DiKErnel::FunctionLibrary::Test
         constexpr auto notchOuterBermHeight = 4.1;
         constexpr auto crestOuterBermPosition = 15.0;
         constexpr auto crestOuterBermHeight = 3.5;
-        constexpr auto slopeUpperLevel = 3.5;
+        constexpr auto slopeLowerPosition = 10.7142857142857;
         constexpr auto slopeLowerLevel = 2.3;
         constexpr auto slopeUpperPosition = 15.0;
-        constexpr auto slopeLowerPosition = 10.7142857142857;
+        constexpr auto slopeUpperLevel = 3.5;
 
         // Call
         const auto outerSlope = NaturalStoneRevetmentFunctions::OuterSlope(outerToeHeight, outerCrestHeight, notchOuterBermPosition,
                                                                            notchOuterBermHeight, crestOuterBermPosition, crestOuterBermHeight,
-                                                                           slopeUpperLevel, slopeLowerLevel, slopeUpperPosition,
-                                                                           slopeLowerPosition);
+                                                                           slopeLowerPosition, slopeLowerLevel, slopeUpperPosition,
+                                                                           slopeUpperLevel);
 
         // Assert
         AssertHelper::AssertAreAlmostEqual(0.28, outerSlope);
@@ -135,16 +135,16 @@ namespace DiKErnel::FunctionLibrary::Test
         constexpr auto notchOuterBermHeight = 4.1;
         constexpr auto crestOuterBermPosition = 15.0;
         constexpr auto crestOuterBermHeight = 3.5;
-        constexpr auto slopeUpperLevel = 3.8;
+        constexpr auto slopeLowerPosition = 15.0;
         constexpr auto slopeLowerLevel = 3.5;
         constexpr auto slopeUpperPosition = 18.75;
-        constexpr auto slopeLowerPosition = 15.0;
+        constexpr auto slopeUpperLevel = 3.8;
 
         // Call
         const auto outerSlope = NaturalStoneRevetmentFunctions::OuterSlope(outerToeHeight, outerCrestHeight, notchOuterBermPosition,
                                                                            notchOuterBermHeight, crestOuterBermPosition, crestOuterBermHeight,
-                                                                           slopeUpperLevel, slopeLowerLevel, slopeUpperPosition,
-                                                                           slopeLowerPosition);
+                                                                           slopeLowerPosition, slopeLowerLevel, slopeUpperPosition,
+                                                                           slopeUpperLevel);
 
         // Assert
         AssertHelper::AssertAreAlmostEqual(0.08, outerSlope);
@@ -159,16 +159,16 @@ namespace DiKErnel::FunctionLibrary::Test
         constexpr auto notchOuterBermHeight = 4.1;
         constexpr auto crestOuterBermPosition = 15.0;
         constexpr auto crestOuterBermHeight = 3.5;
-        constexpr auto slopeUpperLevel = 5.0;
+        constexpr auto slopeLowerPosition = 25.6818181818182;
         constexpr auto slopeLowerLevel = 4.25;
         constexpr auto slopeUpperPosition = 29.0909090909091;
-        constexpr auto slopeLowerPosition = 25.6818181818182;
+        constexpr auto slopeUpperLevel = 5.0;
 
         // Call
         const auto outerSlope = NaturalStoneRevetmentFunctions::OuterSlope(outerToeHeight, outerCrestHeight, notchOuterBermPosition,
                                                                            notchOuterBermHeight, crestOuterBermPosition, crestOuterBermHeight,
-                                                                           slopeUpperLevel, slopeLowerLevel, slopeUpperPosition,
-                                                                           slopeLowerPosition);
+                                                                           slopeLowerPosition, slopeLowerLevel, slopeUpperPosition,
+                                                                           slopeUpperLevel);
 
         // Assert
         AssertHelper::AssertAreAlmostEqual(0.22, outerSlope);
@@ -183,16 +183,16 @@ namespace DiKErnel::FunctionLibrary::Test
         constexpr auto notchOuterBermHeight = 4.1;
         constexpr auto crestOuterBermPosition = 15.0;
         constexpr auto crestOuterBermHeight = 3.5;
-        constexpr auto slopeUpperLevel = 7.0;
+        constexpr auto slopeLowerPosition = 24.375;
         constexpr auto slopeLowerLevel = 4.075;
         constexpr auto slopeUpperPosition = 40.0;
-        constexpr auto slopeLowerPosition = 24.375;
+        constexpr auto slopeUpperLevel = 7.0;
 
         // Call
         const auto outerSlope = NaturalStoneRevetmentFunctions::OuterSlope(outerToeHeight, outerCrestHeight, notchOuterBermPosition,
                                                                            notchOuterBermHeight, crestOuterBermPosition, crestOuterBermHeight,
-                                                                           slopeUpperLevel, slopeLowerLevel, slopeUpperPosition,
-                                                                           slopeLowerPosition);
+                                                                           slopeLowerPosition, slopeLowerLevel, slopeUpperPosition,
+                                                                           slopeUpperLevel);
 
         // Assert
         AssertHelper::AssertAreAlmostEqual(0.193333333333333, outerSlope);
@@ -207,16 +207,16 @@ namespace DiKErnel::FunctionLibrary::Test
         constexpr auto notchOuterBermHeight = 4.1;
         constexpr auto crestOuterBermPosition = 15.0;
         constexpr auto crestOuterBermHeight = 3.5;
-        constexpr auto slopeUpperLevel = 7.0;
+        constexpr auto slopeLowerPosition = 12.5;
         constexpr auto slopeLowerLevel = 2.8;
         constexpr auto slopeUpperPosition = 40.0;
-        constexpr auto slopeLowerPosition = 12.5;
+        constexpr auto slopeUpperLevel = 7.0;
 
         // Call
         const auto outerSlope = NaturalStoneRevetmentFunctions::OuterSlope(outerToeHeight, outerCrestHeight, notchOuterBermPosition,
                                                                            notchOuterBermHeight, crestOuterBermPosition, crestOuterBermHeight,
-                                                                           slopeUpperLevel, slopeLowerLevel, slopeUpperPosition,
-                                                                           slopeLowerPosition);
+                                                                           slopeLowerPosition, slopeLowerLevel, slopeUpperPosition,
+                                                                           slopeUpperLevel);
 
         // Assert
         AssertHelper::AssertAreAlmostEqual(0.208714810281518, outerSlope);
@@ -231,16 +231,16 @@ namespace DiKErnel::FunctionLibrary::Test
         constexpr auto notchOuterBermHeight = 4.1;
         constexpr auto crestOuterBermPosition = 15.0;
         constexpr auto crestOuterBermHeight = 3.5;
-        constexpr auto slopeUpperLevel = 7.1;
+        constexpr auto slopeLowerPosition = 12.5;
         constexpr auto slopeLowerLevel = 2.8;
         constexpr auto slopeUpperPosition = 45.0;
-        constexpr auto slopeLowerPosition = 12.5;
+        constexpr auto slopeUpperLevel = 7.1;
 
         // Call
         const auto outerSlope = NaturalStoneRevetmentFunctions::OuterSlope(outerToeHeight, outerCrestHeight, notchOuterBermPosition,
                                                                            notchOuterBermHeight, crestOuterBermPosition, crestOuterBermHeight,
-                                                                           slopeUpperLevel, slopeLowerLevel, slopeUpperPosition,
-                                                                           slopeLowerPosition);
+                                                                           slopeLowerPosition, slopeLowerLevel, slopeUpperPosition,
+                                                                           slopeUpperLevel);
 
         // Assert
         ASSERT_DOUBLE_EQ(numeric_limits<double>::infinity(), outerSlope);
@@ -255,16 +255,16 @@ namespace DiKErnel::FunctionLibrary::Test
         constexpr auto notchOuterBermHeight = 4.1;
         constexpr auto crestOuterBermPosition = 15.0;
         constexpr auto crestOuterBermHeight = 3.5;
-        constexpr auto slopeUpperLevel = 7.0;
+        constexpr auto slopeLowerPosition = 0.0;
         constexpr auto slopeLowerLevel = 0.4;
         constexpr auto slopeUpperPosition = 40.0;
-        constexpr auto slopeLowerPosition = 0.0;
+        constexpr auto slopeUpperLevel = 7.0;
 
         // Call
         const auto outerSlope = NaturalStoneRevetmentFunctions::OuterSlope(outerToeHeight, outerCrestHeight, notchOuterBermPosition,
                                                                            notchOuterBermHeight, crestOuterBermPosition, crestOuterBermHeight,
-                                                                           slopeUpperLevel, slopeLowerLevel, slopeUpperPosition,
-                                                                           slopeLowerPosition);
+                                                                           slopeLowerPosition, slopeLowerLevel, slopeUpperPosition,
+                                                                           slopeUpperLevel);
 
         // Assert
         ASSERT_DOUBLE_EQ(numeric_limits<double>::infinity(), outerSlope);

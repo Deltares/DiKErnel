@@ -128,8 +128,8 @@ namespace DiKErnel::FunctionLibrary
              * \param crestOuterBermHeight
              *        The height of the crest outer berm.
              *        Unit = [m]
-             * \param slopeUpperLevel
-             *        The slope upper level.
+             * \param slopeLowerPosition
+             *        The slope lower position.
              *        Unit = [m]
              * \param slopeLowerLevel
              *        The slope lower level.
@@ -137,8 +137,8 @@ namespace DiKErnel::FunctionLibrary
              * \param slopeUpperPosition
              *        The slope upper position.
              *        Unit = [m]
-             * \param slopeLowerPosition
-             *        The slope lower position.
+             * \param slopeUpperLevel
+             *        The slope upper level.
              *        Unit = [m]
              * \return The outer slope.
              *         Unit = [-]
@@ -151,10 +151,10 @@ namespace DiKErnel::FunctionLibrary
                 double notchOuterBermHeight,
                 double crestOuterBermPosition,
                 double crestOuterBermHeight,
-                double slopeUpperLevel,
+                double slopeLowerPosition,
                 double slopeLowerLevel,
                 double slopeUpperPosition,
-                double slopeLowerPosition);
+                double slopeUpperLevel);
 
             /*!
              * \brief Calculates the slope upper level.
