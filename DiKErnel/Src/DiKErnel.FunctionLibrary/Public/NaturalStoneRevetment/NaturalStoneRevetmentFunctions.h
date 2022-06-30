@@ -86,8 +86,8 @@ namespace DiKErnel::FunctionLibrary
 
             /*!
              * \brief Calculates the outer slope in case no berm is present.
-             * \param slopeUpperLevel
-             *        The slope upper level.
+             * \param slopeLowerPosition
+             *        The slope lower position.
              *        Unit = [m]
              * \param slopeLowerLevel
              *        The slope lower level.
@@ -95,18 +95,18 @@ namespace DiKErnel::FunctionLibrary
              * \param slopeUpperPosition
              *        The slope upper position.
              *        Unit = [m]
-             * \param slopeLowerPosition
-             *        The slope lower position.
+             * \param slopeUpperLevel
+             *        The slope upper level.
              *        Unit = [m]
              * \return The outer slope.
              *         Unit = [-]
              */
             [[nodiscard]]
             static double OuterSlope(
-                double slopeUpperLevel,
+                double slopeLowerPosition,
                 double slopeLowerLevel,
                 double slopeUpperPosition,
-                double slopeLowerPosition);
+                double slopeUpperLevel);
 
             /*!
              * \brief Calculates the outer slope in case a berm is present.

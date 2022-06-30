@@ -200,8 +200,7 @@ namespace DiKErnel::FunctionLibrary
                 double slopeLowerPosition,
                 double slopeLowerLevel,
                 double slopeUpperPosition,
-                double slopeUpperLevel
-            );
+                double slopeUpperLevel);
 
         private:
             [[nodiscard]]

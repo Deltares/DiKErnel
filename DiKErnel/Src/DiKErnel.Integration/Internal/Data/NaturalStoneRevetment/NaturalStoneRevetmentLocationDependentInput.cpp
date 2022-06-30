@@ -156,9 +156,9 @@ namespace DiKErnel::Integration
 
         const auto slopeUpperLevel = NaturalStoneRevetmentFunctions::SlopeUpperLevel(_outerToeHeight, _outerCrestHeight, waterLevel, waveHeightHm0,
                                                                                      naturalStoneRevetmentSlope.GetUpperLevelAus());
+        const auto slopeUpperPosition = profileData.InterpolationHorizontalPosition(slopeUpperLevel);
         const auto slopeLowerLevel = NaturalStoneRevetmentFunctions::SlopeLowerLevel(_outerToeHeight, slopeUpperLevel, waveHeightHm0,
                                                                                      naturalStoneRevetmentSlope.GetLowerLevelAls());
-        const auto slopeUpperPosition = profileData.InterpolationHorizontalPosition(slopeUpperLevel);
         const auto slopeLowerPosition = profileData.InterpolationHorizontalPosition(slopeLowerLevel);
 
         const auto outerSlope = _notchOuterBerm != nullptr && _crestOuterBerm != nullptr
@@ -167,8 +167,8 @@ namespace DiKErnel::Integration
                                                                                  _crestOuterBerm->second,
                                                                                  slopeUpperLevel, slopeLowerLevel, slopeUpperPosition,
                                                                                  slopeLowerPosition)
-                                    : NaturalStoneRevetmentFunctions::OuterSlope(slopeUpperLevel, slopeLowerLevel, slopeUpperPosition,
-                                                                                 slopeLowerPosition);
+                                    : NaturalStoneRevetmentFunctions::OuterSlope(slopeLowerPosition, slopeLowerLevel, slopeUpperPosition,
+                                                                                 slopeUpperLevel);
 
         const auto waveSteepnessDeepWater = HydraulicLoadFunctions::WaveSteepnessDeepWater(waveHeightHm0, wavePeriodTm10,
                                                                                            Constants::GetGravitationalAcceleration());

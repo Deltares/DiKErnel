@@ -65,14 +65,14 @@ namespace DiKErnel::FunctionLibrary::Test
     TEST(NaturalStoneRevetmentFunctionsTest, OuterSlopeWithoutBerm_ValidInput_ExpectedValue)
     {
         // Setup
-        constexpr auto slopeUpperLevel = 5.425;
+        constexpr auto slopeLowerPosition = 30.0;
         constexpr auto slopeLowerLevel = 5.35;
         constexpr auto slopeUpperPosition = 30.3;
-        constexpr auto slopeLowerPosition = 30.0;
+        constexpr auto slopeUpperLevel = 5.425;
 
         // Call
-        const auto outerSlope = NaturalStoneRevetmentFunctions::OuterSlope(slopeUpperLevel, slopeLowerLevel, slopeUpperPosition,
-                                                                           slopeLowerPosition);
+        const auto outerSlope = NaturalStoneRevetmentFunctions::OuterSlope(slopeLowerPosition, slopeLowerLevel, slopeUpperPosition,
+                                                                           slopeUpperLevel);
 
         // Assert
         ASSERT_DOUBLE_EQ(0.25, outerSlope);

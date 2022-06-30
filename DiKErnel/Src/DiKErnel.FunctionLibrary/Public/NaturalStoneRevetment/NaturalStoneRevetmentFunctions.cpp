@@ -52,10 +52,10 @@ namespace DiKErnel::FunctionLibrary
     }
 
     double NaturalStoneRevetmentFunctions::OuterSlope(
-        const double slopeUpperLevel,
+        const double slopeLowerPosition,
         const double slopeLowerLevel,
         const double slopeUpperPosition,
-        const double slopeLowerPosition)
+        const double slopeUpperLevel)
     {
         return SingleSlopePart(slopeUpperLevel, slopeLowerLevel, slopeUpperPosition, slopeLowerPosition);
     }
