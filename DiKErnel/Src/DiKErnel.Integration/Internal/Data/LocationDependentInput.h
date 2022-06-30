@@ -65,9 +65,6 @@ namespace DiKErnel::Integration
                 const Core::ITimeDependentInput& timeDependentInput,
                 const Core::IProfileData& profileData) = 0;
 
-            [[nodiscard]]
-            std::vector<std::pair<double, double>>& GetDikeProfilePoints();
-
         private:
             const double _x;
             const double _initialDamage;
