@@ -98,7 +98,7 @@ namespace DiKErnel::Acceptance::Test
             const double actualDamage,
             const int* actualTimeOfFailure)
         {
-            AssertHelper::AssertAreAlmostEqual(expectedDamage, actualDamage);
+            AssertHelper::AssertAreEqualWithAcceptablePrecision(expectedDamage, actualDamage);
 
             if (expectedTimeOfFailure == nullptr)
             {

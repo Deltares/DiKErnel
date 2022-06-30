@@ -26,16 +26,10 @@ namespace DiKErnel::TestUtil
 {
     using namespace std;
 
-    void AssertHelper::AssertAreAlmostEqual(
-        double expected,
-        double actual)
+    void AssertHelper::AssertAreEqualWithAcceptablePrecision(
+        const double expected,
+        const double actual)
     {
-        if (expected < 0 && actual < 0)
-        {
-            expected = abs(expected);
-            actual = abs(actual);
-        }
-
         ASSERT_NEAR(expected, actual, 1e-14);
     }
 }

@@ -99,7 +99,7 @@ namespace DiKErnel::FunctionLibrary::Test
                                                                            slopeUpperLevel);
 
         // Assert
-        AssertHelper::AssertAreAlmostEqual(0.32, outerSlope);
+        AssertHelper::AssertAreEqualWithAcceptablePrecision(0.32, outerSlope);
     }
 
     TEST(NaturalStoneRevetmentFunctionsTest, OuterSlopeWithBerm_UpperSlopeLevelOnBermAndLowerSlopeLevelOnLowerSlope_ExpectedValue)
@@ -123,7 +123,7 @@ namespace DiKErnel::FunctionLibrary::Test
                                                                            slopeUpperLevel);
 
         // Assert
-        AssertHelper::AssertAreAlmostEqual(0.28, outerSlope);
+        AssertHelper::AssertAreEqualWithAcceptablePrecision(0.28, outerSlope);
     }
 
     TEST(NaturalStoneRevetmentFunctionsTest, OuterSlopeWithBerm_UpperAndLowerSlopeLevelOnBerm_ExpectedValue)
@@ -147,7 +147,7 @@ namespace DiKErnel::FunctionLibrary::Test
                                                                            slopeUpperLevel);
 
         // Assert
-        AssertHelper::AssertAreAlmostEqual(0.08, outerSlope);
+        AssertHelper::AssertAreEqualWithAcceptablePrecision(0.08, outerSlope);
     }
 
     TEST(NaturalStoneRevetmentFunctionsTest, OuterSlopeWithBerm_UpperAndLowerSlopeLevelOnUpperSlope_ExpectedValue)
@@ -171,7 +171,7 @@ namespace DiKErnel::FunctionLibrary::Test
                                                                            slopeUpperLevel);
 
         // Assert
-        AssertHelper::AssertAreAlmostEqual(0.22, outerSlope);
+        AssertHelper::AssertAreEqualWithAcceptablePrecision(0.22, outerSlope);
     }
 
     TEST(NaturalStoneRevetmentFunctionsTest, OuterSlopeWithBerm_UpperSlopeLevelOnUpperSlopeAndLowerSlopeLevelOnBerm_ExpectedValue)
@@ -195,7 +195,7 @@ namespace DiKErnel::FunctionLibrary::Test
                                                                            slopeUpperLevel);
 
         // Assert
-        AssertHelper::AssertAreAlmostEqual(0.193333333333333, outerSlope);
+        AssertHelper::AssertAreEqualWithAcceptablePrecision(0.19333333333333, outerSlope);
     }
 
     TEST(NaturalStoneRevetmentFunctionsTest, OuterSlopeWithBerm_UpperSlopeLevelOnUpperSlopeAndLowerSlopeLevelOnLowerSlope_ExpectedValue)
@@ -219,7 +219,7 @@ namespace DiKErnel::FunctionLibrary::Test
                                                                            slopeUpperLevel);
 
         // Assert
-        AssertHelper::AssertAreAlmostEqual(0.208714810281518, outerSlope);
+        AssertHelper::AssertAreEqualWithAcceptablePrecision(0.20871481028151, outerSlope);
     }
 
     TEST(NaturalStoneRevetmentFunctionsTest, OuterSlopeWithBerm_UpperSlopeAboveOuterCrest_ExpectedValue)

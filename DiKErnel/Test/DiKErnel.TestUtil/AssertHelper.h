@@ -27,7 +27,7 @@ namespace DiKErnel::TestUtil
     class AssertHelper
     {
         public:
-            static void AssertAreAlmostEqual(
+            static void AssertAreEqualWithAcceptablePrecision(
                 double expected,
                 double actual);
 
