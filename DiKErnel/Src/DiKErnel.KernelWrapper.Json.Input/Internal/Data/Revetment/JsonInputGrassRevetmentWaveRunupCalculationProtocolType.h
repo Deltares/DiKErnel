@@ -20,6 +20,10 @@
 
 #pragma once
 
+#include <nlohmann/json.hpp>
+
+#include "JsonInputGrassWaveRunupDefinitions.h"
+
 namespace DiKErnel::KernelWrapper::Json::Input
 {
     enum class JsonInputGrassRevetmentWaveRunupCalculationProtocolType
@@ -27,4 +31,15 @@ namespace DiKErnel::KernelWrapper::Json::Input
         Unknown,
         RayleighDiscrete
     };
+
+    NLOHMANN_JSON_SERIALIZE_ENUM(JsonInputGrassRevetmentWaveRunupCalculationProtocolType,
+        {
+            {
+                JsonInputGrassRevetmentWaveRunupCalculationProtocolType::Unknown, nullptr
+            },
+            {
+                JsonInputGrassRevetmentWaveRunupCalculationProtocolType::RayleighDiscrete,
+                JsonInputGrassWaveRunupDefinitions::CALCULATION_PROTOCOL_TYPE_RAYLEIGH_DISCRETE
+            }
+        });
 }

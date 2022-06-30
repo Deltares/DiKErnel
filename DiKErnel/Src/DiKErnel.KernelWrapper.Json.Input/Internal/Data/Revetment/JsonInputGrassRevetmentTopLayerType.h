@@ -20,6 +20,10 @@
 
 #pragma once
 
+#include <nlohmann/json.hpp>
+
+#include "JsonInputGrassRevetmentDefinitions.h"
+
 namespace DiKErnel::KernelWrapper::Json::Input
 {
     enum class JsonInputGrassRevetmentTopLayerType
@@ -28,4 +32,17 @@ namespace DiKErnel::KernelWrapper::Json::Input
         OpenSod,
         ClosedSod
     };
+
+    NLOHMANN_JSON_SERIALIZE_ENUM(JsonInputGrassRevetmentTopLayerType,
+        {
+            {
+                JsonInputGrassRevetmentTopLayerType::Unknown, nullptr
+            },
+            {
+                JsonInputGrassRevetmentTopLayerType::ClosedSod, JsonInputGrassRevetmentDefinitions::TOP_LAYER_TYPE_CLOSED_SOD
+            },
+            {
+                JsonInputGrassRevetmentTopLayerType::OpenSod, JsonInputGrassRevetmentDefinitions::TOP_LAYER_TYPE_OPEN_SOD
+            }
+        });
 }

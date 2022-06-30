@@ -30,16 +30,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
     using namespace nlohmann;
     using namespace std;
 
-    NLOHMANN_JSON_SERIALIZE_ENUM(JsonInputNaturalStoneRevetmentTopLayerType,
-        {
-            {
-                JsonInputNaturalStoneRevetmentTopLayerType::Unknown, nullptr
-            },
-            {
-                JsonInputNaturalStoneRevetmentTopLayerType::NordicStone, JsonInputNaturalStoneDefinitions::TOP_LAYER_TYPE_NORDIC_STONE
-            }
-        });
-
     JsonInputNaturalStoneCalculationDefinitionParser::JsonInputNaturalStoneCalculationDefinitionParser(
         const json& readCalculationMethod)
         : JsonInputCalculationDefinitionParser(readCalculationMethod) { }

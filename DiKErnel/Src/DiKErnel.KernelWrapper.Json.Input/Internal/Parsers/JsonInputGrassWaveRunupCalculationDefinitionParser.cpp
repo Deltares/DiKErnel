@@ -21,7 +21,6 @@
 #include "JsonInputGrassWaveRunupCalculationDefinitionParser.h"
 
 #include "JsonInputDefinitions.h"
-#include "JsonInputGrassRevetmentDefinitions.h"
 #include "JsonInputGrassRevetmentWaveRunupCalculationProtocolType.h"
 #include "JsonInputGrassWaveRunupCalculationDefinitionData.h"
 #include "JsonInputGrassWaveRunupDefinitions.h"
@@ -33,30 +32,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
 {
     using namespace nlohmann;
     using namespace std;
-
-    NLOHMANN_JSON_SERIALIZE_ENUM(JsonInputGrassRevetmentTopLayerType,
-        {
-            {
-                JsonInputGrassRevetmentTopLayerType::Unknown, nullptr
-            },
-            {
-                JsonInputGrassRevetmentTopLayerType::ClosedSod, JsonInputGrassRevetmentDefinitions::TOP_LAYER_TYPE_CLOSED_SOD
-            },
-            {
-                JsonInputGrassRevetmentTopLayerType::OpenSod, JsonInputGrassRevetmentDefinitions::TOP_LAYER_TYPE_OPEN_SOD
-            }
-        });
-
-    NLOHMANN_JSON_SERIALIZE_ENUM(JsonInputGrassRevetmentWaveRunupCalculationProtocolType,
-        {
-            {
-                JsonInputGrassRevetmentWaveRunupCalculationProtocolType::Unknown, nullptr
-            },
-            {
-                JsonInputGrassRevetmentWaveRunupCalculationProtocolType::RayleighDiscrete,
-                JsonInputGrassWaveRunupDefinitions::CALCULATION_PROTOCOL_TYPE_RAYLEIGH_DISCRETE
-            }
-        });
 
     JsonInputGrassWaveRunupCalculationDefinitionParser::JsonInputGrassWaveRunupCalculationDefinitionParser(
         const json& readCalculationMethod)

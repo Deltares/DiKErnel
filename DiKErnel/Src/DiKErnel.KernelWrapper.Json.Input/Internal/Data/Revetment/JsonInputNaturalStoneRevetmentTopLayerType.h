@@ -20,6 +20,10 @@
 
 #pragma once
 
+#include <nlohmann/json.hpp>
+
+#include "JsonInputNaturalStoneDefinitions.h"
+
 namespace DiKErnel::KernelWrapper::Json::Input
 {
     enum class JsonInputNaturalStoneRevetmentTopLayerType
@@ -27,4 +31,14 @@ namespace DiKErnel::KernelWrapper::Json::Input
         Unknown,
         NordicStone
     };
+
+    NLOHMANN_JSON_SERIALIZE_ENUM(JsonInputNaturalStoneRevetmentTopLayerType,
+        {
+            {
+                JsonInputNaturalStoneRevetmentTopLayerType::Unknown, nullptr
+            },
+            {
+                JsonInputNaturalStoneRevetmentTopLayerType::NordicStone, JsonInputNaturalStoneDefinitions::TOP_LAYER_TYPE_NORDIC_STONE
+            }
+        });
 }

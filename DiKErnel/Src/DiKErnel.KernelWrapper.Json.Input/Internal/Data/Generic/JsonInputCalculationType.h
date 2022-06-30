@@ -20,6 +20,10 @@
 
 #pragma once
 
+#include <nlohmann/json.hpp>
+
+#include "JsonInputDefinitions.h"
+
 namespace DiKErnel::KernelWrapper::Json::Input
 {
     enum class JsonInputCalculationType
@@ -30,4 +34,23 @@ namespace DiKErnel::KernelWrapper::Json::Input
         GrassWaveRunup,
         NaturalStone
     };
+
+    NLOHMANN_JSON_SERIALIZE_ENUM(JsonInputCalculationType,
+        {
+            {
+                JsonInputCalculationType::Unknown, nullptr
+            },
+            {
+                JsonInputCalculationType::AsphaltWaveImpact, JsonInputDefinitions::CALCULATION_METHOD_TYPE_ASPHALT_WAVE_IMPACT
+            },
+            {
+                JsonInputCalculationType::GrassWaveImpact, JsonInputDefinitions::CALCULATION_METHOD_TYPE_GRASS_WAVE_IMPACT
+            },
+            {
+                JsonInputCalculationType::GrassWaveRunup, JsonInputDefinitions::CALCULATION_METHOD_TYPE_GRASS_WAVE_RUNUP
+            },
+            {
+                JsonInputCalculationType::NaturalStone, JsonInputDefinitions::CALCULATION_METHOD_TYPE_NATURAL_STONE
+            },
+        });
 }

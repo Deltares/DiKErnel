@@ -29,17 +29,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
     using namespace nlohmann;
     using namespace std;
 
-    NLOHMANN_JSON_SERIALIZE_ENUM(JsonInputAsphaltRevetmentTopLayerType,
-        {
-            {
-                JsonInputAsphaltRevetmentTopLayerType::Unknown, nullptr
-            },
-            {
-                JsonInputAsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete,
-                JsonInputAsphaltWaveImpactDefinitions::TOP_LAYER_TYPE_HYDRAULIC_ASPHALT_CONCRETE
-            }
-        });
-
     JsonInputAsphaltWaveImpactParser::JsonInputAsphaltWaveImpactParser(
         const json& readLocation)
         : JsonInputLocationParser(readLocation) {}

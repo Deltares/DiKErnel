@@ -20,6 +20,10 @@
 
 #pragma once
 
+#include <nlohmann/json.hpp>
+
+#include "JsonInputAsphaltWaveImpactDefinitions.h"
+
 namespace DiKErnel::KernelWrapper::Json::Input
 {
     enum class JsonInputAsphaltRevetmentTopLayerType
@@ -27,4 +31,15 @@ namespace DiKErnel::KernelWrapper::Json::Input
         Unknown,
         HydraulicAsphaltConcrete
     };
+
+    NLOHMANN_JSON_SERIALIZE_ENUM(JsonInputAsphaltRevetmentTopLayerType,
+        {
+            {
+                JsonInputAsphaltRevetmentTopLayerType::Unknown, nullptr
+            },
+            {
+                JsonInputAsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete,
+                JsonInputAsphaltWaveImpactDefinitions::TOP_LAYER_TYPE_HYDRAULIC_ASPHALT_CONCRETE
+            }
+        });
 }
