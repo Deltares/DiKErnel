@@ -116,7 +116,7 @@ namespace DiKErnel::Acceptance::Test
         }
     };
 
-    TEST_F(AcceptanceTest, GivenJsonInputWithAsphaltWaveImpactLocationsBelowBerm_WhenCalculating_ThenExpectedOutputJsonCreated)
+    TEST_F(AcceptanceTest, GivenJsonInputWithAsphaltWaveImpactLocationBelowBerm_WhenCalculating_ThenExpectedOutputJsonCreated)
     {
         // Given
         const auto inputFilePath = (TestDataPathHelper::GetTestDataPath("DiKErnel.Acceptance.Test") / "AcceptanceTest"
@@ -144,7 +144,7 @@ namespace DiKErnel::Acceptance::Test
                     });
     }
 
-    TEST_F(AcceptanceTest, GivenJsonInputWithAsphaltWaveImpactLocationsAboveBerm_WhenCalculating_ThenExpectedOutputJsonCreated)
+    TEST_F(AcceptanceTest, GivenJsonInputWithAsphaltWaveImpactLocationAboveBerm_WhenCalculating_ThenExpectedOutputJsonCreated)
     {
         // Given
         const auto inputFilePath = (TestDataPathHelper::GetTestDataPath("DiKErnel.Acceptance.Test") / "AcceptanceTest"

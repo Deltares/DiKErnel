@@ -192,14 +192,14 @@ namespace DiKErnel::Integration
         const auto crestOuterBerm =
                 CharacteristicPointsHelper::GetCoordinatesForType(characteristicPoints, CharacteristicPointType::CrestOuterBerm);
 
-        auto positionOnProfileSegment = GetX();
+        auto horizontalPosition = GetX();
         if (notchOuterBerm != nullptr && crestOuterBerm != nullptr
-            && (positionOnProfileSegment > crestOuterBerm->first && positionOnProfileSegment <= notchOuterBerm->first))
+            && (horizontalPosition > crestOuterBerm->first && horizontalPosition <= notchOuterBerm->first))
         {
-            positionOnProfileSegment = crestOuterBerm->first;
+            horizontalPosition = crestOuterBerm->first;
         }
 
-        const auto profileSegment = profileData.GetProfileSegment(positionOnProfileSegment);
+        const auto profileSegment = profileData.GetProfileSegment(horizontalPosition);
         const auto& profileSegmentUpperPoint = profileSegment->GetUpperPoint();
         const auto& profileSegmentLowerPoint = profileSegment->GetLowerPoint();
 

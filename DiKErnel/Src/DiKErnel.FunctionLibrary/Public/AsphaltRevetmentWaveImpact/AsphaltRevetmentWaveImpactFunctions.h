@@ -192,8 +192,8 @@ namespace DiKErnel::FunctionLibrary
              * \param slopeLowerLevel
              *        The lower level of the slope.
              *        Unit = [m]
-             * \return The outer slope
-             *         Unit = [m]
+             * \return The outer slope.
+             *         Unit = [-]
              */
             [[nodiscard]]
             static double OuterSlope(

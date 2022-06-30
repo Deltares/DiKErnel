@@ -33,7 +33,7 @@ namespace DiKErnel::Core
             /*!
              * \brief Creates a new instance.
              * \param lowerPoint
-             *        The lower profile point
+             *        The lower profile point.
              * \param upperPoint
              *        The upper profile point.
              */

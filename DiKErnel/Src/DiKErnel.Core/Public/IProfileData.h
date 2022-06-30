@@ -73,7 +73,7 @@ namespace DiKErnel::Core
              * \brief Gets the profile segment where the horizontal position is located on.
              * \param horizontalPosition
              *        The horizontal position.
-             * \return The profile segment or NULLPTR when the horizontal position cannot be fitted
+             * \return The profile segment or nullptr when the horizontal position cannot be fitted
              *         on a profile segment.
              */
             [[nodiscard]]
