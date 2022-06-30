@@ -29,14 +29,14 @@ namespace DiKErnel::KernelWrapper::Json::Input
         const json& object,
         const string& propertyName)
     {
-        return forward<unique_ptr<double>>(ParseOptionalValue<double>(object, propertyName));
+        return ParseOptionalValue<double>(object, propertyName);
     }
 
     unique_ptr<int> JsonInputParserHelper::ParseOptionalInteger(
         const json& object,
         const string& propertyName)
     {
-        return forward<unique_ptr<int>>(ParseOptionalValue<int>(object, propertyName));
+        return ParseOptionalValue<int>(object, propertyName);
     }
 
     template <typename T>
@@ -44,8 +44,11 @@ namespace DiKErnel::KernelWrapper::Json::Input
         const json& object,
         const string& propertyName)
     {
-        return object.contains(propertyName)
-                   ? make_unique<T>(object.at(propertyName).get<T>())
-                   : nullptr;
+        if (object.contains(propertyName))
+        {
+            return make_unique<T>(object.at(propertyName).get<T>());
+        }
+
+        return nullptr;
     }
 }
