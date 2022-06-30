@@ -27,18 +27,6 @@ namespace DiKErnel::TestUtil
     using namespace std;
 
     void AssertHelper::AssertAreAlmostEqual(
-        const vector<double>& expectedCollection,
-        const vector<double>& actualCollection)
-    {
-        ASSERT_EQ(expectedCollection.size(), actualCollection.size());
-
-        for (auto i = 0; i < static_cast<int>(expectedCollection.size()); ++i)
-        {
-            AssertAreAlmostEqual(expectedCollection.at(i), actualCollection.at(i));
-        }
-    }
-
-    void AssertHelper::AssertAreAlmostEqual(
         double expected,
         double actual)
     {
@@ -48,12 +36,6 @@ namespace DiKErnel::TestUtil
             actual = abs(actual);
         }
 
-        while (expected > 0 && expected < 1)
-        {
-            expected *= 10.0;
-            actual *= 10.0;
-        }
-
-        ASSERT_NEAR(expected, actual, 1e-11);
+        ASSERT_NEAR(expected, actual, 1e-14);
     }
 }

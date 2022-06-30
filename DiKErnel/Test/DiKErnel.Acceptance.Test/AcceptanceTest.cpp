@@ -24,6 +24,7 @@
 
 #include <nlohmann/json.hpp>
 
+#include "AssertHelper.h"
 #include "Calculator.h"
 #include "JsonInputComposer.h"
 #include "JsonOutputComposer.h"
@@ -97,7 +98,7 @@ namespace DiKErnel::Acceptance::Test
             const double actualDamage,
             const int* actualTimeOfFailure)
         {
-            ASSERT_DOUBLE_EQ(expectedDamage, actualDamage);
+            AssertHelper::AssertAreAlmostEqual(expectedDamage, actualDamage);
 
             if (expectedTimeOfFailure == nullptr)
             {
@@ -122,7 +123,7 @@ namespace DiKErnel::Acceptance::Test
             / "AsphaltWaveImpactBelowBerm.json").string();
 
         // When & Then
-        PerformTest(inputFilePath, 1.2083569101835512, make_unique<int>(55992).get());
+        PerformTest(inputFilePath, 1.20835691018355, make_unique<int>(55992).get());
     }
 
     TEST_F(AcceptanceTest, GivenJsonInputWithAsphaltWaveImpactLocationsOnBerm_WhenCalculating_ThenExpectedOutputJsonCreated)
@@ -134,8 +135,8 @@ namespace DiKErnel::Acceptance::Test
         // When & Then
         PerformTest(inputFilePath, vector
                     {
-                        1.0211410825504219,
-                        1.201708191670589
+                        1.02114108255042,
+                        1.20170819167058
                     }, vector<const int*>
                     {
                         make_unique<int>(48692).get(),
@@ -150,7 +151,7 @@ namespace DiKErnel::Acceptance::Test
             / "AsphaltWaveImpactAboveBerm.json").string();
 
         // When & Then
-        PerformTest(inputFilePath, 1.3416472507685535, make_unique<int>(21733).get());
+        PerformTest(inputFilePath, 1.34164725076855, make_unique<int>(21733).get());
     }
 
     TEST_F(AcceptanceTest, GivenJsonInputWithGrassWaveImpactLocation_WhenCalculating_ThenExpectedOutputJsonCreated)
@@ -162,8 +163,8 @@ namespace DiKErnel::Acceptance::Test
         // When & Then
         PerformTest(inputFilePath, vector
                     {
-                        1.0587334122468244,
-                        2001.5520809290408
+                        1.05873341224682,
+                        2001.55208092904080
                     }, vector<const int*>
                     {
                         make_unique<int>(18391).get(),
@@ -178,7 +179,7 @@ namespace DiKErnel::Acceptance::Test
             / "GrassWaveRunupRayleigh.json").string();
 
         // When & Then
-        PerformTest(inputFilePath, 2.4709313851627792, make_unique<int>(9959).get());
+        PerformTest(inputFilePath, 2.47093138516277, make_unique<int>(9959).get());
     }
 
     TEST_F(AcceptanceTest, GivenJsonInputWithGrassWaveRunupRayleighLocationWithHighWaterLevel_WhenCalculating_ThenExpectedOutputJsonCreated)
@@ -188,7 +189,7 @@ namespace DiKErnel::Acceptance::Test
             / "GrassWaveRunupRayleighWithHighWaterLevel.json").string();
 
         // When & Then
-        PerformTest(inputFilePath, 0.26622772912694259, nullptr);
+        PerformTest(inputFilePath, 0.26622772912694, nullptr);
     }
 
     TEST_F(AcceptanceTest, GivenJsonInputWithNaturalStoneLocation_WhenCalculating_ThenExpectedOutputJsonCreated)
@@ -198,7 +199,7 @@ namespace DiKErnel::Acceptance::Test
             / "NaturalStone.json").string();
 
         // When & Then
-        PerformTest(inputFilePath, 1.1709670425264469, make_unique<int>(3833).get());
+        PerformTest(inputFilePath, 1.17096704252644, make_unique<int>(3833).get());
     }
 
     TEST_F(AcceptanceTest, GivenJsonInputWithDikeProfileWithoutBermWithNaturalStoneLocation_WhenCalculating_ThenExpectedOutputJsonCreated)
@@ -208,6 +209,6 @@ namespace DiKErnel::Acceptance::Test
             / "NaturalStoneDikeProfileWithoutBerm.json").string();
 
         // When & Then
-        PerformTest(inputFilePath, 1.1494612002264992, make_unique<int>(3654).get());
+        PerformTest(inputFilePath, 1.14946120022649, make_unique<int>(3654).get());
     }
 }
