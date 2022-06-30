@@ -1,0 +1,177 @@
+{
+    "Uitvoerdata": {
+        "Locaties": [
+            {
+                "FalenBekleding": {
+                    "Faalgebeurtenis": false,
+                    "Faaltijd": null
+                },
+                "SchadeBekleding": {
+                    "SchadegetalPerTijd": [
+                        0.2
+                    ]
+                },
+                "FysicaBekleding": {
+                    "HoogteLocatie": 3.0,
+                    "HellingBuitentaludAsfaltbekleding": 3.1,
+                    "ToenameSchadeAsfaltbekleding": [
+                        0.1
+                    ],
+                    "LogBreukspanning": [
+                        0.3
+                    ],
+                    "MaximalePiekdruk": [
+                        0.4
+                    ],
+                    "Stijfheidsverhouding": [
+                        0.5
+                    ],
+                    "RekenDikteAsfalt": [
+                        0.6
+                    ],
+                    "EquivalenteStijfheidsmodulus": [
+                        0.7
+                    ]
+                }
+            },
+            {
+                "FalenBekleding": {
+                    "Faalgebeurtenis": false,
+                    "Faaltijd": null
+                },
+                "SchadeBekleding": {
+                    "SchadegetalPerTijd": [
+                        0.9
+                    ]
+                },
+                "FysicaBekleding": {
+                    "HoogteLocatie": 3.2,
+                    "ToenameSchadeGrasGolfklap": [
+                        0.8
+                    ],
+                    "BelastingBekleding": [
+                        true
+                    ],
+                    "BovengrensBelastingGrasGolfklap": [
+                        1.1
+                    ],
+                    "OndergrensBelastingGrasGolfklap": [
+                        1.2
+                    ],
+                    "MaximumGolfhoogteGrasGolfklap": [
+                        null
+                    ],
+                    "MinimumGolfhoogteGrasGolfklap": [
+                        null
+                    ],
+                    "ImpactGolfhoekBekledingGrasGolfklap": [
+                        null
+                    ],
+                    "GolfhoogteGrasGolfklap": [
+                        null
+                    ]
+                }
+            },
+            {
+                "FalenBekleding": {
+                    "Faalgebeurtenis": false,
+                    "Faaltijd": null
+                },
+                "SchadeBekleding": {
+                    "SchadegetalPerTijd": [
+                        1.4
+                    ]
+                },
+                "FysicaBekleding": {
+                    "HoogteLocatie": 3.3,
+                    "ToenameSchadeGrasGolfoploop": [
+                        1.3
+                    ],
+                    "VerticaleAfstandWaterstandPositieZ": [
+                        1.5
+                    ],
+                    "ImpactGolfhoekGolfoploop": [
+                        null
+                    ],
+                    "RepresentatieveGolfoploop2p": [
+                        null
+                    ],
+                    "CumulatieveOverbelastingTijdstapRD": [
+                        null
+                    ]
+                }
+            },
+            {
+                "FalenBekleding": {
+                    "Faalgebeurtenis": false,
+                    "Faaltijd": null
+                },
+                "SchadeBekleding": {
+                    "SchadegetalPerTijd": [
+                        1.7
+                    ]
+                },
+                "FysicaBekleding": {
+                    "HoogteLocatie": 3.4,
+                    "ToenameSchadeNatuursteen": [
+                        1.6
+                    ],
+                    "HellingBuitentaludNatuursteen": [
+                        1.8
+                    ],
+                    "BovenzijdeHellingvlakNatuursteen": [
+                        1.9
+                    ],
+                    "RechterzijdeHellingvlakNatuursteen": [
+                        2.0
+                    ],
+                    "OnderzijdeHellingvlakNatuursteen": [
+                        2.1
+                    ],
+                    "LinkerzijdeHellingvlakNatuursteen": [
+                        2.2
+                    ],
+                    "BelastingBekleding": [
+                        true
+                    ],
+                    "Golfbrekingparameter": [
+                        2.3
+                    ],
+                    "GolfsteilheidDiepWater": [
+                        2.4
+                    ],
+                    "BovengrensBelastingNatuursteen": [
+                        2.5
+                    ],
+                    "OndergrensBelastingNatuursteen": [
+                        2.6
+                    ],
+                    "DiepteMaximaleGolfbelastingNatuursteen": [
+                        2.7
+                    ],
+                    "AfstandMaximaleStijghoogteNatuursteen": [
+                        2.8
+                    ],
+                    "MaatgevendeBreedteGolfklapNatuursteen": [
+                        2.9
+                    ],
+                    "HydraulischeBelastingNatuursteen": [
+                        null
+                    ],
+                    "ImpactGolfhoekBekledingNatuursteen": [
+                        null
+                    ],
+                    "SterkteBekledingNatuursteen": [
+                        null
+                    ],
+                    "ReferentieTijdDegradatieNatuursteen": [
+                        null
+                    ],
+                    "ReferentieDegradatieNatuursteen": [
+                        null
+                    ]
+                }
+            }
+        ]
+    }
+}

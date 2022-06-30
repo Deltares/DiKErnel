@@ -52,6 +52,11 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
     {
         const string _actualOutputFilePath = (filesystem::temp_directory_path() / "actualOutput.json").string();
 
+        ~JsonOutputComposerTest() override
+        {
+            remove(_actualOutputFilePath.c_str());
+        }
+
         void PerformTest(
             const string& filename,
             const JsonOutputType outputType,
@@ -93,13 +98,34 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
             ASSERT_EQ(0, result->GetEvents().size());
         }
 
-        ~JsonOutputComposerTest() override
+        void PerformPhysicsTest(
+            const string& filename,
+            const CalculationOutput& calculationOutput,
+            const bool withMetaData) const
         {
-            remove(_actualOutputFilePath.c_str());
+            // Setup
+            auto metaDataItems = vector<pair<string, variant<double, string>>>();
+
+            if (withMetaData)
+            {
+                metaDataItems.emplace_back(pair("Test 1", 1.23));
+                metaDataItems.emplace_back(pair("Test 2", "4.56"));
+            }
+
+            // Call
+            const auto& result = JsonOutputComposer::WriteCalculationOutputToJson(_actualOutputFilePath, calculationOutput, JsonOutputType::Physics,
+                                                                                  metaDataItems);
+
+            // Assert
+            const auto expectedOutputFilePath = (TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Output.Test")
+                / "JsonOutputComposerTest" / filename).string();
+            FileAssert::AssertFileContents(expectedOutputFilePath, _actualOutputFilePath);
+            ASSERT_TRUE(result->GetSuccessful());
+            ASSERT_EQ(0, result->GetEvents().size());
         }
 
         [[nodiscard]]
-        unique_ptr<CalculationOutput> CreateCalculationOutputWithRevetmentSpecificTimeDependentOutput() const
+        unique_ptr<CalculationOutput> CreateCalculationOutputWithRevetmentSpecificTimeDependentOutputWithAllDataSet() const
         {
             auto asphaltWaveImpactTimeDependentOutput = make_unique<AsphaltRevetmentWaveImpactTimeDependentOutput>(
                 0.1, 0.2, make_unique<int>(3), 0.4, 0.5, 0.6, 0.7, 0.8);
@@ -128,6 +154,38 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
             locations.push_back(
                 make_unique<GrassRevetmentWaveRunupRayleighLocationDependentOutput>(4.9, move(grassWaveRunupRayleighTimeDependentOutputs)));
             locations.push_back(make_unique<NaturalStoneRevetmentLocationDependentOutput>(5.0, move(naturalStoneTimeDependentOutputs)));
+
+            return make_unique<CalculationOutput>(move(locations));
+        }
+
+        [[nodiscard]]
+        unique_ptr<CalculationOutput> CreateCalculationOutputWithRevetmentSpecificTimeDependentOutputWithOnlyMandatoryDataSet() const
+        {
+            auto asphaltWaveImpactTimeDependentOutput = make_unique<AsphaltRevetmentWaveImpactTimeDependentOutput>(
+                0.1, 0.2, nullptr, 0.3, 0.4, 0.5, 0.6, 0.7);
+            auto grassWaveImpactTimeDependentOutput = make_unique<GrassRevetmentWaveImpactTimeDependentOutput>(
+                0.8, 0.9, nullptr, 1.0, 1.1, 1.2, nullptr, nullptr, nullptr, nullptr);
+            auto grassWaveRunupRayleighTimeDependentOutput = make_unique<GrassRevetmentWaveRunupRayleighTimeDependentOutput>(
+                1.3, 1.4, nullptr, 1.5, nullptr, nullptr, nullptr);
+            auto naturalStoneTimeDependentOutput = make_unique<NaturalStoneRevetmentTimeDependentOutput>(
+                1.6, 1.7, nullptr, 1.8, 1.9, 2.0, 2.1, 2.2, true, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, nullptr, nullptr, nullptr, nullptr, nullptr);
+
+            vector<unique_ptr<TimeDependentOutput>> asphaltWaveImpactTimeDependentOutputs;
+            asphaltWaveImpactTimeDependentOutputs.push_back(move(asphaltWaveImpactTimeDependentOutput));
+            vector<unique_ptr<TimeDependentOutput>> grassWaveImpactTimeDependentOutputs;
+            grassWaveImpactTimeDependentOutputs.push_back(move(grassWaveImpactTimeDependentOutput));
+            vector<unique_ptr<TimeDependentOutput>> grassWaveRunupRayleighTimeDependentOutputs;
+            grassWaveRunupRayleighTimeDependentOutputs.push_back(move(grassWaveRunupRayleighTimeDependentOutput));
+            vector<unique_ptr<TimeDependentOutput>> naturalStoneTimeDependentOutputs;
+            naturalStoneTimeDependentOutputs.push_back(move(naturalStoneTimeDependentOutput));
+
+            vector<unique_ptr<LocationDependentOutput>> locations;
+            locations.push_back(
+                make_unique<AsphaltRevetmentWaveImpactLocationDependentOutput>(3.0, move(asphaltWaveImpactTimeDependentOutputs), 3.1));
+            locations.push_back(make_unique<GrassRevetmentWaveImpactLocationDependentOutput>(3.2, move(grassWaveImpactTimeDependentOutputs)));
+            locations.push_back(
+                make_unique<GrassRevetmentWaveRunupRayleighLocationDependentOutput>(3.3, move(grassWaveRunupRayleighTimeDependentOutputs)));
+            locations.push_back(make_unique<NaturalStoneRevetmentLocationDependentOutput>(3.4, move(naturalStoneTimeDependentOutputs)));
 
             return make_unique<CalculationOutput>(move(locations));
         }
@@ -207,42 +265,30 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
     }
 
     TEST_F(JsonOutputComposerTest,
-           WriteCalculationOutputToJson_JsonOutputTypePhysicsWithMetaDataAndTimeDependentOutputSupported_ReturnsResultWithSuccessfulTrueAndNoEventsAndWritesExpectedValues)
+           WriteCalculationOutputToJson_JsonOutputTypePhysicsWithAllDataAndMetaDataAndTimeDependentOutputSupported_ReturnsResultWithSuccessfulTrueAndNoEventsAndWritesExpectedValues)
     {
-        // Setup
-        const auto calculationOutput = CreateCalculationOutputWithRevetmentSpecificTimeDependentOutput();
-        const auto metaDataItems = vector<pair<string, variant<double, string>>>
-        {
-            pair("Test 1", 1.23),
-            pair("Test 2", "4.56")
-        };
-
-        // Call
-        const auto& result = JsonOutputComposer::WriteCalculationOutputToJson(_actualOutputFilePath, *calculationOutput, JsonOutputType::Physics,
-                                                                              metaDataItems);
-
-        // Assert
-        const auto expectedOutputFilePath = (TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Output.Test")
-            / "JsonOutputComposerTest" / "ExpectedPhysicsOutputWithMetaData.json").string();
-        FileAssert::AssertFileContents(expectedOutputFilePath, _actualOutputFilePath);
-        ASSERT_TRUE(result->GetSuccessful());
-        ASSERT_EQ(0, result->GetEvents().size());
+        PerformPhysicsTest("ExpectedPhysicsOutputWithAllDataAndMetaData.json",
+                           *CreateCalculationOutputWithRevetmentSpecificTimeDependentOutputWithAllDataSet(), true);
     }
 
     TEST_F(JsonOutputComposerTest,
-           WriteCalculationOutputToJson_JsonOutputTypePhysicsWithoutMetaDataAndTimeDependentOutputSupported_ReturnsResultWithSuccessfulTrueAndNoEventsAndWritesExpectedValues)
+           WriteCalculationOutputToJson_JsonOutputTypePhysicsWithAllDataAndWithoutMetaDataAndTimeDependentOutputSupported_ReturnsResultWithSuccessfulTrueAndNoEventsAndWritesExpectedValues)
     {
-        // Setup
-        const auto calculationOutput = CreateCalculationOutputWithRevetmentSpecificTimeDependentOutput();
+        PerformPhysicsTest("ExpectedPhysicsOutputWithAllDataAndWithoutMetaData.json",
+                           *CreateCalculationOutputWithRevetmentSpecificTimeDependentOutputWithAllDataSet(), false);
+    }
 
-        // Call
-        const auto& result = JsonOutputComposer::WriteCalculationOutputToJson(_actualOutputFilePath, *calculationOutput, JsonOutputType::Physics);
+    TEST_F(JsonOutputComposerTest,
+           WriteCalculationOutputToJson_JsonOutputTypePhysicsWithOnlyMandatoryDataAndMetaDataAndTimeDependentOutputSupported_ReturnsResultWithSuccessfulTrueAndNoEventsAndWritesExpectedValues)
+    {
+        PerformPhysicsTest("ExpectedPhysicsOutputWithOnlyMandatoryDataAndMetaData.json",
+                           *CreateCalculationOutputWithRevetmentSpecificTimeDependentOutputWithOnlyMandatoryDataSet(), true);
+    }
 
-        // Assert
-        const auto expectedOutputFilePath = (TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Output.Test")
-            / "JsonOutputComposerTest" / "ExpectedPhysicsOutputWithoutMetaData.json").string();
-        FileAssert::AssertFileContents(expectedOutputFilePath, _actualOutputFilePath);
-        ASSERT_TRUE(result->GetSuccessful());
-        ASSERT_EQ(0, result->GetEvents().size());
+    TEST_F(JsonOutputComposerTest,
+           WriteCalculationOutputToJson_JsonOutputTypePhysicsWithOnlyMandatoryDataAndWithoutMetaDataAndTimeDependentOutputSupported_ReturnsResultWithSuccessfulTrueAndNoEventsAndWritesExpectedValues)
+    {
+        PerformPhysicsTest("ExpectedPhysicsOutputWithOnlyMandatoryDataAndWithoutMetaData.json",
+                           *CreateCalculationOutputWithRevetmentSpecificTimeDependentOutputWithOnlyMandatoryDataSet(), false);
     }
 }
