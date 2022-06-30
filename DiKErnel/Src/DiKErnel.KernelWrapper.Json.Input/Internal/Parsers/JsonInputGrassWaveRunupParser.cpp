@@ -45,19 +45,15 @@ namespace DiKErnel::KernelWrapper::Json::Input
             readLocation.at(JsonInputGrassWaveRunupDefinitions::OUTER_SLOPE).get<double>());
 
         locationData->SetIncreasedLoadTransitionAlphaM(
-            forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
-                readLocation, JsonInputGrassWaveRunupDefinitions::INCREASED_LOAD_TRANSITION_ALPHA_M)));
+            JsonInputParserHelper::ParseOptionalDouble(readLocation, JsonInputGrassWaveRunupDefinitions::INCREASED_LOAD_TRANSITION_ALPHA_M));
         locationData->SetReducedStrengthTransitionAlphaS(
-            forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
-                readLocation, JsonInputGrassWaveRunupDefinitions::REDUCED_STRENGTH_TRANSITION_ALPHA_S)));
+            JsonInputParserHelper::ParseOptionalDouble(readLocation, JsonInputGrassWaveRunupDefinitions::REDUCED_STRENGTH_TRANSITION_ALPHA_S));
 
         locationData->SetRepresentativeWaveRunup2PGammaB(
-            forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
-                readLocation, JsonInputGrassWaveRunupDefinitions::REPRESENTATIVE_WAVE_RUNUP_2P_GAMMA_B)));
+            JsonInputParserHelper::ParseOptionalDouble(readLocation, JsonInputGrassWaveRunupDefinitions::REPRESENTATIVE_WAVE_RUNUP_2P_GAMMA_B));
 
         locationData->SetRepresentativeWaveRunup2PGammaF(
-            forward<unique_ptr<double>>(JsonInputParserHelper::ParseOptionalDouble(
-                readLocation, JsonInputGrassWaveRunupDefinitions::REPRESENTATIVE_WAVE_RUNUP_2P_GAMMA_F)));
+            JsonInputParserHelper::ParseOptionalDouble(readLocation, JsonInputGrassWaveRunupDefinitions::REPRESENTATIVE_WAVE_RUNUP_2P_GAMMA_F));
 
         return locationData;
     }
