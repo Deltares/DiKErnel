@@ -185,14 +185,14 @@ namespace DiKErnel::FunctionLibrary::Test
     TEST(AsphaltRevetmentWaveImpactFunctionsTest, OuterSlope_ValidInput_ExpectedValue)
     {
         // Setup
-        constexpr auto slopeUpperPosition = 10.2;
-        constexpr auto slopeUpperLevel = 2.95;
         constexpr auto slopeLowerPosition = 2.4;
         constexpr auto slopeLowerLevel = 1.75;
+        constexpr auto slopeUpperPosition = 10.2;
+        constexpr auto slopeUpperLevel = 2.95;
 
         // Call
-        const auto outerSlope = AsphaltRevetmentWaveImpactFunctions::OuterSlope(slopeUpperPosition, slopeUpperLevel, slopeLowerPosition,
-                                                                                slopeLowerLevel);
+        const auto outerSlope = AsphaltRevetmentWaveImpactFunctions::OuterSlope(slopeLowerPosition, slopeLowerLevel, slopeUpperPosition,
+                                                                                slopeUpperLevel);
 
         // Assert
         ASSERT_DOUBLE_EQ(0.153846153846154, outerSlope);

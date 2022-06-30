@@ -96,10 +96,10 @@ namespace DiKErnel::FunctionLibrary
     }
 
     double AsphaltRevetmentWaveImpactFunctions::OuterSlope(
-        const double slopeUpperPosition,
-        const double slopeUpperLevel,
         const double slopeLowerPosition,
-        const double slopeLowerLevel)
+        const double slopeLowerLevel,
+        const double slopeUpperPosition,
+        const double slopeUpperLevel)
     {
         return (slopeUpperLevel - slopeLowerLevel) / (slopeUpperPosition - slopeLowerPosition);
     }

@@ -180,27 +180,28 @@ namespace DiKErnel::FunctionLibrary
 
             /*!
              * \brief Calculates the outer slope.
-             * \param slopeUpperPosition
-             *        The upper position of the slope.
-             *        Unit = [m]
-             * \param slopeUpperLevel
-             *        The upper level of the slope.
-             *        Unit = [m]
              * \param slopeLowerPosition
              *        The lower position of the slope.
              *        Unit = [m]
              * \param slopeLowerLevel
              *        The lower level of the slope.
              *        Unit = [m]
+             * \param slopeUpperPosition
+             *        The upper position of the slope.
+             *        Unit = [m]
+             * \param slopeUpperLevel
+             *        The upper level of the slope.
+             *        Unit = [m]
              * \return The outer slope.
              *         Unit = [-]
              */
             [[nodiscard]]
             static double OuterSlope(
-                double slopeUpperPosition,
-                double slopeUpperLevel,
                 double slopeLowerPosition,
-                double slopeLowerLevel);
+                double slopeLowerLevel,
+                double slopeUpperPosition,
+                double slopeUpperLevel
+            );
 
         private:
             [[nodiscard]]
