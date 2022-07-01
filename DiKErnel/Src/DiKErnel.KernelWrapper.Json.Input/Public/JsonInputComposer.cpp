@@ -26,6 +26,7 @@
 #include "EventRegistry.h"
 #include "JsonInputAdapter.h"
 #include "JsonInputParser.h"
+#include "JsonSchemaDefinition.h"
 #include "ValidationHelper.h"
 #include "ValidationIssue.h"
 
@@ -38,6 +39,11 @@ namespace DiKErnel::KernelWrapper::Json::Input
     using namespace std;
     using namespace std::filesystem;
     using namespace Util;
+
+    json_validator JsonInputComposer::_validator
+    {
+        json::parse(JSON_SCHEMA_DEFINITION)
+    };
 
     bool JsonInputComposer::ValidateJson(
         const string& filePath)

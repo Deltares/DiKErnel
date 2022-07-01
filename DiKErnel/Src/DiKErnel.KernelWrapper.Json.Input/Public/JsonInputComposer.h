@@ -25,7 +25,6 @@
 
 #include "DataResult.h"
 #include "ICalculationInput.h"
-#include "JsonSchemaDefinition.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
@@ -67,9 +66,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
             inline static std::unique_ptr<CustomErrorHandler> _customErrorHandler = std::make_unique<CustomErrorHandler>();
 
-            inline static nlohmann::json_schema::json_validator _validator
-            {
-                nlohmann::json::parse(JSON_SCHEMA_DEFINITION)
-            };
+            static nlohmann::json_schema::json_validator _validator;
     };
 }
