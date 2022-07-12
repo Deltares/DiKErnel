@@ -278,6 +278,7 @@ Rectangle {
         }
 
         ListView {
+            id: listView
             anchors {
                 fill: parent
                 margins: 8
@@ -286,15 +287,15 @@ Rectangle {
             ScrollBar.vertical: ScrollBar { }
             ScrollBar.horizontal: ScrollBar { }
             flickableDirection: Flickable.HorizontalAndVerticalFlick
-            contentWidth: 1500
             model: dikernelApplication.LogMessages
             delegate: Rectangle {
                 height: messageText.implicitHeight + 4
-
                 Text {
                     id: messageText
                     font.pointSize: Style.pointSize
                     text: display
+                    width: listView.width
+                    wrapMode: Text.Wrap
                 }
             }
             onCountChanged: positionViewAtEnd()
