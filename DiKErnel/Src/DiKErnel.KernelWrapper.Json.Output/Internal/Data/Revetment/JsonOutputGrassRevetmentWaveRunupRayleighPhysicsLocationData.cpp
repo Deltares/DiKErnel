@@ -22,6 +22,7 @@
 
 #include "CalculationOutputAdapterHelper.h"
 #include "JsonOutputDefinitions.h"
+#include "JsonOutputGrassRevetmentDefinitions.h"
 #include "JsonOutputGrassRevetmentWaveRunupRayleighDefinitions.h"
 
 namespace DiKErnel::KernelWrapper::Json::Output
@@ -49,14 +50,14 @@ namespace DiKErnel::KernelWrapper::Json::Output
         for (const auto* outputItem : _timeDependentOutputItems)
         {
             CalculationOutputAdapterHelper::GetJsonElement(
-                physicsJson, JsonOutputGrassRevetmentWaveRunupRayleighDefinitions::INCREMENT_DAMAGE).push_back(outputItem->GetIncrementDamage());
+                physicsJson, JsonOutputDefinitions::INCREMENT_DAMAGE).push_back(outputItem->GetIncrementDamage());
             CalculationOutputAdapterHelper::GetJsonElement(
                 physicsJson, JsonOutputGrassRevetmentWaveRunupRayleighDefinitions::VERTICAL_DISTANCE_WATER_LEVEL_ELEVATION).push_back(
                 outputItem->GetVerticalDistanceWaterLevelElevation());
 
             CalculationOutputAdapterHelper::PushPropertyWhenApplicable(
                 CalculationOutputAdapterHelper::GetJsonElement(
-                    physicsJson, JsonOutputGrassRevetmentWaveRunupRayleighDefinitions::WAVE_ANGLE_IMPACT),
+                    physicsJson, JsonOutputGrassRevetmentDefinitions::WAVE_ANGLE_IMPACT),
                 outputItem->GetWaveAngleImpact());
             CalculationOutputAdapterHelper::PushPropertyWhenApplicable(
                 CalculationOutputAdapterHelper::GetJsonElement(

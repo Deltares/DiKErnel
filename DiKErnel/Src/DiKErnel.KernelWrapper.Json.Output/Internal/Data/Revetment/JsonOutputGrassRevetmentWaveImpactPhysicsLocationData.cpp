@@ -22,6 +22,7 @@
 
 #include "CalculationOutputAdapterHelper.h"
 #include "JsonOutputDefinitions.h"
+#include "JsonOutputGrassRevetmentDefinitions.h"
 #include "JsonOutputGrassRevetmentWaveImpactDefinitions.h"
 
 namespace DiKErnel::KernelWrapper::Json::Output
@@ -64,7 +65,7 @@ namespace DiKErnel::KernelWrapper::Json::Output
                 CalculationOutputAdapterHelper::GetJsonElement(physicsJson, JsonOutputGrassRevetmentWaveImpactDefinitions::MINIMUM_WAVE_HEIGHT),
                 outputItem->GetMinimumWaveHeight());
             CalculationOutputAdapterHelper::PushPropertyWhenApplicable(
-                CalculationOutputAdapterHelper::GetJsonElement(physicsJson, JsonOutputGrassRevetmentWaveImpactDefinitions::WAVE_ANGLE_IMPACT),
+                CalculationOutputAdapterHelper::GetJsonElement(physicsJson, JsonOutputGrassRevetmentDefinitions::WAVE_ANGLE_IMPACT),
                 outputItem->GetWaveAngleImpact());
             CalculationOutputAdapterHelper::PushPropertyWhenApplicable(
                 CalculationOutputAdapterHelper::GetJsonElement(physicsJson, JsonOutputGrassRevetmentWaveImpactDefinitions::WAVE_HEIGHT_IMPACT),

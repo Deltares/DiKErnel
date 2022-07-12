@@ -27,10 +27,8 @@ namespace DiKErnel::KernelWrapper::Json::Output
     class JsonOutputGrassRevetmentWaveRunupRayleighDefinitions
     {
         public:
-            inline static const std::string INCREMENT_DAMAGE = "ToenameSchadeGrasGolfoploop";
-            inline static const std::string VERTICAL_DISTANCE_WATER_LEVEL_ELEVATION = "VerticaleAfstandWaterstandPositieZ";
-            inline static const std::string WAVE_ANGLE_IMPACT = "ImpactGolfhoekGolfoploop";
-            inline static const std::string REPRESENTATIVE_WAVE_RUNUP_2P = "RepresentatieveGolfoploop2p";
-            inline static const std::string CUMULATIVE_OVERLOAD = "CumulatieveOverbelastingTijdstapRD";
+            inline static const std::string VERTICAL_DISTANCE_WATER_LEVEL_ELEVATION = "verticaleAfstandWaterstandPositieZ";
+            inline static const std::string REPRESENTATIVE_WAVE_RUNUP_2P = "representatieve2p";
+            inline static const std::string CUMULATIVE_OVERLOAD = "cumulatieveOverbelasting";
     };
 }
