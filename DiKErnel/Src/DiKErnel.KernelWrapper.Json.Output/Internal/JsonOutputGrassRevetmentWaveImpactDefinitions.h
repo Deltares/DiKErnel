@@ -27,12 +27,9 @@ namespace DiKErnel::KernelWrapper::Json::Output
     class JsonOutputGrassRevetmentWaveImpactDefinitions
     {
         public:
-            inline static const std::string INCREMENT_DAMAGE = "ToenameSchadeGrasGolfklap";
-            inline static const std::string UPPER_LIMIT_LOADING = "BovengrensBelastingGrasGolfklap";
-            inline static const std::string LOWER_LIMIT_LOADING = "OndergrensBelastingGrasGolfklap";
-            inline static const std::string MAXIMUM_WAVE_HEIGHT = "MaximumGolfhoogteGrasGolfklap";
-            inline static const std::string MINIMUM_WAVE_HEIGHT = "MinimumGolfhoogteGrasGolfklap";
-            inline static const std::string WAVE_ANGLE_IMPACT = "ImpactGolfhoekBekledingGrasGolfklap";
-            inline static const std::string WAVE_HEIGHT_IMPACT = "GolfhoogteGrasGolfklap";
+            inline static const std::string MAXIMUM_WAVE_HEIGHT = "maximumGolfhoogte";
+            inline static const std::string MINIMUM_WAVE_HEIGHT = "minimumGolfhoogte";
+            inline static const std::string WAVE_ANGLE_IMPACT = "impactGolfhoekBekleding";
+            inline static const std::string WAVE_HEIGHT_IMPACT = "golfhoogte";
     };
 }

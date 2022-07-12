@@ -49,13 +49,13 @@ namespace DiKErnel::KernelWrapper::Json::Output
         for (const auto* outputItem : _timeDependentOutputItems)
         {
             CalculationOutputAdapterHelper::GetJsonElement(
-                physicsJson, JsonOutputGrassRevetmentWaveImpactDefinitions::INCREMENT_DAMAGE).push_back(outputItem->GetIncrementDamage());
+                physicsJson, JsonOutputDefinitions::INCREMENT_DAMAGE).push_back(outputItem->GetIncrementDamage());
             CalculationOutputAdapterHelper::GetJsonElement(
                 physicsJson, JsonOutputDefinitions::HYDRAULIC_LOAD).push_back(outputItem->GetLoadingRevetment());
             CalculationOutputAdapterHelper::GetJsonElement(
-                physicsJson, JsonOutputGrassRevetmentWaveImpactDefinitions::UPPER_LIMIT_LOADING).push_back(outputItem->GetUpperLimitLoading());
+                physicsJson, JsonOutputDefinitions::UPPER_LIMIT_LOADING).push_back(outputItem->GetUpperLimitLoading());
             CalculationOutputAdapterHelper::GetJsonElement(
-                physicsJson, JsonOutputGrassRevetmentWaveImpactDefinitions::LOWER_LIMIT_LOADING).push_back(outputItem->GetLowerLimitLoading());
+                physicsJson, JsonOutputDefinitions::LOWER_LIMIT_LOADING).push_back(outputItem->GetLowerLimitLoading());
 
             CalculationOutputAdapterHelper::PushPropertyWhenApplicable(
                 CalculationOutputAdapterHelper::GetJsonElement(physicsJson, JsonOutputGrassRevetmentWaveImpactDefinitions::MAXIMUM_WAVE_HEIGHT),

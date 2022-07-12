@@ -46,5 +46,8 @@ namespace DiKErnel::KernelWrapper::Json::Output
             inline static const std::string HYDRAULIC_LOAD = "belastingBekleding";
             inline static const std::string OUTER_SLOPE = "hellingBuitentalud";
             inline static const std::string INCREMENT_DAMAGE = "toenameSchade";
+
+            inline static const std::string UPPER_LIMIT_LOADING = "bovengrensBelasting";
+            inline static const std::string LOWER_LIMIT_LOADING = "ondergrensBelasting";
     };
 }
