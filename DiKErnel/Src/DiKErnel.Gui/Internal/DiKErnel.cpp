@@ -281,10 +281,10 @@ namespace DiKErnel::Gui
 
             if (WriteMetaData())
             {
-                metaDataItems.emplace_back(pair<string, variant<double, string>>("Versie", ApplicationHelper::GetApplicationVersionString()));
-                metaDataItems.emplace_back(pair<string, variant<double, string>>("Besturingssysteem", ApplicationHelper::GetOperatingSystemName()));
-                metaDataItems.emplace_back(pair<string, variant<double, string>>("DatumTijd", ApplicationHelper::GetFormattedDateTimeString()));
-                metaDataItems.emplace_back(pair<string, variant<double, string>>("Rekentijd", elapsed.count()));
+                metaDataItems.emplace_back(pair<string, variant<double, string>>("versie", ApplicationHelper::GetApplicationVersionString()));
+                metaDataItems.emplace_back(pair<string, variant<double, string>>("besturingssysteem", ApplicationHelper::GetOperatingSystemName()));
+                metaDataItems.emplace_back(pair<string, variant<double, string>>("tijdstipBerekening", ApplicationHelper::GetFormattedDateTimeString()));
+                metaDataItems.emplace_back(pair<string, variant<double, string>>("tijdsduurBerekening", elapsed.count()));
             }
 
             const auto outputComposerResult = JsonOutputComposer::WriteCalculationOutputToJson(
