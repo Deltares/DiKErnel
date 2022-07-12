@@ -44,7 +44,7 @@ namespace DiKErnel::KernelWrapper::Json::Output
     ordered_json JsonOutputGrassRevetmentWaveRunupRayleighPhysicsLocationData::CreateJson() const
     {
         auto output = JsonOutputPhysicsLocationData::CreateJson();
-        auto& physicsJson = output.at(JsonOutputDefinitions::PHYSICS_REVETMENT);
+        auto& physicsJson = output.at(JsonOutputDefinitions::PHYSICS);
 
         for (const auto* outputItem : _timeDependentOutputItems)
         {

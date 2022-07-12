@@ -37,7 +37,7 @@ namespace DiKErnel::KernelWrapper::Json::Output
 
         output.push_back(
             {
-                JsonOutputDefinitions::PHYSICS_REVETMENT,
+                JsonOutputDefinitions::PHYSICS,
                 ordered_json(
                     {
                         {

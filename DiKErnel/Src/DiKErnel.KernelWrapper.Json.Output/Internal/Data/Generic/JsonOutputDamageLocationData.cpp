@@ -39,7 +39,7 @@ namespace DiKErnel::KernelWrapper::Json::Output
 
         output.push_back(
             {
-                JsonOutputDefinitions::DAMAGE_REVETMENT,
+                JsonOutputDefinitions::DAMAGE,
                 ordered_json::object(
                     {
                         {

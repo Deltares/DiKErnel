@@ -27,22 +27,22 @@ namespace DiKErnel::KernelWrapper::Json::Output
     class JsonOutputDefinitions
     {
         public:
-            inline static const std::string META_DATA = "MetaInformatie";
+            inline static const std::string META_DATA = "metaInformatie";
 
-            inline static const std::string OUTPUT_DATA = "Uitvoerdata";
+            inline static const std::string OUTPUT_DATA = "uitvoerdata";
 
-            inline static const std::string LOCATIONS = "Locaties";
+            inline static const std::string LOCATIONS = "locaties";
 
-            inline static const std::string FAILURE_REVETMENT = "FalenBekleding";
-            inline static const std::string FAILED = "Faalgebeurtenis";
-            inline static const std::string TIME_OF_FAILURE = "Faaltijd";
+            inline static const std::string FAILURE = "falen";
+            inline static const std::string FAILED = "faalgebeurtenis";
+            inline static const std::string TIME_OF_FAILURE = "faaltijd";
 
-            inline static const std::string DAMAGE_REVETMENT = "SchadeBekleding";
-            inline static const std::string DAMAGE_OVER_TIME = "SchadegetalPerTijd";
+            inline static const std::string DAMAGE = "schade";
+            inline static const std::string DAMAGE_OVER_TIME = "schadegetalPerTijdstap";
 
-            inline static const std::string PHYSICS_REVETMENT = "FysicaBekleding";
-            inline static const std::string Z = "HoogteLocatie";
+            inline static const std::string PHYSICS = "fysica";
+            inline static const std::string Z = "hoogte";
 
-            inline static const std::string HYDRAULIC_LOAD = "BelastingBekleding";
+            inline static const std::string HYDRAULIC_LOAD = "belastingBekleding";
     };
 }

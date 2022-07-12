@@ -44,7 +44,7 @@ namespace DiKErnel::KernelWrapper::Json::Output
     ordered_json JsonOutputAsphaltRevetmentWaveImpactPhysicsLocationData::CreateJson() const
     {
         auto output = JsonOutputPhysicsLocationData::CreateJson();
-        auto& physicsJson = output.at(JsonOutputDefinitions::PHYSICS_REVETMENT);
+        auto& physicsJson = output.at(JsonOutputDefinitions::PHYSICS);
 
         const auto* asphaltRevetmentWaveImpactLocationDependentOutput = dynamic_cast<const AsphaltRevetmentWaveImpactLocationDependentOutput*>(
             &GetLocationDependentOutput());

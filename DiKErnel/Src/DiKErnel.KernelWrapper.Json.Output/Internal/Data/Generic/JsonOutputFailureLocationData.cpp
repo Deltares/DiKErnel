@@ -38,7 +38,7 @@ namespace DiKErnel::KernelWrapper::Json::Output
         auto output = ordered_json::object(
             {
                 {
-                    JsonOutputDefinitions::FAILURE_REVETMENT,
+                    JsonOutputDefinitions::FAILURE,
                     {
                         {
                             JsonOutputDefinitions::FAILED,
@@ -54,7 +54,7 @@ namespace DiKErnel::KernelWrapper::Json::Output
 
         if (timeOfFailure != nullptr)
         {
-            output.at(JsonOutputDefinitions::FAILURE_REVETMENT).at(JsonOutputDefinitions::TIME_OF_FAILURE) = *timeOfFailure;
+            output.at(JsonOutputDefinitions::FAILURE).at(JsonOutputDefinitions::TIME_OF_FAILURE) = *timeOfFailure;
         }
 
         return output;
