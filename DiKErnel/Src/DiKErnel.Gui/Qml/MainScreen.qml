@@ -285,7 +285,6 @@ Rectangle {
             }
             clip: true
             ScrollBar.vertical: ScrollBar { }
-            ScrollBar.horizontal: ScrollBar { }
             flickableDirection: Flickable.HorizontalAndVerticalFlick
             model: dikernelApplication.LogMessages
             delegate: Rectangle {
