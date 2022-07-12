@@ -27,26 +27,20 @@ namespace DiKErnel::KernelWrapper::Json::Output
     class JsonOutputNaturalStoneRevetmentDefinitions
     {
         public:
-            inline static const std::string INCREMENT_DAMAGE = "ToenameSchadeNatuursteen";
+            inline static const std::string SLOPE_UPPER_LEVEL = "bovenzijdeHellingvlak";
+            inline static const std::string SLOPE_UPPER_POSITION = "rechterzijdeHellingvlak";
+            inline static const std::string SLOPE_LOWER_LEVEL = "onderzijdeHellingvlak";
+            inline static const std::string SLOPE_LOWER_POSITION = "linkerzijdeHellingvlak";
 
-            inline static const std::string OUTER_SLOPE = "HellingBuitentaludNatuursteen";
-            inline static const std::string SLOPE_UPPER_LEVEL = "BovenzijdeHellingvlakNatuursteen";
-            inline static const std::string SLOPE_UPPER_POSITION = "RechterzijdeHellingvlakNatuursteen";
-            inline static const std::string SLOPE_LOWER_LEVEL = "OnderzijdeHellingvlakNatuursteen";
-            inline static const std::string SLOPE_LOWER_POSITION = "LinkerzijdeHellingvlakNatuursteen";
+            inline static const std::string SURF_SIMILARITY_PARAMETER = "golfbrekingparameter";
+            inline static const std::string WAVE_STEEPNESS_DEEP_WATER = "golfsteilheidDiepWater";
 
-            inline static const std::string SURF_SIMILARITY_PARAMETER = "Golfbrekingparameter";
-            inline static const std::string WAVE_STEEPNESS_DEEP_WATER = "GolfsteilheidDiepWater";
-
-            inline static const std::string UPPER_LIMIT_LOADING = "BovengrensBelastingNatuursteen";
-            inline static const std::string LOWER_LIMIT_LOADING = "OndergrensBelastingNatuursteen";
-            inline static const std::string DEPTH_MAXIMUM_WAVE_LOAD = "DiepteMaximaleGolfbelastingNatuursteen";
-            inline static const std::string DISTANCE_MAXIMUM_WAVE_ELEVATION = "AfstandMaximaleStijghoogteNatuursteen";
-            inline static const std::string NORMATIVE_WIDTH_WAVE_IMPACT = "MaatgevendeBreedteGolfklapNatuursteen";
-            inline static const std::string HYDRAULIC_LOAD = "HydraulischeBelastingNatuursteen";
-            inline static const std::string WAVE_ANGLE_IMPACT = "ImpactGolfhoekBekledingNatuursteen";
-            inline static const std::string RESISTANCE = "SterkteBekledingNatuursteen";
-            inline static const std::string REFERENCE_TIME_DEGRADATION = "ReferentieTijdDegradatieNatuursteen";
-            inline static const std::string REFERENCE_DEGRADATION = "ReferentieDegradatieNatuursteen";
+            inline static const std::string DEPTH_MAXIMUM_WAVE_LOAD = "diepteMaximaleGolfbelasting";
+            inline static const std::string DISTANCE_MAXIMUM_WAVE_ELEVATION = "afstandMaximaleStijghoogte";
+            inline static const std::string NORMATIVE_WIDTH_WAVE_IMPACT = "maatgevendeBreedteGolfklap";
+            inline static const std::string HYDRAULIC_LOAD = "hydraulischeBelasting";
+            inline static const std::string RESISTANCE = "sterkteBekleding";
+            inline static const std::string REFERENCE_TIME_DEGRADATION = "referentieTijdDegradatie";
+            inline static const std::string REFERENCE_DEGRADATION = "referentieDegradatie";
     };
 }

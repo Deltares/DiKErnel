@@ -49,10 +49,10 @@ namespace DiKErnel::KernelWrapper::Json::Output
         for (const auto* outputItem : _timeDependentOutputItems)
         {
             CalculationOutputAdapterHelper::GetJsonElement(
-                physicsJson, JsonOutputNaturalStoneRevetmentDefinitions::INCREMENT_DAMAGE).push_back(outputItem->GetIncrementDamage());
+                physicsJson, JsonOutputDefinitions::INCREMENT_DAMAGE).push_back(outputItem->GetIncrementDamage());
 
             CalculationOutputAdapterHelper::GetJsonElement(
-                physicsJson, JsonOutputNaturalStoneRevetmentDefinitions::OUTER_SLOPE).push_back(outputItem->GetOuterSlope());
+                physicsJson, JsonOutputDefinitions::OUTER_SLOPE).push_back(outputItem->GetOuterSlope());
             CalculationOutputAdapterHelper::GetJsonElement(
                 physicsJson, JsonOutputNaturalStoneRevetmentDefinitions::SLOPE_UPPER_LEVEL).push_back(outputItem->GetSlopeUpperLevel());
             CalculationOutputAdapterHelper::GetJsonElement(
@@ -71,9 +71,9 @@ namespace DiKErnel::KernelWrapper::Json::Output
                 physicsJson, JsonOutputNaturalStoneRevetmentDefinitions::WAVE_STEEPNESS_DEEP_WATER).push_back(
                 outputItem->GetWaveSteepnessDeepWater());
             CalculationOutputAdapterHelper::GetJsonElement(
-                physicsJson, JsonOutputNaturalStoneRevetmentDefinitions::UPPER_LIMIT_LOADING).push_back(outputItem->GetUpperLimitLoading());
+                physicsJson, JsonOutputDefinitions::UPPER_LIMIT_LOADING).push_back(outputItem->GetUpperLimitLoading());
             CalculationOutputAdapterHelper::GetJsonElement(
-                physicsJson, JsonOutputNaturalStoneRevetmentDefinitions::LOWER_LIMIT_LOADING).push_back(outputItem->GetLowerLimitLoading());
+                physicsJson, JsonOutputDefinitions::LOWER_LIMIT_LOADING).push_back(outputItem->GetLowerLimitLoading());
             CalculationOutputAdapterHelper::GetJsonElement(
                 physicsJson, JsonOutputNaturalStoneRevetmentDefinitions::DEPTH_MAXIMUM_WAVE_LOAD).push_back(outputItem->GetDepthMaximumWaveLoad());
             CalculationOutputAdapterHelper::GetJsonElement(
@@ -87,7 +87,7 @@ namespace DiKErnel::KernelWrapper::Json::Output
                 CalculationOutputAdapterHelper::GetJsonElement(physicsJson, JsonOutputNaturalStoneRevetmentDefinitions::HYDRAULIC_LOAD),
                 outputItem->GetHydraulicLoad());
             CalculationOutputAdapterHelper::PushPropertyWhenApplicable(
-                CalculationOutputAdapterHelper::GetJsonElement(physicsJson, JsonOutputNaturalStoneRevetmentDefinitions::WAVE_ANGLE_IMPACT),
+                CalculationOutputAdapterHelper::GetJsonElement(physicsJson, JsonOutputDefinitions::WAVE_ANGLE_IMPACT),
                 outputItem->GetWaveAngleImpact());
             CalculationOutputAdapterHelper::PushPropertyWhenApplicable(
                 CalculationOutputAdapterHelper::GetJsonElement(physicsJson, JsonOutputNaturalStoneRevetmentDefinitions::RESISTANCE),

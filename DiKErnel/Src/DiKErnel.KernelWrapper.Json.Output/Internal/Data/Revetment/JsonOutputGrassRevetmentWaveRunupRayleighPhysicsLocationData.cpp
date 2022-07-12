@@ -22,7 +22,6 @@
 
 #include "CalculationOutputAdapterHelper.h"
 #include "JsonOutputDefinitions.h"
-#include "JsonOutputGrassRevetmentDefinitions.h"
 #include "JsonOutputGrassRevetmentWaveRunupRayleighDefinitions.h"
 
 namespace DiKErnel::KernelWrapper::Json::Output
@@ -57,7 +56,7 @@ namespace DiKErnel::KernelWrapper::Json::Output
 
             CalculationOutputAdapterHelper::PushPropertyWhenApplicable(
                 CalculationOutputAdapterHelper::GetJsonElement(
-                    physicsJson, JsonOutputGrassRevetmentDefinitions::WAVE_ANGLE_IMPACT),
+                    physicsJson, JsonOutputDefinitions::WAVE_ANGLE_IMPACT),
                 outputItem->GetWaveAngleImpact());
             CalculationOutputAdapterHelper::PushPropertyWhenApplicable(
                 CalculationOutputAdapterHelper::GetJsonElement(

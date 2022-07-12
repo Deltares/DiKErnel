@@ -49,5 +49,7 @@ namespace DiKErnel::KernelWrapper::Json::Output
 
             inline static const std::string UPPER_LIMIT_LOADING = "bovengrensBelasting";
             inline static const std::string LOWER_LIMIT_LOADING = "ondergrensBelasting";
+
+            inline static const std::string WAVE_ANGLE_IMPACT = "impactGolfhoek";
     };
 }
