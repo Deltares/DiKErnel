@@ -44,5 +44,7 @@ namespace DiKErnel::KernelWrapper::Json::Output
             inline static const std::string Z = "hoogte";
 
             inline static const std::string HYDRAULIC_LOAD = "belastingBekleding";
+            inline static const std::string OUTER_SLOPE = "hellingBuitentalud";
+            inline static const std::string INCREMENT_DAMAGE = "toenameSchade";
     };
 }

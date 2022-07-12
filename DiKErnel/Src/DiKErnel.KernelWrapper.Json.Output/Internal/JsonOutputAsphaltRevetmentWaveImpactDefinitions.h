@@ -27,12 +27,10 @@ namespace DiKErnel::KernelWrapper::Json::Output
     class JsonOutputAsphaltRevetmentWaveImpactDefinitions
     {
         public:
-            inline static const std::string OUTER_SLOPE = "HellingBuitentaludAsfaltbekleding";
-            inline static const std::string INCREMENT_DAMAGE = "ToenameSchadeAsfaltbekleding";
-            inline static const std::string LOG_FAILURE_TENSION = "LogBreukspanning";
-            inline static const std::string MAXIMUM_PEAK_STRESS = "MaximalePiekdruk";
-            inline static const std::string STIFFNESS_RELATION = "Stijfheidsverhouding";
-            inline static const std::string COMPUTATIONAL_THICKNESS = "RekenDikteAsfalt";
-            inline static const std::string EQUIVALENT_ELASTIC_MODULUS = "EquivalenteStijfheidsmodulus";
+            inline static const std::string LOG_FAILURE_TENSION = "logBreukspanning";
+            inline static const std::string MAXIMUM_PEAK_STRESS = "maximalePiekdruk";
+            inline static const std::string STIFFNESS_RELATION = "stijfheidsverhouding";
+            inline static const std::string COMPUTATIONAL_THICKNESS = "rekenDikteAsfalt";
+            inline static const std::string EQUIVALENT_ELASTIC_MODULUS = "equivalenteStijfheidsmodulus";
     };
 }

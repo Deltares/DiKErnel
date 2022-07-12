@@ -49,13 +49,13 @@ namespace DiKErnel::KernelWrapper::Json::Output
         const auto* asphaltRevetmentWaveImpactLocationDependentOutput = dynamic_cast<const AsphaltRevetmentWaveImpactLocationDependentOutput*>(
             &GetLocationDependentOutput());
 
-        CalculationOutputAdapterHelper::GetJsonElement(physicsJson, JsonOutputAsphaltRevetmentWaveImpactDefinitions::OUTER_SLOPE) =
+        CalculationOutputAdapterHelper::GetJsonElement(physicsJson, JsonOutputDefinitions::OUTER_SLOPE) =
                 asphaltRevetmentWaveImpactLocationDependentOutput->GetOuterSlope();
 
         for (const auto* outputItem : _timeDependentOutputItems)
         {
             CalculationOutputAdapterHelper::GetJsonElement(
-                physicsJson, JsonOutputAsphaltRevetmentWaveImpactDefinitions::INCREMENT_DAMAGE).push_back(outputItem->GetIncrementDamage());
+                physicsJson, JsonOutputDefinitions::INCREMENT_DAMAGE).push_back(outputItem->GetIncrementDamage());
             CalculationOutputAdapterHelper::GetJsonElement(
                 physicsJson, JsonOutputAsphaltRevetmentWaveImpactDefinitions::LOG_FAILURE_TENSION).push_back(outputItem->GetLogFailureTension());
             CalculationOutputAdapterHelper::GetJsonElement(
