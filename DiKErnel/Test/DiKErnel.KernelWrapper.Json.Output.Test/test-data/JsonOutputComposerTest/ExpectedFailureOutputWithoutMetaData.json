@@ -1,16 +1,16 @@
 {
-    "Uitvoerdata": {
-        "Locaties": [
+    "uitvoerdata": {
+        "locaties": [
             {
-                "FalenBekleding": {
-                    "Faalgebeurtenis": true,
-                    "Faaltijd": 60
+                "falen": {
+                    "faalgebeurtenis": true,
+                    "faaltijd": 60
                 }
             },
             {
-                "FalenBekleding": {
-                    "Faalgebeurtenis": false,
-                    "Faaltijd": null
+                "falen": {
+                    "faalgebeurtenis": false,
+                    "faaltijd": null
                 }
             }
         ]

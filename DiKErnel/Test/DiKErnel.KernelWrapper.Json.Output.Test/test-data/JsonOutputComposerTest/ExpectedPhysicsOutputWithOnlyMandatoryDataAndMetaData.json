@@ -1,177 +1,177 @@
 {
-    "MetaInformatie": {
+    "metaInformatie": {
         "Test 1": 1.23,
         "Test 2": "4.56"
     },
-    "Uitvoerdata": {
-        "Locaties": [
+    "uitvoerdata": {
+        "locaties": [
             {
-                "FalenBekleding": {
-                    "Faalgebeurtenis": false,
-                    "Faaltijd": null
+                "falen": {
+                    "faalgebeurtenis": false,
+                    "faaltijd": null
                 },
-                "SchadeBekleding": {
-                    "SchadegetalPerTijd": [
+                "schade": {
+                    "schadegetalPerTijdstap": [
                         0.2
                     ]
                 },
-                "FysicaBekleding": {
-                    "HoogteLocatie": 3.0,
-                    "HellingBuitentaludAsfaltbekleding": 3.1,
-                    "ToenameSchadeAsfaltbekleding": [
+                "fysica": {
+                    "hoogte": 3.0,
+                    "hellingBuitentalud": 3.1,
+                    "toenameSchade": [
                         0.1
                     ],
-                    "LogBreukspanning": [
+                    "logBreukspanning": [
                         0.3
                     ],
-                    "MaximalePiekdruk": [
+                    "maximalePiekdruk": [
                         0.4
                     ],
-                    "Stijfheidsverhouding": [
+                    "stijfheidsverhouding": [
                         0.5
                     ],
-                    "RekenDikteAsfalt": [
+                    "rekenDikteAsfalt": [
                         0.6
                     ],
-                    "EquivalenteStijfheidsmodulus": [
+                    "equivalenteStijfheidsmodulus": [
                         0.7
                     ]
                 }
             },
             {
-                "FalenBekleding": {
-                    "Faalgebeurtenis": false,
-                    "Faaltijd": null
+                "falen": {
+                    "faalgebeurtenis": false,
+                    "faaltijd": null
                 },
-                "SchadeBekleding": {
-                    "SchadegetalPerTijd": [
+                "schade": {
+                    "schadegetalPerTijdstap": [
                         0.9
                     ]
                 },
-                "FysicaBekleding": {
-                    "HoogteLocatie": 3.2,
-                    "ToenameSchadeGrasGolfklap": [
+                "fysica": {
+                    "hoogte": 3.2,
+                    "toenameSchade": [
                         0.8
                     ],
-                    "BelastingBekleding": [
+                    "belastingBekleding": [
                         true
                     ],
-                    "BovengrensBelastingGrasGolfklap": [
+                    "bovengrensBelasting": [
                         1.1
                     ],
-                    "OndergrensBelastingGrasGolfklap": [
+                    "ondergrensBelasting": [
                         1.2
                     ],
-                    "MaximumGolfhoogteGrasGolfklap": [
+                    "maximumGolfhoogte": [
                         null
                     ],
-                    "MinimumGolfhoogteGrasGolfklap": [
+                    "minimumGolfhoogte": [
                         null
                     ],
-                    "ImpactGolfhoekBekledingGrasGolfklap": [
+                    "impactGolfhoek": [
                         null
                     ],
-                    "GolfhoogteGrasGolfklap": [
+                    "golfhoogte": [
                         null
                     ]
                 }
             },
             {
-                "FalenBekleding": {
-                    "Faalgebeurtenis": false,
-                    "Faaltijd": null
+                "falen": {
+                    "faalgebeurtenis": false,
+                    "faaltijd": null
                 },
-                "SchadeBekleding": {
-                    "SchadegetalPerTijd": [
+                "schade": {
+                    "schadegetalPerTijdstap": [
                         1.4
                     ]
                 },
-                "FysicaBekleding": {
-                    "HoogteLocatie": 3.3,
-                    "ToenameSchadeGrasGolfoploop": [
+                "fysica": {
+                    "hoogte": 3.3,
+                    "toenameSchade": [
                         1.3
                     ],
-                    "VerticaleAfstandWaterstandPositieZ": [
+                    "verticaleAfstandWaterstandPositieZ": [
                         1.5
                     ],
-                    "ImpactGolfhoekGolfoploop": [
+                    "impactGolfhoek": [
                         null
                     ],
-                    "RepresentatieveGolfoploop2p": [
+                    "representatieve2p": [
                         null
                     ],
-                    "CumulatieveOverbelastingTijdstapRD": [
+                    "cumulatieveOverbelasting": [
                         null
                     ]
                 }
             },
             {
-                "FalenBekleding": {
-                    "Faalgebeurtenis": false,
-                    "Faaltijd": null
+                "falen": {
+                    "faalgebeurtenis": false,
+                    "faaltijd": null
                 },
-                "SchadeBekleding": {
-                    "SchadegetalPerTijd": [
+                "schade": {
+                    "schadegetalPerTijdstap": [
                         1.7
                     ]
                 },
-                "FysicaBekleding": {
-                    "HoogteLocatie": 3.4,
-                    "ToenameSchadeNatuursteen": [
+                "fysica": {
+                    "hoogte": 3.4,
+                    "toenameSchade": [
                         1.6
                     ],
-                    "HellingBuitentaludNatuursteen": [
+                    "hellingBuitentalud": [
                         1.8
                     ],
-                    "BovenzijdeHellingvlakNatuursteen": [
+                    "bovenzijdeHellingvlak": [
                         1.9
                     ],
-                    "RechterzijdeHellingvlakNatuursteen": [
+                    "rechterzijdeHellingvlak": [
                         2.0
                     ],
-                    "OnderzijdeHellingvlakNatuursteen": [
+                    "onderzijdeHellingvlak": [
                         2.1
                     ],
-                    "LinkerzijdeHellingvlakNatuursteen": [
+                    "linkerzijdeHellingvlak": [
                         2.2
                     ],
-                    "BelastingBekleding": [
+                    "belastingBekleding": [
                         true
                     ],
-                    "Golfbrekingparameter": [
+                    "golfbrekingparameter": [
                         2.3
                     ],
-                    "GolfsteilheidDiepWater": [
+                    "golfsteilheidDiepWater": [
                         2.4
                     ],
-                    "BovengrensBelastingNatuursteen": [
+                    "bovengrensBelasting": [
                         2.5
                     ],
-                    "OndergrensBelastingNatuursteen": [
+                    "ondergrensBelasting": [
                         2.6
                     ],
-                    "DiepteMaximaleGolfbelastingNatuursteen": [
+                    "diepteMaximaleGolfbelasting": [
                         2.7
                     ],
-                    "AfstandMaximaleStijghoogteNatuursteen": [
+                    "afstandMaximaleStijghoogte": [
                         2.8
                     ],
-                    "MaatgevendeBreedteGolfklapNatuursteen": [
+                    "maatgevendeBreedteGolfklap": [
                         2.9
                     ],
-                    "HydraulischeBelastingNatuursteen": [
+                    "hydraulischeBelasting": [
                         null
                     ],
-                    "ImpactGolfhoekBekledingNatuursteen": [
+                    "impactGolfhoek": [
                         null
                     ],
-                    "SterkteBekledingNatuursteen": [
+                    "sterkteBekleding": [
                         null
                     ],
-                    "ReferentieTijdDegradatieNatuursteen": [
+                    "referentieTijdDegradatie": [
                         null
                     ],
-                    "ReferentieDegradatieNatuursteen": [
+                    "referentieDegradatie": [
                         null
                     ]
                 }

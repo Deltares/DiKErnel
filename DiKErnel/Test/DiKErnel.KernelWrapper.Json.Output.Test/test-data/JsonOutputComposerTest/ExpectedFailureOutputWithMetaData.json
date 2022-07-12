@@ -1,20 +1,20 @@
 {
-    "MetaInformatie": {
+    "metaInformatie": {
         "Test 1": 1.23,
         "Test 2": "4.56"
     },
-    "Uitvoerdata": {
-        "Locaties": [
+    "uitvoerdata": {
+        "locaties": [
             {
-                "FalenBekleding": {
-                    "Faalgebeurtenis": true,
-                    "Faaltijd": 60
+                "falen": {
+                    "faalgebeurtenis": true,
+                    "faaltijd": 60
                 }
             },
             {
-                "FalenBekleding": {
-                    "Faalgebeurtenis": false,
-                    "Faaltijd": null
+                "falen": {
+                    "faalgebeurtenis": false,
+                    "faaltijd": null
                 }
             }
         ]
