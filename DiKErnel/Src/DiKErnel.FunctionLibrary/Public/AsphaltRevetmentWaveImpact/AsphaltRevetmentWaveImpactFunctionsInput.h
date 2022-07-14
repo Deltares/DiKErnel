@@ -24,36 +24,9 @@
 
 namespace DiKErnel::FunctionLibrary
 {
-    /*!
-     * \brief Class that holds all asphalt revetment wave impact specific input.
-     */
     class AsphaltRevetmentWaveImpactFunctionsInput
     {
         public:
-            /*!
-             * \brief Creates a new instance.
-             * \param z
-             *        The z coordinate.
-             *        Unit = [m]
-             * \param widthFactors
-             *        The width factors.
-             *        Unit = [-]
-             * \param depthFactors
-             *        The depth factors.
-             *        Unit = [-]
-             * \param impactFactors
-             *        The impact factors.
-             *        Unit = [-]
-             * \param fatigueAlpha
-             *        The fatigue alpha coefficient.
-             *        Unit = [-]
-             * \param fatigueBeta
-             *        The fatigue beta coefficient.
-             *        Unit = [-]
-             * \param impactNumberC
-             *        The impact number c coefficient.
-             *        Unit = [-]
-             */
             explicit AsphaltRevetmentWaveImpactFunctionsInput(
                 double z,
                 const std::vector<std::pair<double, double>>& widthFactors,
@@ -63,93 +36,36 @@ namespace DiKErnel::FunctionLibrary
                 double fatigueBeta,
                 double impactNumberC);
 
-            /*!
-             * \brief Sets the water level.
-             * \param waterLevel
-             *        The water level.
-             *        Unit = [m]
-             */
             void SetWaterLevel(
                 double waterLevel);
 
-            /*!
-             * \brief Sets the wave height.
-             * \param waveHeightHm0
-             *        The wave height.
-             *        Unit = [m]
-             */
             void SetWaveHeightHm0(
                 double waveHeightHm0);
 
-            /*!
-             * \brief Gets the z coordinate.
-             * \return The z coordinate.
-             *         Unit = [m]
-             */
             [[nodiscard]]
             double GetZ() const;
 
-            /*!
-             * \brief Gets the width factors.
-             * \return The width factors.
-             *         Unit = [-]
-             */
             [[nodiscard]]
             const std::vector<std::pair<double, double>>& GetWidthFactors() const;
 
-            /*!
-             * \brief Gets the depth factors.
-             * \return The depth factors.
-             *         Unit = [-]
-             */
             [[nodiscard]]
             const std::vector<std::pair<double, double>>& GetDepthFactors() const;
 
-            /*!
-             * \brief Gets the impact factors.
-             * \return The impact factors.
-             *         Unit = [-]
-             */
             [[nodiscard]]
             const std::vector<std::pair<double, double>>& GetImpactFactors() const;
 
-            /*!
-             * \brief Gets the fatigue alpha coefficient.
-             * \return The fatigue alpha coefficient.
-             *         Unit = [-]
-             */
             [[nodiscard]]
             double GetFatigueAlpha() const;
 
-            /*!
-             * \brief Gets the fatigue beta coefficient.
-             * \return The fatigue beta coefficient.
-             *         Unit = [-]
-             */
             [[nodiscard]]
             double GetFatigueBeta() const;
 
-            /*!
-             * \brief Gets the impact number c coefficient.
-             * \return The impact number c coefficient.
-             *         Unit = [-]
-             */
             [[nodiscard]]
             double GetImpactNumberC() const;
 
-            /*!
-             * \brief Gets the water level.
-             * \return The water level.
-             *         Unit = [m]
-             */
             [[nodiscard]]
             double GetWaterLevel() const;
 
-            /*!
-             * \brief Gets the wave height.
-             * \return The wave height.
-             *         Unit = [m]
-             */
             [[nodiscard]]
             double GetWaveHeightHm0() const;
 
