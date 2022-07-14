@@ -24,6 +24,8 @@
 #include <vector>
 
 #include "AsphaltRevetmentWaveImpactFatigue.h"
+#include "AsphaltRevetmentWaveImpactFunctions.h"
+#include "AsphaltRevetmentWaveImpactFunctionsCalculatedInput.h"
 #include "AsphaltRevetmentWaveImpactLayer.h"
 #include "LocationDependentInput.h"
 
@@ -115,10 +117,7 @@ namespace DiKErnel::Integration
             std::vector<std::pair<double, double>> _widthFactors;
             std::vector<std::pair<double, double>> _depthFactors;
             std::vector<std::pair<double, double>> _impactFactors;
-            double _outerSlope = std::numeric_limits<double>::infinity();;
-            double _logFailureTension = std::numeric_limits<double>::infinity();
-            double _computationalThickness = std::numeric_limits<double>::infinity();
-            double _stiffnessRelation = std::numeric_limits<double>::infinity();
-            double _subLayerElasticModulus = std::numeric_limits<double>::infinity();
+            std::unique_ptr<FunctionLibrary::AsphaltRevetmentWaveImpactFunctionsInput> _input = nullptr;
+            std::unique_ptr<FunctionLibrary::AsphaltRevetmentWaveImpactFunctionsCalculatedInput> _calculatedInput = nullptr;
     };
 }

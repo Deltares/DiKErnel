@@ -35,6 +35,7 @@ namespace DiKErnel::FunctionLibrary::Test
         constexpr auto stiffnessRelation = 1.185626183;
         constexpr auto computationalThickness = 0.16;
         constexpr auto outerSlope = 0.232914161;
+        constexpr auto equivalentElasticModulus = 0;
 
         const vector widthFactors
         {
@@ -92,23 +93,16 @@ namespace DiKErnel::FunctionLibrary::Test
         constexpr auto fatigueBeta = 4.76;
         constexpr auto impactNumberC = 1.0;
 
+        AsphaltRevetmentWaveImpactFunctionsCalculatedInput calculatedInput(logFailureTension, computationalThickness, stiffnessRelation, equivalentElasticModulus, outerSlope);
+        calculatedInput.SetAverageNumberOfWaves(averageNumberOfWaves);
+        calculatedInput.SetMaximumPeakStress(maximumPeakStress);
+
+        AsphaltRevetmentWaveImpactFunctionsInput input(z, widthFactors, depthFactors, impactFactors, fatigueAlpha, fatigueBeta, impactNumberC);
+        input.SetWaterLevel(waterLevel);
+        input.SetWaveHeightHm0(waveHeightHm0);
+
         // Call
-        const auto incrementDamage = AsphaltRevetmentWaveImpactFunctions::IncrementDamage(
-            logFailureTension,
-            averageNumberOfWaves,
-            maximumPeakStress,
-            stiffnessRelation,
-            computationalThickness,
-            outerSlope,
-            widthFactors,
-            depthFactors,
-            impactFactors,
-            z,
-            waterLevel,
-            waveHeightHm0,
-            fatigueAlpha,
-            fatigueBeta,
-            impactNumberC);
+        const auto incrementDamage = AsphaltRevetmentWaveImpactFunctions::IncrementDamage(input, calculatedInput);
 
         // Assert
         ASSERT_DOUBLE_EQ(7.94813500019044, incrementDamage);
