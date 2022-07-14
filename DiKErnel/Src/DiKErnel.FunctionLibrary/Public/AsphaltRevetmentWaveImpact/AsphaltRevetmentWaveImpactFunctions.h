@@ -34,7 +34,7 @@ namespace DiKErnel::FunctionLibrary
             /*!
              * \brief Calculates the increment of damage.
              * \param input
-             *        The AsphaltRevetmentWaveImpactFunctionsInput
+             *        The AsphaltRevetmentWaveImpactFunctionsInput.
              * \param calculatedInput
              *        The AsphaltRevetmentWaveImpactFunctionsCalculatedInput.
              * \return The increment of damage.

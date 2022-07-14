@@ -210,11 +210,10 @@ namespace DiKErnel::Integration
                                                                                 profileSegmentUpperPoint.GetX(), profileSegmentUpperPoint.GetZ());
 
         _calculatedInput = make_unique<AsphaltRevetmentWaveImpactFunctionsCalculatedInput>(
-            logFailureTension, computationalThickness, stiffnessRelation,
-            subLayerElasticModulus, outerSlope);
+            logFailureTension, computationalThickness, stiffnessRelation, subLayerElasticModulus, outerSlope);
 
-        _input = make_unique<AsphaltRevetmentWaveImpactFunctionsInput>(GetZ(), _widthFactors, _depthFactors, _impactFactors, _fatigue->GetAlpha(),
-                                                                       _fatigue->GetBeta(), _impactNumberC);
+        _input = make_unique<AsphaltRevetmentWaveImpactFunctionsInput>(
+            GetZ(), _widthFactors, _depthFactors, _impactFactors, _fatigue->GetAlpha(), _fatigue->GetBeta(), _impactNumberC);
     }
 
     unique_ptr<TimeDependentOutput> AsphaltRevetmentWaveImpactLocationDependentInput::CalculateTimeDependentOutput(
