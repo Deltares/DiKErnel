@@ -20,7 +20,7 @@
 
 #pragma once
 
-#include <limits>
+#include <vector>
 
 namespace DiKErnel::FunctionLibrary
 {

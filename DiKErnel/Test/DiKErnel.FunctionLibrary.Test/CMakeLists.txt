@@ -16,8 +16,6 @@ set(SOURCEFILES_ROOT
 )
 
 set(SOURCEFILES_ASPHALT_REVETMENT_WAVE_IMPACT
-  ${ASPHALT_WAVE_IMPACT_FOLDER}/AsphaltRevetmentWaveImpactFunctionsCalculatedInputTest.cpp
-  ${ASPHALT_WAVE_IMPACT_FOLDER}/AsphaltRevetmentWaveImpactFunctionsInputTest.cpp
   ${ASPHALT_WAVE_IMPACT_FOLDER}/AsphaltRevetmentWaveImpactFunctionsTest.cpp
 )
 
