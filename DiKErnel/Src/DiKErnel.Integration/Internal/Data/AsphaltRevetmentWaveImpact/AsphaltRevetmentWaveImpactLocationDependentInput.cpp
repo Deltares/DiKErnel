@@ -158,8 +158,7 @@ namespace DiKErnel::Integration
     unique_ptr<LocationDependentOutput> AsphaltRevetmentWaveImpactLocationDependentInput::GetLocationDependentOutput(
         vector<unique_ptr<TimeDependentOutput>> timeDependentOutputItems)
     {
-        return make_unique<AsphaltRevetmentWaveImpactLocationDependentOutput>(GetZ(), move(timeDependentOutputItems),
-                                                                              _calculatedInput->GetOuterSlope());
+        return make_unique<AsphaltRevetmentWaveImpactLocationDependentOutput>(GetZ(), move(timeDependentOutputItems), _outerSlope);
     }
 
     void AsphaltRevetmentWaveImpactLocationDependentInput::InitializeDerivedLocationDependentInput(
@@ -168,26 +167,24 @@ namespace DiKErnel::Integration
         LocationDependentInput::InitializeDerivedLocationDependentInput(profileData);
 
         double subLayerThickness;
-        double subLayerElasticModulus;
 
         if (_subLayer != nullptr)
         {
             subLayerThickness = _subLayer->GetThickness();
-            subLayerElasticModulus = _subLayer->GetElasticModulus();
+            _subLayerElasticModulus = _subLayer->GetElasticModulus();
         }
         else
         {
             subLayerThickness = 0;
-            subLayerElasticModulus = _upperLayer->GetElasticModulus();
+            _subLayerElasticModulus = _upperLayer->GetElasticModulus();
         }
 
-        const auto logFailureTension = AsphaltRevetmentWaveImpactFunctions::LogFailureTension(_failureTension);
-        const auto computationalThickness = AsphaltRevetmentWaveImpactFunctions::ComputationalThickness(
-            _upperLayer->GetThickness(), subLayerThickness,
-            _upperLayer->GetElasticModulus(),
-            subLayerElasticModulus);
-        const auto stiffnessRelation = AsphaltRevetmentWaveImpactFunctions::StiffnessRelation(computationalThickness, subLayerElasticModulus,
-                                                                                              _soilElasticity, _stiffnessRelationNu);
+        _logFailureTension = AsphaltRevetmentWaveImpactFunctions::LogFailureTension(_failureTension);
+        _computationalThickness = AsphaltRevetmentWaveImpactFunctions::ComputationalThickness(_upperLayer->GetThickness(), subLayerThickness,
+                                                                                              _upperLayer->GetElasticModulus(),
+                                                                                              _subLayerElasticModulus);
+        _stiffnessRelation = AsphaltRevetmentWaveImpactFunctions::StiffnessRelation(_computationalThickness, _subLayerElasticModulus,
+                                                                                    _soilElasticity, _stiffnessRelationNu);
 
         const auto& characteristicPoints = profileData.GetCharacteristicPoints();
         const auto notchOuterBerm =
@@ -206,15 +203,8 @@ namespace DiKErnel::Integration
         const auto& profileSegmentLowerPoint = profileSegment->GetLowerPoint();
         const auto& profileSegmentUpperPoint = profileSegment->GetUpperPoint();
 
-        const auto outerSlope = AsphaltRevetmentWaveImpactFunctions::OuterSlope(profileSegmentLowerPoint.GetX(), profileSegmentLowerPoint.GetZ(),
-                                                                                profileSegmentUpperPoint.GetX(), profileSegmentUpperPoint.GetZ());
-
-        _calculatedInput = make_unique<AsphaltRevetmentWaveImpactFunctionsCalculatedInput>(
-            logFailureTension, computationalThickness, stiffnessRelation,
-            subLayerElasticModulus, outerSlope);
-
-        _input = make_unique<AsphaltRevetmentWaveImpactFunctionsInput>(GetZ(), _widthFactors, _depthFactors, _impactFactors, _fatigue->GetAlpha(),
-                                                                       _fatigue->GetBeta(), _impactNumberC);
+        _outerSlope = AsphaltRevetmentWaveImpactFunctions::OuterSlope(profileSegmentLowerPoint.GetX(), profileSegmentLowerPoint.GetZ(),
+                                                                      profileSegmentUpperPoint.GetX(), profileSegmentUpperPoint.GetZ());
     }
 
     unique_ptr<TimeDependentOutput> AsphaltRevetmentWaveImpactLocationDependentInput::CalculateTimeDependentOutput(
@@ -228,19 +218,16 @@ namespace DiKErnel::Integration
         const auto incrementTime = RevetmentFunctions::IncrementTime(beginTime, timeDependentInput.GetEndTime());
         const auto averageNumberOfWaves = RevetmentFunctions::AverageNumberOfWaves(incrementTime, timeDependentInput.GetWavePeriodTm10(),
                                                                                    _averageNumberOfWavesCtm);
-
         const auto maximumPeakStress = AsphaltRevetmentWaveImpactFunctions::MaximumPeakStress(waveHeightHm0,
                                                                                               Constants::GetGravitationalAcceleration(),
                                                                                               _densityOfWater);
-
-        _calculatedInput->SetAverageNumberOfWaves(averageNumberOfWaves);
-        _calculatedInput->SetMaximumPeakStress(maximumPeakStress);
-
-        _input->SetWaterLevel(timeDependentInput.GetWaterLevel());
-        _input->SetWaveHeightHm0(waveHeightHm0);
-
-        const auto incrementDamage = AsphaltRevetmentWaveImpactFunctions::IncrementDamage(*_input, *_calculatedInput);
-
+        const auto incrementDamage = AsphaltRevetmentWaveImpactFunctions::IncrementDamage(_logFailureTension, averageNumberOfWaves,
+                                                                                          maximumPeakStress, _stiffnessRelation,
+                                                                                          _computationalThickness, _outerSlope,
+                                                                                          _widthFactors, _depthFactors, _impactFactors, GetZ(),
+                                                                                          timeDependentInput.GetWaterLevel(), waveHeightHm0,
+                                                                                          _fatigue->GetAlpha(), _fatigue->GetBeta(),
+                                                                                          _impactNumberC);
         const auto damage = RevetmentFunctions::Damage(incrementDamage, initialDamage);
 
         unique_ptr<int> timeOfFailure = nullptr;
@@ -252,11 +239,8 @@ namespace DiKErnel::Integration
             timeOfFailure = make_unique<int>(RevetmentFunctions::TimeOfFailure(durationInTimeStepFailure, beginTime));
         }
 
-        return make_unique<AsphaltRevetmentWaveImpactTimeDependentOutput>(incrementDamage, damage, move(timeOfFailure),
-                                                                          _calculatedInput->GetLogFailureTension(),
-                                                                          _calculatedInput->GetMaximumPeakStress(),
-                                                                          _calculatedInput->GetStiffnessRelation(),
-                                                                          _calculatedInput->GetComputationalThickness(),
-                                                                          _calculatedInput->GetEquivalentElasticModulus());
+        return make_unique<AsphaltRevetmentWaveImpactTimeDependentOutput>(incrementDamage, damage, move(timeOfFailure), _logFailureTension,
+                                                                          maximumPeakStress, _stiffnessRelation, _computationalThickness,
+                                                                          _subLayerElasticModulus);
     }
 }

@@ -28,17 +28,33 @@ namespace DiKErnel::FunctionLibrary
     using namespace std;
 
     double AsphaltRevetmentWaveImpactFunctions::IncrementDamage(
-        const AsphaltRevetmentWaveImpactFunctionsInput& input,
-        const AsphaltRevetmentWaveImpactFunctionsCalculatedInput& calculatedInput)
+        const double logFailureTension,
+        const double averageNumberOfWaves,
+        const double maximumPeakStress,
+        const double stiffnessRelation,
+        const double computationalThickness,
+        const double outerSlope,
+        const vector<pair<double, double>>& widthFactors,
+        const vector<pair<double, double>>& depthFactors,
+        const vector<pair<double, double>>& impactFactors,
+        const double z,
+        const double waterLevel,
+        const double waveHeightHm0,
+        const double fatigueAlpha,
+        const double fatigueBeta,
+        const double impactNumberC)
     {
         auto result = 0.0;
 
-        const auto sinA = sin(atan(calculatedInput.GetOuterSlope()));
+        const auto sinA = sin(atan(outerSlope));
 
-        for (const auto& [widthFactorValue, widthFactorProbability] : input.GetWidthFactors())
+        for (const auto& [widthFactorValue, widthFactorProbability] : widthFactors)
         {
-            const auto relativeWidthWaveImpact = RelativeWidthWaveImpact(input, calculatedInput, widthFactorValue);
-            const auto depthFactorAccumulation = DepthFactorAccumulation(input, calculatedInput, relativeWidthWaveImpact, sinA);
+            const auto relativeWidthWaveImpact = RelativeWidthWaveImpact(stiffnessRelation, widthFactorValue, waveHeightHm0);
+            const auto depthFactorAccumulation = DepthFactorAccumulation(logFailureTension, averageNumberOfWaves, maximumPeakStress,
+                                                                         stiffnessRelation, computationalThickness, relativeWidthWaveImpact,
+                                                                         outerSlope, sinA, depthFactors, impactFactors, z, waterLevel,
+                                                                         waveHeightHm0, fatigueAlpha, fatigueBeta, impactNumberC);
 
             result += widthFactorProbability * depthFactorAccumulation;
         }
@@ -89,17 +105,31 @@ namespace DiKErnel::FunctionLibrary
     }
 
     double AsphaltRevetmentWaveImpactFunctions::DepthFactorAccumulation(
-        const AsphaltRevetmentWaveImpactFunctionsInput& input,
-        const AsphaltRevetmentWaveImpactFunctionsCalculatedInput& calculatedInput,
+        const double logFailureTension,
+        const double averageNumberOfWaves,
+        const double maximumPeakStress,
+        const double stiffnessRelation,
+        const double computationalThickness,
         const double relativeWidthWaveImpact,
-        const double sinA)
+        const double outerSlope,
+        const double sinA,
+        const vector<pair<double, double>>& depthFactors,
+        const vector<pair<double, double>>& impactFactors,
+        const double z,
+        const double waterLevel,
+        const double waveHeightHm0,
+        const double fatigueAlpha,
+        const double fatigueBeta,
+        const double impactNumberC)
     {
         auto result = 0.0;
 
-        for (const auto& [depthFactorValue, depthFactorProbability] : input.GetDepthFactors())
+        for (const auto& [depthFactorValue, depthFactorProbability] : depthFactors)
         {
-            const auto bendingStress = BendingStress(input, calculatedInput, relativeWidthWaveImpact, sinA, depthFactorValue);
-            const auto impactFactorAccumulation = ImpactFactorAccumulation(input, calculatedInput, bendingStress);
+            const auto bendingStress = BendingStress(maximumPeakStress, stiffnessRelation, computationalThickness, relativeWidthWaveImpact, sinA,
+                                                     depthFactorValue, z, waterLevel, waveHeightHm0);
+            const auto impactFactorAccumulation = ImpactFactorAccumulation(logFailureTension, averageNumberOfWaves, bendingStress, outerSlope,
+                                                                           impactFactors, fatigueAlpha, fatigueBeta, impactNumberC);
 
             result += depthFactorProbability * impactFactorAccumulation;
         }
@@ -108,76 +138,89 @@ namespace DiKErnel::FunctionLibrary
     }
 
     double AsphaltRevetmentWaveImpactFunctions::ImpactFactorAccumulation(
-        const AsphaltRevetmentWaveImpactFunctionsInput& input,
-        const AsphaltRevetmentWaveImpactFunctionsCalculatedInput& calculatedInput,
-        const double bendingStress)
+        const double logFailureTension,
+        const double averageNumberOfWaves,
+        const double bendingStress,
+        const double outerSlope,
+        const vector<pair<double, double>>& impactFactors,
+        const double fatigueAlpha,
+        const double fatigueBeta,
+        const double impactNumberC)
     {
         auto result = 0.0;
 
-        for (const auto& [impactFactorValue, impactFactorProbability] : input.GetImpactFactors())
+        for (const auto& [impactFactorValue, impactFactorProbability] : impactFactors)
         {
-            const auto fatigue = Fatigue(input, calculatedInput, bendingStress, impactFactorValue);
+            const auto fatigue = Fatigue(logFailureTension, bendingStress, outerSlope, impactFactorValue, fatigueAlpha, fatigueBeta, impactNumberC);
 
-            result += impactFactorProbability * calculatedInput.GetAverageNumberOfWaves() * fatigue;
+            result += impactFactorProbability * averageNumberOfWaves * fatigue;
         }
 
         return result;
     }
 
     double AsphaltRevetmentWaveImpactFunctions::Fatigue(
-        const AsphaltRevetmentWaveImpactFunctionsInput& input,
-        const AsphaltRevetmentWaveImpactFunctionsCalculatedInput& calculatedInput,
+        const double logFailureTension,
         const double bendingStress,
-        const double impactFactorValue)
+        const double outerSlope,
+        const double impactFactorValue,
+        const double fatigueAlpha,
+        const double fatigueBeta,
+        const double impactNumberC)
     {
-        const auto logTension = LogTension(input, calculatedInput, bendingStress, impactFactorValue);
+        const auto logTension = LogTension(bendingStress, outerSlope, impactFactorValue, impactNumberC);
 
-        return pow(10.0, -input.GetFatigueBeta() * pow(max(0.0, calculatedInput.GetLogFailureTension() - logTension), input.GetFatigueAlpha()));
+        return pow(10.0, -fatigueBeta * pow(max(0.0, logFailureTension - logTension), fatigueAlpha));
     }
 
     double AsphaltRevetmentWaveImpactFunctions::LogTension(
-        const AsphaltRevetmentWaveImpactFunctionsInput& input,
-        const AsphaltRevetmentWaveImpactFunctionsCalculatedInput& calculatedInput,
         const double bendingStress,
-        const double impactFactorValue)
+        const double outerSlope,
+        const double impactFactorValue,
+        const double impactNumberC)
     {
-        const auto impactNumber = ImpactNumber(input, calculatedInput, impactFactorValue);
+        const auto impactNumber = ImpactNumber(outerSlope, impactFactorValue, impactNumberC);
 
         return log10(impactNumber * bendingStress);
     }
 
     double AsphaltRevetmentWaveImpactFunctions::ImpactNumber(
-        const AsphaltRevetmentWaveImpactFunctionsInput& input,
-        const AsphaltRevetmentWaveImpactFunctionsCalculatedInput& calculatedInput,
-        const double impactFactorValue)
+        const double outerSlope,
+        const double impactFactorValue,
+        const double impactNumberC)
     {
-        return 4.0 * input.GetImpactNumberC() * calculatedInput.GetOuterSlope() * impactFactorValue;
+        return 4.0 * impactNumberC * outerSlope * impactFactorValue;
     }
 
     double AsphaltRevetmentWaveImpactFunctions::BendingStress(
-        const AsphaltRevetmentWaveImpactFunctionsInput& input,
-        const AsphaltRevetmentWaveImpactFunctionsCalculatedInput& calculatedInput,
+        const double maximumPeakStress,
+        const double stiffnessRelation,
+        const double computationalThickness,
         const double relativeWidthWaveImpact,
         const double sinA,
-        const double depthFactorValue)
+        const double depthFactorValue,
+        const double z,
+        const double waterLevel,
+        const double waveHeightHm0)
     {
-        const auto spatialDistributionBendingStress = SpatialDistributionBendingStress(input, calculatedInput, relativeWidthWaveImpact, sinA,
-                                                                                       depthFactorValue);
+        const auto spatialDistributionBendingStress = SpatialDistributionBendingStress(stiffnessRelation, relativeWidthWaveImpact, sinA,
+                                                                                       depthFactorValue, z, waterLevel, waveHeightHm0);
 
-        return max(pow(10.0, -99.0),
-                   -3.0 * calculatedInput.GetMaximumPeakStress() / (4.0 * pow(calculatedInput.GetStiffnessRelation(), 2.0) * pow(
-                       calculatedInput.GetComputationalThickness(), 2.0))
+        return max(pow(10.0, -99.0), -3.0 * maximumPeakStress / (4.0 * pow(stiffnessRelation, 2.0) * pow(computationalThickness, 2.0))
                    * spatialDistributionBendingStress);
     }
 
     double AsphaltRevetmentWaveImpactFunctions::SpatialDistributionBendingStress(
-        const AsphaltRevetmentWaveImpactFunctionsInput& input,
-        const AsphaltRevetmentWaveImpactFunctionsCalculatedInput& calculatedInput,
+        const double stiffnessRelation,
         const double relativeWidthWaveImpact,
         const double sinA,
-        const double depthFactorValue)
+        const double depthFactorValue,
+        const double z,
+        const double waterLevel,
+        const double waveHeightHm0)
     {
-        const auto relativeDistanceCenterWaveImpact = RelativeDistanceCenterWaveImpact(input, calculatedInput, depthFactorValue, sinA);
+        const auto relativeDistanceCenterWaveImpact = RelativeDistanceCenterWaveImpact(stiffnessRelation, depthFactorValue, sinA, z, waterLevel,
+                                                                                       waveHeightHm0);
 
         const auto sinRelativeDistanceCenterWaveImpact = sin(relativeDistanceCenterWaveImpact);
         const auto sinRelativeWidthWaveImpact = sin(relativeWidthWaveImpact);
@@ -210,20 +253,21 @@ namespace DiKErnel::FunctionLibrary
     }
 
     double AsphaltRevetmentWaveImpactFunctions::RelativeWidthWaveImpact(
-        const AsphaltRevetmentWaveImpactFunctionsInput& input,
-        const AsphaltRevetmentWaveImpactFunctionsCalculatedInput& calculatedInput,
-        const double widthFactorValue)
+        const double stiffnessRelation,
+        const double widthFactorValue,
+        const double waveHeightHm0)
     {
-        return min(85.0, calculatedInput.GetStiffnessRelation() * widthFactorValue * input.GetWaveHeightHm0() / 2.0);
+        return min(85.0, stiffnessRelation * widthFactorValue * waveHeightHm0 / 2.0);
     }
 
     double AsphaltRevetmentWaveImpactFunctions::RelativeDistanceCenterWaveImpact(
-        const AsphaltRevetmentWaveImpactFunctionsInput& input,
-        const AsphaltRevetmentWaveImpactFunctionsCalculatedInput& calculatedInput,
+        const double stiffnessRelation,
         const double depthFactorValue,
-        const double sinA)
+        const double sinA,
+        const double z,
+        const double waterLevel,
+        const double waveHeightHm0)
     {
-        return min(85.0, calculatedInput.GetStiffnessRelation() * abs(
-                       input.GetZ() - input.GetWaterLevel() - depthFactorValue * input.GetWaveHeightHm0()) / sinA);
+        return min(85.0, stiffnessRelation * abs(z - waterLevel - depthFactorValue * waveHeightHm0) / sinA);
     }
 }

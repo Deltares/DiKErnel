@@ -20,8 +20,7 @@
 
 #pragma once
 
-#include "AsphaltRevetmentWaveImpactFunctionsCalculatedInput.h"
-#include "AsphaltRevetmentWaveImpactFunctionsInput.h"
+#include <vector>
 
 namespace DiKErnel::FunctionLibrary
 {
@@ -33,17 +32,71 @@ namespace DiKErnel::FunctionLibrary
         public:
             /*!
              * \brief Calculates the increment of damage.
-             * \param input
-             *        The AsphaltRevetmentWaveImpactFunctionsInput
-             * \param calculatedInput
-             *        The AsphaltRevetmentWaveImpactFunctionsCalculatedInput.
+             * \param logFailureTension
+             *        The logarithm of the failure tension.
+             *        Unit = [MPa]
+             * \param averageNumberOfWaves
+             *        The average number of waves.
+             *        Unit = [-]
+             * \param maximumPeakStress
+             *        The maximum peak stress.
+             *        Unit = [MPa]
+             * \param stiffnessRelation
+             *        The stiffness relation.
+             *        Unit = [m^-1]
+             * \param computationalThickness
+             *        The computation thickness.
+             *        Unit = [m]
+             * \param outerSlope
+             *        The outer slope.
+             *        Unit = [-]
+             * \param widthFactors
+             *        The width factors.
+             *        Unit = [-]
+             * \param depthFactors
+             *        The depth factors.
+             *        Unit = [-]
+             * \param impactFactors
+             *        The impact factors.
+             *        Unit = [-]
+             * \param z
+             *        The z coordinate.
+             *        Unit = [m]
+             * \param waterLevel
+             *        The water level.
+             *        Unit = [m]
+             * \param waveHeightHm0
+             *        The wave height.
+             *        Unit = [m]
+             * \param fatigueAlpha
+             *        The fatigue alpha coefficient.
+             *        Unit = [-]
+             * \param fatigueBeta
+             *        The fatigue beta coefficient.
+             *        Unit = [-]
+             * \param impactNumberC
+             *        The impact number c coefficient.
+             *        Unit = [-]
              * \return The increment of damage.
              *         Unit = [-]
              */
             [[nodiscard]]
             static double IncrementDamage(
-                const AsphaltRevetmentWaveImpactFunctionsInput& input,
-                const AsphaltRevetmentWaveImpactFunctionsCalculatedInput& calculatedInput);
+                double logFailureTension,
+                double averageNumberOfWaves,
+                double maximumPeakStress,
+                double stiffnessRelation,
+                double computationalThickness,
+                double outerSlope,
+                const std::vector<std::pair<double, double>>& widthFactors,
+                const std::vector<std::pair<double, double>>& depthFactors,
+                const std::vector<std::pair<double, double>>& impactFactors,
+                double z,
+                double waterLevel,
+                double waveHeightHm0,
+                double fatigueAlpha,
+                double fatigueBeta,
+                double impactNumberC);
 
             /*!
              * \brief Calculates the logarithm of the failure tension.
@@ -152,64 +205,92 @@ namespace DiKErnel::FunctionLibrary
         private:
             [[nodiscard]]
             static double DepthFactorAccumulation(
-                const AsphaltRevetmentWaveImpactFunctionsInput& input,
-                const AsphaltRevetmentWaveImpactFunctionsCalculatedInput& calculatedInput,
+                double logFailureTension,
+                double averageNumberOfWaves,
+                double maximumPeakStress,
+                double stiffnessRelation,
+                double computationalThickness,
                 double relativeWidthWaveImpact,
-                double sinA);
+                double outerSlope,
+                double sinA,
+                const std::vector<std::pair<double, double>>& depthFactors,
+                const std::vector<std::pair<double, double>>& impactFactors,
+                double z,
+                double waterLevel,
+                double waveHeightHm0,
+                double fatigueAlpha,
+                double fatigueBeta,
+                double impactNumberC);
 
             [[nodiscard]]
             static double ImpactFactorAccumulation(
-                const AsphaltRevetmentWaveImpactFunctionsInput& input,
-                const AsphaltRevetmentWaveImpactFunctionsCalculatedInput& calculatedInput,
-                double bendingStress);
+                double logFailureTension,
+                double averageNumberOfWaves,
+                double bendingStress,
+                double outerSlope,
+                const std::vector<std::pair<double, double>>& impactFactors,
+                double fatigueAlpha,
+                double fatigueBeta,
+                double impactNumberC);
 
             [[nodiscard]]
             static double Fatigue(
-                const AsphaltRevetmentWaveImpactFunctionsInput& input,
-                const AsphaltRevetmentWaveImpactFunctionsCalculatedInput& calculatedInput,
+                double logFailureTension,
                 double bendingStress,
-                double impactFactorValue);
+                double outerSlope,
+                double impactFactorValue,
+                double fatigueAlpha,
+                double fatigueBeta,
+                double impactNumberC);
 
             [[nodiscard]]
             static double LogTension(
-                const AsphaltRevetmentWaveImpactFunctionsInput& input,
-                const AsphaltRevetmentWaveImpactFunctionsCalculatedInput& calculatedInput,
                 double bendingStress,
-                double impactFactorValue);
+                double outerSlope,
+                double impactFactorValue,
+                double impactNumberC);
 
             [[nodiscard]]
             static double ImpactNumber(
-                const AsphaltRevetmentWaveImpactFunctionsInput& input,
-                const AsphaltRevetmentWaveImpactFunctionsCalculatedInput& calculatedInput,
-                double impactFactorValue);
+                double outerSlope,
+                double impactFactorValue,
+                double impactNumberC);
 
             [[nodiscard]]
             static double BendingStress(
-                const AsphaltRevetmentWaveImpactFunctionsInput& input,
-                const AsphaltRevetmentWaveImpactFunctionsCalculatedInput& calculatedInput,
+                double maximumPeakStress,
+                double stiffnessRelation,
+                double computationalThickness,
                 double relativeWidthWaveImpact,
                 double sinA,
-                double depthFactorValue);
+                double depthFactorValue,
+                double z,
+                double waterLevel,
+                double waveHeightHm0);
 
             [[nodiscard]]
             static double SpatialDistributionBendingStress(
-                const AsphaltRevetmentWaveImpactFunctionsInput& input,
-                const AsphaltRevetmentWaveImpactFunctionsCalculatedInput& calculatedInput,
+                double stiffnessRelation,
                 double relativeWidthWaveImpact,
                 double sinA,
-                double depthFactorValue);
+                double depthFactorValue,
+                double z,
+                double waterLevel,
+                double waveHeightHm0);
 
             [[nodiscard]]
             static double RelativeWidthWaveImpact(
-                const AsphaltRevetmentWaveImpactFunctionsInput& input,
-                const AsphaltRevetmentWaveImpactFunctionsCalculatedInput& calculatedInput,
-                double widthFactorValue);
+                double stiffnessRelation,
+                double widthFactorValue,
+                double waveHeightHm0);
 
             [[nodiscard]]
             static double RelativeDistanceCenterWaveImpact(
-                const AsphaltRevetmentWaveImpactFunctionsInput& input,
-                const AsphaltRevetmentWaveImpactFunctionsCalculatedInput& calculatedInput,
+                double stiffnessRelation,
                 double depthFactorValue,
-                double sinA);
+                double sinA,
+                double z,
+                double waterLevel,
+                double waveHeightHm0);
     };
 }
