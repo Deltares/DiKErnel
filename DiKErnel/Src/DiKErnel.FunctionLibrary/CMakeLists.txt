@@ -21,10 +21,6 @@ set(SOURCEFILES_PUBLIC
 set(SOURCEFILES_PUBLIC_ASPHALT_REVETMENT_WAVE_IMPACT
   ${PUBLIC_ASPHALT_WAVE_IMPACT_FOLDER}/AsphaltRevetmentWaveImpactFunctions.cpp
   ${PUBLIC_ASPHALT_WAVE_IMPACT_FOLDER}/AsphaltRevetmentWaveImpactFunctions.h
-  ${PUBLIC_ASPHALT_WAVE_IMPACT_FOLDER}/AsphaltRevetmentWaveImpactFunctionsCalculatedInput.cpp
-  ${PUBLIC_ASPHALT_WAVE_IMPACT_FOLDER}/AsphaltRevetmentWaveImpactFunctionsCalculatedInput.h
-  ${PUBLIC_ASPHALT_WAVE_IMPACT_FOLDER}/AsphaltRevetmentWaveImpactFunctionsInput.cpp
-  ${PUBLIC_ASPHALT_WAVE_IMPACT_FOLDER}/AsphaltRevetmentWaveImpactFunctionsInput.h
 )
 
 set(SOURCEFILES_PUBLIC_GRASS_REVETMENT_WAVE_IMPACT
