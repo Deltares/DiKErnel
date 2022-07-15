@@ -164,31 +164,25 @@ namespace DiKErnel::Integration
                                                                                      naturalStoneRevetmentSlope.GetLowerLevelAls());
         const auto slopeLowerPosition = profileData.InterpolationHorizontalPosition(slopeLowerLevel);
 
-        double outerSlope;
+        OuterSlopeInput outerSlopeInput
+        {
+            slopeLowerPosition,
+            slopeLowerLevel,
+            slopeUpperPosition,
+            slopeUpperLevel,
+            _outerToeHeight,
+            _outerCrestHeight
+        };
 
         if (_notchOuterBerm != nullptr && _crestOuterBerm != nullptr)
         {
-            const OuterSlopeInput outerSlopeInput
-            {
-                _outerToeHeight,
-                _outerCrestHeight,
-                _notchOuterBerm->first,
-                _notchOuterBerm->second,
-                _crestOuterBerm->first,
-                _crestOuterBerm->second,
-                slopeLowerPosition,
-                slopeLowerLevel,
-                slopeUpperPosition,
-                slopeUpperLevel
-            };
-
-            outerSlope = NaturalStoneRevetmentFunctions::OuterSlope(outerSlopeInput);
-        }
-        else
-        {
-            outerSlope = NaturalStoneRevetmentFunctions::OuterSlope(slopeLowerPosition, slopeLowerLevel, slopeUpperPosition, slopeUpperLevel);
+            outerSlopeInput._notchOuterBermPosition = _notchOuterBerm->first;
+            outerSlopeInput._notchOuterBermHeight = _notchOuterBerm->second;
+            outerSlopeInput._crestOuterBermPosition = _crestOuterBerm->first;
+            outerSlopeInput._crestOuterBermHeight = _crestOuterBerm->second;
         }
 
+        const auto outerSlope = NaturalStoneRevetmentFunctions::OuterSlope(outerSlopeInput);
         const auto waveSteepnessDeepWater = HydraulicLoadFunctions::WaveSteepnessDeepWater(waveHeightHm0, wavePeriodTm10,
                                                                                            Constants::GetGravitationalAcceleration());
         const auto distanceMaximumWaveElevation = NaturalStoneRevetmentFunctions::DistanceMaximumWaveElevation(

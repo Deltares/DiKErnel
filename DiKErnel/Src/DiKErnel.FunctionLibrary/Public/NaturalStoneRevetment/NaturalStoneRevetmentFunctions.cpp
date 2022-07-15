@@ -47,64 +47,11 @@ namespace DiKErnel::FunctionLibrary
     }
 
     double NaturalStoneRevetmentFunctions::OuterSlope(
-        const double slopeLowerPosition,
-        const double slopeLowerLevel,
-        const double slopeUpperPosition,
-        const double slopeUpperLevel)
-    {
-        return SingleSlopePart(slopeUpperLevel, slopeLowerLevel, slopeUpperPosition, slopeLowerPosition);
-    }
-
-    double NaturalStoneRevetmentFunctions::OuterSlope(
         const OuterSlopeInput& input)
     {
-        const auto outerToeHeight = input._outerToeHeight;
-        const auto crestOuterBermHeight = input._crestOuterBermHeight;
-        const auto crestOuterBermPosition = input._crestOuterBermPosition;
-        const auto notchOuterBermHeight = input._notchOuterBermHeight;
-        const auto notchOuterBermPosition = input._notchOuterBermPosition;
-        const auto outerCrestHeight = input._outerCrestHeight;
-
-        const auto slopeLowerPosition = input._slopeLowerPosition;
-        const auto slopeLowerLevel = input._slopeLowerLevel;
-        const auto slopeUpperPosition = input._slopeUpperPosition;
-        const auto slopeUpperLevel = input._slopeUpperLevel;
-
-        const auto slopeLowerLevelOnLowerSlope = outerToeHeight <= slopeLowerLevel && slopeLowerLevel < crestOuterBermHeight;
-        const auto slopeUpperLevelOnLowerSlope = outerToeHeight <= slopeUpperLevel && slopeUpperLevel < crestOuterBermHeight;
-        const auto slopeLowerLevelOnBerm = crestOuterBermHeight <= slopeLowerLevel && slopeLowerLevel <= notchOuterBermHeight;
-        const auto slopeUpperLevelOnBerm = crestOuterBermHeight <= slopeUpperLevel && slopeUpperLevel <= notchOuterBermHeight;
-        const auto slopeLowerLevelOnUpperSlope = notchOuterBermHeight < slopeLowerLevel && slopeLowerLevel <= outerCrestHeight;
-        const auto slopeUpperLevelOnUpperSlope = notchOuterBermHeight < slopeUpperLevel && slopeUpperLevel <= outerCrestHeight;
-
-        if (slopeLowerLevelOnLowerSlope && slopeUpperLevelOnLowerSlope
-            || slopeLowerLevelOnBerm && slopeUpperLevelOnBerm
-            || slopeLowerLevelOnUpperSlope && slopeUpperLevelOnUpperSlope)
-        {
-            return SingleSlopePart(slopeUpperLevel, slopeLowerLevel, slopeUpperPosition, slopeLowerPosition);
-        }
-
-        if (slopeLowerLevelOnLowerSlope && slopeUpperLevelOnBerm)
-        {
-            return SlopeLowerSlopeBerm(crestOuterBermPosition, crestOuterBermHeight, slopeLowerLevel, slopeLowerPosition);
-        }
-
-        if (slopeLowerLevelOnLowerSlope && slopeUpperLevelOnUpperSlope)
-        {
-            const auto distanceBermUpperSlope = DistanceBermUpperSlope(crestOuterBermHeight, notchOuterBermPosition, notchOuterBermHeight,
-                                                                       slopeUpperLevel, slopeUpperPosition);
-            const auto distanceBermLowerSlope = DistanceBermLowerSlope(crestOuterBermPosition, crestOuterBermHeight, notchOuterBermHeight,
-                                                                       slopeLowerLevel, slopeLowerPosition);
-
-            return SlopeLowerUpperSlope(slopeUpperLevel, slopeLowerLevel, distanceBermUpperSlope, distanceBermLowerSlope);
-        }
-
-        if (slopeLowerLevelOnBerm && slopeUpperLevelOnUpperSlope)
-        {
-            return SlopeBermUpperSlope(notchOuterBermPosition, notchOuterBermHeight, slopeUpperLevel, slopeUpperPosition);
-        }
-
-        return numeric_limits<double>::infinity();
+        return !input.HasBerm()
+                   ? SingleSlopePart(input._slopeUpperLevel, input._slopeLowerLevel, input._slopeUpperPosition, input._slopeLowerPosition)
+                   : OuterSlopeWithBerm(input);
     }
 
     double NaturalStoneRevetmentFunctions::SlopeUpperLevel(
@@ -246,6 +193,58 @@ namespace DiKErnel::FunctionLibrary
         const double slopeLowerPosition)
     {
         return (slopeUpperLevel - slopeLowerLevel) / (slopeUpperPosition - slopeLowerPosition);
+    }
+
+    double NaturalStoneRevetmentFunctions::OuterSlopeWithBerm(
+        const OuterSlopeInput& input)
+    {
+        const auto outerToeHeight = input._outerToeHeight;
+        const auto crestOuterBermHeight = input._crestOuterBermHeight;
+        const auto crestOuterBermPosition = input._crestOuterBermPosition;
+        const auto notchOuterBermHeight = input._notchOuterBermHeight;
+        const auto notchOuterBermPosition = input._notchOuterBermPosition;
+        const auto outerCrestHeight = input._outerCrestHeight;
+
+        const auto slopeLowerPosition = input._slopeLowerPosition;
+        const auto slopeLowerLevel = input._slopeLowerLevel;
+        const auto slopeUpperPosition = input._slopeUpperPosition;
+        const auto slopeUpperLevel = input._slopeUpperLevel;
+
+        const auto slopeLowerLevelOnLowerSlope = outerToeHeight <= slopeLowerLevel && slopeLowerLevel < crestOuterBermHeight;
+        const auto slopeUpperLevelOnLowerSlope = outerToeHeight <= slopeUpperLevel && slopeUpperLevel < crestOuterBermHeight;
+        const auto slopeLowerLevelOnBerm = crestOuterBermHeight <= slopeLowerLevel && slopeLowerLevel <= notchOuterBermHeight;
+        const auto slopeUpperLevelOnBerm = crestOuterBermHeight <= slopeUpperLevel && slopeUpperLevel <= notchOuterBermHeight;
+        const auto slopeLowerLevelOnUpperSlope = notchOuterBermHeight < slopeLowerLevel && slopeLowerLevel <= outerCrestHeight;
+        const auto slopeUpperLevelOnUpperSlope = notchOuterBermHeight < slopeUpperLevel && slopeUpperLevel <= outerCrestHeight;
+
+        if (slopeLowerLevelOnLowerSlope && slopeUpperLevelOnLowerSlope
+            || slopeLowerLevelOnBerm && slopeUpperLevelOnBerm
+            || slopeLowerLevelOnUpperSlope && slopeUpperLevelOnUpperSlope)
+        {
+            return SingleSlopePart(slopeUpperLevel, slopeLowerLevel, slopeUpperPosition, slopeLowerPosition);
+        }
+
+        if (slopeLowerLevelOnLowerSlope && slopeUpperLevelOnBerm)
+        {
+            return SlopeLowerSlopeBerm(crestOuterBermPosition, crestOuterBermHeight, slopeLowerLevel, slopeLowerPosition);
+        }
+
+        if (slopeLowerLevelOnLowerSlope && slopeUpperLevelOnUpperSlope)
+        {
+            const auto distanceBermUpperSlope = DistanceBermUpperSlope(crestOuterBermHeight, notchOuterBermPosition, notchOuterBermHeight,
+                                                                       slopeUpperLevel, slopeUpperPosition);
+            const auto distanceBermLowerSlope = DistanceBermLowerSlope(crestOuterBermPosition, crestOuterBermHeight, notchOuterBermHeight,
+                                                                       slopeLowerLevel, slopeLowerPosition);
+
+            return SlopeLowerUpperSlope(slopeUpperLevel, slopeLowerLevel, distanceBermUpperSlope, distanceBermLowerSlope);
+        }
+
+        if (slopeLowerLevelOnBerm && slopeUpperLevelOnUpperSlope)
+        {
+            return SlopeBermUpperSlope(notchOuterBermPosition, notchOuterBermHeight, slopeUpperLevel, slopeUpperPosition);
+        }
+
+        return numeric_limits<double>::infinity();
     }
 
     double NaturalStoneRevetmentFunctions::SlopeLowerSlopeBerm(

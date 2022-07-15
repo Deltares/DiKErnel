@@ -20,6 +20,9 @@
 
 #pragma once
 
+#include <cmath>
+#include <limits>
+
 namespace DiKErnel::FunctionLibrary
 {
     /*!
@@ -28,63 +31,88 @@ namespace DiKErnel::FunctionLibrary
     struct OuterSlopeInput
     {
         /*!
-         * \brief The outer toe height.
-         *        Unit = [m]
-         */
-        double _outerToeHeight;
-
-        /*!
-         * \brief The outer crest height.
-         *        Unit = [m]
-         */
-        double _outerCrestHeight;
-
-        /*!
-         * \brief The notch outer berm position.
-         *        Unit = [m]
-         */
-        double _notchOuterBermPosition;
-
-        /*!
-         * \brief The notch outer berm height.
-         *        Unit = [m]
-         */
-        double _notchOuterBermHeight;
-
-        /*!
-         * \brief The crest outer berm position.
-         *        Unit = [m]
-         */
-        double _crestOuterBermPosition;
-
-        /*!
-         * \brief The crest outer berm height.
-         *        Unit = [m]
-         */
-        double _crestOuterBermHeight;
-
-        /*!
          * \brief The slope lower position.
          *        Unit = [m]
          */
-        double _slopeLowerPosition;
+        double _slopeLowerPosition{};
 
         /*!
          * \brief The slope lower level.
          *        Unit = [m]
          */
-        double _slopeLowerLevel;
+        double _slopeLowerLevel{};
 
         /*!
          * \brief The slope upper position.
          *        Unit = [m]
          */
-        double _slopeUpperPosition;
+        double _slopeUpperPosition{};
 
         /*!
          * \brief The slope upper level.
          *        Unit = [m]
          */
-        double _slopeUpperLevel;
+        double _slopeUpperLevel{};
+
+        /*!
+         * \brief The outer toe height.
+         *        Unit = [m]
+         */
+        double _outerToeHeight{};
+
+        /*!
+         * \brief The outer crest height.
+         *        Unit = [m]
+         */
+        double _outerCrestHeight{};
+
+        /*!
+         * \brief The notch outer berm position.
+         *        Unit = [m]
+         */
+        double _notchOuterBermPosition
+        {
+            std::numeric_limits<double>::infinity()
+        };
+
+        /*!
+         * \brief The notch outer berm height.
+         *        Unit = [m]
+         */
+        double _notchOuterBermHeight
+        {
+            std::numeric_limits<double>::infinity()
+        };
+
+        /*!
+         * \brief The crest outer berm position.
+         *        Unit = [m]
+         */
+        double _crestOuterBermPosition
+        {
+            std::numeric_limits<double>::infinity()
+        };
+
+        /*!
+         * \brief The crest outer berm height.
+         *        Unit = [m]
+         */
+        double _crestOuterBermHeight
+        {
+            std::numeric_limits<double>::infinity()
+        };
+
+        /*!
+         * \brief Indicator whether the input has a berm.
+         * \return false when one of the berm properties is INFINITY; true otherwise.
+         */
+        [[nodiscard]]
+        bool HasBerm() const
+        {
+            return std::isfinite(_notchOuterBermPosition)
+                    && std::isfinite(_notchOuterBermHeight)
+                    && std::isfinite(_crestOuterBermPosition)
+                    && std::isfinite(_crestOuterBermHeight);
+        }
     };
 }

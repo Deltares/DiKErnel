@@ -68,31 +68,7 @@ namespace DiKErnel::FunctionLibrary
                 const HydraulicLoadInput& input);
 
             /*!
-             * \brief Calculates the outer slope in case no berm is present.
-             * \param slopeLowerPosition
-             *        The slope lower position.
-             *        Unit = [m]
-             * \param slopeLowerLevel
-             *        The slope lower level.
-             *        Unit = [m]
-             * \param slopeUpperPosition
-             *        The slope upper position.
-             *        Unit = [m]
-             * \param slopeUpperLevel
-             *        The slope upper level.
-             *        Unit = [m]
-             * \return The outer slope.
-             *         Unit = [-]
-             */
-            [[nodiscard]]
-            static double OuterSlope(
-                double slopeLowerPosition,
-                double slopeLowerLevel,
-                double slopeUpperPosition,
-                double slopeUpperLevel);
-
-            /*!
-             * \brief Calculates the outer slope in case a berm is present.
+             * \brief Calculates the outer slope.
              * \param input
              *        The OuterSlopeInput.
              * \return The outer slope.
@@ -403,6 +379,10 @@ namespace DiKErnel::FunctionLibrary
                 double slopeLowerLevel,
                 double slopeUpperPosition,
                 double slopeLowerPosition);
+
+            [[nodiscardd]]
+            static double OuterSlopeWithBerm(
+                const OuterSlopeInput& input);
 
             [[nodiscard]]
             static double SlopeLowerSlopeBerm(
