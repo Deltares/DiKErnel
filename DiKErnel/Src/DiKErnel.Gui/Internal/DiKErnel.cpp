@@ -287,7 +287,9 @@ namespace DiKErnel::Gui
         }
         catch (const exception&)
         {
-            LogClosingMessage("Er is een onverwachte fout opgetreden. Indien gewenst kunt u contact met ons opnemen via dikernel@deltares.nl.");
+            AddMessage("<b>Berekening mislukt</b>");
+            AddMessage("Er is een onverwachte fout opgetreden. Indien gewenst kunt u contact met ons opnemen via dikernel@deltares.nl.");
+            AddMessage("");
         }
     }
 
@@ -364,13 +366,6 @@ namespace DiKErnel::Gui
             default:
                 throw runtime_error("Unsupported EventType");
         }
-    }
-
-    void DiKErnel::LogClosingMessage(
-        const QString& message)
-    {
-        AddMessage(message);
-        AddMessage("-----------------------------------------------------------------");
     }
 
     void DiKErnel::LogFailureMessage(

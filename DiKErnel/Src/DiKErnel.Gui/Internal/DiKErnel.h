@@ -151,9 +151,6 @@ namespace DiKErnel::Gui
             static std::string GetEventTypeString(
                 Util::EventType eventType);
 
-            void LogClosingMessage(
-                const QString& message);
-
             void LogFailureMessage(
                 std::map<std::string, std::vector<std::string>>& errorMessageCache);
 
