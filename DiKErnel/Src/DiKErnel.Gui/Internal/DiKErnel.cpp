@@ -247,17 +247,6 @@ namespace DiKErnel::Gui
 
             const duration<double> elapsed = high_resolution_clock::now() - startTime;
 
-            const auto numberOfLocations = calculationInput.GetLocationDependentInputItems().size();
-            const auto numberOfTimeSteps = calculationInput.GetTimeDependentInputItems().size() - 1;
-
-            const QString locationString = QString(numberOfLocations == 1 ? "is %1 locatie" : "zijn %1 locaties")
-                    .arg(numberOfLocations);
-
-            AddMessage(QString("Er %1 voor %2 %3 berekend in %4 seconden.").arg(locationString)
-                                                                           .arg(numberOfTimeSteps)
-                                                                           .arg(numberOfTimeSteps == 1 ? "tijdstap" : "tijdstappen")
-                                                                           .arg(elapsed.count()));
-
             vector<pair<string, variant<double, string>>> metaDataItems;
 
             if (WriteMetaData())
@@ -283,6 +272,22 @@ namespace DiKErnel::Gui
             {
                 LogFailureMessage(errorMessageCache);
             }
+
+            AddMessage("<b>Berekening gelukt</b>");
+
+            const auto numberOfLocations = calculationInput.GetLocationDependentInputItems().size();
+            const auto numberOfTimeSteps = calculationInput.GetTimeDependentInputItems().size() - 1;
+
+            const QString timeStepString = QString(numberOfTimeSteps == 1 ? "is %1 tijdstap" : "zijn %1 tijdstappen")
+                .arg(numberOfTimeSteps);
+
+            AddMessage(QString("Er %1 doorgerekend voor %2 %3 in %4 seconden.")
+                .arg(timeStepString)
+                .arg(numberOfLocations)
+                .arg(numberOfLocations == 1 ? "locatie" : "locaties")
+                .arg(elapsed.count()));
+
+            AddMessage("");
         }
         catch (const exception&)
         {
