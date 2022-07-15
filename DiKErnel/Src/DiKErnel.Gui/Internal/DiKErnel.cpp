@@ -225,15 +225,9 @@ namespace DiKErnel::Gui
 
             CacheMessagesWhenApplicable("het valideren van de invoer", validationResult->GetEvents(), warningMessageCache, errorMessageCache);
 
-            if (*validationResult->GetData() == ValidationResultType::Failed)
+            if (*validationResult->GetData() == ValidationResultType::Failed || !validationResult->GetSuccessful())
             {
-                LogClosingMessage("De invoer is ongeldig.");
-                return;
-            }
-
-            if (!validationResult->GetSuccessful())
-            {
-                LogClosingMessage("Het valideren van de invoer is mislukt.");
+                LogFailureMessage(errorMessageCache);
                 return;
             }
 
@@ -248,7 +242,7 @@ namespace DiKErnel::Gui
 
             if (calculator.GetCalculationState() != CalculationState::FinishedSuccessfully || !calculatorResult->GetSuccessful())
             {
-                LogClosingMessage("De berekening is mislukt.");
+                LogFailureMessage(errorMessageCache);
                 return;
             }
 
@@ -288,7 +282,7 @@ namespace DiKErnel::Gui
 
             if (!outputComposerResult->GetSuccessful())
             {
-                LogClosingMessage("Het schrijven van de resultaten is mislukt.");
+                LogFailureMessage(errorMessageCache);
             }
         }
         catch (const exception&)
