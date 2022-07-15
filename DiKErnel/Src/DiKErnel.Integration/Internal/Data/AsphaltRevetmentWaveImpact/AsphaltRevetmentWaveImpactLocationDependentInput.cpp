@@ -21,6 +21,7 @@
 #include "AsphaltRevetmentWaveImpactLocationDependentInput.h"
 
 #include "AsphaltRevetmentWaveImpactFunctions.h"
+#include "AsphaltRevetmentWaveImpactFunctionsInput.h"
 #include "AsphaltRevetmentWaveImpactLocationDependentOutput.h"
 #include "AsphaltRevetmentWaveImpactTimeDependentOutput.h"
 #include "AsphaltRevetmentWaveImpactValidator.h"
@@ -221,6 +222,24 @@ namespace DiKErnel::Integration
         const auto maximumPeakStress = AsphaltRevetmentWaveImpactFunctions::MaximumPeakStress(waveHeightHm0,
                                                                                               Constants::GetGravitationalAcceleration(),
                                                                                               _densityOfWater);
+
+        AsphaltRevetmentWaveImpactFunctionsInput input{};
+        input._logFailureTension = _logFailureTension;
+        input._averageNumberOfWaves = averageNumberOfWaves;
+        input._maximumPeakStress = maximumPeakStress;
+        input._stiffnessRelation = _stiffnessRelation;
+        input._computationalThickness = _computationalThickness;
+        input._outerSlope = _outerSlope;
+        input._widthFactors = _widthFactors;
+        input._depthFactors = _depthFactors;
+        input._impactFactors = _impactFactors;
+        input._z = GetZ();
+        input._waterLevel = timeDependentInput.GetWaterLevel();
+        input._waveHeightHm0 = waveHeightHm0;
+        input._fatigueAlpha = _fatigue->GetAlpha();
+        input._fatigueBeta = _fatigue->GetBeta();
+        input._impactNumberC = _impactNumberC;
+
         const auto incrementDamage = AsphaltRevetmentWaveImpactFunctions::IncrementDamage(_logFailureTension, averageNumberOfWaves,
                                                                                           maximumPeakStress, _stiffnessRelation,
                                                                                           _computationalThickness, _outerSlope,
