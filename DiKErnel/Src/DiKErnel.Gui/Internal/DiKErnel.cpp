@@ -183,14 +183,14 @@ namespace DiKErnel::Gui
             map<string, vector<string>> warningMessageCache;
             map<string, vector<string>> errorMessageCache;
 
+            const auto inputFilePathString = InputFilePath().toString();
             const auto outputFilePathString = OutputFilePath().toString();
             const auto outputFilePathStdString = outputFilePathString.toStdString();
+
             if (filesystem::exists(outputFilePathStdString))
             {
                 filesystem::remove(outputFilePathStdString);
             }
-
-            const auto inputFilePathString = InputFilePath().toString();
 
             if (ValidateJsonFormat())
             {
@@ -262,8 +262,7 @@ namespace DiKErnel::Gui
                 outputFilePathStdString,
                 *calculatorResult->GetData(),
                 _outputLevel,
-                metaDataItems
-            );
+                metaDataItems);
 
             CacheMessagesWhenApplicable("het schrijven van de resultaten", outputComposerResult->GetEvents(), warningMessageCache,
                                         errorMessageCache);
@@ -376,7 +375,9 @@ namespace DiKErnel::Gui
         map<string, vector<string>>& errorMessageCache)
     {
         AddMessage("<b>Berekening mislukt</b>");
+
         LogCachedMessages(errorMessageCache, "fout", "fouten");
+
         AddMessage("");
     }
 
@@ -385,20 +386,24 @@ namespace DiKErnel::Gui
         const string& messageTypeDescriptionSingular,
         const string& messageTypeDescriptionPlural)
     {
-        for (const auto& [endMessage, actualMessages] : messageCache)
+        for (const auto& [endOfMessage, actualMessages] : messageCache)
         {
             if (actualMessages.size() == 1)
             {
-                AddMessage(QString::fromStdString("De volgende " + messageTypeDescriptionSingular + " is opgetreden tijdens " + endMessage + ":"));
-                AddMessage(QString::fromStdString("<i>" + actualMessages.at(0) + "</i>"));
+                AddMessage(QString("De volgende %1 is opgetreden tijdens %2:")
+                           .arg(messageTypeDescriptionSingular.c_str())
+                           .arg(endOfMessage.c_str()));
+                AddMessage(QString("<i>%1</i>").arg(actualMessages.at(0).c_str()));
             }
             else
             {
-                AddMessage(QString::fromStdString("De volgende " + messageTypeDescriptionPlural + " zijn opgetreden tijdens " + endMessage + ":"));
+                AddMessage(QString("De volgende %1 zijn opgetreden tijdens %2:")
+                           .arg(messageTypeDescriptionPlural.c_str())
+                           .arg(endOfMessage.c_str()));
 
                 for (const auto& actualMessage : actualMessages)
                 {
-                    AddMessage(QString::fromStdString("- <i>" + actualMessage + "</i>"));
+                    AddMessage(QString("- <i>%1</i>").arg(actualMessage.c_str()));
                 }
             }
         }
