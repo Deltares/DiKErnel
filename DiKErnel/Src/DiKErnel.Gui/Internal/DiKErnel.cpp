@@ -275,17 +275,21 @@ namespace DiKErnel::Gui
 
             AddMessage("<b>Berekening gelukt</b>");
 
+            LogCachedMessages(warningMessageCache, "waarschuwing", "waarschuwingen");
+
             const auto numberOfLocations = calculationInput.GetLocationDependentInputItems().size();
             const auto numberOfTimeSteps = calculationInput.GetTimeDependentInputItems().size() - 1;
 
             const QString timeStepString = QString(numberOfTimeSteps == 1 ? "is %1 tijdstap" : "zijn %1 tijdstappen")
-                .arg(numberOfTimeSteps);
+                    .arg(numberOfTimeSteps);
 
-            AddMessage(QString("Er %1 doorgerekend voor %2 %3 in %4 seconden.")
-                .arg(timeStepString)
-                .arg(numberOfLocations)
-                .arg(numberOfLocations == 1 ? "locatie" : "locaties")
-                .arg(elapsed.count()));
+            AddMessage(QString("Er %1 doorgerekend voor %2 %3.")
+                       .arg(timeStepString)
+                       .arg(numberOfLocations)
+                       .arg(numberOfLocations == 1 ? "locatie" : "locaties")
+                       .arg(elapsed.count()));
+
+            AddMessage(QString("De rekenduur bedroeg %1 seconden.").arg(elapsed.count()));
 
             AddMessage("Zie het uitvoerbestand voor verdere details.");
 
@@ -364,17 +368,25 @@ namespace DiKErnel::Gui
         map<string, vector<string>>& errorMessageCache)
     {
         AddMessage("<b>Berekening mislukt</b>");
+        LogCachedMessages(errorMessageCache, "fout", "fouten");
+        AddMessage("");
+    }
 
-        for (const auto& [endMessage, actualMessages] : errorMessageCache)
+    void DiKErnel::LogCachedMessages(
+        map<string, vector<string>>& messageCache,
+        const string& messageTypeDescriptionSingular,
+        const string& messageTypeDescriptionPlural)
+    {
+        for (const auto& [endMessage, actualMessages] : messageCache)
         {
             if (actualMessages.size() == 1)
             {
-                AddMessage(QString::fromStdString("De volgende fout is opgetreden tijdens " + endMessage + ":"));
+                AddMessage(QString::fromStdString("De volgende " + messageTypeDescriptionSingular + " is opgetreden tijdens " + endMessage + ":"));
                 AddMessage(QString::fromStdString("<i>" + actualMessages.at(0) + "</i>"));
             }
             else
             {
-                AddMessage(QString::fromStdString("De volgende fouten zijn opgetreden tijdens " + endMessage + ":"));
+                AddMessage(QString::fromStdString("De volgende " + messageTypeDescriptionPlural + " zijn opgetreden tijdens " + endMessage + ":"));
 
                 for (const auto& actualMessage : actualMessages)
                 {
@@ -382,7 +394,5 @@ namespace DiKErnel::Gui
                 }
             }
         }
-
-        AddMessage("");
     }
 }

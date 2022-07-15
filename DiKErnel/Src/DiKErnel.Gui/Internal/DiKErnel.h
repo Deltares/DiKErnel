@@ -151,6 +151,11 @@ namespace DiKErnel::Gui
             void LogFailureMessage(
                 std::map<std::string, std::vector<std::string>>& errorMessageCache);
 
+            void LogCachedMessages(
+                std::map<std::string, std::vector<std::string>>& messageCache,
+                const std::string& messageTypeDescriptionSingular,
+                const std::string& messageTypeDescriptionPlural);
+
             QStringList _stringList;
             KernelWrapper::Json::Output::JsonOutputType _outputLevel = KernelWrapper::Json::Output::JsonOutputType::Damage;
 
