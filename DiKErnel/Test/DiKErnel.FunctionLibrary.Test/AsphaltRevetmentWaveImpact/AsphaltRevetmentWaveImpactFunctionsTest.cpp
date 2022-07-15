@@ -29,13 +29,6 @@ namespace DiKErnel::FunctionLibrary::Test
     TEST(AsphaltRevetmentWaveImpactFunctionsTest, IncrementDamage_ValidInput_ExpectedValue)
     {
         // Setup
-        constexpr auto logFailureTension = 0.193124598;
-        constexpr auto averageNumberOfWaves = 6492.937853;
-        constexpr auto maximumPeakStress = 0.0160884;
-        constexpr auto stiffnessRelation = 1.185626183;
-        constexpr auto computationalThickness = 0.16;
-        constexpr auto outerSlope = 0.232914161;
-
         const vector widthFactors
         {
             pair(0.1, 0.0392),
@@ -85,30 +78,25 @@ namespace DiKErnel::FunctionLibrary::Test
             pair(6.0, 0.001)
         };
 
-        constexpr auto z = 2.988;
-        constexpr auto waterLevel = 3.8;
-        constexpr auto waveHeightHm0 = 1.6;
-        constexpr auto fatigueAlpha = 0.42;
-        constexpr auto fatigueBeta = 4.76;
-        constexpr auto impactNumberC = 1.0;
+        AsphaltRevetmentWaveImpactFunctionsInput input{};
+        input._logFailureTension = 0.193124598;
+        input._averageNumberOfWaves = 6492.937853;
+        input._maximumPeakStress = 0.0160884;
+        input._stiffnessRelation = 1.185626183;
+        input._computationalThickness = 0.16;
+        input._outerSlope = 0.232914161;
+        input._widthFactors = widthFactors;
+        input._depthFactors = depthFactors;
+        input._impactFactors = impactFactors;
+        input._z = 2.988;
+        input._waterLevel = 3.8;
+        input._waveHeightHm0 = 1.6;
+        input._fatigueAlpha = 0.42;
+        input._fatigueBeta = 4.76;
+        input._impactNumberC = 1.0;
 
         // Call
-        const auto incrementDamage = AsphaltRevetmentWaveImpactFunctions::IncrementDamage(
-            logFailureTension,
-            averageNumberOfWaves,
-            maximumPeakStress,
-            stiffnessRelation,
-            computationalThickness,
-            outerSlope,
-            widthFactors,
-            depthFactors,
-            impactFactors,
-            z,
-            waterLevel,
-            waveHeightHm0,
-            fatigueAlpha,
-            fatigueBeta,
-            impactNumberC);
+        const auto incrementDamage = AsphaltRevetmentWaveImpactFunctions::IncrementDamage(input);
 
         // Assert
         ASSERT_DOUBLE_EQ(7.94813500019044, incrementDamage);

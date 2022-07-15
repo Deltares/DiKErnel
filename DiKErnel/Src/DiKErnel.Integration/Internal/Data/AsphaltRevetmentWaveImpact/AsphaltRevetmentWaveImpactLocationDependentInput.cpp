@@ -240,13 +240,7 @@ namespace DiKErnel::Integration
         input._fatigueBeta = _fatigue->GetBeta();
         input._impactNumberC = _impactNumberC;
 
-        const auto incrementDamage = AsphaltRevetmentWaveImpactFunctions::IncrementDamage(_logFailureTension, averageNumberOfWaves,
-                                                                                          maximumPeakStress, _stiffnessRelation,
-                                                                                          _computationalThickness, _outerSlope,
-                                                                                          _widthFactors, _depthFactors, _impactFactors, GetZ(),
-                                                                                          timeDependentInput.GetWaterLevel(), waveHeightHm0,
-                                                                                          _fatigue->GetAlpha(), _fatigue->GetBeta(),
-                                                                                          _impactNumberC);
+        const auto incrementDamage = AsphaltRevetmentWaveImpactFunctions::IncrementDamage(input);
         const auto damage = RevetmentFunctions::Damage(incrementDamage, initialDamage);
 
         unique_ptr<int> timeOfFailure = nullptr;
