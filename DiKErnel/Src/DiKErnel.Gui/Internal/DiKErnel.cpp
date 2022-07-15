@@ -312,7 +312,15 @@ namespace DiKErnel::Gui
     void DiKErnel::CopyToClipboard() const
     {
         QClipboard* clipboard = QGuiApplication::clipboard();
-        clipboard->setText(_stringList.join("\n"));
+
+        QString clipboardText = _stringList.join("\n");
+
+        clipboardText.remove("<b>");
+        clipboardText.remove("</b>");
+        clipboardText.remove("<i>");
+        clipboardText.remove("</i>");
+
+        clipboard->setText(clipboardText);
     }
 
     void DiKErnel::AddMessage(
