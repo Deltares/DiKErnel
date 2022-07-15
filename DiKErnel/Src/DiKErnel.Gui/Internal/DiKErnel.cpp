@@ -287,6 +287,8 @@ namespace DiKErnel::Gui
                 .arg(numberOfLocations == 1 ? "locatie" : "locaties")
                 .arg(elapsed.count()));
 
+            AddMessage("Zie het uitvoerbestand voor verdere details.");
+
             AddMessage("");
         }
         catch (const exception&)
