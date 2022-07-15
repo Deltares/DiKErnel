@@ -335,7 +335,7 @@ namespace DiKErnel::Gui
     }
 
     void DiKErnel::CacheMessagesWhenApplicable(
-        const string& endOfMessage,
+        const string& endOfDescription,
         const vector<reference_wrapper<Event>>& events,
         map<string, vector<string>>& warningMessageCache,
         map<string, vector<string>>& errorMessageCache)
@@ -354,12 +354,12 @@ namespace DiKErnel::Gui
 
         if (!warningMessages.empty())
         {
-            warningMessageCache[endOfMessage] = warningMessages;
+            warningMessageCache[endOfDescription] = warningMessages;
         }
 
         if (!errorMessages.empty())
         {
-            errorMessageCache[endOfMessage] = errorMessages;
+            errorMessageCache[endOfDescription] = errorMessages;
         }
     }
 
@@ -391,24 +391,24 @@ namespace DiKErnel::Gui
         const string& messageTypeDescriptionSingular,
         const string& messageTypeDescriptionPlural)
     {
-        for (const auto& [endOfMessage, actualMessages] : messageCache)
+        for (const auto& [endOfDescription, messages] : messageCache)
         {
-            if (actualMessages.size() == 1)
+            if (messages.size() == 1)
             {
                 AddMessage(QString("De volgende %1 is opgetreden tijdens %2:")
                            .arg(messageTypeDescriptionSingular.c_str())
-                           .arg(endOfMessage.c_str()));
-                AddMessage(QString("<i>%1</i>").arg(actualMessages.at(0).c_str()));
+                           .arg(endOfDescription.c_str()));
+                AddMessage(QString("<i>%1</i>").arg(messages.at(0).c_str()));
             }
             else
             {
                 AddMessage(QString("De volgende %1 zijn opgetreden tijdens %2:")
                            .arg(messageTypeDescriptionPlural.c_str())
-                           .arg(endOfMessage.c_str()));
+                           .arg(endOfDescription.c_str()));
 
-                for (const auto& actualMessage : actualMessages)
+                for (const auto& message : messages)
                 {
-                    AddMessage(QString("- <i>%1</i>").arg(actualMessage.c_str()));
+                    AddMessage(QString("- <i>%1</i>").arg(message.c_str()));
                 }
             }
         }

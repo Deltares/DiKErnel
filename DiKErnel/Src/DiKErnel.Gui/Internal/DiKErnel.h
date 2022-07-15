@@ -140,7 +140,7 @@ namespace DiKErnel::Gui
                 const QString& message);
 
             static void CacheMessagesWhenApplicable(
-                const std::string& endOfMessage,
+                const std::string& endOfDescription,
                 const std::vector<std::reference_wrapper<Util::Event>>& events,
                 std::map<std::string, std::vector<std::string>>& warningMessageCache,
                 std::map<std::string, std::vector<std::string>>& errorMessageCache);
