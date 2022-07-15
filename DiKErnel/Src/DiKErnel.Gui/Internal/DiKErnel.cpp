@@ -251,11 +251,14 @@ namespace DiKErnel::Gui
 
             if (WriteMetaData())
             {
-                metaDataItems.emplace_back(pair<string, variant<double, string>>("versie", ApplicationHelper::GetApplicationVersionString()));
-                metaDataItems.emplace_back(pair<string, variant<double, string>>("besturingssysteem", ApplicationHelper::GetOperatingSystemName()));
+                metaDataItems.emplace_back(
+                    pair<string, variant<double, string>>("versie", ApplicationHelper::GetApplicationVersionString()));
+                metaDataItems.emplace_back(
+                    pair<string, variant<double, string>>("besturingssysteem", ApplicationHelper::GetOperatingSystemName()));
                 metaDataItems.emplace_back(
                     pair<string, variant<double, string>>("tijdstipBerekening", ApplicationHelper::GetFormattedDateTimeString()));
-                metaDataItems.emplace_back(pair<string, variant<double, string>>("tijdsduurBerekening", elapsed.count()));
+                metaDataItems.emplace_back(
+                    pair<string, variant<double, string>>("tijdsduurBerekening", elapsed.count()));
             }
 
             const auto outputComposerResult = JsonOutputComposer::WriteCalculationOutputToJson(
@@ -297,7 +300,9 @@ namespace DiKErnel::Gui
         catch (const exception&)
         {
             AddMessage("<b>Berekening mislukt</b>");
+
             AddMessage("Er is een onverwachte fout opgetreden. Indien gewenst kunt u contact met ons opnemen via dikernel@deltares.nl.");
+
             AddMessage("");
         }
     }
