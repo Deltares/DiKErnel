@@ -39,16 +39,11 @@ namespace DiKErnel::FunctionLibrary
     }
 
     double NaturalStoneRevetmentFunctions::HydraulicLoad(
-        const double surfSimilarityParameter,
-        const double waveHeightHm0,
-        const double hydraulicLoadA,
-        const double hydraulicLoadB,
-        const double hydraulicLoadC,
-        const double hydraulicLoadN)
+        const HydraulicLoadInput& input)
     {
-        return waveHeightHm0 / (hydraulicLoadA * pow(surfSimilarityParameter, hydraulicLoadN)
-            + hydraulicLoadB * surfSimilarityParameter
-            + hydraulicLoadC);
+        return input._waveHeightHm0 / (input._a * pow(input._surfSimilarityParameter, input._n)
+            + input._b * input._surfSimilarityParameter
+            + input._c);
     }
 
     double NaturalStoneRevetmentFunctions::OuterSlope(

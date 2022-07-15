@@ -20,6 +20,7 @@
 
 #pragma once
 
+#include "HydraulicLoadInput.h"
 #include "LimitLoadingInput.h"
 #include "OuterSlopeInput.h"
 
@@ -57,35 +58,14 @@ namespace DiKErnel::FunctionLibrary
 
             /*!
              * \brief Calculates the hydraulic load.
-             * \param surfSimilarityParameter
-             *        The surf similarity parameter.
-             *        Unit = [-]
-             * \param waveHeightHm0
-             *        The wave height.
-             *        Unit = [m]
-             * \param hydraulicLoadA
-             *        The A coefficient.
-             *        Unit = [-]
-             * \param hydraulicLoadB
-             *        The B coefficient.
-             *        Unit = [-]
-             * \param hydraulicLoadC
-             *        The C coefficient.
-             *        Unit = [-]
-             * \param hydraulicLoadN
-             *        The N coefficient.
-             *        Unit = [-]
+             * \param input
+             *        The HydraulicLoadInput.
              * \return The hydraulic load.
              *         Unit = [m]
              */
             [[nodiscard]]
             static double HydraulicLoad(
-                double surfSimilarityParameter,
-                double waveHeightHm0,
-                double hydraulicLoadA,
-                double hydraulicLoadB,
-                double hydraulicLoadC,
-                double hydraulicLoadN);
+                const HydraulicLoadInput& input);
 
             /*!
              * \brief Calculates the outer slope in case no berm is present.

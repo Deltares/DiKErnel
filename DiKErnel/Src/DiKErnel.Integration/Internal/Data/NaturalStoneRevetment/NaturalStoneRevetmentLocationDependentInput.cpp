@@ -23,6 +23,7 @@
 #include "CharacteristicPointsHelper.h"
 #include "Constants.h"
 #include "HydraulicLoadFunctions.h"
+#include "HydraulicLoadInput.h"
 #include "LimitLoadingInput.h"
 #include "NaturalStoneRevetmentFunctions.h"
 #include "NaturalStoneRevetmentLocationDependentOutput.h"
@@ -235,22 +236,27 @@ namespace DiKErnel::Integration
 
         if (loadingRevetment)
         {
-            const auto usePlungingBreakers = _hydraulicLoads->GetHydraulicLoadXib() >= surfSimilarityParameter;
-            const auto hydraulicLoadA = usePlungingBreakers
-                                            ? _hydraulicLoads->GetHydraulicLoadAp()
-                                            : _hydraulicLoads->GetHydraulicLoadAs();
-            const auto hydraulicLoadB = usePlungingBreakers
-                                            ? _hydraulicLoads->GetHydraulicLoadBp()
-                                            : _hydraulicLoads->GetHydraulicLoadBs();
-            const auto hydraulicLoadC = usePlungingBreakers
-                                            ? _hydraulicLoads->GetHydraulicLoadCp()
-                                            : _hydraulicLoads->GetHydraulicLoadCs();
-            const auto hydraulicLoadN = usePlungingBreakers
-                                            ? _hydraulicLoads->GetHydraulicLoadNp()
-                                            : _hydraulicLoads->GetHydraulicLoadNs();
+            HydraulicLoadInput hydraulicLoadInput
+            {
+                surfSimilarityParameter,
+                waveHeightHm0
+            };
 
-            hydraulicLoad = make_unique<double>(NaturalStoneRevetmentFunctions::HydraulicLoad(
-                surfSimilarityParameter, waveHeightHm0, hydraulicLoadA, hydraulicLoadB, hydraulicLoadC, hydraulicLoadN));
+            const auto usePlungingBreakers = _hydraulicLoads->GetHydraulicLoadXib() >= surfSimilarityParameter;
+            hydraulicLoadInput._a = usePlungingBreakers
+                                        ? _hydraulicLoads->GetHydraulicLoadAp()
+                                        : _hydraulicLoads->GetHydraulicLoadAs();
+            hydraulicLoadInput._b = usePlungingBreakers
+                                        ? _hydraulicLoads->GetHydraulicLoadBp()
+                                        : _hydraulicLoads->GetHydraulicLoadBs();
+            hydraulicLoadInput._c = usePlungingBreakers
+                                        ? _hydraulicLoads->GetHydraulicLoadCp()
+                                        : _hydraulicLoads->GetHydraulicLoadCs();
+            hydraulicLoadInput._n = usePlungingBreakers
+                                        ? _hydraulicLoads->GetHydraulicLoadNp()
+                                        : _hydraulicLoads->GetHydraulicLoadNs();
+
+            hydraulicLoad = make_unique<double>(NaturalStoneRevetmentFunctions::HydraulicLoad(hydraulicLoadInput));
             waveAngleImpact = make_unique<double>(NaturalStoneRevetmentFunctions::WaveAngleImpact(
                 timeDependentInput.GetWaveAngle(), _waveAngleImpact->GetBetamax()));
             referenceDegradation = make_unique<double>(
