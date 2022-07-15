@@ -148,9 +148,6 @@ namespace DiKErnel::Gui
             static std::vector<std::reference_wrapper<Util::Event>> GetEventReferences(
                 const std::vector<std::unique_ptr<Util::Event>>& events);
 
-            static std::string GetEventTypeString(
-                Util::EventType eventType);
-
             void LogFailureMessage(
                 std::map<std::string, std::vector<std::string>>& errorMessageCache);
 

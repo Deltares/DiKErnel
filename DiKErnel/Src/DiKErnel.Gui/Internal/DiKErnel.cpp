@@ -26,7 +26,6 @@
 #include <QIcon>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
-#include <stdexcept>
 
 #include "ApplicationHelper.h"
 #include "Calculator.h"
@@ -352,20 +351,6 @@ namespace DiKErnel::Gui
         }
 
         return eventReferences;
-    }
-
-    string DiKErnel::GetEventTypeString(
-        const EventType eventType)
-    {
-        switch (eventType)
-        {
-            case EventType::Warning:
-                return "Waarschuwing";
-            case EventType::Error:
-                return "Fout";
-            default:
-                throw runtime_error("Unsupported EventType");
-        }
     }
 
     void DiKErnel::LogFailureMessage(
