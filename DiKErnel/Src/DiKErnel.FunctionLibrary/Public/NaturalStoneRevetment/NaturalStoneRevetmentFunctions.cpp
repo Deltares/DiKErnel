@@ -135,33 +135,21 @@ namespace DiKErnel::FunctionLibrary
     }
 
     double NaturalStoneRevetmentFunctions::UpperLimitLoading(
-        const double depthMaximumWaveLoad,
-        const double surfSimilarityParameter,
-        const double waterLevel,
-        const double waveHeightHm0,
-        const double upperLimitLoadingAul,
-        const double upperLimitLoadingBul,
-        const double upperLimitLoadingCul)
+        const LimitLoadingInput& input)
     {
-        return waterLevel
-                - 2.0 * depthMaximumWaveLoad
-                + max(depthMaximumWaveLoad + upperLimitLoadingAul,
-                      upperLimitLoadingBul * waveHeightHm0 * min(surfSimilarityParameter, upperLimitLoadingCul));
+        return input._waterLevel
+                - 2.0 * input._depthMaximumWaveLoad
+                + max(input._depthMaximumWaveLoad + input._a,
+                      input._b * input._waveHeightHm0 * min(input._surfSimilarityParameter, input._c));
     }
 
     double NaturalStoneRevetmentFunctions::LowerLimitLoading(
-        const double depthMaximumWaveLoad,
-        const double surfSimilarityParameter,
-        const double waterLevel,
-        const double waveHeightHm0,
-        const double lowerLimitLoadingAll,
-        const double lowerLimitLoadingBll,
-        const double lowerLimitLoadingCll)
+        const LimitLoadingInput& input)
     {
-        return waterLevel
-                - 2.0 * depthMaximumWaveLoad
-                + min(depthMaximumWaveLoad - lowerLimitLoadingAll,
-                      lowerLimitLoadingBll * waveHeightHm0 * min(surfSimilarityParameter, lowerLimitLoadingCll));
+        return input._waterLevel
+                - 2.0 * input._depthMaximumWaveLoad
+                + min(input._depthMaximumWaveLoad - input._a,
+                      input._b * input._waveHeightHm0 * min(input._surfSimilarityParameter, input._c));
     }
 
     double NaturalStoneRevetmentFunctions::DepthMaximumWaveLoad(

@@ -19,6 +19,8 @@
 // All rights reserved.
 
 #pragma once
+
+#include "LimitLoadingInput.h"
 #include "OuterSlopeInput.h"
 
 namespace DiKErnel::FunctionLibrary
@@ -112,7 +114,7 @@ namespace DiKErnel::FunctionLibrary
             /*!
              * \brief Calculates the outer slope in case a berm is present.
              * \param input
-             *        The input for the calculation.
+             *        The OuterSlopeInput.
              * \return The outer slope.
              *         Unit = [-]
              */
@@ -174,75 +176,25 @@ namespace DiKErnel::FunctionLibrary
 
             /*!
              * \brief Calculates the upper limit of loading.
-             * \param depthMaximumWaveLoad
-             *        The depth of the maximum wave load.
-             *        Unit = [m]
-             * \param surfSimilarityParameter
-             *        The surf similarity parameter.
-             *        Unit = [-]
-             * \param waterLevel
-             *        The water level.
-             *        Unit = [m]
-             * \param waveHeightHm0
-             *        The wave height.
-             *        Unit = [m]
-             * \param upperLimitLoadingAul
-             *        The Aul coefficient.
-             *        Unit = [-]
-             * \param upperLimitLoadingBul
-             *        The Bul coefficient.
-             *        Unit = [-]
-             * \param upperLimitLoadingCul
-             *        The Cul coefficient.
-             *        Unit = [-]
+             * \param input
+             *        The LowerLimitLoadingInput.
              * \return The upper limit of loading.
              *         Unit = [m]
              */
             [[nodiscard]]
             static double UpperLimitLoading(
-                double depthMaximumWaveLoad,
-                double surfSimilarityParameter,
-                double waterLevel,
-                double waveHeightHm0,
-                double upperLimitLoadingAul,
-                double upperLimitLoadingBul,
-                double upperLimitLoadingCul);
+                const LimitLoadingInput& input);
 
             /*!
              * \brief Calculates the lower limit of loading.
-             * \param depthMaximumWaveLoad
-             *        The depth of the maximum wave load.
-             *        Unit = [m]
-             * \param surfSimilarityParameter
-             *        The surf similarity parameter.
-             *        Unit = [-]
-             * \param waterLevel
-             *        The water level.
-             *        Unit = [m]
-             * \param waveHeightHm0
-             *        The wave height.
-             *        Unit = [m]
-             * \param lowerLimitLoadingAll
-             *        The All coefficient.
-             *        Unit = [-]
-             * \param lowerLimitLoadingBll
-             *        The Bll coefficient.
-             *        Unit = [-]
-             * \param lowerLimitLoadingCll
-             *        The Cll coefficient.
-             *        Unit = [-]
+             * \param input
+             *        The LowerLimitLoadingInput.
              * \return The lower limit of loading.
              *         Unit = [m]
              */
             [[nodiscard]]
             static double LowerLimitLoading(
-                double depthMaximumWaveLoad,
-                double surfSimilarityParameter,
-                double waterLevel,
-                double waveHeightHm0,
-                double lowerLimitLoadingAll,
-                double lowerLimitLoadingBll,
-                double lowerLimitLoadingCll);
+                const LimitLoadingInput& input);
 
             /*!
              * \brief Calculates the depth of the maximum wave load.

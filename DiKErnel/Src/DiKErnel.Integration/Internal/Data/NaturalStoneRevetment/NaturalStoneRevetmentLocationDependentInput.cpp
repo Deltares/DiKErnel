@@ -23,6 +23,7 @@
 #include "CharacteristicPointsHelper.h"
 #include "Constants.h"
 #include "HydraulicLoadFunctions.h"
+#include "LimitLoadingInput.h"
 #include "NaturalStoneRevetmentFunctions.h"
 #include "NaturalStoneRevetmentLocationDependentOutput.h"
 #include "NaturalStoneRevetmentTimeDependentOutput.h"
@@ -200,14 +201,25 @@ namespace DiKErnel::Integration
         const auto slopeAngle = HydraulicLoadFunctions::SlopeAngle(outerSlope);
         const auto depthMaximumWaveLoad = NaturalStoneRevetmentFunctions::DepthMaximumWaveLoad(distanceMaximumWaveElevation,
                                                                                                normativeWidthWaveImpact, slopeAngle);
-        const auto lowerLimitLoading = NaturalStoneRevetmentFunctions::LowerLimitLoading(depthMaximumWaveLoad, surfSimilarityParameter, waterLevel,
-                                                                                         waveHeightHm0, _lowerLimitLoading->GetLowerLimitAll(),
-                                                                                         _lowerLimitLoading->GetLowerLimitBll(),
-                                                                                         _lowerLimitLoading->GetLowerLimitCll());
-        const auto upperLimitLoading = NaturalStoneRevetmentFunctions::UpperLimitLoading(depthMaximumWaveLoad, surfSimilarityParameter, waterLevel,
-                                                                                         waveHeightHm0, _upperLimitLoading->GetUpperLimitAul(),
-                                                                                         _upperLimitLoading->GetUpperLimitBul(),
-                                                                                         _upperLimitLoading->GetUpperLimitCul());
+
+        LimitLoadingInput limitLoadingInput
+        {
+            depthMaximumWaveLoad,
+            surfSimilarityParameter,
+            waterLevel,
+            waveHeightHm0,
+            _lowerLimitLoading->GetLowerLimitAll(),
+            _lowerLimitLoading->GetLowerLimitBll(),
+            _lowerLimitLoading->GetLowerLimitCll()
+        };
+
+        const auto lowerLimitLoading = NaturalStoneRevetmentFunctions::LowerLimitLoading(limitLoadingInput);
+
+        limitLoadingInput._a = _upperLimitLoading->GetUpperLimitAul();
+        limitLoadingInput._b = _upperLimitLoading->GetUpperLimitBul();
+        limitLoadingInput._c = _upperLimitLoading->GetUpperLimitCul();
+
+        const auto upperLimitLoading = NaturalStoneRevetmentFunctions::UpperLimitLoading(limitLoadingInput);
         const auto loadingRevetment = HydraulicLoadFunctions::LoadingRevetment(lowerLimitLoading, upperLimitLoading, GetZ());
 
         auto incrementDamage = 0.0;
