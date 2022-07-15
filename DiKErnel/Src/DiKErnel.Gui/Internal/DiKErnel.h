@@ -139,9 +139,11 @@ namespace DiKErnel::Gui
             void AddMessage(
                 const QString& message);
 
-            void LogEventsWhenApplicable(
-                const QString& message,
-                const std::vector<std::reference_wrapper<Util::Event>>& events);
+            static void CacheMessagesWhenApplicable(
+                const std::string& endOfMessage,
+                const std::vector<std::reference_wrapper<Util::Event>>& events,
+                std::map<std::string, std::vector<std::string>>& warningMessageCache,
+                std::map<std::string, std::vector<std::string>>& errorMessageCache);
 
             static std::vector<std::reference_wrapper<Util::Event>> GetEventReferences(
                 const std::vector<std::unique_ptr<Util::Event>>& events);
@@ -151,6 +153,9 @@ namespace DiKErnel::Gui
 
             void LogClosingMessage(
                 const QString& message);
+
+            void LogFailureMessage(
+                std::map<std::string, std::vector<std::string>>& errorMessageCache);
 
             QStringList _stringList;
             KernelWrapper::Json::Output::JsonOutputType _outputLevel = KernelWrapper::Json::Output::JsonOutputType::Damage;
