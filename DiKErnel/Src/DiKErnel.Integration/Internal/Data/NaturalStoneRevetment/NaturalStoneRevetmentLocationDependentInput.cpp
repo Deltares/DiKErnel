@@ -27,6 +27,7 @@
 #include "NaturalStoneRevetmentLocationDependentOutput.h"
 #include "NaturalStoneRevetmentTimeDependentOutput.h"
 #include "NaturalStoneRevetmentValidator.h"
+#include "OuterSlopeInput.h"
 #include "RevetmentFunctions.h"
 #include "TimeDependentInput.h"
 #include "ValidationHelper.h"
@@ -161,14 +162,30 @@ namespace DiKErnel::Integration
                                                                                      naturalStoneRevetmentSlope.GetLowerLevelAls());
         const auto slopeLowerPosition = profileData.InterpolationHorizontalPosition(slopeLowerLevel);
 
-        const auto outerSlope = _notchOuterBerm != nullptr && _crestOuterBerm != nullptr
-                                    ? NaturalStoneRevetmentFunctions::OuterSlope(_outerToeHeight, _outerCrestHeight, _notchOuterBerm->first,
-                                                                                 _notchOuterBerm->second, _crestOuterBerm->first,
-                                                                                 _crestOuterBerm->second,
-                                                                                 slopeLowerPosition, slopeLowerLevel, slopeUpperPosition,
-                                                                                 slopeUpperLevel)
-                                    : NaturalStoneRevetmentFunctions::OuterSlope(slopeLowerPosition, slopeLowerLevel, slopeUpperPosition,
-                                                                                 slopeUpperLevel);
+        double outerSlope;
+
+        if (_notchOuterBerm != nullptr && _crestOuterBerm != nullptr)
+        {
+            const OuterSlopeInput outerSlopeInput
+            {
+                _outerToeHeight,
+                _outerCrestHeight,
+                _notchOuterBerm->first,
+                _notchOuterBerm->second,
+                _crestOuterBerm->first,
+                _crestOuterBerm->second,
+                slopeLowerPosition,
+                slopeLowerLevel,
+                slopeUpperPosition,
+                slopeUpperLevel
+            };
+
+            outerSlope = NaturalStoneRevetmentFunctions::OuterSlope(outerSlopeInput);
+        }
+        else
+        {
+            outerSlope = NaturalStoneRevetmentFunctions::OuterSlope(slopeLowerPosition, slopeLowerLevel, slopeUpperPosition, slopeUpperLevel);
+        }
 
         const auto waveSteepnessDeepWater = HydraulicLoadFunctions::WaveSteepnessDeepWater(waveHeightHm0, wavePeriodTm10,
                                                                                            Constants::GetGravitationalAcceleration());

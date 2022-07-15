@@ -61,17 +61,20 @@ namespace DiKErnel::FunctionLibrary
     }
 
     double NaturalStoneRevetmentFunctions::OuterSlope(
-        const double outerToeHeight,
-        const double outerCrestHeight,
-        const double notchOuterBermPosition,
-        const double notchOuterBermHeight,
-        const double crestOuterBermPosition,
-        const double crestOuterBermHeight,
-        const double slopeLowerPosition,
-        const double slopeLowerLevel,
-        const double slopeUpperPosition,
-        const double slopeUpperLevel)
+        const OuterSlopeInput& input)
     {
+        const auto outerToeHeight = input._outerToeHeight;
+        const auto crestOuterBermHeight = input._crestOuterBermHeight;
+        const auto crestOuterBermPosition = input._crestOuterBermPosition;
+        const auto notchOuterBermHeight = input._notchOuterBermHeight;
+        const auto notchOuterBermPosition = input._notchOuterBermPosition;
+        const auto outerCrestHeight = input._outerCrestHeight;
+
+        const auto slopeLowerPosition = input._slopeLowerPosition;
+        const auto slopeLowerLevel = input._slopeLowerLevel;
+        const auto slopeUpperPosition = input._slopeUpperPosition;
+        const auto slopeUpperLevel = input._slopeUpperLevel;
+
         const auto slopeLowerLevelOnLowerSlope = outerToeHeight <= slopeLowerLevel && slopeLowerLevel < crestOuterBermHeight;
         const auto slopeUpperLevelOnLowerSlope = outerToeHeight <= slopeUpperLevel && slopeUpperLevel < crestOuterBermHeight;
         const auto slopeLowerLevelOnBerm = crestOuterBermHeight <= slopeLowerLevel && slopeLowerLevel <= notchOuterBermHeight;

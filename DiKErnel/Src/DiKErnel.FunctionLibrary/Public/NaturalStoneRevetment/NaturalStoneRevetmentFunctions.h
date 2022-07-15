@@ -19,6 +19,7 @@
 // All rights reserved.
 
 #pragma once
+#include "OuterSlopeInput.h"
 
 namespace DiKErnel::FunctionLibrary
 {
@@ -110,51 +111,14 @@ namespace DiKErnel::FunctionLibrary
 
             /*!
              * \brief Calculates the outer slope in case a berm is present.
-             * \param outerToeHeight
-             *        The height of the outer toe.
-             *        Unit = [m]
-             * \param outerCrestHeight
-             *        The height of the outer crest.
-             *        Unit = [m]
-             * \param notchOuterBermPosition
-             *        The position of the notch outer berm.
-             *        Unit = [m]
-             * \param notchOuterBermHeight
-             *        The height of the notch outer berm.
-             *        Unit = [m]
-             * \param crestOuterBermPosition
-             *        The position of the crest outer berm.
-             *        Unit = [m]
-             * \param crestOuterBermHeight
-             *        The height of the crest outer berm.
-             *        Unit = [m]
-             * \param slopeLowerPosition
-             *        The slope lower position.
-             *        Unit = [m]
-             * \param slopeLowerLevel
-             *        The slope lower level.
-             *        Unit = [m]
-             * \param slopeUpperPosition
-             *        The slope upper position.
-             *        Unit = [m]
-             * \param slopeUpperLevel
-             *        The slope upper level.
-             *        Unit = [m]
+             * \param input
+             *        The input for the calculation.
              * \return The outer slope.
              *         Unit = [-]
              */
             [[nodiscard]]
             static double OuterSlope(
-                double outerToeHeight,
-                double outerCrestHeight,
-                double notchOuterBermPosition,
-                double notchOuterBermHeight,
-                double crestOuterBermPosition,
-                double crestOuterBermHeight,
-                double slopeLowerPosition,
-                double slopeLowerLevel,
-                double slopeUpperPosition,
-                double slopeUpperLevel);
+                const OuterSlopeInput& input);
 
             /*!
              * \brief Calculates the slope upper level.
