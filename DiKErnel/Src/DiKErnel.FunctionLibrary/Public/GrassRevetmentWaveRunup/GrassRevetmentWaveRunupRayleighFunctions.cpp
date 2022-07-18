@@ -28,28 +28,21 @@ namespace DiKErnel::FunctionLibrary
     using namespace std;
 
     double GrassRevetmentWaveRunupRayleighFunctions::CumulativeOverload(
-        const double averageNumberOfWaves,
-        const double representativeWaveRunup2P,
-        const int fixedNumberOfWaves,
-        const double verticalDistanceWaterLevelElevation,
-        const double criticalFrontVelocity,
-        const double increasedLoadTransitionAlphaM,
-        const double reducedStrengthTransitionAlphaS,
-        const double frontVelocityCu,
-        const double gravitationalAcceleration)
+        const GrassRevetmentWaveRunupRayleighCumulativeOverloadInput& input)
     {
         auto cumulativeFrontVelocity = 0.0;
 
-        for (auto k = 1; k <= fixedNumberOfWaves; ++k)
+        for (auto k = 1; k <= input._fixedNumberOfWaves; ++k)
         {
-            const auto waveRunup = WaveRunup(representativeWaveRunup2P, fixedNumberOfWaves, k);
-            const auto frontVelocity = FrontVelocity(waveRunup, verticalDistanceWaterLevelElevation, frontVelocityCu, gravitationalAcceleration);
+            const auto waveRunup = WaveRunup(input._representativeWaveRunup2P, input._fixedNumberOfWaves, k);
+            const auto frontVelocity = FrontVelocity(waveRunup, input._verticalDistanceWaterLevelElevation, input._frontVelocityCu,
+                                                     input._gravitationalAcceleration);
 
-            cumulativeFrontVelocity += max(0.0, increasedLoadTransitionAlphaM * pow(frontVelocity, 2.0)
-                                           - reducedStrengthTransitionAlphaS * pow(criticalFrontVelocity, 2.0));
+            cumulativeFrontVelocity += max(0.0, input._increasedLoadTransitionAlphaM * pow(frontVelocity, 2.0)
+                                           - input._reducedStrengthTransitionAlphaS * pow(input._criticalFrontVelocity, 2.0));
         }
 
-        return averageNumberOfWaves / fixedNumberOfWaves * cumulativeFrontVelocity;
+        return input._averageNumberOfWaves / input._fixedNumberOfWaves * cumulativeFrontVelocity;
     }
 
     double GrassRevetmentWaveRunupRayleighFunctions::FrontVelocity(

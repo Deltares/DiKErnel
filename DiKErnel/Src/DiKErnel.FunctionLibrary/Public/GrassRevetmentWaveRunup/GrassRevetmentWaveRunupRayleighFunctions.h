@@ -20,6 +20,8 @@
 
 #pragma once
 
+#include "GrassRevetmentWaveRunupRayleighCumulativeOverloadInput.h"
+
 namespace DiKErnel::FunctionLibrary
 {
     /*!
@@ -31,47 +33,14 @@ namespace DiKErnel::FunctionLibrary
         public:
             /*!
              * \brief Calculates the cumulative overload.
-             * \param averageNumberOfWaves
-             *        The average number of waves.
-             *        Unit = [-]
-             * \param representativeWaveRunup2P
-             *        The representative wave run-up (2 percent).
-             *        Unit = [m]
-             * \param fixedNumberOfWaves
-             *        The fixed number of waves.
-             *        Unit = [-]
-             * \param verticalDistanceWaterLevelElevation
-             *        The vertical distance of the water elevation.
-             *        Unit = [m]
-             * \param criticalFrontVelocity
-             *        The critical front velocity.
-             *        Unit = [m/s]
-             * \param increasedLoadTransitionAlphaM
-             *        The AlphaM value.
-             *        Unit = [-]
-             * \param reducedStrengthTransitionAlphaS
-             *        The AlphaS value.
-             *        Unit = [-]
-             * \param frontVelocityCu
-             *        The Cu coefficient.
-             *        Unit = [-]
-             * \param gravitationalAcceleration
-             *        The gravitational acceleration.
-             *        Unit = [m/s^2]
+             * \param input
+             *        The GrassRevetmentWaveRunupRayleighCumulativeOverloadInput.
              * \return The cumulative overload.
              *         Unit = [m^2/s^2]
              */
             [[nodiscard]]
             static double CumulativeOverload(
-                double averageNumberOfWaves,
-                double representativeWaveRunup2P,
-                int fixedNumberOfWaves,
-                double verticalDistanceWaterLevelElevation,
-                double criticalFrontVelocity,
-                double increasedLoadTransitionAlphaM,
-                double reducedStrengthTransitionAlphaS,
-                double frontVelocityCu,
-                double gravitationalAcceleration);
+                const GrassRevetmentWaveRunupRayleighCumulativeOverloadInput& input);
 
         private:
             [[nodiscard]]

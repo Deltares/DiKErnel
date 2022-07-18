@@ -129,12 +129,21 @@ namespace DiKErnel::Integration
             representativeWaveRunup2PInput._representativeWaveRunup2PBru = representative2P.GetRepresentative2PBru();
             representativeWaveRunup2PInput._representativeWaveRunup2PCru = representative2P.GetRepresentative2PCru();
 
-            representativeWaveRunup2P = make_unique<double>(GrassRevetmentWaveRunupFunctions::RepresentativeWaveRunup2P(representativeWaveRunup2PInput));
+            representativeWaveRunup2P = make_unique<double>(
+                GrassRevetmentWaveRunupFunctions::RepresentativeWaveRunup2P(representativeWaveRunup2PInput));
 
-            cumulativeOverload = make_unique<double>(GrassRevetmentWaveRunupRayleighFunctions::CumulativeOverload(
-                averageNumberOfWaves, *representativeWaveRunup2P, _fixedNumberOfWaves, verticalDistanceWaterLevelElevation,
-                GetCriticalFrontVelocity(), GetIncreasedLoadTransitionAlphaM(), GetReducedStrengthTransitionAlphaS(), _frontVelocityCu,
-                Constants::GetGravitationalAcceleration()));
+            GrassRevetmentWaveRunupRayleighCumulativeOverloadInput cumulativeOverloadInput{};
+            cumulativeOverloadInput._averageNumberOfWaves = averageNumberOfWaves;
+            cumulativeOverloadInput._representativeWaveRunup2P = *representativeWaveRunup2P;
+            cumulativeOverloadInput._fixedNumberOfWaves = _fixedNumberOfWaves;
+            cumulativeOverloadInput._verticalDistanceWaterLevelElevation = verticalDistanceWaterLevelElevation;
+            cumulativeOverloadInput._criticalFrontVelocity = GetCriticalFrontVelocity();
+            cumulativeOverloadInput._increasedLoadTransitionAlphaM = GetIncreasedLoadTransitionAlphaM();
+            cumulativeOverloadInput._reducedStrengthTransitionAlphaS = GetReducedStrengthTransitionAlphaS();
+            cumulativeOverloadInput._frontVelocityCu = _frontVelocityCu;
+            cumulativeOverloadInput._gravitationalAcceleration = Constants::GetGravitationalAcceleration();
+
+            cumulativeOverload = make_unique<double>(GrassRevetmentWaveRunupRayleighFunctions::CumulativeOverload(cumulativeOverloadInput));
 
             incrementDamage = GrassRevetmentWaveRunupFunctions::IncrementDamage(*cumulativeOverload, GetCriticalCumulativeOverload());
 

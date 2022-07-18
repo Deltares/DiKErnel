@@ -27,27 +27,19 @@ namespace DiKErnel::FunctionLibrary::Test
     TEST(GrassRevetmentWaveRunupRayleighFunctionsTest, CumulativeOverload_ValidInput_ExpectedValue)
     {
         // Setup
-        constexpr auto averageNumberOfWaves = 225;
-        constexpr auto representativeWaveRunup2P = 2.258;
-        constexpr auto fixedNumberOfWaves = 10000;
-        constexpr auto verticalDistanceWaterLevelElevation = 0.97;
-        constexpr auto criticalFrontVelocity = 4.0;
-        constexpr auto increasedLoadTransitionAlphaM = 1.1;
-        constexpr auto reducedStrengthTransitionAlphaS = 1.2;
-        constexpr auto frontVelocityCu = 1.3;
-        constexpr auto gravitationalAcceleration = 9.81;
+        GrassRevetmentWaveRunupRayleighCumulativeOverloadInput input{};
+        input._averageNumberOfWaves = 225;
+        input._representativeWaveRunup2P = 2.258;
+        input._fixedNumberOfWaves = 10000;
+        input._verticalDistanceWaterLevelElevation = 0.97;
+        input._criticalFrontVelocity = 4.0;
+        input._increasedLoadTransitionAlphaM = 1.1;
+        input._reducedStrengthTransitionAlphaS = 1.2;
+        input._frontVelocityCu = 1.3;
+        input._gravitationalAcceleration = 9.81;
 
         // Call
-        const auto cumulativeOverload = GrassRevetmentWaveRunupRayleighFunctions::CumulativeOverload(
-            averageNumberOfWaves,
-            representativeWaveRunup2P,
-            fixedNumberOfWaves,
-            verticalDistanceWaterLevelElevation,
-            criticalFrontVelocity,
-            increasedLoadTransitionAlphaM,
-            reducedStrengthTransitionAlphaS,
-            frontVelocityCu,
-            gravitationalAcceleration);
+        const auto cumulativeOverload = GrassRevetmentWaveRunupRayleighFunctions::CumulativeOverload(input);
 
         // Assert
         ASSERT_DOUBLE_EQ(735.67446176679459, cumulativeOverload);
