@@ -20,9 +20,9 @@
 
 #pragma once
 
-#include "HydraulicLoadInput.h"
-#include "LimitLoadingInput.h"
-#include "OuterSlopeInput.h"
+#include "NaturalStoneRevetmentHydraulicLoadInput.h"
+#include "NaturalStoneRevetmentLimitLoadingInput.h"
+#include "NaturalStoneRevetmentOuterSlopeInput.h"
 
 namespace DiKErnel::FunctionLibrary
 {
@@ -59,24 +59,24 @@ namespace DiKErnel::FunctionLibrary
             /*!
              * \brief Calculates the hydraulic load.
              * \param input
-             *        The HydraulicLoadInput.
+             *        The NaturalStoneRevetmentHydraulicLoadInput.
              * \return The hydraulic load.
              *         Unit = [m]
              */
             [[nodiscard]]
             static double HydraulicLoad(
-                const HydraulicLoadInput& input);
+                const NaturalStoneRevetmentHydraulicLoadInput& input);
 
             /*!
              * \brief Calculates the outer slope.
              * \param input
-             *        The OuterSlopeInput.
+             *        The NaturalStoneRevetmentOuterSlopeInput.
              * \return The outer slope.
              *         Unit = [-]
              */
             [[nodiscard]]
             static double OuterSlope(
-                const OuterSlopeInput& input);
+                const NaturalStoneRevetmentOuterSlopeInput& input);
 
             /*!
              * \brief Calculates the slope upper level.
@@ -133,24 +133,24 @@ namespace DiKErnel::FunctionLibrary
             /*!
              * \brief Calculates the upper limit of loading.
              * \param input
-             *        The LowerLimitLoadingInput.
+             *        The NaturalStoneRevetmentLimitLoadingInput.
              * \return The upper limit of loading.
              *         Unit = [m]
              */
             [[nodiscard]]
             static double UpperLimitLoading(
-                const LimitLoadingInput& input);
+                const NaturalStoneRevetmentLimitLoadingInput& input);
 
             /*!
              * \brief Calculates the lower limit of loading.
              * \param input
-             *        The LowerLimitLoadingInput.
+             *        The NaturalStoneRevetmentLimitLoadingInput.
              * \return The lower limit of loading.
              *         Unit = [m]
              */
             [[nodiscard]]
             static double LowerLimitLoading(
-                const LimitLoadingInput& input);
+                const NaturalStoneRevetmentLimitLoadingInput& input);
 
             /*!
              * \brief Calculates the depth of the maximum wave load.
@@ -382,7 +382,7 @@ namespace DiKErnel::FunctionLibrary
 
             [[nodiscardd]]
             static double OuterSlopeWithBerm(
-                const OuterSlopeInput& input);
+                const NaturalStoneRevetmentOuterSlopeInput& input);
 
             [[nodiscard]]
             static double SlopeLowerSlopeBerm(

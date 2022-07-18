@@ -23,13 +23,13 @@
 #include "CharacteristicPointsHelper.h"
 #include "Constants.h"
 #include "HydraulicLoadFunctions.h"
-#include "HydraulicLoadInput.h"
-#include "LimitLoadingInput.h"
 #include "NaturalStoneRevetmentFunctions.h"
+#include "NaturalStoneRevetmentHydraulicLoadInput.h"
+#include "NaturalStoneRevetmentLimitLoadingInput.h"
 #include "NaturalStoneRevetmentLocationDependentOutput.h"
+#include "NaturalStoneRevetmentOuterSlopeInput.h"
 #include "NaturalStoneRevetmentTimeDependentOutput.h"
 #include "NaturalStoneRevetmentValidator.h"
-#include "OuterSlopeInput.h"
 #include "RevetmentFunctions.h"
 #include "TimeDependentInput.h"
 #include "ValidationHelper.h"
@@ -164,7 +164,7 @@ namespace DiKErnel::Integration
                                                                                      naturalStoneRevetmentSlope.GetLowerLevelAls());
         const auto slopeLowerPosition = profileData.InterpolationHorizontalPosition(slopeLowerLevel);
 
-        OuterSlopeInput outerSlopeInput{};
+        NaturalStoneRevetmentOuterSlopeInput outerSlopeInput{};
         outerSlopeInput._slopeLowerPosition = slopeLowerPosition;
         outerSlopeInput._slopeLowerLevel = slopeLowerLevel;
         outerSlopeInput._slopeUpperPosition = slopeUpperPosition;
@@ -195,7 +195,7 @@ namespace DiKErnel::Integration
         const auto depthMaximumWaveLoad = NaturalStoneRevetmentFunctions::DepthMaximumWaveLoad(distanceMaximumWaveElevation,
                                                                                                normativeWidthWaveImpact, slopeAngle);
 
-        LimitLoadingInput limitLoadingInput{};
+        NaturalStoneRevetmentLimitLoadingInput limitLoadingInput{};
         limitLoadingInput._depthMaximumWaveLoad = depthMaximumWaveLoad;
         limitLoadingInput._surfSimilarityParameter = surfSimilarityParameter;
         limitLoadingInput._waterLevel = waterLevel;
@@ -226,7 +226,7 @@ namespace DiKErnel::Integration
 
         if (loadingRevetment)
         {
-            HydraulicLoadInput hydraulicLoadInput{};
+            NaturalStoneRevetmentHydraulicLoadInput hydraulicLoadInput{};
             hydraulicLoadInput._surfSimilarityParameter = surfSimilarityParameter;
             hydraulicLoadInput._waveHeightHm0 = waveHeightHm0;
 

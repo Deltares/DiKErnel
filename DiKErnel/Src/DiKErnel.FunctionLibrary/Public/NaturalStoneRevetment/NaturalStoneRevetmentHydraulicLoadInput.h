@@ -23,27 +23,15 @@
 namespace DiKErnel::FunctionLibrary
 {
     /*!
-     * \brief Input object for a limit loading calculation.
+     * \brief Input object for a natural stone revetment hydraulic load calculation.
      */
-    struct LimitLoadingInput
+    struct NaturalStoneRevetmentHydraulicLoadInput
     {
-        /*!
-         * \brief The depth of the maximum wave load.
-         *        Unit = [m]
-         */
-        double _depthMaximumWaveLoad;
-
         /*!
          * \brief The surf similarity parameter.
          *        Unit = [-]
          */
         double _surfSimilarityParameter;
-
-        /*!
-         * \brief The water level.
-         *        Unit = [m]
-         */
-        double _waterLevel;
 
         /*!
          * \brief The wave height.
@@ -68,5 +56,11 @@ namespace DiKErnel::FunctionLibrary
          *        Unit = [-]
          */
         double _c;
+
+        /*!
+         * \brief The n coefficient.
+         *        Unit = [-]
+         */
+        double _n;
     };
 }

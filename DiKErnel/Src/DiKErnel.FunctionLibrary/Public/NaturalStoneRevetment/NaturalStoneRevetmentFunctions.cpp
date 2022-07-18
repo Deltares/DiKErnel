@@ -39,7 +39,7 @@ namespace DiKErnel::FunctionLibrary
     }
 
     double NaturalStoneRevetmentFunctions::HydraulicLoad(
-        const HydraulicLoadInput& input)
+        const NaturalStoneRevetmentHydraulicLoadInput& input)
     {
         return input._waveHeightHm0 / (input._a * pow(input._surfSimilarityParameter, input._n)
             + input._b * input._surfSimilarityParameter
@@ -47,7 +47,7 @@ namespace DiKErnel::FunctionLibrary
     }
 
     double NaturalStoneRevetmentFunctions::OuterSlope(
-        const OuterSlopeInput& input)
+        const NaturalStoneRevetmentOuterSlopeInput& input)
     {
         return !input.HasBerm()
                    ? SingleSlopePart(input._slopeUpperLevel, input._slopeLowerLevel, input._slopeUpperPosition, input._slopeLowerPosition)
@@ -77,7 +77,7 @@ namespace DiKErnel::FunctionLibrary
     }
 
     double NaturalStoneRevetmentFunctions::UpperLimitLoading(
-        const LimitLoadingInput& input)
+        const NaturalStoneRevetmentLimitLoadingInput& input)
     {
         return input._waterLevel
                 - 2.0 * input._depthMaximumWaveLoad
@@ -86,7 +86,7 @@ namespace DiKErnel::FunctionLibrary
     }
 
     double NaturalStoneRevetmentFunctions::LowerLimitLoading(
-        const LimitLoadingInput& input)
+        const NaturalStoneRevetmentLimitLoadingInput& input)
     {
         return input._waterLevel
                 - 2.0 * input._depthMaximumWaveLoad
@@ -196,7 +196,7 @@ namespace DiKErnel::FunctionLibrary
     }
 
     double NaturalStoneRevetmentFunctions::OuterSlopeWithBerm(
-        const OuterSlopeInput& input)
+        const NaturalStoneRevetmentOuterSlopeInput& input)
     {
         const auto outerToeHeight = input._outerToeHeight;
         const auto crestOuterBermHeight = input._crestOuterBermHeight;
