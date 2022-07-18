@@ -29,6 +29,6 @@ namespace DiKErnel::KernelWrapper::Json::Output
         public:
             inline static const std::string MAXIMUM_WAVE_HEIGHT = "maximumGolfhoogte";
             inline static const std::string MINIMUM_WAVE_HEIGHT = "minimumGolfhoogte";
-            inline static const std::string WAVE_HEIGHT_IMPACT = "golfhoogte";
+            inline static const std::string WAVE_HEIGHT_IMPACT = "impactGolfhoogte";
     };
 }

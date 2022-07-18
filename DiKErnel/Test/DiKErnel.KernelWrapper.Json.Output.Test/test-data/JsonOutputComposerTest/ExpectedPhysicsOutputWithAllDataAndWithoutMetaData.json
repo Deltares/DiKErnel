@@ -12,7 +12,7 @@
                     ]
                 },
                 "fysica": {
-                    "hoogte": 4.6,
+                    "hoogteLocatie": 4.6,
                     "hellingBuitentalud": 4.7,
                     "toenameSchade": [
                         0.1
@@ -26,7 +26,7 @@
                     "stijfheidsverhouding": [
                         0.6
                     ],
-                    "rekenDikteAsfalt": [
+                    "rekendikte": [
                         0.7
                     ],
                     "equivalenteStijfheidsmodulus": [
@@ -45,7 +45,7 @@
                     ]
                 },
                 "fysica": {
-                    "hoogte": 4.8,
+                    "hoogteLocatie": 4.8,
                     "toenameSchade": [
                         0.9
                     ],
@@ -67,7 +67,7 @@
                     "impactGolfhoek": [
                         1.7
                     ],
-                    "golfhoogte": [
+                    "impactGolfhoogte": [
                         1.8
                     ]
                 }
@@ -83,11 +83,11 @@
                     ]
                 },
                 "fysica": {
-                    "hoogte": 4.9,
+                    "hoogteLocatie": 4.9,
                     "toenameSchade": [
                         1.9
                     ],
-                    "verticaleAfstandWaterstandPositieZ": [
+                    "verticaleAfstandWaterstandHoogteLocatie": [
                         2.2
                     ],
                     "impactGolfhoek": [
@@ -112,7 +112,7 @@
                     ]
                 },
                 "fysica": {
-                    "hoogte": 5.0,
+                    "hoogteLocatie": 5.0,
                     "toenameSchade": [
                         2.6
                     ],
@@ -164,7 +164,7 @@
                     "sterkteBekleding": [
                         4.3
                     ],
-                    "referentieTijdDegradatie": [
+                    "referentietijdDegradatie": [
                         4.4
                     ],
                     "referentieDegradatie": [
