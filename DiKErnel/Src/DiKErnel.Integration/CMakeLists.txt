@@ -78,6 +78,8 @@ set(SOURCEFILES_INTERNAL_DATA
   ${INTERNAL_DATA_FOLDER}/ProfileData.h
   ${INTERNAL_DATA_FOLDER}/TimeDependentInput.cpp
   ${INTERNAL_DATA_FOLDER}/TimeDependentInput.h
+  ${INTERNAL_DATA_FOLDER}/TimeDependentOutputConstructionProperties.cpp
+  ${INTERNAL_DATA_FOLDER}/TimeDependentOutputConstructionProperties.h
 )
 
 set(SOURCEFILES_INTERNAL_DATA_ASPHALT_REVETMENT_WAVE_IMPACT
