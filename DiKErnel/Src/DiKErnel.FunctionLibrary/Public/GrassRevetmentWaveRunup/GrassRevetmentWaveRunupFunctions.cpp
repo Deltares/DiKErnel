@@ -35,18 +35,12 @@ namespace DiKErnel::FunctionLibrary
     }
 
     double GrassRevetmentWaveRunupFunctions::RepresentativeWaveRunup2P(
-        const double surfSimilarityParameter,
-        const double waveAngleImpact,
-        const double waveHeightHm0,
-        const double representativeWaveRunup2PGammab,
-        const double representativeWaveRunup2PGammaf,
-        const double representativeWaveRunup2PAru,
-        const double representativeWaveRunup2PBru,
-        const double representativeWaveRunup2PCru)
+        const GrassRevetmentWaveRunupRepresentative2PInput& input)
     {
-        return waveHeightHm0 * min(representativeWaveRunup2PAru * representativeWaveRunup2PGammab * representativeWaveRunup2PGammaf
-                                   * waveAngleImpact * surfSimilarityParameter, representativeWaveRunup2PGammaf * waveAngleImpact
-                                   * (representativeWaveRunup2PBru - representativeWaveRunup2PCru / sqrt(surfSimilarityParameter)));
+        return input._waveHeightHm0
+                * min(input._representativeWaveRunup2PAru * input._representativeWaveRunup2PGammab * input._representativeWaveRunup2PGammaf
+                      * input._waveAngleImpact * input._surfSimilarityParameter, input._representativeWaveRunup2PGammaf * input._waveAngleImpact
+                      * (input._representativeWaveRunup2PBru - input._representativeWaveRunup2PCru / sqrt(input._surfSimilarityParameter)));
     }
 
     double GrassRevetmentWaveRunupFunctions::WaveAngleImpact(

@@ -40,25 +40,18 @@ namespace DiKErnel::FunctionLibrary::Test
     TEST(GrassRevetmentWaveRunupFunctionsTest, RepresentativeWaveRunup2P_ValidInput_ExpectedValue)
     {
         // Setup
-        constexpr auto surfSimilarityParameter = 1.436;
-        constexpr auto waveAngleImpact = 0.901;
-        constexpr auto waveHeightHm0 = 2.0;
-        constexpr auto representativeWaveRunup2PGammab = 1.1;
-        constexpr auto representativeWaveRunup2PGammaf = 1.2;
-        constexpr auto representativeWaveRunup2PAru = 1.65;
-        constexpr auto representativeWaveRunup2PBru = 4.0;
-        constexpr auto representativeWaveRunup2PCru = 1.5;
+        GrassRevetmentWaveRunupRepresentative2PInput input{};
+        input._surfSimilarityParameter = 1.436;
+        input._waveAngleImpact = 0.901;
+        input._waveHeightHm0 = 2.0;
+        input._representativeWaveRunup2PGammab = 1.1;
+        input._representativeWaveRunup2PGammaf = 1.2;
+        input._representativeWaveRunup2PAru = 1.65;
+        input._representativeWaveRunup2PBru = 4.0;
+        input._representativeWaveRunup2PCru = 1.5;
 
         // Call
-        const auto representativeWaveRunup2P = GrassRevetmentWaveRunupFunctions::RepresentativeWaveRunup2P(
-            surfSimilarityParameter,
-            waveAngleImpact,
-            waveHeightHm0,
-            representativeWaveRunup2PGammab,
-            representativeWaveRunup2PGammaf,
-            representativeWaveRunup2PAru,
-            representativeWaveRunup2PBru,
-            representativeWaveRunup2PCru);
+        const auto representativeWaveRunup2P = GrassRevetmentWaveRunupFunctions::RepresentativeWaveRunup2P(input);
 
         // Assert
         ASSERT_DOUBLE_EQ(5.635949616, representativeWaveRunup2P);

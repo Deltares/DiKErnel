@@ -119,10 +119,17 @@ namespace DiKErnel::Integration
                 timeDependentInput.GetWaveAngle(), GetWaveAngleImpact().GetAbeta(), GetWaveAngleImpact().GetBetamax()));
 
             const auto& representative2P = GetRepresentative2P();
-            representativeWaveRunup2P = make_unique<double>(GrassRevetmentWaveRunupFunctions::RepresentativeWaveRunup2P(
-                surfSimilarityParameter, *waveAngleImpact, timeDependentInput.GetWaveHeightHm0(), representative2P.GetGammab(),
-                representative2P.GetGammaf(), representative2P.GetRepresentative2PAru(), representative2P.GetRepresentative2PBru(),
-                representative2P.GetRepresentative2PCru()));
+            GrassRevetmentWaveRunupRepresentative2PInput representativeWaveRunup2PInput{};
+            representativeWaveRunup2PInput._surfSimilarityParameter = surfSimilarityParameter;
+            representativeWaveRunup2PInput._waveAngleImpact = *waveAngleImpact;
+            representativeWaveRunup2PInput._waveHeightHm0 = timeDependentInput.GetWaveHeightHm0();
+            representativeWaveRunup2PInput._representativeWaveRunup2PGammab = representative2P.GetGammab();
+            representativeWaveRunup2PInput._representativeWaveRunup2PGammaf = representative2P.GetGammaf();
+            representativeWaveRunup2PInput._representativeWaveRunup2PAru = representative2P.GetRepresentative2PAru();
+            representativeWaveRunup2PInput._representativeWaveRunup2PBru = representative2P.GetRepresentative2PBru();
+            representativeWaveRunup2PInput._representativeWaveRunup2PCru = representative2P.GetRepresentative2PCru();
+
+            representativeWaveRunup2P = make_unique<double>(GrassRevetmentWaveRunupFunctions::RepresentativeWaveRunup2P(representativeWaveRunup2PInput));
 
             cumulativeOverload = make_unique<double>(GrassRevetmentWaveRunupRayleighFunctions::CumulativeOverload(
                 averageNumberOfWaves, *representativeWaveRunup2P, _fixedNumberOfWaves, verticalDistanceWaterLevelElevation,

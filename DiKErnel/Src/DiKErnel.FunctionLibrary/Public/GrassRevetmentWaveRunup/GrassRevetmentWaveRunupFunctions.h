@@ -20,6 +20,8 @@
 
 #pragma once
 
+#include "GrassRevetmentWaveRunupRepresentative2PInput.h"
+
 namespace DiKErnel::FunctionLibrary
 {
     /*!
@@ -46,43 +48,14 @@ namespace DiKErnel::FunctionLibrary
 
             /*!
              * \brief Calculates the representative wave run-up (2 percent).
-             * \param surfSimilarityParameter
-             *        The surf similarity parameter.
-             *        Unit = [-]
-             * \param waveAngleImpact
-             *        The wave impact with respect to the wave angle.
-             *        Unit = [-]
-             * \param waveHeightHm0
-             *        The wave height.
-             *        Unit = [m]
-             * \param representativeWaveRunup2PGammab
-             *        The Gammab value.
-             *        Unit = [-]
-             * \param representativeWaveRunup2PGammaf
-             *        The Gammaf value.
-             *        Unit = [-]
-             * \param representativeWaveRunup2PAru
-             *        The Aru coefficient.
-             *        Unit = [-]
-             * \param representativeWaveRunup2PBru
-             *        The Bru coefficient.
-             *        Unit = [-]
-             * \param representativeWaveRunup2PCru
-             *        The Cru coefficient.
-             *        Unit = [-]
+             * \param input
+             *        The GrassRevetmentWaveRunupRepresentative2PInput.
              * \return The representative wave run-up (2 percent).
              *         Unit = [m]
              */
             [[nodiscard]]
             static double RepresentativeWaveRunup2P(
-                double surfSimilarityParameter,
-                double waveAngleImpact,
-                double waveHeightHm0,
-                double representativeWaveRunup2PGammab,
-                double representativeWaveRunup2PGammaf,
-                double representativeWaveRunup2PAru,
-                double representativeWaveRunup2PBru,
-                double representativeWaveRunup2PCru);
+                const GrassRevetmentWaveRunupRepresentative2PInput& input);
 
             /*!
              * \brief Calculates the wave impact with respect to the wave angle.
