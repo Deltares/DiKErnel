@@ -40,7 +40,7 @@ namespace DiKErnel::KernelWrapper::Json::Output
             inline static const std::string NORMATIVE_WIDTH_WAVE_IMPACT = "maatgevendeBreedteGolfklap";
             inline static const std::string HYDRAULIC_LOAD = "hydraulischeBelasting";
             inline static const std::string RESISTANCE = "sterkteBekleding";
-            inline static const std::string REFERENCE_TIME_DEGRADATION = "referentieTijdDegradatie";
+            inline static const std::string REFERENCE_TIME_DEGRADATION = "referentietijdDegradatie";
             inline static const std::string REFERENCE_DEGRADATION = "referentieDegradatie";
     };
 }

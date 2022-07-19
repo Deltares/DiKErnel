@@ -26,7 +26,6 @@
 #include <QIcon>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
-#include <stdexcept>
 
 #include "ApplicationHelper.h"
 #include "Calculator.h"
@@ -181,15 +180,17 @@ namespace DiKErnel::Gui
     {
         try
         {
+            map<string, vector<string>> warningMessageCache;
+            map<string, vector<string>> errorMessageCache;
+
+            const auto inputFilePathString = InputFilePath().toString();
             const auto outputFilePathString = OutputFilePath().toString();
             const auto outputFilePathStdString = outputFilePathString.toStdString();
+
             if (filesystem::exists(outputFilePathStdString))
             {
                 filesystem::remove(outputFilePathStdString);
             }
-
-            const auto inputFilePathString = InputFilePath().toString();
-            AddMessage(QString("De invoer uit bestand \"%1\" wordt gelezen...").arg(inputFilePathString));
 
             if (ValidateJsonFormat())
             {
@@ -197,53 +198,37 @@ namespace DiKErnel::Gui
 
                 const auto validationEvents = EventRegistry::Flush();
 
-                LogEventsWhenApplicable("De volgende meldingen zijn opgetreden tijdens het valideren van het Json-formaat:",
-                                        GetEventReferences(validationEvents));
+                CacheMessagesWhenApplicable("het valideren van het Json-formaat", GetEventReferences(validationEvents), warningMessageCache,
+                                            errorMessageCache);
 
                 if (!validationResult)
                 {
-                    LogClosingMessage("Het lezen van de invoer is mislukt.");
-
+                    LogFailureMessage(errorMessageCache);
                     return;
                 }
             }
 
-            const auto inputComposerResult = JsonInputComposer::GetInputDataFromJson(
-                inputFilePathString.toStdString());
+            const auto inputComposerResult = JsonInputComposer::GetInputDataFromJson(inputFilePathString.toStdString());
 
-            LogEventsWhenApplicable("De volgende meldingen zijn opgetreden tijdens het lezen van de invoer:", inputComposerResult->GetEvents());
+            CacheMessagesWhenApplicable("het lezen van de invoer", inputComposerResult->GetEvents(), warningMessageCache, errorMessageCache);
 
             if (!inputComposerResult->GetSuccessful())
             {
-                LogClosingMessage("Het lezen van de invoer is mislukt.");
+                LogFailureMessage(errorMessageCache);
                 return;
             }
-
-            AddMessage("Het lezen van de invoer is voltooid.");
 
             const auto& calculationInput = *inputComposerResult->GetData();
 
-            AddMessage("De invoer wordt gevalideerd...");
-
             const auto validationResult = Validator::Validate(calculationInput);
 
-            LogEventsWhenApplicable("De volgende meldingen zijn opgetreden tijdens het valideren van de invoer:", validationResult->GetEvents());
+            CacheMessagesWhenApplicable("het valideren van de invoer", validationResult->GetEvents(), warningMessageCache, errorMessageCache);
 
-            if (*validationResult->GetData() == ValidationResultType::Failed)
+            if (*validationResult->GetData() == ValidationResultType::Failed || !validationResult->GetSuccessful())
             {
-                LogClosingMessage("De invoer is ongeldig.");
+                LogFailureMessage(errorMessageCache);
                 return;
             }
-
-            if (!validationResult->GetSuccessful())
-            {
-                LogClosingMessage("Het valideren van de invoer is mislukt.");
-                return;
-            }
-
-            AddMessage("Het valideren van de invoer is voltooid.");
-
-            AddMessage("De berekening wordt uitgevoerd...");
 
             const auto startTime = high_resolution_clock::now();
 
@@ -252,62 +237,73 @@ namespace DiKErnel::Gui
 
             const auto calculatorResult = calculator.GetResult();
 
-            LogEventsWhenApplicable("De volgende meldingen zijn opgetreden tijdens de berekening:", calculatorResult->GetEvents());
+            CacheMessagesWhenApplicable("de berekening", calculatorResult->GetEvents(), warningMessageCache, errorMessageCache);
 
             if (calculator.GetCalculationState() != CalculationState::FinishedSuccessfully || !calculatorResult->GetSuccessful())
             {
-                LogClosingMessage("De berekening is mislukt.");
+                LogFailureMessage(errorMessageCache);
                 return;
             }
 
-            AddMessage("De berekening is voltooid.");
-
             const duration<double> elapsed = high_resolution_clock::now() - startTime;
-
-            const auto numberOfLocations = calculationInput.GetLocationDependentInputItems().size();
-            const auto numberOfTimeSteps = calculationInput.GetTimeDependentInputItems().size() - 1;
-
-            const QString locationString = QString(numberOfLocations == 1 ? "is %1 locatie" : "zijn %1 locaties")
-                    .arg(numberOfLocations);
-
-            AddMessage(QString("Er %1 voor %2 %3 berekend in %4 seconden.").arg(locationString)
-                                                                           .arg(numberOfTimeSteps)
-                                                                           .arg(numberOfTimeSteps == 1 ? "tijdstap" : "tijdstappen")
-                                                                           .arg(elapsed.count()));
-
-            AddMessage(QString("De resultaten van de berekening worden naar bestand \"%1\" geschreven...").arg(outputFilePathString));
 
             vector<pair<string, variant<double, string>>> metaDataItems;
 
             if (WriteMetaData())
             {
-                metaDataItems.emplace_back(pair<string, variant<double, string>>("versie", ApplicationHelper::GetApplicationVersionString()));
-                metaDataItems.emplace_back(pair<string, variant<double, string>>("besturingssysteem", ApplicationHelper::GetOperatingSystemName()));
-                metaDataItems.emplace_back(pair<string, variant<double, string>>("tijdstipBerekening", ApplicationHelper::GetFormattedDateTimeString()));
-                metaDataItems.emplace_back(pair<string, variant<double, string>>("tijdsduurBerekening", elapsed.count()));
+                metaDataItems.emplace_back(
+                    pair<string, variant<double, string>>("versie", ApplicationHelper::GetApplicationVersionString()));
+                metaDataItems.emplace_back(
+                    pair<string, variant<double, string>>("besturingssysteem", ApplicationHelper::GetOperatingSystemName()));
+                metaDataItems.emplace_back(
+                    pair<string, variant<double, string>>("tijdstipBerekening", ApplicationHelper::GetFormattedDateTimeString()));
+                metaDataItems.emplace_back(
+                    pair<string, variant<double, string>>("tijdsduurBerekening", elapsed.count()));
             }
 
             const auto outputComposerResult = JsonOutputComposer::WriteCalculationOutputToJson(
                 outputFilePathStdString,
                 *calculatorResult->GetData(),
                 _outputLevel,
-                metaDataItems
-            );
+                metaDataItems);
 
-            LogEventsWhenApplicable("De volgende meldingen zijn opgetreden tijdens het schrijven van de resultaten:",
-                                    outputComposerResult->GetEvents());
+            CacheMessagesWhenApplicable("het schrijven van de resultaten", outputComposerResult->GetEvents(), warningMessageCache,
+                                        errorMessageCache);
 
             if (!outputComposerResult->GetSuccessful())
             {
-                LogClosingMessage("Het schrijven van de resultaten is mislukt.");
-                return;
+                LogFailureMessage(errorMessageCache);
             }
 
-            LogClosingMessage("Het schrijven van de resultaten is voltooid.");
+            AddMessage("<b>Berekening gelukt</b>");
+
+            LogCachedMessages(warningMessageCache, "waarschuwing", "waarschuwingen");
+
+            const auto numberOfLocations = calculationInput.GetLocationDependentInputItems().size();
+            const auto numberOfTimeSteps = calculationInput.GetTimeDependentInputItems().size() - 1;
+
+            const QString timeStepString = QString(numberOfTimeSteps == 1 ? "is %1 tijdstap" : "zijn %1 tijdstappen")
+                    .arg(numberOfTimeSteps);
+
+            AddMessage(QString("Er %1 doorgerekend voor %2 %3.")
+                       .arg(timeStepString)
+                       .arg(numberOfLocations)
+                       .arg(numberOfLocations == 1 ? "locatie" : "locaties")
+                       .arg(elapsed.count()));
+
+            AddMessage(QString("De rekenduur bedroeg %1 seconden.").arg(elapsed.count()));
+
+            AddMessage("Zie het uitvoerbestand voor verdere details.");
+
+            AddMessage("");
         }
         catch (const exception&)
         {
-            LogClosingMessage("Er is een onverwachte fout opgetreden. Indien gewenst kunt u contact met ons opnemen via dikernel@deltares.nl.");
+            AddMessage("<b>Berekening mislukt</b>");
+
+            AddMessage("Er is een onverwachte fout opgetreden. Indien gewenst kunt u contact met ons opnemen via dikernel@deltares.nl.");
+
+            AddMessage("");
         }
     }
 
@@ -320,7 +316,15 @@ namespace DiKErnel::Gui
     void DiKErnel::CopyToClipboard() const
     {
         QClipboard* clipboard = QGuiApplication::clipboard();
-        clipboard->setText(_stringList.join("\n"));
+
+        QString clipboardText = _stringList.join("\n");
+
+        clipboardText.remove("<b>");
+        clipboardText.remove("</b>");
+        clipboardText.remove("<i>");
+        clipboardText.remove("</i>");
+
+        clipboard->setText(clipboardText);
     }
 
     void DiKErnel::AddMessage(
@@ -330,21 +334,32 @@ namespace DiKErnel::Gui
         _logMessages->setStringList(_stringList);
     }
 
-    void DiKErnel::LogEventsWhenApplicable(
-        const QString& message,
-        const vector<reference_wrapper<Event>>& events)
+    void DiKErnel::CacheMessagesWhenApplicable(
+        const string& endOfDescription,
+        const vector<reference_wrapper<Event>>& events,
+        map<string, vector<string>>& warningMessageCache,
+        map<string, vector<string>>& errorMessageCache)
     {
-        if (!events.empty())
-        {
-            AddMessage(message);
+        vector<string> warningMessages;
+        vector<string> errorMessages;
 
-            for (const auto& logEventReference : events)
-            {
-                const auto& logEvent = logEventReference.get();
-                AddMessage(QString("- [%1] %2")
-                           .arg(QString::fromUtf8(GetEventTypeString(logEvent.GetEventType())))
-                           .arg(QString::fromUtf8(logEvent.GetMessage())));
-            }
+        for (const auto& logEventReference : events)
+        {
+            const auto& logEvent = logEventReference.get();
+
+            logEvent.GetEventType() == EventType::Warning
+                ? warningMessages.push_back(logEvent.GetMessage())
+                : errorMessages.push_back(logEvent.GetMessage());
+        }
+
+        if (!warningMessages.empty())
+        {
+            warningMessageCache[endOfDescription] = warningMessages;
+        }
+
+        if (!errorMessages.empty())
+        {
+            errorMessageCache[endOfDescription] = errorMessages;
         }
     }
 
@@ -361,24 +376,41 @@ namespace DiKErnel::Gui
         return eventReferences;
     }
 
-    string DiKErnel::GetEventTypeString(
-        const EventType eventType)
+    void DiKErnel::LogFailureMessage(
+        map<string, vector<string>>& errorMessageCache)
     {
-        switch (eventType)
-        {
-            case EventType::Warning:
-                return "Waarschuwing";
-            case EventType::Error:
-                return "Fout";
-            default:
-                throw runtime_error("Unsupported EventType");
-        }
+        AddMessage("<b>Berekening mislukt</b>");
+
+        LogCachedMessages(errorMessageCache, "fout", "fouten");
+
+        AddMessage("");
     }
 
-    void DiKErnel::LogClosingMessage(
-        const QString& message)
+    void DiKErnel::LogCachedMessages(
+        map<string, vector<string>>& messageCache,
+        const string& messageTypeDescriptionSingular,
+        const string& messageTypeDescriptionPlural)
     {
-        AddMessage(message);
-        AddMessage("-----------------------------------------------------------------");
+        for (const auto& [endOfDescription, messages] : messageCache)
+        {
+            if (messages.size() == 1)
+            {
+                AddMessage(QString("De volgende %1 is opgetreden tijdens %2:")
+                           .arg(messageTypeDescriptionSingular.c_str())
+                           .arg(endOfDescription.c_str()));
+                AddMessage(QString("<i>%1</i>").arg(messages.at(0).c_str()));
+            }
+            else
+            {
+                AddMessage(QString("De volgende %1 zijn opgetreden tijdens %2:")
+                           .arg(messageTypeDescriptionPlural.c_str())
+                           .arg(endOfDescription.c_str()));
+
+                for (const auto& message : messages)
+                {
+                    AddMessage(QString("- <i>%1</i>").arg(message.c_str()));
+                }
+            }
+        }
     }
 }

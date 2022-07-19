@@ -30,7 +30,7 @@ namespace DiKErnel::KernelWrapper::Json::Output
             inline static const std::string LOG_FAILURE_TENSION = "logBreukspanning";
             inline static const std::string MAXIMUM_PEAK_STRESS = "maximalePiekdruk";
             inline static const std::string STIFFNESS_RELATION = "stijfheidsverhouding";
-            inline static const std::string COMPUTATIONAL_THICKNESS = "rekenDikteAsfalt";
+            inline static const std::string COMPUTATIONAL_THICKNESS = "rekendikte";
             inline static const std::string EQUIVALENT_ELASTIC_MODULUS = "equivalenteStijfheidsmodulus";
     };
 }
