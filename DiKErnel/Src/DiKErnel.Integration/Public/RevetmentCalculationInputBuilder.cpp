@@ -22,7 +22,7 @@
 
 #include "AsphaltRevetmentWaveImpactDefaults.h"
 #include "AsphaltRevetmentWaveImpactDefaultsFactory.h"
-#include "AsphaltRevetmentWaveImpactLocationDependentInput.h"
+#include "AsphaltRevetmentWaveImpactLocationDependentInputFactory.h"
 #include "CalculationInput.h"
 #include "DefaultsFactoryException.h"
 #include "GrassRevetmentWaveImpactDefaults.h"
@@ -74,52 +74,8 @@ namespace DiKErnel::Integration
     void RevetmentCalculationInputBuilder::AddAsphaltWaveImpactLocation(
         const AsphaltRevetmentWaveImpactLocationConstructionProperties& constructionProperties)
     {
-        unique_ptr<IAsphaltRevetmentWaveImpactTopLayerDefaults> topLayerDefaults;
-
-        try
-        {
-            topLayerDefaults = AsphaltRevetmentWaveImpactDefaultsFactory::CreateTopLayerDefaults(
-                constructionProperties.GetTopLayerType());
-        }
-        catch (const DefaultsFactoryException&)
-        {
-            ThrowWithMessage();
-        }
-
-        const auto elasticModulusUpperLayer = constructionProperties.GetElasticModulusUpperLayer();
-        auto upperLayer = make_unique<AsphaltRevetmentWaveImpactLayer>(
-            constructionProperties.GetThicknessUpperLayer(),
-            elasticModulusUpperLayer);
-
-        const auto thicknessSubLayer = constructionProperties.GetThicknessSubLayer();
-        const auto elasticModulusSubLayer = constructionProperties.GetElasticModulusSubLayer();
-        unique_ptr<AsphaltRevetmentWaveImpactLayer> subLayer = nullptr;
-        if (thicknessSubLayer != nullptr && elasticModulusSubLayer != nullptr)
-        {
-            subLayer = make_unique<AsphaltRevetmentWaveImpactLayer>(*thicknessSubLayer, *elasticModulusSubLayer);
-        }
-
-        auto fatigue = make_unique<AsphaltRevetmentWaveImpactFatigue>(
-            GetValue(constructionProperties.GetFatigueAlpha(), topLayerDefaults->GetFatigueAlpha()),
-            GetValue(constructionProperties.GetFatigueBeta(), topLayerDefaults->GetFatigueBeta()));
-
         _locationDependentInputItems.push_back(
-            make_unique<AsphaltRevetmentWaveImpactLocationDependentInput>(
-                constructionProperties.GetX(),
-                GetValue(constructionProperties.GetInitialDamage(), RevetmentDefaults::GetInitialDamage()),
-                GetValue(constructionProperties.GetFailureNumber(), RevetmentDefaults::GetFailureNumber()),
-                constructionProperties.GetFailureTension(),
-                GetValue(constructionProperties.GetDensityOfWater(), AsphaltRevetmentWaveImpactDefaults::GetDensityOfWater()),
-                constructionProperties.GetSoilElasticity(),
-                move(upperLayer),
-                move(subLayer),
-                GetValue(constructionProperties.GetAverageNumberOfWavesCtm(), AsphaltRevetmentWaveImpactDefaults::GetAverageNumberOfWavesCtm()),
-                move(fatigue),
-                GetValue(constructionProperties.GetImpactNumberC(), AsphaltRevetmentWaveImpactDefaults::GetImpactNumberC()),
-                GetValue(constructionProperties.GetStiffnessRelationNu(), topLayerDefaults->GetStiffnessRelationNu()),
-                GetValue(constructionProperties.GetWidthFactors(), AsphaltRevetmentWaveImpactDefaults::GetWidthFactors()),
-                GetValue(constructionProperties.GetDepthFactors(), AsphaltRevetmentWaveImpactDefaults::GetDepthFactors()),
-                GetValue(constructionProperties.GetImpactFactors(), AsphaltRevetmentWaveImpactDefaults::GetImpactFactors())));
+            AsphaltRevetmentWaveImpactLocationDependentInputFactory::CreateLocationDependentInput(constructionProperties));
     }
 
     void RevetmentCalculationInputBuilder::AddGrassWaveImpactLocation(
