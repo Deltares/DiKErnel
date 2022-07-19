@@ -364,7 +364,7 @@ namespace DiKErnel::Gui
     }
 
     vector<reference_wrapper<Event>> DiKErnel::GetEventReferences(
-        const std::vector<std::unique_ptr<Event>>& events)
+        const vector<unique_ptr<Event>>& events)
     {
         vector<reference_wrapper<Event>> eventReferences;
 
