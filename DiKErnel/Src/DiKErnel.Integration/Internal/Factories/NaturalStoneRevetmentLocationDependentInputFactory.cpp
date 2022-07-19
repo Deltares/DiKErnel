@@ -31,7 +31,7 @@ namespace DiKErnel::Integration
     using namespace std;
     using namespace DomainLibrary;
 
-    std::unique_ptr<NaturalStoneRevetmentLocationDependentInput> NaturalStoneRevetmentLocationDependentInputFactory::CreateLocationDependentInput(
+    unique_ptr<NaturalStoneRevetmentLocationDependentInput> NaturalStoneRevetmentLocationDependentInputFactory::CreateLocationDependentInput(
         const NaturalStoneRevetmentLocationConstructionProperties& constructionProperties)
     {
         unique_ptr<INaturalStoneRevetmentTopLayerDefaults> topLayerDefaults;

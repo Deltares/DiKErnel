@@ -28,10 +28,7 @@
 #include "GrassRevetmentWaveImpactDefaults.h"
 #include "GrassRevetmentWaveImpactDefaultsFactory.h"
 #include "GrassRevetmentWaveImpactLocationDependentInput.h"
-#include "GrassRevetmentWaveRunupDefaults.h"
-#include "GrassRevetmentWaveRunupDefaultsFactory.h"
-#include "GrassRevetmentWaveRunupRayleighDefaults.h"
-#include "GrassRevetmentWaveRunupRayleighLocationDependentInput.h"
+#include "GrassRevetmentWaveRunupRayleighLocationDependentInputFactory.h"
 #include "NaturalStoneRevetmentLocationDependentInputFactory.h"
 #include "ProfileData.h"
 #include "RevetmentCalculationInputBuilderException.h"
@@ -116,47 +113,8 @@ namespace DiKErnel::Integration
     void RevetmentCalculationInputBuilder::AddGrassWaveRunupRayleighLocation(
         const GrassRevetmentWaveRunupRayleighLocationConstructionProperties& constructionProperties)
     {
-        unique_ptr<IGrassRevetmentWaveRunupTopLayerDefaults> topLayerDefaults;
-
-        try
-        {
-            topLayerDefaults = GrassRevetmentWaveRunupDefaultsFactory::CreateTopLayerDefaults(constructionProperties.GetTopLayerType());
-        }
-        catch (const DefaultsFactoryException&)
-        {
-            ThrowWithMessage();
-        }
-
-        auto representative2P = make_unique<GrassRevetmentWaveRunupRepresentative2P>(
-            GetValue(constructionProperties.GetRepresentativeWaveRunup2PAru(), GrassRevetmentWaveRunupDefaults::GetRepresentativeWaveRunup2PAru()),
-            GetValue(constructionProperties.GetRepresentativeWaveRunup2PBru(), GrassRevetmentWaveRunupDefaults::GetRepresentativeWaveRunup2PBru()),
-            GetValue(constructionProperties.GetRepresentativeWaveRunup2PCru(), GrassRevetmentWaveRunupDefaults::GetRepresentativeWaveRunup2PCru()),
-            GetValue(constructionProperties.GetRepresentativeWaveRunup2PGammab(),
-                     GrassRevetmentWaveRunupDefaults::GetRepresentativeWaveRunup2PGammab()),
-            GetValue(constructionProperties.GetRepresentativeWaveRunup2PGammaf(),
-                     GrassRevetmentWaveRunupDefaults::GetRepresentativeWaveRunup2PGammaf()));
-
-        auto waveAngleImpact = make_unique<GrassRevetmentWaveRunupWaveAngleImpact>(
-            GetValue(constructionProperties.GetWaveAngleImpactAbeta(), GrassRevetmentWaveRunupDefaults::GetWaveAngleImpactAbeta()),
-            GetValue(constructionProperties.GetWaveAngleImpactBetamax(), GrassRevetmentWaveRunupDefaults::GetWaveAngleImpactBetamax()));
-
         _locationDependentInputItems.push_back(
-            make_unique<GrassRevetmentWaveRunupRayleighLocationDependentInput>(
-                constructionProperties.GetX(),
-                GetValue(constructionProperties.GetInitialDamage(), RevetmentDefaults::GetInitialDamage()),
-                GetValue(constructionProperties.GetFailureNumber(), RevetmentDefaults::GetFailureNumber()),
-                constructionProperties.GetOuterSlope(),
-                GetValue(constructionProperties.GetCriticalCumulativeOverload(), topLayerDefaults->GetCriticalCumulativeOverload()),
-                GetValue(constructionProperties.GetCriticalFrontVelocity(), topLayerDefaults->GetCriticalFrontVelocity()),
-                GetValue(constructionProperties.GetIncreasedLoadTransitionAlphaM(),
-                         GrassRevetmentWaveRunupDefaults::GetIncreasedLoadTransitionAlphaM()),
-                GetValue(constructionProperties.GetReducedStrengthTransitionAlphaS(),
-                         GrassRevetmentWaveRunupDefaults::GetReducedStrengthTransitionAlphaS()),
-                GetValue(constructionProperties.GetAverageNumberOfWavesCtm(), GrassRevetmentWaveRunupDefaults::GetAverageNumberOfWavesCtm()),
-                move(representative2P),
-                move(waveAngleImpact),
-                GetValue(constructionProperties.GetFixedNumberOfWaves(), GrassRevetmentWaveRunupRayleighDefaults::GetFixedNumberOfWaves()),
-                GetValue(constructionProperties.GetFrontVelocityCu(), GrassRevetmentWaveRunupRayleighDefaults::GetFrontVelocityCu())));
+            GrassRevetmentWaveRunupRayleighLocationDependentInputFactory::CreateLocationDependentInput(constructionProperties));
     }
 
     void RevetmentCalculationInputBuilder::AddNaturalStoneLocation(
