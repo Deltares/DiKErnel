@@ -20,6 +20,7 @@
 
 #pragma once
 
+#include "AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties.h"
 #include "TimeDependentOutput.h"
 
 namespace DiKErnel::Integration
@@ -32,33 +33,11 @@ namespace DiKErnel::Integration
         public:
             /*!
              * \brief Creates a new instance.
-             * \param incrementDamage
-             *        The increment damage.
-             * \param damage
-             *        The damage.
-             * \param timeOfFailure
-             *        The time of failure.
-             * \param logFailureTension
-             *        The log failure tension.
-             * \param maximumPeakStress
-             *        The maximum peak stress.
-             * \param stiffnessRelation
-             *        The stiffness relation.
-             * \param computationalThickness
-             *        The computational thickness.
-             * \param equivalentElasticModulus
-             *        The equivalent elastic modulus.
+             * \param constructionProperties
+             *        The construction properties.
              */
             explicit AsphaltRevetmentWaveImpactTimeDependentOutput(
-                double incrementDamage,
-                double damage,
-                std::unique_ptr<int> timeOfFailure,
-                double logFailureTension,
-                double maximumPeakStress,
-                double stiffnessRelation,
-                double computationalThickness,
-                double equivalentElasticModulus);
-
+                AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties& constructionProperties);
             /*!
              * \brief Gets the log failure tension.
              * \return The log failure tension.

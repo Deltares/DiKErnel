@@ -127,8 +127,14 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
         [[nodiscard]]
         unique_ptr<CalculationOutput> CreateCalculationOutputWithRevetmentSpecificTimeDependentOutputWithAllDataSet() const
         {
-            auto asphaltWaveImpactTimeDependentOutput = make_unique<AsphaltRevetmentWaveImpactTimeDependentOutput>(
-                0.1, 0.2, make_unique<int>(3), 0.4, 0.5, 0.6, 0.7, 0.8);
+            AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties asphaltWaveImpactTimeDependentOutputConstructionProperties(0.1, 0.2, make_unique<int>(3));
+            asphaltWaveImpactTimeDependentOutputConstructionProperties.SetLogFailureTension(0.4);
+            asphaltWaveImpactTimeDependentOutputConstructionProperties.SetMaximumPeakStress(0.5);
+            asphaltWaveImpactTimeDependentOutputConstructionProperties.SetStiffnessRelation(0.6);
+            asphaltWaveImpactTimeDependentOutputConstructionProperties.SetComputationalThickness(0.7);
+            asphaltWaveImpactTimeDependentOutputConstructionProperties.SetEquivalentElasticModulus(0.8);
+
+            auto asphaltWaveImpactTimeDependentOutput = make_unique<AsphaltRevetmentWaveImpactTimeDependentOutput>(asphaltWaveImpactTimeDependentOutputConstructionProperties);
             auto grassWaveImpactTimeDependentOutput = make_unique<GrassRevetmentWaveImpactTimeDependentOutput>(
                 0.9, 1.0, make_unique<int>(11), 1.2, 1.3, 1.4, make_unique<double>(1.5), make_unique<double>(1.6), make_unique<double>(1.7),
                 make_unique<double>(1.8));
@@ -161,8 +167,15 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
         [[nodiscard]]
         unique_ptr<CalculationOutput> CreateCalculationOutputWithRevetmentSpecificTimeDependentOutputWithOnlyMandatoryDataSet() const
         {
-            auto asphaltWaveImpactTimeDependentOutput = make_unique<AsphaltRevetmentWaveImpactTimeDependentOutput>(
-                0.1, 0.2, nullptr, 0.3, 0.4, 0.5, 0.6, 0.7);
+            AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties asphaltWaveImpactTimeDependentOutputConstructionProperties(0.1, 0.2, nullptr);
+            asphaltWaveImpactTimeDependentOutputConstructionProperties.SetLogFailureTension(0.3);
+            asphaltWaveImpactTimeDependentOutputConstructionProperties.SetMaximumPeakStress(0.4);
+            asphaltWaveImpactTimeDependentOutputConstructionProperties.SetStiffnessRelation(0.5);
+            asphaltWaveImpactTimeDependentOutputConstructionProperties.SetComputationalThickness(0.6);
+            asphaltWaveImpactTimeDependentOutputConstructionProperties.SetEquivalentElasticModulus(0.7);
+
+            auto asphaltWaveImpactTimeDependentOutput = make_unique<AsphaltRevetmentWaveImpactTimeDependentOutput>(asphaltWaveImpactTimeDependentOutputConstructionProperties);
+
             auto grassWaveImpactTimeDependentOutput = make_unique<GrassRevetmentWaveImpactTimeDependentOutput>(
                 0.8, 0.9, nullptr, 1.0, 1.1, 1.2, nullptr, nullptr, nullptr, nullptr);
             auto grassWaveRunupRayleighTimeDependentOutput = make_unique<GrassRevetmentWaveRunupRayleighTimeDependentOutput>(

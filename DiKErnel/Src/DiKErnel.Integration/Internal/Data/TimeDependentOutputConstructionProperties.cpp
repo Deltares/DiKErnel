@@ -42,8 +42,8 @@ namespace DiKErnel::Integration
         return _damage;
     }
 
-    const int* TimeDependentOutputConstructionProperties::GetTimeOfFailure() const
+    unique_ptr<int> TimeDependentOutputConstructionProperties::GetTimeOfFailure()
     {
-        return _timeOfFailure.get();
+        return move(_timeOfFailure);
     }
 }
