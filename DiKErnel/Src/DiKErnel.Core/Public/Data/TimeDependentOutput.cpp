@@ -58,15 +58,4 @@ namespace DiKErnel::Core
     {
         return _timeOfFailure.get();
     }
-
-    template <typename T>
-    void TimeDependentOutput::ThrowExceptionWhenPropertyIsNullPtr(
-        const T* propertyValue,
-        const string& propertyName)
-    {
-        if (propertyValue == nullptr)
-        {
-            throw InvalidTimeDependentOutputException(propertyName + " must be set.");
-        }
-    }
 }

@@ -33,7 +33,12 @@ namespace DiKErnel::Integration
           _minimumWaveHeight(move(constructionProperties._minimumWaveHeight)),
           _maximumWaveHeight(move(constructionProperties._maximumWaveHeight)),
           _waveAngleImpact(move(constructionProperties._waveAngleImpact)),
-          _waveHeightImpact(move(constructionProperties._waveHeightImpact)) {}
+          _waveHeightImpact(move(constructionProperties._waveHeightImpact))
+    {
+        ThrowExceptionWhenPropertyIsNullPtr(_loadingRevetment.get(), "loadingRevetment");
+        ThrowExceptionWhenPropertyIsNullPtr(_upperLimitLoading.get(), "upperLimitLoading");
+        ThrowExceptionWhenPropertyIsNullPtr(_lowerLimitLoading.get(), "lowerLimitLoading");
+    }
 
     bool GrassRevetmentWaveImpactTimeDependentOutput::GetLoadingRevetment() const
     {

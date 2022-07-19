@@ -23,6 +23,7 @@
 #include <memory>
 #include <string>
 
+#include "InvalidTimeDependentOutputException.h"
 #include "TimeDependentOutputConstructionProperties.h"
 
 namespace DiKErnel::Core
@@ -97,7 +98,13 @@ namespace DiKErnel::Core
             template <typename T>
             static void ThrowExceptionWhenPropertyIsNullPtr(
                 const T* propertyValue,
-                const std::string& propertyName);
+                const std::string& propertyName)
+            {
+                if (propertyValue == nullptr)
+                {
+                    throw InvalidTimeDependentOutputException(propertyName + " must be set.");
+                }
+            };
 
         private:
             std::unique_ptr<double> _incrementDamage = nullptr;

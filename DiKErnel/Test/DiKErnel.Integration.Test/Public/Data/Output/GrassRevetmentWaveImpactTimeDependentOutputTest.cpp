@@ -22,15 +22,67 @@
 
 #include "AssertHelper.h"
 #include "GrassRevetmentWaveImpactTimeDependentOutput.h"
+#include "InvalidTimeDependentOutputException.h"
 #include "TimeDependentOutput.h"
 
 namespace DiKErnel::Integration::Test
 {
     using namespace Core;
     using namespace std;
+    using namespace testing;
     using namespace TestUtil;
 
-    TEST(GrassRevetmentWaveImpactTimeDependentOutputTest, Constructor_WithAllValuesSet_ExpectedValues)
+    struct GrassRevetmentWaveImpactTimeDependentOutputTest : Test
+    {
+        static unique_ptr<GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties> CreateFullyConfiguredConstructionProperties()
+        {
+            auto constructionProperties = make_unique<GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties>();
+            constructionProperties->_incrementDamage = make_unique<double>(0.1);
+            constructionProperties->_damage = make_unique<double>(0.2);
+            constructionProperties->_timeOfFailure = make_unique<int>(3);
+            constructionProperties->_loadingRevetment = make_unique<bool>(true);
+            constructionProperties->_upperLimitLoading = make_unique<double>(0.4);
+            constructionProperties->_lowerLimitLoading = make_unique<double>(0.5);
+            constructionProperties->_minimumWaveHeight = make_unique<double>(0.6);
+            constructionProperties->_maximumWaveHeight = make_unique<double>(0.7);
+            constructionProperties->_waveAngleImpact = make_unique<double>(0.8);
+            constructionProperties->_waveHeightImpact = make_unique<double>(0.9);
+
+            return constructionProperties;
+        }
+
+        static void CreateOutputWithConstructionPropertiesWithLoadingRevetmentNullPtr()
+        {
+            // Setup
+            const auto constructionProperties = CreateFullyConfiguredConstructionProperties();
+            constructionProperties->_loadingRevetment = nullptr;
+
+            // Call
+            const GrassRevetmentWaveImpactTimeDependentOutput output(*constructionProperties);
+        }
+
+        static void CreateOutputWithConstructionPropertiesWithUpperLimitLoadingNullPtr()
+        {
+            // Setup
+            const auto constructionProperties = CreateFullyConfiguredConstructionProperties();
+            constructionProperties->_upperLimitLoading = nullptr;
+
+            // Call
+            const GrassRevetmentWaveImpactTimeDependentOutput output(*constructionProperties);
+        }
+
+        static void CreateOutputWithConstructionPropertiesWithLowerLimitLoadingNullPtr()
+        {
+            // Setup
+            const auto constructionProperties = CreateFullyConfiguredConstructionProperties();
+            constructionProperties->_lowerLimitLoading = nullptr;
+
+            // Call
+            const GrassRevetmentWaveImpactTimeDependentOutput output(*constructionProperties);
+        }
+    };
+
+    TEST_F(GrassRevetmentWaveImpactTimeDependentOutputTest, Constructor_WithAllValuesSet_ExpectedValues)
     {
         // Setup
         constexpr auto incrementDamage = 0.1;
@@ -73,7 +125,7 @@ namespace DiKErnel::Integration::Test
         ASSERT_DOUBLE_EQ(waveHeightImpact, *output.GetWaveHeightImpact());
     }
 
-    TEST(GrassRevetmentWaveImpactTimeDependentOutputTest, Constructor_WithNullPtrValues_ExpectedValues)
+    TEST_F(GrassRevetmentWaveImpactTimeDependentOutputTest, Constructor_WithNullPtrValues_ExpectedValues)
     {
         // Setup
         constexpr auto incrementDamage = 0.1;
@@ -109,5 +161,32 @@ namespace DiKErnel::Integration::Test
         ASSERT_EQ(nullptr, output.GetMaximumWaveHeight());
         ASSERT_EQ(nullptr, output.GetWaveAngleImpact());
         ASSERT_EQ(nullptr, output.GetWaveHeightImpact());
+    }
+
+    TEST_F(GrassRevetmentWaveImpactTimeDependentOutputTest, Constructor_LoadingRevetmentNullPtr_ThrowsInvalidTimeDependentOutputException)
+    {
+        // Setup & Call
+        const auto action = &GrassRevetmentWaveImpactTimeDependentOutputTest::CreateOutputWithConstructionPropertiesWithLoadingRevetmentNullPtr;
+
+        // Assert
+        AssertHelper::AssertThrowsWithMessage<InvalidTimeDependentOutputException>(action, "loadingRevetment must be set.");
+    }
+
+    TEST_F(GrassRevetmentWaveImpactTimeDependentOutputTest, Constructor_UpperLimitLoadingNullPtr_ThrowsInvalidTimeDependentOutputException)
+    {
+        // Setup & Call
+        const auto action = &GrassRevetmentWaveImpactTimeDependentOutputTest::CreateOutputWithConstructionPropertiesWithUpperLimitLoadingNullPtr;
+
+        // Assert
+        AssertHelper::AssertThrowsWithMessage<InvalidTimeDependentOutputException>(action, "upperLimitLoading must be set.");
+    }
+
+    TEST_F(GrassRevetmentWaveImpactTimeDependentOutputTest, Constructor_LowerLimitLoadingNullPtr_ThrowsInvalidTimeDependentOutputException)
+    {
+        // Setup & Call
+        const auto action = &GrassRevetmentWaveImpactTimeDependentOutputTest::CreateOutputWithConstructionPropertiesWithLowerLimitLoadingNullPtr;
+
+        // Assert
+        AssertHelper::AssertThrowsWithMessage<InvalidTimeDependentOutputException>(action, "lowerLimitLoading must be set.");
     }
 }
