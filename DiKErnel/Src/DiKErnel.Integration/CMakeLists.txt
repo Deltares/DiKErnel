@@ -51,6 +51,8 @@ set(SOURCEFILES_PUBLIC_DATA_OUTPUT
   ${PUBLIC_DATA_OUTPUT_FOLDER}/GrassRevetmentWaveImpactLocationDependentOutput.h
   ${PUBLIC_DATA_OUTPUT_FOLDER}/GrassRevetmentWaveImpactTimeDependentOutput.cpp
   ${PUBLIC_DATA_OUTPUT_FOLDER}/GrassRevetmentWaveImpactTimeDependentOutput.h
+  ${PUBLIC_DATA_OUTPUT_FOLDER}/GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties.cpp
+  ${PUBLIC_DATA_OUTPUT_FOLDER}/GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties.h
   ${PUBLIC_DATA_OUTPUT_FOLDER}/GrassRevetmentWaveRunupRayleighLocationDependentOutput.cpp
   ${PUBLIC_DATA_OUTPUT_FOLDER}/GrassRevetmentWaveRunupRayleighLocationDependentOutput.h
   ${PUBLIC_DATA_OUTPUT_FOLDER}/GrassRevetmentWaveRunupRayleighTimeDependentOutput.cpp

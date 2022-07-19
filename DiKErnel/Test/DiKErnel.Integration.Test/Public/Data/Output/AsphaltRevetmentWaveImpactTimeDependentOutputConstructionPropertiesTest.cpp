@@ -51,7 +51,7 @@ namespace DiKErnel::Integration::Test
         ASSERT_DOUBLE_EQ(numeric_limits<double>::infinity(), constructionProperties.GetEquivalentElasticModulus());
     }
 
-    TEST(AsphaltRevetmentWaveImpactTimeDependentOutputConstructionPropertiesTest, GivenConstructionProperties_WhenAllOutputSet_ThenExpectedValues)
+    TEST(AsphaltRevetmentWaveImpactTimeDependentOutputConstructionPropertiesTest, GivenConstructionProperties_WhenAllValuesSet_ThenExpectedValues)
     {
         // Given
         constexpr auto incrementDamage = 0.1;
