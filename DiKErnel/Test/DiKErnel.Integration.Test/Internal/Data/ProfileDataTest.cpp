@@ -22,7 +22,7 @@
 
 #include "ProfileData.h"
 
-namespace DiKErnel::Integration
+namespace DiKErnel::Integration::Test
 {
     using namespace Core;
     using namespace std;

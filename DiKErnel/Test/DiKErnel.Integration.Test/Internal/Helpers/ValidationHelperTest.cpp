@@ -23,7 +23,7 @@
 #include "AssertHelper.h"
 #include "ValidationHelper.h"
 
-namespace DiKErnel::Integration
+namespace DiKErnel::Integration::Test
 {
     using namespace std;
     using namespace testing;
