@@ -63,6 +63,8 @@ namespace DiKErnel::Core
              * \brief Creates a new instance.
              * \param constructionProperties
              *        The TimeDependentOutputConstructionProperties.
+             * \exception InvalidTimeDependentOutputException
+             *            Thrown when mandatory properties are nullptr.
              */
             explicit TimeDependentOutput(
                 TimeDependentOutputConstructionProperties& constructionProperties);

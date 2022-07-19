@@ -21,6 +21,7 @@
 #include <gtest/gtest.h>
 
 #include "AssertHelper.h"
+#include "InvalidTimeDependentOutputException.h"
 #include "TimeDependentOutputMock.h"
 
 namespace DiKErnel::Core::Test
@@ -78,22 +79,22 @@ namespace DiKErnel::Core::Test
         ASSERT_EQ(timeOfFailure, *timeDependentOutput.GetTimeOfFailure());
     }
 
-    TEST_F(TimeDependentOutputTest, Constructor_IncrementDamageNullPtr_ThrowsException)
+    TEST_F(TimeDependentOutputTest, Constructor_IncrementDamageNullPtr_ThrowsInvalidTimeDependentOutputException)
     {
         // Setup & Call
         const auto action = &TimeDependentOutputTest::CreateOutputWithConstructionPropertiesWithIncrementDamageNullPtr;
 
         // Assert
-        AssertHelper::AssertThrowsWithMessage<exception>(action, "incrementDamage must be set.");
+        AssertHelper::AssertThrowsWithMessage<InvalidTimeDependentOutputException>(action, "incrementDamage must be set.");
     }
 
-    TEST_F(TimeDependentOutputTest, Constructor_DamageNullPtr_ThrowsException)
+    TEST_F(TimeDependentOutputTest, Constructor_DamageNullPtr_ThrowsInvalidTimeDependentOutputException)
     {
         // Setup & Call
         const auto action = &TimeDependentOutputTest::CreateOutputWithConstructionPropertiesWithDamageNullPtr;
 
         // Assert
-        AssertHelper::AssertThrowsWithMessage<exception>(action, "damage must be set.");
+        AssertHelper::AssertThrowsWithMessage<InvalidTimeDependentOutputException>(action, "damage must be set.");
     }
 
     TEST_F(TimeDependentOutputTest, Constructor_TimeOfFailureNullPtr_ExpectedValues)

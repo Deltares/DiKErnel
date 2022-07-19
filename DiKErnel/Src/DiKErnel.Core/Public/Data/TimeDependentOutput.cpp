@@ -20,6 +20,8 @@
 
 #include "TimeDependentOutput.h"
 
+#include "InvalidTimeDependentOutputException.h"
+
 namespace DiKErnel::Core
 {
     using namespace std;
@@ -40,12 +42,12 @@ namespace DiKErnel::Core
     {
         if (_incrementDamage == nullptr)
         {
-            throw exception("incrementDamage must be set.");
+            throw InvalidTimeDependentOutputException("incrementDamage must be set.");
         }
 
         if (_damage == nullptr)
         {
-            throw exception("damage must be set.");
+            throw InvalidTimeDependentOutputException("damage must be set.");
         }
     }
 
