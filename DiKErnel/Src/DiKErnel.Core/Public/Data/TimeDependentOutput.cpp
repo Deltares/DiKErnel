@@ -40,15 +40,8 @@ namespace DiKErnel::Core
           _damage(move(constructionProperties._damage)),
           _timeOfFailure(move(constructionProperties._timeOfFailure))
     {
-        if (_incrementDamage == nullptr)
-        {
-            throw InvalidTimeDependentOutputException("incrementDamage must be set.");
-        }
-
-        if (_damage == nullptr)
-        {
-            throw InvalidTimeDependentOutputException("damage must be set.");
-        }
+        ThrowExceptionWhenPropertyIsNullPtr(_incrementDamage.get(), "incrementDamage");
+        ThrowExceptionWhenPropertyIsNullPtr(_damage.get(), "damage");
     }
 
     double TimeDependentOutput::GetIncrementDamage() const
@@ -64,5 +57,16 @@ namespace DiKErnel::Core
     const int* TimeDependentOutput::GetTimeOfFailure() const
     {
         return _timeOfFailure.get();
+    }
+
+    template <typename T>
+    void TimeDependentOutput::ThrowExceptionWhenPropertyIsNullPtr(
+        const T* propertyValue,
+        const string& propertyName)
+    {
+        if (propertyValue == nullptr)
+        {
+            throw InvalidTimeDependentOutputException(propertyName + " must be set.");
+        }
     }
 }

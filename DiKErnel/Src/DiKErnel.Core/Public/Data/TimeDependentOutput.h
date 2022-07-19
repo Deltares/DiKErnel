@@ -21,6 +21,7 @@
 #pragma once
 
 #include <memory>
+#include <string>
 
 #include "TimeDependentOutputConstructionProperties.h"
 
@@ -82,6 +83,21 @@ namespace DiKErnel::Core
                 double incrementDamage,
                 double damage,
                 std::unique_ptr<int> timeOfFailure);
+
+            /*!
+             * \brief Throws an InvalidTimeDependentOutputException when the given propertyValue is
+             *        nullptr.
+             * \tparam T
+             *         The type of the propertyValue.
+             * \param propertyValue
+             *        The value to check.
+             * \param propertyName
+             *        The name of the property.
+             */
+            template <typename T>
+            static void ThrowExceptionWhenPropertyIsNullPtr(
+                const T* propertyValue,
+                const std::string& propertyName);
 
         private:
             std::unique_ptr<double> _incrementDamage = nullptr;

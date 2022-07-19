@@ -22,6 +22,7 @@
 
 namespace DiKErnel::Integration
 {
+    using namespace Core;
     using namespace std;
 
     AsphaltRevetmentWaveImpactTimeDependentOutput::AsphaltRevetmentWaveImpactTimeDependentOutput(
@@ -31,7 +32,14 @@ namespace DiKErnel::Integration
           _maximumPeakStress(move(constructionProperties._maximumPeakStress)),
           _stiffnessRelation(move(constructionProperties._stiffnessRelation)),
           _computationalThickness(move(constructionProperties._computationalThickness)),
-          _equivalentElasticModulus(move(constructionProperties._equivalentElasticModulus)) { }
+          _equivalentElasticModulus(move(constructionProperties._equivalentElasticModulus))
+    {
+        ThrowExceptionWhenPropertyIsNullPtr(_logFailureTension.get(), "logFailureTension");
+        ThrowExceptionWhenPropertyIsNullPtr(_maximumPeakStress.get(), "maximumPeakStress");
+        ThrowExceptionWhenPropertyIsNullPtr(_stiffnessRelation.get(), "stiffnessRelation");
+        ThrowExceptionWhenPropertyIsNullPtr(_computationalThickness.get(), "computationalThickness");
+        ThrowExceptionWhenPropertyIsNullPtr(_equivalentElasticModulus.get(), "equivalentElasticModulus");
+    }
 
     double AsphaltRevetmentWaveImpactTimeDependentOutput::GetLogFailureTension() const
     {
