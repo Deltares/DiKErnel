@@ -25,9 +25,9 @@ namespace DiKErnel::Integration
     using namespace std;
 
     AsphaltRevetmentWaveImpactTimeDependentOutput::AsphaltRevetmentWaveImpactTimeDependentOutput(
-        AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties& constructionProperties)
+        const AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties& constructionProperties)
         : TimeDependentOutput(constructionProperties.GetIncrementDamage(), constructionProperties.GetDamage(),
-                              constructionProperties.GetTimeOfFailure()),
+                              make_unique<int>(*constructionProperties.GetTimeOfFailure())),
           _logFailureTension(constructionProperties.GetLogFailureTension()),
           _maximumPeakStress(constructionProperties.GetMaximumPeakStress()),
           _stiffnessRelation(constructionProperties.GetStiffnessRelation()),

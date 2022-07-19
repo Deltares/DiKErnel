@@ -36,7 +36,7 @@ namespace DiKErnel::Integration::Test
         constexpr auto timeOfFailure = 3;
 
         // Call
-        AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties(
+        const AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties(
             incrementDamage, damage, make_unique<int>(timeOfFailure));
 
         // Assert

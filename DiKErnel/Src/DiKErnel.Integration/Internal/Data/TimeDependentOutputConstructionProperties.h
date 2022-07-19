@@ -34,7 +34,7 @@ namespace DiKErnel::Integration
             double GetDamage() const;
 
             [[nodiscard]]
-            std::unique_ptr<int> GetTimeOfFailure();
+            const int* GetTimeOfFailure() const;
 
         protected:
             explicit TimeDependentOutputConstructionProperties(
