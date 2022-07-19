@@ -20,6 +20,8 @@
 
 #pragma once
 
+#include "GrassRevetmentWaveImpactLocationConstructionProperties.h"
+#include "GrassRevetmentWaveImpactLocationDependentInput.h"
 #include "LocationDependentInputFactoryBase.h"
 
 namespace DiKErnel::Integration
@@ -27,5 +29,7 @@ namespace DiKErnel::Integration
     class GrassRevetmentWaveImpactLocationDependentInputFactory : LocationDependentInputBaseFactory
     {
         public:
+            static std::unique_ptr<GrassRevetmentWaveImpactLocationDependentInput> CreateLocationDependentInput(
+                const GrassRevetmentWaveImpactLocationConstructionProperties& constructionProperties);
     };
 }

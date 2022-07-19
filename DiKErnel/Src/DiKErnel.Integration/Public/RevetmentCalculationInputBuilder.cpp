@@ -25,14 +25,10 @@
 #include "AsphaltRevetmentWaveImpactLocationDependentInputFactory.h"
 #include "CalculationInput.h"
 #include "DefaultsFactoryException.h"
-#include "GrassRevetmentWaveImpactDefaults.h"
-#include "GrassRevetmentWaveImpactDefaultsFactory.h"
-#include "GrassRevetmentWaveImpactLocationDependentInput.h"
+#include "GrassRevetmentWaveImpactLocationDependentInputFactory.h"
 #include "GrassRevetmentWaveRunupRayleighLocationDependentInputFactory.h"
 #include "NaturalStoneRevetmentLocationDependentInputFactory.h"
 #include "ProfileData.h"
-#include "RevetmentCalculationInputBuilderException.h"
-#include "RevetmentDefaults.h"
 #include "TimeDependentInput.h"
 
 namespace DiKErnel::Integration
@@ -76,38 +72,8 @@ namespace DiKErnel::Integration
     void RevetmentCalculationInputBuilder::AddGrassWaveImpactLocation(
         const GrassRevetmentWaveImpactLocationConstructionProperties& constructionProperties)
     {
-        unique_ptr<IGrassRevetmentWaveImpactTopLayerDefaults> topLayerDefaults;
-
-        try
-        {
-            topLayerDefaults = GrassRevetmentWaveImpactDefaultsFactory::CreateTopLayerDefaults(constructionProperties.GetTopLayerType());
-        }
-        catch (const DefaultsFactoryException&)
-        {
-            ThrowWithMessage();
-        }
-
-        auto waveAngleImpact = make_unique<GrassRevetmentWaveImpactWaveAngleImpact>(
-            GetValue(constructionProperties.GetWaveAngleImpactNwa(), GrassRevetmentWaveImpactDefaults::GetWaveAngleImpactNwa()),
-            GetValue(constructionProperties.GetWaveAngleImpactQwa(), GrassRevetmentWaveImpactDefaults::GetWaveAngleImpactQwa()),
-            GetValue(constructionProperties.GetWaveAngleImpactRwa(), GrassRevetmentWaveImpactDefaults::GetWaveAngleImpactRwa()));
-
-        auto timeLine = make_unique<GrassRevetmentWaveImpactTimeLine>(
-            GetValue(constructionProperties.GetTimeLineAgwi(), topLayerDefaults->GetTimeLineAgwi()),
-            GetValue(constructionProperties.GetTimeLineBgwi(), topLayerDefaults->GetTimeLineBgwi()),
-            GetValue(constructionProperties.GetTimeLineCgwi(), topLayerDefaults->GetTimeLineCgwi()));
-
         _locationDependentInputItems.push_back(
-            make_unique<GrassRevetmentWaveImpactLocationDependentInput>(
-                constructionProperties.GetX(),
-                GetValue(constructionProperties.GetInitialDamage(), RevetmentDefaults::GetInitialDamage()),
-                GetValue(constructionProperties.GetFailureNumber(), RevetmentDefaults::GetFailureNumber()),
-                move(waveAngleImpact),
-                GetValue(constructionProperties.GetMinimumWaveHeightTemax(), GrassRevetmentWaveImpactDefaults::GetMinimumWaveHeightTemax()),
-                GetValue(constructionProperties.GetMaximumWaveHeightTemin(), GrassRevetmentWaveImpactDefaults::GetMaximumWaveHeightTemin()),
-                move(timeLine),
-                GetValue(constructionProperties.GetUpperLimitLoadingAul(), GrassRevetmentWaveImpactDefaults::GetUpperLimitLoadingAul()),
-                GetValue(constructionProperties.GetLowerLimitLoadingAll(), GrassRevetmentWaveImpactDefaults::GetLowerLimitLoadingAll())));
+            GrassRevetmentWaveImpactLocationDependentInputFactory::CreateLocationDependentInput(constructionProperties));
     }
 
     void RevetmentCalculationInputBuilder::AddGrassWaveRunupRayleighLocation(
@@ -128,20 +94,5 @@ namespace DiKErnel::Integration
     {
         return make_unique<CalculationInput>(make_unique<ProfileData>(move(_profilePoints), move(_characteristicPoints)),
                                              move(_locationDependentInputItems), move(_timeDependentInputItems));
-    }
-
-    template <typename TValue>
-    TValue RevetmentCalculationInputBuilder::GetValue(
-        const TValue* ptrValue,
-        const TValue defaultValue)
-    {
-        return ptrValue != nullptr
-                   ? *ptrValue
-                   : defaultValue;
-    }
-
-    void RevetmentCalculationInputBuilder::ThrowWithMessage()
-    {
-        throw_with_nested(RevetmentCalculationInputBuilderException("Could not create instance."));
     }
 }

@@ -125,13 +125,5 @@ namespace DiKErnel::Integration
                     = std::vector<std::unique_ptr<Core::ITimeDependentInput>>();
             std::vector<std::unique_ptr<Core::ILocationDependentInput>> _locationDependentInputItems
                     = std::vector<std::unique_ptr<Core::ILocationDependentInput>>();
-
-            template <typename TValue>
-            static TValue GetValue(
-                const TValue* ptrValue,
-                TValue defaultValue);
-
-            [[noreturn]]
-            static void ThrowWithMessage();
     };
 }
