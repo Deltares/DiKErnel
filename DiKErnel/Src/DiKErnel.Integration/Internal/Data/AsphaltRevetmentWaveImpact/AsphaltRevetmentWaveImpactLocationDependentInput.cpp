@@ -252,12 +252,15 @@ namespace DiKErnel::Integration
             timeOfFailure = make_unique<int>(RevetmentFunctions::TimeOfFailure(durationInTimeStepFailure, beginTime));
         }
 
-        AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties(incrementDamage, damage, move(timeOfFailure));
-        constructionProperties.SetLogFailureTension(_logFailureTension);
-        constructionProperties.SetMaximumPeakStress(maximumPeakStress);
-        constructionProperties.SetStiffnessRelation(_stiffnessRelation);
-        constructionProperties.SetComputationalThickness(_computationalThickness);
-        constructionProperties.SetEquivalentElasticModulus(_subLayerElasticModulus);
+        AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties;
+        constructionProperties._incrementDamage = make_unique<double>(incrementDamage);
+        constructionProperties._damage = make_unique<double>(damage);
+        constructionProperties._timeOfFailure = move(timeOfFailure);
+        constructionProperties._logFailureTension = make_unique<double>(_logFailureTension);
+        constructionProperties._maximumPeakStress = make_unique<double>(maximumPeakStress);
+        constructionProperties._stiffnessRelation = make_unique<double>(_stiffnessRelation);
+        constructionProperties._computationalThickness = make_unique<double>(_computationalThickness);
+        constructionProperties._equivalentElasticModulus = make_unique<double>(_subLayerElasticModulus);
 
         return make_unique<AsphaltRevetmentWaveImpactTimeDependentOutput>(constructionProperties);
     }

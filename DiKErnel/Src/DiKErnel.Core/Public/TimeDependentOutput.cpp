@@ -28,18 +28,24 @@ namespace DiKErnel::Core
         const double incrementDamage,
         const double damage,
         unique_ptr<int> timeOfFailure)
-        : _incrementDamage(incrementDamage),
-          _damage(damage),
+        : _incrementDamage(make_unique<double>(incrementDamage)),
+          _damage(make_unique<double>(damage)),
           _timeOfFailure(move(timeOfFailure)) {}
+
+    TimeDependentOutput::TimeDependentOutput(
+        TimeDependentOutputConstructionProperties& constructionProperties)
+        : _incrementDamage(move(constructionProperties._incrementDamage)),
+          _damage(move(constructionProperties._damage)),
+          _timeOfFailure(move(constructionProperties._timeOfFailure)) { }
 
     double TimeDependentOutput::GetIncrementDamage() const
     {
-        return _incrementDamage;
+        return *_incrementDamage;
     }
 
     double TimeDependentOutput::GetDamage() const
     {
-        return _damage;
+        return *_damage;
     }
 
     const int* TimeDependentOutput::GetTimeOfFailure() const

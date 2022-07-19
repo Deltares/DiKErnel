@@ -37,7 +37,7 @@ namespace DiKErnel::Integration
              *        The construction properties.
              */
             explicit AsphaltRevetmentWaveImpactTimeDependentOutput(
-                const AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties& constructionProperties);
+                AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties& constructionProperties);
             /*!
              * \brief Gets the log failure tension.
              * \return The log failure tension.
@@ -74,10 +74,10 @@ namespace DiKErnel::Integration
             double GetEquivalentElasticModulus() const;
 
         private:
-            const double _logFailureTension;
-            const double _maximumPeakStress;
-            const double _stiffnessRelation;
-            const double _computationalThickness;
-            const double _equivalentElasticModulus;
+            std::unique_ptr<double> _logFailureTension = nullptr;
+            std::unique_ptr<double> _maximumPeakStress = nullptr;
+            std::unique_ptr<double> _stiffnessRelation = nullptr;
+            std::unique_ptr<double> _computationalThickness = nullptr;
+            std::unique_ptr<double> _equivalentElasticModulus = nullptr;
     };
 }

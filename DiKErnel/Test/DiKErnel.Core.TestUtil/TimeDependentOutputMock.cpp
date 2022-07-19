@@ -29,4 +29,8 @@ namespace DiKErnel::Core::TestUtil
         const double damage,
         unique_ptr<int> timeOfFailure)
         : TimeDependentOutput(incrementDamage, damage, move(timeOfFailure)) {}
+
+    TimeDependentOutputMock::TimeDependentOutputMock(
+        TimeDependentOutputConstructionProperties& constructionProperties)
+        : TimeDependentOutput(constructionProperties) {}
 }

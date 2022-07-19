@@ -25,32 +25,27 @@
 
 namespace DiKErnel::Integration::Test
 {
+    using namespace Core;
     using namespace std;
     using namespace TestUtil;
 
     TEST(GrassRevetmentWaveImpactTimeDependentOutputConstructionPropertiesTest, Constructor_ExpectedValues)
     {
-        // Setup
-        constexpr auto incrementDamage = 0.1;
-        constexpr auto damage = 0.2;
-        constexpr auto timeOfFailure = 3;
-
         // Call
-        const GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties(
-            incrementDamage, damage, make_unique<int>(timeOfFailure));
+        const GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties;
 
         // Assert
         AssertHelper::AssertIsInstanceOf<TimeDependentOutputConstructionProperties>(&constructionProperties);
-        ASSERT_DOUBLE_EQ(incrementDamage, constructionProperties.GetIncrementDamage());
-        ASSERT_DOUBLE_EQ(damage, constructionProperties.GetDamage());
-        ASSERT_EQ(timeOfFailure, *constructionProperties.GetTimeOfFailure());
-        ASSERT_FALSE(constructionProperties.GetLoadingRevetment());
-        ASSERT_DOUBLE_EQ(numeric_limits<double>::infinity(), constructionProperties.GetUpperLimitLoading());
-        ASSERT_DOUBLE_EQ(numeric_limits<double>::infinity(), constructionProperties.GetLowerLimitLoading());
-        ASSERT_EQ(nullptr, constructionProperties.GetMinimumWaveHeight());
-        ASSERT_EQ(nullptr, constructionProperties.GetMaximumWaveHeight());
-        ASSERT_EQ(nullptr, constructionProperties.GetWaveAngleImpact());
-        ASSERT_EQ(nullptr, constructionProperties.GetWaveHeightImpact());
+        ASSERT_EQ(nullptr, constructionProperties._incrementDamage);
+        ASSERT_EQ(nullptr, constructionProperties._damage);
+        ASSERT_EQ(nullptr, constructionProperties._timeOfFailure);
+        ASSERT_EQ(nullptr, constructionProperties._loadingRevetment);
+        ASSERT_EQ(nullptr, constructionProperties._upperLimitLoading);
+        ASSERT_EQ(nullptr, constructionProperties._lowerLimitLoading);
+        ASSERT_EQ(nullptr, constructionProperties._minimumWaveHeight);
+        ASSERT_EQ(nullptr, constructionProperties._maximumWaveHeight);
+        ASSERT_EQ(nullptr, constructionProperties._waveAngleImpact);
+        ASSERT_EQ(nullptr, constructionProperties._waveHeightImpact);
     }
 
     TEST(GrassRevetmentWaveImpactTimeDependentOutputConstructionPropertiesTest, GivenConstructionProperties_WhenAllValuesSet_ThenExpectedValues)
@@ -68,58 +63,28 @@ namespace DiKErnel::Integration::Test
         constexpr auto waveHeightImpact = 0.9;
 
         // When
-        GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties(
-            incrementDamage, damage, make_unique<int>(timeOfFailure));
-        constructionProperties.SetLoadingRevetment(loadingRevetment);
-        constructionProperties.SetUpperLimitLoading(upperLimitLoading);
-        constructionProperties.SetLowerLimitLoading(lowerLimitLoading);
-        constructionProperties.SetMinimumWaveHeight(make_unique<double>(minimumWaveHeight));
-        constructionProperties.SetMaximumWaveHeight(make_unique<double>(maximumWaveHeight));
-        constructionProperties.SetWaveAngleImpact(make_unique<double>(waveAngleImpact));
-        constructionProperties.SetWaveHeightImpact(make_unique<double>(waveHeightImpact));
+        GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties;
+        constructionProperties._incrementDamage = make_unique<double>(incrementDamage);
+        constructionProperties._damage = make_unique<double>(damage);
+        constructionProperties._timeOfFailure = make_unique<int>(timeOfFailure);
+        constructionProperties._loadingRevetment = make_unique<bool>(loadingRevetment);
+        constructionProperties._upperLimitLoading = make_unique<double>(upperLimitLoading);
+        constructionProperties._lowerLimitLoading = make_unique<double>(lowerLimitLoading);
+        constructionProperties._minimumWaveHeight = make_unique<double>(minimumWaveHeight);
+        constructionProperties._maximumWaveHeight = make_unique<double>(maximumWaveHeight);
+        constructionProperties._waveAngleImpact = make_unique<double>(waveAngleImpact);
+        constructionProperties._waveHeightImpact = make_unique<double>(waveHeightImpact);
 
         // Then
-        ASSERT_DOUBLE_EQ(incrementDamage, constructionProperties.GetIncrementDamage());
-        ASSERT_DOUBLE_EQ(damage, constructionProperties.GetDamage());
-        ASSERT_EQ(timeOfFailure, *constructionProperties.GetTimeOfFailure());
-        ASSERT_EQ(loadingRevetment, constructionProperties.GetLoadingRevetment());
-        ASSERT_DOUBLE_EQ(upperLimitLoading, constructionProperties.GetUpperLimitLoading());
-        ASSERT_DOUBLE_EQ(lowerLimitLoading, constructionProperties.GetLowerLimitLoading());
-        ASSERT_DOUBLE_EQ(minimumWaveHeight, *constructionProperties.GetMinimumWaveHeight());
-        ASSERT_DOUBLE_EQ(maximumWaveHeight, *constructionProperties.GetMaximumWaveHeight());
-        ASSERT_DOUBLE_EQ(waveAngleImpact, *constructionProperties.GetWaveAngleImpact());
-        ASSERT_DOUBLE_EQ(waveHeightImpact, *constructionProperties.GetWaveHeightImpact());
-    }
-
-    TEST(GrassRevetmentWaveImpactTimeDependentOutputTest, GivenConstructionProperties_WhenValuesSetWithNullPtrValues_ThenExpectedValues)
-    {
-        // Given
-        constexpr auto incrementDamage = 0.1;
-        constexpr auto damage = 0.2;
-        constexpr auto loadingRevetment = false;
-        constexpr auto upperLimitLoading = 0.3;
-        constexpr auto lowerLimitLoading = 0.4;
-
-        // When
-        GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties(incrementDamage, damage, nullptr);
-        constructionProperties.SetLoadingRevetment(loadingRevetment);
-        constructionProperties.SetUpperLimitLoading(upperLimitLoading);
-        constructionProperties.SetLowerLimitLoading(lowerLimitLoading);
-        constructionProperties.SetMinimumWaveHeight(nullptr);
-        constructionProperties.SetMaximumWaveHeight(nullptr);
-        constructionProperties.SetWaveAngleImpact(nullptr);
-        constructionProperties.SetWaveHeightImpact(nullptr);
-
-        // Then
-        ASSERT_DOUBLE_EQ(incrementDamage, constructionProperties.GetIncrementDamage());
-        ASSERT_DOUBLE_EQ(damage, constructionProperties.GetDamage());
-        ASSERT_EQ(nullptr, constructionProperties.GetTimeOfFailure());
-        ASSERT_EQ(loadingRevetment, constructionProperties.GetLoadingRevetment());
-        ASSERT_DOUBLE_EQ(upperLimitLoading, constructionProperties.GetUpperLimitLoading());
-        ASSERT_DOUBLE_EQ(lowerLimitLoading, constructionProperties.GetLowerLimitLoading());
-        ASSERT_EQ(nullptr, constructionProperties.GetMinimumWaveHeight());
-        ASSERT_EQ(nullptr, constructionProperties.GetMaximumWaveHeight());
-        ASSERT_EQ(nullptr, constructionProperties.GetWaveAngleImpact());
-        ASSERT_EQ(nullptr, constructionProperties.GetWaveHeightImpact());
+        ASSERT_DOUBLE_EQ(incrementDamage, *constructionProperties._incrementDamage);
+        ASSERT_DOUBLE_EQ(damage, *constructionProperties._damage);
+        ASSERT_EQ(timeOfFailure, *constructionProperties._timeOfFailure);
+        ASSERT_EQ(loadingRevetment, *constructionProperties._loadingRevetment);
+        ASSERT_DOUBLE_EQ(upperLimitLoading, *constructionProperties._upperLimitLoading);
+        ASSERT_DOUBLE_EQ(lowerLimitLoading, *constructionProperties._lowerLimitLoading);
+        ASSERT_DOUBLE_EQ(minimumWaveHeight, *constructionProperties._minimumWaveHeight);
+        ASSERT_DOUBLE_EQ(maximumWaveHeight, *constructionProperties._maximumWaveHeight);
+        ASSERT_DOUBLE_EQ(waveAngleImpact, *constructionProperties._waveAngleImpact);
+        ASSERT_DOUBLE_EQ(waveHeightImpact, *constructionProperties._waveHeightImpact);
     }
 }

@@ -45,13 +45,11 @@ set(SOURCEFILES_PUBLIC_DATA_OUTPUT
   ${PUBLIC_DATA_OUTPUT_FOLDER}/AsphaltRevetmentWaveImpactLocationDependentOutput.h
   ${PUBLIC_DATA_OUTPUT_FOLDER}/AsphaltRevetmentWaveImpactTimeDependentOutput.cpp
   ${PUBLIC_DATA_OUTPUT_FOLDER}/AsphaltRevetmentWaveImpactTimeDependentOutput.h
-  ${PUBLIC_DATA_OUTPUT_FOLDER}/AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties.cpp
   ${PUBLIC_DATA_OUTPUT_FOLDER}/AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties.h
   ${PUBLIC_DATA_OUTPUT_FOLDER}/GrassRevetmentWaveImpactLocationDependentOutput.cpp
   ${PUBLIC_DATA_OUTPUT_FOLDER}/GrassRevetmentWaveImpactLocationDependentOutput.h
   ${PUBLIC_DATA_OUTPUT_FOLDER}/GrassRevetmentWaveImpactTimeDependentOutput.cpp
   ${PUBLIC_DATA_OUTPUT_FOLDER}/GrassRevetmentWaveImpactTimeDependentOutput.h
-  ${PUBLIC_DATA_OUTPUT_FOLDER}/GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties.cpp
   ${PUBLIC_DATA_OUTPUT_FOLDER}/GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties.h
   ${PUBLIC_DATA_OUTPUT_FOLDER}/GrassRevetmentWaveRunupRayleighLocationDependentOutput.cpp
   ${PUBLIC_DATA_OUTPUT_FOLDER}/GrassRevetmentWaveRunupRayleighLocationDependentOutput.h
@@ -82,8 +80,6 @@ set(SOURCEFILES_INTERNAL_DATA
   ${INTERNAL_DATA_FOLDER}/ProfileData.h
   ${INTERNAL_DATA_FOLDER}/TimeDependentInput.cpp
   ${INTERNAL_DATA_FOLDER}/TimeDependentInput.h
-  ${INTERNAL_DATA_FOLDER}/TimeDependentOutputConstructionProperties.cpp
-  ${INTERNAL_DATA_FOLDER}/TimeDependentOutputConstructionProperties.h
 )
 
 set(SOURCEFILES_INTERNAL_DATA_ASPHALT_REVETMENT_WAVE_IMPACT

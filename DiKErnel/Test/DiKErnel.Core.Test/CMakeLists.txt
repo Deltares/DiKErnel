@@ -10,6 +10,7 @@ set(SOURCEFILES
   Main.cpp
   ProfilePointTest.cpp
   ProfileSegmentTest.cpp
+  TimeDependentOutputConstructionPropertiesTest.cpp
   TimeDependentOutputTest.cpp
   ValidatorTest.cpp
 )

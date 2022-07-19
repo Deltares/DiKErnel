@@ -18,32 +18,20 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include "TimeDependentOutputConstructionProperties.h"
+#pragma once
 
-namespace DiKErnel::Integration
+#include <memory>
+
+namespace DiKErnel::Core
 {
-    using namespace std;
-
-    TimeDependentOutputConstructionProperties::TimeDependentOutputConstructionProperties(
-        const double incrementDamage,
-        const double damage,
-        unique_ptr<int> timeOfFailure)
-        : _incrementDamage(incrementDamage),
-          _damage(damage),
-          _timeOfFailure(move(timeOfFailure)) {}
-
-    double TimeDependentOutputConstructionProperties::GetIncrementDamage() const
+    /*!
+     * \brief Construction properties to construct time dependent output.
+     */
+    class TimeDependentOutputConstructionProperties
     {
-        return _incrementDamage;
-    }
-
-    double TimeDependentOutputConstructionProperties::GetDamage() const
-    {
-        return _damage;
-    }
-
-    const int* TimeDependentOutputConstructionProperties::GetTimeOfFailure() const
-    {
-        return _timeOfFailure.get();
-    }
+        public:
+            std::unique_ptr<double> _incrementDamage = nullptr;
+            std::unique_ptr<double> _damage = nullptr;
+            std::unique_ptr<int> _timeOfFailure = nullptr;
+    };
 }

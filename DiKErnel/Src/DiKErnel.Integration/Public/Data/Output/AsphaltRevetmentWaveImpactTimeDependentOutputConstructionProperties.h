@@ -20,8 +20,6 @@
 
 #pragma once
 
-#include <limits>
-
 #include "TimeDependentOutputConstructionProperties.h"
 
 namespace DiKErnel::Integration
@@ -30,103 +28,32 @@ namespace DiKErnel::Integration
      * \brief Construction properties to construct asphalt revetment wave impact time dependent
      *        output.
      */
-    class AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties : public TimeDependentOutputConstructionProperties
+    class AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties : public Core::TimeDependentOutputConstructionProperties
     {
         public:
             /*!
-             * \brief Creates a new instance.
-             * \param incrementDamage
-             *        The increment damage.
-             * \param damage
-             *        The damage.
-             * \param timeOfFailure
-             *        The time of failure.
+             * \brief The log failure tension.
              */
-            explicit AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties(
-                double incrementDamage,
-                double damage,
-                std::unique_ptr<int> timeOfFailure);
+            std::unique_ptr<double> _logFailureTension = nullptr;
 
             /*!
-             * \brief Sets the log failure tension.
-             * \param logFailureTension
-             *        The log failure tension.
+             * \brief The maximum peak stress.
              */
-            void SetLogFailureTension(
-                double logFailureTension);
+            std::unique_ptr<double> _maximumPeakStress = nullptr;
 
             /*!
-             * \brief Sets the maximum peak stress.
-             * \param maximumPeakStress
-             *        The maximum peak stress.
+             * \brief The stiffness relation.
              */
-            void SetMaximumPeakStress(
-                double maximumPeakStress);
+            std::unique_ptr<double> _stiffnessRelation = nullptr;
 
             /*!
-             * \brief Sets the stiffness relation.
-             * \param stiffnessRelation
-             *        The stiffness relation.
+             * \brief The computational thickness.
              */
-            void SetStiffnessRelation(
-                double stiffnessRelation);
+            std::unique_ptr<double> _computationalThickness = nullptr;
 
             /*!
-             * \brief Sets the computational thickness.
-             * \param computationalThickness
-             *        The computational thickness.
+             * \brief The equivalent elastic modulus.
              */
-            void SetComputationalThickness(
-                double computationalThickness);
-
-            /*!
-             * \brief Sets the equivalent elastic modulus.
-             * \param equivalentElasticModulus
-             *        The equivalent elastic modulus.
-             */
-            void SetEquivalentElasticModulus(
-                double equivalentElasticModulus);
-
-            /*!
-             * \brief Gets the log failure tension.
-             * \return The log failure tension.
-             */
-            [[nodiscard]]
-            double GetLogFailureTension() const;
-
-            /*!
-             * \brief Gets the maximum peak stress.
-             * \return The maximum peak stress.
-             */
-            [[nodiscard]]
-            double GetMaximumPeakStress() const;
-
-            /*!
-             * \brief Gets the stiffness relation.
-             * \return The stiffness relation.
-             */
-            [[nodiscard]]
-            double GetStiffnessRelation() const;
-
-            /*!
-             * \brief Gets the computational thickness.
-             * \return The computational thickness.
-             */
-            [[nodiscard]]
-            double GetComputationalThickness() const;
-
-            /*!
-             * \brief Gets the equivalent elastic modulus.
-             * \return The equivalent elastic modulus.
-             */
-            [[nodiscard]]
-            double GetEquivalentElasticModulus() const;
-
-        private:
-            double _logFailureTension = std::numeric_limits<double>::infinity();
-            double _maximumPeakStress = std::numeric_limits<double>::infinity();
-            double _stiffnessRelation = std::numeric_limits<double>::infinity();
-            double _computationalThickness = std::numeric_limits<double>::infinity();
-            double _equivalentElasticModulus = std::numeric_limits<double>::infinity();
+            std::unique_ptr<double> _equivalentElasticModulus = nullptr;
     };
 }

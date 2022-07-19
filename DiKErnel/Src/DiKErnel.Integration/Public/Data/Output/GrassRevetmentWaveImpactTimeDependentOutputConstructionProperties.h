@@ -28,135 +28,42 @@ namespace DiKErnel::Integration
      * \brief Construction properties to construct grass revetment wave impact time dependent
      *        output.
      */
-    class GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties : public TimeDependentOutputConstructionProperties
+    class GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties : public Core::TimeDependentOutputConstructionProperties
     {
         public:
             /*!
-             * \brief Creates a new instance.
-             * \param incrementDamage
-             *        The increment damage.
-             * \param damage
-             *        The damage.
-             * \param timeOfFailure
-             *        The time of failure.
+             * \brief The loading revetment.
              */
-            explicit GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties(
-                double incrementDamage,
-                double damage,
-                std::unique_ptr<int> timeOfFailure);
+            std::unique_ptr<bool> _loadingRevetment = nullptr;
 
             /*!
-             * \brief Sets the loading revetment.
-             * \param loadingRevetment
-             *        The loading revetment.
+             * \brief The upper limit loading.
              */
-            void SetLoadingRevetment(
-                bool loadingRevetment);
+            std::unique_ptr<double> _upperLimitLoading = nullptr;
 
             /*!
-             * \brief Sets the upper limit loading.
-             * \param upperLimitLoading
-             *        The upper limit loading.
+             * \brief The lower limit loading.
              */
-            void SetUpperLimitLoading(
-                double upperLimitLoading);
+            std::unique_ptr<double> _lowerLimitLoading = nullptr;
 
             /*!
-             * \brief Sets the lower limit loading.
-             * \param lowerLimitLoading
-             *        The lower limit loading.
+             * \brief The minimum wave height.
              */
-            void SetLowerLimitLoading(
-                double lowerLimitLoading);
-
-            /*!
-             * \brief Sets the minimum wave height.
-             * \param minimumWaveHeight
-             *        The minimum wave height.
-             */
-            void SetMinimumWaveHeight(
-                std::unique_ptr<double> minimumWaveHeight);
-
-            /*!
-             * \brief Sets the maximum wave height.
-             * \param maximumWaveHeight
-             *        The maximum wave height.
-             */
-            void SetMaximumWaveHeight(
-                std::unique_ptr<double> maximumWaveHeight);
-
-            /*!
-             * \brief Sets the wave angle impact.
-             * \param waveAngleImpact
-             *        The wave angle impact.
-             */
-            void SetWaveAngleImpact(
-                std::unique_ptr<double> waveAngleImpact);
-
-            /*!
-             * \brief Sets the wave height impact.
-             * \param waveHeightImpact
-             *        The wave height impact.
-             */
-            void SetWaveHeightImpact(
-                std::unique_ptr<double> waveHeightImpact);
-
-            /*!
-             * \brief Gets the loading revetment.
-             * \return The loading revetment.
-             */
-            [[nodiscard]]
-            bool GetLoadingRevetment() const;
-
-            /*!
-             * \brief Gets the upper limit loading.
-             * \return The upper limit loading.
-             */
-            [[nodiscard]]
-            double GetUpperLimitLoading() const;
-
-            /*!
-             * \brief Gets the lower limit loading.
-             * \return The lower limit loading.
-             */
-            [[nodiscard]]
-            double GetLowerLimitLoading() const;
-
-            /*!
-             * \brief Gets the minimum wave height.
-             * \return The minimum wave height.
-             */
-            [[nodiscard]]
-            const double* GetMinimumWaveHeight() const;
-
-            /*!
-             * \brief Gets the maximum wave height.
-             * \return The maximum wave height.
-             */
-            [[nodiscard]]
-            const double* GetMaximumWaveHeight() const;
-
-            /*!
-             * \brief Gets the wave angle impact.
-             * \return The wave angle impact.
-             */
-            [[nodiscard]]
-            const double* GetWaveAngleImpact() const;
-
-            /*!
-             * \brief Gets the wave height impact.
-             * \return The wave height impact.
-             */
-            [[nodiscard]]
-            const double* GetWaveHeightImpact() const;
-
-        private:
-            bool _loadingRevetment = false;
-            double _upperLimitLoading = std::numeric_limits<double>::infinity();
-            double _lowerLimitLoading = std::numeric_limits<double>::infinity();
             std::unique_ptr<double> _minimumWaveHeight = nullptr;
+
+            /*!
+             * \brief The maximum wave height.
+             */
             std::unique_ptr<double> _maximumWaveHeight = nullptr;
+
+            /*!
+             * \brief The wave angle impact.
+             */
             std::unique_ptr<double> _waveAngleImpact = nullptr;
+
+            /*!
+             * \brief The wave height impact.
+             */
             std::unique_ptr<double> _waveHeightImpact = nullptr;
     };
 }

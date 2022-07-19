@@ -20,46 +20,39 @@
 
 #include <gtest/gtest.h>
 
-#include "TimeDependentOutputMock.h"
+#include "TimeDependentOutputConstructionProperties.h"
 
 namespace DiKErnel::Core::Test
 {
     using namespace std;
-    using namespace TestUtil;
 
-    TEST(TimeDependentOutputTest, Constructor_ConstructionPropertiesWithValuesSet_ExpectedValues)
+    TEST(TimeDependentOutputConstructionPropertiesTest, Constructor_ExpectedValues)
     {
-        // Setup
+        // Call
+        const TimeDependentOutputConstructionProperties constructionProperties;
+
+        // Assert
+        ASSERT_EQ(nullptr, constructionProperties._incrementDamage);
+        ASSERT_EQ(nullptr, constructionProperties._damage);
+        ASSERT_EQ(nullptr, constructionProperties._timeOfFailure);
+    }
+
+    TEST(TimeDependentOutputConstructionPropertiesTest, GivenConstructionProperties_WhenPropertiesSet_ThenExpectedValues)
+    {
+        // Given
         constexpr auto incrementDamage = 0.1;
         constexpr auto damage = 0.2;
         auto timeOfFailure = 3;
 
+        // When
         TimeDependentOutputConstructionProperties constructionProperties;
         constructionProperties._incrementDamage = make_unique<double>(incrementDamage);
         constructionProperties._damage = make_unique<double>(damage);
         constructionProperties._timeOfFailure = make_unique<int>(timeOfFailure);
 
-        // Call
-        const TimeDependentOutputMock timeDependentOutput(constructionProperties);
-
-        // Assert
-        ASSERT_DOUBLE_EQ(incrementDamage, timeDependentOutput.GetIncrementDamage());
-        ASSERT_DOUBLE_EQ(damage, timeDependentOutput.GetDamage());
-        ASSERT_EQ(timeOfFailure, *timeDependentOutput.GetTimeOfFailure());
-    }
-
-    TEST(TimeDependentOutputTest, Constructor_TimeOfFailureNullPtr_ExpectedValues)
-    {
-        // Setup
-        TimeDependentOutputConstructionProperties constructionProperties;
-        constructionProperties._incrementDamage = make_unique<double>(0.1);
-        constructionProperties._damage = make_unique<double>(0.2);
-        constructionProperties._timeOfFailure = nullptr;
-
-        // Call
-        const TimeDependentOutputMock timeDependentOutput(constructionProperties);
-
-        // Assert
-        ASSERT_EQ(nullptr, timeDependentOutput.GetTimeOfFailure());
+        // Then
+        ASSERT_DOUBLE_EQ(incrementDamage, *constructionProperties._incrementDamage);
+        ASSERT_DOUBLE_EQ(damage, *constructionProperties._damage);
+        ASSERT_EQ(timeOfFailure, *constructionProperties._timeOfFailure);
     }
 }

@@ -25,30 +25,25 @@
 
 namespace DiKErnel::Integration::Test
 {
+    using namespace Core;
     using namespace std;
     using namespace TestUtil;
 
     TEST(AsphaltRevetmentWaveImpactTimeDependentOutputConstructionPropertiesTest, Constructor_ExpectedValues)
     {
-        // Setup
-        constexpr auto incrementDamage = 0.1;
-        constexpr auto damage = 0.2;
-        constexpr auto timeOfFailure = 3;
-
         // Call
-        const AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties(
-            incrementDamage, damage, make_unique<int>(timeOfFailure));
+        const AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties;
 
         // Assert
         AssertHelper::AssertIsInstanceOf<TimeDependentOutputConstructionProperties>(&constructionProperties);
-        ASSERT_DOUBLE_EQ(incrementDamage, constructionProperties.GetIncrementDamage());
-        ASSERT_DOUBLE_EQ(damage, constructionProperties.GetDamage());
-        ASSERT_EQ(timeOfFailure, *constructionProperties.GetTimeOfFailure());
-        ASSERT_DOUBLE_EQ(numeric_limits<double>::infinity(), constructionProperties.GetLogFailureTension());
-        ASSERT_DOUBLE_EQ(numeric_limits<double>::infinity(), constructionProperties.GetMaximumPeakStress());
-        ASSERT_DOUBLE_EQ(numeric_limits<double>::infinity(), constructionProperties.GetStiffnessRelation());
-        ASSERT_DOUBLE_EQ(numeric_limits<double>::infinity(), constructionProperties.GetComputationalThickness());
-        ASSERT_DOUBLE_EQ(numeric_limits<double>::infinity(), constructionProperties.GetEquivalentElasticModulus());
+        ASSERT_EQ(nullptr, constructionProperties._incrementDamage);
+        ASSERT_EQ(nullptr, constructionProperties._damage);
+        ASSERT_EQ(nullptr, constructionProperties._timeOfFailure);
+        ASSERT_EQ(nullptr, constructionProperties._logFailureTension);
+        ASSERT_EQ(nullptr, constructionProperties._maximumPeakStress);
+        ASSERT_EQ(nullptr, constructionProperties._stiffnessRelation);
+        ASSERT_EQ(nullptr, constructionProperties._computationalThickness);
+        ASSERT_EQ(nullptr, constructionProperties._equivalentElasticModulus);
     }
 
     TEST(AsphaltRevetmentWaveImpactTimeDependentOutputConstructionPropertiesTest, GivenConstructionProperties_WhenAllValuesSet_ThenExpectedValues)
@@ -64,23 +59,25 @@ namespace DiKErnel::Integration::Test
         constexpr auto equivalentElasticModulus = 0.8;
 
         // When
-        AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties(
-            incrementDamage, damage, make_unique<int>(timeOfFailure));
-        constructionProperties.SetLogFailureTension(logFailureTension);
-        constructionProperties.SetMaximumPeakStress(maximumPeakStress);
-        constructionProperties.SetStiffnessRelation(stiffnessRelation);
-        constructionProperties.SetComputationalThickness(computationalThickness);
-        constructionProperties.SetEquivalentElasticModulus(equivalentElasticModulus);
+        AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties;
+        constructionProperties._incrementDamage = make_unique<double>(incrementDamage);
+        constructionProperties._damage = make_unique<double>(damage);
+        constructionProperties._timeOfFailure = make_unique<int>(timeOfFailure);
+        constructionProperties._logFailureTension = make_unique<double>(logFailureTension);
+        constructionProperties._maximumPeakStress = make_unique<double>(maximumPeakStress);
+        constructionProperties._stiffnessRelation = make_unique<double>(stiffnessRelation);
+        constructionProperties._computationalThickness = make_unique<double>(computationalThickness);
+        constructionProperties._equivalentElasticModulus = make_unique<double>(equivalentElasticModulus);
 
         // Then
         AssertHelper::AssertIsInstanceOf<TimeDependentOutputConstructionProperties>(&constructionProperties);
-        ASSERT_DOUBLE_EQ(incrementDamage, constructionProperties.GetIncrementDamage());
-        ASSERT_DOUBLE_EQ(damage, constructionProperties.GetDamage());
-        ASSERT_EQ(timeOfFailure, *constructionProperties.GetTimeOfFailure());
-        ASSERT_DOUBLE_EQ(logFailureTension, constructionProperties.GetLogFailureTension());
-        ASSERT_DOUBLE_EQ(maximumPeakStress, constructionProperties.GetMaximumPeakStress());
-        ASSERT_DOUBLE_EQ(stiffnessRelation, constructionProperties.GetStiffnessRelation());
-        ASSERT_DOUBLE_EQ(computationalThickness, constructionProperties.GetComputationalThickness());
-        ASSERT_DOUBLE_EQ(equivalentElasticModulus, constructionProperties.GetEquivalentElasticModulus());
+        ASSERT_DOUBLE_EQ(incrementDamage, *constructionProperties._incrementDamage);
+        ASSERT_DOUBLE_EQ(damage, *constructionProperties._damage);
+        ASSERT_EQ(timeOfFailure, *constructionProperties._timeOfFailure);
+        ASSERT_DOUBLE_EQ(logFailureTension, *constructionProperties._logFailureTension);
+        ASSERT_DOUBLE_EQ(maximumPeakStress, *constructionProperties._maximumPeakStress);
+        ASSERT_DOUBLE_EQ(stiffnessRelation, *constructionProperties._stiffnessRelation);
+        ASSERT_DOUBLE_EQ(computationalThickness, *constructionProperties._computationalThickness);
+        ASSERT_DOUBLE_EQ(equivalentElasticModulus, *constructionProperties._equivalentElasticModulus);
     }
 }

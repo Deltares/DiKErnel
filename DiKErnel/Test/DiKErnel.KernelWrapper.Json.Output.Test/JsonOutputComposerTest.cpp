@@ -127,12 +127,15 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
         [[nodiscard]]
         unique_ptr<CalculationOutput> CreateCalculationOutputWithRevetmentSpecificTimeDependentOutputWithAllDataSet() const
         {
-            AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties asphaltWaveImpactTimeDependentOutputConstructionProperties(0.1, 0.2, make_unique<int>(3));
-            asphaltWaveImpactTimeDependentOutputConstructionProperties.SetLogFailureTension(0.4);
-            asphaltWaveImpactTimeDependentOutputConstructionProperties.SetMaximumPeakStress(0.5);
-            asphaltWaveImpactTimeDependentOutputConstructionProperties.SetStiffnessRelation(0.6);
-            asphaltWaveImpactTimeDependentOutputConstructionProperties.SetComputationalThickness(0.7);
-            asphaltWaveImpactTimeDependentOutputConstructionProperties.SetEquivalentElasticModulus(0.8);
+            AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties asphaltWaveImpactTimeDependentOutputConstructionProperties;
+            asphaltWaveImpactTimeDependentOutputConstructionProperties._incrementDamage = make_unique<double>(0.1);
+            asphaltWaveImpactTimeDependentOutputConstructionProperties._damage = make_unique<double>(0.2);
+            asphaltWaveImpactTimeDependentOutputConstructionProperties._timeOfFailure = make_unique<int>(3);
+            asphaltWaveImpactTimeDependentOutputConstructionProperties._logFailureTension = make_unique<double>(0.4);
+            asphaltWaveImpactTimeDependentOutputConstructionProperties._maximumPeakStress = make_unique<double>(0.5);
+            asphaltWaveImpactTimeDependentOutputConstructionProperties._stiffnessRelation = make_unique<double>(0.6);
+            asphaltWaveImpactTimeDependentOutputConstructionProperties._computationalThickness = make_unique<double>(0.7);
+            asphaltWaveImpactTimeDependentOutputConstructionProperties._equivalentElasticModulus = make_unique<double>(0.8);
 
             auto asphaltWaveImpactTimeDependentOutput = make_unique<AsphaltRevetmentWaveImpactTimeDependentOutput>(asphaltWaveImpactTimeDependentOutputConstructionProperties);
             auto grassWaveImpactTimeDependentOutput = make_unique<GrassRevetmentWaveImpactTimeDependentOutput>(
@@ -167,12 +170,15 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
         [[nodiscard]]
         unique_ptr<CalculationOutput> CreateCalculationOutputWithRevetmentSpecificTimeDependentOutputWithOnlyMandatoryDataSet() const
         {
-            AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties asphaltWaveImpactTimeDependentOutputConstructionProperties(0.1, 0.2, nullptr);
-            asphaltWaveImpactTimeDependentOutputConstructionProperties.SetLogFailureTension(0.3);
-            asphaltWaveImpactTimeDependentOutputConstructionProperties.SetMaximumPeakStress(0.4);
-            asphaltWaveImpactTimeDependentOutputConstructionProperties.SetStiffnessRelation(0.5);
-            asphaltWaveImpactTimeDependentOutputConstructionProperties.SetComputationalThickness(0.6);
-            asphaltWaveImpactTimeDependentOutputConstructionProperties.SetEquivalentElasticModulus(0.7);
+            AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties asphaltWaveImpactTimeDependentOutputConstructionProperties;
+            asphaltWaveImpactTimeDependentOutputConstructionProperties._incrementDamage = make_unique<double>(0.1);
+            asphaltWaveImpactTimeDependentOutputConstructionProperties._damage = make_unique<double>(0.2);
+            asphaltWaveImpactTimeDependentOutputConstructionProperties._timeOfFailure = nullptr;
+            asphaltWaveImpactTimeDependentOutputConstructionProperties._logFailureTension = make_unique<double>(0.3);
+            asphaltWaveImpactTimeDependentOutputConstructionProperties._maximumPeakStress = make_unique<double>(0.4);
+            asphaltWaveImpactTimeDependentOutputConstructionProperties._stiffnessRelation = make_unique<double>(0.5);
+            asphaltWaveImpactTimeDependentOutputConstructionProperties._computationalThickness = make_unique<double>(0.6);
+            asphaltWaveImpactTimeDependentOutputConstructionProperties._equivalentElasticModulus = make_unique<double>(0.7);
 
             auto asphaltWaveImpactTimeDependentOutput = make_unique<AsphaltRevetmentWaveImpactTimeDependentOutput>(asphaltWaveImpactTimeDependentOutputConstructionProperties);
 

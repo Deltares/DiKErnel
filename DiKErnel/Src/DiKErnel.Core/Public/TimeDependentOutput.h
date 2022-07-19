@@ -22,6 +22,8 @@
 
 #include <memory>
 
+#include "TimeDependentOutputConstructionProperties.h"
+
 namespace DiKErnel::Core
 {
     /*!
@@ -59,6 +61,14 @@ namespace DiKErnel::Core
         protected:
             /*!
              * \brief Creates a new instance.
+             * \param constructionProperties
+             *        The TimeDependentOutputConstructionProperties.
+             */
+            explicit TimeDependentOutput(
+                TimeDependentOutputConstructionProperties& constructionProperties);
+
+            /*!
+             * \brief Creates a new instance.
              * \param incrementDamage
              *        The increment damage.
              * \param damage
@@ -72,8 +82,8 @@ namespace DiKErnel::Core
                 std::unique_ptr<int> timeOfFailure);
 
         private:
-            double _incrementDamage;
-            double _damage;
-            std::unique_ptr<int> _timeOfFailure;
+            std::unique_ptr<double> _incrementDamage = nullptr;
+            std::unique_ptr<double> _damage = nullptr;
+            std::unique_ptr<int> _timeOfFailure = nullptr;
     };
 }

@@ -25,37 +25,36 @@ namespace DiKErnel::Integration
     using namespace std;
 
     AsphaltRevetmentWaveImpactTimeDependentOutput::AsphaltRevetmentWaveImpactTimeDependentOutput(
-        const AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties& constructionProperties)
-        : TimeDependentOutput(constructionProperties.GetIncrementDamage(), constructionProperties.GetDamage(),
-                              make_unique<int>(*constructionProperties.GetTimeOfFailure())),
-          _logFailureTension(constructionProperties.GetLogFailureTension()),
-          _maximumPeakStress(constructionProperties.GetMaximumPeakStress()),
-          _stiffnessRelation(constructionProperties.GetStiffnessRelation()),
-          _computationalThickness(constructionProperties.GetComputationalThickness()),
-          _equivalentElasticModulus(constructionProperties.GetEquivalentElasticModulus()) {}
+        AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties& constructionProperties)
+        : TimeDependentOutput(constructionProperties),
+          _logFailureTension(move(constructionProperties._logFailureTension)),
+          _maximumPeakStress(move(constructionProperties._maximumPeakStress)),
+          _stiffnessRelation(move(constructionProperties._stiffnessRelation)),
+          _computationalThickness(move(constructionProperties._computationalThickness)),
+          _equivalentElasticModulus(move(constructionProperties._equivalentElasticModulus)) { }
 
     double AsphaltRevetmentWaveImpactTimeDependentOutput::GetLogFailureTension() const
     {
-        return _logFailureTension;
+        return *_logFailureTension;
     }
 
     double AsphaltRevetmentWaveImpactTimeDependentOutput::GetMaximumPeakStress() const
     {
-        return _maximumPeakStress;
+        return *_maximumPeakStress;
     }
 
     double AsphaltRevetmentWaveImpactTimeDependentOutput::GetStiffnessRelation() const
     {
-        return _stiffnessRelation;
+        return *_stiffnessRelation;
     }
 
     double AsphaltRevetmentWaveImpactTimeDependentOutput::GetComputationalThickness() const
     {
-        return _computationalThickness;
+        return *_computationalThickness;
     }
 
     double AsphaltRevetmentWaveImpactTimeDependentOutput::GetEquivalentElasticModulus() const
     {
-        return _equivalentElasticModulus;
+        return *_equivalentElasticModulus;
     }
 }

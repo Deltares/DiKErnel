@@ -31,5 +31,8 @@ namespace DiKErnel::Core::TestUtil
                 double incrementDamage,
                 double damage,
                 std::unique_ptr<int> timeOfFailure);
+
+            explicit TimeDependentOutputMock(
+                TimeDependentOutputConstructionProperties& constructionProperties);
     };
 }
