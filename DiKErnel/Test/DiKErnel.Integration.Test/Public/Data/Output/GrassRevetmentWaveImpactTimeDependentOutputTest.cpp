@@ -44,11 +44,20 @@ namespace DiKErnel::Integration::Test
         constexpr auto waveAngleImpact = 0.8;
         constexpr auto waveHeightImpact = 0.9;
 
+        GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties;
+        constructionProperties._incrementDamage = make_unique<double>(incrementDamage);
+        constructionProperties._damage = make_unique<double>(damage);
+        constructionProperties._timeOfFailure = make_unique<int>(timeOfFailure);
+        constructionProperties._loadingRevetment = make_unique<bool>(loadingRevetment);
+        constructionProperties._upperLimitLoading = make_unique<double>(upperLimitLoading);
+        constructionProperties._lowerLimitLoading = make_unique<double>(lowerLimitLoading);
+        constructionProperties._minimumWaveHeight = make_unique<double>(minimumWaveHeight);
+        constructionProperties._maximumWaveHeight = make_unique<double>(maximumWaveHeight);
+        constructionProperties._waveAngleImpact = make_unique<double>(waveAngleImpact);
+        constructionProperties._waveHeightImpact = make_unique<double>(waveHeightImpact);
+
         // Call
-        const GrassRevetmentWaveImpactTimeDependentOutput output(incrementDamage, damage, make_unique<int>(timeOfFailure), loadingRevetment,
-                                                                 upperLimitLoading, lowerLimitLoading, make_unique<double>(minimumWaveHeight),
-                                                                 make_unique<double>(maximumWaveHeight), make_unique<double>(waveAngleImpact),
-                                                                 make_unique<double>(waveHeightImpact));
+        const GrassRevetmentWaveImpactTimeDependentOutput output(constructionProperties);
 
         // Assert
         AssertHelper::AssertIsInstanceOf<TimeDependentOutput>(&output);
@@ -73,9 +82,20 @@ namespace DiKErnel::Integration::Test
         constexpr auto upperLimitLoading = 0.3;
         constexpr auto lowerLimitLoading = 0.4;
 
+        GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties;
+        constructionProperties._incrementDamage = make_unique<double>(incrementDamage);
+        constructionProperties._damage = make_unique<double>(damage);
+        constructionProperties._timeOfFailure = nullptr;
+        constructionProperties._loadingRevetment = make_unique<bool>(loadingRevetment);
+        constructionProperties._upperLimitLoading = make_unique<double>(upperLimitLoading);
+        constructionProperties._lowerLimitLoading = make_unique<double>(lowerLimitLoading);
+        constructionProperties._minimumWaveHeight = nullptr;
+        constructionProperties._maximumWaveHeight = nullptr;
+        constructionProperties._waveAngleImpact = nullptr;
+        constructionProperties._waveHeightImpact = nullptr;
+
         // Call
-        const GrassRevetmentWaveImpactTimeDependentOutput output(incrementDamage, damage, nullptr, loadingRevetment, upperLimitLoading,
-                                                                 lowerLimitLoading, nullptr, nullptr, nullptr, nullptr);
+        const GrassRevetmentWaveImpactTimeDependentOutput output(constructionProperties);
 
         // Assert
         AssertHelper::AssertIsInstanceOf<TimeDependentOutput>(&output);

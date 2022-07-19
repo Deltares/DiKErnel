@@ -12,8 +12,8 @@
                     ]
                 },
                 "fysica": {
-                    "hoogteLocatie": 4.6,
-                    "hellingBuitentalud": 4.7,
+                    "hoogteLocatie": 4.5,
+                    "hellingBuitentalud": 4.6,
                     "toenameSchade": [
                         0.1
                     ],
@@ -45,7 +45,7 @@
                     ]
                 },
                 "fysica": {
-                    "hoogteLocatie": 4.8,
+                    "hoogteLocatie": 4.7,
                     "toenameSchade": [
                         0.9
                     ],
@@ -53,122 +53,122 @@
                         true
                     ],
                     "bovengrensBelasting": [
-                        1.3
+                        1.2
                     ],
                     "ondergrensBelasting": [
-                        1.4
+                        1.3
                     ],
                     "maximumGolfhoogte": [
-                        1.6
-                    ],
-                    "minimumGolfhoogte": [
                         1.5
                     ],
+                    "minimumGolfhoogte": [
+                        1.4
+                    ],
                     "impactGolfhoek": [
-                        1.7
+                        1.6
                     ],
                     "impactGolfhoogte": [
-                        1.8
+                        1.7
                     ]
                 }
             },
             {
                 "falen": {
                     "faalgebeurtenis": true,
-                    "faaltijd": 21
+                    "faaltijd": 20
                 },
                 "schade": {
                     "schadegetalPerTijdstap": [
-                        2.0
+                        1.9
+                    ]
+                },
+                "fysica": {
+                    "hoogteLocatie": 4.8,
+                    "toenameSchade": [
+                        1.8
+                    ],
+                    "verticaleAfstandWaterstandHoogteLocatie": [
+                        2.1
+                    ],
+                    "impactGolfhoek": [
+                        2.2
+                    ],
+                    "representatieve2p": [
+                        2.3
+                    ],
+                    "cumulatieveOverbelasting": [
+                        2.4
+                    ]
+                }
+            },
+            {
+                "falen": {
+                    "faalgebeurtenis": true,
+                    "faaltijd": 27
+                },
+                "schade": {
+                    "schadegetalPerTijdstap": [
+                        2.6
                     ]
                 },
                 "fysica": {
                     "hoogteLocatie": 4.9,
                     "toenameSchade": [
-                        1.9
-                    ],
-                    "verticaleAfstandWaterstandHoogteLocatie": [
-                        2.2
-                    ],
-                    "impactGolfhoek": [
-                        2.3
-                    ],
-                    "representatieve2p": [
-                        2.4
-                    ],
-                    "cumulatieveOverbelasting": [
                         2.5
-                    ]
-                }
-            },
-            {
-                "falen": {
-                    "faalgebeurtenis": true,
-                    "faaltijd": 28
-                },
-                "schade": {
-                    "schadegetalPerTijdstap": [
-                        2.7
-                    ]
-                },
-                "fysica": {
-                    "hoogteLocatie": 5.0,
-                    "toenameSchade": [
-                        2.6
                     ],
                     "hellingBuitentalud": [
-                        2.9
+                        2.8
                     ],
                     "bovenzijdeHellingvlak": [
-                        3.0
+                        2.9
                     ],
                     "rechterzijdeHellingvlak": [
-                        3.1
+                        3.0
                     ],
                     "onderzijdeHellingvlak": [
-                        3.2
+                        3.1
                     ],
                     "linkerzijdeHellingvlak": [
-                        3.3
+                        3.2
                     ],
                     "belastingBekleding": [
                         true
                     ],
                     "golfbrekingparameter": [
-                        3.4
+                        3.3
                     ],
                     "golfsteilheidDiepWater": [
-                        3.5
+                        3.4
                     ],
                     "bovengrensBelasting": [
-                        3.6
+                        3.5
                     ],
                     "ondergrensBelasting": [
-                        3.7
+                        3.6
                     ],
                     "diepteMaximaleGolfbelasting": [
-                        3.8
+                        3.7
                     ],
                     "afstandMaximaleStijghoogte": [
-                        3.9
+                        3.8
                     ],
                     "maatgevendeBreedteGolfklap": [
-                        4.0
+                        3.9
                     ],
                     "hydraulischeBelasting": [
-                        4.1
+                        4.0
                     ],
                     "impactGolfhoek": [
-                        4.2
+                        4.1
                     ],
                     "sterkteBekleding": [
-                        4.3
+                        4.2
                     ],
                     "referentietijdDegradatie": [
-                        4.4
+                        4.3
                     ],
                     "referentieDegradatie": [
-                        4.5
+                        4.4
                     ]
                 }
             }

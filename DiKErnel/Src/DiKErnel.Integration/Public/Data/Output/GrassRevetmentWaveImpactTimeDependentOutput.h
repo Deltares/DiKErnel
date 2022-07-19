@@ -20,6 +20,7 @@
 
 #pragma once
 
+#include "GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties.h"
 #include "TimeDependentOutput.h"
 
 namespace DiKErnel::Integration
@@ -32,38 +33,13 @@ namespace DiKErnel::Integration
         public:
             /*!
              * \brief Creates a new instance.
-             * \param incrementDamage
-             *        The increment damage.
-             * \param damage
-             *        The damage.
-             * \param timeOfFailure
-             *        The time of failure.
-             * \param loadingRevetment
-             *        The loading revetment.
-             * \param upperLimitLoading
-             *        The upper limit loading.
-             * \param lowerLimitLoading
-             *        The lower limit loading.
-             * \param minimumWaveHeight
-             *        The minimum wave height.
-             * \param maximumWaveHeight
-             *        The maximum wave height.
-             * \param waveAngleImpact
-             *        The wave angle impact.
-             * \param waveHeightImpact
-             *        The wave height impact.
+             * \param constructionProperties
+             *        The construction properties.
+             * \exception InvalidTimeDependentOutputException
+             *            Thrown when mandatory properties are nullptr.
              */
             explicit GrassRevetmentWaveImpactTimeDependentOutput(
-                double incrementDamage,
-                double damage,
-                std::unique_ptr<int> timeOfFailure,
-                bool loadingRevetment,
-                double upperLimitLoading,
-                double lowerLimitLoading,
-                std::unique_ptr<double> minimumWaveHeight,
-                std::unique_ptr<double> maximumWaveHeight,
-                std::unique_ptr<double> waveAngleImpact,
-                std::unique_ptr<double> waveHeightImpact);
+                GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties& constructionProperties);
 
             /*!
              * \brief Gets the loading revetment.
@@ -115,12 +91,12 @@ namespace DiKErnel::Integration
             const double* GetWaveHeightImpact() const;
 
         private:
-            const bool _loadingRevetment;
-            const double _upperLimitLoading;
-            const double _lowerLimitLoading;
-            std::unique_ptr<double> _minimumWaveHeight;
-            std::unique_ptr<double> _maximumWaveHeight;
-            std::unique_ptr<double> _waveAngleImpact;
-            std::unique_ptr<double> _waveHeightImpact;
+            std::unique_ptr<bool> _loadingRevetment = nullptr;
+            std::unique_ptr<double> _upperLimitLoading = nullptr;
+            std::unique_ptr<double> _lowerLimitLoading = nullptr;
+            std::unique_ptr<double> _minimumWaveHeight = nullptr;
+            std::unique_ptr<double> _maximumWaveHeight = nullptr;
+            std::unique_ptr<double> _waveAngleImpact = nullptr;
+            std::unique_ptr<double> _waveHeightImpact = nullptr;
     };
 }

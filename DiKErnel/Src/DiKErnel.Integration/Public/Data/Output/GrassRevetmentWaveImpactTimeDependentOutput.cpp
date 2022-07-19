@@ -25,38 +25,29 @@ namespace DiKErnel::Integration
     using namespace std;
 
     GrassRevetmentWaveImpactTimeDependentOutput::GrassRevetmentWaveImpactTimeDependentOutput(
-        const double incrementDamage,
-        const double damage,
-        unique_ptr<int> timeOfFailure,
-        const bool loadingRevetment,
-        const double upperLimitLoading,
-        const double lowerLimitLoading,
-        unique_ptr<double> minimumWaveHeight,
-        unique_ptr<double> maximumWaveHeight,
-        unique_ptr<double> waveAngleImpact,
-        unique_ptr<double> waveHeightImpact)
-        : TimeDependentOutput(incrementDamage, damage, move(timeOfFailure)),
-          _loadingRevetment(loadingRevetment),
-          _upperLimitLoading(upperLimitLoading),
-          _lowerLimitLoading(lowerLimitLoading),
-          _minimumWaveHeight(move(minimumWaveHeight)),
-          _maximumWaveHeight(move(maximumWaveHeight)),
-          _waveAngleImpact(move(waveAngleImpact)),
-          _waveHeightImpact(move(waveHeightImpact)) {}
+        GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties& constructionProperties)
+        : TimeDependentOutput(constructionProperties),
+          _loadingRevetment(move(constructionProperties._loadingRevetment)),
+          _upperLimitLoading(move(constructionProperties._upperLimitLoading)),
+          _lowerLimitLoading(move(constructionProperties._lowerLimitLoading)),
+          _minimumWaveHeight(move(constructionProperties._minimumWaveHeight)),
+          _maximumWaveHeight(move(constructionProperties._maximumWaveHeight)),
+          _waveAngleImpact(move(constructionProperties._waveAngleImpact)),
+          _waveHeightImpact(move(constructionProperties._waveHeightImpact)) {}
 
     bool GrassRevetmentWaveImpactTimeDependentOutput::GetLoadingRevetment() const
     {
-        return _loadingRevetment;
+        return *_loadingRevetment;
     }
 
     double GrassRevetmentWaveImpactTimeDependentOutput::GetUpperLimitLoading() const
     {
-        return _upperLimitLoading;
+        return *_upperLimitLoading;
     }
 
     double GrassRevetmentWaveImpactTimeDependentOutput::GetLowerLimitLoading() const
     {
-        return _lowerLimitLoading;
+        return *_lowerLimitLoading;
     }
 
     const double* GrassRevetmentWaveImpactTimeDependentOutput::GetMinimumWaveHeight() const
