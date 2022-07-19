@@ -18,14 +18,16 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#pragma once
-
 #include "LocationDependentInputFactoryBase.h"
+
+#include <exception>
+
+#include "RevetmentCalculationInputBuilderException.h"
 
 namespace DiKErnel::Integration
 {
-    class GrassRevetmentWaveRunupRayleighLocationDependentInputFactory : LocationDependentInputBaseFactory
+    void LocationDependentInputBaseFactory::ThrowWithMessage()
     {
-        public:
-    };
+        throw_with_nested(RevetmentCalculationInputBuilderException("Could not create instance."));
+    }
 }

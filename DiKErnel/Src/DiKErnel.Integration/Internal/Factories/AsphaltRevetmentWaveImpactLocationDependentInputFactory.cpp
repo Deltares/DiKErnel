@@ -25,7 +25,6 @@
 #include "DefaultsFactoryException.h"
 #include "IAsphaltRevetmentWaveImpactTopLayerDefaults.h"
 #include "RevetmentCalculationInputBuilder.h"
-#include "RevetmentCalculationInputBuilderException.h"
 #include "RevetmentDefaults.h"
 
 namespace DiKErnel::Integration
@@ -82,20 +81,5 @@ namespace DiKErnel::Integration
             GetValue(constructionProperties.GetWidthFactors(), AsphaltRevetmentWaveImpactDefaults::GetWidthFactors()),
             GetValue(constructionProperties.GetDepthFactors(), AsphaltRevetmentWaveImpactDefaults::GetDepthFactors()),
             GetValue(constructionProperties.GetImpactFactors(), AsphaltRevetmentWaveImpactDefaults::GetImpactFactors()));
-    }
-
-    template <typename TValue>
-    TValue AsphaltRevetmentWaveImpactLocationDependentInputFactory::GetValue(
-        const TValue* ptrValue,
-        const TValue defaultValue)
-    {
-        return ptrValue != nullptr
-                   ? *ptrValue
-                   : defaultValue;
-    }
-
-    void AsphaltRevetmentWaveImpactLocationDependentInputFactory::ThrowWithMessage()
-    {
-        throw_with_nested(RevetmentCalculationInputBuilderException("Could not create instance."));
     }
 }

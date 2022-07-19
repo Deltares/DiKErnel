@@ -148,6 +148,8 @@ set(SOURCEFILES_INTERNAL_FACTORIES
   ${INTERNAL_FACTORIES_FOLDER}/GrassRevetmentWaveRunupDefaultsFactory.h
   ${INTERNAL_FACTORIES_FOLDER}/GrassRevetmentWaveRunupRayleighLocationDependentInputFactory.cpp
   ${INTERNAL_FACTORIES_FOLDER}/GrassRevetmentWaveRunupRayleighLocationDependentInputFactory.h
+  ${INTERNAL_FACTORIES_FOLDER}/LocationDependentInputFactoryBase.cpp
+  ${INTERNAL_FACTORIES_FOLDER}/LocationDependentInputFactoryBase.h
   ${INTERNAL_FACTORIES_FOLDER}/NaturalStoneRevetmentDefaultsFactory.cpp
   ${INTERNAL_FACTORIES_FOLDER}/NaturalStoneRevetmentDefaultsFactory.h
   ${INTERNAL_FACTORIES_FOLDER}/NaturalStoneRevetmentLocationDependentInputFactory.cpp

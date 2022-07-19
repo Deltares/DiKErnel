@@ -22,22 +22,14 @@
 
 #include "AsphaltRevetmentWaveImpactLocationConstructionProperties.h"
 #include "AsphaltRevetmentWaveImpactLocationDependentInput.h"
+#include "LocationDependentInputFactoryBase.h"
 
 namespace DiKErnel::Integration
 {
-    class AsphaltRevetmentWaveImpactLocationDependentInputFactory
+    class AsphaltRevetmentWaveImpactLocationDependentInputFactory : LocationDependentInputBaseFactory
     {
         public:
             static std::unique_ptr<AsphaltRevetmentWaveImpactLocationDependentInput> CreateLocationDependentInput(
                 const AsphaltRevetmentWaveImpactLocationConstructionProperties& constructionProperties);
-
-        private:
-            template <typename TValue>
-            static TValue GetValue(
-                const TValue* ptrValue,
-                TValue defaultValue);
-
-            [[noreturn]]
-            static void ThrowWithMessage();
     };
 }

@@ -20,12 +20,22 @@
 
 #pragma once
 
-#include "LocationDependentInputFactoryBase.h"
-
 namespace DiKErnel::Integration
 {
-    class GrassRevetmentWaveRunupRayleighLocationDependentInputFactory : LocationDependentInputBaseFactory
+    class LocationDependentInputBaseFactory
     {
-        public:
+        protected:
+            template <typename TValue>
+            static TValue GetValue(
+                const TValue* ptrValue,
+                const TValue defaultValue)
+            {
+                return ptrValue != nullptr
+                           ? *ptrValue
+                           : defaultValue;
+            }
+
+            [[noreturn]]
+            static void ThrowWithMessage();
     };
 }

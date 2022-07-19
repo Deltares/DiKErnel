@@ -20,9 +20,11 @@
 
 #pragma once
 
+#include "LocationDependentInputFactoryBase.h"
+
 namespace DiKErnel::Integration
 {
-    class GrassRevetmentWaveImpactLocationDependentInputFactory
+    class GrassRevetmentWaveImpactLocationDependentInputFactory : LocationDependentInputBaseFactory
     {
         public:
     };

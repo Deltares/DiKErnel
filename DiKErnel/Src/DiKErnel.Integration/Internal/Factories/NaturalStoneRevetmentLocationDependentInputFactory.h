@@ -20,9 +20,11 @@
 
 #pragma once
 
+#include "LocationDependentInputFactoryBase.h"
+
 namespace DiKErnel::Integration
 {
-    class NaturalStoneRevetmentLocationDependentInputFactory
+    class NaturalStoneRevetmentLocationDependentInputFactory : LocationDependentInputBaseFactory
     {
         public:
     };
