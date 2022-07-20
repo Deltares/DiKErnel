@@ -18,26 +18,34 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include <gtest/gtest.h>
+#pragma once
 
-#include "AssertHelper.h"
-#include "RevetmentCalculationInputBuilderException.h"
+#include <string>
 
-namespace DiKErnel::Integration::Test
+namespace DiKErnel::Integration
 {
-    using namespace std;
-    using namespace TestUtil;
-
-    TEST(RevetmentCalculationInputBuilderExceptionTest, Constructor_WithMessage_ExpectedValues)
+    /*!
+     * \brief Exception that can be thrown when there is invalid calculation input.
+     */
+    class LocationDependentInputFactoryException : public std::exception
     {
-        // Setup
-        const string message = "Test message";
+        public:
+            /*!
+             * \brief Creates a new instance.
+             * \param message
+             *        The message of the exception.
+             */
+            explicit LocationDependentInputFactoryException(
+                std::string message);
 
-        // Call
-        const RevetmentCalculationInputBuilderException actualException(message);
+            /*!
+             * \brief Gets the message of the exception.
+             * \return The message of the exception.
+             */
+            [[nodiscard]]
+            const char* what() const noexcept override;
 
-        // Assert
-        AssertHelper::AssertIsInstanceOf<exception>(&actualException);
-        ASSERT_EQ(message, actualException.what());
-    }
+        private:
+            std::string _message;
+    };
 }

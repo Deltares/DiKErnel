@@ -64,8 +64,8 @@ set(SOURCEFILES_PUBLIC_DATA_OUTPUT
 )
 
 set(SOURCEFILES_PUBLIC_EXCEPTIONS
-  ${PUBLIC_EXCEPTIONS_FOLDER}/RevetmentCalculationInputBuilderException.cpp
-  ${PUBLIC_EXCEPTIONS_FOLDER}/RevetmentCalculationInputBuilderException.h  
+  ${PUBLIC_EXCEPTIONS_FOLDER}/LocationDependentInputFactoryException.cpp
+  ${PUBLIC_EXCEPTIONS_FOLDER}/LocationDependentInputFactoryException.h
 )
 
 set(SOURCEFILES_PUBLIC_HELPERS

@@ -22,12 +22,12 @@
 
 #include <exception>
 
-#include "RevetmentCalculationInputBuilderException.h"
+#include "LocationDependentInputFactoryException.h"
 
 namespace DiKErnel::Integration
 {
     void LocationDependentInputBaseFactory::ThrowWithMessage()
     {
-        throw_with_nested(RevetmentCalculationInputBuilderException("Could not create instance."));
+        throw_with_nested(LocationDependentInputFactoryException("Could not create instance."));
     }
 }

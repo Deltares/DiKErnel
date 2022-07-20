@@ -43,7 +43,7 @@ set(SOURCEFILES_PUBLIC_DATA_OUTPUT
 )
 
 set(SOURCEFILES_PUBLIC_EXCEPTIONS
-  ${PULIC_EXCEPTIONS_FOLDER}/RevetmentCalculationInputBuilderExceptionTest.cpp
+  ${PULIC_EXCEPTIONS_FOLDER}/LocationDependentInputFactoryExceptionTest.cpp
 )
 
 set(SOURCEFILES_INTERNAL_DATA

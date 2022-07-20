@@ -18,18 +18,26 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include "RevetmentCalculationInputBuilderException.h"
+#include <gtest/gtest.h>
 
-namespace DiKErnel::Integration
+#include "AssertHelper.h"
+#include "LocationDependentInputFactoryException.h"
+
+namespace DiKErnel::Integration::Test
 {
     using namespace std;
+    using namespace TestUtil;
 
-    RevetmentCalculationInputBuilderException::RevetmentCalculationInputBuilderException(
-        string message)
-        : _message(move(message)) {}
-
-    const char* RevetmentCalculationInputBuilderException::what() const noexcept
+    TEST(LocationDependentInputFactoryExceptionTest, Constructor_WithMessage_ExpectedValues)
     {
-        return _message.c_str();
+        // Setup
+        const string message = "Test message";
+
+        // Call
+        const LocationDependentInputFactoryException actualException(message);
+
+        // Assert
+        AssertHelper::AssertIsInstanceOf<exception>(&actualException);
+        ASSERT_EQ(message, actualException.what());
     }
 }

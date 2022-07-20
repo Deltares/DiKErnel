@@ -18,34 +18,18 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#pragma once
-
-#include <string>
+#include "LocationDependentInputFactoryException.h"
 
 namespace DiKErnel::Integration
 {
-    /*!
-     * \brief Exception that can be thrown when there is invalid calculation input.
-     */
-    class RevetmentCalculationInputBuilderException : public std::exception
+    using namespace std;
+
+    LocationDependentInputFactoryException::LocationDependentInputFactoryException(
+        string message)
+        : _message(move(message)) {}
+
+    const char* LocationDependentInputFactoryException::what() const noexcept
     {
-        public:
-            /*!
-             * \brief Creates a new instance.
-             * \param message
-             *        The message of the exception.
-             */
-            explicit RevetmentCalculationInputBuilderException(
-                std::string message);
-
-            /*!
-             * \brief Gets the message of the exception.
-             * \return The message of the exception.
-             */
-            [[nodiscard]]
-            const char* what() const noexcept override;
-
-        private:
-            std::string _message;
-    };
+        return _message.c_str();
+    }
 }

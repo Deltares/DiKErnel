@@ -30,12 +30,12 @@
 #include "GrassRevetmentWaveRunupRayleighLocationDependentInput.h"
 #include "GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper.h"
 #include "LocationDependentInputAssertHelper.h"
+#include "LocationDependentInputFactoryException.h"
 #include "NaturalStoneRevetmentLocationConstructionProperties.h"
 #include "NaturalStoneRevetmentLocationDependentInput.h"
 #include "NaturalStoneRevetmentLocationDependentInputAssertHelper.h"
 #include "ProfileDataAssertHelper.h"
 #include "RevetmentCalculationInputBuilder.h"
-#include "RevetmentCalculationInputBuilderException.h"
 #include "TimeDependentInputAssertHelper.h"
 
 namespace DiKErnel::Integration::Test
@@ -187,14 +187,14 @@ namespace DiKErnel::Integration::Test
     #pragma region Asphalt wave impact
 
     TEST_F(RevetmentCalculationInputBuilderTest,
-           GivenBuilder_WhenAddingAsphaltWaveImpactLocationWithInvalidTopLayerType_ThenThrowsRevetmentCalculationInputBuilderException)
+           GivenBuilder_WhenAddingAsphaltWaveImpactLocationWithInvalidTopLayerType_ThenThrowsLocationDependentInputFactoryException)
     {
         // Given & When
         const auto action =
                 &RevetmentCalculationInputBuilderTest::CreateBuilderAndAddAsphaltRevetmentWaveImpactLocationWithInvalidTopLayerType;
 
         // Then
-        AssertHelper::AssertThrowsWithMessageAndInnerException<RevetmentCalculationInputBuilderException, DefaultsFactoryException>(
+        AssertHelper::AssertThrowsWithMessageAndInnerException<LocationDependentInputFactoryException, DefaultsFactoryException>(
             action, "Could not create instance.", "Couldn't create defaults for the given top layer type.");
     }
 
@@ -382,13 +382,13 @@ namespace DiKErnel::Integration::Test
     #pragma region Grass wave impact
 
     TEST_F(RevetmentCalculationInputBuilderTest,
-           GivenBuilder_WhenAddingGrassWaveImpactLocationWithInvalidTopLayerType_ThenThrowsRevetmentCalculationInputBuilderException)
+           GivenBuilder_WhenAddingGrassWaveImpactLocationWithInvalidTopLayerType_ThenThrowsLocationDependentInputFactoryException)
     {
         // Given & When
         const auto action = &RevetmentCalculationInputBuilderTest::CreateBuilderAndAddGrassRevetmentWaveImpactLocationWithInvalidTopLayerType;
 
         // Then
-        AssertHelper::AssertThrowsWithMessageAndInnerException<RevetmentCalculationInputBuilderException, DefaultsFactoryException>(
+        AssertHelper::AssertThrowsWithMessageAndInnerException<LocationDependentInputFactoryException, DefaultsFactoryException>(
             action, "Could not create instance.", "Couldn't create defaults for the given top layer type.");
     }
 
@@ -567,14 +567,14 @@ namespace DiKErnel::Integration::Test
     #pragma region Grass wave run-up Rayleigh
 
     TEST_F(RevetmentCalculationInputBuilderTest,
-           GivenBuilder_WhenAddingGrassWaveRunupRayleighLocationWithInvalidTopLayerType_ThenThrowsRevetmentCalculationInputBuilderException)
+           GivenBuilder_WhenAddingGrassWaveRunupRayleighLocationWithInvalidTopLayerType_ThenThrowsLocationDependentInputFactoryException)
     {
         // Given & When
         const auto action =
                 &RevetmentCalculationInputBuilderTest::CreateBuilderAndAddGrassRevetmentWaveRunupRayleighLocationWithInvalidTopLayerType;
 
         // Then
-        AssertHelper::AssertThrowsWithMessageAndInnerException<RevetmentCalculationInputBuilderException, DefaultsFactoryException>(
+        AssertHelper::AssertThrowsWithMessageAndInnerException<LocationDependentInputFactoryException, DefaultsFactoryException>(
             action, "Could not create instance.", "Couldn't create defaults for the given top layer type.");
     }
 
@@ -766,13 +766,13 @@ namespace DiKErnel::Integration::Test
     #pragma region Natural stone
 
     TEST_F(RevetmentCalculationInputBuilderTest,
-           GivenBuilder_WhenAddingNaturalStoneLocationWithInvalidTopLayerType_ThenThrowsRevetmentCalculationInputBuilderException)
+           GivenBuilder_WhenAddingNaturalStoneLocationWithInvalidTopLayerType_ThenThrowsLocationDependentInputFactoryException)
     {
         // Given & When
         const auto action = &RevetmentCalculationInputBuilderTest::CreateBuilderAndAddNaturalStoneRevetmentLocationWithInvalidTopLayerType;
 
         // Then
-        AssertHelper::AssertThrowsWithMessageAndInnerException<RevetmentCalculationInputBuilderException, DefaultsFactoryException>(
+        AssertHelper::AssertThrowsWithMessageAndInnerException<LocationDependentInputFactoryException, DefaultsFactoryException>(
             action, "Could not create instance.", "Couldn't create defaults for the given top layer type.");
     }
 
