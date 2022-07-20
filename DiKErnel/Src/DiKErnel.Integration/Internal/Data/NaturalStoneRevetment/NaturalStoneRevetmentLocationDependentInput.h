@@ -99,8 +99,8 @@ namespace DiKErnel::Integration
             double _thicknessTopLayer;
             std::unique_ptr<NaturalStoneRevetmentHydraulicLoads> _hydraulicLoads;
             std::unique_ptr<NaturalStoneRevetmentSlope> _slope;
-            std::unique_ptr<NaturalStoneRevetmentUpperLimitLoading> _upperLimitLoading;
-            std::unique_ptr<NaturalStoneRevetmentLowerLimitLoading> _lowerLimitLoading;
+            std::unique_ptr<NaturalStoneRevetmentUpperLimitLoading> _upperLimitLoadingInput;
+            std::unique_ptr<NaturalStoneRevetmentLowerLimitLoading> _lowerLimitLoadingInput;
             std::unique_ptr<NaturalStoneRevetmentDistanceMaximumWaveElevation> _distanceMaximumWaveElevation;
             std::unique_ptr<NaturalStoneRevetmentNormativeWidthOfWaveImpact> _normativeWidthOfWaveImpact;
             std::unique_ptr<NaturalStoneRevetmentWaveAngleImpact> _waveAngleImpact;
@@ -109,5 +109,29 @@ namespace DiKErnel::Integration
             std::unique_ptr<std::pair<double, double>> _notchOuterBerm = nullptr;
             std::unique_ptr<std::pair<double, double>> _crestOuterBerm = nullptr;
             double _resistance = std::numeric_limits<double>::infinity();
+            double _slopeLowerPosition = std::numeric_limits<double>::infinity();
+            double _slopeLowerLevel = std::numeric_limits<double>::infinity();
+            double _slopeUpperPosition = std::numeric_limits<double>::infinity();
+            double _slopeUpperLevel = std::numeric_limits<double>::infinity();
+            double _upperLimitLoading = std::numeric_limits<double>::infinity();
+            double _lowerLimitLoading = std::numeric_limits<double>::infinity();
+
+            [[nodiscard]]
+            double CalculateOuterSlope(
+                double waterLevel,
+                double waveHeightHm0,
+                const Core::IProfileData& profileData);
+
+            [[nodiscard]]
+            bool CalculateLoadingRevetment(
+                double depthMaximumWaveLoad,
+                double surfSimilarityParameter,
+                double waterLevel,
+                double waveHeightHm0);
+
+            [[nodiscard]]
+            double CalculateHydraulicLoad(
+                double surfSimilarityParameter,
+                double waveHeightHm0) const;
     };
 }
