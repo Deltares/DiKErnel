@@ -20,7 +20,7 @@
 
 #pragma once
 
-#include "TimeDependentOutput.h"
+#include "TimeDependentOutputConstructionProperties.h"
 
 namespace DiKErnel::Integration
 {
@@ -34,21 +34,21 @@ namespace DiKErnel::Integration
             /*!
              * \brief The vertical distance water level elevation.
              */
-            std::unique_ptr<double> _verticalDistanceWaterLevelElevation;
+            std::unique_ptr<double> _verticalDistanceWaterLevelElevation = nullptr;
 
             /*!
              * \brief The wave angle impact.
              */
-            std::unique_ptr<double> _waveAngleImpact;
+            std::unique_ptr<double> _waveAngleImpact = nullptr;
 
             /*!
              * \brief The representative wave run-up 2P.
              */
-            std::unique_ptr<double> _representativeWaveRunup2P;
+            std::unique_ptr<double> _representativeWaveRunup2P = nullptr;
 
             /*!
              * \brief The cumulative overload.
              */
-            std::unique_ptr<double> _cumulativeOverload;
+            std::unique_ptr<double> _cumulativeOverload = nullptr;
     };
 }
