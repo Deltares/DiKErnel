@@ -41,11 +41,17 @@ namespace DiKErnel::Integration::Test
         constexpr auto representativeWaveRunup2P = 0.6;
         constexpr auto cumulativeOverload = 0.7;
 
+        GrassRevetmentWaveRunupRayleighTimeDependentOutputConstructionProperties constructionProperties;
+        constructionProperties._incrementDamage = make_unique<double>(incrementDamage);
+        constructionProperties._damage = make_unique<double>(damage);
+        constructionProperties._timeOfFailure = make_unique<int>(timeOfFailure);
+        constructionProperties._verticalDistanceWaterLevelElevation = make_unique<double>(verticalDistanceWaterLevelElevation);
+        constructionProperties._waveAngleImpact = make_unique<double>(waveAngleImpact);
+        constructionProperties._representativeWaveRunup2P = make_unique<double>(representativeWaveRunup2P);
+        constructionProperties._cumulativeOverload = make_unique<double>(cumulativeOverload);
+
         // Call
-        const GrassRevetmentWaveRunupRayleighTimeDependentOutput output(incrementDamage, damage, make_unique<int>(timeOfFailure),
-                                                                        verticalDistanceWaterLevelElevation, make_unique<double>(waveAngleImpact),
-                                                                        make_unique<double>(representativeWaveRunup2P),
-                                                                        make_unique<double>(cumulativeOverload));
+        const GrassRevetmentWaveRunupRayleighTimeDependentOutput output(constructionProperties);
 
         // Assert
         AssertHelper::AssertIsInstanceOf<TimeDependentOutput>(&output);
@@ -65,9 +71,13 @@ namespace DiKErnel::Integration::Test
         constexpr auto damage = 0.2;
         constexpr auto verticalDistanceWaterLevelElevation = 0.3;
 
+        GrassRevetmentWaveRunupRayleighTimeDependentOutputConstructionProperties constructionProperties;
+        constructionProperties._incrementDamage = make_unique<double>(incrementDamage);
+        constructionProperties._damage = make_unique<double>(damage);
+        constructionProperties._verticalDistanceWaterLevelElevation = make_unique<double>(verticalDistanceWaterLevelElevation);
+
         // Call
-        const GrassRevetmentWaveRunupRayleighTimeDependentOutput output(incrementDamage, damage, nullptr, verticalDistanceWaterLevelElevation,
-                                                                        nullptr, nullptr, nullptr);
+        const GrassRevetmentWaveRunupRayleighTimeDependentOutput output(constructionProperties);
 
         // Assert
         AssertHelper::AssertIsInstanceOf<TimeDependentOutput>(&output);

@@ -20,6 +20,7 @@
 
 #pragma once
 
+#include "GrassRevetmentWaveRunupRayleighTimeDependentOutputConstructionProperties.h"
 #include "TimeDependentOutput.h"
 
 namespace DiKErnel::Integration
@@ -33,29 +34,11 @@ namespace DiKErnel::Integration
         public:
             /*!
              * \brief Creates a new instance.
-             * \param incrementDamage
-             *        The increment damage.
-             * \param damage
-             *        The damage.
-             * \param timeOfFailure
-             *        The time of failure.
-             * \param verticalDistanceWaterLevelElevation
-             *        The vertical distance water level elevation.
-             * \param waveAngleImpact
-             *        The wave angle impact.
-             * \param representativeWaveRunup2P
-             *        The representative wave run-up 2P.
-             * \param cumulativeOverload
-             *        The cumulative overload.
+             * \param constructionProperties
+             *        The construction properties.
              */
             explicit GrassRevetmentWaveRunupRayleighTimeDependentOutput(
-                double incrementDamage,
-                double damage,
-                std::unique_ptr<int> timeOfFailure,
-                double verticalDistanceWaterLevelElevation,
-                std::unique_ptr<double> waveAngleImpact,
-                std::unique_ptr<double> representativeWaveRunup2P,
-                std::unique_ptr<double> cumulativeOverload);
+                GrassRevetmentWaveRunupRayleighTimeDependentOutputConstructionProperties& constructionProperties);
 
             /*!
              * \brief Gets the vertical distance water level elevation.
@@ -86,7 +69,7 @@ namespace DiKErnel::Integration
             const double* GetCumulativeOverload() const;
 
         private:
-            const double _verticalDistanceWaterLevelElevation;
+            std::unique_ptr<double> _verticalDistanceWaterLevelElevation;
             std::unique_ptr<double> _waveAngleImpact;
             std::unique_ptr<double> _representativeWaveRunup2P;
             std::unique_ptr<double> _cumulativeOverload;

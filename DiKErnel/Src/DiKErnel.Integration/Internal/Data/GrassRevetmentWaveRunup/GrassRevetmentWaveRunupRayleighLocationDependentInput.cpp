@@ -158,8 +158,15 @@ namespace DiKErnel::Integration
             }
         }
 
-        return make_unique<GrassRevetmentWaveRunupRayleighTimeDependentOutput>(incrementDamage, damage, move(timeOfFailure),
-                                                                               verticalDistanceWaterLevelElevation, move(waveAngleImpact),
-                                                                               move(representativeWaveRunup2P), move(cumulativeOverload));
+        GrassRevetmentWaveRunupRayleighTimeDependentOutputConstructionProperties constructionProperties;
+        constructionProperties._incrementDamage = make_unique<double>(incrementDamage);
+        constructionProperties._damage = make_unique<double>(damage);
+        constructionProperties._timeOfFailure = move(timeOfFailure);
+        constructionProperties._verticalDistanceWaterLevelElevation = make_unique<double>(verticalDistanceWaterLevelElevation);
+        constructionProperties._waveAngleImpact = move(waveAngleImpact);
+        constructionProperties._representativeWaveRunup2P = move(representativeWaveRunup2P);
+        constructionProperties._cumulativeOverload = move(cumulativeOverload);
+
+        return make_unique<GrassRevetmentWaveRunupRayleighTimeDependentOutput>(constructionProperties);
     }
 }

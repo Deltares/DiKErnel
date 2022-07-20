@@ -25,22 +25,16 @@ namespace DiKErnel::Integration
     using namespace std;
 
     GrassRevetmentWaveRunupRayleighTimeDependentOutput::GrassRevetmentWaveRunupRayleighTimeDependentOutput(
-        const double incrementDamage,
-        const double damage,
-        unique_ptr<int> timeOfFailure,
-        const double verticalDistanceWaterLevelElevation,
-        unique_ptr<double> waveAngleImpact,
-        unique_ptr<double> representativeWaveRunup2P,
-        unique_ptr<double> cumulativeOverload)
-        : TimeDependentOutput(incrementDamage, damage, move(timeOfFailure)),
-          _verticalDistanceWaterLevelElevation(verticalDistanceWaterLevelElevation),
-          _waveAngleImpact(move(waveAngleImpact)),
-          _representativeWaveRunup2P(move(representativeWaveRunup2P)),
-          _cumulativeOverload(move(cumulativeOverload)) {}
+        GrassRevetmentWaveRunupRayleighTimeDependentOutputConstructionProperties& constructionProperties)
+        : TimeDependentOutput(constructionProperties),
+          _verticalDistanceWaterLevelElevation(move(constructionProperties._verticalDistanceWaterLevelElevation)),
+          _waveAngleImpact(move(constructionProperties._waveAngleImpact)),
+          _representativeWaveRunup2P(move(constructionProperties._representativeWaveRunup2P)),
+          _cumulativeOverload(move(constructionProperties._cumulativeOverload)) {}
 
     double GrassRevetmentWaveRunupRayleighTimeDependentOutput::GetVerticalDistanceWaterLevelElevation() const
     {
-        return _verticalDistanceWaterLevelElevation;
+        return *_verticalDistanceWaterLevelElevation;
     }
 
     const double* GrassRevetmentWaveRunupRayleighTimeDependentOutput::GetWaveAngleImpact() const

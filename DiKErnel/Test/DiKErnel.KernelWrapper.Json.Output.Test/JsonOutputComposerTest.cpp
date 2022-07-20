@@ -136,7 +136,8 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
             asphaltWaveImpactTimeDependentOutputConstructionProperties._stiffnessRelation = make_unique<double>(0.6);
             asphaltWaveImpactTimeDependentOutputConstructionProperties._computationalThickness = make_unique<double>(0.7);
             asphaltWaveImpactTimeDependentOutputConstructionProperties._equivalentElasticModulus = make_unique<double>(0.8);
-            auto asphaltWaveImpactTimeDependentOutput = make_unique<AsphaltRevetmentWaveImpactTimeDependentOutput>(asphaltWaveImpactTimeDependentOutputConstructionProperties);
+            auto asphaltWaveImpactTimeDependentOutput = make_unique<AsphaltRevetmentWaveImpactTimeDependentOutput>(
+                asphaltWaveImpactTimeDependentOutputConstructionProperties);
 
             GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties grassRevetmentWaveImpactTimeDependentOutputConstructionProperties;
             grassRevetmentWaveImpactTimeDependentOutputConstructionProperties._incrementDamage = make_unique<double>(0.9);
@@ -149,10 +150,21 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
             grassRevetmentWaveImpactTimeDependentOutputConstructionProperties._maximumWaveHeight = make_unique<double>(1.5);
             grassRevetmentWaveImpactTimeDependentOutputConstructionProperties._waveAngleImpact = make_unique<double>(1.6);
             grassRevetmentWaveImpactTimeDependentOutputConstructionProperties._waveHeightImpact = make_unique<double>(1.7);
-            auto grassWaveImpactTimeDependentOutput = make_unique<GrassRevetmentWaveImpactTimeDependentOutput>(grassRevetmentWaveImpactTimeDependentOutputConstructionProperties);
+            auto grassWaveImpactTimeDependentOutput = make_unique<GrassRevetmentWaveImpactTimeDependentOutput>(
+                grassRevetmentWaveImpactTimeDependentOutputConstructionProperties);
 
+            GrassRevetmentWaveRunupRayleighTimeDependentOutputConstructionProperties
+                    grassWaveRunupRayleighTimeDependentOutputConstructionProperties;
+            grassWaveRunupRayleighTimeDependentOutputConstructionProperties._incrementDamage = make_unique<double>(1.8);
+            grassWaveRunupRayleighTimeDependentOutputConstructionProperties._damage = make_unique<double>(1.9);
+            grassWaveRunupRayleighTimeDependentOutputConstructionProperties._timeOfFailure = make_unique<int>(20);
+            grassWaveRunupRayleighTimeDependentOutputConstructionProperties._verticalDistanceWaterLevelElevation = make_unique<double>(2.1);
+            grassWaveRunupRayleighTimeDependentOutputConstructionProperties._waveAngleImpact = make_unique<double>(2.2);
+            grassWaveRunupRayleighTimeDependentOutputConstructionProperties._representativeWaveRunup2P = make_unique<double>(2.3);
+            grassWaveRunupRayleighTimeDependentOutputConstructionProperties._cumulativeOverload = make_unique<double>(2.4);
             auto grassWaveRunupRayleighTimeDependentOutput = make_unique<GrassRevetmentWaveRunupRayleighTimeDependentOutput>(
-                1.8, 1.9, make_unique<int>(20), 2.1, make_unique<double>(2.2), make_unique<double>(2.3), make_unique<double>(2.4));
+                grassWaveRunupRayleighTimeDependentOutputConstructionProperties);
+
             auto naturalStoneTimeDependentOutput = make_unique<NaturalStoneRevetmentTimeDependentOutput>(
                 2.5, 2.6, make_unique<int>(27), 2.8, 2.9, 3.0, 3.1, 3.2, true, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, make_unique<double>(4.0),
                 make_unique<double>(4.1), make_unique<double>(4.2), make_unique<double>(4.3), make_unique<double>(4.4));
@@ -189,7 +201,8 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
             asphaltWaveImpactTimeDependentOutputConstructionProperties._stiffnessRelation = make_unique<double>(0.5);
             asphaltWaveImpactTimeDependentOutputConstructionProperties._computationalThickness = make_unique<double>(0.6);
             asphaltWaveImpactTimeDependentOutputConstructionProperties._equivalentElasticModulus = make_unique<double>(0.7);
-            auto asphaltWaveImpactTimeDependentOutput = make_unique<AsphaltRevetmentWaveImpactTimeDependentOutput>(asphaltWaveImpactTimeDependentOutputConstructionProperties);
+            auto asphaltWaveImpactTimeDependentOutput = make_unique<AsphaltRevetmentWaveImpactTimeDependentOutput>(
+                asphaltWaveImpactTimeDependentOutputConstructionProperties);
 
             GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties grassRevetmentWaveImpactTimeDependentOutputConstructionProperties;
             grassRevetmentWaveImpactTimeDependentOutputConstructionProperties._incrementDamage = make_unique<double>(0.8);
@@ -197,10 +210,17 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
             grassRevetmentWaveImpactTimeDependentOutputConstructionProperties._loadingRevetment = make_unique<bool>(true);
             grassRevetmentWaveImpactTimeDependentOutputConstructionProperties._upperLimitLoading = make_unique<double>(1.0);
             grassRevetmentWaveImpactTimeDependentOutputConstructionProperties._lowerLimitLoading = make_unique<double>(1.1);
-            auto grassWaveImpactTimeDependentOutput = make_unique<GrassRevetmentWaveImpactTimeDependentOutput>(grassRevetmentWaveImpactTimeDependentOutputConstructionProperties);
-            
+            auto grassWaveImpactTimeDependentOutput = make_unique<GrassRevetmentWaveImpactTimeDependentOutput>(
+                grassRevetmentWaveImpactTimeDependentOutputConstructionProperties);
+
+            GrassRevetmentWaveRunupRayleighTimeDependentOutputConstructionProperties
+                    grassWaveRunupRayleighTimeDependentOutputConstructionProperties;
+            grassWaveRunupRayleighTimeDependentOutputConstructionProperties._incrementDamage = make_unique<double>(1.2);
+            grassWaveRunupRayleighTimeDependentOutputConstructionProperties._damage = make_unique<double>(1.3);
+            grassWaveRunupRayleighTimeDependentOutputConstructionProperties._verticalDistanceWaterLevelElevation = make_unique<double>(1.4);
             auto grassWaveRunupRayleighTimeDependentOutput = make_unique<GrassRevetmentWaveRunupRayleighTimeDependentOutput>(
-                1.2, 1.3, nullptr, 1.4, nullptr, nullptr, nullptr);
+                grassWaveRunupRayleighTimeDependentOutputConstructionProperties);
+
             auto naturalStoneTimeDependentOutput = make_unique<NaturalStoneRevetmentTimeDependentOutput>(
                 1.5, 1.6, nullptr, 1.7, 1.8, 1.9, 2.0, 2.1, true, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, nullptr, nullptr, nullptr, nullptr, nullptr);
 
