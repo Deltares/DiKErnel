@@ -55,15 +55,31 @@ namespace DiKErnel::Integration::Test
         constexpr auto referenceTimeDegradation = 1.9;
         constexpr auto referenceDegradation = 2.0;
 
+        NaturalStoneRevetmentTimeDependentOutputConstructionProperties constructionProperties;
+        constructionProperties._incrementDamage = make_unique<double>(incrementDamage);
+        constructionProperties._damage = make_unique<double>(damage);
+        constructionProperties._timeOfFailure = make_unique<int>(timeOfFailure);
+        constructionProperties._outerSlope = make_unique<double>(outerSlope);
+        constructionProperties._slopeUpperLevel = make_unique<double>(slopeUpperLevel);
+        constructionProperties._slopeUpperPosition = make_unique<double>(slopeUpperPosition);
+        constructionProperties._slopeLowerLevel = make_unique<double>(slopeLowerLevel);
+        constructionProperties._slopeLowerPosition = make_unique<double>(slopeLowerPosition);
+        constructionProperties._loadingRevetment = make_unique<bool>(loadingRevetment);
+        constructionProperties._surfSimilarityParameter = make_unique<double>(surfSimilarityParameter);
+        constructionProperties._waveSteepnessDeepWater = make_unique<double>(waveSteepnessDeepWater);
+        constructionProperties._upperLimitLoading = make_unique<double>(upperLimitLoading);
+        constructionProperties._lowerLimitLoading = make_unique<double>(lowerLimitLoading);
+        constructionProperties._depthMaximumWaveLoad = make_unique<double>(depthMaximumWaveLoad);
+        constructionProperties._distanceMaximumWaveElevation = make_unique<double>(distanceMaximumWaveElevation);
+        constructionProperties._normativeWidthOfWaveImpact = make_unique<double>(normativeWidthOfWaveImpact);
+        constructionProperties._hydraulicLoad = make_unique<double>(hydraulicLoad);
+        constructionProperties._waveAngleImpact = make_unique<double>(waveAngleImpact);
+        constructionProperties._resistance = make_unique<double>(resistance);
+        constructionProperties._referenceTimeDegradation = make_unique<double>(referenceTimeDegradation);
+        constructionProperties._referenceDegradation = make_unique<double>(referenceDegradation);
+
         // Call
-        const NaturalStoneRevetmentTimeDependentOutput output(incrementDamage, damage, make_unique<int>(timeOfFailure), outerSlope,
-                                                              slopeUpperLevel, slopeUpperPosition, slopeLowerLevel, slopeLowerPosition,
-                                                              loadingRevetment, surfSimilarityParameter, waveSteepnessDeepWater, upperLimitLoading,
-                                                              lowerLimitLoading, depthMaximumWaveLoad, distanceMaximumWaveElevation,
-                                                              normativeWidthOfWaveImpact, make_unique<double>(hydraulicLoad),
-                                                              make_unique<double>(waveAngleImpact), make_unique<double>(resistance),
-                                                              make_unique<double>(referenceTimeDegradation),
-                                                              make_unique<double>(referenceDegradation));
+        const NaturalStoneRevetmentTimeDependentOutput output(constructionProperties);
 
         // Assert
         AssertHelper::AssertIsInstanceOf<TimeDependentOutput>(&output);
@@ -109,12 +125,31 @@ namespace DiKErnel::Integration::Test
         constexpr auto distanceMaximumWaveElevation = 1.3;
         constexpr auto normativeWidthOfWaveImpact = 1.4;
 
+        NaturalStoneRevetmentTimeDependentOutputConstructionProperties constructionProperties;
+        constructionProperties._incrementDamage = make_unique<double>(incrementDamage);
+        constructionProperties._damage = make_unique<double>(damage);
+        constructionProperties._timeOfFailure = nullptr;
+        constructionProperties._outerSlope = make_unique<double>(outerSlope);
+        constructionProperties._slopeUpperLevel = make_unique<double>(slopeUpperLevel);
+        constructionProperties._slopeUpperPosition = make_unique<double>(slopeUpperPosition);
+        constructionProperties._slopeLowerLevel = make_unique<double>(slopeLowerLevel);
+        constructionProperties._slopeLowerPosition = make_unique<double>(slopeLowerPosition);
+        constructionProperties._loadingRevetment = make_unique<bool>(loadingRevetment);
+        constructionProperties._surfSimilarityParameter = make_unique<double>(surfSimilarityParameter);
+        constructionProperties._waveSteepnessDeepWater = make_unique<double>(waveSteepnessDeepWater);
+        constructionProperties._upperLimitLoading = make_unique<double>(upperLimitLoading);
+        constructionProperties._lowerLimitLoading = make_unique<double>(lowerLimitLoading);
+        constructionProperties._depthMaximumWaveLoad = make_unique<double>(depthMaximumWaveLoad);
+        constructionProperties._distanceMaximumWaveElevation = make_unique<double>(distanceMaximumWaveElevation);
+        constructionProperties._normativeWidthOfWaveImpact = make_unique<double>(normativeWidthOfWaveImpact);
+        constructionProperties._hydraulicLoad = nullptr;
+        constructionProperties._waveAngleImpact = nullptr;
+        constructionProperties._resistance = nullptr;
+        constructionProperties._referenceTimeDegradation = nullptr;
+        constructionProperties._referenceDegradation = nullptr;
+
         // Call
-        const NaturalStoneRevetmentTimeDependentOutput output(incrementDamage, damage, nullptr, outerSlope, slopeUpperLevel, slopeUpperPosition,
-                                                              slopeLowerLevel, slopeLowerPosition, loadingRevetment, surfSimilarityParameter,
-                                                              waveSteepnessDeepWater, upperLimitLoading, lowerLimitLoading, depthMaximumWaveLoad,
-                                                              distanceMaximumWaveElevation, normativeWidthOfWaveImpact, nullptr, nullptr, nullptr,
-                                                              nullptr, nullptr);
+        const NaturalStoneRevetmentTimeDependentOutput output(constructionProperties);
 
         // Assert
         AssertHelper::AssertIsInstanceOf<TimeDependentOutput>(&output);

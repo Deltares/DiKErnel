@@ -20,6 +20,7 @@
 
 #pragma once
 
+#include "NaturalStoneRevetmentTimeDependentOutputConstructionProperties.h"
 #include "TimeDependentOutput.h"
 
 namespace DiKErnel::Integration
@@ -32,71 +33,11 @@ namespace DiKErnel::Integration
         public:
             /*!
              * \brief Creates a new instance.
-             * \param incrementDamage
-             *        The increment damage.
-             * \param damage
-             *        The damage.
-             * \param timeOfFailure
-             *        The time of failure.
-             * \param outerSlope
-             *        The outer slope.
-             * \param slopeUpperLevel
-             *        The slope upper level.
-             * \param slopeUpperPosition
-             *        The slope upper position.
-             * \param slopeLowerLevel
-             *        The slope lower level.
-             * \param slopeLowerPosition
-             *        The slope lower position.
-             * \param loadingRevetment
-             *        The loading revetment.
-             * \param surfSimilarityParameter
-             *        The surf similarity parameter.
-             * \param waveSteepnessDeepWater
-             *        The wave steepness deep water.
-             * \param upperLimitLoading
-             *        The upper limit loading.
-             * \param lowerLimitLoading
-             *        The lower limit loading.
-             * \param depthMaximumWaveLoad
-             *        The depth maximum wave load.
-             * \param distanceMaximumWaveElevation
-             *        The distance maximum wave elevation.
-             * \param normativeWidthOfWaveImpact
-             *        The normative width of wave impact.
-             * \param waveAngleImpact
-             *        The wave angle impact.
-             * \param hydraulicLoad
-             *        The hydraulic load.
-             * \param resistance
-             *        The resistance.
-             * \param referenceTimeDegradation
-             *        The reference time degradation.
-             * \param referenceDegradation
-             *        The reference degradation.
+             * \param constructionProperties
+             *        The construction properties.
              */
             explicit NaturalStoneRevetmentTimeDependentOutput(
-                double incrementDamage,
-                double damage,
-                std::unique_ptr<int> timeOfFailure,
-                double outerSlope,
-                double slopeUpperLevel,
-                double slopeUpperPosition,
-                double slopeLowerLevel,
-                double slopeLowerPosition,
-                bool loadingRevetment,
-                double surfSimilarityParameter,
-                double waveSteepnessDeepWater,
-                double upperLimitLoading,
-                double lowerLimitLoading,
-                double depthMaximumWaveLoad,
-                double distanceMaximumWaveElevation,
-                double normativeWidthOfWaveImpact,
-                std::unique_ptr<double> hydraulicLoad,
-                std::unique_ptr<double> waveAngleImpact,
-                std::unique_ptr<double> resistance,
-                std::unique_ptr<double> referenceTimeDegradation,
-                std::unique_ptr<double> referenceDegradation);
+                NaturalStoneRevetmentTimeDependentOutputConstructionProperties& constructionProperties);
 
             /*!
              * \brief Gets the outer slope.
@@ -225,23 +166,23 @@ namespace DiKErnel::Integration
             const double* GetReferenceDegradation() const;
 
         private:
-            const double _outerSlope;
-            const double _slopeUpperLevel;
-            const double _slopeUpperPosition;
-            const double _slopeLowerLevel;
-            const double _slopeLowerPosition;
-            const bool _loadingRevetment;
-            const double _surfSimilarityParameter;
-            const double _waveSteepnessDeepWater;
-            const double _upperLimitLoading;
-            const double _lowerLimitLoading;
-            const double _depthMaximumWaveLoad;
-            const double _distanceMaximumWaveElevation;
-            const double _normativeWidthOfWaveImpact;
-            std::unique_ptr<double> _hydraulicLoad;
-            std::unique_ptr<double> _waveAngleImpact;
-            std::unique_ptr<double> _resistance;
-            std::unique_ptr<double> _referenceTimeDegradation;
-            std::unique_ptr<double> _referenceDegradation;
+            std::unique_ptr<double> _outerSlope = nullptr;
+            std::unique_ptr<double> _slopeUpperLevel = nullptr;
+            std::unique_ptr<double> _slopeUpperPosition = nullptr;
+            std::unique_ptr<double> _slopeLowerLevel = nullptr;
+            std::unique_ptr<double> _slopeLowerPosition = nullptr;
+            std::unique_ptr<bool> _loadingRevetment = nullptr;
+            std::unique_ptr<double> _surfSimilarityParameter = nullptr;
+            std::unique_ptr<double> _waveSteepnessDeepWater = nullptr;
+            std::unique_ptr<double> _upperLimitLoading = nullptr;
+            std::unique_ptr<double> _lowerLimitLoading = nullptr;
+            std::unique_ptr<double> _depthMaximumWaveLoad = nullptr;
+            std::unique_ptr<double> _distanceMaximumWaveElevation = nullptr;
+            std::unique_ptr<double> _normativeWidthOfWaveImpact = nullptr;
+            std::unique_ptr<double> _hydraulicLoad = nullptr;
+            std::unique_ptr<double> _waveAngleImpact = nullptr;
+            std::unique_ptr<double> _resistance = nullptr;
+            std::unique_ptr<double> _referenceTimeDegradation = nullptr;
+            std::unique_ptr<double> _referenceDegradation = nullptr;
     };
 }

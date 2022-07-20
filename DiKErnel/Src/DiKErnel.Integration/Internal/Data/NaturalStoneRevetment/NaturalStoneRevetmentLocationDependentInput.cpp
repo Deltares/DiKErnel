@@ -270,10 +270,29 @@ namespace DiKErnel::Integration
             }
         }
 
-        return make_unique<NaturalStoneRevetmentTimeDependentOutput>(
-            incrementDamage, damage, move(timeOfFailure), outerSlope, slopeUpperLevel, slopeUpperPosition, slopeLowerLevel, slopeLowerPosition,
-            loadingRevetment, surfSimilarityParameter, waveSteepnessDeepWater, upperLimitLoading, lowerLimitLoading, depthMaximumWaveLoad,
-            distanceMaximumWaveElevation, normativeWidthWaveImpact, move(hydraulicLoad), move(waveAngleImpact), move(resistance),
-            move(referenceTimeDegradation), move(referenceDegradation));
+        NaturalStoneRevetmentTimeDependentOutputConstructionProperties constructionProperties;
+        constructionProperties._incrementDamage = make_unique<double>(incrementDamage);
+        constructionProperties._damage = make_unique<double>(damage);
+        constructionProperties._timeOfFailure = move(timeOfFailure);
+        constructionProperties._outerSlope = make_unique<double>(outerSlope);
+        constructionProperties._slopeUpperLevel = make_unique<double>(slopeUpperLevel);
+        constructionProperties._slopeUpperPosition = make_unique<double>(slopeUpperPosition);
+        constructionProperties._slopeLowerLevel = make_unique<double>(slopeLowerLevel);
+        constructionProperties._slopeLowerPosition = make_unique<double>(slopeLowerPosition);
+        constructionProperties._loadingRevetment = make_unique<bool>(loadingRevetment);
+        constructionProperties._surfSimilarityParameter = make_unique<double>(surfSimilarityParameter);
+        constructionProperties._waveSteepnessDeepWater = make_unique<double>(waveSteepnessDeepWater);
+        constructionProperties._upperLimitLoading = make_unique<double>(upperLimitLoading);
+        constructionProperties._lowerLimitLoading = make_unique<double>(lowerLimitLoading);
+        constructionProperties._depthMaximumWaveLoad = make_unique<double>(depthMaximumWaveLoad);
+        constructionProperties._distanceMaximumWaveElevation = make_unique<double>(distanceMaximumWaveElevation);
+        constructionProperties._normativeWidthOfWaveImpact = make_unique<double>(normativeWidthWaveImpact);
+        constructionProperties._hydraulicLoad = move(hydraulicLoad);
+        constructionProperties._waveAngleImpact = move(waveAngleImpact);
+        constructionProperties._resistance = move(resistance);
+        constructionProperties._referenceTimeDegradation = move(referenceTimeDegradation);
+        constructionProperties._referenceDegradation = move(referenceDegradation);
+
+        return make_unique<NaturalStoneRevetmentTimeDependentOutput>(constructionProperties);
     }
 }

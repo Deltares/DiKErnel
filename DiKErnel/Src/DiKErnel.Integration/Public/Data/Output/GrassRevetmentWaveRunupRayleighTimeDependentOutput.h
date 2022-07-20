@@ -71,9 +71,9 @@ namespace DiKErnel::Integration
             const double* GetCumulativeOverload() const;
 
         private:
-            std::unique_ptr<double> _verticalDistanceWaterLevelElevation;
-            std::unique_ptr<double> _waveAngleImpact;
-            std::unique_ptr<double> _representativeWaveRunup2P;
-            std::unique_ptr<double> _cumulativeOverload;
+            std::unique_ptr<double> _verticalDistanceWaterLevelElevation = nullptr;
+            std::unique_ptr<double> _waveAngleImpact = nullptr;
+            std::unique_ptr<double> _representativeWaveRunup2P = nullptr;
+            std::unique_ptr<double> _cumulativeOverload = nullptr;
     };
 }

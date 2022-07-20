@@ -25,110 +25,90 @@ namespace DiKErnel::Integration
     using namespace std;
 
     NaturalStoneRevetmentTimeDependentOutput::NaturalStoneRevetmentTimeDependentOutput(
-        const double incrementDamage,
-        const double damage,
-        unique_ptr<int> timeOfFailure,
-        const double outerSlope,
-        const double slopeUpperLevel,
-        const double slopeUpperPosition,
-        const double slopeLowerLevel,
-        const double slopeLowerPosition,
-        const bool loadingRevetment,
-        const double surfSimilarityParameter,
-        const double waveSteepnessDeepWater,
-        const double upperLimitLoading,
-        const double lowerLimitLoading,
-        const double depthMaximumWaveLoad,
-        const double distanceMaximumWaveElevation,
-        const double normativeWidthOfWaveImpact,
-        unique_ptr<double> hydraulicLoad,
-        unique_ptr<double> waveAngleImpact,
-        unique_ptr<double> resistance,
-        unique_ptr<double> referenceTimeDegradation,
-        unique_ptr<double> referenceDegradation)
-        : TimeDependentOutput(incrementDamage, damage, move(timeOfFailure)),
-          _outerSlope(outerSlope),
-          _slopeUpperLevel(slopeUpperLevel),
-          _slopeUpperPosition(slopeUpperPosition),
-          _slopeLowerLevel(slopeLowerLevel),
-          _slopeLowerPosition(slopeLowerPosition),
-          _loadingRevetment(loadingRevetment),
-          _surfSimilarityParameter(surfSimilarityParameter),
-          _waveSteepnessDeepWater(waveSteepnessDeepWater),
-          _upperLimitLoading(upperLimitLoading),
-          _lowerLimitLoading(lowerLimitLoading),
-          _depthMaximumWaveLoad(depthMaximumWaveLoad),
-          _distanceMaximumWaveElevation(distanceMaximumWaveElevation),
-          _normativeWidthOfWaveImpact(normativeWidthOfWaveImpact),
-          _hydraulicLoad(move(hydraulicLoad)),
-          _waveAngleImpact(move(waveAngleImpact)),
-          _resistance(move(resistance)),
-          _referenceTimeDegradation(move(referenceTimeDegradation)),
-          _referenceDegradation(move(referenceDegradation)) {}
+        NaturalStoneRevetmentTimeDependentOutputConstructionProperties& constructionProperties)
+        : TimeDependentOutput(constructionProperties),
+          _outerSlope(move(constructionProperties._outerSlope)),
+          _slopeUpperLevel(move(constructionProperties._slopeUpperLevel)),
+          _slopeUpperPosition(move(constructionProperties._slopeUpperPosition)),
+          _slopeLowerLevel(move(constructionProperties._slopeLowerLevel)),
+          _slopeLowerPosition(move(constructionProperties._slopeLowerPosition)),
+          _loadingRevetment(move(constructionProperties._loadingRevetment)),
+          _surfSimilarityParameter(move(constructionProperties._surfSimilarityParameter)),
+          _waveSteepnessDeepWater(move(constructionProperties._waveSteepnessDeepWater)),
+          _upperLimitLoading(move(constructionProperties._upperLimitLoading)),
+          _lowerLimitLoading(move(constructionProperties._lowerLimitLoading)),
+          _depthMaximumWaveLoad(move(constructionProperties._depthMaximumWaveLoad)),
+          _distanceMaximumWaveElevation(move(constructionProperties._distanceMaximumWaveElevation)),
+          _normativeWidthOfWaveImpact(move(constructionProperties._normativeWidthOfWaveImpact)),
+          _hydraulicLoad(move(constructionProperties._hydraulicLoad)),
+          _waveAngleImpact(move(constructionProperties._waveAngleImpact)),
+          _resistance(move(constructionProperties._resistance)),
+          _referenceTimeDegradation(move(constructionProperties._referenceTimeDegradation)),
+          _referenceDegradation(move(constructionProperties._referenceDegradation)) {}
 
     double NaturalStoneRevetmentTimeDependentOutput::GetOuterSlope() const
     {
-        return _outerSlope;
+        return *_outerSlope;
     }
 
     double NaturalStoneRevetmentTimeDependentOutput::GetSlopeUpperLevel() const
     {
-        return _slopeUpperLevel;
+        return *_slopeUpperLevel;
     }
 
     double NaturalStoneRevetmentTimeDependentOutput::GetSlopeUpperPosition() const
     {
-        return _slopeUpperPosition;
+        return *_slopeUpperPosition;
     }
 
     double NaturalStoneRevetmentTimeDependentOutput::GetSlopeLowerLevel() const
     {
-        return _slopeLowerLevel;
+        return *_slopeLowerLevel;
     }
 
     double NaturalStoneRevetmentTimeDependentOutput::GetSlopeLowerPosition() const
     {
-        return _slopeLowerPosition;
+        return *_slopeLowerPosition;
     }
 
     bool NaturalStoneRevetmentTimeDependentOutput::GetLoadingRevetment() const
     {
-        return _loadingRevetment;
+        return *_loadingRevetment;
     }
 
     double NaturalStoneRevetmentTimeDependentOutput::GetSurfSimilarityParameter() const
     {
-        return _surfSimilarityParameter;
+        return *_surfSimilarityParameter;
     }
 
     double NaturalStoneRevetmentTimeDependentOutput::GetWaveSteepnessDeepWater() const
     {
-        return _waveSteepnessDeepWater;
+        return *_waveSteepnessDeepWater;
     }
 
     double NaturalStoneRevetmentTimeDependentOutput::GetUpperLimitLoading() const
     {
-        return _upperLimitLoading;
+        return *_upperLimitLoading;
     }
 
     double NaturalStoneRevetmentTimeDependentOutput::GetLowerLimitLoading() const
     {
-        return _lowerLimitLoading;
+        return *_lowerLimitLoading;
     }
 
     double NaturalStoneRevetmentTimeDependentOutput::GetDepthMaximumWaveLoad() const
     {
-        return _depthMaximumWaveLoad;
+        return *_depthMaximumWaveLoad;
     }
 
     double NaturalStoneRevetmentTimeDependentOutput::GetDistanceMaximumWaveElevation() const
     {
-        return _distanceMaximumWaveElevation;
+        return *_distanceMaximumWaveElevation;
     }
 
     double NaturalStoneRevetmentTimeDependentOutput::GetNormativeWidthOfWaveImpact() const
     {
-        return _normativeWidthOfWaveImpact;
+        return *_normativeWidthOfWaveImpact;
     }
 
     const double* NaturalStoneRevetmentTimeDependentOutput::GetHydraulicLoad() const
