@@ -28,9 +28,171 @@ namespace DiKErnel::Integration::Test
 {
     using namespace Core;
     using namespace std;
+    using namespace testing;
     using namespace TestUtil;
 
-    TEST(NaturalStoneRevetmentTimeDependentOutputTest, Constructor_WithAllValuesSet_ExpectedValues)
+    struct NaturalStoneRevetmentTimeDependentOutputTest : Test
+    {
+        static unique_ptr<NaturalStoneRevetmentTimeDependentOutputConstructionProperties> CreateFullyConfiguredConstructionProperties()
+        {
+            auto constructionProperties = make_unique<NaturalStoneRevetmentTimeDependentOutputConstructionProperties>();
+            constructionProperties->_incrementDamage = make_unique<double>(0.1);
+            constructionProperties->_damage = make_unique<double>(0.2);
+            constructionProperties->_timeOfFailure = make_unique<int>(3);
+            constructionProperties->_outerSlope = make_unique<double>(0.4);
+            constructionProperties->_slopeUpperLevel = make_unique<double>(0.5);
+            constructionProperties->_slopeUpperPosition = make_unique<double>(0.6);
+            constructionProperties->_slopeLowerLevel = make_unique<double>(0.7);
+            constructionProperties->_slopeLowerPosition = make_unique<double>(0.8);
+            constructionProperties->_loadingRevetment = make_unique<bool>(true);
+            constructionProperties->_surfSimilarityParameter = make_unique<double>(0.9);
+            constructionProperties->_waveSteepnessDeepWater = make_unique<double>(1.0);
+            constructionProperties->_upperLimitLoading = make_unique<double>(1.1);
+            constructionProperties->_lowerLimitLoading = make_unique<double>(1.2);
+            constructionProperties->_depthMaximumWaveLoad = make_unique<double>(1.3);
+            constructionProperties->_distanceMaximumWaveElevation = make_unique<double>(1.4);
+            constructionProperties->_normativeWidthOfWaveImpact = make_unique<double>(1.5);
+            constructionProperties->_hydraulicLoad = make_unique<double>(1.6);
+            constructionProperties->_waveAngleImpact = make_unique<double>(1.7);
+            constructionProperties->_resistance = make_unique<double>(1.8);
+            constructionProperties->_referenceTimeDegradation = make_unique<double>(1.9);
+            constructionProperties->_referenceDegradation = make_unique<double>(2.0);
+
+            return constructionProperties;
+        }
+
+        static void CreateOutputWithConstructionPropertiesWithOuterSlopeNullPtr()
+        {
+            // Setup
+            const auto constructionProperties = CreateFullyConfiguredConstructionProperties();
+            constructionProperties->_outerSlope = nullptr;
+
+            // Call
+            const NaturalStoneRevetmentTimeDependentOutput output(*constructionProperties);
+        }
+
+        static void CreateOutputWithConstructionPropertiesWithSlopeUpperLevelNullPtr()
+        {
+            // Setup
+            const auto constructionProperties = CreateFullyConfiguredConstructionProperties();
+            constructionProperties->_slopeUpperLevel = nullptr;
+
+            // Call
+            const NaturalStoneRevetmentTimeDependentOutput output(*constructionProperties);
+        }
+
+        static void CreateOutputWithConstructionPropertiesWithSlopeUpperPositionNullPtr()
+        {
+            // Setup
+            const auto constructionProperties = CreateFullyConfiguredConstructionProperties();
+            constructionProperties->_slopeUpperPosition = nullptr;
+
+            // Call
+            const NaturalStoneRevetmentTimeDependentOutput output(*constructionProperties);
+        }
+
+        static void CreateOutputWithConstructionPropertiesWithSlopeLowerLevelNullPtr()
+        {
+            // Setup
+            const auto constructionProperties = CreateFullyConfiguredConstructionProperties();
+            constructionProperties->_slopeLowerLevel = nullptr;
+
+            // Call
+            const NaturalStoneRevetmentTimeDependentOutput output(*constructionProperties);
+        }
+
+        static void CreateOutputWithConstructionPropertiesWithSlopeLowerPositionNullPtr()
+        {
+            // Setup
+            const auto constructionProperties = CreateFullyConfiguredConstructionProperties();
+            constructionProperties->_slopeLowerPosition = nullptr;
+
+            // Call
+            const NaturalStoneRevetmentTimeDependentOutput output(*constructionProperties);
+        }
+
+        static void CreateOutputWithConstructionPropertiesWithLoadingRevetmentNullPtr()
+        {
+            // Setup
+            const auto constructionProperties = CreateFullyConfiguredConstructionProperties();
+            constructionProperties->_loadingRevetment = nullptr;
+
+            // Call
+            const NaturalStoneRevetmentTimeDependentOutput output(*constructionProperties);
+        }
+
+        static void CreateOutputWithConstructionPropertiesWithSurfSimilarityParameterNullPtr()
+        {
+            // Setup
+            const auto constructionProperties = CreateFullyConfiguredConstructionProperties();
+            constructionProperties->_surfSimilarityParameter = nullptr;
+
+            // Call
+            const NaturalStoneRevetmentTimeDependentOutput output(*constructionProperties);
+        }
+
+        static void CreateOutputWithConstructionPropertiesWithWaveSteepnessDeepWaterNullPtr()
+        {
+            // Setup
+            const auto constructionProperties = CreateFullyConfiguredConstructionProperties();
+            constructionProperties->_waveSteepnessDeepWater = nullptr;
+
+            // Call
+            const NaturalStoneRevetmentTimeDependentOutput output(*constructionProperties);
+        }
+
+        static void CreateOutputWithConstructionPropertiesWithUpperLimitLoadingNullPtr()
+        {
+            // Setup
+            const auto constructionProperties = CreateFullyConfiguredConstructionProperties();
+            constructionProperties->_upperLimitLoading = nullptr;
+
+            // Call
+            const NaturalStoneRevetmentTimeDependentOutput output(*constructionProperties);
+        }
+
+        static void CreateOutputWithConstructionPropertiesWithLowerLimitLoadingNullPtr()
+        {
+            // Setup
+            const auto constructionProperties = CreateFullyConfiguredConstructionProperties();
+            constructionProperties->_lowerLimitLoading = nullptr;
+
+            // Call
+            const NaturalStoneRevetmentTimeDependentOutput output(*constructionProperties);
+        }
+
+        static void CreateOutputWithConstructionPropertiesWithDepthMaximumWaveLoadNullPtr()
+        {
+            // Setup
+            const auto constructionProperties = CreateFullyConfiguredConstructionProperties();
+            constructionProperties->_depthMaximumWaveLoad = nullptr;
+
+            // Call
+            const NaturalStoneRevetmentTimeDependentOutput output(*constructionProperties);
+        }
+
+        static void CreateOutputWithConstructionPropertiesWithDistanceMaximumWaveElevationNullPtr()
+        {
+            // Setup
+            const auto constructionProperties = CreateFullyConfiguredConstructionProperties();
+            constructionProperties->_distanceMaximumWaveElevation = nullptr;
+
+            // Call
+            const NaturalStoneRevetmentTimeDependentOutput output(*constructionProperties);
+        }
+
+        static void CreateOutputWithConstructionPropertiesWithNormativeWidthOfWaveImpactNullPtr()
+        {
+            // Setup
+            const auto constructionProperties = CreateFullyConfiguredConstructionProperties();
+            constructionProperties->_normativeWidthOfWaveImpact = nullptr;
+
+            // Call
+            const NaturalStoneRevetmentTimeDependentOutput output(*constructionProperties);
+        }
+    };
+
+    TEST_F(NaturalStoneRevetmentTimeDependentOutputTest, Constructor_WithAllValuesSet_ExpectedValues)
     {
         // Setup
         constexpr auto incrementDamage = 0.1;
@@ -106,7 +268,7 @@ namespace DiKErnel::Integration::Test
         ASSERT_DOUBLE_EQ(referenceDegradation, *output.GetReferenceDegradation());
     }
 
-    TEST(NaturalStoneRevetmentTimeDependentOutputTest, Constructor_WithNullPtrValues_ExpectedValues)
+    TEST_F(NaturalStoneRevetmentTimeDependentOutputTest, Constructor_WithNullPtrValues_ExpectedValues)
     {
         // Setup
         constexpr auto incrementDamage = 0.1;
@@ -174,5 +336,106 @@ namespace DiKErnel::Integration::Test
         ASSERT_EQ(nullptr, output.GetResistance());
         ASSERT_EQ(nullptr, output.GetReferenceTimeDegradation());
         ASSERT_EQ(nullptr, output.GetReferenceDegradation());
+    }
+
+    TEST_F(NaturalStoneRevetmentTimeDependentOutputTest, Constructor_OuterSlopeNullPtr_ThrowsInvalidTimeDependentOutputException)
+    {
+        // Setup & Call
+        const auto action = &NaturalStoneRevetmentTimeDependentOutputTest::CreateOutputWithConstructionPropertiesWithOuterSlopeNullPtr;
+
+        // Assert
+        AssertHelper::AssertThrowsWithMessage<InvalidTimeDependentOutputException>(action, "outerSlope must be set.");
+    }
+
+    TEST_F(NaturalStoneRevetmentTimeDependentOutputTest, Constructor_SlopeUpperLevelNullPtr_ThrowsInvalidTimeDependentOutputException)
+    {
+        // Setup & Call
+        const auto action = &NaturalStoneRevetmentTimeDependentOutputTest::CreateOutputWithConstructionPropertiesWithSlopeUpperLevelNullPtr;
+
+        // Assert
+        AssertHelper::AssertThrowsWithMessage<InvalidTimeDependentOutputException>(action, "slopeUpperLevel must be set.");
+    }
+
+    TEST_F(NaturalStoneRevetmentTimeDependentOutputTest, Constructor_SlopeUpperPositionNullPtr_ThrowsInvalidTimeDependentOutputException)
+    {
+        // Setup & Call
+        const auto action = &NaturalStoneRevetmentTimeDependentOutputTest::CreateOutputWithConstructionPropertiesWithSlopeUpperPositionNullPtr;
+
+        // Assert
+        AssertHelper::AssertThrowsWithMessage<InvalidTimeDependentOutputException>(action, "slopeUpperPosition must be set.");
+    }
+
+    TEST_F(NaturalStoneRevetmentTimeDependentOutputTest, Constructor_SlopeLowerLevelNullPtr_ThrowsInvalidTimeDependentOutputException)
+    {
+        // Setup & Call
+        const auto action = &NaturalStoneRevetmentTimeDependentOutputTest::CreateOutputWithConstructionPropertiesWithSlopeLowerLevelNullPtr;
+
+        // Assert
+        AssertHelper::AssertThrowsWithMessage<InvalidTimeDependentOutputException>(action, "slopeLowerLevel must be set.");
+    }
+
+    TEST_F(NaturalStoneRevetmentTimeDependentOutputTest, Constructor_SlopeLowerPositionNullPtr_ThrowsInvalidTimeDependentOutputException)
+    {
+        // Setup & Call
+        const auto action = &NaturalStoneRevetmentTimeDependentOutputTest::CreateOutputWithConstructionPropertiesWithSlopeLowerPositionNullPtr;
+
+        // Assert
+        AssertHelper::AssertThrowsWithMessage<InvalidTimeDependentOutputException>(action, "slopeLowerPosition must be set.");
+    }
+
+    TEST_F(NaturalStoneRevetmentTimeDependentOutputTest, Constructor_LoadingRevetmentNullPtr_ThrowsInvalidTimeDependentOutputException)
+    {
+        // Setup & Call
+        const auto action = &NaturalStoneRevetmentTimeDependentOutputTest::CreateOutputWithConstructionPropertiesWithLoadingRevetmentNullPtr;
+
+        // Assert
+        AssertHelper::AssertThrowsWithMessage<InvalidTimeDependentOutputException>(action, "loadingRevetment must be set.");
+    }
+
+    TEST_F(NaturalStoneRevetmentTimeDependentOutputTest, Constructor_SurfSimilarityParameterNullPtr_ThrowsInvalidTimeDependentOutputException)
+    {
+        // Setup & Call
+        const auto action = &NaturalStoneRevetmentTimeDependentOutputTest::CreateOutputWithConstructionPropertiesWithSurfSimilarityParameterNullPtr;
+
+        // Assert
+        AssertHelper::AssertThrowsWithMessage<InvalidTimeDependentOutputException>(action, "surfSimilarityParameter must be set.");
+    }
+
+    TEST_F(NaturalStoneRevetmentTimeDependentOutputTest, Constructor_LowerLimitLoadingNullPtr_ThrowsInvalidTimeDependentOutputException)
+    {
+        // Setup & Call
+        const auto action = &NaturalStoneRevetmentTimeDependentOutputTest::CreateOutputWithConstructionPropertiesWithLowerLimitLoadingNullPtr;
+
+        // Assert
+        AssertHelper::AssertThrowsWithMessage<InvalidTimeDependentOutputException>(action, "lowerLimitLoading must be set.");
+    }
+
+    TEST_F(NaturalStoneRevetmentTimeDependentOutputTest, Constructor_DepthMaximumWaveLoadNullPtr_ThrowsInvalidTimeDependentOutputException)
+    {
+        // Setup & Call
+        const auto action = &NaturalStoneRevetmentTimeDependentOutputTest::CreateOutputWithConstructionPropertiesWithDepthMaximumWaveLoadNullPtr;
+
+        // Assert
+        AssertHelper::AssertThrowsWithMessage<InvalidTimeDependentOutputException>(action, "depthMaximumWaveLoad must be set.");
+    }
+
+    TEST_F(NaturalStoneRevetmentTimeDependentOutputTest, Constructor_DistanceMaximumWaveElevationNullPtr_ThrowsInvalidTimeDependentOutputException)
+    {
+        // Setup & Call
+        const auto action = &
+                NaturalStoneRevetmentTimeDependentOutputTest::CreateOutputWithConstructionPropertiesWithDistanceMaximumWaveElevationNullPtr;
+
+        // Assert
+        AssertHelper::AssertThrowsWithMessage<InvalidTimeDependentOutputException>(action, "distanceMaximumWaveElevation must be set.");
+    }
+
+    TEST_F(NaturalStoneRevetmentTimeDependentOutputTest, Constructor_NormativeWidthOfWaveImpactNullPtr_ThrowsInvalidTimeDependentOutputException)
+    {
+        // Setup & Call
+        const auto action = &
+                NaturalStoneRevetmentTimeDependentOutputTest::CreateOutputWithConstructionPropertiesWithNormativeWidthOfWaveImpactNullPtr;
+
+        // Assert
+        AssertHelper::AssertThrowsWithMessage<InvalidTimeDependentOutputException>(action, "normativeWidthOfWaveImpact must be set.");
     }
 }

@@ -44,7 +44,22 @@ namespace DiKErnel::Integration
           _waveAngleImpact(move(constructionProperties._waveAngleImpact)),
           _resistance(move(constructionProperties._resistance)),
           _referenceTimeDegradation(move(constructionProperties._referenceTimeDegradation)),
-          _referenceDegradation(move(constructionProperties._referenceDegradation)) {}
+          _referenceDegradation(move(constructionProperties._referenceDegradation))
+    {
+        ThrowExceptionWhenPropertyIsNullPtr(_outerSlope.get(), "outerSlope");
+        ThrowExceptionWhenPropertyIsNullPtr(_slopeUpperLevel.get(), "slopeUpperLevel");
+        ThrowExceptionWhenPropertyIsNullPtr(_slopeUpperPosition.get(), "slopeUpperPosition");
+        ThrowExceptionWhenPropertyIsNullPtr(_slopeLowerLevel.get(), "slopeLowerLevel");
+        ThrowExceptionWhenPropertyIsNullPtr(_slopeLowerPosition.get(), "slopeLowerPosition");
+        ThrowExceptionWhenPropertyIsNullPtr(_loadingRevetment.get(), "loadingRevetment");
+        ThrowExceptionWhenPropertyIsNullPtr(_surfSimilarityParameter.get(), "surfSimilarityParameter");
+        ThrowExceptionWhenPropertyIsNullPtr(_waveSteepnessDeepWater.get(), "waveSteepnessDeepWater");
+        ThrowExceptionWhenPropertyIsNullPtr(_upperLimitLoading.get(), "upperLimitLoading");
+        ThrowExceptionWhenPropertyIsNullPtr(_lowerLimitLoading.get(), "lowerLimitLoading");
+        ThrowExceptionWhenPropertyIsNullPtr(_depthMaximumWaveLoad.get(), "depthMaximumWaveLoad");
+        ThrowExceptionWhenPropertyIsNullPtr(_distanceMaximumWaveElevation.get(), "distanceMaximumWaveElevation");
+        ThrowExceptionWhenPropertyIsNullPtr(_normativeWidthOfWaveImpact.get(), "normativeWidthOfWaveImpact");
+    }
 
     double NaturalStoneRevetmentTimeDependentOutput::GetOuterSlope() const
     {
