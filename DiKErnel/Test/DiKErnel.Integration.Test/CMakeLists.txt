@@ -35,6 +35,7 @@ set(SOURCEFILES_PUBLIC_DATA_OUTPUT
   ${PUBLIC_DATA_OUTPUT_FOLDER}/GrassRevetmentWaveImpactTimeDependentOutputConstructionPropertiesTest.cpp
   ${PUBLIC_DATA_OUTPUT_FOLDER}/GrassRevetmentWaveImpactTimeDependentOutputTest.cpp
   ${PUBLIC_DATA_OUTPUT_FOLDER}/GrassRevetmentWaveRunupRayleighLocationDependentOutputTest.cpp
+  ${PUBLIC_DATA_OUTPUT_FOLDER}/GrassRevetmentWaveRunupRayleighTimeDependentOutputConstructionPropertiesTest.cpp
   ${PUBLIC_DATA_OUTPUT_FOLDER}/GrassRevetmentWaveRunupRayleighTimeDependentOutputTest.cpp
   ${PUBLIC_DATA_OUTPUT_FOLDER}/NaturalStoneRevetmentLocationDependentOutputTest.cpp
   ${PUBLIC_DATA_OUTPUT_FOLDER}/NaturalStoneRevetmentTimeDependentOutputTest.cpp

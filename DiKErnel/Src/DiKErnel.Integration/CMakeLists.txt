@@ -55,6 +55,7 @@ set(SOURCEFILES_PUBLIC_DATA_OUTPUT
   ${PUBLIC_DATA_OUTPUT_FOLDER}/GrassRevetmentWaveRunupRayleighLocationDependentOutput.h
   ${PUBLIC_DATA_OUTPUT_FOLDER}/GrassRevetmentWaveRunupRayleighTimeDependentOutput.cpp
   ${PUBLIC_DATA_OUTPUT_FOLDER}/GrassRevetmentWaveRunupRayleighTimeDependentOutput.h
+  ${PUBLIC_DATA_OUTPUT_FOLDER}/GrassRevetmentWaveRunupRayleighTimeDependentOutputConstructionProperties.h
   ${PUBLIC_DATA_OUTPUT_FOLDER}/NaturalStoneRevetmentLocationDependentOutput.cpp
   ${PUBLIC_DATA_OUTPUT_FOLDER}/NaturalStoneRevetmentLocationDependentOutput.h
   ${PUBLIC_DATA_OUTPUT_FOLDER}/NaturalStoneRevetmentTimeDependentOutput.cpp
