@@ -28,6 +28,7 @@
 #include "NaturalStoneRevetmentLowerLimitLoading.h"
 #include "NaturalStoneRevetmentNormativeWidthOfWaveImpact.h"
 #include "NaturalStoneRevetmentSlope.h"
+#include "NaturalStoneRevetmentTimeDependentOutputConstructionProperties.h"
 #include "NaturalStoneRevetmentUpperLimitLoading.h"
 #include "NaturalStoneRevetmentWaveAngleImpact.h"
 
@@ -97,24 +98,36 @@ namespace DiKErnel::Integration
         private:
             double _relativeDensity;
             double _thicknessTopLayer;
-            std::unique_ptr<NaturalStoneRevetmentHydraulicLoads> _hydraulicLoads;
-            std::unique_ptr<NaturalStoneRevetmentSlope> _slope;
+            std::unique_ptr<NaturalStoneRevetmentHydraulicLoads> _hydraulicLoadsInput;
+            std::unique_ptr<NaturalStoneRevetmentSlope> _slopeInput;
             std::unique_ptr<NaturalStoneRevetmentUpperLimitLoading> _upperLimitLoadingInput;
             std::unique_ptr<NaturalStoneRevetmentLowerLimitLoading> _lowerLimitLoadingInput;
-            std::unique_ptr<NaturalStoneRevetmentDistanceMaximumWaveElevation> _distanceMaximumWaveElevation;
-            std::unique_ptr<NaturalStoneRevetmentNormativeWidthOfWaveImpact> _normativeWidthOfWaveImpact;
-            std::unique_ptr<NaturalStoneRevetmentWaveAngleImpact> _waveAngleImpact;
+            std::unique_ptr<NaturalStoneRevetmentDistanceMaximumWaveElevation> _distanceMaximumWaveElevationInput;
+            std::unique_ptr<NaturalStoneRevetmentNormativeWidthOfWaveImpact> _normativeWidthOfWaveImpactInput;
+            std::unique_ptr<NaturalStoneRevetmentWaveAngleImpact> _waveAngleImpactInput;
             double _outerToeHeight = std::numeric_limits<double>::infinity();
             double _outerCrestHeight = std::numeric_limits<double>::infinity();
             std::unique_ptr<std::pair<double, double>> _notchOuterBerm = nullptr;
             std::unique_ptr<std::pair<double, double>> _crestOuterBerm = nullptr;
+
             double _resistance = std::numeric_limits<double>::infinity();
             double _slopeLowerPosition = std::numeric_limits<double>::infinity();
             double _slopeLowerLevel = std::numeric_limits<double>::infinity();
             double _slopeUpperPosition = std::numeric_limits<double>::infinity();
             double _slopeUpperLevel = std::numeric_limits<double>::infinity();
+            double _outerSlope = std::numeric_limits<double>::infinity();
+            double _waveSteepnessDeepWater = std::numeric_limits<double>::infinity();
+            double _distanceMaximumWaveElevation = std::numeric_limits<double>::infinity();
+            double _surfSimilarityParameter = std::numeric_limits<double>::infinity();
+            double _normativeWidthWaveImpact = std::numeric_limits<double>::infinity();
+            double _depthMaximumWaveLoad = std::numeric_limits<double>::infinity();
             double _upperLimitLoading = std::numeric_limits<double>::infinity();
             double _lowerLimitLoading = std::numeric_limits<double>::infinity();
+            bool _loadingRevetment = false;
+            double _hydraulicLoad = std::numeric_limits<double>::infinity();
+            double _waveAngleImpact = std::numeric_limits<double>::infinity();
+            double _referenceTimeDegradation = std::numeric_limits<double>::infinity();
+            double _referenceDegradation = std::numeric_limits<double>::infinity();
 
             [[nodiscard]]
             double CalculateOuterSlope(
@@ -133,5 +146,16 @@ namespace DiKErnel::Integration
             double CalculateHydraulicLoad(
                 double surfSimilarityParameter,
                 double waveHeightHm0) const;
+
+            [[nodiscard]]
+            int CalculateTimeOfFailure(
+                double failureNumber,
+                double wavePeriodTm10,
+                double beginTime) const;
+
+            std::unique_ptr<NaturalStoneRevetmentTimeDependentOutputConstructionProperties> CreateConstructionProperties(
+                double incrementDamage,
+                double damage,
+                std::unique_ptr<int> timeOfFailure);
     };
 }
