@@ -36,6 +36,8 @@ namespace DiKErnel::Integration
              * \brief Creates a new instance.
              * \param constructionProperties
              *        The construction properties.
+             * \exception InvalidTimeDependentOutputException
+             *            Thrown when mandatory properties are nullptr.
              */
             explicit GrassRevetmentWaveRunupRayleighTimeDependentOutput(
                 GrassRevetmentWaveRunupRayleighTimeDependentOutputConstructionProperties& constructionProperties);

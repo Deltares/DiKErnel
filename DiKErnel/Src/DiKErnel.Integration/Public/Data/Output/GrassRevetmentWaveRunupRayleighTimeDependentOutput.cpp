@@ -30,7 +30,10 @@ namespace DiKErnel::Integration
           _verticalDistanceWaterLevelElevation(move(constructionProperties._verticalDistanceWaterLevelElevation)),
           _waveAngleImpact(move(constructionProperties._waveAngleImpact)),
           _representativeWaveRunup2P(move(constructionProperties._representativeWaveRunup2P)),
-          _cumulativeOverload(move(constructionProperties._cumulativeOverload)) {}
+          _cumulativeOverload(move(constructionProperties._cumulativeOverload))
+    {
+        ThrowExceptionWhenPropertyIsNullPtr(_verticalDistanceWaterLevelElevation.get(), "verticalDistanceWaterLevelElevation");
+    }
 
     double GrassRevetmentWaveRunupRayleighTimeDependentOutput::GetVerticalDistanceWaterLevelElevation() const
     {

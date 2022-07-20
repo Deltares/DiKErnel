@@ -28,9 +28,29 @@ namespace DiKErnel::Integration::Test
 {
     using namespace Core;
     using namespace std;
+    using namespace testing;
     using namespace TestUtil;
 
-    TEST(GrassRevetmentWaveRunupRayleighTimeDependentOutputTest, Constructor_WithAllValuesSet_ExpectedValues)
+    struct GrassRevetmentWaveRunupRayleighTimeDependentOutputTest : Test
+    {
+        static void CreateOutputWithConstructionPropertiesWithVerticalDistanceWaterLevelElevationNullPtr()
+        {
+            // Setup
+            GrassRevetmentWaveRunupRayleighTimeDependentOutputConstructionProperties constructionProperties;
+            constructionProperties._incrementDamage = make_unique<double>(0.1);
+            constructionProperties._damage = make_unique<double>(0.2);
+            constructionProperties._timeOfFailure = make_unique<int>(3);
+            constructionProperties._verticalDistanceWaterLevelElevation = nullptr;
+            constructionProperties._waveAngleImpact = make_unique<double>(0.4);
+            constructionProperties._representativeWaveRunup2P = make_unique<double>(0.5);
+            constructionProperties._cumulativeOverload = make_unique<double>(0.6);
+
+            // Call
+            const GrassRevetmentWaveRunupRayleighTimeDependentOutput output(constructionProperties);
+        }
+    };
+
+    TEST_F(GrassRevetmentWaveRunupRayleighTimeDependentOutputTest, Constructor_WithAllValuesSet_ExpectedValues)
     {
         // Setup
         constexpr auto incrementDamage = 0.1;
@@ -64,7 +84,7 @@ namespace DiKErnel::Integration::Test
         ASSERT_DOUBLE_EQ(cumulativeOverload, *output.GetCumulativeOverload());
     }
 
-    TEST(GrassRevetmentWaveRunupRayleighTimeDependentOutputTest, Constructor_WithNullPtrValues_ExpectedValues)
+    TEST_F(GrassRevetmentWaveRunupRayleighTimeDependentOutputTest, Constructor_WithNullPtrValues_ExpectedValues)
     {
         // Setup
         constexpr auto incrementDamage = 0.1;
@@ -88,5 +108,14 @@ namespace DiKErnel::Integration::Test
         ASSERT_EQ(nullptr, output.GetWaveAngleImpact());
         ASSERT_EQ(nullptr, output.GetRepresentativeWaveRunup2P());
         ASSERT_EQ(nullptr, output.GetCumulativeOverload());
+    }
+
+    TEST_F(GrassRevetmentWaveRunupRayleighTimeDependentOutputTest, Constructor_VerticalDistanceWaterLevelElevationNullPtr_ThrowsInvalidTimeDependentOutputException)
+    {
+        // Setup & Call
+        const auto action = &GrassRevetmentWaveRunupRayleighTimeDependentOutputTest::CreateOutputWithConstructionPropertiesWithVerticalDistanceWaterLevelElevationNullPtr;
+
+        // Assert
+        AssertHelper::AssertThrowsWithMessage<InvalidTimeDependentOutputException>(action, "verticalDistanceWaterLevelElevation must be set.");
     }
 }
