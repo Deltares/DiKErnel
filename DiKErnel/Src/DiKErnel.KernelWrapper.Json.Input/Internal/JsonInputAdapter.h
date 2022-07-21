@@ -37,6 +37,7 @@
 #include "JsonInputNaturalStoneCalculationDefinitionData.h"
 #include "JsonInputNaturalStoneLocationData.h"
 #include "NaturalStoneRevetmentLocationConstructionProperties.h"
+#include "RevetmentCalculationInputBuilder.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
@@ -47,8 +48,20 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 const JsonInputData& jsonInputData);
 
         private:
+            static void AdaptDikeProfile(
+                const JsonInputData& jsonInputData,
+                Integration::RevetmentCalculationInputBuilder& builder);
+
             static std::unique_ptr<Core::CharacteristicPointType> ConvertCharacteristicPointType(
                 JsonInputCharacteristicPointType jsonCharacteristicPointType);
+
+            static void AdaptHydraulicData(
+                const JsonInputData& jsonInputData,
+                Integration::RevetmentCalculationInputBuilder& builder);
+
+            static void AdaptLocations(
+                const JsonInputData& jsonInputData,
+                Integration::RevetmentCalculationInputBuilder& builder);
 
             template <typename T>
             static const T* GetCalculationDefinition(
