@@ -8,7 +8,7 @@ project(DiKErnel)
 option(BUILD_FOR_RELEASE "Build for release" FALSE)
 
 # Set compiler flags
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 
 if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
   message("Building with code coverage")
