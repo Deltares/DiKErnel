@@ -139,15 +139,17 @@ namespace DiKErnel::Integration
         const double waveHeightHm0) const
     {
         const auto& representative2P = GetRepresentative2P();
-        GrassRevetmentWaveRunupRepresentative2PInput representativeWaveRunup2PInput{};
-        representativeWaveRunup2PInput._surfSimilarityParameter = surfSimilarityParameter;
-        representativeWaveRunup2PInput._waveAngleImpact = _waveAngleImpact;
-        representativeWaveRunup2PInput._waveHeightHm0 = waveHeightHm0;
-        representativeWaveRunup2PInput._representativeWaveRunup2PGammab = representative2P.GetGammab();
-        representativeWaveRunup2PInput._representativeWaveRunup2PGammaf = representative2P.GetGammaf();
-        representativeWaveRunup2PInput._representativeWaveRunup2PAru = representative2P.GetRepresentative2PAru();
-        representativeWaveRunup2PInput._representativeWaveRunup2PBru = representative2P.GetRepresentative2PBru();
-        representativeWaveRunup2PInput._representativeWaveRunup2PCru = representative2P.GetRepresentative2PCru();
+        const GrassRevetmentWaveRunupRepresentative2PInput representativeWaveRunup2PInput
+        {
+            ._surfSimilarityParameter = surfSimilarityParameter,
+            ._waveAngleImpact = _waveAngleImpact,
+            ._waveHeightHm0 = waveHeightHm0,
+            ._representativeWaveRunup2PGammab = representative2P.GetGammab(),
+            ._representativeWaveRunup2PGammaf = representative2P.GetGammaf(),
+            ._representativeWaveRunup2PAru = representative2P.GetRepresentative2PAru(),
+            ._representativeWaveRunup2PBru = representative2P.GetRepresentative2PBru(),
+            ._representativeWaveRunup2PCru = representative2P.GetRepresentative2PCru()
+        };
 
         return GrassRevetmentWaveRunupFunctions::RepresentativeWaveRunup2P(representativeWaveRunup2PInput);
     }
@@ -155,16 +157,18 @@ namespace DiKErnel::Integration
     double GrassRevetmentWaveRunupRayleighLocationDependentInput::CalculateCumulativeOverload(
         const double averageNumberOfWaves) const
     {
-        GrassRevetmentWaveRunupRayleighCumulativeOverloadInput cumulativeOverloadInput{};
-        cumulativeOverloadInput._averageNumberOfWaves = averageNumberOfWaves;
-        cumulativeOverloadInput._representativeWaveRunup2P = _representativeWaveRunup2P;
-        cumulativeOverloadInput._fixedNumberOfWaves = _fixedNumberOfWaves;
-        cumulativeOverloadInput._verticalDistanceWaterLevelElevation = _verticalDistanceWaterLevelElevation;
-        cumulativeOverloadInput._criticalFrontVelocity = GetCriticalFrontVelocity();
-        cumulativeOverloadInput._increasedLoadTransitionAlphaM = GetIncreasedLoadTransitionAlphaM();
-        cumulativeOverloadInput._reducedStrengthTransitionAlphaS = GetReducedStrengthTransitionAlphaS();
-        cumulativeOverloadInput._frontVelocityCu = _frontVelocityCu;
-        cumulativeOverloadInput._gravitationalAcceleration = Constants::GetGravitationalAcceleration();
+        const GrassRevetmentWaveRunupRayleighCumulativeOverloadInput cumulativeOverloadInput
+        {
+            ._averageNumberOfWaves = averageNumberOfWaves,
+            ._representativeWaveRunup2P = _representativeWaveRunup2P,
+            ._fixedNumberOfWaves = _fixedNumberOfWaves,
+            ._verticalDistanceWaterLevelElevation = _verticalDistanceWaterLevelElevation,
+            ._criticalFrontVelocity = GetCriticalFrontVelocity(),
+            ._increasedLoadTransitionAlphaM = GetIncreasedLoadTransitionAlphaM(),
+            ._reducedStrengthTransitionAlphaS = GetReducedStrengthTransitionAlphaS(),
+            ._frontVelocityCu = _frontVelocityCu,
+            ._gravitationalAcceleration = Constants::GetGravitationalAcceleration()
+        };
 
         return GrassRevetmentWaveRunupRayleighFunctions::CumulativeOverload(cumulativeOverloadInput);
     }

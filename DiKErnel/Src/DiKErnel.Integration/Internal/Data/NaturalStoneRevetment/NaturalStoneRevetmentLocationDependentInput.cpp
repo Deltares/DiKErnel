@@ -219,13 +219,15 @@ namespace DiKErnel::Integration
                                                                            naturalStoneRevetmentSlope.GetLowerLevelAls());
         _slopeLowerPosition = profileData.InterpolationHorizontalPosition(_slopeLowerLevel);
 
-        NaturalStoneRevetmentOuterSlopeInput outerSlopeInput{};
-        outerSlopeInput._slopeLowerPosition = _slopeLowerPosition;
-        outerSlopeInput._slopeLowerLevel = _slopeLowerLevel;
-        outerSlopeInput._slopeUpperPosition = _slopeUpperPosition;
-        outerSlopeInput._slopeUpperLevel = _slopeUpperLevel;
-        outerSlopeInput._outerToeHeight = _outerToeHeight;
-        outerSlopeInput._outerCrestHeight = _outerCrestHeight;
+        NaturalStoneRevetmentOuterSlopeInput outerSlopeInput
+        {
+            ._slopeLowerPosition = _slopeLowerPosition,
+            ._slopeLowerLevel = _slopeLowerLevel,
+            ._slopeUpperPosition = _slopeUpperPosition,
+            ._slopeUpperLevel = _slopeUpperLevel,
+            ._outerToeHeight = _outerToeHeight,
+            ._outerCrestHeight = _outerCrestHeight
+        };
 
         if (_notchOuterBerm != nullptr && _crestOuterBerm != nullptr)
         {
@@ -244,14 +246,16 @@ namespace DiKErnel::Integration
         const double waterLevel,
         const double waveHeightHm0)
     {
-        NaturalStoneRevetmentLimitLoadingInput limitLoadingInput{};
-        limitLoadingInput._depthMaximumWaveLoad = depthMaximumWaveLoad;
-        limitLoadingInput._surfSimilarityParameter = surfSimilarityParameter;
-        limitLoadingInput._waterLevel = waterLevel;
-        limitLoadingInput._waveHeightHm0 = waveHeightHm0;
-        limitLoadingInput._a = _lowerLimitLoadingInput->GetLowerLimitAll();
-        limitLoadingInput._b = _lowerLimitLoadingInput->GetLowerLimitBll();
-        limitLoadingInput._c = _lowerLimitLoadingInput->GetLowerLimitCll();
+        NaturalStoneRevetmentLimitLoadingInput limitLoadingInput
+        {
+            ._depthMaximumWaveLoad = depthMaximumWaveLoad,
+            ._surfSimilarityParameter = surfSimilarityParameter,
+            ._waterLevel = waterLevel,
+            ._waveHeightHm0 = waveHeightHm0,
+            ._a = _lowerLimitLoadingInput->GetLowerLimitAll(),
+            ._b = _lowerLimitLoadingInput->GetLowerLimitBll(),
+            ._c = _lowerLimitLoadingInput->GetLowerLimitCll()
+        };
 
         _lowerLimitLoading = NaturalStoneRevetmentFunctions::LowerLimitLoading(limitLoadingInput);
 
@@ -267,9 +271,11 @@ namespace DiKErnel::Integration
         const double surfSimilarityParameter,
         const double waveHeightHm0) const
     {
-        NaturalStoneRevetmentHydraulicLoadInput hydraulicLoadInput{};
-        hydraulicLoadInput._surfSimilarityParameter = surfSimilarityParameter;
-        hydraulicLoadInput._waveHeightHm0 = waveHeightHm0;
+        NaturalStoneRevetmentHydraulicLoadInput hydraulicLoadInput
+        {
+            ._surfSimilarityParameter = surfSimilarityParameter,
+            ._waveHeightHm0 = waveHeightHm0
+        };
 
         const auto usePlungingBreakers = _hydraulicLoadsInput->GetHydraulicLoadXib() >= surfSimilarityParameter;
         hydraulicLoadInput._a = usePlungingBreakers

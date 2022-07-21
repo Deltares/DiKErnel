@@ -243,24 +243,24 @@ namespace DiKErnel::Integration
         const double waterLevel,
         const double waveHeightHm0) const
     {
-        AsphaltRevetmentWaveImpactFunctionsInput input{};
-        input._logFailureTension = _logFailureTension;
-        input._averageNumberOfWaves = _averageNumberOfWaves;
-        input._maximumPeakStress = _maximumPeakStress;
-        input._stiffnessRelation = _stiffnessRelation;
-        input._computationalThickness = _computationalThickness;
-        input._outerSlope = _outerSlope;
-        input._widthFactors = _widthFactors;
-        input._depthFactors = _depthFactors;
-        input._impactFactors = _impactFactors;
-        input._z = GetZ();
-        input._waterLevel = waterLevel;
-        input._waveHeightHm0 = waveHeightHm0;
-        input._fatigueAlpha = _fatigue->GetAlpha();
-        input._fatigueBeta = _fatigue->GetBeta();
-        input._impactNumberC = _impactNumberC;
-
-        return input;
+        return AsphaltRevetmentWaveImpactFunctionsInput
+        {
+            ._logFailureTension = _logFailureTension,
+            ._averageNumberOfWaves = _averageNumberOfWaves,
+            ._maximumPeakStress = _maximumPeakStress,
+            ._stiffnessRelation = _stiffnessRelation,
+            ._computationalThickness = _computationalThickness,
+            ._outerSlope = _outerSlope,
+            ._widthFactors = _widthFactors,
+            ._depthFactors = _depthFactors,
+            ._impactFactors = _impactFactors,
+            ._z = GetZ(),
+            ._waterLevel = waterLevel,
+            ._waveHeightHm0 = waveHeightHm0,
+            ._fatigueAlpha = _fatigue->GetAlpha(),
+            ._fatigueBeta = _fatigue->GetBeta(),
+            ._impactNumberC = _impactNumberC
+        };
     }
 
     unique_ptr<AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties>
