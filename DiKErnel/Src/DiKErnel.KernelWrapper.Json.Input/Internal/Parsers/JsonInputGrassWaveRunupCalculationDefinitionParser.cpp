@@ -88,7 +88,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
             auto calculationProtocolData = make_unique<JsonInputGrassWaveRunupRayleighCalculationProtocolData>();
 
             calculationProtocolData->SetFixedNumberOfWaves(
-                JsonInputParserHelper::ParseOptionalInteger(readCalculationProtocol, JsonInputGrassWaveRunupRayleighDefinitions::FIXED_NUMBER_OF_WAVES));
+                JsonInputParserHelper::ParseOptionalInteger(
+                    readCalculationProtocol, JsonInputGrassWaveRunupRayleighDefinitions::FIXED_NUMBER_OF_WAVES));
 
             calculationProtocolData->SetFrontVelocity(
                 JsonInputParserHelper::ParseOptionalDouble(readCalculationProtocol, JsonInputGrassWaveRunupRayleighDefinitions::FRONT_VELOCITY));
@@ -107,9 +108,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
         if (readCalculationMethod.contains(JsonInputDefinitions::TOP_LAYERS))
         {
-            const auto& readTopLayers = readCalculationMethod.at(JsonInputDefinitions::TOP_LAYERS);
-
-            for (const auto& readTopLayer : readTopLayers)
+            for (const auto& readTopLayers = readCalculationMethod.at(JsonInputDefinitions::TOP_LAYERS); const auto& readTopLayer : readTopLayers)
             {
                 auto topLayer = make_unique<JsonInputGrassWaveRunupTopLayerDefinitionData>();
 

@@ -120,9 +120,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
         if (readCalculationMethod.contains(JsonInputDefinitions::TOP_LAYERS))
         {
-            const auto& readTopLayers = readCalculationMethod.at(JsonInputDefinitions::TOP_LAYERS);
-
-            for (const auto& readTopLayer : readTopLayers)
+            for (const auto& readTopLayers = readCalculationMethod.at(JsonInputDefinitions::TOP_LAYERS); const auto& readTopLayer : readTopLayers)
             {
                 auto topLayer = make_unique<JsonInputNaturalStoneTopLayerDefinitionData>();
 

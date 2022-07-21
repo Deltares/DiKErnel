@@ -114,9 +114,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
     {
         auto parsedLocations = vector<unique_ptr<JsonInputLocationData>>();
 
-        const auto& readLocations = readCalculationData.at(JsonInputDefinitions::LOCATIONS);
-
-        for (const auto& readLocation : readLocations)
+        for (const auto& readLocations = readCalculationData.at(JsonInputDefinitions::LOCATIONS); const auto& readLocation : readLocations)
         {
             const auto& calculationType = readLocation.at(JsonInputDefinitions::CALCULATION_METHOD_TYPE).get<JsonInputCalculationType>();
 
@@ -155,9 +153,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
         if (readCalculationData.contains(JsonInputDefinitions::CALCULATION_METHODS))
         {
-            const auto& readCalculationDefinitions = readCalculationData.at(JsonInputDefinitions::CALCULATION_METHODS);
-
-            for (const auto& readCalculationDefinition : readCalculationDefinitions)
+            for (const auto& readCalculationDefinitions = readCalculationData.at(JsonInputDefinitions::CALCULATION_METHODS);
+                 const auto& readCalculationDefinition : readCalculationDefinitions)
             {
                 const auto& calculationType = readCalculationDefinition.at(JsonInputDefinitions::CALCULATION_METHOD_TYPE)
                                                                        .get<JsonInputCalculationType>();
