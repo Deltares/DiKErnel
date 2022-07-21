@@ -95,14 +95,10 @@ namespace DiKErnel::Integration
         auto damage = initialDamage;
         unique_ptr<int> timeOfFailure = nullptr;
 
-        unique_ptr<double> waveAngleImpact = nullptr;
-        unique_ptr<double> representativeWaveRunup2P = nullptr;
-        unique_ptr<double> cumulativeOverload = nullptr;
-
-        const auto verticalDistanceWaterLevelElevation = HydraulicLoadFunctions::VerticalDistanceWaterLevelElevation(
+        _verticalDistanceWaterLevelElevation = HydraulicLoadFunctions::VerticalDistanceWaterLevelElevation(
             GetZ(), timeDependentInput.GetWaterLevel());
 
-        if (verticalDistanceWaterLevelElevation > 0)
+        if (_verticalDistanceWaterLevelElevation > 0)
         {
             const auto beginTime = timeDependentInput.GetBeginTime();
 
@@ -115,37 +111,13 @@ namespace DiKErnel::Integration
                                                                                                  timeDependentInput.GetWavePeriodTm10(),
                                                                                                  Constants::GetGravitationalAcceleration());
 
-            waveAngleImpact = make_unique<double>(GrassRevetmentWaveRunupFunctions::WaveAngleImpact(
-                timeDependentInput.GetWaveAngle(), GetWaveAngleImpact().GetAbeta(), GetWaveAngleImpact().GetBetamax()));
+            _waveAngleImpact = GrassRevetmentWaveRunupFunctions::WaveAngleImpact(timeDependentInput.GetWaveAngle(), GetWaveAngleImpact().GetAbeta(),
+                                                                                 GetWaveAngleImpact().GetBetamax());
 
-            const auto& representative2P = GetRepresentative2P();
-            GrassRevetmentWaveRunupRepresentative2PInput representativeWaveRunup2PInput{};
-            representativeWaveRunup2PInput._surfSimilarityParameter = surfSimilarityParameter;
-            representativeWaveRunup2PInput._waveAngleImpact = *waveAngleImpact;
-            representativeWaveRunup2PInput._waveHeightHm0 = timeDependentInput.GetWaveHeightHm0();
-            representativeWaveRunup2PInput._representativeWaveRunup2PGammab = representative2P.GetGammab();
-            representativeWaveRunup2PInput._representativeWaveRunup2PGammaf = representative2P.GetGammaf();
-            representativeWaveRunup2PInput._representativeWaveRunup2PAru = representative2P.GetRepresentative2PAru();
-            representativeWaveRunup2PInput._representativeWaveRunup2PBru = representative2P.GetRepresentative2PBru();
-            representativeWaveRunup2PInput._representativeWaveRunup2PCru = representative2P.GetRepresentative2PCru();
+            _representativeWaveRunup2P = CalculateRepresentativeWaveRunup2P(surfSimilarityParameter, timeDependentInput.GetWaveHeightHm0());
+            _cumulativeOverload = CalculateCumulativeOverload(averageNumberOfWaves);
 
-            representativeWaveRunup2P = make_unique<double>(
-                GrassRevetmentWaveRunupFunctions::RepresentativeWaveRunup2P(representativeWaveRunup2PInput));
-
-            GrassRevetmentWaveRunupRayleighCumulativeOverloadInput cumulativeOverloadInput{};
-            cumulativeOverloadInput._averageNumberOfWaves = averageNumberOfWaves;
-            cumulativeOverloadInput._representativeWaveRunup2P = *representativeWaveRunup2P;
-            cumulativeOverloadInput._fixedNumberOfWaves = _fixedNumberOfWaves;
-            cumulativeOverloadInput._verticalDistanceWaterLevelElevation = verticalDistanceWaterLevelElevation;
-            cumulativeOverloadInput._criticalFrontVelocity = GetCriticalFrontVelocity();
-            cumulativeOverloadInput._increasedLoadTransitionAlphaM = GetIncreasedLoadTransitionAlphaM();
-            cumulativeOverloadInput._reducedStrengthTransitionAlphaS = GetReducedStrengthTransitionAlphaS();
-            cumulativeOverloadInput._frontVelocityCu = _frontVelocityCu;
-            cumulativeOverloadInput._gravitationalAcceleration = Constants::GetGravitationalAcceleration();
-
-            cumulativeOverload = make_unique<double>(GrassRevetmentWaveRunupRayleighFunctions::CumulativeOverload(cumulativeOverloadInput));
-
-            incrementDamage = GrassRevetmentWaveRunupFunctions::IncrementDamage(*cumulativeOverload, GetCriticalCumulativeOverload());
+            incrementDamage = GrassRevetmentWaveRunupFunctions::IncrementDamage(_cumulativeOverload, GetCriticalCumulativeOverload());
 
             damage = RevetmentFunctions::Damage(incrementDamage, initialDamage);
 
@@ -158,15 +130,64 @@ namespace DiKErnel::Integration
             }
         }
 
-        GrassRevetmentWaveRunupRayleighTimeDependentOutputConstructionProperties constructionProperties;
-        constructionProperties._incrementDamage = make_unique<double>(incrementDamage);
-        constructionProperties._damage = make_unique<double>(damage);
-        constructionProperties._timeOfFailure = move(timeOfFailure);
-        constructionProperties._verticalDistanceWaterLevelElevation = make_unique<double>(verticalDistanceWaterLevelElevation);
-        constructionProperties._waveAngleImpact = move(waveAngleImpact);
-        constructionProperties._representativeWaveRunup2P = move(representativeWaveRunup2P);
-        constructionProperties._cumulativeOverload = move(cumulativeOverload);
+        return make_unique<GrassRevetmentWaveRunupRayleighTimeDependentOutput>(
+            *CreateConstructionProperties(incrementDamage, damage, move(timeOfFailure)));
+    }
 
-        return make_unique<GrassRevetmentWaveRunupRayleighTimeDependentOutput>(constructionProperties);
+    double GrassRevetmentWaveRunupRayleighLocationDependentInput::CalculateRepresentativeWaveRunup2P(
+        const double surfSimilarityParameter,
+        const double waveHeightHm0) const
+    {
+        const auto& representative2P = GetRepresentative2P();
+        GrassRevetmentWaveRunupRepresentative2PInput representativeWaveRunup2PInput{};
+        representativeWaveRunup2PInput._surfSimilarityParameter = surfSimilarityParameter;
+        representativeWaveRunup2PInput._waveAngleImpact = _waveAngleImpact;
+        representativeWaveRunup2PInput._waveHeightHm0 = waveHeightHm0;
+        representativeWaveRunup2PInput._representativeWaveRunup2PGammab = representative2P.GetGammab();
+        representativeWaveRunup2PInput._representativeWaveRunup2PGammaf = representative2P.GetGammaf();
+        representativeWaveRunup2PInput._representativeWaveRunup2PAru = representative2P.GetRepresentative2PAru();
+        representativeWaveRunup2PInput._representativeWaveRunup2PBru = representative2P.GetRepresentative2PBru();
+        representativeWaveRunup2PInput._representativeWaveRunup2PCru = representative2P.GetRepresentative2PCru();
+
+        return GrassRevetmentWaveRunupFunctions::RepresentativeWaveRunup2P(representativeWaveRunup2PInput);
+    }
+
+    double GrassRevetmentWaveRunupRayleighLocationDependentInput::CalculateCumulativeOverload(
+        const double averageNumberOfWaves) const
+    {
+        GrassRevetmentWaveRunupRayleighCumulativeOverloadInput cumulativeOverloadInput{};
+        cumulativeOverloadInput._averageNumberOfWaves = averageNumberOfWaves;
+        cumulativeOverloadInput._representativeWaveRunup2P = _representativeWaveRunup2P;
+        cumulativeOverloadInput._fixedNumberOfWaves = _fixedNumberOfWaves;
+        cumulativeOverloadInput._verticalDistanceWaterLevelElevation = _verticalDistanceWaterLevelElevation;
+        cumulativeOverloadInput._criticalFrontVelocity = GetCriticalFrontVelocity();
+        cumulativeOverloadInput._increasedLoadTransitionAlphaM = GetIncreasedLoadTransitionAlphaM();
+        cumulativeOverloadInput._reducedStrengthTransitionAlphaS = GetReducedStrengthTransitionAlphaS();
+        cumulativeOverloadInput._frontVelocityCu = _frontVelocityCu;
+        cumulativeOverloadInput._gravitationalAcceleration = Constants::GetGravitationalAcceleration();
+
+        return GrassRevetmentWaveRunupRayleighFunctions::CumulativeOverload(cumulativeOverloadInput);
+    }
+
+    unique_ptr<GrassRevetmentWaveRunupRayleighTimeDependentOutputConstructionProperties>
+    GrassRevetmentWaveRunupRayleighLocationDependentInput::CreateConstructionProperties(
+        double incrementDamage,
+        double damage,
+        unique_ptr<int> timeOfFailure)
+    {
+        auto constructionProperties = make_unique<GrassRevetmentWaveRunupRayleighTimeDependentOutputConstructionProperties>();
+        constructionProperties->_incrementDamage = make_unique<double>(incrementDamage);
+        constructionProperties->_damage = make_unique<double>(damage);
+        constructionProperties->_timeOfFailure = move(timeOfFailure);
+        constructionProperties->_verticalDistanceWaterLevelElevation = make_unique<double>(_verticalDistanceWaterLevelElevation);
+
+        if (_verticalDistanceWaterLevelElevation > 0)
+        {
+            constructionProperties->_waveAngleImpact = make_unique<double>(_waveAngleImpact);
+            constructionProperties->_representativeWaveRunup2P = make_unique<double>(_representativeWaveRunup2P);
+            constructionProperties->_cumulativeOverload = make_unique<double>(_cumulativeOverload);
+        }
+
+        return constructionProperties;
     }
 }

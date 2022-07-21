@@ -87,6 +87,6 @@ namespace DiKErnel::Integration
             double _reducedStrengthTransitionAlphaS;
             double _averageNumberOfWavesCtm;
             std::unique_ptr<GrassRevetmentWaveRunupRepresentative2P> _representative2P;
-            std::unique_ptr<GrassRevetmentWaveRunupWaveAngleImpact> _waveAngleImpact;
+            std::unique_ptr<GrassRevetmentWaveRunupWaveAngleImpact> _waveAngleImpactInput;
     };
 }

@@ -51,7 +51,7 @@ namespace DiKErnel::Integration
           _reducedStrengthTransitionAlphaS(reducedStrengthTransitionAlphaS),
           _averageNumberOfWavesCtm(averageNumberOfWavesCtm),
           _representative2P(move(representative2P)),
-          _waveAngleImpact(move(waveAngleImpact)) {}
+          _waveAngleImpactInput(move(waveAngleImpact)) {}
 
     double GrassRevetmentWaveRunupLocationDependentInput::GetOuterSlope() const
     {
@@ -90,7 +90,7 @@ namespace DiKErnel::Integration
 
     GrassRevetmentWaveRunupWaveAngleImpact& GrassRevetmentWaveRunupLocationDependentInput::GetWaveAngleImpact() const
     {
-        return *_waveAngleImpact;
+        return *_waveAngleImpactInput;
     }
 
     bool GrassRevetmentWaveRunupLocationDependentInput::Validate(
