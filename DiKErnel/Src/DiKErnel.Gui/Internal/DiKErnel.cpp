@@ -377,8 +377,7 @@ namespace DiKErnel::Gui
         AddMessage(QString("Er %1 doorgerekend voor %2 %3.")
                    .arg(timeStepString)
                    .arg(numberOfLocations)
-                   .arg(numberOfLocations == 1 ? "locatie" : "locaties")
-                   .arg(elapsed.count()));
+                   .arg(numberOfLocations == 1 ? "locatie" : "locaties"));
 
         AddMessage(QString("De rekenduur bedroeg %1 seconden.").arg(elapsed.count()));
 
