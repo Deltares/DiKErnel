@@ -158,12 +158,12 @@ namespace DiKErnel::Cli
 
     bool CommandLineArgumentParser::ValidateReadArguments() const
     {
-        const auto requiredArgumentsArePresent = all_of(_argumentOptions.begin(), _argumentOptions.end(), [this](
-                                                    const pair<string, unsigned int>& argumentOption)
-                                                        {
-                                                            return !(argumentOption.second & Required)
-                                                                    || _readArguments.contains(argumentOption.first);
-                                                        });
+        const auto requiredArgumentsArePresent = ranges::all_of(_argumentOptions, [this](
+                                                            const pair<string, unsigned int>& argumentOption)
+                                                                {
+                                                                    return !(argumentOption.second & Required)
+                                                                            || _readArguments.contains(argumentOption.first);
+                                                                });
 
         return requiredArgumentsArePresent
                 && FilePathArgumentHasValidExtension(_readArguments.at(_inputFilePathKey))
