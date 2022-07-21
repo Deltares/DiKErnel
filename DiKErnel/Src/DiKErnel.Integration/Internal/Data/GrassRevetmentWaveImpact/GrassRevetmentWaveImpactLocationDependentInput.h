@@ -22,6 +22,7 @@
 
 #include <memory>
 
+#include "GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties.h"
 #include "GrassRevetmentWaveImpactTimeLine.h"
 #include "GrassRevetmentWaveImpactWaveAngleImpact.h"
 #include "LocationDependentInput.h"
@@ -78,13 +79,28 @@ namespace DiKErnel::Integration
                 const Core::IProfileData& profileData) override;
 
         private:
-            std::unique_ptr<GrassRevetmentWaveImpactWaveAngleImpact> _waveAngleImpact;
+            std::unique_ptr<GrassRevetmentWaveImpactWaveAngleImpact> _waveAngleImpactInput;
             double _minimumWaveHeightTemax;
             double _maximumWaveHeightTemin;
             std::unique_ptr<GrassRevetmentWaveImpactTimeLine> _timeLine;
             double _upperLimitLoadingAul;
             double _lowerLimitLoadingAll;
+
             double _minimumWaveHeight = std::numeric_limits<double>::infinity();
             double _maximumWaveHeight = std::numeric_limits<double>::infinity();
+            double _lowerLimitLoading = std::numeric_limits<double>::infinity();
+            double _upperLimitLoading = std::numeric_limits<double>::infinity();
+            bool _loadingRevetment = false;
+            double _waveAngleImpact = std::numeric_limits<double>::infinity();
+            double _waveHeightImpact = std::numeric_limits<double>::infinity();
+
+            bool CalculateLoadingRevetment(
+                double waterLevel,
+                double waveHeightHm0);
+
+            std::unique_ptr<GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties> CreateConstructionProperties(
+                double incrementDamage,
+                double damage,
+                std::unique_ptr<int> timeOfFailure);
     };
 }
