@@ -22,9 +22,9 @@
 
 namespace DiKErnel::Integration
 {
-    class LocationDependentInputBaseFactory
+    class LocationDependentInputFactoryHelper
     {
-        protected:
+        public:
             template <typename TValue>
             static TValue GetValue(
                 const TValue* ptrValue,
@@ -34,8 +34,5 @@ namespace DiKErnel::Integration
                            ? *ptrValue
                            : defaultValue;
             }
-
-            [[noreturn]]
-            static void ThrowWithMessage();
     };
 }

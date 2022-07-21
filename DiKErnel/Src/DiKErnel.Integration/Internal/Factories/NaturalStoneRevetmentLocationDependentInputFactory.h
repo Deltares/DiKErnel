@@ -20,13 +20,12 @@
 
 #pragma once
 
-#include "LocationDependentInputFactoryBase.h"
 #include "NaturalStoneRevetmentLocationConstructionProperties.h"
 #include "NaturalStoneRevetmentLocationDependentInput.h"
 
 namespace DiKErnel::Integration
 {
-    class NaturalStoneRevetmentLocationDependentInputFactory : LocationDependentInputBaseFactory
+    class NaturalStoneRevetmentLocationDependentInputFactory
     {
         public:
             static std::unique_ptr<NaturalStoneRevetmentLocationDependentInput> CreateLocationDependentInput(

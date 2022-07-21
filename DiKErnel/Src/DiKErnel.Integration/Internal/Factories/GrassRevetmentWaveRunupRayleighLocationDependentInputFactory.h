@@ -22,11 +22,10 @@
 
 #include "GrassRevetmentWaveRunupRayleighLocationConstructionProperties.h"
 #include "GrassRevetmentWaveRunupRayleighLocationDependentInput.h"
-#include "LocationDependentInputFactoryBase.h"
 
 namespace DiKErnel::Integration
 {
-    class GrassRevetmentWaveRunupRayleighLocationDependentInputFactory : LocationDependentInputBaseFactory
+    class GrassRevetmentWaveRunupRayleighLocationDependentInputFactory
     {
         public:
             static std::unique_ptr<GrassRevetmentWaveRunupRayleighLocationDependentInput> CreateLocationDependentInput(

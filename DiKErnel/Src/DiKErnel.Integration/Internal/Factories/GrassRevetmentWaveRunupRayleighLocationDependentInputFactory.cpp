@@ -26,6 +26,7 @@
 #include "GrassRevetmentWaveRunupRayleighDefaults.h"
 #include "IGrassRevetmentWaveRunupTopLayerDefaults.h"
 #include "LocationDependentInputFactoryException.h"
+#include "LocationDependentInputFactoryHelper.h"
 #include "RevetmentDefaults.h"
 
 namespace DiKErnel::Integration
@@ -49,33 +50,43 @@ namespace DiKErnel::Integration
         }
 
         auto representative2P = make_unique<GrassRevetmentWaveRunupRepresentative2P>(
-            GetValue(constructionProperties.GetRepresentativeWaveRunup2PAru(), GrassRevetmentWaveRunupDefaults::GetRepresentativeWaveRunup2PAru()),
-            GetValue(constructionProperties.GetRepresentativeWaveRunup2PBru(), GrassRevetmentWaveRunupDefaults::GetRepresentativeWaveRunup2PBru()),
-            GetValue(constructionProperties.GetRepresentativeWaveRunup2PCru(), GrassRevetmentWaveRunupDefaults::GetRepresentativeWaveRunup2PCru()),
-            GetValue(constructionProperties.GetRepresentativeWaveRunup2PGammab(),
-                     GrassRevetmentWaveRunupDefaults::GetRepresentativeWaveRunup2PGammab()),
-            GetValue(constructionProperties.GetRepresentativeWaveRunup2PGammaf(),
-                     GrassRevetmentWaveRunupDefaults::GetRepresentativeWaveRunup2PGammaf()));
+            LocationDependentInputFactoryHelper::GetValue(constructionProperties.GetRepresentativeWaveRunup2PAru(),
+                                                          GrassRevetmentWaveRunupDefaults::GetRepresentativeWaveRunup2PAru()),
+            LocationDependentInputFactoryHelper::GetValue(constructionProperties.GetRepresentativeWaveRunup2PBru(),
+                                                          GrassRevetmentWaveRunupDefaults::GetRepresentativeWaveRunup2PBru()),
+            LocationDependentInputFactoryHelper::GetValue(constructionProperties.GetRepresentativeWaveRunup2PCru(),
+                                                          GrassRevetmentWaveRunupDefaults::GetRepresentativeWaveRunup2PCru()),
+            LocationDependentInputFactoryHelper::GetValue(constructionProperties.GetRepresentativeWaveRunup2PGammab(),
+                                                          GrassRevetmentWaveRunupDefaults::GetRepresentativeWaveRunup2PGammab()),
+            LocationDependentInputFactoryHelper::GetValue(constructionProperties.GetRepresentativeWaveRunup2PGammaf(),
+                                                          GrassRevetmentWaveRunupDefaults::GetRepresentativeWaveRunup2PGammaf()));
 
         auto waveAngleImpact = make_unique<GrassRevetmentWaveRunupWaveAngleImpact>(
-            GetValue(constructionProperties.GetWaveAngleImpactAbeta(), GrassRevetmentWaveRunupDefaults::GetWaveAngleImpactAbeta()),
-            GetValue(constructionProperties.GetWaveAngleImpactBetamax(), GrassRevetmentWaveRunupDefaults::GetWaveAngleImpactBetamax()));
+            LocationDependentInputFactoryHelper::GetValue(constructionProperties.GetWaveAngleImpactAbeta(),
+                                                          GrassRevetmentWaveRunupDefaults::GetWaveAngleImpactAbeta()),
+            LocationDependentInputFactoryHelper::GetValue(constructionProperties.GetWaveAngleImpactBetamax(),
+                                                          GrassRevetmentWaveRunupDefaults::GetWaveAngleImpactBetamax()));
 
         return make_unique<GrassRevetmentWaveRunupRayleighLocationDependentInput>(
             constructionProperties.GetX(),
-            GetValue(constructionProperties.GetInitialDamage(), RevetmentDefaults::GetInitialDamage()),
-            GetValue(constructionProperties.GetFailureNumber(), RevetmentDefaults::GetFailureNumber()),
+            LocationDependentInputFactoryHelper::GetValue(constructionProperties.GetInitialDamage(), RevetmentDefaults::GetInitialDamage()),
+            LocationDependentInputFactoryHelper::GetValue(constructionProperties.GetFailureNumber(), RevetmentDefaults::GetFailureNumber()),
             constructionProperties.GetOuterSlope(),
-            GetValue(constructionProperties.GetCriticalCumulativeOverload(), topLayerDefaults->GetCriticalCumulativeOverload()),
-            GetValue(constructionProperties.GetCriticalFrontVelocity(), topLayerDefaults->GetCriticalFrontVelocity()),
-            GetValue(constructionProperties.GetIncreasedLoadTransitionAlphaM(),
-                     GrassRevetmentWaveRunupDefaults::GetIncreasedLoadTransitionAlphaM()),
-            GetValue(constructionProperties.GetReducedStrengthTransitionAlphaS(),
-                     GrassRevetmentWaveRunupDefaults::GetReducedStrengthTransitionAlphaS()),
-            GetValue(constructionProperties.GetAverageNumberOfWavesCtm(), GrassRevetmentWaveRunupDefaults::GetAverageNumberOfWavesCtm()),
+            LocationDependentInputFactoryHelper::GetValue(constructionProperties.GetCriticalCumulativeOverload(),
+                                                          topLayerDefaults->GetCriticalCumulativeOverload()),
+            LocationDependentInputFactoryHelper::GetValue(constructionProperties.GetCriticalFrontVelocity(),
+                                                          topLayerDefaults->GetCriticalFrontVelocity()),
+            LocationDependentInputFactoryHelper::GetValue(constructionProperties.GetIncreasedLoadTransitionAlphaM(),
+                                                          GrassRevetmentWaveRunupDefaults::GetIncreasedLoadTransitionAlphaM()),
+            LocationDependentInputFactoryHelper::GetValue(constructionProperties.GetReducedStrengthTransitionAlphaS(),
+                                                          GrassRevetmentWaveRunupDefaults::GetReducedStrengthTransitionAlphaS()),
+            LocationDependentInputFactoryHelper::GetValue(constructionProperties.GetAverageNumberOfWavesCtm(),
+                                                          GrassRevetmentWaveRunupDefaults::GetAverageNumberOfWavesCtm()),
             move(representative2P),
             move(waveAngleImpact),
-            GetValue(constructionProperties.GetFixedNumberOfWaves(), GrassRevetmentWaveRunupRayleighDefaults::GetFixedNumberOfWaves()),
-            GetValue(constructionProperties.GetFrontVelocityCu(), GrassRevetmentWaveRunupRayleighDefaults::GetFrontVelocityCu()));
+            LocationDependentInputFactoryHelper::GetValue(constructionProperties.GetFixedNumberOfWaves(),
+                                                          GrassRevetmentWaveRunupRayleighDefaults::GetFixedNumberOfWaves()),
+            LocationDependentInputFactoryHelper::GetValue(constructionProperties.GetFrontVelocityCu(),
+                                                          GrassRevetmentWaveRunupRayleighDefaults::GetFrontVelocityCu()));
     }
 }
