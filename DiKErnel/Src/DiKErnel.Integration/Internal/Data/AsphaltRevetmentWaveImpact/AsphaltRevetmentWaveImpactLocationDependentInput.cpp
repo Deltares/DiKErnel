@@ -21,7 +21,6 @@
 #include "AsphaltRevetmentWaveImpactLocationDependentInput.h"
 
 #include "AsphaltRevetmentWaveImpactFunctions.h"
-#include "AsphaltRevetmentWaveImpactFunctionsInput.h"
 #include "AsphaltRevetmentWaveImpactLocationDependentOutput.h"
 #include "AsphaltRevetmentWaveImpactTimeDependentOutput.h"
 #include "AsphaltRevetmentWaveImpactValidator.h"
@@ -217,29 +216,13 @@ namespace DiKErnel::Integration
         const auto waveHeightHm0 = timeDependentInput.GetWaveHeightHm0();
 
         const auto incrementTime = RevetmentFunctions::IncrementTime(beginTime, timeDependentInput.GetEndTime());
-        const auto averageNumberOfWaves = RevetmentFunctions::AverageNumberOfWaves(incrementTime, timeDependentInput.GetWavePeriodTm10(),
-                                                                                   _averageNumberOfWavesCtm);
-        const auto maximumPeakStress = AsphaltRevetmentWaveImpactFunctions::MaximumPeakStress(waveHeightHm0,
-                                                                                              Constants::GetGravitationalAcceleration(),
-                                                                                              _densityOfWater);
+        _averageNumberOfWaves = RevetmentFunctions::AverageNumberOfWaves(incrementTime, timeDependentInput.GetWavePeriodTm10(),
+                                                                         _averageNumberOfWavesCtm);
+        _maximumPeakStress = AsphaltRevetmentWaveImpactFunctions::MaximumPeakStress(waveHeightHm0,
+                                                                                    Constants::GetGravitationalAcceleration(),
+                                                                                    _densityOfWater);
 
-        AsphaltRevetmentWaveImpactFunctionsInput input{};
-        input._logFailureTension = _logFailureTension;
-        input._averageNumberOfWaves = averageNumberOfWaves;
-        input._maximumPeakStress = maximumPeakStress;
-        input._stiffnessRelation = _stiffnessRelation;
-        input._computationalThickness = _computationalThickness;
-        input._outerSlope = _outerSlope;
-        input._widthFactors = _widthFactors;
-        input._depthFactors = _depthFactors;
-        input._impactFactors = _impactFactors;
-        input._z = GetZ();
-        input._waterLevel = timeDependentInput.GetWaterLevel();
-        input._waveHeightHm0 = waveHeightHm0;
-        input._fatigueAlpha = _fatigue->GetAlpha();
-        input._fatigueBeta = _fatigue->GetBeta();
-        input._impactNumberC = _impactNumberC;
-
+        const auto& input = CreateIncrementDamageInput(timeDependentInput.GetWaterLevel(), waveHeightHm0);
         const auto incrementDamage = AsphaltRevetmentWaveImpactFunctions::IncrementDamage(input);
         const auto damage = RevetmentFunctions::Damage(incrementDamage, initialDamage);
 
@@ -252,16 +235,50 @@ namespace DiKErnel::Integration
             timeOfFailure = make_unique<int>(RevetmentFunctions::TimeOfFailure(durationInTimeStepFailure, beginTime));
         }
 
-        AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties;
-        constructionProperties._incrementDamage = make_unique<double>(incrementDamage);
-        constructionProperties._damage = make_unique<double>(damage);
-        constructionProperties._timeOfFailure = move(timeOfFailure);
-        constructionProperties._logFailureTension = make_unique<double>(_logFailureTension);
-        constructionProperties._maximumPeakStress = make_unique<double>(maximumPeakStress);
-        constructionProperties._stiffnessRelation = make_unique<double>(_stiffnessRelation);
-        constructionProperties._computationalThickness = make_unique<double>(_computationalThickness);
-        constructionProperties._equivalentElasticModulus = make_unique<double>(_subLayerElasticModulus);
+        return make_unique<AsphaltRevetmentWaveImpactTimeDependentOutput>(
+            *CreateConstructionProperties(incrementDamage, damage, move(timeOfFailure)));
+    }
 
-        return make_unique<AsphaltRevetmentWaveImpactTimeDependentOutput>(constructionProperties);
+    AsphaltRevetmentWaveImpactFunctionsInput AsphaltRevetmentWaveImpactLocationDependentInput::CreateIncrementDamageInput(
+        const double waterLevel,
+        const double waveHeightHm0) const
+    {
+        AsphaltRevetmentWaveImpactFunctionsInput input{};
+        input._logFailureTension = _logFailureTension;
+        input._averageNumberOfWaves = _averageNumberOfWaves;
+        input._maximumPeakStress = _maximumPeakStress;
+        input._stiffnessRelation = _stiffnessRelation;
+        input._computationalThickness = _computationalThickness;
+        input._outerSlope = _outerSlope;
+        input._widthFactors = _widthFactors;
+        input._depthFactors = _depthFactors;
+        input._impactFactors = _impactFactors;
+        input._z = GetZ();
+        input._waterLevel = waterLevel;
+        input._waveHeightHm0 = waveHeightHm0;
+        input._fatigueAlpha = _fatigue->GetAlpha();
+        input._fatigueBeta = _fatigue->GetBeta();
+        input._impactNumberC = _impactNumberC;
+
+        return input;
+    }
+
+    unique_ptr<AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties>
+    AsphaltRevetmentWaveImpactLocationDependentInput::CreateConstructionProperties(
+        double incrementDamage,
+        double damage,
+        unique_ptr<int> timeOfFailure)
+    {
+        auto constructionProperties = make_unique<AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties>();
+        constructionProperties->_incrementDamage = make_unique<double>(incrementDamage);
+        constructionProperties->_damage = make_unique<double>(damage);
+        constructionProperties->_timeOfFailure = move(timeOfFailure);
+        constructionProperties->_logFailureTension = make_unique<double>(_logFailureTension);
+        constructionProperties->_maximumPeakStress = make_unique<double>(_maximumPeakStress);
+        constructionProperties->_stiffnessRelation = make_unique<double>(_stiffnessRelation);
+        constructionProperties->_computationalThickness = make_unique<double>(_computationalThickness);
+        constructionProperties->_equivalentElasticModulus = make_unique<double>(_subLayerElasticModulus);
+
+        return constructionProperties;
     }
 }

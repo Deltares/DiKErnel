@@ -24,7 +24,9 @@
 #include <vector>
 
 #include "AsphaltRevetmentWaveImpactFatigue.h"
+#include "AsphaltRevetmentWaveImpactFunctionsInput.h"
 #include "AsphaltRevetmentWaveImpactLayer.h"
+#include "AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties.h"
 #include "LocationDependentInput.h"
 
 namespace DiKErnel::Integration
@@ -115,10 +117,22 @@ namespace DiKErnel::Integration
             std::vector<std::pair<double, double>> _widthFactors;
             std::vector<std::pair<double, double>> _depthFactors;
             std::vector<std::pair<double, double>> _impactFactors;
-            double _outerSlope = std::numeric_limits<double>::infinity();;
+            double _outerSlope = std::numeric_limits<double>::infinity();
             double _logFailureTension = std::numeric_limits<double>::infinity();
             double _computationalThickness = std::numeric_limits<double>::infinity();
             double _stiffnessRelation = std::numeric_limits<double>::infinity();
             double _subLayerElasticModulus = std::numeric_limits<double>::infinity();
+            double _averageNumberOfWaves = std::numeric_limits<double>::infinity();
+            double _maximumPeakStress = std::numeric_limits<double>::infinity();
+
+            [[nodiscard]]
+            FunctionLibrary::AsphaltRevetmentWaveImpactFunctionsInput CreateIncrementDamageInput(
+                double waterLevel,
+                double waveHeightHm0) const;
+
+            std::unique_ptr<AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties> CreateConstructionProperties(
+                double incrementDamage,
+                double damage,
+                std::unique_ptr<int> timeOfFailure);
     };
 }
