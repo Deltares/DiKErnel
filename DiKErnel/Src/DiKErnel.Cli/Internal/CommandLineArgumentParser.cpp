@@ -191,8 +191,8 @@ namespace DiKErnel::Cli
     {
         const auto outputFilePath = path(GetJsonOutputFilePath());
         const auto outputDirectory = outputFilePath.parent_path();
-        const auto outputFileName = outputFilePath.stem().u8string();
+        const auto outputFileName = outputFilePath.stem().string();
 
-        return (outputDirectory / (outputFileName + ".log")).u8string();
+        return (outputDirectory / (outputFileName + ".log")).string();
     }
 }
