@@ -46,6 +46,21 @@ using namespace std::chrono;
 void RemoveFileWhenExists(
     const string& filePath);
 
+unique_ptr<DataResult<ICalculationInput>> ValidateAndReadInput(
+    const string& jsonInputFilePath,
+    const CommandLineArgumentParser& parser);
+
+bool ValidateCalculationInput(
+    const ICalculationInput& calculationInput);
+
+shared_ptr<DataResult<CalculationOutput>> Calculate(
+    const ICalculationInput& calculationInput);
+
+bool WriteOutput(
+    const CalculationOutput& calculationOutput,
+    const CommandLineArgumentParser& parser,
+    duration<double> elapsed);
+
 JsonOutputType ConvertOutputType(
     const string& outputTypeString);
 
@@ -90,82 +105,34 @@ int main(
         RemoveFileWhenExists(jsonOutputFilePath);
         RemoveFileWhenExists(logOutputFilePath);
 
-        if (parser.GetValidateJsonFormat())
-        {
-            const auto validationResult = JsonInputComposer::ValidateJson(jsonInputFilePath);
+        const auto calculationInputDataResult = ValidateAndReadInput(jsonInputFilePath, parser);
 
-            const auto validationEvents = EventRegistry::Flush();
-
-            WriteToLogFile(GetEventReferences(validationEvents));
-
-            if (!validationResult)
-            {
-                return -1;
-            }
-        }
-
-        const auto inputComposerResult = JsonInputComposer::GetInputDataFromJson(jsonInputFilePath);
-        WriteToLogFile(inputComposerResult->GetEvents());
-
-        if (!inputComposerResult->GetSuccessful())
+        if(calculationInputDataResult == nullptr)
         {
             return -1;
         }
 
-        const auto& calculationInput = *inputComposerResult->GetData();
+        const auto& calculationInput = *calculationInputDataResult->GetData();
 
-        const auto validationResult = Validator::Validate(calculationInput);
-        WriteToLogFile(validationResult->GetEvents());
-
-        if (!validationResult->GetSuccessful())
-        {
-            return -1;
-        }
-
-        if (*validationResult->GetData() != ValidationResultType::Successful)
+        if(!ValidateCalculationInput(calculationInput))
         {
             return -1;
         }
 
         const auto startTime = high_resolution_clock::now();
 
-        Calculator calculator(calculationInput);
-        calculator.WaitForCompletion();
+        const auto calculatorResult = Calculate(calculationInput);
 
-        const auto calculatorResult = calculator.GetResult();
-        WriteToLogFile(calculatorResult->GetEvents());
-
-        if (calculator.GetCalculationState() == CalculationState::FinishedInError)
+        if (calculatorResult == nullptr)
         {
             return -1;
         }
 
         const duration<double> elapsed = high_resolution_clock::now() - startTime;
 
-        vector<pair<string, variant<double, string>>> metaDataItems;
+        const auto writeOutputResult = WriteOutput(*calculatorResult->GetData(), parser, elapsed);
 
-        if (parser.GetWriteMetaData())
-        {
-            metaDataItems.emplace_back(pair<string, variant<double, string>>("versie", ApplicationHelper::GetApplicationVersionString()));
-            metaDataItems.emplace_back(pair<string, variant<double, string>>("besturingssysteem", ApplicationHelper::GetOperatingSystemName()));
-            metaDataItems.emplace_back(pair<string, variant<double, string>>("tijdstipBerekening", ApplicationHelper::GetFormattedDateTimeString()));
-            metaDataItems.emplace_back(pair<string, variant<double, string>>("tijdsduurBerekening", elapsed.count()));
-        }
-
-        const auto outputComposerResult = JsonOutputComposer::WriteCalculationOutputToJson(
-            jsonOutputFilePath,
-            *calculatorResult->GetData(),
-            ConvertOutputType(parser.GetOutputLevel()),
-            metaDataItems);
-
-        WriteToLogFile(outputComposerResult->GetEvents());
-
-        if (!outputComposerResult->GetSuccessful())
-        {
-            return -1;
-        }
-
-        return 0;
+        return !writeOutputResult ? -1 : 0;
     }
     catch (const exception&)
     {
@@ -183,6 +150,87 @@ void RemoveFileWhenExists(
     {
         filesystem::remove(filePath);
     }
+}
+
+unique_ptr<DataResult<ICalculationInput>> ValidateAndReadInput(
+    const string& jsonInputFilePath,
+    const CommandLineArgumentParser& parser)
+{
+    if (parser.GetValidateJsonFormat())
+    {
+        const auto validationResult = JsonInputComposer::ValidateJson(jsonInputFilePath);
+
+        const auto validationEvents = EventRegistry::Flush();
+
+        WriteToLogFile(GetEventReferences(validationEvents));
+
+        if(!validationResult)
+        {
+            return nullptr;
+        }
+    }
+
+    auto inputComposerResult = JsonInputComposer::GetInputDataFromJson(jsonInputFilePath);
+    WriteToLogFile(inputComposerResult->GetEvents());
+
+    if (!inputComposerResult->GetSuccessful())
+    {
+        return nullptr;
+    }
+
+    return inputComposerResult;
+}
+
+bool ValidateCalculationInput(
+    const ICalculationInput& calculationInput)
+{
+    const auto validationResult = Validator::Validate(calculationInput);
+    WriteToLogFile(validationResult->GetEvents());
+
+    return validationResult->GetSuccessful() && *validationResult->GetData() == ValidationResultType::Successful;
+}
+
+shared_ptr<DataResult<CalculationOutput>> Calculate(
+    const ICalculationInput& calculationInput)
+{
+    Calculator calculator(calculationInput);
+    calculator.WaitForCompletion();
+
+    auto calculatorResult = calculator.GetResult();
+    WriteToLogFile(calculatorResult->GetEvents());
+
+    if (calculator.GetCalculationState() == CalculationState::FinishedInError)
+    {
+        return nullptr;
+    }
+
+    return calculatorResult;
+}
+
+bool WriteOutput(
+    const CalculationOutput& calculationOutput,
+    const CommandLineArgumentParser& parser,
+    const duration<double> elapsed)
+{
+    vector<pair<string, variant<double, string>>> metaDataItems;
+
+    if (parser.GetWriteMetaData())
+    {
+        metaDataItems.emplace_back(pair<string, variant<double, string>>("versie", ApplicationHelper::GetApplicationVersionString()));
+        metaDataItems.emplace_back(pair<string, variant<double, string>>("besturingssysteem", ApplicationHelper::GetOperatingSystemName()));
+        metaDataItems.emplace_back(pair<string, variant<double, string>>("tijdstipBerekening", ApplicationHelper::GetFormattedDateTimeString()));
+        metaDataItems.emplace_back(pair<string, variant<double, string>>("tijdsduurBerekening", elapsed.count()));
+    }
+
+    const auto outputComposerResult = JsonOutputComposer::WriteCalculationOutputToJson(
+        parser.GetJsonOutputFilePath(),
+        calculationOutput,
+        ConvertOutputType(parser.GetOutputLevel()),
+        metaDataItems);
+
+    WriteToLogFile(outputComposerResult->GetEvents());
+
+    return outputComposerResult->GetSuccessful();
 }
 
 JsonOutputType ConvertOutputType(

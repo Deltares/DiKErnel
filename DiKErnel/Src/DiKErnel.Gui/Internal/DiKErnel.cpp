@@ -207,16 +207,16 @@ namespace DiKErnel::Gui
 
             const auto startTime = high_resolution_clock::now();
 
-            const auto calculationOutputDataResult = Calculate(calculationInput, warningMessageCache, errorMessageCache);
+            const auto calculatorResult = Calculate(calculationInput, warningMessageCache, errorMessageCache);
 
-            if (calculationOutputDataResult == nullptr)
+            if (calculatorResult == nullptr)
             {
                 return;
             }
 
             const duration<double> elapsed = high_resolution_clock::now() - startTime;
 
-            WriteOutput(outputFilePathStdString, *calculationOutputDataResult->GetData(), elapsed, warningMessageCache, errorMessageCache);
+            WriteOutput(outputFilePathStdString, *calculatorResult->GetData(), elapsed, warningMessageCache, errorMessageCache);
 
             WriteFinalLogMessages(calculationInput, elapsed, warningMessageCache);
         }
@@ -281,7 +281,7 @@ namespace DiKErnel::Gui
             return nullptr;
         }
 
-        return move(inputComposerResult);
+        return inputComposerResult;
     }
 
     bool DiKErnel::ValidateCalculationInput(
@@ -310,7 +310,7 @@ namespace DiKErnel::Gui
         Calculator calculator(calculationInput);
         calculator.WaitForCompletion();
 
-        const auto calculatorResult = calculator.GetResult();
+        auto calculatorResult = calculator.GetResult();
 
         CacheMessagesWhenApplicable("de berekening", calculatorResult->GetEvents(), warningMessageCache, errorMessageCache);
 
@@ -320,7 +320,7 @@ namespace DiKErnel::Gui
             return nullptr;
         }
 
-        return move(calculatorResult);
+        return calculatorResult;
     }
 
     void DiKErnel::WriteOutput(
