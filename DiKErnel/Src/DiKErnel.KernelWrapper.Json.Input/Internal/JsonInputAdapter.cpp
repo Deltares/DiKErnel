@@ -23,7 +23,6 @@
 #include <cmath>
 
 #include "JsonInputConversionException.h"
-#include "MapHelper.h"
 #include "RevetmentCalculationInputBuilder.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
@@ -31,7 +30,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
     using namespace Core;
     using namespace Integration;
     using namespace std;
-    using namespace Util;
 
     unique_ptr<ICalculationInput> JsonInputAdapter::AdaptJsonInputData(
         const JsonInputData& jsonInputData)
@@ -180,7 +178,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
         const map<JsonInputCalculationType, reference_wrapper<JsonInputCalculationDefinitionData>>& calculationDefinitions,
         const JsonInputCalculationType calculationType)
     {
-        if (MapHelper::ContainsKey(calculationDefinitions, calculationType))
+        if (calculationDefinitions.contains(calculationType))
         {
             return dynamic_cast<const T*>(&calculationDefinitions.at(calculationType).get());
         }
@@ -210,7 +208,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
             constructionProperties->SetAverageNumberOfWavesCtm(CreatePointerOfValue(calculationDefinition->GetFactorCtm()));
 
             if (const auto& topLayerDefinitionData = calculationDefinition->GetTopLayerDefinitionData();
-                MapHelper::ContainsKey(topLayerDefinitionData, jsonInputTopLayerType))
+                topLayerDefinitionData.contains(jsonInputTopLayerType))
             {
                 const auto& topLayerDefinition = topLayerDefinitionData.at(jsonInputTopLayerType).get();
 
@@ -256,7 +254,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
             constructionProperties->SetFailureNumber(CreatePointerOfValue(calculationDefinition->GetFailureNumber()));
 
             if (const auto& topLayerDefinitionData = calculationDefinition->GetTopLayerDefinitionData();
-                MapHelper::ContainsKey(topLayerDefinitionData, jsonInputTopLayerType))
+                topLayerDefinitionData.contains(jsonInputTopLayerType))
             {
                 const auto& topLayerDefinition = topLayerDefinitionData.at(jsonInputTopLayerType).get();
 
@@ -320,7 +318,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
         const auto jsonInputTopLayerType = location.GetTopLayerType();
         if (const auto& topLayerDefinitionData = calculationDefinition->GetTopLayerDefinitionData();
-            MapHelper::ContainsKey(topLayerDefinitionData, jsonInputTopLayerType))
+            topLayerDefinitionData.contains(jsonInputTopLayerType))
         {
             const auto& topLayerDefinition = topLayerDefinitionData.at(jsonInputTopLayerType).get();
 
@@ -375,7 +373,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
             constructionProperties->SetFailureNumber(CreatePointerOfValue(calculationDefinition->GetFailureNumber()));
 
             if (const auto& topLayerDefinitionData = calculationDefinition->GetTopLayerDefinitionData();
-                MapHelper::ContainsKey(topLayerDefinitionData, jsonInputTopLayerType))
+                topLayerDefinitionData.contains(jsonInputTopLayerType))
             {
                 const auto& topLayerDefinition = topLayerDefinitionData.at(jsonInputTopLayerType).get();
 

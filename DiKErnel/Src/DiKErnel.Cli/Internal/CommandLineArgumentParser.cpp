@@ -23,13 +23,10 @@
 #include <filesystem>
 #include <sstream>
 
-#include "MapHelper.h"
-
 namespace DiKErnel::Cli
 {
     using namespace std;
     using namespace std::filesystem;
-    using namespace Util;
 
     CommandLineArgumentParser::CommandLineArgumentParser(
         const int argc,
@@ -66,19 +63,19 @@ namespace DiKErnel::Cli
 
     string CommandLineArgumentParser::GetOutputLevel() const
     {
-        return MapHelper::ContainsKey(_readArguments, _outputLevelKey)
+        return _readArguments.contains(_outputLevelKey)
                    ? _readArguments.at(_outputLevelKey)
                    : "schade";
     }
 
     bool CommandLineArgumentParser::GetWriteMetaData() const
     {
-        return !MapHelper::ContainsKey(_readArguments, _noMetaInformationKey);
+        return !_readArguments.contains(_noMetaInformationKey);
     }
 
     bool CommandLineArgumentParser::GetValidateJsonFormat() const
     {
-        return !MapHelper::ContainsKey(_readArguments, _noJsonFormatValidationKey);
+        return !_readArguments.contains(_noJsonFormatValidationKey);
     }
 
     string CommandLineArgumentParser::GetHelpMessage()
@@ -129,7 +126,7 @@ namespace DiKErnel::Cli
                 auto key = readKey.substr(2);
                 string value;
 
-                if (MapHelper::ContainsKey(_argumentOptions, key))
+                if (_argumentOptions.contains(key))
                 {
                     if (_argumentOptions.at(key) & WithValue)
                     {
@@ -165,7 +162,7 @@ namespace DiKErnel::Cli
                                                     const pair<string, unsigned int>& argumentOption)
                                                         {
                                                             return !(argumentOption.second & Required)
-                                                                    || MapHelper::ContainsKey(_readArguments, argumentOption.first);
+                                                                    || _readArguments.contains(argumentOption.first);
                                                         });
 
         return requiredArgumentsArePresent
