@@ -192,110 +192,33 @@ namespace DiKErnel::Gui
                 filesystem::remove(outputFilePathStdString);
             }
 
-            if (ValidateJsonFormat())
+            const auto calculationInputDataResult = ValidateAndReadJsonInput(inputFilePathString, warningMessageCache, errorMessageCache);
+            if (calculationInputDataResult == nullptr)
             {
-                const auto validationResult = JsonInputComposer::ValidateJson(inputFilePathString.toStdString());
-
-                const auto validationEvents = EventRegistry::Flush();
-
-                CacheMessagesWhenApplicable("het valideren van het Json-formaat", GetEventReferences(validationEvents), warningMessageCache,
-                                            errorMessageCache);
-
-                if (!validationResult)
-                {
-                    LogFailureMessage(errorMessageCache);
-                    return;
-                }
-            }
-
-            const auto inputComposerResult = JsonInputComposer::GetInputDataFromJson(inputFilePathString.toStdString());
-
-            CacheMessagesWhenApplicable("het lezen van de invoer", inputComposerResult->GetEvents(), warningMessageCache, errorMessageCache);
-
-            if (!inputComposerResult->GetSuccessful())
-            {
-                LogFailureMessage(errorMessageCache);
                 return;
             }
 
-            const auto& calculationInput = *inputComposerResult->GetData();
+            const auto& calculationInput = *calculationInputDataResult->GetData();
 
-            const auto validationResult = Validator::Validate(calculationInput);
-
-            CacheMessagesWhenApplicable("het valideren van de invoer", validationResult->GetEvents(), warningMessageCache, errorMessageCache);
-
-            if (*validationResult->GetData() == ValidationResultType::Failed || !validationResult->GetSuccessful())
+            if (!ValidateCalculationInput(calculationInput, warningMessageCache, errorMessageCache))
             {
-                LogFailureMessage(errorMessageCache);
                 return;
             }
 
             const auto startTime = high_resolution_clock::now();
 
-            Calculator calculator(calculationInput);
-            calculator.WaitForCompletion();
+            const auto calculationOutputDataResult = Calculate(calculationInput, warningMessageCache, errorMessageCache);
 
-            const auto calculatorResult = calculator.GetResult();
-
-            CacheMessagesWhenApplicable("de berekening", calculatorResult->GetEvents(), warningMessageCache, errorMessageCache);
-
-            if (calculator.GetCalculationState() != CalculationState::FinishedSuccessfully || !calculatorResult->GetSuccessful())
+            if (calculationOutputDataResult == nullptr)
             {
-                LogFailureMessage(errorMessageCache);
                 return;
             }
 
             const duration<double> elapsed = high_resolution_clock::now() - startTime;
 
-            vector<pair<string, variant<double, string>>> metaDataItems;
+            WriteOutput(outputFilePathStdString, *calculationOutputDataResult->GetData(), elapsed, warningMessageCache, errorMessageCache);
 
-            if (WriteMetaData())
-            {
-                metaDataItems.emplace_back(
-                    pair<string, variant<double, string>>("versie", ApplicationHelper::GetApplicationVersionString()));
-                metaDataItems.emplace_back(
-                    pair<string, variant<double, string>>("besturingssysteem", ApplicationHelper::GetOperatingSystemName()));
-                metaDataItems.emplace_back(
-                    pair<string, variant<double, string>>("tijdstipBerekening", ApplicationHelper::GetFormattedDateTimeString()));
-                metaDataItems.emplace_back(
-                    pair<string, variant<double, string>>("tijdsduurBerekening", elapsed.count()));
-            }
-
-            const auto outputComposerResult = JsonOutputComposer::WriteCalculationOutputToJson(
-                outputFilePathStdString,
-                *calculatorResult->GetData(),
-                _outputLevel,
-                metaDataItems);
-
-            CacheMessagesWhenApplicable("het schrijven van de resultaten", outputComposerResult->GetEvents(), warningMessageCache,
-                                        errorMessageCache);
-
-            if (!outputComposerResult->GetSuccessful())
-            {
-                LogFailureMessage(errorMessageCache);
-            }
-
-            AddMessage("<b>Berekening gelukt</b>");
-
-            LogCachedMessages(warningMessageCache, "waarschuwing", "waarschuwingen");
-
-            const auto numberOfLocations = calculationInput.GetLocationDependentInputItems().size();
-            const auto numberOfTimeSteps = calculationInput.GetTimeDependentInputItems().size() - 1;
-
-            const QString timeStepString = QString(numberOfTimeSteps == 1 ? "is %1 tijdstap" : "zijn %1 tijdstappen")
-                    .arg(numberOfTimeSteps);
-
-            AddMessage(QString("Er %1 doorgerekend voor %2 %3.")
-                       .arg(timeStepString)
-                       .arg(numberOfLocations)
-                       .arg(numberOfLocations == 1 ? "locatie" : "locaties")
-                       .arg(elapsed.count()));
-
-            AddMessage(QString("De rekenduur bedroeg %1 seconden.").arg(elapsed.count()));
-
-            AddMessage("Zie het uitvoerbestand voor verdere details.");
-
-            AddMessage("");
+            WriteFinalLogMessages(calculationInput, elapsed, warningMessageCache);
         }
         catch (const exception&)
         {
@@ -325,6 +248,143 @@ namespace DiKErnel::Gui
         clipboardText.remove("</i>");
 
         clipboard->setText(clipboardText);
+    }
+
+    unique_ptr<DataResult<ICalculationInput>> DiKErnel::ValidateAndReadJsonInput(
+        const QString& inputFilePathString,
+        map<string, vector<string>>& warningMessageCache,
+        map<string, vector<string>>& errorMessageCache)
+    {
+        if (ValidateJsonFormat())
+        {
+            const auto validationResult = JsonInputComposer::ValidateJson(inputFilePathString.toStdString());
+
+            const auto validationEvents = EventRegistry::Flush();
+
+            CacheMessagesWhenApplicable("het valideren van het Json-formaat", GetEventReferences(validationEvents), warningMessageCache,
+                                        errorMessageCache);
+
+            if (!validationResult)
+            {
+                LogFailureMessage(errorMessageCache);
+                return nullptr;
+            }
+        }
+
+        auto inputComposerResult = JsonInputComposer::GetInputDataFromJson(inputFilePathString.toStdString());
+
+        CacheMessagesWhenApplicable("het lezen van de invoer", inputComposerResult->GetEvents(), warningMessageCache, errorMessageCache);
+
+        if (!inputComposerResult->GetSuccessful())
+        {
+            LogFailureMessage(errorMessageCache);
+            return nullptr;
+        }
+
+        return move(inputComposerResult);
+    }
+
+    bool DiKErnel::ValidateCalculationInput(
+        const ICalculationInput& calculationInput,
+        map<string, vector<string>>& warningMessageCache,
+        map<string, vector<string>>& errorMessageCache)
+    {
+        const auto validationResult = Validator::Validate(calculationInput);
+
+        CacheMessagesWhenApplicable("het valideren van de invoer", validationResult->GetEvents(), warningMessageCache, errorMessageCache);
+
+        if (*validationResult->GetData() == ValidationResultType::Failed || !validationResult->GetSuccessful())
+        {
+            LogFailureMessage(errorMessageCache);
+            return false;
+        }
+
+        return true;
+    }
+
+    shared_ptr<DataResult<CalculationOutput>> DiKErnel::Calculate(
+        const ICalculationInput& calculationInput,
+        map<string, vector<string>>& warningMessageCache,
+        map<string, vector<string>>& errorMessageCache)
+    {
+        Calculator calculator(calculationInput);
+        calculator.WaitForCompletion();
+
+        const auto calculatorResult = calculator.GetResult();
+
+        CacheMessagesWhenApplicable("de berekening", calculatorResult->GetEvents(), warningMessageCache, errorMessageCache);
+
+        if (calculator.GetCalculationState() != CalculationState::FinishedSuccessfully || !calculatorResult->GetSuccessful())
+        {
+            LogFailureMessage(errorMessageCache);
+            return nullptr;
+        }
+
+        return move(calculatorResult);
+    }
+
+    void DiKErnel::WriteOutput(
+        const string& outputFilePathStdString,
+        const CalculationOutput& calculationOutput,
+        const duration<double> elapsed,
+        map<string, vector<string>>& warningMessageCache,
+        map<string, vector<string>>& errorMessageCache)
+    {
+        vector<pair<string, variant<double, string>>> metaDataItems;
+
+        if (WriteMetaData())
+        {
+            metaDataItems.emplace_back(
+                pair<string, variant<double, string>>("versie", ApplicationHelper::GetApplicationVersionString()));
+            metaDataItems.emplace_back(
+                pair<string, variant<double, string>>("besturingssysteem", ApplicationHelper::GetOperatingSystemName()));
+            metaDataItems.emplace_back(
+                pair<string, variant<double, string>>("tijdstipBerekening", ApplicationHelper::GetFormattedDateTimeString()));
+            metaDataItems.emplace_back(
+                pair<string, variant<double, string>>("tijdsduurBerekening", elapsed.count()));
+        }
+
+        const auto outputComposerResult = JsonOutputComposer::WriteCalculationOutputToJson(
+            outputFilePathStdString,
+            calculationOutput,
+            _outputLevel,
+            metaDataItems);
+
+        CacheMessagesWhenApplicable("het schrijven van de resultaten", outputComposerResult->GetEvents(), warningMessageCache,
+                                    errorMessageCache);
+
+        if (!outputComposerResult->GetSuccessful())
+        {
+            LogFailureMessage(errorMessageCache);
+        }
+    }
+
+    void DiKErnel::WriteFinalLogMessages(
+        const ICalculationInput& calculationInput,
+        const duration<double> elapsed,
+        map<string, vector<string>>& warningMessageCache)
+    {
+        AddMessage("<b>Berekening gelukt</b>");
+
+        LogCachedMessages(warningMessageCache, "waarschuwing", "waarschuwingen");
+
+        const auto numberOfLocations = calculationInput.GetLocationDependentInputItems().size();
+        const auto numberOfTimeSteps = calculationInput.GetTimeDependentInputItems().size() - 1;
+
+        const QString timeStepString = QString(numberOfTimeSteps == 1 ? "is %1 tijdstap" : "zijn %1 tijdstappen")
+                .arg(numberOfTimeSteps);
+
+        AddMessage(QString("Er %1 doorgerekend voor %2 %3.")
+                   .arg(timeStepString)
+                   .arg(numberOfLocations)
+                   .arg(numberOfLocations == 1 ? "locatie" : "locaties")
+                   .arg(elapsed.count()));
+
+        AddMessage(QString("De rekenduur bedroeg %1 seconden.").arg(elapsed.count()));
+
+        AddMessage("Zie het uitvoerbestand voor verdere details.");
+
+        AddMessage("");
     }
 
     void DiKErnel::AddMessage(

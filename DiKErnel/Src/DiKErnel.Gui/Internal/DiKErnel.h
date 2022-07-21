@@ -25,7 +25,10 @@
 #include <QStringListModel>
 #include <QUrl>
 
+#include "CalculationOutput.h"
+#include "DataResult.h"
 #include "Event.h"
+#include "ICalculationInput.h"
 #include "JsonOutputType.h"
 
 namespace DiKErnel::Gui
@@ -136,6 +139,33 @@ namespace DiKErnel::Gui
             void LogMessagesChanged();
 
         private:
+            std::unique_ptr<Util::DataResult<Core::ICalculationInput>> ValidateAndReadJsonInput(
+                const QString& inputFilePathString,
+                std::map<std::string, std::vector<std::string>>& warningMessageCache,
+                std::map<std::string, std::vector<std::string>>& errorMessageCache);
+
+            bool ValidateCalculationInput(
+                const Core::ICalculationInput& calculationInput,
+                std::map<std::string, std::vector<std::string>>& warningMessageCache,
+                std::map<std::string, std::vector<std::string>>& errorMessageCache);
+
+            std::shared_ptr<Util::DataResult<Core::CalculationOutput>> Calculate(
+                const Core::ICalculationInput& calculationInput,
+                std::map<std::string, std::vector<std::string>>& warningMessageCache,
+                std::map<std::string, std::vector<std::string>>& errorMessageCache);
+
+            void WriteOutput(
+                const std::string& outputFilePathStdString,
+                const Core::CalculationOutput& calculationOutput,
+                std::chrono::duration<double> elapsed,
+                std::map<std::string, std::vector<std::string>>& warningMessageCache,
+                std::map<std::string, std::vector<std::string>>& errorMessageCache);
+
+            void WriteFinalLogMessages(
+                const Core::ICalculationInput& calculationInput,
+                std::chrono::duration<double> elapsed,
+                std::map<std::string, std::vector<std::string>>& warningMessageCache);
+
             void AddMessage(
                 const QString& message);
 
