@@ -25,6 +25,7 @@
 #include "GrassRevetmentWaveRunupDefaultsFactory.h"
 #include "GrassRevetmentWaveRunupRayleighDefaults.h"
 #include "IGrassRevetmentWaveRunupTopLayerDefaults.h"
+#include "LocationDependentInputFactoryException.h"
 #include "RevetmentDefaults.h"
 
 namespace DiKErnel::Integration
@@ -44,7 +45,7 @@ namespace DiKErnel::Integration
         }
         catch (const DefaultsFactoryException&)
         {
-            ThrowWithMessage();
+            throw_with_nested(LocationDependentInputFactoryException("Could not create instance."));
         }
 
         auto representative2P = make_unique<GrassRevetmentWaveRunupRepresentative2P>(

@@ -24,6 +24,7 @@
 #include "GrassRevetmentWaveImpactDefaults.h"
 #include "GrassRevetmentWaveImpactDefaultsFactory.h"
 #include "IGrassRevetmentWaveImpactTopLayerDefaults.h"
+#include "LocationDependentInputFactoryException.h"
 #include "RevetmentDefaults.h"
 
 namespace DiKErnel::Integration
@@ -43,7 +44,7 @@ namespace DiKErnel::Integration
         }
         catch (const DefaultsFactoryException&)
         {
-            ThrowWithMessage();
+            throw_with_nested(LocationDependentInputFactoryException("Could not create instance."));
         }
 
         auto waveAngleImpact = make_unique<GrassRevetmentWaveImpactWaveAngleImpact>(

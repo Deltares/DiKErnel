@@ -22,6 +22,7 @@
 
 #include "DefaultsFactoryException.h"
 #include "INaturalStoneRevetmentTopLayerDefaults.h"
+#include "LocationDependentInputFactoryException.h"
 #include "NaturalStoneRevetmentDefaults.h"
 #include "NaturalStoneRevetmentDefaultsFactory.h"
 #include "RevetmentDefaults.h"
@@ -42,7 +43,7 @@ namespace DiKErnel::Integration
         }
         catch (const DefaultsFactoryException&)
         {
-            ThrowWithMessage();
+            throw_with_nested(LocationDependentInputFactoryException("Could not create instance."));
         }
 
         auto hydraulicLoads = make_unique<NaturalStoneRevetmentHydraulicLoads>(

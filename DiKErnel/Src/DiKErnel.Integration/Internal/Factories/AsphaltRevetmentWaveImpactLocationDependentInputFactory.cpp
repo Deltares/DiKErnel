@@ -24,6 +24,7 @@
 #include "AsphaltRevetmentWaveImpactDefaultsFactory.h"
 #include "DefaultsFactoryException.h"
 #include "IAsphaltRevetmentWaveImpactTopLayerDefaults.h"
+#include "LocationDependentInputFactoryException.h"
 #include "RevetmentCalculationInputBuilder.h"
 #include "RevetmentDefaults.h"
 
@@ -45,7 +46,7 @@ namespace DiKErnel::Integration
         }
         catch (const DefaultsFactoryException&)
         {
-            ThrowWithMessage();
+            throw_with_nested(LocationDependentInputFactoryException("Could not create instance."));
         }
 
         const auto elasticModulusUpperLayer = constructionProperties.GetElasticModulusUpperLayer();
