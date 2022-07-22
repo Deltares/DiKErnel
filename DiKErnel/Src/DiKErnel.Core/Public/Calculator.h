@@ -80,7 +80,7 @@ namespace DiKErnel::Core
             std::shared_ptr<Util::DataResult<CalculationOutput>> GetResult() const;
 
         private:
-            std::thread _calculationThread;
+            std::jthread _calculationThread;
             std::atomic<double> _progress = 0;
             std::atomic<CalculationState> _calculationState = CalculationState::Running;
             std::shared_ptr<Util::DataResult<CalculationOutput>> _result = nullptr;

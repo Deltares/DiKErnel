@@ -32,7 +32,7 @@ namespace DiKErnel::Core
     Calculator::Calculator(
         const ICalculationInput& calculationInput)
     {
-        _calculationThread = thread(
+        _calculationThread = jthread(
             &Calculator::PerformCalculation,
             this,
             ref(calculationInput),
