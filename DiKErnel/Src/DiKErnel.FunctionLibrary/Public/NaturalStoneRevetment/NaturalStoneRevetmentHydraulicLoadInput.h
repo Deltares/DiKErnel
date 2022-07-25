@@ -23,7 +23,7 @@
 namespace DiKErnel::FunctionLibrary
 {
     /*!
-     * \brief Input object for a natural stone revetment hydraulic load calculation.
+     * \brief Input for a natural stone revetment hydraulic load calculation.
      */
     struct NaturalStoneRevetmentHydraulicLoadInput
     {
@@ -31,36 +31,36 @@ namespace DiKErnel::FunctionLibrary
          * \brief The surf similarity parameter.
          *        Unit = [-]
          */
-        double _surfSimilarityParameter;
+        double _surfSimilarityParameter{};
 
         /*!
          * \brief The wave height.
          *        Unit = [m]
          */
-        double _waveHeightHm0;
+        double _waveHeightHm0{};
 
         /*!
          * \brief The a coefficient.
          *        Unit = [-]
          */
-        double _a;
+        double _a{};
 
         /*!
          * \brief The b coefficient.
          *        Unit = [-]
          */
-        double _b;
+        double _b{};
 
         /*!
          * \brief The c coefficient.
          *        Unit = [-]
          */
-        double _c;
+        double _c{};
 
         /*!
          * \brief The n coefficient.
          *        Unit = [-]
          */
-        double _n;
+        double _n{};
     };
 }

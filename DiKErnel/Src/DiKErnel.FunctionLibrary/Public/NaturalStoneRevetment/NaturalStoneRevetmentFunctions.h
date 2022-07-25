@@ -59,7 +59,7 @@ namespace DiKErnel::FunctionLibrary
             /*!
              * \brief Calculates the hydraulic load.
              * \param input
-             *        The NaturalStoneRevetmentHydraulicLoadInput.
+             *        The input to use for the calculation.
              * \return The hydraulic load.
              *         Unit = [m]
              */
@@ -70,7 +70,7 @@ namespace DiKErnel::FunctionLibrary
             /*!
              * \brief Calculates the outer slope.
              * \param input
-             *        The NaturalStoneRevetmentOuterSlopeInput.
+             *        The input to use for the calculation.
              * \return The outer slope.
              *         Unit = [-]
              */
@@ -133,7 +133,7 @@ namespace DiKErnel::FunctionLibrary
             /*!
              * \brief Calculates the upper limit of loading.
              * \param input
-             *        The NaturalStoneRevetmentLimitLoadingInput.
+             *        The input to use for the calculation.
              * \return The upper limit of loading.
              *         Unit = [m]
              */
@@ -144,7 +144,7 @@ namespace DiKErnel::FunctionLibrary
             /*!
              * \brief Calculates the lower limit of loading.
              * \param input
-             *        The NaturalStoneRevetmentLimitLoadingInput.
+             *        The input to use for the calculation.
              * \return The lower limit of loading.
              *         Unit = [m]
              */
