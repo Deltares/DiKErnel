@@ -23,7 +23,7 @@
 namespace DiKErnel::FunctionLibrary
 {
     /*!
-     * \brief Input object for a grass revetment wave run-up representative 2P calculation.
+     * \brief Input for a grass revetment wave run-up representative 2P calculation.
      */
     struct GrassRevetmentWaveRunupRepresentative2PInput
     {
@@ -31,48 +31,48 @@ namespace DiKErnel::FunctionLibrary
          * \brief The surf similarity parameter.
          *        Unit = [-]
          */
-        double _surfSimilarityParameter;
+        double _surfSimilarityParameter{};
 
         /*!
          * \brief The wave impact with respect to the wave angle.
          *        Unit = [-]
          */
-        double _waveAngleImpact;
+        double _waveAngleImpact{};
 
         /*!
          * \brief The wave height.
          *        Unit = [m]
          */
-        double _waveHeightHm0;
+        double _waveHeightHm0{};
 
         /*!
          * \brief The Gammab value.
          *        Unit = [-]
          */
-        double _representativeWaveRunup2PGammab;
+        double _representativeWaveRunup2PGammab{};
 
         /*!
          * \brief The Gammaf value.
          *        Unit = [-]
          */
-        double _representativeWaveRunup2PGammaf;
+        double _representativeWaveRunup2PGammaf{};
 
         /*!
          * \brief The Aru coefficient.
          *        Unit = [-]
          */
-        double _representativeWaveRunup2PAru;
+        double _representativeWaveRunup2PAru{};
 
         /*!
          * \brief The Bru coefficient.
          *        Unit = [-]
          */
-        double _representativeWaveRunup2PBru;
+        double _representativeWaveRunup2PBru{};
 
         /*!
          * \brief The Cru coefficient.
          *        Unit = [-]
          */
-        double _representativeWaveRunup2PCru;
+        double _representativeWaveRunup2PCru{};
     };
 }

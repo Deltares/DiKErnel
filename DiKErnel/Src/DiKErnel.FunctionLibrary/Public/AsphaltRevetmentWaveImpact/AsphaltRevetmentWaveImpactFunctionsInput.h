@@ -19,12 +19,13 @@
 // All rights reserved.
 
 #pragma once
+
 #include <vector>
 
 namespace DiKErnel::FunctionLibrary
 {
     /*!
-     * \brief Input object for the asphalt revetment wave impact functions.
+     * \brief Input for the asphalt revetment wave impact functions.
      */
     struct AsphaltRevetmentWaveImpactFunctionsInput
     {
@@ -32,90 +33,90 @@ namespace DiKErnel::FunctionLibrary
          * \brief The logarithm of the failure tension.
          *        Unit = [MPa]
          */
-        double _logFailureTension;
+        double _logFailureTension{};
 
         /*!
          * \brief The average number of waves.
          *        Unit = [-]
          */
-        double _averageNumberOfWaves;
+        double _averageNumberOfWaves{};
 
         /*!
          * \brief The maximum peak stress.
          *        Unit = [MPa]
          */
-        double _maximumPeakStress;
+        double _maximumPeakStress{};
 
         /*!
          * \brief The stiffness relation.
          *        Unit = [m^-1]
          */
-        double _stiffnessRelation;
+        double _stiffnessRelation{};
 
         /*!
          * \brief The computational thickness.
          *        Unit = [m]
          */
-        double _computationalThickness;
+        double _computationalThickness{};
 
         /*!
          * \brief The outer slope.
          *        Unit = [-]
          */
-        double _outerSlope;
+        double _outerSlope{};
 
         /*!
          * \brief The width factors.
          *        Unit = [-]
          */
-        std::vector<std::pair<double, double>> _widthFactors;
+        std::vector<std::pair<double, double>> _widthFactors{};
 
         /*!
          * \brief The depth factors.
          *        Unit = [-]
          */
-        std::vector<std::pair<double, double>> _depthFactors;
+        std::vector<std::pair<double, double>> _depthFactors{};
 
         /*!
          * \brief The impact factors.
          *        Unit = [-]
          */
-        std::vector<std::pair<double, double>> _impactFactors;
+        std::vector<std::pair<double, double>> _impactFactors{};
 
         /*!
          * \brief The z coordinate.
          *        Unit = [m]
          */
-        double _z;
+        double _z{};
 
         /*!
          * \brief The water level.
          *        Unit = [m]
          */
-        double _waterLevel;
+        double _waterLevel{};
 
         /*!
          * \brief The wave height.
          *        Unit = [m]
          */
-        double _waveHeightHm0;
+        double _waveHeightHm0{};
 
         /*!
          * \brief The fatigue alpha coefficient.
          *        Unit = [-]
          */
-        double _fatigueAlpha;
+        double _fatigueAlpha{};
 
         /*!
          * \brief The fatigue beta coefficient.
          *        Unit = [-]
          */
-        double _fatigueBeta;
+        double _fatigueBeta{};
 
         /*!
          * \brief The impact number c coefficient.
          *        Unit = [-]
          */
-        double _impactNumberC;
+        double _impactNumberC{};
     };
 }

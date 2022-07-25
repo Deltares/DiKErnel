@@ -23,8 +23,7 @@
 namespace DiKErnel::FunctionLibrary
 {
     /*!
-     * \brief Input object for a grass revetment wave run-up rayleigh cumulative overload
-     *        calculation.
+     * \brief Input for a grass revetment wave run-up Rayleigh cumulative overload calculation.
      */
     struct GrassRevetmentWaveRunupRayleighCumulativeOverloadInput
     {
@@ -32,54 +31,54 @@ namespace DiKErnel::FunctionLibrary
          * \brief The average number of waves.
          *        Unit = [-]
          */
-        double _averageNumberOfWaves;
+        double _averageNumberOfWaves{};
 
         /*!
          * \brief The representative wave run-up (2 percent).
          *        Unit = [m]
          */
-        double _representativeWaveRunup2P;
+        double _representativeWaveRunup2P{};
 
         /*!
          * \brief The fixed number of waves.
          *        Unit = [-]
          */
-        int _fixedNumberOfWaves;
+        int _fixedNumberOfWaves{};
 
         /*!
          * \brief The vertical distance of the water elevation.
          *        Unit = [m]
          */
-        double _verticalDistanceWaterLevelElevation;
+        double _verticalDistanceWaterLevelElevation{};
 
         /*!
          * \brief The critical front velocity.
          *        Unit = [m/s]
          */
-        double _criticalFrontVelocity;
+        double _criticalFrontVelocity{};
 
         /*!
          * \brief The AlphaM value.
          *        Unit = [-]
          */
-        double _increasedLoadTransitionAlphaM;
+        double _increasedLoadTransitionAlphaM{};
 
         /*!
          * \brief The AlphaS value.
          *        Unit = [-]
          */
-        double _reducedStrengthTransitionAlphaS;
+        double _reducedStrengthTransitionAlphaS{};
 
         /*!
          * \brief The Cu coefficient.
          *        Unit = [-]
          */
-        double _frontVelocityCu;
+        double _frontVelocityCu{};
 
         /*!
          * \brief The gravitational acceleration.
          *        Unit = [m/s^2]
          */
-        double _gravitationalAcceleration;
+        double _gravitationalAcceleration{};
     };
 }
