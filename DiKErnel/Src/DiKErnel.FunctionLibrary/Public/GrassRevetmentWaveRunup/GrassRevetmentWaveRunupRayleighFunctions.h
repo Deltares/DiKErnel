@@ -34,7 +34,7 @@ namespace DiKErnel::FunctionLibrary
             /*!
              * \brief Calculates the cumulative overload.
              * \param input
-             *        The GrassRevetmentWaveRunupRayleighCumulativeOverloadInput.
+             *        The input to use for the calculation.
              * \return The cumulative overload.
              *         Unit = [m^2/s^2]
              */
