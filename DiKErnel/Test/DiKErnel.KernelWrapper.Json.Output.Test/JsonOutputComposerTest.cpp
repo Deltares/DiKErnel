@@ -67,12 +67,32 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
                 / "JsonOutputComposerTest" / filename).string();
 
             auto location1TimeDependentOutputItems = vector<unique_ptr<TimeDependentOutput>>();
-            location1TimeDependentOutputItems.push_back(make_unique<TimeDependentOutputMock>(0, 0.15, nullptr));
-            location1TimeDependentOutputItems.push_back(make_unique<TimeDependentOutputMock>(0, 0.253, make_unique<int>(60)));
+
+            TimeDependentOutputConstructionProperties timeDependentOutputConstructionProperties1;
+            timeDependentOutputConstructionProperties1._incrementDamage = make_unique<double>(0);
+            timeDependentOutputConstructionProperties1._damage = make_unique<double>(0.15);
+            timeDependentOutputConstructionProperties1._timeOfFailure = nullptr;
+            location1TimeDependentOutputItems.push_back(make_unique<TimeDependentOutputMock>(timeDependentOutputConstructionProperties1));
+
+            TimeDependentOutputConstructionProperties timeDependentOutputConstructionProperties2;
+            timeDependentOutputConstructionProperties2._incrementDamage = make_unique<double>(0);
+            timeDependentOutputConstructionProperties2._damage = make_unique<double>(0.253);
+            timeDependentOutputConstructionProperties2._timeOfFailure = make_unique<int>(60);
+            location1TimeDependentOutputItems.push_back(make_unique<TimeDependentOutputMock>(timeDependentOutputConstructionProperties2));
 
             auto location2TimeDependentOutputItems = vector<unique_ptr<TimeDependentOutput>>();
-            location2TimeDependentOutputItems.push_back(make_unique<TimeDependentOutputMock>(0, 0.28, nullptr));
-            location2TimeDependentOutputItems.push_back(make_unique<TimeDependentOutputMock>(0, 0.512, nullptr));
+
+            TimeDependentOutputConstructionProperties timeDependentOutputConstructionProperties3;
+            timeDependentOutputConstructionProperties3._incrementDamage = make_unique<double>(0);
+            timeDependentOutputConstructionProperties3._damage = make_unique<double>(0.28);
+            timeDependentOutputConstructionProperties3._timeOfFailure = nullptr;
+            location2TimeDependentOutputItems.push_back(make_unique<TimeDependentOutputMock>(timeDependentOutputConstructionProperties3));
+
+            TimeDependentOutputConstructionProperties timeDependentOutputConstructionProperties4;
+            timeDependentOutputConstructionProperties4._incrementDamage = make_unique<double>(0);
+            timeDependentOutputConstructionProperties4._damage = make_unique<double>(0.512);
+            timeDependentOutputConstructionProperties4._timeOfFailure = nullptr;
+            location2TimeDependentOutputItems.push_back(make_unique<TimeDependentOutputMock>(timeDependentOutputConstructionProperties4));
 
             vector<unique_ptr<LocationDependentOutput>> locations;
             locations.push_back(make_unique<LocationDependentOutputMock>(1.1, move(location1TimeDependentOutputItems)));
@@ -332,7 +352,12 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
     {
         // Setup
         auto locationTimeDependentOutputItems = vector<unique_ptr<TimeDependentOutput>>();
-        locationTimeDependentOutputItems.push_back(make_unique<TimeDependentOutputMock>(0, 0.15, nullptr));
+
+        TimeDependentOutputConstructionProperties timeDependentOutputConstructionProperties;
+        timeDependentOutputConstructionProperties._incrementDamage = make_unique<double>(0);
+        timeDependentOutputConstructionProperties._damage = make_unique<double>(0.15);
+        timeDependentOutputConstructionProperties._timeOfFailure = nullptr;
+        locationTimeDependentOutputItems.push_back(make_unique<TimeDependentOutputMock>(timeDependentOutputConstructionProperties));
 
         vector<unique_ptr<LocationDependentOutput>> locations;
         locations.push_back(make_unique<LocationDependentOutputMock>(1.1, move(locationTimeDependentOutputItems)));

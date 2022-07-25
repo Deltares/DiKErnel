@@ -41,7 +41,13 @@ namespace DiKErnel::Integration::Test
         constexpr auto timeOfFailure = 4;
 
         auto timeDependentOutputItems = vector<unique_ptr<TimeDependentOutput>>();
-        timeDependentOutputItems.push_back(make_unique<TimeDependentOutputMock>(incrementDamage, damage, make_unique<int>(timeOfFailure)));
+
+        TimeDependentOutputConstructionProperties timeDependentOutputConstructionProperties;
+        timeDependentOutputConstructionProperties._incrementDamage = make_unique<double>(incrementDamage);
+        timeDependentOutputConstructionProperties._damage = make_unique<double>(damage);
+        timeDependentOutputConstructionProperties._timeOfFailure = make_unique<int>(timeOfFailure);
+
+        timeDependentOutputItems.push_back(make_unique<TimeDependentOutputMock>(timeDependentOutputConstructionProperties));
 
         // Call
         const GrassRevetmentWaveImpactLocationDependentOutput output(z, move(timeDependentOutputItems));

@@ -37,9 +37,14 @@ namespace DiKErnel::Core::TestUtil
             throw runtime_error("Exception message");
         }
 
-        return make_unique<TimeDependentOutputMock>(_incrementDamage, _damage, _timeOfFailure != nullptr
-                                                                                   ? make_unique<int>(*_timeOfFailure)
-                                                                                   : nullptr);
+        TimeDependentOutputConstructionProperties timeDependentOutputConstructionProperties;
+        timeDependentOutputConstructionProperties._incrementDamage = make_unique<double>(_incrementDamage);
+        timeDependentOutputConstructionProperties._damage = make_unique<double>(_damage);
+        timeDependentOutputConstructionProperties._timeOfFailure = _timeOfFailure != nullptr
+                                                                       ? make_unique<int>(*_timeOfFailure)
+                                                                       : nullptr;
+
+        return make_unique<TimeDependentOutputMock>(timeDependentOutputConstructionProperties);
     }
 
     unique_ptr<LocationDependentOutput> ILocationDependentInputMock::GetLocationDependentOutput(

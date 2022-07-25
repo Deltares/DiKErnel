@@ -38,7 +38,13 @@ namespace DiKErnel::Core::Test
         constexpr auto timeOfFailure = 4;
 
         auto timeDependentOutputItems = vector<unique_ptr<TimeDependentOutput>>();
-        timeDependentOutputItems.push_back(make_unique<TimeDependentOutputMock>(incrementDamage, damage, make_unique<int>(timeOfFailure)));
+
+        TimeDependentOutputConstructionProperties timeDependentOutputConstructionProperties;
+        timeDependentOutputConstructionProperties._incrementDamage = make_unique<double>(incrementDamage);
+        timeDependentOutputConstructionProperties._damage = make_unique<double>(damage);
+        timeDependentOutputConstructionProperties._timeOfFailure = make_unique<int>(timeOfFailure);
+
+        timeDependentOutputItems.push_back(make_unique<TimeDependentOutputMock>(timeDependentOutputConstructionProperties));
 
         // Call
         const LocationDependentOutputMock locationDependentOutput(z, move(timeDependentOutputItems));
@@ -58,7 +64,13 @@ namespace DiKErnel::Core::Test
         constexpr auto damage = 0.3;
 
         auto timeDependentOutputItems = vector<unique_ptr<TimeDependentOutput>>();
-        timeDependentOutputItems.push_back(make_unique<TimeDependentOutputMock>(incrementDamage, damage, nullptr));
+
+        TimeDependentOutputConstructionProperties timeDependentOutputConstructionProperties;
+        timeDependentOutputConstructionProperties._incrementDamage = make_unique<double>(incrementDamage);
+        timeDependentOutputConstructionProperties._damage = make_unique<double>(damage);
+        timeDependentOutputConstructionProperties._timeOfFailure = nullptr;
+
+        timeDependentOutputItems.push_back(make_unique<TimeDependentOutputMock>(timeDependentOutputConstructionProperties));
 
         // Call
         const LocationDependentOutputMock locationDependentOutput(z, move(timeDependentOutputItems));
