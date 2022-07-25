@@ -110,10 +110,12 @@ namespace DiKErnel::Integration::Test
         ASSERT_EQ(nullptr, output.GetCumulativeOverload());
     }
 
-    TEST_F(GrassRevetmentWaveRunupRayleighTimeDependentOutputTest, Constructor_VerticalDistanceWaterLevelElevationNullPtr_ThrowsInvalidTimeDependentOutputException)
+    TEST_F(GrassRevetmentWaveRunupRayleighTimeDependentOutputTest,
+           Constructor_VerticalDistanceWaterLevelElevationNullPtr_ThrowsInvalidTimeDependentOutputException)
     {
         // Setup & Call
-        const auto action = &GrassRevetmentWaveRunupRayleighTimeDependentOutputTest::CreateOutputWithConstructionPropertiesWithVerticalDistanceWaterLevelElevationNullPtr;
+        const auto action = &
+                GrassRevetmentWaveRunupRayleighTimeDependentOutputTest::CreateOutputWithConstructionPropertiesWithVerticalDistanceWaterLevelElevationNullPtr;
 
         // Assert
         AssertHelper::AssertThrowsWithMessage<InvalidTimeDependentOutputException>(action, "verticalDistanceWaterLevelElevation must be set.");

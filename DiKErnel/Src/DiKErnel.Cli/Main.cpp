@@ -107,14 +107,14 @@ int main(
 
         const auto calculationInputDataResult = ValidateAndReadInput(jsonInputFilePath, parser);
 
-        if(calculationInputDataResult == nullptr)
+        if (calculationInputDataResult == nullptr)
         {
             return -1;
         }
 
         const auto& calculationInput = *calculationInputDataResult->GetData();
 
-        if(!ValidateCalculationInput(calculationInput))
+        if (!ValidateCalculationInput(calculationInput))
         {
             return -1;
         }
@@ -164,7 +164,7 @@ unique_ptr<DataResult<ICalculationInput>> ValidateAndReadInput(
 
         WriteToLogFile(GetEventReferences(validationEvents));
 
-        if(!validationResult)
+        if (!validationResult)
         {
             return nullptr;
         }

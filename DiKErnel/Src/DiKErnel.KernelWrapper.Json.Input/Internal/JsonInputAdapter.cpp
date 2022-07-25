@@ -23,7 +23,6 @@
 #include <cmath>
 
 #include "JsonInputConversionException.h"
-#include "RevetmentCalculationInputBuilder.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
