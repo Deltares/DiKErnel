@@ -49,7 +49,7 @@ namespace DiKErnel::FunctionLibrary
             /*!
              * \brief Calculates the representative wave run-up (2 percent).
              * \param input
-             *        The GrassRevetmentWaveRunupRepresentative2PInput.
+             *        The input to use for the calculation.
              * \return The representative wave run-up (2 percent).
              *         Unit = [m]
              */
