@@ -72,20 +72,6 @@ namespace DiKErnel::Core
                 TimeDependentOutputConstructionProperties& constructionProperties);
 
             /*!
-             * \brief Creates a new instance.
-             * \param incrementDamage
-             *        The increment damage.
-             * \param damage
-             *        The damage.
-             * \param timeOfFailure
-             *        The time of failure.
-             */
-            explicit TimeDependentOutput(
-                double incrementDamage,
-                double damage,
-                std::unique_ptr<int> timeOfFailure);
-
-            /*!
              * \brief Throws an InvalidTimeDependentOutputException when the given property value
              *        is nullptr.
              * \tparam T

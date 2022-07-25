@@ -20,20 +20,8 @@
 
 #include "TimeDependentOutput.h"
 
-#include "InvalidTimeDependentOutputException.h"
-
 namespace DiKErnel::Core
 {
-    using namespace std;
-
-    TimeDependentOutput::TimeDependentOutput(
-        const double incrementDamage,
-        const double damage,
-        unique_ptr<int> timeOfFailure)
-        : _incrementDamage(make_unique<double>(incrementDamage)),
-          _damage(make_unique<double>(damage)),
-          _timeOfFailure(move(timeOfFailure)) {}
-
     TimeDependentOutput::TimeDependentOutput(
         TimeDependentOutputConstructionProperties& constructionProperties)
         : _incrementDamage(move(constructionProperties._incrementDamage)),

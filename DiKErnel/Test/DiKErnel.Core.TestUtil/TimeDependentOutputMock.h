@@ -28,11 +28,6 @@ namespace DiKErnel::Core::TestUtil
     {
         public:
             explicit TimeDependentOutputMock(
-                double incrementDamage,
-                double damage,
-                std::unique_ptr<int> timeOfFailure);
-
-            explicit TimeDependentOutputMock(
                 TimeDependentOutputConstructionProperties& constructionProperties);
     };
 }
