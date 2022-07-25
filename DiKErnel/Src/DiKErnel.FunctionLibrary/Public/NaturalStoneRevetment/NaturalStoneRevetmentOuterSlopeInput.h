@@ -26,7 +26,7 @@
 namespace DiKErnel::FunctionLibrary
 {
     /*!
-     * \brief Input object for a natural stone revetment outer slope calculation.
+     * \brief Input for a natural stone revetment outer slope calculation.
      */
     struct NaturalStoneRevetmentOuterSlopeInput
     {
