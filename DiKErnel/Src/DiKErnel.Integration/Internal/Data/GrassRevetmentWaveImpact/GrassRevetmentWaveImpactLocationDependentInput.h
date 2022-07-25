@@ -65,6 +65,7 @@ namespace DiKErnel::Integration
             bool Validate(
                 const Core::IProfileData& profileData) const override;
 
+            [[nodiscard]]
             std::unique_ptr<Core::LocationDependentOutput> GetLocationDependentOutput(
                 std::vector<std::unique_ptr<Core::TimeDependentOutput>> timeDependentOutputItems) override;
 
@@ -94,10 +95,12 @@ namespace DiKErnel::Integration
             double _waveAngleImpact = std::numeric_limits<double>::infinity();
             double _waveHeightImpact = std::numeric_limits<double>::infinity();
 
+            [[nodiscard]]
             bool CalculateLoadingRevetment(
                 double waterLevel,
                 double waveHeightHm0);
 
+            [[nodiscard]]
             std::unique_ptr<GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties> CreateConstructionProperties(
                 double incrementDamage,
                 double damage,

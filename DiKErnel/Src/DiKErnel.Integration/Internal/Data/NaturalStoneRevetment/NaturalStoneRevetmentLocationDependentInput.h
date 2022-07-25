@@ -82,6 +82,7 @@ namespace DiKErnel::Integration
             bool Validate(
                 const Core::IProfileData& profileData) const override;
 
+            [[nodiscard]]
             std::unique_ptr<Core::LocationDependentOutput> GetLocationDependentOutput(
                 std::vector<std::unique_ptr<Core::TimeDependentOutput>> timeDependentOutputItems) override;
 
@@ -153,6 +154,7 @@ namespace DiKErnel::Integration
                 double wavePeriodTm10,
                 double beginTime) const;
 
+            [[nodiscard]]
             std::unique_ptr<NaturalStoneRevetmentTimeDependentOutputConstructionProperties> CreateConstructionProperties(
                 double incrementDamage,
                 double damage,

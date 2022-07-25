@@ -40,6 +40,7 @@ namespace DiKErnel::Integration
              */
             explicit AsphaltRevetmentWaveImpactTimeDependentOutput(
                 AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties& constructionProperties);
+
             /*!
              * \brief Gets the log failure tension.
              * \return The log failure tension.
