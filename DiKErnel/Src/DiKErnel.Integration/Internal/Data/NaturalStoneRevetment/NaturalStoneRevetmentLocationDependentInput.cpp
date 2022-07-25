@@ -154,6 +154,7 @@ namespace DiKErnel::Integration
         const auto wavePeriodTm10 = timeDependentInput.GetWavePeriodTm10();
 
         _outerSlope = CalculateOuterSlope(waterLevel, waveHeightHm0, profileData);
+
         const auto slopeAngle = HydraulicLoadFunctions::SlopeAngle(_outerSlope);
 
         _waveSteepnessDeepWater = HydraulicLoadFunctions::WaveSteepnessDeepWater(waveHeightHm0, wavePeriodTm10,

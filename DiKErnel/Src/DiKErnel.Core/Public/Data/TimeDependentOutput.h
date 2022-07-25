@@ -86,10 +86,10 @@ namespace DiKErnel::Core
                 std::unique_ptr<int> timeOfFailure);
 
             /*!
-             * \brief Throws an InvalidTimeDependentOutputException when the given propertyValue is
-             *        nullptr.
+             * \brief Throws an InvalidTimeDependentOutputException when the given property value
+             *        is nullptr.
              * \tparam T
-             *         The type of the propertyValue.
+             *         The type of the given property value.
              * \param propertyValue
              *        The value to check.
              * \param propertyName
@@ -104,7 +104,7 @@ namespace DiKErnel::Core
                 {
                     throw InvalidTimeDependentOutputException(propertyName + " must be set.");
                 }
-            };
+            }
 
         private:
             std::unique_ptr<double> _incrementDamage = nullptr;
