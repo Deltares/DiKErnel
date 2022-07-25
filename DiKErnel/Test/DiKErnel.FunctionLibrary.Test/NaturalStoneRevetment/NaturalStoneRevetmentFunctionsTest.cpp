@@ -47,13 +47,15 @@ namespace DiKErnel::FunctionLibrary::Test
     TEST(NaturalStoneRevetmentFunctionsTest, HydraulicLoad_ValidInput_ExpectedValue)
     {
         // Setup
-        NaturalStoneRevetmentHydraulicLoadInput input{};
-        input._surfSimilarityParameter = 1.28;
-        input._waveHeightHm0 = 1.8;
-        input._a = 4.0;
-        input._b = 0.1;
-        input._c = 0.3;
-        input._n = -0.9;
+        const NaturalStoneRevetmentHydraulicLoadInput input
+        {
+            ._surfSimilarityParameter = 1.28,
+            ._waveHeightHm0 = 1.8,
+            ._a = 4.0,
+            ._b = 0.1,
+            ._c = 0.3,
+            ._n = -0.9
+        };
 
         // Call
         const auto hydraulicLoad = NaturalStoneRevetmentFunctions::HydraulicLoad(input);
@@ -65,11 +67,13 @@ namespace DiKErnel::FunctionLibrary::Test
     TEST(NaturalStoneRevetmentFunctionsTest, OuterSlopeWithoutBerm_ValidInput_ExpectedValue)
     {
         // Setup
-        NaturalStoneRevetmentOuterSlopeInput input{};
-        input._slopeLowerPosition = 30.0;
-        input._slopeLowerLevel = 5.35;
-        input._slopeUpperPosition = 30.3;
-        input._slopeUpperLevel = 5.425;
+        const NaturalStoneRevetmentOuterSlopeInput input
+        {
+            ._slopeLowerPosition = 30.0,
+            ._slopeLowerLevel = 5.35,
+            ._slopeUpperPosition = 30.3,
+            ._slopeUpperLevel = 5.425
+        };
 
         // Call
         const auto outerSlope = NaturalStoneRevetmentFunctions::OuterSlope(input);
@@ -81,17 +85,19 @@ namespace DiKErnel::FunctionLibrary::Test
     TEST(NaturalStoneRevetmentFunctionsTest, OuterSlopeWithBerm_UpperAndLowerSlopeLevelOnLowerSlope_ExpectedValue)
     {
         // Setup
-        NaturalStoneRevetmentOuterSlopeInput input{};
-        input._slopeLowerPosition = 5.0;
-        input._slopeLowerLevel = 0.5;
-        input._slopeUpperPosition = 5.15625;
-        input._slopeUpperLevel = 0.55;
-        input._outerToeHeight = 0.5;
-        input._outerCrestHeight = 7.0;
-        input._notchOuterBermPosition = 25.0;
-        input._notchOuterBermHeight = 4.1;
-        input._crestOuterBermPosition = 15.0;
-        input._crestOuterBermHeight = 3.5;
+        const NaturalStoneRevetmentOuterSlopeInput input
+        {
+            ._slopeLowerPosition = 5.0,
+            ._slopeLowerLevel = 0.5,
+            ._slopeUpperPosition = 5.15625,
+            ._slopeUpperLevel = 0.55,
+            ._outerToeHeight = 0.5,
+            ._outerCrestHeight = 7.0,
+            ._notchOuterBermPosition = 25.0,
+            ._notchOuterBermHeight = 4.1,
+            ._crestOuterBermPosition = 15.0,
+            ._crestOuterBermHeight = 3.5
+        };
 
         // Call
         const auto outerSlope = NaturalStoneRevetmentFunctions::OuterSlope(input);
@@ -103,17 +109,19 @@ namespace DiKErnel::FunctionLibrary::Test
     TEST(NaturalStoneRevetmentFunctionsTest, OuterSlopeWithBerm_UpperSlopeLevelOnBermAndLowerSlopeLevelOnLowerSlope_ExpectedValue)
     {
         // Setup
-        NaturalStoneRevetmentOuterSlopeInput input{};
-        input._slopeLowerPosition = 10.7142857142857;
-        input._slopeLowerLevel = 2.3;
-        input._slopeUpperPosition = 15.0;
-        input._slopeUpperLevel = 3.5;
-        input._outerToeHeight = 0.5;
-        input._outerCrestHeight = 7.0;
-        input._notchOuterBermPosition = 25.0;
-        input._notchOuterBermHeight = 4.1;
-        input._crestOuterBermPosition = 15.0;
-        input._crestOuterBermHeight = 3.5;
+        const NaturalStoneRevetmentOuterSlopeInput input
+        {
+            ._slopeLowerPosition = 10.7142857142857,
+            ._slopeLowerLevel = 2.3,
+            ._slopeUpperPosition = 15.0,
+            ._slopeUpperLevel = 3.5,
+            ._outerToeHeight = 0.5,
+            ._outerCrestHeight = 7.0,
+            ._notchOuterBermPosition = 25.0,
+            ._notchOuterBermHeight = 4.1,
+            ._crestOuterBermPosition = 15.0,
+            ._crestOuterBermHeight = 3.5
+        };
 
         // Call
         const auto outerSlope = NaturalStoneRevetmentFunctions::OuterSlope(input);
@@ -125,17 +133,19 @@ namespace DiKErnel::FunctionLibrary::Test
     TEST(NaturalStoneRevetmentFunctionsTest, OuterSlopeWithBerm_UpperAndLowerSlopeLevelOnBerm_ExpectedValue)
     {
         // Setup
-        NaturalStoneRevetmentOuterSlopeInput input{};
-        input._slopeLowerPosition = 15.0;
-        input._slopeLowerLevel = 3.5;
-        input._slopeUpperPosition = 18.75;
-        input._slopeUpperLevel = 3.8;
-        input._outerToeHeight = 0.5;
-        input._outerCrestHeight = 7.0;
-        input._notchOuterBermPosition = 25.0;
-        input._notchOuterBermHeight = 4.1;
-        input._crestOuterBermPosition = 15.0;
-        input._crestOuterBermHeight = 3.5;
+        const NaturalStoneRevetmentOuterSlopeInput input
+        {
+            ._slopeLowerPosition = 15.0,
+            ._slopeLowerLevel = 3.5,
+            ._slopeUpperPosition = 18.75,
+            ._slopeUpperLevel = 3.8,
+            ._outerToeHeight = 0.5,
+            ._outerCrestHeight = 7.0,
+            ._notchOuterBermPosition = 25.0,
+            ._notchOuterBermHeight = 4.1,
+            ._crestOuterBermPosition = 15.0,
+            ._crestOuterBermHeight = 3.5
+        };
 
         // Call
         const auto outerSlope = NaturalStoneRevetmentFunctions::OuterSlope(input);
@@ -147,17 +157,19 @@ namespace DiKErnel::FunctionLibrary::Test
     TEST(NaturalStoneRevetmentFunctionsTest, OuterSlopeWithBerm_UpperAndLowerSlopeLevelOnUpperSlope_ExpectedValue)
     {
         // Setup
-        NaturalStoneRevetmentOuterSlopeInput input{};
-        input._slopeLowerPosition = 25.6818181818182;
-        input._slopeLowerLevel = 4.25;
-        input._slopeUpperPosition = 29.0909090909091;
-        input._slopeUpperLevel = 5.0;
-        input._outerToeHeight = 0.5;
-        input._outerCrestHeight = 7.0;
-        input._notchOuterBermPosition = 25.0;
-        input._notchOuterBermHeight = 4.1;
-        input._crestOuterBermPosition = 15.0;
-        input._crestOuterBermHeight = 3.5;
+        const NaturalStoneRevetmentOuterSlopeInput input
+        {
+            ._slopeLowerPosition = 25.6818181818182,
+            ._slopeLowerLevel = 4.25,
+            ._slopeUpperPosition = 29.0909090909091,
+            ._slopeUpperLevel = 5.0,
+            ._outerToeHeight = 0.5,
+            ._outerCrestHeight = 7.0,
+            ._notchOuterBermPosition = 25.0,
+            ._notchOuterBermHeight = 4.1,
+            ._crestOuterBermPosition = 15.0,
+            ._crestOuterBermHeight = 3.5
+        };
 
         // Call
         const auto outerSlope = NaturalStoneRevetmentFunctions::OuterSlope(input);
@@ -169,17 +181,19 @@ namespace DiKErnel::FunctionLibrary::Test
     TEST(NaturalStoneRevetmentFunctionsTest, OuterSlopeWithBerm_UpperSlopeLevelOnUpperSlopeAndLowerSlopeLevelOnBerm_ExpectedValue)
     {
         // Setup
-        NaturalStoneRevetmentOuterSlopeInput input{};
-        input._slopeLowerPosition = 24.375;
-        input._slopeLowerLevel = 4.075;
-        input._slopeUpperPosition = 40.0;
-        input._slopeUpperLevel = 7.0;
-        input._outerToeHeight = 0.5;
-        input._outerCrestHeight = 7.0;
-        input._notchOuterBermPosition = 25.0;
-        input._notchOuterBermHeight = 4.1;
-        input._crestOuterBermPosition = 15.0;
-        input._crestOuterBermHeight = 3.5;
+        const NaturalStoneRevetmentOuterSlopeInput input
+        {
+            ._slopeLowerPosition = 24.375,
+            ._slopeLowerLevel = 4.075,
+            ._slopeUpperPosition = 40.0,
+            ._slopeUpperLevel = 7.0,
+            ._outerToeHeight = 0.5,
+            ._outerCrestHeight = 7.0,
+            ._notchOuterBermPosition = 25.0,
+            ._notchOuterBermHeight = 4.1,
+            ._crestOuterBermPosition = 15.0,
+            ._crestOuterBermHeight = 3.5
+        };
 
         // Call
         const auto outerSlope = NaturalStoneRevetmentFunctions::OuterSlope(input);
@@ -191,17 +205,19 @@ namespace DiKErnel::FunctionLibrary::Test
     TEST(NaturalStoneRevetmentFunctionsTest, OuterSlopeWithBerm_UpperSlopeLevelOnUpperSlopeAndLowerSlopeLevelOnLowerSlope_ExpectedValue)
     {
         // Setup
-        NaturalStoneRevetmentOuterSlopeInput input{};
-        input._slopeLowerPosition = 12.5;
-        input._slopeLowerLevel = 2.8;
-        input._slopeUpperPosition = 40.0;
-        input._slopeUpperLevel = 7.0;
-        input._outerToeHeight = 0.5;
-        input._outerCrestHeight = 7.0;
-        input._notchOuterBermPosition = 25.0;
-        input._notchOuterBermHeight = 4.1;
-        input._crestOuterBermPosition = 15.0;
-        input._crestOuterBermHeight = 3.5;
+        const NaturalStoneRevetmentOuterSlopeInput input
+        {
+            ._slopeLowerPosition = 12.5,
+            ._slopeLowerLevel = 2.8,
+            ._slopeUpperPosition = 40.0,
+            ._slopeUpperLevel = 7.0,
+            ._outerToeHeight = 0.5,
+            ._outerCrestHeight = 7.0,
+            ._notchOuterBermPosition = 25.0,
+            ._notchOuterBermHeight = 4.1,
+            ._crestOuterBermPosition = 15.0,
+            ._crestOuterBermHeight = 3.5
+        };
 
         // Call
         const auto outerSlope = NaturalStoneRevetmentFunctions::OuterSlope(input);
@@ -213,17 +229,19 @@ namespace DiKErnel::FunctionLibrary::Test
     TEST(NaturalStoneRevetmentFunctionsTest, OuterSlopeWithBerm_UpperSlopeAboveOuterCrest_ExpectedValue)
     {
         // Setup
-        NaturalStoneRevetmentOuterSlopeInput input{};
-        input._slopeLowerPosition = 12.5;
-        input._slopeLowerLevel = 2.8;
-        input._slopeUpperPosition = 45.0;
-        input._slopeUpperLevel = 7.1;
-        input._outerToeHeight = 0.5;
-        input._outerCrestHeight = 7.0;
-        input._notchOuterBermPosition = 25.0;
-        input._notchOuterBermHeight = 4.1;
-        input._crestOuterBermPosition = 15.0;
-        input._crestOuterBermHeight = 3.5;
+        const NaturalStoneRevetmentOuterSlopeInput input
+        {
+            ._slopeLowerPosition = 12.5,
+            ._slopeLowerLevel = 2.8,
+            ._slopeUpperPosition = 45.0,
+            ._slopeUpperLevel = 7.1,
+            ._outerToeHeight = 0.5,
+            ._outerCrestHeight = 7.0,
+            ._notchOuterBermPosition = 25.0,
+            ._notchOuterBermHeight = 4.1,
+            ._crestOuterBermPosition = 15.0,
+            ._crestOuterBermHeight = 3.5
+        };
 
         // Call
         const auto outerSlope = NaturalStoneRevetmentFunctions::OuterSlope(input);
@@ -235,17 +253,19 @@ namespace DiKErnel::FunctionLibrary::Test
     TEST(NaturalStoneRevetmentFunctionsTest, OuterSlopeWithBerm_LowerSlopeBelowOuterToe_ExpectedValue)
     {
         // Setup
-        NaturalStoneRevetmentOuterSlopeInput input{};
-        input._slopeLowerPosition = 0.0;
-        input._slopeLowerLevel = 0.4;
-        input._slopeUpperPosition = 40.0;
-        input._slopeUpperLevel = 7.0;
-        input._outerToeHeight = 0.5;
-        input._outerCrestHeight = 7.0;
-        input._notchOuterBermPosition = 25.0;
-        input._notchOuterBermHeight = 4.1;
-        input._crestOuterBermPosition = 15.0;
-        input._crestOuterBermHeight = 3.5;
+        const NaturalStoneRevetmentOuterSlopeInput input
+        {
+            ._slopeLowerPosition = 0.0,
+            ._slopeLowerLevel = 0.4,
+            ._slopeUpperPosition = 40.0,
+            ._slopeUpperLevel = 7.0,
+            ._outerToeHeight = 0.5,
+            ._outerCrestHeight = 7.0,
+            ._notchOuterBermPosition = 25.0,
+            ._notchOuterBermHeight = 4.1,
+            ._crestOuterBermPosition = 15.0,
+            ._crestOuterBermHeight = 3.5
+        };
 
         // Call
         const auto outerSlope = NaturalStoneRevetmentFunctions::OuterSlope(input);
@@ -290,14 +310,16 @@ namespace DiKErnel::FunctionLibrary::Test
     TEST(NaturalStoneRevetmentFunctionsTest, UpperLimitLoading_ValidInput_ExpectedValue)
     {
         // Setup
-        NaturalStoneRevetmentLimitLoadingInput input{};
-        input._depthMaximumWaveLoad = 0.38;
-        input._surfSimilarityParameter = 1.28;
-        input._waterLevel = 1.77;
-        input._waveHeightHm0 = 1.8;
-        input._a = 0.1;
-        input._b = 0.6;
-        input._c = 4.0;
+        const NaturalStoneRevetmentLimitLoadingInput input
+        {
+            ._depthMaximumWaveLoad = 0.38,
+            ._surfSimilarityParameter = 1.28,
+            ._waterLevel = 1.77,
+            ._waveHeightHm0 = 1.8,
+            ._a = 0.1,
+            ._b = 0.6,
+            ._c = 4.0
+        };
 
         // Call
         const auto upperLimitLoading = NaturalStoneRevetmentFunctions::UpperLimitLoading(input);
@@ -309,14 +331,16 @@ namespace DiKErnel::FunctionLibrary::Test
     TEST(NaturalStoneRevetmentFunctionsTest, LowerLimitLoading_ValidInput_ExpectedValue)
     {
         // Setup
-        NaturalStoneRevetmentLimitLoadingInput input{};
-        input._depthMaximumWaveLoad = 0.38;
-        input._surfSimilarityParameter = 1.28;
-        input._waterLevel = 1.77;
-        input._waveHeightHm0 = 1.8;
-        input._a = 0.1;
-        input._b = 0.2;
-        input._c = 4.0;
+        const NaturalStoneRevetmentLimitLoadingInput input
+        {
+            ._depthMaximumWaveLoad = 0.38,
+            ._surfSimilarityParameter = 1.28,
+            ._waterLevel = 1.77,
+            ._waveHeightHm0 = 1.8,
+            ._a = 0.1,
+            ._b = 0.2,
+            ._c = 4.0
+        };
 
         // Call
         const auto lowerLimitLoading = NaturalStoneRevetmentFunctions::LowerLimitLoading(input);

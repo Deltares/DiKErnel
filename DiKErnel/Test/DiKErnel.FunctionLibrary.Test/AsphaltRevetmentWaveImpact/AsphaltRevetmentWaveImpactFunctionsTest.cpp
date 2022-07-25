@@ -78,22 +78,24 @@ namespace DiKErnel::FunctionLibrary::Test
             pair(6.0, 0.001)
         };
 
-        AsphaltRevetmentWaveImpactFunctionsInput input{};
-        input._logFailureTension = 0.193124598;
-        input._averageNumberOfWaves = 6492.937853;
-        input._maximumPeakStress = 0.0160884;
-        input._stiffnessRelation = 1.185626183;
-        input._computationalThickness = 0.16;
-        input._outerSlope = 0.232914161;
-        input._widthFactors = widthFactors;
-        input._depthFactors = depthFactors;
-        input._impactFactors = impactFactors;
-        input._z = 2.988;
-        input._waterLevel = 3.8;
-        input._waveHeightHm0 = 1.6;
-        input._fatigueAlpha = 0.42;
-        input._fatigueBeta = 4.76;
-        input._impactNumberC = 1.0;
+        const AsphaltRevetmentWaveImpactFunctionsInput input
+        {
+            ._logFailureTension = 0.193124598,
+            ._averageNumberOfWaves = 6492.937853,
+            ._maximumPeakStress = 0.0160884,
+            ._stiffnessRelation = 1.185626183,
+            ._computationalThickness = 0.16,
+            ._outerSlope = 0.232914161,
+            ._widthFactors = widthFactors,
+            ._depthFactors = depthFactors,
+            ._impactFactors = impactFactors,
+            ._z = 2.988,
+            ._waterLevel = 3.8,
+            ._waveHeightHm0 = 1.6,
+            ._fatigueAlpha = 0.42,
+            ._fatigueBeta = 4.76,
+            ._impactNumberC = 1.0
+        };
 
         // Call
         const auto incrementDamage = AsphaltRevetmentWaveImpactFunctions::IncrementDamage(input);

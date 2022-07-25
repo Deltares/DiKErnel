@@ -40,15 +40,17 @@ namespace DiKErnel::FunctionLibrary::Test
     TEST(GrassRevetmentWaveRunupFunctionsTest, RepresentativeWaveRunup2P_ValidInput_ExpectedValue)
     {
         // Setup
-        GrassRevetmentWaveRunupRepresentative2PInput input{};
-        input._surfSimilarityParameter = 1.436;
-        input._waveAngleImpact = 0.901;
-        input._waveHeightHm0 = 2.0;
-        input._representativeWaveRunup2PGammab = 1.1;
-        input._representativeWaveRunup2PGammaf = 1.2;
-        input._representativeWaveRunup2PAru = 1.65;
-        input._representativeWaveRunup2PBru = 4.0;
-        input._representativeWaveRunup2PCru = 1.5;
+        const GrassRevetmentWaveRunupRepresentative2PInput input
+        {
+            ._surfSimilarityParameter = 1.436,
+            ._waveAngleImpact = 0.901,
+            ._waveHeightHm0 = 2.0,
+            ._representativeWaveRunup2PGammab = 1.1,
+            ._representativeWaveRunup2PGammaf = 1.2,
+            ._representativeWaveRunup2PAru = 1.65,
+            ._representativeWaveRunup2PBru = 4.0,
+            ._representativeWaveRunup2PCru = 1.5,
+        };
 
         // Call
         const auto representativeWaveRunup2P = GrassRevetmentWaveRunupFunctions::RepresentativeWaveRunup2P(input);
