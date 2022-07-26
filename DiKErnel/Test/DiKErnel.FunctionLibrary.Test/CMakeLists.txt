@@ -26,7 +26,9 @@ set(SOURCEFILES_GRASS_REVETMENT_WAVE_IMPACT
 
 set(SOURCEFILES_GRASS_REVETMENT_WAVE_RUNUP
   ${GRASS_REVETMENT_WAVE_RUNUP_FOLDER}/GrassRevetmentWaveRunupFunctionsTest.cpp
+  ${GRASS_REVETMENT_WAVE_RUNUP_FOLDER}/GrassRevetmentWaveRunupRayleighCumulativeOverloadInputTest.cpp
   ${GRASS_REVETMENT_WAVE_RUNUP_FOLDER}/GrassRevetmentWaveRunupRayleighFunctionsTest.cpp
+  ${GRASS_REVETMENT_WAVE_RUNUP_FOLDER}/GrassRevetmentWaveRunupRepresentative2PInputTest.cpp
 )
 
 set(SOURCEFILES_NATURAL_STONE_REVETMENT

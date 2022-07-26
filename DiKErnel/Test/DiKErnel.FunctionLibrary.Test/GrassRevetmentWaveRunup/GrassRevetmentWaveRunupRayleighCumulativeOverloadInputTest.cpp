@@ -20,35 +20,24 @@
 
 #include <gtest/gtest.h>
 
-#include "AsphaltRevetmentWaveImpactFunctionsInput.h"
+#include "GrassRevetmentWaveRunupRayleighCumulativeOverloadInput.h"
 
 namespace DiKErnel::FunctionLibrary::Test
 {
-    using namespace std;
-
-    TEST(AsphaltRevetmentWaveImpactFunctionsInputTest, GivenInput_WhenCreated_ThenExpectedValues)
+    TEST(GrassRevetmentWaveRunupRayleighCumulativeOverloadInputTest, GivenInput_WhenCreated_ThenExpectedValues)
     {
         // Given & When
-        const AsphaltRevetmentWaveImpactFunctionsInput input{};
+        constexpr GrassRevetmentWaveRunupRayleighCumulativeOverloadInput input{};
 
         // Then
-        ASSERT_DOUBLE_EQ(0.0, input._logFailureTension);
         ASSERT_DOUBLE_EQ(0.0, input._averageNumberOfWaves);
-        ASSERT_DOUBLE_EQ(0.0, input._maximumPeakStress);
-        ASSERT_DOUBLE_EQ(0.0, input._stiffnessRelation);
-        ASSERT_DOUBLE_EQ(0.0, input._computationalThickness);
-        ASSERT_DOUBLE_EQ(0.0, input._outerSlope);
-
-        const auto factors = vector<pair<double, double>>();
-        ASSERT_EQ(factors, input._widthFactors);
-        ASSERT_EQ(factors, input._depthFactors);
-        ASSERT_EQ(factors, input._impactFactors);
-
-        ASSERT_DOUBLE_EQ(0.0, input._z);
-        ASSERT_DOUBLE_EQ(0.0, input._waterLevel);
-        ASSERT_DOUBLE_EQ(0.0, input._waveHeightHm0);
-        ASSERT_DOUBLE_EQ(0.0, input._fatigueAlpha);
-        ASSERT_DOUBLE_EQ(0.0, input._fatigueBeta);
-        ASSERT_DOUBLE_EQ(0.0, input._impactNumberC);
+        ASSERT_DOUBLE_EQ(0.0, input._representativeWaveRunup2P);
+        ASSERT_EQ(0, input._fixedNumberOfWaves);
+        ASSERT_DOUBLE_EQ(0.0, input._verticalDistanceWaterLevelElevation);
+        ASSERT_DOUBLE_EQ(0.0, input._criticalFrontVelocity);
+        ASSERT_DOUBLE_EQ(0.0, input._increasedLoadTransitionAlphaM);
+        ASSERT_DOUBLE_EQ(0.0, input._reducedStrengthTransitionAlphaS);
+        ASSERT_DOUBLE_EQ(0.0, input._frontVelocityCu);
+        ASSERT_DOUBLE_EQ(0.0, input._gravitationalAcceleration);
     }
 }

@@ -20,35 +20,23 @@
 
 #include <gtest/gtest.h>
 
-#include "AsphaltRevetmentWaveImpactFunctionsInput.h"
+#include "GrassRevetmentWaveRunupRepresentative2PInput.h"
 
 namespace DiKErnel::FunctionLibrary::Test
 {
-    using namespace std;
-
-    TEST(AsphaltRevetmentWaveImpactFunctionsInputTest, GivenInput_WhenCreated_ThenExpectedValues)
+    TEST(GrassRevetmentWaveRunupRepresentative2PInputTest, GivenInput_WhenCreated_ThenExpectedValues)
     {
         // Given & When
-        const AsphaltRevetmentWaveImpactFunctionsInput input{};
+        constexpr GrassRevetmentWaveRunupRepresentative2PInput input{};
 
         // Then
-        ASSERT_DOUBLE_EQ(0.0, input._logFailureTension);
-        ASSERT_DOUBLE_EQ(0.0, input._averageNumberOfWaves);
-        ASSERT_DOUBLE_EQ(0.0, input._maximumPeakStress);
-        ASSERT_DOUBLE_EQ(0.0, input._stiffnessRelation);
-        ASSERT_DOUBLE_EQ(0.0, input._computationalThickness);
-        ASSERT_DOUBLE_EQ(0.0, input._outerSlope);
-
-        const auto factors = vector<pair<double, double>>();
-        ASSERT_EQ(factors, input._widthFactors);
-        ASSERT_EQ(factors, input._depthFactors);
-        ASSERT_EQ(factors, input._impactFactors);
-
-        ASSERT_DOUBLE_EQ(0.0, input._z);
-        ASSERT_DOUBLE_EQ(0.0, input._waterLevel);
+        ASSERT_DOUBLE_EQ(0.0, input._surfSimilarityParameter);
+        ASSERT_DOUBLE_EQ(0.0, input._waveAngleImpact);
         ASSERT_DOUBLE_EQ(0.0, input._waveHeightHm0);
-        ASSERT_DOUBLE_EQ(0.0, input._fatigueAlpha);
-        ASSERT_DOUBLE_EQ(0.0, input._fatigueBeta);
-        ASSERT_DOUBLE_EQ(0.0, input._impactNumberC);
+        ASSERT_DOUBLE_EQ(0.0, input._representativeWaveRunup2PGammab);
+        ASSERT_DOUBLE_EQ(0.0, input._representativeWaveRunup2PGammaf);
+        ASSERT_DOUBLE_EQ(0.0, input._representativeWaveRunup2PAru);
+        ASSERT_DOUBLE_EQ(0.0, input._representativeWaveRunup2PBru);
+        ASSERT_DOUBLE_EQ(0.0, input._representativeWaveRunup2PCru);
     }
 }
