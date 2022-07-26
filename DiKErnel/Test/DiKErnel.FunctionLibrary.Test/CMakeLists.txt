@@ -33,6 +33,9 @@ set(SOURCEFILES_GRASS_REVETMENT_WAVE_RUNUP
 
 set(SOURCEFILES_NATURAL_STONE_REVETMENT
   ${NATURAL_STONE_REVETMENT_FOLDER}/NaturalStoneRevetmentFunctionsTest.cpp
+  ${NATURAL_STONE_REVETMENT_FOLDER}/NaturalStoneRevetmentHydraulicLoadInputTest.cpp
+  ${NATURAL_STONE_REVETMENT_FOLDER}/NaturalStoneRevetmentLimitLoadingInputTest.cpp
+  ${NATURAL_STONE_REVETMENT_FOLDER}/NaturalStoneRevetmentOuterSlopeInputTest.cpp
 )
 
 # Add executable
