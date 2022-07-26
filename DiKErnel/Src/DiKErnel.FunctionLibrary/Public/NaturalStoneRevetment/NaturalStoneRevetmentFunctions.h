@@ -380,7 +380,7 @@ namespace DiKErnel::FunctionLibrary
                 double slopeUpperPosition,
                 double slopeLowerPosition);
 
-            [[nodiscardd]]
+            [[nodiscard]]
             static double OuterSlopeWithBerm(
                 const NaturalStoneRevetmentOuterSlopeInput& input);
 

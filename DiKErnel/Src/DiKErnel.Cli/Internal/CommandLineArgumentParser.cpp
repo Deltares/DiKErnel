@@ -20,6 +20,7 @@
 
 #include "CommandLineArgumentParser.h"
 
+#include <algorithm>
 #include <filesystem>
 #include <sstream>
 
