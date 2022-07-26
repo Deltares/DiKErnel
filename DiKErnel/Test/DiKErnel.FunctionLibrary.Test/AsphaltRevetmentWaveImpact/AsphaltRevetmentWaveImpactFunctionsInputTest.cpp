@@ -39,7 +39,7 @@ namespace DiKErnel::FunctionLibrary::Test
         ASSERT_DOUBLE_EQ(0.0, input._computationalThickness);
         ASSERT_DOUBLE_EQ(0.0, input._outerSlope);
 
-        const auto factors = vector<pair<double, double>>();
+        vector<pair<double, double>> factors;
         ASSERT_EQ(factors, input._widthFactors);
         ASSERT_EQ(factors, input._depthFactors);
         ASSERT_EQ(factors, input._impactFactors);
