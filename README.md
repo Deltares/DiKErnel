@@ -27,8 +27,8 @@ A listing of the terms that are shipped with the third party components used by 
 ## Build
 
 ### Requirements
-- CMake 3.18 or higher
-- A C++17 compatible compiler
+- CMake 3.23 or higher
+- A C++20 compatible compiler
 
 ### Requirements to build the Gui
 - Qt6.3
