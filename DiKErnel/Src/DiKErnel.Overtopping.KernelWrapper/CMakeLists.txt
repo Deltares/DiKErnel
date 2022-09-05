@@ -23,3 +23,8 @@ source_group(${PUBLIC_FOLDER} FILES ${SOURCEFILES_PUBLIC})
 target_include_directories(${LIBNAME} PUBLIC
   ${CMAKE_CURRENT_SOURCE_DIR}/${PUBLIC_FOLDER}
 )
+
+# Link dependencies
+target_link_libraries(${LIBNAME}
+   ${CMAKE_SOURCE_DIR}/../External/dllDikesOvertopping.lib
+)
