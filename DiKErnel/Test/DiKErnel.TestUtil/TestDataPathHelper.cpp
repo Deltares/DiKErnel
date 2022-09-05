@@ -32,11 +32,22 @@ namespace DiKErnel::TestUtil
     {
         auto currentPath = current_path();
 
-        while (currentPath.filename() != "DiKErnel")
+        while (!ContainsSourceDirectory(currentPath))
         {
             currentPath = currentPath.parent_path();
         }
 
         return currentPath / "DiKErnel" / "Test" / currentNamespace / "test-data";
+    }
+
+    bool TestDataPathHelper::ContainsSourceDirectory(
+        const path& currentPath)
+    {
+        auto directories = directory_iterator(currentPath);
+        return any_of(begin(directories), end(directories), [](
+                  const directory_entry& directory)
+                      {
+                          return directory.path().filename() == "DiKErnel";
+                      });
     }
 }

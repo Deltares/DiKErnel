@@ -29,5 +29,9 @@ namespace DiKErnel::TestUtil
         public:
             static std::filesystem::path GetTestDataPath(
                 const std::string& currentNamespace);
+
+        private:
+            static bool ContainsSourceDirectory(
+                const std::filesystem::path& currentPath);
     };
 }
