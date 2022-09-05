@@ -18,26 +18,23 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#pragma once
+#include <gtest/gtest.h>
 
-namespace DiKErnel::Overtopping::KernelWrapper
+#include "Geometry.h"
+#include "Input.h"
+#include "OvertoppingWrapper.h"
+
+namespace DiKErnel::Overtopping::KernelWrapper::Test
 {
-    struct Load;
-    struct Input;
-    struct Geometry;
-
-    class Overtopping
+    TEST(OvertoppingWrapperTest, Validate_ExpectedResult)
     {
-        public:
-            static bool Validate(
-                Geometry& geometry,
-                Input& input,
-                double dikeHeight);
+        Geometry geometry{};
+        Input input{};
 
-            static double Calculate2P(
-                Load& load,
-                Geometry& geometry,
-                Input& input,
-                double dikeHeight);
-    };
+        OvertoppingWrapper overtoppingWrapper;
+
+        auto success = overtoppingWrapper.Validate(geometry, input, 0.0);
+
+        ASSERT_FALSE(success);
+    }
 }

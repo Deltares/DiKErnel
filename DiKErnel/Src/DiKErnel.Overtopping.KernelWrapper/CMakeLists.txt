@@ -7,8 +7,8 @@ set(PUBLIC_DATA_FOLDER ${PUBLIC_FOLDER}/Data)
 
 # Define sources
 set(SOURCEFILES_PUBLIC
-  ${PUBLIC_FOLDER}/Overtopping.cpp
-  ${PUBLIC_FOLDER}/Overtopping.h
+  ${PUBLIC_FOLDER}/OvertoppingWrapper.cpp
+  ${PUBLIC_FOLDER}/OvertoppingWrapper.h
 )
 
 set(SOURCEFILES_PUBLIC_DATA
@@ -35,7 +35,17 @@ target_include_directories(${LIBNAME} PUBLIC
   ${CMAKE_CURRENT_SOURCE_DIR}/${PUBLIC_DATA_FOLDER}
 )
 
+configure_file(
+  ${CMAKE_SOURCE_DIR}/../External/dllDikesOvertopping.dll
+  ${CMAKE_CURRENT_BINARY_DIR}/dllDikesOvertopping.dll
+  COPYONLY)
+
+configure_file(
+  ${CMAKE_SOURCE_DIR}/../External/dllDikesOvertopping.lib
+  ${CMAKE_CURRENT_BINARY_DIR}/dllDikesOvertopping.lib
+  COPYONLY)
+
 # Link dependencies
 target_link_libraries(${LIBNAME}
-   ${CMAKE_SOURCE_DIR}/../External/dllDikesOvertopping.lib
+   ${CMAKE_CURRENT_BINARY_DIR}/dllDikesOvertopping.lib
 )

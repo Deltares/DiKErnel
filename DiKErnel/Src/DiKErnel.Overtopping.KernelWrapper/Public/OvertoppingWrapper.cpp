@@ -18,68 +18,51 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include "Overtopping.h"
+#include "OvertoppingWrapper.h"
 
 #include <sstream>
-
-#include "Result.h"
 
 namespace DiKErnel::Overtopping::KernelWrapper
 {
     using namespace std;
 
-    extern "C" void ValidateInputC(
-        Geometry* geometry,
+    extern "C" __declspec(dllimport) void ValidateInputC(
+        Geometry* geometryInput,
         double* dikeHeight,
-        Input* input,
+        Input* modelFactors,
         bool* success,
-        stringstream* message,
-        int* stringLength);
+        stringstream* message);
 
-    extern "C" void calculateQo(
-        Load* load,
-        Geometry* geometry,
-        double* dikeHeight,
-        Input* input,
-        Result* result,
-        bool* success,
-        stringstream* message,
-        int* verbosity,
-        stringstream* logFile,
-        int* stringLength1,
-        int* stringLength2);
-
-    bool Overtopping::Validate(
+    bool OvertoppingWrapper::Validate(
         Geometry& geometry,
         Input& input,
         double dikeHeight)
     {
         bool success;
         stringstream message;
-        int stringLength;
 
-        ValidateInputC(&geometry, &dikeHeight, &input, &success, &message, &stringLength);
+        ValidateInputC(&geometry, &dikeHeight, &input, &success, &message);
 
         return success;
     }
 
-    double Overtopping::Calculate2P(
-        Load& load,
-        Geometry& geometry,
-        Input& input,
-        double dikeHeight)
-    {
-        bool success;
-        int verbosity;
-        stringstream message;
-        stringstream logFile;
-        int stringLength1;
-        int stringLength2;
-
-        Result result{};
-
-        calculateQo(&load, &geometry, &dikeHeight, &input, &result, &success, &message, &verbosity, &logFile, &stringLength1, &stringLength2);
-
-        return result._z2;
-    }
+    // double OvertoppingWrapper::Calculate2P(
+    //     Load& load,
+    //     Geometry& geometry,
+    //     Input& input,
+    //     double dikeHeight)
+    // {
+    //     bool success;
+    //     int verbosity;
+    //     stringstream message;
+    //     stringstream logFile;
+    //     int stringLength1;
+    //     int stringLength2;
+    //
+    //     Result result{};
+    //
+    //     calculateQo(&load, &geometry, &dikeHeight, &input, &result, &success, &message, &verbosity, &logFile, &stringLength1, &stringLength2);
+    //
+    //     return result._z2;
+    // }
 }
