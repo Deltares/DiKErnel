@@ -30,6 +30,8 @@ namespace DiKErnel::Core
         OuterToe,
         OuterCrest,
         CrestOuterBerm,
-        NotchOuterBerm
+        NotchOuterBerm,
+        InnerCrest,
+        InnerToe
     };
 }
