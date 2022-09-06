@@ -20,10 +20,39 @@
 
 #pragma once
 
+#include "GrassRevetmentOvertoppingCumulativeOverloadInput.h"
+
 namespace DiKErnel::FunctionLibrary
 {
     /*!
      * \brief Class that holds all grass revetment overtopping specific calculation routines.
      */
-    class GrassRevetmentOvertoppingFunctions { };
+    class GrassRevetmentOvertoppingFunctions
+    {
+        public:
+            /*!
+             * \brief Calculates the cumulative overload.
+             * \param input
+             *        The input to use for the calculation.
+             * \return The cumulative overload.
+             *         Unit = [m^2/s^2]
+             */
+            [[nodiscard]]
+            static double CumulativeOverload(
+                const GrassRevetmentOvertoppingCumulativeOverloadInput& input);
+
+        private:
+            [[nodiscard]]
+            static double FrontVelocity(
+                double waveRunup,
+                double verticalDistanceWaterLevelElevation,
+                double frontVelocityCu,
+                double gravitationalAcceleration);
+
+            [[nodiscard]]
+            static double WaveRunup(
+                double representativeWaveRunup2P,
+                int fixedNumberOfWaves,
+                int waveNumber);
+    };
 }
