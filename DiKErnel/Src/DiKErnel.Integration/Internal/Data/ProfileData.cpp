@@ -144,7 +144,8 @@ namespace DiKErnel::Integration
                     return nullptr;
                 }
 
-                return make_unique<ProfileSegment>(*_profilePoints.at(i - 1), *profilePoint);
+                return make_unique<ProfileSegment>(make_shared<ProfilePoint>(*_profilePoints.at(i - 1)),
+                                                   make_shared<ProfilePoint>(*profilePoint), 1.0);
             }
         }
 
