@@ -35,7 +35,7 @@ namespace DiKErnel::FunctionLibrary
         for (auto k = 1; k <= input._fixedNumberOfWaves; ++k)
         {
             const auto waveRunup = WaveRunup(input._representativeWaveRunup2P, input._fixedNumberOfWaves, k);
-            const auto frontVelocity = FrontVelocity(waveRunup, input._dikeHeight, input._accelerationAlphaA, input._waterLevel,
+            const auto frontVelocity = FrontVelocity(waveRunup, input._verticalDistanceWaterLevelElevation, input._accelerationAlphaA,
                                                      input._frontVelocityCwo, input._gravitationalAcceleration);
 
             cumulativeFrontVelocity += max(0.0, input._increasedLoadTransitionAlphaM * pow(frontVelocity, 2.0)
@@ -47,13 +47,12 @@ namespace DiKErnel::FunctionLibrary
 
     double GrassRevetmentOvertoppingFunctions::FrontVelocity(
         const double waveRunup,
-        const double dikeHeight,
+        const double verticalDistanceWaterLevelElevation,
         const double accelerationAlphaA,
-        const double waterLevel,
         const double frontVelocityCwo,
         const double gravitationalAcceleration)
     {
-        return frontVelocityCwo * accelerationAlphaA * sqrt(gravitationalAcceleration * max(0.0, waveRunup - dikeHeight + waterLevel));
+        return frontVelocityCwo * accelerationAlphaA * sqrt(gravitationalAcceleration * max(0.0, waveRunup - verticalDistanceWaterLevelElevation));
     }
 
     double GrassRevetmentOvertoppingFunctions::WaveRunup(
