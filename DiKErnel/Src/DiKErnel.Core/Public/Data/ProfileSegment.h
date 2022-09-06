@@ -42,6 +42,20 @@ namespace DiKErnel::Core
                 const ProfilePoint& upperPoint);
 
             /*!
+             * \brief Creates a new instance.
+             * \param lowerPoint
+             *        The lower profile point.
+             * \param upperPoint
+             *        The upper profile point.
+             * \param roughness
+             *        The roughness.
+             */
+            explicit ProfileSegment(
+                const ProfilePoint& lowerPoint,
+                const ProfilePoint& upperPoint,
+                double roughness);
+
+            /*!
              * \brief Gets the lower point of the segment.
              * \return The lower point of the segment.
              */
@@ -55,8 +69,16 @@ namespace DiKErnel::Core
             [[nodiscard]]
             const ProfilePoint& GetUpperPoint() const;
 
+            /*!
+             * \brief Gets roughness of the segment.
+             * \return The roughness of the segment.
+             */
+            [[nodiscard]]
+            double GetRoughness() const;
+
         private:
             const ProfilePoint& _lowerPoint;
             const ProfilePoint& _upperPoint;
+            double _roughness;
     };
 }

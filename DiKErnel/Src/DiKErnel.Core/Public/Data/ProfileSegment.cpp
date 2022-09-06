@@ -26,7 +26,16 @@ namespace DiKErnel::Core
         const ProfilePoint& lowerPoint,
         const ProfilePoint& upperPoint)
         : _lowerPoint(lowerPoint),
-          _upperPoint(upperPoint) {}
+          _upperPoint(upperPoint),
+          _roughness(0) {}
+
+    ProfileSegment::ProfileSegment(
+        const ProfilePoint& lowerPoint,
+        const ProfilePoint& upperPoint,
+        const double roughness)
+        : _lowerPoint(lowerPoint),
+          _upperPoint(upperPoint),
+          _roughness(roughness) {}
 
     const ProfilePoint& ProfileSegment::GetLowerPoint() const
     {
@@ -36,5 +45,10 @@ namespace DiKErnel::Core
     const ProfilePoint& ProfileSegment::GetUpperPoint() const
     {
         return _upperPoint;
+    }
+
+    double ProfileSegment::GetRoughness() const
+    {
+        return _roughness;
     }
 }
