@@ -45,8 +45,10 @@ namespace DiKErnel::FunctionLibrary
             [[nodiscard]]
             static double FrontVelocity(
                 double waveRunup,
-                double verticalDistanceWaterLevelElevation,
-                double frontVelocityCu,
+                double dikeHeight,
+                double accelerationAlphaA,
+                double waterLevel,
+                double frontVelocityCwo,
                 double gravitationalAcceleration);
 
             [[nodiscard]]
