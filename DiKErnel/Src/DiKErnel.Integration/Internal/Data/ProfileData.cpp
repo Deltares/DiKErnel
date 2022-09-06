@@ -51,6 +51,34 @@ namespace DiKErnel::Integration
         }
     }
 
+    ProfileData::ProfileData(
+        vector<unique_ptr<ProfileSegment>> profileSegments,
+        vector<unique_ptr<CharacteristicPoint>> characteristicPoints)
+        : _profileSegments(move(profileSegments)),
+          _characteristicPoints(move(characteristicPoints))
+    {
+        if (!_profileSegments.empty())
+        {
+            _profilePoints.emplace_back(make_unique<ProfilePoint>(_profileSegments.front()->GetLowerPoint()));
+
+            for (const auto& profileSegment : _profileSegments)
+            {
+                _profileSegmentReferences.emplace_back(*profileSegment);
+                _profilePoints.emplace_back(make_unique<ProfilePoint>(profileSegment->GetUpperPoint()));
+            }
+
+            for (const auto& profilePoint : _profilePoints)
+            {
+                _profilePointReferences.emplace_back(*profilePoint);
+            }
+        }
+
+        for (const auto& characteristicPoint : _characteristicPoints)
+        {
+            _characteristicPointReferences.emplace_back(*characteristicPoint);
+        }
+    }
+
     bool ProfileData::Validate() const
     {
         const auto outerToe = CharacteristicPointsHelper::GetCoordinatesForType(_characteristicPointReferences, CharacteristicPointType::OuterToe);

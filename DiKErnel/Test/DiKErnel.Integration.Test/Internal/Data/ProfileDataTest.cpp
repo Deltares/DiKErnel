@@ -32,12 +32,15 @@ namespace DiKErnel::Integration::Test
     {
         static unique_ptr<ProfileData> CreateDefaultProfileData()
         {
-            vector<unique_ptr<ProfilePoint>> testDikeProfile;
-            testDikeProfile.push_back(make_unique<ProfilePoint>(1.0, 1.1));
-            testDikeProfile.push_back(make_unique<ProfilePoint>(2.0, 2.2));
-            testDikeProfile.push_back(make_unique<ProfilePoint>(3.0, 3.3));
+            auto pointOne = make_shared<ProfilePoint>(1.0, 1.1);
+            auto pointTwo = make_shared<ProfilePoint>(2.0, 2.2);
+            auto pointThree = make_shared<ProfilePoint>(3.0, 3.3);
 
-            return make_unique<ProfileData>(move(testDikeProfile), vector<unique_ptr<CharacteristicPoint>>());
+            vector<unique_ptr<ProfileSegment>> testDikeProfileSegments;
+            testDikeProfileSegments.push_back(make_unique<ProfileSegment>(pointOne, pointTwo, 1.0));
+            testDikeProfileSegments.push_back(make_unique<ProfileSegment>(pointTwo, pointThree, 1.0));
+
+            return make_unique<ProfileData>(move(testDikeProfileSegments), vector<unique_ptr<CharacteristicPoint>>());
         }
     };
 

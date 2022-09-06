@@ -33,6 +33,10 @@ namespace DiKErnel::Integration
                 std::vector<std::unique_ptr<Core::ProfilePoint>> profilePoints,
                 std::vector<std::unique_ptr<Core::CharacteristicPoint>> characteristicPoints);
 
+            explicit ProfileData(
+                std::vector<std::unique_ptr<Core::ProfileSegment>> profileSegments,
+                std::vector<std::unique_ptr<Core::CharacteristicPoint>> characteristicPoints);
+
             [[nodiscard]]
             bool Validate() const override;
 
