@@ -20,6 +20,8 @@
 
 #include "GrassRevetmentFunctions.h"
 
+#include <cmath>
+
 namespace DiKErnel::FunctionLibrary
 {
     double GrassRevetmentFunctions::IncrementDamage(
@@ -27,5 +29,13 @@ namespace DiKErnel::FunctionLibrary
         const double criticalCumulativeOverload)
     {
         return cumulativeOverload / criticalCumulativeOverload;
+    }
+
+    double GrassRevetmentFunctions::WaveRunup(
+        const double representativeWaveRunup2P,
+        const int fixedNumberOfWaves,
+        const int waveNumber)
+    {
+        return representativeWaveRunup2P * sqrt(log(1.0 - waveNumber / (fixedNumberOfWaves + 1.0)) / log(0.02));
     }
 }

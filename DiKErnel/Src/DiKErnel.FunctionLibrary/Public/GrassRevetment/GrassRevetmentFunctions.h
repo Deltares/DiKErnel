@@ -27,6 +27,9 @@ namespace DiKErnel::FunctionLibrary
      */
     class GrassRevetmentFunctions
     {
+        friend class GrassRevetmentOvertoppingFunctions;
+        friend class GrassRevetmentWaveRunupRayleighFunctions;
+
         public:
             /*!
              * \brief Calculates the increment of damage.
@@ -43,5 +46,12 @@ namespace DiKErnel::FunctionLibrary
             static double IncrementDamage(
                 double cumulativeOverload,
                 double criticalCumulativeOverload);
+
+        private:
+            [[nodiscard]]
+            static double WaveRunup(
+                double representativeWaveRunup2P,
+                int fixedNumberOfWaves,
+                int waveNumber);
     };
 }

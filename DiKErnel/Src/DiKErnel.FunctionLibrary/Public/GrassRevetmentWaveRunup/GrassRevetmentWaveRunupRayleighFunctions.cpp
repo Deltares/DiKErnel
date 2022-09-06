@@ -23,6 +23,8 @@
 #include <algorithm>
 #include <cmath>
 
+#include "GrassRevetmentFunctions.h"
+
 namespace DiKErnel::FunctionLibrary
 {
     using namespace std;
@@ -34,7 +36,7 @@ namespace DiKErnel::FunctionLibrary
 
         for (auto k = 1; k <= input._fixedNumberOfWaves; ++k)
         {
-            const auto waveRunup = WaveRunup(input._representativeWaveRunup2P, input._fixedNumberOfWaves, k);
+            const auto waveRunup = GrassRevetmentFunctions::WaveRunup(input._representativeWaveRunup2P, input._fixedNumberOfWaves, k);
             const auto frontVelocity = FrontVelocity(waveRunup, input._verticalDistanceWaterLevelElevation, input._frontVelocityCu,
                                                      input._gravitationalAcceleration);
 
@@ -53,13 +55,5 @@ namespace DiKErnel::FunctionLibrary
     {
         return frontVelocityCu * sqrt(gravitationalAcceleration * waveRunup)
                 * max(0.0, min(1.0, (waveRunup - verticalDistanceWaterLevelElevation) / (0.25 * waveRunup)));
-    }
-
-    double GrassRevetmentWaveRunupRayleighFunctions::WaveRunup(
-        const double representativeWaveRunup2P,
-        const int fixedNumberOfWaves,
-        const int waveNumber)
-    {
-        return representativeWaveRunup2P * sqrt(log(1.0 - waveNumber / (fixedNumberOfWaves + 1.0)) / log(0.02));
     }
 }
