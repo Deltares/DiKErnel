@@ -20,65 +20,19 @@
 
 #pragma once
 
+#include "GrassRevetmentCumulativeOverloadInput.h"
+
 namespace DiKErnel::FunctionLibrary
 {
     /*!
      * \brief Input for a grass revetment wave run-up Rayleigh cumulative overload calculation.
      */
-    struct GrassRevetmentWaveRunupRayleighCumulativeOverloadInput
+    struct GrassRevetmentWaveRunupRayleighCumulativeOverloadInput : GrassRevetmentCumulativeOverloadInput
     {
-        /*!
-         * \brief The average number of waves.
-         *        Unit = [-]
-         */
-        double _averageNumberOfWaves{};
-
-        /*!
-         * \brief The representative wave run-up (2 percent).
-         *        Unit = [m]
-         */
-        double _representativeWaveRunup2P{};
-
-        /*!
-         * \brief The fixed number of waves.
-         *        Unit = [-]
-         */
-        int _fixedNumberOfWaves{};
-
-        /*!
-         * \brief The vertical distance of the water elevation.
-         *        Unit = [m]
-         */
-        double _verticalDistanceWaterLevelElevation{};
-
-        /*!
-         * \brief The critical front velocity.
-         *        Unit = [m/s]
-         */
-        double _criticalFrontVelocity{};
-
-        /*!
-         * \brief The AlphaM value.
-         *        Unit = [-]
-         */
-        double _increasedLoadTransitionAlphaM{};
-
-        /*!
-         * \brief The AlphaS value.
-         *        Unit = [-]
-         */
-        double _reducedStrengthTransitionAlphaS{};
-
         /*!
          * \brief The Cu coefficient.
          *        Unit = [-]
          */
         double _frontVelocityCu{};
-
-        /*!
-         * \brief The gravitational acceleration.
-         *        Unit = [m/s^2]
-         */
-        double _gravitationalAcceleration{};
     };
 }

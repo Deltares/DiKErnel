@@ -158,18 +158,19 @@ namespace DiKErnel::Integration
     double GrassRevetmentWaveRunupRayleighLocationDependentInput::CalculateCumulativeOverload(
         const double averageNumberOfWaves) const
     {
-        const GrassRevetmentWaveRunupRayleighCumulativeOverloadInput cumulativeOverloadInput
+        GrassRevetmentWaveRunupRayleighCumulativeOverloadInput cumulativeOverloadInput
         {
-            ._averageNumberOfWaves = averageNumberOfWaves,
-            ._representativeWaveRunup2P = _representativeWaveRunup2P,
-            ._fixedNumberOfWaves = _fixedNumberOfWaves,
-            ._verticalDistanceWaterLevelElevation = _verticalDistanceWaterLevelElevation,
-            ._criticalFrontVelocity = GetCriticalFrontVelocity(),
-            ._increasedLoadTransitionAlphaM = GetIncreasedLoadTransitionAlphaM(),
-            ._reducedStrengthTransitionAlphaS = GetReducedStrengthTransitionAlphaS(),
-            ._frontVelocityCu = _frontVelocityCu,
-            ._gravitationalAcceleration = Constants::GetGravitationalAcceleration()
+            ._frontVelocityCu = _frontVelocityCu
         };
+
+        cumulativeOverloadInput._averageNumberOfWaves = averageNumberOfWaves;
+        cumulativeOverloadInput._representativeWaveRunup2P = _representativeWaveRunup2P;
+        cumulativeOverloadInput._fixedNumberOfWaves = _fixedNumberOfWaves;
+        cumulativeOverloadInput._verticalDistanceWaterLevelElevation = _verticalDistanceWaterLevelElevation;
+        cumulativeOverloadInput._criticalFrontVelocity = GetCriticalFrontVelocity();
+        cumulativeOverloadInput._increasedLoadTransitionAlphaM = GetIncreasedLoadTransitionAlphaM();
+        cumulativeOverloadInput._reducedStrengthTransitionAlphaS = GetReducedStrengthTransitionAlphaS();
+        cumulativeOverloadInput._gravitationalAcceleration = Constants::GetGravitationalAcceleration();
 
         return GrassRevetmentWaveRunupRayleighFunctions::CumulativeOverload(cumulativeOverloadInput);
     }
