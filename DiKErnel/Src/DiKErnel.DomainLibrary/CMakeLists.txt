@@ -21,6 +21,8 @@ set(SOURCEFILES_PUBLIC
 )
 
 SET(SOURCEFILES_PUBLIC_DEFAULTS
+  ${PUBLIC_DEFAULTS_FOLDER}/ProfileSegmentDefaults.cpp
+  ${PUBLIC_DEFAULTS_FOLDER}/ProfileSegmentDefaults.h
   ${PUBLIC_DEFAULTS_FOLDER}/RevetmentDefaults.cpp
   ${PUBLIC_DEFAULTS_FOLDER}/RevetmentDefaults.h
 )
