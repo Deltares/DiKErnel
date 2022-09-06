@@ -35,7 +35,8 @@ namespace DiKErnel::FunctionLibrary
         for (auto k = 1; k <= input._fixedNumberOfWaves; ++k)
         {
             const auto waveRunup = WaveRunup(input._representativeWaveRunup2P, input._fixedNumberOfWaves, k);
-            const auto frontVelocity = FrontVelocity(waveRunup, 2.2, 3.3, 4.4, 5.5, 6.6);
+            const auto frontVelocity = FrontVelocity(waveRunup, input._dikeHeight, input._accelerationAlphaA, input._waterLevel,
+                                                     input._frontVelocityCwo, input._gravitationalAcceleration);
 
             cumulativeFrontVelocity += max(0.0, input._increasedLoadTransitionAlphaM * pow(frontVelocity, 2.0)
                                            - input._reducedStrengthTransitionAlphaS * pow(input._criticalFrontVelocity, 2.0));

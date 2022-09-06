@@ -46,12 +46,6 @@ namespace DiKErnel::FunctionLibrary
         int _fixedNumberOfWaves{};
 
         /*!
-         * \brief The vertical distance of the water elevation.
-         *        Unit = [m]
-         */
-        double _verticalDistanceWaterLevelElevation{};
-
-        /*!
          * \brief The critical front velocity.
          *        Unit = [m/s]
          */
@@ -70,10 +64,28 @@ namespace DiKErnel::FunctionLibrary
         double _reducedStrengthTransitionAlphaS{};
 
         /*!
-         * \brief The Cu coefficient.
+         * \brief The dike height.
+         *        Unit = [m]
+         */
+        double _dikeHeight{};
+
+        /*!
+         * \brief The AlphaA coefficient.
          *        Unit = [-]
          */
-        double _frontVelocityCu{};
+        double _accelerationAlphaA{};
+
+        /*!
+         * \brief The water level.
+         *        Unit = [m]
+         */
+        double _waterLevel{};
+
+        /*!
+         * \brief The Cwo coefficient.
+         *        Unit = [-]
+         */
+        double _frontVelocityCwo{};
 
         /*!
          * \brief The gravitational acceleration.
