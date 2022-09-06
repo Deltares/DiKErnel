@@ -25,23 +25,5 @@ namespace DiKErnel::FunctionLibrary
     /*!
      * \brief Class that holds all grass revetment overtopping specific calculation routines.
      */
-    class GrassRevetmentOvertoppingFunctions
-    {
-        public:
-            /*!
-             * \brief Calculates the increment of damage.
-             * \param cumulativeOverload
-             *        The cumulative overload.
-             *        Unit = [m^2/s^2]
-             * \param criticalCumulativeOverload
-             *        The critical cumulative overload.
-             *        Unit = [m^2/s^2]
-             * \return The increment of damage.
-             *         Unit = [-]
-             */
-            [[nodiscard]]
-            static double IncrementDamage(
-                double cumulativeOverload,
-                double criticalCumulativeOverload);
-    };
+    class GrassRevetmentOvertoppingFunctions { };
 }

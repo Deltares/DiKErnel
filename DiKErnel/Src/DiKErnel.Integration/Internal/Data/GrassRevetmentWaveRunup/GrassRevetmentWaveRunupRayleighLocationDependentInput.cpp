@@ -21,6 +21,7 @@
 #include "GrassRevetmentWaveRunupRayleighLocationDependentInput.h"
 
 #include "Constants.h"
+#include "GrassRevetmentFunctions.h"
 #include "GrassRevetmentWaveRunupFunctions.h"
 #include "GrassRevetmentWaveRunupRayleighFunctions.h"
 #include "GrassRevetmentWaveRunupRayleighLocationDependentOutput.h"
@@ -117,7 +118,7 @@ namespace DiKErnel::Integration
             _representativeWaveRunup2P = CalculateRepresentativeWaveRunup2P(surfSimilarityParameter, timeDependentInput.GetWaveHeightHm0());
             _cumulativeOverload = CalculateCumulativeOverload(averageNumberOfWaves);
 
-            incrementDamage = GrassRevetmentWaveRunupFunctions::IncrementDamage(_cumulativeOverload, GetCriticalCumulativeOverload());
+            incrementDamage = GrassRevetmentFunctions::IncrementDamage(_cumulativeOverload, GetCriticalCumulativeOverload());
 
             damage = RevetmentFunctions::Damage(incrementDamage, initialDamage);
 

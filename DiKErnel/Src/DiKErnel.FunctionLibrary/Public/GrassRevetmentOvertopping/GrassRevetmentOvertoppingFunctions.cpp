@@ -20,12 +20,4 @@
 
 #include "GrassRevetmentOvertoppingFunctions.h"
 
-namespace DiKErnel::FunctionLibrary
-{
-    double GrassRevetmentOvertoppingFunctions::IncrementDamage(
-        const double cumulativeOverload,
-        const double criticalCumulativeOverload)
-    {
-        return cumulativeOverload / criticalCumulativeOverload;
-    }
-}
+namespace DiKErnel::FunctionLibrary {}
