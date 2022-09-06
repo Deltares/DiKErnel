@@ -49,11 +49,5 @@ namespace DiKErnel::FunctionLibrary
                 double verticalDistanceWaterLevelElevation,
                 double frontVelocityCu,
                 double gravitationalAcceleration);
-
-            [[nodiscard]]
-            static double WaveRunup(
-                double representativeWaveRunup2P,
-                int fixedNumberOfWaves,
-                int waveNumber);
     };
 }

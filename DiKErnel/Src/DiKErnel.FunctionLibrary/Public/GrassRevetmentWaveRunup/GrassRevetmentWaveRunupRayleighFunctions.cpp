@@ -23,6 +23,8 @@
 #include <algorithm>
 #include <cmath>
 
+#include "GrassRevetmentFunctions.h"
+
 namespace DiKErnel::FunctionLibrary
 {
     using namespace std;
@@ -30,19 +32,13 @@ namespace DiKErnel::FunctionLibrary
     double GrassRevetmentWaveRunupRayleighFunctions::CumulativeOverload(
         const GrassRevetmentWaveRunupRayleighCumulativeOverloadInput& input)
     {
-        auto cumulativeFrontVelocity = 0.0;
-
-        for (auto k = 1; k <= input._fixedNumberOfWaves; ++k)
+        const function getFrontVelocity = [&input](
+            const double waveRunup)
         {
-            const auto waveRunup = WaveRunup(input._representativeWaveRunup2P, input._fixedNumberOfWaves, k);
-            const auto frontVelocity = FrontVelocity(waveRunup, input._verticalDistanceWaterLevelElevation, input._frontVelocityCu,
-                                                     input._gravitationalAcceleration);
+            return FrontVelocity(waveRunup, input._verticalDistanceWaterLevelElevation, input._frontVelocityCu, input._gravitationalAcceleration);
+        };
 
-            cumulativeFrontVelocity += max(0.0, input._increasedLoadTransitionAlphaM * pow(frontVelocity, 2.0)
-                                           - input._reducedStrengthTransitionAlphaS * pow(input._criticalFrontVelocity, 2.0));
-        }
-
-        return input._averageNumberOfWaves / input._fixedNumberOfWaves * cumulativeFrontVelocity;
+        return GrassRevetmentFunctions::CumulativeOverload(input, getFrontVelocity);
     }
 
     double GrassRevetmentWaveRunupRayleighFunctions::FrontVelocity(
@@ -53,13 +49,5 @@ namespace DiKErnel::FunctionLibrary
     {
         return frontVelocityCu * sqrt(gravitationalAcceleration * waveRunup)
                 * max(0.0, min(1.0, (waveRunup - verticalDistanceWaterLevelElevation) / (0.25 * waveRunup)));
-    }
-
-    double GrassRevetmentWaveRunupRayleighFunctions::WaveRunup(
-        const double representativeWaveRunup2P,
-        const int fixedNumberOfWaves,
-        const int waveNumber)
-    {
-        return representativeWaveRunup2P * sqrt(log(1.0 - waveNumber / (fixedNumberOfWaves + 1.0)) / log(0.02));
     }
 }

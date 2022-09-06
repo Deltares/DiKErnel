@@ -49,11 +49,5 @@ namespace DiKErnel::FunctionLibrary
                 double accelerationAlphaA,
                 double frontVelocityCwo,
                 double gravitationalAcceleration);
-
-            [[nodiscard]]
-            static double WaveRunup(
-                double representativeWaveRunup2P,
-                int fixedNumberOfWaves,
-                int waveNumber);
     };
 }

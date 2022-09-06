@@ -31,6 +31,9 @@ namespace DiKErnel::FunctionLibrary
      */
     class GrassRevetmentFunctions
     {
+        friend class GrassRevetmentOvertoppingFunctions;
+        friend class GrassRevetmentWaveRunupRayleighFunctions;
+
         public:
             /*!
              * \brief Calculates the increment of damage.
