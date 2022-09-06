@@ -20,6 +20,10 @@
 
 #pragma once
 
+#include <functional>
+
+#include "GrassRevetmentCumulativeOverloadInput.h"
+
 namespace DiKErnel::FunctionLibrary
 {
     /*!
@@ -43,5 +47,17 @@ namespace DiKErnel::FunctionLibrary
             static double IncrementDamage(
                 double cumulativeOverload,
                 double criticalCumulativeOverload);
+
+        private:
+            [[nodiscard]]
+            static double CumulativeOverload(
+                const GrassRevetmentCumulativeOverloadInput& input,
+                const std::function<double(double waveRunup)>& getFrontVelocity);
+
+            [[nodiscard]]
+            static double WaveRunup(
+                double representativeWaveRunup2P,
+                int fixedNumberOfWaves,
+                int waveNumber);
     };
 }
