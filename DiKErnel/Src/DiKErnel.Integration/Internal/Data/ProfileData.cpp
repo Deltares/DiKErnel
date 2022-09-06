@@ -157,6 +157,11 @@ namespace DiKErnel::Integration
         return _profilePointReferences;
     }
 
+    const vector<reference_wrapper<ProfileSegment>>& ProfileData::GetProfileSegments() const
+    {
+        return _profileSegmentReferences;
+    }
+
     const vector<reference_wrapper<CharacteristicPoint>>& ProfileData::GetCharacteristicPoints() const
     {
         return _characteristicPointReferences;

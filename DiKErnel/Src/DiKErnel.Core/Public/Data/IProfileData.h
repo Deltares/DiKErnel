@@ -88,6 +88,13 @@ namespace DiKErnel::Core
             virtual const std::vector<std::reference_wrapper<ProfilePoint>>& GetProfilePoints() const = 0;
 
             /*!
+             * \brief Gets the profile segments to use in the calculation.
+             * \return The profile segments to use in the calculation.
+             */
+            [[nodiscard]]
+            virtual const std::vector<std::reference_wrapper<ProfileSegment>>& GetProfileSegments() const = 0;
+
+            /*!
              * \brief Gets the characteristic points to use in the calculation.
              * \return The characteristic points to use in the calculation.
              */

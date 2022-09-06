@@ -34,6 +34,7 @@ namespace DiKErnel::Core::TestUtil
             MOCK_METHOD(double, InterpolationHorizontalPosition, (double), (const, override));
             MOCK_METHOD(std::unique_ptr<ProfileSegment>, GetProfileSegment, (double), (const, override));
             MOCK_METHOD(std::vector<std::reference_wrapper<ProfilePoint>>&, GetProfilePoints, (), (const, override));
+            MOCK_METHOD(std::vector<std::reference_wrapper<ProfileSegment>>&, GetProfileSegments, (), (const, override));
             MOCK_METHOD(std::vector<std::reference_wrapper<CharacteristicPoint>>&, GetCharacteristicPoints, (), (const, override));
     };
 }
