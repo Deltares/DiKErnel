@@ -49,6 +49,20 @@ namespace DiKErnel::Integration
                 const Core::CharacteristicPointType* characteristicPointType);
 
             /*!
+             * \brief Adds a new dike segment.
+             * \param lowerPoint
+             *        The lower profile point.
+             * \param upperPoint
+             *        The upper profile point.
+             * \param roughness
+             *        The roughness.
+             */
+            void AddDikeProfileSegment(
+                const std::shared_ptr<Core::ProfilePoint>& lowerPoint,
+                const std::shared_ptr<Core::ProfilePoint>& upperPoint,
+                double roughness);
+
+            /*!
              * \brief Adds a time step.
              * \param beginTime
              *        The begin time.
@@ -119,11 +133,13 @@ namespace DiKErnel::Integration
 
         private:
             std::vector<std::unique_ptr<Core::ProfilePoint>> _profilePoints = std::vector<std::unique_ptr<Core::ProfilePoint>>();
+            std::vector<std::unique_ptr<Core::ProfileSegment>> _profileSegments = std::vector<std::unique_ptr<Core::ProfileSegment>>();
             std::vector<std::unique_ptr<Core::CharacteristicPoint>> _characteristicPoints
                     = std::vector<std::unique_ptr<Core::CharacteristicPoint>>();
             std::vector<std::unique_ptr<Core::ITimeDependentInput>> _timeDependentInputItems
                     = std::vector<std::unique_ptr<Core::ITimeDependentInput>>();
             std::vector<std::unique_ptr<Core::ILocationDependentInput>> _locationDependentInputItems
                     = std::vector<std::unique_ptr<Core::ILocationDependentInput>>();
+
     };
 }

@@ -26,8 +26,7 @@ namespace DiKErnel::Core
         std::shared_ptr<ProfilePoint> lowerPoint,
         std::shared_ptr<ProfilePoint> upperPoint,
         const double roughness)
-        : 
-          _lowerPointReference(move(lowerPoint)),
+        : _lowerPointReference(move(lowerPoint)),
           _upperPointReference(move(upperPoint)),
           _roughness(roughness) {}
 

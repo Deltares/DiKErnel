@@ -50,6 +50,15 @@ namespace DiKErnel::Integration
         }
     }
 
+    void RevetmentCalculationInputBuilder::AddDikeProfileSegment(
+        const std::shared_ptr<ProfilePoint>& lowerPoint,
+        const std::shared_ptr<ProfilePoint>& upperPoint,
+        double roughness)
+    {
+        _profileSegments.emplace_back(make_unique<ProfileSegment>(lowerPoint, upperPoint, roughness));
+    }
+
+
     void RevetmentCalculationInputBuilder::AddTimeStep(
         int beginTime,
         int endTime,
