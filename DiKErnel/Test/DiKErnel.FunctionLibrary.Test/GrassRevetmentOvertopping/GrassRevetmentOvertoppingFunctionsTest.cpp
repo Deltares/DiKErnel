@@ -24,5 +24,28 @@
 
 namespace DiKErnel::FunctionLibrary::Test
 {
+    TEST(GrassRevetmentOvertoppingFunctionsTest, CumulativeOverload_ValidInput_ExpectedValue)
+    {
+        // Setup
+        GrassRevetmentOvertoppingCumulativeOverloadInput input
+        {
+            ._accelerationAlphaA = 1.4,
+            ._frontVelocityCwo = 1.45
+        };
 
+        input._averageNumberOfWaves = 832.56;
+        input._representativeWaveRunup2P = 2.602;
+        input._fixedNumberOfWaves = 10000;
+        input._verticalDistanceWaterLevelElevation = 2.2;
+        input._criticalFrontVelocity = 6.6;
+        input._increasedLoadTransitionAlphaM = 1.0;
+        input._reducedStrengthTransitionAlphaS = 1.0;
+        input._gravitationalAcceleration = 9.81;
+
+        // Call
+        const auto cumulativeOverload = GrassRevetmentOvertoppingFunctions::CumulativeOverload(input);
+
+        // Assert
+        ASSERT_DOUBLE_EQ(14.883904828110145, cumulativeOverload);
+    }
 }
