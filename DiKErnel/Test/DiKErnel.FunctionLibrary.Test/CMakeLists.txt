@@ -23,10 +23,12 @@ set(SOURCEFILES_ASPHALT_REVETMENT_WAVE_IMPACT
 )
 
 set(SOURCEFILES_GRASS_REVETMENT
+  ${GRASS_REVETMENT_FOLDER}/GrassRevetmentCumulativeOverloadInputTest.cpp
   ${GRASS_REVETMENT_FOLDER}/GrassRevetmentFunctionsTest.cpp
 )
 
 set(SOURCEFILES_GRASS_REVETMENT_OVERTOPPING
+  ${GRASS_REVETMENT_OVERTOPPING_FOLDER}/GrassRevetmentOvertoppingCumulativeOverloadInputTest.cpp
   ${GRASS_REVETMENT_OVERTOPPING_FOLDER}/GrassRevetmentOvertoppingFunctionsTest.cpp
 )
 
