@@ -22,9 +22,13 @@
 #include <random>
 
 #include "HydraulicLoadFunctions.h"
+#include "RandomValueHelper.h"
 
 namespace DiKErnel::FunctionLibrary::Test
 {
+    using namespace std;
+    using namespace TestUtil;
+
     TEST(HydraulicLoadFunctionsTest, WaveDirection_InputEqualTo0Degrees_ExpectedValue)
     {
         // Setup
@@ -40,7 +44,7 @@ namespace DiKErnel::FunctionLibrary::Test
     TEST(HydraulicLoadFunctionsTest, WaveDirection_InputLargerThan0Degrees_ExpectedValue)
     {
         // Setup
-        constexpr auto waveAngle = 1.1;
+        const double waveAngle = RandomValueHelper::GetRandomValue(0.0 + numeric_limits<double>::epsilon(), 540);
 
         // Call
         const auto waveDirection = HydraulicLoadFunctions::WaveDirection(waveAngle);
@@ -49,10 +53,10 @@ namespace DiKErnel::FunctionLibrary::Test
         ASSERT_DOUBLE_EQ(waveAngle, waveDirection);
     }
 
-    TEST(HydraulicLoadFunctionsTest, WaveDirection_InputBetween0AndMinus180Degrees_ExpectedValue)
+    TEST(HydraulicLoadFunctionsTest, WaveDirection_InputBetweenMinus180And0Degrees_ExpectedValue)
     {
         // Setup
-        constexpr auto waveAngle = -177;
+        const double waveAngle = RandomValueHelper::GetRandomValue(-180 + numeric_limits<double>::epsilon(), -numeric_limits<double>::epsilon());
 
         // Call
         const auto waveDirection = HydraulicLoadFunctions::WaveDirection(waveAngle);
