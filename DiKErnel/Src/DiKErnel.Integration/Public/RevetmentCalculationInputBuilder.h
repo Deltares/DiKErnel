@@ -49,6 +49,17 @@ namespace DiKErnel::Integration
                 const Core::CharacteristicPointType* characteristicPointType);
 
             /*!
+             * \brief Adds data for a profile point.
+             * \param profilePoint
+             *        The profile point.
+             * \param characteristicPointType
+             *        The characteristic point type.
+             */
+            void AddDikeProfilePointData(
+                const std::shared_ptr<Core::ProfilePoint>& profilePoint,
+                Core::CharacteristicPointType characteristicPointType);
+
+            /*!
              * \brief Adds a new dike segment.
              * \param lowerPoint
              *        The lower profile point.
