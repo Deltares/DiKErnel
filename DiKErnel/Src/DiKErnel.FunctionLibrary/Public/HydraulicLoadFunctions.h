@@ -29,6 +29,18 @@ namespace DiKErnel::FunctionLibrary
     {
         public:
             /*!
+             * \brief Calculates the wave direction.
+             * \param waveAngle
+             *        The wave angle.
+             *        Unit = [deg]
+             * \return The wave direction.
+             *         Unit = [deg]
+             */
+            [[nodiscard]]
+            static double WaveDirection(
+                double waveAngle);
+
+            /*!
              * \brief Calculates the slope angle.
              * \param outerSlope
              *        The outer slope.

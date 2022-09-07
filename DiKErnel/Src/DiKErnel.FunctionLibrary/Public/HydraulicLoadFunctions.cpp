@@ -26,6 +26,17 @@
 
 namespace DiKErnel::FunctionLibrary
 {
+    double HydraulicLoadFunctions::WaveDirection(
+        const double waveAngle)
+    {
+        if (waveAngle >= -180.0 && waveAngle < 0.0)
+        {
+            return 360.0 - abs(waveAngle);
+        }
+
+        return waveAngle;
+    }
+
     double HydraulicLoadFunctions::SlopeAngle(
         const double outerSlope)
     {
