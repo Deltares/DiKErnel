@@ -29,6 +29,12 @@ namespace DiKErnel::FunctionLibrary
 {
     using namespace std;
 
+    double GrassRevetmentOvertoppingFunctions::RepresentativeWaveRunup2P(
+        const GrassRevetmentOvertoppingRepresentative2PInput& input)
+    {
+        return 0.0;
+    }
+
     double GrassRevetmentOvertoppingFunctions::CumulativeOverload(
         const GrassRevetmentOvertoppingCumulativeOverloadInput& input)
     {

@@ -21,6 +21,7 @@
 #pragma once
 
 #include "GrassRevetmentOvertoppingCumulativeOverloadInput.h"
+#include "GrassRevetmentOvertoppingRepresentative2PInput.h"
 
 namespace DiKErnel::FunctionLibrary
 {
@@ -30,6 +31,17 @@ namespace DiKErnel::FunctionLibrary
     class GrassRevetmentOvertoppingFunctions
     {
         public:
+            /*!
+             * \brief Calculates the representative wave run-up (2 percent).
+             * \param input
+             *        The input to use for the calculation.
+             * \return The representative wave run-up (2 percent).
+             *         Unit = [m]
+             */
+            [[nodiscard]]
+            static double RepresentativeWaveRunup2P(
+                const GrassRevetmentOvertoppingRepresentative2PInput& input);
+
             /*!
              * \brief Calculates the cumulative overload.
              * \param input
