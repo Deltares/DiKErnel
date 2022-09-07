@@ -38,38 +38,32 @@ namespace DiKErnel::Integration
     using namespace DomainLibrary;
     using namespace std;
 
-    void RevetmentCalculationInputBuilder::AddDikeProfilePoint(
-        const double x,
-        const double z,
-        const CharacteristicPointType* characteristicPointType)
-    {
-        _profilePoints.push_back(make_unique<ProfilePoint>(x, z));
-
-        if (characteristicPointType != nullptr)
-        {
-            _characteristicPoints.push_back(make_unique<CharacteristicPoint>(*_profilePoints.back(), *characteristicPointType));
-        }
-    }
-
     void RevetmentCalculationInputBuilder::AddDikeProfilePointData(
-        const std::shared_ptr<ProfilePoint>& profilePoint,
+        double x,
+        double z,
         CharacteristicPointType characteristicPointType)
     {
+        const auto profilePoint = make_unique<ProfilePoint>(x, z);
         _characteristicPoints.push_back(make_unique<CharacteristicPoint>(*profilePoint, characteristicPointType));
     }
 
     void RevetmentCalculationInputBuilder::AddDikeProfileSegment(
-        const std::shared_ptr<ProfilePoint>& lowerPoint,
-        const std::shared_ptr<ProfilePoint>& upperPoint,
+        double lowerPointX,
+        double lowerPointZ,
+        double upperPointX,
+        double upperPointZ,
         const double* roughnessCoefficient)
     {
+        auto upperPoint = make_unique<ProfilePoint>(upperPointX, upperPointZ);
+        _profileSegmentPoints.emplace_back(make_unique<ProfilePoint>(lowerPointX, lowerPointZ));
+        _profileSegmentPoints.emplace_back(make_unique<ProfilePoint>(upperPointX, upperPointZ));
+
         double segmentRoughnessCoefficient = ProfileSegmentDefaults::GetRoughnessCoefficient();
-        if(roughnessCoefficient != nullptr)
+        if (roughnessCoefficient != nullptr)
         {
             segmentRoughnessCoefficient = *roughnessCoefficient;
         }
-
-        _profileSegments.emplace_back(make_unique<ProfileSegment>(lowerPoint, upperPoint, segmentRoughnessCoefficient));
+        _profileSegmentRoughnessCoefficients.emplace_back(segmentRoughnessCoefficient);
     }
 
     void RevetmentCalculationInputBuilder::AddTimeStep(
@@ -114,7 +108,27 @@ namespace DiKErnel::Integration
 
     unique_ptr<ICalculationInput> RevetmentCalculationInputBuilder::Build()
     {
-        return make_unique<CalculationInput>(make_unique<ProfileData>(move(_profilePoints), move(_characteristicPoints)),
+        auto segments = CreateProfileSegments();
+        return make_unique<CalculationInput>(make_unique<ProfileData>(CreateProfileSegments(), move(_characteristicPoints)),
                                              move(_locationDependentInputItems), move(_timeDependentInputItems));
+    }
+
+    vector<unique_ptr<ProfileSegment>> RevetmentCalculationInputBuilder::CreateProfileSegments()
+    {
+        vector<unique_ptr<ProfileSegment>> segments;
+
+        if(!_profileSegmentPoints.empty())
+        {
+            auto lowerPoint = make_shared<ProfilePoint>(*_profileSegmentPoints.at(0));
+            for (int i = 1; i < static_cast<int>(_profileSegmentPoints.size()); ++i)
+            {
+                auto upperPoint = make_shared<ProfilePoint>(*_profileSegmentPoints.at(i));
+                segments.emplace_back(make_unique<ProfileSegment>(lowerPoint, upperPoint, _profileSegmentRoughnessCoefficients.at(i - 1)));
+
+                lowerPoint = upperPoint;
+            }
+        }
+
+        return segments;
     }
 }

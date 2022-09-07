@@ -43,35 +43,30 @@ namespace DiKErnel::Integration
              * \param characteristicPointType
              *        The characteristic point type.
              */
-            void AddDikeProfilePoint(
+            void AddDikeProfilePointData(
                 double x,
                 double z,
-                const Core::CharacteristicPointType* characteristicPointType);
-
-            /*!
-             * \brief Adds data for a profile point.
-             * \param profilePoint
-             *        The profile point.
-             * \param characteristicPointType
-             *        The characteristic point type.
-             */
-            void AddDikeProfilePointData(
-                const std::shared_ptr<Core::ProfilePoint>& profilePoint,
                 Core::CharacteristicPointType characteristicPointType);
 
             /*!
              * \brief Adds a new dike segment.
-             * \param lowerPoint
-             *        The lower profile point.
-             * \param upperPoint
-             *        The upper profile point.
+             * \param lowerPointX
+             *        The x coordinate for the lower profile point.
+             * \param lowerPointZ
+             *        The z coordinate for the lower profile point.
+             * \param upperPointX
+             *        The x coordinate for the upper profile point.
+             * \param upperPointZ
+             *        The z coordinate for the upper profile point.
              * \param roughnessCoefficient
              *        The roughness coefficient.
              *        Unit = [-]
              */
             void AddDikeProfileSegment(
-                const std::shared_ptr<Core::ProfilePoint>& lowerPoint,
-                const std::shared_ptr<Core::ProfilePoint>& upperPoint,
+                double lowerPointX,
+                double lowerPointZ,
+                double upperPointX,
+                double upperPointZ,
                 const double* roughnessCoefficient);
 
             /*!
@@ -144,8 +139,11 @@ namespace DiKErnel::Integration
             std::unique_ptr<Core::ICalculationInput> Build();
 
         private:
+            std::vector<std::unique_ptr<Core::ProfileSegment>> CreateProfileSegments();
+
             std::vector<std::unique_ptr<Core::ProfilePoint>> _profilePoints = std::vector<std::unique_ptr<Core::ProfilePoint>>();
-            std::vector<std::unique_ptr<Core::ProfileSegment>> _profileSegments = std::vector<std::unique_ptr<Core::ProfileSegment>>();
+            std::vector<std::unique_ptr<Core::ProfilePoint>> _profileSegmentPoints = std::vector<std::unique_ptr<Core::ProfilePoint>>();
+            std::vector<double> _profileSegmentRoughnessCoefficients = std::vector<double>();
             std::vector<std::unique_ptr<Core::CharacteristicPoint>> _characteristicPoints
                     = std::vector<std::unique_ptr<Core::CharacteristicPoint>>();
             std::vector<std::unique_ptr<Core::ITimeDependentInput>> _timeDependentInputItems
