@@ -38,13 +38,14 @@ namespace DiKErnel::Core
              *        The lower profile point.
              * \param upperPoint
              *        The upper profile point.
-             * \param roughness
-             *        The roughness.
+             * \param roughnessCoefficient
+             *        The roughness coefficient.
+             *        Unit = [-]
              */
             explicit ProfileSegment(
                 std::shared_ptr<ProfilePoint> lowerPoint,
                 std::shared_ptr<ProfilePoint> upperPoint,
-                double roughness);
+                double roughnessCoefficient);
 
             /*!
              * \brief Gets the lower point of the segment.
@@ -61,15 +62,16 @@ namespace DiKErnel::Core
             const ProfilePoint& GetUpperPoint() const;
 
             /*!
-             * \brief Gets roughness of the segment.
-             * \return The roughness of the segment.
+             * \brief Gets the roughness coefficient of the segment.
+             * \return The roughness coefficient of the segment.
+             *         Unit = [-]
              */
             [[nodiscard]]
-            double GetRoughness() const;
+            double GetRoughnessCoefficient() const;
 
         private:
             std::shared_ptr<ProfilePoint> _lowerPointReference;
             std::shared_ptr<ProfilePoint> _upperPointReference;
-            double _roughness;
+            double _roughnessCoefficient;
     };
 }

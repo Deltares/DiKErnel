@@ -24,9 +24,9 @@
 
 namespace DiKErnel::DomainLibrary::Test
 {
-    TEST(ProfileSegmentDefaultsTest, GetRoughness_ExpectedValue)
+    TEST(ProfileSegmentDefaultsTest, GetRoughnessCoefficient_ExpectedValue)
     {
         // Call & Assert
-        ASSERT_DOUBLE_EQ(1.0, ProfileSegmentDefaults::GetRoughness());
+        ASSERT_DOUBLE_EQ(1.0, ProfileSegmentDefaults::GetRoughnessCoefficient());
     }
 }

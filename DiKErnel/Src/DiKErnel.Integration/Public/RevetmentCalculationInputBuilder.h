@@ -65,13 +65,14 @@ namespace DiKErnel::Integration
              *        The lower profile point.
              * \param upperPoint
              *        The upper profile point.
-             * \param roughness
-             *        The roughness.
+             * \param roughnessCoefficient
+             *        The roughness coefficient.
+             *        Unit = [-]
              */
             void AddDikeProfileSegment(
                 const std::shared_ptr<Core::ProfilePoint>& lowerPoint,
                 const std::shared_ptr<Core::ProfilePoint>& upperPoint,
-                double roughness);
+                const double* roughnessCoefficient);
 
             /*!
              * \brief Adds a time step.

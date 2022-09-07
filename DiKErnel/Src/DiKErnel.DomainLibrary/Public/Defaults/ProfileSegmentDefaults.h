@@ -29,11 +29,11 @@ namespace DiKErnel::DomainLibrary
     {
         public:
             /*!
-             * \brief Gets the default value of the roughness.
-             * \return The default value of the roughness.
+             * \brief Gets the default value of the roughness coefficient.
+             * \return The default value of the roughness coefficient.
              *         Unit = [-]
              */
             [[nodiscard]]
-            static double GetRoughness();
+            static double GetRoughnessCoefficient();
     };
 }

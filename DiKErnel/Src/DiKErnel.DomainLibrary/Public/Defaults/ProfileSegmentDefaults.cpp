@@ -22,7 +22,7 @@
 
 namespace DiKErnel::DomainLibrary
 {
-    double ProfileSegmentDefaults::GetRoughness()
+    double ProfileSegmentDefaults::GetRoughnessCoefficient()
     {
         return 1.0;
     }
