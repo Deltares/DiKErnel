@@ -42,7 +42,8 @@ namespace DiKErnel::Integration
                 double averageNumberOfWavesCtm,
                 int fixedNumberOfWaves,
                 double frontVelocityCwo,
-                std::function<double()>& getAccelerationAlphaA,
+                std::function<double(
+                    const Core::IProfileData&)>& getAccelerationAlphaA,
                 std::function<double(
                     const Core::IProfileData&)>& getDikeHeight);
 
@@ -76,6 +77,9 @@ namespace DiKErnel::Integration
                 std::vector<std::unique_ptr<Core::TimeDependentOutput>> timeDependentOutputItems) override;
 
         protected:
+            void InitializeDerivedLocationDependentInput(
+                const Core::IProfileData& profileData) override;
+
             [[nodiscard]]
             std::unique_ptr<Core::TimeDependentOutput> CalculateTimeDependentOutput(
                 double initialDamage,
@@ -91,7 +95,8 @@ namespace DiKErnel::Integration
             const int _fixedNumberOfWaves;
             const double _frontVelocityCwo;
 
-            std::function<double()> _getAccelerationAlphaA;
+            std::function<double(
+                const Core::IProfileData&)> _getAccelerationAlphaA;
             std::function<double(
                 const Core::IProfileData&)> _getDikeHeight;
 

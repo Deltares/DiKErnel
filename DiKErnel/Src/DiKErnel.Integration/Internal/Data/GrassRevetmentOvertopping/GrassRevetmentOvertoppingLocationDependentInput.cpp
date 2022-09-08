@@ -48,7 +48,8 @@ namespace DiKErnel::Integration
         const double averageNumberOfWavesCtm,
         const int fixedNumberOfWaves,
         const double frontVelocityCwo,
-        function<double()>& getAccelerationAlphaA,
+        function<double(
+            const IProfileData&)>& getAccelerationAlphaA,
         function<double(
             const IProfileData&)>& getDikeHeight)
         : LocationDependentInput(x, initialDamage, failureNumber),
@@ -112,6 +113,15 @@ namespace DiKErnel::Integration
         vector<unique_ptr<TimeDependentOutput>> timeDependentOutputItems)
     {
         return make_unique<GrassRevetmentWaveRunupRayleighLocationDependentOutput>(GetZ(), move(timeDependentOutputItems));
+    }
+
+    void GrassRevetmentOvertoppingLocationDependentInput::InitializeDerivedLocationDependentInput(
+        const IProfileData& profileData)
+    {
+        LocationDependentInput::InitializeDerivedLocationDependentInput(profileData);
+
+        _accelerationAlphaA = _getAccelerationAlphaA(profileData);
+        _dikeHeight = _getDikeHeight(profileData);
     }
 
     unique_ptr<TimeDependentOutput> GrassRevetmentOvertoppingLocationDependentInput::CalculateTimeDependentOutput(
