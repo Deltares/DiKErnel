@@ -52,14 +52,14 @@ namespace DiKErnel::Core
              * \return The lower point of the segment.
              */
             [[nodiscard]]
-            const ProfilePoint& GetLowerPoint() const;
+            ProfilePoint& GetLowerPoint() const;
 
             /*!
              * \brief Gets the upper point of the segment.
              * \return The upper point of the segment.
              */
             [[nodiscard]]
-            const ProfilePoint& GetUpperPoint() const;
+            ProfilePoint& GetUpperPoint() const;
 
             /*!
              * \brief Gets the roughness coefficient of the segment.

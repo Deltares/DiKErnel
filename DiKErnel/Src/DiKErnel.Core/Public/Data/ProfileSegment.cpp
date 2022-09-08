@@ -30,12 +30,12 @@ namespace DiKErnel::Core
           _upperPointReference(move(upperPoint)),
           _roughnessCoefficient(roughnessCoefficient) {}
 
-    const ProfilePoint& ProfileSegment::GetLowerPoint() const
+    ProfilePoint& ProfileSegment::GetLowerPoint() const
     {
         return *_lowerPointReference;
     }
 
-    const ProfilePoint& ProfileSegment::GetUpperPoint() const
+    ProfilePoint& ProfileSegment::GetUpperPoint() const
     {
         return *_upperPointReference;
     }

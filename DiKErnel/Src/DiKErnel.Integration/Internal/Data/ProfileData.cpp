@@ -43,17 +43,12 @@ namespace DiKErnel::Integration
     {
         if (!_profileSegments.empty())
         {
-            _profilePoints.emplace_back(make_unique<ProfilePoint>(_profileSegments.front()->GetLowerPoint()));
+            _profilePointReferences.emplace_back(_profileSegments.front()->GetLowerPoint());
 
             for (const auto& profileSegment : _profileSegments)
             {
                 _profileSegmentReferences.emplace_back(*profileSegment);
-                _profilePoints.emplace_back(make_unique<ProfilePoint>(profileSegment->GetUpperPoint()));
-            }
-
-            for (const auto& profilePoint : _profilePoints)
-            {
-                _profilePointReferences.emplace_back(*profilePoint);
+                _profilePointReferences.emplace_back(profileSegment->GetUpperPoint());
             }
         }
 
@@ -79,11 +74,11 @@ namespace DiKErnel::Integration
     double ProfileData::InterpolationVerticalHeight(
         const double horizontalPosition) const
     {
-        for (auto i = 0; i < static_cast<int>(_profilePoints.size()); ++i)
+        for (auto i = 0; i < static_cast<int>(_profilePointReferences.size()); ++i)
         {
-            const auto& profilePoint = _profilePoints.at(i);
-            const auto xCurrentDikeProfilePoint = profilePoint->GetX();
-            const auto zCurrentDikeProfilePoint = profilePoint->GetZ();
+            const auto& profilePoint = _profilePointReferences.at(i);
+            const auto xCurrentDikeProfilePoint = profilePoint.get().GetX();
+            const auto zCurrentDikeProfilePoint = profilePoint.get().GetZ();
 
             if (abs(xCurrentDikeProfilePoint - horizontalPosition) <= numeric_limits<double>::epsilon())
             {
@@ -97,9 +92,9 @@ namespace DiKErnel::Integration
                     return numeric_limits<double>::infinity();
                 }
 
-                const auto& previousProfilePoint = _profilePoints.at(i - 1);
-                const auto xPreviousDikeProfilePoint = previousProfilePoint->GetX();
-                const auto zPreviousDikeProfilePoint = previousProfilePoint->GetZ();
+                const auto& previousProfilePoint = _profilePointReferences.at(i - 1);
+                const auto xPreviousDikeProfilePoint = previousProfilePoint.get().GetX();
+                const auto zPreviousDikeProfilePoint = previousProfilePoint.get().GetZ();
 
                 return zPreviousDikeProfilePoint + (zCurrentDikeProfilePoint - zPreviousDikeProfilePoint)
                         / (xCurrentDikeProfilePoint - xPreviousDikeProfilePoint)
@@ -113,11 +108,11 @@ namespace DiKErnel::Integration
     double ProfileData::InterpolationHorizontalPosition(
         const double verticalHeight) const
     {
-        for (auto i = 0; i < static_cast<int>(_profilePoints.size()); ++i)
+        for (auto i = 0; i < static_cast<int>(_profilePointReferences.size()); ++i)
         {
-            const auto& profilePoint = _profilePoints.at(i);
-            const auto xCurrentDikeProfilePoint = profilePoint->GetX();
-            const auto zCurrentDikeProfilePoint = profilePoint->GetZ();
+            const auto& profilePoint = _profilePointReferences.at(i);
+            const auto xCurrentDikeProfilePoint = profilePoint.get().GetX();
+            const auto zCurrentDikeProfilePoint = profilePoint.get().GetZ();
 
             if (abs(zCurrentDikeProfilePoint - verticalHeight) <= numeric_limits<double>::epsilon())
             {
@@ -131,9 +126,9 @@ namespace DiKErnel::Integration
                     return numeric_limits<double>::infinity();
                 }
 
-                const auto& previousProfilePoint = _profilePoints.at(i - 1);
-                const auto xPreviousDikeProfilePoint = previousProfilePoint->GetX();
-                const auto zPreviousDikeProfilePoint = previousProfilePoint->GetZ();
+                const auto& previousProfilePoint = _profilePointReferences.at(i - 1);
+                const auto xPreviousDikeProfilePoint = previousProfilePoint.get().GetX();
+                const auto zPreviousDikeProfilePoint = previousProfilePoint.get().GetZ();
 
                 return xPreviousDikeProfilePoint + (xCurrentDikeProfilePoint - xPreviousDikeProfilePoint)
                         / (zCurrentDikeProfilePoint - zPreviousDikeProfilePoint)
@@ -147,17 +142,17 @@ namespace DiKErnel::Integration
     unique_ptr<ProfileSegment> ProfileData::GetProfileSegment(
         const double horizontalPosition) const
     {
-        for (auto i = 0; i < static_cast<int>(_profilePoints.size()); ++i)
+        for (auto i = 0; i < static_cast<int>(_profilePointReferences.size()); ++i)
         {
-            if (const auto& profilePoint = _profilePoints.at(i); profilePoint->GetX() >= horizontalPosition)
+            if (const auto& profilePoint = _profilePointReferences.at(i); profilePoint.get().GetX() >= horizontalPosition)
             {
                 if (i == 0)
                 {
                     return nullptr;
                 }
 
-                return make_unique<ProfileSegment>(make_shared<ProfilePoint>(*_profilePoints.at(i - 1)),
-                                                   make_shared<ProfilePoint>(*profilePoint), 1.0);
+                return make_unique<ProfileSegment>(make_shared<ProfilePoint>(_profilePointReferences.at(i - 1)),
+                                                   make_shared<ProfilePoint>(profilePoint), 1.0);
             }
         }
 
