@@ -30,7 +30,7 @@ namespace DiKErnel::Integration
     {
         public:
             explicit ProfileData(
-                std::vector<std::unique_ptr<Core::ProfilePoint>> profilePoints,
+                std::vector<std::unique_ptr<Core::ProfileSegment>> profileSegments,
                 std::vector<std::unique_ptr<Core::CharacteristicPoint>> characteristicPoints);
 
             [[nodiscard]]
@@ -45,18 +45,22 @@ namespace DiKErnel::Integration
                 double verticalHeight) const override;
 
             [[nodiscard]]
-            std::unique_ptr<Core::ProfileSegment> GetProfileSegment(
+            const Core::ProfileSegment* GetProfileSegment(
                 double horizontalPosition) const override;
 
             [[nodiscard]]
             const std::vector<std::reference_wrapper<Core::ProfilePoint>>& GetProfilePoints() const override;
 
             [[nodiscard]]
+            const std::vector<std::reference_wrapper<Core::ProfileSegment>>& GetProfileSegments() const override;
+
+            [[nodiscard]]
             const std::vector<std::reference_wrapper<Core::CharacteristicPoint>>& GetCharacteristicPoints() const override;
 
         private:
-            std::vector<std::unique_ptr<Core::ProfilePoint>> _profilePoints;
             std::vector<std::reference_wrapper<Core::ProfilePoint>> _profilePointReferences;
+            std::vector<std::unique_ptr<Core::ProfileSegment>> _profileSegments;
+            std::vector<std::reference_wrapper<Core::ProfileSegment>> _profileSegmentReferences;
             std::vector<std::unique_ptr<Core::CharacteristicPoint>> _characteristicPoints;
             std::vector<std::reference_wrapper<Core::CharacteristicPoint>> _characteristicPointReferences;
     };

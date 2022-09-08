@@ -39,8 +39,9 @@ namespace DiKErnel::System::Test
         RevetmentCalculationInputBuilder builder;
         constexpr auto outerToe = CharacteristicPointType::OuterToe;
         constexpr auto outerCrest = CharacteristicPointType::OuterCrest;
-        builder.AddDikeProfilePoint(10, 5, &outerToe);
-        builder.AddDikeProfilePoint(20, 10, &outerCrest);
+        builder.AddDikeProfilePointData(10, 5, &outerToe);
+        builder.AddDikeProfilePointData(20, 10, &outerCrest);
+        builder.AddDikeProfileSegment(10, 5, 20, 10, nullptr);
 
         const auto calculationInput = builder.Build();
 
@@ -63,8 +64,9 @@ namespace DiKErnel::System::Test
         builder.AddTimeStep(100, 90, 10, -1, 30, 200);
         constexpr auto outerToe = CharacteristicPointType::OuterToe;
         constexpr auto outerCrest = CharacteristicPointType::OuterCrest;
-        builder.AddDikeProfilePoint(10, 5, &outerToe);
-        builder.AddDikeProfilePoint(20, 10, &outerCrest);
+        builder.AddDikeProfilePointData(10, 5, &outerToe);
+        builder.AddDikeProfilePointData(20, 10, &outerCrest);
+        builder.AddDikeProfileSegment(10, 5, 20, 10, nullptr);
 
         const auto calculationInput = builder.Build();
 
@@ -128,8 +130,9 @@ namespace DiKErnel::System::Test
         builder.AddTimeStep(0, 100, 10, 5, 10, 30);
         constexpr auto outerToe = CharacteristicPointType::OuterToe;
         constexpr auto outerCrest = CharacteristicPointType::OuterCrest;
-        builder.AddDikeProfilePoint(10, 5, &outerToe);
-        builder.AddDikeProfilePoint(20, 10, &outerCrest);
+        builder.AddDikeProfilePointData(10, 5, &outerToe);
+        builder.AddDikeProfilePointData(20, 10, &outerCrest);
+        builder.AddDikeProfileSegment(10, 5, 20, 10, nullptr);
         builder.AddAsphaltWaveImpactLocation(constructionProperties);
 
         const auto calculationInput = builder.Build();
@@ -180,8 +183,9 @@ namespace DiKErnel::System::Test
         builder.AddTimeStep(0, 100, 10, 5, 10, 30);
         constexpr auto outerToe = CharacteristicPointType::OuterToe;
         constexpr auto outerCrest = CharacteristicPointType::OuterCrest;
-        builder.AddDikeProfilePoint(10, 5, &outerToe);
-        builder.AddDikeProfilePoint(20, 10, &outerCrest);
+        builder.AddDikeProfilePointData(10, 5, &outerToe);
+        builder.AddDikeProfilePointData(20, 10, &outerCrest);
+        builder.AddDikeProfileSegment(10, 5, 20, 10, nullptr);
         builder.AddGrassWaveImpactLocation(constructionProperties);
 
         const auto calculationInput = builder.Build();
@@ -229,8 +233,9 @@ namespace DiKErnel::System::Test
         builder.AddTimeStep(0, 100, 10, 5, 10, 30);
         constexpr auto outerToe = CharacteristicPointType::OuterToe;
         constexpr auto outerCrest = CharacteristicPointType::OuterCrest;
-        builder.AddDikeProfilePoint(10, 5, &outerToe);
-        builder.AddDikeProfilePoint(20, 10, &outerCrest);
+        builder.AddDikeProfilePointData(10, 5, &outerToe);
+        builder.AddDikeProfilePointData(20, 10, &outerCrest);
+        builder.AddDikeProfileSegment(10, 5, 20, 10, nullptr);
         builder.AddGrassWaveRunupRayleighLocation(constructionProperties);
 
         const auto calculationInput = builder.Build();
@@ -271,8 +276,9 @@ namespace DiKErnel::System::Test
         builder.AddTimeStep(0, 100, 10, 5, 10, 30);
         constexpr auto outerToe = CharacteristicPointType::OuterToe;
         constexpr auto outerCrest = CharacteristicPointType::OuterCrest;
-        builder.AddDikeProfilePoint(10, 5, &outerToe);
-        builder.AddDikeProfilePoint(20, 10, &outerCrest);
+        builder.AddDikeProfilePointData(10, 5, &outerToe);
+        builder.AddDikeProfilePointData(20, 10, &outerCrest);
+        builder.AddDikeProfileSegment(10, 5, 20, 10, nullptr);
         builder.AddNaturalStoneLocation(constructionProperties);
 
         const auto calculationInput = builder.Build();
@@ -301,8 +307,9 @@ namespace DiKErnel::System::Test
         builder.AddTimeStep(0, 100, 10, 5, 10, 30);
         constexpr auto outerToe = CharacteristicPointType::OuterToe;
         constexpr auto outerCrest = CharacteristicPointType::OuterCrest;
-        builder.AddDikeProfilePoint(10, 5, &outerToe);
-        builder.AddDikeProfilePoint(20, 10, &outerCrest);
+        builder.AddDikeProfilePointData(10.0, 5.0, &outerToe);
+        builder.AddDikeProfilePointData(20.0, 10.0, &outerCrest);
+        builder.AddDikeProfileSegment(10.0, 5.0, 20.0, 10.0, nullptr);
 
         const AsphaltRevetmentWaveImpactLocationConstructionProperties asphaltRevetmentWaveImpactLocationConstructionProperties(
             12, AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete, 1, 0.5, 3, 2);

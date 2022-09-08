@@ -1,4 +1,4 @@
-// Copyright (C) Stichting Deltares 2022. All rights reserved.
+﻿// Copyright (C) Stichting Deltares 2022. All rights reserved.
 //
 // This file is part of DiKErnel.
 //
@@ -18,30 +18,15 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include "ProfileSegment.h"
+#include <gtest/gtest.h>
 
-namespace DiKErnel::Core
+#include "ProfileSegmentDefaults.h"
+
+namespace DiKErnel::DomainLibrary::Test
 {
-    ProfileSegment::ProfileSegment(
-        std::shared_ptr<ProfilePoint> lowerPoint,
-        std::shared_ptr<ProfilePoint> upperPoint,
-        const double roughnessCoefficient)
-        : _lowerPointReference(move(lowerPoint)),
-          _upperPointReference(move(upperPoint)),
-          _roughnessCoefficient(roughnessCoefficient) {}
-
-    ProfilePoint& ProfileSegment::GetLowerPoint() const
+    TEST(ProfileSegmentDefaultsTest, GetRoughnessCoefficient_ExpectedValue)
     {
-        return *_lowerPointReference;
-    }
-
-    ProfilePoint& ProfileSegment::GetUpperPoint() const
-    {
-        return *_upperPointReference;
-    }
-
-    double ProfileSegment::GetRoughnessCoefficient() const
-    {
-        return _roughnessCoefficient;
+        // Call & Assert
+        ASSERT_DOUBLE_EQ(1.0, ProfileSegmentDefaults::GetRoughnessCoefficient());
     }
 }

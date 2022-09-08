@@ -20,21 +20,20 @@
 
 #pragma once
 
-#include <gmock/gmock.h>
+#include <chrono>
+#include <random>
 
-#include "IProfileData.h"
-
-namespace DiKErnel::Core::TestUtil
+namespace DiKErnel::TestUtil
 {
-    class IProfileDataMock : public IProfileData
+    class RandomValueHelper
     {
         public:
-            MOCK_METHOD(bool, Validate, (), (const, override));
-            MOCK_METHOD(double, InterpolationVerticalHeight, (double), (const, override));
-            MOCK_METHOD(double, InterpolationHorizontalPosition, (double), (const, override));
-            MOCK_METHOD(const ProfileSegment*, GetProfileSegment, (double), (const, override));
-            MOCK_METHOD(std::vector<std::reference_wrapper<ProfilePoint>>&, GetProfilePoints, (), (const, override));
-            MOCK_METHOD(std::vector<std::reference_wrapper<ProfileSegment>>&, GetProfileSegments, (), (const, override));
-            MOCK_METHOD(std::vector<std::reference_wrapper<CharacteristicPoint>>&, GetCharacteristicPoints, (), (const, override));
+            static double GetRandomValue(
+                double lowerBoundary,
+                double upperBoundary);
+
+        private:
+            static inline std::default_random_engine _randomEngine = std::default_random_engine(
+                std::chrono::system_clock::now().time_since_epoch().count());
     };
 }

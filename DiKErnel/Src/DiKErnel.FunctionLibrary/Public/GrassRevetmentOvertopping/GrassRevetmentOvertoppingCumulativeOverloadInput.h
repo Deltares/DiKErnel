@@ -20,21 +20,25 @@
 
 #pragma once
 
-#include <gmock/gmock.h>
+#include "GrassRevetmentCumulativeOverloadInput.h"
 
-#include "IProfileData.h"
-
-namespace DiKErnel::Core::TestUtil
+namespace DiKErnel::FunctionLibrary
 {
-    class IProfileDataMock : public IProfileData
+    /*!
+     * \brief Input for a grass revetment overtopping cumulative overload calculation.
+     */
+    struct GrassRevetmentOvertoppingCumulativeOverloadInput : GrassRevetmentCumulativeOverloadInput
     {
-        public:
-            MOCK_METHOD(bool, Validate, (), (const, override));
-            MOCK_METHOD(double, InterpolationVerticalHeight, (double), (const, override));
-            MOCK_METHOD(double, InterpolationHorizontalPosition, (double), (const, override));
-            MOCK_METHOD(const ProfileSegment*, GetProfileSegment, (double), (const, override));
-            MOCK_METHOD(std::vector<std::reference_wrapper<ProfilePoint>>&, GetProfilePoints, (), (const, override));
-            MOCK_METHOD(std::vector<std::reference_wrapper<ProfileSegment>>&, GetProfileSegments, (), (const, override));
-            MOCK_METHOD(std::vector<std::reference_wrapper<CharacteristicPoint>>&, GetCharacteristicPoints, (), (const, override));
+        /*!
+         * \brief The AlphaA coefficient.
+         *        Unit = [-]
+         */
+        double _accelerationAlphaA{};
+
+        /*!
+         * \brief The Cwo coefficient.
+         *        Unit = [-]
+         */
+        double _frontVelocityCwo{};
     };
 }

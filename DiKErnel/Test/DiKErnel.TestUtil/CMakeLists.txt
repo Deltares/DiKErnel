@@ -7,6 +7,8 @@ set(SOURCEFILES
   AssertHelper.h
   FileAssert.cpp
   FileAssert.h
+  RandomValueHelper.cpp
+  RandomValueHelper.h
   TestDataPathHelper.cpp
   TestDataPathHelper.h
 )

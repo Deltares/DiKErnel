@@ -18,23 +18,25 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#pragma once
+#include <gtest/gtest.h>
 
-#include <gmock/gmock.h>
+#include "GrassRevetmentCumulativeOverloadInput.h"
 
-#include "IProfileData.h"
-
-namespace DiKErnel::Core::TestUtil
+namespace DiKErnel::FunctionLibrary::Test
 {
-    class IProfileDataMock : public IProfileData
+    TEST(GrassRevetmentCumulativeOverloadInputTest, GivenInput_WhenCreated_ThenExpectedValues)
     {
-        public:
-            MOCK_METHOD(bool, Validate, (), (const, override));
-            MOCK_METHOD(double, InterpolationVerticalHeight, (double), (const, override));
-            MOCK_METHOD(double, InterpolationHorizontalPosition, (double), (const, override));
-            MOCK_METHOD(const ProfileSegment*, GetProfileSegment, (double), (const, override));
-            MOCK_METHOD(std::vector<std::reference_wrapper<ProfilePoint>>&, GetProfilePoints, (), (const, override));
-            MOCK_METHOD(std::vector<std::reference_wrapper<ProfileSegment>>&, GetProfileSegments, (), (const, override));
-            MOCK_METHOD(std::vector<std::reference_wrapper<CharacteristicPoint>>&, GetCharacteristicPoints, (), (const, override));
-    };
+        // Given & When
+        constexpr GrassRevetmentCumulativeOverloadInput input{};
+
+        // Then
+        ASSERT_DOUBLE_EQ(0.0, input._averageNumberOfWaves);
+        ASSERT_DOUBLE_EQ(0.0, input._representativeWaveRunup2P);
+        ASSERT_EQ(0, input._fixedNumberOfWaves);
+        ASSERT_DOUBLE_EQ(0.0, input._verticalDistanceWaterLevelElevation);
+        ASSERT_DOUBLE_EQ(0.0, input._criticalFrontVelocity);
+        ASSERT_DOUBLE_EQ(0.0, input._increasedLoadTransitionAlphaM);
+        ASSERT_DOUBLE_EQ(0.0, input._reducedStrengthTransitionAlphaS);
+        ASSERT_DOUBLE_EQ(0.0, input._gravitationalAcceleration);
+    }
 }

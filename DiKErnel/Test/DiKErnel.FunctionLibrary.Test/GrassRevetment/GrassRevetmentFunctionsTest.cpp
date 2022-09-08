@@ -18,23 +18,22 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#pragma once
+#include <gtest/gtest.h>
 
-#include <gmock/gmock.h>
+#include "GrassRevetmentFunctions.h"
 
-#include "IProfileData.h"
-
-namespace DiKErnel::Core::TestUtil
+namespace DiKErnel::FunctionLibrary::Test
 {
-    class IProfileDataMock : public IProfileData
+    TEST(GrassRevetmentFunctionsTest, IncrementDamage_ValidInput_ExpectedValue)
     {
-        public:
-            MOCK_METHOD(bool, Validate, (), (const, override));
-            MOCK_METHOD(double, InterpolationVerticalHeight, (double), (const, override));
-            MOCK_METHOD(double, InterpolationHorizontalPosition, (double), (const, override));
-            MOCK_METHOD(const ProfileSegment*, GetProfileSegment, (double), (const, override));
-            MOCK_METHOD(std::vector<std::reference_wrapper<ProfilePoint>>&, GetProfilePoints, (), (const, override));
-            MOCK_METHOD(std::vector<std::reference_wrapper<ProfileSegment>>&, GetProfileSegments, (), (const, override));
-            MOCK_METHOD(std::vector<std::reference_wrapper<CharacteristicPoint>>&, GetCharacteristicPoints, (), (const, override));
-    };
+        // Setup
+        constexpr auto cumulativeOverload = 1063.89;
+        constexpr auto criticalCumulativeOverload = 7000.0;
+
+        // Call
+        const auto incrementDamage = GrassRevetmentFunctions::IncrementDamage(cumulativeOverload, criticalCumulativeOverload);
+
+        // Assert
+        ASSERT_DOUBLE_EQ(0.15198428571428574, incrementDamage);
+    }
 }

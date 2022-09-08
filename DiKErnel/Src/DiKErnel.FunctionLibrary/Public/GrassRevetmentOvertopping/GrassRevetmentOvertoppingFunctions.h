@@ -20,14 +20,15 @@
 
 #pragma once
 
-#include "GrassRevetmentWaveRunupRepresentative2PInput.h"
+#include "GrassRevetmentOvertoppingCumulativeOverloadInput.h"
+#include "GrassRevetmentOvertoppingRepresentative2PInput.h"
 
 namespace DiKErnel::FunctionLibrary
 {
     /*!
-     * \brief Class that holds all grass revetment wave run-up specific calculation routines.
+     * \brief Class that holds all grass revetment overtopping specific calculation routines.
      */
-    class GrassRevetmentWaveRunupFunctions
+    class GrassRevetmentOvertoppingFunctions
     {
         public:
             /*!
@@ -39,26 +40,26 @@ namespace DiKErnel::FunctionLibrary
              */
             [[nodiscard]]
             static double RepresentativeWaveRunup2P(
-                const GrassRevetmentWaveRunupRepresentative2PInput& input);
+                const GrassRevetmentOvertoppingRepresentative2PInput& input);
 
             /*!
-             * \brief Calculates the wave impact with respect to the wave angle.
-             * \param waveAngle
-             *        The wave angle.
-             *        Unit = [deg]
-             * \param waveAngleImpactAbeta
-             *        The Abeta coefficient.
-             *        Unit = [-]
-             * \param waveAngleImpactBetamax
-             *        The Betamax coefficient.
-             *        Unit = [-]
-             * \return The wave impact with respect to the wave angle.
-             *         Unit = [-]
+             * \brief Calculates the cumulative overload.
+             * \param input
+             *        The input to use for the calculation.
+             * \return The cumulative overload.
+             *         Unit = [m^2/s^2]
              */
             [[nodiscard]]
-            static double WaveAngleImpact(
-                double waveAngle,
-                double waveAngleImpactAbeta,
-                double waveAngleImpactBetamax);
+            static double CumulativeOverload(
+                const GrassRevetmentOvertoppingCumulativeOverloadInput& input);
+
+        private:
+            [[nodiscard]]
+            static double FrontVelocity(
+                double waveRunup,
+                double verticalDistanceWaterLevelElevation,
+                double accelerationAlphaA,
+                double frontVelocityCwo,
+                double gravitationalAcceleration);
     };
 }

@@ -19,11 +19,64 @@
 // All rights reserved.
 
 #include <gtest/gtest.h>
+#include <random>
 
 #include "HydraulicLoadFunctions.h"
+#include "RandomValueHelper.h"
 
 namespace DiKErnel::FunctionLibrary::Test
 {
+    using namespace std;
+    using namespace TestUtil;
+
+    TEST(HydraulicLoadFunctionsTest, WaveDirection_InputEqualTo0Degrees_ExpectedValue)
+    {
+        // Setup
+        constexpr auto waveAngle = 0.0;
+
+        // Call
+        const auto waveDirection = HydraulicLoadFunctions::WaveDirection(waveAngle);
+
+        // Assert
+        ASSERT_DOUBLE_EQ(0.0, waveDirection);
+    }
+
+    TEST(HydraulicLoadFunctionsTest, WaveDirection_InputLargerThan0Degrees_ExpectedValue)
+    {
+        // Setup
+        const double waveAngle = RandomValueHelper::GetRandomValue(0.0 + numeric_limits<double>::epsilon(), 540);
+
+        // Call
+        const auto waveDirection = HydraulicLoadFunctions::WaveDirection(waveAngle);
+
+        // Assert
+        ASSERT_DOUBLE_EQ(waveAngle, waveDirection);
+    }
+
+    TEST(HydraulicLoadFunctionsTest, WaveDirection_InputBetweenMinus180And0Degrees_ExpectedValue)
+    {
+        // Setup
+        const double waveAngle = RandomValueHelper::GetRandomValue(-180 + numeric_limits<double>::epsilon(), -numeric_limits<double>::epsilon());
+
+        // Call
+        const auto waveDirection = HydraulicLoadFunctions::WaveDirection(waveAngle);
+
+        // Assert
+        ASSERT_DOUBLE_EQ(360 + waveAngle, waveDirection);
+    }
+
+    TEST(HydraulicLoadFunctionsTest, WaveDirection_InputEqualToMinus180Degrees_ExpectedValue)
+    {
+        // Setup
+        constexpr auto waveAngle = -180;
+
+        // Call
+        const auto waveDirection = HydraulicLoadFunctions::WaveDirection(waveAngle);
+
+        // Assert
+        ASSERT_DOUBLE_EQ(180, waveDirection);
+    }
+
     TEST(HydraulicLoadFunctionsTest, SlopeAngle_ValidInput_ExpectedValue)
     {
         // Setup

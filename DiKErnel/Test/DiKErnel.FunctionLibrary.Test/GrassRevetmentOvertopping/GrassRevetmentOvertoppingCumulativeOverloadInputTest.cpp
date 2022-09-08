@@ -20,14 +20,14 @@
 
 #include <gtest/gtest.h>
 
-#include "GrassRevetmentWaveRunupRayleighCumulativeOverloadInput.h"
+#include "GrassRevetmentOvertoppingCumulativeOverloadInput.h"
 
 namespace DiKErnel::FunctionLibrary::Test
 {
-    TEST(GrassRevetmentWaveRunupRayleighCumulativeOverloadInputTest, GivenInput_WhenCreated_ThenExpectedValues)
+    TEST(GrassRevetmentOvertoppingCumulativeOverloadInputTest, GivenInput_WhenCreated_ThenExpectedValues)
     {
         // Given & When
-        constexpr GrassRevetmentWaveRunupRayleighCumulativeOverloadInput input{};
+        constexpr GrassRevetmentOvertoppingCumulativeOverloadInput input{};
 
         // Then
         ASSERT_DOUBLE_EQ(0.0, input._averageNumberOfWaves);
@@ -38,6 +38,7 @@ namespace DiKErnel::FunctionLibrary::Test
         ASSERT_DOUBLE_EQ(0.0, input._increasedLoadTransitionAlphaM);
         ASSERT_DOUBLE_EQ(0.0, input._reducedStrengthTransitionAlphaS);
         ASSERT_DOUBLE_EQ(0.0, input._gravitationalAcceleration);
-        ASSERT_DOUBLE_EQ(0.0, input._frontVelocityCu);
+        ASSERT_DOUBLE_EQ(0.0, input._accelerationAlphaA);
+        ASSERT_DOUBLE_EQ(0.0, input._frontVelocityCwo);
     }
 }

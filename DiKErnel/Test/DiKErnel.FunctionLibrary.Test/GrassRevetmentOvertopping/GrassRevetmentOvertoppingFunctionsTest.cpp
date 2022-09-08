@@ -20,24 +20,32 @@
 
 #include <gtest/gtest.h>
 
-#include "GrassRevetmentWaveRunupRayleighCumulativeOverloadInput.h"
+#include "GrassRevetmentOvertoppingFunctions.h"
 
 namespace DiKErnel::FunctionLibrary::Test
 {
-    TEST(GrassRevetmentWaveRunupRayleighCumulativeOverloadInputTest, GivenInput_WhenCreated_ThenExpectedValues)
+    TEST(GrassRevetmentOvertoppingFunctionsTest, CumulativeOverload_ValidInput_ExpectedValue)
     {
-        // Given & When
-        constexpr GrassRevetmentWaveRunupRayleighCumulativeOverloadInput input{};
+        // Setup
+        GrassRevetmentOvertoppingCumulativeOverloadInput input
+        {
+            ._accelerationAlphaA = 1.4,
+            ._frontVelocityCwo = 1.45
+        };
 
-        // Then
-        ASSERT_DOUBLE_EQ(0.0, input._averageNumberOfWaves);
-        ASSERT_DOUBLE_EQ(0.0, input._representativeWaveRunup2P);
-        ASSERT_EQ(0, input._fixedNumberOfWaves);
-        ASSERT_DOUBLE_EQ(0.0, input._verticalDistanceWaterLevelElevation);
-        ASSERT_DOUBLE_EQ(0.0, input._criticalFrontVelocity);
-        ASSERT_DOUBLE_EQ(0.0, input._increasedLoadTransitionAlphaM);
-        ASSERT_DOUBLE_EQ(0.0, input._reducedStrengthTransitionAlphaS);
-        ASSERT_DOUBLE_EQ(0.0, input._gravitationalAcceleration);
-        ASSERT_DOUBLE_EQ(0.0, input._frontVelocityCu);
+        input._averageNumberOfWaves = 832.56;
+        input._representativeWaveRunup2P = 2.602;
+        input._fixedNumberOfWaves = 10000;
+        input._verticalDistanceWaterLevelElevation = 2.2;
+        input._criticalFrontVelocity = 6.6;
+        input._increasedLoadTransitionAlphaM = 1.0;
+        input._reducedStrengthTransitionAlphaS = 1.0;
+        input._gravitationalAcceleration = 9.81;
+
+        // Call
+        const auto cumulativeOverload = GrassRevetmentOvertoppingFunctions::CumulativeOverload(input);
+
+        // Assert
+        ASSERT_DOUBLE_EQ(14.883904828110145, cumulativeOverload);
     }
 }

@@ -43,10 +43,31 @@ namespace DiKErnel::Integration
              * \param characteristicPointType
              *        The characteristic point type.
              */
-            void AddDikeProfilePoint(
+            void AddDikeProfilePointData(
                 double x,
                 double z,
                 const Core::CharacteristicPointType* characteristicPointType);
+
+            /*!
+             * \brief Adds a new dike segment.
+             * \param lowerPointX
+             *        The x coordinate for the lower profile point.
+             * \param lowerPointZ
+             *        The z coordinate for the lower profile point.
+             * \param upperPointX
+             *        The x coordinate for the upper profile point.
+             * \param upperPointZ
+             *        The z coordinate for the upper profile point.
+             * \param roughnessCoefficient
+             *        The roughness coefficient.
+             *        Unit = [-]
+             */
+            void AddDikeProfileSegment(
+                double lowerPointX,
+                double lowerPointZ,
+                double upperPointX,
+                double upperPointZ,
+                const double* roughnessCoefficient);
 
             /*!
              * \brief Adds a time step.
@@ -118,9 +139,36 @@ namespace DiKErnel::Integration
             std::unique_ptr<Core::ICalculationInput> Build();
 
         private:
+            class ProfileSegmentData
+            {
+                public:
+                    double _lowerPointX;
+                    double _lowerPointZ;
+                    double _upperPointX;
+                    double _upperPointZ;
+                    double _roughnessCoefficient;
+            };
+
+            class ProfilePointData
+            {
+                public:
+                    double _x;
+                    double _z;
+                    Core::CharacteristicPointType _characteristicPointType;
+            };
+
+            [[nodiscard]]
+            std::vector<std::unique_ptr<Core::ProfileSegment>> CreateProfileSegments() const;
+
+            [[nodiscard]]
+            std::vector<std::unique_ptr<Core::CharacteristicPoint>> CreateCharacteristicPoints(
+                const std::vector<std::unique_ptr<Core::ProfileSegment>>& segments) const;
+
             std::vector<std::unique_ptr<Core::ProfilePoint>> _profilePoints = std::vector<std::unique_ptr<Core::ProfilePoint>>();
-            std::vector<std::unique_ptr<Core::CharacteristicPoint>> _characteristicPoints
-                    = std::vector<std::unique_ptr<Core::CharacteristicPoint>>();
+            std::vector<std::unique_ptr<ProfileSegmentData>> _profileSegmentData
+                    = std::vector<std::unique_ptr<ProfileSegmentData>>();
+            std::vector<std::unique_ptr<ProfilePointData>> _profilePointData
+                    = std::vector<std::unique_ptr<ProfilePointData>>();
             std::vector<std::unique_ptr<Core::ITimeDependentInput>> _timeDependentInputItems
                     = std::vector<std::unique_ptr<Core::ITimeDependentInput>>();
             std::vector<std::unique_ptr<Core::ILocationDependentInput>> _locationDependentInputItems

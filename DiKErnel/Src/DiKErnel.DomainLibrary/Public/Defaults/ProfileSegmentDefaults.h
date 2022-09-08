@@ -1,4 +1,4 @@
-// Copyright (C) Stichting Deltares 2022. All rights reserved.
+﻿// Copyright (C) Stichting Deltares 2022. All rights reserved.
 //
 // This file is part of DiKErnel.
 //
@@ -18,30 +18,22 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include "ProfileSegment.h"
+#pragma once
 
-namespace DiKErnel::Core
+namespace DiKErnel::DomainLibrary
 {
-    ProfileSegment::ProfileSegment(
-        std::shared_ptr<ProfilePoint> lowerPoint,
-        std::shared_ptr<ProfilePoint> upperPoint,
-        const double roughnessCoefficient)
-        : _lowerPointReference(move(lowerPoint)),
-          _upperPointReference(move(upperPoint)),
-          _roughnessCoefficient(roughnessCoefficient) {}
-
-    ProfilePoint& ProfileSegment::GetLowerPoint() const
+    /*!
+     * \brief Class that contains default values that apply to all profile segments.
+     */
+    class ProfileSegmentDefaults
     {
-        return *_lowerPointReference;
-    }
-
-    ProfilePoint& ProfileSegment::GetUpperPoint() const
-    {
-        return *_upperPointReference;
-    }
-
-    double ProfileSegment::GetRoughnessCoefficient() const
-    {
-        return _roughnessCoefficient;
-    }
+        public:
+            /*!
+             * \brief Gets the default value of the roughness coefficient.
+             * \return The default value of the roughness coefficient.
+             *         Unit = [-]
+             */
+            [[nodiscard]]
+            static double GetRoughnessCoefficient();
+    };
 }

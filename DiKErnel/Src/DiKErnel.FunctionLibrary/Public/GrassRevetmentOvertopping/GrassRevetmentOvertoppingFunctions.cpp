@@ -18,7 +18,7 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include "GrassRevetmentWaveRunupRayleighFunctions.h"
+#include "GrassRevetmentOvertoppingFunctions.h"
 
 #include <algorithm>
 #include <cmath>
@@ -29,25 +29,32 @@ namespace DiKErnel::FunctionLibrary
 {
     using namespace std;
 
-    double GrassRevetmentWaveRunupRayleighFunctions::CumulativeOverload(
-        const GrassRevetmentWaveRunupRayleighCumulativeOverloadInput& input)
+    double GrassRevetmentOvertoppingFunctions::RepresentativeWaveRunup2P(
+        const GrassRevetmentOvertoppingRepresentative2PInput& input)
+    {
+        return 0.0;
+    }
+
+    double GrassRevetmentOvertoppingFunctions::CumulativeOverload(
+        const GrassRevetmentOvertoppingCumulativeOverloadInput& input)
     {
         const function getFrontVelocity = [&input](
             const double waveRunup)
         {
-            return FrontVelocity(waveRunup, input._verticalDistanceWaterLevelElevation, input._frontVelocityCu, input._gravitationalAcceleration);
+            return FrontVelocity(waveRunup, input._verticalDistanceWaterLevelElevation, input._accelerationAlphaA, input._frontVelocityCwo,
+                                 input._gravitationalAcceleration);
         };
 
         return GrassRevetmentFunctions::CumulativeOverload(input, getFrontVelocity);
     }
 
-    double GrassRevetmentWaveRunupRayleighFunctions::FrontVelocity(
+    double GrassRevetmentOvertoppingFunctions::FrontVelocity(
         const double waveRunup,
         const double verticalDistanceWaterLevelElevation,
-        const double frontVelocityCu,
+        const double accelerationAlphaA,
+        const double frontVelocityCwo,
         const double gravitationalAcceleration)
     {
-        return frontVelocityCu * sqrt(gravitationalAcceleration * waveRunup)
-                * max(0.0, min(1.0, (waveRunup - verticalDistanceWaterLevelElevation) / (0.25 * waveRunup)));
+        return frontVelocityCwo * accelerationAlphaA * sqrt(gravitationalAcceleration * max(0.0, waveRunup - verticalDistanceWaterLevelElevation));
     }
 }

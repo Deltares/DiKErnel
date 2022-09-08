@@ -77,7 +77,7 @@ namespace DiKErnel::Core
              *         on a profile segment.
              */
             [[nodiscard]]
-            virtual std::unique_ptr<ProfileSegment> GetProfileSegment(
+            virtual const ProfileSegment* GetProfileSegment(
                 double horizontalPosition) const = 0;
 
             /*!
@@ -86,6 +86,13 @@ namespace DiKErnel::Core
              */
             [[nodiscard]]
             virtual const std::vector<std::reference_wrapper<ProfilePoint>>& GetProfilePoints() const = 0;
+
+            /*!
+             * \brief Gets the profile segments to use in the calculation.
+             * \return The profile segments to use in the calculation.
+             */
+            [[nodiscard]]
+            virtual const std::vector<std::reference_wrapper<ProfileSegment>>& GetProfileSegments() const = 0;
 
             /*!
              * \brief Gets the characteristic points to use in the calculation.

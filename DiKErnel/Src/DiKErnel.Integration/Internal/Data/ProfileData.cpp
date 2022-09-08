@@ -35,14 +35,20 @@ namespace DiKErnel::Integration
     using namespace Util;
 
     ProfileData::ProfileData(
-        vector<unique_ptr<ProfilePoint>> profilePoints,
+        vector<unique_ptr<ProfileSegment>> profileSegments,
         vector<unique_ptr<CharacteristicPoint>> characteristicPoints)
-        : _profilePoints(move(profilePoints)),
+        : _profileSegments(move(profileSegments)),
           _characteristicPoints(move(characteristicPoints))
     {
-        for (const auto& profilePoint : _profilePoints)
+        if (!_profileSegments.empty())
         {
-            _profilePointReferences.emplace_back(*profilePoint);
+            _profilePointReferences.emplace_back(_profileSegments.front()->GetLowerPoint());
+
+            for (const auto& profileSegment : _profileSegments)
+            {
+                _profileSegmentReferences.emplace_back(*profileSegment);
+                _profilePointReferences.emplace_back(profileSegment->GetUpperPoint());
+            }
         }
 
         for (const auto& characteristicPoint : _characteristicPoints)
@@ -67,11 +73,11 @@ namespace DiKErnel::Integration
     double ProfileData::InterpolationVerticalHeight(
         const double horizontalPosition) const
     {
-        for (auto i = 0; i < static_cast<int>(_profilePoints.size()); ++i)
+        for (auto i = 0; i < static_cast<int>(_profilePointReferences.size()); ++i)
         {
-            const auto& profilePoint = _profilePoints.at(i);
-            const auto xCurrentDikeProfilePoint = profilePoint->GetX();
-            const auto zCurrentDikeProfilePoint = profilePoint->GetZ();
+            const auto& profilePoint = _profilePointReferences.at(i);
+            const auto xCurrentDikeProfilePoint = profilePoint.get().GetX();
+            const auto zCurrentDikeProfilePoint = profilePoint.get().GetZ();
 
             if (abs(xCurrentDikeProfilePoint - horizontalPosition) <= numeric_limits<double>::epsilon())
             {
@@ -85,9 +91,9 @@ namespace DiKErnel::Integration
                     return numeric_limits<double>::infinity();
                 }
 
-                const auto& previousProfilePoint = _profilePoints.at(i - 1);
-                const auto xPreviousDikeProfilePoint = previousProfilePoint->GetX();
-                const auto zPreviousDikeProfilePoint = previousProfilePoint->GetZ();
+                const auto& previousProfilePoint = _profilePointReferences.at(i - 1);
+                const auto xPreviousDikeProfilePoint = previousProfilePoint.get().GetX();
+                const auto zPreviousDikeProfilePoint = previousProfilePoint.get().GetZ();
 
                 return zPreviousDikeProfilePoint + (zCurrentDikeProfilePoint - zPreviousDikeProfilePoint)
                         / (xCurrentDikeProfilePoint - xPreviousDikeProfilePoint)
@@ -101,11 +107,11 @@ namespace DiKErnel::Integration
     double ProfileData::InterpolationHorizontalPosition(
         const double verticalHeight) const
     {
-        for (auto i = 0; i < static_cast<int>(_profilePoints.size()); ++i)
+        for (auto i = 0; i < static_cast<int>(_profilePointReferences.size()); ++i)
         {
-            const auto& profilePoint = _profilePoints.at(i);
-            const auto xCurrentDikeProfilePoint = profilePoint->GetX();
-            const auto zCurrentDikeProfilePoint = profilePoint->GetZ();
+            const auto& profilePoint = _profilePointReferences.at(i);
+            const auto xCurrentDikeProfilePoint = profilePoint.get().GetX();
+            const auto zCurrentDikeProfilePoint = profilePoint.get().GetZ();
 
             if (abs(zCurrentDikeProfilePoint - verticalHeight) <= numeric_limits<double>::epsilon())
             {
@@ -119,9 +125,9 @@ namespace DiKErnel::Integration
                     return numeric_limits<double>::infinity();
                 }
 
-                const auto& previousProfilePoint = _profilePoints.at(i - 1);
-                const auto xPreviousDikeProfilePoint = previousProfilePoint->GetX();
-                const auto zPreviousDikeProfilePoint = previousProfilePoint->GetZ();
+                const auto& previousProfilePoint = _profilePointReferences.at(i - 1);
+                const auto xPreviousDikeProfilePoint = previousProfilePoint.get().GetX();
+                const auto zPreviousDikeProfilePoint = previousProfilePoint.get().GetZ();
 
                 return xPreviousDikeProfilePoint + (xCurrentDikeProfilePoint - xPreviousDikeProfilePoint)
                         / (zCurrentDikeProfilePoint - zPreviousDikeProfilePoint)
@@ -132,19 +138,20 @@ namespace DiKErnel::Integration
         return numeric_limits<double>::infinity();
     }
 
-    unique_ptr<ProfileSegment> ProfileData::GetProfileSegment(
+    const ProfileSegment* ProfileData::GetProfileSegment(
         const double horizontalPosition) const
     {
-        for (auto i = 0; i < static_cast<int>(_profilePoints.size()); ++i)
+        for (auto i = 0; i < static_cast<int>(_profileSegments.size()); ++i)
         {
-            if (const auto& profilePoint = _profilePoints.at(i); profilePoint->GetX() >= horizontalPosition)
+            auto& profileSegment = _profileSegments.at(i);
+            if (i == 0 && abs(profileSegment->GetLowerPoint().GetX() - horizontalPosition) <= numeric_limits<double>::epsilon())
             {
-                if (i == 0)
-                {
-                    return nullptr;
-                }
+                return nullptr;
+            }
 
-                return make_unique<ProfileSegment>(*_profilePoints.at(i - 1), *profilePoint);
+            if (profileSegment->GetLowerPoint().GetX() <= horizontalPosition && profileSegment->GetUpperPoint().GetX() >= horizontalPosition)
+            {
+                return profileSegment.get();
             }
         }
 
@@ -154,6 +161,11 @@ namespace DiKErnel::Integration
     const vector<reference_wrapper<ProfilePoint>>& ProfileData::GetProfilePoints() const
     {
         return _profilePointReferences;
+    }
+
+    const vector<reference_wrapper<ProfileSegment>>& ProfileData::GetProfileSegments() const
+    {
+        return _profileSegmentReferences;
     }
 
     const vector<reference_wrapper<CharacteristicPoint>>& ProfileData::GetCharacteristicPoints() const

@@ -18,23 +18,18 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#pragma once
+#include "RandomValueHelper.h"
 
-#include <gmock/gmock.h>
-
-#include "IProfileData.h"
-
-namespace DiKErnel::Core::TestUtil
+namespace DiKErnel::TestUtil
 {
-    class IProfileDataMock : public IProfileData
+    using namespace std;
+
+    double RandomValueHelper::GetRandomValue(
+        const double lowerBoundary,
+        const double upperBoundary)
     {
-        public:
-            MOCK_METHOD(bool, Validate, (), (const, override));
-            MOCK_METHOD(double, InterpolationVerticalHeight, (double), (const, override));
-            MOCK_METHOD(double, InterpolationHorizontalPosition, (double), (const, override));
-            MOCK_METHOD(const ProfileSegment*, GetProfileSegment, (double), (const, override));
-            MOCK_METHOD(std::vector<std::reference_wrapper<ProfilePoint>>&, GetProfilePoints, (), (const, override));
-            MOCK_METHOD(std::vector<std::reference_wrapper<ProfileSegment>>&, GetProfileSegments, (), (const, override));
-            MOCK_METHOD(std::vector<std::reference_wrapper<CharacteristicPoint>>&, GetCharacteristicPoints, (), (const, override));
-    };
+        const uniform_real_distribution uniformRealDistribution(lowerBoundary, upperBoundary);
+
+        return uniformRealDistribution(_randomEngine);
+    }
 }

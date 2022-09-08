@@ -20,6 +20,8 @@
 
 #pragma once
 
+#include <memory>
+
 #include "ProfilePoint.h"
 
 namespace DiKErnel::Core
@@ -36,27 +38,40 @@ namespace DiKErnel::Core
              *        The lower profile point.
              * \param upperPoint
              *        The upper profile point.
+             * \param roughnessCoefficient
+             *        The roughness coefficient.
+             *        Unit = [-]
              */
             explicit ProfileSegment(
-                const ProfilePoint& lowerPoint,
-                const ProfilePoint& upperPoint);
+                std::shared_ptr<ProfilePoint> lowerPoint,
+                std::shared_ptr<ProfilePoint> upperPoint,
+                double roughnessCoefficient);
 
             /*!
              * \brief Gets the lower point of the segment.
              * \return The lower point of the segment.
              */
             [[nodiscard]]
-            const ProfilePoint& GetLowerPoint() const;
+            ProfilePoint& GetLowerPoint() const;
 
             /*!
              * \brief Gets the upper point of the segment.
              * \return The upper point of the segment.
              */
             [[nodiscard]]
-            const ProfilePoint& GetUpperPoint() const;
+            ProfilePoint& GetUpperPoint() const;
+
+            /*!
+             * \brief Gets the roughness coefficient of the segment.
+             * \return The roughness coefficient of the segment.
+             *         Unit = [-]
+             */
+            [[nodiscard]]
+            double GetRoughnessCoefficient() const;
 
         private:
-            const ProfilePoint& _lowerPoint;
-            const ProfilePoint& _upperPoint;
+            std::shared_ptr<ProfilePoint> _lowerPointReference;
+            std::shared_ptr<ProfilePoint> _upperPointReference;
+            double _roughnessCoefficient;
     };
 }

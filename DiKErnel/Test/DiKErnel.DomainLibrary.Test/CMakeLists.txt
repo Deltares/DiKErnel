@@ -20,6 +20,7 @@ set(SOURCEFILES_ROOT
 )
 
 set(SOURCEFILES_DEFAULTS
+  ${DEFAULTS_FOLDER}/ProfileSegmentDefaultsTest.cpp
   ${DEFAULTS_FOLDER}/RevetmentDefaultsTest.cpp
 )
 
