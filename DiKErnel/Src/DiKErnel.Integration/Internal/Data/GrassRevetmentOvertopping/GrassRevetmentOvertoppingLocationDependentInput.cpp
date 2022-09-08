@@ -144,7 +144,7 @@ namespace DiKErnel::Integration
             const auto averageNumberOfWaves = RevetmentFunctions::AverageNumberOfWaves(incrementTime, timeDependentInput.GetWavePeriodTm10(),
                                                                                        GetAverageNumberOfWavesCtm());
 
-            constexpr double waveDirection = 0.0;
+            const double waveDirection = HydraulicLoadFunctions::WaveDirection(timeDependentInput.GetWaveAngle());
             vector<double> xValuesProfile;
             vector<double> zValuesProfile;
             vector<double> roughnessCoefficients;
