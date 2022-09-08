@@ -35,6 +35,7 @@
 #include "NaturalStoneRevetmentLocationDependentInput.h"
 #include "NaturalStoneRevetmentLocationDependentInputAssertHelper.h"
 #include "ProfileDataAssertHelper.h"
+#include "ProfileSegmentDefaults.h"
 #include "RevetmentCalculationInputBuilder.h"
 #include "TimeDependentInputAssertHelper.h"
 
@@ -102,7 +103,83 @@ namespace DiKErnel::Integration::Test
         ASSERT_EQ(0, calculationInput->GetLocationDependentInputItems().size());
     }
 
+    #pragma region Profile segments
+
+    TEST_F(RevetmentCalculationInputBuilderTest,
+           GivenBuilderWithDikeSegmentAddedWithoutRoughness_WhenBuild_ThenReturnsCalculationInput)
+    {
+        // Given
+        constexpr auto lowerPointX = 10;
+        constexpr auto lowerPointZ = 20;
+        constexpr auto upperPointX = 20;
+        constexpr auto upperPointZ = 30;
+
+        RevetmentCalculationInputBuilder builder;
+        builder.AddDikeProfileSegment(lowerPointX, lowerPointZ, upperPointX, upperPointZ, nullptr);
+
+        // When
+        const auto& calculationInput = builder.Build();
+
+        // Then
+        const auto& actualProfileData = calculationInput->GetProfileData();
+        const auto& actualProfileSegments = actualProfileData.GetProfileSegments();
+        ASSERT_EQ(1, actualProfileSegments.size());
+
+        const auto& actualSegment = actualProfileSegments.at(0);
+        ProfileDataAssertHelper::AssertProfileSegment(lowerPointX, lowerPointZ,
+                                                      upperPointX, upperPointZ,
+                                                      DomainLibrary::ProfileSegmentDefaults::GetRoughnessCoefficient(), actualSegment);
+    }
+
+    TEST_F(RevetmentCalculationInputBuilderTest,
+           GivenBuilderWithDikeSegmentAddedWithRoughness_WhenBuild_ThenReturnsCalculationInput)
+    {
+        // Given
+        constexpr auto lowerPointX = 10;
+        constexpr auto lowerPointZ = 20;
+        constexpr auto upperPointX = 20;
+        constexpr auto upperPointZ = 30;
+        constexpr auto roughnessCoefficient = 13.37;
+
+        RevetmentCalculationInputBuilder builder;
+        builder.AddDikeProfileSegment(lowerPointX, lowerPointZ, upperPointX, upperPointZ, &roughnessCoefficient);
+
+        // When
+        const auto& calculationInput = builder.Build();
+
+        // Then
+        const auto& actualProfileData = calculationInput->GetProfileData();
+        const auto& actualProfileSegments = actualProfileData.GetProfileSegments();
+        ASSERT_EQ(1, actualProfileSegments.size());
+
+        const auto& actualSegment = actualProfileSegments.at(0);
+        ProfileDataAssertHelper::AssertProfileSegment(lowerPointX, lowerPointZ,
+                                                      upperPointX, upperPointZ,
+                                                      roughnessCoefficient, actualSegment);
+    }
+
+    #pragma endregion
+
     #pragma region Profile point
+
+    TEST_F(RevetmentCalculationInputBuilderTest,
+           GivenBuilderWithDikeProfilePointDataWithoutCharacteristicPointType_WhenBuild_ThenReturnsCalculationInput)
+    {
+        // Given
+        constexpr auto x = 10;
+        constexpr auto z = 20;
+
+        RevetmentCalculationInputBuilder builder;
+        builder.AddDikeProfilePointData(x, z, nullptr);
+
+        // When
+        const auto& calculationInput = builder.Build();
+
+        // Then
+        const auto& actualProfileData = calculationInput->GetProfileData();
+        const auto& actualCharacteristicPoints = actualProfileData.GetCharacteristicPoints();
+        ASSERT_EQ(0, actualCharacteristicPoints.size());
+    }
 
     TEST_F(RevetmentCalculationInputBuilderTest,
            GivenBuilderWithDikeProfilePointWithCharacteristicPointTypeAdded_WhenBuild_ThenReturnsCalculationInput)
@@ -114,19 +191,21 @@ namespace DiKErnel::Integration::Test
 
         RevetmentCalculationInputBuilder builder;
         builder.AddDikeProfilePointData(x, z, &characteristicPointType);
+        builder.AddDikeProfileSegment(0, 10, x, z, nullptr);
 
         // When
         const auto& calculationInput = builder.Build();
 
         // Then
         const auto& actualProfileData = calculationInput->GetProfileData();
-        const auto& actualProfilePoints = actualProfileData.GetProfilePoints();
+        const auto& actualProfileSegments = actualProfileData.GetProfileSegments();
         const auto& actualCharacteristicPoints = actualProfileData.GetCharacteristicPoints();
-        ASSERT_EQ(1, actualProfilePoints.size());
+        ASSERT_EQ(1, actualProfileSegments.size());
         ASSERT_EQ(1, actualCharacteristicPoints.size());
 
-        ProfileDataAssertHelper::AssertProfilePoint(x, z, actualProfilePoints.at(0));
-        ProfileDataAssertHelper::AssertCharacteristicPoint(actualProfilePoints.at(0), characteristicPointType, actualCharacteristicPoints.at(0));
+        const auto& actualSegment = actualProfileSegments.at(0);
+        ProfileDataAssertHelper::AssertCharacteristicPoint(actualSegment.get().GetUpperPoint(), characteristicPointType,
+                                                           actualCharacteristicPoints.at(0));
     }
 
     #pragma endregion

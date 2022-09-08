@@ -23,6 +23,7 @@
 #include "CharacteristicPoint.h"
 #include "CharacteristicPointType.h"
 #include "ProfilePoint.h"
+#include "ProfileSegment.h"
 
 namespace DiKErnel::Integration::TestUtil
 {
@@ -33,6 +34,14 @@ namespace DiKErnel::Integration::TestUtil
                 double expectedX,
                 double expectedZ,
                 const Core::ProfilePoint& actualProfilePoint);
+
+            static void AssertProfileSegment(
+                double expectedLowerPointX,
+                double expectedLowerPointZ,
+                double expectedUpperPointX,
+                double expectedUpperPointZ,
+                double expectedRoughnessCoefficient,
+                const Core::ProfileSegment& actualProfileSegment);
 
             static void AssertCharacteristicPoint(
                 const Core::ProfilePoint& expectedProfilePoint,
