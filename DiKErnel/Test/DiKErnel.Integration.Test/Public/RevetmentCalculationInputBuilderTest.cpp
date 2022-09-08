@@ -98,6 +98,7 @@ namespace DiKErnel::Integration::Test
         // Then
         const auto& profileData = calculationInput->GetProfileData();
         ASSERT_EQ(0, profileData.GetProfilePoints().size());
+        ASSERT_EQ(0, profileData.GetProfileSegments().size());
         ASSERT_EQ(0, profileData.GetCharacteristicPoints().size());
         ASSERT_EQ(0, calculationInput->GetTimeDependentInputItems().size());
         ASSERT_EQ(0, calculationInput->GetLocationDependentInputItems().size());
