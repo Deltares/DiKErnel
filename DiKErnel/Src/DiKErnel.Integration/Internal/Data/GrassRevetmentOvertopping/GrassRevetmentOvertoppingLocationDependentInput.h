@@ -109,6 +109,9 @@ namespace DiKErnel::Integration
             double _representativeWaveRunup2P = std::numeric_limits<double>::infinity();
             double _cumulativeOverload = std::numeric_limits<double>::infinity();
 
+            void InitializeCalculationProfile(
+                const Core::IProfileData& profileData);
+
             [[nodiscard]]
             double CalculateRepresentativeWaveRunup2P(
                 double waterLevel,

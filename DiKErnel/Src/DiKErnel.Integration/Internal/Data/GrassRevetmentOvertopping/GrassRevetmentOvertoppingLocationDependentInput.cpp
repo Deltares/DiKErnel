@@ -20,6 +20,7 @@
 
 #include "GrassRevetmentOvertoppingLocationDependentInput.h"
 
+#include "CharacteristicPointsHelper.h"
 #include "Constants.h"
 #include "GrassRevetmentFunctions.h"
 #include "GrassRevetmentOvertoppingFunctions.h"
@@ -120,6 +121,8 @@ namespace DiKErnel::Integration
     {
         LocationDependentInput::InitializeDerivedLocationDependentInput(profileData);
 
+        InitializeCalculationProfile(profileData);
+
         _accelerationAlphaA = _getAccelerationAlphaA(profileData);
         _dikeHeight = _getDikeHeight(profileData);
     }
@@ -168,6 +171,30 @@ namespace DiKErnel::Integration
 
         return make_unique<GrassRevetmentWaveRunupRayleighTimeDependentOutput>(
             *CreateConstructionProperties(incrementDamage, damage, move(timeOfFailure)));
+    }
+
+    void GrassRevetmentOvertoppingLocationDependentInput::InitializeCalculationProfile(
+        const IProfileData& profileData)
+    {
+        const auto& characteristicPoints = profileData.GetCharacteristicPoints();
+        const auto outerToe = CharacteristicPointsHelper::GetCoordinatesForType(characteristicPoints, CharacteristicPointType::OuterToe);
+        const auto outerCrest = CharacteristicPointsHelper::GetCoordinatesForType(characteristicPoints, CharacteristicPointType::OuterCrest);
+
+        for (const auto& profileSegment : profileData.GetProfileSegments())
+        {
+            const auto& profileSegmentReference = profileSegment.get();
+            const auto& lowerPoint = profileSegmentReference.GetLowerPoint();
+
+            if (const double lowerPointX = lowerPoint.GetX(); lowerPointX >= outerToe->first && lowerPointX < outerCrest->first)
+            {
+                _xValuesProfile.push_back(lowerPointX);
+                _zValuesProfile.push_back(lowerPoint.GetZ());
+                _roughnessCoefficients.push_back(profileSegmentReference.GetRoughnessCoefficient());
+            }
+
+            _xValuesProfile.push_back(outerCrest->first);
+            _zValuesProfile.push_back(outerCrest->second);
+        }
     }
 
     double GrassRevetmentOvertoppingLocationDependentInput::CalculateRepresentativeWaveRunup2P(
