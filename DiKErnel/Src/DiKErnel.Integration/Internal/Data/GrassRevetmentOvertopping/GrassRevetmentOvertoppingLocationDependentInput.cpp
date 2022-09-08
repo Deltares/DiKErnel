@@ -138,7 +138,6 @@ namespace DiKErnel::Integration
             vector<double> xValuesProfile;
             vector<double> zValuesProfile;
             vector<double> roughnessCoefficients;
-            constexpr double dikeHeight = 0.0;
 
             _representativeWaveRunup2P = CalculateRepresentativeWaveRunup2P(timeDependentInput.GetWaterLevel(),
                                                                             timeDependentInput.GetWaveHeightHm0(),
@@ -146,8 +145,7 @@ namespace DiKErnel::Integration
                                                                             waveDirection,
                                                                             xValuesProfile,
                                                                             zValuesProfile,
-                                                                            roughnessCoefficients,
-                                                                            dikeHeight);
+                                                                            roughnessCoefficients);
 
             _cumulativeOverload = CalculateCumulativeOverload(averageNumberOfWaves);
 
@@ -175,8 +173,7 @@ namespace DiKErnel::Integration
         const double waveDirection,
         vector<double>& xValuesProfile,
         vector<double>& zValuesProfile,
-        vector<double>& roughnessCoefficients,
-        const double dikeHeight)
+        vector<double>& roughnessCoefficients) const
     {
         const GrassRevetmentOvertoppingRepresentative2PInput representativeWaveRunup2PInput
         {
@@ -187,7 +184,7 @@ namespace DiKErnel::Integration
             ._xValuesProfile = xValuesProfile,
             ._zValuesProfile = zValuesProfile,
             ._roughnessCoefficients = roughnessCoefficients,
-            ._dikeHeight = dikeHeight
+            ._dikeHeight = _dikeHeight
         };
 
         return GrassRevetmentOvertoppingFunctions::RepresentativeWaveRunup2P(representativeWaveRunup2PInput);

@@ -96,20 +96,20 @@ namespace DiKErnel::Integration
                 const Core::IProfileData&)> _getDikeHeight;
 
             double _accelerationAlphaA = std::numeric_limits<double>::infinity();
+            double _dikeHeight = std::numeric_limits<double>::infinity();
             double _verticalDistanceWaterLevelElevation = std::numeric_limits<double>::infinity();
             double _representativeWaveRunup2P = std::numeric_limits<double>::infinity();
             double _cumulativeOverload = std::numeric_limits<double>::infinity();
 
             [[nodiscard]]
-            static double CalculateRepresentativeWaveRunup2P(
+            double CalculateRepresentativeWaveRunup2P(
                 double waterLevel,
                 double waveHeightHm0,
                 double wavePeriodTm10,
                 double waveDirection,
                 std::vector<double>& xValuesProfile,
                 std::vector<double>& zValuesProfile,
-                std::vector<double>& roughnessCoefficients,
-                double dikeHeight);
+                std::vector<double>& roughnessCoefficients) const;
 
             [[nodiscard]]
             double CalculateCumulativeOverload(
