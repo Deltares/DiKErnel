@@ -100,6 +100,9 @@ namespace DiKErnel::Integration
             std::function<double(
                 const Core::IProfileData&)> _getDikeHeight;
 
+            std::vector<double> _xValuesProfile;
+            std::vector<double> _zValuesProfile;
+            std::vector<double> _roughnessCoefficients;
             double _accelerationAlphaA = std::numeric_limits<double>::infinity();
             double _dikeHeight = std::numeric_limits<double>::infinity();
             double _verticalDistanceWaterLevelElevation = std::numeric_limits<double>::infinity();
@@ -111,10 +114,7 @@ namespace DiKErnel::Integration
                 double waterLevel,
                 double waveHeightHm0,
                 double wavePeriodTm10,
-                double waveDirection,
-                std::vector<double>& xValuesProfile,
-                std::vector<double>& zValuesProfile,
-                std::vector<double>& roughnessCoefficients) const;
+                double waveDirection) const;
 
             [[nodiscard]]
             double CalculateCumulativeOverload(

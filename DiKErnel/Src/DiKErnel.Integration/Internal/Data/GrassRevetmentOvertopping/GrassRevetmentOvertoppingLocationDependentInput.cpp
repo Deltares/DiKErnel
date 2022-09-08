@@ -145,17 +145,11 @@ namespace DiKErnel::Integration
                                                                                        GetAverageNumberOfWavesCtm());
 
             const double waveDirection = HydraulicLoadFunctions::WaveDirection(timeDependentInput.GetWaveAngle());
-            vector<double> xValuesProfile;
-            vector<double> zValuesProfile;
-            vector<double> roughnessCoefficients;
 
             _representativeWaveRunup2P = CalculateRepresentativeWaveRunup2P(timeDependentInput.GetWaterLevel(),
                                                                             timeDependentInput.GetWaveHeightHm0(),
                                                                             timeDependentInput.GetWavePeriodTm10(),
-                                                                            waveDirection,
-                                                                            xValuesProfile,
-                                                                            zValuesProfile,
-                                                                            roughnessCoefficients);
+                                                                            waveDirection);
 
             _cumulativeOverload = CalculateCumulativeOverload(averageNumberOfWaves);
 
@@ -180,10 +174,7 @@ namespace DiKErnel::Integration
         const double waterLevel,
         const double waveHeightHm0,
         const double wavePeriodTm10,
-        const double waveDirection,
-        vector<double>& xValuesProfile,
-        vector<double>& zValuesProfile,
-        vector<double>& roughnessCoefficients) const
+        const double waveDirection) const
     {
         const GrassRevetmentOvertoppingRepresentative2PInput representativeWaveRunup2PInput
         {
@@ -191,9 +182,9 @@ namespace DiKErnel::Integration
             ._waveHeightHm0 = waveHeightHm0,
             ._wavePeriodTm10 = wavePeriodTm10,
             ._waveDirection = waveDirection,
-            ._xValuesProfile = xValuesProfile,
-            ._zValuesProfile = zValuesProfile,
-            ._roughnessCoefficients = roughnessCoefficients,
+            ._xValuesProfile = _xValuesProfile,
+            ._zValuesProfile = _zValuesProfile,
+            ._roughnessCoefficients = _roughnessCoefficients,
             ._dikeHeight = _dikeHeight
         };
 
