@@ -34,22 +34,6 @@ namespace DiKErnel::Integration
     using namespace std;
     using namespace Util;
 
-    ProfileData::ProfileData(
-        vector<unique_ptr<ProfilePoint>> profilePoints,
-        vector<unique_ptr<CharacteristicPoint>> characteristicPoints)
-        : _profilePoints(move(profilePoints)),
-          _characteristicPoints(move(characteristicPoints))
-    {
-        for (const auto& profilePoint : _profilePoints)
-        {
-            _profilePointReferences.emplace_back(*profilePoint);
-        }
-
-        for (const auto& characteristicPoint : _characteristicPoints)
-        {
-            _characteristicPointReferences.emplace_back(*characteristicPoint);
-        }
-    }
 
     ProfileData::ProfileData(
         vector<unique_ptr<ProfileSegment>> profileSegments,
