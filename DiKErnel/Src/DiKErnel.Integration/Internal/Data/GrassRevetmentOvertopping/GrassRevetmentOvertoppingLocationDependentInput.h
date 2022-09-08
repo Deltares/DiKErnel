@@ -22,44 +22,14 @@
 
 #include <memory>
 
-#include "GrassRevetmentWaveRunupRepresentative2P.h"
-#include "GrassRevetmentWaveRunupWaveAngleImpact.h"
-#include "LocationDependentInput.h"
+#include "GrassRevetmentWaveRunupLocationDependentInput.h"
+#include "GrassRevetmentWaveRunupRayleighTimeDependentOutput.h"
 
 namespace DiKErnel::Integration
 {
-    class GrassRevetmentOvertoppingLocationDependentInput : public LocationDependentInput
+    class GrassRevetmentOvertoppingLocationDependentInput : public GrassRevetmentWaveRunupLocationDependentInput
     {
         public:
-            [[nodiscard]]
-            double GetOuterSlope() const;
-
-            [[nodiscard]]
-            double GetCriticalCumulativeOverload() const;
-
-            [[nodiscard]]
-            double GetCriticalFrontVelocity() const;
-
-            [[nodiscard]]
-            double GetIncreasedLoadTransitionAlphaM() const;
-
-            [[nodiscard]]
-            double GetReducedStrengthTransitionAlphaS() const;
-
-            [[nodiscard]]
-            double GetAverageNumberOfWavesCtm() const;
-
-            [[nodiscard]]
-            GrassRevetmentWaveRunupRepresentative2P& GetRepresentative2P() const;
-
-            [[nodiscard]]
-            GrassRevetmentWaveRunupWaveAngleImpact& GetWaveAngleImpact() const;
-
-            [[nodiscard]]
-            bool Validate(
-                const Core::IProfileData& profileData) const override;
-
-        protected:
             explicit GrassRevetmentOvertoppingLocationDependentInput(
                 double x,
                 double initialDamage,
@@ -71,22 +41,53 @@ namespace DiKErnel::Integration
                 double reducedStrengthTransitionAlphaS,
                 double averageNumberOfWavesCtm,
                 std::unique_ptr<GrassRevetmentWaveRunupRepresentative2P> representative2P,
-                std::unique_ptr<GrassRevetmentWaveRunupWaveAngleImpact> waveAngleImpact);
+                std::unique_ptr<GrassRevetmentWaveRunupWaveAngleImpact> waveAngleImpact,
+                int fixedNumberOfWaves,
+                double frontVelocityCu);
 
+            [[nodiscard]]
+            int GetFixedNumberOfWaves() const;
+
+            [[nodiscard]]
+            double GetFrontVelocityCu() const;
+
+            [[nodiscard]]
+            bool Validate(
+                const Core::IProfileData& profileData) const override;
+
+            [[nodiscard]]
+            std::unique_ptr<Core::LocationDependentOutput> GetLocationDependentOutput(
+                std::vector<std::unique_ptr<Core::TimeDependentOutput>> timeDependentOutputItems) override;
+
+        protected:
             [[nodiscard]]
             std::unique_ptr<Core::TimeDependentOutput> CalculateTimeDependentOutput(
                 double initialDamage,
                 const Core::ITimeDependentInput& timeDependentInput,
-                const Core::IProfileData& profileData) override = 0;
+                const Core::IProfileData& profileData) override;
 
         private:
-            double _outerSlope;
-            double _criticalCumulativeOverload;
-            double _criticalFrontVelocity;
-            double _increasedLoadTransitionAlphaM;
-            double _reducedStrengthTransitionAlphaS;
-            double _averageNumberOfWavesCtm;
-            std::unique_ptr<GrassRevetmentWaveRunupRepresentative2P> _representative2P;
-            std::unique_ptr<GrassRevetmentWaveRunupWaveAngleImpact> _waveAngleImpactInput;
+            const int _fixedNumberOfWaves;
+            const double _frontVelocityCu;
+
+            double _verticalDistanceWaterLevelElevation = std::numeric_limits<double>::infinity();
+            double _waveAngleImpact = std::numeric_limits<double>::infinity();
+            double _representativeWaveRunup2P = std::numeric_limits<double>::infinity();
+            double _cumulativeOverload = std::numeric_limits<double>::infinity();
+
+            [[nodiscard]]
+            double CalculateRepresentativeWaveRunup2P(
+                double surfSimilarityParameter,
+                double waveHeightHm0) const;
+
+            [[nodiscard]]
+            double CalculateCumulativeOverload(
+                double averageNumberOfWaves) const;
+
+            [[nodiscard]]
+            std::unique_ptr<GrassRevetmentWaveRunupRayleighTimeDependentOutputConstructionProperties> CreateConstructionProperties(
+                double incrementDamage,
+                double damage,
+                std::unique_ptr<int> timeOfFailure);
     };
 }
