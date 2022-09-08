@@ -44,32 +44,23 @@ namespace DiKErnel::Integration
         const double x,
         const double initialDamage,
         const double failureNumber,
-        const double outerSlope,
         const double criticalCumulativeOverload,
         const double criticalFrontVelocity,
         const double increasedLoadTransitionAlphaM,
         const double reducedStrengthTransitionAlphaS,
         const double averageNumberOfWavesCtm,
-        unique_ptr<GrassRevetmentWaveRunupRepresentative2P> representative2P,
         unique_ptr<GrassRevetmentWaveRunupWaveAngleImpact> waveAngleImpact,
         const int fixedNumberOfWaves,
         const double frontVelocityCu)
         : LocationDependentInput(x, initialDamage, failureNumber),
-          _outerSlope(outerSlope),
           _criticalCumulativeOverload(criticalCumulativeOverload),
           _criticalFrontVelocity(criticalFrontVelocity),
           _increasedLoadTransitionAlphaM(increasedLoadTransitionAlphaM),
           _reducedStrengthTransitionAlphaS(reducedStrengthTransitionAlphaS),
           _averageNumberOfWavesCtm(averageNumberOfWavesCtm),
-          _representative2P(move(representative2P)),
           _waveAngleImpactInput(move(waveAngleImpact)),
           _fixedNumberOfWaves(fixedNumberOfWaves),
           _frontVelocityCu(frontVelocityCu) {}
-
-    double GrassRevetmentOvertoppingLocationDependentInput::GetOuterSlope() const
-    {
-        return _outerSlope;
-    }
 
     double GrassRevetmentOvertoppingLocationDependentInput::GetCriticalCumulativeOverload() const
     {
@@ -94,11 +85,6 @@ namespace DiKErnel::Integration
     double GrassRevetmentOvertoppingLocationDependentInput::GetAverageNumberOfWavesCtm() const
     {
         return _averageNumberOfWavesCtm;
-    }
-
-    GrassRevetmentWaveRunupRepresentative2P& GrassRevetmentOvertoppingLocationDependentInput::GetRepresentative2P() const
-    {
-        return *_representative2P;
     }
 
     GrassRevetmentWaveRunupWaveAngleImpact& GrassRevetmentOvertoppingLocationDependentInput::GetWaveAngleImpact() const
@@ -152,11 +138,6 @@ namespace DiKErnel::Integration
             const auto incrementTime = RevetmentFunctions::IncrementTime(beginTime, timeDependentInput.GetEndTime());
             const auto averageNumberOfWaves = RevetmentFunctions::AverageNumberOfWaves(incrementTime, timeDependentInput.GetWavePeriodTm10(),
                                                                                        GetAverageNumberOfWavesCtm());
-
-            const auto surfSimilarityParameter = HydraulicLoadFunctions::SurfSimilarityParameter(GetOuterSlope(),
-                                                                                                 timeDependentInput.GetWaveHeightHm0(),
-                                                                                                 timeDependentInput.GetWavePeriodTm10(),
-                                                                                                 Constants::GetGravitationalAcceleration());
 
             _waveAngleImpact = GrassRevetmentWaveRunupFunctions::WaveAngleImpact(timeDependentInput.GetWaveAngle(), GetWaveAngleImpact().GetAbeta(),
                                                                                  GetWaveAngleImpact().GetBetamax());

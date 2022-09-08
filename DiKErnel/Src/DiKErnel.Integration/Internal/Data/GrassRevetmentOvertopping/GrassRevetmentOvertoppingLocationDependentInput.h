@@ -34,19 +34,14 @@ namespace DiKErnel::Integration
                 double x,
                 double initialDamage,
                 double failureNumber,
-                double outerSlope,
                 double criticalCumulativeOverload,
                 double criticalFrontVelocity,
                 double increasedLoadTransitionAlphaM,
                 double reducedStrengthTransitionAlphaS,
                 double averageNumberOfWavesCtm,
-                std::unique_ptr<GrassRevetmentWaveRunupRepresentative2P> representative2P,
                 std::unique_ptr<GrassRevetmentWaveRunupWaveAngleImpact> waveAngleImpact,
                 int fixedNumberOfWaves,
                 double frontVelocityCu);
-
-            [[nodiscard]]
-            double GetOuterSlope() const;
 
             [[nodiscard]]
             double GetCriticalCumulativeOverload() const;
@@ -62,9 +57,6 @@ namespace DiKErnel::Integration
 
             [[nodiscard]]
             double GetAverageNumberOfWavesCtm() const;
-
-            [[nodiscard]]
-            GrassRevetmentWaveRunupRepresentative2P& GetRepresentative2P() const;
 
             [[nodiscard]]
             GrassRevetmentWaveRunupWaveAngleImpact& GetWaveAngleImpact() const;
@@ -91,13 +83,11 @@ namespace DiKErnel::Integration
                 const Core::IProfileData& profileData) override;
 
         private:
-            double _outerSlope;
             double _criticalCumulativeOverload;
             double _criticalFrontVelocity;
             double _increasedLoadTransitionAlphaM;
             double _reducedStrengthTransitionAlphaS;
             double _averageNumberOfWavesCtm;
-            std::unique_ptr<GrassRevetmentWaveRunupRepresentative2P> _representative2P;
             std::unique_ptr<GrassRevetmentWaveRunupWaveAngleImpact> _waveAngleImpactInput;
             const int _fixedNumberOfWaves;
             const double _frontVelocityCu;
