@@ -23,8 +23,6 @@
 #include "Constants.h"
 #include "GrassRevetmentFunctions.h"
 #include "GrassRevetmentOvertoppingFunctions.h"
-#include "GrassRevetmentWaveRunupFunctions.h"
-#include "GrassRevetmentWaveRunupRayleighFunctions.h"
 #include "GrassRevetmentWaveRunupRayleighLocationDependentOutput.h"
 #include "GrassRevetmentWaveRunupRayleighTimeDependentOutput.h"
 #include "GrassRevetmentWaveRunupRayleighValidator.h"
@@ -139,9 +137,6 @@ namespace DiKErnel::Integration
             const auto averageNumberOfWaves = RevetmentFunctions::AverageNumberOfWaves(incrementTime, timeDependentInput.GetWavePeriodTm10(),
                                                                                        GetAverageNumberOfWavesCtm());
 
-            _waveAngleImpact = GrassRevetmentWaveRunupFunctions::WaveAngleImpact(timeDependentInput.GetWaveAngle(), GetWaveAngleImpact().GetAbeta(),
-                                                                                 GetWaveAngleImpact().GetBetamax());
-
             constexpr double waveDirection = 0.0;
             vector<double> xValuesProfile;
             vector<double> zValuesProfile;
@@ -236,7 +231,6 @@ namespace DiKErnel::Integration
 
         if (_verticalDistanceWaterLevelElevation > 0)
         {
-            constructionProperties->_waveAngleImpact = make_unique<double>(_waveAngleImpact);
             constructionProperties->_representativeWaveRunup2P = make_unique<double>(_representativeWaveRunup2P);
             constructionProperties->_cumulativeOverload = make_unique<double>(_cumulativeOverload);
         }

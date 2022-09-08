@@ -94,7 +94,6 @@ namespace DiKErnel::Integration
 
             double _accelerationAlphaA = std::numeric_limits<double>::infinity();
             double _verticalDistanceWaterLevelElevation = std::numeric_limits<double>::infinity();
-            double _waveAngleImpact = std::numeric_limits<double>::infinity();
             double _representativeWaveRunup2P = std::numeric_limits<double>::infinity();
             double _cumulativeOverload = std::numeric_limits<double>::infinity();
 
