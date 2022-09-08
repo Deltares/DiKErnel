@@ -74,17 +74,13 @@ namespace DiKErnel::KernelWrapper::Json::Input
             {
                 lowerPointX = xLocation;
                 lowerPointZ = zLocation;
+                continue;
             }
-            else
-            {
-                const double upperPointX = xLocation;
-                const double upperPointZ = zLocation;
 
-                builder.AddDikeProfileSegment(lowerPointX, lowerPointZ, upperPointX, upperPointZ, nullptr);
+            builder.AddDikeProfileSegment(lowerPointX, lowerPointZ, xLocation, zLocation, nullptr);
 
-                lowerPointX = upperPointX;
-                lowerPointZ = upperPointZ;
-            }
+            lowerPointX = xLocation;
+            lowerPointZ = zLocation;
         }
     }
 
