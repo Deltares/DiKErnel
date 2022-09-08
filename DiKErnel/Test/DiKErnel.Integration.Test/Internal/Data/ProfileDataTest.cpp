@@ -107,12 +107,15 @@ namespace DiKErnel::Integration::Test
     TEST_F(ProfileDataTest, InterpolationVerticalHeight_HorizontalPositionBetweenDescendingDikeProfilePoints_ExpectedValue)
     {
         // Setup
-        vector<unique_ptr<ProfilePoint>> testDikeProfileWithDescendingHeight;
-        testDikeProfileWithDescendingHeight.push_back(make_unique<ProfilePoint>(1.0, 3.3));
-        testDikeProfileWithDescendingHeight.push_back(make_unique<ProfilePoint>(2.0, 2.2));
-        testDikeProfileWithDescendingHeight.push_back(make_unique<ProfilePoint>(3.0, 1.1));
+        auto pointOne = make_shared<ProfilePoint>(1.0, 3.3);
+        auto pointTwo = make_shared<ProfilePoint>(2.0, 2.2);
+        auto pointThree = make_shared<ProfilePoint>(3.0, 1.1);
 
-        const ProfileData profileData(move(testDikeProfileWithDescendingHeight), vector<unique_ptr<CharacteristicPoint>>());
+        vector<unique_ptr<ProfileSegment>> testDikeProfileSegmentsWithDescendingHeight;
+        testDikeProfileSegmentsWithDescendingHeight.push_back(make_unique<ProfileSegment>(pointOne, pointTwo, 1.0));
+        testDikeProfileSegmentsWithDescendingHeight.push_back(make_unique<ProfileSegment>(pointTwo, pointThree, 1.0));
+
+        const ProfileData profileData(move(testDikeProfileSegmentsWithDescendingHeight), vector<unique_ptr<CharacteristicPoint>>());
 
         // Call
         const auto verticalHeight = profileData.InterpolationVerticalHeight(2.5);
@@ -290,5 +293,22 @@ namespace DiKErnel::Integration::Test
 
         // Assert
         ASSERT_EQ(nullptr, profileSegment);
+    }
+
+    TEST_F(ProfileDataTest, GetProfilePoints_Always_ReturnsSamePointsAsSegmentPoints)
+    {
+        // Setup
+        const auto profileData = CreateDefaultProfileData();
+
+        // Call
+        const auto& profilePoints = profileData->GetProfilePoints();
+
+        // Assert
+        ASSERT_EQ(3, profilePoints.size());
+
+        const auto& segments = profileData->GetProfileSegments();
+        ASSERT_EQ(&profilePoints.at(0).get(), &segments.at(0).get().GetLowerPoint());
+        ASSERT_EQ(&profilePoints.at(1).get(), &segments.at(1).get().GetLowerPoint());
+        ASSERT_EQ(&profilePoints.at(2).get(), &segments.at(1).get().GetUpperPoint());
     }
 }

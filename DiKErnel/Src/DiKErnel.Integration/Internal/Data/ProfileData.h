@@ -45,7 +45,7 @@ namespace DiKErnel::Integration
                 double verticalHeight) const override;
 
             [[nodiscard]]
-            std::unique_ptr<Core::ProfileSegment> GetProfileSegment(
+            const Core::ProfileSegment* GetProfileSegment(
                 double horizontalPosition) const override;
 
             [[nodiscard]]

@@ -77,7 +77,7 @@ namespace DiKErnel::Core
              *         on a profile segment.
              */
             [[nodiscard]]
-            virtual std::unique_ptr<ProfileSegment> GetProfileSegment(
+            virtual const ProfileSegment* GetProfileSegment(
                 double horizontalPosition) const = 0;
 
             /*!

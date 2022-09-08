@@ -34,7 +34,6 @@ namespace DiKErnel::Integration
     using namespace std;
     using namespace Util;
 
-
     ProfileData::ProfileData(
         vector<unique_ptr<ProfileSegment>> profileSegments,
         vector<unique_ptr<CharacteristicPoint>> characteristicPoints)
@@ -139,20 +138,20 @@ namespace DiKErnel::Integration
         return numeric_limits<double>::infinity();
     }
 
-    unique_ptr<ProfileSegment> ProfileData::GetProfileSegment(
+    const ProfileSegment* ProfileData::GetProfileSegment(
         const double horizontalPosition) const
     {
-        for (auto i = 0; i < static_cast<int>(_profilePointReferences.size()); ++i)
+        for (auto i = 0; i < static_cast<int>(_profileSegments.size()); ++i)
         {
-            if (const auto& profilePoint = _profilePointReferences.at(i); profilePoint.get().GetX() >= horizontalPosition)
+            auto& profileSegment = _profileSegments.at(i);
+            if (i == 0 && abs(profileSegment->GetLowerPoint().GetX() - horizontalPosition) <= numeric_limits<double>::epsilon())
             {
-                if (i == 0)
-                {
-                    return nullptr;
-                }
+                return nullptr;
+            }
 
-                return make_unique<ProfileSegment>(make_shared<ProfilePoint>(_profilePointReferences.at(i - 1)),
-                                                   make_shared<ProfilePoint>(profilePoint), 1.0);
+            if (profileSegment->GetLowerPoint().GetX() <= horizontalPosition && profileSegment->GetUpperPoint().GetX() >= horizontalPosition)
+            {
+                return profileSegment.get();
             }
         }
 
