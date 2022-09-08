@@ -108,7 +108,7 @@ namespace DiKErnel::Integration
             double _cumulativeOverload = std::numeric_limits<double>::infinity();
 
             [[nodiscard]]
-            double CalculateRepresentativeWaveRunup2P(
+            static double CalculateRepresentativeWaveRunup2P(
                 double waterLevel,
                 double waveHeightHm0,
                 double wavePeriodTm10,
@@ -116,7 +116,7 @@ namespace DiKErnel::Integration
                 std::vector<double>& xValuesProfile,
                 std::vector<double>& zValuesProfile,
                 std::vector<double>& roughnessCoefficients,
-                double dikeHeight) const;
+                double dikeHeight);
 
             [[nodiscard]]
             double CalculateCumulativeOverload(

@@ -161,7 +161,21 @@ namespace DiKErnel::Integration
             _waveAngleImpact = GrassRevetmentWaveRunupFunctions::WaveAngleImpact(timeDependentInput.GetWaveAngle(), GetWaveAngleImpact().GetAbeta(),
                                                                                  GetWaveAngleImpact().GetBetamax());
 
-            _representativeWaveRunup2P = CalculateRepresentativeWaveRunup2P(surfSimilarityParameter, timeDependentInput.GetWaveHeightHm0());
+            constexpr double waveDirection = 0.0;
+            vector<double> xValuesProfile;
+            vector<double> zValuesProfile;
+            vector<double> roughnessCoefficients;
+            constexpr double dikeHeight = 0.0;
+
+            _representativeWaveRunup2P = CalculateRepresentativeWaveRunup2P(timeDependentInput.GetWaterLevel(),
+                                                                            timeDependentInput.GetWaveHeightHm0(),
+                                                                            timeDependentInput.GetWavePeriodTm10(),
+                                                                            waveDirection,
+                                                                            xValuesProfile,
+                                                                            zValuesProfile,
+                                                                            roughnessCoefficients,
+                                                                            dikeHeight);
+
             _cumulativeOverload = CalculateCumulativeOverload(averageNumberOfWaves);
 
             incrementDamage = GrassRevetmentFunctions::IncrementDamage(_cumulativeOverload, GetCriticalCumulativeOverload());
@@ -189,7 +203,7 @@ namespace DiKErnel::Integration
         vector<double>& xValuesProfile,
         vector<double>& zValuesProfile,
         vector<double>& roughnessCoefficients,
-        const double dikeHeight) const
+        const double dikeHeight)
     {
         const GrassRevetmentOvertoppingRepresentative2PInput representativeWaveRunup2PInput
         {
