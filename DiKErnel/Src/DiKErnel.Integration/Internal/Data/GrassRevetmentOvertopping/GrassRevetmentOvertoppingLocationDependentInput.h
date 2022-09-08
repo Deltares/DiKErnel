@@ -109,8 +109,14 @@ namespace DiKErnel::Integration
 
             [[nodiscard]]
             double CalculateRepresentativeWaveRunup2P(
-                double surfSimilarityParameter,
-                double waveHeightHm0) const;
+                double waterLevel,
+                double waveHeightHm0,
+                double wavePeriodTm10,
+                double waveDirection,
+                std::vector<double>& xValuesProfile,
+                std::vector<double>& zValuesProfile,
+                std::vector<double>& roughnessCoefficients,
+                double dikeHeight) const;
 
             [[nodiscard]]
             double CalculateCumulativeOverload(

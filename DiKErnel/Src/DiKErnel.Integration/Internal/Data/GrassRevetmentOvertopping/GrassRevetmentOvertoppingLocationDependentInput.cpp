@@ -22,6 +22,7 @@
 
 #include "Constants.h"
 #include "GrassRevetmentFunctions.h"
+#include "GrassRevetmentOvertoppingFunctions.h"
 #include "GrassRevetmentWaveRunupFunctions.h"
 #include "GrassRevetmentWaveRunupRayleighFunctions.h"
 #include "GrassRevetmentWaveRunupRayleighLocationDependentOutput.h"
@@ -181,23 +182,28 @@ namespace DiKErnel::Integration
     }
 
     double GrassRevetmentOvertoppingLocationDependentInput::CalculateRepresentativeWaveRunup2P(
-        const double surfSimilarityParameter,
-        const double waveHeightHm0) const
+        const double waterLevel,
+        const double waveHeightHm0,
+        const double wavePeriodTm10,
+        const double waveDirection,
+        vector<double>& xValuesProfile,
+        vector<double>& zValuesProfile,
+        vector<double>& roughnessCoefficients,
+        const double dikeHeight) const
     {
-        const auto& representative2P = GetRepresentative2P();
-        const GrassRevetmentWaveRunupRepresentative2PInput representativeWaveRunup2PInput
+        const GrassRevetmentOvertoppingRepresentative2PInput representativeWaveRunup2PInput
         {
-            ._surfSimilarityParameter = surfSimilarityParameter,
-            ._waveAngleImpact = _waveAngleImpact,
+            ._waterLevel = waterLevel,
             ._waveHeightHm0 = waveHeightHm0,
-            ._representativeWaveRunup2PGammab = representative2P.GetGammab(),
-            ._representativeWaveRunup2PGammaf = representative2P.GetGammaf(),
-            ._representativeWaveRunup2PAru = representative2P.GetRepresentative2PAru(),
-            ._representativeWaveRunup2PBru = representative2P.GetRepresentative2PBru(),
-            ._representativeWaveRunup2PCru = representative2P.GetRepresentative2PCru()
+            ._wavePeriodTm10 = wavePeriodTm10,
+            ._waveDirection = waveDirection,
+            ._xValuesProfile = xValuesProfile,
+            ._zValuesProfile = zValuesProfile,
+            ._roughnessCoefficients = roughnessCoefficients,
+            ._dikeHeight = dikeHeight
         };
 
-        return GrassRevetmentWaveRunupFunctions::RepresentativeWaveRunup2P(representativeWaveRunup2PInput);
+        return GrassRevetmentOvertoppingFunctions::RepresentativeWaveRunup2P(representativeWaveRunup2PInput);
     }
 
     double GrassRevetmentOvertoppingLocationDependentInput::CalculateCumulativeOverload(
