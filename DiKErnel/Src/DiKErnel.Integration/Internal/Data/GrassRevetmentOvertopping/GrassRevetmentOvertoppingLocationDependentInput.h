@@ -20,6 +20,7 @@
 
 #pragma once
 
+#include <functional>
 #include <memory>
 
 #include "GrassRevetmentWaveRunupLocationDependentInput.h"
@@ -40,7 +41,10 @@ namespace DiKErnel::Integration
                 double reducedStrengthTransitionAlphaS,
                 double averageNumberOfWavesCtm,
                 int fixedNumberOfWaves,
-                double frontVelocityCwo);
+                double frontVelocityCwo,
+                std::function<double()>& getAccelerationAlphaA,
+                std::function<double(
+                    const Core::IProfileData&)>& getDikeHeight);
 
             [[nodiscard]]
             double GetCriticalCumulativeOverload() const;
@@ -86,6 +90,10 @@ namespace DiKErnel::Integration
             double _averageNumberOfWavesCtm;
             const int _fixedNumberOfWaves;
             const double _frontVelocityCwo;
+
+            std::function<double()> _getAccelerationAlphaA;
+            std::function<double(
+                const Core::IProfileData&)> _getDikeHeight;
 
             double _accelerationAlphaA = std::numeric_limits<double>::infinity();
             double _verticalDistanceWaterLevelElevation = std::numeric_limits<double>::infinity();

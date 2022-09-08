@@ -25,7 +25,6 @@
 #include "GrassRevetmentOvertoppingFunctions.h"
 #include "GrassRevetmentWaveRunupRayleighLocationDependentOutput.h"
 #include "GrassRevetmentWaveRunupRayleighTimeDependentOutput.h"
-#include "GrassRevetmentWaveRunupRayleighValidator.h"
 #include "HydraulicLoadFunctions.h"
 #include "RevetmentFunctions.h"
 #include "ValidationHelper.h"
@@ -48,7 +47,10 @@ namespace DiKErnel::Integration
         const double reducedStrengthTransitionAlphaS,
         const double averageNumberOfWavesCtm,
         const int fixedNumberOfWaves,
-        const double frontVelocityCwo)
+        const double frontVelocityCwo,
+        function<double()>& getAccelerationAlphaA,
+        function<double(
+            const IProfileData&)>& getDikeHeight)
         : LocationDependentInput(x, initialDamage, failureNumber),
           _criticalCumulativeOverload(criticalCumulativeOverload),
           _criticalFrontVelocity(criticalFrontVelocity),
@@ -56,7 +58,9 @@ namespace DiKErnel::Integration
           _reducedStrengthTransitionAlphaS(reducedStrengthTransitionAlphaS),
           _averageNumberOfWavesCtm(averageNumberOfWavesCtm),
           _fixedNumberOfWaves(fixedNumberOfWaves),
-          _frontVelocityCwo(frontVelocityCwo) {}
+          _frontVelocityCwo(frontVelocityCwo),
+          _getAccelerationAlphaA(move(getAccelerationAlphaA)),
+          _getDikeHeight(move(getDikeHeight)) {}
 
     double GrassRevetmentOvertoppingLocationDependentInput::GetCriticalCumulativeOverload() const
     {
