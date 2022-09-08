@@ -54,16 +54,13 @@ namespace DiKErnel::Integration
         double upperPointZ,
         const double* roughnessCoefficient)
     {
-        auto upperPoint = make_unique<ProfilePoint>(upperPointX, upperPointZ);
-        _profileSegmentPoints.emplace_back(make_unique<ProfilePoint>(lowerPointX, lowerPointZ));
-        _profileSegmentPoints.emplace_back(make_unique<ProfilePoint>(upperPointX, upperPointZ));
-
         double segmentRoughnessCoefficient = ProfileSegmentDefaults::GetRoughnessCoefficient();
         if (roughnessCoefficient != nullptr)
         {
             segmentRoughnessCoefficient = *roughnessCoefficient;
         }
-        _profileSegmentRoughnessCoefficients.emplace_back(segmentRoughnessCoefficient);
+        _profileSegmentData.emplace_back(make_unique<ProfileSegmentData>(lowerPointX, lowerPointZ, upperPointX, upperPointZ,
+                                                                         segmentRoughnessCoefficient));
     }
 
     void RevetmentCalculationInputBuilder::AddTimeStep(
