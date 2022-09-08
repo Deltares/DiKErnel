@@ -47,7 +47,6 @@ namespace DiKErnel::Integration
         const double increasedLoadTransitionAlphaM,
         const double reducedStrengthTransitionAlphaS,
         const double averageNumberOfWavesCtm,
-        unique_ptr<GrassRevetmentWaveRunupWaveAngleImpact> waveAngleImpact,
         const int fixedNumberOfWaves,
         const double frontVelocityCwo)
         : LocationDependentInput(x, initialDamage, failureNumber),
@@ -56,7 +55,6 @@ namespace DiKErnel::Integration
           _increasedLoadTransitionAlphaM(increasedLoadTransitionAlphaM),
           _reducedStrengthTransitionAlphaS(reducedStrengthTransitionAlphaS),
           _averageNumberOfWavesCtm(averageNumberOfWavesCtm),
-          _waveAngleImpactInput(move(waveAngleImpact)),
           _fixedNumberOfWaves(fixedNumberOfWaves),
           _frontVelocityCwo(frontVelocityCwo) {}
 
@@ -83,11 +81,6 @@ namespace DiKErnel::Integration
     double GrassRevetmentOvertoppingLocationDependentInput::GetAverageNumberOfWavesCtm() const
     {
         return _averageNumberOfWavesCtm;
-    }
-
-    GrassRevetmentWaveRunupWaveAngleImpact& GrassRevetmentOvertoppingLocationDependentInput::GetWaveAngleImpact() const
-    {
-        return *_waveAngleImpactInput;
     }
 
     int GrassRevetmentOvertoppingLocationDependentInput::GetFixedNumberOfWaves() const

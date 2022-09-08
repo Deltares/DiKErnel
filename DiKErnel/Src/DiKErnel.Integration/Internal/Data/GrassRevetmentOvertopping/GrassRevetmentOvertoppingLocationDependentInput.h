@@ -39,7 +39,6 @@ namespace DiKErnel::Integration
                 double increasedLoadTransitionAlphaM,
                 double reducedStrengthTransitionAlphaS,
                 double averageNumberOfWavesCtm,
-                std::unique_ptr<GrassRevetmentWaveRunupWaveAngleImpact> waveAngleImpact,
                 int fixedNumberOfWaves,
                 double frontVelocityCwo);
 
@@ -57,9 +56,6 @@ namespace DiKErnel::Integration
 
             [[nodiscard]]
             double GetAverageNumberOfWavesCtm() const;
-
-            [[nodiscard]]
-            GrassRevetmentWaveRunupWaveAngleImpact& GetWaveAngleImpact() const;
 
             [[nodiscard]]
             int GetFixedNumberOfWaves() const;
@@ -88,7 +84,6 @@ namespace DiKErnel::Integration
             double _increasedLoadTransitionAlphaM;
             double _reducedStrengthTransitionAlphaS;
             double _averageNumberOfWavesCtm;
-            std::unique_ptr<GrassRevetmentWaveRunupWaveAngleImpact> _waveAngleImpactInput;
             const int _fixedNumberOfWaves;
             const double _frontVelocityCwo;
 
