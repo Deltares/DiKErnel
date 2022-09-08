@@ -39,12 +39,14 @@ namespace DiKErnel::Integration
     using namespace std;
 
     void RevetmentCalculationInputBuilder::AddDikeProfilePointData(
-        double x,
-        double z,
-        CharacteristicPointType characteristicPointType)
+        const double x,
+        const double z,
+        const CharacteristicPointType* characteristicPointType)
     {
-        const auto profilePoint = make_unique<ProfilePoint>(x, z);
-        _characteristicPoints.push_back(make_unique<CharacteristicPoint>(*profilePoint, characteristicPointType));
+        if (characteristicPointType != nullptr)
+        {
+            _profilePointData.push_back(make_unique<ProfilePointData>(x, z, *characteristicPointType));
+        }
     }
 
     void RevetmentCalculationInputBuilder::AddDikeProfileSegment(
@@ -106,26 +108,57 @@ namespace DiKErnel::Integration
     unique_ptr<ICalculationInput> RevetmentCalculationInputBuilder::Build()
     {
         auto segments = CreateProfileSegments();
-        return make_unique<CalculationInput>(make_unique<ProfileData>(CreateProfileSegments(), move(_characteristicPoints)),
+        auto characteristicPoints = CreateCharacteristicPoints(segments);
+        return make_unique<CalculationInput>(make_unique<ProfileData>(move(segments), move(characteristicPoints)),
                                              move(_locationDependentInputItems), move(_timeDependentInputItems));
     }
 
-    vector<unique_ptr<ProfileSegment>> RevetmentCalculationInputBuilder::CreateProfileSegments()
+    vector<unique_ptr<ProfileSegment>> RevetmentCalculationInputBuilder::CreateProfileSegments() const
     {
         vector<unique_ptr<ProfileSegment>> segments;
 
-        if(!_profileSegmentPoints.empty())
+        if (!_profileSegmentData.empty())
         {
-            auto lowerPoint = make_shared<ProfilePoint>(*_profileSegmentPoints.at(0));
-            for (int i = 1; i < static_cast<int>(_profileSegmentPoints.size()); ++i)
+            for (const auto& segmentInfo : _profileSegmentData)
             {
-                auto upperPoint = make_shared<ProfilePoint>(*_profileSegmentPoints.at(i));
-                segments.emplace_back(make_unique<ProfileSegment>(lowerPoint, upperPoint, _profileSegmentRoughnessCoefficients.at(i - 1)));
+                auto lowerPoint = make_shared<ProfilePoint>(segmentInfo->_lowerPointX, segmentInfo->_lowerPointZ);
+                auto upperPoint = make_shared<ProfilePoint>(segmentInfo->_upperPointX, segmentInfo->_upperPointZ);
 
+                segments.emplace_back(make_unique<ProfileSegment>(lowerPoint, upperPoint, segmentInfo->_roughnessCoefficient));
                 lowerPoint = upperPoint;
             }
         }
 
         return segments;
+    }
+
+    vector<unique_ptr<CharacteristicPoint>> RevetmentCalculationInputBuilder::CreateCharacteristicPoints(
+        const vector<unique_ptr<ProfileSegment>>& segments) const
+    {
+        vector<unique_ptr<CharacteristicPoint>> characteristicPoints;
+        for (const auto& characteristicPoint : _profilePointData)
+        {
+            for (const auto& segment : segments)
+            {
+                const double characteristicPointX = characteristicPoint->_x;
+                if (const auto& segmentLowerPoint = segment->GetLowerPoint();
+                    abs(characteristicPointX - segmentLowerPoint.GetX()) <= numeric_limits<double>::epsilon())
+                {
+                    characteristicPoints.emplace_back(make_unique<CharacteristicPoint>(segmentLowerPoint,
+                                                                                       characteristicPoint->_characteristicPointType));
+                    break;
+                }
+
+                if (const auto& segmentUpperPoint = segment->GetUpperPoint();
+                    abs(characteristicPointX - segmentUpperPoint.GetX()) <= numeric_limits<double>::epsilon())
+                {
+                    characteristicPoints.emplace_back(make_unique<CharacteristicPoint>(segmentUpperPoint,
+                                                                                       characteristicPoint->_characteristicPointType));
+                    break;
+                }
+            }
+        }
+
+        return characteristicPoints;
     }
 }

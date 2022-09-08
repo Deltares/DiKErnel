@@ -46,7 +46,7 @@ namespace DiKErnel::Integration
             void AddDikeProfilePointData(
                 double x,
                 double z,
-                Core::CharacteristicPointType characteristicPointType);
+                const Core::CharacteristicPointType* characteristicPointType);
 
             /*!
              * \brief Adds a new dike segment.
@@ -139,17 +139,39 @@ namespace DiKErnel::Integration
             std::unique_ptr<Core::ICalculationInput> Build();
 
         private:
-            std::vector<std::unique_ptr<Core::ProfileSegment>> CreateProfileSegments();
+            class ProfileSegmentData
+            {
+                public:
+                    double _lowerPointX;
+                    double _lowerPointZ;
+                    double _upperPointX;
+                    double _upperPointZ;
+                    double _roughnessCoefficient;
+            };
+
+            class ProfilePointData
+            {
+                public:
+                    double _x;
+                    double _z;
+                    Core::CharacteristicPointType _characteristicPointType;
+            };
+
+            [[nodiscard]]
+            std::vector<std::unique_ptr<Core::ProfileSegment>> CreateProfileSegments() const;
+
+            [[nodiscard]]
+            std::vector<std::unique_ptr<Core::CharacteristicPoint>> CreateCharacteristicPoints(
+                const std::vector<std::unique_ptr<Core::ProfileSegment>>& segments) const;
 
             std::vector<std::unique_ptr<Core::ProfilePoint>> _profilePoints = std::vector<std::unique_ptr<Core::ProfilePoint>>();
-            std::vector<std::unique_ptr<Core::ProfilePoint>> _profileSegmentPoints = std::vector<std::unique_ptr<Core::ProfilePoint>>();
-            std::vector<double> _profileSegmentRoughnessCoefficients = std::vector<double>();
-            std::vector<std::unique_ptr<Core::CharacteristicPoint>> _characteristicPoints
-                    = std::vector<std::unique_ptr<Core::CharacteristicPoint>>();
+            std::vector<std::unique_ptr<ProfileSegmentData>> _profileSegmentData
+                    = std::vector<std::unique_ptr<ProfileSegmentData>>();
+            std::vector<std::unique_ptr<ProfilePointData>> _profilePointData
+                    = std::vector<std::unique_ptr<ProfilePointData>>();
             std::vector<std::unique_ptr<Core::ITimeDependentInput>> _timeDependentInputItems
                     = std::vector<std::unique_ptr<Core::ITimeDependentInput>>();
             std::vector<std::unique_ptr<Core::ILocationDependentInput>> _locationDependentInputItems
                     = std::vector<std::unique_ptr<Core::ILocationDependentInput>>();
-
     };
 }
