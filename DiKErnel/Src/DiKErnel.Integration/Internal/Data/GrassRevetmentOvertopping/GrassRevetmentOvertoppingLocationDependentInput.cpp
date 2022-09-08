@@ -51,7 +51,7 @@ namespace DiKErnel::Integration
         const double averageNumberOfWavesCtm,
         unique_ptr<GrassRevetmentWaveRunupWaveAngleImpact> waveAngleImpact,
         const int fixedNumberOfWaves,
-        const double frontVelocityCu)
+        const double frontVelocityCwo)
         : LocationDependentInput(x, initialDamage, failureNumber),
           _criticalCumulativeOverload(criticalCumulativeOverload),
           _criticalFrontVelocity(criticalFrontVelocity),
@@ -60,7 +60,7 @@ namespace DiKErnel::Integration
           _averageNumberOfWavesCtm(averageNumberOfWavesCtm),
           _waveAngleImpactInput(move(waveAngleImpact)),
           _fixedNumberOfWaves(fixedNumberOfWaves),
-          _frontVelocityCu(frontVelocityCu) {}
+          _frontVelocityCwo(frontVelocityCwo) {}
 
     double GrassRevetmentOvertoppingLocationDependentInput::GetCriticalCumulativeOverload() const
     {
@@ -97,9 +97,9 @@ namespace DiKErnel::Integration
         return _fixedNumberOfWaves;
     }
 
-    double GrassRevetmentOvertoppingLocationDependentInput::GetFrontVelocityCu() const
+    double GrassRevetmentOvertoppingLocationDependentInput::GetFrontVelocityCwo() const
     {
-        return _frontVelocityCu;
+        return _frontVelocityCwo;
     }
 
     bool GrassRevetmentOvertoppingLocationDependentInput::Validate(
@@ -204,9 +204,10 @@ namespace DiKErnel::Integration
     double GrassRevetmentOvertoppingLocationDependentInput::CalculateCumulativeOverload(
         const double averageNumberOfWaves) const
     {
-        GrassRevetmentWaveRunupRayleighCumulativeOverloadInput cumulativeOverloadInput
+        GrassRevetmentOvertoppingCumulativeOverloadInput cumulativeOverloadInput
         {
-            ._frontVelocityCu = _frontVelocityCu
+            ._accelerationAlphaA = _accelerationAlphaA,
+            ._frontVelocityCwo = _frontVelocityCwo
         };
 
         cumulativeOverloadInput._averageNumberOfWaves = averageNumberOfWaves;
@@ -218,7 +219,7 @@ namespace DiKErnel::Integration
         cumulativeOverloadInput._reducedStrengthTransitionAlphaS = GetReducedStrengthTransitionAlphaS();
         cumulativeOverloadInput._gravitationalAcceleration = Constants::GetGravitationalAcceleration();
 
-        return GrassRevetmentWaveRunupRayleighFunctions::CumulativeOverload(cumulativeOverloadInput);
+        return GrassRevetmentOvertoppingFunctions::CumulativeOverload(cumulativeOverloadInput);
     }
 
     unique_ptr<GrassRevetmentWaveRunupRayleighTimeDependentOutputConstructionProperties>

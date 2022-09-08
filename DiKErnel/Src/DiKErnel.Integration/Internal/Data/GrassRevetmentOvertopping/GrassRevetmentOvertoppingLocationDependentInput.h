@@ -41,7 +41,7 @@ namespace DiKErnel::Integration
                 double averageNumberOfWavesCtm,
                 std::unique_ptr<GrassRevetmentWaveRunupWaveAngleImpact> waveAngleImpact,
                 int fixedNumberOfWaves,
-                double frontVelocityCu);
+                double frontVelocityCwo);
 
             [[nodiscard]]
             double GetCriticalCumulativeOverload() const;
@@ -65,7 +65,7 @@ namespace DiKErnel::Integration
             int GetFixedNumberOfWaves() const;
 
             [[nodiscard]]
-            double GetFrontVelocityCu() const;
+            double GetFrontVelocityCwo() const;
 
             [[nodiscard]]
             bool Validate(
@@ -90,8 +90,9 @@ namespace DiKErnel::Integration
             double _averageNumberOfWavesCtm;
             std::unique_ptr<GrassRevetmentWaveRunupWaveAngleImpact> _waveAngleImpactInput;
             const int _fixedNumberOfWaves;
-            const double _frontVelocityCu;
+            const double _frontVelocityCwo;
 
+            double _accelerationAlphaA = std::numeric_limits<double>::infinity();
             double _verticalDistanceWaterLevelElevation = std::numeric_limits<double>::infinity();
             double _waveAngleImpact = std::numeric_limits<double>::infinity();
             double _representativeWaveRunup2P = std::numeric_limits<double>::infinity();
