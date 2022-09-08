@@ -27,7 +27,7 @@
 
 namespace DiKErnel::Integration
 {
-    class GrassRevetmentOvertoppingLocationDependentInput : public GrassRevetmentWaveRunupLocationDependentInput
+    class GrassRevetmentOvertoppingLocationDependentInput : public LocationDependentInput
     {
         public:
             explicit GrassRevetmentOvertoppingLocationDependentInput(
@@ -44,6 +44,30 @@ namespace DiKErnel::Integration
                 std::unique_ptr<GrassRevetmentWaveRunupWaveAngleImpact> waveAngleImpact,
                 int fixedNumberOfWaves,
                 double frontVelocityCu);
+
+            [[nodiscard]]
+            double GetOuterSlope() const;
+
+            [[nodiscard]]
+            double GetCriticalCumulativeOverload() const;
+
+            [[nodiscard]]
+            double GetCriticalFrontVelocity() const;
+
+            [[nodiscard]]
+            double GetIncreasedLoadTransitionAlphaM() const;
+
+            [[nodiscard]]
+            double GetReducedStrengthTransitionAlphaS() const;
+
+            [[nodiscard]]
+            double GetAverageNumberOfWavesCtm() const;
+
+            [[nodiscard]]
+            GrassRevetmentWaveRunupRepresentative2P& GetRepresentative2P() const;
+
+            [[nodiscard]]
+            GrassRevetmentWaveRunupWaveAngleImpact& GetWaveAngleImpact() const;
 
             [[nodiscard]]
             int GetFixedNumberOfWaves() const;
@@ -67,6 +91,14 @@ namespace DiKErnel::Integration
                 const Core::IProfileData& profileData) override;
 
         private:
+            double _outerSlope;
+            double _criticalCumulativeOverload;
+            double _criticalFrontVelocity;
+            double _increasedLoadTransitionAlphaM;
+            double _reducedStrengthTransitionAlphaS;
+            double _averageNumberOfWavesCtm;
+            std::unique_ptr<GrassRevetmentWaveRunupRepresentative2P> _representative2P;
+            std::unique_ptr<GrassRevetmentWaveRunupWaveAngleImpact> _waveAngleImpactInput;
             const int _fixedNumberOfWaves;
             const double _frontVelocityCu;
 

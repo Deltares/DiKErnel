@@ -53,11 +53,57 @@ namespace DiKErnel::Integration
         unique_ptr<GrassRevetmentWaveRunupWaveAngleImpact> waveAngleImpact,
         const int fixedNumberOfWaves,
         const double frontVelocityCu)
-        : GrassRevetmentWaveRunupLocationDependentInput(x, initialDamage, failureNumber, outerSlope, criticalCumulativeOverload,
-                                                        criticalFrontVelocity, increasedLoadTransitionAlphaM, reducedStrengthTransitionAlphaS,
-                                                        averageNumberOfWavesCtm, move(representative2P), move(waveAngleImpact)),
+        : LocationDependentInput(x, initialDamage, failureNumber),
+          _outerSlope(outerSlope),
+          _criticalCumulativeOverload(criticalCumulativeOverload),
+          _criticalFrontVelocity(criticalFrontVelocity),
+          _increasedLoadTransitionAlphaM(increasedLoadTransitionAlphaM),
+          _reducedStrengthTransitionAlphaS(reducedStrengthTransitionAlphaS),
+          _averageNumberOfWavesCtm(averageNumberOfWavesCtm),
+          _representative2P(move(representative2P)),
+          _waveAngleImpactInput(move(waveAngleImpact)),
           _fixedNumberOfWaves(fixedNumberOfWaves),
           _frontVelocityCu(frontVelocityCu) {}
+
+    double GrassRevetmentOvertoppingLocationDependentInput::GetOuterSlope() const
+    {
+        return _outerSlope;
+    }
+
+    double GrassRevetmentOvertoppingLocationDependentInput::GetCriticalCumulativeOverload() const
+    {
+        return _criticalCumulativeOverload;
+    }
+
+    double GrassRevetmentOvertoppingLocationDependentInput::GetCriticalFrontVelocity() const
+    {
+        return _criticalFrontVelocity;
+    }
+
+    double GrassRevetmentOvertoppingLocationDependentInput::GetIncreasedLoadTransitionAlphaM() const
+    {
+        return _increasedLoadTransitionAlphaM;
+    }
+
+    double GrassRevetmentOvertoppingLocationDependentInput::GetReducedStrengthTransitionAlphaS() const
+    {
+        return _reducedStrengthTransitionAlphaS;
+    }
+
+    double GrassRevetmentOvertoppingLocationDependentInput::GetAverageNumberOfWavesCtm() const
+    {
+        return _averageNumberOfWavesCtm;
+    }
+
+    GrassRevetmentWaveRunupRepresentative2P& GrassRevetmentOvertoppingLocationDependentInput::GetRepresentative2P() const
+    {
+        return *_representative2P;
+    }
+
+    GrassRevetmentWaveRunupWaveAngleImpact& GrassRevetmentOvertoppingLocationDependentInput::GetWaveAngleImpact() const
+    {
+        return *_waveAngleImpactInput;
+    }
 
     int GrassRevetmentOvertoppingLocationDependentInput::GetFixedNumberOfWaves() const
     {
@@ -75,8 +121,7 @@ namespace DiKErnel::Integration
         const auto baseValidationSuccessful = LocationDependentInput::Validate(profileData);
 
         vector<unique_ptr<ValidationIssue>> validationIssues;
-
-        // TODO: Implement additional validation
+        validationIssues.emplace_back(make_unique<ValidationIssue>(ValidationIssueType::Error, "TODO: Implement additional validation"));
 
         return ValidationHelper::RegisterValidationIssues(validationIssues) && baseValidationSuccessful;
     }
@@ -176,7 +221,7 @@ namespace DiKErnel::Integration
     }
 
     unique_ptr<GrassRevetmentWaveRunupRayleighTimeDependentOutputConstructionProperties>
-        GrassRevetmentOvertoppingLocationDependentInput::CreateConstructionProperties(
+    GrassRevetmentOvertoppingLocationDependentInput::CreateConstructionProperties(
         double incrementDamage,
         double damage,
         unique_ptr<int> timeOfFailure)
