@@ -35,10 +35,9 @@ namespace DiKErnel::Integration::Test
     TEST(GrassRevetmentOvertoppingLocationDependentOutputTest, Constructor_ExpectedValues)
     {
         // Setup
-        constexpr auto z = 0.1;
-        constexpr auto incrementDamage = 0.2;
-        constexpr auto damage = 0.3;
-        constexpr auto timeOfFailure = 4;
+        constexpr auto incrementDamage = 0.1;
+        constexpr auto damage = 0.2;
+        constexpr auto timeOfFailure = 3;
 
         auto timeDependentOutputItems = vector<unique_ptr<TimeDependentOutput>>();
 
@@ -50,11 +49,10 @@ namespace DiKErnel::Integration::Test
         timeDependentOutputItems.push_back(make_unique<TimeDependentOutputMock>(timeDependentOutputConstructionProperties));
 
         // Call
-        const GrassRevetmentOvertoppingLocationDependentOutput output(z, move(timeDependentOutputItems));
+        const GrassRevetmentOvertoppingLocationDependentOutput output(move(timeDependentOutputItems));
 
         // Assert
         AssertHelper::AssertIsInstanceOf<LocationDependentOutput>(&output);
-        ASSERT_DOUBLE_EQ(z, output.GetZ());
         ASSERT_EQ(vector{ damage }, output.GetDamages());
         ASSERT_EQ(timeOfFailure, *output.GetTimeOfFailure());
         ASSERT_EQ(1, output.GetTimeDependentOutputItems().size());

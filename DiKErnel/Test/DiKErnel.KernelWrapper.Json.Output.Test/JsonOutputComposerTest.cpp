@@ -221,11 +221,11 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
 
             vector<unique_ptr<LocationDependentOutput>> locations;
             locations.push_back(
-                make_unique<AsphaltRevetmentWaveImpactLocationDependentOutput>(4.5, move(asphaltWaveImpactTimeDependentOutputs), 4.6));
-            locations.push_back(make_unique<GrassRevetmentWaveImpactLocationDependentOutput>(4.7, move(grassWaveImpactTimeDependentOutputs)));
+                make_unique<AsphaltRevetmentWaveImpactLocationDependentOutput>(move(asphaltWaveImpactTimeDependentOutputs), 4.5, 4.6));
+            locations.push_back(make_unique<GrassRevetmentWaveImpactLocationDependentOutput>(move(grassWaveImpactTimeDependentOutputs), 4.7));
             locations.push_back(
-                make_unique<GrassRevetmentWaveRunupRayleighLocationDependentOutput>(4.8, move(grassWaveRunupRayleighTimeDependentOutputs)));
-            locations.push_back(make_unique<NaturalStoneRevetmentLocationDependentOutput>(4.9, move(naturalStoneTimeDependentOutputs)));
+                make_unique<GrassRevetmentWaveRunupRayleighLocationDependentOutput>(move(grassWaveRunupRayleighTimeDependentOutputs), 4.8));
+            locations.push_back(make_unique<NaturalStoneRevetmentLocationDependentOutput>(move(naturalStoneTimeDependentOutputs), 4.9));
 
             return make_unique<CalculationOutput>(move(locations));
         }
@@ -292,11 +292,11 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
 
             vector<unique_ptr<LocationDependentOutput>> locations;
             locations.push_back(
-                make_unique<AsphaltRevetmentWaveImpactLocationDependentOutput>(2.9, move(asphaltWaveImpactTimeDependentOutputs), 3.0));
-            locations.push_back(make_unique<GrassRevetmentWaveImpactLocationDependentOutput>(3.1, move(grassWaveImpactTimeDependentOutputs)));
+                make_unique<AsphaltRevetmentWaveImpactLocationDependentOutput>(move(asphaltWaveImpactTimeDependentOutputs), 2.9, 3.0));
+            locations.push_back(make_unique<GrassRevetmentWaveImpactLocationDependentOutput>(move(grassWaveImpactTimeDependentOutputs), 3.1));
             locations.push_back(
-                make_unique<GrassRevetmentWaveRunupRayleighLocationDependentOutput>(3.2, move(grassWaveRunupRayleighTimeDependentOutputs)));
-            locations.push_back(make_unique<NaturalStoneRevetmentLocationDependentOutput>(3.3, move(naturalStoneTimeDependentOutputs)));
+                make_unique<GrassRevetmentWaveRunupRayleighLocationDependentOutput>(move(grassWaveRunupRayleighTimeDependentOutputs), 3.2));
+            locations.push_back(make_unique<NaturalStoneRevetmentLocationDependentOutput>(move(naturalStoneTimeDependentOutputs), 3.3));
 
             return make_unique<CalculationOutput>(move(locations));
         }

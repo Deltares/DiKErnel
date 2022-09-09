@@ -158,7 +158,7 @@ namespace DiKErnel::Integration
     unique_ptr<LocationDependentOutput> AsphaltRevetmentWaveImpactLocationDependentInput::GetLocationDependentOutput(
         vector<unique_ptr<TimeDependentOutput>> timeDependentOutputItems)
     {
-        return make_unique<AsphaltRevetmentWaveImpactLocationDependentOutput>(GetZ(), move(timeDependentOutputItems), _outerSlope);
+        return make_unique<AsphaltRevetmentWaveImpactLocationDependentOutput>(move(timeDependentOutputItems), GetZ(), _outerSlope);
     }
 
     void AsphaltRevetmentWaveImpactLocationDependentInput::InitializeDerivedLocationDependentInput(

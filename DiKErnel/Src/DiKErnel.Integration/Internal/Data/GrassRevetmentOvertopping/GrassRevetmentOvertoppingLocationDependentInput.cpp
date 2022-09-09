@@ -111,7 +111,7 @@ namespace DiKErnel::Integration
     unique_ptr<LocationDependentOutput> GrassRevetmentOvertoppingLocationDependentInput::GetLocationDependentOutput(
         vector<unique_ptr<TimeDependentOutput>> timeDependentOutputItems)
     {
-        return make_unique<GrassRevetmentOvertoppingLocationDependentOutput>(GetZ(), move(timeDependentOutputItems));
+        return make_unique<GrassRevetmentOvertoppingLocationDependentOutput>(move(timeDependentOutputItems));
     }
 
     void GrassRevetmentOvertoppingLocationDependentInput::InitializeDerivedLocationDependentInput(

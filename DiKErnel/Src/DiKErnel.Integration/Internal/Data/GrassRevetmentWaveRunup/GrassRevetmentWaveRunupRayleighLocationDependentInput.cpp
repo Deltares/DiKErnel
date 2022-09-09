@@ -84,7 +84,7 @@ namespace DiKErnel::Integration
     unique_ptr<LocationDependentOutput> GrassRevetmentWaveRunupRayleighLocationDependentInput::GetLocationDependentOutput(
         vector<unique_ptr<TimeDependentOutput>> timeDependentOutputItems)
     {
-        return make_unique<GrassRevetmentWaveRunupRayleighLocationDependentOutput>(GetZ(), move(timeDependentOutputItems));
+        return make_unique<GrassRevetmentWaveRunupRayleighLocationDependentOutput>(move(timeDependentOutputItems), GetZ());
     }
 
     unique_ptr<TimeDependentOutput> GrassRevetmentWaveRunupRayleighLocationDependentInput::CalculateTimeDependentOutput(
