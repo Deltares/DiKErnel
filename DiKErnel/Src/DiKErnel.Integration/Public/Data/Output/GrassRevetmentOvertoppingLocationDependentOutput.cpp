@@ -28,7 +28,6 @@ namespace DiKErnel::Integration
     using namespace std;
 
     GrassRevetmentOvertoppingLocationDependentOutput::GrassRevetmentOvertoppingLocationDependentOutput(
-        const double z,
         vector<unique_ptr<TimeDependentOutput>> timeDependentOutputItems)
-        : LocationDependentOutput(z, move(timeDependentOutputItems)) { }
+        : LocationDependentOutput(1.0, move(timeDependentOutputItems)) { }
 }

@@ -28,7 +28,13 @@ namespace DiKErnel::Integration
     using namespace std;
 
     GrassRevetmentWaveImpactLocationDependentOutput::GrassRevetmentWaveImpactLocationDependentOutput(
-        const double z,
-        vector<unique_ptr<TimeDependentOutput>> timeDependentOutputItems)
-        : LocationDependentOutput(z, move(timeDependentOutputItems)) { }
+        vector<unique_ptr<TimeDependentOutput>> timeDependentOutputItems,
+        const double z)
+        : LocationDependentOutput(z, move(timeDependentOutputItems)),
+          _z(z) { }
+
+    double GrassRevetmentWaveImpactLocationDependentOutput::GetZ() const
+    {
+        return _z;
+    }
 }

@@ -32,17 +32,24 @@ namespace DiKErnel::Integration
         public:
             /*!
              * \brief Creates a new instance.
-             * \param z
-             *        The calculated z.
              * \param timeDependentOutputItems
              *        The time dependent output items of the location.
+             * \param z
+             *        The calculated z.
              * \param outerSlope
              *        The calculated outer slope.
              */
             explicit AsphaltRevetmentWaveImpactLocationDependentOutput(
-                double z,
                 std::vector<std::unique_ptr<Core::TimeDependentOutput>> timeDependentOutputItems,
+                double z,
                 double outerSlope);
+
+            /*!
+             * \brief Gets the calculated z.
+             * \return The calculated z.
+             */
+            [[nodiscard]]
+            double GetZ() const;
 
             /*!
              * \brief Gets the calculated outer slope.
@@ -52,6 +59,7 @@ namespace DiKErnel::Integration
             double GetOuterSlope() const;
 
         private:
+            const double _z;
             const double _outerSlope;
     };
 }

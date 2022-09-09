@@ -33,13 +33,23 @@ namespace DiKErnel::Integration
         public:
             /*!
              * \brief Creates a new instance.
-             * \param z
-             *        The calculated z.
              * \param timeDependentOutputItems
              *        The time dependent output items of the location.
+             * \param z
+             *        The calculated z.
              */
             explicit GrassRevetmentWaveRunupRayleighLocationDependentOutput(
-                double z,
-                std::vector<std::unique_ptr<Core::TimeDependentOutput>> timeDependentOutputItems);
+                std::vector<std::unique_ptr<Core::TimeDependentOutput>> timeDependentOutputItems,
+                double z);
+
+            /*!
+             * \brief Gets the calculated z.
+             * \return The calculated z.
+             */
+            [[nodiscard]]
+            double GetZ() const;
+
+        private:
+            double _z;
     };
 }
