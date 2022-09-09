@@ -46,6 +46,12 @@ namespace DiKErnel::KernelWrapper::Json::Output
         auto output = JsonOutputPhysicsLocationData::CreateJson();
         auto& physicsJson = output.at(JsonOutputDefinitions::PHYSICS);
 
+        const auto* grassRevetmentWaveRunupRayleighLocationDependentOutput =
+                dynamic_cast<const GrassRevetmentWaveRunupRayleighLocationDependentOutput*>(&GetLocationDependentOutput());
+
+        CalculationOutputAdapterHelper::GetJsonElement(physicsJson, JsonOutputDefinitions::Z) =
+                grassRevetmentWaveRunupRayleighLocationDependentOutput->GetZ();
+
         for (const auto* outputItem : _timeDependentOutputItems)
         {
             CalculationOutputAdapterHelper::GetJsonElement(

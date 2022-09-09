@@ -38,13 +38,7 @@ namespace DiKErnel::KernelWrapper::Json::Output
         output.push_back(
             {
                 JsonOutputDefinitions::PHYSICS,
-                ordered_json(
-                    {
-                        {
-                            JsonOutputDefinitions::Z,
-                            GetLocationDependentOutput().GetZ()
-                        }
-                    })
+                ordered_json()
             });
 
         return output;
