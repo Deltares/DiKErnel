@@ -39,13 +39,6 @@ namespace DiKErnel::Core
             virtual ~LocationDependentOutput() = default;
 
             /*!
-             * \brief Gets the calculated z.
-             * \return The calculated z.
-             */
-            [[nodiscard]]
-            double GetZ() const;
-
-            /*!
              * \brief Gets the calculated damages.
              * \return The calculated damages.
              */

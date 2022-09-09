@@ -41,6 +41,7 @@ namespace DiKErnel::KernelWrapper::Json::Output
             inline static const std::string DAMAGE_OVER_TIME = "schadegetalPerTijdstap";
 
             inline static const std::string PHYSICS = "fysica";
+
             inline static const std::string Z = "hoogteLocatie";
 
             inline static const std::string HYDRAULIC_LOAD = "belastingBekleding";
