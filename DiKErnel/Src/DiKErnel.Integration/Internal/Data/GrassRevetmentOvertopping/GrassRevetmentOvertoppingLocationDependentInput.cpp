@@ -49,10 +49,8 @@ namespace DiKErnel::Integration
         const double averageNumberOfWavesCtm,
         const int fixedNumberOfWaves,
         const double frontVelocityCwo,
-        function<double(
-            const IProfileData&)>& getAccelerationAlphaA,
-        function<double(
-            const IProfileData&)>& getDikeHeight)
+        const double accelerationAlphaA,
+        const double dikeHeight)
         : LocationDependentInput(x, initialDamage, failureNumber),
           _criticalCumulativeOverload(criticalCumulativeOverload),
           _criticalFrontVelocity(criticalFrontVelocity),
@@ -61,8 +59,8 @@ namespace DiKErnel::Integration
           _averageNumberOfWavesCtm(averageNumberOfWavesCtm),
           _fixedNumberOfWaves(fixedNumberOfWaves),
           _frontVelocityCwo(frontVelocityCwo),
-          _getAccelerationAlphaA(move(getAccelerationAlphaA)),
-          _getDikeHeight(move(getDikeHeight)) {}
+          _accelerationAlphaA(accelerationAlphaA),
+          _dikeHeight(dikeHeight) {}
 
     double GrassRevetmentOvertoppingLocationDependentInput::GetCriticalCumulativeOverload() const
     {
@@ -122,9 +120,6 @@ namespace DiKErnel::Integration
         LocationDependentInput::InitializeDerivedLocationDependentInput(profileData);
 
         InitializeCalculationProfile(profileData);
-
-        _accelerationAlphaA = _getAccelerationAlphaA(profileData);
-        _dikeHeight = _getDikeHeight(profileData);
     }
 
     unique_ptr<TimeDependentOutput> GrassRevetmentOvertoppingLocationDependentInput::CalculateTimeDependentOutput(

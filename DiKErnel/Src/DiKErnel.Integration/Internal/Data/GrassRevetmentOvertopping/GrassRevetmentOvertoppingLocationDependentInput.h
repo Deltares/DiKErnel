@@ -20,7 +20,6 @@
 
 #pragma once
 
-#include <functional>
 #include <memory>
 
 #include "GrassRevetmentOvertoppingTimeDependentOutputConstructionProperties.h"
@@ -42,10 +41,8 @@ namespace DiKErnel::Integration
                 double averageNumberOfWavesCtm,
                 int fixedNumberOfWaves,
                 double frontVelocityCwo,
-                std::function<double(
-                    const Core::IProfileData&)>& getAccelerationAlphaA,
-                std::function<double(
-                    const Core::IProfileData&)>& getDikeHeight);
+                double accelerationAlphaA,
+                double dikeHeight);
 
             [[nodiscard]]
             double GetCriticalCumulativeOverload() const;
@@ -94,17 +91,12 @@ namespace DiKErnel::Integration
             double _averageNumberOfWavesCtm;
             const int _fixedNumberOfWaves;
             const double _frontVelocityCwo;
-
-            std::function<double(
-                const Core::IProfileData&)> _getAccelerationAlphaA;
-            std::function<double(
-                const Core::IProfileData&)> _getDikeHeight;
+            double _accelerationAlphaA;
+            double _dikeHeight;
 
             std::vector<double> _xValuesProfile;
             std::vector<double> _zValuesProfile;
             std::vector<double> _roughnessCoefficients;
-            double _accelerationAlphaA = std::numeric_limits<double>::infinity();
-            double _dikeHeight = std::numeric_limits<double>::infinity();
             double _verticalDistanceWaterLevelElevation = std::numeric_limits<double>::infinity();
             double _representativeWaveRunup2P = std::numeric_limits<double>::infinity();
             double _cumulativeOverload = std::numeric_limits<double>::infinity();
