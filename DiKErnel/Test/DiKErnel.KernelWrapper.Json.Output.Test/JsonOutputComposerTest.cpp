@@ -95,8 +95,8 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
             location2TimeDependentOutputItems.push_back(make_unique<TimeDependentOutputMock>(timeDependentOutputConstructionProperties4));
 
             vector<unique_ptr<LocationDependentOutput>> locations;
-            locations.push_back(make_unique<LocationDependentOutputMock>(1.1, move(location1TimeDependentOutputItems)));
-            locations.push_back(make_unique<LocationDependentOutputMock>(2.2, move(location2TimeDependentOutputItems)));
+            locations.push_back(make_unique<LocationDependentOutputMock>(move(location1TimeDependentOutputItems)));
+            locations.push_back(make_unique<LocationDependentOutputMock>(move(location2TimeDependentOutputItems)));
 
             const CalculationOutput calculationOutput(move(locations));
 
@@ -360,7 +360,7 @@ namespace DiKErnel::KernelWrapper::Json::Output::Test
         locationTimeDependentOutputItems.push_back(make_unique<TimeDependentOutputMock>(timeDependentOutputConstructionProperties));
 
         vector<unique_ptr<LocationDependentOutput>> locations;
-        locations.push_back(make_unique<LocationDependentOutputMock>(1.1, move(locationTimeDependentOutputItems)));
+        locations.push_back(make_unique<LocationDependentOutputMock>(move(locationTimeDependentOutputItems)));
 
         const CalculationOutput calculationOutput(move(locations));
 

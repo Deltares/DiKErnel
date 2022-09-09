@@ -69,17 +69,13 @@ namespace DiKErnel::Core
         protected:
             /*!
              * \brief Creates a new instance.
-             * \param z
-             *        The calculated z.
              * \param timeDependentOutputItems
              *        The time dependent output items of the location.
              */
             explicit LocationDependentOutput(
-                double z,
                 std::vector<std::unique_ptr<TimeDependentOutput>> timeDependentOutputItems);
 
         private:
-            double _z;
             std::vector<double> _damages = std::vector<double>();
             std::unique_ptr<int> _timeOfFailure;
             std::vector<std::unique_ptr<TimeDependentOutput>> _timeDependentOutputItems;

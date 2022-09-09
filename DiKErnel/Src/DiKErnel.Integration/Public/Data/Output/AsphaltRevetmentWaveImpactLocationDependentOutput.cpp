@@ -31,7 +31,7 @@ namespace DiKErnel::Integration
         vector<unique_ptr<TimeDependentOutput>> timeDependentOutputItems,
         const double z,
         const double outerSlope)
-        : LocationDependentOutput(z, move(timeDependentOutputItems)),
+        : LocationDependentOutput(move(timeDependentOutputItems)),
           _z(z),
           _outerSlope(outerSlope) { }
 

@@ -28,7 +28,6 @@ namespace DiKErnel::Core::TestUtil
     {
         public:
             explicit LocationDependentOutputMock(
-                double z,
                 std::vector<std::unique_ptr<TimeDependentOutput>> timeDependentOutputItems);
     };
 }

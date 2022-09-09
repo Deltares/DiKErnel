@@ -29,5 +29,5 @@ namespace DiKErnel::Integration
 
     GrassRevetmentOvertoppingLocationDependentOutput::GrassRevetmentOvertoppingLocationDependentOutput(
         vector<unique_ptr<TimeDependentOutput>> timeDependentOutputItems)
-        : LocationDependentOutput(1.0, move(timeDependentOutputItems)) { }
+        : LocationDependentOutput(move(timeDependentOutputItems)) { }
 }

@@ -25,7 +25,6 @@ namespace DiKErnel::Core::TestUtil
     using namespace std;
 
     LocationDependentOutputMock::LocationDependentOutputMock(
-        const double z,
         vector<unique_ptr<TimeDependentOutput>> timeDependentOutputItems)
-        : LocationDependentOutput(z, move(timeDependentOutputItems)) {}
+        : LocationDependentOutput(move(timeDependentOutputItems)) {}
 }
