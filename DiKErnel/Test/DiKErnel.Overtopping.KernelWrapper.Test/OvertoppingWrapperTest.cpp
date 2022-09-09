@@ -26,14 +26,53 @@
 
 namespace DiKErnel::Overtopping::KernelWrapper::Test
 {
-    TEST(OvertoppingWrapperTest, Validate_ExpectedResult)
+    TEST(OvertoppingWrapperTest, TestOvertoppingValidation)
     {
-        Geometry geometry{};
-        Input input{};
+        const auto xCoords = new double[]{
+            0,
+            10,
+            20,
+            30,
+            40
+        };
+        const auto yCoords = new double[]{
+            -5,
+            0,
+            5,
+            4,
+            0
+        };
+        const auto roughness = new double[]{
+            0.5,
+            0.5,
+            0.5,
+            0.5
+        };
+
+        Geometry geometry{
+            0,
+            5,
+            xCoords,
+            yCoords,
+            roughness
+        };
+
+        Input input{
+            2.3,
+            4.3,
+            1.0,
+            0.92,
+            1,
+            1,
+            1.0,
+            0.5
+        };
 
         OvertoppingWrapper overtoppingWrapper;
 
-        auto success = overtoppingWrapper.Validate(geometry, input, 0.0);
+        const auto success = overtoppingWrapper.Validate(geometry, input, 9.1);
+
+        delete[] xCoords, yCoords, roughness;
 
         ASSERT_FALSE(success);
     }

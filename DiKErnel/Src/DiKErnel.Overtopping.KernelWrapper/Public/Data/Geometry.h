@@ -19,7 +19,6 @@
 // All rights reserved.
 
 #pragma once
-#include <vector>
 
 namespace DiKErnel::Overtopping::KernelWrapper
 {
@@ -43,18 +42,18 @@ namespace DiKErnel::Overtopping::KernelWrapper
          * \brief The x coordinates of the dike.
          *        Unit = [m]
          */
-        std::vector<double> _xCoords{};
+        double* _xCoords{};
 
         /*!
          * \brief The y coordinates of the dike.
          *        Unit = [m]
          */
-        std::vector<double> _yCoords{};
+        double* _yCoords{};
 
         /*!
          * \brief The roughness of the dike.
          *        Unit = [-]
          */
-        std::vector<double> _roughness{};
+        double* _roughness{};
     };
 }

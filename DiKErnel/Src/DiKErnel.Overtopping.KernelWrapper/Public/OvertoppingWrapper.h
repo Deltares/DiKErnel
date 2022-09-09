@@ -41,7 +41,7 @@ namespace DiKErnel::Overtopping::KernelWrapper
     class OvertoppingWrapper
     {
         public:
-            bool Validate(
+            static bool Validate(
                 Geometry& geometry,
                 Input& input,
                 double dikeHeight);

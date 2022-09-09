@@ -20,8 +20,6 @@
 
 #include "OvertoppingWrapper.h"
 
-#include <sstream>
-
 namespace DiKErnel::Overtopping::KernelWrapper
 {
     using namespace std;
@@ -31,7 +29,8 @@ namespace DiKErnel::Overtopping::KernelWrapper
         double* dikeHeight,
         Input* modelFactors,
         bool* success,
-        stringstream* message);
+        const char* message,
+        int size);
 
     bool OvertoppingWrapper::Validate(
         Geometry& geometry,
@@ -39,9 +38,13 @@ namespace DiKErnel::Overtopping::KernelWrapper
         double dikeHeight)
     {
         bool success;
-        stringstream message;
+        // stringstream message;
 
-        ValidateInputC(&geometry, &dikeHeight, &input, &success, &message);
+        const int size = 32 * 255;
+        const char* message = new char[size];
+        ValidateInputC(&geometry, &dikeHeight, &input, &success, message, size);
+
+        // delete[] message;
 
         return success;
     }
