@@ -132,7 +132,7 @@ namespace DiKErnel::Integration
         unique_ptr<int> timeOfFailure = nullptr;
 
         _verticalDistanceWaterLevelElevation = HydraulicLoadFunctions::VerticalDistanceWaterLevelElevation(
-            GetZ(), timeDependentInput.GetWaterLevel());
+            _dikeHeight, timeDependentInput.GetWaterLevel());
 
         if (_verticalDistanceWaterLevelElevation > 0)
         {
