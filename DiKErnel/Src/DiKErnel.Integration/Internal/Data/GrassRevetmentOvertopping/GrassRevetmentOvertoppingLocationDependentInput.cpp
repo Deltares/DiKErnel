@@ -24,9 +24,8 @@
 #include "Constants.h"
 #include "GrassRevetmentFunctions.h"
 #include "GrassRevetmentOvertoppingFunctions.h"
+#include "GrassRevetmentOvertoppingLocationDependentOutput.h"
 #include "GrassRevetmentOvertoppingTimeDependentOutput.h"
-#include "GrassRevetmentWaveRunupRayleighLocationDependentOutput.h"
-#include "GrassRevetmentWaveRunupRayleighTimeDependentOutput.h"
 #include "HydraulicLoadFunctions.h"
 #include "RevetmentFunctions.h"
 #include "ValidationHelper.h"
@@ -114,7 +113,7 @@ namespace DiKErnel::Integration
     unique_ptr<LocationDependentOutput> GrassRevetmentOvertoppingLocationDependentInput::GetLocationDependentOutput(
         vector<unique_ptr<TimeDependentOutput>> timeDependentOutputItems)
     {
-        return make_unique<GrassRevetmentWaveRunupRayleighLocationDependentOutput>(GetZ(), move(timeDependentOutputItems));
+        return make_unique<GrassRevetmentOvertoppingLocationDependentOutput>(GetZ(), move(timeDependentOutputItems));
     }
 
     void GrassRevetmentOvertoppingLocationDependentInput::InitializeDerivedLocationDependentInput(
