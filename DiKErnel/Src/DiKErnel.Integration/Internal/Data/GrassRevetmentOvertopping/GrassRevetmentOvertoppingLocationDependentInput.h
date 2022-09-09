@@ -23,6 +23,7 @@
 #include <functional>
 #include <memory>
 
+#include "GrassRevetmentOvertoppingTimeDependentOutputConstructionProperties.h"
 #include "GrassRevetmentWaveRunupLocationDependentInput.h"
 #include "GrassRevetmentWaveRunupRayleighTimeDependentOutput.h"
 
@@ -124,7 +125,7 @@ namespace DiKErnel::Integration
                 double averageNumberOfWaves) const;
 
             [[nodiscard]]
-            std::unique_ptr<GrassRevetmentWaveRunupRayleighTimeDependentOutputConstructionProperties> CreateConstructionProperties(
+            std::unique_ptr<GrassRevetmentOvertoppingTimeDependentOutputConstructionProperties> CreateConstructionProperties(
                 double incrementDamage,
                 double damage,
                 std::unique_ptr<int> timeOfFailure);

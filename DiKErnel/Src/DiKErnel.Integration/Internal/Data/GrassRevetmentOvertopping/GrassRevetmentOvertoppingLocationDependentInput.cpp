@@ -24,6 +24,7 @@
 #include "Constants.h"
 #include "GrassRevetmentFunctions.h"
 #include "GrassRevetmentOvertoppingFunctions.h"
+#include "GrassRevetmentOvertoppingTimeDependentOutput.h"
 #include "GrassRevetmentWaveRunupRayleighLocationDependentOutput.h"
 #include "GrassRevetmentWaveRunupRayleighTimeDependentOutput.h"
 #include "HydraulicLoadFunctions.h"
@@ -169,7 +170,7 @@ namespace DiKErnel::Integration
             }
         }
 
-        return make_unique<GrassRevetmentWaveRunupRayleighTimeDependentOutput>(
+        return make_unique<GrassRevetmentOvertoppingTimeDependentOutput>(
             *CreateConstructionProperties(incrementDamage, damage, move(timeOfFailure)));
     }
 
@@ -239,13 +240,14 @@ namespace DiKErnel::Integration
         return GrassRevetmentOvertoppingFunctions::CumulativeOverload(cumulativeOverloadInput);
     }
 
-    unique_ptr<GrassRevetmentWaveRunupRayleighTimeDependentOutputConstructionProperties>
+    unique_ptr<GrassRevetmentOvertoppingTimeDependentOutputConstructionProperties>
     GrassRevetmentOvertoppingLocationDependentInput::CreateConstructionProperties(
         double incrementDamage,
         double damage,
         unique_ptr<int> timeOfFailure)
     {
-        auto constructionProperties = make_unique<GrassRevetmentWaveRunupRayleighTimeDependentOutputConstructionProperties>();
+        auto constructionProperties = make_unique<GrassRevetmentOvertoppingTimeDependentOutputConstructionProperties>();
+
         constructionProperties->_incrementDamage = make_unique<double>(incrementDamage);
         constructionProperties->_damage = make_unique<double>(damage);
         constructionProperties->_timeOfFailure = move(timeOfFailure);

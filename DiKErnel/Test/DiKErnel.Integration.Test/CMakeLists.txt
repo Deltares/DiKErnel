@@ -31,6 +31,8 @@ set(SOURCEFILES_PUBLIC_DATA_OUTPUT
   ${PUBLIC_DATA_OUTPUT_FOLDER}/AsphaltRevetmentWaveImpactLocationDependentOutputTest.cpp
   ${PUBLIC_DATA_OUTPUT_FOLDER}/AsphaltRevetmentWaveImpactTimeDependentOutputConstructionPropertiesTest.cpp
   ${PUBLIC_DATA_OUTPUT_FOLDER}/AsphaltRevetmentWaveImpactTimeDependentOutputTest.cpp
+  ${PUBLIC_DATA_OUTPUT_FOLDER}/GrassRevetmentOvertoppingTimeDependentOutputConstructionPropertiesTest.cpp
+  ${PUBLIC_DATA_OUTPUT_FOLDER}/GrassRevetmentOvertoppingTimeDependentOutputTest.cpp
   ${PUBLIC_DATA_OUTPUT_FOLDER}/GrassRevetmentWaveImpactLocationDependentOutputTest.cpp
   ${PUBLIC_DATA_OUTPUT_FOLDER}/GrassRevetmentWaveImpactTimeDependentOutputConstructionPropertiesTest.cpp
   ${PUBLIC_DATA_OUTPUT_FOLDER}/GrassRevetmentWaveImpactTimeDependentOutputTest.cpp
