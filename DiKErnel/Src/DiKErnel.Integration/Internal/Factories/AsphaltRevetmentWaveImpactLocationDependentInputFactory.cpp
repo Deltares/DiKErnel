@@ -26,7 +26,7 @@
 #include "IAsphaltRevetmentWaveImpactTopLayerDefaults.h"
 #include "LocationDependentInputFactoryException.h"
 #include "LocationDependentInputFactoryHelper.h"
-#include "RevetmentCalculationInputBuilder.h"
+#include "CalculationInputBuilder.h"
 #include "RevetmentDefaults.h"
 
 namespace DiKErnel::Integration

@@ -33,7 +33,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
     unique_ptr<ICalculationInput> JsonInputAdapter::AdaptJsonInputData(
         const JsonInputData& jsonInputData)
     {
-        RevetmentCalculationInputBuilder builder;
+        CalculationInputBuilder builder;
 
         AdaptDikeProfile(jsonInputData, builder);
         AdaptHydraulicData(jsonInputData, builder);
@@ -44,7 +44,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
     void JsonInputAdapter::AdaptDikeProfile(
         const JsonInputData& jsonInputData,
-        RevetmentCalculationInputBuilder& builder)
+        CalculationInputBuilder& builder)
     {
         const auto& dikeProfileData = jsonInputData.GetDikeProfileData();
 
@@ -112,7 +112,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
     void JsonInputAdapter::AdaptHydraulicData(
         const JsonInputData& jsonInputData,
-        RevetmentCalculationInputBuilder& builder)
+        CalculationInputBuilder& builder)
     {
         const auto& hydraulicData = jsonInputData.GetHydraulicData();
 
@@ -130,7 +130,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
     void JsonInputAdapter::AdaptLocations(
         const JsonInputData& jsonInputData,
-        RevetmentCalculationInputBuilder& builder)
+        CalculationInputBuilder& builder)
     {
         const auto& locationReferences = jsonInputData.GetLocationData();
         const auto& calculationDefinitionReferences = jsonInputData.GetCalculationDefinitionData();

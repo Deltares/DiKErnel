@@ -19,8 +19,8 @@ set(INTERNAL_HELPERS_FOLDER Internal/Helpers)
 
 # Define sources
 set(SOURCEFILES_PUBLIC
-  ${PUBLIC_FOLDER}/RevetmentCalculationInputBuilder.cpp
-  ${PUBLIC_FOLDER}/RevetmentCalculationInputBuilder.h
+  ${PUBLIC_FOLDER}/CalculationInputBuilder.cpp
+  ${PUBLIC_FOLDER}/CalculationInputBuilder.h
 )
 
 set(SOURCEFILES_PUBLIC_DATA

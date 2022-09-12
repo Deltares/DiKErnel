@@ -21,7 +21,7 @@
 #include <gtest/gtest.h>
 
 #include "EventAssertHelper.h"
-#include "RevetmentCalculationInputBuilder.h"
+#include "CalculationInputBuilder.h"
 #include "Validator.h"
 
 namespace DiKErnel::System::Test
@@ -36,7 +36,7 @@ namespace DiKErnel::System::Test
     TEST(ValidationSystemTest, GivenCalculationInputWithoutTimeStepsAndLocations_WhenValidating_ThenReturnsExpectedValidationResult)
     {
         // Given
-        RevetmentCalculationInputBuilder builder;
+        CalculationInputBuilder builder;
         constexpr auto outerToe = CharacteristicPointType::OuterToe;
         constexpr auto outerCrest = CharacteristicPointType::OuterCrest;
         builder.AddDikeProfilePointData(10, 5, &outerToe);
@@ -60,7 +60,7 @@ namespace DiKErnel::System::Test
     TEST(ValidationSystemTest, GivenCalculationInputWithInvalidTimeStep_WhenValidating_ThenReturnsExpectedValidationResult)
     {
         // Given
-        RevetmentCalculationInputBuilder builder;
+        CalculationInputBuilder builder;
         builder.AddTimeStep(100, 90, 10, -1, 30, 200);
         constexpr auto outerToe = CharacteristicPointType::OuterToe;
         constexpr auto outerCrest = CharacteristicPointType::OuterCrest;
@@ -87,7 +87,7 @@ namespace DiKErnel::System::Test
     TEST(ValidationSystemTest, GivenCalculationInputWithInvalidProfileData_WhenValidating_ThenReturnsExpectedValidationResult)
     {
         // Given
-        RevetmentCalculationInputBuilder builder;
+        CalculationInputBuilder builder;
         builder.AddTimeStep(0, 100, 10, 5, 10, 30);
 
         const AsphaltRevetmentWaveImpactLocationConstructionProperties asphaltRevetmentWaveImpactLocationConstructionProperties(
@@ -126,7 +126,7 @@ namespace DiKErnel::System::Test
         constructionProperties.SetElasticModulusSubLayer(make_unique<double>(0));
         constructionProperties.SetAverageNumberOfWavesCtm(make_unique<double>(0));
 
-        RevetmentCalculationInputBuilder builder;
+        CalculationInputBuilder builder;
         builder.AddTimeStep(0, 100, 10, 5, 10, 30);
         constexpr auto outerToe = CharacteristicPointType::OuterToe;
         constexpr auto outerCrest = CharacteristicPointType::OuterCrest;
@@ -179,7 +179,7 @@ namespace DiKErnel::System::Test
         constructionProperties.SetUpperLimitLoadingAul(make_unique<double>(1));
         constructionProperties.SetLowerLimitLoadingAll(make_unique<double>(1));
 
-        RevetmentCalculationInputBuilder builder;
+        CalculationInputBuilder builder;
         builder.AddTimeStep(0, 100, 10, 5, 10, 30);
         constexpr auto outerToe = CharacteristicPointType::OuterToe;
         constexpr auto outerCrest = CharacteristicPointType::OuterCrest;
@@ -229,7 +229,7 @@ namespace DiKErnel::System::Test
         constructionProperties.SetFixedNumberOfWaves(make_unique<int>(0));
         constructionProperties.SetFrontVelocityCu(make_unique<double>(-1));
 
-        RevetmentCalculationInputBuilder builder;
+        CalculationInputBuilder builder;
         builder.AddTimeStep(0, 100, 10, 5, 10, 30);
         constexpr auto outerToe = CharacteristicPointType::OuterToe;
         constexpr auto outerCrest = CharacteristicPointType::OuterCrest;
@@ -272,7 +272,7 @@ namespace DiKErnel::System::Test
         constructionProperties.SetSlopeUpperLevelAus(make_unique<double>(0.3));
         constructionProperties.SetSlopeLowerLevelAls(make_unique<double>(0));
 
-        RevetmentCalculationInputBuilder builder;
+        CalculationInputBuilder builder;
         builder.AddTimeStep(0, 100, 10, 5, 10, 30);
         constexpr auto outerToe = CharacteristicPointType::OuterToe;
         constexpr auto outerCrest = CharacteristicPointType::OuterCrest;
@@ -303,7 +303,7 @@ namespace DiKErnel::System::Test
     TEST(ValidationSystemTest, GivenValidCalculationInput_WhenValidating_ThenReturnsValidationResult)
     {
         // Given
-        RevetmentCalculationInputBuilder builder;
+        CalculationInputBuilder builder;
         builder.AddTimeStep(0, 100, 10, 5, 10, 30);
         constexpr auto outerToe = CharacteristicPointType::OuterToe;
         constexpr auto outerCrest = CharacteristicPointType::OuterCrest;

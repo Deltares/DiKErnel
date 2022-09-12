@@ -18,7 +18,7 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include "RevetmentCalculationInputBuilder.h"
+#include "CalculationInputBuilder.h"
 
 #include "AsphaltRevetmentWaveImpactDefaults.h"
 #include "AsphaltRevetmentWaveImpactDefaultsFactory.h"
@@ -38,7 +38,7 @@ namespace DiKErnel::Integration
     using namespace DomainLibrary;
     using namespace std;
 
-    void RevetmentCalculationInputBuilder::AddDikeProfilePointData(
+    void CalculationInputBuilder::AddDikeProfilePointData(
         const double x,
         const double z,
         const CharacteristicPointType* characteristicPointType)
@@ -49,7 +49,7 @@ namespace DiKErnel::Integration
         }
     }
 
-    void RevetmentCalculationInputBuilder::AddDikeProfileSegment(
+    void CalculationInputBuilder::AddDikeProfileSegment(
         double startPointX,
         double startPointZ,
         double endPointX,
@@ -65,7 +65,7 @@ namespace DiKErnel::Integration
                                                                          segmentRoughnessCoefficient));
     }
 
-    void RevetmentCalculationInputBuilder::AddTimeStep(
+    void CalculationInputBuilder::AddTimeStep(
         int beginTime,
         int endTime,
         double waterLevel,
@@ -77,35 +77,35 @@ namespace DiKErnel::Integration
             make_unique<TimeDependentInput>(beginTime, endTime, waterLevel, waveHeightHm0, wavePeriodTm10, waveAngle));
     }
 
-    void RevetmentCalculationInputBuilder::AddAsphaltWaveImpactLocation(
+    void CalculationInputBuilder::AddAsphaltWaveImpactLocation(
         const AsphaltRevetmentWaveImpactLocationConstructionProperties& constructionProperties)
     {
         _locationDependentInputItems.push_back(
             AsphaltRevetmentWaveImpactLocationDependentInputFactory::CreateLocationDependentInput(constructionProperties));
     }
 
-    void RevetmentCalculationInputBuilder::AddGrassWaveImpactLocation(
+    void CalculationInputBuilder::AddGrassWaveImpactLocation(
         const GrassRevetmentWaveImpactLocationConstructionProperties& constructionProperties)
     {
         _locationDependentInputItems.push_back(
             GrassRevetmentWaveImpactLocationDependentInputFactory::CreateLocationDependentInput(constructionProperties));
     }
 
-    void RevetmentCalculationInputBuilder::AddGrassWaveRunupRayleighLocation(
+    void CalculationInputBuilder::AddGrassWaveRunupRayleighLocation(
         const GrassRevetmentWaveRunupRayleighLocationConstructionProperties& constructionProperties)
     {
         _locationDependentInputItems.push_back(
             GrassRevetmentWaveRunupRayleighLocationDependentInputFactory::CreateLocationDependentInput(constructionProperties));
     }
 
-    void RevetmentCalculationInputBuilder::AddNaturalStoneLocation(
+    void CalculationInputBuilder::AddNaturalStoneLocation(
         const NaturalStoneRevetmentLocationConstructionProperties& constructionProperties)
     {
         _locationDependentInputItems.push_back(
             NaturalStoneRevetmentLocationDependentInputFactory::CreateLocationDependentInput(constructionProperties));
     }
 
-    unique_ptr<ICalculationInput> RevetmentCalculationInputBuilder::Build()
+    unique_ptr<ICalculationInput> CalculationInputBuilder::Build()
     {
         auto segments = CreateProfileSegments();
         auto characteristicPoints = CreateCharacteristicPoints(segments);
@@ -113,7 +113,7 @@ namespace DiKErnel::Integration
                                              move(_locationDependentInputItems), move(_timeDependentInputItems));
     }
 
-    vector<unique_ptr<ProfileSegment>> RevetmentCalculationInputBuilder::CreateProfileSegments() const
+    vector<unique_ptr<ProfileSegment>> CalculationInputBuilder::CreateProfileSegments() const
     {
         vector<unique_ptr<ProfileSegment>> segments;
 
@@ -132,7 +132,7 @@ namespace DiKErnel::Integration
         return segments;
     }
 
-    vector<unique_ptr<CharacteristicPoint>> RevetmentCalculationInputBuilder::CreateCharacteristicPoints(
+    vector<unique_ptr<CharacteristicPoint>> CalculationInputBuilder::CreateCharacteristicPoints(
         const vector<unique_ptr<ProfileSegment>>& segments) const
     {
         vector<unique_ptr<CharacteristicPoint>> characteristicPoints;

@@ -15,7 +15,7 @@ set(SOURCEFILES_ROOT
 )
 
 set(SOURCEFILES_PUBLIC
-  ${PUBLIC_FOLDER}/RevetmentCalculationInputBuilderTest.cpp
+  ${PUBLIC_FOLDER}/CalculationInputBuilderTest.cpp
 )
 
 set(SOURCEFILES_PUBLIC_DATA

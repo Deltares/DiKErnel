@@ -31,7 +31,7 @@ namespace DiKErnel::Integration
     /*!
      * \brief Builder to configure and create calculation input.
      */
-    class RevetmentCalculationInputBuilder
+    class CalculationInputBuilder
     {
         public:
             /*!
@@ -96,7 +96,7 @@ namespace DiKErnel::Integration
              * \brief Adds an asphalt wave impact location.
              * \param constructionProperties
              *        The properties to construct the asphalt wave impact location dependent input.
-             * \exception RevetmentCalculationInputBuilderException
+             * \exception LocationDependentInputFactoryException
              *            Thrown when the top layer type is invalid.
              */
             void AddAsphaltWaveImpactLocation(
@@ -106,7 +106,7 @@ namespace DiKErnel::Integration
              * \brief Adds a grass wave impact location.
              * \param constructionProperties
              *        The properties to construct the grass wave impact location dependent input.
-             * \exception RevetmentCalculationInputBuilderException
+             * \exception LocationDependentInputFactoryException
              *            Thrown when the top layer type is invalid.
              */
             void AddGrassWaveImpactLocation(
@@ -116,7 +116,7 @@ namespace DiKErnel::Integration
              * \brief Adds a grass wave run-up location with Rayleigh protocol.
              * \param constructionProperties
              *        The properties to construct the grass wave run-up Rayleigh location dependent input.
-             * \exception RevetmentCalculationInputBuilderException
+             * \exception LocationDependentInputFactoryException
              *            Thrown when the top layer type is invalid.
              */
             void AddGrassWaveRunupRayleighLocation(
@@ -126,7 +126,7 @@ namespace DiKErnel::Integration
              * \brief Adds a natural stone location.
              * \param constructionProperties
              *        The properties to construct the natural stone location dependent input.
-             * \exception RevetmentCalculationInputBuilderException
+             * \exception LocationDependentInputFactoryException
              *            Thrown when the top layer type is invalid.
              */
             void AddNaturalStoneLocation(
