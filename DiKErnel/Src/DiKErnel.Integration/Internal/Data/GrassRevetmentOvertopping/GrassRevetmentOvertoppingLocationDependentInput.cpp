@@ -49,7 +49,7 @@ namespace DiKErnel::Integration
         const double averageNumberOfWavesCtm,
         const int fixedNumberOfWaves,
         const double frontVelocityCwo,
-        const double accelerationAlphaA,
+        unique_ptr<GrassRevetmentOvertoppingLocationDependentAccelerationAlphaA> locationDependentAccelerationAlphaA,
         const double dikeHeight)
         : LocationDependentInput(x, initialDamage, failureNumber),
           _criticalCumulativeOverload(criticalCumulativeOverload),
@@ -59,7 +59,7 @@ namespace DiKErnel::Integration
           _averageNumberOfWavesCtm(averageNumberOfWavesCtm),
           _fixedNumberOfWaves(fixedNumberOfWaves),
           _frontVelocityCwo(frontVelocityCwo),
-          _accelerationAlphaA(accelerationAlphaA),
+          _locationDependentAccelerationAlphaA(move(locationDependentAccelerationAlphaA)),
           _dikeHeight(dikeHeight) {}
 
     double GrassRevetmentOvertoppingLocationDependentInput::GetCriticalCumulativeOverload() const
@@ -117,7 +117,18 @@ namespace DiKErnel::Integration
     void GrassRevetmentOvertoppingLocationDependentInput::InitializeDerivedLocationDependentInput(
         const IProfileData& profileData)
     {
-        InitializeCalculationProfile(profileData);
+        const auto& characteristicPoints = profileData.GetCharacteristicPoints();
+        const auto outerToe = CharacteristicPointsHelper::GetCoordinatesForType(characteristicPoints, CharacteristicPointType::OuterToe);
+        const auto outerCrest = CharacteristicPointsHelper::GetCoordinatesForType(characteristicPoints, CharacteristicPointType::OuterCrest);
+        const auto innerCrest = CharacteristicPointsHelper::GetCoordinatesForType(characteristicPoints, CharacteristicPointType::InnerCrest);
+
+        InitializeCalculationProfile(outerToe, outerCrest, profileData.GetProfileSegments());
+
+        const double x = GetX();
+
+        _accelerationAlphaA = x >= outerCrest->first && x <= innerCrest->first
+                                  ? _locationDependentAccelerationAlphaA->ValueAtCrest()
+                                  : _locationDependentAccelerationAlphaA->ValueAtInnerSlope();
     }
 
     unique_ptr<TimeDependentOutput> GrassRevetmentOvertoppingLocationDependentInput::CalculateTimeDependentOutput(
@@ -167,13 +178,11 @@ namespace DiKErnel::Integration
     }
 
     void GrassRevetmentOvertoppingLocationDependentInput::InitializeCalculationProfile(
-        const IProfileData& profileData)
+        const unique_ptr<pair<double, double>>& outerToe,
+        const unique_ptr<pair<double, double>>& outerCrest,
+        const vector<reference_wrapper<ProfileSegment>>& profileSegments)
     {
-        const auto& characteristicPoints = profileData.GetCharacteristicPoints();
-        const auto outerToe = CharacteristicPointsHelper::GetCoordinatesForType(characteristicPoints, CharacteristicPointType::OuterToe);
-        const auto outerCrest = CharacteristicPointsHelper::GetCoordinatesForType(characteristicPoints, CharacteristicPointType::OuterCrest);
-
-        for (const auto& profileSegment : profileData.GetProfileSegments())
+        for (const auto& profileSegment : profileSegments)
         {
             const auto& profileSegmentReference = profileSegment.get();
             const auto& startPoint = profileSegmentReference.GetStartPoint();

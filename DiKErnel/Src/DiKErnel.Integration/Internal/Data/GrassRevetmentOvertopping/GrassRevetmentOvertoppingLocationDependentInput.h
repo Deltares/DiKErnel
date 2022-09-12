@@ -105,7 +105,9 @@ namespace DiKErnel::Integration
             double _cumulativeOverload = std::numeric_limits<double>::infinity();
 
             void InitializeCalculationProfile(
-                const Core::IProfileData& profileData);
+                const std::unique_ptr<std::pair<double, double>>& outerToe,
+                const std::unique_ptr<std::pair<double, double>>& outerCrest,
+                const std::vector<std::reference_wrapper<Core::ProfileSegment>>& profileSegments);
 
             [[nodiscard]]
             double CalculateRepresentativeWaveRunup2P(
