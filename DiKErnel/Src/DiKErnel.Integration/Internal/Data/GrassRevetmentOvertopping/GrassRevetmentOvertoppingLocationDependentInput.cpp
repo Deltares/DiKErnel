@@ -139,7 +139,7 @@ namespace DiKErnel::Integration
 
         if (!_dikeHeightInitialized)
         {
-            InitializeDikeHeight(profileData);
+            InitializeDikeHeight(outerCrest, profileData.GetProfileSegments());
 
             _dikeHeightInitialized = true;
         }
@@ -207,18 +207,29 @@ namespace DiKErnel::Integration
                 _zValuesProfile.push_back(startPoint.GetZ());
                 _roughnessCoefficients.push_back(profileSegmentReference.GetRoughnessCoefficient());
             }
-
-            _xValuesProfile.push_back(outerCrest->first);
-            _zValuesProfile.push_back(outerCrest->second);
         }
+
+        _xValuesProfile.push_back(outerCrest->first);
+        _zValuesProfile.push_back(outerCrest->second);
     }
 
     void GrassRevetmentOvertoppingLocationDependentInput::InitializeDikeHeight(
-        const IProfileData& profileData) const
+        const unique_ptr<pair<double, double>>& outerCrest,
+        const vector<reference_wrapper<ProfileSegment>>& profileSegments)
     {
-        auto x = GetX();
+        const auto x = GetX();
 
-        // TODO: implement
+        _dikeHeight = 1.0;
+
+        for (const auto& profileSegment : profileSegments)
+        {
+            const auto& startPoint = profileSegment.get().GetStartPoint();
+
+            if (const double startPointX = startPoint.GetX(); startPointX >= outerCrest->first && startPointX < x)
+            {
+                _dikeHeight = max(_dikeHeight, startPoint.GetZ());
+            }
+        }
     }
 
     double GrassRevetmentOvertoppingLocationDependentInput::CalculateRepresentativeWaveRunup2P(

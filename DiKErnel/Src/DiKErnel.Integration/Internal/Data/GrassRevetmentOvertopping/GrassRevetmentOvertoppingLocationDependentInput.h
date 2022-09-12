@@ -111,7 +111,8 @@ namespace DiKErnel::Integration
                 const std::vector<std::reference_wrapper<Core::ProfileSegment>>& profileSegments);
 
             void InitializeDikeHeight(
-                const Core::IProfileData& profileData) const;
+                const std::unique_ptr<std::pair<double, double>>& outerCrest,
+                const std::vector<std::reference_wrapper<Core::ProfileSegment>>& profileSegments);
 
             [[nodiscard]]
             double CalculateRepresentativeWaveRunup2P(
