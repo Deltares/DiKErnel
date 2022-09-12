@@ -124,6 +124,8 @@ namespace DiKErnel::Integration
     void GrassRevetmentOvertoppingLocationDependentInput::InitializeDerivedLocationDependentInput(
         const IProfileData& profileData)
     {
+        LocationDependentInput::InitializeDerivedLocationDependentInput(profileData);
+
         const auto& characteristicPoints = profileData.GetCharacteristicPoints();
         const auto outerToe = CharacteristicPointsHelper::GetCoordinatesForType(characteristicPoints, CharacteristicPointType::OuterToe);
         const auto outerCrest = CharacteristicPointsHelper::GetCoordinatesForType(characteristicPoints, CharacteristicPointType::OuterCrest);
