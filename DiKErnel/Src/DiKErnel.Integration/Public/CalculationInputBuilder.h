@@ -48,7 +48,7 @@ namespace DiKErnel::Integration
             void AddDikeProfilePointData(
                 double x,
                 double z,
-                const Core::CharacteristicPointType* characteristicPointType);
+                Core::CharacteristicPointType characteristicPointType);
 
             /*!
              * \brief Adds a new dike segment.

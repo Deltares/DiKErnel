@@ -43,12 +43,9 @@ namespace DiKErnel::Integration
     void CalculationInputBuilder::AddDikeProfilePointData(
         const double x,
         const double z,
-        const CharacteristicPointType* characteristicPointType)
+        const CharacteristicPointType characteristicPointType)
     {
-        if (characteristicPointType != nullptr)
-        {
-            _profilePointData.push_back(make_unique<ProfileFactoryPointData>(x, z, *characteristicPointType));
-        }
+        _profilePointData.push_back(make_unique<ProfileFactoryPointData>(x, z, characteristicPointType));
     }
 
     void CalculationInputBuilder::AddDikeProfileSegment(

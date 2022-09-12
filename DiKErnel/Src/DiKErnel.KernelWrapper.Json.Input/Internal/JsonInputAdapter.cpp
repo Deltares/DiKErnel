@@ -68,7 +68,10 @@ namespace DiKErnel::KernelWrapper::Json::Input
             }
 
             const double zLocation = zLocations.at(i);
-            builder.AddDikeProfilePointData(xLocation, zLocation, characteristicPoint.get());
+            if (characteristicPoint != nullptr)
+            {
+                builder.AddDikeProfilePointData(xLocation, zLocation, *characteristicPoint);
+            }
 
             if (i == 0)
             {
