@@ -241,8 +241,8 @@ namespace DiKErnel::Integration::Test
         const auto profileSegment = profileData->GetProfileSegment(2.0);
 
         // Assert
-        const auto& lowerPoint = profileSegment->GetLowerPoint();
-        const auto& upperPoint = profileSegment->GetUpperPoint();
+        const auto& lowerPoint = profileSegment->GetStartPoint();
+        const auto& upperPoint = profileSegment->GetEndPoint();
         ASSERT_DOUBLE_EQ(1.0, lowerPoint.GetX());
         ASSERT_DOUBLE_EQ(1.1, lowerPoint.GetZ());
         ASSERT_DOUBLE_EQ(2.0, upperPoint.GetX());
@@ -258,8 +258,8 @@ namespace DiKErnel::Integration::Test
         const auto profileSegment = profileData->GetProfileSegment(1.5);
 
         // Assert
-        const auto& lowerPoint = profileSegment->GetLowerPoint();
-        const auto& upperPoint = profileSegment->GetUpperPoint();
+        const auto& lowerPoint = profileSegment->GetStartPoint();
+        const auto& upperPoint = profileSegment->GetEndPoint();
         ASSERT_DOUBLE_EQ(1.0, lowerPoint.GetX());
         ASSERT_DOUBLE_EQ(1.1, lowerPoint.GetZ());
         ASSERT_DOUBLE_EQ(2.0, upperPoint.GetX());
@@ -275,8 +275,8 @@ namespace DiKErnel::Integration::Test
         const auto profileSegment = profileData->GetProfileSegment(3.0);
 
         // Assert
-        const auto& lowerPoint = profileSegment->GetLowerPoint();
-        const auto& upperPoint = profileSegment->GetUpperPoint();
+        const auto& lowerPoint = profileSegment->GetStartPoint();
+        const auto& upperPoint = profileSegment->GetEndPoint();
         ASSERT_DOUBLE_EQ(2.0, lowerPoint.GetX());
         ASSERT_DOUBLE_EQ(2.2, lowerPoint.GetZ());
         ASSERT_DOUBLE_EQ(3.0, upperPoint.GetX());
@@ -307,8 +307,8 @@ namespace DiKErnel::Integration::Test
         ASSERT_EQ(3, profilePoints.size());
 
         const auto& segments = profileData->GetProfileSegments();
-        ASSERT_EQ(&profilePoints.at(0).get(), &segments.at(0).get().GetLowerPoint());
-        ASSERT_EQ(&profilePoints.at(1).get(), &segments.at(1).get().GetLowerPoint());
-        ASSERT_EQ(&profilePoints.at(2).get(), &segments.at(1).get().GetUpperPoint());
+        ASSERT_EQ(&profilePoints.at(0).get(), &segments.at(0).get().GetStartPoint());
+        ASSERT_EQ(&profilePoints.at(1).get(), &segments.at(1).get().GetStartPoint());
+        ASSERT_EQ(&profilePoints.at(2).get(), &segments.at(1).get().GetEndPoint());
     }
 }

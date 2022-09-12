@@ -23,21 +23,21 @@
 namespace DiKErnel::Core
 {
     ProfileSegment::ProfileSegment(
-        std::shared_ptr<ProfilePoint> lowerPoint,
-        std::shared_ptr<ProfilePoint> upperPoint,
+        std::shared_ptr<ProfilePoint> startPoint,
+        std::shared_ptr<ProfilePoint> endPoint,
         const double roughnessCoefficient)
-        : _lowerPointReference(move(lowerPoint)),
-          _upperPointReference(move(upperPoint)),
+        : _startPointReference(move(startPoint)),
+          _endPointReference(move(endPoint)),
           _roughnessCoefficient(roughnessCoefficient) {}
 
-    ProfilePoint& ProfileSegment::GetLowerPoint() const
+    ProfilePoint& ProfileSegment::GetStartPoint() const
     {
-        return *_lowerPointReference;
+        return *_startPointReference;
     }
 
-    ProfilePoint& ProfileSegment::GetUpperPoint() const
+    ProfilePoint& ProfileSegment::GetEndPoint() const
     {
-        return *_upperPointReference;
+        return *_endPointReference;
     }
 
     double ProfileSegment::GetRoughnessCoefficient() const

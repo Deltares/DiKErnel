@@ -42,12 +42,12 @@ namespace DiKErnel::Integration
     {
         if (!_profileSegments.empty())
         {
-            _profilePointReferences.emplace_back(_profileSegments.front()->GetLowerPoint());
+            _profilePointReferences.emplace_back(_profileSegments.front()->GetStartPoint());
 
             for (const auto& profileSegment : _profileSegments)
             {
                 _profileSegmentReferences.emplace_back(*profileSegment);
-                _profilePointReferences.emplace_back(profileSegment->GetUpperPoint());
+                _profilePointReferences.emplace_back(profileSegment->GetEndPoint());
             }
         }
 
@@ -144,12 +144,12 @@ namespace DiKErnel::Integration
         for (auto i = 0; i < static_cast<int>(_profileSegments.size()); ++i)
         {
             auto& profileSegment = _profileSegments.at(i);
-            if (i == 0 && abs(profileSegment->GetLowerPoint().GetX() - horizontalPosition) <= numeric_limits<double>::epsilon())
+            if (i == 0 && abs(profileSegment->GetStartPoint().GetX() - horizontalPosition) <= numeric_limits<double>::epsilon())
             {
                 return nullptr;
             }
 
-            if (profileSegment->GetLowerPoint().GetX() <= horizontalPosition && profileSegment->GetUpperPoint().GetX() >= horizontalPosition)
+            if (profileSegment->GetStartPoint().GetX() <= horizontalPosition && profileSegment->GetEndPoint().GetX() >= horizontalPosition)
             {
                 return profileSegment.get();
             }

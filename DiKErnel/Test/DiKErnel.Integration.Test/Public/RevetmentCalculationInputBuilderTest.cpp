@@ -205,7 +205,7 @@ namespace DiKErnel::Integration::Test
         ASSERT_EQ(1, actualCharacteristicPoints.size());
 
         const auto& actualSegment = actualProfileSegments.at(0);
-        ProfileDataAssertHelper::AssertCharacteristicPoint(actualSegment.get().GetUpperPoint(), characteristicPointType,
+        ProfileDataAssertHelper::AssertCharacteristicPoint(actualSegment.get().GetEndPoint(), characteristicPointType,
                                                            actualCharacteristicPoints.at(0));
     }
 

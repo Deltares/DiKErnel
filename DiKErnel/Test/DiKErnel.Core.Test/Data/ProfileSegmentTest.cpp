@@ -35,8 +35,8 @@ namespace DiKErnel::Core::Test
         const ProfileSegment profileSegment(lowerPoint, upperPoint, roughnessCoefficient);
 
         // Assert
-        ASSERT_EQ(lowerPoint.get(), &profileSegment.GetLowerPoint());
-        ASSERT_EQ(upperPoint.get(), &profileSegment.GetUpperPoint());
+        ASSERT_EQ(lowerPoint.get(), &profileSegment.GetStartPoint());
+        ASSERT_EQ(upperPoint.get(), &profileSegment.GetEndPoint());
         ASSERT_DOUBLE_EQ(roughnessCoefficient, profileSegment.GetRoughnessCoefficient());
     }
 }

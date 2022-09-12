@@ -141,7 +141,7 @@ namespace DiKErnel::Integration
             for (const auto& segment : segments)
             {
                 const double characteristicPointX = characteristicPoint->_x;
-                if (const auto& segmentLowerPoint = segment->GetLowerPoint();
+                if (const auto& segmentLowerPoint = segment->GetStartPoint();
                     abs(characteristicPointX - segmentLowerPoint.GetX()) <= numeric_limits<double>::epsilon())
                 {
                     characteristicPoints.emplace_back(make_unique<CharacteristicPoint>(segmentLowerPoint,
@@ -149,7 +149,7 @@ namespace DiKErnel::Integration
                     break;
                 }
 
-                if (const auto& segmentUpperPoint = segment->GetUpperPoint();
+                if (const auto& segmentUpperPoint = segment->GetEndPoint();
                     abs(characteristicPointX - segmentUpperPoint.GetX()) <= numeric_limits<double>::epsilon())
                 {
                     characteristicPoints.emplace_back(make_unique<CharacteristicPoint>(segmentUpperPoint,

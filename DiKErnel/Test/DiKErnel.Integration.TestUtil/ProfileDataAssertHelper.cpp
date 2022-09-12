@@ -43,8 +43,8 @@ namespace DiKErnel::Integration::TestUtil
         const double expectedRoughnessCoefficient,
         const ProfileSegment& actualProfileSegment)
     {
-        AssertProfilePoint(expectedLowerPointX, expectedLowerPointZ, actualProfileSegment.GetLowerPoint());
-        AssertProfilePoint(expectedUpperPointX, expectedUpperPointZ, actualProfileSegment.GetUpperPoint());
+        AssertProfilePoint(expectedLowerPointX, expectedLowerPointZ, actualProfileSegment.GetStartPoint());
+        AssertProfilePoint(expectedUpperPointX, expectedUpperPointZ, actualProfileSegment.GetEndPoint());
         ASSERT_EQ(expectedRoughnessCoefficient, actualProfileSegment.GetRoughnessCoefficient());
     }
 
