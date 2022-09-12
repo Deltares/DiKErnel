@@ -29,6 +29,7 @@
 #include "GrassRevetmentWaveRunupRayleighLocationDependentInputFactory.h"
 #include "NaturalStoneRevetmentLocationDependentInputFactory.h"
 #include "ProfileData.h"
+#include "ProfileFactory.h"
 #include "ProfileFactoryPointData.h"
 #include "ProfileFactorySegmentData.h"
 #include "TimeDependentInput.h"
@@ -103,58 +104,9 @@ namespace DiKErnel::Integration
 
     unique_ptr<ICalculationInput> CalculationInputBuilder::Build()
     {
-        auto segments = CreateProfileSegments();
-        auto characteristicPoints = CreateCharacteristicPoints(segments);
+        auto segments = ProfileFactory::CreateProfileSegments(_profileSegmentData);
+        auto characteristicPoints = ProfileFactory::CreateCharacteristicPoints(_profilePointData, segments);
         return make_unique<CalculationInput>(make_unique<ProfileData>(move(segments), move(characteristicPoints)),
                                              move(_locationDependentInputItems), move(_timeDependentInputItems));
-    }
-
-    vector<unique_ptr<ProfileSegment>> CalculationInputBuilder::CreateProfileSegments() const
-    {
-        vector<unique_ptr<ProfileSegment>> segments;
-
-        if (!_profileSegmentData.empty())
-        {
-            for (const auto& segmentData : _profileSegmentData)
-            {
-                auto startPoint = make_shared<ProfilePoint>(segmentData->GetStartPointX(), segmentData->GetStartPointZ());
-                auto endPoint = make_shared<ProfilePoint>(segmentData->GetEndPointX(), segmentData->GetStartPointZ());
-
-                segments.emplace_back(make_unique<ProfileSegment>(startPoint, endPoint, *segmentData->GetRoughnessCoefficient()));
-                startPoint = endPoint;
-            }
-        }
-
-        return segments;
-    }
-
-    vector<unique_ptr<CharacteristicPoint>> CalculationInputBuilder::CreateCharacteristicPoints(
-        const vector<unique_ptr<ProfileSegment>>& segments) const
-    {
-        vector<unique_ptr<CharacteristicPoint>> characteristicPoints;
-        for (const auto& characteristicPoint : _profilePointData)
-        {
-            for (const auto& segment : segments)
-            {
-                const double characteristicPointX = characteristicPoint->GetX();
-                if (const auto& segmentStartPoint = segment->GetStartPoint();
-                    abs(characteristicPointX - segmentStartPoint.GetX()) <= numeric_limits<double>::epsilon())
-                {
-                    characteristicPoints.emplace_back(make_unique<CharacteristicPoint>(segmentStartPoint,
-                                                                                       characteristicPoint->GetCharacteristicPoint()));
-                    break;
-                }
-
-                if (const auto& segmentEndPoint = segment->GetEndPoint();
-                    abs(characteristicPointX - segmentEndPoint.GetX()) <= numeric_limits<double>::epsilon())
-                {
-                    characteristicPoints.emplace_back(make_unique<CharacteristicPoint>(segmentEndPoint,
-                                                                                       characteristicPoint->GetCharacteristicPoint()));
-                    break;
-                }
-            }
-        }
-
-        return characteristicPoints;
     }
 }

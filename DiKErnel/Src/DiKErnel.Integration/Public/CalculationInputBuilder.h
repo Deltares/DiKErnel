@@ -141,13 +141,6 @@ namespace DiKErnel::Integration
             std::unique_ptr<Core::ICalculationInput> Build();
 
         private:
-            [[nodiscard]]
-            std::vector<std::unique_ptr<Core::ProfileSegment>> CreateProfileSegments() const;
-
-            [[nodiscard]]
-            std::vector<std::unique_ptr<Core::CharacteristicPoint>> CreateCharacteristicPoints(
-                const std::vector<std::unique_ptr<Core::ProfileSegment>>& segments) const;
-
             std::vector<std::unique_ptr<ProfileFactorySegmentData>> _profileSegmentData
                     = std::vector<std::unique_ptr<ProfileFactorySegmentData>>();
             std::vector<std::unique_ptr<ProfileFactoryPointData>> _profilePointData
