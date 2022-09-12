@@ -36,15 +36,15 @@ namespace DiKErnel::Integration::TestUtil
     }
 
     void ProfileDataAssertHelper::AssertProfileSegment(
-        const double expectedLowerPointX,
-        const double expectedLowerPointZ,
-        const double expectedUpperPointX,
-        const double expectedUpperPointZ,
+        const double expectedStartPointX,
+        const double expectedStartPointZ,
+        const double expectedEndPointX,
+        const double expectedEndPointZ,
         const double expectedRoughnessCoefficient,
         const ProfileSegment& actualProfileSegment)
     {
-        AssertProfilePoint(expectedLowerPointX, expectedLowerPointZ, actualProfileSegment.GetStartPoint());
-        AssertProfilePoint(expectedUpperPointX, expectedUpperPointZ, actualProfileSegment.GetEndPoint());
+        AssertProfilePoint(expectedStartPointX, expectedStartPointZ, actualProfileSegment.GetStartPoint());
+        AssertProfilePoint(expectedEndPointX, expectedEndPointZ, actualProfileSegment.GetEndPoint());
         ASSERT_EQ(expectedRoughnessCoefficient, actualProfileSegment.GetRoughnessCoefficient());
     }
 

@@ -110,13 +110,13 @@ namespace DiKErnel::Integration::Test
            GivenBuilderWithDikeSegmentAddedWithoutRoughness_WhenBuild_ThenReturnsCalculationInput)
     {
         // Given
-        constexpr auto lowerPointX = 10;
-        constexpr auto lowerPointZ = 20;
-        constexpr auto upperPointX = 20;
-        constexpr auto upperPointZ = 30;
+        constexpr auto startPointX = 10;
+        constexpr auto startPointZ = 20;
+        constexpr auto endPointX = 20;
+        constexpr auto endPointZ = 30;
 
         RevetmentCalculationInputBuilder builder;
-        builder.AddDikeProfileSegment(lowerPointX, lowerPointZ, upperPointX, upperPointZ, nullptr);
+        builder.AddDikeProfileSegment(startPointX, startPointZ, endPointX, endPointZ, nullptr);
 
         // When
         const auto& calculationInput = builder.Build();
@@ -127,8 +127,8 @@ namespace DiKErnel::Integration::Test
         ASSERT_EQ(1, actualProfileSegments.size());
 
         const auto& actualSegment = actualProfileSegments.at(0);
-        ProfileDataAssertHelper::AssertProfileSegment(lowerPointX, lowerPointZ,
-                                                      upperPointX, upperPointZ,
+        ProfileDataAssertHelper::AssertProfileSegment(startPointX, startPointZ,
+                                                      endPointX, endPointZ,
                                                       DomainLibrary::ProfileSegmentDefaults::GetRoughnessCoefficient(), actualSegment);
     }
 
@@ -136,14 +136,14 @@ namespace DiKErnel::Integration::Test
            GivenBuilderWithDikeSegmentAddedWithRoughness_WhenBuild_ThenReturnsCalculationInput)
     {
         // Given
-        constexpr auto lowerPointX = 10;
-        constexpr auto lowerPointZ = 20;
-        constexpr auto upperPointX = 20;
-        constexpr auto upperPointZ = 30;
+        constexpr auto startPointX = 10;
+        constexpr auto startPointZ = 20;
+        constexpr auto endPointX = 20;
+        constexpr auto endPointZ = 30;
         constexpr auto roughnessCoefficient = 13.37;
 
         RevetmentCalculationInputBuilder builder;
-        builder.AddDikeProfileSegment(lowerPointX, lowerPointZ, upperPointX, upperPointZ, &roughnessCoefficient);
+        builder.AddDikeProfileSegment(startPointX, startPointZ, endPointX, endPointZ, &roughnessCoefficient);
 
         // When
         const auto& calculationInput = builder.Build();
@@ -154,8 +154,8 @@ namespace DiKErnel::Integration::Test
         ASSERT_EQ(1, actualProfileSegments.size());
 
         const auto& actualSegment = actualProfileSegments.at(0);
-        ProfileDataAssertHelper::AssertProfileSegment(lowerPointX, lowerPointZ,
-                                                      upperPointX, upperPointZ,
+        ProfileDataAssertHelper::AssertProfileSegment(startPointX, startPointZ,
+                                                      endPointX, endPointZ,
                                                       roughnessCoefficient, actualSegment);
     }
 

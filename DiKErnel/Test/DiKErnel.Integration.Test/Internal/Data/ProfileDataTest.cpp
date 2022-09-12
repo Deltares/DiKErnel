@@ -241,12 +241,12 @@ namespace DiKErnel::Integration::Test
         const auto profileSegment = profileData->GetProfileSegment(2.0);
 
         // Assert
-        const auto& lowerPoint = profileSegment->GetStartPoint();
-        const auto& upperPoint = profileSegment->GetEndPoint();
-        ASSERT_DOUBLE_EQ(1.0, lowerPoint.GetX());
-        ASSERT_DOUBLE_EQ(1.1, lowerPoint.GetZ());
-        ASSERT_DOUBLE_EQ(2.0, upperPoint.GetX());
-        ASSERT_DOUBLE_EQ(2.2, upperPoint.GetZ());
+        const auto& startPoint = profileSegment->GetStartPoint();
+        const auto& endPoint = profileSegment->GetEndPoint();
+        ASSERT_DOUBLE_EQ(1.0, startPoint.GetX());
+        ASSERT_DOUBLE_EQ(1.1, startPoint.GetZ());
+        ASSERT_DOUBLE_EQ(2.0, endPoint.GetX());
+        ASSERT_DOUBLE_EQ(2.2, endPoint.GetZ());
     }
 
     TEST_F(ProfileDataTest, GetProfileSegment_HorizontalPositionBetweenDikeProfilePoints_ExpectedValue)
@@ -258,12 +258,12 @@ namespace DiKErnel::Integration::Test
         const auto profileSegment = profileData->GetProfileSegment(1.5);
 
         // Assert
-        const auto& lowerPoint = profileSegment->GetStartPoint();
-        const auto& upperPoint = profileSegment->GetEndPoint();
-        ASSERT_DOUBLE_EQ(1.0, lowerPoint.GetX());
-        ASSERT_DOUBLE_EQ(1.1, lowerPoint.GetZ());
-        ASSERT_DOUBLE_EQ(2.0, upperPoint.GetX());
-        ASSERT_DOUBLE_EQ(2.2, upperPoint.GetZ());
+        const auto& startPoint = profileSegment->GetStartPoint();
+        const auto& endPoint = profileSegment->GetEndPoint();
+        ASSERT_DOUBLE_EQ(1.0, startPoint.GetX());
+        ASSERT_DOUBLE_EQ(1.1, startPoint.GetZ());
+        ASSERT_DOUBLE_EQ(2.0, endPoint.GetX());
+        ASSERT_DOUBLE_EQ(2.2, endPoint.GetZ());
     }
 
     TEST_F(ProfileDataTest, GetProfileSegment_HorizontalPositionOnLastDikeProfilePoint_ExpectedValue)
@@ -275,12 +275,12 @@ namespace DiKErnel::Integration::Test
         const auto profileSegment = profileData->GetProfileSegment(3.0);
 
         // Assert
-        const auto& lowerPoint = profileSegment->GetStartPoint();
-        const auto& upperPoint = profileSegment->GetEndPoint();
-        ASSERT_DOUBLE_EQ(2.0, lowerPoint.GetX());
-        ASSERT_DOUBLE_EQ(2.2, lowerPoint.GetZ());
-        ASSERT_DOUBLE_EQ(3.0, upperPoint.GetX());
-        ASSERT_DOUBLE_EQ(3.3, upperPoint.GetZ());
+        const auto& startPoint = profileSegment->GetStartPoint();
+        const auto& endPoint = profileSegment->GetEndPoint();
+        ASSERT_DOUBLE_EQ(2.0, startPoint.GetX());
+        ASSERT_DOUBLE_EQ(2.2, startPoint.GetZ());
+        ASSERT_DOUBLE_EQ(3.0, endPoint.GetX());
+        ASSERT_DOUBLE_EQ(3.3, endPoint.GetZ());
     }
 
     TEST_F(ProfileDataTest, GetProfileSegment_HorizontalPositionRightOfDikeProfile_ExpectedValue)

@@ -52,8 +52,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
         const auto& zLocations = dikeProfileData.GetZLocations();
         const auto& characteristicPoints = dikeProfileData.GetCharacteristicPoints();
 
-        double lowerPointX = numeric_limits<double>::infinity();
-        double lowerPointZ = numeric_limits<double>::infinity();
+        double startPointX = numeric_limits<double>::infinity();
+        double startPointZ = numeric_limits<double>::infinity();
         for (auto i = 0; i < static_cast<int>(xLocations.size()); ++i)
         {
             const double xLocation = xLocations.at(i);
@@ -72,15 +72,15 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
             if (i == 0)
             {
-                lowerPointX = xLocation;
-                lowerPointZ = zLocation;
+                startPointX = xLocation;
+                startPointZ = zLocation;
                 continue;
             }
 
-            builder.AddDikeProfileSegment(lowerPointX, lowerPointZ, xLocation, zLocation, nullptr);
+            builder.AddDikeProfileSegment(startPointX, startPointZ, xLocation, zLocation, nullptr);
 
-            lowerPointX = xLocation;
-            lowerPointZ = zLocation;
+            startPointX = xLocation;
+            startPointZ = zLocation;
         }
     }
 

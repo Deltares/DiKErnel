@@ -200,11 +200,11 @@ namespace DiKErnel::Integration
         }
 
         const auto profileSegment = profileData.GetProfileSegment(horizontalPosition);
-        const auto& profileSegmentLowerPoint = profileSegment->GetStartPoint();
-        const auto& profileSegmentUpperPoint = profileSegment->GetEndPoint();
+        const auto& profileSegmentStartPoint = profileSegment->GetStartPoint();
+        const auto& profileSegmentEndPoint = profileSegment->GetEndPoint();
 
-        _outerSlope = AsphaltRevetmentWaveImpactFunctions::OuterSlope(profileSegmentLowerPoint.GetX(), profileSegmentLowerPoint.GetZ(),
-                                                                      profileSegmentUpperPoint.GetX(), profileSegmentUpperPoint.GetZ());
+        _outerSlope = AsphaltRevetmentWaveImpactFunctions::OuterSlope(profileSegmentStartPoint.GetX(), profileSegmentStartPoint.GetZ(),
+                                                                      profileSegmentEndPoint.GetX(), profileSegmentEndPoint.GetZ());
     }
 
     unique_ptr<TimeDependentOutput> AsphaltRevetmentWaveImpactLocationDependentInput::CalculateTimeDependentOutput(

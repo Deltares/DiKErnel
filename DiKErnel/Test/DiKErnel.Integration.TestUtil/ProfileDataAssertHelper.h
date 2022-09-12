@@ -36,10 +36,10 @@ namespace DiKErnel::Integration::TestUtil
                 const Core::ProfilePoint& actualProfilePoint);
 
             static void AssertProfileSegment(
-                double expectedLowerPointX,
-                double expectedLowerPointZ,
-                double expectedUpperPointX,
-                double expectedUpperPointZ,
+                double expectedStartPointX,
+                double expectedStartPointZ,
+                double expectedEndPointX,
+                double expectedEndPointZ,
                 double expectedRoughnessCoefficient,
                 const Core::ProfileSegment& actualProfileSegment);
 

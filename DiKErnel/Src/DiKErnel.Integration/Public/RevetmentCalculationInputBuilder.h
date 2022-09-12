@@ -50,23 +50,23 @@ namespace DiKErnel::Integration
 
             /*!
              * \brief Adds a new dike segment.
-             * \param lowerPointX
+             * \param startPointX
              *        The x coordinate for the lower profile point.
-             * \param lowerPointZ
+             * \param startPointZ
              *        The z coordinate for the lower profile point.
-             * \param upperPointX
+             * \param endPointX
              *        The x coordinate for the upper profile point.
-             * \param upperPointZ
+             * \param endPointZ
              *        The z coordinate for the upper profile point.
              * \param roughnessCoefficient
              *        The roughness coefficient.
              *        Unit = [-]
              */
             void AddDikeProfileSegment(
-                double lowerPointX,
-                double lowerPointZ,
-                double upperPointX,
-                double upperPointZ,
+                double startPointX,
+                double startPointZ,
+                double endPointX,
+                double endPointZ,
                 const double* roughnessCoefficient);
 
             /*!
@@ -142,10 +142,10 @@ namespace DiKErnel::Integration
             class ProfileSegmentData
             {
                 public:
-                    double _lowerPointX;
-                    double _lowerPointZ;
-                    double _upperPointX;
-                    double _upperPointZ;
+                    double _startPointX;
+                    double _startPointZ;
+                    double _endPointX;
+                    double _endPointZ;
                     double _roughnessCoefficient;
             };
 

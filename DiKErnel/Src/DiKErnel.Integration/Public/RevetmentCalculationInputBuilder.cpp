@@ -50,10 +50,10 @@ namespace DiKErnel::Integration
     }
 
     void RevetmentCalculationInputBuilder::AddDikeProfileSegment(
-        double lowerPointX,
-        double lowerPointZ,
-        double upperPointX,
-        double upperPointZ,
+        double startPointX,
+        double startPointZ,
+        double endPointX,
+        double endPointZ,
         const double* roughnessCoefficient)
     {
         double segmentRoughnessCoefficient = ProfileSegmentDefaults::GetRoughnessCoefficient();
@@ -61,7 +61,7 @@ namespace DiKErnel::Integration
         {
             segmentRoughnessCoefficient = *roughnessCoefficient;
         }
-        _profileSegmentData.emplace_back(make_unique<ProfileSegmentData>(lowerPointX, lowerPointZ, upperPointX, upperPointZ,
+        _profileSegmentData.emplace_back(make_unique<ProfileSegmentData>(startPointX, startPointZ, endPointX, endPointZ,
                                                                          segmentRoughnessCoefficient));
     }
 
@@ -121,11 +121,11 @@ namespace DiKErnel::Integration
         {
             for (const auto& segmentInfo : _profileSegmentData)
             {
-                auto lowerPoint = make_shared<ProfilePoint>(segmentInfo->_lowerPointX, segmentInfo->_lowerPointZ);
-                auto upperPoint = make_shared<ProfilePoint>(segmentInfo->_upperPointX, segmentInfo->_upperPointZ);
+                auto startPoint = make_shared<ProfilePoint>(segmentInfo->_startPointX, segmentInfo->_startPointZ);
+                auto endPoint = make_shared<ProfilePoint>(segmentInfo->_endPointX, segmentInfo->_endPointZ);
 
-                segments.emplace_back(make_unique<ProfileSegment>(lowerPoint, upperPoint, segmentInfo->_roughnessCoefficient));
-                lowerPoint = upperPoint;
+                segments.emplace_back(make_unique<ProfileSegment>(startPoint, endPoint, segmentInfo->_roughnessCoefficient));
+                startPoint = endPoint;
             }
         }
 
@@ -141,18 +141,18 @@ namespace DiKErnel::Integration
             for (const auto& segment : segments)
             {
                 const double characteristicPointX = characteristicPoint->_x;
-                if (const auto& segmentLowerPoint = segment->GetStartPoint();
-                    abs(characteristicPointX - segmentLowerPoint.GetX()) <= numeric_limits<double>::epsilon())
+                if (const auto& segmentStartPoint = segment->GetStartPoint();
+                    abs(characteristicPointX - segmentStartPoint.GetX()) <= numeric_limits<double>::epsilon())
                 {
-                    characteristicPoints.emplace_back(make_unique<CharacteristicPoint>(segmentLowerPoint,
+                    characteristicPoints.emplace_back(make_unique<CharacteristicPoint>(segmentStartPoint,
                                                                                        characteristicPoint->_characteristicPointType));
                     break;
                 }
 
-                if (const auto& segmentUpperPoint = segment->GetEndPoint();
-                    abs(characteristicPointX - segmentUpperPoint.GetX()) <= numeric_limits<double>::epsilon())
+                if (const auto& segmentEndPoint = segment->GetEndPoint();
+                    abs(characteristicPointX - segmentEndPoint.GetX()) <= numeric_limits<double>::epsilon())
                 {
-                    characteristicPoints.emplace_back(make_unique<CharacteristicPoint>(segmentUpperPoint,
+                    characteristicPoints.emplace_back(make_unique<CharacteristicPoint>(segmentEndPoint,
                                                                                        characteristicPoint->_characteristicPointType));
                     break;
                 }

@@ -27,16 +27,16 @@ namespace DiKErnel::Core::Test
     TEST(ProfileSegmentTest, Constructor_ExpectedValues)
     {
         // Setup
-        const auto lowerPoint = std::make_shared<ProfilePoint>(0.0, 1.1);
-        const auto upperPoint = std::make_shared<ProfilePoint>(2.2, 3.3);
+        const auto startPoint = std::make_shared<ProfilePoint>(0.0, 1.1);
+        const auto endPoint = std::make_shared<ProfilePoint>(2.2, 3.3);
         constexpr double roughnessCoefficient(13.37);
 
         // Call
-        const ProfileSegment profileSegment(lowerPoint, upperPoint, roughnessCoefficient);
+        const ProfileSegment profileSegment(startPoint, endPoint, roughnessCoefficient);
 
         // Assert
-        ASSERT_EQ(lowerPoint.get(), &profileSegment.GetStartPoint());
-        ASSERT_EQ(upperPoint.get(), &profileSegment.GetEndPoint());
+        ASSERT_EQ(startPoint.get(), &profileSegment.GetStartPoint());
+        ASSERT_EQ(endPoint.get(), &profileSegment.GetEndPoint());
         ASSERT_DOUBLE_EQ(roughnessCoefficient, profileSegment.GetRoughnessCoefficient());
     }
 }

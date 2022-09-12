@@ -178,12 +178,12 @@ namespace DiKErnel::Integration
         for (const auto& profileSegment : profileData.GetProfileSegments())
         {
             const auto& profileSegmentReference = profileSegment.get();
-            const auto& lowerPoint = profileSegmentReference.GetLowerPoint();
+            const auto& startPoint = profileSegmentReference.GetStartPoint();
 
-            if (const double lowerPointX = lowerPoint.GetX(); lowerPointX >= outerToe->first && lowerPointX < outerCrest->first)
+            if (const double startPointX = startPoint.GetX(); startPointX >= outerToe->first && startPointX < outerCrest->first)
             {
-                _xValuesProfile.push_back(lowerPointX);
-                _zValuesProfile.push_back(lowerPoint.GetZ());
+                _xValuesProfile.push_back(startPointX);
+                _zValuesProfile.push_back(startPoint.GetZ());
                 _roughnessCoefficients.push_back(profileSegmentReference.GetRoughnessCoefficient());
             }
 
