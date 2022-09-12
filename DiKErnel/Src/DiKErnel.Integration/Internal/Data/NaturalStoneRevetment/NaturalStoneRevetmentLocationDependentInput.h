@@ -106,14 +106,12 @@ namespace DiKErnel::Integration
             std::unique_ptr<NaturalStoneRevetmentDistanceMaximumWaveElevation> _distanceMaximumWaveElevationInput;
             std::unique_ptr<NaturalStoneRevetmentNormativeWidthOfWaveImpact> _normativeWidthOfWaveImpactInput;
             std::unique_ptr<NaturalStoneRevetmentWaveAngleImpact> _waveAngleImpactInput;
-
-            double _z = std::numeric_limits<double>::infinity();
             double _outerToeHeight = std::numeric_limits<double>::infinity();
             double _outerCrestHeight = std::numeric_limits<double>::infinity();
             std::unique_ptr<std::pair<double, double>> _notchOuterBerm = nullptr;
             std::unique_ptr<std::pair<double, double>> _crestOuterBerm = nullptr;
-            double _resistance = std::numeric_limits<double>::infinity();
 
+            double _resistance = std::numeric_limits<double>::infinity();
             double _slopeLowerPosition = std::numeric_limits<double>::infinity();
             double _slopeLowerLevel = std::numeric_limits<double>::infinity();
             double _slopeUpperPosition = std::numeric_limits<double>::infinity();

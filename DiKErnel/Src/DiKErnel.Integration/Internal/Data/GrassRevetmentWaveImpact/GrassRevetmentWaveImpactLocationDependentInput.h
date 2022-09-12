@@ -87,10 +87,8 @@ namespace DiKErnel::Integration
             double _upperLimitLoadingAul;
             double _lowerLimitLoadingAll;
 
-            double _z = std::numeric_limits<double>::infinity();
             double _minimumWaveHeight = std::numeric_limits<double>::infinity();
             double _maximumWaveHeight = std::numeric_limits<double>::infinity();
-
             double _lowerLimitLoading = std::numeric_limits<double>::infinity();
             double _upperLimitLoading = std::numeric_limits<double>::infinity();
             bool _loadingRevetment = false;

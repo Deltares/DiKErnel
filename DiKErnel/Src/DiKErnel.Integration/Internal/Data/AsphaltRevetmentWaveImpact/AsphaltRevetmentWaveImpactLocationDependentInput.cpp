@@ -166,8 +166,6 @@ namespace DiKErnel::Integration
     {
         LocationDependentInput::InitializeDerivedLocationDependentInput(profileData);
 
-        _z = profileData.InterpolationVerticalHeight(GetX());
-
         double subLayerThickness;
 
         if (_subLayer != nullptr)
