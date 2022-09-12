@@ -29,7 +29,8 @@
 #include "GrassRevetmentWaveRunupRayleighLocationDependentInputFactory.h"
 #include "NaturalStoneRevetmentLocationDependentInputFactory.h"
 #include "ProfileData.h"
-#include "ProfileSegmentDefaults.h"
+#include "ProfileFactoryPointData.h"
+#include "ProfileFactorySegmentData.h"
 #include "TimeDependentInput.h"
 
 namespace DiKErnel::Integration
@@ -45,7 +46,7 @@ namespace DiKErnel::Integration
     {
         if (characteristicPointType != nullptr)
         {
-            _profilePointData.push_back(make_unique<ProfilePointData>(x, z, *characteristicPointType));
+            _profilePointData.push_back(make_unique<ProfileFactoryPointData>(x, z, *characteristicPointType));
         }
     }
 
@@ -56,13 +57,8 @@ namespace DiKErnel::Integration
         double endPointZ,
         const double* roughnessCoefficient)
     {
-        double segmentRoughnessCoefficient = ProfileSegmentDefaults::GetRoughnessCoefficient();
-        if (roughnessCoefficient != nullptr)
-        {
-            segmentRoughnessCoefficient = *roughnessCoefficient;
-        }
-        _profileSegmentData.emplace_back(make_unique<ProfileSegmentData>(startPointX, startPointZ, endPointX, endPointZ,
-                                                                         segmentRoughnessCoefficient));
+        _profileSegmentData.emplace_back(make_unique<ProfileFactorySegmentData>(startPointX, startPointZ, endPointX, endPointZ,
+                                                                                roughnessCoefficient));
     }
 
     void CalculationInputBuilder::AddTimeStep(
@@ -119,12 +115,12 @@ namespace DiKErnel::Integration
 
         if (!_profileSegmentData.empty())
         {
-            for (const auto& segmentInfo : _profileSegmentData)
+            for (const auto& segmentData : _profileSegmentData)
             {
-                auto startPoint = make_shared<ProfilePoint>(segmentInfo->_startPointX, segmentInfo->_startPointZ);
-                auto endPoint = make_shared<ProfilePoint>(segmentInfo->_endPointX, segmentInfo->_endPointZ);
+                auto startPoint = make_shared<ProfilePoint>(segmentData->GetStartPointX(), segmentData->GetStartPointZ());
+                auto endPoint = make_shared<ProfilePoint>(segmentData->GetEndPointX(), segmentData->GetStartPointZ());
 
-                segments.emplace_back(make_unique<ProfileSegment>(startPoint, endPoint, segmentInfo->_roughnessCoefficient));
+                segments.emplace_back(make_unique<ProfileSegment>(startPoint, endPoint, *segmentData->GetRoughnessCoefficient()));
                 startPoint = endPoint;
             }
         }
@@ -140,12 +136,12 @@ namespace DiKErnel::Integration
         {
             for (const auto& segment : segments)
             {
-                const double characteristicPointX = characteristicPoint->_x;
+                const double characteristicPointX = characteristicPoint->GetX();
                 if (const auto& segmentStartPoint = segment->GetStartPoint();
                     abs(characteristicPointX - segmentStartPoint.GetX()) <= numeric_limits<double>::epsilon())
                 {
                     characteristicPoints.emplace_back(make_unique<CharacteristicPoint>(segmentStartPoint,
-                                                                                       characteristicPoint->_characteristicPointType));
+                                                                                       characteristicPoint->GetCharacteristicPoint()));
                     break;
                 }
 
@@ -153,7 +149,7 @@ namespace DiKErnel::Integration
                     abs(characteristicPointX - segmentEndPoint.GetX()) <= numeric_limits<double>::epsilon())
                 {
                     characteristicPoints.emplace_back(make_unique<CharacteristicPoint>(segmentEndPoint,
-                                                                                       characteristicPoint->_characteristicPointType));
+                                                                                       characteristicPoint->GetCharacteristicPoint()));
                     break;
                 }
             }

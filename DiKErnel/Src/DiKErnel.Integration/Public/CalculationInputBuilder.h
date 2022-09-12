@@ -25,6 +25,8 @@
 #include "GrassRevetmentWaveImpactLocationConstructionProperties.h"
 #include "GrassRevetmentWaveRunupRayleighLocationConstructionProperties.h"
 #include "NaturalStoneRevetmentLocationConstructionProperties.h"
+#include "ProfileFactoryPointData.h"
+#include "ProfileFactorySegmentData.h"
 
 namespace DiKErnel::Integration
 {
@@ -139,24 +141,6 @@ namespace DiKErnel::Integration
             std::unique_ptr<Core::ICalculationInput> Build();
 
         private:
-            class ProfileSegmentData
-            {
-                public:
-                    double _startPointX;
-                    double _startPointZ;
-                    double _endPointX;
-                    double _endPointZ;
-                    double _roughnessCoefficient;
-            };
-
-            class ProfilePointData
-            {
-                public:
-                    double _x;
-                    double _z;
-                    Core::CharacteristicPointType _characteristicPointType;
-            };
-
             [[nodiscard]]
             std::vector<std::unique_ptr<Core::ProfileSegment>> CreateProfileSegments() const;
 
@@ -164,11 +148,10 @@ namespace DiKErnel::Integration
             std::vector<std::unique_ptr<Core::CharacteristicPoint>> CreateCharacteristicPoints(
                 const std::vector<std::unique_ptr<Core::ProfileSegment>>& segments) const;
 
-            std::vector<std::unique_ptr<Core::ProfilePoint>> _profilePoints = std::vector<std::unique_ptr<Core::ProfilePoint>>();
-            std::vector<std::unique_ptr<ProfileSegmentData>> _profileSegmentData
-                    = std::vector<std::unique_ptr<ProfileSegmentData>>();
-            std::vector<std::unique_ptr<ProfilePointData>> _profilePointData
-                    = std::vector<std::unique_ptr<ProfilePointData>>();
+            std::vector<std::unique_ptr<ProfileFactorySegmentData>> _profileSegmentData
+                    = std::vector<std::unique_ptr<ProfileFactorySegmentData>>();
+            std::vector<std::unique_ptr<ProfileFactoryPointData>> _profilePointData
+                    = std::vector<std::unique_ptr<ProfileFactoryPointData>>();
             std::vector<std::unique_ptr<Core::ITimeDependentInput>> _timeDependentInputItems
                     = std::vector<std::unique_ptr<Core::ITimeDependentInput>>();
             std::vector<std::unique_ptr<Core::ILocationDependentInput>> _locationDependentInputItems
