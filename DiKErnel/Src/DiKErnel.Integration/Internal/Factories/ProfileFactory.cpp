@@ -38,7 +38,7 @@ namespace DiKErnel::Integration
             for (const auto& segmentData : profileSegments)
             {
                 auto startPoint = make_shared<ProfilePoint>(segmentData->GetStartPointX(), segmentData->GetStartPointZ());
-                auto endPoint = make_shared<ProfilePoint>(segmentData->GetEndPointX(), segmentData->GetStartPointZ());
+                auto endPoint = make_shared<ProfilePoint>(segmentData->GetEndPointX(), segmentData->GetEndPointZ());
 
                 segments.emplace_back(make_unique<ProfileSegment>(startPoint, endPoint,
                                                                   GetRoughnessCoefficient(segmentData->GetRoughnessCoefficient())));
