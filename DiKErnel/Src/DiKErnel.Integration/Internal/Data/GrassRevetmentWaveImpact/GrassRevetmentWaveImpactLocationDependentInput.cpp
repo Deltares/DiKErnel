@@ -114,6 +114,8 @@ namespace DiKErnel::Integration
     {
         LocationDependentInput::InitializeDerivedLocationDependentInput(profileData);
 
+        _z = profileData.InterpolationVerticalHeight(GetX());
+
         const auto timeLineAgwi = _timeLine->GetTimeLineAgwi();
         const auto timeLineBgwi = _timeLine->GetTimeLineBgwi();
         const auto timeLineCgwi = _timeLine->GetTimeLineCgwi();

@@ -73,6 +73,9 @@ namespace DiKErnel::Integration
                 std::unique_ptr<GrassRevetmentWaveRunupRepresentative2P> representative2P,
                 std::unique_ptr<GrassRevetmentWaveRunupWaveAngleImpact> waveAngleImpact);
 
+            void InitializeDerivedLocationDependentInput(
+                const Core::IProfileData& profileData) override;
+
             [[nodiscard]]
             std::unique_ptr<Core::TimeDependentOutput> CalculateTimeDependentOutput(
                 double initialDamage,
@@ -88,5 +91,7 @@ namespace DiKErnel::Integration
             double _averageNumberOfWavesCtm;
             std::unique_ptr<GrassRevetmentWaveRunupRepresentative2P> _representative2P;
             std::unique_ptr<GrassRevetmentWaveRunupWaveAngleImpact> _waveAngleImpactInput;
+
+            double _z = std::numeric_limits<double>::infinity();
     };
 }

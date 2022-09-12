@@ -134,6 +134,8 @@ namespace DiKErnel::Integration
     {
         LocationDependentInput::InitializeDerivedLocationDependentInput(profileData);
 
+        _z = profileData.InterpolationVerticalHeight(GetX());
+
         const auto& characteristicPoints = profileData.GetCharacteristicPoints();
 
         _outerToeHeight = CharacteristicPointsHelper::GetCoordinatesForType(characteristicPoints, CharacteristicPointType::OuterToe)->second;

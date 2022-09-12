@@ -118,11 +118,14 @@ namespace DiKErnel::Integration
             std::vector<std::pair<double, double>> _widthFactors;
             std::vector<std::pair<double, double>> _depthFactors;
             std::vector<std::pair<double, double>> _impactFactors;
+
+            double _z = std::numeric_limits<double>::infinity();
             double _outerSlope = std::numeric_limits<double>::infinity();
             double _logFailureTension = std::numeric_limits<double>::infinity();
             double _computationalThickness = std::numeric_limits<double>::infinity();
             double _stiffnessRelation = std::numeric_limits<double>::infinity();
             double _subLayerElasticModulus = std::numeric_limits<double>::infinity();
+
             double _averageNumberOfWaves = std::numeric_limits<double>::infinity();
             double _maximumPeakStress = std::numeric_limits<double>::infinity();
 

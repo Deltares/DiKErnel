@@ -53,6 +53,14 @@ namespace DiKErnel::Integration
           _representative2P(move(representative2P)),
           _waveAngleImpactInput(move(waveAngleImpact)) {}
 
+    void GrassRevetmentWaveRunupLocationDependentInput::InitializeDerivedLocationDependentInput(
+        const IProfileData& profileData)
+    {
+        LocationDependentInput::InitializeDerivedLocationDependentInput(profileData);
+
+        _z = profileData.InterpolationVerticalHeight(GetX());
+    }
+
     double GrassRevetmentWaveRunupLocationDependentInput::GetOuterSlope() const
     {
         return _outerSlope;
