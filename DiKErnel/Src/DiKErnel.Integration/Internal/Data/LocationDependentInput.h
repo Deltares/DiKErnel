@@ -20,8 +20,6 @@
 
 #pragma once
 
-#include <limits>
-
 #include "ILocationDependentInput.h"
 
 namespace DiKErnel::Integration
@@ -47,9 +45,6 @@ namespace DiKErnel::Integration
             [[nodiscard]]
             double GetFailureNumber() const override;
 
-            [[nodiscard]]
-            double GetZ() const override;
-
         protected:
             explicit LocationDependentInput(
                 double x,
@@ -57,7 +52,7 @@ namespace DiKErnel::Integration
                 double failureNumber);
 
             virtual void InitializeDerivedLocationDependentInput(
-                const Core::IProfileData& profileData);
+                const Core::IProfileData& profileData) = 0;
 
             [[nodiscard]]
             virtual std::unique_ptr<Core::TimeDependentOutput> CalculateTimeDependentOutput(
@@ -70,6 +65,5 @@ namespace DiKErnel::Integration
             const double _initialDamage;
             const double _failureNumber;
             bool _derivedLocationDependentInputInitialized = false;
-            double _z = std::numeric_limits<double>::infinity();
     };
 }

@@ -117,8 +117,6 @@ namespace DiKErnel::Integration
     void GrassRevetmentOvertoppingLocationDependentInput::InitializeDerivedLocationDependentInput(
         const IProfileData& profileData)
     {
-        LocationDependentInput::InitializeDerivedLocationDependentInput(profileData);
-
         InitializeCalculationProfile(profileData);
     }
 

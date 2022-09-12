@@ -158,14 +158,12 @@ namespace DiKErnel::Integration
     unique_ptr<LocationDependentOutput> AsphaltRevetmentWaveImpactLocationDependentInput::GetLocationDependentOutput(
         vector<unique_ptr<TimeDependentOutput>> timeDependentOutputItems)
     {
-        return make_unique<AsphaltRevetmentWaveImpactLocationDependentOutput>(move(timeDependentOutputItems), GetZ(), _outerSlope);
+        return make_unique<AsphaltRevetmentWaveImpactLocationDependentOutput>(move(timeDependentOutputItems), _z, _outerSlope);
     }
 
     void AsphaltRevetmentWaveImpactLocationDependentInput::InitializeDerivedLocationDependentInput(
         const IProfileData& profileData)
     {
-        LocationDependentInput::InitializeDerivedLocationDependentInput(profileData);
-
         _z = profileData.InterpolationVerticalHeight(GetX());
 
         double subLayerThickness;
@@ -256,7 +254,7 @@ namespace DiKErnel::Integration
             ._widthFactors = _widthFactors,
             ._depthFactors = _depthFactors,
             ._impactFactors = _impactFactors,
-            ._z = GetZ(),
+            ._z = _z,
             ._waterLevel = waterLevel,
             ._waveHeightHm0 = waveHeightHm0,
             ._fatigueAlpha = _fatigue->GetAlpha(),
