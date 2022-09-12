@@ -50,7 +50,7 @@ namespace DiKErnel::Integration
         const int fixedNumberOfWaves,
         const double frontVelocityCwo,
         unique_ptr<GrassRevetmentOvertoppingLocationDependentAccelerationAlphaA> locationDependentAccelerationAlphaA,
-        const double dikeHeight)
+        const double* fixedDikeHeight)
         : LocationDependentInput(x, initialDamage, failureNumber),
           _criticalCumulativeOverload(criticalCumulativeOverload),
           _criticalFrontVelocity(criticalFrontVelocity),
@@ -59,8 +59,15 @@ namespace DiKErnel::Integration
           _averageNumberOfWavesCtm(averageNumberOfWavesCtm),
           _fixedNumberOfWaves(fixedNumberOfWaves),
           _frontVelocityCwo(frontVelocityCwo),
-          _locationDependentAccelerationAlphaA(move(locationDependentAccelerationAlphaA)),
-          _dikeHeight(dikeHeight) {}
+          _locationDependentAccelerationAlphaA(move(locationDependentAccelerationAlphaA))
+    {
+        if (fixedDikeHeight != nullptr)
+        {
+            _dikeHeight = *fixedDikeHeight;
+
+            _dikeHeightInitialized = true;
+        }
+    }
 
     double GrassRevetmentOvertoppingLocationDependentInput::GetCriticalCumulativeOverload() const
     {
@@ -129,6 +136,13 @@ namespace DiKErnel::Integration
         _accelerationAlphaA = x >= outerCrest->first && x <= innerCrest->first
                                   ? _locationDependentAccelerationAlphaA->ValueAtCrest()
                                   : _locationDependentAccelerationAlphaA->ValueAtInnerSlope();
+
+        if (!_dikeHeightInitialized)
+        {
+            InitializeDikeHeight(profileData);
+
+            _dikeHeightInitialized = true;
+        }
     }
 
     unique_ptr<TimeDependentOutput> GrassRevetmentOvertoppingLocationDependentInput::CalculateTimeDependentOutput(
@@ -197,6 +211,14 @@ namespace DiKErnel::Integration
             _xValuesProfile.push_back(outerCrest->first);
             _zValuesProfile.push_back(outerCrest->second);
         }
+    }
+
+    void GrassRevetmentOvertoppingLocationDependentInput::InitializeDikeHeight(
+        const IProfileData& profileData) const
+    {
+        auto x = GetX();
+
+        // TODO: implement
     }
 
     double GrassRevetmentOvertoppingLocationDependentInput::CalculateRepresentativeWaveRunup2P(
