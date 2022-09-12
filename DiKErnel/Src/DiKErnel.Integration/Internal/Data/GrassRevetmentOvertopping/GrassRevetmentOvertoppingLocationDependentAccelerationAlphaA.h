@@ -18,23 +18,25 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include "GrassRevetmentOvertoppingAccelerationAlphaA.h"
+#pragma once
 
 namespace DiKErnel::Integration
 {
-    GrassRevetmentOvertoppingAccelerationAlphaA::GrassRevetmentOvertoppingAccelerationAlphaA(
-        const double crest,
-        const double innerSlope)
-        : _crest(crest),
-          _innerSlope(innerSlope) {}
-
-    double GrassRevetmentOvertoppingAccelerationAlphaA::Crest() const
+    class GrassRevetmentOvertoppingLocationDependentAccelerationAlphaA
     {
-        return _crest;
-    }
+        public:
+            explicit GrassRevetmentOvertoppingLocationDependentAccelerationAlphaA(
+                double valueAtCrest,
+                double valueAtInnerSlope);
 
-    double GrassRevetmentOvertoppingAccelerationAlphaA::InnerSlope() const
-    {
-        return _innerSlope;
-    }
+            [[nodiscard]]
+            double ValueAtCrest() const;
+
+            [[nodiscard]]
+            double ValueAtInnerSlope() const;
+
+        private:
+            double _valueAtCrest;
+            double _valueAtInnerSlope;
+    };
 }

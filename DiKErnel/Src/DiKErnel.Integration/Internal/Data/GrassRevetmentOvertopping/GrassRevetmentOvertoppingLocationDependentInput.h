@@ -22,6 +22,7 @@
 
 #include <memory>
 
+#include "GrassRevetmentOvertoppingLocationDependentAccelerationAlphaA.h"
 #include "GrassRevetmentOvertoppingTimeDependentOutputConstructionProperties.h"
 #include "GrassRevetmentWaveRunupLocationDependentInput.h"
 
@@ -41,7 +42,7 @@ namespace DiKErnel::Integration
                 double averageNumberOfWavesCtm,
                 int fixedNumberOfWaves,
                 double frontVelocityCwo,
-                double accelerationAlphaA,
+                std::unique_ptr<GrassRevetmentOvertoppingLocationDependentAccelerationAlphaA> locationDependentAccelerationAlphaA,
                 double dikeHeight);
 
             [[nodiscard]]
@@ -91,12 +92,14 @@ namespace DiKErnel::Integration
             double _averageNumberOfWavesCtm;
             const int _fixedNumberOfWaves;
             const double _frontVelocityCwo;
-            double _accelerationAlphaA;
+            std::unique_ptr<GrassRevetmentOvertoppingLocationDependentAccelerationAlphaA> _locationDependentAccelerationAlphaA;
             double _dikeHeight;
 
             std::vector<double> _xValuesProfile;
             std::vector<double> _zValuesProfile;
             std::vector<double> _roughnessCoefficients;
+            double _accelerationAlphaA = std::numeric_limits<double>::infinity();
+
             double _verticalDistanceWaterLevelElevation = std::numeric_limits<double>::infinity();
             double _representativeWaveRunup2P = std::numeric_limits<double>::infinity();
             double _cumulativeOverload = std::numeric_limits<double>::infinity();
