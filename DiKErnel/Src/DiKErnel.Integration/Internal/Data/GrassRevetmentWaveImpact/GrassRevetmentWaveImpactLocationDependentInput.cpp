@@ -106,12 +106,14 @@ namespace DiKErnel::Integration
     unique_ptr<LocationDependentOutput> GrassRevetmentWaveImpactLocationDependentInput::GetLocationDependentOutput(
         vector<unique_ptr<TimeDependentOutput>> timeDependentOutputItems)
     {
-        return make_unique<GrassRevetmentWaveImpactLocationDependentOutput>(move(timeDependentOutputItems), _z);
+        return make_unique<GrassRevetmentWaveImpactLocationDependentOutput>(move(timeDependentOutputItems), GetZ());
     }
 
     void GrassRevetmentWaveImpactLocationDependentInput::InitializeDerivedLocationDependentInput(
         const IProfileData& profileData)
     {
+        LocationDependentInput::InitializeDerivedLocationDependentInput(profileData);
+
         _z = profileData.InterpolationVerticalHeight(GetX());
 
         const auto timeLineAgwi = _timeLine->GetTimeLineAgwi();
@@ -174,7 +176,7 @@ namespace DiKErnel::Integration
         _lowerLimitLoading = GrassRevetmentWaveImpactFunctions::LowerLimitLoading(waterLevel, waveHeightHm0, _lowerLimitLoadingAll);
         _upperLimitLoading = GrassRevetmentWaveImpactFunctions::UpperLimitLoading(waterLevel, waveHeightHm0, _upperLimitLoadingAul);
 
-        return HydraulicLoadFunctions::LoadingRevetment(_lowerLimitLoading, _upperLimitLoading, _z);
+        return HydraulicLoadFunctions::LoadingRevetment(_lowerLimitLoading, _upperLimitLoading, GetZ());
     }
 
     unique_ptr<GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties> GrassRevetmentWaveImpactLocationDependentInput::

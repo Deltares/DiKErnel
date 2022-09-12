@@ -95,5 +95,12 @@ namespace DiKErnel::Core
              */
             [[nodiscard]]
             virtual double GetFailureNumber() const = 0;
+
+            /*!
+             * \brief Gets the z coordinate.
+             * \return The z coordinate.
+             */
+            [[nodiscard]]
+            virtual double GetZ() const = 0;
     };
 }

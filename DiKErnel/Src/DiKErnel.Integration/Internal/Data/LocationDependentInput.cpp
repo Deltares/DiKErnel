@@ -91,4 +91,15 @@ namespace DiKErnel::Integration
     {
         return _failureNumber;
     }
+
+    double LocationDependentInput::GetZ() const
+    {
+        return _z;
+    }
+
+    void LocationDependentInput::InitializeDerivedLocationDependentInput(
+        const IProfileData& profileData)
+    {
+        _z = profileData.InterpolationVerticalHeight(_x);
+    }
 }

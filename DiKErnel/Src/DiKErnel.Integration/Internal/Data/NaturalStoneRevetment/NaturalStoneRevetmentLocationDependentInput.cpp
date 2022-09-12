@@ -126,12 +126,14 @@ namespace DiKErnel::Integration
     unique_ptr<LocationDependentOutput> NaturalStoneRevetmentLocationDependentInput::GetLocationDependentOutput(
         vector<unique_ptr<TimeDependentOutput>> timeDependentOutputItems)
     {
-        return make_unique<NaturalStoneRevetmentLocationDependentOutput>(move(timeDependentOutputItems), _z);
+        return make_unique<NaturalStoneRevetmentLocationDependentOutput>(move(timeDependentOutputItems), GetZ());
     }
 
     void NaturalStoneRevetmentLocationDependentInput::InitializeDerivedLocationDependentInput(
         const IProfileData& profileData)
     {
+        LocationDependentInput::InitializeDerivedLocationDependentInput(profileData);
+
         _z = profileData.InterpolationVerticalHeight(GetX());
 
         const auto& characteristicPoints = profileData.GetCharacteristicPoints();
@@ -265,8 +267,7 @@ namespace DiKErnel::Integration
         limitLoadingInput._c = _upperLimitLoadingInput->GetUpperLimitCul();
 
         _upperLimitLoading = NaturalStoneRevetmentFunctions::UpperLimitLoading(limitLoadingInput);
-
-        return HydraulicLoadFunctions::LoadingRevetment(_lowerLimitLoading, _upperLimitLoading, _z);
+        return HydraulicLoadFunctions::LoadingRevetment(_lowerLimitLoading, _upperLimitLoading, GetZ());
     }
 
     double NaturalStoneRevetmentLocationDependentInput::CalculateHydraulicLoad(

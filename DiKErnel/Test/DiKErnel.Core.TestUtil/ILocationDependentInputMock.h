@@ -42,6 +42,7 @@ namespace DiKErnel::Core::TestUtil
             MOCK_METHOD(double, GetX, (), (const, override));
             MOCK_METHOD(double, GetInitialDamage, (), (const, override));
             MOCK_METHOD(double, GetFailureNumber, (), (const, override));
+            MOCK_METHOD(double, GetZ, (), (const, override));
 
             void SetIncrementDamage(
                 double incrementDamage);
