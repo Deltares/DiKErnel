@@ -132,19 +132,8 @@ namespace DiKErnel::Integration
         const auto innerCrest = CharacteristicPointsHelper::GetCoordinatesForType(characteristicPoints, CharacteristicPointType::InnerCrest);
 
         InitializeCalculationProfile(outerToe, outerCrest, profileData.GetProfileSegments());
-
-        const double x = GetX();
-
-        _accelerationAlphaA = x >= outerCrest->first && x <= innerCrest->first
-                                  ? _locationDependentAccelerationAlphaA->ValueAtCrest()
-                                  : _locationDependentAccelerationAlphaA->ValueAtInnerSlope();
-
-        if (!_dikeHeightInitialized)
-        {
-            InitializeDikeHeight(outerCrest, profileData.GetProfileSegments());
-
-            _dikeHeightInitialized = true;
-        }
+        InitializeDikeHeight(outerCrest, profileData.GetProfileSegments());
+        InitializeAccelerationAlphaA(outerCrest, innerCrest);
     }
 
     unique_ptr<TimeDependentOutput> GrassRevetmentOvertoppingLocationDependentInput::CalculateTimeDependentOutput(
@@ -219,9 +208,16 @@ namespace DiKErnel::Integration
         const unique_ptr<pair<double, double>>& outerCrest,
         const vector<reference_wrapper<ProfileSegment>>& profileSegments)
     {
+        if (_dikeHeightInitialized)
+        {
+            return;
+        }
+
+        _dikeHeightInitialized = true;
+
         const auto x = GetX();
 
-        _dikeHeight = 1.0;
+        _dikeHeight = GetZ();
 
         for (const auto& profileSegment : profileSegments)
         {
@@ -232,6 +228,17 @@ namespace DiKErnel::Integration
                 _dikeHeight = max(_dikeHeight, startPoint.GetZ());
             }
         }
+    }
+
+    void GrassRevetmentOvertoppingLocationDependentInput::InitializeAccelerationAlphaA(
+        const unique_ptr<pair<double, double>>& outerCrest,
+        const unique_ptr<pair<double, double>>& innerCrest)
+    {
+        const double x = GetX();
+
+        _accelerationAlphaA = x >= outerCrest->first && x <= innerCrest->first
+            ? _locationDependentAccelerationAlphaA->ValueAtCrest()
+            : _locationDependentAccelerationAlphaA->ValueAtInnerSlope();
     }
 
     double GrassRevetmentOvertoppingLocationDependentInput::CalculateRepresentativeWaveRunup2P(

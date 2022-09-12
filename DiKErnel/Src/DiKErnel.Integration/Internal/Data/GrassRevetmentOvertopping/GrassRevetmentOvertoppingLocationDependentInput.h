@@ -94,11 +94,11 @@ namespace DiKErnel::Integration
             const double _frontVelocityCwo;
             std::unique_ptr<GrassRevetmentOvertoppingLocationDependentAccelerationAlphaA> _locationDependentAccelerationAlphaA;
 
-            bool _dikeHeightInitialized = false;
-            double _dikeHeight = std::numeric_limits<double>::infinity();
             std::vector<double> _xValuesProfile;
             std::vector<double> _zValuesProfile;
             std::vector<double> _roughnessCoefficients;
+            bool _dikeHeightInitialized = false;
+            double _dikeHeight = std::numeric_limits<double>::infinity();
             double _accelerationAlphaA = std::numeric_limits<double>::infinity();
 
             double _verticalDistanceWaterLevelElevation = std::numeric_limits<double>::infinity();
@@ -113,6 +113,10 @@ namespace DiKErnel::Integration
             void InitializeDikeHeight(
                 const std::unique_ptr<std::pair<double, double>>& outerCrest,
                 const std::vector<std::reference_wrapper<Core::ProfileSegment>>& profileSegments);
+
+            void InitializeAccelerationAlphaA(
+                const std::unique_ptr<std::pair<double, double>>& outerCrest,
+                const std::unique_ptr<std::pair<double, double>>& innerCrest);
 
             [[nodiscard]]
             double CalculateRepresentativeWaveRunup2P(
