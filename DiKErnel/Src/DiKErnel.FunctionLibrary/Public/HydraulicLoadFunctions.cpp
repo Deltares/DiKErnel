@@ -26,6 +26,8 @@
 
 namespace DiKErnel::FunctionLibrary
 {
+    using namespace std;
+
     double HydraulicLoadFunctions::WaveDirection(
         const double waveAngle)
     {
