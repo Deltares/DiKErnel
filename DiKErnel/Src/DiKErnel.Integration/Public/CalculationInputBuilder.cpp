@@ -24,12 +24,13 @@
 #include "AsphaltRevetmentWaveImpactDefaultsFactory.h"
 #include "AsphaltRevetmentWaveImpactLocationDependentInputFactory.h"
 #include "CalculationInput.h"
-#include "DefaultsFactoryException.h"
+#include "CalculationInputBuildException.h"
 #include "GrassRevetmentWaveImpactLocationDependentInputFactory.h"
 #include "GrassRevetmentWaveRunupRayleighLocationDependentInputFactory.h"
 #include "NaturalStoneRevetmentLocationDependentInputFactory.h"
 #include "ProfileData.h"
 #include "ProfileFactory.h"
+#include "ProfileFactoryException.h"
 #include "ProfileFactoryPointData.h"
 #include "ProfileFactorySegmentData.h"
 #include "TimeDependentInput.h"
@@ -101,9 +102,16 @@ namespace DiKErnel::Integration
 
     unique_ptr<ICalculationInput> CalculationInputBuilder::Build()
     {
-        auto segments = ProfileFactory::CreateProfileSegments(_profileSegmentData);
-        auto characteristicPoints = ProfileFactory::CreateCharacteristicPoints(_profilePointData, segments);
-        return make_unique<CalculationInput>(make_unique<ProfileData>(move(segments), move(characteristicPoints)),
-                                             move(_locationDependentInputItems), move(_timeDependentInputItems));
+        try
+        {
+            auto segments = ProfileFactory::CreateProfileSegments(_profileSegmentData);
+            auto characteristicPoints = ProfileFactory::CreateCharacteristicPoints(_profilePointData, segments);
+            return make_unique<CalculationInput>(make_unique<ProfileData>(move(segments), move(characteristicPoints)),
+                                                 move(_locationDependentInputItems), move(_timeDependentInputItems));
+        }
+        catch (const ProfileFactoryException&)
+        {
+            throw_with_nested(CalculationInputBuildException("Could not create instance."));
+        }
     }
 }

@@ -248,7 +248,7 @@ namespace DiKErnel::Integration::Test
 
         // Then
         AssertHelper::AssertThrowsWithMessageAndInnerException<CalculationInputBuildException, ProfileFactoryException>(
-            action, "Could not create instance.", "Couldn't create defaults for the given top layer type.");
+            action, "Could not create instance.", "Segments must be chained.");
     }
 
     TEST_F(CalculationInputBuilderTest,
@@ -259,7 +259,7 @@ namespace DiKErnel::Integration::Test
 
         // Then
         AssertHelper::AssertThrowsWithMessageAndInnerException<CalculationInputBuildException, ProfileFactoryException>(
-            action, "Could not create instance.", "Couldn't create defaults for the given top layer type.");
+            action, "Could not create instance.", "Segments must be chained.");
     }
 
     #pragma endregion

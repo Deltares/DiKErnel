@@ -40,6 +40,11 @@ namespace DiKErnel::Integration
                 const std::vector<std::unique_ptr<Core::ProfileSegment>>& profileSegments);
 
         private:
-            static double GetRoughnessCoefficient(const double* roughnessCoefficient);
+            static double GetRoughnessCoefficient(
+                const double* roughnessCoefficient);
+
+            static bool DoesSegmentStartAtPoint(
+                const Core::ProfilePoint& profilePoint,
+                const ProfileFactorySegmentData& segmentData);
     };
 }

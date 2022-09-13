@@ -20,6 +20,7 @@
 
 #include "ProfileFactory.h"
 
+#include "ProfileFactoryException.h"
 #include "ProfileSegmentDefaults.h"
 
 namespace DiKErnel::Integration
@@ -35,13 +36,21 @@ namespace DiKErnel::Integration
 
         if (!profileSegments.empty())
         {
-            for (const auto& segmentData : profileSegments)
-            {
-                auto startPoint = make_shared<ProfilePoint>(segmentData->GetStartPointX(), segmentData->GetStartPointZ());
-                auto endPoint = make_shared<ProfilePoint>(segmentData->GetEndPointX(), segmentData->GetEndPointZ());
+            auto& initialSegmentData = profileSegments.at(0);
+            auto startPoint = make_shared<ProfilePoint>(initialSegmentData->GetStartPointX(), initialSegmentData->GetStartPointZ());
 
+            for (int i = 0; i < static_cast<int>(profileSegments.size()); ++i)
+            {
+                auto& currentSegmentData = profileSegments.at(i);
+
+                if (i > 0 && !DoesSegmentStartAtPoint(*startPoint, *currentSegmentData))
+                {
+                    throw ProfileFactoryException("Segments must be chained.");
+                }
+
+                auto endPoint = make_shared<ProfilePoint>(currentSegmentData->GetEndPointX(), currentSegmentData->GetEndPointZ());
                 segments.emplace_back(make_unique<ProfileSegment>(startPoint, endPoint,
-                                                                  GetRoughnessCoefficient(segmentData->GetRoughnessCoefficient())));
+                                                                  GetRoughnessCoefficient(currentSegmentData->GetRoughnessCoefficient())));
                 startPoint = endPoint;
             }
         }
@@ -74,6 +83,8 @@ namespace DiKErnel::Integration
                                                                                        characteristicPoint->GetCharacteristicPoint()));
                     break;
                 }
+
+                // throw ProfileFactoryException("Characteristic point must be on a start or end point of a segment.");
             }
         }
 
@@ -89,5 +100,13 @@ namespace DiKErnel::Integration
         }
 
         return *roughnessCoefficient;
+    }
+
+    bool ProfileFactory::DoesSegmentStartAtPoint(
+        const ProfilePoint& profilePoint,
+        const ProfileFactorySegmentData& segmentData)
+    {
+        return abs(profilePoint.GetX() - segmentData.GetStartPointX()) < numeric_limits<double>::epsilon()
+                && abs(profilePoint.GetZ() - segmentData.GetStartPointZ()) < numeric_limits<double>::epsilon();
     }
 }
