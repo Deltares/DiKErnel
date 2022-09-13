@@ -16,8 +16,8 @@
                     ]
                 },
                 "fysica": {
-                    "hoogteLocatie": 2.9,
-                    "hellingBuitentalud": 3.0,
+                    "hoogteLocatie": 3.3,
+                    "hellingBuitentalud": 3.4,
                     "toenameSchade": [
                         0.1
                     ],
@@ -49,18 +49,43 @@
                     ]
                 },
                 "fysica": {
-                    "hoogteLocatie": 3.1,
                     "toenameSchade": [
                         0.8
+                    ],
+                    "verticaleAfstandWaterstandHoogteLocatie": [
+                        1.0
+                    ],
+                    "representatieve2p": [
+                        null
+                    ],
+                    "cumulatieveOverbelasting": [
+                        null
+                    ]
+                }
+            },
+            {
+                "falen": {
+                    "faalgebeurtenis": false,
+                    "faaltijd": null
+                },
+                "schade": {
+                    "schadegetalPerTijdstap": [
+                        1.2
+                    ]
+                },
+                "fysica": {
+                    "hoogteLocatie": 3.5,
+                    "toenameSchade": [
+                        1.1
                     ],
                     "belastingBekleding": [
                         true
                     ],
                     "bovengrensBelasting": [
-                        1.0
+                        1.3
                     ],
                     "ondergrensBelasting": [
-                        1.1
+                        1.4
                     ],
                     "maximumGolfhoogte": [
                         null
@@ -83,16 +108,16 @@
                 },
                 "schade": {
                     "schadegetalPerTijdstap": [
-                        1.3
+                        1.6
                     ]
                 },
                 "fysica": {
-                    "hoogteLocatie": 3.2,
+                    "hoogteLocatie": 3.6,
                     "toenameSchade": [
-                        1.2
+                        1.5
                     ],
                     "verticaleAfstandWaterstandHoogteLocatie": [
-                        1.4
+                        1.7
                     ],
                     "impactGolfhoek": [
                         null
@@ -112,52 +137,52 @@
                 },
                 "schade": {
                     "schadegetalPerTijdstap": [
-                        1.6
+                        1.9
                     ]
                 },
                 "fysica": {
-                    "hoogteLocatie": 3.3,
+                    "hoogteLocatie": 3.7,
                     "toenameSchade": [
-                        1.5
-                    ],
-                    "hellingBuitentalud": [
-                        1.7
-                    ],
-                    "bovenzijdeHellingvlak": [
                         1.8
                     ],
-                    "rechterzijdeHellingvlak": [
-                        1.9
-                    ],
-                    "onderzijdeHellingvlak": [
+                    "hellingBuitentalud": [
                         2.0
                     ],
-                    "linkerzijdeHellingvlak": [
+                    "bovenzijdeHellingvlak": [
                         2.1
+                    ],
+                    "rechterzijdeHellingvlak": [
+                        2.3
+                    ],
+                    "onderzijdeHellingvlak": [
+                        2.4
+                    ],
+                    "linkerzijdeHellingvlak": [
+                        2.5
                     ],
                     "belastingBekleding": [
                         true
                     ],
                     "golfbrekingparameter": [
-                        2.2
-                    ],
-                    "golfsteilheidDiepWater": [
-                        2.3
-                    ],
-                    "bovengrensBelasting": [
-                        2.4
-                    ],
-                    "ondergrensBelasting": [
-                        2.5
-                    ],
-                    "diepteMaximaleGolfbelasting": [
                         2.6
                     ],
-                    "afstandMaximaleStijghoogte": [
+                    "golfsteilheidDiepWater": [
                         2.7
                     ],
-                    "maatgevendeBreedteGolfklap": [
+                    "bovengrensBelasting": [
                         2.8
+                    ],
+                    "ondergrensBelasting": [
+                        2.9
+                    ],
+                    "diepteMaximaleGolfbelasting": [
+                        3.0
+                    ],
+                    "afstandMaximaleStijghoogte": [
+                        3.1
+                    ],
+                    "maatgevendeBreedteGolfklap": [
+                        3.2
                     ],
                     "hydraulischeBelasting": [
                         null
