@@ -159,7 +159,7 @@ namespace DiKErnel::Integration
 
             const auto incrementTime = RevetmentFunctions::IncrementTime(beginTime, timeDependentInput.GetEndTime());
             const auto averageNumberOfWaves = RevetmentFunctions::AverageNumberOfWaves(incrementTime, timeDependentInput.GetWavePeriodTm10(),
-                                                                                       GetAverageNumberOfWavesCtm());
+                                                                                       _averageNumberOfWavesCtm);
 
             const double waveDirection = HydraulicLoadFunctions::WaveDirection(timeDependentInput.GetWaveAngle());
 
@@ -170,7 +170,7 @@ namespace DiKErnel::Integration
 
             _cumulativeOverload = CalculateCumulativeOverload(averageNumberOfWaves);
 
-            incrementDamage = GrassRevetmentFunctions::IncrementDamage(_cumulativeOverload, GetCriticalCumulativeOverload());
+            incrementDamage = GrassRevetmentFunctions::IncrementDamage(_cumulativeOverload, _criticalCumulativeOverload);
 
             damage = RevetmentFunctions::Damage(incrementDamage, initialDamage);
 
