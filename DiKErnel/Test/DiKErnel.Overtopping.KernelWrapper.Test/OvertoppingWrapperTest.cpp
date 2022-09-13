@@ -26,23 +26,24 @@
 
 namespace DiKErnel::Overtopping::KernelWrapper::Test
 {
-    TEST(OvertoppingWrapperTest, TestOvertoppingValidation)
+    TEST(OvertoppingWrapperTest, DISABLED_TestOvertoppingValidation)
     {
-        const auto xCoords = new double[]{
+        const double dikeHeight = 9.1;
+        double xCoordinates[] = {
             0,
             10,
             20,
             30,
             40
         };
-        const auto yCoords = new double[]{
+        double yCoordinates[] = {
             -5,
             0,
             5,
             4,
             0
         };
-        const auto roughness = new double[]{
+        double roughnessCoefficients[] = {
             0.5,
             0.5,
             0.5,
@@ -52,9 +53,9 @@ namespace DiKErnel::Overtopping::KernelWrapper::Test
         Geometry geometry{
             0,
             5,
-            xCoords,
-            yCoords,
-            roughness
+            xCoordinates,
+            yCoordinates,
+            roughnessCoefficients
         };
 
         Input input{
@@ -68,11 +69,56 @@ namespace DiKErnel::Overtopping::KernelWrapper::Test
             0.5
         };
 
-        OvertoppingWrapper overtoppingWrapper;
+        const auto success = OvertoppingWrapper::Validate(geometry, input, dikeHeight);
 
-        const auto success = overtoppingWrapper.Validate(geometry, input, 9.1);
+        ASSERT_FALSE(success);
+    }
 
-        delete[] xCoords, yCoords, roughness;
+    TEST(OverToppingWrapperTest, DISABLED_TestOvertoppingValidationMultiple)
+    {
+        const double dikeHeight = 9.1;
+        Input input
+        {
+            2.3,
+            4.3,
+            1.0,
+            -0.92,
+            1,
+            1,
+            1.0,
+            0.5
+        };
+
+        double xCoordinates[] = {
+            0,
+            10,
+            20,
+            30,
+            40
+        };
+        double yCoordinates[] = {
+            -5,
+            0,
+            5,
+            4,
+            0
+        };
+        double roughnessCoefficients[] = {
+            0.5,
+            0.5,
+            0.5,
+            0.5
+        };
+
+        Geometry geometry{
+            0,
+            5,
+            xCoordinates,
+            yCoordinates,
+            roughnessCoefficients
+        };
+
+        const auto success = OvertoppingWrapper::Validate(geometry, input, dikeHeight);
 
         ASSERT_FALSE(success);
     }

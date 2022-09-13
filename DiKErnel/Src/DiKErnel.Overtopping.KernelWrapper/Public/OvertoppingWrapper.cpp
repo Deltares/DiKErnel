@@ -38,7 +38,6 @@ namespace DiKErnel::Overtopping::KernelWrapper
         double dikeHeight)
     {
         bool success;
-        // stringstream message;
 
         const int size = 32 * 255;
         const char* message = new char[size];
