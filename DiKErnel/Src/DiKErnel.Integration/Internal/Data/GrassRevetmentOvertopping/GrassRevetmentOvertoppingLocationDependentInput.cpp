@@ -64,7 +64,6 @@ namespace DiKErnel::Integration
         if (enforcedDikeHeight != nullptr)
         {
             _dikeHeight = *enforcedDikeHeight;
-
             _dikeHeightInitialized = true;
         }
     }
@@ -281,9 +280,9 @@ namespace DiKErnel::Integration
         cumulativeOverloadInput._representativeWaveRunup2P = _representativeWaveRunup2P;
         cumulativeOverloadInput._fixedNumberOfWaves = _fixedNumberOfWaves;
         cumulativeOverloadInput._verticalDistanceWaterLevelElevation = _verticalDistanceWaterLevelElevation;
-        cumulativeOverloadInput._criticalFrontVelocity = GetCriticalFrontVelocity();
-        cumulativeOverloadInput._increasedLoadTransitionAlphaM = GetIncreasedLoadTransitionAlphaM();
-        cumulativeOverloadInput._reducedStrengthTransitionAlphaS = GetReducedStrengthTransitionAlphaS();
+        cumulativeOverloadInput._criticalFrontVelocity = _criticalFrontVelocity;
+        cumulativeOverloadInput._increasedLoadTransitionAlphaM = _increasedLoadTransitionAlphaM;
+        cumulativeOverloadInput._reducedStrengthTransitionAlphaS = _reducedStrengthTransitionAlphaS;
         cumulativeOverloadInput._gravitationalAcceleration = Constants::GetGravitationalAcceleration();
 
         return GrassRevetmentOvertoppingFunctions::CumulativeOverload(cumulativeOverloadInput);
