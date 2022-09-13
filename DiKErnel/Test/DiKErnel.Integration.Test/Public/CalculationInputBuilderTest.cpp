@@ -124,7 +124,7 @@ namespace DiKErnel::Integration::Test
 
             CalculationInputBuilder builder;
             builder.AddDikeProfilePointData(startPointX - 0.01, startPointZ - 0.01, characteristicPointType);
-            builder.AddDikeProfileSegment(0, 10, endPointX, endPointX, nullptr);
+            builder.AddDikeProfileSegment(0, 10, endPointX, endPointZ, nullptr);
             builder.Build();
         }
     };
@@ -340,7 +340,7 @@ namespace DiKErnel::Integration::Test
 
         // Then
         AssertHelper::AssertThrowsWithMessageAndInnerException<CalculationInputBuildException, ProfileFactoryException>(
-            action, "Could not create instance.", "Couldn't create defaults for the given top layer type.");
+            action, "Could not create instance.", "Characteristic point must be on a start or end point of a segment.");
     }
 
     #pragma endregion

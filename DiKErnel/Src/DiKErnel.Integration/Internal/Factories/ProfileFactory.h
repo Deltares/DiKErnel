@@ -46,5 +46,9 @@ namespace DiKErnel::Integration
             static bool DoesSegmentStartAtPoint(
                 const Core::ProfilePoint& profilePoint,
                 const ProfileFactorySegmentData& segmentData);
+
+            static const Core::ProfilePoint* FindMatchingPoint(
+                const ProfileFactoryPointData& profilePointData,
+                const std::vector<std::unique_ptr<Core::ProfileSegment>>& segments);
     };
 }
