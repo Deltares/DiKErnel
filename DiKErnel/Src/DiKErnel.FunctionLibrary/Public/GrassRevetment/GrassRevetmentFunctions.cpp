@@ -20,8 +20,6 @@
 
 #include "GrassRevetmentFunctions.h"
 
-#include <cmath>
-
 namespace DiKErnel::FunctionLibrary
 {
     using namespace std;
@@ -31,25 +29,6 @@ namespace DiKErnel::FunctionLibrary
         const double criticalCumulativeOverload)
     {
         return cumulativeOverload / criticalCumulativeOverload;
-    }
-
-    double GrassRevetmentFunctions::CumulativeOverload(
-        const GrassRevetmentCumulativeOverloadInput& input,
-        const function<double(
-            double waveRunup)>& getFrontVelocity)
-    {
-        auto cumulativeFrontVelocity = 0.0;
-
-        for (auto k = 1; k <= input._fixedNumberOfWaves; ++k)
-        {
-            const auto waveRunup = WaveRunup(input._representativeWaveRunup2P, input._fixedNumberOfWaves, k);
-            const auto frontVelocity = getFrontVelocity(waveRunup);
-
-            cumulativeFrontVelocity += max(0.0, input._increasedLoadTransitionAlphaM * pow(frontVelocity, 2.0)
-                                           - input._reducedStrengthTransitionAlphaS * pow(input._criticalFrontVelocity, 2.0));
-        }
-
-        return input._averageNumberOfWaves / input._fixedNumberOfWaves * cumulativeFrontVelocity;
     }
 
     double GrassRevetmentFunctions::WaveRunup(

@@ -20,7 +20,7 @@
 
 #pragma once
 
-#include <functional>
+#include <cmath>
 
 #include "GrassRevetmentCumulativeOverloadInput.h"
 
@@ -52,10 +52,25 @@ namespace DiKErnel::FunctionLibrary
                 double criticalCumulativeOverload);
 
         private:
+            template<class T>
             [[nodiscard]]
             static double CumulativeOverload(
                 const GrassRevetmentCumulativeOverloadInput& input,
-                const std::function<double(double waveRunup)>& getFrontVelocity);
+                const T& getFrontVelocity)
+            {
+                auto cumulativeFrontVelocity = 0.0;
+
+                for (auto k = 1; k <= input._fixedNumberOfWaves; ++k)
+                {
+                    const auto waveRunup = WaveRunup(input._representativeWaveRunup2P, input._fixedNumberOfWaves, k);
+                    const auto frontVelocity = getFrontVelocity(waveRunup);
+
+                    cumulativeFrontVelocity += std::max(0.0, input._increasedLoadTransitionAlphaM * std::pow(frontVelocity, 2.0)
+                        - input._reducedStrengthTransitionAlphaS * std::pow(input._criticalFrontVelocity, 2.0));
+                }
+
+                return input._averageNumberOfWaves / input._fixedNumberOfWaves * cumulativeFrontVelocity;
+            }
 
             [[nodiscard]]
             static double WaveRunup(
