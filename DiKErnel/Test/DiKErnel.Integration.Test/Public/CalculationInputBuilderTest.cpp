@@ -37,6 +37,8 @@
 #include "ProfileDataAssertHelper.h"
 #include "ProfileSegmentDefaults.h"
 #include "CalculationInputBuilder.h"
+#include "CalculationInputBuildException.h"
+#include "ProfileFactoryException.h"
 #include "TimeDependentInputAssertHelper.h"
 
 namespace DiKErnel::Integration::Test
@@ -84,6 +86,46 @@ namespace DiKErnel::Integration::Test
 
             CalculationInputBuilder builder;
             builder.AddNaturalStoneLocation(constructionProperties);
+        }
+
+        static void CreateBuilderAndSegmentUnchainedOnXCoordinate()
+        {
+            constexpr auto startPointX = 10;
+            constexpr auto startPointZ = 20;
+            constexpr auto endPointX = 20;
+            constexpr auto endPointZ = 30;
+
+            CalculationInputBuilder builder;
+            builder.AddDikeProfileSegment(startPointX, startPointZ, endPointX, endPointZ, nullptr);
+            builder.AddDikeProfileSegment(endPointX + 0.01, startPointZ, endPointX, endPointZ, nullptr);
+            builder.Build();
+        }
+
+        static void CreateBuilderAndSegmentUnchainedOnZCoordinate()
+        {
+            constexpr auto startPointX = 10;
+            constexpr auto startPointZ = 20;
+            constexpr auto endPointX = 20;
+            constexpr auto endPointZ = 30;
+
+            CalculationInputBuilder builder;
+            builder.AddDikeProfileSegment(startPointX, startPointZ, endPointX, endPointZ, nullptr);
+            builder.AddDikeProfileSegment(endPointX, startPointZ + 0.01, endPointX, endPointZ, nullptr);
+            builder.Build();
+        }
+
+        static void CreateBuilderAndCharacteristicPointNotOnSegmentPoint()
+        {
+            constexpr auto startPointX = 10;
+            constexpr auto startPointZ = 20;
+            constexpr auto endPointX = 20;
+            constexpr auto endPointZ = 30;
+            constexpr auto characteristicPointType = CharacteristicPointType::NotchOuterBerm;
+
+            CalculationInputBuilder builder;
+            builder.AddDikeProfilePointData(startPointX - 0.01, startPointZ - 0.01, characteristicPointType);
+            builder.AddDikeProfileSegment(0, 10, endPointX, endPointX, nullptr);
+            builder.Build();
         }
     };
 
@@ -159,12 +201,100 @@ namespace DiKErnel::Integration::Test
                                                       roughnessCoefficient, actualSegment);
     }
 
-    #pragma endregion
+    TEST_F(CalculationInputBuilderTest,
+           GivenBuilderWithDikeSegmentsAdded_WhenBuild_ThenReturnsCalculationInput)
+    {
+        // Given
+        constexpr auto startPointXSegmentOne = 10;
+        constexpr auto startPointZSegmentOne = 20;
+        constexpr auto endPointXSegmentOne = 20;
+        constexpr auto endPointZSegmentOne = 30;
+        constexpr auto endPointXSegmentTwo = 30;
+        constexpr auto endPointZSegmentTwo = 40;
+        constexpr auto roughnessCoefficient = 13.37;
 
-    #pragma region Profile point
+        CalculationInputBuilder builder;
+        builder.AddDikeProfileSegment(startPointXSegmentOne, startPointZSegmentOne, endPointXSegmentOne, endPointZSegmentOne,
+                                      &roughnessCoefficient);
+        builder.AddDikeProfileSegment(endPointXSegmentOne, endPointZSegmentOne, endPointXSegmentTwo, endPointZSegmentTwo,
+                                      &roughnessCoefficient);
+
+        // When
+        const auto& calculationInput = builder.Build();
+
+        // Then
+        const auto& actualProfileData = calculationInput->GetProfileData();
+        const auto& actualProfileSegments = actualProfileData.GetProfileSegments();
+        ASSERT_EQ(2, actualProfileSegments.size());
+
+        const auto& segmentOne = actualProfileSegments.at(0);
+        ProfileDataAssertHelper::AssertProfileSegment(startPointXSegmentOne, startPointZSegmentOne,
+                                                      endPointXSegmentOne, endPointZSegmentOne,
+                                                      roughnessCoefficient, segmentOne);
+
+        const auto& segmentTwo = actualProfileSegments.at(1);
+        ProfileDataAssertHelper::AssertProfileSegment(endPointXSegmentOne, endPointZSegmentOne,
+                                                      endPointXSegmentTwo, endPointZSegmentTwo,
+                                                      roughnessCoefficient, segmentTwo);
+
+        ASSERT_EQ(&segmentOne.get().GetEndPoint(), &segmentTwo.get().GetStartPoint());
+    }
 
     TEST_F(CalculationInputBuilderTest,
-           GivenBuilderWithDikeProfilePointWithCharacteristicPointTypeAdded_WhenBuild_ThenReturnsCalculationInput)
+           GivenBuilderWithDikeSegmentsAddedWithoutRoughness_WhenSegmentXCoordinateUnchained_ThenThrowsCalculationInputBuilderException)
+    {
+        // Given & When
+        const auto action = &CalculationInputBuilderTest::CreateBuilderAndSegmentUnchainedOnXCoordinate;
+
+        // Then
+        AssertHelper::AssertThrowsWithMessageAndInnerException<CalculationInputBuildException, ProfileFactoryException>(
+            action, "Could not create instance.", "Couldn't create defaults for the given top layer type.");
+    }
+
+    TEST_F(CalculationInputBuilderTest,
+           GivenBuilderWithDikeSegmentsAddedWithoutRoughness_WhenSegmentZCoordinateUnchained_ThenThrowsCalculationInputBuilderException)
+    {
+        // Given & When
+        const auto action = &CalculationInputBuilderTest::CreateBuilderAndSegmentUnchainedOnZCoordinate;
+
+        // Then
+        AssertHelper::AssertThrowsWithMessageAndInnerException<CalculationInputBuildException, ProfileFactoryException>(
+            action, "Could not create instance.", "Couldn't create defaults for the given top layer type.");
+    }
+
+    #pragma endregion
+
+    #pragma region Profile point data
+
+    TEST_F(CalculationInputBuilderTest,
+           GivenBuilderWithDikeProfilePointDataOnSegmentStartPoint_WhenBuild_ThenReturnsCalculationInput)
+    {
+        // Given
+        constexpr auto x = 10;
+        constexpr auto z = 20;
+        constexpr auto characteristicPointType = CharacteristicPointType::NotchOuterBerm;
+
+        CalculationInputBuilder builder;
+        builder.AddDikeProfilePointData(x, z, characteristicPointType);
+        builder.AddDikeProfileSegment(x, z, 20, 30, nullptr);
+
+        // When
+        const auto& calculationInput = builder.Build();
+
+        // Then
+        const auto& actualProfileData = calculationInput->GetProfileData();
+        const auto& actualProfileSegments = actualProfileData.GetProfileSegments();
+        const auto& actualCharacteristicPoints = actualProfileData.GetCharacteristicPoints();
+        ASSERT_EQ(1, actualProfileSegments.size());
+        ASSERT_EQ(1, actualCharacteristicPoints.size());
+
+        const auto& actualSegment = actualProfileSegments.at(0);
+        ProfileDataAssertHelper::AssertCharacteristicPoint(actualSegment.get().GetStartPoint(), characteristicPointType,
+                                                           actualCharacteristicPoints.at(0));
+    }
+
+    TEST_F(CalculationInputBuilderTest,
+           GivenBuilderWithDikeProfilePointDataOnSegmentEndPoint_WhenBuild_ThenReturnsCalculationInput)
     {
         // Given
         constexpr auto x = 10;
@@ -188,6 +318,29 @@ namespace DiKErnel::Integration::Test
         const auto& actualSegment = actualProfileSegments.at(0);
         ProfileDataAssertHelper::AssertCharacteristicPoint(actualSegment.get().GetEndPoint(), characteristicPointType,
                                                            actualCharacteristicPoints.at(0));
+    }
+
+    TEST_F(CalculationInputBuilderTest,
+           GivenBuilderWithDikeProfilePointDataNotOnSegmentPoints_WhenBuild_ThenThrowsCalculationInputBuilderException)
+    {
+        // Given
+        constexpr auto x = 10;
+        constexpr auto z = 20;
+        constexpr auto characteristicPointType = CharacteristicPointType::NotchOuterBerm;
+
+        CalculationInputBuilder builder;
+        builder.AddDikeProfilePointData(x, z, characteristicPointType);
+        builder.AddDikeProfileSegment(0, 10, x, z, nullptr);
+
+        // When
+        const auto& calculationInput = builder.Build();
+
+        // Given & When
+        const auto action = &CalculationInputBuilderTest::CreateBuilderAndCharacteristicPointNotOnSegmentPoint;
+
+        // Then
+        AssertHelper::AssertThrowsWithMessageAndInnerException<CalculationInputBuildException, ProfileFactoryException>(
+            action, "Could not create instance.", "Couldn't create defaults for the given top layer type.");
     }
 
     #pragma endregion
