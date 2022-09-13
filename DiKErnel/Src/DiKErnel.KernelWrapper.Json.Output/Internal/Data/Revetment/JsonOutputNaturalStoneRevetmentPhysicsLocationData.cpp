@@ -26,10 +26,8 @@
 
 namespace DiKErnel::KernelWrapper::Json::Output
 {
-    using namespace Core;
     using namespace Integration;
     using namespace nlohmann;
-    using namespace std;
 
     JsonOutputNaturalStoneRevetmentPhysicsLocationData::JsonOutputNaturalStoneRevetmentPhysicsLocationData(
         const NaturalStoneRevetmentLocationDependentOutput& locationDependentOutput)

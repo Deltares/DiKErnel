@@ -18,7 +18,7 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include "JsonOutputGrassRevetmentWaveRunupRayleighPhysicsLocationData.h"
+#include "JsonOutputGrassRevetmentOvertoppingPhysicsLocationData.h"
 
 #include "CalculationOutputAdapterHelper.h"
 #include "JsonOutputDefinitions.h"
@@ -29,26 +29,20 @@ namespace DiKErnel::KernelWrapper::Json::Output
     using namespace Integration;
     using namespace nlohmann;
 
-    JsonOutputGrassRevetmentWaveRunupRayleighPhysicsLocationData::JsonOutputGrassRevetmentWaveRunupRayleighPhysicsLocationData(
-        const GrassRevetmentWaveRunupRayleighLocationDependentOutput& locationDependentOutput)
+    JsonOutputGrassRevetmentOvertoppingPhysicsLocationData::JsonOutputGrassRevetmentOvertoppingPhysicsLocationData(
+        const GrassRevetmentOvertoppingLocationDependentOutput& locationDependentOutput)
         : JsonOutputPhysicsLocationData(locationDependentOutput)
     {
         for (const auto& timeDependentOutput : locationDependentOutput.GetTimeDependentOutputItems())
         {
-            _timeDependentOutputItems.push_back(dynamic_cast<GrassRevetmentWaveRunupRayleighTimeDependentOutput*>(&timeDependentOutput.get()));
+            _timeDependentOutputItems.push_back(dynamic_cast<GrassRevetmentOvertoppingTimeDependentOutput*>(&timeDependentOutput.get()));
         }
     }
 
-    ordered_json JsonOutputGrassRevetmentWaveRunupRayleighPhysicsLocationData::CreateJson() const
+    ordered_json JsonOutputGrassRevetmentOvertoppingPhysicsLocationData::CreateJson() const
     {
         auto output = JsonOutputPhysicsLocationData::CreateJson();
         auto& physicsJson = output.at(JsonOutputDefinitions::PHYSICS);
-
-        const auto* grassRevetmentWaveRunupRayleighLocationDependentOutput =
-                dynamic_cast<const GrassRevetmentWaveRunupRayleighLocationDependentOutput*>(&GetLocationDependentOutput());
-
-        CalculationOutputAdapterHelper::GetJsonElement(physicsJson, JsonOutputDefinitions::Z) =
-                grassRevetmentWaveRunupRayleighLocationDependentOutput->GetZ();
 
         for (const auto* outputItem : _timeDependentOutputItems)
         {
@@ -58,10 +52,6 @@ namespace DiKErnel::KernelWrapper::Json::Output
                 physicsJson, JsonOutputGrassRevetmentDefinitions::VERTICAL_DISTANCE_WATER_LEVEL_ELEVATION).push_back(
                 outputItem->GetVerticalDistanceWaterLevelElevation());
 
-            CalculationOutputAdapterHelper::PushPropertyWhenApplicable(
-                CalculationOutputAdapterHelper::GetJsonElement(
-                    physicsJson, JsonOutputDefinitions::WAVE_ANGLE_IMPACT),
-                outputItem->GetWaveAngleImpact());
             CalculationOutputAdapterHelper::PushPropertyWhenApplicable(
                 CalculationOutputAdapterHelper::GetJsonElement(
                     physicsJson, JsonOutputGrassRevetmentDefinitions::REPRESENTATIVE_WAVE_RUNUP_2P), outputItem->GetRepresentativeWaveRunup2P());
