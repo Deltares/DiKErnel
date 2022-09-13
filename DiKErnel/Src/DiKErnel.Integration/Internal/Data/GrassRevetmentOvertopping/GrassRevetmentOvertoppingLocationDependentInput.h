@@ -109,17 +109,17 @@ namespace DiKErnel::Integration
             double _cumulativeOverload = std::numeric_limits<double>::infinity();
 
             void InitializeCalculationProfile(
-                const std::unique_ptr<std::pair<double, double>>& outerToe,
-                const std::unique_ptr<std::pair<double, double>>& outerCrest,
+                const std::pair<double, double>& outerToe,
+                const std::pair<double, double>& outerCrest,
                 const std::vector<std::reference_wrapper<Core::ProfileSegment>>& profileSegments);
 
             void InitializeDikeHeight(
-                const std::unique_ptr<std::pair<double, double>>& outerCrest,
+                const std::pair<double, double>& outerCrest,
                 const std::vector<std::reference_wrapper<Core::ProfileSegment>>& profileSegments);
 
             void InitializeAccelerationAlphaA(
-                const std::unique_ptr<std::pair<double, double>>& outerCrest,
-                const std::unique_ptr<std::pair<double, double>>& innerCrest);
+                const std::pair<double, double>& outerCrest,
+                const std::pair<double, double>& innerCrest);
 
             [[nodiscard]]
             double CalculateRepresentativeWaveRunup2P(

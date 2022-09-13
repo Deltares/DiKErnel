@@ -136,9 +136,9 @@ namespace DiKErnel::Integration
         const auto outerCrest = CharacteristicPointsHelper::GetCoordinatesForType(characteristicPoints, CharacteristicPointType::OuterCrest);
         const auto innerCrest = CharacteristicPointsHelper::GetCoordinatesForType(characteristicPoints, CharacteristicPointType::InnerCrest);
 
-        InitializeCalculationProfile(outerToe, outerCrest, profileData.GetProfileSegments());
-        InitializeDikeHeight(outerCrest, profileData.GetProfileSegments());
-        InitializeAccelerationAlphaA(outerCrest, innerCrest);
+        InitializeCalculationProfile(*outerToe, *outerCrest, profileData.GetProfileSegments());
+        InitializeDikeHeight(*outerCrest, profileData.GetProfileSegments());
+        InitializeAccelerationAlphaA(*outerCrest, *innerCrest);
     }
 
     unique_ptr<TimeDependentOutput> GrassRevetmentOvertoppingLocationDependentInput::CalculateTimeDependentOutput(
@@ -188,8 +188,8 @@ namespace DiKErnel::Integration
     }
 
     void GrassRevetmentOvertoppingLocationDependentInput::InitializeCalculationProfile(
-        const unique_ptr<pair<double, double>>& outerToe,
-        const unique_ptr<pair<double, double>>& outerCrest,
+        const pair<double, double>& outerToe,
+        const pair<double, double>& outerCrest,
         const vector<reference_wrapper<ProfileSegment>>& profileSegments)
     {
         for (const auto& profileSegment : profileSegments)
@@ -197,7 +197,7 @@ namespace DiKErnel::Integration
             const auto& profileSegmentReference = profileSegment.get();
             const auto& startPoint = profileSegmentReference.GetStartPoint();
 
-            if (const double startPointX = startPoint.GetX(); startPointX >= outerToe->first && startPointX < outerCrest->first)
+            if (const double startPointX = startPoint.GetX(); startPointX >= outerToe.first && startPointX < outerCrest.first)
             {
                 _xValuesProfile.push_back(startPointX);
                 _zValuesProfile.push_back(startPoint.GetZ());
@@ -205,12 +205,12 @@ namespace DiKErnel::Integration
             }
         }
 
-        _xValuesProfile.push_back(outerCrest->first);
-        _zValuesProfile.push_back(outerCrest->second);
+        _xValuesProfile.push_back(outerCrest.first);
+        _zValuesProfile.push_back(outerCrest.second);
     }
 
     void GrassRevetmentOvertoppingLocationDependentInput::InitializeDikeHeight(
-        const unique_ptr<pair<double, double>>& outerCrest,
+        const pair<double, double>& outerCrest,
         const vector<reference_wrapper<ProfileSegment>>& profileSegments)
     {
         if (_dikeHeightInitialized)
@@ -228,7 +228,7 @@ namespace DiKErnel::Integration
         {
             const auto& startPoint = profileSegment.get().GetStartPoint();
 
-            if (const double startPointX = startPoint.GetX(); startPointX >= outerCrest->first && startPointX < x)
+            if (const double startPointX = startPoint.GetX(); startPointX >= outerCrest.first && startPointX < x)
             {
                 _dikeHeight = max(_dikeHeight, startPoint.GetZ());
             }
@@ -236,12 +236,12 @@ namespace DiKErnel::Integration
     }
 
     void GrassRevetmentOvertoppingLocationDependentInput::InitializeAccelerationAlphaA(
-        const unique_ptr<pair<double, double>>& outerCrest,
-        const unique_ptr<pair<double, double>>& innerCrest)
+        const pair<double, double>& outerCrest,
+        const pair<double, double>& innerCrest)
     {
         const double x = GetX();
 
-        _accelerationAlphaA = x >= outerCrest->first && x <= innerCrest->first
+        _accelerationAlphaA = x >= outerCrest.first && x <= innerCrest.first
                                   ? _locationDependentAccelerationAlphaA->ValueAtCrest()
                                   : _locationDependentAccelerationAlphaA->ValueAtInnerSlope();
     }
