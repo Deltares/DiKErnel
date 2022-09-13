@@ -28,8 +28,6 @@ namespace DiKErnel::TestUtil
         const double lowerBoundary,
         const double upperBoundary)
     {
-        const uniform_real_distribution uniformRealDistribution(lowerBoundary, upperBoundary);
-
-        return uniformRealDistribution(_randomEngine);
+        return uniform_real_distribution(lowerBoundary, upperBoundary)(_randomEngine);
     }
 }

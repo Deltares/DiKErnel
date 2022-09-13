@@ -20,6 +20,7 @@
 
 #include "TestDataPathHelper.h"
 
+#include <algorithm>
 #include <filesystem>
 
 namespace DiKErnel::TestUtil
