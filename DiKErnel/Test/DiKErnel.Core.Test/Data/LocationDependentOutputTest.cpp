@@ -32,10 +32,9 @@ namespace DiKErnel::Core::Test
     TEST(LocationDependentOutputTest, Constructor_WithTimeDependentOutputItems_ExpectedValues)
     {
         // Setup
-        constexpr auto z = 0.1;
-        constexpr auto incrementDamage = 0.2;
-        constexpr auto damage = 0.3;
-        constexpr auto timeOfFailure = 4;
+        constexpr auto incrementDamage = 0.1;
+        constexpr auto damage = 0.2;
+        constexpr auto timeOfFailure = 3;
 
         auto timeDependentOutputItems = vector<unique_ptr<TimeDependentOutput>>();
 
@@ -47,10 +46,9 @@ namespace DiKErnel::Core::Test
         timeDependentOutputItems.push_back(make_unique<TimeDependentOutputMock>(timeDependentOutputConstructionProperties));
 
         // Call
-        const LocationDependentOutputMock locationDependentOutput(z, move(timeDependentOutputItems));
+        const LocationDependentOutputMock locationDependentOutput(move(timeDependentOutputItems));
 
         // Assert
-        ASSERT_DOUBLE_EQ(z, locationDependentOutput.GetZ());
         ASSERT_EQ(vector{ damage }, locationDependentOutput.GetDamages());
         ASSERT_EQ(timeOfFailure, *locationDependentOutput.GetTimeOfFailure());
         ASSERT_EQ(1, locationDependentOutput.GetTimeDependentOutputItems().size());
@@ -59,9 +57,8 @@ namespace DiKErnel::Core::Test
     TEST(LocationDependentOutputTest, Constructor_WithTimeDependentOutputItemsWithOnlyTimeOfFailureNullPtr_ExpectedValues)
     {
         // Setup
-        constexpr auto z = 0.1;
-        constexpr auto incrementDamage = 0.2;
-        constexpr auto damage = 0.3;
+        constexpr auto incrementDamage = 0.1;
+        constexpr auto damage = 0.2;
 
         auto timeDependentOutputItems = vector<unique_ptr<TimeDependentOutput>>();
 
@@ -73,10 +70,9 @@ namespace DiKErnel::Core::Test
         timeDependentOutputItems.push_back(make_unique<TimeDependentOutputMock>(timeDependentOutputConstructionProperties));
 
         // Call
-        const LocationDependentOutputMock locationDependentOutput(z, move(timeDependentOutputItems));
+        const LocationDependentOutputMock locationDependentOutput(move(timeDependentOutputItems));
 
         // Assert
-        ASSERT_DOUBLE_EQ(z, locationDependentOutput.GetZ());
         ASSERT_EQ(vector{ damage }, locationDependentOutput.GetDamages());
         ASSERT_EQ(nullptr, locationDependentOutput.GetTimeOfFailure());
         ASSERT_EQ(1, locationDependentOutput.GetTimeDependentOutputItems().size());

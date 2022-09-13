@@ -33,7 +33,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
     unique_ptr<ICalculationInput> JsonInputAdapter::AdaptJsonInputData(
         const JsonInputData& jsonInputData)
     {
-        RevetmentCalculationInputBuilder builder;
+        CalculationInputBuilder builder;
 
         AdaptDikeProfile(jsonInputData, builder);
         AdaptHydraulicData(jsonInputData, builder);
@@ -44,7 +44,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
     void JsonInputAdapter::AdaptDikeProfile(
         const JsonInputData& jsonInputData,
-        RevetmentCalculationInputBuilder& builder)
+        CalculationInputBuilder& builder)
     {
         const auto& dikeProfileData = jsonInputData.GetDikeProfileData();
 
@@ -52,8 +52,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
         const auto& zLocations = dikeProfileData.GetZLocations();
         const auto& characteristicPoints = dikeProfileData.GetCharacteristicPoints();
 
-        double lowerPointX = numeric_limits<double>::infinity();
-        double lowerPointZ = numeric_limits<double>::infinity();
+        double startPointX = numeric_limits<double>::infinity();
+        double startPointZ = numeric_limits<double>::infinity();
         for (auto i = 0; i < static_cast<int>(xLocations.size()); ++i)
         {
             const double xLocation = xLocations.at(i);
@@ -68,19 +68,22 @@ namespace DiKErnel::KernelWrapper::Json::Input
             }
 
             const double zLocation = zLocations.at(i);
-            builder.AddDikeProfilePointData(xLocation, zLocation, characteristicPoint.get());
+            if (characteristicPoint != nullptr)
+            {
+                builder.AddDikeProfilePointData(xLocation, zLocation, *characteristicPoint);
+            }
 
             if (i == 0)
             {
-                lowerPointX = xLocation;
-                lowerPointZ = zLocation;
+                startPointX = xLocation;
+                startPointZ = zLocation;
                 continue;
             }
 
-            builder.AddDikeProfileSegment(lowerPointX, lowerPointZ, xLocation, zLocation, nullptr);
+            builder.AddDikeProfileSegment(startPointX, startPointZ, xLocation, zLocation, nullptr);
 
-            lowerPointX = xLocation;
-            lowerPointZ = zLocation;
+            startPointX = xLocation;
+            startPointZ = zLocation;
         }
     }
 
@@ -112,7 +115,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
     void JsonInputAdapter::AdaptHydraulicData(
         const JsonInputData& jsonInputData,
-        RevetmentCalculationInputBuilder& builder)
+        CalculationInputBuilder& builder)
     {
         const auto& hydraulicData = jsonInputData.GetHydraulicData();
 
@@ -130,7 +133,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
     void JsonInputAdapter::AdaptLocations(
         const JsonInputData& jsonInputData,
-        RevetmentCalculationInputBuilder& builder)
+        CalculationInputBuilder& builder)
     {
         const auto& locationReferences = jsonInputData.GetLocationData();
         const auto& calculationDefinitionReferences = jsonInputData.GetCalculationDefinitionData();

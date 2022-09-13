@@ -27,10 +27,8 @@ namespace DiKErnel::Core
     using namespace std;
 
     LocationDependentOutput::LocationDependentOutput(
-        const double z,
         vector<unique_ptr<TimeDependentOutput>> timeDependentOutputItems)
-        : _z(z),
-          _timeDependentOutputItems(move(timeDependentOutputItems))
+        : _timeDependentOutputItems(move(timeDependentOutputItems))
     {
         for (const auto& timeDependentOutput : _timeDependentOutputItems)
         {
@@ -46,11 +44,6 @@ namespace DiKErnel::Core
                 _timeOfFailure = make_unique<int>(*timeDependentOutput->GetTimeOfFailure());
             }
         }
-    }
-
-    double LocationDependentOutput::GetZ() const
-    {
-        return _z;
     }
 
     const vector<double>& LocationDependentOutput::GetDamages() const

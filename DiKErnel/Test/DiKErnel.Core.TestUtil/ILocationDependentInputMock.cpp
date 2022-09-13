@@ -50,7 +50,7 @@ namespace DiKErnel::Core::TestUtil
     unique_ptr<LocationDependentOutput> ILocationDependentInputMock::GetLocationDependentOutput(
         vector<unique_ptr<TimeDependentOutput>> timeDependentOutputItems)
     {
-        return make_unique<LocationDependentOutputMock>(GetZ(), move(timeDependentOutputItems));
+        return make_unique<LocationDependentOutputMock>(move(timeDependentOutputItems));
     }
 
     void ILocationDependentInputMock::SetIncrementDamage(

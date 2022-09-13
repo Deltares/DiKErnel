@@ -26,10 +26,8 @@
 
 namespace DiKErnel::KernelWrapper::Json::Output
 {
-    using namespace Core;
     using namespace Integration;
     using namespace nlohmann;
-    using namespace std;
 
     JsonOutputNaturalStoneRevetmentPhysicsLocationData::JsonOutputNaturalStoneRevetmentPhysicsLocationData(
         const NaturalStoneRevetmentLocationDependentOutput& locationDependentOutput)
@@ -45,6 +43,12 @@ namespace DiKErnel::KernelWrapper::Json::Output
     {
         auto output = JsonOutputPhysicsLocationData::CreateJson();
         auto& physicsJson = output.at(JsonOutputDefinitions::PHYSICS);
+
+        const auto* naturalStoneRevetmentLocationDependentOutput =
+                dynamic_cast<const NaturalStoneRevetmentLocationDependentOutput*>(&GetLocationDependentOutput());
+
+        CalculationOutputAdapterHelper::GetJsonElement(physicsJson, JsonOutputDefinitions::Z) =
+                naturalStoneRevetmentLocationDependentOutput->GetZ();
 
         for (const auto* outputItem : _timeDependentOutputItems)
         {

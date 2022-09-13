@@ -158,7 +158,7 @@ namespace DiKErnel::Integration
     unique_ptr<LocationDependentOutput> AsphaltRevetmentWaveImpactLocationDependentInput::GetLocationDependentOutput(
         vector<unique_ptr<TimeDependentOutput>> timeDependentOutputItems)
     {
-        return make_unique<AsphaltRevetmentWaveImpactLocationDependentOutput>(GetZ(), move(timeDependentOutputItems), _outerSlope);
+        return make_unique<AsphaltRevetmentWaveImpactLocationDependentOutput>(move(timeDependentOutputItems), GetZ(), _outerSlope);
     }
 
     void AsphaltRevetmentWaveImpactLocationDependentInput::InitializeDerivedLocationDependentInput(
@@ -200,11 +200,11 @@ namespace DiKErnel::Integration
         }
 
         const auto profileSegment = profileData.GetProfileSegment(horizontalPosition);
-        const auto& profileSegmentLowerPoint = profileSegment->GetLowerPoint();
-        const auto& profileSegmentUpperPoint = profileSegment->GetUpperPoint();
+        const auto& profileSegmentStartPoint = profileSegment->GetStartPoint();
+        const auto& profileSegmentEndPoint = profileSegment->GetEndPoint();
 
-        _outerSlope = AsphaltRevetmentWaveImpactFunctions::OuterSlope(profileSegmentLowerPoint.GetX(), profileSegmentLowerPoint.GetZ(),
-                                                                      profileSegmentUpperPoint.GetX(), profileSegmentUpperPoint.GetZ());
+        _outerSlope = AsphaltRevetmentWaveImpactFunctions::OuterSlope(profileSegmentStartPoint.GetX(), profileSegmentStartPoint.GetZ(),
+                                                                      profileSegmentEndPoint.GetX(), profileSegmentEndPoint.GetZ());
     }
 
     unique_ptr<TimeDependentOutput> AsphaltRevetmentWaveImpactLocationDependentInput::CalculateTimeDependentOutput(

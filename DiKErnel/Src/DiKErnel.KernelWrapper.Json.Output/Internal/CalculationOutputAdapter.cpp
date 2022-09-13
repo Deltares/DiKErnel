@@ -21,10 +21,12 @@
 #include "CalculationOutputAdapter.h"
 
 #include "AsphaltRevetmentWaveImpactLocationDependentOutput.h"
+#include "GrassRevetmentOvertoppingLocationDependentOutput.h"
 #include "GrassRevetmentWaveImpactLocationDependentOutput.h"
 #include "GrassRevetmentWaveRunupRayleighLocationDependentOutput.h"
 #include "JsonOutputAsphaltRevetmentWaveImpactPhysicsLocationData.h"
 #include "JsonOutputConversionException.h"
+#include "JsonOutputGrassRevetmentOvertoppingPhysicsLocationData.h"
 #include "JsonOutputGrassRevetmentWaveImpactPhysicsLocationData.h"
 #include "JsonOutputGrassRevetmentWaveRunupRayleighPhysicsLocationData.h"
 #include "JsonOutputNaturalStoneRevetmentPhysicsLocationData.h"
@@ -98,6 +100,14 @@ namespace DiKErnel::KernelWrapper::Json::Output
             asphaltRevetmentWaveImpactLocationDependentOutput != nullptr)
         {
             return make_unique<JsonOutputAsphaltRevetmentWaveImpactPhysicsLocationData>(*asphaltRevetmentWaveImpactLocationDependentOutput);
+        }
+
+        if (const auto* grassRevetmentOvertoppingLocationDependentOutput =
+                    dynamic_cast<const GrassRevetmentOvertoppingLocationDependentOutput*>(&locationDependentOutput);
+            grassRevetmentOvertoppingLocationDependentOutput != nullptr)
+        {
+            return make_unique<JsonOutputGrassRevetmentOvertoppingPhysicsLocationData>(
+                *grassRevetmentOvertoppingLocationDependentOutput);
         }
 
         if (const auto* grassRevetmentWaveImpactLocationDependentOutput =

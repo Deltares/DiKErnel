@@ -126,7 +126,7 @@ namespace DiKErnel::Integration
     unique_ptr<LocationDependentOutput> NaturalStoneRevetmentLocationDependentInput::GetLocationDependentOutput(
         vector<unique_ptr<TimeDependentOutput>> timeDependentOutputItems)
     {
-        return make_unique<NaturalStoneRevetmentLocationDependentOutput>(GetZ(), move(timeDependentOutputItems));
+        return make_unique<NaturalStoneRevetmentLocationDependentOutput>(move(timeDependentOutputItems), GetZ());
     }
 
     void NaturalStoneRevetmentLocationDependentInput::InitializeDerivedLocationDependentInput(

@@ -20,6 +20,8 @@
 
 #include "GrassRevetmentFunctions.h"
 
+#include <cmath>
+
 namespace DiKErnel::FunctionLibrary
 {
     using namespace std;

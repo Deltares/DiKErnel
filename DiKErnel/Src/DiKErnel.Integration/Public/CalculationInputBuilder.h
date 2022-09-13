@@ -25,13 +25,15 @@
 #include "GrassRevetmentWaveImpactLocationConstructionProperties.h"
 #include "GrassRevetmentWaveRunupRayleighLocationConstructionProperties.h"
 #include "NaturalStoneRevetmentLocationConstructionProperties.h"
+#include "ProfileFactoryPointData.h"
+#include "ProfileFactorySegmentData.h"
 
 namespace DiKErnel::Integration
 {
     /*!
      * \brief Builder to configure and create calculation input.
      */
-    class RevetmentCalculationInputBuilder
+    class CalculationInputBuilder
     {
         public:
             /*!
@@ -46,27 +48,27 @@ namespace DiKErnel::Integration
             void AddDikeProfilePointData(
                 double x,
                 double z,
-                const Core::CharacteristicPointType* characteristicPointType);
+                Core::CharacteristicPointType characteristicPointType);
 
             /*!
              * \brief Adds a new dike segment.
-             * \param lowerPointX
+             * \param startPointX
              *        The x coordinate for the lower profile point.
-             * \param lowerPointZ
+             * \param startPointZ
              *        The z coordinate for the lower profile point.
-             * \param upperPointX
+             * \param endPointX
              *        The x coordinate for the upper profile point.
-             * \param upperPointZ
+             * \param endPointZ
              *        The z coordinate for the upper profile point.
              * \param roughnessCoefficient
              *        The roughness coefficient.
              *        Unit = [-]
              */
             void AddDikeProfileSegment(
-                double lowerPointX,
-                double lowerPointZ,
-                double upperPointX,
-                double upperPointZ,
+                double startPointX,
+                double startPointZ,
+                double endPointX,
+                double endPointZ,
                 const double* roughnessCoefficient);
 
             /*!
@@ -96,7 +98,7 @@ namespace DiKErnel::Integration
              * \brief Adds an asphalt wave impact location.
              * \param constructionProperties
              *        The properties to construct the asphalt wave impact location dependent input.
-             * \exception RevetmentCalculationInputBuilderException
+             * \exception LocationDependentInputFactoryException
              *            Thrown when the top layer type is invalid.
              */
             void AddAsphaltWaveImpactLocation(
@@ -106,7 +108,7 @@ namespace DiKErnel::Integration
              * \brief Adds a grass wave impact location.
              * \param constructionProperties
              *        The properties to construct the grass wave impact location dependent input.
-             * \exception RevetmentCalculationInputBuilderException
+             * \exception LocationDependentInputFactoryException
              *            Thrown when the top layer type is invalid.
              */
             void AddGrassWaveImpactLocation(
@@ -116,7 +118,7 @@ namespace DiKErnel::Integration
              * \brief Adds a grass wave run-up location with Rayleigh protocol.
              * \param constructionProperties
              *        The properties to construct the grass wave run-up Rayleigh location dependent input.
-             * \exception RevetmentCalculationInputBuilderException
+             * \exception LocationDependentInputFactoryException
              *            Thrown when the top layer type is invalid.
              */
             void AddGrassWaveRunupRayleighLocation(
@@ -126,7 +128,7 @@ namespace DiKErnel::Integration
              * \brief Adds a natural stone location.
              * \param constructionProperties
              *        The properties to construct the natural stone location dependent input.
-             * \exception RevetmentCalculationInputBuilderException
+             * \exception LocationDependentInputFactoryException
              *            Thrown when the top layer type is invalid.
              */
             void AddNaturalStoneLocation(
@@ -139,36 +141,10 @@ namespace DiKErnel::Integration
             std::unique_ptr<Core::ICalculationInput> Build();
 
         private:
-            class ProfileSegmentData
-            {
-                public:
-                    double _lowerPointX;
-                    double _lowerPointZ;
-                    double _upperPointX;
-                    double _upperPointZ;
-                    double _roughnessCoefficient;
-            };
-
-            class ProfilePointData
-            {
-                public:
-                    double _x;
-                    double _z;
-                    Core::CharacteristicPointType _characteristicPointType;
-            };
-
-            [[nodiscard]]
-            std::vector<std::unique_ptr<Core::ProfileSegment>> CreateProfileSegments() const;
-
-            [[nodiscard]]
-            std::vector<std::unique_ptr<Core::CharacteristicPoint>> CreateCharacteristicPoints(
-                const std::vector<std::unique_ptr<Core::ProfileSegment>>& segments) const;
-
-            std::vector<std::unique_ptr<Core::ProfilePoint>> _profilePoints = std::vector<std::unique_ptr<Core::ProfilePoint>>();
-            std::vector<std::unique_ptr<ProfileSegmentData>> _profileSegmentData
-                    = std::vector<std::unique_ptr<ProfileSegmentData>>();
-            std::vector<std::unique_ptr<ProfilePointData>> _profilePointData
-                    = std::vector<std::unique_ptr<ProfilePointData>>();
+            std::vector<std::unique_ptr<ProfileFactorySegmentData>> _profileSegmentData
+                    = std::vector<std::unique_ptr<ProfileFactorySegmentData>>();
+            std::vector<std::unique_ptr<ProfileFactoryPointData>> _profilePointData
+                    = std::vector<std::unique_ptr<ProfileFactoryPointData>>();
             std::vector<std::unique_ptr<Core::ITimeDependentInput>> _timeDependentInputItems
                     = std::vector<std::unique_ptr<Core::ITimeDependentInput>>();
             std::vector<std::unique_ptr<Core::ILocationDependentInput>> _locationDependentInputItems

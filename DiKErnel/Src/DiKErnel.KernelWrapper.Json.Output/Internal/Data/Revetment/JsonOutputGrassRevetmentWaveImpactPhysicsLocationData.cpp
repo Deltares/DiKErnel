@@ -26,10 +26,8 @@
 
 namespace DiKErnel::KernelWrapper::Json::Output
 {
-    using namespace Core;
     using namespace Integration;
     using namespace nlohmann;
-    using namespace std;
 
     JsonOutputGrassRevetmentWaveImpactPhysicsLocationData::JsonOutputGrassRevetmentWaveImpactPhysicsLocationData(
         const GrassRevetmentWaveImpactLocationDependentOutput& locationDependentOutput)
@@ -45,6 +43,12 @@ namespace DiKErnel::KernelWrapper::Json::Output
     {
         auto output = JsonOutputPhysicsLocationData::CreateJson();
         auto& physicsJson = output.at(JsonOutputDefinitions::PHYSICS);
+
+        const auto* grassRevetmentWaveImpactLocationDependentOutput =
+                dynamic_cast<const GrassRevetmentWaveImpactLocationDependentOutput*>(&GetLocationDependentOutput());
+
+        CalculationOutputAdapterHelper::GetJsonElement(physicsJson, JsonOutputDefinitions::Z) =
+                grassRevetmentWaveImpactLocationDependentOutput->GetZ();
 
         for (const auto* outputItem : _timeDependentOutputItems)
         {

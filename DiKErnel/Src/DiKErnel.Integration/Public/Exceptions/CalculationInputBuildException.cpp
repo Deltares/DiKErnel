@@ -1,4 +1,4 @@
-// Copyright (C) Stichting Deltares 2022. All rights reserved.
+﻿// Copyright (C) Stichting Deltares 2022. All rights reserved.
 //
 // This file is part of DiKErnel.
 //
@@ -18,17 +18,18 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#pragma once
+#include "CalculationInputBuildException.h"
 
-#include <string>
-
-namespace DiKErnel::KernelWrapper::Json::Output
+namespace DiKErnel::Integration
 {
-    class JsonOutputGrassRevetmentWaveRunupRayleighDefinitions
+    using namespace std;
+
+    CalculationInputBuildException::CalculationInputBuildException(
+        string message)
+        : _message(move(message)) {}
+
+    const char* CalculationInputBuildException::what() const noexcept
     {
-        public:
-            inline static const std::string VERTICAL_DISTANCE_WATER_LEVEL_ELEVATION = "verticaleAfstandWaterstandHoogteLocatie";
-            inline static const std::string REPRESENTATIVE_WAVE_RUNUP_2P = "representatieve2p";
-            inline static const std::string CUMULATIVE_OVERLOAD = "cumulatieveOverbelasting";
-    };
+        return _message.c_str();
+    }
 }

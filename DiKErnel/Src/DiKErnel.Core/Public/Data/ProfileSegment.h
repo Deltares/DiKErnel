@@ -34,32 +34,32 @@ namespace DiKErnel::Core
         public:
             /*!
              * \brief Creates a new instance.
-             * \param lowerPoint
-             *        The lower profile point.
-             * \param upperPoint
-             *        The upper profile point.
+             * \param startPoint
+             *        The start point.
+             * \param endPoint
+             *        The end point.
              * \param roughnessCoefficient
              *        The roughness coefficient.
              *        Unit = [-]
              */
             explicit ProfileSegment(
-                std::shared_ptr<ProfilePoint> lowerPoint,
-                std::shared_ptr<ProfilePoint> upperPoint,
+                std::shared_ptr<ProfilePoint> startPoint,
+                std::shared_ptr<ProfilePoint> endPoint,
                 double roughnessCoefficient);
 
             /*!
-             * \brief Gets the lower point of the segment.
-             * \return The lower point of the segment.
+             * \brief Gets the start point of the segment.
+             * \return The start point of the segment.
              */
             [[nodiscard]]
-            ProfilePoint& GetLowerPoint() const;
+            ProfilePoint& GetStartPoint() const;
 
             /*!
-             * \brief Gets the upper point of the segment.
-             * \return The upper point of the segment.
+             * \brief Gets the end point of the segment.
+             * \return The end point of the segment.
              */
             [[nodiscard]]
-            ProfilePoint& GetUpperPoint() const;
+            ProfilePoint& GetEndPoint() const;
 
             /*!
              * \brief Gets the roughness coefficient of the segment.
@@ -70,8 +70,8 @@ namespace DiKErnel::Core
             double GetRoughnessCoefficient() const;
 
         private:
-            std::shared_ptr<ProfilePoint> _lowerPointReference;
-            std::shared_ptr<ProfilePoint> _upperPointReference;
+            std::shared_ptr<ProfilePoint> _startPointReference;
+            std::shared_ptr<ProfilePoint> _endPointReference;
             double _roughnessCoefficient;
     };
 }

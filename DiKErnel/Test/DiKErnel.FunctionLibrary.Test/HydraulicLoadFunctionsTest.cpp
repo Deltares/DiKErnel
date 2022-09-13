@@ -62,7 +62,7 @@ namespace DiKErnel::FunctionLibrary::Test
         const auto waveDirection = HydraulicLoadFunctions::WaveDirection(waveAngle);
 
         // Assert
-        ASSERT_DOUBLE_EQ(360 + waveAngle, waveDirection);
+        ASSERT_DOUBLE_EQ(360.0 + waveAngle, waveDirection);
     }
 
     TEST(HydraulicLoadFunctionsTest, WaveDirection_InputEqualToMinus180Degrees_ExpectedValue)
@@ -74,7 +74,7 @@ namespace DiKErnel::FunctionLibrary::Test
         const auto waveDirection = HydraulicLoadFunctions::WaveDirection(waveAngle);
 
         // Assert
-        ASSERT_DOUBLE_EQ(180, waveDirection);
+        ASSERT_DOUBLE_EQ(180.0, waveDirection);
     }
 
     TEST(HydraulicLoadFunctionsTest, SlopeAngle_ValidInput_ExpectedValue)

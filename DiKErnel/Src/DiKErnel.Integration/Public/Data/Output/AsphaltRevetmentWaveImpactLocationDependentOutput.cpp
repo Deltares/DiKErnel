@@ -28,11 +28,17 @@ namespace DiKErnel::Integration
     using namespace std;
 
     AsphaltRevetmentWaveImpactLocationDependentOutput::AsphaltRevetmentWaveImpactLocationDependentOutput(
-        const double z,
         vector<unique_ptr<TimeDependentOutput>> timeDependentOutputItems,
+        const double z,
         const double outerSlope)
-        : LocationDependentOutput(z, move(timeDependentOutputItems)),
+        : LocationDependentOutput(move(timeDependentOutputItems)),
+          _z(z),
           _outerSlope(outerSlope) { }
+
+    double AsphaltRevetmentWaveImpactLocationDependentOutput::GetZ() const
+    {
+        return _z;
+    }
 
     double AsphaltRevetmentWaveImpactLocationDependentOutput::GetOuterSlope() const
     {
