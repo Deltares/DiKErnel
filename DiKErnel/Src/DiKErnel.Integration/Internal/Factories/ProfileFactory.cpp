@@ -67,13 +67,15 @@ namespace DiKErnel::Integration
         vector<unique_ptr<CharacteristicPoint>> characteristicPoints;
         for (const auto& profilePointData : profilePoints)
         {
-            const auto matchingPointReference = FindMatchingPoint(*profilePointData, profileSegments);
+            const auto matchingPointReference = FindMatchingPointOnSegment(*profilePointData, profileSegments);
+
             if (matchingPointReference == nullptr)
             {
                 throw ProfileFactoryException("Characteristic point must be on a start or end point of a segment.");
             }
 
-            characteristicPoints.emplace_back(make_unique<CharacteristicPoint>(*matchingPointReference, profilePointData->GetCharacteristicPoint()));
+            characteristicPoints.emplace_back(
+                make_unique<CharacteristicPoint>(*matchingPointReference, profilePointData->GetCharacteristicPoint()));
         }
 
         return characteristicPoints;
@@ -98,27 +100,35 @@ namespace DiKErnel::Integration
                 && abs(profilePoint.GetZ() - segmentData.GetStartPointZ()) < numeric_limits<double>::epsilon();
     }
 
-    const ProfilePoint* ProfileFactory::FindMatchingPoint(
+    const ProfilePoint* ProfileFactory::FindMatchingPointOnSegment(
         const ProfileFactoryPointData& profilePointData,
         const vector<unique_ptr<ProfileSegment>>& segments)
     {
-        const ProfilePoint* matchingPointReference = nullptr;
         for (const auto& segment : segments)
         {
-            const double profilePointX = profilePointData.GetX();
-            if (const auto& segmentStartPoint = segment->GetStartPoint();
-                abs(profilePointX - segmentStartPoint.GetX()) <= numeric_limits<double>::epsilon())
+            const auto& segmentStartPoint = segment->GetStartPoint();
+            const auto& segmentEndPoint = segment->GetEndPoint();
+
+            if (FindMatchingPoint(profilePointData, segmentStartPoint) != nullptr)
             {
-                matchingPointReference = &segmentStartPoint;
+                return &segmentStartPoint;
             }
 
-            if (const auto& segmentEndPoint = segment->GetEndPoint();
-                abs(profilePointX - segmentEndPoint.GetX()) <= numeric_limits<double>::epsilon())
+            if (FindMatchingPoint(profilePointData, segmentEndPoint) != nullptr)
             {
-                matchingPointReference = &segmentEndPoint;
+                return &segmentEndPoint;
             }
         }
 
-        return matchingPointReference;
+        return nullptr;
+    }
+
+    const ProfilePoint* ProfileFactory::FindMatchingPoint(
+        const ProfileFactoryPointData& profilePointData,
+        const ProfilePoint& profilePoint)
+    {
+        return abs(profilePointData.GetX() - profilePoint.GetX()) <= numeric_limits<double>::epsilon()
+                   ? &profilePoint
+                   : nullptr;
     }
 }

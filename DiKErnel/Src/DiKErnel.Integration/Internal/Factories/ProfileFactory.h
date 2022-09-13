@@ -47,8 +47,12 @@ namespace DiKErnel::Integration
                 const Core::ProfilePoint& profilePoint,
                 const ProfileFactorySegmentData& segmentData);
 
-            static const Core::ProfilePoint* FindMatchingPoint(
+            static const Core::ProfilePoint* FindMatchingPointOnSegment(
                 const ProfileFactoryPointData& profilePointData,
                 const std::vector<std::unique_ptr<Core::ProfileSegment>>& segments);
+
+            static const Core::ProfilePoint* FindMatchingPoint(
+                const ProfileFactoryPointData& profilePointData,
+                const Core::ProfilePoint& profilePoint);
     };
 }
