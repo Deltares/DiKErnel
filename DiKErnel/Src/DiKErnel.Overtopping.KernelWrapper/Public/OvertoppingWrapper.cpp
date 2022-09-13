@@ -44,7 +44,7 @@ namespace DiKErnel::Overtopping::KernelWrapper
         const char* message = new char[size];
         ValidateInputC(&geometry, &dikeHeight, &input, &success, message, size);
 
-        // delete[] message;
+        delete[] message;
 
         return success;
     }
