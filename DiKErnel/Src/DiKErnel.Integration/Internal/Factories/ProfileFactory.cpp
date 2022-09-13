@@ -20,6 +20,8 @@
 
 #include "ProfileFactory.h"
 
+#include <cmath>
+
 #include "ProfileFactoryException.h"
 #include "ProfileSegmentDefaults.h"
 

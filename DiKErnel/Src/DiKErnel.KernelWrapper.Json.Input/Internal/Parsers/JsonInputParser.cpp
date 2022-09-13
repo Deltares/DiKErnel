@@ -84,12 +84,12 @@ namespace DiKErnel::KernelWrapper::Json::Input
         auto characteristicPoints = vector<pair<JsonInputCharacteristicPointType, double>>();
         TryParseCharacteristicPoint(readDikeProfile, characteristicPoints, JsonInputDefinitions::CHARACTERISTIC_POINT_TYPE_OUTER_TOE,
                                     JsonInputCharacteristicPointType::OuterToe);
-        TryParseCharacteristicPoint(readDikeProfile, characteristicPoints, JsonInputDefinitions::CHARACTERISTIC_POINT_TYPE_OUTER_CREST,
-                                    JsonInputCharacteristicPointType::OuterCrest);
-        TryParseCharacteristicPoint(readDikeProfile, characteristicPoints, JsonInputDefinitions::CHARACTERISTIC_POINT_TYPE_NOTCH_OUTER_BERM,
-                                    JsonInputCharacteristicPointType::NotchOuterBerm);
         TryParseCharacteristicPoint(readDikeProfile, characteristicPoints, JsonInputDefinitions::CHARACTERISTIC_POINT_TYPE_CREST_OUTER_BERM,
                                     JsonInputCharacteristicPointType::CrestOuterBerm);
+        TryParseCharacteristicPoint(readDikeProfile, characteristicPoints, JsonInputDefinitions::CHARACTERISTIC_POINT_TYPE_NOTCH_OUTER_BERM,
+                                    JsonInputCharacteristicPointType::NotchOuterBerm);
+        TryParseCharacteristicPoint(readDikeProfile, characteristicPoints, JsonInputDefinitions::CHARACTERISTIC_POINT_TYPE_OUTER_CREST,
+                                    JsonInputCharacteristicPointType::OuterCrest);
 
         return make_unique<JsonInputDikeProfileData>(
             readDikeProfile.at(JsonInputDefinitions::DIKE_PROFILE_POINTS_X).get<vector<double>>(),

@@ -117,13 +117,12 @@ namespace DiKErnel::Integration::Test
         static void CreateBuilderAndCharacteristicPointNotOnSegmentPoint()
         {
             constexpr auto startPointX = 10;
-            constexpr auto startPointZ = 20;
             constexpr auto endPointX = 20;
             constexpr auto endPointZ = 30;
             constexpr auto characteristicPointType = CharacteristicPointType::NotchOuterBerm;
 
             CalculationInputBuilder builder;
-            builder.AddDikeProfilePointData(startPointX - 0.01, startPointZ - 0.01, characteristicPointType);
+            builder.AddDikeProfilePointData(startPointX - 0.01, characteristicPointType);
             builder.AddDikeProfileSegment(0, 10, endPointX, endPointZ, nullptr);
             builder.Build();
         }
@@ -275,7 +274,7 @@ namespace DiKErnel::Integration::Test
         constexpr auto characteristicPointType = CharacteristicPointType::NotchOuterBerm;
 
         CalculationInputBuilder builder;
-        builder.AddDikeProfilePointData(x, z, characteristicPointType);
+        builder.AddDikeProfilePointData(x, characteristicPointType);
         builder.AddDikeProfileSegment(x, z, 20, 30, nullptr);
 
         // When
@@ -302,7 +301,7 @@ namespace DiKErnel::Integration::Test
         constexpr auto characteristicPointType = CharacteristicPointType::NotchOuterBerm;
 
         CalculationInputBuilder builder;
-        builder.AddDikeProfilePointData(x, z, characteristicPointType);
+        builder.AddDikeProfilePointData(x, characteristicPointType);
         builder.AddDikeProfileSegment(0, 10, x, z, nullptr);
 
         // When
@@ -323,18 +322,6 @@ namespace DiKErnel::Integration::Test
     TEST_F(CalculationInputBuilderTest,
            GivenBuilderWithDikeProfilePointDataNotOnSegmentPoints_WhenBuild_ThenThrowsCalculationInputBuilderException)
     {
-        // Given
-        constexpr auto x = 10;
-        constexpr auto z = 20;
-        constexpr auto characteristicPointType = CharacteristicPointType::NotchOuterBerm;
-
-        CalculationInputBuilder builder;
-        builder.AddDikeProfilePointData(x, z, characteristicPointType);
-        builder.AddDikeProfileSegment(0, 10, x, z, nullptr);
-
-        // When
-        const auto& calculationInput = builder.Build();
-
         // Given & When
         const auto action = &CalculationInputBuilderTest::CreateBuilderAndCharacteristicPointNotOnSegmentPoint;
 

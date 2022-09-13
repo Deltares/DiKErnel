@@ -20,8 +20,6 @@
 
 #include "JsonInputAdapter.h"
 
-#include <cmath>
-
 #include "JsonInputConversionException.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
@@ -50,40 +48,28 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
         const auto& xLocations = dikeProfileData.GetXLocations();
         const auto& zLocations = dikeProfileData.GetZLocations();
-        const auto& characteristicPoints = dikeProfileData.GetCharacteristicPoints();
 
         double startPointX = numeric_limits<double>::infinity();
         double startPointZ = numeric_limits<double>::infinity();
+
         for (auto i = 0; i < static_cast<int>(xLocations.size()); ++i)
         {
             const double xLocation = xLocations.at(i);
-            unique_ptr<CharacteristicPointType> characteristicPoint = nullptr;
-
-            for (const auto& [characteristicPointType, characteristicPointLocation] : characteristicPoints)
-            {
-                if (abs(characteristicPointLocation - xLocation) <= numeric_limits<double>::epsilon())
-                {
-                    characteristicPoint = ConvertCharacteristicPointType(characteristicPointType);
-                }
-            }
-
             const double zLocation = zLocations.at(i);
-            if (characteristicPoint != nullptr)
-            {
-                builder.AddDikeProfilePointData(xLocation, zLocation, *characteristicPoint);
-            }
 
-            if (i == 0)
+            if (i > 0)
             {
-                startPointX = xLocation;
-                startPointZ = zLocation;
-                continue;
+                builder.AddDikeProfileSegment(startPointX, startPointZ, xLocation, zLocation, nullptr);
             }
-
-            builder.AddDikeProfileSegment(startPointX, startPointZ, xLocation, zLocation, nullptr);
 
             startPointX = xLocation;
             startPointZ = zLocation;
+        }
+
+        for (const auto& characteristicPoints = dikeProfileData.GetCharacteristicPoints();
+             const auto& [characteristicPointType, characteristicPointLocation] : characteristicPoints)
+        {
+            builder.AddDikeProfilePointData(characteristicPointLocation, *ConvertCharacteristicPointType(characteristicPointType));
         }
     }
 

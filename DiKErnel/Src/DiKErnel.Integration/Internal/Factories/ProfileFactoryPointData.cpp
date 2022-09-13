@@ -23,19 +23,14 @@
 namespace DiKErnel::Integration
 {
     ProfileFactoryPointData::ProfileFactoryPointData(
-        double x,
-        double z,
-        Core::CharacteristicPointType characteristicPointType)
-        : _x(x), _z(z), _characteristicPointType(characteristicPointType) { }
+        const double x,
+        const Core::CharacteristicPointType characteristicPointType)
+        : _x(x),
+          _characteristicPointType(characteristicPointType) { }
 
     double ProfileFactoryPointData::GetX() const
     {
         return _x;
-    }
-
-    double ProfileFactoryPointData::GetZ() const
-    {
-        return _z;
     }
 
     Core::CharacteristicPointType ProfileFactoryPointData::GetCharacteristicPoint() const

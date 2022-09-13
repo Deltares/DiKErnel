@@ -40,14 +40,11 @@ namespace DiKErnel::Integration
              * \brief Adds a dike profile point.
              * \param x
              *        The x coordinate.
-             * \param z
-             *        The z coordinate.
              * \param characteristicPointType
              *        The characteristic point type.
              */
             void AddDikeProfilePointData(
                 double x,
-                double z,
                 Core::CharacteristicPointType characteristicPointType);
 
             /*!
