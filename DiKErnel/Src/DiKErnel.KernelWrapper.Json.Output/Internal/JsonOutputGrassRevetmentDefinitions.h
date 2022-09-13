@@ -24,7 +24,7 @@
 
 namespace DiKErnel::KernelWrapper::Json::Output
 {
-    class JsonOutputGrassRevetmentWaveRunupRayleighDefinitions
+    class JsonOutputGrassRevetmentDefinitions
     {
         public:
             inline static const std::string VERTICAL_DISTANCE_WATER_LEVEL_ELEVATION = "verticaleAfstandWaterstandHoogteLocatie";
