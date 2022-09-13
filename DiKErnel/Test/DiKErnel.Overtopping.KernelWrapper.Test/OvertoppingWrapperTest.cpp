@@ -122,4 +122,63 @@ namespace DiKErnel::Overtopping::KernelWrapper::Test
 
         ASSERT_FALSE(success);
     }
+
+    TEST(OverToppingWrapperTest, TestOvertopping)
+    {
+        const double dikeHeight = 9.1;
+        const double dikeNormal = 60.0;
+
+        Input input
+        {
+            2.3,
+            4.3,
+            1.0,
+            0.92,
+            1,
+            1,
+            1.0,
+            0.5
+        };
+
+        int nrOfPoints = 3;
+        double xCoordinates[] = {
+            5,
+            10,
+            15
+        };
+        double yCoordinates[] = {
+            5,
+            7,
+            9
+        };
+        double roughnessCoefficients[] = {
+            1,
+            1,
+            1
+        };
+
+        Geometry geometry{
+            dikeNormal,
+            nrOfPoints,
+            xCoordinates,
+            yCoordinates,
+            roughnessCoefficients
+        };
+
+        Load loads = {
+            5.5,
+            1,
+            4.0,
+            50
+        };
+
+
+        const auto success = OvertoppingWrapper::Calculate2P(loads, geometry, input, dikeHeight);
+
+        delete[]xCoordinates;
+        delete[]yCoordinates;
+        delete[]roughnessCoefficients;
+
+        ASSERT_FALSE(success);
+    }
 }

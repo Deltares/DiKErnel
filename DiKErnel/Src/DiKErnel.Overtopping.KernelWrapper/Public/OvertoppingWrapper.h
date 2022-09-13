@@ -19,24 +19,12 @@
 // All rights reserved.
 
 #pragma once
+#include "Load.h"
 
 namespace DiKErnel::Overtopping::KernelWrapper
 {
     struct Input;
     struct Geometry;
-
-    // extern "C" __declspec(dllimport) void __stdcall calculateQo(
-    //     Load* load,
-    //     Geometry* geometry,
-    //     double* dikeHeight,
-    //     Input* input,
-    //     Result* result,
-    //     bool* success,
-    //     std::stringstream* message,
-    //     int* verbosity,
-    //     std::stringstream* logFile,
-    //     int* stringLength1,
-    //     int* stringLength2);
 
     class OvertoppingWrapper
     {
@@ -46,10 +34,10 @@ namespace DiKErnel::Overtopping::KernelWrapper
                 Input& input,
                 double dikeHeight);
 
-            // double Calculate2P(
-            //     Load& load,
-            //     Geometry& geometry,
-            //     Input& input,
-            //     double dikeHeight);
+            static double Calculate2P(
+                Load& load,
+                Geometry& geometry,
+                Input& input,
+                double dikeHeight);
     };
 }

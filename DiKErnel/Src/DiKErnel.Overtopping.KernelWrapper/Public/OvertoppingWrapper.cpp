@@ -20,10 +20,17 @@
 
 #include "OvertoppingWrapper.h"
 
+#include "Geometry.h"
+#include "Load.h"
+#include "Result.h"
+
 namespace DiKErnel::Overtopping::KernelWrapper
 {
     using namespace std;
 
+    constexpr int SIZE = 32 * 255;
+    constexpr int LOGFILESIZE = 32 * 255;
+    
     extern "C" __declspec(dllimport) void ValidateInputC(
         Geometry* geometryInput,
         double* dikeHeight,
@@ -32,6 +39,19 @@ namespace DiKErnel::Overtopping::KernelWrapper
         const char* message,
         int size);
 
+    extern "C" __declspec(dllimport) void calculateQo(
+        Load * loadInput,
+        Geometry* geometryInput,
+        double* dikeHeight,
+        Input * modelFactors,
+        Result* result,
+        bool* success,
+        const char* message,
+        int* verbosity,
+        const char* logFile,
+        int messageSize,
+        int logFileSize);
+
     bool OvertoppingWrapper::Validate(
         Geometry& geometry,
         Input& input,
@@ -39,32 +59,29 @@ namespace DiKErnel::Overtopping::KernelWrapper
     {
         bool success;
 
-        const int size = 32 * 255;
-        const char* message = new char[size];
-        ValidateInputC(&geometry, &dikeHeight, &input, &success, message, size);
+        const char* message = new char[SIZE];
+        ValidateInputC(&geometry, &dikeHeight, &input, &success, message, SIZE);
 
         delete[] message;
 
         return success;
     }
 
-    // double OvertoppingWrapper::Calculate2P(
-    //     Load& load,
-    //     Geometry& geometry,
-    //     Input& input,
-    //     double dikeHeight)
-    // {
-    //     bool success;
-    //     int verbosity;
-    //     stringstream message;
-    //     stringstream logFile;
-    //     int stringLength1;
-    //     int stringLength2;
-    //
-    //     Result result{};
-    //
-    //     calculateQo(&load, &geometry, &dikeHeight, &input, &result, &success, &message, &verbosity, &logFile, &stringLength1, &stringLength2);
-    //
-    //     return result._z2;
-    // }
+    double OvertoppingWrapper::Calculate2P(
+        Load& load,
+        Geometry& geometry,
+        Input& input,
+        double dikeHeight)
+    {
+        bool success;
+        int verbosity = -1;
+
+        Result result{};
+
+        const char* message = new char[SIZE];
+        const char* logFile = new char[LOGFILESIZE];
+        calculateQo(&load, &geometry, &dikeHeight, &input, &result, &success, message, &verbosity, logFile, SIZE, LOGFILESIZE);
+    
+        return result._z2;
+    }
 }
