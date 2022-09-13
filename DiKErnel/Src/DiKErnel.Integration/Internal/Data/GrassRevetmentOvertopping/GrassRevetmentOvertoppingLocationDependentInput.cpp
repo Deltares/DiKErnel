@@ -50,7 +50,7 @@ namespace DiKErnel::Integration
         const int fixedNumberOfWaves,
         const double frontVelocityCwo,
         unique_ptr<GrassRevetmentOvertoppingLocationDependentAccelerationAlphaA> locationDependentAccelerationAlphaA,
-        const double* fixedDikeHeight)
+        const double* enforcedDikeHeight)
         : LocationDependentInput(x, initialDamage, failureNumber),
           _criticalCumulativeOverload(criticalCumulativeOverload),
           _criticalFrontVelocity(criticalFrontVelocity),
@@ -61,9 +61,9 @@ namespace DiKErnel::Integration
           _frontVelocityCwo(frontVelocityCwo),
           _locationDependentAccelerationAlphaA(move(locationDependentAccelerationAlphaA))
     {
-        if (fixedDikeHeight != nullptr)
+        if (enforcedDikeHeight != nullptr)
         {
-            _dikeHeight = *fixedDikeHeight;
+            _dikeHeight = *enforcedDikeHeight;
 
             _dikeHeightInitialized = true;
         }
@@ -102,6 +102,12 @@ namespace DiKErnel::Integration
     double GrassRevetmentOvertoppingLocationDependentInput::GetFrontVelocityCwo() const
     {
         return _frontVelocityCwo;
+    }
+
+    GrassRevetmentOvertoppingLocationDependentAccelerationAlphaA& GrassRevetmentOvertoppingLocationDependentInput::
+    GetLocationDependentAccelerationAlphaA() const
+    {
+        return *_locationDependentAccelerationAlphaA;
     }
 
     bool GrassRevetmentOvertoppingLocationDependentInput::Validate(
@@ -237,8 +243,8 @@ namespace DiKErnel::Integration
         const double x = GetX();
 
         _accelerationAlphaA = x >= outerCrest->first && x <= innerCrest->first
-            ? _locationDependentAccelerationAlphaA->ValueAtCrest()
-            : _locationDependentAccelerationAlphaA->ValueAtInnerSlope();
+                                  ? _locationDependentAccelerationAlphaA->ValueAtCrest()
+                                  : _locationDependentAccelerationAlphaA->ValueAtInnerSlope();
     }
 
     double GrassRevetmentOvertoppingLocationDependentInput::CalculateRepresentativeWaveRunup2P(
