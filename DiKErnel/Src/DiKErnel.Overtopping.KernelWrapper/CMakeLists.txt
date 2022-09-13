@@ -35,17 +35,13 @@ target_include_directories(${LIBNAME} PUBLIC
   ${CMAKE_CURRENT_SOURCE_DIR}/${PUBLIC_DATA_FOLDER}
 )
 
-configure_file(
-  ${CMAKE_SOURCE_DIR}/../External/dllDikesOvertopping.dll
-  ${CMAKE_CURRENT_BINARY_DIR}/dllDikesOvertopping.dll
-  COPYONLY)
-
-configure_file(
-  ${CMAKE_SOURCE_DIR}/../External/dllDikesOvertopping.lib
-  ${CMAKE_CURRENT_BINARY_DIR}/dllDikesOvertopping.lib
-  COPYONLY)
+add_custom_command(TARGET ${LIBNAME} PRE_BUILD
+  COMMAND ${CMAKE_COMMAND} -E copy_directory
+  ${CMAKE_SOURCE_DIR}/../External/
+  ${CMAKE_CURRENT_BINARY_DIR}/External/
+)
 
 # Link dependencies
 target_link_libraries(${LIBNAME}
-   ${CMAKE_CURRENT_BINARY_DIR}/dllDikesOvertopping.lib
+   ${CMAKE_CURRENT_BINARY_DIR}/External/dllDikesOvertopping.lib
 )
