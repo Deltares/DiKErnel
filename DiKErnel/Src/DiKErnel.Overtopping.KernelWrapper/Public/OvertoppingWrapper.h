@@ -19,12 +19,12 @@
 // All rights reserved.
 
 #pragma once
-#include "Load.h"
 
 namespace DiKErnel::Overtopping::KernelWrapper
 {
     struct Input;
     struct Geometry;
+    struct Load;
 
     class OvertoppingWrapper
     {
