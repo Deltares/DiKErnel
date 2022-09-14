@@ -22,6 +22,7 @@
 
 #include "Geometry.h"
 #include "Input.h"
+#include "Load.h"
 #include "OvertoppingWrapper.h"
 
 namespace DiKErnel::Overtopping::KernelWrapper::Test
@@ -123,7 +124,7 @@ namespace DiKErnel::Overtopping::KernelWrapper::Test
         ASSERT_FALSE(success);
     }
 
-    TEST(OverToppingWrapperTest, TestOvertopping)
+    TEST(OverToppingWrapperTest, DISABLED_TestOvertopping)
     {
         const double dikeHeight = 9.1;
         const double dikeNormal = 60.0;
@@ -140,7 +141,7 @@ namespace DiKErnel::Overtopping::KernelWrapper::Test
             0.5
         };
 
-        int nrOfPoints = 3;
+        const int nrOfPoints = 3;
         double xCoordinates[] = {
             5,
             10,
@@ -157,7 +158,8 @@ namespace DiKErnel::Overtopping::KernelWrapper::Test
             1
         };
 
-        Geometry geometry{
+        Geometry geometry
+        {
             dikeNormal,
             nrOfPoints,
             xCoordinates,
@@ -165,20 +167,15 @@ namespace DiKErnel::Overtopping::KernelWrapper::Test
             roughnessCoefficients
         };
 
-        Load loads = {
+        Load loads
+        {
             5.5,
             1,
             4.0,
             50
         };
 
-
-        const auto success = OvertoppingWrapper::Calculate2P(loads, geometry, input, dikeHeight);
-
-        delete[]xCoordinates;
-        delete[]yCoordinates;
-        delete[]roughnessCoefficients;
-
-        ASSERT_FALSE(success);
+        const auto z2 = OvertoppingWrapper::Calculate2P(loads, geometry, input, dikeHeight);
+        ASSERT_EQ(1, z2);
     }
 }

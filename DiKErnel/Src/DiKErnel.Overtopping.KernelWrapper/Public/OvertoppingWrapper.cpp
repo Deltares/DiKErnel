@@ -67,8 +67,9 @@ namespace DiKErnel::Overtopping::KernelWrapper
 
         constexpr long nrOfCharacters = NR_OF_MESSAGES * MESSAGE_SIZE;
         const unique_ptr<char[]> message(new char[nrOfCharacters]);
+
         ValidateInputC(&geometry, &dikeHeight, &input, &success, message.get(), MESSAGE_SIZE);
-        
+
         return success;
     }
 
