@@ -54,38 +54,38 @@ namespace DiKErnel::Integration::Test
         static void CreateBuilderAndAddAsphaltRevetmentWaveImpactLocationWithInvalidTopLayerType()
         {
             constexpr auto topLayerType = static_cast<AsphaltRevetmentTopLayerType>(99);
-            const AsphaltRevetmentWaveImpactLocationConstructionProperties constructionProperties(
+            auto constructionProperties = make_unique<AsphaltRevetmentWaveImpactLocationConstructionProperties>(
                 0.1, topLayerType, 0.2, 0.3, 0.4, 0.5);
 
             CalculationInputBuilder builder;
-            builder.AddAsphaltWaveImpactLocation(constructionProperties);
+            builder.AddAsphaltWaveImpactLocation(move(constructionProperties));
         }
 
         static void CreateBuilderAndAddGrassRevetmentWaveImpactLocationWithInvalidTopLayerType()
         {
             constexpr auto topLayerType = static_cast<GrassRevetmentTopLayerType>(99);
-            const GrassRevetmentWaveImpactLocationConstructionProperties constructionProperties(0.1, topLayerType);
+            auto constructionProperties = make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(0.1, topLayerType);
 
             CalculationInputBuilder builder;
-            builder.AddGrassWaveImpactLocation(constructionProperties);
+            builder.AddGrassWaveImpactLocation(move(constructionProperties));
         }
 
         static void CreateBuilderAndAddGrassRevetmentWaveRunupRayleighLocationWithInvalidTopLayerType()
         {
             constexpr auto topLayerType = static_cast<GrassRevetmentTopLayerType>(99);
-            const GrassRevetmentWaveRunupRayleighLocationConstructionProperties constructionProperties(0.1, 0.2, topLayerType);
+            auto constructionProperties = make_unique<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(0.1, 0.2, topLayerType);
 
             CalculationInputBuilder builder;
-            builder.AddGrassWaveRunupRayleighLocation(constructionProperties);
+            builder.AddGrassWaveRunupRayleighLocation(move(constructionProperties));
         }
 
         static void CreateBuilderAndAddNaturalStoneRevetmentLocationWithInvalidTopLayerType()
         {
             constexpr auto topLayerType = static_cast<NaturalStoneRevetmentTopLayerType>(99);
-            const NaturalStoneRevetmentLocationConstructionProperties constructionProperties(0.1, topLayerType, 0.2, 0.3);
+            auto constructionProperties = make_unique<NaturalStoneRevetmentLocationConstructionProperties>(0.1, topLayerType, 0.2, 0.3);
 
             CalculationInputBuilder builder;
-            builder.AddNaturalStoneLocation(constructionProperties);
+            builder.AddNaturalStoneLocation(move(constructionProperties));
         }
 
         static void CreateBuilderAndSegmentUnchainedOnXCoordinate()
@@ -409,25 +409,25 @@ namespace DiKErnel::Integration::Test
             pair(2.0, 2.1)
         };
 
-        AsphaltRevetmentWaveImpactLocationConstructionProperties constructionProperties(
+        auto constructionProperties = make_unique<AsphaltRevetmentWaveImpactLocationConstructionProperties>(
             x, topLayerType, failureTension, soilElasticity, thicknessUpperLayer, elasticModulusUpperLayer);
 
-        constructionProperties.SetInitialDamage(make_unique<double>(initialDamage));
-        constructionProperties.SetFailureNumber(make_unique<double>(failureNumber));
-        constructionProperties.SetDensityOfWater(make_unique<double>(densityOfWater));
-        constructionProperties.SetThicknessSubLayer(make_unique<double>(thicknessSubLayer));
-        constructionProperties.SetElasticModulusSubLayer(make_unique<double>(elasticModulusSubLayer));
-        constructionProperties.SetAverageNumberOfWavesCtm(make_unique<double>(averageNumberOfWavesCtm));
-        constructionProperties.SetFatigueAlpha(make_unique<double>(fatigueAlpha));
-        constructionProperties.SetFatigueBeta(make_unique<double>(fatigueBeta));
-        constructionProperties.SetImpactNumberC(make_unique<double>(impactNumberC));
-        constructionProperties.SetStiffnessRelationNu(make_unique<double>(stiffnessRelationNu));
-        constructionProperties.SetWidthFactors(make_unique<vector<pair<double, double>>>(widthFactors));
-        constructionProperties.SetDepthFactors(make_unique<vector<pair<double, double>>>(depthFactors));
-        constructionProperties.SetImpactFactors(make_unique<vector<pair<double, double>>>(impactFactors));
+        constructionProperties->SetInitialDamage(make_unique<double>(initialDamage));
+        constructionProperties->SetFailureNumber(make_unique<double>(failureNumber));
+        constructionProperties->SetDensityOfWater(make_unique<double>(densityOfWater));
+        constructionProperties->SetThicknessSubLayer(make_unique<double>(thicknessSubLayer));
+        constructionProperties->SetElasticModulusSubLayer(make_unique<double>(elasticModulusSubLayer));
+        constructionProperties->SetAverageNumberOfWavesCtm(make_unique<double>(averageNumberOfWavesCtm));
+        constructionProperties->SetFatigueAlpha(make_unique<double>(fatigueAlpha));
+        constructionProperties->SetFatigueBeta(make_unique<double>(fatigueBeta));
+        constructionProperties->SetImpactNumberC(make_unique<double>(impactNumberC));
+        constructionProperties->SetStiffnessRelationNu(make_unique<double>(stiffnessRelationNu));
+        constructionProperties->SetWidthFactors(make_unique<vector<pair<double, double>>>(widthFactors));
+        constructionProperties->SetDepthFactors(make_unique<vector<pair<double, double>>>(depthFactors));
+        constructionProperties->SetImpactFactors(make_unique<vector<pair<double, double>>>(impactFactors));
 
         CalculationInputBuilder builder;
-        builder.AddAsphaltWaveImpactLocation(constructionProperties);
+        builder.AddAsphaltWaveImpactLocation(move(constructionProperties));
 
         // When
         const auto& calculationInput = builder.Build();
@@ -471,11 +471,11 @@ namespace DiKErnel::Integration::Test
         constexpr auto thicknessUpperLayer = 0.4;
         constexpr auto elasticModulusUpperLayer = 0.5;
 
-        AsphaltRevetmentWaveImpactLocationConstructionProperties constructionProperties(
+        auto constructionProperties = make_unique<AsphaltRevetmentWaveImpactLocationConstructionProperties>(
             x, topLayerType, failureTension, soilElasticity, thicknessUpperLayer, elasticModulusUpperLayer);
 
         CalculationInputBuilder builder;
-        builder.AddAsphaltWaveImpactLocation(constructionProperties);
+        builder.AddAsphaltWaveImpactLocation(move(constructionProperties));
 
         // When
         const auto& calculationInput = builder.Build();
@@ -589,22 +589,22 @@ namespace DiKErnel::Integration::Test
         constexpr auto upperLimitLoadingAul = 1.2;
         constexpr auto lowerLimitLoadingAll = 1.3;
 
-        GrassRevetmentWaveImpactLocationConstructionProperties constructionProperties(x, topLayerType);
-        constructionProperties.SetInitialDamage(make_unique<double>(initialDamage));
-        constructionProperties.SetFailureNumber(make_unique<double>(failureNumber));
-        constructionProperties.SetTimeLineAgwi(make_unique<double>(timeLineAgwi));
-        constructionProperties.SetTimeLineBgwi(make_unique<double>(timeLineBgwi));
-        constructionProperties.SetTimeLineCgwi(make_unique<double>(timeLineCgwi));
-        constructionProperties.SetMinimumWaveHeightTemax(make_unique<double>(minimumWaveHeightTemax));
-        constructionProperties.SetMaximumWaveHeightTemin(make_unique<double>(maximumWaveHeightTemin));
-        constructionProperties.SetWaveAngleImpactNwa(make_unique<double>(waveAngleImpactNwa));
-        constructionProperties.SetWaveAngleImpactQwa(make_unique<double>(waveAngleImpactQwa));
-        constructionProperties.SetWaveAngleImpactRwa(make_unique<double>(waveAngleImpactRwa));
-        constructionProperties.SetUpperLimitLoadingAul(make_unique<double>(upperLimitLoadingAul));
-        constructionProperties.SetLowerLimitLoadingAll(make_unique<double>(lowerLimitLoadingAll));
+        auto constructionProperties = make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(x, topLayerType);
+        constructionProperties->SetInitialDamage(make_unique<double>(initialDamage));
+        constructionProperties->SetFailureNumber(make_unique<double>(failureNumber));
+        constructionProperties->SetTimeLineAgwi(make_unique<double>(timeLineAgwi));
+        constructionProperties->SetTimeLineBgwi(make_unique<double>(timeLineBgwi));
+        constructionProperties->SetTimeLineCgwi(make_unique<double>(timeLineCgwi));
+        constructionProperties->SetMinimumWaveHeightTemax(make_unique<double>(minimumWaveHeightTemax));
+        constructionProperties->SetMaximumWaveHeightTemin(make_unique<double>(maximumWaveHeightTemin));
+        constructionProperties->SetWaveAngleImpactNwa(make_unique<double>(waveAngleImpactNwa));
+        constructionProperties->SetWaveAngleImpactQwa(make_unique<double>(waveAngleImpactQwa));
+        constructionProperties->SetWaveAngleImpactRwa(make_unique<double>(waveAngleImpactRwa));
+        constructionProperties->SetUpperLimitLoadingAul(make_unique<double>(upperLimitLoadingAul));
+        constructionProperties->SetLowerLimitLoadingAll(make_unique<double>(lowerLimitLoadingAll));
 
         CalculationInputBuilder builder;
-        builder.AddGrassWaveImpactLocation(constructionProperties);
+        builder.AddGrassWaveImpactLocation(move(constructionProperties));
 
         // When
         const auto& calculationInput = builder.Build();
@@ -650,10 +650,10 @@ namespace DiKErnel::Integration::Test
         constexpr auto topLayerType = GrassRevetmentTopLayerType::ClosedSod;
         constexpr auto x = 0.1;
 
-        const GrassRevetmentWaveImpactLocationConstructionProperties constructionProperties(x, topLayerType);
+        auto constructionProperties = make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(x, topLayerType);
 
         CalculationInputBuilder builder;
-        builder.AddGrassWaveImpactLocation(constructionProperties);
+        builder.AddGrassWaveImpactLocation(move(constructionProperties));
 
         // When
         const auto& calculationInput = builder.Build();
@@ -699,10 +699,10 @@ namespace DiKErnel::Integration::Test
         constexpr auto topLayerType = GrassRevetmentTopLayerType::OpenSod;
         constexpr auto x = 0.1;
 
-        const GrassRevetmentWaveImpactLocationConstructionProperties constructionProperties(x, topLayerType);
+        auto constructionProperties = make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(x, topLayerType);
 
         CalculationInputBuilder builder;
-        builder.AddGrassWaveImpactLocation(constructionProperties);
+        builder.AddGrassWaveImpactLocation(move(constructionProperties));
 
         // When
         const auto& calculationInput = builder.Build();
@@ -781,26 +781,26 @@ namespace DiKErnel::Integration::Test
         constexpr auto fixedNumberOfWaves = 17;
         constexpr auto frontVelocityCu = 1.8;
 
-        GrassRevetmentWaveRunupRayleighLocationConstructionProperties constructionProperties(x, outerSlope, topLayerType);
-        constructionProperties.SetInitialDamage(make_unique<double>(initialDamage));
-        constructionProperties.SetFailureNumber(make_unique<double>(failureNumber));
-        constructionProperties.SetCriticalCumulativeOverload(make_unique<double>(criticalCumulativeOverload));
-        constructionProperties.SetCriticalFrontVelocity(make_unique<double>(criticalFrontVelocity));
-        constructionProperties.SetIncreasedLoadTransitionAlphaM(make_unique<double>(increasedLoadTransitionAlphaM));
-        constructionProperties.SetReducedStrengthTransitionAlphaS(make_unique<double>(reducedStrengthTransitionAlphaS));
-        constructionProperties.SetAverageNumberOfWavesCtm(make_unique<double>(averageNumberOfWavesCtm));
-        constructionProperties.SetRepresentativeWaveRunup2PAru(make_unique<double>(representativeWaveRunup2PAru));
-        constructionProperties.SetRepresentativeWaveRunup2PBru(make_unique<double>(representativeWaveRunup2PBru));
-        constructionProperties.SetRepresentativeWaveRunup2PCru(make_unique<double>(representativeWaveRunup2PCru));
-        constructionProperties.SetRepresentativeWaveRunup2PGammab(make_unique<double>(representativeWaveRunup2PGammab));
-        constructionProperties.SetRepresentativeWaveRunup2PGammaf(make_unique<double>(representativeWaveRunup2PGammaf));
-        constructionProperties.SetWaveAngleImpactAbeta(make_unique<double>(waveAngleImpactAbeta));
-        constructionProperties.SetWaveAngleImpactBetamax(make_unique<double>(waveAngleImpactBetamax));
-        constructionProperties.SetFixedNumberOfWaves(make_unique<int>(fixedNumberOfWaves));
-        constructionProperties.SetFrontVelocityCu(make_unique<double>(frontVelocityCu));
+        auto constructionProperties = make_unique<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(x, outerSlope, topLayerType);
+        constructionProperties->SetInitialDamage(make_unique<double>(initialDamage));
+        constructionProperties->SetFailureNumber(make_unique<double>(failureNumber));
+        constructionProperties->SetCriticalCumulativeOverload(make_unique<double>(criticalCumulativeOverload));
+        constructionProperties->SetCriticalFrontVelocity(make_unique<double>(criticalFrontVelocity));
+        constructionProperties->SetIncreasedLoadTransitionAlphaM(make_unique<double>(increasedLoadTransitionAlphaM));
+        constructionProperties->SetReducedStrengthTransitionAlphaS(make_unique<double>(reducedStrengthTransitionAlphaS));
+        constructionProperties->SetAverageNumberOfWavesCtm(make_unique<double>(averageNumberOfWavesCtm));
+        constructionProperties->SetRepresentativeWaveRunup2PAru(make_unique<double>(representativeWaveRunup2PAru));
+        constructionProperties->SetRepresentativeWaveRunup2PBru(make_unique<double>(representativeWaveRunup2PBru));
+        constructionProperties->SetRepresentativeWaveRunup2PCru(make_unique<double>(representativeWaveRunup2PCru));
+        constructionProperties->SetRepresentativeWaveRunup2PGammab(make_unique<double>(representativeWaveRunup2PGammab));
+        constructionProperties->SetRepresentativeWaveRunup2PGammaf(make_unique<double>(representativeWaveRunup2PGammaf));
+        constructionProperties->SetWaveAngleImpactAbeta(make_unique<double>(waveAngleImpactAbeta));
+        constructionProperties->SetWaveAngleImpactBetamax(make_unique<double>(waveAngleImpactBetamax));
+        constructionProperties->SetFixedNumberOfWaves(make_unique<int>(fixedNumberOfWaves));
+        constructionProperties->SetFrontVelocityCu(make_unique<double>(frontVelocityCu));
 
         CalculationInputBuilder builder;
-        builder.AddGrassWaveRunupRayleighLocation(constructionProperties);
+        builder.AddGrassWaveRunupRayleighLocation(move(constructionProperties));
 
         // When
         const auto& calculationInput = builder.Build();
@@ -848,10 +848,10 @@ namespace DiKErnel::Integration::Test
         constexpr auto x = 0.1;
         constexpr auto outerSlope = 0.2;
 
-        const GrassRevetmentWaveRunupRayleighLocationConstructionProperties constructionProperties(x, outerSlope, topLayerType);
+        auto constructionProperties = make_unique<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(x, outerSlope, topLayerType);
 
         CalculationInputBuilder builder;
-        builder.AddGrassWaveRunupRayleighLocation(constructionProperties);
+        builder.AddGrassWaveRunupRayleighLocation(move(constructionProperties));
 
         // When
         const auto& calculationInput = builder.Build();
@@ -898,10 +898,10 @@ namespace DiKErnel::Integration::Test
         constexpr auto x = 0.1;
         constexpr auto outerSlope = 0.2;
 
-        const GrassRevetmentWaveRunupRayleighLocationConstructionProperties constructionProperties(x, outerSlope, topLayerType);
+        auto constructionProperties = make_unique<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(x, outerSlope, topLayerType);
 
         CalculationInputBuilder builder;
-        builder.AddGrassWaveRunupRayleighLocation(constructionProperties);
+        builder.AddGrassWaveRunupRayleighLocation(move(constructionProperties));
 
         // When
         const auto& calculationInput = builder.Build();
@@ -987,35 +987,35 @@ namespace DiKErnel::Integration::Test
         constexpr auto normativeWidthOfWaveImpactBwi = 2.6;
         constexpr auto waveAngleImpactBetamax = 2.7;
 
-        NaturalStoneRevetmentLocationConstructionProperties naturalStoneConstructionProperties(
+        auto naturalStoneConstructionProperties = make_unique<NaturalStoneRevetmentLocationConstructionProperties>(
             x, topLayerType, thicknessTopLayer, relativeDensity);
-        naturalStoneConstructionProperties.SetInitialDamage(make_unique<double>(initialDamage));
-        naturalStoneConstructionProperties.SetFailureNumber(make_unique<double>(failureNumber));
-        naturalStoneConstructionProperties.SetHydraulicLoadXib(make_unique<double>(hydraulicLoadXib));
-        naturalStoneConstructionProperties.SetHydraulicLoadAp(make_unique<double>(hydraulicLoadAp));
-        naturalStoneConstructionProperties.SetHydraulicLoadBp(make_unique<double>(hydraulicLoadBp));
-        naturalStoneConstructionProperties.SetHydraulicLoadCp(make_unique<double>(hydraulicLoadCp));
-        naturalStoneConstructionProperties.SetHydraulicLoadNp(make_unique<double>(hydraulicLoadNp));
-        naturalStoneConstructionProperties.SetHydraulicLoadAs(make_unique<double>(hydraulicLoadAs));
-        naturalStoneConstructionProperties.SetHydraulicLoadBs(make_unique<double>(hydraulicLoadBs));
-        naturalStoneConstructionProperties.SetHydraulicLoadCs(make_unique<double>(hydraulicLoadCs));
-        naturalStoneConstructionProperties.SetHydraulicLoadNs(make_unique<double>(hydraulicLoadNs));
-        naturalStoneConstructionProperties.SetSlopeUpperLevelAus(make_unique<double>(slopeUpperLevelAus));
-        naturalStoneConstructionProperties.SetSlopeLowerLevelAls(make_unique<double>(slopeLowerLevelAls));
-        naturalStoneConstructionProperties.SetUpperLimitLoadingAul(make_unique<double>(upperLimitLoadingAul));
-        naturalStoneConstructionProperties.SetUpperLimitLoadingBul(make_unique<double>(upperLimitLoadingBul));
-        naturalStoneConstructionProperties.SetUpperLimitLoadingCul(make_unique<double>(upperLimitLoadingCul));
-        naturalStoneConstructionProperties.SetLowerLimitLoadingAll(make_unique<double>(lowerLimitLoadingAll));
-        naturalStoneConstructionProperties.SetLowerLimitLoadingBll(make_unique<double>(lowerLimitLoadingBll));
-        naturalStoneConstructionProperties.SetLowerLimitLoadingCll(make_unique<double>(lowerLimitLoadingCll));
-        naturalStoneConstructionProperties.SetDistanceMaximumWaveElevationAsmax(make_unique<double>(distanceMaximumWaveElevationAsmax));
-        naturalStoneConstructionProperties.SetDistanceMaximumWaveElevationBsmax(make_unique<double>(distanceMaximumWaveElevationBsmax));
-        naturalStoneConstructionProperties.SetNormativeWidthOfWaveImpactAwi(make_unique<double>(normativeWidthOfWaveImpactAwi));
-        naturalStoneConstructionProperties.SetNormativeWidthOfWaveImpactBwi(make_unique<double>(normativeWidthOfWaveImpactBwi));
-        naturalStoneConstructionProperties.SetWaveAngleImpactBetamax(make_unique<double>(waveAngleImpactBetamax));
+        naturalStoneConstructionProperties->SetInitialDamage(make_unique<double>(initialDamage));
+        naturalStoneConstructionProperties->SetFailureNumber(make_unique<double>(failureNumber));
+        naturalStoneConstructionProperties->SetHydraulicLoadXib(make_unique<double>(hydraulicLoadXib));
+        naturalStoneConstructionProperties->SetHydraulicLoadAp(make_unique<double>(hydraulicLoadAp));
+        naturalStoneConstructionProperties->SetHydraulicLoadBp(make_unique<double>(hydraulicLoadBp));
+        naturalStoneConstructionProperties->SetHydraulicLoadCp(make_unique<double>(hydraulicLoadCp));
+        naturalStoneConstructionProperties->SetHydraulicLoadNp(make_unique<double>(hydraulicLoadNp));
+        naturalStoneConstructionProperties->SetHydraulicLoadAs(make_unique<double>(hydraulicLoadAs));
+        naturalStoneConstructionProperties->SetHydraulicLoadBs(make_unique<double>(hydraulicLoadBs));
+        naturalStoneConstructionProperties->SetHydraulicLoadCs(make_unique<double>(hydraulicLoadCs));
+        naturalStoneConstructionProperties->SetHydraulicLoadNs(make_unique<double>(hydraulicLoadNs));
+        naturalStoneConstructionProperties->SetSlopeUpperLevelAus(make_unique<double>(slopeUpperLevelAus));
+        naturalStoneConstructionProperties->SetSlopeLowerLevelAls(make_unique<double>(slopeLowerLevelAls));
+        naturalStoneConstructionProperties->SetUpperLimitLoadingAul(make_unique<double>(upperLimitLoadingAul));
+        naturalStoneConstructionProperties->SetUpperLimitLoadingBul(make_unique<double>(upperLimitLoadingBul));
+        naturalStoneConstructionProperties->SetUpperLimitLoadingCul(make_unique<double>(upperLimitLoadingCul));
+        naturalStoneConstructionProperties->SetLowerLimitLoadingAll(make_unique<double>(lowerLimitLoadingAll));
+        naturalStoneConstructionProperties->SetLowerLimitLoadingBll(make_unique<double>(lowerLimitLoadingBll));
+        naturalStoneConstructionProperties->SetLowerLimitLoadingCll(make_unique<double>(lowerLimitLoadingCll));
+        naturalStoneConstructionProperties->SetDistanceMaximumWaveElevationAsmax(make_unique<double>(distanceMaximumWaveElevationAsmax));
+        naturalStoneConstructionProperties->SetDistanceMaximumWaveElevationBsmax(make_unique<double>(distanceMaximumWaveElevationBsmax));
+        naturalStoneConstructionProperties->SetNormativeWidthOfWaveImpactAwi(make_unique<double>(normativeWidthOfWaveImpactAwi));
+        naturalStoneConstructionProperties->SetNormativeWidthOfWaveImpactBwi(make_unique<double>(normativeWidthOfWaveImpactBwi));
+        naturalStoneConstructionProperties->SetWaveAngleImpactBetamax(make_unique<double>(waveAngleImpactBetamax));
 
         CalculationInputBuilder builder;
-        builder.AddNaturalStoneLocation(naturalStoneConstructionProperties);
+        builder.AddNaturalStoneLocation(move(naturalStoneConstructionProperties));
 
         // When
         const auto& calculationInput = builder.Build();
@@ -1068,11 +1068,11 @@ namespace DiKErnel::Integration::Test
         constexpr auto thicknessTopLayer = 0.2;
         constexpr auto relativeDensity = 0.3;
 
-        const NaturalStoneRevetmentLocationConstructionProperties naturalStoneConstructionProperties(
+        auto naturalStoneConstructionProperties = make_unique<NaturalStoneRevetmentLocationConstructionProperties>(
             x, topLayerType, thicknessTopLayer, relativeDensity);
 
         CalculationInputBuilder builder;
-        builder.AddNaturalStoneLocation(naturalStoneConstructionProperties);
+        builder.AddNaturalStoneLocation(move(naturalStoneConstructionProperties));
 
         // When
         const auto& calculationInput = builder.Build();

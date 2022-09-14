@@ -99,7 +99,7 @@ namespace DiKErnel::Integration
              *            Thrown when the top layer type is invalid.
              */
             void AddAsphaltWaveImpactLocation(
-                const AsphaltRevetmentWaveImpactLocationConstructionProperties& constructionProperties);
+                std::unique_ptr<AsphaltRevetmentWaveImpactLocationConstructionProperties> constructionProperties);
 
             /*!
              * \brief Adds a grass wave impact location.
@@ -109,7 +109,7 @@ namespace DiKErnel::Integration
              *            Thrown when the top layer type is invalid.
              */
             void AddGrassWaveImpactLocation(
-                const GrassRevetmentWaveImpactLocationConstructionProperties& constructionProperties);
+                std::unique_ptr<GrassRevetmentWaveImpactLocationConstructionProperties> constructionProperties);
 
             /*!
              * \brief Adds a grass wave run-up location with Rayleigh protocol.
@@ -119,7 +119,7 @@ namespace DiKErnel::Integration
              *            Thrown when the top layer type is invalid.
              */
             void AddGrassWaveRunupRayleighLocation(
-                const GrassRevetmentWaveRunupRayleighLocationConstructionProperties& constructionProperties);
+                std::unique_ptr<GrassRevetmentWaveRunupRayleighLocationConstructionProperties> constructionProperties);
 
             /*!
              * \brief Adds a natural stone location.
@@ -129,7 +129,7 @@ namespace DiKErnel::Integration
              *            Thrown when the top layer type is invalid.
              */
             void AddNaturalStoneLocation(
-                const NaturalStoneRevetmentLocationConstructionProperties& constructionProperties);
+                std::unique_ptr<NaturalStoneRevetmentLocationConstructionProperties> constructionProperties);
 
             /*!
              * \brief Builds the calculation input.
@@ -144,7 +144,8 @@ namespace DiKErnel::Integration
                     = std::vector<std::unique_ptr<ProfileFactoryPointData>>();
             std::vector<std::unique_ptr<Core::ITimeDependentInput>> _timeDependentInputItems
                     = std::vector<std::unique_ptr<Core::ITimeDependentInput>>();
-            std::vector<std::unique_ptr<Core::ILocationDependentInput>> _locationDependentInputItems
-                    = std::vector<std::unique_ptr<Core::ILocationDependentInput>>();
+
+            std::vector<std::unique_ptr<RevetmentLocationConstructionPropertiesBase>> _locationConstructionPropertiesItems
+                    = std::vector<std::unique_ptr<RevetmentLocationConstructionPropertiesBase>>();
     };
 }

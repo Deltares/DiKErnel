@@ -27,6 +27,7 @@
 #include "CalculationInputBuildException.h"
 #include "GrassRevetmentWaveImpactLocationDependentInputFactory.h"
 #include "GrassRevetmentWaveRunupRayleighLocationDependentInputFactory.h"
+#include "LocationDependentInputFactory.h"
 #include "NaturalStoneRevetmentLocationDependentInputFactory.h"
 #include "ProfileData.h"
 #include "ProfileFactory.h"
@@ -72,41 +73,46 @@ namespace DiKErnel::Integration
     }
 
     void CalculationInputBuilder::AddAsphaltWaveImpactLocation(
-        const AsphaltRevetmentWaveImpactLocationConstructionProperties& constructionProperties)
+        unique_ptr<AsphaltRevetmentWaveImpactLocationConstructionProperties> constructionProperties)
     {
-        _locationDependentInputItems.push_back(
-            AsphaltRevetmentWaveImpactLocationDependentInputFactory::CreateLocationDependentInput(constructionProperties));
+        _locationConstructionPropertiesItems.push_back(move(constructionProperties));
     }
 
     void CalculationInputBuilder::AddGrassWaveImpactLocation(
-        const GrassRevetmentWaveImpactLocationConstructionProperties& constructionProperties)
+        unique_ptr<GrassRevetmentWaveImpactLocationConstructionProperties> constructionProperties)
     {
-        _locationDependentInputItems.push_back(
-            GrassRevetmentWaveImpactLocationDependentInputFactory::CreateLocationDependentInput(constructionProperties));
+        _locationConstructionPropertiesItems.push_back(move(constructionProperties));
     }
 
     void CalculationInputBuilder::AddGrassWaveRunupRayleighLocation(
-        const GrassRevetmentWaveRunupRayleighLocationConstructionProperties& constructionProperties)
+        unique_ptr<GrassRevetmentWaveRunupRayleighLocationConstructionProperties> constructionProperties)
     {
-        _locationDependentInputItems.push_back(
-            GrassRevetmentWaveRunupRayleighLocationDependentInputFactory::CreateLocationDependentInput(constructionProperties));
+        _locationConstructionPropertiesItems.push_back(move(constructionProperties));
     }
 
     void CalculationInputBuilder::AddNaturalStoneLocation(
-        const NaturalStoneRevetmentLocationConstructionProperties& constructionProperties)
+        unique_ptr<NaturalStoneRevetmentLocationConstructionProperties> constructionProperties)
     {
-        _locationDependentInputItems.push_back(
-            NaturalStoneRevetmentLocationDependentInputFactory::CreateLocationDependentInput(constructionProperties));
+        _locationConstructionPropertiesItems.push_back(move(constructionProperties));
     }
 
     unique_ptr<ICalculationInput> CalculationInputBuilder::Build()
     {
+        auto locationConstructionPropertiesItemReferences = vector<reference_wrapper<RevetmentLocationConstructionPropertiesBase>>();
+
+        for (const auto& locationConstructionPropertiesItem : _locationConstructionPropertiesItems)
+        {
+            locationConstructionPropertiesItemReferences.emplace_back(*locationConstructionPropertiesItem);
+        }
+
         try
         {
             auto segments = ProfileFactory::CreateProfileSegments(_profileSegmentData);
             auto characteristicPoints = ProfileFactory::CreateCharacteristicPoints(_profilePointData, segments);
+            auto locations = LocationDependentInputFactory::CreateLocationDependentInputs(locationConstructionPropertiesItemReferences);
+
             return make_unique<CalculationInput>(make_unique<ProfileData>(move(segments), move(characteristicPoints)),
-                                                 move(_locationDependentInputItems), move(_timeDependentInputItems));
+                                                 move(locations), move(_timeDependentInputItems));
         }
         catch (const ProfileFactoryException&)
         {

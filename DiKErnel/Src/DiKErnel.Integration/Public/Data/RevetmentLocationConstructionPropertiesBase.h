@@ -31,6 +31,11 @@ namespace DiKErnel::Integration
     {
         public:
             /*!
+             * \brief Destructs the instance.
+             */
+            virtual ~RevetmentLocationConstructionPropertiesBase() = default;
+
+            /*!
              * \brief Sets the initial damage.
              * \param initialDamage
              *        The initial damage.
