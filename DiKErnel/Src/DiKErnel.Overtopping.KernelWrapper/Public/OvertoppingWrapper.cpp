@@ -20,37 +20,43 @@
 
 #include "OvertoppingWrapper.h"
 
+#include <cstdlib>
+#include <memory>
+
 #include "Geometry.h"
 #include "Load.h"
 #include "Result.h"
+
+using namespace DiKErnel::Overtopping::KernelWrapper;
+
+extern "C" __declspec(dllimport) void ValidateInputC(
+    Geometry* geometryInput,
+    double* dikeHeight,
+    Input* modelFactors,
+    bool* success,
+    const char* message,
+    int size);
+
+extern "C" __declspec(dllimport) void calculateQo(
+    Load* loadInput,
+    Geometry* geometryInput,
+    double* dikeHeight,
+    Input* modelFactors,
+    Result* result,
+    bool* success,
+    const char* message,
+    int* verbosity,
+    const char* logFile,
+    int messageSize,
+    int logFileSize);
 
 namespace DiKErnel::Overtopping::KernelWrapper
 {
     using namespace std;
 
-    constexpr int SIZE = 32 * 255;
-    constexpr int LOGFILESIZE = 32 * 255;
-    
-    extern "C" __declspec(dllimport) void ValidateInputC(
-        Geometry* geometryInput,
-        double* dikeHeight,
-        Input* modelFactors,
-        bool* success,
-        const char* message,
-        int size);
-
-    extern "C" __declspec(dllimport) void calculateQo(
-        Load * loadInput,
-        Geometry* geometryInput,
-        double* dikeHeight,
-        Input * modelFactors,
-        Result* result,
-        bool* success,
-        const char* message,
-        int* verbosity,
-        const char* logFile,
-        int messageSize,
-        int logFileSize);
+    constexpr int NR_OF_MESSAGES = 32;
+    constexpr int MESSAGE_SIZE = 255;
+    constexpr int LOG_FILE_NAME_SIZE = 256;
 
     bool OvertoppingWrapper::Validate(
         Geometry& geometry,
@@ -59,11 +65,10 @@ namespace DiKErnel::Overtopping::KernelWrapper
     {
         bool success;
 
-        const char* message = new char[SIZE];
-        ValidateInputC(&geometry, &dikeHeight, &input, &success, message, SIZE);
-
-        delete[] message;
-
+        constexpr long nrOfCharacters = NR_OF_MESSAGES * MESSAGE_SIZE;
+        const unique_ptr<char[]> message(new char[nrOfCharacters]);
+        ValidateInputC(&geometry, &dikeHeight, &input, &success, message.get(), MESSAGE_SIZE);
+        
         return success;
     }
 
@@ -73,15 +78,17 @@ namespace DiKErnel::Overtopping::KernelWrapper
         Input& input,
         double dikeHeight)
     {
-        bool success;
+        bool success = false;
         int verbosity = -1;
 
-        Result result{};
+        const auto result = make_unique<Result>();
 
-        const char* message = new char[SIZE];
-        const char* logFile = new char[LOGFILESIZE];
-        calculateQo(&load, &geometry, &dikeHeight, &input, &result, &success, message, &verbosity, logFile, SIZE, LOGFILESIZE);
-    
-        return result._z2;
+        const unique_ptr<char[]> message(new char[MESSAGE_SIZE]);
+        const unique_ptr<char[]> logFileName(new char[LOG_FILE_NAME_SIZE]);
+
+        calculateQo(&load, &geometry, &dikeHeight, &input, result.get(), &success,
+                    message.get(), &verbosity, logFileName.get(), MESSAGE_SIZE, LOG_FILE_NAME_SIZE);
+
+        return 0;
     }
 }
