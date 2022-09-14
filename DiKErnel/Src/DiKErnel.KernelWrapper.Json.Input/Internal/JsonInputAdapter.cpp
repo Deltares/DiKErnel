@@ -131,47 +131,42 @@ namespace DiKErnel::KernelWrapper::Json::Input
             if (const auto* asphaltWaveImpactLocationData = dynamic_cast<const JsonInputAsphaltWaveImpactLocationData*>(&location);
                 asphaltWaveImpactLocationData != nullptr)
             {
-                const auto& constructionProperties = CreateAsphaltWaveImpactConstructionProperties(
+                auto constructionProperties = CreateAsphaltWaveImpactConstructionProperties(
                     *asphaltWaveImpactLocationData,
                     GetCalculationDefinition<JsonInputAsphaltWaveImpactCalculationDefinitionData>(
                         calculationDefinitionReferences, JsonInputCalculationType::AsphaltWaveImpact));
-                builder.AddAsphaltWaveImpactLocation(*constructionProperties);
+                builder.AddAsphaltWaveImpactLocation(move(constructionProperties));
             }
 
             if (const auto* grassWaveImpactLocationData = dynamic_cast<const JsonInputGrassWaveImpactLocationData*>(&location);
                 grassWaveImpactLocationData != nullptr)
             {
-                const auto& constructionProperties = CreateGrassWaveImpactConstructionProperties(
+                auto constructionProperties = CreateGrassWaveImpactConstructionProperties(
                     *grassWaveImpactLocationData,
                     GetCalculationDefinition<JsonInputGrassWaveImpactCalculationDefinitionData>(
                         calculationDefinitionReferences, JsonInputCalculationType::GrassWaveImpact));
-                builder.AddGrassWaveImpactLocation(*constructionProperties);
+                builder.AddGrassWaveImpactLocation(move(constructionProperties));
             }
 
             if (const auto* grassWaveRunupLocationData = dynamic_cast<const JsonInputGrassWaveRunupLocationData*>(&location);
                 grassWaveRunupLocationData != nullptr)
             {
-                const auto& constructionProperties = CreateGrassWaveRunupConstructionProperties(
+                auto constructionProperties = CreateGrassWaveRunupConstructionProperties(
                     *grassWaveRunupLocationData,
                     GetCalculationDefinition<JsonInputGrassWaveRunupCalculationDefinitionData>(
                         calculationDefinitionReferences, JsonInputCalculationType::GrassWaveRunup));
 
-                if (const auto* grassWaveRunupRayleighConstructionProperties = dynamic_cast<const
-                        GrassRevetmentWaveRunupRayleighLocationConstructionProperties*>(constructionProperties.get());
-                    grassWaveRunupRayleighConstructionProperties != nullptr)
-                {
-                    builder.AddGrassWaveRunupRayleighLocation(*grassWaveRunupRayleighConstructionProperties);
-                }
+                builder.AddGrassWaveRunupRayleighLocation(move(constructionProperties));
             }
 
             if (const auto* naturalStoneLocationData = dynamic_cast<const JsonInputNaturalStoneLocationData*>(&location);
                 naturalStoneLocationData != nullptr)
             {
-                const auto& constructionProperties = CreateNaturalStoneConstructionProperties(
+                auto constructionProperties = CreateNaturalStoneConstructionProperties(
                     *naturalStoneLocationData,
                     GetCalculationDefinition<JsonInputNaturalStoneCalculationDefinitionData>(
                         calculationDefinitionReferences, JsonInputCalculationType::NaturalStone));
-                builder.AddNaturalStoneLocation(*constructionProperties);
+                builder.AddNaturalStoneLocation(move(constructionProperties));
             }
         }
     }
@@ -280,7 +275,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
         return constructionProperties;
     }
 
-    unique_ptr<GrassRevetmentWaveRunupLocationConstructionProperties> JsonInputAdapter::CreateGrassWaveRunupConstructionProperties(
+    unique_ptr<GrassRevetmentWaveRunupRayleighLocationConstructionProperties> JsonInputAdapter::CreateGrassWaveRunupConstructionProperties(
         const JsonInputGrassWaveRunupLocationData& location,
         const JsonInputGrassWaveRunupCalculationDefinitionData* calculationDefinition)
     {
@@ -289,20 +284,16 @@ namespace DiKErnel::KernelWrapper::Json::Input
             throw JsonInputConversionException("Cannot convert calculation protocol type.");
         }
 
-        unique_ptr<GrassRevetmentWaveRunupLocationConstructionProperties> constructionProperties;
-
         const auto& jsonInputGrassWaveRunupCalculationProtocolData = calculationDefinition->GetCalculationProtocolData();
+        const auto* grassWaveRunupRayleighCalculationProtocol = dynamic_cast<const JsonInputGrassWaveRunupRayleighCalculationProtocolData*>(
+            jsonInputGrassWaveRunupCalculationProtocolData);
 
-        if (const auto* grassWaveRunupRayleighCalculationProtocol = dynamic_cast<const JsonInputGrassWaveRunupRayleighCalculationProtocolData*>(
-                jsonInputGrassWaveRunupCalculationProtocolData);
-            grassWaveRunupRayleighCalculationProtocol != nullptr)
-        {
-            constructionProperties = CreateGrassWaveRunupRayleighConstructionProperties(location, *grassWaveRunupRayleighCalculationProtocol);
-        }
-        else
+        if (grassWaveRunupRayleighCalculationProtocol == nullptr)
         {
             throw JsonInputConversionException("Cannot convert calculation protocol type.");
         }
+
+        auto constructionProperties = CreateGrassWaveRunupRayleighConstructionProperties(location, *grassWaveRunupRayleighCalculationProtocol);
 
         constructionProperties->SetInitialDamage(CreatePointerOfValue(location.GetInitialDamage()));
         constructionProperties->SetFailureNumber(CreatePointerOfValue(calculationDefinition->GetFailureNumber()));
