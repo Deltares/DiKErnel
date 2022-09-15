@@ -1,5 +1,5 @@
 # Set library name
-set(LIBNAME DiKErnel.Overtopping.KernelWrapper)
+set(LIBNAME DiKErnel.External.Overtopping)
 
 # Set folder names
 set(PUBLIC_FOLDER Public)

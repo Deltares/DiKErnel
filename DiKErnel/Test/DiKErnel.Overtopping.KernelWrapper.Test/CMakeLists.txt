@@ -1,5 +1,5 @@
 # Set executable name
-set(EXENAME DiKErnel.Overtopping.KernelWrapper.Test)
+set(EXENAME DiKErnel.External.Overtopping.Test)
 
 # Define sources
 set(SOURCEFILES
@@ -16,7 +16,7 @@ source_group("" FILES ${SOURCEFILES})
 
 # Link dependencies
 target_link_libraries(${EXENAME} PUBLIC  
-  DiKErnel.Overtopping.KernelWrapper
+  DiKErnel.External.Overtopping
   gtest
 )
 
