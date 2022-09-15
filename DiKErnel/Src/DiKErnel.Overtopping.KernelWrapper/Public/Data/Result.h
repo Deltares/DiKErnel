@@ -20,7 +20,7 @@
 
 #pragma once
 
-namespace DiKErnel::Overtopping::KernelWrapper
+namespace DiKErnel::External::Overtopping
 {
     /*!
      * \brief The result for the overtopping kernel.
