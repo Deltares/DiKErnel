@@ -45,9 +45,9 @@ namespace DiKErnel::Integration
             topLayerDefaults = AsphaltRevetmentWaveImpactDefaultsFactory::CreateTopLayerDefaults(
                 constructionProperties.GetTopLayerType());
         }
-        catch (const DefaultsFactoryException&)
+        catch (const DefaultsFactoryException& e)
         {
-            throw_with_nested(LocationDependentInputFactoryException("Could not create instance."));
+            throw_with_nested(LocationDependentInputFactoryException(e.what()));
         }
 
         const auto elasticModulusUpperLayer = constructionProperties.GetElasticModulusUpperLayer();

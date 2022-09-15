@@ -23,7 +23,6 @@
 #include "AsphaltRevetmentWaveImpactLocationDependentInput.h"
 #include "AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper.h"
 #include "AssertHelper.h"
-#include "DefaultsFactoryException.h"
 #include "GrassRevetmentWaveImpactLocationDependentInput.h"
 #include "GrassRevetmentWaveImpactLocationDependentInputAssertHelper.h"
 #include "GrassRevetmentWaveRunupLocationDependentInputAssertHelper.h"
@@ -51,6 +50,12 @@ namespace DiKErnel::Integration::Test
 
     struct CalculationInputBuilderTest : Test
     {
+        static void CreateBuilderAndBuildWithoutLocationsAdded()
+        {
+            CalculationInputBuilder builder;
+            builder.Build();
+        }
+
         static void CreateBuilderAndAddAsphaltRevetmentWaveImpactLocationWithInvalidTopLayerType()
         {
             constexpr auto topLayerType = static_cast<AsphaltRevetmentTopLayerType>(99);
@@ -131,6 +136,16 @@ namespace DiKErnel::Integration::Test
             builder.Build();
         }
     };
+
+    TEST_F(CalculationInputBuilderTest, GivenBuilderWithoutLocationAdded_WhenBuild_ThenThrowsCalculationInputBuilderException)
+    {
+        // Given & When
+        const auto action = &CalculationInputBuilderTest::CreateBuilderAndBuildWithoutLocationsAdded;
+
+        // Then
+        AssertHelper::AssertThrowsWithMessageAndInnerException<CalculationInputBuildException, LocationDependentInputFactoryException>(
+            action, "Could not create instance.", "At least 1 location is required.");
+    }
 
     #pragma region Profile segments
 
@@ -370,7 +385,7 @@ namespace DiKErnel::Integration::Test
                 &CalculationInputBuilderTest::CreateBuilderAndAddAsphaltRevetmentWaveImpactLocationWithInvalidTopLayerType;
 
         // Then
-        AssertHelper::AssertThrowsWithMessageAndInnerException<LocationDependentInputFactoryException, DefaultsFactoryException>(
+        AssertHelper::AssertThrowsWithMessageAndInnerException<CalculationInputBuildException, LocationDependentInputFactoryException>(
             action, "Could not create instance.", "Couldn't create defaults for the given top layer type.");
     }
 
@@ -564,7 +579,7 @@ namespace DiKErnel::Integration::Test
         const auto action = &CalculationInputBuilderTest::CreateBuilderAndAddGrassRevetmentWaveImpactLocationWithInvalidTopLayerType;
 
         // Then
-        AssertHelper::AssertThrowsWithMessageAndInnerException<LocationDependentInputFactoryException, DefaultsFactoryException>(
+        AssertHelper::AssertThrowsWithMessageAndInnerException<CalculationInputBuildException, LocationDependentInputFactoryException>(
             action, "Could not create instance.", "Couldn't create defaults for the given top layer type.");
     }
 
@@ -750,7 +765,7 @@ namespace DiKErnel::Integration::Test
                 &CalculationInputBuilderTest::CreateBuilderAndAddGrassRevetmentWaveRunupRayleighLocationWithInvalidTopLayerType;
 
         // Then
-        AssertHelper::AssertThrowsWithMessageAndInnerException<LocationDependentInputFactoryException, DefaultsFactoryException>(
+        AssertHelper::AssertThrowsWithMessageAndInnerException<CalculationInputBuildException, LocationDependentInputFactoryException>(
             action, "Could not create instance.", "Couldn't create defaults for the given top layer type.");
     }
 
@@ -948,7 +963,7 @@ namespace DiKErnel::Integration::Test
         const auto action = &CalculationInputBuilderTest::CreateBuilderAndAddNaturalStoneRevetmentLocationWithInvalidTopLayerType;
 
         // Then
-        AssertHelper::AssertThrowsWithMessageAndInnerException<LocationDependentInputFactoryException, DefaultsFactoryException>(
+        AssertHelper::AssertThrowsWithMessageAndInnerException<CalculationInputBuildException, LocationDependentInputFactoryException>(
             action, "Could not create instance.", "Couldn't create defaults for the given top layer type.");
     }
 

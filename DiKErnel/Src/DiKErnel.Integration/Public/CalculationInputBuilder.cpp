@@ -28,6 +28,7 @@
 #include "GrassRevetmentWaveImpactLocationDependentInputFactory.h"
 #include "GrassRevetmentWaveRunupRayleighLocationDependentInputFactory.h"
 #include "LocationDependentInputFactory.h"
+#include "LocationDependentInputFactoryException.h"
 #include "NaturalStoneRevetmentLocationDependentInputFactory.h"
 #include "ProfileData.h"
 #include "ProfileFactory.h"
@@ -115,6 +116,10 @@ namespace DiKErnel::Integration
                                                  move(locations), move(_timeDependentInputItems));
         }
         catch (const ProfileFactoryException&)
+        {
+            throw_with_nested(CalculationInputBuildException("Could not create instance."));
+        }
+        catch (const LocationDependentInputFactoryException&)
         {
             throw_with_nested(CalculationInputBuildException("Could not create instance."));
         }

@@ -42,9 +42,9 @@ namespace DiKErnel::Integration
         {
             topLayerDefaults = NaturalStoneRevetmentDefaultsFactory::CreateTopLayerDefaults(constructionProperties.GetTopLayerType());
         }
-        catch (const DefaultsFactoryException&)
+        catch (const DefaultsFactoryException& e)
         {
-            throw_with_nested(LocationDependentInputFactoryException("Could not create instance."));
+            throw_with_nested(LocationDependentInputFactoryException(e.what()));
         }
 
         auto hydraulicLoads = make_unique<NaturalStoneRevetmentHydraulicLoads>(

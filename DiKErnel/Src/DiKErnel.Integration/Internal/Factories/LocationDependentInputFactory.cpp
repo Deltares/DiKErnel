@@ -26,6 +26,7 @@
 #include "GrassRevetmentWaveImpactLocationDependentInputFactory.h"
 #include "GrassRevetmentWaveRunupRayleighLocationConstructionProperties.h"
 #include "GrassRevetmentWaveRunupRayleighLocationDependentInputFactory.h"
+#include "LocationDependentInputFactoryException.h"
 #include "NaturalStoneRevetmentLocationConstructionProperties.h"
 #include "NaturalStoneRevetmentLocationDependentInputFactory.h"
 #include "RevetmentLocationConstructionPropertiesBase.h"
@@ -40,7 +41,7 @@ namespace DiKErnel::Integration
     {
         if (locationConstructionPropertiesItems.empty())
         {
-            throw exception();
+            throw LocationDependentInputFactoryException("At least 1 location is required.");
         }
 
         auto locationDependentInputItems = vector<unique_ptr<ILocationDependentInput>>();
@@ -87,8 +88,7 @@ namespace DiKErnel::Integration
                 continue;
             }
 
-            // No valid construction properties.
-            throw exception();
+            throw LocationDependentInputFactoryException("Couldn't create location dependent input for the given construction properties.");
         }
 
         return locationDependentInputItems;

@@ -43,9 +43,9 @@ namespace DiKErnel::Integration
         {
             topLayerDefaults = GrassRevetmentWaveImpactDefaultsFactory::CreateTopLayerDefaults(constructionProperties.GetTopLayerType());
         }
-        catch (const DefaultsFactoryException&)
+        catch (const DefaultsFactoryException& e)
         {
-            throw_with_nested(LocationDependentInputFactoryException("Could not create instance."));
+            throw_with_nested(LocationDependentInputFactoryException(e.what()));
         }
 
         auto waveAngleImpact = make_unique<GrassRevetmentWaveImpactWaveAngleImpact>(
