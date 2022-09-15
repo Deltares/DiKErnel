@@ -144,7 +144,7 @@ namespace DiKErnel::Integration::Test
 
         // Then
         AssertHelper::AssertThrowsWithMessageAndInnerException<CalculationInputBuildException, LocationDependentInputFactoryException>(
-            action, "Could not create instance.", "At least 1 location is required.");
+            action, "Could not create calculation input.", "At least 1 location is required.");
     }
 
     #pragma region Profile segments
@@ -255,7 +255,7 @@ namespace DiKErnel::Integration::Test
 
         // Then
         AssertHelper::AssertThrowsWithMessageAndInnerException<CalculationInputBuildException, ProfileFactoryException>(
-            action, "Could not create instance.", "Segments must be chained.");
+            action, "Could not create calculation input.", "Segments must be chained.");
     }
 
     TEST_F(CalculationInputBuilderTest,
@@ -266,7 +266,7 @@ namespace DiKErnel::Integration::Test
 
         // Then
         AssertHelper::AssertThrowsWithMessageAndInnerException<CalculationInputBuildException, ProfileFactoryException>(
-            action, "Could not create instance.", "Segments must be chained.");
+            action, "Could not create calculation input.", "Segments must be chained.");
     }
 
     #pragma endregion
@@ -339,7 +339,7 @@ namespace DiKErnel::Integration::Test
 
         // Then
         AssertHelper::AssertThrowsWithMessageAndInnerException<CalculationInputBuildException, ProfileFactoryException>(
-            action, "Could not create instance.", "Characteristic point must be on a start or end point of a segment.");
+            action, "Could not create calculation input.", "Characteristic point must be on a start or end point of a segment.");
     }
 
     #pragma endregion
@@ -386,7 +386,7 @@ namespace DiKErnel::Integration::Test
 
         // Then
         AssertHelper::AssertThrowsWithMessageAndInnerException<CalculationInputBuildException, LocationDependentInputFactoryException>(
-            action, "Could not create instance.", "Couldn't create defaults for the given top layer type.");
+            action, "Could not create calculation input.", "Couldn't create defaults for the given top layer type.");
     }
 
     TEST_F(CalculationInputBuilderTest,
@@ -580,7 +580,7 @@ namespace DiKErnel::Integration::Test
 
         // Then
         AssertHelper::AssertThrowsWithMessageAndInnerException<CalculationInputBuildException, LocationDependentInputFactoryException>(
-            action, "Could not create instance.", "Couldn't create defaults for the given top layer type.");
+            action, "Could not create calculation input.", "Couldn't create defaults for the given top layer type.");
     }
 
     TEST_F(CalculationInputBuilderTest, GivenBuilderWithFullyConfiguredGrassWaveImpactLocationAdded_WhenBuild_ThenReturnsCalculationInput)
@@ -766,7 +766,7 @@ namespace DiKErnel::Integration::Test
 
         // Then
         AssertHelper::AssertThrowsWithMessageAndInnerException<CalculationInputBuildException, LocationDependentInputFactoryException>(
-            action, "Could not create instance.", "Couldn't create defaults for the given top layer type.");
+            action, "Could not create calculation input.", "Couldn't create defaults for the given top layer type.");
     }
 
     TEST_F(CalculationInputBuilderTest,
@@ -964,7 +964,7 @@ namespace DiKErnel::Integration::Test
 
         // Then
         AssertHelper::AssertThrowsWithMessageAndInnerException<CalculationInputBuildException, LocationDependentInputFactoryException>(
-            action, "Could not create instance.", "Couldn't create defaults for the given top layer type.");
+            action, "Could not create calculation input.", "Couldn't create defaults for the given top layer type.");
     }
 
     TEST_F(CalculationInputBuilderTest, GivenBuilderWithFullyConfiguredNaturalStoneLocationAdded_WhenBuild_ThenReturnsCalculationInput)

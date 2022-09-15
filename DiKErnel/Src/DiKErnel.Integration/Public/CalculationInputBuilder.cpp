@@ -117,11 +117,11 @@ namespace DiKErnel::Integration
         }
         catch (const ProfileFactoryException&)
         {
-            throw_with_nested(CalculationInputBuildException("Could not create instance."));
+            throw_with_nested(CalculationInputBuildException(_exceptionMessage));
         }
         catch (const LocationDependentInputFactoryException&)
         {
-            throw_with_nested(CalculationInputBuildException("Could not create instance."));
+            throw_with_nested(CalculationInputBuildException(_exceptionMessage));
         }
     }
 }

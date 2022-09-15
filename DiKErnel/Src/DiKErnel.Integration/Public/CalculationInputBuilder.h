@@ -147,5 +147,7 @@ namespace DiKErnel::Integration
 
             std::vector<std::unique_ptr<RevetmentLocationConstructionPropertiesBase>> _locationConstructionPropertiesItems
                     = std::vector<std::unique_ptr<RevetmentLocationConstructionPropertiesBase>>();
+
+            inline static std::string _exceptionMessage = "Could not create calculation input.";
     };
 }
