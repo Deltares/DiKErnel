@@ -34,7 +34,7 @@ namespace DiKErnel::External::Overtopping
                 Input& input,
                 double dikeHeight);
 
-            static double Calculate2P(
+            static double CalculateZ2(
                 Load& load,
                 Geometry& geometry,
                 Input& input,

@@ -74,7 +74,7 @@ namespace DiKErnel::External::Overtopping
         return success;
     }
 
-    double OvertoppingAdapter::Calculate2P(
+    double OvertoppingAdapter::CalculateZ2(
         Load& load,
         Geometry& geometry,
         Input& input,

@@ -175,7 +175,7 @@ namespace DiKErnel::External::Overtopping::Test
             50
         };
 
-        const auto z2 = OvertoppingAdapter::Calculate2P(loads, geometry, input, dikeHeight);
+        const auto z2 = OvertoppingAdapter::CalculateZ2(loads, geometry, input, dikeHeight);
         ASSERT_EQ(1, z2);
     }
 }
