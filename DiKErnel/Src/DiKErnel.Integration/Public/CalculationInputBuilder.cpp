@@ -34,7 +34,8 @@
 #include "ProfileFactory.h"
 #include "ProfileFactoryPointData.h"
 #include "ProfileFactorySegmentData.h"
-#include "TimeDependentInput.h"
+#include "TimeDependentInputFactory.h"
+#include "TimeDependentInputFactoryData.h"
 
 namespace DiKErnel::Integration
 {
@@ -68,8 +69,8 @@ namespace DiKErnel::Integration
         double wavePeriodTm10,
         double waveAngle)
     {
-        _timeDependentInputItems.push_back(
-            make_unique<TimeDependentInput>(beginTime, endTime, waterLevel, waveHeightHm0, wavePeriodTm10, waveAngle));
+        _timeStepDataItems.push_back(
+            make_unique<TimeDependentInputFactoryData>(beginTime, endTime, waterLevel, waveHeightHm0, wavePeriodTm10, waveAngle));
     }
 
     void CalculationInputBuilder::AddAsphaltWaveImpactLocation(
@@ -96,7 +97,7 @@ namespace DiKErnel::Integration
         _locationConstructionPropertiesItems.push_back(move(constructionProperties));
     }
 
-    unique_ptr<ICalculationInput> CalculationInputBuilder::Build()
+    unique_ptr<ICalculationInput> CalculationInputBuilder::Build() const
     {
         auto locationConstructionPropertiesItemReferences = vector<reference_wrapper<RevetmentLocationConstructionPropertiesBase>>();
 
@@ -105,14 +106,22 @@ namespace DiKErnel::Integration
             locationConstructionPropertiesItemReferences.emplace_back(*locationConstructionPropertiesItem);
         }
 
+        auto timeStepDataItemReferences = vector<reference_wrapper<TimeDependentInputFactoryData>>();
+
+        for (const auto& timeStepDataItem : _timeStepDataItems)
+        {
+            timeStepDataItemReferences.emplace_back(*timeStepDataItem);
+        }
+
         try
         {
             auto segments = ProfileFactory::CreateProfileSegments(_profileSegmentData);
             auto characteristicPoints = ProfileFactory::CreateCharacteristicPoints(_profilePointData, segments);
             auto locations = LocationDependentInputFactory::CreateLocationDependentInputs(locationConstructionPropertiesItemReferences);
+            auto timeSteps = TimeDependentInputFactory::Create(timeStepDataItemReferences);
 
             return make_unique<CalculationInput>(make_unique<ProfileData>(move(segments), move(characteristicPoints)),
-                                                 move(locations), move(_timeDependentInputItems));
+                                                 move(locations), move(timeSteps));
         }
         catch (const InputFactoryException&)
         {

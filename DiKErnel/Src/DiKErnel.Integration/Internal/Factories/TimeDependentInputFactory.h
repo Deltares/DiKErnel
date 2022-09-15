@@ -23,6 +23,11 @@
 #include <memory>
 #include <vector>
 
+namespace DiKErnel::Core
+{
+    class ITimeDependentInput;
+}
+
 namespace DiKErnel::Integration
 {
     class TimeDependentInputFactoryData;
@@ -31,7 +36,7 @@ namespace DiKErnel::Integration
     class TimeDependentInputFactory
     {
         public:
-            static std::vector<std::unique_ptr<TimeDependentInput>> Create(
+            static std::vector<std::unique_ptr<Core::ITimeDependentInput>> Create(
                 const std::vector<std::reference_wrapper<TimeDependentInputFactoryData>>& timeStepDataItems);
     };
 }

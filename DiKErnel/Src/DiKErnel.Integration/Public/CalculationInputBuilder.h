@@ -27,6 +27,7 @@
 #include "NaturalStoneRevetmentLocationConstructionProperties.h"
 #include "ProfileFactoryPointData.h"
 #include "ProfileFactorySegmentData.h"
+#include "TimeDependentInputFactoryData.h"
 
 namespace DiKErnel::Integration
 {
@@ -129,15 +130,17 @@ namespace DiKErnel::Integration
              * \exception CalculationInputBuildException
              *            Thrown when calculation input cannot be created.
              */
-            std::unique_ptr<Core::ICalculationInput> Build();
+            [[nodiscard]]
+            std::unique_ptr<Core::ICalculationInput> Build() const;
 
         private:
             std::vector<std::unique_ptr<ProfileFactorySegmentData>> _profileSegmentData
                     = std::vector<std::unique_ptr<ProfileFactorySegmentData>>();
             std::vector<std::unique_ptr<ProfileFactoryPointData>> _profilePointData
                     = std::vector<std::unique_ptr<ProfileFactoryPointData>>();
-            std::vector<std::unique_ptr<Core::ITimeDependentInput>> _timeDependentInputItems
-                    = std::vector<std::unique_ptr<Core::ITimeDependentInput>>();
+
+            std::vector<std::unique_ptr<TimeDependentInputFactoryData>> _timeStepDataItems
+                    = std::vector<std::unique_ptr<TimeDependentInputFactoryData>>();
 
             std::vector<std::unique_ptr<RevetmentLocationConstructionPropertiesBase>> _locationConstructionPropertiesItems
                     = std::vector<std::unique_ptr<RevetmentLocationConstructionPropertiesBase>>();

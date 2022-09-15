@@ -33,29 +33,6 @@ namespace DiKErnel::System::Test
     using namespace Util::TestUtil;
     using namespace Util;
 
-    TEST(ValidationSystemTest, GivenCalculationInputWithoutTimeStepsAndLocations_WhenValidating_ThenReturnsExpectedValidationResult)
-    {
-        // Given
-        CalculationInputBuilder builder;
-        builder.AddDikeProfilePointData(10, CharacteristicPointType::OuterToe);
-        builder.AddDikeProfilePointData(20, CharacteristicPointType::OuterCrest);
-        builder.AddDikeProfileSegment(10, 5, 20, 10, nullptr);
-        builder.AddGrassWaveImpactLocation(
-            make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(15, GrassRevetmentTopLayerType::ClosedSod));
-
-        const auto calculationInput = builder.Build();
-
-        // When
-        const auto validationResult = Validator::Validate(*calculationInput);
-
-        // Then
-        ASSERT_TRUE(validationResult->GetSuccessful());
-        ASSERT_EQ(ValidationResultType::Failed, *validationResult->GetData());
-        const auto& events = validationResult->GetEvents();
-        ASSERT_EQ(1, events.size());
-        EventAssertHelper::AssertEvent(EventType::Error, "At least 1 time step must be defined.", events.at(0));
-    }
-
     TEST(ValidationSystemTest, GivenCalculationInputWithInvalidTimeStep_WhenValidating_ThenReturnsExpectedValidationResult)
     {
         // Given

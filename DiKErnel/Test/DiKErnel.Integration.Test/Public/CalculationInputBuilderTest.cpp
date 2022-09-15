@@ -49,53 +49,6 @@ namespace DiKErnel::Integration::Test
 
     struct CalculationInputBuilderTest : Test
     {
-        static void CreateBuilderAndBuildWithoutLocationsAdded()
-        {
-            CalculationInputBuilder builder;
-            builder.Build();
-        }
-
-        static void CreateBuilderAndAddAsphaltRevetmentWaveImpactLocationWithInvalidTopLayerType()
-        {
-            constexpr auto topLayerType = static_cast<AsphaltRevetmentTopLayerType>(99);
-            auto constructionProperties = make_unique<AsphaltRevetmentWaveImpactLocationConstructionProperties>(
-                0.1, topLayerType, 0.2, 0.3, 0.4, 0.5);
-
-            CalculationInputBuilder builder;
-            builder.AddAsphaltWaveImpactLocation(move(constructionProperties));
-            builder.Build();
-        }
-
-        static void CreateBuilderAndAddGrassRevetmentWaveImpactLocationWithInvalidTopLayerType()
-        {
-            constexpr auto topLayerType = static_cast<GrassRevetmentTopLayerType>(99);
-            auto constructionProperties = make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(0.1, topLayerType);
-
-            CalculationInputBuilder builder;
-            builder.AddGrassWaveImpactLocation(move(constructionProperties));
-            builder.Build();
-        }
-
-        static void CreateBuilderAndAddGrassRevetmentWaveRunupRayleighLocationWithInvalidTopLayerType()
-        {
-            constexpr auto topLayerType = static_cast<GrassRevetmentTopLayerType>(99);
-            auto constructionProperties = make_unique<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(0.1, 0.2, topLayerType);
-
-            CalculationInputBuilder builder;
-            builder.AddGrassWaveRunupRayleighLocation(move(constructionProperties));
-            builder.Build();
-        }
-
-        static void CreateBuilderAndAddNaturalStoneRevetmentLocationWithInvalidTopLayerType()
-        {
-            constexpr auto topLayerType = static_cast<NaturalStoneRevetmentTopLayerType>(99);
-            auto constructionProperties = make_unique<NaturalStoneRevetmentLocationConstructionProperties>(0.1, topLayerType, 0.2, 0.3);
-
-            CalculationInputBuilder builder;
-            builder.AddNaturalStoneLocation(move(constructionProperties));
-            builder.Build();
-        }
-
         static void CreateBuilderAndSegmentUnchainedOnXCoordinate()
         {
             constexpr auto startPointX = 10;
@@ -106,7 +59,7 @@ namespace DiKErnel::Integration::Test
             CalculationInputBuilder builder;
             builder.AddDikeProfileSegment(startPointX, startPointZ, endPointX, endPointZ, nullptr);
             builder.AddDikeProfileSegment(endPointX + 0.01, startPointZ, endPointX, endPointZ, nullptr);
-            builder.Build();
+            const auto& calculationInput = builder.Build();
         }
 
         static void CreateBuilderAndSegmentUnchainedOnZCoordinate()
@@ -119,7 +72,7 @@ namespace DiKErnel::Integration::Test
             CalculationInputBuilder builder;
             builder.AddDikeProfileSegment(startPointX, startPointZ, endPointX, endPointZ, nullptr);
             builder.AddDikeProfileSegment(endPointX, startPointZ + 0.01, endPointX, endPointZ, nullptr);
-            builder.Build();
+            const auto& calculationInput = builder.Build();
         }
 
         static void CreateBuilderAndCharacteristicPointNotOnSegmentPoint()
@@ -132,19 +85,75 @@ namespace DiKErnel::Integration::Test
             CalculationInputBuilder builder;
             builder.AddDikeProfilePointData(startPointX - 0.01, characteristicPointType);
             builder.AddDikeProfileSegment(0, 10, endPointX, endPointZ, nullptr);
-            builder.Build();
+            const auto& calculationInput = builder.Build();
+        }
+
+        static void CreateBuilderAndBuildWithoutTimeStepAdded()
+        {
+            CalculationInputBuilder builder;
+            builder.AddGrassWaveImpactLocation(
+                make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(0, GrassRevetmentTopLayerType::ClosedSod));
+            const auto& calculationInput = builder.Build();
+        }
+
+        static void CreateBuilderAndBuildWithInvalidTimeStepsAdded()
+        {
+            CalculationInputBuilder builder;
+            builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
+            builder.AddTimeStep(3, 4, 0.3, 0.4, 0.5, 0.6);
+            builder.AddGrassWaveImpactLocation(
+                make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(0, GrassRevetmentTopLayerType::ClosedSod));
+            const auto& calculationInput = builder.Build();
+        }
+
+        static void CreateBuilderAndBuildWithoutLocationAdded()
+        {
+            CalculationInputBuilder builder;
+            builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
+            const auto& calculationInput = builder.Build();
+        }
+
+        static void CreateBuilderAndAddAsphaltRevetmentWaveImpactLocationWithInvalidTopLayerType()
+        {
+            constexpr auto topLayerType = static_cast<AsphaltRevetmentTopLayerType>(99);
+            auto constructionProperties = make_unique<AsphaltRevetmentWaveImpactLocationConstructionProperties>(
+                0.1, topLayerType, 0.2, 0.3, 0.4, 0.5);
+
+            CalculationInputBuilder builder;
+            builder.AddAsphaltWaveImpactLocation(move(constructionProperties));
+            const auto& calculationInput = builder.Build();
+        }
+
+        static void CreateBuilderAndAddGrassRevetmentWaveImpactLocationWithInvalidTopLayerType()
+        {
+            constexpr auto topLayerType = static_cast<GrassRevetmentTopLayerType>(99);
+            auto constructionProperties = make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(0.1, topLayerType);
+
+            CalculationInputBuilder builder;
+            builder.AddGrassWaveImpactLocation(move(constructionProperties));
+            const auto& calculationInput = builder.Build();
+        }
+
+        static void CreateBuilderAndAddGrassRevetmentWaveRunupRayleighLocationWithInvalidTopLayerType()
+        {
+            constexpr auto topLayerType = static_cast<GrassRevetmentTopLayerType>(99);
+            auto constructionProperties = make_unique<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(0.1, 0.2, topLayerType);
+
+            CalculationInputBuilder builder;
+            builder.AddGrassWaveRunupRayleighLocation(move(constructionProperties));
+            const auto& calculationInput = builder.Build();
+        }
+
+        static void CreateBuilderAndAddNaturalStoneRevetmentLocationWithInvalidTopLayerType()
+        {
+            constexpr auto topLayerType = static_cast<NaturalStoneRevetmentTopLayerType>(99);
+            auto constructionProperties = make_unique<NaturalStoneRevetmentLocationConstructionProperties>(0.1, topLayerType, 0.2, 0.3);
+
+            CalculationInputBuilder builder;
+            builder.AddNaturalStoneLocation(move(constructionProperties));
+            const auto& calculationInput = builder.Build();
         }
     };
-
-    TEST_F(CalculationInputBuilderTest, GivenBuilderWithoutLocationAdded_WhenBuild_ThenThrowsCalculationInputBuilderException)
-    {
-        // Given & When
-        const auto action = &CalculationInputBuilderTest::CreateBuilderAndBuildWithoutLocationsAdded;
-
-        // Then
-        AssertHelper::AssertThrowsWithMessageAndInnerException<CalculationInputBuildException, InputFactoryException>(
-            action, "Could not create calculation input.", "At least 1 location is required.");
-    }
 
     #pragma region Profile segments
 
@@ -158,6 +167,7 @@ namespace DiKErnel::Integration::Test
         constexpr auto endPointZ = 30;
 
         CalculationInputBuilder builder;
+        builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
         builder.AddDikeProfileSegment(startPointX, startPointZ, endPointX, endPointZ, nullptr);
         builder.AddGrassWaveImpactLocation(
             make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(0, GrassRevetmentTopLayerType::ClosedSod));
@@ -187,6 +197,7 @@ namespace DiKErnel::Integration::Test
         constexpr auto roughnessCoefficient = 13.37;
 
         CalculationInputBuilder builder;
+        builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
         builder.AddDikeProfileSegment(startPointX, startPointZ, endPointX, endPointZ, &roughnessCoefficient);
         builder.AddGrassWaveImpactLocation(
             make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(0, GrassRevetmentTopLayerType::ClosedSod));
@@ -218,6 +229,7 @@ namespace DiKErnel::Integration::Test
         constexpr auto roughnessCoefficient = 13.37;
 
         CalculationInputBuilder builder;
+        builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
         builder.AddDikeProfileSegment(startPointXSegmentOne, startPointZSegmentOne, endPointXSegmentOne, endPointZSegmentOne,
                                       &roughnessCoefficient);
         builder.AddDikeProfileSegment(endPointXSegmentOne, endPointZSegmentOne, endPointXSegmentTwo, endPointZSegmentTwo,
@@ -281,6 +293,7 @@ namespace DiKErnel::Integration::Test
         constexpr auto characteristicPointType = CharacteristicPointType::NotchOuterBerm;
 
         CalculationInputBuilder builder;
+        builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
         builder.AddDikeProfilePointData(x, characteristicPointType);
         builder.AddDikeProfileSegment(x, z, 20, 30, nullptr);
         builder.AddGrassWaveImpactLocation(
@@ -310,6 +323,7 @@ namespace DiKErnel::Integration::Test
         constexpr auto characteristicPointType = CharacteristicPointType::NotchOuterBerm;
 
         CalculationInputBuilder builder;
+        builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
         builder.AddDikeProfilePointData(x, characteristicPointType);
         builder.AddDikeProfileSegment(0, 10, x, z, nullptr);
         builder.AddGrassWaveImpactLocation(
@@ -345,15 +359,36 @@ namespace DiKErnel::Integration::Test
 
     #pragma region Time step
 
+    TEST_F(CalculationInputBuilderTest, GivenBuilderWithoutTimeStepAdded_WhenBuild_ThenThrowsCalculationInputBuilderException)
+    {
+        // Given & When
+        const auto action = &CalculationInputBuilderTest::CreateBuilderAndBuildWithoutTimeStepAdded;
+
+        // Then
+        AssertHelper::AssertThrowsWithMessageAndInnerException<CalculationInputBuildException, InputFactoryException>(
+            action, "Could not create calculation input.", "At least 1 time step is required.");
+    }
+
+    TEST_F(CalculationInputBuilderTest, GivenBuilderWithInvalidTimeStepsAdded_WhenBuild_ThenThrowsCalculationInputBuilderException)
+    {
+        // Given & When
+        const auto action = &CalculationInputBuilderTest::CreateBuilderAndBuildWithInvalidTimeStepsAdded;
+
+        // Then
+        AssertHelper::AssertThrowsWithMessageAndInnerException<CalculationInputBuildException, InputFactoryException>(
+            action, "Could not create calculation input.",
+            "The begin time of a successive element must equal the end time of the previous element.");
+    }
+
     TEST_F(CalculationInputBuilderTest, GivenBuilderWithTimeStepAdded_WhenBuild_ThenReturnsCalculationInput)
     {
         // Given
-        const auto beginTime = rand() % 100;
-        const auto endTime = rand() % 100 + 100;
-        constexpr auto waterLevel = 0.1;
-        constexpr auto waveHeightHm0 = 0.2;
-        constexpr auto wavePeriodTm10 = 0.3;
-        constexpr auto waveAngle = 0.4;
+        constexpr auto beginTime = 1;
+        constexpr auto endTime = 2;
+        constexpr auto waterLevel = 0.3;
+        constexpr auto waveHeightHm0 = 0.4;
+        constexpr auto wavePeriodTm10 = 0.5;
+        constexpr auto waveAngle = 0.6;
 
         CalculationInputBuilder builder;
         builder.AddTimeStep(beginTime, endTime, waterLevel, waveHeightHm0, wavePeriodTm10, waveAngle);
@@ -373,6 +408,18 @@ namespace DiKErnel::Integration::Test
     }
 
     #pragma endregion
+
+    #pragma region Locations
+
+    TEST_F(CalculationInputBuilderTest, GivenBuilderWithoutLocationAdded_WhenBuild_ThenThrowsCalculationInputBuilderException)
+    {
+        // Given & When
+        const auto action = &CalculationInputBuilderTest::CreateBuilderAndBuildWithoutLocationAdded;
+
+        // Then
+        AssertHelper::AssertThrowsWithMessageAndInnerException<CalculationInputBuildException, InputFactoryException>(
+            action, "Could not create calculation input.", "At least 1 location is required.");
+    }
 
     #pragma region Asphalt wave impact
 
@@ -438,14 +485,13 @@ namespace DiKErnel::Integration::Test
         constructionProperties->SetImpactFactors(make_unique<vector<pair<double, double>>>(impactFactors));
 
         CalculationInputBuilder builder;
+        builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
         builder.AddAsphaltWaveImpactLocation(move(constructionProperties));
 
         // When
         const auto& calculationInput = builder.Build();
 
         // Then
-        ASSERT_EQ(0, calculationInput->GetTimeDependentInputItems().size());
-
         const auto& actualLocationDependentInputItems = calculationInput->GetLocationDependentInputItems();
         ASSERT_EQ(1, actualLocationDependentInputItems.size());
 
@@ -486,14 +532,13 @@ namespace DiKErnel::Integration::Test
             x, topLayerType, failureTension, soilElasticity, thicknessUpperLayer, elasticModulusUpperLayer);
 
         CalculationInputBuilder builder;
+        builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
         builder.AddAsphaltWaveImpactLocation(move(constructionProperties));
 
         // When
         const auto& calculationInput = builder.Build();
 
         // Then
-        ASSERT_EQ(0, calculationInput->GetTimeDependentInputItems().size());
-
         const auto& actualLocationDependentInputItems = calculationInput->GetLocationDependentInputItems();
         ASSERT_EQ(1, actualLocationDependentInputItems.size());
 
@@ -615,14 +660,13 @@ namespace DiKErnel::Integration::Test
         constructionProperties->SetLowerLimitLoadingAll(make_unique<double>(lowerLimitLoadingAll));
 
         CalculationInputBuilder builder;
+        builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
         builder.AddGrassWaveImpactLocation(move(constructionProperties));
 
         // When
         const auto& calculationInput = builder.Build();
 
         // Then
-        ASSERT_EQ(0, calculationInput->GetTimeDependentInputItems().size());
-
         const auto& actualLocationDependentInputItems = calculationInput->GetLocationDependentInputItems();
         ASSERT_EQ(1, actualLocationDependentInputItems.size());
 
@@ -664,14 +708,13 @@ namespace DiKErnel::Integration::Test
         auto constructionProperties = make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(x, topLayerType);
 
         CalculationInputBuilder builder;
+        builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
         builder.AddGrassWaveImpactLocation(move(constructionProperties));
 
         // When
         const auto& calculationInput = builder.Build();
 
         // Then
-        ASSERT_EQ(0, calculationInput->GetTimeDependentInputItems().size());
-
         const auto& actualLocationDependentInputItems = calculationInput->GetLocationDependentInputItems();
         ASSERT_EQ(1, actualLocationDependentInputItems.size());
 
@@ -713,14 +756,13 @@ namespace DiKErnel::Integration::Test
         auto constructionProperties = make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(x, topLayerType);
 
         CalculationInputBuilder builder;
+        builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
         builder.AddGrassWaveImpactLocation(move(constructionProperties));
 
         // When
         const auto& calculationInput = builder.Build();
 
         // Then
-        ASSERT_EQ(0, calculationInput->GetTimeDependentInputItems().size());
-
         const auto& actualLocationDependentInputItems = calculationInput->GetLocationDependentInputItems();
         ASSERT_EQ(1, actualLocationDependentInputItems.size());
 
@@ -811,14 +853,13 @@ namespace DiKErnel::Integration::Test
         constructionProperties->SetFrontVelocityCu(make_unique<double>(frontVelocityCu));
 
         CalculationInputBuilder builder;
+        builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
         builder.AddGrassWaveRunupRayleighLocation(move(constructionProperties));
 
         // When
         const auto& calculationInput = builder.Build();
 
         // Then
-        ASSERT_EQ(0, calculationInput->GetTimeDependentInputItems().size());
-
         const auto& actualLocationDependentInputItems = calculationInput->GetLocationDependentInputItems();
         ASSERT_EQ(1, actualLocationDependentInputItems.size());
 
@@ -862,14 +903,13 @@ namespace DiKErnel::Integration::Test
         auto constructionProperties = make_unique<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(x, outerSlope, topLayerType);
 
         CalculationInputBuilder builder;
+        builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
         builder.AddGrassWaveRunupRayleighLocation(move(constructionProperties));
 
         // When
         const auto& calculationInput = builder.Build();
 
         // Then
-        ASSERT_EQ(0, calculationInput->GetTimeDependentInputItems().size());
-
         const auto& actualLocationDependentInputItems = calculationInput->GetLocationDependentInputItems();
         ASSERT_EQ(1, actualLocationDependentInputItems.size());
 
@@ -912,14 +952,13 @@ namespace DiKErnel::Integration::Test
         auto constructionProperties = make_unique<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(x, outerSlope, topLayerType);
 
         CalculationInputBuilder builder;
+        builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
         builder.AddGrassWaveRunupRayleighLocation(move(constructionProperties));
 
         // When
         const auto& calculationInput = builder.Build();
 
         // Then
-        ASSERT_EQ(0, calculationInput->GetTimeDependentInputItems().size());
-
         const auto& actualLocationDependentInputItems = calculationInput->GetLocationDependentInputItems();
         ASSERT_EQ(1, actualLocationDependentInputItems.size());
 
@@ -1026,14 +1065,13 @@ namespace DiKErnel::Integration::Test
         naturalStoneConstructionProperties->SetWaveAngleImpactBetamax(make_unique<double>(waveAngleImpactBetamax));
 
         CalculationInputBuilder builder;
+        builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
         builder.AddNaturalStoneLocation(move(naturalStoneConstructionProperties));
 
         // When
         const auto& calculationInput = builder.Build();
 
         // Then
-        ASSERT_EQ(0, calculationInput->GetTimeDependentInputItems().size());
-
         const auto& actualLocationDependentInputItems = calculationInput->GetLocationDependentInputItems();
         ASSERT_EQ(1, actualLocationDependentInputItems.size());
 
@@ -1083,14 +1121,13 @@ namespace DiKErnel::Integration::Test
             x, topLayerType, thicknessTopLayer, relativeDensity);
 
         CalculationInputBuilder builder;
+        builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
         builder.AddNaturalStoneLocation(move(naturalStoneConstructionProperties));
 
         // When
         const auto& calculationInput = builder.Build();
 
         // Then
-        ASSERT_EQ(0, calculationInput->GetTimeDependentInputItems().size());
-
         const auto& actualLocationDependentInputItems = calculationInput->GetLocationDependentInputItems();
         ASSERT_EQ(1, actualLocationDependentInputItems.size());
 
@@ -1117,6 +1154,8 @@ namespace DiKErnel::Integration::Test
         NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertWaveAngleImpact(
             78, locationDependentInput->GetWaveAngleImpact());
     }
+
+    #pragma endregion
 
     #pragma endregion
 }
