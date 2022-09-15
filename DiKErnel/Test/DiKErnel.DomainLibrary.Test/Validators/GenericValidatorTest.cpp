@@ -73,19 +73,4 @@ namespace DiKErnel::DomainLibrary::Test
         // Assert
         ASSERT_EQ(nullptr, validationIssue);
     }
-
-    TEST(GenericValidatorTest, NumberOfLocations_VariousScenarios_ExpectedValues)
-    {
-        const auto validateAction = GenericValidator::NumberOfLocations;
-
-        constexpr auto errorMessage = "At least 1 location must be defined.";
-
-        ValidatorAssertHelper::AssertValue(validateAction, ValidatorAssertHelper::INTEGER_MIN, ValidationIssueType::Error, errorMessage);
-
-        ValidatorAssertHelper::AssertValue(validateAction, -1, ValidationIssueType::Error, errorMessage);
-        ValidatorAssertHelper::AssertValue(validateAction, 0, ValidationIssueType::Error, errorMessage);
-        ValidatorAssertHelper::AssertValue(validateAction, 1);
-
-        ValidatorAssertHelper::AssertValue(validateAction, ValidatorAssertHelper::INTEGER_MAX);
-    }
 }

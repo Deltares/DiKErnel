@@ -50,15 +50,4 @@ namespace DiKErnel::DomainLibrary
 
         return nullptr;
     }
-
-    unique_ptr<ValidationIssue> GenericValidator::NumberOfLocations(
-        const int numberOfLocations)
-    {
-        if (numberOfLocations <= 0)
-        {
-            return make_unique<ValidationIssue>(ValidationIssueType::Error, "At least 1 location must be defined.");
-        }
-
-        return nullptr;
-    }
 }

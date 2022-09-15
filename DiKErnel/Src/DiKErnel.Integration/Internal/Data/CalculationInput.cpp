@@ -60,7 +60,6 @@ namespace DiKErnel::Integration
 
         vector<unique_ptr<ValidationIssue>> validationIssues;
         validationIssues.emplace_back(GenericValidator::TimeSteps(timeSteps));
-        validationIssues.emplace_back(GenericValidator::NumberOfLocations(static_cast<int>(_locationDependentInputItems.size())));
 
         return ValidationHelper::RegisterValidationIssues(validationIssues);
     }

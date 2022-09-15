@@ -42,16 +42,5 @@ namespace DiKErnel::DomainLibrary
              */
             static std::unique_ptr<Util::ValidationIssue> TimeSteps(
                 const std::vector<std::pair<int, int>>& timeSteps);
-
-            /*!
-             * \brief Validates whether the number of locations is valid.
-             * \param numberOfLocations
-             *        The number of locations.
-             *        Unit = [-]
-             * \return A validation issue when the number of locations is not valid; nullptr
-             *         otherwise.
-             */
-            static std::unique_ptr<Util::ValidationIssue> NumberOfLocations(
-                int numberOfLocations);
     };
 }
