@@ -54,7 +54,6 @@ namespace DiKErnel::Core::Test
         timeDependentInputItemReferences.emplace_back(timeDependentInput);
 
         const NiceMock<ICalculationInputMock> calculationInput;
-        ON_CALL(calculationInput, Validate).WillByDefault(Return(true));
         ON_CALL(calculationInput, GetProfileData).WillByDefault(ReturnRef(profileData));
         ON_CALL(calculationInput, GetLocationDependentInputItems).WillByDefault(ReturnRef(locationDependentInputItemReferences));
         ON_CALL(calculationInput, GetTimeDependentInputItems).WillByDefault(ReturnRef(timeDependentInputItemReferences));
@@ -87,7 +86,6 @@ namespace DiKErnel::Core::Test
         timeDependentInputItemReferences.emplace_back(timeDependentInput);
 
         const NiceMock<ICalculationInputMock> calculationInput;
-        ON_CALL(calculationInput, Validate).WillByDefault(Return(false));
         ON_CALL(calculationInput, GetProfileData).WillByDefault(ReturnRef(profileData));
         ON_CALL(calculationInput, GetLocationDependentInputItems).WillByDefault(ReturnRef(locationDependentInputItemReferences));
         ON_CALL(calculationInput, GetTimeDependentInputItems).WillByDefault(ReturnRef(timeDependentInputItemReferences));
@@ -120,7 +118,6 @@ namespace DiKErnel::Core::Test
         timeDependentInputItemReferences.emplace_back(timeDependentInput);
 
         const NiceMock<ICalculationInputMock> calculationInput;
-        ON_CALL(calculationInput, Validate).WillByDefault(Return(true));
         ON_CALL(calculationInput, GetProfileData).WillByDefault(ReturnRef(profileData));
         ON_CALL(calculationInput, GetLocationDependentInputItems).WillByDefault(ReturnRef(locationDependentInputItemReferences));
         ON_CALL(calculationInput, GetTimeDependentInputItems).WillByDefault(ReturnRef(timeDependentInputItemReferences));
@@ -153,7 +150,6 @@ namespace DiKErnel::Core::Test
         timeDependentInputItemReferences.emplace_back(timeDependentInput);
 
         const NiceMock<ICalculationInputMock> calculationInput;
-        ON_CALL(calculationInput, Validate).WillByDefault(Return(true));
         ON_CALL(calculationInput, GetProfileData).WillByDefault(ReturnRef(profileData));
         ON_CALL(calculationInput, GetLocationDependentInputItems).WillByDefault(ReturnRef(locationDependentInputItemReferences));
         ON_CALL(calculationInput, GetTimeDependentInputItems).WillByDefault(ReturnRef(timeDependentInputItemReferences));
@@ -186,7 +182,6 @@ namespace DiKErnel::Core::Test
         timeDependentInputItemReferences.emplace_back(timeDependentInput);
 
         const NiceMock<ICalculationInputMock> calculationInput;
-        ON_CALL(calculationInput, Validate).WillByDefault(Return(true));
         ON_CALL(calculationInput, GetProfileData).WillByDefault(ReturnRef(profileData));
         ON_CALL(calculationInput, GetLocationDependentInputItems).WillByDefault(ReturnRef(locationDependentInputItemReferences));
         ON_CALL(calculationInput, GetTimeDependentInputItems).WillByDefault(ReturnRef(timeDependentInputItemReferences));
@@ -221,7 +216,6 @@ namespace DiKErnel::Core::Test
         timeDependentInputItemReferences.emplace_back(timeDependentInput);
 
         const NiceMock<ICalculationInputMock> calculationInput;
-        ON_CALL(calculationInput, Validate).WillByDefault(Return(true));
         ON_CALL(calculationInput, GetProfileData).WillByDefault(ReturnRef(profileData));
         ON_CALL(calculationInput, GetLocationDependentInputItems).WillByDefault(ReturnRef(locationDependentInputItemReferences));
         ON_CALL(calculationInput, GetTimeDependentInputItems).WillByDefault(ReturnRef(timeDependentInputItemReferences));

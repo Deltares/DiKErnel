@@ -20,13 +20,11 @@
 
 #include "CalculationInput.h"
 
-#include "GenericValidator.h"
 #include "ValidationHelper.h"
 
 namespace DiKErnel::Integration
 {
     using namespace Core;
-    using namespace DomainLibrary;
     using namespace std;
     using namespace Util;
 
@@ -47,21 +45,6 @@ namespace DiKErnel::Integration
         {
             _locationDependentInputItemReferences.emplace_back(*locationDependentInput);
         }
-    }
-
-    bool CalculationInput::Validate() const
-    {
-        auto timeSteps = vector<pair<int, int>>();
-
-        for (const auto& timeDependentInputItem : _timeDependentInputItems)
-        {
-            timeSteps.emplace_back(pair(timeDependentInputItem->GetBeginTime(), timeDependentInputItem->GetEndTime()));
-        }
-
-        vector<unique_ptr<ValidationIssue>> validationIssues;
-        validationIssues.emplace_back(GenericValidator::TimeSteps(timeSteps));
-
-        return ValidationHelper::RegisterValidationIssues(validationIssues);
     }
 
     const IProfileData& CalculationInput::GetProfileData() const

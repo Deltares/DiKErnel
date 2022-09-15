@@ -34,11 +34,6 @@ namespace DiKErnel::Core
 
         try
         {
-            if (!calculationInput.Validate())
-            {
-                validationResult = ValidationResultType::Failed;
-            }
-
             for (const auto& timeDependentInputItem : calculationInput.GetTimeDependentInputItems())
             {
                 if (!timeDependentInputItem.get().Validate())

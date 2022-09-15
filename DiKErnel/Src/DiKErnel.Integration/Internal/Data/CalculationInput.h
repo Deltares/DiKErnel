@@ -36,9 +36,6 @@ namespace DiKErnel::Integration
                 std::vector<std::unique_ptr<Core::ITimeDependentInput>> timeDependentInputItems);
 
             [[nodiscard]]
-            bool Validate() const override;
-
-            [[nodiscard]]
             const Core::IProfileData& GetProfileData() const override;
 
             [[nodiscard]]
