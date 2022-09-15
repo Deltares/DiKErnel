@@ -33,15 +33,23 @@ source_group(${PUBLIC_DATA_FOLDER} FILES ${SOURCEFILES_PUBLIC_DATA})
 target_include_directories(${LIBNAME} PUBLIC
   ${CMAKE_CURRENT_SOURCE_DIR}/${PUBLIC_FOLDER}
   ${CMAKE_CURRENT_SOURCE_DIR}/${PUBLIC_DATA_FOLDER}
+  ${CMAKE_SOURCE_DIR}/../External/
 )
 
-add_custom_command(TARGET ${LIBNAME} PRE_BUILD
-  COMMAND ${CMAKE_COMMAND} -E copy_directory
-  ${CMAKE_SOURCE_DIR}/../External/
-  ${CMAKE_CURRENT_BINARY_DIR}/External/
-)
+# Add dll overtopping
+add_library(dllDikesOvertopping SHARED IMPORTED)
+set_target_properties(dllDikesOvertopping PROPERTIES 
+  IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/../External/dllDikesOvertopping.dll
+  IMPORTED_IMPLIB ${CMAKE_SOURCE_DIR}/../External/dllDikesOvertopping.lib)
+
+add_library(feedbackDLL SHARED IMPORTED)
+set_target_properties(feedbackDLL PROPERTIES 
+  IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/../External/feedbackDLL.dll
+  IMPORTED_IMPLIB ${CMAKE_SOURCE_DIR}/../External/dllDikesOvertopping.lib)
+
+add_library(dllDikesOvertoppingModule INTERFACE IMPORTED)
+target_link_libraries(dllDikesOvertoppingModule INTERFACE dllDikesOvertopping feedbackDLL)
 
 # Link dependencies
 target_link_libraries(${LIBNAME}
-   ${CMAKE_CURRENT_BINARY_DIR}/External/dllDikesOvertopping.lib
-)
+  dllDikesOvertoppingModule)
