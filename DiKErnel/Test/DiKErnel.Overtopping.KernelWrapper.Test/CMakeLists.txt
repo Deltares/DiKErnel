@@ -4,7 +4,7 @@ set(EXENAME DiKErnel.External.Overtopping.Test)
 # Define sources
 set(SOURCEFILES
   Main.cpp
-  OvertoppingWrapperTest.cpp
+  OvertoppingAdapterTest.cpp
 )
 
 # Add executable

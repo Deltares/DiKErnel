@@ -23,11 +23,11 @@
 #include "Geometry.h"
 #include "Input.h"
 #include "Load.h"
-#include "OvertoppingWrapper.h"
+#include "OvertoppingAdapter.h"
 
-namespace DiKErnel::Overtopping::KernelWrapper::Test
+namespace DiKErnel::External::Overtopping::Test
 {
-    TEST(OvertoppingWrapperTest, DISABLED_TestOvertoppingValidation)
+    TEST(OvertoppingAdapterTest, DISABLED_TestOvertoppingValidation)
     {
         const double dikeHeight = 9.1;
         double xCoordinates[] = {
@@ -70,12 +70,12 @@ namespace DiKErnel::Overtopping::KernelWrapper::Test
             0.5
         };
 
-        const auto success = OvertoppingWrapper::Validate(geometry, input, dikeHeight);
+        const auto success = OvertoppingAdapter::Validate(geometry, input, dikeHeight);
 
         ASSERT_FALSE(success);
     }
 
-    TEST(OverToppingWrapperTest, DISABLED_TestOvertoppingValidationMultiple)
+    TEST(OvertoppingAdapterTest, DISABLED_TestOvertoppingValidationMultiple)
     {
         const double dikeHeight = 9.1;
         Input input
@@ -119,12 +119,12 @@ namespace DiKErnel::Overtopping::KernelWrapper::Test
             roughnessCoefficients
         };
 
-        const auto success = OvertoppingWrapper::Validate(geometry, input, dikeHeight);
+        const auto success = OvertoppingAdapter::Validate(geometry, input, dikeHeight);
 
         ASSERT_FALSE(success);
     }
 
-    TEST(OverToppingWrapperTest, DISABLED_TestOvertopping)
+    TEST(OvertoppingAdapterTest, DISABLED_TestOvertopping)
     {
         const double dikeHeight = 9.1;
         const double dikeNormal = 60.0;
@@ -175,7 +175,7 @@ namespace DiKErnel::Overtopping::KernelWrapper::Test
             50
         };
 
-        const auto z2 = OvertoppingWrapper::Calculate2P(loads, geometry, input, dikeHeight);
+        const auto z2 = OvertoppingAdapter::Calculate2P(loads, geometry, input, dikeHeight);
         ASSERT_EQ(1, z2);
     }
 }

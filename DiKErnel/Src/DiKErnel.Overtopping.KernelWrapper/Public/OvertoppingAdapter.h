@@ -20,13 +20,13 @@
 
 #pragma once
 
-namespace DiKErnel::Overtopping::KernelWrapper
+namespace DiKErnel::External::Overtopping
 {
     struct Input;
     struct Geometry;
     struct Load;
 
-    class OvertoppingWrapper
+    class OvertoppingAdapter
     {
         public:
             static bool Validate(

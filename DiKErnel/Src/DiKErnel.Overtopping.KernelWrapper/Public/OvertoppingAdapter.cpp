@@ -18,7 +18,7 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include "OvertoppingWrapper.h"
+#include "OvertoppingAdapter.h"
 
 #include <cstdlib>
 #include <memory>
@@ -26,8 +26,9 @@
 #include "Geometry.h"
 #include "Load.h"
 #include "Result.h"
+#include "Input.h"
 
-using namespace DiKErnel::Overtopping::KernelWrapper;
+using namespace DiKErnel::External::Overtopping;
 
 extern "C" __declspec(dllimport) void ValidateInputC(
     Geometry* geometryInput,
@@ -50,7 +51,7 @@ extern "C" __declspec(dllimport) void calculateQo(
     int messageSize,
     int logFileSize);
 
-namespace DiKErnel::Overtopping::KernelWrapper
+namespace DiKErnel::External::Overtopping
 {
     using namespace std;
 
@@ -58,7 +59,7 @@ namespace DiKErnel::Overtopping::KernelWrapper
     constexpr int MESSAGE_SIZE = 255;
     constexpr int LOG_FILE_NAME_SIZE = 256;
 
-    bool OvertoppingWrapper::Validate(
+    bool OvertoppingAdapter::Validate(
         Geometry& geometry,
         Input& input,
         double dikeHeight)
@@ -73,7 +74,7 @@ namespace DiKErnel::Overtopping::KernelWrapper
         return success;
     }
 
-    double OvertoppingWrapper::Calculate2P(
+    double OvertoppingAdapter::Calculate2P(
         Load& load,
         Geometry& geometry,
         Input& input,

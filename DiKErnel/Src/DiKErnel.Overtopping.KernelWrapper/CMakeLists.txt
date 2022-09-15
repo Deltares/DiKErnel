@@ -7,8 +7,8 @@ set(PUBLIC_DATA_FOLDER ${PUBLIC_FOLDER}/Data)
 
 # Define sources
 set(SOURCEFILES_PUBLIC
-  ${PUBLIC_FOLDER}/OvertoppingWrapper.cpp
-  ${PUBLIC_FOLDER}/OvertoppingWrapper.h
+  ${PUBLIC_FOLDER}/OvertoppingAdapter.cpp
+  ${PUBLIC_FOLDER}/OvertoppingAdapter.h
 )
 
 set(SOURCEFILES_PUBLIC_DATA
