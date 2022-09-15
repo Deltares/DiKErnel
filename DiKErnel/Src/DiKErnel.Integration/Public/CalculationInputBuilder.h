@@ -95,8 +95,6 @@ namespace DiKErnel::Integration
              * \brief Adds an asphalt wave impact location.
              * \param constructionProperties
              *        The properties to construct the asphalt wave impact location dependent input.
-             * \exception LocationDependentInputFactoryException
-             *            Thrown when the top layer type is invalid.
              */
             void AddAsphaltWaveImpactLocation(
                 std::unique_ptr<AsphaltRevetmentWaveImpactLocationConstructionProperties> constructionProperties);
@@ -105,8 +103,6 @@ namespace DiKErnel::Integration
              * \brief Adds a grass wave impact location.
              * \param constructionProperties
              *        The properties to construct the grass wave impact location dependent input.
-             * \exception LocationDependentInputFactoryException
-             *            Thrown when the top layer type is invalid.
              */
             void AddGrassWaveImpactLocation(
                 std::unique_ptr<GrassRevetmentWaveImpactLocationConstructionProperties> constructionProperties);
@@ -115,8 +111,6 @@ namespace DiKErnel::Integration
              * \brief Adds a grass wave run-up location with Rayleigh protocol.
              * \param constructionProperties
              *        The properties to construct the grass wave run-up Rayleigh location dependent input.
-             * \exception LocationDependentInputFactoryException
-             *            Thrown when the top layer type is invalid.
              */
             void AddGrassWaveRunupRayleighLocation(
                 std::unique_ptr<GrassRevetmentWaveRunupRayleighLocationConstructionProperties> constructionProperties);
@@ -125,8 +119,6 @@ namespace DiKErnel::Integration
              * \brief Adds a natural stone location.
              * \param constructionProperties
              *        The properties to construct the natural stone location dependent input.
-             * \exception LocationDependentInputFactoryException
-             *            Thrown when the top layer type is invalid.
              */
             void AddNaturalStoneLocation(
                 std::unique_ptr<NaturalStoneRevetmentLocationConstructionProperties> constructionProperties);
@@ -134,6 +126,8 @@ namespace DiKErnel::Integration
             /*!
              * \brief Builds the calculation input.
              * \return The created calculation input.
+             * \exception CalculationInputBuildException
+             *            Thrown when calculation input cannot be created.
              */
             std::unique_ptr<Core::ICalculationInput> Build();
 

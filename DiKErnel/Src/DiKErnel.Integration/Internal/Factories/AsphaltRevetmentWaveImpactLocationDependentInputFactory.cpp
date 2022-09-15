@@ -24,7 +24,7 @@
 #include "AsphaltRevetmentWaveImpactDefaultsFactory.h"
 #include "DefaultsFactoryException.h"
 #include "IAsphaltRevetmentWaveImpactTopLayerDefaults.h"
-#include "LocationDependentInputFactoryException.h"
+#include "InputFactoryException.h"
 #include "LocationDependentInputFactoryHelper.h"
 #include "CalculationInputBuilder.h"
 #include "RevetmentDefaults.h"
@@ -47,7 +47,7 @@ namespace DiKErnel::Integration
         }
         catch (const DefaultsFactoryException& e)
         {
-            throw_with_nested(LocationDependentInputFactoryException(e.what()));
+            throw_with_nested(InputFactoryException(e.what()));
         }
 
         const auto elasticModulusUpperLayer = constructionProperties.GetElasticModulusUpperLayer();

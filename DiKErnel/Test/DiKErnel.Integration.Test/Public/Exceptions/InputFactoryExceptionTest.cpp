@@ -18,34 +18,26 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#pragma once
+#include <gtest/gtest.h>
 
-#include <string>
+#include "AssertHelper.h"
+#include "InputFactoryException.h"
 
-namespace DiKErnel::Integration
+namespace DiKErnel::Integration::Test
 {
-    /*!
-     * \brief Exception that can be thrown when there is invalid calculation input.
-     */
-    class LocationDependentInputFactoryException : public std::exception
+    using namespace std;
+    using namespace TestUtil;
+
+    TEST(InputFactoryExceptionTest, Constructor_WithMessage_ExpectedValues)
     {
-        public:
-            /*!
-             * \brief Creates a new instance.
-             * \param message
-             *        The message of the exception.
-             */
-            explicit LocationDependentInputFactoryException(
-                std::string message);
+        // Setup
+        const string message = "Test message";
 
-            /*!
-             * \brief Gets the message of the exception.
-             * \return The message of the exception.
-             */
-            [[nodiscard]]
-            const char* what() const noexcept override;
+        // Call
+        const InputFactoryException actualException(message);
 
-        private:
-            std::string _message;
-    };
+        // Assert
+        AssertHelper::AssertIsInstanceOf<exception>(&actualException);
+        ASSERT_EQ(message, actualException.what());
+    }
 }

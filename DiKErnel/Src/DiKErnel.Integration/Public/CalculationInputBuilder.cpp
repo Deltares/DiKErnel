@@ -27,12 +27,11 @@
 #include "CalculationInputBuildException.h"
 #include "GrassRevetmentWaveImpactLocationDependentInputFactory.h"
 #include "GrassRevetmentWaveRunupRayleighLocationDependentInputFactory.h"
+#include "InputFactoryException.h"
 #include "LocationDependentInputFactory.h"
-#include "LocationDependentInputFactoryException.h"
 #include "NaturalStoneRevetmentLocationDependentInputFactory.h"
 #include "ProfileData.h"
 #include "ProfileFactory.h"
-#include "ProfileFactoryException.h"
 #include "ProfileFactoryPointData.h"
 #include "ProfileFactorySegmentData.h"
 #include "TimeDependentInput.h"
@@ -115,11 +114,7 @@ namespace DiKErnel::Integration
             return make_unique<CalculationInput>(make_unique<ProfileData>(move(segments), move(characteristicPoints)),
                                                  move(locations), move(_timeDependentInputItems));
         }
-        catch (const ProfileFactoryException&)
-        {
-            throw_with_nested(CalculationInputBuildException(_exceptionMessage));
-        }
-        catch (const LocationDependentInputFactoryException&)
+        catch (const InputFactoryException&)
         {
             throw_with_nested(CalculationInputBuildException(_exceptionMessage));
         }

@@ -22,7 +22,7 @@
 
 #include "DefaultsFactoryException.h"
 #include "INaturalStoneRevetmentTopLayerDefaults.h"
-#include "LocationDependentInputFactoryException.h"
+#include "InputFactoryException.h"
 #include "LocationDependentInputFactoryHelper.h"
 #include "NaturalStoneRevetmentDefaults.h"
 #include "NaturalStoneRevetmentDefaultsFactory.h"
@@ -44,7 +44,7 @@ namespace DiKErnel::Integration
         }
         catch (const DefaultsFactoryException& e)
         {
-            throw_with_nested(LocationDependentInputFactoryException(e.what()));
+            throw_with_nested(InputFactoryException(e.what()));
         }
 
         auto hydraulicLoads = make_unique<NaturalStoneRevetmentHydraulicLoads>(

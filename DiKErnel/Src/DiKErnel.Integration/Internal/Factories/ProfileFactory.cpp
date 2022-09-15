@@ -22,7 +22,7 @@
 
 #include <cmath>
 
-#include "ProfileFactoryException.h"
+#include "InputFactoryException.h"
 #include "ProfileSegmentDefaults.h"
 
 namespace DiKErnel::Integration
@@ -47,7 +47,7 @@ namespace DiKErnel::Integration
 
                 if (i > 0 && !DoesSegmentStartAtPoint(*startPoint, *currentSegmentData))
                 {
-                    throw ProfileFactoryException("Segments must be chained.");
+                    throw InputFactoryException("Segments must be chained.");
                 }
 
                 auto endPoint = make_shared<ProfilePoint>(currentSegmentData->GetEndPointX(), currentSegmentData->GetEndPointZ());
@@ -71,7 +71,7 @@ namespace DiKErnel::Integration
 
             if (matchingPointReference == nullptr)
             {
-                throw ProfileFactoryException("Characteristic point must be on a start or end point of a segment.");
+                throw InputFactoryException("Characteristic point must be on a start or end point of a segment.");
             }
 
             characteristicPoints.emplace_back(

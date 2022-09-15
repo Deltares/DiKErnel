@@ -29,7 +29,6 @@
 #include "GrassRevetmentWaveRunupRayleighLocationDependentInput.h"
 #include "GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper.h"
 #include "LocationDependentInputAssertHelper.h"
-#include "LocationDependentInputFactoryException.h"
 #include "NaturalStoneRevetmentLocationConstructionProperties.h"
 #include "NaturalStoneRevetmentLocationDependentInput.h"
 #include "NaturalStoneRevetmentLocationDependentInputAssertHelper.h"
@@ -37,7 +36,7 @@
 #include "ProfileSegmentDefaults.h"
 #include "CalculationInputBuilder.h"
 #include "CalculationInputBuildException.h"
-#include "ProfileFactoryException.h"
+#include "InputFactoryException.h"
 #include "TimeDependentInputAssertHelper.h"
 
 namespace DiKErnel::Integration::Test
@@ -143,7 +142,7 @@ namespace DiKErnel::Integration::Test
         const auto action = &CalculationInputBuilderTest::CreateBuilderAndBuildWithoutLocationsAdded;
 
         // Then
-        AssertHelper::AssertThrowsWithMessageAndInnerException<CalculationInputBuildException, LocationDependentInputFactoryException>(
+        AssertHelper::AssertThrowsWithMessageAndInnerException<CalculationInputBuildException, InputFactoryException>(
             action, "Could not create calculation input.", "At least 1 location is required.");
     }
 
@@ -254,7 +253,7 @@ namespace DiKErnel::Integration::Test
         const auto action = &CalculationInputBuilderTest::CreateBuilderAndSegmentUnchainedOnXCoordinate;
 
         // Then
-        AssertHelper::AssertThrowsWithMessageAndInnerException<CalculationInputBuildException, ProfileFactoryException>(
+        AssertHelper::AssertThrowsWithMessageAndInnerException<CalculationInputBuildException, InputFactoryException>(
             action, "Could not create calculation input.", "Segments must be chained.");
     }
 
@@ -265,7 +264,7 @@ namespace DiKErnel::Integration::Test
         const auto action = &CalculationInputBuilderTest::CreateBuilderAndSegmentUnchainedOnZCoordinate;
 
         // Then
-        AssertHelper::AssertThrowsWithMessageAndInnerException<CalculationInputBuildException, ProfileFactoryException>(
+        AssertHelper::AssertThrowsWithMessageAndInnerException<CalculationInputBuildException, InputFactoryException>(
             action, "Could not create calculation input.", "Segments must be chained.");
     }
 
@@ -338,7 +337,7 @@ namespace DiKErnel::Integration::Test
         const auto action = &CalculationInputBuilderTest::CreateBuilderAndCharacteristicPointNotOnSegmentPoint;
 
         // Then
-        AssertHelper::AssertThrowsWithMessageAndInnerException<CalculationInputBuildException, ProfileFactoryException>(
+        AssertHelper::AssertThrowsWithMessageAndInnerException<CalculationInputBuildException, InputFactoryException>(
             action, "Could not create calculation input.", "Characteristic point must be on a start or end point of a segment.");
     }
 
@@ -378,14 +377,14 @@ namespace DiKErnel::Integration::Test
     #pragma region Asphalt wave impact
 
     TEST_F(CalculationInputBuilderTest,
-           GivenBuilderWhithAsphaltWaveImpactLocationWithInvalidTopLayerType_WhenBuild_ThenThrowsLocationDependentInputFactoryException)
+           GivenBuilderWhithAsphaltWaveImpactLocationWithInvalidTopLayerType_WhenBuild_ThenThrowCalculationInputBuildException)
     {
         // Given & When
         const auto action =
                 &CalculationInputBuilderTest::CreateBuilderAndAddAsphaltRevetmentWaveImpactLocationWithInvalidTopLayerType;
 
         // Then
-        AssertHelper::AssertThrowsWithMessageAndInnerException<CalculationInputBuildException, LocationDependentInputFactoryException>(
+        AssertHelper::AssertThrowsWithMessageAndInnerException<CalculationInputBuildException, InputFactoryException>(
             action, "Could not create calculation input.", "Couldn't create defaults for the given top layer type.");
     }
 
@@ -573,13 +572,13 @@ namespace DiKErnel::Integration::Test
     #pragma region Grass wave impact
 
     TEST_F(CalculationInputBuilderTest,
-           GivenBuilderWhithGrassWaveImpactLocationWithInvalidTopLayerType_WhenBuild_ThenThrowsLocationDependentInputFactoryException)
+           GivenBuilderWhithGrassWaveImpactLocationWithInvalidTopLayerType_WhenBuild_ThenThrowsCalculationInputBuildException)
     {
         // Given & When
         const auto action = &CalculationInputBuilderTest::CreateBuilderAndAddGrassRevetmentWaveImpactLocationWithInvalidTopLayerType;
 
         // Then
-        AssertHelper::AssertThrowsWithMessageAndInnerException<CalculationInputBuildException, LocationDependentInputFactoryException>(
+        AssertHelper::AssertThrowsWithMessageAndInnerException<CalculationInputBuildException, InputFactoryException>(
             action, "Could not create calculation input.", "Couldn't create defaults for the given top layer type.");
     }
 
@@ -758,14 +757,14 @@ namespace DiKErnel::Integration::Test
     #pragma region Grass wave run-up Rayleigh
 
     TEST_F(CalculationInputBuilderTest,
-           GivenBuilderWhithGrassWaveRunupRayleighLocationWithInvalidTopLayerType_WhenBuild_ThenThrowsLocationDependentInputFactoryException)
+           GivenBuilderWhithGrassWaveRunupRayleighLocationWithInvalidTopLayerType_WhenBuild_ThenThrowsCalculationInputBuildException)
     {
         // Given & When
         const auto action =
                 &CalculationInputBuilderTest::CreateBuilderAndAddGrassRevetmentWaveRunupRayleighLocationWithInvalidTopLayerType;
 
         // Then
-        AssertHelper::AssertThrowsWithMessageAndInnerException<CalculationInputBuildException, LocationDependentInputFactoryException>(
+        AssertHelper::AssertThrowsWithMessageAndInnerException<CalculationInputBuildException, InputFactoryException>(
             action, "Could not create calculation input.", "Couldn't create defaults for the given top layer type.");
     }
 
@@ -957,13 +956,13 @@ namespace DiKErnel::Integration::Test
     #pragma region Natural stone
 
     TEST_F(CalculationInputBuilderTest,
-           GivenBuilderWithNaturalStoneLocationWithInvalidTopLayerType_WhenBuild_ThenThrowsLocationDependentInputFactoryException)
+           GivenBuilderWithNaturalStoneLocationWithInvalidTopLayerType_WhenBuild_ThenThrowsCalculationInputBuildException)
     {
         // Given & When
         const auto action = &CalculationInputBuilderTest::CreateBuilderAndAddNaturalStoneRevetmentLocationWithInvalidTopLayerType;
 
         // Then
-        AssertHelper::AssertThrowsWithMessageAndInnerException<CalculationInputBuildException, LocationDependentInputFactoryException>(
+        AssertHelper::AssertThrowsWithMessageAndInnerException<CalculationInputBuildException, InputFactoryException>(
             action, "Could not create calculation input.", "Couldn't create defaults for the given top layer type.");
     }
 

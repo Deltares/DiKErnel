@@ -18,17 +18,17 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include "LocationDependentInputFactoryException.h"
+#include "InputFactoryException.h"
 
 namespace DiKErnel::Integration
 {
     using namespace std;
 
-    LocationDependentInputFactoryException::LocationDependentInputFactoryException(
+    InputFactoryException::InputFactoryException(
         string message)
         : _message(move(message)) {}
 
-    const char* LocationDependentInputFactoryException::what() const noexcept
+    const char* InputFactoryException::what() const noexcept
     {
         return _message.c_str();
     }
