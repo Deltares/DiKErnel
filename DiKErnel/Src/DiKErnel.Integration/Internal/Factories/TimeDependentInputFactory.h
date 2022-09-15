@@ -18,17 +18,20 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include "ProfileFactoryException.h"
+#pragma once
+
+#include <memory>
+#include <vector>
 
 namespace DiKErnel::Integration
 {
-    using namespace std;
+    class TimeDependentInputFactoryData;
+    class TimeDependentInput;
 
-    ProfileFactoryException::ProfileFactoryException(
-        std::string message) : _message(move(message)) { }
-
-    const char* ProfileFactoryException::what() const noexcept
+    class TimeDependentInputFactory
     {
-        return _message.c_str();
-    }
+        public:
+            static std::vector<std::unique_ptr<TimeDependentInput>> Create(
+                const std::vector<std::reference_wrapper<TimeDependentInputFactoryData>>& timeStepDataItems);
+    };
 }
