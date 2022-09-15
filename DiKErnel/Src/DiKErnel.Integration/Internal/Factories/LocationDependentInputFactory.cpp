@@ -36,7 +36,7 @@ namespace DiKErnel::Integration
     using namespace Core;
     using namespace std;
 
-    vector<unique_ptr<ILocationDependentInput>> LocationDependentInputFactory::CreateLocationDependentInputs(
+    vector<unique_ptr<ILocationDependentInput>> LocationDependentInputFactory::Create(
         const vector<reference_wrapper<RevetmentLocationConstructionPropertiesBase>>& locationConstructionPropertiesItems)
     {
         if (locationConstructionPropertiesItems.empty())

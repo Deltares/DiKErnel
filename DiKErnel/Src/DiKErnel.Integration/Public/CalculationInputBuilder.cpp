@@ -117,7 +117,7 @@ namespace DiKErnel::Integration
         {
             auto segments = ProfileFactory::CreateProfileSegments(_profileSegmentData);
             auto characteristicPoints = ProfileFactory::CreateCharacteristicPoints(_profilePointData, segments);
-            auto locations = LocationDependentInputFactory::CreateLocationDependentInputs(locationConstructionPropertiesItemReferences);
+            auto locations = LocationDependentInputFactory::Create(locationConstructionPropertiesItemReferences);
             auto timeSteps = TimeDependentInputFactory::Create(timeStepDataItemReferences);
 
             return make_unique<CalculationInput>(make_unique<ProfileData>(move(segments), move(characteristicPoints)),

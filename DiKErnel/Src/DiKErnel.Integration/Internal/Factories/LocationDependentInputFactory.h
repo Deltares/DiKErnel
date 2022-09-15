@@ -23,22 +23,19 @@
 #include <memory>
 #include <vector>
 
-namespace DiKErnel
+namespace DiKErnel::Core
 {
-    namespace Core
-    {
-        class ILocationDependentInput;
-    }
+    class ILocationDependentInput;
+}
 
-    namespace Integration
-    {
-        class RevetmentLocationConstructionPropertiesBase;
+namespace DiKErnel::Integration
+{
+    class RevetmentLocationConstructionPropertiesBase;
 
-        class LocationDependentInputFactory
-        {
-            public:
-                static std::vector<std::unique_ptr<Core::ILocationDependentInput>> CreateLocationDependentInputs(
-                    const std::vector<std::reference_wrapper<RevetmentLocationConstructionPropertiesBase>>& locationConstructionPropertiesItems);
-        };
-    }
+    class LocationDependentInputFactory
+    {
+        public:
+            static std::vector<std::unique_ptr<Core::ILocationDependentInput>> Create(
+                const std::vector<std::reference_wrapper<RevetmentLocationConstructionPropertiesBase>>& locationConstructionPropertiesItems);
+    };
 }
