@@ -1,4 +1,4 @@
-﻿# Set library name
+# Set library name
 set(LIBNAME DiKErnel.Integration)
 
 # Set folder names
@@ -180,6 +180,8 @@ set(SOURCEFILES_INTERNAL_FACTORIES
   ${INTERNAL_FACTORIES_FOLDER}/ProfileFactoryPointData.h
   ${INTERNAL_FACTORIES_FOLDER}/ProfileFactorySegmentData.cpp
   ${INTERNAL_FACTORIES_FOLDER}/ProfileFactorySegmentData.h
+  ${INTERNAL_FACTORIES_FOLDER}/TimeDependentInputFactoryData.cpp
+  ${INTERNAL_FACTORIES_FOLDER}/TimeDependentInputFactoryData.h
 )
 
 set(SOURCEFILES_INTERNAL_HELPERS
