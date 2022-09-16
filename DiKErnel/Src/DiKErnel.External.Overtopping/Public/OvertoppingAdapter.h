@@ -29,9 +29,26 @@ namespace DiKErnel::External::Overtopping
     struct Geometry;
     struct Load;
 
+    /**
+     * \brief Adapter for the overtopping validation and calculation.
+     */
     class OvertoppingAdapter
     {
         public:
+            /*!
+             * \brief Validates the inputs for an overtopping calculation.
+             * \param geometry
+             *        The geometry.
+             * \param input
+             *        The input.
+             * \param messageBuffer
+             *        The message buffer to write validation messages to.
+             * \param success
+             *        Indicator whether the inputs are valid or not.
+             * \param dikeHeight
+             *        The dike height.
+             *        Unit = [m]
+             */
             static void Validate(
                 Geometry& geometry,
                 Input& input,
@@ -39,6 +56,24 @@ namespace DiKErnel::External::Overtopping
                 bool* success,
                 double dikeHeight);
 
+            /*!
+             * \brief Calculates the overtopping based on its input arguments.
+             * \param load
+             *        The load.
+             * \param geometry
+             *        The geometry.
+             * \param input
+             *        The input.
+             * \param result
+             *        The results of the calculation.
+             * \param messageBuffer
+             *        The message buffer to write error message to.
+             * \param success
+             *        Indicator whether the calculation was successful or not.
+             * \param dikeHeight
+             *        The dike height.
+             *        Unit = [m]
+             */
             static void CalculateQo(
                 Load& load,
                 Geometry& geometry,
