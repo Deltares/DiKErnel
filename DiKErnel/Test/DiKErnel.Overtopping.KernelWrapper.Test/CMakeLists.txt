@@ -19,9 +19,3 @@ target_link_libraries(${EXENAME} PUBLIC
   DiKErnel.External.Overtopping
   gtest
 )
-
-add_custom_command(TARGET ${EXENAME} POST_BUILD
-  COMMAND ${CMAKE_COMMAND} -E copy
-    $<TARGET_RUNTIME_DLLS:${EXENAME}>
-    ${CMAKE_CURRENT_BINARY_DIR}/$<CONFIG>/
-  COMMAND_EXPAND_LISTS)
