@@ -42,10 +42,6 @@ set_target_properties(dllDikesOvertopping PROPERTIES
   IMPORTED_LOCATION ${OVERTOPPING_FOLDER}/dllDikesOvertopping.dll
   IMPORTED_IMPLIB ${OVERTOPPING_FOLDER}/dllDikesOvertopping.lib)
 
-# Link dependencies
-target_link_libraries(${LIBNAME}
-  dllDikesOvertopping)
-
 # Install overtopping files
 set(OVERTOPPING_FILES
   ${OVERTOPPING_FOLDER}/dllDikesOvertopping.dll
@@ -56,4 +52,8 @@ set(OVERTOPPING_FILES
   ${OVERTOPPING_FOLDER}/libmmd.dll
 )
 
-install(FILES ${OVERTOPPING_FILES} DESTINATION ./$<CONFIG>)
+install(FILES ${OVERTOPPING_FILES} DESTINATION $<CONFIG>)
+
+# Link dependencies
+target_link_libraries(${LIBNAME}
+  dllDikesOvertopping)
