@@ -20,6 +20,8 @@
 
 #include "TimeDependentInputFactory.h"
 
+#include <limits>
+
 #include "InputFactoryException.h"
 #include "TimeDependentInput.h"
 #include "TimeDependentInputFactoryData.h"
