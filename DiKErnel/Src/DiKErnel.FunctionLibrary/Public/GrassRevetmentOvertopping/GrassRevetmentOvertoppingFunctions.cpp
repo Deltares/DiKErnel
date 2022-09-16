@@ -24,16 +24,57 @@
 #include <cmath>
 #include <functional>
 
+#include "Geometry.h"
 #include "GrassRevetmentFunctions.h"
+#include "Input.h"
+#include "Load.h"
+#include "OvertoppingAdapter.h"
 
 namespace DiKErnel::FunctionLibrary
 {
     using namespace std;
+    using namespace External::Overtopping;
 
     double GrassRevetmentOvertoppingFunctions::RepresentativeWaveRunup2P(
         const GrassRevetmentOvertoppingRepresentative2PInput& input)
     {
-        return 0.0;
+        Load load
+        {
+            ._waterLevel = input._waterLevel,
+            ._height = input._waveHeightHm0,
+            ._period = input._wavePeriodTm10,
+            ._direction = input._waveDirection
+        };
+
+        Geometry geometry
+        {
+            ._normal = 0.0,
+            ._nPoints = static_cast<int>(input._xValuesProfile.size()),
+            ._xCoords = input._xValuesProfile.data(),
+            ._yCoords = input._zValuesProfile.data(),
+            ._roughness = input._roughnessCoefficients.data()
+        };
+
+        Input overtoppingInput{
+            ._factorDeterminationQnFn = 1.0,
+            ._factorDeterminationQbFb = 1.0,
+            ._mz2 = 1.0,
+            ._fshallow = 1.0,
+            ._computedOvertopping = 1.0,
+            ._criticalOvertopping = 1.0,
+            ._relaxationfactor = 1.0,
+            ._reductionFactorForeshore = 0.5
+        };
+
+        Result result{};
+
+        bool success = false;
+        const auto messageBuffer = make_unique<string>();
+        messageBuffer->reserve(255);
+
+        OvertoppingAdapter::CalculateQo(load, geometry, overtoppingInput, &result, messageBuffer.get(), &success, input._dikeHeight);
+
+        return result._z2;
     }
 
     double GrassRevetmentOvertoppingFunctions::CumulativeOverload(
