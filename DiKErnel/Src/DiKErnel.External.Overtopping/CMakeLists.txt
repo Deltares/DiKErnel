@@ -52,7 +52,7 @@ set(OVERTOPPING_FILES
   ${OVERTOPPING_FOLDER}/libmmd.dll
 )
 
-install(FILES ${OVERTOPPING_FILES} DESTINATION $<CONFIG>)
+install(FILES ${OVERTOPPING_FILES} DESTINATION ./$<CONFIG>)
 
 # Link dependencies
 target_link_libraries(${LIBNAME}
