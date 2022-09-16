@@ -53,3 +53,12 @@ target_link_libraries(dllDikesOvertoppingModule INTERFACE dllDikesOvertopping fe
 # Link dependencies
 target_link_libraries(${LIBNAME}
   dllDikesOvertoppingModule)
+
+# Install overtopping files
+set(OVERTOPPING_FILES
+  ${OVERTOPPING_FOLDER}/dllDikesOvertopping.dll
+  ${OVERTOPPING_FOLDER}/dllDikesOvertopping.lib
+  ${OVERTOPPING_FOLDER}/feedbackDLL.dll
+)
+
+install(FILES ${OVERTOPPING_FILES} DESTINATION $<CONFIG>)
