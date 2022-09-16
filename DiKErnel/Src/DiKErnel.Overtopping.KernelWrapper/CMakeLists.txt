@@ -4,6 +4,7 @@ set(LIBNAME DiKErnel.External.Overtopping)
 # Set folder names
 set(PUBLIC_FOLDER Public)
 set(PUBLIC_DATA_FOLDER ${PUBLIC_FOLDER}/Data)
+set(OVERTOPPING_FOLDER ${CMAKE_SOURCE_DIR}/../Deployment/Windows/Overtopping)
 
 # Define sources
 set(SOURCEFILES_PUBLIC
@@ -33,19 +34,18 @@ source_group(${PUBLIC_DATA_FOLDER} FILES ${SOURCEFILES_PUBLIC_DATA})
 target_include_directories(${LIBNAME} PUBLIC
   ${CMAKE_CURRENT_SOURCE_DIR}/${PUBLIC_FOLDER}
   ${CMAKE_CURRENT_SOURCE_DIR}/${PUBLIC_DATA_FOLDER}
-  ${CMAKE_SOURCE_DIR}/../External/
 )
 
 # Add dll overtopping
 add_library(dllDikesOvertopping SHARED IMPORTED)
 set_target_properties(dllDikesOvertopping PROPERTIES 
-  IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/../External/dllDikesOvertopping.dll
-  IMPORTED_IMPLIB ${CMAKE_SOURCE_DIR}/../External/dllDikesOvertopping.lib)
+  IMPORTED_LOCATION ${OVERTOPPING_FOLDER}/dllDikesOvertopping.dll
+  IMPORTED_IMPLIB ${OVERTOPPING_FOLDER}/dllDikesOvertopping.lib)
 
 add_library(feedbackDLL SHARED IMPORTED)
 set_target_properties(feedbackDLL PROPERTIES 
-  IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/../External/feedbackDLL.dll
-  IMPORTED_IMPLIB ${CMAKE_SOURCE_DIR}/../External/dllDikesOvertopping.lib)
+  IMPORTED_LOCATION ${OVERTOPPING_FOLDER}/feedbackDLL.dll
+  IMPORTED_IMPLIB ${OVERTOPPING_FOLDER}/dllDikesOvertopping.lib)
 
 add_library(dllDikesOvertoppingModule INTERFACE IMPORTED)
 target_link_libraries(dllDikesOvertoppingModule INTERFACE dllDikesOvertopping feedbackDLL)
