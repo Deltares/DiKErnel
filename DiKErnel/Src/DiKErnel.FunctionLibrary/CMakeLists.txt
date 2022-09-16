@@ -92,3 +92,8 @@ target_include_directories(${LIBNAME} PUBLIC
   ${CMAKE_CURRENT_SOURCE_DIR}/${PUBLIC_GRASS_REVETMENT_WAVE_RUNUP_FOLDER}
   ${CMAKE_CURRENT_SOURCE_DIR}/${PUBLIC_NATURAL_STONE_REVETMENT_FOLDER}
 )
+
+# Link dependencies
+target_link_libraries(${LIBNAME}
+  DiKErnel.External.Overtopping
+)

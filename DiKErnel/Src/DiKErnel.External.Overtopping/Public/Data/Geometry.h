@@ -42,18 +42,18 @@ namespace DiKErnel::External::Overtopping
          * \brief The x coordinates of the dike.
          *        Unit = [m]
          */
-        double* _xCoords{};
+        const double* _xCoords{};
 
         /*!
          * \brief The y coordinates of the dike.
          *        Unit = [m]
          */
-        double* _yCoords{};
+        const double* _yCoords{};
 
         /*!
          * \brief The roughness of the dike.
          *        Unit = [-]
          */
-        double* _roughness{};
+        const double* _roughness{};
     };
 }
