@@ -23,6 +23,11 @@ endif()
 # Set global properties
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
+# Set build paths
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/build)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/build)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/build)
+
 # Set generic version parameters
 set(VER_COMPANYNAME_STR "Deltares")
 set(VER_LEGALCOPYRIGHT_STR "Copyright \\xA9 Deltares 2022")
