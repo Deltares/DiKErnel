@@ -21,9 +21,9 @@
 #pragma once
 
 #include "AsphaltRevetmentWaveImpactLocationConstructionProperties.h"
-#include "ICalculationInput.h"
 #include "GrassRevetmentWaveImpactLocationConstructionProperties.h"
 #include "GrassRevetmentWaveRunupRayleighLocationConstructionProperties.h"
+#include "ICalculationInput.h"
 #include "NaturalStoneRevetmentLocationConstructionProperties.h"
 
 namespace DiKErnel::Integration
@@ -71,7 +71,6 @@ namespace DiKErnel::Integration
              *        The z coordinate for the upper profile point.
              * \param roughnessCoefficient
              *        The roughness coefficient.
-             *        Unit = [-]
              */
             void AddDikeProfileSegment(
                 double startPointX,

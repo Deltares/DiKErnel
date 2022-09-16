@@ -52,7 +52,7 @@ namespace DiKErnel::Integration
 
             if (previousEndTime != numeric_limits<int>::min() && beginTime != previousEndTime)
             {
-                throw InputFactoryException("The begin time of a successive element must equal the end time of the previous element.");
+                throw InputFactoryException("The begin time of a successive element must be equal to the end time of the previous element.");
             }
 
             timeDependentInputItems.push_back(make_unique<TimeDependentInput>(

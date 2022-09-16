@@ -19,6 +19,7 @@
 // All rights reserved.
 
 #pragma once
+
 #include <memory>
 #include <vector>
 

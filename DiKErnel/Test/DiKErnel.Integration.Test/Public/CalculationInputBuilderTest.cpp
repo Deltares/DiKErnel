@@ -23,6 +23,8 @@
 #include "AsphaltRevetmentWaveImpactLocationDependentInput.h"
 #include "AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper.h"
 #include "AssertHelper.h"
+#include "CalculationInputBuilder.h"
+#include "CalculationInputBuildException.h"
 #include "GrassRevetmentWaveImpactLocationDependentInput.h"
 #include "GrassRevetmentWaveImpactLocationDependentInputAssertHelper.h"
 #include "GrassRevetmentWaveRunupLocationDependentInputAssertHelper.h"
@@ -33,9 +35,6 @@
 #include "NaturalStoneRevetmentLocationDependentInput.h"
 #include "NaturalStoneRevetmentLocationDependentInputAssertHelper.h"
 #include "ProfileDataAssertHelper.h"
-#include "ProfileSegmentDefaults.h"
-#include "CalculationInputBuilder.h"
-#include "CalculationInputBuildException.h"
 #include "InputFactoryException.h"
 #include "TimeDependentInputAssertHelper.h"
 
@@ -49,6 +48,12 @@ namespace DiKErnel::Integration::Test
 
     struct CalculationInputBuilderTest : Test
     {
+        static void CreateBuilderWithoutSegments()
+        {
+            const CalculationInputBuilder builder;
+            const auto& calculationInput = builder.Build();
+        }
+
         static void CreateBuilderAndSegmentUnchainedOnXCoordinate()
         {
             constexpr auto startPointX = 10;
@@ -183,7 +188,7 @@ namespace DiKErnel::Integration::Test
         const auto& actualSegment = actualProfileSegments.at(0);
         ProfileDataAssertHelper::AssertProfileSegment(startPointX, startPointZ,
                                                       endPointX, endPointZ,
-                                                      DomainLibrary::ProfileSegmentDefaults::GetRoughnessCoefficient(), actualSegment);
+                                                      1.0, actualSegment);
     }
 
     TEST_F(CalculationInputBuilderTest,
@@ -245,17 +250,28 @@ namespace DiKErnel::Integration::Test
         const auto& actualProfileSegments = actualProfileData.GetProfileSegments();
         ASSERT_EQ(2, actualProfileSegments.size());
 
-        const auto& segmentOne = actualProfileSegments.at(0);
+        const auto& segmentOne = actualProfileSegments.at(0).get();
         ProfileDataAssertHelper::AssertProfileSegment(startPointXSegmentOne, startPointZSegmentOne,
                                                       endPointXSegmentOne, endPointZSegmentOne,
                                                       roughnessCoefficient, segmentOne);
 
-        const auto& segmentTwo = actualProfileSegments.at(1);
+        const auto& segmentTwo = actualProfileSegments.at(1).get();
         ProfileDataAssertHelper::AssertProfileSegment(endPointXSegmentOne, endPointZSegmentOne,
                                                       endPointXSegmentTwo, endPointZSegmentTwo,
                                                       roughnessCoefficient, segmentTwo);
 
-        ASSERT_EQ(&segmentOne.get().GetEndPoint(), &segmentTwo.get().GetStartPoint());
+        ASSERT_EQ(&segmentOne.GetEndPoint(), &segmentTwo.GetStartPoint());
+    }
+
+    TEST_F(CalculationInputBuilderTest,
+           GivenBuilderWithoutDikeSegments_WhenBuild_ThenThrowsCalculationInputBuilderException)
+    {
+        // Given & When
+        const auto action = &CalculationInputBuilderTest::CreateBuilderAndSegmentUnchainedOnXCoordinate;
+
+        // Then
+        AssertHelper::AssertThrowsWithMessageAndInnerException<CalculationInputBuildException, InputFactoryException>(
+            action, "Could not create calculation input.", "At least 1 segment is required.");
     }
 
     TEST_F(CalculationInputBuilderTest,
@@ -266,7 +282,8 @@ namespace DiKErnel::Integration::Test
 
         // Then
         AssertHelper::AssertThrowsWithMessageAndInnerException<CalculationInputBuildException, InputFactoryException>(
-            action, "Could not create calculation input.", "Segments must be chained.");
+            action, "Could not create calculation input.",
+            "The start point of a successive segment must be equal to the end point of the previous segment.");
     }
 
     TEST_F(CalculationInputBuilderTest,
@@ -277,7 +294,8 @@ namespace DiKErnel::Integration::Test
 
         // Then
         AssertHelper::AssertThrowsWithMessageAndInnerException<CalculationInputBuildException, InputFactoryException>(
-            action, "Could not create calculation input.", "Segments must be chained.");
+            action, "Could not create calculation input.",
+            "The start point of a successive segment must be equal to the end point of the previous segment.");
     }
 
     #pragma endregion
@@ -309,8 +327,8 @@ namespace DiKErnel::Integration::Test
         ASSERT_EQ(1, actualProfileSegments.size());
         ASSERT_EQ(1, actualCharacteristicPoints.size());
 
-        const auto& actualSegment = actualProfileSegments.at(0);
-        ProfileDataAssertHelper::AssertCharacteristicPoint(actualSegment.get().GetStartPoint(), characteristicPointType,
+        const auto& actualSegment = actualProfileSegments.at(0).get();
+        ProfileDataAssertHelper::AssertCharacteristicPoint(actualSegment.GetStartPoint(), characteristicPointType,
                                                            actualCharacteristicPoints.at(0));
     }
 
@@ -339,8 +357,8 @@ namespace DiKErnel::Integration::Test
         ASSERT_EQ(1, actualProfileSegments.size());
         ASSERT_EQ(1, actualCharacteristicPoints.size());
 
-        const auto& actualSegment = actualProfileSegments.at(0);
-        ProfileDataAssertHelper::AssertCharacteristicPoint(actualSegment.get().GetEndPoint(), characteristicPointType,
+        const auto& actualSegment = actualProfileSegments.at(0).get();
+        ProfileDataAssertHelper::AssertCharacteristicPoint(actualSegment.GetEndPoint(), characteristicPointType,
                                                            actualCharacteristicPoints.at(0));
     }
 
@@ -377,7 +395,7 @@ namespace DiKErnel::Integration::Test
         // Then
         AssertHelper::AssertThrowsWithMessageAndInnerException<CalculationInputBuildException, InputFactoryException>(
             action, "Could not create calculation input.",
-            "The begin time of a successive element must equal the end time of the previous element.");
+            "The begin time of a successive element must be equal to the end time of the previous element.");
     }
 
     TEST_F(CalculationInputBuilderTest, GivenBuilderWithTimeStepAdded_WhenBuild_ThenReturnsCalculationInput)

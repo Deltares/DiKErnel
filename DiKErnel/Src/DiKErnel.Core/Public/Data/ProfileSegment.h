@@ -40,7 +40,6 @@ namespace DiKErnel::Core
              *        The end point.
              * \param roughnessCoefficient
              *        The roughness coefficient.
-             *        Unit = [-]
              */
             explicit ProfileSegment(
                 std::shared_ptr<ProfilePoint> startPoint,
@@ -64,14 +63,13 @@ namespace DiKErnel::Core
             /*!
              * \brief Gets the roughness coefficient of the segment.
              * \return The roughness coefficient of the segment.
-             *         Unit = [-]
              */
             [[nodiscard]]
             double GetRoughnessCoefficient() const;
 
         private:
-            std::shared_ptr<ProfilePoint> _startPointReference;
-            std::shared_ptr<ProfilePoint> _endPointReference;
+            std::shared_ptr<ProfilePoint> _startPoint;
+            std::shared_ptr<ProfilePoint> _endPoint;
             double _roughnessCoefficient;
     };
 }

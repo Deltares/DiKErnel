@@ -24,11 +24,13 @@
 
 namespace DiKErnel::Core::Test
 {
+    using namespace std;
+
     TEST(ProfileSegmentTest, Constructor_ExpectedValues)
     {
         // Setup
-        const auto startPoint = std::make_shared<ProfilePoint>(0.0, 1.1);
-        const auto endPoint = std::make_shared<ProfilePoint>(2.2, 3.3);
+        const auto startPoint = make_shared<ProfilePoint>(0.0, 1.1);
+        const auto endPoint = make_shared<ProfilePoint>(2.2, 3.3);
         constexpr double roughnessCoefficient(13.37);
 
         // Call

@@ -19,6 +19,7 @@
 // All rights reserved.
 
 #pragma once
+
 #include "CharacteristicPointType.h"
 
 namespace DiKErnel::Integration

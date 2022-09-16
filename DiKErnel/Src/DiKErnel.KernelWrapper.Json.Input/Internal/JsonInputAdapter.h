@@ -23,6 +23,7 @@
 #include <memory>
 
 #include "AsphaltRevetmentWaveImpactLocationConstructionProperties.h"
+#include "CalculationInputBuilder.h"
 #include "GrassRevetmentWaveImpactLocationConstructionProperties.h"
 #include "GrassRevetmentWaveRunupRayleighLocationConstructionProperties.h"
 #include "ICalculationInput.h"
@@ -37,7 +38,6 @@
 #include "JsonInputNaturalStoneCalculationDefinitionData.h"
 #include "JsonInputNaturalStoneLocationData.h"
 #include "NaturalStoneRevetmentLocationConstructionProperties.h"
-#include "CalculationInputBuilder.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {

@@ -20,8 +20,8 @@
 
 #include <gtest/gtest.h>
 
-#include "EventAssertHelper.h"
 #include "CalculationInputBuilder.h"
+#include "EventAssertHelper.h"
 #include "Validator.h"
 
 namespace DiKErnel::System::Test

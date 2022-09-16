@@ -38,23 +38,26 @@ namespace DiKErnel::Integration
 
         if (!profileSegments.empty())
         {
-            auto& initialSegmentData = profileSegments.at(0);
-            auto startPoint = make_shared<ProfilePoint>(initialSegmentData->GetStartPointX(), initialSegmentData->GetStartPointZ());
+            throw InputFactoryException("At least 1 segment is required.");
+        }
 
-            for (int i = 0; i < static_cast<int>(profileSegments.size()); ++i)
+        shared_ptr<ProfilePoint> segmentStartPoint = nullptr;
+        for (const auto& currentSegment : profileSegments)
+        {
+            if (segmentStartPoint == nullptr)
             {
-                auto& currentSegmentData = profileSegments.at(i);
-
-                if (i > 0 && !DoesSegmentStartAtPoint(*startPoint, *currentSegmentData))
-                {
-                    throw InputFactoryException("Segments must be chained.");
-                }
-
-                auto endPoint = make_shared<ProfilePoint>(currentSegmentData->GetEndPointX(), currentSegmentData->GetEndPointZ());
-                segments.emplace_back(make_unique<ProfileSegment>(startPoint, endPoint,
-                                                                  GetRoughnessCoefficient(currentSegmentData->GetRoughnessCoefficient())));
-                startPoint = endPoint;
+                segmentStartPoint = make_shared<ProfilePoint>(currentSegment->GetStartPointX(), currentSegment->GetStartPointZ());
             }
+
+            if (!DoesSegmentStartAtPoint(*segmentStartPoint, *currentSegment))
+            {
+                throw InputFactoryException("The start point of a successive segment must be equal to the end point of the previous segment.");
+            }
+
+            auto segmentEndPoint = make_shared<ProfilePoint>(currentSegment->GetEndPointX(), currentSegment->GetEndPointZ());
+            segments.emplace_back(make_unique<ProfileSegment>(segmentStartPoint, segmentEndPoint,
+                                                              GetRoughnessCoefficient(currentSegment->GetRoughnessCoefficient())));
+            segmentStartPoint = segmentEndPoint;
         }
 
         return segments;

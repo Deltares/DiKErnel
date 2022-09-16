@@ -40,15 +40,12 @@ namespace DiKErnel::Integration
         : _profileSegments(move(profileSegments)),
           _characteristicPoints(move(characteristicPoints))
     {
-        if (!_profileSegments.empty())
-        {
-            _profilePointReferences.emplace_back(_profileSegments.front()->GetStartPoint());
+        _profilePointReferences.emplace_back(_profileSegments.front()->GetStartPoint());
 
-            for (const auto& profileSegment : _profileSegments)
-            {
-                _profileSegmentReferences.emplace_back(*profileSegment);
-                _profilePointReferences.emplace_back(profileSegment->GetEndPoint());
-            }
+        for (const auto& profileSegment : _profileSegments)
+        {
+            _profileSegmentReferences.emplace_back(*profileSegment);
+            _profilePointReferences.emplace_back(profileSegment->GetEndPoint());
         }
 
         for (const auto& characteristicPoint : _characteristicPoints)
@@ -75,9 +72,9 @@ namespace DiKErnel::Integration
     {
         for (auto i = 0; i < static_cast<int>(_profilePointReferences.size()); ++i)
         {
-            const auto& profilePoint = _profilePointReferences.at(i);
-            const auto xCurrentDikeProfilePoint = profilePoint.get().GetX();
-            const auto zCurrentDikeProfilePoint = profilePoint.get().GetZ();
+            const auto& profilePoint = _profilePointReferences.at(i).get();
+            const auto xCurrentDikeProfilePoint = profilePoint.GetX();
+            const auto zCurrentDikeProfilePoint = profilePoint.GetZ();
 
             if (abs(xCurrentDikeProfilePoint - horizontalPosition) <= numeric_limits<double>::epsilon())
             {
@@ -91,9 +88,9 @@ namespace DiKErnel::Integration
                     return numeric_limits<double>::infinity();
                 }
 
-                const auto& previousProfilePoint = _profilePointReferences.at(i - 1);
-                const auto xPreviousDikeProfilePoint = previousProfilePoint.get().GetX();
-                const auto zPreviousDikeProfilePoint = previousProfilePoint.get().GetZ();
+                const auto& previousProfilePoint = _profilePointReferences.at(i - 1).get();
+                const auto xPreviousDikeProfilePoint = previousProfilePoint.GetX();
+                const auto zPreviousDikeProfilePoint = previousProfilePoint.GetZ();
 
                 return zPreviousDikeProfilePoint + (zCurrentDikeProfilePoint - zPreviousDikeProfilePoint)
                         / (xCurrentDikeProfilePoint - xPreviousDikeProfilePoint)
@@ -109,9 +106,9 @@ namespace DiKErnel::Integration
     {
         for (auto i = 0; i < static_cast<int>(_profilePointReferences.size()); ++i)
         {
-            const auto& profilePoint = _profilePointReferences.at(i);
-            const auto xCurrentDikeProfilePoint = profilePoint.get().GetX();
-            const auto zCurrentDikeProfilePoint = profilePoint.get().GetZ();
+            const auto& profilePoint = _profilePointReferences.at(i).get();
+            const auto xCurrentDikeProfilePoint = profilePoint.GetX();
+            const auto zCurrentDikeProfilePoint = profilePoint.GetZ();
 
             if (abs(zCurrentDikeProfilePoint - verticalHeight) <= numeric_limits<double>::epsilon())
             {
@@ -125,9 +122,9 @@ namespace DiKErnel::Integration
                     return numeric_limits<double>::infinity();
                 }
 
-                const auto& previousProfilePoint = _profilePointReferences.at(i - 1);
-                const auto xPreviousDikeProfilePoint = previousProfilePoint.get().GetX();
-                const auto zPreviousDikeProfilePoint = previousProfilePoint.get().GetZ();
+                const auto& previousProfilePoint = _profilePointReferences.at(i - 1).get();
+                const auto xPreviousDikeProfilePoint = previousProfilePoint.GetX();
+                const auto zPreviousDikeProfilePoint = previousProfilePoint.GetZ();
 
                 return xPreviousDikeProfilePoint + (xCurrentDikeProfilePoint - xPreviousDikeProfilePoint)
                         / (zCurrentDikeProfilePoint - zPreviousDikeProfilePoint)

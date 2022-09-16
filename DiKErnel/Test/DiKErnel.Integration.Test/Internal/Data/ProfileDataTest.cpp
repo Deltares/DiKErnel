@@ -294,21 +294,4 @@ namespace DiKErnel::Integration::Test
         // Assert
         ASSERT_EQ(nullptr, profileSegment);
     }
-
-    TEST_F(ProfileDataTest, GetProfilePoints_Always_ReturnsSamePointsAsSegmentPoints)
-    {
-        // Setup
-        const auto profileData = CreateDefaultProfileData();
-
-        // Call
-        const auto& profilePoints = profileData->GetProfilePoints();
-
-        // Assert
-        ASSERT_EQ(3, profilePoints.size());
-
-        const auto& segments = profileData->GetProfileSegments();
-        ASSERT_EQ(&profilePoints.at(0).get(), &segments.at(0).get().GetStartPoint());
-        ASSERT_EQ(&profilePoints.at(1).get(), &segments.at(1).get().GetStartPoint());
-        ASSERT_EQ(&profilePoints.at(2).get(), &segments.at(1).get().GetEndPoint());
-    }
 }
