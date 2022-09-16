@@ -27,7 +27,7 @@
 
 namespace DiKErnel::External::Overtopping::Test
 {
-    TEST(OvertoppingAdapterTest, DISABLED_TestOvertoppingValidation)
+    TEST(OvertoppingAdapterTest, TestOvertoppingValidation)
     {
         const double dikeHeight = 9.1;
         double xCoordinates[] = {
@@ -75,7 +75,7 @@ namespace DiKErnel::External::Overtopping::Test
         ASSERT_FALSE(success);
     }
 
-    TEST(OvertoppingAdapterTest, DISABLED_TestOvertoppingValidationMultiple)
+    TEST(OvertoppingAdapterTest, TestOvertoppingValidationMultiple)
     {
         const double dikeHeight = 9.1;
         Input input
@@ -124,7 +124,7 @@ namespace DiKErnel::External::Overtopping::Test
         ASSERT_FALSE(success);
     }
 
-    TEST(OvertoppingAdapterTest, DISABLED_TestOvertopping)
+    TEST(OvertoppingAdapterTest, TestOvertopping)
     {
         const double dikeHeight = 9.1;
         const double dikeNormal = 60.0;

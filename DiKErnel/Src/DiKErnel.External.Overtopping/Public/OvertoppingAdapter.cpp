@@ -22,6 +22,7 @@
 
 #include <cstdlib>
 #include <memory>
+#include <string>
 
 #include "Geometry.h"
 #include "Load.h"
@@ -67,9 +68,10 @@ namespace DiKErnel::External::Overtopping
         bool success;
 
         constexpr long nrOfCharacters = NR_OF_MESSAGES * MESSAGE_SIZE;
-        const unique_ptr<char[]> message(new char[nrOfCharacters]);
+        const auto message = make_unique<string>();
+        message->reserve(nrOfCharacters);
 
-        ValidateInputC(&geometry, &dikeHeight, &input, &success, message.get(), MESSAGE_SIZE);
+        ValidateInputC(&geometry, &dikeHeight, &input, &success, message->c_str(), MESSAGE_SIZE);
 
         return success;
     }
@@ -85,11 +87,14 @@ namespace DiKErnel::External::Overtopping
 
         const auto result = make_unique<Result>();
 
-        const unique_ptr<char[]> message(new char[MESSAGE_SIZE]);
-        const unique_ptr<char[]> logFileName(new char[LOG_FILE_NAME_SIZE]);
+        const auto message = make_unique<string>();
+        message->reserve(MESSAGE_SIZE);
+
+        const auto logFileName = make_unique<string>();
+        logFileName->reserve(LOG_FILE_NAME_SIZE);
 
         calculateQo(&load, &geometry, &dikeHeight, &input, result.get(), &success,
-                    message.get(), &verbosity, logFileName.get(), MESSAGE_SIZE, LOG_FILE_NAME_SIZE);
+                    message->c_str(), &verbosity, logFileName->c_str(), MESSAGE_SIZE, LOG_FILE_NAME_SIZE);
 
         return 0;
     }
