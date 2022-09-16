@@ -43,6 +43,14 @@ namespace DiKErnel::Integration
     using namespace DomainLibrary;
     using namespace std;
 
+    CalculationInputBuilder::CalculationInputBuilder() :
+        _profileSegmentData(vector<unique_ptr<ProfileFactorySegmentData>>()),
+        _profilePointData(vector<unique_ptr<ProfileFactoryPointData>>()),
+        _timeStepDataItems(vector<unique_ptr<TimeDependentInputFactoryData>>()),
+        _locationConstructionPropertiesItems(vector<unique_ptr<RevetmentLocationConstructionPropertiesBase>>()) {}
+
+    CalculationInputBuilder::~CalculationInputBuilder() = default;
+
     void CalculationInputBuilder::AddDikeProfilePointData(
         const double x,
         const CharacteristicPointType characteristicPointType)

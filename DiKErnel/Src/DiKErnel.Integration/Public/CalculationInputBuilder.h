@@ -25,18 +25,29 @@
 #include "GrassRevetmentWaveImpactLocationConstructionProperties.h"
 #include "GrassRevetmentWaveRunupRayleighLocationConstructionProperties.h"
 #include "NaturalStoneRevetmentLocationConstructionProperties.h"
-#include "ProfileFactoryPointData.h"
-#include "ProfileFactorySegmentData.h"
-#include "TimeDependentInputFactoryData.h"
 
 namespace DiKErnel::Integration
 {
+    class ProfileFactoryPointData;
+    class ProfileFactorySegmentData;
+    class TimeDependentInputFactoryData;
+
     /*!
      * \brief Builder to configure and create calculation input.
      */
     class CalculationInputBuilder
     {
         public:
+            /*!
+             * \brief Creates a new instance.
+             */
+            CalculationInputBuilder();
+
+            /*!
+             * \brief Destructs the instance.
+             */
+            virtual ~CalculationInputBuilder();
+
             /*!
              * \brief Adds a dike profile point.
              * \param x
@@ -134,16 +145,10 @@ namespace DiKErnel::Integration
             std::unique_ptr<Core::ICalculationInput> Build() const;
 
         private:
-            std::vector<std::unique_ptr<ProfileFactorySegmentData>> _profileSegmentData
-                    = std::vector<std::unique_ptr<ProfileFactorySegmentData>>();
-            std::vector<std::unique_ptr<ProfileFactoryPointData>> _profilePointData
-                    = std::vector<std::unique_ptr<ProfileFactoryPointData>>();
-
-            std::vector<std::unique_ptr<TimeDependentInputFactoryData>> _timeStepDataItems
-                    = std::vector<std::unique_ptr<TimeDependentInputFactoryData>>();
-
-            std::vector<std::unique_ptr<RevetmentLocationConstructionPropertiesBase>> _locationConstructionPropertiesItems
-                    = std::vector<std::unique_ptr<RevetmentLocationConstructionPropertiesBase>>();
+            std::vector<std::unique_ptr<ProfileFactorySegmentData>> _profileSegmentData;
+            std::vector<std::unique_ptr<ProfileFactoryPointData>> _profilePointData;
+            std::vector<std::unique_ptr<TimeDependentInputFactoryData>> _timeStepDataItems;
+            std::vector<std::unique_ptr<RevetmentLocationConstructionPropertiesBase>> _locationConstructionPropertiesItems;
 
             inline static std::string _exceptionMessage = "Could not create calculation input.";
     };
