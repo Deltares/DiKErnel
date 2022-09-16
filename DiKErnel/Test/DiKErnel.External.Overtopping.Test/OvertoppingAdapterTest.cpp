@@ -27,8 +27,14 @@
 
 namespace DiKErnel::External::Overtopping::Test
 {
-    TEST(OvertoppingAdapterTest, TestOvertoppingValidation)
+    using namespace std;
+
+    constexpr int NR_OF_MESSAGES = 32;
+    constexpr int MESSAGE_SIZE = 255;
+
+    TEST(OvertoppingAdapterTest, Validate_WithInvalidData_SetsExpectedValues)
     {
+        // Setup
         const double dikeHeight = 9.1;
         double xCoordinates[] = {
             0,
@@ -70,26 +76,23 @@ namespace DiKErnel::External::Overtopping::Test
             0.5
         };
 
-        const auto success = OvertoppingAdapter::Validate(geometry, input, dikeHeight);
+        bool success = true;
+        constexpr long nrOfCharacters = NR_OF_MESSAGES * MESSAGE_SIZE;
+        const auto messageBuffer = make_unique<string>();
+        messageBuffer->reserve(nrOfCharacters);
 
+        // Call
+        OvertoppingAdapter::Validate(geometry, input, messageBuffer.get(), &success, dikeHeight);
+
+        // Assert
         ASSERT_FALSE(success);
+        ASSERT_FALSE(strlen(messageBuffer->c_str()) == 0);
     }
 
-    TEST(OvertoppingAdapterTest, TestOvertoppingValidationMultiple)
+    TEST(OvertoppingAdapterTest, Validate_WithValidData_SetsExpectedValues)
     {
+        // Setup
         const double dikeHeight = 9.1;
-        Input input
-        {
-            2.3,
-            4.3,
-            1.0,
-            -0.92,
-            1,
-            1,
-            1.0,
-            0.5
-        };
-
         double xCoordinates[] = {
             0,
             10,
@@ -101,8 +104,8 @@ namespace DiKErnel::External::Overtopping::Test
             -5,
             0,
             5,
-            4,
-            0
+            10,
+            20
         };
         double roughnessCoefficients[] = {
             0.5,
@@ -119,13 +122,33 @@ namespace DiKErnel::External::Overtopping::Test
             roughnessCoefficients
         };
 
-        const auto success = OvertoppingAdapter::Validate(geometry, input, dikeHeight);
+        Input input{
+            2.3,
+            4.3,
+            1.0,
+            0.92,
+            1,
+            1,
+            1.0,
+            0.5
+        };
 
-        ASSERT_FALSE(success);
+        bool success = false;
+        constexpr long nrOfCharacters = NR_OF_MESSAGES * MESSAGE_SIZE;
+        const auto messageBuffer = make_unique<string>();
+        messageBuffer->reserve(nrOfCharacters);
+
+        // Call
+        OvertoppingAdapter::Validate(geometry, input, messageBuffer.get(), &success, dikeHeight);
+
+        // Assert
+        ASSERT_TRUE(success);
+        ASSERT_TRUE(strlen(messageBuffer->c_str()) == 0);
     }
 
-    TEST(OvertoppingAdapterTest, TestOvertopping)
+    TEST(OvertoppingAdapterTest, Calculate_WithValidData_SetsExpectedValues)
     {
+        // Setup
         const double dikeHeight = 9.1;
         const double dikeNormal = 60.0;
 
@@ -175,7 +198,82 @@ namespace DiKErnel::External::Overtopping::Test
             50
         };
 
-        const auto z2 = OvertoppingAdapter::CalculateZ2(loads, geometry, input, dikeHeight);
-        ASSERT_EQ(1, z2);
+        Result result{};
+
+        bool success = false;
+        const auto messageBuffer = make_unique<string>();
+        messageBuffer->reserve(MESSAGE_SIZE);
+
+        // Call
+        OvertoppingAdapter::CalculateQo(loads, geometry, input, &result, messageBuffer.get(), &success, dikeHeight);
+
+        // Assert
+        ASSERT_TRUE(success);
+
+        ASSERT_NE(0, result._qo);
+        ASSERT_NE(0, result._z2);
+        ASSERT_TRUE(strlen(messageBuffer->c_str()) == 0);
+    }
+
+    TEST(OvertoppingAdapterTest, Calculate_WithInvalidData_SetsExpectedValues)
+    {
+        // Setup
+        const double dikeHeight = 3.7;
+        const double dikeNormal = 0.0;
+
+        Input input
+        {
+            2.3,
+            4.3,
+            1.0,
+            0.92,
+            1,
+            1,
+            1.0,
+            0.5
+        };
+
+        const int nrOfPoints = 2;
+        double xCoordinates[] = {
+           0,
+            24.0
+        };
+        double yCoordinates[] = {
+           -3.0,
+            3.0
+        };
+        double roughnessCoefficients[] = {
+            1
+        };
+
+        Geometry geometry
+        {
+            dikeNormal,
+            nrOfPoints,
+            xCoordinates,
+            yCoordinates,
+            roughnessCoefficients
+        };
+
+        Load loads
+        {
+            1e-6,
+            -0.361314622129615,
+            45,
+            1.912229230397281e-12
+        };
+
+        Result result{};
+
+        bool success = false;
+        const auto messageBuffer = make_unique<string>();
+        messageBuffer->reserve(MESSAGE_SIZE);
+
+        // Call
+        OvertoppingAdapter::CalculateQo(loads, geometry, input, &result, messageBuffer.get(), &success, dikeHeight);
+
+        // Assert
+        ASSERT_FALSE(success);
+        ASSERT_FALSE(strlen(messageBuffer->c_str()) == 0);
     }
 }

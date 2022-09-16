@@ -19,6 +19,9 @@
 // All rights reserved.
 
 #pragma once
+#include <string>
+
+#include "Result.h"
 
 namespace DiKErnel::External::Overtopping
 {
@@ -29,15 +32,20 @@ namespace DiKErnel::External::Overtopping
     class OvertoppingAdapter
     {
         public:
-            static bool Validate(
+            static void Validate(
                 Geometry& geometry,
                 Input& input,
+                const std::string* messageBuffer,
+                bool* success,
                 double dikeHeight);
 
-            static double CalculateZ2(
+            static void CalculateQo(
                 Load& load,
                 Geometry& geometry,
                 Input& input,
+                Result* result,
+                const std::string* messageBuffer,
+                bool* success,
                 double dikeHeight);
     };
 }

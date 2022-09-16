@@ -56,46 +56,35 @@ namespace DiKErnel::External::Overtopping
 {
     using namespace std;
 
-    constexpr int NR_OF_MESSAGES = 32;
-    constexpr int MESSAGE_SIZE = 255;
     constexpr int LOG_FILE_NAME_SIZE = 256;
 
-    bool OvertoppingAdapter::Validate(
+    void OvertoppingAdapter::Validate(
         Geometry& geometry,
         Input& input,
+        const string* messageBuffer,
+        bool* success,
         double dikeHeight)
     {
-        bool success;
-
-        constexpr long nrOfCharacters = NR_OF_MESSAGES * MESSAGE_SIZE;
-        const auto message = make_unique<string>();
-        message->reserve(nrOfCharacters);
-
-        ValidateInputC(&geometry, &dikeHeight, &input, &success, message->c_str(), MESSAGE_SIZE);
-
-        return success;
+        const int messageLength = messageBuffer->length();
+        ValidateInputC(&geometry, &dikeHeight, &input, success, messageBuffer->c_str(), messageLength);
     }
 
-    double OvertoppingAdapter::CalculateZ2(
+    void OvertoppingAdapter::CalculateQo(
         Load& load,
         Geometry& geometry,
         Input& input,
+        Result* result,
+        const string* messageBuffer,
+        bool* success,
         double dikeHeight)
     {
-        bool success = false;
         int verbosity = -1;
-
-        const auto result = make_unique<Result>();
-
-        const auto message = make_unique<string>();
-        message->reserve(MESSAGE_SIZE);
 
         const auto logFileName = make_unique<string>();
         logFileName->reserve(LOG_FILE_NAME_SIZE);
 
-        calculateQo(&load, &geometry, &dikeHeight, &input, result.get(), &success,
-                    message->c_str(), &verbosity, logFileName->c_str(), MESSAGE_SIZE, LOG_FILE_NAME_SIZE);
-
-        return 0;
+        const int messageLength = messageBuffer->length();
+        calculateQo(&load, &geometry, &dikeHeight, &input, result, success,
+                    messageBuffer->c_str(), &verbosity, logFileName->c_str(), messageLength, LOG_FILE_NAME_SIZE);
     }
 }
