@@ -42,23 +42,18 @@ set_target_properties(dllDikesOvertopping PROPERTIES
   IMPORTED_LOCATION ${OVERTOPPING_FOLDER}/dllDikesOvertopping.dll
   IMPORTED_IMPLIB ${OVERTOPPING_FOLDER}/dllDikesOvertopping.lib)
 
-add_library(feedbackDLL SHARED IMPORTED)
-set_target_properties(feedbackDLL PROPERTIES 
-  IMPORTED_LOCATION ${OVERTOPPING_FOLDER}/feedbackDLL.dll
-  IMPORTED_IMPLIB ${OVERTOPPING_FOLDER}/dllDikesOvertopping.lib)
-
-add_library(dllDikesOvertoppingModule INTERFACE IMPORTED)
-target_link_libraries(dllDikesOvertoppingModule INTERFACE dllDikesOvertopping feedbackDLL)
-
 # Link dependencies
 target_link_libraries(${LIBNAME}
-  dllDikesOvertoppingModule)
+  dllDikesOvertopping)
 
 # Install overtopping files
 set(OVERTOPPING_FILES
   ${OVERTOPPING_FOLDER}/dllDikesOvertopping.dll
   ${OVERTOPPING_FOLDER}/dllDikesOvertopping.lib
   ${OVERTOPPING_FOLDER}/feedbackDLL.dll
+  ${OVERTOPPING_FOLDER}/libifcoremd.dll
+  ${OVERTOPPING_FOLDER}/libiomp5md.dll
+  ${OVERTOPPING_FOLDER}/libmmd.dll
 )
 
 install(FILES ${OVERTOPPING_FILES} DESTINATION ./$<CONFIG>)
