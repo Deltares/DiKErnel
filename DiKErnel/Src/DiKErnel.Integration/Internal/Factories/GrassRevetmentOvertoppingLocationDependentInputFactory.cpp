@@ -22,7 +22,7 @@
 
 #include "DefaultsFactoryException.h"
 #include "GrassRevetmentWaveRunupDefaults.h"
-#include "GrassRevetmentWaveRunupDefaultsFactory.h"
+#include "GrassRevetmentCumulativeOverloadDefaultsFactory.h"
 #include "GrassRevetmentWaveRunupRayleighDefaults.h"
 #include "IGrassRevetmentCumulativeOverloadTopLayerDefaults.h"
 #include "InputFactoryException.h"
@@ -42,7 +42,7 @@ namespace DiKErnel::Integration
 
         try
         {
-            topLayerDefaults = GrassRevetmentWaveRunupDefaultsFactory::CreateTopLayerDefaults(constructionProperties.GetTopLayerType());
+            topLayerDefaults = GrassRevetmentCumulativeOverloadDefaultsFactory::CreateTopLayerDefaults(constructionProperties.GetTopLayerType());
         }
         catch (const DefaultsFactoryException& e)
         {

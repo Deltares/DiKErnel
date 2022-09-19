@@ -27,7 +27,7 @@
 
 namespace DiKErnel::Integration
 {
-    class GrassRevetmentWaveRunupDefaultsFactory
+    class GrassRevetmentCumulativeOverloadDefaultsFactory
     {
         public:
             static std::unique_ptr<DomainLibrary::IGrassRevetmentCumulativeOverloadTopLayerDefaults> CreateTopLayerDefaults(

@@ -18,7 +18,7 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include "GrassRevetmentWaveRunupDefaultsFactory.h"
+#include "GrassRevetmentCumulativeOverloadDefaultsFactory.h"
 
 #include "DefaultsFactoryException.h"
 #include "GrassRevetmentCumulativeOverloadClosedSodTopLayerDefaults.h"
@@ -29,7 +29,7 @@ namespace DiKErnel::Integration
     using namespace DomainLibrary;
     using namespace std;
 
-    unique_ptr<IGrassRevetmentCumulativeOverloadTopLayerDefaults> GrassRevetmentWaveRunupDefaultsFactory::CreateTopLayerDefaults(
+    unique_ptr<IGrassRevetmentCumulativeOverloadTopLayerDefaults> GrassRevetmentCumulativeOverloadDefaultsFactory::CreateTopLayerDefaults(
         const GrassRevetmentTopLayerType topLayerType)
     {
         switch (topLayerType)
