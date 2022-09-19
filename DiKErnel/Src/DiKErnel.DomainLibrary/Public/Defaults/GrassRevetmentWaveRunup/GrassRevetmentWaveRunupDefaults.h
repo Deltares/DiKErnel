@@ -29,30 +29,6 @@ namespace DiKErnel::DomainLibrary
     {
         public:
             /*!
-             * \brief Gets the default value of the increased load transition alpha M.
-             * \return The default value of the increased load transition alpha M.
-             *         Unit = [-]
-             */
-            [[nodiscard]]
-            static double GetIncreasedLoadTransitionAlphaM();
-
-            /*!
-             * \brief Gets the default value of the reduced strength transition alpha S.
-             * \return The default value of the reduced strength transition alpha S.
-             *         Unit = [-]
-             */
-            [[nodiscard]]
-            static double GetReducedStrengthTransitionAlphaS();
-
-            /*!
-             * \brief Gets the default value of the Ctm coefficient.
-             * \return The default value of the Ctm coefficient.
-             *         Unit = [-]
-             */
-            [[nodiscard]]
-            static double GetAverageNumberOfWavesCtm();
-
-            /*!
              * \brief Gets the default value of the representative 2P Aru coefficient.
              * \return The default value of the representative 2P Aru coefficient.
              *         Unit = [-]

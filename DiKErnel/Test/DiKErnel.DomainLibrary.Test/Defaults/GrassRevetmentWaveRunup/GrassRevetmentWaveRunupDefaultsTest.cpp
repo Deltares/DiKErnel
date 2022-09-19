@@ -24,24 +24,6 @@
 
 namespace DiKErnel::DomainLibrary::Test
 {
-    TEST(GrassRevetmentWaveRunupDefaultsTest, GetIncreasedLoadTransitionAlphaM_ExpectedValue)
-    {
-        // Call & Assert
-        ASSERT_DOUBLE_EQ(1, GrassRevetmentWaveRunupDefaults::GetIncreasedLoadTransitionAlphaM());
-    }
-
-    TEST(GrassRevetmentWaveRunupDefaultsTest, GetReducedStrengthTransitionAlphaS_ExpectedValue)
-    {
-        // Call & Assert
-        ASSERT_DOUBLE_EQ(1, GrassRevetmentWaveRunupDefaults::GetReducedStrengthTransitionAlphaS());
-    }
-
-    TEST(GrassRevetmentWaveRunupDefaultsTest, GetAverageNumberOfWavesCtm_ExpectedValue)
-    {
-        // Call & Assert
-        ASSERT_DOUBLE_EQ(0.92, GrassRevetmentWaveRunupDefaults::GetAverageNumberOfWavesCtm());
-    }
-
     TEST(GrassRevetmentWaveRunupDefaultsTest, GetRepresentativeWaveRunup2PAru_ExpectedValue)
     {
         // Call & Assert

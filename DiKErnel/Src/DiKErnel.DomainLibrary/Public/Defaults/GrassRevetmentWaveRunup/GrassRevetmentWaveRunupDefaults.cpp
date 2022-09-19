@@ -22,21 +22,6 @@
 
 namespace DiKErnel::DomainLibrary
 {
-    double GrassRevetmentWaveRunupDefaults::GetIncreasedLoadTransitionAlphaM()
-    {
-        return 1;
-    }
-
-    double GrassRevetmentWaveRunupDefaults::GetReducedStrengthTransitionAlphaS()
-    {
-        return 1;
-    }
-
-    double GrassRevetmentWaveRunupDefaults::GetAverageNumberOfWavesCtm()
-    {
-        return 0.92;
-    }
-
     double GrassRevetmentWaveRunupDefaults::GetRepresentativeWaveRunup2PAru()
     {
         return 1.65;

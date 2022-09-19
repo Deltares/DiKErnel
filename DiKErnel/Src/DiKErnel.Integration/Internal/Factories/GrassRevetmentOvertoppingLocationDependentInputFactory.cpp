@@ -21,7 +21,7 @@
 #include "GrassRevetmentOvertoppingLocationDependentInputFactory.h"
 
 #include "DefaultsFactoryException.h"
-#include "GrassRevetmentWaveRunupDefaults.h"
+#include "GrassRevetmentCumulativeOverloadDefaults.h"
 #include "GrassRevetmentCumulativeOverloadDefaultsFactory.h"
 #include "GrassRevetmentWaveRunupRayleighDefaults.h"
 #include "IGrassRevetmentCumulativeOverloadTopLayerDefaults.h"
@@ -60,11 +60,11 @@ namespace DiKErnel::Integration
             InputFactoryHelper::GetValue(constructionProperties.GetCriticalCumulativeOverload(), topLayerDefaults->GetCriticalCumulativeOverload()),
             InputFactoryHelper::GetValue(constructionProperties.GetCriticalFrontVelocity(), topLayerDefaults->GetCriticalFrontVelocity()),
             InputFactoryHelper::GetValue(constructionProperties.GetIncreasedLoadTransitionAlphaM(),
-                                         GrassRevetmentWaveRunupDefaults::GetIncreasedLoadTransitionAlphaM()),
+                                         GrassRevetmentCumulativeOverloadDefaults::GetIncreasedLoadTransitionAlphaM()),
             InputFactoryHelper::GetValue(constructionProperties.GetReducedStrengthTransitionAlphaS(),
-                                         GrassRevetmentWaveRunupDefaults::GetReducedStrengthTransitionAlphaS()),
+                                         GrassRevetmentCumulativeOverloadDefaults::GetReducedStrengthTransitionAlphaS()),
             InputFactoryHelper::GetValue(constructionProperties.GetAverageNumberOfWavesCtm(),
-                                         GrassRevetmentWaveRunupDefaults::GetAverageNumberOfWavesCtm()),
+                                         GrassRevetmentCumulativeOverloadDefaults::GetAverageNumberOfWavesCtm()),
             InputFactoryHelper::GetValue(constructionProperties.GetFixedNumberOfWaves(),
                                          GrassRevetmentWaveRunupRayleighDefaults::GetFixedNumberOfWaves()),
             InputFactoryHelper::GetValue(constructionProperties.GetFrontVelocityCwo(), 1.1),
