@@ -56,6 +56,8 @@ set(SOURCEFILES_INTERNAL_DATA_REVETMENT
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassOvertoppingCalculationProtocolData.h
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassOvertoppingDikesOvertoppingCalculationProtocolData.cpp
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassOvertoppingDikesOvertoppingCalculationProtocolData.h
+  ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassOvertoppingLocationData.cpp
+  ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassOvertoppingLocationData.h
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassRevetmentTopLayerType.h
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassRevetmentWaveRunupCalculationProtocolType.h
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassWaveImpactCalculationDefinitionData.cpp
