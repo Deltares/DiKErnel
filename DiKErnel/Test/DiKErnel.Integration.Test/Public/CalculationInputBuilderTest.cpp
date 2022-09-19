@@ -25,6 +25,7 @@
 #include "AssertHelper.h"
 #include "CalculationInputBuilder.h"
 #include "CalculationInputBuildException.h"
+#include "GrassRevetmentOvertoppingLocationDependentInput.h"
 #include "GrassRevetmentWaveImpactLocationDependentInput.h"
 #include "GrassRevetmentWaveImpactLocationDependentInputAssertHelper.h"
 #include "GrassRevetmentWaveRunupLocationDependentInputAssertHelper.h"
@@ -461,7 +462,7 @@ namespace DiKErnel::Integration::Test
     #pragma region Asphalt wave impact
 
     TEST_F(CalculationInputBuilderTest,
-           GivenBuilderWhithAsphaltWaveImpactLocationWithInvalidTopLayerType_WhenBuild_ThenThrowCalculationInputBuildException)
+           GivenBuilderWithAsphaltWaveImpactLocationWithInvalidTopLayerType_WhenBuild_ThenThrowCalculationInputBuildException)
     {
         // Given & When
         const auto action =
@@ -653,10 +654,198 @@ namespace DiKErnel::Integration::Test
 
     #pragma endregion
 
+    #pragma region Grass overtopping
+
+    TEST_F(CalculationInputBuilderTest,
+        GivenBuilderWithGrassOvertoppingLocationWithInvalidTopLayerType_WhenBuild_ThenThrowsCalculationInputBuildException)
+    {
+        // Given & When
+        const auto action =
+            &CalculationInputBuilderTest::CreateBuilderAndAddGrassRevetmentOvertoppingLocationWithInvalidTopLayerType;
+
+        // Then
+        AssertHelper::AssertThrowsWithMessageAndInnerException<CalculationInputBuildException, InputFactoryException>(
+            action, "Could not create calculation input.", "Couldn't create defaults for the given top layer type.");
+    }
+
+    TEST_F(CalculationInputBuilderTest,
+        GivenBuilderWithFullyConfiguredGrassOvertoppingLocationAdded_WhenBuild_ThenReturnsCalculationInput)
+    {
+        // Given
+        const auto topLayerType = static_cast<GrassRevetmentTopLayerType>(rand() % 2);
+        constexpr auto x = 0.1;
+        constexpr auto initialDamage = 0.2;
+        constexpr auto failureNumber = 0.3;
+        constexpr auto criticalCumulativeOverload = 0.4;
+        constexpr auto criticalFrontVelocity = 0.5;
+        constexpr auto increasedLoadTransitionAlphaM = 0.6;
+        constexpr auto reducedStrengthTransitionAlphaS = 0.7;
+        constexpr auto averageNumberOfWavesCtm = 0.8;
+        constexpr auto fixedNumberOfWaves = 9;
+        constexpr auto frontVelocityCwo = 1.0;
+        constexpr auto accelerationAlphaAForCrest = 1.1;
+        constexpr auto accelerationAlphaAForInnerSlope = 1.2;
+        constexpr auto dikeHeight = 1.3;
+
+        auto constructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(x, topLayerType);
+        constructionProperties->SetInitialDamage(make_unique<double>(initialDamage));
+        constructionProperties->SetFailureNumber(make_unique<double>(failureNumber));
+        constructionProperties->SetCriticalCumulativeOverload(make_unique<double>(criticalCumulativeOverload));
+        constructionProperties->SetCriticalFrontVelocity(make_unique<double>(criticalFrontVelocity));
+        constructionProperties->SetIncreasedLoadTransitionAlphaM(make_unique<double>(increasedLoadTransitionAlphaM));
+        constructionProperties->SetReducedStrengthTransitionAlphaS(make_unique<double>(reducedStrengthTransitionAlphaS));
+        constructionProperties->SetAverageNumberOfWavesCtm(make_unique<double>(averageNumberOfWavesCtm));
+        constructionProperties->SetFixedNumberOfWaves(make_unique<int>(fixedNumberOfWaves));
+        constructionProperties->SetFrontVelocityCwo(make_unique<double>(frontVelocityCwo));
+        constructionProperties->SetAccelerationAlphaAForCrest(make_unique<double>(accelerationAlphaAForCrest));
+        constructionProperties->SetAccelerationAlphaAForInnerSlope(make_unique<double>(accelerationAlphaAForInnerSlope));
+        constructionProperties->SetDikeHeight(make_unique<double>(dikeHeight));
+
+        CalculationInputBuilder builder;
+        builder.AddDikeProfileSegment(0, 10, 10, 20, nullptr);
+        builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
+        builder.AddGrassOvertoppingLocation(move(constructionProperties));
+
+        // When
+        const auto& calculationInput = builder.Build();
+
+        // Then
+        const auto& actualLocationDependentInputItems = calculationInput->GetLocationDependentInputItems();
+        ASSERT_EQ(1, actualLocationDependentInputItems.size());
+
+        const auto* locationDependentInput = dynamic_cast<GrassRevetmentOvertoppingLocationDependentInput*>(
+            &actualLocationDependentInputItems.at(0).get());
+        ASSERT_TRUE(locationDependentInput != nullptr);
+
+        LocationDependentInputAssertHelper::AssertDamageProperties(initialDamage, failureNumber, *locationDependentInput);
+
+        // GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertGeneralProperties(
+        //     x, outerSlope, *locationDependentInput);
+        //
+        // GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertRepresentative2P(
+        //     representativeWaveRunup2PAru, representativeWaveRunup2PBru, representativeWaveRunup2PCru,
+        //     representativeWaveRunup2PGammab, representativeWaveRunup2PGammaf, locationDependentInput->GetRepresentative2P());
+        //
+        // GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertWaveAngleImpact(
+        //     waveAngleImpactAbeta, waveAngleImpactBetamax, locationDependentInput->GetWaveAngleImpact());
+        //
+        // GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertTransitionAlpha(
+        //     increasedLoadTransitionAlphaM, reducedStrengthTransitionAlphaS, *locationDependentInput);
+        //
+        // GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertAverageNumberOfWaves(
+        //     averageNumberOfWavesCtm, *locationDependentInput);
+        //
+        // GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper::AssertCumulativeOverload(
+        //     criticalCumulativeOverload, fixedNumberOfWaves, *locationDependentInput);
+        //
+        // GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper::AssertFrontVelocity(
+        //     criticalFrontVelocity, frontVelocityCu, *locationDependentInput);
+    }
+
+    TEST_F(CalculationInputBuilderTest,
+        GivenBuilderWithNotFullyConfiguredClosedSodGrassOvertoppingLocationAdded_WhenBuild_ThenReturnsCalculationInput)
+    {
+        // Given
+        constexpr auto topLayerType = GrassRevetmentTopLayerType::ClosedSod;
+        constexpr auto x = 0.1;
+
+        auto constructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(x, topLayerType);
+
+        CalculationInputBuilder builder;
+        builder.AddDikeProfileSegment(0, 10, 10, 20, nullptr);
+        builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
+        builder.AddGrassOvertoppingLocation(move(constructionProperties));
+
+        // When
+        const auto& calculationInput = builder.Build();
+
+        // Then
+        const auto& actualLocationDependentInputItems = calculationInput->GetLocationDependentInputItems();
+        ASSERT_EQ(1, actualLocationDependentInputItems.size());
+
+        const auto* locationDependentInput = dynamic_cast<GrassRevetmentOvertoppingLocationDependentInput*>(
+            &actualLocationDependentInputItems.at(0).get());
+        ASSERT_TRUE(locationDependentInput != nullptr);
+
+        LocationDependentInputAssertHelper::AssertDamageProperties(0, 1, *locationDependentInput);
+
+        // GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertGeneralProperties(
+        //     x, outerSlope, *locationDependentInput);
+        //
+        // GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertRepresentative2P(
+        //     1.65, 4, 1.5, 1, 1, locationDependentInput->GetRepresentative2P());
+        //
+        // GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertWaveAngleImpact(
+        //     0.0022, 80, locationDependentInput->GetWaveAngleImpact());
+        //
+        // GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertTransitionAlpha(
+        //     1, 1, *locationDependentInput);
+        //
+        // GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertAverageNumberOfWaves(
+        //     0.92, *locationDependentInput);
+        //
+        // GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper::AssertCumulativeOverload(
+        //     7000, 10000, *locationDependentInput);
+        //
+        // GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper::AssertFrontVelocity(
+        //     6.6, 1.1, *locationDependentInput);
+    }
+
+    TEST_F(CalculationInputBuilderTest,
+        GivenBuilderWithNotFullyConfiguredOpenSodGrassOvertoppingLocationAdded_WhenBuild_ThenReturnsCalculationInput)
+    {
+        // Given
+        constexpr auto topLayerType = GrassRevetmentTopLayerType::OpenSod;
+        constexpr auto x = 0.1;
+
+        auto constructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(x, topLayerType);
+
+        CalculationInputBuilder builder;
+        builder.AddDikeProfileSegment(0, 10, 10, 20, nullptr);
+        builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
+        builder.AddGrassOvertoppingLocation(move(constructionProperties));
+
+        // When
+        const auto& calculationInput = builder.Build();
+
+        // Then
+        const auto& actualLocationDependentInputItems = calculationInput->GetLocationDependentInputItems();
+        ASSERT_EQ(1, actualLocationDependentInputItems.size());
+
+        const auto* locationDependentInput = dynamic_cast<GrassRevetmentOvertoppingLocationDependentInput*>(
+            &actualLocationDependentInputItems.at(0).get());
+        ASSERT_TRUE(locationDependentInput != nullptr);
+
+        LocationDependentInputAssertHelper::AssertDamageProperties(0, 1, *locationDependentInput);
+
+        // GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertGeneralProperties(
+        //     x, outerSlope, *locationDependentInput);
+        //
+        // GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertRepresentative2P(
+        //     1.65, 4, 1.5, 1, 1, locationDependentInput->GetRepresentative2P());
+        //
+        // GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertWaveAngleImpact(
+        //     0.0022, 80, locationDependentInput->GetWaveAngleImpact());
+        //
+        // GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertTransitionAlpha(
+        //     1, 1, *locationDependentInput);
+        //
+        // GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertAverageNumberOfWaves(
+        //     0.92, *locationDependentInput);
+        //
+        // GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper::AssertCumulativeOverload(
+        //     7000, 10000, *locationDependentInput);
+        //
+        // GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper::AssertFrontVelocity(
+        //     4.3, 1.1, *locationDependentInput);
+    }
+
+    #pragma endregion
+
     #pragma region Grass wave impact
 
     TEST_F(CalculationInputBuilderTest,
-           GivenBuilderWhithGrassWaveImpactLocationWithInvalidTopLayerType_WhenBuild_ThenThrowsCalculationInputBuildException)
+           GivenBuilderWithGrassWaveImpactLocationWithInvalidTopLayerType_WhenBuild_ThenThrowsCalculationInputBuildException)
     {
         // Given & When
         const auto action = &CalculationInputBuilderTest::CreateBuilderAndAddGrassRevetmentWaveImpactLocationWithInvalidTopLayerType;
@@ -841,7 +1030,7 @@ namespace DiKErnel::Integration::Test
     #pragma region Grass wave run-up Rayleigh
 
     TEST_F(CalculationInputBuilderTest,
-           GivenBuilderWhithGrassWaveRunupRayleighLocationWithInvalidTopLayerType_WhenBuild_ThenThrowsCalculationInputBuildException)
+           GivenBuilderWithGrassWaveRunupRayleighLocationWithInvalidTopLayerType_WhenBuild_ThenThrowsCalculationInputBuildException)
     {
         // Given & When
         const auto action =
