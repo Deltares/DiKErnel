@@ -26,19 +26,19 @@ namespace DiKErnel::DomainLibrary::Test
 {
     TEST(GrassRevetmentCumulativeOverloadDefaultsTest, GetIncreasedLoadTransitionAlphaM_ExpectedValue)
     {
-        // Call& Assert
+        // Call & Assert
         ASSERT_DOUBLE_EQ(1, GrassRevetmentCumulativeOverloadDefaults::GetIncreasedLoadTransitionAlphaM());
     }
 
     TEST(GrassRevetmentCumulativeOverloadDefaultsTest, GetReducedStrengthTransitionAlphaS_ExpectedValue)
     {
-        // Call& Assert
+        // Call & Assert
         ASSERT_DOUBLE_EQ(1, GrassRevetmentCumulativeOverloadDefaults::GetReducedStrengthTransitionAlphaS());
     }
 
     TEST(GrassRevetmentCumulativeOverloadDefaultsTest, GetAverageNumberOfWavesCtm_ExpectedValue)
     {
-        // Call& Assert
+        // Call & Assert
         ASSERT_DOUBLE_EQ(0.92, GrassRevetmentCumulativeOverloadDefaults::GetAverageNumberOfWavesCtm());
     }
 }

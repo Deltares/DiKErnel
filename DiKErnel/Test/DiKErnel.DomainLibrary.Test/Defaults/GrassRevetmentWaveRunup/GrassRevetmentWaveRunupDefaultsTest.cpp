@@ -26,61 +26,61 @@ namespace DiKErnel::DomainLibrary::Test
 {
     TEST(GrassRevetmentWaveRunupDefaultsTest, GetIncreasedLoadTransitionAlphaM_ExpectedValue)
     {
-        // Call& Assert
+        // Call & Assert
         ASSERT_DOUBLE_EQ(1, GrassRevetmentWaveRunupDefaults::GetIncreasedLoadTransitionAlphaM());
     }
 
     TEST(GrassRevetmentWaveRunupDefaultsTest, GetReducedStrengthTransitionAlphaS_ExpectedValue)
     {
-        // Call& Assert
+        // Call & Assert
         ASSERT_DOUBLE_EQ(1, GrassRevetmentWaveRunupDefaults::GetReducedStrengthTransitionAlphaS());
     }
 
     TEST(GrassRevetmentWaveRunupDefaultsTest, GetAverageNumberOfWavesCtm_ExpectedValue)
     {
-        // Call& Assert
+        // Call & Assert
         ASSERT_DOUBLE_EQ(0.92, GrassRevetmentWaveRunupDefaults::GetAverageNumberOfWavesCtm());
     }
 
     TEST(GrassRevetmentWaveRunupDefaultsTest, GetRepresentativeWaveRunup2PAru_ExpectedValue)
     {
-        // Call& Assert
+        // Call & Assert
         ASSERT_DOUBLE_EQ(1.65, GrassRevetmentWaveRunupDefaults::GetRepresentativeWaveRunup2PAru());
     }
 
     TEST(GrassRevetmentWaveRunupDefaultsTest, GetRepresentativeWaveRunup2PBru_ExpectedValue)
     {
-        // Call& Assert
+        // Call & Assert
         ASSERT_DOUBLE_EQ(4, GrassRevetmentWaveRunupDefaults::GetRepresentativeWaveRunup2PBru());
     }
 
     TEST(GrassRevetmentWaveRunupDefaultsTest, GetRepresentativeWaveRunup2PCru_ExpectedValue)
     {
-        // Call& Assert
+        // Call & Assert
         ASSERT_DOUBLE_EQ(1.5, GrassRevetmentWaveRunupDefaults::GetRepresentativeWaveRunup2PCru());
     }
 
     TEST(GrassRevetmentWaveRunupDefaultsTest, GetRepresentativeWaveRunup2PGammab_ExpectedValue)
     {
-        // Call& Assert
+        // Call & Assert
         ASSERT_DOUBLE_EQ(1, GrassRevetmentWaveRunupDefaults::GetRepresentativeWaveRunup2PGammab());
     }
 
     TEST(GrassRevetmentWaveRunupDefaultsTest, GetRepresentativeWaveRunup2PGammaf_ExpectedValue)
     {
-        // Call& Assert
+        // Call & Assert
         ASSERT_DOUBLE_EQ(1, GrassRevetmentWaveRunupDefaults::GetRepresentativeWaveRunup2PGammaf());
     }
 
     TEST(GrassRevetmentWaveRunupDefaultsTest, GetWaveAngleImpactAbeta_ExpectedValue)
     {
-        // Call& Assert
+        // Call & Assert
         ASSERT_DOUBLE_EQ(0.0022, GrassRevetmentWaveRunupDefaults::GetWaveAngleImpactAbeta());
     }
 
     TEST(GrassRevetmentWaveRunupDefaultsTest, GetWaveAngleImpactBetamax_ExpectedValue)
     {
-        // Call& Assert
+        // Call & Assert
         ASSERT_DOUBLE_EQ(80, GrassRevetmentWaveRunupDefaults::GetWaveAngleImpactBetamax());
     }
 }
