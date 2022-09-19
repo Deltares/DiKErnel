@@ -18,24 +18,24 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include "ProfileFactoryPointData.h"
+#include "ProfileDataFactoryPoint.h"
 
 namespace DiKErnel::Integration
 {
     using namespace Core;
 
-    ProfileFactoryPointData::ProfileFactoryPointData(
+    ProfileDataFactoryPoint::ProfileDataFactoryPoint(
         const double x,
         const CharacteristicPointType characteristicPointType)
         : _x(x),
           _characteristicPointType(characteristicPointType) { }
 
-    double ProfileFactoryPointData::GetX() const
+    double ProfileDataFactoryPoint::GetX() const
     {
         return _x;
     }
 
-    CharacteristicPointType ProfileFactoryPointData::GetCharacteristicPoint() const
+    CharacteristicPointType ProfileDataFactoryPoint::GetCharacteristicPoint() const
     {
         return _characteristicPointType;
     }

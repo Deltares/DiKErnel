@@ -33,8 +33,8 @@ namespace DiKErnel::Integration
     using namespace std;
 
     unique_ptr<ProfileData> ProfileDataFactory::Create(
-        const std::vector<std::reference_wrapper<ProfileFactorySegmentData>>& profileSegments,
-        const std::vector<std::reference_wrapper<ProfileFactoryPointData>>& profilePoints)
+        const std::vector<std::reference_wrapper<ProfileDataFactorySegment>>& profileSegments,
+        const std::vector<std::reference_wrapper<ProfileDataFactoryPoint>>& profilePoints)
     {
         if (profileSegments.empty())
         {
@@ -48,7 +48,7 @@ namespace DiKErnel::Integration
     }
 
     vector<unique_ptr<ProfileSegment>> ProfileDataFactory::CreateProfileSegments(
-        const vector<reference_wrapper<ProfileFactorySegmentData>>& profileSegments)
+        const vector<reference_wrapper<ProfileDataFactorySegment>>& profileSegments)
     {
         vector<unique_ptr<ProfileSegment>> segments;
 
@@ -77,7 +77,7 @@ namespace DiKErnel::Integration
     }
 
     vector<unique_ptr<CharacteristicPoint>> ProfileDataFactory::CreateCharacteristicPoints(
-        const vector<reference_wrapper<ProfileFactoryPointData>>& profilePoints,
+        const vector<reference_wrapper<ProfileDataFactoryPoint>>& profilePoints,
         const vector<unique_ptr<ProfileSegment>>& profileSegments)
     {
         vector<unique_ptr<CharacteristicPoint>> characteristicPoints;
@@ -100,14 +100,14 @@ namespace DiKErnel::Integration
 
     bool ProfileDataFactory::DoesSegmentStartAtPoint(
         const ProfilePoint& profilePoint,
-        const ProfileFactorySegmentData& segmentData)
+        const ProfileDataFactorySegment& segmentData)
     {
         return abs(profilePoint.GetX() - segmentData.GetStartPointX()) < numeric_limits<double>::epsilon()
                 && abs(profilePoint.GetZ() - segmentData.GetStartPointZ()) < numeric_limits<double>::epsilon();
     }
 
     const ProfilePoint* ProfileDataFactory::FindMatchingPointOnSegment(
-        const ProfileFactoryPointData& profilePointData,
+        const ProfileDataFactoryPoint& profilePointData,
         const vector<unique_ptr<ProfileSegment>>& segments)
     {
         for (const auto& segment : segments)
@@ -130,7 +130,7 @@ namespace DiKErnel::Integration
     }
 
     const ProfilePoint* ProfileDataFactory::FindMatchingPoint(
-        const ProfileFactoryPointData& profilePointData,
+        const ProfileDataFactoryPoint& profilePointData,
         const ProfilePoint& profilePoint)
     {
         return abs(profilePointData.GetX() - profilePoint.GetX()) <= numeric_limits<double>::epsilon()

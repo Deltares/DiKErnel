@@ -28,8 +28,8 @@
 
 namespace DiKErnel::Integration
 {
-    class ProfileFactoryPointData;
-    class ProfileFactorySegmentData;
+    class ProfileDataFactoryPoint;
+    class ProfileDataFactorySegment;
     class TimeDependentInputFactoryData;
 
     /*!
@@ -144,8 +144,8 @@ namespace DiKErnel::Integration
             std::unique_ptr<Core::ICalculationInput> Build() const;
 
         private:
-            std::vector<std::unique_ptr<ProfileFactorySegmentData>> _profileSegmentData;
-            std::vector<std::unique_ptr<ProfileFactoryPointData>> _profilePointData;
+            std::vector<std::unique_ptr<ProfileDataFactorySegment>> _profileSegmentData;
+            std::vector<std::unique_ptr<ProfileDataFactoryPoint>> _profilePointData;
             std::vector<std::unique_ptr<TimeDependentInputFactoryData>> _timeStepDataItems;
             std::vector<std::unique_ptr<RevetmentLocationConstructionPropertiesBase>> _locationConstructionPropertiesItems;
 

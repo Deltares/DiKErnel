@@ -25,8 +25,8 @@
 
 #include "CharacteristicPoint.h"
 #include "ProfileData.h"
-#include "ProfileFactoryPointData.h"
-#include "ProfileFactorySegmentData.h"
+#include "ProfileDataFactoryPoint.h"
+#include "ProfileDataFactorySegment.h"
 #include "ProfileSegment.h"
 
 namespace DiKErnel::Integration
@@ -35,27 +35,27 @@ namespace DiKErnel::Integration
     {
         public:
             static std::unique_ptr<ProfileData> Create(
-                const std::vector<std::reference_wrapper<ProfileFactorySegmentData>>& profileSegments,
-                const std::vector<std::reference_wrapper<ProfileFactoryPointData>>& profilePoints);
+                const std::vector<std::reference_wrapper<ProfileDataFactorySegment>>& profileSegments,
+                const std::vector<std::reference_wrapper<ProfileDataFactoryPoint>>& profilePoints);
 
         private:
             static std::vector<std::unique_ptr<Core::ProfileSegment>> CreateProfileSegments(
-                const std::vector<std::reference_wrapper<ProfileFactorySegmentData>>& profileSegments);
+                const std::vector<std::reference_wrapper<ProfileDataFactorySegment>>& profileSegments);
 
             static std::vector<std::unique_ptr<Core::CharacteristicPoint>> CreateCharacteristicPoints(
-                const std::vector<std::reference_wrapper<ProfileFactoryPointData>>& profilePoints,
+                const std::vector<std::reference_wrapper<ProfileDataFactoryPoint>>& profilePoints,
                 const std::vector<std::unique_ptr<Core::ProfileSegment>>& profileSegments);
 
             static bool DoesSegmentStartAtPoint(
                 const Core::ProfilePoint& profilePoint,
-                const ProfileFactorySegmentData& segmentData);
+                const ProfileDataFactorySegment& segmentData);
 
             static const Core::ProfilePoint* FindMatchingPointOnSegment(
-                const ProfileFactoryPointData& profilePointData,
+                const ProfileDataFactoryPoint& profilePointData,
                 const std::vector<std::unique_ptr<Core::ProfileSegment>>& segments);
 
             static const Core::ProfilePoint* FindMatchingPoint(
-                const ProfileFactoryPointData& profilePointData,
+                const ProfileDataFactoryPoint& profilePointData,
                 const Core::ProfilePoint& profilePoint);
     };
 }

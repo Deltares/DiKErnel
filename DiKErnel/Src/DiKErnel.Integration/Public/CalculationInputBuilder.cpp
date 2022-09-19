@@ -31,8 +31,8 @@
 #include "LocationDependentInputFactory.h"
 #include "NaturalStoneRevetmentLocationDependentInputFactory.h"
 #include "ProfileDataFactory.h"
-#include "ProfileFactoryPointData.h"
-#include "ProfileFactorySegmentData.h"
+#include "ProfileDataFactoryPoint.h"
+#include "ProfileDataFactorySegment.h"
 #include "TimeDependentInputFactory.h"
 #include "TimeDependentInputFactoryData.h"
 
@@ -50,7 +50,7 @@ namespace DiKErnel::Integration
         const double x,
         const CharacteristicPointType characteristicPointType)
     {
-        _profilePointData.push_back(make_unique<ProfileFactoryPointData>(x, characteristicPointType));
+        _profilePointData.push_back(make_unique<ProfileDataFactoryPoint>(x, characteristicPointType));
     }
 
     void CalculationInputBuilder::AddDikeProfileSegment(
@@ -60,7 +60,7 @@ namespace DiKErnel::Integration
         double endPointZ,
         const double* roughnessCoefficient)
     {
-        _profileSegmentData.emplace_back(make_unique<ProfileFactorySegmentData>(startPointX, startPointZ, endPointX, endPointZ,
+        _profileSegmentData.emplace_back(make_unique<ProfileDataFactorySegment>(startPointX, startPointZ, endPointX, endPointZ,
                                                                                 roughnessCoefficient));
     }
 
@@ -102,13 +102,13 @@ namespace DiKErnel::Integration
 
     unique_ptr<ICalculationInput> CalculationInputBuilder::Build() const
     {
-        auto profileSegmentDataReferences = vector<reference_wrapper<ProfileFactorySegmentData>>();
+        auto profileSegmentDataReferences = vector<reference_wrapper<ProfileDataFactorySegment>>();
         for (const auto& profileSegment : _profileSegmentData)
         {
             profileSegmentDataReferences.emplace_back(*profileSegment);
         }
 
-        auto profilePointDataReferences = vector<reference_wrapper<ProfileFactoryPointData>>();
+        auto profilePointDataReferences = vector<reference_wrapper<ProfileDataFactoryPoint>>();
         for (const auto& profilePoint : _profilePointData)
         {
             profilePointDataReferences.emplace_back(*profilePoint);

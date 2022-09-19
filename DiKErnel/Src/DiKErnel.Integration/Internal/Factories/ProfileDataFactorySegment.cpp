@@ -18,11 +18,11 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include "ProfileFactorySegmentData.h"
+#include "ProfileDataFactorySegment.h"
 
 namespace DiKErnel::Integration
 {
-    ProfileFactorySegmentData::ProfileFactorySegmentData(
+    ProfileDataFactorySegment::ProfileDataFactorySegment(
         const double startPointX,
         const double startPointZ,
         const double endPointX,
@@ -34,27 +34,27 @@ namespace DiKErnel::Integration
         _endPointZ(endPointZ),
         _roughnessCoefficient(roughnessCoefficient) { }
 
-    double ProfileFactorySegmentData::GetStartPointX() const
+    double ProfileDataFactorySegment::GetStartPointX() const
     {
         return _startPointX;
     }
 
-    double ProfileFactorySegmentData::GetStartPointZ() const
+    double ProfileDataFactorySegment::GetStartPointZ() const
     {
         return _startPointZ;
     }
 
-    double ProfileFactorySegmentData::GetEndPointX() const
+    double ProfileDataFactorySegment::GetEndPointX() const
     {
         return _endPointX;
     }
 
-    double ProfileFactorySegmentData::GetEndPointZ() const
+    double ProfileDataFactorySegment::GetEndPointZ() const
     {
         return _endPointZ;
     }
 
-    const double* ProfileFactorySegmentData::GetRoughnessCoefficient() const
+    const double* ProfileDataFactorySegment::GetRoughnessCoefficient() const
     {
         return _roughnessCoefficient;
     }

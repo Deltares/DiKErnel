@@ -20,25 +20,38 @@
 
 #pragma once
 
-#include "CharacteristicPointType.h"
-
 namespace DiKErnel::Integration
 {
-    class ProfileFactoryPointData
+    class ProfileDataFactorySegment
     {
         public:
-            ProfileFactoryPointData(
-                double x,
-                Core::CharacteristicPointType characteristicPointType);
+            ProfileDataFactorySegment(
+                double startPointX,
+                double startPointZ,
+                double endPointX,
+                double endPointZ,
+                const double* roughnessCoefficient);
 
             [[nodiscard]]
-            double GetX() const;
+            double GetStartPointX() const;
 
             [[nodiscard]]
-            Core::CharacteristicPointType GetCharacteristicPoint() const;
+            double GetStartPointZ() const;
+
+            [[nodiscard]]
+            double GetEndPointX() const;
+
+            [[nodiscard]]
+            double GetEndPointZ() const;
+
+            [[nodiscard]]
+            const double* GetRoughnessCoefficient() const;
 
         private:
-            double _x;
-            Core::CharacteristicPointType _characteristicPointType;
+            double _startPointX;
+            double _startPointZ;
+            double _endPointX;
+            double _endPointZ;
+            const double* _roughnessCoefficient;
     };
 }

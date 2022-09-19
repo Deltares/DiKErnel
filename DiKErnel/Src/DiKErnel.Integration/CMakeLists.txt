@@ -174,10 +174,10 @@ set(SOURCEFILES_INTERNAL_FACTORIES
   ${INTERNAL_FACTORIES_FOLDER}/NaturalStoneRevetmentLocationDependentInputFactory.h
   ${INTERNAL_FACTORIES_FOLDER}/ProfileDataFactory.cpp
   ${INTERNAL_FACTORIES_FOLDER}/ProfileDataFactory.h
-  ${INTERNAL_FACTORIES_FOLDER}/ProfileFactoryPointData.cpp
-  ${INTERNAL_FACTORIES_FOLDER}/ProfileFactoryPointData.h
-  ${INTERNAL_FACTORIES_FOLDER}/ProfileFactorySegmentData.cpp
-  ${INTERNAL_FACTORIES_FOLDER}/ProfileFactorySegmentData.h
+  ${INTERNAL_FACTORIES_FOLDER}/ProfileDataFactoryPoint.cpp
+  ${INTERNAL_FACTORIES_FOLDER}/ProfileDataFactoryPoint.h
+  ${INTERNAL_FACTORIES_FOLDER}/ProfileDataFactorySegment.cpp
+  ${INTERNAL_FACTORIES_FOLDER}/ProfileDataFactorySegment.h
   ${INTERNAL_FACTORIES_FOLDER}/TimeDependentInputFactory.cpp
   ${INTERNAL_FACTORIES_FOLDER}/TimeDependentInputFactory.h
   ${INTERNAL_FACTORIES_FOLDER}/TimeDependentInputFactoryData.cpp
