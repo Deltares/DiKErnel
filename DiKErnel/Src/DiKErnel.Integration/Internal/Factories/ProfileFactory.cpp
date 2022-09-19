@@ -23,6 +23,7 @@
 #include <cmath>
 
 #include "InputFactoryException.h"
+#include "InputFactoryHelper.h"
 #include "ProfileSegmentDefaults.h"
 
 namespace DiKErnel::Integration
@@ -66,8 +67,9 @@ namespace DiKErnel::Integration
             }
 
             auto segmentEndPoint = make_shared<ProfilePoint>(currentSegmentReference.GetEndPointX(), currentSegmentReference.GetEndPointZ());
-            segments.emplace_back(make_unique<ProfileSegment>(segmentStartPoint, segmentEndPoint,
-                                                              GetRoughnessCoefficient(currentSegmentReference.GetRoughnessCoefficient())));
+            segments.emplace_back(make_unique<ProfileSegment>(
+                segmentStartPoint, segmentEndPoint,
+                InputFactoryHelper::GetValue(currentSegmentReference.GetRoughnessCoefficient(),ProfileSegmentDefaults::GetRoughnessCoefficient())));
             segmentStartPoint = segmentEndPoint;
         }
 
@@ -94,17 +96,6 @@ namespace DiKErnel::Integration
         }
 
         return characteristicPoints;
-    }
-
-    double ProfileFactory::GetRoughnessCoefficient(
-        const double* roughnessCoefficient)
-    {
-        if (roughnessCoefficient == nullptr)
-        {
-            return ProfileSegmentDefaults::GetRoughnessCoefficient();
-        }
-
-        return *roughnessCoefficient;
     }
 
     bool ProfileFactory::DoesSegmentStartAtPoint(

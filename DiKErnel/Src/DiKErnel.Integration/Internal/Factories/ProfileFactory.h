@@ -39,9 +39,6 @@ namespace DiKErnel::Integration
                 const std::vector<std::reference_wrapper<ProfileFactoryPointData>>& profilePoints);
 
         private:
-            static double GetRoughnessCoefficient(
-                const double* roughnessCoefficient);
-
             static std::vector<std::unique_ptr<Core::ProfileSegment>> CreateProfileSegments(
                 const std::vector<std::reference_wrapper<ProfileFactorySegmentData>>& profileSegments);
 

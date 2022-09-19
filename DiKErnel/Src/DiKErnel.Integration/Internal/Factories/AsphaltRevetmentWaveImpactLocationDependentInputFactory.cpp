@@ -25,7 +25,7 @@
 #include "DefaultsFactoryException.h"
 #include "IAsphaltRevetmentWaveImpactTopLayerDefaults.h"
 #include "InputFactoryException.h"
-#include "LocationDependentInputFactoryHelper.h"
+#include "InputFactoryHelper.h"
 #include "CalculationInputBuilder.h"
 #include "RevetmentDefaults.h"
 
@@ -64,31 +64,31 @@ namespace DiKErnel::Integration
         }
 
         auto fatigue = make_unique<AsphaltRevetmentWaveImpactFatigue>(
-            LocationDependentInputFactoryHelper::GetValue(constructionProperties.GetFatigueAlpha(), topLayerDefaults->GetFatigueAlpha()),
-            LocationDependentInputFactoryHelper::GetValue(constructionProperties.GetFatigueBeta(), topLayerDefaults->GetFatigueBeta()));
+            InputFactoryHelper::GetValue(constructionProperties.GetFatigueAlpha(), topLayerDefaults->GetFatigueAlpha()),
+            InputFactoryHelper::GetValue(constructionProperties.GetFatigueBeta(), topLayerDefaults->GetFatigueBeta()));
 
         return make_unique<AsphaltRevetmentWaveImpactLocationDependentInput>(
             constructionProperties.GetX(),
-            LocationDependentInputFactoryHelper::GetValue(constructionProperties.GetInitialDamage(), RevetmentDefaults::GetInitialDamage()),
-            LocationDependentInputFactoryHelper::GetValue(constructionProperties.GetFailureNumber(), RevetmentDefaults::GetFailureNumber()),
+            InputFactoryHelper::GetValue(constructionProperties.GetInitialDamage(), RevetmentDefaults::GetInitialDamage()),
+            InputFactoryHelper::GetValue(constructionProperties.GetFailureNumber(), RevetmentDefaults::GetFailureNumber()),
             constructionProperties.GetFailureTension(),
-            LocationDependentInputFactoryHelper::GetValue(constructionProperties.GetDensityOfWater(),
+            InputFactoryHelper::GetValue(constructionProperties.GetDensityOfWater(),
                                                           AsphaltRevetmentWaveImpactDefaults::GetDensityOfWater()),
             constructionProperties.GetSoilElasticity(),
             move(upperLayer),
             move(subLayer),
-            LocationDependentInputFactoryHelper::GetValue(constructionProperties.GetAverageNumberOfWavesCtm(),
+            InputFactoryHelper::GetValue(constructionProperties.GetAverageNumberOfWavesCtm(),
                                                           AsphaltRevetmentWaveImpactDefaults::GetAverageNumberOfWavesCtm()),
             move(fatigue),
-            LocationDependentInputFactoryHelper::GetValue(constructionProperties.GetImpactNumberC(),
+            InputFactoryHelper::GetValue(constructionProperties.GetImpactNumberC(),
                                                           AsphaltRevetmentWaveImpactDefaults::GetImpactNumberC()),
-            LocationDependentInputFactoryHelper::GetValue(constructionProperties.GetStiffnessRelationNu(),
+            InputFactoryHelper::GetValue(constructionProperties.GetStiffnessRelationNu(),
                                                           topLayerDefaults->GetStiffnessRelationNu()),
-            LocationDependentInputFactoryHelper::GetValue(constructionProperties.GetWidthFactors(),
+            InputFactoryHelper::GetValue(constructionProperties.GetWidthFactors(),
                                                           AsphaltRevetmentWaveImpactDefaults::GetWidthFactors()),
-            LocationDependentInputFactoryHelper::GetValue(constructionProperties.GetDepthFactors(),
+            InputFactoryHelper::GetValue(constructionProperties.GetDepthFactors(),
                                                           AsphaltRevetmentWaveImpactDefaults::GetDepthFactors()),
-            LocationDependentInputFactoryHelper::GetValue(constructionProperties.GetImpactFactors(),
+            InputFactoryHelper::GetValue(constructionProperties.GetImpactFactors(),
                                                           AsphaltRevetmentWaveImpactDefaults::GetImpactFactors()));
     }
 }
