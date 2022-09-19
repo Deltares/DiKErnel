@@ -35,5 +35,21 @@ namespace DiKErnel::DomainLibrary
              */
             [[nodiscard]]
             static double GetFrontVelocityCwo();
+
+            /*!
+             * \brief Gets the default value of the alpha A coefficient for the crest.
+             * \return The default value of the alpha A coefficient for the crest.
+             *         Unit = [-]
+             */
+            [[nodiscard]]
+            static double GetAccelerationAlphaAForCrest();
+
+            /*!
+             * \brief Gets the default value of the alpha A coefficient for the inner slope.
+             * \return The default value of the alpha A coefficient for the inner slope.
+             *         Unit = [-]
+             */
+            [[nodiscard]]
+            static double GetAccelerationAlphaAForInnerSlope();
     };
 }

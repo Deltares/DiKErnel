@@ -29,4 +29,16 @@ namespace DiKErnel::DomainLibrary::Test
         // Call & Assert
         ASSERT_DOUBLE_EQ(1.45, GrassRevetmentOvertoppingDefaults::GetFrontVelocityCwo());
     }
+
+    TEST(GrassRevetmentOvertoppingDefaultsTest, GetAccelerationAlphaAForCrest_ExpectedValue)
+    {
+        // Call & Assert
+        ASSERT_DOUBLE_EQ(1.0, GrassRevetmentOvertoppingDefaults::GetAccelerationAlphaAForCrest());
+    }
+
+    TEST(GrassRevetmentOvertoppingDefaultsTest, GetAccelerationAlphaAForInnerSlope_ExpectedValue)
+    {
+        // Call & Assert
+        ASSERT_DOUBLE_EQ(1.4, GrassRevetmentOvertoppingDefaults::GetAccelerationAlphaAForInnerSlope());
+    }
 }

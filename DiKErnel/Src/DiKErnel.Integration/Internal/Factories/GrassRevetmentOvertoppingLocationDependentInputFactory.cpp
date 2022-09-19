@@ -50,8 +50,10 @@ namespace DiKErnel::Integration
         }
 
         auto locationDependentAccelerationAlphaA = make_unique<GrassRevetmentOvertoppingLocationDependentAccelerationAlphaA>(
-            InputFactoryHelper::GetValue(constructionProperties.GetAccelerationAlphaAForCrest(), 1.1),
-            InputFactoryHelper::GetValue(constructionProperties.GetAccelerationAlphaAForInnerSlope(), 1.1));
+            InputFactoryHelper::GetValue(constructionProperties.GetAccelerationAlphaAForCrest(),
+                                         GrassRevetmentOvertoppingDefaults::GetAccelerationAlphaAForCrest()),
+            InputFactoryHelper::GetValue(constructionProperties.GetAccelerationAlphaAForInnerSlope(),
+                                         GrassRevetmentOvertoppingDefaults::GetAccelerationAlphaAForInnerSlope()));
 
         return make_unique<GrassRevetmentOvertoppingLocationDependentInput>(
             constructionProperties.GetX(),

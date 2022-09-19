@@ -26,4 +26,14 @@ namespace DiKErnel::DomainLibrary
     {
         return 1.45;
     }
+
+    double GrassRevetmentOvertoppingDefaults::GetAccelerationAlphaAForCrest()
+    {
+        return 1.0;
+    }
+
+    double GrassRevetmentOvertoppingDefaults::GetAccelerationAlphaAForInnerSlope()
+    {
+        return 1.4;
+    }
 }
