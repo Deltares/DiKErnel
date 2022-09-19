@@ -30,7 +30,7 @@
 #include "InputFactoryException.h"
 #include "LocationDependentInputFactory.h"
 #include "NaturalStoneRevetmentLocationDependentInputFactory.h"
-#include "ProfileFactory.h"
+#include "ProfileDataFactory.h"
 #include "ProfileFactoryPointData.h"
 #include "ProfileFactorySegmentData.h"
 #include "TimeDependentInputFactory.h"
@@ -130,7 +130,7 @@ namespace DiKErnel::Integration
 
         try
         {
-            auto profileData = ProfileFactory::Create(profileSegmentDataReferences, profilePointDataReferences);
+            auto profileData = ProfileDataFactory::Create(profileSegmentDataReferences, profilePointDataReferences);
             auto locations = LocationDependentInputFactory::Create(locationConstructionPropertiesItemReferences);
             auto timeSteps = TimeDependentInputFactory::Create(timeStepDataItemReferences);
 

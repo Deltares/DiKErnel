@@ -172,8 +172,8 @@ set(SOURCEFILES_INTERNAL_FACTORIES
   ${INTERNAL_FACTORIES_FOLDER}/NaturalStoneRevetmentDefaultsFactory.h
   ${INTERNAL_FACTORIES_FOLDER}/NaturalStoneRevetmentLocationDependentInputFactory.cpp
   ${INTERNAL_FACTORIES_FOLDER}/NaturalStoneRevetmentLocationDependentInputFactory.h
-  ${INTERNAL_FACTORIES_FOLDER}/ProfileFactory.cpp
-  ${INTERNAL_FACTORIES_FOLDER}/ProfileFactory.h
+  ${INTERNAL_FACTORIES_FOLDER}/ProfileDataFactory.cpp
+  ${INTERNAL_FACTORIES_FOLDER}/ProfileDataFactory.h
   ${INTERNAL_FACTORIES_FOLDER}/ProfileFactoryPointData.cpp
   ${INTERNAL_FACTORIES_FOLDER}/ProfileFactoryPointData.h
   ${INTERNAL_FACTORIES_FOLDER}/ProfileFactorySegmentData.cpp

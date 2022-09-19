@@ -18,7 +18,7 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include "ProfileFactory.h"
+#include "ProfileDataFactory.h"
 
 #include <cmath>
 
@@ -32,7 +32,7 @@ namespace DiKErnel::Integration
     using namespace DomainLibrary;
     using namespace std;
 
-    unique_ptr<ProfileData> ProfileFactory::Create(
+    unique_ptr<ProfileData> ProfileDataFactory::Create(
         const std::vector<std::reference_wrapper<ProfileFactorySegmentData>>& profileSegments,
         const std::vector<std::reference_wrapper<ProfileFactoryPointData>>& profilePoints)
     {
@@ -47,7 +47,7 @@ namespace DiKErnel::Integration
         return make_unique<ProfileData>(move(segments), move(characteristicPoints));
     }
 
-    vector<unique_ptr<ProfileSegment>> ProfileFactory::CreateProfileSegments(
+    vector<unique_ptr<ProfileSegment>> ProfileDataFactory::CreateProfileSegments(
         const vector<reference_wrapper<ProfileFactorySegmentData>>& profileSegments)
     {
         vector<unique_ptr<ProfileSegment>> segments;
@@ -76,7 +76,7 @@ namespace DiKErnel::Integration
         return segments;
     }
 
-    vector<unique_ptr<CharacteristicPoint>> ProfileFactory::CreateCharacteristicPoints(
+    vector<unique_ptr<CharacteristicPoint>> ProfileDataFactory::CreateCharacteristicPoints(
         const vector<reference_wrapper<ProfileFactoryPointData>>& profilePoints,
         const vector<unique_ptr<ProfileSegment>>& profileSegments)
     {
@@ -98,7 +98,7 @@ namespace DiKErnel::Integration
         return characteristicPoints;
     }
 
-    bool ProfileFactory::DoesSegmentStartAtPoint(
+    bool ProfileDataFactory::DoesSegmentStartAtPoint(
         const ProfilePoint& profilePoint,
         const ProfileFactorySegmentData& segmentData)
     {
@@ -106,7 +106,7 @@ namespace DiKErnel::Integration
                 && abs(profilePoint.GetZ() - segmentData.GetStartPointZ()) < numeric_limits<double>::epsilon();
     }
 
-    const ProfilePoint* ProfileFactory::FindMatchingPointOnSegment(
+    const ProfilePoint* ProfileDataFactory::FindMatchingPointOnSegment(
         const ProfileFactoryPointData& profilePointData,
         const vector<unique_ptr<ProfileSegment>>& segments)
     {
@@ -129,7 +129,7 @@ namespace DiKErnel::Integration
         return nullptr;
     }
 
-    const ProfilePoint* ProfileFactory::FindMatchingPoint(
+    const ProfilePoint* ProfileDataFactory::FindMatchingPoint(
         const ProfileFactoryPointData& profilePointData,
         const ProfilePoint& profilePoint)
     {
