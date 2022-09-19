@@ -20,6 +20,7 @@ set(SOURCEFILES_PUBLIC
 
 set(SOURCEFILES_PUBLIC_DATA
   ${PUBLIC_DATA_FOLDER}/AsphaltRevetmentWaveImpactLocationConstructionPropertiesTest.cpp
+  ${PUBLIC_DATA_FOLDER}/GrassRevetmentOvertoppingLocationConstructionPropertiesTest.cpp
   ${PUBLIC_DATA_FOLDER}/GrassRevetmentWaveImpactLocationConstructionPropertiesTest.cpp
   ${PUBLIC_DATA_FOLDER}/GrassRevetmentWaveRunupLocationConstructionPropertiesTest.cpp
   ${PUBLIC_DATA_FOLDER}/GrassRevetmentWaveRunupRayleighLocationConstructionPropertiesTest.cpp
