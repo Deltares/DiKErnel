@@ -133,6 +133,17 @@ namespace DiKErnel::Integration::Test
             const auto& calculationInput = builder.Build();
         }
 
+        static void CreateBuilderAndAddGrassRevetmentOvertoppingLocationWithInvalidTopLayerType()
+        {
+            constexpr auto topLayerType = static_cast<GrassRevetmentTopLayerType>(99);
+            auto constructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(0.1, topLayerType);
+
+            CalculationInputBuilder builder;
+            builder.AddDikeProfileSegment(0, 10, 10, 20, nullptr);
+            builder.AddGrassOvertoppingLocation(move(constructionProperties));
+            const auto& calculationInput = builder.Build();
+        }
+
         static void CreateBuilderAndAddGrassRevetmentWaveImpactLocationWithInvalidTopLayerType()
         {
             constexpr auto topLayerType = static_cast<GrassRevetmentTopLayerType>(99);
