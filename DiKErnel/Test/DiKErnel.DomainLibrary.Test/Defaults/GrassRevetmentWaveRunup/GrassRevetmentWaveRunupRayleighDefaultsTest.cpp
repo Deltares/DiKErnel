@@ -24,12 +24,6 @@
 
 namespace DiKErnel::DomainLibrary::Test
 {
-    TEST(GrassRevetmentWaveRunupRayleighDefaultsTest, GetFixedNumberOfWaves_ExpectedValue)
-    {
-        // Call & Assert
-        ASSERT_EQ(10000, GrassRevetmentWaveRunupRayleighDefaults::GetFixedNumberOfWaves());
-    }
-
     TEST(GrassRevetmentWaveRunupRayleighDefaultsTest, GetFrontVelocityCu_ExpectedValue)
     {
         // Call & Assert

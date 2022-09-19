@@ -41,4 +41,10 @@ namespace DiKErnel::DomainLibrary::Test
         // Call & Assert
         ASSERT_DOUBLE_EQ(0.92, GrassRevetmentCumulativeOverloadDefaults::GetAverageNumberOfWavesCtm());
     }
+
+    TEST(GrassRevetmentCumulativeOverloadDefaultsTest, GetFixedNumberOfWaves_ExpectedValue)
+    {
+        // Call & Assert
+        ASSERT_EQ(10000, GrassRevetmentCumulativeOverloadDefaults::GetFixedNumberOfWaves());
+    }
 }

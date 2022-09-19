@@ -22,11 +22,6 @@
 
 namespace DiKErnel::DomainLibrary
 {
-    int GrassRevetmentWaveRunupRayleighDefaults::GetFixedNumberOfWaves()
-    {
-        return 10000;
-    }
-
     double GrassRevetmentWaveRunupRayleighDefaults::GetFrontVelocityCu()
     {
         return 1.1;

@@ -36,4 +36,9 @@ namespace DiKErnel::DomainLibrary
     {
         return 0.92;
     }
+
+    int GrassRevetmentCumulativeOverloadDefaults::GetFixedNumberOfWaves()
+    {
+        return 10000;
+    }
 }

@@ -52,5 +52,13 @@ namespace DiKErnel::DomainLibrary
              */
             [[nodiscard]]
             static double GetAverageNumberOfWavesCtm();
+
+            /*!
+             * \brief Gets the default value of the fixed number of waves.
+             * \return The default value of the fixed number of waves.
+             *         Unit = [-]
+             */
+            [[nodiscard]]
+            static int GetFixedNumberOfWaves();
     };
 }

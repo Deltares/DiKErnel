@@ -84,7 +84,7 @@ namespace DiKErnel::Integration
             move(representative2P),
             move(waveAngleImpact),
             InputFactoryHelper::GetValue(constructionProperties.GetFixedNumberOfWaves(),
-                                         GrassRevetmentWaveRunupRayleighDefaults::GetFixedNumberOfWaves()),
+                                         GrassRevetmentCumulativeOverloadDefaults::GetFixedNumberOfWaves()),
             InputFactoryHelper::GetValue(constructionProperties.GetFrontVelocityCu(),
                                          GrassRevetmentWaveRunupRayleighDefaults::GetFrontVelocityCu()));
     }

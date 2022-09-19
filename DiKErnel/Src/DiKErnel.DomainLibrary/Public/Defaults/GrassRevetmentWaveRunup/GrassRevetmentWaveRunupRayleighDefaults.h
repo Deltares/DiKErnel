@@ -30,14 +30,6 @@ namespace DiKErnel::DomainLibrary
     {
         public:
             /*!
-             * \brief Gets the default value of the fixed number of waves.
-             * \return The default value of the fixed number of waves.
-             *         Unit = [-]
-             */
-            [[nodiscard]]
-            static int GetFixedNumberOfWaves();
-
-            /*!
              * \brief Gets the default value of the Cu coefficient.
              * \return The default value of the Cu coefficient.
              *         Unit = [-]
