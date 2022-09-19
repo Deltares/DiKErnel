@@ -77,12 +77,11 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
         }
     };
 
-    TEST_F(JsonInputComposerTest,
-           GivenJsonFileWithAllLocationAndCalculationMethods_WhenGetInputDataFromJson_ThenReturnsResultWithICalculationInputWithExpectedValues)
+    TEST_F(JsonInputComposerTest, GivenJsonFileWithAllData_WhenGetInputDataFromJson_ThenReturnsResultWithICalculationInputWithExpectedValues)
     {
         // Given
         const auto filePath = (TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Input.Test") / "JsonInputComposerTest"
-            / "AllLocationsWithCalculationMethodsInput.json").string();
+            / "InputWithAllData.json").string();
 
         // When
         const auto& result = JsonInputComposer::GetInputDataFromJson(filePath);
@@ -93,51 +92,54 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
 
         const auto& profileData = calculationInput.GetProfileData();
 
-        const auto& profilePoints = profileData.GetProfilePoints();
-        ASSERT_EQ(24, profilePoints.size());
-        ProfileDataAssertHelper::AssertProfilePoint(-30, -11.85, profilePoints.at(0).get());
-        ProfileDataAssertHelper::AssertProfilePoint(-20, -8.95, profilePoints.at(1).get());
-        ProfileDataAssertHelper::AssertProfilePoint(-10, -6.05, profilePoints.at(2).get());
-        ProfileDataAssertHelper::AssertProfilePoint(0, -3.15, profilePoints.at(3).get());
-        ProfileDataAssertHelper::AssertProfilePoint(5, -1.7, profilePoints.at(4).get());
-        ProfileDataAssertHelper::AssertProfilePoint(10, -0.25, profilePoints.at(5).get());
-        ProfileDataAssertHelper::AssertProfilePoint(15, 1.2, profilePoints.at(6).get());
-        ProfileDataAssertHelper::AssertProfilePoint(20, 2.65, profilePoints.at(7).get());
-        ProfileDataAssertHelper::AssertProfilePoint(25, 4.1, profilePoints.at(8).get());
-        ProfileDataAssertHelper::AssertProfilePoint(30, 5.55, profilePoints.at(9).get());
-        ProfileDataAssertHelper::AssertProfilePoint(35, 7, profilePoints.at(10).get());
-        ProfileDataAssertHelper::AssertProfilePoint(40, 8.45, profilePoints.at(11).get());
-        ProfileDataAssertHelper::AssertProfilePoint(45, 9.9, profilePoints.at(12).get());
-        ProfileDataAssertHelper::AssertProfilePoint(50, 11.35, profilePoints.at(13).get());
-        ProfileDataAssertHelper::AssertProfilePoint(55, 12.8, profilePoints.at(14).get());
-        ProfileDataAssertHelper::AssertProfilePoint(60, 14.25, profilePoints.at(15).get());
-        ProfileDataAssertHelper::AssertProfilePoint(65, 15.7, profilePoints.at(16).get());
-        ProfileDataAssertHelper::AssertProfilePoint(70, 15.8, profilePoints.at(17).get());
-        ProfileDataAssertHelper::AssertProfilePoint(75, 14.3, profilePoints.at(18).get());
-        ProfileDataAssertHelper::AssertProfilePoint(80, 12.7, profilePoints.at(19).get());
-        ProfileDataAssertHelper::AssertProfilePoint(85, 11.4, profilePoints.at(20).get());
-        ProfileDataAssertHelper::AssertProfilePoint(90, 10, profilePoints.at(21).get());
-        ProfileDataAssertHelper::AssertProfilePoint(95, 8.5, profilePoints.at(22).get());
-        ProfileDataAssertHelper::AssertProfilePoint(100, 7.1, profilePoints.at(23).get());
+        const auto& profileSegments = profileData.GetProfileSegments();
+        ASSERT_EQ(23, profileSegments.size());
+        ProfileDataAssertHelper::AssertProfileSegment(-30, -11.85, -20, -8.95, 0, profileSegments.at(0));
+        ProfileDataAssertHelper::AssertProfileSegment(-20, -8.95, -10, -6.05, 0.05, profileSegments.at(1));
+        ProfileDataAssertHelper::AssertProfileSegment(-10, -6.05, 0, -3.15, 0.1, profileSegments.at(2));
+        ProfileDataAssertHelper::AssertProfileSegment(0, -3.15, 5, -1.7, 0.15, profileSegments.at(3));
+        ProfileDataAssertHelper::AssertProfileSegment(5, -1.7, 10, -0.25, 0.2, profileSegments.at(4));
+        ProfileDataAssertHelper::AssertProfileSegment(10, -0.25, 15, 1.2, 0.25, profileSegments.at(5));
+        ProfileDataAssertHelper::AssertProfileSegment(15, 1.2, 20, 2.65, 0.3, profileSegments.at(6));
+        ProfileDataAssertHelper::AssertProfileSegment(20, 2.65, 25, 4.1, 0.35, profileSegments.at(7));
+        ProfileDataAssertHelper::AssertProfileSegment(25, 4.1, 30, 5.55, 0.4, profileSegments.at(8));
+        ProfileDataAssertHelper::AssertProfileSegment(30, 5.55, 35, 7, 0.45, profileSegments.at(9));
+        ProfileDataAssertHelper::AssertProfileSegment(35, 7, 40, 8.45, 0.5, profileSegments.at(10));
+        ProfileDataAssertHelper::AssertProfileSegment(40, 8.45, 45, 9.9, 0.55, profileSegments.at(11));
+        ProfileDataAssertHelper::AssertProfileSegment(45, 9.9, 50, 11.35, 0.6, profileSegments.at(12));
+        ProfileDataAssertHelper::AssertProfileSegment(50, 11.35, 55, 12.8, 0.65, profileSegments.at(13));
+        ProfileDataAssertHelper::AssertProfileSegment(55, 12.8, 60, 14.25, 0.7, profileSegments.at(14));
+        ProfileDataAssertHelper::AssertProfileSegment(60, 14.25, 65, 15.7, 0.75, profileSegments.at(15));
+        ProfileDataAssertHelper::AssertProfileSegment(65, 15.7, 70, 15.8, 0.8, profileSegments.at(16));
+        ProfileDataAssertHelper::AssertProfileSegment(70, 15.8, 75, 14.3, 0.85, profileSegments.at(17));
+        ProfileDataAssertHelper::AssertProfileSegment(75, 14.3, 80, 12.7, 0.9, profileSegments.at(18));
+        ProfileDataAssertHelper::AssertProfileSegment(80, 12.7, 85, 11.4, 0.95, profileSegments.at(19));
+        ProfileDataAssertHelper::AssertProfileSegment(85, 11.4, 90, 10, 1, profileSegments.at(20));
+        ProfileDataAssertHelper::AssertProfileSegment(90, 10, 95, 8.5, 1.05, profileSegments.at(21));
+        ProfileDataAssertHelper::AssertProfileSegment(95, 8.5, 100, 7.1, 1.1, profileSegments.at(22));
 
         const auto& characteristicPoints = profileData.GetCharacteristicPoints();
         ASSERT_EQ(6, characteristicPoints.size());
-        ProfileDataAssertHelper::AssertCharacteristicPoint(profilePoints.at(9), CharacteristicPointType::OuterToe, characteristicPoints.at(0));
-        ProfileDataAssertHelper::AssertCharacteristicPoint(profilePoints.at(11), CharacteristicPointType::CrestOuterBerm,
+        ProfileDataAssertHelper::AssertCharacteristicPoint(profileSegments.at(8).get().GetEndPoint(), CharacteristicPointType::OuterToe,
+                                                           characteristicPoints.at(0));
+        ProfileDataAssertHelper::AssertCharacteristicPoint(profileSegments.at(10).get().GetEndPoint(), CharacteristicPointType::CrestOuterBerm,
                                                            characteristicPoints.at(1));
-        ProfileDataAssertHelper::AssertCharacteristicPoint(profilePoints.at(13), CharacteristicPointType::NotchOuterBerm,
+        ProfileDataAssertHelper::AssertCharacteristicPoint(profileSegments.at(12.).get().GetEndPoint(), CharacteristicPointType::NotchOuterBerm,
                                                            characteristicPoints.at(2));
-        ProfileDataAssertHelper::AssertCharacteristicPoint(profilePoints.at(16), CharacteristicPointType::OuterCrest, characteristicPoints.at(3));
-        ProfileDataAssertHelper::AssertCharacteristicPoint(profilePoints.at(17), CharacteristicPointType::InnerCrest, characteristicPoints.at(4));
-        ProfileDataAssertHelper::AssertCharacteristicPoint(profilePoints.at(23), CharacteristicPointType::InnerToe, characteristicPoints.at(5));
+        ProfileDataAssertHelper::AssertCharacteristicPoint(profileSegments.at(15).get().GetEndPoint(), CharacteristicPointType::OuterCrest,
+                                                           characteristicPoints.at(3));
+        ProfileDataAssertHelper::AssertCharacteristicPoint(profileSegments.at(16).get().GetEndPoint(), CharacteristicPointType::InnerCrest,
+                                                           characteristicPoints.at(4));
+        ProfileDataAssertHelper::AssertCharacteristicPoint(profileSegments.at(22).get().GetEndPoint(), CharacteristicPointType::InnerToe,
+                                                           characteristicPoints.at(5));
 
         const auto& timeDependentInputItems = calculationInput.GetTimeDependentInputItems();
         ASSERT_EQ(5, timeDependentInputItems.size());
-        TimeDependentInputAssertHelper::AssertTimeDependentInputItem(0, 100, 0.1, 0.5, 2, -10, timeDependentInputItems.at(0).get());
-        TimeDependentInputAssertHelper::AssertTimeDependentInputItem(100, 500, 0.5, 0.8, 6, -5, timeDependentInputItems.at(1).get());
-        TimeDependentInputAssertHelper::AssertTimeDependentInputItem(500, 800, 1.15, 1.2, 6, 0, timeDependentInputItems.at(2).get());
-        TimeDependentInputAssertHelper::AssertTimeDependentInputItem(800, 1200, 1.77, 1.5, 7, 7, timeDependentInputItems.at(3).get());
-        TimeDependentInputAssertHelper::AssertTimeDependentInputItem(1200, 2000, 2, 0.5, 4, 8, timeDependentInputItems.at(4).get());
+        TimeDependentInputAssertHelper::AssertTimeDependentInputItem(0, 100, 0.1, 0.5, 2, -10, timeDependentInputItems.at(0));
+        TimeDependentInputAssertHelper::AssertTimeDependentInputItem(100, 500, 0.5, 0.8, 6, -5, timeDependentInputItems.at(1));
+        TimeDependentInputAssertHelper::AssertTimeDependentInputItem(500, 800, 1.15, 1.2, 6, 0, timeDependentInputItems.at(2));
+        TimeDependentInputAssertHelper::AssertTimeDependentInputItem(800, 1200, 1.77, 1.5, 7, 7, timeDependentInputItems.at(3));
+        TimeDependentInputAssertHelper::AssertTimeDependentInputItem(1200, 2000, 2, 0.5, 4, 8, timeDependentInputItems.at(4));
 
         const auto& locationDependentInputItems = calculationInput.GetLocationDependentInputItems();
         ASSERT_EQ(4, locationDependentInputItems.size());
@@ -241,11 +243,11 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
     }
 
     TEST_F(JsonInputComposerTest,
-           GivenJsonFileWithAllLocationAndNoCalculationMethods_WhenGetInputDataFromJson_ThenReturnsResultWithICalculationInputWithExpectedValues)
+           GivenJsonFileWithAllMandatoryData_WhenGetInputDataFromJson_ThenReturnsResultWithICalculationInputWithExpectedValues)
     {
         // Given
         const auto filePath = (TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Input.Test") / "JsonInputComposerTest"
-            / "AllLocationsWithoutCalculationMethodsInput.json").string();
+            / "InputWithAllMandatoryData.json").string();
 
         // When
         const auto& result = JsonInputComposer::GetInputDataFromJson(filePath);
@@ -256,51 +258,21 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
 
         const auto& profileData = calculationInput.GetProfileData();
 
-        const auto& profilePoints = profileData.GetProfilePoints();
-        ASSERT_EQ(24, profilePoints.size());
-        ProfileDataAssertHelper::AssertProfilePoint(-30, -11.85, profilePoints.at(0).get());
-        ProfileDataAssertHelper::AssertProfilePoint(-20, -8.95, profilePoints.at(1).get());
-        ProfileDataAssertHelper::AssertProfilePoint(-10, -6.05, profilePoints.at(2).get());
-        ProfileDataAssertHelper::AssertProfilePoint(0, -3.15, profilePoints.at(3).get());
-        ProfileDataAssertHelper::AssertProfilePoint(5, -1.7, profilePoints.at(4).get());
-        ProfileDataAssertHelper::AssertProfilePoint(10, -0.25, profilePoints.at(5).get());
-        ProfileDataAssertHelper::AssertProfilePoint(15, 1.2, profilePoints.at(6).get());
-        ProfileDataAssertHelper::AssertProfilePoint(20, 2.65, profilePoints.at(7).get());
-        ProfileDataAssertHelper::AssertProfilePoint(25, 4.1, profilePoints.at(8).get());
-        ProfileDataAssertHelper::AssertProfilePoint(30, 5.55, profilePoints.at(9).get());
-        ProfileDataAssertHelper::AssertProfilePoint(35, 7, profilePoints.at(10).get());
-        ProfileDataAssertHelper::AssertProfilePoint(40, 8.45, profilePoints.at(11).get());
-        ProfileDataAssertHelper::AssertProfilePoint(45, 9.9, profilePoints.at(12).get());
-        ProfileDataAssertHelper::AssertProfilePoint(50, 11.35, profilePoints.at(13).get());
-        ProfileDataAssertHelper::AssertProfilePoint(55, 12.8, profilePoints.at(14).get());
-        ProfileDataAssertHelper::AssertProfilePoint(60, 14.25, profilePoints.at(15).get());
-        ProfileDataAssertHelper::AssertProfilePoint(65, 15.7, profilePoints.at(16).get());
-        ProfileDataAssertHelper::AssertProfilePoint(70, 15.8, profilePoints.at(17).get());
-        ProfileDataAssertHelper::AssertProfilePoint(75, 14.3, profilePoints.at(18).get());
-        ProfileDataAssertHelper::AssertProfilePoint(80, 12.7, profilePoints.at(19).get());
-        ProfileDataAssertHelper::AssertProfilePoint(85, 11.4, profilePoints.at(20).get());
-        ProfileDataAssertHelper::AssertProfilePoint(90, 10, profilePoints.at(21).get());
-        ProfileDataAssertHelper::AssertProfilePoint(95, 8.5, profilePoints.at(22).get());
-        ProfileDataAssertHelper::AssertProfilePoint(100, 7.1, profilePoints.at(23).get());
+        const auto& profileSegments = profileData.GetProfileSegments();
+        ASSERT_EQ(1, profileSegments.size());
+        auto profileSegment = profileSegments.at(0).get();
+        ProfileDataAssertHelper::AssertProfileSegment(30, 5.55, 65, 15.7, 1, profileSegment);
 
         const auto& characteristicPoints = profileData.GetCharacteristicPoints();
-        ASSERT_EQ(6, characteristicPoints.size());
-        ProfileDataAssertHelper::AssertCharacteristicPoint(profilePoints.at(9), CharacteristicPointType::OuterToe, characteristicPoints.at(0));
-        ProfileDataAssertHelper::AssertCharacteristicPoint(profilePoints.at(11), CharacteristicPointType::CrestOuterBerm,
+        ASSERT_EQ(2, characteristicPoints.size());
+        ProfileDataAssertHelper::AssertCharacteristicPoint(profileSegment.GetStartPoint(), CharacteristicPointType::OuterToe,
+                                                           characteristicPoints.at(0));
+        ProfileDataAssertHelper::AssertCharacteristicPoint(profileSegment.GetEndPoint(), CharacteristicPointType::OuterCrest,
                                                            characteristicPoints.at(1));
-        ProfileDataAssertHelper::AssertCharacteristicPoint(profilePoints.at(13), CharacteristicPointType::NotchOuterBerm,
-                                                           characteristicPoints.at(2));
-        ProfileDataAssertHelper::AssertCharacteristicPoint(profilePoints.at(16), CharacteristicPointType::OuterCrest, characteristicPoints.at(3));
-        ProfileDataAssertHelper::AssertCharacteristicPoint(profilePoints.at(17), CharacteristicPointType::InnerCrest, characteristicPoints.at(4));
-        ProfileDataAssertHelper::AssertCharacteristicPoint(profilePoints.at(23), CharacteristicPointType::InnerToe, characteristicPoints.at(5));
 
         const auto& timeDependentInputItems = calculationInput.GetTimeDependentInputItems();
-        ASSERT_EQ(5, timeDependentInputItems.size());
-        TimeDependentInputAssertHelper::AssertTimeDependentInputItem(0, 100, 0.1, 0.5, 2, -10, timeDependentInputItems.at(0).get());
-        TimeDependentInputAssertHelper::AssertTimeDependentInputItem(100, 500, 0.5, 0.8, 6, -5, timeDependentInputItems.at(1).get());
-        TimeDependentInputAssertHelper::AssertTimeDependentInputItem(500, 800, 1.15, 1.2, 6, 0, timeDependentInputItems.at(2).get());
-        TimeDependentInputAssertHelper::AssertTimeDependentInputItem(800, 1200, 1.77, 1.5, 7, 7, timeDependentInputItems.at(3).get());
-        TimeDependentInputAssertHelper::AssertTimeDependentInputItem(1200, 2000, 2, 0.5, 4, 8, timeDependentInputItems.at(4).get());
+        ASSERT_EQ(1, timeDependentInputItems.size());
+        TimeDependentInputAssertHelper::AssertTimeDependentInputItem(0, 100, 0.1, 0.5, 2, -10, timeDependentInputItems.at(0));
 
         const auto& locationDependentInputItems = calculationInput.GetLocationDependentInputItems();
         ASSERT_EQ(6, locationDependentInputItems.size());
@@ -529,7 +501,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
     {
         // Given
         const auto filePath = (TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Input.Test") / "JsonInputComposerTest"
-            / "AllLocationsWithCalculationMethodsInput.json").string();
+            / "InputWithAllData.json").string();
 
         // When
         const auto result = JsonInputComposer::ValidateJson(filePath);

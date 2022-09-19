@@ -48,22 +48,20 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
         const auto& xLocations = dikeProfileData.GetXLocations();
         const auto& zLocations = dikeProfileData.GetZLocations();
+        const auto* roughnessCoefficients = dikeProfileData.GetRoughnessCoefficients();
 
-        double startPointX = numeric_limits<double>::infinity();
-        double startPointZ = numeric_limits<double>::infinity();
-
-        for (auto i = 0; i < static_cast<int>(xLocations.size()); ++i)
+        for (auto i = 0; i < static_cast<int>(xLocations.size()) - 1; ++i)
         {
-            const double xLocation = xLocations.at(i);
-            const double zLocation = zLocations.at(i);
+            const double startPointX = xLocations.at(i);
+            const double startPointZ = zLocations.at(i);
+            const double endPointX = xLocations.at(i + 1);
+            const double endPointZ = zLocations.at(i + 1);
 
-            if (i > 0)
-            {
-                builder.AddDikeProfileSegment(startPointX, startPointZ, xLocation, zLocation, nullptr);
-            }
+            const double* roughnessCoefficient = roughnessCoefficients != nullptr
+                                                     ? &(*roughnessCoefficients).at(i)
+                                                     : nullptr;
 
-            startPointX = xLocation;
-            startPointZ = zLocation;
+            builder.AddDikeProfileSegment(startPointX, startPointZ, endPointX, endPointZ, roughnessCoefficient);
         }
 
         for (const auto& characteristicPoints = dikeProfileData.GetCharacteristicPoints();
