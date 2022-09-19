@@ -52,7 +52,7 @@ namespace DiKErnel::FunctionLibrary
                 double criticalCumulativeOverload);
 
         private:
-            template<class T>
+            template <class T>
             [[nodiscard]]
             static double CumulativeOverload(
                 const GrassRevetmentCumulativeOverloadInput& input,
@@ -66,7 +66,7 @@ namespace DiKErnel::FunctionLibrary
                     const auto frontVelocity = getFrontVelocity(waveRunup);
 
                     cumulativeFrontVelocity += std::max(0.0, input._increasedLoadTransitionAlphaM * std::pow(frontVelocity, 2.0)
-                        - input._reducedStrengthTransitionAlphaS * std::pow(input._criticalFrontVelocity, 2.0));
+                                                        - input._reducedStrengthTransitionAlphaS * std::pow(input._criticalFrontVelocity, 2.0));
                 }
 
                 return input._averageNumberOfWaves / input._fixedNumberOfWaves * cumulativeFrontVelocity;
