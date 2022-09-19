@@ -64,6 +64,18 @@ namespace DiKErnel::Integration
         _averageNumberOfWavesCtm = move(averageNumberOfWavesCtm);
     }
 
+    void GrassRevetmentOvertoppingLocationConstructionProperties::SetFixedNumberOfWaves(
+        unique_ptr<int> fixedNumberOfWaves)
+    {
+        _fixedNumberOfWaves = move(fixedNumberOfWaves);
+    }
+
+    void GrassRevetmentOvertoppingLocationConstructionProperties::SetFrontVelocityCwo(
+        unique_ptr<double> frontVelocityCwo)
+    {
+        _frontVelocityCwo = move(frontVelocityCwo);
+    }
+
     #pragma endregion
 
     #pragma region Get methods
@@ -96,6 +108,16 @@ namespace DiKErnel::Integration
     const double* GrassRevetmentOvertoppingLocationConstructionProperties::GetAverageNumberOfWavesCtm() const
     {
         return _averageNumberOfWavesCtm.get();
+    }
+
+    const int* GrassRevetmentOvertoppingLocationConstructionProperties::GetFixedNumberOfWaves() const
+    {
+        return _fixedNumberOfWaves.get();
+    }
+
+    const double* GrassRevetmentOvertoppingLocationConstructionProperties::GetFrontVelocityCwo() const
+    {
+        return _frontVelocityCwo.get();
     }
 
     #pragma endregion

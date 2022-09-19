@@ -85,6 +85,22 @@ namespace DiKErnel::Integration
             void SetAverageNumberOfWavesCtm(
                 std::unique_ptr<double> averageNumberOfWavesCtm);
 
+            /*!
+             * \brief Sets the fixed number of waves.
+             * \param fixedNumberOfWaves
+             *        The fixed number of waves.
+             */
+            void SetFixedNumberOfWaves(
+                std::unique_ptr<int> fixedNumberOfWaves);
+
+            /*!
+             * \brief Sets the Cwo coefficient.
+             * \param frontVelocityCwo
+             *        The Cwo coefficient.
+             */
+            void SetFrontVelocityCwo(
+                std::unique_ptr<double> frontVelocityCwo);
+
             #pragma endregion
 
             #pragma region Get methods
@@ -131,6 +147,20 @@ namespace DiKErnel::Integration
             [[nodiscard]]
             const double* GetAverageNumberOfWavesCtm() const;
 
+            /*!
+             * \brief Gets the fixed number of waves.
+             * \return The fixed number of waves.
+             */
+            [[nodiscard]]
+            const int* GetFixedNumberOfWaves() const;
+
+            /*!
+             * \brief Gets the Cwo coefficient.
+             * \return The Cwo coefficient.
+             */
+            [[nodiscard]]
+            const double* GetFrontVelocityCwo() const;
+
             #pragma endregion
 
         private:
@@ -140,5 +170,7 @@ namespace DiKErnel::Integration
             std::unique_ptr<double> _increasedLoadTransitionAlphaM = nullptr;
             std::unique_ptr<double> _reducedStrengthTransitionAlphaS = nullptr;
             std::unique_ptr<double> _averageNumberOfWavesCtm = nullptr;
+            std::unique_ptr<int> _fixedNumberOfWaves = nullptr;
+            std::unique_ptr<double> _frontVelocityCwo = nullptr;
     };
 }
