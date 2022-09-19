@@ -90,6 +90,10 @@ namespace DiKErnel::KernelWrapper::Json::Input
                                     JsonInputCharacteristicPointType::NotchOuterBerm);
         TryParseCharacteristicPoint(readDikeProfile, characteristicPoints, JsonInputDefinitions::CHARACTERISTIC_POINT_TYPE_OUTER_CREST,
                                     JsonInputCharacteristicPointType::OuterCrest);
+        TryParseCharacteristicPoint(readDikeProfile, characteristicPoints, JsonInputDefinitions::CHARACTERISTIC_POINT_TYPE_INNER_CREST,
+                                    JsonInputCharacteristicPointType::InnerCrest);
+        TryParseCharacteristicPoint(readDikeProfile, characteristicPoints, JsonInputDefinitions::CHARACTERISTIC_POINT_TYPE_INNER_TOE,
+                                    JsonInputCharacteristicPointType::InnerToe);
 
         return make_unique<JsonInputDikeProfileData>(
             readDikeProfile.at(JsonInputDefinitions::DIKE_PROFILE_POINTS_X).get<vector<double>>(),

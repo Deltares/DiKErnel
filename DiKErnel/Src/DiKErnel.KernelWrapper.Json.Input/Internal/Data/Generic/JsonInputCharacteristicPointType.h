@@ -27,6 +27,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
         OuterToe,
         OuterCrest,
         CrestOuterBerm,
-        NotchOuterBerm
+        NotchOuterBerm,
+        InnerCrest,
+        InnerToe
     };
 }

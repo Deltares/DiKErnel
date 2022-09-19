@@ -94,7 +94,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
         const auto& profileData = calculationInput.GetProfileData();
 
         const auto& profilePoints = profileData.GetProfilePoints();
-        ASSERT_EQ(17, profilePoints.size());
+        ASSERT_EQ(24, profilePoints.size());
         ProfileDataAssertHelper::AssertProfilePoint(-30, -11.85, profilePoints.at(0).get());
         ProfileDataAssertHelper::AssertProfilePoint(-20, -8.95, profilePoints.at(1).get());
         ProfileDataAssertHelper::AssertProfilePoint(-10, -6.05, profilePoints.at(2).get());
@@ -112,15 +112,24 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
         ProfileDataAssertHelper::AssertProfilePoint(55, 12.8, profilePoints.at(14).get());
         ProfileDataAssertHelper::AssertProfilePoint(60, 14.25, profilePoints.at(15).get());
         ProfileDataAssertHelper::AssertProfilePoint(65, 15.7, profilePoints.at(16).get());
+        ProfileDataAssertHelper::AssertProfilePoint(70, 15.8, profilePoints.at(17).get());
+        ProfileDataAssertHelper::AssertProfilePoint(75, 14.3, profilePoints.at(18).get());
+        ProfileDataAssertHelper::AssertProfilePoint(80, 12.7, profilePoints.at(19).get());
+        ProfileDataAssertHelper::AssertProfilePoint(85, 11.4, profilePoints.at(20).get());
+        ProfileDataAssertHelper::AssertProfilePoint(90, 10, profilePoints.at(21).get());
+        ProfileDataAssertHelper::AssertProfilePoint(95, 8.5, profilePoints.at(22).get());
+        ProfileDataAssertHelper::AssertProfilePoint(100, 7.1, profilePoints.at(23).get());
 
         const auto& characteristicPoints = profileData.GetCharacteristicPoints();
-        ASSERT_EQ(4, characteristicPoints.size());
+        ASSERT_EQ(6, characteristicPoints.size());
         ProfileDataAssertHelper::AssertCharacteristicPoint(profilePoints.at(9), CharacteristicPointType::OuterToe, characteristicPoints.at(0));
         ProfileDataAssertHelper::AssertCharacteristicPoint(profilePoints.at(11), CharacteristicPointType::CrestOuterBerm,
                                                            characteristicPoints.at(1));
         ProfileDataAssertHelper::AssertCharacteristicPoint(profilePoints.at(13), CharacteristicPointType::NotchOuterBerm,
                                                            characteristicPoints.at(2));
         ProfileDataAssertHelper::AssertCharacteristicPoint(profilePoints.at(16), CharacteristicPointType::OuterCrest, characteristicPoints.at(3));
+        ProfileDataAssertHelper::AssertCharacteristicPoint(profilePoints.at(17), CharacteristicPointType::InnerCrest, characteristicPoints.at(4));
+        ProfileDataAssertHelper::AssertCharacteristicPoint(profilePoints.at(23), CharacteristicPointType::InnerToe, characteristicPoints.at(5));
 
         const auto& timeDependentInputItems = calculationInput.GetTimeDependentInputItems();
         ASSERT_EQ(5, timeDependentInputItems.size());
@@ -248,7 +257,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
         const auto& profileData = calculationInput.GetProfileData();
 
         const auto& profilePoints = profileData.GetProfilePoints();
-        ASSERT_EQ(17, profilePoints.size());
+        ASSERT_EQ(24, profilePoints.size());
         ProfileDataAssertHelper::AssertProfilePoint(-30, -11.85, profilePoints.at(0).get());
         ProfileDataAssertHelper::AssertProfilePoint(-20, -8.95, profilePoints.at(1).get());
         ProfileDataAssertHelper::AssertProfilePoint(-10, -6.05, profilePoints.at(2).get());
@@ -266,15 +275,24 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
         ProfileDataAssertHelper::AssertProfilePoint(55, 12.8, profilePoints.at(14).get());
         ProfileDataAssertHelper::AssertProfilePoint(60, 14.25, profilePoints.at(15).get());
         ProfileDataAssertHelper::AssertProfilePoint(65, 15.7, profilePoints.at(16).get());
+        ProfileDataAssertHelper::AssertProfilePoint(70, 15.8, profilePoints.at(17).get());
+        ProfileDataAssertHelper::AssertProfilePoint(75, 14.3, profilePoints.at(18).get());
+        ProfileDataAssertHelper::AssertProfilePoint(80, 12.7, profilePoints.at(19).get());
+        ProfileDataAssertHelper::AssertProfilePoint(85, 11.4, profilePoints.at(20).get());
+        ProfileDataAssertHelper::AssertProfilePoint(90, 10, profilePoints.at(21).get());
+        ProfileDataAssertHelper::AssertProfilePoint(95, 8.5, profilePoints.at(22).get());
+        ProfileDataAssertHelper::AssertProfilePoint(100, 7.1, profilePoints.at(23).get());
 
         const auto& characteristicPoints = profileData.GetCharacteristicPoints();
-        ASSERT_EQ(4, characteristicPoints.size());
+        ASSERT_EQ(6, characteristicPoints.size());
         ProfileDataAssertHelper::AssertCharacteristicPoint(profilePoints.at(9), CharacteristicPointType::OuterToe, characteristicPoints.at(0));
         ProfileDataAssertHelper::AssertCharacteristicPoint(profilePoints.at(11), CharacteristicPointType::CrestOuterBerm,
                                                            characteristicPoints.at(1));
         ProfileDataAssertHelper::AssertCharacteristicPoint(profilePoints.at(13), CharacteristicPointType::NotchOuterBerm,
                                                            characteristicPoints.at(2));
         ProfileDataAssertHelper::AssertCharacteristicPoint(profilePoints.at(16), CharacteristicPointType::OuterCrest, characteristicPoints.at(3));
+        ProfileDataAssertHelper::AssertCharacteristicPoint(profilePoints.at(17), CharacteristicPointType::InnerCrest, characteristicPoints.at(4));
+        ProfileDataAssertHelper::AssertCharacteristicPoint(profilePoints.at(23), CharacteristicPointType::InnerToe, characteristicPoints.at(5));
 
         const auto& timeDependentInputItems = calculationInput.GetTimeDependentInputItems();
         ASSERT_EQ(5, timeDependentInputItems.size());

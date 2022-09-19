@@ -55,7 +55,14 @@
             50,
             55,
             60,
-            65
+            65,
+            70,
+            75,
+            80,
+            85,
+            90,
+            95,
+            100
         ],
         "hoogten": [
             -11.85,
@@ -74,12 +81,21 @@
             11.35,
             12.8,
             14.25,
-            15.7
+            15.7,
+            15.8,
+            14.3,
+            12.7,
+            11.4,
+            10,
+            8.5,
+            7.1
         ],
         "teenBuitenzijde": 30,
         "kruinBermBuitenzijde": 40,
         "insteekBermBuitenzijde": 50,
-        "kruinBuitenzijde": 65
+        "kruinBuitenzijde": 65,
+        "kruinBinnenzijde": 70,
+        "teenBinnenzijde": 100
     },
     "locaties": [
         {

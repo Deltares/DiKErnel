@@ -92,6 +92,12 @@ namespace DiKErnel::KernelWrapper::Json::Input
             case JsonInputCharacteristicPointType::NotchOuterBerm:
                 characteristicPointType = make_unique<CharacteristicPointType>(CharacteristicPointType::NotchOuterBerm);
                 break;
+            case JsonInputCharacteristicPointType::InnerCrest:
+                characteristicPointType = make_unique<CharacteristicPointType>(CharacteristicPointType::InnerCrest);
+                break;
+            case JsonInputCharacteristicPointType::InnerToe:
+                characteristicPointType = make_unique<CharacteristicPointType>(CharacteristicPointType::InnerToe);
+                break;
             default:
                 throw JsonInputConversionException("Cannot convert characteristic point type.");
         }
