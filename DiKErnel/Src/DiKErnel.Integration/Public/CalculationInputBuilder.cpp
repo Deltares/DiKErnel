@@ -82,6 +82,12 @@ namespace DiKErnel::Integration
         _locationConstructionPropertiesItems.push_back(move(constructionProperties));
     }
 
+    void CalculationInputBuilder::AddGrassOvertoppingLocation(
+        std::unique_ptr<GrassRevetmentOvertoppingLocationConstructionProperties> constructionProperties)
+    {
+        _locationConstructionPropertiesItems.push_back(move(constructionProperties));
+    }
+
     void CalculationInputBuilder::AddGrassWaveImpactLocation(
         unique_ptr<GrassRevetmentWaveImpactLocationConstructionProperties> constructionProperties)
     {

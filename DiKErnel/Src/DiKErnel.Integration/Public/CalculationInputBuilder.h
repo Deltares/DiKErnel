@@ -21,6 +21,7 @@
 #pragma once
 
 #include "AsphaltRevetmentWaveImpactLocationConstructionProperties.h"
+#include "GrassRevetmentOvertoppingLocationConstructionProperties.h"
 #include "GrassRevetmentWaveImpactLocationConstructionProperties.h"
 #include "GrassRevetmentWaveRunupRayleighLocationConstructionProperties.h"
 #include "ICalculationInput.h"
@@ -109,6 +110,14 @@ namespace DiKErnel::Integration
              */
             void AddAsphaltWaveImpactLocation(
                 std::unique_ptr<AsphaltRevetmentWaveImpactLocationConstructionProperties> constructionProperties);
+
+            /*!
+             * \brief Adds a grass overtopping location.
+             * \param constructionProperties
+             *        The properties to construct the grass overtopping location dependent input.
+             */
+            void AddGrassOvertoppingLocation(
+                std::unique_ptr<GrassRevetmentOvertoppingLocationConstructionProperties> constructionProperties);
 
             /*!
              * \brief Adds a grass wave impact location.
