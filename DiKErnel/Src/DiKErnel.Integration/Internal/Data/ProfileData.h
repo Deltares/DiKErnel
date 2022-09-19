@@ -49,9 +49,6 @@ namespace DiKErnel::Integration
                 double horizontalPosition) const override;
 
             [[nodiscard]]
-            const std::vector<std::reference_wrapper<Core::ProfilePoint>>& GetProfilePoints() const override;
-
-            [[nodiscard]]
             const std::vector<std::reference_wrapper<Core::ProfileSegment>>& GetProfileSegments() const override;
 
             [[nodiscard]]

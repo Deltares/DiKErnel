@@ -81,13 +81,6 @@ namespace DiKErnel::Core
                 double horizontalPosition) const = 0;
 
             /*!
-             * \brief Gets the profile points to use in the calculation.
-             * \return The profile points to use in the calculation.
-             */
-            [[nodiscard]]
-            virtual const std::vector<std::reference_wrapper<ProfilePoint>>& GetProfilePoints() const = 0;
-
-            /*!
              * \brief Gets the profile segments to use in the calculation.
              * \return The profile segments to use in the calculation.
              */
