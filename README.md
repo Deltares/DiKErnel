@@ -42,6 +42,6 @@ To use an IDE, such as Visual Studio:
 
 ```powershell
 cmake -S .\DiKErnel\ -B .\Development\VisualStudio\ -G "Visual Studio 17 2022" -A x64
-cmake --build .\Development\VisualStudio\
+cmake --build .\Development\VisualStudio\ --target install
 cmake --open .\Development\VisualStudio\
 ```
