@@ -95,9 +95,17 @@ namespace DiKErnel::KernelWrapper::Json::Input
         TryParseCharacteristicPoint(readDikeProfile, characteristicPoints, JsonInputDefinitions::CHARACTERISTIC_POINT_TYPE_INNER_TOE,
                                     JsonInputCharacteristicPointType::InnerToe);
 
+        unique_ptr<vector<double>> roughnessCoefficients;
+        if (readDikeProfile.contains(JsonInputDefinitions::DIKE_PROFILE_ROUGHNESS_COEFFICIENTS))
+        {
+            roughnessCoefficients = make_unique<vector<double>>(
+                readDikeProfile.at(JsonInputDefinitions::DIKE_PROFILE_ROUGHNESS_COEFFICIENTS).get<vector<double>>());
+        }
+
         return make_unique<JsonInputDikeProfileData>(
             readDikeProfile.at(JsonInputDefinitions::DIKE_PROFILE_POINTS_X).get<vector<double>>(),
             readDikeProfile.at(JsonInputDefinitions::DIKE_PROFILE_POINTS_Z).get<vector<double>>(),
+            move(roughnessCoefficients),
             move(characteristicPoints));
     }
 

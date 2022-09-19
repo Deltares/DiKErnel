@@ -39,6 +39,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
             inline static const std::string DIKE_PROFILE = "dijkprofiel";
             inline static const std::string DIKE_PROFILE_POINTS_X = "posities";
             inline static const std::string DIKE_PROFILE_POINTS_Z = "hoogten";
+            inline static const std::string DIKE_PROFILE_ROUGHNESS_COEFFICIENTS = "ruwheidscoefficienten";
 
             inline static const std::string CHARACTERISTIC_POINT_TYPE_OUTER_TOE = "teenBuitenzijde";
             inline static const std::string CHARACTERISTIC_POINT_TYPE_OUTER_CREST = "kruinBuitenzijde";

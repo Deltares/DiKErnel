@@ -29,9 +29,11 @@ namespace DiKErnel::KernelWrapper::Json::Input
     JsonInputDikeProfileData::JsonInputDikeProfileData(
         vector<double> xLocations,
         vector<double> zLocations,
+        unique_ptr<vector<double>> roughnessCoefficients,
         vector<pair<JsonInputCharacteristicPointType, double>> characteristicPoints)
         : _xLocations(move(xLocations)),
           _zLocations(move(zLocations)),
+          _roughnessCoefficients(move(roughnessCoefficients)),
           _characteristicPoints(move(characteristicPoints)) {}
 
     const vector<double>& JsonInputDikeProfileData::GetXLocations() const
@@ -42,6 +44,11 @@ namespace DiKErnel::KernelWrapper::Json::Input
     const vector<double>& JsonInputDikeProfileData::GetZLocations() const
     {
         return _zLocations;
+    }
+
+    const vector<double>* JsonInputDikeProfileData::GetRoughnessCoefficients() const
+    {
+        return _roughnessCoefficients.get();
     }
 
     const vector<pair<JsonInputCharacteristicPointType, double>>& JsonInputDikeProfileData::GetCharacteristicPoints() const

@@ -20,6 +20,7 @@
 
 #pragma once
 
+#include <memory>
 #include <vector>
 
 #include "JsonInputCharacteristicPointType.h"
@@ -32,6 +33,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
             explicit JsonInputDikeProfileData(
                 std::vector<double> xLocations,
                 std::vector<double> zLocations,
+                std::unique_ptr<std::vector<double>> roughnessCoefficients,
                 std::vector<std::pair<JsonInputCharacteristicPointType, double>> characteristicPoints);
 
             [[nodiscard]]
@@ -41,11 +43,15 @@ namespace DiKErnel::KernelWrapper::Json::Input
             const std::vector<double>& GetZLocations() const;
 
             [[nodiscard]]
+            const std::vector<double>* GetRoughnessCoefficients() const;
+
+            [[nodiscard]]
             const std::vector<std::pair<JsonInputCharacteristicPointType, double>>& GetCharacteristicPoints() const;
 
         private:
             std::vector<double> _xLocations;
             std::vector<double> _zLocations;
+            std::unique_ptr<std::vector<double>> _roughnessCoefficients;
             std::vector<std::pair<JsonInputCharacteristicPointType, double>> _characteristicPoints;
     };
 }
