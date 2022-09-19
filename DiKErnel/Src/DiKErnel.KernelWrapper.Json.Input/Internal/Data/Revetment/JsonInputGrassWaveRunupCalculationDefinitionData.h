@@ -24,9 +24,9 @@
 #include <memory>
 
 #include "JsonInputCalculationDefinitionData.h"
+#include "JsonInputGrassCumulativeOverloadTopLayerDefinitionData.h"
 #include "JsonInputGrassRevetmentTopLayerType.h"
 #include "JsonInputGrassWaveRunupCalculationProtocolData.h"
-#include "JsonInputGrassWaveRunupTopLayerDefinitionData.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
@@ -36,7 +36,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
             explicit JsonInputGrassWaveRunupCalculationDefinitionData(
                 std::unique_ptr<double> failureNumber,
                 std::unique_ptr<JsonInputGrassWaveRunupCalculationProtocolData> calculationProtocolData,
-                std::map<JsonInputGrassRevetmentTopLayerType, std::unique_ptr<JsonInputGrassWaveRunupTopLayerDefinitionData>>
+                std::map<JsonInputGrassRevetmentTopLayerType, std::unique_ptr<JsonInputGrassCumulativeOverloadTopLayerDefinitionData>>
                 topLayerDefinitionData);
 
             #pragma region Set methods
@@ -67,7 +67,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
             const JsonInputGrassWaveRunupCalculationProtocolData* GetCalculationProtocolData() const;
 
             [[nodiscard]]
-            const std::map<JsonInputGrassRevetmentTopLayerType, std::reference_wrapper<JsonInputGrassWaveRunupTopLayerDefinitionData>>&
+            const std::map<JsonInputGrassRevetmentTopLayerType, std::reference_wrapper<JsonInputGrassCumulativeOverloadTopLayerDefinitionData>>&
             GetTopLayerDefinitionData() const;
 
             [[nodiscard]]
@@ -92,9 +92,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
         private:
             std::unique_ptr<JsonInputGrassWaveRunupCalculationProtocolData> _calculationProtocolData;
-            std::map<JsonInputGrassRevetmentTopLayerType, std::unique_ptr<JsonInputGrassWaveRunupTopLayerDefinitionData>>
+            std::map<JsonInputGrassRevetmentTopLayerType, std::unique_ptr<JsonInputGrassCumulativeOverloadTopLayerDefinitionData>>
             _topLayerDefinitionData;
-            std::map<JsonInputGrassRevetmentTopLayerType, std::reference_wrapper<JsonInputGrassWaveRunupTopLayerDefinitionData>>
+            std::map<JsonInputGrassRevetmentTopLayerType, std::reference_wrapper<JsonInputGrassCumulativeOverloadTopLayerDefinitionData>>
             _topLayerDefinitionDataReferences;
             std::unique_ptr<double> _factorCtm = nullptr;
             std::unique_ptr<double> _representativeWaveRunup2PA = nullptr;

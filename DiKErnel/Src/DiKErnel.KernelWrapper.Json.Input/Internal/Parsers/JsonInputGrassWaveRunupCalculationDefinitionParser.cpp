@@ -100,17 +100,17 @@ namespace DiKErnel::KernelWrapper::Json::Input
         return nullptr;
     }
 
-    map<JsonInputGrassRevetmentTopLayerType, unique_ptr<JsonInputGrassWaveRunupTopLayerDefinitionData>>
+    map<JsonInputGrassRevetmentTopLayerType, unique_ptr<JsonInputGrassCumulativeOverloadTopLayerDefinitionData>>
     JsonInputGrassWaveRunupCalculationDefinitionParser::ReadTopLayerDefinitionData(
         const json& readCalculationMethod)
     {
-        auto topLayers = map<JsonInputGrassRevetmentTopLayerType, unique_ptr<JsonInputGrassWaveRunupTopLayerDefinitionData>>();
+        auto topLayers = map<JsonInputGrassRevetmentTopLayerType, unique_ptr<JsonInputGrassCumulativeOverloadTopLayerDefinitionData>>();
 
         if (readCalculationMethod.contains(JsonInputDefinitions::TOP_LAYERS))
         {
             for (const auto& readTopLayers = readCalculationMethod.at(JsonInputDefinitions::TOP_LAYERS); const auto& readTopLayer : readTopLayers)
             {
-                auto topLayer = make_unique<JsonInputGrassWaveRunupTopLayerDefinitionData>();
+                auto topLayer = make_unique<JsonInputGrassCumulativeOverloadTopLayerDefinitionData>();
 
                 topLayer->SetCriticalCumulativeOverload(
                     JsonInputParserHelper::ParseOptionalDouble(readTopLayer, JsonInputGrassWaveRunupDefinitions::CRITICAL_CUMULATIVE_OVERLOAD));

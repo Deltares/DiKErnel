@@ -27,7 +27,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
     JsonInputGrassWaveRunupCalculationDefinitionData::JsonInputGrassWaveRunupCalculationDefinitionData(
         unique_ptr<double> failureNumber,
         unique_ptr<JsonInputGrassWaveRunupCalculationProtocolData> calculationProtocolData,
-        map<JsonInputGrassRevetmentTopLayerType, unique_ptr<JsonInputGrassWaveRunupTopLayerDefinitionData>> topLayerDefinitionData)
+        map<JsonInputGrassRevetmentTopLayerType, unique_ptr<JsonInputGrassCumulativeOverloadTopLayerDefinitionData>> topLayerDefinitionData)
         : JsonInputCalculationDefinitionData(move(failureNumber)),
           _calculationProtocolData(move(calculationProtocolData)),
           _topLayerDefinitionData(move(topLayerDefinitionData))
@@ -35,7 +35,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
         for (const auto& [topLayerType, topLayerDefinition] : _topLayerDefinitionData)
         {
             _topLayerDefinitionDataReferences.insert(
-                pair<JsonInputGrassRevetmentTopLayerType, reference_wrapper<JsonInputGrassWaveRunupTopLayerDefinitionData>>(
+                pair<JsonInputGrassRevetmentTopLayerType, reference_wrapper<JsonInputGrassCumulativeOverloadTopLayerDefinitionData>>(
                     topLayerType, *topLayerDefinition));
         }
     }
@@ -83,7 +83,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
         return _calculationProtocolData.get();
     }
 
-    const map<JsonInputGrassRevetmentTopLayerType, reference_wrapper<JsonInputGrassWaveRunupTopLayerDefinitionData>>&
+    const map<JsonInputGrassRevetmentTopLayerType, reference_wrapper<JsonInputGrassCumulativeOverloadTopLayerDefinitionData>>&
     JsonInputGrassWaveRunupCalculationDefinitionData::GetTopLayerDefinitionData() const
     {
         return _topLayerDefinitionDataReferences;

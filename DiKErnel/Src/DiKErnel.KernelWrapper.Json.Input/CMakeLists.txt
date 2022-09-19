@@ -49,6 +49,8 @@ set(SOURCEFILES_INTERNAL_DATA_REVETMENT
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputAsphaltWaveImpactLocationData.h
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputAsphaltWaveImpactTopLayerDefinitionData.cpp
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputAsphaltWaveImpactTopLayerDefinitionData.h
+  ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassCumulativeOverloadTopLayerDefinitionData.cpp
+  ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassCumulativeOverloadTopLayerDefinitionData.h
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassRevetmentTopLayerType.h
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassRevetmentWaveRunupCalculationProtocolType.h
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassWaveImpactCalculationDefinitionData.cpp
@@ -64,8 +66,6 @@ set(SOURCEFILES_INTERNAL_DATA_REVETMENT
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassWaveRunupLocationData.h
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassWaveRunupRayleighCalculationProtocolData.cpp
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassWaveRunupRayleighCalculationProtocolData.h
-  ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassWaveRunupTopLayerDefinitionData.cpp
-  ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassWaveRunupTopLayerDefinitionData.h
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputNaturalStoneCalculationDefinitionData.cpp
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputNaturalStoneCalculationDefinitionData.h
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputNaturalStoneLocationData.cpp

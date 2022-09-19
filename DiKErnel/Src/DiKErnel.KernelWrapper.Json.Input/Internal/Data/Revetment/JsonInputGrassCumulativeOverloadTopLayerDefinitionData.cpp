@@ -18,7 +18,7 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include "JsonInputGrassWaveRunupTopLayerDefinitionData.h"
+#include "JsonInputGrassCumulativeOverloadTopLayerDefinitionData.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
@@ -26,13 +26,13 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
     #pragma region Set methods
 
-    void JsonInputGrassWaveRunupTopLayerDefinitionData::SetCriticalCumulativeOverload(
+    void JsonInputGrassCumulativeOverloadTopLayerDefinitionData::SetCriticalCumulativeOverload(
         unique_ptr<double> criticalCumulativeOverload)
     {
         _criticalCumulativeOverload = move(criticalCumulativeOverload);
     }
 
-    void JsonInputGrassWaveRunupTopLayerDefinitionData::SetCriticalFrontVelocity(
+    void JsonInputGrassCumulativeOverloadTopLayerDefinitionData::SetCriticalFrontVelocity(
         unique_ptr<double> criticalFrontVelocity)
     {
         _criticalFrontVelocity = move(criticalFrontVelocity);
@@ -42,12 +42,12 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
     #pragma region Get methods
 
-    const double* JsonInputGrassWaveRunupTopLayerDefinitionData::GetCriticalCumulativeOverload() const
+    const double* JsonInputGrassCumulativeOverloadTopLayerDefinitionData::GetCriticalCumulativeOverload() const
     {
         return _criticalCumulativeOverload.get();
     }
 
-    const double* JsonInputGrassWaveRunupTopLayerDefinitionData::GetCriticalFrontVelocity() const
+    const double* JsonInputGrassCumulativeOverloadTopLayerDefinitionData::GetCriticalFrontVelocity() const
     {
         return _criticalFrontVelocity.get();
     }
