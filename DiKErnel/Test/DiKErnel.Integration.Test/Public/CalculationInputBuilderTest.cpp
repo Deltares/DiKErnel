@@ -96,6 +96,7 @@ namespace DiKErnel::Integration::Test
         static void CreateBuilderAndBuildWithoutTimeStepAdded()
         {
             CalculationInputBuilder builder;
+            builder.AddDikeProfileSegment(0, 10, 10, 20, nullptr);
             builder.AddGrassWaveImpactLocation(
                 make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(0, GrassRevetmentTopLayerType::ClosedSod));
             const auto& calculationInput = builder.Build();
@@ -104,6 +105,7 @@ namespace DiKErnel::Integration::Test
         static void CreateBuilderAndBuildWithInvalidTimeStepsAdded()
         {
             CalculationInputBuilder builder;
+            builder.AddDikeProfileSegment(0, 10, 10, 20, nullptr);
             builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
             builder.AddTimeStep(3, 4, 0.3, 0.4, 0.5, 0.6);
             builder.AddGrassWaveImpactLocation(
@@ -114,6 +116,7 @@ namespace DiKErnel::Integration::Test
         static void CreateBuilderAndBuildWithoutLocationAdded()
         {
             CalculationInputBuilder builder;
+            builder.AddDikeProfileSegment(0, 10, 10, 20, nullptr);
             builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
             const auto& calculationInput = builder.Build();
         }
@@ -125,6 +128,7 @@ namespace DiKErnel::Integration::Test
                 0.1, topLayerType, 0.2, 0.3, 0.4, 0.5);
 
             CalculationInputBuilder builder;
+            builder.AddDikeProfileSegment(0, 10, 10, 20, nullptr);
             builder.AddAsphaltWaveImpactLocation(move(constructionProperties));
             const auto& calculationInput = builder.Build();
         }
@@ -135,6 +139,7 @@ namespace DiKErnel::Integration::Test
             auto constructionProperties = make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(0.1, topLayerType);
 
             CalculationInputBuilder builder;
+            builder.AddDikeProfileSegment(0, 10, 10, 20, nullptr);
             builder.AddGrassWaveImpactLocation(move(constructionProperties));
             const auto& calculationInput = builder.Build();
         }
@@ -145,6 +150,7 @@ namespace DiKErnel::Integration::Test
             auto constructionProperties = make_unique<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(0.1, 0.2, topLayerType);
 
             CalculationInputBuilder builder;
+            builder.AddDikeProfileSegment(0, 10, 10, 20, nullptr);
             builder.AddGrassWaveRunupRayleighLocation(move(constructionProperties));
             const auto& calculationInput = builder.Build();
         }
@@ -155,6 +161,7 @@ namespace DiKErnel::Integration::Test
             auto constructionProperties = make_unique<NaturalStoneRevetmentLocationConstructionProperties>(0.1, topLayerType, 0.2, 0.3);
 
             CalculationInputBuilder builder;
+            builder.AddDikeProfileSegment(0, 10, 10, 20, nullptr);
             builder.AddNaturalStoneLocation(move(constructionProperties));
             const auto& calculationInput = builder.Build();
         }
@@ -267,7 +274,7 @@ namespace DiKErnel::Integration::Test
            GivenBuilderWithoutDikeSegments_WhenBuild_ThenThrowsCalculationInputBuilderException)
     {
         // Given & When
-        const auto action = &CalculationInputBuilderTest::CreateBuilderAndSegmentUnchainedOnXCoordinate;
+        const auto action = &CalculationInputBuilderTest::CreateBuilderWithoutSegments;
 
         // Then
         AssertHelper::AssertThrowsWithMessageAndInnerException<CalculationInputBuildException, InputFactoryException>(
@@ -409,6 +416,7 @@ namespace DiKErnel::Integration::Test
         constexpr auto waveAngle = 0.6;
 
         CalculationInputBuilder builder;
+        builder.AddDikeProfileSegment(0, 10, 10, 20, nullptr);
         builder.AddTimeStep(beginTime, endTime, waterLevel, waveHeightHm0, wavePeriodTm10, waveAngle);
         builder.AddGrassWaveImpactLocation(
             make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(0, GrassRevetmentTopLayerType::ClosedSod));
@@ -503,6 +511,7 @@ namespace DiKErnel::Integration::Test
         constructionProperties->SetImpactFactors(make_unique<vector<pair<double, double>>>(impactFactors));
 
         CalculationInputBuilder builder;
+        builder.AddDikeProfileSegment(0, 10, 10, 20, nullptr);
         builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
         builder.AddAsphaltWaveImpactLocation(move(constructionProperties));
 
@@ -550,6 +559,7 @@ namespace DiKErnel::Integration::Test
             x, topLayerType, failureTension, soilElasticity, thicknessUpperLayer, elasticModulusUpperLayer);
 
         CalculationInputBuilder builder;
+        builder.AddDikeProfileSegment(0, 10, 10, 20, nullptr);
         builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
         builder.AddAsphaltWaveImpactLocation(move(constructionProperties));
 
@@ -678,6 +688,7 @@ namespace DiKErnel::Integration::Test
         constructionProperties->SetLowerLimitLoadingAll(make_unique<double>(lowerLimitLoadingAll));
 
         CalculationInputBuilder builder;
+        builder.AddDikeProfileSegment(0, 10, 10, 20, nullptr);
         builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
         builder.AddGrassWaveImpactLocation(move(constructionProperties));
 
@@ -726,6 +737,7 @@ namespace DiKErnel::Integration::Test
         auto constructionProperties = make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(x, topLayerType);
 
         CalculationInputBuilder builder;
+        builder.AddDikeProfileSegment(0, 10, 10, 20, nullptr);
         builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
         builder.AddGrassWaveImpactLocation(move(constructionProperties));
 
@@ -774,6 +786,7 @@ namespace DiKErnel::Integration::Test
         auto constructionProperties = make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(x, topLayerType);
 
         CalculationInputBuilder builder;
+        builder.AddDikeProfileSegment(0, 10, 10, 20, nullptr);
         builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
         builder.AddGrassWaveImpactLocation(move(constructionProperties));
 
@@ -871,6 +884,7 @@ namespace DiKErnel::Integration::Test
         constructionProperties->SetFrontVelocityCu(make_unique<double>(frontVelocityCu));
 
         CalculationInputBuilder builder;
+        builder.AddDikeProfileSegment(0, 10, 10, 20, nullptr);
         builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
         builder.AddGrassWaveRunupRayleighLocation(move(constructionProperties));
 
@@ -921,6 +935,7 @@ namespace DiKErnel::Integration::Test
         auto constructionProperties = make_unique<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(x, outerSlope, topLayerType);
 
         CalculationInputBuilder builder;
+        builder.AddDikeProfileSegment(0, 10, 10, 20, nullptr);
         builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
         builder.AddGrassWaveRunupRayleighLocation(move(constructionProperties));
 
@@ -970,6 +985,7 @@ namespace DiKErnel::Integration::Test
         auto constructionProperties = make_unique<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(x, outerSlope, topLayerType);
 
         CalculationInputBuilder builder;
+        builder.AddDikeProfileSegment(0, 10, 10, 20, nullptr);
         builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
         builder.AddGrassWaveRunupRayleighLocation(move(constructionProperties));
 
@@ -1083,6 +1099,7 @@ namespace DiKErnel::Integration::Test
         naturalStoneConstructionProperties->SetWaveAngleImpactBetamax(make_unique<double>(waveAngleImpactBetamax));
 
         CalculationInputBuilder builder;
+        builder.AddDikeProfileSegment(0, 10, 10, 20, nullptr);
         builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
         builder.AddNaturalStoneLocation(move(naturalStoneConstructionProperties));
 
@@ -1139,6 +1156,7 @@ namespace DiKErnel::Integration::Test
             x, topLayerType, thicknessTopLayer, relativeDensity);
 
         CalculationInputBuilder builder;
+        builder.AddDikeProfileSegment(0, 10, 10, 20, nullptr);
         builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
         builder.AddNaturalStoneLocation(move(naturalStoneConstructionProperties));
 

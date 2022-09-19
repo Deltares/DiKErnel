@@ -64,6 +64,7 @@ namespace DiKErnel::System::Test
     {
         // Given
         CalculationInputBuilder builder;
+        builder.AddDikeProfileSegment(0, 10, 10, 20, nullptr);
         builder.AddTimeStep(0, 100, 10, 5, 10, 30);
 
         auto asphaltRevetmentWaveImpactLocationConstructionProperties = make_unique<AsphaltRevetmentWaveImpactLocationConstructionProperties>(
