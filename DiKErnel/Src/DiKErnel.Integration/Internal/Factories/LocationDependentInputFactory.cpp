@@ -22,6 +22,8 @@
 
 #include "AsphaltRevetmentWaveImpactLocationConstructionProperties.h"
 #include "AsphaltRevetmentWaveImpactLocationDependentInputFactory.h"
+#include "GrassRevetmentOvertoppingLocationConstructionProperties.h"
+#include "GrassRevetmentOvertoppingLocationDependentInputFactory.h"
 #include "GrassRevetmentWaveImpactLocationConstructionProperties.h"
 #include "GrassRevetmentWaveImpactLocationDependentInputFactory.h"
 #include "GrassRevetmentWaveRunupRayleighLocationConstructionProperties.h"
@@ -57,6 +59,16 @@ namespace DiKErnel::Integration
                 locationDependentInputItems.push_back(
                     AsphaltRevetmentWaveImpactLocationDependentInputFactory::CreateLocationDependentInput(
                         *asphaltWaveImpactLocationConstructionProperties));
+                continue;
+            }
+
+            if (const auto* grassOvertoppingLocationConstructionProperties = dynamic_cast<const
+                    GrassRevetmentOvertoppingLocationConstructionProperties*>(&locationConstructionProperties);
+                grassOvertoppingLocationConstructionProperties != nullptr)
+            {
+                locationDependentInputItems.push_back(
+                    GrassRevetmentOvertoppingLocationDependentInputFactory::CreateLocationDependentInput(
+                        *grassOvertoppingLocationConstructionProperties));
                 continue;
             }
 
