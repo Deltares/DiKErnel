@@ -37,7 +37,7 @@ extern "C" __declspec(dllimport) void ValidateInputC(
     Input* modelFactors,
     bool* success,
     const char* message,
-    int size);
+    size_t size);
 
 extern "C" __declspec(dllimport) void calculateQo(
     Load* loadInput,
@@ -49,8 +49,12 @@ extern "C" __declspec(dllimport) void calculateQo(
     const char* message,
     int* verbosity,
     const char* logFile,
-    int messageSize,
-    int logFileSize);
+    size_t messageSize,
+    size_t logFileSize);
+
+extern "C" __declspec(dllimport) void SetLanguage(
+    const char* languageCode,
+    size_t languageCodeLength);
 
 namespace DiKErnel::External::Overtopping
 {
@@ -65,7 +69,9 @@ namespace DiKErnel::External::Overtopping
         bool* success,
         double dikeHeight)
     {
-        const int messageLength = messageBuffer->length();
+        SetLanguage(_languageCode.c_str(), _languageCode.length());
+
+        const size_t messageLength = messageBuffer->length();
         ValidateInputC(&geometry, &dikeHeight, &input, success, messageBuffer->c_str(), messageLength);
     }
 
@@ -78,12 +84,14 @@ namespace DiKErnel::External::Overtopping
         bool* success,
         double dikeHeight)
     {
+        SetLanguage(_languageCode.c_str(), _languageCode.length());
+
         int verbosity = -1;
 
         const auto logFileName = make_unique<string>();
         logFileName->reserve(LOG_FILE_NAME_SIZE);
 
-        const int messageLength = messageBuffer->length();
+        const size_t messageLength = messageBuffer->length();
         calculateQo(&load, &geometry, &dikeHeight, &input, result, success,
                     messageBuffer->c_str(), &verbosity, logFileName->c_str(), messageLength, LOG_FILE_NAME_SIZE);
     }

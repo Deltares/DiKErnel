@@ -82,5 +82,8 @@ namespace DiKErnel::External::Overtopping
                 const std::string* messageBuffer,
                 bool* success,
                 double dikeHeight);
+
+        private:
+            inline static std::string _languageCode = "UK";
     };
 }
