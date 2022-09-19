@@ -18,17 +18,23 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include "GrassRevetmentWaveRunupOpenSodTopLayerDefaults.h"
+#include <gtest/gtest.h>
 
-namespace DiKErnel::DomainLibrary
+#include "AssertHelper.h"
+#include "GrassRevetmentCumulativeOverloadOpenSodTopLayerDefaults.h"
+
+namespace DiKErnel::DomainLibrary::Test
 {
-    double GrassRevetmentWaveRunupOpenSodTopLayerDefaults::GetCriticalCumulativeOverload() const
-    {
-        return 7000;
-    }
+    using namespace TestUtil;
 
-    double GrassRevetmentWaveRunupOpenSodTopLayerDefaults::GetCriticalFrontVelocity() const
+    TEST(GrassRevetmentCumulativeOverloadOpenSodTopLayerDefaultsTest, Constructor_ExpectedValues)
     {
-        return 4.3;
+        // Call
+        const GrassRevetmentCumulativeOverloadOpenSodTopLayerDefaults defaults;
+
+        // Assert
+        AssertHelper::AssertIsInstanceOf<IGrassRevetmentWaveRunupTopLayerDefaults>(&defaults);
+        ASSERT_DOUBLE_EQ(7000, defaults.GetCriticalCumulativeOverload());
+        ASSERT_DOUBLE_EQ(4.3, defaults.GetCriticalFrontVelocity());
     }
 }

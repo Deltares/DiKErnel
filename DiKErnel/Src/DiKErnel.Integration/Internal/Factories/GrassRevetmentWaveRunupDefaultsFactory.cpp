@@ -22,7 +22,7 @@
 
 #include "DefaultsFactoryException.h"
 #include "GrassRevetmentCumulativeOverloadClosedSodTopLayerDefaults.h"
-#include "GrassRevetmentWaveRunupOpenSodTopLayerDefaults.h"
+#include "GrassRevetmentCumulativeOverloadOpenSodTopLayerDefaults.h"
 
 namespace DiKErnel::Integration
 {
@@ -37,7 +37,7 @@ namespace DiKErnel::Integration
             case GrassRevetmentTopLayerType::ClosedSod:
                 return make_unique<GrassRevetmentCumulativeOverloadClosedSodTopLayerDefaults>();
             case GrassRevetmentTopLayerType::OpenSod:
-                return make_unique<GrassRevetmentWaveRunupOpenSodTopLayerDefaults>();
+                return make_unique<GrassRevetmentCumulativeOverloadOpenSodTopLayerDefaults>();
             default:
                 throw DefaultsFactoryException("Couldn't create defaults for the given top layer type.");
         }
