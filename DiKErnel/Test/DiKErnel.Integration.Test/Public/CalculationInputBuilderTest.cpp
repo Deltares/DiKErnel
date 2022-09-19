@@ -30,12 +30,12 @@
 #include "GrassRevetmentWaveRunupLocationDependentInputAssertHelper.h"
 #include "GrassRevetmentWaveRunupRayleighLocationDependentInput.h"
 #include "GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper.h"
+#include "InputFactoryException.h"
 #include "LocationDependentInputAssertHelper.h"
 #include "NaturalStoneRevetmentLocationConstructionProperties.h"
 #include "NaturalStoneRevetmentLocationDependentInput.h"
 #include "NaturalStoneRevetmentLocationDependentInputAssertHelper.h"
 #include "ProfileDataAssertHelper.h"
-#include "InputFactoryException.h"
 #include "TimeDependentInputAssertHelper.h"
 
 namespace DiKErnel::Integration::Test

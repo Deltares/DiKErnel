@@ -103,12 +103,14 @@ namespace DiKErnel::Integration
     unique_ptr<ICalculationInput> CalculationInputBuilder::Build() const
     {
         auto profileSegmentDataReferences = vector<reference_wrapper<ProfileDataFactorySegment>>();
+
         for (const auto& profileSegmentDataItem : _profileSegmentDataItems)
         {
             profileSegmentDataReferences.emplace_back(*profileSegmentDataItem);
         }
 
         auto profilePointDataReferences = vector<reference_wrapper<ProfileDataFactoryPoint>>();
+
         for (const auto& profilePointDataItem : _profilePointDataItems)
         {
             profilePointDataReferences.emplace_back(*profilePointDataItem);
