@@ -52,7 +52,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 const JsonInputData& jsonInputData,
                 Integration::CalculationInputBuilder& builder);
 
-            static std::unique_ptr<Core::CharacteristicPointType> ConvertCharacteristicPointType(
+            static Core::CharacteristicPointType ConvertCharacteristicPointType(
                 JsonInputCharacteristicPointType jsonCharacteristicPointType);
 
             static void AdaptHydraulicData(
@@ -80,7 +80,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 const JsonInputGrassWaveImpactLocationData& location,
                 const JsonInputGrassWaveImpactCalculationDefinitionData* calculationDefinition);
 
-            static std::unique_ptr<Integration::GrassRevetmentWaveRunupRayleighLocationConstructionProperties> CreateGrassWaveRunupConstructionProperties(
+            static std::unique_ptr<Integration::GrassRevetmentWaveRunupRayleighLocationConstructionProperties>
+            CreateGrassWaveRunupConstructionProperties(
                 const JsonInputGrassWaveRunupLocationData& location,
                 const JsonInputGrassWaveRunupCalculationDefinitionData* calculationDefinition);
 

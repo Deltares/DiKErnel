@@ -69,40 +69,30 @@ namespace DiKErnel::KernelWrapper::Json::Input
         for (const auto& characteristicPoints = dikeProfileData.GetCharacteristicPoints();
              const auto& [characteristicPointType, characteristicPointLocation] : characteristicPoints)
         {
-            builder.AddDikeProfilePointData(characteristicPointLocation, *ConvertCharacteristicPointType(characteristicPointType));
+            builder.AddDikeProfilePointData(characteristicPointLocation, ConvertCharacteristicPointType(characteristicPointType));
         }
     }
 
-    unique_ptr<CharacteristicPointType> JsonInputAdapter::ConvertCharacteristicPointType(
+    CharacteristicPointType JsonInputAdapter::ConvertCharacteristicPointType(
         const JsonInputCharacteristicPointType jsonCharacteristicPointType)
     {
-        unique_ptr<CharacteristicPointType> characteristicPointType;
-
         switch (jsonCharacteristicPointType)
         {
             case JsonInputCharacteristicPointType::OuterToe:
-                characteristicPointType = make_unique<CharacteristicPointType>(CharacteristicPointType::OuterToe);
-                break;
+                return CharacteristicPointType::OuterToe;
             case JsonInputCharacteristicPointType::OuterCrest:
-                characteristicPointType = make_unique<CharacteristicPointType>(CharacteristicPointType::OuterCrest);
-                break;
+                return CharacteristicPointType::OuterCrest;
             case JsonInputCharacteristicPointType::CrestOuterBerm:
-                characteristicPointType = make_unique<CharacteristicPointType>(CharacteristicPointType::CrestOuterBerm);
-                break;
+                return CharacteristicPointType::CrestOuterBerm;
             case JsonInputCharacteristicPointType::NotchOuterBerm:
-                characteristicPointType = make_unique<CharacteristicPointType>(CharacteristicPointType::NotchOuterBerm);
-                break;
+                return CharacteristicPointType::NotchOuterBerm;
             case JsonInputCharacteristicPointType::InnerCrest:
-                characteristicPointType = make_unique<CharacteristicPointType>(CharacteristicPointType::InnerCrest);
-                break;
+                return CharacteristicPointType::InnerCrest;
             case JsonInputCharacteristicPointType::InnerToe:
-                characteristicPointType = make_unique<CharacteristicPointType>(CharacteristicPointType::InnerToe);
-                break;
+                return CharacteristicPointType::InnerToe;
             default:
                 throw JsonInputConversionException("Cannot convert characteristic point type.");
         }
-
-        return characteristicPointType;
     }
 
     void JsonInputAdapter::AdaptHydraulicData(
