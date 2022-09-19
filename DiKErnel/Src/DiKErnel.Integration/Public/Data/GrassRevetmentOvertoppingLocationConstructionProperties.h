@@ -101,6 +101,22 @@ namespace DiKErnel::Integration
             void SetFrontVelocityCwo(
                 std::unique_ptr<double> frontVelocityCwo);
 
+            /*!
+             * \brief Sets the acceleration alpha A for the crest.
+             * \param accelerationAlphaAForCrest
+             *        The acceleration alpha A for the crest.
+             */
+            void SetAccelerationAlphaAForCrest(
+                std::unique_ptr<double> accelerationAlphaAForCrest);
+
+            /*!
+             * \brief Sets the acceleration alpha A for the inner slope.
+             * \param accelerationAlphaAForInnerSlope
+             *        The acceleration alpha A for the inner slope.
+             */
+            void SetAccelerationAlphaAForInnerSlope(
+                std::unique_ptr<double> accelerationAlphaAForInnerSlope);
+
             #pragma endregion
 
             #pragma region Get methods
@@ -161,6 +177,20 @@ namespace DiKErnel::Integration
             [[nodiscard]]
             const double* GetFrontVelocityCwo() const;
 
+            /*!
+             * \brief Gets the acceleration alpha A for the crest.
+             * \return The acceleration alpha A for the crest.
+             */
+            [[nodiscard]]
+            const double* GetAccelerationAlphaAForCrest() const;
+
+            /*!
+             * \brief Gets the acceleration alpha A for the inner slope.
+             * \return The acceleration alpha A for the inner slope.
+             */
+            [[nodiscard]]
+            const double* GetAccelerationAlphaAForInnerSlope() const;
+
             #pragma endregion
 
         private:
@@ -172,5 +202,7 @@ namespace DiKErnel::Integration
             std::unique_ptr<double> _averageNumberOfWavesCtm = nullptr;
             std::unique_ptr<int> _fixedNumberOfWaves = nullptr;
             std::unique_ptr<double> _frontVelocityCwo = nullptr;
+            std::unique_ptr<double> _accelerationAlphaAForCrest = nullptr;
+            std::unique_ptr<double> _accelerationAlphaAForInnerSlope = nullptr;
     };
 }

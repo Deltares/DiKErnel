@@ -76,6 +76,18 @@ namespace DiKErnel::Integration
         _frontVelocityCwo = move(frontVelocityCwo);
     }
 
+    void GrassRevetmentOvertoppingLocationConstructionProperties::SetAccelerationAlphaAForCrest(
+        std::unique_ptr<double> accelerationAlphaAForCrest)
+    {
+        _accelerationAlphaAForCrest = move(accelerationAlphaAForCrest);
+    }
+
+    void GrassRevetmentOvertoppingLocationConstructionProperties::SetAccelerationAlphaAForInnerSlope(
+        std::unique_ptr<double> accelerationAlphaAForInnerSlope)
+    {
+        _accelerationAlphaAForInnerSlope = move(accelerationAlphaAForInnerSlope);
+    }
+
     #pragma endregion
 
     #pragma region Get methods
@@ -118,6 +130,16 @@ namespace DiKErnel::Integration
     const double* GrassRevetmentOvertoppingLocationConstructionProperties::GetFrontVelocityCwo() const
     {
         return _frontVelocityCwo.get();
+    }
+
+    const double* GrassRevetmentOvertoppingLocationConstructionProperties::GetAccelerationAlphaAForCrest() const
+    {
+        return _accelerationAlphaAForCrest.get();
+    }
+
+    const double* GrassRevetmentOvertoppingLocationConstructionProperties::GetAccelerationAlphaAForInnerSlope() const
+    {
+        return _accelerationAlphaAForInnerSlope.get();
     }
 
     #pragma endregion
