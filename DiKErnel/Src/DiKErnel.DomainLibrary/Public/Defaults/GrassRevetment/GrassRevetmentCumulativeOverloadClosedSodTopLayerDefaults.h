@@ -25,10 +25,10 @@
 namespace DiKErnel::DomainLibrary
 {
     /*!
-     * \brief Class that contains default values for grass revetment wave run-up with a closed sod
-     *        top layer.
+     * \brief Class that contains default values for grass revetment cumulative overload
+     *        calculations with a closed sod top layer.
      */
-    class GrassRevetmentWaveRunupClosedSodTopLayerDefaults : public IGrassRevetmentWaveRunupTopLayerDefaults
+    class GrassRevetmentCumulativeOverloadClosedSodTopLayerDefaults : public IGrassRevetmentWaveRunupTopLayerDefaults
     {
         public:
             /*!

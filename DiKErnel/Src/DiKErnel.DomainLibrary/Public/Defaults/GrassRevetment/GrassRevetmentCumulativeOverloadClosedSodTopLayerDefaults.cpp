@@ -18,16 +18,16 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include "GrassRevetmentWaveRunupClosedSodTopLayerDefaults.h"
+#include "GrassRevetmentCumulativeOverloadClosedSodTopLayerDefaults.h"
 
 namespace DiKErnel::DomainLibrary
 {
-    double GrassRevetmentWaveRunupClosedSodTopLayerDefaults::GetCriticalCumulativeOverload() const
+    double GrassRevetmentCumulativeOverloadClosedSodTopLayerDefaults::GetCriticalCumulativeOverload() const
     {
         return 7000;
     }
 
-    double GrassRevetmentWaveRunupClosedSodTopLayerDefaults::GetCriticalFrontVelocity() const
+    double GrassRevetmentCumulativeOverloadClosedSodTopLayerDefaults::GetCriticalFrontVelocity() const
     {
         return 6.6;
     }

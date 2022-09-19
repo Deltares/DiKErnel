@@ -21,7 +21,7 @@
 #include "GrassRevetmentWaveRunupDefaultsFactory.h"
 
 #include "DefaultsFactoryException.h"
-#include "GrassRevetmentWaveRunupClosedSodTopLayerDefaults.h"
+#include "GrassRevetmentCumulativeOverloadClosedSodTopLayerDefaults.h"
 #include "GrassRevetmentWaveRunupOpenSodTopLayerDefaults.h"
 
 namespace DiKErnel::Integration
@@ -35,7 +35,7 @@ namespace DiKErnel::Integration
         switch (topLayerType)
         {
             case GrassRevetmentTopLayerType::ClosedSod:
-                return make_unique<GrassRevetmentWaveRunupClosedSodTopLayerDefaults>();
+                return make_unique<GrassRevetmentCumulativeOverloadClosedSodTopLayerDefaults>();
             case GrassRevetmentTopLayerType::OpenSod:
                 return make_unique<GrassRevetmentWaveRunupOpenSodTopLayerDefaults>();
             default:

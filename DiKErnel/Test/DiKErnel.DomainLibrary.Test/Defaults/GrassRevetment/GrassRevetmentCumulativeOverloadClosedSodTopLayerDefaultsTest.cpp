@@ -21,16 +21,16 @@
 #include <gtest/gtest.h>
 
 #include "AssertHelper.h"
-#include "GrassRevetmentWaveRunupClosedSodTopLayerDefaults.h"
+#include "GrassRevetmentCumulativeOverloadClosedSodTopLayerDefaults.h"
 
 namespace DiKErnel::DomainLibrary::Test
 {
     using namespace TestUtil;
 
-    TEST(GrassRevetmentWaveRunupClosedSodTopLayerDefaultsTest, Constructor_ExpectedValues)
+    TEST(GrassRevetmentCumulativeOverloadClosedSodTopLayerDefaultsTest, Constructor_ExpectedValues)
     {
         // Call
-        const GrassRevetmentWaveRunupClosedSodTopLayerDefaults defaults;
+        const GrassRevetmentCumulativeOverloadClosedSodTopLayerDefaults defaults;
 
         // Assert
         AssertHelper::AssertIsInstanceOf<IGrassRevetmentWaveRunupTopLayerDefaults>(&defaults);

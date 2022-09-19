@@ -31,7 +31,7 @@ set(SOURCEFILES_DEFAULTS_ASPHALT_REVETMENT_WAVE_IMPACT
 )
 
 set(SOURCEFILES_DEFAULTS_GRASS_REVETMENT
-  ${DEFAULTS_GRASS_REVETMENT_FOLDER}/GrassRevetmentWaveRunupClosedSodTopLayerDefaultsTest.cpp
+  ${DEFAULTS_GRASS_REVETMENT_FOLDER}/GrassRevetmentCumulativeOverloadClosedSodTopLayerDefaultsTest.cpp
   ${DEFAULTS_GRASS_REVETMENT_FOLDER}/GrassRevetmentWaveRunupOpenSodTopLayerDefaultsTest.cpp
 )
 
