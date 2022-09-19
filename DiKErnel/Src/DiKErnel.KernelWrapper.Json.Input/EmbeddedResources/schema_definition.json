@@ -93,6 +93,12 @@
         },
         "kruinBuitenzijde": {
           "type": "number"
+        },
+        "kruinBinnenzijde": {
+          "type": "number"
+        },
+        "teenBinnenzijde": {
+          "type": "number"
         }
       }
     },
