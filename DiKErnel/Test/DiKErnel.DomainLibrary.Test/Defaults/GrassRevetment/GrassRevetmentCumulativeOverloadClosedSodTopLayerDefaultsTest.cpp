@@ -33,7 +33,7 @@ namespace DiKErnel::DomainLibrary::Test
         const GrassRevetmentCumulativeOverloadClosedSodTopLayerDefaults defaults;
 
         // Assert
-        AssertHelper::AssertIsInstanceOf<IGrassRevetmentWaveRunupTopLayerDefaults>(&defaults);
+        AssertHelper::AssertIsInstanceOf<IGrassRevetmentCumulativeOverloadTopLayerDefaults>(&defaults);
         ASSERT_DOUBLE_EQ(7000, defaults.GetCriticalCumulativeOverload());
         ASSERT_DOUBLE_EQ(6.6, defaults.GetCriticalFrontVelocity());
     }

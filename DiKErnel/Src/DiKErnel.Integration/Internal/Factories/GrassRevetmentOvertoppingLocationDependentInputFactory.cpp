@@ -24,7 +24,7 @@
 #include "GrassRevetmentWaveRunupDefaults.h"
 #include "GrassRevetmentWaveRunupDefaultsFactory.h"
 #include "GrassRevetmentWaveRunupRayleighDefaults.h"
-#include "IGrassRevetmentWaveRunupTopLayerDefaults.h"
+#include "IGrassRevetmentCumulativeOverloadTopLayerDefaults.h"
 #include "InputFactoryException.h"
 #include "InputFactoryHelper.h"
 #include "RevetmentDefaults.h"
@@ -38,7 +38,7 @@ namespace DiKErnel::Integration
     CreateLocationDependentInput(
         const GrassRevetmentOvertoppingLocationConstructionProperties& constructionProperties)
     {
-        unique_ptr<IGrassRevetmentWaveRunupTopLayerDefaults> topLayerDefaults;
+        unique_ptr<IGrassRevetmentCumulativeOverloadTopLayerDefaults> topLayerDefaults;
 
         try
         {

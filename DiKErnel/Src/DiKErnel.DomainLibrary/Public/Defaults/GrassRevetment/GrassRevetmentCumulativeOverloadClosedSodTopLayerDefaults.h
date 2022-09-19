@@ -20,7 +20,7 @@
 
 #pragma once
 
-#include "IGrassRevetmentWaveRunupTopLayerDefaults.h"
+#include "IGrassRevetmentCumulativeOverloadTopLayerDefaults.h"
 
 namespace DiKErnel::DomainLibrary
 {
@@ -28,7 +28,7 @@ namespace DiKErnel::DomainLibrary
      * \brief Class that contains default values for grass revetment cumulative overload
      *        calculations with a closed sod top layer.
      */
-    class GrassRevetmentCumulativeOverloadClosedSodTopLayerDefaults : public IGrassRevetmentWaveRunupTopLayerDefaults
+    class GrassRevetmentCumulativeOverloadClosedSodTopLayerDefaults : public IGrassRevetmentCumulativeOverloadTopLayerDefaults
     {
         public:
             /*!

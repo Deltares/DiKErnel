@@ -23,16 +23,16 @@
 namespace DiKErnel::DomainLibrary
 {
     /*!
-     * \brief Interface that contains default value definitions for grass revetment wave run-up top
-     *        layers.
+     * \brief Interface that contains cumulative overload related default value definitions for
+     *        grass revetment top layers.
      */
-    class IGrassRevetmentWaveRunupTopLayerDefaults
+    class IGrassRevetmentCumulativeOverloadTopLayerDefaults
     {
         public:
             /*!
              * \brief Destructs the instance.
              */
-            virtual ~IGrassRevetmentWaveRunupTopLayerDefaults() = default;
+            virtual ~IGrassRevetmentCumulativeOverloadTopLayerDefaults() = default;
 
             /*!
              * \brief Gets the default value of the critical cumulative overload.

@@ -29,7 +29,7 @@ namespace DiKErnel::Integration
     using namespace DomainLibrary;
     using namespace std;
 
-    unique_ptr<IGrassRevetmentWaveRunupTopLayerDefaults> GrassRevetmentWaveRunupDefaultsFactory::CreateTopLayerDefaults(
+    unique_ptr<IGrassRevetmentCumulativeOverloadTopLayerDefaults> GrassRevetmentWaveRunupDefaultsFactory::CreateTopLayerDefaults(
         const GrassRevetmentTopLayerType topLayerType)
     {
         switch (topLayerType)
