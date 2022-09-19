@@ -50,7 +50,7 @@ namespace DiKErnel::Integration
         const double x,
         const CharacteristicPointType characteristicPointType)
     {
-        _profilePointData.push_back(make_unique<ProfileDataFactoryPoint>(x, characteristicPointType));
+        _profilePointDataItems.push_back(make_unique<ProfileDataFactoryPoint>(x, characteristicPointType));
     }
 
     void CalculationInputBuilder::AddDikeProfileSegment(
@@ -60,8 +60,8 @@ namespace DiKErnel::Integration
         double endPointZ,
         const double* roughnessCoefficient)
     {
-        _profileSegmentData.emplace_back(make_unique<ProfileDataFactorySegment>(startPointX, startPointZ, endPointX, endPointZ,
-                                                                                roughnessCoefficient));
+        _profileSegmentDataItems.emplace_back(make_unique<ProfileDataFactorySegment>(startPointX, startPointZ, endPointX, endPointZ,
+                                                                                     roughnessCoefficient));
     }
 
     void CalculationInputBuilder::AddTimeStep(
@@ -103,15 +103,15 @@ namespace DiKErnel::Integration
     unique_ptr<ICalculationInput> CalculationInputBuilder::Build() const
     {
         auto profileSegmentDataReferences = vector<reference_wrapper<ProfileDataFactorySegment>>();
-        for (const auto& profileSegment : _profileSegmentData)
+        for (const auto& profileSegmentDataItem : _profileSegmentDataItems)
         {
-            profileSegmentDataReferences.emplace_back(*profileSegment);
+            profileSegmentDataReferences.emplace_back(*profileSegmentDataItem);
         }
 
         auto profilePointDataReferences = vector<reference_wrapper<ProfileDataFactoryPoint>>();
-        for (const auto& profilePoint : _profilePointData)
+        for (const auto& profilePointDataItem : _profilePointDataItems)
         {
-            profilePointDataReferences.emplace_back(*profilePoint);
+            profilePointDataReferences.emplace_back(*profilePointDataItem);
         }
 
         auto locationConstructionPropertiesItemReferences = vector<reference_wrapper<RevetmentLocationConstructionPropertiesBase>>();

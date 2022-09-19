@@ -144,8 +144,8 @@ namespace DiKErnel::Integration
             std::unique_ptr<Core::ICalculationInput> Build() const;
 
         private:
-            std::vector<std::unique_ptr<ProfileDataFactorySegment>> _profileSegmentData;
-            std::vector<std::unique_ptr<ProfileDataFactoryPoint>> _profilePointData;
+            std::vector<std::unique_ptr<ProfileDataFactorySegment>> _profileSegmentDataItems;
+            std::vector<std::unique_ptr<ProfileDataFactoryPoint>> _profilePointDataItems;
             std::vector<std::unique_ptr<TimeDependentInputFactoryData>> _timeStepDataItems;
             std::vector<std::unique_ptr<RevetmentLocationConstructionPropertiesBase>> _locationConstructionPropertiesItems;
 
