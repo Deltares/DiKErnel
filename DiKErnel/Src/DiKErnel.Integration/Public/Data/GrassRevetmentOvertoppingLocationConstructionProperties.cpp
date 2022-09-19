@@ -88,6 +88,12 @@ namespace DiKErnel::Integration
         _accelerationAlphaAForInnerSlope = move(accelerationAlphaAForInnerSlope);
     }
 
+    void GrassRevetmentOvertoppingLocationConstructionProperties::SetDikeHeight(
+        std::unique_ptr<double> dikeHeight)
+    {
+        _dikeHeight = move(dikeHeight);
+    }
+
     #pragma endregion
 
     #pragma region Get methods
@@ -140,6 +146,11 @@ namespace DiKErnel::Integration
     const double* GrassRevetmentOvertoppingLocationConstructionProperties::GetAccelerationAlphaAForInnerSlope() const
     {
         return _accelerationAlphaAForInnerSlope.get();
+    }
+
+    const double* GrassRevetmentOvertoppingLocationConstructionProperties::GetDikeHeight() const
+    {
+        return _dikeHeight.get();
     }
 
     #pragma endregion

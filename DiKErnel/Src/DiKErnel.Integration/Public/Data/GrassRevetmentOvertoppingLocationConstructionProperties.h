@@ -117,6 +117,14 @@ namespace DiKErnel::Integration
             void SetAccelerationAlphaAForInnerSlope(
                 std::unique_ptr<double> accelerationAlphaAForInnerSlope);
 
+            /*!
+             * \brief Sets the dike height.
+             * \param dikeHeight
+             *        The dike height.
+             */
+            void SetDikeHeight(
+                std::unique_ptr<double> dikeHeight);
+
             #pragma endregion
 
             #pragma region Get methods
@@ -191,6 +199,13 @@ namespace DiKErnel::Integration
             [[nodiscard]]
             const double* GetAccelerationAlphaAForInnerSlope() const;
 
+            /*!
+             * \brief Gets the dike height.
+             * \return The dike height.
+             */
+            [[nodiscard]]
+            const double* GetDikeHeight() const;
+
             #pragma endregion
 
         private:
@@ -204,5 +219,6 @@ namespace DiKErnel::Integration
             std::unique_ptr<double> _frontVelocityCwo = nullptr;
             std::unique_ptr<double> _accelerationAlphaAForCrest = nullptr;
             std::unique_ptr<double> _accelerationAlphaAForInnerSlope = nullptr;
+            std::unique_ptr<double> _dikeHeight = nullptr;
     };
 }
