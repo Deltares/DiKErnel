@@ -23,6 +23,7 @@
 #include "DefaultsFactoryException.h"
 #include "GrassRevetmentCumulativeOverloadDefaults.h"
 #include "GrassRevetmentCumulativeOverloadDefaultsFactory.h"
+#include "GrassRevetmentOvertoppingDefaults.h"
 #include "IGrassRevetmentCumulativeOverloadTopLayerDefaults.h"
 #include "InputFactoryException.h"
 #include "InputFactoryHelper.h"
@@ -66,7 +67,7 @@ namespace DiKErnel::Integration
                                          GrassRevetmentCumulativeOverloadDefaults::GetAverageNumberOfWavesCtm()),
             InputFactoryHelper::GetValue(constructionProperties.GetFixedNumberOfWaves(),
                                          GrassRevetmentCumulativeOverloadDefaults::GetFixedNumberOfWaves()),
-            InputFactoryHelper::GetValue(constructionProperties.GetFrontVelocityCwo(), 1.1),
+            InputFactoryHelper::GetValue(constructionProperties.GetFrontVelocityCwo(), GrassRevetmentOvertoppingDefaults::GetFrontVelocityCwo()),
             move(locationDependentAccelerationAlphaA),
             constructionProperties.GetDikeHeight()
         );
