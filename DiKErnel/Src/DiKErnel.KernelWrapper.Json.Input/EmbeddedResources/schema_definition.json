@@ -82,6 +82,13 @@
             "type": "number"
           }
         },
+        "ruwheidscoefficienten": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "number"
+          }
+        },
         "teenBuitenzijde": {
           "type": "number"
         },
