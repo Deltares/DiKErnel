@@ -41,7 +41,7 @@ namespace DiKErnel::Integration
             /*!
              * \brief Creates a new instance.
              */
-            CalculationInputBuilder();
+            explicit CalculationInputBuilder();
 
             /*!
              * \brief Destructs the instance.
