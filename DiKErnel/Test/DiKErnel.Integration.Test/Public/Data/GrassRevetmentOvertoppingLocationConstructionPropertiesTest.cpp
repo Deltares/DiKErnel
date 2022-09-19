@@ -25,7 +25,6 @@
 
 namespace DiKErnel::Integration::Test
 {
-    using namespace TestUtil;
     using namespace std;
     using namespace testing;
     using namespace TestUtil;
