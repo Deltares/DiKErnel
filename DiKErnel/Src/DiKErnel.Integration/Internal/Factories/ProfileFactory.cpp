@@ -31,32 +31,43 @@ namespace DiKErnel::Integration
     using namespace DomainLibrary;
     using namespace std;
 
-    vector<unique_ptr<ProfileSegment>> ProfileFactory::CreateProfileSegments(
-        const vector<unique_ptr<ProfileFactorySegmentData>>& profileSegments)
+    unique_ptr<ProfileData> ProfileFactory::Create(
+        const std::vector<std::reference_wrapper<ProfileFactorySegmentData>>& profileSegments,
+        const std::vector<std::reference_wrapper<ProfileFactoryPointData>>& profilePoints)
     {
-        vector<unique_ptr<ProfileSegment>> segments;
-
-        if (!profileSegments.empty())
+        if (profileSegments.empty())
         {
             throw InputFactoryException("At least 1 segment is required.");
         }
 
+        auto segments = CreateProfileSegments(profileSegments);
+        auto characteristicPoints = CreateCharacteristicPoints(profilePoints, segments);
+
+        return make_unique<ProfileData>(move(segments), move(characteristicPoints));
+    }
+
+    vector<unique_ptr<ProfileSegment>> ProfileFactory::CreateProfileSegments(
+        const vector<reference_wrapper<ProfileFactorySegmentData>>& profileSegments)
+    {
+        vector<unique_ptr<ProfileSegment>> segments;
+
         shared_ptr<ProfilePoint> segmentStartPoint = nullptr;
         for (const auto& currentSegment : profileSegments)
         {
+            const auto& currentSegmentReference = currentSegment.get();
             if (segmentStartPoint == nullptr)
             {
-                segmentStartPoint = make_shared<ProfilePoint>(currentSegment->GetStartPointX(), currentSegment->GetStartPointZ());
+                segmentStartPoint = make_shared<ProfilePoint>(currentSegmentReference.GetStartPointX(), currentSegmentReference.GetStartPointZ());
             }
 
-            if (!DoesSegmentStartAtPoint(*segmentStartPoint, *currentSegment))
+            if (!DoesSegmentStartAtPoint(*segmentStartPoint, currentSegmentReference))
             {
                 throw InputFactoryException("The start point of a successive segment must be equal to the end point of the previous segment.");
             }
 
-            auto segmentEndPoint = make_shared<ProfilePoint>(currentSegment->GetEndPointX(), currentSegment->GetEndPointZ());
+            auto segmentEndPoint = make_shared<ProfilePoint>(currentSegmentReference.GetEndPointX(), currentSegmentReference.GetEndPointZ());
             segments.emplace_back(make_unique<ProfileSegment>(segmentStartPoint, segmentEndPoint,
-                                                              GetRoughnessCoefficient(currentSegment->GetRoughnessCoefficient())));
+                                                              GetRoughnessCoefficient(currentSegmentReference.GetRoughnessCoefficient())));
             segmentStartPoint = segmentEndPoint;
         }
 
@@ -64,13 +75,14 @@ namespace DiKErnel::Integration
     }
 
     vector<unique_ptr<CharacteristicPoint>> ProfileFactory::CreateCharacteristicPoints(
-        const vector<unique_ptr<ProfileFactoryPointData>>& profilePoints,
+        const vector<reference_wrapper<ProfileFactoryPointData>>& profilePoints,
         const vector<unique_ptr<ProfileSegment>>& profileSegments)
     {
         vector<unique_ptr<CharacteristicPoint>> characteristicPoints;
         for (const auto& profilePointData : profilePoints)
         {
-            const auto matchingPointReference = FindMatchingPointOnSegment(*profilePointData, profileSegments);
+            const auto& profilePointDataReference = profilePointData.get();
+            const auto matchingPointReference = FindMatchingPointOnSegment(profilePointDataReference, profileSegments);
 
             if (matchingPointReference == nullptr)
             {
@@ -78,7 +90,7 @@ namespace DiKErnel::Integration
             }
 
             characteristicPoints.emplace_back(
-                make_unique<CharacteristicPoint>(*matchingPointReference, profilePointData->GetCharacteristicPoint()));
+                make_unique<CharacteristicPoint>(*matchingPointReference, profilePointDataReference.GetCharacteristicPoint()));
         }
 
         return characteristicPoints;

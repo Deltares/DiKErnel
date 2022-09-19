@@ -30,7 +30,6 @@
 #include "InputFactoryException.h"
 #include "LocationDependentInputFactory.h"
 #include "NaturalStoneRevetmentLocationDependentInputFactory.h"
-#include "ProfileData.h"
 #include "ProfileFactory.h"
 #include "ProfileFactoryPointData.h"
 #include "ProfileFactorySegmentData.h"
@@ -103,6 +102,18 @@ namespace DiKErnel::Integration
 
     unique_ptr<ICalculationInput> CalculationInputBuilder::Build() const
     {
+        auto profileSegmentDataReferences = vector<reference_wrapper<ProfileFactorySegmentData>>();
+        for (const auto& profileSegment : _profileSegmentData)
+        {
+            profileSegmentDataReferences.emplace_back(*profileSegment);
+        }
+
+        auto profilePointDataReferences = vector<reference_wrapper<ProfileFactoryPointData>>();
+        for (const auto& profilePoint : _profilePointData)
+        {
+            profilePointDataReferences.emplace_back(*profilePoint);
+        }
+
         auto locationConstructionPropertiesItemReferences = vector<reference_wrapper<RevetmentLocationConstructionPropertiesBase>>();
 
         for (const auto& locationConstructionPropertiesItem : _locationConstructionPropertiesItems)
@@ -119,13 +130,11 @@ namespace DiKErnel::Integration
 
         try
         {
-            auto segments = ProfileFactory::CreateProfileSegments(_profileSegmentData);
-            auto characteristicPoints = ProfileFactory::CreateCharacteristicPoints(_profilePointData, segments);
+            auto profileData = ProfileFactory::Create(profileSegmentDataReferences, profilePointDataReferences);
             auto locations = LocationDependentInputFactory::Create(locationConstructionPropertiesItemReferences);
             auto timeSteps = TimeDependentInputFactory::Create(timeStepDataItemReferences);
 
-            return make_unique<CalculationInput>(make_unique<ProfileData>(move(segments), move(characteristicPoints)),
-                                                 move(locations), move(timeSteps));
+            return make_unique<CalculationInput>(move(profileData), move(locations), move(timeSteps));
         }
         catch (const InputFactoryException&)
         {

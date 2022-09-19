@@ -24,6 +24,7 @@
 #include <vector>
 
 #include "CharacteristicPoint.h"
+#include "ProfileData.h"
 #include "ProfileFactoryPointData.h"
 #include "ProfileFactorySegmentData.h"
 #include "ProfileSegment.h"
@@ -33,16 +34,20 @@ namespace DiKErnel::Integration
     class ProfileFactory
     {
         public:
-            static std::vector<std::unique_ptr<Core::ProfileSegment>> CreateProfileSegments(
-                const std::vector<std::unique_ptr<ProfileFactorySegmentData>>& profileSegments);
-
-            static std::vector<std::unique_ptr<Core::CharacteristicPoint>> CreateCharacteristicPoints(
-                const std::vector<std::unique_ptr<ProfileFactoryPointData>>& profilePoints,
-                const std::vector<std::unique_ptr<Core::ProfileSegment>>& profileSegments);
+            static std::unique_ptr<ProfileData> Create(
+                const std::vector<std::reference_wrapper<ProfileFactorySegmentData>>& profileSegments,
+                const std::vector<std::reference_wrapper<ProfileFactoryPointData>>& profilePoints);
 
         private:
             static double GetRoughnessCoefficient(
                 const double* roughnessCoefficient);
+
+            static std::vector<std::unique_ptr<Core::ProfileSegment>> CreateProfileSegments(
+                const std::vector<std::reference_wrapper<ProfileFactorySegmentData>>& profileSegments);
+
+            static std::vector<std::unique_ptr<Core::CharacteristicPoint>> CreateCharacteristicPoints(
+                const std::vector<std::reference_wrapper<ProfileFactoryPointData>>& profilePoints,
+                const std::vector<std::unique_ptr<Core::ProfileSegment>>& profileSegments);
 
             static bool DoesSegmentStartAtPoint(
                 const Core::ProfilePoint& profilePoint,
