@@ -21,12 +21,14 @@
 #include "JsonInputAdapter.h"
 
 #include "JsonInputConversionException.h"
+#include "UniquePtrHelper.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
     using namespace Core;
     using namespace Integration;
     using namespace std;
+    using namespace Util;
 
     unique_ptr<ICalculationInput> JsonInputAdapter::AdaptJsonInputData(
         const JsonInputData& jsonInputData)
@@ -150,7 +152,13 @@ namespace DiKErnel::KernelWrapper::Json::Input
                     GetCalculationDefinition<JsonInputGrassWaveRunupCalculationDefinitionData>(
                         calculationDefinitionReferences, JsonInputCalculationType::GrassWaveRunup));
 
-                builder.AddGrassWaveRunupRayleighLocation(move(constructionProperties));
+                if (auto rayleighConstructionProperties = UniquePtrHelper::DynamicCast<
+                        GrassRevetmentWaveRunupRayleighLocationConstructionProperties, GrassRevetmentWaveRunupLocationConstructionProperties>(
+                        constructionProperties);
+                    rayleighConstructionProperties != nullptr)
+                {
+                    builder.AddGrassWaveRunupRayleighLocation(move(rayleighConstructionProperties));
+                }
             }
 
             if (const auto* naturalStoneLocationData = dynamic_cast<const JsonInputNaturalStoneLocationData*>(&location);
@@ -269,7 +277,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
         return constructionProperties;
     }
 
-    unique_ptr<GrassRevetmentWaveRunupRayleighLocationConstructionProperties> JsonInputAdapter::CreateGrassWaveRunupConstructionProperties(
+    unique_ptr<GrassRevetmentWaveRunupLocationConstructionProperties> JsonInputAdapter::CreateGrassWaveRunupConstructionProperties(
         const JsonInputGrassWaveRunupLocationData& location,
         const JsonInputGrassWaveRunupCalculationDefinitionData* calculationDefinition)
     {
@@ -278,16 +286,18 @@ namespace DiKErnel::KernelWrapper::Json::Input
             throw JsonInputConversionException("Cannot convert calculation protocol type.");
         }
 
-        const auto& jsonInputGrassWaveRunupCalculationProtocolData = calculationDefinition->GetCalculationProtocolData();
-        const auto* grassWaveRunupRayleighCalculationProtocol = dynamic_cast<const JsonInputGrassWaveRunupRayleighCalculationProtocolData*>(
-            jsonInputGrassWaveRunupCalculationProtocolData);
+        unique_ptr<GrassRevetmentWaveRunupLocationConstructionProperties> constructionProperties;
 
-        if (grassWaveRunupRayleighCalculationProtocol == nullptr)
+        const auto& jsonInputGrassWaveRunupCalculationProtocolData = calculationDefinition->GetCalculationProtocolData();
+        if (const auto* grassWaveRunupRayleighCalculationProtocol = dynamic_cast<const JsonInputGrassWaveRunupRayleighCalculationProtocolData*>(
+            jsonInputGrassWaveRunupCalculationProtocolData); grassWaveRunupRayleighCalculationProtocol != nullptr)
+        {
+            constructionProperties = CreateGrassWaveRunupRayleighConstructionProperties(location, *grassWaveRunupRayleighCalculationProtocol);
+        }
+        else
         {
             throw JsonInputConversionException("Cannot convert calculation protocol type.");
         }
-
-        auto constructionProperties = CreateGrassWaveRunupRayleighConstructionProperties(location, *grassWaveRunupRayleighCalculationProtocol);
 
         constructionProperties->SetInitialDamage(CreatePointerOfValue(location.GetInitialDamage()));
         constructionProperties->SetFailureNumber(CreatePointerOfValue(calculationDefinition->GetFailureNumber()));

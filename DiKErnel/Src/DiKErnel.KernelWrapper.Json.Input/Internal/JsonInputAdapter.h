@@ -80,7 +80,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 const JsonInputGrassWaveImpactLocationData& location,
                 const JsonInputGrassWaveImpactCalculationDefinitionData* calculationDefinition);
 
-            static std::unique_ptr<Integration::GrassRevetmentWaveRunupRayleighLocationConstructionProperties>
+            static std::unique_ptr<Integration::GrassRevetmentWaveRunupLocationConstructionProperties>
             CreateGrassWaveRunupConstructionProperties(
                 const JsonInputGrassWaveRunupLocationData& location,
                 const JsonInputGrassWaveRunupCalculationDefinitionData* calculationDefinition);
