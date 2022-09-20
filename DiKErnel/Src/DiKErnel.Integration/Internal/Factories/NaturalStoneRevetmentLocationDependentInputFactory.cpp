@@ -59,44 +59,42 @@ namespace DiKErnel::Integration
             InputFactoryHelper::GetValue(constructionProperties.GetHydraulicLoadXib(), topLayerDefaults->GetHydraulicLoadXib()));
 
         auto slope = make_unique<NaturalStoneRevetmentSlope>(
-            InputFactoryHelper::GetValue(constructionProperties.GetSlopeUpperLevelAus(),
-                                                          NaturalStoneRevetmentDefaults::GetSlopeUpperLevelAus()),
-            InputFactoryHelper::GetValue(constructionProperties.GetSlopeLowerLevelAls(),
-                                                          NaturalStoneRevetmentDefaults::GetSlopeLowerLevelAls()));
+            InputFactoryHelper::GetValue(constructionProperties.GetSlopeUpperLevelAus(), NaturalStoneRevetmentDefaults::GetSlopeUpperLevelAus()),
+            InputFactoryHelper::GetValue(constructionProperties.GetSlopeLowerLevelAls(), NaturalStoneRevetmentDefaults::GetSlopeLowerLevelAls()));
 
         auto upperLimitLoading = make_unique<NaturalStoneRevetmentUpperLimitLoading>(
             InputFactoryHelper::GetValue(constructionProperties.GetUpperLimitLoadingAul(),
-                                                          NaturalStoneRevetmentDefaults::GetUpperLimitLoadingAul()),
+                                         NaturalStoneRevetmentDefaults::GetUpperLimitLoadingAul()),
             InputFactoryHelper::GetValue(constructionProperties.GetUpperLimitLoadingBul(),
-                                                          NaturalStoneRevetmentDefaults::GetUpperLimitLoadingBul()),
+                                         NaturalStoneRevetmentDefaults::GetUpperLimitLoadingBul()),
             InputFactoryHelper::GetValue(constructionProperties.GetUpperLimitLoadingCul(),
-                                                          NaturalStoneRevetmentDefaults::GetUpperLimitLoadingCul()));
+                                         NaturalStoneRevetmentDefaults::GetUpperLimitLoadingCul()));
 
         auto lowerLimitLoading = make_unique<NaturalStoneRevetmentLowerLimitLoading>(
             InputFactoryHelper::GetValue(constructionProperties.GetLowerLimitLoadingAll(),
-                                                          NaturalStoneRevetmentDefaults::GetLowerLimitLoadingAll()),
+                                         NaturalStoneRevetmentDefaults::GetLowerLimitLoadingAll()),
             InputFactoryHelper::GetValue(constructionProperties.GetLowerLimitLoadingBll(),
-                                                          NaturalStoneRevetmentDefaults::GetLowerLimitLoadingBll()),
+                                         NaturalStoneRevetmentDefaults::GetLowerLimitLoadingBll()),
             InputFactoryHelper::GetValue(constructionProperties.GetLowerLimitLoadingCll(),
-                                                          NaturalStoneRevetmentDefaults::GetLowerLimitLoadingCll()));
+                                         NaturalStoneRevetmentDefaults::GetLowerLimitLoadingCll()));
 
         auto distanceMaximumWaveElevation = make_unique<
             NaturalStoneRevetmentDistanceMaximumWaveElevation>(
             InputFactoryHelper::GetValue(constructionProperties.GetDistanceMaximumWaveElevationAsmax(),
-                                                          NaturalStoneRevetmentDefaults::GetDistanceMaximumWaveElevationAsmax()),
+                                         NaturalStoneRevetmentDefaults::GetDistanceMaximumWaveElevationAsmax()),
             InputFactoryHelper::GetValue(constructionProperties.GetDistanceMaximumWaveElevationBsmax(),
-                                                          NaturalStoneRevetmentDefaults::GetDistanceMaximumWaveElevationBsmax()));
+                                         NaturalStoneRevetmentDefaults::GetDistanceMaximumWaveElevationBsmax()));
 
         auto normativeWidthOfWaveImpact = make_unique<
             NaturalStoneRevetmentNormativeWidthOfWaveImpact>(
             InputFactoryHelper::GetValue(constructionProperties.GetNormativeWidthOfWaveImpactAwi(),
-                                                          NaturalStoneRevetmentDefaults::GetNormativeWidthOfWaveImpactAwi()),
+                                         NaturalStoneRevetmentDefaults::GetNormativeWidthOfWaveImpactAwi()),
             InputFactoryHelper::GetValue(constructionProperties.GetNormativeWidthOfWaveImpactBwi(),
-                                                          NaturalStoneRevetmentDefaults::GetNormativeWidthOfWaveImpactBwi()));
+                                         NaturalStoneRevetmentDefaults::GetNormativeWidthOfWaveImpactBwi()));
 
         auto waveAngleImpact = make_unique<NaturalStoneRevetmentWaveAngleImpact>(
             InputFactoryHelper::GetValue(constructionProperties.GetWaveAngleImpactBetamax(),
-                                                          NaturalStoneRevetmentDefaults::GetWaveAngleImpactBetamax()));
+                                         NaturalStoneRevetmentDefaults::GetWaveAngleImpactBetamax()));
 
         return make_unique<NaturalStoneRevetmentLocationDependentInput>(
             constructionProperties.GetX(),

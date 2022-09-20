@@ -33,8 +33,8 @@ namespace DiKErnel::Integration
     using namespace std;
 
     unique_ptr<ProfileData> ProfileDataFactory::Create(
-        const std::vector<std::reference_wrapper<ProfileDataFactorySegment>>& profileSegments,
-        const std::vector<std::reference_wrapper<ProfileDataFactoryPoint>>& profilePoints)
+        const vector<reference_wrapper<ProfileDataFactorySegment>>& profileSegments,
+        const vector<reference_wrapper<ProfileDataFactoryPoint>>& profilePoints)
     {
         if (profileSegments.empty())
         {
@@ -42,9 +42,7 @@ namespace DiKErnel::Integration
         }
 
         auto segments = CreateProfileSegments(profileSegments);
-        auto characteristicPoints = CreateCharacteristicPoints(profilePoints, segments);
-
-        return make_unique<ProfileData>(move(segments), move(characteristicPoints));
+        return make_unique<ProfileData>(move(segments), CreateCharacteristicPoints(profilePoints, segments));
     }
 
     vector<unique_ptr<ProfileSegment>> ProfileDataFactory::CreateProfileSegments(
@@ -53,12 +51,12 @@ namespace DiKErnel::Integration
         vector<unique_ptr<ProfileSegment>> segments;
 
         shared_ptr<ProfilePoint> segmentStartPoint = nullptr;
-        for (const auto& currentSegment : profileSegments)
+        for (const auto& currentSegmentReference : profileSegments)
         {
-            const auto& currentSegmentReference = currentSegment.get();
+            const auto& currentSegment = currentSegmentReference.get();
             if (segmentStartPoint == nullptr)
             {
-                segmentStartPoint = make_shared<ProfilePoint>(currentSegmentReference.GetStartPointX(), currentSegmentReference.GetStartPointZ());
+                segmentStartPoint = make_shared<ProfilePoint>(currentSegment.GetStartPointX(), currentSegment.GetStartPointZ());
             }
 
             if (!DoesSegmentStartAtPoint(*segmentStartPoint, currentSegmentReference))
@@ -66,10 +64,10 @@ namespace DiKErnel::Integration
                 throw InputFactoryException("The start point of a successive segment must be equal to the end point of the previous segment.");
             }
 
-            auto segmentEndPoint = make_shared<ProfilePoint>(currentSegmentReference.GetEndPointX(), currentSegmentReference.GetEndPointZ());
+            auto segmentEndPoint = make_shared<ProfilePoint>(currentSegment.GetEndPointX(), currentSegment.GetEndPointZ());
             segments.emplace_back(make_unique<ProfileSegment>(
                 segmentStartPoint, segmentEndPoint,
-                InputFactoryHelper::GetValue(currentSegmentReference.GetRoughnessCoefficient(),ProfileSegmentDefaults::GetRoughnessCoefficient())));
+                InputFactoryHelper::GetValue(currentSegment.GetRoughnessCoefficient(), ProfileSegmentDefaults::GetRoughnessCoefficient())));
             segmentStartPoint = segmentEndPoint;
         }
 
@@ -81,18 +79,18 @@ namespace DiKErnel::Integration
         const vector<unique_ptr<ProfileSegment>>& profileSegments)
     {
         vector<unique_ptr<CharacteristicPoint>> characteristicPoints;
-        for (const auto& profilePointData : profilePoints)
+        for (const auto& profilePointDataReference : profilePoints)
         {
-            const auto& profilePointDataReference = profilePointData.get();
-            const auto matchingPointReference = FindMatchingPointOnSegment(profilePointDataReference, profileSegments);
+            const auto& profilePointData = profilePointDataReference.get();
+            const auto* matchingPoint = FindMatchingPointOnSegment(profilePointDataReference, profileSegments);
 
-            if (matchingPointReference == nullptr)
+            if (matchingPoint == nullptr)
             {
                 throw InputFactoryException("Characteristic point must be on a start or end point of a segment.");
             }
 
             characteristicPoints.emplace_back(
-                make_unique<CharacteristicPoint>(*matchingPointReference, profilePointDataReference.GetCharacteristicPoint()));
+                make_unique<CharacteristicPoint>(*matchingPoint, profilePointData.GetCharacteristicPoint()));
         }
 
         return characteristicPoints;

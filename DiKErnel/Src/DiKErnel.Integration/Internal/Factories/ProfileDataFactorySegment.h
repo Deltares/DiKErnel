@@ -25,7 +25,7 @@ namespace DiKErnel::Integration
     class ProfileDataFactorySegment
     {
         public:
-            ProfileDataFactorySegment(
+            explicit ProfileDataFactorySegment(
                 double startPointX,
                 double startPointZ,
                 double endPointX,

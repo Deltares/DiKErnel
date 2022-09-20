@@ -27,7 +27,7 @@ namespace DiKErnel::Integration
     class ProfileDataFactoryPoint
     {
         public:
-            ProfileDataFactoryPoint(
+            explicit ProfileDataFactoryPoint(
                 double x,
                 Core::CharacteristicPointType characteristicPointType);
 

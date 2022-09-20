@@ -27,12 +27,12 @@ namespace DiKErnel::Integration
         const double startPointZ,
         const double endPointX,
         const double endPointZ,
-        const double* roughnessCoefficient):
-        _startPointX(startPointX),
-        _startPointZ(startPointZ),
-        _endPointX(endPointX),
-        _endPointZ(endPointZ),
-        _roughnessCoefficient(roughnessCoefficient) { }
+        const double* roughnessCoefficient)
+        : _startPointX(startPointX),
+          _startPointZ(startPointZ),
+          _endPointX(endPointX),
+          _endPointZ(endPointZ),
+          _roughnessCoefficient(roughnessCoefficient) { }
 
     double ProfileDataFactorySegment::GetStartPointX() const
     {

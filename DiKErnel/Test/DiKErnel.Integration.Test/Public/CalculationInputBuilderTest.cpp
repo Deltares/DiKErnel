@@ -182,8 +182,7 @@ namespace DiKErnel::Integration::Test
 
     #pragma region Profile segments
 
-    TEST_F(CalculationInputBuilderTest,
-           GivenBuilderWithDikeSegmentAddedWithoutRoughness_WhenBuild_ThenReturnsCalculationInput)
+    TEST_F(CalculationInputBuilderTest, GivenBuilderWithDikeSegmentAddedWithoutRoughness_WhenBuild_ThenReturnsCalculationInput)
     {
         // Given
         constexpr auto startPointX = 10;
@@ -211,8 +210,7 @@ namespace DiKErnel::Integration::Test
                                                       1.0, actualSegment);
     }
 
-    TEST_F(CalculationInputBuilderTest,
-           GivenBuilderWithDikeSegmentAddedWithRoughness_WhenBuild_ThenReturnsCalculationInput)
+    TEST_F(CalculationInputBuilderTest, GivenBuilderWithDikeSegmentAddedWithRoughness_WhenBuild_ThenReturnsCalculationInput)
     {
         // Given
         constexpr auto startPointX = 10;
@@ -241,8 +239,7 @@ namespace DiKErnel::Integration::Test
                                                       roughnessCoefficient, actualSegment);
     }
 
-    TEST_F(CalculationInputBuilderTest,
-           GivenBuilderWithDikeSegmentsAdded_WhenBuild_ThenReturnsCalculationInput)
+    TEST_F(CalculationInputBuilderTest, GivenBuilderWithDikeSegmentsAdded_WhenBuild_ThenReturnsCalculationInput)
     {
         // Given
         constexpr auto startPointXSegmentOne = 10;
@@ -283,8 +280,7 @@ namespace DiKErnel::Integration::Test
         ASSERT_EQ(&segmentOne.GetEndPoint(), &segmentTwo.GetStartPoint());
     }
 
-    TEST_F(CalculationInputBuilderTest,
-           GivenBuilderWithoutDikeSegments_WhenBuild_ThenThrowsCalculationInputBuilderException)
+    TEST_F(CalculationInputBuilderTest, GivenBuilderWithoutDikeSegments_WhenBuild_ThenThrowsCalculationInputBuilderException)
     {
         // Given & When
         const auto action = &CalculationInputBuilderTest::CreateBuilderWithoutSegments;
@@ -322,8 +318,7 @@ namespace DiKErnel::Integration::Test
 
     #pragma region Profile point data
 
-    TEST_F(CalculationInputBuilderTest,
-           GivenBuilderWithDikeProfilePointDataOnSegmentStartPoint_WhenBuild_ThenReturnsCalculationInput)
+    TEST_F(CalculationInputBuilderTest, GivenBuilderWithDikeProfilePointDataOnSegmentStartPoint_WhenBuild_ThenReturnsCalculationInput)
     {
         // Given
         constexpr auto x = 10;
@@ -352,8 +347,7 @@ namespace DiKErnel::Integration::Test
                                                            actualCharacteristicPoints.at(0));
     }
 
-    TEST_F(CalculationInputBuilderTest,
-           GivenBuilderWithDikeProfilePointDataOnSegmentEndPoint_WhenBuild_ThenReturnsCalculationInput)
+    TEST_F(CalculationInputBuilderTest, GivenBuilderWithDikeProfilePointDataOnSegmentEndPoint_WhenBuild_ThenReturnsCalculationInput)
     {
         // Given
         constexpr auto x = 10;
@@ -382,8 +376,7 @@ namespace DiKErnel::Integration::Test
                                                            actualCharacteristicPoints.at(0));
     }
 
-    TEST_F(CalculationInputBuilderTest,
-           GivenBuilderWithDikeProfilePointDataNotOnSegmentPoints_WhenBuild_ThenThrowsCalculationInputBuilderException)
+    TEST_F(CalculationInputBuilderTest, GivenBuilderWithDikeProfilePointDataNotOnSegmentPoints_WhenBuild_ThenThrowsCalculationInputBuilderException)
     {
         // Given & When
         const auto action = &CalculationInputBuilderTest::CreateBuilderAndCharacteristicPointNotOnSegmentPoint;
@@ -474,8 +467,7 @@ namespace DiKErnel::Integration::Test
             action, "Could not create calculation input.", "Couldn't create defaults for the given top layer type.");
     }
 
-    TEST_F(CalculationInputBuilderTest,
-           GivenBuilderWithFullyConfiguredAsphaltWaveImpactLocationAdded_WhenBuild_ThenReturnsCalculationInput)
+    TEST_F(CalculationInputBuilderTest, GivenBuilderWithFullyConfiguredAsphaltWaveImpactLocationAdded_WhenBuild_ThenReturnsCalculationInput)
     {
         constexpr auto topLayerType = AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete;
         constexpr auto x = 0.1;
@@ -558,8 +550,7 @@ namespace DiKErnel::Integration::Test
                                                                                     *locationDependentInput);
     }
 
-    TEST_F(CalculationInputBuilderTest,
-           GivenBuilderWithNotFullyConfiguredAsphaltWaveImpactLocationAdded_WhenBuild_ThenReturnsCalculationInput)
+    TEST_F(CalculationInputBuilderTest, GivenBuilderWithNotFullyConfiguredAsphaltWaveImpactLocationAdded_WhenBuild_ThenReturnsCalculationInput)
     {
         constexpr auto topLayerType = AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete;
         constexpr auto x = 0.1;
@@ -669,8 +660,7 @@ namespace DiKErnel::Integration::Test
             action, "Could not create calculation input.", "Couldn't create defaults for the given top layer type.");
     }
 
-    TEST_F(CalculationInputBuilderTest,
-           GivenBuilderWithFullyConfiguredGrassOvertoppingLocationAdded_WhenBuild_ThenReturnsCalculationInput)
+    TEST_F(CalculationInputBuilderTest, GivenBuilderWithFullyConfiguredGrassOvertoppingLocationAdded_WhenBuild_ThenReturnsCalculationInput)
     {
         // Given
         const auto topLayerType = static_cast<GrassRevetmentTopLayerType>(rand() % 2);
@@ -958,8 +948,7 @@ namespace DiKErnel::Integration::Test
             0.5, *locationDependentInput);
     }
 
-    TEST_F(CalculationInputBuilderTest,
-           GivenBuilderWithNotFullyConfiguredOpenSodGrassWaveImpactLocationAdded_WhenBuild_ThenReturnsCalculationInput)
+    TEST_F(CalculationInputBuilderTest, GivenBuilderWithNotFullyConfiguredOpenSodGrassWaveImpactLocationAdded_WhenBuild_ThenReturnsCalculationInput)
     {
         // Given
         constexpr auto topLayerType = GrassRevetmentTopLayerType::OpenSod;
