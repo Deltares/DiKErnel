@@ -66,4 +66,13 @@ namespace DiKErnel::Integration::TestUtil
     {
         ASSERT_DOUBLE_EQ(averageNumberOfWavesCtm, locationDependentInput.GetAverageNumberOfWavesCtm());
     }
+
+    void GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertAccelerationAlphaA(
+        const double accelerationAlphaAForCrest,
+        const double accelerationAlphaAForInnerSlope,
+        const GrassRevetmentOvertoppingLocationDependentAccelerationAlphaA& locationDependentAccelerationAlphaA)
+    {
+        ASSERT_DOUBLE_EQ(accelerationAlphaAForCrest, locationDependentAccelerationAlphaA.ValueAtCrest());
+        ASSERT_DOUBLE_EQ(accelerationAlphaAForInnerSlope, locationDependentAccelerationAlphaA.ValueAtInnerSlope());
+    }
 }

@@ -724,6 +724,9 @@ namespace DiKErnel::Integration::Test
 
         GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertFrontVelocity(
             criticalFrontVelocity, frontVelocityCwo, *locationDependentInput);
+
+        GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertAccelerationAlphaA(
+            accelerationAlphaAForCrest, accelerationAlphaAForInnerSlope, locationDependentInput->GetLocationDependentAccelerationAlphaA());
     }
 
     TEST_F(CalculationInputBuilderTest,
@@ -767,6 +770,9 @@ namespace DiKErnel::Integration::Test
 
         GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertFrontVelocity(
             6.6, 1.45, *locationDependentInput);
+
+        GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertAccelerationAlphaA(
+            1.0, 1.4, locationDependentInput->GetLocationDependentAccelerationAlphaA());
     }
 
     TEST_F(CalculationInputBuilderTest,
@@ -810,6 +816,9 @@ namespace DiKErnel::Integration::Test
 
         GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertFrontVelocity(
             4.3, 1.45, *locationDependentInput);
+
+        GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertAccelerationAlphaA(
+            1.0, 1.4, locationDependentInput->GetLocationDependentAccelerationAlphaA());
     }
 
     #pragma endregion

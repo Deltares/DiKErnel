@@ -49,5 +49,10 @@ namespace DiKErnel::Integration::TestUtil
             static void AssertAverageNumberOfWaves(
                 double averageNumberOfWavesCtm,
                 const GrassRevetmentOvertoppingLocationDependentInput& locationDependentInput);
+
+            static void AssertAccelerationAlphaA(
+                double accelerationAlphaAForCrest,
+                double accelerationAlphaAForInnerSlope,
+                const GrassRevetmentOvertoppingLocationDependentAccelerationAlphaA& locationDependentAccelerationAlphaA);
     };
 }
