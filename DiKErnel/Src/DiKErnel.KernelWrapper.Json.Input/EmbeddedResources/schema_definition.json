@@ -251,6 +251,21 @@
           {
             "properties": {
               "rekenmethode": {
+                "const": "grasGolfoverslag"
+              },
+              "typeToplaag": {
+                "not": {
+                  "enum": [
+                    "noorseSteen",
+                    "waterbouwAsfaltBeton"
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "properties": {
+              "rekenmethode": {
                 "const": "natuursteen"
               },
               "typeToplaag": {
@@ -532,12 +547,15 @@
             "additionalProperties": false,
             "properties": {
               "typeRekenprotocol": {
-                "const": "rayleighDiscreet"
+                "$ref": "#/definitions/typeRekenprotocol"
               },
               "aantalGolvenVast": {
                 "type": "integer"
               },
               "frontsnelheid": {
+                "type": "number"
+              },
+              "dijkhoogte": {
                 "type": "number"
               }
             }
@@ -556,6 +574,24 @@
                 "type": "number"
               }
             }
+          },
+          "versnellingAlfaA": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "kruin": {
+                "type": "number"
+              },
+              "binnentalud": {
+                "type": "number"
+              }
+            }
+          },
+          "aantalGolvenVast": {
+            "type": "integer"
+          },
+          "frontsnelheidCwo": {
+            "type": "number"
           }
         }
       }
@@ -568,6 +604,7 @@
         "asfaltGolfklap",
         "grasGolfklap",
         "grasGolfoploop",
+        "grasgolfoverslag",
         "natuursteen"
       ]
     },
@@ -579,6 +616,13 @@
         "noorseSteen",
         "waterbouwAsfaltBeton"
       ]
+    },
+    "typeRekenprotocol": {
+      "$id": "#/definitions/typeRekenprotocol",
+      "enum": [
+        "rayleighDiscreet",
+        "dikesOvertopping"
+      ] 
     }
   }
 }
