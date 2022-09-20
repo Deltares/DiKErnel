@@ -103,6 +103,11 @@ namespace DiKErnel::Integration
         return *_locationDependentAccelerationAlphaA;
     }
 
+    const double* GrassRevetmentOvertoppingLocationDependentInput::GetEnforcedDikeHeight() const
+    {
+        return _enforcedDikeHeight;
+    }
+
     bool GrassRevetmentOvertoppingLocationDependentInput::Validate(
         const IProfileData& profileData) const
     {

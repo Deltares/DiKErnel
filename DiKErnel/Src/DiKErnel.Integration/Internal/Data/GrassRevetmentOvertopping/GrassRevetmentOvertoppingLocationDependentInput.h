@@ -70,6 +70,9 @@ namespace DiKErnel::Integration
             GrassRevetmentOvertoppingLocationDependentAccelerationAlphaA& GetLocationDependentAccelerationAlphaA() const;
 
             [[nodiscard]]
+            const double* GetEnforcedDikeHeight() const;
+
+            [[nodiscard]]
             bool Validate(
                 const Core::IProfileData& profileData) const override;
 
