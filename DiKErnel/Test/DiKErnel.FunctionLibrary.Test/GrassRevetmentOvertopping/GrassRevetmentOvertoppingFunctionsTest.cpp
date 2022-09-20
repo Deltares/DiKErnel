@@ -30,7 +30,7 @@ namespace DiKErnel::FunctionLibrary::Test
         const GrassRevetmentOvertoppingRepresentative2PInput input
         {
             ._waterLevel = 5.5,
-            ._waveHeightHm0 = 1.6,
+            ._waveHeightHm0 = 1.9,
             ._wavePeriodTm10 = 4.7,
             ._waveDirection = 350,
             ._xValuesProfile = {
@@ -57,7 +57,7 @@ namespace DiKErnel::FunctionLibrary::Test
         const auto representativeWaveRunup2P = GrassRevetmentOvertoppingFunctions::RepresentativeWaveRunup2P(input);
 
         // Assert
-        ASSERT_DOUBLE_EQ(2.60170961496113, representativeWaveRunup2P);
+        ASSERT_DOUBLE_EQ(2.79696767501212, representativeWaveRunup2P);
     }
 
     TEST(GrassRevetmentOvertoppingFunctionsTest, CumulativeOverload_ValidInput_ExpectedValue)
