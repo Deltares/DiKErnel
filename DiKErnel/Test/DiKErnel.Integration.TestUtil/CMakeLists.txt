@@ -5,6 +5,8 @@ set(LIBNAME DiKErnel.Integration.TestUtil)
 set(SOURCEFILES
   AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper.cpp
   AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper.h
+  GrassRevetmentOvertoppingLocationDependentInputAssertHelper.cpp
+  GrassRevetmentOvertoppingLocationDependentInputAssertHelper.h
   GrassRevetmentWaveImpactLocationDependentInputAssertHelper.cpp
   GrassRevetmentWaveImpactLocationDependentInputAssertHelper.h
   GrassRevetmentWaveRunupLocationConstructionPropertiesMock.cpp
