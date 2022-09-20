@@ -658,11 +658,11 @@ namespace DiKErnel::Integration::Test
     #pragma region Grass overtopping
 
     TEST_F(CalculationInputBuilderTest,
-        GivenBuilderWithGrassOvertoppingLocationWithInvalidTopLayerType_WhenBuild_ThenThrowsCalculationInputBuildException)
+           GivenBuilderWithGrassOvertoppingLocationWithInvalidTopLayerType_WhenBuild_ThenThrowsCalculationInputBuildException)
     {
         // Given & When
         const auto action =
-            &CalculationInputBuilderTest::CreateBuilderAndAddGrassRevetmentOvertoppingLocationWithInvalidTopLayerType;
+                &CalculationInputBuilderTest::CreateBuilderAndAddGrassRevetmentOvertoppingLocationWithInvalidTopLayerType;
 
         // Then
         AssertHelper::AssertThrowsWithMessageAndInnerException<CalculationInputBuildException, InputFactoryException>(
@@ -670,7 +670,7 @@ namespace DiKErnel::Integration::Test
     }
 
     TEST_F(CalculationInputBuilderTest,
-        GivenBuilderWithFullyConfiguredGrassOvertoppingLocationAdded_WhenBuild_ThenReturnsCalculationInput)
+           GivenBuilderWithFullyConfiguredGrassOvertoppingLocationAdded_WhenBuild_ThenReturnsCalculationInput)
     {
         // Given
         const auto topLayerType = static_cast<GrassRevetmentTopLayerType>(rand() % 2);
@@ -725,19 +725,19 @@ namespace DiKErnel::Integration::Test
 
         GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertTransitionAlpha(
             increasedLoadTransitionAlphaM, reducedStrengthTransitionAlphaS, *locationDependentInput);
-        
+
         GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertAverageNumberOfWaves(
             averageNumberOfWavesCtm, *locationDependentInput);
-        
-        // GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper::AssertCumulativeOverload(
-        //     criticalCumulativeOverload, fixedNumberOfWaves, *locationDependentInput);
-        //
-        // GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper::AssertFrontVelocity(
-        //     criticalFrontVelocity, frontVelocityCu, *locationDependentInput);
+
+        GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertCumulativeOverload(
+            criticalCumulativeOverload, fixedNumberOfWaves, *locationDependentInput);
+
+        GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertFrontVelocity(
+            criticalFrontVelocity, frontVelocityCwo, *locationDependentInput);
     }
 
     TEST_F(CalculationInputBuilderTest,
-        GivenBuilderWithNotFullyConfiguredClosedSodGrassOvertoppingLocationAdded_WhenBuild_ThenReturnsCalculationInput)
+           GivenBuilderWithNotFullyConfiguredClosedSodGrassOvertoppingLocationAdded_WhenBuild_ThenReturnsCalculationInput)
     {
         // Given
         constexpr auto topLayerType = GrassRevetmentTopLayerType::ClosedSod;
@@ -765,22 +765,22 @@ namespace DiKErnel::Integration::Test
 
         GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertGeneralProperties(
             x, *locationDependentInput);
-        
+
         GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertTransitionAlpha(
             1, 1, *locationDependentInput);
-        
+
         GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertAverageNumberOfWaves(
             0.92, *locationDependentInput);
-        
-        // GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper::AssertCumulativeOverload(
-        //     7000, 10000, *locationDependentInput);
-        //
-        // GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper::AssertFrontVelocity(
-        //     6.6, 1.1, *locationDependentInput);
+
+        GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertCumulativeOverload(
+            7000, 10000, *locationDependentInput);
+
+        GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertFrontVelocity(
+            6.6, 1.45, *locationDependentInput);
     }
 
     TEST_F(CalculationInputBuilderTest,
-        GivenBuilderWithNotFullyConfiguredOpenSodGrassOvertoppingLocationAdded_WhenBuild_ThenReturnsCalculationInput)
+           GivenBuilderWithNotFullyConfiguredOpenSodGrassOvertoppingLocationAdded_WhenBuild_ThenReturnsCalculationInput)
     {
         // Given
         constexpr auto topLayerType = GrassRevetmentTopLayerType::OpenSod;
@@ -811,15 +811,15 @@ namespace DiKErnel::Integration::Test
 
         GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertTransitionAlpha(
             1, 1, *locationDependentInput);
-        
+
         GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertAverageNumberOfWaves(
             0.92, *locationDependentInput);
-        
-        // GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper::AssertCumulativeOverload(
-        //     7000, 10000, *locationDependentInput);
-        //
-        // GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper::AssertFrontVelocity(
-        //     4.3, 1.1, *locationDependentInput);
+
+        GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertCumulativeOverload(
+            7000, 10000, *locationDependentInput);
+
+        GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertFrontVelocity(
+            4.3, 1.45, *locationDependentInput);
     }
 
     #pragma endregion

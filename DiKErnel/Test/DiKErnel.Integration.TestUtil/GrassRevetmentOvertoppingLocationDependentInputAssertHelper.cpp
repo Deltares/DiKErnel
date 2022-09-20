@@ -35,16 +35,20 @@ namespace DiKErnel::Integration::TestUtil
 
     void GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertCumulativeOverload(
         const double criticalCumulativeOverload,
+        const int fixedNumberOfWaves,
         const GrassRevetmentOvertoppingLocationDependentInput& locationDependentInput)
     {
         ASSERT_DOUBLE_EQ(criticalCumulativeOverload, locationDependentInput.GetCriticalCumulativeOverload());
+        ASSERT_EQ(fixedNumberOfWaves, locationDependentInput.GetFixedNumberOfWaves());
     }
 
     void GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertFrontVelocity(
         const double criticalFrontVelocity,
+        const double frontVelocityCwo,
         const GrassRevetmentOvertoppingLocationDependentInput& locationDependentInput)
     {
         ASSERT_DOUBLE_EQ(criticalFrontVelocity, locationDependentInput.GetCriticalFrontVelocity());
+        ASSERT_DOUBLE_EQ(frontVelocityCwo, locationDependentInput.GetFrontVelocityCwo());
     }
 
     void GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertTransitionAlpha(

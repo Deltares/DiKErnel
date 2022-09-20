@@ -33,10 +33,12 @@ namespace DiKErnel::Integration::TestUtil
 
             static void AssertCumulativeOverload(
                 double criticalCumulativeOverload,
+                int fixedNumberOfWaves,
                 const GrassRevetmentOvertoppingLocationDependentInput& locationDependentInput);
 
             static void AssertFrontVelocity(
                 double criticalFrontVelocity,
+                double frontVelocityCwo,
                 const GrassRevetmentOvertoppingLocationDependentInput& locationDependentInput);
 
             static void AssertTransitionAlpha(
