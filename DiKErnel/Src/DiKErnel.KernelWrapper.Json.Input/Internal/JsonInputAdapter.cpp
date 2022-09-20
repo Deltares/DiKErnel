@@ -58,7 +58,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
             const double endPointZ = zLocations.at(i + 1);
 
             const double* roughnessCoefficient = roughnessCoefficients != nullptr
-                                                     ? &(*roughnessCoefficients).at(i)
+                                                     ? &roughnessCoefficients->at(i)
                                                      : nullptr;
 
             builder.AddDikeProfileSegment(startPointX, startPointZ, endPointX, endPointZ, roughnessCoefficient);
