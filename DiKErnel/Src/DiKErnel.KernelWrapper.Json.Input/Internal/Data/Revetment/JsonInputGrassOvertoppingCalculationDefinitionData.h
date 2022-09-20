@@ -23,13 +23,12 @@
 #include <map>
 
 #include "JsonInputCalculationDefinitionData.h"
+#include "JsonInputGrassCumulativeOverloadTopLayerDefinitionData.h"
+#include "JsonInputGrassOvertoppingCalculationProtocolData.h"
+#include "JsonInputGrassRevetmentTopLayerType.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
-    class JsonInputGrassOvertoppingCalculationProtocolData;
-    class JsonInputGrassCumulativeOverloadTopLayerDefinitionData;
-    enum class JsonInputGrassRevetmentTopLayerType;
-
     class JsonInputGrassOvertoppingCalculationDefinitionData : public JsonInputCalculationDefinitionData
     {
         public:
