@@ -26,6 +26,7 @@
 #include "CalculationInputBuilder.h"
 #include "CalculationInputBuildException.h"
 #include "GrassRevetmentOvertoppingLocationDependentInput.h"
+#include "GrassRevetmentOvertoppingLocationDependentInputAssertHelper.h"
 #include "GrassRevetmentWaveImpactLocationDependentInput.h"
 #include "GrassRevetmentWaveImpactLocationDependentInputAssertHelper.h"
 #include "GrassRevetmentWaveRunupLocationDependentInputAssertHelper.h"
@@ -719,22 +720,15 @@ namespace DiKErnel::Integration::Test
 
         LocationDependentInputAssertHelper::AssertDamageProperties(initialDamage, failureNumber, *locationDependentInput);
 
-        // GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertGeneralProperties(
-        //     x, outerSlope, *locationDependentInput);
-        //
-        // GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertRepresentative2P(
-        //     representativeWaveRunup2PAru, representativeWaveRunup2PBru, representativeWaveRunup2PCru,
-        //     representativeWaveRunup2PGammab, representativeWaveRunup2PGammaf, locationDependentInput->GetRepresentative2P());
-        //
-        // GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertWaveAngleImpact(
-        //     waveAngleImpactAbeta, waveAngleImpactBetamax, locationDependentInput->GetWaveAngleImpact());
-        //
-        // GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertTransitionAlpha(
-        //     increasedLoadTransitionAlphaM, reducedStrengthTransitionAlphaS, *locationDependentInput);
-        //
-        // GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertAverageNumberOfWaves(
-        //     averageNumberOfWavesCtm, *locationDependentInput);
-        //
+        GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertGeneralProperties(
+            x, *locationDependentInput);
+
+        GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertTransitionAlpha(
+            increasedLoadTransitionAlphaM, reducedStrengthTransitionAlphaS, *locationDependentInput);
+        
+        GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertAverageNumberOfWaves(
+            averageNumberOfWavesCtm, *locationDependentInput);
+        
         // GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper::AssertCumulativeOverload(
         //     criticalCumulativeOverload, fixedNumberOfWaves, *locationDependentInput);
         //
@@ -769,21 +763,15 @@ namespace DiKErnel::Integration::Test
 
         LocationDependentInputAssertHelper::AssertDamageProperties(0, 1, *locationDependentInput);
 
-        // GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertGeneralProperties(
-        //     x, outerSlope, *locationDependentInput);
-        //
-        // GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertRepresentative2P(
-        //     1.65, 4, 1.5, 1, 1, locationDependentInput->GetRepresentative2P());
-        //
-        // GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertWaveAngleImpact(
-        //     0.0022, 80, locationDependentInput->GetWaveAngleImpact());
-        //
-        // GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertTransitionAlpha(
-        //     1, 1, *locationDependentInput);
-        //
-        // GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertAverageNumberOfWaves(
-        //     0.92, *locationDependentInput);
-        //
+        GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertGeneralProperties(
+            x, *locationDependentInput);
+        
+        GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertTransitionAlpha(
+            1, 1, *locationDependentInput);
+        
+        GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertAverageNumberOfWaves(
+            0.92, *locationDependentInput);
+        
         // GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper::AssertCumulativeOverload(
         //     7000, 10000, *locationDependentInput);
         //
@@ -818,21 +806,15 @@ namespace DiKErnel::Integration::Test
 
         LocationDependentInputAssertHelper::AssertDamageProperties(0, 1, *locationDependentInput);
 
-        // GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertGeneralProperties(
-        //     x, outerSlope, *locationDependentInput);
-        //
-        // GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertRepresentative2P(
-        //     1.65, 4, 1.5, 1, 1, locationDependentInput->GetRepresentative2P());
-        //
-        // GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertWaveAngleImpact(
-        //     0.0022, 80, locationDependentInput->GetWaveAngleImpact());
-        //
-        // GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertTransitionAlpha(
-        //     1, 1, *locationDependentInput);
-        //
-        // GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertAverageNumberOfWaves(
-        //     0.92, *locationDependentInput);
-        //
+        GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertGeneralProperties(
+            x, *locationDependentInput);
+
+        GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertTransitionAlpha(
+            1, 1, *locationDependentInput);
+        
+        GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertAverageNumberOfWaves(
+            0.92, *locationDependentInput);
+        
         // GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper::AssertCumulativeOverload(
         //     7000, 10000, *locationDependentInput);
         //
