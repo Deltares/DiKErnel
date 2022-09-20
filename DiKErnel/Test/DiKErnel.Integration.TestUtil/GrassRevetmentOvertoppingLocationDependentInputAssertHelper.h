@@ -29,6 +29,7 @@ namespace DiKErnel::Integration::TestUtil
         public:
             static void AssertGeneralProperties(
                 double x,
+                const double* dikeHeight,
                 const GrassRevetmentOvertoppingLocationDependentInput& locationDependentInput);
 
             static void AssertCumulativeOverload(

@@ -28,9 +28,20 @@ namespace DiKErnel::Integration::TestUtil
 
     void GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertGeneralProperties(
         const double x,
+        const double* dikeHeight,
         const GrassRevetmentOvertoppingLocationDependentInput& locationDependentInput)
     {
         ASSERT_DOUBLE_EQ(x, locationDependentInput.GetX());
+
+        if (dikeHeight == nullptr)
+        {
+            ASSERT_EQ(nullptr, locationDependentInput.GetEnforcedDikeHeight());
+        }
+        else
+        {
+            ASSERT_NE(nullptr, locationDependentInput.GetEnforcedDikeHeight());
+            ASSERT_EQ(*dikeHeight, *locationDependentInput.GetEnforcedDikeHeight());
+        }
     }
 
     void GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertCumulativeOverload(

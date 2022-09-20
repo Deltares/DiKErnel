@@ -711,7 +711,7 @@ namespace DiKErnel::Integration::Test
         LocationDependentInputAssertHelper::AssertDamageProperties(initialDamage, failureNumber, *locationDependentInput);
 
         GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertGeneralProperties(
-            x, *locationDependentInput);
+            x, &dikeHeight, *locationDependentInput);
 
         GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertTransitionAlpha(
             increasedLoadTransitionAlphaM, reducedStrengthTransitionAlphaS, *locationDependentInput);
@@ -757,7 +757,7 @@ namespace DiKErnel::Integration::Test
         LocationDependentInputAssertHelper::AssertDamageProperties(0, 1, *locationDependentInput);
 
         GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertGeneralProperties(
-            x, *locationDependentInput);
+            x, nullptr, *locationDependentInput);
 
         GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertTransitionAlpha(
             1, 1, *locationDependentInput);
@@ -803,7 +803,7 @@ namespace DiKErnel::Integration::Test
         LocationDependentInputAssertHelper::AssertDamageProperties(0, 1, *locationDependentInput);
 
         GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertGeneralProperties(
-            x, *locationDependentInput);
+            x, nullptr, *locationDependentInput);
 
         GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertTransitionAlpha(
             1, 1, *locationDependentInput);
