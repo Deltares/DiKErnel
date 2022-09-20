@@ -23,6 +23,7 @@
 #include <algorithm>
 #include <cmath>
 #include <functional>
+#include <memory>
 
 #include "Geometry.h"
 #include "GrassRevetmentFunctions.h"
