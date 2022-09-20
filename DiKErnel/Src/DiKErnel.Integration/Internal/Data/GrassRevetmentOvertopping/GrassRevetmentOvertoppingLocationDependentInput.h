@@ -88,19 +88,19 @@ namespace DiKErnel::Integration
                 const Core::IProfileData& profileData) override;
 
         private:
-            double _criticalCumulativeOverload;
-            double _criticalFrontVelocity;
-            double _increasedLoadTransitionAlphaM;
-            double _reducedStrengthTransitionAlphaS;
-            double _averageNumberOfWavesCtm;
+            const double _criticalCumulativeOverload;
+            const double _criticalFrontVelocity;
+            const double _increasedLoadTransitionAlphaM;
+            const double _reducedStrengthTransitionAlphaS;
+            const double _averageNumberOfWavesCtm;
             const int _fixedNumberOfWaves;
             const double _frontVelocityCwo;
             std::unique_ptr<GrassRevetmentOvertoppingLocationDependentAccelerationAlphaA> _locationDependentAccelerationAlphaA;
+            const double* _enforcedDikeHeight;
 
             std::vector<double> _xValuesProfile;
             std::vector<double> _zValuesProfile;
             std::vector<double> _roughnessCoefficients;
-            bool _dikeHeightInitialized = false;
             double _dikeHeight = std::numeric_limits<double>::infinity();
             double _accelerationAlphaA = std::numeric_limits<double>::infinity();
 

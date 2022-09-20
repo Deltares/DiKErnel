@@ -59,14 +59,8 @@ namespace DiKErnel::Integration
           _averageNumberOfWavesCtm(averageNumberOfWavesCtm),
           _fixedNumberOfWaves(fixedNumberOfWaves),
           _frontVelocityCwo(frontVelocityCwo),
-          _locationDependentAccelerationAlphaA(move(locationDependentAccelerationAlphaA))
-    {
-        if (enforcedDikeHeight != nullptr)
-        {
-            _dikeHeight = *enforcedDikeHeight;
-            _dikeHeightInitialized = true;
-        }
-    }
+          _locationDependentAccelerationAlphaA(move(locationDependentAccelerationAlphaA)),
+          _enforcedDikeHeight(enforcedDikeHeight) { }
 
     double GrassRevetmentOvertoppingLocationDependentInput::GetCriticalCumulativeOverload() const
     {
@@ -213,24 +207,24 @@ namespace DiKErnel::Integration
         const pair<double, double>& outerCrest,
         const vector<reference_wrapper<ProfileSegment>>& profileSegments)
     {
-        if (_dikeHeightInitialized)
+        if (_enforcedDikeHeight != nullptr)
         {
-            return;
+            _dikeHeight = *_enforcedDikeHeight;
         }
-
-        _dikeHeightInitialized = true;
-
-        const auto x = GetX();
-
-        _dikeHeight = GetZ();
-
-        for (const auto& profileSegment : profileSegments)
+        else
         {
-            const auto& startPoint = profileSegment.get().GetStartPoint();
+            const auto x = GetX();
 
-            if (const double startPointX = startPoint.GetX(); startPointX >= outerCrest.first && startPointX < x)
+            _dikeHeight = GetZ();
+
+            for (const auto& profileSegment : profileSegments)
             {
-                _dikeHeight = max(_dikeHeight, startPoint.GetZ());
+                const auto& startPoint = profileSegment.get().GetStartPoint();
+
+                if (const double startPointX = startPoint.GetX(); startPointX >= outerCrest.first && startPointX < x)
+                {
+                    _dikeHeight = max(_dikeHeight, startPoint.GetZ());
+                }
             }
         }
     }
