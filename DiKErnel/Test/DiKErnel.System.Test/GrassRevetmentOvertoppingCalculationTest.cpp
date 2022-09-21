@@ -20,6 +20,7 @@
 
 #include <gtest/gtest.h>
 
+#include "AssertHelper.h"
 #include "CalculationInputBuilder.h"
 #include "Calculator.h"
 #include "Validator.h"
@@ -30,13 +31,14 @@ namespace DiKErnel::System::Test
     using namespace Integration;
     using namespace std;
     using namespace testing;
+    using namespace TestUtil;
 
     struct GrassRevetmentOvertoppingCalculationTest : Test
     {
         const vector<double> _roughnessCoefficientsForSchematization1
         {
-            1.0,
-            1.0,
+            1,
+            1,
             0.75,
             0.5,
             0.8,
@@ -47,65 +49,65 @@ namespace DiKErnel::System::Test
             0.8
         };
 
-        void ConfigureBuilderWithSchematizationForTestSchematization1(
+        void ConfigureBuilderForSchematization1(
             CalculationInputBuilder& builder) const
         {
-            builder.AddTimeStep(0, 3600, 5.5, 1.9, 4.7, -10.0);
-            builder.AddTimeStep(3600, 7200, 5.6, 1.95, 4.73, -8.0);
-            builder.AddTimeStep(7200, 10800, 5.7, 2.0, 4.76, -6.0);
-            builder.AddTimeStep(10800, 14400, 5.8, 2.05, 4.79, -4.0);
-            builder.AddTimeStep(14400, 18000, 5.9, 2.1, 4.82, -2.0);
-            builder.AddTimeStep(18000, 21600, 6.0, 2.15, 4.85, 0.0);
-            builder.AddTimeStep(21600, 25200, 6.1, 2.2, 4.88, 2.0);
-            builder.AddTimeStep(25200, 28800, 6.2, 2.25, 4.91, 4.0);
-            builder.AddTimeStep(28800, 32400, 6.2, 2.3, 4.94, 6.0);
-            builder.AddTimeStep(32400, 36000, 6.1, 2.35, 4.97, 8.0);
-            builder.AddTimeStep(36000, 39600, 6.0, 2.4, 5.0, 10.0);
-            builder.AddTimeStep(39600, 43200, 5.9, 2.45, 5.03, 12.0);
-            builder.AddTimeStep(43200, 46800, 5.8, 2.5, 5.06, 14.0);
-            builder.AddTimeStep(46800, 50400, 5.7, 2.55, 5.09, 16.0);
-            builder.AddTimeStep(50400, 54000, 5.6, 2.6, 5.12, 18.0);
-            builder.AddTimeStep(54000, 57600, 5.5, 2.65, 5.15, 20.0);
+            builder.AddTimeStep(0, 3600, 5.5, 1.9, 4.7, -10);
+            builder.AddTimeStep(3600, 7200, 5.6, 1.95, 4.73, -8);
+            builder.AddTimeStep(7200, 10800, 5.7, 2, 4.76, -6);
+            builder.AddTimeStep(10800, 14400, 5.8, 2.05, 4.79, -4);
+            builder.AddTimeStep(14400, 18000, 5.9, 2.1, 4.82, -2);
+            builder.AddTimeStep(18000, 21600, 6, 2.15, 4.85, 0);
+            builder.AddTimeStep(21600, 25200, 6.1, 2.2, 4.88, 2);
+            builder.AddTimeStep(25200, 28800, 6.2, 2.25, 4.91, 4);
+            builder.AddTimeStep(28800, 32400, 6.2, 2.3, 4.94, 6);
+            builder.AddTimeStep(32400, 36000, 6.1, 2.35, 4.97, 8);
+            builder.AddTimeStep(36000, 39600, 6, 2.4, 5, 10);
+            builder.AddTimeStep(39600, 43200, 5.9, 2.45, 5.03, 12);
+            builder.AddTimeStep(43200, 46800, 5.8, 2.5, 5.06, 14);
+            builder.AddTimeStep(46800, 50400, 5.7, 2.55, 5.09, 16);
+            builder.AddTimeStep(50400, 54000, 5.6, 2.6, 5.12, 18);
+            builder.AddTimeStep(54000, 57600, 5.5, 2.65, 5.15, 20);
 
-            builder.AddDikeProfileSegment(0.0, -0.1, 5.0, 0.0, &_roughnessCoefficientsForSchematization1.at(0));
-            builder.AddDikeProfileSegment(5.0, 0.0, 15.0, 3.0, &_roughnessCoefficientsForSchematization1.at(1));
-            builder.AddDikeProfileSegment(15.0, 3.0, 22.0, 3.2, &_roughnessCoefficientsForSchematization1.at(2));
-            builder.AddDikeProfileSegment(22.0, 3.2, 30.0, 7.5, &_roughnessCoefficientsForSchematization1.at(3));
-            builder.AddDikeProfileSegment(30.0, 7.5, 31.0, 7.6, &_roughnessCoefficientsForSchematization1.at(4));
-            builder.AddDikeProfileSegment(31.0, 7.6, 34.0, 7.7, &_roughnessCoefficientsForSchematization1.at(5));
-            builder.AddDikeProfileSegment(34.0, 7.7, 35.0, 7.4, &_roughnessCoefficientsForSchematization1.at(6));
-            builder.AddDikeProfileSegment(35.0, 7.4, 45.0, 5.0, &_roughnessCoefficientsForSchematization1.at(7));
-            builder.AddDikeProfileSegment(45.0, 5.0, 60.0, 0.5, &_roughnessCoefficientsForSchematization1.at(8));
-            builder.AddDikeProfileSegment(60.0, 0.5, 70.0, 0.5, &_roughnessCoefficientsForSchematization1.at(9));
+            builder.AddDikeProfileSegment(0, -0.1, 5, 0, &_roughnessCoefficientsForSchematization1.at(0));
+            builder.AddDikeProfileSegment(5, 0, 15, 3, &_roughnessCoefficientsForSchematization1.at(1));
+            builder.AddDikeProfileSegment(15, 3, 22, 3.2, &_roughnessCoefficientsForSchematization1.at(2));
+            builder.AddDikeProfileSegment(22, 3.2, 30, 7.5, &_roughnessCoefficientsForSchematization1.at(3));
+            builder.AddDikeProfileSegment(30, 7.5, 31, 7.6, &_roughnessCoefficientsForSchematization1.at(4));
+            builder.AddDikeProfileSegment(31, 7.6, 34, 7.7, &_roughnessCoefficientsForSchematization1.at(5));
+            builder.AddDikeProfileSegment(34, 7.7, 35, 7.4, &_roughnessCoefficientsForSchematization1.at(6));
+            builder.AddDikeProfileSegment(35, 7.4, 45, 5, &_roughnessCoefficientsForSchematization1.at(7));
+            builder.AddDikeProfileSegment(45, 5, 60, 0.5, &_roughnessCoefficientsForSchematization1.at(8));
+            builder.AddDikeProfileSegment(60, 0.5, 70, 0.5, &_roughnessCoefficientsForSchematization1.at(9));
 
-            builder.AddDikeProfilePointData(5.0, CharacteristicPointType::OuterToe);
-            builder.AddDikeProfilePointData(15.0, CharacteristicPointType::CrestOuterBerm);
-            builder.AddDikeProfilePointData(22.0, CharacteristicPointType::NotchOuterBerm);
-            builder.AddDikeProfilePointData(30.0, CharacteristicPointType::OuterCrest);
-            builder.AddDikeProfilePointData(35.0, CharacteristicPointType::InnerCrest);
-            builder.AddDikeProfilePointData(60.0, CharacteristicPointType::InnerToe);
+            builder.AddDikeProfilePointData(5, CharacteristicPointType::OuterToe);
+            builder.AddDikeProfilePointData(15, CharacteristicPointType::CrestOuterBerm);
+            builder.AddDikeProfilePointData(22, CharacteristicPointType::NotchOuterBerm);
+            builder.AddDikeProfilePointData(30, CharacteristicPointType::OuterCrest);
+            builder.AddDikeProfilePointData(35, CharacteristicPointType::InnerCrest);
+            builder.AddDikeProfilePointData(60, CharacteristicPointType::InnerToe);
         }
 
         [[nodiscard]]
         unique_ptr<GrassRevetmentOvertoppingLocationConstructionProperties> CreateLocationConstructionPropertiesForSchematization1(
             double x) const
         {
-            auto grassRevetmentOvertoppingLocationConstructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(
+            auto locationConstructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(
                 x, GrassRevetmentTopLayerType::ClosedSod);
 
-            grassRevetmentOvertoppingLocationConstructionProperties->SetInitialDamage(make_unique<double>(0.02));
-            grassRevetmentOvertoppingLocationConstructionProperties->SetFailureNumber(make_unique<double>(1.0));
-            grassRevetmentOvertoppingLocationConstructionProperties->SetCriticalCumulativeOverload(make_unique<double>(7000));
-            grassRevetmentOvertoppingLocationConstructionProperties->SetCriticalFrontVelocity(make_unique<double>(6.6));
-            grassRevetmentOvertoppingLocationConstructionProperties->SetIncreasedLoadTransitionAlphaM(make_unique<double>(1.0));
-            grassRevetmentOvertoppingLocationConstructionProperties->SetReducedStrengthTransitionAlphaS(make_unique<double>(1.0));
-            grassRevetmentOvertoppingLocationConstructionProperties->SetAverageNumberOfWavesCtm(make_unique<double>(0.92));
-            grassRevetmentOvertoppingLocationConstructionProperties->SetFixedNumberOfWaves(make_unique<int>(10000));
-            grassRevetmentOvertoppingLocationConstructionProperties->SetFrontVelocityCwo(make_unique<double>(1.45));
-            grassRevetmentOvertoppingLocationConstructionProperties->SetAccelerationAlphaAForCrest(make_unique<double>(1.0));
-            grassRevetmentOvertoppingLocationConstructionProperties->SetAccelerationAlphaAForInnerSlope(make_unique<double>(1.4));
+            locationConstructionProperties->SetInitialDamage(make_unique<double>(0.02));
+            locationConstructionProperties->SetFailureNumber(make_unique<double>(1));
+            locationConstructionProperties->SetCriticalCumulativeOverload(make_unique<double>(7000));
+            locationConstructionProperties->SetCriticalFrontVelocity(make_unique<double>(6.6));
+            locationConstructionProperties->SetIncreasedLoadTransitionAlphaM(make_unique<double>(1));
+            locationConstructionProperties->SetReducedStrengthTransitionAlphaS(make_unique<double>(1));
+            locationConstructionProperties->SetAverageNumberOfWavesCtm(make_unique<double>(0.92));
+            locationConstructionProperties->SetFixedNumberOfWaves(make_unique<int>(10000));
+            locationConstructionProperties->SetFrontVelocityCwo(make_unique<double>(1.45));
+            locationConstructionProperties->SetAccelerationAlphaAForCrest(make_unique<double>(1));
+            locationConstructionProperties->SetAccelerationAlphaAForInnerSlope(make_unique<double>(1.4));
 
-            return grassRevetmentOvertoppingLocationConstructionProperties;
+            return locationConstructionProperties;
         }
 
         static void AssertOutput(
@@ -122,19 +124,19 @@ namespace DiKErnel::System::Test
             const CalculationOutput* calculationOutput = calculatorResult->GetData();
             const auto& locationDependentOutput = calculationOutput->GetLocationDependentOutputItems().at(0).get();
 
-            const auto damage = locationDependentOutput.GetTimeDependentOutputItems().back().get().GetDamage();
-            ASSERT_EQ(expectedDamage, damage);
+            const auto actualDamage = locationDependentOutput.GetTimeDependentOutputItems().back().get().GetDamage();
+            AssertHelper::AssertAreEqualWithAcceptablePrecision(expectedDamage, actualDamage);
 
-            const auto timeOfFailure = locationDependentOutput.GetTimeOfFailure();
+            const auto actualTimeOfFailure = locationDependentOutput.GetTimeOfFailure();
 
             if (expectedTimeOfFailure == nullptr)
             {
-                ASSERT_EQ(nullptr, timeOfFailure);
+                ASSERT_EQ(nullptr, actualTimeOfFailure);
             }
             else
             {
-                ASSERT_NE(nullptr, timeOfFailure);
-                ASSERT_EQ(*expectedTimeOfFailure, *timeOfFailure);
+                ASSERT_NE(nullptr, actualTimeOfFailure);
+                ASSERT_EQ(*expectedTimeOfFailure, *actualTimeOfFailure);
             }
         }
     };
@@ -147,7 +149,7 @@ namespace DiKErnel::System::Test
 
         auto locationConstructionProperties = CreateLocationConstructionPropertiesForSchematization1(50);
 
-        ConfigureBuilderWithSchematizationForTestSchematization1(builder);
+        ConfigureBuilderForSchematization1(builder);
 
         builder.AddGrassOvertoppingLocation(move(locationConstructionProperties));
 
@@ -171,7 +173,7 @@ namespace DiKErnel::System::Test
 
         auto locationConstructionProperties = CreateLocationConstructionPropertiesForSchematization1(33);
 
-        ConfigureBuilderWithSchematizationForTestSchematization1(builder);
+        ConfigureBuilderForSchematization1(builder);
 
         builder.AddGrassOvertoppingLocation(move(locationConstructionProperties));
 
@@ -195,7 +197,7 @@ namespace DiKErnel::System::Test
 
         locationConstructionProperties->SetDikeHeight(make_unique<double>(8));
 
-        ConfigureBuilderWithSchematizationForTestSchematization1(builder);
+        ConfigureBuilderForSchematization1(builder);
 
         builder.AddGrassOvertoppingLocation(move(locationConstructionProperties));
 
@@ -219,7 +221,7 @@ namespace DiKErnel::System::Test
 
         locationConstructionProperties->SetDikeHeight(make_unique<double>(5.65));
 
-        ConfigureBuilderWithSchematizationForTestSchematization1(builder);
+        ConfigureBuilderForSchematization1(builder);
 
         builder.AddGrassOvertoppingLocation(move(locationConstructionProperties));
 
