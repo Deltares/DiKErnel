@@ -95,6 +95,8 @@ set(SOURCEFILES_INTERNAL_PARSERS
   ${INTERNAL_PARSERS_FOLDER}/JsonInputGrassOvertoppingCalculationDefinitionParser.cpp
   ${INTERNAL_PARSERS_FOLDER}/JsonInputGrassOvertoppingCalculationDefinitionParser.h
   ${INTERNAL_PARSERS_FOLDER}/JsonInputGrassOvertoppingDefinitions.h
+  ${INTERNAL_PARSERS_FOLDER}/JsonInputGrassOvertoppingParser.cpp
+  ${INTERNAL_PARSERS_FOLDER}/JsonInputGrassOvertoppingParser.h
   ${INTERNAL_PARSERS_FOLDER}/JsonInputGrassWaveRunupCalculationDefinitionParser.cpp
   ${INTERNAL_PARSERS_FOLDER}/JsonInputGrassWaveRunupCalculationDefinitionParser.h
   ${INTERNAL_PARSERS_FOLDER}/JsonInputGrassRevetmentDefinitions.h

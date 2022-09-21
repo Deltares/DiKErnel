@@ -18,11 +18,11 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include "JsonInputGrassWaveRunupParser.h"
+#include "JsonInputGrassOvertoppingParser.h"
 
 #include "JsonInputDefinitions.h"
-#include "JsonInputGrassWaveRunupDefinitions.h"
-#include "JsonInputGrassWaveRunupLocationData.h"
+#include "JsonInputGrassOvertoppingLocationData.h"
+#include "JsonInputGrassRevetmentDefinitions.h"
 #include "JsonInputParserHelper.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
@@ -30,30 +30,23 @@ namespace DiKErnel::KernelWrapper::Json::Input
     using namespace nlohmann;
     using namespace std;
 
-    JsonInputGrassWaveRunupParser::JsonInputGrassWaveRunupParser(
+    JsonInputGrassOvertoppingParser::JsonInputGrassOvertoppingParser(
         const json& readLocation)
         : JsonInputLocationParser(readLocation) {}
 
-    unique_ptr<JsonInputLocationData> JsonInputGrassWaveRunupParser::ParseLocationData(
+    unique_ptr<JsonInputLocationData> JsonInputGrassOvertoppingParser::ParseLocationData(
         double x,
         unique_ptr<double> initialDamage)
     {
         const auto& readLocation = GetReadLocation();
 
-        auto locationData = make_unique<JsonInputGrassWaveRunupLocationData>(
-            x, move(initialDamage), readLocation.at(JsonInputDefinitions::TYPE_TOP_LAYER).get<JsonInputGrassRevetmentTopLayerType>(),
-            readLocation.at(JsonInputGrassWaveRunupDefinitions::OUTER_SLOPE).get<double>());
+        auto locationData = make_unique<JsonInputGrassOvertoppingLocationData>(
+            x, move(initialDamage), readLocation.at(JsonInputDefinitions::TYPE_TOP_LAYER).get<JsonInputGrassRevetmentTopLayerType>());
 
         locationData->SetIncreasedLoadTransitionAlphaM(
             JsonInputParserHelper::ParseOptionalDouble(readLocation, JsonInputGrassRevetmentDefinitions::INCREASED_LOAD_TRANSITION_ALPHA_M));
         locationData->SetReducedStrengthTransitionAlphaS(
             JsonInputParserHelper::ParseOptionalDouble(readLocation, JsonInputGrassRevetmentDefinitions::REDUCED_STRENGTH_TRANSITION_ALPHA_S));
-
-        locationData->SetRepresentativeWaveRunup2PGammaB(
-            JsonInputParserHelper::ParseOptionalDouble(readLocation, JsonInputGrassWaveRunupDefinitions::REPRESENTATIVE_WAVE_RUNUP_2P_GAMMA_B));
-
-        locationData->SetRepresentativeWaveRunup2PGammaF(
-            JsonInputParserHelper::ParseOptionalDouble(readLocation, JsonInputGrassWaveRunupDefinitions::REPRESENTATIVE_WAVE_RUNUP_2P_GAMMA_F));
 
         return locationData;
     }

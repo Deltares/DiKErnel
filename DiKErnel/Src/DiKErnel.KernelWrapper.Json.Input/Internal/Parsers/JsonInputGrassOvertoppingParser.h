@@ -20,25 +20,19 @@
 
 #pragma once
 
-#include <string>
+#include "JsonInputLocationParser.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
-    class JsonInputGrassRevetmentDefinitions
+    class JsonInputGrassOvertoppingParser : public JsonInputLocationParser
     {
         public:
-            inline static const std::string TOP_LAYER_TYPE_CLOSED_SOD = "grasGeslotenZode";
-            inline static const std::string TOP_LAYER_TYPE_OPEN_SOD = "grasOpenZode";
+            explicit JsonInputGrassOvertoppingParser(
+                const nlohmann::json& readLocation);
 
-            inline static const std::string INCREASED_LOAD_TRANSITION_ALPHA_M = "verhogingBelastingOvergangAlfaM";
-            inline static const std::string REDUCED_STRENGTH_TRANSITION_ALPHA_S = "verlagingSterkteOvergangAlfaS";
-
-            inline static const std::string CALCULATION_PROTOCOL = "rekenprotocol";
-            inline static const std::string CALCULATION_PROTOCOL_TYPE = "typeRekenprotocol";
-
-            inline static const std::string CRITICAL_CUMULATIVE_OVERLOAD = "kritiekeCumulatieveOverbelasting";
-            inline static const std::string CRITICAL_FRONT_VELOCITY = "kritiekeFrontsnelheid";
-
-            inline static const std::string FIXED_NUMBER_OF_WAVES = "aantalGolvenVast";
+        protected:
+            std::unique_ptr<JsonInputLocationData> ParseLocationData(
+                double x,
+                std::unique_ptr<double> initialDamage) override;
     };
 }

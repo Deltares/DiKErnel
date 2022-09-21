@@ -29,9 +29,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
         public:
             inline static const std::string OUTER_SLOPE = "tanA";
 
-            inline static const std::string INCREASED_LOAD_TRANSITION_ALPHA_M = "verhogingBelastingOvergangAlfaM";
-            inline static const std::string REDUCED_STRENGTH_TRANSITION_ALPHA_S = "verlagingSterkteOvergangAlfaS";
-
             inline static const std::string REPRESENTATIVE_WAVE_RUNUP_2P_GAMMA_B = "bermFactorGammaB";
             inline static const std::string REPRESENTATIVE_WAVE_RUNUP_2P_GAMMA_F = "ruwheidsFactorGammaF";
 
