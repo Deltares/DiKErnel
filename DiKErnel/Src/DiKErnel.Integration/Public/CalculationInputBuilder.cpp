@@ -20,11 +20,14 @@
 
 #include "CalculationInputBuilder.h"
 
+#include <algorithm>
+
 #include "AsphaltRevetmentWaveImpactDefaults.h"
 #include "AsphaltRevetmentWaveImpactDefaultsFactory.h"
 #include "AsphaltRevetmentWaveImpactLocationDependentInputFactory.h"
 #include "CalculationInput.h"
 #include "CalculationInputBuildException.h"
+#include "EventRegistry.h"
 #include "GrassRevetmentWaveImpactLocationDependentInputFactory.h"
 #include "GrassRevetmentWaveRunupRayleighLocationDependentInputFactory.h"
 #include "InputFactoryException.h"
@@ -35,11 +38,13 @@
 #include "ProfileDataFactorySegment.h"
 #include "TimeDependentInputFactory.h"
 #include "TimeDependentInputFactoryData.h"
+#include "ValidationHelper.h"
 
 namespace DiKErnel::Integration
 {
     using namespace Core;
     using namespace DomainLibrary;
+    using namespace Util;
     using namespace std;
 
     CalculationInputBuilder::CalculationInputBuilder() = default;
@@ -136,6 +141,8 @@ namespace DiKErnel::Integration
             timeStepDataItemReferences.emplace_back(*timeStepDataItem);
         }
 
+        Validate();
+
         try
         {
             auto profileData = ProfileDataFactory::Create(profileSegmentDataReferences, profilePointDataReferences);
@@ -148,5 +155,59 @@ namespace DiKErnel::Integration
         {
             throw_with_nested(CalculationInputBuildException(_exceptionMessage));
         }
+    }
+
+    void CalculationInputBuilder::Validate() const
+    {
+        if (!HasCharacteristicPointType(CharacteristicPointType::OuterToe))
+        {
+            RegisterEventAndThrowCalculationInputBuildException("The OuterToe must be defined.");
+        }
+
+        if (!HasCharacteristicPointType(CharacteristicPointType::OuterCrest))
+        {
+            RegisterEventAndThrowCalculationInputBuildException("The OuterCrest must be defined.");
+        }
+
+        if (HasOvertoppingLocationDependentInput())
+        {
+            if (!HasCharacteristicPointType(CharacteristicPointType::InnerToe))
+            {
+                RegisterEventAndThrowCalculationInputBuildException("The InnerToe must be defined.");
+            }
+
+            if (!HasCharacteristicPointType(CharacteristicPointType::InnerCrest))
+            {
+                RegisterEventAndThrowCalculationInputBuildException("The InnerCrest must be defined.");
+            }
+        }
+    }
+
+    bool CalculationInputBuilder::HasCharacteristicPointType(
+        CharacteristicPointType characteristicPointType) const
+    {
+        return any_of(_profilePointDataItems.begin(), _profilePointDataItems.end(),
+                      [characteristicPointType](
+                  const auto& item)
+                      {
+                          return item->GetCharacteristicPoint() == characteristicPointType;
+                      });
+    }
+
+    void CalculationInputBuilder::RegisterEventAndThrowCalculationInputBuildException(
+        const string& message) const
+    {
+        EventRegistry::Register(make_unique<Event>(message, EventType::Error));
+        throw CalculationInputBuildException(_exceptionMessage + " " + message);
+    }
+
+    bool CalculationInputBuilder::HasOvertoppingLocationDependentInput() const
+    {
+        return any_of(_locationConstructionPropertiesItems.begin(), _locationConstructionPropertiesItems.end(), [](
+                  const auto& item)
+                      {
+                          return dynamic_cast<const GrassRevetmentOvertoppingLocationConstructionProperties*>(item.get())
+                                  != nullptr;
+                      });
     }
 }

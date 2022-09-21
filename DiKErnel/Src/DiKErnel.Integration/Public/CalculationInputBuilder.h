@@ -153,6 +153,20 @@ namespace DiKErnel::Integration
             std::unique_ptr<Core::ICalculationInput> Build() const;
 
         private:
+            [[nodiscard]]
+            void Validate() const;
+
+            [[nodiscard]]
+            bool HasOvertoppingLocationDependentInput() const;
+
+            [[nodiscard]]
+            bool HasCharacteristicPointType(
+                Core::CharacteristicPointType characteristicPointType) const;
+
+            [[nodiscard]]
+            void RegisterEventAndThrowCalculationInputBuildException(
+                const std::string& message) const;
+
             std::vector<std::unique_ptr<ProfileDataFactorySegment>> _profileSegmentDataItems;
             std::vector<std::unique_ptr<ProfileDataFactoryPoint>> _profilePointDataItems;
             std::vector<std::unique_ptr<TimeDependentInputFactoryData>> _timeStepDataItems;
