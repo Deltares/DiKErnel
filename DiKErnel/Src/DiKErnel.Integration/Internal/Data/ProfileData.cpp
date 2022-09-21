@@ -23,6 +23,7 @@
 #include <cmath>
 
 #include "CharacteristicPointsHelper.h"
+#include "ValidationHelper.h"
 #include "ValidationIssue.h"
 
 namespace DiKErnel::Integration
@@ -49,6 +50,12 @@ namespace DiKErnel::Integration
         {
             _characteristicPointReferences.emplace_back(*characteristicPoint);
         }
+    }
+
+    bool ProfileData::Validate() const
+    {
+        vector<unique_ptr<ValidationIssue>> validationIssues;
+        return ValidationHelper::RegisterValidationIssues(validationIssues);
     }
 
     double ProfileData::InterpolationVerticalHeight(

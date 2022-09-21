@@ -40,6 +40,13 @@ namespace DiKErnel::Core
             virtual ~IProfileData() = default;
 
             /*!
+             * \brief Performs validation on the data.
+             * \return Whether the validation was successful.
+             */
+            [[nodiscard]]
+            virtual bool Validate() const = 0;
+
+            /*!
              * \brief Calculates the vertical height based on linear interpolation.
              * \param horizontalPosition
              *        The horizontal position.

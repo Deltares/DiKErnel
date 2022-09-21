@@ -34,6 +34,9 @@ namespace DiKErnel::Integration
                 std::vector<std::unique_ptr<Core::CharacteristicPoint>> characteristicPoints);
 
             [[nodiscard]]
+            bool Validate() const override;
+
+            [[nodiscard]]
             double InterpolationVerticalHeight(
                 double horizontalPosition) const override;
 

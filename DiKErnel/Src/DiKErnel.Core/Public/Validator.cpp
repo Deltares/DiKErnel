@@ -43,6 +43,12 @@ namespace DiKErnel::Core
             }
 
             const auto& profileData = calculationInput.GetProfileData();
+
+            if (!profileData.Validate())
+            {
+                validationResult = ValidationResultType::Failed;
+            }
+
             for (const auto& locationDependentInputItem : calculationInput.GetLocationDependentInputItems())
             {
                 if (!locationDependentInputItem.get().Validate(profileData))

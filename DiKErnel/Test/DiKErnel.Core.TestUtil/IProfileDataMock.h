@@ -29,6 +29,7 @@ namespace DiKErnel::Core::TestUtil
     class IProfileDataMock : public IProfileData
     {
         public:
+            MOCK_METHOD(bool, Validate, (), (const, override));
             MOCK_METHOD(double, InterpolationVerticalHeight, (double), (const, override));
             MOCK_METHOD(double, InterpolationHorizontalPosition, (double), (const, override));
             MOCK_METHOD(const ProfileSegment*, GetProfileSegment, (double), (const, override));
