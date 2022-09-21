@@ -85,6 +85,58 @@ namespace DiKErnel::System::Test
             builder.AddDikeProfilePointData(35.0, CharacteristicPointType::InnerCrest);
             builder.AddDikeProfilePointData(60.0, CharacteristicPointType::InnerToe);
         }
+
+        [[nodiscard]]
+        unique_ptr<GrassRevetmentOvertoppingLocationConstructionProperties> CreateLocationConstructionPropertiesForTestCase1(
+            double x) const
+        {
+            auto grassRevetmentOvertoppingLocationConstructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(
+                x, GrassRevetmentTopLayerType::ClosedSod);
+
+            grassRevetmentOvertoppingLocationConstructionProperties->SetInitialDamage(make_unique<double>(0.02));
+            grassRevetmentOvertoppingLocationConstructionProperties->SetFailureNumber(make_unique<double>(1.0));
+            grassRevetmentOvertoppingLocationConstructionProperties->SetCriticalCumulativeOverload(make_unique<double>(7000));
+            grassRevetmentOvertoppingLocationConstructionProperties->SetCriticalFrontVelocity(make_unique<double>(6.6));
+            grassRevetmentOvertoppingLocationConstructionProperties->SetIncreasedLoadTransitionAlphaM(make_unique<double>(1.0));
+            grassRevetmentOvertoppingLocationConstructionProperties->SetReducedStrengthTransitionAlphaS(make_unique<double>(1.0));
+            grassRevetmentOvertoppingLocationConstructionProperties->SetAverageNumberOfWavesCtm(make_unique<double>(0.92));
+            grassRevetmentOvertoppingLocationConstructionProperties->SetFixedNumberOfWaves(make_unique<int>(10000));
+            grassRevetmentOvertoppingLocationConstructionProperties->SetFrontVelocityCwo(make_unique<double>(1.45));
+            grassRevetmentOvertoppingLocationConstructionProperties->SetAccelerationAlphaAForCrest(make_unique<double>(1.0));
+            grassRevetmentOvertoppingLocationConstructionProperties->SetAccelerationAlphaAForInnerSlope(make_unique<double>(1.4));
+
+            return grassRevetmentOvertoppingLocationConstructionProperties;
+        }
+
+        static void AssertOutput(
+            const Calculator& calculator,
+            const double expectedDamage,
+            const int* expectedTimeOfFailure = nullptr)
+        {
+            ASSERT_EQ(CalculationState::FinishedSuccessfully, calculator.GetCalculationState());
+
+            const auto calculatorResult = calculator.GetResult();
+            ASSERT_TRUE(calculatorResult->GetSuccessful());
+            ASSERT_EQ(0, calculatorResult->GetEvents().size());
+
+            const CalculationOutput* calculationOutput = calculatorResult->GetData();
+            const auto& locationDependentOutput = calculationOutput->GetLocationDependentOutputItems().at(0).get();
+
+            const auto damage = locationDependentOutput.GetTimeDependentOutputItems().back().get().GetDamage();
+            ASSERT_EQ(expectedDamage, damage);
+
+            const auto timeOfFailure = locationDependentOutput.GetTimeOfFailure();
+
+            if (expectedTimeOfFailure == nullptr)
+            {
+                ASSERT_EQ(nullptr, timeOfFailure);
+            }
+            else
+            {
+                ASSERT_NE(nullptr, timeOfFailure);
+                ASSERT_EQ(*expectedTimeOfFailure, *timeOfFailure);
+            }
+        }
     };
 
     TEST_F(GrassRevetmentOvertoppingCalculationTest, GivenValidCalculationInput_WhenCalculating_ThenReturnsExpectedCalculationResult)
@@ -92,24 +144,11 @@ namespace DiKErnel::System::Test
         // Given
         CalculationInputBuilder builder;
 
+        auto locationConstructionProperties = CreateLocationConstructionPropertiesForTestCase1(50);
+
         ConfigureBuilderWithSchematizationForTestCase1(builder);
 
-        auto grassRevetmentOvertoppingLocationConstructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(
-            50, GrassRevetmentTopLayerType::ClosedSod);
-
-        grassRevetmentOvertoppingLocationConstructionProperties->SetInitialDamage(make_unique<double>(0.02));
-        grassRevetmentOvertoppingLocationConstructionProperties->SetFailureNumber(make_unique<double>(1.0));
-        grassRevetmentOvertoppingLocationConstructionProperties->SetCriticalCumulativeOverload(make_unique<double>(7000));
-        grassRevetmentOvertoppingLocationConstructionProperties->SetCriticalFrontVelocity(make_unique<double>(6.6));
-        grassRevetmentOvertoppingLocationConstructionProperties->SetIncreasedLoadTransitionAlphaM(make_unique<double>(1.0));
-        grassRevetmentOvertoppingLocationConstructionProperties->SetReducedStrengthTransitionAlphaS(make_unique<double>(1.0));
-        grassRevetmentOvertoppingLocationConstructionProperties->SetAverageNumberOfWavesCtm(make_unique<double>(0.92));
-        grassRevetmentOvertoppingLocationConstructionProperties->SetFixedNumberOfWaves(make_unique<int>(10000));
-        grassRevetmentOvertoppingLocationConstructionProperties->SetFrontVelocityCwo(make_unique<double>(1.45));
-        grassRevetmentOvertoppingLocationConstructionProperties->SetAccelerationAlphaAForCrest(make_unique<double>(1.0));
-        grassRevetmentOvertoppingLocationConstructionProperties->SetAccelerationAlphaAForInnerSlope(make_unique<double>(1.4));
-
-        builder.AddGrassOvertoppingLocation(move(grassRevetmentOvertoppingLocationConstructionProperties));
+        builder.AddGrassOvertoppingLocation(move(locationConstructionProperties));
 
         const auto calculationInput = builder.Build();
 
@@ -118,20 +157,8 @@ namespace DiKErnel::System::Test
         calculator.WaitForCompletion();
 
         // Then
-        ASSERT_EQ(CalculationState::FinishedSuccessfully, calculator.GetCalculationState());
+        constexpr int expectedTimeOfFailure = 33913;
 
-        const auto calculatorResult = calculator.GetResult();
-        ASSERT_TRUE(calculatorResult->GetSuccessful());
-        ASSERT_EQ(0, calculatorResult->GetEvents().size());
-
-        const CalculationOutput* calculationOutput = calculatorResult->GetData();
-        const auto& locationDependentOutput = calculationOutput->GetLocationDependentOutputItems().at(0).get();
-
-        const auto timeOfFailure = locationDependentOutput.GetTimeOfFailure();
-        ASSERT_NE(nullptr, timeOfFailure);
-        ASSERT_EQ(33913, *timeOfFailure);
-
-        const auto damage = locationDependentOutput.GetTimeDependentOutputItems().back().get().GetDamage();
-        ASSERT_EQ(1.4821425664361452, damage);
+        AssertOutput(calculator, 1.4821425664361452, &expectedTimeOfFailure);
     }
 }
