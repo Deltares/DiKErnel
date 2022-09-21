@@ -54,12 +54,12 @@ set(SOURCEFILES_INTERNAL_DATA_REVETMENT
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassOvertoppingCalculationDefinitionData.cpp
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassOvertoppingCalculationDefinitionData.h
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassOvertoppingCalculationProtocolData.h
+  ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassOvertoppingCalculationProtocolType.h
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassOvertoppingDikesOvertoppingCalculationProtocolData.cpp
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassOvertoppingDikesOvertoppingCalculationProtocolData.h
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassOvertoppingLocationData.cpp
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassOvertoppingLocationData.h
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassRevetmentTopLayerType.h
-  ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassRevetmentWaveRunupCalculationProtocolType.h
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassWaveImpactCalculationDefinitionData.cpp
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassWaveImpactCalculationDefinitionData.h
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassWaveImpactLocationData.cpp
@@ -69,6 +69,7 @@ set(SOURCEFILES_INTERNAL_DATA_REVETMENT
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassWaveRunupCalculationDefinitionData.cpp
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassWaveRunupCalculationDefinitionData.h
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassWaveRunupCalculationProtocolData.h
+  ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassWaveRunupCalculationProtocolType.h
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassWaveRunupLocationData.cpp
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassWaveRunupLocationData.h
   ${INTERNAL_DATA_REVETMENT_FOLDER}/JsonInputGrassWaveRunupRayleighCalculationProtocolData.cpp

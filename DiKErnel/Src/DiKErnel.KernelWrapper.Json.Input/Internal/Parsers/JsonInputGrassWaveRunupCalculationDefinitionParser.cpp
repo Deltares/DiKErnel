@@ -21,8 +21,8 @@
 #include "JsonInputGrassWaveRunupCalculationDefinitionParser.h"
 
 #include "JsonInputDefinitions.h"
-#include "JsonInputGrassRevetmentWaveRunupCalculationProtocolType.h"
 #include "JsonInputGrassWaveRunupCalculationDefinitionData.h"
+#include "JsonInputGrassWaveRunupCalculationProtocolType.h"
 #include "JsonInputGrassWaveRunupDefinitions.h"
 #include "JsonInputGrassWaveRunupRayleighCalculationProtocolData.h"
 #include "JsonInputGrassWaveRunupRayleighDefinitions.h"
@@ -82,8 +82,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
         const auto& readCalculationProtocol = readCalculationMethod.at(JsonInputGrassRevetmentDefinitions::CALCULATION_PROTOCOL);
 
         if (const auto& calculationProtocolType = readCalculationProtocol.at(JsonInputGrassRevetmentDefinitions::CALCULATION_PROTOCOL_TYPE)
-                                                                         .get<JsonInputGrassRevetmentWaveRunupCalculationProtocolType>();
-            calculationProtocolType == JsonInputGrassRevetmentWaveRunupCalculationProtocolType::RayleighDiscrete)
+                                                                         .get<JsonInputGrassWaveRunupCalculationProtocolType>();
+            calculationProtocolType == JsonInputGrassWaveRunupCalculationProtocolType::RayleighDiscrete)
         {
             auto calculationProtocolData = make_unique<JsonInputGrassWaveRunupRayleighCalculationProtocolData>();
 

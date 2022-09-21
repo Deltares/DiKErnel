@@ -26,19 +26,19 @@
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
-    enum class JsonInputGrassRevetmentWaveRunupCalculationProtocolType
+    enum class JsonInputGrassWaveRunupCalculationProtocolType
     {
         Unknown,
         RayleighDiscrete
     };
 
-    NLOHMANN_JSON_SERIALIZE_ENUM(JsonInputGrassRevetmentWaveRunupCalculationProtocolType,
+    NLOHMANN_JSON_SERIALIZE_ENUM(JsonInputGrassWaveRunupCalculationProtocolType,
         {
             {
-                JsonInputGrassRevetmentWaveRunupCalculationProtocolType::Unknown, nullptr
+                JsonInputGrassWaveRunupCalculationProtocolType::Unknown, nullptr
             },
             {
-                JsonInputGrassRevetmentWaveRunupCalculationProtocolType::RayleighDiscrete,
+                JsonInputGrassWaveRunupCalculationProtocolType::RayleighDiscrete,
                 JsonInputGrassWaveRunupDefinitions::CALCULATION_PROTOCOL_TYPE_RAYLEIGH_DISCRETE
             }
         });
