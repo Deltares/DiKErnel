@@ -26,6 +26,8 @@
 #include "JsonInputAsphaltWaveImpactParser.h"
 #include "JsonInputCalculationDefinitionParser.h"
 #include "JsonInputDefinitions.h"
+#include "JsonInputGrassOvertoppingCalculationDefinitionParser.h"
+#include "JsonInputGrassOvertoppingParser.h"
 #include "JsonInputGrassWaveImpactCalculationDefinitionParser.h"
 #include "JsonInputGrassWaveImpactParser.h"
 #include "JsonInputGrassWaveRunupCalculationDefinitionParser.h"
@@ -137,6 +139,11 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 parser = CreateLocationParser<JsonInputAsphaltWaveImpactParser>(readLocation);
             }
 
+            if (calculationType == JsonInputCalculationType::GrassOvertopping)
+            {
+                parser = CreateLocationParser<JsonInputGrassOvertoppingParser>(readLocation);
+            }
+
             if (calculationType == JsonInputCalculationType::GrassWaveImpact)
             {
                 parser = CreateLocationParser<JsonInputGrassWaveImpactParser>(readLocation);
@@ -176,6 +183,11 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 if (calculationType == JsonInputCalculationType::AsphaltWaveImpact)
                 {
                     parser = CreateCalculationDefinitionParser<JsonInputAsphaltWaveImpactCalculationDefinitionParser>(readCalculationDefinition);
+                }
+
+                if (calculationType == JsonInputCalculationType::GrassOvertopping)
+                {
+                    parser = CreateCalculationDefinitionParser<JsonInputGrassOvertoppingCalculationDefinitionParser>(readCalculationDefinition);
                 }
 
                 if (calculationType == JsonInputCalculationType::GrassWaveImpact)

@@ -56,6 +56,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
             inline static const std::string CALCULATION_METHOD_TYPE = "rekenmethode";
 
             inline static const std::string CALCULATION_METHOD_TYPE_ASPHALT_WAVE_IMPACT = "asfaltGolfklap";
+            inline static const std::string CALCULATION_METHOD_TYPE_GRASS_OVERTOPPING= "grasOverslag";
             inline static const std::string CALCULATION_METHOD_TYPE_GRASS_WAVE_IMPACT = "grasGolfklap";
             inline static const std::string CALCULATION_METHOD_TYPE_GRASS_WAVE_RUNUP = "grasGolfoploop";
             inline static const std::string CALCULATION_METHOD_TYPE_NATURAL_STONE = "natuursteen";

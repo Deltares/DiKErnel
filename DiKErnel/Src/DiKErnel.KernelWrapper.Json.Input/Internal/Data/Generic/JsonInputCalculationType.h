@@ -30,6 +30,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
     {
         Unknown,
         AsphaltWaveImpact,
+        GrassOvertopping,
         GrassWaveImpact,
         GrassWaveRunup,
         NaturalStone
@@ -42,6 +43,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
             },
             {
                 JsonInputCalculationType::AsphaltWaveImpact, JsonInputDefinitions::CALCULATION_METHOD_TYPE_ASPHALT_WAVE_IMPACT
+            },
+            {
+                JsonInputCalculationType::GrassOvertopping, JsonInputDefinitions::CALCULATION_METHOD_TYPE_GRASS_OVERTOPPING
             },
             {
                 JsonInputCalculationType::GrassWaveImpact, JsonInputDefinitions::CALCULATION_METHOD_TYPE_GRASS_WAVE_IMPACT
