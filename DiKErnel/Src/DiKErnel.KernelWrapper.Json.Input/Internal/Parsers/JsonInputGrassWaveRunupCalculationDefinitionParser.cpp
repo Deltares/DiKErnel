@@ -79,9 +79,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
     unique_ptr<JsonInputGrassWaveRunupCalculationProtocolData> JsonInputGrassWaveRunupCalculationDefinitionParser::ReadCalculationProtocolData(
         const json& readCalculationMethod)
     {
-        const auto& readCalculationProtocol = readCalculationMethod.at(JsonInputGrassWaveRunupDefinitions::CALCULATION_PROTOCOL);
+        const auto& readCalculationProtocol = readCalculationMethod.at(JsonInputGrassRevetmentDefinitions::CALCULATION_PROTOCOL);
 
-        if (const auto& calculationProtocolType = readCalculationProtocol.at(JsonInputGrassWaveRunupDefinitions::CALCULATION_PROTOCOL_TYPE)
+        if (const auto& calculationProtocolType = readCalculationProtocol.at(JsonInputGrassRevetmentDefinitions::CALCULATION_PROTOCOL_TYPE)
                                                                          .get<JsonInputGrassRevetmentWaveRunupCalculationProtocolType>();
             calculationProtocolType == JsonInputGrassRevetmentWaveRunupCalculationProtocolType::RayleighDiscrete)
         {
@@ -89,7 +89,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
             calculationProtocolData->SetFixedNumberOfWaves(
                 JsonInputParserHelper::ParseOptionalInteger(
-                    readCalculationProtocol, JsonInputGrassWaveRunupRayleighDefinitions::FIXED_NUMBER_OF_WAVES));
+                    readCalculationProtocol, JsonInputGrassRevetmentDefinitions::FIXED_NUMBER_OF_WAVES));
 
             calculationProtocolData->SetFrontVelocity(
                 JsonInputParserHelper::ParseOptionalDouble(readCalculationProtocol, JsonInputGrassWaveRunupRayleighDefinitions::FRONT_VELOCITY));
@@ -113,9 +113,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 auto topLayer = make_unique<JsonInputGrassCumulativeOverloadTopLayerDefinitionData>();
 
                 topLayer->SetCriticalCumulativeOverload(
-                    JsonInputParserHelper::ParseOptionalDouble(readTopLayer, JsonInputGrassWaveRunupDefinitions::CRITICAL_CUMULATIVE_OVERLOAD));
+                    JsonInputParserHelper::ParseOptionalDouble(readTopLayer, JsonInputGrassRevetmentDefinitions::CRITICAL_CUMULATIVE_OVERLOAD));
                 topLayer->SetCriticalFrontVelocity(
-                    JsonInputParserHelper::ParseOptionalDouble(readTopLayer, JsonInputGrassWaveRunupDefinitions::CRITICAL_FRONT_VELOCITY));
+                    JsonInputParserHelper::ParseOptionalDouble(readTopLayer, JsonInputGrassRevetmentDefinitions::CRITICAL_FRONT_VELOCITY));
 
                 topLayers.insert(pair(readTopLayer.at(JsonInputDefinitions::TYPE_TOP_LAYER).get<JsonInputGrassRevetmentTopLayerType>(),
                                       move(topLayer)));

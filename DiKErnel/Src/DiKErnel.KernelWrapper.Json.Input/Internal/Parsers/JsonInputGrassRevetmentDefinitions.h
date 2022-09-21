@@ -29,5 +29,13 @@ namespace DiKErnel::KernelWrapper::Json::Input
         public:
             inline static const std::string TOP_LAYER_TYPE_CLOSED_SOD = "grasGeslotenZode";
             inline static const std::string TOP_LAYER_TYPE_OPEN_SOD = "grasOpenZode";
+
+            inline static const std::string CALCULATION_PROTOCOL = "rekenprotocol";
+            inline static const std::string CALCULATION_PROTOCOL_TYPE = "typeRekenprotocol";
+
+            inline static const std::string CRITICAL_CUMULATIVE_OVERLOAD = "kritiekeCumulatieveOverbelasting";
+            inline static const std::string CRITICAL_FRONT_VELOCITY = "kritiekeFrontsnelheid";
+
+            inline static const std::string FIXED_NUMBER_OF_WAVES = "aantalGolvenVast";
     };
 }

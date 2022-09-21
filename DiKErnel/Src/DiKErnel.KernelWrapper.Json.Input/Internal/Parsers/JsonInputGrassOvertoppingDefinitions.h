@@ -24,9 +24,15 @@
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
-    class JsonInputGrassWaveRunupRayleighDefinitions
+    class JsonInputGrassOvertoppingDefinitions
     {
         public:
-            inline static const std::string FRONT_VELOCITY = "frontsnelheid";
+            inline static const std::string ACCELERATION_ALPHA_A = "versnellingAlfaA";
+            inline static const std::string ACCELERATION_ALPHA_A_CREST = "kruin";
+            inline static const std::string ACCELERATION_ALPHA_A_INNER_SLOPE = "binnentalud";
+
+            inline static const std::string FRONT_VELOCITY_CWO = "frontsnelheidCwo";
+
+            inline static const std::string CALCULATION_PROTOCOL_TYPE_DIKES_OVERTOPPING= "dikesOvertopping";
     };
 }

@@ -29,8 +29,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
         public:
             inline static const std::string OUTER_SLOPE = "tanA";
 
-            inline static const std::string CRITICAL_CUMULATIVE_OVERLOAD = "kritiekeCumulatieveOverbelasting";
-            inline static const std::string CRITICAL_FRONT_VELOCITY = "kritiekeFrontsnelheid";
             inline static const std::string INCREASED_LOAD_TRANSITION_ALPHA_M = "verhogingBelastingOvergangAlfaM";
             inline static const std::string REDUCED_STRENGTH_TRANSITION_ALPHA_S = "verlagingSterkteOvergangAlfaS";
 
@@ -41,8 +39,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
             inline static const std::string A_BETA = "aBeta";
 
-            inline static const std::string CALCULATION_PROTOCOL = "rekenprotocol";
-            inline static const std::string CALCULATION_PROTOCOL_TYPE = "typeRekenprotocol";
             inline static const std::string CALCULATION_PROTOCOL_TYPE_RAYLEIGH_DISCRETE = "rayleighDiscreet";
     };
 }
