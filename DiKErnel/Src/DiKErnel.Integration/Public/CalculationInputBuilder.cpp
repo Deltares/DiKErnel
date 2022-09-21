@@ -186,12 +186,11 @@ namespace DiKErnel::Integration
     bool CalculationInputBuilder::HasCharacteristicPointType(
         CharacteristicPointType characteristicPointType) const
     {
-        return any_of(_profilePointDataItems.begin(), _profilePointDataItems.end(),
-                      [characteristicPointType](
-                  const auto& item)
-                      {
-                          return item->GetCharacteristicPoint() == characteristicPointType;
-                      });
+        return ranges::any_of(_profilePointDataItems, [characteristicPointType](
+                          const auto& item)
+                              {
+                                  return item->GetCharacteristicPoint() == characteristicPointType;
+                              });
     }
 
     void CalculationInputBuilder::RegisterEventAndThrowCalculationInputBuildException(
@@ -203,11 +202,11 @@ namespace DiKErnel::Integration
 
     bool CalculationInputBuilder::HasOvertoppingLocationDependentInput() const
     {
-        return any_of(_locationConstructionPropertiesItems.begin(), _locationConstructionPropertiesItems.end(), [](
-                  const auto& item)
-                      {
-                          return dynamic_cast<const GrassRevetmentOvertoppingLocationConstructionProperties*>(item.get())
-                                  != nullptr;
-                      });
+        return ranges::any_of(_locationConstructionPropertiesItems, [](
+                          const auto& item)
+                              {
+                                  return dynamic_cast<const GrassRevetmentOvertoppingLocationConstructionProperties*>(item.get())
+                                          != nullptr;
+                              });
     }
 }
