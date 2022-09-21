@@ -33,6 +33,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
             inline static const std::string FRONT_VELOCITY_CWO = "frontsnelheidCwo";
 
-            inline static const std::string CALCULATION_PROTOCOL_TYPE_DIKES_OVERTOPPING= "dikesOvertopping";
+            inline static const std::string CALCULATION_PROTOCOL_TYPE_DIKES_OVERTOPPING = "dikesOvertopping";
+            inline static const std::string DIKE_HEIGHT = "dijkHoogte";
     };
 }
