@@ -33,7 +33,7 @@ namespace DiKErnel::System::Test
 
     struct GrassRevetmentOvertoppingCalculationTest : Test
     {
-        const vector<double> _roughnessCoefficientsForTestCase1
+        const vector<double> _roughnessCoefficientsForSchematization1
         {
             1.0,
             1.0,
@@ -47,7 +47,7 @@ namespace DiKErnel::System::Test
             0.8
         };
 
-        void ConfigureBuilderWithSchematizationForTestCase1(
+        void ConfigureBuilderWithSchematizationForTestSchematization1(
             CalculationInputBuilder& builder) const
         {
             builder.AddTimeStep(0, 3600, 5.5, 1.9, 4.7, -10.0);
@@ -67,16 +67,16 @@ namespace DiKErnel::System::Test
             builder.AddTimeStep(50400, 54000, 5.6, 2.6, 5.12, 18.0);
             builder.AddTimeStep(54000, 57600, 5.5, 2.65, 5.15, 20.0);
 
-            builder.AddDikeProfileSegment(0.0, -0.1, 5.0, 0.0, &_roughnessCoefficientsForTestCase1.at(0));
-            builder.AddDikeProfileSegment(5.0, 0.0, 15.0, 3.0, &_roughnessCoefficientsForTestCase1.at(1));
-            builder.AddDikeProfileSegment(15.0, 3.0, 22.0, 3.2, &_roughnessCoefficientsForTestCase1.at(2));
-            builder.AddDikeProfileSegment(22.0, 3.2, 30.0, 7.5, &_roughnessCoefficientsForTestCase1.at(3));
-            builder.AddDikeProfileSegment(30.0, 7.5, 31.0, 7.6, &_roughnessCoefficientsForTestCase1.at(4));
-            builder.AddDikeProfileSegment(31.0, 7.6, 34.0, 7.7, &_roughnessCoefficientsForTestCase1.at(5));
-            builder.AddDikeProfileSegment(34.0, 7.7, 35.0, 7.4, &_roughnessCoefficientsForTestCase1.at(6));
-            builder.AddDikeProfileSegment(35.0, 7.4, 45.0, 5.0, &_roughnessCoefficientsForTestCase1.at(7));
-            builder.AddDikeProfileSegment(45.0, 5.0, 60.0, 0.5, &_roughnessCoefficientsForTestCase1.at(8));
-            builder.AddDikeProfileSegment(60.0, 0.5, 70.0, 0.5, &_roughnessCoefficientsForTestCase1.at(9));
+            builder.AddDikeProfileSegment(0.0, -0.1, 5.0, 0.0, &_roughnessCoefficientsForSchematization1.at(0));
+            builder.AddDikeProfileSegment(5.0, 0.0, 15.0, 3.0, &_roughnessCoefficientsForSchematization1.at(1));
+            builder.AddDikeProfileSegment(15.0, 3.0, 22.0, 3.2, &_roughnessCoefficientsForSchematization1.at(2));
+            builder.AddDikeProfileSegment(22.0, 3.2, 30.0, 7.5, &_roughnessCoefficientsForSchematization1.at(3));
+            builder.AddDikeProfileSegment(30.0, 7.5, 31.0, 7.6, &_roughnessCoefficientsForSchematization1.at(4));
+            builder.AddDikeProfileSegment(31.0, 7.6, 34.0, 7.7, &_roughnessCoefficientsForSchematization1.at(5));
+            builder.AddDikeProfileSegment(34.0, 7.7, 35.0, 7.4, &_roughnessCoefficientsForSchematization1.at(6));
+            builder.AddDikeProfileSegment(35.0, 7.4, 45.0, 5.0, &_roughnessCoefficientsForSchematization1.at(7));
+            builder.AddDikeProfileSegment(45.0, 5.0, 60.0, 0.5, &_roughnessCoefficientsForSchematization1.at(8));
+            builder.AddDikeProfileSegment(60.0, 0.5, 70.0, 0.5, &_roughnessCoefficientsForSchematization1.at(9));
 
             builder.AddDikeProfilePointData(5.0, CharacteristicPointType::OuterToe);
             builder.AddDikeProfilePointData(15.0, CharacteristicPointType::CrestOuterBerm);
@@ -87,7 +87,7 @@ namespace DiKErnel::System::Test
         }
 
         [[nodiscard]]
-        unique_ptr<GrassRevetmentOvertoppingLocationConstructionProperties> CreateLocationConstructionPropertiesForTestCase1(
+        unique_ptr<GrassRevetmentOvertoppingLocationConstructionProperties> CreateLocationConstructionPropertiesForSchematization1(
             double x) const
         {
             auto grassRevetmentOvertoppingLocationConstructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(
@@ -139,14 +139,15 @@ namespace DiKErnel::System::Test
         }
     };
 
-    TEST_F(GrassRevetmentOvertoppingCalculationTest, GivenValidCalculationInput_WhenCalculating_ThenReturnsExpectedCalculationResult)
+    TEST_F(GrassRevetmentOvertoppingCalculationTest,
+           GivenCalculationInputForSchematization1TestCase1_WhenCalculating_ThenReturnsExpectedCalculationResult)
     {
         // Given
         CalculationInputBuilder builder;
 
-        auto locationConstructionProperties = CreateLocationConstructionPropertiesForTestCase1(50);
+        auto locationConstructionProperties = CreateLocationConstructionPropertiesForSchematization1(50);
 
-        ConfigureBuilderWithSchematizationForTestCase1(builder);
+        ConfigureBuilderWithSchematizationForTestSchematization1(builder);
 
         builder.AddGrassOvertoppingLocation(move(locationConstructionProperties));
 
@@ -159,6 +160,76 @@ namespace DiKErnel::System::Test
         // Then
         constexpr int expectedTimeOfFailure = 33913;
 
-        AssertOutput(calculator, 1.4821425664361452, &expectedTimeOfFailure);
+        AssertOutput(calculator, 1.48214256643614, &expectedTimeOfFailure);
+    }
+
+    TEST_F(GrassRevetmentOvertoppingCalculationTest,
+           GivenCalculationInputForSchematization1TestCase2_WhenCalculating_ThenReturnsExpectedCalculationResult)
+    {
+        // Given
+        CalculationInputBuilder builder;
+
+        auto locationConstructionProperties = CreateLocationConstructionPropertiesForSchematization1(33);
+
+        ConfigureBuilderWithSchematizationForTestSchematization1(builder);
+
+        builder.AddGrassOvertoppingLocation(move(locationConstructionProperties));
+
+        const auto calculationInput = builder.Build();
+
+        // When
+        Calculator calculator(*calculationInput);
+        calculator.WaitForCompletion();
+
+        // Then
+        AssertOutput(calculator, 0.0751492271841895);
+    }
+
+    TEST_F(GrassRevetmentOvertoppingCalculationTest,
+           GivenCalculationInputForSchematization1TestCase3_WhenCalculating_ThenReturnsExpectedCalculationResult)
+    {
+        // Given
+        CalculationInputBuilder builder;
+
+        auto locationConstructionProperties = CreateLocationConstructionPropertiesForSchematization1(33);
+
+        locationConstructionProperties->SetDikeHeight(make_unique<double>(8));
+
+        ConfigureBuilderWithSchematizationForTestSchematization1(builder);
+
+        builder.AddGrassOvertoppingLocation(move(locationConstructionProperties));
+
+        const auto calculationInput = builder.Build();
+
+        // When
+        Calculator calculator(*calculationInput);
+        calculator.WaitForCompletion();
+
+        // Then
+        AssertOutput(calculator, 0.0403132797601268);
+    }
+
+    TEST_F(GrassRevetmentOvertoppingCalculationTest,
+           GivenCalculationInputForSchematization1TestCase4_WhenCalculating_ThenReturnsExpectedCalculationResult)
+    {
+        // Given
+        CalculationInputBuilder builder;
+
+        auto locationConstructionProperties = CreateLocationConstructionPropertiesForSchematization1(33);
+
+        locationConstructionProperties->SetDikeHeight(make_unique<double>(5.65));
+
+        ConfigureBuilderWithSchematizationForTestSchematization1(builder);
+
+        builder.AddGrassOvertoppingLocation(move(locationConstructionProperties));
+
+        const auto calculationInput = builder.Build();
+
+        // When
+        Calculator calculator(*calculationInput);
+        calculator.WaitForCompletion();
+
+        // Then
+        AssertOutput(calculator, 0.360805793202144);
     }
 }
