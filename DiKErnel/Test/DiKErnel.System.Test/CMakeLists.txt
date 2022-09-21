@@ -19,5 +19,6 @@ source_group("" FILES ${SOURCEFILES})
 target_link_libraries(${EXENAME} PUBLIC
   DiKErnel.Integration
   DiKErnel.Util.TestUtil
+  DiKErnel.TestUtil
   gtest
 )
