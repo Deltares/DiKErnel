@@ -29,7 +29,15 @@ namespace DiKErnel::KernelWrapper::Json::Input
         map<JsonInputGrassRevetmentTopLayerType, unique_ptr<JsonInputGrassCumulativeOverloadTopLayerDefinitionData>>
         topLayerDefinitionData)
         : JsonInputCalculationDefinitionData(move(failureNumber)),
-          _topLayerDefinitionData(move(topLayerDefinitionData)) {}
+          _topLayerDefinitionData(move(topLayerDefinitionData))
+    {
+        for (const auto& [topLayerType, topLayerDefinition] : _topLayerDefinitionData)
+        {
+            _topLayerDefinitionDataReferences.insert(
+                pair<JsonInputGrassRevetmentTopLayerType, reference_wrapper<JsonInputGrassCumulativeOverloadTopLayerDefinitionData>>(
+                    topLayerType, *topLayerDefinition));
+        }
+    }
 
     #pragma region Set methods
 
@@ -67,6 +75,12 @@ namespace DiKErnel::KernelWrapper::Json::Input
         unique_ptr<double> factorCtm)
     {
         _factorCtm = move(factorCtm);
+    }
+
+    const map<JsonInputGrassRevetmentTopLayerType, reference_wrapper<JsonInputGrassCumulativeOverloadTopLayerDefinitionData>>&
+    JsonInputGrassOvertoppingCalculationDefinitionData::GetTopLayerDefinitionData() const
+    {
+        return _topLayerDefinitionDataReferences;
     }
 
     #pragma endregion

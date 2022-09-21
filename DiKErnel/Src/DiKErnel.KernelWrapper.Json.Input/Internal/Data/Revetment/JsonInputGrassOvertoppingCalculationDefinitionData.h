@@ -58,7 +58,11 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
             #pragma endregion
 
-            #pragma region Set methods
+            #pragma region Get methods
+
+            [[nodiscard]]
+            const std::map<JsonInputGrassRevetmentTopLayerType, std::reference_wrapper<JsonInputGrassCumulativeOverloadTopLayerDefinitionData>>&
+            GetTopLayerDefinitionData() const;
 
             [[nodiscard]]
             const double* GetDikeHeight() const;
@@ -83,8 +87,10 @@ namespace DiKErnel::KernelWrapper::Json::Input
         private:
             std::map<JsonInputGrassRevetmentTopLayerType, std::unique_ptr<JsonInputGrassCumulativeOverloadTopLayerDefinitionData>>
             _topLayerDefinitionData;
+            std::map<JsonInputGrassRevetmentTopLayerType, std::reference_wrapper<JsonInputGrassCumulativeOverloadTopLayerDefinitionData>>
+            _topLayerDefinitionDataReferences;
 
-            std::unique_ptr<double> _dikeHeight= nullptr;
+            std::unique_ptr<double> _dikeHeight = nullptr;
             std::unique_ptr<double> _accelerationAlphaACrest = nullptr;
             std::unique_ptr<double> _accelerationAlphaAInnerSlope = nullptr;
             std::unique_ptr<int> _fixedNumberOfWaves = nullptr;
