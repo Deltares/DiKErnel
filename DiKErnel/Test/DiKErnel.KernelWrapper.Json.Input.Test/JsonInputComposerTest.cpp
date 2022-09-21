@@ -26,6 +26,8 @@
 #include "CalculationInput.h"
 #include "EventAssertHelper.h"
 #include "EventRegistry.h"
+#include "GrassRevetmentOvertoppingLocationDependentInput.h"
+#include "GrassRevetmentOvertoppingLocationDependentInputAssertHelper.h"
 #include "GrassRevetmentWaveImpactLocationDependentInput.h"
 #include "GrassRevetmentWaveImpactLocationDependentInputAssertHelper.h"
 #include "GrassRevetmentWaveRunupLocationDependentInputAssertHelper.h"
@@ -142,7 +144,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
         TimeDependentInputAssertHelper::AssertTimeDependentInputItem(1200, 2000, 2, 0.5, 4, 8, timeDependentInputItems.at(4));
 
         const auto& locationDependentInputItems = calculationInput.GetLocationDependentInputItems();
-        ASSERT_EQ(4, locationDependentInputItems.size());
+        ASSERT_EQ(5, locationDependentInputItems.size());
 
         const auto* naturalStoneRevetmentLocationDependentInputItem = dynamic_cast<NaturalStoneRevetmentLocationDependentInput*>(
             &locationDependentInputItems.at(0).get());
@@ -240,6 +242,30 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
 
         AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertFactors(
             expectedWidthFactors, expectedDepthFactors, expectedImpactFactors, *asphaltRevetmentWaveImpactLocationDependentInputItem);
+
+        const auto* grassRevetmentOvertoppingLocationDependentInputItem = dynamic_cast<GrassRevetmentOvertoppingLocationDependentInput*>(
+            &locationDependentInputItems.at(4).get());
+        ASSERT_NE(nullptr, grassRevetmentOvertoppingLocationDependentInputItem);
+        LocationDependentInputAssertHelper::AssertDamageProperties(0.023, 0.3, *grassRevetmentOvertoppingLocationDependentInputItem);
+
+        constexpr auto expectedDikeHeight = 8.21;
+        GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertGeneralProperties(
+            64, &expectedDikeHeight, *grassRevetmentOvertoppingLocationDependentInputItem);
+
+        GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertTransitionAlpha(
+            0.5, 1.8, *grassRevetmentOvertoppingLocationDependentInputItem);
+
+        GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertAverageNumberOfWaves(
+            0.29, *grassRevetmentOvertoppingLocationDependentInputItem);
+
+        GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertCumulativeOverload(
+            7001, 100000, *grassRevetmentOvertoppingLocationDependentInputItem);
+
+        GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertFrontVelocity(
+            3.6, 45.1, *grassRevetmentOvertoppingLocationDependentInputItem);
+
+        GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertAccelerationAlphaA(
+            1.8, 4.4, grassRevetmentOvertoppingLocationDependentInputItem->GetLocationDependentAccelerationAlphaA());
     }
 
     TEST_F(JsonInputComposerTest,
@@ -275,7 +301,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
         TimeDependentInputAssertHelper::AssertTimeDependentInputItem(0, 100, 0.1, 0.5, 2, -10, timeDependentInputItems.at(0));
 
         const auto& locationDependentInputItems = calculationInput.GetLocationDependentInputItems();
-        ASSERT_EQ(6, locationDependentInputItems.size());
+        ASSERT_EQ(8, locationDependentInputItems.size());
 
         const auto* naturalStoneRevetmentLocationDependentInputItem = dynamic_cast<NaturalStoneRevetmentLocationDependentInput*>(
             &locationDependentInputItems.at(0).get());
@@ -443,12 +469,64 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
 
         AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertFactors(
             expectedWidthFactors, expectedDepthFactors, expectedImpactFactors, *asphaltRevetmentWaveImpactLocationDependentInputItem);
+
+        const auto* grassRevetmentOvertoppingLocationDependentInputItem1 = dynamic_cast<GrassRevetmentOvertoppingLocationDependentInput*>(
+            &locationDependentInputItems.at(6).get());
+        ASSERT_NE(nullptr, grassRevetmentOvertoppingLocationDependentInputItem1);
+        LocationDependentInputAssertHelper::AssertDamageProperties(0, 1, *grassRevetmentOvertoppingLocationDependentInputItem1);
+
+        GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertGeneralProperties(
+            42, nullptr, *grassRevetmentOvertoppingLocationDependentInputItem1);
+
+        GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertTransitionAlpha(
+            1, 1, *grassRevetmentOvertoppingLocationDependentInputItem1);
+
+        GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertAverageNumberOfWaves(
+            0.92, *grassRevetmentOvertoppingLocationDependentInputItem1);
+
+        GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertCumulativeOverload(
+            7000, 10000, *grassRevetmentOvertoppingLocationDependentInputItem1);
+
+        GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertFrontVelocity(
+            6.6, 1.45, *grassRevetmentOvertoppingLocationDependentInputItem1);
+
+        GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertAccelerationAlphaA(
+            1, 1.4, grassRevetmentOvertoppingLocationDependentInputItem1->GetLocationDependentAccelerationAlphaA());
+
+        const auto* grassRevetmentOvertoppingLocationDependentInputItem2 = dynamic_cast<GrassRevetmentOvertoppingLocationDependentInput*>(
+            &locationDependentInputItems.at(7).get());
+        ASSERT_NE(nullptr, grassRevetmentOvertoppingLocationDependentInputItem2);
+        LocationDependentInputAssertHelper::AssertDamageProperties(0, 1, *grassRevetmentOvertoppingLocationDependentInputItem2);
+        
+        GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertGeneralProperties(
+            64, nullptr, *grassRevetmentOvertoppingLocationDependentInputItem2);
+
+        GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertTransitionAlpha(
+            1, 1, *grassRevetmentOvertoppingLocationDependentInputItem2);
+
+        GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertAverageNumberOfWaves(
+            0.92, *grassRevetmentOvertoppingLocationDependentInputItem2);
+
+        GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertCumulativeOverload(
+            7000, 10000, *grassRevetmentOvertoppingLocationDependentInputItem2);
+
+        GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertFrontVelocity(
+            4.3, 1.45, *grassRevetmentOvertoppingLocationDependentInputItem2);
+
+        GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertAccelerationAlphaA(
+            1, 1.4, grassRevetmentOvertoppingLocationDependentInputItem2->GetLocationDependentAccelerationAlphaA());
     }
 
     TEST_F(JsonInputComposerTest,
            GivenJsonInputWithInvalidAsphaltRevetmentWaveImpactTypeTopLayer_WhenGetInputDataFromJson_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         PerformInvalidJsonTest("InvalidAsphaltRevetmentWaveImpactTopLayerType.json", "Cannot convert top layer type.");
+    }
+
+    TEST_F(JsonInputComposerTest,
+           GivenJsonInputWithInvalidGrassRevetmentOvertoppingTypeTopLayer_WhenGetInputDataFromJson_ThenReturnsResultWithSuccessfulFalseAndEvent)
+    {
+        PerformInvalidJsonTest("InvalidGrassRevetmentOvertoppingTopLayerType.json", "Cannot convert top layer type.");
     }
 
     TEST_F(JsonInputComposerTest,

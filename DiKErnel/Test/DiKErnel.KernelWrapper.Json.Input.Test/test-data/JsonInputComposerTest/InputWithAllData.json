@@ -163,6 +163,14 @@
                 "dikte": 0.20,
                 "stijfheidsmodulus": 15000
             }
+        },
+        {
+            "positie": 64,
+            "beginschade": 0.023,
+            "rekenmethode": "grasGolfoverslag",
+            "typeToplaag": "grasGeslotenZode",
+            "verhogingBelastingOvergangAlfaM": 0.5,
+            "verlagingSterkteOvergangAlfaS": 1.8
         }
     ],
     "rekenmethoden": [
@@ -318,6 +326,25 @@
                     2.1
                 ]
             ]
+        },
+        {
+            "rekenmethode": "grasGolfoverslag",
+            "faalgetal": 0.3,
+            "toplagen": [
+                {
+                    "typeToplaag": "grasGeslotenZode",
+                    "kritiekeCumulatieveOverbelasting": 7001,
+                    "kritiekeFrontsnelheid": 3.6
+                }
+            ],
+            "dijkHoogte": 8.21,
+            "versnellingAlfaA": {
+                "kruin": 1.8,
+                "binnentalud": 4.4
+            },
+            "aantalGolvenVast": 100000,
+            "frontsnelheidCwo": 45.1,
+            "factorCtm": 0.29
         }
     ]
 }

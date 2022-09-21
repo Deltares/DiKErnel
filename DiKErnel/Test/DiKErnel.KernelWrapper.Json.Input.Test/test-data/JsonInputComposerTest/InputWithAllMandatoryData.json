@@ -69,6 +69,16 @@
                 "dikte": 0.16,
                 "stijfheidsmodulus": 18214
             }
+        },
+        {
+            "positie": 42,
+            "rekenmethode": "grasGolfoverslag",
+            "typeToplaag": "grasGeslotenZode"
+        },
+        {
+            "positie": 64,
+            "rekenmethode": "grasGolfoverslag",
+            "typeToplaag": "grasOpenZode"
         }
     ],
     "rekenmethoden": [
