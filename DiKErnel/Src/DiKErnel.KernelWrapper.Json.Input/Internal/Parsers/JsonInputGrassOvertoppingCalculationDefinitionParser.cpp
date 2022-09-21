@@ -49,11 +49,11 @@ namespace DiKErnel::KernelWrapper::Json::Input
         {
             const auto& readAccelerationAlphaA = readCalculationMethod.at(JsonInputGrassOvertoppingDefinitions::ACCELERATION_ALPHA_A);
 
-            calculationDefinition->SetAccelerationAlphaACrest(
+            calculationDefinition->SetAccelerationAlphaAForCrest(
                 JsonInputParserHelper::ParseOptionalDouble(
                     readAccelerationAlphaA, JsonInputGrassOvertoppingDefinitions::ACCELERATION_ALPHA_A_CREST));
 
-            calculationDefinition->SetAccelerationAlphaAInnerSlope(
+            calculationDefinition->SetAccelerationAlphaAForInnerSlope(
                 JsonInputParserHelper::ParseOptionalDouble(
                     readAccelerationAlphaA, JsonInputGrassOvertoppingDefinitions::ACCELERATION_ALPHA_A_INNER_SLOPE));
         }

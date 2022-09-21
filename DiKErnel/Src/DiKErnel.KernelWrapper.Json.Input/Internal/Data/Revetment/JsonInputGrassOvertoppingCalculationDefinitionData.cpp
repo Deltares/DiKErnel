@@ -47,16 +47,16 @@ namespace DiKErnel::KernelWrapper::Json::Input
         _dikeHeight = move(dikeHeight);
     }
 
-    void JsonInputGrassOvertoppingCalculationDefinitionData::SetAccelerationAlphaACrest(
-        unique_ptr<double> accelerationAlphaACrest)
+    void JsonInputGrassOvertoppingCalculationDefinitionData::SetAccelerationAlphaAForCrest(
+        unique_ptr<double> accelerationAlphaAForCrest)
     {
-        _accelerationAlphaACrest = move(accelerationAlphaACrest);
+        _accelerationAlphaAForCrest = move(accelerationAlphaAForCrest);
     }
 
-    void JsonInputGrassOvertoppingCalculationDefinitionData::SetAccelerationAlphaAInnerSlope(
-        unique_ptr<double> accelerationAlphaAInnerSlope)
+    void JsonInputGrassOvertoppingCalculationDefinitionData::SetAccelerationAlphaAForInnerSlope(
+        unique_ptr<double> accelerationAlphaAForInnerSlope)
     {
-        _accelerationAlphaAInnerSlope = move(accelerationAlphaAInnerSlope);
+        _accelerationAlphaAForInnerSlope = move(accelerationAlphaAForInnerSlope);
     }
 
     void JsonInputGrassOvertoppingCalculationDefinitionData::SetFixedNumberOfWaves(
@@ -92,14 +92,14 @@ namespace DiKErnel::KernelWrapper::Json::Input
         return _dikeHeight.get();
     }
 
-    const double* JsonInputGrassOvertoppingCalculationDefinitionData::GetAccelerationAlphaACrest() const
+    const double* JsonInputGrassOvertoppingCalculationDefinitionData::GetAccelerationAlphaAForCrest() const
     {
-        return _accelerationAlphaACrest.get();
+        return _accelerationAlphaAForCrest.get();
     }
 
-    const double* JsonInputGrassOvertoppingCalculationDefinitionData::GetAccelerationAlphaAInnerSlope() const
+    const double* JsonInputGrassOvertoppingCalculationDefinitionData::GetAccelerationAlphaAForInnerSlope() const
     {
-        return _accelerationAlphaAInnerSlope.get();
+        return _accelerationAlphaAForInnerSlope.get();
     }
 
     const int* JsonInputGrassOvertoppingCalculationDefinitionData::GetFixedNumberOfWaves() const

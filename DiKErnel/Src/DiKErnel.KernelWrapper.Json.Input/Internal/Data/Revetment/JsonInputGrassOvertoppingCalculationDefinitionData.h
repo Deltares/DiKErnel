@@ -41,11 +41,11 @@ namespace DiKErnel::KernelWrapper::Json::Input
             void SetDikeHeight(
                 std::unique_ptr<double> dikeHeight);
 
-            void SetAccelerationAlphaACrest(
-                std::unique_ptr<double> accelerationAlphaACrest);
+            void SetAccelerationAlphaAForCrest(
+                std::unique_ptr<double> accelerationAlphaAForCrest);
 
-            void SetAccelerationAlphaAInnerSlope(
-                std::unique_ptr<double> accelerationAlphaAInnerSlope);
+            void SetAccelerationAlphaAForInnerSlope(
+                std::unique_ptr<double> accelerationAlphaAForInnerSlope);
 
             void SetFixedNumberOfWaves(
                 std::unique_ptr<int> fixedNumberOfWaves);
@@ -68,10 +68,10 @@ namespace DiKErnel::KernelWrapper::Json::Input
             const double* GetDikeHeight() const;
 
             [[nodiscard]]
-            const double* GetAccelerationAlphaACrest() const;
+            const double* GetAccelerationAlphaAForCrest() const;
 
             [[nodiscard]]
-            const double* GetAccelerationAlphaAInnerSlope() const;
+            const double* GetAccelerationAlphaAForInnerSlope() const;
 
             [[nodiscard]]
             const int* GetFixedNumberOfWaves() const;
@@ -91,8 +91,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
             _topLayerDefinitionDataReferences;
 
             std::unique_ptr<double> _dikeHeight = nullptr;
-            std::unique_ptr<double> _accelerationAlphaACrest = nullptr;
-            std::unique_ptr<double> _accelerationAlphaAInnerSlope = nullptr;
+            std::unique_ptr<double> _accelerationAlphaAForCrest = nullptr;
+            std::unique_ptr<double> _accelerationAlphaAForInnerSlope = nullptr;
             std::unique_ptr<int> _fixedNumberOfWaves = nullptr;
             std::unique_ptr<double> _frontVelocity = nullptr;
             std::unique_ptr<double> _factorCtm = nullptr;
