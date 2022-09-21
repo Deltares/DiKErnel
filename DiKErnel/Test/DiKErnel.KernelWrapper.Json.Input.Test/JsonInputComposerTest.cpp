@@ -285,16 +285,25 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
         const auto& profileData = calculationInput.GetProfileData();
 
         const auto& profileSegments = profileData.GetProfileSegments();
-        ASSERT_EQ(1, profileSegments.size());
-        auto profileSegment = profileSegments.at(0).get();
-        ProfileDataAssertHelper::AssertProfileSegment(30, 5.55, 65, 15.7, 1, profileSegment);
+        ASSERT_EQ(3, profileSegments.size());
+        auto profileSegment1 = profileSegments.at(0).get();
+        auto profileSegment2 = profileSegments.at(1).get();
+        auto profileSegment3 = profileSegments.at(2).get();
+        ProfileDataAssertHelper::AssertProfileSegment(30, 5.55, 65, 15.7, 1, profileSegment1);
+        ProfileDataAssertHelper::AssertProfileSegment(65, 15.7, 75, 15.7, 1, profileSegment2);
+        ProfileDataAssertHelper::AssertProfileSegment(75, 15.7, 85, 10, 1, profileSegment3);
 
         const auto& characteristicPoints = profileData.GetCharacteristicPoints();
-        ASSERT_EQ(2, characteristicPoints.size());
-        ProfileDataAssertHelper::AssertCharacteristicPoint(profileSegment.GetStartPoint(), CharacteristicPointType::OuterToe,
+        ASSERT_EQ(4, characteristicPoints.size());
+
+        ProfileDataAssertHelper::AssertCharacteristicPoint(profileSegment1.GetStartPoint(), CharacteristicPointType::OuterToe,
                                                            characteristicPoints.at(0));
-        ProfileDataAssertHelper::AssertCharacteristicPoint(profileSegment.GetEndPoint(), CharacteristicPointType::OuterCrest,
+        ProfileDataAssertHelper::AssertCharacteristicPoint(profileSegment1.GetEndPoint(), CharacteristicPointType::OuterCrest,
                                                            characteristicPoints.at(1));
+        ProfileDataAssertHelper::AssertCharacteristicPoint(profileSegment3.GetStartPoint(), CharacteristicPointType::InnerCrest,
+                                                           characteristicPoints.at(2));
+        ProfileDataAssertHelper::AssertCharacteristicPoint(profileSegment3.GetEndPoint(), CharacteristicPointType::InnerToe,
+                                                           characteristicPoints.at(3));
 
         const auto& timeDependentInputItems = calculationInput.GetTimeDependentInputItems();
         ASSERT_EQ(1, timeDependentInputItems.size());
@@ -497,7 +506,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
             &locationDependentInputItems.at(7).get());
         ASSERT_NE(nullptr, grassRevetmentOvertoppingLocationDependentInputItem2);
         LocationDependentInputAssertHelper::AssertDamageProperties(0, 1, *grassRevetmentOvertoppingLocationDependentInputItem2);
-        
+
         GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertGeneralProperties(
             64, nullptr, *grassRevetmentOvertoppingLocationDependentInputItem2);
 
