@@ -23,12 +23,14 @@
 #include <cmath>
 
 #include "CharacteristicPointsHelper.h"
+#include "ProfileDataValidator.h"
 #include "ValidationHelper.h"
 #include "ValidationIssue.h"
 
 namespace DiKErnel::Integration
 {
     using namespace Core;
+    using namespace DomainLibrary;
     using namespace std;
     using namespace Util;
 
@@ -55,6 +57,11 @@ namespace DiKErnel::Integration
     bool ProfileData::Validate() const
     {
         vector<unique_ptr<ValidationIssue>> validationIssues;
+        for (const auto& profileSegment : _profileSegments)
+        {
+            validationIssues.emplace_back(ProfileDataValidator::RoughnessCoefficient(profileSegment->GetRoughnessCoefficient()));
+        }
+
         return ValidationHelper::RegisterValidationIssues(validationIssues);
     }
 
