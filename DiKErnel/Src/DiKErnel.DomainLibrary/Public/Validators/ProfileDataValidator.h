@@ -19,6 +19,7 @@
 // All rights reserved.
 
 #pragma once
+
 #include <memory>
 
 #include "ValidationIssue.h"
@@ -39,7 +40,7 @@ namespace DiKErnel::DomainLibrary
              * \return A validation issue when the roughness coefficient is not valid; nullptr
              *         otherwise.
              */
-            static std::unique_ptr<Util::ValidationIssue> ValidateRoughnessCoefficient(
+            static std::unique_ptr<Util::ValidationIssue> RoughnessCoefficient(
                 double roughnessCoefficient);
     };
 }

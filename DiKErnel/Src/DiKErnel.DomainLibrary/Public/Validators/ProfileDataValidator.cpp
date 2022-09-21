@@ -25,12 +25,12 @@ namespace DiKErnel::DomainLibrary
     using namespace std;
     using namespace Util;
 
-    unique_ptr<ValidationIssue> ProfileDataValidator::ValidateRoughnessCoefficient(
+    unique_ptr<ValidationIssue> ProfileDataValidator::RoughnessCoefficient(
         const double roughnessCoefficient)
     {
         if (roughnessCoefficient < 0.5 || roughnessCoefficient > 1)
         {
-            return make_unique<ValidationIssue>(ValidationIssueType::Warning, "Roughness coefficient should be in range [0.5, 1].");
+            return make_unique<ValidationIssue>(ValidationIssueType::Error, "Roughness coefficient should be in range [0.5, 1].");
         }
 
         return nullptr;

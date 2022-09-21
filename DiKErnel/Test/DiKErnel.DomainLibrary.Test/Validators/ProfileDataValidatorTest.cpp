@@ -20,6 +20,7 @@
 
 #include <gtest/gtest.h>
 
+#include "ProfileDataValidator.h"
 #include "TimeStepValidator.h"
 #include "ValidatorAssertHelper.h"
 
@@ -32,25 +33,29 @@ namespace DiKErnel::DomainLibrary::Test
 
     struct ProfileDataValidatorTest : Test
     {
-        static unique_ptr<ValidationIssue> IncrementOfTime(
-            const int beginTime)
+        static unique_ptr<ValidationIssue> RoughnessCoefficient(
+            const double roughnessCoefficient)
         {
-            return TimeStepValidator::IncrementOfTime(beginTime, 100);
+            return ProfileDataValidator::RoughnessCoefficient(roughnessCoefficient);
         }
     };
 
-    TEST_F(ProfileDataValidatorTest, IncrementOfTime_VariousScenarios_ExpectedValues)
+    TEST_F(ProfileDataValidatorTest, RoughnessCoefficient_VariousScenarios_ExpectedValues)
     {
-        const auto validateAction = IncrementOfTime;
+        const auto validateAction = RoughnessCoefficient;
 
-        constexpr auto errorMessage = "BeginTime must be smaller than EndTime.";
+        constexpr auto errorMessage = "Roughness coefficient should be in range [0.5, 1].";
 
-        ValidatorAssertHelper::AssertValue<int>(validateAction, ValidatorAssertHelper::INTEGER_MIN);
+        ValidatorAssertHelper::AssertValue<double>(validateAction, ValidatorAssertHelper::DOUBLE_MIN, ValidationIssueType::Error, errorMessage);
 
-        ValidatorAssertHelper::AssertValue<int>(validateAction, 99);
-        ValidatorAssertHelper::AssertValue<int>(validateAction, 100, ValidationIssueType::Error, errorMessage);
-        ValidatorAssertHelper::AssertValue<int>(validateAction, 101, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertValue<double>(validateAction, 0.5 - ValidatorAssertHelper::EPSILON, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertValue<double>(validateAction, 0.5);
+        ValidatorAssertHelper::AssertValue<double>(validateAction, 0.5 + ValidatorAssertHelper::EPSILON);
 
-        ValidatorAssertHelper::AssertValue<int>(validateAction, ValidatorAssertHelper::INTEGER_MAX, ValidationIssueType::Error, errorMessage);
+        ValidatorAssertHelper::AssertValue<double>(validateAction, 1.0 - ValidatorAssertHelper::EPSILON);
+        ValidatorAssertHelper::AssertValue<double>(validateAction, 1.0);
+        ValidatorAssertHelper::AssertValue<double>(validateAction, 1.0 + ValidatorAssertHelper::EPSILON, ValidationIssueType::Error, errorMessage);
+
+        ValidatorAssertHelper::AssertValue<double>(validateAction, ValidatorAssertHelper::DOUBLE_MAX, ValidationIssueType::Error, errorMessage);
     }
 }
