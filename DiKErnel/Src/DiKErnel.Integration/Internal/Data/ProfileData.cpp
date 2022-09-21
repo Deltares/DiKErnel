@@ -23,13 +23,11 @@
 #include <cmath>
 
 #include "CharacteristicPointsHelper.h"
-#include "ProfileValidator.h"
 #include "ValidationIssue.h"
 
 namespace DiKErnel::Integration
 {
     using namespace Core;
-    using namespace DomainLibrary;
     using namespace std;
     using namespace Util;
 
