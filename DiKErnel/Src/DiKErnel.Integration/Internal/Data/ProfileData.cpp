@@ -24,7 +24,6 @@
 
 #include "CharacteristicPointsHelper.h"
 #include "ProfileValidator.h"
-#include "ValidationHelper.h"
 #include "ValidationIssue.h"
 
 namespace DiKErnel::Integration
@@ -52,19 +51,6 @@ namespace DiKErnel::Integration
         {
             _characteristicPointReferences.emplace_back(*characteristicPoint);
         }
-    }
-
-    bool ProfileData::Validate() const
-    {
-        const auto outerToe = CharacteristicPointsHelper::GetCoordinatesForType(_characteristicPointReferences, CharacteristicPointType::OuterToe);
-        const auto outerCrest = CharacteristicPointsHelper::GetCoordinatesForType(_characteristicPointReferences,
-                                                                                  CharacteristicPointType::OuterCrest);
-
-        vector<unique_ptr<ValidationIssue>> validationIssues;
-        validationIssues.emplace_back(ProfileValidator::OuterToe(outerToe.get()));
-        validationIssues.emplace_back(ProfileValidator::OuterCrest(outerCrest.get()));
-
-        return ValidationHelper::RegisterValidationIssues(validationIssues);
     }
 
     double ProfileData::InterpolationVerticalHeight(

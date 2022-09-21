@@ -39,7 +39,6 @@ namespace DiKErnel::Core::Test
     {
         // Setup
         NiceMock<IProfileDataMock> profileData;
-        ON_CALL(profileData, Validate).WillByDefault(Return(true));
 
         auto locationDependentInput = NiceMock<ILocationDependentInputMock>();
         ON_CALL(locationDependentInput, Validate).WillByDefault(Return(true));
@@ -71,7 +70,6 @@ namespace DiKErnel::Core::Test
     {
         // Setup
         NiceMock<IProfileDataMock> profileData;
-        ON_CALL(profileData, Validate).WillByDefault(Return(true));
 
         auto locationDependentInput = NiceMock<ILocationDependentInputMock>();
         ON_CALL(locationDependentInput, Validate).WillByDefault(Return(false));
@@ -103,7 +101,6 @@ namespace DiKErnel::Core::Test
     {
         // Setup
         NiceMock<IProfileDataMock> profileData;
-        ON_CALL(profileData, Validate).WillByDefault(Return(true));
 
         auto locationDependentInput = NiceMock<ILocationDependentInputMock>();
         ON_CALL(locationDependentInput, Validate).WillByDefault(Return(true));
@@ -131,45 +128,12 @@ namespace DiKErnel::Core::Test
         ASSERT_EQ(0, validationResult->GetEvents().size());
     }
 
-    TEST(ValidatorTest, Validate_InvalidProfileData_ReturnsExpectedResult)
-    {
-        // Setup
-        NiceMock<IProfileDataMock> profileData;
-        ON_CALL(profileData, Validate).WillByDefault(Return(false));
-
-        auto locationDependentInput = NiceMock<ILocationDependentInputMock>();
-        ON_CALL(locationDependentInput, Validate).WillByDefault(Return(true));
-
-        auto locationDependentInputItemReferences = vector<reference_wrapper<ILocationDependentInput>>();
-        locationDependentInputItemReferences.emplace_back(locationDependentInput);
-
-        auto timeDependentInput = NiceMock<ITimeDependentInputMock>();
-        ON_CALL(timeDependentInput, Validate).WillByDefault(Return(true));
-
-        auto timeDependentInputItemReferences = vector<reference_wrapper<ITimeDependentInput>>();
-        timeDependentInputItemReferences.emplace_back(timeDependentInput);
-
-        const NiceMock<ICalculationInputMock> calculationInput;
-        ON_CALL(calculationInput, GetProfileData).WillByDefault(ReturnRef(profileData));
-        ON_CALL(calculationInput, GetLocationDependentInputItems).WillByDefault(ReturnRef(locationDependentInputItemReferences));
-        ON_CALL(calculationInput, GetTimeDependentInputItems).WillByDefault(ReturnRef(timeDependentInputItemReferences));
-
-        // Call
-        const auto& validationResult = Validator::Validate(calculationInput);
-
-        // Assert
-        ASSERT_TRUE(validationResult->GetSuccessful());
-        ASSERT_EQ(ValidationResultType::Failed, *validationResult->GetData());
-        ASSERT_EQ(0, validationResult->GetEvents().size());
-    }
-
     TEST(ValidatorTest, Validate_ExceptionOccurred_ReturnsExpectedResult)
     {
         // Setup
         const string errorMessage = "Error in validation!";
 
         NiceMock<IProfileDataMock> profileData;
-        ON_CALL(profileData, Validate).WillByDefault(Return(true));
 
         auto locationDependentInput = NiceMock<ILocationDependentInputMock>();
         ON_CALL(locationDependentInput, Validate).WillByDefault(Throw(runtime_error(errorMessage)));

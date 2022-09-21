@@ -24,7 +24,6 @@
 #include <vector>
 
 #include "CharacteristicPoint.h"
-#include "ProfilePoint.h"
 #include "ProfileSegment.h"
 
 namespace DiKErnel::Core
@@ -39,13 +38,6 @@ namespace DiKErnel::Core
              * \brief Destructs the instance.
              */
             virtual ~IProfileData() = default;
-
-            /*!
-             * \brief Performs validation on the data.
-             * \return Whether the validation was successful.
-             */
-            [[nodiscard]]
-            virtual bool Validate() const = 0;
 
             /*!
              * \brief Calculates the vertical height based on linear interpolation.
