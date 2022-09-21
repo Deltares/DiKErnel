@@ -50,7 +50,7 @@ namespace DiKErnel::Integration
         const int fixedNumberOfWaves,
         const double frontVelocityCwo,
         unique_ptr<GrassRevetmentOvertoppingLocationDependentAccelerationAlphaA> locationDependentAccelerationAlphaA,
-        const double* enforcedDikeHeight)
+        unique_ptr<double> enforcedDikeHeight)
         : LocationDependentInput(x, initialDamage, failureNumber),
           _criticalCumulativeOverload(criticalCumulativeOverload),
           _criticalFrontVelocity(criticalFrontVelocity),
@@ -60,7 +60,7 @@ namespace DiKErnel::Integration
           _fixedNumberOfWaves(fixedNumberOfWaves),
           _frontVelocityCwo(frontVelocityCwo),
           _locationDependentAccelerationAlphaA(move(locationDependentAccelerationAlphaA)),
-          _enforcedDikeHeight(enforcedDikeHeight) { }
+          _enforcedDikeHeight(move(enforcedDikeHeight)) { }
 
     double GrassRevetmentOvertoppingLocationDependentInput::GetCriticalCumulativeOverload() const
     {
@@ -105,7 +105,7 @@ namespace DiKErnel::Integration
 
     const double* GrassRevetmentOvertoppingLocationDependentInput::GetEnforcedDikeHeight() const
     {
-        return _enforcedDikeHeight;
+        return _enforcedDikeHeight.get();
     }
 
     bool GrassRevetmentOvertoppingLocationDependentInput::Validate(

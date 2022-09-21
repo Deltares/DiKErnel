@@ -43,7 +43,7 @@ namespace DiKErnel::Integration
                 int fixedNumberOfWaves,
                 double frontVelocityCwo,
                 std::unique_ptr<GrassRevetmentOvertoppingLocationDependentAccelerationAlphaA> locationDependentAccelerationAlphaA,
-                const double* enforcedDikeHeight);
+                std::unique_ptr<double> enforcedDikeHeight);
 
             [[nodiscard]]
             double GetCriticalCumulativeOverload() const;
@@ -99,7 +99,7 @@ namespace DiKErnel::Integration
             const int _fixedNumberOfWaves;
             const double _frontVelocityCwo;
             std::unique_ptr<GrassRevetmentOvertoppingLocationDependentAccelerationAlphaA> _locationDependentAccelerationAlphaA;
-            const double* _enforcedDikeHeight;
+            std::unique_ptr<double> _enforcedDikeHeight;
 
             std::vector<double> _xValuesProfile;
             std::vector<double> _zValuesProfile;

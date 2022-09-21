@@ -34,8 +34,8 @@ namespace DiKErnel::Integration
     using namespace DomainLibrary;
     using namespace std;
 
-    unique_ptr<GrassRevetmentOvertoppingLocationDependentInput> GrassRevetmentOvertoppingLocationDependentInputFactory::
-    CreateLocationDependentInput(
+    unique_ptr<GrassRevetmentOvertoppingLocationDependentInput>
+    GrassRevetmentOvertoppingLocationDependentInputFactory::CreateLocationDependentInput(
         const GrassRevetmentOvertoppingLocationConstructionProperties& constructionProperties)
     {
         unique_ptr<IGrassRevetmentCumulativeOverloadTopLayerDefaults> topLayerDefaults;
@@ -71,7 +71,6 @@ namespace DiKErnel::Integration
                                          GrassRevetmentCumulativeOverloadDefaults::GetFixedNumberOfWaves()),
             InputFactoryHelper::GetValue(constructionProperties.GetFrontVelocityCwo(), GrassRevetmentOvertoppingDefaults::GetFrontVelocityCwo()),
             move(locationDependentAccelerationAlphaA),
-            constructionProperties.GetDikeHeight()
-        );
+            InputFactoryHelper::GetUniquePtrFromPtr(constructionProperties.GetDikeHeight()));
     }
 }
