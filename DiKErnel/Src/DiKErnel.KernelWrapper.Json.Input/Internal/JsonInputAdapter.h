@@ -30,6 +30,8 @@
 #include "JsonInputAsphaltWaveImpactCalculationDefinitionData.h"
 #include "JsonInputAsphaltWaveImpactLocationData.h"
 #include "JsonInputData.h"
+#include "JsonInputGrassOvertoppingCalculationDefinitionData.h"
+#include "JsonInputGrassOvertoppingLocationData.h"
 #include "JsonInputGrassWaveImpactCalculationDefinitionData.h"
 #include "JsonInputGrassWaveImpactLocationData.h"
 #include "JsonInputGrassWaveRunupCalculationDefinitionData.h"
@@ -76,12 +78,16 @@ namespace DiKErnel::KernelWrapper::Json::Input
             static Integration::AsphaltRevetmentTopLayerType ConvertTopLayerType(
                 JsonInputAsphaltRevetmentTopLayerType topLayerType);
 
+            static std::unique_ptr<Integration::GrassRevetmentOvertoppingLocationConstructionProperties>
+            CreateGrassOvertoppingConstructionProperties(
+                const JsonInputGrassOvertoppingLocationData& location,
+                const JsonInputGrassOvertoppingCalculationDefinitionData* calculationDefinition);
+
             static std::unique_ptr<Integration::GrassRevetmentWaveImpactLocationConstructionProperties> CreateGrassWaveImpactConstructionProperties(
                 const JsonInputGrassWaveImpactLocationData& location,
                 const JsonInputGrassWaveImpactCalculationDefinitionData* calculationDefinition);
 
-            static std::unique_ptr<Integration::GrassRevetmentWaveRunupLocationConstructionProperties>
-            CreateGrassWaveRunupConstructionProperties(
+            static std::unique_ptr<Integration::GrassRevetmentWaveRunupLocationConstructionProperties> CreateGrassWaveRunupConstructionProperties(
                 const JsonInputGrassWaveRunupLocationData& location,
                 const JsonInputGrassWaveRunupCalculationDefinitionData* calculationDefinition);
 

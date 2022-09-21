@@ -21,6 +21,8 @@
 #include "JsonInputAdapter.h"
 
 #include "JsonInputConversionException.h"
+#include "JsonInputGrassOvertoppingCalculationDefinitionData.h"
+#include "JsonInputGrassOvertoppingLocationData.h"
 #include "UniquePtrHelper.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
@@ -134,6 +136,16 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 builder.AddAsphaltWaveImpactLocation(move(constructionProperties));
             }
 
+            if (const auto* grassOvertoppingLocationData = dynamic_cast<const JsonInputGrassOvertoppingLocationData*>(&location);
+                grassOvertoppingLocationData != nullptr)
+            {
+                auto constructionProperties = CreateGrassOvertoppingConstructionProperties(
+                    *grassOvertoppingLocationData,
+                    GetCalculationDefinition<JsonInputGrassOvertoppingCalculationDefinitionData>(
+                        calculationDefinitionReferences, JsonInputCalculationType::GrassOvertopping));
+                builder.AddGrassOvertoppingLocation(move(constructionProperties));
+            }
+
             if (const auto* grassWaveImpactLocationData = dynamic_cast<const JsonInputGrassWaveImpactLocationData*>(&location);
                 grassWaveImpactLocationData != nullptr)
             {
@@ -237,6 +249,43 @@ namespace DiKErnel::KernelWrapper::Json::Input
         }
 
         throw JsonInputConversionException("Cannot convert top layer type.");
+    }
+
+    unique_ptr<GrassRevetmentOvertoppingLocationConstructionProperties> JsonInputAdapter::CreateGrassOvertoppingConstructionProperties(
+        const JsonInputGrassOvertoppingLocationData& location,
+        const JsonInputGrassOvertoppingCalculationDefinitionData* calculationDefinition)
+    {
+        const auto jsonInputTopLayerType = location.GetTopLayerType();
+        auto constructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(
+            location.GetX(), ConvertTopLayerType(jsonInputTopLayerType));
+
+        constructionProperties->SetInitialDamage(CreatePointerOfValue(location.GetInitialDamage()));
+        constructionProperties->SetIncreasedLoadTransitionAlphaM(CreatePointerOfValue(location.GetIncreasedLoadTransitionAlphaM()));
+        constructionProperties->SetReducedStrengthTransitionAlphaS(CreatePointerOfValue(location.GetReducedStrengthTransitionAlphaS()));
+
+        if (calculationDefinition != nullptr)
+        {
+            constructionProperties->SetFailureNumber(CreatePointerOfValue(calculationDefinition->GetFailureNumber()));
+
+            if (const auto& topLayerDefinitionData = calculationDefinition->GetTopLayerDefinitionData();
+                topLayerDefinitionData.contains(jsonInputTopLayerType))
+            {
+                const auto& topLayerDefinition = topLayerDefinitionData.at(jsonInputTopLayerType).get();
+
+                constructionProperties->SetCriticalCumulativeOverload(CreatePointerOfValue(topLayerDefinition.GetCriticalCumulativeOverload()));
+                constructionProperties->SetCriticalFrontVelocity(CreatePointerOfValue(topLayerDefinition.GetCriticalFrontVelocity()));
+            }
+
+            constructionProperties->SetDikeHeight(CreatePointerOfValue(calculationDefinition->GetDikeHeight()));
+            constructionProperties->SetAccelerationAlphaAForCrest(CreatePointerOfValue(calculationDefinition->GetAccelerationAlphaAForCrest()));
+            constructionProperties->SetAccelerationAlphaAForInnerSlope(
+                CreatePointerOfValue(calculationDefinition->GetAccelerationAlphaAForInnerSlope()));
+            constructionProperties->SetFixedNumberOfWaves(CreatePointerOfValue(calculationDefinition->GetFixedNumberOfWaves()));
+            constructionProperties->SetFrontVelocityCwo(CreatePointerOfValue(calculationDefinition->GetFrontVelocity()));
+            constructionProperties->SetAverageNumberOfWavesCtm(CreatePointerOfValue(calculationDefinition->GetFactorCtm()));
+        }
+
+        return constructionProperties;
     }
 
     unique_ptr<GrassRevetmentWaveImpactLocationConstructionProperties> JsonInputAdapter::CreateGrassWaveImpactConstructionProperties(
