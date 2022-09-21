@@ -3,6 +3,7 @@ set(EXENAME DiKErnel.System.Test)
 
 # Define sources
 set(SOURCEFILES
+  GrassRevetmentOvertoppingCalculationTest.cpp
   Main.cpp
   ValidationSystemTest.cpp
 )
