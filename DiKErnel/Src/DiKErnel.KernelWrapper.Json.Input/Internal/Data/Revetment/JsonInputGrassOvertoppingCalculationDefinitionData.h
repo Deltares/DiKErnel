@@ -24,7 +24,6 @@
 
 #include "JsonInputCalculationDefinitionData.h"
 #include "JsonInputGrassCumulativeOverloadTopLayerDefinitionData.h"
-#include "JsonInputGrassOvertoppingCalculationProtocolData.h"
 #include "JsonInputGrassRevetmentTopLayerType.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
@@ -34,11 +33,13 @@ namespace DiKErnel::KernelWrapper::Json::Input
         public:
             explicit JsonInputGrassOvertoppingCalculationDefinitionData(
                 std::unique_ptr<double> failureNumber,
-                std::unique_ptr<JsonInputGrassOvertoppingCalculationProtocolData> calculationProtocolData,
                 std::map<JsonInputGrassRevetmentTopLayerType, std::unique_ptr<JsonInputGrassCumulativeOverloadTopLayerDefinitionData>>
                 topLayerDefinitionData);
 
             #pragma region Set methods
+
+            void SetDikeHeight(
+                std::unique_ptr<double> dikeHeight);
 
             void SetAccelerationAlphaACrest(
                 std::unique_ptr<double> accelerationAlphaACrest);
@@ -60,6 +61,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
             #pragma region Set methods
 
             [[nodiscard]]
+            const double* GetDikeHeight() const;
+
+            [[nodiscard]]
             const double* GetAccelerationAlphaACrest() const;
 
             [[nodiscard]]
@@ -77,10 +81,10 @@ namespace DiKErnel::KernelWrapper::Json::Input
             #pragma endregion
 
         private:
-            std::unique_ptr<JsonInputGrassOvertoppingCalculationProtocolData> _calculationProtocolData;
             std::map<JsonInputGrassRevetmentTopLayerType, std::unique_ptr<JsonInputGrassCumulativeOverloadTopLayerDefinitionData>>
             _topLayerDefinitionData;
 
+            std::unique_ptr<double> _dikeHeight= nullptr;
             std::unique_ptr<double> _accelerationAlphaACrest = nullptr;
             std::unique_ptr<double> _accelerationAlphaAInnerSlope = nullptr;
             std::unique_ptr<int> _fixedNumberOfWaves = nullptr;

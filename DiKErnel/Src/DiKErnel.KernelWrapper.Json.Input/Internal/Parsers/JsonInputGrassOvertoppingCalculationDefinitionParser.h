@@ -26,7 +26,6 @@
 
 #include "JsonInputCalculationDefinitionParser.h"
 #include "JsonInputGrassCumulativeOverloadTopLayerDefinitionData.h"
-#include "JsonInputGrassOvertoppingCalculationProtocolData.h"
 #include "JsonInputGrassRevetmentTopLayerType.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
@@ -42,9 +41,6 @@ namespace DiKErnel::KernelWrapper::Json::Input
                 std::unique_ptr<double> failureNumber) override;
 
         private:
-            static std::unique_ptr<JsonInputGrassOvertoppingCalculationProtocolData> ReadCalculationProtocolData(
-                const nlohmann::json& readCalculationMethod);
-
             static std::map<JsonInputGrassRevetmentTopLayerType, std::unique_ptr<JsonInputGrassCumulativeOverloadTopLayerDefinitionData>>
             ReadTopLayerDefinitionData(
                 const nlohmann::json& readCalculationMethod);

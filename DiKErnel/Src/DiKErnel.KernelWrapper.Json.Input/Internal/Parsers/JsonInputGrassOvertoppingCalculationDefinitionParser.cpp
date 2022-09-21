@@ -22,8 +22,7 @@
 
 #include "JsonInputDefinitions.h"
 #include "JsonInputGrassOvertoppingCalculationDefinitionData.h"
-#include "JsonInputGrassOvertoppingCalculationProtocolType.h"
-#include "JsonInputGrassOvertoppingDikesOvertoppingCalculationProtocolData.h"
+#include "JsonInputGrassOvertoppingDefinitions.h"
 #include "JsonInputParserHelper.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
@@ -41,7 +40,10 @@ namespace DiKErnel::KernelWrapper::Json::Input
         const auto& readCalculationMethod = GetReadCalculationMethod();
 
         auto calculationDefinition = make_unique<JsonInputGrassOvertoppingCalculationDefinitionData>(
-            move(failureNumber), ReadCalculationProtocolData(readCalculationMethod), ReadTopLayerDefinitionData(readCalculationMethod));
+            move(failureNumber), ReadTopLayerDefinitionData(readCalculationMethod));
+
+        calculationDefinition->SetDikeHeight(
+            JsonInputParserHelper::ParseOptionalDouble(readCalculationMethod, JsonInputGrassOvertoppingDefinitions::DIKE_HEIGHT));
 
         if (readCalculationMethod.contains(JsonInputGrassOvertoppingDefinitions::ACCELERATION_ALPHA_A))
         {
@@ -60,32 +62,12 @@ namespace DiKErnel::KernelWrapper::Json::Input
             JsonInputParserHelper::ParseOptionalInteger(readCalculationMethod, JsonInputGrassRevetmentDefinitions::FIXED_NUMBER_OF_WAVES));
 
         calculationDefinition->SetFrontVelocity(
-            JsonInputParserHelper::ParseOptionalDouble(readCalculationMethod, JsonInputGrassOvertoppingDefinitions::DIKE_HEIGHT));
+            JsonInputParserHelper::ParseOptionalDouble(readCalculationMethod, JsonInputGrassOvertoppingDefinitions::FRONT_VELOCITY_CWO));
 
         calculationDefinition->SetFactorCtm(
             JsonInputParserHelper::ParseOptionalDouble(readCalculationMethod, JsonInputDefinitions::FACTOR_CTM));
 
         return calculationDefinition;
-    }
-
-    unique_ptr<JsonInputGrassOvertoppingCalculationProtocolData> JsonInputGrassOvertoppingCalculationDefinitionParser::ReadCalculationProtocolData(
-        const json& readCalculationMethod)
-    {
-        const auto& readCalculationProtocol = readCalculationMethod.at(JsonInputGrassRevetmentDefinitions::CALCULATION_PROTOCOL);
-
-        if (const auto& calculationProtocolType = readCalculationProtocol.at(JsonInputGrassRevetmentDefinitions::CALCULATION_PROTOCOL_TYPE)
-                                                                         .get<JsonInputGrassOvertoppingCalculationProtocolType>();
-            calculationProtocolType == JsonInputGrassOvertoppingCalculationProtocolType::DikesOvertopping)
-        {
-            auto calculationProtocolData = make_unique<JsonInputGrassOvertoppingDikesOvertoppingCalculationProtocolData>();
-
-            calculationProtocolData->SetDikeHeight(
-                JsonInputParserHelper::ParseOptionalDouble(readCalculationProtocol, JsonInputGrassOvertoppingDefinitions::DIKE_HEIGHT));
-
-            return calculationProtocolData;
-        }
-
-        return nullptr;
     }
 
     map<JsonInputGrassRevetmentTopLayerType, unique_ptr<JsonInputGrassCumulativeOverloadTopLayerDefinitionData>>

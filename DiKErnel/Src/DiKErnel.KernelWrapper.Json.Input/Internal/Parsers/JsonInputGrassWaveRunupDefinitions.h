@@ -36,6 +36,8 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
             inline static const std::string A_BETA = "aBeta";
 
+            inline static const std::string CALCULATION_PROTOCOL = "rekenprotocol";
+            inline static const std::string CALCULATION_PROTOCOL_TYPE = "typeRekenprotocol";
             inline static const std::string CALCULATION_PROTOCOL_TYPE_RAYLEIGH_DISCRETE = "rayleighDiscreet";
     };
 }

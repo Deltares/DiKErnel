@@ -79,9 +79,9 @@ namespace DiKErnel::KernelWrapper::Json::Input
     unique_ptr<JsonInputGrassWaveRunupCalculationProtocolData> JsonInputGrassWaveRunupCalculationDefinitionParser::ReadCalculationProtocolData(
         const json& readCalculationMethod)
     {
-        const auto& readCalculationProtocol = readCalculationMethod.at(JsonInputGrassRevetmentDefinitions::CALCULATION_PROTOCOL);
+        const auto& readCalculationProtocol = readCalculationMethod.at(JsonInputGrassWaveRunupDefinitions::CALCULATION_PROTOCOL);
 
-        if (const auto& calculationProtocolType = readCalculationProtocol.at(JsonInputGrassRevetmentDefinitions::CALCULATION_PROTOCOL_TYPE)
+        if (const auto& calculationProtocolType = readCalculationProtocol.at(JsonInputGrassWaveRunupDefinitions::CALCULATION_PROTOCOL_TYPE)
                                                                          .get<JsonInputGrassWaveRunupCalculationProtocolType>();
             calculationProtocolType == JsonInputGrassWaveRunupCalculationProtocolType::RayleighDiscrete)
         {

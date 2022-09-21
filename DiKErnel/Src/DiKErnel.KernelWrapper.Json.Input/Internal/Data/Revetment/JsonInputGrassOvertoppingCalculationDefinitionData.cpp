@@ -26,14 +26,18 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
     JsonInputGrassOvertoppingCalculationDefinitionData::JsonInputGrassOvertoppingCalculationDefinitionData(
         unique_ptr<double> failureNumber,
-        unique_ptr<JsonInputGrassOvertoppingCalculationProtocolData> calculationProtocolData,
         map<JsonInputGrassRevetmentTopLayerType, unique_ptr<JsonInputGrassCumulativeOverloadTopLayerDefinitionData>>
         topLayerDefinitionData)
         : JsonInputCalculationDefinitionData(move(failureNumber)),
-          _calculationProtocolData(move(calculationProtocolData)),
           _topLayerDefinitionData(move(topLayerDefinitionData)) {}
 
     #pragma region Set methods
+
+    void JsonInputGrassOvertoppingCalculationDefinitionData::SetDikeHeight(
+        unique_ptr<double> dikeHeight)
+    {
+        _dikeHeight = move(dikeHeight);
+    }
 
     void JsonInputGrassOvertoppingCalculationDefinitionData::SetAccelerationAlphaACrest(
         unique_ptr<double> accelerationAlphaACrest)
@@ -68,6 +72,11 @@ namespace DiKErnel::KernelWrapper::Json::Input
     #pragma endregion
 
     #pragma region Get methods
+
+    const double* JsonInputGrassOvertoppingCalculationDefinitionData::GetDikeHeight() const
+    {
+        return _dikeHeight.get();
+    }
 
     const double* JsonInputGrassOvertoppingCalculationDefinitionData::GetAccelerationAlphaACrest() const
     {
