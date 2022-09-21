@@ -547,15 +547,12 @@
             "additionalProperties": false,
             "properties": {
               "typeRekenprotocol": {
-                "$ref": "#/definitions/typeRekenprotocol"
+                "const": "rayleighDiscreet"
               },
               "aantalGolvenVast": {
                 "type": "integer"
               },
               "frontsnelheid": {
-                "type": "number"
-              },
-              "dijkhoogte": {
                 "type": "number"
               }
             }
@@ -574,6 +571,9 @@
                 "type": "number"
               }
             }
+          },
+          "dijkHoogte": {
+            "type": "number"
           },
           "versnellingAlfaA": {
             "type": "object",
@@ -604,7 +604,7 @@
         "asfaltGolfklap",
         "grasGolfklap",
         "grasGolfoploop",
-        "grasgolfoverslag",
+        "grasGolfoverslag",
         "natuursteen"
       ]
     },
@@ -616,13 +616,6 @@
         "noorseSteen",
         "waterbouwAsfaltBeton"
       ]
-    },
-    "typeRekenprotocol": {
-      "$id": "#/definitions/typeRekenprotocol",
-      "enum": [
-        "rayleighDiscreet",
-        "dikesOvertopping"
-      ] 
     }
   }
 }
