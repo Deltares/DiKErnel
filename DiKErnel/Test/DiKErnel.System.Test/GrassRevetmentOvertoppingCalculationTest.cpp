@@ -35,6 +35,8 @@ namespace DiKErnel::System::Test
 
     struct GrassRevetmentOvertoppingCalculationTest : Test
     {
+        #pragma region Schematization 1
+
         const vector<double> _roughnessCoefficientsForSchematization1
         {
             1,
@@ -47,30 +49,6 @@ namespace DiKErnel::System::Test
             0.8,
             0.8,
             0.8
-        };
-
-        const vector<double> _roughnessCoefficientsForSchematization2
-        {
-            1,
-            0.5,
-            0.8,
-            0.8,
-            0.8,
-            0.8,
-            0.8,
-            0.8
-        };
-
-        const vector<double> _roughnessCoefficientsForSchematization3
-        {
-            1,
-            0.9,
-            0.8,
-            0.7,
-            1,
-            1,
-            1,
-            1
         };
 
         void ConfigureBuilderForSchematization1(
@@ -112,6 +90,44 @@ namespace DiKErnel::System::Test
             builder.AddDikeProfilePointData(60, CharacteristicPointType::InnerToe);
         }
 
+        [[nodiscard]]
+        unique_ptr<GrassRevetmentOvertoppingLocationConstructionProperties> CreateLocationConstructionPropertiesForSchematization1(
+            double x) const
+        {
+            auto locationConstructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(
+                x, GrassRevetmentTopLayerType::ClosedSod);
+
+            locationConstructionProperties->SetInitialDamage(make_unique<double>(0.02));
+            locationConstructionProperties->SetFailureNumber(make_unique<double>(1));
+            locationConstructionProperties->SetCriticalCumulativeOverload(make_unique<double>(7000));
+            locationConstructionProperties->SetCriticalFrontVelocity(make_unique<double>(6.6));
+            locationConstructionProperties->SetIncreasedLoadTransitionAlphaM(make_unique<double>(1));
+            locationConstructionProperties->SetReducedStrengthTransitionAlphaS(make_unique<double>(1));
+            locationConstructionProperties->SetAverageNumberOfWavesCtm(make_unique<double>(0.92));
+            locationConstructionProperties->SetFixedNumberOfWaves(make_unique<int>(10000));
+            locationConstructionProperties->SetFrontVelocityCwo(make_unique<double>(1.45));
+            locationConstructionProperties->SetAccelerationAlphaAForCrest(make_unique<double>(1));
+            locationConstructionProperties->SetAccelerationAlphaAForInnerSlope(make_unique<double>(1.4));
+
+            return locationConstructionProperties;
+        }
+
+        #pragma endregion
+
+        #pragma region Schematization 2
+
+        const vector<double> _roughnessCoefficientsForSchematization2
+        {
+            1,
+            0.5,
+            0.8,
+            0.8,
+            0.8,
+            0.8,
+            0.8,
+            0.8
+        };
+
         void ConfigureBuilderForSchematization2(
             CalculationInputBuilder& builder) const
         {
@@ -147,6 +163,44 @@ namespace DiKErnel::System::Test
             builder.AddDikeProfilePointData(60, CharacteristicPointType::InnerToe);
         }
 
+        [[nodiscard]]
+        unique_ptr<GrassRevetmentOvertoppingLocationConstructionProperties> CreateLocationConstructionPropertiesForSchematization2(
+            double x) const
+        {
+            auto locationConstructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(
+                x, GrassRevetmentTopLayerType::OpenSod);
+
+            locationConstructionProperties->SetInitialDamage(make_unique<double>(0));
+            locationConstructionProperties->SetFailureNumber(make_unique<double>(1));
+            locationConstructionProperties->SetCriticalCumulativeOverload(make_unique<double>(7000));
+            locationConstructionProperties->SetCriticalFrontVelocity(make_unique<double>(4.3));
+            locationConstructionProperties->SetIncreasedLoadTransitionAlphaM(make_unique<double>(1));
+            locationConstructionProperties->SetReducedStrengthTransitionAlphaS(make_unique<double>(1));
+            locationConstructionProperties->SetAverageNumberOfWavesCtm(make_unique<double>(0.92));
+            locationConstructionProperties->SetFixedNumberOfWaves(make_unique<int>(10000));
+            locationConstructionProperties->SetFrontVelocityCwo(make_unique<double>(1.45));
+            locationConstructionProperties->SetAccelerationAlphaAForCrest(make_unique<double>(1));
+            locationConstructionProperties->SetAccelerationAlphaAForInnerSlope(make_unique<double>(1.4));
+
+            return locationConstructionProperties;
+        }
+
+        #pragma endregion
+
+        #pragma region Schematization 3
+
+        const vector<double> _roughnessCoefficientsForSchematization3
+        {
+            1,
+            0.9,
+            0.8,
+            0.7,
+            1,
+            1,
+            1,
+            1
+        };
+
         void ConfigureBuilderForSchematization3(
             CalculationInputBuilder& builder) const
         {
@@ -181,50 +235,6 @@ namespace DiKErnel::System::Test
         }
 
         [[nodiscard]]
-        unique_ptr<GrassRevetmentOvertoppingLocationConstructionProperties> CreateLocationConstructionPropertiesForSchematization1(
-            double x) const
-        {
-            auto locationConstructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(
-                x, GrassRevetmentTopLayerType::ClosedSod);
-
-            locationConstructionProperties->SetInitialDamage(make_unique<double>(0.02));
-            locationConstructionProperties->SetFailureNumber(make_unique<double>(1));
-            locationConstructionProperties->SetCriticalCumulativeOverload(make_unique<double>(7000));
-            locationConstructionProperties->SetCriticalFrontVelocity(make_unique<double>(6.6));
-            locationConstructionProperties->SetIncreasedLoadTransitionAlphaM(make_unique<double>(1));
-            locationConstructionProperties->SetReducedStrengthTransitionAlphaS(make_unique<double>(1));
-            locationConstructionProperties->SetAverageNumberOfWavesCtm(make_unique<double>(0.92));
-            locationConstructionProperties->SetFixedNumberOfWaves(make_unique<int>(10000));
-            locationConstructionProperties->SetFrontVelocityCwo(make_unique<double>(1.45));
-            locationConstructionProperties->SetAccelerationAlphaAForCrest(make_unique<double>(1));
-            locationConstructionProperties->SetAccelerationAlphaAForInnerSlope(make_unique<double>(1.4));
-
-            return locationConstructionProperties;
-        }
-
-        [[nodiscard]]
-        unique_ptr<GrassRevetmentOvertoppingLocationConstructionProperties> CreateLocationConstructionPropertiesForSchematization2(
-            double x) const
-        {
-            auto locationConstructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(
-                x, GrassRevetmentTopLayerType::OpenSod);
-
-            locationConstructionProperties->SetInitialDamage(make_unique<double>(0));
-            locationConstructionProperties->SetFailureNumber(make_unique<double>(1));
-            locationConstructionProperties->SetCriticalCumulativeOverload(make_unique<double>(7000));
-            locationConstructionProperties->SetCriticalFrontVelocity(make_unique<double>(4.3));
-            locationConstructionProperties->SetIncreasedLoadTransitionAlphaM(make_unique<double>(1));
-            locationConstructionProperties->SetReducedStrengthTransitionAlphaS(make_unique<double>(1));
-            locationConstructionProperties->SetAverageNumberOfWavesCtm(make_unique<double>(0.92));
-            locationConstructionProperties->SetFixedNumberOfWaves(make_unique<int>(10000));
-            locationConstructionProperties->SetFrontVelocityCwo(make_unique<double>(1.45));
-            locationConstructionProperties->SetAccelerationAlphaAForCrest(make_unique<double>(1));
-            locationConstructionProperties->SetAccelerationAlphaAForInnerSlope(make_unique<double>(1.4));
-
-            return locationConstructionProperties;
-        }
-
-        [[nodiscard]]
         unique_ptr<GrassRevetmentOvertoppingLocationConstructionProperties> CreateLocationConstructionPropertiesForSchematization3(
             double x) const
         {
@@ -245,6 +255,8 @@ namespace DiKErnel::System::Test
 
             return locationConstructionProperties;
         }
+
+        #pragma endregion
 
         static void AssertOutput(
             const Calculator& calculator,
@@ -277,8 +289,10 @@ namespace DiKErnel::System::Test
         }
     };
 
+    #pragma region Schematization 1
+
     TEST_F(GrassRevetmentOvertoppingCalculationTest,
-           GivenCalculationInputForSchematization1TestCase1_WhenCalculating_ThenReturnsExpectedCalculationResult)
+           GivenCalculationInputForSchematization1Testcase1_WhenCalculating_ThenReturnsExpectedCalculationResult)
     {
         // Given
         CalculationInputBuilder builder;
@@ -302,7 +316,7 @@ namespace DiKErnel::System::Test
     }
 
     TEST_F(GrassRevetmentOvertoppingCalculationTest,
-           GivenCalculationInputForSchematization1TestCase2_WhenCalculating_ThenReturnsExpectedCalculationResult)
+           GivenCalculationInputForSchematization1Testcase2_WhenCalculating_ThenReturnsExpectedCalculationResult)
     {
         // Given
         CalculationInputBuilder builder;
@@ -324,7 +338,7 @@ namespace DiKErnel::System::Test
     }
 
     TEST_F(GrassRevetmentOvertoppingCalculationTest,
-           GivenCalculationInputForSchematization1TestCase3_WhenCalculating_ThenReturnsExpectedCalculationResult)
+           GivenCalculationInputForSchematization1Testcase3_WhenCalculating_ThenReturnsExpectedCalculationResult)
     {
         // Given
         CalculationInputBuilder builder;
@@ -348,7 +362,7 @@ namespace DiKErnel::System::Test
     }
 
     TEST_F(GrassRevetmentOvertoppingCalculationTest,
-           GivenCalculationInputForSchematization1TestCase4_WhenCalculating_ThenReturnsExpectedCalculationResult)
+           GivenCalculationInputForSchematization1Testcase4_WhenCalculating_ThenReturnsExpectedCalculationResult)
     {
         // Given
         CalculationInputBuilder builder;
@@ -371,8 +385,12 @@ namespace DiKErnel::System::Test
         AssertOutput(calculator, 0.360805793202144);
     }
 
+    #pragma endregion
+
+    #pragma region Schematization 2
+
     TEST_F(GrassRevetmentOvertoppingCalculationTest,
-           GivenCalculationInputForSchematization2TestCase1_WhenCalculating_ThenReturnsExpectedCalculationResult)
+           GivenCalculationInputForSchematization2Testcase1_WhenCalculating_ThenReturnsExpectedCalculationResult)
     {
         // Given
         CalculationInputBuilder builder;
@@ -396,7 +414,7 @@ namespace DiKErnel::System::Test
     }
 
     TEST_F(GrassRevetmentOvertoppingCalculationTest,
-           GivenCalculationInputForSchematization2TestCase2_WhenCalculating_ThenReturnsExpectedCalculationResult)
+           GivenCalculationInputForSchematization2Testcase2_WhenCalculating_ThenReturnsExpectedCalculationResult)
     {
         // Given
         CalculationInputBuilder builder;
@@ -420,7 +438,7 @@ namespace DiKErnel::System::Test
     }
 
     TEST_F(GrassRevetmentOvertoppingCalculationTest,
-           GivenCalculationInputForSchematization2TestCase3_WhenCalculating_ThenReturnsExpectedCalculationResult)
+           GivenCalculationInputForSchematization2Testcase3_WhenCalculating_ThenReturnsExpectedCalculationResult)
     {
         // Given
         CalculationInputBuilder builder;
@@ -447,7 +465,7 @@ namespace DiKErnel::System::Test
     }
 
     TEST_F(GrassRevetmentOvertoppingCalculationTest,
-           GivenCalculationInputForSchematization2TestCase4_WhenCalculating_ThenReturnsExpectedCalculationResult)
+           GivenCalculationInputForSchematization2Testcase4_WhenCalculating_ThenReturnsExpectedCalculationResult)
     {
         // Given
         CalculationInputBuilder builder;
@@ -473,8 +491,12 @@ namespace DiKErnel::System::Test
         AssertOutput(calculator, 0.688425139553067);
     }
 
+    #pragma endregion
+
+    #pragma region Schematization 3
+
     TEST_F(GrassRevetmentOvertoppingCalculationTest,
-           GivenCalculationInputForSchematization3TestCase1_WhenCalculating_ThenReturnsExpectedCalculationResult)
+           GivenCalculationInputForSchematization3Testcase1_WhenCalculating_ThenReturnsExpectedCalculationResult)
     {
         // Given
         CalculationInputBuilder builder;
@@ -498,7 +520,7 @@ namespace DiKErnel::System::Test
     }
 
     TEST_F(GrassRevetmentOvertoppingCalculationTest,
-           GivenCalculationInputForSchematization3TestCase2_WhenCalculating_ThenReturnsExpectedCalculationResult)
+           GivenCalculationInputForSchematization3Testcase2_WhenCalculating_ThenReturnsExpectedCalculationResult)
     {
         // Given
         CalculationInputBuilder builder;
@@ -524,7 +546,7 @@ namespace DiKErnel::System::Test
     }
 
     TEST_F(GrassRevetmentOvertoppingCalculationTest,
-           GivenCalculationInputForSchematization3TestCase3_WhenCalculating_ThenReturnsExpectedCalculationResult)
+           GivenCalculationInputForSchematization3Testcase3_WhenCalculating_ThenReturnsExpectedCalculationResult)
     {
         // Given
         CalculationInputBuilder builder;
@@ -552,7 +574,7 @@ namespace DiKErnel::System::Test
     }
 
     TEST_F(GrassRevetmentOvertoppingCalculationTest,
-           GivenCalculationInputForSchematization3TestCase4_WhenCalculating_ThenReturnsExpectedCalculationResult)
+           GivenCalculationInputForSchematization3Testcase4_WhenCalculating_ThenReturnsExpectedCalculationResult)
     {
         // Given
         CalculationInputBuilder builder;
@@ -582,4 +604,6 @@ namespace DiKErnel::System::Test
         // Then
         AssertOutput(calculator, 0.40767149313574);
     }
+
+    #pragma endregion
 }
