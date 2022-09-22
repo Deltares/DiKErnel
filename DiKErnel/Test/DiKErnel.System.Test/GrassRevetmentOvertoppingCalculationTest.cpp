@@ -37,8 +37,8 @@ namespace DiKErnel::System::Test
     {
         #pragma region Schematization 1
 
-        void ConfigureBuilderForSchematization1(
-            CalculationInputBuilder& builder) const
+        static void ConfigureBuilderForSchematization1(
+            CalculationInputBuilder& builder)
         {
             builder.AddTimeStep(0, 3600, 5.5, 1.9, 4.7, -10);
             builder.AddTimeStep(3600, 7200, 5.6, 1.95, 4.73, -8);
@@ -102,8 +102,8 @@ namespace DiKErnel::System::Test
 
         #pragma region Schematization 2
 
-        void ConfigureBuilderForSchematization2(
-            CalculationInputBuilder& builder) const
+        static void ConfigureBuilderForSchematization2(
+            CalculationInputBuilder& builder)
         {
             builder.AddTimeStep(0, 3600, 5, 2.35, 5.2, -10);
             builder.AddTimeStep(3600, 7200, 5.1, 2.4, 5.23, -8);
@@ -163,8 +163,8 @@ namespace DiKErnel::System::Test
 
         #pragma region Schematization 3
 
-        void ConfigureBuilderForSchematization3(
-            CalculationInputBuilder& builder) const
+        static void ConfigureBuilderForSchematization3(
+            CalculationInputBuilder& builder)
         {
             builder.AddTimeStep(0, 3600, 5.7, 2.05, 5.2, -10);
             builder.AddTimeStep(3600, 7200, 6.2, 2.1, 5.23, -8);
