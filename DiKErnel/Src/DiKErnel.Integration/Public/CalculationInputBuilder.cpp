@@ -119,7 +119,7 @@ namespace DiKErnel::Integration
         _locationConstructionPropertiesItems.push_back(move(constructionProperties));
     }
 
-    unique_ptr<ICalculationInput> CalculationInputBuilder::Build() const
+    unique_ptr<DataResult<ICalculationInput>> CalculationInputBuilder::Build() const
     {
         auto profileSegmentDataReferences = vector<reference_wrapper<ProfileDataFactorySegment>>();
 
@@ -157,11 +157,13 @@ namespace DiKErnel::Integration
             auto locations = LocationDependentInputFactory::Create(locationConstructionPropertiesItemReferences);
             auto timeSteps = TimeDependentInputFactory::Create(timeStepDataItemReferences);
 
-            return make_unique<CalculationInput>(move(profileData), move(locations), move(timeSteps));
+            return make_unique<DataResult<ICalculationInput>>(make_unique<CalculationInput>(move(profileData), move(locations), move(timeSteps)),
+                                                              EventRegistry::Flush());
         }
         catch (const InputFactoryException&)
         {
-            throw_with_nested(CalculationInputBuildException(_exceptionMessage));
+            EventRegistry::Register(make_unique<Event>(_exceptionMessage, EventType::Error));
+            return make_unique<DataResult<ICalculationInput>>(EventRegistry::Flush());
         }
     }
 

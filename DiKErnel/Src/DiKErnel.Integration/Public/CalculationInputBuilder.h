@@ -21,6 +21,7 @@
 #pragma once
 
 #include "AsphaltRevetmentWaveImpactLocationConstructionProperties.h"
+#include "DataResult.h"
 #include "GrassRevetmentOvertoppingLocationConstructionProperties.h"
 #include "GrassRevetmentWaveImpactLocationConstructionProperties.h"
 #include "GrassRevetmentWaveRunupRayleighLocationConstructionProperties.h"
@@ -167,7 +168,7 @@ namespace DiKErnel::Integration
              *            Thrown when calculation input cannot be created.
              */
             [[nodiscard]]
-            std::unique_ptr<Core::ICalculationInput> Build() const;
+            std::unique_ptr<Util::DataResult<Core::ICalculationInput>> Build() const;
 
         private:
             void AddDikeProfileSegment(

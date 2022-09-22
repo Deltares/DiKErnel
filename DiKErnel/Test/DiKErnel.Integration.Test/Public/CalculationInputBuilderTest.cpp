@@ -355,10 +355,13 @@ namespace DiKErnel::Integration::Test
             make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(0, GrassRevetmentTopLayerType::ClosedSod));
 
         // When
-        const auto& calculationInput = builder.Build();
+        const auto& result = builder.Build();
 
         // Then
-        const auto& actualProfileData = calculationInput->GetProfileData();
+        ASSERT_TRUE(result->GetSuccessful());
+
+        const auto& calculationInput = *result->GetData();
+        const auto& actualProfileData = calculationInput.GetProfileData();
         const auto& actualProfileSegments = actualProfileData.GetProfileSegments();
         ASSERT_EQ(1, actualProfileSegments.size());
 
@@ -386,10 +389,13 @@ namespace DiKErnel::Integration::Test
             make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(0, GrassRevetmentTopLayerType::ClosedSod));
 
         // When
-        const auto& calculationInput = builder.Build();
+        const auto& result = builder.Build();
 
         // Then
-        const auto& actualProfileData = calculationInput->GetProfileData();
+        ASSERT_TRUE(result->GetSuccessful());
+
+        const auto& calculationInput = *result->GetData();
+        const auto& actualProfileData = calculationInput.GetProfileData();
         const auto& actualProfileSegments = actualProfileData.GetProfileSegments();
         ASSERT_EQ(1, actualProfileSegments.size());
 
@@ -420,10 +426,13 @@ namespace DiKErnel::Integration::Test
             make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(0, GrassRevetmentTopLayerType::ClosedSod));
 
         // When
-        const auto& calculationInput = builder.Build();
+        const auto& result = builder.Build();
 
         // Then
-        const auto& actualProfileData = calculationInput->GetProfileData();
+        ASSERT_TRUE(result->GetSuccessful());
+
+        const auto& calculationInput = *result->GetData();
+        const auto& actualProfileData = calculationInput.GetProfileData();
         const auto& actualProfileSegments = actualProfileData.GetProfileSegments();
         ASSERT_EQ(2, actualProfileSegments.size());
 
@@ -496,10 +505,13 @@ namespace DiKErnel::Integration::Test
             make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(0, GrassRevetmentTopLayerType::ClosedSod));
 
         // When
-        const auto& calculationInput = builder.Build();
+        const auto& result = builder.Build();
 
         // Then
-        const auto& actualProfileData = calculationInput->GetProfileData();
+        ASSERT_TRUE(result->GetSuccessful());
+
+        const auto& calculationInput = *result->GetData();
+        const auto& actualProfileData = calculationInput.GetProfileData();
         const auto& actualProfileSegments = actualProfileData.GetProfileSegments();
         const auto& actualCharacteristicPoints = actualProfileData.GetCharacteristicPoints();
         ASSERT_EQ(1, actualProfileSegments.size());
@@ -570,10 +582,13 @@ namespace DiKErnel::Integration::Test
             make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(0, GrassRevetmentTopLayerType::ClosedSod));
 
         // When
-        const auto& calculationInput = builder.Build();
+        const auto& result = builder.Build();
 
         // Then
-        const auto& actualTimeDependentInputItems = calculationInput->GetTimeDependentInputItems();
+        ASSERT_TRUE(result->GetSuccessful());
+
+        const auto& calculationInput = *result->GetData();
+        const auto& actualTimeDependentInputItems = calculationInput.GetTimeDependentInputItems();
         ASSERT_EQ(1, actualTimeDependentInputItems.size());
         const auto& timeDependentInput = actualTimeDependentInputItems.at(0).get();
 
@@ -668,10 +683,13 @@ namespace DiKErnel::Integration::Test
         builder.AddAsphaltWaveImpactLocation(move(constructionProperties));
 
         // When
-        const auto& calculationInput = builder.Build();
+        const auto& result = builder.Build();
 
         // Then
-        const auto& actualLocationDependentInputItems = calculationInput->GetLocationDependentInputItems();
+        ASSERT_TRUE(result->GetSuccessful());
+
+        const auto& calculationInput = *result->GetData();
+        const auto& actualLocationDependentInputItems = calculationInput.GetLocationDependentInputItems();
         ASSERT_EQ(1, actualLocationDependentInputItems.size());
 
         const auto* locationDependentInput = dynamic_cast<AsphaltRevetmentWaveImpactLocationDependentInput*>(
@@ -720,10 +738,13 @@ namespace DiKErnel::Integration::Test
         builder.AddAsphaltWaveImpactLocation(move(constructionProperties));
 
         // When
-        const auto& calculationInput = builder.Build();
+        const auto& result = builder.Build();
 
         // Then
-        const auto& actualLocationDependentInputItems = calculationInput->GetLocationDependentInputItems();
+        ASSERT_TRUE(result->GetSuccessful());
+
+        const auto& calculationInput = *result->GetData();
+        const auto& actualLocationDependentInputItems = calculationInput.GetLocationDependentInputItems();
         ASSERT_EQ(1, actualLocationDependentInputItems.size());
 
         const auto* locationDependentInput = dynamic_cast<AsphaltRevetmentWaveImpactLocationDependentInput*>(
@@ -857,10 +878,13 @@ namespace DiKErnel::Integration::Test
         builder.AddGrassOvertoppingLocation(move(constructionProperties));
 
         // When
-        const auto& calculationInput = builder.Build();
+        const auto& result = builder.Build();
 
         // Then
-        const auto& actualLocationDependentInputItems = calculationInput->GetLocationDependentInputItems();
+        ASSERT_TRUE(result->GetSuccessful());
+
+        const auto& calculationInput = *result->GetData();
+        const auto& actualLocationDependentInputItems = calculationInput.GetLocationDependentInputItems();
         ASSERT_EQ(1, actualLocationDependentInputItems.size());
 
         const auto* locationDependentInput = dynamic_cast<GrassRevetmentOvertoppingLocationDependentInput*>(
@@ -910,10 +934,13 @@ namespace DiKErnel::Integration::Test
         builder.AddGrassOvertoppingLocation(move(constructionProperties));
 
         // When
-        const auto& calculationInput = builder.Build();
+        const auto& result = builder.Build();
 
         // Then
-        const auto& actualLocationDependentInputItems = calculationInput->GetLocationDependentInputItems();
+        ASSERT_TRUE(result->GetSuccessful());
+
+        const auto& calculationInput = *result->GetData();
+        const auto& actualLocationDependentInputItems = calculationInput.GetLocationDependentInputItems();
         ASSERT_EQ(1, actualLocationDependentInputItems.size());
 
         const auto* locationDependentInput = dynamic_cast<GrassRevetmentOvertoppingLocationDependentInput*>(
@@ -963,10 +990,13 @@ namespace DiKErnel::Integration::Test
         builder.AddGrassOvertoppingLocation(move(constructionProperties));
 
         // When
-        const auto& calculationInput = builder.Build();
+        const auto& result = builder.Build();
 
         // Then
-        const auto& actualLocationDependentInputItems = calculationInput->GetLocationDependentInputItems();
+        ASSERT_TRUE(result->GetSuccessful());
+
+        const auto& calculationInput = *result->GetData();
+        const auto& actualLocationDependentInputItems = calculationInput.GetLocationDependentInputItems();
         ASSERT_EQ(1, actualLocationDependentInputItems.size());
 
         const auto* locationDependentInput = dynamic_cast<GrassRevetmentOvertoppingLocationDependentInput*>(
@@ -1052,10 +1082,13 @@ namespace DiKErnel::Integration::Test
         builder.AddGrassWaveImpactLocation(move(constructionProperties));
 
         // When
-        const auto& calculationInput = builder.Build();
+        const auto& result = builder.Build();
 
         // Then
-        const auto& actualLocationDependentInputItems = calculationInput->GetLocationDependentInputItems();
+        ASSERT_TRUE(result->GetSuccessful());
+
+        const auto& calculationInput = *result->GetData();
+        const auto& actualLocationDependentInputItems = calculationInput.GetLocationDependentInputItems();
         ASSERT_EQ(1, actualLocationDependentInputItems.size());
 
         const auto* locationDependentInput = dynamic_cast<GrassRevetmentWaveImpactLocationDependentInput*>(
@@ -1106,10 +1139,13 @@ namespace DiKErnel::Integration::Test
         builder.AddGrassWaveImpactLocation(move(constructionProperties));
 
         // When
-        const auto& calculationInput = builder.Build();
+        const auto& result = builder.Build();
 
         // Then
-        const auto& actualLocationDependentInputItems = calculationInput->GetLocationDependentInputItems();
+        ASSERT_TRUE(result->GetSuccessful());
+
+        const auto& calculationInput = *result->GetData();
+        const auto& actualLocationDependentInputItems = calculationInput.GetLocationDependentInputItems();
         ASSERT_EQ(1, actualLocationDependentInputItems.size());
 
         const auto* locationDependentInput = dynamic_cast<GrassRevetmentWaveImpactLocationDependentInput*>(
@@ -1159,10 +1195,13 @@ namespace DiKErnel::Integration::Test
         builder.AddGrassWaveImpactLocation(move(constructionProperties));
 
         // When
-        const auto& calculationInput = builder.Build();
+        const auto& result = builder.Build();
 
         // Then
-        const auto& actualLocationDependentInputItems = calculationInput->GetLocationDependentInputItems();
+        ASSERT_TRUE(result->GetSuccessful());
+
+        const auto& calculationInput = *result->GetData();
+        const auto& actualLocationDependentInputItems = calculationInput.GetLocationDependentInputItems();
         ASSERT_EQ(1, actualLocationDependentInputItems.size());
 
         const auto* locationDependentInput = dynamic_cast<GrassRevetmentWaveImpactLocationDependentInput*>(
@@ -1262,10 +1301,13 @@ namespace DiKErnel::Integration::Test
         builder.AddGrassWaveRunupRayleighLocation(move(constructionProperties));
 
         // When
-        const auto& calculationInput = builder.Build();
+        const auto& result = builder.Build();
 
         // Then
-        const auto& actualLocationDependentInputItems = calculationInput->GetLocationDependentInputItems();
+        ASSERT_TRUE(result->GetSuccessful());
+
+        const auto& calculationInput = *result->GetData();
+        const auto& actualLocationDependentInputItems = calculationInput.GetLocationDependentInputItems();
         ASSERT_EQ(1, actualLocationDependentInputItems.size());
 
         const auto* locationDependentInput = dynamic_cast<GrassRevetmentWaveRunupRayleighLocationDependentInput*>(
@@ -1318,10 +1360,13 @@ namespace DiKErnel::Integration::Test
         builder.AddGrassWaveRunupRayleighLocation(move(constructionProperties));
 
         // When
-        const auto& calculationInput = builder.Build();
+        const auto& result = builder.Build();
 
         // Then
-        const auto& actualLocationDependentInputItems = calculationInput->GetLocationDependentInputItems();
+        ASSERT_TRUE(result->GetSuccessful());
+
+        const auto& calculationInput = *result->GetData();
+        const auto& actualLocationDependentInputItems = calculationInput.GetLocationDependentInputItems();
         ASSERT_EQ(1, actualLocationDependentInputItems.size());
 
         const auto* locationDependentInput = dynamic_cast<GrassRevetmentWaveRunupRayleighLocationDependentInput*>(
@@ -1373,10 +1418,13 @@ namespace DiKErnel::Integration::Test
         builder.AddGrassWaveRunupRayleighLocation(move(constructionProperties));
 
         // When
-        const auto& calculationInput = builder.Build();
+        const auto& result = builder.Build();
 
         // Then
-        const auto& actualLocationDependentInputItems = calculationInput->GetLocationDependentInputItems();
+        ASSERT_TRUE(result->GetSuccessful());
+
+        const auto& calculationInput = *result->GetData();
+        const auto& actualLocationDependentInputItems = calculationInput.GetLocationDependentInputItems();
         ASSERT_EQ(1, actualLocationDependentInputItems.size());
 
         const auto* locationDependentInput = dynamic_cast<GrassRevetmentWaveRunupRayleighLocationDependentInput*>(
@@ -1492,10 +1540,13 @@ namespace DiKErnel::Integration::Test
         builder.AddNaturalStoneLocation(move(naturalStoneConstructionProperties));
 
         // When
-        const auto& calculationInput = builder.Build();
+        const auto& result = builder.Build();
 
         // Then
-        const auto& actualLocationDependentInputItems = calculationInput->GetLocationDependentInputItems();
+        ASSERT_TRUE(result->GetSuccessful());
+
+        const auto& calculationInput = *result->GetData();
+        const auto& actualLocationDependentInputItems = calculationInput.GetLocationDependentInputItems();
         ASSERT_EQ(1, actualLocationDependentInputItems.size());
 
         const auto* locationDependentInput = dynamic_cast<NaturalStoneRevetmentLocationDependentInput*>(
@@ -1554,10 +1605,13 @@ namespace DiKErnel::Integration::Test
         builder.AddNaturalStoneLocation(move(naturalStoneConstructionProperties));
 
         // When
-        const auto& calculationInput = builder.Build();
+        const auto& result = builder.Build();
 
         // Then
-        const auto& actualLocationDependentInputItems = calculationInput->GetLocationDependentInputItems();
+        ASSERT_TRUE(result->GetSuccessful());
+
+        const auto& calculationInput = *result->GetData();
+        const auto& actualLocationDependentInputItems = calculationInput.GetLocationDependentInputItems();
         ASSERT_EQ(1, actualLocationDependentInputItems.size());
 
         const auto* locationDependentInput = dynamic_cast<NaturalStoneRevetmentLocationDependentInput*>(
