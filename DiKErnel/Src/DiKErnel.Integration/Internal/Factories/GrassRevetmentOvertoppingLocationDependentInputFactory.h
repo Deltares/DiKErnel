@@ -20,6 +20,8 @@
 
 #pragma once
 
+#include <memory>
+
 #include "GrassRevetmentOvertoppingLocationConstructionProperties.h"
 #include "GrassRevetmentOvertoppingLocationDependentInput.h"
 

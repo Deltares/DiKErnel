@@ -56,4 +56,25 @@ namespace DiKErnel::Util::Test
         ASSERT_NE(nullptr, derived);
         ASSERT_EQ(nullptr, base);
     }
+
+    TEST(UniquePtrHelperTest, CreatePointerOfValue_ValueNotNullPtr_ReturnsUniquePtrWithValue)
+    {
+        // Setup
+        constexpr auto value = 4;
+
+        // Call
+        const auto uniquePtr = UniquePtrHelper::CreatePtrOfValue(&value);
+
+        // Assert
+        ASSERT_EQ(value, *uniquePtr);
+    }
+
+    TEST(UniquePtrHelperTest, CreatePointerOfValue_ValueNullPtr_ReturnsNullPtr)
+    {
+        // Call
+        const auto uniquePtr = UniquePtrHelper::CreatePtrOfValue<double*>(nullptr);
+
+        // Assert
+        ASSERT_EQ(nullptr, uniquePtr);
+    }
 }

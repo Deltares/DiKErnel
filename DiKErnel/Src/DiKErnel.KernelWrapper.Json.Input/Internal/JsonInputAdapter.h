@@ -105,9 +105,5 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
             static Integration::NaturalStoneRevetmentTopLayerType ConvertTopLayerType(
                 JsonInputNaturalStoneRevetmentTopLayerType topLayerType);
-
-            template <typename TValue>
-            static std::unique_ptr<TValue> CreatePointerOfValue(
-                const TValue* value);
     };
 }

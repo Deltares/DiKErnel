@@ -34,14 +34,5 @@ namespace DiKErnel::Integration
                            ? *ptrValue
                            : defaultValue;
             }
-
-            template<typename TValue>
-            static std::unique_ptr<TValue> GetUniquePtrFromPtr(
-                const TValue* ptrValue)
-            {
-                return ptrValue != nullptr
-                    ? std::make_unique<TValue>(*ptrValue)
-                    : nullptr;
-            }
     };
 }

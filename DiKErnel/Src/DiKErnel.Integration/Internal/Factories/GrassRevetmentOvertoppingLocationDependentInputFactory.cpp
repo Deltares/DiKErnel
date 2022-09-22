@@ -28,11 +28,13 @@
 #include "InputFactoryException.h"
 #include "InputFactoryHelper.h"
 #include "RevetmentDefaults.h"
+#include "UniquePtrHelper.h"
 
 namespace DiKErnel::Integration
 {
     using namespace DomainLibrary;
     using namespace std;
+    using namespace Util;
 
     unique_ptr<GrassRevetmentOvertoppingLocationDependentInput>
     GrassRevetmentOvertoppingLocationDependentInputFactory::CreateLocationDependentInput(
@@ -71,6 +73,6 @@ namespace DiKErnel::Integration
                                          GrassRevetmentCumulativeOverloadDefaults::GetFixedNumberOfWaves()),
             InputFactoryHelper::GetValue(constructionProperties.GetFrontVelocityCwo(), GrassRevetmentOvertoppingDefaults::GetFrontVelocityCwo()),
             move(locationDependentAccelerationAlphaA),
-            InputFactoryHelper::GetUniquePtrFromPtr(constructionProperties.GetDikeHeight()));
+            UniquePtrHelper::CreatePtrOfValue(constructionProperties.GetDikeHeight()));
     }
 }
