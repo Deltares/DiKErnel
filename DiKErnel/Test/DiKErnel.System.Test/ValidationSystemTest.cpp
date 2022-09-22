@@ -47,7 +47,7 @@ namespace DiKErnel::System::Test
         const auto calculationInput = builder.Build();
 
         // When
-        const auto validationResult = Validator::Validate(*calculationInput);
+        const auto validationResult = Validator::Validate(*calculationInput->GetData());
 
         // Then
         ASSERT_TRUE(validationResult->GetSuccessful());
@@ -77,7 +77,7 @@ namespace DiKErnel::System::Test
         const auto calculationInput = builder.Build();
 
         // When
-        const auto validationResult = Validator::Validate(*calculationInput);
+        const auto validationResult = Validator::Validate(*calculationInput->GetData());
 
         // Then
         ASSERT_TRUE(validationResult->GetSuccessful());
@@ -114,7 +114,7 @@ namespace DiKErnel::System::Test
         const auto calculationInput = builder.Build();
 
         // When
-        const auto validationResult = Validator::Validate(*calculationInput);
+        const auto validationResult = Validator::Validate(*calculationInput->GetData());
 
         // Then
         ASSERT_TRUE(validationResult->GetSuccessful());
@@ -165,7 +165,7 @@ namespace DiKErnel::System::Test
         const auto calculationInput = builder.Build();
 
         // When
-        const auto validationResult = Validator::Validate(*calculationInput);
+        const auto validationResult = Validator::Validate(*calculationInput->GetData());
 
         // Then
         ASSERT_TRUE(validationResult->GetSuccessful());
@@ -213,7 +213,7 @@ namespace DiKErnel::System::Test
         const auto calculationInput = builder.Build();
 
         // When
-        const auto validationResult = Validator::Validate(*calculationInput);
+        const auto validationResult = Validator::Validate(*calculationInput->GetData());
 
         // Then
         ASSERT_TRUE(validationResult->GetSuccessful());
@@ -254,7 +254,7 @@ namespace DiKErnel::System::Test
         const auto calculationInput = builder.Build();
 
         // When
-        const auto validationResult = Validator::Validate(*calculationInput);
+        const auto validationResult = Validator::Validate(*calculationInput->GetData());
 
         // Then
         ASSERT_TRUE(validationResult->GetSuccessful());
@@ -299,7 +299,7 @@ namespace DiKErnel::System::Test
         const auto calculationInput = builder.Build();
 
         // When
-        const auto validationResult = Validator::Validate(*calculationInput);
+        const auto validationResult = Validator::Validate(*calculationInput->GetData());
 
         // Then
         ASSERT_TRUE(validationResult->GetSuccessful());

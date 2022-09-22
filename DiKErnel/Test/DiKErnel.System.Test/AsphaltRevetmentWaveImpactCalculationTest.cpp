@@ -160,7 +160,7 @@ namespace DiKErnel::System::Test
         const auto calculationInput = builder.Build();
 
         // When
-        Calculator calculator(*calculationInput);
+        Calculator calculator(*calculationInput->GetData());
         calculator.WaitForCompletion();
 
         // Then
@@ -187,7 +187,7 @@ namespace DiKErnel::System::Test
         const auto calculationInput = builder.Build();
 
         // When
-        Calculator calculator(*calculationInput);
+        Calculator calculator(*calculationInput->GetData());
         calculator.WaitForCompletion();
 
         // Then
@@ -215,7 +215,7 @@ namespace DiKErnel::System::Test
         const auto calculationInput = builder.Build();
 
         // When
-        Calculator calculator(*calculationInput);
+        Calculator calculator(*calculationInput->GetData());
         calculator.WaitForCompletion();
 
         // Then
@@ -259,7 +259,7 @@ namespace DiKErnel::System::Test
         const auto calculationInput = builder.Build();
 
         // When
-        Calculator calculator(*calculationInput);
+        Calculator calculator(*calculationInput->GetData());
         calculator.WaitForCompletion();
 
         // Then
@@ -303,7 +303,7 @@ namespace DiKErnel::System::Test
         const auto calculationInput = builder.Build();
 
         // When
-        Calculator calculator(*calculationInput);
+        Calculator calculator(*calculationInput->GetData());
         calculator.WaitForCompletion();
 
         // Then
@@ -347,7 +347,7 @@ namespace DiKErnel::System::Test
         const auto calculationInput = builder.Build();
 
         // When
-        Calculator calculator(*calculationInput);
+        Calculator calculator(*calculationInput->GetData());
         calculator.WaitForCompletion();
 
         // Then
@@ -379,7 +379,7 @@ namespace DiKErnel::System::Test
         const auto calculationInput = builder.Build();
 
         // When
-        Calculator calculator(*calculationInput);
+        Calculator calculator(*calculationInput->GetData());
         calculator.WaitForCompletion();
 
         // Then
@@ -408,7 +408,7 @@ namespace DiKErnel::System::Test
         const auto calculationInput = builder.Build();
 
         // When
-        Calculator calculator(*calculationInput);
+        Calculator calculator(*calculationInput->GetData());
         calculator.WaitForCompletion();
 
         // Then
@@ -437,7 +437,7 @@ namespace DiKErnel::System::Test
         const auto calculationInput = builder.Build();
 
         // When
-        Calculator calculator(*calculationInput);
+        Calculator calculator(*calculationInput->GetData());
         calculator.WaitForCompletion();
 
         // Then
