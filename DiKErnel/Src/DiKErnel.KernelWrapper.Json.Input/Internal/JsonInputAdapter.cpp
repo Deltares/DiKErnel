@@ -61,11 +61,14 @@ namespace DiKErnel::KernelWrapper::Json::Input
             const double endPointX = xLocations.at(i + 1);
             const double endPointZ = zLocations.at(i + 1);
 
-            const double* roughnessCoefficient = roughnessCoefficients != nullptr
-                                                     ? &roughnessCoefficients->at(i)
-                                                     : nullptr;
-
-            builder.AddDikeProfileSegment(startPointX, startPointZ, endPointX, endPointZ, roughnessCoefficient);
+            if(roughnessCoefficients != nullptr)
+            {
+                builder.AddDikeProfileSegment(startPointX, startPointZ, endPointX, endPointZ, roughnessCoefficients->at(i));
+            }
+            else
+            {
+                builder.AddDikeProfileSegment(startPointX, startPointZ, endPointX, endPointZ);
+            }
         }
 
         for (const auto& characteristicPoints = dikeProfileData.GetCharacteristicPoints();

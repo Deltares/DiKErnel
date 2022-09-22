@@ -38,7 +38,7 @@ namespace DiKErnel::System::Test
         // Given
         CalculationInputBuilder builder;
         builder.AddTimeStep(100, 90, 10, -1, 30, 200);
-        builder.AddDikeProfileSegment(10, 5, 20, 10, nullptr);
+        builder.AddDikeProfileSegment(10, 5, 20, 10);
         builder.AddDikeProfilePointData(10, CharacteristicPointType::OuterToe);
         builder.AddDikeProfilePointData(20, CharacteristicPointType::OuterCrest);
         builder.AddGrassWaveImpactLocation(
@@ -63,10 +63,8 @@ namespace DiKErnel::System::Test
     TEST(ValidationSystemTest, GivenCalculationInputWithInvalidProfileData_WhenValidating_ThenReturnsExpectedValidationResult)
     {
         // Given
-        constexpr double invalidRoughnessCoefficient = 1.5;
-        
         CalculationInputBuilder builder;
-        builder.AddDikeProfileSegment(10, 5, 20, 10, &invalidRoughnessCoefficient);
+        builder.AddDikeProfileSegment(10, 5, 20, 10, 1.5);
         builder.AddDikeProfilePointData(10, CharacteristicPointType::OuterToe);
         builder.AddDikeProfilePointData(20, CharacteristicPointType::OuterCrest);
         builder.AddTimeStep(0, 100, 10, 5, 10, 30);
@@ -108,7 +106,7 @@ namespace DiKErnel::System::Test
 
         CalculationInputBuilder builder;
         builder.AddTimeStep(0, 100, 10, 5, 10, 30);
-        builder.AddDikeProfileSegment(10, 5, 20, 10, nullptr);
+        builder.AddDikeProfileSegment(10, 5, 20, 10);
         builder.AddDikeProfilePointData(10, CharacteristicPointType::OuterToe);
         builder.AddDikeProfilePointData(20, CharacteristicPointType::OuterCrest);
         builder.AddAsphaltWaveImpactLocation(move(constructionProperties));
@@ -159,7 +157,7 @@ namespace DiKErnel::System::Test
 
         CalculationInputBuilder builder;
         builder.AddTimeStep(0, 100, 10, 5, 10, 30);
-        builder.AddDikeProfileSegment(10, 5, 20, 10, nullptr);
+        builder.AddDikeProfileSegment(10, 5, 20, 10);
         builder.AddDikeProfilePointData(10, CharacteristicPointType::OuterToe);
         builder.AddDikeProfilePointData(20, CharacteristicPointType::OuterCrest);
         builder.AddGrassWaveImpactLocation(move(constructionProperties));
@@ -207,7 +205,7 @@ namespace DiKErnel::System::Test
 
         CalculationInputBuilder builder;
         builder.AddTimeStep(0, 100, 10, 5, 10, 30);
-        builder.AddDikeProfileSegment(10, 5, 20, 10, nullptr);
+        builder.AddDikeProfileSegment(10, 5, 20, 10);
         builder.AddDikeProfilePointData(10, CharacteristicPointType::OuterToe);
         builder.AddDikeProfilePointData(20, CharacteristicPointType::OuterCrest);
         builder.AddGrassWaveRunupRayleighLocation(move(constructionProperties));
@@ -248,7 +246,7 @@ namespace DiKErnel::System::Test
 
         CalculationInputBuilder builder;
         builder.AddTimeStep(0, 100, 10, 5, 10, 30);
-        builder.AddDikeProfileSegment(10, 5, 20, 10, nullptr);
+        builder.AddDikeProfileSegment(10, 5, 20, 10);
         builder.AddDikeProfilePointData(10, CharacteristicPointType::OuterToe);
         builder.AddDikeProfilePointData(20, CharacteristicPointType::OuterCrest);
         builder.AddNaturalStoneLocation(move(constructionProperties));
@@ -277,7 +275,7 @@ namespace DiKErnel::System::Test
         // Given
         CalculationInputBuilder builder;
         builder.AddTimeStep(0, 100, 10, 5, 10, 30);
-        builder.AddDikeProfileSegment(10.0, 5.0, 20.0, 10.0, nullptr);
+        builder.AddDikeProfileSegment(10.0, 5.0, 20.0, 10.0);
         builder.AddDikeProfilePointData(10.0, CharacteristicPointType::OuterToe);
         builder.AddDikeProfilePointData(20.0, CharacteristicPointType::OuterCrest);
 

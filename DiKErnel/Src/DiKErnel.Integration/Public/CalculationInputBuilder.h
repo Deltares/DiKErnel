@@ -70,6 +70,23 @@ namespace DiKErnel::Integration
              *        The x coordinate for the upper profile point.
              * \param endPointZ
              *        The z coordinate for the upper profile point.
+             */
+            void AddDikeProfileSegment(
+                double startPointX,
+                double startPointZ,
+                double endPointX,
+                double endPointZ);
+
+            /*!
+             * \brief Adds a new dike segment.
+             * \param startPointX
+             *        The x coordinate for the lower profile point.
+             * \param startPointZ
+             *        The z coordinate for the lower profile point.
+             * \param endPointX
+             *        The x coordinate for the upper profile point.
+             * \param endPointZ
+             *        The z coordinate for the upper profile point.
              * \param roughnessCoefficient
              *        The roughness coefficient.
              */
@@ -78,7 +95,7 @@ namespace DiKErnel::Integration
                 double startPointZ,
                 double endPointX,
                 double endPointZ,
-                const double* roughnessCoefficient);
+                double roughnessCoefficient);
 
             /*!
              * \brief Adds a time step.
@@ -153,6 +170,13 @@ namespace DiKErnel::Integration
             std::unique_ptr<Core::ICalculationInput> Build() const;
 
         private:
+            void AddDikeProfileSegment(
+                double startPointX,
+                double startPointZ,
+                double endPointX,
+                double endPointZ,
+                std::unique_ptr<double> roughnessCoefficient);
+
             [[nodiscard]]
             void Validate() const;
 

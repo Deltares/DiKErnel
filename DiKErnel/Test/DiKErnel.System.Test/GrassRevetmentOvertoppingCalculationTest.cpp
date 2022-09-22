@@ -37,20 +37,6 @@ namespace DiKErnel::System::Test
     {
         #pragma region Schematization 1
 
-        const vector<double> _roughnessCoefficientsForSchematization1
-        {
-            1,
-            1,
-            0.75,
-            0.5,
-            0.8,
-            0.8,
-            0.8,
-            0.8,
-            0.8,
-            0.8
-        };
-
         void ConfigureBuilderForSchematization1(
             CalculationInputBuilder& builder) const
         {
@@ -71,16 +57,16 @@ namespace DiKErnel::System::Test
             builder.AddTimeStep(50400, 54000, 5.6, 2.6, 5.12, 18);
             builder.AddTimeStep(54000, 57600, 5.5, 2.65, 5.15, 20);
 
-            builder.AddDikeProfileSegment(0, -0.1, 5, 0, &_roughnessCoefficientsForSchematization1.at(0));
-            builder.AddDikeProfileSegment(5, 0, 15, 3, &_roughnessCoefficientsForSchematization1.at(1));
-            builder.AddDikeProfileSegment(15, 3, 22, 3.2, &_roughnessCoefficientsForSchematization1.at(2));
-            builder.AddDikeProfileSegment(22, 3.2, 30, 7.5, &_roughnessCoefficientsForSchematization1.at(3));
-            builder.AddDikeProfileSegment(30, 7.5, 31, 7.6, &_roughnessCoefficientsForSchematization1.at(4));
-            builder.AddDikeProfileSegment(31, 7.6, 34, 7.7, &_roughnessCoefficientsForSchematization1.at(5));
-            builder.AddDikeProfileSegment(34, 7.7, 35, 7.4, &_roughnessCoefficientsForSchematization1.at(6));
-            builder.AddDikeProfileSegment(35, 7.4, 45, 5, &_roughnessCoefficientsForSchematization1.at(7));
-            builder.AddDikeProfileSegment(45, 5, 60, 0.5, &_roughnessCoefficientsForSchematization1.at(8));
-            builder.AddDikeProfileSegment(60, 0.5, 70, 0.5, &_roughnessCoefficientsForSchematization1.at(9));
+            builder.AddDikeProfileSegment(0, -0.1, 5, 0, 1);
+            builder.AddDikeProfileSegment(5, 0, 15, 3, 1);
+            builder.AddDikeProfileSegment(15, 3, 22, 3.2, 0.75);
+            builder.AddDikeProfileSegment(22, 3.2, 30, 7.5, 0.5);
+            builder.AddDikeProfileSegment(30, 7.5, 31, 7.6, 0.8);
+            builder.AddDikeProfileSegment(31, 7.6, 34, 7.7, 0.8);
+            builder.AddDikeProfileSegment(34, 7.7, 35, 7.4, 0.8);
+            builder.AddDikeProfileSegment(35, 7.4, 45, 5, 0.8);
+            builder.AddDikeProfileSegment(45, 5, 60, 0.5, 0.8);
+            builder.AddDikeProfileSegment(60, 0.5, 70, 0.5, 0.8);
 
             builder.AddDikeProfilePointData(5, CharacteristicPointType::OuterToe);
             builder.AddDikeProfilePointData(15, CharacteristicPointType::CrestOuterBerm);
@@ -116,18 +102,6 @@ namespace DiKErnel::System::Test
 
         #pragma region Schematization 2
 
-        const vector<double> _roughnessCoefficientsForSchematization2
-        {
-            1,
-            0.5,
-            0.8,
-            0.8,
-            0.8,
-            0.8,
-            0.8,
-            0.8
-        };
-
         void ConfigureBuilderForSchematization2(
             CalculationInputBuilder& builder) const
         {
@@ -148,14 +122,14 @@ namespace DiKErnel::System::Test
             builder.AddTimeStep(50400, 54000, 5.1, 3.05, 5.62, 18);
             builder.AddTimeStep(54000, 57600, 5, 3.1, 5.65, 20);
 
-            builder.AddDikeProfileSegment(0, -0.1, 5, 0, &_roughnessCoefficientsForSchematization2.at(0));
-            builder.AddDikeProfileSegment(5, 0, 30, 7.5, &_roughnessCoefficientsForSchematization2.at(1));
-            builder.AddDikeProfileSegment(30, 7.5, 31, 7.6, &_roughnessCoefficientsForSchematization2.at(2));
-            builder.AddDikeProfileSegment(31, 7.6, 34, 7.7, &_roughnessCoefficientsForSchematization2.at(3));
-            builder.AddDikeProfileSegment(34, 7.7, 35, 7.4, &_roughnessCoefficientsForSchematization2.at(4));
-            builder.AddDikeProfileSegment(35, 7.4, 45, 5, &_roughnessCoefficientsForSchematization2.at(5));
-            builder.AddDikeProfileSegment(45, 5, 60, 0.5, &_roughnessCoefficientsForSchematization2.at(6));
-            builder.AddDikeProfileSegment(60, 0.5, 70, 0.5, &_roughnessCoefficientsForSchematization2.at(7));
+            builder.AddDikeProfileSegment(0, -0.1, 5, 0, 1);
+            builder.AddDikeProfileSegment(5, 0, 30, 7.5, 0.5);
+            builder.AddDikeProfileSegment(30, 7.5, 31, 7.6, 0.8);
+            builder.AddDikeProfileSegment(31, 7.6, 34, 7.7, 0.8);
+            builder.AddDikeProfileSegment(34, 7.7, 35, 7.4, 0.8);
+            builder.AddDikeProfileSegment(35, 7.4, 45, 5, 0.8);
+            builder.AddDikeProfileSegment(45, 5, 60, 0.5, 0.8);
+            builder.AddDikeProfileSegment(60, 0.5, 70, 0.5, 0.8);
 
             builder.AddDikeProfilePointData(5, CharacteristicPointType::OuterToe);
             builder.AddDikeProfilePointData(30, CharacteristicPointType::OuterCrest);
@@ -189,18 +163,6 @@ namespace DiKErnel::System::Test
 
         #pragma region Schematization 3
 
-        const vector<double> _roughnessCoefficientsForSchematization3
-        {
-            1,
-            0.9,
-            0.8,
-            0.7,
-            1,
-            1,
-            1,
-            1
-        };
-
         void ConfigureBuilderForSchematization3(
             CalculationInputBuilder& builder) const
         {
@@ -217,14 +179,14 @@ namespace DiKErnel::System::Test
             builder.AddTimeStep(57600, 75600, 6, 2.55, 5.5, 10);
             builder.AddTimeStep(75600, 79200, 5.7, 2.6, 5.53, 12);
 
-            builder.AddDikeProfileSegment(-5, -4, -1.73, -2.89, &_roughnessCoefficientsForSchematization3.at(0));
-            builder.AddDikeProfileSegment(-1.73, -2.89, 33.82, 6.03, &_roughnessCoefficientsForSchematization3.at(1));
-            builder.AddDikeProfileSegment(33.82, 6.03, 38.16, 6.31, &_roughnessCoefficientsForSchematization3.at(2));
-            builder.AddDikeProfileSegment(38.16, 6.31, 47.34, 8.64, &_roughnessCoefficientsForSchematization3.at(3));
-            builder.AddDikeProfileSegment(47.34, 8.64, 52, 8.7, &_roughnessCoefficientsForSchematization3.at(4));
-            builder.AddDikeProfileSegment(52, 8.7, 70, 5, &_roughnessCoefficientsForSchematization3.at(5));
-            builder.AddDikeProfileSegment(70, 5, 85, 1, &_roughnessCoefficientsForSchematization3.at(6));
-            builder.AddDikeProfileSegment(85, 1, 95, 0, &_roughnessCoefficientsForSchematization3.at(7));
+            builder.AddDikeProfileSegment(-5, -4, -1.73, -2.89, 1);
+            builder.AddDikeProfileSegment(-1.73, -2.89, 33.82, 6.03, 0.9);
+            builder.AddDikeProfileSegment(33.82, 6.03, 38.16, 6.31, 0.8);
+            builder.AddDikeProfileSegment(38.16, 6.31, 47.34, 8.64, 0.7);
+            builder.AddDikeProfileSegment(47.34, 8.64, 52, 8.7, 1);
+            builder.AddDikeProfileSegment(52, 8.7, 70, 5, 1);
+            builder.AddDikeProfileSegment(70, 5, 85, 1, 1);
+            builder.AddDikeProfileSegment(85, 1, 95, 0, 1);
 
             builder.AddDikeProfilePointData(-1.73, CharacteristicPointType::OuterToe);
             builder.AddDikeProfilePointData(33.82, CharacteristicPointType::CrestOuterBerm);

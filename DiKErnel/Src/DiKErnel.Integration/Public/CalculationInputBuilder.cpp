@@ -59,14 +59,22 @@ namespace DiKErnel::Integration
     }
 
     void CalculationInputBuilder::AddDikeProfileSegment(
-        double startPointX,
-        double startPointZ,
-        double endPointX,
-        double endPointZ,
-        const double* roughnessCoefficient)
+        const double startPointX,
+        const double startPointZ,
+        const double endPointX,
+        const double endPointZ)
     {
-        _profileSegmentDataItems.emplace_back(make_unique<ProfileDataFactorySegment>(startPointX, startPointZ, endPointX, endPointZ,
-                                                                                     roughnessCoefficient));
+        AddDikeProfileSegment(startPointX, startPointZ, endPointX, endPointZ, nullptr);
+    }
+
+    void CalculationInputBuilder::AddDikeProfileSegment(
+        const double startPointX,
+        const double startPointZ,
+        const double endPointX,
+        const double endPointZ,
+        const double roughnessCoefficient)
+    {
+        AddDikeProfileSegment(startPointX, startPointZ, endPointX, endPointZ, make_unique<double>(roughnessCoefficient));
     }
 
     void CalculationInputBuilder::AddTimeStep(
@@ -155,6 +163,17 @@ namespace DiKErnel::Integration
         {
             throw_with_nested(CalculationInputBuildException(_exceptionMessage));
         }
+    }
+
+    void CalculationInputBuilder::AddDikeProfileSegment(
+        double startPointX,
+        double startPointZ,
+        double endPointX,
+        double endPointZ,
+        unique_ptr<double> roughnessCoefficient)
+    {
+        _profileSegmentDataItems.emplace_back(make_unique<ProfileDataFactorySegment>(startPointX, startPointZ, endPointX, endPointZ,
+                                                                                     move(roughnessCoefficient)));
     }
 
     void CalculationInputBuilder::Validate() const
