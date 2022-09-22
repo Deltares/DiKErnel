@@ -496,4 +496,90 @@ namespace DiKErnel::System::Test
 
         AssertOutput(calculator, 1.99284873782755, &expectedTimeOfFailure);
     }
+
+    TEST_F(GrassRevetmentOvertoppingCalculationTest,
+           GivenCalculationInputForSchematization3TestCase2_WhenCalculating_ThenReturnsExpectedCalculationResult)
+    {
+        // Given
+        CalculationInputBuilder builder;
+
+        auto locationConstructionProperties = CreateLocationConstructionPropertiesForSchematization3(50);
+
+        locationConstructionProperties->SetDikeHeight(make_unique<double>(6.7));
+
+        ConfigureBuilderForSchematization3(builder);
+
+        builder.AddGrassOvertoppingLocation(move(locationConstructionProperties));
+
+        const auto calculationInput = builder.Build();
+
+        // When
+        Calculator calculator(*calculationInput);
+        calculator.WaitForCompletion();
+
+        // Then
+        constexpr int expectedTimeOfFailure = 0.0;
+
+        AssertOutput(calculator, 12.9943558854027, &expectedTimeOfFailure);
+    }
+
+    TEST_F(GrassRevetmentOvertoppingCalculationTest,
+           GivenCalculationInputForSchematization3TestCase3_WhenCalculating_ThenReturnsExpectedCalculationResult)
+    {
+        // Given
+        CalculationInputBuilder builder;
+
+        auto locationConstructionProperties = CreateLocationConstructionPropertiesForSchematization3(50);
+
+        locationConstructionProperties->SetInitialDamage(make_unique<double>(0.9));
+        locationConstructionProperties->SetFixedNumberOfWaves(make_unique<int>(15000));
+        locationConstructionProperties->SetDikeHeight(make_unique<double>(9));
+
+        ConfigureBuilderForSchematization3(builder);
+
+        builder.AddGrassOvertoppingLocation(move(locationConstructionProperties));
+
+        const auto calculationInput = builder.Build();
+
+        // When
+        Calculator calculator(*calculationInput);
+        calculator.WaitForCompletion();
+
+        // Then
+        constexpr int expectedTimeOfFailure = 0.0;
+
+        AssertOutput(calculator, 1.03611132410722, &expectedTimeOfFailure);
+    }
+
+    TEST_F(GrassRevetmentOvertoppingCalculationTest,
+           GivenCalculationInputForSchematization3TestCase4_WhenCalculating_ThenReturnsExpectedCalculationResult)
+    {
+        // Given
+        CalculationInputBuilder builder;
+
+        auto locationConstructionProperties = CreateLocationConstructionPropertiesForSchematization3(50);
+
+        locationConstructionProperties->SetCriticalCumulativeOverload(make_unique<double>(7500));
+        locationConstructionProperties->SetCriticalFrontVelocity(make_unique<double>(5.5));
+        locationConstructionProperties->SetIncreasedLoadTransitionAlphaM(make_unique<double>(1.25));
+        locationConstructionProperties->SetReducedStrengthTransitionAlphaS(make_unique<double>(1.33));
+        locationConstructionProperties->SetAverageNumberOfWavesCtm(make_unique<double>(0.85));
+        locationConstructionProperties->SetFixedNumberOfWaves(make_unique<int>(15000));
+        locationConstructionProperties->SetFrontVelocityCwo(make_unique<double>(1.6));
+        locationConstructionProperties->SetAccelerationAlphaAForCrest(make_unique<double>(1.1));
+        locationConstructionProperties->SetAccelerationAlphaAForInnerSlope(make_unique<double>(1.5));
+
+        ConfigureBuilderForSchematization3(builder);
+
+        builder.AddGrassOvertoppingLocation(move(locationConstructionProperties));
+
+        const auto calculationInput = builder.Build();
+
+        // When
+        Calculator calculator(*calculationInput);
+        calculator.WaitForCompletion();
+
+        // Then
+        AssertOutput(calculator, 0.40767149313574);
+    }
 }
