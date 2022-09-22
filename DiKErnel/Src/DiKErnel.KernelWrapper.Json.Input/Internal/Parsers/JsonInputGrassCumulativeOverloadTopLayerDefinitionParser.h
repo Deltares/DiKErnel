@@ -20,22 +20,17 @@
 
 #pragma once
 
-#include <memory>
+#include <map>
 
-#include <nlohmann/json.hpp>
-
-#include "JsonInputCalculationDefinitionParser.h"
+#include "JsonInputGrassCumulativeOverloadTopLayerDefinitionData.h"
+#include "JsonInputGrassRevetmentTopLayerType.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
-    class JsonInputGrassOvertoppingCalculationDefinitionParser : public JsonInputCalculationDefinitionParser
+    class JsonInputGrassCumulativeOverloadTopLayerDefinitionParser
     {
         public:
-            explicit JsonInputGrassOvertoppingCalculationDefinitionParser(
+            static std::map<JsonInputGrassRevetmentTopLayerType, std::unique_ptr<JsonInputGrassCumulativeOverloadTopLayerDefinitionData>> Parse(
                 const nlohmann::json& readCalculationMethod);
-
-        protected:
-            std::unique_ptr<JsonInputCalculationDefinitionData> ParseCalculationDefinition(
-                std::unique_ptr<double> failureNumber) override;
     };
 }

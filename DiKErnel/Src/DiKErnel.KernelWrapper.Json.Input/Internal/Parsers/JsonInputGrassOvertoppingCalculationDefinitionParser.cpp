@@ -21,6 +21,7 @@
 #include "JsonInputGrassOvertoppingCalculationDefinitionParser.h"
 
 #include "JsonInputDefinitions.h"
+#include "JsonInputGrassCumulativeOverloadTopLayerDefinitionParser.h"
 #include "JsonInputGrassOvertoppingCalculationDefinitionData.h"
 #include "JsonInputGrassOvertoppingDefinitions.h"
 #include "JsonInputParserHelper.h"
@@ -40,7 +41,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
         const auto& readCalculationMethod = GetReadCalculationMethod();
 
         auto calculationDefinition = make_unique<JsonInputGrassOvertoppingCalculationDefinitionData>(
-            move(failureNumber), ReadTopLayerDefinitionData(readCalculationMethod));
+            move(failureNumber), JsonInputGrassCumulativeOverloadTopLayerDefinitionParser::Parse(readCalculationMethod));
 
         calculationDefinition->SetDikeHeight(
             JsonInputParserHelper::ParseOptionalDouble(readCalculationMethod, JsonInputGrassOvertoppingDefinitions::DIKE_HEIGHT));
@@ -68,30 +69,5 @@ namespace DiKErnel::KernelWrapper::Json::Input
             JsonInputParserHelper::ParseOptionalDouble(readCalculationMethod, JsonInputDefinitions::FACTOR_CTM));
 
         return calculationDefinition;
-    }
-
-    map<JsonInputGrassRevetmentTopLayerType, unique_ptr<JsonInputGrassCumulativeOverloadTopLayerDefinitionData>>
-    JsonInputGrassOvertoppingCalculationDefinitionParser::ReadTopLayerDefinitionData(
-        const json& readCalculationMethod)
-    {
-        auto topLayers = map<JsonInputGrassRevetmentTopLayerType, unique_ptr<JsonInputGrassCumulativeOverloadTopLayerDefinitionData>>();
-
-        if (readCalculationMethod.contains(JsonInputDefinitions::TOP_LAYERS))
-        {
-            for (const auto& readTopLayers = readCalculationMethod.at(JsonInputDefinitions::TOP_LAYERS); const auto& readTopLayer : readTopLayers)
-            {
-                auto topLayer = make_unique<JsonInputGrassCumulativeOverloadTopLayerDefinitionData>();
-
-                topLayer->SetCriticalCumulativeOverload(
-                    JsonInputParserHelper::ParseOptionalDouble(readTopLayer, JsonInputGrassRevetmentDefinitions::CRITICAL_CUMULATIVE_OVERLOAD));
-                topLayer->SetCriticalFrontVelocity(
-                    JsonInputParserHelper::ParseOptionalDouble(readTopLayer, JsonInputGrassRevetmentDefinitions::CRITICAL_FRONT_VELOCITY));
-
-                topLayers.insert(pair(readTopLayer.at(JsonInputDefinitions::TYPE_TOP_LAYER).get<JsonInputGrassRevetmentTopLayerType>(),
-                                      move(topLayer)));
-            }
-        }
-
-        return topLayers;
     }
 }

@@ -88,6 +88,8 @@ set(SOURCEFILES_INTERNAL_PARSERS
   ${INTERNAL_PARSERS_FOLDER}/JsonInputCalculationDefinitionParser.cpp
   ${INTERNAL_PARSERS_FOLDER}/JsonInputCalculationDefinitionParser.h
   ${INTERNAL_PARSERS_FOLDER}/JsonInputDefinitions.h
+  ${INTERNAL_PARSERS_FOLDER}/JsonInputGrassCumulativeOverloadTopLayerDefinitionParser.cpp
+  ${INTERNAL_PARSERS_FOLDER}/JsonInputGrassCumulativeOverloadTopLayerDefinitionParser.h
   ${INTERNAL_PARSERS_FOLDER}/JsonInputGrassOvertoppingCalculationDefinitionParser.cpp
   ${INTERNAL_PARSERS_FOLDER}/JsonInputGrassOvertoppingCalculationDefinitionParser.h
   ${INTERNAL_PARSERS_FOLDER}/JsonInputGrassOvertoppingDefinitions.h
