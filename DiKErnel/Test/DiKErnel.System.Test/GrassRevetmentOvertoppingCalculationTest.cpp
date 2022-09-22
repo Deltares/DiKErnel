@@ -61,6 +61,18 @@ namespace DiKErnel::System::Test
             0.8
         };
 
+        const vector<double> _roughnessCoefficientsForSchematization3
+        {
+            1,
+            0.9,
+            0.8,
+            0.7,
+            1,
+            1,
+            1,
+            1
+        };
+
         void ConfigureBuilderForSchematization1(
             CalculationInputBuilder& builder) const
         {
@@ -120,19 +132,52 @@ namespace DiKErnel::System::Test
             builder.AddTimeStep(50400, 54000, 5.1, 3.05, 5.62, 18);
             builder.AddTimeStep(54000, 57600, 5, 3.1, 5.65, 20);
 
-            builder.AddDikeProfileSegment(0, -0.1, 5, 0, &_roughnessCoefficientsForSchematization1.at(0));
-            builder.AddDikeProfileSegment(5, 0, 30, 7.5, &_roughnessCoefficientsForSchematization1.at(1));
-            builder.AddDikeProfileSegment(30, 7.5, 31, 7.6, &_roughnessCoefficientsForSchematization1.at(2));
-            builder.AddDikeProfileSegment(31, 7.6, 34, 7.7, &_roughnessCoefficientsForSchematization1.at(3));
-            builder.AddDikeProfileSegment(34, 7.7, 35, 7.4, &_roughnessCoefficientsForSchematization1.at(4));
-            builder.AddDikeProfileSegment(35, 7.4, 45, 5, &_roughnessCoefficientsForSchematization1.at(5));
-            builder.AddDikeProfileSegment(45, 5, 60, 0.5, &_roughnessCoefficientsForSchematization1.at(6));
-            builder.AddDikeProfileSegment(60, 0.5, 70, 0.5, &_roughnessCoefficientsForSchematization1.at(7));
+            builder.AddDikeProfileSegment(0, -0.1, 5, 0, &_roughnessCoefficientsForSchematization2.at(0));
+            builder.AddDikeProfileSegment(5, 0, 30, 7.5, &_roughnessCoefficientsForSchematization2.at(1));
+            builder.AddDikeProfileSegment(30, 7.5, 31, 7.6, &_roughnessCoefficientsForSchematization2.at(2));
+            builder.AddDikeProfileSegment(31, 7.6, 34, 7.7, &_roughnessCoefficientsForSchematization2.at(3));
+            builder.AddDikeProfileSegment(34, 7.7, 35, 7.4, &_roughnessCoefficientsForSchematization2.at(4));
+            builder.AddDikeProfileSegment(35, 7.4, 45, 5, &_roughnessCoefficientsForSchematization2.at(5));
+            builder.AddDikeProfileSegment(45, 5, 60, 0.5, &_roughnessCoefficientsForSchematization2.at(6));
+            builder.AddDikeProfileSegment(60, 0.5, 70, 0.5, &_roughnessCoefficientsForSchematization2.at(7));
 
             builder.AddDikeProfilePointData(5, CharacteristicPointType::OuterToe);
             builder.AddDikeProfilePointData(30, CharacteristicPointType::OuterCrest);
             builder.AddDikeProfilePointData(35, CharacteristicPointType::InnerCrest);
             builder.AddDikeProfilePointData(60, CharacteristicPointType::InnerToe);
+        }
+
+        void ConfigureBuilderForSchematization3(
+            CalculationInputBuilder& builder) const
+        {
+            builder.AddTimeStep(0, 3600, 5.7, 2.05, 5.2, -10);
+            builder.AddTimeStep(3600, 7200, 6.2, 2.1, 5.23, -8);
+            builder.AddTimeStep(7200, 10800, 6.8, 2.15, 5.26, -6);
+            builder.AddTimeStep(10800, 14400, 6.8, 2.2, 5.29, -4);
+            builder.AddTimeStep(14400, 21600, 6.8, 2.25, 5.32, -2);
+            builder.AddTimeStep(21600, 32400, 6.7, 2.3, 5.35, 0);
+            builder.AddTimeStep(32400, 46800, 6.6, 2.35, 5.38, 2);
+            builder.AddTimeStep(46800, 50400, 6.4, 2.4, 5.41, 4);
+            builder.AddTimeStep(50400, 54000, 6.2, 2.45, 5.44, 6);
+            builder.AddTimeStep(54000, 57600, 6.1, 2.5, 5.47, 8);
+            builder.AddTimeStep(57600, 75600, 6, 2.55, 5.5, 10);
+            builder.AddTimeStep(75600, 79200, 5.7, 2.6, 5.53, 12);
+
+            builder.AddDikeProfileSegment(-5, -4, -1.73, -2.89, &_roughnessCoefficientsForSchematization3.at(0));
+            builder.AddDikeProfileSegment(-1.73, -2.89, 33.82, 6.03, &_roughnessCoefficientsForSchematization3.at(1));
+            builder.AddDikeProfileSegment(33.82, 6.03, 38.16, 6.31, &_roughnessCoefficientsForSchematization3.at(2));
+            builder.AddDikeProfileSegment(38.16, 6.31, 47.34, 8.64, &_roughnessCoefficientsForSchematization3.at(3));
+            builder.AddDikeProfileSegment(47.34, 8.64, 52, 8.7, &_roughnessCoefficientsForSchematization3.at(4));
+            builder.AddDikeProfileSegment(52, 8.7, 70, 5, &_roughnessCoefficientsForSchematization3.at(5));
+            builder.AddDikeProfileSegment(70, 5, 85, 1, &_roughnessCoefficientsForSchematization3.at(6));
+            builder.AddDikeProfileSegment(85, 1, 95, 0, &_roughnessCoefficientsForSchematization3.at(7));
+
+            builder.AddDikeProfilePointData(-1.73, CharacteristicPointType::OuterToe);
+            builder.AddDikeProfilePointData(33.82, CharacteristicPointType::CrestOuterBerm);
+            builder.AddDikeProfilePointData(38.16, CharacteristicPointType::NotchOuterBerm);
+            builder.AddDikeProfilePointData(47.34, CharacteristicPointType::OuterCrest);
+            builder.AddDikeProfilePointData(52, CharacteristicPointType::InnerCrest);
+            builder.AddDikeProfilePointData(85, CharacteristicPointType::InnerToe);
         }
 
         [[nodiscard]]
@@ -159,6 +204,28 @@ namespace DiKErnel::System::Test
 
         [[nodiscard]]
         unique_ptr<GrassRevetmentOvertoppingLocationConstructionProperties> CreateLocationConstructionPropertiesForSchematization2(
+            double x) const
+        {
+            auto locationConstructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(
+                x, GrassRevetmentTopLayerType::OpenSod);
+
+            locationConstructionProperties->SetInitialDamage(make_unique<double>(0));
+            locationConstructionProperties->SetFailureNumber(make_unique<double>(1));
+            locationConstructionProperties->SetCriticalCumulativeOverload(make_unique<double>(7000));
+            locationConstructionProperties->SetCriticalFrontVelocity(make_unique<double>(4.3));
+            locationConstructionProperties->SetIncreasedLoadTransitionAlphaM(make_unique<double>(1));
+            locationConstructionProperties->SetReducedStrengthTransitionAlphaS(make_unique<double>(1));
+            locationConstructionProperties->SetAverageNumberOfWavesCtm(make_unique<double>(0.92));
+            locationConstructionProperties->SetFixedNumberOfWaves(make_unique<int>(10000));
+            locationConstructionProperties->SetFrontVelocityCwo(make_unique<double>(1.45));
+            locationConstructionProperties->SetAccelerationAlphaAForCrest(make_unique<double>(1));
+            locationConstructionProperties->SetAccelerationAlphaAForInnerSlope(make_unique<double>(1.4));
+
+            return locationConstructionProperties;
+        }
+
+        [[nodiscard]]
+        unique_ptr<GrassRevetmentOvertoppingLocationConstructionProperties> CreateLocationConstructionPropertiesForSchematization3(
             double x) const
         {
             auto locationConstructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(
@@ -404,5 +471,29 @@ namespace DiKErnel::System::Test
 
         // Then
         AssertOutput(calculator, 0.688425139553067);
+    }
+
+    TEST_F(GrassRevetmentOvertoppingCalculationTest,
+           GivenCalculationInputForSchematization3TestCase1_WhenCalculating_ThenReturnsExpectedCalculationResult)
+    {
+        // Given
+        CalculationInputBuilder builder;
+
+        auto locationConstructionProperties = CreateLocationConstructionPropertiesForSchematization3(60);
+
+        ConfigureBuilderForSchematization3(builder);
+
+        builder.AddGrassOvertoppingLocation(move(locationConstructionProperties));
+
+        const auto calculationInput = builder.Build();
+
+        // When
+        Calculator calculator(*calculationInput);
+        calculator.WaitForCompletion();
+
+        // Then
+        constexpr int expectedTimeOfFailure = 0.0;
+
+        AssertOutput(calculator, 1.99284873782755, &expectedTimeOfFailure);
     }
 }
