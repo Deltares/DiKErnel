@@ -20,6 +20,8 @@
 
 #pragma once
 
+#include <memory>
+
 namespace DiKErnel::Integration
 {
     class ProfileDataFactorySegment
@@ -30,7 +32,7 @@ namespace DiKErnel::Integration
                 double startPointZ,
                 double endPointX,
                 double endPointZ,
-                const double* roughnessCoefficient);
+                std::unique_ptr<double> roughnessCoefficient);
 
             [[nodiscard]]
             double GetStartPointX() const;
@@ -52,6 +54,6 @@ namespace DiKErnel::Integration
             double _startPointZ;
             double _endPointX;
             double _endPointZ;
-            const double* _roughnessCoefficient;
+            std::unique_ptr<double> _roughnessCoefficient;
     };
 }

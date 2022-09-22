@@ -22,17 +22,19 @@
 
 namespace DiKErnel::Integration
 {
+    using namespace std;
+
     ProfileDataFactorySegment::ProfileDataFactorySegment(
         const double startPointX,
         const double startPointZ,
         const double endPointX,
         const double endPointZ,
-        const double* roughnessCoefficient)
+        unique_ptr<double> roughnessCoefficient)
         : _startPointX(startPointX),
           _startPointZ(startPointZ),
           _endPointX(endPointX),
           _endPointZ(endPointZ),
-          _roughnessCoefficient(roughnessCoefficient) { }
+          _roughnessCoefficient(move(roughnessCoefficient)) { }
 
     double ProfileDataFactorySegment::GetStartPointX() const
     {
@@ -56,6 +58,6 @@ namespace DiKErnel::Integration
 
     const double* ProfileDataFactorySegment::GetRoughnessCoefficient() const
     {
-        return _roughnessCoefficient;
+        return _roughnessCoefficient.get();
     }
 }
