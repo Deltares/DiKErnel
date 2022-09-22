@@ -260,7 +260,7 @@ namespace DiKErnel::System::Test
             const CalculationOutput* calculationOutput = calculatorResult->GetData();
             const auto& locationDependentOutput = calculationOutput->GetLocationDependentOutputItems().at(0).get();
 
-            const auto actualDamage = locationDependentOutput.GetTimeDependentOutputItems().back().get().GetDamage();
+            const auto actualDamage = locationDependentOutput.GetDamages().back();
             AssertHelper::AssertAreEqualWithAcceptablePrecision(expectedDamage, actualDamage);
 
             const auto actualTimeOfFailure = locationDependentOutput.GetTimeOfFailure();
