@@ -23,16 +23,11 @@
 #include <memory>
 #include <vector>
 
-namespace DiKErnel::Core
-{
-    class ITimeDependentInput;
-}
+#include "ITimeDependentInput.h"
+#include "TimeDependentInputFactoryData.h"
 
 namespace DiKErnel::Integration
 {
-    class TimeDependentInputFactoryData;
-    class TimeDependentInput;
-
     class TimeDependentInputFactory
     {
         public:
