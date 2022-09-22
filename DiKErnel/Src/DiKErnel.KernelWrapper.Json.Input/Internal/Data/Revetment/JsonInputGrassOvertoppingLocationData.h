@@ -21,11 +21,10 @@
 #pragma once
 
 #include "JsonInputLocationData.h"
+#include "JsonInputGrassRevetmentTopLayerType.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
-    enum class JsonInputGrassRevetmentTopLayerType;
-
     class JsonInputGrassOvertoppingLocationData : public JsonInputLocationData
     {
         public:
