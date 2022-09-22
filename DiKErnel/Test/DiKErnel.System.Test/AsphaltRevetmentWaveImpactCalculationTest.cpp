@@ -99,9 +99,9 @@ namespace DiKErnel::System::Test
             builder.AddTimeStep(28800, 32400, 2.4, 2.5, 6.3, 0);
             builder.AddTimeStep(32400, 36000, 2, 2.4, 6.2, 0);
 
-            builder.AddDikeProfileSegment(0, 0, 8, 2.0);
-            builder.AddDikeProfileSegment(8, 2.0, 17, 3.0);
-            builder.AddDikeProfileSegment(17, 3.0, 35, 7.5);
+            builder.AddDikeProfileSegment(0, 0, 8, 2);
+            builder.AddDikeProfileSegment(8, 2, 17, 3);
+            builder.AddDikeProfileSegment(17, 3, 35, 7.5);
 
             builder.AddDikeProfilePointData(0, CharacteristicPointType::OuterToe);
             builder.AddDikeProfilePointData(8, CharacteristicPointType::CrestOuterBerm);
@@ -151,7 +151,7 @@ namespace DiKErnel::System::Test
         CalculationInputBuilder builder;
 
         auto locationConstructionProperties = make_unique<AsphaltRevetmentWaveImpactLocationConstructionProperties>(
-            10.0, AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete, 1.6, 55, 0.4, 18000);
+            10, AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete, 1.6, 55, 0.4, 18000);
 
         ConfigureBuilderForSchematization1(builder);
 
@@ -176,7 +176,7 @@ namespace DiKErnel::System::Test
         CalculationInputBuilder builder;
 
         auto locationConstructionProperties = make_unique<AsphaltRevetmentWaveImpactLocationConstructionProperties>(
-            10.0, AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete, 1.75, 60, 0.3, 16000);
+            10, AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete, 1.75, 60, 0.3, 16000);
 
         locationConstructionProperties->SetInitialDamage(make_unique<double>(0.4));
 
@@ -203,7 +203,7 @@ namespace DiKErnel::System::Test
         CalculationInputBuilder builder;
 
         auto locationConstructionProperties = make_unique<AsphaltRevetmentWaveImpactLocationConstructionProperties>(
-            10.0, AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete, 1.6, 55, 0.15, 18000);
+            10, AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete, 1.6, 55, 0.15, 18000);
 
         locationConstructionProperties->SetThicknessSubLayer(make_unique<double>(0.18));
         locationConstructionProperties->SetElasticModulusSubLayer(make_unique<double>(15000));
@@ -231,7 +231,7 @@ namespace DiKErnel::System::Test
         CalculationInputBuilder builder;
 
         auto locationConstructionProperties = make_unique<AsphaltRevetmentWaveImpactLocationConstructionProperties>(
-            10.0, AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete, 1.6, 55, 0.3, 18000);
+            10, AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete, 1.6, 55, 0.3, 18000);
 
         locationConstructionProperties->SetImpactFactors(make_unique<vector<pair<double, double>>>(vector
             {
@@ -275,25 +275,25 @@ namespace DiKErnel::System::Test
         CalculationInputBuilder builder;
 
         auto locationConstructionProperties = make_unique<AsphaltRevetmentWaveImpactLocationConstructionProperties>(
-            10.0, AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete, 1.6, 55, 0.38, 18000);
+            10, AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete, 1.6, 55, 0.38, 18000);
 
         locationConstructionProperties->SetDepthFactors(make_unique<vector<pair<double, double>>>(vector
             {
-                pair(0 - 0.99, 0.00009647),
-                pair(0 - 0.9, 0.0007544),
-                pair(0 - 0.81, 0.004299),
-                pair(0 - 0.72, 0.01785),
-                pair(0 - 0.63, 0.05403),
-                pair(0 - 0.54, 0.1192),
-                pair(0 - 0.45, 0.1916),
-                pair(0 - 0.36, 0.2244),
-                pair(0 - 0.27, 0.1916),
-                pair(0 - 0.18, 0.1192),
-                pair(0 - 0.09, 0.05403),
-                pair(00.0, 0.01785),
-                pair(00.09, 0.004299),
-                pair(00.18, 0.0007544),
-                pair(00.27, 0.00009647)
+                pair(-0.99, 0.00009647),
+                pair(-0.9, 0.0007544),
+                pair(-0.81, 0.004299),
+                pair(-0.72, 0.01785),
+                pair(-0.63, 0.05403),
+                pair(-0.54, 0.1192),
+                pair(-0.45, 0.1916),
+                pair(-0.36, 0.2244),
+                pair(-0.27, 0.1916),
+                pair(-0.18, 0.1192),
+                pair(-0.09, 0.05403),
+                pair(0.0, 0.01785),
+                pair(0.09, 0.004299),
+                pair(0.18, 0.0007544),
+                pair(0.27, 0.00009647)
             }));
 
         ConfigureBuilderForSchematization1(builder);
@@ -319,7 +319,7 @@ namespace DiKErnel::System::Test
         CalculationInputBuilder builder;
 
         auto locationConstructionProperties = make_unique<AsphaltRevetmentWaveImpactLocationConstructionProperties>(
-            10.0, AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete, 1.6, 55, 0.45, 18000);
+            10, AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete, 1.6, 55, 0.45, 18000);
 
         locationConstructionProperties->SetWidthFactors(make_unique<vector<pair<double, double>>>(vector
             {
@@ -363,7 +363,7 @@ namespace DiKErnel::System::Test
         CalculationInputBuilder builder;
 
         auto locationConstructionProperties = make_unique<AsphaltRevetmentWaveImpactLocationConstructionProperties>(
-            10.0, AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete, 1.6, 55, 0.35, 18000);
+            10, AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete, 1.6, 55, 0.35, 18000);
 
         locationConstructionProperties->SetStiffnessRelationNu(make_unique<double>(0.3));
         locationConstructionProperties->SetFatigueAlpha(make_unique<double>(0.4));
@@ -399,7 +399,7 @@ namespace DiKErnel::System::Test
         CalculationInputBuilder builder;
 
         auto locationConstructionProperties = make_unique<AsphaltRevetmentWaveImpactLocationConstructionProperties>(
-            10.0, AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete, 1.6, 55, 0.4, 18000);
+            10, AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete, 1.6, 55, 0.4, 18000);
 
         ConfigureBuilderForSchematization2(builder);
 
