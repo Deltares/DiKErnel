@@ -85,7 +85,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
             try
             {
                 const auto& jsonInputData = JsonInputParser::GetJsonInputData(filePath);
-                return make_unique<DataResult<ICalculationInput>>(JsonInputAdapter::AdaptJsonInputData(*jsonInputData), EventRegistry::Flush());
+                return JsonInputAdapter::AdaptJsonInputData(*jsonInputData);
             }
             catch (const exception& e)
             {

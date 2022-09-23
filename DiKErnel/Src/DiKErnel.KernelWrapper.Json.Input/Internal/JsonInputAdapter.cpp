@@ -32,7 +32,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
     using namespace std;
     using namespace Util;
 
-    unique_ptr<ICalculationInput> JsonInputAdapter::AdaptJsonInputData(
+    unique_ptr<DataResult<ICalculationInput>> JsonInputAdapter::AdaptJsonInputData(
         const JsonInputData& jsonInputData)
     {
         CalculationInputBuilder builder;

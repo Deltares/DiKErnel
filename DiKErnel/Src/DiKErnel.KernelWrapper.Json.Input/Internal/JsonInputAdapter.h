@@ -46,7 +46,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
     class JsonInputAdapter
     {
         public:
-            static std::unique_ptr<Core::ICalculationInput> AdaptJsonInputData(
+            static std::unique_ptr<Util::DataResult<Core::ICalculationInput>> AdaptJsonInputData(
                 const JsonInputData& jsonInputData);
 
         private:

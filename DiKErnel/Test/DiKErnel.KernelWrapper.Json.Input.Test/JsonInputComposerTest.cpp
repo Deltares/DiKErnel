@@ -75,7 +75,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
                 EventType::Error,
                 "An unhandled error occurred while composing calculation data from the Json input. See stack trace for more information:\n"
                 + expectedStackTrace,
-                events.at(0).get());
+                events.at(0));
         }
     };
 
@@ -581,7 +581,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
 
         const auto& events = result->GetEvents();
         ASSERT_EQ(1, events.size());
-        EventAssertHelper::AssertEvent(EventType::Error, "The provided input file does not exist", events.at(0).get());
+        EventAssertHelper::AssertEvent(EventType::Error, "The provided input file does not exist", events.at(0));
     }
 
     TEST_F(JsonInputComposerTest, GivenCompleteAndValidJsonInputFile_WhenValidatingJson_ThenReturnsTrueAndNoEventsRegistered)
