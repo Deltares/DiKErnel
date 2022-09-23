@@ -111,22 +111,6 @@ namespace DiKErnel::Integration::Test
             const auto& calculationInput = builder.Build();
         }
 
-        static void CreateBuilderAndCharacteristicPointNotOnSegmentPoint()
-        {
-            constexpr auto startPointX = 10;
-            constexpr auto endPointX = 20;
-            constexpr auto endPointZ = 30;
-            constexpr auto characteristicPointType = CharacteristicPointType::NotchOuterBerm;
-
-            CalculationInputBuilder builder;
-            builder.AddDikeProfileSegment(0, 10, endPointX, endPointZ);
-            builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterToe);
-            builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterCrest);
-            builder.AddDikeProfilePointData(startPointX - 0.01, characteristicPointType);
-
-            const auto& calculationInput = builder.Build();
-        }
-
         static void CreateBuilderAndBuildWithoutTimeStepAdded()
         {
             constexpr auto startPointX = 0;
@@ -536,14 +520,33 @@ namespace DiKErnel::Integration::Test
                                                            actualCharacteristicPoints.at(1));
     }
 
-    TEST_F(CalculationInputBuilderTest, GivenBuilderWithDikeProfilePointDataNotOnSegmentPoints_WhenBuild_ThenThrowsCalculationInputBuilderException)
+    TEST_F(CalculationInputBuilderTest, GivenBuilderWithDikeProfilePointDataNotOnSegmentPoints_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
-        // Given & When
-        const auto action = &CalculationInputBuilderTest::CreateBuilderAndCharacteristicPointNotOnSegmentPoint;
+        // Given
+        constexpr auto startPointX = 10;
+        constexpr auto endPointX = 20;
+        constexpr auto endPointZ = 30;
+        constexpr auto characteristicPointType = CharacteristicPointType::NotchOuterBerm;
+
+        CalculationInputBuilder builder;
+        builder.AddDikeProfileSegment(0, 10, endPointX, endPointZ);
+        builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterToe);
+        builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterCrest);
+        builder.AddDikeProfilePointData(startPointX - 0.01, characteristicPointType);
+
+        // When
+        const auto& result = builder.Build();
 
         // Then
-        AssertHelper::AssertThrowsWithMessageAndInnerException<CalculationInputBuildException, InputFactoryException>(
-            action, "Could not create calculation input.", "Characteristic point must be on a start or end point of a segment.");
+        ASSERT_FALSE(result->GetSuccessful());
+
+        const auto& events = result->GetEvents();
+        ASSERT_EQ(1, events.size());
+
+        EventAssertHelper::AssertEvent(
+            EventType::Error,
+            "Could not create calculation input.",
+            events.at(0));
     }
 
     #pragma endregion
