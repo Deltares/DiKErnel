@@ -268,4 +268,5 @@ target_link_libraries(${LIBNAME}
   DiKErnel.Core
   DiKErnel.DomainLibrary
   DiKErnel.FunctionLibrary
+  DiKErnel.Util
 )

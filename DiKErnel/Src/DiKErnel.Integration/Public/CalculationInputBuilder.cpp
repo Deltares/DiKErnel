@@ -32,6 +32,7 @@
 #include "InputFactoryException.h"
 #include "LocationDependentInputFactory.h"
 #include "NaturalStoneRevetmentLocationDependentInputFactory.h"
+#include "NumericsHelper.h"
 #include "ProfileDataFactory.h"
 #include "ProfileDataFactoryPoint.h"
 #include "ProfileDataFactorySegment.h"
@@ -177,8 +178,8 @@ namespace DiKErnel::Integration
             const ProfileDataFactorySegment* currentSegment = profileSegmentDataItem.get();
 
             if (previousSegment != nullptr
-                && (abs(previousSegment->GetEndPointX() - currentSegment->GetStartPointX()) > numeric_limits<double>::epsilon()
-                    || abs(previousSegment->GetEndPointZ() - currentSegment->GetStartPointZ()) > numeric_limits<double>::epsilon()))
+                && (!NumericsHelper::AreEqual(previousSegment->GetEndPointX(), currentSegment->GetStartPointX())
+                    || !NumericsHelper::AreEqual(previousSegment->GetEndPointZ(), currentSegment->GetStartPointZ())))
             {
                 RegisterValidationError("The start point of a successive segment must be equal to the end point of the previous segment.");
                 return false;
@@ -216,8 +217,8 @@ namespace DiKErnel::Integration
         {
             for (const auto& profileSegmentDataItem : _profileSegmentDataItems)
             {
-                if (abs(profileSegmentDataItem->GetStartPointX() - characteristicPoint->GetX()) <= numeric_limits<double>::epsilon()
-                    || abs(profileSegmentDataItem->GetEndPointX() - characteristicPoint->GetX()) <= numeric_limits<double>::epsilon())
+                if (NumericsHelper::AreEqual(profileSegmentDataItem->GetStartPointX(), characteristicPoint->GetX())
+                    || NumericsHelper::AreEqual(profileSegmentDataItem->GetEndPointX(), characteristicPoint->GetX()))
                 {
                     return true;
                 }

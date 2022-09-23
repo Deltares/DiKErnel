@@ -20,10 +20,8 @@
 
 #include "ProfileDataFactory.h"
 
-#include <cmath>
-
-#include "InputFactoryException.h"
 #include "InputFactoryHelper.h"
+#include "NumericsHelper.h"
 #include "ProfileSegmentDefaults.h"
 
 namespace DiKErnel::Integration
@@ -31,6 +29,7 @@ namespace DiKErnel::Integration
     using namespace Core;
     using namespace DomainLibrary;
     using namespace std;
+    using namespace Util;
 
     unique_ptr<ProfileData> ProfileDataFactory::Create(
         const vector<reference_wrapper<ProfileDataFactorySegment>>& profileSegments,
@@ -113,6 +112,6 @@ namespace DiKErnel::Integration
         const ProfileDataFactoryPoint& profilePointData,
         const ProfilePoint& profilePoint)
     {
-        return abs(profilePointData.GetX() - profilePoint.GetX()) <= numeric_limits<double>::epsilon();
+        return NumericsHelper::AreEqual(profilePointData.GetX(), profilePoint.GetX());
     }
 }

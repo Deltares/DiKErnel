@@ -23,6 +23,7 @@
 #include <cmath>
 
 #include "CharacteristicPointsHelper.h"
+#include "NumericsHelper.h"
 #include "ProfileDataValidator.h"
 #include "ValidationHelper.h"
 #include "ValidationIssue.h"
@@ -74,7 +75,7 @@ namespace DiKErnel::Integration
             const auto xCurrentDikeProfilePoint = profilePoint.GetX();
             const auto zCurrentDikeProfilePoint = profilePoint.GetZ();
 
-            if (abs(xCurrentDikeProfilePoint - horizontalPosition) <= numeric_limits<double>::epsilon())
+            if (NumericsHelper::AreEqual(xCurrentDikeProfilePoint, horizontalPosition))
             {
                 return zCurrentDikeProfilePoint;
             }
@@ -108,7 +109,7 @@ namespace DiKErnel::Integration
             const auto xCurrentDikeProfilePoint = profilePoint.GetX();
             const auto zCurrentDikeProfilePoint = profilePoint.GetZ();
 
-            if (abs(zCurrentDikeProfilePoint - verticalHeight) <= numeric_limits<double>::epsilon())
+            if (NumericsHelper::AreEqual(zCurrentDikeProfilePoint, verticalHeight))
             {
                 return xCurrentDikeProfilePoint;
             }
@@ -139,7 +140,7 @@ namespace DiKErnel::Integration
         for (auto i = 0; i < static_cast<int>(_profileSegments.size()); ++i)
         {
             auto& profileSegment = _profileSegments.at(i);
-            if (i == 0 && abs(profileSegment->GetStartPoint().GetX() - horizontalPosition) <= numeric_limits<double>::epsilon())
+            if (i == 0 && NumericsHelper::AreEqual(profileSegment->GetStartPoint().GetX(), horizontalPosition))
             {
                 return nullptr;
             }
