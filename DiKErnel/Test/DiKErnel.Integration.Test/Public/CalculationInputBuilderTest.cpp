@@ -180,12 +180,12 @@ namespace DiKErnel::Integration::Test
 
         EventAssertHelper::AssertEvent(
             EventType::Error,
-            "Could not create calculation input.",
+            "At least 1 segment is required.",
             events.at(0));
     }
 
     TEST(CalculationInputBuilderTest,
-           GivenBuilderWithDikeSegmentsAddedWithoutRoughness_WhenSegmentXCoordinateUnchained_ThenReturnsResultWithSuccessfulFalseAndEvent)
+         GivenBuilderWithDikeSegmentsAdded_WhenSegmentXCoordinateUnchained_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         // Given
         constexpr auto startPointX = 10;
@@ -210,12 +210,12 @@ namespace DiKErnel::Integration::Test
 
         EventAssertHelper::AssertEvent(
             EventType::Error,
-            "Could not create calculation input.",
+            "The start point of a successive segment must be equal to the end point of the previous segment.",
             events.at(0));
     }
 
     TEST(CalculationInputBuilderTest,
-           GivenBuilderWithDikeSegmentsAddedWithoutRoughness_WhenSegmentZCoordinateUnchained_ThenReturnsResultWithSuccessfulFalseAndEvent)
+         GivenBuilderWithDikeSegmentsAdded_WhenSegmentZCoordinateUnchained_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         // Given
         constexpr auto startPointX = 10;
@@ -240,7 +240,7 @@ namespace DiKErnel::Integration::Test
 
         EventAssertHelper::AssertEvent(
             EventType::Error,
-            "Could not create calculation input.",
+            "The start point of a successive segment must be equal to the end point of the previous segment.",
             events.at(0));
     }
 
@@ -287,7 +287,7 @@ namespace DiKErnel::Integration::Test
     }
 
     TEST(CalculationInputBuilderTest,
-           GivenBuilderWithDikeProfilePointDataNotOnSegmentPoints_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
+         GivenBuilderWithDikeProfilePointDataNotOnSegmentPoints_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         // Given
         constexpr auto startPointX = 10;
@@ -365,7 +365,7 @@ namespace DiKErnel::Integration::Test
     }
 
     TEST(CalculationInputBuilderTest,
-        GivenBuilderWithGrassOvertoppingLocationAndWithoutDikeProfilePointDataInnerToe_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
+         GivenBuilderWithGrassOvertoppingLocationAndWithoutDikeProfilePointDataInnerToe_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         // Given
         auto constructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(0.1,
@@ -397,7 +397,7 @@ namespace DiKErnel::Integration::Test
     }
 
     TEST(CalculationInputBuilderTest,
-        GivenBuilderWithGrassOvertoppingLocationAndWithoutDikeProfilePointDataInnerCrest_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
+         GivenBuilderWithGrassOvertoppingLocationAndWithoutDikeProfilePointDataInnerCrest_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         // Given
         auto constructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(0.1,
@@ -559,7 +559,7 @@ namespace DiKErnel::Integration::Test
     #pragma region Asphalt wave impact
 
     TEST(CalculationInputBuilderTest,
-           GivenBuilderWithAsphaltWaveImpactLocationWithInvalidTopLayerType_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
+         GivenBuilderWithAsphaltWaveImpactLocationWithInvalidTopLayerType_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         // Given
         constexpr auto topLayerType = static_cast<AsphaltRevetmentTopLayerType>(99);
@@ -680,7 +680,8 @@ namespace DiKErnel::Integration::Test
                                                                                     *locationDependentInput);
     }
 
-    TEST(CalculationInputBuilderTest, GivenBuilderWithNotFullyConfiguredAsphaltWaveImpactLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
+    TEST(CalculationInputBuilderTest,
+         GivenBuilderWithNotFullyConfiguredAsphaltWaveImpactLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
     {
         constexpr auto topLayerType = AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete;
         constexpr auto x = 0.1;
@@ -787,7 +788,7 @@ namespace DiKErnel::Integration::Test
     #pragma region Grass overtopping
 
     TEST(CalculationInputBuilderTest,
-           GivenBuilderWithGrassOvertoppingLocationWithInvalidTopLayerType_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
+         GivenBuilderWithGrassOvertoppingLocationWithInvalidTopLayerType_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         // Given
         constexpr auto topLayerType = static_cast<GrassRevetmentTopLayerType>(99);
@@ -898,7 +899,7 @@ namespace DiKErnel::Integration::Test
     }
 
     TEST(CalculationInputBuilderTest,
-           GivenBuilderWithNotFullyConfiguredClosedSodGrassOvertoppingLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
+         GivenBuilderWithNotFullyConfiguredClosedSodGrassOvertoppingLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
     {
         // Given
         constexpr auto topLayerType = GrassRevetmentTopLayerType::ClosedSod;
@@ -954,7 +955,7 @@ namespace DiKErnel::Integration::Test
     }
 
     TEST(CalculationInputBuilderTest,
-           GivenBuilderWithNotFullyConfiguredOpenSodGrassOvertoppingLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
+         GivenBuilderWithNotFullyConfiguredOpenSodGrassOvertoppingLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
     {
         // Given
         constexpr auto topLayerType = GrassRevetmentTopLayerType::OpenSod;
@@ -1014,7 +1015,7 @@ namespace DiKErnel::Integration::Test
     #pragma region Grass wave impact
 
     TEST(CalculationInputBuilderTest,
-           GivenBuilderWithGrassWaveImpactLocationWithInvalidTopLayerType_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
+         GivenBuilderWithGrassWaveImpactLocationWithInvalidTopLayerType_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         // Given
         constexpr auto topLayerType = static_cast<GrassRevetmentTopLayerType>(99);
@@ -1124,7 +1125,7 @@ namespace DiKErnel::Integration::Test
     }
 
     TEST(CalculationInputBuilderTest,
-           GivenBuilderWithNotFullyConfiguredClosedSodGrassWaveImpactLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
+         GivenBuilderWithNotFullyConfiguredClosedSodGrassWaveImpactLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
     {
         // Given
         constexpr auto topLayerType = GrassRevetmentTopLayerType::ClosedSod;
@@ -1180,7 +1181,8 @@ namespace DiKErnel::Integration::Test
             0.5, *locationDependentInput);
     }
 
-    TEST(CalculationInputBuilderTest, GivenBuilderWithNotFullyConfiguredOpenSodGrassWaveImpactLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
+    TEST(CalculationInputBuilderTest,
+         GivenBuilderWithNotFullyConfiguredOpenSodGrassWaveImpactLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
     {
         // Given
         constexpr auto topLayerType = GrassRevetmentTopLayerType::OpenSod;
@@ -1241,7 +1243,7 @@ namespace DiKErnel::Integration::Test
     #pragma region Grass wave run-up Rayleigh
 
     TEST(CalculationInputBuilderTest,
-           GivenBuilderWithGrassWaveRunupRayleighLocationWithInvalidTopLayerType_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
+         GivenBuilderWithGrassWaveRunupRayleighLocationWithInvalidTopLayerType_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         // Given
         constexpr auto topLayerType = static_cast<GrassRevetmentTopLayerType>(99);
@@ -1271,7 +1273,7 @@ namespace DiKErnel::Integration::Test
     }
 
     TEST(CalculationInputBuilderTest,
-           GivenBuilderWithFullyConfiguredGrassWaveRunupRayleighLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
+         GivenBuilderWithFullyConfiguredGrassWaveRunupRayleighLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
     {
         // Given
         const auto topLayerType = static_cast<GrassRevetmentTopLayerType>(rand() % 2);
@@ -1362,7 +1364,7 @@ namespace DiKErnel::Integration::Test
     }
 
     TEST(CalculationInputBuilderTest,
-           GivenBuilderWithNotFullyConfiguredClosedSodGrassWaveRunupRayleighLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
+         GivenBuilderWithNotFullyConfiguredClosedSodGrassWaveRunupRayleighLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
     {
         // Given
         constexpr auto topLayerType = GrassRevetmentTopLayerType::ClosedSod;
@@ -1420,7 +1422,7 @@ namespace DiKErnel::Integration::Test
     }
 
     TEST(CalculationInputBuilderTest,
-           GivenBuilderWithNotFullyConfiguredOpenSodGrassWaveRunupRayleighLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
+         GivenBuilderWithNotFullyConfiguredOpenSodGrassWaveRunupRayleighLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
     {
         // Given
         constexpr auto topLayerType = GrassRevetmentTopLayerType::OpenSod;
@@ -1482,7 +1484,7 @@ namespace DiKErnel::Integration::Test
     #pragma region Natural stone
 
     TEST(CalculationInputBuilderTest,
-           GivenBuilderWithNaturalStoneLocationWithInvalidTopLayerType_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
+         GivenBuilderWithNaturalStoneLocationWithInvalidTopLayerType_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         // Given
         constexpr auto topLayerType = static_cast<NaturalStoneRevetmentTopLayerType>(99);

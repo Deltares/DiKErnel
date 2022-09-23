@@ -46,10 +46,6 @@ namespace DiKErnel::Integration
                 const std::vector<std::reference_wrapper<ProfileDataFactoryPoint>>& profilePoints,
                 const std::vector<std::unique_ptr<Core::ProfileSegment>>& profileSegments);
 
-            static bool DoesSegmentStartAtPoint(
-                const Core::ProfilePoint& profilePoint,
-                const ProfileDataFactorySegment& segmentData);
-
             static const Core::ProfilePoint* FindMatchingPointOnSegment(
                 const ProfileDataFactoryPoint& profilePointData,
                 const std::vector<std::unique_ptr<Core::ProfileSegment>>& segments);

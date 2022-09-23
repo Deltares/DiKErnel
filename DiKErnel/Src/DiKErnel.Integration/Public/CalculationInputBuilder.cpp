@@ -165,6 +165,28 @@ namespace DiKErnel::Integration
 
     bool CalculationInputBuilder::CanBuildValidCalculationInput() const
     {
+        if (_profileSegmentDataItems.empty())
+        {
+            RegisterValidationError("At least 1 segment is required.");
+            return false;
+        }
+
+        const ProfileDataFactorySegment* previousSegment = nullptr;
+        for (const auto& profileSegmentDataItem : _profileSegmentDataItems)
+        {
+            const ProfileDataFactorySegment* currentSegment = profileSegmentDataItem.get();
+
+            if (previousSegment != nullptr
+                && (abs(previousSegment->GetEndPointX() - currentSegment->GetStartPointX()) > numeric_limits<double>::epsilon()
+                    || abs(previousSegment->GetEndPointZ() - currentSegment->GetStartPointZ()) > numeric_limits<double>::epsilon()))
+            {
+                RegisterValidationError("The start point of a successive segment must be equal to the end point of the previous segment.");
+                return false;
+            }
+
+            previousSegment = currentSegment;
+        }
+
         if (!HasCharacteristicPointType(CharacteristicPointType::OuterToe))
         {
             RegisterValidationError("The outer toe is required.");
