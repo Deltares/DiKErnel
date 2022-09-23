@@ -178,6 +178,10 @@ namespace DiKErnel::Integration
                 double endPointZ,
                 std::unique_ptr<double> roughnessCoefficient);
 
+            void AddLocation(
+                std::unique_ptr<RevetmentLocationConstructionPropertiesBase> constructionProperties);
+
+            [[nodiscard]]
             bool Validate() const;
 
             [[nodiscard]]
@@ -190,10 +194,14 @@ namespace DiKErnel::Integration
             void RegisterValidationError(
                 const std::string& message) const;
 
-            std::vector<std::unique_ptr<ProfileDataFactorySegment>> _profileSegmentDataItems;
             std::vector<std::unique_ptr<ProfileDataFactoryPoint>> _profilePointDataItems;
+            std::vector<std::reference_wrapper<ProfileDataFactoryPoint>> _profilePointDataItemReferences;
+            std::vector<std::unique_ptr<ProfileDataFactorySegment>> _profileSegmentDataItems;
+            std::vector<std::reference_wrapper<ProfileDataFactorySegment>> _profileSegmentDataItemReferences;
             std::vector<std::unique_ptr<TimeDependentInputFactoryData>> _timeStepDataItems;
+            std::vector<std::reference_wrapper<TimeDependentInputFactoryData>> _timeStepDataItemReferences;
             std::vector<std::unique_ptr<RevetmentLocationConstructionPropertiesBase>> _locationConstructionPropertiesItems;
+            std::vector<std::reference_wrapper<RevetmentLocationConstructionPropertiesBase>> _locationConstructionPropertiesItemReferences;
 
             inline static std::string _exceptionMessage = "Could not create calculation input.";
     };

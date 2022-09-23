@@ -56,6 +56,7 @@ namespace DiKErnel::Integration
         const CharacteristicPointType characteristicPointType)
     {
         _profilePointDataItems.push_back(make_unique<ProfileDataFactoryPoint>(x, characteristicPointType));
+        _profilePointDataItemReferences.emplace_back(*_profilePointDataItems.back());
     }
 
     void CalculationInputBuilder::AddDikeProfileSegment(
@@ -87,78 +88,51 @@ namespace DiKErnel::Integration
     {
         _timeStepDataItems.push_back(
             make_unique<TimeDependentInputFactoryData>(beginTime, endTime, waterLevel, waveHeightHm0, wavePeriodTm10, waveAngle));
+        _timeStepDataItemReferences.emplace_back(*_timeStepDataItems.back());
     }
 
     void CalculationInputBuilder::AddAsphaltWaveImpactLocation(
         unique_ptr<AsphaltRevetmentWaveImpactLocationConstructionProperties> constructionProperties)
     {
-        _locationConstructionPropertiesItems.push_back(move(constructionProperties));
+        AddLocation(move(constructionProperties));
     }
 
     void CalculationInputBuilder::AddGrassOvertoppingLocation(
         std::unique_ptr<GrassRevetmentOvertoppingLocationConstructionProperties> constructionProperties)
     {
-        _locationConstructionPropertiesItems.push_back(move(constructionProperties));
+        AddLocation(move(constructionProperties));
     }
 
     void CalculationInputBuilder::AddGrassWaveImpactLocation(
         unique_ptr<GrassRevetmentWaveImpactLocationConstructionProperties> constructionProperties)
     {
-        _locationConstructionPropertiesItems.push_back(move(constructionProperties));
+        AddLocation(move(constructionProperties));
     }
 
     void CalculationInputBuilder::AddGrassWaveRunupRayleighLocation(
         unique_ptr<GrassRevetmentWaveRunupRayleighLocationConstructionProperties> constructionProperties)
     {
-        _locationConstructionPropertiesItems.push_back(move(constructionProperties));
+        AddLocation(move(constructionProperties));
     }
 
     void CalculationInputBuilder::AddNaturalStoneLocation(
         unique_ptr<NaturalStoneRevetmentLocationConstructionProperties> constructionProperties)
     {
-        _locationConstructionPropertiesItems.push_back(move(constructionProperties));
+        AddLocation(move(constructionProperties));
     }
 
     unique_ptr<DataResult<ICalculationInput>> CalculationInputBuilder::Build() const
     {
-        auto profileSegmentDataReferences = vector<reference_wrapper<ProfileDataFactorySegment>>();
-
-        for (const auto& profileSegmentDataItem : _profileSegmentDataItems)
-        {
-            profileSegmentDataReferences.emplace_back(*profileSegmentDataItem);
-        }
-
-        auto profilePointDataReferences = vector<reference_wrapper<ProfileDataFactoryPoint>>();
-
-        for (const auto& profilePointDataItem : _profilePointDataItems)
-        {
-            profilePointDataReferences.emplace_back(*profilePointDataItem);
-        }
-
-        auto locationConstructionPropertiesItemReferences = vector<reference_wrapper<RevetmentLocationConstructionPropertiesBase>>();
-
-        for (const auto& locationConstructionPropertiesItem : _locationConstructionPropertiesItems)
-        {
-            locationConstructionPropertiesItemReferences.emplace_back(*locationConstructionPropertiesItem);
-        }
-
-        auto timeStepDataItemReferences = vector<reference_wrapper<TimeDependentInputFactoryData>>();
-
-        for (const auto& timeStepDataItem : _timeStepDataItems)
-        {
-            timeStepDataItemReferences.emplace_back(*timeStepDataItem);
-        }
-
-        if(!Validate())
+        if (!Validate())
         {
             return make_unique<DataResult<ICalculationInput>>(EventRegistry::Flush());
         }
 
         try
         {
-            auto profileData = ProfileDataFactory::Create(profileSegmentDataReferences, profilePointDataReferences);
-            auto locations = LocationDependentInputFactory::Create(locationConstructionPropertiesItemReferences);
-            auto timeSteps = TimeDependentInputFactory::Create(timeStepDataItemReferences);
+            auto profileData = ProfileDataFactory::Create(_profileSegmentDataItemReferences, _profilePointDataItemReferences);
+            auto locations = LocationDependentInputFactory::Create(_locationConstructionPropertiesItemReferences);
+            auto timeSteps = TimeDependentInputFactory::Create(_timeStepDataItemReferences);
 
             return make_unique<DataResult<ICalculationInput>>(make_unique<CalculationInput>(move(profileData), move(locations), move(timeSteps)),
                                                               EventRegistry::Flush());
@@ -177,8 +151,16 @@ namespace DiKErnel::Integration
         double endPointZ,
         unique_ptr<double> roughnessCoefficient)
     {
-        _profileSegmentDataItems.emplace_back(make_unique<ProfileDataFactorySegment>(startPointX, startPointZ, endPointX, endPointZ,
-                                                                                     move(roughnessCoefficient)));
+        _profileSegmentDataItems.push_back(make_unique<ProfileDataFactorySegment>(startPointX, startPointZ, endPointX, endPointZ,
+                                                                                  move(roughnessCoefficient)));
+        _profileSegmentDataItemReferences.emplace_back(*_profileSegmentDataItems.back());
+    }
+
+    void CalculationInputBuilder::AddLocation(
+        std::unique_ptr<RevetmentLocationConstructionPropertiesBase> constructionProperties)
+    {
+        _locationConstructionPropertiesItems.push_back(move(constructionProperties));
+        _locationConstructionPropertiesItemReferences.emplace_back(*_locationConstructionPropertiesItems.back());
     }
 
     bool CalculationInputBuilder::Validate() const
