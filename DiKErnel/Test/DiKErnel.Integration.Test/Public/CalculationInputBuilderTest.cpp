@@ -50,13 +50,9 @@ namespace DiKErnel::Integration::Test
     using namespace Util;
     using namespace Util::TestUtil;
 
-    struct CalculationInputBuilderTest : Test
-    {
-    };
-
     #pragma region Profile segments
 
-    TEST_F(CalculationInputBuilderTest, GivenBuilderWithDikeSegmentAddedWithoutRoughness_WhenBuild_ThenReturnsResultWithCalculationInput)
+    TEST(CalculationInputBuilderTest, GivenBuilderWithDikeSegmentAddedWithoutRoughness_WhenBuild_ThenReturnsResultWithCalculationInput)
     {
         // Given
         constexpr auto startPointX = 10;
@@ -89,7 +85,7 @@ namespace DiKErnel::Integration::Test
                                                       1.0, actualSegment);
     }
 
-    TEST_F(CalculationInputBuilderTest, GivenBuilderWithDikeSegmentAddedWithRoughness_WhenBuild_ThenReturnsResultWithCalculationInput)
+    TEST(CalculationInputBuilderTest, GivenBuilderWithDikeSegmentAddedWithRoughness_WhenBuild_ThenReturnsResultWithCalculationInput)
     {
         // Given
         constexpr auto startPointX = 10;
@@ -123,7 +119,7 @@ namespace DiKErnel::Integration::Test
                                                       roughnessCoefficient, actualSegment);
     }
 
-    TEST_F(CalculationInputBuilderTest, GivenBuilderWithDikeSegmentsAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
+    TEST(CalculationInputBuilderTest, GivenBuilderWithDikeSegmentsAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
     {
         // Given
         constexpr auto startPointXSegmentOne = 10;
@@ -167,7 +163,7 @@ namespace DiKErnel::Integration::Test
         ASSERT_EQ(&segmentOne.GetEndPoint(), &segmentTwo.GetStartPoint());
     }
 
-    TEST_F(CalculationInputBuilderTest, GivenBuilderWithoutDikeSegments_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
+    TEST(CalculationInputBuilderTest, GivenBuilderWithoutDikeSegments_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         // Given
         CalculationInputBuilder builder;
@@ -189,7 +185,7 @@ namespace DiKErnel::Integration::Test
             events.at(0));
     }
 
-    TEST_F(CalculationInputBuilderTest,
+    TEST(CalculationInputBuilderTest,
            GivenBuilderWithDikeSegmentsAddedWithoutRoughness_WhenSegmentXCoordinateUnchained_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         // Given
@@ -219,7 +215,7 @@ namespace DiKErnel::Integration::Test
             events.at(0));
     }
 
-    TEST_F(CalculationInputBuilderTest,
+    TEST(CalculationInputBuilderTest,
            GivenBuilderWithDikeSegmentsAddedWithoutRoughness_WhenSegmentZCoordinateUnchained_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         // Given
@@ -253,7 +249,7 @@ namespace DiKErnel::Integration::Test
 
     #pragma region Profile point data
 
-    TEST_F(CalculationInputBuilderTest, GivenBuilderWithDikeProfilePointDataOnSegmentPoints_WhenBuild_ThenReturnsResultWithCalculationInput)
+    TEST(CalculationInputBuilderTest, GivenBuilderWithDikeProfilePointDataOnSegmentPoints_WhenBuild_ThenReturnsResultWithCalculationInput)
     {
         // Given
         constexpr auto startPointX = 10;
@@ -291,7 +287,7 @@ namespace DiKErnel::Integration::Test
                                                            actualCharacteristicPoints.at(1));
     }
 
-    TEST_F(CalculationInputBuilderTest,
+    TEST(CalculationInputBuilderTest,
            GivenBuilderWithDikeProfilePointDataNotOnSegmentPoints_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         // Given
@@ -321,7 +317,7 @@ namespace DiKErnel::Integration::Test
             events.at(0));
     }
 
-    TEST_F(CalculationInputBuilderTest, GivenBuilderWithoutDikeProfilePointDataOuterToe_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
+    TEST(CalculationInputBuilderTest, GivenBuilderWithoutDikeProfilePointDataOuterToe_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         // Given
         constexpr auto startPointX = 10;
@@ -345,7 +341,7 @@ namespace DiKErnel::Integration::Test
             events.at(0));
     }
 
-    TEST_F(CalculationInputBuilderTest, GivenBuilderWithoutDikeProfilePointDataOuterCrest_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
+    TEST(CalculationInputBuilderTest, GivenBuilderWithoutDikeProfilePointDataOuterCrest_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         // Given
         constexpr auto startPointX = 10;
@@ -369,7 +365,7 @@ namespace DiKErnel::Integration::Test
             events.at(0));
     }
 
-    TEST_F(CalculationInputBuilderTest,
+    TEST(CalculationInputBuilderTest,
         GivenBuilderWithGrassOvertoppingLocationAndWithoutDikeProfilePointDataInnerToe_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         // Given
@@ -401,7 +397,7 @@ namespace DiKErnel::Integration::Test
             events.at(0));
     }
 
-    TEST_F(CalculationInputBuilderTest,
+    TEST(CalculationInputBuilderTest,
         GivenBuilderWithGrassOvertoppingLocationAndWithoutDikeProfilePointDataInnerCrest_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         // Given
@@ -437,7 +433,7 @@ namespace DiKErnel::Integration::Test
 
     #pragma region Time step
 
-    TEST_F(CalculationInputBuilderTest, GivenBuilderWithoutTimeStepAdded_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
+    TEST(CalculationInputBuilderTest, GivenBuilderWithoutTimeStepAdded_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         // Given
         constexpr auto startPointX = 0;
@@ -465,7 +461,7 @@ namespace DiKErnel::Integration::Test
             events.at(0));
     }
 
-    TEST_F(CalculationInputBuilderTest, GivenBuilderWithInvalidTimeStepsAdded_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
+    TEST(CalculationInputBuilderTest, GivenBuilderWithInvalidTimeStepsAdded_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         // Given
         constexpr auto startPointX = 0;
@@ -495,7 +491,7 @@ namespace DiKErnel::Integration::Test
             events.at(0));
     }
 
-    TEST_F(CalculationInputBuilderTest, GivenBuilderWithTimeStepAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
+    TEST(CalculationInputBuilderTest, GivenBuilderWithTimeStepAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
     {
         // Given
         constexpr auto beginTime = 1;
@@ -535,7 +531,7 @@ namespace DiKErnel::Integration::Test
 
     #pragma region Locations
 
-    TEST_F(CalculationInputBuilderTest, GivenBuilderWithoutLocationAdded_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
+    TEST(CalculationInputBuilderTest, GivenBuilderWithoutLocationAdded_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         // Given
         constexpr auto startPointX = 0;
@@ -563,7 +559,7 @@ namespace DiKErnel::Integration::Test
 
     #pragma region Asphalt wave impact
 
-    TEST_F(CalculationInputBuilderTest,
+    TEST(CalculationInputBuilderTest,
            GivenBuilderWithAsphaltWaveImpactLocationWithInvalidTopLayerType_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         // Given
@@ -594,7 +590,7 @@ namespace DiKErnel::Integration::Test
             events.at(0));
     }
 
-    TEST_F(CalculationInputBuilderTest, GivenBuilderWithFullyConfiguredAsphaltWaveImpactLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
+    TEST(CalculationInputBuilderTest, GivenBuilderWithFullyConfiguredAsphaltWaveImpactLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
     {
         constexpr auto topLayerType = AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete;
         constexpr auto x = 0.1;
@@ -685,7 +681,7 @@ namespace DiKErnel::Integration::Test
                                                                                     *locationDependentInput);
     }
 
-    TEST_F(CalculationInputBuilderTest, GivenBuilderWithNotFullyConfiguredAsphaltWaveImpactLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
+    TEST(CalculationInputBuilderTest, GivenBuilderWithNotFullyConfiguredAsphaltWaveImpactLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
     {
         constexpr auto topLayerType = AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete;
         constexpr auto x = 0.1;
@@ -791,7 +787,7 @@ namespace DiKErnel::Integration::Test
 
     #pragma region Grass overtopping
 
-    TEST_F(CalculationInputBuilderTest,
+    TEST(CalculationInputBuilderTest,
            GivenBuilderWithGrassOvertoppingLocationWithInvalidTopLayerType_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         // Given
@@ -823,7 +819,7 @@ namespace DiKErnel::Integration::Test
             events.at(0));
     }
 
-    TEST_F(CalculationInputBuilderTest, GivenBuilderWithFullyConfiguredGrassOvertoppingLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
+    TEST(CalculationInputBuilderTest, GivenBuilderWithFullyConfiguredGrassOvertoppingLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
     {
         // Given
         const auto topLayerType = static_cast<GrassRevetmentTopLayerType>(rand() % 2);
@@ -902,7 +898,7 @@ namespace DiKErnel::Integration::Test
             accelerationAlphaAForCrest, accelerationAlphaAForInnerSlope, locationDependentInput->GetLocationDependentAccelerationAlphaA());
     }
 
-    TEST_F(CalculationInputBuilderTest,
+    TEST(CalculationInputBuilderTest,
            GivenBuilderWithNotFullyConfiguredClosedSodGrassOvertoppingLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
     {
         // Given
@@ -958,7 +954,7 @@ namespace DiKErnel::Integration::Test
             1.0, 1.4, locationDependentInput->GetLocationDependentAccelerationAlphaA());
     }
 
-    TEST_F(CalculationInputBuilderTest,
+    TEST(CalculationInputBuilderTest,
            GivenBuilderWithNotFullyConfiguredOpenSodGrassOvertoppingLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
     {
         // Given
@@ -1018,7 +1014,7 @@ namespace DiKErnel::Integration::Test
 
     #pragma region Grass wave impact
 
-    TEST_F(CalculationInputBuilderTest,
+    TEST(CalculationInputBuilderTest,
            GivenBuilderWithGrassWaveImpactLocationWithInvalidTopLayerType_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         // Given
@@ -1048,7 +1044,7 @@ namespace DiKErnel::Integration::Test
             events.at(0));
     }
 
-    TEST_F(CalculationInputBuilderTest, GivenBuilderWithFullyConfiguredGrassWaveImpactLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
+    TEST(CalculationInputBuilderTest, GivenBuilderWithFullyConfiguredGrassWaveImpactLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
     {
         // Given
         const auto topLayerType = static_cast<GrassRevetmentTopLayerType>(rand() % 2);
@@ -1128,7 +1124,7 @@ namespace DiKErnel::Integration::Test
             lowerLimitLoadingAll, *locationDependentInput);
     }
 
-    TEST_F(CalculationInputBuilderTest,
+    TEST(CalculationInputBuilderTest,
            GivenBuilderWithNotFullyConfiguredClosedSodGrassWaveImpactLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
     {
         // Given
@@ -1185,7 +1181,7 @@ namespace DiKErnel::Integration::Test
             0.5, *locationDependentInput);
     }
 
-    TEST_F(CalculationInputBuilderTest, GivenBuilderWithNotFullyConfiguredOpenSodGrassWaveImpactLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
+    TEST(CalculationInputBuilderTest, GivenBuilderWithNotFullyConfiguredOpenSodGrassWaveImpactLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
     {
         // Given
         constexpr auto topLayerType = GrassRevetmentTopLayerType::OpenSod;
@@ -1245,7 +1241,7 @@ namespace DiKErnel::Integration::Test
 
     #pragma region Grass wave run-up Rayleigh
 
-    TEST_F(CalculationInputBuilderTest,
+    TEST(CalculationInputBuilderTest,
            GivenBuilderWithGrassWaveRunupRayleighLocationWithInvalidTopLayerType_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         // Given
@@ -1275,7 +1271,7 @@ namespace DiKErnel::Integration::Test
             events.at(0));
     }
 
-    TEST_F(CalculationInputBuilderTest,
+    TEST(CalculationInputBuilderTest,
            GivenBuilderWithFullyConfiguredGrassWaveRunupRayleighLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
     {
         // Given
@@ -1366,7 +1362,7 @@ namespace DiKErnel::Integration::Test
             criticalFrontVelocity, frontVelocityCu, *locationDependentInput);
     }
 
-    TEST_F(CalculationInputBuilderTest,
+    TEST(CalculationInputBuilderTest,
            GivenBuilderWithNotFullyConfiguredClosedSodGrassWaveRunupRayleighLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
     {
         // Given
@@ -1424,7 +1420,7 @@ namespace DiKErnel::Integration::Test
             6.6, 1.1, *locationDependentInput);
     }
 
-    TEST_F(CalculationInputBuilderTest,
+    TEST(CalculationInputBuilderTest,
            GivenBuilderWithNotFullyConfiguredOpenSodGrassWaveRunupRayleighLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
     {
         // Given
@@ -1486,7 +1482,7 @@ namespace DiKErnel::Integration::Test
 
     #pragma region Natural stone
 
-    TEST_F(CalculationInputBuilderTest,
+    TEST(CalculationInputBuilderTest,
            GivenBuilderWithNaturalStoneLocationWithInvalidTopLayerType_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         // Given
@@ -1516,7 +1512,7 @@ namespace DiKErnel::Integration::Test
             events.at(0));
     }
 
-    TEST_F(CalculationInputBuilderTest, GivenBuilderWithFullyConfiguredNaturalStoneLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
+    TEST(CalculationInputBuilderTest, GivenBuilderWithFullyConfiguredNaturalStoneLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
     {
         // Given
         constexpr auto topLayerType = NaturalStoneRevetmentTopLayerType::NordicStone;
@@ -1629,7 +1625,7 @@ namespace DiKErnel::Integration::Test
             waveAngleImpactBetamax, locationDependentInput->GetWaveAngleImpact());
     }
 
-    TEST_F(CalculationInputBuilderTest, GivenBuilderWithNotFullyConfiguredNaturalStoneLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
+    TEST(CalculationInputBuilderTest, GivenBuilderWithNotFullyConfiguredNaturalStoneLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
     {
         // Given
         constexpr auto topLayerType = NaturalStoneRevetmentTopLayerType::NordicStone;
