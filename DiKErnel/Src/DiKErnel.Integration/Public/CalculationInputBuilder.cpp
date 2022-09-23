@@ -196,6 +196,12 @@ namespace DiKErnel::Integration
             return false;
         }
 
+        if(_locationConstructionPropertiesItems.empty())
+        {
+            RegisterValidationError("At least 1 location is required.");
+            return false;
+        }
+
         return true;
     }
 

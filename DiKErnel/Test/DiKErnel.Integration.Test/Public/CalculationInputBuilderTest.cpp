@@ -552,7 +552,7 @@ namespace DiKErnel::Integration::Test
 
         EventAssertHelper::AssertEvent(
             EventType::Error,
-            "Could not create calculation input.",
+            "At least 1 location is required.",
             events.at(0));
     }
 

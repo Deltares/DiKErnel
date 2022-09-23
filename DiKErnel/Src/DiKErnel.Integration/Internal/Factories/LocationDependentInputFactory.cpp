@@ -41,11 +41,6 @@ namespace DiKErnel::Integration
     vector<unique_ptr<ILocationDependentInput>> LocationDependentInputFactory::Create(
         const vector<reference_wrapper<RevetmentLocationConstructionPropertiesBase>>& locationConstructionPropertiesItems)
     {
-        if (locationConstructionPropertiesItems.empty())
-        {
-            throw InputFactoryException("At least 1 location is required.");
-        }
-
         auto locationDependentInputItems = vector<unique_ptr<ILocationDependentInput>>();
 
         for (const auto& locationConstructionPropertiesReference : locationConstructionPropertiesItems)
