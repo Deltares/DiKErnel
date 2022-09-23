@@ -33,7 +33,6 @@
 #include "GrassRevetmentWaveRunupLocationDependentInputAssertHelper.h"
 #include "GrassRevetmentWaveRunupRayleighLocationDependentInput.h"
 #include "GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper.h"
-#include "InputFactoryException.h"
 #include "LocationDependentInputAssertHelper.h"
 #include "NaturalStoneRevetmentLocationConstructionProperties.h"
 #include "NaturalStoneRevetmentLocationDependentInput.h"
@@ -107,101 +106,6 @@ namespace DiKErnel::Integration::Test
             builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterToe);
             builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterCrest);
             builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::InnerToe);
-
-            const auto& calculationInput = builder.Build();
-        }
-
-        static void CreateBuilderAndBuildWithoutLocationAdded()
-        {
-            constexpr auto startPointX = 0;
-
-            CalculationInputBuilder builder;
-            builder.AddDikeProfileSegment(startPointX, 10, 10, 20);
-            builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterToe);
-            builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterCrest);
-            builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
-            const auto& calculationInput = builder.Build();
-        }
-
-        static void CreateBuilderAndAddAsphaltRevetmentWaveImpactLocationWithInvalidTopLayerType()
-        {
-            constexpr auto topLayerType = static_cast<AsphaltRevetmentTopLayerType>(99);
-            auto constructionProperties = make_unique<AsphaltRevetmentWaveImpactLocationConstructionProperties>(
-                0.1, topLayerType, 0.2, 0.3, 0.4, 0.5);
-
-            constexpr auto startPointX = 0;
-
-            CalculationInputBuilder builder;
-            builder.AddDikeProfileSegment(startPointX, 10, 10, 20);
-            builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterToe);
-            builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterCrest);
-            builder.AddAsphaltWaveImpactLocation(move(constructionProperties));
-
-            const auto& calculationInput = builder.Build();
-        }
-
-        static void CreateBuilderAndAddGrassRevetmentOvertoppingLocationWithInvalidTopLayerType()
-        {
-            constexpr auto topLayerType = static_cast<GrassRevetmentTopLayerType>(99);
-            auto constructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(0.1, topLayerType);
-
-            constexpr auto startPointX = 0;
-
-            CalculationInputBuilder builder;
-            builder.AddDikeProfileSegment(startPointX, 10, 10, 20);
-            builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterToe);
-            builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterCrest);
-            builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::InnerToe);
-            builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::InnerCrest);
-            builder.AddGrassOvertoppingLocation(move(constructionProperties));
-
-            const auto& calculationInput = builder.Build();
-        }
-
-        static void CreateBuilderAndAddGrassRevetmentWaveImpactLocationWithInvalidTopLayerType()
-        {
-            constexpr auto topLayerType = static_cast<GrassRevetmentTopLayerType>(99);
-            auto constructionProperties = make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(0.1, topLayerType);
-
-            constexpr auto startPointX = 0;
-
-            CalculationInputBuilder builder;
-            builder.AddDikeProfileSegment(startPointX, 10, 10, 20);
-            builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterToe);
-            builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterCrest);
-            builder.AddGrassWaveImpactLocation(move(constructionProperties));
-
-            const auto& calculationInput = builder.Build();
-        }
-
-        static void CreateBuilderAndAddGrassRevetmentWaveRunupRayleighLocationWithInvalidTopLayerType()
-        {
-            constexpr auto topLayerType = static_cast<GrassRevetmentTopLayerType>(99);
-            auto constructionProperties = make_unique<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(0.1, 0.2, topLayerType);
-
-            constexpr auto startPointX = 0;
-
-            CalculationInputBuilder builder;
-            builder.AddDikeProfileSegment(startPointX, 10, 10, 20);
-            builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterToe);
-            builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterCrest);
-            builder.AddGrassWaveRunupRayleighLocation(move(constructionProperties));
-
-            const auto& calculationInput = builder.Build();
-        }
-
-        static void CreateBuilderAndAddNaturalStoneRevetmentLocationWithInvalidTopLayerType()
-        {
-            constexpr auto topLayerType = static_cast<NaturalStoneRevetmentTopLayerType>(99);
-            auto constructionProperties = make_unique<NaturalStoneRevetmentLocationConstructionProperties>(0.1, topLayerType, 0.2, 0.3);
-
-            constexpr auto startPointX = 0;
-
-            CalculationInputBuilder builder;
-            builder.AddDikeProfileSegment(startPointX, 10, 10, 20);
-            builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterToe);
-            builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterCrest);
-            builder.AddNaturalStoneLocation(move(constructionProperties));
 
             const auto& calculationInput = builder.Build();
         }
@@ -402,7 +306,7 @@ namespace DiKErnel::Integration::Test
         builder.AddDikeProfileSegment(endPointX + 0.01, startPointZ, endPointX + 10, endPointZ + 10);
         builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterToe);
         builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterCrest);
-        
+
         // When
         const auto& result = builder.Build();
 
@@ -490,7 +394,8 @@ namespace DiKErnel::Integration::Test
                                                            actualCharacteristicPoints.at(1));
     }
 
-    TEST_F(CalculationInputBuilderTest, GivenBuilderWithDikeProfilePointDataNotOnSegmentPoints_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
+    TEST_F(CalculationInputBuilderTest,
+           GivenBuilderWithDikeProfilePointDataNotOnSegmentPoints_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         // Given
         constexpr auto startPointX = 10;
@@ -621,28 +526,63 @@ namespace DiKErnel::Integration::Test
 
     #pragma region Locations
 
-    TEST_F(CalculationInputBuilderTest, GivenBuilderWithoutLocationAdded_WhenBuild_ThenThrowsCalculationInputBuilderException)
+    TEST_F(CalculationInputBuilderTest, GivenBuilderWithoutLocationAdded_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
-        // Given & When
-        const auto action = &CalculationInputBuilderTest::CreateBuilderAndBuildWithoutLocationAdded;
+        // Given
+        constexpr auto startPointX = 0;
+
+        CalculationInputBuilder builder;
+        builder.AddDikeProfileSegment(startPointX, 10, 10, 20);
+        builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterToe);
+        builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterCrest);
+        builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
+
+        // When
+        const auto& result = builder.Build();
 
         // Then
-        AssertHelper::AssertThrowsWithMessageAndInnerException<CalculationInputBuildException, InputFactoryException>(
-            action, "Could not create calculation input.", "At least 1 location is required.");
+        ASSERT_FALSE(result->GetSuccessful());
+
+        const auto& events = result->GetEvents();
+        ASSERT_EQ(1, events.size());
+
+        EventAssertHelper::AssertEvent(
+            EventType::Error,
+            "Could not create calculation input.",
+            events.at(0));
     }
 
     #pragma region Asphalt wave impact
 
     TEST_F(CalculationInputBuilderTest,
-           GivenBuilderWithAsphaltWaveImpactLocationWithInvalidTopLayerType_WhenBuild_ThenThrowCalculationInputBuildException)
+           GivenBuilderWithAsphaltWaveImpactLocationWithInvalidTopLayerType_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
-        // Given & When
-        const auto action =
-                &CalculationInputBuilderTest::CreateBuilderAndAddAsphaltRevetmentWaveImpactLocationWithInvalidTopLayerType;
+        // Given
+        constexpr auto topLayerType = static_cast<AsphaltRevetmentTopLayerType>(99);
+        auto constructionProperties = make_unique<AsphaltRevetmentWaveImpactLocationConstructionProperties>(
+            0.1, topLayerType, 0.2, 0.3, 0.4, 0.5);
+
+        constexpr auto startPointX = 0;
+
+        CalculationInputBuilder builder;
+        builder.AddDikeProfileSegment(startPointX, 10, 10, 20);
+        builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterToe);
+        builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterCrest);
+        builder.AddAsphaltWaveImpactLocation(move(constructionProperties));
+
+        // When
+        const auto& result = builder.Build();
 
         // Then
-        AssertHelper::AssertThrowsWithMessageAndInnerException<CalculationInputBuildException, InputFactoryException>(
-            action, "Could not create calculation input.", "Couldn't create defaults for the given top layer type.");
+        ASSERT_FALSE(result->GetSuccessful());
+
+        const auto& events = result->GetEvents();
+        ASSERT_EQ(1, events.size());
+
+        EventAssertHelper::AssertEvent(
+            EventType::Error,
+            "Could not create calculation input.",
+            events.at(0));
     }
 
     TEST_F(CalculationInputBuilderTest, GivenBuilderWithFullyConfiguredAsphaltWaveImpactLocationAdded_WhenBuild_ThenReturnsCalculationInput)
@@ -843,15 +783,35 @@ namespace DiKErnel::Integration::Test
     #pragma region Grass overtopping
 
     TEST_F(CalculationInputBuilderTest,
-           GivenBuilderWithGrassOvertoppingLocationWithInvalidTopLayerType_WhenBuild_ThenThrowsCalculationInputBuildException)
+           GivenBuilderWithGrassOvertoppingLocationWithInvalidTopLayerType_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
-        // Given & When
-        const auto action =
-                &CalculationInputBuilderTest::CreateBuilderAndAddGrassRevetmentOvertoppingLocationWithInvalidTopLayerType;
+        // Given
+        constexpr auto topLayerType = static_cast<GrassRevetmentTopLayerType>(99);
+        auto constructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(0.1, topLayerType);
+
+        constexpr auto startPointX = 0;
+
+        CalculationInputBuilder builder;
+        builder.AddDikeProfileSegment(startPointX, 10, 10, 20);
+        builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterToe);
+        builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterCrest);
+        builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::InnerToe);
+        builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::InnerCrest);
+        builder.AddGrassOvertoppingLocation(move(constructionProperties));
+
+        // When
+        const auto& result = builder.Build();
 
         // Then
-        AssertHelper::AssertThrowsWithMessageAndInnerException<CalculationInputBuildException, InputFactoryException>(
-            action, "Could not create calculation input.", "Couldn't create defaults for the given top layer type.");
+        ASSERT_FALSE(result->GetSuccessful());
+
+        const auto& events = result->GetEvents();
+        ASSERT_EQ(1, events.size());
+
+        EventAssertHelper::AssertEvent(
+            EventType::Error,
+            "Could not create calculation input.",
+            events.at(0));
     }
 
     TEST_F(CalculationInputBuilderTest, GivenBuilderWithFullyConfiguredGrassOvertoppingLocationAdded_WhenBuild_ThenReturnsCalculationInput)
@@ -1050,14 +1010,33 @@ namespace DiKErnel::Integration::Test
     #pragma region Grass wave impact
 
     TEST_F(CalculationInputBuilderTest,
-           GivenBuilderWithGrassWaveImpactLocationWithInvalidTopLayerType_WhenBuild_ThenThrowsCalculationInputBuildException)
+           GivenBuilderWithGrassWaveImpactLocationWithInvalidTopLayerType_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
-        // Given & When
-        const auto action = &CalculationInputBuilderTest::CreateBuilderAndAddGrassRevetmentWaveImpactLocationWithInvalidTopLayerType;
+        // Given
+        constexpr auto topLayerType = static_cast<GrassRevetmentTopLayerType>(99);
+        auto constructionProperties = make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(0.1, topLayerType);
+
+        constexpr auto startPointX = 0;
+
+        CalculationInputBuilder builder;
+        builder.AddDikeProfileSegment(startPointX, 10, 10, 20);
+        builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterToe);
+        builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterCrest);
+        builder.AddGrassWaveImpactLocation(move(constructionProperties));
+
+        // When
+        const auto& result = builder.Build();
 
         // Then
-        AssertHelper::AssertThrowsWithMessageAndInnerException<CalculationInputBuildException, InputFactoryException>(
-            action, "Could not create calculation input.", "Couldn't create defaults for the given top layer type.");
+        ASSERT_FALSE(result->GetSuccessful());
+
+        const auto& events = result->GetEvents();
+        ASSERT_EQ(1, events.size());
+
+        EventAssertHelper::AssertEvent(
+            EventType::Error,
+            "Could not create calculation input.",
+            events.at(0));
     }
 
     TEST_F(CalculationInputBuilderTest, GivenBuilderWithFullyConfiguredGrassWaveImpactLocationAdded_WhenBuild_ThenReturnsCalculationInput)
@@ -1258,15 +1237,33 @@ namespace DiKErnel::Integration::Test
     #pragma region Grass wave run-up Rayleigh
 
     TEST_F(CalculationInputBuilderTest,
-           GivenBuilderWithGrassWaveRunupRayleighLocationWithInvalidTopLayerType_WhenBuild_ThenThrowsCalculationInputBuildException)
+           GivenBuilderWithGrassWaveRunupRayleighLocationWithInvalidTopLayerType_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
-        // Given & When
-        const auto action =
-                &CalculationInputBuilderTest::CreateBuilderAndAddGrassRevetmentWaveRunupRayleighLocationWithInvalidTopLayerType;
+        // Given
+        constexpr auto topLayerType = static_cast<GrassRevetmentTopLayerType>(99);
+        auto constructionProperties = make_unique<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(0.1, 0.2, topLayerType);
+
+        constexpr auto startPointX = 0;
+
+        CalculationInputBuilder builder;
+        builder.AddDikeProfileSegment(startPointX, 10, 10, 20);
+        builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterToe);
+        builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterCrest);
+        builder.AddGrassWaveRunupRayleighLocation(move(constructionProperties));
+
+        // When
+        const auto& result = builder.Build();
 
         // Then
-        AssertHelper::AssertThrowsWithMessageAndInnerException<CalculationInputBuildException, InputFactoryException>(
-            action, "Could not create calculation input.", "Couldn't create defaults for the given top layer type.");
+        ASSERT_FALSE(result->GetSuccessful());
+
+        const auto& events = result->GetEvents();
+        ASSERT_EQ(1, events.size());
+
+        EventAssertHelper::AssertEvent(
+            EventType::Error,
+            "Could not create calculation input.",
+            events.at(0));
     }
 
     TEST_F(CalculationInputBuilderTest,
@@ -1481,14 +1478,33 @@ namespace DiKErnel::Integration::Test
     #pragma region Natural stone
 
     TEST_F(CalculationInputBuilderTest,
-           GivenBuilderWithNaturalStoneLocationWithInvalidTopLayerType_WhenBuild_ThenThrowsCalculationInputBuildException)
+           GivenBuilderWithNaturalStoneLocationWithInvalidTopLayerType_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
-        // Given & When
-        const auto action = &CalculationInputBuilderTest::CreateBuilderAndAddNaturalStoneRevetmentLocationWithInvalidTopLayerType;
+        // Given
+        constexpr auto topLayerType = static_cast<NaturalStoneRevetmentTopLayerType>(99);
+        auto constructionProperties = make_unique<NaturalStoneRevetmentLocationConstructionProperties>(0.1, topLayerType, 0.2, 0.3);
+
+        constexpr auto startPointX = 0;
+
+        CalculationInputBuilder builder;
+        builder.AddDikeProfileSegment(startPointX, 10, 10, 20);
+        builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterToe);
+        builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterCrest);
+        builder.AddNaturalStoneLocation(move(constructionProperties));
+
+        // When
+        const auto& result = builder.Build();
 
         // Then
-        AssertHelper::AssertThrowsWithMessageAndInnerException<CalculationInputBuildException, InputFactoryException>(
-            action, "Could not create calculation input.", "Couldn't create defaults for the given top layer type.");
+        ASSERT_FALSE(result->GetSuccessful());
+
+        const auto& events = result->GetEvents();
+        ASSERT_EQ(1, events.size());
+
+        EventAssertHelper::AssertEvent(
+            EventType::Error,
+            "Could not create calculation input.",
+            events.at(0));
     }
 
     TEST_F(CalculationInputBuilderTest, GivenBuilderWithFullyConfiguredNaturalStoneLocationAdded_WhenBuild_ThenReturnsCalculationInput)
