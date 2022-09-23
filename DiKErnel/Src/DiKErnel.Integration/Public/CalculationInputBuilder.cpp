@@ -100,6 +100,7 @@ namespace DiKErnel::Integration
         std::unique_ptr<GrassRevetmentOvertoppingLocationConstructionProperties> constructionProperties)
     {
         AddLocation(move(constructionProperties));
+        _hasOvertoppingLocationDependentInput = true;
     }
 
     void CalculationInputBuilder::AddGrassWaveImpactLocation(
@@ -156,7 +157,7 @@ namespace DiKErnel::Integration
     }
 
     void CalculationInputBuilder::AddLocation(
-        std::unique_ptr<RevetmentLocationConstructionPropertiesBase> constructionProperties)
+        unique_ptr<RevetmentLocationConstructionPropertiesBase> constructionProperties)
     {
         _locationConstructionPropertiesItems.push_back(move(constructionProperties));
         _locationConstructionPropertiesItemReferences.emplace_back(*_locationConstructionPropertiesItems.back());
@@ -176,7 +177,7 @@ namespace DiKErnel::Integration
             return false;
         }
 
-        if (HasOvertoppingLocationDependentInput())
+        if (_hasOvertoppingLocationDependentInput)
         {
             if (!HasCharacteristicPointType(CharacteristicPointType::InnerToe))
             {
@@ -208,16 +209,5 @@ namespace DiKErnel::Integration
         const string& message) const
     {
         EventRegistry::Register(make_unique<Event>(message, EventType::Error));
-    }
-
-    bool CalculationInputBuilder::HasOvertoppingLocationDependentInput() const
-    {
-        return ranges::any_of(_locationConstructionPropertiesItems, [](
-                          const auto& locationConstructionsPropertiesItem)
-                              {
-                                  return dynamic_cast<const GrassRevetmentOvertoppingLocationConstructionProperties*>(
-                                              locationConstructionsPropertiesItem.get())
-                                          != nullptr;
-                              });
     }
 }

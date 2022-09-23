@@ -183,9 +183,6 @@ namespace DiKErnel::Integration
             bool Validate() const;
 
             [[nodiscard]]
-            bool HasOvertoppingLocationDependentInput() const;
-
-            [[nodiscard]]
             bool HasCharacteristicPointType(
                 Core::CharacteristicPointType characteristicPointType) const;
 
@@ -200,6 +197,7 @@ namespace DiKErnel::Integration
             std::vector<std::reference_wrapper<TimeDependentInputFactoryData>> _timeStepDataItemReferences;
             std::vector<std::unique_ptr<RevetmentLocationConstructionPropertiesBase>> _locationConstructionPropertiesItems;
             std::vector<std::reference_wrapper<RevetmentLocationConstructionPropertiesBase>> _locationConstructionPropertiesItemReferences;
+            bool _hasOvertoppingLocationDependentInput = false;
 
             inline static std::string _exceptionMessage = "Could not create calculation input.";
     };
