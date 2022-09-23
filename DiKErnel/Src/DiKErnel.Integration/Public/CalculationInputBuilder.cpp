@@ -187,29 +187,27 @@ namespace DiKErnel::Integration
             previousSegment = currentSegment;
         }
 
-        if (!HasCharacteristicPointType(CharacteristicPointType::OuterToe))
+        if (!ValidateCharacteristicPoint(CharacteristicPointType::OuterToe, "outer toe")
+            || !ValidateCharacteristicPoint(CharacteristicPointType::OuterCrest, "outer crest")
+            || !ValidateCharacteristicPoint(CharacteristicPointType::InnerToe, "inner toe", _hasOvertoppingLocationDependentInput)
+            || !ValidateCharacteristicPoint(CharacteristicPointType::InnerCrest, "inner crest", _hasOvertoppingLocationDependentInput))
         {
-            RegisterValidationError("The outer toe is required.");
             return false;
         }
 
-        if (!HasCharacteristicPointType(CharacteristicPointType::OuterCrest))
-        {
-            RegisterValidationError("The outer crest is required.");
-            return false;
-        }
+        return true;
+    }
 
-        if (_hasOvertoppingLocationDependentInput)
+    bool CalculationInputBuilder::ValidateCharacteristicPoint(
+        const CharacteristicPointType characteristicPointType,
+        const string& characteristicPointName,
+        const bool isRequired) const
+    {
+        if (!HasCharacteristicPointType(characteristicPointType))
         {
-            if (!HasCharacteristicPointType(CharacteristicPointType::InnerToe))
+            if (isRequired)
             {
-                RegisterValidationError("The inner toe is required.");
-                return false;
-            }
-
-            if (!HasCharacteristicPointType(CharacteristicPointType::InnerCrest))
-            {
-                RegisterValidationError("The inner crest is required.");
+                RegisterValidationError("The " + characteristicPointName + " is required.");
                 return false;
             }
         }

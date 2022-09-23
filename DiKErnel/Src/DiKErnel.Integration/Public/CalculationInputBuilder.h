@@ -183,6 +183,12 @@ namespace DiKErnel::Integration
             bool CanBuildValidCalculationInput() const;
 
             [[nodiscard]]
+            bool ValidateCharacteristicPoint(
+                Core::CharacteristicPointType characteristicPointType,
+                const std::string& characteristicPointName,
+                bool isRequired = true) const;
+
+            [[nodiscard]]
             bool HasCharacteristicPointType(
                 Core::CharacteristicPointType characteristicPointType) const;
 
