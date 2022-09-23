@@ -20,9 +20,6 @@
 
 #include "TimeDependentInputFactory.h"
 
-#include <limits>
-
-#include "InputFactoryException.h"
 #include "TimeDependentInput.h"
 #include "TimeDependentInputFactoryData.h"
 
@@ -36,25 +33,13 @@ namespace DiKErnel::Integration
     {
         auto timeDependentInputItems = vector<unique_ptr<ITimeDependentInput>>();
 
-        auto previousEndTime = numeric_limits<int>::min();
-
         for (const auto& timeStepDataItemReference : timeStepDataItems)
         {
             const auto& timeStepDataItem = timeStepDataItemReference.get();
 
-            int beginTime = timeStepDataItem.GetBeginTime();
-            int endTime = timeStepDataItem.GetEndTime();
-
-            if (previousEndTime != numeric_limits<int>::min() && beginTime != previousEndTime)
-            {
-                throw InputFactoryException("The begin time of a successive element must be equal to the end time of the previous element.");
-            }
-
             timeDependentInputItems.push_back(make_unique<TimeDependentInput>(
-                beginTime, endTime, timeStepDataItem.GetWaterLevel(), timeStepDataItem.GetWaveHeightHm0(), timeStepDataItem.GetWavePeriodTm10(),
-                timeStepDataItem.GetWaveAngle()));
-
-            previousEndTime = endTime;
+                timeStepDataItem.GetBeginTime(), timeStepDataItem.GetEndTime(), timeStepDataItem.GetWaterLevel(),
+                timeStepDataItem.GetWaveHeightHm0(), timeStepDataItem.GetWavePeriodTm10(), timeStepDataItem.GetWaveAngle()));
         }
 
         return timeDependentInputItems;

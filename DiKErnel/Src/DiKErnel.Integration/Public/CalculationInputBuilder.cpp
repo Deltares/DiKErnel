@@ -196,7 +196,7 @@ namespace DiKErnel::Integration
             return false;
         }
 
-        if(_locationConstructionPropertiesItems.empty())
+        if (_locationConstructionPropertiesItems.empty())
         {
             RegisterValidationError("At least 1 location is required.");
             return false;
@@ -206,6 +206,20 @@ namespace DiKErnel::Integration
         {
             RegisterValidationError("At least 1 time step is required.");
             return false;
+        }
+
+        const TimeDependentInputFactoryData* previousTimeStep = nullptr;
+        for (const auto& timeStepDataItem : _timeStepDataItems)
+        {
+            const TimeDependentInputFactoryData* currentTimeStep = timeStepDataItem.get();
+
+            if (previousTimeStep != nullptr && previousTimeStep->GetEndTime() != currentTimeStep->GetBeginTime())
+            {
+                RegisterValidationError("The begin time of a successive element must be equal to the end time of the previous element.");
+                return false;
+            }
+
+            previousTimeStep = currentTimeStep;
         }
 
         return true;
