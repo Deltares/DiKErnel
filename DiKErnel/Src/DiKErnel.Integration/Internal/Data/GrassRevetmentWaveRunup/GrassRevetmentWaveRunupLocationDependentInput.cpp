@@ -20,6 +20,7 @@
 
 #include "GrassRevetmentWaveRunupLocationDependentInput.h"
 
+#include "GrassRevetmentValidator.h"
 #include "GrassRevetmentWaveRunupValidator.h"
 #include "RevetmentValidator.h"
 #include "ValidationHelper.h"
@@ -99,12 +100,12 @@ namespace DiKErnel::Integration
         const auto baseValidationSuccessful = LocationDependentInput::Validate(profileData);
 
         vector<unique_ptr<ValidationIssue>> validationIssues;
-        validationIssues.emplace_back(GrassRevetmentWaveRunupValidator::CriticalCumulativeOverload(_criticalCumulativeOverload));
+        validationIssues.emplace_back(GrassRevetmentValidator::CriticalCumulativeOverload(_criticalCumulativeOverload));
         validationIssues.emplace_back(GrassRevetmentWaveRunupValidator::RepresentativeWaveRunup2PGammab(_representative2P->GetGammab()));
         validationIssues.emplace_back(GrassRevetmentWaveRunupValidator::RepresentativeWaveRunup2PGammaf(_representative2P->GetGammaf()));
-        validationIssues.emplace_back(GrassRevetmentWaveRunupValidator::CriticalFrontVelocity(_criticalFrontVelocity));
-        validationIssues.emplace_back(GrassRevetmentWaveRunupValidator::IncreasedLoadTransitionAlphaM(_increasedLoadTransitionAlphaM));
-        validationIssues.emplace_back(GrassRevetmentWaveRunupValidator::ReducedStrengthTransitionAlphaS(_reducedStrengthTransitionAlphaS));
+        validationIssues.emplace_back(GrassRevetmentValidator::CriticalFrontVelocity(_criticalFrontVelocity));
+        validationIssues.emplace_back(GrassRevetmentValidator::IncreasedLoadTransitionAlphaM(_increasedLoadTransitionAlphaM));
+        validationIssues.emplace_back(GrassRevetmentValidator::ReducedStrengthTransitionAlphaS(_reducedStrengthTransitionAlphaS));
         validationIssues.emplace_back(GrassRevetmentWaveRunupValidator::OuterSlope(_outerSlope));
         validationIssues.emplace_back(RevetmentValidator::AverageNumberOfWavesCtm(_averageNumberOfWavesCtm));
 

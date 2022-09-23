@@ -29,21 +29,6 @@ namespace DiKErnel::DomainLibrary::Test
     using namespace Util;
     using namespace TestUtil;
 
-    TEST(GrassRevetmentWaveRunupRayleighValidatorTest, FixedNumberOfWaves_VariousScenarios_ExpectedValues)
-    {
-        const auto validateAction = GrassRevetmentWaveRunupRayleighValidator::FixedNumberOfWaves;
-
-        constexpr auto errorMessage = "FixedNumberOfWaves must be larger than 0.";
-
-        ValidatorAssertHelper::AssertValue(validateAction, ValidatorAssertHelper::INTEGER_MIN, ValidationIssueType::Error, errorMessage);
-
-        ValidatorAssertHelper::AssertValue(validateAction, -1, ValidationIssueType::Error, errorMessage);
-        ValidatorAssertHelper::AssertValue(validateAction, 0, ValidationIssueType::Error, errorMessage);
-        ValidatorAssertHelper::AssertValue(validateAction, 1);
-
-        ValidatorAssertHelper::AssertValue(validateAction, ValidatorAssertHelper::INTEGER_MAX);
-    }
-
     TEST(GrassRevetmentWaveRunupRayleighValidatorTest, FrontVelocityCu_VariousScenarios_ExpectedValues)
     {
         const auto validateAction = GrassRevetmentWaveRunupRayleighValidator::FrontVelocityCu;

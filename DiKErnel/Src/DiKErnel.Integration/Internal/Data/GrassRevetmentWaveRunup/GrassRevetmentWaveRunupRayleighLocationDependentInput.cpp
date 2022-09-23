@@ -22,6 +22,7 @@
 
 #include "Constants.h"
 #include "GrassRevetmentFunctions.h"
+#include "GrassRevetmentValidator.h"
 #include "GrassRevetmentWaveRunupFunctions.h"
 #include "GrassRevetmentWaveRunupRayleighFunctions.h"
 #include "GrassRevetmentWaveRunupRayleighLocationDependentOutput.h"
@@ -75,7 +76,7 @@ namespace DiKErnel::Integration
         const auto baseValidationSuccessful = GrassRevetmentWaveRunupLocationDependentInput::Validate(profileData);
 
         vector<unique_ptr<ValidationIssue>> validationIssues;
-        validationIssues.emplace_back(GrassRevetmentWaveRunupRayleighValidator::FixedNumberOfWaves(_fixedNumberOfWaves));
+        validationIssues.emplace_back(GrassRevetmentValidator::FixedNumberOfWaves(_fixedNumberOfWaves));
         validationIssues.emplace_back(GrassRevetmentWaveRunupRayleighValidator::FrontVelocityCu(_frontVelocityCu));
 
         return ValidationHelper::RegisterValidationIssues(validationIssues) && baseValidationSuccessful;

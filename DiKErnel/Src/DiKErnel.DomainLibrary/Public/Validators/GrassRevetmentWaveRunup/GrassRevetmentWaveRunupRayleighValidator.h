@@ -34,17 +34,6 @@ namespace DiKErnel::DomainLibrary
     {
         public:
             /*!
-             * \brief Validates the fixed number of waves.
-             * \param fixedNumberOfWaves
-             *        The fixed number of waves.
-             *        Unit = [-]
-             * \return A validation issue when the fixed number of waves is not valid; nullptr
-             *         otherwise.
-             */
-            static std::unique_ptr<Util::ValidationIssue> FixedNumberOfWaves(
-                int fixedNumberOfWaves);
-
-            /*!
              * \brief Validates the Cu coefficient.
              * \param frontVelocityCu
              *        The Cu coefficient.
