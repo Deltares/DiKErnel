@@ -15,6 +15,7 @@ set(SOURCEFILES_ROOT
 )
 
 set(SOURCEFILES_HELPERS
+  ${HELPERS_FOLDER}/NumericsHelperTest.cpp
   ${HELPERS_FOLDER}/UniquePtrHelperTest.cpp
 )
 
