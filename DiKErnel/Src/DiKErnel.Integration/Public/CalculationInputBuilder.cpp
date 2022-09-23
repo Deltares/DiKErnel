@@ -138,9 +138,9 @@ namespace DiKErnel::Integration
             return make_unique<DataResult<ICalculationInput>>(make_unique<CalculationInput>(move(profileData), move(locations), move(timeSteps)),
                                                               EventRegistry::Flush());
         }
-        catch (const InputFactoryException&)
+        catch (const InputFactoryException& e)
         {
-            EventRegistry::Register(make_unique<Event>(_exceptionMessage, EventType::Error));
+            EventRegistry::Register(make_unique<Event>(e.what(), EventType::Error));
             return make_unique<DataResult<ICalculationInput>>(EventRegistry::Flush());
         }
     }

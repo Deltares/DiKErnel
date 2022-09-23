@@ -456,7 +456,7 @@ namespace DiKErnel::Integration::Test
 
         EventAssertHelper::AssertEvent(
             EventType::Error,
-            "Could not create calculation input.",
+            "At least 1 time step is required.",
             events.at(0));
     }
 
@@ -486,7 +486,7 @@ namespace DiKErnel::Integration::Test
 
         EventAssertHelper::AssertEvent(
             EventType::Error,
-            "Could not create calculation input.",
+            "The begin time of a successive element must be equal to the end time of the previous element.",
             events.at(0));
     }
 
@@ -585,7 +585,7 @@ namespace DiKErnel::Integration::Test
 
         EventAssertHelper::AssertEvent(
             EventType::Error,
-            "Could not create calculation input.",
+            "Couldn't create defaults for the given top layer type.",
             events.at(0));
     }
 
@@ -815,7 +815,7 @@ namespace DiKErnel::Integration::Test
 
         EventAssertHelper::AssertEvent(
             EventType::Error,
-            "Could not create calculation input.",
+            "Couldn't create defaults for the given top layer type.",
             events.at(0));
     }
 
@@ -1040,7 +1040,7 @@ namespace DiKErnel::Integration::Test
 
         EventAssertHelper::AssertEvent(
             EventType::Error,
-            "Could not create calculation input.",
+            "Couldn't create defaults for the given top layer type.",
             events.at(0));
     }
 
@@ -1268,7 +1268,7 @@ namespace DiKErnel::Integration::Test
 
         EventAssertHelper::AssertEvent(
             EventType::Error,
-            "Could not create calculation input.",
+            "Couldn't create defaults for the given top layer type.",
             events.at(0));
     }
 
@@ -1509,7 +1509,7 @@ namespace DiKErnel::Integration::Test
 
         EventAssertHelper::AssertEvent(
             EventType::Error,
-            "Could not create calculation input.",
+            "Couldn't create defaults for the given top layer type.",
             events.at(0));
     }
 

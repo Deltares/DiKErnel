@@ -204,7 +204,5 @@ namespace DiKErnel::Integration
             std::vector<std::unique_ptr<RevetmentLocationConstructionPropertiesBase>> _locationConstructionPropertiesItems;
             std::vector<std::reference_wrapper<RevetmentLocationConstructionPropertiesBase>> _locationConstructionPropertiesItemReferences;
             bool _grassOvertoppingLocationAdded = false;
-
-            inline static std::string _exceptionMessage = "Could not create calculation input.";
     };
 }
