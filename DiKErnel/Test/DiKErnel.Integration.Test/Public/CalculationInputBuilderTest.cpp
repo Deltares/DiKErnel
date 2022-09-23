@@ -111,36 +111,6 @@ namespace DiKErnel::Integration::Test
             const auto& calculationInput = builder.Build();
         }
 
-        static void CreateBuilderAndBuildWithoutTimeStepAdded()
-        {
-            constexpr auto startPointX = 0;
-
-            CalculationInputBuilder builder;
-            builder.AddDikeProfileSegment(startPointX, 10, 10, 20);
-            builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterToe);
-            builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterCrest);
-
-            builder.AddGrassWaveImpactLocation(
-                make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(0, GrassRevetmentTopLayerType::ClosedSod));
-            const auto& calculationInput = builder.Build();
-        }
-
-        static void CreateBuilderAndBuildWithInvalidTimeStepsAdded()
-        {
-            constexpr auto startPointX = 0;
-
-            CalculationInputBuilder builder;
-            builder.AddDikeProfileSegment(startPointX, 10, 10, 20);
-            builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterToe);
-            builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterCrest);
-
-            builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
-            builder.AddTimeStep(3, 4, 0.3, 0.4, 0.5, 0.6);
-            builder.AddGrassWaveImpactLocation(
-                make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(0, GrassRevetmentTopLayerType::ClosedSod));
-            const auto& calculationInput = builder.Build();
-        }
-
         static void CreateBuilderAndBuildWithoutLocationAdded()
         {
             constexpr auto startPointX = 0;
@@ -553,25 +523,62 @@ namespace DiKErnel::Integration::Test
 
     #pragma region Time step
 
-    TEST_F(CalculationInputBuilderTest, GivenBuilderWithoutTimeStepAdded_WhenBuild_ThenThrowsCalculationInputBuilderException)
+    TEST_F(CalculationInputBuilderTest, GivenBuilderWithoutTimeStepAdded_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
-        // Given & When
-        const auto action = &CalculationInputBuilderTest::CreateBuilderAndBuildWithoutTimeStepAdded;
+        // Given
+        constexpr auto startPointX = 0;
+
+        CalculationInputBuilder builder;
+        builder.AddDikeProfileSegment(startPointX, 10, 10, 20);
+        builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterToe);
+        builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterCrest);
+
+        builder.AddGrassWaveImpactLocation(
+            make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(0, GrassRevetmentTopLayerType::ClosedSod));
+
+        // When
+        const auto& result = builder.Build();
 
         // Then
-        AssertHelper::AssertThrowsWithMessageAndInnerException<CalculationInputBuildException, InputFactoryException>(
-            action, "Could not create calculation input.", "At least 1 time step is required.");
+        ASSERT_FALSE(result->GetSuccessful());
+
+        const auto& events = result->GetEvents();
+        ASSERT_EQ(1, events.size());
+
+        EventAssertHelper::AssertEvent(
+            EventType::Error,
+            "Could not create calculation input.",
+            events.at(0));
     }
 
-    TEST_F(CalculationInputBuilderTest, GivenBuilderWithInvalidTimeStepsAdded_WhenBuild_ThenThrowsCalculationInputBuilderException)
+    TEST_F(CalculationInputBuilderTest, GivenBuilderWithInvalidTimeStepsAdded_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
-        // Given & When
-        const auto action = &CalculationInputBuilderTest::CreateBuilderAndBuildWithInvalidTimeStepsAdded;
+        // Given
+        constexpr auto startPointX = 0;
+
+        CalculationInputBuilder builder;
+        builder.AddDikeProfileSegment(startPointX, 10, 10, 20);
+        builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterToe);
+        builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterCrest);
+
+        builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
+        builder.AddTimeStep(3, 4, 0.3, 0.4, 0.5, 0.6);
+        builder.AddGrassWaveImpactLocation(
+            make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(0, GrassRevetmentTopLayerType::ClosedSod));
+
+        // When
+        const auto& result = builder.Build();
 
         // Then
-        AssertHelper::AssertThrowsWithMessageAndInnerException<CalculationInputBuildException, InputFactoryException>(
-            action, "Could not create calculation input.",
-            "The begin time of a successive element must be equal to the end time of the previous element.");
+        ASSERT_FALSE(result->GetSuccessful());
+
+        const auto& events = result->GetEvents();
+        ASSERT_EQ(1, events.size());
+
+        EventAssertHelper::AssertEvent(
+            EventType::Error,
+            "Could not create calculation input.",
+            events.at(0));
     }
 
     TEST_F(CalculationInputBuilderTest, GivenBuilderWithTimeStepAdded_WhenBuild_ThenReturnsCalculationInput)
