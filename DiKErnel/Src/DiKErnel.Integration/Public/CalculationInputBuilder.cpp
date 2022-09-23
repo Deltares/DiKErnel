@@ -203,7 +203,8 @@ namespace DiKErnel::Integration
         const string& characteristicPointName,
         const bool isRequired) const
     {
-        if (!HasCharacteristicPointType(characteristicPointType))
+        if (const auto* characteristicPoint = GetProfilePointDataItemForCharacteristicPointType(characteristicPointType);
+            characteristicPoint == nullptr)
         {
             if (isRequired)
             {
@@ -211,18 +212,36 @@ namespace DiKErnel::Integration
                 return false;
             }
         }
+        else
+        {
+            for (const auto& profileSegmentDataItem : _profileSegmentDataItems)
+            {
+                if (abs(profileSegmentDataItem->GetStartPointX() - characteristicPoint->GetX()) <= numeric_limits<double>::epsilon()
+                    || abs(profileSegmentDataItem->GetEndPointX() - characteristicPoint->GetX()) <= numeric_limits<double>::epsilon())
+                {
+                    return true;
+                }
+            }
+
+            RegisterValidationError("Characteristic point must be on a start or end point of a segment.");
+            return false;
+        }
 
         return true;
     }
 
-    bool CalculationInputBuilder::HasCharacteristicPointType(
-        CharacteristicPointType characteristicPointType) const
+    ProfileDataFactoryPoint* CalculationInputBuilder::GetProfilePointDataItemForCharacteristicPointType(
+        const CharacteristicPointType characteristicPointType) const
     {
-        return ranges::any_of(_profilePointDataItems, [characteristicPointType](
-                          const auto& profilePointDataItem)
-                              {
-                                  return profilePointDataItem->GetCharacteristicPoint() == characteristicPointType;
-                              });
+        const auto result = ranges::find_if(_profilePointDataItemReferences, [characteristicPointType](
+                                        const reference_wrapper<ProfileDataFactoryPoint> profilePointDataItem)
+                                            {
+                                                return profilePointDataItem.get().GetCharacteristicPoint() == characteristicPointType;
+                                            });
+
+        return result != _profilePointDataItemReferences.end()
+                   ? &result->get()
+                   : nullptr;
     }
 
     void CalculationInputBuilder::RegisterValidationError(

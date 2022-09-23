@@ -189,7 +189,7 @@ namespace DiKErnel::Integration
                 bool isRequired = true) const;
 
             [[nodiscard]]
-            bool HasCharacteristicPointType(
+            ProfileDataFactoryPoint* GetProfilePointDataItemForCharacteristicPointType(
                 Core::CharacteristicPointType characteristicPointType) const;
 
             void RegisterValidationError(

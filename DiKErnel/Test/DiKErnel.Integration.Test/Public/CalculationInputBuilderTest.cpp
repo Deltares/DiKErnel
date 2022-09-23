@@ -312,7 +312,7 @@ namespace DiKErnel::Integration::Test
 
         EventAssertHelper::AssertEvent(
             EventType::Error,
-            "Could not create calculation input.",
+            "Characteristic point must be on a start or end point of a segment.",
             events.at(0));
     }
 

@@ -74,49 +74,45 @@ namespace DiKErnel::Integration
         for (const auto& profilePointDataReference : profilePoints)
         {
             const auto& profilePointData = profilePointDataReference.get();
-            const auto* matchingPoint = FindMatchingPointOnSegment(profilePointDataReference, profileSegments);
-
-            if (matchingPoint == nullptr)
-            {
-                throw InputFactoryException("Characteristic point must be on a start or end point of a segment.");
-            }
 
             characteristicPoints.push_back(
-                make_unique<CharacteristicPoint>(*matchingPoint, profilePointData.GetCharacteristicPoint()));
+                make_unique<CharacteristicPoint>(FindMatchingPointOnSegment(profilePointDataReference, profileSegments),
+                                                 profilePointData.GetCharacteristicPoint()));
         }
 
         return characteristicPoints;
     }
 
-    const ProfilePoint* ProfileDataFactory::FindMatchingPointOnSegment(
+    const ProfilePoint& ProfileDataFactory::FindMatchingPointOnSegment(
         const ProfileDataFactoryPoint& profilePointData,
         const vector<unique_ptr<ProfileSegment>>& segments)
     {
+        const ProfilePoint* profilePoint = nullptr;
+
         for (const auto& segment : segments)
         {
             const auto& segmentStartPoint = segment->GetStartPoint();
-            const auto& segmentEndPoint = segment->GetEndPoint();
-
-            if (FindMatchingPoint(profilePointData, segmentStartPoint) != nullptr)
+            if (IsMatchingPoint(profilePointData, segmentStartPoint))
             {
-                return &segmentStartPoint;
+                profilePoint = &segmentStartPoint;
+                break;
             }
 
-            if (FindMatchingPoint(profilePointData, segmentEndPoint) != nullptr)
+            const auto& segmentEndPoint = segment->GetEndPoint();
+            if (IsMatchingPoint(profilePointData, segmentEndPoint))
             {
-                return &segmentEndPoint;
+                profilePoint = &segmentEndPoint;
+                break;
             }
         }
 
-        return nullptr;
+        return *profilePoint;
     }
 
-    const ProfilePoint* ProfileDataFactory::FindMatchingPoint(
+    bool ProfileDataFactory::IsMatchingPoint(
         const ProfileDataFactoryPoint& profilePointData,
         const ProfilePoint& profilePoint)
     {
-        return abs(profilePointData.GetX() - profilePoint.GetX()) <= numeric_limits<double>::epsilon()
-                   ? &profilePoint
-                   : nullptr;
+        return abs(profilePointData.GetX() - profilePoint.GetX()) <= numeric_limits<double>::epsilon();
     }
 }
