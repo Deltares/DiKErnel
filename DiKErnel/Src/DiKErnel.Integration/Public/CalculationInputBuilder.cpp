@@ -230,26 +230,29 @@ namespace DiKErnel::Integration
         const string& characteristicPointName,
         const bool isRequired) const
     {
-        if (const auto* characteristicPoint = GetProfilePointDataItemForCharacteristicPointType(characteristicPointType);
-            characteristicPoint == nullptr)
+        const auto* characteristicPoint = GetProfilePointDataItemForCharacteristicPointType(characteristicPointType);
+
+        if (characteristicPoint == nullptr)
         {
             if (isRequired)
             {
                 RegisterValidationError("The " + characteristicPointName + " is required.");
                 return false;
             }
-        }
-        else
-        {
-            for (const auto& profileSegmentDataItem : _profileSegmentDataItems)
-            {
-                if (NumericsHelper::AreEqual(profileSegmentDataItem->GetStartPointX(), characteristicPoint->GetX())
-                    || NumericsHelper::AreEqual(profileSegmentDataItem->GetEndPointX(), characteristicPoint->GetX()))
-                {
-                    return true;
-                }
-            }
 
+            return true;
+        }
+
+        if (ranges::none_of(_profileSegmentDataItemReferences, [characteristicPoint](
+                        const reference_wrapper<ProfileDataFactorySegment> profileSegmentDataItemReference)
+                            {
+                                const auto& profileSegmentDataItem = profileSegmentDataItemReference.get();
+                                const auto characteristicPointX = characteristicPoint->GetX();
+
+                                return NumericsHelper::AreEqual(profileSegmentDataItem.GetStartPointX(), characteristicPointX)
+                                        || NumericsHelper::AreEqual(profileSegmentDataItem.GetEndPointX(), characteristicPointX);
+                            }))
+        {
             RegisterValidationError("Characteristic point must be on a start or end point of a segment.");
             return false;
         }
