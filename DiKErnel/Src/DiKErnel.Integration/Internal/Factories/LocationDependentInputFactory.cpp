@@ -28,7 +28,6 @@
 #include "GrassRevetmentWaveImpactLocationDependentInputFactory.h"
 #include "GrassRevetmentWaveRunupRayleighLocationConstructionProperties.h"
 #include "GrassRevetmentWaveRunupRayleighLocationDependentInputFactory.h"
-#include "InputFactoryException.h"
 #include "NaturalStoneRevetmentLocationConstructionProperties.h"
 #include "NaturalStoneRevetmentLocationDependentInputFactory.h"
 #include "RevetmentLocationConstructionPropertiesBase.h"
@@ -92,10 +91,7 @@ namespace DiKErnel::Integration
             {
                 locationDependentInputItems.push_back(
                     NaturalStoneRevetmentLocationDependentInputFactory::CreateLocationDependentInput(*naturalStoneLocationConstructionProperties));
-                continue;
             }
-
-            throw InputFactoryException("Couldn't create location dependent input for the given construction properties.");
         }
 
         return locationDependentInputItems;
