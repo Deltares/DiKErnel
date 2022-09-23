@@ -24,7 +24,6 @@
 #include "AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper.h"
 #include "AssertHelper.h"
 #include "CalculationInputBuilder.h"
-#include "CalculationInputBuildException.h"
 #include "EventAssertHelper.h"
 #include "GrassRevetmentOvertoppingLocationDependentInput.h"
 #include "GrassRevetmentOvertoppingLocationDependentInputAssertHelper.h"

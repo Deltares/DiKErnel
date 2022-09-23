@@ -72,8 +72,6 @@ set(SOURCEFILES_PUBLIC_DATA_OUTPUT
 )
 
 set(SOURCEFILES_PUBLIC_EXCEPTIONS
-  ${PUBLIC_EXCEPTIONS_FOLDER}/CalculationInputBuildException.cpp
-  ${PUBLIC_EXCEPTIONS_FOLDER}/CalculationInputBuildException.h
   ${PUBLIC_EXCEPTIONS_FOLDER}/InputFactoryException.cpp
   ${PUBLIC_EXCEPTIONS_FOLDER}/InputFactoryException.h
 )

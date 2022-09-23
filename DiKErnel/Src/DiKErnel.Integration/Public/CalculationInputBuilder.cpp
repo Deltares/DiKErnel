@@ -26,7 +26,6 @@
 #include "AsphaltRevetmentWaveImpactDefaultsFactory.h"
 #include "AsphaltRevetmentWaveImpactLocationDependentInputFactory.h"
 #include "CalculationInput.h"
-#include "CalculationInputBuildException.h"
 #include "EventRegistry.h"
 #include "GrassRevetmentWaveImpactLocationDependentInputFactory.h"
 #include "GrassRevetmentWaveRunupRayleighLocationDependentInputFactory.h"

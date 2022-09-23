@@ -163,9 +163,7 @@ namespace DiKErnel::Integration
 
             /*!
              * \brief Builds the calculation input.
-             * \return The created calculation input.
-             * \exception CalculationInputBuildException
-             *            Thrown when calculation input cannot be created.
+             * \return The result with the created calculation input.
              */
             [[nodiscard]]
             std::unique_ptr<Util::DataResult<Core::ICalculationInput>> Build() const;
