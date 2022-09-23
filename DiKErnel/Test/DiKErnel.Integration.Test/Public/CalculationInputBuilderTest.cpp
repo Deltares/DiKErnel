@@ -25,6 +25,7 @@
 #include "AssertHelper.h"
 #include "CalculationInputBuilder.h"
 #include "CalculationInputBuildException.h"
+#include "EventAssertHelper.h"
 #include "GrassRevetmentOvertoppingLocationDependentInput.h"
 #include "GrassRevetmentOvertoppingLocationDependentInputAssertHelper.h"
 #include "GrassRevetmentWaveImpactLocationDependentInput.h"
@@ -47,6 +48,8 @@ namespace DiKErnel::Integration::Test
     using namespace std;
     using namespace testing;
     using namespace TestUtil;
+    using namespace Util;
+    using namespace Util::TestUtil;
 
     struct CalculationInputBuilderTest : Test
     {
@@ -104,46 +107,6 @@ namespace DiKErnel::Integration::Test
             builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterToe);
             builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterCrest);
             builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::InnerToe);
-
-            const auto& calculationInput = builder.Build();
-        }
-
-        static void CreateBuilderWithoutSegments()
-        {
-            CalculationInputBuilder builder;
-            builder.AddDikeProfilePointData(0, CharacteristicPointType::OuterToe);
-            builder.AddDikeProfilePointData(10, CharacteristicPointType::OuterCrest);
-            const auto& calculationInput = builder.Build();
-        }
-
-        static void CreateBuilderAndSegmentUnchainedOnXCoordinate()
-        {
-            constexpr auto startPointX = 10;
-            constexpr auto startPointZ = 20;
-            constexpr auto endPointX = 20;
-            constexpr auto endPointZ = 30;
-
-            CalculationInputBuilder builder;
-            builder.AddDikeProfileSegment(startPointX, startPointZ, endPointX, endPointZ);
-            builder.AddDikeProfileSegment(endPointX + 0.01, startPointZ, endPointX + 10, endPointZ + 10);
-            builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterToe);
-            builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterCrest);
-
-            const auto& calculationInput = builder.Build();
-        }
-
-        static void CreateBuilderAndSegmentUnchainedOnZCoordinate()
-        {
-            constexpr auto startPointX = 10;
-            constexpr auto startPointZ = 20;
-            constexpr auto endPointX = 20;
-            constexpr auto endPointZ = 30;
-
-            CalculationInputBuilder builder;
-            builder.AddDikeProfileSegment(startPointX, startPointZ, endPointX, endPointZ);
-            builder.AddDikeProfileSegment(endPointX, startPointZ + 0.01, endPointX + 10, endPointZ + 10);
-            builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterToe);
-            builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterCrest);
 
             const auto& calculationInput = builder.Build();
         }
@@ -449,38 +412,86 @@ namespace DiKErnel::Integration::Test
         ASSERT_EQ(&segmentOne.GetEndPoint(), &segmentTwo.GetStartPoint());
     }
 
-    TEST_F(CalculationInputBuilderTest, GivenBuilderWithoutDikeSegments_WhenBuild_ThenThrowsCalculationInputBuilderException)
+    TEST_F(CalculationInputBuilderTest, GivenBuilderWithoutDikeSegments_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
-        // Given & When
-        const auto action = &CalculationInputBuilderTest::CreateBuilderWithoutSegments;
+        // Given
+        CalculationInputBuilder builder;
+        builder.AddDikeProfilePointData(0, CharacteristicPointType::OuterToe);
+        builder.AddDikeProfilePointData(10, CharacteristicPointType::OuterCrest);
+
+        // When
+        const auto& result = builder.Build();
 
         // Then
-        AssertHelper::AssertThrowsWithMessageAndInnerException<CalculationInputBuildException, InputFactoryException>(
-            action, "Could not create calculation input.", "At least 1 segment is required.");
+        ASSERT_FALSE(result->GetSuccessful());
+
+        const auto& events = result->GetEvents();
+        ASSERT_EQ(1, events.size());
+
+        EventAssertHelper::AssertEvent(
+            EventType::Error,
+            "Could not create calculation input.",
+            events.at(0));
     }
 
     TEST_F(CalculationInputBuilderTest,
-           GivenBuilderWithDikeSegmentsAddedWithoutRoughness_WhenSegmentXCoordinateUnchained_ThenThrowsCalculationInputBuilderException)
+           GivenBuilderWithDikeSegmentsAddedWithoutRoughness_WhenSegmentXCoordinateUnchained_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
-        // Given & When
-        const auto action = &CalculationInputBuilderTest::CreateBuilderAndSegmentUnchainedOnXCoordinate;
+        // Given
+        constexpr auto startPointX = 10;
+        constexpr auto startPointZ = 20;
+        constexpr auto endPointX = 20;
+        constexpr auto endPointZ = 30;
+
+        CalculationInputBuilder builder;
+        builder.AddDikeProfileSegment(startPointX, startPointZ, endPointX, endPointZ);
+        builder.AddDikeProfileSegment(endPointX + 0.01, startPointZ, endPointX + 10, endPointZ + 10);
+        builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterToe);
+        builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterCrest);
+        
+        // When
+        const auto& result = builder.Build();
 
         // Then
-        AssertHelper::AssertThrowsWithMessageAndInnerException<CalculationInputBuildException, InputFactoryException>(
-            action, "Could not create calculation input.",
-            "The start point of a successive segment must be equal to the end point of the previous segment.");
+        ASSERT_FALSE(result->GetSuccessful());
+
+        const auto& events = result->GetEvents();
+        ASSERT_EQ(1, events.size());
+
+        EventAssertHelper::AssertEvent(
+            EventType::Error,
+            "Could not create calculation input.",
+            events.at(0));
     }
 
     TEST_F(CalculationInputBuilderTest,
-           GivenBuilderWithDikeSegmentsAddedWithoutRoughness_WhenSegmentZCoordinateUnchained_ThenThrowsCalculationInputBuilderException)
+           GivenBuilderWithDikeSegmentsAddedWithoutRoughness_WhenSegmentZCoordinateUnchained_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
-        // Given & When
-        const auto action = &CalculationInputBuilderTest::CreateBuilderAndSegmentUnchainedOnZCoordinate;
+        // Given
+        constexpr auto startPointX = 10;
+        constexpr auto startPointZ = 20;
+        constexpr auto endPointX = 20;
+        constexpr auto endPointZ = 30;
+
+        CalculationInputBuilder builder;
+        builder.AddDikeProfileSegment(startPointX, startPointZ, endPointX, endPointZ);
+        builder.AddDikeProfileSegment(endPointX, startPointZ + 0.01, endPointX + 10, endPointZ + 10);
+        builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterToe);
+        builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterCrest);
+
+        // When
+        const auto& result = builder.Build();
 
         // Then
-        AssertHelper::AssertThrowsWithMessageAndInnerException<CalculationInputBuildException, InputFactoryException>(
-            action, "Could not create calculation input.",
-            "The start point of a successive segment must be equal to the end point of the previous segment.");
+        ASSERT_FALSE(result->GetSuccessful());
+
+        const auto& events = result->GetEvents();
+        ASSERT_EQ(1, events.size());
+
+        EventAssertHelper::AssertEvent(
+            EventType::Error,
+            "Could not create calculation input.",
+            events.at(0));
     }
 
     #pragma endregion

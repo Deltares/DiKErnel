@@ -85,5 +85,6 @@ target_link_libraries(${EXENAME} PUBLIC
   DiKErnel.Integration
   DiKErnel.Integration.TestUtil
   DiKErnel.TestUtil
+  DiKErnel.Util.TestUtil
   gtest
 )
