@@ -177,7 +177,6 @@ namespace DiKErnel::Integration
                 double endPointZ,
                 std::unique_ptr<double> roughnessCoefficient);
 
-            [[nodiscard]]
             void Validate() const;
 
             [[nodiscard]]
@@ -187,7 +186,6 @@ namespace DiKErnel::Integration
             bool HasCharacteristicPointType(
                 Core::CharacteristicPointType characteristicPointType) const;
 
-            [[nodiscard]]
             void RegisterEventAndThrowCalculationInputBuildException(
                 const std::string& message) const;
 

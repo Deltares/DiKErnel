@@ -299,7 +299,7 @@ namespace DiKErnel::Integration::Test
 
         // Then
         AssertHelper::AssertThrowsWithMessage<CalculationInputBuildException>(
-            action, "Could not create calculation input. The OuterToe must be defined.");
+            action, "Could not create calculation input. The outer toe is required.");
     }
 
     TEST_F(CalculationInputBuilderTest, GivenBuilderWithoutOuterCrest_WhenBuild_ThenThrowsCalculationInputBuilderException)
@@ -309,7 +309,7 @@ namespace DiKErnel::Integration::Test
 
         // Then
         AssertHelper::AssertThrowsWithMessage<CalculationInputBuildException>(
-            action, "Could not create calculation input. The OuterCrest must be defined.");
+            action, "Could not create calculation input. The outer crest is required.");
     }
 
     TEST_F(CalculationInputBuilderTest,
@@ -320,7 +320,7 @@ namespace DiKErnel::Integration::Test
 
         // Then
         AssertHelper::AssertThrowsWithMessage<CalculationInputBuildException>(
-            action, "Could not create calculation input. The InnerToe must be defined.");
+            action, "Could not create calculation input. The inner toe is required.");
     }
 
     TEST_F(CalculationInputBuilderTest,
@@ -331,7 +331,7 @@ namespace DiKErnel::Integration::Test
 
         // Then
         AssertHelper::AssertThrowsWithMessage<CalculationInputBuildException>(
-            action, "Could not create calculation input. The InnerCrest must be defined.");
+            action, "Could not create calculation input. The inner crest is required.");
     }
 
     #pragma endregion

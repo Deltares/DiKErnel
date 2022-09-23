@@ -180,24 +180,24 @@ namespace DiKErnel::Integration
     {
         if (!HasCharacteristicPointType(CharacteristicPointType::OuterToe))
         {
-            RegisterEventAndThrowCalculationInputBuildException("The OuterToe must be defined.");
+            RegisterEventAndThrowCalculationInputBuildException("The outer toe is required.");
         }
 
         if (!HasCharacteristicPointType(CharacteristicPointType::OuterCrest))
         {
-            RegisterEventAndThrowCalculationInputBuildException("The OuterCrest must be defined.");
+            RegisterEventAndThrowCalculationInputBuildException("The outer crest is required.");
         }
 
         if (HasOvertoppingLocationDependentInput())
         {
             if (!HasCharacteristicPointType(CharacteristicPointType::InnerToe))
             {
-                RegisterEventAndThrowCalculationInputBuildException("The InnerToe must be defined.");
+                RegisterEventAndThrowCalculationInputBuildException("The inner toe is required.");
             }
 
             if (!HasCharacteristicPointType(CharacteristicPointType::InnerCrest))
             {
-                RegisterEventAndThrowCalculationInputBuildException("The InnerCrest must be defined.");
+                RegisterEventAndThrowCalculationInputBuildException("The inner crest is required.");
             }
         }
     }
@@ -206,9 +206,9 @@ namespace DiKErnel::Integration
         CharacteristicPointType characteristicPointType) const
     {
         return ranges::any_of(_profilePointDataItems, [characteristicPointType](
-                          const auto& item)
+                          const auto& profilePointDataItem)
                               {
-                                  return item->GetCharacteristicPoint() == characteristicPointType;
+                                  return profilePointDataItem->GetCharacteristicPoint() == characteristicPointType;
                               });
     }
 
@@ -222,9 +222,10 @@ namespace DiKErnel::Integration
     bool CalculationInputBuilder::HasOvertoppingLocationDependentInput() const
     {
         return ranges::any_of(_locationConstructionPropertiesItems, [](
-                          const auto& item)
+                          const auto& locationConstructionsPropertiesItem)
                               {
-                                  return dynamic_cast<const GrassRevetmentOvertoppingLocationConstructionProperties*>(item.get())
+                                  return dynamic_cast<const GrassRevetmentOvertoppingLocationConstructionProperties*>(
+                                              locationConstructionsPropertiesItem.get())
                                           != nullptr;
                               });
     }
