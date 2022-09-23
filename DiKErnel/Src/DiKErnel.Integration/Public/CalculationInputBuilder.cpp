@@ -100,7 +100,7 @@ namespace DiKErnel::Integration
         std::unique_ptr<GrassRevetmentOvertoppingLocationConstructionProperties> constructionProperties)
     {
         AddLocation(move(constructionProperties));
-        _hasOvertoppingLocationDependentInput = true;
+        _grassOvertoppingLocationAdded = true;
     }
 
     void CalculationInputBuilder::AddGrassWaveImpactLocation(
@@ -189,8 +189,8 @@ namespace DiKErnel::Integration
 
         if (!ValidateCharacteristicPoint(CharacteristicPointType::OuterToe, "outer toe")
             || !ValidateCharacteristicPoint(CharacteristicPointType::OuterCrest, "outer crest")
-            || !ValidateCharacteristicPoint(CharacteristicPointType::InnerToe, "inner toe", _hasOvertoppingLocationDependentInput)
-            || !ValidateCharacteristicPoint(CharacteristicPointType::InnerCrest, "inner crest", _hasOvertoppingLocationDependentInput))
+            || !ValidateCharacteristicPoint(CharacteristicPointType::InnerToe, "inner toe", _grassOvertoppingLocationAdded)
+            || !ValidateCharacteristicPoint(CharacteristicPointType::InnerCrest, "inner crest", _grassOvertoppingLocationAdded))
         {
             return false;
         }
