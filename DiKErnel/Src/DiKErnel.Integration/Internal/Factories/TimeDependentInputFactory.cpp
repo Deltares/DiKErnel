@@ -34,11 +34,6 @@ namespace DiKErnel::Integration
     vector<unique_ptr<ITimeDependentInput>> TimeDependentInputFactory::Create(
         const vector<reference_wrapper<TimeDependentInputFactoryData>>& timeStepDataItems)
     {
-        if (timeStepDataItems.empty())
-        {
-            throw InputFactoryException("At least 1 time step is required.");
-        }
-
         auto timeDependentInputItems = vector<unique_ptr<ITimeDependentInput>>();
 
         auto previousEndTime = numeric_limits<int>::min();

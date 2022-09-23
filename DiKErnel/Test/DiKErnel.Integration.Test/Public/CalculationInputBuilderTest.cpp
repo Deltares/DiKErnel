@@ -572,6 +572,7 @@ namespace DiKErnel::Integration::Test
         builder.AddDikeProfileSegment(startPointX, 10, 10, 20);
         builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterToe);
         builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterCrest);
+        builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
         builder.AddAsphaltWaveImpactLocation(move(constructionProperties));
 
         // When
@@ -802,6 +803,7 @@ namespace DiKErnel::Integration::Test
         builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterCrest);
         builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::InnerToe);
         builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::InnerCrest);
+        builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
         builder.AddGrassOvertoppingLocation(move(constructionProperties));
 
         // When
@@ -1027,6 +1029,7 @@ namespace DiKErnel::Integration::Test
         builder.AddDikeProfileSegment(startPointX, 10, 10, 20);
         builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterToe);
         builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterCrest);
+        builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
         builder.AddGrassWaveImpactLocation(move(constructionProperties));
 
         // When
@@ -1255,6 +1258,7 @@ namespace DiKErnel::Integration::Test
         builder.AddDikeProfileSegment(startPointX, 10, 10, 20);
         builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterToe);
         builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterCrest);
+        builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
         builder.AddGrassWaveRunupRayleighLocation(move(constructionProperties));
 
         // When
@@ -1496,6 +1500,7 @@ namespace DiKErnel::Integration::Test
         builder.AddDikeProfileSegment(startPointX, 10, 10, 20);
         builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterToe);
         builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterCrest);
+        builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
         builder.AddNaturalStoneLocation(move(constructionProperties));
 
         // When

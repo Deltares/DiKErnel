@@ -202,6 +202,12 @@ namespace DiKErnel::Integration
             return false;
         }
 
+        if (_timeStepDataItems.empty())
+        {
+            RegisterValidationError("At least 1 time step is required.");
+            return false;
+        }
+
         return true;
     }
 
