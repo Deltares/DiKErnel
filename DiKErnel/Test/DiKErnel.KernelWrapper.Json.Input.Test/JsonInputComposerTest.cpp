@@ -79,7 +79,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
         }
     };
 
-    TEST_F(JsonInputComposerTest, GivenJsonFileWithAllData_WhenGetInputDataFromJson_ThenReturnsResultWithICalculationInputWithExpectedValues)
+    TEST_F(JsonInputComposerTest, GivenJsonFileWithAllData_WhenGetInputDataFromJson_ThenReturnsResultWithCalculationInputWithExpectedValues)
     {
         // Given
         const auto filePath = (TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Input.Test") / "JsonInputComposerTest"
@@ -269,7 +269,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
     }
 
     TEST_F(JsonInputComposerTest,
-           GivenJsonFileWithAllMandatoryData_WhenGetInputDataFromJson_ThenReturnsResultWithICalculationInputWithExpectedValues)
+           GivenJsonFileWithAllMandatoryData_WhenGetInputDataFromJson_ThenReturnsResultWithCalculationInputWithExpectedValues)
     {
         // Given
         const auto filePath = (TestDataPathHelper::GetTestDataPath("DiKErnel.KernelWrapper.Json.Input.Test") / "JsonInputComposerTest"
