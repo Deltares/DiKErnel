@@ -52,110 +52,7 @@ namespace DiKErnel::Integration::Test
 
     struct CalculationInputBuilderTest : Test
     {
-        static void CreateBuilderWithoutOuterToe()
-        {
-            constexpr auto startPointX = 10;
-
-            CalculationInputBuilder builder;
-            builder.AddDikeProfileSegment(0, 10, startPointX, 30);
-            builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterCrest);
-
-            const auto& calculationInput = builder.Build();
-        }
-
-        static void CreateBuilderWithoutOuterCrest()
-        {
-            constexpr auto startPointX = 10;
-
-            CalculationInputBuilder builder;
-            builder.AddDikeProfileSegment(0, 10, startPointX, 30);
-            builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterToe);
-
-            const auto& calculationInput = builder.Build();
-        }
-
-        static void CreateBuilderWithGrassRevetmentOvertoppingLocationAndWithoutInnerToe()
-        {
-            auto constructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(0.1,
-                GrassRevetmentTopLayerType::ClosedSod);
-
-            constexpr auto startPointX = 10;
-
-            CalculationInputBuilder builder;
-            builder.AddGrassOvertoppingLocation(move(constructionProperties));
-
-            builder.AddDikeProfileSegment(0, 10, startPointX, 30);
-            builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterToe);
-            builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterCrest);
-            builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::InnerCrest);
-
-            const auto& calculationInput = builder.Build();
-        }
-
-        static void CreateBuilderWithGrassRevetmentOvertoppingLocationAndWithoutInnerCrest()
-        {
-            auto constructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(0.1,
-                GrassRevetmentTopLayerType::ClosedSod);
-
-            constexpr auto startPointX = 10;
-
-            CalculationInputBuilder builder;
-            builder.AddGrassOvertoppingLocation(move(constructionProperties));
-
-            builder.AddDikeProfileSegment(0, 10, startPointX, 30);
-            builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterToe);
-            builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterCrest);
-            builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::InnerToe);
-
-            const auto& calculationInput = builder.Build();
-        }
     };
-
-    #pragma region Validation
-
-    TEST_F(CalculationInputBuilderTest, GivenBuilderWithoutOuterToe_WhenBuild_ThenThrowsCalculationInputBuilderException)
-    {
-        // Given & When
-        const auto action = &CalculationInputBuilderTest::CreateBuilderWithoutOuterToe;
-
-        // Then
-        AssertHelper::AssertThrowsWithMessage<CalculationInputBuildException>(
-            action, "Could not create calculation input. The outer toe is required.");
-    }
-
-    TEST_F(CalculationInputBuilderTest, GivenBuilderWithoutOuterCrest_WhenBuild_ThenThrowsCalculationInputBuilderException)
-    {
-        // Given & When
-        const auto action = &CalculationInputBuilderTest::CreateBuilderWithoutOuterCrest;
-
-        // Then
-        AssertHelper::AssertThrowsWithMessage<CalculationInputBuildException>(
-            action, "Could not create calculation input. The outer crest is required.");
-    }
-
-    TEST_F(CalculationInputBuilderTest,
-           GivenBuilderWithGrassOvertoppingLocationAndWithoutInnerToe_WhenBuild_ThenThrowsCalculationInputBuilderException)
-    {
-        // Given & When
-        const auto action = &CalculationInputBuilderTest::CreateBuilderWithGrassRevetmentOvertoppingLocationAndWithoutInnerToe;
-
-        // Then
-        AssertHelper::AssertThrowsWithMessage<CalculationInputBuildException>(
-            action, "Could not create calculation input. The inner toe is required.");
-    }
-
-    TEST_F(CalculationInputBuilderTest,
-           GivenBuilderWithGrassOvertoppingLocationAndWithoutInnerCrest_WhenBuild_ThenThrowsCalculationInputBuilderException)
-    {
-        // Given & When
-        const auto action = &CalculationInputBuilderTest::CreateBuilderWithGrassRevetmentOvertoppingLocationAndWithoutInnerCrest;
-
-        // Then
-        AssertHelper::AssertThrowsWithMessage<CalculationInputBuildException>(
-            action, "Could not create calculation input. The inner crest is required.");
-    }
-
-    #pragma endregion
 
     #pragma region Profile segments
 
@@ -421,6 +318,118 @@ namespace DiKErnel::Integration::Test
         EventAssertHelper::AssertEvent(
             EventType::Error,
             "Could not create calculation input.",
+            events.at(0));
+    }
+
+    TEST_F(CalculationInputBuilderTest, GivenBuilderWithoutDikeProfilePointDataOuterToe_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
+    {
+        // Given
+        constexpr auto startPointX = 10;
+
+        CalculationInputBuilder builder;
+        builder.AddDikeProfileSegment(0, 10, startPointX, 30);
+        builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterCrest);
+
+        // When
+        const auto& result = builder.Build();
+
+        // Then
+        ASSERT_FALSE(result->GetSuccessful());
+
+        const auto& events = result->GetEvents();
+        ASSERT_EQ(1, events.size());
+
+        EventAssertHelper::AssertEvent(
+            EventType::Error,
+            "The outer toe is required.",
+            events.at(0));
+    }
+
+    TEST_F(CalculationInputBuilderTest, GivenBuilderWithoutDikeProfilePointDataOuterCrest_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
+    {
+        // Given
+        constexpr auto startPointX = 10;
+
+        CalculationInputBuilder builder;
+        builder.AddDikeProfileSegment(0, 10, startPointX, 30);
+        builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterToe);
+
+        // When
+        const auto& result = builder.Build();
+
+        // Then
+        ASSERT_FALSE(result->GetSuccessful());
+
+        const auto& events = result->GetEvents();
+        ASSERT_EQ(1, events.size());
+
+        EventAssertHelper::AssertEvent(
+            EventType::Error,
+            "The outer crest is required.",
+            events.at(0));
+    }
+
+    TEST_F(CalculationInputBuilderTest,
+        GivenBuilderWithGrassOvertoppingLocationAndWithoutDikeProfilePointDataInnerToe_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
+    {
+        // Given
+        auto constructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(0.1,
+            GrassRevetmentTopLayerType::ClosedSod);
+
+        constexpr auto startPointX = 10;
+
+        CalculationInputBuilder builder;
+        builder.AddGrassOvertoppingLocation(move(constructionProperties));
+
+        builder.AddDikeProfileSegment(0, 10, startPointX, 30);
+        builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterToe);
+        builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterCrest);
+        builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::InnerCrest);
+
+        // When
+        const auto& result = builder.Build();
+
+        // Then
+        ASSERT_FALSE(result->GetSuccessful());
+
+        const auto& events = result->GetEvents();
+        ASSERT_EQ(1, events.size());
+
+        EventAssertHelper::AssertEvent(
+            EventType::Error,
+            "The inner toe is required.",
+            events.at(0));
+    }
+
+    TEST_F(CalculationInputBuilderTest,
+        GivenBuilderWithGrassOvertoppingLocationAndWithoutDikeProfilePointDataInnerCrest_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
+    {
+        // Given
+        auto constructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(0.1,
+            GrassRevetmentTopLayerType::ClosedSod);
+
+        constexpr auto startPointX = 10;
+
+        CalculationInputBuilder builder;
+        builder.AddGrassOvertoppingLocation(move(constructionProperties));
+
+        builder.AddDikeProfileSegment(0, 10, startPointX, 30);
+        builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterToe);
+        builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterCrest);
+        builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::InnerToe);
+
+        // When
+        const auto& result = builder.Build();
+
+        // Then
+        ASSERT_FALSE(result->GetSuccessful());
+
+        const auto& events = result->GetEvents();
+        ASSERT_EQ(1, events.size());
+
+        EventAssertHelper::AssertEvent(
+            EventType::Error,
+            "The inner crest is required.",
             events.at(0));
     }
 

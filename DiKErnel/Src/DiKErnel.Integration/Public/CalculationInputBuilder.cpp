@@ -149,7 +149,10 @@ namespace DiKErnel::Integration
             timeStepDataItemReferences.emplace_back(*timeStepDataItem);
         }
 
-        Validate();
+        if(!Validate())
+        {
+            return make_unique<DataResult<ICalculationInput>>(EventRegistry::Flush());
+        }
 
         try
         {
@@ -178,30 +181,36 @@ namespace DiKErnel::Integration
                                                                                      move(roughnessCoefficient)));
     }
 
-    void CalculationInputBuilder::Validate() const
+    bool CalculationInputBuilder::Validate() const
     {
         if (!HasCharacteristicPointType(CharacteristicPointType::OuterToe))
         {
-            RegisterEventAndThrowCalculationInputBuildException("The outer toe is required.");
+            RegisterValidationError("The outer toe is required.");
+            return false;
         }
 
         if (!HasCharacteristicPointType(CharacteristicPointType::OuterCrest))
         {
-            RegisterEventAndThrowCalculationInputBuildException("The outer crest is required.");
+            RegisterValidationError("The outer crest is required.");
+            return false;
         }
 
         if (HasOvertoppingLocationDependentInput())
         {
             if (!HasCharacteristicPointType(CharacteristicPointType::InnerToe))
             {
-                RegisterEventAndThrowCalculationInputBuildException("The inner toe is required.");
+                RegisterValidationError("The inner toe is required.");
+                return false;
             }
 
             if (!HasCharacteristicPointType(CharacteristicPointType::InnerCrest))
             {
-                RegisterEventAndThrowCalculationInputBuildException("The inner crest is required.");
+                RegisterValidationError("The inner crest is required.");
+                return false;
             }
         }
+
+        return true;
     }
 
     bool CalculationInputBuilder::HasCharacteristicPointType(
@@ -214,11 +223,10 @@ namespace DiKErnel::Integration
                               });
     }
 
-    void CalculationInputBuilder::RegisterEventAndThrowCalculationInputBuildException(
+    void CalculationInputBuilder::RegisterValidationError(
         const string& message) const
     {
         EventRegistry::Register(make_unique<Event>(message, EventType::Error));
-        throw CalculationInputBuildException(_exceptionMessage + " " + message);
     }
 
     bool CalculationInputBuilder::HasOvertoppingLocationDependentInput() const

@@ -178,7 +178,7 @@ namespace DiKErnel::Integration
                 double endPointZ,
                 std::unique_ptr<double> roughnessCoefficient);
 
-            void Validate() const;
+            bool Validate() const;
 
             [[nodiscard]]
             bool HasOvertoppingLocationDependentInput() const;
@@ -187,7 +187,7 @@ namespace DiKErnel::Integration
             bool HasCharacteristicPointType(
                 Core::CharacteristicPointType characteristicPointType) const;
 
-            void RegisterEventAndThrowCalculationInputBuildException(
+            void RegisterValidationError(
                 const std::string& message) const;
 
             std::vector<std::unique_ptr<ProfileDataFactorySegment>> _profileSegmentDataItems;
