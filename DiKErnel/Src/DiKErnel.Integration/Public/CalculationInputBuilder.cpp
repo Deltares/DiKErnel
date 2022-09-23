@@ -123,7 +123,7 @@ namespace DiKErnel::Integration
 
     unique_ptr<DataResult<ICalculationInput>> CalculationInputBuilder::Build() const
     {
-        if (!Validate())
+        if (!CanBuildValidCalculationInput())
         {
             return make_unique<DataResult<ICalculationInput>>(EventRegistry::Flush());
         }
@@ -163,7 +163,7 @@ namespace DiKErnel::Integration
         _locationConstructionPropertiesItemReferences.emplace_back(*_locationConstructionPropertiesItems.back());
     }
 
-    bool CalculationInputBuilder::Validate() const
+    bool CalculationInputBuilder::CanBuildValidCalculationInput() const
     {
         if (!HasCharacteristicPointType(CharacteristicPointType::OuterToe))
         {

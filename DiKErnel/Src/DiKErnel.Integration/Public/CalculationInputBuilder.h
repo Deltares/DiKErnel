@@ -180,7 +180,7 @@ namespace DiKErnel::Integration
                 std::unique_ptr<RevetmentLocationConstructionPropertiesBase> constructionProperties);
 
             [[nodiscard]]
-            bool Validate() const;
+            bool CanBuildValidCalculationInput() const;
 
             [[nodiscard]]
             bool HasCharacteristicPointType(
