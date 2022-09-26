@@ -165,7 +165,7 @@
             }
         },
         {
-            "positie": 64,
+            "positie": 65,
             "beginschade": 0.023,
             "rekenmethode": "grasGolfoverslag",
             "typeToplaag": "grasGeslotenZode",

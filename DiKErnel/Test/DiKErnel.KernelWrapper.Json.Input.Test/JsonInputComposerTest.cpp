@@ -250,7 +250,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
 
         constexpr auto expectedDikeHeight = 8.21;
         GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertGeneralProperties(
-            64, &expectedDikeHeight, *grassRevetmentOvertoppingLocationDependentInputItem);
+            65, &expectedDikeHeight, *grassRevetmentOvertoppingLocationDependentInputItem);
 
         GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertTransitionAlpha(
             0.5, 1.8, *grassRevetmentOvertoppingLocationDependentInputItem);
@@ -485,7 +485,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
         LocationDependentInputAssertHelper::AssertDamageProperties(0, 1, *grassRevetmentOvertoppingLocationDependentInputItem1);
 
         GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertGeneralProperties(
-            42, nullptr, *grassRevetmentOvertoppingLocationDependentInputItem1);
+            65, nullptr, *grassRevetmentOvertoppingLocationDependentInputItem1);
 
         GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertTransitionAlpha(
             1, 1, *grassRevetmentOvertoppingLocationDependentInputItem1);
@@ -508,7 +508,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
         LocationDependentInputAssertHelper::AssertDamageProperties(0, 1, *grassRevetmentOvertoppingLocationDependentInputItem2);
 
         GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertGeneralProperties(
-            64, nullptr, *grassRevetmentOvertoppingLocationDependentInputItem2);
+            85, nullptr, *grassRevetmentOvertoppingLocationDependentInputItem2);
 
         GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertTransitionAlpha(
             1, 1, *grassRevetmentOvertoppingLocationDependentInputItem2);

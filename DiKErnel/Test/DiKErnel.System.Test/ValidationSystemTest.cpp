@@ -238,7 +238,7 @@ namespace DiKErnel::System::Test
     {
         // Given
         auto constructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(
-            15, GrassRevetmentTopLayerType::ClosedSod);
+            25, GrassRevetmentTopLayerType::ClosedSod);
         constructionProperties->SetInitialDamage(make_unique<double>(-0.1));
         constructionProperties->SetFailureNumber(make_unique<double>(-1));
         constructionProperties->SetCriticalCumulativeOverload(make_unique<double>(-2));

@@ -77,12 +77,12 @@
             }
         },
         {
-            "positie": 42,
+            "positie": 65,
             "rekenmethode": "grasGolfoverslag",
             "typeToplaag": "grasGeslotenZode"
         },
         {
-            "positie": 64,
+            "positie": 85,
             "rekenmethode": "grasGolfoverslag",
             "typeToplaag": "grasOpenZode"
         }
