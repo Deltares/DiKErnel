@@ -4,6 +4,8 @@ set(EXENAME DiKErnel.System.Test)
 # Define sources
 set(SOURCEFILES
   AsphaltRevetmentWaveImpactCalculationTest.cpp
+  CalculationTestBase.cpp
+  CalculationTestBase.h
   GrassRevetmentOvertoppingCalculationTest.cpp
   GrassRevetmentWaveImpactCalculationTest.cpp
   GrassRevetmentWaveRunupRayleighCalculationTest.cpp
