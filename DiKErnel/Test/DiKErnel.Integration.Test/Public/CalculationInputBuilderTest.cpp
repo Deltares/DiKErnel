@@ -62,6 +62,27 @@ namespace DiKErnel::Integration::Test
             builder.AddDikeProfilePointData(endPointX, CharacteristicPointType::OuterCrest);
             builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
         }
+
+        template <typename T>
+        static void GivenLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(
+            const T& addLocation)
+        {
+            // Given
+            CalculationInputBuilder builder;
+            AddDefaultProfileAndTimeStep(builder);
+            addLocation(builder);
+
+            // When
+            const auto& result = builder.Build();
+
+            // Then
+            ASSERT_FALSE(result->GetSuccessful());
+
+            const auto& events = result->GetEvents();
+            ASSERT_EQ(1, events.size());
+
+            EventAssertHelper::AssertEvent(EventType::Error, "The location must be between the outer toe and outer crest.", events.at(0));
+        }
     };
 
     #pragma region Profile segments
@@ -189,7 +210,7 @@ namespace DiKErnel::Integration::Test
         ASSERT_EQ(1, actualProfileSegments.size());
 
         ProfileDataAssertHelper::AssertProfileSegment(startPointX, startPointZ, endPointX, endPointZ, roughnessCoefficient,
-            actualProfileSegments.at(0));
+                                                      actualProfileSegments.at(0));
     }
 
     TEST_F(CalculationInputBuilderTest, GivenBuilderWithDikeSegmentsAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
@@ -225,11 +246,11 @@ namespace DiKErnel::Integration::Test
 
         const auto& segmentOne = actualProfileSegments.at(0).get();
         ProfileDataAssertHelper::AssertProfileSegment(startPointXSegmentOne, startPointZSegmentOne, endPointXSegmentOne, endPointZSegmentOne,
-            roughnessCoefficient, segmentOne);
+                                                      roughnessCoefficient, segmentOne);
 
         const auto& segmentTwo = actualProfileSegments.at(1).get();
         ProfileDataAssertHelper::AssertProfileSegment(endPointXSegmentOne, endPointZSegmentOne, endPointXSegmentTwo, endPointZSegmentTwo,
-            roughnessCoefficient, segmentTwo);
+                                                      roughnessCoefficient, segmentTwo);
 
         ASSERT_EQ(&segmentOne.GetEndPoint(), &segmentTwo.GetStartPoint());
     }
@@ -515,47 +536,33 @@ namespace DiKErnel::Integration::Test
         EventAssertHelper::AssertEvent(EventType::Error, "At least 1 location is required.", events.at(0));
     }
 
-    TEST_F(CalculationInputBuilderTest, GivenBuilderWithLocationWithXBelowOuterToe_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
-    {
-        // Given
-        CalculationInputBuilder builder;
-        AddDefaultProfileAndTimeStep(builder);
-        builder.AddGrassWaveImpactLocation(
-            make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(-0.1, GrassRevetmentTopLayerType::ClosedSod));
-
-        // When
-        const auto& result = builder.Build();
-
-        // Then
-        ASSERT_FALSE(result->GetSuccessful());
-
-        const auto& events = result->GetEvents();
-        ASSERT_EQ(1, events.size());
-
-        EventAssertHelper::AssertEvent(EventType::Error, "The location must be between the outer toe and outer crest.", events.at(0));
-    }
-
-    TEST_F(CalculationInputBuilderTest, GivenBuilderWithLocationWithXAboveOuterCrest_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
-    {
-        // Given
-        CalculationInputBuilder builder;
-        AddDefaultProfileAndTimeStep(builder);
-        builder.AddGrassWaveImpactLocation(
-            make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(10.1, GrassRevetmentTopLayerType::ClosedSod));
-
-        // When
-        const auto& result = builder.Build();
-
-        // Then
-        ASSERT_FALSE(result->GetSuccessful());
-
-        const auto& events = result->GetEvents();
-        ASSERT_EQ(1, events.size());
-
-        EventAssertHelper::AssertEvent(EventType::Error, "The location must be between the outer toe and outer crest.", events.at(0));
-    }
-
     #pragma region Asphalt wave impact
+
+    TEST_F(CalculationInputBuilderTest,
+           GivenBuilderWithAsphaltWaveImpactLocationWithXOnOuterToe_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
+    {
+        // Given & When & Then
+        GivenLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent([](
+        CalculationInputBuilder& builder)
+            {
+                builder.AddAsphaltWaveImpactLocation(
+                    make_unique<AsphaltRevetmentWaveImpactLocationConstructionProperties>(
+                        0, AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete, 0.2, 0.3, 0.4, 0.5));
+            });
+    }
+
+    TEST_F(CalculationInputBuilderTest,
+           GivenBuilderWithAsphaltWaveImpactLocationWithXOnOuterCrest_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
+    {
+        // Given & When & Then
+        GivenLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent([](
+        CalculationInputBuilder& builder)
+            {
+                builder.AddAsphaltWaveImpactLocation(
+                    make_unique<AsphaltRevetmentWaveImpactLocationConstructionProperties>(
+                        10, AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete, 0.2, 0.3, 0.4, 0.5));
+            });
+    }
 
     TEST_F(CalculationInputBuilderTest,
            GivenBuilderWithAsphaltWaveImpactLocationWithInvalidTopLayerType_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
@@ -972,6 +979,30 @@ namespace DiKErnel::Integration::Test
     #pragma region Grass wave impact
 
     TEST_F(CalculationInputBuilderTest,
+           GivenBuilderWithGrassWaveImpactLocationWithXOnOuterToe_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
+    {
+        // Given & When & Then
+        GivenLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent([](
+        CalculationInputBuilder& builder)
+            {
+                builder.AddGrassWaveImpactLocation(
+                    make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(0, GrassRevetmentTopLayerType::ClosedSod));
+            });
+    }
+
+    TEST_F(CalculationInputBuilderTest,
+           GivenBuilderWithGrassWaveImpactLocationWithXOnOuterCrest_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
+    {
+        // Given & When & Then
+        GivenLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent([](
+        CalculationInputBuilder& builder)
+            {
+                builder.AddGrassWaveImpactLocation(
+                    make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(10, GrassRevetmentTopLayerType::ClosedSod));
+            });
+    }
+
+    TEST_F(CalculationInputBuilderTest,
            GivenBuilderWithGrassWaveImpactLocationWithInvalidTopLayerType_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         // Given
@@ -1173,6 +1204,30 @@ namespace DiKErnel::Integration::Test
     #pragma endregion
 
     #pragma region Grass wave run-up Rayleigh
+
+    TEST_F(CalculationInputBuilderTest,
+           GivenBuilderWithGrassWaveRunupRayleighLocationWithXOnOuterToe_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
+    {
+        // Given & When & Then
+        GivenLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent([](
+        CalculationInputBuilder& builder)
+            {
+                builder.AddGrassWaveRunupRayleighLocation(
+                    make_unique<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(0, 0.1, GrassRevetmentTopLayerType::ClosedSod));
+            });
+    }
+
+    TEST_F(CalculationInputBuilderTest,
+           GivenBuilderWithGrassWaveRunupRayleighLocationWithXOnOuterCrest_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
+    {
+        // Given & When & Then
+        GivenLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent([](
+        CalculationInputBuilder& builder)
+            {
+                builder.AddGrassWaveRunupRayleighLocation(
+                    make_unique<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(10, 0.1, GrassRevetmentTopLayerType::ClosedSod));
+            });
+    }
 
     TEST_F(CalculationInputBuilderTest,
            GivenBuilderWithGrassWaveRunupRayleighLocationWithInvalidTopLayerType_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
@@ -1389,6 +1444,30 @@ namespace DiKErnel::Integration::Test
     #pragma endregion
 
     #pragma region Natural stone
+
+    TEST_F(CalculationInputBuilderTest,
+           GivenBuilderWithNaturalStoneLocationWithXOnOuterToe_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
+    {
+        // Given & When & Then
+        GivenLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent([](
+        CalculationInputBuilder& builder)
+            {
+                builder.AddNaturalStoneLocation(
+                    make_unique<NaturalStoneRevetmentLocationConstructionProperties>(0, NaturalStoneRevetmentTopLayerType::NordicStone, 0.1, 0.2));
+            });
+    }
+
+    TEST_F(CalculationInputBuilderTest,
+           GivenBuilderWithNaturalStoneLocationWithXOnOuterCrest_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
+    {
+        // Given & When & Then
+        GivenLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent([](
+        CalculationInputBuilder& builder)
+            {
+                builder.AddNaturalStoneLocation(
+                    make_unique<NaturalStoneRevetmentLocationConstructionProperties>(10, NaturalStoneRevetmentTopLayerType::NordicStone, 0.1, 0.2));
+            });
+    }
 
     TEST_F(CalculationInputBuilderTest,
            GivenBuilderWithNaturalStoneLocationWithInvalidTopLayerType_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
