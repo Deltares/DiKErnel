@@ -180,9 +180,9 @@ namespace DiKErnel::System::Test
             builder.AddTimeStep(75600, 79200, 5.7, 2.6, 5.53, 12);
 
             builder.AddDikeProfileSegment(-5, -4, -1.73, -2.89, 1);
-            builder.AddDikeProfileSegment(-1.73, -2.89, 33.82, 6.03, 0.9);
-            builder.AddDikeProfileSegment(33.82, 6.03, 38.16, 6.31, 0.8);
-            builder.AddDikeProfileSegment(38.16, 6.31, 47.34, 8.64, 0.7);
+            builder.AddDikeProfileSegment(-1.73, -2.89, 33.82, 6.03, 1.0);
+            builder.AddDikeProfileSegment(33.82, 6.03, 38.16, 6.31, 0.9);
+            builder.AddDikeProfileSegment(38.16, 6.31, 47.34, 8.64, 0.8);
             builder.AddDikeProfileSegment(47.34, 8.64, 52, 8.7, 1);
             builder.AddDikeProfileSegment(52, 8.7, 70, 5, 1);
             builder.AddDikeProfileSegment(70, 5, 85, 1, 1);
@@ -476,7 +476,7 @@ namespace DiKErnel::System::Test
         calculator.WaitForCompletion();
 
         // Then
-        constexpr int expectedTimeOfFailure = 0.0;
+        constexpr int expectedTimeOfFailure = 33915;
 
         AssertOutput(calculator, 1.99284873782755, &expectedTimeOfFailure);
     }
@@ -530,7 +530,7 @@ namespace DiKErnel::System::Test
         calculator.WaitForCompletion();
 
         // Then
-        constexpr int expectedTimeOfFailure = 0.0;
+        constexpr int expectedTimeOfFailure = 48552;
 
         AssertOutput(calculator, 1.03611132410722, &expectedTimeOfFailure);
     }
