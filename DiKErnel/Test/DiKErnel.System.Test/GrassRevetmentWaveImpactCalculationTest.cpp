@@ -18,12 +18,9 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include <gtest/gtest.h>
-
 #include "AssertHelper.h"
 #include "CalculationInputBuilder.h"
-#include "Calculator.h"
-#include "Validator.h"
+#include "CalculationTestBase.h"
 
 namespace DiKErnel::System::Test
 {
@@ -33,7 +30,7 @@ namespace DiKErnel::System::Test
     using namespace testing;
     using namespace TestUtil;
 
-    struct GrassRevetmentWaveImpactCalculationTest : Test
+    struct GrassRevetmentWaveImpactCalculationTest : CalculationTestBase
     {
         #pragma region Schematization 1
 
@@ -148,36 +145,6 @@ namespace DiKErnel::System::Test
         }
 
         #pragma endregion
-
-        static void AssertOutput(
-            const Calculator& calculator,
-            const double expectedDamage,
-            const int* expectedTimeOfFailure = nullptr)
-        {
-            ASSERT_EQ(CalculationState::FinishedSuccessfully, calculator.GetCalculationState());
-
-            const auto calculatorResult = calculator.GetResult();
-            ASSERT_TRUE(calculatorResult->GetSuccessful());
-            ASSERT_EQ(0, calculatorResult->GetEvents().size());
-
-            const CalculationOutput* calculationOutput = calculatorResult->GetData();
-            const auto& locationDependentOutput = calculationOutput->GetLocationDependentOutputItems().at(0).get();
-
-            const auto actualDamage = locationDependentOutput.GetDamages().back();
-            AssertHelper::AssertAreEqualWithAcceptablePrecision(expectedDamage, actualDamage);
-
-            const auto actualTimeOfFailure = locationDependentOutput.GetTimeOfFailure();
-
-            if (expectedTimeOfFailure == nullptr)
-            {
-                ASSERT_EQ(nullptr, actualTimeOfFailure);
-            }
-            else
-            {
-                ASSERT_NE(nullptr, actualTimeOfFailure);
-                ASSERT_EQ(*expectedTimeOfFailure, *actualTimeOfFailure);
-            }
-        }
     };
 
     #pragma region Schematization 1
