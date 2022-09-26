@@ -168,10 +168,11 @@ namespace DiKErnel::Integration
     {
         const auto* outerToe = GetProfilePointDataItemForCharacteristicPointType(CharacteristicPointType::OuterToe);
         const auto* outerCrest = GetProfilePointDataItemForCharacteristicPointType(CharacteristicPointType::OuterCrest);
+        const auto* innerToe = GetProfilePointDataItemForCharacteristicPointType(CharacteristicPointType::InnerToe);
 
         return ValidateProfileSegments()
-                && ValidateCharacteristicPoints(outerToe, outerCrest)
-                && ValidateLocations(*outerToe, *outerCrest)
+                && ValidateCharacteristicPoints(outerToe, outerCrest, innerToe)
+                && ValidateLocations(*outerToe, *outerCrest, innerToe)
                 && ValidateTimeSteps();
     }
 
@@ -204,9 +205,9 @@ namespace DiKErnel::Integration
 
     bool CalculationInputBuilder::ValidateCharacteristicPoints(
         const ProfileDataFactoryPoint* outerToe,
-        const ProfileDataFactoryPoint* outerCrest) const
+        const ProfileDataFactoryPoint* outerCrest,
+        const ProfileDataFactoryPoint* innerToe) const
     {
-        const auto* innerToe = GetProfilePointDataItemForCharacteristicPointType(CharacteristicPointType::InnerToe);
         const auto* innerCrest = GetProfilePointDataItemForCharacteristicPointType(CharacteristicPointType::InnerCrest);
 
         return ValidateCharacteristicPoint(outerToe, "outer toe")
@@ -264,7 +265,8 @@ namespace DiKErnel::Integration
 
     bool CalculationInputBuilder::ValidateLocations(
         const ProfileDataFactoryPoint& outerToe,
-        const ProfileDataFactoryPoint& outerCrest) const
+        const ProfileDataFactoryPoint& outerCrest,
+        const ProfileDataFactoryPoint* innerToe) const
     {
         if (_locationConstructionPropertiesItems.empty())
         {
@@ -272,15 +274,29 @@ namespace DiKErnel::Integration
             return false;
         }
 
-        if (ranges::any_of(_locationConstructionPropertiesItemReferences, [outerToe, outerCrest](
-                       const reference_wrapper<RevetmentLocationConstructionPropertiesBase> locationReference)
-                           {
-                               const auto locationX = locationReference.get().GetX();
-                               return locationX <= outerToe.GetX() || locationX >= outerCrest.GetX();
-                           }))
+        for (const auto& locationConstructionPropertiesItemReference : _locationConstructionPropertiesItemReferences)
         {
-            RegisterValidationError("The location must be between the outer toe and outer crest.");
-            return false;
+            const auto& locationConstructionPropertiesItem = locationConstructionPropertiesItemReference.get();
+            const auto locationX = locationConstructionPropertiesItem.GetX();
+
+            if (const auto* grassOvertoppingLocationConstructionProperties = dynamic_cast<const
+                    GrassRevetmentOvertoppingLocationConstructionProperties*>(&locationConstructionPropertiesItem);
+                grassOvertoppingLocationConstructionProperties != nullptr)
+            {
+                if (locationX < outerCrest.GetX() || locationX > innerToe->GetX())
+                {
+                    RegisterValidationError("The location must be on or between the outer crest and inner toe.");
+                    return false;
+                }
+            }
+            else
+            {
+                if (locationX <= outerToe.GetX() || locationX >= outerCrest.GetX())
+                {
+                    RegisterValidationError("The location must be between the outer toe and outer crest.");
+                    return false;
+                }
+            }
         }
 
         return true;

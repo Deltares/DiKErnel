@@ -188,7 +188,8 @@ namespace DiKErnel::Integration
             [[nodiscard]]
             bool ValidateCharacteristicPoints(
                 const ProfileDataFactoryPoint* outerToe,
-                const ProfileDataFactoryPoint* outerCrest) const;
+                const ProfileDataFactoryPoint* outerCrest,
+                const ProfileDataFactoryPoint* innerToe) const;
 
             [[nodiscard]]
             bool ValidateCharacteristicPoint(
@@ -203,7 +204,8 @@ namespace DiKErnel::Integration
             [[nodiscard]]
             bool ValidateLocations(
                 const ProfileDataFactoryPoint& outerToe,
-                const ProfileDataFactoryPoint& outerCrest) const;
+                const ProfileDataFactoryPoint& outerCrest,
+                const ProfileDataFactoryPoint* innerToe) const;
 
             [[nodiscard]]
             bool ValidateTimeSteps() const;

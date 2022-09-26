@@ -64,8 +64,34 @@ namespace DiKErnel::Integration::Test
         }
 
         template <typename T>
-        static void GivenLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(
+        static void GivenOuterSlopeLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(
             const T& addLocation)
+        {
+            GivenLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(
+                addLocation, "The location must be between the outer toe and outer crest.");
+        }
+
+        static void GivenGrassOvertoppingLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(
+            const double locationX)
+        {
+            GivenLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(
+                [locationX](
+            CalculationInputBuilder& builder)
+                {
+                    builder.AddDikeProfileSegment(10, 20, 30, 40);
+                    builder.AddDikeProfileSegment(30, 40, 50, 60);
+                    builder.AddDikeProfilePointData(30, CharacteristicPointType::InnerCrest);
+                    builder.AddDikeProfilePointData(50, CharacteristicPointType::InnerToe);
+                    builder.AddGrassOvertoppingLocation(
+                        make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(locationX, GrassRevetmentTopLayerType::ClosedSod));
+                },
+                "The location must be on or between the outer crest and inner toe.");
+        }
+
+        template <typename T>
+        static void GivenLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(
+            const T& addLocation,
+            const string& expectedMessage)
         {
             // Given
             CalculationInputBuilder builder;
@@ -81,7 +107,7 @@ namespace DiKErnel::Integration::Test
             const auto& events = result->GetEvents();
             ASSERT_EQ(1, events.size());
 
-            EventAssertHelper::AssertEvent(EventType::Error, "The location must be between the outer toe and outer crest.", events.at(0));
+            EventAssertHelper::AssertEvent(EventType::Error, expectedMessage, events.at(0));
         }
     };
 
@@ -542,7 +568,7 @@ namespace DiKErnel::Integration::Test
            GivenBuilderWithAsphaltWaveImpactLocationWithXOnOuterToe_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         // Given & When & Then
-        GivenLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent([](
+        GivenOuterSlopeLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent([](
         CalculationInputBuilder& builder)
             {
                 builder.AddAsphaltWaveImpactLocation(
@@ -555,7 +581,7 @@ namespace DiKErnel::Integration::Test
            GivenBuilderWithAsphaltWaveImpactLocationWithXOnOuterCrest_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         // Given & When & Then
-        GivenLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent([](
+        GivenOuterSlopeLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent([](
         CalculationInputBuilder& builder)
             {
                 builder.AddAsphaltWaveImpactLocation(
@@ -776,16 +802,32 @@ namespace DiKErnel::Integration::Test
     #pragma region Grass overtopping
 
     TEST_F(CalculationInputBuilderTest,
+           GivenBuilderWithGrassOvertoppingLocationWithXOnOuterToe_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
+    {
+        // Given & When & Then
+        GivenGrassOvertoppingLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(9.9);
+    }
+
+    TEST_F(CalculationInputBuilderTest,
+           GivenBuilderWithGrassOvertoppingLocationWithXOnOuterCrest_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
+    {
+        // Given & When & Then
+        GivenGrassOvertoppingLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(50.1);
+    }
+
+    TEST_F(CalculationInputBuilderTest,
            GivenBuilderWithGrassOvertoppingLocationWithInvalidTopLayerType_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         // Given
         constexpr auto topLayerType = static_cast<GrassRevetmentTopLayerType>(99);
-        auto constructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(0.1, topLayerType);
+        auto constructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(45, topLayerType);
 
         CalculationInputBuilder builder;
         AddDefaultProfileAndTimeStep(builder);
-        builder.AddDikeProfilePointData(0, CharacteristicPointType::InnerToe);
-        builder.AddDikeProfilePointData(0, CharacteristicPointType::InnerCrest);
+        builder.AddDikeProfileSegment(10, 20, 30, 40);
+        builder.AddDikeProfileSegment(30, 40, 50, 60);
+        builder.AddDikeProfilePointData(30, CharacteristicPointType::InnerCrest);
+        builder.AddDikeProfilePointData(50, CharacteristicPointType::InnerToe);
         builder.AddGrassOvertoppingLocation(move(constructionProperties));
 
         // When
@@ -805,7 +847,7 @@ namespace DiKErnel::Integration::Test
     {
         // Given
         const auto topLayerType = static_cast<GrassRevetmentTopLayerType>(rand() % 2);
-        constexpr auto x = 0.1;
+        constexpr auto x = 45;
         constexpr auto initialDamage = 0.2;
         constexpr auto failureNumber = 0.3;
         constexpr auto criticalCumulativeOverload = 0.4;
@@ -835,8 +877,10 @@ namespace DiKErnel::Integration::Test
 
         CalculationInputBuilder builder;
         AddDefaultProfileAndTimeStep(builder);
-        builder.AddDikeProfilePointData(10, CharacteristicPointType::InnerCrest);
-        builder.AddDikeProfilePointData(10, CharacteristicPointType::InnerToe);
+        builder.AddDikeProfileSegment(10, 20, 30, 40);
+        builder.AddDikeProfileSegment(30, 40, 50, 60);
+        builder.AddDikeProfilePointData(30, CharacteristicPointType::InnerCrest);
+        builder.AddDikeProfilePointData(50, CharacteristicPointType::InnerToe);
         builder.AddGrassOvertoppingLocation(move(constructionProperties));
 
         // When
@@ -879,14 +923,16 @@ namespace DiKErnel::Integration::Test
     {
         // Given
         constexpr auto topLayerType = GrassRevetmentTopLayerType::ClosedSod;
-        constexpr auto x = 0.1;
+        constexpr auto x = 45;
 
         auto constructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(x, topLayerType);
 
         CalculationInputBuilder builder;
         AddDefaultProfileAndTimeStep(builder);
-        builder.AddDikeProfilePointData(10, CharacteristicPointType::InnerCrest);
-        builder.AddDikeProfilePointData(10, CharacteristicPointType::InnerToe);
+        builder.AddDikeProfileSegment(10, 20, 30, 40);
+        builder.AddDikeProfileSegment(30, 40, 50, 60);
+        builder.AddDikeProfilePointData(30, CharacteristicPointType::InnerCrest);
+        builder.AddDikeProfilePointData(50, CharacteristicPointType::InnerToe);
         builder.AddGrassOvertoppingLocation(move(constructionProperties));
 
         // When
@@ -929,14 +975,16 @@ namespace DiKErnel::Integration::Test
     {
         // Given
         constexpr auto topLayerType = GrassRevetmentTopLayerType::OpenSod;
-        constexpr auto x = 0.1;
+        constexpr auto x = 45;
 
         auto constructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(x, topLayerType);
 
         CalculationInputBuilder builder;
         AddDefaultProfileAndTimeStep(builder);
-        builder.AddDikeProfilePointData(10, CharacteristicPointType::InnerToe);
-        builder.AddDikeProfilePointData(10, CharacteristicPointType::InnerCrest);
+        builder.AddDikeProfileSegment(10, 20, 30, 40);
+        builder.AddDikeProfileSegment(30, 40, 50, 60);
+        builder.AddDikeProfilePointData(30, CharacteristicPointType::InnerCrest);
+        builder.AddDikeProfilePointData(50, CharacteristicPointType::InnerToe);
         builder.AddGrassOvertoppingLocation(move(constructionProperties));
 
         // When
@@ -982,7 +1030,7 @@ namespace DiKErnel::Integration::Test
            GivenBuilderWithGrassWaveImpactLocationWithXOnOuterToe_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         // Given & When & Then
-        GivenLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent([](
+        GivenOuterSlopeLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent([](
         CalculationInputBuilder& builder)
             {
                 builder.AddGrassWaveImpactLocation(
@@ -994,7 +1042,7 @@ namespace DiKErnel::Integration::Test
            GivenBuilderWithGrassWaveImpactLocationWithXOnOuterCrest_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         // Given & When & Then
-        GivenLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent([](
+        GivenOuterSlopeLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent([](
         CalculationInputBuilder& builder)
             {
                 builder.AddGrassWaveImpactLocation(
@@ -1209,7 +1257,7 @@ namespace DiKErnel::Integration::Test
            GivenBuilderWithGrassWaveRunupRayleighLocationWithXOnOuterToe_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         // Given & When & Then
-        GivenLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent([](
+        GivenOuterSlopeLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent([](
         CalculationInputBuilder& builder)
             {
                 builder.AddGrassWaveRunupRayleighLocation(
@@ -1221,7 +1269,7 @@ namespace DiKErnel::Integration::Test
            GivenBuilderWithGrassWaveRunupRayleighLocationWithXOnOuterCrest_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         // Given & When & Then
-        GivenLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent([](
+        GivenOuterSlopeLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent([](
         CalculationInputBuilder& builder)
             {
                 builder.AddGrassWaveRunupRayleighLocation(
@@ -1449,7 +1497,7 @@ namespace DiKErnel::Integration::Test
            GivenBuilderWithNaturalStoneLocationWithXOnOuterToe_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         // Given & When & Then
-        GivenLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent([](
+        GivenOuterSlopeLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent([](
         CalculationInputBuilder& builder)
             {
                 builder.AddNaturalStoneLocation(
@@ -1461,7 +1509,7 @@ namespace DiKErnel::Integration::Test
            GivenBuilderWithNaturalStoneLocationWithXOnOuterCrest_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         // Given & When & Then
-        GivenLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent([](
+        GivenOuterSlopeLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent([](
         CalculationInputBuilder& builder)
             {
                 builder.AddNaturalStoneLocation(
