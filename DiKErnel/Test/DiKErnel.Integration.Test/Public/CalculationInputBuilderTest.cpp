@@ -78,10 +78,7 @@ namespace DiKErnel::Integration::Test
         const auto& actualProfileSegments = actualProfileData.GetProfileSegments();
         ASSERT_EQ(1, actualProfileSegments.size());
 
-        const auto& actualSegment = actualProfileSegments.at(0);
-        ProfileDataAssertHelper::AssertProfileSegment(startPointX, startPointZ,
-                                                      endPointX, endPointZ,
-                                                      1.0, actualSegment);
+        ProfileDataAssertHelper::AssertProfileSegment(startPointX, startPointZ, endPointX, endPointZ, 1.0, actualProfileSegments.at(0));
     }
 
     TEST(CalculationInputBuilderTest, GivenBuilderWithDikeSegmentAddedWithRoughness_WhenBuild_ThenReturnsResultWithCalculationInput)
@@ -112,10 +109,8 @@ namespace DiKErnel::Integration::Test
         const auto& actualProfileSegments = actualProfileData.GetProfileSegments();
         ASSERT_EQ(1, actualProfileSegments.size());
 
-        const auto& actualSegment = actualProfileSegments.at(0);
-        ProfileDataAssertHelper::AssertProfileSegment(startPointX, startPointZ,
-                                                      endPointX, endPointZ,
-                                                      roughnessCoefficient, actualSegment);
+        ProfileDataAssertHelper::AssertProfileSegment(startPointX, startPointZ, endPointX, endPointZ, roughnessCoefficient,
+                                                      actualProfileSegments.at(0));
     }
 
     TEST(CalculationInputBuilderTest, GivenBuilderWithDikeSegmentsAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
@@ -150,13 +145,11 @@ namespace DiKErnel::Integration::Test
         ASSERT_EQ(2, actualProfileSegments.size());
 
         const auto& segmentOne = actualProfileSegments.at(0).get();
-        ProfileDataAssertHelper::AssertProfileSegment(startPointXSegmentOne, startPointZSegmentOne,
-                                                      endPointXSegmentOne, endPointZSegmentOne,
+        ProfileDataAssertHelper::AssertProfileSegment(startPointXSegmentOne, startPointZSegmentOne, endPointXSegmentOne, endPointZSegmentOne,
                                                       roughnessCoefficient, segmentOne);
 
         const auto& segmentTwo = actualProfileSegments.at(1).get();
-        ProfileDataAssertHelper::AssertProfileSegment(endPointXSegmentOne, endPointZSegmentOne,
-                                                      endPointXSegmentTwo, endPointZSegmentTwo,
+        ProfileDataAssertHelper::AssertProfileSegment(endPointXSegmentOne, endPointZSegmentOne, endPointXSegmentTwo, endPointZSegmentTwo,
                                                       roughnessCoefficient, segmentTwo);
 
         ASSERT_EQ(&segmentOne.GetEndPoint(), &segmentTwo.GetStartPoint());
@@ -178,26 +171,19 @@ namespace DiKErnel::Integration::Test
         const auto& events = result->GetEvents();
         ASSERT_EQ(1, events.size());
 
-        EventAssertHelper::AssertEvent(
-            EventType::Error,
-            "At least 1 segment is required.",
-            events.at(0));
+        EventAssertHelper::AssertEvent(EventType::Error, "At least 1 segment is required.", events.at(0));
     }
 
     TEST(CalculationInputBuilderTest,
          GivenBuilderWithDikeSegmentsAdded_WhenSegmentXCoordinateUnchained_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         // Given
-        constexpr auto startPointX = 10;
-        constexpr auto startPointZ = 20;
-        constexpr auto endPointX = 20;
-        constexpr auto endPointZ = 30;
 
         CalculationInputBuilder builder;
-        builder.AddDikeProfileSegment(startPointX, startPointZ, endPointX, endPointZ);
-        builder.AddDikeProfileSegment(endPointX + 0.01, startPointZ, endPointX + 10, endPointZ + 10);
-        builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterToe);
-        builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterCrest);
+        builder.AddDikeProfileSegment(10, 20, 20, 30);
+        builder.AddDikeProfileSegment(20.01, 20, 30, 40);
+        builder.AddDikeProfilePointData(10, CharacteristicPointType::OuterToe);
+        builder.AddDikeProfilePointData(10, CharacteristicPointType::OuterCrest);
 
         // When
         const auto& result = builder.Build();
@@ -218,16 +204,12 @@ namespace DiKErnel::Integration::Test
          GivenBuilderWithDikeSegmentsAdded_WhenSegmentZCoordinateUnchained_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         // Given
-        constexpr auto startPointX = 10;
-        constexpr auto startPointZ = 20;
-        constexpr auto endPointX = 20;
-        constexpr auto endPointZ = 30;
 
         CalculationInputBuilder builder;
-        builder.AddDikeProfileSegment(startPointX, startPointZ, endPointX, endPointZ);
-        builder.AddDikeProfileSegment(endPointX, startPointZ + 0.01, endPointX + 10, endPointZ + 10);
-        builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterToe);
-        builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterCrest);
+        builder.AddDikeProfileSegment(10, 20, 20, 30);
+        builder.AddDikeProfileSegment(20, 2.01, 30, 40);
+        builder.AddDikeProfilePointData(10, CharacteristicPointType::OuterToe);
+        builder.AddDikeProfilePointData(10, CharacteristicPointType::OuterCrest);
 
         // When
         const auto& result = builder.Build();
@@ -251,17 +233,14 @@ namespace DiKErnel::Integration::Test
     TEST(CalculationInputBuilderTest, GivenBuilderWithDikeProfilePointDataOnSegmentPoints_WhenBuild_ThenReturnsResultWithCalculationInput)
     {
         // Given
-        constexpr auto startPointX = 10;
-        constexpr auto endPointX = 20;
-        constexpr auto z = 20;
         constexpr auto outerToe = CharacteristicPointType::OuterToe;
         constexpr auto outerCrest = CharacteristicPointType::OuterCrest;
 
         CalculationInputBuilder builder;
         builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
-        builder.AddDikeProfileSegment(startPointX, z, endPointX, 30);
-        builder.AddDikeProfilePointData(startPointX, outerToe);
-        builder.AddDikeProfilePointData(endPointX, outerCrest);
+        builder.AddDikeProfileSegment(10, 20, 20, 30);
+        builder.AddDikeProfilePointData(10, outerToe);
+        builder.AddDikeProfilePointData(20, outerCrest);
         builder.AddGrassWaveImpactLocation(
             make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(0, GrassRevetmentTopLayerType::ClosedSod));
 
@@ -279,27 +258,17 @@ namespace DiKErnel::Integration::Test
         ASSERT_EQ(2, actualCharacteristicPoints.size());
 
         const auto& actualSegment = actualProfileSegments.at(0).get();
-        ProfileDataAssertHelper::AssertCharacteristicPoint(actualSegment.GetStartPoint(), outerToe,
-                                                           actualCharacteristicPoints.at(0));
-
-        ProfileDataAssertHelper::AssertCharacteristicPoint(actualSegment.GetEndPoint(), outerCrest,
-                                                           actualCharacteristicPoints.at(1));
+        ProfileDataAssertHelper::AssertCharacteristicPoint(actualSegment.GetStartPoint(), outerToe, actualCharacteristicPoints.at(0));
+        ProfileDataAssertHelper::AssertCharacteristicPoint(actualSegment.GetEndPoint(), outerCrest, actualCharacteristicPoints.at(1));
     }
 
     TEST(CalculationInputBuilderTest,
          GivenBuilderWithDikeProfilePointDataNotOnSegmentPoints_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         // Given
-        constexpr auto startPointX = 10;
-        constexpr auto endPointX = 20;
-        constexpr auto endPointZ = 30;
-        constexpr auto characteristicPointType = CharacteristicPointType::NotchOuterBerm;
-
         CalculationInputBuilder builder;
-        builder.AddDikeProfileSegment(0, 10, endPointX, endPointZ);
-        builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterToe);
-        builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterCrest);
-        builder.AddDikeProfilePointData(startPointX - 0.01, characteristicPointType);
+        builder.AddDikeProfileSegment(0, 10, 20, 30);
+        builder.AddDikeProfilePointData(10.01, CharacteristicPointType::OuterToe);
 
         // When
         const auto& result = builder.Build();
@@ -310,20 +279,15 @@ namespace DiKErnel::Integration::Test
         const auto& events = result->GetEvents();
         ASSERT_EQ(1, events.size());
 
-        EventAssertHelper::AssertEvent(
-            EventType::Error,
-            "Characteristic point must be on a start or end point of a segment.",
-            events.at(0));
+        EventAssertHelper::AssertEvent(EventType::Error, "Characteristic point must be on a start or end point of a segment.", events.at(0));
     }
 
     TEST(CalculationInputBuilderTest, GivenBuilderWithoutDikeProfilePointDataOuterToe_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         // Given
-        constexpr auto startPointX = 10;
-
         CalculationInputBuilder builder;
-        builder.AddDikeProfileSegment(0, 10, startPointX, 30);
-        builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterCrest);
+        builder.AddDikeProfileSegment(0, 10, 10, 30);
+        builder.AddDikeProfilePointData(10, CharacteristicPointType::OuterCrest);
 
         // When
         const auto& result = builder.Build();
@@ -334,20 +298,15 @@ namespace DiKErnel::Integration::Test
         const auto& events = result->GetEvents();
         ASSERT_EQ(1, events.size());
 
-        EventAssertHelper::AssertEvent(
-            EventType::Error,
-            "The outer toe is required.",
-            events.at(0));
+        EventAssertHelper::AssertEvent(EventType::Error, "The outer toe is required.", events.at(0));
     }
 
     TEST(CalculationInputBuilderTest, GivenBuilderWithoutDikeProfilePointDataOuterCrest_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         // Given
-        constexpr auto startPointX = 10;
-
         CalculationInputBuilder builder;
-        builder.AddDikeProfileSegment(0, 10, startPointX, 30);
-        builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterToe);
+        builder.AddDikeProfileSegment(0, 10, 10, 30);
+        builder.AddDikeProfilePointData(10, CharacteristicPointType::OuterToe);
 
         // When
         const auto& result = builder.Build();
@@ -358,28 +317,22 @@ namespace DiKErnel::Integration::Test
         const auto& events = result->GetEvents();
         ASSERT_EQ(1, events.size());
 
-        EventAssertHelper::AssertEvent(
-            EventType::Error,
-            "The outer crest is required.",
-            events.at(0));
+        EventAssertHelper::AssertEvent(EventType::Error, "The outer crest is required.", events.at(0));
     }
 
     TEST(CalculationInputBuilderTest,
          GivenBuilderWithGrassOvertoppingLocationAndWithoutDikeProfilePointDataInnerToe_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         // Given
-        auto constructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(0.1,
-            GrassRevetmentTopLayerType::ClosedSod);
-
         constexpr auto startPointX = 10;
 
         CalculationInputBuilder builder;
-        builder.AddGrassOvertoppingLocation(move(constructionProperties));
-
         builder.AddDikeProfileSegment(0, 10, startPointX, 30);
         builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterToe);
         builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterCrest);
         builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::InnerCrest);
+        builder.AddGrassOvertoppingLocation(
+            make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(0.1, GrassRevetmentTopLayerType::ClosedSod));
 
         // When
         const auto& result = builder.Build();
@@ -390,28 +343,23 @@ namespace DiKErnel::Integration::Test
         const auto& events = result->GetEvents();
         ASSERT_EQ(1, events.size());
 
-        EventAssertHelper::AssertEvent(
-            EventType::Error,
-            "The inner toe is required.",
-            events.at(0));
+        EventAssertHelper::AssertEvent(EventType::Error, "The inner toe is required.", events.at(0));
     }
 
     TEST(CalculationInputBuilderTest,
          GivenBuilderWithGrassOvertoppingLocationAndWithoutDikeProfilePointDataInnerCrest_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         // Given
-        auto constructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(0.1,
-            GrassRevetmentTopLayerType::ClosedSod);
 
         constexpr auto startPointX = 10;
 
         CalculationInputBuilder builder;
-        builder.AddGrassOvertoppingLocation(move(constructionProperties));
-
         builder.AddDikeProfileSegment(0, 10, startPointX, 30);
         builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterToe);
         builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterCrest);
         builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::InnerToe);
+        builder.AddGrassOvertoppingLocation(
+            make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(0.1, GrassRevetmentTopLayerType::ClosedSod));
 
         // When
         const auto& result = builder.Build();
@@ -422,10 +370,7 @@ namespace DiKErnel::Integration::Test
         const auto& events = result->GetEvents();
         ASSERT_EQ(1, events.size());
 
-        EventAssertHelper::AssertEvent(
-            EventType::Error,
-            "The inner crest is required.",
-            events.at(0));
+        EventAssertHelper::AssertEvent(EventType::Error, "The inner crest is required.", events.at(0));
     }
 
     #pragma endregion
@@ -454,10 +399,7 @@ namespace DiKErnel::Integration::Test
         const auto& events = result->GetEvents();
         ASSERT_EQ(1, events.size());
 
-        EventAssertHelper::AssertEvent(
-            EventType::Error,
-            "At least 1 time step is required.",
-            events.at(0));
+        EventAssertHelper::AssertEvent(EventType::Error, "At least 1 time step is required.", events.at(0));
     }
 
     TEST(CalculationInputBuilderTest, GivenBuilderWithInvalidTimeStepsAdded_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
@@ -550,10 +492,7 @@ namespace DiKErnel::Integration::Test
         const auto& events = result->GetEvents();
         ASSERT_EQ(1, events.size());
 
-        EventAssertHelper::AssertEvent(
-            EventType::Error,
-            "At least 1 location is required.",
-            events.at(0));
+        EventAssertHelper::AssertEvent(EventType::Error, "At least 1 location is required.", events.at(0));
     }
 
     #pragma region Asphalt wave impact
@@ -584,10 +523,7 @@ namespace DiKErnel::Integration::Test
         const auto& events = result->GetEvents();
         ASSERT_EQ(1, events.size());
 
-        EventAssertHelper::AssertEvent(
-            EventType::Error,
-            "Couldn't create defaults for the given top layer type.",
-            events.at(0));
+        EventAssertHelper::AssertEvent(EventType::Error, "Couldn't create defaults for the given top layer type.", events.at(0));
     }
 
     TEST(CalculationInputBuilderTest, GivenBuilderWithFullyConfiguredAsphaltWaveImpactLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
@@ -815,10 +751,7 @@ namespace DiKErnel::Integration::Test
         const auto& events = result->GetEvents();
         ASSERT_EQ(1, events.size());
 
-        EventAssertHelper::AssertEvent(
-            EventType::Error,
-            "Couldn't create defaults for the given top layer type.",
-            events.at(0));
+        EventAssertHelper::AssertEvent(EventType::Error, "Couldn't create defaults for the given top layer type.", events.at(0));
     }
 
     TEST(CalculationInputBuilderTest, GivenBuilderWithFullyConfiguredGrassOvertoppingLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
@@ -1041,10 +974,7 @@ namespace DiKErnel::Integration::Test
         const auto& events = result->GetEvents();
         ASSERT_EQ(1, events.size());
 
-        EventAssertHelper::AssertEvent(
-            EventType::Error,
-            "Couldn't create defaults for the given top layer type.",
-            events.at(0));
+        EventAssertHelper::AssertEvent(EventType::Error, "Couldn't create defaults for the given top layer type.", events.at(0));
     }
 
     TEST(CalculationInputBuilderTest, GivenBuilderWithFullyConfiguredGrassWaveImpactLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
@@ -1270,10 +1200,7 @@ namespace DiKErnel::Integration::Test
         const auto& events = result->GetEvents();
         ASSERT_EQ(1, events.size());
 
-        EventAssertHelper::AssertEvent(
-            EventType::Error,
-            "Couldn't create defaults for the given top layer type.",
-            events.at(0));
+        EventAssertHelper::AssertEvent(EventType::Error, "Couldn't create defaults for the given top layer type.", events.at(0));
     }
 
     TEST(CalculationInputBuilderTest,
@@ -1512,10 +1439,7 @@ namespace DiKErnel::Integration::Test
         const auto& events = result->GetEvents();
         ASSERT_EQ(1, events.size());
 
-        EventAssertHelper::AssertEvent(
-            EventType::Error,
-            "Couldn't create defaults for the given top layer type.",
-            events.at(0));
+        EventAssertHelper::AssertEvent(EventType::Error, "Couldn't create defaults for the given top layer type.", events.at(0));
     }
 
     TEST(CalculationInputBuilderTest, GivenBuilderWithFullyConfiguredNaturalStoneLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
