@@ -145,6 +145,32 @@ namespace DiKErnel::System::Test
 
         #pragma endregion
 
+        #pragma region Schematization 5
+
+        static void ConfigureBuilderForSchematization5(
+            CalculationInputBuilder& builder)
+        {
+            builder.AddTimeStep(-3600, -3420, 1.4, 1, 5.5, 30);
+            builder.AddTimeStep(-3420, -3060, 1.6, 1.2, 6, 60);
+            builder.AddTimeStep(-3060, -2520, 1.7, 1.2, 6.5, 90);
+            builder.AddTimeStep(-2520, -1800, 1.8, 1.3, 7, 75);
+            builder.AddTimeStep(-1800, -900, 2, 1.4, 7, 60);
+            builder.AddTimeStep(-900, 180, 2.1, 1.3, 7.5, 45);
+            builder.AddTimeStep(180, 1440, 2.1, 1.6, 8, 30);
+            builder.AddTimeStep(1440, 2880, 2.4, 1.7, 8, 15);
+            builder.AddTimeStep(2880, 4500, 2, 2.4, 8.5, 0);
+            builder.AddTimeStep(4500, 6300, 1.9, 2.2, 8, 0);
+            builder.AddTimeStep(6300, 8280, 1.6, 1.8, 7, 0);
+            builder.AddTimeStep(8280, 10800, 1.4, 1.2, 6, 0);
+
+            builder.AddDikeProfileSegment(0, 0, 30, 7.5);
+
+            builder.AddDikeProfilePointData(0, CharacteristicPointType::OuterToe);
+            builder.AddDikeProfilePointData(30, CharacteristicPointType::OuterCrest);
+        }
+
+        #pragma endregion
+
         static void AssertOutput(
             const Calculator& calculator,
             const double expectedDamage,
@@ -388,6 +414,35 @@ namespace DiKErnel::System::Test
         constexpr int expectedTimeOfFailure = 3894;
 
         AssertOutput(calculator, 1.0994145971228768, &expectedTimeOfFailure);
+    }
+
+    #pragma endregion
+
+    #pragma region Schematization 5
+
+    TEST_F(NaturalStoneRevetmentCalculationTest,
+           GivenCalculationInputForSchematization5Testcase1_WhenCalculating_ThenReturnsExpectedCalculationResult)
+    {
+        // Given
+        CalculationInputBuilder builder;
+
+        auto locationConstructionProperties = make_unique<NaturalStoneRevetmentLocationConstructionProperties>(
+            6, NaturalStoneRevetmentTopLayerType::NordicStone, 0.4, 1.65);
+
+        ConfigureBuilderForSchematization5(builder);
+
+        builder.AddNaturalStoneLocation(move(locationConstructionProperties));
+
+        const auto calculationInput = builder.Build();
+
+        // When
+        Calculator calculator(*calculationInput->GetData());
+        calculator.WaitForCompletion();
+
+        // Then
+        constexpr int expectedTimeOfFailure = 2914;
+
+        AssertOutput(calculator, 1.3081778496650407, &expectedTimeOfFailure);
     }
 
     #pragma endregion
