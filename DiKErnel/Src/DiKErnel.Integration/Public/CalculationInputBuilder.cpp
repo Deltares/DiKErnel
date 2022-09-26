@@ -279,8 +279,8 @@ namespace DiKErnel::Integration
             const auto& locationConstructionPropertiesItem = locationConstructionPropertiesItemReference.get();
             const auto locationX = locationConstructionPropertiesItem.GetX();
 
-            if (const auto* grassOvertoppingLocationConstructionProperties = dynamic_cast<const
-                    GrassRevetmentOvertoppingLocationConstructionProperties*>(&locationConstructionPropertiesItem);
+            if (const auto* grassOvertoppingLocationConstructionProperties = dynamic_cast<
+                    const GrassRevetmentOvertoppingLocationConstructionProperties*>(&locationConstructionPropertiesItem);
                 grassOvertoppingLocationConstructionProperties != nullptr)
             {
                 if (locationX < outerCrest.GetX() || locationX > innerToe->GetX())
