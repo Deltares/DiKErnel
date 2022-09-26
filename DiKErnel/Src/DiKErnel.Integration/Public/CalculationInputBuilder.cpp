@@ -207,14 +207,16 @@ namespace DiKErnel::Integration
             return false;
         }
 
-        for (const auto& location : _locationConstructionPropertiesItems)
+
+        if(ranges::any_of(_locationConstructionPropertiesItemReferences, [outerToe, outerCrest](
+            const reference_wrapper<RevetmentLocationConstructionPropertiesBase> locationReference)
         {
-            if (const auto locationX = location->GetX();
-                locationX <= outerToe->GetX() || locationX >= outerCrest->GetX())
-            {
-                RegisterValidationError("Location must be between the outer toe and outer crest.");
-                return false;
-            }
+                const auto locationX = locationReference.get().GetX();
+                return locationX <= outerToe->GetX() || locationX >= outerCrest->GetX();
+        }))
+        {
+            RegisterValidationError("Location must be between the outer toe and outer crest.");
+            return false;
         }
 
         if (_timeStepDataItems.empty())
