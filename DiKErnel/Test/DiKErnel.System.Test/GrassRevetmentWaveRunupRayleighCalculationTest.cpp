@@ -211,6 +211,34 @@ namespace DiKErnel::System::Test
         AssertOutput(calculator, 1.6764562740432805, &expectedTimeOfFailure);
     }
 
+    TEST_F(GrassRevetmentWaveRunupRayleighCalculationTest,
+        GivenCalculationInputForSchematization1Testcase3_WhenCalculating_ThenReturnsExpectedCalculationResult)
+    {
+        // Given
+        CalculationInputBuilder builder;
+
+        auto locationConstructionProperties = make_unique<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(
+            3, 0.3, GrassRevetmentTopLayerType::ClosedSod);
+
+        locationConstructionProperties->SetFixedNumberOfWaves(make_unique<int>(500));
+        locationConstructionProperties->SetFrontVelocityCu(make_unique<double>(1.15));
+
+        ConfigureBuilderForSchematization1(builder);
+
+        builder.AddGrassWaveRunupRayleighLocation(move(locationConstructionProperties));
+
+        const auto calculationInput = builder.Build();
+
+        // When
+        Calculator calculator(*calculationInput->GetData());
+        calculator.WaitForCompletion();
+
+        // Then
+        constexpr int expectedTimeOfFailure = 35036;
+
+        AssertOutput(calculator, 1.7908078432838237, &expectedTimeOfFailure);
+    }
+
     #pragma endregion
 
     #pragma region Schematization 2
