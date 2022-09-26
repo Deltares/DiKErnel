@@ -27,9 +27,19 @@ namespace DiKErnel::DomainLibrary::Test
 {
     using namespace std;
     using namespace Util;
+    using namespace testing;
     using namespace TestUtil;
 
-    TEST(GrassRevetmentOvertoppingValidatorTest, FixedNumberOfWaves_VariousScenarios_ExpectedValues)
+    struct GrassRevetmentOvertoppingValidatorTest : Test
+    {
+        static unique_ptr<ValidationIssue> WaterLevel(
+            const double waterLevel)
+        {
+            return GrassRevetmentOvertoppingValidator::WaterLevel(waterLevel, 3.33);
+        }
+    };
+
+    TEST_F(GrassRevetmentOvertoppingValidatorTest, FixedNumberOfWaves_VariousScenarios_ExpectedValues)
     {
         const auto validateAction = GrassRevetmentOvertoppingValidator::AccelerationAlphaA;
 
@@ -44,7 +54,7 @@ namespace DiKErnel::DomainLibrary::Test
         ValidatorAssertHelper::AssertValue(validateAction, ValidatorAssertHelper::DOUBLE_MAX);
     }
 
-    TEST(GrassRevetmentOvertoppingValidatorTest, FrontVelocityCwo_VariousScenarios_ExpectedValues)
+    TEST_F(GrassRevetmentOvertoppingValidatorTest, FrontVelocityCwo_VariousScenarios_ExpectedValues)
     {
         const auto validateAction = GrassRevetmentOvertoppingValidator::FrontVelocityCwo;
 
@@ -57,5 +67,21 @@ namespace DiKErnel::DomainLibrary::Test
         ValidatorAssertHelper::AssertValue(validateAction, 0.0 + ValidatorAssertHelper::EPSILON);
 
         ValidatorAssertHelper::AssertValue(validateAction, ValidatorAssertHelper::DOUBLE_MAX);
+    }
+
+    TEST_F(GrassRevetmentOvertoppingValidatorTest, WaterLevel_VariousScenarios_ExpectedValues)
+    {
+        const auto validateAction = WaterLevel;
+
+        constexpr auto warningMessage = "WaterLevel should be smaller than the dike height.";
+
+        ValidatorAssertHelper::AssertValue<double>(validateAction, ValidatorAssertHelper::DOUBLE_MIN);
+
+        ValidatorAssertHelper::AssertValue<double>(validateAction, 0.0 - ValidatorAssertHelper::EPSILON);
+        ValidatorAssertHelper::AssertValue<double>(validateAction, 3.37, ValidationIssueType::Warning, warningMessage);
+        ValidatorAssertHelper::AssertValue<double>(validateAction, 3.37 + ValidatorAssertHelper::EPSILON, ValidationIssueType::Warning,
+                                                   warningMessage);
+
+        ValidatorAssertHelper::AssertValue<double>(validateAction, ValidatorAssertHelper::DOUBLE_MAX, ValidationIssueType::Warning, warningMessage);
     }
 }

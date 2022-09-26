@@ -44,14 +44,29 @@ namespace DiKErnel::DomainLibrary
                 double accelerationAlphaA);
 
             /*!
-     * \brief Validates the Cwo coefficient.
-     * \param frontVelocityCwo
-     *        The Cwo coefficient.
-     *        Unit = [-]
-     * \return A validation issue when the Cwo coefficient is not valid; nullptr
-     *         otherwise.
-     */
+             * \brief Validates the Cwo coefficient.
+             * \param frontVelocityCwo
+             *        The Cwo coefficient.
+             *        Unit = [-]
+             * \return A validation issue when the Cwo coefficient is not valid; nullptr
+             *         otherwise.
+             */
             static std::unique_ptr<Util::ValidationIssue> FrontVelocityCwo(
                 double frontVelocityCwo);
+
+            /*!
+             * \brief Validates the water level.
+             * \param waterLevel
+             *        The water level.
+             *        Unit = [m]
+             * \param dikeHeight
+             *        The dike height.
+             *        Unit = [m]
+             * \return A validation issue when the water level is not valid; nullptr
+             *         otherwise.
+             */
+            static std::unique_ptr<Util::ValidationIssue> WaterLevel(
+                double waterLevel,
+                double dikeHeight);
     };
 }
