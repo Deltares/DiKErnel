@@ -370,7 +370,7 @@ namespace DiKErnel::System::Test
         calculator.WaitForCompletion();
 
         // Then
-        constexpr int expectedTimeOfFailure = 0.0;
+        constexpr int expectedTimeOfFailure = 5311;
 
         AssertOutput(calculator, 24.6813127578863, &expectedTimeOfFailure);
     }
@@ -421,7 +421,7 @@ namespace DiKErnel::System::Test
         calculator.WaitForCompletion();
 
         // Then
-        constexpr int expectedTimeOfFailure = 0.0;
+        constexpr int expectedTimeOfFailure = 51672;
 
         AssertOutput(calculator, 1.11910058435611, &expectedTimeOfFailure);
     }
