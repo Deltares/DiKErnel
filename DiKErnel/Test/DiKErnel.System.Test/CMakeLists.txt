@@ -6,6 +6,7 @@ set(SOURCEFILES
   AsphaltRevetmentWaveImpactCalculationTest.cpp
   GrassRevetmentOvertoppingCalculationTest.cpp
   GrassRevetmentWaveImpactCalculationTest.cpp
+  GrassRevetmentWaveRunupRayleighCalculationTest.cpp
   Main.cpp
   NaturalStoneRevetmentCalculationTest.cpp
   ValidationSystemTest.cpp
