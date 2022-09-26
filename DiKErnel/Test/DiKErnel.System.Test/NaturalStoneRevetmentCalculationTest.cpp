@@ -347,6 +347,34 @@ namespace DiKErnel::System::Test
         AssertOutput(calculator, 1.6908069656687659, &expectedTimeOfFailure);
     }
 
+    TEST_F(NaturalStoneRevetmentCalculationTest,
+           GivenCalculationInputForSchematization2Testcase2_WhenCalculating_ThenReturnsExpectedCalculationResult)
+    {
+        // Given
+        CalculationInputBuilder builder;
+
+        auto locationConstructionProperties = make_unique<NaturalStoneRevetmentLocationConstructionProperties>(
+            6, NaturalStoneRevetmentTopLayerType::NordicStone, 0.3, 1.65);
+
+        locationConstructionProperties->SetSlopeUpperLevelAus(make_unique<double>(0.5));
+        locationConstructionProperties->SetSlopeLowerLevelAls(make_unique<double>(1.0));
+
+        ConfigureBuilderForSchematization2(builder);
+
+        builder.AddNaturalStoneLocation(move(locationConstructionProperties));
+
+        const auto calculationInput = builder.Build();
+
+        // When
+        Calculator calculator(*calculationInput->GetData());
+        calculator.WaitForCompletion();
+
+        // Then
+        constexpr int expectedTimeOfFailure = 5570;
+
+        AssertOutput(calculator, 1.6946654530492318, &expectedTimeOfFailure);
+    }
+
     #pragma endregion
 
     #pragma region Schematization 3
