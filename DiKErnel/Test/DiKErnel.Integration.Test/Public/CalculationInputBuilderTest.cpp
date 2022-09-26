@@ -49,9 +49,24 @@ namespace DiKErnel::Integration::Test
     using namespace Util;
     using namespace Util::TestUtil;
 
+    struct CalculationInputBuilderTest : Test
+    {
+        static void AddDefaultProfileAndTimeStep(
+            CalculationInputBuilder& builder)
+        {
+            constexpr auto startPointX = 0;
+            constexpr auto endPointX = 10;
+
+            builder.AddDikeProfileSegment(startPointX, 10, endPointX, 20);
+            builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterToe);
+            builder.AddDikeProfilePointData(endPointX, CharacteristicPointType::OuterCrest);
+            builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
+        }
+    };
+
     #pragma region Profile segments
 
-    TEST(CalculationInputBuilderTest, GivenBuilderWithDikeSegmentAddedWithoutRoughness_WhenBuild_ThenReturnsResultWithCalculationInput)
+    TEST_F(CalculationInputBuilderTest, GivenBuilderWithDikeSegmentAddedWithoutRoughness_WhenBuild_ThenReturnsResultWithCalculationInput)
     {
         // Given
         constexpr auto startPointX = 10;
@@ -60,12 +75,12 @@ namespace DiKErnel::Integration::Test
         constexpr auto endPointZ = 30;
 
         CalculationInputBuilder builder;
-        builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
         builder.AddDikeProfileSegment(startPointX, startPointZ, endPointX, endPointZ);
         builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterToe);
         builder.AddDikeProfilePointData(endPointX, CharacteristicPointType::OuterCrest);
         builder.AddGrassWaveImpactLocation(
             make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(10.1, GrassRevetmentTopLayerType::ClosedSod));
+        builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
 
         // When
         const auto& result = builder.Build();
@@ -81,7 +96,7 @@ namespace DiKErnel::Integration::Test
         ProfileDataAssertHelper::AssertProfileSegment(startPointX, startPointZ, endPointX, endPointZ, 1.0, actualProfileSegments.at(0));
     }
 
-    TEST(CalculationInputBuilderTest, GivenBuilderWithDikeSegmentAddedWithRoughness_WhenBuild_ThenReturnsResultWithCalculationInput)
+    TEST_F(CalculationInputBuilderTest, GivenBuilderWithDikeSegmentAddedWithRoughness_WhenBuild_ThenReturnsResultWithCalculationInput)
     {
         // Given
         constexpr auto startPointX = 10;
@@ -91,12 +106,12 @@ namespace DiKErnel::Integration::Test
         constexpr auto roughnessCoefficient = 13.37;
 
         CalculationInputBuilder builder;
-        builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
+        builder.AddDikeProfileSegment(startPointX, startPointZ, endPointX, endPointZ, roughnessCoefficient);
         builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterToe);
         builder.AddDikeProfilePointData(endPointX, CharacteristicPointType::OuterCrest);
-        builder.AddDikeProfileSegment(startPointX, startPointZ, endPointX, endPointZ, roughnessCoefficient);
         builder.AddGrassWaveImpactLocation(
             make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(10.1, GrassRevetmentTopLayerType::ClosedSod));
+        builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
 
         // When
         const auto& result = builder.Build();
@@ -113,7 +128,7 @@ namespace DiKErnel::Integration::Test
                                                       actualProfileSegments.at(0));
     }
 
-    TEST(CalculationInputBuilderTest, GivenBuilderWithDikeSegmentsAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
+    TEST_F(CalculationInputBuilderTest, GivenBuilderWithDikeSegmentsAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
     {
         // Given
         constexpr auto startPointXSegmentOne = 10;
@@ -125,13 +140,13 @@ namespace DiKErnel::Integration::Test
         constexpr auto roughnessCoefficient = 13.37;
 
         CalculationInputBuilder builder;
-        builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
         builder.AddDikeProfileSegment(startPointXSegmentOne, startPointZSegmentOne, endPointXSegmentOne, endPointZSegmentOne, roughnessCoefficient);
         builder.AddDikeProfileSegment(endPointXSegmentOne, endPointZSegmentOne, endPointXSegmentTwo, endPointZSegmentTwo, roughnessCoefficient);
         builder.AddDikeProfilePointData(startPointXSegmentOne, CharacteristicPointType::OuterToe);
         builder.AddDikeProfilePointData(endPointXSegmentOne, CharacteristicPointType::OuterCrest);
         builder.AddGrassWaveImpactLocation(
             make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(10.1, GrassRevetmentTopLayerType::ClosedSod));
+        builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
 
         // When
         const auto& result = builder.Build();
@@ -155,10 +170,10 @@ namespace DiKErnel::Integration::Test
         ASSERT_EQ(&segmentOne.GetEndPoint(), &segmentTwo.GetStartPoint());
     }
 
-    TEST(CalculationInputBuilderTest, GivenBuilderWithoutDikeSegments_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
+    TEST_F(CalculationInputBuilderTest, GivenBuilderWithoutDikeSegments_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         // Given
-        CalculationInputBuilder builder;
+        const CalculationInputBuilder builder;
 
         // When
         const auto& result = builder.Build();
@@ -172,16 +187,14 @@ namespace DiKErnel::Integration::Test
         EventAssertHelper::AssertEvent(EventType::Error, "At least 1 segment is required.", events.at(0));
     }
 
-    TEST(CalculationInputBuilderTest,
-         GivenBuilderWithDikeSegmentsAdded_WhenSegmentXCoordinateUnchained_ThenReturnsResultWithSuccessfulFalseAndEvent)
+    TEST_F(CalculationInputBuilderTest,
+           GivenBuilderWithDikeSegmentsAdded_WhenSegmentXCoordinateUnchained_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         // Given
 
         CalculationInputBuilder builder;
         builder.AddDikeProfileSegment(10, 20, 20, 30);
         builder.AddDikeProfileSegment(20.01, 20, 30, 40);
-        builder.AddDikeProfilePointData(10, CharacteristicPointType::OuterToe);
-        builder.AddDikeProfilePointData(10, CharacteristicPointType::OuterCrest);
 
         // When
         const auto& result = builder.Build();
@@ -198,16 +211,13 @@ namespace DiKErnel::Integration::Test
             events.at(0));
     }
 
-    TEST(CalculationInputBuilderTest,
-         GivenBuilderWithDikeSegmentsAdded_WhenSegmentZCoordinateUnchained_ThenReturnsResultWithSuccessfulFalseAndEvent)
+    TEST_F(CalculationInputBuilderTest,
+           GivenBuilderWithDikeSegmentsAdded_WhenSegmentZCoordinateUnchained_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         // Given
-
         CalculationInputBuilder builder;
         builder.AddDikeProfileSegment(10, 20, 20, 30);
         builder.AddDikeProfileSegment(20, 2.01, 30, 40);
-        builder.AddDikeProfilePointData(10, CharacteristicPointType::OuterToe);
-        builder.AddDikeProfilePointData(10, CharacteristicPointType::OuterCrest);
 
         // When
         const auto& result = builder.Build();
@@ -228,19 +238,19 @@ namespace DiKErnel::Integration::Test
 
     #pragma region Profile point data
 
-    TEST(CalculationInputBuilderTest, GivenBuilderWithDikeProfilePointDataOnSegmentPoints_WhenBuild_ThenReturnsResultWithCalculationInput)
+    TEST_F(CalculationInputBuilderTest, GivenBuilderWithDikeProfilePointDataOnSegmentPoints_WhenBuild_ThenReturnsResultWithCalculationInput)
     {
         // Given
         constexpr auto outerToe = CharacteristicPointType::OuterToe;
         constexpr auto outerCrest = CharacteristicPointType::OuterCrest;
 
         CalculationInputBuilder builder;
-        builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
         builder.AddDikeProfileSegment(10, 20, 20, 30);
         builder.AddDikeProfilePointData(10, outerToe);
         builder.AddDikeProfilePointData(20, outerCrest);
         builder.AddGrassWaveImpactLocation(
             make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(10.1, GrassRevetmentTopLayerType::ClosedSod));
+        builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
 
         // When
         const auto& result = builder.Build();
@@ -260,8 +270,8 @@ namespace DiKErnel::Integration::Test
         ProfileDataAssertHelper::AssertCharacteristicPoint(actualSegment.GetEndPoint(), outerCrest, actualCharacteristicPoints.at(1));
     }
 
-    TEST(CalculationInputBuilderTest,
-         GivenBuilderWithDikeProfilePointDataNotOnSegmentPoints_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
+    TEST_F(CalculationInputBuilderTest,
+           GivenBuilderWithDikeProfilePointDataNotOnSegmentPoints_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         // Given
         CalculationInputBuilder builder;
@@ -280,7 +290,7 @@ namespace DiKErnel::Integration::Test
         EventAssertHelper::AssertEvent(EventType::Error, "Characteristic point must be on a start or end point of a segment.", events.at(0));
     }
 
-    TEST(CalculationInputBuilderTest, GivenBuilderWithoutDikeProfilePointDataOuterToe_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
+    TEST_F(CalculationInputBuilderTest, GivenBuilderWithoutDikeProfilePointDataOuterToe_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         // Given
         CalculationInputBuilder builder;
@@ -299,7 +309,7 @@ namespace DiKErnel::Integration::Test
         EventAssertHelper::AssertEvent(EventType::Error, "The outer toe is required.", events.at(0));
     }
 
-    TEST(CalculationInputBuilderTest, GivenBuilderWithoutDikeProfilePointDataOuterCrest_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
+    TEST_F(CalculationInputBuilderTest, GivenBuilderWithoutDikeProfilePointDataOuterCrest_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         // Given
         CalculationInputBuilder builder;
@@ -318,8 +328,8 @@ namespace DiKErnel::Integration::Test
         EventAssertHelper::AssertEvent(EventType::Error, "The outer crest is required.", events.at(0));
     }
 
-    TEST(CalculationInputBuilderTest,
-         GivenBuilderWithGrassOvertoppingLocationAndWithoutDikeProfilePointDataInnerToe_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
+    TEST_F(CalculationInputBuilderTest,
+           GivenBuilderWithGrassOvertoppingLocationAndWithoutDikeProfilePointDataInnerToe_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         // Given
         constexpr auto startPointX = 10;
@@ -344,11 +354,10 @@ namespace DiKErnel::Integration::Test
         EventAssertHelper::AssertEvent(EventType::Error, "The inner toe is required.", events.at(0));
     }
 
-    TEST(CalculationInputBuilderTest,
-         GivenBuilderWithGrassOvertoppingLocationAndWithoutDikeProfilePointDataInnerCrest_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
+    TEST_F(CalculationInputBuilderTest,
+           GivenBuilderWithGrassOvertoppingLocationAndWithoutDikeProfilePointDataInnerCrest_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         // Given
-
         constexpr auto startPointX = 10;
 
         CalculationInputBuilder builder;
@@ -375,14 +384,13 @@ namespace DiKErnel::Integration::Test
 
     #pragma region Time step
 
-    TEST(CalculationInputBuilderTest, GivenBuilderWithoutTimeStepAdded_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
+    TEST_F(CalculationInputBuilderTest, GivenBuilderWithoutTimeStepAdded_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         // Given
         CalculationInputBuilder builder;
         builder.AddDikeProfileSegment(0, 10, 10, 20);
         builder.AddDikeProfilePointData(0, CharacteristicPointType::OuterToe);
         builder.AddDikeProfilePointData(10, CharacteristicPointType::OuterCrest);
-
         builder.AddGrassWaveImpactLocation(
             make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(0.1, GrassRevetmentTopLayerType::ClosedSod));
 
@@ -398,18 +406,17 @@ namespace DiKErnel::Integration::Test
         EventAssertHelper::AssertEvent(EventType::Error, "At least 1 time step is required.", events.at(0));
     }
 
-    TEST(CalculationInputBuilderTest, GivenBuilderWithNonSuccessiveTimeStepsAdded_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
+    TEST_F(CalculationInputBuilderTest, GivenBuilderWithNonSuccessiveTimeStepsAdded_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         // Given
         CalculationInputBuilder builder;
         builder.AddDikeProfileSegment(0, 10, 10, 20);
         builder.AddDikeProfilePointData(0, CharacteristicPointType::OuterToe);
         builder.AddDikeProfilePointData(10, CharacteristicPointType::OuterCrest);
-
-        builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
-        builder.AddTimeStep(3, 4, 0.3, 0.4, 0.5, 0.6);
         builder.AddGrassWaveImpactLocation(
             make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(0.1, GrassRevetmentTopLayerType::ClosedSod));
+        builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
+        builder.AddTimeStep(3, 4, 0.3, 0.4, 0.5, 0.6);
 
         // When
         const auto& result = builder.Build();
@@ -426,18 +433,17 @@ namespace DiKErnel::Integration::Test
             events.at(0));
     }
 
-    TEST(CalculationInputBuilderTest,
-         GivenBuilderWithTimeStepWithInvalidBeginAndEndTimeAdded_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
+    TEST_F(CalculationInputBuilderTest,
+           GivenBuilderWithTimeStepWithInvalidBeginAndEndTimeAdded_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         // Given
         CalculationInputBuilder builder;
         builder.AddDikeProfileSegment(0, 10, 10, 20);
         builder.AddDikeProfilePointData(0, CharacteristicPointType::OuterToe);
         builder.AddDikeProfilePointData(10, CharacteristicPointType::OuterCrest);
-
-        builder.AddTimeStep(2, 1, 0.3, 0.4, 0.5, 0.6);
         builder.AddGrassWaveImpactLocation(
             make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(0.1, GrassRevetmentTopLayerType::ClosedSod));
+        builder.AddTimeStep(2, 1, 0.3, 0.4, 0.5, 0.6);
 
         // When
         const auto& result = builder.Build();
@@ -451,7 +457,7 @@ namespace DiKErnel::Integration::Test
         EventAssertHelper::AssertEvent(EventType::Error, "The begin time must be smaller than the end time.", events.at(0));
     }
 
-    TEST(CalculationInputBuilderTest, GivenBuilderWithTimeStepAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
+    TEST_F(CalculationInputBuilderTest, GivenBuilderWithTimeStepAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
     {
         // Given
         constexpr auto beginTime = 1;
@@ -465,12 +471,12 @@ namespace DiKErnel::Integration::Test
         constexpr auto endPointX = 10;
 
         CalculationInputBuilder builder;
-        builder.AddDikeProfileSegment(startPointX, 10, 10, 20);
+        builder.AddDikeProfileSegment(startPointX, 10, endPointX, 20);
         builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterToe);
         builder.AddDikeProfilePointData(endPointX, CharacteristicPointType::OuterCrest);
-        builder.AddTimeStep(beginTime, endTime, waterLevel, waveHeightHm0, wavePeriodTm10, waveAngle);
         builder.AddGrassWaveImpactLocation(
             make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(0.1, GrassRevetmentTopLayerType::ClosedSod));
+        builder.AddTimeStep(beginTime, endTime, waterLevel, waveHeightHm0, wavePeriodTm10, waveAngle);
 
         // When
         const auto& result = builder.Build();
@@ -491,16 +497,11 @@ namespace DiKErnel::Integration::Test
 
     #pragma region Locations
 
-    TEST(CalculationInputBuilderTest, GivenBuilderWithoutLocationAdded_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
+    TEST_F(CalculationInputBuilderTest, GivenBuilderWithoutLocationAdded_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         // Given
-        constexpr auto startPointX = 0;
-
         CalculationInputBuilder builder;
-        builder.AddDikeProfileSegment(startPointX, 10, 10, 20);
-        builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterToe);
-        builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterCrest);
-        builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
+        AddDefaultProfileAndTimeStep(builder);
 
         // When
         const auto& result = builder.Build();
@@ -514,16 +515,13 @@ namespace DiKErnel::Integration::Test
         EventAssertHelper::AssertEvent(EventType::Error, "At least 1 location is required.", events.at(0));
     }
 
-    TEST(CalculationInputBuilderTest, GivenBuilderWithLocationWithXBelowOuterToe_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
+    TEST_F(CalculationInputBuilderTest, GivenBuilderWithLocationWithXBelowOuterToe_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         // Given
         CalculationInputBuilder builder;
-        builder.AddDikeProfileSegment(0, 10, 10, 20);
-        builder.AddDikeProfilePointData(0, CharacteristicPointType::OuterToe);
-        builder.AddDikeProfilePointData(10, CharacteristicPointType::OuterCrest);
+        AddDefaultProfileAndTimeStep(builder);
         builder.AddGrassWaveImpactLocation(
             make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(-0.1, GrassRevetmentTopLayerType::ClosedSod));
-        builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
 
         // When
         const auto& result = builder.Build();
@@ -537,16 +535,13 @@ namespace DiKErnel::Integration::Test
         EventAssertHelper::AssertEvent(EventType::Error, "The location must be between the outer toe and outer crest.", events.at(0));
     }
 
-    TEST(CalculationInputBuilderTest, GivenBuilderWithLocationWithXAboveOuterCrest_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
+    TEST_F(CalculationInputBuilderTest, GivenBuilderWithLocationWithXAboveOuterCrest_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         // Given
         CalculationInputBuilder builder;
-        builder.AddDikeProfileSegment(0, 10, 10, 20);
-        builder.AddDikeProfilePointData(0, CharacteristicPointType::OuterToe);
-        builder.AddDikeProfilePointData(10, CharacteristicPointType::OuterCrest);
+        AddDefaultProfileAndTimeStep(builder);
         builder.AddGrassWaveImpactLocation(
             make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(10.1, GrassRevetmentTopLayerType::ClosedSod));
-        builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
 
         // When
         const auto& result = builder.Build();
@@ -562,8 +557,8 @@ namespace DiKErnel::Integration::Test
 
     #pragma region Asphalt wave impact
 
-    TEST(CalculationInputBuilderTest,
-         GivenBuilderWithAsphaltWaveImpactLocationWithInvalidTopLayerType_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
+    TEST_F(CalculationInputBuilderTest,
+           GivenBuilderWithAsphaltWaveImpactLocationWithInvalidTopLayerType_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         // Given
         constexpr auto topLayerType = static_cast<AsphaltRevetmentTopLayerType>(99);
@@ -571,10 +566,7 @@ namespace DiKErnel::Integration::Test
             0.1, topLayerType, 0.2, 0.3, 0.4, 0.5);
 
         CalculationInputBuilder builder;
-        builder.AddDikeProfileSegment(0, 10, 10, 20);
-        builder.AddDikeProfilePointData(0, CharacteristicPointType::OuterToe);
-        builder.AddDikeProfilePointData(10, CharacteristicPointType::OuterCrest);
-        builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
+        AddDefaultProfileAndTimeStep(builder);
         builder.AddAsphaltWaveImpactLocation(move(constructionProperties));
 
         // When
@@ -589,7 +581,8 @@ namespace DiKErnel::Integration::Test
         EventAssertHelper::AssertEvent(EventType::Error, "Couldn't create defaults for the given top layer type.", events.at(0));
     }
 
-    TEST(CalculationInputBuilderTest, GivenBuilderWithFullyConfiguredAsphaltWaveImpactLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
+    TEST_F(CalculationInputBuilderTest,
+           GivenBuilderWithFullyConfiguredAsphaltWaveImpactLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
     {
         constexpr auto topLayerType = AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete;
         constexpr auto x = 0.1;
@@ -637,14 +630,8 @@ namespace DiKErnel::Integration::Test
         constructionProperties->SetDepthFactors(make_unique<vector<pair<double, double>>>(depthFactors));
         constructionProperties->SetImpactFactors(make_unique<vector<pair<double, double>>>(impactFactors));
 
-        constexpr auto startPointX = 0;
-        constexpr auto endPointX = 10;
-
         CalculationInputBuilder builder;
-        builder.AddDikeProfileSegment(startPointX, 10, endPointX, 20);
-        builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterToe);
-        builder.AddDikeProfilePointData(endPointX, CharacteristicPointType::OuterCrest);
-        builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
+        AddDefaultProfileAndTimeStep(builder);
         builder.AddAsphaltWaveImpactLocation(move(constructionProperties));
 
         // When
@@ -680,8 +667,8 @@ namespace DiKErnel::Integration::Test
                                                                                     *locationDependentInput);
     }
 
-    TEST(CalculationInputBuilderTest,
-         GivenBuilderWithNotFullyConfiguredAsphaltWaveImpactLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
+    TEST_F(CalculationInputBuilderTest,
+           GivenBuilderWithNotFullyConfiguredAsphaltWaveImpactLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
     {
         constexpr auto topLayerType = AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete;
         constexpr auto x = 0.1;
@@ -693,14 +680,8 @@ namespace DiKErnel::Integration::Test
         auto constructionProperties = make_unique<AsphaltRevetmentWaveImpactLocationConstructionProperties>(
             x, topLayerType, failureTension, soilElasticity, thicknessUpperLayer, elasticModulusUpperLayer);
 
-        constexpr auto startPointX = 0;
-        constexpr auto endPointX = 10;
-
         CalculationInputBuilder builder;
-        builder.AddDikeProfileSegment(startPointX, 10, endPointX, 20);
-        builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterToe);
-        builder.AddDikeProfilePointData(endPointX, CharacteristicPointType::OuterCrest);
-        builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
+        AddDefaultProfileAndTimeStep(builder);
         builder.AddAsphaltWaveImpactLocation(move(constructionProperties));
 
         // When
@@ -787,22 +768,17 @@ namespace DiKErnel::Integration::Test
 
     #pragma region Grass overtopping
 
-    TEST(CalculationInputBuilderTest,
-         GivenBuilderWithGrassOvertoppingLocationWithInvalidTopLayerType_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
+    TEST_F(CalculationInputBuilderTest,
+           GivenBuilderWithGrassOvertoppingLocationWithInvalidTopLayerType_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         // Given
         constexpr auto topLayerType = static_cast<GrassRevetmentTopLayerType>(99);
         auto constructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(0.1, topLayerType);
 
-        constexpr auto startPointX = 0;
-
         CalculationInputBuilder builder;
-        builder.AddDikeProfileSegment(startPointX, 10, 10, 20);
-        builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterToe);
-        builder.AddDikeProfilePointData(10, CharacteristicPointType::OuterCrest);
-        builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::InnerToe);
-        builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::InnerCrest);
-        builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
+        AddDefaultProfileAndTimeStep(builder);
+        builder.AddDikeProfilePointData(0, CharacteristicPointType::InnerToe);
+        builder.AddDikeProfilePointData(0, CharacteristicPointType::InnerCrest);
         builder.AddGrassOvertoppingLocation(move(constructionProperties));
 
         // When
@@ -817,7 +793,8 @@ namespace DiKErnel::Integration::Test
         EventAssertHelper::AssertEvent(EventType::Error, "Couldn't create defaults for the given top layer type.", events.at(0));
     }
 
-    TEST(CalculationInputBuilderTest, GivenBuilderWithFullyConfiguredGrassOvertoppingLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
+    TEST_F(CalculationInputBuilderTest,
+           GivenBuilderWithFullyConfiguredGrassOvertoppingLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
     {
         // Given
         const auto topLayerType = static_cast<GrassRevetmentTopLayerType>(rand() % 2);
@@ -849,16 +826,10 @@ namespace DiKErnel::Integration::Test
         constructionProperties->SetAccelerationAlphaAForInnerSlope(make_unique<double>(accelerationAlphaAForInnerSlope));
         constructionProperties->SetDikeHeight(make_unique<double>(dikeHeight));
 
-        constexpr auto startPointX = 0;
-        constexpr auto endPointX = 10;
-
         CalculationInputBuilder builder;
-        builder.AddDikeProfileSegment(startPointX, 10, endPointX, 20);
-        builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterToe);
-        builder.AddDikeProfilePointData(endPointX, CharacteristicPointType::OuterCrest);
-        builder.AddDikeProfilePointData(endPointX, CharacteristicPointType::InnerCrest);
-        builder.AddDikeProfilePointData(endPointX, CharacteristicPointType::InnerToe);
-        builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
+        AddDefaultProfileAndTimeStep(builder);
+        builder.AddDikeProfilePointData(10, CharacteristicPointType::InnerCrest);
+        builder.AddDikeProfilePointData(10, CharacteristicPointType::InnerToe);
         builder.AddGrassOvertoppingLocation(move(constructionProperties));
 
         // When
@@ -896,8 +867,8 @@ namespace DiKErnel::Integration::Test
             accelerationAlphaAForCrest, accelerationAlphaAForInnerSlope, locationDependentInput->GetLocationDependentAccelerationAlphaA());
     }
 
-    TEST(CalculationInputBuilderTest,
-         GivenBuilderWithNotFullyConfiguredClosedSodGrassOvertoppingLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
+    TEST_F(CalculationInputBuilderTest,
+           GivenBuilderWithNotFullyConfiguredClosedSodGrassOvertoppingLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
     {
         // Given
         constexpr auto topLayerType = GrassRevetmentTopLayerType::ClosedSod;
@@ -905,16 +876,10 @@ namespace DiKErnel::Integration::Test
 
         auto constructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(x, topLayerType);
 
-        constexpr auto startPointX = 0;
-        constexpr auto endPointX = 10;
-
         CalculationInputBuilder builder;
-        builder.AddDikeProfileSegment(startPointX, 10, endPointX, 20);
-        builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterToe);
-        builder.AddDikeProfilePointData(endPointX, CharacteristicPointType::OuterCrest);
-        builder.AddDikeProfilePointData(endPointX, CharacteristicPointType::InnerCrest);
-        builder.AddDikeProfilePointData(endPointX, CharacteristicPointType::InnerToe);
-        builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
+        AddDefaultProfileAndTimeStep(builder);
+        builder.AddDikeProfilePointData(10, CharacteristicPointType::InnerCrest);
+        builder.AddDikeProfilePointData(10, CharacteristicPointType::InnerToe);
         builder.AddGrassOvertoppingLocation(move(constructionProperties));
 
         // When
@@ -952,8 +917,8 @@ namespace DiKErnel::Integration::Test
             1.0, 1.4, locationDependentInput->GetLocationDependentAccelerationAlphaA());
     }
 
-    TEST(CalculationInputBuilderTest,
-         GivenBuilderWithNotFullyConfiguredOpenSodGrassOvertoppingLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
+    TEST_F(CalculationInputBuilderTest,
+           GivenBuilderWithNotFullyConfiguredOpenSodGrassOvertoppingLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
     {
         // Given
         constexpr auto topLayerType = GrassRevetmentTopLayerType::OpenSod;
@@ -961,16 +926,10 @@ namespace DiKErnel::Integration::Test
 
         auto constructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(x, topLayerType);
 
-        constexpr auto startPointX = 0;
-        constexpr auto endPointX = 10;
-
         CalculationInputBuilder builder;
-        builder.AddDikeProfileSegment(startPointX, 10, endPointX, 20);
-        builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterToe);
-        builder.AddDikeProfilePointData(endPointX, CharacteristicPointType::OuterCrest);
-        builder.AddDikeProfilePointData(endPointX, CharacteristicPointType::InnerToe);
-        builder.AddDikeProfilePointData(endPointX, CharacteristicPointType::InnerCrest);
-        builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
+        AddDefaultProfileAndTimeStep(builder);
+        builder.AddDikeProfilePointData(10, CharacteristicPointType::InnerToe);
+        builder.AddDikeProfilePointData(10, CharacteristicPointType::InnerCrest);
         builder.AddGrassOvertoppingLocation(move(constructionProperties));
 
         // When
@@ -1012,18 +971,15 @@ namespace DiKErnel::Integration::Test
 
     #pragma region Grass wave impact
 
-    TEST(CalculationInputBuilderTest,
-         GivenBuilderWithGrassWaveImpactLocationWithInvalidTopLayerType_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
+    TEST_F(CalculationInputBuilderTest,
+           GivenBuilderWithGrassWaveImpactLocationWithInvalidTopLayerType_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         // Given
         constexpr auto topLayerType = static_cast<GrassRevetmentTopLayerType>(99);
         auto constructionProperties = make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(0.1, topLayerType);
 
         CalculationInputBuilder builder;
-        builder.AddDikeProfileSegment(0, 10, 10, 20);
-        builder.AddDikeProfilePointData(0, CharacteristicPointType::OuterToe);
-        builder.AddDikeProfilePointData(10, CharacteristicPointType::OuterCrest);
-        builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
+        AddDefaultProfileAndTimeStep(builder);
         builder.AddGrassWaveImpactLocation(move(constructionProperties));
 
         // When
@@ -1038,7 +994,7 @@ namespace DiKErnel::Integration::Test
         EventAssertHelper::AssertEvent(EventType::Error, "Couldn't create defaults for the given top layer type.", events.at(0));
     }
 
-    TEST(CalculationInputBuilderTest, GivenBuilderWithFullyConfiguredGrassWaveImpactLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
+    TEST_F(CalculationInputBuilderTest, GivenBuilderWithFullyConfiguredGrassWaveImpactLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
     {
         // Given
         const auto topLayerType = static_cast<GrassRevetmentTopLayerType>(rand() % 2);
@@ -1070,14 +1026,8 @@ namespace DiKErnel::Integration::Test
         constructionProperties->SetUpperLimitLoadingAul(make_unique<double>(upperLimitLoadingAul));
         constructionProperties->SetLowerLimitLoadingAll(make_unique<double>(lowerLimitLoadingAll));
 
-        constexpr auto startPointX = 0;
-        constexpr auto endPointX = 10;
-
         CalculationInputBuilder builder;
-        builder.AddDikeProfileSegment(startPointX, 10, endPointX, 20);
-        builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterToe);
-        builder.AddDikeProfilePointData(endPointX, CharacteristicPointType::OuterCrest);
-        builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
+        AddDefaultProfileAndTimeStep(builder);
         builder.AddGrassWaveImpactLocation(move(constructionProperties));
 
         // When
@@ -1118,8 +1068,8 @@ namespace DiKErnel::Integration::Test
             lowerLimitLoadingAll, *locationDependentInput);
     }
 
-    TEST(CalculationInputBuilderTest,
-         GivenBuilderWithNotFullyConfiguredClosedSodGrassWaveImpactLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
+    TEST_F(CalculationInputBuilderTest,
+           GivenBuilderWithNotFullyConfiguredClosedSodGrassWaveImpactLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
     {
         // Given
         constexpr auto topLayerType = GrassRevetmentTopLayerType::ClosedSod;
@@ -1127,14 +1077,8 @@ namespace DiKErnel::Integration::Test
 
         auto constructionProperties = make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(x, topLayerType);
 
-        constexpr auto startPointX = 0;
-        constexpr auto endPointX = 10;
-
         CalculationInputBuilder builder;
-        builder.AddDikeProfileSegment(startPointX, 10, endPointX, 20);
-        builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterToe);
-        builder.AddDikeProfilePointData(endPointX, CharacteristicPointType::OuterCrest);
-        builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
+        AddDefaultProfileAndTimeStep(builder);
         builder.AddGrassWaveImpactLocation(move(constructionProperties));
 
         // When
@@ -1175,8 +1119,8 @@ namespace DiKErnel::Integration::Test
             0.5, *locationDependentInput);
     }
 
-    TEST(CalculationInputBuilderTest,
-         GivenBuilderWithNotFullyConfiguredOpenSodGrassWaveImpactLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
+    TEST_F(CalculationInputBuilderTest,
+           GivenBuilderWithNotFullyConfiguredOpenSodGrassWaveImpactLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
     {
         // Given
         constexpr auto topLayerType = GrassRevetmentTopLayerType::OpenSod;
@@ -1184,14 +1128,8 @@ namespace DiKErnel::Integration::Test
 
         auto constructionProperties = make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(x, topLayerType);
 
-        constexpr auto startPointX = 0;
-        constexpr auto endPointX = 10;
-
         CalculationInputBuilder builder;
-        builder.AddDikeProfileSegment(startPointX, 10, endPointX, 20);
-        builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterToe);
-        builder.AddDikeProfilePointData(endPointX, CharacteristicPointType::OuterCrest);
-        builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
+        AddDefaultProfileAndTimeStep(builder);
         builder.AddGrassWaveImpactLocation(move(constructionProperties));
 
         // When
@@ -1236,18 +1174,15 @@ namespace DiKErnel::Integration::Test
 
     #pragma region Grass wave run-up Rayleigh
 
-    TEST(CalculationInputBuilderTest,
-         GivenBuilderWithGrassWaveRunupRayleighLocationWithInvalidTopLayerType_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
+    TEST_F(CalculationInputBuilderTest,
+           GivenBuilderWithGrassWaveRunupRayleighLocationWithInvalidTopLayerType_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         // Given
         constexpr auto topLayerType = static_cast<GrassRevetmentTopLayerType>(99);
         auto constructionProperties = make_unique<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(0.1, 0.2, topLayerType);
 
         CalculationInputBuilder builder;
-        builder.AddDikeProfileSegment(0, 10, 10, 20);
-        builder.AddDikeProfilePointData(0, CharacteristicPointType::OuterToe);
-        builder.AddDikeProfilePointData(10, CharacteristicPointType::OuterCrest);
-        builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
+        AddDefaultProfileAndTimeStep(builder);
         builder.AddGrassWaveRunupRayleighLocation(move(constructionProperties));
 
         // When
@@ -1262,8 +1197,8 @@ namespace DiKErnel::Integration::Test
         EventAssertHelper::AssertEvent(EventType::Error, "Couldn't create defaults for the given top layer type.", events.at(0));
     }
 
-    TEST(CalculationInputBuilderTest,
-         GivenBuilderWithFullyConfiguredGrassWaveRunupRayleighLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
+    TEST_F(CalculationInputBuilderTest,
+           GivenBuilderWithFullyConfiguredGrassWaveRunupRayleighLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
     {
         // Given
         const auto topLayerType = static_cast<GrassRevetmentTopLayerType>(rand() % 2);
@@ -1304,14 +1239,8 @@ namespace DiKErnel::Integration::Test
         constructionProperties->SetFixedNumberOfWaves(make_unique<int>(fixedNumberOfWaves));
         constructionProperties->SetFrontVelocityCu(make_unique<double>(frontVelocityCu));
 
-        constexpr auto startPointX = 0;
-        constexpr auto endPointX = 10;
-
         CalculationInputBuilder builder;
-        builder.AddDikeProfileSegment(startPointX, 10, endPointX, 20);
-        builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterToe);
-        builder.AddDikeProfilePointData(endPointX, CharacteristicPointType::OuterCrest);
-        builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
+        AddDefaultProfileAndTimeStep(builder);
         builder.AddGrassWaveRunupRayleighLocation(move(constructionProperties));
 
         // When
@@ -1353,8 +1282,8 @@ namespace DiKErnel::Integration::Test
             criticalFrontVelocity, frontVelocityCu, *locationDependentInput);
     }
 
-    TEST(CalculationInputBuilderTest,
-         GivenBuilderWithNotFullyConfiguredClosedSodGrassWaveRunupRayleighLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
+    TEST_F(CalculationInputBuilderTest,
+           GivenBuilderWithNotFullyConfiguredClosedSodGrassWaveRunupRayleighLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
     {
         // Given
         constexpr auto topLayerType = GrassRevetmentTopLayerType::ClosedSod;
@@ -1363,14 +1292,8 @@ namespace DiKErnel::Integration::Test
 
         auto constructionProperties = make_unique<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(x, outerSlope, topLayerType);
 
-        constexpr auto startPointX = 0;
-        constexpr auto endPointX = 10;
-
         CalculationInputBuilder builder;
-        builder.AddDikeProfileSegment(startPointX, 10, endPointX, 20);
-        builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterToe);
-        builder.AddDikeProfilePointData(endPointX, CharacteristicPointType::OuterCrest);
-        builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
+        AddDefaultProfileAndTimeStep(builder);
         builder.AddGrassWaveRunupRayleighLocation(move(constructionProperties));
 
         // When
@@ -1411,8 +1334,8 @@ namespace DiKErnel::Integration::Test
             6.6, 1.1, *locationDependentInput);
     }
 
-    TEST(CalculationInputBuilderTest,
-         GivenBuilderWithNotFullyConfiguredOpenSodGrassWaveRunupRayleighLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
+    TEST_F(CalculationInputBuilderTest,
+           GivenBuilderWithNotFullyConfiguredOpenSodGrassWaveRunupRayleighLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
     {
         // Given
         constexpr auto topLayerType = GrassRevetmentTopLayerType::OpenSod;
@@ -1421,14 +1344,8 @@ namespace DiKErnel::Integration::Test
 
         auto constructionProperties = make_unique<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(x, outerSlope, topLayerType);
 
-        constexpr auto startPointX = 0;
-        constexpr auto endPointX = 10;
-
         CalculationInputBuilder builder;
-        builder.AddDikeProfileSegment(startPointX, 10, endPointX, 20);
-        builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterToe);
-        builder.AddDikeProfilePointData(endPointX, CharacteristicPointType::OuterCrest);
-        builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
+        AddDefaultProfileAndTimeStep(builder);
         builder.AddGrassWaveRunupRayleighLocation(move(constructionProperties));
 
         // When
@@ -1473,18 +1390,15 @@ namespace DiKErnel::Integration::Test
 
     #pragma region Natural stone
 
-    TEST(CalculationInputBuilderTest,
-         GivenBuilderWithNaturalStoneLocationWithInvalidTopLayerType_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
+    TEST_F(CalculationInputBuilderTest,
+           GivenBuilderWithNaturalStoneLocationWithInvalidTopLayerType_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         // Given
         constexpr auto topLayerType = static_cast<NaturalStoneRevetmentTopLayerType>(99);
         auto constructionProperties = make_unique<NaturalStoneRevetmentLocationConstructionProperties>(0.1, topLayerType, 0.2, 0.3);
 
         CalculationInputBuilder builder;
-        builder.AddDikeProfileSegment(0, 10, 10, 20);
-        builder.AddDikeProfilePointData(0, CharacteristicPointType::OuterToe);
-        builder.AddDikeProfilePointData(10, CharacteristicPointType::OuterCrest);
-        builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
+        AddDefaultProfileAndTimeStep(builder);
         builder.AddNaturalStoneLocation(move(constructionProperties));
 
         // When
@@ -1499,7 +1413,7 @@ namespace DiKErnel::Integration::Test
         EventAssertHelper::AssertEvent(EventType::Error, "Couldn't create defaults for the given top layer type.", events.at(0));
     }
 
-    TEST(CalculationInputBuilderTest, GivenBuilderWithFullyConfiguredNaturalStoneLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
+    TEST_F(CalculationInputBuilderTest, GivenBuilderWithFullyConfiguredNaturalStoneLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
     {
         // Given
         constexpr auto topLayerType = NaturalStoneRevetmentTopLayerType::NordicStone;
@@ -1558,14 +1472,8 @@ namespace DiKErnel::Integration::Test
         naturalStoneConstructionProperties->SetNormativeWidthOfWaveImpactBwi(make_unique<double>(normativeWidthOfWaveImpactBwi));
         naturalStoneConstructionProperties->SetWaveAngleImpactBetamax(make_unique<double>(waveAngleImpactBetamax));
 
-        constexpr auto startPointX = 0;
-        constexpr auto endPointX = 10;
-
         CalculationInputBuilder builder;
-        builder.AddDikeProfileSegment(startPointX, 10, endPointX, 20);
-        builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterToe);
-        builder.AddDikeProfilePointData(endPointX, CharacteristicPointType::OuterCrest);
-        builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
+        AddDefaultProfileAndTimeStep(builder);
         builder.AddNaturalStoneLocation(move(naturalStoneConstructionProperties));
 
         // When
@@ -1612,7 +1520,7 @@ namespace DiKErnel::Integration::Test
             waveAngleImpactBetamax, locationDependentInput->GetWaveAngleImpact());
     }
 
-    TEST(CalculationInputBuilderTest, GivenBuilderWithNotFullyConfiguredNaturalStoneLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
+    TEST_F(CalculationInputBuilderTest, GivenBuilderWithNotFullyConfiguredNaturalStoneLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
     {
         // Given
         constexpr auto topLayerType = NaturalStoneRevetmentTopLayerType::NordicStone;
@@ -1623,14 +1531,8 @@ namespace DiKErnel::Integration::Test
         auto naturalStoneConstructionProperties = make_unique<NaturalStoneRevetmentLocationConstructionProperties>(
             x, topLayerType, thicknessTopLayer, relativeDensity);
 
-        constexpr auto startPointX = 0;
-        constexpr auto endPointX = 10;
-
         CalculationInputBuilder builder;
-        builder.AddDikeProfileSegment(startPointX, 10, endPointX, 20);
-        builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterToe);
-        builder.AddDikeProfilePointData(endPointX, CharacteristicPointType::OuterCrest);
-        builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
+        AddDefaultProfileAndTimeStep(builder);
         builder.AddNaturalStoneLocation(move(naturalStoneConstructionProperties));
 
         // When
