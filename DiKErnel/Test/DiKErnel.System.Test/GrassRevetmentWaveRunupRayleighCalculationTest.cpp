@@ -155,6 +155,36 @@ namespace DiKErnel::System::Test
 
         #pragma endregion
 
+        #pragma region Schematization 5
+
+        static void ConfigureBuilderForSchematization5(
+            CalculationInputBuilder& builder)
+        {
+            builder.AddTimeStep(-7200, -6840, 0, 0.5, 3, 50);
+            builder.AddTimeStep(-6840, -6120, 0.1, 0.7, 3.5, 45);
+            builder.AddTimeStep(-6120, -5040, 0.2, 1, 4, 40);
+            builder.AddTimeStep(-5040, -3600, 0.3, 1.3, 4.3, 35);
+            builder.AddTimeStep(-3600, -1800, 0.4, 1.5, 4.5, 30);
+            builder.AddTimeStep(-1800, 360, 0.5, 1.8, 4.8, 25);
+            builder.AddTimeStep(360, 2880, 0.6, 2.1, 5.2, 20);
+            builder.AddTimeStep(2880, 5760, 0.7, 2.5, 5.5, 15);
+            builder.AddTimeStep(5760, 9000, 0.7, 2.8, 5.8, 10);
+            builder.AddTimeStep(9000, 12600, 0.6, 2.8, 6, 5);
+            builder.AddTimeStep(12600, 16560, 0.5, 2.5, 6, 0);
+            builder.AddTimeStep(16560, 20880, 0.4, 2.1, 5.8, 0);
+            builder.AddTimeStep(20880, 25560, 0.3, 1.8, 5.5, 5);
+            builder.AddTimeStep(25560, 30600, 0.2, 1.5, 5.2, 10);
+            builder.AddTimeStep(30600, 36000, 0.1, 1.3, 4.8, 15);
+            builder.AddTimeStep(36000, 43200, 0, 1, 4.5, 20);
+
+            builder.AddDikeProfileSegment(0, 0, 25, 7.5);
+
+            builder.AddDikeProfilePointData(0, CharacteristicPointType::OuterToe);
+            builder.AddDikeProfilePointData(25, CharacteristicPointType::OuterCrest);
+        }
+
+        #pragma endregion
+
         static void AssertOutput(
             const Calculator& calculator,
             const double expectedDamage,
@@ -471,6 +501,35 @@ namespace DiKErnel::System::Test
         constexpr int expectedTimeOfFailure = 42138;
 
         AssertOutput(calculator, 1.114009765223331, &expectedTimeOfFailure);
+    }
+
+    #pragma endregion
+
+    #pragma region Schematization 5
+
+    TEST_F(GrassRevetmentWaveRunupRayleighCalculationTest,
+           GivenCalculationInputForSchematization5Testcase1_WhenCalculating_ThenReturnsExpectedCalculationResult)
+    {
+        // Given
+        CalculationInputBuilder builder;
+
+        auto locationConstructionProperties = make_unique<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(
+            3, 0.3, GrassRevetmentTopLayerType::ClosedSod);
+
+        ConfigureBuilderForSchematization5(builder);
+
+        builder.AddGrassWaveRunupRayleighLocation(move(locationConstructionProperties));
+
+        const auto calculationInput = builder.Build();
+
+        // When
+        Calculator calculator(*calculationInput->GetData());
+        calculator.WaitForCompletion();
+
+        // Then
+        constexpr int expectedTimeOfFailure = 18856;
+
+        AssertOutput(calculator, 1.1736314282928013, &expectedTimeOfFailure);
     }
 
     #pragma endregion
