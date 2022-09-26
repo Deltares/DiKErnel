@@ -274,7 +274,7 @@ namespace DiKErnel::System::Test
         // Then
         constexpr int expectedTimeOfFailure = 33913;
 
-        AssertOutput(calculator, 1.48214256643614, &expectedTimeOfFailure);
+        AssertOutput(calculator, 1.48469920475211, &expectedTimeOfFailure);
     }
 
     TEST_F(GrassRevetmentOvertoppingCalculationTest,
@@ -296,7 +296,7 @@ namespace DiKErnel::System::Test
         calculator.WaitForCompletion();
 
         // Then
-        AssertOutput(calculator, 0.0751492271841895);
+        AssertOutput(calculator, 0.0751490475083924);
     }
 
     TEST_F(GrassRevetmentOvertoppingCalculationTest,
@@ -502,9 +502,9 @@ namespace DiKErnel::System::Test
         calculator.WaitForCompletion();
 
         // Then
-        constexpr int expectedTimeOfFailure = 0.0;
+        constexpr int expectedTimeOfFailure = 34071;
 
-        AssertOutput(calculator, 12.9943558854027, &expectedTimeOfFailure);
+        AssertOutput(calculator, 9.62605080940479, &expectedTimeOfFailure);
     }
 
     TEST_F(GrassRevetmentOvertoppingCalculationTest,
@@ -564,7 +564,7 @@ namespace DiKErnel::System::Test
         calculator.WaitForCompletion();
 
         // Then
-        AssertOutput(calculator, 0.40767149313574);
+        AssertOutput(calculator, 0.407672739747293);
     }
 
     #pragma endregion
