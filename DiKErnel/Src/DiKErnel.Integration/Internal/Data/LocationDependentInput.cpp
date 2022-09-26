@@ -20,9 +20,6 @@
 
 #include "LocationDependentInput.h"
 
-#include <utility>
-
-#include "CharacteristicPointsHelper.h"
 #include "RevetmentFunctions.h"
 #include "RevetmentValidator.h"
 #include "ValidationHelper.h"
@@ -46,16 +43,8 @@ namespace DiKErnel::Integration
     bool LocationDependentInput::Validate(
         const IProfileData& profileData) const
     {
-        const auto& characteristicPoints = profileData.GetCharacteristicPoints();
-
-        const auto outerToe = CharacteristicPointsHelper::GetCoordinatesForType(characteristicPoints, CharacteristicPointType::OuterToe);
-        const auto outerCrest = CharacteristicPointsHelper::GetCoordinatesForType(characteristicPoints, CharacteristicPointType::OuterCrest);
-
         vector<unique_ptr<ValidationIssue>> validationIssues;
-        if (outerToe != nullptr && outerCrest != nullptr)
-        {
-            validationIssues.emplace_back(RevetmentValidator::X(_x, outerToe->first, outerCrest->first));
-        }
+
         validationIssues.emplace_back(RevetmentValidator::InitialDamage(_initialDamage));
         validationIssues.emplace_back(RevetmentValidator::FailureNumber(_failureNumber, _initialDamage));
 

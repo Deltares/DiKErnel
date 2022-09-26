@@ -33,24 +33,6 @@ namespace DiKErnel::DomainLibrary
     {
         public:
             /*!
-             * \brief Validates the x coordinate.
-             * \param x
-             *        The x coordinate.
-             *        Unit = [m]
-             * \param outerToeX
-             *        The x coordinate of the outer toe.
-             *        Unit = [m]
-             * \param outerCrestX
-             *        The x coordinate of the outer crest.
-             *        Unit = [m]
-             * \return A validation issue when the x coordinate is not valid; nullptr otherwise.
-             */
-            static std::unique_ptr<Util::ValidationIssue> X(
-                double x,
-                double outerToeX,
-                double outerCrestX);
-
-            /*!
              * \brief Validates the initial damage.
              * \param initialDamage
              *        The initial damage.

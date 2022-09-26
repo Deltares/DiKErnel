@@ -25,19 +25,6 @@ namespace DiKErnel::DomainLibrary
     using namespace std;
     using namespace Util;
 
-    unique_ptr<ValidationIssue> RevetmentValidator::X(
-        const double x,
-        const double outerToeX,
-        const double outerCrestX)
-    {
-        if (x <= outerToeX || x >= outerCrestX)
-        {
-            return make_unique<ValidationIssue>(ValidationIssueType::Error, "X must be in range {OuterToeX, OuterCrestX}.");
-        }
-
-        return nullptr;
-    }
-
     unique_ptr<ValidationIssue> RevetmentValidator::InitialDamage(
         const double initialDamage)
     {
