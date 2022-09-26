@@ -357,7 +357,7 @@ namespace DiKErnel::System::Test
             6, NaturalStoneRevetmentTopLayerType::NordicStone, 0.3, 1.65);
 
         locationConstructionProperties->SetSlopeUpperLevelAus(make_unique<double>(0.5));
-        locationConstructionProperties->SetSlopeLowerLevelAls(make_unique<double>(1.0));
+        locationConstructionProperties->SetSlopeLowerLevelAls(make_unique<double>(1));
 
         ConfigureBuilderForSchematization2(builder);
 

@@ -105,8 +105,8 @@ namespace DiKErnel::System::Test
             builder.AddTimeStep(7200, 10800, 0.7, 2.7, 4.4, 20);
             builder.AddTimeStep(10800, 14400, 0.8, 2.8, 4.5, 20);
             builder.AddTimeStep(14400, 18000, 0.9, 2.9, 4.8, 20);
-            builder.AddTimeStep(18000, 21600, 0.95, 3.0, 5, 20);
-            builder.AddTimeStep(21600, 25200, 1.0, 2.9, 5.2, 20);
+            builder.AddTimeStep(18000, 21600, 0.95, 3, 5, 20);
+            builder.AddTimeStep(21600, 25200, 1, 2.9, 5.2, 20);
             builder.AddTimeStep(25200, 28800, 0.95, 2.9, 5.5, 15);
             builder.AddTimeStep(28800, 32400, 0.8, 2.8, 5.8, 10);
             builder.AddTimeStep(32400, 36000, 0.6, 2.8, 6, 5);
@@ -115,7 +115,7 @@ namespace DiKErnel::System::Test
             builder.AddTimeStep(43200, 46800, 0.3, 1.8, 5.5, 5);
             builder.AddTimeStep(46800, 50400, 0.2, 1.5, 5.2, 10);
             builder.AddTimeStep(50400, 54000, 0.1, 1.3, 4.8, 15);
-            builder.AddTimeStep(54000, 57600, 0.0, 1.0, 4.5, 20);
+            builder.AddTimeStep(54000, 57600, 0, 1, 4.5, 20);
 
             builder.AddDikeProfileSegment(0, 0, 25, 7.5);
 

@@ -180,7 +180,7 @@ namespace DiKErnel::System::Test
             builder.AddTimeStep(75600, 79200, 5.7, 2.6, 5.53, 12);
 
             builder.AddDikeProfileSegment(-5, -4, -1.73, -2.89, 1);
-            builder.AddDikeProfileSegment(-1.73, -2.89, 33.82, 6.03, 1.0);
+            builder.AddDikeProfileSegment(-1.73, -2.89, 33.82, 6.03, 1);
             builder.AddDikeProfileSegment(33.82, 6.03, 38.16, 6.31, 0.9);
             builder.AddDikeProfileSegment(38.16, 6.31, 47.34, 8.64, 0.8);
             builder.AddDikeProfileSegment(47.34, 8.64, 52, 8.7, 1);
