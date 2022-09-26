@@ -21,7 +21,6 @@
 #include "TimeDependentInput.h"
 
 #include "HydraulicLoadsValidator.h"
-#include "TimeStepValidator.h"
 #include "ValidationHelper.h"
 
 namespace DiKErnel::Integration
@@ -47,7 +46,6 @@ namespace DiKErnel::Integration
     bool TimeDependentInput::Validate() const
     {
         vector<unique_ptr<ValidationIssue>> validationIssues;
-        validationIssues.emplace_back(TimeStepValidator::IncrementOfTime(_beginTime, _endTime));
         validationIssues.emplace_back(HydraulicLoadsValidator::WaveHeightHm0(_waveHeightHm0));
         validationIssues.emplace_back(HydraulicLoadsValidator::WavePeriodTm10(_wavePeriodTm10));
         validationIssues.emplace_back(HydraulicLoadsValidator::WaveAngle(_waveAngle));
