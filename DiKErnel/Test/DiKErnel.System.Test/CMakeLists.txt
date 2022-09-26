@@ -5,6 +5,7 @@ set(EXENAME DiKErnel.System.Test)
 set(SOURCEFILES
   AsphaltRevetmentWaveImpactCalculationTest.cpp
   GrassRevetmentOvertoppingCalculationTest.cpp
+  GrassRevetmentWaveImpactCalculationTest.cpp
   Main.cpp
   NaturalStoneRevetmentCalculationTest.cpp
   ValidationSystemTest.cpp
