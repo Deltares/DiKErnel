@@ -100,36 +100,6 @@ namespace DiKErnel::System::Test
         static void ConfigureBuilderForSchematization3(
             CalculationInputBuilder& builder)
         {
-            builder.AddTimeStep(0, 3600, 0, 0.3, 3, 50);
-            builder.AddTimeStep(3600, 7200, 0.1, 0.4, 3.5, 45);
-            builder.AddTimeStep(7200, 10800, 0.2, 0.5, 3.9, 40);
-            builder.AddTimeStep(10800, 14400, 0.3, 0.6, 4.2, 35);
-            builder.AddTimeStep(14400, 18000, 0.4, 0.7, 4.6, 30);
-            builder.AddTimeStep(18000, 21600, 0.5, 0.8, 4.9, 25);
-            builder.AddTimeStep(21600, 25200, 0.6, 0.9, 5.2, 20);
-            builder.AddTimeStep(25200, 28800, 0.7, 1, 5.5, 15);
-            builder.AddTimeStep(28800, 32400, 0.7, 1.1, 5.7, 10);
-            builder.AddTimeStep(32400, 36000, 0.6, 1.1, 5.7, 5);
-            builder.AddTimeStep(36000, 39600, 0.5, 1, 5.5, 0);
-            builder.AddTimeStep(39600, 43200, 0.4, 0.9, 5.2, 0);
-            builder.AddTimeStep(43200, 46800, 0.3, 0.8, 4.9, 5);
-            builder.AddTimeStep(46800, 50400, 0.2, 0.7, 4.6, 10);
-            builder.AddTimeStep(50400, 54000, 0.1, 0.6, 4.2, 15);
-            builder.AddTimeStep(54000, 57600, 0, 0.5, 3.9, 20);
-
-            builder.AddDikeProfileSegment(0, 0, 25, 7.5);
-
-            builder.AddDikeProfilePointData(0, CharacteristicPointType::OuterToe);
-            builder.AddDikeProfilePointData(25, CharacteristicPointType::OuterCrest);
-        }
-
-        #pragma endregion
-
-        #pragma region Schematization 4
-
-        static void ConfigureBuilderForSchematization4(
-            CalculationInputBuilder& builder)
-        {
             builder.AddTimeStep(0, 3600, 0.5, 2.4, 4, 20);
             builder.AddTimeStep(3600, 7200, 0.6, 2.5, 4.2, 20);
             builder.AddTimeStep(7200, 10800, 0.7, 2.7, 4.4, 20);
@@ -155,9 +125,9 @@ namespace DiKErnel::System::Test
 
         #pragma endregion
 
-        #pragma region Schematization 5
+        #pragma region Schematization 4
 
-        static void ConfigureBuilderForSchematization5(
+        static void ConfigureBuilderForSchematization4(
             CalculationInputBuilder& builder)
         {
             builder.AddTimeStep(-7200, -6840, 0, 0.5, 3, 50);
@@ -442,12 +412,8 @@ namespace DiKErnel::System::Test
         AssertOutput(calculator, 1.5248462052078153, &expectedTimeOfFailure);
     }
 
-    #pragma endregion
-
-    #pragma region Schematization 3
-
     TEST_F(GrassRevetmentWaveRunupRayleighCalculationTest,
-           GivenCalculationInputForSchematization3Testcase1_WhenCalculating_ThenReturnsExpectedCalculationResult)
+           GivenCalculationInputForSchematization2Testcase2_WhenCalculating_ThenReturnsExpectedCalculationResult)
     {
         // Given
         CalculationInputBuilder builder;
@@ -458,7 +424,7 @@ namespace DiKErnel::System::Test
         locationConstructionProperties->SetIncreasedLoadTransitionAlphaM(make_unique<double>(1.8));
         locationConstructionProperties->SetReducedStrengthTransitionAlphaS(make_unique<double>(0.9));
 
-        ConfigureBuilderForSchematization3(builder);
+        ConfigureBuilderForSchematization2(builder);
 
         builder.AddGrassWaveRunupRayleighLocation(move(locationConstructionProperties));
 
@@ -476,10 +442,10 @@ namespace DiKErnel::System::Test
 
     #pragma endregion
 
-    #pragma region Schematization 4
+    #pragma region Schematization 3
 
     TEST_F(GrassRevetmentWaveRunupRayleighCalculationTest,
-           GivenCalculationInputForSchematization4Testcase1_WhenCalculating_ThenReturnsExpectedCalculationResult)
+           GivenCalculationInputForSchematization3Testcase1_WhenCalculating_ThenReturnsExpectedCalculationResult)
     {
         // Given
         CalculationInputBuilder builder;
@@ -487,7 +453,7 @@ namespace DiKErnel::System::Test
         auto locationConstructionProperties = make_unique<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(
             3, 0.3, GrassRevetmentTopLayerType::ClosedSod);
 
-        ConfigureBuilderForSchematization4(builder);
+        ConfigureBuilderForSchematization3(builder);
 
         builder.AddGrassWaveRunupRayleighLocation(move(locationConstructionProperties));
 
@@ -505,10 +471,10 @@ namespace DiKErnel::System::Test
 
     #pragma endregion
 
-    #pragma region Schematization 5
+    #pragma region Schematization 4
 
     TEST_F(GrassRevetmentWaveRunupRayleighCalculationTest,
-           GivenCalculationInputForSchematization5Testcase1_WhenCalculating_ThenReturnsExpectedCalculationResult)
+           GivenCalculationInputForSchematization4Testcase1_WhenCalculating_ThenReturnsExpectedCalculationResult)
     {
         // Given
         CalculationInputBuilder builder;
@@ -516,7 +482,7 @@ namespace DiKErnel::System::Test
         auto locationConstructionProperties = make_unique<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(
             3, 0.3, GrassRevetmentTopLayerType::ClosedSod);
 
-        ConfigureBuilderForSchematization5(builder);
+        ConfigureBuilderForSchematization4(builder);
 
         builder.AddGrassWaveRunupRayleighLocation(move(locationConstructionProperties));
 
