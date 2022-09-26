@@ -86,10 +86,8 @@ namespace DiKErnel::Integration
         const ProfileDataFactoryPoint& profilePointData,
         const vector<unique_ptr<ProfileSegment>>& segments)
     {
-        for (auto i = 0; i < static_cast<int>(segments.size()); ++i)
+        for (const auto& segment : segments)
         {
-            const auto& segment = segments.at(i);
-
             if (const auto& segmentStartPoint = segment->GetStartPoint();
                 NumericsHelper::AreEqual(profilePointData.GetX(), segmentStartPoint.GetX()))
             {
