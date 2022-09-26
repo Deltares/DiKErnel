@@ -42,16 +42,14 @@ namespace DiKErnel::Core
                 }
             }
 
-            const auto& profileData = calculationInput.GetProfileData();
-
-            if (!profileData.Validate())
+            if (const auto& profileData = calculationInput.GetProfileData(); !profileData.Validate())
             {
                 validationResult = ValidationResultType::Failed;
             }
 
             for (const auto& locationDependentInputItem : calculationInput.GetLocationDependentInputItems())
             {
-                if (!locationDependentInputItem.get().Validate(profileData))
+                if (!locationDependentInputItem.get().Validate())
                 {
                     validationResult = ValidationResultType::Failed;
                 }

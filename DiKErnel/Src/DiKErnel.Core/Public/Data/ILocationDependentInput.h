@@ -41,13 +41,10 @@ namespace DiKErnel::Core
 
             /*!
              * \brief Performs validation on the input.
-             * \param profileData
-             *        The profile data to use in the validation.
              * \return Whether the validation was successful.
              */
             [[nodiscard]]
-            virtual bool Validate(
-                const IProfileData& profileData) const = 0;
+            virtual bool Validate() const = 0;
 
             /*!
              * \brief Performs a location dependent calculation.

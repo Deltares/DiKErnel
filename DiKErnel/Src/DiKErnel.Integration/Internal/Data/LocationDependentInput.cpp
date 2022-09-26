@@ -20,6 +20,7 @@
 
 #include "LocationDependentInput.h"
 
+#include "CharacteristicPointsHelper.h"
 #include "RevetmentFunctions.h"
 #include "RevetmentValidator.h"
 #include "ValidationHelper.h"
@@ -40,8 +41,7 @@ namespace DiKErnel::Integration
           _initialDamage(initialDamage),
           _failureNumber(failureNumber) { }
 
-    bool LocationDependentInput::Validate(
-        const IProfileData& profileData) const
+    bool LocationDependentInput::Validate() const
     {
         vector<unique_ptr<ValidationIssue>> validationIssues;
 

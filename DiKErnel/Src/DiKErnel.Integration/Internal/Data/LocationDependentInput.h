@@ -30,8 +30,7 @@ namespace DiKErnel::Integration
     {
         public:
             [[nodiscard]]
-            bool Validate(
-                const Core::IProfileData& profileData) const override;
+            bool Validate() const override;
 
             std::unique_ptr<Core::TimeDependentOutput> Calculate(
                 double initialDamage,
