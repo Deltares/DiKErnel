@@ -400,7 +400,7 @@ namespace DiKErnel::Integration::Test
         EventAssertHelper::AssertEvent(EventType::Error, "At least 1 time step is required.", events.at(0));
     }
 
-    TEST(CalculationInputBuilderTest, GivenBuilderWithInvalidTimeStepsAdded_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
+    TEST(CalculationInputBuilderTest, GivenBuilderWithNonSuccessiveTimeStepsAdded_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         // Given
         CalculationInputBuilder builder;
@@ -426,6 +426,31 @@ namespace DiKErnel::Integration::Test
             EventType::Error,
             "The begin time of a successive element must be equal to the end time of the previous element.",
             events.at(0));
+    }
+
+    TEST(CalculationInputBuilderTest,
+         GivenBuilderWithTimeStepWithInvalidBeginAndEndTimeAdded_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
+    {
+        // Given
+        CalculationInputBuilder builder;
+        builder.AddDikeProfileSegment(0, 10, 10, 20);
+        builder.AddDikeProfilePointData(0, CharacteristicPointType::OuterToe);
+        builder.AddDikeProfilePointData(10, CharacteristicPointType::OuterCrest);
+
+        builder.AddTimeStep(2, 1, 0.3, 0.4, 0.5, 0.6);
+        builder.AddGrassWaveImpactLocation(
+            make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(0.1, GrassRevetmentTopLayerType::ClosedSod));
+
+        // When
+        const auto& result = builder.Build();
+
+        // Then
+        ASSERT_FALSE(result->GetSuccessful());
+
+        const auto& events = result->GetEvents();
+        ASSERT_EQ(1, events.size());
+
+        EventAssertHelper::AssertEvent(EventType::Error, "The begin time must be smaller than the end time.", events.at(0));
     }
 
     TEST(CalculationInputBuilderTest, GivenBuilderWithTimeStepAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
@@ -511,7 +536,7 @@ namespace DiKErnel::Integration::Test
         const auto& events = result->GetEvents();
         ASSERT_EQ(1, events.size());
 
-        EventAssertHelper::AssertEvent(EventType::Error, "Location must be between the outer toe and outer crest.", events.at(0));
+        EventAssertHelper::AssertEvent(EventType::Error, "The location must be between the outer toe and outer crest.", events.at(0));
     }
 
     TEST(CalculationInputBuilderTest, GivenBuilderWithLocationWithXAboveOuterCrest_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
@@ -534,7 +559,7 @@ namespace DiKErnel::Integration::Test
         const auto& events = result->GetEvents();
         ASSERT_EQ(1, events.size());
 
-        EventAssertHelper::AssertEvent(EventType::Error, "Location must be between the outer toe and outer crest.", events.at(0));
+        EventAssertHelper::AssertEvent(EventType::Error, "The location must be between the outer toe and outer crest.", events.at(0));
     }
 
     #pragma region Asphalt wave impact

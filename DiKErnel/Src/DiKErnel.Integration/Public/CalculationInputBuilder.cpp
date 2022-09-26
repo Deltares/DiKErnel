@@ -215,7 +215,7 @@ namespace DiKErnel::Integration
                 return locationX <= outerToe->GetX() || locationX >= outerCrest->GetX();
         }))
         {
-            RegisterValidationError("Location must be between the outer toe and outer crest.");
+            RegisterValidationError("The location must be between the outer toe and outer crest.");
             return false;
         }
 
@@ -233,6 +233,12 @@ namespace DiKErnel::Integration
             if (previousTimeStep != nullptr && previousTimeStep->GetEndTime() != currentTimeStep->GetBeginTime())
             {
                 RegisterValidationError("The begin time of a successive element must be equal to the end time of the previous element.");
+                return false;
+            }
+
+            if(currentTimeStep->GetBeginTime() >= currentTimeStep->GetEndTime())
+            {
+                RegisterValidationError("The begin time must be smaller than the end time.");
                 return false;
             }
 
