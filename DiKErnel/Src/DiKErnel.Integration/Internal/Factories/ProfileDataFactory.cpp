@@ -75,37 +75,31 @@ namespace DiKErnel::Integration
             const auto& profilePointData = profilePointDataReference.get();
 
             characteristicPoints.push_back(
-                make_unique<CharacteristicPoint>(FindMatchingPointOnSegment(profilePointDataReference, profileSegments),
+                make_unique<CharacteristicPoint>(*FindMatchingPointOnSegment(profilePointDataReference, profileSegments),
                                                  profilePointData.GetCharacteristicPoint()));
         }
 
         return characteristicPoints;
     }
 
-    const ProfilePoint& ProfileDataFactory::FindMatchingPointOnSegment(
+    const ProfilePoint* ProfileDataFactory::FindMatchingPointOnSegment(
         const ProfileDataFactoryPoint& profilePointData,
         const vector<unique_ptr<ProfileSegment>>& segments)
     {
-        const ProfilePoint* profilePoint = nullptr;
-
         for (const auto& segment : segments)
         {
-            const auto& segmentStartPoint = segment->GetStartPoint();
-            if (IsMatchingPoint(profilePointData, segmentStartPoint))
+            if (const auto& segmentStartPoint = segment->GetStartPoint();  IsMatchingPoint(profilePointData, segmentStartPoint))
             {
-                profilePoint = &segmentStartPoint;
-                break;
+                return &segmentStartPoint;
             }
 
-            const auto& segmentEndPoint = segment->GetEndPoint();
-            if (IsMatchingPoint(profilePointData, segmentEndPoint))
+            if (const auto& segmentEndPoint = segment->GetEndPoint();  IsMatchingPoint(profilePointData, segmentEndPoint))
             {
-                profilePoint = &segmentEndPoint;
-                break;
+                return &segmentEndPoint;
             }
         }
 
-        return *profilePoint;
+        return nullptr;
     }
 
     bool ProfileDataFactory::IsMatchingPoint(
