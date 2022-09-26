@@ -119,6 +119,32 @@ namespace DiKErnel::System::Test
 
         #pragma endregion
 
+        #pragma region Schematization 4
+
+        static void ConfigureBuilderForSchematization4(
+            CalculationInputBuilder& builder)
+        {
+            builder.AddTimeStep(0, 900, 1.27, 1.5, 6, 0);
+            builder.AddTimeStep(900, 1800, 1.271, 1.5, 6, 0);
+            builder.AddTimeStep(1800, 2700, 1.272, 1.5, 6, 0);
+            builder.AddTimeStep(2700, 3600, 1.273, 1.5, 6, 0);
+            builder.AddTimeStep(3600, 4500, 2.531, 1.5, 6, 0);
+            builder.AddTimeStep(4500, 5400, 2.532, 1.5, 6, 0);
+            builder.AddTimeStep(5400, 6300, 2.533, 1.5, 6, 0);
+            builder.AddTimeStep(6300, 7200, 2.534, 1.5, 6, 0);
+            builder.AddTimeStep(7200, 8100, 2.535, 1.5, 6, 0);
+            builder.AddTimeStep(8100, 9000, 2.536, 1.5, 6, 0);
+            builder.AddTimeStep(9000, 9900, 2.537, 1.5, 6, 0);
+            builder.AddTimeStep(9900, 10800, 2.538, 1.5, 6, 0);
+
+            builder.AddDikeProfileSegment(0, 0, 30, 7.5);
+
+            builder.AddDikeProfilePointData(0, CharacteristicPointType::OuterToe);
+            builder.AddDikeProfilePointData(30, CharacteristicPointType::OuterCrest);
+        }
+
+        #pragma endregion
+
         static void AssertOutput(
             const Calculator& calculator,
             const double expectedDamage,
@@ -240,7 +266,7 @@ namespace DiKErnel::System::Test
     }
 
     TEST_F(NaturalStoneRevetmentCalculationTest,
-        GivenCalculationInputForSchematization1Testcase4_WhenCalculating_ThenReturnsExpectedCalculationResult)
+           GivenCalculationInputForSchematization1Testcase4_WhenCalculating_ThenReturnsExpectedCalculationResult)
     {
         // Given
         CalculationInputBuilder builder;
@@ -322,6 +348,46 @@ namespace DiKErnel::System::Test
         constexpr int expectedTimeOfFailure = 7942;
 
         AssertOutput(calculator, 1.1900709659898594, &expectedTimeOfFailure);
+    }
+
+    #pragma endregion
+
+    #pragma region Schematization 4
+
+    TEST_F(NaturalStoneRevetmentCalculationTest,
+           GivenCalculationInputForSchematization4Testcase1_WhenCalculating_ThenReturnsExpectedCalculationResult)
+    {
+        // Given
+        CalculationInputBuilder builder;
+
+        auto locationConstructionProperties = make_unique<NaturalStoneRevetmentLocationConstructionProperties>(
+            6, NaturalStoneRevetmentTopLayerType::NordicStone, 0.3, 1.65);
+
+        locationConstructionProperties->SetUpperLimitLoadingAul(make_unique<double>(0.08));
+        locationConstructionProperties->SetUpperLimitLoadingBul(make_unique<double>(0.7));
+        locationConstructionProperties->SetUpperLimitLoadingCul(make_unique<double>(3.5));
+        locationConstructionProperties->SetLowerLimitLoadingAll(make_unique<double>(0.08));
+        locationConstructionProperties->SetLowerLimitLoadingBll(make_unique<double>(0.15));
+        locationConstructionProperties->SetLowerLimitLoadingCll(make_unique<double>(5.5));
+        locationConstructionProperties->SetDistanceMaximumWaveElevationAsmax(make_unique<double>(0.5));
+        locationConstructionProperties->SetDistanceMaximumWaveElevationBsmax(make_unique<double>(0.8));
+        locationConstructionProperties->SetNormativeWidthOfWaveImpactAwi(make_unique<double>(1.1));
+        locationConstructionProperties->SetNormativeWidthOfWaveImpactBwi(make_unique<double>(0.15));
+
+        ConfigureBuilderForSchematization4(builder);
+
+        builder.AddNaturalStoneLocation(move(locationConstructionProperties));
+
+        const auto calculationInput = builder.Build();
+
+        // When
+        Calculator calculator(*calculationInput->GetData());
+        calculator.WaitForCompletion();
+
+        // Then
+        constexpr int expectedTimeOfFailure = 3894;
+
+        AssertOutput(calculator, 1.0994145971228768, &expectedTimeOfFailure);
     }
 
     #pragma endregion
