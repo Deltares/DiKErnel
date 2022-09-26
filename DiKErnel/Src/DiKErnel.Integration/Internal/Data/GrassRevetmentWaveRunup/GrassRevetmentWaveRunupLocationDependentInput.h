@@ -56,8 +56,7 @@ namespace DiKErnel::Integration
             GrassRevetmentWaveRunupWaveAngleImpact& GetWaveAngleImpact() const;
 
             [[nodiscard]]
-            bool Validate(
-                const Core::IProfileData& profileData) const override;
+            bool Validate() const override;
 
         protected:
             explicit GrassRevetmentWaveRunupLocationDependentInput(

@@ -73,8 +73,7 @@ namespace DiKErnel::Integration
             const double* GetEnforcedDikeHeight() const;
 
             [[nodiscard]]
-            bool Validate(
-                const Core::IProfileData& profileData) const override;
+            bool Validate() const override;
 
             [[nodiscard]]
             std::unique_ptr<Core::LocationDependentOutput> GetLocationDependentOutput(

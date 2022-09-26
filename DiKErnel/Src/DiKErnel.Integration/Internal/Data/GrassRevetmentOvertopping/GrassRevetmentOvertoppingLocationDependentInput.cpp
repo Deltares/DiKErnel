@@ -111,10 +111,9 @@ namespace DiKErnel::Integration
         return _enforcedDikeHeight.get();
     }
 
-    bool GrassRevetmentOvertoppingLocationDependentInput::Validate(
-        const IProfileData& profileData) const
+    bool GrassRevetmentOvertoppingLocationDependentInput::Validate() const
     {
-        const auto baseValidationSuccessful = LocationDependentInput::Validate(profileData);
+        const auto baseValidationSuccessful = LocationDependentInput::Validate();
 
         vector<unique_ptr<ValidationIssue>> validationIssues;
         validationIssues.emplace_back(GrassRevetmentValidator::CriticalCumulativeOverload(_criticalCumulativeOverload));
