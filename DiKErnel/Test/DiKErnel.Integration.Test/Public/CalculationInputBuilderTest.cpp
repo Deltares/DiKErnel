@@ -66,110 +66,6 @@ namespace DiKErnel::Integration::Test
 
     #pragma region Profile segments
 
-    TEST_F(CalculationInputBuilderTest, GivenBuilderWithDikeSegmentAddedWithoutRoughness_WhenBuild_ThenReturnsResultWithCalculationInput)
-    {
-        // Given
-        constexpr auto startPointX = 10;
-        constexpr auto startPointZ = 20;
-        constexpr auto endPointX = 20;
-        constexpr auto endPointZ = 30;
-
-        CalculationInputBuilder builder;
-        builder.AddDikeProfileSegment(startPointX, startPointZ, endPointX, endPointZ);
-        builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterToe);
-        builder.AddDikeProfilePointData(endPointX, CharacteristicPointType::OuterCrest);
-        builder.AddGrassWaveImpactLocation(
-            make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(10.1, GrassRevetmentTopLayerType::ClosedSod));
-        builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
-
-        // When
-        const auto& result = builder.Build();
-
-        // Then
-        ASSERT_TRUE(result->GetSuccessful());
-
-        const auto& calculationInput = *result->GetData();
-        const auto& actualProfileData = calculationInput.GetProfileData();
-        const auto& actualProfileSegments = actualProfileData.GetProfileSegments();
-        ASSERT_EQ(1, actualProfileSegments.size());
-
-        ProfileDataAssertHelper::AssertProfileSegment(startPointX, startPointZ, endPointX, endPointZ, 1.0, actualProfileSegments.at(0));
-    }
-
-    TEST_F(CalculationInputBuilderTest, GivenBuilderWithDikeSegmentAddedWithRoughness_WhenBuild_ThenReturnsResultWithCalculationInput)
-    {
-        // Given
-        constexpr auto startPointX = 10;
-        constexpr auto startPointZ = 20;
-        constexpr auto endPointX = 20;
-        constexpr auto endPointZ = 30;
-        constexpr auto roughnessCoefficient = 13.37;
-
-        CalculationInputBuilder builder;
-        builder.AddDikeProfileSegment(startPointX, startPointZ, endPointX, endPointZ, roughnessCoefficient);
-        builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterToe);
-        builder.AddDikeProfilePointData(endPointX, CharacteristicPointType::OuterCrest);
-        builder.AddGrassWaveImpactLocation(
-            make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(10.1, GrassRevetmentTopLayerType::ClosedSod));
-        builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
-
-        // When
-        const auto& result = builder.Build();
-
-        // Then
-        ASSERT_TRUE(result->GetSuccessful());
-
-        const auto& calculationInput = *result->GetData();
-        const auto& actualProfileData = calculationInput.GetProfileData();
-        const auto& actualProfileSegments = actualProfileData.GetProfileSegments();
-        ASSERT_EQ(1, actualProfileSegments.size());
-
-        ProfileDataAssertHelper::AssertProfileSegment(startPointX, startPointZ, endPointX, endPointZ, roughnessCoefficient,
-                                                      actualProfileSegments.at(0));
-    }
-
-    TEST_F(CalculationInputBuilderTest, GivenBuilderWithDikeSegmentsAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
-    {
-        // Given
-        constexpr auto startPointXSegmentOne = 10;
-        constexpr auto startPointZSegmentOne = 20;
-        constexpr auto endPointXSegmentOne = 20;
-        constexpr auto endPointZSegmentOne = 30;
-        constexpr auto endPointXSegmentTwo = 30;
-        constexpr auto endPointZSegmentTwo = 40;
-        constexpr auto roughnessCoefficient = 13.37;
-
-        CalculationInputBuilder builder;
-        builder.AddDikeProfileSegment(startPointXSegmentOne, startPointZSegmentOne, endPointXSegmentOne, endPointZSegmentOne, roughnessCoefficient);
-        builder.AddDikeProfileSegment(endPointXSegmentOne, endPointZSegmentOne, endPointXSegmentTwo, endPointZSegmentTwo, roughnessCoefficient);
-        builder.AddDikeProfilePointData(startPointXSegmentOne, CharacteristicPointType::OuterToe);
-        builder.AddDikeProfilePointData(endPointXSegmentOne, CharacteristicPointType::OuterCrest);
-        builder.AddGrassWaveImpactLocation(
-            make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(10.1, GrassRevetmentTopLayerType::ClosedSod));
-        builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
-
-        // When
-        const auto& result = builder.Build();
-
-        // Then
-        ASSERT_TRUE(result->GetSuccessful());
-
-        const auto& calculationInput = *result->GetData();
-        const auto& actualProfileData = calculationInput.GetProfileData();
-        const auto& actualProfileSegments = actualProfileData.GetProfileSegments();
-        ASSERT_EQ(2, actualProfileSegments.size());
-
-        const auto& segmentOne = actualProfileSegments.at(0).get();
-        ProfileDataAssertHelper::AssertProfileSegment(startPointXSegmentOne, startPointZSegmentOne, endPointXSegmentOne, endPointZSegmentOne,
-                                                      roughnessCoefficient, segmentOne);
-
-        const auto& segmentTwo = actualProfileSegments.at(1).get();
-        ProfileDataAssertHelper::AssertProfileSegment(endPointXSegmentOne, endPointZSegmentOne, endPointXSegmentTwo, endPointZSegmentTwo,
-                                                      roughnessCoefficient, segmentTwo);
-
-        ASSERT_EQ(&segmentOne.GetEndPoint(), &segmentTwo.GetStartPoint());
-    }
-
     TEST_F(CalculationInputBuilderTest, GivenBuilderWithoutDikeSegments_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         // Given
@@ -234,20 +130,18 @@ namespace DiKErnel::Integration::Test
             events.at(0));
     }
 
-    #pragma endregion
-
-    #pragma region Profile point data
-
-    TEST_F(CalculationInputBuilderTest, GivenBuilderWithDikeProfilePointDataOnSegmentPoints_WhenBuild_ThenReturnsResultWithCalculationInput)
+    TEST_F(CalculationInputBuilderTest, GivenBuilderWithDikeSegmentAddedWithoutRoughness_WhenBuild_ThenReturnsResultWithCalculationInput)
     {
         // Given
-        constexpr auto outerToe = CharacteristicPointType::OuterToe;
-        constexpr auto outerCrest = CharacteristicPointType::OuterCrest;
+        constexpr auto startPointX = 10;
+        constexpr auto startPointZ = 20;
+        constexpr auto endPointX = 20;
+        constexpr auto endPointZ = 30;
 
         CalculationInputBuilder builder;
-        builder.AddDikeProfileSegment(10, 20, 20, 30);
-        builder.AddDikeProfilePointData(10, outerToe);
-        builder.AddDikeProfilePointData(20, outerCrest);
+        builder.AddDikeProfileSegment(startPointX, startPointZ, endPointX, endPointZ);
+        builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterToe);
+        builder.AddDikeProfilePointData(endPointX, CharacteristicPointType::OuterCrest);
         builder.AddGrassWaveImpactLocation(
             make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(10.1, GrassRevetmentTopLayerType::ClosedSod));
         builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
@@ -261,14 +155,88 @@ namespace DiKErnel::Integration::Test
         const auto& calculationInput = *result->GetData();
         const auto& actualProfileData = calculationInput.GetProfileData();
         const auto& actualProfileSegments = actualProfileData.GetProfileSegments();
-        const auto& actualCharacteristicPoints = actualProfileData.GetCharacteristicPoints();
         ASSERT_EQ(1, actualProfileSegments.size());
-        ASSERT_EQ(2, actualCharacteristicPoints.size());
 
-        const auto& actualSegment = actualProfileSegments.at(0).get();
-        ProfileDataAssertHelper::AssertCharacteristicPoint(actualSegment.GetStartPoint(), outerToe, actualCharacteristicPoints.at(0));
-        ProfileDataAssertHelper::AssertCharacteristicPoint(actualSegment.GetEndPoint(), outerCrest, actualCharacteristicPoints.at(1));
+        ProfileDataAssertHelper::AssertProfileSegment(startPointX, startPointZ, endPointX, endPointZ, 1.0, actualProfileSegments.at(0));
     }
+
+    TEST_F(CalculationInputBuilderTest, GivenBuilderWithDikeSegmentAddedWithRoughness_WhenBuild_ThenReturnsResultWithCalculationInput)
+    {
+        // Given
+        constexpr auto startPointX = 10;
+        constexpr auto startPointZ = 20;
+        constexpr auto endPointX = 20;
+        constexpr auto endPointZ = 30;
+        constexpr auto roughnessCoefficient = 13.37;
+
+        CalculationInputBuilder builder;
+        builder.AddDikeProfileSegment(startPointX, startPointZ, endPointX, endPointZ, roughnessCoefficient);
+        builder.AddDikeProfilePointData(startPointX, CharacteristicPointType::OuterToe);
+        builder.AddDikeProfilePointData(endPointX, CharacteristicPointType::OuterCrest);
+        builder.AddGrassWaveImpactLocation(
+            make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(10.1, GrassRevetmentTopLayerType::ClosedSod));
+        builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
+
+        // When
+        const auto& result = builder.Build();
+
+        // Then
+        ASSERT_TRUE(result->GetSuccessful());
+
+        const auto& calculationInput = *result->GetData();
+        const auto& actualProfileData = calculationInput.GetProfileData();
+        const auto& actualProfileSegments = actualProfileData.GetProfileSegments();
+        ASSERT_EQ(1, actualProfileSegments.size());
+
+        ProfileDataAssertHelper::AssertProfileSegment(startPointX, startPointZ, endPointX, endPointZ, roughnessCoefficient,
+            actualProfileSegments.at(0));
+    }
+
+    TEST_F(CalculationInputBuilderTest, GivenBuilderWithDikeSegmentsAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
+    {
+        // Given
+        constexpr auto startPointXSegmentOne = 10;
+        constexpr auto startPointZSegmentOne = 20;
+        constexpr auto endPointXSegmentOne = 20;
+        constexpr auto endPointZSegmentOne = 30;
+        constexpr auto endPointXSegmentTwo = 30;
+        constexpr auto endPointZSegmentTwo = 40;
+        constexpr auto roughnessCoefficient = 13.37;
+
+        CalculationInputBuilder builder;
+        builder.AddDikeProfileSegment(startPointXSegmentOne, startPointZSegmentOne, endPointXSegmentOne, endPointZSegmentOne, roughnessCoefficient);
+        builder.AddDikeProfileSegment(endPointXSegmentOne, endPointZSegmentOne, endPointXSegmentTwo, endPointZSegmentTwo, roughnessCoefficient);
+        builder.AddDikeProfilePointData(startPointXSegmentOne, CharacteristicPointType::OuterToe);
+        builder.AddDikeProfilePointData(endPointXSegmentOne, CharacteristicPointType::OuterCrest);
+        builder.AddGrassWaveImpactLocation(
+            make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(10.1, GrassRevetmentTopLayerType::ClosedSod));
+        builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
+
+        // When
+        const auto& result = builder.Build();
+
+        // Then
+        ASSERT_TRUE(result->GetSuccessful());
+
+        const auto& calculationInput = *result->GetData();
+        const auto& actualProfileData = calculationInput.GetProfileData();
+        const auto& actualProfileSegments = actualProfileData.GetProfileSegments();
+        ASSERT_EQ(2, actualProfileSegments.size());
+
+        const auto& segmentOne = actualProfileSegments.at(0).get();
+        ProfileDataAssertHelper::AssertProfileSegment(startPointXSegmentOne, startPointZSegmentOne, endPointXSegmentOne, endPointZSegmentOne,
+            roughnessCoefficient, segmentOne);
+
+        const auto& segmentTwo = actualProfileSegments.at(1).get();
+        ProfileDataAssertHelper::AssertProfileSegment(endPointXSegmentOne, endPointZSegmentOne, endPointXSegmentTwo, endPointZSegmentTwo,
+            roughnessCoefficient, segmentTwo);
+
+        ASSERT_EQ(&segmentOne.GetEndPoint(), &segmentTwo.GetStartPoint());
+    }
+
+    #pragma endregion
+
+    #pragma region Profile point data
 
     TEST_F(CalculationInputBuilderTest,
            GivenBuilderWithDikeProfilePointDataNotOnSegmentPoints_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
@@ -378,6 +346,38 @@ namespace DiKErnel::Integration::Test
         ASSERT_EQ(1, events.size());
 
         EventAssertHelper::AssertEvent(EventType::Error, "The inner crest is required.", events.at(0));
+    }
+
+    TEST_F(CalculationInputBuilderTest, GivenBuilderWithDikeProfilePointDataOnSegmentPoints_WhenBuild_ThenReturnsResultWithCalculationInput)
+    {
+        // Given
+        constexpr auto outerToe = CharacteristicPointType::OuterToe;
+        constexpr auto outerCrest = CharacteristicPointType::OuterCrest;
+
+        CalculationInputBuilder builder;
+        builder.AddDikeProfileSegment(10, 20, 20, 30);
+        builder.AddDikeProfilePointData(10, outerToe);
+        builder.AddDikeProfilePointData(20, outerCrest);
+        builder.AddGrassWaveImpactLocation(
+            make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(10.1, GrassRevetmentTopLayerType::ClosedSod));
+        builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
+
+        // When
+        const auto& result = builder.Build();
+
+        // Then
+        ASSERT_TRUE(result->GetSuccessful());
+
+        const auto& calculationInput = *result->GetData();
+        const auto& actualProfileData = calculationInput.GetProfileData();
+        const auto& actualProfileSegments = actualProfileData.GetProfileSegments();
+        const auto& actualCharacteristicPoints = actualProfileData.GetCharacteristicPoints();
+        ASSERT_EQ(1, actualProfileSegments.size());
+        ASSERT_EQ(2, actualCharacteristicPoints.size());
+
+        const auto& actualSegment = actualProfileSegments.at(0).get();
+        ProfileDataAssertHelper::AssertCharacteristicPoint(actualSegment.GetStartPoint(), outerToe, actualCharacteristicPoints.at(0));
+        ProfileDataAssertHelper::AssertCharacteristicPoint(actualSegment.GetEndPoint(), outerCrest, actualCharacteristicPoints.at(1));
     }
 
     #pragma endregion
