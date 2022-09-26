@@ -183,6 +183,14 @@ namespace DiKErnel::Integration
             bool CanBuildValidCalculationInput() const;
 
             [[nodiscard]]
+            bool ValidateProfileSegments() const;
+
+            [[nodiscard]]
+            bool ValidateCharacteristicPoints(
+                const ProfileDataFactoryPoint* outerToe,
+                const ProfileDataFactoryPoint* outerCrest) const;
+
+            [[nodiscard]]
             bool ValidateCharacteristicPoint(
                 const ProfileDataFactoryPoint* characteristicPoint,
                 const std::string& characteristicPointName,
@@ -191,6 +199,14 @@ namespace DiKErnel::Integration
             [[nodiscard]]
             ProfileDataFactoryPoint* GetProfilePointDataItemForCharacteristicPointType(
                 Core::CharacteristicPointType characteristicPointType) const;
+
+            [[nodiscard]]
+            bool ValidateLocations(
+                const ProfileDataFactoryPoint& outerToe,
+                const ProfileDataFactoryPoint& outerCrest) const;
+
+            [[nodiscard]]
+            bool ValidateTimeSteps() const;
 
             void RegisterValidationError(
                 const std::string& message) const;

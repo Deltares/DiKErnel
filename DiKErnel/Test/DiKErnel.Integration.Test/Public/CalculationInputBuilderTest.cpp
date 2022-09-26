@@ -159,8 +159,6 @@ namespace DiKErnel::Integration::Test
     {
         // Given
         CalculationInputBuilder builder;
-        builder.AddDikeProfilePointData(0, CharacteristicPointType::OuterToe);
-        builder.AddDikeProfilePointData(10, CharacteristicPointType::OuterCrest);
 
         // When
         const auto& result = builder.Build();

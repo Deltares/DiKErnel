@@ -166,6 +166,17 @@ namespace DiKErnel::Integration
 
     bool CalculationInputBuilder::CanBuildValidCalculationInput() const
     {
+        const auto* outerToe = GetProfilePointDataItemForCharacteristicPointType(CharacteristicPointType::OuterToe);
+        const auto* outerCrest = GetProfilePointDataItemForCharacteristicPointType(CharacteristicPointType::OuterCrest);
+
+        return ValidateProfileSegments()
+                && ValidateCharacteristicPoints(outerToe, outerCrest)
+                && ValidateLocations(*outerToe, *outerCrest)
+                && ValidateTimeSteps();
+    }
+
+    bool CalculationInputBuilder::ValidateProfileSegments() const
+    {
         if (_profileSegmentDataItems.empty())
         {
             RegisterValidationError("At least 1 segment is required.");
@@ -188,64 +199,20 @@ namespace DiKErnel::Integration
             previousSegment = currentSegment;
         }
 
-        const auto* outerToe = GetProfilePointDataItemForCharacteristicPointType(CharacteristicPointType::OuterToe);
-        const auto* outerCrest = GetProfilePointDataItemForCharacteristicPointType(CharacteristicPointType::OuterCrest);
+        return true;
+    }
+
+    bool CalculationInputBuilder::ValidateCharacteristicPoints(
+        const ProfileDataFactoryPoint* outerToe,
+        const ProfileDataFactoryPoint* outerCrest) const
+    {
         const auto* innerToe = GetProfilePointDataItemForCharacteristicPointType(CharacteristicPointType::InnerToe);
         const auto* innerCrest = GetProfilePointDataItemForCharacteristicPointType(CharacteristicPointType::InnerCrest);
 
-        if (!ValidateCharacteristicPoint(outerToe, "outer toe")
-            || !ValidateCharacteristicPoint(outerCrest, "outer crest")
-            || !ValidateCharacteristicPoint(innerCrest, "inner crest", _grassOvertoppingLocationAdded)
-            || !ValidateCharacteristicPoint(innerToe, "inner toe", _grassOvertoppingLocationAdded))
-        {
-            return false;
-        }
-
-        if (_locationConstructionPropertiesItems.empty())
-        {
-            RegisterValidationError("At least 1 location is required.");
-            return false;
-        }
-
-
-        if(ranges::any_of(_locationConstructionPropertiesItemReferences, [outerToe, outerCrest](
-            const reference_wrapper<RevetmentLocationConstructionPropertiesBase> locationReference)
-        {
-                const auto locationX = locationReference.get().GetX();
-                return locationX <= outerToe->GetX() || locationX >= outerCrest->GetX();
-        }))
-        {
-            RegisterValidationError("The location must be between the outer toe and outer crest.");
-            return false;
-        }
-
-        if (_timeStepDataItems.empty())
-        {
-            RegisterValidationError("At least 1 time step is required.");
-            return false;
-        }
-
-        const TimeDependentInputFactoryData* previousTimeStep = nullptr;
-        for (const auto& timeStepDataItem : _timeStepDataItems)
-        {
-            const TimeDependentInputFactoryData* currentTimeStep = timeStepDataItem.get();
-
-            if (previousTimeStep != nullptr && previousTimeStep->GetEndTime() != currentTimeStep->GetBeginTime())
-            {
-                RegisterValidationError("The begin time of a successive element must be equal to the end time of the previous element.");
-                return false;
-            }
-
-            if(currentTimeStep->GetBeginTime() >= currentTimeStep->GetEndTime())
-            {
-                RegisterValidationError("The begin time must be smaller than the end time.");
-                return false;
-            }
-
-            previousTimeStep = currentTimeStep;
-        }
-
-        return true;
+        return ValidateCharacteristicPoint(outerToe, "outer toe")
+                && ValidateCharacteristicPoint(outerCrest, "outer crest")
+                && ValidateCharacteristicPoint(innerCrest, "inner crest", _grassOvertoppingLocationAdded)
+                && ValidateCharacteristicPoint(innerToe, "inner toe", _grassOvertoppingLocationAdded);
     }
 
     bool CalculationInputBuilder::ValidateCharacteristicPoint(
@@ -293,6 +260,61 @@ namespace DiKErnel::Integration
         return result != _profilePointDataItemReferences.end()
                    ? &result->get()
                    : nullptr;
+    }
+
+    bool CalculationInputBuilder::ValidateLocations(
+        const ProfileDataFactoryPoint& outerToe,
+        const ProfileDataFactoryPoint& outerCrest) const
+    {
+        if (_locationConstructionPropertiesItems.empty())
+        {
+            RegisterValidationError("At least 1 location is required.");
+            return false;
+        }
+
+        if (ranges::any_of(_locationConstructionPropertiesItemReferences, [outerToe, outerCrest](
+                       const reference_wrapper<RevetmentLocationConstructionPropertiesBase> locationReference)
+                           {
+                               const auto locationX = locationReference.get().GetX();
+                               return locationX <= outerToe.GetX() || locationX >= outerCrest.GetX();
+                           }))
+        {
+            RegisterValidationError("The location must be between the outer toe and outer crest.");
+            return false;
+        }
+
+        return true;
+    }
+
+    bool CalculationInputBuilder::ValidateTimeSteps() const
+    {
+        if (_timeStepDataItems.empty())
+        {
+            RegisterValidationError("At least 1 time step is required.");
+            return false;
+        }
+
+        const TimeDependentInputFactoryData* previousTimeStep = nullptr;
+        for (const auto& timeStepDataItem : _timeStepDataItems)
+        {
+            const TimeDependentInputFactoryData* currentTimeStep = timeStepDataItem.get();
+
+            if (previousTimeStep != nullptr && previousTimeStep->GetEndTime() != currentTimeStep->GetBeginTime())
+            {
+                RegisterValidationError("The begin time of a successive element must be equal to the end time of the previous element.");
+                return false;
+            }
+
+            if (currentTimeStep->GetBeginTime() >= currentTimeStep->GetEndTime())
+            {
+                RegisterValidationError("The begin time must be smaller than the end time.");
+                return false;
+            }
+
+            previousTimeStep = currentTimeStep;
+        }
+
+        return true;
     }
 
     void CalculationInputBuilder::RegisterValidationError(
