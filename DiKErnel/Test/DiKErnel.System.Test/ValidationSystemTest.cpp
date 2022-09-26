@@ -37,7 +37,7 @@ namespace DiKErnel::System::Test
     {
         // Given
         CalculationInputBuilder builder;
-        builder.AddTimeStep(100, 90, 10, -1, 30, 200);
+        builder.AddTimeStep(90, 100, 10, -1, 30, 200);
         builder.AddDikeProfileSegment(10, 5, 20, 10);
         builder.AddDikeProfilePointData(10, CharacteristicPointType::OuterToe);
         builder.AddDikeProfilePointData(20, CharacteristicPointType::OuterCrest);
@@ -53,11 +53,10 @@ namespace DiKErnel::System::Test
         ASSERT_TRUE(validationResult->GetSuccessful());
         ASSERT_EQ(ValidationResultType::Failed, *validationResult->GetData());
         const auto& events = validationResult->GetEvents();
-        ASSERT_EQ(4, events.size());
-        EventAssertHelper::AssertEvent(EventType::Error, "BeginTime must be smaller than EndTime.", events.at(0));
-        EventAssertHelper::AssertEvent(EventType::Error, "WaveHeightHm0 must be larger than 0.", events.at(1));
-        EventAssertHelper::AssertEvent(EventType::Warning, "WavePeriodTm10 should be in range {0.5, 25}.", events.at(2));
-        EventAssertHelper::AssertEvent(EventType::Error, "WaveAngle must be in range {-180, 180].", events.at(3));
+        ASSERT_EQ(3, events.size());
+        EventAssertHelper::AssertEvent(EventType::Error, "WaveHeightHm0 must be larger than 0.", events.at(0));
+        EventAssertHelper::AssertEvent(EventType::Warning, "WavePeriodTm10 should be in range {0.5, 25}.", events.at(1));
+        EventAssertHelper::AssertEvent(EventType::Error, "WaveAngle must be in range {-180, 180].", events.at(2));
     }
 
     TEST(ValidationSystemTest, GivenCalculationInputWithInvalidProfileData_WhenValidating_ThenReturnsExpectedValidationResult)
@@ -140,6 +139,7 @@ namespace DiKErnel::System::Test
     TEST(ValidationSystemTest, GivenCalculationInputWithInvalidGrassRevetmentWaveImpactLocation_WhenValidating_ThenReturnsExpectedValidationResult)
     {
         // Given
+        auto constructionProperties = make_unique<
             GrassRevetmentWaveImpactLocationConstructionProperties>(15, GrassRevetmentTopLayerType::ClosedSod);
         constructionProperties->SetInitialDamage(make_unique<double>(-0.1));
         constructionProperties->SetFailureNumber(make_unique<double>(-1));
@@ -238,7 +238,7 @@ namespace DiKErnel::System::Test
     {
         // Given
         auto constructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(
-            10, GrassRevetmentTopLayerType::ClosedSod);
+            15, GrassRevetmentTopLayerType::ClosedSod);
         constructionProperties->SetInitialDamage(make_unique<double>(-0.1));
         constructionProperties->SetFailureNumber(make_unique<double>(-1));
         constructionProperties->SetCriticalCumulativeOverload(make_unique<double>(-2));
@@ -271,19 +271,18 @@ namespace DiKErnel::System::Test
         ASSERT_TRUE(validationResult->GetSuccessful());
         ASSERT_EQ(ValidationResultType::Failed, *validationResult->GetData());
         const auto& events = validationResult->GetEvents();
-        ASSERT_EQ(12, events.size());
-        EventAssertHelper::AssertEvent(EventType::Error, "X must be in range {OuterToeX, OuterCrestX}.", events.at(0));
-        EventAssertHelper::AssertEvent(EventType::Error, "InitialDamage must be equal to 0 or larger.", events.at(1));
-        EventAssertHelper::AssertEvent(EventType::Error, "FailureNumber must be equal to InitialDamage or larger.", events.at(2));
-        EventAssertHelper::AssertEvent(EventType::Error, "CriticalCumulativeOverload must be larger than 0.", events.at(3));
-        EventAssertHelper::AssertEvent(EventType::Error, "CriticalFrontVelocity must be equal to 0 or larger.", events.at(4));
+        ASSERT_EQ(11, events.size());
+        EventAssertHelper::AssertEvent(EventType::Error, "InitialDamage must be equal to 0 or larger.", events.at(0));
+        EventAssertHelper::AssertEvent(EventType::Error, "FailureNumber must be equal to InitialDamage or larger.", events.at(1));
+        EventAssertHelper::AssertEvent(EventType::Error, "CriticalCumulativeOverload must be larger than 0.", events.at(2));
+        EventAssertHelper::AssertEvent(EventType::Error, "CriticalFrontVelocity must be equal to 0 or larger.", events.at(3));
+        EventAssertHelper::AssertEvent(EventType::Error, "AccelerationAlphaA must be equal to 0 or larger.", events.at(4));
         EventAssertHelper::AssertEvent(EventType::Error, "AccelerationAlphaA must be equal to 0 or larger.", events.at(5));
-        EventAssertHelper::AssertEvent(EventType::Error, "AccelerationAlphaA must be equal to 0 or larger.", events.at(6));
-        EventAssertHelper::AssertEvent(EventType::Error, "FixedNumberOfWaves must be larger than 0.", events.at(7));
-        EventAssertHelper::AssertEvent(EventType::Error, "FrontVelocityCwo must be larger than 0.", events.at(8));
-        EventAssertHelper::AssertEvent(EventType::Error, "AverageNumberOfWavesCtm must be larger than 0.", events.at(9));
-        EventAssertHelper::AssertEvent(EventType::Error, "IncreasedLoadTransitionAlphaM must be equal to 0 or larger.", events.at(10));
-        EventAssertHelper::AssertEvent(EventType::Error, "ReducedStrengthTransitionAlphaS must be equal to 0 or larger.", events.at(11));
+        EventAssertHelper::AssertEvent(EventType::Error, "FixedNumberOfWaves must be larger than 0.", events.at(6));
+        EventAssertHelper::AssertEvent(EventType::Error, "FrontVelocityCwo must be larger than 0.", events.at(7));
+        EventAssertHelper::AssertEvent(EventType::Error, "AverageNumberOfWavesCtm must be larger than 0.", events.at(8));
+        EventAssertHelper::AssertEvent(EventType::Error, "IncreasedLoadTransitionAlphaM must be equal to 0 or larger.", events.at(9));
+        EventAssertHelper::AssertEvent(EventType::Error, "ReducedStrengthTransitionAlphaS must be equal to 0 or larger.", events.at(10));
     }
 
     TEST(ValidationSystemTest, GivenCalculationInputWithInvalidNaturalStoneRevetmentLocation_WhenValidating_ThenReturnsExpectedValidationResult)
