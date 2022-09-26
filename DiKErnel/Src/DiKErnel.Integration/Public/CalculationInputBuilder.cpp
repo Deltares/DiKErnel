@@ -21,6 +21,8 @@
 #include "CalculationInputBuilder.h"
 
 #include <algorithm>
+#include <format>
+#include <sstream>
 
 #include "AsphaltRevetmentWaveImpactDefaults.h"
 #include "AsphaltRevetmentWaveImpactDefaultsFactory.h"
@@ -189,12 +191,25 @@ namespace DiKErnel::Integration
         {
             const ProfileDataFactorySegment* currentSegment = profileSegmentDataItem.get();
 
-            if (previousSegment != nullptr
-                && (!NumericsHelper::AreEqual(previousSegment->GetEndPointX(), currentSegment->GetStartPointX())
-                    || !NumericsHelper::AreEqual(previousSegment->GetEndPointZ(), currentSegment->GetStartPointZ())))
+            if (previousSegment != nullptr)
             {
-                RegisterValidationError("The start point of a successive segment must be equal to the end point of the previous segment.");
-                return false;
+                const double previousSegmentStartPointX = previousSegment->GetEndPointX();
+                const double previousSegmentStartPointZ = previousSegment->GetEndPointZ();
+
+                const double currentSegmentStartPointX = currentSegment->GetStartPointX();
+                const double currentSegmentStartPointZ = currentSegment->GetStartPointZ();
+
+                if (!NumericsHelper::AreEqual(previousSegmentStartPointX, currentSegmentStartPointX)
+                    || !NumericsHelper::AreEqual(previousSegmentStartPointZ, currentSegmentStartPointZ))
+                {
+                    ostringstream stringStream;
+                    stringStream << "The start point of the segment (" << currentSegmentStartPointX << ", " << currentSegmentStartPointZ << ") "
+                            << "must be equal to the end point of the previous segment (" << previousSegmentStartPointX << ", " <<
+                            previousSegmentStartPointZ << ").";
+
+                    RegisterValidationError(stringStream.str());
+                    return false;
+                }
             }
 
             previousSegment = currentSegment;
@@ -242,7 +257,7 @@ namespace DiKErnel::Integration
                                         || NumericsHelper::AreEqual(profileSegmentDataItem.GetEndPointX(), characteristicPointX);
                             }))
         {
-            RegisterValidationError("Characteristic point must be on a start or end point of a segment.");
+            RegisterValidationError("The " + characteristicPointName + " must be on a start or end point of a segment.");
             return false;
         }
 
@@ -285,7 +300,10 @@ namespace DiKErnel::Integration
             {
                 if (locationX < outerCrest.GetX() || locationX > innerToe->GetX())
                 {
-                    RegisterValidationError("The location must be on or between the outer crest and inner toe.");
+                    stringstream stringStream;
+                    stringStream << locationX;
+
+                    RegisterValidationError("The location on X: " + stringStream.str() + " must be on or between the outer crest and inner toe.");
                     return false;
                 }
             }
@@ -293,7 +311,10 @@ namespace DiKErnel::Integration
             {
                 if (locationX <= outerToe.GetX() || locationX >= outerCrest.GetX())
                 {
-                    RegisterValidationError("The location must be between the outer toe and outer crest.");
+                    stringstream stringStream;
+                    stringStream << locationX;
+
+                    RegisterValidationError("The location on X: " + stringStream.str() + " must be between the outer toe and outer crest.");
                     return false;
                 }
             }
@@ -315,15 +336,23 @@ namespace DiKErnel::Integration
         {
             const TimeDependentInputFactoryData* currentTimeStep = timeStepDataItem.get();
 
-            if (previousTimeStep != nullptr && previousTimeStep->GetEndTime() != currentTimeStep->GetBeginTime())
+            const int currentTimeStepBeginTime = currentTimeStep->GetBeginTime();
+            if (previousTimeStep != nullptr)
             {
-                RegisterValidationError("The begin time of a successive element must be equal to the end time of the previous element.");
-                return false;
+                if (const int previousTimeStepEndTime = previousTimeStep->GetEndTime(); previousTimeStepEndTime != currentTimeStepBeginTime)
+                {
+                    RegisterValidationError(
+                        "The begin time of the time step (" + to_string(currentTimeStepBeginTime) + ") must be equal to the end time of the " +
+                        "previous time step (" + to_string(previousTimeStepEndTime) + ").");
+                    return false;
+                }
             }
 
-            if (currentTimeStep->GetBeginTime() >= currentTimeStep->GetEndTime())
+            if (const int currentTimeStepEndTime = currentTimeStep->GetEndTime(); currentTimeStepBeginTime >= currentTimeStepEndTime)
             {
-                RegisterValidationError("The begin time must be smaller than the end time.");
+                RegisterValidationError(
+                    "The begin time of the time step (" + to_string(currentTimeStepBeginTime) + ") must be smaller than the end time of the " +
+                    "time step (" + to_string(currentTimeStepEndTime) + ").");
                 return false;
             }
 

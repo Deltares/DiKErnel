@@ -65,14 +65,16 @@ namespace DiKErnel::Integration::Test
 
         template <typename T>
         static void GivenOuterSlopeLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(
-            const T& addLocation)
+            const T& addLocation,
+            const string& locationX)
         {
             GivenLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(
-                addLocation, "The location must be between the outer toe and outer crest.");
+                addLocation, "The location on X: " + locationX + " must be between the outer toe and outer crest.");
         }
-
+            
         static void GivenGrassOvertoppingLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(
-            const double locationX)
+            const double locationX,
+            const string& locationXString)
         {
             GivenLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(
                 [locationX](
@@ -85,7 +87,7 @@ namespace DiKErnel::Integration::Test
                     builder.AddGrassOvertoppingLocation(
                         make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(locationX, GrassRevetmentTopLayerType::ClosedSod));
                 },
-                "The location must be on or between the outer crest and inner toe.");
+                "The location on X: " + locationXString + " must be on or between the outer crest and inner toe.");
         }
 
         template <typename T>
@@ -137,7 +139,7 @@ namespace DiKErnel::Integration::Test
 
         CalculationInputBuilder builder;
         builder.AddDikeProfileSegment(10, 20, 20, 30);
-        builder.AddDikeProfileSegment(20.01, 20, 30, 40);
+        builder.AddDikeProfileSegment(20.01, 30, 30, 40);
 
         // When
         const auto& result = builder.Build();
@@ -150,7 +152,7 @@ namespace DiKErnel::Integration::Test
 
         EventAssertHelper::AssertEvent(
             EventType::Error,
-            "The start point of a successive segment must be equal to the end point of the previous segment.",
+            "The start point of the segment (20.01, 30) must be equal to the end point of the previous segment (20, 30).",
             events.at(0));
     }
 
@@ -160,7 +162,7 @@ namespace DiKErnel::Integration::Test
         // Given
         CalculationInputBuilder builder;
         builder.AddDikeProfileSegment(10, 20, 20, 30);
-        builder.AddDikeProfileSegment(20, 2.01, 30, 40);
+        builder.AddDikeProfileSegment(20, 30.01, 30, 40);
 
         // When
         const auto& result = builder.Build();
@@ -173,7 +175,7 @@ namespace DiKErnel::Integration::Test
 
         EventAssertHelper::AssertEvent(
             EventType::Error,
-            "The start point of a successive segment must be equal to the end point of the previous segment.",
+            "The start point of the segment (20, 30.01) must be equal to the end point of the previous segment (20, 30).",
             events.at(0));
     }
 
@@ -302,7 +304,7 @@ namespace DiKErnel::Integration::Test
         const auto& events = result->GetEvents();
         ASSERT_EQ(1, events.size());
 
-        EventAssertHelper::AssertEvent(EventType::Error, "Characteristic point must be on a start or end point of a segment.", events.at(0));
+        EventAssertHelper::AssertEvent(EventType::Error, "The outer toe must be on a start or end point of a segment.", events.at(0));
     }
 
     TEST_F(CalculationInputBuilderTest, GivenBuilderWithoutDikeProfilePointDataOuterToe_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
@@ -476,7 +478,7 @@ namespace DiKErnel::Integration::Test
 
         EventAssertHelper::AssertEvent(
             EventType::Error,
-            "The begin time of a successive element must be equal to the end time of the previous element.",
+            "The begin time of the time step (3) must be equal to the end time of the previous time step (2).",
             events.at(0));
     }
 
@@ -501,7 +503,10 @@ namespace DiKErnel::Integration::Test
         const auto& events = result->GetEvents();
         ASSERT_EQ(1, events.size());
 
-        EventAssertHelper::AssertEvent(EventType::Error, "The begin time must be smaller than the end time.", events.at(0));
+        EventAssertHelper::AssertEvent(
+            EventType::Error,
+            "The begin time of the time step (2) must be smaller than the end time of the time step (1).",
+            events.at(0));
     }
 
     TEST_F(CalculationInputBuilderTest, GivenBuilderWithTimeStepAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
@@ -574,7 +579,7 @@ namespace DiKErnel::Integration::Test
                 builder.AddAsphaltWaveImpactLocation(
                     make_unique<AsphaltRevetmentWaveImpactLocationConstructionProperties>(
                         0, AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete, 0.2, 0.3, 0.4, 0.5));
-            });
+            }, "0");
     }
 
     TEST_F(CalculationInputBuilderTest,
@@ -587,7 +592,7 @@ namespace DiKErnel::Integration::Test
                 builder.AddAsphaltWaveImpactLocation(
                     make_unique<AsphaltRevetmentWaveImpactLocationConstructionProperties>(
                         10, AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete, 0.2, 0.3, 0.4, 0.5));
-            });
+            }, "10");
     }
 
     TEST_F(CalculationInputBuilderTest,
@@ -805,14 +810,14 @@ namespace DiKErnel::Integration::Test
            GivenBuilderWithGrassOvertoppingLocationWithXOnOuterToe_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         // Given & When & Then
-        GivenGrassOvertoppingLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(9.9);
+        GivenGrassOvertoppingLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(9.9, "9.9");
     }
 
     TEST_F(CalculationInputBuilderTest,
            GivenBuilderWithGrassOvertoppingLocationWithXOnOuterCrest_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         // Given & When & Then
-        GivenGrassOvertoppingLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(50.1);
+        GivenGrassOvertoppingLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(50.1, "50.1");
     }
 
     TEST_F(CalculationInputBuilderTest,
@@ -1035,7 +1040,7 @@ namespace DiKErnel::Integration::Test
             {
                 builder.AddGrassWaveImpactLocation(
                     make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(0, GrassRevetmentTopLayerType::ClosedSod));
-            });
+            }, "0");
     }
 
     TEST_F(CalculationInputBuilderTest,
@@ -1047,7 +1052,7 @@ namespace DiKErnel::Integration::Test
             {
                 builder.AddGrassWaveImpactLocation(
                     make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(10, GrassRevetmentTopLayerType::ClosedSod));
-            });
+            }, "10");
     }
 
     TEST_F(CalculationInputBuilderTest,
@@ -1262,7 +1267,7 @@ namespace DiKErnel::Integration::Test
             {
                 builder.AddGrassWaveRunupRayleighLocation(
                     make_unique<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(0, 0.1, GrassRevetmentTopLayerType::ClosedSod));
-            });
+            }, "0");
     }
 
     TEST_F(CalculationInputBuilderTest,
@@ -1274,7 +1279,7 @@ namespace DiKErnel::Integration::Test
             {
                 builder.AddGrassWaveRunupRayleighLocation(
                     make_unique<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(10, 0.1, GrassRevetmentTopLayerType::ClosedSod));
-            });
+            }, "10");
     }
 
     TEST_F(CalculationInputBuilderTest,
@@ -1502,7 +1507,7 @@ namespace DiKErnel::Integration::Test
             {
                 builder.AddNaturalStoneLocation(
                     make_unique<NaturalStoneRevetmentLocationConstructionProperties>(0, NaturalStoneRevetmentTopLayerType::NordicStone, 0.1, 0.2));
-            });
+            }, "0");
     }
 
     TEST_F(CalculationInputBuilderTest,
@@ -1514,7 +1519,7 @@ namespace DiKErnel::Integration::Test
             {
                 builder.AddNaturalStoneLocation(
                     make_unique<NaturalStoneRevetmentLocationConstructionProperties>(10, NaturalStoneRevetmentTopLayerType::NordicStone, 0.1, 0.2));
-            });
+            }, "10");
     }
 
     TEST_F(CalculationInputBuilderTest,
