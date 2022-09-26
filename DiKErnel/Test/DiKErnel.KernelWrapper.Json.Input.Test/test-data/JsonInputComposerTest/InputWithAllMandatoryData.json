@@ -37,36 +37,36 @@
     },
     "locaties": [
         {
-            "positie": 8.79,
+            "positie": 32.79,
             "rekenmethode": "natuursteen",
             "typeToplaag": "noorseSteen",
             "relatieveDichtheid": 1.65,
             "dikteToplaag": 0.7
         },
         {
-            "positie": -18.4,
+            "positie": 38.4,
             "rekenmethode": "grasGolfklap",
             "typeToplaag": "grasGeslotenZode"
         },
         {
-            "positie": 4,
+            "positie": 40,
             "rekenmethode": "grasGolfklap",
             "typeToplaag": "grasOpenZode"
         },
         {
-            "positie": 0.98,
+            "positie": 50.98,
             "rekenmethode": "grasGolfoploop",
             "typeToplaag": "grasGeslotenZode",
             "tanA": 0.8
         },
         {
-            "positie": 7.698,
+            "positie": 57.698,
             "rekenmethode": "grasGolfoploop",
             "typeToplaag": "grasOpenZode",
             "tanA": 0.9
         },
         {
-            "positie": 19,
+            "positie": 39,
             "rekenmethode": "asfaltGolfklap",
             "typeToplaag": "waterbouwAsfaltBeton",
             "breuksterkteAsfalt": 1.56,

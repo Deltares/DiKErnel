@@ -122,7 +122,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
 
         const auto& characteristicPoints = profileData.GetCharacteristicPoints();
         ASSERT_EQ(6, characteristicPoints.size());
-        ProfileDataAssertHelper::AssertCharacteristicPoint(profileSegments.at(8).get().GetEndPoint(), CharacteristicPointType::OuterToe,
+        ProfileDataAssertHelper::AssertCharacteristicPoint(profileSegments.at(2).get().GetEndPoint(), CharacteristicPointType::OuterToe,
                                                            characteristicPoints.at(0));
         ProfileDataAssertHelper::AssertCharacteristicPoint(profileSegments.at(10).get().GetEndPoint(), CharacteristicPointType::CrestOuterBerm,
                                                            characteristicPoints.at(1));
@@ -174,7 +174,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
 
         LocationDependentInputAssertHelper::AssertDamageProperties(0.04, 1.07, *grassRevetmentWaveImpactLocationDependentInputItem);
         GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertGeneralProperties(
-            0, *grassRevetmentWaveImpactLocationDependentInputItem);
+            1, *grassRevetmentWaveImpactLocationDependentInputItem);
         GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertMinimumWaveHeight(
             2500000, *grassRevetmentWaveImpactLocationDependentInputItem);
         GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertMaximumWaveHeight(
@@ -194,7 +194,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
 
         LocationDependentInputAssertHelper::AssertDamageProperties(0.0006, 0.45, *grassRevetmentWaveRunupRayleighLocationDependentInputItem);
         GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertGeneralProperties(
-            157, 0.7, *grassRevetmentWaveRunupRayleighLocationDependentInputItem);
+            64.9, 0.7, *grassRevetmentWaveRunupRayleighLocationDependentInputItem);
         GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertRepresentative2P(
             1.56, 4.6, 3.5, 3.2, 4.1, grassRevetmentWaveRunupRayleighLocationDependentInputItem->GetRepresentative2P());
         GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertWaveAngleImpact(
@@ -318,7 +318,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
 
         LocationDependentInputAssertHelper::AssertDamageProperties(0, 1, *naturalStoneRevetmentLocationDependentInputItem);
         NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertGeneralProperties(
-            8.79, 1.65, 0.7, *naturalStoneRevetmentLocationDependentInputItem);
+            32.79, 1.65, 0.7, *naturalStoneRevetmentLocationDependentInputItem);
         NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertHydraulicLoads(
             4, 0, 0, -0.9, 0.8, 0, 0, 0.6, 2.9, naturalStoneRevetmentLocationDependentInputItem->GetHydraulicLoads());
         NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertSlope(
@@ -340,7 +340,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
 
         LocationDependentInputAssertHelper::AssertDamageProperties(0, 1, *grassRevetmentWaveImpactLocationDependentInputItem1);
         GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertGeneralProperties(
-            -18.4, *grassRevetmentWaveImpactLocationDependentInputItem1);
+            38.4, *grassRevetmentWaveImpactLocationDependentInputItem1);
         GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertMinimumWaveHeight(
             3600000, *grassRevetmentWaveImpactLocationDependentInputItem1);
         GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertMaximumWaveHeight(
@@ -360,7 +360,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
 
         LocationDependentInputAssertHelper::AssertDamageProperties(0, 1, *grassRevetmentWaveImpactLocationDependentInputItem2);
         GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertGeneralProperties(
-            4, *grassRevetmentWaveImpactLocationDependentInputItem2);
+            40, *grassRevetmentWaveImpactLocationDependentInputItem2);
         GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertMinimumWaveHeight(
             3600000, *grassRevetmentWaveImpactLocationDependentInputItem2);
         GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertMaximumWaveHeight(
@@ -380,7 +380,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
 
         LocationDependentInputAssertHelper::AssertDamageProperties(0, 1, *grassRevetmentWaveRunupRayleighLocationDependentInputItem1);
         GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertGeneralProperties(
-            0.98, 0.8, *grassRevetmentWaveRunupRayleighLocationDependentInputItem1);
+            50.98, 0.8, *grassRevetmentWaveRunupRayleighLocationDependentInputItem1);
         GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertRepresentative2P(
             1.65, 4, 1.5, 1, 1, grassRevetmentWaveRunupRayleighLocationDependentInputItem1->GetRepresentative2P());
         GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertWaveAngleImpact(
@@ -400,7 +400,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
 
         LocationDependentInputAssertHelper::AssertDamageProperties(0, 1, *grassRevetmentWaveRunupRayleighLocationDependentInputItem2);
         GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertGeneralProperties(
-            7.698, 0.9, *grassRevetmentWaveRunupRayleighLocationDependentInputItem2);
+            57.698, 0.9, *grassRevetmentWaveRunupRayleighLocationDependentInputItem2);
         GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertRepresentative2P(
             1.65, 4, 1.5, 1, 1, grassRevetmentWaveRunupRayleighLocationDependentInputItem2->GetRepresentative2P());
         GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertWaveAngleImpact(
@@ -420,7 +420,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
 
         LocationDependentInputAssertHelper::AssertDamageProperties(0, 1, *asphaltRevetmentWaveImpactLocationDependentInputItem);
         AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertGeneralProperties(
-            19, 1.56, 1025, 56, 1, 1, 0.35, *asphaltRevetmentWaveImpactLocationDependentInputItem);
+            39, 1.56, 1025, 56, 1, 1, 0.35, *asphaltRevetmentWaveImpactLocationDependentInputItem);
         AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertLayer(
             0.16, 18214, asphaltRevetmentWaveImpactLocationDependentInputItem->GetUpperLayer());
         ASSERT_EQ(nullptr, asphaltRevetmentWaveImpactLocationDependentInputItem->GetSubLayer());

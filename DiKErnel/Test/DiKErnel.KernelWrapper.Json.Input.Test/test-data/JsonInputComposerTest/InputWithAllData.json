@@ -115,7 +115,7 @@
             1.05,
             1.1
         ],
-        "teenBuitenzijde": 30,
+        "teenBuitenzijde": 0,
         "kruinBermBuitenzijde": 40,
         "insteekBermBuitenzijde": 50,
         "kruinBuitenzijde": 65,
@@ -132,13 +132,13 @@
             "dikteToplaag": 0.3
         },
         {
-            "positie": 0,
+            "positie": 1,
             "beginschade": 0.04,
             "rekenmethode": "grasGolfklap",
             "typeToplaag": "grasGeslotenZode"
         },
         {
-            "positie": 157,
+            "positie": 64.9,
             "beginschade": 0.0006,
             "rekenmethode": "grasGolfoploop",
             "typeToplaag": "grasGeslotenZode",
