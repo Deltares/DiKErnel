@@ -33,7 +33,7 @@ namespace DiKErnel::DomainLibrary::Test
     {
         const auto validateAction = GrassRevetmentOvertoppingValidator::AccelerationAlphaA;
 
-        constexpr auto errorMessage = "AccelerationAlphaA must be equal or larger than 0.";
+        constexpr auto errorMessage = "AccelerationAlphaA must be equal to 0 or larger.";
 
         ValidatorAssertHelper::AssertValue(validateAction, ValidatorAssertHelper::DOUBLE_MIN, ValidationIssueType::Error, errorMessage);
 

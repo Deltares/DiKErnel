@@ -141,7 +141,8 @@ namespace DiKErnel::System::Test
     TEST(ValidationSystemTest, GivenCalculationInputWithInvalidGrassRevetmentWaveImpactLocation_WhenValidating_ThenReturnsExpectedValidationResult)
     {
         // Given
-        auto constructionProperties = make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(10, GrassRevetmentTopLayerType::ClosedSod);
+        auto constructionProperties = make_unique<
+            GrassRevetmentWaveImpactLocationConstructionProperties>(10, GrassRevetmentTopLayerType::ClosedSod);
         constructionProperties->SetInitialDamage(make_unique<double>(-0.1));
         constructionProperties->SetFailureNumber(make_unique<double>(-1));
         constructionProperties->SetTimeLineAgwi(make_unique<double>(-2));
@@ -190,7 +191,8 @@ namespace DiKErnel::System::Test
          GivenCalculationInputWithInvalidGrassRevetmentWaveRunupRayleighLocation_WhenValidating_ThenReturnsExpectedValidationResult)
     {
         // Given
-        auto constructionProperties = make_unique<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(10, 20, GrassRevetmentTopLayerType::ClosedSod);
+        auto constructionProperties = make_unique<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(
+            10, 20, GrassRevetmentTopLayerType::ClosedSod);
         constructionProperties->SetInitialDamage(make_unique<double>(-0.1));
         constructionProperties->SetFailureNumber(make_unique<double>(-1));
         constructionProperties->SetCriticalCumulativeOverload(make_unique<double>(-2));
@@ -235,10 +237,64 @@ namespace DiKErnel::System::Test
         EventAssertHelper::AssertEvent(EventType::Error, "FrontVelocityCu must be larger than 0.", events.at(12));
     }
 
+    TEST(ValidationSystemTest,
+         GivenCalculationInputWithInvalidGrassRevetmentOvertoppingLocation_WhenValidating_ThenReturnsExpectedValidationResult)
+    {
+        // Given
+        auto constructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(
+            10, GrassRevetmentTopLayerType::ClosedSod);
+        constructionProperties->SetInitialDamage(make_unique<double>(-0.1));
+        constructionProperties->SetFailureNumber(make_unique<double>(-1));
+        constructionProperties->SetCriticalCumulativeOverload(make_unique<double>(-2));
+        constructionProperties->SetCriticalFrontVelocity(make_unique<double>(-1));
+        constructionProperties->SetAccelerationAlphaAForCrest(make_unique<double>(-0.1));
+        constructionProperties->SetAccelerationAlphaAForInnerSlope(make_unique<double>(-0.1));
+        constructionProperties->SetFixedNumberOfWaves(make_unique<int>(0));
+        constructionProperties->SetFrontVelocityCwo(make_unique<double>(-0.1));
+        constructionProperties->SetAverageNumberOfWavesCtm(make_unique<double>(0));
+        constructionProperties->SetIncreasedLoadTransitionAlphaM(make_unique<double>(-11));
+        constructionProperties->SetReducedStrengthTransitionAlphaS(make_unique<double>(-3));
+
+        CalculationInputBuilder builder;
+        builder.AddTimeStep(0, 100, 10, 5, 10, 30);
+        builder.AddDikeProfileSegment(10, 5, 20, 10);
+        builder.AddDikeProfileSegment(20, 10, 30, 10);
+        builder.AddDikeProfileSegment(30, 10, 40, 5);
+        builder.AddDikeProfilePointData(10, CharacteristicPointType::OuterToe);
+        builder.AddDikeProfilePointData(20, CharacteristicPointType::OuterCrest);
+        builder.AddDikeProfilePointData(30, CharacteristicPointType::InnerCrest);
+        builder.AddDikeProfilePointData(40, CharacteristicPointType::InnerToe);
+        builder.AddGrassOvertoppingLocation(move(constructionProperties));
+
+        const auto calculationInput = builder.Build();
+
+        // When
+        const auto validationResult = Validator::Validate(*calculationInput->GetData());
+
+        // Then
+        ASSERT_TRUE(validationResult->GetSuccessful());
+        ASSERT_EQ(ValidationResultType::Failed, *validationResult->GetData());
+        const auto& events = validationResult->GetEvents();
+        ASSERT_EQ(12, events.size());
+        EventAssertHelper::AssertEvent(EventType::Error, "X must be in range {OuterToeX, OuterCrestX}.", events.at(0));
+        EventAssertHelper::AssertEvent(EventType::Error, "InitialDamage must be equal to 0 or larger.", events.at(1));
+        EventAssertHelper::AssertEvent(EventType::Error, "FailureNumber must be equal to InitialDamage or larger.", events.at(2));
+        EventAssertHelper::AssertEvent(EventType::Error, "CriticalCumulativeOverload must be larger than 0.", events.at(3));
+        EventAssertHelper::AssertEvent(EventType::Error, "CriticalFrontVelocity must be equal to 0 or larger.", events.at(4));
+        EventAssertHelper::AssertEvent(EventType::Error, "AccelerationAlphaA must be equal to 0 or larger.", events.at(5));
+        EventAssertHelper::AssertEvent(EventType::Error, "AccelerationAlphaA must be equal to 0 or larger.", events.at(6));
+        EventAssertHelper::AssertEvent(EventType::Error, "FixedNumberOfWaves must be larger than 0.", events.at(7));
+        EventAssertHelper::AssertEvent(EventType::Error, "FrontVelocityCwo must be larger than 0.", events.at(8));
+        EventAssertHelper::AssertEvent(EventType::Error, "AverageNumberOfWavesCtm must be larger than 0.", events.at(9));
+        EventAssertHelper::AssertEvent(EventType::Error, "IncreasedLoadTransitionAlphaM must be equal to 0 or larger.", events.at(10));
+        EventAssertHelper::AssertEvent(EventType::Error, "ReducedStrengthTransitionAlphaS must be equal to 0 or larger.", events.at(11));
+    }
+
     TEST(ValidationSystemTest, GivenCalculationInputWithInvalidNaturalStoneRevetmentLocation_WhenValidating_ThenReturnsExpectedValidationResult)
     {
         // Given
-        auto constructionProperties = make_unique<NaturalStoneRevetmentLocationConstructionProperties>(10, NaturalStoneRevetmentTopLayerType::NordicStone, 0, 10);
+        auto constructionProperties = make_unique<NaturalStoneRevetmentLocationConstructionProperties>(
+            10, NaturalStoneRevetmentTopLayerType::NordicStone, 0, 10);
         constructionProperties->SetInitialDamage(make_unique<double>(-0.1));
         constructionProperties->SetFailureNumber(make_unique<double>(-1));
         constructionProperties->SetSlopeUpperLevelAus(make_unique<double>(0.3));
@@ -285,7 +341,8 @@ namespace DiKErnel::System::Test
         auto grassRevetmentWaveImpactLocationConstructionProperties = make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(
             14, GrassRevetmentTopLayerType::ClosedSod);
 
-        auto grassRevetmentWaveRunupRayleighLocationConstructionProperties = make_unique<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>
+        auto grassRevetmentWaveRunupRayleighLocationConstructionProperties = make_unique<
+                    GrassRevetmentWaveRunupRayleighLocationConstructionProperties>
                 (19, 0.71, GrassRevetmentTopLayerType::ClosedSod);
 
         auto naturalStoneRevetmentLocationConstructionProperties = make_unique<NaturalStoneRevetmentLocationConstructionProperties>(

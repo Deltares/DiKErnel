@@ -26,8 +26,11 @@
 #include "GrassRevetmentOvertoppingFunctions.h"
 #include "GrassRevetmentOvertoppingLocationDependentOutput.h"
 #include "GrassRevetmentOvertoppingTimeDependentOutput.h"
+#include "GrassRevetmentOvertoppingValidator.h"
+#include "GrassRevetmentValidator.h"
 #include "HydraulicLoadFunctions.h"
 #include "RevetmentFunctions.h"
+#include "RevetmentValidator.h"
 #include "ValidationHelper.h"
 
 namespace DiKErnel::Integration
@@ -114,7 +117,15 @@ namespace DiKErnel::Integration
         const auto baseValidationSuccessful = LocationDependentInput::Validate(profileData);
 
         vector<unique_ptr<ValidationIssue>> validationIssues;
-        validationIssues.emplace_back(make_unique<ValidationIssue>(ValidationIssueType::Error, "TODO: Implement additional validation"));
+        validationIssues.emplace_back(GrassRevetmentValidator::CriticalCumulativeOverload(_criticalCumulativeOverload));
+        validationIssues.emplace_back(GrassRevetmentValidator::CriticalFrontVelocity(_criticalFrontVelocity));
+        validationIssues.emplace_back(GrassRevetmentOvertoppingValidator::AccelerationAlphaA(_locationDependentAccelerationAlphaA->ValueAtCrest()));
+        validationIssues.emplace_back(GrassRevetmentOvertoppingValidator::AccelerationAlphaA(_locationDependentAccelerationAlphaA->ValueAtInnerSlope()));
+        validationIssues.emplace_back(GrassRevetmentValidator::FixedNumberOfWaves(_fixedNumberOfWaves));
+        validationIssues.emplace_back(GrassRevetmentOvertoppingValidator::FrontVelocityCwo(_frontVelocityCwo));
+        validationIssues.emplace_back(RevetmentValidator::AverageNumberOfWavesCtm(_averageNumberOfWavesCtm));
+        validationIssues.emplace_back(GrassRevetmentValidator::IncreasedLoadTransitionAlphaM(_increasedLoadTransitionAlphaM));
+        validationIssues.emplace_back(GrassRevetmentValidator::ReducedStrengthTransitionAlphaS(_reducedStrengthTransitionAlphaS));
 
         return ValidationHelper::RegisterValidationIssues(validationIssues) && baseValidationSuccessful;
     }

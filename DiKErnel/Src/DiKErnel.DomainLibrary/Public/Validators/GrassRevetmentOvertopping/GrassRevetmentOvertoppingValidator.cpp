@@ -30,7 +30,7 @@ namespace DiKErnel::DomainLibrary
     {
         if (accelerationAlphaA < 0)
         {
-            return make_unique<ValidationIssue>(ValidationIssueType::Error, "AccelerationAlphaA must be equal or larger than 0.");
+            return make_unique<ValidationIssue>(ValidationIssueType::Error, "AccelerationAlphaA must be equal to 0 or larger.");
         }
 
         return nullptr;
