@@ -202,6 +202,18 @@ namespace DiKErnel::Integration
             return false;
         }
 
+        const auto* outerToe = GetProfilePointDataItemForCharacteristicPointType(CharacteristicPointType::OuterToe);
+        const auto* outerCrest = GetProfilePointDataItemForCharacteristicPointType(CharacteristicPointType::OuterCrest);
+        for (const auto& location : _locationConstructionPropertiesItems)
+        {
+            if (const auto locationX = location->GetX();
+                locationX <= outerToe->GetX() || locationX >= outerCrest->GetX())
+            {
+                RegisterValidationError("Location must be between the outer toe and outer crest.");
+                return false;
+            }
+        }
+
         if (_timeStepDataItems.empty())
         {
             RegisterValidationError("At least 1 time step is required.");
