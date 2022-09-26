@@ -274,7 +274,7 @@ namespace DiKErnel::System::Test
         // Then
         constexpr int expectedTimeOfFailure = 33913;
 
-        AssertOutput(calculator, 1.48469920475211, &expectedTimeOfFailure);
+        AssertOutput(calculator, 1.48214256643614, &expectedTimeOfFailure);
     }
 
     TEST_F(GrassRevetmentOvertoppingCalculationTest,
@@ -372,7 +372,7 @@ namespace DiKErnel::System::Test
         // Then
         constexpr int expectedTimeOfFailure = 5311;
 
-        AssertOutput(calculator, 24.6813127578863, &expectedTimeOfFailure);
+        AssertOutput(calculator, 24.68131275788636, &expectedTimeOfFailure);
     }
 
     TEST_F(GrassRevetmentOvertoppingCalculationTest,
@@ -504,7 +504,7 @@ namespace DiKErnel::System::Test
         // Then
         constexpr int expectedTimeOfFailure = 34071;
 
-        AssertOutput(calculator, 9.62605080940479, &expectedTimeOfFailure);
+        AssertOutput(calculator, 9.62605080940481, &expectedTimeOfFailure);
     }
 
     TEST_F(GrassRevetmentOvertoppingCalculationTest,
