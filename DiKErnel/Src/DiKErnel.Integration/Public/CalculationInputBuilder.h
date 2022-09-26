@@ -184,7 +184,7 @@ namespace DiKErnel::Integration
 
             [[nodiscard]]
             bool ValidateCharacteristicPoint(
-                Core::CharacteristicPointType characteristicPointType,
+                const ProfileDataFactoryPoint* characteristicPoint,
                 const std::string& characteristicPointName,
                 bool isRequired = true) const;
 

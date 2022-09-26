@@ -188,10 +188,15 @@ namespace DiKErnel::Integration
             previousSegment = currentSegment;
         }
 
-        if (!ValidateCharacteristicPoint(CharacteristicPointType::OuterToe, "outer toe")
-            || !ValidateCharacteristicPoint(CharacteristicPointType::OuterCrest, "outer crest")
-            || !ValidateCharacteristicPoint(CharacteristicPointType::InnerToe, "inner toe", _grassOvertoppingLocationAdded)
-            || !ValidateCharacteristicPoint(CharacteristicPointType::InnerCrest, "inner crest", _grassOvertoppingLocationAdded))
+        const auto* outerToe = GetProfilePointDataItemForCharacteristicPointType(CharacteristicPointType::OuterToe);
+        const auto* outerCrest = GetProfilePointDataItemForCharacteristicPointType(CharacteristicPointType::OuterCrest);
+        const auto* innerToe = GetProfilePointDataItemForCharacteristicPointType(CharacteristicPointType::InnerToe);
+        const auto* innerCrest = GetProfilePointDataItemForCharacteristicPointType(CharacteristicPointType::InnerCrest);
+
+        if (!ValidateCharacteristicPoint(outerToe, "outer toe")
+            || !ValidateCharacteristicPoint(outerCrest, "outer crest")
+            || !ValidateCharacteristicPoint(innerCrest, "inner crest", _grassOvertoppingLocationAdded)
+            || !ValidateCharacteristicPoint(innerToe, "inner toe", _grassOvertoppingLocationAdded))
         {
             return false;
         }
@@ -202,8 +207,6 @@ namespace DiKErnel::Integration
             return false;
         }
 
-        const auto* outerToe = GetProfilePointDataItemForCharacteristicPointType(CharacteristicPointType::OuterToe);
-        const auto* outerCrest = GetProfilePointDataItemForCharacteristicPointType(CharacteristicPointType::OuterCrest);
         for (const auto& location : _locationConstructionPropertiesItems)
         {
             if (const auto locationX = location->GetX();
@@ -238,12 +241,10 @@ namespace DiKErnel::Integration
     }
 
     bool CalculationInputBuilder::ValidateCharacteristicPoint(
-        const CharacteristicPointType characteristicPointType,
+        const ProfileDataFactoryPoint* characteristicPoint,
         const string& characteristicPointName,
         const bool isRequired) const
     {
-        const auto* characteristicPoint = GetProfilePointDataItemForCharacteristicPointType(characteristicPointType);
-
         if (characteristicPoint == nullptr)
         {
             if (isRequired)
