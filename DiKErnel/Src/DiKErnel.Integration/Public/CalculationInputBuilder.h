@@ -208,6 +208,12 @@ namespace DiKErnel::Integration
                 const ProfileDataFactoryPoint* innerToe) const;
 
             [[nodiscard]]
+            bool ValidateOuterSlopeLocation(
+                const ProfileDataFactoryPoint& outerToe,
+                const ProfileDataFactoryPoint& outerCrest,
+                double locationX) const;
+
+            [[nodiscard]]
             bool ValidateTimeSteps() const;
 
             void RegisterValidationError(

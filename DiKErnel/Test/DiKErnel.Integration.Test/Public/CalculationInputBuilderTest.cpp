@@ -616,7 +616,7 @@ namespace DiKErnel::Integration::Test
         const auto& events = result->GetEvents();
         ASSERT_EQ(1, events.size());
 
-        EventAssertHelper::AssertEvent(EventType::Error, "Couldn't create defaults for the given top layer type.", events.at(0));
+        EventAssertHelper::AssertEvent(EventType::Error, "The location on X: 0.1 has an invalid top layer type.", events.at(0));
     }
 
     TEST_F(CalculationInputBuilderTest,
@@ -844,7 +844,7 @@ namespace DiKErnel::Integration::Test
         const auto& events = result->GetEvents();
         ASSERT_EQ(1, events.size());
 
-        EventAssertHelper::AssertEvent(EventType::Error, "Couldn't create defaults for the given top layer type.", events.at(0));
+        EventAssertHelper::AssertEvent(EventType::Error, "The location on X: 45 has an invalid top layer type.", events.at(0));
     }
 
     TEST_F(CalculationInputBuilderTest,
@@ -1075,7 +1075,7 @@ namespace DiKErnel::Integration::Test
         const auto& events = result->GetEvents();
         ASSERT_EQ(1, events.size());
 
-        EventAssertHelper::AssertEvent(EventType::Error, "Couldn't create defaults for the given top layer type.", events.at(0));
+        EventAssertHelper::AssertEvent(EventType::Error, "The location on X: 0.1 has an invalid top layer type.", events.at(0));
     }
 
     TEST_F(CalculationInputBuilderTest, GivenBuilderWithFullyConfiguredGrassWaveImpactLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
@@ -1302,7 +1302,7 @@ namespace DiKErnel::Integration::Test
         const auto& events = result->GetEvents();
         ASSERT_EQ(1, events.size());
 
-        EventAssertHelper::AssertEvent(EventType::Error, "Couldn't create defaults for the given top layer type.", events.at(0));
+        EventAssertHelper::AssertEvent(EventType::Error, "The location on X: 0.1 has an invalid top layer type.", events.at(0));
     }
 
     TEST_F(CalculationInputBuilderTest,
@@ -1542,7 +1542,7 @@ namespace DiKErnel::Integration::Test
         const auto& events = result->GetEvents();
         ASSERT_EQ(1, events.size());
 
-        EventAssertHelper::AssertEvent(EventType::Error, "Couldn't create defaults for the given top layer type.", events.at(0));
+        EventAssertHelper::AssertEvent(EventType::Error, "The location on X: 0.1 has an invalid top layer type.", events.at(0));
     }
 
     TEST_F(CalculationInputBuilderTest, GivenBuilderWithFullyConfiguredNaturalStoneLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput)

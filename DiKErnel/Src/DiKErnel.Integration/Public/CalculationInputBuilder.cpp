@@ -293,30 +293,104 @@ namespace DiKErnel::Integration
             const auto& locationConstructionPropertiesItem = locationConstructionPropertiesItemReference.get();
             const auto locationX = locationConstructionPropertiesItem.GetX();
 
-            if (const auto* grassOvertoppingLocationConstructionProperties = dynamic_cast<
+            stringstream locationXStringStream;
+            locationXStringStream << locationX;
+
+            if (const auto* asphaltWaveImpactLocation = dynamic_cast<const AsphaltRevetmentWaveImpactLocationConstructionProperties*>(&
+                locationConstructionPropertiesItem))
+            {
+                if (!ValidateOuterSlopeLocation(outerToe, outerCrest, locationX))
+                {
+                    return false;
+                }
+
+                if (asphaltWaveImpactLocation->GetTopLayerType() != AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete)
+                {
+                    RegisterValidationError("The location on X: " + locationXStringStream.str() + " has an invalid top layer type.");
+                    return false;
+                }
+            }
+
+            if (const auto* grassOvertoppingLocation = dynamic_cast<
                     const GrassRevetmentOvertoppingLocationConstructionProperties*>(&locationConstructionPropertiesItem);
-                grassOvertoppingLocationConstructionProperties != nullptr)
+                grassOvertoppingLocation != nullptr)
             {
                 if (locationX < outerCrest.GetX() || locationX > innerToe->GetX())
                 {
-                    stringstream stringStream;
-                    stringStream << locationX;
-
-                    RegisterValidationError("The location on X: " + stringStream.str() + " must be on or between the outer crest and inner toe.");
+                    RegisterValidationError(
+                        "The location on X: " + locationXStringStream.str() + " must be on or between the outer crest and inner toe.");
                     return false;
                 }
-            }
-            else
-            {
-                if (locationX <= outerToe.GetX() || locationX >= outerCrest.GetX())
+
+                if (grassOvertoppingLocation->GetTopLayerType() != GrassRevetmentTopLayerType::ClosedSod
+                    && grassOvertoppingLocation->GetTopLayerType() != GrassRevetmentTopLayerType::OpenSod)
                 {
-                    stringstream stringStream;
-                    stringStream << locationX;
-
-                    RegisterValidationError("The location on X: " + stringStream.str() + " must be between the outer toe and outer crest.");
+                    RegisterValidationError("The location on X: " + locationXStringStream.str() + " has an invalid top layer type.");
                     return false;
                 }
             }
+
+            if (const auto* grassWaveImpactLocation = dynamic_cast<const GrassRevetmentWaveImpactLocationConstructionProperties*>(&locationConstructionPropertiesItem))
+            {
+                if (!ValidateOuterSlopeLocation(outerToe, outerCrest, locationX))
+                {
+                    return false;
+                }
+
+                if (grassWaveImpactLocation->GetTopLayerType() != GrassRevetmentTopLayerType::ClosedSod
+                    && grassWaveImpactLocation->GetTopLayerType() != GrassRevetmentTopLayerType::OpenSod)
+                {
+                    RegisterValidationError("The location on X: " + locationXStringStream.str() + " has an invalid top layer type.");
+                    return false;
+                }
+            }
+
+            if (const auto* grassWaveRunupRayleighLocation = dynamic_cast<const GrassRevetmentWaveRunupRayleighLocationConstructionProperties*>(&locationConstructionPropertiesItem))
+            {
+                if (!ValidateOuterSlopeLocation(outerToe, outerCrest, locationX))
+                {
+                    return false;
+                }
+
+                if (grassWaveRunupRayleighLocation->GetTopLayerType() != GrassRevetmentTopLayerType::ClosedSod
+                    && grassWaveRunupRayleighLocation->GetTopLayerType() != GrassRevetmentTopLayerType::OpenSod)
+                {
+                    RegisterValidationError("The location on X: " + locationXStringStream.str() + " has an invalid top layer type.");
+                    return false;
+                }
+            }
+
+            if (const auto* naturalStoneLocation = dynamic_cast<const NaturalStoneRevetmentLocationConstructionProperties*>(&locationConstructionPropertiesItem))
+            {
+                if (!ValidateOuterSlopeLocation(outerToe, outerCrest, locationX))
+                {
+                    return false;
+                }
+
+                if (naturalStoneLocation->GetTopLayerType() != NaturalStoneRevetmentTopLayerType::NordicStone)
+                {
+                    RegisterValidationError("The location on X: " + locationXStringStream.str() + " has an invalid top layer type.");
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
+    bool CalculationInputBuilder::ValidateOuterSlopeLocation(
+        const ProfileDataFactoryPoint& outerToe,
+        const ProfileDataFactoryPoint& outerCrest,
+        const double locationX) const
+    {
+        if (locationX <= outerToe.GetX() || locationX >= outerCrest.GetX())
+        {
+            stringstream locationXStringStream;
+            locationXStringStream << locationX;
+             
+            RegisterValidationError(
+                "The location on X: " + locationXStringStream.str() + " must be between the outer toe and outer crest.");
+            return false;
         }
 
         return true;
