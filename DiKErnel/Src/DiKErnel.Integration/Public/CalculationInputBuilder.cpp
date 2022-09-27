@@ -21,6 +21,7 @@
 #include "CalculationInputBuilder.h"
 
 #include <algorithm>
+#include <functional>
 #include <sstream>
 
 #include "AsphaltRevetmentWaveImpactDefaults.h"
@@ -288,97 +289,84 @@ namespace DiKErnel::Integration
             return false;
         }
 
+        const function validateLocationOnOuterSlope = [this, outerToe, outerCrest](
+            const double x)
+        {
+            return ValidateLocationOnOuterSlope(outerToe, outerCrest, x);
+        };
+
+        const function validateLocationOnCrestOrInnerSlope = [this, outerCrest, innerToe](
+            const double x)
+        {
+            return ValidateLocationOnCrestOrInnerSlope(outerCrest, *innerToe, x);
+        };
+
+        const function validateAsphaltRevetmentTopLayerType = [](
+            const AsphaltRevetmentTopLayerType topLayerType)
+        {
+            return topLayerType == AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete;
+        };
+
+        const function validateGrassRevetmentTopLayerType = [](
+            const GrassRevetmentTopLayerType topLayerType)
+        {
+            return topLayerType == GrassRevetmentTopLayerType::ClosedSod || topLayerType == GrassRevetmentTopLayerType::OpenSod;
+        };
+
+        const function validateNaturalStoneRevetmentTopLayerType = [](
+            const NaturalStoneRevetmentTopLayerType topLayerType)
+        {
+            return topLayerType == NaturalStoneRevetmentTopLayerType::NordicStone;
+        };
+
         for (const auto& locationConstructionPropertiesItemReference : _locationConstructionPropertiesItemReferences)
         {
-            const auto& locationConstructionPropertiesItem = locationConstructionPropertiesItemReference.get();
-            const auto locationX = locationConstructionPropertiesItem.GetX();
-
-            stringstream locationXStringStream;
-            locationXStringStream << locationX;
-
-            if (const auto* asphaltWaveImpactLocation = dynamic_cast<const AsphaltRevetmentWaveImpactLocationConstructionProperties*>(&
-                locationConstructionPropertiesItem))
+            if (const auto& locationConstructionPropertiesItem = locationConstructionPropertiesItemReference.get();
+                !ValidateLocation<AsphaltRevetmentWaveImpactLocationConstructionProperties>(
+                    locationConstructionPropertiesItem, validateLocationOnOuterSlope, validateAsphaltRevetmentTopLayerType)
+                || !ValidateLocation<GrassRevetmentOvertoppingLocationConstructionProperties>(
+                    locationConstructionPropertiesItem, validateLocationOnCrestOrInnerSlope, validateGrassRevetmentTopLayerType)
+                || !ValidateLocation<GrassRevetmentWaveImpactLocationConstructionProperties>(
+                    locationConstructionPropertiesItem, validateLocationOnOuterSlope, validateGrassRevetmentTopLayerType)
+                || !ValidateLocation<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(
+                    locationConstructionPropertiesItem, validateLocationOnOuterSlope, validateGrassRevetmentTopLayerType)
+                || !ValidateLocation<NaturalStoneRevetmentLocationConstructionProperties>(
+                    locationConstructionPropertiesItem, validateLocationOnOuterSlope, validateNaturalStoneRevetmentTopLayerType))
             {
-                if (!ValidateOuterSlopeLocation(outerToe, outerCrest, locationX))
-                {
-                    return false;
-                }
-
-                if (asphaltWaveImpactLocation->GetTopLayerType() != AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete)
-                {
-                    RegisterValidationError("The location on X: " + locationXStringStream.str() + " has an invalid top layer type.");
-                    return false;
-                }
-            }
-
-            if (const auto* grassOvertoppingLocation = dynamic_cast<
-                    const GrassRevetmentOvertoppingLocationConstructionProperties*>(&locationConstructionPropertiesItem);
-                grassOvertoppingLocation != nullptr)
-            {
-                if (locationX < outerCrest.GetX() || locationX > innerToe->GetX())
-                {
-                    RegisterValidationError(
-                        "The location on X: " + locationXStringStream.str() + " must be on or between the outer crest and inner toe.");
-                    return false;
-                }
-
-                if (grassOvertoppingLocation->GetTopLayerType() != GrassRevetmentTopLayerType::ClosedSod
-                    && grassOvertoppingLocation->GetTopLayerType() != GrassRevetmentTopLayerType::OpenSod)
-                {
-                    RegisterValidationError("The location on X: " + locationXStringStream.str() + " has an invalid top layer type.");
-                    return false;
-                }
-            }
-
-            if (const auto* grassWaveImpactLocation = dynamic_cast<const GrassRevetmentWaveImpactLocationConstructionProperties*>(&locationConstructionPropertiesItem))
-            {
-                if (!ValidateOuterSlopeLocation(outerToe, outerCrest, locationX))
-                {
-                    return false;
-                }
-
-                if (grassWaveImpactLocation->GetTopLayerType() != GrassRevetmentTopLayerType::ClosedSod
-                    && grassWaveImpactLocation->GetTopLayerType() != GrassRevetmentTopLayerType::OpenSod)
-                {
-                    RegisterValidationError("The location on X: " + locationXStringStream.str() + " has an invalid top layer type.");
-                    return false;
-                }
-            }
-
-            if (const auto* grassWaveRunupRayleighLocation = dynamic_cast<const GrassRevetmentWaveRunupRayleighLocationConstructionProperties*>(&locationConstructionPropertiesItem))
-            {
-                if (!ValidateOuterSlopeLocation(outerToe, outerCrest, locationX))
-                {
-                    return false;
-                }
-
-                if (grassWaveRunupRayleighLocation->GetTopLayerType() != GrassRevetmentTopLayerType::ClosedSod
-                    && grassWaveRunupRayleighLocation->GetTopLayerType() != GrassRevetmentTopLayerType::OpenSod)
-                {
-                    RegisterValidationError("The location on X: " + locationXStringStream.str() + " has an invalid top layer type.");
-                    return false;
-                }
-            }
-
-            if (const auto* naturalStoneLocation = dynamic_cast<const NaturalStoneRevetmentLocationConstructionProperties*>(&locationConstructionPropertiesItem))
-            {
-                if (!ValidateOuterSlopeLocation(outerToe, outerCrest, locationX))
-                {
-                    return false;
-                }
-
-                if (naturalStoneLocation->GetTopLayerType() != NaturalStoneRevetmentTopLayerType::NordicStone)
-                {
-                    RegisterValidationError("The location on X: " + locationXStringStream.str() + " has an invalid top layer type.");
-                    return false;
-                }
+                return false;
             }
         }
 
         return true;
     }
 
-    bool CalculationInputBuilder::ValidateOuterSlopeLocation(
+    template <typename TConstructionProperties, typename TValidateX, typename TValidateTopLayer>
+    bool CalculationInputBuilder::ValidateLocation(
+        const RevetmentLocationConstructionPropertiesBase& constructionProperties,
+        const TValidateX& validateLocationX,
+        const TValidateTopLayer& validateTopLayer) const
+    {
+        if (const auto* location = dynamic_cast<const TConstructionProperties*>(&constructionProperties))
+        {
+            const auto locationX = location->GetX();
+            if (!validateLocationX(locationX))
+            {
+                return false;
+            }
+
+            if (!validateTopLayer(location->GetTopLayerType()))
+            {
+                stringstream locationXStringStream;
+                locationXStringStream << locationX;
+                RegisterValidationError("The location on X: " + locationXStringStream.str() + " has an invalid top layer type.");
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    bool CalculationInputBuilder::ValidateLocationOnOuterSlope(
         const ProfileDataFactoryPoint& outerToe,
         const ProfileDataFactoryPoint& outerCrest,
         const double locationX) const
@@ -387,9 +375,27 @@ namespace DiKErnel::Integration
         {
             stringstream locationXStringStream;
             locationXStringStream << locationX;
-             
+
             RegisterValidationError(
                 "The location on X: " + locationXStringStream.str() + " must be between the outer toe and outer crest.");
+            return false;
+        }
+
+        return true;
+    }
+
+    bool CalculationInputBuilder::ValidateLocationOnCrestOrInnerSlope(
+        const ProfileDataFactoryPoint& outerCrest,
+        const ProfileDataFactoryPoint& innerToe,
+        const double locationX) const
+    {
+        if (locationX < outerCrest.GetX() || locationX > innerToe.GetX())
+        {
+            stringstream locationXStringStream;
+            locationXStringStream << locationX;
+
+            RegisterValidationError(
+                "The location on X: " + locationXStringStream.str() + " must be on or between the outer crest and inner toe.");
             return false;
         }
 

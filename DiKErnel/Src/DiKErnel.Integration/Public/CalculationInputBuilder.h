@@ -207,10 +207,23 @@ namespace DiKErnel::Integration
                 const ProfileDataFactoryPoint& outerCrest,
                 const ProfileDataFactoryPoint* innerToe) const;
 
+            template <typename TConstructionProperties, typename TValidateX, typename TValidateTopLayer>
             [[nodiscard]]
-            bool ValidateOuterSlopeLocation(
+            bool ValidateLocation(
+                const RevetmentLocationConstructionPropertiesBase& constructionProperties,
+                const TValidateX& validateLocationX,
+                const TValidateTopLayer& validateTopLayer) const;
+
+            [[nodiscard]]
+            bool ValidateLocationOnOuterSlope(
                 const ProfileDataFactoryPoint& outerToe,
                 const ProfileDataFactoryPoint& outerCrest,
+                double locationX) const;
+
+            [[nodiscard]]
+            bool ValidateLocationOnCrestOrInnerSlope(
+                const ProfileDataFactoryPoint& outerCrest,
+                const ProfileDataFactoryPoint& innerToe,
                 double locationX) const;
 
             [[nodiscard]]
