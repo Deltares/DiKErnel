@@ -22,9 +22,11 @@
 
 namespace DiKErnel::Core
 {
+    using namespace std;
+
     ProfileSegment::ProfileSegment(
-        std::shared_ptr<ProfilePoint> startPoint,
-        std::shared_ptr<ProfilePoint> endPoint,
+        shared_ptr<ProfilePoint> startPoint,
+        shared_ptr<ProfilePoint> endPoint,
         const double roughnessCoefficient)
         : _startPoint(move(startPoint)),
           _endPoint(move(endPoint)),

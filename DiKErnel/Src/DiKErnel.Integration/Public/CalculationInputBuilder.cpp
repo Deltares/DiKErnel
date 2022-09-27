@@ -100,7 +100,7 @@ namespace DiKErnel::Integration
     }
 
     void CalculationInputBuilder::AddGrassOvertoppingLocation(
-        std::unique_ptr<GrassRevetmentOvertoppingLocationConstructionProperties> constructionProperties)
+        unique_ptr<GrassRevetmentOvertoppingLocationConstructionProperties> constructionProperties)
     {
         AddLocation(move(constructionProperties));
         _grassOvertoppingLocationAdded = true;

@@ -77,19 +77,19 @@ namespace DiKErnel::Integration
     }
 
     void GrassRevetmentOvertoppingLocationConstructionProperties::SetAccelerationAlphaAForCrest(
-        std::unique_ptr<double> accelerationAlphaAForCrest)
+        unique_ptr<double> accelerationAlphaAForCrest)
     {
         _accelerationAlphaAForCrest = move(accelerationAlphaAForCrest);
     }
 
     void GrassRevetmentOvertoppingLocationConstructionProperties::SetAccelerationAlphaAForInnerSlope(
-        std::unique_ptr<double> accelerationAlphaAForInnerSlope)
+        unique_ptr<double> accelerationAlphaAForInnerSlope)
     {
         _accelerationAlphaAForInnerSlope = move(accelerationAlphaAForInnerSlope);
     }
 
     void GrassRevetmentOvertoppingLocationConstructionProperties::SetDikeHeight(
-        std::unique_ptr<double> dikeHeight)
+        unique_ptr<double> dikeHeight)
     {
         _dikeHeight = move(dikeHeight);
     }
