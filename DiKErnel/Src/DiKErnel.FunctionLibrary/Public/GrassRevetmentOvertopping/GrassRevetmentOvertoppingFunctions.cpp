@@ -27,7 +27,7 @@
 
 #include "Geometry.h"
 #include "GrassRevetmentFunctions.h"
-#include "Input.h"
+#include "ModelFactors.h"
 #include "Load.h"
 #include "OvertoppingAdapter.h"
 
@@ -56,7 +56,7 @@ namespace DiKErnel::FunctionLibrary
             ._roughness = input._roughnessCoefficients.data()
         };
 
-        Input overtoppingInput{
+        ModelFactors modelFactors{
             ._factorDeterminationQnFn = 1.0,
             ._factorDeterminationQbFb = 1.0,
             ._mz2 = 1.0,
@@ -73,7 +73,7 @@ namespace DiKErnel::FunctionLibrary
         const auto messageBuffer = make_unique<string>();
         messageBuffer->reserve(255);
 
-        OvertoppingAdapter::CalculateQo(load, geometry, overtoppingInput, &result, messageBuffer.get(), &success, input._dikeHeight);
+        OvertoppingAdapter::CalculateQo(load, geometry, modelFactors, &result, messageBuffer.get(), &success, input._dikeHeight);
 
         return result._z2;
     }

@@ -20,21 +20,20 @@
 
 #include "OvertoppingAdapter.h"
 
-#include <cstdlib>
 #include <memory>
 #include <string>
 
 #include "Geometry.h"
 #include "Load.h"
 #include "Result.h"
-#include "Input.h"
+#include "ModelFactors.h"
 
 using namespace DiKErnel::External::Overtopping;
 
 extern "C" __declspec(dllimport) void ValidateInputC(
     Geometry* geometryInput,
     double* dikeHeight,
-    Input* modelFactors,
+    ModelFactors* modelFactors,
     bool* success,
     const char* message,
     size_t size);
@@ -43,7 +42,7 @@ extern "C" __declspec(dllimport) void calculateQo(
     Load* loadInput,
     Geometry* geometryInput,
     double* dikeHeight,
-    Input* modelFactors,
+    ModelFactors* modelFactors,
     Result* result,
     bool* success,
     const char* message,
@@ -64,7 +63,7 @@ namespace DiKErnel::External::Overtopping
 
     void OvertoppingAdapter::Validate(
         Geometry& geometry,
-        Input& input,
+        ModelFactors& modelFactors,
         const string* messageBuffer,
         bool* success,
         double dikeHeight)
@@ -72,13 +71,13 @@ namespace DiKErnel::External::Overtopping
         SetLanguage(_languageCode.c_str(), _languageCode.length());
 
         const size_t messageLength = messageBuffer->length();
-        ValidateInputC(&geometry, &dikeHeight, &input, success, messageBuffer->c_str(), messageLength);
+        ValidateInputC(&geometry, &dikeHeight, &modelFactors, success, messageBuffer->c_str(), messageLength);
     }
 
     void OvertoppingAdapter::CalculateQo(
         Load& load,
         Geometry& geometry,
-        Input& input,
+        ModelFactors& modelFactors,
         Result* result,
         const string* messageBuffer,
         bool* success,
@@ -92,7 +91,7 @@ namespace DiKErnel::External::Overtopping
         logFileName->reserve(LOG_FILE_NAME_SIZE);
 
         const size_t messageLength = messageBuffer->length();
-        calculateQo(&load, &geometry, &dikeHeight, &input, result, success,
+        calculateQo(&load, &geometry, &dikeHeight, &modelFactors, result, success,
                     messageBuffer->c_str(), &verbosity, logFileName->c_str(), messageLength, LOG_FILE_NAME_SIZE);
     }
 }

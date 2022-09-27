@@ -23,9 +23,9 @@
 namespace DiKErnel::External::Overtopping
 {
     /*!
-     * \brief The input for the overtopping kernel.
+     * \brief The model factors for the overtopping kernel.
      */
-    struct Input
+    struct ModelFactors
     {
         /*!
          * \brief Model factor for non-breaking waves.
@@ -40,7 +40,7 @@ namespace DiKErnel::External::Overtopping
         double _factorDeterminationQbFb{};
 
         /*!
-         * \brief Model factor describing the uncertainty of 2% runup height.
+         * \brief Model factor describing the uncertainty of 2% run-up height.
          *        Unit = [-]
          */
         double _mz2{};
@@ -64,7 +64,7 @@ namespace DiKErnel::External::Overtopping
         double _criticalOvertopping{};
 
         /*!
-         * \brief Relaxation factor iteration procedure wave runup.
+         * \brief Relaxation factor iteration procedure wave run-up.
          *        Unit = [-]
          */
         double _relaxationfactor{};

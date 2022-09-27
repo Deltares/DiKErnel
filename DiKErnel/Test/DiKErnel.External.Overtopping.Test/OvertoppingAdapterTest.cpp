@@ -21,7 +21,7 @@
 #include <gtest/gtest.h>
 
 #include "Geometry.h"
-#include "Input.h"
+#include "ModelFactors.h"
 #include "Load.h"
 #include "OvertoppingAdapter.h"
 
@@ -65,7 +65,7 @@ namespace DiKErnel::External::Overtopping::Test
             roughnessCoefficients
         };
 
-        Input input{
+        ModelFactors modelFactors{
             2.3,
             4.3,
             1.0,
@@ -82,7 +82,7 @@ namespace DiKErnel::External::Overtopping::Test
         messageBuffer->reserve(nrOfCharacters);
 
         // Call
-        OvertoppingAdapter::Validate(geometry, input, messageBuffer.get(), &success, dikeHeight);
+        OvertoppingAdapter::Validate(geometry, modelFactors, messageBuffer.get(), &success, dikeHeight);
 
         // Assert
         ASSERT_FALSE(success);
@@ -122,7 +122,7 @@ namespace DiKErnel::External::Overtopping::Test
             roughnessCoefficients
         };
 
-        Input input{
+        ModelFactors modelFactors{
             2.3,
             4.3,
             1.0,
@@ -139,7 +139,7 @@ namespace DiKErnel::External::Overtopping::Test
         messageBuffer->reserve(nrOfCharacters);
 
         // Call
-        OvertoppingAdapter::Validate(geometry, input, messageBuffer.get(), &success, dikeHeight);
+        OvertoppingAdapter::Validate(geometry, modelFactors, messageBuffer.get(), &success, dikeHeight);
 
         // Assert
         ASSERT_TRUE(success);
@@ -152,7 +152,7 @@ namespace DiKErnel::External::Overtopping::Test
         const double dikeHeight = 9.1;
         const double dikeNormal = 60.0;
 
-        Input input
+        ModelFactors input
         {
             2.3,
             4.3,
@@ -221,7 +221,7 @@ namespace DiKErnel::External::Overtopping::Test
         const double dikeHeight = 3.7;
         const double dikeNormal = 0.0;
 
-        Input input
+        ModelFactors modelFactors
         {
             2.3,
             4.3,
@@ -270,7 +270,7 @@ namespace DiKErnel::External::Overtopping::Test
         messageBuffer->reserve(MESSAGE_SIZE);
 
         // Call
-        OvertoppingAdapter::CalculateQo(loads, geometry, input, &result, messageBuffer.get(), &success, dikeHeight);
+        OvertoppingAdapter::CalculateQo(loads, geometry, modelFactors, &result, messageBuffer.get(), &success, dikeHeight);
 
         // Assert
         ASSERT_FALSE(success);

@@ -25,7 +25,7 @@
 
 namespace DiKErnel::External::Overtopping
 {
-    struct Input;
+    struct ModelFactors;
     struct Geometry;
     struct Load;
 
@@ -39,7 +39,7 @@ namespace DiKErnel::External::Overtopping
              * \brief Validates the inputs for an overtopping calculation.
              * \param geometry
              *        The geometry.
-             * \param input
+             * \param modelFactors
              *        The input.
              * \param messageBuffer
              *        The message buffer to write validation messages to.
@@ -51,7 +51,7 @@ namespace DiKErnel::External::Overtopping
              */
             static void Validate(
                 Geometry& geometry,
-                Input& input,
+                ModelFactors& modelFactors,
                 const std::string* messageBuffer,
                 bool* success,
                 double dikeHeight);
@@ -62,7 +62,7 @@ namespace DiKErnel::External::Overtopping
              *        The load.
              * \param geometry
              *        The geometry.
-             * \param input
+             * \param modelFactors
              *        The input.
              * \param result
              *        The results of the calculation.
@@ -77,7 +77,7 @@ namespace DiKErnel::External::Overtopping
             static void CalculateQo(
                 Load& load,
                 Geometry& geometry,
-                Input& input,
+                ModelFactors& modelFactors,
                 Result* result,
                 const std::string* messageBuffer,
                 bool* success,
