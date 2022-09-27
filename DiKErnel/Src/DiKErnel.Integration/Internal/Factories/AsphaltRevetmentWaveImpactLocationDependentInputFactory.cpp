@@ -22,9 +22,7 @@
 
 #include "AsphaltRevetmentWaveImpactDefaults.h"
 #include "AsphaltRevetmentWaveImpactDefaultsFactory.h"
-#include "DefaultsFactoryException.h"
 #include "InputFactoryHelper.h"
-#include "CalculationInputBuilder.h"
 #include "RevetmentDefaults.h"
 
 namespace DiKErnel::Integration
