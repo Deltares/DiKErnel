@@ -29,7 +29,7 @@ namespace DiKErnel::Core::TestUtil
     class ILocationDependentInputMock : public ILocationDependentInput
     {
         public:
-            MOCK_METHOD(bool, Validate, (), (const, override));
+            MOCK_METHOD(bool, Validate, (const IProfileData& profileData), (const, override));
 
             std::unique_ptr<TimeDependentOutput> Calculate(
                 double initialDamage,
