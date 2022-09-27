@@ -254,6 +254,7 @@ namespace DiKErnel::System::Test
 
         CalculationInputBuilder builder;
         builder.AddTimeStep(0, 100, 10, 5, 10, 30);
+        builder.AddTimeStep(100, 150, 10, 5, 10, 30);
         builder.AddDikeProfileSegment(10, 5, 20, 10);
         builder.AddDikeProfileSegment(20, 10, 30, 10);
         builder.AddDikeProfileSegment(30, 10, 40, 5);
@@ -275,7 +276,7 @@ namespace DiKErnel::System::Test
         ASSERT_EQ(12, events.size());
         EventAssertHelper::AssertEvent(EventType::Error, "InitialDamage must be equal to 0 or larger.", events.at(0));
         EventAssertHelper::AssertEvent(EventType::Error, "FailureNumber must be equal to InitialDamage or larger.", events.at(1));
-        EventAssertHelper::AssertEvent(EventType::Warning, "WaterLevel should be smaller than the DikeHeight.", events.at(2));
+        EventAssertHelper::AssertEvent(EventType::Warning, "For certain time steps the dike height is lower than the water level. No damage will be calculated for these time steps.", events.at(2));
         EventAssertHelper::AssertEvent(EventType::Error, "CriticalCumulativeOverload must be larger than 0.", events.at(3));
         EventAssertHelper::AssertEvent(EventType::Error, "CriticalFrontVelocity must be equal to 0 or larger.", events.at(4));
         EventAssertHelper::AssertEvent(EventType::Error, "AccelerationAlphaA must be equal to 0 or larger.", events.at(5));
