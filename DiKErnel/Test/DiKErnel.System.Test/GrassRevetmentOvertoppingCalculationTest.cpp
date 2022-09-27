@@ -149,28 +149,6 @@ namespace DiKErnel::System::Test
             builder.AddDikeProfilePointData(85, CharacteristicPointType::InnerToe);
         }
 
-        [[nodiscard]]
-        unique_ptr<GrassRevetmentOvertoppingLocationConstructionProperties> CreateLocationConstructionPropertiesForSchematization3(
-            double x) const
-        {
-            auto locationConstructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(
-                x, GrassRevetmentTopLayerType::OpenSod);
-
-            locationConstructionProperties->SetInitialDamage(make_unique<double>(0));
-            locationConstructionProperties->SetFailureNumber(make_unique<double>(1));
-            locationConstructionProperties->SetCriticalCumulativeOverload(make_unique<double>(7000));
-            locationConstructionProperties->SetCriticalFrontVelocity(make_unique<double>(4.3));
-            locationConstructionProperties->SetIncreasedLoadTransitionAlphaM(make_unique<double>(1));
-            locationConstructionProperties->SetReducedStrengthTransitionAlphaS(make_unique<double>(1));
-            locationConstructionProperties->SetAverageNumberOfWavesCtm(make_unique<double>(0.92));
-            locationConstructionProperties->SetFixedNumberOfWaves(make_unique<int>(10000));
-            locationConstructionProperties->SetFrontVelocityCwo(make_unique<double>(1.45));
-            locationConstructionProperties->SetAccelerationAlphaAForCrest(make_unique<double>(1));
-            locationConstructionProperties->SetAccelerationAlphaAForInnerSlope(make_unique<double>(1.4));
-
-            return locationConstructionProperties;
-        }
-
         #pragma endregion
     };
 
@@ -400,7 +378,8 @@ namespace DiKErnel::System::Test
         // Given
         CalculationInputBuilder builder;
 
-        auto locationConstructionProperties = CreateLocationConstructionPropertiesForSchematization3(60);
+        auto locationConstructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(
+            60, GrassRevetmentTopLayerType::OpenSod);
 
         ConfigureBuilderForSchematization3(builder);
 
@@ -424,7 +403,8 @@ namespace DiKErnel::System::Test
         // Given
         CalculationInputBuilder builder;
 
-        auto locationConstructionProperties = CreateLocationConstructionPropertiesForSchematization3(50);
+        auto locationConstructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(
+            50, GrassRevetmentTopLayerType::OpenSod);
 
         locationConstructionProperties->SetDikeHeight(make_unique<double>(6.7));
 
@@ -450,7 +430,8 @@ namespace DiKErnel::System::Test
         // Given
         CalculationInputBuilder builder;
 
-        auto locationConstructionProperties = CreateLocationConstructionPropertiesForSchematization3(50);
+        auto locationConstructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(
+            50, GrassRevetmentTopLayerType::OpenSod);
 
         locationConstructionProperties->SetInitialDamage(make_unique<double>(0.9));
         locationConstructionProperties->SetFixedNumberOfWaves(make_unique<int>(15000));
@@ -478,7 +459,8 @@ namespace DiKErnel::System::Test
         // Given
         CalculationInputBuilder builder;
 
-        auto locationConstructionProperties = CreateLocationConstructionPropertiesForSchematization3(50);
+        auto locationConstructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(
+            50, GrassRevetmentTopLayerType::OpenSod);
 
         locationConstructionProperties->SetCriticalCumulativeOverload(make_unique<double>(7500));
         locationConstructionProperties->SetCriticalFrontVelocity(make_unique<double>(5.5));
