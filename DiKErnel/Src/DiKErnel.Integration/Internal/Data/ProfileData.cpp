@@ -20,6 +20,8 @@
 
 #include "ProfileData.h"
 
+#include <limits>
+
 #include "CharacteristicPointsHelper.h"
 #include "NumericsHelper.h"
 #include "ProfileDataValidator.h"
