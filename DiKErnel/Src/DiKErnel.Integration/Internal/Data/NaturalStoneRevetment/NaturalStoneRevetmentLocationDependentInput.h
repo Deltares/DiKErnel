@@ -79,7 +79,8 @@ namespace DiKErnel::Integration
             NaturalStoneRevetmentWaveAngleImpact& GetWaveAngleImpact() const;
 
             [[nodiscard]]
-            bool Validate() const override;
+            bool Validate(
+                const Core::IProfileData& profileData) const override;
 
             [[nodiscard]]
             std::unique_ptr<Core::LocationDependentOutput> GetLocationDependentOutput(

@@ -109,9 +109,10 @@ namespace DiKErnel::Integration
         return *_waveAngleImpactInput;
     }
 
-    bool NaturalStoneRevetmentLocationDependentInput::Validate() const
+    bool NaturalStoneRevetmentLocationDependentInput::Validate(
+        const IProfileData& profileData) const
     {
-        const auto baseValidationSuccessful = LocationDependentInput::Validate();
+        const auto baseValidationSuccessful = LocationDependentInput::Validate(profileData);
 
         vector<unique_ptr<ValidationIssue>> validationIssues;
         validationIssues.emplace_back(NaturalStoneRevetmentValidator::RelativeDensity(_relativeDensity));

@@ -88,7 +88,8 @@ namespace DiKErnel::Integration
             const std::vector<std::pair<double, double>>& GetImpactFactors() const;
 
             [[nodiscard]]
-            bool Validate() const override;
+            bool Validate(
+                const Core::IProfileData& profileData) const override;
 
             [[nodiscard]]
             std::unique_ptr<Core::LocationDependentOutput> GetLocationDependentOutput(

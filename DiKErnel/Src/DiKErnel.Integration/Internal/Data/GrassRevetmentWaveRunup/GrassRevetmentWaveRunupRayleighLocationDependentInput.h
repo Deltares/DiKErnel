@@ -52,7 +52,8 @@ namespace DiKErnel::Integration
             double GetFrontVelocityCu() const;
 
             [[nodiscard]]
-            bool Validate() const override;
+            bool Validate(
+                const Core::IProfileData& profileData) const override;
 
             [[nodiscard]]
             std::unique_ptr<Core::LocationDependentOutput> GetLocationDependentOutput(
