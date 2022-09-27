@@ -20,13 +20,10 @@
 
 #include "GrassRevetmentWaveRunupRayleighLocationDependentInputFactory.h"
 
-#include "DefaultsFactoryException.h"
 #include "GrassRevetmentCumulativeOverloadDefaults.h"
 #include "GrassRevetmentCumulativeOverloadDefaultsFactory.h"
 #include "GrassRevetmentWaveRunupDefaults.h"
 #include "GrassRevetmentWaveRunupRayleighDefaults.h"
-#include "IGrassRevetmentCumulativeOverloadTopLayerDefaults.h"
-#include "InputFactoryException.h"
 #include "InputFactoryHelper.h"
 #include "RevetmentDefaults.h"
 
@@ -39,16 +36,8 @@ namespace DiKErnel::Integration
     CreateLocationDependentInput(
         const GrassRevetmentWaveRunupRayleighLocationConstructionProperties& constructionProperties)
     {
-        unique_ptr<IGrassRevetmentCumulativeOverloadTopLayerDefaults> topLayerDefaults;
-
-        try
-        {
-            topLayerDefaults = GrassRevetmentCumulativeOverloadDefaultsFactory::CreateTopLayerDefaults(constructionProperties.GetTopLayerType());
-        }
-        catch (const DefaultsFactoryException& e)
-        {
-            throw_with_nested(InputFactoryException(e.what()));
-        }
+        const auto& topLayerDefaults = GrassRevetmentCumulativeOverloadDefaultsFactory::CreateTopLayerDefaults(
+            constructionProperties.GetTopLayerType());
 
         auto representative2P = make_unique<GrassRevetmentWaveRunupRepresentative2P>(
             InputFactoryHelper::GetValue(constructionProperties.GetRepresentativeWaveRunup2PAru(),

@@ -23,8 +23,6 @@
 #include "AsphaltRevetmentWaveImpactDefaults.h"
 #include "AsphaltRevetmentWaveImpactDefaultsFactory.h"
 #include "DefaultsFactoryException.h"
-#include "IAsphaltRevetmentWaveImpactTopLayerDefaults.h"
-#include "InputFactoryException.h"
 #include "InputFactoryHelper.h"
 #include "CalculationInputBuilder.h"
 #include "RevetmentDefaults.h"
@@ -38,17 +36,7 @@ namespace DiKErnel::Integration
     CreateLocationDependentInput(
         const AsphaltRevetmentWaveImpactLocationConstructionProperties& constructionProperties)
     {
-        unique_ptr<IAsphaltRevetmentWaveImpactTopLayerDefaults> topLayerDefaults;
-
-        try
-        {
-            topLayerDefaults = AsphaltRevetmentWaveImpactDefaultsFactory::CreateTopLayerDefaults(
-                constructionProperties.GetTopLayerType());
-        }
-        catch (const DefaultsFactoryException& e)
-        {
-            throw_with_nested(InputFactoryException(e.what()));
-        }
+        const auto& topLayerDefaults = AsphaltRevetmentWaveImpactDefaultsFactory::CreateTopLayerDefaults();
 
         const auto elasticModulusUpperLayer = constructionProperties.GetElasticModulusUpperLayer();
         auto upperLayer = make_unique<AsphaltRevetmentWaveImpactLayer>(

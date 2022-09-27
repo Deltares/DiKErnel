@@ -20,12 +20,9 @@
 
 #include "GrassRevetmentOvertoppingLocationDependentInputFactory.h"
 
-#include "DefaultsFactoryException.h"
 #include "GrassRevetmentCumulativeOverloadDefaults.h"
 #include "GrassRevetmentCumulativeOverloadDefaultsFactory.h"
 #include "GrassRevetmentOvertoppingDefaults.h"
-#include "IGrassRevetmentCumulativeOverloadTopLayerDefaults.h"
-#include "InputFactoryException.h"
 #include "InputFactoryHelper.h"
 #include "RevetmentDefaults.h"
 #include "UniquePtrHelper.h"
@@ -40,16 +37,8 @@ namespace DiKErnel::Integration
     GrassRevetmentOvertoppingLocationDependentInputFactory::CreateLocationDependentInput(
         const GrassRevetmentOvertoppingLocationConstructionProperties& constructionProperties)
     {
-        unique_ptr<IGrassRevetmentCumulativeOverloadTopLayerDefaults> topLayerDefaults;
-
-        try
-        {
-            topLayerDefaults = GrassRevetmentCumulativeOverloadDefaultsFactory::CreateTopLayerDefaults(constructionProperties.GetTopLayerType());
-        }
-        catch (const DefaultsFactoryException& e)
-        {
-            throw_with_nested(InputFactoryException(e.what()));
-        }
+        const auto& topLayerDefaults = GrassRevetmentCumulativeOverloadDefaultsFactory::CreateTopLayerDefaults(
+            constructionProperties.GetTopLayerType());
 
         auto locationDependentAccelerationAlphaA = make_unique<GrassRevetmentOvertoppingLocationDependentAccelerationAlphaA>(
             InputFactoryHelper::GetValue(constructionProperties.GetAccelerationAlphaAForCrest(),

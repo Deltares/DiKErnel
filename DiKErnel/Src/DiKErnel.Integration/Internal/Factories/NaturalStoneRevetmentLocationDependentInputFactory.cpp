@@ -20,9 +20,6 @@
 
 #include "NaturalStoneRevetmentLocationDependentInputFactory.h"
 
-#include "DefaultsFactoryException.h"
-#include "INaturalStoneRevetmentTopLayerDefaults.h"
-#include "InputFactoryException.h"
 #include "InputFactoryHelper.h"
 #include "NaturalStoneRevetmentDefaults.h"
 #include "NaturalStoneRevetmentDefaultsFactory.h"
@@ -36,16 +33,7 @@ namespace DiKErnel::Integration
     unique_ptr<NaturalStoneRevetmentLocationDependentInput> NaturalStoneRevetmentLocationDependentInputFactory::CreateLocationDependentInput(
         const NaturalStoneRevetmentLocationConstructionProperties& constructionProperties)
     {
-        unique_ptr<INaturalStoneRevetmentTopLayerDefaults> topLayerDefaults;
-
-        try
-        {
-            topLayerDefaults = NaturalStoneRevetmentDefaultsFactory::CreateTopLayerDefaults(constructionProperties.GetTopLayerType());
-        }
-        catch (const DefaultsFactoryException& e)
-        {
-            throw_with_nested(InputFactoryException(e.what()));
-        }
+        const auto& topLayerDefaults = NaturalStoneRevetmentDefaultsFactory::CreateTopLayerDefaults();
 
         auto hydraulicLoads = make_unique<NaturalStoneRevetmentHydraulicLoads>(
             InputFactoryHelper::GetValue(constructionProperties.GetHydraulicLoadAp(), topLayerDefaults->GetHydraulicLoadAp()),

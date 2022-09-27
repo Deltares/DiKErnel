@@ -20,7 +20,6 @@
 
 #include "GrassRevetmentCumulativeOverloadDefaultsFactory.h"
 
-#include "DefaultsFactoryException.h"
 #include "GrassRevetmentCumulativeOverloadClosedSodTopLayerDefaults.h"
 #include "GrassRevetmentCumulativeOverloadOpenSodTopLayerDefaults.h"
 
@@ -32,14 +31,11 @@ namespace DiKErnel::Integration
     unique_ptr<IGrassRevetmentCumulativeOverloadTopLayerDefaults> GrassRevetmentCumulativeOverloadDefaultsFactory::CreateTopLayerDefaults(
         const GrassRevetmentTopLayerType topLayerType)
     {
-        switch (topLayerType)
+        if (topLayerType == GrassRevetmentTopLayerType::ClosedSod)
         {
-            case GrassRevetmentTopLayerType::ClosedSod:
-                return make_unique<GrassRevetmentCumulativeOverloadClosedSodTopLayerDefaults>();
-            case GrassRevetmentTopLayerType::OpenSod:
-                return make_unique<GrassRevetmentCumulativeOverloadOpenSodTopLayerDefaults>();
-            default:
-                throw DefaultsFactoryException("Couldn't create defaults for the given top layer type.");
+            return make_unique<GrassRevetmentCumulativeOverloadClosedSodTopLayerDefaults>();
         }
+
+        return make_unique<GrassRevetmentCumulativeOverloadOpenSodTopLayerDefaults>();
     }
 }

@@ -22,7 +22,6 @@
 
 #include <memory>
 
-#include "AsphaltRevetmentTopLayerType.h"
 #include "IAsphaltRevetmentWaveImpactTopLayerDefaults.h"
 
 namespace DiKErnel::Integration
@@ -30,7 +29,7 @@ namespace DiKErnel::Integration
     class AsphaltRevetmentWaveImpactDefaultsFactory
     {
         public:
-            static std::unique_ptr<DomainLibrary::IAsphaltRevetmentWaveImpactTopLayerDefaults> CreateTopLayerDefaults(
-                AsphaltRevetmentTopLayerType topLayerType);
+            [[nodiscard]]
+            static std::unique_ptr<DomainLibrary::IAsphaltRevetmentWaveImpactTopLayerDefaults> CreateTopLayerDefaults();
     };
 }

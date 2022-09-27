@@ -21,22 +21,14 @@
 #include "AsphaltRevetmentWaveImpactDefaultsFactory.h"
 
 #include "AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteTopLayerDefaults.h"
-#include "DefaultsFactoryException.h"
 
 namespace DiKErnel::Integration
 {
     using namespace DomainLibrary;
     using namespace std;
 
-    unique_ptr<IAsphaltRevetmentWaveImpactTopLayerDefaults> AsphaltRevetmentWaveImpactDefaultsFactory::CreateTopLayerDefaults(
-        const AsphaltRevetmentTopLayerType topLayerType)
+    unique_ptr<IAsphaltRevetmentWaveImpactTopLayerDefaults> AsphaltRevetmentWaveImpactDefaultsFactory::CreateTopLayerDefaults()
     {
-        switch (topLayerType)
-        {
-            case AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete:
-                return make_unique<AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteTopLayerDefaults>();
-            default:
-                throw DefaultsFactoryException("Couldn't create defaults for the given top layer type.");
-        }
+        return make_unique<AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteTopLayerDefaults>();
     }
 }

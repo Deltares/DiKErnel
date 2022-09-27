@@ -20,7 +20,6 @@
 
 #include "NaturalStoneRevetmentDefaultsFactory.h"
 
-#include "DefaultsFactoryException.h"
 #include "NaturalStoneRevetmentNordicStoneTopLayerDefaults.h"
 
 namespace DiKErnel::Integration
@@ -28,15 +27,8 @@ namespace DiKErnel::Integration
     using namespace DomainLibrary;
     using namespace std;
 
-    unique_ptr<INaturalStoneRevetmentTopLayerDefaults> NaturalStoneRevetmentDefaultsFactory::CreateTopLayerDefaults(
-        const NaturalStoneRevetmentTopLayerType topLayerType)
+    unique_ptr<INaturalStoneRevetmentTopLayerDefaults> NaturalStoneRevetmentDefaultsFactory::CreateTopLayerDefaults()
     {
-        switch (topLayerType)
-        {
-            case NaturalStoneRevetmentTopLayerType::NordicStone:
-                return make_unique<NaturalStoneRevetmentNordicStoneTopLayerDefaults>();
-            default:
-                throw DefaultsFactoryException("Couldn't create defaults for the given top layer type.");
-        }
+        return make_unique<NaturalStoneRevetmentNordicStoneTopLayerDefaults>();
     }
 }

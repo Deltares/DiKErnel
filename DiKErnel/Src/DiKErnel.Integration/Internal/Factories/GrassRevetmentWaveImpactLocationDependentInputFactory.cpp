@@ -20,11 +20,8 @@
 
 #include "GrassRevetmentWaveImpactLocationDependentInputFactory.h"
 
-#include "DefaultsFactoryException.h"
 #include "GrassRevetmentWaveImpactDefaults.h"
 #include "GrassRevetmentWaveImpactDefaultsFactory.h"
-#include "IGrassRevetmentWaveImpactTopLayerDefaults.h"
-#include "InputFactoryException.h"
 #include "InputFactoryHelper.h"
 #include "RevetmentDefaults.h"
 
@@ -37,16 +34,7 @@ namespace DiKErnel::Integration
     CreateLocationDependentInput(
         const GrassRevetmentWaveImpactLocationConstructionProperties& constructionProperties)
     {
-        unique_ptr<IGrassRevetmentWaveImpactTopLayerDefaults> topLayerDefaults;
-
-        try
-        {
-            topLayerDefaults = GrassRevetmentWaveImpactDefaultsFactory::CreateTopLayerDefaults(constructionProperties.GetTopLayerType());
-        }
-        catch (const DefaultsFactoryException& e)
-        {
-            throw_with_nested(InputFactoryException(e.what()));
-        }
+        const auto& topLayerDefaults = GrassRevetmentWaveImpactDefaultsFactory::CreateTopLayerDefaults(constructionProperties.GetTopLayerType());
 
         auto waveAngleImpact = make_unique<GrassRevetmentWaveImpactWaveAngleImpact>(
             InputFactoryHelper::GetValue(constructionProperties.GetWaveAngleImpactNwa(), GrassRevetmentWaveImpactDefaults::GetWaveAngleImpactNwa()),

@@ -20,7 +20,6 @@
 
 #include "GrassRevetmentWaveImpactDefaultsFactory.h"
 
-#include "DefaultsFactoryException.h"
 #include "GrassRevetmentWaveImpactClosedSodTopLayerDefaults.h"
 #include "GrassRevetmentWaveImpactOpenSodTopLayerDefaults.h"
 
@@ -32,14 +31,11 @@ namespace DiKErnel::Integration
     unique_ptr<IGrassRevetmentWaveImpactTopLayerDefaults> GrassRevetmentWaveImpactDefaultsFactory::CreateTopLayerDefaults(
         const GrassRevetmentTopLayerType topLayerType)
     {
-        switch (topLayerType)
+        if (topLayerType == GrassRevetmentTopLayerType::ClosedSod)
         {
-            case GrassRevetmentTopLayerType::ClosedSod:
-                return make_unique<GrassRevetmentWaveImpactClosedSodTopLayerDefaults>();
-            case GrassRevetmentTopLayerType::OpenSod:
-                return make_unique<GrassRevetmentWaveImpactOpenSodTopLayerDefaults>();
-            default:
-                throw DefaultsFactoryException("Couldn't create defaults for the given top layer type.");
+            return make_unique<GrassRevetmentWaveImpactClosedSodTopLayerDefaults>();
         }
+
+        return make_unique<GrassRevetmentWaveImpactOpenSodTopLayerDefaults>();
     }
 }

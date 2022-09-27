@@ -23,14 +23,13 @@
 #include <memory>
 
 #include "INaturalStoneRevetmentTopLayerDefaults.h"
-#include "NaturalStoneRevetmentTopLayerType.h"
 
 namespace DiKErnel::Integration
 {
     class NaturalStoneRevetmentDefaultsFactory
     {
         public:
-            static std::unique_ptr<DomainLibrary::INaturalStoneRevetmentTopLayerDefaults> CreateTopLayerDefaults(
-                NaturalStoneRevetmentTopLayerType topLayerType);
+            [[nodiscard]]
+            static std::unique_ptr<DomainLibrary::INaturalStoneRevetmentTopLayerDefaults> CreateTopLayerDefaults();
     };
 }
