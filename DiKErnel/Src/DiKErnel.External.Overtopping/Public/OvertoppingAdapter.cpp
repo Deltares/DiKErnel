@@ -25,8 +25,8 @@
 
 #include "Geometry.h"
 #include "Load.h"
-#include "Result.h"
 #include "ModelFactors.h"
+#include "Result.h"
 
 using namespace DiKErnel::External::Overtopping;
 

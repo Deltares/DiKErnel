@@ -215,7 +215,7 @@ namespace DiKErnel::External::Overtopping::Test
         constexpr double dikeHeight = 9.1;
         constexpr double dikeNormal = 60.0;
 
-        ModelFactors input
+        ModelFactors modelFactors
         {
             2.3,
             4.3,
@@ -268,7 +268,7 @@ namespace DiKErnel::External::Overtopping::Test
         messageBuffer->reserve(MESSAGE_SIZE);
 
         // Call
-        OvertoppingAdapter::CalculateQo(loads, geometry, dikeHeight, input, &result, messageBuffer.get(), &success);
+        OvertoppingAdapter::CalculateQo(loads, geometry, dikeHeight, modelFactors, &result, messageBuffer.get(), &success);
 
         // Assert
         ASSERT_TRUE(success);

@@ -39,15 +39,15 @@ namespace DiKErnel::External::Overtopping
              * \brief Validates the input arguments for an overtopping calculation.
              * \param geometry
              *        The geometry.
+             * \param dikeHeight
+             *        The dike height.
+             *        Unit = [m]
              * \param modelFactors
-             *        The input.
+             *        The model factors.
              * \param messageBuffer
              *        The message buffer to write validation messages to.
              * \param success
              *        Indicator whether the input arguments are valid or not.
-             * \param dikeHeight
-             *        The dike height.
-             *        Unit = [m]
              */
             static void Validate(
                 Geometry& geometry,
@@ -62,17 +62,17 @@ namespace DiKErnel::External::Overtopping
              *        The load.
              * \param geometry
              *        The geometry.
+             * \param dikeHeight
+             *        The dike height.
+             *        Unit = [m]
              * \param modelFactors
-             *        The input.
+             *        The model factors.
              * \param result
              *        The results of the calculation.
              * \param messageBuffer
              *        The message buffer to write error message to.
              * \param success
              *        Indicator whether the calculation was successful or not.
-             * \param dikeHeight
-             *        The dike height.
-             *        Unit = [m]
              */
             static void CalculateQo(
                 Load& load,
