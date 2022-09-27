@@ -26,7 +26,6 @@
 
 #include "CalculationInput.h"
 #include "EventRegistry.h"
-#include "InputFactoryException.h"
 #include "LocationDependentInputFactory.h"
 #include "NumericsHelper.h"
 #include "ProfileDataFactory.h"
@@ -123,20 +122,12 @@ namespace DiKErnel::Integration
             return make_unique<DataResult<ICalculationInput>>(EventRegistry::Flush());
         }
 
-        try
-        {
-            auto profileData = ProfileDataFactory::Create(_profileSegmentDataItemReferences, _profilePointDataItemReferences);
-            auto locations = LocationDependentInputFactory::Create(_locationConstructionPropertiesItemReferences);
-            auto timeSteps = TimeDependentInputFactory::Create(_timeStepDataItemReferences);
+        auto profileData = ProfileDataFactory::Create(_profileSegmentDataItemReferences, _profilePointDataItemReferences);
+        auto locations = LocationDependentInputFactory::Create(_locationConstructionPropertiesItemReferences);
+        auto timeSteps = TimeDependentInputFactory::Create(_timeStepDataItemReferences);
 
-            return make_unique<DataResult<ICalculationInput>>(make_unique<CalculationInput>(move(profileData), move(locations), move(timeSteps)),
-                                                              EventRegistry::Flush());
-        }
-        catch (const InputFactoryException& e)
-        {
-            EventRegistry::Register(make_unique<Event>(e.what(), EventType::Error));
-            return make_unique<DataResult<ICalculationInput>>(EventRegistry::Flush());
-        }
+        return make_unique<DataResult<ICalculationInput>>(make_unique<CalculationInput>(move(profileData), move(locations), move(timeSteps)),
+                                                          EventRegistry::Flush());
     }
 
     void CalculationInputBuilder::AddDikeProfileSegment(
@@ -312,23 +303,26 @@ namespace DiKErnel::Integration
         };
 
         return ranges::all_of(_locationConstructionPropertiesItemReferences,
-            [this, validateLocationOnOuterSlope, validateLocationOnCrestOrInnerSlope, validateAsphaltRevetmentTopLayerType,
-            validateGrassRevetmentTopLayerType, validateNaturalStoneRevetmentTopLayerType](
-                const reference_wrapper<RevetmentLocationConstructionPropertiesBase> locationConstructionPropertiesItemReference)
-            {
-                const auto& locationConstructionPropertiesItem = locationConstructionPropertiesItemReference.get();
+                              [this, validateLocationOnOuterSlope, validateLocationOnCrestOrInnerSlope, validateAsphaltRevetmentTopLayerType,
+                                  validateGrassRevetmentTopLayerType, validateNaturalStoneRevetmentTopLayerType](
+                          const reference_wrapper<RevetmentLocationConstructionPropertiesBase> locationConstructionPropertiesItemReference)
+                              {
+                                  const auto& locationConstructionPropertiesItem = locationConstructionPropertiesItemReference.get();
 
-                return ValidateLocation<AsphaltRevetmentWaveImpactLocationConstructionProperties>(
-                    locationConstructionPropertiesItem, validateLocationOnOuterSlope, validateAsphaltRevetmentTopLayerType)
-                    && ValidateLocation<GrassRevetmentOvertoppingLocationConstructionProperties>(
-                        locationConstructionPropertiesItem, validateLocationOnCrestOrInnerSlope, validateGrassRevetmentTopLayerType)
-                    && ValidateLocation<GrassRevetmentWaveImpactLocationConstructionProperties>(
-                        locationConstructionPropertiesItem, validateLocationOnOuterSlope, validateGrassRevetmentTopLayerType)
-                    && ValidateLocation<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(
-                        locationConstructionPropertiesItem, validateLocationOnOuterSlope, validateGrassRevetmentTopLayerType)
-                    && ValidateLocation<NaturalStoneRevetmentLocationConstructionProperties>(
-                        locationConstructionPropertiesItem, validateLocationOnOuterSlope, validateNaturalStoneRevetmentTopLayerType);
-        });
+                                  return ValidateLocation<AsphaltRevetmentWaveImpactLocationConstructionProperties>(
+                                              locationConstructionPropertiesItem, validateLocationOnOuterSlope,
+                                              validateAsphaltRevetmentTopLayerType)
+                                          && ValidateLocation<GrassRevetmentOvertoppingLocationConstructionProperties>(
+                                              locationConstructionPropertiesItem, validateLocationOnCrestOrInnerSlope,
+                                              validateGrassRevetmentTopLayerType)
+                                          && ValidateLocation<GrassRevetmentWaveImpactLocationConstructionProperties>(
+                                              locationConstructionPropertiesItem, validateLocationOnOuterSlope, validateGrassRevetmentTopLayerType)
+                                          && ValidateLocation<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(
+                                              locationConstructionPropertiesItem, validateLocationOnOuterSlope, validateGrassRevetmentTopLayerType)
+                                          && ValidateLocation<NaturalStoneRevetmentLocationConstructionProperties>(
+                                              locationConstructionPropertiesItem, validateLocationOnOuterSlope,
+                                              validateNaturalStoneRevetmentTopLayerType);
+                              });
     }
 
     template <typename TConstructionProperties, typename TValidateX, typename TValidateTopLayer>
