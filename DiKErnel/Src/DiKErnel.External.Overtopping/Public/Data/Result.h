@@ -28,7 +28,7 @@ namespace DiKErnel::External::Overtopping
     struct Result
     {
         /*!
-         * \brief The 2% wave run-up
+         * \brief The 2% wave run-up.
          *        Unit = [m]
          */
         double _z2;
