@@ -118,7 +118,7 @@ namespace DiKErnel::Integration
         const auto baseValidationSuccessful = LocationDependentInput::Validate(timeDependentInputs, profileData);
 
         const auto& characteristicPoints = profileData.GetCharacteristicPoints();
-        const auto outerCrest = CharacteristicPointsHelper::GetCoordinatesForType(characteristicPoints, CharacteristicPointType::OuterCrest);
+        const auto& outerCrest = CharacteristicPointsHelper::GetCoordinatesForType(characteristicPoints, CharacteristicPointType::OuterCrest);
 
         const auto calculatedDikeHeight = CalculateDikeHeight(*outerCrest, profileData.GetProfileSegments());
 
@@ -155,9 +155,9 @@ namespace DiKErnel::Integration
         LocationDependentInput::InitializeDerivedLocationDependentInput(profileData);
 
         const auto& characteristicPoints = profileData.GetCharacteristicPoints();
-        const auto outerToe = CharacteristicPointsHelper::GetCoordinatesForType(characteristicPoints, CharacteristicPointType::OuterToe);
-        const auto outerCrest = CharacteristicPointsHelper::GetCoordinatesForType(characteristicPoints, CharacteristicPointType::OuterCrest);
-        const auto innerCrest = CharacteristicPointsHelper::GetCoordinatesForType(characteristicPoints, CharacteristicPointType::InnerCrest);
+        const auto& outerToe = CharacteristicPointsHelper::GetCoordinatesForType(characteristicPoints, CharacteristicPointType::OuterToe);
+        const auto& outerCrest = CharacteristicPointsHelper::GetCoordinatesForType(characteristicPoints, CharacteristicPointType::OuterCrest);
+        const auto& innerCrest = CharacteristicPointsHelper::GetCoordinatesForType(characteristicPoints, CharacteristicPointType::InnerCrest);
 
         InitializeCalculationProfile(*outerToe, *outerCrest, profileData.GetProfileSegments());
         InitializeDikeHeight(*outerCrest, profileData.GetProfileSegments());
