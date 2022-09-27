@@ -27,9 +27,10 @@
 
 #include "Geometry.h"
 #include "GrassRevetmentFunctions.h"
-#include "ModelFactors.h"
 #include "Load.h"
 #include "OvertoppingAdapter.h"
+#include "ModelFactors.h"
+#include "Result.h"
 
 namespace DiKErnel::FunctionLibrary
 {
@@ -73,7 +74,7 @@ namespace DiKErnel::FunctionLibrary
         const auto messageBuffer = make_unique<string>();
         messageBuffer->reserve(255);
 
-        OvertoppingAdapter::CalculateQo(load, geometry, modelFactors, &result, messageBuffer.get(), &success, input._dikeHeight);
+        OvertoppingAdapter::CalculateQo(load, geometry, input._dikeHeight, modelFactors, &result, messageBuffer.get(), &success);
 
         return result._z2;
     }

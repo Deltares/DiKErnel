@@ -19,24 +19,24 @@
 // All rights reserved.
 
 #pragma once
-#include <string>
 
-#include "Result.h"
+#include <string>
 
 namespace DiKErnel::External::Overtopping
 {
-    struct ModelFactors;
     struct Geometry;
     struct Load;
+    struct ModelFactors;
+    struct Result;
 
-    /**
+    /*!
      * \brief Adapter for the overtopping validation and calculation.
      */
     class OvertoppingAdapter
     {
         public:
             /*!
-             * \brief Validates the inputs for an overtopping calculation.
+             * \brief Validates the input arguments for an overtopping calculation.
              * \param geometry
              *        The geometry.
              * \param modelFactors
@@ -44,17 +44,17 @@ namespace DiKErnel::External::Overtopping
              * \param messageBuffer
              *        The message buffer to write validation messages to.
              * \param success
-             *        Indicator whether the inputs are valid or not.
+             *        Indicator whether the input arguments are valid or not.
              * \param dikeHeight
              *        The dike height.
              *        Unit = [m]
              */
             static void Validate(
                 Geometry& geometry,
+                double dikeHeight,
                 ModelFactors& modelFactors,
                 const std::string* messageBuffer,
-                bool* success,
-                double dikeHeight);
+                bool* success);
 
             /*!
              * \brief Calculates the overtopping based on its input arguments.
@@ -77,13 +77,15 @@ namespace DiKErnel::External::Overtopping
             static void CalculateQo(
                 Load& load,
                 Geometry& geometry,
+                double dikeHeight,
                 ModelFactors& modelFactors,
                 Result* result,
                 const std::string* messageBuffer,
-                bool* success,
-                double dikeHeight);
+                bool* success);
 
         private:
             inline static std::string _languageCode = "UK";
+            inline static int _logFileNameSize = 256;
+            inline static int _verbosity = -1;
     };
 }
