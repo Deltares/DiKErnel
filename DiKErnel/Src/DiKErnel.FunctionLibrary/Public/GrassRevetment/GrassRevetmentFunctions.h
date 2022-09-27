@@ -52,7 +52,7 @@ namespace DiKErnel::FunctionLibrary
                 double criticalCumulativeOverload);
 
         private:
-            template <class T>
+            template <typename T>
             [[nodiscard]]
             static double CumulativeOverload(
                 const GrassRevetmentCumulativeOverloadInput& input,
