@@ -136,7 +136,8 @@ namespace DiKErnel::System::Test
         EventAssertHelper::AssertEvent(EventType::Error, "AverageNumberOfWavesCtm must be larger than 0.", events.at(13));
     }
 
-    TEST(ValidationSystemTest, GivenCalculationInputWithInvalidGrassRevetmentWaveImpactLocation_WhenValidating_ThenReturnsExpectedValidationResult)
+    TEST(ValidationSystemTest,
+         GivenCalculationInputWithInvalidGrassRevetmentWaveImpactLocation_WhenValidating_ThenReturnsExpectedValidationResult)
     {
         // Given
         auto constructionProperties = make_unique<
@@ -239,7 +240,7 @@ namespace DiKErnel::System::Test
         // Given
         auto constructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(
             25, GrassRevetmentTopLayerType::ClosedSod);
-        constructionProperties->SetDikeHeight(make_unique<double>(9.9));
+        constructionProperties->SetDikeHeight(make_unique<double>(15));
         constructionProperties->SetInitialDamage(make_unique<double>(-0.1));
         constructionProperties->SetFailureNumber(make_unique<double>(-1));
         constructionProperties->SetCriticalCumulativeOverload(make_unique<double>(-2));
@@ -254,7 +255,6 @@ namespace DiKErnel::System::Test
 
         CalculationInputBuilder builder;
         builder.AddTimeStep(0, 100, 10, 5, 10, 30);
-        builder.AddTimeStep(100, 150, 10, 5, 10, 30);
         builder.AddDikeProfileSegment(10, 5, 20, 10);
         builder.AddDikeProfileSegment(20, 10, 30, 10);
         builder.AddDikeProfileSegment(30, 10, 40, 5);
@@ -273,19 +273,129 @@ namespace DiKErnel::System::Test
         ASSERT_TRUE(validationResult->GetSuccessful());
         ASSERT_EQ(ValidationResultType::Failed, *validationResult->GetData());
         const auto& events = validationResult->GetEvents();
-        ASSERT_EQ(12, events.size());
+        ASSERT_EQ(11, events.size());
         EventAssertHelper::AssertEvent(EventType::Error, "InitialDamage must be equal to 0 or larger.", events.at(0));
         EventAssertHelper::AssertEvent(EventType::Error, "FailureNumber must be equal to InitialDamage or larger.", events.at(1));
-        EventAssertHelper::AssertEvent(EventType::Warning, "For certain time steps the dike height is lower than the water level. No damage will be calculated for these time steps.", events.at(2));
-        EventAssertHelper::AssertEvent(EventType::Error, "CriticalCumulativeOverload must be larger than 0.", events.at(3));
-        EventAssertHelper::AssertEvent(EventType::Error, "CriticalFrontVelocity must be equal to 0 or larger.", events.at(4));
+        EventAssertHelper::AssertEvent(EventType::Error, "CriticalCumulativeOverload must be larger than 0.", events.at(2));
+        EventAssertHelper::AssertEvent(EventType::Error, "CriticalFrontVelocity must be equal to 0 or larger.", events.at(3));
+        EventAssertHelper::AssertEvent(EventType::Error, "AccelerationAlphaA must be equal to 0 or larger.", events.at(4));
         EventAssertHelper::AssertEvent(EventType::Error, "AccelerationAlphaA must be equal to 0 or larger.", events.at(5));
-        EventAssertHelper::AssertEvent(EventType::Error, "AccelerationAlphaA must be equal to 0 or larger.", events.at(6));
-        EventAssertHelper::AssertEvent(EventType::Error, "FixedNumberOfWaves must be larger than 0.", events.at(7));
-        EventAssertHelper::AssertEvent(EventType::Error, "FrontVelocityCwo must be larger than 0.", events.at(8));
-        EventAssertHelper::AssertEvent(EventType::Error, "AverageNumberOfWavesCtm must be larger than 0.", events.at(9));
-        EventAssertHelper::AssertEvent(EventType::Error, "IncreasedLoadTransitionAlphaM must be equal to 0 or larger.", events.at(10));
-        EventAssertHelper::AssertEvent(EventType::Error, "ReducedStrengthTransitionAlphaS must be equal to 0 or larger.", events.at(11));
+        EventAssertHelper::AssertEvent(EventType::Error, "FixedNumberOfWaves must be larger than 0.", events.at(6));
+        EventAssertHelper::AssertEvent(EventType::Error, "FrontVelocityCwo must be larger than 0.", events.at(7));
+        EventAssertHelper::AssertEvent(EventType::Error, "AverageNumberOfWavesCtm must be larger than 0.", events.at(8));
+        EventAssertHelper::AssertEvent(EventType::Error, "IncreasedLoadTransitionAlphaM must be equal to 0 or larger.", events.at(9));
+        EventAssertHelper::AssertEvent(EventType::Error, "ReducedStrengthTransitionAlphaS must be equal to 0 or larger.", events.at(10));
+    }
+
+    TEST(ValidationSystemTest,
+         GivenCalculationInputWithGrassRevetmentOvertoppingLocationAndDikeHeightHigherThanWaterLevel_WhenValidating_ThenReturnsExpectedValidationResult)
+    {
+        // Given
+        constexpr auto dikeHeight = 10.0;
+        constexpr auto waterLevel = dikeHeight - 0.1;
+
+        auto constructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(
+            25, GrassRevetmentTopLayerType::ClosedSod);
+        constructionProperties->SetDikeHeight(make_unique<double>(dikeHeight));
+
+        CalculationInputBuilder builder;
+        builder.AddTimeStep(0, 100, waterLevel, 5, 10, 30);
+        builder.AddTimeStep(100, 150, waterLevel, 5, 10, 30);
+        builder.AddDikeProfileSegment(10, 5, 20, 10);
+        builder.AddDikeProfileSegment(20, 10, 30, 10);
+        builder.AddDikeProfileSegment(30, 10, 40, 5);
+        builder.AddDikeProfilePointData(10, CharacteristicPointType::OuterToe);
+        builder.AddDikeProfilePointData(20, CharacteristicPointType::OuterCrest);
+        builder.AddDikeProfilePointData(30, CharacteristicPointType::InnerCrest);
+        builder.AddDikeProfilePointData(40, CharacteristicPointType::InnerToe);
+        builder.AddGrassOvertoppingLocation(move(constructionProperties));
+
+        const auto& calculationInput = builder.Build();
+
+        // When
+        const auto& validationResult = Validator::Validate(*calculationInput->GetData());
+
+        // Then
+        ASSERT_TRUE(validationResult->GetSuccessful());
+        ASSERT_EQ(ValidationResultType::Successful, *validationResult->GetData());
+        const auto& events = validationResult->GetEvents();
+        ASSERT_EQ(0, events.size());
+    }
+
+    TEST(ValidationSystemTest,
+         GivenCalculationInputWithGrassRevetmentOvertoppingLocationAndDikeHeightLowerThanWaterLevel_WhenValidating_ThenReturnsExpectedValidationResult)
+    {
+        // Given
+        constexpr auto dikeHeight = 10.0;
+        constexpr auto waterLevel = dikeHeight + 0.1;
+
+        auto constructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(
+            25, GrassRevetmentTopLayerType::ClosedSod);
+        constructionProperties->SetDikeHeight(make_unique<double>(dikeHeight));
+
+        CalculationInputBuilder builder;
+        builder.AddTimeStep(0, 100, waterLevel, 5, 10, 30);
+        builder.AddTimeStep(100, 150, waterLevel, 5, 10, 30);
+        builder.AddDikeProfileSegment(10, 5, 20, 10);
+        builder.AddDikeProfileSegment(20, 10, 30, 10);
+        builder.AddDikeProfileSegment(30, 10, 40, 5);
+        builder.AddDikeProfilePointData(10, CharacteristicPointType::OuterToe);
+        builder.AddDikeProfilePointData(20, CharacteristicPointType::OuterCrest);
+        builder.AddDikeProfilePointData(30, CharacteristicPointType::InnerCrest);
+        builder.AddDikeProfilePointData(40, CharacteristicPointType::InnerToe);
+        builder.AddGrassOvertoppingLocation(move(constructionProperties));
+
+        const auto& calculationInput = builder.Build();
+
+        // When
+        const auto& validationResult = Validator::Validate(*calculationInput->GetData());
+
+        // Then
+        ASSERT_TRUE(validationResult->GetSuccessful());
+        ASSERT_EQ(ValidationResultType::Successful, *validationResult->GetData());
+        const auto& events = validationResult->GetEvents();
+        ASSERT_EQ(1, events.size());
+        EventAssertHelper::AssertEvent(EventType::Warning,
+                                       "For certain time steps the dike height is lower than the water level. No damage will be calculated for these time steps.",
+                                       events.at(0));
+    }
+
+    TEST(ValidationSystemTest,
+         GivenCalculationInputWithGrassRevetmentOvertoppingLocationAndDikeHeightEqualToWaterLevel_WhenValidating_ThenReturnsExpectedValidationResult)
+    {
+        // Given
+        constexpr auto dikeHeight = 10.0;
+        constexpr auto waterLevel = dikeHeight;
+
+        auto constructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(
+            25, GrassRevetmentTopLayerType::ClosedSod);
+        constructionProperties->SetDikeHeight(make_unique<double>(dikeHeight));
+
+        CalculationInputBuilder builder;
+        builder.AddTimeStep(0, 100, waterLevel, 5, 10, 30);
+        builder.AddTimeStep(100, 150, waterLevel, 5, 10, 30);
+        builder.AddDikeProfileSegment(10, 5, 20, 10);
+        builder.AddDikeProfileSegment(20, 10, 30, 10);
+        builder.AddDikeProfileSegment(30, 10, 40, 5);
+        builder.AddDikeProfilePointData(10, CharacteristicPointType::OuterToe);
+        builder.AddDikeProfilePointData(20, CharacteristicPointType::OuterCrest);
+        builder.AddDikeProfilePointData(30, CharacteristicPointType::InnerCrest);
+        builder.AddDikeProfilePointData(40, CharacteristicPointType::InnerToe);
+        builder.AddGrassOvertoppingLocation(move(constructionProperties));
+
+        const auto& calculationInput = builder.Build();
+
+        // When
+        const auto& validationResult = Validator::Validate(*calculationInput->GetData());
+
+        // Then
+        ASSERT_TRUE(validationResult->GetSuccessful());
+        ASSERT_EQ(ValidationResultType::Successful, *validationResult->GetData());
+        const auto& events = validationResult->GetEvents();
+        ASSERT_EQ(1, events.size());
+        EventAssertHelper::AssertEvent(EventType::Warning,
+                                       "For certain time steps the dike height is lower than the water level. No damage will be calculated for these time steps.",
+                                       events.at(0));
     }
 
     TEST(ValidationSystemTest, GivenCalculationInputWithInvalidNaturalStoneRevetmentLocation_WhenValidating_ThenReturnsExpectedValidationResult)
@@ -328,9 +438,14 @@ namespace DiKErnel::System::Test
         // Given
         CalculationInputBuilder builder;
         builder.AddTimeStep(0, 100, 10, 5, 10, 30);
+        builder.AddTimeStep(100, 150, 10, 5, 10, 30);
         builder.AddDikeProfileSegment(10.0, 5.0, 20.0, 10.0);
-        builder.AddDikeProfilePointData(10.0, CharacteristicPointType::OuterToe);
-        builder.AddDikeProfilePointData(20.0, CharacteristicPointType::OuterCrest);
+        builder.AddDikeProfileSegment(20, 10, 30, 10);
+        builder.AddDikeProfileSegment(30, 10, 40, 5);
+        builder.AddDikeProfilePointData(10, CharacteristicPointType::OuterToe);
+        builder.AddDikeProfilePointData(20, CharacteristicPointType::OuterCrest);
+        builder.AddDikeProfilePointData(30, CharacteristicPointType::InnerCrest);
+        builder.AddDikeProfilePointData(40, CharacteristicPointType::InnerToe);
 
         auto asphaltRevetmentWaveImpactLocationConstructionProperties = make_unique<AsphaltRevetmentWaveImpactLocationConstructionProperties>(
             12, AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete, 1, 0.5, 3, 2);
@@ -345,10 +460,14 @@ namespace DiKErnel::System::Test
         auto naturalStoneRevetmentLocationConstructionProperties = make_unique<NaturalStoneRevetmentLocationConstructionProperties>(
             15, NaturalStoneRevetmentTopLayerType::NordicStone, 0.5, 4.6);
 
+        auto grassRevetmentOvertoppingLocationConstructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(
+            25, GrassRevetmentTopLayerType::ClosedSod);
+
         builder.AddAsphaltWaveImpactLocation(move(asphaltRevetmentWaveImpactLocationConstructionProperties));
         builder.AddGrassWaveImpactLocation(move(grassRevetmentWaveImpactLocationConstructionProperties));
         builder.AddGrassWaveRunupRayleighLocation(move(grassRevetmentWaveRunupRayleighLocationConstructionProperties));
         builder.AddNaturalStoneLocation(move(naturalStoneRevetmentLocationConstructionProperties));
+        builder.AddGrassOvertoppingLocation(move(grassRevetmentOvertoppingLocationConstructionProperties));
 
         const auto& calculationInput = builder.Build();
 
