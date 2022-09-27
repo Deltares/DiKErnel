@@ -303,8 +303,8 @@ namespace DiKErnel::Integration
         };
 
         return ranges::all_of(_locationConstructionPropertiesItemReferences,
-                              [this, validateLocationOnOuterSlope, validateLocationOnCrestOrInnerSlope, validateAsphaltRevetmentTopLayerType,
-                                  validateGrassRevetmentTopLayerType, validateNaturalStoneRevetmentTopLayerType](
+                              [this, &validateLocationOnOuterSlope, &validateLocationOnCrestOrInnerSlope, &validateAsphaltRevetmentTopLayerType,
+                                  &validateGrassRevetmentTopLayerType, &validateNaturalStoneRevetmentTopLayerType](
                           const reference_wrapper<RevetmentLocationConstructionPropertiesBase> locationConstructionPropertiesItemReference)
                               {
                                   const auto& locationConstructionPropertiesItem = locationConstructionPropertiesItemReference.get();
