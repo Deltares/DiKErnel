@@ -21,7 +21,6 @@
 #include "CalculationInputBuilder.h"
 
 #include <algorithm>
-#include <format>
 #include <sstream>
 
 #include "AsphaltRevetmentWaveImpactDefaults.h"
