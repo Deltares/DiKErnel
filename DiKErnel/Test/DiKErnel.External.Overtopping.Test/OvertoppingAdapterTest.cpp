@@ -197,7 +197,7 @@ namespace DiKErnel::External::Overtopping::Test
 
         Result result{};
 
-        bool success = false;
+        bool success = true;
         const auto messageBuffer = make_unique<string>();
         messageBuffer->reserve(MESSAGE_SIZE);
 
