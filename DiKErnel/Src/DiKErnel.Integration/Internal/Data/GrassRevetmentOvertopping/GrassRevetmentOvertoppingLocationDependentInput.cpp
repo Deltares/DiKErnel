@@ -120,7 +120,8 @@ namespace DiKErnel::Integration
         validationIssues.emplace_back(GrassRevetmentValidator::CriticalCumulativeOverload(_criticalCumulativeOverload));
         validationIssues.emplace_back(GrassRevetmentValidator::CriticalFrontVelocity(_criticalFrontVelocity));
         validationIssues.emplace_back(GrassRevetmentOvertoppingValidator::AccelerationAlphaA(_locationDependentAccelerationAlphaA->ValueAtCrest()));
-        validationIssues.emplace_back(GrassRevetmentOvertoppingValidator::AccelerationAlphaA(_locationDependentAccelerationAlphaA->ValueAtInnerSlope()));
+        validationIssues.emplace_back(
+            GrassRevetmentOvertoppingValidator::AccelerationAlphaA(_locationDependentAccelerationAlphaA->ValueAtInnerSlope()));
         validationIssues.emplace_back(GrassRevetmentValidator::FixedNumberOfWaves(_fixedNumberOfWaves));
         validationIssues.emplace_back(GrassRevetmentOvertoppingValidator::FrontVelocityCwo(_frontVelocityCwo));
         validationIssues.emplace_back(RevetmentValidator::AverageNumberOfWavesCtm(_averageNumberOfWavesCtm));
@@ -223,26 +224,7 @@ namespace DiKErnel::Integration
         const pair<double, double>& outerCrest,
         const vector<reference_wrapper<ProfileSegment>>& profileSegments)
     {
-        if (_enforcedDikeHeight != nullptr)
-        {
-            _dikeHeight = *_enforcedDikeHeight;
-        }
-        else
-        {
-            const auto x = GetX();
-
-            _dikeHeight = GetZ();
-
-            for (const auto& profileSegment : profileSegments)
-            {
-                const auto& startPoint = profileSegment.get().GetStartPoint();
-
-                if (const double startPointX = startPoint.GetX(); startPointX >= outerCrest.first && startPointX < x)
-                {
-                    _dikeHeight = max(_dikeHeight, startPoint.GetZ());
-                }
-            }
-        }
+        _dikeHeight = CalculateDikeHeight(outerCrest, profileSegments);
     }
 
     void GrassRevetmentOvertoppingLocationDependentInput::InitializeAccelerationAlphaA(
@@ -296,6 +278,31 @@ namespace DiKErnel::Integration
         cumulativeOverloadInput._gravitationalAcceleration = Constants::GetGravitationalAcceleration();
 
         return GrassRevetmentOvertoppingFunctions::CumulativeOverload(cumulativeOverloadInput);
+    }
+
+    double GrassRevetmentOvertoppingLocationDependentInput::CalculateDikeHeight(
+        const pair<double, double>& outerCrest,
+        const vector<reference_wrapper<ProfileSegment>>& profileSegments) const
+    {
+        if (_enforcedDikeHeight != nullptr)
+        {
+            return *_enforcedDikeHeight;
+        }
+
+        const auto x = GetX();
+        auto dikeHeight = GetZ();
+
+        for (const auto& profileSegment : profileSegments)
+        {
+            const auto& startPoint = profileSegment.get().GetStartPoint();
+
+            if (const double startPointX = startPoint.GetX(); startPointX >= outerCrest.first && startPointX < x)
+            {
+                dikeHeight = max(dikeHeight, startPoint.GetZ());
+            }
+        }
+
+        return dikeHeight;
     }
 
     unique_ptr<GrassRevetmentOvertoppingTimeDependentOutputConstructionProperties>

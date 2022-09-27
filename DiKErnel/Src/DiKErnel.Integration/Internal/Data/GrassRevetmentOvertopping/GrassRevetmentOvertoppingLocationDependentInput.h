@@ -119,7 +119,7 @@ namespace DiKErnel::Integration
             void InitializeDikeHeight(
                 const std::pair<double, double>& outerCrest,
                 const std::vector<std::reference_wrapper<Core::ProfileSegment>>& profileSegments);
-
+        
             void InitializeAccelerationAlphaA(
                 const std::pair<double, double>& outerCrest,
                 const std::pair<double, double>& innerCrest);
@@ -134,6 +134,11 @@ namespace DiKErnel::Integration
             [[nodiscard]]
             double CalculateCumulativeOverload(
                 double averageNumberOfWaves) const;
+
+            [[nodiscard]]
+            double CalculateDikeHeight(
+                const std::pair<double, double>& outerCrest,
+                const std::vector<std::reference_wrapper<Core::ProfileSegment>>& profileSegments) const;
 
             [[nodiscard]]
             std::unique_ptr<GrassRevetmentOvertoppingTimeDependentOutputConstructionProperties> CreateConstructionProperties(
