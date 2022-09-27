@@ -36,7 +36,7 @@ target_include_directories(${LIBNAME} PUBLIC
   ${CMAKE_CURRENT_SOURCE_DIR}/${PUBLIC_DATA_FOLDER}
 )
 
-# Add dll overtopping
+# Import dll overtopping
 add_library(dllDikesOvertopping SHARED IMPORTED)
 set_target_properties(dllDikesOvertopping PROPERTIES 
   IMPORTED_LOCATION ${OVERTOPPING_FOLDER}/dllDikesOvertopping.dll
@@ -47,9 +47,7 @@ set(OVERTOPPING_FILES
   ${OVERTOPPING_FOLDER}/dllDikesOvertopping.dll
   ${OVERTOPPING_FOLDER}/dllDikesOvertopping.lib
   ${OVERTOPPING_FOLDER}/feedbackDLL.dll
-  ${OVERTOPPING_FOLDER}/libifcoremd.dll
   ${OVERTOPPING_FOLDER}/libiomp5md.dll
-  ${OVERTOPPING_FOLDER}/libmmd.dll
 )
 
 install(FILES ${OVERTOPPING_FILES} DESTINATION ./$<CONFIG>)
