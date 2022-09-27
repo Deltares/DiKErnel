@@ -24,28 +24,20 @@
 #include <functional>
 #include <sstream>
 
-#include "AsphaltRevetmentWaveImpactDefaults.h"
-#include "AsphaltRevetmentWaveImpactDefaultsFactory.h"
-#include "AsphaltRevetmentWaveImpactLocationDependentInputFactory.h"
 #include "CalculationInput.h"
 #include "EventRegistry.h"
-#include "GrassRevetmentWaveImpactLocationDependentInputFactory.h"
-#include "GrassRevetmentWaveRunupRayleighLocationDependentInputFactory.h"
 #include "InputFactoryException.h"
 #include "LocationDependentInputFactory.h"
-#include "NaturalStoneRevetmentLocationDependentInputFactory.h"
 #include "NumericsHelper.h"
 #include "ProfileDataFactory.h"
 #include "ProfileDataFactoryPoint.h"
 #include "ProfileDataFactorySegment.h"
 #include "TimeDependentInputFactory.h"
 #include "TimeDependentInputFactoryData.h"
-#include "ValidationHelper.h"
 
 namespace DiKErnel::Integration
 {
     using namespace Core;
-    using namespace DomainLibrary;
     using namespace Util;
     using namespace std;
 
