@@ -46,16 +46,4 @@ namespace DiKErnel::DomainLibrary
 
         return nullptr;
     }
-
-    unique_ptr<ValidationIssue> GrassRevetmentOvertoppingValidator::WaterLevel(
-        const double waterLevel,
-        const double dikeHeight)
-    {
-        if (waterLevel >= dikeHeight)
-        {
-            return make_unique<ValidationIssue>(ValidationIssueType::Warning, "WaterLevel should be smaller than the DikeHeight.");
-        }
-
-        return nullptr;
-    }
 }
