@@ -34,7 +34,8 @@ namespace DiKErnel::Core
 
         try
         {
-            for (const auto& timeDependentInputItem : calculationInput.GetTimeDependentInputItems())
+            const auto& timeDependentInputItems = calculationInput.GetTimeDependentInputItems();
+            for (const auto& timeDependentInputItem : timeDependentInputItems)
             {
                 if (!timeDependentInputItem.get().Validate())
                 {
@@ -51,7 +52,7 @@ namespace DiKErnel::Core
 
             for (const auto& locationDependentInputItem : calculationInput.GetLocationDependentInputItems())
             {
-                if (!locationDependentInputItem.get().Validate(profileData))
+                if (!locationDependentInputItem.get().Validate(timeDependentInputItems, profileData))
                 {
                     validationResult = ValidationResultType::Failed;
                 }
