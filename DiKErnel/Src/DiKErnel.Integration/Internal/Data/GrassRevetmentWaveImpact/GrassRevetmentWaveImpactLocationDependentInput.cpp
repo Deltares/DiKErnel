@@ -85,9 +85,10 @@ namespace DiKErnel::Integration
     }
 
     bool GrassRevetmentWaveImpactLocationDependentInput::Validate(
+        const vector<reference_wrapper<ITimeDependentInput>>& timeDependentInputs,
         const IProfileData& profileData) const
     {
-        const auto baseValidationSuccessful = LocationDependentInput::Validate(profileData);
+        const auto baseValidationSuccessful = LocationDependentInput::Validate(timeDependentInputs, profileData);
 
         vector<unique_ptr<ValidationIssue>> validationIssues;
         validationIssues.emplace_back(GrassRevetmentWaveImpactValidator::TimeLineAgwi(_timeLine->GetTimeLineAgwi(), _timeLine->GetTimeLineCgwi()));

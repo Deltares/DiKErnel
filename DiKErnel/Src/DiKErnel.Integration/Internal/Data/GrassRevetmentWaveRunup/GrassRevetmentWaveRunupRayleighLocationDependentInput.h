@@ -53,6 +53,7 @@ namespace DiKErnel::Integration
 
             [[nodiscard]]
             bool Validate(
+                const std::vector<std::reference_wrapper<Core::ITimeDependentInput>>& timeDependentInputs,
                 const Core::IProfileData& profileData) const override;
 
             [[nodiscard]]

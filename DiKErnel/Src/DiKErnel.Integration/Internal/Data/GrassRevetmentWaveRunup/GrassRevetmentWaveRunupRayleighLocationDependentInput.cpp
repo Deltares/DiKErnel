@@ -71,9 +71,10 @@ namespace DiKErnel::Integration
     }
 
     bool GrassRevetmentWaveRunupRayleighLocationDependentInput::Validate(
+        const vector<reference_wrapper<ITimeDependentInput>>& timeDependentInputs,
         const IProfileData& profileData) const
     {
-        const auto baseValidationSuccessful = GrassRevetmentWaveRunupLocationDependentInput::Validate(profileData);
+        const auto baseValidationSuccessful = GrassRevetmentWaveRunupLocationDependentInput::Validate(timeDependentInputs, profileData);
 
         vector<unique_ptr<ValidationIssue>> validationIssues;
         validationIssues.emplace_back(GrassRevetmentValidator::FixedNumberOfWaves(_fixedNumberOfWaves));

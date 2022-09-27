@@ -112,9 +112,10 @@ namespace DiKErnel::Integration
     }
 
     bool GrassRevetmentOvertoppingLocationDependentInput::Validate(
+        const std::vector<std::reference_wrapper<ITimeDependentInput>>& timeDependentInputs,
         const IProfileData& profileData) const
     {
-        const auto baseValidationSuccessful = LocationDependentInput::Validate(profileData);
+        const auto baseValidationSuccessful = LocationDependentInput::Validate(timeDependentInputs, profileData);
 
         vector<unique_ptr<ValidationIssue>> validationIssues;
         validationIssues.emplace_back(GrassRevetmentValidator::CriticalCumulativeOverload(_criticalCumulativeOverload));

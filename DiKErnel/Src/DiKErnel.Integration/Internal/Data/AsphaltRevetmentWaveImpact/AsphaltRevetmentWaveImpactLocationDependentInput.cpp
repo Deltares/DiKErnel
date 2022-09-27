@@ -129,9 +129,10 @@ namespace DiKErnel::Integration
     }
 
     bool AsphaltRevetmentWaveImpactLocationDependentInput::Validate(
+        const vector<reference_wrapper<ITimeDependentInput>>& timeDependentInputs,
         const IProfileData& profileData) const
     {
-        const auto baseValidationSuccessful = LocationDependentInput::Validate(profileData);
+        const auto baseValidationSuccessful = LocationDependentInput::Validate(timeDependentInputs, profileData);
 
         vector<unique_ptr<ValidationIssue>> validationIssues;
         validationIssues.emplace_back(AsphaltRevetmentWaveImpactValidator::FatigueAlpha(_fatigue->GetAlpha()));
