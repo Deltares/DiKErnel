@@ -41,6 +41,7 @@ namespace DiKErnel::Integration
           _failureNumber(failureNumber) { }
 
     bool LocationDependentInput::Validate(
+        const vector<reference_wrapper<ITimeDependentInput>>& timeDependentInputs,
         const IProfileData& profileData) const
     {
         vector<unique_ptr<ValidationIssue>> validationIssues;

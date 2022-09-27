@@ -31,6 +31,7 @@ namespace DiKErnel::Integration
         public:
             [[nodiscard]]
             bool Validate(
+                const std::vector<std::reference_wrapper<Core::ITimeDependentInput>>& timeDependentInputs,
                 const Core::IProfileData& profileData) const override;
 
             std::unique_ptr<Core::TimeDependentOutput> Calculate(

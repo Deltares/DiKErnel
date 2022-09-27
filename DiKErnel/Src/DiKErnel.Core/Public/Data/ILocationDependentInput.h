@@ -41,12 +41,15 @@ namespace DiKErnel::Core
 
             /*!
              * \brief Performs validation on the input.
+             * \param timeDependentInputs
+             *        One or more time dependent inputs to use in the validation.
              * \param profileData
              *        The profile data to use in the validation.
              * \return Whether the validation was successful.
              */
             [[nodiscard]]
             virtual bool Validate(
+                const std::vector<std::reference_wrapper<ITimeDependentInput>>& timeDependentInputs, 
                 const IProfileData& profileData) const = 0;
 
             /*!
