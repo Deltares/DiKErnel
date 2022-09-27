@@ -319,25 +319,24 @@ namespace DiKErnel::Integration
             return topLayerType == NaturalStoneRevetmentTopLayerType::NordicStone;
         };
 
-        for (const auto& locationConstructionPropertiesItemReference : _locationConstructionPropertiesItemReferences)
-        {
-            if (const auto& locationConstructionPropertiesItem = locationConstructionPropertiesItemReference.get();
-                !ValidateLocation<AsphaltRevetmentWaveImpactLocationConstructionProperties>(
-                    locationConstructionPropertiesItem, validateLocationOnOuterSlope, validateAsphaltRevetmentTopLayerType)
-                || !ValidateLocation<GrassRevetmentOvertoppingLocationConstructionProperties>(
-                    locationConstructionPropertiesItem, validateLocationOnCrestOrInnerSlope, validateGrassRevetmentTopLayerType)
-                || !ValidateLocation<GrassRevetmentWaveImpactLocationConstructionProperties>(
-                    locationConstructionPropertiesItem, validateLocationOnOuterSlope, validateGrassRevetmentTopLayerType)
-                || !ValidateLocation<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(
-                    locationConstructionPropertiesItem, validateLocationOnOuterSlope, validateGrassRevetmentTopLayerType)
-                || !ValidateLocation<NaturalStoneRevetmentLocationConstructionProperties>(
-                    locationConstructionPropertiesItem, validateLocationOnOuterSlope, validateNaturalStoneRevetmentTopLayerType))
+        return ranges::all_of(_locationConstructionPropertiesItemReferences,
+            [this, validateLocationOnOuterSlope, validateLocationOnCrestOrInnerSlope, validateAsphaltRevetmentTopLayerType,
+            validateGrassRevetmentTopLayerType, validateNaturalStoneRevetmentTopLayerType](
+                const reference_wrapper<RevetmentLocationConstructionPropertiesBase> locationConstructionPropertiesItemReference)
             {
-                return false;
-            }
-        }
+                const auto& locationConstructionPropertiesItem = locationConstructionPropertiesItemReference.get();
 
-        return true;
+                return ValidateLocation<AsphaltRevetmentWaveImpactLocationConstructionProperties>(
+                    locationConstructionPropertiesItem, validateLocationOnOuterSlope, validateAsphaltRevetmentTopLayerType)
+                    && ValidateLocation<GrassRevetmentOvertoppingLocationConstructionProperties>(
+                        locationConstructionPropertiesItem, validateLocationOnCrestOrInnerSlope, validateGrassRevetmentTopLayerType)
+                    && ValidateLocation<GrassRevetmentWaveImpactLocationConstructionProperties>(
+                        locationConstructionPropertiesItem, validateLocationOnOuterSlope, validateGrassRevetmentTopLayerType)
+                    && ValidateLocation<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(
+                        locationConstructionPropertiesItem, validateLocationOnOuterSlope, validateGrassRevetmentTopLayerType)
+                    && ValidateLocation<NaturalStoneRevetmentLocationConstructionProperties>(
+                        locationConstructionPropertiesItem, validateLocationOnOuterSlope, validateNaturalStoneRevetmentTopLayerType);
+        });
     }
 
     template <typename TConstructionProperties, typename TValidateX, typename TValidateTopLayer>
