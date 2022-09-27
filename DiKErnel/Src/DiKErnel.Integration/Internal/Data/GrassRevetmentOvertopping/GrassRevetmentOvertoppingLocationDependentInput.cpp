@@ -117,7 +117,18 @@ namespace DiKErnel::Integration
     {
         const auto baseValidationSuccessful = LocationDependentInput::Validate(timeDependentInputs, profileData);
 
+        const auto& characteristicPoints = profileData.GetCharacteristicPoints();
+        const auto outerCrest = CharacteristicPointsHelper::GetCoordinatesForType(characteristicPoints, CharacteristicPointType::OuterCrest);
+
+        const auto calculatedDikeHeight = CalculateDikeHeight(*outerCrest, profileData.GetProfileSegments());
+
         vector<unique_ptr<ValidationIssue>> validationIssues;
+        for (const auto& timeDependentInput : timeDependentInputs)
+        {
+            const double waterLevel = timeDependentInput.get().GetWaterLevel();
+            validationIssues.emplace_back(GrassRevetmentOvertoppingValidator::WaterLevel(waterLevel, calculatedDikeHeight));
+        }
+
         validationIssues.emplace_back(GrassRevetmentValidator::CriticalCumulativeOverload(_criticalCumulativeOverload));
         validationIssues.emplace_back(GrassRevetmentValidator::CriticalFrontVelocity(_criticalFrontVelocity));
         validationIssues.emplace_back(GrassRevetmentOvertoppingValidator::AccelerationAlphaA(_locationDependentAccelerationAlphaA->ValueAtCrest()));

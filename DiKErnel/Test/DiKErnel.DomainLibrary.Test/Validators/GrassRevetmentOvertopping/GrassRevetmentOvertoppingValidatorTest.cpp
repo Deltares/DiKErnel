@@ -73,7 +73,7 @@ namespace DiKErnel::DomainLibrary::Test
     {
         const auto validateAction = WaterLevel;
 
-        constexpr auto warningMessage = "WaterLevel should be smaller than the dike height.";
+        constexpr auto warningMessage = "WaterLevel should be smaller than the DikeHeight.";
 
         ValidatorAssertHelper::AssertValue<double>(validateAction, ValidatorAssertHelper::DOUBLE_MIN);
 

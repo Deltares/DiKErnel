@@ -53,7 +53,7 @@ namespace DiKErnel::DomainLibrary
     {
         if (waterLevel >= dikeHeight)
         {
-            return make_unique<ValidationIssue>(ValidationIssueType::Warning, "WaterLevel should be smaller than the dike height.");
+            return make_unique<ValidationIssue>(ValidationIssueType::Warning, "WaterLevel should be smaller than the DikeHeight.");
         }
 
         return nullptr;
