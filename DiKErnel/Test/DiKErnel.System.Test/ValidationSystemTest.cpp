@@ -288,7 +288,7 @@ namespace DiKErnel::System::Test
     }
 
     TEST(ValidationSystemTest,
-         GivenCalculationInputWithGrassRevetmentOvertoppingLocationAndDikeHeightHigherThanWaterLevel_WhenValidating_ThenReturnsExpectedValidationResult)
+         GivenCalculationInputWithGrassRevetmentOvertoppingLocationAndWaterLevelLowerThanDikeHeight_WhenValidating_ThenReturnsExpectedValidationResult)
     {
         // Given
         constexpr auto dikeHeight = 10.0;
@@ -323,7 +323,7 @@ namespace DiKErnel::System::Test
     }
 
     TEST(ValidationSystemTest,
-         GivenCalculationInputWithGrassRevetmentOvertoppingLocationAndDikeHeightLowerThanWaterLevel_WhenValidating_ThenReturnsExpectedValidationResult)
+         GivenCalculationInputWithGrassRevetmentOvertoppingLocationAndWaterLevelHigherThanDikeHeight_WhenValidating_ThenReturnsExpectedValidationResult)
     {
         // Given
         constexpr auto dikeHeight = 10.0;
@@ -355,13 +355,14 @@ namespace DiKErnel::System::Test
         ASSERT_EQ(ValidationResultType::Successful, *validationResult->GetData());
         const auto& events = validationResult->GetEvents();
         ASSERT_EQ(1, events.size());
-        EventAssertHelper::AssertEvent(EventType::Warning,
-                                       "For certain time steps the dike height is lower than the water level. No damage will be calculated for these time steps.",
-                                       events.at(0));
+        EventAssertHelper::AssertEvent(
+            EventType::Warning,
+            "For certain time steps the dike height is lower than the water level. No damage will be calculated for these time steps.",
+            events.at(0));
     }
 
     TEST(ValidationSystemTest,
-         GivenCalculationInputWithGrassRevetmentOvertoppingLocationAndDikeHeightEqualToWaterLevel_WhenValidating_ThenReturnsExpectedValidationResult)
+         GivenCalculationInputWithGrassRevetmentOvertoppingLocationAndWaterLevelEqualToDikeHeight_WhenValidating_ThenReturnsExpectedValidationResult)
     {
         // Given
         constexpr auto dikeHeight = 10.0;
@@ -393,9 +394,10 @@ namespace DiKErnel::System::Test
         ASSERT_EQ(ValidationResultType::Successful, *validationResult->GetData());
         const auto& events = validationResult->GetEvents();
         ASSERT_EQ(1, events.size());
-        EventAssertHelper::AssertEvent(EventType::Warning,
-                                       "For certain time steps the dike height is lower than the water level. No damage will be calculated for these time steps.",
-                                       events.at(0));
+        EventAssertHelper::AssertEvent(
+            EventType::Warning,
+            "For certain time steps the dike height is lower than the water level. No damage will be calculated for these time steps.",
+            events.at(0));
     }
 
     TEST(ValidationSystemTest, GivenCalculationInputWithInvalidNaturalStoneRevetmentLocation_WhenValidating_ThenReturnsExpectedValidationResult)

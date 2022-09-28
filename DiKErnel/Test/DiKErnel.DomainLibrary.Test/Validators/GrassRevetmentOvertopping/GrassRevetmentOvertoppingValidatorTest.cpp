@@ -25,9 +25,7 @@
 
 namespace DiKErnel::DomainLibrary::Test
 {
-    using namespace std;
     using namespace Util;
-    using namespace testing;
     using namespace TestUtil;
 
     TEST(GrassRevetmentOvertoppingValidatorTest, FixedNumberOfWaves_VariousScenarios_ExpectedValues)

@@ -126,14 +126,15 @@ namespace DiKErnel::Integration
 
         vector<unique_ptr<ValidationIssue>> validationIssues;
 
-        if (ranges::any_of(timeDependentInputs, [this, calculatedDikeHeight](
+        if (ranges::any_of(timeDependentInputs, [calculatedDikeHeight](
                        const auto& timeDependentInput)
                            {
-                               return calculatedDikeHeight <= timeDependentInput.get().GetWaterLevel();
+                               return timeDependentInput.get().GetWaterLevel() >= calculatedDikeHeight;
                            }))
         {
-            validationIssues.emplace_back(make_unique<ValidationIssue>(ValidationIssueType::Warning,
-                                                                       "For certain time steps the dike height is lower than the water level. No damage will be calculated for these time steps."));
+            validationIssues.emplace_back(make_unique<ValidationIssue>(
+                ValidationIssueType::Warning,
+                "For one or more time steps the water level exceeds the dike height. No damage will be calculated for these time steps."));
         }
 
         validationIssues.emplace_back(GrassRevetmentValidator::CriticalCumulativeOverload(_criticalCumulativeOverload));
