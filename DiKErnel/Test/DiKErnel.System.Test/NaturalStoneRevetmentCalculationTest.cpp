@@ -177,10 +177,10 @@ namespace DiKErnel::System::Test
         // Given
         CalculationInputBuilder builder;
 
+        ConfigureBuilderForSchematization1(builder);
+
         auto locationConstructionProperties = make_unique<NaturalStoneRevetmentLocationConstructionProperties>(
             6, NaturalStoneRevetmentTopLayerType::NordicStone, 0.4, 1.65);
-
-        ConfigureBuilderForSchematization1(builder);
 
         builder.AddNaturalStoneLocation(move(locationConstructionProperties));
 
@@ -202,12 +202,12 @@ namespace DiKErnel::System::Test
         // Given
         CalculationInputBuilder builder;
 
+        ConfigureBuilderForSchematization1(builder);
+
         auto locationConstructionProperties = make_unique<NaturalStoneRevetmentLocationConstructionProperties>(
             6, NaturalStoneRevetmentTopLayerType::NordicStone, 0.35, 1.6);
 
         locationConstructionProperties->SetInitialDamage(make_unique<double>(0.6));
-
-        ConfigureBuilderForSchematization1(builder);
 
         builder.AddNaturalStoneLocation(move(locationConstructionProperties));
 
@@ -229,6 +229,8 @@ namespace DiKErnel::System::Test
         // Given
         CalculationInputBuilder builder;
 
+        ConfigureBuilderForSchematization1(builder);
+
         auto locationConstructionProperties = make_unique<NaturalStoneRevetmentLocationConstructionProperties>(
             6, NaturalStoneRevetmentTopLayerType::NordicStone, 0.25, 1.65);
 
@@ -241,8 +243,6 @@ namespace DiKErnel::System::Test
         locationConstructionProperties->SetHydraulicLoadBs(make_unique<double>(1.5));
         locationConstructionProperties->SetHydraulicLoadCs(make_unique<double>(-3.12));
         locationConstructionProperties->SetHydraulicLoadNs(make_unique<double>(-1.5));
-
-        ConfigureBuilderForSchematization1(builder);
 
         builder.AddNaturalStoneLocation(move(locationConstructionProperties));
 
@@ -264,12 +264,12 @@ namespace DiKErnel::System::Test
         // Given
         CalculationInputBuilder builder;
 
+        ConfigureBuilderForSchematization1(builder);
+
         auto locationConstructionProperties = make_unique<NaturalStoneRevetmentLocationConstructionProperties>(
             6, NaturalStoneRevetmentTopLayerType::NordicStone, 0.4, 1.65);
 
         locationConstructionProperties->SetWaveAngleImpactBetamax(make_unique<double>(30));
-
-        ConfigureBuilderForSchematization1(builder);
 
         builder.AddNaturalStoneLocation(move(locationConstructionProperties));
 
@@ -295,10 +295,10 @@ namespace DiKErnel::System::Test
         // Given
         CalculationInputBuilder builder;
 
+        ConfigureBuilderForSchematization2(builder);
+
         auto locationConstructionProperties = make_unique<NaturalStoneRevetmentLocationConstructionProperties>(
             6, NaturalStoneRevetmentTopLayerType::NordicStone, 0.3, 1.65);
-
-        ConfigureBuilderForSchematization2(builder);
 
         builder.AddNaturalStoneLocation(move(locationConstructionProperties));
 
@@ -320,13 +320,13 @@ namespace DiKErnel::System::Test
         // Given
         CalculationInputBuilder builder;
 
+        ConfigureBuilderForSchematization2(builder);
+
         auto locationConstructionProperties = make_unique<NaturalStoneRevetmentLocationConstructionProperties>(
             6, NaturalStoneRevetmentTopLayerType::NordicStone, 0.3, 1.65);
 
         locationConstructionProperties->SetSlopeUpperLevelAus(make_unique<double>(0.5));
         locationConstructionProperties->SetSlopeLowerLevelAls(make_unique<double>(1));
-
-        ConfigureBuilderForSchematization2(builder);
 
         builder.AddNaturalStoneLocation(move(locationConstructionProperties));
 
@@ -352,10 +352,10 @@ namespace DiKErnel::System::Test
         // Given
         CalculationInputBuilder builder;
 
+        ConfigureBuilderForSchematization3(builder);
+
         auto locationConstructionProperties = make_unique<NaturalStoneRevetmentLocationConstructionProperties>(
             6, NaturalStoneRevetmentTopLayerType::NordicStone, 0.3, 1.65);
-
-        ConfigureBuilderForSchematization3(builder);
 
         builder.AddNaturalStoneLocation(move(locationConstructionProperties));
 
@@ -381,6 +381,8 @@ namespace DiKErnel::System::Test
         // Given
         CalculationInputBuilder builder;
 
+        ConfigureBuilderForSchematization4(builder);
+
         auto locationConstructionProperties = make_unique<NaturalStoneRevetmentLocationConstructionProperties>(
             6, NaturalStoneRevetmentTopLayerType::NordicStone, 0.3, 1.65);
 
@@ -394,8 +396,6 @@ namespace DiKErnel::System::Test
         locationConstructionProperties->SetDistanceMaximumWaveElevationBsmax(make_unique<double>(0.8));
         locationConstructionProperties->SetNormativeWidthOfWaveImpactAwi(make_unique<double>(1.1));
         locationConstructionProperties->SetNormativeWidthOfWaveImpactBwi(make_unique<double>(0.15));
-
-        ConfigureBuilderForSchematization4(builder);
 
         builder.AddNaturalStoneLocation(move(locationConstructionProperties));
 
@@ -421,10 +421,10 @@ namespace DiKErnel::System::Test
         // Given
         CalculationInputBuilder builder;
 
+        ConfigureBuilderForSchematization5(builder);
+
         auto locationConstructionProperties = make_unique<NaturalStoneRevetmentLocationConstructionProperties>(
             6, NaturalStoneRevetmentTopLayerType::NordicStone, 0.4, 1.65);
-
-        ConfigureBuilderForSchematization5(builder);
 
         builder.AddNaturalStoneLocation(move(locationConstructionProperties));
 

@@ -117,10 +117,10 @@ namespace DiKErnel::System::Test
         // Given
         CalculationInputBuilder builder;
 
+        ConfigureBuilderForSchematization1(builder);
+
         auto locationConstructionProperties = make_unique<AsphaltRevetmentWaveImpactLocationConstructionProperties>(
             10, AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete, 1.6, 55, 0.4, 18000);
-
-        ConfigureBuilderForSchematization1(builder);
 
         builder.AddAsphaltWaveImpactLocation(move(locationConstructionProperties));
 
@@ -142,12 +142,12 @@ namespace DiKErnel::System::Test
         // Given
         CalculationInputBuilder builder;
 
+        ConfigureBuilderForSchematization1(builder);
+
         auto locationConstructionProperties = make_unique<AsphaltRevetmentWaveImpactLocationConstructionProperties>(
             10, AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete, 1.75, 60, 0.3, 16000);
 
         locationConstructionProperties->SetInitialDamage(make_unique<double>(0.4));
-
-        ConfigureBuilderForSchematization1(builder);
 
         builder.AddAsphaltWaveImpactLocation(move(locationConstructionProperties));
 
@@ -169,13 +169,13 @@ namespace DiKErnel::System::Test
         // Given
         CalculationInputBuilder builder;
 
+        ConfigureBuilderForSchematization1(builder);
+
         auto locationConstructionProperties = make_unique<AsphaltRevetmentWaveImpactLocationConstructionProperties>(
             10, AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete, 1.6, 55, 0.15, 18000);
 
         locationConstructionProperties->SetThicknessSubLayer(make_unique<double>(0.18));
         locationConstructionProperties->SetElasticModulusSubLayer(make_unique<double>(15000));
-
-        ConfigureBuilderForSchematization1(builder);
 
         builder.AddAsphaltWaveImpactLocation(move(locationConstructionProperties));
 
@@ -196,6 +196,8 @@ namespace DiKErnel::System::Test
     {
         // Given
         CalculationInputBuilder builder;
+
+        ConfigureBuilderForSchematization1(builder);
 
         auto locationConstructionProperties = make_unique<AsphaltRevetmentWaveImpactLocationConstructionProperties>(
             10, AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete, 1.6, 55, 0.3, 18000);
@@ -219,8 +221,6 @@ namespace DiKErnel::System::Test
                 pair(6.0, 0.001)
             }));
 
-        ConfigureBuilderForSchematization1(builder);
-
         builder.AddAsphaltWaveImpactLocation(move(locationConstructionProperties));
 
         const auto calculationInput = builder.Build();
@@ -240,6 +240,8 @@ namespace DiKErnel::System::Test
     {
         // Given
         CalculationInputBuilder builder;
+
+        ConfigureBuilderForSchematization1(builder);
 
         auto locationConstructionProperties = make_unique<AsphaltRevetmentWaveImpactLocationConstructionProperties>(
             10, AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete, 1.6, 55, 0.38, 18000);
@@ -263,8 +265,6 @@ namespace DiKErnel::System::Test
                 pair(0.27, 0.00009647)
             }));
 
-        ConfigureBuilderForSchematization1(builder);
-
         builder.AddAsphaltWaveImpactLocation(move(locationConstructionProperties));
 
         const auto calculationInput = builder.Build();
@@ -284,6 +284,8 @@ namespace DiKErnel::System::Test
     {
         // Given
         CalculationInputBuilder builder;
+
+        ConfigureBuilderForSchematization1(builder);
 
         auto locationConstructionProperties = make_unique<AsphaltRevetmentWaveImpactLocationConstructionProperties>(
             10, AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete, 1.6, 55, 0.45, 18000);
@@ -307,8 +309,6 @@ namespace DiKErnel::System::Test
                 pair(2.2, 0.007)
             }));
 
-        ConfigureBuilderForSchematization1(builder);
-
         builder.AddAsphaltWaveImpactLocation(move(locationConstructionProperties));
 
         const auto calculationInput = builder.Build();
@@ -329,6 +329,8 @@ namespace DiKErnel::System::Test
         // Given
         CalculationInputBuilder builder;
 
+        ConfigureBuilderForSchematization1(builder);
+
         auto locationConstructionProperties = make_unique<AsphaltRevetmentWaveImpactLocationConstructionProperties>(
             10, AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete, 1.6, 55, 0.35, 18000);
 
@@ -338,8 +340,6 @@ namespace DiKErnel::System::Test
         locationConstructionProperties->SetAverageNumberOfWavesCtm(make_unique<double>(0.9));
         locationConstructionProperties->SetImpactNumberC(make_unique<double>(0.95));
         locationConstructionProperties->SetDensityOfWater(make_unique<double>(1000));
-
-        ConfigureBuilderForSchematization1(builder);
 
         builder.AddAsphaltWaveImpactLocation(move(locationConstructionProperties));
 
@@ -365,10 +365,10 @@ namespace DiKErnel::System::Test
         // Given
         CalculationInputBuilder builder;
 
+        ConfigureBuilderForSchematization2(builder);
+
         auto locationConstructionProperties = make_unique<AsphaltRevetmentWaveImpactLocationConstructionProperties>(
             10, AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete, 1.6, 55, 0.4, 18000);
-
-        ConfigureBuilderForSchematization2(builder);
 
         builder.AddAsphaltWaveImpactLocation(move(locationConstructionProperties));
 
@@ -394,10 +394,10 @@ namespace DiKErnel::System::Test
         // Given
         CalculationInputBuilder builder;
 
+        ConfigureBuilderForSchematization3(builder);
+
         auto locationConstructionProperties = make_unique<AsphaltRevetmentWaveImpactLocationConstructionProperties>(
             12.5, AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete, 1.6, 55, 0.4, 18000);
-
-        ConfigureBuilderForSchematization3(builder);
 
         builder.AddAsphaltWaveImpactLocation(move(locationConstructionProperties));
 

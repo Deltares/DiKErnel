@@ -155,10 +155,10 @@ namespace DiKErnel::System::Test
         // Given
         CalculationInputBuilder builder;
 
+        ConfigureBuilderForSchematization1(builder);
+
         auto locationConstructionProperties = make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(
             11, GrassRevetmentTopLayerType::ClosedSod);
-
-        ConfigureBuilderForSchematization1(builder);
 
         builder.AddGrassWaveImpactLocation(move(locationConstructionProperties));
 
@@ -180,14 +180,14 @@ namespace DiKErnel::System::Test
         // Given
         CalculationInputBuilder builder;
 
+        ConfigureBuilderForSchematization1(builder);
+
         auto locationConstructionProperties = make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(
             11, GrassRevetmentTopLayerType::ClosedSod);
 
         locationConstructionProperties->SetTimeLineAgwi(make_unique<double>(1.1));
         locationConstructionProperties->SetTimeLineBgwi(make_unique<double>(-0.00003));
         locationConstructionProperties->SetTimeLineCgwi(make_unique<double>(0.3));
-
-        ConfigureBuilderForSchematization1(builder);
 
         builder.AddGrassWaveImpactLocation(move(locationConstructionProperties));
 
@@ -209,13 +209,13 @@ namespace DiKErnel::System::Test
         // Given
         CalculationInputBuilder builder;
 
+        ConfigureBuilderForSchematization1(builder);
+
         auto locationConstructionProperties = make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(
             11, GrassRevetmentTopLayerType::ClosedSod);
 
         locationConstructionProperties->SetInitialDamage(make_unique<double>(0.4));
         locationConstructionProperties->SetFailureNumber(make_unique<double>(1.2));
-
-        ConfigureBuilderForSchematization1(builder);
 
         builder.AddGrassWaveImpactLocation(move(locationConstructionProperties));
 
@@ -237,14 +237,14 @@ namespace DiKErnel::System::Test
         // Given
         CalculationInputBuilder builder;
 
+        ConfigureBuilderForSchematization1(builder);
+
         auto locationConstructionProperties = make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(
             11, GrassRevetmentTopLayerType::ClosedSod);
 
         locationConstructionProperties->SetWaveAngleImpactNwa(make_unique<double>(0.8));
         locationConstructionProperties->SetWaveAngleImpactQwa(make_unique<double>(0.5));
         locationConstructionProperties->SetWaveAngleImpactRwa(make_unique<double>(40));
-
-        ConfigureBuilderForSchematization1(builder);
 
         builder.AddGrassWaveImpactLocation(move(locationConstructionProperties));
 
@@ -266,13 +266,13 @@ namespace DiKErnel::System::Test
         // Given
         CalculationInputBuilder builder;
 
+        ConfigureBuilderForSchematization1(builder);
+
         auto locationConstructionProperties = make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(
             11, GrassRevetmentTopLayerType::ClosedSod);
 
         locationConstructionProperties->SetUpperLimitLoadingAul(make_unique<double>(0.1));
         locationConstructionProperties->SetLowerLimitLoadingAll(make_unique<double>(0.45));
-
-        ConfigureBuilderForSchematization1(builder);
 
         builder.AddGrassWaveImpactLocation(move(locationConstructionProperties));
 
@@ -298,10 +298,10 @@ namespace DiKErnel::System::Test
         // Given
         CalculationInputBuilder builder;
 
+        ConfigureBuilderForSchematization2(builder);
+
         auto locationConstructionProperties = make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(
             11, GrassRevetmentTopLayerType::OpenSod);
-
-        ConfigureBuilderForSchematization2(builder);
 
         builder.AddGrassWaveImpactLocation(move(locationConstructionProperties));
 
@@ -327,10 +327,10 @@ namespace DiKErnel::System::Test
         // Given
         CalculationInputBuilder builder;
 
+        ConfigureBuilderForSchematization3(builder);
+
         auto locationConstructionProperties = make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(
             11, GrassRevetmentTopLayerType::ClosedSod);
-
-        ConfigureBuilderForSchematization3(builder);
 
         builder.AddGrassWaveImpactLocation(move(locationConstructionProperties));
 

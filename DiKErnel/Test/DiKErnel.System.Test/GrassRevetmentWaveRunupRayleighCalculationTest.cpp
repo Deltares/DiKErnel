@@ -161,10 +161,10 @@ namespace DiKErnel::System::Test
         // Given
         CalculationInputBuilder builder;
 
+        ConfigureBuilderForSchematization1(builder);
+
         auto locationConstructionProperties = make_unique<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(
             3, 0.3, GrassRevetmentTopLayerType::ClosedSod);
-
-        ConfigureBuilderForSchematization1(builder);
 
         builder.AddGrassWaveRunupRayleighLocation(move(locationConstructionProperties));
 
@@ -186,13 +186,13 @@ namespace DiKErnel::System::Test
         // Given
         CalculationInputBuilder builder;
 
+        ConfigureBuilderForSchematization1(builder);
+
         auto locationConstructionProperties = make_unique<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(
             3, 0.3, GrassRevetmentTopLayerType::ClosedSod);
 
         locationConstructionProperties->SetCriticalCumulativeOverload(make_unique<double>(8000));
         locationConstructionProperties->SetCriticalFrontVelocity(make_unique<double>(6.2));
-
-        ConfigureBuilderForSchematization1(builder);
 
         builder.AddGrassWaveRunupRayleighLocation(move(locationConstructionProperties));
 
@@ -214,13 +214,13 @@ namespace DiKErnel::System::Test
         // Given
         CalculationInputBuilder builder;
 
+        ConfigureBuilderForSchematization1(builder);
+
         auto locationConstructionProperties = make_unique<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(
             3, 0.3, GrassRevetmentTopLayerType::ClosedSod);
 
         locationConstructionProperties->SetFixedNumberOfWaves(make_unique<int>(500));
         locationConstructionProperties->SetFrontVelocityCu(make_unique<double>(1.15));
-
-        ConfigureBuilderForSchematization1(builder);
 
         builder.AddGrassWaveRunupRayleighLocation(move(locationConstructionProperties));
 
@@ -242,14 +242,14 @@ namespace DiKErnel::System::Test
         // Given
         CalculationInputBuilder builder;
 
+        ConfigureBuilderForSchematization1(builder);
+
         auto locationConstructionProperties = make_unique<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(
             3, 0.3, GrassRevetmentTopLayerType::ClosedSod);
 
         locationConstructionProperties->SetRepresentativeWaveRunup2PAru(make_unique<double>(1.75));
         locationConstructionProperties->SetRepresentativeWaveRunup2PBru(make_unique<double>(4.3));
         locationConstructionProperties->SetRepresentativeWaveRunup2PCru(make_unique<double>(1.6));
-
-        ConfigureBuilderForSchematization1(builder);
 
         builder.AddGrassWaveRunupRayleighLocation(move(locationConstructionProperties));
 
@@ -271,13 +271,13 @@ namespace DiKErnel::System::Test
         // Given
         CalculationInputBuilder builder;
 
+        ConfigureBuilderForSchematization1(builder);
+
         auto locationConstructionProperties = make_unique<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(
             3, 0.3, GrassRevetmentTopLayerType::OpenSod);
 
         locationConstructionProperties->SetRepresentativeWaveRunup2PGammab(make_unique<double>(0.7));
         locationConstructionProperties->SetRepresentativeWaveRunup2PGammaf(make_unique<double>(0.7));
-
-        ConfigureBuilderForSchematization1(builder);
 
         builder.AddGrassWaveRunupRayleighLocation(move(locationConstructionProperties));
 
@@ -299,14 +299,14 @@ namespace DiKErnel::System::Test
         // Given
         CalculationInputBuilder builder;
 
+        ConfigureBuilderForSchematization1(builder);
+
         auto locationConstructionProperties = make_unique<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(
             3, 0.3, GrassRevetmentTopLayerType::ClosedSod);
 
         locationConstructionProperties->SetWaveAngleImpactAbeta(make_unique<double>(0.0033));
         locationConstructionProperties->SetWaveAngleImpactBetamax(make_unique<double>(30));
         locationConstructionProperties->SetAverageNumberOfWavesCtm(make_unique<double>(1));
-
-        ConfigureBuilderForSchematization1(builder);
 
         builder.AddGrassWaveRunupRayleighLocation(move(locationConstructionProperties));
 
@@ -328,13 +328,13 @@ namespace DiKErnel::System::Test
         // Given
         CalculationInputBuilder builder;
 
+        ConfigureBuilderForSchematization1(builder);
+
         auto locationConstructionProperties = make_unique<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(
             3, 0.3, GrassRevetmentTopLayerType::ClosedSod);
 
         locationConstructionProperties->SetInitialDamage(make_unique<double>(0.3));
         locationConstructionProperties->SetFailureNumber(make_unique<double>(1.1));
-
-        ConfigureBuilderForSchematization1(builder);
 
         builder.AddGrassWaveRunupRayleighLocation(move(locationConstructionProperties));
 
@@ -360,10 +360,10 @@ namespace DiKErnel::System::Test
         // Given
         CalculationInputBuilder builder;
 
+        ConfigureBuilderForSchematization2(builder);
+
         auto locationConstructionProperties = make_unique<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(
             3, 0.3, GrassRevetmentTopLayerType::OpenSod);
-
-        ConfigureBuilderForSchematization2(builder);
 
         builder.AddGrassWaveRunupRayleighLocation(move(locationConstructionProperties));
 
@@ -385,13 +385,13 @@ namespace DiKErnel::System::Test
         // Given
         CalculationInputBuilder builder;
 
+        ConfigureBuilderForSchematization2(builder);
+
         auto locationConstructionProperties = make_unique<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(
             3, 0.3, GrassRevetmentTopLayerType::ClosedSod);
 
         locationConstructionProperties->SetIncreasedLoadTransitionAlphaM(make_unique<double>(1.8));
         locationConstructionProperties->SetReducedStrengthTransitionAlphaS(make_unique<double>(0.9));
-
-        ConfigureBuilderForSchematization2(builder);
 
         builder.AddGrassWaveRunupRayleighLocation(move(locationConstructionProperties));
 
@@ -417,10 +417,10 @@ namespace DiKErnel::System::Test
         // Given
         CalculationInputBuilder builder;
 
+        ConfigureBuilderForSchematization3(builder);
+
         auto locationConstructionProperties = make_unique<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(
             3, 0.3, GrassRevetmentTopLayerType::ClosedSod);
-
-        ConfigureBuilderForSchematization3(builder);
 
         builder.AddGrassWaveRunupRayleighLocation(move(locationConstructionProperties));
 
@@ -446,10 +446,10 @@ namespace DiKErnel::System::Test
         // Given
         CalculationInputBuilder builder;
 
+        ConfigureBuilderForSchematization4(builder);
+
         auto locationConstructionProperties = make_unique<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(
             3, 0.3, GrassRevetmentTopLayerType::ClosedSod);
-
-        ConfigureBuilderForSchematization4(builder);
 
         builder.AddGrassWaveRunupRayleighLocation(move(locationConstructionProperties));
 

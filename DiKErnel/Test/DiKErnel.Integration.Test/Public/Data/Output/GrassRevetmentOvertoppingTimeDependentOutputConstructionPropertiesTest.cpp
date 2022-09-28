@@ -44,8 +44,7 @@ namespace DiKErnel::Integration::Test
         ASSERT_EQ(nullptr, constructionProperties._cumulativeOverload);
     }
 
-    TEST(GrassRevetmentOvertoppingTimeDependentOutputConstructionPropertiesTest,
-         GivenConstructionProperties_WhenAllValuesSet_ThenExpectedValues)
+    TEST(GrassRevetmentOvertoppingTimeDependentOutputConstructionPropertiesTest, GivenConstructionProperties_WhenAllValuesSet_ThenExpectedValues)
     {
         // Given
         constexpr auto incrementDamage = 0.1;

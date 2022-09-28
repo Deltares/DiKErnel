@@ -160,12 +160,12 @@ namespace DiKErnel::System::Test
         // Given
         CalculationInputBuilder builder;
 
+        ConfigureBuilderForSchematization1(builder);
+
         auto locationConstructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(
             50, GrassRevetmentTopLayerType::ClosedSod);
 
         locationConstructionProperties->SetInitialDamage(make_unique<double>(0.02));
-
-        ConfigureBuilderForSchematization1(builder);
 
         builder.AddGrassOvertoppingLocation(move(locationConstructionProperties));
 
@@ -187,12 +187,12 @@ namespace DiKErnel::System::Test
         // Given
         CalculationInputBuilder builder;
 
+        ConfigureBuilderForSchematization1(builder);
+
         auto locationConstructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(
             33, GrassRevetmentTopLayerType::ClosedSod);
 
         locationConstructionProperties->SetInitialDamage(make_unique<double>(0.02));
-
-        ConfigureBuilderForSchematization1(builder);
 
         builder.AddGrassOvertoppingLocation(move(locationConstructionProperties));
 
@@ -212,13 +212,13 @@ namespace DiKErnel::System::Test
         // Given
         CalculationInputBuilder builder;
 
+        ConfigureBuilderForSchematization1(builder);
+
         auto locationConstructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(
             33, GrassRevetmentTopLayerType::ClosedSod);
 
         locationConstructionProperties->SetInitialDamage(make_unique<double>(0.02));
         locationConstructionProperties->SetDikeHeight(make_unique<double>(8));
-
-        ConfigureBuilderForSchematization1(builder);
 
         builder.AddGrassOvertoppingLocation(move(locationConstructionProperties));
 
@@ -238,13 +238,13 @@ namespace DiKErnel::System::Test
         // Given
         CalculationInputBuilder builder;
 
+        ConfigureBuilderForSchematization1(builder);
+
         auto locationConstructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(
             33, GrassRevetmentTopLayerType::ClosedSod);
 
         locationConstructionProperties->SetInitialDamage(make_unique<double>(0.02));
         locationConstructionProperties->SetDikeHeight(make_unique<double>(5.65));
-
-        ConfigureBuilderForSchematization1(builder);
 
         builder.AddGrassOvertoppingLocation(move(locationConstructionProperties));
 
@@ -268,10 +268,10 @@ namespace DiKErnel::System::Test
         // Given
         CalculationInputBuilder builder;
 
+        ConfigureBuilderForSchematization2(builder);
+
         auto locationConstructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(
             40, GrassRevetmentTopLayerType::OpenSod);
-
-        ConfigureBuilderForSchematization2(builder);
 
         builder.AddGrassOvertoppingLocation(move(locationConstructionProperties));
 
@@ -293,12 +293,12 @@ namespace DiKErnel::System::Test
         // Given
         CalculationInputBuilder builder;
 
+        ConfigureBuilderForSchematization2(builder);
+
         auto locationConstructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(
             30, GrassRevetmentTopLayerType::OpenSod);
 
         locationConstructionProperties->SetDikeHeight(make_unique<double>(9.5));
-
-        ConfigureBuilderForSchematization2(builder);
 
         builder.AddGrassOvertoppingLocation(move(locationConstructionProperties));
 
@@ -318,13 +318,13 @@ namespace DiKErnel::System::Test
         // Given
         CalculationInputBuilder builder;
 
+        ConfigureBuilderForSchematization2(builder);
+
         auto locationConstructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(
             35, GrassRevetmentTopLayerType::OpenSod);
 
         locationConstructionProperties->SetIncreasedLoadTransitionAlphaM(make_unique<double>(1.2));
         locationConstructionProperties->SetDikeHeight(make_unique<double>(9.6));
-
-        ConfigureBuilderForSchematization2(builder);
 
         builder.AddGrassOvertoppingLocation(move(locationConstructionProperties));
 
@@ -346,6 +346,8 @@ namespace DiKErnel::System::Test
         // Given
         CalculationInputBuilder builder;
 
+        ConfigureBuilderForSchematization2(builder);
+
         auto locationConstructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(
             35, GrassRevetmentTopLayerType::OpenSod);
 
@@ -353,8 +355,6 @@ namespace DiKErnel::System::Test
         locationConstructionProperties->SetReducedStrengthTransitionAlphaS(make_unique<double>(1.3));
         locationConstructionProperties->SetFixedNumberOfWaves(make_unique<int>(5000));
         locationConstructionProperties->SetDikeHeight(make_unique<double>(9.7));
-
-        ConfigureBuilderForSchematization2(builder);
 
         builder.AddGrassOvertoppingLocation(move(locationConstructionProperties));
 
@@ -378,10 +378,10 @@ namespace DiKErnel::System::Test
         // Given
         CalculationInputBuilder builder;
 
+        ConfigureBuilderForSchematization3(builder);
+
         auto locationConstructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(
             60, GrassRevetmentTopLayerType::OpenSod);
-
-        ConfigureBuilderForSchematization3(builder);
 
         builder.AddGrassOvertoppingLocation(move(locationConstructionProperties));
 
@@ -403,12 +403,12 @@ namespace DiKErnel::System::Test
         // Given
         CalculationInputBuilder builder;
 
+        ConfigureBuilderForSchematization3(builder);
+
         auto locationConstructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(
             50, GrassRevetmentTopLayerType::OpenSod);
 
         locationConstructionProperties->SetDikeHeight(make_unique<double>(6.7));
-
-        ConfigureBuilderForSchematization3(builder);
 
         builder.AddGrassOvertoppingLocation(move(locationConstructionProperties));
 
@@ -430,14 +430,14 @@ namespace DiKErnel::System::Test
         // Given
         CalculationInputBuilder builder;
 
+        ConfigureBuilderForSchematization3(builder);
+
         auto locationConstructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(
             50, GrassRevetmentTopLayerType::OpenSod);
 
         locationConstructionProperties->SetInitialDamage(make_unique<double>(0.9));
         locationConstructionProperties->SetFixedNumberOfWaves(make_unique<int>(15000));
         locationConstructionProperties->SetDikeHeight(make_unique<double>(9));
-
-        ConfigureBuilderForSchematization3(builder);
 
         builder.AddGrassOvertoppingLocation(move(locationConstructionProperties));
 
@@ -459,6 +459,8 @@ namespace DiKErnel::System::Test
         // Given
         CalculationInputBuilder builder;
 
+        ConfigureBuilderForSchematization3(builder);
+
         auto locationConstructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(
             50, GrassRevetmentTopLayerType::OpenSod);
 
@@ -471,8 +473,6 @@ namespace DiKErnel::System::Test
         locationConstructionProperties->SetFrontVelocityCwo(make_unique<double>(1.6));
         locationConstructionProperties->SetAccelerationAlphaAForCrest(make_unique<double>(1.1));
         locationConstructionProperties->SetAccelerationAlphaAForInnerSlope(make_unique<double>(1.5));
-
-        ConfigureBuilderForSchematization3(builder);
 
         builder.AddGrassOvertoppingLocation(move(locationConstructionProperties));
 

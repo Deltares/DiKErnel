@@ -38,13 +38,13 @@ namespace DiKErnel::System::Test
         ASSERT_TRUE(calculatorResult->GetSuccessful());
         ASSERT_EQ(0, calculatorResult->GetEvents().size());
 
-        const CalculationOutput* calculationOutput = calculatorResult->GetData();
+        const auto* calculationOutput = calculatorResult->GetData();
         const auto& locationDependentOutput = calculationOutput->GetLocationDependentOutputItems().at(0).get();
 
         const auto actualDamage = locationDependentOutput.GetDamages().back();
         AssertHelper::AssertAreEqualWithAcceptablePrecision(expectedDamage, actualDamage);
 
-        const auto actualTimeOfFailure = locationDependentOutput.GetTimeOfFailure();
+        const auto* actualTimeOfFailure = locationDependentOutput.GetTimeOfFailure();
 
         if (expectedTimeOfFailure == nullptr)
         {
