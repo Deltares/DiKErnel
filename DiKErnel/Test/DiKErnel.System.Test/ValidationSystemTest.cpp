@@ -288,41 +288,6 @@ namespace DiKErnel::System::Test
     }
 
     TEST(ValidationSystemTest,
-         GivenCalculationInputWithGrassRevetmentOvertoppingLocationAndWaterLevelLowerThanDikeHeight_WhenValidating_ThenReturnsExpectedValidationResult)
-    {
-        // Given
-        constexpr auto dikeHeight = 10.0;
-        constexpr auto waterLevel = dikeHeight - 0.1;
-
-        auto constructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(
-            25, GrassRevetmentTopLayerType::ClosedSod);
-        constructionProperties->SetDikeHeight(make_unique<double>(dikeHeight));
-
-        CalculationInputBuilder builder;
-        builder.AddTimeStep(0, 100, waterLevel, 5, 10, 30);
-        builder.AddTimeStep(100, 150, waterLevel, 5, 10, 30);
-        builder.AddDikeProfileSegment(10, 5, 20, 10);
-        builder.AddDikeProfileSegment(20, 10, 30, 10);
-        builder.AddDikeProfileSegment(30, 10, 40, 5);
-        builder.AddDikeProfilePointData(10, CharacteristicPointType::OuterToe);
-        builder.AddDikeProfilePointData(20, CharacteristicPointType::OuterCrest);
-        builder.AddDikeProfilePointData(30, CharacteristicPointType::InnerCrest);
-        builder.AddDikeProfilePointData(40, CharacteristicPointType::InnerToe);
-        builder.AddGrassOvertoppingLocation(move(constructionProperties));
-
-        const auto& calculationInput = builder.Build();
-
-        // When
-        const auto& validationResult = Validator::Validate(*calculationInput->GetData());
-
-        // Then
-        ASSERT_TRUE(validationResult->GetSuccessful());
-        ASSERT_EQ(ValidationResultType::Successful, *validationResult->GetData());
-        const auto& events = validationResult->GetEvents();
-        ASSERT_EQ(0, events.size());
-    }
-
-    TEST(ValidationSystemTest,
          GivenCalculationInputWithGrassRevetmentOvertoppingLocationAndWaterLevelHigherThanDikeHeight_WhenValidating_ThenReturnsExpectedValidationResult)
     {
         // Given
