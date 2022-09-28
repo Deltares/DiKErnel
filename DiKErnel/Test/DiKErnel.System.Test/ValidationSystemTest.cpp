@@ -357,7 +357,7 @@ namespace DiKErnel::System::Test
         ASSERT_EQ(1, events.size());
         EventAssertHelper::AssertEvent(
             EventType::Warning,
-            "For certain time steps the dike height is lower than the water level. No damage will be calculated for these time steps.",
+            "For one or more time steps the water level exceeds the dike height. No damage will be calculated for these time steps.",
             events.at(0));
     }
 
@@ -396,7 +396,7 @@ namespace DiKErnel::System::Test
         ASSERT_EQ(1, events.size());
         EventAssertHelper::AssertEvent(
             EventType::Warning,
-            "For certain time steps the dike height is lower than the water level. No damage will be calculated for these time steps.",
+            "For one or more time steps the water level exceeds the dike height. No damage will be calculated for these time steps.",
             events.at(0));
     }
 
