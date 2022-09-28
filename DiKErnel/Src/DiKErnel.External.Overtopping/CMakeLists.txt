@@ -47,7 +47,9 @@ set(OVERTOPPING_FILES
   ${OVERTOPPING_FOLDER}/dllDikesOvertopping.dll
   ${OVERTOPPING_FOLDER}/dllDikesOvertopping.lib
   ${OVERTOPPING_FOLDER}/feedbackDLL.dll
+  ${OVERTOPPING_FOLDER}/libifcoremd.dll
   ${OVERTOPPING_FOLDER}/libiomp5md.dll
+  ${OVERTOPPING_FOLDER}/libmmd.dll
 )
 
 install(FILES ${OVERTOPPING_FILES} DESTINATION ./$<CONFIG>)
