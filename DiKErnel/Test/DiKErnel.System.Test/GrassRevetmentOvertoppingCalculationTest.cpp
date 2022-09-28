@@ -32,8 +32,6 @@ namespace DiKErnel::System::Test
 
     struct GrassRevetmentOvertoppingCalculationTest : CalculationTestBase
     {
-        #pragma region Schematization 1
-
         [[nodiscard]]
         static unique_ptr<CalculationInputBuilder> CreateBuilderForSchematization1()
         {
@@ -77,10 +75,6 @@ namespace DiKErnel::System::Test
             return builder;
         }
 
-        #pragma endregion
-
-        #pragma region Schematization 2
-
         [[nodiscard]]
         static unique_ptr<CalculationInputBuilder> CreateBuilderForSchematization2()
         {
@@ -120,10 +114,6 @@ namespace DiKErnel::System::Test
             return builder;
         }
 
-        #pragma endregion
-
-        #pragma region Schematization 3
-
         [[nodiscard]]
         static unique_ptr<CalculationInputBuilder> CreateBuilderForSchematization3()
         {
@@ -160,8 +150,6 @@ namespace DiKErnel::System::Test
 
             return builder;
         }
-
-        #pragma endregion
     };
 
     #pragma region Schematization 1
