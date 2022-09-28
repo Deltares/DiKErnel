@@ -56,10 +56,10 @@ namespace DiKErnel::KernelWrapper::Json::Input
 
         for (auto i = 0; i < static_cast<int>(xLocations.size()) - 1; ++i)
         {
-            const double startPointX = xLocations.at(i);
-            const double startPointZ = zLocations.at(i);
-            const double endPointX = xLocations.at(i + 1);
-            const double endPointZ = zLocations.at(i + 1);
+            const auto startPointX = xLocations.at(i);
+            const auto startPointZ = zLocations.at(i);
+            const auto endPointX = xLocations.at(i + 1);
+            const auto endPointZ = zLocations.at(i + 1);
 
             if(roughnessCoefficients != nullptr)
             {

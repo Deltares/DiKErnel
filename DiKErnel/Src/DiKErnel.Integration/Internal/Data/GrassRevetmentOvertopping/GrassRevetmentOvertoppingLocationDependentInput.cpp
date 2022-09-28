@@ -192,7 +192,7 @@ namespace DiKErnel::Integration
             const auto averageNumberOfWaves = RevetmentFunctions::AverageNumberOfWaves(incrementTime, timeDependentInput.GetWavePeriodTm10(),
                                                                                        _averageNumberOfWavesCtm);
 
-            const double waveDirection = HydraulicLoadFunctions::WaveDirection(timeDependentInput.GetWaveAngle());
+            const auto waveDirection = HydraulicLoadFunctions::WaveDirection(timeDependentInput.GetWaveAngle());
 
             _representativeWaveRunup2P = CalculateRepresentativeWaveRunup2P(timeDependentInput.GetWaterLevel(),
                                                                             timeDependentInput.GetWaveHeightHm0(),
@@ -228,7 +228,7 @@ namespace DiKErnel::Integration
             const auto& profileSegmentReference = profileSegment.get();
             const auto& startPoint = profileSegmentReference.GetStartPoint();
 
-            if (const double startPointX = startPoint.GetX(); startPointX >= outerToe.first && startPointX < outerCrest.first)
+            if (const auto startPointX = startPoint.GetX(); startPointX >= outerToe.first && startPointX < outerCrest.first)
             {
                 _xValuesProfile.push_back(startPointX);
                 _zValuesProfile.push_back(startPoint.GetZ());
@@ -251,7 +251,7 @@ namespace DiKErnel::Integration
         const pair<double, double>& outerCrest,
         const pair<double, double>& innerCrest)
     {
-        const double x = GetX();
+        const auto x = GetX();
 
         _accelerationAlphaA = x >= outerCrest.first && x <= innerCrest.first
                                   ? _locationDependentAccelerationAlphaA->ValueAtCrest()
@@ -316,7 +316,7 @@ namespace DiKErnel::Integration
         {
             const auto& startPoint = profileSegment.get().GetStartPoint();
 
-            if (const double startPointX = startPoint.GetX(); startPointX >= outerCrest.first && startPointX < x)
+            if (const auto startPointX = startPoint.GetX(); startPointX >= outerCrest.first && startPointX < x)
             {
                 dikeHeight = max(dikeHeight, startPoint.GetZ());
             }

@@ -44,7 +44,7 @@ namespace DiKErnel::FunctionLibrary::Test
     TEST(HydraulicLoadFunctionsTest, WaveDirection_InputLargerThan0Degrees_ExpectedValue)
     {
         // Setup
-        const double waveAngle = RandomValueHelper::GetRandomValue(0.0 + numeric_limits<double>::epsilon(), 540);
+        const auto waveAngle = RandomValueHelper::GetRandomValue(0.0 + numeric_limits<double>::epsilon(), 540);
 
         // Call
         const auto waveDirection = HydraulicLoadFunctions::WaveDirection(waveAngle);
@@ -56,7 +56,7 @@ namespace DiKErnel::FunctionLibrary::Test
     TEST(HydraulicLoadFunctionsTest, WaveDirection_InputBetweenMinus180And0Degrees_ExpectedValue)
     {
         // Setup
-        const double waveAngle = RandomValueHelper::GetRandomValue(-180 + numeric_limits<double>::epsilon(), -numeric_limits<double>::epsilon());
+        const auto waveAngle = RandomValueHelper::GetRandomValue(-180 + numeric_limits<double>::epsilon(), -numeric_limits<double>::epsilon());
 
         // Call
         const auto waveDirection = HydraulicLoadFunctions::WaveDirection(waveAngle);

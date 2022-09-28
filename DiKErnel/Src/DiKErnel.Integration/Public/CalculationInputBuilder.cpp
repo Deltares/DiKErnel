@@ -176,11 +176,11 @@ namespace DiKErnel::Integration
 
             if (previousSegment != nullptr)
             {
-                const double previousSegmentStartPointX = previousSegment->GetEndPointX();
-                const double previousSegmentStartPointZ = previousSegment->GetEndPointZ();
+                const auto previousSegmentStartPointX = previousSegment->GetEndPointX();
+                const auto previousSegmentStartPointZ = previousSegment->GetEndPointZ();
 
-                const double currentSegmentStartPointX = currentSegment->GetStartPointX();
-                const double currentSegmentStartPointZ = currentSegment->GetStartPointZ();
+                const auto currentSegmentStartPointX = currentSegment->GetStartPointX();
+                const auto currentSegmentStartPointZ = currentSegment->GetStartPointZ();
 
                 if (!NumericsHelper::AreEqual(previousSegmentStartPointX, currentSegmentStartPointX)
                     || !NumericsHelper::AreEqual(previousSegmentStartPointZ, currentSegmentStartPointZ))
