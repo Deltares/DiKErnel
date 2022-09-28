@@ -34,7 +34,7 @@ namespace DiKErnel::System::Test
     {
         #pragma region Schematization 1
 
-        static void ConfigureBuilderForSchematization1(
+        static void CreateBuilderForSchematization1(
             CalculationInputBuilder& builder)
         {
             builder.AddTimeStep(0, 3600, 5.5, 1.9, 4.7, -10);
@@ -77,7 +77,7 @@ namespace DiKErnel::System::Test
 
         #pragma region Schematization 2
 
-        static void ConfigureBuilderForSchematization2(
+        static void CreateBuilderForSchematization2(
             CalculationInputBuilder& builder)
         {
             builder.AddTimeStep(0, 3600, 5, 2.35, 5.2, -10);
@@ -116,7 +116,7 @@ namespace DiKErnel::System::Test
 
         #pragma region Schematization 3
 
-        static void ConfigureBuilderForSchematization3(
+        static void CreateBuilderForSchematization3(
             CalculationInputBuilder& builder)
         {
             builder.AddTimeStep(0, 3600, 5.7, 2.05, 5.2, -10);
@@ -160,7 +160,7 @@ namespace DiKErnel::System::Test
         // Given
         CalculationInputBuilder builder;
 
-        ConfigureBuilderForSchematization1(builder);
+        CreateBuilderForSchematization1(builder);
 
         auto locationConstructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(
             50, GrassRevetmentTopLayerType::ClosedSod);
@@ -187,7 +187,7 @@ namespace DiKErnel::System::Test
         // Given
         CalculationInputBuilder builder;
 
-        ConfigureBuilderForSchematization1(builder);
+        CreateBuilderForSchematization1(builder);
 
         auto locationConstructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(
             33, GrassRevetmentTopLayerType::ClosedSod);
@@ -212,7 +212,7 @@ namespace DiKErnel::System::Test
         // Given
         CalculationInputBuilder builder;
 
-        ConfigureBuilderForSchematization1(builder);
+        CreateBuilderForSchematization1(builder);
 
         auto locationConstructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(
             33, GrassRevetmentTopLayerType::ClosedSod);
@@ -238,7 +238,7 @@ namespace DiKErnel::System::Test
         // Given
         CalculationInputBuilder builder;
 
-        ConfigureBuilderForSchematization1(builder);
+        CreateBuilderForSchematization1(builder);
 
         auto locationConstructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(
             33, GrassRevetmentTopLayerType::ClosedSod);
@@ -268,7 +268,7 @@ namespace DiKErnel::System::Test
         // Given
         CalculationInputBuilder builder;
 
-        ConfigureBuilderForSchematization2(builder);
+        CreateBuilderForSchematization2(builder);
 
         auto locationConstructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(
             40, GrassRevetmentTopLayerType::OpenSod);
@@ -293,7 +293,7 @@ namespace DiKErnel::System::Test
         // Given
         CalculationInputBuilder builder;
 
-        ConfigureBuilderForSchematization2(builder);
+        CreateBuilderForSchematization2(builder);
 
         auto locationConstructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(
             30, GrassRevetmentTopLayerType::OpenSod);
@@ -318,7 +318,7 @@ namespace DiKErnel::System::Test
         // Given
         CalculationInputBuilder builder;
 
-        ConfigureBuilderForSchematization2(builder);
+        CreateBuilderForSchematization2(builder);
 
         auto locationConstructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(
             35, GrassRevetmentTopLayerType::OpenSod);
@@ -346,7 +346,7 @@ namespace DiKErnel::System::Test
         // Given
         CalculationInputBuilder builder;
 
-        ConfigureBuilderForSchematization2(builder);
+        CreateBuilderForSchematization2(builder);
 
         auto locationConstructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(
             35, GrassRevetmentTopLayerType::OpenSod);
@@ -378,7 +378,7 @@ namespace DiKErnel::System::Test
         // Given
         CalculationInputBuilder builder;
 
-        ConfigureBuilderForSchematization3(builder);
+        CreateBuilderForSchematization3(builder);
 
         auto locationConstructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(
             60, GrassRevetmentTopLayerType::OpenSod);
@@ -403,7 +403,7 @@ namespace DiKErnel::System::Test
         // Given
         CalculationInputBuilder builder;
 
-        ConfigureBuilderForSchematization3(builder);
+        CreateBuilderForSchematization3(builder);
 
         auto locationConstructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(
             50, GrassRevetmentTopLayerType::OpenSod);
@@ -430,7 +430,7 @@ namespace DiKErnel::System::Test
         // Given
         CalculationInputBuilder builder;
 
-        ConfigureBuilderForSchematization3(builder);
+        CreateBuilderForSchematization3(builder);
 
         auto locationConstructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(
             50, GrassRevetmentTopLayerType::OpenSod);
@@ -459,7 +459,7 @@ namespace DiKErnel::System::Test
         // Given
         CalculationInputBuilder builder;
 
-        ConfigureBuilderForSchematization3(builder);
+        CreateBuilderForSchematization3(builder);
 
         auto locationConstructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(
             50, GrassRevetmentTopLayerType::OpenSod);

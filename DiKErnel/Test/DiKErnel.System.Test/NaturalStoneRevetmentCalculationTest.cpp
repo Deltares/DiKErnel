@@ -34,136 +34,156 @@ namespace DiKErnel::System::Test
     {
         #pragma region Schematization 1
 
-        static void ConfigureBuilderForSchematization1(
-            CalculationInputBuilder& builder)
+        [[nodiscard]]
+        static unique_ptr<CalculationInputBuilder> CreateBuilderForSchematization1()
         {
-            builder.AddTimeStep(0, 900, 1.4, 1, 5.5, 30);
-            builder.AddTimeStep(900, 1800, 1.6, 1.2, 6, 60);
-            builder.AddTimeStep(1800, 2700, 1.7, 1.2, 6.5, 90);
-            builder.AddTimeStep(2700, 3600, 1.8, 1.3, 7, 75);
-            builder.AddTimeStep(3600, 4500, 2, 1.4, 7, 60);
-            builder.AddTimeStep(4500, 5400, 2.1, 1.3, 7.5, 45);
-            builder.AddTimeStep(5400, 6300, 2.1, 1.6, 8, 30);
-            builder.AddTimeStep(6300, 7200, 2.4, 1.7, 8, 15);
-            builder.AddTimeStep(7200, 8100, 2, 2.4, 8.5, 0);
-            builder.AddTimeStep(8100, 9000, 1.9, 2.2, 8, 0);
-            builder.AddTimeStep(9000, 9900, 1.6, 1.8, 7, 0);
-            builder.AddTimeStep(9900, 10800, 1.4, 1.2, 6, 0);
+            auto builder = make_unique<CalculationInputBuilder>();
 
-            builder.AddDikeProfileSegment(0, 0, 30, 7.5);
+            builder->AddTimeStep(0, 900, 1.4, 1, 5.5, 30);
+            builder->AddTimeStep(900, 1800, 1.6, 1.2, 6, 60);
+            builder->AddTimeStep(1800, 2700, 1.7, 1.2, 6.5, 90);
+            builder->AddTimeStep(2700, 3600, 1.8, 1.3, 7, 75);
+            builder->AddTimeStep(3600, 4500, 2, 1.4, 7, 60);
+            builder->AddTimeStep(4500, 5400, 2.1, 1.3, 7.5, 45);
+            builder->AddTimeStep(5400, 6300, 2.1, 1.6, 8, 30);
+            builder->AddTimeStep(6300, 7200, 2.4, 1.7, 8, 15);
+            builder->AddTimeStep(7200, 8100, 2, 2.4, 8.5, 0);
+            builder->AddTimeStep(8100, 9000, 1.9, 2.2, 8, 0);
+            builder->AddTimeStep(9000, 9900, 1.6, 1.8, 7, 0);
+            builder->AddTimeStep(9900, 10800, 1.4, 1.2, 6, 0);
 
-            builder.AddDikeProfilePointData(0, CharacteristicPointType::OuterToe);
-            builder.AddDikeProfilePointData(30, CharacteristicPointType::OuterCrest);
+            builder->AddDikeProfileSegment(0, 0, 30, 7.5);
+
+            builder->AddDikeProfilePointData(0, CharacteristicPointType::OuterToe);
+            builder->AddDikeProfilePointData(30, CharacteristicPointType::OuterCrest);
+
+            return builder;
         }
 
         #pragma endregion
 
         #pragma region Schematization 2
 
-        static void ConfigureBuilderForSchematization2(
-            CalculationInputBuilder& builder)
+        [[nodiscard]]
+        static unique_ptr<CalculationInputBuilder> CreateBuilderForSchematization2()
         {
-            builder.AddTimeStep(0, 900, 1.4, 1, 5.5, 30);
-            builder.AddTimeStep(900, 1800, 1.6, 1.2, 6, 60);
-            builder.AddTimeStep(1800, 2700, 1.7, 1.2, 6.5, 90);
-            builder.AddTimeStep(2700, 3600, 1.8, 1.3, 7, 75);
-            builder.AddTimeStep(3600, 4500, 2, 1.4, 7, 60);
-            builder.AddTimeStep(4500, 5400, 2.1, 1.3, 7.5, 45);
-            builder.AddTimeStep(5400, 6300, 2.1, 1.6, 8, 30);
-            builder.AddTimeStep(6300, 7200, 2.4, 1.7, 8, 15);
-            builder.AddTimeStep(7200, 8100, 2, 2.4, 8.5, 0);
-            builder.AddTimeStep(8100, 9000, 1.9, 2.2, 8, 0);
-            builder.AddTimeStep(9000, 9900, 1.6, 1.8, 7, 0);
-            builder.AddTimeStep(9900, 10800, 1.4, 1.2, 6, 0);
+            auto builder = make_unique<CalculationInputBuilder>();
 
-            builder.AddDikeProfileSegment(0, 0, 6.4, 1.6);
-            builder.AddDikeProfileSegment(6.4, 1.6, 12.4, 1.8);
-            builder.AddDikeProfileSegment(12.4, 1.8, 30, 7.5);
+            builder->AddTimeStep(0, 900, 1.4, 1, 5.5, 30);
+            builder->AddTimeStep(900, 1800, 1.6, 1.2, 6, 60);
+            builder->AddTimeStep(1800, 2700, 1.7, 1.2, 6.5, 90);
+            builder->AddTimeStep(2700, 3600, 1.8, 1.3, 7, 75);
+            builder->AddTimeStep(3600, 4500, 2, 1.4, 7, 60);
+            builder->AddTimeStep(4500, 5400, 2.1, 1.3, 7.5, 45);
+            builder->AddTimeStep(5400, 6300, 2.1, 1.6, 8, 30);
+            builder->AddTimeStep(6300, 7200, 2.4, 1.7, 8, 15);
+            builder->AddTimeStep(7200, 8100, 2, 2.4, 8.5, 0);
+            builder->AddTimeStep(8100, 9000, 1.9, 2.2, 8, 0);
+            builder->AddTimeStep(9000, 9900, 1.6, 1.8, 7, 0);
+            builder->AddTimeStep(9900, 10800, 1.4, 1.2, 6, 0);
 
-            builder.AddDikeProfilePointData(0, CharacteristicPointType::OuterToe);
-            builder.AddDikeProfilePointData(6.4, CharacteristicPointType::CrestOuterBerm);
-            builder.AddDikeProfilePointData(12.4, CharacteristicPointType::NotchOuterBerm);
-            builder.AddDikeProfilePointData(30, CharacteristicPointType::OuterCrest);
+            builder->AddDikeProfileSegment(0, 0, 6.4, 1.6);
+            builder->AddDikeProfileSegment(6.4, 1.6, 12.4, 1.8);
+            builder->AddDikeProfileSegment(12.4, 1.8, 30, 7.5);
+
+            builder->AddDikeProfilePointData(0, CharacteristicPointType::OuterToe);
+            builder->AddDikeProfilePointData(6.4, CharacteristicPointType::CrestOuterBerm);
+            builder->AddDikeProfilePointData(12.4, CharacteristicPointType::NotchOuterBerm);
+            builder->AddDikeProfilePointData(30, CharacteristicPointType::OuterCrest);
+
+            return builder;
         }
 
         #pragma endregion
 
         #pragma region Schematization 3
 
-        static void ConfigureBuilderForSchematization3(
-            CalculationInputBuilder& builder)
+        [[nodiscard]]
+        static unique_ptr<CalculationInputBuilder> CreateBuilderForSchematization3()
         {
-            builder.AddTimeStep(0, 900, 1.4, 1, 5.5, 30);
-            builder.AddTimeStep(900, 1800, 1.6, 1.2, 6, 60);
-            builder.AddTimeStep(1800, 2700, 1.7, 1.2, 6.5, 90);
-            builder.AddTimeStep(2700, 3600, 1.8, 1.3, 7, 75);
-            builder.AddTimeStep(3600, 4500, 2, 1.4, 7, 60);
-            builder.AddTimeStep(4500, 5400, 2.1, 1.3, 7.5, 45);
-            builder.AddTimeStep(5400, 6300, 2.1, 1.6, 8, 30);
-            builder.AddTimeStep(6300, 7200, 2.4, 1.7, 8, 15);
-            builder.AddTimeStep(7200, 8100, 2, 2.4, 8.5, 0);
-            builder.AddTimeStep(8100, 9000, 1.9, 2.2, 8, 0);
-            builder.AddTimeStep(9000, 9900, 1.6, 1.8, 7, 0);
-            builder.AddTimeStep(9900, 10800, 1.4, 1.2, 6, 0);
+            auto builder = make_unique<CalculationInputBuilder>();
 
-            builder.AddDikeProfileSegment(0, 0, 6.4, 1.6);
-            builder.AddDikeProfileSegment(6.4, 1.6, 12.4, 1.8);
-            builder.AddDikeProfileSegment(12.4, 1.8, 30, 7.5);
+            builder->AddTimeStep(0, 900, 1.4, 1, 5.5, 30);
+            builder->AddTimeStep(900, 1800, 1.6, 1.2, 6, 60);
+            builder->AddTimeStep(1800, 2700, 1.7, 1.2, 6.5, 90);
+            builder->AddTimeStep(2700, 3600, 1.8, 1.3, 7, 75);
+            builder->AddTimeStep(3600, 4500, 2, 1.4, 7, 60);
+            builder->AddTimeStep(4500, 5400, 2.1, 1.3, 7.5, 45);
+            builder->AddTimeStep(5400, 6300, 2.1, 1.6, 8, 30);
+            builder->AddTimeStep(6300, 7200, 2.4, 1.7, 8, 15);
+            builder->AddTimeStep(7200, 8100, 2, 2.4, 8.5, 0);
+            builder->AddTimeStep(8100, 9000, 1.9, 2.2, 8, 0);
+            builder->AddTimeStep(9000, 9900, 1.6, 1.8, 7, 0);
+            builder->AddTimeStep(9900, 10800, 1.4, 1.2, 6, 0);
 
-            builder.AddDikeProfilePointData(0, CharacteristicPointType::OuterToe);
-            builder.AddDikeProfilePointData(30, CharacteristicPointType::OuterCrest);
+            builder->AddDikeProfileSegment(0, 0, 6.4, 1.6);
+            builder->AddDikeProfileSegment(6.4, 1.6, 12.4, 1.8);
+            builder->AddDikeProfileSegment(12.4, 1.8, 30, 7.5);
+
+            builder->AddDikeProfilePointData(0, CharacteristicPointType::OuterToe);
+            builder->AddDikeProfilePointData(30, CharacteristicPointType::OuterCrest);
+
+            return builder;
         }
 
         #pragma endregion
 
         #pragma region Schematization 4
 
-        static void ConfigureBuilderForSchematization4(
-            CalculationInputBuilder& builder)
+        [[nodiscard]]
+        static unique_ptr<CalculationInputBuilder> CreateBuilderForSchematization4()
         {
-            builder.AddTimeStep(0, 900, 1.27, 1.5, 6, 0);
-            builder.AddTimeStep(900, 1800, 1.271, 1.5, 6, 0);
-            builder.AddTimeStep(1800, 2700, 1.272, 1.5, 6, 0);
-            builder.AddTimeStep(2700, 3600, 1.273, 1.5, 6, 0);
-            builder.AddTimeStep(3600, 4500, 2.531, 1.5, 6, 0);
-            builder.AddTimeStep(4500, 5400, 2.532, 1.5, 6, 0);
-            builder.AddTimeStep(5400, 6300, 2.533, 1.5, 6, 0);
-            builder.AddTimeStep(6300, 7200, 2.534, 1.5, 6, 0);
-            builder.AddTimeStep(7200, 8100, 2.535, 1.5, 6, 0);
-            builder.AddTimeStep(8100, 9000, 2.536, 1.5, 6, 0);
-            builder.AddTimeStep(9000, 9900, 2.537, 1.5, 6, 0);
-            builder.AddTimeStep(9900, 10800, 2.538, 1.5, 6, 0);
+            auto builder = make_unique<CalculationInputBuilder>();
 
-            builder.AddDikeProfileSegment(0, 0, 30, 7.5);
+            builder->AddTimeStep(0, 900, 1.27, 1.5, 6, 0);
+            builder->AddTimeStep(900, 1800, 1.271, 1.5, 6, 0);
+            builder->AddTimeStep(1800, 2700, 1.272, 1.5, 6, 0);
+            builder->AddTimeStep(2700, 3600, 1.273, 1.5, 6, 0);
+            builder->AddTimeStep(3600, 4500, 2.531, 1.5, 6, 0);
+            builder->AddTimeStep(4500, 5400, 2.532, 1.5, 6, 0);
+            builder->AddTimeStep(5400, 6300, 2.533, 1.5, 6, 0);
+            builder->AddTimeStep(6300, 7200, 2.534, 1.5, 6, 0);
+            builder->AddTimeStep(7200, 8100, 2.535, 1.5, 6, 0);
+            builder->AddTimeStep(8100, 9000, 2.536, 1.5, 6, 0);
+            builder->AddTimeStep(9000, 9900, 2.537, 1.5, 6, 0);
+            builder->AddTimeStep(9900, 10800, 2.538, 1.5, 6, 0);
 
-            builder.AddDikeProfilePointData(0, CharacteristicPointType::OuterToe);
-            builder.AddDikeProfilePointData(30, CharacteristicPointType::OuterCrest);
+            builder->AddDikeProfileSegment(0, 0, 30, 7.5);
+
+            builder->AddDikeProfilePointData(0, CharacteristicPointType::OuterToe);
+            builder->AddDikeProfilePointData(30, CharacteristicPointType::OuterCrest);
+
+            return builder;
         }
 
         #pragma endregion
 
         #pragma region Schematization 5
 
-        static void ConfigureBuilderForSchematization5(
-            CalculationInputBuilder& builder)
+        [[nodiscard]]
+        static unique_ptr<CalculationInputBuilder> CreateBuilderForSchematization5()
         {
-            builder.AddTimeStep(-3600, -3420, 1.4, 1, 5.5, 30);
-            builder.AddTimeStep(-3420, -3060, 1.6, 1.2, 6, 60);
-            builder.AddTimeStep(-3060, -2520, 1.7, 1.2, 6.5, 90);
-            builder.AddTimeStep(-2520, -1800, 1.8, 1.3, 7, 75);
-            builder.AddTimeStep(-1800, -900, 2, 1.4, 7, 60);
-            builder.AddTimeStep(-900, 180, 2.1, 1.3, 7.5, 45);
-            builder.AddTimeStep(180, 1440, 2.1, 1.6, 8, 30);
-            builder.AddTimeStep(1440, 2880, 2.4, 1.7, 8, 15);
-            builder.AddTimeStep(2880, 4500, 2, 2.4, 8.5, 0);
-            builder.AddTimeStep(4500, 6300, 1.9, 2.2, 8, 0);
-            builder.AddTimeStep(6300, 8280, 1.6, 1.8, 7, 0);
-            builder.AddTimeStep(8280, 10800, 1.4, 1.2, 6, 0);
+            auto builder = make_unique<CalculationInputBuilder>();
 
-            builder.AddDikeProfileSegment(0, 0, 30, 7.5);
+            builder->AddTimeStep(-3600, -3420, 1.4, 1, 5.5, 30);
+            builder->AddTimeStep(-3420, -3060, 1.6, 1.2, 6, 60);
+            builder->AddTimeStep(-3060, -2520, 1.7, 1.2, 6.5, 90);
+            builder->AddTimeStep(-2520, -1800, 1.8, 1.3, 7, 75);
+            builder->AddTimeStep(-1800, -900, 2, 1.4, 7, 60);
+            builder->AddTimeStep(-900, 180, 2.1, 1.3, 7.5, 45);
+            builder->AddTimeStep(180, 1440, 2.1, 1.6, 8, 30);
+            builder->AddTimeStep(1440, 2880, 2.4, 1.7, 8, 15);
+            builder->AddTimeStep(2880, 4500, 2, 2.4, 8.5, 0);
+            builder->AddTimeStep(4500, 6300, 1.9, 2.2, 8, 0);
+            builder->AddTimeStep(6300, 8280, 1.6, 1.8, 7, 0);
+            builder->AddTimeStep(8280, 10800, 1.4, 1.2, 6, 0);
 
-            builder.AddDikeProfilePointData(0, CharacteristicPointType::OuterToe);
-            builder.AddDikeProfilePointData(30, CharacteristicPointType::OuterCrest);
+            builder->AddDikeProfileSegment(0, 0, 30, 7.5);
+
+            builder->AddDikeProfilePointData(0, CharacteristicPointType::OuterToe);
+            builder->AddDikeProfilePointData(30, CharacteristicPointType::OuterCrest);
+
+            return builder;
         }
 
         #pragma endregion
@@ -175,16 +195,14 @@ namespace DiKErnel::System::Test
            GivenCalculationInputForSchematization1Testcase1_WhenCalculating_ThenReturnsExpectedCalculationResult)
     {
         // Given
-        CalculationInputBuilder builder;
-
-        ConfigureBuilderForSchematization1(builder);
+        const auto builder = CreateBuilderForSchematization1();
 
         auto locationConstructionProperties = make_unique<NaturalStoneRevetmentLocationConstructionProperties>(
             6, NaturalStoneRevetmentTopLayerType::NordicStone, 0.4, 1.65);
 
-        builder.AddNaturalStoneLocation(move(locationConstructionProperties));
+        builder->AddNaturalStoneLocation(move(locationConstructionProperties));
 
-        const auto calculationInput = builder.Build();
+        const auto calculationInput = builder->Build();
 
         // When
         Calculator calculator(*calculationInput->GetData());
@@ -200,18 +218,16 @@ namespace DiKErnel::System::Test
            GivenCalculationInputForSchematization1Testcase2_WhenCalculating_ThenReturnsExpectedCalculationResult)
     {
         // Given
-        CalculationInputBuilder builder;
-
-        ConfigureBuilderForSchematization1(builder);
+        const auto builder = CreateBuilderForSchematization1();
 
         auto locationConstructionProperties = make_unique<NaturalStoneRevetmentLocationConstructionProperties>(
             6, NaturalStoneRevetmentTopLayerType::NordicStone, 0.35, 1.6);
 
         locationConstructionProperties->SetInitialDamage(make_unique<double>(0.6));
 
-        builder.AddNaturalStoneLocation(move(locationConstructionProperties));
+        builder->AddNaturalStoneLocation(move(locationConstructionProperties));
 
-        const auto calculationInput = builder.Build();
+        const auto calculationInput = builder->Build();
 
         // When
         Calculator calculator(*calculationInput->GetData());
@@ -227,9 +243,7 @@ namespace DiKErnel::System::Test
            GivenCalculationInputForSchematization1Testcase3_WhenCalculating_ThenReturnsExpectedCalculationResult)
     {
         // Given
-        CalculationInputBuilder builder;
-
-        ConfigureBuilderForSchematization1(builder);
+        const auto builder = CreateBuilderForSchematization1();
 
         auto locationConstructionProperties = make_unique<NaturalStoneRevetmentLocationConstructionProperties>(
             6, NaturalStoneRevetmentTopLayerType::NordicStone, 0.25, 1.65);
@@ -244,9 +258,9 @@ namespace DiKErnel::System::Test
         locationConstructionProperties->SetHydraulicLoadCs(make_unique<double>(-3.12));
         locationConstructionProperties->SetHydraulicLoadNs(make_unique<double>(-1.5));
 
-        builder.AddNaturalStoneLocation(move(locationConstructionProperties));
+        builder->AddNaturalStoneLocation(move(locationConstructionProperties));
 
-        const auto calculationInput = builder.Build();
+        const auto calculationInput = builder->Build();
 
         // When
         Calculator calculator(*calculationInput->GetData());
@@ -262,18 +276,16 @@ namespace DiKErnel::System::Test
            GivenCalculationInputForSchematization1Testcase4_WhenCalculating_ThenReturnsExpectedCalculationResult)
     {
         // Given
-        CalculationInputBuilder builder;
-
-        ConfigureBuilderForSchematization1(builder);
+        const auto builder = CreateBuilderForSchematization1();
 
         auto locationConstructionProperties = make_unique<NaturalStoneRevetmentLocationConstructionProperties>(
             6, NaturalStoneRevetmentTopLayerType::NordicStone, 0.4, 1.65);
 
         locationConstructionProperties->SetWaveAngleImpactBetamax(make_unique<double>(30));
 
-        builder.AddNaturalStoneLocation(move(locationConstructionProperties));
+        builder->AddNaturalStoneLocation(move(locationConstructionProperties));
 
-        const auto calculationInput = builder.Build();
+        const auto calculationInput = builder->Build();
 
         // When
         Calculator calculator(*calculationInput->GetData());
@@ -293,16 +305,14 @@ namespace DiKErnel::System::Test
            GivenCalculationInputForSchematization2Testcase1_WhenCalculating_ThenReturnsExpectedCalculationResult)
     {
         // Given
-        CalculationInputBuilder builder;
-
-        ConfigureBuilderForSchematization2(builder);
+        const auto builder = CreateBuilderForSchematization2();
 
         auto locationConstructionProperties = make_unique<NaturalStoneRevetmentLocationConstructionProperties>(
             6, NaturalStoneRevetmentTopLayerType::NordicStone, 0.3, 1.65);
 
-        builder.AddNaturalStoneLocation(move(locationConstructionProperties));
+        builder->AddNaturalStoneLocation(move(locationConstructionProperties));
 
-        const auto calculationInput = builder.Build();
+        const auto calculationInput = builder->Build();
 
         // When
         Calculator calculator(*calculationInput->GetData());
@@ -318,9 +328,7 @@ namespace DiKErnel::System::Test
            GivenCalculationInputForSchematization2Testcase2_WhenCalculating_ThenReturnsExpectedCalculationResult)
     {
         // Given
-        CalculationInputBuilder builder;
-
-        ConfigureBuilderForSchematization2(builder);
+        const auto builder = CreateBuilderForSchematization2();
 
         auto locationConstructionProperties = make_unique<NaturalStoneRevetmentLocationConstructionProperties>(
             6, NaturalStoneRevetmentTopLayerType::NordicStone, 0.3, 1.65);
@@ -328,9 +336,9 @@ namespace DiKErnel::System::Test
         locationConstructionProperties->SetSlopeUpperLevelAus(make_unique<double>(0.5));
         locationConstructionProperties->SetSlopeLowerLevelAls(make_unique<double>(1));
 
-        builder.AddNaturalStoneLocation(move(locationConstructionProperties));
+        builder->AddNaturalStoneLocation(move(locationConstructionProperties));
 
-        const auto calculationInput = builder.Build();
+        const auto calculationInput = builder->Build();
 
         // When
         Calculator calculator(*calculationInput->GetData());
@@ -350,16 +358,14 @@ namespace DiKErnel::System::Test
            GivenCalculationInputForSchematization3Testcase1_WhenCalculating_ThenReturnsExpectedCalculationResult)
     {
         // Given
-        CalculationInputBuilder builder;
-
-        ConfigureBuilderForSchematization3(builder);
+        const auto builder = CreateBuilderForSchematization3();
 
         auto locationConstructionProperties = make_unique<NaturalStoneRevetmentLocationConstructionProperties>(
             6, NaturalStoneRevetmentTopLayerType::NordicStone, 0.3, 1.65);
 
-        builder.AddNaturalStoneLocation(move(locationConstructionProperties));
+        builder->AddNaturalStoneLocation(move(locationConstructionProperties));
 
-        const auto calculationInput = builder.Build();
+        const auto calculationInput = builder->Build();
 
         // When
         Calculator calculator(*calculationInput->GetData());
@@ -379,9 +385,7 @@ namespace DiKErnel::System::Test
            GivenCalculationInputForSchematization4Testcase1_WhenCalculating_ThenReturnsExpectedCalculationResult)
     {
         // Given
-        CalculationInputBuilder builder;
-
-        ConfigureBuilderForSchematization4(builder);
+        const auto builder = CreateBuilderForSchematization4();
 
         auto locationConstructionProperties = make_unique<NaturalStoneRevetmentLocationConstructionProperties>(
             6, NaturalStoneRevetmentTopLayerType::NordicStone, 0.3, 1.65);
@@ -397,9 +401,9 @@ namespace DiKErnel::System::Test
         locationConstructionProperties->SetNormativeWidthOfWaveImpactAwi(make_unique<double>(1.1));
         locationConstructionProperties->SetNormativeWidthOfWaveImpactBwi(make_unique<double>(0.15));
 
-        builder.AddNaturalStoneLocation(move(locationConstructionProperties));
+        builder->AddNaturalStoneLocation(move(locationConstructionProperties));
 
-        const auto calculationInput = builder.Build();
+        const auto calculationInput = builder->Build();
 
         // When
         Calculator calculator(*calculationInput->GetData());
@@ -419,16 +423,14 @@ namespace DiKErnel::System::Test
            GivenCalculationInputForSchematization5Testcase1_WhenCalculating_ThenReturnsExpectedCalculationResult)
     {
         // Given
-        CalculationInputBuilder builder;
-
-        ConfigureBuilderForSchematization5(builder);
+        const auto builder = CreateBuilderForSchematization5();
 
         auto locationConstructionProperties = make_unique<NaturalStoneRevetmentLocationConstructionProperties>(
             6, NaturalStoneRevetmentTopLayerType::NordicStone, 0.4, 1.65);
 
-        builder.AddNaturalStoneLocation(move(locationConstructionProperties));
+        builder->AddNaturalStoneLocation(move(locationConstructionProperties));
 
-        const auto calculationInput = builder.Build();
+        const auto calculationInput = builder->Build();
 
         // When
         Calculator calculator(*calculationInput->GetData());

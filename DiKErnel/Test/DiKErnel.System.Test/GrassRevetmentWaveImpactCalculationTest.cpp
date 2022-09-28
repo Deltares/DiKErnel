@@ -34,7 +34,7 @@ namespace DiKErnel::System::Test
     {
         #pragma region Schematization 1
 
-        static void ConfigureBuilderForSchematization1(
+        static void CreateBuilderForSchematization1(
             CalculationInputBuilder& builder)
         {
             builder.AddTimeStep(0, 900, 0.5, 0.5, 3, 0);
@@ -72,7 +72,7 @@ namespace DiKErnel::System::Test
 
         #pragma region Schematization 2
 
-        static void ConfigureBuilderForSchematization2(
+        static void CreateBuilderForSchematization2(
             CalculationInputBuilder& builder)
         {
             builder.AddTimeStep(0, 900, 0.5, 0.3, 3, 0);
@@ -110,7 +110,7 @@ namespace DiKErnel::System::Test
 
         #pragma region Schematization 3
 
-        static void ConfigureBuilderForSchematization3(
+        static void CreateBuilderForSchematization3(
             CalculationInputBuilder& builder)
         {
             builder.AddTimeStep(-3600, -3510, 0.5, 0.5, 3, 0);
@@ -155,7 +155,7 @@ namespace DiKErnel::System::Test
         // Given
         CalculationInputBuilder builder;
 
-        ConfigureBuilderForSchematization1(builder);
+        CreateBuilderForSchematization1(builder);
 
         auto locationConstructionProperties = make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(
             11, GrassRevetmentTopLayerType::ClosedSod);
@@ -180,7 +180,7 @@ namespace DiKErnel::System::Test
         // Given
         CalculationInputBuilder builder;
 
-        ConfigureBuilderForSchematization1(builder);
+        CreateBuilderForSchematization1(builder);
 
         auto locationConstructionProperties = make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(
             11, GrassRevetmentTopLayerType::ClosedSod);
@@ -209,7 +209,7 @@ namespace DiKErnel::System::Test
         // Given
         CalculationInputBuilder builder;
 
-        ConfigureBuilderForSchematization1(builder);
+        CreateBuilderForSchematization1(builder);
 
         auto locationConstructionProperties = make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(
             11, GrassRevetmentTopLayerType::ClosedSod);
@@ -237,7 +237,7 @@ namespace DiKErnel::System::Test
         // Given
         CalculationInputBuilder builder;
 
-        ConfigureBuilderForSchematization1(builder);
+        CreateBuilderForSchematization1(builder);
 
         auto locationConstructionProperties = make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(
             11, GrassRevetmentTopLayerType::ClosedSod);
@@ -266,7 +266,7 @@ namespace DiKErnel::System::Test
         // Given
         CalculationInputBuilder builder;
 
-        ConfigureBuilderForSchematization1(builder);
+        CreateBuilderForSchematization1(builder);
 
         auto locationConstructionProperties = make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(
             11, GrassRevetmentTopLayerType::ClosedSod);
@@ -298,7 +298,7 @@ namespace DiKErnel::System::Test
         // Given
         CalculationInputBuilder builder;
 
-        ConfigureBuilderForSchematization2(builder);
+        CreateBuilderForSchematization2(builder);
 
         auto locationConstructionProperties = make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(
             11, GrassRevetmentTopLayerType::OpenSod);
@@ -327,7 +327,7 @@ namespace DiKErnel::System::Test
         // Given
         CalculationInputBuilder builder;
 
-        ConfigureBuilderForSchematization3(builder);
+        CreateBuilderForSchematization3(builder);
 
         auto locationConstructionProperties = make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(
             11, GrassRevetmentTopLayerType::ClosedSod);
