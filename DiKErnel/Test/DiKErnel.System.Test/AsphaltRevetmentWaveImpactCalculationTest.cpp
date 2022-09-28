@@ -34,76 +34,88 @@ namespace DiKErnel::System::Test
     {
         #pragma region Schematization 1
 
-        static void CreateBuilderForSchematization1(
-            CalculationInputBuilder& builder)
+        [[nodiscard]]
+        static unique_ptr<CalculationInputBuilder> CreateBuilderForSchematization1()
         {
-            builder.AddTimeStep(0, 3600, 2, 1, 4, 0);
-            builder.AddTimeStep(3600, 7200, 2.2, 1.5, 5, 0);
-            builder.AddTimeStep(7200, 10800, 2.4, 2, 5.5, 0);
-            builder.AddTimeStep(10800, 14400, 2.6, 2.4, 6, 0);
-            builder.AddTimeStep(14400, 18000, 2.8, 2.5, 6.2, 0);
-            builder.AddTimeStep(18000, 21600, 3, 2.6, 6.3, 0);
-            builder.AddTimeStep(21600, 25200, 2.8, 2.7, 6.5, 0);
-            builder.AddTimeStep(25200, 28800, 2.6, 2.6, 6.6, 0);
-            builder.AddTimeStep(28800, 32400, 2.4, 2.5, 6.3, 0);
-            builder.AddTimeStep(32400, 36000, 2, 2.4, 6.2, 0);
+            auto builder = make_unique<CalculationInputBuilder>();
 
-            builder.AddDikeProfileSegment(0, 0, 30, 7.5);
+            builder->AddTimeStep(0, 3600, 2, 1, 4, 0);
+            builder->AddTimeStep(3600, 7200, 2.2, 1.5, 5, 0);
+            builder->AddTimeStep(7200, 10800, 2.4, 2, 5.5, 0);
+            builder->AddTimeStep(10800, 14400, 2.6, 2.4, 6, 0);
+            builder->AddTimeStep(14400, 18000, 2.8, 2.5, 6.2, 0);
+            builder->AddTimeStep(18000, 21600, 3, 2.6, 6.3, 0);
+            builder->AddTimeStep(21600, 25200, 2.8, 2.7, 6.5, 0);
+            builder->AddTimeStep(25200, 28800, 2.6, 2.6, 6.6, 0);
+            builder->AddTimeStep(28800, 32400, 2.4, 2.5, 6.3, 0);
+            builder->AddTimeStep(32400, 36000, 2, 2.4, 6.2, 0);
 
-            builder.AddDikeProfilePointData(0, CharacteristicPointType::OuterToe);
-            builder.AddDikeProfilePointData(30, CharacteristicPointType::OuterCrest);
+            builder->AddDikeProfileSegment(0, 0, 30, 7.5);
+
+            builder->AddDikeProfilePointData(0, CharacteristicPointType::OuterToe);
+            builder->AddDikeProfilePointData(30, CharacteristicPointType::OuterCrest);
+
+            return builder;
         }
 
         #pragma endregion
 
         #pragma region Schematization 2
 
-        static void CreateBuilderForSchematization2(
-            CalculationInputBuilder& builder)
+        [[nodiscard]]
+        static unique_ptr<CalculationInputBuilder> CreateBuilderForSchematization2()
         {
-            builder.AddTimeStep(-3600, -2880, 2, 1, 4, 0);
-            builder.AddTimeStep(-2880, -1440, 2.2, 1.5, 5, 0);
-            builder.AddTimeStep(-1440, 720, 2.4, 2, 5.5, 0);
-            builder.AddTimeStep(720, 3600, 2.6, 2.4, 6, 0);
-            builder.AddTimeStep(3600, 7200, 2.8, 2.5, 6.2, 0);
-            builder.AddTimeStep(7200, 11520, 3, 2.6, 6.3, 0);
-            builder.AddTimeStep(11520, 16560, 2.8, 2.7, 6.5, 0);
-            builder.AddTimeStep(16560, 22320, 2.6, 2.6, 6.6, 0);
-            builder.AddTimeStep(22320, 28800, 2.4, 2.5, 6.3, 0);
-            builder.AddTimeStep(28800, 36000, 2, 2.4, 6.2, 0);
+            auto builder = make_unique<CalculationInputBuilder>();
 
-            builder.AddDikeProfileSegment(0, 0, 30, 7.5);
+            builder->AddTimeStep(-3600, -2880, 2, 1, 4, 0);
+            builder->AddTimeStep(-2880, -1440, 2.2, 1.5, 5, 0);
+            builder->AddTimeStep(-1440, 720, 2.4, 2, 5.5, 0);
+            builder->AddTimeStep(720, 3600, 2.6, 2.4, 6, 0);
+            builder->AddTimeStep(3600, 7200, 2.8, 2.5, 6.2, 0);
+            builder->AddTimeStep(7200, 11520, 3, 2.6, 6.3, 0);
+            builder->AddTimeStep(11520, 16560, 2.8, 2.7, 6.5, 0);
+            builder->AddTimeStep(16560, 22320, 2.6, 2.6, 6.6, 0);
+            builder->AddTimeStep(22320, 28800, 2.4, 2.5, 6.3, 0);
+            builder->AddTimeStep(28800, 36000, 2, 2.4, 6.2, 0);
 
-            builder.AddDikeProfilePointData(0, CharacteristicPointType::OuterToe);
-            builder.AddDikeProfilePointData(30, CharacteristicPointType::OuterCrest);
+            builder->AddDikeProfileSegment(0, 0, 30, 7.5);
+
+            builder->AddDikeProfilePointData(0, CharacteristicPointType::OuterToe);
+            builder->AddDikeProfilePointData(30, CharacteristicPointType::OuterCrest);
+
+            return builder;
         }
 
         #pragma endregion
 
         #pragma region Schematization 3
 
-        static void CreateBuilderForSchematization3(
-            CalculationInputBuilder& builder)
+        [[nodiscard]]
+        static unique_ptr<CalculationInputBuilder> CreateBuilderForSchematization3()
         {
-            builder.AddTimeStep(0, 3600, 2, 1, 4, 0);
-            builder.AddTimeStep(3600, 7200, 2.2, 1.5, 5, 0);
-            builder.AddTimeStep(7200, 10800, 2.4, 2, 5.5, 0);
-            builder.AddTimeStep(10800, 14400, 2.6, 2.4, 6, 0);
-            builder.AddTimeStep(14400, 18000, 2.8, 2.5, 6.2, 0);
-            builder.AddTimeStep(18000, 21600, 3, 2.6, 6.3, 0);
-            builder.AddTimeStep(21600, 25200, 2.8, 2.7, 6.5, 0);
-            builder.AddTimeStep(25200, 28800, 2.6, 2.6, 6.6, 0);
-            builder.AddTimeStep(28800, 32400, 2.4, 2.5, 6.3, 0);
-            builder.AddTimeStep(32400, 36000, 2, 2.4, 6.2, 0);
+            auto builder = make_unique<CalculationInputBuilder>();
 
-            builder.AddDikeProfileSegment(0, 0, 8, 2);
-            builder.AddDikeProfileSegment(8, 2, 17, 3);
-            builder.AddDikeProfileSegment(17, 3, 35, 7.5);
+            builder->AddTimeStep(0, 3600, 2, 1, 4, 0);
+            builder->AddTimeStep(3600, 7200, 2.2, 1.5, 5, 0);
+            builder->AddTimeStep(7200, 10800, 2.4, 2, 5.5, 0);
+            builder->AddTimeStep(10800, 14400, 2.6, 2.4, 6, 0);
+            builder->AddTimeStep(14400, 18000, 2.8, 2.5, 6.2, 0);
+            builder->AddTimeStep(18000, 21600, 3, 2.6, 6.3, 0);
+            builder->AddTimeStep(21600, 25200, 2.8, 2.7, 6.5, 0);
+            builder->AddTimeStep(25200, 28800, 2.6, 2.6, 6.6, 0);
+            builder->AddTimeStep(28800, 32400, 2.4, 2.5, 6.3, 0);
+            builder->AddTimeStep(32400, 36000, 2, 2.4, 6.2, 0);
 
-            builder.AddDikeProfilePointData(0, CharacteristicPointType::OuterToe);
-            builder.AddDikeProfilePointData(8, CharacteristicPointType::CrestOuterBerm);
-            builder.AddDikeProfilePointData(17, CharacteristicPointType::NotchOuterBerm);
-            builder.AddDikeProfilePointData(35, CharacteristicPointType::OuterCrest);
+            builder->AddDikeProfileSegment(0, 0, 8, 2);
+            builder->AddDikeProfileSegment(8, 2, 17, 3);
+            builder->AddDikeProfileSegment(17, 3, 35, 7.5);
+
+            builder->AddDikeProfilePointData(0, CharacteristicPointType::OuterToe);
+            builder->AddDikeProfilePointData(8, CharacteristicPointType::CrestOuterBerm);
+            builder->AddDikeProfilePointData(17, CharacteristicPointType::NotchOuterBerm);
+            builder->AddDikeProfilePointData(35, CharacteristicPointType::OuterCrest);
+
+            return builder;
         }
 
         #pragma endregion
@@ -115,16 +127,14 @@ namespace DiKErnel::System::Test
            GivenCalculationInputForSchematization1Testcase1_WhenCalculating_ThenReturnsExpectedCalculationResult)
     {
         // Given
-        CalculationInputBuilder builder;
-
-        CreateBuilderForSchematization1(builder);
+        const auto builder = CreateBuilderForSchematization1();
 
         auto locationConstructionProperties = make_unique<AsphaltRevetmentWaveImpactLocationConstructionProperties>(
             10, AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete, 1.6, 55, 0.4, 18000);
 
-        builder.AddAsphaltWaveImpactLocation(move(locationConstructionProperties));
+        builder->AddAsphaltWaveImpactLocation(move(locationConstructionProperties));
 
-        const auto calculationInput = builder.Build();
+        const auto calculationInput = builder->Build();
 
         // When
         Calculator calculator(*calculationInput->GetData());
@@ -140,18 +150,16 @@ namespace DiKErnel::System::Test
            GivenCalculationInputForSchematization1Testcase2_WhenCalculating_ThenReturnsExpectedCalculationResult)
     {
         // Given
-        CalculationInputBuilder builder;
-
-        CreateBuilderForSchematization1(builder);
+        const auto builder = CreateBuilderForSchematization1();
 
         auto locationConstructionProperties = make_unique<AsphaltRevetmentWaveImpactLocationConstructionProperties>(
             10, AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete, 1.75, 60, 0.3, 16000);
 
         locationConstructionProperties->SetInitialDamage(make_unique<double>(0.4));
 
-        builder.AddAsphaltWaveImpactLocation(move(locationConstructionProperties));
+        builder->AddAsphaltWaveImpactLocation(move(locationConstructionProperties));
 
-        const auto calculationInput = builder.Build();
+        const auto calculationInput = builder->Build();
 
         // When
         Calculator calculator(*calculationInput->GetData());
@@ -167,9 +175,7 @@ namespace DiKErnel::System::Test
            GivenCalculationInputForSchematization1Testcase3_WhenCalculating_ThenReturnsExpectedCalculationResult)
     {
         // Given
-        CalculationInputBuilder builder;
-
-        CreateBuilderForSchematization1(builder);
+        const auto builder = CreateBuilderForSchematization1();
 
         auto locationConstructionProperties = make_unique<AsphaltRevetmentWaveImpactLocationConstructionProperties>(
             10, AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete, 1.6, 55, 0.15, 18000);
@@ -177,9 +183,9 @@ namespace DiKErnel::System::Test
         locationConstructionProperties->SetThicknessSubLayer(make_unique<double>(0.18));
         locationConstructionProperties->SetElasticModulusSubLayer(make_unique<double>(15000));
 
-        builder.AddAsphaltWaveImpactLocation(move(locationConstructionProperties));
+        builder->AddAsphaltWaveImpactLocation(move(locationConstructionProperties));
 
-        const auto calculationInput = builder.Build();
+        const auto calculationInput = builder->Build();
 
         // When
         Calculator calculator(*calculationInput->GetData());
@@ -195,9 +201,7 @@ namespace DiKErnel::System::Test
            GivenCalculationInputForSchematization1Testcase4_WhenCalculating_ThenReturnsExpectedCalculationResult)
     {
         // Given
-        CalculationInputBuilder builder;
-
-        CreateBuilderForSchematization1(builder);
+        const auto builder = CreateBuilderForSchematization1();
 
         auto locationConstructionProperties = make_unique<AsphaltRevetmentWaveImpactLocationConstructionProperties>(
             10, AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete, 1.6, 55, 0.3, 18000);
@@ -221,9 +225,9 @@ namespace DiKErnel::System::Test
                 pair(6.0, 0.001)
             }));
 
-        builder.AddAsphaltWaveImpactLocation(move(locationConstructionProperties));
+        builder->AddAsphaltWaveImpactLocation(move(locationConstructionProperties));
 
-        const auto calculationInput = builder.Build();
+        const auto calculationInput = builder->Build();
 
         // When
         Calculator calculator(*calculationInput->GetData());
@@ -239,9 +243,7 @@ namespace DiKErnel::System::Test
            GivenCalculationInputForSchematization1Testcase5_WhenCalculating_ThenReturnsExpectedCalculationResult)
     {
         // Given
-        CalculationInputBuilder builder;
-
-        CreateBuilderForSchematization1(builder);
+        const auto builder = CreateBuilderForSchematization1();
 
         auto locationConstructionProperties = make_unique<AsphaltRevetmentWaveImpactLocationConstructionProperties>(
             10, AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete, 1.6, 55, 0.38, 18000);
@@ -265,9 +267,9 @@ namespace DiKErnel::System::Test
                 pair(0.27, 0.00009647)
             }));
 
-        builder.AddAsphaltWaveImpactLocation(move(locationConstructionProperties));
+        builder->AddAsphaltWaveImpactLocation(move(locationConstructionProperties));
 
-        const auto calculationInput = builder.Build();
+        const auto calculationInput = builder->Build();
 
         // When
         Calculator calculator(*calculationInput->GetData());
@@ -283,9 +285,7 @@ namespace DiKErnel::System::Test
            GivenCalculationInputForSchematization1Testcase6_WhenCalculating_ThenReturnsExpectedCalculationResult)
     {
         // Given
-        CalculationInputBuilder builder;
-
-        CreateBuilderForSchematization1(builder);
+        const auto builder = CreateBuilderForSchematization1();
 
         auto locationConstructionProperties = make_unique<AsphaltRevetmentWaveImpactLocationConstructionProperties>(
             10, AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete, 1.6, 55, 0.45, 18000);
@@ -309,9 +309,9 @@ namespace DiKErnel::System::Test
                 pair(2.2, 0.007)
             }));
 
-        builder.AddAsphaltWaveImpactLocation(move(locationConstructionProperties));
+        builder->AddAsphaltWaveImpactLocation(move(locationConstructionProperties));
 
-        const auto calculationInput = builder.Build();
+        const auto calculationInput = builder->Build();
 
         // When
         Calculator calculator(*calculationInput->GetData());
@@ -327,9 +327,7 @@ namespace DiKErnel::System::Test
            GivenCalculationInputForSchematization1Testcase7_WhenCalculating_ThenReturnsExpectedCalculationResult)
     {
         // Given
-        CalculationInputBuilder builder;
-
-        CreateBuilderForSchematization1(builder);
+        const auto builder = CreateBuilderForSchematization1();
 
         auto locationConstructionProperties = make_unique<AsphaltRevetmentWaveImpactLocationConstructionProperties>(
             10, AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete, 1.6, 55, 0.35, 18000);
@@ -341,9 +339,9 @@ namespace DiKErnel::System::Test
         locationConstructionProperties->SetImpactNumberC(make_unique<double>(0.95));
         locationConstructionProperties->SetDensityOfWater(make_unique<double>(1000));
 
-        builder.AddAsphaltWaveImpactLocation(move(locationConstructionProperties));
+        builder->AddAsphaltWaveImpactLocation(move(locationConstructionProperties));
 
-        const auto calculationInput = builder.Build();
+        const auto calculationInput = builder->Build();
 
         // When
         Calculator calculator(*calculationInput->GetData());
@@ -363,16 +361,14 @@ namespace DiKErnel::System::Test
            GivenCalculationInputForSchematization2Testcase1_WhenCalculating_ThenReturnsExpectedCalculationResult)
     {
         // Given
-        CalculationInputBuilder builder;
-
-        CreateBuilderForSchematization2(builder);
+        const auto builder = CreateBuilderForSchematization2();
 
         auto locationConstructionProperties = make_unique<AsphaltRevetmentWaveImpactLocationConstructionProperties>(
             10, AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete, 1.6, 55, 0.4, 18000);
 
-        builder.AddAsphaltWaveImpactLocation(move(locationConstructionProperties));
+        builder->AddAsphaltWaveImpactLocation(move(locationConstructionProperties));
 
-        const auto calculationInput = builder.Build();
+        const auto calculationInput = builder->Build();
 
         // When
         Calculator calculator(*calculationInput->GetData());
@@ -392,16 +388,14 @@ namespace DiKErnel::System::Test
            GivenCalculationInputForSchematization3Testcase1_WhenCalculating_ThenReturnsExpectedCalculationResult)
     {
         // Given
-        CalculationInputBuilder builder;
-
-        CreateBuilderForSchematization3(builder);
+        const auto builder = CreateBuilderForSchematization3();
 
         auto locationConstructionProperties = make_unique<AsphaltRevetmentWaveImpactLocationConstructionProperties>(
             12.5, AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete, 1.6, 55, 0.4, 18000);
 
-        builder.AddAsphaltWaveImpactLocation(move(locationConstructionProperties));
+        builder->AddAsphaltWaveImpactLocation(move(locationConstructionProperties));
 
-        const auto calculationInput = builder.Build();
+        const auto calculationInput = builder->Build();
 
         // When
         Calculator calculator(*calculationInput->GetData());
