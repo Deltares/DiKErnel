@@ -1,5 +1,6 @@
 # Set library name
 set(LIBNAME DiKErnel.Integration)
+set(OUTPUTNAME DiKErnel)
 
 # Set folder names
 set(PUBLIC_FOLDER Public)
@@ -242,6 +243,11 @@ else()
     ${CMAKE_CURRENT_SOURCE_DIR}/${INTERNAL_HELPERS_FOLDER}
   )
 endif()
+
+# Configure library output name
+set_target_properties(${LIBNAME} PROPERTIES
+  OUTPUT_NAME ${OUTPUTNAME}
+)
 
 # Link dependencies
 target_link_libraries(${LIBNAME}
