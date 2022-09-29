@@ -34,7 +34,7 @@ namespace DiKErnel::Integration
     CreateLocationDependentInput(
         const AsphaltRevetmentWaveImpactLocationConstructionProperties& constructionProperties)
     {
-        const auto& topLayerDefaults = AsphaltRevetmentWaveImpactDefaultsFactory::CreateTopLayerDefaults();
+        const auto topLayerDefaults = AsphaltRevetmentWaveImpactDefaultsFactory::CreateTopLayerDefaults();
 
         const auto elasticModulusUpperLayer = constructionProperties.GetElasticModulusUpperLayer();
         auto upperLayer = make_unique<AsphaltRevetmentWaveImpactLayer>(

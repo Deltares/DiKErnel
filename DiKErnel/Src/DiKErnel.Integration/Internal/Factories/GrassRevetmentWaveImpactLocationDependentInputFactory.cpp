@@ -34,7 +34,7 @@ namespace DiKErnel::Integration
     CreateLocationDependentInput(
         const GrassRevetmentWaveImpactLocationConstructionProperties& constructionProperties)
     {
-        const auto& topLayerDefaults = GrassRevetmentWaveImpactDefaultsFactory::CreateTopLayerDefaults(constructionProperties.GetTopLayerType());
+        const auto topLayerDefaults = GrassRevetmentWaveImpactDefaultsFactory::CreateTopLayerDefaults(constructionProperties.GetTopLayerType());
 
         auto waveAngleImpact = make_unique<GrassRevetmentWaveImpactWaveAngleImpact>(
             InputFactoryHelper::GetValue(constructionProperties.GetWaveAngleImpactNwa(), GrassRevetmentWaveImpactDefaults::GetWaveAngleImpactNwa()),

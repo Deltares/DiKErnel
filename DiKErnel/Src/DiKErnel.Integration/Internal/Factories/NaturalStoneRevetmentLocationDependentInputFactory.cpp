@@ -33,7 +33,7 @@ namespace DiKErnel::Integration
     unique_ptr<NaturalStoneRevetmentLocationDependentInput> NaturalStoneRevetmentLocationDependentInputFactory::CreateLocationDependentInput(
         const NaturalStoneRevetmentLocationConstructionProperties& constructionProperties)
     {
-        const auto& topLayerDefaults = NaturalStoneRevetmentDefaultsFactory::CreateTopLayerDefaults();
+        const auto topLayerDefaults = NaturalStoneRevetmentDefaultsFactory::CreateTopLayerDefaults();
 
         auto hydraulicLoads = make_unique<NaturalStoneRevetmentHydraulicLoads>(
             InputFactoryHelper::GetValue(constructionProperties.GetHydraulicLoadAp(), topLayerDefaults->GetHydraulicLoadAp()),

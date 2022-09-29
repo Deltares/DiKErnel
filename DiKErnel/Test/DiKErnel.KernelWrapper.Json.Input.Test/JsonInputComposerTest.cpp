@@ -63,7 +63,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
                 / fileName).string();
 
             // When
-            const auto& result = JsonInputComposer::GetInputDataFromJson(filePath);
+            const auto result = JsonInputComposer::GetInputDataFromJson(filePath);
 
             // Then
             ASSERT_FALSE(result->GetSuccessful());
@@ -86,7 +86,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
             / "InputWithAllData.json").string();
 
         // When
-        const auto& result = JsonInputComposer::GetInputDataFromJson(filePath);
+        const auto result = JsonInputComposer::GetInputDataFromJson(filePath);
         const auto& calculationInput = *result->GetData();
 
         // Then
@@ -276,7 +276,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
             / "InputWithAllMandatoryData.json").string();
 
         // When
-        const auto& result = JsonInputComposer::GetInputDataFromJson(filePath);
+        const auto result = JsonInputComposer::GetInputDataFromJson(filePath);
         const auto& calculationInput = *result->GetData();
 
         // Then
@@ -574,7 +574,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
         const auto filePath = "NotExisting";
 
         // When
-        const auto& result = JsonInputComposer::GetInputDataFromJson(filePath);
+        const auto result = JsonInputComposer::GetInputDataFromJson(filePath);
 
         // Then
         ASSERT_FALSE(result->GetSuccessful());

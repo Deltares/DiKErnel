@@ -36,7 +36,7 @@ namespace DiKErnel::Integration
     CreateLocationDependentInput(
         const GrassRevetmentWaveRunupRayleighLocationConstructionProperties& constructionProperties)
     {
-        const auto& topLayerDefaults = GrassRevetmentCumulativeOverloadDefaultsFactory::CreateTopLayerDefaults(
+        const auto topLayerDefaults = GrassRevetmentCumulativeOverloadDefaultsFactory::CreateTopLayerDefaults(
             constructionProperties.GetTopLayerType());
 
         auto representative2P = make_unique<GrassRevetmentWaveRunupRepresentative2P>(

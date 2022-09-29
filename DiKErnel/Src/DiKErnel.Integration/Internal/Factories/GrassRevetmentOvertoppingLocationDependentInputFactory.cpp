@@ -37,7 +37,7 @@ namespace DiKErnel::Integration
     GrassRevetmentOvertoppingLocationDependentInputFactory::CreateLocationDependentInput(
         const GrassRevetmentOvertoppingLocationConstructionProperties& constructionProperties)
     {
-        const auto& topLayerDefaults = GrassRevetmentCumulativeOverloadDefaultsFactory::CreateTopLayerDefaults(
+        const auto topLayerDefaults = GrassRevetmentCumulativeOverloadDefaultsFactory::CreateTopLayerDefaults(
             constructionProperties.GetTopLayerType());
 
         auto locationDependentAccelerationAlphaA = make_unique<GrassRevetmentOvertoppingLocationDependentAccelerationAlphaA>(

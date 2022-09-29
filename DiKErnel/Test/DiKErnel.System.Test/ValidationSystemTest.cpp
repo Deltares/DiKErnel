@@ -44,10 +44,10 @@ namespace DiKErnel::System::Test
         builder.AddGrassWaveImpactLocation(
             make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(15, GrassRevetmentTopLayerType::ClosedSod));
 
-        const auto& calculationInput = builder.Build();
+        const auto calculationInput = builder.Build();
 
         // When
-        const auto& validationResult = Validator::Validate(*calculationInput->GetData());
+        const auto validationResult = Validator::Validate(*calculationInput->GetData());
 
         // Then
         ASSERT_TRUE(validationResult->GetSuccessful());
@@ -73,10 +73,10 @@ namespace DiKErnel::System::Test
 
         builder.AddAsphaltWaveImpactLocation(move(asphaltRevetmentWaveImpactLocationConstructionProperties));
 
-        const auto& calculationInput = builder.Build();
+        const auto calculationInput = builder.Build();
 
         // When
-        const auto& validationResult = Validator::Validate(*calculationInput->GetData());
+        const auto validationResult = Validator::Validate(*calculationInput->GetData());
 
         // Then
         ASSERT_TRUE(validationResult->GetSuccessful());
@@ -110,10 +110,10 @@ namespace DiKErnel::System::Test
         builder.AddDikeProfilePointData(20, CharacteristicPointType::OuterCrest);
         builder.AddAsphaltWaveImpactLocation(move(constructionProperties));
 
-        const auto& calculationInput = builder.Build();
+        const auto calculationInput = builder.Build();
 
         // When
-        const auto& validationResult = Validator::Validate(*calculationInput->GetData());
+        const auto validationResult = Validator::Validate(*calculationInput->GetData());
 
         // Then
         ASSERT_TRUE(validationResult->GetSuccessful());
@@ -162,10 +162,10 @@ namespace DiKErnel::System::Test
         builder.AddDikeProfilePointData(20, CharacteristicPointType::OuterCrest);
         builder.AddGrassWaveImpactLocation(move(constructionProperties));
 
-        const auto& calculationInput = builder.Build();
+        const auto calculationInput = builder.Build();
 
         // When
-        const auto& validationResult = Validator::Validate(*calculationInput->GetData());
+        const auto validationResult = Validator::Validate(*calculationInput->GetData());
 
         // Then
         ASSERT_TRUE(validationResult->GetSuccessful());
@@ -210,10 +210,10 @@ namespace DiKErnel::System::Test
         builder.AddDikeProfilePointData(20, CharacteristicPointType::OuterCrest);
         builder.AddGrassWaveRunupRayleighLocation(move(constructionProperties));
 
-        const auto& calculationInput = builder.Build();
+        const auto calculationInput = builder.Build();
 
         // When
-        const auto& validationResult = Validator::Validate(*calculationInput->GetData());
+        const auto validationResult = Validator::Validate(*calculationInput->GetData());
 
         // Then
         ASSERT_TRUE(validationResult->GetSuccessful());
@@ -264,10 +264,10 @@ namespace DiKErnel::System::Test
         builder.AddDikeProfilePointData(40, CharacteristicPointType::InnerToe);
         builder.AddGrassOvertoppingLocation(move(constructionProperties));
 
-        const auto& calculationInput = builder.Build();
+        const auto calculationInput = builder.Build();
 
         // When
-        const auto& validationResult = Validator::Validate(*calculationInput->GetData());
+        const auto validationResult = Validator::Validate(*calculationInput->GetData());
 
         // Then
         ASSERT_TRUE(validationResult->GetSuccessful());
@@ -310,10 +310,10 @@ namespace DiKErnel::System::Test
         builder.AddDikeProfilePointData(40, CharacteristicPointType::InnerToe);
         builder.AddGrassOvertoppingLocation(move(constructionProperties));
 
-        const auto& calculationInput = builder.Build();
+        const auto calculationInput = builder.Build();
 
         // When
-        const auto& validationResult = Validator::Validate(*calculationInput->GetData());
+        const auto validationResult = Validator::Validate(*calculationInput->GetData());
 
         // Then
         ASSERT_TRUE(validationResult->GetSuccessful());
@@ -349,10 +349,10 @@ namespace DiKErnel::System::Test
         builder.AddDikeProfilePointData(40, CharacteristicPointType::InnerToe);
         builder.AddGrassOvertoppingLocation(move(constructionProperties));
 
-        const auto& calculationInput = builder.Build();
+        const auto calculationInput = builder.Build();
 
         // When
-        const auto& validationResult = Validator::Validate(*calculationInput->GetData());
+        const auto validationResult = Validator::Validate(*calculationInput->GetData());
 
         // Then
         ASSERT_TRUE(validationResult->GetSuccessful());
@@ -382,10 +382,10 @@ namespace DiKErnel::System::Test
         builder.AddDikeProfilePointData(20, CharacteristicPointType::OuterCrest);
         builder.AddNaturalStoneLocation(move(constructionProperties));
 
-        const auto& calculationInput = builder.Build();
+        const auto calculationInput = builder.Build();
 
         // When
-        const auto& validationResult = Validator::Validate(*calculationInput->GetData());
+        const auto validationResult = Validator::Validate(*calculationInput->GetData());
 
         // Then
         ASSERT_TRUE(validationResult->GetSuccessful());
@@ -436,10 +436,10 @@ namespace DiKErnel::System::Test
         builder.AddNaturalStoneLocation(move(naturalStoneRevetmentLocationConstructionProperties));
         builder.AddGrassOvertoppingLocation(move(grassRevetmentOvertoppingLocationConstructionProperties));
 
-        const auto& calculationInput = builder.Build();
+        const auto calculationInput = builder.Build();
 
         // When
-        const auto& validationResult = Validator::Validate(*calculationInput->GetData());
+        const auto validationResult = Validator::Validate(*calculationInput->GetData());
 
         // Then
         ASSERT_TRUE(validationResult->GetSuccessful());

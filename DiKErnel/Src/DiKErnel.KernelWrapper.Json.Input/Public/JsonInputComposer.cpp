@@ -84,7 +84,7 @@ namespace DiKErnel::KernelWrapper::Json::Input
         {
             try
             {
-                const auto& jsonInputData = JsonInputParser::GetJsonInputData(filePath);
+                const auto jsonInputData = JsonInputParser::GetJsonInputData(filePath);
                 return JsonInputAdapter::AdaptJsonInputData(*jsonInputData);
             }
             catch (const exception& e)
