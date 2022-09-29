@@ -20,8 +20,8 @@
 
 #pragma once
 
-#include "JsonInputLocationData.h"
 #include "JsonInputGrassRevetmentTopLayerType.h"
+#include "JsonInputLocationData.h"
 
 namespace DiKErnel::KernelWrapper::Json::Input
 {
