@@ -59,22 +59,32 @@ namespace DiKErnel::External::Overtopping
 {
     using namespace std;
 
+    ModelFactors OvertoppingAdapter::_modelFactors
+    {
+        ._factorDeterminationQnFn = 1.0,
+        ._factorDeterminationQbFb = 1.0,
+        ._mz2 = 1.0,
+        ._fshallow = 1.0,
+        ._computedOvertopping = 1.0,
+        ._criticalOvertopping = 1.0,
+        ._relaxationfactor = 1.0,
+        ._reductionFactorForeshore = 0.5
+    };
+
     void OvertoppingAdapter::Validate(
         Geometry& geometry,
         double dikeHeight,
-        ModelFactors& modelFactors,
         const string* messageBuffer,
         bool* success)
     {
         SetLanguage(_languageCode.c_str(), _languageCode.length());
-        ValidateInputC(&geometry, &dikeHeight, &modelFactors, success, messageBuffer->c_str(), messageBuffer->length());
+        ValidateInputC(&geometry, &dikeHeight, &_modelFactors, success, messageBuffer->c_str(), messageBuffer->length());
     }
 
     void OvertoppingAdapter::CalculateQo(
         Load& load,
         Geometry& geometry,
         double dikeHeight,
-        ModelFactors& modelFactors,
         Result* result,
         const string* messageBuffer,
         bool* success)
@@ -84,7 +94,7 @@ namespace DiKErnel::External::Overtopping
         const auto logFileName = make_unique<string>();
         logFileName->reserve(_logFileNameSize);
 
-        calculateQo(&load, &geometry, &dikeHeight, &modelFactors, result, success,
+        calculateQo(&load, &geometry, &dikeHeight, &_modelFactors, result, success,
                     messageBuffer->c_str(), &_verbosity, logFileName->c_str(), messageBuffer->length(), _logFileNameSize);
     }
 }

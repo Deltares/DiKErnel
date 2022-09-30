@@ -42,8 +42,6 @@ namespace DiKErnel::External::Overtopping
              * \param dikeHeight
              *        The dike height.
              *        Unit = [m]
-             * \param modelFactors
-             *        The model factors.
              * \param messageBuffer
              *        The message buffer to write validation messages to.
              * \param success
@@ -52,7 +50,6 @@ namespace DiKErnel::External::Overtopping
             static void Validate(
                 Geometry& geometry,
                 double dikeHeight,
-                ModelFactors& modelFactors,
                 const std::string* messageBuffer,
                 bool* success);
 
@@ -65,8 +62,6 @@ namespace DiKErnel::External::Overtopping
              * \param dikeHeight
              *        The dike height.
              *        Unit = [m]
-             * \param modelFactors
-             *        The model factors.
              * \param result
              *        The results of the calculation.
              * \param messageBuffer
@@ -78,7 +73,6 @@ namespace DiKErnel::External::Overtopping
                 Load& load,
                 Geometry& geometry,
                 double dikeHeight,
-                ModelFactors& modelFactors,
                 Result* result,
                 const std::string* messageBuffer,
                 bool* success);
@@ -87,5 +81,7 @@ namespace DiKErnel::External::Overtopping
             inline static std::string _languageCode = "UK";
             inline static int _logFileNameSize = 256;
             inline static int _verbosity = -1;
+
+            static ModelFactors _modelFactors;
     };
 }

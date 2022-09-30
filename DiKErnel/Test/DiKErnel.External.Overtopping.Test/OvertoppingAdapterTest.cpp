@@ -22,7 +22,6 @@
 
 #include "Geometry.h"
 #include "Load.h"
-#include "ModelFactors.h"
 #include "OvertoppingAdapter.h"
 #include "Result.h"
 
@@ -66,24 +65,13 @@ namespace DiKErnel::External::Overtopping::Test
             roughnessCoefficients
         };
 
-        ModelFactors modelFactors{
-            2.3,
-            4.3,
-            1.0,
-            0.92,
-            1,
-            1,
-            1.0,
-            0.5
-        };
-
         bool success = true;
         constexpr long nrOfCharacters = NR_OF_MESSAGES * MESSAGE_SIZE;
         const auto messageBuffer = make_unique<string>();
         messageBuffer->reserve(nrOfCharacters);
 
         // Call
-        OvertoppingAdapter::Validate(geometry, dikeHeight, modelFactors, messageBuffer.get(), &success);
+        OvertoppingAdapter::Validate(geometry, dikeHeight, messageBuffer.get(), &success);
 
         // Assert
         ASSERT_FALSE(success);
@@ -123,24 +111,13 @@ namespace DiKErnel::External::Overtopping::Test
             roughnessCoefficients
         };
 
-        ModelFactors modelFactors{
-            2.3,
-            4.3,
-            1.0,
-            0.92,
-            1,
-            1,
-            1.0,
-            0.5
-        };
-
         bool success = false;
         constexpr long nrOfCharacters = NR_OF_MESSAGES * MESSAGE_SIZE;
         const auto messageBuffer = make_unique<string>();
         messageBuffer->reserve(nrOfCharacters);
 
         // Call
-        OvertoppingAdapter::Validate(geometry, dikeHeight, modelFactors, messageBuffer.get(), &success);
+        OvertoppingAdapter::Validate(geometry, dikeHeight, messageBuffer.get(), &success);
 
         // Assert
         ASSERT_TRUE(success);
@@ -152,18 +129,6 @@ namespace DiKErnel::External::Overtopping::Test
         // Setup
         constexpr double dikeHeight = 3.7;
         constexpr double dikeNormal = 0.0;
-
-        ModelFactors modelFactors
-        {
-            2.3,
-            4.3,
-            1.0,
-            0.92,
-            1,
-            1,
-            1.0,
-            0.5
-        };
 
         constexpr int nrOfPoints = 2;
         double xCoordinates[] = {
@@ -202,7 +167,7 @@ namespace DiKErnel::External::Overtopping::Test
         messageBuffer->reserve(MESSAGE_SIZE);
 
         // Call
-        OvertoppingAdapter::CalculateQo(load, geometry, dikeHeight, modelFactors, &result, messageBuffer.get(), &success);
+        OvertoppingAdapter::CalculateQo(load, geometry, dikeHeight, &result, messageBuffer.get(), &success);
 
         // Assert
         ASSERT_FALSE(success);
@@ -214,18 +179,6 @@ namespace DiKErnel::External::Overtopping::Test
         // Setup
         constexpr double dikeHeight = 9.1;
         constexpr double dikeNormal = 60.0;
-
-        ModelFactors modelFactors
-        {
-            2.3,
-            4.3,
-            1.0,
-            0.92,
-            1,
-            1,
-            1.0,
-            0.5
-        };
 
         constexpr int nrOfPoints = 3;
         double xCoordinates[] = {
@@ -268,7 +221,7 @@ namespace DiKErnel::External::Overtopping::Test
         messageBuffer->reserve(MESSAGE_SIZE);
 
         // Call
-        OvertoppingAdapter::CalculateQo(loads, geometry, dikeHeight, modelFactors, &result, messageBuffer.get(), &success);
+        OvertoppingAdapter::CalculateQo(loads, geometry, dikeHeight, &result, messageBuffer.get(), &success);
 
         // Assert
         ASSERT_TRUE(success);
