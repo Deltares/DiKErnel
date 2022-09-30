@@ -1,10 +1,17 @@
 # Set library name
 set(LIBNAME DiKErnel.External.Overtopping)
 
+# Set overtopping platform folder
+if(CMAKE_GENERATOR_PLATFORM STREQUAL "Win32")
+  set(OVERTOPPING_PLATFORM "x86")
+else()
+  set(OVERTOPPING_PLATFORM "x64")
+endif()
+
 # Set folder names
 set(PUBLIC_FOLDER Public)
 set(PUBLIC_DATA_FOLDER ${PUBLIC_FOLDER}/Data)
-set(OVERTOPPING_FOLDER ${CMAKE_SOURCE_DIR}/../Deployment/Windows/Overtopping/x64)
+set(OVERTOPPING_FOLDER ${CMAKE_SOURCE_DIR}/../Deployment/Windows/Overtopping/${OVERTOPPING_PLATFORM})
 
 # Define sources
 set(SOURCEFILES_PUBLIC
