@@ -81,13 +81,14 @@ namespace DiKErnel::External::Overtopping
         ValidateInputC(&geometry, &dikeHeight, &_modelFactors, success, messageBuffer->c_str(), messageBuffer->length());
     }
 
-    void OvertoppingAdapter::CalculateQo(
+    double OvertoppingAdapter::CalculateQo(
         Load& load,
         Geometry& geometry,
-        double dikeHeight,
-        Result* result)
+        double dikeHeight)
     {
         SetLanguage(_languageCode.c_str(), _languageCode.length());
+
+        Result result{};
 
         bool success = false;
         const auto messageBuffer = make_unique<string>();
@@ -96,7 +97,9 @@ namespace DiKErnel::External::Overtopping
         const auto logFileName = make_unique<string>();
         logFileName->reserve(_bufferSize);
 
-        calculateQo(&load, &geometry, &dikeHeight, &_modelFactors, result, &success,
-                    messageBuffer->c_str(), &_verbosity, logFileName->c_str(), messageBuffer->length(), _bufferSize);
+        calculateQo(&load, &geometry, &dikeHeight, &_modelFactors, &result, &success, messageBuffer->c_str(),
+                    &_verbosity, logFileName->c_str(), messageBuffer->length(), _bufferSize);
+
+        return result._z2;
     }
 }

@@ -20,6 +20,7 @@
 
 #pragma once
 
+#include <memory>
 #include <string>
 
 namespace DiKErnel::External::Overtopping
@@ -62,14 +63,13 @@ namespace DiKErnel::External::Overtopping
              * \param dikeHeight
              *        The dike height.
              *        Unit = [m]
-             * \param result
-             *        The results of the calculation.
+             * \return The representative wave run-up (2 percent).
+             *         Unit = [m]
              */
-            static void CalculateQo(
+            static double CalculateQo(
                 Load& load,
                 Geometry& geometry,
-                double dikeHeight,
-                Result* result);
+                double dikeHeight);
 
         private:
             inline static std::string _languageCode = "UK";

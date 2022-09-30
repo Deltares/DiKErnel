@@ -23,7 +23,6 @@
 #include "Geometry.h"
 #include "Load.h"
 #include "OvertoppingAdapter.h"
-#include "Result.h"
 
 namespace DiKErnel::External::Overtopping::Test
 {
@@ -129,7 +128,7 @@ namespace DiKErnel::External::Overtopping::Test
         // Setup
         constexpr double dikeHeight = 3.7;
         constexpr double dikeNormal = 0.0;
-    
+
         constexpr int nrOfPoints = 2;
         double xCoordinates[] = {
             0,
@@ -142,7 +141,7 @@ namespace DiKErnel::External::Overtopping::Test
         double roughnessCoefficients[] = {
             1
         };
-    
+
         Geometry geometry
         {
             dikeNormal,
@@ -151,7 +150,7 @@ namespace DiKErnel::External::Overtopping::Test
             yCoordinates,
             roughnessCoefficients
         };
-    
+
         Load load
         {
             1e-6,
@@ -159,15 +158,12 @@ namespace DiKErnel::External::Overtopping::Test
             45,
             1.912229230397281e-12
         };
-    
-        Result result{};
-    
+
         // Call
-        OvertoppingAdapter::CalculateQo(load, geometry, dikeHeight, &result);
-    
+        const auto z2 = OvertoppingAdapter::CalculateQo(load, geometry, dikeHeight);
+
         // Assert
-        ASSERT_DOUBLE_EQ(numeric_limits<double>::min(), result._qo);
-        ASSERT_DOUBLE_EQ(0, result._z2);
+        ASSERT_DOUBLE_EQ(0, z2);
     }
 
     TEST(OvertoppingAdapterTest, Calculate_WithValidData_SetsExpectedValues)
@@ -210,13 +206,10 @@ namespace DiKErnel::External::Overtopping::Test
             50
         };
 
-        Result result{};
-
         // Call
-        OvertoppingAdapter::CalculateQo(loads, geometry, dikeHeight, &result);
+        const auto z2 = OvertoppingAdapter::CalculateQo(loads, geometry, dikeHeight);
 
         // Assert
-        ASSERT_NE(0, result._qo);
-        ASSERT_NE(0, result._z2);
+        ASSERT_NE(0, z2);
     }
 }

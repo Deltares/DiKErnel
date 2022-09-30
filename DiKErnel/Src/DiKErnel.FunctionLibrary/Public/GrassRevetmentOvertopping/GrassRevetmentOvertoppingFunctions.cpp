@@ -23,13 +23,11 @@
 #include <algorithm>
 #include <cmath>
 #include <functional>
-#include <memory>
 
 #include "Geometry.h"
 #include "GrassRevetmentFunctions.h"
 #include "Load.h"
 #include "OvertoppingAdapter.h"
-#include "Result.h"
 
 namespace DiKErnel::FunctionLibrary
 {
@@ -56,11 +54,7 @@ namespace DiKErnel::FunctionLibrary
             ._roughness = input._roughnessCoefficients.data()
         };
 
-        Result result{};
-
-        OvertoppingAdapter::CalculateQo(load, geometry, input._dikeHeight, &result);
-
-        return result._z2;
+        return OvertoppingAdapter::CalculateQo(load, geometry, input._dikeHeight);
     }
 
     double GrassRevetmentOvertoppingFunctions::CumulativeOverload(
