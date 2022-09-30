@@ -39,15 +39,24 @@ namespace DiKErnel::External::Overtopping
         public:
             /*!
              * \brief Validates the input arguments for an overtopping calculation.
-             * \param geometry
-             *        The geometry.
+             * \param xValues
+             *        The x values of the profile points.
+             *        Unit = [m]
+             * \param zValues
+             *        The z values of the profile points.
+             *        Unit = [m]
+             * \param roughnessCoefficients
+             *        The roughness coefficients of the profile segments.
+             *        Unit = [-]
              * \param dikeHeight
              *        The dike height.
              *        Unit = [m]
              * \return A vector of validation messages.
              */
             static std::vector<std::unique_ptr<std::string>> Validate(
-                Geometry& geometry,
+                const std::vector<double>& xValues,
+                const std::vector<double>& zValues,
+                const std::vector<double>& roughnessCoefficients,
                 double dikeHeight);
 
             /*!

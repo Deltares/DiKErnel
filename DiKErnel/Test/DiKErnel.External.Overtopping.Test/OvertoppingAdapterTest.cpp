@@ -20,7 +20,6 @@
 
 #include <gtest/gtest.h>
 
-#include "Geometry.h"
 #include "OvertoppingAdapter.h"
 
 namespace DiKErnel::External::Overtopping::Test
@@ -31,37 +30,32 @@ namespace DiKErnel::External::Overtopping::Test
     {
         // Setup
         constexpr double dikeHeight = 9.1;
-        double xCoordinates[] = {
+        const vector<double> xCoordinates =
+        {
             0,
             10,
             20,
             30,
             40
         };
-        double yCoordinates[] = {
+        const vector<double> zCoordinates =
+        {
             -5,
             0,
             5,
             4,
             0
         };
-        double roughnessCoefficients[] = {
+        const vector roughnessCoefficients =
+        {
             0.5,
             0.5,
             0.5,
             0.5
         };
 
-        Geometry geometry{
-            0,
-            5,
-            xCoordinates,
-            yCoordinates,
-            roughnessCoefficients
-        };
-
         // Call
-        const auto messages = OvertoppingAdapter::Validate(geometry, dikeHeight);
+        const auto messages = OvertoppingAdapter::Validate(xCoordinates, zCoordinates, roughnessCoefficients, dikeHeight);
 
         // Assert
         ASSERT_FALSE(messages.empty());
@@ -71,37 +65,32 @@ namespace DiKErnel::External::Overtopping::Test
     {
         // Setup
         constexpr double dikeHeight = 9.1;
-        double xCoordinates[] = {
+        const vector<double> xCoordinates =
+        {
             0,
             10,
             20,
             30,
             40
         };
-        double yCoordinates[] = {
+        const vector<double> zCoordinates =
+        {
             -5,
             0,
             5,
             10,
             20
         };
-        double roughnessCoefficients[] = {
+        const vector roughnessCoefficients =
+        {
             0.5,
             0.5,
             0.5,
             0.5
         };
 
-        Geometry geometry{
-            0,
-            5,
-            xCoordinates,
-            yCoordinates,
-            roughnessCoefficients
-        };
-
         // Call
-        const auto messages = OvertoppingAdapter::Validate(geometry, dikeHeight);
+        const auto messages = OvertoppingAdapter::Validate(xCoordinates, zCoordinates, roughnessCoefficients, dikeHeight);
 
         // Assert
         ASSERT_TRUE(messages.empty());

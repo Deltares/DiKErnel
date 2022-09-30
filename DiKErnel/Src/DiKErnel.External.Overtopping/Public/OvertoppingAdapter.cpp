@@ -73,10 +73,21 @@ namespace DiKErnel::External::Overtopping
     };
 
     vector<unique_ptr<string>> OvertoppingAdapter::Validate(
-        Geometry& geometry,
+        const vector<double>& xValues,
+        const vector<double>& zValues,
+        const vector<double>& roughnessCoefficients,
         double dikeHeight)
     {
         SetLanguage(_languageCode.c_str(), _languageCode.length());
+
+        Geometry geometry
+        {
+            ._normal = 0.0,
+            ._nPoints = static_cast<int>(xValues.size()),
+            ._xCoords = xValues.data(),
+            ._yCoords = zValues.data(),
+            ._roughness = roughnessCoefficients.data()
+        };
 
         bool success = false;
         const auto messageBuffer = make_unique<string>();
@@ -86,7 +97,7 @@ namespace DiKErnel::External::Overtopping
 
         vector<unique_ptr<string>> validationMessages;
 
-        if(success)
+        if (success)
         {
             return validationMessages;
         }
@@ -95,7 +106,7 @@ namespace DiKErnel::External::Overtopping
         messages << *messageBuffer->c_str();
         string message;
 
-        while(getline(messages, message, '\t'))
+        while (getline(messages, message, '\t'))
         {
             validationMessages.push_back(make_unique<string>(message));
         }
