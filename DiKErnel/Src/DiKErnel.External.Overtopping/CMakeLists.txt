@@ -4,7 +4,7 @@ set(LIBNAME DiKErnel.External.Overtopping)
 # Set folder names
 set(PUBLIC_FOLDER Public)
 set(PUBLIC_DATA_FOLDER ${PUBLIC_FOLDER}/Data)
-set(OVERTOPPING_FOLDER ${CMAKE_SOURCE_DIR}/../Deployment/Windows/Overtopping)
+set(OVERTOPPING_FOLDER ${CMAKE_SOURCE_DIR}/../Deployment/Windows/Overtopping/x64)
 
 # Define sources
 set(SOURCEFILES_PUBLIC
