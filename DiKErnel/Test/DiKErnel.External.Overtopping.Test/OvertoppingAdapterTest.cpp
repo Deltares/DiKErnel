@@ -99,6 +99,10 @@ namespace DiKErnel::External::Overtopping::Test
     TEST(OvertoppingAdapterTest, CalculateZ2_WithInvalidData_ReturnsExpectedValue)
     {
         // Setup
+        constexpr auto waterLevel = 1e-6;
+        constexpr auto waveHeightHm0 = -0.361314622129615;
+        constexpr auto wavePeriodTm10 = 45;
+        constexpr auto waveDirection = 1.912229230397281e-12;
         const vector xValues =
         {
             0,
@@ -113,10 +117,11 @@ namespace DiKErnel::External::Overtopping::Test
         {
             1.0
         };
+        constexpr auto dikeHeight = 3.7;
 
         // Call
-        const auto z2 = OvertoppingAdapter::CalculateZ2(1e-6, -0.361314622129615, 45, 1.912229230397281e-12, xValues, zValues,
-                                                        roughnessCoefficients, 3.7);
+        const auto z2 = OvertoppingAdapter::CalculateZ2(waterLevel, waveHeightHm0, wavePeriodTm10, waveDirection, xValues, zValues,
+                                                        roughnessCoefficients, dikeHeight);
 
         // Assert
         ASSERT_DOUBLE_EQ(0, z2);
@@ -125,6 +130,10 @@ namespace DiKErnel::External::Overtopping::Test
     TEST(OvertoppingAdapterTest, CalculateZ2_WithValidData_ReturnsExpectedValue)
     {
         // Setup
+        constexpr auto waterLevel = 5.5;
+        constexpr auto waveHeightHm0 = 1;
+        constexpr auto wavePeriodTm10 = 4;
+        constexpr auto waveDirection = 50;
         const vector<double> xValues =
         {
             5,
@@ -143,9 +152,11 @@ namespace DiKErnel::External::Overtopping::Test
             1,
             1
         };
+        constexpr auto dikeHeight = 9.1;
 
         // Call
-        const auto z2 = OvertoppingAdapter::CalculateZ2(5.5, 1, 4, 50, xValues, zValues, roughnessCoefficients, 9.1);
+        const auto z2 = OvertoppingAdapter::CalculateZ2(waterLevel, waveHeightHm0, wavePeriodTm10, waveDirection, xValues, zValues,
+                                                        roughnessCoefficients, dikeHeight);
 
         // Assert
         ASSERT_NE(0, z2);
