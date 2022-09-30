@@ -10,7 +10,9 @@ endif()
 
 # Set folder names
 set(PUBLIC_FOLDER Public)
-set(PUBLIC_DATA_FOLDER ${PUBLIC_FOLDER}/Data)
+set(INTERNAL_FOLDER Internal)
+set(INTERNAL_DATA_FOLDER ${INTERNAL_FOLDER}/Data)
+
 set(OVERTOPPING_FOLDER ${CMAKE_SOURCE_DIR}/../Deployment/Windows/Overtopping/${OVERTOPPING_PLATFORM})
 
 # Define sources
@@ -19,29 +21,36 @@ set(SOURCEFILES_PUBLIC
   ${PUBLIC_FOLDER}/OvertoppingAdapter.h
 )
 
-set(SOURCEFILES_PUBLIC_DATA
-  ${PUBLIC_DATA_FOLDER}/Geometry.h
-  ${PUBLIC_DATA_FOLDER}/Load.h
-  ${PUBLIC_DATA_FOLDER}/ModelFactors.h
-  ${PUBLIC_DATA_FOLDER}/Result.h
+set(SOURCEFILES_INTERNAL_DATA
+  ${INTERNAL_DATA_FOLDER}/Geometry.h
+  ${INTERNAL_DATA_FOLDER}/Load.h
+  ${INTERNAL_DATA_FOLDER}/ModelFactors.h
+  ${INTERNAL_DATA_FOLDER}/Result.h
 )
 
 # Add library
 add_library(${LIBNAME} STATIC
   ${SOURCEFILES_PUBLIC}
-  ${SOURCEFILES_PUBLIC_DATA}
+  ${SOURCEFILES_INTERNAL_DATA}
 )
 
 # Configure folder structure
 set_target_properties(${LIBNAME} PROPERTIES FOLDER Src)
 source_group(${PUBLIC_FOLDER} FILES ${SOURCEFILES_PUBLIC})
-source_group(${PUBLIC_DATA_FOLDER} FILES ${SOURCEFILES_PUBLIC_DATA})
+source_group(${INTERNAL_DATA_FOLDER} FILES ${SOURCEFILES_INTERNAL_DATA})
 
 # Expose header files
-target_include_directories(${LIBNAME} PUBLIC
-  ${CMAKE_CURRENT_SOURCE_DIR}/${PUBLIC_FOLDER}
-  ${CMAKE_CURRENT_SOURCE_DIR}/${PUBLIC_DATA_FOLDER}
-)
+if(BUILD_FOR_RELEASE)
+  target_include_directories(${LIBNAME}
+    PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/${PUBLIC_FOLDER}
+    PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/${INTERNAL_DATA_FOLDER}
+  )
+else()
+  target_include_directories(${LIBNAME} PUBLIC
+    ${CMAKE_CURRENT_SOURCE_DIR}/${PUBLIC_FOLDER}
+    ${CMAKE_CURRENT_SOURCE_DIR}/${INTERNAL_DATA_FOLDER}
+  )
+endif()
 
 # Import dll overtopping
 add_library(dllDikesOvertopping SHARED IMPORTED)
