@@ -74,17 +74,19 @@ namespace DiKErnel::External::Overtopping
 
     vector<unique_ptr<string>> OvertoppingAdapter::Validate(
         Geometry& geometry,
-        double dikeHeight,
-        const string* messageBuffer,
-        bool* success)
+        double dikeHeight)
     {
         SetLanguage(_languageCode.c_str(), _languageCode.length());
 
-        ValidateInputC(&geometry, &dikeHeight, &_modelFactors, success, messageBuffer->c_str(), messageBuffer->length());
+        bool success = false;
+        const auto messageBuffer = make_unique<string>();
+        messageBuffer->reserve(_bufferSize * 12);
+
+        ValidateInputC(&geometry, &dikeHeight, &_modelFactors, &success, messageBuffer->c_str(), messageBuffer->length());
 
         vector<unique_ptr<string>> validationMessages;
 
-        if(*success)
+        if(success)
         {
             return validationMessages;
         }

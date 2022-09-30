@@ -27,9 +27,6 @@ namespace DiKErnel::External::Overtopping::Test
 {
     using namespace std;
 
-    constexpr int NR_OF_MESSAGES = 32;
-    constexpr int MESSAGE_SIZE = 255;
-
     TEST(OvertoppingAdapterTest, Validate_WithInvalidData_SetsExpectedValues)
     {
         // Setup
@@ -63,13 +60,8 @@ namespace DiKErnel::External::Overtopping::Test
             roughnessCoefficients
         };
 
-        bool success = true;
-        constexpr long nrOfCharacters = NR_OF_MESSAGES * MESSAGE_SIZE;
-        const auto messageBuffer = make_unique<string>();
-        messageBuffer->reserve(nrOfCharacters);
-
         // Call
-        const auto messages = OvertoppingAdapter::Validate(geometry, dikeHeight, messageBuffer.get(), &success);
+        const auto messages = OvertoppingAdapter::Validate(geometry, dikeHeight);
 
         // Assert
         ASSERT_FALSE(messages.empty());
@@ -108,13 +100,8 @@ namespace DiKErnel::External::Overtopping::Test
             roughnessCoefficients
         };
 
-        bool success = false;
-        constexpr long nrOfCharacters = NR_OF_MESSAGES * MESSAGE_SIZE;
-        const auto messageBuffer = make_unique<string>();
-        messageBuffer->reserve(nrOfCharacters);
-
         // Call
-        const auto messages = OvertoppingAdapter::Validate(geometry, dikeHeight, messageBuffer.get(), &success);
+        const auto messages = OvertoppingAdapter::Validate(geometry, dikeHeight);
 
         // Assert
         ASSERT_TRUE(messages.empty());

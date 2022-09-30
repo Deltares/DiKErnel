@@ -44,17 +44,11 @@ namespace DiKErnel::External::Overtopping
              * \param dikeHeight
              *        The dike height.
              *        Unit = [m]
-             * \param messageBuffer
-             *        The message buffer to write validation messages to.
-             * \param success
-             *        Indicator whether the input arguments are valid or not.
              * \return A vector of validation messages.
              */
             static std::vector<std::unique_ptr<std::string>> Validate(
                 Geometry& geometry,
-                double dikeHeight,
-                const std::string* messageBuffer,
-                bool* success);
+                double dikeHeight);
 
             /*!
              * \brief Calculates the representative wave run-up (2 percent).
