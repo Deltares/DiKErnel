@@ -55,7 +55,7 @@ namespace DiKErnel::External::Overtopping
                 bool* success);
 
             /*!
-             * \brief Calculates the overtopping based on its input arguments.
+             * \brief Calculates the representative wave run-up (2 percent).
              * \param load
              *        The load.
              * \param geometry
@@ -66,7 +66,7 @@ namespace DiKErnel::External::Overtopping
              * \return The representative wave run-up (2 percent).
              *         Unit = [m]
              */
-            static double CalculateQo(
+            static double CalculateZ2(
                 Load& load,
                 Geometry& geometry,
                 double dikeHeight);

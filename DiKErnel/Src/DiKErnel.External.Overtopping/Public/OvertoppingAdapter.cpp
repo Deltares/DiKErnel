@@ -81,7 +81,7 @@ namespace DiKErnel::External::Overtopping
         ValidateInputC(&geometry, &dikeHeight, &_modelFactors, success, messageBuffer->c_str(), messageBuffer->length());
     }
 
-    double OvertoppingAdapter::CalculateQo(
+    double OvertoppingAdapter::CalculateZ2(
         Load& load,
         Geometry& geometry,
         double dikeHeight)

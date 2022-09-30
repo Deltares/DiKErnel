@@ -123,7 +123,7 @@ namespace DiKErnel::External::Overtopping::Test
         ASSERT_EQ(0, strlen(messageBuffer->c_str()));
     }
 
-    TEST(OvertoppingAdapterTest, Calculate_WithInvalidData_SetsExpectedValues)
+    TEST(OvertoppingAdapterTest, CalculateZ2_WithInvalidData_ReturnsExpectedValue)
     {
         // Setup
         constexpr double dikeHeight = 3.7;
@@ -160,13 +160,13 @@ namespace DiKErnel::External::Overtopping::Test
         };
 
         // Call
-        const auto z2 = OvertoppingAdapter::CalculateQo(load, geometry, dikeHeight);
+        const auto z2 = OvertoppingAdapter::CalculateZ2(load, geometry, dikeHeight);
 
         // Assert
         ASSERT_DOUBLE_EQ(0, z2);
     }
 
-    TEST(OvertoppingAdapterTest, Calculate_WithValidData_SetsExpectedValues)
+    TEST(OvertoppingAdapterTest, CalculateZ2_WithValidData_ReturnsExpectedValue)
     {
         // Setup
         constexpr double dikeHeight = 9.1;
@@ -207,7 +207,7 @@ namespace DiKErnel::External::Overtopping::Test
         };
 
         // Call
-        const auto z2 = OvertoppingAdapter::CalculateQo(loads, geometry, dikeHeight);
+        const auto z2 = OvertoppingAdapter::CalculateZ2(loads, geometry, dikeHeight);
 
         // Assert
         ASSERT_NE(0, z2);

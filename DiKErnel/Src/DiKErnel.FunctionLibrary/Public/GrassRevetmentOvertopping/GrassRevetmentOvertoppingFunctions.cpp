@@ -54,7 +54,7 @@ namespace DiKErnel::FunctionLibrary
             ._roughness = input._roughnessCoefficients.data()
         };
 
-        return OvertoppingAdapter::CalculateQo(load, geometry, input._dikeHeight);
+        return OvertoppingAdapter::CalculateZ2(load, geometry, input._dikeHeight);
     }
 
     double GrassRevetmentOvertoppingFunctions::CumulativeOverload(
