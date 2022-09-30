@@ -82,11 +82,33 @@ namespace DiKErnel::External::Overtopping
     }
 
     double OvertoppingAdapter::CalculateZ2(
-        Load& load,
-        Geometry& geometry,
+        double waterLevel,
+        double waveHeightHm0,
+        double wavePeriodTm10,
+        double waveDirection,
+        const vector<double>& xValues,
+        const vector<double>& zValues,
+        const vector<double>& roughnessCoefficients,
         double dikeHeight)
     {
         SetLanguage(_languageCode.c_str(), _languageCode.length());
+
+        Load load
+        {
+            ._waterLevel = waterLevel,
+            ._height = waveHeightHm0,
+            ._period = wavePeriodTm10,
+            ._direction = waveDirection
+        };
+
+        Geometry geometry
+        {
+            ._normal = 0.0,
+            ._nPoints = static_cast<int>(xValues.size()),
+            ._xCoords = xValues.data(),
+            ._yCoords = zValues.data(),
+            ._roughness = roughnessCoefficients.data()
+        };
 
         Result result{};
 

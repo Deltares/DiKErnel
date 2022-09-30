@@ -20,8 +20,8 @@
 
 #pragma once
 
-#include <memory>
 #include <string>
+#include <vector>
 
 namespace DiKErnel::External::Overtopping
 {
@@ -56,10 +56,27 @@ namespace DiKErnel::External::Overtopping
 
             /*!
              * \brief Calculates the representative wave run-up (2 percent).
-             * \param load
-             *        The load.
-             * \param geometry
-             *        The geometry.
+             * \param waterLevel
+             *        The water level.
+             *        Unit = [m]
+             * \param waveHeightHm0
+             *        The wave height.
+             *        Unit = [m]
+             * \param wavePeriodTm10
+             *        The wave period Tm10.
+             *        Unit = [s]
+             * \param waveDirection
+             *        The wave direction with respect to the North.
+             *        Unit = [degrees]
+             * \param xValues
+             *        The x values of the profile points.
+             *        Unit = [m]
+             * \param zValues
+             *        The z values of the profile points.
+             *        Unit = [m]
+             * \param roughnessCoefficients
+             *        The roughness coefficients of the profile segments.
+             *        Unit = [-]
              * \param dikeHeight
              *        The dike height.
              *        Unit = [m]
@@ -67,8 +84,13 @@ namespace DiKErnel::External::Overtopping
              *         Unit = [m]
              */
             static double CalculateZ2(
-                Load& load,
-                Geometry& geometry,
+                double waterLevel,
+                double waveHeightHm0,
+                double wavePeriodTm10,
+                double waveDirection,
+                const std::vector<double>& xValues,
+                const std::vector<double>& zValues,
+                const std::vector<double>& roughnessCoefficients,
                 double dikeHeight);
 
         private:

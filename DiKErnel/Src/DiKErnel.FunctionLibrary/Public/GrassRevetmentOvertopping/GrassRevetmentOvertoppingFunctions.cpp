@@ -24,9 +24,7 @@
 #include <cmath>
 #include <functional>
 
-#include "Geometry.h"
 #include "GrassRevetmentFunctions.h"
-#include "Load.h"
 #include "OvertoppingAdapter.h"
 
 namespace DiKErnel::FunctionLibrary
@@ -37,24 +35,8 @@ namespace DiKErnel::FunctionLibrary
     double GrassRevetmentOvertoppingFunctions::RepresentativeWaveRunup2P(
         const GrassRevetmentOvertoppingRepresentative2PInput& input)
     {
-        Load load
-        {
-            ._waterLevel = input._waterLevel,
-            ._height = input._waveHeightHm0,
-            ._period = input._wavePeriodTm10,
-            ._direction = input._waveDirection
-        };
-
-        Geometry geometry
-        {
-            ._normal = 0.0,
-            ._nPoints = static_cast<int>(input._xValuesProfile.size()),
-            ._xCoords = input._xValuesProfile.data(),
-            ._yCoords = input._zValuesProfile.data(),
-            ._roughness = input._roughnessCoefficients.data()
-        };
-
-        return OvertoppingAdapter::CalculateZ2(load, geometry, input._dikeHeight);
+        return OvertoppingAdapter::CalculateZ2(input._waterLevel, input._waveHeightHm0, input._wavePeriodTm10, input._waveDirection,
+                                               input._xValuesProfile, input._zValuesProfile, input._roughnessCoefficients, input._dikeHeight);
     }
 
     double GrassRevetmentOvertoppingFunctions::CumulativeOverload(

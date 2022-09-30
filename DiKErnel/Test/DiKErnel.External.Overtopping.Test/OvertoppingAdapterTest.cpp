@@ -21,7 +21,6 @@
 #include <gtest/gtest.h>
 
 #include "Geometry.h"
-#include "Load.h"
 #include "OvertoppingAdapter.h"
 
 namespace DiKErnel::External::Overtopping::Test
@@ -126,41 +125,24 @@ namespace DiKErnel::External::Overtopping::Test
     TEST(OvertoppingAdapterTest, CalculateZ2_WithInvalidData_ReturnsExpectedValue)
     {
         // Setup
-        constexpr double dikeHeight = 3.7;
-        constexpr double dikeNormal = 0.0;
-
-        constexpr int nrOfPoints = 2;
-        double xCoordinates[] = {
+        const vector xValues =
+        {
             0,
             24.0
         };
-        double yCoordinates[] = {
+        const vector zValues =
+        {
             -3.0,
             3.0
         };
-        double roughnessCoefficients[] = {
-            1
-        };
-
-        Geometry geometry
+        const vector roughnessCoefficients =
         {
-            dikeNormal,
-            nrOfPoints,
-            xCoordinates,
-            yCoordinates,
-            roughnessCoefficients
-        };
-
-        Load load
-        {
-            1e-6,
-            -0.361314622129615,
-            45,
-            1.912229230397281e-12
+            1.0
         };
 
         // Call
-        const auto z2 = OvertoppingAdapter::CalculateZ2(load, geometry, dikeHeight);
+        const auto z2 = OvertoppingAdapter::CalculateZ2(1e-6, -0.361314622129615, 45, 1.912229230397281e-12, xValues, zValues,
+                                                        roughnessCoefficients, 3.7);
 
         // Assert
         ASSERT_DOUBLE_EQ(0, z2);
@@ -169,45 +151,27 @@ namespace DiKErnel::External::Overtopping::Test
     TEST(OvertoppingAdapterTest, CalculateZ2_WithValidData_ReturnsExpectedValue)
     {
         // Setup
-        constexpr double dikeHeight = 9.1;
-        constexpr double dikeNormal = 60.0;
-
-        constexpr int nrOfPoints = 3;
-        double xCoordinates[] = {
+        const vector<double> xValues =
+        {
             5,
             10,
             15
         };
-        double yCoordinates[] = {
+        const vector<double> zValues =
+        {
             5,
             7,
             9
         };
-        double roughnessCoefficients[] = {
+        const vector<double> roughnessCoefficients =
+        {
             1,
             1,
             1
         };
 
-        Geometry geometry
-        {
-            dikeNormal,
-            nrOfPoints,
-            xCoordinates,
-            yCoordinates,
-            roughnessCoefficients
-        };
-
-        Load loads
-        {
-            5.5,
-            1,
-            4.0,
-            50
-        };
-
         // Call
-        const auto z2 = OvertoppingAdapter::CalculateZ2(loads, geometry, dikeHeight);
+        const auto z2 = OvertoppingAdapter::CalculateZ2(5.5, 1, 4, 50, xValues, zValues, roughnessCoefficients, 9.1);
 
         // Assert
         ASSERT_NE(0, z2);
