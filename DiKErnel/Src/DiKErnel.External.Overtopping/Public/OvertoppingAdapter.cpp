@@ -85,16 +85,18 @@ namespace DiKErnel::External::Overtopping
         Load& load,
         Geometry& geometry,
         double dikeHeight,
-        Result* result,
-        const string* messageBuffer,
-        bool* success)
+        Result* result)
     {
         SetLanguage(_languageCode.c_str(), _languageCode.length());
 
-        const auto logFileName = make_unique<string>();
-        logFileName->reserve(_logFileNameSize);
+        bool success = false;
+        const auto messageBuffer = make_unique<string>();
+        messageBuffer->reserve(_bufferSize);
 
-        calculateQo(&load, &geometry, &dikeHeight, &_modelFactors, result, success,
-                    messageBuffer->c_str(), &_verbosity, logFileName->c_str(), messageBuffer->length(), _logFileNameSize);
+        const auto logFileName = make_unique<string>();
+        logFileName->reserve(_bufferSize);
+
+        calculateQo(&load, &geometry, &dikeHeight, &_modelFactors, result, &success,
+                    messageBuffer->c_str(), &_verbosity, logFileName->c_str(), messageBuffer->length(), _bufferSize);
     }
 }

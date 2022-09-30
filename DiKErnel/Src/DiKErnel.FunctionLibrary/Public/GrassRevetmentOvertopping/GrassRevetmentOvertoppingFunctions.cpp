@@ -58,11 +58,7 @@ namespace DiKErnel::FunctionLibrary
 
         Result result{};
 
-        bool success = false;
-        const auto messageBuffer = make_unique<string>();
-        messageBuffer->reserve(255);
-
-        OvertoppingAdapter::CalculateQo(load, geometry, input._dikeHeight, &result, messageBuffer.get(), &success);
+        OvertoppingAdapter::CalculateQo(load, geometry, input._dikeHeight, &result);
 
         return result._z2;
     }

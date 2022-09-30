@@ -64,22 +64,16 @@ namespace DiKErnel::External::Overtopping
              *        Unit = [m]
              * \param result
              *        The results of the calculation.
-             * \param messageBuffer
-             *        The message buffer to write error message to.
-             * \param success
-             *        Indicator whether the calculation was successful or not.
              */
             static void CalculateQo(
                 Load& load,
                 Geometry& geometry,
                 double dikeHeight,
-                Result* result,
-                const std::string* messageBuffer,
-                bool* success);
+                Result* result);
 
         private:
             inline static std::string _languageCode = "UK";
-            inline static int _logFileNameSize = 256;
+            inline static int _bufferSize = 256;
             inline static int _verbosity = -1;
 
             static ModelFactors _modelFactors;
