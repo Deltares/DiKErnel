@@ -20,6 +20,7 @@
 
 #pragma once
 
+#include <memory>
 #include <string>
 #include <vector>
 
@@ -47,8 +48,9 @@ namespace DiKErnel::External::Overtopping
              *        The message buffer to write validation messages to.
              * \param success
              *        Indicator whether the input arguments are valid or not.
+             * \return A vector of validation messages.
              */
-            static void Validate(
+            static std::vector<std::unique_ptr<std::string>> Validate(
                 Geometry& geometry,
                 double dikeHeight,
                 const std::string* messageBuffer,

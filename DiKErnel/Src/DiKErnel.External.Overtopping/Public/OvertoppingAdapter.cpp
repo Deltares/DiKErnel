@@ -21,6 +21,7 @@
 #include "OvertoppingAdapter.h"
 
 #include <memory>
+#include <sstream>
 #include <string>
 
 #include "Geometry.h"
@@ -71,14 +72,33 @@ namespace DiKErnel::External::Overtopping
         ._reductionFactorForeshore = 0.5
     };
 
-    void OvertoppingAdapter::Validate(
+    vector<unique_ptr<string>> OvertoppingAdapter::Validate(
         Geometry& geometry,
         double dikeHeight,
         const string* messageBuffer,
         bool* success)
     {
         SetLanguage(_languageCode.c_str(), _languageCode.length());
+
         ValidateInputC(&geometry, &dikeHeight, &_modelFactors, success, messageBuffer->c_str(), messageBuffer->length());
+
+        vector<unique_ptr<string>> validationMessages;
+
+        if(*success)
+        {
+            return validationMessages;
+        }
+
+        stringstream messages;
+        messages << *messageBuffer->c_str();
+        string message;
+
+        while(getline(messages, message, '\t'))
+        {
+            validationMessages.push_back(make_unique<string>(message));
+        }
+
+        return validationMessages;
     }
 
     double OvertoppingAdapter::CalculateZ2(

@@ -69,11 +69,10 @@ namespace DiKErnel::External::Overtopping::Test
         messageBuffer->reserve(nrOfCharacters);
 
         // Call
-        OvertoppingAdapter::Validate(geometry, dikeHeight, messageBuffer.get(), &success);
+        const auto messages = OvertoppingAdapter::Validate(geometry, dikeHeight, messageBuffer.get(), &success);
 
         // Assert
-        ASSERT_FALSE(success);
-        ASSERT_NE(0, strlen(messageBuffer->c_str()));
+        ASSERT_FALSE(messages.empty());
     }
 
     TEST(OvertoppingAdapterTest, Validate_WithValidData_SetsExpectedValues)
@@ -115,11 +114,10 @@ namespace DiKErnel::External::Overtopping::Test
         messageBuffer->reserve(nrOfCharacters);
 
         // Call
-        OvertoppingAdapter::Validate(geometry, dikeHeight, messageBuffer.get(), &success);
+        const auto messages = OvertoppingAdapter::Validate(geometry, dikeHeight, messageBuffer.get(), &success);
 
         // Assert
-        ASSERT_TRUE(success);
-        ASSERT_EQ(0, strlen(messageBuffer->c_str()));
+        ASSERT_TRUE(messages.empty());
     }
 
     TEST(OvertoppingAdapterTest, CalculateZ2_WithInvalidData_ReturnsExpectedValue)
