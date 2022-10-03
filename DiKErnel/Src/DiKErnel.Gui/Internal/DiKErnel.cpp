@@ -369,7 +369,7 @@ namespace DiKErnel::Gui
         LogCachedMessages(warningMessageCache, "waarschuwing", "waarschuwingen");
 
         const auto numberOfLocations = calculationInput.GetLocationDependentInputItems().size();
-        const auto numberOfTimeSteps = calculationInput.GetTimeDependentInputItems().size() - 1;
+        const auto numberOfTimeSteps = calculationInput.GetTimeDependentInputItems().size();
 
         const QString timeStepString = QString(numberOfTimeSteps == 1 ? "is %1 tijdstap" : "zijn %1 tijdstappen")
                 .arg(numberOfTimeSteps);
