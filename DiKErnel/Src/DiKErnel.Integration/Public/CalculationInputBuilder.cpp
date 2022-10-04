@@ -370,9 +370,7 @@ namespace DiKErnel::Integration
 
             if (!validateTopLayer(location->GetTopLayerType()))
             {
-                stringstream locationXStringStream;
-                locationXStringStream << locationX;
-                RegisterValidationError("The location on X: " + locationXStringStream.str() + " has an invalid top layer type.");
+                RegisterValidationError("The location with position " + NumericsHelper::ToString(locationX) + " has an invalid top layer type.");
                 return false;
             }
 
