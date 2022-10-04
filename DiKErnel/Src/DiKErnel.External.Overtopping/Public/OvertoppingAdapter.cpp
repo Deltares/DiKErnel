@@ -91,7 +91,8 @@ namespace DiKErnel::External::Overtopping
 
         bool success = false;
         const auto messageBuffer = make_unique<string>();
-        messageBuffer->reserve(_bufferSize * 12);
+        const int capacity = _nrOfMessages * _bufferSize;
+        messageBuffer->reserve(capacity);
 
         ValidateInputC(&geometry, &dikeHeight, &_modelFactors, &success, messageBuffer->c_str(), messageBuffer->length());
 

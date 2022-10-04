@@ -101,6 +101,7 @@ namespace DiKErnel::External::Overtopping
         private:
             inline static std::string _languageCode = "UK";
             inline static int _bufferSize = 256;
+            inline static int _nrOfMessages = 12;
             inline static int _verbosity = -1;
 
             static ModelFactors _modelFactors;
