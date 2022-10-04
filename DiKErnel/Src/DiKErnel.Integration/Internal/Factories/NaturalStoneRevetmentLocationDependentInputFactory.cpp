@@ -20,7 +20,7 @@
 
 #include "NaturalStoneRevetmentLocationDependentInputFactory.h"
 
-#include "InputFactoryHelper.h"
+#include "InputHelper.h"
 #include "NaturalStoneRevetmentDefaults.h"
 #include "NaturalStoneRevetmentDefaultsFactory.h"
 #include "RevetmentDefaults.h"
@@ -36,58 +36,50 @@ namespace DiKErnel::Integration
         const auto topLayerDefaults = NaturalStoneRevetmentDefaultsFactory::CreateTopLayerDefaults();
 
         auto hydraulicLoads = make_unique<NaturalStoneRevetmentHydraulicLoads>(
-            InputFactoryHelper::GetValue(constructionProperties.GetHydraulicLoadAp(), topLayerDefaults->GetHydraulicLoadAp()),
-            InputFactoryHelper::GetValue(constructionProperties.GetHydraulicLoadBp(), topLayerDefaults->GetHydraulicLoadBp()),
-            InputFactoryHelper::GetValue(constructionProperties.GetHydraulicLoadCp(), topLayerDefaults->GetHydraulicLoadCp()),
-            InputFactoryHelper::GetValue(constructionProperties.GetHydraulicLoadNp(), topLayerDefaults->GetHydraulicLoadNp()),
-            InputFactoryHelper::GetValue(constructionProperties.GetHydraulicLoadAs(), topLayerDefaults->GetHydraulicLoadAs()),
-            InputFactoryHelper::GetValue(constructionProperties.GetHydraulicLoadBs(), topLayerDefaults->GetHydraulicLoadBs()),
-            InputFactoryHelper::GetValue(constructionProperties.GetHydraulicLoadCs(), topLayerDefaults->GetHydraulicLoadCs()),
-            InputFactoryHelper::GetValue(constructionProperties.GetHydraulicLoadNs(), topLayerDefaults->GetHydraulicLoadNs()),
-            InputFactoryHelper::GetValue(constructionProperties.GetHydraulicLoadXib(), topLayerDefaults->GetHydraulicLoadXib()));
+            InputHelper::GetValue(constructionProperties.GetHydraulicLoadAp(), topLayerDefaults->GetHydraulicLoadAp()),
+            InputHelper::GetValue(constructionProperties.GetHydraulicLoadBp(), topLayerDefaults->GetHydraulicLoadBp()),
+            InputHelper::GetValue(constructionProperties.GetHydraulicLoadCp(), topLayerDefaults->GetHydraulicLoadCp()),
+            InputHelper::GetValue(constructionProperties.GetHydraulicLoadNp(), topLayerDefaults->GetHydraulicLoadNp()),
+            InputHelper::GetValue(constructionProperties.GetHydraulicLoadAs(), topLayerDefaults->GetHydraulicLoadAs()),
+            InputHelper::GetValue(constructionProperties.GetHydraulicLoadBs(), topLayerDefaults->GetHydraulicLoadBs()),
+            InputHelper::GetValue(constructionProperties.GetHydraulicLoadCs(), topLayerDefaults->GetHydraulicLoadCs()),
+            InputHelper::GetValue(constructionProperties.GetHydraulicLoadNs(), topLayerDefaults->GetHydraulicLoadNs()),
+            InputHelper::GetValue(constructionProperties.GetHydraulicLoadXib(), topLayerDefaults->GetHydraulicLoadXib()));
 
         auto slope = make_unique<NaturalStoneRevetmentSlope>(
-            InputFactoryHelper::GetValue(constructionProperties.GetSlopeUpperLevelAus(), NaturalStoneRevetmentDefaults::GetSlopeUpperLevelAus()),
-            InputFactoryHelper::GetValue(constructionProperties.GetSlopeLowerLevelAls(), NaturalStoneRevetmentDefaults::GetSlopeLowerLevelAls()));
+            InputHelper::GetValue(constructionProperties.GetSlopeUpperLevelAus(), NaturalStoneRevetmentDefaults::GetSlopeUpperLevelAus()),
+            InputHelper::GetValue(constructionProperties.GetSlopeLowerLevelAls(), NaturalStoneRevetmentDefaults::GetSlopeLowerLevelAls()));
 
         auto upperLimitLoading = make_unique<NaturalStoneRevetmentUpperLimitLoading>(
-            InputFactoryHelper::GetValue(constructionProperties.GetUpperLimitLoadingAul(),
-                                         NaturalStoneRevetmentDefaults::GetUpperLimitLoadingAul()),
-            InputFactoryHelper::GetValue(constructionProperties.GetUpperLimitLoadingBul(),
-                                         NaturalStoneRevetmentDefaults::GetUpperLimitLoadingBul()),
-            InputFactoryHelper::GetValue(constructionProperties.GetUpperLimitLoadingCul(),
-                                         NaturalStoneRevetmentDefaults::GetUpperLimitLoadingCul()));
+            InputHelper::GetValue(constructionProperties.GetUpperLimitLoadingAul(), NaturalStoneRevetmentDefaults::GetUpperLimitLoadingAul()),
+            InputHelper::GetValue(constructionProperties.GetUpperLimitLoadingBul(), NaturalStoneRevetmentDefaults::GetUpperLimitLoadingBul()),
+            InputHelper::GetValue(constructionProperties.GetUpperLimitLoadingCul(), NaturalStoneRevetmentDefaults::GetUpperLimitLoadingCul()));
 
         auto lowerLimitLoading = make_unique<NaturalStoneRevetmentLowerLimitLoading>(
-            InputFactoryHelper::GetValue(constructionProperties.GetLowerLimitLoadingAll(),
-                                         NaturalStoneRevetmentDefaults::GetLowerLimitLoadingAll()),
-            InputFactoryHelper::GetValue(constructionProperties.GetLowerLimitLoadingBll(),
-                                         NaturalStoneRevetmentDefaults::GetLowerLimitLoadingBll()),
-            InputFactoryHelper::GetValue(constructionProperties.GetLowerLimitLoadingCll(),
-                                         NaturalStoneRevetmentDefaults::GetLowerLimitLoadingCll()));
+            InputHelper::GetValue(constructionProperties.GetLowerLimitLoadingAll(), NaturalStoneRevetmentDefaults::GetLowerLimitLoadingAll()),
+            InputHelper::GetValue(constructionProperties.GetLowerLimitLoadingBll(), NaturalStoneRevetmentDefaults::GetLowerLimitLoadingBll()),
+            InputHelper::GetValue(constructionProperties.GetLowerLimitLoadingCll(), NaturalStoneRevetmentDefaults::GetLowerLimitLoadingCll()));
 
         auto distanceMaximumWaveElevation = make_unique<
             NaturalStoneRevetmentDistanceMaximumWaveElevation>(
-            InputFactoryHelper::GetValue(constructionProperties.GetDistanceMaximumWaveElevationAsmax(),
-                                         NaturalStoneRevetmentDefaults::GetDistanceMaximumWaveElevationAsmax()),
-            InputFactoryHelper::GetValue(constructionProperties.GetDistanceMaximumWaveElevationBsmax(),
-                                         NaturalStoneRevetmentDefaults::GetDistanceMaximumWaveElevationBsmax()));
+            InputHelper::GetValue(constructionProperties.GetDistanceMaximumWaveElevationAsmax(),
+                                  NaturalStoneRevetmentDefaults::GetDistanceMaximumWaveElevationAsmax()),
+            InputHelper::GetValue(constructionProperties.GetDistanceMaximumWaveElevationBsmax(),
+                                  NaturalStoneRevetmentDefaults::GetDistanceMaximumWaveElevationBsmax()));
 
         auto normativeWidthOfWaveImpact = make_unique<
             NaturalStoneRevetmentNormativeWidthOfWaveImpact>(
-            InputFactoryHelper::GetValue(constructionProperties.GetNormativeWidthOfWaveImpactAwi(),
-                                         NaturalStoneRevetmentDefaults::GetNormativeWidthOfWaveImpactAwi()),
-            InputFactoryHelper::GetValue(constructionProperties.GetNormativeWidthOfWaveImpactBwi(),
-                                         NaturalStoneRevetmentDefaults::GetNormativeWidthOfWaveImpactBwi()));
+            InputHelper::GetValue(constructionProperties.GetNormativeWidthOfWaveImpactAwi(),
+                                  NaturalStoneRevetmentDefaults::GetNormativeWidthOfWaveImpactAwi()),
+            InputHelper::GetValue(constructionProperties.GetNormativeWidthOfWaveImpactBwi(),
+                                  NaturalStoneRevetmentDefaults::GetNormativeWidthOfWaveImpactBwi()));
 
         auto waveAngleImpact = make_unique<NaturalStoneRevetmentWaveAngleImpact>(
-            InputFactoryHelper::GetValue(constructionProperties.GetWaveAngleImpactBetamax(),
-                                         NaturalStoneRevetmentDefaults::GetWaveAngleImpactBetamax()));
-
+            InputHelper::GetValue(constructionProperties.GetWaveAngleImpactBetamax(), NaturalStoneRevetmentDefaults::GetWaveAngleImpactBetamax()));
         return make_unique<NaturalStoneRevetmentLocationDependentInput>(
             constructionProperties.GetX(),
-            InputFactoryHelper::GetValue(constructionProperties.GetInitialDamage(), RevetmentDefaults::GetInitialDamage()),
-            InputFactoryHelper::GetValue(constructionProperties.GetFailureNumber(), RevetmentDefaults::GetFailureNumber()),
+            InputHelper::GetValue(constructionProperties.GetInitialDamage(), RevetmentDefaults::GetInitialDamage()),
+            InputHelper::GetValue(constructionProperties.GetFailureNumber(), RevetmentDefaults::GetFailureNumber()),
             constructionProperties.GetRelativeDensity(),
             constructionProperties.GetThicknessTopLayer(),
             move(hydraulicLoads),

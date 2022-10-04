@@ -22,7 +22,7 @@
 
 #include "GrassRevetmentWaveImpactDefaults.h"
 #include "GrassRevetmentWaveImpactDefaultsFactory.h"
-#include "InputFactoryHelper.h"
+#include "InputHelper.h"
 #include "RevetmentDefaults.h"
 
 namespace DiKErnel::Integration
@@ -37,29 +37,26 @@ namespace DiKErnel::Integration
         const auto topLayerDefaults = GrassRevetmentWaveImpactDefaultsFactory::CreateTopLayerDefaults(constructionProperties.GetTopLayerType());
 
         auto waveAngleImpact = make_unique<GrassRevetmentWaveImpactWaveAngleImpact>(
-            InputFactoryHelper::GetValue(constructionProperties.GetWaveAngleImpactNwa(), GrassRevetmentWaveImpactDefaults::GetWaveAngleImpactNwa()),
-            InputFactoryHelper::GetValue(constructionProperties.GetWaveAngleImpactQwa(), GrassRevetmentWaveImpactDefaults::GetWaveAngleImpactQwa()),
-            InputFactoryHelper::GetValue(constructionProperties.GetWaveAngleImpactRwa(),
-                                         GrassRevetmentWaveImpactDefaults::GetWaveAngleImpactRwa()));
+            InputHelper::GetValue(constructionProperties.GetWaveAngleImpactNwa(), GrassRevetmentWaveImpactDefaults::GetWaveAngleImpactNwa()),
+            InputHelper::GetValue(constructionProperties.GetWaveAngleImpactQwa(), GrassRevetmentWaveImpactDefaults::GetWaveAngleImpactQwa()),
+            InputHelper::GetValue(constructionProperties.GetWaveAngleImpactRwa(), GrassRevetmentWaveImpactDefaults::GetWaveAngleImpactRwa()));
 
         auto timeLine = make_unique<GrassRevetmentWaveImpactTimeLine>(
-            InputFactoryHelper::GetValue(constructionProperties.GetTimeLineAgwi(), topLayerDefaults->GetTimeLineAgwi()),
-            InputFactoryHelper::GetValue(constructionProperties.GetTimeLineBgwi(), topLayerDefaults->GetTimeLineBgwi()),
-            InputFactoryHelper::GetValue(constructionProperties.GetTimeLineCgwi(), topLayerDefaults->GetTimeLineCgwi()));
+            InputHelper::GetValue(constructionProperties.GetTimeLineAgwi(), topLayerDefaults->GetTimeLineAgwi()),
+            InputHelper::GetValue(constructionProperties.GetTimeLineBgwi(), topLayerDefaults->GetTimeLineBgwi()),
+            InputHelper::GetValue(constructionProperties.GetTimeLineCgwi(), topLayerDefaults->GetTimeLineCgwi()));
 
         return make_unique<GrassRevetmentWaveImpactLocationDependentInput>(
             constructionProperties.GetX(),
-            InputFactoryHelper::GetValue(constructionProperties.GetInitialDamage(), RevetmentDefaults::GetInitialDamage()),
-            InputFactoryHelper::GetValue(constructionProperties.GetFailureNumber(), RevetmentDefaults::GetFailureNumber()),
+            InputHelper::GetValue(constructionProperties.GetInitialDamage(), RevetmentDefaults::GetInitialDamage()),
+            InputHelper::GetValue(constructionProperties.GetFailureNumber(), RevetmentDefaults::GetFailureNumber()),
             move(waveAngleImpact),
-            InputFactoryHelper::GetValue(constructionProperties.GetMinimumWaveHeightTemax(),
-                                         GrassRevetmentWaveImpactDefaults::GetMinimumWaveHeightTemax()),
-            InputFactoryHelper::GetValue(constructionProperties.GetMaximumWaveHeightTemin(),
-                                         GrassRevetmentWaveImpactDefaults::GetMaximumWaveHeightTemin()),
+            InputHelper::GetValue(constructionProperties.GetMinimumWaveHeightTemax(),
+                                  GrassRevetmentWaveImpactDefaults::GetMinimumWaveHeightTemax()),
+            InputHelper::GetValue(constructionProperties.GetMaximumWaveHeightTemin(),
+                                  GrassRevetmentWaveImpactDefaults::GetMaximumWaveHeightTemin()),
             move(timeLine),
-            InputFactoryHelper::GetValue(constructionProperties.GetUpperLimitLoadingAul(),
-                                         GrassRevetmentWaveImpactDefaults::GetUpperLimitLoadingAul()),
-            InputFactoryHelper::GetValue(constructionProperties.GetLowerLimitLoadingAll(),
-                                         GrassRevetmentWaveImpactDefaults::GetLowerLimitLoadingAll()));
+            InputHelper::GetValue(constructionProperties.GetUpperLimitLoadingAul(), GrassRevetmentWaveImpactDefaults::GetUpperLimitLoadingAul()),
+            InputHelper::GetValue(constructionProperties.GetLowerLimitLoadingAll(), GrassRevetmentWaveImpactDefaults::GetLowerLimitLoadingAll()));
     }
 }

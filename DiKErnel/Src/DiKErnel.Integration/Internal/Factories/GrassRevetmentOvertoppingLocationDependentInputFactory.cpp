@@ -23,7 +23,7 @@
 #include "GrassRevetmentCumulativeOverloadDefaults.h"
 #include "GrassRevetmentCumulativeOverloadDefaultsFactory.h"
 #include "GrassRevetmentOvertoppingDefaults.h"
-#include "InputFactoryHelper.h"
+#include "InputHelper.h"
 #include "RevetmentDefaults.h"
 #include "UniquePtrHelper.h"
 
@@ -41,26 +41,26 @@ namespace DiKErnel::Integration
             constructionProperties.GetTopLayerType());
 
         auto locationDependentAccelerationAlphaA = make_unique<GrassRevetmentOvertoppingLocationDependentAccelerationAlphaA>(
-            InputFactoryHelper::GetValue(constructionProperties.GetAccelerationAlphaAForCrest(),
-                                         GrassRevetmentOvertoppingDefaults::GetAccelerationAlphaAForCrest()),
-            InputFactoryHelper::GetValue(constructionProperties.GetAccelerationAlphaAForInnerSlope(),
-                                         GrassRevetmentOvertoppingDefaults::GetAccelerationAlphaAForInnerSlope()));
+            InputHelper::GetValue(constructionProperties.GetAccelerationAlphaAForCrest(),
+                                  GrassRevetmentOvertoppingDefaults::GetAccelerationAlphaAForCrest()),
+            InputHelper::GetValue(constructionProperties.GetAccelerationAlphaAForInnerSlope(),
+                                  GrassRevetmentOvertoppingDefaults::GetAccelerationAlphaAForInnerSlope()));
 
         return make_unique<GrassRevetmentOvertoppingLocationDependentInput>(
             constructionProperties.GetX(),
-            InputFactoryHelper::GetValue(constructionProperties.GetInitialDamage(), RevetmentDefaults::GetInitialDamage()),
-            InputFactoryHelper::GetValue(constructionProperties.GetFailureNumber(), RevetmentDefaults::GetFailureNumber()),
-            InputFactoryHelper::GetValue(constructionProperties.GetCriticalCumulativeOverload(), topLayerDefaults->GetCriticalCumulativeOverload()),
-            InputFactoryHelper::GetValue(constructionProperties.GetCriticalFrontVelocity(), topLayerDefaults->GetCriticalFrontVelocity()),
-            InputFactoryHelper::GetValue(constructionProperties.GetIncreasedLoadTransitionAlphaM(),
-                                         GrassRevetmentCumulativeOverloadDefaults::GetIncreasedLoadTransitionAlphaM()),
-            InputFactoryHelper::GetValue(constructionProperties.GetReducedStrengthTransitionAlphaS(),
-                                         GrassRevetmentCumulativeOverloadDefaults::GetReducedStrengthTransitionAlphaS()),
-            InputFactoryHelper::GetValue(constructionProperties.GetAverageNumberOfWavesCtm(),
-                                         GrassRevetmentCumulativeOverloadDefaults::GetAverageNumberOfWavesCtm()),
-            InputFactoryHelper::GetValue(constructionProperties.GetFixedNumberOfWaves(),
-                                         GrassRevetmentCumulativeOverloadDefaults::GetFixedNumberOfWaves()),
-            InputFactoryHelper::GetValue(constructionProperties.GetFrontVelocityCwo(), GrassRevetmentOvertoppingDefaults::GetFrontVelocityCwo()),
+            InputHelper::GetValue(constructionProperties.GetInitialDamage(), RevetmentDefaults::GetInitialDamage()),
+            InputHelper::GetValue(constructionProperties.GetFailureNumber(), RevetmentDefaults::GetFailureNumber()),
+            InputHelper::GetValue(constructionProperties.GetCriticalCumulativeOverload(), topLayerDefaults->GetCriticalCumulativeOverload()),
+            InputHelper::GetValue(constructionProperties.GetCriticalFrontVelocity(), topLayerDefaults->GetCriticalFrontVelocity()),
+            InputHelper::GetValue(constructionProperties.GetIncreasedLoadTransitionAlphaM(),
+                                  GrassRevetmentCumulativeOverloadDefaults::GetIncreasedLoadTransitionAlphaM()),
+            InputHelper::GetValue(constructionProperties.GetReducedStrengthTransitionAlphaS(),
+                                  GrassRevetmentCumulativeOverloadDefaults::GetReducedStrengthTransitionAlphaS()),
+            InputHelper::GetValue(constructionProperties.GetAverageNumberOfWavesCtm(),
+                                  GrassRevetmentCumulativeOverloadDefaults::GetAverageNumberOfWavesCtm()),
+            InputHelper::GetValue(constructionProperties.GetFixedNumberOfWaves(),
+                                  GrassRevetmentCumulativeOverloadDefaults::GetFixedNumberOfWaves()),
+            InputHelper::GetValue(constructionProperties.GetFrontVelocityCwo(), GrassRevetmentOvertoppingDefaults::GetFrontVelocityCwo()),
             move(locationDependentAccelerationAlphaA),
             UniquePtrHelper::CreatePtrOfValue(constructionProperties.GetDikeHeight()));
     }

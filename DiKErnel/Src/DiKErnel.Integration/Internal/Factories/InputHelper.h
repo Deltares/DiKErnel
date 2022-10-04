@@ -22,7 +22,7 @@
 
 namespace DiKErnel::Integration
 {
-    class InputFactoryHelper
+    class InputHelper
     {
         public:
             template <typename TValue>

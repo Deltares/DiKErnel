@@ -24,7 +24,7 @@
 
 #include "CalculationInput.h"
 #include "EventRegistry.h"
-#include "InputFactoryHelper.h"
+#include "InputHelper.h"
 #include "LocationDependentInputFactory.h"
 #include "NumericsHelper.h"
 #include "OvertoppingAdapter.h"
@@ -462,8 +462,8 @@ namespace DiKErnel::Integration
             {
                 xValuesProfile.push_back(startPointX);
                 zValuesProfile.push_back(profileSegmentReference.GetStartPointZ());
-                roughnessCoefficients.push_back(InputFactoryHelper::GetValue(profileSegmentReference.GetRoughnessCoefficient(),
-                                                                             ProfileSegmentDefaults::GetRoughnessCoefficient()));
+                roughnessCoefficients.push_back(InputHelper::GetValue(profileSegmentReference.GetRoughnessCoefficient(),
+                                                                      ProfileSegmentDefaults::GetRoughnessCoefficient()));
             }
         }
 
@@ -471,7 +471,7 @@ namespace DiKErnel::Integration
         const auto outerCrestZ = FindMatchingZCoordinateOnSegment(outerCrest.GetX());
         zValuesProfile.push_back(outerCrestZ);
 
-        const double dikeHeight = InputFactoryHelper::GetValue(constructionProperties->GetDikeHeight(), outerCrestZ);
+        const double dikeHeight = InputHelper::GetValue(constructionProperties->GetDikeHeight(), outerCrestZ);
         if (const auto messages = Overtopping::OvertoppingAdapter::Validate(xValuesProfile, zValuesProfile, roughnessCoefficients, dikeHeight);
             !messages.empty())
         {

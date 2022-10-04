@@ -20,7 +20,7 @@
 
 #include "ProfileDataFactory.h"
 
-#include "InputFactoryHelper.h"
+#include "InputHelper.h"
 #include "NumericsHelper.h"
 #include "ProfileSegmentDefaults.h"
 
@@ -58,7 +58,7 @@ namespace DiKErnel::Integration
 
             auto segmentEndPoint = make_shared<ProfilePoint>(profileSegment.GetEndPointX(), profileSegment.GetEndPointZ());
             segments.push_back(make_unique<ProfileSegment>(segmentStartPoint, segmentEndPoint,
-                                                           InputFactoryHelper::GetValue(
+                                                           InputHelper::GetValue(
                                                                profileSegment.GetRoughnessCoefficient(),
                                                                ProfileSegmentDefaults::GetRoughnessCoefficient())));
             segmentStartPoint = segmentEndPoint;
