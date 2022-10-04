@@ -20,7 +20,6 @@
 
 #include "CalculationInputBuilder.h"
 
-#include <algorithm>
 #include <functional>
 #include <sstream>
 

@@ -20,7 +20,6 @@
 
 #include "CommandLineArgumentParser.h"
 
-#include <algorithm>
 #include <filesystem>
 #include <sstream>
 
@@ -159,12 +158,15 @@ namespace DiKErnel::Cli
 
     bool CommandLineArgumentParser::ValidateReadArguments() const
     {
-        const auto requiredArgumentsArePresent = ranges::all_of(_argumentOptions, [this](
-                                                            const pair<string, unsigned int>& argumentOption)
-                                                                {
-                                                                    return !(argumentOption.second & Required)
-                                                                            || _readArguments.contains(argumentOption.first);
-                                                                });
+        auto requiredArgumentsArePresent = true;
+        for (const auto& [argumentKey, argumentType] : _argumentOptions)
+        {
+            if(argumentType & Required && !_readArguments.contains(argumentKey))
+            {
+                requiredArgumentsArePresent = false;
+                break;
+            }
+        }
 
         return requiredArgumentsArePresent
                 && FilePathArgumentHasValidExtension(_readArguments.at(_inputFilePathKey))

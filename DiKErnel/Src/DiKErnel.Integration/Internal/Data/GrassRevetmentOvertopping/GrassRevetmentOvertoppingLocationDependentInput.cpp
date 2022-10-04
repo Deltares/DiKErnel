@@ -20,8 +20,6 @@
 
 #include "GrassRevetmentOvertoppingLocationDependentInput.h"
 
-#include <algorithm>
-
 #include "CharacteristicPointsHelper.h"
 #include "Constants.h"
 #include "GrassRevetmentFunctions.h"
@@ -126,15 +124,15 @@ namespace DiKErnel::Integration
 
         vector<unique_ptr<ValidationIssue>> validationIssues;
 
-        if (ranges::any_of(timeDependentInputs, [calculatedDikeHeight](
-                       const auto& timeDependentInput)
-                           {
-                               return timeDependentInput.get().GetWaterLevel() >= calculatedDikeHeight;
-                           }))
+        for (const auto& timeDependentInput : timeDependentInputs)
         {
-            validationIssues.emplace_back(make_unique<ValidationIssue>(
-                ValidationIssueType::Warning,
-                "For one or more time steps the water level exceeds the dike height. No damage will be calculated for these time steps."));
+            if (timeDependentInput.get().GetWaterLevel() >= calculatedDikeHeight)
+            {
+                validationIssues.emplace_back(make_unique<ValidationIssue>(
+                    ValidationIssueType::Warning,
+                    "For one or more time steps the water level exceeds the dike height. No damage will be calculated for these time steps."));
+                break;
+            }
         }
 
         validationIssues.emplace_back(GrassRevetmentValidator::CriticalCumulativeOverload(_criticalCumulativeOverload));
