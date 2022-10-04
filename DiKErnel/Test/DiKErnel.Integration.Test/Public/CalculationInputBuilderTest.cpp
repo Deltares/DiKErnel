@@ -875,8 +875,7 @@ namespace DiKErnel::Integration::Test
         const auto& events = result->GetEvents();
         ASSERT_EQ(1, events.size());
 
-        EventAssertHelper::AssertEvent(EventType::Error,
-                                       "ERROR:Coordinates in vertical direction must be non-decreasing.  20.00 and   10.00 are not.", events.at(0));
+        EventAssertHelper::AssertEventWithNonEmptyMessage(EventType::Error, events.at(0));
     }
 
     TEST_F(CalculationInputBuilderTest,
@@ -911,10 +910,8 @@ namespace DiKErnel::Integration::Test
         const auto& events = result->GetEvents();
         ASSERT_EQ(2, events.size());
 
-        EventAssertHelper::AssertEvent(EventType::Error,
-                                       "ERROR:Roughnessfactors must be in range 0.5 ... 1.0; found:  0.40", events.at(0));
-        EventAssertHelper::AssertEvent(EventType::Error,
-                                       "ERROR:Roughnessfactors must be in range 0.5 ... 1.0; found:  1.10", events.at(1));
+        EventAssertHelper::AssertEventWithNonEmptyMessage(EventType::Error, events.at(0));
+        EventAssertHelper::AssertEventWithNonEmptyMessage(EventType::Error, events.at(1));
     }
 
     TEST_F(CalculationInputBuilderTest,

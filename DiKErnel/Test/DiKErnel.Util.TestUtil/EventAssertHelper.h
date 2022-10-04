@@ -31,5 +31,9 @@ namespace DiKErnel::Util::TestUtil
                 EventType expectedEventType,
                 const std::string& expectedMessage,
                 const Event& actualEvent);
+
+            static void AssertEventWithNonEmptyMessage(
+                EventType expectedEventType,
+                const Event& actualEvent);
     };
 }

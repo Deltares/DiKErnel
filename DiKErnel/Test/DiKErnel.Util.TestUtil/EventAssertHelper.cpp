@@ -34,4 +34,12 @@ namespace DiKErnel::Util::TestUtil
         ASSERT_EQ(expectedEventType, actualEvent.GetEventType());
         ASSERT_EQ(expectedMessage, actualEvent.GetMessage());
     }
+
+    void EventAssertHelper::AssertEventWithNonEmptyMessage(
+        const EventType expectedEventType,
+        const Event& actualEvent)
+    {
+        ASSERT_EQ(expectedEventType, actualEvent.GetEventType());
+        ASSERT_NE(0, actualEvent.GetMessage().length());
+    }
 }
