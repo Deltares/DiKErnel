@@ -846,7 +846,7 @@ namespace DiKErnel::Integration::Test
            GivenBuilderWithGrassOvertoppingLocationWithInvalidGeometry_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         // Given
-        const auto topLayerType = static_cast<GrassRevetmentTopLayerType>(rand() % 2);
+        constexpr auto topLayerType = GrassRevetmentTopLayerType::OpenSod;
         auto constructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(45, topLayerType);
 
         constexpr auto outerToeX = 0;
@@ -882,7 +882,7 @@ namespace DiKErnel::Integration::Test
            GivenBuilderWithGrassOvertoppingLocationWithInvalidRoughnessCoefficients_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         // Given
-        const auto topLayerType = static_cast<GrassRevetmentTopLayerType>(rand() % 2);
+        constexpr auto topLayerType = GrassRevetmentTopLayerType::OpenSod;
         auto constructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(45, topLayerType);
 
         constexpr auto outerToeX = 0;
@@ -918,7 +918,7 @@ namespace DiKErnel::Integration::Test
            GivenBuilderWithFullyConfiguredGrassOvertoppingLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
     {
         // Given
-        const auto topLayerType = static_cast<GrassRevetmentTopLayerType>(rand() % 2);
+        constexpr auto topLayerType = GrassRevetmentTopLayerType::OpenSod;
         constexpr auto x = 45;
         constexpr auto initialDamage = 0.2;
         constexpr auto failureNumber = 0.3;
@@ -1146,7 +1146,7 @@ namespace DiKErnel::Integration::Test
     TEST_F(CalculationInputBuilderTest, GivenBuilderWithFullyConfiguredGrassWaveImpactLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
     {
         // Given
-        const auto topLayerType = static_cast<GrassRevetmentTopLayerType>(rand() % 2);
+        constexpr auto topLayerType = GrassRevetmentTopLayerType::OpenSod;
         constexpr auto x = 0.1;
         constexpr auto initialDamage = 0.2;
         constexpr auto failureNumber = 0.3;
@@ -1372,7 +1372,7 @@ namespace DiKErnel::Integration::Test
            GivenBuilderWithFullyConfiguredGrassWaveRunupRayleighLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
     {
         // Given
-        const auto topLayerType = static_cast<GrassRevetmentTopLayerType>(rand() % 2);
+        constexpr auto topLayerType = GrassRevetmentTopLayerType::OpenSod;
         constexpr auto x = 0.1;
         constexpr auto outerSlope = 0.2;
         constexpr auto initialDamage = 0.3;

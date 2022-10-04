@@ -33,7 +33,7 @@ namespace DiKErnel::Integration::Test
     TEST(GrassRevetmentWaveRunupLocationConstructionPropertiesTest, Constructor_ExpectedValues)
     {
         // Setup
-        const auto topLayerType = static_cast<GrassRevetmentTopLayerType>(rand() % 2);
+        constexpr auto topLayerType = GrassRevetmentTopLayerType::OpenSod;
         constexpr auto x = 0.1;
         constexpr auto outerSlope = 0.2;
 
@@ -64,7 +64,7 @@ namespace DiKErnel::Integration::Test
     TEST(GrassRevetmentWaveRunupLocationConstructionPropertiesTest, GivenConstructionProperties_WhenAllInputSet_ThenExpectedValues)
     {
         // Given
-        const auto topLayerType = static_cast<GrassRevetmentTopLayerType>(rand() % 2);
+        constexpr auto topLayerType = GrassRevetmentTopLayerType::OpenSod;
         constexpr auto x = 0.1;
         constexpr auto outerSlope = 0.2;
         constexpr auto initialDamage = 0.3;
