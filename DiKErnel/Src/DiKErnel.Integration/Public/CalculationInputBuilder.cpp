@@ -175,15 +175,15 @@ namespace DiKErnel::Integration
         const ProfileDataFactorySegment* previousSegment = nullptr;
         for (const auto& profileSegmentDataItem : _profileSegmentDataItems)
         {
-            const ProfileDataFactorySegment* currentSegment = profileSegmentDataItem.get();
+            const ProfileDataFactorySegment& currentSegment = *profileSegmentDataItem;
 
             if (previousSegment != nullptr)
             {
                 const auto previousSegmentEndPointX = previousSegment->GetEndPointX();
                 const auto previousSegmentEndPointZ = previousSegment->GetEndPointZ();
 
-                const auto currentSegmentStartPointX = currentSegment->GetStartPointX();
-                const auto currentSegmentStartPointZ = currentSegment->GetStartPointZ();
+                const auto currentSegmentStartPointX = currentSegment.GetStartPointX();
+                const auto currentSegmentStartPointZ = currentSegment.GetStartPointZ();
 
                 if (!NumericsHelper::AreEqual(previousSegmentEndPointX, currentSegmentStartPointX)
                     || !NumericsHelper::AreEqual(previousSegmentEndPointZ, currentSegmentStartPointZ))
@@ -196,7 +196,7 @@ namespace DiKErnel::Integration
                 }
             }
 
-            previousSegment = currentSegment;
+            previousSegment = &currentSegment;
         }
 
         return true;
@@ -426,9 +426,9 @@ namespace DiKErnel::Integration
         const TimeDependentInputFactoryData* previousTimeStep = nullptr;
         for (const auto& timeStepDataItem : _timeStepDataItems)
         {
-            const TimeDependentInputFactoryData* currentTimeStep = timeStepDataItem.get();
+            const TimeDependentInputFactoryData& currentTimeStep = *timeStepDataItem;
 
-            const int currentTimeStepBeginTime = currentTimeStep->GetBeginTime();
+            const int currentTimeStepBeginTime = currentTimeStep.GetBeginTime();
             if (previousTimeStep != nullptr)
             {
                 if (const int previousTimeStepEndTime = previousTimeStep->GetEndTime(); previousTimeStepEndTime != currentTimeStepBeginTime)
@@ -440,7 +440,7 @@ namespace DiKErnel::Integration
                 }
             }
 
-            if (const int currentTimeStepEndTime = currentTimeStep->GetEndTime(); currentTimeStepBeginTime >= currentTimeStepEndTime)
+            if (const int currentTimeStepEndTime = currentTimeStep.GetEndTime(); currentTimeStepBeginTime >= currentTimeStepEndTime)
             {
                 RegisterValidationError(
                     "The begin time of the time step (" + to_string(currentTimeStepBeginTime) + ") must be smaller than the end time of the " +
@@ -448,7 +448,7 @@ namespace DiKErnel::Integration
                 return false;
             }
 
-            previousTimeStep = currentTimeStep;
+            previousTimeStep = &currentTimeStep;
         }
 
         return true;
