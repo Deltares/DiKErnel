@@ -103,7 +103,7 @@ namespace DiKErnel::External::Overtopping
         }
 
         stringstream messages;
-        messages << *messageBuffer->c_str();
+        messages << messageBuffer->c_str();
         string message;
 
         while (getline(messages, message, '\t'))
