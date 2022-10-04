@@ -154,7 +154,7 @@ namespace DiKErnel::External::Overtopping
         logFileName->reserve(_bufferSize);
 
         calculateQo(&load, &geometry, &dikeHeight, &_modelFactors, &result, &success, messageBuffer->c_str(),
-                    &_verbosity, logFileName->c_str(), messageBuffer->length(), _bufferSize);
+                    &_verbosity, logFileName->c_str(), messageBuffer->length(), logFileName->length());
 
         return result._z2;
     }
