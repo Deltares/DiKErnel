@@ -843,6 +843,81 @@ namespace DiKErnel::Integration::Test
     }
 
     TEST_F(CalculationInputBuilderTest,
+           GivenBuilderWithGrassOvertoppingLocationWithInvalidGeometry_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
+    {
+        // Given
+        const auto topLayerType = static_cast<GrassRevetmentTopLayerType>(rand() % 2);
+        auto constructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(45, topLayerType);
+
+        constexpr auto outerToeX = 0;
+        constexpr auto outerCrestX = 30;
+
+        CalculationInputBuilder builder;
+        builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
+
+        builder.AddDikeProfileSegment(outerToeX, 10, 10, 20);
+        builder.AddDikeProfileSegment(10, 20, 20, 20);
+        builder.AddDikeProfileSegment(20, 20, outerCrestX, 10);
+        builder.AddDikeProfileSegment(30, 10, 40, 40);
+        builder.AddDikeProfileSegment(40, 40, 50, 60);
+        builder.AddDikeProfilePointData(outerToeX, CharacteristicPointType::OuterToe);
+        builder.AddDikeProfilePointData(outerCrestX, CharacteristicPointType::OuterCrest);
+        builder.AddDikeProfilePointData(30, CharacteristicPointType::InnerCrest);
+        builder.AddDikeProfilePointData(50, CharacteristicPointType::InnerToe);
+        builder.AddGrassOvertoppingLocation(move(constructionProperties));
+
+        // When
+        const auto result = builder.Build();
+
+        // Then
+        ASSERT_FALSE(result->GetSuccessful());
+
+        const auto& events = result->GetEvents();
+        ASSERT_EQ(1, events.size());
+
+        EventAssertHelper::AssertEvent(EventType::Error,
+                                       "ERROR:Coordinates in vertical direction must be non-decreasing.  20.00 and   10.00 are not.", events.at(0));
+    }
+
+    TEST_F(CalculationInputBuilderTest,
+           GivenBuilderWithGrassOvertoppingLocationWithInvalidRoughnessCoefficients_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
+    {
+        // Given
+        const auto topLayerType = static_cast<GrassRevetmentTopLayerType>(rand() % 2);
+        auto constructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(45, topLayerType);
+
+        constexpr auto outerToeX = 0;
+        constexpr auto outerCrestX = 30;
+
+        CalculationInputBuilder builder;
+        builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
+
+        builder.AddDikeProfileSegment(outerToeX, 10, 10, 20, 0.4);
+        builder.AddDikeProfileSegment(10, 20, outerCrestX, 25, 1.1);
+        builder.AddDikeProfileSegment(30, 25, 40, 40);
+        builder.AddDikeProfileSegment(40, 40, 50, 60);
+        builder.AddDikeProfilePointData(outerToeX, CharacteristicPointType::OuterToe);
+        builder.AddDikeProfilePointData(outerCrestX, CharacteristicPointType::OuterCrest);
+        builder.AddDikeProfilePointData(30, CharacteristicPointType::InnerCrest);
+        builder.AddDikeProfilePointData(50, CharacteristicPointType::InnerToe);
+        builder.AddGrassOvertoppingLocation(move(constructionProperties));
+
+        // When
+        const auto result = builder.Build();
+
+        // Then
+        ASSERT_FALSE(result->GetSuccessful());
+
+        const auto& events = result->GetEvents();
+        ASSERT_EQ(2, events.size());
+
+        EventAssertHelper::AssertEvent(EventType::Error,
+                                       "ERROR:Roughnessfactors must be in range 0.5 ... 1.0; found:  0.40", events.at(0));
+        EventAssertHelper::AssertEvent(EventType::Error,
+                                       "ERROR:Roughnessfactors must be in range 0.5 ... 1.0; found:  1.10", events.at(1));
+    }
+
+    TEST_F(CalculationInputBuilderTest,
            GivenBuilderWithFullyConfiguredGrassOvertoppingLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
     {
         // Given
