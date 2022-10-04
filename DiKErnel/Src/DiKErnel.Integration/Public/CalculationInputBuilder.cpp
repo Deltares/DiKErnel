@@ -142,8 +142,8 @@ namespace DiKErnel::Integration
         double endPointZ,
         unique_ptr<double> roughnessCoefficient)
     {
-        _profileSegmentDataItems.push_back(make_unique<ProfileDataFactorySegment>(startPointX, startPointZ, endPointX, endPointZ,
-                                                                                  move(roughnessCoefficient)));
+        _profileSegmentDataItems.push_back(
+            make_unique<ProfileDataFactorySegment>(startPointX, startPointZ, endPointX, endPointZ, move(roughnessCoefficient)));
         _profileSegmentDataItemReferences.emplace_back(*_profileSegmentDataItems.back());
     }
 
@@ -170,7 +170,7 @@ namespace DiKErnel::Integration
     {
         if (_profileSegmentDataItems.empty())
         {
-            RegisterValidationError("At least 1 segment is required.");
+            RegisterValidationError("At least 1 profile segment is required.");
             return false;
         }
 
@@ -181,19 +181,19 @@ namespace DiKErnel::Integration
 
             if (previousSegment != nullptr)
             {
-                const auto previousSegmentStartPointX = previousSegment->GetEndPointX();
-                const auto previousSegmentStartPointZ = previousSegment->GetEndPointZ();
+                const auto previousSegmentEndPointX = previousSegment->GetEndPointX();
+                const auto previousSegmentEndPointZ = previousSegment->GetEndPointZ();
 
                 const auto currentSegmentStartPointX = currentSegment->GetStartPointX();
                 const auto currentSegmentStartPointZ = currentSegment->GetStartPointZ();
 
-                if (!NumericsHelper::AreEqual(previousSegmentStartPointX, currentSegmentStartPointX)
-                    || !NumericsHelper::AreEqual(previousSegmentStartPointZ, currentSegmentStartPointZ))
+                if (!NumericsHelper::AreEqual(previousSegmentEndPointX, currentSegmentStartPointX)
+                    || !NumericsHelper::AreEqual(previousSegmentEndPointZ, currentSegmentStartPointZ))
                 {
                     ostringstream stringStream;
-                    stringStream << "The start point of the segment (" << currentSegmentStartPointX << ", " << currentSegmentStartPointZ << ") "
-                            << "must be equal to the end point of the previous segment (" << previousSegmentStartPointX << ", " <<
-                            previousSegmentStartPointZ << ").";
+                    stringStream << "The start point of the profile segment (" << currentSegmentStartPointX << ", " << currentSegmentStartPointZ <<
+                            ") must be equal to the end point of the previous profile segment (" << previousSegmentEndPointX << ", " <<
+                            previousSegmentEndPointZ << ").";
 
                     RegisterValidationError(stringStream.str());
                     return false;
@@ -356,7 +356,7 @@ namespace DiKErnel::Integration
             {
                 stringstream locationXStringStream;
                 locationXStringStream << locationX;
-                RegisterValidationError("The location on X: " + locationXStringStream.str() + " has an invalid top layer type.");
+                RegisterValidationError("The location with position " + locationXStringStream.str() + " has an invalid top layer type.");
                 return false;
             }
         }
@@ -407,7 +407,7 @@ namespace DiKErnel::Integration
             locationXStringStream << locationX;
 
             RegisterValidationError(
-                "The location on X: " + locationXStringStream.str() + " must be between the outer toe and outer crest.");
+                "The location with position " + locationXStringStream.str() + " must be between the outer toe and outer crest.");
             return false;
         }
 
@@ -425,7 +425,7 @@ namespace DiKErnel::Integration
             locationXStringStream << locationX;
 
             RegisterValidationError(
-                "The location on X: " + locationXStringStream.str() + " must be on or between the outer crest and inner toe.");
+                "The location with position " + locationXStringStream.str() + " must be on or between the outer crest and inner toe.");
             return false;
         }
 

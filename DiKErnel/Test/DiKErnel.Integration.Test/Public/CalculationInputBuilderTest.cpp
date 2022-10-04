@@ -69,7 +69,7 @@ namespace DiKErnel::Integration::Test
             const string& locationX)
         {
             GivenLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(
-                addLocation, "The location on X: " + locationX + " must be between the outer toe and outer crest.");
+                addLocation, "The location with position " + locationX + " must be between the outer toe and outer crest.");
         }
             
         static void GivenGrassOvertoppingLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(
@@ -87,7 +87,7 @@ namespace DiKErnel::Integration::Test
                     builder.AddGrassOvertoppingLocation(
                         make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(locationX, GrassRevetmentTopLayerType::ClosedSod));
                 },
-                "The location on X: " + locationXString + " must be on or between the outer crest and inner toe.");
+                "The location with position " + locationXString + " must be on or between the outer crest and inner toe.");
         }
 
         template <typename T>
@@ -129,7 +129,7 @@ namespace DiKErnel::Integration::Test
         const auto& events = result->GetEvents();
         ASSERT_EQ(1, events.size());
 
-        EventAssertHelper::AssertEvent(EventType::Error, "At least 1 segment is required.", events.at(0));
+        EventAssertHelper::AssertEvent(EventType::Error, "At least 1 profile segment is required.", events.at(0));
     }
 
     TEST_F(CalculationInputBuilderTest,
@@ -151,7 +151,7 @@ namespace DiKErnel::Integration::Test
 
         EventAssertHelper::AssertEvent(
             EventType::Error,
-            "The start point of the segment (20.01, 30) must be equal to the end point of the previous segment (20, 30).",
+            "The start point of the profile segment (20.01, 30) must be equal to the end point of the previous profile segment (20, 30).",
             events.at(0));
     }
 
@@ -174,7 +174,7 @@ namespace DiKErnel::Integration::Test
 
         EventAssertHelper::AssertEvent(
             EventType::Error,
-            "The start point of the segment (20, 30.01) must be equal to the end point of the previous segment (20, 30).",
+            "The start point of the profile segment (20, 30.01) must be equal to the end point of the previous profile segment (20, 30).",
             events.at(0));
     }
 
@@ -615,7 +615,7 @@ namespace DiKErnel::Integration::Test
         const auto& events = result->GetEvents();
         ASSERT_EQ(1, events.size());
 
-        EventAssertHelper::AssertEvent(EventType::Error, "The location on X: 0.1 has an invalid top layer type.", events.at(0));
+        EventAssertHelper::AssertEvent(EventType::Error, "The location with position 0.1 has an invalid top layer type.", events.at(0));
     }
 
     TEST_F(CalculationInputBuilderTest,
@@ -843,7 +843,7 @@ namespace DiKErnel::Integration::Test
         const auto& events = result->GetEvents();
         ASSERT_EQ(1, events.size());
 
-        EventAssertHelper::AssertEvent(EventType::Error, "The location on X: 45 has an invalid top layer type.", events.at(0));
+        EventAssertHelper::AssertEvent(EventType::Error, "The location with position 45 has an invalid top layer type.", events.at(0));
     }
 
     TEST_F(CalculationInputBuilderTest,
@@ -1074,7 +1074,7 @@ namespace DiKErnel::Integration::Test
         const auto& events = result->GetEvents();
         ASSERT_EQ(1, events.size());
 
-        EventAssertHelper::AssertEvent(EventType::Error, "The location on X: 0.1 has an invalid top layer type.", events.at(0));
+        EventAssertHelper::AssertEvent(EventType::Error, "The location with position 0.1 has an invalid top layer type.", events.at(0));
     }
 
     TEST_F(CalculationInputBuilderTest, GivenBuilderWithFullyConfiguredGrassWaveImpactLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
@@ -1301,7 +1301,7 @@ namespace DiKErnel::Integration::Test
         const auto& events = result->GetEvents();
         ASSERT_EQ(1, events.size());
 
-        EventAssertHelper::AssertEvent(EventType::Error, "The location on X: 0.1 has an invalid top layer type.", events.at(0));
+        EventAssertHelper::AssertEvent(EventType::Error, "The location with position 0.1 has an invalid top layer type.", events.at(0));
     }
 
     TEST_F(CalculationInputBuilderTest,
@@ -1541,7 +1541,7 @@ namespace DiKErnel::Integration::Test
         const auto& events = result->GetEvents();
         ASSERT_EQ(1, events.size());
 
-        EventAssertHelper::AssertEvent(EventType::Error, "The location on X: 0.1 has an invalid top layer type.", events.at(0));
+        EventAssertHelper::AssertEvent(EventType::Error, "The location with position 0.1 has an invalid top layer type.", events.at(0));
     }
 
     TEST_F(CalculationInputBuilderTest, GivenBuilderWithFullyConfiguredNaturalStoneLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput)

@@ -62,15 +62,15 @@ namespace DiKErnel::Integration
                 Core::CharacteristicPointType characteristicPointType);
 
             /*!
-             * \brief Adds a new dike segment.
+             * \brief Adds a new dike profile segment.
              * \param startPointX
-             *        The x coordinate for the lower profile point.
+             *        The x coordinate for the start profile point.
              * \param startPointZ
-             *        The z coordinate for the lower profile point.
+             *        The z coordinate for the start profile point.
              * \param endPointX
-             *        The x coordinate for the upper profile point.
+             *        The x coordinate for the end profile point.
              * \param endPointZ
-             *        The z coordinate for the upper profile point.
+             *        The z coordinate for the end profile point.
              */
             void AddDikeProfileSegment(
                 double startPointX,
@@ -79,15 +79,15 @@ namespace DiKErnel::Integration
                 double endPointZ);
 
             /*!
-             * \brief Adds a new dike segment.
+             * \brief Adds a new dike profile segment.
              * \param startPointX
-             *        The x coordinate for the lower profile point.
+             *        The x coordinate for the start profile point.
              * \param startPointZ
-             *        The z coordinate for the lower profile point.
+             *        The z coordinate for the start profile point.
              * \param endPointX
-             *        The x coordinate for the upper profile point.
+             *        The x coordinate for the end profile point.
              * \param endPointZ
-             *        The z coordinate for the upper profile point.
+             *        The z coordinate for the end profile point.
              * \param roughnessCoefficient
              *        The roughness coefficient.
              */

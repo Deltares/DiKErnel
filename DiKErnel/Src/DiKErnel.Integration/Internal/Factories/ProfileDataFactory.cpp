@@ -36,7 +36,9 @@ namespace DiKErnel::Integration
         const vector<reference_wrapper<ProfileDataFactoryPoint>>& profilePoints)
     {
         auto segments = CreateProfileSegments(profileSegments);
-        return make_unique<ProfileData>(move(segments), CreateCharacteristicPoints(profilePoints, segments));
+        auto characteristicPoints = CreateCharacteristicPoints(profilePoints, segments);
+
+        return make_unique<ProfileData>(move(segments), move(characteristicPoints));
     }
 
     vector<unique_ptr<ProfileSegment>> ProfileDataFactory::CreateProfileSegments(
@@ -75,14 +77,14 @@ namespace DiKErnel::Integration
             const auto& profilePointData = profilePointDataReference.get();
 
             characteristicPoints.push_back(
-                make_unique<CharacteristicPoint>(FindMatchingPointOnSegment(profilePointDataReference, profileSegments),
+                make_unique<CharacteristicPoint>(GetMatchingPointOnSegment(profilePointDataReference, profileSegments),
                                                  profilePointData.GetCharacteristicPoint()));
         }
 
         return characteristicPoints;
     }
 
-    const ProfilePoint& ProfileDataFactory::FindMatchingPointOnSegment(
+    const ProfilePoint& ProfileDataFactory::GetMatchingPointOnSegment(
         const ProfileDataFactoryPoint& profilePointData,
         const vector<unique_ptr<ProfileSegment>>& segments)
     {
