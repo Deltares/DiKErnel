@@ -360,20 +360,13 @@ namespace DiKErnel::Integration
         const TValidateTopLayer& validateTopLayer,
         const TValidateLocationSpecificProperties& validateLocationSpecificProperties) const
     {
+        if (!ValidateLocation<TConstructionProperties>(constructionProperties, validateLocationX, validateTopLayer))
+        {
+            return false;
+        }
+
         if (const auto* location = dynamic_cast<const TConstructionProperties*>(&constructionProperties))
         {
-            const auto locationX = location->GetX();
-            if (!validateLocationX(locationX))
-            {
-                return false;
-            }
-
-            if (!validateTopLayer(location->GetTopLayerType()))
-            {
-                RegisterValidationError("The location with position " + NumericsHelper::ToString(locationX) + " has an invalid top layer type.");
-                return false;
-            }
-
             if (!validateLocationSpecificProperties(location))
             {
                 return false;
