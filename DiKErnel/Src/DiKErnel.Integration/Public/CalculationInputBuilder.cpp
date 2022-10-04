@@ -21,7 +21,6 @@
 #include "CalculationInputBuilder.h"
 
 #include <functional>
-#include <sstream>
 
 #include "CalculationInput.h"
 #include "EventRegistry.h"
@@ -189,12 +188,10 @@ namespace DiKErnel::Integration
                 if (!NumericsHelper::AreEqual(previousSegmentEndPointX, currentSegmentStartPointX)
                     || !NumericsHelper::AreEqual(previousSegmentEndPointZ, currentSegmentStartPointZ))
                 {
-                    ostringstream stringStream;
-                    stringStream << "The start point of the profile segment (" << currentSegmentStartPointX << ", " << currentSegmentStartPointZ <<
-                            ") must be equal to the end point of the previous profile segment (" << previousSegmentEndPointX << ", " <<
-                            previousSegmentEndPointZ << ").";
-
-                    RegisterValidationError(stringStream.str());
+                    RegisterValidationError(
+                        "The start point of the profile segment (" + NumericsHelper::ToString(currentSegmentStartPointX) + ", " +
+                        NumericsHelper::ToString(currentSegmentStartPointZ) + ") must be equal to the end point of the previous profile segment (" +
+                        NumericsHelper::ToString(previousSegmentEndPointX) + ", " + NumericsHelper::ToString(previousSegmentEndPointZ) + ").");
                     return false;
                 }
             }
@@ -348,9 +345,7 @@ namespace DiKErnel::Integration
 
             if (!validateTopLayer(location->GetTopLayerType()))
             {
-                stringstream locationXStringStream;
-                locationXStringStream << locationX;
-                RegisterValidationError("The location with position " + locationXStringStream.str() + " has an invalid top layer type.");
+                RegisterValidationError("The location with position " + NumericsHelper::ToString(locationX) + " has an invalid top layer type.");
                 return false;
             }
         }
@@ -397,11 +392,8 @@ namespace DiKErnel::Integration
     {
         if (locationX <= outerToe.GetX() || locationX >= outerCrest.GetX())
         {
-            stringstream locationXStringStream;
-            locationXStringStream << locationX;
-
             RegisterValidationError(
-                "The location with position " + locationXStringStream.str() + " must be between the outer toe and outer crest.");
+                "The location with position " + NumericsHelper::ToString(locationX) + " must be between the outer toe and outer crest.");
             return false;
         }
 
@@ -415,11 +407,8 @@ namespace DiKErnel::Integration
     {
         if (locationX < outerCrest.GetX() || locationX > innerToe.GetX())
         {
-            stringstream locationXStringStream;
-            locationXStringStream << locationX;
-
             RegisterValidationError(
-                "The location with position " + locationXStringStream.str() + " must be on or between the outer crest and inner toe.");
+                "The location with position " + NumericsHelper::ToString(locationX) + " must be on or between the outer crest and inner toe.");
             return false;
         }
 

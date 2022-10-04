@@ -20,6 +20,8 @@
 
 #pragma once
 
+#include <string>
+
 namespace DiKErnel::Util
 {
     /*!
@@ -39,5 +41,14 @@ namespace DiKErnel::Util
             static bool AreEqual(
                 double first,
                 double second);
+
+            /*!
+             * \brief Converts the given value to a string.
+             * \param value
+             *        The value to convert.
+             * \return The converted string.
+             */
+            static std::string ToString(
+                double value);
     };
 }

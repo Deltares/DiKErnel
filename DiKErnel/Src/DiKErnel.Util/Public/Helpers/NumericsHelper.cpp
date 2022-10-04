@@ -21,6 +21,7 @@
 #include "NumericsHelper.h"
 
 #include <cmath>
+#include <sstream>
 
 namespace DiKErnel::Util
 {
@@ -31,5 +32,13 @@ namespace DiKErnel::Util
         const double second)
     {
         return abs(first - second) <= numeric_limits<double>::epsilon();
+    }
+
+    string NumericsHelper::ToString(
+        const double value)
+    {
+        stringstream stringStream;
+        stringStream << value;
+        return stringStream.str();
     }
 }
