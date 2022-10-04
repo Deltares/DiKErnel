@@ -20,6 +20,13 @@ else()
   set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /MTd")
 endif()
 
+# Set build platform
+if(CMAKE_GENERATOR_PLATFORM STREQUAL "Win32")
+  set(BUILD_PLATFORM "x86")
+else()
+  set(BUILD_PLATFORM "x64")
+endif()
+
 # Set global properties
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
