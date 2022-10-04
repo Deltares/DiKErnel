@@ -235,21 +235,19 @@ namespace DiKErnel::Integration
             return true;
         }
 
-        if (ranges::none_of(_profileSegmentDataItemReferences, [characteristicPoint](
-                        const reference_wrapper<ProfileDataFactorySegment> profileSegmentDataItemReference)
-                            {
-                                const auto& profileSegmentDataItem = profileSegmentDataItemReference.get();
-                                const auto characteristicPointX = characteristicPoint->GetX();
+        const auto characteristicPointX = characteristicPoint->GetX();
 
-                                return NumericsHelper::AreEqual(profileSegmentDataItem.GetStartPointX(), characteristicPointX)
-                                        || NumericsHelper::AreEqual(profileSegmentDataItem.GetEndPointX(), characteristicPointX);
-                            }))
+        for (const auto& profileSegment : _profileSegmentDataItems)
         {
-            RegisterValidationError("The " + characteristicPointName + " must be on a start or end point of a segment.");
-            return false;
+            if (NumericsHelper::AreEqual(profileSegment->GetStartPointX(), characteristicPointX)
+                || NumericsHelper::AreEqual(profileSegment->GetEndPointX(), characteristicPointX))
+            {
+                return true;
+            }
         }
 
-        return true;
+        RegisterValidationError("The " + characteristicPointName + " must be on a start or end point of a profile segment.");
+        return false;
     }
 
     ProfileDataFactoryPoint* CalculationInputBuilder::GetProfilePointDataItemForCharacteristicPointType(

@@ -303,7 +303,7 @@ namespace DiKErnel::Integration::Test
         const auto& events = result->GetEvents();
         ASSERT_EQ(1, events.size());
 
-        EventAssertHelper::AssertEvent(EventType::Error, "The outer toe must be on a start or end point of a segment.", events.at(0));
+        EventAssertHelper::AssertEvent(EventType::Error, "The outer toe must be on a start or end point of a profile segment.", events.at(0));
     }
 
     TEST_F(CalculationInputBuilderTest, GivenBuilderWithoutDikeProfilePointDataOuterToe_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
