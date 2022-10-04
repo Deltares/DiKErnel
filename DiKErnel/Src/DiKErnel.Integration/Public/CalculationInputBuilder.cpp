@@ -26,17 +26,22 @@
 
 #include "CalculationInput.h"
 #include "EventRegistry.h"
+#include "InputFactoryHelper.h"
 #include "LocationDependentInputFactory.h"
 #include "NumericsHelper.h"
+#include "OvertoppingAdapter.h"
 #include "ProfileDataFactory.h"
 #include "ProfileDataFactoryPoint.h"
 #include "ProfileDataFactorySegment.h"
+#include "ProfileSegmentDefaults.h"
 #include "TimeDependentInputFactory.h"
 #include "TimeDependentInputFactoryData.h"
 
 namespace DiKErnel::Integration
 {
     using namespace Core;
+    using namespace DomainLibrary;
+    using namespace External;
     using namespace Util;
     using namespace std;
 
@@ -284,6 +289,12 @@ namespace DiKErnel::Integration
             return ValidateLocationOnCrestOrInnerSlope(outerCrest, *innerToe, x);
         };
 
+        const function validateOvertoppingLocationSpecificProperties = [this, outerToe, outerCrest](
+            const GrassRevetmentOvertoppingLocationConstructionProperties* constructionProperties)
+        {
+            return ValidateOvertoppingLocationSpecificProperties(constructionProperties, outerToe, outerCrest);
+        };
+
         const function validateAsphaltRevetmentTopLayerType = [](
             const AsphaltRevetmentTopLayerType topLayerType)
         {
@@ -304,7 +315,8 @@ namespace DiKErnel::Integration
 
         return ranges::all_of(_locationConstructionPropertiesItemReferences,
                               [this, &validateLocationOnOuterSlope, &validateLocationOnCrestOrInnerSlope, &validateAsphaltRevetmentTopLayerType,
-                                  &validateGrassRevetmentTopLayerType, &validateNaturalStoneRevetmentTopLayerType](
+                                  &validateGrassRevetmentTopLayerType, &validateNaturalStoneRevetmentTopLayerType, &
+                                  validateOvertoppingLocationSpecificProperties](
                           const reference_wrapper<RevetmentLocationConstructionPropertiesBase> locationConstructionPropertiesItemReference)
                               {
                                   const auto& locationConstructionPropertiesItem = locationConstructionPropertiesItemReference.get();
@@ -314,7 +326,8 @@ namespace DiKErnel::Integration
                                               validateAsphaltRevetmentTopLayerType)
                                           && ValidateLocation<GrassRevetmentOvertoppingLocationConstructionProperties>(
                                               locationConstructionPropertiesItem, validateLocationOnCrestOrInnerSlope,
-                                              validateGrassRevetmentTopLayerType)
+                                              validateGrassRevetmentTopLayerType,
+                                              validateOvertoppingLocationSpecificProperties)
                                           && ValidateLocation<GrassRevetmentWaveImpactLocationConstructionProperties>(
                                               locationConstructionPropertiesItem, validateLocationOnOuterSlope, validateGrassRevetmentTopLayerType)
                                           && ValidateLocation<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(
@@ -344,6 +357,38 @@ namespace DiKErnel::Integration
                 stringstream locationXStringStream;
                 locationXStringStream << locationX;
                 RegisterValidationError("The location on X: " + locationXStringStream.str() + " has an invalid top layer type.");
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    template <typename TConstructionProperties, typename TValidateX, typename TValidateTopLayer, typename TValidateLocationSpecificProperties>
+    bool CalculationInputBuilder::ValidateLocation(
+        const RevetmentLocationConstructionPropertiesBase& constructionProperties,
+        const TValidateX& validateLocationX,
+        const TValidateTopLayer& validateTopLayer,
+        const TValidateLocationSpecificProperties& validateLocationSpecificProperties) const
+    {
+        if (const auto* location = dynamic_cast<const TConstructionProperties*>(&constructionProperties))
+        {
+            const auto locationX = location->GetX();
+            if (!validateLocationX(locationX))
+            {
+                return false;
+            }
+
+            if (!validateTopLayer(location->GetTopLayerType()))
+            {
+                stringstream locationXStringStream;
+                locationXStringStream << locationX;
+                RegisterValidationError("The location on X: " + locationXStringStream.str() + " has an invalid top layer type.");
+                return false;
+            }
+
+            if (!validateLocationSpecificProperties(location))
+            {
                 return false;
             }
         }
@@ -424,6 +469,63 @@ namespace DiKErnel::Integration
         }
 
         return true;
+    }
+
+    bool CalculationInputBuilder::ValidateOvertoppingLocationSpecificProperties(
+        const GrassRevetmentOvertoppingLocationConstructionProperties* constructionProperties,
+        const ProfileDataFactoryPoint& outerToe,
+        const ProfileDataFactoryPoint& outerCrest) const
+    {
+        vector<double> xValuesProfile;
+        vector<double> zValuesProfile;
+        vector<double> roughnessCoefficients;
+
+        for (const auto& profileSegment : _profileSegmentDataItemReferences)
+        {
+            const auto& profileSegmentReference = profileSegment.get();
+            if (const auto& startPointX = profileSegmentReference.GetStartPointX(); startPointX >= outerToe.GetX()
+                && startPointX < outerCrest.GetX())
+            {
+                xValuesProfile.push_back(startPointX);
+                zValuesProfile.push_back(profileSegmentReference.GetStartPointZ());
+                roughnessCoefficients.push_back(InputFactoryHelper::GetValue(profileSegmentReference.GetRoughnessCoefficient(),
+                                                                             ProfileSegmentDefaults::GetRoughnessCoefficient()));
+            }
+        }
+
+        xValuesProfile.push_back(outerCrest.GetX());
+        const auto outerCrestZ = FindMatchingZCoordinateOnSegment(outerCrest.GetX());
+        zValuesProfile.push_back(outerCrestZ);
+
+        const double dikeHeight = InputFactoryHelper::GetValue(constructionProperties->GetDikeHeight(), outerCrestZ);
+        if (const auto messages = Overtopping::OvertoppingAdapter::Validate(xValuesProfile, zValuesProfile, roughnessCoefficients, dikeHeight);
+            !messages.empty())
+        {
+            for (const auto& message : messages)
+            {
+                RegisterValidationError(*message);
+            }
+
+            return false;
+        }
+
+        return true;
+    }
+
+    double CalculationInputBuilder::FindMatchingZCoordinateOnSegment(
+        const double xCoordinate) const
+    {
+        for (const auto& segment : _profileSegmentDataItemReferences)
+        {
+            const auto& segmentReference = segment.get();
+            if (const auto& segmentStartPointX = segmentReference.GetStartPointX();
+                NumericsHelper::AreEqual(xCoordinate, segmentStartPointX))
+            {
+                return segmentReference.GetStartPointZ();
+            }
+        }
+
+        return _profileSegmentDataItemReferences.back().get().GetEndPointZ();
     }
 
     void CalculationInputBuilder::RegisterValidationError(

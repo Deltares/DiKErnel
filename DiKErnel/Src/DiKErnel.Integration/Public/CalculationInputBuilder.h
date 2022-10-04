@@ -214,6 +214,13 @@ namespace DiKErnel::Integration
                 const TValidateX& validateLocationX,
                 const TValidateTopLayer& validateTopLayer) const;
 
+            template <class TConstructionProperties, class TValidateX, class TValidateTopLayer, class TValidateLocationSpecificProperties>
+            bool ValidateLocation(
+                const RevetmentLocationConstructionPropertiesBase& constructionProperties,
+                const TValidateX& validateLocationX,
+                const TValidateTopLayer& validateTopLayer,
+                const TValidateLocationSpecificProperties& validateLocationSpecificProperties) const;
+
             [[nodiscard]]
             bool ValidateLocationOnOuterSlope(
                 const ProfileDataFactoryPoint& outerToe,
@@ -228,6 +235,16 @@ namespace DiKErnel::Integration
 
             [[nodiscard]]
             bool ValidateTimeSteps() const;
+
+            [[nodiscard]]
+            bool ValidateOvertoppingLocationSpecificProperties(
+                const GrassRevetmentOvertoppingLocationConstructionProperties* constructionProperties,
+                const ProfileDataFactoryPoint& outerToe,
+                const ProfileDataFactoryPoint& outerCrest) const;
+
+            [[nodiscard]]
+            double FindMatchingZCoordinateOnSegment(
+                double xCoordinate) const;
 
             void RegisterValidationError(
                 const std::string& message) const;

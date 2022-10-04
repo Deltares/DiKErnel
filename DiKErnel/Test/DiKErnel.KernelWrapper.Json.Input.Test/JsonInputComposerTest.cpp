@@ -99,13 +99,13 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
         ProfileDataAssertHelper::AssertProfileSegment(-30, -11.85, -20, -8.95, 0, profileSegments.at(0));
         ProfileDataAssertHelper::AssertProfileSegment(-20, -8.95, -10, -6.05, 0.05, profileSegments.at(1));
         ProfileDataAssertHelper::AssertProfileSegment(-10, -6.05, 0, -3.15, 0.1, profileSegments.at(2));
-        ProfileDataAssertHelper::AssertProfileSegment(0, -3.15, 5, -1.7, 0.15, profileSegments.at(3));
-        ProfileDataAssertHelper::AssertProfileSegment(5, -1.7, 10, -0.25, 0.2, profileSegments.at(4));
-        ProfileDataAssertHelper::AssertProfileSegment(10, -0.25, 15, 1.2, 0.25, profileSegments.at(5));
-        ProfileDataAssertHelper::AssertProfileSegment(15, 1.2, 20, 2.65, 0.3, profileSegments.at(6));
-        ProfileDataAssertHelper::AssertProfileSegment(20, 2.65, 25, 4.1, 0.35, profileSegments.at(7));
-        ProfileDataAssertHelper::AssertProfileSegment(25, 4.1, 30, 5.55, 0.4, profileSegments.at(8));
-        ProfileDataAssertHelper::AssertProfileSegment(30, 5.55, 35, 7, 0.45, profileSegments.at(9));
+        ProfileDataAssertHelper::AssertProfileSegment(0, -3.15, 5, -1.7, 0.5, profileSegments.at(3));
+        ProfileDataAssertHelper::AssertProfileSegment(5, -1.7, 10, -0.25, 0.55, profileSegments.at(4));
+        ProfileDataAssertHelper::AssertProfileSegment(10, -0.25, 15, 1.2, 0.65, profileSegments.at(5));
+        ProfileDataAssertHelper::AssertProfileSegment(15, 1.2, 20, 2.65, 0.70, profileSegments.at(6));
+        ProfileDataAssertHelper::AssertProfileSegment(20, 2.65, 25, 4.1, 0.75, profileSegments.at(7));
+        ProfileDataAssertHelper::AssertProfileSegment(25, 4.1, 30, 5.55, 0.8, profileSegments.at(8));
+        ProfileDataAssertHelper::AssertProfileSegment(30, 5.55, 35, 7, 1.0, profileSegments.at(9));
         ProfileDataAssertHelper::AssertProfileSegment(35, 7, 40, 8.45, 0.5, profileSegments.at(10));
         ProfileDataAssertHelper::AssertProfileSegment(40, 8.45, 45, 9.9, 0.55, profileSegments.at(11));
         ProfileDataAssertHelper::AssertProfileSegment(45, 9.9, 50, 11.35, 0.6, profileSegments.at(12));
@@ -248,7 +248,7 @@ namespace DiKErnel::KernelWrapper::Json::Input::Test
         ASSERT_NE(nullptr, grassRevetmentOvertoppingLocationDependentInputItem);
         LocationDependentInputAssertHelper::AssertDamageProperties(0.023, 0.3, *grassRevetmentOvertoppingLocationDependentInputItem);
 
-        constexpr auto expectedDikeHeight = 8.21;
+        constexpr auto expectedDikeHeight = 15.75;
         GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertGeneralProperties(
             65, &expectedDikeHeight, *grassRevetmentOvertoppingLocationDependentInputItem);
 
