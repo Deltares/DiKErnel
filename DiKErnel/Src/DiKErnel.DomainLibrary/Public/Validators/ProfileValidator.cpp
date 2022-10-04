@@ -18,29 +18,21 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#pragma once
-
-#include <memory>
-
-#include "ValidationIssue.h"
+#include "ProfileValidator.h"
 
 namespace DiKErnel::DomainLibrary
 {
-    /*!
-     * \brief Class that holds all time step related validation routines.
-     */
-    class ProfileDataValidator
+    using namespace std;
+    using namespace Util;
+
+    unique_ptr<ValidationIssue> ProfileValidator::RoughnessCoefficient(
+        const double roughnessCoefficient)
     {
-        public:
-            /*!
-             * \brief Validates the roughness coefficient.
-             * \param roughnessCoefficient
-             *        The roughness coefficient.
-             *        Unit = [-]
-             * \return A validation issue when the roughness coefficient is not valid; nullptr
-             *         otherwise.
-             */
-            static std::unique_ptr<Util::ValidationIssue> RoughnessCoefficient(
-                double roughnessCoefficient);
-    };
+        if (roughnessCoefficient < 0.5 || roughnessCoefficient > 1)
+        {
+            return make_unique<ValidationIssue>(ValidationIssueType::Error, "Roughness coefficient should be in range [0.5, 1].");
+        }
+
+        return nullptr;
+    }
 }

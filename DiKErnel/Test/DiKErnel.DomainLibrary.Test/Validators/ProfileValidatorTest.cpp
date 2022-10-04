@@ -20,7 +20,7 @@
 
 #include <gtest/gtest.h>
 
-#include "ProfileDataValidator.h"
+#include "ProfileValidator.h"
 #include "ValidatorAssertHelper.h"
 
 namespace DiKErnel::DomainLibrary::Test
@@ -30,16 +30,16 @@ namespace DiKErnel::DomainLibrary::Test
     using namespace Util;
     using namespace TestUtil;
 
-    struct ProfileDataValidatorTest : Test
+    struct ProfileValidatorTest : Test
     {
         static unique_ptr<ValidationIssue> RoughnessCoefficient(
             const double roughnessCoefficient)
         {
-            return ProfileDataValidator::RoughnessCoefficient(roughnessCoefficient);
+            return ProfileValidator::RoughnessCoefficient(roughnessCoefficient);
         }
     };
 
-    TEST_F(ProfileDataValidatorTest, RoughnessCoefficient_VariousScenarios_ExpectedValues)
+    TEST_F(ProfileValidatorTest, RoughnessCoefficient_VariousScenarios_ExpectedValues)
     {
         const auto validateAction = RoughnessCoefficient;
 

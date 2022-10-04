@@ -24,7 +24,7 @@
 
 #include "CharacteristicPointsHelper.h"
 #include "NumericsHelper.h"
-#include "ProfileDataValidator.h"
+#include "ProfileValidator.h"
 #include "ValidationHelper.h"
 #include "ValidationIssue.h"
 
@@ -60,7 +60,7 @@ namespace DiKErnel::Integration
         vector<unique_ptr<ValidationIssue>> validationIssues;
         for (const auto& profileSegment : _profileSegments)
         {
-            validationIssues.push_back(ProfileDataValidator::RoughnessCoefficient(profileSegment->GetRoughnessCoefficient()));
+            validationIssues.push_back(ProfileValidator::RoughnessCoefficient(profileSegment->GetRoughnessCoefficient()));
         }
 
         return ValidationHelper::RegisterValidationIssues(validationIssues);

@@ -61,7 +61,7 @@ set(SOURCEFILES_DEFAULTS_NATURAL_STONE_REVETMENT
 
 set(SOURCEFILES_VALIDATORS
   ${VALIDATORS_FOLDER}/HydraulicLoadsValidatorTest.cpp
-  ${VALIDATORS_FOLDER}/ProfileDataValidatorTest.cpp
+  ${VALIDATORS_FOLDER}/ProfileValidatorTest.cpp
   ${VALIDATORS_FOLDER}/RevetmentValidatorTest.cpp
 )
 
