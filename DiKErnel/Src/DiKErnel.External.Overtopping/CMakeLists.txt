@@ -61,7 +61,6 @@ set_target_properties(dllDikesOvertopping PROPERTIES
 # Install overtopping files
 set(OVERTOPPING_FILES
   ${OVERTOPPING_FOLDER}/dllDikesOvertopping.dll
-  ${OVERTOPPING_FOLDER}/dllDikesOvertopping.lib
   ${OVERTOPPING_FOLDER}/feedbackDLL.dll
   ${OVERTOPPING_FOLDER}/libifcoremd.dll
   ${OVERTOPPING_FOLDER}/libiomp5md.dll
