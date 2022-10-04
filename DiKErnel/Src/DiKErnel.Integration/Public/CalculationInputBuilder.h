@@ -20,6 +20,8 @@
 
 #pragma once
 
+#include <functional>
+
 #include "AsphaltRevetmentWaveImpactLocationConstructionProperties.h"
 #include "DataResult.h"
 #include "GrassRevetmentOvertoppingLocationConstructionProperties.h"
@@ -207,19 +209,14 @@ namespace DiKErnel::Integration
                 const ProfileDataFactoryPoint& outerCrest,
                 const ProfileDataFactoryPoint* innerToe) const;
 
-            template <typename TConstructionProperties, typename TValidateX, typename TValidateTopLayer>
+            template <class TConstructionProperties, class TValidateX, class TValidateTopLayer>
             [[nodiscard]]
             bool ValidateLocation(
                 const RevetmentLocationConstructionPropertiesBase& constructionProperties,
                 const TValidateX& validateLocationX,
-                const TValidateTopLayer& validateTopLayer) const;
-
-            template <class TConstructionProperties, class TValidateX, class TValidateTopLayer, class TValidateLocationSpecificProperties>
-            bool ValidateLocation(
-                const RevetmentLocationConstructionPropertiesBase& constructionProperties,
-                const TValidateX& validateLocationX,
                 const TValidateTopLayer& validateTopLayer,
-                const TValidateLocationSpecificProperties& validateLocationSpecificProperties) const;
+                const std::function<bool(
+                    const TConstructionProperties*)>* validateLocationSpecificProperties = nullptr) const;
 
             [[nodiscard]]
             bool ValidateLocationOnOuterSlope(
@@ -243,8 +240,13 @@ namespace DiKErnel::Integration
                 const ProfileDataFactoryPoint& outerCrest) const;
 
             [[nodiscard]]
-            double FindMatchingZCoordinateOnSegment(
+            double GetMatchingZCoordinateOnSegment(
                 double xCoordinate) const;
+
+            [[nodiscard]]
+            static double GetOvertoppingDikeHeight(
+                const double* locationDikeHeight,
+                double outerCrestZCoordinate);
 
             void RegisterValidationError(
                 const std::string& message) const;

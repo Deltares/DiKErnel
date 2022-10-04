@@ -318,7 +318,7 @@ namespace DiKErnel::Integration
                     locationReference, validateLocationOnOuterSlope, validateAsphaltRevetmentTopLayerType)
                 || !ValidateLocation<GrassRevetmentOvertoppingLocationConstructionProperties>(
                     locationReference, validateLocationOnCrestOrInnerSlope, validateGrassRevetmentTopLayerType,
-                    validateOvertoppingLocationSpecificProperties)
+                    &validateOvertoppingLocationSpecificProperties)
                 || !ValidateLocation<GrassRevetmentWaveImpactLocationConstructionProperties>(
                     locationReference, validateLocationOnOuterSlope, validateGrassRevetmentTopLayerType)
                 || !ValidateLocation<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(
@@ -337,7 +337,8 @@ namespace DiKErnel::Integration
     bool CalculationInputBuilder::ValidateLocation(
         const RevetmentLocationConstructionPropertiesBase& constructionProperties,
         const TValidateX& validateLocationX,
-        const TValidateTopLayer& validateTopLayer) const
+        const TValidateTopLayer& validateTopLayer,
+        const std::function<bool(const TConstructionProperties*)>* validateLocationSpecificProperties) const
     {
         if (const auto* location = dynamic_cast<const TConstructionProperties*>(&constructionProperties))
         {
@@ -352,26 +353,8 @@ namespace DiKErnel::Integration
                 RegisterValidationError("The location with position " + NumericsHelper::ToString(locationX) + " has an invalid top layer type.");
                 return false;
             }
-        }
 
-        return true;
-    }
-
-    template <typename TConstructionProperties, typename TValidateX, typename TValidateTopLayer, typename TValidateLocationSpecificProperties>
-    bool CalculationInputBuilder::ValidateLocation(
-        const RevetmentLocationConstructionPropertiesBase& constructionProperties,
-        const TValidateX& validateLocationX,
-        const TValidateTopLayer& validateTopLayer,
-        const TValidateLocationSpecificProperties& validateLocationSpecificProperties) const
-    {
-        if (!ValidateLocation<TConstructionProperties>(constructionProperties, validateLocationX, validateTopLayer))
-        {
-            return false;
-        }
-
-        if (const auto* location = dynamic_cast<const TConstructionProperties*>(&constructionProperties))
-        {
-            if (!validateLocationSpecificProperties(location))
+            if (validateLocationSpecificProperties != nullptr && !validateLocationSpecificProperties->operator()(location))
             {
                 return false;
             }
@@ -472,10 +455,10 @@ namespace DiKErnel::Integration
         }
 
         xValuesProfile.push_back(outerCrest.GetX());
-        const auto outerCrestZ = FindMatchingZCoordinateOnSegment(outerCrest.GetX());
+        const auto outerCrestZ = GetMatchingZCoordinateOnSegment(outerCrest.GetX());
         zValuesProfile.push_back(outerCrestZ);
 
-        const double dikeHeight = InputHelper::GetValue(constructionProperties->GetDikeHeight(), outerCrestZ);
+        const double dikeHeight = GetOvertoppingDikeHeight(constructionProperties->GetDikeHeight(), outerCrestZ);
         if (const auto messages = Overtopping::OvertoppingAdapter::Validate(xValuesProfile, zValuesProfile, roughnessCoefficients, dikeHeight);
             !messages.empty())
         {
@@ -490,7 +473,7 @@ namespace DiKErnel::Integration
         return true;
     }
 
-    double CalculationInputBuilder::FindMatchingZCoordinateOnSegment(
+    double CalculationInputBuilder::GetMatchingZCoordinateOnSegment(
         const double xCoordinate) const
     {
         for (const auto& segment : _profileSegmentDataItemReferences)
@@ -504,6 +487,17 @@ namespace DiKErnel::Integration
         }
 
         return _profileSegmentDataItemReferences.back().get().GetEndPointZ();
+    }
+
+    double CalculationInputBuilder::GetOvertoppingDikeHeight(const double* locationDikeHeight,
+        const double outerCrestZCoordinate)
+    {
+        if(locationDikeHeight == nullptr)
+        {
+            return outerCrestZCoordinate;
+        }
+
+        return *locationDikeHeight;
     }
 
     void CalculationInputBuilder::RegisterValidationError(
