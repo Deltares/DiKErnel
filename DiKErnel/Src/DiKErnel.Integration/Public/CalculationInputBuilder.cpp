@@ -253,15 +253,15 @@ namespace DiKErnel::Integration
     ProfileDataFactoryPoint* CalculationInputBuilder::GetProfilePointDataItemForCharacteristicPointType(
         const CharacteristicPointType characteristicPointType) const
     {
-        const auto result = ranges::find_if(_profilePointDataItemReferences, [characteristicPointType](
-                                        const reference_wrapper<ProfileDataFactoryPoint> profilePointDataItem)
-                                            {
-                                                return profilePointDataItem.get().GetCharacteristicPoint() == characteristicPointType;
-                                            });
+        for (const auto& profilePoint : _profilePointDataItems)
+        {
+            if (profilePoint->GetCharacteristicPoint() == characteristicPointType)
+            {
+                return profilePoint.get();
+            }
+        }
 
-        return result != _profilePointDataItemReferences.end()
-                   ? &result->get()
-                   : nullptr;
+        return nullptr;
     }
 
     bool CalculationInputBuilder::ValidateLocations(
@@ -311,29 +311,26 @@ namespace DiKErnel::Integration
             return topLayerType == NaturalStoneRevetmentTopLayerType::NordicStone;
         };
 
-        return ranges::all_of(_locationConstructionPropertiesItemReferences,
-                              [this, &validateLocationOnOuterSlope, &validateLocationOnCrestOrInnerSlope, &validateAsphaltRevetmentTopLayerType,
-                                  &validateGrassRevetmentTopLayerType, &validateNaturalStoneRevetmentTopLayerType, &
-                                  validateOvertoppingLocationSpecificProperties](
-                          const reference_wrapper<RevetmentLocationConstructionPropertiesBase> locationConstructionPropertiesItemReference)
-                              {
-                                  const auto& locationConstructionPropertiesItem = locationConstructionPropertiesItemReference.get();
+        for (const auto& location : _locationConstructionPropertiesItems)
+        {
+            if (const auto& locationReference = *location;
+                !ValidateLocation<AsphaltRevetmentWaveImpactLocationConstructionProperties>(
+                    locationReference, validateLocationOnOuterSlope, validateAsphaltRevetmentTopLayerType)
+                || !ValidateLocation<GrassRevetmentOvertoppingLocationConstructionProperties>(
+                    locationReference, validateLocationOnCrestOrInnerSlope, validateGrassRevetmentTopLayerType,
+                    validateOvertoppingLocationSpecificProperties)
+                || !ValidateLocation<GrassRevetmentWaveImpactLocationConstructionProperties>(
+                    locationReference, validateLocationOnOuterSlope, validateGrassRevetmentTopLayerType)
+                || !ValidateLocation<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(
+                    locationReference, validateLocationOnOuterSlope, validateGrassRevetmentTopLayerType)
+                || !ValidateLocation<NaturalStoneRevetmentLocationConstructionProperties>(
+                    locationReference, validateLocationOnOuterSlope, validateNaturalStoneRevetmentTopLayerType))
+            {
+                return false;
+            }
+        }
 
-                                  return ValidateLocation<AsphaltRevetmentWaveImpactLocationConstructionProperties>(
-                                              locationConstructionPropertiesItem, validateLocationOnOuterSlope,
-                                              validateAsphaltRevetmentTopLayerType)
-                                          && ValidateLocation<GrassRevetmentOvertoppingLocationConstructionProperties>(
-                                              locationConstructionPropertiesItem, validateLocationOnCrestOrInnerSlope,
-                                              validateGrassRevetmentTopLayerType,
-                                              validateOvertoppingLocationSpecificProperties)
-                                          && ValidateLocation<GrassRevetmentWaveImpactLocationConstructionProperties>(
-                                              locationConstructionPropertiesItem, validateLocationOnOuterSlope, validateGrassRevetmentTopLayerType)
-                                          && ValidateLocation<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(
-                                              locationConstructionPropertiesItem, validateLocationOnOuterSlope, validateGrassRevetmentTopLayerType)
-                                          && ValidateLocation<NaturalStoneRevetmentLocationConstructionProperties>(
-                                              locationConstructionPropertiesItem, validateLocationOnOuterSlope,
-                                              validateNaturalStoneRevetmentTopLayerType);
-                              });
+        return true;
     }
 
     template <typename TConstructionProperties, typename TValidateX, typename TValidateTopLayer>
