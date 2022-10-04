@@ -235,11 +235,15 @@ namespace DiKErnel::Integration
 
         for (const auto& profileSegment : _profileSegmentDataItems)
         {
-            if (NumericsHelper::AreEqual(profileSegment->GetStartPointX(), characteristicPointX)
-                || NumericsHelper::AreEqual(profileSegment->GetEndPointX(), characteristicPointX))
+            if (NumericsHelper::AreEqual(profileSegment->GetStartPointX(), characteristicPointX))
             {
                 return true;
             }
+        }
+
+        if (NumericsHelper::AreEqual(_profileSegmentDataItems.back()->GetEndPointX(), characteristicPointX))
+        {
+            return true;
         }
 
         RegisterValidationError("The " + characteristicPointName + " must be on a start or end point of a profile segment.");

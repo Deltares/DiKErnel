@@ -96,11 +96,13 @@ namespace DiKErnel::Util::Test
         const auto string2 = NumericsHelper::ToString(1e-6);
         const auto string3 = NumericsHelper::ToString(0.001);
         const auto string4 = NumericsHelper::ToString(1);
+        const auto string5 = NumericsHelper::ToString(0.123456789);
 
         // Assert
         ASSERT_EQ("0.3", string1);
         ASSERT_EQ("1e-06", string2);
         ASSERT_EQ("0.001", string3);
         ASSERT_EQ("1", string4);
+        ASSERT_EQ("0.123457", string5);
     }
 }

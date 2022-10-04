@@ -161,7 +161,7 @@ namespace DiKErnel::Cli
         auto requiredArgumentsArePresent = true;
         for (const auto& [argumentKey, argumentType] : _argumentOptions)
         {
-            if(argumentType & Required && !_readArguments.contains(argumentKey))
+            if (argumentType & Required && !_readArguments.contains(argumentKey))
             {
                 requiredArgumentsArePresent = false;
                 break;

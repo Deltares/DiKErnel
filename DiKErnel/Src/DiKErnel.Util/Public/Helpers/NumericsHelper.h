@@ -47,6 +47,8 @@ namespace DiKErnel::Util
              * \param value
              *        The value to convert.
              * \return The converted string.
+             * \remarks Numbers are rounded to 6 decimal places. When less decimals are present,
+             *          trailing zeros are not presented.
              */
             static std::string ToString(
                 double value);
