@@ -71,7 +71,7 @@ namespace DiKErnel::Integration::Test
             GivenLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(
                 addLocation, "The location with position " + locationX + " must be between the outer toe and outer crest.");
         }
-            
+
         static void GivenGrassOvertoppingLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(
             const double locationX,
             const string& locationXString)
@@ -115,7 +115,7 @@ namespace DiKErnel::Integration::Test
 
     #pragma region Profile segments
 
-    TEST_F(CalculationInputBuilderTest, GivenBuilderWithoutDikeSegments_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
+    TEST_F(CalculationInputBuilderTest, GivenBuilderWithoutDikeProfileSegments_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         // Given
         const CalculationInputBuilder builder;
@@ -133,7 +133,7 @@ namespace DiKErnel::Integration::Test
     }
 
     TEST_F(CalculationInputBuilderTest,
-           GivenBuilderWithDikeSegmentsAdded_WhenSegmentXCoordinateUnchained_ThenReturnsResultWithSuccessfulFalseAndEvent)
+           GivenBuilderWithDikeProfileSegmentsAdded_WhenProfileSegmentXCoordinateUnchained_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         // Given
         CalculationInputBuilder builder;
@@ -156,7 +156,7 @@ namespace DiKErnel::Integration::Test
     }
 
     TEST_F(CalculationInputBuilderTest,
-           GivenBuilderWithDikeSegmentsAdded_WhenSegmentZCoordinateUnchained_ThenReturnsResultWithSuccessfulFalseAndEvent)
+           GivenBuilderWithDikeProfileSegmentsAdded_WhenProfileSegmentZCoordinateUnchained_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         // Given
         CalculationInputBuilder builder;
@@ -178,7 +178,7 @@ namespace DiKErnel::Integration::Test
             events.at(0));
     }
 
-    TEST_F(CalculationInputBuilderTest, GivenBuilderWithDikeSegmentAddedWithoutRoughness_WhenBuild_ThenReturnsResultWithCalculationInput)
+    TEST_F(CalculationInputBuilderTest, GivenBuilderWithDikeProfileSegmentAddedWithoutRoughness_WhenBuild_ThenReturnsResultWithCalculationInput)
     {
         // Given
         constexpr auto startPointX = 10;
@@ -208,7 +208,7 @@ namespace DiKErnel::Integration::Test
         ProfileDataAssertHelper::AssertProfileSegment(startPointX, startPointZ, endPointX, endPointZ, 1.0, actualProfileSegments.at(0));
     }
 
-    TEST_F(CalculationInputBuilderTest, GivenBuilderWithDikeSegmentAddedWithRoughness_WhenBuild_ThenReturnsResultWithCalculationInput)
+    TEST_F(CalculationInputBuilderTest, GivenBuilderWithDikeProfileSegmentAddedWithRoughness_WhenBuild_ThenReturnsResultWithCalculationInput)
     {
         // Given
         constexpr auto startPointX = 10;
@@ -240,22 +240,22 @@ namespace DiKErnel::Integration::Test
                                                       actualProfileSegments.at(0));
     }
 
-    TEST_F(CalculationInputBuilderTest, GivenBuilderWithDikeSegmentsAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
+    TEST_F(CalculationInputBuilderTest, GivenBuilderWithDikeProfileSegmentsAdded_WhenBuild_ThenReturnsResultWithCalculationInput)
     {
         // Given
-        constexpr auto startPointXSegmentOne = 10;
-        constexpr auto startPointZSegmentOne = 20;
-        constexpr auto endPointXSegmentOne = 20;
-        constexpr auto endPointZSegmentOne = 30;
-        constexpr auto endPointXSegmentTwo = 30;
-        constexpr auto endPointZSegmentTwo = 40;
+        constexpr auto startPointXSegment1 = 10;
+        constexpr auto startPointZSegment1 = 20;
+        constexpr auto endPointXSegment1 = 20;
+        constexpr auto endPointZSegment1 = 30;
+        constexpr auto endPointXSegment2 = 30;
+        constexpr auto endPointZSegment2 = 40;
         constexpr auto roughnessCoefficient = 13.37;
 
         CalculationInputBuilder builder;
-        builder.AddDikeProfileSegment(startPointXSegmentOne, startPointZSegmentOne, endPointXSegmentOne, endPointZSegmentOne, roughnessCoefficient);
-        builder.AddDikeProfileSegment(endPointXSegmentOne, endPointZSegmentOne, endPointXSegmentTwo, endPointZSegmentTwo, roughnessCoefficient);
-        builder.AddDikeProfilePointData(startPointXSegmentOne, CharacteristicPointType::OuterToe);
-        builder.AddDikeProfilePointData(endPointXSegmentOne, CharacteristicPointType::OuterCrest);
+        builder.AddDikeProfileSegment(startPointXSegment1, startPointZSegment1, endPointXSegment1, endPointZSegment1, roughnessCoefficient);
+        builder.AddDikeProfileSegment(endPointXSegment1, endPointZSegment1, endPointXSegment2, endPointZSegment2, roughnessCoefficient);
+        builder.AddDikeProfilePointData(startPointXSegment1, CharacteristicPointType::OuterToe);
+        builder.AddDikeProfilePointData(endPointXSegment1, CharacteristicPointType::OuterCrest);
         builder.AddGrassWaveImpactLocation(
             make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(10.1, GrassRevetmentTopLayerType::ClosedSod));
         builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
@@ -271,15 +271,15 @@ namespace DiKErnel::Integration::Test
         const auto& actualProfileSegments = actualProfileData.GetProfileSegments();
         ASSERT_EQ(2, actualProfileSegments.size());
 
-        const auto& segmentOne = actualProfileSegments.at(0).get();
-        ProfileDataAssertHelper::AssertProfileSegment(startPointXSegmentOne, startPointZSegmentOne, endPointXSegmentOne, endPointZSegmentOne,
-                                                      roughnessCoefficient, segmentOne);
+        const auto& profileSegment1 = actualProfileSegments.at(0).get();
+        ProfileDataAssertHelper::AssertProfileSegment(startPointXSegment1, startPointZSegment1, endPointXSegment1, endPointZSegment1,
+                                                      roughnessCoefficient, profileSegment1);
 
-        const auto& segmentTwo = actualProfileSegments.at(1).get();
-        ProfileDataAssertHelper::AssertProfileSegment(endPointXSegmentOne, endPointZSegmentOne, endPointXSegmentTwo, endPointZSegmentTwo,
-                                                      roughnessCoefficient, segmentTwo);
+        const auto& profileSegment2 = actualProfileSegments.at(1).get();
+        ProfileDataAssertHelper::AssertProfileSegment(endPointXSegment1, endPointZSegment1, endPointXSegment2, endPointZSegment2,
+                                                      roughnessCoefficient, profileSegment2);
 
-        ASSERT_EQ(&segmentOne.GetEndPoint(), &segmentTwo.GetStartPoint());
+        ASSERT_EQ(&profileSegment1.GetEndPoint(), &profileSegment2.GetStartPoint());
     }
 
     #pragma endregion
@@ -287,7 +287,7 @@ namespace DiKErnel::Integration::Test
     #pragma region Profile point data
 
     TEST_F(CalculationInputBuilderTest,
-           GivenBuilderWithDikeProfilePointDataNotOnSegmentPoints_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
+           GivenBuilderWithDikeProfilePointDataNotOnProfileSegmentPoints_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         // Given
         CalculationInputBuilder builder;
@@ -430,7 +430,7 @@ namespace DiKErnel::Integration::Test
 
     #pragma endregion
 
-    #pragma region Time step
+    #pragma region Time steps
 
     TEST_F(CalculationInputBuilderTest, GivenBuilderWithoutTimeStepAdded_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
@@ -571,7 +571,6 @@ namespace DiKErnel::Integration::Test
     TEST_F(CalculationInputBuilderTest,
            GivenBuilderWithAsphaltWaveImpactLocationWithXOnOuterToe_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
-        // Given & When & Then
         GivenOuterSlopeLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent([](
         CalculationInputBuilder& builder)
             {
@@ -584,7 +583,6 @@ namespace DiKErnel::Integration::Test
     TEST_F(CalculationInputBuilderTest,
            GivenBuilderWithAsphaltWaveImpactLocationWithXOnOuterCrest_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
-        // Given & When & Then
         GivenOuterSlopeLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent([](
         CalculationInputBuilder& builder)
             {
@@ -806,16 +804,14 @@ namespace DiKErnel::Integration::Test
     #pragma region Grass overtopping
 
     TEST_F(CalculationInputBuilderTest,
-           GivenBuilderWithGrassOvertoppingLocationWithXOnOuterToe_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
+           GivenBuilderWithGrassOvertoppingLocationWithXLeftFromOuterToe_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
-        // Given & When & Then
         GivenGrassOvertoppingLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(9.9, "9.9");
     }
 
     TEST_F(CalculationInputBuilderTest,
-           GivenBuilderWithGrassOvertoppingLocationWithXOnOuterCrest_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
+           GivenBuilderWithGrassOvertoppingLocationWithXRightFromOuterCrest_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
-        // Given & When & Then
         GivenGrassOvertoppingLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(50.1, "50.1");
     }
 
@@ -1033,7 +1029,6 @@ namespace DiKErnel::Integration::Test
     TEST_F(CalculationInputBuilderTest,
            GivenBuilderWithGrassWaveImpactLocationWithXOnOuterToe_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
-        // Given & When & Then
         GivenOuterSlopeLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent([](
         CalculationInputBuilder& builder)
             {
@@ -1045,7 +1040,6 @@ namespace DiKErnel::Integration::Test
     TEST_F(CalculationInputBuilderTest,
            GivenBuilderWithGrassWaveImpactLocationWithXOnOuterCrest_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
-        // Given & When & Then
         GivenOuterSlopeLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent([](
         CalculationInputBuilder& builder)
             {
@@ -1260,7 +1254,6 @@ namespace DiKErnel::Integration::Test
     TEST_F(CalculationInputBuilderTest,
            GivenBuilderWithGrassWaveRunupRayleighLocationWithXOnOuterToe_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
-        // Given & When & Then
         GivenOuterSlopeLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent([](
         CalculationInputBuilder& builder)
             {
@@ -1272,7 +1265,6 @@ namespace DiKErnel::Integration::Test
     TEST_F(CalculationInputBuilderTest,
            GivenBuilderWithGrassWaveRunupRayleighLocationWithXOnOuterCrest_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
-        // Given & When & Then
         GivenOuterSlopeLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent([](
         CalculationInputBuilder& builder)
             {
@@ -1500,7 +1492,6 @@ namespace DiKErnel::Integration::Test
     TEST_F(CalculationInputBuilderTest,
            GivenBuilderWithNaturalStoneLocationWithXOnOuterToe_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
-        // Given & When & Then
         GivenOuterSlopeLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent([](
         CalculationInputBuilder& builder)
             {
@@ -1512,7 +1503,6 @@ namespace DiKErnel::Integration::Test
     TEST_F(CalculationInputBuilderTest,
            GivenBuilderWithNaturalStoneLocationWithXOnOuterCrest_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
-        // Given & When & Then
         GivenOuterSlopeLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent([](
         CalculationInputBuilder& builder)
             {

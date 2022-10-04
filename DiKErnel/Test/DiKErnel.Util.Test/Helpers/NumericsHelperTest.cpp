@@ -26,7 +26,7 @@ namespace DiKErnel::Util::Test
 {
     using namespace std;
 
-    TEST(NumericsHelperTest, AreEqual_SameValue_ReturnsTrue)
+    TEST(NumericsHelperTest, AreEqual_EqualValue_ReturnsTrue)
     {
         // Call
         const auto areEqual = NumericsHelper::AreEqual(0.1, 0.1);
