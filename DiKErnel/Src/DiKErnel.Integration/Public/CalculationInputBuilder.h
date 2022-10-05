@@ -209,14 +209,44 @@ namespace DiKErnel::Integration
                 const ProfileDataFactoryPoint& outerCrest,
                 const ProfileDataFactoryPoint* innerToe) const;
 
-            template <class TConstructionProperties, class TValidateX, class TValidateTopLayer>
             [[nodiscard]]
-            bool ValidateLocation(
-                const RevetmentLocationConstructionPropertiesBase& constructionProperties,
-                const TValidateX& validateLocationX,
-                const TValidateTopLayer& validateTopLayer,
-                const std::function<bool(
-                    const TConstructionProperties*)>* validateLocationSpecificProperties = nullptr) const;
+            bool ValidateAsphaltRevetmentWaveImpactLocationConstructionProperties(
+                const AsphaltRevetmentWaveImpactLocationConstructionProperties& constructionProperties,
+                const ProfileDataFactoryPoint& outerToe,
+                const ProfileDataFactoryPoint& outerCrest) const;
+
+            [[nodiscard]]
+            bool ValidateGrassRevetmentOvertoppingLocationConstructionProperties(
+                const GrassRevetmentOvertoppingLocationConstructionProperties& constructionProperties,
+                const ProfileDataFactoryPoint& outerToe,
+                const ProfileDataFactoryPoint& outerCrest,
+                const ProfileDataFactoryPoint& innerToe) const;
+
+            [[nodiscard]]
+            bool ValidateGrassRevetmentWaveImpactLocationConstructionProperties(
+                const GrassRevetmentWaveImpactLocationConstructionProperties& constructionProperties,
+                const ProfileDataFactoryPoint& outerToe,
+                const ProfileDataFactoryPoint& outerCrest) const;
+
+            [[nodiscard]]
+            bool ValidateGrassRevetmentWaveRunupRayleighLocationConstructionProperties(
+                const GrassRevetmentWaveRunupRayleighLocationConstructionProperties& constructionProperties,
+                const ProfileDataFactoryPoint& outerToe,
+                const ProfileDataFactoryPoint& outerCrest) const;
+
+            [[nodiscard]]
+            bool ValidateNaturalStoneRevetmentLocationConstructionProperties(
+                const NaturalStoneRevetmentLocationConstructionProperties& constructionProperties,
+                const ProfileDataFactoryPoint& outerToe,
+                const ProfileDataFactoryPoint& outerCrest) const;
+
+            [[nodiscard]]
+            bool ValidateGrassRevetmentTopLayerType(
+                GrassRevetmentTopLayerType topLayerType,
+                double locationX) const;
+
+            [[nodiscard]]
+            bool ValidateTimeSteps() const;
 
             [[nodiscard]]
             bool ValidateLocationOnOuterSlope(
@@ -231,11 +261,18 @@ namespace DiKErnel::Integration
                 double locationX) const;
 
             [[nodiscard]]
-            bool ValidateTimeSteps() const;
+            bool ValidateAsphaltRevetmentTopLayerType(
+                AsphaltRevetmentTopLayerType topLayerType,
+                double locationX) const;
+
+            [[nodiscard]]
+            bool ValidateNaturalStoneRevetmentTopLayerType(
+                NaturalStoneRevetmentTopLayerType topLayerType,
+                double locationX) const;
 
             [[nodiscard]]
             bool ValidateOvertoppingLocationSpecificProperties(
-                const GrassRevetmentOvertoppingLocationConstructionProperties* constructionProperties,
+                const GrassRevetmentOvertoppingLocationConstructionProperties& constructionProperties,
                 const ProfileDataFactoryPoint& outerToe,
                 const ProfileDataFactoryPoint& outerCrest) const;
 
