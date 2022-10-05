@@ -99,6 +99,11 @@ namespace DiKErnel::External::Overtopping
                 double dikeHeight);
 
         private:
+            static Geometry CreateGeometry(
+                const std::vector<double>& xValues,
+                const std::vector<double>& zValues,
+                const std::vector<double>& roughnessCoefficients);
+
             inline static std::string _languageCode = "UK";
             inline static int _bufferSize = 256;
             inline static int _nrOfMessages = 12;

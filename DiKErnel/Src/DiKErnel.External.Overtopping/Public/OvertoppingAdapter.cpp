@@ -80,14 +80,7 @@ namespace DiKErnel::External::Overtopping
     {
         SetLanguage(_languageCode.c_str(), _languageCode.length());
 
-        Geometry geometry
-        {
-            ._normal = 0.0,
-            ._nPoints = static_cast<int>(xValues.size()),
-            ._xCoords = xValues.data(),
-            ._yCoords = zValues.data(),
-            ._roughness = roughnessCoefficients.data()
-        };
+        Geometry geometry = CreateGeometry(xValues, zValues, roughnessCoefficients);
 
         bool success = false;
         const auto messageBuffer = make_unique<string>();
@@ -135,14 +128,7 @@ namespace DiKErnel::External::Overtopping
             ._direction = waveDirection
         };
 
-        Geometry geometry
-        {
-            ._normal = 0.0,
-            ._nPoints = static_cast<int>(xValues.size()),
-            ._xCoords = xValues.data(),
-            ._yCoords = zValues.data(),
-            ._roughness = roughnessCoefficients.data()
-        };
+        auto geometry = CreateGeometry(xValues, zValues, roughnessCoefficients);
 
         Result result{};
 
@@ -157,5 +143,19 @@ namespace DiKErnel::External::Overtopping
                     &_verbosity, logFileName->c_str(), messageBuffer->length(), logFileName->length());
 
         return result._z2;
+    }
+
+    Geometry OvertoppingAdapter::CreateGeometry(
+        const vector<double>& xValues,
+        const vector<double>& zValues,
+        const vector<double>& roughnessCoefficients)
+    {
+        return Geometry{
+            ._normal = 0.0,
+            ._nPoints = static_cast<int>(xValues.size()),
+            ._xCoords = xValues.data(),
+            ._yCoords = zValues.data(),
+            ._roughness = roughnessCoefficients.data()
+        };
     }
 }
