@@ -36,10 +36,11 @@ namespace DiKErnel::Util::TestUtil
 
             void WaitForCompletion();
 
+            [[nodiscard]]
             const std::vector<std::reference_wrapper<Event>>& GetRegisteredEvents() const;
 
         private:
-            std::thread _thread;
+            std::jthread _thread;
             std::vector<std::unique_ptr<Event>> _registeredEvents = std::vector<std::unique_ptr<Event>>();
             std::vector<std::reference_wrapper<Event>> _registeredEventReferences = std::vector<std::reference_wrapper<Event>>();
 

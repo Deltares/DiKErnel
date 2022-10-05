@@ -29,10 +29,10 @@ namespace DiKErnel::Util::TestUtil
     EventRegistryTestHelper::EventRegistryTestHelper(
         int numberOfEventsToRegister)
     {
-        _thread = thread(
+        _thread = jthread(
             &EventRegistryTestHelper::PerformTest,
             this,
-            ref(numberOfEventsToRegister),
+            numberOfEventsToRegister,
             ref(_registeredEvents),
             ref(_registeredEventReferences));
     }
