@@ -39,9 +39,9 @@ namespace DiKErnel::Integration
 {
     using namespace Core;
     using namespace DomainLibrary;
-    using namespace External;
-    using namespace Util;
+    using namespace External::Overtopping;
     using namespace std;
+    using namespace Util;
 
     CalculationInputBuilder::CalculationInputBuilder() = default;
 
@@ -338,7 +338,8 @@ namespace DiKErnel::Integration
         const RevetmentLocationConstructionPropertiesBase& constructionProperties,
         const TValidateX& validateLocationX,
         const TValidateTopLayer& validateTopLayer,
-        const std::function<bool(const TConstructionProperties*)>* validateLocationSpecificProperties) const
+        const function<bool(
+            const TConstructionProperties*)>* validateLocationSpecificProperties) const
     {
         if (const auto* location = dynamic_cast<const TConstructionProperties*>(&constructionProperties))
         {
@@ -459,7 +460,7 @@ namespace DiKErnel::Integration
         zValuesProfile.push_back(outerCrestZ);
 
         const double dikeHeight = GetOvertoppingDikeHeight(constructionProperties->GetDikeHeight(), outerCrestZ);
-        if (const auto messages = Overtopping::OvertoppingAdapter::Validate(xValuesProfile, zValuesProfile, roughnessCoefficients, dikeHeight);
+        if (const auto messages = OvertoppingAdapter::Validate(xValuesProfile, zValuesProfile, roughnessCoefficients, dikeHeight);
             !messages.empty())
         {
             for (const auto& message : messages)
@@ -489,15 +490,16 @@ namespace DiKErnel::Integration
         return _profileSegmentDataItemReferences.back().get().GetEndPointZ();
     }
 
-    double CalculationInputBuilder::GetOvertoppingDikeHeight(const double* locationDikeHeight,
+    double CalculationInputBuilder::GetOvertoppingDikeHeight(
+        const double* locationDikeHeight,
         const double outerCrestZCoordinate)
     {
-        if(locationDikeHeight == nullptr)
+        if (locationDikeHeight != nullptr)
         {
-            return outerCrestZCoordinate;
+            return *locationDikeHeight;
         }
 
-        return *locationDikeHeight;
+        return outerCrestZCoordinate;
     }
 
     void CalculationInputBuilder::RegisterValidationError(

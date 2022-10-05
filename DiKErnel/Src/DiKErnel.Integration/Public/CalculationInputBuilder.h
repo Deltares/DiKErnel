@@ -243,6 +243,17 @@ namespace DiKErnel::Integration
             double GetMatchingZCoordinateOnSegment(
                 double xCoordinate) const;
 
+            /*!
+             * \brief Gets the location dike height.
+             * \param locationDikeHeight
+             *        The optional dike height of the location.
+             * \param outerCrestZCoordinate
+             *        The height of the outer crest.
+             * \return The dike height.
+             * \remarks In case the dike height of the location is not set, the height of the outer
+             *          crest is returned to provide a valid input for the validation from the
+             *          overtopping adapter.
+             */
             [[nodiscard]]
             static double GetOvertoppingDikeHeight(
                 const double* locationDikeHeight,
