@@ -452,13 +452,16 @@ namespace DiKErnel::Integration
                 zValuesProfile.push_back(profileSegmentReference.GetStartPointZ());
                 roughnessCoefficients.push_back(InputHelper::GetValue(profileSegmentReference.GetRoughnessCoefficient(),
                                                                       ProfileSegmentDefaults::GetRoughnessCoefficient()));
+
+                if (const auto& endPointX = profileSegmentReference.GetEndPointX(); NumericsHelper::AreEqual(endPointX, outerCrest.GetX()))
+                {
+                    xValuesProfile.push_back(endPointX);
+                    zValuesProfile.push_back(profileSegmentReference.GetEndPointZ());
+                }
             }
         }
 
-        xValuesProfile.push_back(outerCrest.GetX());
-        const auto outerCrestZ = GetMatchingZCoordinateOnSegment(outerCrest.GetX());
-        zValuesProfile.push_back(outerCrestZ);
-
+        const double outerCrestZ = zValuesProfile.back();
         const double dikeHeight = GetOvertoppingDikeHeight(constructionProperties->GetDikeHeight(), outerCrestZ);
         if (const auto messages = OvertoppingAdapter::Validate(xValuesProfile, zValuesProfile, roughnessCoefficients, dikeHeight);
             !messages.empty())
@@ -472,22 +475,6 @@ namespace DiKErnel::Integration
         }
 
         return true;
-    }
-
-    double CalculationInputBuilder::GetMatchingZCoordinateOnSegment(
-        const double xCoordinate) const
-    {
-        for (const auto& segment : _profileSegmentDataItemReferences)
-        {
-            const auto& segmentReference = segment.get();
-            if (const auto& segmentStartPointX = segmentReference.GetStartPointX();
-                NumericsHelper::AreEqual(xCoordinate, segmentStartPointX))
-            {
-                return segmentReference.GetStartPointZ();
-            }
-        }
-
-        return _profileSegmentDataItemReferences.back().get().GetEndPointZ();
     }
 
     double CalculationInputBuilder::GetOvertoppingDikeHeight(

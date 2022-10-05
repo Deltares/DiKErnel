@@ -239,10 +239,6 @@ namespace DiKErnel::Integration
                 const ProfileDataFactoryPoint& outerToe,
                 const ProfileDataFactoryPoint& outerCrest) const;
 
-            [[nodiscard]]
-            double GetMatchingZCoordinateOnSegment(
-                double xCoordinate) const;
-
             /*!
              * \brief Gets the location dike height.
              * \param locationDikeHeight
