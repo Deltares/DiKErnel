@@ -182,7 +182,7 @@ namespace DiKErnel::Integration
         _verticalDistanceWaterLevelElevation = HydraulicLoadFunctions::VerticalDistanceWaterLevelElevation(
             _dikeHeight, timeDependentInput.GetWaterLevel());
 
-        if (_verticalDistanceWaterLevelElevation > 0)
+        if (_verticalDistanceWaterLevelElevation >= 0)
         {
             const auto beginTime = timeDependentInput.GetBeginTime();
 
