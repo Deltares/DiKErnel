@@ -399,9 +399,9 @@ namespace DiKErnel::System::Test
         calculator.WaitForCompletion();
 
         // Then
-        constexpr int expectedTimeOfFailure = 34071;
+        constexpr int expectedTimeOfFailure = 23118;
 
-        AssertOutput(calculator, 9.62605080940481, &expectedTimeOfFailure);
+        AssertOutput(calculator, 12.994355885402687, &expectedTimeOfFailure);
     }
 
     TEST_F(GrassRevetmentOvertoppingCalculationTest,
