@@ -20,8 +20,6 @@
 
 #include "CalculationInputBuilder.h"
 
-#include <functional>
-
 #include "CalculationInput.h"
 #include "EventRegistry.h"
 #include "InputHelper.h"
@@ -278,8 +276,8 @@ namespace DiKErnel::Integration
         for (const auto& location : _locationConstructionPropertiesItems)
         {
             const auto* locationReference = location.get();
-            if (const auto* asphaltWaveImpactLocationConstructionProperties = dynamic_cast<const
-                    AsphaltRevetmentWaveImpactLocationConstructionProperties*>(locationReference);
+            if (const auto* asphaltWaveImpactLocationConstructionProperties = dynamic_cast<
+                    const AsphaltRevetmentWaveImpactLocationConstructionProperties*>(locationReference);
                 asphaltWaveImpactLocationConstructionProperties != nullptr
                 && !ValidateAsphaltRevetmentWaveImpactLocationConstructionProperties(
                     *asphaltWaveImpactLocationConstructionProperties, outerToe, outerCrest))
@@ -320,36 +318,6 @@ namespace DiKErnel::Integration
             {
                 return false;
             }
-        }
-
-        return true;
-    }
-
-    bool CalculationInputBuilder::ValidateLocationOnOuterSlope(
-        const ProfileDataFactoryPoint& outerToe,
-        const ProfileDataFactoryPoint& outerCrest,
-        const double locationX) const
-    {
-        if (locationX <= outerToe.GetX() || locationX >= outerCrest.GetX())
-        {
-            RegisterValidationError(
-                "The location with position " + NumericsHelper::ToString(locationX) + " must be between the outer toe and outer crest.");
-            return false;
-        }
-
-        return true;
-    }
-
-    bool CalculationInputBuilder::ValidateLocationOnCrestOrInnerSlope(
-        const ProfileDataFactoryPoint& outerCrest,
-        const ProfileDataFactoryPoint& innerToe,
-        const double locationX) const
-    {
-        if (locationX < outerCrest.GetX() || locationX > innerToe.GetX())
-        {
-            RegisterValidationError(
-                "The location with position " + NumericsHelper::ToString(locationX) + " must be on or between the outer crest and inner toe.");
-            return false;
         }
 
         return true;
@@ -407,14 +375,30 @@ namespace DiKErnel::Integration
                 && ValidateNaturalStoneRevetmentTopLayerType(constructionProperties.GetTopLayerType(), locationX);
     }
 
-    bool CalculationInputBuilder::ValidateGrassRevetmentTopLayerType(
-        const GrassRevetmentTopLayerType topLayerType,
+    bool CalculationInputBuilder::ValidateLocationOnOuterSlope(
+        const ProfileDataFactoryPoint& outerToe,
+        const ProfileDataFactoryPoint& outerCrest,
         const double locationX) const
     {
-        if (topLayerType != GrassRevetmentTopLayerType::ClosedSod && topLayerType != GrassRevetmentTopLayerType::OpenSod)
+        if (locationX <= outerToe.GetX() || locationX >= outerCrest.GetX())
         {
             RegisterValidationError(
-                "The location with position " + NumericsHelper::ToString(locationX) + " has an invalid top layer type.");
+                "The location with position " + NumericsHelper::ToString(locationX) + " must be between the outer toe and outer crest.");
+            return false;
+        }
+
+        return true;
+    }
+
+    bool CalculationInputBuilder::ValidateLocationOnCrestOrInnerSlope(
+        const ProfileDataFactoryPoint& outerCrest,
+        const ProfileDataFactoryPoint& innerToe,
+        const double locationX) const
+    {
+        if (locationX < outerCrest.GetX() || locationX > innerToe.GetX())
+        {
+            RegisterValidationError(
+                "The location with position " + NumericsHelper::ToString(locationX) + " must be on or between the outer crest and inner toe.");
             return false;
         }
 
@@ -435,11 +419,11 @@ namespace DiKErnel::Integration
         return true;
     }
 
-    bool CalculationInputBuilder::ValidateNaturalStoneRevetmentTopLayerType(
-        const NaturalStoneRevetmentTopLayerType topLayerType,
+    bool CalculationInputBuilder::ValidateGrassRevetmentTopLayerType(
+        const GrassRevetmentTopLayerType topLayerType,
         const double locationX) const
     {
-        if (topLayerType != NaturalStoneRevetmentTopLayerType::NordicStone)
+        if (topLayerType != GrassRevetmentTopLayerType::ClosedSod && topLayerType != GrassRevetmentTopLayerType::OpenSod)
         {
             RegisterValidationError(
                 "The location with position " + NumericsHelper::ToString(locationX) + " has an invalid top layer type.");
@@ -449,40 +433,15 @@ namespace DiKErnel::Integration
         return true;
     }
 
-    bool CalculationInputBuilder::ValidateTimeSteps() const
+    bool CalculationInputBuilder::ValidateNaturalStoneRevetmentTopLayerType(
+        const NaturalStoneRevetmentTopLayerType topLayerType,
+        const double locationX) const
     {
-        if (_timeStepDataItems.empty())
+        if (topLayerType != NaturalStoneRevetmentTopLayerType::NordicStone)
         {
-            RegisterValidationError("At least 1 time step is required.");
+            RegisterValidationError(
+                "The location with position " + NumericsHelper::ToString(locationX) + " has an invalid top layer type.");
             return false;
-        }
-
-        const TimeDependentInputFactoryData* previousTimeStep = nullptr;
-        for (const auto& timeStepDataItem : _timeStepDataItems)
-        {
-            const TimeDependentInputFactoryData& currentTimeStep = *timeStepDataItem;
-
-            const int currentTimeStepBeginTime = currentTimeStep.GetBeginTime();
-            if (previousTimeStep != nullptr)
-            {
-                if (const int previousTimeStepEndTime = previousTimeStep->GetEndTime(); previousTimeStepEndTime != currentTimeStepBeginTime)
-                {
-                    RegisterValidationError(
-                        "The begin time of the time step (" + to_string(currentTimeStepBeginTime) + ") must be equal to the end time of the " +
-                        "previous time step (" + to_string(previousTimeStepEndTime) + ").");
-                    return false;
-                }
-            }
-
-            if (const int currentTimeStepEndTime = currentTimeStep.GetEndTime(); currentTimeStepBeginTime >= currentTimeStepEndTime)
-            {
-                RegisterValidationError(
-                    "The begin time of the time step (" + to_string(currentTimeStepBeginTime) + ") must be smaller than the end time of the " +
-                    "time step (" + to_string(currentTimeStepEndTime) + ").");
-                return false;
-            }
-
-            previousTimeStep = &currentTimeStep;
         }
 
         return true;
@@ -542,6 +501,45 @@ namespace DiKErnel::Integration
         }
 
         return outerCrestZCoordinate;
+    }
+
+    bool CalculationInputBuilder::ValidateTimeSteps() const
+    {
+        if (_timeStepDataItems.empty())
+        {
+            RegisterValidationError("At least 1 time step is required.");
+            return false;
+        }
+
+        const TimeDependentInputFactoryData* previousTimeStep = nullptr;
+        for (const auto& timeStepDataItem : _timeStepDataItems)
+        {
+            const TimeDependentInputFactoryData& currentTimeStep = *timeStepDataItem;
+
+            const int currentTimeStepBeginTime = currentTimeStep.GetBeginTime();
+            if (previousTimeStep != nullptr)
+            {
+                if (const int previousTimeStepEndTime = previousTimeStep->GetEndTime(); previousTimeStepEndTime != currentTimeStepBeginTime)
+                {
+                    RegisterValidationError(
+                        "The begin time of the time step (" + to_string(currentTimeStepBeginTime) + ") must be equal to the end time of the " +
+                        "previous time step (" + to_string(previousTimeStepEndTime) + ").");
+                    return false;
+                }
+            }
+
+            if (const int currentTimeStepEndTime = currentTimeStep.GetEndTime(); currentTimeStepBeginTime >= currentTimeStepEndTime)
+            {
+                RegisterValidationError(
+                    "The begin time of the time step (" + to_string(currentTimeStepBeginTime) + ") must be smaller than the end time of the " +
+                    "time step (" + to_string(currentTimeStepEndTime) + ").");
+                return false;
+            }
+
+            previousTimeStep = &currentTimeStep;
+        }
+
+        return true;
     }
 
     void CalculationInputBuilder::RegisterValidationError(

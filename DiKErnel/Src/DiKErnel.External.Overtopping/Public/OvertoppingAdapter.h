@@ -99,6 +99,7 @@ namespace DiKErnel::External::Overtopping
                 double dikeHeight);
 
         private:
+            [[nodiscard]]
             static Geometry CreateGeometry(
                 const std::vector<double>& xValues,
                 const std::vector<double>& zValues,

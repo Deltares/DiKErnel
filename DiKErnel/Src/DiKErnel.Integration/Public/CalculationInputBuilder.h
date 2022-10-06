@@ -20,8 +20,6 @@
 
 #pragma once
 
-#include <functional>
-
 #include "AsphaltRevetmentWaveImpactLocationConstructionProperties.h"
 #include "DataResult.h"
 #include "GrassRevetmentOvertoppingLocationConstructionProperties.h"
@@ -241,14 +239,6 @@ namespace DiKErnel::Integration
                 const ProfileDataFactoryPoint& outerCrest) const;
 
             [[nodiscard]]
-            bool ValidateGrassRevetmentTopLayerType(
-                GrassRevetmentTopLayerType topLayerType,
-                double locationX) const;
-
-            [[nodiscard]]
-            bool ValidateTimeSteps() const;
-
-            [[nodiscard]]
             bool ValidateLocationOnOuterSlope(
                 const ProfileDataFactoryPoint& outerToe,
                 const ProfileDataFactoryPoint& outerCrest,
@@ -263,6 +253,11 @@ namespace DiKErnel::Integration
             [[nodiscard]]
             bool ValidateAsphaltRevetmentTopLayerType(
                 AsphaltRevetmentTopLayerType topLayerType,
+                double locationX) const;
+
+            [[nodiscard]]
+            bool ValidateGrassRevetmentTopLayerType(
+                GrassRevetmentTopLayerType topLayerType,
                 double locationX) const;
 
             [[nodiscard]]
@@ -291,6 +286,9 @@ namespace DiKErnel::Integration
             static double GetOvertoppingDikeHeight(
                 const double* locationDikeHeight,
                 double outerCrestZCoordinate);
+
+            [[nodiscard]]
+            bool ValidateTimeSteps() const;
 
             void RegisterValidationError(
                 const std::string& message) const;

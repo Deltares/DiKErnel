@@ -80,7 +80,7 @@ namespace DiKErnel::External::Overtopping
     {
         SetLanguage(_languageCode.c_str(), _languageCode.length());
 
-        Geometry geometry = CreateGeometry(xValues, zValues, roughnessCoefficients);
+        auto geometry = CreateGeometry(xValues, zValues, roughnessCoefficients);
 
         bool success = false;
         const auto messageBuffer = make_unique<string>();
