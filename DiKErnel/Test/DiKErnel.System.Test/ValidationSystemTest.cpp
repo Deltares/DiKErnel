@@ -357,12 +357,7 @@ namespace DiKErnel::System::Test
         // Then
         ASSERT_TRUE(validationResult->GetSuccessful());
         ASSERT_EQ(ValidationResultType::Successful, *validationResult->GetData());
-        const auto& events = validationResult->GetEvents();
-        ASSERT_EQ(1, events.size());
-        EventAssertHelper::AssertEvent(
-            EventType::Warning,
-            "For one or more time steps the water level exceeds the dike height. No damage will be calculated for these time steps.",
-            events.at(0));
+        ASSERT_EQ(0, validationResult->GetEvents().size());
     }
 
     TEST(ValidationSystemTest, GivenCalculationInputWithInvalidNaturalStoneRevetmentLocation_WhenValidating_ThenReturnsExpectedValidationResult)
@@ -400,7 +395,7 @@ namespace DiKErnel::System::Test
         EventAssertHelper::AssertEvent(EventType::Error, "SlopeLowerLevelAls must be larger than 0.", events.at(5));
     }
 
-    TEST(ValidationSystemTest, GivenValidCalculationInput_WhenValidating_ThenReturnsValidationResult)
+    TEST(ValidationSystemTest, GivenValidCalculationInput_WhenValidating_ThenReturnsExpectedValidationResult)
     {
         // Given
         CalculationInputBuilder builder;

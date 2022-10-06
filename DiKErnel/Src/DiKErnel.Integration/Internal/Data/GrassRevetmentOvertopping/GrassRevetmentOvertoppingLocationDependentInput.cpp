@@ -126,7 +126,7 @@ namespace DiKErnel::Integration
 
         for (const auto& timeDependentInput : timeDependentInputs)
         {
-            if (timeDependentInput.get().GetWaterLevel() >= calculatedDikeHeight)
+            if (timeDependentInput.get().GetWaterLevel() > calculatedDikeHeight)
             {
                 validationIssues.emplace_back(make_unique<ValidationIssue>(
                     ValidationIssueType::Warning,
@@ -336,7 +336,7 @@ namespace DiKErnel::Integration
         constructionProperties->_timeOfFailure = move(timeOfFailure);
         constructionProperties->_verticalDistanceWaterLevelElevation = make_unique<double>(_verticalDistanceWaterLevelElevation);
 
-        if (_verticalDistanceWaterLevelElevation > 0)
+        if (_verticalDistanceWaterLevelElevation >= 0)
         {
             constructionProperties->_representativeWaveRunup2P = make_unique<double>(_representativeWaveRunup2P);
             constructionProperties->_cumulativeOverload = make_unique<double>(_cumulativeOverload);
