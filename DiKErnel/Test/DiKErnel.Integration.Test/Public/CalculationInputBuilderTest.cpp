@@ -287,7 +287,7 @@ namespace DiKErnel::Integration::Test
     #pragma region Profile point data
 
     TEST_F(CalculationInputBuilderTest,
-           GivenBuilderWithDikeProfilePointDataNotOnProfileSegmentPoints_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
+           GivenBuilderWithDikeProfilePointDataOuterToeNotOnProfileSegmentPoints_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         // Given
         CalculationInputBuilder builder;
@@ -304,6 +304,71 @@ namespace DiKErnel::Integration::Test
         ASSERT_EQ(1, events.size());
 
         EventAssertHelper::AssertEvent(EventType::Error, "The outer toe must be on a start or end point of a profile segment.", events.at(0));
+    }
+
+    TEST_F(CalculationInputBuilderTest,
+           GivenBuilderWithDikeProfilePointDataOuterCrestNotOnProfileSegmentPoints_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
+    {
+        // Given
+        CalculationInputBuilder builder;
+        builder.AddDikeProfileSegment(0, 10, 20, 30);
+        builder.AddDikeProfilePointData(0, CharacteristicPointType::OuterToe);
+        builder.AddDikeProfilePointData(10.01, CharacteristicPointType::OuterCrest);
+
+        // When
+        const auto result = builder.Build();
+
+        // Then
+        ASSERT_FALSE(result->GetSuccessful());
+
+        const auto& events = result->GetEvents();
+        ASSERT_EQ(1, events.size());
+
+        EventAssertHelper::AssertEvent(EventType::Error, "The outer crest must be on a start or end point of a profile segment.", events.at(0));
+    }
+
+    TEST_F(CalculationInputBuilderTest,
+           GivenBuilderWithDikeProfilePointDataInnerCrestNotOnProfileSegmentPoints_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
+    {
+        // Given
+        CalculationInputBuilder builder;
+        builder.AddDikeProfileSegment(0, 10, 20, 30);
+        builder.AddDikeProfilePointData(0, CharacteristicPointType::OuterToe);
+        builder.AddDikeProfilePointData(20, CharacteristicPointType::OuterCrest);
+        builder.AddDikeProfilePointData(20.01, CharacteristicPointType::InnerCrest);
+
+        // When
+        const auto result = builder.Build();
+
+        // Then
+        ASSERT_FALSE(result->GetSuccessful());
+
+        const auto& events = result->GetEvents();
+        ASSERT_EQ(1, events.size());
+
+        EventAssertHelper::AssertEvent(EventType::Error, "The inner crest must be on a start or end point of a profile segment.", events.at(0));
+    }
+
+    TEST_F(CalculationInputBuilderTest,
+           GivenBuilderWithDikeProfilePointDataInnerToeNotOnProfileSegmentPoints_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
+    {
+        // Given
+        CalculationInputBuilder builder;
+        builder.AddDikeProfileSegment(0, 10, 20, 30);
+        builder.AddDikeProfilePointData(0, CharacteristicPointType::OuterToe);
+        builder.AddDikeProfilePointData(20, CharacteristicPointType::OuterCrest);
+        builder.AddDikeProfilePointData(20.01, CharacteristicPointType::InnerToe);
+
+        // When
+        const auto result = builder.Build();
+
+        // Then
+        ASSERT_FALSE(result->GetSuccessful());
+
+        const auto& events = result->GetEvents();
+        ASSERT_EQ(1, events.size());
+
+        EventAssertHelper::AssertEvent(EventType::Error, "The inner toe must be on a start or end point of a profile segment.", events.at(0));
     }
 
     TEST_F(CalculationInputBuilderTest, GivenBuilderWithoutDikeProfilePointDataOuterToe_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
