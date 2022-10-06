@@ -205,9 +205,13 @@ namespace DiKErnel::Integration
         const ProfileDataFactoryPoint* outerCrest,
         const ProfileDataFactoryPoint* innerToe) const
     {
+        const auto* crestOuterBerm = GetProfilePointDataItemForCharacteristicPointType(CharacteristicPointType::CrestOuterBerm);
+        const auto* notchOuterBerm = GetProfilePointDataItemForCharacteristicPointType(CharacteristicPointType::NotchOuterBerm);
         const auto* innerCrest = GetProfilePointDataItemForCharacteristicPointType(CharacteristicPointType::InnerCrest);
 
         return ValidateCharacteristicPoint(outerToe, "outer toe")
+                && ValidateCharacteristicPoint(crestOuterBerm, "crest outer berm", false)
+                && ValidateCharacteristicPoint(notchOuterBerm, "notch outer berm", false)
                 && ValidateCharacteristicPoint(outerCrest, "outer crest")
                 && ValidateCharacteristicPoint(innerCrest, "inner crest", _grassOvertoppingLocationAdded)
                 && ValidateCharacteristicPoint(innerToe, "inner toe", _grassOvertoppingLocationAdded);

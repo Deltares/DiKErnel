@@ -307,6 +307,50 @@ namespace DiKErnel::Integration::Test
     }
 
     TEST_F(CalculationInputBuilderTest,
+           GivenBuilderWithDikeProfilePointDataCrestOuterBermNotOnProfileSegmentPoints_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
+    {
+        // Given
+        CalculationInputBuilder builder;
+        builder.AddDikeProfileSegment(0, 10, 20, 30);
+        builder.AddDikeProfilePointData(0, CharacteristicPointType::OuterToe);
+        builder.AddDikeProfilePointData(10.01, CharacteristicPointType::CrestOuterBerm);
+
+        // When
+        const auto result = builder.Build();
+
+        // Then
+        ASSERT_FALSE(result->GetSuccessful());
+
+        const auto& events = result->GetEvents();
+        ASSERT_EQ(1, events.size());
+
+        EventAssertHelper::AssertEvent(EventType::Error, "The crest outer berm must be on a start or end point of a profile segment.",
+                                       events.at(0));
+    }
+
+    TEST_F(CalculationInputBuilderTest,
+           GivenBuilderWithDikeProfilePointDataNotchOuterBermNotOnProfileSegmentPoints_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
+    {
+        // Given
+        CalculationInputBuilder builder;
+        builder.AddDikeProfileSegment(0, 10, 20, 30);
+        builder.AddDikeProfilePointData(0, CharacteristicPointType::OuterToe);
+        builder.AddDikeProfilePointData(10.01, CharacteristicPointType::NotchOuterBerm);
+
+        // When
+        const auto result = builder.Build();
+
+        // Then
+        ASSERT_FALSE(result->GetSuccessful());
+
+        const auto& events = result->GetEvents();
+        ASSERT_EQ(1, events.size());
+
+        EventAssertHelper::AssertEvent(EventType::Error, "The notch outer berm must be on a start or end point of a profile segment.",
+                                       events.at(0));
+    }
+
+    TEST_F(CalculationInputBuilderTest,
            GivenBuilderWithDikeProfilePointDataOuterCrestNotOnProfileSegmentPoints_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         // Given
