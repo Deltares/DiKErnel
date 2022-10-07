@@ -120,7 +120,8 @@ namespace DiKErnel::Integration
         const auto& characteristicPoints = profileData.GetCharacteristicPoints();
         const auto outerCrest = CharacteristicPointsHelper::GetCoordinatesForType(characteristicPoints, CharacteristicPointType::OuterCrest);
 
-        const auto calculatedDikeHeight = CalculateDikeHeight(*outerCrest, profileData.GetProfileSegments());
+        const auto calculatedDikeHeight = CalculateDikeHeight(*outerCrest, profileData.GetProfileSegments(),
+                                                              profileData.InterpolationVerticalHeight(GetX()));
 
         vector<unique_ptr<ValidationIssue>> validationIssues;
 
@@ -242,7 +243,7 @@ namespace DiKErnel::Integration
         const pair<double, double>& outerCrest,
         const vector<reference_wrapper<ProfileSegment>>& profileSegments)
     {
-        _dikeHeight = CalculateDikeHeight(outerCrest, profileSegments);
+        _dikeHeight = CalculateDikeHeight(outerCrest, profileSegments, GetZ());
     }
 
     void GrassRevetmentOvertoppingLocationDependentInput::InitializeAccelerationAlphaA(
@@ -300,7 +301,8 @@ namespace DiKErnel::Integration
 
     double GrassRevetmentOvertoppingLocationDependentInput::CalculateDikeHeight(
         const pair<double, double>& outerCrest,
-        const vector<reference_wrapper<ProfileSegment>>& profileSegments) const
+        const vector<reference_wrapper<ProfileSegment>>& profileSegments,
+        const double locationHeight) const
     {
         if (_enforcedDikeHeight != nullptr)
         {
@@ -308,7 +310,7 @@ namespace DiKErnel::Integration
         }
 
         const auto x = GetX();
-        auto dikeHeight = GetZ();
+        auto dikeHeight = locationHeight;
 
         for (const auto& profileSegment : profileSegments)
         {

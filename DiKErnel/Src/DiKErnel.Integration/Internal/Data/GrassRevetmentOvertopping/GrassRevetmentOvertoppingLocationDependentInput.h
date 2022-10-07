@@ -139,7 +139,8 @@ namespace DiKErnel::Integration
             [[nodiscard]]
             double CalculateDikeHeight(
                 const std::pair<double, double>& outerCrest,
-                const std::vector<std::reference_wrapper<Core::ProfileSegment>>& profileSegments) const;
+                const std::vector<std::reference_wrapper<Core::ProfileSegment>>& profileSegments,
+                double locationHeight) const;
 
             [[nodiscard]]
             std::unique_ptr<GrassRevetmentOvertoppingTimeDependentOutputConstructionProperties> CreateConstructionProperties(
