@@ -120,7 +120,7 @@ namespace DiKErnel::Integration
             void InitializeDikeHeight(
                 const std::pair<double, double>& outerCrest,
                 const std::vector<std::reference_wrapper<Core::ProfileSegment>>& profileSegments);
-        
+
             void InitializeAccelerationAlphaA(
                 const std::pair<double, double>& outerCrest,
                 const std::pair<double, double>& innerCrest);
