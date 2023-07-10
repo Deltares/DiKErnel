@@ -3,7 +3,7 @@
     <TestProjectType>UnitTest</TestProjectType>
   </PropertyGroup>
   <Import Project="$(SolutionDir)build\Base.targets" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Coverage|x86'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Coverage|AnyCPU'">
     <DebugType>none</DebugType>
   </PropertyGroup>
 </Project>
