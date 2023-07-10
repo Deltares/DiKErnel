@@ -1,9 +1,12 @@
-# Visual studio
+# Microsoft Visual Studio
 *.suo
 *.user
 .vs/
 [Bb]in/
 [Oo]bj/
+
+# JetBrains Rider
+.idea/
 
 # Ignore development folders
 Development
