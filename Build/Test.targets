@@ -2,7 +2,7 @@
   <PropertyGroup>
     <TestProjectType>UnitTest</TestProjectType>
   </PropertyGroup>
-  <Import Project="$(SolutionDir)build\Base.targets" />
+  <Import Project="$(SolutionDir)build\NetStandard.targets" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Coverage|AnyCPU'">
     <DebugType>none</DebugType>
   </PropertyGroup>
