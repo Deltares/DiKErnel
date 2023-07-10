@@ -1,3 +1,10 @@
+# Visual studio
+*.suo
+*.user
+.vs/
+[Bb]in/
+[Oo]bj/
+
 # Ignore development folders
 Development
 
