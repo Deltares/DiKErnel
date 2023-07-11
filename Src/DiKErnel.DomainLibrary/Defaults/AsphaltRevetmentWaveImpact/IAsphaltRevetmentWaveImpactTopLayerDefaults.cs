@@ -19,15 +19,24 @@
 namespace DiKErnel.DomainLibrary.Defaults.AsphaltRevetmentWaveImpact
 {
     /// <summary>
-    /// Class that contains default values for asphalt revetment wave impact with a hydraulic
-    /// asphalt concrete top layer.
+    /// Interface that contains default value definitions for asphalt revetment wave impact
+    /// top layers.
     /// </summary>
-    public class AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteTopLayerDefaults : IAsphaltRevetmentWaveImpactTopLayerDefaults
+    public interface IAsphaltRevetmentWaveImpactTopLayerDefaults
     {
-        public double FatigueAlpha => 0.42;
-        
-        public double FatigueBeta => 4.76;
+        /// <summary>
+        /// Gets the default value of the fatigue alpha coefficient [-].
+        /// </summary>
+        public double FatigueAlpha { get; }
 
-        public double StiffnessRelationNu => 0.35;
+        /// <summary>
+        /// Gets the default value of the fatigue beta coefficient [-].
+        /// </summary>
+        public double FatigueBeta { get; }
+
+        /// <summary>
+        /// Gets the default value of the stiffness relation Nu coefficient [-].
+        /// </summary>
+        public double StiffnessRelationNu { get; }
     }
 }
