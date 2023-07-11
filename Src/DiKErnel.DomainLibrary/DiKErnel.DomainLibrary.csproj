@@ -1,10 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-    <Import Project="$(SolutionDir)build\NetStandard.targets"/>
+    <Import Project="$(SolutionDir)build\NetStandard.targets" />
 
     <ItemGroup>
-        <Folder Include="Defaults\NaturalStoneRevetment\"/>
-        <Folder Include="Validators\"/>
+        <Folder Include="Validators\" />
     </ItemGroup>
 
 </Project>
