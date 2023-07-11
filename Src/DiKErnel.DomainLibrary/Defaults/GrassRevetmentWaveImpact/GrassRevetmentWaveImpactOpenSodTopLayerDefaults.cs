@@ -16,26 +16,18 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-namespace DiKErnel.DomainLibrary.Defaults.GrassRevetmentOvertopping
+namespace DiKErnel.DomainLibrary.Defaults.GrassRevetmentWaveImpact
 {
     /// <summary>
-    /// Class that contains default values for grass revetment overtopping.
+    /// Class that contains default values for grass revetment wave impact with an open sod
+    /// top layer.
     /// </summary>
-    public static class GrassRevetmentOvertoppingDefaults
+    public class GrassRevetmentWaveImpactOpenSodTopLayerDefaults : IGrassRevetmentWaveImpactTopLayerDefaults
     {
-        /// <summary>
-        /// Gets the default value of the Cwo coefficient [-].
-        /// </summary>
-        public static double FrontVelocityCwo => 1.45;
-
-        /// <summary>
-        /// Gets the default value of the alpha A coefficient for the crest [-].
-        /// </summary>
-        public static double AccelerationAlphaAForCrest => 1.0;
-
-        /// <summary>
-        /// Gets the default value of the alpha A coefficient for the inner slope [-].
-        /// </summary>
-        public static double AccelerationAlphaAForInnerSlope => 1.4;
+        public double TimeLineAgwi => 0.8;
+        
+        public double TimeLineBgwi => -0.00001944;
+        
+        public double TimeLineCgwi => 0.25;
     }
 }
