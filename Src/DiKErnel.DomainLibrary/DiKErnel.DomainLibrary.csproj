@@ -3,7 +3,6 @@
     <Import Project="$(SolutionDir)build\NetStandard.targets"/>
 
     <ItemGroup>
-        <Folder Include="Defaults\GrassRevetmentWaveRunup\"/>
         <Folder Include="Defaults\NaturalStoneRevetment\"/>
         <Folder Include="Validators\"/>
     </ItemGroup>
