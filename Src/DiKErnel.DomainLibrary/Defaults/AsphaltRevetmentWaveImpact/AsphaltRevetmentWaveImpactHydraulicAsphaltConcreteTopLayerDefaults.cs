@@ -1,0 +1,42 @@
+﻿// Copyright (C) Stichting Deltares and State of the Netherlands 2023. All rights reserved.
+//
+// This file is part of DiKErnel.
+//
+// DiKErnel is free software: you can redistribute it and/or modify it under the terms of the
+// GNU Lesser General Public License as published by the Free Software Foundation, either
+// version 3 of the License, or (at your option) any later version.
+// 
+// This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+// without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+// See the GNU Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public License along with this
+// program. If not, see <http://www.gnu.org/licenses/>.
+//
+// All names, logos, and references to "Deltares" are registered trademarks of Stichting
+// Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
+
+namespace DiKErnel.DomainLibrary.Defaults.AsphaltRevetmentWaveImpact
+{
+    /// <summary>
+    /// Class that contains default values for asphalt revetment wave impact with a hydraulic
+    /// asphalt concrete top layer.
+    /// </summary>
+    public class AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteTopLayerDefaults
+    {
+        /// <summary>
+        /// Gets the default value of the fatigue alpha coefficient [-].
+        /// </summary>
+        public double FatigueAlpha => 0.42;
+        
+        /// <summary>
+        /// Gets the default value of the fatigue beta coefficient [-].
+        /// </summary>
+        public double FatigueBeta => 4.76;
+
+        /// <summary>
+        /// Gets the default value of the stiffness relation Nu coefficient [-].
+        /// </summary>
+        public double StiffnessRelationNu => 0.35;
+    }
+}
