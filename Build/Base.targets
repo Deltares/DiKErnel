@@ -1,7 +1,8 @@
 <Project>
   <PropertyGroup>
     <OutDir>$(OutputPath)</OutDir>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <EnableNETAnalyzers>true</EnableNETAnalyzers>
+    <AnalysisMode>All</AnalysisMode>
     <LangVersion>8.0</LangVersion>
     <FileAlignment>512</FileAlignment>
     <Company>Deltares</Company>
