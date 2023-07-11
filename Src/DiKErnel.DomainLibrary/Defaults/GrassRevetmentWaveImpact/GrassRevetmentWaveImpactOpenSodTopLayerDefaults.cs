@@ -25,9 +25,9 @@ namespace DiKErnel.DomainLibrary.Defaults.GrassRevetmentWaveImpact
     public class GrassRevetmentWaveImpactOpenSodTopLayerDefaults : IGrassRevetmentWaveImpactTopLayerDefaults
     {
         public double TimeLineAgwi => 0.8;
-        
+
         public double TimeLineBgwi => -0.00001944;
-        
+
         public double TimeLineCgwi => 0.25;
     }
 }

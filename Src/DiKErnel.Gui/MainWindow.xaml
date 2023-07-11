@@ -26,7 +26,5 @@ Deltares and remain full property of Stichting Deltares at all times. All rights
         xmlns:local="clr-namespace:DiKErnel.Gui"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-
-    </Grid>
+    <Grid />
 </Window>
