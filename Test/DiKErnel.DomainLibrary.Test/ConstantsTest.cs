@@ -16,16 +16,17 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-namespace DiKErnel.DomainLibrary
+using NUnit.Framework;
+
+namespace DiKErnel.DomainLibrary.Test
 {
-    /// <summary>
-    /// Class that contains domain constants.
-    /// </summary>
-    public static class Constants
+    [TestFixture]
+    public class ConstantsTest
     {
-        /// <summary>
-        /// Gets the gravitational acceleration [m/s^2].
-        /// </summary>
-        public static double GravitationalAcceleration => 9.81;
+        [Test]
+        public void GravitationalAcceleration_ExpectedValue()
+        {
+            Assert.AreEqual(9.81, Constants.GravitationalAcceleration);
+        }
     }
 }
