@@ -24,27 +24,27 @@ namespace DiKErnel.DomainLibrary.Defaults.AsphaltRevetmentWaveImpact
     /// <summary>
     /// Class that contains default values for asphalt revetments.
     /// </summary>
-    public class AsphaltRevetmentWaveImpactDefaults
+    public static class AsphaltRevetmentWaveImpactDefaults
     {
         /// <summary>
         /// Gets the default value of the density of water [kg/m^3].
         /// </summary>
-        public double DensityOfWater => 1025.0;
+        public static double DensityOfWater => 1025.0;
 
         /// <summary>
         /// Gets the default value of the Ctm coefficient [-].
         /// </summary>
-        public double AverageNumberOfWavesCtm => 1.0;
+        public static double AverageNumberOfWavesCtm => 1.0;
 
         /// <summary>
         /// Gets the default value of the impact number C coefficient [-].
         /// </summary>
-        public double ImpactNumberC => 1.0;
+        public static double ImpactNumberC => 1.0;
 
         /// <summary>
         /// Gets the default values of the width factors [-].
         /// </summary>
-        public IEnumerable<Tuple<double, double>> WidthFactors
+        public static IEnumerable<Tuple<double, double>> WidthFactors
         {
             get
             {
@@ -69,7 +69,7 @@ namespace DiKErnel.DomainLibrary.Defaults.AsphaltRevetmentWaveImpact
         /// <summary>
         /// Gets the default values of the depth factors [-].
         /// </summary>
-        public IEnumerable<Tuple<double, double>> DepthFactors
+        public static IEnumerable<Tuple<double, double>> DepthFactors
         {
             get
             {
@@ -90,7 +90,7 @@ namespace DiKErnel.DomainLibrary.Defaults.AsphaltRevetmentWaveImpact
         /// <summary>
         /// Gets the default values of the impact factors [-].
         /// </summary>
-        public IEnumerable<Tuple<double, double>> ImpactFactors
+        public static IEnumerable<Tuple<double, double>> ImpactFactors
         {
             get
             {

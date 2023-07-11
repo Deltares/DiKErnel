@@ -21,11 +21,11 @@ namespace DiKErnel.DomainLibrary.Defaults
     /// <summary>
     /// Class that contains default values that apply to all profile segments.
     /// </summary>
-    public class ProfileSegmentDefaults
+    public static class ProfileSegmentDefaults
     {
         /// <summary>
         /// Gets the default value of the roughness coefficient [-].
         /// </summary>
-        public double RoughnessCoefficient => 1.0;
+        public static double RoughnessCoefficient => 1.0;
     }
 }

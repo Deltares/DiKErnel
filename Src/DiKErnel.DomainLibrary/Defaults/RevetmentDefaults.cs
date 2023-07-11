@@ -21,16 +21,16 @@ namespace DiKErnel.DomainLibrary.Defaults
     /// <summary>
     /// Class that contains default values that apply to all revetments.
     /// </summary>
-    public class RevetmentDefaults
+    public static class RevetmentDefaults
     {
         /// <summary>
         /// Gets the default value of the initial damage [-].
         /// </summary>
-        public double InitialDamage => 0.0;
+        public static double InitialDamage => 0.0;
 
         /// <summary>
         /// Gets the default value of the failure number [-].
         /// </summary>
-        public double FailureNumber => 1.0;
+        public static double FailureNumber => 1.0;
     }
 }
