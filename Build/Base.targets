@@ -12,20 +12,20 @@
     <Configurations>Debug;Release;Coverage</Configurations>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86' Or '$(Configuration)|$(Platform)' == 'Debug|x64'">
     <ConfigurationGroup>Debug</ConfigurationGroup>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <DefineConstants>TRACE;DEBUG</DefineConstants>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86' Or '$(Configuration)|$(Platform)' == 'Release|x64'">
     <ConfigurationGroup>Release</ConfigurationGroup>
     <DebugType>none</DebugType>
     <Optimize>true</Optimize>
     <DefineConstants>TRACE;RELEASE</DefineConstants>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Coverage|AnyCPU'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Coverage|x86' Or '$(Configuration)|$(Platform)' == 'Coverage|x64'">
     <ConfigurationGroup>Release</ConfigurationGroup>
     <DefineConstants>TRACE;COVERAGE</DefineConstants>
     <Optimize>true</Optimize>
