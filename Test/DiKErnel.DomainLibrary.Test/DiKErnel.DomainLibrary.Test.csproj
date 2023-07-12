@@ -12,7 +12,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="Defaults\GrassRevetmentWaveRunup\"/>
         <Folder Include="Defaults\NaturalStoneRevetment\"/>
     </ItemGroup>
 
