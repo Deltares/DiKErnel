@@ -23,7 +23,7 @@ namespace DiKErnel.FunctionLibrary
     /// <summary>
     /// Class that holds all generic calculation routines.
     /// </summary>
-    public class GenericFunctions
+    public static class GenericFunctions
     {
         /// <summary>
         /// Converts a degrees value into radians.
