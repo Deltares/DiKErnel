@@ -16,25 +16,40 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using DiKErnel.DomainLibrary.Defaults.AsphaltRevetmentWaveImpact;
+using DiKErnel.DomainLibrary.Defaults.GrassRevetment;
 using NUnit.Framework;
 
-namespace DiKErnel.DomainLibrary.Test.Defaults.AsphaltRevetmentWaveImpact
+namespace DiKErnel.DomainLibrary.Test.Defaults.GrassRevetment
 {
     [TestFixture]
-    public class AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteTopLayerDefaultsTest
+    public class GrassRevetmentCumulativeOverloadDefaultsTest
     {
         [Test]
-        public void Constructor_ExpectedValues()
+        public void IncreasedLoadTransitionAlphaM_ExpectedValue()
         {
-            // Call
-            var defaults = new AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteTopLayerDefaults();
+            // Call & Assert
+            Assert.AreEqual(1.0, GrassRevetmentCumulativeOverloadDefaults.IncreasedLoadTransitionAlphaM);
+        }
 
-            // Assert
-            Assert.IsInstanceOf<IAsphaltRevetmentWaveImpactTopLayerDefaults>(defaults);
-            Assert.AreEqual(0.42, defaults.FatigueAlpha);
-            Assert.AreEqual(4.76, defaults.FatigueBeta);
-            Assert.AreEqual(0.35, defaults.StiffnessRelationNu);
+        [Test]
+        public void ReducedStrengthTransitionAlphaS_ExpectedValue()
+        {
+            // Call & Assert
+            Assert.AreEqual(1.0, GrassRevetmentCumulativeOverloadDefaults.ReducedStrengthTransitionAlphaS);
+        }
+
+        [Test]
+        public void AverageNumberOfWavesCtm_ExpectedValue()
+        {
+            // Call & Assert
+            Assert.AreEqual(0.92, GrassRevetmentCumulativeOverloadDefaults.AverageNumberOfWavesCtm);
+        }
+
+        [Test]
+        public void FixedNumberOfWaves_ExpectedValue()
+        {
+            // Call & Assert
+            Assert.AreEqual(10000, GrassRevetmentCumulativeOverloadDefaults.FixedNumberOfWaves);
         }
     }
 }
