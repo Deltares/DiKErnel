@@ -3,7 +3,16 @@
     <Import Project="$(SolutionDir)build\NetStandard.targets"/>
 
     <ItemGroup>
-        <Folder Include="Validators\"/>
+        <Folder Include="Validators\AsphaltRevetmentWaveImpact\"/>
+        <Folder Include="Validators\GrassRevetmentOvertopping\"/>
+        <Folder Include="Validators\GrassRevetmentWaveImpact\"/>
+        <Folder Include="Validators\GrassRevetmentWaveRunup\"/>
+        <Folder Include="Validators\GrassRevetment\"/>
+        <Folder Include="Validators\NaturalStoneRevetment\"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\DiKErnel.Util\DiKErnel.Util.csproj"/>
     </ItemGroup>
 
 </Project>
