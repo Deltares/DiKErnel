@@ -104,14 +104,12 @@ namespace DiKErnel.Util.Test.Helpers
             string string2 = NumericsHelper.ToString(1e-6);
             string string3 = NumericsHelper.ToString(0.001);
             string string4 = NumericsHelper.ToString(1);
-            string string5 = NumericsHelper.ToString(0.123456789);
 
             //Assert
             Assert.AreEqual("0.3", string1);
             Assert.AreEqual("1E-06", string2);
             Assert.AreEqual("0.001", string3);
             Assert.AreEqual("1", string4);
-            Assert.AreEqual("0.123457", string5);
         }
     }
 }

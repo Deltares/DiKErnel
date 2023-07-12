@@ -5,12 +5,14 @@ namespace DiKErnel.Util.TestUtil
 {
     public class EventRegistryTestHelper
     {
-        private List<Event> registeredEvents;
         private readonly Thread thread;
+        private readonly List<Event> registeredEvents;
 
         public EventRegistryTestHelper(int numberOfEventsToRegister)
         {
+            registeredEvents = new List<Event>();
             thread = new Thread(() => PerformTest(numberOfEventsToRegister));
+            thread.Start();
         }
 
         public void WaitForCompletion()
