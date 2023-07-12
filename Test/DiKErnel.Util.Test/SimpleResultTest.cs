@@ -16,36 +16,36 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using DiKErnel.Util.Validation;
+using System.Collections.Generic;
+using System.Linq;
+using DiKErnel.Util.TestUtil;
 using NUnit.Framework;
 
-namespace DiKErnel.Util.TestUtil
+namespace DiKErnel.Util.Test
 {
-    public class ValidatorAssertHelper<T>
+    [TestFixture]
+    public class SimpleResultTest
     {
-        private delegate ValidationIssue ValidateAction(T data);
-
-        static void AssertValue(ValidateAction validateAction, T value)
+        [Test]
+        public void Constructor_ExpectedValues()
         {
+            // Setup
+            const string message = "Test message";
+            const EventType eventType = EventType.Error;
+
+            var events = new List<Event>
+            {
+                new Event(message, eventType)
+            };
+
             // Call
-            ValidationIssue validationIssue = validateAction(value);
+            SimpleResult result = new SimpleResult(true, events);
 
             // Assert
-            Assert.IsNull(validationIssue);
-        }
+            Assert.True(result.GetSuccessful());
 
-        static void AssertValue(ValidateAction validateAction,
-                                T value,
-                                ValidationIssueType validationIssueType,
-                                string message)
-        {
-            // Call
-            ValidationIssue validationIssue = validateAction(value);
-
-            // Assert
-            Assert.NotNull(validationIssue);
-            Assert.AreEqual(validationIssueType, validationIssue.GetValidationIssueType());
-            Assert.AreEqual(message, validationIssue.GetMessage());
+            Assert.AreEqual(1, result.GetEvents().Count());
+            EventAssertHelper.AssertEvent(eventType, message, result.GetEvents().ElementAt(0));
         }
     }
 }

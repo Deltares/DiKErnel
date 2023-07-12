@@ -28,11 +28,11 @@ namespace DiKErnel.Util.Test.Validation
         public void Constructor_ExpectedValues()
         {
             // Setup
-            ValidationIssueType validationIssueType = ValidationIssueType.Error;
-            string message = "Message";
+            const ValidationIssueType validationIssueType = ValidationIssueType.Error;
+            const string message = "Message";
 
             // Call
-            ValidationIssue validationIssue = new ValidationIssue(validationIssueType, message);
+            var validationIssue = new ValidationIssue(validationIssueType, message);
 
             // Assert
             Assert.AreEqual(validationIssueType, validationIssue.GetValidationIssueType());

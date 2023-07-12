@@ -16,36 +16,26 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using DiKErnel.Util.Validation;
 using NUnit.Framework;
 
-namespace DiKErnel.Util.TestUtil
+namespace DiKErnel.Util.Test
 {
-    public class ValidatorAssertHelper<T>
+    [TestFixture]
+    public class EventTest
     {
-        private delegate ValidationIssue ValidateAction(T data);
-
-        static void AssertValue(ValidateAction validateAction, T value)
+        [Test]
+        public void Constructor_ExpectedValues()
         {
+            // Setup
+            const string message = "Test message";
+            const EventType eventType = EventType.Error;
+
             // Call
-            ValidationIssue validationIssue = validateAction(value);
+            Event testEvent = new Event(message, eventType);
 
             // Assert
-            Assert.IsNull(validationIssue);
-        }
-
-        static void AssertValue(ValidateAction validateAction,
-                                T value,
-                                ValidationIssueType validationIssueType,
-                                string message)
-        {
-            // Call
-            ValidationIssue validationIssue = validateAction(value);
-
-            // Assert
-            Assert.NotNull(validationIssue);
-            Assert.AreEqual(validationIssueType, validationIssue.GetValidationIssueType());
-            Assert.AreEqual(message, validationIssue.GetMessage());
+            Assert.AreEqual(message, testEvent.GetMessage());
+            Assert.AreEqual(eventType, testEvent.GetEventType());
         }
     }
 }
