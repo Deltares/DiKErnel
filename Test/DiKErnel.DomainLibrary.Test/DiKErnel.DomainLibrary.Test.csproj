@@ -11,8 +11,4 @@
         <ProjectReference Include="..\..\Src\DiKErnel.DomainLibrary\DiKErnel.DomainLibrary.csproj"/>
     </ItemGroup>
 
-    <ItemGroup>
-        <Folder Include="Defaults\NaturalStoneRevetment\"/>
-    </ItemGroup>
-
 </Project>
