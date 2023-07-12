@@ -73,8 +73,7 @@ namespace DiKErnel.External.Overtopping
         /// <param name="waterLevel">The water level. [m]</param>
         /// <param name="waveHeightHm0">The wave height. [m]</param>
         /// <param name="wavePeriodTm10">The wave period Tm10. [deg]</param>
-        /// <param name="waveDirection">The wave direction with respect to the North.
-        /// [deg]</param>
+        /// <param name="waveDirection">The wave direction with respect to the North. [deg]</param>
         /// <param name="xValues">The x values of the profile points. [m]</param>
         /// <param name="zValues">The z values of the profile points. [m]</param>
         /// <param name="roughnessCoefficients">The roughness coefficients of the profile
