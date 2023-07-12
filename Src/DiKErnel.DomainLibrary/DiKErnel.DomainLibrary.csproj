@@ -6,7 +6,6 @@
         <Folder Include="Validators\GrassRevetmentOvertopping\" />
         <Folder Include="Validators\GrassRevetmentWaveImpact\" />
         <Folder Include="Validators\GrassRevetmentWaveRunup\" />
-        <Folder Include="Validators\GrassRevetment\" />
         <Folder Include="Validators\NaturalStoneRevetment\" />
     </ItemGroup>
 

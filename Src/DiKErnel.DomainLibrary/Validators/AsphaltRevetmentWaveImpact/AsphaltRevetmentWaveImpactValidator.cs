@@ -23,7 +23,7 @@ namespace DiKErnel.DomainLibrary.Validators.AsphaltRevetmentWaveImpact
     /// <summary>
     /// Class that holds all asphalt revetment wave impact specific validation routines.
     /// </summary>
-    public class AsphaltRevetmentWaveImpactValidator
+    public static class AsphaltRevetmentWaveImpactValidator
     {
         /// <summary>
         /// Validates the fatigue alpha coefficient.
