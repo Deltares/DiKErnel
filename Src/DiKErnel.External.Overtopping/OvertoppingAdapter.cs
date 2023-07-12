@@ -32,7 +32,6 @@ namespace DiKErnel.External.Overtopping
         private const int bufferSize = 256;
         private const int nrOfMessages = 12;
         private const int bufferCapacity = bufferSize * nrOfMessages;
-        private const int verbosity = -1;
 
         /// <summary>
         /// Validates the input arguments for an overtopping calculation.
@@ -66,6 +65,47 @@ namespace DiKErnel.External.Overtopping
             var validationMessage = new string(messageBuffer);
 
             return validationMessage.TrimEnd('\0').Split('\t');
+        }
+
+        /// <summary>
+        /// Calculates the representative wave run-up (2 percent).
+        /// </summary>
+        /// <param name="waterLevel">The water level. [m]</param>
+        /// <param name="waveHeightHm0">The wave height. [m]</param>
+        /// <param name="wavePeriodTm10">The wave period Tm10. [degrees]</param>
+        /// <param name="waveDirection">The wave direction with respect to the North.
+        /// [degrees]</param>
+        /// <param name="xValues">The x values of the profile points. [m]</param>
+        /// <param name="zValues">The z values of the profile points. [m]</param>
+        /// <param name="roughnessCoefficients">The roughness coefficients of the profile
+        /// segments. [-]</param>
+        /// <param name="dikeHeight">The dike height. [m]</param>
+        /// <returns>The representative wave run-up (2 percent). [m]</returns>
+        public static double CalculateZ2(double waterLevel, double waveHeightHm0, double wavePeriodTm10, double waveDirection,
+                                         IEnumerable<double> xValues, IEnumerable<double> zValues, IEnumerable<double> roughnessCoefficients,
+                                         double dikeHeight)
+        {
+            var load = new Load
+            {
+                WaterLevel = waterLevel,
+                Height = waveHeightHm0,
+                Period = wavePeriodTm10,
+                Direction = waveDirection
+            };
+
+            Geometry geometry = CreateGeometry(xValues, zValues, roughnessCoefficients);
+            ModelFactors modelFactors = GetDefaultModelFactors();
+            var result = new Result();
+            
+            var success = false;
+            int verbosity = -1;
+            var messageBuffer = new char[bufferCapacity];
+            var logFileName = new char[bufferCapacity];
+
+            calculateQo(ref load, ref geometry, ref dikeHeight, ref modelFactors, ref result, ref success, 
+                        messageBuffer, ref verbosity, logFileName, bufferCapacity, bufferCapacity);
+
+            return result.Z2;
         }
 
         private static Geometry CreateGeometry(IEnumerable<double> xValues,
@@ -113,5 +153,10 @@ namespace DiKErnel.External.Overtopping
 
         [DllImport("dllDikesOvertopping.dll", CallingConvention = CallingConvention.Cdecl)]
         private static extern void SetLanguage(string languageCode, int languageCodeLength);
+
+        [DllImport("dllDikesOvertopping.dll", CallingConvention = CallingConvention.Cdecl)]
+        private static extern void calculateQo(ref Load load, ref Geometry geometry,
+                                               ref double dikeHeight, ref ModelFactors input, ref Result result, ref bool success,
+                                               [Out] char[] message, ref int verbosity, [Out] char[] logFile, int stringLength1, int stringLength2);
     }
 }

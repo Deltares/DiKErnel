@@ -100,5 +100,79 @@ namespace DiKErnel.External.Overtopping.Test
             // Assert
             Assert.IsFalse(messages.Any());
         }
+
+        [Test]
+        public void CalculateZ2_WithInvalidData_ReturnsExpectedValue()
+        {
+            // Setup
+            const double waterLevel = 1e-6;
+            const double waveHeightHm0 = -0.361314622129615;
+            const double wavePeriodTm10 = 45;
+            const double waveDirection = 1.912229230397281e-12;
+
+            const double dikeHeight = 3.7;
+            var xCoordinates = new double[]
+            {
+                0,
+                24
+            };
+
+            var zCoordinates = new double[]
+            {
+                -3,
+                3
+            };
+
+            var roughnessCoefficients = new[]
+            {
+                1.0
+            };
+
+            // Call
+            double z2 = OvertoppingAdapter.CalculateZ2(waterLevel, waveHeightHm0, wavePeriodTm10, waveDirection,
+                                                       xCoordinates, zCoordinates, roughnessCoefficients, dikeHeight);
+
+            // Assert
+            Assert.Zero(z2);
+        }
+
+        [Test]
+        public void CalculateZ2_WithValidData_ReturnsExpectedValue()
+        {
+            // Setup
+            const double waterLevel = 5.5;
+            const double waveHeightHm0 = 1;
+            const double wavePeriodTm10 = 4;
+            const double waveDirection = 50;
+
+            const double dikeHeight = 9.1;
+            var xCoordinates = new double[]
+            {
+                5,
+                10,
+                15
+            };
+
+            var zCoordinates = new double[]
+            {
+                5,
+                7,
+                9
+            };
+
+            var roughnessCoefficients = new double[]
+            {
+                1,
+                1,
+                1
+            };
+
+            // Call
+            double z2 = OvertoppingAdapter.CalculateZ2(waterLevel, waveHeightHm0, wavePeriodTm10, waveDirection,
+                                                       xCoordinates, zCoordinates, roughnessCoefficients, dikeHeight);
+
+            // Assert
+            Assert.NotZero(z2);
+        }
     }
 }
