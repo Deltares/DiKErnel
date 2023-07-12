@@ -16,37 +16,38 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using System;
-using System.Globalization;
+using System.Collections.Generic;
+using System.Linq;
 
-namespace DiKErnel.Util.Helpers
+namespace DiKErnel.Util
 {
     /// <summary>
-    /// Helper class to help with numerics.
+    /// Class where events can be registered and tracked on a per thread basis.
     /// </summary>
-    public static class NumericsHelper
+    public class EventRegistry
     {
+        private static readonly EventRegistry instance = new EventRegistry();
+        private readonly List<Event> events = new List<Event>();
+
         /// <summary>
-        /// Asserts whether first and second are equal.
+        /// Registers an event.
         /// </summary>
-        /// <param name="first">The first argument.</param>
-        /// <param name="second">The second argument.</param>
-        /// <returns>true when equal; false otherwise.</returns>
-        public static bool AreEqual(double first, double second)
+        /// <param name="inEvent">The event to register.</param>
+        public static void Register(Event inEvent)
         {
-            return Math.Abs(first - second) <= double.Epsilon;
+            instance.events.Add(inEvent);
         }
 
         /// <summary>
-        /// Converts the given value to a string.
+        /// Flushes all registered events.
         /// </summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted string.</returns>
-        /// <remarks>Numbers are rounded to 6 decimal places. When less decimals are present,
-        /// trailing zeros are not presented.</remarks>
-        public static string ToString(double value)
+        /// <returns>The registered events.</returns>
+        public static IEnumerable<Event> Flush()
         {
-            return value.ToString(CultureInfo.InvariantCulture);
+            List<Event> tempEvents = instance.events.ToList();
+            instance.events.Clear();
+
+            return tempEvents;
         }
     }
 }

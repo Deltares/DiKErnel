@@ -16,37 +16,45 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using System;
-using System.Globalization;
+using System.Collections.Generic;
 
-namespace DiKErnel.Util.Helpers
+namespace DiKErnel.Util
 {
     /// <summary>
-    /// Helper class to help with numerics.
+    /// Class that holds information about the result of an operation,
+    /// the events that occurred and the data that was produced.
     /// </summary>
-    public static class NumericsHelper
+    /// <typeparam name="T">The type of the data that was produced.</typeparam>
+    public class DataResult<T> : SimpleResult
     {
+        private readonly T data;
+
         /// <summary>
-        /// Asserts whether first and second are equal.
+        /// Creates a new instance in case the operation was not successful.
         /// </summary>
-        /// <param name="first">The first argument.</param>
-        /// <param name="second">The second argument.</param>
-        /// <returns>true when equal; false otherwise.</returns>
-        public static bool AreEqual(double first, double second)
+        /// <param name="events">The events that occurred.</param>
+        public DataResult(IEnumerable<Event> events) : base(false, events)
         {
-            return Math.Abs(first - second) <= double.Epsilon;
+            data = default;
         }
 
         /// <summary>
-        /// Converts the given value to a string.
+        /// Creates a new instance in case the operation was successful.
         /// </summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted string.</returns>
-        /// <remarks>Numbers are rounded to 6 decimal places. When less decimals are present,
-        /// trailing zeros are not presented.</remarks>
-        public static string ToString(double value)
+        /// <param name="data">The data that was produced.</param>
+        /// <param name="events">The events that occurred.</param>
+        public DataResult(T data, IEnumerable<Event> events) : base(true, events)
         {
-            return value.ToString(CultureInfo.InvariantCulture);
+            this.data = data;
+        }
+
+        /// <summary>
+        /// Gets the data that was produced.
+        /// </summary>
+        /// <returns>The data that was produced.</returns>
+        public T GetData()
+        {
+            return data;
         }
     }
 }

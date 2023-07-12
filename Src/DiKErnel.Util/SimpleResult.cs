@@ -16,37 +16,45 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using System;
-using System.Globalization;
+using System.Collections.Generic;
 
-namespace DiKErnel.Util.Helpers
+namespace DiKErnel.Util
 {
     /// <summary>
-    /// Helper class to help with numerics.
+    /// Class that holds information about the result of an operation and the events that occurred.
     /// </summary>
-    public static class NumericsHelper
+    public class SimpleResult
     {
+        private readonly bool successful;
+        private readonly IEnumerable<Event> events;
+
         /// <summary>
-        /// Asserts whether first and second are equal.
+        /// Creates a new instance.
         /// </summary>
-        /// <param name="first">The first argument.</param>
-        /// <param name="second">The second argument.</param>
-        /// <returns>true when equal; false otherwise.</returns>
-        public static bool AreEqual(double first, double second)
+        /// <param name="successful">Whether the operation was successful.</param>
+        /// <param name="events">The events that occurred.</param>
+        public SimpleResult(bool successful, IEnumerable<Event> events)
         {
-            return Math.Abs(first - second) <= double.Epsilon;
+            this.successful = successful;
+            this.events = events;
         }
 
         /// <summary>
-        /// Converts the given value to a string.
+        /// Gets whether the operation was successful.
         /// </summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted string.</returns>
-        /// <remarks>Numbers are rounded to 6 decimal places. When less decimals are present,
-        /// trailing zeros are not presented.</remarks>
-        public static string ToString(double value)
+        /// <returns>Whether the operation was successful.</returns>
+        public bool GetSuccessful()
         {
-            return value.ToString(CultureInfo.InvariantCulture);
+            return successful;
+        }
+
+        /// <summary>
+        /// Gets the events.
+        /// </summary>
+        /// <returns>The events.</returns>
+        public IEnumerable<Event> GetEvents()
+        {
+            return events;
         }
     }
 }

@@ -16,37 +16,43 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using System;
-using System.Globalization;
-
-namespace DiKErnel.Util.Helpers
+namespace DiKErnel.Util
 {
     /// <summary>
-    /// Helper class to help with numerics.
+    /// Class containing event data.
     /// </summary>
-    public static class NumericsHelper
+    public class Event
     {
+        private readonly string message;
+        private readonly EventType eventType;
+
         /// <summary>
-        /// Asserts whether first and second are equal.
+        /// Creates a new instance.
         /// </summary>
-        /// <param name="first">The first argument.</param>
-        /// <param name="second">The second argument.</param>
-        /// <returns>true when equal; false otherwise.</returns>
-        public static bool AreEqual(double first, double second)
+        /// <param name="message">The message.</param>
+        /// <param name="eventType">The event type.</param>
+        public Event(string message, EventType eventType)
         {
-            return Math.Abs(first - second) <= double.Epsilon;
+            this.message = message;
+            this.eventType = eventType;
         }
 
         /// <summary>
-        /// Converts the given value to a string.
+        /// Gets the message.
         /// </summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted string.</returns>
-        /// <remarks>Numbers are rounded to 6 decimal places. When less decimals are present,
-        /// trailing zeros are not presented.</remarks>
-        public static string ToString(double value)
+        /// <returns>The message.</returns>
+        public string GetMessage()
         {
-            return value.ToString(CultureInfo.InvariantCulture);
+            return message;
+        }
+
+        /// <summary>
+        /// Gets the event type.
+        /// </summary>
+        /// <returns>The event type.</returns>
+        public EventType GetEventType()
+        {
+            return eventType;
         }
     }
 }
