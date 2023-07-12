@@ -8,7 +8,13 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\Src\DiKErnel.External.Overtopping\DiKErnel.External.Overtopping.csproj" />
+      <ProjectReference Include="..\..\Src\DiKErnel.External.Overtopping\DiKErnel.External.Overtopping.csproj">
+        <Private>False</Private>
+      </ProjectReference>
     </ItemGroup>
+
+    <Target Name="PreBuild" AfterTargets="PreBuildEvent">
+      <Exec Command="xcopy /d/s/y &quot;$(SolutionDir)Src\DiKErnel.External.Overtopping\bin\$(Platform)\$(Configuration)\netstandard2.0\*&quot; &quot;$(OutputPath)&quot;" />
+    </Target>
 
 </Project>

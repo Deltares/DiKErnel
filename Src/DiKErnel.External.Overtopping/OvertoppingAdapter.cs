@@ -57,9 +57,15 @@ namespace DiKErnel.External.Overtopping
             SetLanguage(languageCode, languageCode.Length);
             ValidateInputC(ref geometry, ref dikeHeight, ref modelFactors, ref success, messageBuffer, bufferCapacity);
 
+            if (success)
+            {
+                return Enumerable.Empty<string>();
+            }
+
+
             var validationMessage = new string(messageBuffer);
 
-            return validationMessage.Split('\t');
+            return validationMessage.TrimEnd('\0').Split('\t');
         }
 
         private static Geometry CreateGeometry(IEnumerable<double> xValues,
