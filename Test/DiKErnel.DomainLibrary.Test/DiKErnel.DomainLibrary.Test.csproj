@@ -1,21 +1,19 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-    <Import Project="$(SolutionDir)build\Test.targets" />
+    <Import Project="$(SolutionDir)build\Test.targets"/>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.6.3" />
-        <PackageReference Include="NUnit" Version="3.13.3" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.6.3"/>
+        <PackageReference Include="NUnit" Version="3.13.3"/>
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\Src\DiKErnel.DomainLibrary\DiKErnel.DomainLibrary.csproj" />
+        <ProjectReference Include="..\..\Src\DiKErnel.DomainLibrary\DiKErnel.DomainLibrary.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Defaults\GrassRevetmentOvertopping\" />
-      <Folder Include="Defaults\GrassRevetmentWaveImpact\" />
-      <Folder Include="Defaults\GrassRevetmentWaveRunup\" />
-      <Folder Include="Defaults\NaturalStoneRevetment\" />
+        <Folder Include="Defaults\GrassRevetmentWaveRunup\"/>
+        <Folder Include="Defaults\NaturalStoneRevetment\"/>
     </ItemGroup>
 
 </Project>
