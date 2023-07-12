@@ -26,7 +26,7 @@ namespace DiKErnel.External.Overtopping.Test
     public class OvertoppingAdapterTest
     {
         [Test]
-        public void Validate_WithInvalidData_ReturnsMessages()
+        public void Validate_WithInvalidData_SetsExpectedValues()
         {
             // Setup
             const double dikeHeight = 9.1;
@@ -64,7 +64,7 @@ namespace DiKErnel.External.Overtopping.Test
         }
 
         [Test]
-        public void Validate_WithValidData_ReturnsEmptyMessages()
+        public void Validate_WithValidData_SetsExpectedValues()
         {
             // Setup
             const double dikeHeight = 9.1;
