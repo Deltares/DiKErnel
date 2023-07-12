@@ -1,0 +1,102 @@
+﻿// Copyright (C) Stichting Deltares and State of the Netherlands 2023. All rights reserved.
+//
+// This file is part of DiKErnel.
+//
+// DiKErnel is free software: you can redistribute it and/or modify it under the terms of the
+// GNU Lesser General Public License as published by the Free Software Foundation, either
+// version 3 of the License, or (at your option) any later version.
+// 
+// This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+// without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+// See the GNU Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public License along with this
+// program. If not, see <http://www.gnu.org/licenses/>.
+//
+// All names, logos, and references to "Deltares" are registered trademarks of Stichting
+// Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
+
+using System;
+
+namespace DiKErnel.FunctionLibrary
+{
+    /// <summary>
+    /// Class that holds all generic revetment calculation routines.
+    /// </summary>
+    public static class RevetmentFunctions
+    {
+        /// <summary>
+        /// Calculates the increment of time.
+        /// </summary>
+        /// <param name="beginTime">The begin time. [s]</param>
+        /// <param name="endTime">The end time. [s]</param>
+        /// <returns>The increment of time. [s]</returns>
+        public static int IncrementTime(int beginTime, int endTime)
+        {
+            return endTime - beginTime;
+        }
+
+        /// <summary>
+        /// Calculates the average number of waves.
+        /// </summary>
+        /// <param name="incrementTime">The increment of time. [s]</param>
+        /// <param name="wavePeriodTm10">The wave period. [s]</param>
+        /// <param name="averageNumberOfWavesCtm">The Ctm coefficient. [-]</param>
+        /// <returns>The average number of waves. [-]</returns>
+        public static double AverageNumberOfWaves(double incrementTime, double wavePeriodTm10, double averageNumberOfWavesCtm)
+        {
+            return incrementTime / (averageNumberOfWavesCtm * wavePeriodTm10);
+        }
+
+        /// <summary>
+        /// Calculates the damage.
+        /// </summary>
+        /// <param name="incrementDamage">The increment of damage. [-]</param>
+        /// <param name="initialDamage">The initial damage. [-]</param>
+        /// <returns>The damage. [-]</returns>
+        public static double Damage(double incrementDamage, double initialDamage)
+        {
+            return initialDamage + incrementDamage;
+        }
+
+        /// <summary>
+        /// Calculates whether the revetment has failed or not.
+        /// </summary>
+        /// <param name="damage">The damage. [-]</param>
+        /// <param name="initialDamage">The initial damage. [-]</param>
+        /// <param name="failureNumber">The failure number. [-]</param>
+        /// <returns>Whether the revetment has failed or not.</returns>
+        public static bool FailureRevetment(double damage, double initialDamage, double failureNumber)
+        {
+            return initialDamage < failureNumber && damage >= failureNumber;
+        }
+
+        /// <summary>
+        /// Calculates the duration in the time step of failure.
+        /// </summary>
+        /// <param name="incrementTime">The increment of time. [s]</param>
+        /// <param name="incrementDamage">The increment of damage. [-]</param>
+        /// <param name="failureNumber">The failure number. [-]</param>
+        /// <param name="initialDamage">The initial damage. [-]</param>
+        /// <returns>The duration in the time step of failure. [s]</returns>
+        public static double DurationInTimeStepFailure(double incrementTime,
+                                                       double incrementDamage,
+                                                       double failureNumber,
+                                                       double initialDamage)
+        {
+            return (failureNumber - initialDamage) / incrementDamage * incrementTime;
+        }
+
+        /// <summary>
+        /// Calculates the time of failure.
+        /// </summary>
+        /// <param name="durationInTimeStepFailure">The duration in the time step of failure. [s]</param>
+        /// <param name="beginTime">The begin time. [s]</param>
+        /// <returns>The time of failure. [s]</returns>
+        public static int TimeOfFailure(double durationInTimeStepFailure,
+                                        double beginTime)
+        {
+            return (int) Math.Ceiling(durationInTimeStepFailure + beginTime);
+        }
+    }
+}
