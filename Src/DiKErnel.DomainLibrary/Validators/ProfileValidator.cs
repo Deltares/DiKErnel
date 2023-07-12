@@ -32,7 +32,7 @@ namespace DiKErnel.DomainLibrary.Validators
         /// <returns>A validation issue when the roughness coefficient is not valid; <c>null</c> otherwise.</returns>
         public static ValidationIssue RoughnessCoefficient(double roughnessCoefficient)
         {
-            if (roughnessCoefficient < 0.5 || roughnessCoefficient > 1)
+            if (roughnessCoefficient < 0.5 || roughnessCoefficient > 1.0)
             {
                 return new ValidationIssue(ValidationIssueType.Error, "Roughness coefficient should be in range [0.5, 1].");
             }

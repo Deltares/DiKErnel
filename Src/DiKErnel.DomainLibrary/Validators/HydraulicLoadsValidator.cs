@@ -32,12 +32,12 @@ namespace DiKErnel.DomainLibrary.Validators
         /// <returns>A validation issue when the wave height Hm0 is not valid; <c>null</c> otherwise.</returns>
         public static ValidationIssue WaveHeightHm0(double waveHeightHm0)
         {
-            if (waveHeightHm0 <= 0)
+            if (waveHeightHm0 <= 0.0)
             {
                 return new ValidationIssue(ValidationIssueType.Error, "WaveHeightHm0 must be larger than 0.");
             }
 
-            if (waveHeightHm0 <= 0.1 || waveHeightHm0 >= 10)
+            if (waveHeightHm0 <= 0.1 || waveHeightHm0 >= 10.0)
             {
                 return new ValidationIssue(ValidationIssueType.Warning, "WaveHeightHm0 should be in range {0.1, 10}.");
             }
@@ -52,12 +52,12 @@ namespace DiKErnel.DomainLibrary.Validators
         /// <returns>A validation issue when the wave period Tm10 is not valid; <c>null</c> otherwise.</returns>
         public static ValidationIssue WavePeriodTm10(double wavePeriodTm10)
         {
-            if (wavePeriodTm10 <= 0)
+            if (wavePeriodTm10 <= 0.0)
             {
                 return new ValidationIssue(ValidationIssueType.Error, "WavePeriodTm10 must be larger than 0.");
             }
 
-            if (wavePeriodTm10 <= 0.5 || wavePeriodTm10 >= 25)
+            if (wavePeriodTm10 <= 0.5 || wavePeriodTm10 >= 25.0)
             {
                 return new ValidationIssue(ValidationIssueType.Warning, "WavePeriodTm10 should be in range {0.5, 25}.");
             }
@@ -72,7 +72,7 @@ namespace DiKErnel.DomainLibrary.Validators
         /// <returns>A validation issue when the wave angle is not valid; <c>null</c> otherwise.</returns>
         public static ValidationIssue WaveAngle(double waveAngle)
         {
-            if (waveAngle <= -180 || waveAngle > 180)
+            if (waveAngle <= -180.0 || waveAngle > 180.0)
             {
                 return new ValidationIssue(ValidationIssueType.Error, "WaveAngle must be in range {-180, 180].");
             }
