@@ -58,7 +58,7 @@ namespace DiKErnel.Util.Test.Helpers
         public void AreEqual_SecondValueDiffersWithTwoTimesEpsilon_ReturnsFalse()
         {
             // Call
-            bool areEqual = NumericsHelper.AreEqual(0.1, 0.1+double.Epsilon * 2);
+            bool areEqual = NumericsHelper.AreEqual(0.1, 0.1 + double.Epsilon * 2);
             
             // Assert
             Assert.False(areEqual);
@@ -106,7 +106,7 @@ namespace DiKErnel.Util.Test.Helpers
             
             //Assert
             Assert.AreEqual("0.3", string1);
-            Assert.AreEqual("1e-06", string2);
+            Assert.AreEqual("1E-06", string2);
             Assert.AreEqual("0.001", string3);
             Assert.AreEqual("1", string4);
             Assert.AreEqual("0.123457", string5);
