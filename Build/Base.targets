@@ -3,6 +3,7 @@
     <OutDir>$(OutputPath)</OutDir>
     <EnableNETAnalyzers>true</EnableNETAnalyzers>
     <AnalysisMode>All</AnalysisMode>
+    <Platforms>x86;x64</Platforms>
     <LangVersion>8.0</LangVersion>
     <FileAlignment>512</FileAlignment>
     <Company>Deltares</Company>
