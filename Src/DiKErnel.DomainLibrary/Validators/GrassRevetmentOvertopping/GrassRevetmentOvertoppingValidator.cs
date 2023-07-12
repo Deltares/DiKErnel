@@ -54,7 +54,7 @@ namespace DiKErnel.DomainLibrary.Validators.GrassRevetmentOvertopping
 
             return null;
         }
-        
+
         /// <summary>
         /// Validates the water level.
         /// </summary>
