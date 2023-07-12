@@ -24,76 +24,78 @@ namespace DiKErnel.Util.Test.Helpers
     [TestFixture]
     public class NumericsHelperTest
     {
+        private const double maxDeviation = 10E-16;
+
         [Test]
         public void AreEqual_EqualValue_ReturnsTrue()
         {
             // Call
             bool areEqual = NumericsHelper.AreEqual(0.1, 0.1);
-            
+
             // Assert
             Assert.True(areEqual);
         }
-        
+
         [Test]
         public void AreEqual_SecondValueDiffersWithEpsilon_ReturnsTrue()
         {
             // Call
-            bool areEqual = NumericsHelper.AreEqual(0.1, 0.1 + double.Epsilon);
-            
+            bool areEqual = NumericsHelper.AreEqual(0.1, 0.1 + maxDeviation);
+
             // Assert
             Assert.True(areEqual);
         }
-        
+
         [Test]
         public void FirstValueDiffersWithEpsilon_ReturnsTrue()
         {
             // Call
-            bool areEqual = NumericsHelper.AreEqual(0.1 + double.Epsilon, 0.1);
-            
+            bool areEqual = NumericsHelper.AreEqual(0.1 + maxDeviation, 0.1);
+
             // Assert
             Assert.True(areEqual);
         }
-        
+
         [Test]
         public void AreEqual_SecondValueDiffersWithTwoTimesEpsilon_ReturnsFalse()
         {
             // Call
-            bool areEqual = NumericsHelper.AreEqual(0.1, 0.1 + double.Epsilon * 2);
-            
+            bool areEqual = NumericsHelper.AreEqual(0.1, 0.1 + maxDeviation * 2);
+
             // Assert
             Assert.False(areEqual);
         }
-        
+
         [Test]
         public void AreEqual_FirstValueDiffersWithTwoTimesEpsilon_ReturnsFalse()
         {
             // Call
-            bool areEqual = NumericsHelper.AreEqual(0.1 + double.Epsilon * 2, 0.1);
-            
+            bool areEqual = NumericsHelper.AreEqual(0.1 + maxDeviation * 2, 0.1);
+
             // Assert
             Assert.False(areEqual);
         }
-        
+
         [Test]
         public void AreEqual_SecondValueLargerThanFirstValue_ReturnsFalse()
         {
             // Call
             bool areEqual = NumericsHelper.AreEqual(0.1, 0.11);
-            
+
             // Assert
             Assert.False(areEqual);
         }
-        
+
         [Test]
         public void AreEqual_SecondValueSmallerThanFirstValue_ReturnsFalse()
         {
             // Call
             bool areEqual = NumericsHelper.AreEqual(0.11, 0.1);
-            
+
             // Assert
             Assert.False(areEqual);
         }
-        
+
         [Test]
         public void ToString_Always_ReturnsExpectedValue()
         {
@@ -103,7 +105,7 @@ namespace DiKErnel.Util.Test.Helpers
             string string3 = NumericsHelper.ToString(0.001);
             string string4 = NumericsHelper.ToString(1);
             string string5 = NumericsHelper.ToString(0.123456789);
-            
+
             //Assert
             Assert.AreEqual("0.3", string1);
             Assert.AreEqual("1E-06", string2);

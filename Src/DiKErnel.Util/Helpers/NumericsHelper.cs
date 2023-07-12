@@ -26,6 +26,8 @@ namespace DiKErnel.Util.Helpers
     /// </summary>
     public static class NumericsHelper
     {
+        private const double maxDeviation = 10E-16;
+
         /// <summary>
         /// Asserts whether first and second are equal.
         /// </summary>
@@ -34,7 +36,7 @@ namespace DiKErnel.Util.Helpers
         /// <returns>true when equal; false otherwise.</returns>
         public static bool AreEqual(double first, double second)
         {
-            return Math.Abs(first - second) <= double.Epsilon;
+            return Math.Abs(first - second) <= maxDeviation;
         }
 
         /// <summary>
