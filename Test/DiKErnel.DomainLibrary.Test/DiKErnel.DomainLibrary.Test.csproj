@@ -12,7 +12,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Defaults\AsphaltRevetmentWaveImpact\" />
       <Folder Include="Defaults\GrassRevetmentOvertopping\" />
       <Folder Include="Defaults\GrassRevetmentWaveImpact\" />
       <Folder Include="Defaults\GrassRevetmentWaveRunup\" />

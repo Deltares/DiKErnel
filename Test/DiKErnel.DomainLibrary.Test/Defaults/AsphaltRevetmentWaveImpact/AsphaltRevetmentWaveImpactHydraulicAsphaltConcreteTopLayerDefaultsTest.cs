@@ -16,18 +16,24 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using DiKErnel.DomainLibrary.Defaults.AsphaltRevetmentWaveImpact;
 using NUnit.Framework;
 
-namespace DiKErnel.DomainLibrary.Test
+namespace DiKErnel.DomainLibrary.Test.Defaults.AsphaltRevetmentWaveImpact
 {
     [TestFixture]
-    public class ConstantsTest
+    public class AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteTopLayerDefaultsTest
     {
         [Test]
-        public void GravitationalAcceleration_ExpectedValue()
+        public void Constructor_ExpectedValues()
         {
-            // Call & Assert
-            Assert.AreEqual(9.81, Constants.GravitationalAcceleration);
+            // Call
+            var defaults = new AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteTopLayerDefaults();
+
+            // Assert
+            Assert.AreEqual(0.42, defaults.FatigueAlpha);
+            Assert.AreEqual(4.76, defaults.FatigueBeta);
+            Assert.AreEqual(0.35, defaults.StiffnessRelationNu);
         }
     }
 }
