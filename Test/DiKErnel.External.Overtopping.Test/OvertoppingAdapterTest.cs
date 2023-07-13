@@ -57,7 +57,8 @@ namespace DiKErnel.External.Overtopping.Test
             };
 
             // Call
-            IEnumerable<string> messages = OvertoppingAdapter.Validate(xCoordinates, zCoordinates, roughnessCoefficients, dikeHeight);
+            IEnumerable<string> messages = OvertoppingAdapter.Validate(xCoordinates, zCoordinates, roughnessCoefficients, 
+                                                                       dikeHeight);
 
             // Assert
             Assert.IsTrue(messages.Any());
@@ -95,7 +96,8 @@ namespace DiKErnel.External.Overtopping.Test
             };
 
             // Call
-            IEnumerable<string> messages = OvertoppingAdapter.Validate(xCoordinates, zCoordinates, roughnessCoefficients, dikeHeight);
+            IEnumerable<string> messages = OvertoppingAdapter.Validate(xCoordinates, zCoordinates, roughnessCoefficients,
+                                                                       dikeHeight);
 
             // Assert
             Assert.IsFalse(messages.Any());
@@ -129,8 +131,8 @@ namespace DiKErnel.External.Overtopping.Test
             };
 
             // Call
-            double z2 = OvertoppingAdapter.CalculateZ2(waterLevel, waveHeightHm0, wavePeriodTm10, waveDirection,
-                                                       xCoordinates, zCoordinates, roughnessCoefficients, dikeHeight);
+            double z2 = OvertoppingAdapter.CalculateZ2(waterLevel, waveHeightHm0, wavePeriodTm10, waveDirection, xCoordinates, 
+                                                       zCoordinates, roughnessCoefficients, dikeHeight);
 
             // Assert
             Assert.Zero(z2);
@@ -168,8 +170,8 @@ namespace DiKErnel.External.Overtopping.Test
             };
 
             // Call
-            double z2 = OvertoppingAdapter.CalculateZ2(waterLevel, waveHeightHm0, wavePeriodTm10, waveDirection,
-                                                       xCoordinates, zCoordinates, roughnessCoefficients, dikeHeight);
+            double z2 = OvertoppingAdapter.CalculateZ2(waterLevel, waveHeightHm0, wavePeriodTm10, waveDirection, xCoordinates, 
+                                                       zCoordinates, roughnessCoefficients, dikeHeight);
 
             // Assert
             Assert.NotZero(z2);

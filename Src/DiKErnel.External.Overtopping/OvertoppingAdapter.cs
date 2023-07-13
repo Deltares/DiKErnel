@@ -42,10 +42,8 @@ namespace DiKErnel.External.Overtopping
         /// segments. [-]</param>
         /// <param name="dikeHeight">The dike height. [m]</param>
         /// <returns>A collection of validation messages.</returns>
-        public static IEnumerable<string> Validate(IEnumerable<double> xValues,
-                                                   IEnumerable<double> zValues,
-                                                   IEnumerable<double> roughnessCoefficients,
-                                                   double dikeHeight)
+        public static IEnumerable<string> Validate(IEnumerable<double> xValues, IEnumerable<double> zValues,
+                                                   IEnumerable<double> roughnessCoefficients, double dikeHeight)
         {
             Geometry geometry = CreateGeometry(xValues, zValues, roughnessCoefficients);
             ModelFactors modelFactors = GetDefaultModelFactors();
@@ -72,7 +70,8 @@ namespace DiKErnel.External.Overtopping
         /// <param name="waterLevel">The water level. [m]</param>
         /// <param name="waveHeightHm0">The wave height. [m]</param>
         /// <param name="wavePeriodTm10">The wave period Tm10. [deg]</param>
-        /// <param name="waveDirection">The wave direction with respect to the North. [deg]</param>
+        /// <param name="waveDirection">The wave direction with respect to the
+        /// North. [deg]</param>
         /// <param name="xValues">The x values of the profile points. [m]</param>
         /// <param name="zValues">The z values of the profile points. [m]</param>
         /// <param name="roughnessCoefficients">The roughness coefficients of the profile
@@ -80,8 +79,8 @@ namespace DiKErnel.External.Overtopping
         /// <param name="dikeHeight">The dike height. [m]</param>
         /// <returns>The representative wave run-up (2 percent). [m]</returns>
         public static double CalculateZ2(double waterLevel, double waveHeightHm0, double wavePeriodTm10, double waveDirection,
-                                         IEnumerable<double> xValues, IEnumerable<double> zValues, IEnumerable<double> roughnessCoefficients,
-                                         double dikeHeight)
+                                         IEnumerable<double> xValues, IEnumerable<double> zValues,
+                                         IEnumerable<double> roughnessCoefficients, double dikeHeight)
         {
             var load = new Load
             {
