@@ -85,6 +85,7 @@ namespace DiKErnel.DomainLibrary.Defaults.NaturalStoneRevetment
 
         /// <summary>
         /// Gets the default value of the Betamax coefficient [deg].
+        /// </summary>
         public static double WaveAngleImpactBetamax => 78.0;
     }
 }

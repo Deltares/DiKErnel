@@ -28,8 +28,10 @@ namespace DiKErnel.DomainLibrary.Validators.GrassRevetmentWaveRunup
         /// <summary>
         /// Validates the 2P Gammab coefficient.
         /// </summary>
-        /// <param name="representativeWaveRunup2PGammab">The 2P Gammab coefficient [-].</param>
-        /// <returns>A validation issue when the 2P Gammab coefficient is not valid; <c>null</c> otherwise.</returns>
+        /// <param name="representativeWaveRunup2PGammab">The 2P Gammab
+        /// coefficient [-].</param>
+        /// <returns>A validation issue when the 2P Gammab coefficient is not valid;
+        /// <c>null</c> otherwise.</returns>
         public static ValidationIssue RepresentativeWaveRunup2PGammab(double representativeWaveRunup2PGammab)
         {
             if (representativeWaveRunup2PGammab < 0.6 || representativeWaveRunup2PGammab > 1.0)
@@ -43,8 +45,10 @@ namespace DiKErnel.DomainLibrary.Validators.GrassRevetmentWaveRunup
         /// <summary>
         /// Validates the 2P Gammaf coefficient.
         /// </summary>
-        /// <param name="representativeWaveRunup2PGammaf">The 2P Gammaf coefficient [-].</param>
-        /// <returns>A validation issue when the 2P Gammaf coefficient is not valid; <c>null</c> otherwise.</returns>
+        /// <param name="representativeWaveRunup2PGammaf">The 2P Gammaf
+        /// coefficient [-].</param>
+        /// <returns>A validation issue when the 2P Gammaf coefficient is not valid;
+        /// <c>null</c> otherwise.</returns>
         public static ValidationIssue RepresentativeWaveRunup2PGammaf(double representativeWaveRunup2PGammaf)
         {
             if (representativeWaveRunup2PGammaf < 0.5 || representativeWaveRunup2PGammaf > 1.0)
@@ -59,7 +63,8 @@ namespace DiKErnel.DomainLibrary.Validators.GrassRevetmentWaveRunup
         /// Validates the outer slope.
         /// </summary>
         /// <param name="outerSlope">The outer slope [-].</param>
-        /// <returns>A validation issue when the outer slope is not valid; <c>null</c> otherwise.</returns>
+        /// <returns>A validation issue when the outer slope is not valid; <c>null</c>
+        /// otherwise.</returns>
         public static ValidationIssue OuterSlope(double outerSlope)
         {
             if (outerSlope <= 0.0 || outerSlope >= 1.0)

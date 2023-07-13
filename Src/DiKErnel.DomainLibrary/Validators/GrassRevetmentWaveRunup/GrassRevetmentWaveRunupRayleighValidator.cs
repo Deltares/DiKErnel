@@ -30,7 +30,8 @@ namespace DiKErnel.DomainLibrary.Validators.GrassRevetmentWaveRunup
         /// Validates the Cu coefficient.
         /// </summary>
         /// <param name="frontVelocityCu">The Cu coefficient [-].</param>
-        /// <returns>A validation issue when the Cu coefficient is not valid; <c>null</c> otherwise.</returns>
+        /// <returns>A validation issue when the Cu coefficient is not valid; <c>null</c>
+        /// otherwise.</returns>
         public static ValidationIssue FrontVelocityCu(double frontVelocityCu)
         {
             if (frontVelocityCu <= 0.0)

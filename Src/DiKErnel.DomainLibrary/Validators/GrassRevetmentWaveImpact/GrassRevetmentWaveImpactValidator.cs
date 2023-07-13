@@ -30,7 +30,8 @@ namespace DiKErnel.DomainLibrary.Validators.GrassRevetmentWaveImpact
         /// </summary>
         /// <param name="timeLineAgwi">The Agwi coefficient [m].</param>
         /// <param name="timeLineCgwi">The Cgwi coefficient [m].</param>
-        /// <returns>A validation issue when the Agwi coefficient is not valid; <c>null</c> otherwise.</returns>
+        /// <returns>A validation issue when the Agwi coefficient is not valid; <c>null</c>
+        /// otherwise.</returns>
         public static ValidationIssue TimeLineAgwi(double timeLineAgwi, double timeLineCgwi)
         {
             if (timeLineAgwi <= timeLineCgwi)
@@ -45,7 +46,8 @@ namespace DiKErnel.DomainLibrary.Validators.GrassRevetmentWaveImpact
         /// Validates the Bgwi coefficient.
         /// </summary>
         /// <param name="timeLineBgwi">The Bgwi coefficient [s^-1].</param>
-        /// <returns>A validation issue when the Bgwi coefficient is not valid; <c>null</c> otherwise.</returns>
+        /// <returns>A validation issue when the Bgwi coefficient is not valid; <c>null</c>
+        /// otherwise.</returns>
         public static ValidationIssue TimeLineBgwi(double timeLineBgwi)
         {
             if (timeLineBgwi >= 0.0)
@@ -60,7 +62,8 @@ namespace DiKErnel.DomainLibrary.Validators.GrassRevetmentWaveImpact
         /// Validates the Cgwi coefficient.
         /// </summary>
         /// <param name="timeLineCgwi">The Cgwi coefficient [m].</param>
-        /// <returns>A validation issue when the Cgwi coefficient is not valid; <c>null</c> otherwise.</returns>
+        /// <returns>A validation issue when the Cgwi coefficient is not valid; <c>null</c>
+        /// otherwise.</returns>
         public static ValidationIssue TimeLineCgwi(double timeLineCgwi)
         {
             if (timeLineCgwi < 0.0)
@@ -75,7 +78,8 @@ namespace DiKErnel.DomainLibrary.Validators.GrassRevetmentWaveImpact
         /// Validates the Temax coefficient.
         /// </summary>
         /// <param name="minimumWaveHeightTemax">The Temax coefficient [s].</param>
-        /// <returns>A validation issue when the Temax coefficient is not valid; <c>null</c> otherwise.</returns>
+        /// <returns>A validation issue when the Temax coefficient is not valid; <c>null</c>
+        /// otherwise.</returns>
         public static ValidationIssue MinimumWaveHeightTemax(double minimumWaveHeightTemax)
         {
             if (minimumWaveHeightTemax > 3600000.0)
@@ -95,7 +99,8 @@ namespace DiKErnel.DomainLibrary.Validators.GrassRevetmentWaveImpact
         /// Validates the Temin coefficient.
         /// </summary>
         /// <param name="maximumWaveHeightTemin">The Temin coefficient [s].</param>
-        /// <returns>A validation issue when the Temin coefficient is not valid; <c>null</c> otherwise.</returns>
+        /// <returns>A validation issue when the Temin coefficient is not valid; <c>null</c>
+        /// otherwise.</returns>
         public static ValidationIssue MaximumWaveHeightTemin(double maximumWaveHeightTemin)
         {
             if (maximumWaveHeightTemin < 3.6)
@@ -115,7 +120,8 @@ namespace DiKErnel.DomainLibrary.Validators.GrassRevetmentWaveImpact
         /// Validates the Nwa coefficient.
         /// </summary>
         /// <param name="waveAngleImpactNwa">The Nwa coefficient [-].</param>
-        /// <returns>A validation issue when the Nwa coefficient is not valid; <c>null</c> otherwise.</returns>
+        /// <returns>A validation issue when the Nwa coefficient is not valid; <c>null</c>
+        /// otherwise.</returns>
         public static ValidationIssue WaveAngleImpactNwa(double waveAngleImpactNwa)
         {
             if (waveAngleImpactNwa > 1.0)
@@ -130,7 +136,8 @@ namespace DiKErnel.DomainLibrary.Validators.GrassRevetmentWaveImpact
         /// Validates the Qwa coefficient.
         /// </summary>
         /// <param name="waveAngleImpactQwa">The Qwa coefficient [-].</param>
-        /// <returns>A validation issue when the Qwa coefficient is not valid; <c>null</c> otherwise.</returns>
+        /// <returns>A validation issue when the Qwa coefficient is not valid; <c>null</c>
+        /// otherwise.</returns>
         public static ValidationIssue WaveAngleImpactQwa(double waveAngleImpactQwa)
         {
             if (waveAngleImpactQwa < 0.0 || waveAngleImpactQwa > 1.0)
@@ -145,7 +152,8 @@ namespace DiKErnel.DomainLibrary.Validators.GrassRevetmentWaveImpact
         /// Validates the Rwa coefficient.
         /// </summary>
         /// <param name="waveAngleImpactRwa">The Rwa coefficient [-].</param>
-        /// <returns>A validation issue when the Rwa coefficient is not valid; <c>null</c> otherwise.</returns>
+        /// <returns>A validation issue when the Rwa coefficient is not valid; <c>null</c>
+        /// otherwise.</returns>
         public static ValidationIssue WaveAngleImpactRwa(double waveAngleImpactRwa)
         {
             if (waveAngleImpactRwa <= 0.0)
@@ -161,7 +169,8 @@ namespace DiKErnel.DomainLibrary.Validators.GrassRevetmentWaveImpact
         /// </summary>
         /// <param name="upperLimitLoadingAul">The Aul coefficient [-].</param>
         /// <param name="lowerLimitLoadingAll">The All coefficient [-].</param>
-        /// <returns>A validation issue when the Aul coefficient is not valid; <c>null</c> otherwise.</returns>
+        /// <returns>A validation issue when the Aul coefficient is not valid; <c>null</c>
+        /// otherwise.</returns>
         public static ValidationIssue UpperLimitLoadingAul(double upperLimitLoadingAul, double lowerLimitLoadingAll)
         {
             if (upperLimitLoadingAul >= lowerLimitLoadingAll)

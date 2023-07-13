@@ -29,7 +29,8 @@ namespace DiKErnel.DomainLibrary.Validators.GrassRevetmentOvertopping
         /// Validates the alpha A coefficient.
         /// </summary>
         /// <param name="accelerationAlphaA">The alpha A coefficient [-].</param>
-        /// <returns>A validation issue when the alpha A coefficient is not valid; <c>null</c> otherwise.</returns>
+        /// <returns>A validation issue when the alpha A coefficient is not valid;
+        /// <c>null</c> otherwise.</returns>
         public static ValidationIssue AccelerationAlphaA(double accelerationAlphaA)
         {
             if (accelerationAlphaA < 0)
@@ -44,7 +45,8 @@ namespace DiKErnel.DomainLibrary.Validators.GrassRevetmentOvertopping
         /// Validates the Cwo coefficient.
         /// </summary>
         /// <param name="frontVelocityCwo">The Cwo coefficient [-].</param>
-        /// <returns>A validation issue when the Cwo coefficient is not valid; <c>null</c> otherwise.</returns>
+        /// <returns>A validation issue when the Cwo coefficient is not valid; <c>null</c>
+        /// otherwise.</returns>
         public static ValidationIssue FrontVelocityCwo(double frontVelocityCwo)
         {
             if (frontVelocityCwo <= 0)
@@ -60,7 +62,8 @@ namespace DiKErnel.DomainLibrary.Validators.GrassRevetmentOvertopping
         /// </summary>
         /// <param name="waterLevel">The water level [m].</param>
         /// <param name="dikeHeight">The dike height [m].</param>
-        /// <returns>A validation issue when the water level is not valid; <c>null</c> otherwise.</returns>
+        /// <returns>A validation issue when the water level is not valid; <c>null</c>
+        /// otherwise.</returns>
         public static ValidationIssue WaterLevel(double waterLevel, double dikeHeight)
         {
             return null;

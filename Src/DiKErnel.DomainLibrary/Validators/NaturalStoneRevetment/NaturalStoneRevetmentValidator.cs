@@ -29,7 +29,8 @@ namespace DiKErnel.DomainLibrary.Validators.NaturalStoneRevetment
         /// Validates the relative density.
         /// </summary>
         /// <param name="relativeDensity">The relative density [-].</param>
-        /// <returns>A validation issue when the relative density is not valid; <c>null</c> otherwise.</returns>
+        /// <returns>A validation issue when the relative density is not valid;
+        /// <c>null</c> otherwise.</returns>
         public static ValidationIssue RelativeDensity(double relativeDensity)
         {
             if (relativeDensity <= 0.0 || relativeDensity >= 10.0)
@@ -49,7 +50,8 @@ namespace DiKErnel.DomainLibrary.Validators.NaturalStoneRevetment
         /// Validates the thickness of the top layer.
         /// </summary>
         /// <param name="thicknessTopLayer">The thickness of the top layer [m].</param>
-        /// <returns>A validation issue when the thickness of the top layer is not valid; <c>null</c> otherwise.</returns>
+        /// <returns>A validation issue when the thickness of the top layer is not valid;
+        /// <c>null</c> otherwise.</returns>
         public static ValidationIssue ThicknessTopLayer(double thicknessTopLayer)
         {
             if (thicknessTopLayer <= 0.0 || thicknessTopLayer >= 1.0)
@@ -69,7 +71,8 @@ namespace DiKErnel.DomainLibrary.Validators.NaturalStoneRevetment
         /// Validates the Aus coefficient.
         /// </summary>
         /// <param name="slopeUpperLevelAus">The Aus coefficient [-].</param>
-        /// <returns>A validation issue when the Aus coefficient is not valid; <c>null</c> otherwise.</returns>
+        /// <returns>A validation issue when the Aus coefficient is not valid; <c>null</c>
+        /// otherwise.</returns>
         public static ValidationIssue SlopeUpperLevelAus(double slopeUpperLevelAus)
         {
             if (slopeUpperLevelAus <= 0.0)
@@ -89,7 +92,8 @@ namespace DiKErnel.DomainLibrary.Validators.NaturalStoneRevetment
         /// Validates the Als coefficient.
         /// </summary>
         /// <param name="slopeLowerLevelAls">The Als coefficient [-].</param>
-        /// <returns>A validation issue when the Als coefficient is not valid; <c>null</c> otherwise.</returns>
+        /// <returns>A validation issue when the Als coefficient is not valid; <c>null</c>
+        /// otherwise.</returns>
         public static ValidationIssue SlopeLowerLevelAls(double slopeLowerLevelAls)
         {
             if (slopeLowerLevelAls <= 0.0)

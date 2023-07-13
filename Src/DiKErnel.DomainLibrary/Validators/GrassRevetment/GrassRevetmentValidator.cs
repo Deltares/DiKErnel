@@ -28,8 +28,10 @@ namespace DiKErnel.DomainLibrary.Validators.GrassRevetment
         /// <summary>
         /// Validates the critical cumulative overload.
         /// </summary>
-        /// <param name="criticalCumulativeOverload">The critical cumulative overload [m^2/s^2].</param>
-        /// <returns>A validation issue when the critical cumulative overload is not valid; <c>null</c> otherwise.</returns>
+        /// <param name="criticalCumulativeOverload">The critical cumulative
+        /// overload [m^2/s^2].</param>
+        /// <returns>A validation issue when the critical cumulative overload is not valid;
+        /// <c>null</c> otherwise.</returns>
         public static ValidationIssue CriticalCumulativeOverload(double criticalCumulativeOverload)
         {
             if (criticalCumulativeOverload <= 0.0)
@@ -44,7 +46,8 @@ namespace DiKErnel.DomainLibrary.Validators.GrassRevetment
         /// Validates the critical front velocity.
         /// </summary>
         /// <param name="criticalFrontVelocity">The critical front velocity [m/s].</param>
-        /// <returns>A validation issue when the critical front velocity is not valid; <c>null</c> otherwise.</returns>
+        /// <returns>A validation issue when the critical front velocity is not valid;
+        /// <c>null</c> otherwise.</returns>
         public static ValidationIssue CriticalFrontVelocity(double criticalFrontVelocity)
         {
             return ValidateEqualToOrLargerThanZero(criticalFrontVelocity, "CriticalFrontVelocity");
@@ -54,7 +57,8 @@ namespace DiKErnel.DomainLibrary.Validators.GrassRevetment
         /// Validates the fixed number of waves.
         /// </summary>
         /// <param name="fixedNumberOfWaves">The fixed number of waves [-].</param>
-        /// <returns>A validation issue when the fixed number of waves is not valid; <c>null</c> otherwise.</returns>
+        /// <returns>A validation issue when the fixed number of waves is not valid;
+        /// <c>null</c> otherwise.</returns>
         public static ValidationIssue FixedNumberOfWaves(int fixedNumberOfWaves)
         {
             if (fixedNumberOfWaves <= 0.0)
@@ -69,7 +73,8 @@ namespace DiKErnel.DomainLibrary.Validators.GrassRevetment
         /// Validates the alpha M coefficient.
         /// </summary>
         /// <param name="increasedLoadTransitionAlphaM">The alpha M coefficient [-].</param>
-        /// <returns>A validation issue when the alpha M coefficient is not valid; <c>null</c> otherwise.</returns>
+        /// <returns>A validation issue when the alpha M coefficient is not valid;
+        /// <c>null</c> otherwise.</returns>
         public static ValidationIssue IncreasedLoadTransitionAlphaM(double increasedLoadTransitionAlphaM)
         {
             return ValidateEqualToOrLargerThanZero(increasedLoadTransitionAlphaM, "IncreasedLoadTransitionAlphaM");
@@ -78,8 +83,10 @@ namespace DiKErnel.DomainLibrary.Validators.GrassRevetment
         /// <summary>
         /// Validates the alpha S coefficient.
         /// </summary>
-        /// <param name="reducedStrengthTransitionAlphaS">The alpha S coefficient [-].</param>
-        /// <returns>A validation issue when the alpha S coefficient is not valid; <c>null</c> otherwise.</returns>
+        /// <param name="reducedStrengthTransitionAlphaS">The alpha S
+        /// coefficient [-].</param>
+        /// <returns>A validation issue when the alpha S coefficient is not valid;
+        /// <c>null</c> otherwise.</returns>
         public static ValidationIssue ReducedStrengthTransitionAlphaS(double reducedStrengthTransitionAlphaS)
         {
             return ValidateEqualToOrLargerThanZero(reducedStrengthTransitionAlphaS, "ReducedStrengthTransitionAlphaS");

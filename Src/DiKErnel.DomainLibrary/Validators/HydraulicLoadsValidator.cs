@@ -29,7 +29,8 @@ namespace DiKErnel.DomainLibrary.Validators
         /// Validates the wave height Hm0.
         /// </summary>
         /// <param name="waveHeightHm0">The wave height Hm0 [m].</param>
-        /// <returns>A validation issue when the wave height Hm0 is not valid; <c>null</c> otherwise.</returns>
+        /// <returns>A validation issue when the wave height Hm0 is not valid; <c>null</c>
+        /// otherwise.</returns>
         public static ValidationIssue WaveHeightHm0(double waveHeightHm0)
         {
             if (waveHeightHm0 <= 0.0)
@@ -49,7 +50,8 @@ namespace DiKErnel.DomainLibrary.Validators
         /// Validates the wave period Tm10.
         /// </summary>
         /// <param name="wavePeriodTm10">The wave period Tm10 [s].</param>
-        /// <returns>A validation issue when the wave period Tm10 is not valid; <c>null</c> otherwise.</returns>
+        /// <returns>A validation issue when the wave period Tm10 is not valid; <c>null</c>
+        /// otherwise.</returns>
         public static ValidationIssue WavePeriodTm10(double wavePeriodTm10)
         {
             if (wavePeriodTm10 <= 0.0)
@@ -69,7 +71,8 @@ namespace DiKErnel.DomainLibrary.Validators
         /// Validates the wave angle.
         /// </summary>
         /// <param name="waveAngle">The wave angle [deg].</param>
-        /// <returns>A validation issue when the wave angle is not valid; <c>null</c> otherwise.</returns>
+        /// <returns>A validation issue when the wave angle is not valid; <c>null</c>
+        /// otherwise.</returns>
         public static ValidationIssue WaveAngle(double waveAngle)
         {
             if (waveAngle <= -180.0 || waveAngle > 180.0)

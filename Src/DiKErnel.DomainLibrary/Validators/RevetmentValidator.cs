@@ -29,7 +29,8 @@ namespace DiKErnel.DomainLibrary.Validators
         /// Validates the initial damage.
         /// </summary>
         /// <param name="initialDamage">The initial damage [-].</param>
-        /// <returns>A validation issue when the initial damage is not valid; <c>null</c> otherwise.</returns>
+        /// <returns>A validation issue when the initial damage is not valid; <c>null</c>
+        /// otherwise.</returns>
         public static ValidationIssue InitialDamage(double initialDamage)
         {
             if (initialDamage < 0.0)
@@ -50,7 +51,8 @@ namespace DiKErnel.DomainLibrary.Validators
         /// </summary>
         /// <param name="failureNumber">The failure number [-].</param>
         /// <param name="initialDamage">The initial damage [-].</param>
-        /// <returns>A validation issue when the failure number is not valid; <c>null</c> otherwise.</returns>
+        /// <returns>A validation issue when the failure number is not valid; <c>null</c>
+        /// otherwise.</returns>
         public static ValidationIssue FailureNumber(double failureNumber, double initialDamage)
         {
             if (failureNumber < initialDamage)
@@ -65,7 +67,8 @@ namespace DiKErnel.DomainLibrary.Validators
         /// Validates the Ctm coefficient.
         /// </summary>
         /// <param name="averageNumberOfWavesCtm">The Ctm coefficient [-].</param>
-        /// <returns>A validation issue when the Ctm coefficient is not valid; <c>null</c> otherwise.</returns>
+        /// <returns>A validation issue when the Ctm coefficient is not valid; <c>null</c>
+        /// otherwise.</returns>
         public static ValidationIssue AverageNumberOfWavesCtm(double averageNumberOfWavesCtm)
         {
             if (averageNumberOfWavesCtm <= 0.0)

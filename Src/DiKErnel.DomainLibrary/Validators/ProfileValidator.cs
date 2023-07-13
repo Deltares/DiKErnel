@@ -29,7 +29,8 @@ namespace DiKErnel.DomainLibrary.Validators
         /// Validates the roughness coefficient.
         /// </summary>
         /// <param name="roughnessCoefficient">The roughness coefficient [-].</param>
-        /// <returns>A validation issue when the roughness coefficient is not valid; <c>null</c> otherwise.</returns>
+        /// <returns>A validation issue when the roughness coefficient is not valid;
+        /// <c>null</c> otherwise.</returns>
         public static ValidationIssue RoughnessCoefficient(double roughnessCoefficient)
         {
             if (roughnessCoefficient < 0.5 || roughnessCoefficient > 1.0)
