@@ -42,6 +42,5 @@ namespace DiKErnel.DomainLibrary.Test.Validators.GrassRevetmentWaveRunup
 
             ValidatorAssertHelper.AssertValue(validationFunc, ValidatorAssertHelper.DoubleMax);
         }
-
     }
 }
