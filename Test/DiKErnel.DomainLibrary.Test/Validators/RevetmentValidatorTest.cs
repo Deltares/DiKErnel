@@ -16,6 +16,10 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using System;
+using DiKErnel.DomainLibrary.Validators;
+using DiKErnel.Util.TestUtil;
+using DiKErnel.Util.Validation;
 using NUnit.Framework;
 
 namespace DiKErnel.DomainLibrary.Test.Validators
@@ -23,6 +27,57 @@ namespace DiKErnel.DomainLibrary.Test.Validators
     [TestFixture]
     public class RevetmentValidatorTest
     {
-        
+        [Test]
+        public void InitialDamage_VariousScenarios_ExpectedValues()
+        {
+            Func<double, ValidationIssue> validationFunc = RevetmentValidator.InitialDamage;
+
+            const string errorMessage = "InitialDamage must be equal to 0 or larger.";
+            const string warningMessage = "InitialDamage should be in range [0, 1}.";
+
+            ValidatorAssertHelper.AssertValue(validationFunc, ValidatorAssertHelper.DoubleMin, ValidationIssueType.Error, errorMessage);
+
+            ValidatorAssertHelper.AssertValue(validationFunc, 0.0 - ValidatorAssertHelper.Epsilon, ValidationIssueType.Error, errorMessage);
+            ValidatorAssertHelper.AssertValue(validationFunc, 0.0);
+            ValidatorAssertHelper.AssertValue(validationFunc, 0.0 + ValidatorAssertHelper.Epsilon);
+
+            ValidatorAssertHelper.AssertValue(validationFunc, 1.0 - ValidatorAssertHelper.Epsilon);
+            ValidatorAssertHelper.AssertValue(validationFunc, 1.0, ValidationIssueType.Warning, warningMessage);
+            ValidatorAssertHelper.AssertValue(validationFunc, 1.0 + ValidatorAssertHelper.Epsilon, ValidationIssueType.Warning, warningMessage);
+
+            ValidatorAssertHelper.AssertValue(validationFunc, ValidatorAssertHelper.DoubleMax, ValidationIssueType.Warning, warningMessage);
+        }
+
+        [Test]
+        public void FailureNumber_VariousScenarios_ExpectedValues()
+        {
+            ValidationIssue ValidationFunc(double failureNumber) => RevetmentValidator.FailureNumber(failureNumber, 0);
+
+            const string errorMessage = "FailureNumber must be equal to InitialDamage or larger.";
+
+            ValidatorAssertHelper.AssertValue(ValidationFunc, ValidatorAssertHelper.DoubleMin, ValidationIssueType.Error, errorMessage);
+
+            ValidatorAssertHelper.AssertValue(ValidationFunc, 0.0 - ValidatorAssertHelper.Epsilon, ValidationIssueType.Error, errorMessage);
+            ValidatorAssertHelper.AssertValue(ValidationFunc, 0.0);
+            ValidatorAssertHelper.AssertValue(ValidationFunc, 0.0 + ValidatorAssertHelper.Epsilon);
+
+            ValidatorAssertHelper.AssertValue(ValidationFunc, ValidatorAssertHelper.DoubleMax);
+        }
+
+        [Test]
+        public void AverageNumberOfWavesCtm_VariousScenarios_ExpectedValues()
+        {
+            Func<double, ValidationIssue> validationFunc = RevetmentValidator.AverageNumberOfWavesCtm;
+
+            const string errorMessage = "AverageNumberOfWavesCtm must be larger than 0.";
+
+            ValidatorAssertHelper.AssertValue(validationFunc, ValidatorAssertHelper.DoubleMin, ValidationIssueType.Error, errorMessage);
+
+            ValidatorAssertHelper.AssertValue(validationFunc, 0.0 - ValidatorAssertHelper.Epsilon, ValidationIssueType.Error, errorMessage);
+            ValidatorAssertHelper.AssertValue(validationFunc, 0.0, ValidationIssueType.Error, errorMessage);
+            ValidatorAssertHelper.AssertValue(validationFunc, 0.0 + ValidatorAssertHelper.Epsilon);
+
+            ValidatorAssertHelper.AssertValue(validationFunc, ValidatorAssertHelper.DoubleMax);
+        }
     }
 }

@@ -24,15 +24,15 @@ namespace DiKErnel.Util.TestUtil
 {
     public static class ValidatorAssertHelper
     {
-        public static double Epsilon = 1.0e-6;
+        public const double Epsilon = 1.0e-6;
 
-        public static double DoubleMin = double.MinValue;
+        public const double DoubleMin = double.MinValue;
 
-        public static double DoubleMax = double.MaxValue;
+        public const double DoubleMax = double.MaxValue;
 
-        public static double IntegerMin = int.MinValue;
+        public const int IntegerMin = int.MinValue;
 
-        public static double IntegerMax = int.MaxValue;
+        public const int IntegerMax = int.MaxValue;
 
         public static void AssertValue<T>(Func<T, ValidationIssue> validationFunc, T value)
         {

@@ -16,6 +16,10 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using System;
+using DiKErnel.DomainLibrary.Validators;
+using DiKErnel.Util.TestUtil;
+using DiKErnel.Util.Validation;
 using NUnit.Framework;
 
 namespace DiKErnel.DomainLibrary.Test.Validators
@@ -23,6 +27,24 @@ namespace DiKErnel.DomainLibrary.Test.Validators
     [TestFixture]
     public class ProfileValidatorTest
     {
-        
+        [Test]
+        public void RoughnessCoefficient_VariousScenarios_ExpectedValues()
+        {
+            Func<double, ValidationIssue> validationFunc = ProfileValidator.RoughnessCoefficient;
+
+            const string errorMessage = "Roughness coefficient should be in range [0.5, 1].";
+
+            ValidatorAssertHelper.AssertValue(validationFunc, ValidatorAssertHelper.DoubleMin, ValidationIssueType.Error, errorMessage);
+
+            ValidatorAssertHelper.AssertValue(validationFunc, 0.5 - ValidatorAssertHelper.Epsilon, ValidationIssueType.Error, errorMessage);
+            ValidatorAssertHelper.AssertValue(validationFunc, 0.5);
+            ValidatorAssertHelper.AssertValue(validationFunc, 0.5 + ValidatorAssertHelper.Epsilon);
+
+            ValidatorAssertHelper.AssertValue(validationFunc, 1.0 - ValidatorAssertHelper.Epsilon);
+            ValidatorAssertHelper.AssertValue(validationFunc, 1.0);
+            ValidatorAssertHelper.AssertValue(validationFunc, 1.0 + ValidatorAssertHelper.Epsilon, ValidationIssueType.Error, errorMessage);
+
+            ValidatorAssertHelper.AssertValue(validationFunc, ValidatorAssertHelper.DoubleMax, ValidationIssueType.Error, errorMessage);
+        }
     }
 }

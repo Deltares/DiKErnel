@@ -16,6 +16,10 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using System;
+using DiKErnel.DomainLibrary.Validators.GrassRevetmentOvertopping;
+using DiKErnel.Util.TestUtil;
+using DiKErnel.Util.Validation;
 using NUnit.Framework;
 
 namespace DiKErnel.DomainLibrary.Test.Validators.GrassRevetmentOvertopping
@@ -23,6 +27,36 @@ namespace DiKErnel.DomainLibrary.Test.Validators.GrassRevetmentOvertopping
     [TestFixture]
     public class GrassRevetmentOvertoppingValidatorTest
     {
-        
+        [Test]
+        public void FixedNumberOfWaves_VariousScenarios_ExpectedValues()
+        {
+            Func<double, ValidationIssue> validationFunc = GrassRevetmentOvertoppingValidator.AccelerationAlphaA;
+
+            const string errorMessage = "AccelerationAlphaA must be equal to 0 or larger.";
+
+            ValidatorAssertHelper.AssertValue(validationFunc, ValidatorAssertHelper.DoubleMin, ValidationIssueType.Error, errorMessage);
+
+            ValidatorAssertHelper.AssertValue(validationFunc, 0.0 - ValidatorAssertHelper.Epsilon, ValidationIssueType.Error, errorMessage);
+            ValidatorAssertHelper.AssertValue(validationFunc, 0.0);
+            ValidatorAssertHelper.AssertValue(validationFunc, 0.0 + ValidatorAssertHelper.Epsilon);
+
+            ValidatorAssertHelper.AssertValue(validationFunc, ValidatorAssertHelper.DoubleMax);
+        }
+
+        [Test]
+        public void FrontVelocityCwo_VariousScenarios_ExpectedValues()
+        {
+            Func<double, ValidationIssue> validationFunc = GrassRevetmentOvertoppingValidator.FrontVelocityCwo;
+
+            const string errorMessage = "FrontVelocityCwo must be larger than 0.";
+
+            ValidatorAssertHelper.AssertValue(validationFunc, ValidatorAssertHelper.DoubleMin, ValidationIssueType.Error, errorMessage);
+
+            ValidatorAssertHelper.AssertValue(validationFunc, 0.0 - ValidatorAssertHelper.Epsilon, ValidationIssueType.Error, errorMessage);
+            ValidatorAssertHelper.AssertValue(validationFunc, 0.0, ValidationIssueType.Error, errorMessage);
+            ValidatorAssertHelper.AssertValue(validationFunc, 0.0 + ValidatorAssertHelper.Epsilon);
+
+            ValidatorAssertHelper.AssertValue(validationFunc, ValidatorAssertHelper.DoubleMax);
+        }
     }
 }
