@@ -56,17 +56,5 @@ namespace DiKErnel.DomainLibrary.Validators.GrassRevetmentOvertopping
 
             return null;
         }
-
-        /// <summary>
-        /// Validates the water level.
-        /// </summary>
-        /// <param name="waterLevel">The water level [m].</param>
-        /// <param name="dikeHeight">The dike height [m].</param>
-        /// <returns>A validation issue when the water level is not valid; <c>null</c>
-        /// otherwise.</returns>
-        public static ValidationIssue WaterLevel(double waterLevel, double dikeHeight)
-        {
-            return null;
-        }
     }
 }
