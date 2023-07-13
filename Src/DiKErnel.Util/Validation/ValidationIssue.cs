@@ -23,9 +23,6 @@ namespace DiKErnel.Util.Validation
     /// </summary>
     public class ValidationIssue
     {
-        public ValidationIssueType IssueType { get; } 
-        public string Message { get; }
-
         /// <summary>
         /// Creates a new instance.
         /// </summary>
@@ -36,5 +33,15 @@ namespace DiKErnel.Util.Validation
             IssueType = validationIssueType;
             Message = message;
         }
+
+        /// <summary>
+        /// Gets the validation issue type.
+        /// </summary>
+        public ValidationIssueType IssueType { get; }
+
+        /// <summary>
+        /// Gets the message.
+        /// </summary>
+        public string Message { get; }
     }
 }

@@ -25,9 +25,6 @@ namespace DiKErnel.Util
     /// </summary>
     public class SimpleResult
     {
-        public bool Successful { get; }
-        public IEnumerable<Event> Events { get; }
-
         /// <summary>
         /// Creates a new instance.
         /// </summary>
@@ -38,5 +35,15 @@ namespace DiKErnel.Util
             Successful = successful;
             Events = events;
         }
+
+        /// <summary>
+        /// Gets whether the operation was successful.
+        /// </summary>
+        public bool Successful { get; }
+
+        /// <summary>
+        /// Gets the events.
+        /// </summary>
+        public IEnumerable<Event> Events { get; }
     }
 }

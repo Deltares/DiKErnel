@@ -23,9 +23,6 @@ namespace DiKErnel.Util
     /// </summary>
     public class Event
     {
-        public string Message { get; }
-        public EventType Type { get; }
-
         /// <summary>
         /// Creates a new instance.
         /// </summary>
@@ -33,8 +30,18 @@ namespace DiKErnel.Util
         /// <param name="eventType">The event type.</param>
         public Event(string message, EventType eventType)
         {
-            this.Message = message;
-            this.Type = eventType;
+            Message = message;
+            Type = eventType;
         }
+
+        /// <summary>
+        /// Gets the message.
+        /// </summary>
+        public string Message { get; }
+
+        /// <summary>
+        /// Gets the event type.
+        /// </summary>
+        public EventType Type { get; }
     }
 }

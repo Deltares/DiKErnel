@@ -27,8 +27,6 @@ namespace DiKErnel.Util
     /// <typeparam name="T">The type of the data that was produced.</typeparam>
     public class DataResult<T> : SimpleResult
     {
-        public T Data { get; }
-
         /// <summary>
         /// Creates a new instance in case the operation was not successful.
         /// </summary>
@@ -47,5 +45,10 @@ namespace DiKErnel.Util
         {
             Data = data;
         }
+
+        /// <summary>
+        /// Gets the data that was produced.
+        /// </summary>
+        public T Data { get; }
     }
 }
