@@ -16,7 +16,6 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using System;
 using System.Collections.Generic;
 
 namespace DiKErnel.DomainLibrary.Defaults.AsphaltRevetmentWaveImpact
@@ -44,68 +43,59 @@ namespace DiKErnel.DomainLibrary.Defaults.AsphaltRevetmentWaveImpact
         /// <summary>
         /// Gets the default values of the width factors [-].
         /// </summary>
-        public static IEnumerable<Tuple<double, double>> WidthFactors
+        public static IEnumerable<(double, double)> WidthFactors => new List<(double, double)>
         {
-            get
-            {
-                yield return new Tuple<double, double>(0.1, 0.0392);
-                yield return new Tuple<double, double>(0.2, 0.0738);
-                yield return new Tuple<double, double>(0.3, 0.1002);
-                yield return new Tuple<double, double>(0.4, 0.1162);
-                yield return new Tuple<double, double>(0.5, 0.1213);
-                yield return new Tuple<double, double>(0.6, 0.1168);
-                yield return new Tuple<double, double>(0.7, 0.1051);
-                yield return new Tuple<double, double>(0.8, 0.0890);
-                yield return new Tuple<double, double>(0.9, 0.0712);
-                yield return new Tuple<double, double>(1.0, 0.0541);
-                yield return new Tuple<double, double>(1.1, 0.0391);
-                yield return new Tuple<double, double>(1.2, 0.0269);
-                yield return new Tuple<double, double>(1.3, 0.0216);
-                yield return new Tuple<double, double>(1.4, 0.0150);
-                yield return new Tuple<double, double>(1.5, 0.0105);
-            }
-        }
+            (0.1, 0.0392),
+            (0.2, 0.0738),
+            (0.3, 0.1002),
+            (0.4, 0.1162),
+            (0.5, 0.1213),
+            (0.6, 0.1168),
+            (0.7, 0.1051),
+            (0.8, 0.0890),
+            (0.9, 0.0712),
+            (1.0, 0.0541),
+            (1.1, 0.0391),
+            (1.2, 0.0269),
+            (1.3, 0.0216),
+            (1.4, 0.0150),
+            (1.5, 0.0105)
+        };
 
         /// <summary>
         /// Gets the default values of the depth factors [-].
         /// </summary>
-        public static IEnumerable<Tuple<double, double>> DepthFactors
+        public static IEnumerable<(double, double)> DepthFactors => new List<(double, double)>
         {
-            get
-            {
-                yield return new Tuple<double, double>(-1.0, 0.0244);
-                yield return new Tuple<double, double>(-0.875, 0.0544);
-                yield return new Tuple<double, double>(-0.750, 0.0938);
-                yield return new Tuple<double, double>(-0.625, 0.1407);
-                yield return new Tuple<double, double>(-0.500, 0.1801);
-                yield return new Tuple<double, double>(-0.375, 0.1632);
-                yield return new Tuple<double, double>(-0.250, 0.1426);
-                yield return new Tuple<double, double>(-0.125, 0.0994);
-                yield return new Tuple<double, double>(0.0, 0.06);
-                yield return new Tuple<double, double>(0.125, 0.0244);
-                yield return new Tuple<double, double>(0.250, 0.0169);
-            }
-        }
+            (-1.0, 0.0244),
+            (-0.875, 0.0544),
+            (-0.750, 0.0938),
+            (-0.625, 0.1407),
+            (-0.500, 0.1801),
+            (-0.375, 0.1632),
+            (-0.250, 0.1426),
+            (-0.125, 0.0994),
+            (0.0, 0.06),
+            (0.125, 0.0244),
+            (0.250, 0.0169)
+        };
 
         /// <summary>
         /// Gets the default values of the impact factors [-].
         /// </summary>
-        public static IEnumerable<Tuple<double, double>> ImpactFactors
+        public static IEnumerable<(double, double)> ImpactFactors => new List<(double, double)>
         {
-            get
-            {
-                yield return new Tuple<double, double>(2.0, 0.039);
-                yield return new Tuple<double, double>(2.4, 0.1);
-                yield return new Tuple<double, double>(2.8, 0.18);
-                yield return new Tuple<double, double>(3.2, 0.235);
-                yield return new Tuple<double, double>(3.6, 0.2);
-                yield return new Tuple<double, double>(4.0, 0.13);
-                yield return new Tuple<double, double>(4.4, 0.08);
-                yield return new Tuple<double, double>(4.8, 0.02);
-                yield return new Tuple<double, double>(5.2, 0.01);
-                yield return new Tuple<double, double>(5.6, 0.005);
-                yield return new Tuple<double, double>(6.0, 0.001);
-            }
-        }
+            (2.0, 0.039),
+            (2.4, 0.1),
+            (2.8, 0.18),
+            (3.2, 0.235),
+            (3.6, 0.2),
+            (4.0, 0.13),
+            (4.4, 0.08),
+            (4.8, 0.02),
+            (5.2, 0.01),
+            (5.6, 0.005),
+            (6.0, 0.001)
+        };
     }
 }
