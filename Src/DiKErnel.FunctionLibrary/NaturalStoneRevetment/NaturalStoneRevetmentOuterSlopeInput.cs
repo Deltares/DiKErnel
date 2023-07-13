@@ -30,17 +30,13 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneRevetment
         /// <param name="slopeLowerLevel">The slope lower level. [m]</param>
         /// <param name="slopeUpperPosition">The slope upper position. [m]</param>
         /// <param name="slopeUpperLevel">The slope upper level. [m]</param>
-        /// <param name="outerToeHeight">The outer toe height. [m]</param>
-        /// <param name="outerCrestHeight">The outer crest height. [m]</param>
         public NaturalStoneRevetmentOuterSlopeInput(double slopeLowerPosition, double slopeLowerLevel, double slopeUpperPosition,
-                                                    double slopeUpperLevel, double outerToeHeight, double outerCrestHeight)
+                                                    double slopeUpperLevel)
         {
             SlopeLowerPosition = slopeLowerPosition;
             SlopeLowerLevel = slopeLowerLevel;
             SlopeUpperPosition = slopeUpperPosition;
             SlopeUpperLevel = slopeUpperLevel;
-            OuterToeHeight = outerToeHeight;
-            OuterCrestHeight = outerCrestHeight;
 
             NotchOuterBermPosition = double.PositiveInfinity;
             NotchOuterBermHeight = double.PositiveInfinity;
@@ -69,14 +65,14 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneRevetment
         public double SlopeUpperLevel { get; private set; }
 
         /// <summary>
-        /// Gets the outer toe height. [m]
+        /// Gets or sets the outer toe height. [m]
         /// </summary>
-        public double OuterToeHeight { get; private set; }
+        public double OuterToeHeight { get; set; }
 
         /// <summary>
-        /// Gets the outer crest height. [m]
+        /// Gets or sets the outer crest height. [m]
         /// </summary>
-        public double OuterCrestHeight { get; private set; }
+        public double OuterCrestHeight { get; set; }
 
         /// <summary>
         /// Gets or sets the notch outer berm position. [m]
@@ -103,9 +99,9 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneRevetment
         /// </summary>
         /// <remarks><c>false</c> when one of the berm properties is <see cref="double.PositiveInfinity"/>;
         /// <c>true</c> otherwise.</remarks>
-        public bool HasBerm => double.IsInfinity(NotchOuterBermPosition)
+        public bool HasBerm => !(double.IsInfinity(NotchOuterBermPosition)
                                && double.IsInfinity(NotchOuterBermHeight)
                                && double.IsInfinity(CrestOuterBermPosition)
-                               && double.IsInfinity(CrestOuterBermHeight);
+                               && double.IsInfinity(CrestOuterBermHeight));
     }
 }
