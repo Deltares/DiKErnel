@@ -2,4 +2,11 @@
 
     <Import Project="$(SolutionDir)build\NetStandard.targets"/>
 
+    <ItemGroup>
+        <Folder Include="Data\Revetment\"/>
+        <Folder Include="EmbeddedResources\"/>
+        <Folder Include="Exceptions\"/>
+        <Folder Include="Parsers\"/>
+    </ItemGroup>
+
 </Project>
