@@ -16,7 +16,6 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using System;
 using DiKErnel.DomainLibrary.Defaults.AsphaltRevetmentWaveImpact;
 using NUnit.Framework;
 
@@ -52,21 +51,21 @@ namespace DiKErnel.DomainLibrary.Test.Defaults.AsphaltRevetmentWaveImpact
             // Call & Assert
             Assert.AreEqual(new[]
             {
-                new Tuple<double, double>(0.1, 0.0392),
-                new Tuple<double, double>(0.2, 0.0738),
-                new Tuple<double, double>(0.3, 0.1002),
-                new Tuple<double, double>(0.4, 0.1162),
-                new Tuple<double, double>(0.5, 0.1213),
-                new Tuple<double, double>(0.6, 0.1168),
-                new Tuple<double, double>(0.7, 0.1051),
-                new Tuple<double, double>(0.8, 0.0890),
-                new Tuple<double, double>(0.9, 0.0712),
-                new Tuple<double, double>(1.0, 0.0541),
-                new Tuple<double, double>(1.1, 0.0391),
-                new Tuple<double, double>(1.2, 0.0269),
-                new Tuple<double, double>(1.3, 0.0216),
-                new Tuple<double, double>(1.4, 0.0150),
-                new Tuple<double, double>(1.5, 0.0105)
+                (0.1, 0.0392),
+                (0.2, 0.0738),
+                (0.3, 0.1002),
+                (0.4, 0.1162),
+                (0.5, 0.1213),
+                (0.6, 0.1168),
+                (0.7, 0.1051),
+                (0.8, 0.0890),
+                (0.9, 0.0712),
+                (1.0, 0.0541),
+                (1.1, 0.0391),
+                (1.2, 0.0269),
+                (1.3, 0.0216),
+                (1.4, 0.0150),
+                (1.5, 0.0105)
             }, AsphaltRevetmentWaveImpactDefaults.WidthFactors);
         }
 
@@ -76,17 +75,17 @@ namespace DiKErnel.DomainLibrary.Test.Defaults.AsphaltRevetmentWaveImpact
             // Call & Assert
             Assert.AreEqual(new[]
             {
-                new Tuple<double, double>(-1.0, 0.0244),
-                new Tuple<double, double>(-0.875, 0.0544),
-                new Tuple<double, double>(-0.750, 0.0938),
-                new Tuple<double, double>(-0.625, 0.1407),
-                new Tuple<double, double>(-0.500, 0.1801),
-                new Tuple<double, double>(-0.375, 0.1632),
-                new Tuple<double, double>(-0.250, 0.1426),
-                new Tuple<double, double>(-0.125, 0.0994),
-                new Tuple<double, double>(0.0, 0.06),
-                new Tuple<double, double>(0.125, 0.0244),
-                new Tuple<double, double>(0.250, 0.0169)
+                (-1.0, 0.0244),
+                (-0.875, 0.0544),
+                (-0.750, 0.0938),
+                (-0.625, 0.1407),
+                (-0.500, 0.1801),
+                (-0.375, 0.1632),
+                (-0.250, 0.1426),
+                (-0.125, 0.0994),
+                (0.0, 0.06),
+                (0.125, 0.0244),
+                (0.250, 0.0169)
             }, AsphaltRevetmentWaveImpactDefaults.DepthFactors);
         }
 
@@ -96,17 +95,17 @@ namespace DiKErnel.DomainLibrary.Test.Defaults.AsphaltRevetmentWaveImpact
             // Call & Assert
             Assert.AreEqual(new[]
             {
-                new Tuple<double, double>(2.0, 0.039),
-                new Tuple<double, double>(2.4, 0.1),
-                new Tuple<double, double>(2.8, 0.18),
-                new Tuple<double, double>(3.2, 0.235),
-                new Tuple<double, double>(3.6, 0.2),
-                new Tuple<double, double>(4.0, 0.13),
-                new Tuple<double, double>(4.4, 0.08),
-                new Tuple<double, double>(4.8, 0.02),
-                new Tuple<double, double>(5.2, 0.01),
-                new Tuple<double, double>(5.6, 0.005),
-                new Tuple<double, double>(6.0, 0.001)
+                (2.0, 0.039),
+                (2.4, 0.1),
+                (2.8, 0.18),
+                (3.2, 0.235),
+                (3.6, 0.2),
+                (4.0, 0.13),
+                (4.4, 0.08),
+                (4.8, 0.02),
+                (5.2, 0.01),
+                (5.6, 0.005),
+                (6.0, 0.001)
             }, AsphaltRevetmentWaveImpactDefaults.ImpactFactors);
         }
     }
