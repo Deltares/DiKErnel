@@ -23,7 +23,7 @@ namespace DiKErnel.DomainLibrary.Validators.GrassRevetmentWaveRunup
     /// <summary>
     /// Class that holds all grass revetment wave run-up specific validation routines.
     /// </summary>
-    public class GrassRevetmentWaveRunupValidator
+    public static class GrassRevetmentWaveRunupValidator
     {
         /// <summary>
         /// Validates the 2P Gammab coefficient.
