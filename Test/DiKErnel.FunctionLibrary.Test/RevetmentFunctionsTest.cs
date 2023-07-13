@@ -46,7 +46,8 @@ namespace DiKErnel.FunctionLibrary.Test
             const double averageNumberOfWavesCtm = 6.5;
 
             // Call
-            double averageNumberOfWaves = RevetmentFunctions.AverageNumberOfWaves(incrementTime, wavePeriodTm10, averageNumberOfWavesCtm);
+            double averageNumberOfWaves = RevetmentFunctions.AverageNumberOfWaves(incrementTime, wavePeriodTm10,
+                                                                                  averageNumberOfWavesCtm);
 
             // Assert
             Assert.AreEqual(115.38461538461539, averageNumberOfWaves);
@@ -165,8 +166,8 @@ namespace DiKErnel.FunctionLibrary.Test
             const double initialDamage = 0.836;
 
             // Call
-            double durationInTimeStepFailure = RevetmentFunctions.DurationInTimeStepFailure(
-                incrementTime, incrementDamage, failureNumber, initialDamage);
+            double durationInTimeStepFailure = RevetmentFunctions.DurationInTimeStepFailure(incrementTime, incrementDamage, 
+                                                                                            failureNumber, initialDamage);
 
             // Assert
             Assert.AreEqual(385.47008547008551, durationInTimeStepFailure);

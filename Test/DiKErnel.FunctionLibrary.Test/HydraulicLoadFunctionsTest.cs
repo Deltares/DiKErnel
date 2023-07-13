@@ -102,7 +102,8 @@ namespace DiKErnel.FunctionLibrary.Test
             const double z = 1.5;
 
             // Call
-            bool loadingRevetment = HydraulicLoadFunctions.LoadingRevetment(lowerLimitLoadingRevetment, upperLimitLoadingRevetment, z);
+            bool loadingRevetment = HydraulicLoadFunctions.LoadingRevetment(lowerLimitLoadingRevetment, 
+                                                                            upperLimitLoadingRevetment, z);
 
             // Assert
             Assert.IsFalse(loadingRevetment);
@@ -117,7 +118,8 @@ namespace DiKErnel.FunctionLibrary.Test
             const double z = 1.5;
 
             // Call
-            bool loadingRevetment = HydraulicLoadFunctions.LoadingRevetment(lowerLimitLoadingRevetment, upperLimitLoadingRevetment, z);
+            bool loadingRevetment = HydraulicLoadFunctions.LoadingRevetment(lowerLimitLoadingRevetment, 
+                                                                            upperLimitLoadingRevetment, z);
 
             // Assert
             Assert.IsTrue(loadingRevetment);
@@ -132,7 +134,8 @@ namespace DiKErnel.FunctionLibrary.Test
             const double z = 1.5;
 
             // Call
-            bool loadingRevetment = HydraulicLoadFunctions.LoadingRevetment(lowerLimitLoadingRevetment, upperLimitLoadingRevetment, z);
+            bool loadingRevetment = HydraulicLoadFunctions.LoadingRevetment(lowerLimitLoadingRevetment,
+                                                                            upperLimitLoadingRevetment, z);
 
             // Assert
             Assert.IsTrue(loadingRevetment);
@@ -147,7 +150,8 @@ namespace DiKErnel.FunctionLibrary.Test
             const double z = 1.5;
 
             // Call
-            bool loadingRevetment = HydraulicLoadFunctions.LoadingRevetment(lowerLimitLoadingRevetment, upperLimitLoadingRevetment, z);
+            bool loadingRevetment = HydraulicLoadFunctions.LoadingRevetment(lowerLimitLoadingRevetment, 
+                                                                            upperLimitLoadingRevetment, z);
 
             // Assert
             Assert.IsTrue(loadingRevetment);
@@ -162,7 +166,8 @@ namespace DiKErnel.FunctionLibrary.Test
             const double z = 1.5;
 
             // Call
-            bool loadingRevetment = HydraulicLoadFunctions.LoadingRevetment(lowerLimitLoadingRevetment, upperLimitLoadingRevetment, z);
+            bool loadingRevetment = HydraulicLoadFunctions.LoadingRevetment(lowerLimitLoadingRevetment, 
+                                                                            upperLimitLoadingRevetment, z);
 
             // Assert
             Assert.IsFalse(loadingRevetment);
@@ -194,7 +199,8 @@ namespace DiKErnel.FunctionLibrary.Test
             const double gravitationalAcceleration = 9.81;
 
             // Call
-            double surfSimilarityParameter = HydraulicLoadFunctions.SurfSimilarityParameter(outerSlope, waveHeightHm0, wavePeriodTm10,
+            double surfSimilarityParameter = HydraulicLoadFunctions.SurfSimilarityParameter(outerSlope, waveHeightHm0, 
+                                                                                            wavePeriodTm10,
                                                                                             gravitationalAcceleration);
             // Assert
             Assert.AreEqual(1.2841859985089348, surfSimilarityParameter);
@@ -208,7 +214,8 @@ namespace DiKErnel.FunctionLibrary.Test
             const double waterLevel = 0.03;
 
             // Call
-            double verticalDistanceWaterLevelElevation = HydraulicLoadFunctions.VerticalWaterDistanceWaterLevelElevation(z, waterLevel);
+            double verticalDistanceWaterLevelElevation = 
+                HydraulicLoadFunctions.VerticalWaterDistanceWaterLevelElevation(z, waterLevel);
 
             // Assert
             Assert.AreEqual(1.09, verticalDistanceWaterLevelElevation);
