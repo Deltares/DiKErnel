@@ -345,5 +345,40 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneRevetment
             // Assert
             Assert.AreEqual(double.PositiveInfinity, outerSlope);
         }
+
+        [Test]
+        public void SlopeUpperLevel_ValidInput_ExpectedValue()
+        {
+            // Setup
+            const double outerToeHeight = 5.35;
+            const double outerCrestHeight = 14.1;
+            const double waterLevel = 0.1;
+            const double waveHeightHm0 = 1.5;
+            const double slopeUpperLevelAus = 0.05;
+
+            // Call
+            double slopeUpperLevel = NaturalStoneRevetmentFunctions.SlopeUpperLevel(outerToeHeight, outerCrestHeight, waterLevel,
+                                                                                    waveHeightHm0, slopeUpperLevelAus);
+
+            // Assert
+            Assert.AreEqual(5.425, slopeUpperLevel);
+        }
+
+        [Test]
+        public void SlopeLowerLevel_ValidInput_ExpectedValue()
+        {
+            // Setup
+            const double outerToeHeight = 5.35;
+            const double slopeUpperLevel = 5.425;
+            const double waveHeightHm0 = 1.5;
+            const double slopeLowerLevelAls = 1.5;
+
+            // Call
+            double slopeLowerLevel = NaturalStoneRevetmentFunctions.SlopeLowerLevel(outerToeHeight, slopeUpperLevel,
+                                                                                    waveHeightHm0, slopeLowerLevelAls);
+
+            // Assert
+            Assert.AreEqual(5.35, slopeLowerLevel);
+        }
     }
 }

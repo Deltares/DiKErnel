@@ -47,9 +47,9 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneRevetment
         /// <returns>The hydraulic load. [m]</returns>
         public static double HydraulicLoad(NaturalStoneRevetmentHydraulicLoadInput input)
         {
-            return input.WaveHeightHm0 / (input.a * Math.Pow(input.SurfSimilarityParameter, input.n)
-                                          + input.b * input.SurfSimilarityParameter
-                                          + input.c);
+            return input.WaveHeightHm0 / (input.A * Math.Pow(input.SurfSimilarityParameter, input.N)
+                                          + input.B * input.SurfSimilarityParameter
+                                          + input.C);
         }
 
         /// <summary>
@@ -63,6 +63,35 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneRevetment
                        ? SingleSlopePart(input.SlopeUpperLevel, input.SlopeLowerLevel,
                                          input.SlopeUpperPosition, input.SlopeLowerPosition)
                        : OuterSlopeWithBerm(input);
+        }
+
+        /// <summary>
+        /// Calculates the slope upper level.
+        /// </summary>
+        /// <param name="outerToeHeight">The height of the outer toe. [m]</param>
+        /// <param name="outerCrestHeight">The height of the outer crest. [m]</param>
+        /// <param name="waterLevel">The water level. [m]</param>
+        /// <param name="waveHeightHm0">The wave height. [m]</param>
+        /// <param name="slopeUpperLevelAus">The Aus coefficient. [-]</param>
+        /// <returns>The slope upper level. [m]</returns>
+        public static double SlopeUpperLevel(double outerToeHeight, double outerCrestHeight, double waterLevel,
+                                             double waveHeightHm0, double slopeUpperLevelAus)
+        {
+            return Math.Min(outerCrestHeight, Math.Max(waterLevel, outerToeHeight + slopeUpperLevelAus * waveHeightHm0));
+        }
+
+        /// <summary>
+        /// Calculates the slope lower level.
+        /// </summary>
+        /// <param name="outerToeHeight">The height of the outer toe. [m]</param>
+        /// <param name="slopeUpperLevel">The slope upper level. [m]</param>
+        /// <param name="waveHeightHm0">The wave height. [m]</param>
+        /// <param name="slopeLowerLevelAls">The Als coefficient. [-]</param>
+        /// <returns>The slope lower level. [m]</returns>
+        public static double SlopeLowerLevel(double outerToeHeight, double slopeUpperLevel, double waveHeightHm0,
+                                             double slopeLowerLevelAls)
+        {
+            return Math.Max(outerToeHeight, slopeUpperLevel - slopeLowerLevelAls * waveHeightHm0);
         }
 
         private static double SingleSlopePart(double slopeUpperLevel, double slopeLowerLevel, double slopeUpperPosition,
