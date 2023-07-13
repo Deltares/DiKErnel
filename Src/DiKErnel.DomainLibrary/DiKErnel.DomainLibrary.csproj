@@ -1,14 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-    <Import Project="$(SolutionDir)build\NetStandard.targets" />
+    <Import Project="$(SolutionDir)build\NetStandard.targets"/>
 
     <ItemGroup>
-        <Folder Include="Validators\GrassRevetmentWaveRunup\" />
-        <Folder Include="Validators\NaturalStoneRevetment\" />
+        <Folder Include="Validators\NaturalStoneRevetment\"/>
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\DiKErnel.Util\DiKErnel.Util.csproj" />
+        <ProjectReference Include="..\DiKErnel.Util\DiKErnel.Util.csproj"/>
     </ItemGroup>
 
 </Project>
