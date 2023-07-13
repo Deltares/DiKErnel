@@ -99,14 +99,13 @@ namespace DiKErnel.External.Overtopping
             var messageBuffer = new char[bufferCapacity];
             var logFileName = new char[bufferCapacity];
 
-            calculateQo(ref load, ref geometry, ref dikeHeight, ref modelFactors, ref result, ref success,
-                        messageBuffer, ref verbosity, logFileName, bufferCapacity, bufferCapacity);
+            calculateQo(ref load, ref geometry, ref dikeHeight, ref modelFactors, ref result, ref success, messageBuffer,
+                        ref verbosity, logFileName, bufferCapacity, bufferCapacity);
 
             return result.Z2;
         }
 
-        private static Geometry CreateGeometry(IEnumerable<double> xValues,
-                                               IEnumerable<double> zValues,
+        private static Geometry CreateGeometry(IEnumerable<double> xValues, IEnumerable<double> zValues,
                                                IEnumerable<double> roughnessCoefficients)
         {
             double[] xValuesArray = xValues.ToArray();
