@@ -21,8 +21,8 @@ using System.Collections.Generic;
 namespace DiKErnel.Util
 {
     /// <summary>
-    /// Class that holds information about the result of an operation,
-    /// the events that occurred and the data that was produced.
+    /// Class that holds information about the result of an operation, the events that
+    /// occurred and the data that was produced.
     /// </summary>
     /// <typeparam name="T">The type of the data that was produced.</typeparam>
     public class DataResult<T> : SimpleResult
