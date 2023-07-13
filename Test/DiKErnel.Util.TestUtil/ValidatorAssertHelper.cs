@@ -16,31 +16,48 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using System;
 using DiKErnel.Util.Validation;
 using NUnit.Framework;
 
 namespace DiKErnel.Util.TestUtil
 {
-    public class ValidatorAssertHelper<T>
+    public static class ValidatorAssertHelper
     {
-        private delegate ValidationIssue ValidateAction(T data);
+        public static double Epsilon = 1.0e-6;
 
-        static void AssertValue(ValidateAction validateAction, T value)
+        public static double DoubleMin = double.MinValue;
+
+        public static double DoubleMax = double.MaxValue;
+
+        public static double IntegerMin = int.MinValue;
+
+        public static double IntegerMax = int.MaxValue;
+
+        public static void AssertValue<T>(Func<T, ValidationIssue> validationFunc, T value)
         {
+            if (validationFunc == null)
+            {
+                throw new ArgumentNullException(nameof(validationFunc));
+            }
+
             // Call
-            ValidationIssue validationIssue = validateAction(value);
+            ValidationIssue validationIssue = validationFunc(value);
 
             // Assert
             Assert.IsNull(validationIssue);
         }
 
-        static void AssertValue(ValidateAction validateAction,
-                                T value,
-                                ValidationIssueType validationIssueType,
-                                string message)
+        public static void AssertValue<T>(Func<T, ValidationIssue> validationFunc, T value,
+                                          ValidationIssueType validationIssueType, string message)
         {
+            if (validationFunc == null)
+            {
+                throw new ArgumentNullException(nameof(validationFunc));
+            }
+
             // Call
-            ValidationIssue validationIssue = validateAction(value);
+            ValidationIssue validationIssue = validationFunc(value);
 
             // Assert
             Assert.NotNull(validationIssue);
