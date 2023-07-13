@@ -153,7 +153,8 @@ namespace DiKErnel.External.Overtopping
 
         [DllImport("dllDikesOvertopping.dll", CallingConvention = CallingConvention.Cdecl)]
         private static extern void calculateQo(ref Load load, ref Geometry geometry,
-                                               ref double dikeHeight, ref ModelFactors input, ref Result result, ref bool success,
-                                               [Out] char[] message, ref int verbosity, [Out] char[] logFile, int stringLength1, int stringLength2);
+                                               ref double dikeHeight, ref ModelFactors input, ref Result result, 
+                                               ref bool success, [Out] char[] message, ref int verbosity, [Out] char[] logFile, 
+                                               int stringLength1, int stringLength2);
     }
 }
