@@ -33,7 +33,7 @@ namespace DiKErnel.DomainLibrary.Validators.GrassRevetmentWaveRunup
         /// <returns>A validation issue when the Cu coefficient is not valid; <c>null</c> otherwise.</returns>
         public static ValidationIssue FrontVelocityCu(double frontVelocityCu)
         {
-            if (frontVelocityCu <= 0)
+            if (frontVelocityCu <= 0.0)
             {
                 return new ValidationIssue(ValidationIssueType.Error, "FrontVelocityCu must be larger than 0.");
             }
