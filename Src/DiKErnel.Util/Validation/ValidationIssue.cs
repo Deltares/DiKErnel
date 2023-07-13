@@ -23,8 +23,8 @@ namespace DiKErnel.Util.Validation
     /// </summary>
     public class ValidationIssue
     {
-        private readonly ValidationIssueType validationIssueType;
-        private readonly string message;
+        public ValidationIssueType IssueType { get; } 
+        public string Message { get; }
 
         /// <summary>
         /// Creates a new instance.
@@ -33,26 +33,8 @@ namespace DiKErnel.Util.Validation
         /// <param name="message">The message.</param>
         public ValidationIssue(ValidationIssueType validationIssueType, string message)
         {
-            this.validationIssueType = validationIssueType;
-            this.message = message;
-        }
-
-        /// <summary>
-        /// Gets the validation issue type.
-        /// </summary>
-        /// <returns>The validation issue type.</returns>
-        public ValidationIssueType GetValidationIssueType()
-        {
-            return validationIssueType;
-        }
-
-        /// <summary>
-        /// Gets the message.
-        /// </summary>
-        /// <returns>The message.</returns>
-        public string GetMessage()
-        {
-            return message;
+            IssueType = validationIssueType;
+            Message = message;
         }
     }
 }

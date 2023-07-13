@@ -34,8 +34,8 @@ namespace DiKErnel.Util.Test
             Event testEvent = new Event(message, eventType);
 
             // Assert
-            Assert.AreEqual(message, testEvent.GetMessage());
-            Assert.AreEqual(eventType, testEvent.GetEventType());
+            Assert.AreEqual(message, testEvent.Message);
+            Assert.AreEqual(eventType, testEvent.Type);
         }
     }
 }

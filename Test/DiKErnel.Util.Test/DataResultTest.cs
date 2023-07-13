@@ -43,12 +43,12 @@ namespace DiKErnel.Util.Test
             var result = new DataResult<int>(data, events);
 
             // Assert
-            Assert.True(result.GetSuccessful());
+            Assert.True(result.Successful);
 
-            Assert.AreEqual(1, result.GetEvents().Count());
-            EventAssertHelper.AssertEvent(eventType, message, result.GetEvents().ElementAt(0));
+            Assert.AreEqual(1, result.Events.Count());
+            EventAssertHelper.AssertEvent(eventType, message, result.Events.ElementAt(0));
 
-            Assert.AreEqual(data, result.GetData());
+            Assert.AreEqual(data, result.Data);
         }
     }
 }

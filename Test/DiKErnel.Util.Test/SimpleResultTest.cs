@@ -42,10 +42,10 @@ namespace DiKErnel.Util.Test
             SimpleResult result = new SimpleResult(true, events);
 
             // Assert
-            Assert.True(result.GetSuccessful());
+            Assert.True(result.Successful);
 
-            Assert.AreEqual(1, result.GetEvents().Count());
-            EventAssertHelper.AssertEvent(eventType, message, result.GetEvents().ElementAt(0));
+            Assert.AreEqual(1, result.Events.Count());
+            EventAssertHelper.AssertEvent(eventType, message, result.Events.ElementAt(0));
         }
     }
 }

@@ -23,8 +23,8 @@ namespace DiKErnel.Util
     /// </summary>
     public class Event
     {
-        private readonly string message;
-        private readonly EventType eventType;
+        public string Message { get; }
+        public EventType Type { get; }
 
         /// <summary>
         /// Creates a new instance.
@@ -33,26 +33,8 @@ namespace DiKErnel.Util
         /// <param name="eventType">The event type.</param>
         public Event(string message, EventType eventType)
         {
-            this.message = message;
-            this.eventType = eventType;
-        }
-
-        /// <summary>
-        /// Gets the message.
-        /// </summary>
-        /// <returns>The message.</returns>
-        public string GetMessage()
-        {
-            return message;
-        }
-
-        /// <summary>
-        /// Gets the event type.
-        /// </summary>
-        /// <returns>The event type.</returns>
-        public EventType GetEventType()
-        {
-            return eventType;
+            this.Message = message;
+            this.Type = eventType;
         }
     }
 }

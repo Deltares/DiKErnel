@@ -35,8 +35,8 @@ namespace DiKErnel.Util.Test.Validation
             var validationIssue = new ValidationIssue(validationIssueType, message);
 
             // Assert
-            Assert.AreEqual(validationIssueType, validationIssue.GetValidationIssueType());
-            Assert.AreEqual(message, validationIssue.GetMessage());
+            Assert.AreEqual(validationIssueType, validationIssue.IssueType);
+            Assert.AreEqual(message, validationIssue.Message);
         }
     }
 }

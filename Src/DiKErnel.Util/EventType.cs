@@ -18,6 +18,9 @@
 
 namespace DiKErnel.Util
 {
+    /// <summary>
+    /// The event types that can be registered.
+    /// </summary>
     public enum EventType
     {
         Warning,

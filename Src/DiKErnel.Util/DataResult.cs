@@ -27,7 +27,7 @@ namespace DiKErnel.Util
     /// <typeparam name="T">The type of the data that was produced.</typeparam>
     public class DataResult<T> : SimpleResult
     {
-        private readonly T data;
+        public T Data { get; }
 
         /// <summary>
         /// Creates a new instance in case the operation was not successful.
@@ -35,7 +35,7 @@ namespace DiKErnel.Util
         /// <param name="events">The events that occurred.</param>
         public DataResult(IEnumerable<Event> events) : base(false, events)
         {
-            data = default;
+            Data = default;
         }
 
         /// <summary>
@@ -45,16 +45,7 @@ namespace DiKErnel.Util
         /// <param name="events">The events that occurred.</param>
         public DataResult(T data, IEnumerable<Event> events) : base(true, events)
         {
-            this.data = data;
-        }
-
-        /// <summary>
-        /// Gets the data that was produced.
-        /// </summary>
-        /// <returns>The data that was produced.</returns>
-        public T GetData()
-        {
-            return data;
+            Data = data;
         }
     }
 }

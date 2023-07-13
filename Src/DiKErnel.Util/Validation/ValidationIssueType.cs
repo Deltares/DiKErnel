@@ -18,6 +18,9 @@
 
 namespace DiKErnel.Util.Validation
 {
+    /// <summary>
+    /// The validation issue types.
+    /// </summary>
     public enum ValidationIssueType
     {
         Warning,

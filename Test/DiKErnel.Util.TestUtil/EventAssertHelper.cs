@@ -24,14 +24,14 @@ namespace DiKErnel.Util.TestUtil
     {
         public static void AssertEvent(EventType expectedEventType, string expectedMessage, Event actualEvent)
         {
-            Assert.AreEqual(expectedEventType, actualEvent.GetEventType());
-            Assert.AreEqual(expectedMessage, actualEvent.GetMessage());
+            Assert.AreEqual(expectedEventType, actualEvent.Type);
+            Assert.AreEqual(expectedMessage, actualEvent.Message);
         }
 
         public static void AssertEventWithNonEmptyMessage(EventType expectedEventType, string expectedMessage, Event actualEvent)
         {
-            Assert.AreEqual(expectedEventType, actualEvent.GetEventType());
-            Assert.IsNotEmpty(actualEvent.GetMessage());
+            Assert.AreEqual(expectedEventType, actualEvent.Type);
+            Assert.IsNotEmpty(actualEvent.Message);
         }
     }
 }

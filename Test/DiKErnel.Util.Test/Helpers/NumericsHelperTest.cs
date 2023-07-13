@@ -100,10 +100,10 @@ namespace DiKErnel.Util.Test.Helpers
         public void ToString_Always_ReturnsExpectedValue()
         {
             // Call
-            string string1 = NumericsHelper.ToString(0.3);
-            string string2 = NumericsHelper.ToString(1e-6);
-            string string3 = NumericsHelper.ToString(0.001);
-            string string4 = NumericsHelper.ToString(1);
+            var string1 = NumericsHelper.ToString(0.3);
+            var string2 = NumericsHelper.ToString(1e-6);
+            var string3 = NumericsHelper.ToString(0.001);
+            var string4 = NumericsHelper.ToString(1);
 
             //Assert
             Assert.AreEqual("0.3", string1);
