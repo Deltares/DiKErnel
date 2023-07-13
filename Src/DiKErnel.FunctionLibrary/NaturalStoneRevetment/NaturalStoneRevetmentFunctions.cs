@@ -94,6 +94,31 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneRevetment
             return Math.Max(outerToeHeight, slopeUpperLevel - slopeLowerLevelAls * waveHeightHm0);
         }
 
+        /// <summary>
+        /// Calculates the upper limit of loading.
+        /// </summary>
+        /// <param name="input">The input to use for the calculation.</param>
+        /// <returns>The upper limit of loading. [m]</returns>
+        public static double UpperLimitLoading(NaturalStoneRevetmentLimitLoadingInput input)
+        {
+            return input.WaterLevel - 2.0 * input.DepthMaximumWaveLoad
+                   + Math.Max(input.DepthMaximumWaveLoad + input.A,
+                              input.B * input.WaveHeightHm0 * Math.Min(input.SurfSimilarityParameter, input.C));
+        }
+
+        /// <summary>
+        /// Calculates the lower limit of loading.
+        /// </summary>
+        /// <param name="input">The input to use for the calculation.</param>
+        /// <returns>The lower limit of loading. [m]</returns>
+        public static double LowerLimitLoading(NaturalStoneRevetmentLimitLoadingInput input)
+        {
+            return input.WaterLevel
+                   - 2.0 * input.DepthMaximumWaveLoad
+                   + Math.Min(input.DepthMaximumWaveLoad - input.A,
+                              input.B * input.WaveHeightHm0 * Math.Min(input.SurfSimilarityParameter, input.C));
+        }
+
         private static double SingleSlopePart(double slopeUpperLevel, double slopeLowerLevel, double slopeUpperPosition,
                                               double slopeLowerPosition)
         {

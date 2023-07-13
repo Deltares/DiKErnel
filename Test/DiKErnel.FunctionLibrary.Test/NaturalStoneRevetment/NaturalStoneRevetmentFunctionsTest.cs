@@ -380,5 +380,49 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneRevetment
             // Assert
             Assert.AreEqual(5.35, slopeLowerLevel);
         }
+
+        [Test]
+        public void UpperLimitLoading_ValidInput_ExpectedValue()
+        {
+            // Setup
+            const double depthMaximumWaveLoad = 0.38;
+            const double surfSimilarityParameter = 1.28;
+            const double waterLevel = 1.77;
+            const double waveHeightHm0 = 1.8;
+            const double a = 0.1;
+            const double b = 0.6;
+            const double c = 4.0;
+
+            var input = new NaturalStoneRevetmentLimitLoadingInput(depthMaximumWaveLoad, surfSimilarityParameter, waterLevel,
+                                                                   waveHeightHm0, a, b, c);
+
+            // Call
+            double upperLimitLoading = NaturalStoneRevetmentFunctions.UpperLimitLoading(input);
+
+            // Assert
+            AssertHelper.AssertAreEqualWithAcceptablePrecision(2.3924, upperLimitLoading);
+        }
+
+        [Test]
+        public void LowerLimitLoading_ValidInput_ExpectedValue()
+        {
+            // Setup
+            const double depthMaximumWaveLoad = 0.38;
+            const double surfSimilarityParameter = 1.28;
+            const double waterLevel = 1.77;
+            const double waveHeightHm0 = 1.8;
+            const double a = 0.1;
+            const double b = 0.2;
+            const double c = 4.0;
+
+            var input = new NaturalStoneRevetmentLimitLoadingInput(depthMaximumWaveLoad, surfSimilarityParameter, waterLevel,
+                                                                   waveHeightHm0, a, b, c);
+
+            // Call
+            double lowerLimitLoading = NaturalStoneRevetmentFunctions.LowerLimitLoading(input);
+
+            // Assert
+            Assert.AreEqual(1.29, lowerLimitLoading);
+        }
     }
 }
