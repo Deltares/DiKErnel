@@ -68,7 +68,7 @@ namespace DiKErnel.External.Overtopping.Test
         {
             // Setup
             const double dikeHeight = 9.1;
-            var xCoordinates = new double[]
+            var xCoordinates = new[]
             {
                 0.0,
                 10.0,

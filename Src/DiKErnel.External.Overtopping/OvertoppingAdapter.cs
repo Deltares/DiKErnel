@@ -61,7 +61,6 @@ namespace DiKErnel.External.Overtopping
                 return Enumerable.Empty<string>();
             }
 
-
             var validationMessage = new string(messageBuffer);
 
             return validationMessage.TrimEnd('\0').Split('\t');
@@ -95,13 +94,13 @@ namespace DiKErnel.External.Overtopping
             Geometry geometry = CreateGeometry(xValues, zValues, roughnessCoefficients);
             ModelFactors modelFactors = GetDefaultModelFactors();
             var result = new Result();
-            
+
             var success = false;
             int verbosity = -1;
             var messageBuffer = new char[bufferCapacity];
             var logFileName = new char[bufferCapacity];
 
-            calculateQo(ref load, ref geometry, ref dikeHeight, ref modelFactors, ref result, ref success, 
+            calculateQo(ref load, ref geometry, ref dikeHeight, ref modelFactors, ref result, ref success,
                         messageBuffer, ref verbosity, logFileName, bufferCapacity, bufferCapacity);
 
             return result.Z2;
@@ -121,7 +120,7 @@ namespace DiKErnel.External.Overtopping
                 NPoints = xValuesArray.Length,
                 XCoords = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(double)) * xValuesArray.Length),
                 YCoords = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(double)) * zValuesArray.Length),
-                Roughness = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(double)) * roughnessCoefficientsArray.Length),
+                Roughness = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(double)) * roughnessCoefficientsArray.Length)
             };
 
             Marshal.Copy(xValuesArray, 0, geometry.XCoords, xValuesArray.Length);
