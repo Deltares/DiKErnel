@@ -32,12 +32,8 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneRevetment
         /// <param name="b">The b coefficient. [-]</param>
         /// <param name="c">The c coefficient. [-]</param>
         /// <param name="n">The n coefficient. [-]</param>
-        public NaturalStoneRevetmentHydraulicLoadInput(double surfSimilarityParameter,
-                                                       double waveHeightHm0,
-                                                       double a,
-                                                       double b,
-                                                       double c,
-                                                       double n)
+        public NaturalStoneRevetmentHydraulicLoadInput(double surfSimilarityParameter, double waveHeightHm0, double a, double b,
+                                                       double c, double n)
         {
             SurfSimilarityParameter = surfSimilarityParameter;
             WaveHeightHm0 = waveHeightHm0;
@@ -60,21 +56,21 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneRevetment
         /// <summary>
         /// Gets the a coefficient. [-]
         /// </summary>
-        public double a { get; set; }
+        public double a { get; private set; }
 
         /// <summary>
         /// Gets the b coefficient. [-]
         /// </summary>
-        public double b { get; set; }
+        public double b { get; private set; }
 
         /// <summary>
         /// Gets the c coefficient. [-]
         /// </summary>
-        public double c { get; set; }
+        public double c { get; private set; }
 
         /// <summary>
         /// Gets the n coefficient. [-]
         /// </summary>
-        public double n { get; set; }
+        public double n { get; private set; }
     }
 }

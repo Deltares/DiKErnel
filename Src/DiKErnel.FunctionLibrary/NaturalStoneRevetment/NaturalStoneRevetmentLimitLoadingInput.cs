@@ -34,8 +34,7 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneRevetment
         /// <param name="b">The b coefficient. [-]</param>
         /// <param name="c">The c coefficient. [-]</param>
         public NaturalStoneRevetmentLimitLoadingInput(double depthMaximumWaveLoad, double surfSimilarityParameter,
-                                                      double waterLevel, double waveHeightHm0,
-                                                      double a, double b, double c)
+                                                      double waterLevel, double waveHeightHm0, double a, double b, double c)
         {
             DepthMaximumWaveLoad = depthMaximumWaveLoad;
             SurfSimilarityParameter = surfSimilarityParameter;

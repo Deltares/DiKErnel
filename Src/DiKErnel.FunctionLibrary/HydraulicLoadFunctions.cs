@@ -57,9 +57,7 @@ namespace DiKErnel.FunctionLibrary
         /// <param name="upperLimitLoadingRevetment">The upper limit of loading. [m]</param>
         /// <param name="z">The z coordinate. [m]</param>
         /// <returns>Whether there is loading of the revetment</returns>
-        public static bool LoadingRevetment(double lowerLimitLoadingRevetment,
-                                            double upperLimitLoadingRevetment,
-                                            double z)
+        public static bool LoadingRevetment(double lowerLimitLoadingRevetment, double upperLimitLoadingRevetment, double z)
         {
             return z >= lowerLimitLoadingRevetment && z <= upperLimitLoadingRevetment;
         }
@@ -75,7 +73,8 @@ namespace DiKErnel.FunctionLibrary
         public static double SurfSimilarityParameter(double outerSlope, double waveHeightHm0, double wavePeriodTm10,
                                                      double gravitationalAcceleration)
         {
-            return outerSlope / Math.Sqrt(2.0 * Math.PI * waveHeightHm0 / (gravitationalAcceleration * Math.Pow(wavePeriodTm10, 2.0)));
+            return outerSlope / Math.Sqrt(2.0 * Math.PI * waveHeightHm0 / (gravitationalAcceleration 
+                                                                           * Math.Pow(wavePeriodTm10, 2.0)));
         }
 
         /// <summary>

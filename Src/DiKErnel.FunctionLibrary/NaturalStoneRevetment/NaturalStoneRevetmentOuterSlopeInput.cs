@@ -32,9 +32,8 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneRevetment
         /// <param name="slopeUpperLevel">The slope upper level. [m]</param>
         /// <param name="outerToeHeight">The outer toe height. [m]</param>
         /// <param name="outerCrestHeight">The outer crest height. [m]</param>
-        public NaturalStoneRevetmentOuterSlopeInput(double slopeLowerPosition, double slopeLowerLevel, 
-                                                    double slopeUpperPosition, double slopeUpperLevel,
-                                                    double outerToeHeight, double outerCrestHeight)
+        public NaturalStoneRevetmentOuterSlopeInput(double slopeLowerPosition, double slopeLowerLevel, double slopeUpperPosition,
+                                                    double slopeUpperLevel, double outerToeHeight, double outerCrestHeight)
         {
             SlopeLowerPosition = slopeLowerPosition;
             SlopeLowerLevel = slopeLowerLevel;
