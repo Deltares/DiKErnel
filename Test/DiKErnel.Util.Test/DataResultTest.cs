@@ -18,7 +18,6 @@
 
 using System.Collections.Generic;
 using System.Linq;
-using DiKErnel.Util.TestUtil;
 using NUnit.Framework;
 
 namespace DiKErnel.Util.Test
@@ -27,28 +26,65 @@ namespace DiKErnel.Util.Test
     public class DataResultTest
     {
         [Test]
-        public void Constructor_WithData_ExpectedValues()
+        public void ConstructorForValueType_WithData_ExpectedValues()
         {
             // Setup
             const int data = 45;
-            const string message = "Test message";
-            const EventType eventType = EventType.Error;
-
-            var events = new List<Event>
-            {
-                new Event(message, eventType)
-            };
+            IEnumerable<Event> events = Enumerable.Empty<Event>();
 
             // Call
             var result = new DataResult<int>(data, events);
 
             // Assert
             Assert.True(result.Successful);
-
-            Assert.AreEqual(1, result.Events.Count());
-            EventAssertHelper.AssertEvent(eventType, message, result.Events.ElementAt(0));
-
+            Assert.AreSame(events, result.Events);
             Assert.AreEqual(data, result.Data);
+        }
+
+        [Test]
+        public void ConstructorForValueType_WithoutData_ExpectedValues()
+        {
+            // Setup
+            IEnumerable<Event> events = Enumerable.Empty<Event>();
+
+            // Call
+            var result = new DataResult<int>(events);
+
+            // Assert
+            Assert.IsFalse(result.Successful);
+            Assert.AreSame(events, result.Events);
+            Assert.AreEqual(0, result.Data);
+        }
+
+        [Test]
+        public void ConstructorForReferenceType_WithData_ExpectedValues()
+        {
+            // Setup
+            var data = new object();
+            IEnumerable<Event> events = Enumerable.Empty<Event>();
+
+            // Call
+            var result = new DataResult<object>(data, events);
+
+            // Assert
+            Assert.True(result.Successful);
+            Assert.AreSame(events, result.Events);
+            Assert.AreSame(data, result.Data);
+        }
+
+        [Test]
+        public void ConstructorForReferenceType_WithoutData_ExpectedValues()
+        {
+            // Setup
+            IEnumerable<Event> events = Enumerable.Empty<Event>();
+
+            // Call
+            var result = new DataResult<object>(events);
+
+            // Assert
+            Assert.IsFalse(result.Successful);
+            Assert.AreSame(events, result.Events);
+            Assert.IsNull(result.Data);
         }
     }
 }
