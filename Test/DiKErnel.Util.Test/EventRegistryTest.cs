@@ -62,8 +62,9 @@ namespace DiKErnel.Util.Test
         {
             // Given
             var testHelperThread1 = new EventRegistryTestHelper(10000);
-            testHelperThread1.WaitForCompletion();
             var testHelperThread2 = new EventRegistryTestHelper(20000);
+            
+            testHelperThread1.WaitForCompletion();
             testHelperThread2.WaitForCompletion();
 
             // When

@@ -16,6 +16,7 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -26,16 +27,20 @@ namespace DiKErnel.Util
     /// </summary>
     public class EventRegistry
     {
-        private static readonly EventRegistry instance = new EventRegistry();
+        [ThreadStatic]
+        private static EventRegistry instance;
+
         private readonly List<Event> events = new List<Event>();
 
         /// <summary>
         /// Registers an event.
         /// </summary>
-        /// <param name="inEvent">The event to register.</param>
-        public static void Register(Event inEvent)
+        /// <param name="eventToRegister">The event to register.</param>
+        public static void Register(Event eventToRegister)
         {
-            instance.events.Add(inEvent);
+            instance ??= new EventRegistry();
+
+            instance.events.Add(eventToRegister);
         }
 
         /// <summary>
@@ -44,10 +49,13 @@ namespace DiKErnel.Util
         /// <returns>The registered events.</returns>
         public static IEnumerable<Event> Flush()
         {
-            List<Event> tempEvents = instance.events.ToList();
+            instance ??= new EventRegistry();
+
+            List<Event> registeredEvents = instance.events.ToList();
+
             instance.events.Clear();
 
-            return tempEvents;
+            return registeredEvents;
         }
     }
 }
