@@ -39,22 +39,19 @@ namespace DiKErnel.Util.Test
         public void GivenEventRegistryWithEventsRegistered_WhenFlush_ThenReturnsRegisteredEvents()
         {
             // Given
-            const string message1 = "Warning message";
-            const EventType eventType1 = EventType.Warning;
-            const string message2 = "Error message";
-            const EventType eventType2 = EventType.Error;
+            var event1 = new Event("Warning message", EventType.Warning);
+            var event2 = new Event("Error message", EventType.Error);
 
-            EventRegistry.Register(new Event(message1, eventType1));
-            EventRegistry.Register(new Event(message2, eventType2));
+            EventRegistry.Register(event1);
+            EventRegistry.Register(event2);
 
             // When
             IEnumerable<Event> registeredEvents = EventRegistry.Flush().ToList();
 
             // Then
             Assert.AreEqual(2, registeredEvents.Count());
-
-            EventAssertHelper.AssertEvent(eventType1, message1, registeredEvents.ElementAt(0));
-            EventAssertHelper.AssertEvent(eventType2, message2, registeredEvents.ElementAt(1));
+            Assert.AreSame(event1, registeredEvents.ElementAt(0));
+            Assert.AreSame(event2, registeredEvents.ElementAt(1));
         }
 
         [Test]
@@ -63,7 +60,7 @@ namespace DiKErnel.Util.Test
             // Given
             var testHelperThread1 = new EventRegistryTestHelper(10000);
             var testHelperThread2 = new EventRegistryTestHelper(20000);
-            
+
             testHelperThread1.WaitForCompletion();
             testHelperThread2.WaitForCompletion();
 
