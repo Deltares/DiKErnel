@@ -31,7 +31,7 @@ namespace DiKErnel.Util.Test
             const EventType eventType = EventType.Error;
 
             // Call
-            Event testEvent = new Event(message, eventType);
+            var testEvent = new Event(message, eventType);
 
             // Assert
             Assert.AreEqual(message, testEvent.Message);

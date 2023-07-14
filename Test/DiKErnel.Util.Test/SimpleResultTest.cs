@@ -18,7 +18,6 @@
 
 using System.Collections.Generic;
 using System.Linq;
-using DiKErnel.Util.TestUtil;
 using NUnit.Framework;
 
 namespace DiKErnel.Util.Test
@@ -30,22 +29,14 @@ namespace DiKErnel.Util.Test
         public void Constructor_ExpectedValues()
         {
             // Setup
-            const string message = "Test message";
-            const EventType eventType = EventType.Error;
-
-            var events = new List<Event>
-            {
-                new Event(message, eventType)
-            };
+            IEnumerable<Event> events = Enumerable.Empty<Event>();
 
             // Call
-            SimpleResult result = new SimpleResult(true, events);
+            var result = new SimpleResult(true, events);
 
             // Assert
             Assert.True(result.Successful);
-
-            Assert.AreEqual(1, result.Events.Count());
-            EventAssertHelper.AssertEvent(eventType, message, result.Events.ElementAt(0));
+            Assert.AreSame(events, result.Events);
         }
     }
 }
