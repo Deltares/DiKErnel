@@ -22,6 +22,7 @@ using System.Linq;
 using DiKErnel.TestUtil;
 using DiKErnel.Util.TestUtil;
 using NUnit.Framework;
+using Random = DiKErnel.TestUtil.Random;
 
 namespace DiKErnel.Util.Test
 {
@@ -41,9 +42,8 @@ namespace DiKErnel.Util.Test
         public void GivenEventRegistryWithEventsRegistered_WhenFlush_ThenReturnsRegisteredEvents()
         {
             // Given
-            var random = new Random();
-            var event1 = new Event(random.NextString(), random.NextEnumValue<EventType>());
-            var event2 = new Event(random.NextString(), random.NextEnumValue<EventType>());
+            var event1 = new Event(Random.Instance.NextString(), Random.Instance.NextEnumValue<EventType>());
+            var event2 = new Event(Random.Instance.NextString(), Random.Instance.NextEnumValue<EventType>());
 
             EventRegistry.Register(event1);
             EventRegistry.Register(event2);
@@ -62,8 +62,8 @@ namespace DiKErnel.Util.Test
         {
             // Given
             var registeredEventsOnMainThread = new List<Event>();
-            int numberOfEventsToRegisterOnFirstThread = new Random().Next(0, 10000);
-            int numberOfEventsToRegisterOnSecondThread = new Random().Next(10000, 20000);
+            int numberOfEventsToRegisterOnFirstThread = Random.Instance.Next(0, 10000);
+            int numberOfEventsToRegisterOnSecondThread = Random.Instance.Next(10000, 20000);
             var testHelperThread1 = new EventRegistryTestHelper(numberOfEventsToRegisterOnFirstThread);
             var testHelperThread2 = new EventRegistryTestHelper(numberOfEventsToRegisterOnSecondThread);
 
@@ -84,9 +84,8 @@ namespace DiKErnel.Util.Test
         public void GivenEventRegistryWithEventsRegisteredAndFlushed_WhenFlush_ThenNoRegisteredEvents()
         {
             // Given
-            var random = new Random();
-            EventRegistry.Register(new Event(random.NextString(), random.NextEnumValue<EventType>()));
-            EventRegistry.Register(new Event(random.NextString(), random.NextEnumValue<EventType>()));
+            EventRegistry.Register(new Event(Random.Instance.NextString(), Random.Instance.NextEnumValue<EventType>()));
+            EventRegistry.Register(new Event(Random.Instance.NextString(), Random.Instance.NextEnumValue<EventType>()));
 
             // Precondition
             Assert.AreEqual(2, EventRegistry.Flush().Count());

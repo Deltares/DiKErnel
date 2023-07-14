@@ -24,7 +24,7 @@ namespace DiKErnel.TestUtil
     {
         private const string randomChars = "& $ % # @ ! * ? ; : abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ 1234567890";
 
-        public static bool NextBoolean(this Random random)
+        public static bool NextBoolean(this System.Random random)
         {
             if (random == null)
             {
@@ -34,7 +34,7 @@ namespace DiKErnel.TestUtil
             return Convert.ToBoolean(random.Next(0, 2));
         }
 
-        public static TEnum NextEnumValue<TEnum>(this Random random)
+        public static TEnum NextEnumValue<TEnum>(this System.Random random)
         {
             if (random == null)
             {
@@ -45,7 +45,7 @@ namespace DiKErnel.TestUtil
             return enumValues[random.Next(enumValues.Length)];
         }
 
-        public static string NextString(this Random random)
+        public static string NextString(this System.Random random)
         {
             if (random == null)
             {

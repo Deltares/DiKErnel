@@ -1,4 +1,4 @@
-// Copyright (C) Stichting Deltares and State of the Netherlands 2023. All rights reserved.
+﻿// Copyright (C) Stichting Deltares and State of the Netherlands 2023. All rights reserved.
 //
 // This file is part of DiKErnel.
 //
@@ -16,27 +16,15 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using DiKErnel.TestUtil;
-using NUnit.Framework;
-
-namespace DiKErnel.Util.Test
+namespace DiKErnel.TestUtil
 {
-    [TestFixture]
-    public class EventTest
+    public static class Random
     {
-        [Test]
-        public void Constructor_ExpectedValues()
+        static Random()
         {
-            // Setup
-            string message = Random.Instance.NextString();
-            var eventType = Random.Instance.NextEnumValue<EventType>();
-
-            // Call
-            var testEvent = new Event(message, eventType);
-
-            // Assert
-            Assert.AreEqual(message, testEvent.Message);
-            Assert.AreEqual(eventType, testEvent.Type);
+            Instance = new System.Random(21);
         }
+
+        public static System.Random Instance { get; private set; }
     }
 }
