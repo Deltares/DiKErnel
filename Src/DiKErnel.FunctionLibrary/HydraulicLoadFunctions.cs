@@ -28,8 +28,8 @@ namespace DiKErnel.FunctionLibrary
         /// <summary>
         /// Calculates the wave direction.
         /// </summary>
-        /// <param name="waveAngle">The wave angle. [deg]</param>
-        /// <returns>The wave direction. [deg]</returns>
+        /// <param name="waveAngle">The wave angle [deg].</param>
+        /// <returns>The wave direction [deg].</returns>
         public static double WaveDirection(double waveAngle)
         {
             if (waveAngle >= -180 && waveAngle < 0)
@@ -43,8 +43,8 @@ namespace DiKErnel.FunctionLibrary
         /// <summary>
         /// Calculates the slope angle.
         /// </summary>
-        /// <param name="outerSlope">The outer slope. [-]</param>
-        /// <returns>The slope angle. [deg]</returns>
+        /// <param name="outerSlope">The outer slope [-].</param>
+        /// <returns>The slope angle [deg].</returns>
         public static double SlopeAngle(double outerSlope)
         {
             return GenericFunctions.Degrees(Math.Atan(outerSlope));
@@ -53,9 +53,9 @@ namespace DiKErnel.FunctionLibrary
         /// <summary>
         /// Calculates whether there is loading of the revetment.
         /// </summary>
-        /// <param name="lowerLimitLoadingRevetment">The lower limit of loading. [m]</param>
-        /// <param name="upperLimitLoadingRevetment">The upper limit of loading. [m]</param>
-        /// <param name="z">The z coordinate. [m]</param>
+        /// <param name="lowerLimitLoadingRevetment">The lower limit of loading [m].</param>
+        /// <param name="upperLimitLoadingRevetment">The upper limit of loading [m].</param>
+        /// <param name="z">The z coordinate [m].</param>
         /// <returns>Whether there is loading of the revetment</returns>
         public static bool LoadingRevetment(double lowerLimitLoadingRevetment, double upperLimitLoadingRevetment, double z)
         {
@@ -65,11 +65,11 @@ namespace DiKErnel.FunctionLibrary
         /// <summary>
         /// Calculates the surf similarity parameter.
         /// </summary>
-        /// <param name="outerSlope">The outer slope. [-]</param>
-        /// <param name="waveHeightHm0">The wave height. [m]</param>
-        /// <param name="wavePeriodTm10">The wave period. [s]</param>
-        /// <param name="gravitationalAcceleration">The gravitational acceleration. [m/s^2]</param>
-        /// <returns>The surf similarity parameter. [-]</returns>
+        /// <param name="outerSlope">The outer slope [-].</param>
+        /// <param name="waveHeightHm0">The wave height [m].</param>
+        /// <param name="wavePeriodTm10">The wave period [s].</param>
+        /// <param name="gravitationalAcceleration">The gravitational acceleration [m/s^2].</param>
+        /// <returns>The surf similarity parameter [-].</returns>
         public static double SurfSimilarityParameter(double outerSlope, double waveHeightHm0, double wavePeriodTm10,
                                                      double gravitationalAcceleration)
         {
@@ -80,10 +80,10 @@ namespace DiKErnel.FunctionLibrary
         /// <summary>
         /// Calculates the wave steepness in deep water.
         /// </summary>
-        /// <param name="waveHeightHm0">The wave height. [m]</param>
-        /// <param name="wavePeriodTm10">The wave period. [s]</param>
-        /// <param name="gravitationalAcceleration">The gravitational accelerations. [m/s^2]</param>
-        /// <returns>The wave steepness in deep water. [-]</returns>
+        /// <param name="waveHeightHm0">The wave height [m].</param>
+        /// <param name="wavePeriodTm10">The wave period [s].</param>
+        /// <param name="gravitationalAcceleration">The gravitational accelerations [m/s^2].</param>
+        /// <returns>The wave steepness in deep water [-].</returns>
         public static double WaveSteepnessDeepWater(double waveHeightHm0, double wavePeriodTm10, double gravitationalAcceleration)
         {
             return waveHeightHm0 / (gravitationalAcceleration / (2.0 * Math.PI) * Math.Pow(wavePeriodTm10, 2.0));
@@ -92,9 +92,9 @@ namespace DiKErnel.FunctionLibrary
         /// <summary>
         /// Calculates the vertical distance of the water elevation. 
         /// </summary>
-        /// <param name="z">The z coordinate. [m]</param>
-        /// <param name="waterLevel">The water level. [m]</param>
-        /// <returns>The vertical distance of the water elevation. [m]</returns>
+        /// <param name="z">The z coordinate [m].</param>
+        /// <param name="waterLevel">The water level [m].</param>
+        /// <returns>The vertical distance of the water elevation [m].</returns>
         public static double VerticalWaterDistanceWaterLevelElevation(double z, double waterLevel)
         {
             return z - waterLevel;

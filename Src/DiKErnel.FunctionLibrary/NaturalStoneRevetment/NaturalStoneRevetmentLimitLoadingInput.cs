@@ -26,13 +26,13 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneRevetment
         /// <summary>
         /// Creates a new instance of <see cref="NaturalStoneRevetmentLimitLoadingInput"/>.
         /// </summary>
-        /// <param name="depthMaximumWaveLoad">The depth of the maximum wave load. [m]</param>
-        /// <param name="surfSimilarityParameter">The surf similarity parameter. [-]</param>
-        /// <param name="waterLevel">The water level. [m]</param>
-        /// <param name="waveHeightHm0">The wave height. [m]</param>
-        /// <param name="a">The a coefficient. [-]</param>
-        /// <param name="b">The b coefficient. [-]</param>
-        /// <param name="c">The c coefficient. [-]</param>
+        /// <param name="depthMaximumWaveLoad">The depth of the maximum wave load [m].</param>
+        /// <param name="surfSimilarityParameter">The surf similarity parameter [-].</param>
+        /// <param name="waterLevel">The water level [m].</param>
+        /// <param name="waveHeightHm0">The wave height [m].</param>
+        /// <param name="a">The a coefficient [-].</param>
+        /// <param name="b">The b coefficient [-].</param>
+        /// <param name="c">The c coefficient [-].</param>
         public NaturalStoneRevetmentLimitLoadingInput(double depthMaximumWaveLoad, double surfSimilarityParameter,
                                                       double waterLevel, double waveHeightHm0, double a, double b, double c)
         {
@@ -46,37 +46,37 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneRevetment
         }
 
         /// <summary>
-        /// Gets the depth of the maximum wave load. [m]
+        /// Gets the depth of the maximum wave load [m].
         /// </summary>
         public double DepthMaximumWaveLoad { get; private set; }
 
         /// <summary>
-        /// Gets the surf similarity parameter. [-]
+        /// Gets the surf similarity parameter [-].
         /// </summary>
         public double SurfSimilarityParameter { get; private set; }
 
         /// <summary>
-        /// Gets the water level. [m]
+        /// Gets the water level [m].
         /// </summary>
         public double WaterLevel { get; private set; }
 
         /// <summary>
-        /// Gets the wave height. [m]
+        /// Gets the wave height [m].
         /// </summary>
         public double WaveHeightHm0 { get; private set; }
 
         /// <summary>
-        /// Gets the a coefficient. [-]
+        /// Gets the a coefficient [-].
         /// </summary>
         public double A { get; set; }
 
         /// <summary>
-        /// Gets the b coefficient. [-]
+        /// Gets the b coefficient [-].
         /// </summary>
         public double B { get; set; }
 
         /// <summary>
-        /// Gets the c coefficient. [-]
+        /// Gets the c coefficient [-].
         /// </summary>
         public double C { get; set; }
     }

@@ -28,8 +28,8 @@ namespace DiKErnel.FunctionLibrary
         /// <summary>
         /// Converts a degrees value into radians.
         /// </summary>
-        /// <param name="degrees">The value to convert. [deg]</param>
-        /// <returns>The converted value. [rad]</returns>
+        /// <param name="degrees">The value to convert [deg].</param>
+        /// <returns>The converted value [rad].</returns>
         public static double Radians(double degrees)
         {
             return degrees * (Math.PI / 180);
@@ -38,8 +38,8 @@ namespace DiKErnel.FunctionLibrary
         /// <summary>
         /// Converts a radians value into degrees.
         /// </summary>
-        /// <param name="radians">The value to convert. [rad]</param>
-        /// <returns>The converted value. [deg]</returns>
+        /// <param name="radians">The value to convert [rad].</param>
+        /// <returns>The converted value [deg].</returns>
         public static double Degrees(double radians)
         {
             return radians / (Math.PI / 180);

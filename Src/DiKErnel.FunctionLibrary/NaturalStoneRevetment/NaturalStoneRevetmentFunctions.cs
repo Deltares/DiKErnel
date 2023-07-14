@@ -28,12 +28,12 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneRevetment
         /// <summary>
         /// Calculates the increment of damage.
         /// </summary>
-        /// <param name="hydraulicLoad">The hydraulic load. [m]</param>
-        /// <param name="resistance">The resistance. [m]</param>
-        /// <param name="incrementDegradation">The increment of degradation. [-]</param>
+        /// <param name="hydraulicLoad">The hydraulic load [m].</param>
+        /// <param name="resistance">The resistance [m].</param>
+        /// <param name="incrementDegradation">The increment of degradation [-].</param>
         /// <param name="waveAngleImpact">The wave impact with respect to the wave
-        /// angle. [-]</param>
-        /// <returns>The increment of damage. [-]</returns>
+        /// angle [-].</param>
+        /// <returns>The increment of damage [-].</returns>
         public static double IncrementDamage(double hydraulicLoad, double resistance, double incrementDegradation,
                                              double waveAngleImpact)
         {
@@ -44,7 +44,7 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneRevetment
         /// Calculates the hydraulic load.
         /// </summary>
         /// <param name="input">The input to use for the calculation.</param>
-        /// <returns>The hydraulic load. [m]</returns>
+        /// <returns>The hydraulic load [m].</returns>
         public static double HydraulicLoad(NaturalStoneRevetmentHydraulicLoadInput input)
         {
             return input.WaveHeightHm0 / (input.A * Math.Pow(input.SurfSimilarityParameter, input.N)
@@ -56,7 +56,7 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneRevetment
         /// Calculates the outer slope.
         /// </summary>
         /// <param name="input">The input to use for the calculation.</param>
-        /// <returns>The outer slope. [-]</returns>
+        /// <returns>The outer slope [-].</returns>
         public static double OuterSlope(NaturalStoneRevetmentOuterSlopeInput input)
         {
             return !input.HasBerm
@@ -68,12 +68,12 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneRevetment
         /// <summary>
         /// Calculates the slope upper level.
         /// </summary>
-        /// <param name="outerToeHeight">The height of the outer toe. [m]</param>
-        /// <param name="outerCrestHeight">The height of the outer crest. [m]</param>
-        /// <param name="waterLevel">The water level. [m]</param>
-        /// <param name="waveHeightHm0">The wave height. [m]</param>
-        /// <param name="slopeUpperLevelAus">The Aus coefficient. [-]</param>
-        /// <returns>The slope upper level. [m]</returns>
+        /// <param name="outerToeHeight">The height of the outer toe [m].</param>
+        /// <param name="outerCrestHeight">The height of the outer crest [m].</param>
+        /// <param name="waterLevel">The water level [m].</param>
+        /// <param name="waveHeightHm0">The wave height [m].</param>
+        /// <param name="slopeUpperLevelAus">The Aus coefficient [-].</param>
+        /// <returns>The slope upper level [m].</returns>
         public static double SlopeUpperLevel(double outerToeHeight, double outerCrestHeight, double waterLevel,
                                              double waveHeightHm0, double slopeUpperLevelAus)
         {
@@ -83,11 +83,11 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneRevetment
         /// <summary>
         /// Calculates the slope lower level.
         /// </summary>
-        /// <param name="outerToeHeight">The height of the outer toe. [m]</param>
-        /// <param name="slopeUpperLevel">The slope upper level. [m]</param>
-        /// <param name="waveHeightHm0">The wave height. [m]</param>
-        /// <param name="slopeLowerLevelAls">The Als coefficient. [-]</param>
-        /// <returns>The slope lower level. [m]</returns>
+        /// <param name="outerToeHeight">The height of the outer toe [m].</param>
+        /// <param name="slopeUpperLevel">The slope upper level [m].</param>
+        /// <param name="waveHeightHm0">The wave height [m].</param>
+        /// <param name="slopeLowerLevelAls">The Als coefficient [-].</param>
+        /// <returns>The slope lower level [m].</returns>
         public static double SlopeLowerLevel(double outerToeHeight, double slopeUpperLevel, double waveHeightHm0,
                                              double slopeLowerLevelAls)
         {
@@ -98,7 +98,7 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneRevetment
         /// Calculates the upper limit of loading.
         /// </summary>
         /// <param name="input">The input to use for the calculation.</param>
-        /// <returns>The upper limit of loading. [m]</returns>
+        /// <returns>The upper limit of loading [m].</returns>
         public static double UpperLimitLoading(NaturalStoneRevetmentLimitLoadingInput input)
         {
             return input.WaterLevel - 2.0 * input.DepthMaximumWaveLoad
@@ -110,7 +110,7 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneRevetment
         /// Calculates the lower limit of loading.
         /// </summary>
         /// <param name="input">The input to use for the calculation.</param>
-        /// <returns>The lower limit of loading. [m]</returns>
+        /// <returns>The lower limit of loading [m].</returns>
         public static double LowerLimitLoading(NaturalStoneRevetmentLimitLoadingInput input)
         {
             return input.WaterLevel
@@ -123,11 +123,11 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneRevetment
         /// Calculates the depth of the maximum wave load.
         /// </summary>
         /// <param name="distanceMaximumWaveElevation">The maximum distance of wave
-        /// elevation. [m]</param>
+        /// elevation [m].</param>
         /// <param name="normativeWidthWaveImpact">The normative width of wave
-        /// impact. [m]</param>
-        /// <param name="slopeAngle">The slope angle. [deg]</param>
-        /// <returns>The depth of the maximum wave load. [m]</returns>
+        /// impact [m].</param>
+        /// <param name="slopeAngle">The slope angle [deg].</param>
+        /// <returns>The depth of the maximum wave load [m].</returns>
         public static double DepthMaximumWaveLoad(double distanceMaximumWaveElevation, double normativeWidthWaveImpact,
                                                   double slopeAngle)
         {
@@ -140,15 +140,15 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneRevetment
         /// <summary>
         /// Calculates the maximum distance of wave elevation.
         /// </summary>
-        /// <param name="impactShallowWater">The impact in shallow water. [-]</param>
+        /// <param name="impactShallowWater">The impact in shallow water [-].</param>
         /// <param name="waveSteepnessDeepWater">The wave steepness in deep
-        /// water. [-]</param>
-        /// <param name="waveHeightHm0">The wave height. [m]</param>
+        /// water [-].</param>
+        /// <param name="waveHeightHm0">The wave height [m].</param>
         /// <param name="distanceMaximumWaveElevationAsmax">The Asmax
-        /// coefficient. [-]</param>
+        /// coefficient [-].</param>
         /// <param name="distanceMaximumWaveElevationBsmax">The Bsmax
-        /// coefficient. [-]</param>
-        /// <returns>The maximum distance of wave elevation. [m]</returns>
+        /// coefficient [-].</param>
+        /// <returns>The maximum distance of wave elevation [m].</returns>
         public static double DistanceMaximumWaveElevation(double impactShallowWater, double waveSteepnessDeepWater,
                                                           double waveHeightHm0, double distanceMaximumWaveElevationAsmax,
                                                           double distanceMaximumWaveElevationBsmax)
@@ -161,11 +161,11 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneRevetment
         /// <summary>
         /// Calculates the normative width of wave impact.
         /// </summary>
-        /// <param name="surfSimilarityParameter">The surf similarity parameter. [-]</param>
-        /// <param name="waveHeightHm0">The wave height. [m]</param>
-        /// <param name="normativeWidthWaveImpactAwi">The Awi coefficient. [-]</param>
-        /// <param name="normativeWidthWaveImpactBwi">The Bwi coefficient. [-]</param>
-        /// <returns>The normative width of wave impact. [m]</returns>
+        /// <param name="surfSimilarityParameter">The surf similarity parameter [-].</param>
+        /// <param name="waveHeightHm0">The wave height [m].</param>
+        /// <param name="normativeWidthWaveImpactAwi">The Awi coefficient [-].</param>
+        /// <param name="normativeWidthWaveImpactBwi">The Bwi coefficient [-].</param>
+        /// <returns>The normative width of wave impact [m].</returns>
         public static double NormativeWidthWaveImpact(double surfSimilarityParameter, double waveHeightHm0,
                                                       double normativeWidthWaveImpactAwi, double normativeWidthWaveImpactBwi)
         {
@@ -175,9 +175,9 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneRevetment
         /// <summary>
         /// Calculates the wave impact with respect to the wave angle.
         /// </summary>
-        /// <param name="waveAngle">The wave angle. [deg]</param>
-        /// <param name="waveAngleImpactBetamax">The Betamax coefficient. [deg]</param>
-        /// <returns>The wave impact with respect to the wave angle. [-]</returns>
+        /// <param name="waveAngle">The wave angle [deg].</param>
+        /// <param name="waveAngleImpactBetamax">The Betamax coefficient [deg].</param>
+        /// <returns>The wave impact with respect to the wave angle [-].</returns>
         public static double WaveAngleImpact(double waveAngle, double waveAngleImpactBetamax)
         {
             return Math.Pow(Math.Cos(GenericFunctions.Radians(Math.Min(waveAngleImpactBetamax, Math.Abs(waveAngle)))), 2.0 / 3.0);
@@ -186,9 +186,9 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneRevetment
         /// <summary>
         /// Calculates the resistance.
         /// </summary>
-        /// <param name="relativeDensity">The relative density. [-]</param>
-        /// <param name="thicknessTopLayer">The thickness of the top layer. [m]</param>
-        /// <returns>The resistance. [m]</returns>
+        /// <param name="relativeDensity">The relative density [-].</param>
+        /// <param name="thicknessTopLayer">The thickness of the top layer [m].</param>
+        /// <returns>The resistance [m].</returns>
         public static double Resistance(double relativeDensity, double thicknessTopLayer)
         {
             return relativeDensity * thicknessTopLayer;
@@ -198,10 +198,10 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneRevetment
         /// Calculates the increment of degradation.
         /// </summary>
         /// <param name="referenceTimeDegradation">The reference time of
-        /// degradation. [s]</param>
-        /// <param name="incrementTime">The increment of time. [s]</param>
-        /// <param name="wavePeriodTm10">The wave period. [s]</param>
-        /// <returns>The increment of degradation. [-]</returns>
+        /// degradation [s].</param>
+        /// <param name="incrementTime">The increment of time [s].</param>
+        /// <param name="wavePeriodTm10">The wave period [s].</param>
+        /// <returns>The increment of degradation [-].</returns>
         public static double IncrementDegradation(double referenceTimeDegradation, double incrementTime, double wavePeriodTm10)
         {
             return Degradation(referenceTimeDegradation + incrementTime, wavePeriodTm10)
@@ -211,9 +211,9 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneRevetment
         /// <summary>
         /// Calculates the reference time of degradation.
         /// </summary>
-        /// <param name="referenceDegradation">The reference of degradation. [-]</param>
-        /// <param name="wavePeriodTm10">The wave period. [s]</param>
-        /// <returns>The reference time of degradation. [s]</returns>
+        /// <param name="referenceDegradation">The reference of degradation [-].</param>
+        /// <param name="wavePeriodTm10">The wave period [s].</param>
+        /// <returns>The reference time of degradation [s].</returns>
         public static double ReferenceTimeDegradation(double referenceDegradation, double wavePeriodTm10)
         {
             return ReferenceTime(referenceDegradation, wavePeriodTm10);
@@ -222,8 +222,8 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneRevetment
         /// <summary>
         /// Calculates the reference of degradation.
         /// </summary>
-        /// <param name="resistance">The resistance. [m]</param>
-        /// <param name="hydraulicLoad">The hydraulic load. [m]</param>
+        /// <param name="resistance">The resistance [m].</param>
+        /// <param name="hydraulicLoad">The hydraulic load [m].</param>
         /// <param name="waveAngleImpact">The wave impact with respect to the wave
         /// angle.</param>
         /// <param name="initialDamage"></param>
@@ -237,10 +237,10 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneRevetment
         /// <summary>
         /// Calculates the duration in the time step of failure.
         /// </summary>
-        /// <param name="referenceTimeFailure">The reference time of failure. [s]</param>
+        /// <param name="referenceTimeFailure">The reference time of failure [s].</param>
         /// <param name="referenceTimeDegradation">The reference time of
-        /// degradation. [s]</param>
-        /// <returns>The duration in the time step of failure. [s]</returns>
+        /// degradation [s].</param>
+        /// <returns>The duration in the time step of failure [s].</returns>
         public static double DurationInTimeStepFailure(double referenceTimeFailure, double referenceTimeDegradation)
         {
             // return (double) (new decimal(referenceTimeFailure) - new decimal(referenceTimeDegradation));
@@ -250,9 +250,9 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneRevetment
         /// <summary>
         /// Calculates the reference time of failure.
         /// </summary>
-        /// <param name="referenceFailure">The reference of failure. [-]</param>
-        /// <param name="wavePeriodTm10">The wave period. [s]</param>
-        /// <returns>The reference time of failure. [s]</returns>
+        /// <param name="referenceFailure">The reference of failure [-].</param>
+        /// <param name="wavePeriodTm10">The wave period [s].</param>
+        /// <returns>The reference time of failure [s].</returns>
         public static double ReferenceTimeFailure(double referenceFailure, double wavePeriodTm10)
         {
             return ReferenceTime(referenceFailure, wavePeriodTm10);
@@ -261,11 +261,11 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneRevetment
         /// <summary>
         /// Calculates the reference of failure.
         /// </summary>
-        /// <param name="resistance">The resistance. [m]</param>
-        /// <param name="hydraulicLoad">The hydraulic load. [m]</param>
-        /// <param name="waveAngleImpact">The wave impact with respect to the wave angle. [-]</param>
-        /// <param name="failureNumber">The failure number. [-]</param>
-        /// <returns>The reference of failure. [-]</returns>
+        /// <param name="resistance">The resistance [m].</param>
+        /// <param name="hydraulicLoad">The hydraulic load [m].</param>
+        /// <param name="waveAngleImpact">The wave impact with respect to the wave angle [-].</param>
+        /// <param name="failureNumber">The failure number [-].</param>
+        /// <returns>The reference of failure [-].</returns>
         public static double ReferenceFailure(double resistance, double hydraulicLoad, double waveAngleImpact,
                                               double failureNumber)
         {

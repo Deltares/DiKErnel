@@ -28,9 +28,9 @@ namespace DiKErnel.FunctionLibrary
         /// <summary>
         /// Calculates the increment of time.
         /// </summary>
-        /// <param name="beginTime">The begin time. [s]</param>
-        /// <param name="endTime">The end time. [s]</param>
-        /// <returns>The increment of time. [s]</returns>
+        /// <param name="beginTime">The begin time [s].</param>
+        /// <param name="endTime">The end time [s].</param>
+        /// <returns>The increment of time [s].</returns>
         public static int IncrementTime(int beginTime, int endTime)
         {
             return endTime - beginTime;
@@ -39,10 +39,10 @@ namespace DiKErnel.FunctionLibrary
         /// <summary>
         /// Calculates the average number of waves.
         /// </summary>
-        /// <param name="incrementTime">The increment of time. [s]</param>
-        /// <param name="wavePeriodTm10">The wave period. [s]</param>
-        /// <param name="averageNumberOfWavesCtm">The Ctm coefficient. [-]</param>
-        /// <returns>The average number of waves. [-]</returns>
+        /// <param name="incrementTime">The increment of time [s].</param>
+        /// <param name="wavePeriodTm10">The wave period [s].</param>
+        /// <param name="averageNumberOfWavesCtm">The Ctm coefficient [-].</param>
+        /// <returns>The average number of waves [-].</returns>
         public static double AverageNumberOfWaves(double incrementTime, double wavePeriodTm10, double averageNumberOfWavesCtm)
         {
             return incrementTime / (averageNumberOfWavesCtm * wavePeriodTm10);
@@ -51,9 +51,9 @@ namespace DiKErnel.FunctionLibrary
         /// <summary>
         /// Calculates the damage.
         /// </summary>
-        /// <param name="incrementDamage">The increment of damage. [-]</param>
-        /// <param name="initialDamage">The initial damage. [-]</param>
-        /// <returns>The damage. [-]</returns>
+        /// <param name="incrementDamage">The increment of damage [-].</param>
+        /// <param name="initialDamage">The initial damage [-].</param>
+        /// <returns>The damage [-].</returns>
         public static double Damage(double incrementDamage, double initialDamage)
         {
             return initialDamage + incrementDamage;
@@ -62,9 +62,9 @@ namespace DiKErnel.FunctionLibrary
         /// <summary>
         /// Calculates whether the revetment has failed or not.
         /// </summary>
-        /// <param name="damage">The damage. [-]</param>
-        /// <param name="initialDamage">The initial damage. [-]</param>
-        /// <param name="failureNumber">The failure number. [-]</param>
+        /// <param name="damage">The damage [-].</param>
+        /// <param name="initialDamage">The initial damage [-].</param>
+        /// <param name="failureNumber">The failure number [-].</param>
         /// <returns>Whether the revetment has failed or not.</returns>
         public static bool FailureRevetment(double damage, double initialDamage, double failureNumber)
         {
@@ -74,11 +74,11 @@ namespace DiKErnel.FunctionLibrary
         /// <summary>
         /// Calculates the duration in the time step of failure.
         /// </summary>
-        /// <param name="incrementTime">The increment of time. [s]</param>
-        /// <param name="incrementDamage">The increment of damage. [-]</param>
-        /// <param name="failureNumber">The failure number. [-]</param>
-        /// <param name="initialDamage">The initial damage. [-]</param>
-        /// <returns>The duration in the time step of failure. [s]</returns>
+        /// <param name="incrementTime">The increment of time [s].</param>
+        /// <param name="incrementDamage">The increment of damage [-].</param>
+        /// <param name="failureNumber">The failure number [-].</param>
+        /// <param name="initialDamage">The initial damage [-].</param>
+        /// <returns>The duration in the time step of failure [s].</returns>
         public static double DurationInTimeStepFailure(double incrementTime, double incrementDamage, double failureNumber,
                                                        double initialDamage)
         {
@@ -88,9 +88,9 @@ namespace DiKErnel.FunctionLibrary
         /// <summary>
         /// Calculates the time of failure.
         /// </summary>
-        /// <param name="durationInTimeStepFailure">The duration in the time step of failure. [s]</param>
-        /// <param name="beginTime">The begin time. [s]</param>
-        /// <returns>The time of failure. [s]</returns>
+        /// <param name="durationInTimeStepFailure">The duration in the time step of failure [s].</param>
+        /// <param name="beginTime">The begin time [s].</param>
+        /// <returns>The time of failure [s].</returns>
         public static int TimeOfFailure(double durationInTimeStepFailure, double beginTime)
         {
             return (int) Math.Ceiling(durationInTimeStepFailure + beginTime);

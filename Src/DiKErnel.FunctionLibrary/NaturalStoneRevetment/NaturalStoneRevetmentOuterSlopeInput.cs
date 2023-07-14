@@ -26,10 +26,10 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneRevetment
         /// <summary>
         /// Creates a new instance of <see cref="NaturalStoneRevetmentOuterSlopeInput"/>.
         /// </summary>
-        /// <param name="slopeLowerPosition">The slope lower position. [m]</param>
-        /// <param name="slopeLowerLevel">The slope lower level. [m]</param>
-        /// <param name="slopeUpperPosition">The slope upper position. [m]</param>
-        /// <param name="slopeUpperLevel">The slope upper level. [m]</param>
+        /// <param name="slopeLowerPosition">The slope lower position [m].</param>
+        /// <param name="slopeLowerLevel">The slope lower level [m].</param>
+        /// <param name="slopeUpperPosition">The slope upper position [m].</param>
+        /// <param name="slopeUpperLevel">The slope upper level [m].</param>
         public NaturalStoneRevetmentOuterSlopeInput(double slopeLowerPosition, double slopeLowerLevel, double slopeUpperPosition,
                                                     double slopeUpperLevel)
         {
@@ -45,52 +45,52 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneRevetment
         }
 
         /// <summary>
-        /// Gets the slope lower position. [m]
+        /// Gets the slope lower position [m].
         /// </summary>
         public double SlopeLowerPosition { get; private set; }
 
         /// <summary>
-        /// Gets the slope lower level. [m]
+        /// Gets the slope lower level [m].
         /// </summary>
         public double SlopeLowerLevel { get; private set; }
 
         /// <summary>
-        /// Gets the slope upper position. [m]
+        /// Gets the slope upper position [m].
         /// </summary>
         public double SlopeUpperPosition { get; private set; }
 
         /// <summary>
-        /// Gets the slope upper level. [m]
+        /// Gets the slope upper level [m].
         /// </summary>
         public double SlopeUpperLevel { get; private set; }
 
         /// <summary>
-        /// Gets or sets the outer toe height. [m]
+        /// Gets or sets the outer toe height [m].
         /// </summary>
         public double OuterToeHeight { get; set; }
 
         /// <summary>
-        /// Gets or sets the outer crest height. [m]
+        /// Gets or sets the outer crest height [m].
         /// </summary>
         public double OuterCrestHeight { get; set; }
 
         /// <summary>
-        /// Gets or sets the notch outer berm position. [m]
+        /// Gets or sets the notch outer berm position [m].
         /// </summary>
         public double NotchOuterBermPosition { get; set; }
 
         /// <summary>
-        /// Gets or sets the notch outer berm height. [m]
+        /// Gets or sets the notch outer berm height [m].
         /// </summary>
         public double NotchOuterBermHeight { get; set; }
 
         /// <summary>
-        /// Gets or sets the crest outer berm position. [m]
+        /// Gets or sets the crest outer berm position [m].
         /// </summary>
         public double CrestOuterBermPosition { get; set; }
 
         /// <summary>
-        /// Gets or sets the crest outer berm height. [m]
+        /// Gets or sets the crest outer berm height [m].
         /// </summary>
         public double CrestOuterBermHeight { get; set; }
 

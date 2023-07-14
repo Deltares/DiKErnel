@@ -26,12 +26,12 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneRevetment
         /// <summary>
         /// Creates a new instance of <see cref="NaturalStoneRevetmentHydraulicLoadInput"/>.
         /// </summary>
-        /// <param name="surfSimilarityParameter">The surf similarity parameter. [-]</param>
-        /// <param name="waveHeightHm0">The wave height. [m]</param>
-        /// <param name="a">The a coefficient. [-]</param>
-        /// <param name="b">The b coefficient. [-]</param>
-        /// <param name="c">The c coefficient. [-]</param>
-        /// <param name="n">The n coefficient. [-]</param>
+        /// <param name="surfSimilarityParameter">The surf similarity parameter [-].</param>
+        /// <param name="waveHeightHm0">The wave height [m].</param>
+        /// <param name="a">The a coefficient [-].</param>
+        /// <param name="b">The b coefficient [-].</param>
+        /// <param name="c">The c coefficient [-].</param>
+        /// <param name="n">The n coefficient [-].</param>
         public NaturalStoneRevetmentHydraulicLoadInput(double surfSimilarityParameter, double waveHeightHm0, double a, double b,
                                                        double c, double n)
         {
@@ -44,32 +44,32 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneRevetment
         }
 
         /// <summary>
-        /// Gets the surf similarity parameter. [-]
+        /// Gets the surf similarity parameter [-].
         /// </summary>
         public double SurfSimilarityParameter { get; private set; }
 
         /// <summary>
-        /// Gets the wave height. [m]
+        /// Gets the wave height [m].
         /// </summary>
         public double WaveHeightHm0 { get; private set; }
 
         /// <summary>
-        /// Gets the a coefficient. [-]
+        /// Gets the a coefficient [-].
         /// </summary>
         public double A { get; private set; }
 
         /// <summary>
-        /// Gets the b coefficient. [-]
+        /// Gets the b coefficient [-].
         /// </summary>
         public double B { get; private set; }
 
         /// <summary>
-        /// Gets the c coefficient. [-]
+        /// Gets the c coefficient [-].
         /// </summary>
         public double C { get; private set; }
 
         /// <summary>
-        /// Gets the n coefficient. [-]
+        /// Gets the n coefficient [-].
         /// </summary>
         public double N { get; private set; }
     }
