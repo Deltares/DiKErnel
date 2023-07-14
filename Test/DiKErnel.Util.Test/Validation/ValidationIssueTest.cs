@@ -16,6 +16,8 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using System;
+using DiKErnel.TestUtil;
 using DiKErnel.Util.Validation;
 using NUnit.Framework;
 
@@ -28,8 +30,9 @@ namespace DiKErnel.Util.Test.Validation
         public void Constructor_ExpectedValues()
         {
             // Setup
-            const ValidationIssueType validationIssueType = ValidationIssueType.Error;
-            const string message = "Message";
+            var random = new Random();
+            var validationIssueType = random.NextEnumValue<ValidationIssueType>();
+            var message = random.Next().ToString();
 
             // Call
             var validationIssue = new ValidationIssue(validationIssueType, message);

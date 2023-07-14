@@ -16,6 +16,7 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
@@ -29,7 +30,7 @@ namespace DiKErnel.Util.Test
         public void ConstructorForValueType_WithData_ExpectedValues()
         {
             // Setup
-            const int data = 45;
+            int data = new Random().Next();
             IEnumerable<Event> events = Enumerable.Empty<Event>();
 
             // Call
