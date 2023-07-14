@@ -424,5 +424,180 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneRevetment
             // Assert
             Assert.AreEqual(1.29, lowerLimitLoading);
         }
+
+        [Test]
+        public void DepthMaximumWaveLoad_ValidInput_ExpectedValue()
+        {
+            // Setup
+            const double distanceMaximumWaveElevation = 2.25;
+            const double normativeWidthWaveImpact = 1.47;
+            const double slopeAngle = 14.037;
+
+            // Call
+            double depthMaximumWaveLoad = NaturalStoneRevetmentFunctions.DepthMaximumWaveLoad(distanceMaximumWaveElevation,
+                                                                                              normativeWidthWaveImpact,
+                                                                                              slopeAngle);
+
+            // Assert
+            Assert.AreEqual(0.38425846631481392, depthMaximumWaveLoad);
+        }
+
+        [Test]
+        public void DistanceMaximumWaveElevation_ValidInput_ExpectedValue()
+        {
+            // Setup
+            const double impactShallowWater = 1.1;
+            const double waveSteepnessDeepWater = 0.038;
+            const double waveHeightHm0 = 1.8;
+            const double distanceMaximumWaveElevationAsmax = 0.42;
+            const double distanceMaximumWaveElevationBsmax = 0.9;
+
+            // Call
+            double distanceMaximumWaveElevation = NaturalStoneRevetmentFunctions.DistanceMaximumWaveElevation(
+                impactShallowWater, waveSteepnessDeepWater, waveHeightHm0, distanceMaximumWaveElevationAsmax,
+                distanceMaximumWaveElevationBsmax);
+
+            // Assert
+            Assert.AreEqual(2.4840179879700712, distanceMaximumWaveElevation);
+        }
+        
+        [Test]
+        public void NormativeWidthWaveImpact_ValidInput_ExpectedValue()
+        {
+            // Setup
+            const double surfSimilarityParameter = 1.28;
+            const double waveHeightHm0 = 1.8;
+            const double normativeWidthWaveImpactAwi = 0.96;
+            const double normativeWidthWaveImpactBwi = 0.11;
+
+            // Call
+            double normativeWidthWaveImpact = NaturalStoneRevetmentFunctions.NormativeWidthWaveImpact(
+                surfSimilarityParameter, waveHeightHm0, normativeWidthWaveImpactAwi, normativeWidthWaveImpactBwi);
+
+            // Assert
+            AssertHelper.AssertAreEqualWithAcceptablePrecision(1.47456, normativeWidthWaveImpact);
+        }
+        
+        [Test]
+        public static void WaveAngleImpact_ValidInput_ExpectedValue()
+        {
+            // Setup
+            const double waveAngle = 5.0;
+            const double waveAngleImpactBetamax = 78.0;
+
+            // Call
+            double waveAngleImpact = NaturalStoneRevetmentFunctions.WaveAngleImpact(waveAngle, waveAngleImpactBetamax);
+
+            // Assert
+            Assert.AreEqual(0.99746152040928704, waveAngleImpact);
+        }
+        
+        [Test]
+        public void Resistance_ValidInput_ExpectedValue()
+        {
+            // Setup
+            const double relativeDensity = 1.65;
+            const double thicknessTopLayer = 0.3;
+
+            // Call
+            double resistance = NaturalStoneRevetmentFunctions.Resistance(relativeDensity, thicknessTopLayer);
+
+            // Assert
+            AssertHelper.AssertAreEqualWithAcceptablePrecision(0.495, resistance);
+        }
+        
+        [Test]
+        public static void IncrementDegradation_ValidInput_ExpectedValue()
+        {
+            // Setup
+            const double referenceTimeDegradation = 579.743;
+            const double incrementTime = 900;
+            const double wavePeriodTm10 = 5.5;
+
+            // Call
+            double incrementDegradation = NaturalStoneRevetmentFunctions.IncrementDegradation(referenceTimeDegradation,
+                                                                                              incrementTime, wavePeriodTm10);
+
+            // Assert
+            Assert.AreEqual(0.078442472004777053, incrementDegradation);
+        }
+        
+        [Test]
+        public void ReferenceTimeDegradation_ValidInput_ExpectedValue()
+        {
+            // Setup
+            const double referenceDegradation = 0.802;
+            const double wavePeriodTm10 = 5.5;
+
+            // Call
+            double referenceTimeDegradation = NaturalStoneRevetmentFunctions.ReferenceTimeDegradation(referenceDegradation,
+                                                                                                      wavePeriodTm10);
+
+            // Assert
+            Assert.AreEqual(605.48915987364103, referenceTimeDegradation);
+        }
+        
+        [Test]
+        public void ReferenceDegradation_ValidInput_ExpectedValue()
+        {
+            // Setup
+            const double resistance = 0.495;
+            const double hydraulicLoad = 0.56;
+            const double waveAngleImpact = 0.997;
+            const double initialDamage = 0.905;
+
+            // Call
+            double referenceDegradation = NaturalStoneRevetmentFunctions.ReferenceDegradation(resistance, hydraulicLoad,
+                                                                                              waveAngleImpact, initialDamage);
+
+            // Assert
+            Assert.AreEqual(0.80236244447628591, referenceDegradation);
+        }
+        
+        [Test]
+        public void DurationInTimeStepFailure_ValidInput_ExpectedValue()
+        {
+            // Setup
+            const double referenceTimeFailure = 945.943;
+            const double referenceTimeDegradation = 597.743;
+
+            // Call
+            double durationInTimeStepFailure = NaturalStoneRevetmentFunctions.DurationInTimeStepFailure(referenceTimeFailure,
+                                                                                                        referenceTimeDegradation);
+
+            // Assert
+            AssertHelper.AssertAreEqualWithAcceptablePrecision(348.2, durationInTimeStepFailure);
+        }
+        
+        [Test]
+        public void ReferenceTimeFailure_ValidInput_ExpectedValue()
+        {
+            // Setup
+            const double referenceFailure = 0.84;
+            const double wavePeriodTm10 = 5.5;
+
+            // Call
+            double referenceTimeFailure = NaturalStoneRevetmentFunctions.ReferenceTimeFailure(referenceFailure, wavePeriodTm10);
+
+            // Assert
+            Assert.AreEqual(961.95675821289467, referenceTimeFailure);
+        }
+        
+        [Test]
+        public void ReferenceFailure_ValidInput_ExpectedValue()
+        {
+            // Setup
+            const double resistance = 0.495;
+            const double hydraulicLoad = 0.56;
+            const double waveAngleImpact = 0.997;
+            const double failureNumber = 0.95;
+
+            // Call
+            double referenceFailure = NaturalStoneRevetmentFunctions.ReferenceFailure(resistance, hydraulicLoad, waveAngleImpact,
+                                                                                      failureNumber);
+
+            // Assert
+            Assert.AreEqual(0.84225891961599064, referenceFailure);
+        }
     }
 }

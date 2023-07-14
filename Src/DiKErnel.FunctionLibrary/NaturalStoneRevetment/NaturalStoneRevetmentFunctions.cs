@@ -60,8 +60,8 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneRevetment
         public static double OuterSlope(NaturalStoneRevetmentOuterSlopeInput input)
         {
             return !input.HasBerm
-                       ? SingleSlopePart(input.SlopeUpperLevel, input.SlopeLowerLevel,
-                                         input.SlopeUpperPosition, input.SlopeLowerPosition)
+                       ? SingleSlopePart(input.SlopeUpperLevel, input.SlopeLowerLevel, input.SlopeUpperPosition,
+                                         input.SlopeLowerPosition)
                        : OuterSlopeWithBerm(input);
         }
 
@@ -119,6 +119,159 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneRevetment
                               input.B * input.WaveHeightHm0 * Math.Min(input.SurfSimilarityParameter, input.C));
         }
 
+        /// <summary>
+        /// Calculates the depth of the maximum wave load.
+        /// </summary>
+        /// <param name="distanceMaximumWaveElevation">The maximum distance of wave
+        /// elevation. [m]</param>
+        /// <param name="normativeWidthWaveImpact">The normative width of wave
+        /// impact. [m]</param>
+        /// <param name="slopeAngle">The slope angle. [deg]</param>
+        /// <returns>The depth of the maximum wave load. [m]</returns>
+        public static double DepthMaximumWaveLoad(double distanceMaximumWaveElevation, double normativeWidthWaveImpact,
+                                                  double slopeAngle)
+        {
+            double slopeAngleRadians = GenericFunctions.Radians(slopeAngle);
+
+            return (distanceMaximumWaveElevation - 0.5 * normativeWidthWaveImpact * Math.Cos(slopeAngleRadians))
+                   * Math.Tan(slopeAngleRadians);
+        }
+
+        /// <summary>
+        /// Calculates the maximum distance of wave elevation.
+        /// </summary>
+        /// <param name="impactShallowWater">The impact in shallow water. [-]</param>
+        /// <param name="waveSteepnessDeepWater">The wave steepness in deep
+        /// water. [-]</param>
+        /// <param name="waveHeightHm0">The wave height. [m]</param>
+        /// <param name="distanceMaximumWaveElevationAsmax">The Asmax
+        /// coefficient. [-]</param>
+        /// <param name="distanceMaximumWaveElevationBsmax">The Bsmax
+        /// coefficient. [-]</param>
+        /// <returns>The maximum distance of wave elevation. [m]</returns>
+        public static double DistanceMaximumWaveElevation(double impactShallowWater, double waveSteepnessDeepWater,
+                                                          double waveHeightHm0, double distanceMaximumWaveElevationAsmax,
+                                                          double distanceMaximumWaveElevationBsmax)
+        {
+            return waveHeightHm0
+                   * (distanceMaximumWaveElevationAsmax / Math.Sqrt(waveSteepnessDeepWater) - distanceMaximumWaveElevationBsmax)
+                   * impactShallowWater;
+        }
+
+        /// <summary>
+        /// Calculates the normative width of wave impact.
+        /// </summary>
+        /// <param name="surfSimilarityParameter">The surf similarity parameter. [-]</param>
+        /// <param name="waveHeightHm0">The wave height. [m]</param>
+        /// <param name="normativeWidthWaveImpactAwi">The Awi coefficient. [-]</param>
+        /// <param name="normativeWidthWaveImpactBwi">The Bwi coefficient. [-]</param>
+        /// <returns>The normative width of wave impact. [m]</returns>
+        public static double NormativeWidthWaveImpact(double surfSimilarityParameter, double waveHeightHm0,
+                                                      double normativeWidthWaveImpactAwi, double normativeWidthWaveImpactBwi)
+        {
+            return (normativeWidthWaveImpactAwi - normativeWidthWaveImpactBwi * surfSimilarityParameter) * waveHeightHm0;
+        }
+
+        /// <summary>
+        /// Calculates the wave impact with respect to the wave angle.
+        /// </summary>
+        /// <param name="waveAngle">The wave angle. [deg]</param>
+        /// <param name="waveAngleImpactBetamax">The Betamax coefficient. [deg]</param>
+        /// <returns>The wave impact with respect to the wave angle. [-]</returns>
+        public static double WaveAngleImpact(double waveAngle, double waveAngleImpactBetamax)
+        {
+            return Math.Pow(Math.Cos(GenericFunctions.Radians(Math.Min(waveAngleImpactBetamax, Math.Abs(waveAngle)))), 2.0 / 3.0);
+        }
+
+        /// <summary>
+        /// Calculates the resistance.
+        /// </summary>
+        /// <param name="relativeDensity">The relative density. [-]</param>
+        /// <param name="thicknessTopLayer">The thickness of the top layer. [m]</param>
+        /// <returns>The resistance. [m]</returns>
+        public static double Resistance(double relativeDensity, double thicknessTopLayer)
+        {
+            return relativeDensity * thicknessTopLayer;
+        }
+
+        /// <summary>
+        /// Calculates the increment of degradation.
+        /// </summary>
+        /// <param name="referenceTimeDegradation">The reference time of
+        /// degradation. [s]</param>
+        /// <param name="incrementTime">The increment of time. [s]</param>
+        /// <param name="wavePeriodTm10">The wave period. [s]</param>
+        /// <returns>The increment of degradation. [-]</returns>
+        public static double IncrementDegradation(double referenceTimeDegradation, double incrementTime, double wavePeriodTm10)
+        {
+            return Degradation(referenceTimeDegradation + incrementTime, wavePeriodTm10)
+                   - Degradation(referenceTimeDegradation, wavePeriodTm10);
+        }
+
+        /// <summary>
+        /// Calculates the reference time of degradation.
+        /// </summary>
+        /// <param name="referenceDegradation">The reference of degradation. [-]</param>
+        /// <param name="wavePeriodTm10">The wave period. [s]</param>
+        /// <returns>The reference time of degradation. [s]</returns>
+        public static double ReferenceTimeDegradation(double referenceDegradation, double wavePeriodTm10)
+        {
+            return ReferenceTime(referenceDegradation, wavePeriodTm10);
+        }
+
+        /// <summary>
+        /// Calculates the reference of degradation.
+        /// </summary>
+        /// <param name="resistance">The resistance. [m]</param>
+        /// <param name="hydraulicLoad">The hydraulic load. [m]</param>
+        /// <param name="waveAngleImpact">The wave impact with respect to the wave
+        /// angle.</param>
+        /// <param name="initialDamage"></param>
+        /// <returns></returns>
+        public static double ReferenceDegradation(double resistance, double hydraulicLoad, double waveAngleImpact,
+                                                  double initialDamage)
+        {
+            return Reference(resistance, hydraulicLoad, waveAngleImpact, initialDamage);
+        }
+
+        /// <summary>
+        /// Calculates the duration in the time step of failure.
+        /// </summary>
+        /// <param name="referenceTimeFailure">The reference time of failure. [s]</param>
+        /// <param name="referenceTimeDegradation">The reference time of
+        /// degradation. [s]</param>
+        /// <returns>The duration in the time step of failure. [s]</returns>
+        public static double DurationInTimeStepFailure(double referenceTimeFailure, double referenceTimeDegradation)
+        {
+            // return (double) (new decimal(referenceTimeFailure) - new decimal(referenceTimeDegradation));
+            return (referenceTimeFailure) - (referenceTimeDegradation);
+        }
+
+        /// <summary>
+        /// Calculates the reference time of failure.
+        /// </summary>
+        /// <param name="referenceFailure">The reference of failure. [-]</param>
+        /// <param name="wavePeriodTm10">The wave period. [s]</param>
+        /// <returns>The reference time of failure. [s]</returns>
+        public static double ReferenceTimeFailure(double referenceFailure, double wavePeriodTm10)
+        {
+            return ReferenceTime(referenceFailure, wavePeriodTm10);
+        }
+
+        /// <summary>
+        /// Calculates the reference of failure.
+        /// </summary>
+        /// <param name="resistance">The resistance. [m]</param>
+        /// <param name="hydraulicLoad">The hydraulic load. [m]</param>
+        /// <param name="waveAngleImpact">The wave impact with respect to the wave angle. [-]</param>
+        /// <param name="failureNumber">The failure number. [-]</param>
+        /// <returns>The reference of failure. [-]</returns>
+        public static double ReferenceFailure(double resistance, double hydraulicLoad, double waveAngleImpact,
+                                              double failureNumber)
+        {
+            return Reference(resistance, hydraulicLoad, waveAngleImpact, failureNumber);
+        }
+        
         private static double SingleSlopePart(double slopeUpperLevel, double slopeLowerLevel, double slopeUpperPosition,
                                               double slopeLowerPosition)
         {
@@ -207,6 +360,21 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneRevetment
         {
             return (0.5 * (crestOuterBermHeight + notchOuterBermHeight) - slopeLowerLevel)
                    * (crestOuterBermPosition - slopeLowerPosition) / (crestOuterBermHeight - slopeLowerLevel);
+        }
+
+        private static double Degradation(double referenceTimeDegradation, double wavePeriodTm10)
+        {
+            return Math.Pow(referenceTimeDegradation / (wavePeriodTm10 * 1000.0), 0.1);
+        }
+        
+        private static double ReferenceTime(double reference, double wavePeriodTm10)
+        {
+            return 1000.0 * wavePeriodTm10 * Math.Pow(reference, 10.0);
+        }
+        
+        private static double Reference(double resistance, double hydraulicLoad, double waveAngleImpact, double value)
+        {
+            return value * (resistance / hydraulicLoad) * (1.0 / waveAngleImpact);
         }
     }
 }
