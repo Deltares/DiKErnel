@@ -7,9 +7,3 @@
 
 # JetBrains Rider
 .idea/
-
-# Ignore development folders
-Development
-
-# But not the DotSettings
-!Development/VisualStudio/DiKErnel.sln.DotSettings
