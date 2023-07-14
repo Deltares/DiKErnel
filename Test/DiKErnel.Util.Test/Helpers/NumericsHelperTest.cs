@@ -24,7 +24,7 @@ namespace DiKErnel.Util.Test.Helpers
     [TestFixture]
     public class NumericsHelperTest
     {
-        private const double maxDeviation = 10E-16;
+        private const double tolerance = 1.0E-16;
 
         [Test]
         public void AreEqual_EqualValue_ReturnsTrue()
@@ -37,40 +37,40 @@ namespace DiKErnel.Util.Test.Helpers
         }
 
         [Test]
-        public void AreEqual_SecondValueDiffersWithEpsilon_ReturnsTrue()
+        public void AreEqual_SecondValueDiffersWithTolerance_ReturnsTrue()
         {
             // Call
-            bool areEqual = NumericsHelper.AreEqual(0.1, 0.1 + maxDeviation);
+            bool areEqual = NumericsHelper.AreEqual(0.1, 0.1 + tolerance);
 
             // Assert
             Assert.True(areEqual);
         }
 
         [Test]
-        public void FirstValueDiffersWithEpsilon_ReturnsTrue()
+        public void AreEqual_FirstValueDiffersWithTolerance_ReturnsTrue()
         {
             // Call
-            bool areEqual = NumericsHelper.AreEqual(0.1 + maxDeviation, 0.1);
+            bool areEqual = NumericsHelper.AreEqual(0.1 + tolerance, 0.1);
 
             // Assert
             Assert.True(areEqual);
         }
 
         [Test]
-        public void AreEqual_SecondValueDiffersWithTwoTimesEpsilon_ReturnsFalse()
+        public void AreEqual_SecondValueDiffersWithTwoTimesTolerance_ReturnsFalse()
         {
             // Call
-            bool areEqual = NumericsHelper.AreEqual(0.1, 0.1 + maxDeviation * 2);
+            bool areEqual = NumericsHelper.AreEqual(0.1, 0.1 + tolerance * 2);
 
             // Assert
             Assert.False(areEqual);
         }
 
         [Test]
-        public void AreEqual_FirstValueDiffersWithTwoTimesEpsilon_ReturnsFalse()
+        public void AreEqual_FirstValueDiffersWithTwoTimesTolerance_ReturnsFalse()
         {
             // Call
-            bool areEqual = NumericsHelper.AreEqual(0.1 + maxDeviation * 2, 0.1);
+            bool areEqual = NumericsHelper.AreEqual(0.1 + tolerance * 2, 0.1);
 
             // Assert
             Assert.False(areEqual);
@@ -104,12 +104,14 @@ namespace DiKErnel.Util.Test.Helpers
             var string2 = NumericsHelper.ToString(1e-6);
             var string3 = NumericsHelper.ToString(0.001);
             var string4 = NumericsHelper.ToString(1);
+            var string5 = NumericsHelper.ToString(0.123456789);
 
-            //Assert
+            // Assert
             Assert.AreEqual("0.3", string1);
             Assert.AreEqual("1E-06", string2);
             Assert.AreEqual("0.001", string3);
             Assert.AreEqual("1", string4);
+            Assert.AreEqual("0.123457", string5);
         }
     }
 }
