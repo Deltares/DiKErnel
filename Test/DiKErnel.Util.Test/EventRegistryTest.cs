@@ -16,8 +16,10 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using DiKErnel.TestUtil;
 using DiKErnel.Util.TestUtil;
 using NUnit.Framework;
 
@@ -39,8 +41,9 @@ namespace DiKErnel.Util.Test
         public void GivenEventRegistryWithEventsRegistered_WhenFlush_ThenReturnsRegisteredEvents()
         {
             // Given
-            var event1 = new Event("Warning message", EventType.Warning);
-            var event2 = new Event("Error message", EventType.Error);
+            var random = new Random();
+            var event1 = new Event(random.NextString(), random.NextEnumValue<EventType>());
+            var event2 = new Event(random.NextString(), random.NextEnumValue<EventType>());
 
             EventRegistry.Register(event1);
             EventRegistry.Register(event2);
@@ -59,8 +62,10 @@ namespace DiKErnel.Util.Test
         {
             // Given
             var registeredEventsOnMainThread = new List<Event>();
-            var testHelperThread1 = new EventRegistryTestHelper(10000);
-            var testHelperThread2 = new EventRegistryTestHelper(20000);
+            int numberOfEventsToRegisterOnFirstThread = new Random().Next(0, 10000);
+            int numberOfEventsToRegisterOnSecondThread = new Random().Next(10000, 20000);
+            var testHelperThread1 = new EventRegistryTestHelper(numberOfEventsToRegisterOnFirstThread);
+            var testHelperThread2 = new EventRegistryTestHelper(numberOfEventsToRegisterOnSecondThread);
 
             // When
             registeredEventsOnMainThread.AddRange(EventRegistry.Flush());
@@ -70,8 +75,8 @@ namespace DiKErnel.Util.Test
             registeredEventsOnMainThread.AddRange(EventRegistry.Flush());
 
             // Then
-            Assert.AreEqual(10000, testHelperThread1.RegisteredEvents.Count());
-            Assert.AreEqual(20000, testHelperThread2.RegisteredEvents.Count());
+            Assert.AreEqual(numberOfEventsToRegisterOnFirstThread, testHelperThread1.RegisteredEvents.Count());
+            Assert.AreEqual(numberOfEventsToRegisterOnSecondThread, testHelperThread2.RegisteredEvents.Count());
             Assert.IsEmpty(registeredEventsOnMainThread);
         }
 
@@ -79,8 +84,9 @@ namespace DiKErnel.Util.Test
         public void GivenEventRegistryWithEventsRegisteredAndFlushed_WhenFlush_ThenNoRegisteredEvents()
         {
             // Given
-            EventRegistry.Register(new Event("Warning message", EventType.Warning));
-            EventRegistry.Register(new Event("Error message", EventType.Error));
+            var random = new Random();
+            EventRegistry.Register(new Event(random.NextString(), random.NextEnumValue<EventType>()));
+            EventRegistry.Register(new Event(random.NextString(), random.NextEnumValue<EventType>()));
 
             // Precondition
             Assert.AreEqual(2, EventRegistry.Flush().Count());
