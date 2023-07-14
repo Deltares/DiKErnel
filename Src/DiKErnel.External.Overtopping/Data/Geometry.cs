@@ -26,7 +26,7 @@ namespace DiKErnel.External.Overtopping.Data
     internal struct Geometry
     {
         /// <summary>
-        /// The normal of the dike. [deg]
+        /// The normal of the dike [deg].
         /// </summary>
         public double Normal;
 
@@ -36,17 +36,17 @@ namespace DiKErnel.External.Overtopping.Data
         public int NPoints;
 
         /// <summary>
-        /// The x coordinates of the dike. [m]
+        /// The x coordinates of the dike [m].
         /// </summary>
         public IntPtr XCoords;
 
         /// <summary>
-        /// The y coordinates of the dike. [m]
+        /// The y coordinates of the dike [m].
         /// </summary>
         public IntPtr YCoords;
 
         /// <summary>
-        /// The roughness of the dike. [-]
+        /// The roughness of the dike [-].
         /// </summary>
         public IntPtr Roughness;
     }

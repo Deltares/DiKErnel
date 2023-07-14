@@ -24,22 +24,22 @@ namespace DiKErnel.External.Overtopping.Data
     internal struct Load
     {
         /// <summary>
-        /// The water level. [m]
+        /// The water level [m].
         /// </summary>
         public double WaterLevel;
 
         /// <summary>
-        /// The wave height. [m]
+        /// The wave height [m].
         /// </summary>
         public double Height;
 
         /// <summary>
-        /// The wave period. [s]
+        /// The wave period [s].
         /// </summary>
         public double Period;
 
         /// <summary>
-        /// The wave direction. [deg]
+        /// The wave direction [deg].
         /// </summary>
         public double Direction;
     }

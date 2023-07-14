@@ -24,12 +24,12 @@ namespace DiKErnel.External.Overtopping.Data
     internal struct Result
     {
         /// <summary>
-        /// The 2% wave run-up. [m]
+        /// The 2% wave run-up [m].
         /// </summary>
         public double Z2;
 
         /// <summary>
-        /// The wave overtopping discharge. [m^3/m/s]
+        /// The wave overtopping discharge [m^3/m/s].
         /// </summary>
         public double Q0;
     }

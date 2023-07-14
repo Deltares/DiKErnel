@@ -24,42 +24,42 @@ namespace DiKErnel.External.Overtopping.Data
     internal struct ModelFactors
     {
         /// <summary>
-        /// Model factor for non-breaking waves. [-]
+        /// Model factor for non-breaking waves [-].
         /// </summary>
         public double FactorDeterminationQnFn;
 
         /// <summary>
-        /// Model factor for breaking waves. [-]
+        /// Model factor for breaking waves [-].
         /// </summary>
         public double FactorDeterminationQbFb;
 
         /// <summary>
-        /// Model factor for describing the uncertainty of 2% run-up height. [-]
+        /// Model factor for describing the uncertainty of 2% run-up height [-].
         /// </summary>
         public double Mz2;
 
         /// <summary>
-        /// Model factor for the shallow waves. [-]
+        /// Model factor for the shallow waves [-].
         /// </summary>
         public double Fshallow;
 
         /// <summary>
-        /// Model factor computed overtopping. [-]
+        /// Model factor computed overtopping [-].
         /// </summary>
         public double ComputedOvertopping;
 
         /// <summary>
-        /// Model factor critical overtopping. [-]
+        /// Model factor critical overtopping [-].
         /// </summary>
         public double CriticalOvertopping;
 
         /// <summary>
-        /// Relaxation factor iteration procedure wave run-up. [-]
+        /// Relaxation factor iteration procedure wave run-up [-].
         /// </summary>
         public double Relaxationfactor;
 
         /// <summary>
-        /// Reduction factor foreshore. [-]
+        /// Reduction factor foreshore [-].
         /// </summary>
         public double ReductionFactorForeshore;
     }
