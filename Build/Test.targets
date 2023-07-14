@@ -9,4 +9,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Coverage|AnyCPU'">
     <DebugType>none</DebugType>
   </PropertyGroup>
+  <PropertyGroup>
+    <NoWarn>CA1707;CA5394</NoWarn>
+  </PropertyGroup>
 </Project>
