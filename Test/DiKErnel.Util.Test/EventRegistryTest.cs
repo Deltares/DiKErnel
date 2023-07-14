@@ -61,18 +61,15 @@ namespace DiKErnel.Util.Test
             var testHelperThread1 = new EventRegistryTestHelper(10000);
             var testHelperThread2 = new EventRegistryTestHelper(20000);
 
+            // When
             testHelperThread1.WaitForCompletion();
             testHelperThread2.WaitForCompletion();
-
-            // When
-            IEnumerable<Event> registeredEvents1 = testHelperThread1.GetRegisteredEvents();
-            IEnumerable<Event> registeredEvents2 = testHelperThread2.GetRegisteredEvents();
-            IEnumerable<Event> registeredEvents3 = EventRegistry.Flush();
+            IEnumerable<Event> registeredEventsOnMainThread = EventRegistry.Flush();
 
             // Then
-            Assert.AreEqual(10000, registeredEvents1.Count());
-            Assert.AreEqual(20000, registeredEvents2.Count());
-            Assert.IsEmpty(registeredEvents3);
+            Assert.AreEqual(10000, testHelperThread1.RegisteredEvents.Count());
+            Assert.AreEqual(20000, testHelperThread2.RegisteredEvents.Count());
+            Assert.IsEmpty(registeredEventsOnMainThread);
         }
 
         [Test]

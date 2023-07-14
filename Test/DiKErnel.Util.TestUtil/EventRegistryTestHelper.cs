@@ -33,31 +33,24 @@ namespace DiKErnel.Util.TestUtil
             thread.Start();
         }
 
+        public IEnumerable<Event> RegisteredEvents => registeredEvents;
+
         public void WaitForCompletion()
         {
-            bool joinable = Thread.CurrentThread != thread;
-            if (joinable)
+            if (Thread.CurrentThread != thread)
             {
                 thread.Join();
             }
         }
 
-        public IEnumerable<Event> GetRegisteredEvents()
-        {
-            return registeredEvents;
-        }
-
         private void PerformTest(int numberOfEventsToRegister)
         {
-            for (int i = 0; i < numberOfEventsToRegister; ++i)
+            for (var i = 0; i < numberOfEventsToRegister; ++i)
             {
                 EventRegistry.Register(new Event($"Event {i}", EventType.Error));
             }
 
-            foreach (Event registeredEvent in EventRegistry.Flush())
-            {
-                registeredEvents.Add(registeredEvent);
-            }
+            registeredEvents.AddRange(EventRegistry.Flush());
         }
     }
 }
