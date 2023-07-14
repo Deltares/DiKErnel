@@ -32,7 +32,7 @@ namespace DiKErnel.Util.Test.Validation
             // Setup
             var random = new Random();
             var validationIssueType = random.NextEnumValue<ValidationIssueType>();
-            var message = random.Next().ToString();
+            string message = random.NextString();
 
             // Call
             var validationIssue = new ValidationIssue(validationIssueType, message);

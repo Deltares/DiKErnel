@@ -30,7 +30,7 @@ namespace DiKErnel.Util.Test
         {
             // Setup
             var random = new Random();
-            var message = random.Next().ToString();
+            string message = random.NextString();
             var eventType = random.NextEnumValue<EventType>();
 
             // Call

@@ -22,6 +22,8 @@ namespace DiKErnel.TestUtil
 {
     public static class RandomExtensions
     {
+        private static readonly string randomChars = "$%#@! abcdefghijklmnopqrstuvwxyz 1234567890 ?;: ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
         public static bool NextBoolean(this Random random)
         {
             if (random == null)
@@ -41,6 +43,23 @@ namespace DiKErnel.TestUtil
 
             var enumValues = (TEnum[]) Enum.GetValues(typeof(TEnum));
             return enumValues[random.Next(enumValues.Length)];
+        }
+
+        public static string NextString(this Random random)
+        {
+            if (random == null)
+            {
+                throw new ArgumentNullException(nameof(random));
+            }
+
+            var nextString = string.Empty;
+
+            for (var i = 0; i < random.Next(10, 21); i++)
+            {
+                nextString += randomChars[random.Next(0, randomChars.Length)];
+            }
+
+            return nextString;
         }
     }
 }
