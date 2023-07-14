@@ -22,7 +22,7 @@ namespace DiKErnel.TestUtil
 {
     public static class RandomExtensions
     {
-        private static readonly string randomChars = "$%#@! abcdefghijklmnopqrstuvwxyz 1234567890 ?;: ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        private const string randomChars = "& $ % # @ ! * ? ; : abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ 1234567890";
 
         public static bool NextBoolean(this Random random)
         {
