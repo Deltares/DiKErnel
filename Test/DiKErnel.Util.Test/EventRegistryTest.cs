@@ -58,13 +58,16 @@ namespace DiKErnel.Util.Test
         public void GivenEventRegistryWithEventsRegisteredOnDifferentThreads_WhenFlush_ThenReturnsDifferentEventsPerThread()
         {
             // Given
+            var registeredEventsOnMainThread = new List<Event>();
             var testHelperThread1 = new EventRegistryTestHelper(10000);
             var testHelperThread2 = new EventRegistryTestHelper(20000);
 
             // When
+            registeredEventsOnMainThread.AddRange(EventRegistry.Flush());
             testHelperThread1.WaitForCompletion();
+            registeredEventsOnMainThread.AddRange(EventRegistry.Flush());
             testHelperThread2.WaitForCompletion();
-            IEnumerable<Event> registeredEventsOnMainThread = EventRegistry.Flush();
+            registeredEventsOnMainThread.AddRange(EventRegistry.Flush());
 
             // Then
             Assert.AreEqual(10000, testHelperThread1.RegisteredEvents.Count());
