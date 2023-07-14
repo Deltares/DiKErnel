@@ -24,7 +24,7 @@ namespace DiKErnel.Util.Test.Helpers
     [TestFixture]
     public class NumericsHelperTest
     {
-        private const double tolerance = 1.0E-16;
+        private const double tolerance = 1.0e-16;
 
         [Test]
         public void AreEqual_EqualValue_ReturnsTrue()
@@ -108,7 +108,7 @@ namespace DiKErnel.Util.Test.Helpers
 
             // Assert
             Assert.AreEqual("0.3", string1);
-            Assert.AreEqual("1E-06", string2);
+            Assert.AreEqual("1e-06", string2);
             Assert.AreEqual("0.001", string3);
             Assert.AreEqual("1", string4);
             Assert.AreEqual("0.123457", string5);
