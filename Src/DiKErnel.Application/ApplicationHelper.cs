@@ -32,28 +32,16 @@ namespace DiKErnel.Application
         /// <summary>
         /// Gets the application version as a string.
         /// </summary>
-        /// <returns>The version of the application as a string.</returns>
-        public static string GetApplicationVersionString()
-        {
-            return Assembly.GetExecutingAssembly().GetName().Version.ToString();
-        }
+        public static string ApplicationVersionString => Assembly.GetExecutingAssembly().GetName().Version.ToString();
 
         /// <summary>
         /// Gets the operating system name.
         /// </summary>
-        /// <returns>The operating system name.</returns>
-        public static string GetOperatingSystemName()
-        {
-            return Environment.OSVersion.ToString();
-        }
+        public static string OperatingSystemName => Environment.OSVersion.ToString();
 
         /// <summary>
         /// Gets the current date and time as a formatted string.
         /// </summary>
-        /// <returns>The current date and time as a formatted string.</returns>
-        public static string GetFormattedDateTimeString()
-        {
-            return DateTime.UtcNow.ToString(isoFormat, CultureInfo.InvariantCulture);
-        }
+        public static string FormattedDateTimeString => DateTime.UtcNow.ToString(isoFormat, CultureInfo.InvariantCulture);
     }
 }
