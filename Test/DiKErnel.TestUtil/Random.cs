@@ -26,6 +26,11 @@ namespace DiKErnel.TestUtil
 
         private static readonly System.Random instance = new System.Random(21);
 
+        public static int Next()
+        {
+            return instance.Next();
+        }
+
         public static int Next(int minValue, int maxValue)
         {
             return instance.Next(minValue, maxValue);

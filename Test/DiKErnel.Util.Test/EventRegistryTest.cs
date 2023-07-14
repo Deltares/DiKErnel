@@ -16,13 +16,11 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using DiKErnel.TestUtil;
 using DiKErnel.Util.TestUtil;
 using NUnit.Framework;
-using Random = DiKErnel.TestUtil.Random;
 
 namespace DiKErnel.Util.Test
 {
