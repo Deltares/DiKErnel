@@ -29,8 +29,8 @@ namespace DiKErnel.Util.Test.Validation
         public void Constructor_ExpectedValues()
         {
             // Setup
-            var validationIssueType = Random.Instance.NextEnumValue<ValidationIssueType>();
-            string message = Random.Instance.NextString();
+            var validationIssueType = Random.NextEnumValue<ValidationIssueType>();
+            string message = Random.NextString();
 
             // Call
             var validationIssue = new ValidationIssue(validationIssueType, message);

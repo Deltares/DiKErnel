@@ -16,15 +16,57 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using System;
+
 namespace DiKErnel.TestUtil
 {
     public static class Random
     {
-        static Random()
+        private const string randomChars = "& $ % # @ ! * ? ; : abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ 1234567890";
+
+        private static readonly System.Random instance = new System.Random(21);
+
+        public static int Next(int minValue, int maxValue)
         {
-            Instance = new System.Random(21);
+            return instance.Next(minValue, maxValue);
         }
 
-        public static System.Random Instance { get; private set; }
+        public static bool NextBoolean()
+        {
+            if (instance == null)
+            {
+                throw new ArgumentNullException(nameof(instance));
+            }
+
+            return Convert.ToBoolean(instance.Next(0, 2));
+        }
+
+        public static T NextEnumValue<T>()
+        {
+            if (instance == null)
+            {
+                throw new ArgumentNullException(nameof(instance));
+            }
+
+            var enumValues = (T[]) Enum.GetValues(typeof(T));
+            return enumValues[instance.Next(enumValues.Length)];
+        }
+
+        public static string NextString()
+        {
+            if (instance == null)
+            {
+                throw new ArgumentNullException(nameof(instance));
+            }
+
+            var nextString = string.Empty;
+
+            for (var i = 0; i < instance.Next(10, 21); i++)
+            {
+                nextString += randomChars[instance.Next(0, randomChars.Length)];
+            }
+
+            return nextString;
+        }
     }
 }

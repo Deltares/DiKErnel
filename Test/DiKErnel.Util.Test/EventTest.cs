@@ -28,8 +28,8 @@ namespace DiKErnel.Util.Test
         public void Constructor_ExpectedValues()
         {
             // Setup
-            string message = Random.Instance.NextString();
-            var eventType = Random.Instance.NextEnumValue<EventType>();
+            string message = Random.NextString();
+            var eventType = Random.NextEnumValue<EventType>();
 
             // Call
             var testEvent = new Event(message, eventType);
