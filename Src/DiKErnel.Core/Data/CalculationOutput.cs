@@ -38,6 +38,6 @@ namespace DiKErnel.Core.Data
         /// <summary>
         /// Gets the location dependent output items.
         /// </summary>
-        public IEnumerable<LocationDependentOutput> LocationDependentOutputItems { get; private set; }
+        public IEnumerable<LocationDependentOutput> LocationDependentOutputItems { get; }
     }
 }

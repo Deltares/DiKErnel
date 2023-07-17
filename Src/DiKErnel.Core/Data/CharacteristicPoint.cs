@@ -19,10 +19,29 @@
 namespace DiKErnel.Core.Data
 {
     /// <summary>
-    /// 
+    /// Class containing a characteristic point that is needed to perform a calculation.
     /// </summary>
     public class CharacteristicPoint
     {
-        
+        /// <summary>
+        /// Creates a new instance.
+        /// </summary>
+        /// <param name="profilePoint">The profile point corresponding with the characteristic point.</param>
+        /// <param name="characteristicPointType">The type of the characteristic point.</param>
+        public CharacteristicPoint(ProfilePoint profilePoint, CharacteristicPointType characteristicPointType)
+        {
+            ProfilePoint = profilePoint;
+            CharacteristicPointType = characteristicPointType;
+        }
+
+        /// <summary>
+        /// Gets the profile point.
+        /// </summary>
+        public ProfilePoint ProfilePoint { get; }
+
+        /// <summary>
+        /// Gets the characteristic point type.
+        /// </summary>
+        public CharacteristicPointType CharacteristicPointType { get; }
     }
 }
