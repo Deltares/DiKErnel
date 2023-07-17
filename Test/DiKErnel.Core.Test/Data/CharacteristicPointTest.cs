@@ -16,27 +16,28 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using System.Collections.Generic;
-using System.Linq;
 using DiKErnel.Core.Data;
+using DiKErnel.TestUtil;
 using NUnit.Framework;
 
 namespace DiKErnel.Core.Test.Data
 {
     [TestFixture]
-    public class CalculationOutputTest
+    public class CharacteristicPointTest
     {
         [Test]
         public void Constructor_ExpectedValues()
         {
             // Setup
-            IEnumerable<LocationDependentOutput> locationDependentOutputItems = Enumerable.Empty<LocationDependentOutput>();
+            var profilePoint = new ProfilePoint(Random.NextDouble(), Random.NextDouble());
+            var characteristicPointType = Random.NextEnumValue<CharacteristicPointType>();
 
             // Call
-            var calculationOutput = new CalculationOutput(locationDependentOutputItems);
+            var characteristicPoint = new CharacteristicPoint(profilePoint, characteristicPointType);
 
             // Assert
-            Assert.AreSame(locationDependentOutputItems, calculationOutput.LocationDependentOutputItems);
+            Assert.AreSame(profilePoint, characteristicPoint.ProfilePoint);
+            Assert.AreEqual(characteristicPointType, characteristicPoint.CharacteristicPointType);
         }
     }
 }

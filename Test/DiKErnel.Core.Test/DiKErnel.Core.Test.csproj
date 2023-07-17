@@ -9,6 +9,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\Src\DiKErnel.Core\DiKErnel.Core.csproj" />
+      <ProjectReference Include="..\DiKErnel.TestUtil\DiKErnel.TestUtil.csproj" />
     </ItemGroup>
 
 </Project>
