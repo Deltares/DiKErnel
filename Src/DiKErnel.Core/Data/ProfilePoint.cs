@@ -19,10 +19,29 @@
 namespace DiKErnel.Core.Data
 {
     /// <summary>
-    /// 
+    /// Class containing a profile point that is needed to perform a calculation.
     /// </summary>
     public class ProfilePoint
     {
-        
+        /// <summary>
+        /// Creates a new instance.
+        /// </summary>
+        /// <param name="x">The x coordinate.</param>
+        /// <param name="z">The z coordinate.</param>
+        public ProfilePoint(double x, double z)
+        {
+            X = x;
+            Z = z;
+        }
+
+        /// <summary>
+        /// Gets the x coordinate of the point.
+        /// </summary>
+        public double X { get; }
+
+        /// <summary>
+        /// Gets the z coordinate of the point.
+        /// </summary>
+        public double Z { get; }
     }
 }
