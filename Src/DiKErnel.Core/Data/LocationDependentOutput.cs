@@ -16,13 +16,52 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using System.Collections.Generic;
+
 namespace DiKErnel.Core.Data
 {
     /// <summary>
-    /// 
+    /// Class containing all location dependent output of a location.
     /// </summary>
-    public class LocationDependentOutput
+    public abstract class LocationDependentOutput
     {
-        
+        /// <summary>
+        /// Creates a new instance.
+        /// </summary>
+        /// <param name="timeDependentOutputItems">The time dependent output items of the
+        /// location.</param>
+        protected LocationDependentOutput(IEnumerable<TimeDependentOutput> timeDependentOutputItems)
+        {
+            TimeDependentOutputItems = timeDependentOutputItems;
+
+            var damages = new List<double>();
+
+            foreach (TimeDependentOutput timeDependentOutput in TimeDependentOutputItems)
+            {
+                damages.Add(timeDependentOutput.Damage);
+
+                if (timeDependentOutput.TimeOfFailure.HasValue)
+                {
+                    TimeOfFailure = timeDependentOutput.TimeOfFailure;
+                }
+            }
+
+            Damages = damages;
+        }
+
+        /// <summary>
+        /// Gets the time dependent output items.
+        /// </summary>
+        public IEnumerable<TimeDependentOutput> TimeDependentOutputItems { get; }
+
+        /// <summary>
+        /// Gets the calculated damages.
+        /// </summary>
+        public IEnumerable<double> Damages { get; }
+
+        /// <summary>
+        /// Gets the calculated time of failure.
+        /// </summary>
+        public int? TimeOfFailure { get; }
     }
 }
