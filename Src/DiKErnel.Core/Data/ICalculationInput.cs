@@ -16,13 +16,28 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using System.Collections.Generic;
+
 namespace DiKErnel.Core.Data
 {
     /// <summary>
-    /// 
+    /// Interface defining all input that is needed to perform a calculation.
     /// </summary>
     public interface ICalculationInput
     {
-        
+        /// <summary>
+        /// Gets the profile data to use in the calculation.
+        /// </summary>
+        public IProfileData ProfileData { get; }
+
+        /// <summary>
+        /// Gets the location dependent input items to use in the calculation.
+        /// </summary>
+        public IEnumerable<ILocationDependentInput> LocationDependentInputItems { get; }
+
+        /// <summary>
+        /// Gets the time dependent input items to use in the calculation.
+        /// </summary>
+        public IEnumerable<ITimeDependentInput> TimeDependentInputItems { get; }
     }
 }
