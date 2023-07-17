@@ -50,7 +50,7 @@ namespace DiKErnel.External.Overtopping
             var success = false;
             var messageBuffer = new char[bufferCapacity];
 
-            SetLanguage(languageCode, languageCode.Length);
+            SetLanguage(languageCode.ToCharArray(), languageCode.Length);
             ValidateInputC(ref geometry, ref dikeHeight, ref modelFactors, ref success, messageBuffer, bufferCapacity);
 
             return success
@@ -93,7 +93,7 @@ namespace DiKErnel.External.Overtopping
             var messageBuffer = new char[bufferCapacity];
             var logFileName = new char[bufferCapacity];
 
-            SetLanguage(languageCode, languageCode.Length);
+            SetLanguage(languageCode.ToCharArray(), languageCode.Length);
             calculateQo(ref load, ref geometry, ref dikeHeight, ref modelFactors, ref result, ref success, messageBuffer,
                         ref verbosity, logFileName, bufferCapacity, bufferCapacity);
 
@@ -142,8 +142,8 @@ namespace DiKErnel.External.Overtopping
         private static extern void ValidateInputC(ref Geometry geometryInput, ref double dikeHeight, ref ModelFactors modelFactors,
                                                   ref bool success, [Out] char[] message, int size);
 
-        [DllImport(dikesOvertoppingDllName, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
-        private static extern void SetLanguage(string languageCode, int languageCodeLength);
+        [DllImport(dikesOvertoppingDllName, CallingConvention = CallingConvention.Cdecl)]
+        private static extern void SetLanguage([In] char[] languageCode, int languageCodeLength);
 
         [DllImport(dikesOvertoppingDllName, CallingConvention = CallingConvention.Cdecl)]
         private static extern void calculateQo(ref Load loadInput, ref Geometry geometryInput, ref double dikeHeight,
