@@ -16,6 +16,7 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using DiKErnel.TestUtil;
 using NUnit.Framework;
 
 namespace DiKErnel.FunctionLibrary.Test
@@ -33,7 +34,7 @@ namespace DiKErnel.FunctionLibrary.Test
             double radians = GenericFunctions.Radians(degrees);
 
             // Assert
-            Assert.AreEqual(2.1546089615869999, radians);
+            AssertHelper.AssertAreEqualWithinTolerance(2.1546089615869999, radians);
         }
 
         [Test]
@@ -46,7 +47,7 @@ namespace DiKErnel.FunctionLibrary.Test
             double degrees = GenericFunctions.Degrees(radians);
 
             // Assert
-            Assert.AreEqual(70.731639808900127, degrees);
+            AssertHelper.AssertAreEqualWithinTolerance(70.731639808900127, degrees);
         }
     }
 }

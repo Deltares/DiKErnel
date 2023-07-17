@@ -243,8 +243,7 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneRevetment
         /// <returns>The duration in the time step of failure [s].</returns>
         public static double DurationInTimeStepFailure(double referenceTimeFailure, double referenceTimeDegradation)
         {
-            // return (double) (new decimal(referenceTimeFailure) - new decimal(referenceTimeDegradation));
-            return (referenceTimeFailure) - (referenceTimeDegradation);
+            return referenceTimeFailure - referenceTimeDegradation;
         }
 
         /// <summary>

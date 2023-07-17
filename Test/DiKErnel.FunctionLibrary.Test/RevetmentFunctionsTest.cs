@@ -16,6 +16,7 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using DiKErnel.TestUtil;
 using NUnit.Framework;
 
 namespace DiKErnel.FunctionLibrary.Test
@@ -34,7 +35,7 @@ namespace DiKErnel.FunctionLibrary.Test
             double incrementTime = RevetmentFunctions.IncrementTime(beginTime, endTime);
 
             // Assert
-            Assert.AreEqual(300, incrementTime);
+            AssertHelper.AssertAreEqualWithinTolerance(300, incrementTime);
         }
 
         [Test]
@@ -50,7 +51,7 @@ namespace DiKErnel.FunctionLibrary.Test
                                                                                   averageNumberOfWavesCtm);
 
             // Assert
-            Assert.AreEqual(115.38461538461539, averageNumberOfWaves);
+            AssertHelper.AssertAreEqualWithinTolerance(115.38461538461539, averageNumberOfWaves);
         }
 
         [Test]
@@ -64,7 +65,7 @@ namespace DiKErnel.FunctionLibrary.Test
             double damage = RevetmentFunctions.Damage(incrementDamage, initialDamage);
 
             // Assert
-            Assert.AreEqual(0.35, damage);
+            AssertHelper.AssertAreEqualWithinTolerance(0.35, damage);
         }
 
         [Test]
@@ -153,7 +154,7 @@ namespace DiKErnel.FunctionLibrary.Test
             double timeOfFailure = RevetmentFunctions.TimeOfFailure(durationInTimeStepFailure, beginTime);
 
             // Assert
-            Assert.AreEqual(1823, timeOfFailure);
+            AssertHelper.AssertAreEqualWithinTolerance(1823, timeOfFailure);
         }
 
         [Test]
@@ -170,7 +171,7 @@ namespace DiKErnel.FunctionLibrary.Test
                                                                                             failureNumber, initialDamage);
 
             // Assert
-            Assert.AreEqual(385.47008547008551, durationInTimeStepFailure);
+            AssertHelper.AssertAreEqualWithinTolerance(385.47008547008551, durationInTimeStepFailure);
         }
 
         [Test]
@@ -184,7 +185,7 @@ namespace DiKErnel.FunctionLibrary.Test
             int timeOfFailure = RevetmentFunctions.TimeOfFailure(durationInTimeStepFailure, beginTime);
 
             // Assert
-            Assert.AreEqual(1822, timeOfFailure);
+            AssertHelper.AssertAreEqualWithinTolerance(1822, timeOfFailure);
         }
     }
 }
