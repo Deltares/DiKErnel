@@ -19,10 +19,36 @@
 namespace DiKErnel.Core.Data
 {
     /// <summary>
-    /// 
+    /// Class containing a profile segment that is needed to perform a calculation.
     /// </summary>
     public class ProfileSegment
     {
-        
+        /// <summary>
+        /// Creates a new instance.
+        /// </summary>
+        /// <param name="startPoint">The start point.</param>
+        /// <param name="endPoint">The end point.</param>
+        /// <param name="roughnessCoefficient">The roughness coefficient.</param>
+        public ProfileSegment(ProfilePoint startPoint, ProfilePoint endPoint, double roughnessCoefficient)
+        {
+            StartPoint = startPoint;
+            EndPoint = endPoint;
+            RoughnessCoefficient = roughnessCoefficient;
+        }
+
+        /// <summary>
+        /// Gets the start point of the segment.
+        /// </summary>
+        public ProfilePoint StartPoint { get; }
+
+        /// <summary>
+        /// Gets the end point of the segment.
+        /// </summary>
+        public ProfilePoint EndPoint { get; }
+
+        /// <summary>
+        /// Gets the roughness coefficient of the segment.
+        /// </summary>
+        public double RoughnessCoefficient { get; }
     }
 }

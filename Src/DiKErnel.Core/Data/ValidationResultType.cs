@@ -19,10 +19,11 @@
 namespace DiKErnel.Core.Data
 {
     /// <summary>
-    /// 
+    /// The validation result types.
     /// </summary>
-    public class ValidationResultType
+    public enum ValidationResultType
     {
-        
+        Successful,
+        Failed
     }
 }
