@@ -26,8 +26,10 @@ namespace DiKErnel.Core.Data
         /// <summary>
         /// Creates a new instance.
         /// </summary>
-        /// <param name="profilePoint">The profile point corresponding with the characteristic point.</param>
-        /// <param name="characteristicPointType">The type of the characteristic point.</param>
+        /// <param name="profilePoint">The profile point corresponding with the
+        /// characteristic point.</param>
+        /// <param name="characteristicPointType">The type of the characteristic
+        /// point.</param>
         public CharacteristicPoint(ProfilePoint profilePoint, CharacteristicPointType characteristicPointType)
         {
             ProfilePoint = profilePoint;
