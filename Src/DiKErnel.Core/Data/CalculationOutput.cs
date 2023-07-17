@@ -16,13 +16,28 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using System.Collections.Generic;
+
 namespace DiKErnel.Core.Data
 {
     /// <summary>
-    /// 
+    /// Class containing all output of a calculation.
     /// </summary>
     public class CalculationOutput
     {
-        
+        /// <summary>
+        /// Creates a new instance.
+        /// </summary>
+        /// <param name="locationDependentOutputItems">The location dependent output
+        /// items.</param>
+        public CalculationOutput(IEnumerable<LocationDependentOutput> locationDependentOutputItems)
+        {
+            LocationDependentOutputItems = locationDependentOutputItems;
+        }
+
+        /// <summary>
+        /// Gets the location dependent output items.
+        /// </summary>
+        public IEnumerable<LocationDependentOutput> LocationDependentOutputItems { get; private set; }
     }
 }
