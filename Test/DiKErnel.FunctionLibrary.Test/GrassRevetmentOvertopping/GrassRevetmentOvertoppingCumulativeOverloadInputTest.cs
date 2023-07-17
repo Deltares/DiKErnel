@@ -23,7 +23,7 @@ using NUnit.Framework;
 namespace DiKErnel.FunctionLibrary.Test.GrassRevetmentOvertopping
 {
     [TestFixture]
-    public class GrassRevetmentCumulativeOverloadInputTest
+    public class GrassRevetmentOvertoppingCumulativeOverloadInputTest
     {
         [Test]
         public void GivenInput_WhenCreated_ThenExpectedValues()
@@ -41,7 +41,7 @@ namespace DiKErnel.FunctionLibrary.Test.GrassRevetmentOvertopping
             double frontVelocityCwo = Random.NextDouble();
 
             // Call
-            var input = new GrassRevetmentCumulativeOverloadInput(averageNumberOfWaves, representativeWaveRunup2P,
+            var input = new GrassRevetmentOvertoppingCumulativeOverloadInput(averageNumberOfWaves, representativeWaveRunup2P,
                                                                   fixedNumberOfWaves, verticalDistanceWaterLevelElevation,
                                                                   criticalFrontVelocity, increasedLoadTransitionAlphaM,
                                                                   reducedStrengthTransitionAlphaS, gravitationalAcceleration,

@@ -21,19 +21,20 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentOvertopping
     /// <summary>
     /// Input for a grass revetment overtopping cumulative overload calculation.
     /// </summary>
-    public class GrassRevetmentCumulativeOverloadInput : GrassRevetment.GrassRevetmentCumulativeOverloadInput
+    public class GrassRevetmentOvertoppingCumulativeOverloadInput : GrassRevetment.GrassRevetmentCumulativeOverloadInput
     {
         /// <summary>
-        /// Creates a new instance of <see cref="GrassRevetmentCumulativeOverloadInput"/>
+        /// Creates a new instance of <see cref="GrassRevetmentOvertoppingCumulativeOverloadInput"/>
         /// </summary>
         /// <param name="accelerationAlphaA">The AlphaA coefficient [-].</param>
         /// <param name="frontVelocityCwo">The Cwo coefficient [-].</param>
         /// <inheritdoc/>
-        public GrassRevetmentCumulativeOverloadInput(double averageNumberOfWaves, double representativeWaveRunup2P, 
-                                                     int fixedNumberOfWaves, double verticalDistanceWaterLevelElevation, 
-                                                     double criticalFrontVelocity, double increasedLoadTransitionAlphaM,
-                                                     double reducedStrengthTransitionAlphaS, double gravitationalAcceleration,
-                                                     double accelerationAlphaA, double frontVelocityCwo) 
+        public GrassRevetmentOvertoppingCumulativeOverloadInput(double averageNumberOfWaves, double representativeWaveRunup2P,
+                                                                int fixedNumberOfWaves, double verticalDistanceWaterLevelElevation,
+                                                                double criticalFrontVelocity, double increasedLoadTransitionAlphaM,
+                                                                double reducedStrengthTransitionAlphaS, 
+                                                                double gravitationalAcceleration, double accelerationAlphaA,
+                                                                double frontVelocityCwo)
             : base(averageNumberOfWaves, representativeWaveRunup2P, fixedNumberOfWaves, verticalDistanceWaterLevelElevation,
                    criticalFrontVelocity, increasedLoadTransitionAlphaM, reducedStrengthTransitionAlphaS,
                    gravitationalAcceleration)
