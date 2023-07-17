@@ -62,7 +62,8 @@ namespace DiKErnel.FunctionLibrary.AsphaltRevetmentWaveImpact
         /// Calculates the maximum peak stress.
         /// </summary>
         /// <param name="waveHeightHm0">The wave height [m].</param>
-        /// <param name="gravitationalAcceleration">The gravitational acceleration [m/s^2].</param>
+        /// <param name="gravitationalAcceleration">The gravitational
+        /// acceleration [m/s^2].</param>
         /// <param name="densityOfWater">The density of water [kg/m^3].</param>
         /// <returns>The maximum peak stress [MPa].</returns>
         public static double MaximumPeakStress(double waveHeightHm0, double gravitationalAcceleration, double densityOfWater)
@@ -91,8 +92,10 @@ namespace DiKErnel.FunctionLibrary.AsphaltRevetmentWaveImpact
         /// </summary>
         /// <param name="thicknessUpperLayer">The thickness of the upper layer [m].</param>
         /// <param name="thicknessSubLayer">The thickness of the sub layer [m].</param>
-        /// <param name="elasticModulusUpperLayer">The elastic modulus of the upper layer [m].</param>
-        /// <param name="elasticModulusSubLayer">The elastic modulus of the sub layer [m].</param>
+        /// <param name="elasticModulusUpperLayer">The elastic modulus of the upper
+        /// layer [m].</param>
+        /// <param name="elasticModulusSubLayer">The elastic modulus of the sub
+        /// layer [m].</param>
         /// <returns>The computational thickness [m].</returns>
         public static double ComputationalThickness(double thicknessUpperLayer, double thicknessSubLayer,
                                                     double elasticModulusUpperLayer, double elasticModulusSubLayer)
