@@ -36,6 +36,11 @@ namespace DiKErnel.TestUtil
             return instance.Next(minValue, maxValue);
         }
 
+        public static double NextDouble()
+        {
+            return instance.NextDouble();
+        }
+        
         public static bool NextBoolean()
         {
             if (instance == null)
