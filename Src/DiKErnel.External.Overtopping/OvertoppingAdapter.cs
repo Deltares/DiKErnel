@@ -28,10 +28,9 @@ namespace DiKErnel.External.Overtopping
     /// </summary>
     public static class OvertoppingAdapter
     {
+        private const string dikesOvertoppingDllName = "dllDikesOvertopping.dll";
         private const string languageCode = "UK";
-        private const int bufferSize = 256;
-        private const int nrOfMessages = 12;
-        private const int bufferCapacity = bufferSize * nrOfMessages;
+        private const int bufferCapacity = 3072;
 
         /// <summary>
         /// Validates the input arguments for an overtopping calculation.
@@ -54,14 +53,9 @@ namespace DiKErnel.External.Overtopping
             SetLanguage(languageCode, languageCode.Length);
             ValidateInputC(ref geometry, ref dikeHeight, ref modelFactors, ref success, messageBuffer, bufferCapacity);
 
-            if (success)
-            {
-                return Enumerable.Empty<string>();
-            }
-
-            var validationMessage = new string(messageBuffer);
-
-            return validationMessage.TrimEnd('\0').Split('\t');
+            return success
+                       ? Enumerable.Empty<string>()
+                       : new string(messageBuffer).TrimEnd('\0').Split('\t');
         }
 
         /// <summary>
@@ -69,7 +63,7 @@ namespace DiKErnel.External.Overtopping
         /// </summary>
         /// <param name="waterLevel">The water level [m].</param>
         /// <param name="waveHeightHm0">The wave height [m].</param>
-        /// <param name="wavePeriodTm10">The wave period Tm10 [deg].</param>
+        /// <param name="wavePeriodTm10">The wave period Tm10 [s].</param>
         /// <param name="waveDirection">The wave direction with respect to the
         /// North [deg].</param>
         /// <param name="xValues">The x values of the profile points [m].</param>
@@ -99,6 +93,7 @@ namespace DiKErnel.External.Overtopping
             var messageBuffer = new char[bufferCapacity];
             var logFileName = new char[bufferCapacity];
 
+            SetLanguage(languageCode, languageCode.Length);
             calculateQo(ref load, ref geometry, ref dikeHeight, ref modelFactors, ref result, ref success, messageBuffer,
                         ref verbosity, logFileName, bufferCapacity, bufferCapacity);
 
@@ -135,25 +130,25 @@ namespace DiKErnel.External.Overtopping
                 FactorDeterminationQnFn = 1.0,
                 FactorDeterminationQbFb = 1.0,
                 Mz2 = 1.0,
-                Fshallow = 1.0,
+                FShallow = 1.0,
                 ComputedOvertopping = 1.0,
                 CriticalOvertopping = 1.0,
-                Relaxationfactor = 1.0,
+                RelaxationFactor = 1.0,
                 ReductionFactorForeshore = 0.5
             };
         }
 
-        [DllImport("dllDikesOvertopping.dll", CallingConvention = CallingConvention.Cdecl)]
-        private static extern void ValidateInputC(ref Geometry geometry, ref double dikeHeight, ref ModelFactors input,
-                                                  ref bool success, [Out] char[] message, int stringLength);
+        [DllImport(dikesOvertoppingDllName, CallingConvention = CallingConvention.Cdecl)]
+        private static extern void ValidateInputC(ref Geometry geometryInput, ref double dikeHeight, ref ModelFactors modelFactors,
+                                                  ref bool success, [Out] char[] message, int size);
 
-        [DllImport("dllDikesOvertopping.dll", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(dikesOvertoppingDllName, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
         private static extern void SetLanguage(string languageCode, int languageCodeLength);
 
-        [DllImport("dllDikesOvertopping.dll", CallingConvention = CallingConvention.Cdecl)]
-        private static extern void calculateQo(ref Load load, ref Geometry geometry,
-                                               ref double dikeHeight, ref ModelFactors input, ref Result result, 
-                                               ref bool success, [Out] char[] message, ref int verbosity, [Out] char[] logFile, 
-                                               int stringLength1, int stringLength2);
+        [DllImport(dikesOvertoppingDllName, CallingConvention = CallingConvention.Cdecl)]
+        private static extern void calculateQo(ref Load loadInput, ref Geometry geometryInput, ref double dikeHeight,
+                                               ref ModelFactors modelFactors, ref Result result, ref bool success,
+                                               [Out] char[] message, ref int verbosity, [Out] char[] logFile, int messageSize,
+                                               int logFileSize);
     }
 }

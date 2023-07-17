@@ -41,7 +41,7 @@ namespace DiKErnel.External.Overtopping.Data
         /// <summary>
         /// Model factor for shallow waves [-].
         /// </summary>
-        public double Fshallow;
+        public double FShallow;
 
         /// <summary>
         /// Model factor computed overtopping [-].
@@ -56,7 +56,7 @@ namespace DiKErnel.External.Overtopping.Data
         /// <summary>
         /// Relaxation factor iteration procedure wave run-up [-].
         /// </summary>
-        public double Relaxationfactor;
+        public double RelaxationFactor;
 
         /// <summary>
         /// Reduction factor foreshore [-].

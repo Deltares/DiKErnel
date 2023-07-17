@@ -6,7 +6,7 @@
   <PropertyGroup> 
     <TargetFrameworks>net48;net7.0</TargetFrameworks>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Coverage|AnyCPU'">
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Coverage|x86' Or '$(Configuration)|$(Platform)' == 'Coverage|x64'">
     <DebugType>none</DebugType>
   </PropertyGroup>
   <PropertyGroup>

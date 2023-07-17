@@ -31,6 +31,6 @@ namespace DiKErnel.External.Overtopping.Data
         /// <summary>
         /// The wave overtopping discharge [m^3/m/s].
         /// </summary>
-        public double Q0;
+        public double Qo;
     }
 }
