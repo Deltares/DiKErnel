@@ -19,10 +19,44 @@
 namespace DiKErnel.Core.Data
 {
     /// <summary>
-    /// 
+    /// Interface defining all time dependent input that is needed to perform a calculation.
     /// </summary>
     public interface ITimeDependentInput
     {
-        
+        /// <summary>
+        /// Gets the begin time.
+        /// </summary>
+        public int BeginTime { get; }
+
+        /// <summary>
+        /// Gets the end time.
+        /// </summary>
+        public int EndTime { get; }
+
+        /// <summary>
+        /// Gets the water level.
+        /// </summary>
+        public double WaterLevel { get; }
+
+        /// <summary>
+        /// Gets the wave height.
+        /// </summary>
+        public double WaveHeightHm0 { get; }
+
+        /// <summary>
+        /// Gets the wave period.
+        /// </summary>
+        public double WavePeriodTm10 { get; }
+
+        /// <summary>
+        /// Gets the wave angle.
+        /// </summary>
+        public double WaveAngle { get; }
+
+        /// <summary>
+        /// Performs validation on the input.
+        /// </summary>
+        /// <returns>Whether the validation was successful.</returns>
+        public bool Validate();
     }
 }
