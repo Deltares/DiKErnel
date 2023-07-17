@@ -19,10 +19,36 @@
 namespace DiKErnel.Core.Data
 {
     /// <summary>
-    /// 
+    /// Class containing time dependent output of a location.
     /// </summary>
-    public class TimeDependentOutput
+    public abstract class TimeDependentOutput
     {
-        
+        /// <summary>
+        /// Creates a new instance.
+        /// </summary>
+        /// <param name="incrementDamage">The increment of damage.</param>
+        /// <param name="damage">The damage.</param>
+        /// <param name="timeOfFailure">The time of failure.</param>
+        protected TimeDependentOutput(double incrementDamage, double damage, int? timeOfFailure = null)
+        {
+            IncrementDamage = incrementDamage;
+            Damage = damage;
+            TimeOfFailure = timeOfFailure;
+        }
+
+        /// <summary>
+        /// Gets the increment of damage.
+        /// </summary>
+        public double IncrementDamage { get; }
+
+        /// <summary>
+        /// Gets the damage.
+        /// </summary>
+        public double Damage { get; }
+
+        /// <summary>
+        /// Gets the time of failure.
+        /// </summary>
+        public int? TimeOfFailure { get; }
     }
 }
