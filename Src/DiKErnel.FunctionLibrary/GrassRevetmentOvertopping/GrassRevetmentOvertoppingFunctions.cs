@@ -17,6 +17,7 @@
 // // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
 using System;
+using DiKErnel.External.Overtopping;
 using DiKErnel.FunctionLibrary.GrassRevetment;
 
 namespace DiKErnel.FunctionLibrary.GrassRevetmentOvertopping
@@ -26,6 +27,18 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentOvertopping
     /// </summary>
     public static class GrassRevetmentOvertoppingFunctions
     {
+        /// <summary>
+        /// Calculates the representative wave run-up (2 percent).
+        /// </summary>
+        /// <param name="input">The input to use for the calculation.</param>
+        /// <returns>The representative wave run-up (2 percent) [m].</returns>
+        public static double RepresentativeWaveRunup2P(GrassRevetmentOvertoppingRepresentative2PInput input)
+        {
+            return OvertoppingAdapter.CalculateZ2(input.WaterLevel, input.WaveHeightHm0, input.WavePeriodTm10, input.WaveDirection,
+                                                  input.XValuesProfile, input.ZValuesProfile, input.RoughnessCoefficients,
+                                                  input.DikeHeight);
+        }
+
         /// <summary>
         /// Calculates the cumulative overload.
         /// </summary>

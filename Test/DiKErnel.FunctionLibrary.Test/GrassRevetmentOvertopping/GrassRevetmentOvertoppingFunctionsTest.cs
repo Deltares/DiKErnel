@@ -26,6 +26,49 @@ namespace DiKErnel.FunctionLibrary.Test.GrassRevetmentOvertopping
     public class GrassRevetmentOvertoppingFunctionsTest
     {
         [Test]
+         public void RepresentativeWaveRunup2P_ValidInput_ExpectedValue()
+        {
+            // Setup
+            const double waterLevel = 5.5;
+            const double waveHeightHm0 = 1.9;
+            const double wavePeriodTm10 = 4.7;
+            const double waveDirection = 350;
+            
+            var xValuesProfile = new[] {
+                5.0,
+                15.0,
+                22.0,
+                30.0
+            };
+            
+            var zValuesProfile = new[]
+            {
+                0.0,
+                3.0,
+                3.2,
+                7.5
+            };
+            
+            var roughnessCoefficients = new[]
+            {
+                1.0,
+                0.75,
+                0.5
+            };
+            const double dikeHeight = 7.7;
+
+            var input = new GrassRevetmentOvertoppingRepresentative2PInput(waterLevel, waveHeightHm0, wavePeriodTm10,
+                                                                           waveDirection, xValuesProfile, zValuesProfile, 
+                                                                           roughnessCoefficients, dikeHeight);
+
+            // Call
+            double representativeWaveRunup2P = GrassRevetmentOvertoppingFunctions.RepresentativeWaveRunup2P(input);
+
+            // Assert
+            AssertHelper.AssertAreEqualWithinTolerance(2.79696767501212, representativeWaveRunup2P);
+        }
+        
+        [Test]
         public void CumulativeOverload_ValidInput_ExpectedValue()
         {
             // Setup
