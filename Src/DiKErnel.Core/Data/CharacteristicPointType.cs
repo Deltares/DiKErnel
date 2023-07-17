@@ -19,10 +19,15 @@
 namespace DiKErnel.Core.Data
 {
     /// <summary>
-    /// 
+    /// The characteristic point types that can be used in a calculation.
     /// </summary>
-    public class CharacteristicPointType
+    public enum CharacteristicPointType
     {
-        
+        OuterToe,
+        OuterCrest,
+        CrestOuterBerm,
+        NotchOuterBerm,
+        InnerCrest,
+        InnerToe
     }
 }

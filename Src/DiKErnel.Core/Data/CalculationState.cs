@@ -19,10 +19,13 @@
 namespace DiKErnel.Core.Data
 {
     /// <summary>
-    /// 
+    /// The different states a calculation can be in.
     /// </summary>
-    public class CalculationState
+    public enum CalculationState
     {
-        
+        Running,
+        Cancelled,
+        FinishedSuccessfully,
+        FinishedInError
     }
 }
