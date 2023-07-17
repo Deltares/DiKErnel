@@ -103,5 +103,89 @@ namespace DiKErnel.FunctionLibrary.Test.AsphaltRevetmentWaveImpact
             // Assert
             AssertHelper.AssertAreEqualWithinTolerance(7.94813500019044, incrementDamage);
         }
+
+        [Test]
+        public void LogFailureTension_ValidInput_ExpectedValue()
+        {
+            // Setup
+            const double failureTension = 1.56;
+
+            // Call
+            double logFailureTension = AsphaltRevetmentWaveImpactFunctions.LogFailureTension(failureTension);
+
+            // Assert
+            AssertHelper.AssertAreEqualWithinTolerance(0.19312459835446161, logFailureTension);
+        }
+
+        [Test]
+        public void MaximumPeakStress_ValidInput_ExpectedValue()
+        {
+            // Setup
+            const double waveHeightHm0 = 1.6;
+            const double gravitationalAcceleration = 9.81;
+            const double densityOfWater = 1025;
+
+            // Call
+            double maximumPeakStress = AsphaltRevetmentWaveImpactFunctions.MaximumPeakStress(waveHeightHm0,
+                                                                                             gravitationalAcceleration,
+                                                                                             densityOfWater);
+
+            // Assert
+            AssertHelper.AssertAreEqualWithinTolerance(0.0160884, maximumPeakStress);
+        }
+
+        [Test]
+        public void StiffnessRelation_ValidInput_ExpectedValue()
+        {
+            // Setup
+            const double computationalThickness = 0.16;
+            const double equivalentElasticModulus = 18214;
+            const double soilElasticity = 56.0;
+            const double stiffnessRelationNu = 0.35;
+
+            // Call
+            double stiffnessRelation = AsphaltRevetmentWaveImpactFunctions.StiffnessRelation(computationalThickness,
+                                                                                             equivalentElasticModulus,
+                                                                                             soilElasticity, stiffnessRelationNu);
+
+            // Assert
+            AssertHelper.AssertAreEqualWithinTolerance(1.1856261832690844, stiffnessRelation);
+        }
+
+        [Test]
+        public void ComputationalThickness_ValidInput_ExpectedValue()
+        {
+            // Setup
+            const double thicknessUpperLayer = 0.16;
+            const double thicknessSubLayer = 0.23;
+            const double elasticModulusUpperLayer = 18214;
+            const double elasticModulusSubLayer = 19214;
+
+            // Call
+            double computationalThickness = AsphaltRevetmentWaveImpactFunctions.ComputationalThickness(thicknessUpperLayer,
+                                                                                                       thicknessSubLayer,
+                                                                                                       elasticModulusUpperLayer,
+                                                                                                       elasticModulusSubLayer);
+
+            // Assert
+            AssertHelper.AssertAreEqualWithinTolerance(0.387174648559827, computationalThickness);
+        }
+
+        [Test]
+        public void OuterSlope_ValidInput_ExpectedValue()
+        {
+            // Setup
+            const double slopeLowerPosition = 2.4;
+            const double slopeLowerLevel = 1.75;
+            const double slopeUpperPosition = 10.2;
+            const double slopeUpperLevel = 2.95;
+
+            // Call
+            double outerSlope = AsphaltRevetmentWaveImpactFunctions.OuterSlope(slopeLowerPosition, slopeLowerLevel,
+                                                                               slopeUpperPosition, slopeUpperLevel);
+
+            // Assert
+            AssertHelper.AssertAreEqualWithinTolerance(0.153846153846154, outerSlope);
+        }
     }
 }
