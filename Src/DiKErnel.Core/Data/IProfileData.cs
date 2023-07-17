@@ -16,13 +16,53 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using System.Collections.Generic;
+
 namespace DiKErnel.Core.Data
 {
     /// <summary>
-    /// 
+    /// Interface defining all profile data that is needed to perform a calculation.
     /// </summary>
     public interface IProfileData
     {
-        
+        /// <summary>
+        /// Gets the profile segments to use in the calculation.
+        /// </summary>
+        IEnumerable<ProfileSegment> ProfileSegments { get; }
+
+        /// <summary>
+        /// Gets the characteristic points to use in the calculation.
+        /// </summary>
+        IEnumerable<CharacteristicPoint> CharacteristicPoints { get; }
+
+        /// <summary>
+        /// Performs validation on the data.
+        /// </summary>
+        /// <returns>Whether the validation was successful.</returns>
+        public bool Validate();
+
+        /// <summary>
+        /// Gets the vertical height based on linear interpolation.
+        /// </summary>
+        /// <param name="horizontalPosition">The horizontal position.</param>
+        /// <returns>The vertical height or <see cref="double.NegativeInfinity"/> when the
+        /// horizontal position cannot be fitted with the dike profile.</returns>
+        public double GetVerticalHeight(double horizontalPosition);
+
+        /// <summary>
+        /// Gets the horizontal position based on linear interpolation.
+        /// </summary>
+        /// <param name="verticalHeight">The vertical height.</param>
+        /// <returns>The horizontal position or <see cref="double.NegativeInfinity"/> when
+        /// the vertical height cannot be fitted with the dike profile.</returns>
+        public double GetHorizontalPosition(double verticalHeight);
+
+        /// <summary>
+        /// Gets the profile segment where the horizontal position is located on.
+        /// </summary>
+        /// <param name="horizontalPosition">The horizontal position.</param>
+        /// <returns>The profile segment or <c>null</c> when the horizontal position cannot
+        /// be fitted on a profile segment.</returns>
+        public ProfileSegment GetProfileSegment(double horizontalPosition);
     }
 }
