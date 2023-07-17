@@ -19,7 +19,7 @@
 namespace DiKErnel.External.Overtopping.Data
 {
     /// <summary>
-    /// The model factors for the overtopping kernel
+    /// The model factors for the overtopping kernel.
     /// </summary>
     internal struct ModelFactors
     {
@@ -34,12 +34,12 @@ namespace DiKErnel.External.Overtopping.Data
         public double FactorDeterminationQbFb;
 
         /// <summary>
-        /// Model factor for describing the uncertainty of 2% run-up height [-].
+        /// Model factor describing the uncertainty of 2% run-up height [-].
         /// </summary>
         public double Mz2;
 
         /// <summary>
-        /// Model factor for the shallow waves [-].
+        /// Model factor for shallow waves [-].
         /// </summary>
         public double Fshallow;
 

@@ -17,7 +17,6 @@
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
 using System.Collections.Generic;
-using System.Linq;
 using NUnit.Framework;
 
 namespace DiKErnel.External.Overtopping.Test
@@ -26,7 +25,7 @@ namespace DiKErnel.External.Overtopping.Test
     public class OvertoppingAdapterTest
     {
         [Test]
-        public void Validate_WithInvalidData_SetsExpectedValues()
+        public void Validate_WithInvalidData_ReturnsMessages()
         {
             // Setup
             const double dikeHeight = 9.1;
@@ -61,11 +60,11 @@ namespace DiKErnel.External.Overtopping.Test
                                                                        dikeHeight);
 
             // Assert
-            Assert.IsTrue(messages.Any());
+            CollectionAssert.IsNotEmpty(messages);
         }
 
         [Test]
-        public void Validate_WithValidData_SetsExpectedValues()
+        public void Validate_WithValidData_ReturnsEmptyMessages()
         {
             // Setup
             const double dikeHeight = 9.1;
@@ -100,16 +99,16 @@ namespace DiKErnel.External.Overtopping.Test
                                                                        dikeHeight);
 
             // Assert
-            Assert.IsFalse(messages.Any());
+            CollectionAssert.IsEmpty(messages);
         }
 
         [Test]
-        public void CalculateZ2_WithInvalidData_ReturnsExpectedValue()
+        public void CalculateZ2_WithInvalidData_ReturnsZeroValue()
         {
             // Setup
             const double waterLevel = 1e-6;
             const double waveHeightHm0 = -0.361314622129615;
-            const double wavePeriodTm10 = 45;
+            const double wavePeriodTm10 = 45.0;
             const double waveDirection = 1.912229230397281e-12;
 
             const double dikeHeight = 3.7;
@@ -139,13 +138,13 @@ namespace DiKErnel.External.Overtopping.Test
         }
 
         [Test]
-        public void CalculateZ2_WithValidData_ReturnsExpectedValue()
+        public void CalculateZ2_WithValidData_ReturnsNonZeroValue()
         {
             // Setup
             const double waterLevel = 5.5;
-            const double waveHeightHm0 = 1;
-            const double wavePeriodTm10 = 4;
-            const double waveDirection = 50;
+            const double waveHeightHm0 = 1.0;
+            const double wavePeriodTm10 = 4.0;
+            const double waveDirection = 50.0;
 
             const double dikeHeight = 9.1;
             var xCoordinates = new[]
