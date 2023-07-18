@@ -39,11 +39,12 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentWaveImpact
         /// <summary>
         /// Calculates the time line.
         /// </summary>
-        /// <param name="waveHeightImpact">The wave height with respect to the wave impact. [m].</param>
-        /// <param name="timeLineAgwi">The Agwi coefficient. [m].</param>
-        /// <param name="timeLineBgwi">The Bgwi coefficient. [s^-1].</param>
-        /// <param name="timeLineCgwi">The Cgwi coefficient. [m].</param>
-        /// <returns>The time line. [-].</returns>
+        /// <param name="waveHeightImpact">The wave height with respect to the wave
+        /// impact [m].</param>
+        /// <param name="timeLineAgwi">The Agwi coefficient [m].</param>
+        /// <param name="timeLineBgwi">The Bgwi coefficient [s^-1].</param>
+        /// <param name="timeLineCgwi">The Cgwi coefficient [m].</param>
+        /// <returns>The time line [-].</returns>
         public static double TimeLine(double waveHeightImpact, double timeLineAgwi, double timeLineBgwi, double timeLineCgwi)
         {
             return 1.0 / timeLineBgwi * Math.Log((waveHeightImpact - timeLineCgwi) / timeLineAgwi);
@@ -52,11 +53,11 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentWaveImpact
         /// <summary>
         /// Calculates the wave height with respect to the wave impact.
         /// </summary>
-        /// <param name="minimumWaveHeight">The minimum wave height. [m].</param>
-        /// <param name="maximumWaveHeight">The maximum wave height. [m].</param>
-        /// <param name="waveAngleImpact">The wave impact with respect to the wave angle. [-].</param>
-        /// <param name="waveHeightHm0">The wave height. [m].</param>
-        /// <returns>The wave height with respect to the wave impact. [m].</returns>
+        /// <param name="minimumWaveHeight">The minimum wave height [m].</param>
+        /// <param name="maximumWaveHeight">The maximum wave height [m].</param>
+        /// <param name="waveAngleImpact">The wave impact with respect to the wave angle [-].</param>
+        /// <param name="waveHeightHm0">The wave height [m].</param>
+        /// <returns>The wave height with respect to the wave impact [m].</returns>
         public static double WaveHeightImpact(double minimumWaveHeight, double maximumWaveHeight, double waveAngleImpact,
                                               double waveHeightHm0)
         {
@@ -66,11 +67,11 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentWaveImpact
         /// <summary>
         /// Calculates the minimum wave height.
         /// </summary>
-        /// <param name="timeLineAgwi">The Agwi coefficient. [m].</param>
-        /// <param name="timeLineBgwi">The Bgwi coefficient. [s^-1].</param>
-        /// <param name="timeLineCgwi">The Cgwi coefficient. [m].</param>
-        /// <param name="minimumWaveHeightTemax">The Temax coefficient. [s].</param>
-        /// <returns>The minimum wave height. [m].</returns>
+        /// <param name="timeLineAgwi">The Agwi coefficient [m].</param>
+        /// <param name="timeLineBgwi">The Bgwi coefficient [s^-1].</param>
+        /// <param name="timeLineCgwi">The Cgwi coefficient [m].</param>
+        /// <param name="minimumWaveHeightTemax">The Temax coefficient [s].</param>
+        /// <returns>The minimum wave height [m].</returns>
         public static double MinimumWaveHeight(double timeLineAgwi, double timeLineBgwi, double timeLineCgwi,
                                                double minimumWaveHeightTemax)
         {
@@ -80,11 +81,11 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentWaveImpact
         /// <summary>
         /// Calculates the maximum wave height.
         /// </summary>
-        /// <param name="timeLineAgwi">The Agwi coefficient. [m].</param>
-        /// <param name="timeLineBgwi">The Bgwi coefficient. [s^-1].</param>
-        /// <param name="timeLineCgwi">The Cgwi coefficient. [m].</param>
-        /// <param name="maximumWaveHeightTemin">The Temin coefficient. [s].</param>
-        /// <returns>The maximum wave height. [m].</returns>
+        /// <param name="timeLineAgwi">The Agwi coefficient [m].</param>
+        /// <param name="timeLineBgwi">The Bgwi coefficient [s^-1].</param>
+        /// <param name="timeLineCgwi">The Cgwi coefficient [m].</param>
+        /// <param name="maximumWaveHeightTemin">The Temin coefficient [s].</param>
+        /// <returns>The maximum wave height [m].</returns>
         public static double MaximumWaveHeight(double timeLineAgwi, double timeLineBgwi, double timeLineCgwi,
                                                double maximumWaveHeightTemin)
         {
@@ -94,11 +95,11 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentWaveImpact
         /// <summary>
         /// Calculates the wave impact with respect to the wave angle.
         /// </summary>
-        /// <param name="waveAngle">The wave angle. [deg].</param>
-        /// <param name="waveAngleImpactNwa">The Nwa coefficient. [-].</param>
-        /// <param name="waveAngleImpactQwa">The Qwa coefficient. [-].</param>
-        /// <param name="waveAngleImpactRwa">The Rwa coefficient. [-].</param>
-        /// <returns>The wave impact with respect to the wave angle. [-].</returns>
+        /// <param name="waveAngle">The wave angle [deg].</param>
+        /// <param name="waveAngleImpactNwa">The Nwa coefficient [-].</param>
+        /// <param name="waveAngleImpactQwa">The Qwa coefficient [-].</param>
+        /// <param name="waveAngleImpactRwa">The Rwa coefficient [-].</param>
+        /// <returns>The wave impact with respect to the wave angle [-].</returns>
         public static double WaveAngleImpact(double waveAngle, double waveAngleImpactNwa, double waveAngleImpactQwa,
                                              double waveAngleImpactRwa)
         {
@@ -113,10 +114,10 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentWaveImpact
         /// <summary>
         /// Calculates the upper limit of loading.
         /// </summary>
-        /// <param name="waterLevel">The water level. [m].</param>
-        /// <param name="waveHeightHm0">The wave height. [m].</param>
-        /// <param name="upperLimitLoadingAul">The Aul coefficient. [-].</param>
-        /// <returns>The upper limit of loading. [m].</returns>
+        /// <param name="waterLevel">The water level [m].</param>
+        /// <param name="waveHeightHm0">The wave height [m].</param>
+        /// <param name="upperLimitLoadingAul">The Aul coefficient [-].</param>
+        /// <returns>The upper limit of loading [m].</returns>
         public static double UpperLimitLoading(double waterLevel, double waveHeightHm0, double upperLimitLoadingAul)
         {
             return LimitLoading(waterLevel, waveHeightHm0, upperLimitLoadingAul);
@@ -125,10 +126,10 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentWaveImpact
         /// <summary>
         /// Calculates the lower limit of loading.
         /// </summary>
-        /// <param name="waterLevel">The water level. [m].</param>
-        /// <param name="waveHeightHm0">The wave height. [m].</param>
-        /// <param name="lowerLimitLoadingAll">The All coefficient. [-].</param>
-        /// <returns>The lower limit of loading. [m].</returns>
+        /// <param name="waterLevel">The water level [m].</param>
+        /// <param name="waveHeightHm0">The wave height [m].</param>
+        /// <param name="lowerLimitLoadingAll">The All coefficient [-].</param>
+        /// <returns>The lower limit of loading [m].</returns>
         public static double LowerLimitLoading(double waterLevel, double waveHeightHm0, double lowerLimitLoadingAll)
         {
             return LimitLoading(waterLevel, waveHeightHm0, lowerLimitLoadingAll);
