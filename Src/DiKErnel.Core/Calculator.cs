@@ -100,9 +100,9 @@ namespace DiKErnel.Core
 
                 double progressPerCalculationStep = 1.0 / timeDependentInputItems.Length / locationDependentInputItems.Length;
 
-                Dictionary<ILocationDependentInput, List<TimeDependentOutput>> timeDependentOutputItemsPerLocation =
+                Dictionary<ILocationDependentInput, List<TimeDependentOutput>> timeDependentOutputPerLocation =
                     locationDependentInputItems.ToDictionary(ldi => ldi, ldi => new List<TimeDependentOutput>());
-                
+
                 foreach (ITimeDependentInput timeDependentInput in timeDependentInputItems)
                 {
                     foreach (ILocationDependentInput locationDependentInput in locationDependentInputItems)
@@ -112,13 +112,10 @@ namespace DiKErnel.Core
                             break;
                         }
 
-                        List<TimeDependentOutput> timeDependentOutputItemsForLocation =
-                            timeDependentOutputItemsPerLocation[locationDependentInput];
-                        
-                        double initialDamage = timeDependentOutputItemsForLocation.LastOrDefault()?.Damage
-                                               ?? locationDependentInput.InitialDamage;
+                        List<TimeDependentOutput> currentOutputItems = timeDependentOutputPerLocation[locationDependentInput];
 
-                        timeDependentOutputItemsForLocation.Add(locationDependentInput.Calculate(initialDamage, timeDependentInput, profileData));
+                        currentOutputItems.Add(CreateTimeDependentOutput(currentOutputItems, locationDependentInput,
+                                                                         timeDependentInput, profileData));
 
                         progress += progressPerCalculationStep;
                     }
@@ -127,7 +124,7 @@ namespace DiKErnel.Core
                 if (calculationState != CalculationState.Cancelled)
                 {
                     IEnumerable<LocationDependentOutput> locationDependentOutputItems =
-                        locationDependentInputItems.Select((t, i) => t.GetLocationDependentOutput(timeDependentOutputItemsPerLocation[i]));
+                        locationDependentInputItems.Select((t, i) => t.GetLocationDependentOutput(timeDependentOutputPerLocation[i]));
 
                     result = new DataResult<CalculationOutput>(new CalculationOutput(locationDependentOutputItems),
                                                                EventRegistry.Flush());
@@ -150,6 +147,16 @@ namespace DiKErnel.Core
             }
 
             return result;
+        }
+
+        private static TimeDependentOutput CreateTimeDependentOutput(IEnumerable<TimeDependentOutput> currentOutputItems,
+                                                                     ILocationDependentInput locationDependentInput,
+                                                                     ITimeDependentInput timeDependentInput,
+                                                                     IProfileData profileData)
+        {
+            double initialDamage = currentOutputItems.LastOrDefault()?.Damage ?? locationDependentInput.InitialDamage;
+
+            return locationDependentInput.Calculate(initialDamage, timeDependentInput, profileData);
         }
     }
 }
