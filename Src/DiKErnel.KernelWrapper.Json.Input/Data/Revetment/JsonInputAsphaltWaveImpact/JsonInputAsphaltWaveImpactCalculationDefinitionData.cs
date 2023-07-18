@@ -18,28 +18,43 @@
 
 using System.Collections.Generic;
 using DiKErnel.KernelWrapper.Json.Input.Data.Generic;
+using DiKErnel.KernelWrapper.Json.Input.Data.Generic.Definitions;
+using DiKErnel.KernelWrapper.Json.Input.Data.Revetment.Definitions;
+using Newtonsoft.Json;
 
-namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment
+namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputAsphaltWaveImpact
 {
-    internal class JsonInputAsphaltWaveImpactCaluclationDefinitionData : JsonInputCalculationDefinitionData
+    public class JsonInputAsphaltWaveImpactCalculationDefinitionData : JsonInputCalculationDefinitionData
     {
-        public JsonInputAsphaltWaveImpactCaluclationDefinitionData(
+        public JsonInputAsphaltWaveImpactCalculationDefinitionData(
             double failureNumber,
-            Dictionary<JsonInputAsphaltRevetmentTopLayerType, JsonInputAsphaltWaveImpactTopLayerDefinitionData>
+            IEnumerable<JsonInputAsphaltWaveImpactTopLayerDefinitionData>
                 topLayerDefinitionData
         ) : base(failureNumber)
         {
             TopLayerDefinitionData = topLayerDefinitionData;
         }
 
-        public IReadOnlyDictionary<JsonInputAsphaltRevetmentTopLayerType, JsonInputAsphaltWaveImpactTopLayerDefinitionData>
-            TopLayerDefinitionData { get; }
-
+        [JsonProperty(JsonInputDefinitions.TOP_LAYERS)]
+        public IEnumerable<JsonInputAsphaltWaveImpactTopLayerDefinitionData>
+            TopLayerDefinitionData { get; private set; }
+        
+        [JsonProperty(JsonInputAsphaltWaveImpactDefinitions.DENSITY_OF_WATER)]
         public double DensityOfWater { get; set; }
+        
+        [JsonProperty(JsonInputDefinitions.FACTOR_CTM)]
         public double FactorCtm { get; set; }
+        
+        [JsonProperty(JsonInputAsphaltWaveImpactDefinitions.IMPACT_NUMBER_C)]
         public double ImpactNumberC { get; set; }
-        public IEnumerable<(double, double)> WidthFactors { get; set; }
-        public IEnumerable<(double, double)> DepthFactors { get; set; }
-        public IEnumerable<(double, double)> ImpactFactors { get; set; }
+        
+        [JsonProperty(JsonInputAsphaltWaveImpactDefinitions.WIDTH_FACTORS)]
+        public IEnumerable<IEnumerable<double>> WidthFactors { get; set; }
+        
+        [JsonProperty(JsonInputAsphaltWaveImpactDefinitions.DEPTH_FACTORS)]
+        public IEnumerable<IEnumerable<double>> DepthFactors { get; set; }
+        
+        [JsonProperty(JsonInputAsphaltWaveImpactDefinitions.IMPACT_FACTORS)]
+        public IEnumerable<IEnumerable<double>> ImpactFactors { get; set; }
     }
 }

@@ -16,13 +16,24 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment
-{
-    public enum JsonInputGrassWaveRunupCalculationProtocolType
-    {
-        Unknown,
-        RayleighDiscrete
-    }
+using DiKErnel.KernelWrapper.Json.Input.Data.Generic.Definitions;
+using DiKErnel.KernelWrapper.Json.Input.Data.Revetment.Definitions;
+using Newtonsoft.Json;
 
-    // todo nlohmann json serialize thing
+namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputNaturalStone
+{
+    public class JsonInputNaturalStoneTopLayerDefinitionData
+    {
+        [JsonProperty(JsonInputDefinitions.TYPE_TOP_LAYER)]
+        public string TopLayerType { get; private set; }
+        
+        [JsonProperty(JsonInputNaturalStoneDefinitions.XIB_COEFFICIENT)]
+        double StabilityXib { get; set; }
+        
+        [JsonProperty(JsonInputNaturalStoneDefinitions.STABILITY_PLUNGING)]
+        private JsonInputNaturalStoneTopLayerNorseStonePlungingData JsonInputNaturalStoneTopLayerNorseStonePlungingData { get; set; }
+        
+        [JsonProperty(JsonInputNaturalStoneDefinitions.STABILITY_SURGING)]
+        private JsonInputNaturalStoneTopLayerNorseStonePlungingData JsonInputNaturalStoneTopLayerNorseStoneSurgingData { get; set; }
+    }
 }

@@ -18,10 +18,13 @@
 
 using System.Collections.ObjectModel;
 using DiKErnel.KernelWrapper.Json.Input.Data.Generic;
+using DiKErnel.KernelWrapper.Json.Input.Data.Generic.Definitions;
+using DiKErnel.KernelWrapper.Json.Input.Data.Revetment.Definitions;
+using Newtonsoft.Json;
 
-namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment
+namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputNaturalStone
 {
-    internal class JsonInputNaturalStoneCalculationDefinitionData : JsonInputCalculationDefinitionData
+    public class JsonInputNaturalStoneCalculationDefinitionData : JsonInputCalculationDefinitionData
     {
         public JsonInputNaturalStoneCalculationDefinitionData(
             double failureNumber,
@@ -32,21 +35,47 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment
             TopLayerDefinitionData = topLayerDefinitionData;
         }
 
+        [JsonProperty(JsonInputDefinitions.TYPE_TOP_LAYER)]
         public ReadOnlyDictionary<JsonInputNaturalStoneRevetmentTopLayerType, JsonInputNaturalStoneTopLayerDefinitionData>
-            TopLayerDefinitionData { get; }
+            TopLayerDefinitionData { get; private set; }
 
+        [JsonProperty(JsonInputNaturalStoneDefinitions.SLOPE_UPPER_LEVEL)]
         public double SlopeUpperLevel { get; set; }
+        
+        [JsonProperty(JsonInputNaturalStoneDefinitions.SLOPE_LOWER_LEVEL)]
         public double SlopeLowerLevel { get; set; }
+
+        [JsonProperty(JsonInputDefinitions.A_COEFFICIENT)]
         public double UpperLimitLoadingA { get; set; }
+        
+        [JsonProperty(JsonInputDefinitions.B_COEFFICIENT)]
         public double UpperLimitLoadingB { get; set; }
+        
+        [JsonProperty(JsonInputDefinitions.C_COEFFICIENT)]
         public double UpperLimitLoadingC { get; set; }
-        public double LowerLimitLoadingA { get; set; }
-        public double LowerLimitLoadingB { get; set; }
-        public double LowerLimitLoadingC { get; set; }
-        public double DistanceMaximumWaveElevationA { get; set; }
-        public double DistanceMaximumWaveElevationB { get; set; }
-        public double NormativeWidthOfWaveImpactA { get; set; }
-        public double NormativeWidthOfWaveImpactB { get; set; }
+        //
+        // [JsonProperty(JsonInputDefinitions.A_COEFFICIENT)]
+        // public double LowerLimitLoadingA { get; set; }
+        //
+        // [JsonProperty(JsonInputDefinitions.B_COEFFICIENT)]
+        // public double LowerLimitLoadingB { get; set; }
+        //
+        // [JsonProperty(JsonInputDefinitions.C_COEFFICIENT)]
+        // public double LowerLimitLoadingC { get; set; }
+        //
+        // [JsonProperty(JsonInputDefinitions.A_COEFFICIENT)]
+        // public double DistanceMaximumWaveElevationA { get; set; }
+        //
+        // [JsonProperty(JsonInputDefinitions.B_COEFFICIENT)]
+        // public double DistanceMaximumWaveElevationB { get; set; }
+        //
+        // [JsonProperty(JsonInputDefinitions.A_COEFFICIENT)]
+        // public double NormativeWidthOfWaveImpactA { get; set; }
+        //
+        // [JsonProperty(JsonInputDefinitions.B_COEFFICIENT)]
+        // public double NormativeWidthOfWaveImpactB { get; set; }
+        // todo find out how to generate multiple types from a single data object
+        [JsonProperty(JsonInputDefinitions.BETA_MAX)]
         public double WaveAngleImpactBetaMax { get; set; }
     }
 }

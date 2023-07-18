@@ -16,28 +16,28 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-namespace DiKErnel.KernelWrapper.Json.Input.Data.Definitions
+namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.Definitions
 {
     public class JsonInputNaturalStoneDefinitions
     {
-        public static string TOP_LAYER_TYPE_NORDIC_STONE = "noorseSteen";
+        public const string TOP_LAYER_TYPE_NORDIC_STONE = "noorseSteen";
 
-        public static string RELATIVE_DENSITY = "relatieveDichtheid";
-        public static string THICKNESS_TOP_LAYER = "dikteToplaag";
+        public const string RELATIVE_DENSITY = "relatieveDichtheid";
+        public const string THICKNESS_TOP_LAYER = "dikteToplaag";
 
-        public static string STABILITY = "stabiliteit";
-        public static string STABILITY_PLUNGING = "plunging";
-        public static string STABILITY_SURGING = "surging";
+        public const string STABILITY = "stabiliteit";
+        public const string STABILITY_PLUNGING = "plunging";
+        public const string STABILITY_SURGING = "surging";
 
-        public static string N_COEFFICIENT = "n";
-        public static string XIB_COEFFICIENT = "xib";
+        public const string N_COEFFICIENT = "n";
+        public const string XIB_COEFFICIENT = "xib";
 
-        public static string SLOPE = "hellingvlak";
-        public static string SLOPE_UPPER_LEVEL = "bovenzijde";
-        public static string SLOPE_LOWER_LEVEL = "onderzijde";
+        public const string SLOPE = "hellingvlak";
+        public const string SLOPE_UPPER_LEVEL = "bovenzijde";
+        public const string SLOPE_LOWER_LEVEL = "onderzijde";
 
-        public static string DISTANCE_MAXIMUM_WAVE_ELEVATION = "afstandMaximaleStijghoogte";
+        public const string DISTANCE_MAXIMUM_WAVE_ELEVATION = "afstandMaximaleStijghoogte";
 
-        public static string NORMATIVE_WIDTH_OF_WAVE_IMPACT = "maatgevendeBreedteGolfklap";
+        public const string NORMATIVE_WIDTH_OF_WAVE_IMPACT = "maatgevendeBreedteGolfklap";
     }
 }

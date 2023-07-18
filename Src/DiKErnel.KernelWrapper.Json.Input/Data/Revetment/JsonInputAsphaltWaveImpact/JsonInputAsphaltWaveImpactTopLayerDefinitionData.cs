@@ -16,18 +16,24 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment
+using DiKErnel.KernelWrapper.Json.Input.Data.Generic.Definitions;
+using DiKErnel.KernelWrapper.Json.Input.Data.Revetment.Definitions;
+using Newtonsoft.Json;
+
+namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputAsphaltWaveImpact
 {
-    public class JsonInputNaturalStoneTopLayerDefinitionData
+    public class JsonInputAsphaltWaveImpactTopLayerDefinitionData
     {
-        double StabilityXib { get; set; }
-        double StabilityPlungingA { get; set; }
-        double StabilityPlungingB { get; set; }
-        double StabilityPlungingC { get; set; }
-        double StabilityPlungingN { get; set; }
-        double StabilitySurgingA { get; set; }
-        double StabilitySurgingB { get; set; }
-        double StabilitySurgingC { get; set; }
-        double StabilitySurgingN { get; set; }
+        [JsonProperty(JsonInputDefinitions.TYPE_TOP_LAYER)]
+        public JsonInputAsphaltRevetmentTopLayerType TopLayerType { get; }
+        
+        [JsonProperty(JsonInputAsphaltWaveImpactDefinitions.ALPHA)]
+        public double FatigueAlpha { get; set; }
+        
+        [JsonProperty(JsonInputAsphaltWaveImpactDefinitions.BETA)]
+        public double FatigueBeta { get; set; }
+        
+        [JsonProperty(JsonInputAsphaltWaveImpactDefinitions.STIFFNESS_RELATION_NU)]
+        public double StiffnessRelationNu { get; set; }
     }
 }

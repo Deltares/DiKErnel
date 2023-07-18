@@ -18,10 +18,13 @@
 
 using System.Collections.Generic;
 using DiKErnel.KernelWrapper.Json.Input.Data.Generic;
+using DiKErnel.KernelWrapper.Json.Input.Data.Generic.Definitions;
+using DiKErnel.KernelWrapper.Json.Input.Data.Revetment.Definitions;
+using Newtonsoft.Json;
 
-namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment
+namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassWaveImpact
 {
-    internal class JsonInputGrassWaveImpactCalculationDefinitionData : JsonInputCalculationDefinitionData
+    public class JsonInputGrassWaveImpactCalculationDefinitionData : JsonInputCalculationDefinitionData
     {
         public JsonInputGrassWaveImpactCalculationDefinitionData(
             double failureNumber,
@@ -32,14 +35,28 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment
             TopLayerDefinitionData = topLayerDefinitionData;
         }
 
+        [JsonProperty(JsonInputDefinitions.TYPE_TOP_LAYER)]
         public IReadOnlyDictionary<JsonInputGrassRevetmentTopLayerType, JsonInputGrassWaveImpactTopLayerDefinitionData> TopLayerDefinitionData { get; }
 
+        [JsonProperty(JsonInputGrassWaveImpactDefinitions.TEMAX)]
         public double Temax { get; set; }
+        
+        [JsonProperty(JsonInputGrassWaveImpactDefinitions.TEMIN)]
         public double Temin { get; set; }
+        
+        [JsonProperty(JsonInputGrassWaveImpactDefinitions.N_COEFFICIENT)]
         public double WaveAngleImpactN { get; set; }
+        
+        [JsonProperty(JsonInputGrassWaveImpactDefinitions.Q_COEFFICIENT)]
         public double WaveAngleImpactQ { get; set; }
+        
+        [JsonProperty(JsonInputGrassWaveImpactDefinitions.R_COEFFICIENT)]
         public double WaveAngleImpactR { get; set; }
+        
+        [JsonProperty(JsonInputDefinitions.UPPER_LIMIT)]
         public double UpperLimitLoading { get; set; }
+        
+        [JsonProperty(JsonInputDefinitions.LOWER_LIMIT)]
         public double LowerLimitLoading { get; set; }
     }
 }

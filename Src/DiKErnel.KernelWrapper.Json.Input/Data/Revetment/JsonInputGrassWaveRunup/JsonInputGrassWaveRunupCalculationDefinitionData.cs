@@ -18,10 +18,13 @@
 
 using System.Collections.Generic;
 using DiKErnel.KernelWrapper.Json.Input.Data.Generic;
+using DiKErnel.KernelWrapper.Json.Input.Data.Generic.Definitions;
+using DiKErnel.KernelWrapper.Json.Input.Data.Revetment.Definitions;
+using Newtonsoft.Json;
 
-namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment
+namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassWaveRunup
 {
-    internal class JsonInputGrassWaveRunupCalculationDefinitionData : JsonInputCalculationDefinitionData
+    public class JsonInputGrassWaveRunupCalculationDefinitionData : JsonInputCalculationDefinitionData
     {
         public JsonInputGrassWaveRunupCalculationDefinitionData(
             double failureNumber,
@@ -34,14 +37,28 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment
             TopLayerDefinitionData = topLayerDefinitionData;
         }
 
+        [JsonProperty(JsonInputGrassWaveRunupDefinitions.CALCULATION_PROTOCOL)]
         public JsonInputGrassWaveRunupCalculationProtocolData CalculationProtocolData { get; }
+        
+        [JsonProperty(JsonInputDefinitions.TYPE_TOP_LAYER)]
         public IReadOnlyDictionary<JsonInputGrassRevetmentTopLayerType, JsonInputGrassCumulativeOverloadTopLayerDefinitionData> TopLayerDefinitionData { get; }
 
+        [JsonProperty(JsonInputDefinitions.FACTOR_CTM)]
         public double FactorCtm { get; set; }
+        
+        [JsonProperty(JsonInputDefinitions.A_COEFFICIENT)]
         public double RepresentativeWaveRunup2Pa { get; set; }
+        
+        [JsonProperty(JsonInputDefinitions.B_COEFFICIENT)]
         public double RepresentativeWaveRunup2Pb { get; set; }
+        
+        [JsonProperty(JsonInputDefinitions.C_COEFFICIENT)]
         public double RepresentativeWaveRunup2Pc { get; set; }
+        
+        [JsonProperty(JsonInputGrassWaveRunupDefinitions.A_BETA)]
         public double WaveAngleImpactABeta { get; set; }
+        
+        [JsonProperty(JsonInputDefinitions.BETA_MAX)]
         public double WaveAngleImpactBetaMax { get; set; }
     }
 }

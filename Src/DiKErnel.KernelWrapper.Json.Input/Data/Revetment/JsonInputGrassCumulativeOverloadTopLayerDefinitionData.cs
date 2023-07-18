@@ -16,11 +16,21 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using DiKErnel.KernelWrapper.Json.Input.Data.Generic.Definitions;
+using DiKErnel.KernelWrapper.Json.Input.Data.Revetment.Definitions;
+using Newtonsoft.Json;
+
 namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment
 {
     public class JsonInputGrassCumulativeOverloadTopLayerDefinitionData
     {
+        [JsonProperty(JsonInputDefinitions.TYPE_TOP_LAYER)]
+        public string TopLayerType { get; private set; }
+        
+        [JsonProperty(JsonInputGrassRevetmentDefinitions.CRITICAL_CUMULATIVE_OVERLOAD)]
         public double CriticalCumulativeOverload { get; set; }
+        
+        [JsonProperty(JsonInputGrassRevetmentDefinitions.CRITICAL_FRONT_VELOCITY)]
         public double CriticalFrontVelocity { get; set; }
     }
 }

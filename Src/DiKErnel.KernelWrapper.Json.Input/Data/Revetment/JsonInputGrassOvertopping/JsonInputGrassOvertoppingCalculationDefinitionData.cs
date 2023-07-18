@@ -18,28 +18,34 @@
 
 using System.Collections.Generic;
 using DiKErnel.KernelWrapper.Json.Input.Data.Generic;
+using DiKErnel.KernelWrapper.Json.Input.Data.Generic.Definitions;
+using DiKErnel.KernelWrapper.Json.Input.Data.Revetment.Definitions;
+using Newtonsoft.Json;
 
-namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment
+namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassOvertopping
 {
-    internal class JsonInputGrassOvertoppingCalculationDefinitionData : JsonInputCalculationDefinitionData
+    public class JsonInputGrassOvertoppingCalculationDefinitionData : JsonInputCalculationDefinitionData
     {
         public JsonInputGrassOvertoppingCalculationDefinitionData(
-            int failureNumber,
-            IReadOnlyDictionary<JsonInputGrassRevetmentTopLayerType, JsonInputGrassCumulativeOverloadTopLayerDefinitionData>
-                topLayerDefinitionData
-        ) : base(failureNumber)
-        {
-            TopLayerDefinitionData = topLayerDefinitionData;
-        }
+            int failureNumber
+        ) : base(failureNumber) {}
+        
+        [JsonProperty(JsonInputDefinitions.TOP_LAYERS)]
+        public IEnumerable<JsonInputGrassCumulativeOverloadTopLayerDefinitionData> TopLayerDefinitionData { get; private set; }
 
-        public IReadOnlyDictionary<JsonInputGrassRevetmentTopLayerType, JsonInputGrassCumulativeOverloadTopLayerDefinitionData>
-            TopLayerDefinitionData { get; }
-
+        [JsonProperty(JsonInputGrassOvertoppingDefinitions.DIKE_HEIGHT)]
         public double DikeHeight { get; set; }
-        public double AccelerationAlphaAForCrest { get; set; }
-        public double AccelerationAlphaAForInnerSlope { get; set; }
+        
+        [JsonProperty(JsonInputGrassOvertoppingDefinitions.ACCELERATION_ALPHA_A)]
+        public JsonInputGrassOvertoppingCalculationAccelerationAlphaAData AccelerationAlphaAData { get; set; }
+
+        [JsonProperty(JsonInputGrassRevetmentDefinitions.FIXED_NUMBER_OF_WAVES)]
         public int FixedNumberOfWaves { get; set; }
+        
+        [JsonProperty(JsonInputGrassOvertoppingDefinitions.FRONT_VELOCITY_CWO)]
         public double FrontVelocity { get; set; }
+        
+        [JsonProperty(JsonInputDefinitions.FACTOR_CTM)]
         public double FactorCtm { get; set; }
     }
 }

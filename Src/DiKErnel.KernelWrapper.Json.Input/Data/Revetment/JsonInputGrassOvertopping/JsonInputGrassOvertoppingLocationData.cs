@@ -16,19 +16,30 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using System.Runtime.Serialization;
+using DiKErnel.KernelWrapper.Json.Input.Data.Generic;
+using DiKErnel.KernelWrapper.Json.Input.Data.Generic.Definitions;
 using DiKErnel.KernelWrapper.Json.Input.Data.Revetment.Definitions;
+using Newtonsoft.Json;
 
-namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment
+namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassOvertopping
 {
-    public enum JsonInputGrassRevetmentTopLayerType
+    public class JsonInputGrassOvertoppingLocationData : JsonInputLocationData
     {
-        Unknown,
+        public JsonInputGrassOvertoppingLocationData(
+            double x,
+            double initialDamage,
+            JsonInputGrassRevetmentTopLayerType topLayerType
+        ) : base(x, initialDamage)
+        {
+            TopLayerType = topLayerType;
+        }
+        [JsonProperty(JsonInputDefinitions.TYPE_TOP_LAYER)]
+        public JsonInputGrassRevetmentTopLayerType TopLayerType { get; }
         
-        [EnumMember(Value = JsonInputGrassRevetmentDefinitions.TOP_LAYER_TYPE_OPEN_SOD)]
-        OpenSod,
+        [JsonProperty(JsonInputGrassRevetmentDefinitions.INCREASED_LOAD_TRANSITION_ALPHA_M)]
+        public double IncreasedLoadTransitionAlphaM { get; set; }
         
-        [EnumMember(Value = JsonInputGrassRevetmentDefinitions.TOP_LAYER_TYPE_CLOSED_SOD)]
-        ClosedSod
+        [JsonProperty(JsonInputGrassRevetmentDefinitions.REDUCED_STRENGTH_TRANSITION_ALPHA_S)]
+        public double ReducedStrengthTransitionAlphaS { get; set; }
     }
 }

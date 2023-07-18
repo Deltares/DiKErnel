@@ -16,17 +16,16 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using DiKErnel.KernelWrapper.Json.Input.Data.Generic;
+using System.Runtime.Serialization;
+using DiKErnel.KernelWrapper.Json.Input.Data.Revetment.Definitions;
 
-namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment
+namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputNaturalStone
 {
-    internal class JsonInputGrassWaveImpactLocationData : JsonInputLocationData
+    public enum JsonInputNaturalStoneRevetmentTopLayerType
     {
-        public JsonInputGrassWaveImpactLocationData(double x, double initialDamage, JsonInputGrassRevetmentTopLayerType topLayerType) : base(x, initialDamage)
-        {
-            TopLayerType = topLayerType;
-        }
-
-        public JsonInputGrassRevetmentTopLayerType TopLayerType { get; }
+        Unknown,
+        
+        [EnumMember(Value = JsonInputNaturalStoneDefinitions.TOP_LAYER_TYPE_NORDIC_STONE)]
+        NordicStone
     }
 }

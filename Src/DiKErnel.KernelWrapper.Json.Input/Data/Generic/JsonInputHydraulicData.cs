@@ -17,10 +17,12 @@
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
 using System.Collections.Generic;
+using DiKErnel.KernelWrapper.Json.Input.Data.Generic.Definitions;
+using Newtonsoft.Json;
 
 namespace DiKErnel.KernelWrapper.Json.Input.Data.Generic
 {
-    internal class JsonInputHydraulicData
+    public class JsonInputHydraulicData
     {
         public JsonInputHydraulicData(
             IEnumerable<double> waterLevels,
@@ -34,9 +36,16 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Generic
             WaveAngles = waveAngles;
         }
 
+        [JsonProperty(JsonInputDefinitions.WATER_LEVELS)]
         public IEnumerable<double> WaterLevels { get; }
+        
+        [JsonProperty(JsonInputDefinitions.WAVE_HEIGHTS_HM0)]
         public IEnumerable<double> WaveHeightsHm0 { get; }
+        
+        [JsonProperty(JsonInputDefinitions.WAVE_PERIODS_TM10)]
         public IEnumerable<double> WavePeriodsTm10 { get; }
+        
+        [JsonProperty(JsonInputDefinitions.WAVE_ANGLES)]
         public IEnumerable<double> WaveAngles { get; }
     }
 }

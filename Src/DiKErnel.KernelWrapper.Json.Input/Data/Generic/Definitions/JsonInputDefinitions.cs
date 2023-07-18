@@ -16,7 +16,7 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-namespace DiKErnel.KernelWrapper.Json.Input.Data
+namespace DiKErnel.KernelWrapper.Json.Input.Data.Generic.Definitions
 {
     public static class JsonInputDefinitions
     {

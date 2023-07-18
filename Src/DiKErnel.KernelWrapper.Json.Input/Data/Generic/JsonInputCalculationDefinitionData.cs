@@ -16,20 +16,24 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using DiKErnel.KernelWrapper.Json.Input.Data.Generic.Definitions;
+using Newtonsoft.Json;
+
 namespace DiKErnel.KernelWrapper.Json.Input.Data.Generic
 {
-    internal class JsonInputCalculationDefinitionData
+    
+    public class JsonInputCalculationDefinitionData
     {
-        private readonly double failureNumber;
 
         public JsonInputCalculationDefinitionData(double failureNumber)
         {
-            this.failureNumber = failureNumber;
+            FailureNumber = failureNumber;
         }
-
-        public double getFailureNumber()
-        {
-            return failureNumber;
-        }
+        
+        [JsonProperty(JsonInputDefinitions.CALCULATION_METHOD_TYPE)]
+        public string CalculationMethod { get; private set; }
+        
+        [JsonProperty(JsonInputDefinitions.FAILURE_NUMBER)]
+        public double FailureNumber { get; }
     }
 }

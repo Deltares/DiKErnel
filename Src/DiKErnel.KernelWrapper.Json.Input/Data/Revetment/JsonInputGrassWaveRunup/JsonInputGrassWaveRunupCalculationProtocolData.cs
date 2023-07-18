@@ -16,11 +16,10 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment
+namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassWaveRunup
 {
-    public class JsonInputGrassWaveRunupRayleighCalculationProtocolData : JsonInputGrassWaveRunupCalculationProtocolData
+    public class JsonInputGrassWaveRunupCalculationProtocolData
     {
-        public int FixedNumberOfWaves { get; set; }
-        public double FrontVelocity { get; set; }
+        // todo find out why this is being used. the cpp file had a destructor
     }
 }

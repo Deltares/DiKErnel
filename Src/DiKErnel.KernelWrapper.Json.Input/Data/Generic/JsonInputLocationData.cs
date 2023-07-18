@@ -16,17 +16,23 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using DiKErnel.KernelWrapper.Json.Input.Data.Generic.Definitions;
+using Newtonsoft.Json;
+
 namespace DiKErnel.KernelWrapper.Json.Input.Data.Generic
 {
-    internal class JsonInputLocationData
+    public class JsonInputLocationData
     {
         public JsonInputLocationData(double x, double initialDamage)
         {
             X = x;
             InitialDamage = initialDamage;
         }
-
+        
+        [JsonProperty(JsonInputDefinitions.X)]
         public double X { get; }
+        
+        [JsonProperty(JsonInputDefinitions.INITIAL_DAMAGE)]
         public double InitialDamage { get; }
     }
 }

@@ -17,22 +17,41 @@
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
 using DiKErnel.KernelWrapper.Json.Input.Data.Generic;
+using DiKErnel.KernelWrapper.Json.Input.Data.Generic.Definitions;
+using DiKErnel.KernelWrapper.Json.Input.Data.Revetment.Definitions;
+using Newtonsoft.Json;
 
-namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment
+namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassWaveRunup
 {
-    internal class JsonInputGrassOvertoppingLocationData : JsonInputLocationData
+    public class JsonInputGrassWaveRunupLocationData : JsonInputLocationData
     {
-        public JsonInputGrassOvertoppingLocationData(
+        public JsonInputGrassWaveRunupLocationData(
             double x,
             double initialDamage,
-            JsonInputGrassRevetmentTopLayerType topLayerType
+            JsonInputGrassRevetmentTopLayerType topLayerType,
+            double outerSlope
         ) : base(x, initialDamage)
         {
             TopLayerType = topLayerType;
+            OuterSlope = outerSlope;
         }
-
+        
+        [JsonProperty(JsonInputDefinitions.TYPE_TOP_LAYER)]
         public JsonInputGrassRevetmentTopLayerType TopLayerType { get; }
+        
+        [JsonProperty(JsonInputGrassWaveRunupDefinitions.OUTER_SLOPE)]
+        public double OuterSlope { get; }
+
+        [JsonProperty(JsonInputGrassRevetmentDefinitions.INCREASED_LOAD_TRANSITION_ALPHA_M)]
         public double IncreasedLoadTransitionAlphaM { get; set; }
+        
+        [JsonProperty(JsonInputGrassRevetmentDefinitions.REDUCED_STRENGTH_TRANSITION_ALPHA_S)]
         public double ReducedStrengthTransitionAlphaS { get; set; }
+        
+        [JsonProperty(JsonInputGrassWaveRunupDefinitions.REPRESENTATIVE_WAVE_RUNUP_2P_GAMMA_B)]
+        public double RepresentativeWaveRunup2PGammaB { get; set; }
+        
+        [JsonProperty(JsonInputGrassWaveRunupDefinitions.REPRESENTATIVE_WAVE_RUNUP_2P_GAMMA_F)]
+        public double RepresentativeWaveRunup2PGammaF { get; set; }
     }
 }

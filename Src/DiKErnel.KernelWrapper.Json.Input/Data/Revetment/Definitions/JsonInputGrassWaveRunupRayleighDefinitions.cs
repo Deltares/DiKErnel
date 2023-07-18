@@ -16,10 +16,10 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-namespace DiKErnel.KernelWrapper.Json.Input.Data.Definitions
+namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.Definitions
 {
     public class JsonInputGrassWaveRunupRayleighDefinitions
     {
-        public static string FRONT_VELOCITY = "frontsnelheid";
+        public const string FRONT_VELOCITY = "frontsnelheid";
     }
 }

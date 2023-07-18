@@ -17,35 +17,33 @@
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
 using DiKErnel.KernelWrapper.Json.Input.Data.Generic;
+using DiKErnel.KernelWrapper.Json.Input.Data.Generic.Definitions;
+using DiKErnel.KernelWrapper.Json.Input.Data.Revetment.Definitions;
+using Newtonsoft.Json;
 
-namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment
+namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputNaturalStone
 {
-    internal class JsonInputAsphaltWaveImpactLocationData : JsonInputLocationData
+    public class JsonInputNaturalStoneLocationData : JsonInputLocationData
     {
-        public JsonInputAsphaltWaveImpactLocationData(
+        public JsonInputNaturalStoneLocationData(
             double x,
             double initialDamage,
-            JsonInputAsphaltRevetmentTopLayerType topLayerType,
-            double failureTension,
-            double soilElasticity,
-            double thicknessUpperLayer,
-            double elasticModulusUpperLayer
-        ) : base(x, initialDamage)
+            JsonInputNaturalStoneRevetmentTopLayerType topLayerType,
+            double relativeDensity,
+            double thicknessTopLayer) : base(x, initialDamage)
         {
             TopLayerType = topLayerType;
-            FailureTension = failureTension;
-            SoilElasticity = soilElasticity;
-            ThicknessUpperLayer = thicknessUpperLayer;
-            ElasticModulusUpperLayer = elasticModulusUpperLayer;
+            RelativeDensity = relativeDensity;
+            ThicknessTopLayer = thicknessTopLayer;
         }
-
-        public JsonInputAsphaltRevetmentTopLayerType TopLayerType { get; }
-        public double FailureTension { get; }
-        public double SoilElasticity { get; }
-        public double ThicknessUpperLayer { get; }
-        public double ElasticModulusUpperLayer { get; }
-
-        public double ThicknessSubLayer { get; set; }
-        public double ElasticModulusSubLayer { get; set; }
+        
+        [JsonProperty(JsonInputDefinitions.TYPE_TOP_LAYER)]
+        public JsonInputNaturalStoneRevetmentTopLayerType TopLayerType { get; }
+        
+        [JsonProperty(JsonInputNaturalStoneDefinitions.RELATIVE_DENSITY)]
+        public double RelativeDensity { get; }
+        
+        [JsonProperty(JsonInputNaturalStoneDefinitions.THICKNESS_TOP_LAYER)]
+        public double ThicknessTopLayer { get; }
     }
 }

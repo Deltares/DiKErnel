@@ -16,29 +16,23 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using DiKErnel.KernelWrapper.Json.Input.Data.Generic;
+using DiKErnel.KernelWrapper.Json.Input.Data.Generic.Definitions;
+using Newtonsoft.Json;
 
-namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment
+namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassWaveImpact
 {
-    internal class JsonInputGrassWaveRunupLocationData : JsonInputLocationData
+    public class JsonInputGrassWaveImpactTopLayerDefinitionData
     {
-        public JsonInputGrassWaveRunupLocationData(
-            double x,
-            double initialDamage,
-            JsonInputGrassRevetmentTopLayerType topLayerType,
-            double outerSlope
-        ) : base(x, initialDamage)
-        {
-            TopLayerType = topLayerType;
-            OuterSlope = outerSlope;
-        }
-
-        public JsonInputGrassRevetmentTopLayerType TopLayerType { get; }
-        public double OuterSlope { get; }
-
-        public double IncreasedLoadTransitionAlphaM { get; set; }
-        public double ReducedStrengthTransitionAlphaS { get; set; }
-        public double RepresentativeWaveRunup2PGammaB { get; set; }
-        public double RepresentativeWaveRunup2PGammaF { get; set; }
+        [JsonProperty(JsonInputDefinitions.TYPE_TOP_LAYER)]
+        public string TopLayerType { get; private set; }
+        
+        [JsonProperty(JsonInputDefinitions.A_COEFFICIENT)]
+        public double TimeLineA { get; set; }
+        
+        [JsonProperty(JsonInputDefinitions.B_COEFFICIENT)]
+        public double TimeLineB { get; set; }
+        
+        [JsonProperty(JsonInputDefinitions.C_COEFFICIENT)]
+        public double TimeLineC { get; set; }
     }
 }

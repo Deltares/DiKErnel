@@ -17,25 +17,53 @@
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
 using System.Collections.Generic;
+using DiKErnel.KernelWrapper.Json.Input.Data.Generic.Definitions;
+using Newtonsoft.Json;
 
 namespace DiKErnel.KernelWrapper.Json.Input.Data.Generic
 {
-    internal class JsonInputDikeProfileData
+    public class JsonInputDikeProfileData
     {
         public JsonInputDikeProfileData(IEnumerable<double> xLocations,
                                         IEnumerable<double> zLocations,
-                                        IEnumerable<double> roughnessCoefficients,
-                                        IEnumerable<(JsonInputCharacteristicPointType, double)> characteristicPoints)
+                                        IEnumerable<double> roughnessCoefficients)
         {
             XLocations = xLocations;
             ZLocations = zLocations;
             RoughnessCoefficients = roughnessCoefficients;
-            CharacteristicPoints = characteristicPoints;
         }
-
+        
+        [JsonProperty(JsonInputDefinitions.DIKE_PROFILE_POINTS_X)]
         public IEnumerable<double> XLocations { get; }
+
+        [JsonProperty(JsonInputDefinitions.DIKE_PROFILE_POINTS_Z)]
         public IEnumerable<double> ZLocations { get; }
+
+        [JsonProperty(JsonInputDefinitions.DIKE_PROFILE_ROUGHNESS_COEFFICIENTS)]
         public IEnumerable<double> RoughnessCoefficients { get; }
-        public IEnumerable<(JsonInputCharacteristicPointType, double)> CharacteristicPoints { get; }
+        
+        // [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [JsonProperty(JsonInputDefinitions.CHARACTERISTIC_POINT_TYPE_OUTER_TOE)]
+        public double? OuterToe { get; set; }
+
+        // [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [JsonProperty(JsonInputDefinitions.CHARACTERISTIC_POINT_TYPE_CREST_OUTER_BERM)]
+        public double? CrestOuterBerm { get; set; }
+        
+        // [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [JsonProperty(JsonInputDefinitions.CHARACTERISTIC_POINT_TYPE_NOTCH_OUTER_BERM)]
+        public double? NotchOuterBerm { get; set; }
+        
+        // [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [JsonProperty(JsonInputDefinitions.CHARACTERISTIC_POINT_TYPE_OUTER_CREST)]
+        public double? OuterCrest { get; set; }
+        
+        // [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [JsonProperty(JsonInputDefinitions.CHARACTERISTIC_POINT_TYPE_INNER_CREST)]
+        public double? InnerCrest { get; set; }
+        
+        // [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [JsonProperty(JsonInputDefinitions.CHARACTERISTIC_POINT_TYPE_INNER_TOE)]
+        public double? InnerToe { get; set; }
     }
 }
