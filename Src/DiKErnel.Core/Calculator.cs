@@ -33,7 +33,6 @@ namespace DiKErnel.Core
         private readonly Task<DataResult<CalculationOutput>> task;
 
         private double progress;
-        private CalculationState calculationState = CalculationState.Running;
 
         /// <summary>
         /// Creates a new instance.
@@ -41,7 +40,7 @@ namespace DiKErnel.Core
         /// <param name="calculationInput">The input used in the calculation.</param>
         public Calculator(ICalculationInput calculationInput)
         {
-            task = new Task<DataResult<CalculationOutput>>(() => Calculate(calculationInput, ref progress, ref calculationState));
+            task = new Task<DataResult<CalculationOutput>>(() => Calculate(calculationInput));
 
             task.Start();
         }
@@ -49,7 +48,7 @@ namespace DiKErnel.Core
         /// <summary>
         /// Gets the state of the calculation.
         /// </summary>
-        public CalculationState CalculationState => calculationState;
+        public CalculationState CalculationState { get; private set; } = CalculationState.Running;
 
         /// <summary>
         /// Gets the current progress of the calculation [%].
@@ -59,9 +58,9 @@ namespace DiKErnel.Core
         public int Progress => (int) Math.Round(progress * 100);
 
         /// <summary>
-        /// Gets the result of the calculator.
+        /// Gets the result of the calculation.
         /// </summary>
-        /// <remarks>The result of the operation is returned after being finished
+        /// <remarks>An actual result is returned when the calculation is finished
         /// successfully, cancelled or finished in error. When the calculation is still
         /// running, <c>null</c> is returned.</remarks>
         public DataResult<CalculationOutput> Result => task.Result;
@@ -83,76 +82,83 @@ namespace DiKErnel.Core
         {
             if (CalculationState == CalculationState.Running)
             {
-                calculationState = CalculationState.Cancelled;
+                CalculationState = CalculationState.Cancelled;
             }
         }
 
-        private static DataResult<CalculationOutput> Calculate(ICalculationInput calculationInput, ref double progress,
-                                                               ref CalculationState calculationState)
+        private DataResult<CalculationOutput> Calculate(ICalculationInput calculationInput)
         {
             DataResult<CalculationOutput> result;
 
             try
             {
-                IProfileData profileData = calculationInput.ProfileData;
                 ITimeDependentInput[] timeDependentInputItems = calculationInput.TimeDependentInputItems.ToArray();
                 ILocationDependentInput[] locationDependentInputItems = calculationInput.LocationDependentInputItems.ToArray();
-
-                double progressPerCalculationStep = 1.0 / timeDependentInputItems.Length / locationDependentInputItems.Length;
-
-                Dictionary<ILocationDependentInput, List<TimeDependentOutput>> timeDependentOutputPerLocation =
+                Dictionary<ILocationDependentInput, List<TimeDependentOutput>> timeDependentOutputItemsPerLocation =
                     locationDependentInputItems.ToDictionary(ldi => ldi, ldi => new List<TimeDependentOutput>());
 
-                foreach (ITimeDependentInput timeDependentInput in timeDependentInputItems)
-                {
-                    foreach (ILocationDependentInput locationDependentInput in locationDependentInputItems)
-                    {
-                        if (calculationState == CalculationState.Cancelled)
-                        {
-                            break;
-                        }
+                CalculateTimeStepsForLocations(timeDependentInputItems, locationDependentInputItems,
+                                               timeDependentOutputItemsPerLocation, calculationInput.ProfileData);
 
-                        List<TimeDependentOutput> currentOutputItems = timeDependentOutputPerLocation[locationDependentInput];
-
-                        currentOutputItems.Add(CreateTimeDependentOutput(currentOutputItems, locationDependentInput,
-                                                                         timeDependentInput, profileData));
-
-                        progress += progressPerCalculationStep;
-                    }
-                }
-
-                if (calculationState == CalculationState.Cancelled)
+                if (CalculationState == CalculationState.Cancelled)
                 {
                     result = new DataResult<CalculationOutput>(EventRegistry.Flush());
                 }
                 else
                 {
+                    CalculationState = CalculationState.FinishedSuccessfully;
+
                     IEnumerable<LocationDependentOutput> locationDependentOutputItems = locationDependentInputItems
-                        .Select(ldi => ldi.GetLocationDependentOutput(timeDependentOutputPerLocation[ldi]));
+                        .Select(ldi => ldi.GetLocationDependentOutput(timeDependentOutputItemsPerLocation[ldi]));
 
                     result = new DataResult<CalculationOutput>(new CalculationOutput(locationDependentOutputItems),
                                                                EventRegistry.Flush());
-
-                    calculationState = CalculationState.FinishedSuccessfully;
                 }
             }
             catch (Exception e)
             {
+                CalculationState = CalculationState.FinishedInError;
+
                 EventRegistry.Register(new Event("An unhandled error occurred while performing the calculation. See stack " +
                                                  "trace for more information:\n" + e.Message, EventType.Error));
 
                 result = new DataResult<CalculationOutput>(EventRegistry.Flush());
-
-                calculationState = CalculationState.FinishedInError;
             }
 
             return result;
         }
 
-        private static TimeDependentOutput CreateTimeDependentOutput(IEnumerable<TimeDependentOutput> currentOutputItems,
-                                                                     ILocationDependentInput locationDependentInput,
-                                                                     ITimeDependentInput timeDependentInput,
-                                                                     IProfileData profileData)
+        private void CalculateTimeStepsForLocations(
+            IReadOnlyCollection<ITimeDependentInput> timeDependentInputItems,
+            IReadOnlyCollection<ILocationDependentInput> locationDependentInputItems,
+            IReadOnlyDictionary<ILocationDependentInput, List<TimeDependentOutput>> timeDependentOutputItemsPerLocation,
+            IProfileData profileData)
+        {
+            double progressPerCalculationStep = 1.0 / timeDependentInputItems.Count / locationDependentInputItems.Count;
+
+            foreach (ITimeDependentInput timeDependentInput in timeDependentInputItems)
+            {
+                foreach (ILocationDependentInput locationDependentInput in locationDependentInputItems)
+                {
+                    if (CalculationState == CalculationState.Cancelled)
+                    {
+                        break;
+                    }
+
+                    List<TimeDependentOutput> currentOutputItems = timeDependentOutputItemsPerLocation[locationDependentInput];
+
+                    currentOutputItems.Add(CalculateTimeStepForLocation(currentOutputItems, locationDependentInput,
+                                                                        timeDependentInput, profileData));
+
+                    progress += progressPerCalculationStep;
+                }
+            }
+        }
+
+        private static TimeDependentOutput CalculateTimeStepForLocation(IEnumerable<TimeDependentOutput> currentOutputItems,
+                                                                        ILocationDependentInput locationDependentInput,
+                                                                        ITimeDependentInput timeDependentInput,
+                                                                        IProfileData profileData)
         {
             double initialDamage = currentOutputItems.LastOrDefault()?.Damage ?? locationDependentInput.InitialDamage;
 
