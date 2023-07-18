@@ -121,25 +121,25 @@ namespace DiKErnel.Core
                     }
                 }
 
-                if (calculationState != CalculationState.Cancelled)
+                if (calculationState == CalculationState.Cancelled)
                 {
-                    IEnumerable<LocationDependentOutput> locationDependentOutputItems =
-                        locationDependentInputItems.Select((t, i) => t.GetLocationDependentOutput(timeDependentOutputPerLocation[i]));
+                    result = new DataResult<CalculationOutput>(EventRegistry.Flush());
+                }
+                else
+                {
+                    IEnumerable<LocationDependentOutput> locationDependentOutputItems = locationDependentInputItems
+                        .Select(ldi => ldi.GetLocationDependentOutput(timeDependentOutputPerLocation[ldi]));
 
                     result = new DataResult<CalculationOutput>(new CalculationOutput(locationDependentOutputItems),
                                                                EventRegistry.Flush());
 
                     calculationState = CalculationState.FinishedSuccessfully;
                 }
-                else
-                {
-                    result = new DataResult<CalculationOutput>(EventRegistry.Flush());
-                }
             }
             catch (Exception e)
             {
-                EventRegistry.Register(new Event("An unhandled error occurred while performing the calculation. See stack trace " +
-                                                 "for more information:\n" + e.Message, EventType.Error));
+                EventRegistry.Register(new Event("An unhandled error occurred while performing the calculation. See stack " +
+                                                 "trace for more information:\n" + e.Message, EventType.Error));
 
                 result = new DataResult<CalculationOutput>(EventRegistry.Flush());
 
