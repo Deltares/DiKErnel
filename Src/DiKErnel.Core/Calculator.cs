@@ -38,6 +38,9 @@ namespace DiKErnel.Core
         /// Creates a new instance.
         /// </summary>
         /// <param name="calculationInput">The input used in the calculation.</param>
+        /// <remarks>While creating the new instance, the thread that performs the
+        /// calculation is directly started (and can be waited for to finish by calling
+        /// <see cref="WaitForCompletion"/>).</remarks>
         public Calculator(ICalculationInput calculationInput)
         {
             task = new Task<DataResult<CalculationOutput>>(() => Calculate(calculationInput));
@@ -53,7 +56,7 @@ namespace DiKErnel.Core
         /// <summary>
         /// Gets the current progress of the calculation [%].
         /// </summary>
-        /// <remarks>Also returns the current progress when the calculation is
+        /// <remarks>This method also returns the current progress when the calculation is
         /// cancelled.</remarks>
         public int Progress => (int) Math.Round(progress * 100);
 
@@ -76,7 +79,7 @@ namespace DiKErnel.Core
         /// <summary>
         /// Cancels the calculation.
         /// </summary>
-        /// <remarks>A calculation can only be cancelled when it is actually still
+        /// <remarks>A calculation can only be cancelled when it is actually
         /// running.</remarks>
         public void Cancel()
         {
@@ -88,8 +91,6 @@ namespace DiKErnel.Core
 
         private DataResult<CalculationOutput> Calculate(ICalculationInput calculationInput)
         {
-            DataResult<CalculationOutput> result;
-
             try
             {
                 ITimeDependentInput[] timeDependentInputItems = calculationInput.TimeDependentInputItems.ToArray();
@@ -102,18 +103,16 @@ namespace DiKErnel.Core
 
                 if (CalculationState == CalculationState.Cancelled)
                 {
-                    result = new DataResult<CalculationOutput>(EventRegistry.Flush());
+                    return new DataResult<CalculationOutput>(EventRegistry.Flush());
                 }
-                else
-                {
-                    CalculationState = CalculationState.FinishedSuccessfully;
 
-                    IEnumerable<LocationDependentOutput> locationDependentOutputItems = locationDependentInputItems
-                        .Select(ldi => ldi.GetLocationDependentOutput(timeDependentOutputItemsPerLocation[ldi]));
+                CalculationState = CalculationState.FinishedSuccessfully;
 
-                    result = new DataResult<CalculationOutput>(new CalculationOutput(locationDependentOutputItems),
-                                                               EventRegistry.Flush());
-                }
+                IEnumerable<LocationDependentOutput> locationDependentOutputItems = locationDependentInputItems
+                    .Select(ldi => ldi.GetLocationDependentOutput(timeDependentOutputItemsPerLocation[ldi]));
+
+                return new DataResult<CalculationOutput>(new CalculationOutput(locationDependentOutputItems),
+                                                         EventRegistry.Flush());
             }
             catch (Exception e)
             {
@@ -122,10 +121,8 @@ namespace DiKErnel.Core
                 EventRegistry.Register(new Event("An unhandled error occurred while performing the calculation. See stack " +
                                                  "trace for more information:\n" + e.Message, EventType.Error));
 
-                result = new DataResult<CalculationOutput>(EventRegistry.Flush());
+                return new DataResult<CalculationOutput>(EventRegistry.Flush());
             }
-
-            return result;
         }
 
         private void CalculateTimeStepsForLocations(
@@ -134,7 +131,7 @@ namespace DiKErnel.Core
             IReadOnlyDictionary<ILocationDependentInput, List<TimeDependentOutput>> timeDependentOutputItemsPerLocation,
             IProfileData profileData)
         {
-            double progressPerCalculationStep = 1.0 / timeDependentInputItems.Count / locationDependentInputItems.Count;
+            double progressPerIteration = 1.0 / timeDependentInputItems.Count / locationDependentInputItems.Count;
 
             foreach (ITimeDependentInput timeDependentInput in timeDependentInputItems)
             {
@@ -147,17 +144,17 @@ namespace DiKErnel.Core
 
                     List<TimeDependentOutput> currentOutputItems = timeDependentOutputItemsPerLocation[locationDependentInput];
 
-                    currentOutputItems.Add(CalculateTimeStepForLocation(currentOutputItems, locationDependentInput,
-                                                                        timeDependentInput, profileData));
+                    currentOutputItems.Add(CalculateTimeStepForLocation(timeDependentInput, locationDependentInput,
+                                                                        currentOutputItems, profileData));
 
-                    progress += progressPerCalculationStep;
+                    progress += progressPerIteration;
                 }
             }
         }
 
-        private static TimeDependentOutput CalculateTimeStepForLocation(IEnumerable<TimeDependentOutput> currentOutputItems,
+        private static TimeDependentOutput CalculateTimeStepForLocation(ITimeDependentInput timeDependentInput,
                                                                         ILocationDependentInput locationDependentInput,
-                                                                        ITimeDependentInput timeDependentInput,
+                                                                        IEnumerable<TimeDependentOutput> currentOutputItems,
                                                                         IProfileData profileData)
         {
             double initialDamage = currentOutputItems.LastOrDefault()?.Damage ?? locationDependentInput.InitialDamage;
