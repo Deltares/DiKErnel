@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <Import Project="$(SolutionDir)build\NetStandard.targets"/>
-    <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-        <Exec Command="xcopy /d/s/y &quot;$(SolutionDir)Deployment\Windows\Overtopping\$(Platform)\*&quot; &quot;$(OutputPath)&quot;" />
+    <Target Name="CopyOverToppingDll" AfterTargets="PostBuildEvent">
+        <Exec Command="xcopy /d/s/y &quot;$(ExternalDependenciesDir)\*&quot; &quot;$(OutDir)&quot;" />
     </Target>
 </Project>
