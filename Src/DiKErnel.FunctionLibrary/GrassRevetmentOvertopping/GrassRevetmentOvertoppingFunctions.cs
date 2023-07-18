@@ -17,7 +17,6 @@
 // // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
 using System;
-using DiKErnel.External.Overtopping;
 using DiKErnel.FunctionLibrary.GrassRevetment;
 
 namespace DiKErnel.FunctionLibrary.GrassRevetmentOvertopping
@@ -27,7 +26,6 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentOvertopping
     /// </summary>
     public static class GrassRevetmentOvertoppingFunctions
     {
-
         /// <summary>
         /// Calculates the cumulative overload.
         /// </summary>
