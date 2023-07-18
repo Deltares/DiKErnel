@@ -22,7 +22,7 @@ using Newtonsoft.Json;
 
 namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputAsphaltWaveImpact
 {
-    public class JsonInputAsphaltWaveImpactTopLayerDefinitionData
+    internal class JsonInputAsphaltWaveImpactTopLayerDefinitionData
     {
         [JsonProperty(JsonInputDefinitions.TYPE_TOP_LAYER)]
         public JsonInputAsphaltRevetmentTopLayerType TopLayerType { get; private set; }

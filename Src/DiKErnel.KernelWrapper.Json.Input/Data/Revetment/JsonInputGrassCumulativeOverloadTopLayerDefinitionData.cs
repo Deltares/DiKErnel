@@ -22,7 +22,7 @@ using Newtonsoft.Json;
 
 namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment
 {
-    public class JsonInputGrassCumulativeOverloadTopLayerDefinitionData
+    internal class JsonInputGrassCumulativeOverloadTopLayerDefinitionData
     {
         [JsonProperty(JsonInputDefinitions.TYPE_TOP_LAYER)]
         public JsonInputGrassRevetmentTopLayerType TopLayerType { get; private set; }

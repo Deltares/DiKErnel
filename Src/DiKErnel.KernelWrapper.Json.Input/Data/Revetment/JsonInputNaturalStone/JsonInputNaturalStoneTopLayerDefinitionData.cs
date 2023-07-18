@@ -22,7 +22,7 @@ using Newtonsoft.Json;
 
 namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputNaturalStone
 {
-    public class JsonInputNaturalStoneTopLayerDefinitionData
+    internal class JsonInputNaturalStoneTopLayerDefinitionData
     {
         [JsonProperty(JsonInputDefinitions.TYPE_TOP_LAYER)]
         public JsonInputNaturalStoneRevetmentTopLayerType TopLayerType { get; private set; }

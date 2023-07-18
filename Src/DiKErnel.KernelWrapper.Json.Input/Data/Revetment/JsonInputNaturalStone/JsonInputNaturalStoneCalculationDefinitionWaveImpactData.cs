@@ -21,7 +21,7 @@ using Newtonsoft.Json;
 
 namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputNaturalStone
 {
-    public class JsonInputNaturalStoneCalculationDefinitionWaveImpactData
+    internal class JsonInputNaturalStoneCalculationDefinitionWaveImpactData
     {
         [JsonProperty(JsonInputDefinitions.BETA_MAX)]
         public double WaveAngleImpactBetaMax { get; set; }

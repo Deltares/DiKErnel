@@ -22,7 +22,7 @@ using Newtonsoft.Json;
 
 namespace DiKErnel.KernelWrapper.Json.Input.Data.Generic
 {
-    public class JsonInputHydraulicData
+    internal class JsonInputHydraulicData
     {
         [JsonProperty(JsonInputDefinitions.WATER_LEVELS)]
         public IEnumerable<double> WaterLevels { get; private set; }

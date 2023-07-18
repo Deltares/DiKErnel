@@ -21,7 +21,7 @@ using Newtonsoft.Json;
 
 namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputNaturalStone
 {
-    public class JsonInputNaturalStoneCalculationDefinitionLowerLimitData
+    internal class JsonInputNaturalStoneCalculationDefinitionLowerLimitData
     {
         [JsonProperty(JsonInputDefinitions.A_COEFFICIENT)]
         public double LowerLimitLoadingA { get; set; }

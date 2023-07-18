@@ -22,7 +22,7 @@ using Newtonsoft.Json;
 
 namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputNaturalStone
 {
-    public class JsonInputNaturalStoneTopLayerNorseStonePlungingData
+    internal class JsonInputNaturalStoneTopLayerNorseStonePlungingData
     {
         [JsonProperty(JsonInputDefinitions.A_COEFFICIENT)]
         double StabilityPlungingA { get; set; }

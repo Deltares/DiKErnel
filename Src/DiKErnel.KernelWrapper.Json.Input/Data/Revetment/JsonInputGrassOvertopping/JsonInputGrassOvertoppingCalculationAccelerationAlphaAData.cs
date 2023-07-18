@@ -21,7 +21,7 @@ using Newtonsoft.Json;
 
 namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassOvertopping
 {
-    public class JsonInputGrassOvertoppingCalculationAccelerationAlphaAData
+    internal class JsonInputGrassOvertoppingCalculationAccelerationAlphaAData
     {
         [JsonProperty(JsonInputGrassOvertoppingDefinitions.ACCELERATION_ALPHA_A_CREST)]
         public double AccelerationAlphaAForCrest { get; set; }

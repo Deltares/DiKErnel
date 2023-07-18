@@ -18,7 +18,7 @@
 
 namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.Definitions
 {
-    public class JsonInputGrassOvertoppingDefinitions
+    internal class JsonInputGrassOvertoppingDefinitions
     {
         public const string ACCELERATION_ALPHA_A = "versnellingAlfaA";
         public const string ACCELERATION_ALPHA_A_CREST = "kruin";

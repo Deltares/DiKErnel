@@ -18,7 +18,7 @@
 
 namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.Definitions
 {
-    public class JsonInputGrassRevetmentDefinitions
+    internal class JsonInputGrassRevetmentDefinitions
     {
         public const string TOP_LAYER_TYPE_CLOSED_SOD = "grasGeslotenZode";
         public const string TOP_LAYER_TYPE_OPEN_SOD = "grasOpenZode";

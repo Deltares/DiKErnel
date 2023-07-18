@@ -24,7 +24,7 @@ using Newtonsoft.Json;
 
 namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputNaturalStone
 {
-    public class JsonInputNaturalStoneCalculationDefinitionData : JsonInputCalculationDefinitionData
+    internal class JsonInputNaturalStoneCalculationDefinitionData : JsonInputCalculationDefinitionData
     {
         [JsonProperty(JsonInputDefinitions.TOP_LAYERS)]
         public IEnumerable<JsonInputNaturalStoneTopLayerDefinitionData>

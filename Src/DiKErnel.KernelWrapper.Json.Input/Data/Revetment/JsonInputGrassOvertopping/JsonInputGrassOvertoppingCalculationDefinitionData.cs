@@ -24,7 +24,7 @@ using Newtonsoft.Json;
 
 namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassOvertopping
 {
-    public class JsonInputGrassOvertoppingCalculationDefinitionData : JsonInputCalculationDefinitionData
+    internal class JsonInputGrassOvertoppingCalculationDefinitionData : JsonInputCalculationDefinitionData
     {
         [JsonProperty(JsonInputDefinitions.TOP_LAYERS)]
         public IEnumerable<JsonInputGrassCumulativeOverloadTopLayerDefinitionData> TopLayerDefinitionData { get; private set; }

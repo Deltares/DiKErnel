@@ -21,7 +21,7 @@ using Newtonsoft.Json;
 
 namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputAsphaltWaveImpact
 {
-    public class JsonInputAsphaltWaveImpactLocationSubLayerData
+    internal class JsonInputAsphaltWaveImpactLocationSubLayerData
     {
         [JsonProperty(JsonInputAsphaltWaveImpactDefinitions.THICKNESS)]
         public double? ThicknessSubLayer { get; set; }

@@ -21,7 +21,7 @@ using Newtonsoft.Json;
 
 namespace DiKErnel.KernelWrapper.Json.Input.Data.Generic
 {
-    public class JsonInputLocationData
+    internal class JsonInputLocationData
     {
         [JsonProperty(JsonInputDefinitions.X)]
         public double X { get; private set; }

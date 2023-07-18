@@ -28,7 +28,7 @@ using Newtonsoft.Json.Linq;
 
 namespace DiKErnel.KernelWrapper.Json.Input.Data.Generic.Converters
 {
-    public class JsonInputCalculationDefinitionDataConverter : JsonConverter<JsonInputCalculationDefinitionData>
+    internal class JsonInputCalculationDefinitionDataConverter : JsonConverter<JsonInputCalculationDefinitionData>
     {
         public override void WriteJson(JsonWriter writer, JsonInputCalculationDefinitionData value, JsonSerializer serializer)
         {

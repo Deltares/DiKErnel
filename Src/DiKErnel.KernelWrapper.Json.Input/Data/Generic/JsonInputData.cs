@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 
 namespace DiKErnel.KernelWrapper.Json.Input.Data.Generic
 {
-    public class JsonInputData
+    internal class JsonInputData
     {
         [JsonProperty(JsonInputDefinitions.TIME)]
         public IEnumerable<int> Times { get; private set; }

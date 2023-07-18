@@ -18,7 +18,7 @@
 
 namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.Definitions
 {
-    public class JsonInputAsphaltWaveImpactDefinitions
+    internal class JsonInputAsphaltWaveImpactDefinitions
     {
         public const string TOP_LAYER_TYPE_HYDRAULIC_ASPHALT_CONCRETE = "waterbouwAsfaltBeton";
 

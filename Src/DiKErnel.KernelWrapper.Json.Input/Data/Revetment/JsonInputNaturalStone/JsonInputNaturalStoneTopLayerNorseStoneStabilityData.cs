@@ -21,7 +21,7 @@ using Newtonsoft.Json;
 
 namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputNaturalStone
 {
-    public class JsonInputNaturalStoneTopLayerNorseStoneStabilityData
+    internal class JsonInputNaturalStoneTopLayerNorseStoneStabilityData
     {
         [JsonProperty(JsonInputNaturalStoneDefinitions.XIB_COEFFICIENT)]
         double StabilityXib { get; set; }

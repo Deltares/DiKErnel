@@ -22,7 +22,7 @@ using Newtonsoft.Json;
 
 namespace DiKErnel.KernelWrapper.Json.Input.Data.Generic
 {
-    public class JsonInputDikeProfileData
+    internal class JsonInputDikeProfileData
     {
         [JsonProperty(JsonInputDefinitions.DIKE_PROFILE_POINTS_X)]
         public IEnumerable<double> XLocations { get; private set; }

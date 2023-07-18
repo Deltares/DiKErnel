@@ -21,7 +21,7 @@ using Newtonsoft.Json;
 
 namespace DiKErnel.KernelWrapper.Json.Input.Data.Generic
 {
-    public class JsonInputCalculationDefinitionData
+    internal class JsonInputCalculationDefinitionData
     {
         [JsonProperty(JsonInputDefinitions.CALCULATION_METHOD_TYPE)]
         public JsonInputCalculationType CalculationMethodType { get; private set; }

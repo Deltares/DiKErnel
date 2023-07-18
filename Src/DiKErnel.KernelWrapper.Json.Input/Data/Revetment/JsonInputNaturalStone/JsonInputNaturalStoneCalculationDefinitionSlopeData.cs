@@ -21,7 +21,7 @@ using Newtonsoft.Json;
 
 namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputNaturalStone
 {
-    public class JsonInputNaturalStoneCalculationDefinitionSlopeData
+    internal class JsonInputNaturalStoneCalculationDefinitionSlopeData
     {
         [JsonProperty(JsonInputNaturalStoneDefinitions.SLOPE_UPPER_LEVEL)]
         public double SlopeUpperLevel { get; set; }

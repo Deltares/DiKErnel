@@ -21,7 +21,7 @@ using Newtonsoft.Json;
 
 namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputNaturalStone
 {
-    public class JsonInputNaturalStoneCalculationDefinitionMaximumWaveElevationData
+    internal class JsonInputNaturalStoneCalculationDefinitionMaximumWaveElevationData
     {
         [JsonProperty(JsonInputDefinitions.A_COEFFICIENT)]
         public double DistanceMaximumWaveElevationA { get; set; }

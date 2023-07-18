@@ -23,7 +23,7 @@ using Newtonsoft.Json;
 
 namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassWaveRunup
 {
-    public class JsonInputGrassWaveRunupLocationData : JsonInputLocationData
+    internal class JsonInputGrassWaveRunupLocationData : JsonInputLocationData
     {
         [JsonProperty(JsonInputDefinitions.TYPE_TOP_LAYER)]
         public JsonInputGrassRevetmentTopLayerType TopLayerType { get; private set; }

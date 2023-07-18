@@ -24,7 +24,7 @@ using Newtonsoft.Json;
 
 namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputAsphaltWaveImpact
 {
-    public class JsonInputAsphaltWaveImpactCalculationDefinitionData : JsonInputCalculationDefinitionData
+    internal class JsonInputAsphaltWaveImpactCalculationDefinitionData : JsonInputCalculationDefinitionData
     {
         [JsonProperty(JsonInputDefinitions.TOP_LAYERS)]
         public IEnumerable<JsonInputAsphaltWaveImpactTopLayerDefinitionData>

@@ -22,7 +22,7 @@ using Newtonsoft.Json;
 
 namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassWaveRunup
 {
-    public class JsonInputGrassWaveRunupCalculationImpactAngleData
+    internal class JsonInputGrassWaveRunupCalculationImpactAngleData
     {
         [JsonProperty(JsonInputGrassWaveRunupDefinitions.A_BETA)]
         public double WaveAngleImpactABeta { get; set; }
