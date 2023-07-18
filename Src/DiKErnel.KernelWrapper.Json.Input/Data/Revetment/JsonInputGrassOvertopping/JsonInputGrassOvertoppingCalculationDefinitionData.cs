@@ -26,10 +26,6 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassOvertop
 {
     public class JsonInputGrassOvertoppingCalculationDefinitionData : JsonInputCalculationDefinitionData
     {
-        public JsonInputGrassOvertoppingCalculationDefinitionData(
-            int failureNumber
-        ) : base(failureNumber) {}
-        
         [JsonProperty(JsonInputDefinitions.TOP_LAYERS)]
         public IEnumerable<JsonInputGrassCumulativeOverloadTopLayerDefinitionData> TopLayerDefinitionData { get; private set; }
 

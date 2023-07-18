@@ -16,13 +16,16 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using System.Runtime.Serialization;
+using DiKErnel.KernelWrapper.Json.Input.Data.Revetment.Definitions;
+
 namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassWaveRunup
 {
     public enum JsonInputGrassWaveRunupCalculationProtocolType
     {
         Unknown,
+        
+        [EnumMember(Value = JsonInputGrassWaveRunupDefinitions.CALCULATION_PROTOCOL_TYPE_RAYLEIGH_DISCRETE)]
         RayleighDiscrete
     }
-
-    // todo nlohmann json serialize thing
 }

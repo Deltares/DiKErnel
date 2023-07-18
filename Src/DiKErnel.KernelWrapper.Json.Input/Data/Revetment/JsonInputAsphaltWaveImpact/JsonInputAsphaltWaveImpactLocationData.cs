@@ -25,43 +25,20 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputAsphaltWaveI
 {
     public class JsonInputAsphaltWaveImpactLocationData : JsonInputLocationData
     {
-        public JsonInputAsphaltWaveImpactLocationData(
-            double x,
-            double initialDamage,
-            JsonInputAsphaltRevetmentTopLayerType topLayerType,
-            double failureTension,
-            double soilElasticity,
-            double thicknessUpperLayer,
-            double elasticModulusUpperLayer
-        ) : base(x, initialDamage)
-        {
-            TopLayerType = topLayerType;
-            FailureTension = failureTension;
-            SoilElasticity = soilElasticity;
-            ThicknessUpperLayer = thicknessUpperLayer;
-            ElasticModulusUpperLayer = elasticModulusUpperLayer;
-        }
-
         [JsonProperty(JsonInputDefinitions.TYPE_TOP_LAYER)]
-        public JsonInputAsphaltRevetmentTopLayerType TopLayerType { get; }
+        public JsonInputAsphaltRevetmentTopLayerType TopLayerType { get; private set; }
         
         [JsonProperty(JsonInputAsphaltWaveImpactDefinitions.FAILURE_TENSION)]
-        public double FailureTension { get; }
+        public double FailureTension { get; private set; }
         
         [JsonProperty(JsonInputAsphaltWaveImpactDefinitions.SOIL_ELASTICITY)]
-        public double SoilElasticity { get; }
+        public double SoilElasticity { get; private set; }
         
-        [JsonProperty(JsonInputAsphaltWaveImpactDefinitions.THICKNESS)]
-        public double ThicknessUpperLayer { get; }
-        
-        [JsonProperty(JsonInputAsphaltWaveImpactDefinitions.ELASTIC_MODULUS)]
-        public double ElasticModulusUpperLayer { get; }
+        [JsonProperty(JsonInputAsphaltWaveImpactDefinitions.UPPER_LAYER)]
+        public JsonInputAsphaltWaveImpactLocationUpperLayerData UpperLayer { get; private set; }
 
-        // [JsonProperty(JsonInputAsphaltWaveImpactDefinitions.THICKNESS)]
-        // public double? ThicknessSubLayer { get; set; }
-        //
-        // [JsonProperty(JsonInputAsphaltWaveImpactDefinitions.ELASTIC_MODULUS)]
-        // public double? ElasticModulusSubLayer { get; set; }
-        //todo fix if parser parallel
+        [JsonProperty(JsonInputAsphaltWaveImpactDefinitions.SUB_LAYER)]
+        public JsonInputAsphaltWaveImpactLocationSubLayerData SubLayerData { get; private set; }
+
     }
 }

@@ -24,16 +24,10 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Generic
     
     public class JsonInputCalculationDefinitionData
     {
-
-        public JsonInputCalculationDefinitionData(double failureNumber)
-        {
-            FailureNumber = failureNumber;
-        }
-        
         [JsonProperty(JsonInputDefinitions.CALCULATION_METHOD_TYPE)]
-        public string CalculationMethod { get; private set; }
+        public JsonInputCalculationType CalculationMethodType { get; private set; }
         
         [JsonProperty(JsonInputDefinitions.FAILURE_NUMBER)]
-        public double FailureNumber { get; }
+        public double FailureNumber { get; private set; }
     }
 }

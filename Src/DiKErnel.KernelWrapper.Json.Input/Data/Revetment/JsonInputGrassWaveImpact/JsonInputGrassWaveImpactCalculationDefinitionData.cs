@@ -26,17 +26,8 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassWaveImp
 {
     public class JsonInputGrassWaveImpactCalculationDefinitionData : JsonInputCalculationDefinitionData
     {
-        public JsonInputGrassWaveImpactCalculationDefinitionData(
-            double failureNumber,
-            IReadOnlyDictionary<JsonInputGrassRevetmentTopLayerType, JsonInputGrassWaveImpactTopLayerDefinitionData>
-                topLayerDefinitionData
-        ) : base(failureNumber)
-        {
-            TopLayerDefinitionData = topLayerDefinitionData;
-        }
-
-        [JsonProperty(JsonInputDefinitions.TYPE_TOP_LAYER)]
-        public IReadOnlyDictionary<JsonInputGrassRevetmentTopLayerType, JsonInputGrassWaveImpactTopLayerDefinitionData> TopLayerDefinitionData { get; }
+        [JsonProperty(JsonInputDefinitions.TOP_LAYERS)]
+        public IEnumerable<JsonInputGrassWaveImpactTopLayerDefinitionData> TopLayerDefinitionData { get; private set; }
 
         [JsonProperty(JsonInputGrassWaveImpactDefinitions.TEMAX)]
         public double Temax { get; set; }
@@ -44,19 +35,12 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassWaveImp
         [JsonProperty(JsonInputGrassWaveImpactDefinitions.TEMIN)]
         public double Temin { get; set; }
         
-        [JsonProperty(JsonInputGrassWaveImpactDefinitions.N_COEFFICIENT)]
-        public double WaveAngleImpactN { get; set; }
+        [JsonProperty(JsonInputDefinitions.WAVE_ANGLE_IMPACT)]
+        public JsonInputGrassWaveImpactCalculationImpactWaveAngleData WaveAngleData { get; set; }
         
-        [JsonProperty(JsonInputGrassWaveImpactDefinitions.Q_COEFFICIENT)]
-        public double WaveAngleImpactQ { get; set; }
+        [JsonProperty(JsonInputDefinitions.LOADING_AREA)]
+        public JsonInputGrassWaveImpactCalculationLoadingAreaData LoadingAreaData { get; set; }
         
-        [JsonProperty(JsonInputGrassWaveImpactDefinitions.R_COEFFICIENT)]
-        public double WaveAngleImpactR { get; set; }
-        
-        [JsonProperty(JsonInputDefinitions.UPPER_LIMIT)]
-        public double UpperLimitLoading { get; set; }
-        
-        [JsonProperty(JsonInputDefinitions.LOWER_LIMIT)]
-        public double LowerLimitLoading { get; set; }
+
     }
 }

@@ -24,12 +24,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassWaveImp
 {
     public class JsonInputGrassWaveImpactLocationData : JsonInputLocationData
     {
-        public JsonInputGrassWaveImpactLocationData(double x, double initialDamage, JsonInputGrassRevetmentTopLayerType topLayerType) : base(x, initialDamage)
-        {
-            TopLayerType = topLayerType;
-        }
-
         [JsonProperty(JsonInputDefinitions.TYPE_TOP_LAYER)]
-        public JsonInputGrassRevetmentTopLayerType TopLayerType { get; }
+        public JsonInputGrassRevetmentTopLayerType TopLayerType { get; private set; }
     }
 }

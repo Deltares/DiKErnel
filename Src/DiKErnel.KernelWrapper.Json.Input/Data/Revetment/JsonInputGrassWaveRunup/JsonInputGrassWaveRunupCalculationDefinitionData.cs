@@ -26,39 +26,22 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassWaveRun
 {
     public class JsonInputGrassWaveRunupCalculationDefinitionData : JsonInputCalculationDefinitionData
     {
-        public JsonInputGrassWaveRunupCalculationDefinitionData(
-            double failureNumber,
-            JsonInputGrassWaveRunupCalculationProtocolData calculationProtocolData,
-            IReadOnlyDictionary<JsonInputGrassRevetmentTopLayerType, JsonInputGrassCumulativeOverloadTopLayerDefinitionData>
-                topLayerDefinitionData
-        ) : base(failureNumber)
-        {
-            CalculationProtocolData = calculationProtocolData;
-            TopLayerDefinitionData = topLayerDefinitionData;
-        }
-
         [JsonProperty(JsonInputGrassWaveRunupDefinitions.CALCULATION_PROTOCOL)]
-        public JsonInputGrassWaveRunupCalculationProtocolData CalculationProtocolData { get; }
+        public JsonInputGrassWaveRunupCalculationProtocolData CalculationProtocolData { get; private set; }
         
-        [JsonProperty(JsonInputDefinitions.TYPE_TOP_LAYER)]
-        public IReadOnlyDictionary<JsonInputGrassRevetmentTopLayerType, JsonInputGrassCumulativeOverloadTopLayerDefinitionData> TopLayerDefinitionData { get; }
-
+        [JsonProperty(JsonInputDefinitions.TOP_LAYERS)]
+        public IEnumerable<JsonInputGrassCumulativeOverloadTopLayerDefinitionData>
+        TopLayerDefinitionData { get; private set; }
+        
         [JsonProperty(JsonInputDefinitions.FACTOR_CTM)]
         public double FactorCtm { get; set; }
-        
-        [JsonProperty(JsonInputDefinitions.A_COEFFICIENT)]
-        public double RepresentativeWaveRunup2Pa { get; set; }
-        
-        [JsonProperty(JsonInputDefinitions.B_COEFFICIENT)]
-        public double RepresentativeWaveRunup2Pb { get; set; }
-        
-        [JsonProperty(JsonInputDefinitions.C_COEFFICIENT)]
-        public double RepresentativeWaveRunup2Pc { get; set; }
-        
-        [JsonProperty(JsonInputGrassWaveRunupDefinitions.A_BETA)]
-        public double WaveAngleImpactABeta { get; set; }
-        
-        [JsonProperty(JsonInputDefinitions.BETA_MAX)]
-        public double WaveAngleImpactBetaMax { get; set; }
+
+        [JsonProperty(JsonInputGrassWaveRunupDefinitions.REPRESENTATIVE_WAVE_RUNUP_2P)]
+        public JsonInputGrassWaveRunupCalculationRepresentativeWaveRunupData 
+            JsonInputGrassWaveRunupCalculationRepresentativeWaveRunupData { get; set; }
+
+        [JsonProperty(JsonInputDefinitions.WAVE_ANGLE_IMPACT)]
+        public JsonInputGrassWaveRunupCalculationImpactAngleData JsonInputGrassWaveRunupCalculationImpactAngleData { get; set; }
+
     }
 }

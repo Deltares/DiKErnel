@@ -26,18 +26,9 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputAsphaltWaveI
 {
     public class JsonInputAsphaltWaveImpactCalculationDefinitionData : JsonInputCalculationDefinitionData
     {
-        public JsonInputAsphaltWaveImpactCalculationDefinitionData(
-            double failureNumber,
-            IEnumerable<JsonInputAsphaltWaveImpactTopLayerDefinitionData>
-                topLayerDefinitionData
-        ) : base(failureNumber)
-        {
-            TopLayerDefinitionData = topLayerDefinitionData;
-        }
-
         [JsonProperty(JsonInputDefinitions.TOP_LAYERS)]
         public IEnumerable<JsonInputAsphaltWaveImpactTopLayerDefinitionData>
-            TopLayerDefinitionData { get; private set; }
+        TopLayerDefinitionData { get; private set; }
         
         [JsonProperty(JsonInputAsphaltWaveImpactDefinitions.DENSITY_OF_WATER)]
         public double DensityOfWater { get; set; }

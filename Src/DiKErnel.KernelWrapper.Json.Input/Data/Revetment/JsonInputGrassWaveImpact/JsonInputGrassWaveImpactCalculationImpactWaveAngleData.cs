@@ -16,10 +16,20 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.Definitions
+using DiKErnel.KernelWrapper.Json.Input.Data.Revetment.Definitions;
+using Newtonsoft.Json;
+
+namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassWaveImpact
 {
-    public class JsonInputGrassWaveRunupRayleighDefinitions
+    public class JsonInputGrassWaveImpactCalculationImpactWaveAngleData
     {
-        public const string FRONT_VELOCITY = "frontsnelheid";
+        [JsonProperty(JsonInputGrassWaveImpactDefinitions.N_COEFFICIENT)]
+        public double WaveAngleImpactN { get; set; }
+        
+        [JsonProperty(JsonInputGrassWaveImpactDefinitions.Q_COEFFICIENT)]
+        public double WaveAngleImpactQ { get; set; }
+        
+        [JsonProperty(JsonInputGrassWaveImpactDefinitions.R_COEFFICIENT)]
+        public double WaveAngleImpactR { get; set; }
     }
 }

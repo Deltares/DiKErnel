@@ -25,22 +25,11 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassWaveRun
 {
     public class JsonInputGrassWaveRunupLocationData : JsonInputLocationData
     {
-        public JsonInputGrassWaveRunupLocationData(
-            double x,
-            double initialDamage,
-            JsonInputGrassRevetmentTopLayerType topLayerType,
-            double outerSlope
-        ) : base(x, initialDamage)
-        {
-            TopLayerType = topLayerType;
-            OuterSlope = outerSlope;
-        }
-        
         [JsonProperty(JsonInputDefinitions.TYPE_TOP_LAYER)]
-        public JsonInputGrassRevetmentTopLayerType TopLayerType { get; }
+        public JsonInputGrassRevetmentTopLayerType TopLayerType { get; private set; }
         
         [JsonProperty(JsonInputGrassWaveRunupDefinitions.OUTER_SLOPE)]
-        public double OuterSlope { get; }
+        public double OuterSlope { get; private set; }
 
         [JsonProperty(JsonInputGrassRevetmentDefinitions.INCREASED_LOAD_TRANSITION_ALPHA_M)]
         public double IncreasedLoadTransitionAlphaM { get; set; }

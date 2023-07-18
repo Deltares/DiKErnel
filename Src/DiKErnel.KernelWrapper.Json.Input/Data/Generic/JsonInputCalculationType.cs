@@ -3,8 +3,7 @@ using DiKErnel.KernelWrapper.Json.Input.Data.Generic.Definitions;
 
 namespace DiKErnel.KernelWrapper.Json.Input.Data.Generic
 {
-    // [JsonConverter(typeof(JsonStringEnumConverter))]
-    internal enum JsonInputCalculationType
+    public enum JsonInputCalculationType
     {
         [EnumMember(Value = "onbekend")]
         Unknown,
@@ -24,5 +23,4 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Generic
         [EnumMember(Value = JsonInputDefinitions.CALCULATION_METHOD_TYPE_NATURAL_STONE)]
         NaturalStone
     }
-    //todo find out what the nlohmann json serialize enum does
 }

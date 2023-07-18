@@ -16,7 +16,7 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using DiKErnel.KernelWrapper.Json.Input.Data.Generic;
 using DiKErnel.KernelWrapper.Json.Input.Data.Generic.Definitions;
 using DiKErnel.KernelWrapper.Json.Input.Data.Revetment.Definitions;
@@ -26,56 +26,23 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputNaturalStone
 {
     public class JsonInputNaturalStoneCalculationDefinitionData : JsonInputCalculationDefinitionData
     {
-        public JsonInputNaturalStoneCalculationDefinitionData(
-            double failureNumber,
-            ReadOnlyDictionary<JsonInputNaturalStoneRevetmentTopLayerType, JsonInputNaturalStoneTopLayerDefinitionData>
-                topLayerDefinitionData
-        ) : base(failureNumber)
-        {
-            TopLayerDefinitionData = topLayerDefinitionData;
-        }
-
-        [JsonProperty(JsonInputDefinitions.TYPE_TOP_LAYER)]
-        public ReadOnlyDictionary<JsonInputNaturalStoneRevetmentTopLayerType, JsonInputNaturalStoneTopLayerDefinitionData>
+        [JsonProperty(JsonInputDefinitions.TOP_LAYERS)]
+        public IEnumerable<JsonInputNaturalStoneTopLayerDefinitionData>
             TopLayerDefinitionData { get; private set; }
+        
+        [JsonProperty(JsonInputDefinitions.LOADING_AREA)]
+        public JsonInputNaturalStoneCalculationDefinitionLoadingAreaData LoadingArea { get; set; }
+        
+        [JsonProperty(JsonInputNaturalStoneDefinitions.SLOPE)]
+        public JsonInputNaturalStoneCalculationDefinitionSlopeData Slope { get; set; }
 
-        [JsonProperty(JsonInputNaturalStoneDefinitions.SLOPE_UPPER_LEVEL)]
-        public double SlopeUpperLevel { get; set; }
+        [JsonProperty(JsonInputNaturalStoneDefinitions.DISTANCE_MAXIMUM_WAVE_ELEVATION)]
+        public JsonInputNaturalStoneCalculationDefinitionMaximumWaveElevationData DistanceMaximumWaveElevation { get; set; }
         
-        [JsonProperty(JsonInputNaturalStoneDefinitions.SLOPE_LOWER_LEVEL)]
-        public double SlopeLowerLevel { get; set; }
+        [JsonProperty(JsonInputNaturalStoneDefinitions.NORMATIVE_WIDTH_OF_WAVE_IMPACT)]
+        public JsonInputNaturalStoneCalculationDefinitionNormativeWidthWaveImpactData NormativeWidthOfWaveImpact { get; set; }
 
-        [JsonProperty(JsonInputDefinitions.A_COEFFICIENT)]
-        public double UpperLimitLoadingA { get; set; }
-        
-        [JsonProperty(JsonInputDefinitions.B_COEFFICIENT)]
-        public double UpperLimitLoadingB { get; set; }
-        
-        [JsonProperty(JsonInputDefinitions.C_COEFFICIENT)]
-        public double UpperLimitLoadingC { get; set; }
-        //
-        // [JsonProperty(JsonInputDefinitions.A_COEFFICIENT)]
-        // public double LowerLimitLoadingA { get; set; }
-        //
-        // [JsonProperty(JsonInputDefinitions.B_COEFFICIENT)]
-        // public double LowerLimitLoadingB { get; set; }
-        //
-        // [JsonProperty(JsonInputDefinitions.C_COEFFICIENT)]
-        // public double LowerLimitLoadingC { get; set; }
-        //
-        // [JsonProperty(JsonInputDefinitions.A_COEFFICIENT)]
-        // public double DistanceMaximumWaveElevationA { get; set; }
-        //
-        // [JsonProperty(JsonInputDefinitions.B_COEFFICIENT)]
-        // public double DistanceMaximumWaveElevationB { get; set; }
-        //
-        // [JsonProperty(JsonInputDefinitions.A_COEFFICIENT)]
-        // public double NormativeWidthOfWaveImpactA { get; set; }
-        //
-        // [JsonProperty(JsonInputDefinitions.B_COEFFICIENT)]
-        // public double NormativeWidthOfWaveImpactB { get; set; }
-        // todo find out how to generate multiple types from a single data object
-        [JsonProperty(JsonInputDefinitions.BETA_MAX)]
-        public double WaveAngleImpactBetaMax { get; set; }
+        [JsonProperty(JsonInputDefinitions.WAVE_ANGLE_IMPACT)]
+        public JsonInputNaturalStoneCalculationDefinitionWaveImpactData WaveAngleImpact { get; set; }
     }
 }

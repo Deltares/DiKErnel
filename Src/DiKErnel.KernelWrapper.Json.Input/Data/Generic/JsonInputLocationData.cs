@@ -23,16 +23,13 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Generic
 {
     public class JsonInputLocationData
     {
-        public JsonInputLocationData(double x, double initialDamage)
-        {
-            X = x;
-            InitialDamage = initialDamage;
-        }
-        
         [JsonProperty(JsonInputDefinitions.X)]
-        public double X { get; }
+        public double X { get; private set; }
         
         [JsonProperty(JsonInputDefinitions.INITIAL_DAMAGE)]
-        public double InitialDamage { get; }
+        public double InitialDamage { get; private set; }
+        
+        [JsonProperty(JsonInputDefinitions.CALCULATION_METHOD_TYPE)]
+        public JsonInputCalculationType CalculationMethodType { get; private set; }
     }
 }

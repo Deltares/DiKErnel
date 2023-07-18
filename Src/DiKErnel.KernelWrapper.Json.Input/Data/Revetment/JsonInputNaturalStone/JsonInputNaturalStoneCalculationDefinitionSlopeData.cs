@@ -16,22 +16,17 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using DiKErnel.KernelWrapper.Json.Input.Data.Generic;
-using DiKErnel.KernelWrapper.Json.Input.Data.Generic.Definitions;
 using DiKErnel.KernelWrapper.Json.Input.Data.Revetment.Definitions;
 using Newtonsoft.Json;
 
-namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassOvertopping
+namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputNaturalStone
 {
-    public class JsonInputGrassOvertoppingLocationData : JsonInputLocationData
+    public class JsonInputNaturalStoneCalculationDefinitionSlopeData
     {
-        [JsonProperty(JsonInputDefinitions.TYPE_TOP_LAYER)]
-        public JsonInputGrassRevetmentTopLayerType TopLayerType { get; private set; }
+        [JsonProperty(JsonInputNaturalStoneDefinitions.SLOPE_UPPER_LEVEL)]
+        public double SlopeUpperLevel { get; set; }
         
-        [JsonProperty(JsonInputGrassRevetmentDefinitions.INCREASED_LOAD_TRANSITION_ALPHA_M)]
-        public double IncreasedLoadTransitionAlphaM { get; set; }
-        
-        [JsonProperty(JsonInputGrassRevetmentDefinitions.REDUCED_STRENGTH_TRANSITION_ALPHA_S)]
-        public double ReducedStrengthTransitionAlphaS { get; set; }
+        [JsonProperty(JsonInputNaturalStoneDefinitions.SLOPE_LOWER_LEVEL)]
+        public double SlopeLowerLevel { get; set; }
     }
 }

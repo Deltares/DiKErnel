@@ -24,42 +24,28 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Generic
 {
     public class JsonInputDikeProfileData
     {
-        public JsonInputDikeProfileData(IEnumerable<double> xLocations,
-                                        IEnumerable<double> zLocations,
-                                        IEnumerable<double> roughnessCoefficients)
-        {
-            XLocations = xLocations;
-            ZLocations = zLocations;
-            RoughnessCoefficients = roughnessCoefficients;
-        }
-        
         [JsonProperty(JsonInputDefinitions.DIKE_PROFILE_POINTS_X)]
-        public IEnumerable<double> XLocations { get; }
+        public IEnumerable<double> XLocations { get; private set; }
 
         [JsonProperty(JsonInputDefinitions.DIKE_PROFILE_POINTS_Z)]
-        public IEnumerable<double> ZLocations { get; }
+        public IEnumerable<double> ZLocations { get; private set; }
 
         [JsonProperty(JsonInputDefinitions.DIKE_PROFILE_ROUGHNESS_COEFFICIENTS)]
-        public IEnumerable<double> RoughnessCoefficients { get; }
+        public IEnumerable<double> RoughnessCoefficients { get; private set; }
         
-        // [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
-        [JsonProperty(JsonInputDefinitions.CHARACTERISTIC_POINT_TYPE_OUTER_TOE)]
+        [JsonProperty(JsonInputDefinitions.CHARACTERISTIC_POINT_TYPE_OUTER_TOE, NullValueHandling=NullValueHandling.Ignore)]
         public double? OuterToe { get; set; }
-
-        // [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
-        [JsonProperty(JsonInputDefinitions.CHARACTERISTIC_POINT_TYPE_CREST_OUTER_BERM)]
+        
+        [JsonProperty(JsonInputDefinitions.CHARACTERISTIC_POINT_TYPE_CREST_OUTER_BERM, NullValueHandling=NullValueHandling.Ignore)]
         public double? CrestOuterBerm { get; set; }
         
-        // [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
-        [JsonProperty(JsonInputDefinitions.CHARACTERISTIC_POINT_TYPE_NOTCH_OUTER_BERM)]
+        [JsonProperty(JsonInputDefinitions.CHARACTERISTIC_POINT_TYPE_NOTCH_OUTER_BERM, NullValueHandling=NullValueHandling.Ignore)]
         public double? NotchOuterBerm { get; set; }
         
-        // [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
-        [JsonProperty(JsonInputDefinitions.CHARACTERISTIC_POINT_TYPE_OUTER_CREST)]
+        [JsonProperty(JsonInputDefinitions.CHARACTERISTIC_POINT_TYPE_OUTER_CREST, NullValueHandling=NullValueHandling.Ignore)]
         public double? OuterCrest { get; set; }
         
-        // [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
-        [JsonProperty(JsonInputDefinitions.CHARACTERISTIC_POINT_TYPE_INNER_CREST)]
+        [JsonProperty(JsonInputDefinitions.CHARACTERISTIC_POINT_TYPE_INNER_CREST, NullValueHandling=NullValueHandling.Ignore)]
         public double? InnerCrest { get; set; }
         
         // [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]

@@ -24,28 +24,16 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Generic
 {
     public class JsonInputHydraulicData
     {
-        public JsonInputHydraulicData(
-            IEnumerable<double> waterLevels,
-            IEnumerable<double> waveHeightsHm0,
-            IEnumerable<double> wavePeriodsTm10,
-            IEnumerable<double> waveAngles)
-        {
-            WaterLevels = waterLevels;
-            WaveHeightsHm0 = waveHeightsHm0;
-            WavePeriodsTm10 = wavePeriodsTm10;
-            WaveAngles = waveAngles;
-        }
-
         [JsonProperty(JsonInputDefinitions.WATER_LEVELS)]
-        public IEnumerable<double> WaterLevels { get; }
+        public IEnumerable<double> WaterLevels { get; private set; }
         
         [JsonProperty(JsonInputDefinitions.WAVE_HEIGHTS_HM0)]
-        public IEnumerable<double> WaveHeightsHm0 { get; }
+        public IEnumerable<double> WaveHeightsHm0 { get; private set; }
         
         [JsonProperty(JsonInputDefinitions.WAVE_PERIODS_TM10)]
-        public IEnumerable<double> WavePeriodsTm10 { get; }
+        public IEnumerable<double> WavePeriodsTm10 { get; private set; }
         
         [JsonProperty(JsonInputDefinitions.WAVE_ANGLES)]
-        public IEnumerable<double> WaveAngles { get; }
+        public IEnumerable<double> WaveAngles { get; private set; }
     }
 }

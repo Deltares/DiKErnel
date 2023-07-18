@@ -32,5 +32,6 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.Definitions
         public const string CALCULATION_PROTOCOL = "rekenprotocol";
         public const string CALCULATION_PROTOCOL_TYPE = "typeRekenprotocol";
         public const string CALCULATION_PROTOCOL_TYPE_RAYLEIGH_DISCRETE = "rayleighDiscreet";
+        public const string FRONT_VELOCITY = "frontsnelheid";
     }
 }
