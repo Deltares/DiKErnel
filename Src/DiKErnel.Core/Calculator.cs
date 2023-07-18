@@ -66,7 +66,7 @@ namespace DiKErnel.Core
         /// <remarks>An actual result is returned when the calculation is finished
         /// successfully, cancelled or finished in error. When the calculation is still
         /// running, <c>null</c> is returned.</remarks>
-        public DataResult<CalculationOutput> Result => task.Result;
+        public DataResult<CalculationOutput> Result => CalculationState != CalculationState.Running ? task.Result : null;
 
         /// <summary>
         /// Handle that enables a calling instance to wait for the calculation to complete.

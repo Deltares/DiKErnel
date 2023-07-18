@@ -16,20 +16,25 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using System;
+using System.Linq;
 using DiKErnel.Core.Data;
+using DiKErnel.Util;
 using NSubstitute;
 using NUnit.Framework;
+using Random = DiKErnel.TestUtil.Random;
 
 namespace DiKErnel.Core.Test
 {
     [TestFixture]
     public class CalculatorTest
     {
-        [Test]
-        public void GivenCalculatorWithCalculationInput_WhenWaitForCompletion_ThenCalculationPerformed()
+        private ICalculationInput calculationInput;
+
+        [SetUp]
+        public void SetUp()
         {
-            // Given
-            var calculationInput = Substitute.For<ICalculationInput>();
+            calculationInput = Substitute.For<ICalculationInput>();
 
             calculationInput.ProfileData.Returns(Substitute.For<IProfileData>());
 
@@ -45,15 +50,165 @@ namespace DiKErnel.Core.Test
                 Substitute.For<ITimeDependentInput>(),
                 Substitute.For<ITimeDependentInput>()
             });
+        }
 
+        [Test]
+        public void GivenCalculator_WhenWaitForCompletion_ThenCalculationPerformed()
+        {
+            // Given
             var calculator = new Calculator(calculationInput);
 
             // When
             calculator.WaitForCompletion();
 
             // Then
-            Assert.AreEqual(100, calculator.Progress);
             Assert.AreEqual(CalculationState.FinishedSuccessfully, calculator.CalculationState);
+            Assert.AreEqual(100, calculator.Progress);
+        }
+
+        [Test]
+        public void GivenCalculatorWithRunningCalculation_WhenCancelCalled_ThenCalculationCancelled()
+        {
+            // Given
+            var calculator = new Calculator(calculationInput);
+
+            // When
+            calculator.Cancel();
+            calculator.WaitForCompletion();
+
+            // Then
+            Assert.AreEqual(CalculationState.Cancelled, calculator.CalculationState);
+            Assert.AreNotEqual(100, calculator.Progress);
+        }
+
+        [Test]
+        public void GivenCalculatorWithFinishedCalculation_WhenCancelCalled_ThenCalculationNotCancelled()
+        {
+            // Given
+            var calculator = new Calculator(calculationInput);
+
+            calculator.WaitForCompletion();
+
+            // When
+            calculator.Cancel();
+
+            // Then
+            Assert.AreEqual(CalculationState.FinishedSuccessfully, calculator.CalculationState);
+            Assert.AreEqual(100, calculator.Progress);
+        }
+
+        [Test]
+        public void GivenCalculatorWithRunningCalculation_WhenGetCalculationState_ThenReturnsExpectedResult()
+        {
+            // Given
+            var calculator = new Calculator(calculationInput);
+
+            // When
+            CalculationState calculationState = calculator.CalculationState;
+
+            // Then
+            Assert.AreEqual(CalculationState.Running, calculationState);
+
+            calculator.WaitForCompletion();
+        }
+
+        [Test]
+        public void GivenCalculatorWithRunningCalculation_WhenGetResult_ThenReturnsNull()
+        {
+            // Given
+            var calculator = new Calculator(calculationInput);
+
+            // When
+            DataResult<CalculationOutput> result = calculator.Result;
+
+            // Then
+            Assert.IsNull(result);
+
+            calculator.WaitForCompletion();
+        }
+
+        [Test]
+        public void GivenCalculatorWithCancelledCalculation_WhenGetCalculationState_ThenExpectedResult()
+        {
+            // Given
+            var calculator = new Calculator(calculationInput);
+
+            calculator.Cancel();
+            calculator.WaitForCompletion();
+
+            // When
+            CalculationState calculationState = calculator.CalculationState;
+
+            // Then
+            Assert.AreEqual(CalculationState.Cancelled, calculationState);
+        }
+
+        [Test]
+        public void GivenCalculatorWithCancelledCalculation_WhenGetResult_ThenReturnsResultWithSuccessfulFalse()
+        {
+            // Given
+            var calculator = new Calculator(calculationInput);
+
+            calculator.Cancel();
+            calculator.WaitForCompletion();
+
+            // When
+            DataResult<CalculationOutput> result = calculator.Result;
+
+            // Then
+            Assert.IsFalse(result.Successful);
+        }
+
+        [Test]
+        public void GivenCalculatorWithExceptionDuringCalculation_WhenGetCalculationState_ThenExpectedResult()
+        {
+            // Given
+            ILocationDependentInput locationDependentInput = calculationInput.LocationDependentInputItems.Last();
+
+            locationDependentInput.Calculate(Arg.Any<double>(), Arg.Any<ITimeDependentInput>(), Arg.Any<IProfileData>())
+                                  .Returns(callInfo => Substitute.For<TimeDependentOutput>(Random.NextDouble(),
+                                                                                           Random.NextDouble(), null))
+                                  .AndDoes(callInfo => throw new InvalidOperationException());
+
+            var calculator = new Calculator(calculationInput);
+
+            calculator.WaitForCompletion();
+
+            // When
+            CalculationState calculationState = calculator.CalculationState;
+
+            // Then
+            Assert.AreEqual(CalculationState.FinishedInError, calculationState);
+        }
+
+        [Test]
+        public void GivenCalculatorWithExceptionDuringCalculation_WhenGetResult_ThenReturnsResultWithSuccessfulFalseAndEvent()
+        {
+            // Given
+            ILocationDependentInput locationDependentInput = calculationInput.LocationDependentInputItems.Last();
+
+            const string exceptionMessage = "Exception message";
+
+            locationDependentInput.Calculate(Arg.Any<double>(), Arg.Any<ITimeDependentInput>(), Arg.Any<IProfileData>())
+                                  .Returns(callInfo => Substitute.For<TimeDependentOutput>(Random.NextDouble(),
+                                                                                           Random.NextDouble(), null))
+                                  .AndDoes(callInfo => throw new InvalidOperationException(exceptionMessage));
+
+            var calculator = new Calculator(calculationInput);
+
+            calculator.WaitForCompletion();
+
+            // When
+            DataResult<CalculationOutput> result = calculator.Result;
+
+            // Then
+            Assert.IsFalse(result.Successful);
+            Assert.AreEqual(1, result.Events.Count());
+
+            Event exceptionEvent = result.Events.ElementAt(0);
+            Assert.AreEqual(EventType.Error, exceptionEvent.Type);
+            Assert.AreEqual("An unhandled error occurred while performing the calculation. See stack trace for more " +
+                            $"information:\n{exceptionMessage}", exceptionEvent.Message);
         }
     }
 }
