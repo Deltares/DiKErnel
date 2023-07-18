@@ -25,35 +25,33 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentWaveRunup
     /// </summary>
     public static class GrassRevetmentWaveRunupFunctions
     {
+        /// <summary>
+        /// Calculates the representative wave run-up (2 percent).
+        /// </summary>
+        /// <param name="input">The input to use for the calculation.</param>
+        /// <returns>The representative wave run-up (2 percent) [m].</returns>
+        public static double RepresentativeWaveRunup2P(GrassRevetmentWaveRunupRepresentative2PInput input)
+        {
+            return input.WaveHeightHm0
+                   * Math.Min(input.RepresentativeWaveRunup2PAru * input.RepresentativeWaveRunup2PGammab
+                                                                 * input.RepresentativeWaveRunup2PGammaf
+                                                                 * input.WaveAngleImpact * input.SurfSimilarityParameter,
+                              input.RepresentativeWaveRunup2PGammaf
+                              * input.WaveAngleImpact
+                              * (input.RepresentativeWaveRunup2PBru - input.RepresentativeWaveRunup2PCru
+                                 / Math.Sqrt(input.SurfSimilarityParameter)));
+        }
 
-    /// <summary>
-    /// Calculates the representative wave run-up (2 percent).
-    /// </summary>
-    /// <param name="input">The input to use for the calculation.</param>
-    /// <returns>The representative wave run-up (2 percent) [m].</returns>
-    public static double RepresentativeWaveRunup2P(GrassRevetmentWaveRunupRepresentative2PInput input)
-    {
-        return input.WaveHeightHm0
-               * Math.Min(input.RepresentativeWaveRunup2PAru * input.RepresentativeWaveRunup2PGammab
-                                                             * input.RepresentativeWaveRunup2PGammaf
-                                                             * input.WaveAngleImpact * input.SurfSimilarityParameter,
-                          input.RepresentativeWaveRunup2PGammaf
-                          * input.WaveAngleImpact
-                          * (input.RepresentativeWaveRunup2PBru - input.RepresentativeWaveRunup2PCru
-                             / Math.Sqrt(input.SurfSimilarityParameter)));
+        /// <summary>
+        /// Calculates the wave impact with respect to the wave angle.
+        /// </summary>
+        /// <param name="waveAngle">The wave angle [deg].</param>
+        /// <param name="waveAngleImpactAbeta">The Abeta coefficient [-].</param>
+        /// <param name="waveAngleImpactBetamax">The Betamax coefficient [-].</param>
+        /// <returns>The wave impact with respect to the wave angle [-].</returns>
+        public static double WaveAngleImpact(double waveAngle, double waveAngleImpactAbeta, double waveAngleImpactBetamax)
+        {
+            return 1.0 - waveAngleImpactAbeta * Math.Min(Math.Abs(waveAngle), waveAngleImpactBetamax);
+        }
     }
-
-    /// <summary>
-    /// Calculates the wave impact with respect to the wave angle.
-    /// </summary>
-    /// <param name="waveAngle">The wave angle [deg].</param>
-    /// <param name="waveAngleImpactAbeta">The Abeta coefficient [-].</param>
-    /// <param name="waveAngleImpactBetamax">The Betamax coefficient [-].</param>
-    /// <returns>The wave impact with respect to the wave angle [-].</returns>
-    public static double WaveAngleImpact(double waveAngle, double waveAngleImpactAbeta, double waveAngleImpactBetamax)
-    {
-        return 1.0 - waveAngleImpactAbeta * Math.Min(Math.Abs(waveAngle), waveAngleImpactBetamax);
-    }
-}
-
 }

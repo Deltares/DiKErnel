@@ -56,7 +56,7 @@ namespace DiKErnel.FunctionLibrary
         /// <param name="lowerLimitLoadingRevetment">The lower limit of loading [m].</param>
         /// <param name="upperLimitLoadingRevetment">The upper limit of loading [m].</param>
         /// <param name="z">The z coordinate [m].</param>
-        /// <returns>Whether there is loading of the revetment</returns>
+        /// <returns>Whether there is loading of the revetment.</returns>
         public static bool LoadingRevetment(double lowerLimitLoadingRevetment, double upperLimitLoadingRevetment, double z)
         {
             return z >= lowerLimitLoadingRevetment && z <= upperLimitLoadingRevetment;
@@ -90,7 +90,7 @@ namespace DiKErnel.FunctionLibrary
         }
 
         /// <summary>
-        /// Calculates the vertical distance of the water elevation. 
+        /// Calculates the vertical distance of the water elevation.
         /// </summary>
         /// <param name="z">The z coordinate [m].</param>
         /// <param name="waterLevel">The water level [m].</param>

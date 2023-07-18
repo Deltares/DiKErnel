@@ -31,7 +31,7 @@ namespace DiKErnel.FunctionLibrary.AsphaltRevetmentWaveImpact
         /// <param name="logFailureTension">The logarithm of the failure tension [MPa].</param>
         /// <param name="averageNumberOfWaves">The average number of waves [-].</param>
         /// <param name="maximumPeakStress">The maximum peak stress [MPa].</param>
-        /// <param name="stiffnessRelation">The stiffness relation [m^-1]</param>
+        /// <param name="stiffnessRelation">The stiffness relation [m^-1].</param>
         /// <param name="computationalThickness">The computational thickness [m].</param>
         /// <param name="outerSlope">The outer slope [-].</param>
         /// <param name="widthFactors">The width factors [-].</param>

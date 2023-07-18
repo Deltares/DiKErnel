@@ -97,8 +97,8 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneRevetment
         /// <summary>
         /// Gets an indicator whether the input has a berm.
         /// </summary>
-        /// <remarks><c>false</c> when one of the berm properties is <see cref="double.PositiveInfinity"/>;
-        /// <c>true</c> otherwise.</remarks>
+        /// <remarks><c>false</c> when one of the berm properties is
+        /// <see cref="double.PositiveInfinity"/>; <c>true</c> otherwise.</remarks>
         public bool HasBerm => !(double.IsInfinity(NotchOuterBermPosition)
                                || double.IsInfinity(NotchOuterBermHeight)
                                || double.IsInfinity(CrestOuterBermPosition)

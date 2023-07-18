@@ -55,7 +55,8 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentWaveImpact
         /// </summary>
         /// <param name="minimumWaveHeight">The minimum wave height [m].</param>
         /// <param name="maximumWaveHeight">The maximum wave height [m].</param>
-        /// <param name="waveAngleImpact">The wave impact with respect to the wave angle [-].</param>
+        /// <param name="waveAngleImpact">The wave impact with respect to the wave
+        /// angle [-].</param>
         /// <param name="waveHeightHm0">The wave height [m].</param>
         /// <returns>The wave height with respect to the wave impact [m].</returns>
         public static double WaveHeightImpact(double minimumWaveHeight, double maximumWaveHeight, double waveAngleImpact,

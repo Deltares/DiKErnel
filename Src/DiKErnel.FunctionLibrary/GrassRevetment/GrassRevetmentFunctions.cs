@@ -29,14 +29,16 @@ namespace DiKErnel.FunctionLibrary.GrassRevetment
         /// Calculates the increment of damage.
         /// </summary>
         /// <param name="cumulativeOverload">The cumulative overload [m^2/s^2].</param>
-        /// <param name="criticalCumulativeOverload">The critical cumulative overload [m^2/s^2].</param>
+        /// <param name="criticalCumulativeOverload">The critical cumulative
+        /// overload [m^2/s^2].</param>
         /// <returns>The increment of damage [-].</returns>
         public static double IncrementDamage(double cumulativeOverload, double criticalCumulativeOverload)
         {
             return cumulativeOverload / criticalCumulativeOverload;
         }
         
-        internal static double CumulativeOverload(GrassRevetmentCumulativeOverloadInput input, Func<double, double> getFrontVelocityFunc) 
+        internal static double CumulativeOverload(GrassRevetmentCumulativeOverloadInput input, 
+                                                  Func<double, double> getFrontVelocityFunc) 
         {
             double cumulativeFrontVelocity = 0.0;
 

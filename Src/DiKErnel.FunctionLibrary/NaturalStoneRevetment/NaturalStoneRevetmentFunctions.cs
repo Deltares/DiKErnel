@@ -225,9 +225,9 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneRevetment
         /// <param name="resistance">The resistance [m].</param>
         /// <param name="hydraulicLoad">The hydraulic load [m].</param>
         /// <param name="waveAngleImpact">The wave impact with respect to the wave
-        /// angle.</param>
-        /// <param name="initialDamage"></param>
-        /// <returns></returns>
+        /// angle [-].</param>
+        /// <param name="initialDamage">The initial damage [-].</param>
+        /// <returns>The reference of degradation [-].</returns>
         public static double ReferenceDegradation(double resistance, double hydraulicLoad, double waveAngleImpact,
                                                   double initialDamage)
         {
@@ -262,7 +262,8 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneRevetment
         /// </summary>
         /// <param name="resistance">The resistance [m].</param>
         /// <param name="hydraulicLoad">The hydraulic load [m].</param>
-        /// <param name="waveAngleImpact">The wave impact with respect to the wave angle [-].</param>
+        /// <param name="waveAngleImpact">The wave impact with respect to the wave
+        /// angle [-].</param>
         /// <param name="failureNumber">The failure number [-].</param>
         /// <returns>The reference of failure [-].</returns>
         public static double ReferenceFailure(double resistance, double hydraulicLoad, double waveAngleImpact,
