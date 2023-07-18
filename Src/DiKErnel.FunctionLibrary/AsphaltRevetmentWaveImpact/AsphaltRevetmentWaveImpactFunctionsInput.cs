@@ -85,7 +85,7 @@ namespace DiKErnel.FunctionLibrary.AsphaltRevetmentWaveImpact
         public double MaximumPeakStress { get; private set; }
 
         /// <summary>
-        /// Gets the stiffness relation [m^-1]
+        /// Gets the stiffness relation [m^-1].
         /// </summary>
         public double StiffnessRelation { get; private set; }
 
