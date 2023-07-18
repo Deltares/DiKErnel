@@ -131,7 +131,8 @@ namespace DiKErnel.Core.Test
             Assert.AreEqual(EventType.Error, validationEvent.Type);
 
             Event exceptionEvent = validationResult.Events.ElementAt(1);
-            Assert.AreEqual("An unhandled error occurred while validating the calculation input. See stack trace for more information:\n" + exceptionMessage, exceptionEvent.Message);
+            Assert.AreEqual("An unhandled error occurred while validating the calculation input. See stack trace for more" +
+                            "information:\n" + exceptionMessage, exceptionEvent.Message);
             Assert.AreEqual(EventType.Error, exceptionEvent.Type);
         }
     }
