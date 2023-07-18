@@ -16,6 +16,7 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using DiKErnel.Core.Data;
@@ -82,6 +83,56 @@ namespace DiKErnel.Core.Test
             Assert.IsTrue(validationResult.Successful);
             Assert.AreEqual(expectedValidationResultType, validationResult.Data);
             Assert.AreEqual(3, validationResult.Events.Count());
+        }
+
+        [Test]
+        public void Validate_ExceptionOccurred_ReturnsExpectedResult()
+        {
+            // Setup
+            const string exceptionMessage = "Exception message";
+            const string validationMessage = "Validation message";
+
+            var profileData = Substitute.For<IProfileData>();
+            profileData.Validate()
+                       .Returns(false)
+                       .AndDoes(callInfo => EventRegistry.Register(new Event(validationMessage, EventType.Error)));
+
+            var locationDependentInput = Substitute.For<ILocationDependentInput>();
+            locationDependentInput.Validate(Arg.Any<IEnumerable<ITimeDependentInput>>(), Arg.Any<IProfileData>())
+                                  .Returns(true)
+                                  .AndDoes(callInfo => throw new InvalidOperationException(exceptionMessage));
+
+            var timeDependentInput = Substitute.For<ITimeDependentInput>();
+            timeDependentInput.Validate().Returns(true);
+
+            var calculationInput = Substitute.For<ICalculationInput>();
+
+            calculationInput.ProfileData.Returns(profileData);
+
+            calculationInput.LocationDependentInputItems.Returns(new[]
+            {
+                locationDependentInput
+            });
+
+            calculationInput.TimeDependentInputItems.Returns(new[]
+            {
+                timeDependentInput
+            });
+
+            // Call
+            DataResult<ValidationResultType> validationResult = Validator.Validate(calculationInput);
+
+            // Assert
+            Assert.IsFalse(validationResult.Successful);
+            Assert.AreEqual(2, validationResult.Events.Count());
+
+            Event validationEvent = validationResult.Events.ElementAt(0);
+            Assert.AreEqual(validationMessage, validationEvent.Message);
+            Assert.AreEqual(EventType.Error, validationEvent.Type);
+
+            Event exceptionEvent = validationResult.Events.ElementAt(1);
+            Assert.AreEqual("An unhandled error occurred while validating the calculation input. See stack trace for more information:\n" + exceptionMessage, exceptionEvent.Message);
+            Assert.AreEqual(EventType.Error, exceptionEvent.Type);
         }
     }
 }
