@@ -51,7 +51,7 @@ namespace DiKErnel.FunctionLibrary.Test.GrassRevetmentWaveRunup
             // Assert
             AssertHelper.AssertAreEqualWithinTolerance(5.635949616, representativeWaveRunup2P);
         }
-        
+
         [Test]
         public void WaveAngleImpact_ValidInput_ExpectedValue()
         {

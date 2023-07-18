@@ -103,7 +103,7 @@ namespace DiKErnel.FunctionLibrary.Test
             const double z = 1.5;
 
             // Call
-            bool loadingRevetment = HydraulicLoadFunctions.LoadingRevetment(lowerLimitLoadingRevetment, 
+            bool loadingRevetment = HydraulicLoadFunctions.LoadingRevetment(lowerLimitLoadingRevetment,
                                                                             upperLimitLoadingRevetment, z);
 
             // Assert
@@ -119,7 +119,7 @@ namespace DiKErnel.FunctionLibrary.Test
             const double z = 1.5;
 
             // Call
-            bool loadingRevetment = HydraulicLoadFunctions.LoadingRevetment(lowerLimitLoadingRevetment, 
+            bool loadingRevetment = HydraulicLoadFunctions.LoadingRevetment(lowerLimitLoadingRevetment,
                                                                             upperLimitLoadingRevetment, z);
 
             // Assert
@@ -151,7 +151,7 @@ namespace DiKErnel.FunctionLibrary.Test
             const double z = 1.5;
 
             // Call
-            bool loadingRevetment = HydraulicLoadFunctions.LoadingRevetment(lowerLimitLoadingRevetment, 
+            bool loadingRevetment = HydraulicLoadFunctions.LoadingRevetment(lowerLimitLoadingRevetment,
                                                                             upperLimitLoadingRevetment, z);
 
             // Assert
@@ -167,7 +167,7 @@ namespace DiKErnel.FunctionLibrary.Test
             const double z = 1.5;
 
             // Call
-            bool loadingRevetment = HydraulicLoadFunctions.LoadingRevetment(lowerLimitLoadingRevetment, 
+            bool loadingRevetment = HydraulicLoadFunctions.LoadingRevetment(lowerLimitLoadingRevetment,
                                                                             upperLimitLoadingRevetment, z);
 
             // Assert
@@ -200,7 +200,7 @@ namespace DiKErnel.FunctionLibrary.Test
             const double gravitationalAcceleration = 9.81;
 
             // Call
-            double surfSimilarityParameter = HydraulicLoadFunctions.SurfSimilarityParameter(outerSlope, waveHeightHm0, 
+            double surfSimilarityParameter = HydraulicLoadFunctions.SurfSimilarityParameter(outerSlope, waveHeightHm0,
                                                                                             wavePeriodTm10,
                                                                                             gravitationalAcceleration);
             // Assert
@@ -215,7 +215,7 @@ namespace DiKErnel.FunctionLibrary.Test
             const double waterLevel = 0.03;
 
             // Call
-            double verticalDistanceWaterLevelElevation = 
+            double verticalDistanceWaterLevelElevation =
                 HydraulicLoadFunctions.VerticalWaterDistanceWaterLevelElevation(z, waterLevel);
 
             // Assert

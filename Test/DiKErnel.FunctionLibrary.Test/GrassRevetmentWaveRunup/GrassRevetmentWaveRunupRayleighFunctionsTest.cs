@@ -39,14 +39,13 @@ namespace DiKErnel.FunctionLibrary.Test.GrassRevetmentWaveRunup
             const double gravitationalAcceleration = 9.81;
             const double frontVelocityCu = 1.3;
 
-            var input = new GrassRevetmentWaveRunupRayleighCumulativeOverloadInput(averageNumberOfWaves, representativeWaveRunup2P, 
-                                                                                   fixedNumberOfWaves, 
-                                                                                   verticalDistanceWaterLevelElevation, 
-                                                                                   criticalFrontVelocity, 
+            var input = new GrassRevetmentWaveRunupRayleighCumulativeOverloadInput(averageNumberOfWaves, representativeWaveRunup2P,
+                                                                                   fixedNumberOfWaves,
+                                                                                   verticalDistanceWaterLevelElevation,
+                                                                                   criticalFrontVelocity,
                                                                                    increasedLoadTransitionAlphaM,
-                                                                                   reducedStrengthTransitionAlphaS, 
+                                                                                   reducedStrengthTransitionAlphaS,
                                                                                    gravitationalAcceleration, frontVelocityCu);
-           
 
             // Call
             double cumulativeOverload = GrassRevetmentWaveRunupRayleighFunctions.CumulativeOverload(input);

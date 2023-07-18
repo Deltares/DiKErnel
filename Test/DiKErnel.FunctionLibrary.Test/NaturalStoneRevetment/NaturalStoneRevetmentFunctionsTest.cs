@@ -460,7 +460,7 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneRevetment
             // Assert
             AssertHelper.AssertAreEqualWithinTolerance(2.4840179879700712, distanceMaximumWaveElevation);
         }
-        
+
         [Test]
         public void NormativeWidthWaveImpact_ValidInput_ExpectedValue()
         {
@@ -477,7 +477,7 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneRevetment
             // Assert
             AssertHelper.AssertAreEqualWithinTolerance(1.47456, normativeWidthWaveImpact);
         }
-        
+
         [Test]
         public static void WaveAngleImpact_ValidInput_ExpectedValue()
         {
@@ -491,7 +491,7 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneRevetment
             // Assert
             AssertHelper.AssertAreEqualWithinTolerance(0.99746152040928704, waveAngleImpact);
         }
-        
+
         [Test]
         public void Resistance_ValidInput_ExpectedValue()
         {
@@ -505,7 +505,7 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneRevetment
             // Assert
             AssertHelper.AssertAreEqualWithinTolerance(0.495, resistance);
         }
-        
+
         [Test]
         public static void IncrementDegradation_ValidInput_ExpectedValue()
         {
@@ -521,7 +521,7 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneRevetment
             // Assert
             AssertHelper.AssertAreEqualWithinTolerance(0.078442472004777053, incrementDegradation);
         }
-        
+
         [Test]
         public void ReferenceTimeDegradation_ValidInput_ExpectedValue()
         {
@@ -536,7 +536,7 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneRevetment
             // Assert
             AssertHelper.AssertAreEqualWithinTolerance(605.48915987364103, referenceTimeDegradation);
         }
-        
+
         [Test]
         public void ReferenceDegradation_ValidInput_ExpectedValue()
         {
@@ -553,7 +553,7 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneRevetment
             // Assert
             AssertHelper.AssertAreEqualWithinTolerance(0.80236244447628591, referenceDegradation);
         }
-        
+
         [Test]
         public void DurationInTimeStepFailure_ValidInput_ExpectedValue()
         {
@@ -568,7 +568,7 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneRevetment
             // Assert
             AssertHelper.AssertAreEqualWithinTolerance(348.2, durationInTimeStepFailure);
         }
-        
+
         [Test]
         public void ReferenceTimeFailure_ValidInput_ExpectedValue()
         {
@@ -582,7 +582,7 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneRevetment
             // Assert
             AssertHelper.AssertAreEqualWithinTolerance(961.95675821289467, referenceTimeFailure);
         }
-        
+
         [Test]
         public void ReferenceFailure_ValidInput_ExpectedValue()
         {

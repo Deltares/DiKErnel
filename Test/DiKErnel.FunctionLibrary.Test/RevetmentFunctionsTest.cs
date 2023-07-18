@@ -167,7 +167,7 @@ namespace DiKErnel.FunctionLibrary.Test
             const double initialDamage = 0.836;
 
             // Call
-            double durationInTimeStepFailure = RevetmentFunctions.DurationInTimeStepFailure(incrementTime, incrementDamage, 
+            double durationInTimeStepFailure = RevetmentFunctions.DurationInTimeStepFailure(incrementTime, incrementDamage,
                                                                                             failureNumber, initialDamage);
 
             // Assert

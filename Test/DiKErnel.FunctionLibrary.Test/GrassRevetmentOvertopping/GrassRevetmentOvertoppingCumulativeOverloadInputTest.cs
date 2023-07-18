@@ -16,6 +16,7 @@
 // // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using DiKErnel.FunctionLibrary.GrassRevetment;
 using DiKErnel.FunctionLibrary.GrassRevetmentOvertopping;
 using DiKErnel.TestUtil;
 using NUnit.Framework;
@@ -42,14 +43,16 @@ namespace DiKErnel.FunctionLibrary.Test.GrassRevetmentOvertopping
 
             // Call
             var input = new GrassRevetmentOvertoppingCumulativeOverloadInput(averageNumberOfWaves, representativeWaveRunup2P,
-                                                                  fixedNumberOfWaves, verticalDistanceWaterLevelElevation,
-                                                                  criticalFrontVelocity, increasedLoadTransitionAlphaM,
-                                                                  reducedStrengthTransitionAlphaS, gravitationalAcceleration,
-                                                                  accelerationAlphaA, frontVelocityCwo);
+                                                                             fixedNumberOfWaves,
+                                                                             verticalDistanceWaterLevelElevation,
+                                                                             criticalFrontVelocity, increasedLoadTransitionAlphaM,
+                                                                             reducedStrengthTransitionAlphaS, 
+                                                                             gravitationalAcceleration, accelerationAlphaA,
+                                                                             frontVelocityCwo);
 
             // Assert
-            Assert.IsInstanceOf<FunctionLibrary.GrassRevetment.GrassRevetmentCumulativeOverloadInput>(input);
-            
+            Assert.IsInstanceOf<GrassRevetmentCumulativeOverloadInput>(input);
+
             Assert.AreEqual(averageNumberOfWaves, input.AverageNumberOfWaves);
             Assert.AreEqual(representativeWaveRunup2P, input.RepresentativeWaveRunup2P);
             Assert.AreEqual(fixedNumberOfWaves, input.FixedNumberOfWaves);

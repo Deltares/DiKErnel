@@ -36,11 +36,11 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneRevetment
             double a = Random.NextDouble();
             double b = Random.NextDouble();
             double c = Random.NextDouble();
-            
+
             // Call
             var input = new NaturalStoneRevetmentLimitLoadingInput(depthMaximumWaveLoad, surfSimilarityParameter, waterLevel,
                                                                    waveHeightHm0, a, b, c);
-            
+
             // Assert
             Assert.AreEqual(depthMaximumWaveLoad, input.DepthMaximumWaveLoad);
             Assert.AreEqual(surfSimilarityParameter, input.SurfSimilarityParameter);

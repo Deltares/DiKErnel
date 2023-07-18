@@ -51,7 +51,7 @@ namespace DiKErnel.FunctionLibrary.Test.AsphaltRevetmentWaveImpact
 
             // Call
             var input = new AsphaltRevetmentWaveImpactFunctionsInput(logFailureTension, averageNumberOfWaves, maximumPeakStress,
-                                                                     stiffnessRelation, computationalThickness, outerSlope, 
+                                                                     stiffnessRelation, computationalThickness, outerSlope,
                                                                      widthFactors, depthFactors, impactFactors, z, waterLevel,
                                                                      waveHeightHm0, fatigueAlpha, fatigueBeta, impactNumberC);
 

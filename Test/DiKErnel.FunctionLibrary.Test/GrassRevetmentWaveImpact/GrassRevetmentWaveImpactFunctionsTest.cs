@@ -83,13 +83,13 @@ namespace DiKErnel.FunctionLibrary.Test.GrassRevetmentWaveImpact
             const double minimumWaveHeightTemax = 3600000.0;
 
             // Call
-            double minimumWaveHeight = GrassRevetmentWaveImpactFunctions.MinimumWaveHeight(timeLineAgwi, timeLineBgwi, 
+            double minimumWaveHeight = GrassRevetmentWaveImpactFunctions.MinimumWaveHeight(timeLineAgwi, timeLineBgwi,
                                                                                            timeLineCgwi, minimumWaveHeightTemax);
 
             // Assert
             AssertHelper.AssertAreEqualWithinTolerance(0.25, minimumWaveHeight);
         }
-        
+
         [Test]
         public void MaximumWaveHeight_ValidInput_ExpectedValue()
         {
@@ -106,7 +106,7 @@ namespace DiKErnel.FunctionLibrary.Test.GrassRevetmentWaveImpact
             // Assert
             AssertHelper.AssertAreEqualWithinTolerance(1.0499440147590584, maximumWaveHeight);
         }
-        
+
         [Test]
         public void WaveAngleImpact_ValidInputAndWaveAngleSmallerThan90Degrees_ExpectedValue()
         {
@@ -123,7 +123,7 @@ namespace DiKErnel.FunctionLibrary.Test.GrassRevetmentWaveImpact
             // Assert
             AssertHelper.AssertAreEqualWithinTolerance(0.79278413661028446, waveAngleImpact);
         }
-        
+
         [Test]
         public void WaveAngleImpact_ValidInputAndWaveAngleEqualTo90Degrees_ExpectedValue()
         {
@@ -134,7 +134,7 @@ namespace DiKErnel.FunctionLibrary.Test.GrassRevetmentWaveImpact
             const double waveAngleImpactRwa = 10.0;
 
             // Call
-            double waveAngleImpact = GrassRevetmentWaveImpactFunctions.WaveAngleImpact(waveAngle, waveAngleImpactNwa, 
+            double waveAngleImpact = GrassRevetmentWaveImpactFunctions.WaveAngleImpact(waveAngle, waveAngleImpactNwa,
                                                                                        waveAngleImpactQwa, waveAngleImpactRwa);
 
             // Assert
@@ -157,7 +157,7 @@ namespace DiKErnel.FunctionLibrary.Test.GrassRevetmentWaveImpact
             // Assert
             AssertHelper.AssertAreEqualWithinTolerance(0.315, waveAngleImpact);
         }
-        
+
         [Test]
         public void UpperLimitLoading_ValidInput_ExpectedValue()
         {
@@ -167,13 +167,13 @@ namespace DiKErnel.FunctionLibrary.Test.GrassRevetmentWaveImpact
             const double upperLimitLoadingAul = 0.001;
 
             // Call
-            double upperLimitLoading = GrassRevetmentWaveImpactFunctions.UpperLimitLoading(waterLevel, waveHeightHm0, 
+            double upperLimitLoading = GrassRevetmentWaveImpactFunctions.UpperLimitLoading(waterLevel, waveHeightHm0,
                                                                                            upperLimitLoadingAul);
 
             // Assert
             AssertHelper.AssertAreEqualWithinTolerance(0.029, upperLimitLoading);
         }
-        
+
         [Test]
         public void LowerLimitLoading_ValidInput_ExpectedValue()
         {
@@ -183,7 +183,7 @@ namespace DiKErnel.FunctionLibrary.Test.GrassRevetmentWaveImpact
             const double lowerLimitLoadingAll = 0.5;
 
             // Call
-            double lowerLimitLoading = GrassRevetmentWaveImpactFunctions.LowerLimitLoading(waterLevel, waveHeightHm0, 
+            double lowerLimitLoading = GrassRevetmentWaveImpactFunctions.LowerLimitLoading(waterLevel, waveHeightHm0,
                                                                                            lowerLimitLoadingAll);
 
             // Assert
