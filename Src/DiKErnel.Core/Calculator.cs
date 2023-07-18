@@ -104,41 +104,21 @@ namespace DiKErnel.Core
                                                                                      .Select(c => new List<TimeDependentOutput>())
                                                                                      .ToList();
 
-                for (var i = 0; i < timeDependentInputItems.Length; i++)
+                foreach (ITimeDependentInput timeDependentInput in timeDependentInputItems)
                 {
-                    if (calculationState == CalculationState.Cancelled)
-                    {
-                        break;
-                    }
-
-                    ITimeDependentInput timeDependentInput = timeDependentInputItems[i];
-
-                    for (var j = 0; j < locationDependentInputItems.Length; j++)
+                    for (var i = 0; i < locationDependentInputItems.Length; i++)
                     {
                         if (calculationState == CalculationState.Cancelled)
                         {
                             break;
                         }
 
-                        ILocationDependentInput locationDependentInput = locationDependentInputItems[j];
+                        ILocationDependentInput locationDependentInput = locationDependentInputItems[i];
+                        TimeDependentOutput timeDependentOutput = locationDependentInput.Calculate(
+                            timeDependentOutputItems[i].LastOrDefault()?.Damage ?? locationDependentInput.InitialDamage,
+                            timeDependentInput, profileData);
 
-                        double initialDamage;
-
-                        if (i == 0)
-                        {
-                            initialDamage = locationDependentInput.InitialDamage;
-                            timeDependentOutputItems.Add(new List<TimeDependentOutput>());
-                        }
-                        else
-                        {
-                            initialDamage = timeDependentOutputItems[j].Last().Damage;
-                        }
-
-                        TimeDependentOutput timeDependentOutput = locationDependentInput.Calculate(initialDamage,
-                                                                                                   timeDependentInput,
-                                                                                                   profileData);
-
-                        timeDependentOutputItems[j].Add(timeDependentOutput);
+                        timeDependentOutputItems[i].Add(timeDependentOutput);
 
                         progress += progressPerCalculationStep;
                     }
