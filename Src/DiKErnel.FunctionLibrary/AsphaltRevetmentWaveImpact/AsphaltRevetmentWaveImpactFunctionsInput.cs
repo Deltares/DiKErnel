@@ -43,12 +43,12 @@ namespace DiKErnel.FunctionLibrary.AsphaltRevetmentWaveImpact
         /// <param name="fatigueAlpha">The fatigue alpha coefficient [-].</param>
         /// <param name="fatigueBeta">The fatigue beta coefficient [-].</param>
         /// <param name="impactNumberC">The impact number c coefficient [-].</param>
-        public AsphaltRevetmentWaveImpactFunctionsInput(double logFailureTension, double averageNumberOfWaves, 
+        public AsphaltRevetmentWaveImpactFunctionsInput(double logFailureTension, double averageNumberOfWaves,
                                                         double maximumPeakStress, double stiffnessRelation,
-                                                        double computationalThickness, double outerSlope, 
-                                                        IEnumerable<(double, double)> widthFactors, 
-                                                        IEnumerable<(double, double)> depthFactors, 
-                                                        IEnumerable<(double, double)> impactFactors, 
+                                                        double computationalThickness, double outerSlope,
+                                                        IEnumerable<(double, double)> widthFactors,
+                                                        IEnumerable<(double, double)> depthFactors,
+                                                        IEnumerable<(double, double)> impactFactors,
                                                         double z, double waterLevel, double waveHeightHm0, double fatigueAlpha,
                                                         double fatigueBeta, double impactNumberC)
         {
@@ -68,7 +68,7 @@ namespace DiKErnel.FunctionLibrary.AsphaltRevetmentWaveImpact
             FatigueBeta = fatigueBeta;
             ImpactNumberC = impactNumberC;
         }
-        
+
         /// <summary>
         /// Gets the logarithm of the failure tension [MPa].
         /// </summary>

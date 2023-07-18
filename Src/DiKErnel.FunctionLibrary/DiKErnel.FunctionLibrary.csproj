@@ -1,9 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-    <Import Project="$(SolutionDir)build\NetStandard.targets" />
+    <Import Project="$(SolutionDir)build\NetStandard.targets"/>
 
     <ItemGroup>
-      <ProjectReference Include="..\DiKErnel.External.Overtopping\DiKErnel.External.Overtopping.csproj" />
+        <ProjectReference Include="..\DiKErnel.External.Overtopping\DiKErnel.External.Overtopping.csproj"/>
     </ItemGroup>
 
 </Project>

@@ -36,11 +36,11 @@ namespace DiKErnel.FunctionLibrary.GrassRevetment
         {
             return cumulativeOverload / criticalCumulativeOverload;
         }
-        
-        internal static double CumulativeOverload(GrassRevetmentCumulativeOverloadInput input, 
-                                                  Func<double, double> getFrontVelocityFunc) 
+
+        internal static double CumulativeOverload(GrassRevetmentCumulativeOverloadInput input,
+                                                  Func<double, double> getFrontVelocityFunc)
         {
-            double cumulativeFrontVelocity = 0.0;
+            var cumulativeFrontVelocity = 0.0;
 
             for (var k = 1; k <= input.FixedNumberOfWaves; ++k)
             {
@@ -48,13 +48,13 @@ namespace DiKErnel.FunctionLibrary.GrassRevetment
                 double frontVelocity = getFrontVelocityFunc(waveRunup);
 
                 cumulativeFrontVelocity += Math.Max(0.0, input.IncreasedLoadTransitionAlphaM * Math.Pow(frontVelocity, 2.0)
-                                                         - input.ReducedStrengthTransitionAlphaS 
+                                                         - input.ReducedStrengthTransitionAlphaS
                                                          * Math.Pow(input.CriticalFrontVelocity, 2.0));
             }
 
             return input.AverageNumberOfWaves / input.FixedNumberOfWaves * cumulativeFrontVelocity;
         }
-        
+
         private static double WaveRunup(double representativeWaveRunup2P, int fixedNumberOfWaves, int waveNumber)
         {
             return representativeWaveRunup2P * Math.Sqrt(Math.Log(1.0 - waveNumber / (fixedNumberOfWaves + 1.0))

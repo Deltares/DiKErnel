@@ -100,8 +100,8 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneRevetment
         /// <remarks><c>false</c> when one of the berm properties is
         /// <see cref="double.PositiveInfinity"/>; <c>true</c> otherwise.</remarks>
         public bool HasBerm => !(double.IsInfinity(NotchOuterBermPosition)
-                               || double.IsInfinity(NotchOuterBermHeight)
-                               || double.IsInfinity(CrestOuterBermPosition)
-                               || double.IsInfinity(CrestOuterBermHeight));
+                                 || double.IsInfinity(NotchOuterBermHeight)
+                                 || double.IsInfinity(CrestOuterBermPosition)
+                                 || double.IsInfinity(CrestOuterBermHeight));
     }
 }

@@ -37,10 +37,10 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneRevetment
         {
             SurfSimilarityParameter = surfSimilarityParameter;
             WaveHeightHm0 = waveHeightHm0;
-            this.A = a;
-            this.B = b;
-            this.C = c;
-            this.N = n;
+            A = a;
+            B = b;
+            C = c;
+            N = n;
         }
 
         /// <summary>

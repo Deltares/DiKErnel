@@ -37,10 +37,10 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentWaveRunup
         /// <param name="representativeWaveRunup2PBru">The Bru coefficient [-].</param>
         /// <param name="representativeWaveRunup2PCru">The Cru coefficient [-].</param>
         public GrassRevetmentWaveRunupRepresentative2PInput(double surfSimilarityParameter, double waveAngleImpact,
-                                                            double waveHeightHm0, double representativeWaveRunup2PGammab, 
+                                                            double waveHeightHm0, double representativeWaveRunup2PGammab,
                                                             double representativeWaveRunup2PGammaf,
-                                                            double representativeWaveRunup2PAru, 
-                                                            double representativeWaveRunup2PBru, 
+                                                            double representativeWaveRunup2PAru,
+                                                            double representativeWaveRunup2PBru,
                                                             double representativeWaveRunup2PCru)
         {
             SurfSimilarityParameter = surfSimilarityParameter;

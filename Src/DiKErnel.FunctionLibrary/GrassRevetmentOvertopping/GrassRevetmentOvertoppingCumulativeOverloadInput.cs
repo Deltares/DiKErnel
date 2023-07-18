@@ -16,12 +16,14 @@
 // // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using DiKErnel.FunctionLibrary.GrassRevetment;
+
 namespace DiKErnel.FunctionLibrary.GrassRevetmentOvertopping
 {
     /// <summary>
     /// Input for a grass revetment overtopping cumulative overload calculation.
     /// </summary>
-    public class GrassRevetmentOvertoppingCumulativeOverloadInput : GrassRevetment.GrassRevetmentCumulativeOverloadInput
+    public class GrassRevetmentOvertoppingCumulativeOverloadInput : GrassRevetmentCumulativeOverloadInput
     {
         /// <summary>
         /// Creates a new instance of
@@ -33,7 +35,7 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentOvertopping
         public GrassRevetmentOvertoppingCumulativeOverloadInput(double averageNumberOfWaves, double representativeWaveRunup2P,
                                                                 int fixedNumberOfWaves, double verticalDistanceWaterLevelElevation,
                                                                 double criticalFrontVelocity, double increasedLoadTransitionAlphaM,
-                                                                double reducedStrengthTransitionAlphaS, 
+                                                                double reducedStrengthTransitionAlphaS,
                                                                 double gravitationalAcceleration, double accelerationAlphaA,
                                                                 double frontVelocityCwo)
             : base(averageNumberOfWaves, representativeWaveRunup2P, fixedNumberOfWaves, verticalDistanceWaterLevelElevation,

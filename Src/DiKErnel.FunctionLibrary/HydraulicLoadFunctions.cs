@@ -73,7 +73,7 @@ namespace DiKErnel.FunctionLibrary
         public static double SurfSimilarityParameter(double outerSlope, double waveHeightHm0, double wavePeriodTm10,
                                                      double gravitationalAcceleration)
         {
-            return outerSlope / Math.Sqrt(2.0 * Math.PI * waveHeightHm0 / (gravitationalAcceleration 
+            return outerSlope / Math.Sqrt(2.0 * Math.PI * waveHeightHm0 / (gravitationalAcceleration
                                                                            * Math.Pow(wavePeriodTm10, 2.0)));
         }
 

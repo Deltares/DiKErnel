@@ -100,7 +100,7 @@ namespace DiKErnel.FunctionLibrary.AsphaltRevetmentWaveImpact
         public static double ComputationalThickness(double thicknessUpperLayer, double thicknessSubLayer,
                                                     double elasticModulusUpperLayer, double elasticModulusSubLayer)
         {
-            return thicknessUpperLayer * Math.Pow(elasticModulusUpperLayer / elasticModulusSubLayer, 1.0 / 3.0) 
+            return thicknessUpperLayer * Math.Pow(elasticModulusUpperLayer / elasticModulusSubLayer, 1.0 / 3.0)
                    + thicknessSubLayer;
         }
 
@@ -117,7 +117,7 @@ namespace DiKErnel.FunctionLibrary.AsphaltRevetmentWaveImpact
         {
             return (slopeUpperLevel - slopeLowerLevel) / (slopeUpperPosition - slopeLowerPosition);
         }
-        
+
         private static double DepthFactorAccumulation(AsphaltRevetmentWaveImpactFunctionsInput input,
                                                       double relativeWidthWaveImpact, double sinA)
         {

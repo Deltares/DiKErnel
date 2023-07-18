@@ -271,7 +271,7 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneRevetment
         {
             return Reference(resistance, hydraulicLoad, waveAngleImpact, failureNumber);
         }
-        
+
         private static double SingleSlopePart(double slopeUpperLevel, double slopeLowerLevel, double slopeUpperPosition,
                                               double slopeLowerPosition)
         {
@@ -366,12 +366,12 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneRevetment
         {
             return Math.Pow(referenceTimeDegradation / (wavePeriodTm10 * 1000.0), 0.1);
         }
-        
+
         private static double ReferenceTime(double reference, double wavePeriodTm10)
         {
             return 1000.0 * wavePeriodTm10 * Math.Pow(reference, 10.0);
         }
-        
+
         private static double Reference(double resistance, double hydraulicLoad, double waveAngleImpact, double value)
         {
             return value * (resistance / hydraulicLoad) * (1.0 / waveAngleImpact);

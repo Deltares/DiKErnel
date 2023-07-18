@@ -39,9 +39,9 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentOvertopping
         /// <param name="roughnessCoefficients">The roughness coefficients of the profile
         /// segments [-].</param>
         /// <param name="dikeHeight">The dike height [m].</param>
-        public GrassRevetmentOvertoppingRepresentative2PInput(double waterLevel, double waveHeightHm0, double wavePeriodTm10, 
-                                                              double waveDirection, IEnumerable<double> xValuesProfile, 
-                                                              IEnumerable<double> zValuesProfile, 
+        public GrassRevetmentOvertoppingRepresentative2PInput(double waterLevel, double waveHeightHm0, double wavePeriodTm10,
+                                                              double waveDirection, IEnumerable<double> xValuesProfile,
+                                                              IEnumerable<double> zValuesProfile,
                                                               IEnumerable<double> roughnessCoefficients, double dikeHeight)
         {
             WaterLevel = waterLevel;

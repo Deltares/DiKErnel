@@ -31,12 +31,12 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentWaveRunup
         /// </summary>
         /// <param name="frontVelocityCu">The Cu coefficient [-].</param>
         /// <inheritdoc/>
-        public GrassRevetmentWaveRunupRayleighCumulativeOverloadInput(double averageNumberOfWaves, 
-                                                                      double representativeWaveRunup2P, 
-                                                                      int fixedNumberOfWaves, 
-                                                                      double verticalDistanceWaterLevelElevation, 
+        public GrassRevetmentWaveRunupRayleighCumulativeOverloadInput(double averageNumberOfWaves,
+                                                                      double representativeWaveRunup2P,
+                                                                      int fixedNumberOfWaves,
+                                                                      double verticalDistanceWaterLevelElevation,
                                                                       double criticalFrontVelocity,
-                                                                      double increasedLoadTransitionAlphaM, 
+                                                                      double increasedLoadTransitionAlphaM,
                                                                       double reducedStrengthTransitionAlphaS,
                                                                       double gravitationalAcceleration, double frontVelocityCu)
             : base(averageNumberOfWaves, representativeWaveRunup2P, fixedNumberOfWaves, verticalDistanceWaterLevelElevation,
@@ -44,7 +44,6 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentWaveRunup
         {
             FrontVelocityCu = frontVelocityCu;
         }
-
 
         /// <summary>
         /// Gets the Cu coefficient [-].
