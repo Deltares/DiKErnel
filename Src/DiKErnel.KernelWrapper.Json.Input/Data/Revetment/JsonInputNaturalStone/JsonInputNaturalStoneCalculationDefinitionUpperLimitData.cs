@@ -25,10 +25,10 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputNaturalStone
     {
         [JsonProperty(JsonInputDefinitions.A_COEFFICIENT)]
         public double UpperLimitLoadingA { get; set; }
-        
+
         [JsonProperty(JsonInputDefinitions.B_COEFFICIENT)]
         public double UpperLimitLoadingB { get; set; }
-        
+
         [JsonProperty(JsonInputDefinitions.C_COEFFICIENT)]
         public double UpperLimitLoadingC { get; set; }
     }

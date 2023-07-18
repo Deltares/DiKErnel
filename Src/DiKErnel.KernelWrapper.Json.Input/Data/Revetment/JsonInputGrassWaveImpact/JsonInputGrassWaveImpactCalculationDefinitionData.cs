@@ -31,16 +31,14 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassWaveImp
 
         [JsonProperty(JsonInputGrassWaveImpactDefinitions.TEMAX)]
         public double Temax { get; set; }
-        
+
         [JsonProperty(JsonInputGrassWaveImpactDefinitions.TEMIN)]
         public double Temin { get; set; }
-        
+
         [JsonProperty(JsonInputDefinitions.WAVE_ANGLE_IMPACT)]
         public JsonInputGrassWaveImpactCalculationImpactWaveAngleData WaveAngleData { get; set; }
-        
+
         [JsonProperty(JsonInputDefinitions.LOADING_AREA)]
         public JsonInputGrassWaveImpactCalculationLoadingAreaData LoadingAreaData { get; set; }
-        
-
     }
 }

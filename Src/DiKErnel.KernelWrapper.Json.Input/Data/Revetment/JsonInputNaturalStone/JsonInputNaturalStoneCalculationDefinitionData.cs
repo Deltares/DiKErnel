@@ -29,16 +29,16 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputNaturalStone
         [JsonProperty(JsonInputDefinitions.TOP_LAYERS)]
         public IEnumerable<JsonInputNaturalStoneTopLayerDefinitionData>
             TopLayerDefinitionData { get; private set; }
-        
+
         [JsonProperty(JsonInputDefinitions.LOADING_AREA)]
         public JsonInputNaturalStoneCalculationDefinitionLoadingAreaData LoadingArea { get; set; }
-        
+
         [JsonProperty(JsonInputNaturalStoneDefinitions.SLOPE)]
         public JsonInputNaturalStoneCalculationDefinitionSlopeData Slope { get; set; }
 
         [JsonProperty(JsonInputNaturalStoneDefinitions.DISTANCE_MAXIMUM_WAVE_ELEVATION)]
         public JsonInputNaturalStoneCalculationDefinitionMaximumWaveElevationData DistanceMaximumWaveElevation { get; set; }
-        
+
         [JsonProperty(JsonInputNaturalStoneDefinitions.NORMATIVE_WIDTH_OF_WAVE_IMPACT)]
         public JsonInputNaturalStoneCalculationDefinitionNormativeWidthWaveImpactData NormativeWidthOfWaveImpact { get; set; }
 

@@ -28,7 +28,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassWaveRun
 
         [JsonProperty(JsonInputGrassRevetmentDefinitions.FIXED_NUMBER_OF_WAVES)]
         public double FixedNumberOfWaves { get; set; }
-        
+
         [JsonProperty(JsonInputGrassWaveRunupDefinitions.FRONT_VELOCITY)]
         public double FrontVelocity { get; set; }
     }

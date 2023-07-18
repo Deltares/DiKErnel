@@ -26,13 +26,13 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputNaturalStone
     {
         [JsonProperty(JsonInputDefinitions.A_COEFFICIENT)]
         double StabilitySurgingA { get; set; }
-        
+
         [JsonProperty(JsonInputDefinitions.B_COEFFICIENT)]
         double StabilitySurgingB { get; set; }
-        
+
         [JsonProperty(JsonInputDefinitions.C_COEFFICIENT)]
         double StabilitySurgingC { get; set; }
-        
+
         [JsonProperty(JsonInputNaturalStoneDefinitions.N_COEFFICIENT)]
         double StabilitySurgingN { get; set; }
     }

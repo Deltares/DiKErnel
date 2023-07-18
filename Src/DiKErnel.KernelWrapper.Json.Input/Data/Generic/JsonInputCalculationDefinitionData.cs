@@ -21,12 +21,11 @@ using Newtonsoft.Json;
 
 namespace DiKErnel.KernelWrapper.Json.Input.Data.Generic
 {
-    
     public class JsonInputCalculationDefinitionData
     {
         [JsonProperty(JsonInputDefinitions.CALCULATION_METHOD_TYPE)]
         public JsonInputCalculationType CalculationMethodType { get; private set; }
-        
+
         [JsonProperty(JsonInputDefinitions.FAILURE_NUMBER)]
         public double FailureNumber { get; private set; }
     }

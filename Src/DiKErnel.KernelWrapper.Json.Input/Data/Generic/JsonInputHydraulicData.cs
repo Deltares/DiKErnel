@@ -26,13 +26,13 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Generic
     {
         [JsonProperty(JsonInputDefinitions.WATER_LEVELS)]
         public IEnumerable<double> WaterLevels { get; private set; }
-        
+
         [JsonProperty(JsonInputDefinitions.WAVE_HEIGHTS_HM0)]
         public IEnumerable<double> WaveHeightsHm0 { get; private set; }
-        
+
         [JsonProperty(JsonInputDefinitions.WAVE_PERIODS_TM10)]
         public IEnumerable<double> WavePeriodsTm10 { get; private set; }
-        
+
         [JsonProperty(JsonInputDefinitions.WAVE_ANGLES)]
         public IEnumerable<double> WaveAngles { get; private set; }
     }

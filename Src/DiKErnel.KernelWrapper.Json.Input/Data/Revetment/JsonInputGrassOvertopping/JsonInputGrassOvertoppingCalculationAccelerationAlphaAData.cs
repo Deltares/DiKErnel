@@ -25,7 +25,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassOvertop
     {
         [JsonProperty(JsonInputGrassOvertoppingDefinitions.ACCELERATION_ALPHA_A_CREST)]
         public double AccelerationAlphaAForCrest { get; set; }
-        
+
         [JsonProperty(JsonInputGrassOvertoppingDefinitions.ACCELERATION_ALPHA_A_INNER_SLOPE)]
         public double AccelerationAlphaAForInnerSlope { get; set; }
     }

@@ -38,7 +38,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Generic.Converters
         public override JsonInputCalculationDefinitionData ReadJson(JsonReader reader, Type objectType, JsonInputCalculationDefinitionData existingValue, bool hasExistingValue, JsonSerializer serializer)
         {
             JObject jo = JObject.Load(reader);
-            
+
             string typeDiscriminator = jo[JsonInputDefinitions.CALCULATION_METHOD_TYPE].ToString();
             JsonInputCalculationDefinitionData jsonInputCalculationDefinitionData = typeDiscriminator switch
             {
@@ -49,7 +49,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Generic.Converters
                 JsonInputDefinitions.CALCULATION_METHOD_TYPE_NATURAL_STONE => jo.ToObject<JsonInputNaturalStoneCalculationDefinitionData>()!,
                 _ => null
             };
-            
+
             return jsonInputCalculationDefinitionData;
         }
     }

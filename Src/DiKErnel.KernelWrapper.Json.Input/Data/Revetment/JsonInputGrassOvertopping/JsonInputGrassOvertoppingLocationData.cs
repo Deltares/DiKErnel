@@ -27,10 +27,10 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassOvertop
     {
         [JsonProperty(JsonInputDefinitions.TYPE_TOP_LAYER)]
         public JsonInputGrassRevetmentTopLayerType TopLayerType { get; private set; }
-        
+
         [JsonProperty(JsonInputGrassRevetmentDefinitions.INCREASED_LOAD_TRANSITION_ALPHA_M)]
         public double IncreasedLoadTransitionAlphaM { get; set; }
-        
+
         [JsonProperty(JsonInputGrassRevetmentDefinitions.REDUCED_STRENGTH_TRANSITION_ALPHA_S)]
         public double ReducedStrengthTransitionAlphaS { get; set; }
     }

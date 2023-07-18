@@ -32,22 +32,22 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Generic
 
         [JsonProperty(JsonInputDefinitions.DIKE_PROFILE_ROUGHNESS_COEFFICIENTS)]
         public IEnumerable<double> RoughnessCoefficients { get; private set; }
-        
-        [JsonProperty(JsonInputDefinitions.CHARACTERISTIC_POINT_TYPE_OUTER_TOE, NullValueHandling=NullValueHandling.Ignore)]
+
+        [JsonProperty(JsonInputDefinitions.CHARACTERISTIC_POINT_TYPE_OUTER_TOE, NullValueHandling = NullValueHandling.Ignore)]
         public double? OuterToe { get; set; }
-        
-        [JsonProperty(JsonInputDefinitions.CHARACTERISTIC_POINT_TYPE_CREST_OUTER_BERM, NullValueHandling=NullValueHandling.Ignore)]
+
+        [JsonProperty(JsonInputDefinitions.CHARACTERISTIC_POINT_TYPE_CREST_OUTER_BERM, NullValueHandling = NullValueHandling.Ignore)]
         public double? CrestOuterBerm { get; set; }
-        
-        [JsonProperty(JsonInputDefinitions.CHARACTERISTIC_POINT_TYPE_NOTCH_OUTER_BERM, NullValueHandling=NullValueHandling.Ignore)]
+
+        [JsonProperty(JsonInputDefinitions.CHARACTERISTIC_POINT_TYPE_NOTCH_OUTER_BERM, NullValueHandling = NullValueHandling.Ignore)]
         public double? NotchOuterBerm { get; set; }
-        
-        [JsonProperty(JsonInputDefinitions.CHARACTERISTIC_POINT_TYPE_OUTER_CREST, NullValueHandling=NullValueHandling.Ignore)]
+
+        [JsonProperty(JsonInputDefinitions.CHARACTERISTIC_POINT_TYPE_OUTER_CREST, NullValueHandling = NullValueHandling.Ignore)]
         public double? OuterCrest { get; set; }
-        
-        [JsonProperty(JsonInputDefinitions.CHARACTERISTIC_POINT_TYPE_INNER_CREST, NullValueHandling=NullValueHandling.Ignore)]
+
+        [JsonProperty(JsonInputDefinitions.CHARACTERISTIC_POINT_TYPE_INNER_CREST, NullValueHandling = NullValueHandling.Ignore)]
         public double? InnerCrest { get; set; }
-        
+
         // [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [JsonProperty(JsonInputDefinitions.CHARACTERISTIC_POINT_TYPE_INNER_TOE)]
         public double? InnerToe { get; set; }

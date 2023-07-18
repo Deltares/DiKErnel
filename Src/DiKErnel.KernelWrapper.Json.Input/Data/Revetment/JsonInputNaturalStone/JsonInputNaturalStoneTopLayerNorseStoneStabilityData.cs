@@ -25,10 +25,10 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputNaturalStone
     {
         [JsonProperty(JsonInputNaturalStoneDefinitions.XIB_COEFFICIENT)]
         double StabilityXib { get; set; }
-        
+
         [JsonProperty(JsonInputNaturalStoneDefinitions.STABILITY_PLUNGING)]
         private JsonInputNaturalStoneTopLayerNorseStonePlungingData JsonInputNaturalStoneTopLayerNorseStonePlungingData { get; set; }
-        
+
         [JsonProperty(JsonInputNaturalStoneDefinitions.STABILITY_SURGING)]
         private JsonInputNaturalStoneTopLayerNorseStonePlungingData JsonInputNaturalStoneTopLayerNorseStoneSurgingData { get; set; }
     }

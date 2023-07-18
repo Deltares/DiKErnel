@@ -25,7 +25,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassWaveImp
     {
         [JsonProperty(JsonInputDefinitions.UPPER_LIMIT)]
         private JsonInputGrassWaveImpactCalculationLoadingAreaUpperLimitData UpperLimit { get; set; }
-        
+
         [JsonProperty(JsonInputDefinitions.LOWER_LIMIT)]
         private JsonInputGrassWaveImpactCalculationLoadingAreaLowerLimitData LowerLimit { get; set; }
     }

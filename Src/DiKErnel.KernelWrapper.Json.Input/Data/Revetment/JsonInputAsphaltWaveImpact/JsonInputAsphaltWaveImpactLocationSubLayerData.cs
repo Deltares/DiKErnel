@@ -25,7 +25,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputAsphaltWaveI
     {
         [JsonProperty(JsonInputAsphaltWaveImpactDefinitions.THICKNESS)]
         public double? ThicknessSubLayer { get; set; }
-        
+
         [JsonProperty(JsonInputAsphaltWaveImpactDefinitions.ELASTIC_MODULUS)]
         public double? ElasticModulusSubLayer { get; set; }
     }

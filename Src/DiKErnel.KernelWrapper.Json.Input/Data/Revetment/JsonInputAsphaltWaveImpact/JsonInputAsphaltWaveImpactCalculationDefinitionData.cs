@@ -28,23 +28,23 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputAsphaltWaveI
     {
         [JsonProperty(JsonInputDefinitions.TOP_LAYERS)]
         public IEnumerable<JsonInputAsphaltWaveImpactTopLayerDefinitionData>
-        TopLayerDefinitionData { get; private set; }
-        
+            TopLayerDefinitionData { get; private set; }
+
         [JsonProperty(JsonInputAsphaltWaveImpactDefinitions.DENSITY_OF_WATER)]
         public double DensityOfWater { get; set; }
-        
+
         [JsonProperty(JsonInputDefinitions.FACTOR_CTM)]
         public double FactorCtm { get; set; }
-        
+
         [JsonProperty(JsonInputAsphaltWaveImpactDefinitions.IMPACT_NUMBER_C)]
         public double ImpactNumberC { get; set; }
-        
+
         [JsonProperty(JsonInputAsphaltWaveImpactDefinitions.WIDTH_FACTORS)]
         public IEnumerable<IEnumerable<double>> WidthFactors { get; set; }
-        
+
         [JsonProperty(JsonInputAsphaltWaveImpactDefinitions.DEPTH_FACTORS)]
         public IEnumerable<IEnumerable<double>> DepthFactors { get; set; }
-        
+
         [JsonProperty(JsonInputAsphaltWaveImpactDefinitions.IMPACT_FACTORS)]
         public IEnumerable<IEnumerable<double>> ImpactFactors { get; set; }
     }

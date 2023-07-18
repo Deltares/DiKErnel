@@ -25,10 +25,10 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassWaveImp
     {
         [JsonProperty(JsonInputGrassWaveImpactDefinitions.N_COEFFICIENT)]
         public double WaveAngleImpactN { get; set; }
-        
+
         [JsonProperty(JsonInputGrassWaveImpactDefinitions.Q_COEFFICIENT)]
         public double WaveAngleImpactQ { get; set; }
-        
+
         [JsonProperty(JsonInputGrassWaveImpactDefinitions.R_COEFFICIENT)]
         public double WaveAngleImpactR { get; set; }
     }
