@@ -220,12 +220,12 @@ namespace DiKErnel.Core.Test
 
             calculationInput.ProfileData.Returns(Substitute.For<IProfileData>());
 
-            calculationInput.LocationDependentInputItems.Returns(new List<TestLocationDependentCalculationInput>
+            calculationInput.LocationDependentInputItems.Returns(new[]
             {
                 new TestLocationDependentCalculationInput(damage, timeOfFailure),
             });
 
-            calculationInput.TimeDependentInputItems.Returns(new List<ITimeDependentInput>
+            calculationInput.TimeDependentInputItems.Returns(new[]
             {
                 Substitute.For<ITimeDependentInput>(),
                 Substitute.For<ITimeDependentInput>(),

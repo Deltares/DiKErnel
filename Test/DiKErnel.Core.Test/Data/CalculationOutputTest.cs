@@ -16,6 +16,7 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using System;
 using System.Collections.Generic;
 using DiKErnel.Core.Data;
 using NUnit.Framework;
@@ -29,7 +30,7 @@ namespace DiKErnel.Core.Test.Data
         public void Constructor_ExpectedValues()
         {
             // Setup
-            var locationDependentOutputItems = new List<LocationDependentOutput>();
+            LocationDependentOutput[] locationDependentOutputItems = Array.Empty<LocationDependentOutput>();
 
             // Call
             var calculationOutput = new CalculationOutput(locationDependentOutputItems);

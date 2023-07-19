@@ -60,12 +60,12 @@ namespace DiKErnel.Core.Test
 
             calculationInput.ProfileData.Returns(profileData);
 
-            calculationInput.LocationDependentInputItems.Returns(new List<ILocationDependentInput>
+            calculationInput.LocationDependentInputItems.Returns(new[]
             {
                 locationDependentInput
             });
 
-            calculationInput.TimeDependentInputItems.Returns(new List<ITimeDependentInput>
+            calculationInput.TimeDependentInputItems.Returns(new[]
             {
                 timeDependentInput
             });
@@ -109,12 +109,12 @@ namespace DiKErnel.Core.Test
 
             calculationInput.ProfileData.Returns(profileData);
 
-            calculationInput.LocationDependentInputItems.Returns(new List<ILocationDependentInput>
+            calculationInput.LocationDependentInputItems.Returns(new[]
             {
                 locationDependentInput
             });
 
-            calculationInput.TimeDependentInputItems.Returns(new List<ITimeDependentInput>
+            calculationInput.TimeDependentInputItems.Returns(new[]
             {
                 timeDependentInput
             });
@@ -131,7 +131,7 @@ namespace DiKErnel.Core.Test
             Assert.AreEqual(EventType.Error, validationEvent.Type);
 
             Event exceptionEvent = validationResult.Events.ElementAt(1);
-            Assert.AreEqual("An unhandled error occurred while validating the calculation input. See stack trace for more" +
+            Assert.AreEqual("An unhandled error occurred while validating the calculation input. See stack trace for more " +
                             "information:\n" + exceptionMessage, exceptionEvent.Message);
             Assert.AreEqual(EventType.Error, exceptionEvent.Type);
         }
