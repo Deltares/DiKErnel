@@ -173,7 +173,7 @@ namespace DiKErnel.Core.Test
             // Given
             ICalculationInput calculationInput = CreateCalculationInput();
 
-            ILocationDependentInput locationDependentInput = calculationInput.LocationDependentInputItems[1];
+            ILocationDependentInput locationDependentInput = calculationInput.LocationDependentInputItems[0];
             ((TestLocationDependentCalculationInput) locationDependentInput).ExceptionMessage = Random.NextString();
 
             var calculator = new Calculator(calculationInput);
@@ -194,7 +194,7 @@ namespace DiKErnel.Core.Test
             ICalculationInput calculationInput = CreateCalculationInput();
 
             string exceptionMessage = Random.NextString();
-            ILocationDependentInput locationDependentInput = calculationInput.LocationDependentInputItems[1];
+            ILocationDependentInput locationDependentInput = calculationInput.LocationDependentInputItems[0];
             ((TestLocationDependentCalculationInput) locationDependentInput).ExceptionMessage = exceptionMessage;
 
             var calculator = new Calculator(calculationInput);
@@ -220,12 +220,12 @@ namespace DiKErnel.Core.Test
 
             calculationInput.ProfileData.Returns(Substitute.For<IProfileData>());
 
-            calculationInput.LocationDependentInputItems.Returns(new[]
+            calculationInput.LocationDependentInputItems.Returns(new List<TestLocationDependentCalculationInput>
             {
                 new TestLocationDependentCalculationInput(damage, timeOfFailure),
             });
 
-            calculationInput.TimeDependentInputItems.Returns(new[]
+            calculationInput.TimeDependentInputItems.Returns(new List<ITimeDependentInput>
             {
                 Substitute.For<ITimeDependentInput>(),
                 Substitute.For<ITimeDependentInput>(),

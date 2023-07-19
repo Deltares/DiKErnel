@@ -56,7 +56,7 @@ namespace DiKErnel.Core.Test.Extensions
             var locationDependentOutput = Substitute.For<LocationDependentOutput>(timeDependentOutputItems);
 
             // When
-            IEnumerable<double> damages = locationDependentOutput.GetDamages();
+            IReadOnlyList<double> damages = locationDependentOutput.GetDamages();
 
             // Then
             CollectionAssert.AreEqual(new[]
