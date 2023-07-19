@@ -54,10 +54,12 @@ namespace DiKErnel.KernelWrapper.Json.Input
 
                 try
                 {
-                    DataResult<ICalculationInput> calculationInputList =
-                        JsonInputAdapter.AdaptJsonInputData(jsonSerializer.Deserialize<JsonInputData>(validatingReader));
-                    ValidationHelper.RegisterValidationIssues(validationIssues);
-                    return calculationInputList;
+                    // json input adapter is dependent on the integration project
+                    
+                    // DataResult<ICalculationInput> calculationInputList =
+                    //     JsonInputAdapter.AdaptJsonInputData(jsonSerializer.Deserialize<JsonInputData>(validatingReader));
+                    // ValidationHelper.RegisterValidationIssues(validationIssues);
+                    // return calculationInputList;
                 }
                 catch (Exception e)
                 {
