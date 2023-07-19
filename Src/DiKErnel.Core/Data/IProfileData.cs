@@ -28,12 +28,12 @@ namespace DiKErnel.Core.Data
         /// <summary>
         /// Gets the profile segments to use in the calculation.
         /// </summary>
-        IEnumerable<ProfileSegment> ProfileSegments { get; }
+        IReadOnlyList<ProfileSegment> ProfileSegments { get; }
 
         /// <summary>
         /// Gets the characteristic points to use in the calculation.
         /// </summary>
-        IEnumerable<CharacteristicPoint> CharacteristicPoints { get; }
+        IReadOnlyList<CharacteristicPoint> CharacteristicPoints { get; }
 
         /// <summary>
         /// Performs validation on the data.

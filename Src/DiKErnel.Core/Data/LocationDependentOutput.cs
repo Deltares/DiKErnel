@@ -30,7 +30,7 @@ namespace DiKErnel.Core.Data
         /// </summary>
         /// <param name="timeDependentOutputItems">The time dependent output items of the
         /// location.</param>
-        protected LocationDependentOutput(IEnumerable<TimeDependentOutput> timeDependentOutputItems)
+        protected LocationDependentOutput(IReadOnlyList<TimeDependentOutput> timeDependentOutputItems)
         {
             TimeDependentOutputItems = timeDependentOutputItems;
         }
@@ -38,6 +38,6 @@ namespace DiKErnel.Core.Data
         /// <summary>
         /// Gets the time dependent output items.
         /// </summary>
-        public IEnumerable<TimeDependentOutput> TimeDependentOutputItems { get; }
+        public IReadOnlyList<TimeDependentOutput> TimeDependentOutputItems { get; }
     }
 }

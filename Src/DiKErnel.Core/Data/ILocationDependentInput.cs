@@ -73,6 +73,6 @@ namespace DiKErnel.Core.Data
         /// <param name="timeDependentOutputItems">One or more time dependent output items
         /// that were calculated for the location.</param>
         /// <returns>The location dependent output.</returns>
-        public LocationDependentOutput GetLocationDependentOutput(IEnumerable<TimeDependentOutput> timeDependentOutputItems);
+        public LocationDependentOutput GetLocationDependentOutput(IReadOnlyList<TimeDependentOutput> timeDependentOutputItems);
     }
 }

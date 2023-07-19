@@ -261,7 +261,8 @@ namespace DiKErnel.Core.Test
                 return true;
             }
 
-            public TimeDependentOutput Calculate(double initialDamage, ITimeDependentInput timeDependentInput, IProfileData profileData)
+            public TimeDependentOutput Calculate(double initialDamage, ITimeDependentInput timeDependentInput,
+                                                 IProfileData profileData)
             {
                 if (!string.IsNullOrEmpty(ExceptionMessage))
                 {
@@ -271,7 +272,7 @@ namespace DiKErnel.Core.Test
                 return Substitute.For<TimeDependentOutput>(Random.NextDouble(), damage, timeOfFailure);
             }
 
-            public LocationDependentOutput GetLocationDependentOutput(IEnumerable<TimeDependentOutput> timeDependentOutputItems)
+            public LocationDependentOutput GetLocationDependentOutput(IReadOnlyList<TimeDependentOutput> timeDependentOutputItems)
             {
                 return Substitute.For<LocationDependentOutput>(timeDependentOutputItems);
             }
