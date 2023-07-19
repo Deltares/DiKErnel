@@ -38,7 +38,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Helpers
 
             return overallValidationSuccessful;
         }
-        
+
         private static bool RegisterValidationIssue(ValidationIssue validationIssue)
         {
             var validationIssueType = validationIssue.IssueType;
@@ -57,6 +57,5 @@ namespace DiKErnel.KernelWrapper.Json.Input.Helpers
                 _ => throw new ArgumentOutOfRangeException("Invalid ValidationIssueType.")
             };
         }
-        
     }
 }

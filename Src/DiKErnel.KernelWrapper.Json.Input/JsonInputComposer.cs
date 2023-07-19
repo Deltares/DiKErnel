@@ -33,44 +33,44 @@ namespace DiKErnel.KernelWrapper.Json.Input
 {
     public class JsonInputComposer
     {
-        public DataResult<ICalculationInput> GetInputDataFromJson(string filePath)
+        public static DataResult<ICalculationInput> GetInputDataFromJson(string filePath)
         {
-            List<ValidationIssue> validationIssues = new List<ValidationIssue>();
+            var validationIssues = new List<ValidationIssue>();
             if (!File.Exists(filePath))
             {
                 validationIssues.Add(new ValidationIssue(ValidationIssueType.Error, "The provided input file does not exist"));
             }
-            
+
             using (StreamReader file = File.OpenText(filePath))
-            using (JSchemaValidatingReader validatingReader = new JSchemaValidatingReader(new JsonTextReader(file)))
+            using (var validatingReader = new JSchemaValidatingReader(new JsonTextReader(file)))
             {
                 validatingReader.Schema = GetValidatorSchema("DiKErnel.KernelWrapper.Json.Input.Resources.schema_definition.json");
                 validatingReader.ValidationEventHandler += (obj, schemaValidationEventArgs) =>
                     validationIssues.Add(new ValidationIssue(ValidationIssueType.Error, schemaValidationEventArgs.Message));
-                
-                JsonSerializer jsonSerializer = new JsonSerializer();
+
+                var jsonSerializer = new JsonSerializer();
                 jsonSerializer.Converters.Add(new JsonInputCalculationDefinitionDataConverter());
                 jsonSerializer.Converters.Add(new JsonInputLocationDataConverter());
 
                 try
                 {
-                    var calculationInputList = 
+                    DataResult<ICalculationInput> calculationInputList =
                         JsonInputAdapter.AdaptJsonInputData(jsonSerializer.Deserialize<JsonInputData>(validatingReader));
                     ValidationHelper.RegisterValidationIssues(validationIssues);
                     return calculationInputList;
                 }
                 catch (Exception e)
                 {
-                    EventRegistry.Register(new Event($"An unhandled error occurred while composing calculation data" +
+                    EventRegistry.Register(new Event("An unhandled error occurred while composing calculation data" +
                                                      $" from the Json input. See stack trace for more information: {e.Message}",
-                    EventType.Error));
+                                                     EventType.Error));
                 }
-                
+
                 return new DataResult<ICalculationInput>(null, EventRegistry.Flush());
             }
         }
 
-        private JSchema GetValidatorSchema(string resourceName)
+        private static JSchema GetValidatorSchema(string resourceName)
         {
             using (Stream validatorSchemaStream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName))
             using (StreamReader validatorSchemaReader = new StreamReader(validatorSchemaStream))
