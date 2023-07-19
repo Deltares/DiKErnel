@@ -46,9 +46,9 @@ namespace DiKErnel.FunctionLibrary.AsphaltRevetmentWaveImpact
         public AsphaltRevetmentWaveImpactFunctionsInput(double logFailureTension, double averageNumberOfWaves,
                                                         double maximumPeakStress, double stiffnessRelation,
                                                         double computationalThickness, double outerSlope,
-                                                        IEnumerable<(double, double)> widthFactors,
-                                                        IEnumerable<(double, double)> depthFactors,
-                                                        IEnumerable<(double, double)> impactFactors,
+                                                        IReadOnlyList<(double, double)> widthFactors,
+                                                        IReadOnlyList<(double, double)> depthFactors,
+                                                        IReadOnlyList<(double, double)> impactFactors,
                                                         double z, double waterLevel, double waveHeightHm0, double fatigueAlpha,
                                                         double fatigueBeta, double impactNumberC)
         {
@@ -102,17 +102,17 @@ namespace DiKErnel.FunctionLibrary.AsphaltRevetmentWaveImpact
         /// <summary>
         /// Gets the width factors [-].
         /// </summary>
-        public IEnumerable<(double, double)> WidthFactors { get; private set; }
+        public IReadOnlyList<(double, double)> WidthFactors { get; private set; }
 
         /// <summary>
         /// Gets the depth factors [-].
         /// </summary>
-        public IEnumerable<(double, double)> DepthFactors { get; private set; }
+        public IReadOnlyList<(double, double)> DepthFactors { get; private set; }
 
         /// <summary>
         /// Gets the impact factors [-].
         /// </summary>
-        public IEnumerable<(double, double)> ImpactFactors { get; private set; }
+        public IReadOnlyList<(double, double)> ImpactFactors { get; private set; }
 
         /// <summary>
         /// Gets the z coordinate [m].

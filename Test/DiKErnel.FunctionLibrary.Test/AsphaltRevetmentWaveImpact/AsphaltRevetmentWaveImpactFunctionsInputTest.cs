@@ -16,11 +16,11 @@
 // // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using DiKErnel.FunctionLibrary.AsphaltRevetmentWaveImpact;
-using DiKErnel.TestUtil;
 using NUnit.Framework;
+using Random = DiKErnel.TestUtil.Random;
 
 namespace DiKErnel.FunctionLibrary.Test.AsphaltRevetmentWaveImpact
 {
@@ -38,9 +38,9 @@ namespace DiKErnel.FunctionLibrary.Test.AsphaltRevetmentWaveImpact
             double computationalThickness = Random.NextDouble();
             double outerSlope = Random.NextDouble();
 
-            IEnumerable<(double, double)> widthFactors = Enumerable.Empty<(double, double)>();
-            IEnumerable<(double, double)> depthFactors = Enumerable.Empty<(double, double)>();
-            IEnumerable<(double, double)> impactFactors = Enumerable.Empty<(double, double)>();
+            IReadOnlyList<(double, double)> widthFactors = Array.Empty<(double, double)>();
+            IReadOnlyList<(double, double)> depthFactors = Array.Empty<(double, double)>();
+            IReadOnlyList<(double, double)> impactFactors = Array.Empty<(double, double)>();
 
             double z = Random.NextDouble();
             double waterLevel = Random.NextDouble();

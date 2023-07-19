@@ -40,9 +40,9 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentOvertopping
         /// segments [-].</param>
         /// <param name="dikeHeight">The dike height [m].</param>
         public GrassRevetmentOvertoppingRepresentative2PInput(double waterLevel, double waveHeightHm0, double wavePeriodTm10,
-                                                              double waveDirection, IEnumerable<double> xValuesProfile,
-                                                              IEnumerable<double> zValuesProfile,
-                                                              IEnumerable<double> roughnessCoefficients, double dikeHeight)
+                                                              double waveDirection, IReadOnlyList<double> xValuesProfile,
+                                                              IReadOnlyList<double> zValuesProfile,
+                                                              IReadOnlyList<double> roughnessCoefficients, double dikeHeight)
         {
             WaterLevel = waterLevel;
             WaveHeightHm0 = waveHeightHm0;
@@ -77,17 +77,17 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentOvertopping
         /// <summary>
         /// Gets the x values of the profile points [m].
         /// </summary>
-        public IEnumerable<double> XValuesProfile { get; private set; }
+        public IReadOnlyList<double> XValuesProfile { get; private set; }
 
         /// <summary>
         /// Gets the z values of the profile points [m].
         /// </summary>
-        public IEnumerable<double> ZValuesProfile { get; private set; }
+        public IReadOnlyList<double> ZValuesProfile { get; private set; }
 
         /// <summary>
         /// Gets the roughness coefficients of the profile segments [-].
         /// </summary>
-        public IEnumerable<double> RoughnessCoefficients { get; private set; }
+        public IReadOnlyList<double> RoughnessCoefficients { get; private set; }
 
         /// <summary>
         /// Gets the dike height [m].

@@ -16,11 +16,12 @@
 // // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using DiKErnel.FunctionLibrary.GrassRevetmentOvertopping;
-using DiKErnel.TestUtil;
 using NUnit.Framework;
+using Random = DiKErnel.TestUtil.Random;
 
 namespace DiKErnel.FunctionLibrary.Test.GrassRevetmentOvertopping
 {
@@ -35,9 +36,9 @@ namespace DiKErnel.FunctionLibrary.Test.GrassRevetmentOvertopping
             double waveHeightHm0 = Random.NextDouble();
             double wavePeriodTm10 = Random.NextDouble();
             double waveDirection = Random.NextDouble();
-            IEnumerable<double> xValuesProfile = Enumerable.Empty<double>();
-            IEnumerable<double> zValuesProfile = Enumerable.Empty<double>();
-            IEnumerable<double> roughnessCoefficients = Enumerable.Empty<double>();
+            IReadOnlyList<double> xValuesProfile = Array.Empty<double>();
+            IReadOnlyList<double> zValuesProfile = Array.Empty<double>();
+            IReadOnlyList<double> roughnessCoefficients = Array.Empty<double>();
             double dikeHeight = Random.NextDouble();
 
             // Call
