@@ -21,9 +21,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using DiKErnel.Core.Data;
-using DiKErnel.KernelWrapper.Json.Input.Data.Generic;
 using DiKErnel.KernelWrapper.Json.Input.Data.Generic.Converters;
-using DiKErnel.KernelWrapper.Json.Input.Helpers;
 using DiKErnel.Util;
 using DiKErnel.Util.Validation;
 using Newtonsoft.Json;
@@ -31,8 +29,16 @@ using Newtonsoft.Json.Schema;
 
 namespace DiKErnel.KernelWrapper.Json.Input
 {
+    /// <summary>
+    /// Class responsible for validating and parsing Json input.
+    /// </summary>
     public class JsonInputComposer
     {
+        /// <summary>
+        /// Gets input data based on Json.
+        /// </summary>
+        /// <param name="filePath">The path to the Json file to get the input from.</param>
+        /// <returns>The result of the operation.</returns>
         public static DataResult<ICalculationInput> GetInputDataFromJson(string filePath)
         {
             var validationIssues = new List<ValidationIssue>();
@@ -55,7 +61,7 @@ namespace DiKErnel.KernelWrapper.Json.Input
                 try
                 {
                     // json input adapter is dependent on the integration project
-                    
+
                     // DataResult<ICalculationInput> calculationInputList =
                     //     JsonInputAdapter.AdaptJsonInputData(jsonSerializer.Deserialize<JsonInputData>(validatingReader));
                     // ValidationHelper.RegisterValidationIssues(validationIssues);
@@ -75,7 +81,7 @@ namespace DiKErnel.KernelWrapper.Json.Input
         private static JSchema GetValidatorSchema(string resourceName)
         {
             using (Stream validatorSchemaStream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName))
-            using (StreamReader validatorSchemaReader = new StreamReader(validatorSchemaStream))
+            using (var validatorSchemaReader = new StreamReader(validatorSchemaStream))
             {
                 return JSchema.Parse(validatorSchemaReader.ReadToEnd());
             }
