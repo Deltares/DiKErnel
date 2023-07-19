@@ -27,7 +27,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputNaturalStone
     internal class JsonInputNaturalStoneCalculationData : JsonInputCalculationData
     {
         [JsonProperty(JsonInputDefinitions.TOP_LAYERS)]
-        public IEnumerable<JsonInputNaturalStoneTopLayerData>
+        public IReadOnlyList<JsonInputNaturalStoneTopLayerData>
             TopLayerDefinitionData { get; private set; }
 
         [JsonProperty(JsonInputDefinitions.LOADING_AREA)]

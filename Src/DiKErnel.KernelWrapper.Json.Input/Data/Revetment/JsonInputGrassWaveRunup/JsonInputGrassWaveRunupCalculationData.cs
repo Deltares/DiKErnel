@@ -30,7 +30,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassWaveRun
         public JsonInputGrassWaveRunupCalculationProtocolData CalculationProtocolData { get; private set; }
 
         [JsonProperty(JsonInputDefinitions.TOP_LAYERS)]
-        public IEnumerable<JsonInputGrassCumulativeOverloadTopLayerData>
+        public IReadOnlyList<JsonInputGrassCumulativeOverloadTopLayerData>
             TopLayerDefinitionData { get; private set; }
 
         [JsonProperty(JsonInputDefinitions.FACTOR_CTM)]

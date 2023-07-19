@@ -27,7 +27,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputAsphaltWaveI
     internal class JsonInputAsphaltWaveImpactCalculationData : JsonInputCalculationData
     {
         [JsonProperty(JsonInputDefinitions.TOP_LAYERS)]
-        public IEnumerable<JsonInputAsphaltWaveImpactTopLayerData>
+        public IReadOnlyList<JsonInputAsphaltWaveImpactTopLayerData>
             TopLayerDefinitionData { get; private set; }
 
         [JsonProperty(JsonInputAsphaltWaveImpactDefinitions.DENSITY_OF_WATER)]
@@ -40,12 +40,12 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputAsphaltWaveI
         public double ImpactNumberC { get; set; }
 
         [JsonProperty(JsonInputAsphaltWaveImpactDefinitions.WIDTH_FACTORS)]
-        public IEnumerable<IEnumerable<double>> WidthFactors { get; set; }
+        public IReadOnlyList<IReadOnlyList<double>> WidthFactors { get; set; }
 
         [JsonProperty(JsonInputAsphaltWaveImpactDefinitions.DEPTH_FACTORS)]
-        public IEnumerable<IEnumerable<double>> DepthFactors { get; set; }
+        public IReadOnlyList<IReadOnlyList<double>> DepthFactors { get; set; }
 
         [JsonProperty(JsonInputAsphaltWaveImpactDefinitions.IMPACT_FACTORS)]
-        public IEnumerable<IEnumerable<double>> ImpactFactors { get; set; }
+        public IReadOnlyList<IReadOnlyList<double>> ImpactFactors { get; set; }
     }
 }

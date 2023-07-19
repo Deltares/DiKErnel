@@ -25,13 +25,13 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Generic
     internal class JsonInputDikeProfileData
     {
         [JsonProperty(JsonInputDefinitions.DIKE_PROFILE_POINTS_X)]
-        public IEnumerable<double> XLocations { get; private set; }
+        public IReadOnlyList<double> XLocations { get; private set; }
 
         [JsonProperty(JsonInputDefinitions.DIKE_PROFILE_POINTS_Z)]
-        public IEnumerable<double> ZLocations { get; private set; }
+        public IReadOnlyList<double> ZLocations { get; private set; }
 
         [JsonProperty(JsonInputDefinitions.DIKE_PROFILE_ROUGHNESS_COEFFICIENTS)]
-        public IEnumerable<double> RoughnessCoefficients { get; private set; }
+        public IReadOnlyList<double> RoughnessCoefficients { get; private set; }
 
         [JsonProperty(JsonInputDefinitions.CHARACTERISTIC_POINT_TYPE_OUTER_TOE, NullValueHandling = NullValueHandling.Ignore)]
         public double? OuterToe { get; set; }
