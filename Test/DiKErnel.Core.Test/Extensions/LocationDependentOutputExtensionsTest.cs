@@ -59,7 +59,7 @@ namespace DiKErnel.Core.Test.Extensions
             IReadOnlyList<double> damages = locationDependentOutput.GetDamages();
 
             // Then
-            CollectionAssert.AreEqual(new[]
+            CollectionAssert.AreEqual(new List<double>
             {
                 damage1,
                 damage2

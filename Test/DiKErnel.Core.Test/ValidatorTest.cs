@@ -60,12 +60,12 @@ namespace DiKErnel.Core.Test
 
             calculationInput.ProfileData.Returns(profileData);
 
-            calculationInput.LocationDependentInputItems.Returns(new[]
+            calculationInput.LocationDependentInputItems.Returns(new List<ILocationDependentInput>
             {
                 locationDependentInput
             });
 
-            calculationInput.TimeDependentInputItems.Returns(new[]
+            calculationInput.TimeDependentInputItems.Returns(new List<ITimeDependentInput>
             {
                 timeDependentInput
             });
@@ -109,12 +109,12 @@ namespace DiKErnel.Core.Test
 
             calculationInput.ProfileData.Returns(profileData);
 
-            calculationInput.LocationDependentInputItems.Returns(new[]
+            calculationInput.LocationDependentInputItems.Returns(new List<ILocationDependentInput>
             {
                 locationDependentInput
             });
 
-            calculationInput.TimeDependentInputItems.Returns(new[]
+            calculationInput.TimeDependentInputItems.Returns(new List<ITimeDependentInput>
             {
                 timeDependentInput
             });
