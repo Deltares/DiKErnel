@@ -55,7 +55,7 @@ namespace DiKErnel.KernelWrapper.Json.Input
                     validationIssues.Add(new ValidationIssue(ValidationIssueType.Error, schemaValidationEventArgs.Message));
 
                 var jsonSerializer = new JsonSerializer();
-                jsonSerializer.Converters.Add(new JsonInputCalculationDefinitionDataConverter());
+                jsonSerializer.Converters.Add(new JsonInputCalculationDataConverter());
                 jsonSerializer.Converters.Add(new JsonInputLocationDataConverter());
 
                 try

@@ -22,25 +22,27 @@ using DiKErnel.KernelWrapper.Json.Input.Data.Generic.Definitions;
 using DiKErnel.KernelWrapper.Json.Input.Data.Revetment.Definitions;
 using Newtonsoft.Json;
 
-namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassWaveRunup
+namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputNaturalStone
 {
-    internal class JsonInputGrassWaveRunupCalculationDefinitionData : JsonInputCalculationDefinitionData
+    internal class JsonInputNaturalStoneCalculationData : JsonInputCalculationData
     {
-        [JsonProperty(JsonInputGrassWaveRunupDefinitions.CALCULATION_PROTOCOL)]
-        public JsonInputGrassWaveRunupCalculationProtocolData CalculationProtocolData { get; private set; }
-
         [JsonProperty(JsonInputDefinitions.TOP_LAYERS)]
-        public IEnumerable<JsonInputGrassCumulativeOverloadTopLayerDefinitionData>
+        public IEnumerable<JsonInputNaturalStoneTopLayerData>
             TopLayerDefinitionData { get; private set; }
 
-        [JsonProperty(JsonInputDefinitions.FACTOR_CTM)]
-        public double FactorCtm { get; set; }
+        [JsonProperty(JsonInputDefinitions.LOADING_AREA)]
+        public JsonInputNaturalStoneCalculationLoadingAreaData LoadingArea { get; set; }
 
-        [JsonProperty(JsonInputGrassWaveRunupDefinitions.REPRESENTATIVE_WAVE_RUNUP_2P)]
-        public JsonInputGrassWaveRunupCalculationRepresentativeWaveRunupData
-            JsonInputGrassWaveRunupCalculationRepresentativeWaveRunupData { get; set; }
+        [JsonProperty(JsonInputNaturalStoneDefinitions.SLOPE)]
+        public JsonInputNaturalStoneCalculationSlopeData Slope { get; set; }
+
+        [JsonProperty(JsonInputNaturalStoneDefinitions.DISTANCE_MAXIMUM_WAVE_ELEVATION)]
+        public JsonInputNaturalStoneCalculationMaximumWaveElevationData DistanceMaximumWaveElevation { get; set; }
+
+        [JsonProperty(JsonInputNaturalStoneDefinitions.NORMATIVE_WIDTH_OF_WAVE_IMPACT)]
+        public JsonInputNaturalStoneCalculationNormativeWidthWaveImpactData NormativeWidthOfWaveImpact { get; set; }
 
         [JsonProperty(JsonInputDefinitions.WAVE_ANGLE_IMPACT)]
-        public JsonInputGrassWaveRunupCalculationImpactAngleData JsonInputGrassWaveRunupCalculationImpactAngleData { get; set; }
+        public JsonInputNaturalStoneCalculationWaveImpactData WaveAngleImpact { get; set; }
     }
 }

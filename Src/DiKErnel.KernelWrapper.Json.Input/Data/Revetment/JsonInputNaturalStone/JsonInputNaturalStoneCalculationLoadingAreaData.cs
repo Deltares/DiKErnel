@@ -21,12 +21,12 @@ using Newtonsoft.Json;
 
 namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputNaturalStone
 {
-    internal class JsonInputNaturalStoneCalculationDefinitionLoadingAreaData
+    internal class JsonInputNaturalStoneCalculationLoadingAreaData
     {
         [JsonProperty(JsonInputDefinitions.UPPER_LIMIT)]
-        public JsonInputNaturalStoneCalculationDefinitionUpperLimitData UpperLimitLoading { get; set; }
+        public JsonInputNaturalStoneCalculationUpperLimitData UpperLimitLoading { get; set; }
 
         [JsonProperty(JsonInputDefinitions.LOWER_LIMIT)]
-        public JsonInputNaturalStoneCalculationDefinitionLowerLimitData LowerLimitLoading { get; set; }
+        public JsonInputNaturalStoneCalculationLowerLimitData LowerLimitLoading { get; set; }
     }
 }

@@ -16,17 +16,29 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using System.Collections.Generic;
+using DiKErnel.KernelWrapper.Json.Input.Data.Generic;
 using DiKErnel.KernelWrapper.Json.Input.Data.Generic.Definitions;
+using DiKErnel.KernelWrapper.Json.Input.Data.Revetment.Definitions;
 using Newtonsoft.Json;
 
-namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputNaturalStone
+namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassWaveImpact
 {
-    internal class JsonInputNaturalStoneCalculationDefinitionNormativeWidthWaveImpactData
+    internal class JsonInputGrassWaveImpactCalculationData : JsonInputCalculationData
     {
-        [JsonProperty(JsonInputDefinitions.A_COEFFICIENT)]
-        public double NormativeWidthOfWaveImpactA { get; set; }
+        [JsonProperty(JsonInputDefinitions.TOP_LAYERS)]
+        public IEnumerable<JsonInputGrassWaveImpactTopLayerData> TopLayerDefinitionData { get; private set; }
 
-        [JsonProperty(JsonInputDefinitions.B_COEFFICIENT)]
-        public double NormativeWidthOfWaveImpactB { get; set; }
+        [JsonProperty(JsonInputGrassWaveImpactDefinitions.TEMAX)]
+        public double Temax { get; set; }
+
+        [JsonProperty(JsonInputGrassWaveImpactDefinitions.TEMIN)]
+        public double Temin { get; set; }
+
+        [JsonProperty(JsonInputDefinitions.WAVE_ANGLE_IMPACT)]
+        public JsonInputGrassWaveImpactCalculationImpactWaveAngleData WaveAngleData { get; set; }
+
+        [JsonProperty(JsonInputDefinitions.LOADING_AREA)]
+        public JsonInputGrassWaveImpactCalculationLoadingAreaData LoadingAreaData { get; set; }
     }
 }

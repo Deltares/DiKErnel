@@ -22,26 +22,25 @@ using DiKErnel.KernelWrapper.Json.Input.Data.Generic.Definitions;
 using DiKErnel.KernelWrapper.Json.Input.Data.Revetment.Definitions;
 using Newtonsoft.Json;
 
-namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassOvertopping
+namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassWaveRunup
 {
-    internal class JsonInputGrassOvertoppingCalculationDefinitionData : JsonInputCalculationDefinitionData
+    internal class JsonInputGrassWaveRunupCalculationData : JsonInputCalculationData
     {
+        [JsonProperty(JsonInputGrassWaveRunupDefinitions.CALCULATION_PROTOCOL)]
+        public JsonInputGrassWaveRunupCalculationProtocolData CalculationProtocolData { get; private set; }
+
         [JsonProperty(JsonInputDefinitions.TOP_LAYERS)]
-        public IEnumerable<JsonInputGrassCumulativeOverloadTopLayerDefinitionData> TopLayerDefinitionData { get; private set; }
-
-        [JsonProperty(JsonInputGrassOvertoppingDefinitions.DIKE_HEIGHT)]
-        public double DikeHeight { get; set; }
-
-        [JsonProperty(JsonInputGrassOvertoppingDefinitions.ACCELERATION_ALPHA_A)]
-        public JsonInputGrassOvertoppingCalculationAccelerationAlphaAData AccelerationAlphaAData { get; set; }
-
-        [JsonProperty(JsonInputGrassRevetmentDefinitions.FIXED_NUMBER_OF_WAVES)]
-        public int FixedNumberOfWaves { get; set; }
-
-        [JsonProperty(JsonInputGrassOvertoppingDefinitions.FRONT_VELOCITY_CWO)]
-        public double FrontVelocity { get; set; }
+        public IEnumerable<JsonInputGrassCumulativeOverloadTopLayerData>
+            TopLayerDefinitionData { get; private set; }
 
         [JsonProperty(JsonInputDefinitions.FACTOR_CTM)]
         public double FactorCtm { get; set; }
+
+        [JsonProperty(JsonInputGrassWaveRunupDefinitions.REPRESENTATIVE_WAVE_RUNUP_2P)]
+        public JsonInputGrassWaveRunupCalculationRepresentativeWaveRunupData
+            JsonInputGrassWaveRunupCalculationRepresentativeWaveRunupData { get; set; }
+
+        [JsonProperty(JsonInputDefinitions.WAVE_ANGLE_IMPACT)]
+        public JsonInputGrassWaveRunupCalculationImpactAngleData JsonInputGrassWaveRunupCalculationImpactAngleData { get; set; }
     }
 }

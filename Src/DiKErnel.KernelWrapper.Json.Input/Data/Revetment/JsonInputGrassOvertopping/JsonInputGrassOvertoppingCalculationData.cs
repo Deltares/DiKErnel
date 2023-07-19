@@ -16,21 +16,32 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using System.Collections.Generic;
+using DiKErnel.KernelWrapper.Json.Input.Data.Generic;
 using DiKErnel.KernelWrapper.Json.Input.Data.Generic.Definitions;
 using DiKErnel.KernelWrapper.Json.Input.Data.Revetment.Definitions;
 using Newtonsoft.Json;
 
-namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputAsphaltWaveImpact
+namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassOvertopping
 {
-    internal class JsonInputAsphaltWaveImpactTopLayerDefinitionData
+    internal class JsonInputGrassOvertoppingCalculationData : JsonInputCalculationData
     {
-        [JsonProperty(JsonInputDefinitions.TYPE_TOP_LAYER)]
-        public JsonInputAsphaltRevetmentTopLayerType TopLayerType { get; private set; }
+        [JsonProperty(JsonInputDefinitions.TOP_LAYERS)]
+        public IEnumerable<JsonInputGrassCumulativeOverloadTopLayerData> TopLayerDefinitionData { get; private set; }
 
-        [JsonProperty(JsonInputAsphaltWaveImpactDefinitions.FATIGUE)]
-        public JsonInputAsphaltWaveImpactTopLayerFatigueData Fatigue { get; set; }
+        [JsonProperty(JsonInputGrassOvertoppingDefinitions.DIKE_HEIGHT)]
+        public double DikeHeight { get; set; }
 
-        [JsonProperty(JsonInputAsphaltWaveImpactDefinitions.STIFFNESS_RELATION_NU)]
-        public double StiffnessRelationNu { get; set; }
+        [JsonProperty(JsonInputGrassOvertoppingDefinitions.ACCELERATION_ALPHA_A)]
+        public JsonInputGrassOvertoppingCalculationAccelerationAlphaAData AccelerationAlphaAData { get; set; }
+
+        [JsonProperty(JsonInputGrassRevetmentDefinitions.FIXED_NUMBER_OF_WAVES)]
+        public int FixedNumberOfWaves { get; set; }
+
+        [JsonProperty(JsonInputGrassOvertoppingDefinitions.FRONT_VELOCITY_CWO)]
+        public double FrontVelocity { get; set; }
+
+        [JsonProperty(JsonInputDefinitions.FACTOR_CTM)]
+        public double FactorCtm { get; set; }
     }
 }

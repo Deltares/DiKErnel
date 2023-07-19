@@ -17,19 +17,20 @@
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
 using DiKErnel.KernelWrapper.Json.Input.Data.Generic.Definitions;
+using DiKErnel.KernelWrapper.Json.Input.Data.Revetment.Definitions;
 using Newtonsoft.Json;
 
-namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputNaturalStone
+namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment
 {
-    internal class JsonInputNaturalStoneCalculationDefinitionLowerLimitData
+    internal class JsonInputGrassCumulativeOverloadTopLayerData
     {
-        [JsonProperty(JsonInputDefinitions.A_COEFFICIENT)]
-        public double LowerLimitLoadingA { get; set; }
+        [JsonProperty(JsonInputDefinitions.TYPE_TOP_LAYER)]
+        public JsonInputGrassRevetmentTopLayerType TopLayerType { get; private set; }
 
-        [JsonProperty(JsonInputDefinitions.B_COEFFICIENT)]
-        public double LowerLimitLoadingB { get; set; }
+        [JsonProperty(JsonInputGrassRevetmentDefinitions.CRITICAL_CUMULATIVE_OVERLOAD)]
+        public double CriticalCumulativeOverload { get; set; }
 
-        [JsonProperty(JsonInputDefinitions.C_COEFFICIENT)]
-        public double LowerLimitLoadingC { get; set; }
+        [JsonProperty(JsonInputGrassRevetmentDefinitions.CRITICAL_FRONT_VELOCITY)]
+        public double CriticalFrontVelocity { get; set; }
     }
 }

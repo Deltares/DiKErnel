@@ -17,19 +17,20 @@
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
 using DiKErnel.KernelWrapper.Json.Input.Data.Generic.Definitions;
+using DiKErnel.KernelWrapper.Json.Input.Data.Revetment.Definitions;
 using Newtonsoft.Json;
 
-namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassWaveImpact
+namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputAsphaltWaveImpact
 {
-    internal class JsonInputGrassWaveImpactTopLayerDefinitionTimeLineData
+    internal class JsonInputAsphaltWaveImpactTopLayerData
     {
-        [JsonProperty(JsonInputDefinitions.A_COEFFICIENT)]
-        public double TimeLineA { get; set; }
+        [JsonProperty(JsonInputDefinitions.TYPE_TOP_LAYER)]
+        public JsonInputAsphaltRevetmentTopLayerType TopLayerType { get; private set; }
 
-        [JsonProperty(JsonInputDefinitions.B_COEFFICIENT)]
-        public double TimeLineB { get; set; }
+        [JsonProperty(JsonInputAsphaltWaveImpactDefinitions.FATIGUE)]
+        public JsonInputAsphaltWaveImpactTopLayerFatigueData Fatigue { get; set; }
 
-        [JsonProperty(JsonInputDefinitions.C_COEFFICIENT)]
-        public double TimeLineC { get; set; }
+        [JsonProperty(JsonInputAsphaltWaveImpactDefinitions.STIFFNESS_RELATION_NU)]
+        public double StiffnessRelationNu { get; set; }
     }
 }

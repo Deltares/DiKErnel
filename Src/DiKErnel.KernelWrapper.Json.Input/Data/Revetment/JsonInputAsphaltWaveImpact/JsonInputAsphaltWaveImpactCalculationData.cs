@@ -22,27 +22,30 @@ using DiKErnel.KernelWrapper.Json.Input.Data.Generic.Definitions;
 using DiKErnel.KernelWrapper.Json.Input.Data.Revetment.Definitions;
 using Newtonsoft.Json;
 
-namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputNaturalStone
+namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputAsphaltWaveImpact
 {
-    internal class JsonInputNaturalStoneCalculationDefinitionData : JsonInputCalculationDefinitionData
+    internal class JsonInputAsphaltWaveImpactCalculationData : JsonInputCalculationData
     {
         [JsonProperty(JsonInputDefinitions.TOP_LAYERS)]
-        public IEnumerable<JsonInputNaturalStoneTopLayerDefinitionData>
+        public IEnumerable<JsonInputAsphaltWaveImpactTopLayerData>
             TopLayerDefinitionData { get; private set; }
 
-        [JsonProperty(JsonInputDefinitions.LOADING_AREA)]
-        public JsonInputNaturalStoneCalculationDefinitionLoadingAreaData LoadingArea { get; set; }
+        [JsonProperty(JsonInputAsphaltWaveImpactDefinitions.DENSITY_OF_WATER)]
+        public double DensityOfWater { get; set; }
 
-        [JsonProperty(JsonInputNaturalStoneDefinitions.SLOPE)]
-        public JsonInputNaturalStoneCalculationDefinitionSlopeData Slope { get; set; }
+        [JsonProperty(JsonInputDefinitions.FACTOR_CTM)]
+        public double FactorCtm { get; set; }
 
-        [JsonProperty(JsonInputNaturalStoneDefinitions.DISTANCE_MAXIMUM_WAVE_ELEVATION)]
-        public JsonInputNaturalStoneCalculationDefinitionMaximumWaveElevationData DistanceMaximumWaveElevation { get; set; }
+        [JsonProperty(JsonInputAsphaltWaveImpactDefinitions.IMPACT_NUMBER_C)]
+        public double ImpactNumberC { get; set; }
 
-        [JsonProperty(JsonInputNaturalStoneDefinitions.NORMATIVE_WIDTH_OF_WAVE_IMPACT)]
-        public JsonInputNaturalStoneCalculationDefinitionNormativeWidthWaveImpactData NormativeWidthOfWaveImpact { get; set; }
+        [JsonProperty(JsonInputAsphaltWaveImpactDefinitions.WIDTH_FACTORS)]
+        public IEnumerable<IEnumerable<double>> WidthFactors { get; set; }
 
-        [JsonProperty(JsonInputDefinitions.WAVE_ANGLE_IMPACT)]
-        public JsonInputNaturalStoneCalculationDefinitionWaveImpactData WaveAngleImpact { get; set; }
+        [JsonProperty(JsonInputAsphaltWaveImpactDefinitions.DEPTH_FACTORS)]
+        public IEnumerable<IEnumerable<double>> DepthFactors { get; set; }
+
+        [JsonProperty(JsonInputAsphaltWaveImpactDefinitions.IMPACT_FACTORS)]
+        public IEnumerable<IEnumerable<double>> ImpactFactors { get; set; }
     }
 }
