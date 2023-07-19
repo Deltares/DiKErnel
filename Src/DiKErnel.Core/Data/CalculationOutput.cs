@@ -30,7 +30,7 @@ namespace DiKErnel.Core.Data
         /// </summary>
         /// <param name="locationDependentOutputItems">The location dependent output
         /// items.</param>
-        public CalculationOutput(IEnumerable<LocationDependentOutput> locationDependentOutputItems)
+        public CalculationOutput(IReadOnlyList<LocationDependentOutput> locationDependentOutputItems)
         {
             LocationDependentOutputItems = locationDependentOutputItems;
         }
@@ -38,6 +38,6 @@ namespace DiKErnel.Core.Data
         /// <summary>
         /// Gets the location dependent output items.
         /// </summary>
-        public IEnumerable<LocationDependentOutput> LocationDependentOutputItems { get; }
+        public IReadOnlyList<LocationDependentOutput> LocationDependentOutputItems { get; }
     }
 }

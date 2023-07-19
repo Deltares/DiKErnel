@@ -17,7 +17,6 @@
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
 using System.Collections.Generic;
-using System.Linq;
 using DiKErnel.Core.Data;
 using NUnit.Framework;
 
@@ -30,7 +29,7 @@ namespace DiKErnel.Core.Test.Data
         public void Constructor_ExpectedValues()
         {
             // Setup
-            IEnumerable<LocationDependentOutput> locationDependentOutputItems = Enumerable.Empty<LocationDependentOutput>();
+            var locationDependentOutputItems = new List<LocationDependentOutput>();
 
             // Call
             var calculationOutput = new CalculationOutput(locationDependentOutputItems);

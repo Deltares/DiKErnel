@@ -108,8 +108,10 @@ namespace DiKErnel.Core
 
                 CalculationState = CalculationState.FinishedSuccessfully;
 
-                IEnumerable<LocationDependentOutput> locationDependentOutputItems = locationDependentInputItems
-                    .Select(ldi => ldi.GetLocationDependentOutput(timeDependentOutputItemsPerLocation[ldi]));
+                List<LocationDependentOutput> locationDependentOutputItems =
+                    locationDependentInputItems
+                        .Select(ldi => ldi.GetLocationDependentOutput(timeDependentOutputItemsPerLocation[ldi]))
+                        .ToList();
 
                 return new DataResult<CalculationOutput>(new CalculationOutput(locationDependentOutputItems),
                                                          EventRegistry.Flush());
