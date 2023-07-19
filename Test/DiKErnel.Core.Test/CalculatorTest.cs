@@ -68,8 +68,8 @@ namespace DiKErnel.Core.Test
             Assert.AreEqual(1, output.LocationDependentOutputItems.Count);
 
             LocationDependentOutput locationDependentOutput = output.LocationDependentOutputItems.ElementAt(0);
-            IEnumerable<double> damages = locationDependentOutput.GetDamages().ToArray();
-            Assert.AreEqual(3, damages.Count());
+            IReadOnlyList<double> damages = locationDependentOutput.GetDamages();
+            Assert.AreEqual(3, damages.Count);
             Assert.IsTrue(damages.All(d => d.Equals(damage)));
             Assert.AreEqual(timeOfFailure, locationDependentOutput.GetTimeOfFailure());
         }

@@ -93,8 +93,8 @@ namespace DiKErnel.Core
         {
             try
             {
-                ITimeDependentInput[] timeDependentInputItems = calculationInput.TimeDependentInputItems.ToArray();
-                ILocationDependentInput[] locationDependentInputItems = calculationInput.LocationDependentInputItems.ToArray();
+                IReadOnlyList<ITimeDependentInput> timeDependentInputItems = calculationInput.TimeDependentInputItems;
+                IReadOnlyList<ILocationDependentInput> locationDependentInputItems = calculationInput.LocationDependentInputItems;
                 Dictionary<ILocationDependentInput, List<TimeDependentOutput>> timeDependentOutputItemsPerLocation =
                     locationDependentInputItems.ToDictionary(ldi => ldi, ldi => new List<TimeDependentOutput>());
 
