@@ -33,35 +33,11 @@ namespace DiKErnel.Core.Data
         protected LocationDependentOutput(IEnumerable<TimeDependentOutput> timeDependentOutputItems)
         {
             TimeDependentOutputItems = timeDependentOutputItems;
-
-            var damages = new List<double>();
-
-            foreach (TimeDependentOutput timeDependentOutput in TimeDependentOutputItems)
-            {
-                damages.Add(timeDependentOutput.Damage);
-
-                if (timeDependentOutput.TimeOfFailure.HasValue)
-                {
-                    TimeOfFailure = timeDependentOutput.TimeOfFailure;
-                }
-            }
-
-            Damages = damages;
         }
 
         /// <summary>
         /// Gets the time dependent output items.
         /// </summary>
         public IEnumerable<TimeDependentOutput> TimeDependentOutputItems { get; }
-
-        /// <summary>
-        /// Gets the calculated damages.
-        /// </summary>
-        public IEnumerable<double> Damages { get; }
-
-        /// <summary>
-        /// Gets the calculated time of failure.
-        /// </summary>
-        public int? TimeOfFailure { get; }
     }
 }
