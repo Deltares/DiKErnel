@@ -56,8 +56,8 @@ namespace DiKErnel.External.Overtopping.Test
             };
 
             // Call
-            IEnumerable<string> messages = OvertoppingAdapter.Validate(xCoordinates, zCoordinates, roughnessCoefficients, 
-                                                                       dikeHeight);
+            IReadOnlyList<string> messages = OvertoppingAdapter.Validate(xCoordinates, zCoordinates, roughnessCoefficients,
+                                                                         dikeHeight);
 
             // Assert
             CollectionAssert.IsNotEmpty(messages);
@@ -95,8 +95,8 @@ namespace DiKErnel.External.Overtopping.Test
             };
 
             // Call
-            IEnumerable<string> messages = OvertoppingAdapter.Validate(xCoordinates, zCoordinates, roughnessCoefficients,
-                                                                       dikeHeight);
+            IReadOnlyList<string> messages = OvertoppingAdapter.Validate(xCoordinates, zCoordinates, roughnessCoefficients,
+                                                                         dikeHeight);
 
             // Assert
             CollectionAssert.IsEmpty(messages);
@@ -130,7 +130,7 @@ namespace DiKErnel.External.Overtopping.Test
             };
 
             // Call
-            double z2 = OvertoppingAdapter.CalculateZ2(waterLevel, waveHeightHm0, wavePeriodTm10, waveDirection, xCoordinates, 
+            double z2 = OvertoppingAdapter.CalculateZ2(waterLevel, waveHeightHm0, wavePeriodTm10, waveDirection, xCoordinates,
                                                        zCoordinates, roughnessCoefficients, dikeHeight);
 
             // Assert
@@ -169,7 +169,7 @@ namespace DiKErnel.External.Overtopping.Test
             };
 
             // Call
-            double z2 = OvertoppingAdapter.CalculateZ2(waterLevel, waveHeightHm0, wavePeriodTm10, waveDirection, xCoordinates, 
+            double z2 = OvertoppingAdapter.CalculateZ2(waterLevel, waveHeightHm0, wavePeriodTm10, waveDirection, xCoordinates,
                                                        zCoordinates, roughnessCoefficients, dikeHeight);
 
             // Assert

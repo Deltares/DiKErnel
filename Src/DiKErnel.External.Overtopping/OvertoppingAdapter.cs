@@ -16,6 +16,7 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -41,8 +42,8 @@ namespace DiKErnel.External.Overtopping
         /// segments [-].</param>
         /// <param name="dikeHeight">The dike height [m].</param>
         /// <returns>A collection of validation messages.</returns>
-        public static IEnumerable<string> Validate(IEnumerable<double> xValues, IEnumerable<double> zValues,
-                                                   IEnumerable<double> roughnessCoefficients, double dikeHeight)
+        public static IReadOnlyList<string> Validate(IReadOnlyList<double> xValues, IReadOnlyList<double> zValues,
+                                                     IReadOnlyList<double> roughnessCoefficients, double dikeHeight)
         {
             Geometry geometry = CreateGeometry(xValues, zValues, roughnessCoefficients);
             ModelFactors modelFactors = GetDefaultModelFactors();
@@ -54,8 +55,8 @@ namespace DiKErnel.External.Overtopping
             ValidateInputC(ref geometry, ref dikeHeight, ref modelFactors, ref success, messageBuffer, bufferCapacity);
 
             return success
-                       ? Enumerable.Empty<string>()
-                       : new string(messageBuffer).TrimEnd('\0').Split('\t');
+                       ? Array.Empty<string>()
+                       : new string(messageBuffer).TrimEnd('\0').Split('\t').ToArray();
         }
 
         /// <summary>
@@ -73,8 +74,8 @@ namespace DiKErnel.External.Overtopping
         /// <param name="dikeHeight">The dike height [m].</param>
         /// <returns>The representative wave run-up (2 percent) [m].</returns>
         public static double CalculateZ2(double waterLevel, double waveHeightHm0, double wavePeriodTm10, double waveDirection,
-                                         IEnumerable<double> xValues, IEnumerable<double> zValues,
-                                         IEnumerable<double> roughnessCoefficients, double dikeHeight)
+                                         IReadOnlyList<double> xValues, IReadOnlyList<double> zValues,
+                                         IReadOnlyList<double> roughnessCoefficients, double dikeHeight)
         {
             var load = new Load
             {
@@ -100,8 +101,8 @@ namespace DiKErnel.External.Overtopping
             return result.Z2;
         }
 
-        private static Geometry CreateGeometry(IEnumerable<double> xValues, IEnumerable<double> zValues,
-                                               IEnumerable<double> roughnessCoefficients)
+        private static Geometry CreateGeometry(IReadOnlyList<double> xValues, IReadOnlyList<double> zValues,
+                                               IReadOnlyList<double> roughnessCoefficients)
         {
             double[] xValuesArray = xValues.ToArray();
             double[] zValuesArray = zValues.ToArray();
