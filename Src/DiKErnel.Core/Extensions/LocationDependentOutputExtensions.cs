@@ -35,14 +35,16 @@ namespace DiKErnel.Core.Extensions
         /// <returns>The calculated damages for the location dependent output.</returns>
         /// <exception cref="ArgumentNullException">Thrown when
         /// <paramref name="locationDependentOutput"/> is <c>null</c>.</exception>
-        public static IEnumerable<double> GetDamages(this LocationDependentOutput locationDependentOutput)
+        public static IReadOnlyList<double> GetDamages(this LocationDependentOutput locationDependentOutput)
         {
             if (locationDependentOutput == null)
             {
                 throw new ArgumentNullException(nameof(locationDependentOutput));
             }
 
-            return locationDependentOutput.TimeDependentOutputItems.Select(timeDependentOutput => timeDependentOutput.Damage);
+            return locationDependentOutput.TimeDependentOutputItems
+                                          .Select(timeDependentOutput => timeDependentOutput.Damage)
+                                          .ToList();
         }
 
         /// <summary>

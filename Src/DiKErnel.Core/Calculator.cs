@@ -156,10 +156,12 @@ namespace DiKErnel.Core
 
         private static TimeDependentOutput CalculateTimeStepForLocation(ITimeDependentInput timeDependentInput,
                                                                         ILocationDependentInput locationDependentInput,
-                                                                        IEnumerable<TimeDependentOutput> currentOutputItems,
+                                                                        IReadOnlyList<TimeDependentOutput> currentOutputItems,
                                                                         IProfileData profileData)
         {
-            double initialDamage = currentOutputItems.LastOrDefault()?.Damage ?? locationDependentInput.InitialDamage;
+            double initialDamage = currentOutputItems.Count == 0
+                                       ? locationDependentInput.InitialDamage
+                                       : currentOutputItems[currentOutputItems.Count - 1].Damage;
 
             return locationDependentInput.Calculate(initialDamage, timeDependentInput, profileData);
         }
