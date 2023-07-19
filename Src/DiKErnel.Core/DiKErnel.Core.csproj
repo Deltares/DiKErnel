@@ -1,9 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-    <Import Project="$(SolutionDir)build\NetStandard.targets" />
+    <Import Project="$(SolutionDir)build\NetStandard.targets"/>
 
     <ItemGroup>
-      <ProjectReference Include="..\DiKErnel.Util\DiKErnel.Util.csproj" />
+        <ProjectReference Include="..\DiKErnel.Util\DiKErnel.Util.csproj"/>
     </ItemGroup>
 
 </Project>

@@ -41,7 +41,7 @@ namespace DiKErnel.Core.Extensions
             {
                 throw new ArgumentNullException(nameof(locationDependentOutput));
             }
-            
+
             return locationDependentOutput.TimeDependentOutputItems.Select(timeDependentOutput => timeDependentOutput.Damage);
         }
 
@@ -49,7 +49,8 @@ namespace DiKErnel.Core.Extensions
         /// Gets the calculated time of failure.
         /// </summary>
         /// <param name="locationDependentOutput">The location dependent output.</param>
-        /// <returns>The calculated time of failure for the location dependent output.</returns>
+        /// <returns>The calculated time of failure for the location dependent
+        /// output.</returns>
         /// <exception cref="ArgumentNullException">Thrown when
         /// <paramref name="locationDependentOutput"/> is <c>null</c>.</exception>
         public static int? GetTimeOfFailure(this LocationDependentOutput locationDependentOutput)
