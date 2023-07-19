@@ -45,6 +45,34 @@ namespace DiKErnel.Core.Test
         }
 
         [Test]
+        [TestCase(true)]
+        [TestCase(false)]
+        public void GivenCalculator_WhenCalculationPerformed_ThenReturnsResultWithExpectedOutput(bool withTimeOfFailure)
+        {
+            // Given
+            double damage = Random.NextDouble();
+            int? timeOfFailure = withTimeOfFailure ? Random.Next() : (int?) null;
+
+            ICalculationInput calculationInput = CreateCalculationInput(damage, timeOfFailure);
+
+            var calculator = new Calculator(calculationInput);
+
+            // When
+            calculator.WaitForCompletion();
+
+            // Then
+            Assert.IsNotNull(calculator.Result);
+
+            CalculationOutput output = calculator.Result.Data;
+            Assert.AreEqual(1, output.LocationDependentOutputItems.Count());
+
+            LocationDependentOutput locationDependentOutput = output.LocationDependentOutputItems.ElementAt(0);
+            Assert.AreEqual(3, locationDependentOutput.Damages.Count());
+            Assert.IsTrue(locationDependentOutput.Damages.All(d => d.Equals(damage)));
+            Assert.AreEqual(timeOfFailure, locationDependentOutput.TimeOfFailure);
+        }
+
+        [Test]
         public void GivenCalculatorWithRunningCalculation_WhenCancelCalled_ThenCalculationCancelled()
         {
             // Given
@@ -192,8 +220,7 @@ namespace DiKErnel.Core.Test
 
             calculationInput.LocationDependentInputItems.Returns(new[]
             {
-                new TestLocationDependentCalculationInput(damage),
-                new TestLocationDependentCalculationInput(damage + 1.0, timeOfFailure),
+                new TestLocationDependentCalculationInput(damage, timeOfFailure),
             });
 
             calculationInput.TimeDependentInputItems.Returns(new[]
