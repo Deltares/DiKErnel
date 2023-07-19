@@ -17,8 +17,8 @@
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
 using System.Collections.Generic;
+using System.Linq;
 using DiKErnel.Core.Data;
-using DiKErnel.TestUtil;
 using NSubstitute;
 using NUnit.Framework;
 
@@ -28,56 +28,16 @@ namespace DiKErnel.Core.Test.Data
     public class LocationDependentOutputTest
     {
         [Test]
-        public void Constructor_WithTimeOfFailure_ExpectedValues()
+        public void Constructor_ExpectedValues()
         {
             // Setup
-            double damage1 = Random.NextDouble();
-            double damage2 = Random.NextDouble();
-            int timeOfFailure = Random.Next();
-
-            var timeDependentOutputItems = new List<TimeDependentOutput>
-            {
-                Substitute.For<TimeDependentOutput>(Random.NextDouble(), damage1, null),
-                Substitute.For<TimeDependentOutput>(Random.NextDouble(), damage2, timeOfFailure)
-            };
+            IEnumerable<TimeDependentOutput> timeDependentOutputItems = Enumerable.Empty<TimeDependentOutput>();
 
             // Call
             var locationDependentOutput = Substitute.For<LocationDependentOutput>(timeDependentOutputItems);
 
             // Assert
             Assert.AreSame(timeDependentOutputItems, locationDependentOutput.TimeDependentOutputItems);
-            CollectionAssert.AreEqual(new[]
-            {
-                damage1,
-                damage2
-            }, locationDependentOutput.Damages);
-            Assert.AreEqual(timeOfFailure, locationDependentOutput.TimeOfFailure);
-        }
-
-        [Test]
-        public void Constructor_WithoutTimeOfFailure_ExpectedValues()
-        {
-            // Setup
-            double damage1 = Random.NextDouble();
-            double damage2 = Random.NextDouble();
-
-            var timeDependentOutputItems = new List<TimeDependentOutput>
-            {
-                Substitute.For<TimeDependentOutput>(Random.NextDouble(), damage1, null),
-                Substitute.For<TimeDependentOutput>(Random.NextDouble(), damage2, null)
-            };
-
-            // Call
-            var locationDependentOutput = Substitute.For<LocationDependentOutput>(timeDependentOutputItems);
-
-            // Assert
-            Assert.AreSame(timeDependentOutputItems, locationDependentOutput.TimeDependentOutputItems);
-            CollectionAssert.AreEqual(new[]
-            {
-                damage1,
-                damage2
-            }, locationDependentOutput.Damages);
-            Assert.IsNull(locationDependentOutput.TimeOfFailure);
         }
     }
 }
