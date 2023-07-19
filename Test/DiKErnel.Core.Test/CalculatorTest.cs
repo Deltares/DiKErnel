@@ -235,7 +235,7 @@ namespace DiKErnel.Core.Test
             return calculationInput;
         }
 
-        private class TestLocationDependentCalculationInput : ILocationDependentInput
+        private sealed class TestLocationDependentCalculationInput : ILocationDependentInput
         {
             private readonly double damage;
             private readonly int? timeOfFailure;
