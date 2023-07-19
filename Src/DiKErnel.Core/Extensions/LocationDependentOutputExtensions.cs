@@ -34,11 +34,9 @@ namespace DiKErnel.Core.Extensions
         /// <returns>The calculated damages for the location dependent output.</returns>
         public static IEnumerable<double> GetDamages(this LocationDependentOutput locationDependentOutput)
         {
-            return locationDependentOutput.TimeDependentOutputItems
-                                          .Select(timeDependentOutput => timeDependentOutput.Damage)
-                                          .ToArray();
+            return locationDependentOutput.TimeDependentOutputItems.Select(timeDependentOutput => timeDependentOutput.Damage);
         }
-        
+
         /// <summary>
         /// Gets the calculated time of failure.
         /// </summary>

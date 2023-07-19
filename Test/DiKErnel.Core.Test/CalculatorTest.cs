@@ -20,6 +20,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using DiKErnel.Core.Data;
+using DiKErnel.Core.Extensions;
 using DiKErnel.Util;
 using NSubstitute;
 using NUnit.Framework;
@@ -67,9 +68,10 @@ namespace DiKErnel.Core.Test
             Assert.AreEqual(1, output.LocationDependentOutputItems.Count());
 
             LocationDependentOutput locationDependentOutput = output.LocationDependentOutputItems.ElementAt(0);
-            Assert.AreEqual(3, locationDependentOutput.Damages.Count());
-            Assert.IsTrue(locationDependentOutput.Damages.All(d => d.Equals(damage)));
-            Assert.AreEqual(timeOfFailure, locationDependentOutput.TimeOfFailure);
+            IEnumerable<double> damages = locationDependentOutput.GetDamages().ToArray();
+            Assert.AreEqual(3, damages.Count());
+            Assert.IsTrue(damages.All(d => d.Equals(damage)));
+            Assert.AreEqual(timeOfFailure, locationDependentOutput.GetTimeOfFailure());
         }
 
         [Test]
