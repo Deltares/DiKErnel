@@ -43,7 +43,7 @@ namespace DiKErnel.Core.Test
                                                                                                : EventType.Error)));
 
             var locationDependentInput = Substitute.For<ILocationDependentInput>();
-            locationDependentInput.Validate(Arg.Any<IEnumerable<ITimeDependentInput>>(), Arg.Any<IProfileData>())
+            locationDependentInput.Validate(Arg.Any<IReadOnlyList<ITimeDependentInput>>(), Arg.Any<IProfileData>())
                                   .Returns(locationDependentInputValid)
                                   .AndDoes(callInfo => EventRegistry.Register(new Event(string.Empty, locationDependentInputValid
                                                                                                           ? EventType.Warning
@@ -98,7 +98,7 @@ namespace DiKErnel.Core.Test
                        .AndDoes(callInfo => EventRegistry.Register(new Event(validationMessage, EventType.Error)));
 
             var locationDependentInput = Substitute.For<ILocationDependentInput>();
-            locationDependentInput.Validate(Arg.Any<IEnumerable<ITimeDependentInput>>(), Arg.Any<IProfileData>())
+            locationDependentInput.Validate(Arg.Any<IReadOnlyList<ITimeDependentInput>>(), Arg.Any<IProfileData>())
                                   .Returns(true)
                                   .AndDoes(callInfo => throw new InvalidOperationException(exceptionMessage));
 

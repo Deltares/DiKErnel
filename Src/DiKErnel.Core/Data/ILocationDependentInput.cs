@@ -53,7 +53,7 @@ namespace DiKErnel.Core.Data
         /// use in the validation.</param>
         /// <param name="profileData">The profile data to use in the validation.</param>
         /// <returns>Whether the validation was successful.</returns>
-        public bool Validate(IEnumerable<ITimeDependentInput> timeDependentInputItems, IProfileData profileData);
+        public bool Validate(IReadOnlyList<ITimeDependentInput> timeDependentInputItems, IProfileData profileData);
 
         /// <summary>
         /// Performs a location dependent calculation.

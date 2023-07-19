@@ -256,7 +256,7 @@ namespace DiKErnel.Core.Test
 
             public double FailureNumber => 1;
 
-            public bool Validate(IEnumerable<ITimeDependentInput> timeDependentInputItems, IProfileData profileData)
+            public bool Validate(IReadOnlyList<ITimeDependentInput> timeDependentInputItems, IProfileData profileData)
             {
                 return true;
             }

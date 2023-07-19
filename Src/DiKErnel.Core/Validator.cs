@@ -18,7 +18,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using DiKErnel.Core.Data;
 using DiKErnel.Util;
 
@@ -40,7 +39,7 @@ namespace DiKErnel.Core
             {
                 var validationResult = ValidationResultType.Successful;
 
-                IEnumerable<ITimeDependentInput> timeDependentInputItems = calculationInput.TimeDependentInputItems.ToArray();
+                IReadOnlyList<ITimeDependentInput> timeDependentInputItems = calculationInput.TimeDependentInputItems;
 
                 foreach (ITimeDependentInput timeDependentInput in timeDependentInputItems)
                 {
