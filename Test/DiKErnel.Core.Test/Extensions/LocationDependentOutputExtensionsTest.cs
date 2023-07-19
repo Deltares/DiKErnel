@@ -41,7 +41,7 @@ namespace DiKErnel.Core.Test.Extensions
         }
 
         [Test]
-        public void GivenLocationDependentOutputWithDamages_WhenGetDamages_ThenExpectedValues()
+        public void GivenLocationDependentOutput_WhenGetDamages_ThenExpectedValues()
         {
             // Given
             double damage1 = Random.NextDouble();
@@ -78,15 +78,17 @@ namespace DiKErnel.Core.Test.Extensions
         }
 
         [Test]
-        public void GivenLocationDependentOutputWithTimeOfFailure_WhenGetTimeOfFailure_ThenExpectedValues()
+        [TestCase(true)]
+        [TestCase(false)]
+        public void GivenLocationDependentOutput_WhenGetTimeOfFailure_ThenExpectedValues(bool withTimeOfFailure)
         {
             // Given
-            int timeOfFailureForTimeStep = Random.Next();
+            int? timeOfFailureInLastTimeStep = withTimeOfFailure ? Random.Next() : (int?) null;
 
             var timeDependentOutputItems = new List<TimeDependentOutput>
             {
                 Substitute.For<TimeDependentOutput>(Random.NextDouble(), Random.NextDouble(), null),
-                Substitute.For<TimeDependentOutput>(Random.NextDouble(), Random.NextDouble(), timeOfFailureForTimeStep)
+                Substitute.For<TimeDependentOutput>(Random.NextDouble(), Random.NextDouble(), timeOfFailureInLastTimeStep)
             };
 
             var locationDependentOutput = Substitute.For<LocationDependentOutput>(timeDependentOutputItems);
@@ -95,26 +97,7 @@ namespace DiKErnel.Core.Test.Extensions
             int? timeOfFailure = locationDependentOutput.GetTimeOfFailure();
 
             // Then
-            Assert.AreEqual(timeOfFailureForTimeStep, timeOfFailure);
-        }
-
-        [Test]
-        public void GivenLocationDependentOutputWithoutTimeOfFailure_WhenGetTimeOfFailure_ThenExpectedValues()
-        {
-            // Given
-            var timeDependentOutputItems = new List<TimeDependentOutput>
-            {
-                Substitute.For<TimeDependentOutput>(Random.NextDouble(), Random.NextDouble(), null),
-                Substitute.For<TimeDependentOutput>(Random.NextDouble(), Random.NextDouble(), null)
-            };
-
-            var locationDependentOutput = Substitute.For<LocationDependentOutput>(timeDependentOutputItems);
-
-            // When
-            int? timeOfFailure = locationDependentOutput.GetTimeOfFailure();
-
-            // Then
-            Assert.IsNull(timeOfFailure);
+            Assert.AreEqual(timeOfFailureInLastTimeStep, timeOfFailure);
         }
     }
 }
