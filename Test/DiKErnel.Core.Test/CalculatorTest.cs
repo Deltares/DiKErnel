@@ -17,6 +17,7 @@
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using DiKErnel.Core.Data;
 using DiKErnel.Util;
@@ -29,34 +30,11 @@ namespace DiKErnel.Core.Test
     [TestFixture]
     public class CalculatorTest
     {
-        private ICalculationInput calculationInput;
-
-        [SetUp]
-        public void SetUp()
-        {
-            calculationInput = Substitute.For<ICalculationInput>();
-
-            calculationInput.ProfileData.Returns(Substitute.For<IProfileData>());
-
-            calculationInput.LocationDependentInputItems.Returns(new[]
-            {
-                Substitute.For<ILocationDependentInput>(),
-                Substitute.For<ILocationDependentInput>()
-            });
-
-            calculationInput.TimeDependentInputItems.Returns(new[]
-            {
-                Substitute.For<ITimeDependentInput>(),
-                Substitute.For<ITimeDependentInput>(),
-                Substitute.For<ITimeDependentInput>()
-            });
-        }
-
         [Test]
         public void GivenCalculator_WhenWaitForCompletion_ThenCalculationPerformed()
         {
             // Given
-            var calculator = new Calculator(calculationInput);
+            var calculator = new Calculator(CreateCalculationInput());
 
             // When
             calculator.WaitForCompletion();
@@ -70,7 +48,7 @@ namespace DiKErnel.Core.Test
         public void GivenCalculatorWithRunningCalculation_WhenCancelCalled_ThenCalculationCancelled()
         {
             // Given
-            var calculator = new Calculator(calculationInput);
+            var calculator = new Calculator(CreateCalculationInput());
 
             // When
             calculator.Cancel();
@@ -85,7 +63,7 @@ namespace DiKErnel.Core.Test
         public void GivenCalculatorWithFinishedCalculation_WhenCancelCalled_ThenCalculationNotCancelled()
         {
             // Given
-            var calculator = new Calculator(calculationInput);
+            var calculator = new Calculator(CreateCalculationInput());
 
             calculator.WaitForCompletion();
 
@@ -101,7 +79,7 @@ namespace DiKErnel.Core.Test
         public void GivenCalculatorWithRunningCalculation_WhenGetCalculationState_ThenReturnsExpectedResult()
         {
             // Given
-            var calculator = new Calculator(calculationInput);
+            var calculator = new Calculator(CreateCalculationInput());
 
             // When
             CalculationState calculationState = calculator.CalculationState;
@@ -116,7 +94,7 @@ namespace DiKErnel.Core.Test
         public void GivenCalculatorWithRunningCalculation_WhenGetResult_ThenReturnsNull()
         {
             // Given
-            var calculator = new Calculator(calculationInput);
+            var calculator = new Calculator(CreateCalculationInput());
 
             // When
             DataResult<CalculationOutput> result = calculator.Result;
@@ -131,7 +109,7 @@ namespace DiKErnel.Core.Test
         public void GivenCalculatorWithCancelledCalculation_WhenGetCalculationState_ThenExpectedResult()
         {
             // Given
-            var calculator = new Calculator(calculationInput);
+            var calculator = new Calculator(CreateCalculationInput());
 
             calculator.Cancel();
             calculator.WaitForCompletion();
@@ -147,7 +125,7 @@ namespace DiKErnel.Core.Test
         public void GivenCalculatorWithCancelledCalculation_WhenGetResult_ThenReturnsResultWithSuccessfulFalse()
         {
             // Given
-            var calculator = new Calculator(calculationInput);
+            var calculator = new Calculator(CreateCalculationInput());
 
             calculator.Cancel();
             calculator.WaitForCompletion();
@@ -163,6 +141,8 @@ namespace DiKErnel.Core.Test
         public void GivenCalculatorWithExceptionDuringCalculation_WhenGetCalculationState_ThenExpectedResult()
         {
             // Given
+            ICalculationInput calculationInput = CreateCalculationInput();
+
             ILocationDependentInput locationDependentInput = calculationInput.LocationDependentInputItems.Last();
 
             locationDependentInput.Calculate(Arg.Any<double>(), Arg.Any<ITimeDependentInput>(), Arg.Any<IProfileData>())
@@ -185,6 +165,8 @@ namespace DiKErnel.Core.Test
         public void GivenCalculatorWithExceptionDuringCalculation_WhenGetResult_ThenReturnsResultWithSuccessfulFalseAndEvent()
         {
             // Given
+            ICalculationInput calculationInput = CreateCalculationInput();
+
             ILocationDependentInput locationDependentInput = calculationInput.LocationDependentInputItems.Last();
 
             const string exceptionMessage = "Exception message";
@@ -209,6 +191,63 @@ namespace DiKErnel.Core.Test
             Assert.AreEqual(EventType.Error, exceptionEvent.Type);
             Assert.AreEqual("An unhandled error occurred while performing the calculation. See stack trace for more " +
                             $"information:\n{exceptionMessage}", exceptionEvent.Message);
+        }
+
+        private static ICalculationInput CreateCalculationInput(double damage = 0, int? timeOfFailure = null)
+        {
+            var calculationInput = Substitute.For<ICalculationInput>();
+
+            calculationInput.ProfileData.Returns(Substitute.For<IProfileData>());
+
+            calculationInput.LocationDependentInputItems.Returns(new[]
+            {
+                new TestLocationDependentCalculationInput(damage),
+                new TestLocationDependentCalculationInput(damage + 1.0, timeOfFailure),
+            });
+
+            calculationInput.TimeDependentInputItems.Returns(new[]
+            {
+                Substitute.For<ITimeDependentInput>(),
+                Substitute.For<ITimeDependentInput>(),
+                Substitute.For<ITimeDependentInput>()
+            });
+
+            return calculationInput;
+        }
+
+        private class TestLocationDependentCalculationInput : ILocationDependentInput
+        {
+            private readonly double damage;
+            private readonly int? timeOfFailure;
+
+            public TestLocationDependentCalculationInput(double damage, int? timeOfFailure = null)
+            {
+                this.damage = damage;
+                this.timeOfFailure = timeOfFailure;
+            }
+
+            public double X => 0;
+
+            public double Z => 0;
+
+            public double InitialDamage => 0;
+
+            public double FailureNumber => 1;
+
+            public bool Validate(IEnumerable<ITimeDependentInput> timeDependentInputItems, IProfileData profileData)
+            {
+                return true;
+            }
+
+            public TimeDependentOutput Calculate(double initialDamage, ITimeDependentInput timeDependentInput, IProfileData profileData)
+            {
+                return Substitute.For<TimeDependentOutput>(Random.NextDouble(), damage, timeOfFailure);
+            }
+
+            public LocationDependentOutput GetLocationDependentOutput(IEnumerable<TimeDependentOutput> timeDependentOutputItems)
+            {
+                return Substitute.For<LocationDependentOutput>(timeDependentOutputItems);
+            }
         }
     }
 }
