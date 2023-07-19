@@ -65,7 +65,7 @@ namespace DiKErnel.Core.Test
             Assert.IsNotNull(calculator.Result);
 
             CalculationOutput output = calculator.Result.Data;
-            Assert.AreEqual(1, output.LocationDependentOutputItems.Count());
+            Assert.AreEqual(1, output.LocationDependentOutputItems.Count);
 
             LocationDependentOutput locationDependentOutput = output.LocationDependentOutputItems.ElementAt(0);
             IEnumerable<double> damages = locationDependentOutput.GetDamages().ToArray();
@@ -173,7 +173,7 @@ namespace DiKErnel.Core.Test
             // Given
             ICalculationInput calculationInput = CreateCalculationInput();
 
-            ILocationDependentInput locationDependentInput = calculationInput.LocationDependentInputItems.Last();
+            ILocationDependentInput locationDependentInput = calculationInput.LocationDependentInputItems[1];
             ((TestLocationDependentCalculationInput) locationDependentInput).ExceptionMessage = Random.NextString();
 
             var calculator = new Calculator(calculationInput);
@@ -194,7 +194,7 @@ namespace DiKErnel.Core.Test
             ICalculationInput calculationInput = CreateCalculationInput();
 
             string exceptionMessage = Random.NextString();
-            ILocationDependentInput locationDependentInput = calculationInput.LocationDependentInputItems.Last();
+            ILocationDependentInput locationDependentInput = calculationInput.LocationDependentInputItems[1];
             ((TestLocationDependentCalculationInput) locationDependentInput).ExceptionMessage = exceptionMessage;
 
             var calculator = new Calculator(calculationInput);

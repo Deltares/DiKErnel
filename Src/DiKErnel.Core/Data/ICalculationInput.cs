@@ -33,11 +33,11 @@ namespace DiKErnel.Core.Data
         /// <summary>
         /// Gets the location dependent input items to use in the calculation.
         /// </summary>
-        public IEnumerable<ILocationDependentInput> LocationDependentInputItems { get; }
+        public IReadOnlyList<ILocationDependentInput> LocationDependentInputItems { get; }
 
         /// <summary>
         /// Gets the time dependent input items to use in the calculation.
         /// </summary>
-        public IEnumerable<ITimeDependentInput> TimeDependentInputItems { get; }
+        public IReadOnlyList<ITimeDependentInput> TimeDependentInputItems { get; }
     }
 }
