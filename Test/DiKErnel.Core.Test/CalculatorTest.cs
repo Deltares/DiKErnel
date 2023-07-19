@@ -144,11 +144,7 @@ namespace DiKErnel.Core.Test
             ICalculationInput calculationInput = CreateCalculationInput();
 
             ILocationDependentInput locationDependentInput = calculationInput.LocationDependentInputItems.Last();
-
-            locationDependentInput.Calculate(Arg.Any<double>(), Arg.Any<ITimeDependentInput>(), Arg.Any<IProfileData>())
-                                  .Returns(callInfo => Substitute.For<TimeDependentOutput>(Random.NextDouble(),
-                                                                                           Random.NextDouble(), null))
-                                  .AndDoes(callInfo => throw new InvalidOperationException());
+            ((TestLocationDependentCalculationInput) locationDependentInput).ExceptionMessage = Random.NextString();
 
             var calculator = new Calculator(calculationInput);
 
@@ -167,14 +163,9 @@ namespace DiKErnel.Core.Test
             // Given
             ICalculationInput calculationInput = CreateCalculationInput();
 
+            string exceptionMessage = Random.NextString();
             ILocationDependentInput locationDependentInput = calculationInput.LocationDependentInputItems.Last();
-
-            const string exceptionMessage = "Exception message";
-
-            locationDependentInput.Calculate(Arg.Any<double>(), Arg.Any<ITimeDependentInput>(), Arg.Any<IProfileData>())
-                                  .Returns(callInfo => Substitute.For<TimeDependentOutput>(Random.NextDouble(),
-                                                                                           Random.NextDouble(), null))
-                                  .AndDoes(callInfo => throw new InvalidOperationException(exceptionMessage));
+            ((TestLocationDependentCalculationInput) locationDependentInput).ExceptionMessage = exceptionMessage;
 
             var calculator = new Calculator(calculationInput);
 
@@ -226,6 +217,8 @@ namespace DiKErnel.Core.Test
                 this.timeOfFailure = timeOfFailure;
             }
 
+            public string ExceptionMessage { get; set; }
+
             public double X => 0;
 
             public double Z => 0;
@@ -241,6 +234,11 @@ namespace DiKErnel.Core.Test
 
             public TimeDependentOutput Calculate(double initialDamage, ITimeDependentInput timeDependentInput, IProfileData profileData)
             {
+                if (!string.IsNullOrEmpty(ExceptionMessage))
+                {
+                    throw new InvalidOperationException(ExceptionMessage);
+                }
+
                 return Substitute.For<TimeDependentOutput>(Random.NextDouble(), damage, timeOfFailure);
             }
 
