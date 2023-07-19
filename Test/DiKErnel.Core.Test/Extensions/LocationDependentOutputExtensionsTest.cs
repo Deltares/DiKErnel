@@ -16,18 +16,30 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using System;
 using System.Collections.Generic;
 using DiKErnel.Core.Data;
 using DiKErnel.Core.Extensions;
-using DiKErnel.TestUtil;
 using NSubstitute;
 using NUnit.Framework;
+using Random = DiKErnel.TestUtil.Random;
 
 namespace DiKErnel.Core.Test.Extensions
 {
     [TestFixture]
     public class LocationDependentOutputExtensionsTest
     {
+        [Test]
+        public void GetDamages_LocationDependentOutputNull_ThrowsArgumentNullException()
+        {
+            // Call
+            void Call() => ((LocationDependentOutput) null).GetDamages();
+
+            // Assert
+            var exception = Assert.Throws<ArgumentNullException>(Call);
+            Assert.AreEqual("locationDependentOutput", exception?.ParamName);
+        }
+
         [Test]
         public void GivenLocationDependentOutputWithDamages_WhenGetDamages_ThenExpectedValues()
         {
@@ -52,6 +64,17 @@ namespace DiKErnel.Core.Test.Extensions
                 damage1,
                 damage2
             }, damages);
+        }
+
+        [Test]
+        public void GetTimeOfFailure_LocationDependentOutputNull_ThrowsArgumentNullException()
+        {
+            // Call
+            void Call() => ((LocationDependentOutput) null).GetTimeOfFailure();
+
+            // Assert
+            var exception = Assert.Throws<ArgumentNullException>(Call);
+            Assert.AreEqual("locationDependentOutput", exception?.ParamName);
         }
 
         [Test]
