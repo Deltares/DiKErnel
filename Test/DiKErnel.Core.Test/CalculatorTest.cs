@@ -19,6 +19,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using DiKErnel.Core.Data;
 using DiKErnel.Core.Extensions;
 using DiKErnel.Util;
@@ -222,7 +223,7 @@ namespace DiKErnel.Core.Test
 
             calculationInput.LocationDependentInputItems.Returns(new[]
             {
-                new TestLocationDependentCalculationInput(damage, timeOfFailure),
+                new TestLocationDependentCalculationInput(damage, timeOfFailure)
             });
 
             calculationInput.TimeDependentInputItems.Returns(new[]
@@ -268,6 +269,8 @@ namespace DiKErnel.Core.Test
                 {
                     throw new InvalidOperationException(ExceptionMessage);
                 }
+
+                Task.Delay(10);
 
                 return Substitute.For<TimeDependentOutput>(Random.NextDouble(), damage, timeOfFailure);
             }
