@@ -18,7 +18,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using DiKErnel.FunctionLibrary.GrassRevetmentOvertopping;
 using NUnit.Framework;
 using Random = DiKErnel.TestUtil.Random;

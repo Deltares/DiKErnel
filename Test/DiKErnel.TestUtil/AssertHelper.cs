@@ -24,7 +24,7 @@ namespace DiKErnel.TestUtil
     {
         public static void AssertAreEqualWithAcceptablePrecision(double expected, double actual)
         {
-            Assert.AreEqual(expected, actual, 1e-14);    
+            Assert.AreEqual(expected, actual, 1e-14);
         }
 
         public static void AssertAreEqualWithinTolerance(double expected, double actual)

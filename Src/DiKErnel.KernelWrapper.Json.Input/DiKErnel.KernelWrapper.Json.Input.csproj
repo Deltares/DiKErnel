@@ -1,19 +1,19 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-    <Import Project="$(SolutionDir)build\NetStandard.targets" />
+    <Import Project="$(SolutionDir)build\NetStandard.targets"/>
 
     <ItemGroup>
-        <ProjectReference Include="..\DiKErnel.Core\DiKErnel.Core.csproj" />
-        <ProjectReference Include="..\DiKErnel.Util\DiKErnel.Util.csproj" />
+        <ProjectReference Include="..\DiKErnel.Core\DiKErnel.Core.csproj"/>
+        <ProjectReference Include="..\DiKErnel.Util\DiKErnel.Util.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Newtonsoft.Json.Schema" Version="3.0.15" />
+        <PackageReference Include="Newtonsoft.Json.Schema" Version="3.0.15"/>
     </ItemGroup>
 
     <ItemGroup>
-        <None Remove="EmbeddedResources\schema_definition.json" />
-        <EmbeddedResource Include="Resources\schema_definition.json" />
+        <None Remove="EmbeddedResources\schema_definition.json"/>
+        <EmbeddedResource Include="Resources\schema_definition.json"/>
     </ItemGroup>
 
 </Project>

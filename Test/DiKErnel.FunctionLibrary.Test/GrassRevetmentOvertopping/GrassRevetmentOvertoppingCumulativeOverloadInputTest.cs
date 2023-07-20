@@ -46,7 +46,7 @@ namespace DiKErnel.FunctionLibrary.Test.GrassRevetmentOvertopping
                                                                              fixedNumberOfWaves,
                                                                              verticalDistanceWaterLevelElevation,
                                                                              criticalFrontVelocity, increasedLoadTransitionAlphaM,
-                                                                             reducedStrengthTransitionAlphaS, 
+                                                                             reducedStrengthTransitionAlphaS,
                                                                              gravitationalAcceleration, accelerationAlphaA,
                                                                              frontVelocityCwo);
 

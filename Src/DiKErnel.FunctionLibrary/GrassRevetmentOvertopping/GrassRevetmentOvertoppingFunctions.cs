@@ -36,7 +36,7 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentOvertopping
         public static double RepresentativeWaveRunup2P(GrassRevetmentOvertoppingRepresentative2PInput input)
         {
             return OvertoppingAdapter.CalculateZ2(input.WaterLevel, input.WaveHeightHm0, input.WavePeriodTm10, input.WaveDirection,
-                                                  input.XValuesProfile.ToArray(), input.ZValuesProfile.ToArray(), 
+                                                  input.XValuesProfile.ToArray(), input.ZValuesProfile.ToArray(),
                                                   input.RoughnessCoefficients.ToArray(), input.DikeHeight);
         }
 

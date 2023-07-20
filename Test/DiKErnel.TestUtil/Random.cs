@@ -40,7 +40,7 @@ namespace DiKErnel.TestUtil
         {
             return instance.NextDouble();
         }
-        
+
         public static bool NextBoolean()
         {
             if (instance == null)
