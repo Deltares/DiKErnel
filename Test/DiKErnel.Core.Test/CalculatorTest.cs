@@ -206,7 +206,7 @@ namespace DiKErnel.Core.Test
 
             // Then
             Assert.IsFalse(result.Successful);
-            Assert.AreEqual(1, result.Events.Count());
+            Assert.AreEqual(1, result.Events.Count);
 
             Event exceptionEvent = result.Events.ElementAt(0);
             Assert.AreEqual(EventType.Error, exceptionEvent.Type);

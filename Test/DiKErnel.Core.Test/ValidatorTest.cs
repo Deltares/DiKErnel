@@ -82,7 +82,7 @@ namespace DiKErnel.Core.Test
 
             Assert.IsTrue(validationResult.Successful);
             Assert.AreEqual(expectedValidationResultType, validationResult.Data);
-            Assert.AreEqual(3, validationResult.Events.Count());
+            Assert.AreEqual(3, validationResult.Events.Count);
         }
 
         [Test]
@@ -124,7 +124,7 @@ namespace DiKErnel.Core.Test
 
             // Assert
             Assert.IsFalse(validationResult.Successful);
-            Assert.AreEqual(2, validationResult.Events.Count());
+            Assert.AreEqual(2, validationResult.Events.Count);
 
             Event validationEvent = validationResult.Events.ElementAt(0);
             Assert.AreEqual(validationMessage, validationEvent.Message);
