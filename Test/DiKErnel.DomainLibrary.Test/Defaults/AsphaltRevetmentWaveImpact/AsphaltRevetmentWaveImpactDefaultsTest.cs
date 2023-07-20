@@ -49,7 +49,7 @@ namespace DiKErnel.DomainLibrary.Test.Defaults.AsphaltRevetmentWaveImpact
         public void WidthFactors_ExpectedValue()
         {
             // Call & Assert
-            Assert.AreEqual(new[]
+            CollectionAssert.AreEqual(new[]
             {
                 (0.1, 0.0392),
                 (0.2, 0.0738),
@@ -73,7 +73,7 @@ namespace DiKErnel.DomainLibrary.Test.Defaults.AsphaltRevetmentWaveImpact
         public void DepthFactors_ExpectedValue()
         {
             // Call & Assert
-            Assert.AreEqual(new[]
+            CollectionAssert.AreEqual(new[]
             {
                 (-1.0, 0.0244),
                 (-0.875, 0.0544),
@@ -93,7 +93,7 @@ namespace DiKErnel.DomainLibrary.Test.Defaults.AsphaltRevetmentWaveImpact
         public void ImpactFactors_ExpectedValue()
         {
             // Call & Assert
-            Assert.AreEqual(new[]
+            CollectionAssert.AreEqual(new[]
             {
                 (2.0, 0.039),
                 (2.4, 0.1),

@@ -44,7 +44,7 @@ namespace DiKErnel.DomainLibrary.Test.Validators.GrassRevetmentWaveImpact
         }
 
         [Test]
-        public void TimeLineB1gwi_VariousScenarios_ExpectedValues()
+        public void TimeLineBgwi_VariousScenarios_ExpectedValues()
         {
             Func<double, ValidationIssue> validationFunc = GrassRevetmentWaveImpactValidator.TimeLineBgwi;
 

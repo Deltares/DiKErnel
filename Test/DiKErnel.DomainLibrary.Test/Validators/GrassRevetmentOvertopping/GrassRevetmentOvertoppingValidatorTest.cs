@@ -28,7 +28,7 @@ namespace DiKErnel.DomainLibrary.Test.Validators.GrassRevetmentOvertopping
     public class GrassRevetmentOvertoppingValidatorTest
     {
         [Test]
-        public void FixedNumberOfWaves_VariousScenarios_ExpectedValues()
+        public void AccelerationAlphaA_VariousScenarios_ExpectedValues()
         {
             Func<double, ValidationIssue> validationFunc = GrassRevetmentOvertoppingValidator.AccelerationAlphaA;
 
