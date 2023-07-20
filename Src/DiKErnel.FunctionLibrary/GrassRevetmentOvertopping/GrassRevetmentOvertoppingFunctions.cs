@@ -17,6 +17,7 @@
 // // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
 using System;
+using System.Linq;
 using DiKErnel.External.Overtopping;
 using DiKErnel.FunctionLibrary.GrassRevetment;
 
@@ -35,8 +36,8 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentOvertopping
         public static double RepresentativeWaveRunup2P(GrassRevetmentOvertoppingRepresentative2PInput input)
         {
             return OvertoppingAdapter.CalculateZ2(input.WaterLevel, input.WaveHeightHm0, input.WavePeriodTm10, input.WaveDirection,
-                                                  input.XValuesProfile, input.ZValuesProfile, input.RoughnessCoefficients,
-                                                  input.DikeHeight);
+                                                  input.XValuesProfile.ToArray(), input.ZValuesProfile.ToArray(), 
+                                                  input.RoughnessCoefficients.ToArray(), input.DikeHeight);
         }
 
         /// <summary>

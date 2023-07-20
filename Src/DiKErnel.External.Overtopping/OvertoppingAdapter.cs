@@ -42,8 +42,8 @@ namespace DiKErnel.External.Overtopping
         /// segments [-].</param>
         /// <param name="dikeHeight">The dike height [m].</param>
         /// <returns>A collection of validation messages.</returns>
-        public static IReadOnlyList<string> Validate(IReadOnlyList<double> xValues, IReadOnlyList<double> zValues,
-                                                     IReadOnlyList<double> roughnessCoefficients, double dikeHeight)
+        public static IReadOnlyList<string> Validate(double[] xValues, double[] zValues, double[] roughnessCoefficients,
+                                                     double dikeHeight)
         {
             Geometry geometry = CreateGeometry(xValues, zValues, roughnessCoefficients);
             ModelFactors modelFactors = GetDefaultModelFactors();
@@ -56,7 +56,7 @@ namespace DiKErnel.External.Overtopping
 
             return success
                        ? Array.Empty<string>()
-                       : new string(messageBuffer).TrimEnd('\0').Split('\t').ToArray();
+                       : new string(messageBuffer).TrimEnd('\0').Split('\t');
         }
 
         /// <summary>
@@ -74,8 +74,7 @@ namespace DiKErnel.External.Overtopping
         /// <param name="dikeHeight">The dike height [m].</param>
         /// <returns>The representative wave run-up (2 percent) [m].</returns>
         public static double CalculateZ2(double waterLevel, double waveHeightHm0, double wavePeriodTm10, double waveDirection,
-                                         IReadOnlyList<double> xValues, IReadOnlyList<double> zValues,
-                                         IReadOnlyList<double> roughnessCoefficients, double dikeHeight)
+                                         double[] xValues, double[] zValues, double[] roughnessCoefficients, double dikeHeight)
         {
             var load = new Load
             {
@@ -101,25 +100,20 @@ namespace DiKErnel.External.Overtopping
             return result.Z2;
         }
 
-        private static Geometry CreateGeometry(IReadOnlyList<double> xValues, IReadOnlyList<double> zValues,
-                                               IReadOnlyList<double> roughnessCoefficients)
+        private static Geometry CreateGeometry(double[] xValues, double[] zValues, double[] roughnessCoefficients)
         {
-            double[] xValuesArray = xValues.ToArray();
-            double[] zValuesArray = zValues.ToArray();
-            double[] roughnessCoefficientsArray = roughnessCoefficients.ToArray();
-
             var geometry = new Geometry
             {
                 Normal = 0.0,
-                NPoints = xValuesArray.Length,
-                XCoords = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(double)) * xValuesArray.Length),
-                YCoords = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(double)) * zValuesArray.Length),
-                Roughness = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(double)) * roughnessCoefficientsArray.Length)
+                NPoints = xValues.Length,
+                XCoords = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(double)) * xValues.Length),
+                YCoords = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(double)) * zValues.Length),
+                Roughness = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(double)) * roughnessCoefficients.Length)
             };
 
-            Marshal.Copy(xValuesArray, 0, geometry.XCoords, xValuesArray.Length);
-            Marshal.Copy(zValuesArray, 0, geometry.YCoords, zValuesArray.Length);
-            Marshal.Copy(roughnessCoefficientsArray, 0, geometry.Roughness, roughnessCoefficientsArray.Length);
+            Marshal.Copy(xValues, 0, geometry.XCoords, xValues.Length);
+            Marshal.Copy(zValues, 0, geometry.YCoords, zValues.Length);
+            Marshal.Copy(roughnessCoefficients, 0, geometry.Roughness, roughnessCoefficients.Length);
 
             return geometry;
         }
