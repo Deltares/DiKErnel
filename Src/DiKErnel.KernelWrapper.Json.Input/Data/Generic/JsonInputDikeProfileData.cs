@@ -48,8 +48,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Generic
         [JsonProperty(JsonInputDefinitions.CHARACTERISTIC_POINT_TYPE_INNER_CREST, NullValueHandling = NullValueHandling.Ignore)]
         public double? InnerCrest { get; set; }
 
-        // [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
-        [JsonProperty(JsonInputDefinitions.CHARACTERISTIC_POINT_TYPE_INNER_TOE)]
+        [JsonProperty(JsonInputDefinitions.CHARACTERISTIC_POINT_TYPE_INNER_TOE, NullValueHandling = NullValueHandling.Ignore)]
         public double? InnerToe { get; set; }
     }
 }
