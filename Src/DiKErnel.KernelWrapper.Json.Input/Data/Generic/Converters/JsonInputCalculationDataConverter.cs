@@ -35,14 +35,16 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Generic.Converters
             throw new NotImplementedException();
         }
 
-        public override JsonInputCalculationData ReadJson(JsonReader reader, Type objectType, JsonInputCalculationData existingValue, bool hasExistingValue, JsonSerializer serializer)
+        public override JsonInputCalculationData ReadJson(JsonReader reader, Type objectType, JsonInputCalculationData existingValue,
+                                                          bool hasExistingValue, JsonSerializer serializer)
         {
             JObject jo = JObject.Load(reader);
 
             string typeDiscriminator = jo[JsonInputDefinitions.CALCULATION_METHOD_TYPE].ToString();
             JsonInputCalculationData jsonInputCalculationData = typeDiscriminator switch
             {
-                JsonInputDefinitions.CALCULATION_METHOD_TYPE_ASPHALT_WAVE_IMPACT => jo.ToObject<JsonInputAsphaltWaveImpactCalculationData>()!,
+                JsonInputDefinitions.CALCULATION_METHOD_TYPE_ASPHALT_WAVE_IMPACT =>
+                    jo.ToObject<JsonInputAsphaltWaveImpactCalculationData>()!,
                 JsonInputDefinitions.CALCULATION_METHOD_TYPE_GRASS_OVERTOPPING => jo.ToObject<JsonInputGrassOvertoppingCalculationData>()!,
                 JsonInputDefinitions.CALCULATION_METHOD_TYPE_GRASS_WAVE_IMPACT => jo.ToObject<JsonInputGrassWaveImpactCalculationData>()!,
                 JsonInputDefinitions.CALCULATION_METHOD_TYPE_GRASS_WAVE_RUNUP => jo.ToObject<JsonInputGrassWaveRunupCalculationData>()!,

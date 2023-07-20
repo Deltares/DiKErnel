@@ -35,7 +35,8 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Generic.Converters
             throw new NotImplementedException();
         }
 
-        public override JsonInputLocationData ReadJson(JsonReader reader, Type objectType, JsonInputLocationData existingValue, bool hasExistingValue, JsonSerializer serializer)
+        public override JsonInputLocationData ReadJson(JsonReader reader, Type objectType, JsonInputLocationData existingValue,
+                                                       bool hasExistingValue, JsonSerializer serializer)
         {
             JObject jo = JObject.Load(reader);
 

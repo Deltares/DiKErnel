@@ -92,7 +92,8 @@ namespace DiKErnel.DomainLibrary.Test.Validators.GrassRevetmentWaveImpact
 
             ValidatorAssertHelper.AssertValue(validationFunc, 3600000.0 - ValidatorAssertHelper.Epsilon);
             ValidatorAssertHelper.AssertValue(validationFunc, 3600000.0);
-            ValidatorAssertHelper.AssertValue(validationFunc, 3600000.0 + ValidatorAssertHelper.Epsilon, ValidationIssueType.Error, errorMessage);
+            ValidatorAssertHelper.AssertValue(validationFunc, 3600000.0 + ValidatorAssertHelper.Epsilon, ValidationIssueType.Error,
+                                              errorMessage);
 
             ValidatorAssertHelper.AssertValue(validationFunc, ValidatorAssertHelper.DoubleMax, ValidationIssueType.Error, errorMessage);
         }
@@ -113,7 +114,8 @@ namespace DiKErnel.DomainLibrary.Test.Validators.GrassRevetmentWaveImpact
 
             ValidatorAssertHelper.AssertValue(validationFunc, 10.0 - ValidatorAssertHelper.Epsilon);
             ValidatorAssertHelper.AssertValue(validationFunc, 10.0, ValidationIssueType.Warning, warningMessage);
-            ValidatorAssertHelper.AssertValue(validationFunc, 10.0 + ValidatorAssertHelper.Epsilon, ValidationIssueType.Warning, warningMessage);
+            ValidatorAssertHelper.AssertValue(validationFunc, 10.0 + ValidatorAssertHelper.Epsilon, ValidationIssueType.Warning,
+                                              warningMessage);
 
             ValidatorAssertHelper.AssertValue(validationFunc, ValidatorAssertHelper.DoubleMax, ValidationIssueType.Warning, warningMessage);
         }
@@ -173,7 +175,8 @@ namespace DiKErnel.DomainLibrary.Test.Validators.GrassRevetmentWaveImpact
         [Test]
         public void UpperLimitLoadingAul_VariousScenarios_ExpectedValues()
         {
-            ValidationIssue ValidationFunc(double upperLimitLoadingAul) => GrassRevetmentWaveImpactValidator.UpperLimitLoadingAul(upperLimitLoadingAul, 2);
+            ValidationIssue ValidationFunc(double upperLimitLoadingAul) =>
+                GrassRevetmentWaveImpactValidator.UpperLimitLoadingAul(upperLimitLoadingAul, 2);
 
             const string errorMessage = "UpperLimitLoadingAul must be smaller than LowerLimitLoadingAll.";
 

@@ -39,15 +39,18 @@ namespace DiKErnel.DomainLibrary.Test.Validators
 
             ValidatorAssertHelper.AssertValue(validationFunc, 0.0 - ValidatorAssertHelper.Epsilon, ValidationIssueType.Error, errorMessage);
             ValidatorAssertHelper.AssertValue(validationFunc, 0.0, ValidationIssueType.Error, errorMessage);
-            ValidatorAssertHelper.AssertValue(validationFunc, 0.0 + ValidatorAssertHelper.Epsilon, ValidationIssueType.Warning, warningMessage);
+            ValidatorAssertHelper.AssertValue(validationFunc, 0.0 + ValidatorAssertHelper.Epsilon, ValidationIssueType.Warning,
+                                              warningMessage);
 
-            ValidatorAssertHelper.AssertValue(validationFunc, 0.1 - ValidatorAssertHelper.Epsilon, ValidationIssueType.Warning, warningMessage);
+            ValidatorAssertHelper.AssertValue(validationFunc, 0.1 - ValidatorAssertHelper.Epsilon, ValidationIssueType.Warning,
+                                              warningMessage);
             ValidatorAssertHelper.AssertValue(validationFunc, 0.1, ValidationIssueType.Warning, warningMessage);
             ValidatorAssertHelper.AssertValue(validationFunc, 0.1 + ValidatorAssertHelper.Epsilon);
 
             ValidatorAssertHelper.AssertValue(validationFunc, 10.0 - ValidatorAssertHelper.Epsilon);
             ValidatorAssertHelper.AssertValue(validationFunc, 10.0, ValidationIssueType.Warning, warningMessage);
-            ValidatorAssertHelper.AssertValue(validationFunc, 10.0 + ValidatorAssertHelper.Epsilon, ValidationIssueType.Warning, warningMessage);
+            ValidatorAssertHelper.AssertValue(validationFunc, 10.0 + ValidatorAssertHelper.Epsilon, ValidationIssueType.Warning,
+                                              warningMessage);
 
             ValidatorAssertHelper.AssertValue(validationFunc, ValidatorAssertHelper.DoubleMax, ValidationIssueType.Warning, warningMessage);
         }
@@ -64,15 +67,18 @@ namespace DiKErnel.DomainLibrary.Test.Validators
 
             ValidatorAssertHelper.AssertValue(validationFunc, 0.0 - ValidatorAssertHelper.Epsilon, ValidationIssueType.Error, errorMessage);
             ValidatorAssertHelper.AssertValue(validationFunc, 0.0, ValidationIssueType.Error, errorMessage);
-            ValidatorAssertHelper.AssertValue(validationFunc, 0.0 + ValidatorAssertHelper.Epsilon, ValidationIssueType.Warning, warningMessage);
+            ValidatorAssertHelper.AssertValue(validationFunc, 0.0 + ValidatorAssertHelper.Epsilon, ValidationIssueType.Warning,
+                                              warningMessage);
 
-            ValidatorAssertHelper.AssertValue(validationFunc, 0.5 - ValidatorAssertHelper.Epsilon, ValidationIssueType.Warning, warningMessage);
+            ValidatorAssertHelper.AssertValue(validationFunc, 0.5 - ValidatorAssertHelper.Epsilon, ValidationIssueType.Warning,
+                                              warningMessage);
             ValidatorAssertHelper.AssertValue(validationFunc, 0.5, ValidationIssueType.Warning, warningMessage);
             ValidatorAssertHelper.AssertValue(validationFunc, 0.5 + ValidatorAssertHelper.Epsilon);
 
             ValidatorAssertHelper.AssertValue(validationFunc, 25.0 - ValidatorAssertHelper.Epsilon);
             ValidatorAssertHelper.AssertValue(validationFunc, 25.0, ValidationIssueType.Warning, warningMessage);
-            ValidatorAssertHelper.AssertValue(validationFunc, 25.0 + ValidatorAssertHelper.Epsilon, ValidationIssueType.Warning, warningMessage);
+            ValidatorAssertHelper.AssertValue(validationFunc, 25.0 + ValidatorAssertHelper.Epsilon, ValidationIssueType.Warning,
+                                              warningMessage);
 
             ValidatorAssertHelper.AssertValue(validationFunc, ValidatorAssertHelper.DoubleMax, ValidationIssueType.Warning, warningMessage);
         }
@@ -86,13 +92,15 @@ namespace DiKErnel.DomainLibrary.Test.Validators
 
             ValidatorAssertHelper.AssertValue(validationFunc, ValidatorAssertHelper.DoubleMin, ValidationIssueType.Error, errorMessage);
 
-            ValidatorAssertHelper.AssertValue(validationFunc, -180.0 - ValidatorAssertHelper.Epsilon, ValidationIssueType.Error, errorMessage);
+            ValidatorAssertHelper.AssertValue(validationFunc, -180.0 - ValidatorAssertHelper.Epsilon, ValidationIssueType.Error,
+                                              errorMessage);
             ValidatorAssertHelper.AssertValue(validationFunc, -180.0, ValidationIssueType.Error, errorMessage);
             ValidatorAssertHelper.AssertValue(validationFunc, -180.0 + ValidatorAssertHelper.Epsilon);
 
             ValidatorAssertHelper.AssertValue(validationFunc, 180.0 - ValidatorAssertHelper.Epsilon);
             ValidatorAssertHelper.AssertValue(validationFunc, 180.0);
-            ValidatorAssertHelper.AssertValue(validationFunc, 180.0 + ValidatorAssertHelper.Epsilon, ValidationIssueType.Error, errorMessage);
+            ValidatorAssertHelper.AssertValue(validationFunc, 180.0 + ValidatorAssertHelper.Epsilon, ValidationIssueType.Error,
+                                              errorMessage);
 
             ValidatorAssertHelper.AssertValue(validationFunc, ValidatorAssertHelper.DoubleMax, ValidationIssueType.Error, errorMessage);
         }
