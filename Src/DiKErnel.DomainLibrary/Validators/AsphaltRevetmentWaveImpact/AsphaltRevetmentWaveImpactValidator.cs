@@ -29,7 +29,8 @@ namespace DiKErnel.DomainLibrary.Validators.AsphaltRevetmentWaveImpact
         /// Validates the fatigue alpha coefficient.
         /// </summary>
         /// <param name="fatigueAlpha">The fatigue alpha coefficient [-].</param>
-        /// <returns>A validation issue when the fatigue alpha coefficient is not valid; <c>null</c> otherwise.</returns>
+        /// <returns>A validation issue when the fatigue alpha coefficient is not valid;
+        /// <c>null</c> otherwise.</returns>
         public static ValidationIssue FatigueAlpha(double fatigueAlpha)
         {
             return ValidateLargerThanZero(fatigueAlpha, "FatigueAlpha");
@@ -39,7 +40,8 @@ namespace DiKErnel.DomainLibrary.Validators.AsphaltRevetmentWaveImpact
         /// Validates the fatigue beta coefficient.
         /// </summary>
         /// <param name="fatigueBeta">The fatigue beta coefficient [-].</param>
-        /// <returns>A validation issue when the fatigue beta coefficient is not valid; <c>null</c> otherwise.</returns>
+        /// <returns>A validation issue when the fatigue beta coefficient is not valid;
+        /// <c>null</c> otherwise.</returns>
         public static ValidationIssue FatigueBeta(double fatigueBeta)
         {
             return ValidateLargerThanZero(fatigueBeta, "FatigueBeta");
@@ -49,7 +51,8 @@ namespace DiKErnel.DomainLibrary.Validators.AsphaltRevetmentWaveImpact
         /// Validates the failure tension.
         /// </summary>
         /// <param name="failureTension">The failure tension [MPa].</param>
-        /// <returns>A validation issue when the failure tension is not valid; <c>null</c> otherwise.</returns>
+        /// <returns>A validation issue when the failure tension is not valid; <c>null</c>
+        /// otherwise.</returns>
         public static ValidationIssue FailureTension(double failureTension)
         {
             return ValidateLargerThanZero(failureTension, "FailureTension");
@@ -59,7 +62,8 @@ namespace DiKErnel.DomainLibrary.Validators.AsphaltRevetmentWaveImpact
         /// Validates the impact number C coefficient.
         /// </summary>
         /// <param name="impactNumberC">The impact number C coefficient [-].</param>
-        /// <returns>A validation issue when the impact number C coefficient is not valid; <c>null</c> otherwise.</returns>
+        /// <returns>A validation issue when the impact number C coefficient is not valid;
+        /// <c>null</c> otherwise.</returns>
         public static ValidationIssue ImpactNumberC(double impactNumberC)
         {
             return ValidateLargerThanZero(impactNumberC, "ImpactNumberC");
@@ -69,7 +73,8 @@ namespace DiKErnel.DomainLibrary.Validators.AsphaltRevetmentWaveImpact
         /// Validates the density of water.
         /// </summary>
         /// <param name="densityOfWater">The density of water [kg/m^3].</param>
-        /// <returns>A validation issue when the density of water is not valid; <c>null</c> otherwise.</returns>
+        /// <returns>A validation issue when the density of water is not valid; <c>null</c>
+        /// otherwise.</returns>
         public static ValidationIssue DensityOfWater(double densityOfWater)
         {
             if (densityOfWater < 950.0 || densityOfWater > 1050.0)
@@ -84,7 +89,8 @@ namespace DiKErnel.DomainLibrary.Validators.AsphaltRevetmentWaveImpact
         /// Validates the soil elasticity.
         /// </summary>
         /// <param name="soilElasticity">The soil elasticity [MPa/m].</param>
-        /// <returns>A validation issue when the soil elasticity is not valid; <c>null</c> otherwise.</returns>
+        /// <returns>A validation issue when the soil elasticity is not valid; <c>null</c>
+        /// otherwise.</returns>
         public static ValidationIssue SoilElasticity(double soilElasticity)
         {
             return ValidateLargerThanZero(soilElasticity, "SoilElasticity");
@@ -94,7 +100,8 @@ namespace DiKErnel.DomainLibrary.Validators.AsphaltRevetmentWaveImpact
         /// Validates the Nu coefficient.
         /// </summary>
         /// <param name="stiffnessRelationNu">The Nu coefficient [m^-1].</param>
-        /// <returns>A validation issue when the Nu coefficient is not valid; <c>null</c> otherwise.</returns>
+        /// <returns>A validation issue when the Nu coefficient is not valid; <c>null</c>
+        /// otherwise.</returns>
         public static ValidationIssue StiffnessRelationNu(double stiffnessRelationNu)
         {
             return ValidateLargerThanZero(stiffnessRelationNu, "StiffnessRelationNu");
@@ -104,7 +111,8 @@ namespace DiKErnel.DomainLibrary.Validators.AsphaltRevetmentWaveImpact
         /// Validates the thickness.
         /// </summary>
         /// <param name="thickness">The thickness [m].</param>
-        /// <returns>A validation issue when the thickness is not valid; <c>null</c> otherwise.</returns>
+        /// <returns>A validation issue when the thickness is not valid; <c>null</c>
+        /// otherwise.</returns>
         public static ValidationIssue Thickness(double thickness)
         {
             return ValidateLargerThanZero(thickness, "Thickness");
@@ -114,7 +122,8 @@ namespace DiKErnel.DomainLibrary.Validators.AsphaltRevetmentWaveImpact
         /// Validates the elastic modulus.
         /// </summary>
         /// <param name="elasticModulus">The elastic modulus [MPa].</param>
-        /// <returns>A validation issue when the elastic modulus is not valid; <c>null</c> otherwise.</returns>
+        /// <returns>A validation issue when the elastic modulus is not valid; <c>null</c>
+        /// otherwise.</returns>
         public static ValidationIssue ElasticModulus(double elasticModulus)
         {
             return ValidateLargerThanZero(elasticModulus, "ElasticModulus");
