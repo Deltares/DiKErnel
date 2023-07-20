@@ -32,7 +32,7 @@ namespace DiKErnel.DomainLibrary.Test.Validators
         {
             Func<double, ValidationIssue> validationFunc = ProfileValidator.RoughnessCoefficient;
 
-            const string errorMessage = "Roughness coefficient should be in range [0.5, 1].";
+            const string errorMessage = "Roughness coefficient must be in range [0.5, 1].";
 
             ValidatorAssertHelper.AssertValue(validationFunc, ValidatorAssertHelper.DoubleMin, ValidationIssueType.Error, errorMessage);
 
