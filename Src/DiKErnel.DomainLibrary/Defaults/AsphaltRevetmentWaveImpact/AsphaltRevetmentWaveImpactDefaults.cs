@@ -43,7 +43,7 @@ namespace DiKErnel.DomainLibrary.Defaults.AsphaltRevetmentWaveImpact
         /// <summary>
         /// Gets the default values of the width factors [-].
         /// </summary>
-        public static IEnumerable<(double, double)> WidthFactors => new List<(double, double)>
+        public static IReadOnlyList<(double, double)> WidthFactors => new[]
         {
             (0.1, 0.0392),
             (0.2, 0.0738),
@@ -65,7 +65,7 @@ namespace DiKErnel.DomainLibrary.Defaults.AsphaltRevetmentWaveImpact
         /// <summary>
         /// Gets the default values of the depth factors [-].
         /// </summary>
-        public static IEnumerable<(double, double)> DepthFactors => new List<(double, double)>
+        public static IReadOnlyList<(double, double)> DepthFactors => new[]
         {
             (-1.0, 0.0244),
             (-0.875, 0.0544),
@@ -83,7 +83,7 @@ namespace DiKErnel.DomainLibrary.Defaults.AsphaltRevetmentWaveImpact
         /// <summary>
         /// Gets the default values of the impact factors [-].
         /// </summary>
-        public static IEnumerable<(double, double)> ImpactFactors => new List<(double, double)>
+        public static IReadOnlyList<(double, double)> ImpactFactors => new[]
         {
             (2.0, 0.039),
             (2.4, 0.1),
