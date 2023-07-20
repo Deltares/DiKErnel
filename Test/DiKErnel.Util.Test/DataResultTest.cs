@@ -16,10 +16,9 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using System.Collections.Generic;
-using System.Linq;
-using DiKErnel.TestUtil;
+using System;
 using NUnit.Framework;
+using Random = DiKErnel.TestUtil.Random;
 
 namespace DiKErnel.Util.Test
 {
@@ -31,7 +30,7 @@ namespace DiKErnel.Util.Test
         {
             // Setup
             int data = Random.Next();
-            IEnumerable<Event> events = Enumerable.Empty<Event>();
+            Event[] events = Array.Empty<Event>();
 
             // Call
             var result = new DataResult<int>(data, events);
@@ -46,7 +45,7 @@ namespace DiKErnel.Util.Test
         public void ConstructorForValueType_WithoutData_ExpectedValues()
         {
             // Setup
-            IEnumerable<Event> events = Enumerable.Empty<Event>();
+            Event[] events = Array.Empty<Event>();
 
             // Call
             var result = new DataResult<int>(events);
@@ -62,7 +61,7 @@ namespace DiKErnel.Util.Test
         {
             // Setup
             var data = new object();
-            IEnumerable<Event> events = Enumerable.Empty<Event>();
+            Event[] events = Array.Empty<Event>();
 
             // Call
             var result = new DataResult<object>(data, events);
@@ -77,7 +76,7 @@ namespace DiKErnel.Util.Test
         public void ConstructorForReferenceType_WithoutData_ExpectedValues()
         {
             // Setup
-            IEnumerable<Event> events = Enumerable.Empty<Event>();
+            Event[] events = Array.Empty<Event>();
 
             // Call
             var result = new DataResult<object>(events);

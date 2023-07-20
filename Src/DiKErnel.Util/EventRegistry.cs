@@ -47,7 +47,7 @@ namespace DiKErnel.Util
         /// Flushes all registered events.
         /// </summary>
         /// <returns>The registered events.</returns>
-        public static IEnumerable<Event> Flush()
+        public static IReadOnlyList<Event> Flush()
         {
             instance ??= new EventRegistry();
 

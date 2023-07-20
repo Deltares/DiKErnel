@@ -33,7 +33,7 @@ namespace DiKErnel.Util.TestUtil
             thread.Start();
         }
 
-        public IEnumerable<Event> RegisteredEvents => registeredEvents;
+        public IReadOnlyList<Event> RegisteredEvents => registeredEvents;
 
         public void WaitForCompletion()
         {

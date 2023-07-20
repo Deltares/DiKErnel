@@ -31,7 +31,7 @@ namespace DiKErnel.Util
         /// </summary>
         /// <param name="successful">Whether the operation was successful.</param>
         /// <param name="events">The events that occurred.</param>
-        public SimpleResult(bool successful, IEnumerable<Event> events)
+        public SimpleResult(bool successful, IReadOnlyList<Event> events)
         {
             Successful = successful;
             Events = events;
@@ -45,6 +45,6 @@ namespace DiKErnel.Util
         /// <summary>
         /// Gets the events.
         /// </summary>
-        public IEnumerable<Event> Events { get; }
+        public IReadOnlyList<Event> Events { get; }
     }
 }

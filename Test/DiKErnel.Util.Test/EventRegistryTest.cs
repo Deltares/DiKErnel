@@ -30,7 +30,7 @@ namespace DiKErnel.Util.Test
         public void GivenEventRegistryWithoutEventsRegistered_WhenFlush_ThenReturnsEmptyCollection()
         {
             // When
-            IEnumerable<Event> registeredEvents = EventRegistry.Flush();
+            IReadOnlyList<Event> registeredEvents = EventRegistry.Flush();
 
             // Then
             Assert.IsEmpty(registeredEvents);
@@ -47,10 +47,10 @@ namespace DiKErnel.Util.Test
             EventRegistry.Register(event2);
 
             // When
-            IEnumerable<Event> registeredEvents = EventRegistry.Flush().ToList();
+            IReadOnlyList<Event> registeredEvents = EventRegistry.Flush();
 
             // Then
-            Assert.AreEqual(2, registeredEvents.Count());
+            Assert.AreEqual(2, registeredEvents.Count);
             Assert.AreSame(event1, registeredEvents.ElementAt(0));
             Assert.AreSame(event2, registeredEvents.ElementAt(1));
         }
@@ -73,8 +73,8 @@ namespace DiKErnel.Util.Test
             registeredEventsOnMainThread.AddRange(EventRegistry.Flush());
 
             // Then
-            Assert.AreEqual(numberOfEventsToRegisterOnFirstThread, testHelperThread1.RegisteredEvents.Count());
-            Assert.AreEqual(numberOfEventsToRegisterOnSecondThread, testHelperThread2.RegisteredEvents.Count());
+            Assert.AreEqual(numberOfEventsToRegisterOnFirstThread, testHelperThread1.RegisteredEvents.Count);
+            Assert.AreEqual(numberOfEventsToRegisterOnSecondThread, testHelperThread2.RegisteredEvents.Count);
             Assert.IsEmpty(registeredEventsOnMainThread);
         }
 
@@ -86,10 +86,10 @@ namespace DiKErnel.Util.Test
             EventRegistry.Register(new Event(Random.NextString(), Random.NextEnumValue<EventType>()));
 
             // Precondition
-            Assert.AreEqual(2, EventRegistry.Flush().Count());
+            Assert.AreEqual(2, EventRegistry.Flush().Count);
 
             // When
-            IEnumerable<Event> registeredEvents = EventRegistry.Flush();
+            IReadOnlyList<Event> registeredEvents = EventRegistry.Flush();
 
             // Then
             Assert.IsEmpty(registeredEvents);

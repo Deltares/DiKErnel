@@ -31,7 +31,7 @@ namespace DiKErnel.Util
         /// Creates a new instance in case the operation was not successful.
         /// </summary>
         /// <param name="events">The events that occurred.</param>
-        public DataResult(IEnumerable<Event> events) : base(false, events)
+        public DataResult(IReadOnlyList<Event> events) : base(false, events)
         {
             Data = default;
         }
@@ -41,7 +41,7 @@ namespace DiKErnel.Util
         /// </summary>
         /// <param name="data">The data that was produced.</param>
         /// <param name="events">The events that occurred.</param>
-        public DataResult(T data, IEnumerable<Event> events) : base(true, events)
+        public DataResult(T data, IReadOnlyList<Event> events) : base(true, events)
         {
             Data = data;
         }
