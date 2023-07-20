@@ -27,10 +27,10 @@ namespace DiKErnel.DomainLibrary.Test.Defaults.AsphaltRevetmentWaveImpact
         [Test]
         public void Constructor_ExpectedValues()
         {
-            // Call
-            var defaults = new AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteTopLayerDefaults();
+            // Setup
+            var defaults = AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteTopLayerDefaults.Instance;
 
-            // Assert
+            // Call & Assert
             Assert.IsInstanceOf<IAsphaltRevetmentWaveImpactTopLayerDefaults>(defaults);
             Assert.AreEqual(0.42, defaults.FatigueAlpha);
             Assert.AreEqual(4.76, defaults.FatigueBeta);

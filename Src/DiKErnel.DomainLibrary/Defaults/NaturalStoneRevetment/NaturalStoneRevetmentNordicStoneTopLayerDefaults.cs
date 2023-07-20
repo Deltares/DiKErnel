@@ -24,6 +24,16 @@ namespace DiKErnel.DomainLibrary.Defaults.NaturalStoneRevetment
     /// </summary>
     public class NaturalStoneRevetmentNordicStoneTopLayerDefaults : INaturalStoneRevetmentTopLayerDefaults
     {
+        private static NaturalStoneRevetmentNordicStoneTopLayerDefaults instance;
+
+        private NaturalStoneRevetmentNordicStoneTopLayerDefaults() {}
+
+        /// <summary>
+        /// Gets the (one and only) instance of this class.
+        /// </summary> 
+        public static NaturalStoneRevetmentNordicStoneTopLayerDefaults Instance =>
+            instance ??= new NaturalStoneRevetmentNordicStoneTopLayerDefaults();
+
         public double HydraulicLoadXib => 2.9;
 
         public double HydraulicLoadAp => 4.0;

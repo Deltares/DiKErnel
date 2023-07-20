@@ -27,10 +27,10 @@ namespace DiKErnel.DomainLibrary.Test.Defaults.GrassRevetment
         [Test]
         public void Constructor_ExpectedValues()
         {
-            // Call
-            var defaults = new GrassRevetmentCumulativeOverloadClosedSodTopLayerDefaults();
+            // Setup
+            var defaults = GrassRevetmentCumulativeOverloadClosedSodTopLayerDefaults.Instance;
 
-            // Assert
+            // Call & Assert
             Assert.IsInstanceOf<IGrassRevetmentCumulativeOverloadTopLayerDefaults>(defaults);
             Assert.AreEqual(7000.0, defaults.CriticalCumulativeOverload);
             Assert.AreEqual(6.6, defaults.CriticalFrontVelocity);

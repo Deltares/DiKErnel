@@ -27,10 +27,10 @@ namespace DiKErnel.DomainLibrary.Test.Defaults.NaturalStoneRevetment
         [Test]
         public void Constructor_ExpectedValues()
         {
-            // Call
-            var defaults = new NaturalStoneRevetmentNordicStoneTopLayerDefaults();
+            // Setup
+            var defaults = NaturalStoneRevetmentNordicStoneTopLayerDefaults.Instance;
 
-            // Assert
+            // Call & Assert
             Assert.IsInstanceOf<INaturalStoneRevetmentTopLayerDefaults>(defaults);
             Assert.AreEqual(2.9, defaults.HydraulicLoadXib);
             Assert.AreEqual(4.0, defaults.HydraulicLoadAp);

@@ -27,10 +27,10 @@ namespace DiKErnel.DomainLibrary.Test.Defaults.GrassRevetmentWaveImpact
         [Test]
         public void Constructor_ExpectedValues()
         {
-            // Call
-            var defaults = new GrassRevetmentWaveImpactOpenSodTopLayerDefaults();
+            // Setup
+            var defaults = GrassRevetmentWaveImpactOpenSodTopLayerDefaults.Instance;
 
-            // Assert
+            // Call & Assert
             Assert.IsInstanceOf<IGrassRevetmentWaveImpactTopLayerDefaults>(defaults);
             Assert.AreEqual(0.8, defaults.TimeLineAgwi);
             Assert.AreEqual(-0.00001944, defaults.TimeLineBgwi);

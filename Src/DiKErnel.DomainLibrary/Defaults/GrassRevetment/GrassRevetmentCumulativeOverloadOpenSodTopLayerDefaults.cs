@@ -24,6 +24,16 @@ namespace DiKErnel.DomainLibrary.Defaults.GrassRevetment
     /// </summary>
     public class GrassRevetmentCumulativeOverloadOpenSodTopLayerDefaults : IGrassRevetmentCumulativeOverloadTopLayerDefaults
     {
+        private static GrassRevetmentCumulativeOverloadOpenSodTopLayerDefaults instance;
+
+        private GrassRevetmentCumulativeOverloadOpenSodTopLayerDefaults() {}
+
+        /// <summary>
+        /// Gets the (one and only) instance of this class.
+        /// </summary> 
+        public static GrassRevetmentCumulativeOverloadOpenSodTopLayerDefaults Instance =>
+            instance ??= new GrassRevetmentCumulativeOverloadOpenSodTopLayerDefaults();
+
         public double CriticalCumulativeOverload => 7000.0;
 
         public double CriticalFrontVelocity => 4.3;

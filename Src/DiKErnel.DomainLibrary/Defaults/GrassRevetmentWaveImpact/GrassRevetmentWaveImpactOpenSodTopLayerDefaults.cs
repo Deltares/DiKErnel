@@ -24,6 +24,16 @@ namespace DiKErnel.DomainLibrary.Defaults.GrassRevetmentWaveImpact
     /// </summary>
     public class GrassRevetmentWaveImpactOpenSodTopLayerDefaults : IGrassRevetmentWaveImpactTopLayerDefaults
     {
+        private static GrassRevetmentWaveImpactOpenSodTopLayerDefaults instance;
+
+        private GrassRevetmentWaveImpactOpenSodTopLayerDefaults() {}
+
+        /// <summary>
+        /// Gets the (one and only) instance of this class.
+        /// </summary> 
+        public static GrassRevetmentWaveImpactOpenSodTopLayerDefaults Instance =>
+            instance ??= new GrassRevetmentWaveImpactOpenSodTopLayerDefaults();
+
         public double TimeLineAgwi => 0.8;
 
         public double TimeLineBgwi => -0.00001944;
