@@ -1,11 +1,10 @@
 <Project>
   <PropertyGroup>
       <BuildDir>$(SolutionDir)\bin\</BuildDir>
-      <DeploymentDir>$(BuildDir)\Deployment\</DeploymentDir>
       <ExternalDependenciesDir>$(SolutionDir)Deployment\Windows\Overtopping\$(Platform)\</ExternalDependenciesDir>
   </PropertyGroup>
   <PropertyGroup>
-    <OutDir>$(DeploymentDir)</OutDir>
+    <OutDir>$(BuildDir)\Deployment\</OutDir>
     <EnableNETAnalyzers>true</EnableNETAnalyzers>
     <AnalysisMode>All</AnalysisMode>
     <Platforms>x86;x64</Platforms>

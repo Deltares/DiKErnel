@@ -11,7 +11,7 @@
         <ProjectReference Include="..\..\Src\DiKErnel.External.Overtopping\DiKErnel.External.Overtopping.csproj"/>
     </ItemGroup>
 
-    <Target Name="CopyOverToppingDll" AfterTargets="PostBuildEvent">
+    <Target Name="CopyOvertoppingDependencies" AfterTargets="PostBuildEvent">
         <Exec Command="xcopy /d/s/y &quot;$(ExternalDependenciesDir)\*&quot; &quot;$(OutDir)&quot;"/>
     </Target>
 

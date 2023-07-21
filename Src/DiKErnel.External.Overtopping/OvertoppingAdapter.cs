@@ -28,9 +28,14 @@ namespace DiKErnel.External.Overtopping
     /// </summary>
     public static class OvertoppingAdapter
     {
-        private const string dikesOvertoppingDllName = "dllDikesOvertopping.dll";
-        private const string languageCode = "UK";
         private const int bufferCapacity = 3072;
+        private const string dikesOvertoppingDllName = "dllDikesOvertopping.dll";
+
+        private static readonly char[] languageCode =
+        {
+            'U',
+            'K'
+        };
 
         /// <summary>
         /// Validates the input arguments for an overtopping calculation.
@@ -50,7 +55,7 @@ namespace DiKErnel.External.Overtopping
             var success = false;
             var messageBuffer = new char[bufferCapacity];
 
-            SetLanguage(languageCode.ToCharArray(), languageCode.Length);
+            SetLanguage(languageCode, languageCode.Length);
             ValidateInputC(ref geometry, ref dikeHeight, ref modelFactors, ref success, messageBuffer, bufferCapacity);
 
             return success
@@ -92,7 +97,7 @@ namespace DiKErnel.External.Overtopping
             var messageBuffer = new char[bufferCapacity];
             var logFileName = new char[bufferCapacity];
 
-            SetLanguage(languageCode.ToCharArray(), languageCode.Length);
+            SetLanguage(languageCode, languageCode.Length);
             calculateQo(ref load, ref geometry, ref dikeHeight, ref modelFactors, ref result, ref success, messageBuffer,
                         ref verbosity, logFileName, bufferCapacity, bufferCapacity);
 
