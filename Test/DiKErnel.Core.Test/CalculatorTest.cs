@@ -19,6 +19,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using DiKErnel.Core.Data;
 using DiKErnel.Core.Extensions;
@@ -270,7 +271,7 @@ namespace DiKErnel.Core.Test
                     throw new InvalidOperationException(ExceptionMessage);
                 }
 
-                Task.Delay(10);
+                Thread.Sleep(10);
 
                 return Substitute.For<TimeDependentOutput>(Random.NextDouble(), damage, timeOfFailure);
             }
