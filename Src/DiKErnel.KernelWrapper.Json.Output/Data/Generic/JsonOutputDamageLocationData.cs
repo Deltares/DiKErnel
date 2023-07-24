@@ -24,7 +24,12 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Generic
 {
     internal class JsonOutputDamageLocationData
     {
+        public JsonOutputDamageLocationData(IReadOnlyList<double> damage)
+        {
+            Damage = damage;
+        }
+
         [JsonProperty(JsonOutputDefinitions.DAMAGE_OVER_TIME)]
-        public IReadOnlyList<double> Damage { get; set; }
+        public IReadOnlyList<double> Damage { get; }
     }
 }

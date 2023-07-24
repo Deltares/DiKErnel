@@ -25,8 +25,25 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Revetment
 {
     internal class JsonOutputAsphaltRevetmentWaveImpactPhysicsLocationData : JsonOutputPhysicsLocationData
     {
+        public JsonOutputAsphaltRevetmentWaveImpactPhysicsLocationData(IReadOnlyList<double> incrementDamage, double z, double outerSlope,
+                                                                       IReadOnlyList<double> logFailureTension,
+                                                                       IReadOnlyList<double> maximumPeakStress,
+                                                                       IReadOnlyList<double> stiffnessRelation,
+                                                                       IReadOnlyList<double> computationalThickness,
+                                                                       IReadOnlyList<double> equivalentElasticModulus) : base(
+            incrementDamage)
+        {
+            Z = z;
+            OuterSlope = outerSlope;
+            LogFailureTension = logFailureTension;
+            MaximumPeakStress = maximumPeakStress;
+            StiffnessRelation = stiffnessRelation;
+            ComputationalThickness = computationalThickness;
+            EquivalentElasticModulus = equivalentElasticModulus;
+        }
+
         [JsonProperty(JsonOutputDefinitions.Z)]
-        public double LocationHeight { get; set; }
+        public double Z { get; set; }
 
         [JsonProperty(JsonOutputDefinitions.OUTER_SLOPE)]
         public double OuterSlope { get; set; }

@@ -24,6 +24,11 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Generic
 {
     internal class JsonOutputPhysicsLocationData
     {
+        public JsonOutputPhysicsLocationData(IReadOnlyList<double> incrementDamage)
+        {
+            IncrementDamage = incrementDamage;
+        }
+
         [JsonProperty(JsonOutputDefinitions.INCREMENT_DAMAGE)]
         public IReadOnlyList<double> IncrementDamage { get; set; }
     }

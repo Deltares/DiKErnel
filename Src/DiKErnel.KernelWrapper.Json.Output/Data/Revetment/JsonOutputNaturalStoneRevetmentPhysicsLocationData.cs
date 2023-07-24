@@ -25,8 +25,50 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Revetment
 {
     internal class JsonOutputNaturalStoneRevetmentPhysicsLocationData : JsonOutputPhysicsLocationData
     {
+        public JsonOutputNaturalStoneRevetmentPhysicsLocationData(IReadOnlyList<double> incrementDamage,
+                                                                  double z,
+                                                                  IReadOnlyList<double> outerSlope,
+                                                                  IReadOnlyList<double> slopeUpperLevel,
+                                                                  IReadOnlyList<double> slopeUpperPosition,
+                                                                  IReadOnlyList<double> slopeLowerLevel,
+                                                                  IReadOnlyList<double> slopeLowerPosition,
+                                                                  IReadOnlyList<bool> loadingRevetment,
+                                                                  IReadOnlyList<double> surfSimilarityParameter,
+                                                                  IReadOnlyList<double> waveSteepnessDeepWater,
+                                                                  IReadOnlyList<double> upperLimitLoading,
+                                                                  IReadOnlyList<double> lowerLimitLoading,
+                                                                  IReadOnlyList<double> depthMaximumWaveLoad,
+                                                                  IReadOnlyList<double> distanceMaximumWaveElevation,
+                                                                  IReadOnlyList<double> normativeWidthOfWaveImpact,
+                                                                  IReadOnlyList<double> hydraulicLoad,
+                                                                  IReadOnlyList<double> waveAngleImpact,
+                                                                  IReadOnlyList<double> resistance,
+                                                                  IReadOnlyList<double> referenceTimeDegradation,
+                                                                  IReadOnlyList<double> referenceDegradation) : base(incrementDamage)
+        {
+            Z = z;
+            OuterSlope = outerSlope;
+            SlopeUpperLevel = slopeUpperLevel;
+            SlopeUpperPosition = slopeUpperPosition;
+            SlopeLowerLevel = slopeLowerLevel;
+            SlopeLowerPosition = slopeLowerPosition;
+            LoadingRevetment = loadingRevetment;
+            SurfSimilarityParameter = surfSimilarityParameter;
+            WaveSteepnessDeepWater = waveSteepnessDeepWater;
+            UpperLimitLoading = upperLimitLoading;
+            LowerLimitLoading = lowerLimitLoading;
+            DepthMaximumWaveLoad = depthMaximumWaveLoad;
+            DistanceMaximumWaveElevation = distanceMaximumWaveElevation;
+            NormativeWidthOfWaveImpact = normativeWidthOfWaveImpact;
+            HydraulicLoad = hydraulicLoad;
+            WaveAngleImpact = waveAngleImpact;
+            Resistance = resistance;
+            ReferenceTimeDegradation = referenceTimeDegradation;
+            ReferenceDegradation = referenceDegradation;
+        }
+
         [JsonProperty(JsonOutputDefinitions.Z)]
-        public double LocationHeight { get; set; }
+        public double Z { get; set; }
 
         [JsonProperty(JsonOutputDefinitions.OUTER_SLOPE)]
         public IReadOnlyList<double> OuterSlope { get; set; }

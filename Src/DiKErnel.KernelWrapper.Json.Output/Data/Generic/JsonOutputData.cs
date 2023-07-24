@@ -19,25 +19,21 @@
 using System.Collections.Generic;
 using DiKErnel.KernelWrapper.Json.Output.Data.Definitions;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace DiKErnel.KernelWrapper.Json.Output.Data.Generic
 {
     internal class JsonOutputData
     {
-        public JsonOutputData(IReadOnlyList<JsonOutputLocationData> locationDataItems, JObject metaDataItems)
+        public JsonOutputData(JsonOutputLocationsObject locationDataItems, IReadOnlyDictionary<string, object> metaDataItems)
         {
-            JsonOutputLocations = new JsonOutputLocationsObject
-            {
-                LocationDataItems = locationDataItems
-            };
+            LocationDataItems = locationDataItems;
             MetaDataItems = metaDataItems;
         }
-        
+
         [JsonProperty(JsonOutputDefinitions.OUTPUT_DATA)]
-        public JsonOutputLocationsObject JsonOutputLocations { get; }
-        
+        public JsonOutputLocationsObject LocationDataItems { get; }
+
         [JsonProperty(JsonOutputDefinitions.META_DATA)]
-        public JObject MetaDataItems { get; }
+        public IReadOnlyDictionary<string, dynamic> MetaDataItems { get; }
     }
 }

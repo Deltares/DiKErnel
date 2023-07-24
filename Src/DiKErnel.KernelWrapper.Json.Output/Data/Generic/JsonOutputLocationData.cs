@@ -32,13 +32,13 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Generic
             PhysicsDataItems = physicsDataItems;
         }
 
-        [JsonProperty(JsonOutputDefinitions.FAILURE)]
+        [JsonProperty(JsonOutputDefinitions.FAILURE, NullValueHandling = NullValueHandling.Ignore)]
         public JsonOutputFailureLocationData FailureDataItems { get; }
 
-        [JsonProperty(JsonOutputDefinitions.DAMAGE)]
+        [JsonProperty(JsonOutputDefinitions.DAMAGE, NullValueHandling = NullValueHandling.Ignore)]
         public JsonOutputDamageLocationData DamageDataItems { get; }
 
-        [JsonProperty(JsonOutputDefinitions.PHYSICS)]
+        [JsonProperty(JsonOutputDefinitions.PHYSICS, NullValueHandling = NullValueHandling.Ignore)]
         public JsonOutputPhysicsLocationData PhysicsDataItems { get; }
     }
 }

@@ -25,8 +25,22 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Revetment
 {
     internal class JsonOutputGrassRevetmentWaveRunupRayleighPhysicsLocationData : JsonOutputPhysicsLocationData
     {
+        public JsonOutputGrassRevetmentWaveRunupRayleighPhysicsLocationData(IReadOnlyList<double> incrementDamage, double z,
+                                                                            IReadOnlyList<double> verticalDistanceWaterLevelElevation,
+                                                                            IReadOnlyList<double> waveAngleImpact,
+                                                                            IReadOnlyList<double> representativeWaveRunup2P,
+                                                                            IReadOnlyList<double> cumulativeOverload) : base(
+            incrementDamage)
+        {
+            Z = z;
+            VerticalDistanceWaterLevelElevation = verticalDistanceWaterLevelElevation;
+            WaveAngleImpact = waveAngleImpact;
+            RepresentativeWaveRunup2P = representativeWaveRunup2P;
+            CumulativeOverload = cumulativeOverload;
+        }
+
         [JsonProperty(JsonOutputDefinitions.Z)]
-        public double LocationHeight { get; set; }
+        public double Z { get; set; }
 
         [JsonProperty(JsonOutputGrassRevetmentDefinitions.VERTICAL_DISTANCE_WATER_LEVEL_ELEVATION)]
         public IReadOnlyList<double> VerticalDistanceWaterLevelElevation { get; set; }

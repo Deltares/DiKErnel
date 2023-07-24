@@ -24,6 +24,11 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Generic
 {
     internal class JsonOutputLocationsObject
     {
+        public JsonOutputLocationsObject(IReadOnlyList<JsonOutputLocationData> locationDataItems)
+        {
+            LocationDataItems = locationDataItems;
+        }
+
         [JsonProperty(JsonOutputDefinitions.LOCATIONS)]
         public IReadOnlyList<JsonOutputLocationData> LocationDataItems { get; set; }
     }
