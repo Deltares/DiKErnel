@@ -17,7 +17,6 @@
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
 using System;
-using DiKErnel.KernelWrapper.Json.Input.Data.Generic.Definitions;
 using DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputAsphaltWaveImpact;
 using DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassOvertopping;
 using DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassWaveImpact;
@@ -32,23 +31,23 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Generic.Converters
     {
         public override void WriteJson(JsonWriter writer, JsonInputCalculationData value, JsonSerializer serializer)
         {
-            throw new NotImplementedException();
+            throw new NotSupportedException();
         }
 
         public override JsonInputCalculationData ReadJson(JsonReader reader, Type objectType, JsonInputCalculationData existingValue,
                                                           bool hasExistingValue, JsonSerializer serializer)
         {
-            JObject jo = JObject.Load(reader);
+            JObject calculationData = JObject.Load(reader);
 
-            string typeDiscriminator = jo[JsonInputDefinitions.CALCULATION_METHOD_TYPE].ToString();
+            JsonInputCalculationType typeDiscriminator = calculationData.ToObject<JsonInputCalculationData>().CalculationMethodType;
+
             JsonInputCalculationData jsonInputCalculationData = typeDiscriminator switch
             {
-                JsonInputDefinitions.CALCULATION_METHOD_TYPE_ASPHALT_WAVE_IMPACT =>
-                    jo.ToObject<JsonInputAsphaltWaveImpactCalculationData>()!,
-                JsonInputDefinitions.CALCULATION_METHOD_TYPE_GRASS_OVERTOPPING => jo.ToObject<JsonInputGrassOvertoppingCalculationData>()!,
-                JsonInputDefinitions.CALCULATION_METHOD_TYPE_GRASS_WAVE_IMPACT => jo.ToObject<JsonInputGrassWaveImpactCalculationData>()!,
-                JsonInputDefinitions.CALCULATION_METHOD_TYPE_GRASS_WAVE_RUNUP => jo.ToObject<JsonInputGrassWaveRunupCalculationData>()!,
-                JsonInputDefinitions.CALCULATION_METHOD_TYPE_NATURAL_STONE => jo.ToObject<JsonInputNaturalStoneCalculationData>()!,
+                JsonInputCalculationType.AsphaltWaveImpact => calculationData.ToObject<JsonInputAsphaltWaveImpactCalculationData>(),
+                JsonInputCalculationType.GrassOvertopping => calculationData.ToObject<JsonInputGrassOvertoppingCalculationData>(),
+                JsonInputCalculationType.GrassWaveImpact => calculationData.ToObject<JsonInputGrassWaveImpactCalculationData>(),
+                JsonInputCalculationType.GrassWaveRunup => calculationData.ToObject<JsonInputGrassWaveRunupCalculationData>(),
+                JsonInputCalculationType.NaturalStone => calculationData.ToObject<JsonInputNaturalStoneCalculationData>(),
                 _ => null
             };
 
