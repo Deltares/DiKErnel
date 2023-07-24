@@ -33,22 +33,22 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Generic
         [JsonProperty(JsonInputDefinitions.DIKE_PROFILE_ROUGHNESS_COEFFICIENTS)]
         public IReadOnlyList<double> RoughnessCoefficients { get; private set; }
 
-        [JsonProperty(JsonInputDefinitions.CHARACTERISTIC_POINT_TYPE_OUTER_TOE, NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty(JsonInputDefinitions.CHARACTERISTIC_POINT_TYPE_OUTER_TOE)]
         public double? OuterToe { get; set; }
 
-        [JsonProperty(JsonInputDefinitions.CHARACTERISTIC_POINT_TYPE_CREST_OUTER_BERM, NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty(JsonInputDefinitions.CHARACTERISTIC_POINT_TYPE_CREST_OUTER_BERM)]
         public double? CrestOuterBerm { get; set; }
 
-        [JsonProperty(JsonInputDefinitions.CHARACTERISTIC_POINT_TYPE_NOTCH_OUTER_BERM, NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty(JsonInputDefinitions.CHARACTERISTIC_POINT_TYPE_NOTCH_OUTER_BERM)]
         public double? NotchOuterBerm { get; set; }
 
-        [JsonProperty(JsonInputDefinitions.CHARACTERISTIC_POINT_TYPE_OUTER_CREST, NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty(JsonInputDefinitions.CHARACTERISTIC_POINT_TYPE_OUTER_CREST)]
         public double? OuterCrest { get; set; }
 
-        [JsonProperty(JsonInputDefinitions.CHARACTERISTIC_POINT_TYPE_INNER_CREST, NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty(JsonInputDefinitions.CHARACTERISTIC_POINT_TYPE_INNER_CREST)]
         public double? InnerCrest { get; set; }
 
-        [JsonProperty(JsonInputDefinitions.CHARACTERISTIC_POINT_TYPE_INNER_TOE, NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty(JsonInputDefinitions.CHARACTERISTIC_POINT_TYPE_INNER_TOE)]
         public double? InnerToe { get; set; }
     }
 }

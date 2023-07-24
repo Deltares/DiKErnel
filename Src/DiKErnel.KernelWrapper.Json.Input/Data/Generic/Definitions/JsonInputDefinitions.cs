@@ -18,7 +18,7 @@
 
 namespace DiKErnel.KernelWrapper.Json.Input.Data.Generic.Definitions
 {
-    public static class JsonInputDefinitions
+    internal static class JsonInputDefinitions
     {
         public const string HYDRAULIC_LOADS = "hydraulischeBelastingen";
         public const string LOCATIONS = "locaties";

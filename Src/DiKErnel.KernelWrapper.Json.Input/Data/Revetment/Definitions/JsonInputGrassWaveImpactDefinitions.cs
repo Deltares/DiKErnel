@@ -18,7 +18,7 @@
 
 namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.Definitions
 {
-    internal class JsonInputGrassWaveImpactDefinitions
+    internal static class JsonInputGrassWaveImpactDefinitions
     {
         public const string TIME_LINE = "standtijdlijn";
 

@@ -21,10 +21,8 @@ using DiKErnel.KernelWrapper.Json.Input.Data.Revetment.Definitions;
 
 namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment
 {
-    public enum JsonInputGrassRevetmentTopLayerType
+    internal enum JsonInputGrassRevetmentTopLayerType
     {
-        Unknown,
-
         [EnumMember(Value = JsonInputGrassRevetmentDefinitions.TOP_LAYER_TYPE_OPEN_SOD)]
         OpenSod,
 

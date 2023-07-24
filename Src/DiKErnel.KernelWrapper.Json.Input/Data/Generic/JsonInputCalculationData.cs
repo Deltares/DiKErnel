@@ -27,6 +27,6 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Generic
         public JsonInputCalculationType CalculationMethodType { get; private set; }
 
         [JsonProperty(JsonInputDefinitions.FAILURE_NUMBER)]
-        public double FailureNumber { get; private set; }
+        public double? FailureNumber { get; private set; }
     }
 }

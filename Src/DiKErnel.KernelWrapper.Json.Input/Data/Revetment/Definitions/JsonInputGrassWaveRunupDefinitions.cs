@@ -18,7 +18,7 @@
 
 namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.Definitions
 {
-    internal class JsonInputGrassWaveRunupDefinitions
+    internal static class JsonInputGrassWaveRunupDefinitions
     {
         public const string OUTER_SLOPE = "tanA";
 

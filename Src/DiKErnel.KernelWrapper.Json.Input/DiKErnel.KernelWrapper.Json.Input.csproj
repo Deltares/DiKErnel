@@ -12,7 +12,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <None Remove="EmbeddedResources\schema_definition.json"/>
         <EmbeddedResource Include="Resources\schema_definition.json"/>
     </ItemGroup>
 

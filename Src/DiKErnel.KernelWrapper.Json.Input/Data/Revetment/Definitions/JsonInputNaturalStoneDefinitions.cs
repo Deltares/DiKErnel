@@ -18,7 +18,7 @@
 
 namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.Definitions
 {
-    internal class JsonInputNaturalStoneDefinitions
+    internal static class JsonInputNaturalStoneDefinitions
     {
         public const string TOP_LAYER_TYPE_NORDIC_STONE = "noorseSteen";
 

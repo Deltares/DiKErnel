@@ -34,7 +34,7 @@ namespace DiKErnel.KernelWrapper.Json.Input
     /// <summary>
     /// Class responsible for validating and parsing Json input.
     /// </summary>
-    public class JsonInputComposer
+    public static class JsonInputComposer
     {
         /// <summary>
         /// Performs a Json schema based validation.

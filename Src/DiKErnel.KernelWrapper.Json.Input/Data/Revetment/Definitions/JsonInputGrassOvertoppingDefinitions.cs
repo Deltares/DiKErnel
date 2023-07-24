@@ -26,7 +26,6 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.Definitions
 
         public const string FRONT_VELOCITY_CWO = "frontsnelheidCwo";
 
-        public const string CALCULATION_PROTOCOL_TYPE_DIKES_OVERTOPPING = "dikesOvertopping";
         public const string DIKE_HEIGHT = "dijkHoogte";
     }
 }
