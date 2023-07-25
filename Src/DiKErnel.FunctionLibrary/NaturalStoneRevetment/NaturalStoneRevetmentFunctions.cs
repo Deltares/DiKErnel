@@ -180,7 +180,7 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneRevetment
         /// <returns>The wave impact with respect to the wave angle [-].</returns>
         public static double WaveAngleImpact(double waveAngle, double waveAngleImpactBetamax)
         {
-            return Math.Pow(Math.Cos(GenericFunctions.Radians(Math.Min(waveAngleImpactBetamax, Math.Abs(waveAngle)))), 2.0 / 3.0);
+            return Math.Pow(Math.Cos(GenericFunctions.Radians(Math.Min(waveAngleImpactBetamax, Math.Abs(waveAngle)))), 2d / 3);
         }
 
         /// <summary>
@@ -364,12 +364,12 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneRevetment
 
         private static double Degradation(double referenceTimeDegradation, double wavePeriodTm10)
         {
-            return Math.Pow(referenceTimeDegradation / (wavePeriodTm10 * 1000.0), 0.1);
+            return Math.Pow(referenceTimeDegradation / (wavePeriodTm10 * 1000), 0.1);
         }
 
         private static double ReferenceTime(double reference, double wavePeriodTm10)
         {
-            return 1000.0 * wavePeriodTm10 * Math.Pow(reference, 10.0);
+            return 1000 * wavePeriodTm10 * Math.Pow(reference, 10);
         }
 
         private static double Reference(double resistance, double hydraulicLoad, double waveAngleImpact, double value)

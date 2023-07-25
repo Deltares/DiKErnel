@@ -68,7 +68,7 @@ namespace DiKErnel.FunctionLibrary.AsphaltRevetmentWaveImpact
         /// <returns>The maximum peak stress [MPa].</returns>
         public static double MaximumPeakStress(double waveHeightHm0, double gravitationalAcceleration, double densityOfWater)
         {
-            return gravitationalAcceleration * densityOfWater * waveHeightHm0 / Math.Pow(10.0, 6.0);
+            return gravitationalAcceleration * densityOfWater * waveHeightHm0 / Math.Pow(10, 6);
         }
 
         /// <summary>
@@ -82,9 +82,9 @@ namespace DiKErnel.FunctionLibrary.AsphaltRevetmentWaveImpact
         public static double StiffnessRelation(double computationalThickness, double equivalentElasticModulus,
                                                double soilElasticity, double stiffnessRelationNu)
         {
-            return Math.Pow(3.0 * soilElasticity * (1.0 - Math.Pow(stiffnessRelationNu, 2.0))
-                            / (equivalentElasticModulus * Math.Pow(computationalThickness, 3.0)),
-                            1.0 / 4.0);
+            return Math.Pow(3 * soilElasticity * (1 - Math.Pow(stiffnessRelationNu, 2))
+                            / (equivalentElasticModulus * Math.Pow(computationalThickness, 3)),
+                            1d / 4);
         }
 
         /// <summary>
@@ -100,7 +100,7 @@ namespace DiKErnel.FunctionLibrary.AsphaltRevetmentWaveImpact
         public static double ComputationalThickness(double thicknessUpperLayer, double thicknessSubLayer,
                                                     double elasticModulusUpperLayer, double elasticModulusSubLayer)
         {
-            return thicknessUpperLayer * Math.Pow(elasticModulusUpperLayer / elasticModulusSubLayer, 1.0 / 3.0)
+            return thicknessUpperLayer * Math.Pow(elasticModulusUpperLayer / elasticModulusSubLayer, 1d / 3)
                    + thicknessSubLayer;
         }
 
@@ -151,8 +151,8 @@ namespace DiKErnel.FunctionLibrary.AsphaltRevetmentWaveImpact
         {
             double logTension = LogTension(bendingStress, input.OuterSlope, impactFactorValue, input.ImpactNumberC);
 
-            return Math.Pow(10.0, -input.FatigueBeta * Math.Pow(Math.Max(0.0, input.LogFailureTension - logTension),
-                                                                input.FatigueAlpha));
+            return Math.Pow(10, -input.FatigueBeta * Math.Pow(Math.Max(0, input.LogFailureTension - logTension),
+                                                              input.FatigueAlpha));
         }
 
         private static double LogTension(double bendingStress, double outerSlope, double impactFactorValue, double impactNumberC)
@@ -173,9 +173,9 @@ namespace DiKErnel.FunctionLibrary.AsphaltRevetmentWaveImpact
             double spatialDistributionBendingStress = SpatialDistributionBendingStress(input, relativeWidthWaveImpact, sinA,
                                                                                        depthFactorValue);
 
-            return Math.Max(Math.Pow(10.0, -99.0),
-                            -3.0 * input.MaximumPeakStress / (4.0 * Math.Pow(input.StiffnessRelation, 2.0)
-                                                                  * Math.Pow(input.ComputationalThickness, 2.0))
+            return Math.Max(Math.Pow(10, -99),
+                            -3 * input.MaximumPeakStress / (4 * Math.Pow(input.StiffnessRelation, 2)
+                                                              * Math.Pow(input.ComputationalThickness, 2))
                             * spatialDistributionBendingStress);
         }
 

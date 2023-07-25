@@ -47,9 +47,9 @@ namespace DiKErnel.FunctionLibrary.GrassRevetment
                 double waveRunup = WaveRunup(input.RepresentativeWaveRunup2P, input.FixedNumberOfWaves, k);
                 double frontVelocity = getFrontVelocityFunc(waveRunup);
 
-                cumulativeFrontVelocity += Math.Max(0.0, input.IncreasedLoadTransitionAlphaM * Math.Pow(frontVelocity, 2.0)
-                                                         - input.ReducedStrengthTransitionAlphaS
-                                                         * Math.Pow(input.CriticalFrontVelocity, 2.0));
+                cumulativeFrontVelocity += Math.Max(0, input.IncreasedLoadTransitionAlphaM * Math.Pow(frontVelocity, 2)
+                                                       - input.ReducedStrengthTransitionAlphaS
+                                                       * Math.Pow(input.CriticalFrontVelocity, 2));
             }
 
             return input.AverageNumberOfWaves / input.FixedNumberOfWaves * cumulativeFrontVelocity;
