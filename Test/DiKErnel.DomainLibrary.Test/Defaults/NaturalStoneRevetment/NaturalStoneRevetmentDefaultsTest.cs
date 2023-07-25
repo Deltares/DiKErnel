@@ -63,7 +63,7 @@ namespace DiKErnel.DomainLibrary.Test.Defaults.NaturalStoneRevetment
         public void LowerLimitLoadingAll_ExpectedValue()
         {
             // Call & Assert
-            Assert.AreEqual(0, NaturalStoneRevetmentDefaults.LowerLimitLoadingAll);
+            Assert.AreEqual(0.1, NaturalStoneRevetmentDefaults.LowerLimitLoadingAll);
         }
 
         [Test]
