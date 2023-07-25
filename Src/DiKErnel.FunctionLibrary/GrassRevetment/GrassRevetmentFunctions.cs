@@ -42,7 +42,7 @@ namespace DiKErnel.FunctionLibrary.GrassRevetment
         {
             var cumulativeFrontVelocity = 0.0;
 
-            for (var k = 1; k <= input.FixedNumberOfWaves; ++k)
+            for (var k = 1; k <= input.FixedNumberOfWaves; k++)
             {
                 double waveRunup = WaveRunup(input.RepresentativeWaveRunup2P, input.FixedNumberOfWaves, k);
                 double frontVelocity = getFrontVelocityFunc(waveRunup);

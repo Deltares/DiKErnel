@@ -45,7 +45,7 @@ namespace DiKErnel.Util.TestUtil
 
         private void PerformTest(int numberOfEventsToRegister)
         {
-            for (var i = 0; i < numberOfEventsToRegister; ++i)
+            for (var i = 0; i < numberOfEventsToRegister; i++)
             {
                 EventRegistry.Register(new Event($"Event {i}", EventType.Error));
             }

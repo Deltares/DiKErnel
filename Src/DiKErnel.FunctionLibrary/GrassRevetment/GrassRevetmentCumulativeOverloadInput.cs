@@ -30,8 +30,8 @@ namespace DiKErnel.FunctionLibrary.GrassRevetment
         /// <param name="representativeWaveRunup2P">The representative wave run-up
         /// (2 percent) [m].</param>
         /// <param name="fixedNumberOfWaves">The fixed number of waves [-].</param>
-        /// <param name="verticalDistanceWaterLevelElevation">The vertical distance of the water
-        /// elevation [m].</param>
+        /// <param name="verticalDistanceWaterLevelElevation">The vertical distance of the
+        /// water elevation [m].</param>
         /// <param name="criticalFrontVelocity">The critical front velocity [m/s].</param>
         /// <param name="increasedLoadTransitionAlphaM">The AlphaM value [-].</param>
         /// <param name="reducedStrengthTransitionAlphaS">The AlphaS value [-].</param>
