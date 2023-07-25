@@ -108,7 +108,7 @@ namespace DiKErnel.External.Overtopping
         {
             var geometry = new Geometry
             {
-                Normal = 0.0,
+                Normal = 0,
                 NPoints = xValues.Length,
                 XCoords = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(double)) * xValues.Length),
                 YCoords = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(double)) * zValues.Length),
@@ -126,13 +126,13 @@ namespace DiKErnel.External.Overtopping
         {
             return new ModelFactors
             {
-                FactorDeterminationQnFn = 1.0,
-                FactorDeterminationQbFb = 1.0,
-                Mz2 = 1.0,
-                FShallow = 1.0,
-                ComputedOvertopping = 1.0,
-                CriticalOvertopping = 1.0,
-                RelaxationFactor = 1.0,
+                FactorDeterminationQnFn = 1,
+                FactorDeterminationQbFb = 1,
+                Mz2 = 1,
+                FShallow = 1,
+                ComputedOvertopping = 1,
+                CriticalOvertopping = 1,
+                RelaxationFactor = 1,
                 ReductionFactorForeshore = 0.5
             };
         }
