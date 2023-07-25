@@ -29,22 +29,23 @@ namespace DiKErnel.External.Overtopping.Test
         {
             // Setup
             const double dikeHeight = 9.1;
-            var xCoordinates = new[]
+            
+            var xCoordinates = new double[]
             {
-                0.0,
-                10.0,
-                20.0,
-                30.0,
-                40.0
+                0,
+                10,
+                20,
+                30,
+                40
             };
 
-            var zCoordinates = new[]
+            var zCoordinates = new double[]
             {
-                -5.0,
-                0.0,
-                5.0,
-                4.0,
-                0.0
+                -5,
+                0,
+                5,
+                4,
+                0
             };
 
             var roughnessCoefficients = new[]
@@ -68,22 +69,23 @@ namespace DiKErnel.External.Overtopping.Test
         {
             // Setup
             const double dikeHeight = 9.1;
-            var xCoordinates = new[]
+            
+            var xCoordinates = new double[]
             {
-                0.0,
-                10.0,
-                20.0,
-                30.0,
-                40.0
+                0,
+                10,
+                20,
+                30,
+                40
             };
 
-            var zCoordinates = new[]
+            var zCoordinates = new double[]
             {
-                -5.0,
-                0.0,
-                5.0,
-                10.0,
-                20.0
+                -5,
+                0,
+                5,
+                10,
+                20
             };
 
             var roughnessCoefficients = new[]
@@ -112,21 +114,22 @@ namespace DiKErnel.External.Overtopping.Test
             const double waveDirection = 1.912229230397281e-12;
 
             const double dikeHeight = 3.7;
-            var xCoordinates = new[]
+            
+            var xCoordinates = new double[]
             {
-                0.0,
-                24.0
+                0,
+                24
             };
 
-            var zCoordinates = new[]
+            var zCoordinates = new double[]
             {
-                -3.0,
-                3.0
+                -3,
+                3
             };
 
-            var roughnessCoefficients = new[]
+            var roughnessCoefficients = new double[]
             {
-                1.0
+                1
             };
 
             // Call
@@ -147,25 +150,26 @@ namespace DiKErnel.External.Overtopping.Test
             const double waveDirection = 50.0;
 
             const double dikeHeight = 9.1;
-            var xCoordinates = new[]
+            
+            var xCoordinates = new double[]
             {
-                5.0,
-                10.0,
-                15.0
+                5,
+                10,
+                15
             };
 
-            var zCoordinates = new[]
+            var zCoordinates = new double[]
             {
-                5.0,
-                7.0,
-                9.0
+                5,
+                7,
+                9
             };
 
-            var roughnessCoefficients = new[]
+            var roughnessCoefficients = new double[]
             {
-                1.0,
-                1.0,
-                1.0
+                1,
+                1,
+                1
             };
 
             // Call
