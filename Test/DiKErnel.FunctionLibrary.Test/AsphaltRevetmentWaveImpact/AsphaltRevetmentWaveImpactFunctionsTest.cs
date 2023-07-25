@@ -17,7 +17,7 @@
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
 using DiKErnel.FunctionLibrary.AsphaltRevetmentWaveImpact;
-using DiKErnel.TestUtil;
+using DiKErnel.System.TestUtil;
 using NUnit.Framework;
 
 namespace DiKErnel.FunctionLibrary.Test.AsphaltRevetmentWaveImpact
@@ -101,7 +101,7 @@ namespace DiKErnel.FunctionLibrary.Test.AsphaltRevetmentWaveImpact
             double incrementDamage = AsphaltRevetmentWaveImpactFunctions.IncrementDamage(input);
 
             // Assert
-            AssertHelper.AssertAreEqualWithinTolerance(7.94813500019044, incrementDamage);
+            AssertHelper.AreEqual(7.94813500019044, incrementDamage);
         }
 
         [Test]
@@ -114,7 +114,7 @@ namespace DiKErnel.FunctionLibrary.Test.AsphaltRevetmentWaveImpact
             double logFailureTension = AsphaltRevetmentWaveImpactFunctions.LogFailureTension(failureTension);
 
             // Assert
-            AssertHelper.AssertAreEqualWithinTolerance(0.19312459835446, logFailureTension);
+            AssertHelper.AreEqual(0.19312459835446, logFailureTension);
         }
 
         [Test]
@@ -131,7 +131,7 @@ namespace DiKErnel.FunctionLibrary.Test.AsphaltRevetmentWaveImpact
                                                                                              densityOfWater);
 
             // Assert
-            AssertHelper.AssertAreEqualWithinTolerance(0.0160884, maximumPeakStress);
+            AssertHelper.AreEqual(0.0160884, maximumPeakStress);
         }
 
         [Test]
@@ -149,7 +149,7 @@ namespace DiKErnel.FunctionLibrary.Test.AsphaltRevetmentWaveImpact
                                                                                              soilElasticity, stiffnessRelationNu);
 
             // Assert
-            AssertHelper.AssertAreEqualWithinTolerance(1.18562618326908, stiffnessRelation);
+            AssertHelper.AreEqual(1.18562618326908, stiffnessRelation);
         }
 
         [Test]
@@ -168,7 +168,7 @@ namespace DiKErnel.FunctionLibrary.Test.AsphaltRevetmentWaveImpact
                                                                                                        elasticModulusSubLayer);
 
             // Assert
-            AssertHelper.AssertAreEqualWithinTolerance(0.38717464855982, computationalThickness);
+            AssertHelper.AreEqual(0.38717464855982, computationalThickness);
         }
 
         [Test]
@@ -185,7 +185,7 @@ namespace DiKErnel.FunctionLibrary.Test.AsphaltRevetmentWaveImpact
                                                                                slopeUpperPosition, slopeUpperLevel);
 
             // Assert
-            AssertHelper.AssertAreEqualWithinTolerance(0.15384615384615, outerSlope);
+            AssertHelper.AreEqual(0.15384615384615, outerSlope);
         }
     }
 }

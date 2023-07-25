@@ -18,18 +18,13 @@
 
 using NUnit.Framework;
 
-namespace DiKErnel.TestUtil
+namespace DiKErnel.System.TestUtil
 {
     public static class AssertHelper
     {
-        public static void AssertAreEqualWithAcceptablePrecision(double expected, double actual)
+        public static void AreEqual(double expected, double actual)
         {
             Assert.AreEqual(expected, actual, 1e-14);
-        }
-
-        public static void AssertAreEqualWithinTolerance(double expected, double actual)
-        {
-            Assert.AreEqual(expected, actual, 1e-13);
         }
     }
 }

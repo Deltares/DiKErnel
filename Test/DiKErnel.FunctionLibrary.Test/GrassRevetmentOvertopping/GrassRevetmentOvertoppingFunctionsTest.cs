@@ -17,7 +17,7 @@
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
 using DiKErnel.FunctionLibrary.GrassRevetmentOvertopping;
-using DiKErnel.TestUtil;
+using DiKErnel.System.TestUtil;
 using NUnit.Framework;
 
 namespace DiKErnel.FunctionLibrary.Test.GrassRevetmentOvertopping
@@ -67,7 +67,7 @@ namespace DiKErnel.FunctionLibrary.Test.GrassRevetmentOvertopping
             double representativeWaveRunup2P = GrassRevetmentOvertoppingFunctions.RepresentativeWaveRunup2P(input);
 
             // Assert
-            AssertHelper.AssertAreEqualWithinTolerance(2.79696767501212, representativeWaveRunup2P);
+            AssertHelper.AreEqual(2.79696767501212, representativeWaveRunup2P);
         }
 
         [Test]
@@ -97,7 +97,7 @@ namespace DiKErnel.FunctionLibrary.Test.GrassRevetmentOvertopping
             double cumulativeOverload = GrassRevetmentOvertoppingFunctions.CumulativeOverload(input);
 
             // Assert
-            AssertHelper.AssertAreEqualWithinTolerance(14.88390482811014, cumulativeOverload);
+            AssertHelper.AreEqual(14.88390482811014, cumulativeOverload);
         }
     }
 }

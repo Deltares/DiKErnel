@@ -16,27 +16,15 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using DiKErnel.FunctionLibrary.GrassRevetment;
-using DiKErnel.System.TestUtil;
 using NUnit.Framework;
 
-namespace DiKErnel.FunctionLibrary.Test.GrassRevetment
+namespace DiKErnel.System.TestUtil
 {
-    [TestFixture]
-    public class GrassRevetmentFunctionsTest
+    public static class AssertHelper
     {
-        [Test]
-        public void IncrementDamage_ValidInput_ExpectedValue()
+        public static void AreEqual(double expected, double actual)
         {
-            // Setup
-            const double cumulativeOverload = 1063.89;
-            const double criticalCumulativeOverload = 7000;
-
-            // Call
-            double incrementDamage = GrassRevetmentFunctions.IncrementDamage(cumulativeOverload, criticalCumulativeOverload);
-
-            // Assert
-            AssertHelper.AreEqual(0.15198428571428, incrementDamage);
+            Assert.AreEqual(expected, actual, 1e-13);
         }
     }
 }

@@ -16,6 +16,7 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using DiKErnel.System.TestUtil;
 using DiKErnel.TestUtil;
 using NUnit.Framework;
 
@@ -36,7 +37,7 @@ namespace DiKErnel.FunctionLibrary.Test
             double waveDirection = HydraulicLoadFunctions.WaveDirection(waveAngle);
 
             // Assert
-            AssertHelper.AssertAreEqualWithinTolerance(0, waveDirection);
+            AssertHelper.AreEqual(0, waveDirection);
         }
 
         [Test]
@@ -49,7 +50,7 @@ namespace DiKErnel.FunctionLibrary.Test
             double waveDirection = HydraulicLoadFunctions.WaveDirection(waveAngle);
 
             // Assert
-            AssertHelper.AssertAreEqualWithinTolerance(waveAngle, waveDirection);
+            AssertHelper.AreEqual(waveAngle, waveDirection);
         }
 
         [Test]
@@ -62,7 +63,7 @@ namespace DiKErnel.FunctionLibrary.Test
             double waveDirection = HydraulicLoadFunctions.WaveDirection(waveAngle);
 
             // Assert
-            AssertHelper.AssertAreEqualWithinTolerance(360 + waveAngle, waveDirection);
+            AssertHelper.AreEqual(360 + waveAngle, waveDirection);
         }
 
         [Test]
@@ -75,7 +76,7 @@ namespace DiKErnel.FunctionLibrary.Test
             double waveDirection = HydraulicLoadFunctions.WaveDirection(waveAngle);
 
             // Assert
-            AssertHelper.AssertAreEqualWithinTolerance(180, waveDirection);
+            AssertHelper.AreEqual(180, waveDirection);
         }
 
         [Test]
@@ -88,7 +89,7 @@ namespace DiKErnel.FunctionLibrary.Test
             double slopeAngle = HydraulicLoadFunctions.SlopeAngle(outerSlope);
 
             // Assert
-            AssertHelper.AssertAreEqualWithinTolerance(14.03624346792647, slopeAngle);
+            AssertHelper.AreEqual(14.03624346792647, slopeAngle);
         }
 
         [Test]
@@ -184,7 +185,7 @@ namespace DiKErnel.FunctionLibrary.Test
                                                                                           gravitationalAcceleration);
 
             // Assert
-            AssertHelper.AssertAreEqualWithinTolerance(0.03789868632526, waveSteepnessDeepWater);
+            AssertHelper.AreEqual(0.03789868632526, waveSteepnessDeepWater);
         }
 
         [Test]
@@ -201,7 +202,7 @@ namespace DiKErnel.FunctionLibrary.Test
                                                                                             wavePeriodTm10,
                                                                                             gravitationalAcceleration);
             // Assert
-            AssertHelper.AssertAreEqualWithinTolerance(1.28418599850893, surfSimilarityParameter);
+            AssertHelper.AreEqual(1.28418599850893, surfSimilarityParameter);
         }
 
         [Test]
@@ -216,7 +217,7 @@ namespace DiKErnel.FunctionLibrary.Test
                 HydraulicLoadFunctions.VerticalWaterDistanceWaterLevelElevation(z, waterLevel);
 
             // Assert
-            AssertHelper.AssertAreEqualWithinTolerance(1.09, verticalDistanceWaterLevelElevation);
+            AssertHelper.AreEqual(1.09, verticalDistanceWaterLevelElevation);
         }
     }
 }

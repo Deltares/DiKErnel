@@ -17,7 +17,7 @@
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
 using DiKErnel.FunctionLibrary.GrassRevetmentWaveRunup;
-using DiKErnel.TestUtil;
+using DiKErnel.System.TestUtil;
 using NUnit.Framework;
 
 namespace DiKErnel.FunctionLibrary.Test.GrassRevetmentWaveRunup
@@ -49,7 +49,7 @@ namespace DiKErnel.FunctionLibrary.Test.GrassRevetmentWaveRunup
             double representativeWaveRunup2P = GrassRevetmentWaveRunupFunctions.RepresentativeWaveRunup2P(input);
 
             // Assert
-            AssertHelper.AssertAreEqualWithinTolerance(5.635949616, representativeWaveRunup2P);
+            AssertHelper.AreEqual(5.635949616, representativeWaveRunup2P);
         }
 
         [Test]
@@ -65,7 +65,7 @@ namespace DiKErnel.FunctionLibrary.Test.GrassRevetmentWaveRunup
                                                                                       waveAngleImpactBetamax);
 
             // Assert
-            AssertHelper.AssertAreEqualWithinTolerance(0.901, waveAngleImpact);
+            AssertHelper.AreEqual(0.901, waveAngleImpact);
         }
     }
 }

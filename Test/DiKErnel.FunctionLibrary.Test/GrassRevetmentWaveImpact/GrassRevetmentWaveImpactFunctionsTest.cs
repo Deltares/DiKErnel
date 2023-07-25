@@ -17,7 +17,7 @@
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
 using DiKErnel.FunctionLibrary.GrassRevetmentWaveImpact;
-using DiKErnel.TestUtil;
+using DiKErnel.System.TestUtil;
 using NUnit.Framework;
 
 namespace DiKErnel.FunctionLibrary.Test.GrassRevetmentWaveImpact
@@ -36,7 +36,7 @@ namespace DiKErnel.FunctionLibrary.Test.GrassRevetmentWaveImpact
             double incrementDamage = GrassRevetmentWaveImpactFunctions.IncrementDamage(incrementTime, timeLine);
 
             // Assert
-            AssertHelper.AssertAreEqualWithinTolerance(0.27115621007978, incrementDamage);
+            AssertHelper.AreEqual(0.27115621007978, incrementDamage);
         }
 
         [Test]
@@ -53,7 +53,7 @@ namespace DiKErnel.FunctionLibrary.Test.GrassRevetmentWaveImpact
                                                                          timeLineCgwi);
 
             // Assert
-            AssertHelper.AssertAreEqualWithinTolerance(3319.8827745664184, timeLine);
+            AssertHelper.AreEqual(3319.8827745664184, timeLine);
         }
 
         [Test]
@@ -70,7 +70,7 @@ namespace DiKErnel.FunctionLibrary.Test.GrassRevetmentWaveImpact
                                                                                          waveAngleImpact, waveHeightHm0);
 
             // Assert
-            AssertHelper.AssertAreEqualWithinTolerance(0.79, waveHeightImpact);
+            AssertHelper.AreEqual(0.79, waveHeightImpact);
         }
 
         [Test]
@@ -87,7 +87,7 @@ namespace DiKErnel.FunctionLibrary.Test.GrassRevetmentWaveImpact
                                                                                            timeLineCgwi, minimumWaveHeightTemax);
 
             // Assert
-            AssertHelper.AssertAreEqualWithinTolerance(0.25, minimumWaveHeight);
+            AssertHelper.AreEqual(0.25, minimumWaveHeight);
         }
 
         [Test]
@@ -104,7 +104,7 @@ namespace DiKErnel.FunctionLibrary.Test.GrassRevetmentWaveImpact
                                                                                            timeLineCgwi, maximumWaveHeightTemin);
 
             // Assert
-            AssertHelper.AssertAreEqualWithinTolerance(1.04994401475905, maximumWaveHeight);
+            AssertHelper.AreEqual(1.04994401475905, maximumWaveHeight);
         }
 
         [Test]
@@ -121,7 +121,7 @@ namespace DiKErnel.FunctionLibrary.Test.GrassRevetmentWaveImpact
                                                                                        waveAngleImpactQwa, waveAngleImpactRwa);
 
             // Assert
-            AssertHelper.AssertAreEqualWithinTolerance(0.79278413661028, waveAngleImpact);
+            AssertHelper.AreEqual(0.79278413661028, waveAngleImpact);
         }
 
         [Test]
@@ -138,7 +138,7 @@ namespace DiKErnel.FunctionLibrary.Test.GrassRevetmentWaveImpact
                                                                                        waveAngleImpactQwa, waveAngleImpactRwa);
 
             // Assert
-            AssertHelper.AssertAreEqualWithinTolerance(0.35, waveAngleImpact);
+            AssertHelper.AreEqual(0.35, waveAngleImpact);
         }
 
         [Test]
@@ -155,7 +155,7 @@ namespace DiKErnel.FunctionLibrary.Test.GrassRevetmentWaveImpact
                                                                                        waveAngleImpactQwa, waveAngleImpactRwa);
 
             // Assert
-            AssertHelper.AssertAreEqualWithinTolerance(0.315, waveAngleImpact);
+            AssertHelper.AreEqual(0.315, waveAngleImpact);
         }
 
         [Test]
@@ -171,7 +171,7 @@ namespace DiKErnel.FunctionLibrary.Test.GrassRevetmentWaveImpact
                                                                                            upperLimitLoadingAul);
 
             // Assert
-            AssertHelper.AssertAreEqualWithinTolerance(0.029, upperLimitLoading);
+            AssertHelper.AreEqual(0.029, upperLimitLoading);
         }
 
         [Test]
@@ -187,7 +187,7 @@ namespace DiKErnel.FunctionLibrary.Test.GrassRevetmentWaveImpact
                                                                                            lowerLimitLoadingAll);
 
             // Assert
-            AssertHelper.AssertAreEqualWithinTolerance(-0.47, lowerLimitLoading);
+            AssertHelper.AreEqual(-0.47, lowerLimitLoading);
         }
     }
 }

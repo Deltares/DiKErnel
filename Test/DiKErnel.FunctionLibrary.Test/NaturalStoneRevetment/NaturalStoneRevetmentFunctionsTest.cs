@@ -17,7 +17,7 @@
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
 using DiKErnel.FunctionLibrary.NaturalStoneRevetment;
-using DiKErnel.TestUtil;
+using DiKErnel.System.TestUtil;
 using NUnit.Framework;
 
 namespace DiKErnel.FunctionLibrary.Test.NaturalStoneRevetment
@@ -39,7 +39,7 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneRevetment
                                                                                     waveAngleImpact);
 
             // Assert
-            AssertHelper.AssertAreEqualWithinTolerance(0.08797769696969, incrementDamage);
+            AssertHelper.AreEqual(0.08797769696969, incrementDamage);
         }
 
         [Test]
@@ -59,7 +59,7 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneRevetment
             double hydraulicLoad = NaturalStoneRevetmentFunctions.HydraulicLoad(input);
 
             // Assert
-            AssertHelper.AssertAreEqualWithinTolerance(0.49571702636245, hydraulicLoad);
+            AssertHelper.AreEqual(0.49571702636245, hydraulicLoad);
         }
 
         [Test]
@@ -78,7 +78,7 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneRevetment
             double outerSlope = NaturalStoneRevetmentFunctions.OuterSlope(input);
 
             // Assert
-            AssertHelper.AssertAreEqualWithinTolerance(0.25, outerSlope);
+            AssertHelper.AreEqual(0.25, outerSlope);
         }
 
         [Test]
@@ -111,7 +111,7 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneRevetment
             double outerSlope = NaturalStoneRevetmentFunctions.OuterSlope(input);
 
             // Assert
-            AssertHelper.AssertAreEqualWithinTolerance(0.32, outerSlope);
+            AssertHelper.AreEqual(0.32, outerSlope);
         }
 
         [Test]
@@ -144,7 +144,7 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneRevetment
             double outerSlope = NaturalStoneRevetmentFunctions.OuterSlope(input);
 
             // Assert
-            AssertHelper.AssertAreEqualWithinTolerance(0.28, outerSlope);
+            AssertHelper.AreEqual(0.28, outerSlope);
         }
 
         [Test]
@@ -177,7 +177,7 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneRevetment
             double outerSlope = NaturalStoneRevetmentFunctions.OuterSlope(input);
 
             // Assert
-            AssertHelper.AssertAreEqualWithinTolerance(0.08, outerSlope);
+            AssertHelper.AreEqual(0.08, outerSlope);
         }
 
         [Test]
@@ -210,7 +210,7 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneRevetment
             double outerSlope = NaturalStoneRevetmentFunctions.OuterSlope(input);
 
             // Assert
-            AssertHelper.AssertAreEqualWithinTolerance(0.22, outerSlope);
+            AssertHelper.AreEqual(0.22, outerSlope);
         }
 
         [Test]
@@ -243,7 +243,7 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneRevetment
             double outerSlope = NaturalStoneRevetmentFunctions.OuterSlope(input);
 
             // Assert
-            AssertHelper.AssertAreEqualWithinTolerance(0.19333333333333, outerSlope);
+            AssertHelper.AreEqual(0.19333333333333, outerSlope);
         }
 
         [Test]
@@ -276,7 +276,7 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneRevetment
             double outerSlope = NaturalStoneRevetmentFunctions.OuterSlope(input);
 
             // Assert
-            AssertHelper.AssertAreEqualWithinTolerance(0.20871481028151, outerSlope);
+            AssertHelper.AreEqual(0.20871481028151, outerSlope);
         }
 
         [Test]
@@ -309,7 +309,7 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneRevetment
             double outerSlope = NaturalStoneRevetmentFunctions.OuterSlope(input);
 
             // Assert
-            AssertHelper.AssertAreEqualWithinTolerance(double.PositiveInfinity, outerSlope);
+            AssertHelper.AreEqual(double.PositiveInfinity, outerSlope);
         }
 
         [Test]
@@ -342,7 +342,7 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneRevetment
             double outerSlope = NaturalStoneRevetmentFunctions.OuterSlope(input);
 
             // Assert
-            AssertHelper.AssertAreEqualWithinTolerance(double.PositiveInfinity, outerSlope);
+            AssertHelper.AreEqual(double.PositiveInfinity, outerSlope);
         }
 
         [Test]
@@ -377,7 +377,7 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneRevetment
                                                                                     waveHeightHm0, slopeLowerLevelAls);
 
             // Assert
-            AssertHelper.AssertAreEqualWithinTolerance(5.35, slopeLowerLevel);
+            AssertHelper.AreEqual(5.35, slopeLowerLevel);
         }
 
         [Test]
@@ -399,7 +399,7 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneRevetment
             double upperLimitLoading = NaturalStoneRevetmentFunctions.UpperLimitLoading(input);
 
             // Assert
-            AssertHelper.AssertAreEqualWithinTolerance(2.3924, upperLimitLoading);
+            AssertHelper.AreEqual(2.3924, upperLimitLoading);
         }
 
         [Test]
@@ -421,7 +421,7 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneRevetment
             double lowerLimitLoading = NaturalStoneRevetmentFunctions.LowerLimitLoading(input);
 
             // Assert
-            AssertHelper.AssertAreEqualWithinTolerance(1.29, lowerLimitLoading);
+            AssertHelper.AreEqual(1.29, lowerLimitLoading);
         }
 
         [Test]
@@ -457,7 +457,7 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneRevetment
                 distanceMaximumWaveElevationBsmax);
 
             // Assert
-            AssertHelper.AssertAreEqualWithinTolerance(2.48401798797007, distanceMaximumWaveElevation);
+            AssertHelper.AreEqual(2.48401798797007, distanceMaximumWaveElevation);
         }
 
         [Test]
@@ -474,7 +474,7 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneRevetment
                 surfSimilarityParameter, waveHeightHm0, normativeWidthWaveImpactAwi, normativeWidthWaveImpactBwi);
 
             // Assert
-            AssertHelper.AssertAreEqualWithinTolerance(1.47456, normativeWidthWaveImpact);
+            AssertHelper.AreEqual(1.47456, normativeWidthWaveImpact);
         }
 
         [Test]
@@ -488,7 +488,7 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneRevetment
             double waveAngleImpact = NaturalStoneRevetmentFunctions.WaveAngleImpact(waveAngle, waveAngleImpactBetamax);
 
             // Assert
-            AssertHelper.AssertAreEqualWithinTolerance(0.99746152040928, waveAngleImpact);
+            AssertHelper.AreEqual(0.99746152040928, waveAngleImpact);
         }
 
         [Test]
@@ -502,7 +502,7 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneRevetment
             double resistance = NaturalStoneRevetmentFunctions.Resistance(relativeDensity, thicknessTopLayer);
 
             // Assert
-            AssertHelper.AssertAreEqualWithinTolerance(0.495, resistance);
+            AssertHelper.AreEqual(0.495, resistance);
         }
 
         [Test]
@@ -518,7 +518,7 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneRevetment
                 incrementTime, wavePeriodTm10);
 
             // Assert
-            AssertHelper.AssertAreEqualWithinTolerance(0.07844247200477, incrementDegradation);
+            AssertHelper.AreEqual(0.07844247200477, incrementDegradation);
         }
 
         [Test]
@@ -533,7 +533,7 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneRevetment
                 wavePeriodTm10);
 
             // Assert
-            AssertHelper.AssertAreEqualWithinTolerance(605.48915987364103, referenceTimeDegradation);
+            AssertHelper.AreEqual(605.48915987364103, referenceTimeDegradation);
         }
 
         [Test]
@@ -550,7 +550,7 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneRevetment
                 waveAngleImpact, initialDamage);
 
             // Assert
-            AssertHelper.AssertAreEqualWithinTolerance(0.80236244447628, referenceDegradation);
+            AssertHelper.AreEqual(0.80236244447628, referenceDegradation);
         }
 
         [Test]
@@ -565,7 +565,7 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneRevetment
                 referenceTimeDegradation);
 
             // Assert
-            AssertHelper.AssertAreEqualWithinTolerance(348.2, durationInTimeStepFailure);
+            AssertHelper.AreEqual(348.2, durationInTimeStepFailure);
         }
 
         [Test]
@@ -579,7 +579,7 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneRevetment
             double referenceTimeFailure = NaturalStoneRevetmentFunctions.ReferenceTimeFailure(referenceFailure, wavePeriodTm10);
 
             // Assert
-            AssertHelper.AssertAreEqualWithinTolerance(961.95675821289467, referenceTimeFailure);
+            AssertHelper.AreEqual(961.95675821289467, referenceTimeFailure);
         }
 
         [Test]
@@ -596,7 +596,7 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneRevetment
                                                                                       failureNumber);
 
             // Assert
-            AssertHelper.AssertAreEqualWithinTolerance(0.84225891961599, referenceFailure);
+            AssertHelper.AreEqual(0.84225891961599, referenceFailure);
         }
     }
 }
