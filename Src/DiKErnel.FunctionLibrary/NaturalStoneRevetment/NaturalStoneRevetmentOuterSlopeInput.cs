@@ -47,22 +47,22 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneRevetment
         /// <summary>
         /// Gets the slope lower position [m].
         /// </summary>
-        public double SlopeLowerPosition { get; private set; }
+        public double SlopeLowerPosition { get; }
 
         /// <summary>
         /// Gets the slope lower level [m].
         /// </summary>
-        public double SlopeLowerLevel { get; private set; }
+        public double SlopeLowerLevel { get; }
 
         /// <summary>
         /// Gets the slope upper position [m].
         /// </summary>
-        public double SlopeUpperPosition { get; private set; }
+        public double SlopeUpperPosition { get; }
 
         /// <summary>
         /// Gets the slope upper level [m].
         /// </summary>
-        public double SlopeUpperLevel { get; private set; }
+        public double SlopeUpperLevel { get; }
 
         /// <summary>
         /// Gets or sets the outer toe height [m].

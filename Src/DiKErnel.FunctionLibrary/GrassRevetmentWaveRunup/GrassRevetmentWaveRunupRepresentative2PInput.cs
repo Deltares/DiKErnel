@@ -56,41 +56,41 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentWaveRunup
         /// <summary>
         /// Gets the surf similarity parameter [-].
         /// </summary>
-        public double SurfSimilarityParameter { get; private set; }
+        public double SurfSimilarityParameter { get; }
 
         /// <summary>
         /// Gets the wave impact with respect to the wave angle [-].
         /// </summary>
-        public double WaveAngleImpact { get; private set; }
+        public double WaveAngleImpact { get; }
 
         /// <summary>
         /// Gets the wave height [m].
         /// </summary>
-        public double WaveHeightHm0 { get; private set; }
+        public double WaveHeightHm0 { get; }
 
         /// <summary>
         /// Gets the Gammab value [-].
         /// </summary>
-        public double RepresentativeWaveRunup2PGammab { get; private set; }
+        public double RepresentativeWaveRunup2PGammab { get; }
 
         /// <summary>
         /// Gets the Gammaf value [-].
         /// </summary>
-        public double RepresentativeWaveRunup2PGammaf { get; private set; }
+        public double RepresentativeWaveRunup2PGammaf { get; }
 
         /// <summary>
         /// Gets the Aru coefficient [-].
         /// </summary>
-        public double RepresentativeWaveRunup2PAru { get; private set; }
+        public double RepresentativeWaveRunup2PAru { get; }
 
         /// <summary>
         /// Gets the Bru coefficient [-].
         /// </summary>
-        public double RepresentativeWaveRunup2PBru { get; private set; }
+        public double RepresentativeWaveRunup2PBru { get; }
 
         /// <summary>
         /// Gets the Cru coefficient [-].
         /// </summary>
-        public double RepresentativeWaveRunup2PCru { get; private set; }
+        public double RepresentativeWaveRunup2PCru { get; }
     }
 }

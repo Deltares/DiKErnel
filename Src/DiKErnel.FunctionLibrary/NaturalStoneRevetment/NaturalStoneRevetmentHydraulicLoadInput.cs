@@ -46,31 +46,31 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneRevetment
         /// <summary>
         /// Gets the surf similarity parameter [-].
         /// </summary>
-        public double SurfSimilarityParameter { get; private set; }
+        public double SurfSimilarityParameter { get; }
 
         /// <summary>
         /// Gets the wave height [m].
         /// </summary>
-        public double WaveHeightHm0 { get; private set; }
+        public double WaveHeightHm0 { get; }
 
         /// <summary>
         /// Gets the a coefficient [-].
         /// </summary>
-        public double A { get; private set; }
+        public double A { get; }
 
         /// <summary>
         /// Gets the b coefficient [-].
         /// </summary>
-        public double B { get; private set; }
+        public double B { get; }
 
         /// <summary>
         /// Gets the c coefficient [-].
         /// </summary>
-        public double C { get; private set; }
+        public double C { get; }
 
         /// <summary>
         /// Gets the n coefficient [-].
         /// </summary>
-        public double N { get; private set; }
+        public double N { get; }
     }
 }

@@ -49,11 +49,11 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentOvertopping
         /// <summary>
         /// Gets the AlphaA coefficient [-].
         /// </summary>
-        public double AccelerationAlphaA { get; private set; }
+        public double AccelerationAlphaA { get; }
 
         /// <summary>
         /// Gets the Cwo coefficient [-].
         /// </summary>
-        public double FrontVelocityCwo { get; private set; }
+        public double FrontVelocityCwo { get; }
     }
 }

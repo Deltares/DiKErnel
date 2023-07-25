@@ -48,6 +48,6 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentWaveRunup
         /// <summary>
         /// Gets the Cu coefficient [-].
         /// </summary>
-        public double FrontVelocityCu { get; private set; }
+        public double FrontVelocityCu { get; }
     }
 }

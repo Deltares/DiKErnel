@@ -55,41 +55,41 @@ namespace DiKErnel.FunctionLibrary.GrassRevetment
         /// <summary>
         /// Gets the average number of waves [-].
         /// </summary>
-        public double AverageNumberOfWaves { get; private set; }
+        public double AverageNumberOfWaves { get; }
 
         /// <summary>
         /// Gets the representative wave run-up (2 percent) [m].
         /// </summary>
-        public double RepresentativeWaveRunup2P { get; private set; }
+        public double RepresentativeWaveRunup2P { get; }
 
         /// <summary>
         /// Gets the fixed number of waves [-].
         /// </summary>
-        public int FixedNumberOfWaves { get; private set; }
+        public int FixedNumberOfWaves { get; }
 
         /// <summary>
         /// Gets the vertical distance of the water elevation [m].
         /// </summary>
-        public double VerticalDistanceWaterLevelElevation { get; private set; }
+        public double VerticalDistanceWaterLevelElevation { get; }
 
         /// <summary>
         /// Gets the critical front velocity [m/s].
         /// </summary>
-        public double CriticalFrontVelocity { get; private set; }
+        public double CriticalFrontVelocity { get; }
 
         /// <summary>
         /// Gets the AlphaM value [-].
         /// </summary>
-        public double IncreasedLoadTransitionAlphaM { get; private set; }
+        public double IncreasedLoadTransitionAlphaM { get; }
 
         /// <summary>
         /// Gets the AlphaS value [-].
         /// </summary>
-        public double ReducedStrengthTransitionAlphaS { get; private set; }
+        public double ReducedStrengthTransitionAlphaS { get; }
 
         /// <summary>
         /// Gets the gravitational acceleration [m/s^2].
         /// </summary>
-        public double GravitationalAcceleration { get; private set; }
+        public double GravitationalAcceleration { get; }
     }
 }

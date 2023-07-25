@@ -73,76 +73,76 @@ namespace DiKErnel.FunctionLibrary.AsphaltRevetmentWaveImpact
         /// <summary>
         /// Gets the logarithm of the failure tension [MPa].
         /// </summary>
-        public double LogFailureTension { get; private set; }
+        public double LogFailureTension { get; }
 
         /// <summary>
         /// Gets the average number of waves [-].
         /// </summary>
-        public double AverageNumberOfWaves { get; private set; }
+        public double AverageNumberOfWaves { get; }
 
         /// <summary>
         /// Gets the maximum peak stress [MPa].
         /// </summary>
-        public double MaximumPeakStress { get; private set; }
+        public double MaximumPeakStress { get; }
 
         /// <summary>
         /// Gets the stiffness relation [m^-1].
         /// </summary>
-        public double StiffnessRelation { get; private set; }
+        public double StiffnessRelation { get; }
 
         /// <summary>
         /// Gets the computational thickness [m].
         /// </summary>
-        public double ComputationalThickness { get; private set; }
+        public double ComputationalThickness { get; }
 
         /// <summary>
         /// Gets the outer slope [-].
         /// </summary>
-        public double OuterSlope { get; private set; }
+        public double OuterSlope { get; }
 
         /// <summary>
         /// Gets the width factors [-].
         /// </summary>
-        public IReadOnlyList<(double, double)> WidthFactors { get; private set; }
+        public IReadOnlyList<(double, double)> WidthFactors { get; }
 
         /// <summary>
         /// Gets the depth factors [-].
         /// </summary>
-        public IReadOnlyList<(double, double)> DepthFactors { get; private set; }
+        public IReadOnlyList<(double, double)> DepthFactors { get; }
 
         /// <summary>
         /// Gets the impact factors [-].
         /// </summary>
-        public IReadOnlyList<(double, double)> ImpactFactors { get; private set; }
+        public IReadOnlyList<(double, double)> ImpactFactors { get; }
 
         /// <summary>
         /// Gets the z coordinate [m].
         /// </summary>
-        public double Z { get; private set; }
+        public double Z { get; }
 
         /// <summary>
         /// Gets the water level [m].
         /// </summary>
-        public double WaterLevel { get; private set; }
+        public double WaterLevel { get; }
 
         /// <summary>
         /// Gets the wave height [m].
         /// </summary>
-        public double WaveHeightHm0 { get; private set; }
+        public double WaveHeightHm0 { get; }
 
         /// <summary>
         /// Gets the fatigue alpha coefficient [-].
         /// </summary>
-        public double FatigueAlpha { get; private set; }
+        public double FatigueAlpha { get; }
 
         /// <summary>
         /// Gets the fatigue beta coefficient [-].
         /// </summary>
-        public double FatigueBeta { get; private set; }
+        public double FatigueBeta { get; }
 
         /// <summary>
         /// Gets the impact number c coefficient [-].
         /// </summary>
-        public double ImpactNumberC { get; private set; }
+        public double ImpactNumberC { get; }
     }
 }

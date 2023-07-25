@@ -48,36 +48,36 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneRevetment
         /// <summary>
         /// Gets the depth of the maximum wave load [m].
         /// </summary>
-        public double DepthMaximumWaveLoad { get; private set; }
+        public double DepthMaximumWaveLoad { get; }
 
         /// <summary>
         /// Gets the surf similarity parameter [-].
         /// </summary>
-        public double SurfSimilarityParameter { get; private set; }
+        public double SurfSimilarityParameter { get; }
 
         /// <summary>
         /// Gets the water level [m].
         /// </summary>
-        public double WaterLevel { get; private set; }
+        public double WaterLevel { get; }
 
         /// <summary>
         /// Gets the wave height [m].
         /// </summary>
-        public double WaveHeightHm0 { get; private set; }
+        public double WaveHeightHm0 { get; }
 
         /// <summary>
         /// Gets the a coefficient [-].
         /// </summary>
-        public double A { get; private set; }
+        public double A { get; }
 
         /// <summary>
         /// Gets the b coefficient [-].
         /// </summary>
-        public double B { get; private set; }
+        public double B { get; }
 
         /// <summary>
         /// Gets the c coefficient [-].
         /// </summary>
-        public double C { get; private set; }
+        public double C { get; }
     }
 }

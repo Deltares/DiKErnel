@@ -57,41 +57,41 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentOvertopping
         /// <summary>
         /// Gets the water level [m].
         /// </summary>
-        public double WaterLevel { get; private set; }
+        public double WaterLevel { get; }
 
         /// <summary>
         /// Gets the wave height [m].
         /// </summary>
-        public double WaveHeightHm0 { get; private set; }
+        public double WaveHeightHm0 { get; }
 
         /// <summary>
         /// Gets the wave period Tm10 [s].
         /// </summary>
-        public double WavePeriodTm10 { get; private set; }
+        public double WavePeriodTm10 { get; }
 
         /// <summary>
         /// Gets the wave direction with respect to the North [deg].
         /// </summary>
-        public double WaveDirection { get; private set; }
+        public double WaveDirection { get; }
 
         /// <summary>
         /// Gets the x values of the profile points [m].
         /// </summary>
-        public IReadOnlyList<double> XValuesProfile { get; private set; }
+        public IReadOnlyList<double> XValuesProfile { get; }
 
         /// <summary>
         /// Gets the z values of the profile points [m].
         /// </summary>
-        public IReadOnlyList<double> ZValuesProfile { get; private set; }
+        public IReadOnlyList<double> ZValuesProfile { get; }
 
         /// <summary>
         /// Gets the roughness coefficients of the profile segments [-].
         /// </summary>
-        public IReadOnlyList<double> RoughnessCoefficients { get; private set; }
+        public IReadOnlyList<double> RoughnessCoefficients { get; }
 
         /// <summary>
         /// Gets the dike height [m].
         /// </summary>
-        public double DikeHeight { get; private set; }
+        public double DikeHeight { get; }
     }
 }
