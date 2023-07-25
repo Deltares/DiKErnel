@@ -100,14 +100,14 @@ namespace DiKErnel.DomainLibrary.Test.Validators.AsphaltRevetmentWaveImpact
 
             ValidatorAssertHelper.AssertValue(validationFunc, ValidatorAssertHelper.DoubleMin, ValidationIssueType.Error, errorMessage);
 
-            ValidatorAssertHelper.AssertValue(validationFunc, 950.0 - ValidatorAssertHelper.Epsilon, ValidationIssueType.Error,
+            ValidatorAssertHelper.AssertValue(validationFunc, 950 - ValidatorAssertHelper.Epsilon, ValidationIssueType.Error,
                                               errorMessage);
-            ValidatorAssertHelper.AssertValue(validationFunc, 950.0);
-            ValidatorAssertHelper.AssertValue(validationFunc, 950.0 + ValidatorAssertHelper.Epsilon);
+            ValidatorAssertHelper.AssertValue(validationFunc, 950);
+            ValidatorAssertHelper.AssertValue(validationFunc, 950 + ValidatorAssertHelper.Epsilon);
 
-            ValidatorAssertHelper.AssertValue(validationFunc, 1050.0 - ValidatorAssertHelper.Epsilon);
-            ValidatorAssertHelper.AssertValue(validationFunc, 1050.0);
-            ValidatorAssertHelper.AssertValue(validationFunc, 1050.0 + ValidatorAssertHelper.Epsilon, ValidationIssueType.Error,
+            ValidatorAssertHelper.AssertValue(validationFunc, 1050 - ValidatorAssertHelper.Epsilon);
+            ValidatorAssertHelper.AssertValue(validationFunc, 1050);
+            ValidatorAssertHelper.AssertValue(validationFunc, 1050 + ValidatorAssertHelper.Epsilon, ValidationIssueType.Error,
                                               errorMessage);
 
             ValidatorAssertHelper.AssertValue(validationFunc, ValidatorAssertHelper.DoubleMax, ValidationIssueType.Error, errorMessage);

@@ -31,7 +31,7 @@ namespace DiKErnel.DomainLibrary.Defaults.GrassRevetmentOvertopping
         /// <summary>
         /// Gets the default value of the alpha A coefficient for the crest [-].
         /// </summary>
-        public static double AccelerationAlphaAForCrest => 1.0;
+        public static double AccelerationAlphaAForCrest => 1;
 
         /// <summary>
         /// Gets the default value of the alpha A coefficient for the inner slope [-].

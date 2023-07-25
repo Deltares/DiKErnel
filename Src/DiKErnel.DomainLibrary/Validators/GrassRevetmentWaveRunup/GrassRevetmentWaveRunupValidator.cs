@@ -34,7 +34,7 @@ namespace DiKErnel.DomainLibrary.Validators.GrassRevetmentWaveRunup
         /// <c>null</c> otherwise.</returns>
         public static ValidationIssue RepresentativeWaveRunup2PGammab(double representativeWaveRunup2PGammab)
         {
-            if (representativeWaveRunup2PGammab < 0.6 || representativeWaveRunup2PGammab > 1.0)
+            if (representativeWaveRunup2PGammab < 0.6 || representativeWaveRunup2PGammab > 1)
             {
                 return new ValidationIssue(ValidationIssueType.Error, "RepresentativeWaveRunup2PGammab must be in range [0.6, 1].");
             }
@@ -51,7 +51,7 @@ namespace DiKErnel.DomainLibrary.Validators.GrassRevetmentWaveRunup
         /// <c>null</c> otherwise.</returns>
         public static ValidationIssue RepresentativeWaveRunup2PGammaf(double representativeWaveRunup2PGammaf)
         {
-            if (representativeWaveRunup2PGammaf < 0.5 || representativeWaveRunup2PGammaf > 1.0)
+            if (representativeWaveRunup2PGammaf < 0.5 || representativeWaveRunup2PGammaf > 1)
             {
                 return new ValidationIssue(ValidationIssueType.Error, "RepresentativeWaveRunup2PGammaf must be in range [0.5, 1].");
             }
@@ -67,7 +67,7 @@ namespace DiKErnel.DomainLibrary.Validators.GrassRevetmentWaveRunup
         /// otherwise.</returns>
         public static ValidationIssue OuterSlope(double outerSlope)
         {
-            if (outerSlope <= 0.0 || outerSlope >= 1.0)
+            if (outerSlope <= 0 || outerSlope >= 1)
             {
                 return new ValidationIssue(ValidationIssueType.Error, "OuterSlope must be in range {0, 1}.");
             }

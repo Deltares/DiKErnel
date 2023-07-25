@@ -42,7 +42,7 @@ namespace DiKErnel.FunctionLibrary.Test
         public void AverageNumberOfWaves_ValidInput_ExpectedValue()
         {
             // Setup
-            const double incrementTime = 900.0;
+            const double incrementTime = 900;
             const double wavePeriodTm10 = 1.2;
             const double averageNumberOfWavesCtm = 6.5;
 
@@ -161,9 +161,9 @@ namespace DiKErnel.FunctionLibrary.Test
         public void DurationInTimeStepFailure_ValidInput_ExpectedValue()
         {
             // Setup
-            const double incrementTime = 550.0;
+            const double incrementTime = 550;
             const double incrementDamage = 0.234;
-            const double failureNumber = 1.0;
+            const double failureNumber = 1;
             const double initialDamage = 0.836;
 
             // Call
@@ -178,8 +178,8 @@ namespace DiKErnel.FunctionLibrary.Test
         public void TimeOfFailure_ValidRoundedInput_ExpectedValue()
         {
             // Setup
-            const double durationInTimeStepFailure = 254.0;
-            const double beginTime = 1568.0;
+            const double durationInTimeStepFailure = 254;
+            const double beginTime = 1568;
 
             // Call
             int timeOfFailure = RevetmentFunctions.TimeOfFailure(durationInTimeStepFailure, beginTime);

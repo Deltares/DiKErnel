@@ -26,7 +26,7 @@ namespace DiKErnel.DomainLibrary.Defaults.GrassRevetmentWaveImpact
         /// <summary>
         /// Gets the default value of the Temax coefficient [s].
         /// </summary>
-        public static double MinimumWaveHeightTemax => 3600000.0;
+        public static double MinimumWaveHeightTemax => 3600000;
 
         /// <summary>
         /// Gets the default value of the Temin coefficient [s].
@@ -36,7 +36,7 @@ namespace DiKErnel.DomainLibrary.Defaults.GrassRevetmentWaveImpact
         /// <summary>
         /// Gets the default value of the Nwa coefficient [-].
         /// </summary>
-        public static double WaveAngleImpactNwa => 2.0 / 3.0;
+        public static double WaveAngleImpactNwa => 2d / 3;
 
         /// <summary>
         /// Gets the default value of the Qwa coefficient [-].
@@ -46,12 +46,12 @@ namespace DiKErnel.DomainLibrary.Defaults.GrassRevetmentWaveImpact
         /// <summary>
         /// Gets the default value of the Rwa coefficient [-].
         /// </summary>
-        public static double WaveAngleImpactRwa => 10.0;
+        public static double WaveAngleImpactRwa => 10;
 
         /// <summary>
         /// Gets the default value of the Aul coefficient [-].
         /// </summary>
-        public static double UpperLimitLoadingAul => 0.0;
+        public static double UpperLimitLoadingAul => 0;
 
         /// <summary>
         /// Gets the default value of the All coefficient [-].

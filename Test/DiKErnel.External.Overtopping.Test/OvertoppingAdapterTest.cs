@@ -110,7 +110,7 @@ namespace DiKErnel.External.Overtopping.Test
             // Setup
             const double waterLevel = 1e-6;
             const double waveHeightHm0 = -0.361314622129615;
-            const double wavePeriodTm10 = 45.0;
+            const double wavePeriodTm10 = 45;
             const double waveDirection = 1.912229230397281e-12;
 
             const double dikeHeight = 3.7;
@@ -145,9 +145,9 @@ namespace DiKErnel.External.Overtopping.Test
         {
             // Setup
             const double waterLevel = 5.5;
-            const double waveHeightHm0 = 1.0;
-            const double wavePeriodTm10 = 4.0;
-            const double waveDirection = 50.0;
+            const double waveHeightHm0 = 1;
+            const double wavePeriodTm10 = 4;
+            const double waveDirection = 50;
 
             const double dikeHeight = 9.1;
 

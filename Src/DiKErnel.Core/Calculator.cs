@@ -133,7 +133,7 @@ namespace DiKErnel.Core
             IReadOnlyDictionary<ILocationDependentInput, List<TimeDependentOutput>> timeDependentOutputItemsPerLocation,
             IProfileData profileData)
         {
-            double progressPerIteration = 1.0 / timeDependentInputItems.Count / locationDependentInputItems.Count;
+            double progressPerIteration = 1d / timeDependentInputItems.Count / locationDependentInputItems.Count;
 
             foreach (ITimeDependentInput timeDependentInput in timeDependentInputItems)
             {

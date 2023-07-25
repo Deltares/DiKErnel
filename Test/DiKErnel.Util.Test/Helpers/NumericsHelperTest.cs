@@ -24,7 +24,7 @@ namespace DiKErnel.Util.Test.Helpers
     [TestFixture]
     public class NumericsHelperTest
     {
-        private const double tolerance = 1.0e-16;
+        private const double tolerance = 1e-16;
 
         [Test]
         public void AreEqual_EqualValue_ReturnsTrue()

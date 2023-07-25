@@ -46,7 +46,7 @@ namespace DiKErnel.DomainLibrary.Defaults.NaturalStoneRevetment
         /// <summary>
         /// Gets the default value of the Cul coefficient [-].
         /// </summary>
-        public static double UpperLimitLoadingCul => 4.0;
+        public static double UpperLimitLoadingCul => 4;
 
         /// <summary>
         /// Gets the default value of the All coefficient [-].
@@ -61,7 +61,7 @@ namespace DiKErnel.DomainLibrary.Defaults.NaturalStoneRevetment
         /// <summary>
         /// Gets the default value of the Cll coefficient [-].
         /// </summary>
-        public static double LowerLimitLoadingCll => 4.0;
+        public static double LowerLimitLoadingCll => 4;
 
         /// <summary>
         /// Gets the default value of the Asmax coefficient [-].
@@ -86,6 +86,6 @@ namespace DiKErnel.DomainLibrary.Defaults.NaturalStoneRevetment
         /// <summary>
         /// Gets the default value of the Betamax coefficient [deg].
         /// </summary>
-        public static double WaveAngleImpactBetamax => 78.0;
+        public static double WaveAngleImpactBetamax => 78;
     }
 }

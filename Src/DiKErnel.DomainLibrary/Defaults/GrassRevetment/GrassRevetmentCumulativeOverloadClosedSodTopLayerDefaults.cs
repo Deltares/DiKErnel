@@ -34,7 +34,7 @@ namespace DiKErnel.DomainLibrary.Defaults.GrassRevetment
         public static GrassRevetmentCumulativeOverloadClosedSodTopLayerDefaults Instance =>
             instance ??= new GrassRevetmentCumulativeOverloadClosedSodTopLayerDefaults();
 
-        public double CriticalCumulativeOverload => 7000.0;
+        public double CriticalCumulativeOverload => 7000;
 
         public double CriticalFrontVelocity => 6.6;
     }

@@ -48,7 +48,7 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneRevetment
             // Setup
             const double surfSimilarityParameter = 1.28;
             const double waveHeightHm0 = 1.8;
-            const double a = 4.0;
+            const double a = 4;
             const double b = 0.1;
             const double c = 0.3;
             const double n = -0.9;
@@ -66,7 +66,7 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneRevetment
         public void OuterSlopeWithoutBerm_ValidInput_ExpectedValue()
         {
             // Setup
-            const double slopeLowerPosition = 30.0;
+            const double slopeLowerPosition = 30;
             const double slopeLowerLevel = 5.35;
             const double slopeUpperPosition = 30.3;
             const double slopeUpperLevel = 5.425;
@@ -85,15 +85,15 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneRevetment
         public void OuterSlopeWithBerm_UpperAndLowerSlopeLevelOnLowerSlope_ExpectedValue()
         {
             // Setup
-            const double slopeLowerPosition = 5.0;
+            const double slopeLowerPosition = 5;
             const double slopeLowerLevel = 0.5;
             const double slopeUpperPosition = 5.15625;
             const double slopeUpperLevel = 0.55;
             const double outerToeHeight = 0.5;
-            const double outerCrestHeight = 7.0;
-            const double notchOuterBermPosition = 25.0;
+            const double outerCrestHeight = 7;
+            const double notchOuterBermPosition = 25;
             const double notchOuterBermHeight = 4.1;
-            const double crestOuterBermPosition = 15.0;
+            const double crestOuterBermPosition = 15;
             const double crestOuterBermHeight = 3.5;
 
             var input = new NaturalStoneRevetmentOuterSlopeInput(slopeLowerPosition, slopeLowerLevel, slopeUpperPosition,
@@ -120,13 +120,13 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneRevetment
             // Setup
             const double slopeLowerPosition = 10.7142857142857;
             const double slopeLowerLevel = 2.3;
-            const double slopeUpperPosition = 15.0;
+            const double slopeUpperPosition = 15;
             const double slopeUpperLevel = 3.5;
             const double outerToeHeight = 0.5;
-            const double outerCrestHeight = 7.0;
-            const double notchOuterBermPosition = 25.0;
+            const double outerCrestHeight = 7;
+            const double notchOuterBermPosition = 25;
             const double notchOuterBermHeight = 4.1;
-            const double crestOuterBermPosition = 15.0;
+            const double crestOuterBermPosition = 15;
             const double crestOuterBermHeight = 3.5;
 
             var input = new NaturalStoneRevetmentOuterSlopeInput(slopeLowerPosition, slopeLowerLevel, slopeUpperPosition,
@@ -151,15 +151,15 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneRevetment
         public void OuterSlopeWithBerm_UpperAndLowerSlopeLevelOnBerm_ExpectedValue()
         {
             // Setup
-            const double slopeLowerPosition = 15.0;
+            const double slopeLowerPosition = 15;
             const double slopeLowerLevel = 3.5;
             const double slopeUpperPosition = 18.75;
             const double slopeUpperLevel = 3.8;
             const double outerToeHeight = 0.5;
-            const double outerCrestHeight = 7.0;
-            const double notchOuterBermPosition = 25.0;
+            const double outerCrestHeight = 7;
+            const double notchOuterBermPosition = 25;
             const double notchOuterBermHeight = 4.1;
-            const double crestOuterBermPosition = 15.0;
+            const double crestOuterBermPosition = 15;
             const double crestOuterBermHeight = 3.5;
 
             var input = new NaturalStoneRevetmentOuterSlopeInput(slopeLowerPosition, slopeLowerLevel, slopeUpperPosition,
@@ -187,12 +187,12 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneRevetment
             const double slopeLowerPosition = 25.6818181818182;
             const double slopeLowerLevel = 4.25;
             const double slopeUpperPosition = 29.0909090909091;
-            const double slopeUpperLevel = 5.0;
+            const double slopeUpperLevel = 5;
             const double outerToeHeight = 0.5;
-            const double outerCrestHeight = 7.0;
-            const double notchOuterBermPosition = 25.0;
+            const double outerCrestHeight = 7;
+            const double notchOuterBermPosition = 25;
             const double notchOuterBermHeight = 4.1;
-            const double crestOuterBermPosition = 15.0;
+            const double crestOuterBermPosition = 15;
             const double crestOuterBermHeight = 3.5;
 
             var input = new NaturalStoneRevetmentOuterSlopeInput(slopeLowerPosition, slopeLowerLevel, slopeUpperPosition,
@@ -219,13 +219,13 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneRevetment
             // Setup
             const double slopeLowerPosition = 24.375;
             const double slopeLowerLevel = 4.075;
-            const double slopeUpperPosition = 40.0;
-            const double slopeUpperLevel = 7.0;
+            const double slopeUpperPosition = 40;
+            const double slopeUpperLevel = 7;
             const double outerToeHeight = 0.5;
-            const double outerCrestHeight = 7.0;
-            const double notchOuterBermPosition = 25.0;
+            const double outerCrestHeight = 7;
+            const double notchOuterBermPosition = 25;
             const double notchOuterBermHeight = 4.1;
-            const double crestOuterBermPosition = 15.0;
+            const double crestOuterBermPosition = 15;
             const double crestOuterBermHeight = 3.5;
 
             var input = new NaturalStoneRevetmentOuterSlopeInput(slopeLowerPosition, slopeLowerLevel, slopeUpperPosition,
@@ -252,13 +252,13 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneRevetment
             // Setup
             const double slopeLowerPosition = 12.5;
             const double slopeLowerLevel = 2.8;
-            const double slopeUpperPosition = 40.0;
-            const double slopeUpperLevel = 7.0;
+            const double slopeUpperPosition = 40;
+            const double slopeUpperLevel = 7;
             const double outerToeHeight = 0.5;
-            const double outerCrestHeight = 7.0;
-            const double notchOuterBermPosition = 25.0;
+            const double outerCrestHeight = 7;
+            const double notchOuterBermPosition = 25;
             const double notchOuterBermHeight = 4.1;
-            const double crestOuterBermPosition = 15.0;
+            const double crestOuterBermPosition = 15;
             const double crestOuterBermHeight = 3.5;
 
             var input = new NaturalStoneRevetmentOuterSlopeInput(slopeLowerPosition, slopeLowerLevel, slopeUpperPosition,
@@ -285,13 +285,13 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneRevetment
             // Setup
             const double slopeLowerPosition = 12.5;
             const double slopeLowerLevel = 2.8;
-            const double slopeUpperPosition = 45.0;
+            const double slopeUpperPosition = 45;
             const double slopeUpperLevel = 7.1;
             const double outerToeHeight = 0.5;
-            const double outerCrestHeight = 7.0;
-            const double notchOuterBermPosition = 25.0;
+            const double outerCrestHeight = 7;
+            const double notchOuterBermPosition = 25;
             const double notchOuterBermHeight = 4.1;
-            const double crestOuterBermPosition = 15.0;
+            const double crestOuterBermPosition = 15;
             const double crestOuterBermHeight = 3.5;
 
             var input = new NaturalStoneRevetmentOuterSlopeInput(slopeLowerPosition, slopeLowerLevel, slopeUpperPosition,
@@ -316,16 +316,15 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneRevetment
         public void OuterSlopeWithBerm_LowerSlopeBelowOuterToe_ExpectedValue()
         {
             // Setup
-
-            const double slopeLowerPosition = 0.0;
+            const double slopeLowerPosition = 0;
             const double slopeLowerLevel = 0.4;
-            const double slopeUpperPosition = 40.0;
-            const double slopeUpperLevel = 7.0;
+            const double slopeUpperPosition = 40;
+            const double slopeUpperLevel = 7;
             const double outerToeHeight = 0.5;
-            const double outerCrestHeight = 7.0;
-            const double notchOuterBermPosition = 25.0;
+            const double outerCrestHeight = 7;
+            const double notchOuterBermPosition = 25;
             const double notchOuterBermHeight = 4.1;
-            const double crestOuterBermPosition = 15.0;
+            const double crestOuterBermPosition = 15;
             const double crestOuterBermHeight = 3.5;
 
             var input = new NaturalStoneRevetmentOuterSlopeInput(slopeLowerPosition, slopeLowerLevel, slopeUpperPosition,
@@ -391,7 +390,7 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneRevetment
             const double waveHeightHm0 = 1.8;
             const double a = 0.1;
             const double b = 0.6;
-            const double c = 4.0;
+            const double c = 4;
 
             var input = new NaturalStoneRevetmentLimitLoadingInput(depthMaximumWaveLoad, surfSimilarityParameter, waterLevel,
                                                                    waveHeightHm0, a, b, c);
@@ -413,7 +412,7 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneRevetment
             const double waveHeightHm0 = 1.8;
             const double a = 0.1;
             const double b = 0.2;
-            const double c = 4.0;
+            const double c = 4;
 
             var input = new NaturalStoneRevetmentLimitLoadingInput(depthMaximumWaveLoad, surfSimilarityParameter, waterLevel,
                                                                    waveHeightHm0, a, b, c);
@@ -435,8 +434,8 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneRevetment
 
             // Call
             double depthMaximumWaveLoad = NaturalStoneRevetmentFunctions.DepthMaximumWaveLoad(distanceMaximumWaveElevation,
-                                                                                              normativeWidthWaveImpact,
-                                                                                              slopeAngle);
+                normativeWidthWaveImpact,
+                slopeAngle);
 
             // Assert
             Assert.AreEqual(0.38425846631481392, depthMaximumWaveLoad);
@@ -482,8 +481,8 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneRevetment
         public static void WaveAngleImpact_ValidInput_ExpectedValue()
         {
             // Setup
-            const double waveAngle = 5.0;
-            const double waveAngleImpactBetamax = 78.0;
+            const double waveAngle = 5;
+            const double waveAngleImpactBetamax = 78;
 
             // Call
             double waveAngleImpact = NaturalStoneRevetmentFunctions.WaveAngleImpact(waveAngle, waveAngleImpactBetamax);
@@ -516,7 +515,7 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneRevetment
 
             // Call
             double incrementDegradation = NaturalStoneRevetmentFunctions.IncrementDegradation(referenceTimeDegradation,
-                                                                                              incrementTime, wavePeriodTm10);
+                incrementTime, wavePeriodTm10);
 
             // Assert
             AssertHelper.AssertAreEqualWithinTolerance(0.078442472004777053, incrementDegradation);
@@ -531,7 +530,7 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneRevetment
 
             // Call
             double referenceTimeDegradation = NaturalStoneRevetmentFunctions.ReferenceTimeDegradation(referenceDegradation,
-                                                                                                      wavePeriodTm10);
+                wavePeriodTm10);
 
             // Assert
             AssertHelper.AssertAreEqualWithinTolerance(605.48915987364103, referenceTimeDegradation);
@@ -548,7 +547,7 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneRevetment
 
             // Call
             double referenceDegradation = NaturalStoneRevetmentFunctions.ReferenceDegradation(resistance, hydraulicLoad,
-                                                                                              waveAngleImpact, initialDamage);
+                waveAngleImpact, initialDamage);
 
             // Assert
             AssertHelper.AssertAreEqualWithinTolerance(0.80236244447628591, referenceDegradation);
@@ -563,7 +562,7 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneRevetment
 
             // Call
             double durationInTimeStepFailure = NaturalStoneRevetmentFunctions.DurationInTimeStepFailure(referenceTimeFailure,
-                                                                                                        referenceTimeDegradation);
+                referenceTimeDegradation);
 
             // Assert
             AssertHelper.AssertAreEqualWithinTolerance(348.2, durationInTimeStepFailure);

@@ -40,9 +40,9 @@ namespace DiKErnel.DomainLibrary.Test.Validators.GrassRevetmentWaveRunup
             ValidatorAssertHelper.AssertValue(validationFunc, 0.6);
             ValidatorAssertHelper.AssertValue(validationFunc, 0.6 + ValidatorAssertHelper.Epsilon);
 
-            ValidatorAssertHelper.AssertValue(validationFunc, 1.0 - ValidatorAssertHelper.Epsilon);
-            ValidatorAssertHelper.AssertValue(validationFunc, 1.0);
-            ValidatorAssertHelper.AssertValue(validationFunc, 1.0 + ValidatorAssertHelper.Epsilon, ValidationIssueType.Error, errorMessage);
+            ValidatorAssertHelper.AssertValue(validationFunc, 1 - ValidatorAssertHelper.Epsilon);
+            ValidatorAssertHelper.AssertValue(validationFunc, 1);
+            ValidatorAssertHelper.AssertValue(validationFunc, 1 + ValidatorAssertHelper.Epsilon, ValidationIssueType.Error, errorMessage);
 
             ValidatorAssertHelper.AssertValue(validationFunc, ValidatorAssertHelper.DoubleMax, ValidationIssueType.Error, errorMessage);
         }
@@ -60,9 +60,9 @@ namespace DiKErnel.DomainLibrary.Test.Validators.GrassRevetmentWaveRunup
             ValidatorAssertHelper.AssertValue(validationFunc, 0.5);
             ValidatorAssertHelper.AssertValue(validationFunc, 0.5 + ValidatorAssertHelper.Epsilon);
 
-            ValidatorAssertHelper.AssertValue(validationFunc, 1.0 - ValidatorAssertHelper.Epsilon);
-            ValidatorAssertHelper.AssertValue(validationFunc, 1.0);
-            ValidatorAssertHelper.AssertValue(validationFunc, 1.0 + ValidatorAssertHelper.Epsilon, ValidationIssueType.Error, errorMessage);
+            ValidatorAssertHelper.AssertValue(validationFunc, 1 - ValidatorAssertHelper.Epsilon);
+            ValidatorAssertHelper.AssertValue(validationFunc, 1);
+            ValidatorAssertHelper.AssertValue(validationFunc, 1 + ValidatorAssertHelper.Epsilon, ValidationIssueType.Error, errorMessage);
 
             ValidatorAssertHelper.AssertValue(validationFunc, ValidatorAssertHelper.DoubleMax, ValidationIssueType.Error, errorMessage);
         }

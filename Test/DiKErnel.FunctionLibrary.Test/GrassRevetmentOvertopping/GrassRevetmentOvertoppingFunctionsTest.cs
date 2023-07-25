@@ -79,8 +79,8 @@ namespace DiKErnel.FunctionLibrary.Test.GrassRevetmentOvertopping
             const int fixedNumberOfWaves = 10000;
             const double verticalDistanceWaterLevelElevation = 2.2;
             const double criticalFrontVelocity = 6.6;
-            const double increasedLoadTransitionAlphaM = 1.0;
-            const double reducedStrengthTransitionAlphaS = 1.0;
+            const double increasedLoadTransitionAlphaM = 1;
+            const double reducedStrengthTransitionAlphaS = 1;
             const double gravitationalAcceleration = 9.81;
             const double accelerationAlphaA = 1.4;
             const double frontVelocityCwo = 1.45;

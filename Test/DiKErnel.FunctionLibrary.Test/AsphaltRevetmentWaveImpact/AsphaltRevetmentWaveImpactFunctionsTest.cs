@@ -90,7 +90,7 @@ namespace DiKErnel.FunctionLibrary.Test.AsphaltRevetmentWaveImpact
             const double waveHeightHm0 = 1.6;
             const double fatigueAlpha = 0.42;
             const double fatigueBeta = 4.76;
-            const double impactNumberC = 1.0;
+            const double impactNumberC = 1;
 
             var input = new AsphaltRevetmentWaveImpactFunctionsInput(logFailureTension, averageNumberOfWaves, maximumPeakStress,
                                                                      stiffnessRelation, computationalThickness, outerSlope,
@@ -140,7 +140,7 @@ namespace DiKErnel.FunctionLibrary.Test.AsphaltRevetmentWaveImpact
             // Setup
             const double computationalThickness = 0.16;
             const double equivalentElasticModulus = 18214;
-            const double soilElasticity = 56.0;
+            const double soilElasticity = 56;
             const double stiffnessRelationNu = 0.35;
 
             // Call

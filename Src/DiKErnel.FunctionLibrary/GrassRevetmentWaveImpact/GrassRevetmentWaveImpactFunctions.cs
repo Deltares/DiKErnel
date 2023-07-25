@@ -47,7 +47,7 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentWaveImpact
         /// <returns>The time line [-].</returns>
         public static double TimeLine(double waveHeightImpact, double timeLineAgwi, double timeLineBgwi, double timeLineCgwi)
         {
-            return 1.0 / timeLineBgwi * Math.Log((waveHeightImpact - timeLineCgwi) / timeLineAgwi);
+            return 1 / timeLineBgwi * Math.Log((waveHeightImpact - timeLineCgwi) / timeLineAgwi);
         }
 
         /// <summary>
@@ -104,7 +104,7 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentWaveImpact
         public static double WaveAngleImpact(double waveAngle, double waveAngleImpactNwa, double waveAngleImpactQwa,
                                              double waveAngleImpactRwa)
         {
-            if (Math.Abs(waveAngle) <= 90.0)
+            if (Math.Abs(waveAngle) <= 90)
             {
                 return Math.Max(Math.Pow(Math.Cos(GenericFunctions.Radians(waveAngle)), waveAngleImpactNwa), waveAngleImpactQwa);
             }

@@ -30,7 +30,7 @@ namespace DiKErnel.FunctionLibrary.Test.GrassRevetment
         {
             // Setup
             const double cumulativeOverload = 1063.89;
-            const double criticalCumulativeOverload = 7000.0;
+            const double criticalCumulativeOverload = 7000;
 
             // Call
             double incrementDamage = GrassRevetmentFunctions.IncrementDamage(cumulativeOverload, criticalCumulativeOverload);

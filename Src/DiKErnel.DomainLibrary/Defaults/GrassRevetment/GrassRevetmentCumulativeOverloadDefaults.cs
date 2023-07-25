@@ -27,12 +27,12 @@ namespace DiKErnel.DomainLibrary.Defaults.GrassRevetment
         /// <summary>
         /// Gets the default value of the increased load transition alpha M [-].
         /// </summary>
-        public static double IncreasedLoadTransitionAlphaM => 1.0;
+        public static double IncreasedLoadTransitionAlphaM => 1;
 
         /// <summary>
         /// Gets the default value of the reduced strength transition alpha S [-].
         /// </summary>
-        public static double ReducedStrengthTransitionAlphaS => 1.0;
+        public static double ReducedStrengthTransitionAlphaS => 1;
 
         /// <summary>
         /// Gets the default value of the Ctm coefficient [-].

@@ -101,7 +101,7 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneRevetment
         /// <returns>The upper limit of loading [m].</returns>
         public static double UpperLimitLoading(NaturalStoneRevetmentLimitLoadingInput input)
         {
-            return input.WaterLevel - 2.0 * input.DepthMaximumWaveLoad
+            return input.WaterLevel - 2 * input.DepthMaximumWaveLoad
                    + Math.Max(input.DepthMaximumWaveLoad + input.A,
                               input.B * input.WaveHeightHm0 * Math.Min(input.SurfSimilarityParameter, input.C));
         }
@@ -114,7 +114,7 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneRevetment
         public static double LowerLimitLoading(NaturalStoneRevetmentLimitLoadingInput input)
         {
             return input.WaterLevel
-                   - 2.0 * input.DepthMaximumWaveLoad
+                   - 2 * input.DepthMaximumWaveLoad
                    + Math.Min(input.DepthMaximumWaveLoad - input.A,
                               input.B * input.WaveHeightHm0 * Math.Min(input.SurfSimilarityParameter, input.C));
         }
@@ -374,7 +374,7 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneRevetment
 
         private static double Reference(double resistance, double hydraulicLoad, double waveAngleImpact, double value)
         {
-            return value * (resistance / hydraulicLoad) * (1.0 / waveAngleImpact);
+            return value * (resistance / hydraulicLoad) * (1 / waveAngleImpact);
         }
 
         private static bool HasBerm(NaturalStoneRevetmentOuterSlopeInput input)

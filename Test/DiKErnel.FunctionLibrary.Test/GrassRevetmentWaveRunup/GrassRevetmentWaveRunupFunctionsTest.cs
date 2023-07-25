@@ -31,11 +31,11 @@ namespace DiKErnel.FunctionLibrary.Test.GrassRevetmentWaveRunup
             // Setup
             const double surfSimilarityParameter = 1.436;
             const double waveAngleImpact = 0.901;
-            const double waveHeightHm0 = 2.0;
+            const double waveHeightHm0 = 2;
             const double representativeWaveRunup2PGammab = 1.1;
             const double representativeWaveRunup2PGammaf = 1.2;
             const double representativeWaveRunup2PAru = 1.65;
-            const double representativeWaveRunup2PBru = 4.0;
+            const double representativeWaveRunup2PBru = 4;
             const double representativeWaveRunup2PCru = 1.5;
 
             var input = new GrassRevetmentWaveRunupRepresentative2PInput(surfSimilarityParameter, waveAngleImpact, waveHeightHm0,
@@ -56,9 +56,9 @@ namespace DiKErnel.FunctionLibrary.Test.GrassRevetmentWaveRunup
         public void WaveAngleImpact_ValidInput_ExpectedValue()
         {
             // Setup
-            const double waveAngle = 45.0;
+            const double waveAngle = 45;
             const double waveAngleImpactAbeta = 0.0022;
-            const double waveAngleImpactBetamax = 80.0;
+            const double waveAngleImpactBetamax = 80;
 
             // Call
             double waveAngleImpact = GrassRevetmentWaveRunupFunctions.WaveAngleImpact(waveAngle, waveAngleImpactAbeta,

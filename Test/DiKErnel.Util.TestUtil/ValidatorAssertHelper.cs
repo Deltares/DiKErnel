@@ -24,7 +24,7 @@ namespace DiKErnel.Util.TestUtil
 {
     public static class ValidatorAssertHelper
     {
-        public const double Epsilon = 1.0e-6;
+        public const double Epsilon = 1e-6;
 
         public const double DoubleMin = double.MinValue;
 

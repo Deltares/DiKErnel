@@ -36,19 +36,19 @@ namespace DiKErnel.DomainLibrary.Defaults.NaturalStoneRevetment
 
         public double HydraulicLoadXib => 2.9;
 
-        public double HydraulicLoadAp => 4.0;
+        public double HydraulicLoadAp => 4;
 
-        public double HydraulicLoadBp => 0.0;
+        public double HydraulicLoadBp => 0;
 
-        public double HydraulicLoadCp => 0.0;
+        public double HydraulicLoadCp => 0;
 
         public double HydraulicLoadNp => -0.9;
 
         public double HydraulicLoadAs => 0.8;
 
-        public double HydraulicLoadBs => 0.0;
+        public double HydraulicLoadBs => 0;
 
-        public double HydraulicLoadCs => 0.0;
+        public double HydraulicLoadCs => 0;
 
         public double HydraulicLoadNs => 0.6;
     }

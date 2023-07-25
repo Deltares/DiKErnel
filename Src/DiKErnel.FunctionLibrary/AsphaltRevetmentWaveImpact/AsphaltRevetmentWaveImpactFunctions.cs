@@ -32,7 +32,7 @@ namespace DiKErnel.FunctionLibrary.AsphaltRevetmentWaveImpact
         /// <returns>The increment of damage [-].</returns>
         public static double IncrementDamage(AsphaltRevetmentWaveImpactFunctionsInput input)
         {
-            var result = 0.0;
+            double result = 0;
 
             double sinA = Math.Sin(Math.Atan(input.OuterSlope));
 
@@ -121,7 +121,8 @@ namespace DiKErnel.FunctionLibrary.AsphaltRevetmentWaveImpact
         private static double DepthFactorAccumulation(AsphaltRevetmentWaveImpactFunctionsInput input,
                                                       double relativeWidthWaveImpact, double sinA)
         {
-            var result = 0.0;
+            double result = 0;
+
             foreach ((double, double) depthFactor in input.DepthFactors)
             {
                 double bendingStress = BendingStress(input, relativeWidthWaveImpact, sinA, depthFactor.Item1);
@@ -135,7 +136,8 @@ namespace DiKErnel.FunctionLibrary.AsphaltRevetmentWaveImpact
 
         private static double ImpactFactorAccumulation(AsphaltRevetmentWaveImpactFunctionsInput input, double bendingStress)
         {
-            var result = 0.0;
+            double result = 0;
+
             foreach ((double, double) impactFactor in input.ImpactFactors)
             {
                 double fatigue = Fatigue(input, bendingStress, impactFactor.Item1);
@@ -164,7 +166,7 @@ namespace DiKErnel.FunctionLibrary.AsphaltRevetmentWaveImpact
 
         private static double ImpactNumber(double outerSlope, double impactFactorValue, double impactNumberC)
         {
-            return 4.0 * impactNumberC * outerSlope * impactFactorValue;
+            return 4 * impactNumberC * outerSlope * impactFactorValue;
         }
 
         private static double BendingStress(AsphaltRevetmentWaveImpactFunctionsInput input, double relativeWidthWaveImpact,
@@ -202,8 +204,8 @@ namespace DiKErnel.FunctionLibrary.AsphaltRevetmentWaveImpact
                         + cosRelativeDistanceCenterWaveImpact
                         * (expRelativeDistanceCenterWaveImpact + expNegativeRelativeDistanceCenterWaveImpact)
                         * (cosRelativeWidthWaveImpact + sinRelativeWidthWaveImpact) * expNegativeRelativeWidthWaveImpact
-                        - 2.0 * expNegativeRelativeDistanceCenterWaveImpact
-                              * (cosRelativeDistanceCenterWaveImpact + sinRelativeDistanceCenterWaveImpact))
+                        - 2 * expNegativeRelativeDistanceCenterWaveImpact
+                            * (cosRelativeDistanceCenterWaveImpact + sinRelativeDistanceCenterWaveImpact))
                        / relativeWidthWaveImpact;
             }
 
@@ -215,7 +217,7 @@ namespace DiKErnel.FunctionLibrary.AsphaltRevetmentWaveImpact
                     + sinRelativeDistanceCenterWaveImpact
                     * (expRelativeWidthWaveImpact * (cosRelativeWidthWaveImpact + sinRelativeWidthWaveImpact)
                        + expNegativeRelativeWidthWaveImpact * (cosRelativeWidthWaveImpact - sinRelativeWidthWaveImpact))
-                    - 2.0 * (cosRelativeDistanceCenterWaveImpact + sinRelativeDistanceCenterWaveImpact))
+                    - 2 * (cosRelativeDistanceCenterWaveImpact + sinRelativeDistanceCenterWaveImpact))
                    * expNegativeRelativeDistanceCenterWaveImpact / relativeWidthWaveImpact;
         }
 
@@ -228,7 +230,7 @@ namespace DiKErnel.FunctionLibrary.AsphaltRevetmentWaveImpact
                                                                double depthFactorValue, double sinA)
         {
             return Math.Min(85, input.StiffnessRelation
-                                  * Math.Abs(input.Z - input.WaterLevel - depthFactorValue * input.WaveHeightHm0) / sinA);
+                                * Math.Abs(input.Z - input.WaterLevel - depthFactorValue * input.WaveHeightHm0) / sinA);
         }
     }
 }

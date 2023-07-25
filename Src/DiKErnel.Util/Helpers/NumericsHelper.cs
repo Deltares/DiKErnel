@@ -26,7 +26,7 @@ namespace DiKErnel.Util.Helpers
     /// </summary>
     public static class NumericsHelper
     {
-        private const double tolerance = 1.0e-16;
+        private const double tolerance = 1e-16;
 
         /// <summary>
         /// Asserts whether first and second are equal.

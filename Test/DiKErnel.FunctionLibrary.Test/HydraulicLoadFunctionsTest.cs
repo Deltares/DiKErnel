@@ -31,7 +31,7 @@ namespace DiKErnel.FunctionLibrary.Test
         public void WaveDirection_InputEqualTo0Degrees_ExpectedValue()
         {
             // Setup
-            const double waveAngle = 0.0;
+            const double waveAngle = 0;
 
             // Call
             double waveDirection = HydraulicLoadFunctions.WaveDirection(waveAngle);
@@ -45,7 +45,7 @@ namespace DiKErnel.FunctionLibrary.Test
         {
             // Setup
             var random = new Random(21);
-            double waveAngle = tolerance + 540.0 * random.NextDouble();
+            double waveAngle = tolerance + 540 * random.NextDouble();
 
             // Call
             double waveDirection = HydraulicLoadFunctions.WaveDirection(waveAngle);
@@ -59,20 +59,20 @@ namespace DiKErnel.FunctionLibrary.Test
         {
             // Setup
             var random = new Random(21);
-            double waveAngle = -180.0 + tolerance + 180.0 * random.NextDouble();
+            double waveAngle = -180 + tolerance + 180 * random.NextDouble();
 
             // Call
             double waveDirection = HydraulicLoadFunctions.WaveDirection(waveAngle);
 
             // Assert
-            AssertHelper.AssertAreEqualWithinTolerance(360.0 + waveAngle, waveDirection);
+            AssertHelper.AssertAreEqualWithinTolerance(360 + waveAngle, waveDirection);
         }
 
         [Test]
         public void WaveDirection_InputEqualToMinus180Degrees_ExpectedValue()
         {
             // Setup
-            const double waveAngle = -180.0;
+            const double waveAngle = -180;
 
             // Call
             double waveDirection = HydraulicLoadFunctions.WaveDirection(waveAngle);

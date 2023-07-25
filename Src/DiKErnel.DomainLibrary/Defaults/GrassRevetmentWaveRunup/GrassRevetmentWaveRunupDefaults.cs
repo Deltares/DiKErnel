@@ -31,7 +31,7 @@ namespace DiKErnel.DomainLibrary.Defaults.GrassRevetmentWaveRunup
         /// <summary>
         /// Gets the default value of the representative 2P Bru coefficient [-].
         /// </summary>
-        public static double RepresentativeWaveRunup2PBru => 4.0;
+        public static double RepresentativeWaveRunup2PBru => 4;
 
         /// <summary>
         /// Gets the default value of the representative 2P Cru coefficient [-].
@@ -41,12 +41,12 @@ namespace DiKErnel.DomainLibrary.Defaults.GrassRevetmentWaveRunup
         /// <summary>
         /// Gets the default value of the representative 2P Gammab coefficient [-].
         /// </summary>
-        public static double RepresentativeWaveRunup2PGammab => 1.0;
+        public static double RepresentativeWaveRunup2PGammab => 1;
 
         /// <summary>
         /// Gets the default value of the representative 2P Gammaf coefficient [-].
         /// </summary>
-        public static double RepresentativeWaveRunup2PGammaf => 1.0;
+        public static double RepresentativeWaveRunup2PGammaf => 1;
 
         /// <summary>
         /// Gets the default value of the Abeta coefficient [-].
@@ -56,6 +56,6 @@ namespace DiKErnel.DomainLibrary.Defaults.GrassRevetmentWaveRunup
         /// <summary>
         /// Gets the default value of the Betamax coefficient [-].
         /// </summary>
-        public static double WaveAngleImpactBetamax => 80.0;
+        public static double WaveAngleImpactBetamax => 80;
     }
 }

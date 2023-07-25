@@ -28,17 +28,17 @@ namespace DiKErnel.DomainLibrary.Defaults.AsphaltRevetmentWaveImpact
         /// <summary>
         /// Gets the default value of the density of water [kg/m^3].
         /// </summary>
-        public static double DensityOfWater => 1025.0;
+        public static double DensityOfWater => 1025;
 
         /// <summary>
         /// Gets the default value of the Ctm coefficient [-].
         /// </summary>
-        public static double AverageNumberOfWavesCtm => 1.0;
+        public static double AverageNumberOfWavesCtm => 1;
 
         /// <summary>
         /// Gets the default value of the impact number C coefficient [-].
         /// </summary>
-        public static double ImpactNumberC => 1.0;
+        public static double ImpactNumberC => 1;
 
         /// <summary>
         /// Gets the default values of the width factors [-].

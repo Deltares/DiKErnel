@@ -26,11 +26,11 @@ namespace DiKErnel.DomainLibrary.Defaults
         /// <summary>
         /// Gets the default value of the initial damage [-].
         /// </summary>
-        public static double InitialDamage => 0.0;
+        public static double InitialDamage => 0;
 
         /// <summary>
         /// Gets the default value of the failure number [-].
         /// </summary>
-        public static double FailureNumber => 1.0;
+        public static double FailureNumber => 1;
     }
 }

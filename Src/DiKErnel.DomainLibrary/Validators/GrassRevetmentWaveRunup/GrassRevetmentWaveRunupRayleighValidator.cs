@@ -34,7 +34,7 @@ namespace DiKErnel.DomainLibrary.Validators.GrassRevetmentWaveRunup
         /// otherwise.</returns>
         public static ValidationIssue FrontVelocityCu(double frontVelocityCu)
         {
-            if (frontVelocityCu <= 0.0)
+            if (frontVelocityCu <= 0)
             {
                 return new ValidationIssue(ValidationIssueType.Error, "FrontVelocityCu must be larger than 0.");
             }

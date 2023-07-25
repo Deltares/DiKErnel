@@ -26,6 +26,6 @@ namespace DiKErnel.DomainLibrary.Defaults
         /// <summary>
         /// Gets the default value of the roughness coefficient [-].
         /// </summary>
-        public static double RoughnessCoefficient => 1.0;
+        public static double RoughnessCoefficient => 1;
     }
 }

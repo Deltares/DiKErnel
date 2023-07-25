@@ -33,7 +33,7 @@ namespace DiKErnel.FunctionLibrary.Test.GrassRevetmentWaveRunup
             const double representativeWaveRunup2P = 2.258;
             const int fixedNumberOfWaves = 10000;
             const double verticalDistanceWaterLevelElevation = 0.97;
-            const double criticalFrontVelocity = 4.0;
+            const double criticalFrontVelocity = 4;
             const double increasedLoadTransitionAlphaM = 1.1;
             const double reducedStrengthTransitionAlphaS = 1.2;
             const double gravitationalAcceleration = 9.81;
