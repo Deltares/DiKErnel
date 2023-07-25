@@ -27,7 +27,7 @@ namespace DiKErnel.FunctionLibrary.Test.GrassRevetmentOvertopping
     public class GrassRevetmentOvertoppingCumulativeOverloadInputTest
     {
         [Test]
-        public void GivenInput_WhenCreated_ThenExpectedValues()
+        public void Constructor_ExpectedValues()
         {
             // Setup
             double averageNumberOfWaves = Random.NextDouble();
@@ -52,7 +52,6 @@ namespace DiKErnel.FunctionLibrary.Test.GrassRevetmentOvertopping
 
             // Assert
             Assert.IsInstanceOf<GrassRevetmentCumulativeOverloadInput>(input);
-
             Assert.AreEqual(averageNumberOfWaves, input.AverageNumberOfWaves);
             Assert.AreEqual(representativeWaveRunup2P, input.RepresentativeWaveRunup2P);
             Assert.AreEqual(fixedNumberOfWaves, input.FixedNumberOfWaves);
