@@ -18,7 +18,6 @@
 
 using DiKErnel.TestUtil;
 using NUnit.Framework;
-using Random = System.Random;
 
 namespace DiKErnel.FunctionLibrary.Test
 {
@@ -44,8 +43,7 @@ namespace DiKErnel.FunctionLibrary.Test
         public void WaveDirection_InputLargerThan0Degrees_ExpectedValue()
         {
             // Setup
-            var random = new Random(21);
-            double waveAngle = tolerance + 540 * random.NextDouble();
+            double waveAngle = Random.NextDouble(0 + tolerance, 540);
 
             // Call
             double waveDirection = HydraulicLoadFunctions.WaveDirection(waveAngle);
@@ -58,8 +56,7 @@ namespace DiKErnel.FunctionLibrary.Test
         public void WaveDirection_InputBetweenMinus180And0Degrees_ExpectedValue()
         {
             // Setup
-            var random = new Random(21);
-            double waveAngle = -180 + tolerance + 180 * random.NextDouble();
+            double waveAngle = Random.NextDouble(-180 + tolerance, 0);
 
             // Call
             double waveDirection = HydraulicLoadFunctions.WaveDirection(waveAngle);

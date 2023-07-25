@@ -144,20 +144,6 @@ namespace DiKErnel.FunctionLibrary.Test
         }
 
         [Test]
-        public void TimeOfFailure_ValidUnroundedInput_ExpectedValue()
-        {
-            // Setup
-            const double durationInTimeStepFailure = 254.001;
-            const double beginTime = 1568;
-
-            // Call
-            double timeOfFailure = RevetmentFunctions.TimeOfFailure(durationInTimeStepFailure, beginTime);
-
-            // Assert
-            AssertHelper.AssertAreEqualWithinTolerance(1823, timeOfFailure);
-        }
-
-        [Test]
         public void DurationInTimeStepFailure_ValidInput_ExpectedValue()
         {
             // Setup
@@ -186,6 +172,20 @@ namespace DiKErnel.FunctionLibrary.Test
 
             // Assert
             AssertHelper.AssertAreEqualWithinTolerance(1822, timeOfFailure);
+        }
+
+        [Test]
+        public void TimeOfFailure_ValidUnroundedInput_ExpectedValue()
+        {
+            // Setup
+            double durationInTimeStepFailure = 254 + Random.NextDouble();
+            const double beginTime = 1568;
+
+            // Call
+            double timeOfFailure = RevetmentFunctions.TimeOfFailure(durationInTimeStepFailure, beginTime);
+
+            // Assert
+            AssertHelper.AssertAreEqualWithinTolerance(1823, timeOfFailure);
         }
     }
 }
