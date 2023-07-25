@@ -93,9 +93,9 @@ namespace DiKErnel.FunctionLibrary.AsphaltRevetmentWaveImpact
         /// <param name="thicknessUpperLayer">The thickness of the upper layer [m].</param>
         /// <param name="thicknessSubLayer">The thickness of the sub layer [m].</param>
         /// <param name="elasticModulusUpperLayer">The elastic modulus of the upper
-        /// layer [m].</param>
+        /// layer [MPa].</param>
         /// <param name="elasticModulusSubLayer">The elastic modulus of the sub
-        /// layer [m].</param>
+        /// layer [MPa].</param>
         /// <returns>The computational thickness [m].</returns>
         public static double ComputationalThickness(double thicknessUpperLayer, double thicknessSubLayer,
                                                     double elasticModulusUpperLayer, double elasticModulusSubLayer)

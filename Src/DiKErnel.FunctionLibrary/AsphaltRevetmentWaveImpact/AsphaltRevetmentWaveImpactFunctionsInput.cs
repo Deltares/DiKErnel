@@ -28,7 +28,8 @@ namespace DiKErnel.FunctionLibrary.AsphaltRevetmentWaveImpact
         /// <summary>
         /// Creates a new instance of <see cref="AsphaltRevetmentWaveImpactFunctionsInput"/>.
         /// </summary>
-        /// <param name="logFailureTension">The logarithm of the failure tension [MPa].</param>
+        /// <param name="logFailureTension">The logarithm of the failure
+        /// tension [MPa].</param>
         /// <param name="averageNumberOfWaves">The average number of waves [-].</param>
         /// <param name="maximumPeakStress">The maximum peak stress [MPa].</param>
         /// <param name="stiffnessRelation">The stiffness relation [m^-1].</param>
