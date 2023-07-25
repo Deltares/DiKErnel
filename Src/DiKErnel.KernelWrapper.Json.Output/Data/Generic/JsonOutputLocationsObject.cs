@@ -30,6 +30,6 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Generic
         }
 
         [JsonProperty(JsonOutputDefinitions.LOCATIONS)]
-        public IReadOnlyList<JsonOutputLocationData> LocationDataItems { get; set; }
+        public IReadOnlyList<JsonOutputLocationData> LocationDataItems { get; }
     }
 }

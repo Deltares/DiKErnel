@@ -27,9 +27,9 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Revetment
     {
         public JsonOutputGrassRevetmentWaveRunupRayleighPhysicsLocationData(IReadOnlyList<double> incrementDamage, double z,
                                                                             IReadOnlyList<double> verticalDistanceWaterLevelElevation,
-                                                                            IReadOnlyList<double> waveAngleImpact,
-                                                                            IReadOnlyList<double> representativeWaveRunup2P,
-                                                                            IReadOnlyList<double> cumulativeOverload) : base(
+                                                                            IReadOnlyList<double?> waveAngleImpact,
+                                                                            IReadOnlyList<double?> representativeWaveRunup2P,
+                                                                            IReadOnlyList<double?> cumulativeOverload) : base(
             incrementDamage)
         {
             Z = z;
@@ -40,18 +40,18 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Revetment
         }
 
         [JsonProperty(JsonOutputDefinitions.Z)]
-        public double Z { get; set; }
+        public double Z { get; }
 
         [JsonProperty(JsonOutputGrassRevetmentDefinitions.VERTICAL_DISTANCE_WATER_LEVEL_ELEVATION)]
-        public IReadOnlyList<double> VerticalDistanceWaterLevelElevation { get; set; }
+        public IReadOnlyList<double> VerticalDistanceWaterLevelElevation { get; }
 
-        [JsonProperty(JsonOutputDefinitions.WAVE_ANGLE_IMPACT, NullValueHandling = NullValueHandling.Ignore)]
-        public IReadOnlyList<double> WaveAngleImpact { get; set; }
+        [JsonProperty(JsonOutputDefinitions.WAVE_ANGLE_IMPACT)]
+        public IReadOnlyList<double?> WaveAngleImpact { get; }
 
-        [JsonProperty(JsonOutputGrassRevetmentDefinitions.REPRESENTATIVE_WAVE_RUNUP_2P, NullValueHandling = NullValueHandling.Ignore)]
-        public IReadOnlyList<double> RepresentativeWaveRunup2P { get; set; }
+        [JsonProperty(JsonOutputGrassRevetmentDefinitions.REPRESENTATIVE_WAVE_RUNUP_2P)]
+        public IReadOnlyList<double?> RepresentativeWaveRunup2P { get; }
 
-        [JsonProperty(JsonOutputGrassRevetmentDefinitions.CUMULATIVE_OVERLOAD, NullValueHandling = NullValueHandling.Ignore)]
-        public IReadOnlyList<double> CumulativeOverload { get; set; }
+        [JsonProperty(JsonOutputGrassRevetmentDefinitions.CUMULATIVE_OVERLOAD)]
+        public IReadOnlyList<double?> CumulativeOverload { get; }
     }
 }

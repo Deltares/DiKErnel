@@ -29,10 +29,10 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Revetment
                                                                      IReadOnlyList<bool> loadingRevetment,
                                                                      IReadOnlyList<double> upperLimitLoading,
                                                                      IReadOnlyList<double> lowerLimitLoading,
-                                                                     IReadOnlyList<double> minimumWaveHeight,
-                                                                     IReadOnlyList<double> maximumWaveHeight,
-                                                                     IReadOnlyList<double> waveAngleImpact,
-                                                                     IReadOnlyList<double> waveHeightImpact) : base(incrementDamage)
+                                                                     IReadOnlyList<double?> minimumWaveHeight,
+                                                                     IReadOnlyList<double?> maximumWaveHeight,
+                                                                     IReadOnlyList<double?> waveAngleImpact,
+                                                                     IReadOnlyList<double?> waveHeightImpact) : base(incrementDamage)
         {
             Z = z;
             LoadingRevetment = loadingRevetment;
@@ -45,27 +45,27 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Revetment
         }
 
         [JsonProperty(JsonOutputDefinitions.Z)]
-        public double Z { get; set; }
+        public double Z { get; }
 
         [JsonProperty(JsonOutputDefinitions.HYDRAULIC_LOAD)]
-        public IReadOnlyList<bool> LoadingRevetment { get; set; }
+        public IReadOnlyList<bool> LoadingRevetment { get; }
 
         [JsonProperty(JsonOutputDefinitions.UPPER_LIMIT_LOADING)]
-        public IReadOnlyList<double> UpperLimitLoading { get; set; }
+        public IReadOnlyList<double> UpperLimitLoading { get; }
 
         [JsonProperty(JsonOutputDefinitions.LOWER_LIMIT_LOADING)]
-        public IReadOnlyList<double> LowerLimitLoading { get; set; }
+        public IReadOnlyList<double> LowerLimitLoading { get; }
 
-        [JsonProperty(JsonOutputGrassRevetmentWaveImpactDefinitions.MINIMUM_WAVE_HEIGHT, NullValueHandling = NullValueHandling.Ignore)]
-        public IReadOnlyList<double> MinimumWaveHeight { get; set; }
+        [JsonProperty(JsonOutputGrassRevetmentWaveImpactDefinitions.MINIMUM_WAVE_HEIGHT)]
+        public IReadOnlyList<double?> MinimumWaveHeight { get; }
 
-        [JsonProperty(JsonOutputGrassRevetmentWaveImpactDefinitions.MAXIMUM_WAVE_HEIGHT, NullValueHandling = NullValueHandling.Ignore)]
-        public IReadOnlyList<double> MaximumWaveHeight { get; set; }
+        [JsonProperty(JsonOutputGrassRevetmentWaveImpactDefinitions.MAXIMUM_WAVE_HEIGHT)]
+        public IReadOnlyList<double?> MaximumWaveHeight { get; }
 
-        [JsonProperty(JsonOutputDefinitions.WAVE_ANGLE_IMPACT, NullValueHandling = NullValueHandling.Ignore)]
-        public IReadOnlyList<double> WaveAngleImpact { get; set; }
+        [JsonProperty(JsonOutputDefinitions.WAVE_ANGLE_IMPACT)]
+        public IReadOnlyList<double?> WaveAngleImpact { get; }
 
-        [JsonProperty(JsonOutputGrassRevetmentWaveImpactDefinitions.WAVE_HEIGHT_IMPACT, NullValueHandling = NullValueHandling.Ignore)]
-        public IReadOnlyList<double> WaveHeightImpact { get; set; }
+        [JsonProperty(JsonOutputGrassRevetmentWaveImpactDefinitions.WAVE_HEIGHT_IMPACT)]
+        public IReadOnlyList<double?> WaveHeightImpact { get; }
     }
 }

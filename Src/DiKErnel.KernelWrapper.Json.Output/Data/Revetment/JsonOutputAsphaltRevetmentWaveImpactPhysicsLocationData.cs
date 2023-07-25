@@ -43,24 +43,24 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Revetment
         }
 
         [JsonProperty(JsonOutputDefinitions.Z)]
-        public double Z { get; set; }
+        public double Z { get; }
 
         [JsonProperty(JsonOutputDefinitions.OUTER_SLOPE)]
-        public double OuterSlope { get; set; }
+        public double OuterSlope { get; }
 
         [JsonProperty(JsonOutputAsphaltRevetmentWaveImpactDefinitions.LOG_FAILURE_TENSION)]
-        public IReadOnlyList<double> LogFailureTension { get; set; }
+        public IReadOnlyList<double> LogFailureTension { get; }
 
         [JsonProperty(JsonOutputAsphaltRevetmentWaveImpactDefinitions.MAXIMUM_PEAK_STRESS)]
-        public IReadOnlyList<double> MaximumPeakStress { get; set; }
+        public IReadOnlyList<double> MaximumPeakStress { get; }
 
         [JsonProperty(JsonOutputAsphaltRevetmentWaveImpactDefinitions.STIFFNESS_RELATION)]
-        public IReadOnlyList<double> StiffnessRelation { get; set; }
+        public IReadOnlyList<double> StiffnessRelation { get; }
 
         [JsonProperty(JsonOutputAsphaltRevetmentWaveImpactDefinitions.COMPUTATIONAL_THICKNESS)]
-        public IReadOnlyList<double> ComputationalThickness { get; set; }
+        public IReadOnlyList<double> ComputationalThickness { get; }
 
         [JsonProperty(JsonOutputAsphaltRevetmentWaveImpactDefinitions.EQUIVALENT_ELASTIC_MODULUS)]
-        public IReadOnlyList<double> EquivalentElasticModulus { get; set; }
+        public IReadOnlyList<double> EquivalentElasticModulus { get; }
     }
 }

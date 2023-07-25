@@ -27,8 +27,8 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Revetment
     {
         public JsonOutputGrassRevetmentOvertoppingPhysicsLocationData(IReadOnlyList<double> incrementDamage,
                                                                       IReadOnlyList<double> verticalDistanceWaterLevelElevation,
-                                                                      IReadOnlyList<double> representativeWaveRunup2P,
-                                                                      IReadOnlyList<double> cumulativeOverload) : base(incrementDamage)
+                                                                      IReadOnlyList<double?> representativeWaveRunup2P,
+                                                                      IReadOnlyList<double?> cumulativeOverload) : base(incrementDamage)
         {
             VerticalDistanceWaterLevelElevation = verticalDistanceWaterLevelElevation;
             RepresentativeWaveRunup2P = representativeWaveRunup2P;
@@ -36,12 +36,12 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Revetment
         }
 
         [JsonProperty(JsonOutputGrassRevetmentDefinitions.VERTICAL_DISTANCE_WATER_LEVEL_ELEVATION)]
-        public IReadOnlyList<double> VerticalDistanceWaterLevelElevation { get; set; }
+        public IReadOnlyList<double> VerticalDistanceWaterLevelElevation { get; }
 
         [JsonProperty(JsonOutputGrassRevetmentDefinitions.REPRESENTATIVE_WAVE_RUNUP_2P)]
-        public IReadOnlyList<double> RepresentativeWaveRunup2P { get; set; }
+        public IReadOnlyList<double?> RepresentativeWaveRunup2P { get; }
 
         [JsonProperty(JsonOutputGrassRevetmentDefinitions.CUMULATIVE_OVERLOAD)]
-        public IReadOnlyList<double> CumulativeOverload { get; set; }
+        public IReadOnlyList<double?> CumulativeOverload { get; }
     }
 }

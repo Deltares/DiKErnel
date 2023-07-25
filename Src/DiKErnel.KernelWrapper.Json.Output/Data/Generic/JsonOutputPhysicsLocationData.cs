@@ -30,6 +30,6 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Generic
         }
 
         [JsonProperty(JsonOutputDefinitions.INCREMENT_DAMAGE)]
-        public IReadOnlyList<double> IncrementDamage { get; set; }
+        public IReadOnlyList<double> IncrementDamage { get; }
     }
 }
