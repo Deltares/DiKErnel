@@ -25,12 +25,12 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentWaveRunup
     /// </summary>
     public class GrassRevetmentWaveRunupRayleighCumulativeOverloadInput : GrassRevetmentCumulativeOverloadInput
     {
+        /// <inheritdoc/>
         /// <summary>
         /// Creates a new instance of
         /// <see cref="GrassRevetmentWaveRunupRayleighCumulativeOverloadInput"/>.
         /// </summary>
         /// <param name="frontVelocityCu">The Cu coefficient [-].</param>
-        /// <inheritdoc/>
         public GrassRevetmentWaveRunupRayleighCumulativeOverloadInput(double averageNumberOfWaves,
                                                                       double representativeWaveRunup2P,
                                                                       int fixedNumberOfWaves,

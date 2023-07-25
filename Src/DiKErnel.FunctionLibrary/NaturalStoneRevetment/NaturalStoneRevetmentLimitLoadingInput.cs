@@ -26,7 +26,8 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneRevetment
         /// <summary>
         /// Creates a new instance of <see cref="NaturalStoneRevetmentLimitLoadingInput"/>.
         /// </summary>
-        /// <param name="depthMaximumWaveLoad">The depth of the maximum wave load [m].</param>
+        /// <param name="depthMaximumWaveLoad">The depth of the maximum wave
+        /// load [m].</param>
         /// <param name="surfSimilarityParameter">The surf similarity parameter [-].</param>
         /// <param name="waterLevel">The water level [m].</param>
         /// <param name="waveHeightHm0">The wave height [m].</param>

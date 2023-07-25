@@ -22,8 +22,8 @@ using DiKErnel.FunctionLibrary.GrassRevetment;
 namespace DiKErnel.FunctionLibrary.GrassRevetmentWaveRunup
 {
     /// <summary>
-    /// Class that holds all grass revetment wave run-up specific calculation routines for the
-    /// Rayleigh protocol.
+    /// Class that holds all grass revetment wave run-up specific calculation routines for
+    /// the Rayleigh protocol.
     /// </summary>
     public static class GrassRevetmentWaveRunupRayleighFunctions
     {
@@ -34,12 +34,10 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentWaveRunup
         /// <returns>The cumulative overload [m^2/s^2].</returns>
         public static double CumulativeOverload(GrassRevetmentWaveRunupRayleighCumulativeOverloadInput input)
         {
-            Func<double, double> getFrontVelocityFunc = waveRunup => FrontVelocity(waveRunup,
-                                                                                   input.VerticalDistanceWaterLevelElevation,
-                                                                                   input.FrontVelocityCu,
-                                                                                   input.GravitationalAcceleration);
-
-            return GrassRevetmentFunctions.CumulativeOverload(input, getFrontVelocityFunc);
+            return GrassRevetmentFunctions.CumulativeOverload(input, waveRunup => FrontVelocity(waveRunup,
+                                                                                                input.VerticalDistanceWaterLevelElevation,
+                                                                                                input.FrontVelocityCu,
+                                                                                                input.GravitationalAcceleration));
         }
 
         private static double FrontVelocity(double waveRunup, double verticalDistanceWaterLevelElevation, double frontVelocityCu,
