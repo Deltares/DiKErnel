@@ -38,7 +38,7 @@ namespace DiKErnel.DomainLibrary.Test.Validators.NaturalStoneRevetment
             ValidatorAssertHelper.AssertValue(validationFunc, ValidatorAssertHelper.DoubleMin, ValidationIssueType.Error, errorMessage);
 
             ValidatorAssertHelper.AssertValue(validationFunc, 0 - ValidatorAssertHelper.Epsilon, ValidationIssueType.Error, errorMessage);
-            ValidatorAssertHelper.AssertValue(validationFunc, 0.0, ValidationIssueType.Error, errorMessage);
+            ValidatorAssertHelper.AssertValue(validationFunc, 0, ValidationIssueType.Error, errorMessage);
             ValidatorAssertHelper.AssertValue(validationFunc, 0 + ValidatorAssertHelper.Epsilon, ValidationIssueType.Warning,
                                               warningMessage);
 
@@ -72,7 +72,7 @@ namespace DiKErnel.DomainLibrary.Test.Validators.NaturalStoneRevetment
             ValidatorAssertHelper.AssertValue(validationFunc, ValidatorAssertHelper.DoubleMin, ValidationIssueType.Error, errorMessage);
 
             ValidatorAssertHelper.AssertValue(validationFunc, 0 - ValidatorAssertHelper.Epsilon, ValidationIssueType.Error, errorMessage);
-            ValidatorAssertHelper.AssertValue(validationFunc, 0.0, ValidationIssueType.Error, errorMessage);
+            ValidatorAssertHelper.AssertValue(validationFunc, 0, ValidationIssueType.Error, errorMessage);
             ValidatorAssertHelper.AssertValue(validationFunc, 0 + ValidatorAssertHelper.Epsilon, ValidationIssueType.Warning,
                                               warningMessage);
 
@@ -105,7 +105,7 @@ namespace DiKErnel.DomainLibrary.Test.Validators.NaturalStoneRevetment
             ValidatorAssertHelper.AssertValue(validationFunc, ValidatorAssertHelper.DoubleMin, ValidationIssueType.Error, errorMessage);
 
             ValidatorAssertHelper.AssertValue(validationFunc, 0 - ValidatorAssertHelper.Epsilon, ValidationIssueType.Error, errorMessage);
-            ValidatorAssertHelper.AssertValue(validationFunc, 0.0, ValidationIssueType.Error, errorMessage);
+            ValidatorAssertHelper.AssertValue(validationFunc, 0, ValidationIssueType.Error, errorMessage);
             ValidatorAssertHelper.AssertValue(validationFunc, 0 + ValidatorAssertHelper.Epsilon, ValidationIssueType.Warning,
                                               warningMessage);
 
@@ -133,7 +133,7 @@ namespace DiKErnel.DomainLibrary.Test.Validators.NaturalStoneRevetment
             ValidatorAssertHelper.AssertValue(validationFunc, ValidatorAssertHelper.DoubleMin, ValidationIssueType.Error, errorMessage);
 
             ValidatorAssertHelper.AssertValue(validationFunc, 0 - ValidatorAssertHelper.Epsilon, ValidationIssueType.Error, errorMessage);
-            ValidatorAssertHelper.AssertValue(validationFunc, 0.0, ValidationIssueType.Error, errorMessage);
+            ValidatorAssertHelper.AssertValue(validationFunc, 0, ValidationIssueType.Error, errorMessage);
             ValidatorAssertHelper.AssertValue(validationFunc, 0 + ValidatorAssertHelper.Epsilon, ValidationIssueType.Warning,
                                               warningMessage);
 

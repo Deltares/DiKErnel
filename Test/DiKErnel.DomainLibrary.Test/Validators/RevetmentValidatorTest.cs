@@ -59,7 +59,7 @@ namespace DiKErnel.DomainLibrary.Test.Validators
             ValidatorAssertHelper.AssertValue(ValidationFunc, ValidatorAssertHelper.DoubleMin, ValidationIssueType.Error, errorMessage);
 
             ValidatorAssertHelper.AssertValue(ValidationFunc, 0 - ValidatorAssertHelper.Epsilon, ValidationIssueType.Error, errorMessage);
-            ValidatorAssertHelper.AssertValue(ValidationFunc, 0);
+            ValidatorAssertHelper.AssertValue(ValidationFunc, 0d);
             ValidatorAssertHelper.AssertValue(ValidationFunc, 0 + ValidatorAssertHelper.Epsilon);
 
             ValidatorAssertHelper.AssertValue(ValidationFunc, ValidatorAssertHelper.DoubleMax);
@@ -75,7 +75,7 @@ namespace DiKErnel.DomainLibrary.Test.Validators
             ValidatorAssertHelper.AssertValue(validationFunc, ValidatorAssertHelper.DoubleMin, ValidationIssueType.Error, errorMessage);
 
             ValidatorAssertHelper.AssertValue(validationFunc, 0 - ValidatorAssertHelper.Epsilon, ValidationIssueType.Error, errorMessage);
-            ValidatorAssertHelper.AssertValue(validationFunc, 0.0, ValidationIssueType.Error, errorMessage);
+            ValidatorAssertHelper.AssertValue(validationFunc, 0, ValidationIssueType.Error, errorMessage);
             ValidatorAssertHelper.AssertValue(validationFunc, 0 + ValidatorAssertHelper.Epsilon);
 
             ValidatorAssertHelper.AssertValue(validationFunc, ValidatorAssertHelper.DoubleMax);
