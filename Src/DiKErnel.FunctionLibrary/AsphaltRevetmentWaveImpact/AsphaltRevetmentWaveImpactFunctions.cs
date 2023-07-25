@@ -221,13 +221,13 @@ namespace DiKErnel.FunctionLibrary.AsphaltRevetmentWaveImpact
 
         private static double RelativeWidthWaveImpact(double stiffnessRelation, double widthFactorValue, double waveHeightHm0)
         {
-            return Math.Min(85.0, stiffnessRelation * widthFactorValue * waveHeightHm0 / 2.0);
+            return Math.Min(85, stiffnessRelation * widthFactorValue * waveHeightHm0 / 2);
         }
 
         private static double RelativeDistanceCenterWaveImpact(AsphaltRevetmentWaveImpactFunctionsInput input,
                                                                double depthFactorValue, double sinA)
         {
-            return Math.Min(85.0, input.StiffnessRelation
+            return Math.Min(85, input.StiffnessRelation
                                   * Math.Abs(input.Z - input.WaterLevel - depthFactorValue * input.WaveHeightHm0) / sinA);
         }
     }

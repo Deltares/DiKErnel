@@ -109,7 +109,7 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentWaveImpact
                 return Math.Max(Math.Pow(Math.Cos(GenericFunctions.Radians(waveAngle)), waveAngleImpactNwa), waveAngleImpactQwa);
             }
 
-            return Math.Max(waveAngleImpactQwa * ((90.0 + waveAngleImpactRwa - Math.Abs(waveAngle)) / waveAngleImpactRwa), 0.0);
+            return Math.Max(waveAngleImpactQwa * ((90 + waveAngleImpactRwa - Math.Abs(waveAngle)) / waveAngleImpactRwa), 0);
         }
 
         /// <summary>

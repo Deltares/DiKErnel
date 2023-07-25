@@ -51,7 +51,7 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentWaveRunup
         /// <returns>The wave impact with respect to the wave angle [-].</returns>
         public static double WaveAngleImpact(double waveAngle, double waveAngleImpactAbeta, double waveAngleImpactBetamax)
         {
-            return 1.0 - waveAngleImpactAbeta * Math.Min(Math.Abs(waveAngle), waveAngleImpactBetamax);
+            return 1 - waveAngleImpactAbeta * Math.Min(Math.Abs(waveAngle), waveAngleImpactBetamax);
         }
     }
 }

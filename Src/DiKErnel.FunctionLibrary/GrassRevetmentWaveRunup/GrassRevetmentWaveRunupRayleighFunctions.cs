@@ -35,17 +35,17 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentWaveRunup
         public static double CumulativeOverload(GrassRevetmentWaveRunupRayleighCumulativeOverloadInput input)
         {
             return GrassRevetmentFunctions.CumulativeOverload(input, waveRunup => FrontVelocity(waveRunup,
-                                                                                                input.VerticalDistanceWaterLevelElevation,
-                                                                                                input.FrontVelocityCu,
-                                                                                                input.GravitationalAcceleration));
+                                                                  input.VerticalDistanceWaterLevelElevation,
+                                                                  input.FrontVelocityCu,
+                                                                  input.GravitationalAcceleration));
         }
 
         private static double FrontVelocity(double waveRunup, double verticalDistanceWaterLevelElevation, double frontVelocityCu,
                                             double gravitationalAcceleration)
         {
             return frontVelocityCu * Math.Sqrt(gravitationalAcceleration * waveRunup)
-                                   * Math.Max(0.0, Math.Min(1.0, (waveRunup - verticalDistanceWaterLevelElevation)
-                                                                 / (0.25 * waveRunup)));
+                                   * Math.Max(0, Math.Min(1, (waveRunup - verticalDistanceWaterLevelElevation)
+                                                             / (0.25 * waveRunup)));
         }
     }
 }
