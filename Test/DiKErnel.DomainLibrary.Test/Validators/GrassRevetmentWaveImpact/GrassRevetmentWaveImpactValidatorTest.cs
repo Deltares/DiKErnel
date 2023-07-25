@@ -36,9 +36,9 @@ namespace DiKErnel.DomainLibrary.Test.Validators.GrassRevetmentWaveImpact
 
             ValidatorAssertHelper.AssertValue(ValidationFunc, ValidatorAssertHelper.DoubleMin, ValidationIssueType.Error, errorMessage);
 
-            ValidatorAssertHelper.AssertValue(ValidationFunc, 3.0 - ValidatorAssertHelper.Epsilon, ValidationIssueType.Error, errorMessage);
-            ValidatorAssertHelper.AssertValue(ValidationFunc, 3.0, ValidationIssueType.Error, errorMessage);
-            ValidatorAssertHelper.AssertValue(ValidationFunc, 3.0 + ValidatorAssertHelper.Epsilon);
+            ValidatorAssertHelper.AssertValue(ValidationFunc, 3 - ValidatorAssertHelper.Epsilon, ValidationIssueType.Error, errorMessage);
+            ValidatorAssertHelper.AssertValue(ValidationFunc, 3d, ValidationIssueType.Error, errorMessage);
+            ValidatorAssertHelper.AssertValue(ValidationFunc, 3 + ValidatorAssertHelper.Epsilon);
 
             ValidatorAssertHelper.AssertValue(ValidationFunc, ValidatorAssertHelper.DoubleMax);
         }
@@ -85,14 +85,14 @@ namespace DiKErnel.DomainLibrary.Test.Validators.GrassRevetmentWaveImpact
 
             ValidatorAssertHelper.AssertValue(validationFunc, ValidatorAssertHelper.DoubleMin, ValidationIssueType.Warning, warningMessage);
 
-            ValidatorAssertHelper.AssertValue(validationFunc, 1000000.0 - ValidatorAssertHelper.Epsilon, ValidationIssueType.Warning,
+            ValidatorAssertHelper.AssertValue(validationFunc, 1000000 - ValidatorAssertHelper.Epsilon, ValidationIssueType.Warning,
                                               warningMessage);
-            ValidatorAssertHelper.AssertValue(validationFunc, 1000000.0, ValidationIssueType.Warning, warningMessage);
-            ValidatorAssertHelper.AssertValue(validationFunc, 1000000.0 + ValidatorAssertHelper.Epsilon);
+            ValidatorAssertHelper.AssertValue(validationFunc, 1000000, ValidationIssueType.Warning, warningMessage);
+            ValidatorAssertHelper.AssertValue(validationFunc, 1000000 + ValidatorAssertHelper.Epsilon);
 
-            ValidatorAssertHelper.AssertValue(validationFunc, 3600000.0 - ValidatorAssertHelper.Epsilon);
-            ValidatorAssertHelper.AssertValue(validationFunc, 3600000.0);
-            ValidatorAssertHelper.AssertValue(validationFunc, 3600000.0 + ValidatorAssertHelper.Epsilon, ValidationIssueType.Error,
+            ValidatorAssertHelper.AssertValue(validationFunc, 3600000 - ValidatorAssertHelper.Epsilon);
+            ValidatorAssertHelper.AssertValue(validationFunc, 3600000);
+            ValidatorAssertHelper.AssertValue(validationFunc, 3600000 + ValidatorAssertHelper.Epsilon, ValidationIssueType.Error,
                                               errorMessage);
 
             ValidatorAssertHelper.AssertValue(validationFunc, ValidatorAssertHelper.DoubleMax, ValidationIssueType.Error, errorMessage);
@@ -112,9 +112,9 @@ namespace DiKErnel.DomainLibrary.Test.Validators.GrassRevetmentWaveImpact
             ValidatorAssertHelper.AssertValue(validationFunc, 3.6);
             ValidatorAssertHelper.AssertValue(validationFunc, 3.6 + ValidatorAssertHelper.Epsilon);
 
-            ValidatorAssertHelper.AssertValue(validationFunc, 10.0 - ValidatorAssertHelper.Epsilon);
-            ValidatorAssertHelper.AssertValue(validationFunc, 10.0, ValidationIssueType.Warning, warningMessage);
-            ValidatorAssertHelper.AssertValue(validationFunc, 10.0 + ValidatorAssertHelper.Epsilon, ValidationIssueType.Warning,
+            ValidatorAssertHelper.AssertValue(validationFunc, 10 - ValidatorAssertHelper.Epsilon);
+            ValidatorAssertHelper.AssertValue(validationFunc, 10, ValidationIssueType.Warning, warningMessage);
+            ValidatorAssertHelper.AssertValue(validationFunc, 10 + ValidatorAssertHelper.Epsilon, ValidationIssueType.Warning,
                                               warningMessage);
 
             ValidatorAssertHelper.AssertValue(validationFunc, ValidatorAssertHelper.DoubleMax, ValidationIssueType.Warning, warningMessage);
@@ -182,9 +182,9 @@ namespace DiKErnel.DomainLibrary.Test.Validators.GrassRevetmentWaveImpact
 
             ValidatorAssertHelper.AssertValue(ValidationFunc, ValidatorAssertHelper.DoubleMin);
 
-            ValidatorAssertHelper.AssertValue(ValidationFunc, 2.0 - ValidatorAssertHelper.Epsilon);
-            ValidatorAssertHelper.AssertValue(ValidationFunc, 2.0, ValidationIssueType.Error, errorMessage);
-            ValidatorAssertHelper.AssertValue(ValidationFunc, 2.0 + ValidatorAssertHelper.Epsilon, ValidationIssueType.Error, errorMessage);
+            ValidatorAssertHelper.AssertValue(ValidationFunc, 2 - ValidatorAssertHelper.Epsilon);
+            ValidatorAssertHelper.AssertValue(ValidationFunc, 2d, ValidationIssueType.Error, errorMessage);
+            ValidatorAssertHelper.AssertValue(ValidationFunc, 2 + ValidatorAssertHelper.Epsilon, ValidationIssueType.Error, errorMessage);
 
             ValidatorAssertHelper.AssertValue(ValidationFunc, ValidatorAssertHelper.DoubleMax, ValidationIssueType.Error, errorMessage);
         }
