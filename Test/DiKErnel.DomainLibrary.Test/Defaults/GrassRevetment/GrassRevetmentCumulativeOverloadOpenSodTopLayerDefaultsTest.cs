@@ -32,7 +32,7 @@ namespace DiKErnel.DomainLibrary.Test.Defaults.GrassRevetment
 
             // Call & Assert
             Assert.IsInstanceOf<IGrassRevetmentCumulativeOverloadTopLayerDefaults>(defaults);
-            Assert.AreEqual(7000.0, defaults.CriticalCumulativeOverload);
+            Assert.AreEqual(7000, defaults.CriticalCumulativeOverload);
             Assert.AreEqual(4.3, defaults.CriticalFrontVelocity);
         }
     }

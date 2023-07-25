@@ -35,7 +35,7 @@ namespace DiKErnel.DomainLibrary.Test.Defaults.GrassRevetmentOvertopping
         public void AccelerationAlphaAForCrest_ExpectedValue()
         {
             // Call & Assert
-            Assert.AreEqual(1.0, GrassRevetmentOvertoppingDefaults.AccelerationAlphaAForCrest);
+            Assert.AreEqual(1, GrassRevetmentOvertoppingDefaults.AccelerationAlphaAForCrest);
         }
 
         [Test]

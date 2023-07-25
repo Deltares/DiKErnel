@@ -28,14 +28,14 @@ namespace DiKErnel.DomainLibrary.Test.Defaults.GrassRevetment
         public void IncreasedLoadTransitionAlphaM_ExpectedValue()
         {
             // Call & Assert
-            Assert.AreEqual(1.0, GrassRevetmentCumulativeOverloadDefaults.IncreasedLoadTransitionAlphaM);
+            Assert.AreEqual(1, GrassRevetmentCumulativeOverloadDefaults.IncreasedLoadTransitionAlphaM);
         }
 
         [Test]
         public void ReducedStrengthTransitionAlphaS_ExpectedValue()
         {
             // Call & Assert
-            Assert.AreEqual(1.0, GrassRevetmentCumulativeOverloadDefaults.ReducedStrengthTransitionAlphaS);
+            Assert.AreEqual(1, GrassRevetmentCumulativeOverloadDefaults.ReducedStrengthTransitionAlphaS);
         }
 
         [Test]

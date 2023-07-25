@@ -28,7 +28,7 @@ namespace DiKErnel.DomainLibrary.Test.Defaults
         public void RoughnessCoefficient_ExpectedValue()
         {
             // Call & Assert
-            Assert.AreEqual(1.0, ProfileSegmentDefaults.RoughnessCoefficient);
+            Assert.AreEqual(1, ProfileSegmentDefaults.RoughnessCoefficient);
         }
     }
 }

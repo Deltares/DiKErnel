@@ -33,13 +33,13 @@ namespace DiKErnel.DomainLibrary.Test.Defaults.NaturalStoneRevetment
             // Call & Assert
             Assert.IsInstanceOf<INaturalStoneRevetmentTopLayerDefaults>(defaults);
             Assert.AreEqual(2.9, defaults.HydraulicLoadXib);
-            Assert.AreEqual(4.0, defaults.HydraulicLoadAp);
-            Assert.AreEqual(0.0, defaults.HydraulicLoadBp);
-            Assert.AreEqual(0.0, defaults.HydraulicLoadCp);
+            Assert.AreEqual(4, defaults.HydraulicLoadAp);
+            Assert.AreEqual(0, defaults.HydraulicLoadBp);
+            Assert.AreEqual(0, defaults.HydraulicLoadCp);
             Assert.AreEqual(-0.9, defaults.HydraulicLoadNp);
             Assert.AreEqual(0.8, defaults.HydraulicLoadAs);
-            Assert.AreEqual(0.0, defaults.HydraulicLoadBs);
-            Assert.AreEqual(0.0, defaults.HydraulicLoadCs);
+            Assert.AreEqual(0, defaults.HydraulicLoadBs);
+            Assert.AreEqual(0, defaults.HydraulicLoadCs);
             Assert.AreEqual(0.6, defaults.HydraulicLoadNs);
         }
     }

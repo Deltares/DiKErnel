@@ -35,7 +35,7 @@ namespace DiKErnel.DomainLibrary.Test.Defaults.GrassRevetmentWaveRunup
         public void RepresentativeWaveRunup2PBru_ExpectedValue()
         {
             // Call & Assert
-            Assert.AreEqual(4.0, GrassRevetmentWaveRunupDefaults.RepresentativeWaveRunup2PBru);
+            Assert.AreEqual(4, GrassRevetmentWaveRunupDefaults.RepresentativeWaveRunup2PBru);
         }
 
         [Test]
@@ -49,14 +49,14 @@ namespace DiKErnel.DomainLibrary.Test.Defaults.GrassRevetmentWaveRunup
         public void RepresentativeWaveRunup2PGammab_ExpectedValue()
         {
             // Call & Assert
-            Assert.AreEqual(1.0, GrassRevetmentWaveRunupDefaults.RepresentativeWaveRunup2PGammab);
+            Assert.AreEqual(1, GrassRevetmentWaveRunupDefaults.RepresentativeWaveRunup2PGammab);
         }
 
         [Test]
         public void RepresentativeWaveRunup2PGammaf_ExpectedValue()
         {
             // Call & Assert
-            Assert.AreEqual(1.0, GrassRevetmentWaveRunupDefaults.RepresentativeWaveRunup2PGammaf);
+            Assert.AreEqual(1, GrassRevetmentWaveRunupDefaults.RepresentativeWaveRunup2PGammaf);
         }
 
         [Test]
@@ -70,7 +70,7 @@ namespace DiKErnel.DomainLibrary.Test.Defaults.GrassRevetmentWaveRunup
         public void WaveAngleImpactBetamax_ExpectedValue()
         {
             // Call & Assert
-            Assert.AreEqual(80.0, GrassRevetmentWaveRunupDefaults.WaveAngleImpactBetamax);
+            Assert.AreEqual(80, GrassRevetmentWaveRunupDefaults.WaveAngleImpactBetamax);
         }
     }
 }

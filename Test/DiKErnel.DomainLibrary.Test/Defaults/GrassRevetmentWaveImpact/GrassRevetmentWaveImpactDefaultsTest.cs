@@ -28,7 +28,7 @@ namespace DiKErnel.DomainLibrary.Test.Defaults.GrassRevetmentWaveImpact
         public void MinimumWaveHeightTemax_ExpectedValue()
         {
             // Call & Assert
-            Assert.AreEqual(3600000.0, GrassRevetmentWaveImpactDefaults.MinimumWaveHeightTemax);
+            Assert.AreEqual(3600000, GrassRevetmentWaveImpactDefaults.MinimumWaveHeightTemax);
         }
 
         [Test]
@@ -42,7 +42,7 @@ namespace DiKErnel.DomainLibrary.Test.Defaults.GrassRevetmentWaveImpact
         public void WaveAngleImpactNwa_ExpectedValue()
         {
             // Call & Assert
-            Assert.AreEqual(2.0 / 3.0, GrassRevetmentWaveImpactDefaults.WaveAngleImpactNwa);
+            Assert.AreEqual(2d / 3, GrassRevetmentWaveImpactDefaults.WaveAngleImpactNwa);
         }
 
         [Test]
@@ -56,14 +56,14 @@ namespace DiKErnel.DomainLibrary.Test.Defaults.GrassRevetmentWaveImpact
         public void WaveAngleImpactRwa_ExpectedValue()
         {
             // Call & Assert
-            Assert.AreEqual(10.0, GrassRevetmentWaveImpactDefaults.WaveAngleImpactRwa);
+            Assert.AreEqual(10, GrassRevetmentWaveImpactDefaults.WaveAngleImpactRwa);
         }
 
         [Test]
         public void UpperLimitLoadingAul_ExpectedValue()
         {
             // Call & Assert
-            Assert.AreEqual(0.0, GrassRevetmentWaveImpactDefaults.UpperLimitLoadingAul);
+            Assert.AreEqual(0, GrassRevetmentWaveImpactDefaults.UpperLimitLoadingAul);
         }
 
         [Test]

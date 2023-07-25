@@ -56,14 +56,14 @@ namespace DiKErnel.DomainLibrary.Test.Defaults.NaturalStoneRevetment
         public void UpperLimitLoadingCul_ExpectedValue()
         {
             // Call & Assert
-            Assert.AreEqual(4.0, NaturalStoneRevetmentDefaults.UpperLimitLoadingCul);
+            Assert.AreEqual(4, NaturalStoneRevetmentDefaults.UpperLimitLoadingCul);
         }
 
         [Test]
         public void LowerLimitLoadingAll_ExpectedValue()
         {
             // Call & Assert
-            Assert.AreEqual(0.1, NaturalStoneRevetmentDefaults.LowerLimitLoadingAll);
+            Assert.AreEqual(0, NaturalStoneRevetmentDefaults.LowerLimitLoadingAll);
         }
 
         [Test]
@@ -77,7 +77,7 @@ namespace DiKErnel.DomainLibrary.Test.Defaults.NaturalStoneRevetment
         public void LowerLimitLoadingCll_ExpectedValue()
         {
             // Call & Assert
-            Assert.AreEqual(4.0, NaturalStoneRevetmentDefaults.LowerLimitLoadingCll);
+            Assert.AreEqual(4, NaturalStoneRevetmentDefaults.LowerLimitLoadingCll);
         }
 
         [Test]
@@ -112,7 +112,7 @@ namespace DiKErnel.DomainLibrary.Test.Defaults.NaturalStoneRevetment
         public void WaveAngleImpactBetamax_ExpectedValue()
         {
             // Call & Assert
-            Assert.AreEqual(78.0, NaturalStoneRevetmentDefaults.WaveAngleImpactBetamax);
+            Assert.AreEqual(78, NaturalStoneRevetmentDefaults.WaveAngleImpactBetamax);
         }
     }
 }
