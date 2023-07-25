@@ -30,8 +30,8 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Revetment
                                                                        IReadOnlyList<double> maximumPeakStress,
                                                                        IReadOnlyList<double> stiffnessRelation,
                                                                        IReadOnlyList<double> computationalThickness,
-                                                                       IReadOnlyList<double> equivalentElasticModulus) : base(
-            incrementDamage)
+                                                                       IReadOnlyList<double> equivalentElasticModulus) 
+            : base(incrementDamage)
         {
             Z = z;
             OuterSlope = outerSlope;

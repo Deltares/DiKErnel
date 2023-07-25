@@ -34,6 +34,6 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Generic
         public JsonOutputLocationsObject LocationDataItems { get; }
 
         [JsonProperty(JsonOutputDefinitions.META_DATA)]
-        public IReadOnlyDictionary<string, dynamic> MetaDataItems { get; }
+        public IReadOnlyDictionary<string, object> MetaDataItems { get; }
     }
 }
