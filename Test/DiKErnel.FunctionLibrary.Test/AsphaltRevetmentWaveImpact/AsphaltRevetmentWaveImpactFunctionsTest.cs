@@ -29,7 +29,7 @@ namespace DiKErnel.FunctionLibrary.Test.AsphaltRevetmentWaveImpact
         public void IncrementDamage_ValidInput_ExpectedValue()
         {
             // Setup
-            var widthFactors = new[]
+            (double, double)[] widthFactors =
             {
                 (0.1, 0.0392),
                 (0.2, 0.0738),
@@ -40,7 +40,7 @@ namespace DiKErnel.FunctionLibrary.Test.AsphaltRevetmentWaveImpact
                 (0.7, 0.1051),
                 (0.8, 0.089),
                 (0.9, 0.0712),
-                (1.0, 0.0541),
+                (1, 0.0541),
                 (1.1, 0.0391),
                 (1.2, 0.0269),
                 (1.3, 0.0216),
@@ -48,9 +48,9 @@ namespace DiKErnel.FunctionLibrary.Test.AsphaltRevetmentWaveImpact
                 (1.5, 0.0105)
             };
 
-            var depthFactors = new[]
+            (double, double)[] depthFactors =
             {
-                (-1.0, 0.0244),
+                (-1, 0.0244),
                 (-0.875, 0.0544),
                 (-0.75, 0.0938),
                 (-0.625, 0.1407),
@@ -58,24 +58,24 @@ namespace DiKErnel.FunctionLibrary.Test.AsphaltRevetmentWaveImpact
                 (-0.375, 0.1632),
                 (-0.25, 0.1426),
                 (-0.125, 0.0994),
-                (0.0, 0.06),
+                (0, 0.06),
                 (0.125, 0.0244),
                 (0.25, 0.0169)
             };
 
-            var impactFactors = new[]
+            (double, double)[] impactFactors =
             {
-                (2.0, 0.039),
+                (2, 0.039),
                 (2.4, 0.1),
                 (2.8, 0.18),
                 (3.2, 0.235),
                 (3.6, 0.2),
-                (4.0, 0.13),
+                (4, 0.13),
                 (4.4, 0.08),
                 (4.8, 0.02),
                 (5.2, 0.01),
                 (5.6, 0.005),
-                (6.0, 0.001)
+                (6, 0.001)
             };
 
             const double logFailureTension = 0.193124598;
