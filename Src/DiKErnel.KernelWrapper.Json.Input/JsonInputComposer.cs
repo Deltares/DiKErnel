@@ -67,26 +67,33 @@ namespace DiKErnel.KernelWrapper.Json.Input
         /// <returns>The result of the operation.</returns>
         public static DataResult<ICalculationInput> GetInputDataFromJson(string filePath)
         {
-            var jsonSerializer = new JsonSerializer();
-            jsonSerializer.Converters.Add(new JsonInputCalculationDataConverter());
-            jsonSerializer.Converters.Add(new JsonInputLocationDataConverter());
-
-            try
+            if (!File.Exists(filePath))
             {
-                JObject jObject = JObject.Parse(File.ReadAllText(filePath));
-                
-                // json input adapter is dependent on the integration project
-
-                // DataResult<ICalculationInput> calculationInputList =
-                //     JsonInputAdapter.AdaptJsonInputData(jObject.ToObject<JsonInputData>(jsonSerializer));
-                // 
-                // return calculationInputList;
+                EventRegistry.Register(new Event("The provided input file does not exist", EventType.Error));
             }
-            catch (Exception e)
+            else
             {
-                EventRegistry.Register(new Event("An unhandled error occurred while composing calculation data" +
-                                                 $" from the Json input. See stack trace for more information: {e.Message}",
-                                                 EventType.Error));
+                var jsonSerializer = new JsonSerializer();
+                jsonSerializer.Converters.Add(new JsonInputCalculationDataConverter());
+                jsonSerializer.Converters.Add(new JsonInputLocationDataConverter());
+
+                try
+                {
+                    JObject jObject = JObject.Parse(File.ReadAllText(filePath));
+
+                    // json input adapter is dependent on the integration project
+
+                    // DataResult<ICalculationInput> calculationInputList =
+                    //     JsonInputAdapter.AdaptJsonInputData(jObject.ToObject<JsonInputData>(jsonSerializer));
+                    // 
+                    // return calculationInputList;
+                }
+                catch (Exception e)
+                {
+                    EventRegistry.Register(new Event("An unhandled error occurred while composing calculation data" +
+                                                     $" from the Json input. See stack trace for more information: {e.Message}",
+                                                     EventType.Error));
+                }
             }
 
             return new DataResult<ICalculationInput>(null, EventRegistry.Flush());

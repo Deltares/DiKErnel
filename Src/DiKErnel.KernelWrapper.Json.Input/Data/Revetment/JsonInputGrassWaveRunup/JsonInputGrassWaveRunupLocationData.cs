@@ -32,15 +32,15 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassWaveRun
         public double OuterSlope { get; private set; }
 
         [JsonProperty(JsonInputGrassRevetmentDefinitions.INCREASED_LOAD_TRANSITION_ALPHA_M)]
-        public double? IncreasedLoadTransitionAlphaM { get; set; }
+        public double? IncreasedLoadTransitionAlphaM { get; private set; }
 
         [JsonProperty(JsonInputGrassRevetmentDefinitions.REDUCED_STRENGTH_TRANSITION_ALPHA_S)]
-        public double? ReducedStrengthTransitionAlphaS { get; set; }
+        public double? ReducedStrengthTransitionAlphaS { get; private set; }
 
         [JsonProperty(JsonInputGrassWaveRunupDefinitions.REPRESENTATIVE_WAVE_RUNUP_2P_GAMMA_B)]
-        public double? RepresentativeWaveRunup2PGammaB { get; set; }
+        public double? RepresentativeWaveRunup2PGammaB { get; private set; }
 
         [JsonProperty(JsonInputGrassWaveRunupDefinitions.REPRESENTATIVE_WAVE_RUNUP_2P_GAMMA_F)]
-        public double? RepresentativeWaveRunup2PGammaF { get; set; }
+        public double? RepresentativeWaveRunup2PGammaF { get; private set; }
     }
 }

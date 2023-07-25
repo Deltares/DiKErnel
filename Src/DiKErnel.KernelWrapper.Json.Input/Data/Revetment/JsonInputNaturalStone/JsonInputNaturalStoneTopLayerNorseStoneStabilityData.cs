@@ -24,14 +24,14 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputNaturalStone
     internal class JsonInputNaturalStoneTopLayerNorseStoneStabilityData
     {
         [JsonProperty(JsonInputNaturalStoneDefinitions.XIB_COEFFICIENT)]
-        public double? StabilityXib { get; set; }
+        public double? StabilityXib { get; private set; }
 
         [JsonProperty(JsonInputNaturalStoneDefinitions.STABILITY_PLUNGING)]
         public JsonInputNaturalStoneTopLayerNorseStoneStabilityCoefficientsData
-            JsonInputNaturalStoneTopLayerNorseStoneStabilityCoefficientsData { get; set; }
+            JsonInputNaturalStoneTopLayerNorseStoneStabilityCoefficientsData { get; private set; }
 
         [JsonProperty(JsonInputNaturalStoneDefinitions.STABILITY_SURGING)]
-        public JsonInputNaturalStoneTopLayerNorseStoneStabilityCoefficientsData 
-            JsonInputNaturalStoneTopLayerNorseStoneSurgingData { get; set; }
+        public JsonInputNaturalStoneTopLayerNorseStoneStabilityCoefficientsData
+            JsonInputNaturalStoneTopLayerNorseStoneSurgingData { get; private set; }
     }
 }

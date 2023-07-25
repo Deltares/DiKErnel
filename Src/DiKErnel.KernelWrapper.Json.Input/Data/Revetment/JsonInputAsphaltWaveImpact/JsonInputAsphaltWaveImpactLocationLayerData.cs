@@ -21,12 +21,12 @@ using Newtonsoft.Json;
 
 namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputAsphaltWaveImpact
 {
-    internal class JsonInputAsphaltWaveImpactLocationSubLayerData
+    internal class JsonInputAsphaltWaveImpactLocationLayerData
     {
         [JsonProperty(JsonInputAsphaltWaveImpactDefinitions.THICKNESS)]
-        public double ThicknessSubLayer { get; set; }
+        public double ThicknessLayer { get; private set; }
 
         [JsonProperty(JsonInputAsphaltWaveImpactDefinitions.ELASTIC_MODULUS)]
-        public double ElasticModulusSubLayer { get; set; }
+        public double ElasticModulusLayer { get; private set; }
     }
 }

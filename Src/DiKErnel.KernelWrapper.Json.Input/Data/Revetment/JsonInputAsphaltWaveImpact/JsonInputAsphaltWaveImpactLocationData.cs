@@ -35,9 +35,9 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputAsphaltWaveI
         public double SoilElasticity { get; private set; }
 
         [JsonProperty(JsonInputAsphaltWaveImpactDefinitions.UPPER_LAYER)]
-        public JsonInputAsphaltWaveImpactLocationUpperLayerData UpperLayer { get; private set; }
+        public JsonInputAsphaltWaveImpactLocationLayerData UpperLayer { get; private set; }
 
         [JsonProperty(JsonInputAsphaltWaveImpactDefinitions.SUB_LAYER)]
-        public JsonInputAsphaltWaveImpactLocationSubLayerData SubLayerData { get; private set; }
+        public JsonInputAsphaltWaveImpactLocationLayerData SubLayerData { get; private set; }
     }
 }
