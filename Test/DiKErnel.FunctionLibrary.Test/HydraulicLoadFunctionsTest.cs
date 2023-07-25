@@ -78,7 +78,7 @@ namespace DiKErnel.FunctionLibrary.Test
             double waveDirection = HydraulicLoadFunctions.WaveDirection(waveAngle);
 
             // Assert
-            AssertHelper.AssertAreEqualWithinTolerance(180.0, waveDirection);
+            AssertHelper.AssertAreEqualWithinTolerance(180, waveDirection);
         }
 
         [Test]

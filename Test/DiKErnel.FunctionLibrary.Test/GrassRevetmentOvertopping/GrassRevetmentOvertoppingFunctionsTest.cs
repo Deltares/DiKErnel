@@ -34,28 +34,29 @@ namespace DiKErnel.FunctionLibrary.Test.GrassRevetmentOvertopping
             const double wavePeriodTm10 = 4.7;
             const double waveDirection = 350;
 
-            var xValuesProfile = new[]
+            double[] xValuesProfile =
             {
-                5.0,
-                15.0,
-                22.0,
-                30.0
+                5,
+                15,
+                22,
+                30
             };
 
-            var zValuesProfile = new[]
+            double[] zValuesProfile =
             {
-                0.0,
-                3.0,
+                0,
+                3,
                 3.2,
                 7.5
             };
 
-            var roughnessCoefficients = new[]
+            double[] roughnessCoefficients =
             {
-                1.0,
+                1,
                 0.75,
                 0.5
             };
+
             const double dikeHeight = 7.7;
 
             var input = new GrassRevetmentOvertoppingRepresentative2PInput(waterLevel, waveHeightHm0, wavePeriodTm10,
