@@ -114,7 +114,7 @@ namespace DiKErnel.FunctionLibrary.Test.AsphaltRevetmentWaveImpact
             double logFailureTension = AsphaltRevetmentWaveImpactFunctions.LogFailureTension(failureTension);
 
             // Assert
-            AssertHelper.AssertAreEqualWithinTolerance(0.19312459835446161, logFailureTension);
+            AssertHelper.AssertAreEqualWithinTolerance(0.19312459835446, logFailureTension);
         }
 
         [Test]
@@ -149,7 +149,7 @@ namespace DiKErnel.FunctionLibrary.Test.AsphaltRevetmentWaveImpact
                                                                                              soilElasticity, stiffnessRelationNu);
 
             // Assert
-            AssertHelper.AssertAreEqualWithinTolerance(1.1856261832690844, stiffnessRelation);
+            AssertHelper.AssertAreEqualWithinTolerance(1.18562618326908, stiffnessRelation);
         }
 
         [Test]
@@ -168,7 +168,7 @@ namespace DiKErnel.FunctionLibrary.Test.AsphaltRevetmentWaveImpact
                                                                                                        elasticModulusSubLayer);
 
             // Assert
-            AssertHelper.AssertAreEqualWithinTolerance(0.387174648559827, computationalThickness);
+            AssertHelper.AssertAreEqualWithinTolerance(0.38717464855982, computationalThickness);
         }
 
         [Test]
@@ -185,7 +185,7 @@ namespace DiKErnel.FunctionLibrary.Test.AsphaltRevetmentWaveImpact
                                                                                slopeUpperPosition, slopeUpperLevel);
 
             // Assert
-            AssertHelper.AssertAreEqualWithinTolerance(0.153846153846154, outerSlope);
+            AssertHelper.AssertAreEqualWithinTolerance(0.15384615384615, outerSlope);
         }
     }
 }

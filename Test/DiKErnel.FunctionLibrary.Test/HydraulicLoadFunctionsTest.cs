@@ -91,7 +91,7 @@ namespace DiKErnel.FunctionLibrary.Test
             double slopeAngle = HydraulicLoadFunctions.SlopeAngle(outerSlope);
 
             // Assert
-            AssertHelper.AssertAreEqualWithinTolerance(14.036243467926479, slopeAngle);
+            AssertHelper.AssertAreEqualWithinTolerance(14.03624346792647, slopeAngle);
         }
 
         [Test]
@@ -187,7 +187,7 @@ namespace DiKErnel.FunctionLibrary.Test
                                                                                           gravitationalAcceleration);
 
             // Assert
-            AssertHelper.AssertAreEqualWithinTolerance(0.037898686325266363, waveSteepnessDeepWater);
+            AssertHelper.AssertAreEqualWithinTolerance(0.03789868632526, waveSteepnessDeepWater);
         }
 
         [Test]
@@ -204,7 +204,7 @@ namespace DiKErnel.FunctionLibrary.Test
                                                                                             wavePeriodTm10,
                                                                                             gravitationalAcceleration);
             // Assert
-            AssertHelper.AssertAreEqualWithinTolerance(1.2841859985089348, surfSimilarityParameter);
+            AssertHelper.AssertAreEqualWithinTolerance(1.28418599850893, surfSimilarityParameter);
         }
 
         [Test]

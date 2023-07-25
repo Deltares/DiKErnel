@@ -34,7 +34,7 @@ namespace DiKErnel.FunctionLibrary.Test
             double radians = GenericFunctions.Radians(degrees);
 
             // Assert
-            AssertHelper.AssertAreEqualWithinTolerance(2.1546089615869999, radians);
+            AssertHelper.AssertAreEqualWithinTolerance(2.15460896158699, radians);
         }
 
         [Test]
@@ -47,7 +47,7 @@ namespace DiKErnel.FunctionLibrary.Test
             double degrees = GenericFunctions.Degrees(radians);
 
             // Assert
-            AssertHelper.AssertAreEqualWithinTolerance(70.731639808900127, degrees);
+            AssertHelper.AssertAreEqualWithinTolerance(70.73163980890012, degrees);
         }
     }
 }

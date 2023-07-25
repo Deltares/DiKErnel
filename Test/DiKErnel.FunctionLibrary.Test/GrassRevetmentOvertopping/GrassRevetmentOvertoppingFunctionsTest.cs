@@ -97,7 +97,7 @@ namespace DiKErnel.FunctionLibrary.Test.GrassRevetmentOvertopping
             double cumulativeOverload = GrassRevetmentOvertoppingFunctions.CumulativeOverload(input);
 
             // Assert
-            AssertHelper.AssertAreEqualWithinTolerance(14.883904828110145, cumulativeOverload);
+            AssertHelper.AssertAreEqualWithinTolerance(14.88390482811014, cumulativeOverload);
         }
     }
 }

@@ -36,7 +36,7 @@ namespace DiKErnel.FunctionLibrary.Test.GrassRevetment
             double incrementDamage = GrassRevetmentFunctions.IncrementDamage(cumulativeOverload, criticalCumulativeOverload);
 
             // Assert
-            AssertHelper.AssertAreEqualWithinTolerance(0.15198428571428574, incrementDamage);
+            AssertHelper.AssertAreEqualWithinTolerance(0.15198428571428, incrementDamage);
         }
     }
 }

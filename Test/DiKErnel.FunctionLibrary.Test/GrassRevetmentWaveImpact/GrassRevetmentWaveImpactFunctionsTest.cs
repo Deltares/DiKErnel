@@ -36,7 +36,7 @@ namespace DiKErnel.FunctionLibrary.Test.GrassRevetmentWaveImpact
             double incrementDamage = GrassRevetmentWaveImpactFunctions.IncrementDamage(incrementTime, timeLine);
 
             // Assert
-            AssertHelper.AssertAreEqualWithinTolerance(0.27115621007978019, incrementDamage);
+            AssertHelper.AssertAreEqualWithinTolerance(0.27115621007978, incrementDamage);
         }
 
         [Test]
@@ -104,7 +104,7 @@ namespace DiKErnel.FunctionLibrary.Test.GrassRevetmentWaveImpact
                                                                                            timeLineCgwi, maximumWaveHeightTemin);
 
             // Assert
-            AssertHelper.AssertAreEqualWithinTolerance(1.0499440147590584, maximumWaveHeight);
+            AssertHelper.AssertAreEqualWithinTolerance(1.04994401475905, maximumWaveHeight);
         }
 
         [Test]
@@ -121,7 +121,7 @@ namespace DiKErnel.FunctionLibrary.Test.GrassRevetmentWaveImpact
                                                                                        waveAngleImpactQwa, waveAngleImpactRwa);
 
             // Assert
-            AssertHelper.AssertAreEqualWithinTolerance(0.79278413661028446, waveAngleImpact);
+            AssertHelper.AssertAreEqualWithinTolerance(0.79278413661028, waveAngleImpact);
         }
 
         [Test]
