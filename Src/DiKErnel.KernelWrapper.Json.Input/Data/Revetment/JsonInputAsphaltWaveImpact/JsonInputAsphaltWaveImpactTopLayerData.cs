@@ -31,6 +31,6 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputAsphaltWaveI
         public JsonInputAsphaltWaveImpactTopLayerFatigueData Fatigue { get; set; }
 
         [JsonProperty(JsonInputAsphaltWaveImpactDefinitions.STIFFNESS_RELATION_NU)]
-        public double StiffnessRelationNu { get; set; }
+        public double? StiffnessRelationNu { get; set; }
     }
 }

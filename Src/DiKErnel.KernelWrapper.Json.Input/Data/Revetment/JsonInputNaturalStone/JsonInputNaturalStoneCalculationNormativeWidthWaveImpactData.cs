@@ -24,9 +24,9 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputNaturalStone
     internal class JsonInputNaturalStoneCalculationNormativeWidthWaveImpactData
     {
         [JsonProperty(JsonInputDefinitions.A_COEFFICIENT)]
-        public double NormativeWidthOfWaveImpactA { get; set; }
+        public double? NormativeWidthOfWaveImpactA { get; set; }
 
         [JsonProperty(JsonInputDefinitions.B_COEFFICIENT)]
-        public double NormativeWidthOfWaveImpactB { get; set; }
+        public double? NormativeWidthOfWaveImpactB { get; set; }
     }
 }
