@@ -93,15 +93,5 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneRevetment
         /// Gets or sets the crest outer berm height [m].
         /// </summary>
         public double CrestOuterBermHeight { get; set; }
-
-        /// <summary>
-        /// Gets an indicator whether the input has a berm.
-        /// </summary>
-        /// <returns><c>false</c> when one of the berm properties is
-        /// <see cref="double.PositiveInfinity"/>; <c>true</c> otherwise.</returns>
-        public bool HasBerm => !(double.IsInfinity(NotchOuterBermPosition)
-                                 || double.IsInfinity(NotchOuterBermHeight)
-                                 || double.IsInfinity(CrestOuterBermPosition)
-                                 || double.IsInfinity(CrestOuterBermHeight));
     }
 }

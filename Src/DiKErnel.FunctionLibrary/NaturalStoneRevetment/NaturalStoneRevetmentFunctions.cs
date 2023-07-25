@@ -59,7 +59,7 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneRevetment
         /// <returns>The outer slope [-].</returns>
         public static double OuterSlope(NaturalStoneRevetmentOuterSlopeInput input)
         {
-            return !input.HasBerm
+            return !HasBerm(input)
                        ? SingleSlopePart(input.SlopeUpperLevel, input.SlopeLowerLevel, input.SlopeUpperPosition,
                                          input.SlopeLowerPosition)
                        : OuterSlopeWithBerm(input);
@@ -375,6 +375,14 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneRevetment
         private static double Reference(double resistance, double hydraulicLoad, double waveAngleImpact, double value)
         {
             return value * (resistance / hydraulicLoad) * (1.0 / waveAngleImpact);
+        }
+
+        private static bool HasBerm(NaturalStoneRevetmentOuterSlopeInput input)
+        {
+            return !double.IsInfinity(input.NotchOuterBermPosition)
+                   && !double.IsInfinity(input.NotchOuterBermHeight)
+                   && !double.IsInfinity(input.CrestOuterBermPosition)
+                   && !double.IsInfinity(input.CrestOuterBermHeight);
         }
     }
 }
