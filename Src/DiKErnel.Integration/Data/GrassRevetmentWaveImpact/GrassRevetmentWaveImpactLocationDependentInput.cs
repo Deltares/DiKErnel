@@ -16,70 +16,70 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using System.Collections.Generic;
+using DiKErnel.Core.Data;
+
 namespace DiKErnel.Integration.Data.GrassRevetmentWaveImpact
 {
     internal class GrassRevetmentWaveImpactLocationDependentInput : LocationDependentInput
     {
-        public GrassRevetmentWaveImpactLocationDependentInput(
-                double x,
-                double initialDamage,
-                double failureNumber,
-                GrassRevetmentWaveImpactWaveAngleImpact waveAngleImpact,
-                double minimumWaveHeightTemax,
-                double maximumWaveHeightTemin,
-                GrassRevetmentWaveImpactTimeLine timeLine,
-                double upperLimitLoadingAul,
-                double lowerLimitLoadingAll) {}
+        private GrassRevetmentWaveImpactWaveAngleImpact _waveAngleImpactInput;
+        private double _minimumWaveHeightTemax;
+        private double _maximumWaveHeightTemin;
+        private GrassRevetmentWaveImpactTimeLine _timeLine;
+        private double _upperLimitLoadingAul;
+        private double _lowerLimitLoadingAll;
 
-    public GrassRevetmentWaveImpactWaveAngleImpact GetWaveAngleImpact();
+        private double _minimumWaveHeight = double.PositiveInfinity;
+        private double _maximumWaveHeight = double.PositiveInfinity;
+        private double _lowerLimitLoading = double.PositiveInfinity;
+        private double _upperLimitLoading = double.PositiveInfinity;
+        private bool _loadingRevetment = false;
+        private double _waveAngleImpact = double.PositiveInfinity;
+        private double _waveHeightImpact = double.PositiveInfinity;
 
-    public double GetMinimumWaveHeightTemax();
+        public GrassRevetmentWaveImpactLocationDependentInput(double x, double initialDamage, double failureNumber,
+                                                              GrassRevetmentWaveImpactWaveAngleImpact waveAngleImpact,
+                                                              double minimumWaveHeightTemax,
+                                                              double maximumWaveHeightTemin,
+                                                              GrassRevetmentWaveImpactTimeLine timeLine,
+                                                              double upperLimitLoadingAul,
+                                                              double lowerLimitLoadingAll) {}
 
-    public double GetMaximumWaveHeightTemin();
+        public GrassRevetmentWaveImpactWaveAngleImpact GetWaveAngleImpact();
 
-    public GrassRevetmentWaveImpactTimeLine GetTimeLine();
+        public double GetMinimumWaveHeightTemax();
 
-    public double GetUpperLimitLoadingAul();
+        public double GetMaximumWaveHeightTemin();
 
-    public double GetLowerLimitLoadingAll();
+        public GrassRevetmentWaveImpactTimeLine GetTimeLine();
 
-    public bool Validate(
-                IReadOnlyList<ITimeDependentInput> timeDependentInputs,
-                IProfileData profileData) override;
+        public double GetUpperLimitLoadingAul();
 
-    public LocationDependentOutput GetLocationDependentOutput(
-                IReadOnlyList<TimeDependentOutput> timeDependentOutputItems) override;
+        public double GetLowerLimitLoadingAll();
 
-    protected void InitializeDerivedLocationDependentInput(
-                IProfileData profileData) override;
+        public bool Validate(
+            IReadOnlyList<ITimeDependentInput> timeDependentInputs,
+            IProfileData profileData)
 
-    protected TimeDependentOutput CalculateTimeDependentOutput(
-                double initialDamage,
-                ITimeDependentInput timeDependentInput,
-                IProfileData profileData) override;
+        public LocationDependentOutput GetLocationDependentOutput(
+            IReadOnlyList<TimeDependentOutput> timeDependentOutputItems)
 
-            private GrassRevetmentWaveImpactWaveAngleImpact _waveAngleImpactInput;
-            private double _minimumWaveHeightTemax;
-            private double _maximumWaveHeightTemin;
-            private GrassRevetmentWaveImpactTimeLine _timeLine;
-            private double _upperLimitLoadingAul;
-            private double _lowerLimitLoadingAll;
+        protected void InitializeDerivedLocationDependentInput(
+            IProfileData profileData)
 
-            private double _minimumWaveHeight = double.PositiveInfinity;
-            private double _maximumWaveHeight = double.PositiveInfinity;
-            private double _lowerLimitLoading = double.PositiveInfinity;
-            private double _upperLimitLoading = double.PositiveInfinity;
-            private bool _loadingRevetment = false;
-            private double _waveAngleImpact = double.PositiveInfinity;
-            private double _waveHeightImpact = double.PositiveInfinity;
+        protected TimeDependentOutput CalculateTimeDependentOutput(
+            double initialDamage,
+            ITimeDependentInput timeDependentInput,
+            IProfileData profileData)override;override;override;override;
 
-    private bool CalculateLoadingRevetment(
-                double waterLevel,
-                double waveHeightHm0);
+        private bool CalculateLoadingRevetment(
+            double waterLevel,
+            double waveHeightHm0);
 
-    private GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties CreateConstructionProperties(
-                double incrementDamage,
-                double damage,
-                int? timeOfFailure);
+        private GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties CreateConstructionProperties(
+            double incrementDamage,
+            double damage,
+            int? timeOfFailure);
     }
 }

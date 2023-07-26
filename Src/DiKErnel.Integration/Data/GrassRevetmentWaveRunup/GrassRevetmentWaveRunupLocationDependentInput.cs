@@ -16,55 +16,54 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using System.Collections.Generic;
+using DiKErnel.Core.Data;
+
 namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
 {
-    internal class GrassRevetmentWaveRunupLocationDependentInput : LocationDependentInput
+    internal abstract class GrassRevetmentWaveRunupLocationDependentInput : LocationDependentInput
     {
-    public double GetOuterSlope();
+        private double _outerSlope;
+        private double _criticalCumulativeOverload;
+        private double _criticalFrontVelocity;
+        private double _increasedLoadTransitionAlphaM;
+        private double _reducedStrengthTransitionAlphaS;
+        private double _averageNumberOfWavesCtm;
+        private GrassRevetmentWaveRunupRepresentative2P _representative2P;
+        private GrassRevetmentWaveRunupWaveAngleImpact _waveAngleImpactInput;
 
-    public double GetCriticalCumulativeOverload();
+        protected GrassRevetmentWaveRunupLocationDependentInput(double x, double initialDamage, double failureNumber,
+                                                                double outerSlope, double criticalCumulativeOverload,
+                                                                double criticalFrontVelocity,
+                                                                double increasedLoadTransitionAlphaM,
+                                                                double reducedStrengthTransitionAlphaS,
+                                                                double averageNumberOfWavesCtm,
+                                                                GrassRevetmentWaveRunupRepresentative2P representative2P,
+                                                                GrassRevetmentWaveRunupWaveAngleImpact waveAngleImpact) {}
 
-    public double GetCriticalFrontVelocity();
+        public double GetOuterSlope();
 
-    public double GetIncreasedLoadTransitionAlphaM();
+        public double GetCriticalCumulativeOverload();
 
-    public double GetReducedStrengthTransitionAlphaS();
+        public double GetCriticalFrontVelocity();
 
-    public double GetAverageNumberOfWavesCtm();
+        public double GetIncreasedLoadTransitionAlphaM();
 
-    public GrassRevetmentWaveRunupRepresentative2P GetRepresentative2P();
+        public double GetReducedStrengthTransitionAlphaS();
 
-    public GrassRevetmentWaveRunupWaveAngleImpact GetWaveAngleImpact();
+        public double GetAverageNumberOfWavesCtm();
 
-    public bool Validate(
-                IReadOnlyList<ITimeDependentInput> timeDependentInputs,
-                IProfileData profileData) override;
+        public GrassRevetmentWaveRunupRepresentative2P GetRepresentative2P();
 
-        protected GrassRevetmentWaveRunupLocationDependentInput(
-                double x,
-                double initialDamage,
-                double failureNumber,
-                double outerSlope,
-                double criticalCumulativeOverload,
-                double criticalFrontVelocity,
-                double increasedLoadTransitionAlphaM,
-                double reducedStrengthTransitionAlphaS,
-                double averageNumberOfWavesCtm,
-                GrassRevetmentWaveRunupRepresentative2P representative2P,
-                GrassRevetmentWaveRunupWaveAngleImpact waveAngleImpact) {}
+        public GrassRevetmentWaveRunupWaveAngleImpact GetWaveAngleImpact();
 
-    protected TimeDependentOutput CalculateTimeDependentOutput(
-                double initialDamage,
-                ITimeDependentInput timeDependentInput,
-                IProfileData profileData) override = 0;
+        public bool Validate(
+            IReadOnlyList<ITimeDependentInput> timeDependentInputs,
+            IProfileData profileData)
 
-            private double _outerSlope;
-            private double _criticalCumulativeOverload;
-            private double _criticalFrontVelocity;
-            private double _increasedLoadTransitionAlphaM;
-            private double _reducedStrengthTransitionAlphaS;
-            private double _averageNumberOfWavesCtm;
-            private GrassRevetmentWaveRunupRepresentative2P _representative2P;
-            private GrassRevetmentWaveRunupWaveAngleImpact _waveAngleImpactInput;
+        protected TimeDependentOutput CalculateTimeDependentOutput(
+            double initialDamage,
+            ITimeDependentInput timeDependentInput,
+            IProfileData profileData)override;override = 0;
     }
 }
