@@ -1,5 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-    <Import Project="$(SolutionDir)build\Test.targets"/>
+    <Import Project="$(SolutionDir)build\Test.targets" />
+
+    <ItemGroup>
+      <PackageReference Include="NUnit3TestAdapter" Version="4.5.0" />
+    </ItemGroup>
 
 </Project>

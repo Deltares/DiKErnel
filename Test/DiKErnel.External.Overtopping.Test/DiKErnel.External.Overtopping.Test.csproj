@@ -1,18 +1,19 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-    <Import Project="$(SolutionDir)build\Test.targets"/>
+    <Import Project="$(SolutionDir)build\Test.targets" />
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.6.3"/>
-        <PackageReference Include="NUnit" Version="3.13.3"/>
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.6.3" />
+        <PackageReference Include="NUnit" Version="3.13.3" />
+        <PackageReference Include="NUnit3TestAdapter" Version="4.5.0" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\Src\DiKErnel.External.Overtopping\DiKErnel.External.Overtopping.csproj"/>
+        <ProjectReference Include="..\..\Src\DiKErnel.External.Overtopping\DiKErnel.External.Overtopping.csproj" />
     </ItemGroup>
 
     <Target Name="CopyOvertoppingDependencies" AfterTargets="PostBuildEvent">
-        <Exec Command="xcopy /d/s/y &quot;$(ExternalDependenciesDir)\*&quot; &quot;$(OutDir)&quot;"/>
+        <Exec Command="xcopy /d/s/y &quot;$(ExternalDependenciesDir)\*&quot; &quot;$(OutDir)&quot;" />
     </Target>
 
 </Project>
