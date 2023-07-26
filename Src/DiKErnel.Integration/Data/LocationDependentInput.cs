@@ -22,7 +22,7 @@ namespace DiKErnel.Integration.Data
     {
     public bool Validate(
                 const std::vector<std::reference_wrapper<Core::ITimeDependentInput>>& timeDependentInputs,
-                const Core::IProfileData& profileData) const override;
+                const Core::IProfileData& profileData) override;
 
     public std::unique_ptr<Core::TimeDependentOutput> Calculate(
                 double initialDamage,

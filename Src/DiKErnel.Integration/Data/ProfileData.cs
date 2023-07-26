@@ -27,13 +27,13 @@ namespace DiKErnel.Integration.Data
     public bool Validate() override;
 
     public double InterpolationVerticalHeight(
-                double horizontalPosition) const override;
+                double horizontalPosition) override;
 
     public double InterpolationHorizontalPosition(
-                double verticalHeight) const override;
+                double verticalHeight) override;
 
     public Core::ProfileSegment* GetProfileSegment(
-                double horizontalPosition) const override;
+                double horizontalPosition) override;
 
     public std::vector<std::reference_wrapper<Core::ProfileSegment>>& GetProfileSegments() override;
 

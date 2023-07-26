@@ -38,7 +38,7 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
 
     public bool Validate(
                 const std::vector<std::reference_wrapper<Core::ITimeDependentInput>>& timeDependentInputs,
-                const Core::IProfileData& profileData) const override;
+                const Core::IProfileData& profileData) override;
 
         protected void GrassRevetmentWaveRunupLocationDependentInput(
                 double x,
