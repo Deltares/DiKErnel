@@ -26,13 +26,13 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
                 double failureNumber,
                 double relativeDensity,
                 double thicknessTopLayer,
-                std::unique_ptr<NaturalStoneRevetmentHydraulicLoads> hydraulicLoads,
-                std::unique_ptr<NaturalStoneRevetmentSlope> slope,
-                std::unique_ptr<NaturalStoneRevetmentUpperLimitLoading> upperLimitLoading,
-                std::unique_ptr<NaturalStoneRevetmentLowerLimitLoading> lowerLimitLoading,
-                std::unique_ptr<NaturalStoneRevetmentDistanceMaximumWaveElevation> distanceMaximumWaveElevation,
-                std::unique_ptr<NaturalStoneRevetmentNormativeWidthOfWaveImpact> normativeWidthOfWaveImpact,
-                std::unique_ptr<NaturalStoneRevetmentWaveAngleImpact> waveAngleImpact);
+                unique_ptr<NaturalStoneRevetmentHydraulicLoads> hydraulicLoads,
+                unique_ptr<NaturalStoneRevetmentSlope> slope,
+                unique_ptr<NaturalStoneRevetmentUpperLimitLoading> upperLimitLoading,
+                unique_ptr<NaturalStoneRevetmentLowerLimitLoading> lowerLimitLoading,
+                unique_ptr<NaturalStoneRevetmentDistanceMaximumWaveElevation> distanceMaximumWaveElevation,
+                unique_ptr<NaturalStoneRevetmentNormativeWidthOfWaveImpact> normativeWidthOfWaveImpact,
+                unique_ptr<NaturalStoneRevetmentWaveAngleImpact> waveAngleImpact);
 
     public double GetRelativeDensity();
 
@@ -53,52 +53,52 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
     public NaturalStoneRevetmentWaveAngleImpact& GetWaveAngleImpact();
 
     public bool Validate(
-                std::vector<std::reference_wrapper<Core::ITimeDependentInput>>& timeDependentInputs,
+                vector<reference_wrapper<Core::ITimeDependentInput>>& timeDependentInputs,
                 Core::IProfileData& profileData) override;
 
-    public std::unique_ptr<Core::LocationDependentOutput> GetLocationDependentOutput(
-                std::vector<std::unique_ptr<Core::TimeDependentOutput>> timeDependentOutputItems) override;
+    public unique_ptr<Core::LocationDependentOutput> GetLocationDependentOutput(
+                vector<unique_ptr<Core::TimeDependentOutput>> timeDependentOutputItems) override;
 
     protected void InitializeDerivedLocationDependentInput(
                 Core::IProfileData& profileData) override;
 
-    protected std::unique_ptr<Core::TimeDependentOutput> CalculateTimeDependentOutput(
+    protected unique_ptr<Core::TimeDependentOutput> CalculateTimeDependentOutput(
                 double initialDamage,
                 Core::ITimeDependentInput& timeDependentInput,
                 Core::IProfileData& profileData) override;
 
             private double _relativeDensity;
             private double _thicknessTopLayer;
-            private std::unique_ptr<NaturalStoneRevetmentHydraulicLoads> _hydraulicLoadsInput;
-            private std::unique_ptr<NaturalStoneRevetmentSlope> _slopeInput;
-            private std::unique_ptr<NaturalStoneRevetmentUpperLimitLoading> _upperLimitLoadingInput;
-            private std::unique_ptr<NaturalStoneRevetmentLowerLimitLoading> _lowerLimitLoadingInput;
-            private std::unique_ptr<NaturalStoneRevetmentDistanceMaximumWaveElevation> _distanceMaximumWaveElevationInput;
-            private std::unique_ptr<NaturalStoneRevetmentNormativeWidthOfWaveImpact> _normativeWidthOfWaveImpactInput;
-            private std::unique_ptr<NaturalStoneRevetmentWaveAngleImpact> _waveAngleImpactInput;
-            private double _outerToeHeight = std::numeric_limits<double>::infinity();
-            private double _outerCrestHeight = std::numeric_limits<double>::infinity();
-            private std::unique_ptr<std::pair<double, double>> _notchOuterBerm = nullptr;
-            private std::unique_ptr<std::pair<double, double>> _crestOuterBerm = nullptr;
+            private unique_ptr<NaturalStoneRevetmentHydraulicLoads> _hydraulicLoadsInput;
+            private unique_ptr<NaturalStoneRevetmentSlope> _slopeInput;
+            private unique_ptr<NaturalStoneRevetmentUpperLimitLoading> _upperLimitLoadingInput;
+            private unique_ptr<NaturalStoneRevetmentLowerLimitLoading> _lowerLimitLoadingInput;
+            private unique_ptr<NaturalStoneRevetmentDistanceMaximumWaveElevation> _distanceMaximumWaveElevationInput;
+            private unique_ptr<NaturalStoneRevetmentNormativeWidthOfWaveImpact> _normativeWidthOfWaveImpactInput;
+            private unique_ptr<NaturalStoneRevetmentWaveAngleImpact> _waveAngleImpactInput;
+            private double _outerToeHeight = numeric_limits<double>::infinity();
+            private double _outerCrestHeight = numeric_limits<double>::infinity();
+            private unique_ptr<pair<double, double>> _notchOuterBerm = nullptr;
+            private unique_ptr<pair<double, double>> _crestOuterBerm = nullptr;
 
-            private double _resistance = std::numeric_limits<double>::infinity();
-            private double _slopeLowerPosition = std::numeric_limits<double>::infinity();
-            private double _slopeLowerLevel = std::numeric_limits<double>::infinity();
-            private double _slopeUpperPosition = std::numeric_limits<double>::infinity();
-            private double _slopeUpperLevel = std::numeric_limits<double>::infinity();
-            private double _outerSlope = std::numeric_limits<double>::infinity();
-            private double _waveSteepnessDeepWater = std::numeric_limits<double>::infinity();
-            private double _distanceMaximumWaveElevation = std::numeric_limits<double>::infinity();
-            private double _surfSimilarityParameter = std::numeric_limits<double>::infinity();
-            private double _normativeWidthWaveImpact = std::numeric_limits<double>::infinity();
-            private double _depthMaximumWaveLoad = std::numeric_limits<double>::infinity();
-            private double _upperLimitLoading = std::numeric_limits<double>::infinity();
-            private double _lowerLimitLoading = std::numeric_limits<double>::infinity();
+            private double _resistance = numeric_limits<double>::infinity();
+            private double _slopeLowerPosition = numeric_limits<double>::infinity();
+            private double _slopeLowerLevel = numeric_limits<double>::infinity();
+            private double _slopeUpperPosition = numeric_limits<double>::infinity();
+            private double _slopeUpperLevel = numeric_limits<double>::infinity();
+            private double _outerSlope = numeric_limits<double>::infinity();
+            private double _waveSteepnessDeepWater = numeric_limits<double>::infinity();
+            private double _distanceMaximumWaveElevation = numeric_limits<double>::infinity();
+            private double _surfSimilarityParameter = numeric_limits<double>::infinity();
+            private double _normativeWidthWaveImpact = numeric_limits<double>::infinity();
+            private double _depthMaximumWaveLoad = numeric_limits<double>::infinity();
+            private double _upperLimitLoading = numeric_limits<double>::infinity();
+            private double _lowerLimitLoading = numeric_limits<double>::infinity();
             private bool _loadingRevetment = false;
-            private double _hydraulicLoad = std::numeric_limits<double>::infinity();
-            private double _waveAngleImpact = std::numeric_limits<double>::infinity();
-            private double _referenceTimeDegradation = std::numeric_limits<double>::infinity();
-            private double _referenceDegradation = std::numeric_limits<double>::infinity();
+            private double _hydraulicLoad = numeric_limits<double>::infinity();
+            private double _waveAngleImpact = numeric_limits<double>::infinity();
+            private double _referenceTimeDegradation = numeric_limits<double>::infinity();
+            private double _referenceDegradation = numeric_limits<double>::infinity();
 
     private double CalculateOuterSlope(
                 double waterLevel,
@@ -120,9 +120,9 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
                 double wavePeriodTm10,
                 double beginTime);
 
-    private std::unique_ptr<NaturalStoneRevetmentTimeDependentOutputConstructionProperties> CreateConstructionProperties(
+    private unique_ptr<NaturalStoneRevetmentTimeDependentOutputConstructionProperties> CreateConstructionProperties(
                 double incrementDamage,
                 double damage,
-                std::unique_ptr<int> timeOfFailure);
+                unique_ptr<int> timeOfFailure);
     }
 }

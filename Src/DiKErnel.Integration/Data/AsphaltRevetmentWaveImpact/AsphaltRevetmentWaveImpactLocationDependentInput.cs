@@ -27,15 +27,15 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
                 double failureTension,
                 double densityOfWater,
                 double soilElasticity,
-                std::unique_ptr<AsphaltRevetmentWaveImpactLayer> upperLayer,
-                std::unique_ptr<AsphaltRevetmentWaveImpactLayer> subLayer,
+                unique_ptr<AsphaltRevetmentWaveImpactLayer> upperLayer,
+                unique_ptr<AsphaltRevetmentWaveImpactLayer> subLayer,
                 double averageNumberOfWavesCtm,
-                std::unique_ptr<AsphaltRevetmentWaveImpactFatigue> fatigue,
+                unique_ptr<AsphaltRevetmentWaveImpactFatigue> fatigue,
                 double impactNumberC,
                 double stiffnessRelationNu,
-                std::vector<std::pair<double, double>> widthFactors,
-                std::vector<std::pair<double, double>> depthFactors,
-                std::vector<std::pair<double, double>> impactFactors);
+                vector<pair<double, double>> widthFactors,
+                vector<pair<double, double>> depthFactors,
+                vector<pair<double, double>> impactFactors);
 
     public double GetFailureTension();
 
@@ -55,23 +55,23 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
 
     public double GetStiffnessRelationNu();
 
-    public std::vector<std::pair<double, double>>& GetWidthFactors();
+    public vector<pair<double, double>>& GetWidthFactors();
 
-    public std::vector<std::pair<double, double>>& GetDepthFactors();
+    public vector<pair<double, double>>& GetDepthFactors();
 
-    public std::vector<std::pair<double, double>>& GetImpactFactors();
+    public vector<pair<double, double>>& GetImpactFactors();
 
     public bool Validate(
-                std::vector<std::reference_wrapper<Core::ITimeDependentInput>>& timeDependentInputs,
+                vector<reference_wrapper<Core::ITimeDependentInput>>& timeDependentInputs,
                 Core::IProfileData& profileData) override;
 
-    public std::unique_ptr<Core::LocationDependentOutput> GetLocationDependentOutput(
-                std::vector<std::unique_ptr<Core::TimeDependentOutput>> timeDependentOutputItems) override;
+    public unique_ptr<Core::LocationDependentOutput> GetLocationDependentOutput(
+                vector<unique_ptr<Core::TimeDependentOutput>> timeDependentOutputItems) override;
 
     protected void InitializeDerivedLocationDependentInput(
                 Core::IProfileData& profileData) override;
 
-    protected std::unique_ptr<Core::TimeDependentOutput> CalculateTimeDependentOutput(
+    protected unique_ptr<Core::TimeDependentOutput> CalculateTimeDependentOutput(
                 double initialDamage,
                 Core::ITimeDependentInput& timeDependentInput,
                 Core::IProfileData& profileData) override;
@@ -79,30 +79,30 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
             private double _failureTension;
             private double _densityOfWater;
             private double _soilElasticity;
-            private std::unique_ptr<AsphaltRevetmentWaveImpactLayer> _upperLayer;
-            private std::unique_ptr<AsphaltRevetmentWaveImpactLayer> _subLayer;
+            private unique_ptr<AsphaltRevetmentWaveImpactLayer> _upperLayer;
+            private unique_ptr<AsphaltRevetmentWaveImpactLayer> _subLayer;
             private double _averageNumberOfWavesCtm;
-            private std::unique_ptr<AsphaltRevetmentWaveImpactFatigue> _fatigue;
+            private unique_ptr<AsphaltRevetmentWaveImpactFatigue> _fatigue;
             private double _impactNumberC;
             private double _stiffnessRelationNu;
-            private std::vector<std::pair<double, double>> _widthFactors;
-            private std::vector<std::pair<double, double>> _depthFactors;
-            private std::vector<std::pair<double, double>> _impactFactors;
-            private double _outerSlope = std::numeric_limits<double>::infinity();
-            private double _logFailureTension = std::numeric_limits<double>::infinity();
-            private double _computationalThickness = std::numeric_limits<double>::infinity();
-            private double _stiffnessRelation = std::numeric_limits<double>::infinity();
-            private double _subLayerElasticModulus = std::numeric_limits<double>::infinity();
-            private double _averageNumberOfWaves = std::numeric_limits<double>::infinity();
-            private double _maximumPeakStress = std::numeric_limits<double>::infinity();
+            private vector<pair<double, double>> _widthFactors;
+            private vector<pair<double, double>> _depthFactors;
+            private vector<pair<double, double>> _impactFactors;
+            private double _outerSlope = numeric_limits<double>::infinity();
+            private double _logFailureTension = numeric_limits<double>::infinity();
+            private double _computationalThickness = numeric_limits<double>::infinity();
+            private double _stiffnessRelation = numeric_limits<double>::infinity();
+            private double _subLayerElasticModulus = numeric_limits<double>::infinity();
+            private double _averageNumberOfWaves = numeric_limits<double>::infinity();
+            private double _maximumPeakStress = numeric_limits<double>::infinity();
 
     private FunctionLibrary::AsphaltRevetmentWaveImpactFunctionsInput CreateIncrementDamageInput(
                 double waterLevel,
                 double waveHeightHm0);
 
-    private std::unique_ptr<AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties> CreateConstructionProperties(
+    private unique_ptr<AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties> CreateConstructionProperties(
                 double incrementDamage,
                 double damage,
-                std::unique_ptr<int> timeOfFailure);
+                unique_ptr<int> timeOfFailure);
     }
 }

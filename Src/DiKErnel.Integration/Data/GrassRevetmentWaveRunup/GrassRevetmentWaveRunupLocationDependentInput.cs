@@ -37,7 +37,7 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
     public GrassRevetmentWaveRunupWaveAngleImpact& GetWaveAngleImpact();
 
     public bool Validate(
-                std::vector<std::reference_wrapper<Core::ITimeDependentInput>>& timeDependentInputs,
+                vector<reference_wrapper<Core::ITimeDependentInput>>& timeDependentInputs,
                 Core::IProfileData& profileData) override;
 
         protected void GrassRevetmentWaveRunupLocationDependentInput(
@@ -50,10 +50,10 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
                 double increasedLoadTransitionAlphaM,
                 double reducedStrengthTransitionAlphaS,
                 double averageNumberOfWavesCtm,
-                std::unique_ptr<GrassRevetmentWaveRunupRepresentative2P> representative2P,
-                std::unique_ptr<GrassRevetmentWaveRunupWaveAngleImpact> waveAngleImpact);
+                unique_ptr<GrassRevetmentWaveRunupRepresentative2P> representative2P,
+                unique_ptr<GrassRevetmentWaveRunupWaveAngleImpact> waveAngleImpact);
 
-    protected std::unique_ptr<Core::TimeDependentOutput> CalculateTimeDependentOutput(
+    protected unique_ptr<Core::TimeDependentOutput> CalculateTimeDependentOutput(
                 double initialDamage,
                 Core::ITimeDependentInput& timeDependentInput,
                 Core::IProfileData& profileData) override = 0;
@@ -64,7 +64,7 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
             private double _increasedLoadTransitionAlphaM;
             private double _reducedStrengthTransitionAlphaS;
             private double _averageNumberOfWavesCtm;
-            private std::unique_ptr<GrassRevetmentWaveRunupRepresentative2P> _representative2P;
-            private std::unique_ptr<GrassRevetmentWaveRunupWaveAngleImpact> _waveAngleImpactInput;
+            private unique_ptr<GrassRevetmentWaveRunupRepresentative2P> _representative2P;
+            private unique_ptr<GrassRevetmentWaveRunupWaveAngleImpact> _waveAngleImpactInput;
     }
 }

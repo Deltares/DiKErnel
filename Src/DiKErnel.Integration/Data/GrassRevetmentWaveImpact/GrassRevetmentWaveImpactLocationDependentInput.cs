@@ -24,10 +24,10 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveImpact
                 double x,
                 double initialDamage,
                 double failureNumber,
-                std::unique_ptr<GrassRevetmentWaveImpactWaveAngleImpact> waveAngleImpact,
+                unique_ptr<GrassRevetmentWaveImpactWaveAngleImpact> waveAngleImpact,
                 double minimumWaveHeightTemax,
                 double maximumWaveHeightTemin,
-                std::unique_ptr<GrassRevetmentWaveImpactTimeLine> timeLine,
+                unique_ptr<GrassRevetmentWaveImpactTimeLine> timeLine,
                 double upperLimitLoadingAul,
                 double lowerLimitLoadingAll);
 
@@ -44,42 +44,42 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveImpact
     public double GetLowerLimitLoadingAll();
 
     public bool Validate(
-                std::vector<std::reference_wrapper<Core::ITimeDependentInput>>& timeDependentInputs,
+                vector<reference_wrapper<Core::ITimeDependentInput>>& timeDependentInputs,
                 Core::IProfileData& profileData) override;
 
-    public std::unique_ptr<Core::LocationDependentOutput> GetLocationDependentOutput(
-                std::vector<std::unique_ptr<Core::TimeDependentOutput>> timeDependentOutputItems) override;
+    public unique_ptr<Core::LocationDependentOutput> GetLocationDependentOutput(
+                vector<unique_ptr<Core::TimeDependentOutput>> timeDependentOutputItems) override;
 
     protected void InitializeDerivedLocationDependentInput(
                 Core::IProfileData& profileData) override;
 
-    protected std::unique_ptr<Core::TimeDependentOutput> CalculateTimeDependentOutput(
+    protected unique_ptr<Core::TimeDependentOutput> CalculateTimeDependentOutput(
                 double initialDamage,
                 Core::ITimeDependentInput& timeDependentInput,
                 Core::IProfileData& profileData) override;
 
-            private std::unique_ptr<GrassRevetmentWaveImpactWaveAngleImpact> _waveAngleImpactInput;
+            private unique_ptr<GrassRevetmentWaveImpactWaveAngleImpact> _waveAngleImpactInput;
             private double _minimumWaveHeightTemax;
             private double _maximumWaveHeightTemin;
-            private std::unique_ptr<GrassRevetmentWaveImpactTimeLine> _timeLine;
+            private unique_ptr<GrassRevetmentWaveImpactTimeLine> _timeLine;
             private double _upperLimitLoadingAul;
             private double _lowerLimitLoadingAll;
 
-            private double _minimumWaveHeight = std::numeric_limits<double>::infinity();
-            private double _maximumWaveHeight = std::numeric_limits<double>::infinity();
-            private double _lowerLimitLoading = std::numeric_limits<double>::infinity();
-            private double _upperLimitLoading = std::numeric_limits<double>::infinity();
+            private double _minimumWaveHeight = numeric_limits<double>::infinity();
+            private double _maximumWaveHeight = numeric_limits<double>::infinity();
+            private double _lowerLimitLoading = numeric_limits<double>::infinity();
+            private double _upperLimitLoading = numeric_limits<double>::infinity();
             private bool _loadingRevetment = false;
-            private double _waveAngleImpact = std::numeric_limits<double>::infinity();
-            private double _waveHeightImpact = std::numeric_limits<double>::infinity();
+            private double _waveAngleImpact = numeric_limits<double>::infinity();
+            private double _waveHeightImpact = numeric_limits<double>::infinity();
 
     private bool CalculateLoadingRevetment(
                 double waterLevel,
                 double waveHeightHm0);
 
-    private std::unique_ptr<GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties> CreateConstructionProperties(
+    private unique_ptr<GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties> CreateConstructionProperties(
                 double incrementDamage,
                 double damage,
-                std::unique_ptr<int> timeOfFailure);
+                unique_ptr<int> timeOfFailure);
     }
 }

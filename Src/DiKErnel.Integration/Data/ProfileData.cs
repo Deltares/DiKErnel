@@ -21,8 +21,8 @@ namespace DiKErnel.Integration.Data
     internal class ProfileData : Core::IProfileData
     {
         public void ProfileData(
-                std::vector<std::unique_ptr<Core::ProfileSegment>> profileSegments,
-                std::vector<std::unique_ptr<Core::CharacteristicPoint>> characteristicPoints);
+                vector<unique_ptr<Core::ProfileSegment>> profileSegments,
+                vector<unique_ptr<Core::CharacteristicPoint>> characteristicPoints);
 
     public bool Validate() override;
 
@@ -35,14 +35,14 @@ namespace DiKErnel.Integration.Data
     public Core::ProfileSegment* GetProfileSegment(
                 double horizontalPosition) override;
 
-    public std::vector<std::reference_wrapper<Core::ProfileSegment>>& GetProfileSegments() override;
+    public vector<reference_wrapper<Core::ProfileSegment>>& GetProfileSegments() override;
 
-    public std::vector<std::reference_wrapper<Core::CharacteristicPoint>>& GetCharacteristicPoints() override;
+    public vector<reference_wrapper<Core::CharacteristicPoint>>& GetCharacteristicPoints() override;
 
-            private std::vector<std::reference_wrapper<Core::ProfilePoint>> _profilePointReferences;
-            private std::vector<std::unique_ptr<Core::ProfileSegment>> _profileSegments;
-            private std::vector<std::reference_wrapper<Core::ProfileSegment>> _profileSegmentReferences;
-            private std::vector<std::unique_ptr<Core::CharacteristicPoint>> _characteristicPoints;
-            private std::vector<std::reference_wrapper<Core::CharacteristicPoint>> _characteristicPointReferences;
+            private vector<reference_wrapper<Core::ProfilePoint>> _profilePointReferences;
+            private vector<unique_ptr<Core::ProfileSegment>> _profileSegments;
+            private vector<reference_wrapper<Core::ProfileSegment>> _profileSegmentReferences;
+            private vector<unique_ptr<Core::CharacteristicPoint>> _characteristicPoints;
+            private vector<reference_wrapper<Core::CharacteristicPoint>> _characteristicPointReferences;
     }
 }

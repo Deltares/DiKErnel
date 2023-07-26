@@ -30,8 +30,8 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
                 double increasedLoadTransitionAlphaM,
                 double reducedStrengthTransitionAlphaS,
                 double averageNumberOfWavesCtm,
-                std::unique_ptr<GrassRevetmentWaveRunupRepresentative2P> representative2P,
-                std::unique_ptr<GrassRevetmentWaveRunupWaveAngleImpact> waveAngleImpact,
+                unique_ptr<GrassRevetmentWaveRunupRepresentative2P> representative2P,
+                unique_ptr<GrassRevetmentWaveRunupWaveAngleImpact> waveAngleImpact,
                 int fixedNumberOfWaves,
                 double frontVelocityCu);
 
@@ -40,13 +40,13 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
     public double GetFrontVelocityCu();
 
     public bool Validate(
-                std::vector<std::reference_wrapper<Core::ITimeDependentInput>>& timeDependentInputs,
+                vector<reference_wrapper<Core::ITimeDependentInput>>& timeDependentInputs,
                 Core::IProfileData& profileData) override;
 
-    public std::unique_ptr<Core::LocationDependentOutput> GetLocationDependentOutput(
-                std::vector<std::unique_ptr<Core::TimeDependentOutput>> timeDependentOutputItems) override;
+    public unique_ptr<Core::LocationDependentOutput> GetLocationDependentOutput(
+                vector<unique_ptr<Core::TimeDependentOutput>> timeDependentOutputItems) override;
 
-    protected std::unique_ptr<Core::TimeDependentOutput> CalculateTimeDependentOutput(
+    protected unique_ptr<Core::TimeDependentOutput> CalculateTimeDependentOutput(
                 double initialDamage,
                 Core::ITimeDependentInput& timeDependentInput,
                 Core::IProfileData& profileData) override;
@@ -54,10 +54,10 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
             private int _fixedNumberOfWaves;
             private double _frontVelocityCu;
 
-            private double _verticalDistanceWaterLevelElevation = std::numeric_limits<double>::infinity();
-            private double _waveAngleImpact = std::numeric_limits<double>::infinity();
-            private double _representativeWaveRunup2P = std::numeric_limits<double>::infinity();
-            private double _cumulativeOverload = std::numeric_limits<double>::infinity();
+            private double _verticalDistanceWaterLevelElevation = numeric_limits<double>::infinity();
+            private double _waveAngleImpact = numeric_limits<double>::infinity();
+            private double _representativeWaveRunup2P = numeric_limits<double>::infinity();
+            private double _cumulativeOverload = numeric_limits<double>::infinity();
 
     private double CalculateRepresentativeWaveRunup2P(
                 double surfSimilarityParameter,
@@ -66,9 +66,9 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
     private double CalculateCumulativeOverload(
                 double averageNumberOfWaves);
 
-    private std::unique_ptr<GrassRevetmentWaveRunupRayleighTimeDependentOutputConstructionProperties> CreateConstructionProperties(
+    private unique_ptr<GrassRevetmentWaveRunupRayleighTimeDependentOutputConstructionProperties> CreateConstructionProperties(
                 double incrementDamage,
                 double damage,
-                std::unique_ptr<int> timeOfFailure);
+                unique_ptr<int> timeOfFailure);
     }
 }
