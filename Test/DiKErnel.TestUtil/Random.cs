@@ -48,32 +48,17 @@ namespace DiKErnel.TestUtil
 
         public static bool NextBoolean()
         {
-            if (instance == null)
-            {
-                throw new ArgumentNullException(nameof(instance));
-            }
-
             return Convert.ToBoolean(instance.Next(0, 2));
         }
 
         public static T NextEnumValue<T>()
         {
-            if (instance == null)
-            {
-                throw new ArgumentNullException(nameof(instance));
-            }
-
             var enumValues = (T[]) Enum.GetValues(typeof(T));
             return enumValues[instance.Next(enumValues.Length)];
         }
 
         public static string NextString()
         {
-            if (instance == null)
-            {
-                throw new ArgumentNullException(nameof(instance));
-            }
-
             var nextString = string.Empty;
 
             for (var i = 0; i < instance.Next(10, 21); i++)
