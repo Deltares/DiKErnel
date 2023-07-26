@@ -31,8 +31,8 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
                 double averageNumberOfWavesCtm,
                 int fixedNumberOfWaves,
                 double frontVelocityCwo,
-                unique_ptr<GrassRevetmentOvertoppingLocationDependentAccelerationAlphaA> locationDependentAccelerationAlphaA,
-                unique_ptr<double> enforcedDikeHeight);
+                GrassRevetmentOvertoppingLocationDependentAccelerationAlphaA locationDependentAccelerationAlphaA,
+                double? enforcedDikeHeight);
 
     public double GetCriticalCumulativeOverload();
 
@@ -56,13 +56,13 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
                 vector<reference_wrapper<ITimeDependentInput>>& timeDependentInputs,
                 IProfileData& profileData) override;
 
-    public unique_ptr<LocationDependentOutput> GetLocationDependentOutput(
-                vector<unique_ptr<TimeDependentOutput>> timeDependentOutputItems) override;
+    public LocationDependentOutput GetLocationDependentOutput(
+                vector<TimeDependentOutput> timeDependentOutputItems) override;
 
     protected void InitializeDerivedLocationDependentInput(
                 IProfileData& profileData) override;
 
-    protected unique_ptr<TimeDependentOutput> CalculateTimeDependentOutput(
+    protected TimeDependentOutput CalculateTimeDependentOutput(
                 double initialDamage,
                 ITimeDependentInput& timeDependentInput,
                 IProfileData& profileData) override;
@@ -74,8 +74,8 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
             private double _averageNumberOfWavesCtm;
             private int _fixedNumberOfWaves;
             private double _frontVelocityCwo;
-            private unique_ptr<GrassRevetmentOvertoppingLocationDependentAccelerationAlphaA> _locationDependentAccelerationAlphaA;
-            private unique_ptr<double> _enforcedDikeHeight;
+            private GrassRevetmentOvertoppingLocationDependentAccelerationAlphaA _locationDependentAccelerationAlphaA;
+            private double? _enforcedDikeHeight;
 
             private vector<double> _xValuesProfile;
             private vector<double> _zValuesProfile;
@@ -114,9 +114,9 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
                 vector<reference_wrapper<ProfileSegment>>& profileSegments,
                 double locationHeight);
 
-    private unique_ptr<GrassRevetmentOvertoppingTimeDependentOutputConstructionProperties> CreateConstructionProperties(
+    private GrassRevetmentOvertoppingTimeDependentOutputConstructionProperties CreateConstructionProperties(
                 double incrementDamage,
                 double damage,
-                unique_ptr<int> timeOfFailure);
+                int? timeOfFailure);
     }
 }

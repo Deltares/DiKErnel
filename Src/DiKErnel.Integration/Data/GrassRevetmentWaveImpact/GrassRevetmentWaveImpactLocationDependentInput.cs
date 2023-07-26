@@ -47,13 +47,13 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveImpact
                 vector<reference_wrapper<ITimeDependentInput>>& timeDependentInputs,
                 IProfileData& profileData) override;
 
-    public unique_ptr<LocationDependentOutput> GetLocationDependentOutput(
-                vector<unique_ptr<TimeDependentOutput>> timeDependentOutputItems) override;
+    public LocationDependentOutput GetLocationDependentOutput(
+                vector<TimeDependentOutput> timeDependentOutputItems) override;
 
     protected void InitializeDerivedLocationDependentInput(
                 IProfileData& profileData) override;
 
-    protected unique_ptr<TimeDependentOutput> CalculateTimeDependentOutput(
+    protected TimeDependentOutput CalculateTimeDependentOutput(
                 double initialDamage,
                 ITimeDependentInput& timeDependentInput,
                 IProfileData& profileData) override;
@@ -80,6 +80,6 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveImpact
     private unique_ptr<GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties> CreateConstructionProperties(
                 double incrementDamage,
                 double damage,
-                unique_ptr<int> timeOfFailure);
+                int? timeOfFailure);
     }
 }

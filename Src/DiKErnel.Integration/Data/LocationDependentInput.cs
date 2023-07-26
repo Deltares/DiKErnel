@@ -24,7 +24,7 @@ namespace DiKErnel.Integration.Data
                 vector<reference_wrapper<ITimeDependentInput>>& timeDependentInputs,
                 IProfileData& profileData) override;
 
-    public unique_ptr<TimeDependentOutput> Calculate(
+    public TimeDependentOutput Calculate(
                 double initialDamage,
                 ITimeDependentInput& timeDependentInput,
                 IProfileData& profileData) override;
@@ -45,7 +45,7 @@ namespace DiKErnel.Integration.Data
     protected virtual void InitializeDerivedLocationDependentInput(
                 IProfileData& profileData);
 
-    protected virtual unique_ptr<TimeDependentOutput> CalculateTimeDependentOutput(
+    protected virtual TimeDependentOutput CalculateTimeDependentOutput(
                 double initialDamage,
                 ITimeDependentInput& timeDependentInput,
                 IProfileData& profileData) = 0;

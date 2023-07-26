@@ -53,7 +53,7 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
                 unique_ptr<GrassRevetmentWaveRunupRepresentative2P> representative2P,
                 unique_ptr<GrassRevetmentWaveRunupWaveAngleImpact> waveAngleImpact);
 
-    protected unique_ptr<TimeDependentOutput> CalculateTimeDependentOutput(
+    protected TimeDependentOutput CalculateTimeDependentOutput(
                 double initialDamage,
                 ITimeDependentInput& timeDependentInput,
                 IProfileData& profileData) override = 0;

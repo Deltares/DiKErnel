@@ -27,10 +27,10 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
                 double failureTension,
                 double densityOfWater,
                 double soilElasticity,
-                unique_ptr<AsphaltRevetmentWaveImpactLayer> upperLayer,
-                unique_ptr<AsphaltRevetmentWaveImpactLayer> subLayer,
+                AsphaltRevetmentWaveImpactLayer upperLayer,
+                AsphaltRevetmentWaveImpactLayer subLayer,
                 double averageNumberOfWavesCtm,
-                unique_ptr<AsphaltRevetmentWaveImpactFatigue> fatigue,
+                AsphaltRevetmentWaveImpactFatigue fatigue,
                 double impactNumberC,
                 double stiffnessRelationNu,
                 vector<pair<double, double>> widthFactors,
@@ -65,13 +65,13 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
                 vector<reference_wrapper<ITimeDependentInput>>& timeDependentInputs,
                 IProfileData& profileData) override;
 
-    public unique_ptr<LocationDependentOutput> GetLocationDependentOutput(
-                vector<unique_ptr<TimeDependentOutput>> timeDependentOutputItems) override;
+    public LocationDependentOutput GetLocationDependentOutput(
+                vector<TimeDependentOutput> timeDependentOutputItems) override;
 
     protected void InitializeDerivedLocationDependentInput(
                 IProfileData& profileData) override;
 
-    protected unique_ptr<TimeDependentOutput> CalculateTimeDependentOutput(
+    protected TimeDependentOutput CalculateTimeDependentOutput(
                 double initialDamage,
                 ITimeDependentInput& timeDependentInput,
                 IProfileData& profileData) override;
@@ -79,10 +79,10 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
             private double _failureTension;
             private double _densityOfWater;
             private double _soilElasticity;
-            private unique_ptr<AsphaltRevetmentWaveImpactLayer> _upperLayer;
-            private unique_ptr<AsphaltRevetmentWaveImpactLayer> _subLayer;
+            private AsphaltRevetmentWaveImpactLayer _upperLayer;
+            private AsphaltRevetmentWaveImpactLayer _subLayer;
             private double _averageNumberOfWavesCtm;
-            private unique_ptr<AsphaltRevetmentWaveImpactFatigue> _fatigue;
+            private AsphaltRevetmentWaveImpactFatigue _fatigue;
             private double _impactNumberC;
             private double _stiffnessRelationNu;
             private vector<pair<double, double>> _widthFactors;
@@ -100,9 +100,9 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
                 double waterLevel,
                 double waveHeightHm0);
 
-    private unique_ptr<AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties> CreateConstructionProperties(
+    private AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties CreateConstructionProperties(
                 double incrementDamage,
                 double damage,
-                unique_ptr<int> timeOfFailure);
+                int? timeOfFailure);
     }
 }
