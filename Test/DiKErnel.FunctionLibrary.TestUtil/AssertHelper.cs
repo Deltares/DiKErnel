@@ -18,7 +18,7 @@
 
 using NUnit.Framework;
 
-namespace DiKErnel.System.TestUtil
+namespace DiKErnel.FunctionLibrary.TestUtil
 {
     public static class AssertHelper
     {

@@ -17,7 +17,7 @@
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
 using DiKErnel.FunctionLibrary.GrassRevetmentWaveRunup;
-using DiKErnel.System.TestUtil;
+using DiKErnel.FunctionLibrary.TestUtil;
 using NUnit.Framework;
 
 namespace DiKErnel.FunctionLibrary.Test.GrassRevetmentWaveRunup

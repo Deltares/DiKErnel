@@ -17,7 +17,7 @@
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
 using DiKErnel.FunctionLibrary.NaturalStoneRevetment;
-using DiKErnel.System.TestUtil;
+using DiKErnel.FunctionLibrary.TestUtil;
 using NUnit.Framework;
 
 namespace DiKErnel.FunctionLibrary.Test.NaturalStoneRevetment
@@ -557,8 +557,8 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneRevetment
         public void DurationInTimeStepFailure_ValidInput_ExpectedValue()
         {
             // Setup
-            const double referenceTimeFailure = 945.943;
-            const double referenceTimeDegradation = 597.743;
+            const double referenceTimeFailure = 845.9;
+            const double referenceTimeDegradation = 497.7;
 
             // Call
             double durationInTimeStepFailure = NaturalStoneRevetmentFunctions.DurationInTimeStepFailure(referenceTimeFailure,
