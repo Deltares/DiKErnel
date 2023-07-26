@@ -27,14 +27,14 @@ namespace DiKErnel.Integration.Data
 
     public IProfileData& GetProfileData() override;
 
-    public vector<reference_wrapper<ILocationDependentInput>>& GetLocationDependentInputItems() override;
+    public vector<ILocationDependentInput>& GetLocationDependentInputItems() override;
 
-    public vector<reference_wrapper<ITimeDependentInput>>& GetTimeDependentInputItems() override;
+    public vector<ITimeDependentInput>& GetTimeDependentInputItems() override;
 
             private IProfileData _profileData;
             private vector<ILocationDependentInput> _locationDependentInputItems;
-            private vector<reference_wrapper<ILocationDependentInput>> _locationDependentInputItemReferences;
+            private vector<ILocationDependentInput> _locationDependentInputItemReferences;
             private vector<ITimeDependentInput> _timeDependentInputItems;
-            private vector<reference_wrapper<ITimeDependentInput>> _timeDependentInputItemReferences;
+            private vector<ITimeDependentInput> _timeDependentInputItemReferences;
     }
 }

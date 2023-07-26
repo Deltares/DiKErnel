@@ -21,7 +21,7 @@ namespace DiKErnel.Integration.Data
     internal class LocationDependentInput : ILocationDependentInput
     {
     public bool Validate(
-                vector<reference_wrapper<ITimeDependentInput>>& timeDependentInputs,
+                vector<ITimeDependentInput>& timeDependentInputs,
                 IProfileData& profileData) override;
 
     public TimeDependentOutput Calculate(

@@ -53,7 +53,7 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
     public NaturalStoneRevetmentWaveAngleImpact& GetWaveAngleImpact();
 
     public bool Validate(
-                vector<reference_wrapper<ITimeDependentInput>>& timeDependentInputs,
+                vector<ITimeDependentInput>& timeDependentInputs,
                 IProfileData& profileData) override;
 
     public LocationDependentOutput GetLocationDependentOutput(

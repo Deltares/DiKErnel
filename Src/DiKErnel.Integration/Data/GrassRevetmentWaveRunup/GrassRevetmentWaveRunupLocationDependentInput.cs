@@ -37,7 +37,7 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
     public GrassRevetmentWaveRunupWaveAngleImpact& GetWaveAngleImpact();
 
     public bool Validate(
-                vector<reference_wrapper<ITimeDependentInput>>& timeDependentInputs,
+                vector<ITimeDependentInput>& timeDependentInputs,
                 IProfileData& profileData) override;
 
         protected void GrassRevetmentWaveRunupLocationDependentInput(

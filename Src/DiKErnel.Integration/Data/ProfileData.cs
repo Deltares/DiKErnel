@@ -35,14 +35,14 @@ namespace DiKErnel.Integration.Data
     public ProfileSegment* GetProfileSegment(
                 double horizontalPosition) override;
 
-    public vector<reference_wrapper<ProfileSegment>>& GetProfileSegments() override;
+    public vector<ProfileSegment>& GetProfileSegments() override;
 
-    public vector<reference_wrapper<CharacteristicPoint>>& GetCharacteristicPoints() override;
+    public vector<CharacteristicPoint>& GetCharacteristicPoints() override;
 
-            private vector<reference_wrapper<ProfilePoint>> _profilePointReferences;
+            private vector<ProfilePoint> _profilePointReferences;
             private vector<ProfileSegment> _profileSegments;
-            private vector<reference_wrapper<ProfileSegment>> _profileSegmentReferences;
+            private vector<ProfileSegment> _profileSegmentReferences;
             private vector<CharacteristicPoint> _characteristicPoints;
-            private vector<reference_wrapper<CharacteristicPoint>> _characteristicPointReferences;
+            private vector<CharacteristicPoint> _characteristicPointReferences;
     }
 }

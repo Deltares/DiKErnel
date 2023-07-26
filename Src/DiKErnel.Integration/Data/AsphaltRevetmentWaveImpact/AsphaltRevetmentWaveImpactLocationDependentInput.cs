@@ -62,7 +62,7 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
     public IReadOnlyList<(double, double)>& GetImpactFactors();
 
     public bool Validate(
-                vector<reference_wrapper<ITimeDependentInput>>& timeDependentInputs,
+                vector<ITimeDependentInput>& timeDependentInputs,
                 IProfileData& profileData) override;
 
     public LocationDependentOutput GetLocationDependentOutput(
