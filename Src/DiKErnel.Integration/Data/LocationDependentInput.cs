@@ -29,13 +29,13 @@ namespace DiKErnel.Integration.Data
                 const Core::ITimeDependentInput& timeDependentInput,
                 const Core::IProfileData& profileData) override;
 
-    public double GetX() const override;
+    public double GetX() override;
 
-    public double GetInitialDamage() const override;
+    public double GetInitialDamage() override;
 
-    public double GetFailureNumber() const override;
+    public double GetFailureNumber() override;
 
-    public double GetZ() const override;
+    public double GetZ() override;
 
         protected void LocationDependentInput(
                 double x,

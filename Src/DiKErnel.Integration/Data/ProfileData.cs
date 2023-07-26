@@ -24,7 +24,7 @@ namespace DiKErnel.Integration.Data
                 std::vector<std::unique_ptr<Core::ProfileSegment>> profileSegments,
                 std::vector<std::unique_ptr<Core::CharacteristicPoint>> characteristicPoints);
 
-    public bool Validate() const override;
+    public bool Validate() override;
 
     public double InterpolationVerticalHeight(
                 double horizontalPosition) const override;
@@ -32,12 +32,12 @@ namespace DiKErnel.Integration.Data
     public double InterpolationHorizontalPosition(
                 double verticalHeight) const override;
 
-    public const Core::ProfileSegment* GetProfileSegment(
+    public Core::ProfileSegment* GetProfileSegment(
                 double horizontalPosition) const override;
 
-    public const std::vector<std::reference_wrapper<Core::ProfileSegment>>& GetProfileSegments() const override;
+    public std::vector<std::reference_wrapper<Core::ProfileSegment>>& GetProfileSegments() override;
 
-    public const std::vector<std::reference_wrapper<Core::CharacteristicPoint>>& GetCharacteristicPoints() const override;
+    public std::vector<std::reference_wrapper<Core::CharacteristicPoint>>& GetCharacteristicPoints() override;
 
             private std::vector<std::reference_wrapper<Core::ProfilePoint>> _profilePointReferences;
             private std::vector<std::unique_ptr<Core::ProfileSegment>> _profileSegments;

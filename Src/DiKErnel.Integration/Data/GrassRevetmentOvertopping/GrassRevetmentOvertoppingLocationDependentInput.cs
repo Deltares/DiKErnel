@@ -50,7 +50,7 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
 
     public GrassRevetmentOvertoppingLocationDependentAccelerationAlphaA& GetLocationDependentAccelerationAlphaA();
 
-    public const double* GetEnforcedDikeHeight();
+    public double* GetEnforcedDikeHeight();
 
     public bool Validate(
                 const std::vector<std::reference_wrapper<Core::ITimeDependentInput>>& timeDependentInputs,

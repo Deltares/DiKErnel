@@ -25,11 +25,11 @@ namespace DiKErnel.Integration.Data
                 std::vector<std::unique_ptr<Core::ILocationDependentInput>> locationDependentInputItems,
                 std::vector<std::unique_ptr<Core::ITimeDependentInput>> timeDependentInputItems);
 
-    public const Core::IProfileData& GetProfileData() const override;
+    public Core::IProfileData& GetProfileData() override;
 
-    public const std::vector<std::reference_wrapper<Core::ILocationDependentInput>>& GetLocationDependentInputItems() const override;
+    public std::vector<std::reference_wrapper<Core::ILocationDependentInput>>& GetLocationDependentInputItems() override;
 
-    public const std::vector<std::reference_wrapper<Core::ITimeDependentInput>>& GetTimeDependentInputItems() const override;
+    public std::vector<std::reference_wrapper<Core::ITimeDependentInput>>& GetTimeDependentInputItems() override;
 
             private std::unique_ptr<Core::IProfileData> _profileData;
             private std::vector<std::unique_ptr<Core::ILocationDependentInput>> _locationDependentInputItems;

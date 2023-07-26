@@ -55,11 +55,11 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
 
     public double GetStiffnessRelationNu();
 
-    public const std::vector<std::pair<double, double>>& GetWidthFactors();
+    public std::vector<std::pair<double, double>>& GetWidthFactors();
 
-    public const std::vector<std::pair<double, double>>& GetDepthFactors();
+    public std::vector<std::pair<double, double>>& GetDepthFactors();
 
-    public const std::vector<std::pair<double, double>>& GetImpactFactors();
+    public std::vector<std::pair<double, double>>& GetImpactFactors();
 
     public bool Validate(
                 const std::vector<std::reference_wrapper<Core::ITimeDependentInput>>& timeDependentInputs,
