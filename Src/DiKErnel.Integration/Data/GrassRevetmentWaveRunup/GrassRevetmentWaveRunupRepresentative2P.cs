@@ -27,15 +27,15 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
                 double gammab,
                 double gammaf);
 
-        public double GetRepresentative2PAru() const;
+        public double GetRepresentative2PAru();
 
-        public double GetRepresentative2PBru() const;
+        public double GetRepresentative2PBru();
 
-        public double GetRepresentative2PCru() const;
+        public double GetRepresentative2PCru();
 
-        public double GetGammab() const;
+        public double GetGammab();
 
-        public double GetGammaf() const;
+        public double GetGammaf();
 
             private double _representative2PAru;
             private double _representative2PBru;

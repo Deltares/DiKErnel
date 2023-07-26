@@ -34,23 +34,23 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
                 std::unique_ptr<GrassRevetmentOvertoppingLocationDependentAccelerationAlphaA> locationDependentAccelerationAlphaA,
                 std::unique_ptr<double> enforcedDikeHeight);
 
-    public double GetCriticalCumulativeOverload() const;
+    public double GetCriticalCumulativeOverload();
 
-    public double GetCriticalFrontVelocity() const;
+    public double GetCriticalFrontVelocity();
 
-    public double GetIncreasedLoadTransitionAlphaM() const;
+    public double GetIncreasedLoadTransitionAlphaM();
 
-    public double GetReducedStrengthTransitionAlphaS() const;
+    public double GetReducedStrengthTransitionAlphaS();
 
-    public double GetAverageNumberOfWavesCtm() const;
+    public double GetAverageNumberOfWavesCtm();
 
-    public int GetFixedNumberOfWaves() const;
+    public int GetFixedNumberOfWaves();
 
-    public double GetFrontVelocityCwo() const;
+    public double GetFrontVelocityCwo();
 
-    public GrassRevetmentOvertoppingLocationDependentAccelerationAlphaA& GetLocationDependentAccelerationAlphaA() const;
+    public GrassRevetmentOvertoppingLocationDependentAccelerationAlphaA& GetLocationDependentAccelerationAlphaA();
 
-    public const double* GetEnforcedDikeHeight() const;
+    public const double* GetEnforcedDikeHeight();
 
     public bool Validate(
                 const std::vector<std::reference_wrapper<Core::ITimeDependentInput>>& timeDependentInputs,
@@ -104,15 +104,15 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
                 double waterLevel,
                 double waveHeightHm0,
                 double wavePeriodTm10,
-                double waveDirection) const;
+                double waveDirection);
 
     private double CalculateCumulativeOverload(
-                double averageNumberOfWaves) const;
+                double averageNumberOfWaves);
 
     private double CalculateDikeHeight(
                 const std::pair<double, double>& outerCrest,
                 const std::vector<std::reference_wrapper<Core::ProfileSegment>>& profileSegments,
-                double locationHeight) const;
+                double locationHeight);
 
     private std::unique_ptr<GrassRevetmentOvertoppingTimeDependentOutputConstructionProperties> CreateConstructionProperties(
                 double incrementDamage,

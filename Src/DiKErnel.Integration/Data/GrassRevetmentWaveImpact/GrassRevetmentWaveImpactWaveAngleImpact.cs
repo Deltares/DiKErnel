@@ -25,11 +25,11 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveImpact
                 double waveAngleImpactQwa,
                 double waveAngleImpactRwa);
 
-        public double GetWaveAngleImpactNwa() const;
+        public double GetWaveAngleImpactNwa();
 
-        public double GetWaveAngleImpactQwa() const;
+        public double GetWaveAngleImpactQwa();
 
-        public double GetWaveAngleImpactRwa() const;
+        public double GetWaveAngleImpactRwa();
 
             private const double _waveAngleImpactNwa;
             private const double _waveAngleImpactQwa;

@@ -24,9 +24,9 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
                 double valueAtCrest,
                 double valueAtInnerSlope);
 
-        public double ValueAtCrest() const;
+        public double ValueAtCrest();
 
-        public double ValueAtInnerSlope() const;
+        public double ValueAtInnerSlope();
 
             private double _valueAtCrest;
             private double _valueAtInnerSlope;

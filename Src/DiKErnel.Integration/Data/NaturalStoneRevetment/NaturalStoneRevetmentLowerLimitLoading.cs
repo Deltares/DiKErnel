@@ -25,11 +25,11 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
                 double lowerLimitBll,
                 double lowerLimitCll);
 
-        public double GetLowerLimitAll() const;
+        public double GetLowerLimitAll();
 
-        public double GetLowerLimitBll() const;
+        public double GetLowerLimitBll();
 
-        public double GetLowerLimitCll() const;
+        public double GetLowerLimitCll();
 
             private double _lowerLimitAll;
             private double _lowerLimitBll;

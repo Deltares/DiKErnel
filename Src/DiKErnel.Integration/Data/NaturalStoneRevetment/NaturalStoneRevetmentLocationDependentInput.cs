@@ -34,23 +34,23 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
                 std::unique_ptr<NaturalStoneRevetmentNormativeWidthOfWaveImpact> normativeWidthOfWaveImpact,
                 std::unique_ptr<NaturalStoneRevetmentWaveAngleImpact> waveAngleImpact);
 
-    public double GetRelativeDensity() const;
+    public double GetRelativeDensity();
 
-    public double GetThicknessTopLayer() const;
+    public double GetThicknessTopLayer();
 
-    public NaturalStoneRevetmentHydraulicLoads& GetHydraulicLoads() const;
+    public NaturalStoneRevetmentHydraulicLoads& GetHydraulicLoads();
 
-    public NaturalStoneRevetmentSlope& GetSlope() const;
+    public NaturalStoneRevetmentSlope& GetSlope();
 
-    public NaturalStoneRevetmentUpperLimitLoading& GetUpperLimitLoading() const;
+    public NaturalStoneRevetmentUpperLimitLoading& GetUpperLimitLoading();
 
-    public NaturalStoneRevetmentLowerLimitLoading& GetLowerLimitLoading() const;
+    public NaturalStoneRevetmentLowerLimitLoading& GetLowerLimitLoading();
 
-    public NaturalStoneRevetmentDistanceMaximumWaveElevation& GetDistanceMaximumWaveElevation() const;
+    public NaturalStoneRevetmentDistanceMaximumWaveElevation& GetDistanceMaximumWaveElevation();
 
-    public NaturalStoneRevetmentNormativeWidthOfWaveImpact& GetNormativeWidthOfWaveImpact() const;
+    public NaturalStoneRevetmentNormativeWidthOfWaveImpact& GetNormativeWidthOfWaveImpact();
 
-    public NaturalStoneRevetmentWaveAngleImpact& GetWaveAngleImpact() const;
+    public NaturalStoneRevetmentWaveAngleImpact& GetWaveAngleImpact();
 
     public bool Validate(
                 const std::vector<std::reference_wrapper<Core::ITimeDependentInput>>& timeDependentInputs,
@@ -113,12 +113,12 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
 
     private double CalculateHydraulicLoad(
                 double surfSimilarityParameter,
-                double waveHeightHm0) const;
+                double waveHeightHm0);
 
     private int CalculateTimeOfFailure(
                 double failureNumber,
                 double wavePeriodTm10,
-                double beginTime) const;
+                double beginTime);
 
     private std::unique_ptr<NaturalStoneRevetmentTimeDependentOutputConstructionProperties> CreateConstructionProperties(
                 double incrementDamage,

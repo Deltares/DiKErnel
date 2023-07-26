@@ -31,17 +31,17 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveImpact
                 double upperLimitLoadingAul,
                 double lowerLimitLoadingAll);
 
-    public GrassRevetmentWaveImpactWaveAngleImpact& GetWaveAngleImpact() const;
+    public GrassRevetmentWaveImpactWaveAngleImpact& GetWaveAngleImpact();
 
-    public double GetMinimumWaveHeightTemax() const;
+    public double GetMinimumWaveHeightTemax();
 
-    public double GetMaximumWaveHeightTemin() const;
+    public double GetMaximumWaveHeightTemin();
 
-    public GrassRevetmentWaveImpactTimeLine& GetTimeLine() const;
+    public GrassRevetmentWaveImpactTimeLine& GetTimeLine();
 
-    public double GetUpperLimitLoadingAul() const;
+    public double GetUpperLimitLoadingAul();
 
-    public double GetLowerLimitLoadingAll() const;
+    public double GetLowerLimitLoadingAll();
 
     public bool Validate(
                 const std::vector<std::reference_wrapper<Core::ITimeDependentInput>>& timeDependentInputs,

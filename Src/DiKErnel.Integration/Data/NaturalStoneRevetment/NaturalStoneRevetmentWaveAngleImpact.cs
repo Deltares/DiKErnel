@@ -23,7 +23,7 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
         public void NaturalStoneRevetmentWaveAngleImpact(
                 double betamax);
 
-        public double GetBetamax() const;
+        public double GetBetamax();
 
         private double _betamax;
     }

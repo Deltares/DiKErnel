@@ -35,9 +35,9 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
                 int fixedNumberOfWaves,
                 double frontVelocityCu);
 
-    public int GetFixedNumberOfWaves() const;
+    public int GetFixedNumberOfWaves();
 
-    public double GetFrontVelocityCu() const;
+    public double GetFrontVelocityCu();
 
     public bool Validate(
                 const std::vector<std::reference_wrapper<Core::ITimeDependentInput>>& timeDependentInputs,
@@ -61,10 +61,10 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
 
     private double CalculateRepresentativeWaveRunup2P(
                 double surfSimilarityParameter,
-                double waveHeightHm0) const;
+                double waveHeightHm0);
 
     private double CalculateCumulativeOverload(
-                double averageNumberOfWaves) const;
+                double averageNumberOfWaves);
 
     private std::unique_ptr<GrassRevetmentWaveRunupRayleighTimeDependentOutputConstructionProperties> CreateConstructionProperties(
                 double incrementDamage,

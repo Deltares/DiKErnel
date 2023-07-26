@@ -24,9 +24,9 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
                 double upperLevelAus,
                 double lowerLevelAls);
 
-        public double GetUpperLevelAus() const;
+        public double GetUpperLevelAus();
 
-        public double GetLowerLevelAls() const;
+        public double GetLowerLevelAls();
 
             private double _upperLevelAus;
             private double _lowerLevelAls;

@@ -31,23 +31,23 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
                 double hydraulicLoadNs,
                 double hydraulicLoadXib);
 
-        public double GetHydraulicLoadAp() const;
+        public double GetHydraulicLoadAp();
 
-        public double GetHydraulicLoadBp() const;
+        public double GetHydraulicLoadBp();
 
-        public double GetHydraulicLoadCp() const;
+        public double GetHydraulicLoadCp();
 
-        public double GetHydraulicLoadNp() const;
+        public double GetHydraulicLoadNp();
 
-        public double GetHydraulicLoadAs() const;
+        public double GetHydraulicLoadAs();
 
-        public double GetHydraulicLoadBs() const;
+        public double GetHydraulicLoadBs();
 
-        public double GetHydraulicLoadCs() const;
+        public double GetHydraulicLoadCs();
 
-        public double GetHydraulicLoadNs() const;
+        public double GetHydraulicLoadNs();
 
-        public double GetHydraulicLoadXib() const;
+        public double GetHydraulicLoadXib();
 
             private double _hydraulicLoadAp;
             private double _hydraulicLoadBp;

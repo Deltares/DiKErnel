@@ -24,9 +24,9 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
                 double abeta,
                 double betamax);
 
-        public double GetAbeta() const;
+        public double GetAbeta();
 
-        public double GetBetamax() const;
+        public double GetBetamax();
 
             private double _abeta;
             private double _betamax;

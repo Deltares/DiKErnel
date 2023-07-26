@@ -37,29 +37,29 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
                 std::vector<std::pair<double, double>> depthFactors,
                 std::vector<std::pair<double, double>> impactFactors);
 
-    public double GetFailureTension() const;
+    public double GetFailureTension();
 
-    public double GetDensityOfWater() const;
+    public double GetDensityOfWater();
 
-    public double GetSoilElasticity() const;
+    public double GetSoilElasticity();
 
-    public AsphaltRevetmentWaveImpactLayer& GetUpperLayer() const;
+    public AsphaltRevetmentWaveImpactLayer& GetUpperLayer();
 
-    public AsphaltRevetmentWaveImpactLayer* GetSubLayer() const;
+    public AsphaltRevetmentWaveImpactLayer* GetSubLayer();
 
-    public double GetAverageNumberOfWavesCtm() const;
+    public double GetAverageNumberOfWavesCtm();
 
-    public AsphaltRevetmentWaveImpactFatigue& GetFatigue() const;
+    public AsphaltRevetmentWaveImpactFatigue& GetFatigue();
 
-    public double GetImpactNumberC() const;
+    public double GetImpactNumberC();
 
-    public double GetStiffnessRelationNu() const;
+    public double GetStiffnessRelationNu();
 
-    public const std::vector<std::pair<double, double>>& GetWidthFactors() const;
+    public const std::vector<std::pair<double, double>>& GetWidthFactors();
 
-    public const std::vector<std::pair<double, double>>& GetDepthFactors() const;
+    public const std::vector<std::pair<double, double>>& GetDepthFactors();
 
-    public const std::vector<std::pair<double, double>>& GetImpactFactors() const;
+    public const std::vector<std::pair<double, double>>& GetImpactFactors();
 
     public bool Validate(
                 const std::vector<std::reference_wrapper<Core::ITimeDependentInput>>& timeDependentInputs,
@@ -98,7 +98,7 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
 
     private FunctionLibrary::AsphaltRevetmentWaveImpactFunctionsInput CreateIncrementDamageInput(
                 double waterLevel,
-                double waveHeightHm0) const;
+                double waveHeightHm0);
 
     private std::unique_ptr<AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties> CreateConstructionProperties(
                 double incrementDamage,
