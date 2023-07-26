@@ -24,12 +24,12 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputNaturalStone
     internal class JsonInputNaturalStoneCalculationLimitData
     {
         [JsonProperty(JsonInputDefinitions.A_COEFFICIENT)]
-        public double? A { get; set; }
+        public double? A { get; private set; }
 
         [JsonProperty(JsonInputDefinitions.B_COEFFICIENT)]
-        public double? B { get; set; }
+        public double? B { get; private set; }
 
         [JsonProperty(JsonInputDefinitions.C_COEFFICIENT)]
-        public double? C { get; set; }
+        public double? C { get; private set; }
     }
 }
