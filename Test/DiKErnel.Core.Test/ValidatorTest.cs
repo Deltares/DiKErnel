@@ -22,6 +22,7 @@ using System.Linq;
 using DiKErnel.Core.Data;
 using DiKErnel.Util;
 using NSubstitute;
+using NSubstitute.ExceptionExtensions;
 using NUnit.Framework;
 
 namespace DiKErnel.Core.Test
@@ -35,37 +36,59 @@ namespace DiKErnel.Core.Test
                                                                       [Values(true, false)] bool timeDependentInputValid)
         {
             // Setup
+            var timeDependentInput1 = Substitute.For<ITimeDependentInput>();
+            timeDependentInput1.Validate().Returns(true);
+
+            var timeDependentInput2 = Substitute.For<ITimeDependentInput>();
+            timeDependentInput2.Validate().Returns(timeDependentInputValid);
+
+            var timeDependentInput3 = Substitute.For<ITimeDependentInput>();
+            timeDependentInput3.Validate().Returns(true);
+
             var profileData = Substitute.For<IProfileData>();
             profileData.Validate().Returns(profileDataValid);
 
-            var locationDependentInput = Substitute.For<ILocationDependentInput>();
-            locationDependentInput.Validate(Arg.Any<IReadOnlyList<ITimeDependentInput>>(), Arg.Any<IProfileData>())
-                                  .Returns(locationDependentInputValid);
+            var locationDependentInput1 = Substitute.For<ILocationDependentInput>();
+            locationDependentInput1.Validate(Arg.Any<IReadOnlyList<ITimeDependentInput>>(), Arg.Any<IProfileData>())
+                                   .Returns(true);
 
-            var timeDependentInput = Substitute.For<ITimeDependentInput>();
-            timeDependentInput.Validate().Returns(timeDependentInputValid);
+            var locationDependentInput2 = Substitute.For<ILocationDependentInput>();
+            locationDependentInput2.Validate(Arg.Any<IReadOnlyList<ITimeDependentInput>>(), Arg.Any<IProfileData>())
+                                   .Returns(locationDependentInputValid);
+
+            var locationDependentInput3 = Substitute.For<ILocationDependentInput>();
+            locationDependentInput3.Validate(Arg.Any<IReadOnlyList<ITimeDependentInput>>(), Arg.Any<IProfileData>())
+                                   .Returns(true);
 
             var calculationInput = Substitute.For<ICalculationInput>();
+
+            calculationInput.TimeDependentInputItems.Returns(new[]
+            {
+                timeDependentInput1,
+                timeDependentInput2,
+                timeDependentInput3
+            });
 
             calculationInput.ProfileData.Returns(profileData);
 
             calculationInput.LocationDependentInputItems.Returns(new[]
             {
-                locationDependentInput
-            });
-
-            calculationInput.TimeDependentInputItems.Returns(new[]
-            {
-                timeDependentInput
+                locationDependentInput1,
+                locationDependentInput2,
+                locationDependentInput3
             });
 
             // Call
             DataResult<ValidationResultType> validationResult = Validator.Validate(calculationInput);
 
             // Assert
+            timeDependentInput1.Received(1).Validate();
+            timeDependentInput2.Received(1).Validate();
+            timeDependentInput3.Received(1).Validate();
             profileData.Received(1).Validate();
-            locationDependentInput.ReceivedWithAnyArgs(1).Validate(null, null);
-            timeDependentInput.Received(1).Validate();
+            locationDependentInput1.ReceivedWithAnyArgs(1).Validate(null, null);
+            locationDependentInput2.ReceivedWithAnyArgs(1).Validate(null, null);
+            locationDependentInput3.ReceivedWithAnyArgs(1).Validate(null, null);
 
             ValidationResultType expectedValidationResultType = profileDataValid
                                                                 && locationDependentInputValid
@@ -91,8 +114,7 @@ namespace DiKErnel.Core.Test
 
             var locationDependentInput = Substitute.For<ILocationDependentInput>();
             locationDependentInput.Validate(Arg.Any<IReadOnlyList<ITimeDependentInput>>(), Arg.Any<IProfileData>())
-                                  .Returns(true)
-                                  .AndDoes(callInfo => throw new InvalidOperationException(exceptionMessage));
+                                  .ThrowsForAnyArgs(new InvalidOperationException(exceptionMessage));
 
             var timeDependentInput = Substitute.For<ITimeDependentInput>();
             timeDependentInput.Validate().Returns(true);
