@@ -25,6 +25,14 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
 {
     internal class AsphaltRevetmentWaveImpactLocationDependentInput : LocationDependentInput
     {
+        private double outerSlope = double.PositiveInfinity;
+        private double logFailureTension = double.PositiveInfinity;
+        private double computationalThickness = double.PositiveInfinity;
+        private double stiffnessRelation = double.PositiveInfinity;
+        private double subLayerElasticModulus = double.PositiveInfinity;
+        private double averageNumberOfWaves = double.PositiveInfinity;
+        private double maximumPeakStress = double.PositiveInfinity;
+
         public AsphaltRevetmentWaveImpactLocationDependentInput(double x, double initialDamage, double failureNumber,
                                                                 double failureTension, double densityOfWater,
                                                                 double soilElasticity,
@@ -50,13 +58,6 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
             WidthFactors = widthFactors;
             DepthFactors = depthFactors;
             ImpactFactors = impactFactors;
-            OuterSlope = double.PositiveInfinity;
-            LogFailureTension = double.PositiveInfinity;
-            ComputationalThickness = double.PositiveInfinity;
-            StiffnessRelation = double.PositiveInfinity;
-            SubLayerElasticModulus = double.PositiveInfinity;
-            AverageNumberOfWaves = double.PositiveInfinity;
-            MaximumPeakStress = double.PositiveInfinity;
         }
 
         public double FailureTension { get; }
@@ -82,20 +83,6 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
         public IReadOnlyList<(double, double)> DepthFactors { get; }
 
         public IReadOnlyList<(double, double)> ImpactFactors { get; }
-
-        public double OuterSlope { get; private set; }
-
-        public double LogFailureTension { get; private set; }
-
-        public double ComputationalThickness { get; private set; }
-
-        public double StiffnessRelation { get; private set; }
-
-        public double SubLayerElasticModulus { get; private set; }
-
-        public double AverageNumberOfWaves { get; private set; }
-
-        public double MaximumPeakStress { get; private set; }
 
         public override bool Validate(IReadOnlyList<ITimeDependentInput> timeDependentInputItems,
                                       IProfileData profileData)
