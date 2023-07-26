@@ -18,7 +18,7 @@
 
 namespace DiKErnel.Integration.Data.GrassRevetmentWaveImpact
 {
-    internal class GrassRevetmentWaveImpactLocationDependentInput : public LocationDependentInput
+    internal class GrassRevetmentWaveImpactLocationDependentInput : LocationDependentInput
     {
         public void GrassRevetmentWaveImpactLocationDependentInput(
                 double x,

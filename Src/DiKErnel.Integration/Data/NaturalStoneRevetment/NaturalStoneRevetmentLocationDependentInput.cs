@@ -18,7 +18,7 @@
 
 namespace DiKErnel.Integration.Data.NaturalStoneRevetment
 {
-    internal class NaturalStoneRevetmentLocationDependentInput : public LocationDependentInput
+    internal class NaturalStoneRevetmentLocationDependentInput : LocationDependentInput
     {
         public void NaturalStoneRevetmentLocationDependentInput(
                 double x,

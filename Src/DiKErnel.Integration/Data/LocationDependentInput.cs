@@ -18,7 +18,7 @@
 
 namespace DiKErnel.Integration.Data
 {
-    internal class LocationDependentInput : public Core::ILocationDependentInput
+    internal class LocationDependentInput : Core::ILocationDependentInput
     {
     public bool Validate(
                 const std::vector<std::reference_wrapper<Core::ITimeDependentInput>>& timeDependentInputs,

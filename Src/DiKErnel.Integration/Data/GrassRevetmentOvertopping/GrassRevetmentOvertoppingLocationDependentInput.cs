@@ -18,7 +18,7 @@
 
 namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
 {
-    internal class GrassRevetmentOvertoppingLocationDependentInput : public LocationDependentInput
+    internal class GrassRevetmentOvertoppingLocationDependentInput : LocationDependentInput
     {
         public void GrassRevetmentOvertoppingLocationDependentInput(
                 double x,

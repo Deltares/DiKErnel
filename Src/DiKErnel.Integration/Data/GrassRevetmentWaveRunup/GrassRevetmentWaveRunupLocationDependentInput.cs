@@ -18,7 +18,7 @@
 
 namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
 {
-    internal class GrassRevetmentWaveRunupLocationDependentInput : public LocationDependentInput
+    internal class GrassRevetmentWaveRunupLocationDependentInput : LocationDependentInput
     {
     public double GetOuterSlope() const;
 
