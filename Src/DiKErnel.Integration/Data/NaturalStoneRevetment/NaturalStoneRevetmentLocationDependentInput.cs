@@ -76,29 +76,29 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
             private NaturalStoneRevetmentDistanceMaximumWaveElevation _distanceMaximumWaveElevationInput;
             private NaturalStoneRevetmentNormativeWidthOfWaveImpact _normativeWidthOfWaveImpactInput;
             private NaturalStoneRevetmentWaveAngleImpact _waveAngleImpactInput;
-            private double _outerToeHeight = numeric_limits<double>::infinity();
-            private double _outerCrestHeight = numeric_limits<double>::infinity();
+            private double _outerToeHeight = double.PositiveInfinity;
+            private double _outerCrestHeight = double.PositiveInfinity;
             private pair<double, double>? _notchOuterBerm = nullptr;
             private pair<double, double>? _crestOuterBerm = nullptr;
 
-            private double _resistance = numeric_limits<double>::infinity();
-            private double _slopeLowerPosition = numeric_limits<double>::infinity();
-            private double _slopeLowerLevel = numeric_limits<double>::infinity();
-            private double _slopeUpperPosition = numeric_limits<double>::infinity();
-            private double _slopeUpperLevel = numeric_limits<double>::infinity();
-            private double _outerSlope = numeric_limits<double>::infinity();
-            private double _waveSteepnessDeepWater = numeric_limits<double>::infinity();
-            private double _distanceMaximumWaveElevation = numeric_limits<double>::infinity();
-            private double _surfSimilarityParameter = numeric_limits<double>::infinity();
-            private double _normativeWidthWaveImpact = numeric_limits<double>::infinity();
-            private double _depthMaximumWaveLoad = numeric_limits<double>::infinity();
-            private double _upperLimitLoading = numeric_limits<double>::infinity();
-            private double _lowerLimitLoading = numeric_limits<double>::infinity();
+            private double _resistance = double.PositiveInfinity;
+            private double _slopeLowerPosition = double.PositiveInfinity;
+            private double _slopeLowerLevel = double.PositiveInfinity;
+            private double _slopeUpperPosition = double.PositiveInfinity;
+            private double _slopeUpperLevel = double.PositiveInfinity;
+            private double _outerSlope = double.PositiveInfinity;
+            private double _waveSteepnessDeepWater = double.PositiveInfinity;
+            private double _distanceMaximumWaveElevation = double.PositiveInfinity;
+            private double _surfSimilarityParameter = double.PositiveInfinity;
+            private double _normativeWidthWaveImpact = double.PositiveInfinity;
+            private double _depthMaximumWaveLoad = double.PositiveInfinity;
+            private double _upperLimitLoading = double.PositiveInfinity;
+            private double _lowerLimitLoading = double.PositiveInfinity;
             private bool _loadingRevetment = false;
-            private double _hydraulicLoad = numeric_limits<double>::infinity();
-            private double _waveAngleImpact = numeric_limits<double>::infinity();
-            private double _referenceTimeDegradation = numeric_limits<double>::infinity();
-            private double _referenceDegradation = numeric_limits<double>::infinity();
+            private double _hydraulicLoad = double.PositiveInfinity;
+            private double _waveAngleImpact = double.PositiveInfinity;
+            private double _referenceTimeDegradation = double.PositiveInfinity;
+            private double _referenceDegradation = double.PositiveInfinity;
 
     private double CalculateOuterSlope(
                 double waterLevel,

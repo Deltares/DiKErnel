@@ -88,13 +88,13 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
             private IReadOnlyList<(double, double)> _widthFactors;
             private IReadOnlyList<(double, double)> _depthFactors;
             private IReadOnlyList<(double, double)> _impactFactors;
-            private double _outerSlope = numeric_limits<double>::infinity();
-            private double _logFailureTension = numeric_limits<double>::infinity();
-            private double _computationalThickness = numeric_limits<double>::infinity();
-            private double _stiffnessRelation = numeric_limits<double>::infinity();
-            private double _subLayerElasticModulus = numeric_limits<double>::infinity();
-            private double _averageNumberOfWaves = numeric_limits<double>::infinity();
-            private double _maximumPeakStress = numeric_limits<double>::infinity();
+            private double _outerSlope = double.PositiveInfinity;
+            private double _logFailureTension = double.PositiveInfinity;
+            private double _computationalThickness = double.PositiveInfinity;
+            private double _stiffnessRelation = double.PositiveInfinity;
+            private double _subLayerElasticModulus = double.PositiveInfinity;
+            private double _averageNumberOfWaves = double.PositiveInfinity;
+            private double _maximumPeakStress = double.PositiveInfinity;
 
     private FunctionLibrary::AsphaltRevetmentWaveImpactFunctionsInput CreateIncrementDamageInput(
                 double waterLevel,

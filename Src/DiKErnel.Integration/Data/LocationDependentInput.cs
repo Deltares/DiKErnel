@@ -54,6 +54,6 @@ namespace DiKErnel.Integration.Data
             private double _initialDamage;
             private double _failureNumber;
             private bool _derivedLocationDependentInputInitialized = false;
-            private double _z = numeric_limits<double>::infinity();
+            private double _z = double.PositiveInfinity;
     }
 }

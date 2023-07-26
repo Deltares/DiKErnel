@@ -80,12 +80,12 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
             private vector<double> _xValuesProfile;
             private vector<double> _zValuesProfile;
             private vector<double> _roughnessCoefficients;
-            private double _dikeHeight = numeric_limits<double>::infinity();
-            private double _accelerationAlphaA = numeric_limits<double>::infinity();
+            private double _dikeHeight = double.PositiveInfinity;
+            private double _accelerationAlphaA = double.PositiveInfinity;
 
-            private double _verticalDistanceWaterLevelElevation = numeric_limits<double>::infinity();
-            private double _representativeWaveRunup2P = numeric_limits<double>::infinity();
-            private double _cumulativeOverload = numeric_limits<double>::infinity();
+            private double _verticalDistanceWaterLevelElevation = double.PositiveInfinity;
+            private double _representativeWaveRunup2P = double.PositiveInfinity;
+            private double _cumulativeOverload = double.PositiveInfinity;
 
     private void InitializeCalculationProfile(
                 pair<double, double>& outerToe,

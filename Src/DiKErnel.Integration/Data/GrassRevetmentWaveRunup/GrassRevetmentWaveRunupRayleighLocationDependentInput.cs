@@ -54,10 +54,10 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
             private int _fixedNumberOfWaves;
             private double _frontVelocityCu;
 
-            private double _verticalDistanceWaterLevelElevation = numeric_limits<double>::infinity();
-            private double _waveAngleImpact = numeric_limits<double>::infinity();
-            private double _representativeWaveRunup2P = numeric_limits<double>::infinity();
-            private double _cumulativeOverload = numeric_limits<double>::infinity();
+            private double _verticalDistanceWaterLevelElevation = double.PositiveInfinity;
+            private double _waveAngleImpact = double.PositiveInfinity;
+            private double _representativeWaveRunup2P = double.PositiveInfinity;
+            private double _cumulativeOverload = double.PositiveInfinity;
 
     private double CalculateRepresentativeWaveRunup2P(
                 double surfSimilarityParameter,

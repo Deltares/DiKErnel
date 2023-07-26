@@ -65,13 +65,13 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveImpact
             private double _upperLimitLoadingAul;
             private double _lowerLimitLoadingAll;
 
-            private double _minimumWaveHeight = numeric_limits<double>::infinity();
-            private double _maximumWaveHeight = numeric_limits<double>::infinity();
-            private double _lowerLimitLoading = numeric_limits<double>::infinity();
-            private double _upperLimitLoading = numeric_limits<double>::infinity();
+            private double _minimumWaveHeight = double.PositiveInfinity;
+            private double _maximumWaveHeight = double.PositiveInfinity;
+            private double _lowerLimitLoading = double.PositiveInfinity;
+            private double _upperLimitLoading = double.PositiveInfinity;
             private bool _loadingRevetment = false;
-            private double _waveAngleImpact = numeric_limits<double>::infinity();
-            private double _waveHeightImpact = numeric_limits<double>::infinity();
+            private double _waveAngleImpact = double.PositiveInfinity;
+            private double _waveHeightImpact = double.PositiveInfinity;
 
     private bool CalculateLoadingRevetment(
                 double waterLevel,
