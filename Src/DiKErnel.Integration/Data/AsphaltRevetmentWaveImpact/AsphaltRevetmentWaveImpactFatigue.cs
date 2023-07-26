@@ -26,7 +26,7 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
 
             public double GetAlpha();
 
-            public GetBeta();
+            public double GetBeta();
 
             private double _alpha;
             private double _beta;
