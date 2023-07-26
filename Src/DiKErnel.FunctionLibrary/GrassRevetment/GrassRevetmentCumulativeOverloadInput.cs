@@ -24,7 +24,7 @@ namespace DiKErnel.FunctionLibrary.GrassRevetment
     public class GrassRevetmentCumulativeOverloadInput
     {
         /// <summary>
-        /// Creates a new instance of <see cref="GrassRevetmentCumulativeOverloadInput"/>.
+        /// Creates a new instance.
         /// </summary>
         /// <param name="averageNumberOfWaves">The average number of waves [-].</param>
         /// <param name="representativeWaveRunup2P">The representative wave run-up

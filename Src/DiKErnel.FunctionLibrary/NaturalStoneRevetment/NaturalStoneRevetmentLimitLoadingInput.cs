@@ -24,7 +24,7 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneRevetment
     public class NaturalStoneRevetmentLimitLoadingInput
     {
         /// <summary>
-        /// Creates a new instance of <see cref="NaturalStoneRevetmentLimitLoadingInput"/>.
+        /// Creates a new instance.
         /// </summary>
         /// <param name="depthMaximumWaveLoad">The depth of the maximum wave
         /// load [m].</param>

@@ -24,7 +24,7 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneRevetment
     public class NaturalStoneRevetmentOuterSlopeInput
     {
         /// <summary>
-        /// Creates a new instance of <see cref="NaturalStoneRevetmentOuterSlopeInput"/>.
+        /// Creates a new instance.
         /// </summary>
         /// <param name="slopeLowerPosition">The slope lower position [m].</param>
         /// <param name="slopeLowerLevel">The slope lower level [m].</param>

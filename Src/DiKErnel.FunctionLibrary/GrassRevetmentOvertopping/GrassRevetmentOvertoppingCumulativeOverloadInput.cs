@@ -27,8 +27,7 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentOvertopping
     {
         /// <inheritdoc/>
         /// <summary>
-        /// Creates a new instance of
-        /// <see cref="GrassRevetmentOvertoppingCumulativeOverloadInput"/>.
+        /// Creates a new instance.
         /// </summary>
         /// <param name="accelerationAlphaA">The AlphaA coefficient [-].</param>
         /// <param name="frontVelocityCwo">The Cwo coefficient [-].</param>

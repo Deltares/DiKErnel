@@ -24,8 +24,7 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentWaveRunup
     public class GrassRevetmentWaveRunupRepresentative2PInput
     {
         /// <summary>
-        /// Creates a new instance of
-        /// <see cref="GrassRevetmentWaveRunupRepresentative2PInput"/>.
+        /// Creates a new instance.
         /// </summary>
         /// <param name="surfSimilarityParameter">The surf similarity parameter [-].</param>
         /// <param name="waveAngleImpact">The wave impact with respect to the wave

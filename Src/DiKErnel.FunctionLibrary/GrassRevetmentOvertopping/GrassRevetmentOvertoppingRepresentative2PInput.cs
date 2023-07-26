@@ -26,8 +26,7 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentOvertopping
     public class GrassRevetmentOvertoppingRepresentative2PInput
     {
         /// <summary>
-        /// Creates a new instance of
-        /// <see cref="GrassRevetmentOvertoppingRepresentative2PInput"/>.
+        /// Creates a new instance.
         /// </summary>
         /// <param name="waterLevel">The water level [m].</param>
         /// <param name="waveHeightHm0">The wave height [m].</param>

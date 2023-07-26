@@ -26,7 +26,7 @@ namespace DiKErnel.FunctionLibrary.AsphaltRevetmentWaveImpact
     public class AsphaltRevetmentWaveImpactFunctionsInput
     {
         /// <summary>
-        /// Creates a new instance of <see cref="AsphaltRevetmentWaveImpactFunctionsInput"/>.
+        /// Creates a new instance.
         /// </summary>
         /// <param name="logFailureTension">The logarithm of the failure
         /// tension [MPa].</param>

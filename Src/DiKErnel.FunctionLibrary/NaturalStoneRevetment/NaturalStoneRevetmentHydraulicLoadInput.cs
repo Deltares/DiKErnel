@@ -24,7 +24,7 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneRevetment
     public class NaturalStoneRevetmentHydraulicLoadInput
     {
         /// <summary>
-        /// Creates a new instance of <see cref="NaturalStoneRevetmentHydraulicLoadInput"/>.
+        /// Creates a new instance.
         /// </summary>
         /// <param name="surfSimilarityParameter">The surf similarity parameter [-].</param>
         /// <param name="waveHeightHm0">The wave height [m].</param>
