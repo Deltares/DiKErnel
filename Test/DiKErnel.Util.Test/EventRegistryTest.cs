@@ -17,7 +17,6 @@
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
 using System.Collections.Generic;
-using System.Linq;
 using DiKErnel.TestUtil;
 using DiKErnel.Util.TestUtil;
 using NUnit.Framework;
@@ -51,8 +50,8 @@ namespace DiKErnel.Util.Test
 
             // Then
             Assert.AreEqual(2, registeredEvents.Count);
-            Assert.AreSame(event1, registeredEvents.ElementAt(0));
-            Assert.AreSame(event2, registeredEvents.ElementAt(1));
+            Assert.AreSame(event1, registeredEvents[0]);
+            Assert.AreSame(event2, registeredEvents[1]);
         }
 
         [Test]

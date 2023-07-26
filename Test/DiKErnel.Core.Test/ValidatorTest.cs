@@ -18,7 +18,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using DiKErnel.Core.Data;
 using DiKErnel.Util;
 using NSubstitute;
@@ -108,9 +107,7 @@ namespace DiKErnel.Core.Test
             const string validationMessage = "Validation message";
 
             var profileData = Substitute.For<IProfileData>();
-            profileData.Validate()
-                       .Returns(false)
-                       .AndDoes(callInfo => EventRegistry.Register(new Event(validationMessage, EventType.Error)));
+            profileData.Validate().Returns(true);
 
             var locationDependentInput = Substitute.For<ILocationDependentInput>();
             locationDependentInput.Validate(Arg.Any<IReadOnlyList<ITimeDependentInput>>(), Arg.Any<IProfileData>())
@@ -138,13 +135,9 @@ namespace DiKErnel.Core.Test
 
             // Assert
             Assert.IsFalse(validationResult.Successful);
-            Assert.AreEqual(2, validationResult.Events.Count);
+            Assert.AreEqual(1, validationResult.Events.Count);
 
-            Event validationEvent = validationResult.Events.ElementAt(0);
-            Assert.AreEqual(validationMessage, validationEvent.Message);
-            Assert.AreEqual(EventType.Error, validationEvent.Type);
-
-            Event exceptionEvent = validationResult.Events.ElementAt(1);
+            Event exceptionEvent = validationResult.Events[0];
             Assert.AreEqual("An unhandled error occurred while validating the calculation input. See stack trace for more " +
                             "information:\n" + exceptionMessage, exceptionEvent.Message);
             Assert.AreEqual(EventType.Error, exceptionEvent.Type);

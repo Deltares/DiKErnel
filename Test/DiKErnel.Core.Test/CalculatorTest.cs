@@ -68,7 +68,7 @@ namespace DiKErnel.Core.Test
             CalculationOutput output = calculator.Result.Data;
             Assert.AreEqual(1, output.LocationDependentOutputItems.Count);
 
-            LocationDependentOutput locationDependentOutput = output.LocationDependentOutputItems.ElementAt(0);
+            LocationDependentOutput locationDependentOutput = output.LocationDependentOutputItems[0];
             IReadOnlyList<double> damages = locationDependentOutput.GetDamages();
             Assert.AreEqual(3, damages.Count);
             Assert.IsTrue(damages.All(d => d.Equals(damage)));
@@ -209,7 +209,7 @@ namespace DiKErnel.Core.Test
             Assert.IsFalse(result.Successful);
             Assert.AreEqual(1, result.Events.Count);
 
-            Event exceptionEvent = result.Events.ElementAt(0);
+            Event exceptionEvent = result.Events[0];
             Assert.AreEqual(EventType.Error, exceptionEvent.Type);
             Assert.AreEqual("An unhandled error occurred while performing the calculation. See stack trace for more " +
                             $"information:\n{exceptionMessage}", exceptionEvent.Message);
