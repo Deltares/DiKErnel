@@ -44,11 +44,11 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveImpact
     public double GetLowerLimitLoadingAll();
 
     public bool Validate(
-                vector<ITimeDependentInput>& timeDependentInputs,
+                IReadOnlyList<ITimeDependentInput>& timeDependentInputs,
                 IProfileData& profileData) override;
 
     public LocationDependentOutput GetLocationDependentOutput(
-                vector<TimeDependentOutput> timeDependentOutputItems) override;
+                IReadOnlyList<TimeDependentOutput> timeDependentOutputItems) override;
 
     protected void InitializeDerivedLocationDependentInput(
                 IProfileData& profileData) override;

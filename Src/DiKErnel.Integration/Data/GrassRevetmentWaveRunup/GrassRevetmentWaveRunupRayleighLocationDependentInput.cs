@@ -40,11 +40,11 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
     public double GetFrontVelocityCu();
 
     public bool Validate(
-                vector<ITimeDependentInput>& timeDependentInputs,
+                IReadOnlyList<ITimeDependentInput>& timeDependentInputs,
                 IProfileData& profileData) override;
 
     public LocationDependentOutput GetLocationDependentOutput(
-                vector<TimeDependentOutput> timeDependentOutputItems) override;
+                IReadOnlyList<TimeDependentOutput> timeDependentOutputItems) override;
 
     protected TimeDependentOutput CalculateTimeDependentOutput(
                 double initialDamage,

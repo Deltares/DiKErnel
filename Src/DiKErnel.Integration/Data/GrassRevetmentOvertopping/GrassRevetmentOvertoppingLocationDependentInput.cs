@@ -53,11 +53,11 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
     public double* GetEnforcedDikeHeight();
 
     public bool Validate(
-                vector<ITimeDependentInput>& timeDependentInputs,
+                IReadOnlyList<ITimeDependentInput>& timeDependentInputs,
                 IProfileData& profileData) override;
 
     public LocationDependentOutput GetLocationDependentOutput(
-                vector<TimeDependentOutput> timeDependentOutputItems) override;
+                IReadOnlyList<TimeDependentOutput> timeDependentOutputItems) override;
 
     protected void InitializeDerivedLocationDependentInput(
                 IProfileData& profileData) override;
@@ -77,9 +77,9 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
             private GrassRevetmentOvertoppingLocationDependentAccelerationAlphaA _locationDependentAccelerationAlphaA;
             private double? _enforcedDikeHeight;
 
-            private vector<double> _xValuesProfile;
-            private vector<double> _zValuesProfile;
-            private vector<double> _roughnessCoefficients;
+            private IReadOnlyList<double> _xValuesProfile;
+            private IReadOnlyList<double> _zValuesProfile;
+            private IReadOnlyList<double> _roughnessCoefficients;
             private double _dikeHeight = double.PositiveInfinity;
             private double _accelerationAlphaA = double.PositiveInfinity;
 
@@ -90,11 +90,11 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
     private void InitializeCalculationProfile(
                 pair<double, double>& outerToe,
                 pair<double, double>& outerCrest,
-                vector<ProfileSegment>& profileSegments);
+                IReadOnlyList<ProfileSegment>& profileSegments);
 
     private void InitializeDikeHeight(
                 pair<double, double>& outerCrest,
-                vector<ProfileSegment>& profileSegments);
+                IReadOnlyList<ProfileSegment>& profileSegments);
 
     private void InitializeAccelerationAlphaA(
                 pair<double, double>& outerCrest,
@@ -111,7 +111,7 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
 
     private double CalculateDikeHeight(
                 pair<double, double>& outerCrest,
-                vector<ProfileSegment>& profileSegments,
+                IReadOnlyList<ProfileSegment>& profileSegments,
                 double locationHeight);
 
     private GrassRevetmentOvertoppingTimeDependentOutputConstructionProperties CreateConstructionProperties(

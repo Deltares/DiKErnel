@@ -22,19 +22,19 @@ namespace DiKErnel.Integration.Data
     {
         public void CalculationInput(
                 IProfileData profileData,
-                vector<ILocationDependentInput> locationDependentInputItems,
-                vector<ITimeDependentInput> timeDependentInputItems);
+                IReadOnlyList<ILocationDependentInput> locationDependentInputItems,
+                IReadOnlyList<ITimeDependentInput> timeDependentInputItems);
 
     public IProfileData& GetProfileData() override;
 
-    public vector<ILocationDependentInput>& GetLocationDependentInputItems() override;
+    public IReadOnlyList<ILocationDependentInput>& GetLocationDependentInputItems() override;
 
-    public vector<ITimeDependentInput>& GetTimeDependentInputItems() override;
+    public IReadOnlyList<ITimeDependentInput>& GetTimeDependentInputItems() override;
 
             private IProfileData _profileData;
-            private vector<ILocationDependentInput> _locationDependentInputItems;
-            private vector<ILocationDependentInput> _locationDependentInputItemReferences;
-            private vector<ITimeDependentInput> _timeDependentInputItems;
-            private vector<ITimeDependentInput> _timeDependentInputItemReferences;
+            private IReadOnlyList<ILocationDependentInput> _locationDependentInputItems;
+            private IReadOnlyList<ILocationDependentInput> _locationDependentInputItemReferences;
+            private IReadOnlyList<ITimeDependentInput> _timeDependentInputItems;
+            private IReadOnlyList<ITimeDependentInput> _timeDependentInputItemReferences;
     }
 }
