@@ -20,43 +20,39 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
 {
     internal class NaturalStoneRevetmentHydraulicLoads
     {
-        public NaturalStoneRevetmentHydraulicLoads(
-                double hydraulicLoadAp,
-                double hydraulicLoadBp,
-                double hydraulicLoadCp,
-                double hydraulicLoadNp,
-                double hydraulicLoadAs,
-                double hydraulicLoadBs,
-                double hydraulicLoadCs,
-                double hydraulicLoadNs,
-                double hydraulicLoadXib) {}
+        public NaturalStoneRevetmentHydraulicLoads(double hydraulicLoadAp, double hydraulicLoadBp,
+                                                   double hydraulicLoadCp, double hydraulicLoadNp,
+                                                   double hydraulicLoadAs, double hydraulicLoadBs,
+                                                   double hydraulicLoadCs, double hydraulicLoadNs,
+                                                   double hydraulicLoadXib)
+        {
+            HydraulicLoadAp = hydraulicLoadAp;
+            HydraulicLoadBp = hydraulicLoadBp;
+            HydraulicLoadCp = hydraulicLoadCp;
+            HydraulicLoadNp = hydraulicLoadNp;
+            HydraulicLoadAs = hydraulicLoadAs;
+            HydraulicLoadBs = hydraulicLoadBs;
+            HydraulicLoadCs = hydraulicLoadCs;
+            HydraulicLoadNs = hydraulicLoadNs;
+            HydraulicLoadXib = hydraulicLoadXib;
+        }
 
-        public double GetHydraulicLoadAp();
+        public double HydraulicLoadAp { get; }
 
-        public double GetHydraulicLoadBp();
+        public double HydraulicLoadBp { get; }
 
-        public double GetHydraulicLoadCp();
+        public double HydraulicLoadCp { get; }
 
-        public double GetHydraulicLoadNp();
+        public double HydraulicLoadNp { get; }
 
-        public double GetHydraulicLoadAs();
+        public double HydraulicLoadAs { get; }
 
-        public double GetHydraulicLoadBs();
+        public double HydraulicLoadBs { get; }
 
-        public double GetHydraulicLoadCs();
+        public double HydraulicLoadCs { get; }
 
-        public double GetHydraulicLoadNs();
+        public double HydraulicLoadNs { get; }
 
-        public double GetHydraulicLoadXib();
-
-            private double _hydraulicLoadAp;
-            private double _hydraulicLoadBp;
-            private double _hydraulicLoadCp;
-            private double _hydraulicLoadNp;
-            private double _hydraulicLoadAs;
-            private double _hydraulicLoadBs;
-            private double _hydraulicLoadCs;
-            private double _hydraulicLoadNs;
-            private double _hydraulicLoadXib;
+        public double HydraulicLoadXib { get; }
     }
 }

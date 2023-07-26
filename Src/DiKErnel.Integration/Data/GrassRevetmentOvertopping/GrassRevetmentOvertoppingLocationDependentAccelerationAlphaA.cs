@@ -20,7 +20,8 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
 {
     internal class GrassRevetmentOvertoppingLocationDependentAccelerationAlphaA
     {
-        public GrassRevetmentOvertoppingLocationDependentAccelerationAlphaA(double valueAtCrest, double valueAtInnerSlope)
+        public GrassRevetmentOvertoppingLocationDependentAccelerationAlphaA(double valueAtCrest,
+                                                                            double valueAtInnerSlope)
         {
             ValueAtCrest = valueAtCrest;
             ValueAtInnerSlope = valueAtInnerSlope;
