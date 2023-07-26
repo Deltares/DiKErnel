@@ -53,19 +53,19 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
     public double* GetEnforcedDikeHeight();
 
     public bool Validate(
-                const std::vector<std::reference_wrapper<Core::ITimeDependentInput>>& timeDependentInputs,
-                const Core::IProfileData& profileData) override;
+                std::vector<std::reference_wrapper<Core::ITimeDependentInput>>& timeDependentInputs,
+                Core::IProfileData& profileData) override;
 
     public std::unique_ptr<Core::LocationDependentOutput> GetLocationDependentOutput(
                 std::vector<std::unique_ptr<Core::TimeDependentOutput>> timeDependentOutputItems) override;
 
     protected void InitializeDerivedLocationDependentInput(
-                const Core::IProfileData& profileData) override;
+                Core::IProfileData& profileData) override;
 
     protected std::unique_ptr<Core::TimeDependentOutput> CalculateTimeDependentOutput(
                 double initialDamage,
-                const Core::ITimeDependentInput& timeDependentInput,
-                const Core::IProfileData& profileData) override;
+                Core::ITimeDependentInput& timeDependentInput,
+                Core::IProfileData& profileData) override;
 
             private double _criticalCumulativeOverload;
             private double _criticalFrontVelocity;
@@ -88,17 +88,17 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
             private double _cumulativeOverload = std::numeric_limits<double>::infinity();
 
     private void InitializeCalculationProfile(
-                const std::pair<double, double>& outerToe,
-                const std::pair<double, double>& outerCrest,
-                const std::vector<std::reference_wrapper<Core::ProfileSegment>>& profileSegments);
+                std::pair<double, double>& outerToe,
+                std::pair<double, double>& outerCrest,
+                std::vector<std::reference_wrapper<Core::ProfileSegment>>& profileSegments);
 
     private void InitializeDikeHeight(
-                const std::pair<double, double>& outerCrest,
-                const std::vector<std::reference_wrapper<Core::ProfileSegment>>& profileSegments);
+                std::pair<double, double>& outerCrest,
+                std::vector<std::reference_wrapper<Core::ProfileSegment>>& profileSegments);
 
     private void InitializeAccelerationAlphaA(
-                const std::pair<double, double>& outerCrest,
-                const std::pair<double, double>& innerCrest);
+                std::pair<double, double>& outerCrest,
+                std::pair<double, double>& innerCrest);
 
     private double CalculateRepresentativeWaveRunup2P(
                 double waterLevel,
@@ -110,8 +110,8 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
                 double averageNumberOfWaves);
 
     private double CalculateDikeHeight(
-                const std::pair<double, double>& outerCrest,
-                const std::vector<std::reference_wrapper<Core::ProfileSegment>>& profileSegments,
+                std::pair<double, double>& outerCrest,
+                std::vector<std::reference_wrapper<Core::ProfileSegment>>& profileSegments,
                 double locationHeight);
 
     private std::unique_ptr<GrassRevetmentOvertoppingTimeDependentOutputConstructionProperties> CreateConstructionProperties(

@@ -44,19 +44,19 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveImpact
     public double GetLowerLimitLoadingAll();
 
     public bool Validate(
-                const std::vector<std::reference_wrapper<Core::ITimeDependentInput>>& timeDependentInputs,
-                const Core::IProfileData& profileData) override;
+                std::vector<std::reference_wrapper<Core::ITimeDependentInput>>& timeDependentInputs,
+                Core::IProfileData& profileData) override;
 
     public std::unique_ptr<Core::LocationDependentOutput> GetLocationDependentOutput(
                 std::vector<std::unique_ptr<Core::TimeDependentOutput>> timeDependentOutputItems) override;
 
     protected void InitializeDerivedLocationDependentInput(
-                const Core::IProfileData& profileData) override;
+                Core::IProfileData& profileData) override;
 
     protected std::unique_ptr<Core::TimeDependentOutput> CalculateTimeDependentOutput(
                 double initialDamage,
-                const Core::ITimeDependentInput& timeDependentInput,
-                const Core::IProfileData& profileData) override;
+                Core::ITimeDependentInput& timeDependentInput,
+                Core::IProfileData& profileData) override;
 
             private std::unique_ptr<GrassRevetmentWaveImpactWaveAngleImpact> _waveAngleImpactInput;
             private double _minimumWaveHeightTemax;
