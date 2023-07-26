@@ -16,6 +16,7 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using System;
 using System.Collections.Generic;
 using DiKErnel.Core.Data;
 
@@ -23,25 +24,15 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
 {
     internal class GrassRevetmentOvertoppingLocationDependentInput : LocationDependentInput
     {
-        private double _criticalCumulativeOverload;
-        private double _criticalFrontVelocity;
-        private double _increasedLoadTransitionAlphaM;
-        private double _reducedStrengthTransitionAlphaS;
-        private double _averageNumberOfWavesCtm;
-        private int _fixedNumberOfWaves;
-        private double _frontVelocityCwo;
-        private GrassRevetmentOvertoppingLocationDependentAccelerationAlphaA _locationDependentAccelerationAlphaA;
-        private double? _enforcedDikeHeight;
+        private IReadOnlyList<double> xValuesProfile;
+        private IReadOnlyList<double> zValuesProfile;
+        private IReadOnlyList<double> roughnessCoefficients;
+        private double dikeHeight = double.PositiveInfinity;
+        private double accelerationAlphaA = double.PositiveInfinity;
 
-        private IReadOnlyList<double> _xValuesProfile;
-        private IReadOnlyList<double> _zValuesProfile;
-        private IReadOnlyList<double> _roughnessCoefficients;
-        private double _dikeHeight = double.PositiveInfinity;
-        private double _accelerationAlphaA = double.PositiveInfinity;
-
-        private double _verticalDistanceWaterLevelElevation = double.PositiveInfinity;
-        private double _representativeWaveRunup2P = double.PositiveInfinity;
-        private double _cumulativeOverload = double.PositiveInfinity;
+        private double verticalDistanceWaterLevelElevation = double.PositiveInfinity;
+        private double representativeWaveRunup2P = double.PositiveInfinity;
+        private double cumulativeOverload = double.PositiveInfinity;
 
         public GrassRevetmentOvertoppingLocationDependentInput(double x, double initialDamage, double failureNumber,
                                                                double criticalCumulativeOverload,
@@ -53,71 +44,100 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
                                                                GrassRevetmentOvertoppingLocationDependentAccelerationAlphaA
                                                                    locationDependentAccelerationAlphaA,
                                                                double? enforcedDikeHeight)
-            : base(x, initialDamage, failureNumber) {}
+            : base(x, initialDamage, failureNumber)
+        {
+            CriticalCumulativeOverload = criticalCumulativeOverload;
+            CriticalFrontVelocity = criticalFrontVelocity;
+            IncreasedLoadTransitionAlphaM = increasedLoadTransitionAlphaM;
+            ReducedStrengthTransitionAlphaS = reducedStrengthTransitionAlphaS;
+            AverageNumberOfWavesCtm = averageNumberOfWavesCtm;
+            FixedNumberOfWaves = fixedNumberOfWaves;
+            FrontVelocityCwo = frontVelocityCwo;
+            LocationDependentAccelerationAlphaA = locationDependentAccelerationAlphaA;
+            EnforcedDikeHeight = enforcedDikeHeight;
+        }
 
-        public double GetCriticalCumulativeOverload();
+        public double CriticalCumulativeOverload { get; }
 
-        public double GetCriticalFrontVelocity();
+        public double CriticalFrontVelocity { get; }
 
-        public double GetIncreasedLoadTransitionAlphaM();
+        public double IncreasedLoadTransitionAlphaM { get; }
 
-        public double GetReducedStrengthTransitionAlphaS();
+        public double ReducedStrengthTransitionAlphaS { get; }
 
-        public double GetAverageNumberOfWavesCtm();
+        public double AverageNumberOfWavesCtm { get; }
 
-        public int GetFixedNumberOfWaves();
+        public int FixedNumberOfWaves { get; }
 
-        public double GetFrontVelocityCwo();
+        public double FrontVelocityCwo { get; }
 
-        public GrassRevetmentOvertoppingLocationDependentAccelerationAlphaA GetLocationDependentAccelerationAlphaA();
+        public GrassRevetmentOvertoppingLocationDependentAccelerationAlphaA LocationDependentAccelerationAlphaA { get; }
 
-        public double? GetEnforcedDikeHeight();
+        public double? EnforcedDikeHeight { get; }
 
-        public bool Validate(
-            IReadOnlyList<ITimeDependentInput> timeDependentInputs,
-            IProfileData profileData)
+        public override bool Validate(IReadOnlyList<ITimeDependentInput> timeDependentInputItems,
+                                      IProfileData profileData)
+        {
+            return base.Validate(timeDependentInputItems, profileData);
+        }
 
-        public LocationDependentOutput GetLocationDependentOutput(
+        public override LocationDependentOutput GetLocationDependentOutput(
             IReadOnlyList<TimeDependentOutput> timeDependentOutputItems)
+        {
+            return base.GetLocationDependentOutput(timeDependentOutputItems);
+        }
 
-        protected void InitializeDerivedLocationDependentInput(
-            IProfileData profileData)
+        protected override void InitializeDerivedLocationDependentInput(IProfileData profileData)
+        {
+            base.InitializeDerivedLocationDependentInput(profileData);
+        }
 
-        protected TimeDependentOutput CalculateTimeDependentOutput(
-            double initialDamage,
-            ITimeDependentInput timeDependentInput,
-            IProfileData profileData)override;override;override;override;
+        protected override TimeDependentOutput CalculateTimeDependentOutput(double initialDamage,
+                                                                            ITimeDependentInput timeDependentInput,
+                                                                            IProfileData profileData)
+        {
+            throw new NotImplementedException();
+        }
 
-        private void InitializeCalculationProfile(
-            pair<double, double> outerToe,
-            pair<double, double> outerCrest,
-            IReadOnlyList<ProfileSegment> profileSegments);
+        private void InitializeCalculationProfile((double, double) outerToe, (double, double) outerCrest,
+                                                  IReadOnlyList<ProfileSegment> profileSegments)
+        {
+            throw new NotImplementedException();
+        }
 
-        private void InitializeDikeHeight(
-            pair<double, double> outerCrest,
-            IReadOnlyList<ProfileSegment> profileSegments);
+        private void InitializeDikeHeight((double, double) outerCrest, IReadOnlyList<ProfileSegment> profileSegments)
+        {
+            throw new NotImplementedException();
+        }
 
-        private void InitializeAccelerationAlphaA(
-            pair<double, double> outerCrest,
-            pair<double, double> innerCrest);
+        private void InitializeAccelerationAlphaA((double, double) outerCrest, (double, double) innerCrest)
+        {
+            throw new NotImplementedException();
+        }
 
-        private double CalculateRepresentativeWaveRunup2P(
-            double waterLevel,
-            double waveHeightHm0,
-            double wavePeriodTm10,
-            double waveDirection);
+        private double CalculateRepresentativeWaveRunup2P(double waterLevel, double waveHeightHm0,
+                                                          double wavePeriodTm10, double waveDirection)
+        {
+            throw new NotImplementedException();
+        }
 
-        private double CalculateCumulativeOverload(
-            double averageNumberOfWaves);
+        private double CalculateCumulativeOverload(double averageNumberOfWaves)
+        {
+            throw new NotImplementedException();
+        }
 
-        private double CalculateDikeHeight(
-            pair<double, double> outerCrest,
-            IReadOnlyList<ProfileSegment> profileSegments,
-            double locationHeight);
+        private double CalculateDikeHeight((double, double) outerCrest, IReadOnlyList<ProfileSegment> profileSegments,
+                                           double locationHeight)
+        {
+            throw new NotImplementedException();
+        }
 
         private GrassRevetmentOvertoppingTimeDependentOutputConstructionProperties CreateConstructionProperties(
-            double incrementDamage,
-            double damage,
-            int? timeOfFailure);
+            double incrementDamage, double damage, int? timeOfFailure)
+        {
+            throw new NotImplementedException();
+        }
+
+        private class GrassRevetmentOvertoppingTimeDependentOutputConstructionProperties {}
     }
 }
