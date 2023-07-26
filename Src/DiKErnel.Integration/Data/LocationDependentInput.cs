@@ -37,16 +37,15 @@ namespace DiKErnel.Integration.Data
 
     public double GetZ() const override;
 
-        protected:
-            explicit LocationDependentInput(
+        protected void LocationDependentInput(
                 double x,
                 double initialDamage,
                 double failureNumber);
 
-            virtual void InitializeDerivedLocationDependentInput(
+    protected virtual void InitializeDerivedLocationDependentInput(
                 const Core::IProfileData& profileData);
 
-            virtual std::unique_ptr<Core::TimeDependentOutput> CalculateTimeDependentOutput(
+    protected virtual std::unique_ptr<Core::TimeDependentOutput> CalculateTimeDependentOutput(
                 double initialDamage,
                 const Core::ITimeDependentInput& timeDependentInput,
                 const Core::IProfileData& profileData) = 0;

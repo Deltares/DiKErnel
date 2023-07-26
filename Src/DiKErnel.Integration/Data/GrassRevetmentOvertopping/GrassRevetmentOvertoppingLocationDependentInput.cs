@@ -59,11 +59,10 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
     public std::unique_ptr<Core::LocationDependentOutput> GetLocationDependentOutput(
                 std::vector<std::unique_ptr<Core::TimeDependentOutput>> timeDependentOutputItems) override;
 
-        protected:
-            void InitializeDerivedLocationDependentInput(
+    protected void InitializeDerivedLocationDependentInput(
                 const Core::IProfileData& profileData) override;
 
-            std::unique_ptr<Core::TimeDependentOutput> CalculateTimeDependentOutput(
+    protected std::unique_ptr<Core::TimeDependentOutput> CalculateTimeDependentOutput(
                 double initialDamage,
                 const Core::ITimeDependentInput& timeDependentInput,
                 const Core::IProfileData& profileData) override;

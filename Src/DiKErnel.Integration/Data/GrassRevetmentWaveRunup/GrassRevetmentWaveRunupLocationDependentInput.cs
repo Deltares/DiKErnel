@@ -40,8 +40,7 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
                 const std::vector<std::reference_wrapper<Core::ITimeDependentInput>>& timeDependentInputs,
                 const Core::IProfileData& profileData) const override;
 
-        protected:
-            explicit GrassRevetmentWaveRunupLocationDependentInput(
+        protected void GrassRevetmentWaveRunupLocationDependentInput(
                 double x,
                 double initialDamage,
                 double failureNumber,
@@ -54,7 +53,7 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
                 std::unique_ptr<GrassRevetmentWaveRunupRepresentative2P> representative2P,
                 std::unique_ptr<GrassRevetmentWaveRunupWaveAngleImpact> waveAngleImpact);
 
-            std::unique_ptr<Core::TimeDependentOutput> CalculateTimeDependentOutput(
+    protected std::unique_ptr<Core::TimeDependentOutput> CalculateTimeDependentOutput(
                 double initialDamage,
                 const Core::ITimeDependentInput& timeDependentInput,
                 const Core::IProfileData& profileData) override = 0;

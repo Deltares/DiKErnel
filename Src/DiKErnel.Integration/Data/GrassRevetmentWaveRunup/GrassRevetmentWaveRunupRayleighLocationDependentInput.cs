@@ -46,8 +46,7 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
     public std::unique_ptr<Core::LocationDependentOutput> GetLocationDependentOutput(
                 std::vector<std::unique_ptr<Core::TimeDependentOutput>> timeDependentOutputItems) override;
 
-        protected:
-            std::unique_ptr<Core::TimeDependentOutput> CalculateTimeDependentOutput(
+    protected std::unique_ptr<Core::TimeDependentOutput> CalculateTimeDependentOutput(
                 double initialDamage,
                 const Core::ITimeDependentInput& timeDependentInput,
                 const Core::IProfileData& profileData) override;
