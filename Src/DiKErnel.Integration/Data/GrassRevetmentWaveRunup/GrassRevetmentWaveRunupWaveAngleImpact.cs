@@ -20,15 +20,14 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
 {
     internal class GrassRevetmentWaveRunupWaveAngleImpact
     {
-        public GrassRevetmentWaveRunupWaveAngleImpact(
-                double abeta,
-                double betamax) {}
+        public GrassRevetmentWaveRunupWaveAngleImpact(double abeta, double betamax)
+        {
+            Abeta = abeta;
+            Betamax = betamax;
+        }
 
-        public double GetAbeta();
+        public double Abeta { get; }
 
-        public double GetBetamax();
-
-            private double _abeta;
-            private double _betamax;
+        public double Betamax { get; }
     }
 }

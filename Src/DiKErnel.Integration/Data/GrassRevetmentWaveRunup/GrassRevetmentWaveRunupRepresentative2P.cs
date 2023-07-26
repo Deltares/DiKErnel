@@ -20,27 +20,24 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
 {
     internal class GrassRevetmentWaveRunupRepresentative2P
     {
-        public GrassRevetmentWaveRunupRepresentative2P(
-                double representative2PAru,
-                double representative2PBru,
-                double representative2PCru,
-                double gammab,
-                double gammaf) {}
+        public GrassRevetmentWaveRunupRepresentative2P(double representative2PAru, double representative2PBru,
+                                                       double representative2PCru, double gammab, double gammaf)
+        {
+            Representative2PAru = representative2PAru;
+            Representative2PBru = representative2PBru;
+            Representative2PCru = representative2PCru;
+            Gammab = gammab;
+            Gammaf = gammaf;
+        }
 
-        public double GetRepresentative2PAru();
+        public double Representative2PAru { get; }
 
-        public double GetRepresentative2PBru();
+        public double Representative2PBru { get; }
 
-        public double GetRepresentative2PCru();
+        public double Representative2PCru { get; }
 
-        public double GetGammab();
+        public double Gammab { get; }
 
-        public double GetGammaf();
-
-            private double _representative2PAru;
-            private double _representative2PBru;
-            private double _representative2PCru;
-            private double _gammab;
-            private double _gammaf;
+        public double Gammaf { get; }
     }
 }
