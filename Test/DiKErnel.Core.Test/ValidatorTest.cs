@@ -36,25 +36,14 @@ namespace DiKErnel.Core.Test
         {
             // Setup
             var profileData = Substitute.For<IProfileData>();
-            profileData.Validate()
-                       .Returns(profileDataValid)
-                       .AndDoes(callInfo => EventRegistry.Register(new Event(string.Empty, profileDataValid
-                                                                                               ? EventType.Warning
-                                                                                               : EventType.Error)));
+            profileData.Validate().Returns(profileDataValid);
 
             var locationDependentInput = Substitute.For<ILocationDependentInput>();
             locationDependentInput.Validate(Arg.Any<IReadOnlyList<ITimeDependentInput>>(), Arg.Any<IProfileData>())
-                                  .Returns(locationDependentInputValid)
-                                  .AndDoes(callInfo => EventRegistry.Register(new Event(string.Empty, locationDependentInputValid
-                                                                                                          ? EventType.Warning
-                                                                                                          : EventType.Error)));
+                                  .Returns(locationDependentInputValid);
 
             var timeDependentInput = Substitute.For<ITimeDependentInput>();
-            timeDependentInput.Validate()
-                              .Returns(timeDependentInputValid)
-                              .AndDoes(callInfo => EventRegistry.Register(new Event(string.Empty, timeDependentInputValid
-                                                                                                      ? EventType.Warning
-                                                                                                      : EventType.Error)));
+            timeDependentInput.Validate().Returns(timeDependentInputValid);
 
             var calculationInput = Substitute.For<ICalculationInput>();
 
@@ -74,6 +63,10 @@ namespace DiKErnel.Core.Test
             DataResult<ValidationResultType> validationResult = Validator.Validate(calculationInput);
 
             // Assert
+            profileData.Received(1).Validate();
+            locationDependentInput.ReceivedWithAnyArgs(1).Validate(null, null);
+            timeDependentInput.Received(1).Validate();
+
             ValidationResultType expectedValidationResultType = profileDataValid
                                                                 && locationDependentInputValid
                                                                 && timeDependentInputValid
@@ -82,7 +75,6 @@ namespace DiKErnel.Core.Test
 
             Assert.IsTrue(validationResult.Successful);
             Assert.AreEqual(expectedValidationResultType, validationResult.Data);
-            Assert.AreEqual(3, validationResult.Events.Count);
         }
 
         [Test]
