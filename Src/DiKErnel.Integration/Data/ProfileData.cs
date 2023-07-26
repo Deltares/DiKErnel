@@ -20,9 +20,9 @@ namespace DiKErnel.Integration.Data
 {
     internal class ProfileData : IProfileData
     {
-        public void ProfileData(
+        public ProfileData(
                 IReadOnlyList<ProfileSegment> profileSegments,
-                IReadOnlyList<CharacteristicPoint> characteristicPoints);
+                IReadOnlyList<CharacteristicPoint> characteristicPoints) {};
 
     public bool Validate() override;
 

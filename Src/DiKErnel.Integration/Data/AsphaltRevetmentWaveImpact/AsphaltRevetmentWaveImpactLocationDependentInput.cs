@@ -20,7 +20,7 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
 {
     internal class AsphaltRevetmentWaveImpactLocationDependentInput : LocationDependentInput
     {
-        public void AsphaltRevetmentWaveImpactLocationDependentInput(
+        public AsphaltRevetmentWaveImpactLocationDependentInput(
                 double x,
                 double initialDamage,
                 double failureNumber,
@@ -35,7 +35,7 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
                 double stiffnessRelationNu,
                 IReadOnlyList<(double, double)> widthFactors,
                 IReadOnlyList<(double, double)> depthFactors,
-                IReadOnlyList<(double, double)> impactFactors);
+                IReadOnlyList<(double, double)> impactFactors) {}
 
     public double GetFailureTension();
 

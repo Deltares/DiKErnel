@@ -20,10 +20,10 @@ namespace DiKErnel.Integration.Data
 {
     internal class CalculationInput : ICalculationInput
     {
-        public void CalculationInput(
+        public CalculationInput(
                 IProfileData profileData,
                 IReadOnlyList<ILocationDependentInput> locationDependentInputItems,
-                IReadOnlyList<ITimeDependentInput> timeDependentInputItems);
+                IReadOnlyList<ITimeDependentInput> timeDependentInputItems) {}
 
     public IProfileData GetProfileData() override;
 

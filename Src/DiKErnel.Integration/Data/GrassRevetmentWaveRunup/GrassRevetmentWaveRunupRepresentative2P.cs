@@ -20,12 +20,12 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
 {
     internal class GrassRevetmentWaveRunupRepresentative2P
     {
-        public void GrassRevetmentWaveRunupRepresentative2P(
+        public GrassRevetmentWaveRunupRepresentative2P(
                 double representative2PAru,
                 double representative2PBru,
                 double representative2PCru,
                 double gammab,
-                double gammaf);
+                double gammaf) {}
 
         public double GetRepresentative2PAru();
 

@@ -20,9 +20,9 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
 {
     internal class NaturalStoneRevetmentDistanceMaximumWaveElevation
     {
-        public void NaturalStoneRevetmentDistanceMaximumWaveElevation(
+        public NaturalStoneRevetmentDistanceMaximumWaveElevation(
                 double distanceMaximumWaveElevationAsmax,
-                double distanceMaximumWaveElevationBsmax);
+                double distanceMaximumWaveElevationBsmax) {}
 
         public double GetDistanceMaximumWaveElevationAsmax();
 

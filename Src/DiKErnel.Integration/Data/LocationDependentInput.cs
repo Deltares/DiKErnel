@@ -37,10 +37,10 @@ namespace DiKErnel.Integration.Data
 
     public double GetZ() override;
 
-        protected void LocationDependentInput(
+        protected LocationDependentInput(
                 double x,
                 double initialDamage,
-                double failureNumber);
+                double failureNumber) {}
 
     protected virtual void InitializeDerivedLocationDependentInput(
                 IProfileData profileData);

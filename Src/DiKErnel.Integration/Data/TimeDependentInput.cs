@@ -20,13 +20,13 @@ namespace DiKErnel.Integration.Data
 {
     internal class TimeDependentInput : ITimeDependentInput
     {
-        public void TimeDependentInput(
+        public TimeDependentInput(
                 int beginTime,
                 int endTime,
                 double waterLevel,
                 double waveHeightHm0,
                 double wavePeriodTm10,
-                double waveAngle);
+                double waveAngle) {}
 
     public bool Validate() override;
 

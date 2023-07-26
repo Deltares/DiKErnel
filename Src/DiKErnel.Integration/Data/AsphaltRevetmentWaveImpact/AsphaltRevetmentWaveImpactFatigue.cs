@@ -20,9 +20,9 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
 {
     internal class AsphaltRevetmentWaveImpactFatigue
     {
-        public void AsphaltRevetmentWaveImpactFatigue(
-                double alpha,
-                double beta);
+        public AsphaltRevetmentWaveImpactFatigue(
+            double alpha,
+            double beta) {}
 
             public double GetAlpha();
 

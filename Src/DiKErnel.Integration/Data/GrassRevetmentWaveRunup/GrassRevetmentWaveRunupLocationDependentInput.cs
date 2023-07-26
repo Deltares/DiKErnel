@@ -40,7 +40,7 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
                 IReadOnlyList<ITimeDependentInput> timeDependentInputs,
                 IProfileData profileData) override;
 
-        protected void GrassRevetmentWaveRunupLocationDependentInput(
+        protected GrassRevetmentWaveRunupLocationDependentInput(
                 double x,
                 double initialDamage,
                 double failureNumber,
@@ -51,7 +51,7 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
                 double reducedStrengthTransitionAlphaS,
                 double averageNumberOfWavesCtm,
                 GrassRevetmentWaveRunupRepresentative2P representative2P,
-                GrassRevetmentWaveRunupWaveAngleImpact waveAngleImpact);
+                GrassRevetmentWaveRunupWaveAngleImpact waveAngleImpact) {}
 
     protected TimeDependentOutput CalculateTimeDependentOutput(
                 double initialDamage,

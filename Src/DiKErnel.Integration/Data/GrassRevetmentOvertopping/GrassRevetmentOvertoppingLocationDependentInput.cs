@@ -20,7 +20,7 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
 {
     internal class GrassRevetmentOvertoppingLocationDependentInput : LocationDependentInput
     {
-        public void GrassRevetmentOvertoppingLocationDependentInput(
+        public GrassRevetmentOvertoppingLocationDependentInput(
                 double x,
                 double initialDamage,
                 double failureNumber,
@@ -32,7 +32,7 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
                 int fixedNumberOfWaves,
                 double frontVelocityCwo,
                 GrassRevetmentOvertoppingLocationDependentAccelerationAlphaA locationDependentAccelerationAlphaA,
-                double? enforcedDikeHeight);
+                double? enforcedDikeHeight) {}
 
     public double GetCriticalCumulativeOverload();
 

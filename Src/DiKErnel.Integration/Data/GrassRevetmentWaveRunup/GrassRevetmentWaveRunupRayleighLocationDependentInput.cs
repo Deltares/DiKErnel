@@ -20,7 +20,7 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
 {
     internal class GrassRevetmentWaveRunupRayleighLocationDependentInput : GrassRevetmentWaveRunupLocationDependentInput
     {
-        public void GrassRevetmentWaveRunupRayleighLocationDependentInput(
+        public GrassRevetmentWaveRunupRayleighLocationDependentInput(
                 double x,
                 double initialDamage,
                 double failureNumber,
@@ -33,7 +33,7 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
                 GrassRevetmentWaveRunupRepresentative2P representative2P,
                 GrassRevetmentWaveRunupWaveAngleImpact waveAngleImpact,
                 int fixedNumberOfWaves,
-                double frontVelocityCu);
+                double frontVelocityCu) {}
 
     public int GetFixedNumberOfWaves();
 

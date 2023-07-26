@@ -20,7 +20,7 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
 {
     internal class NaturalStoneRevetmentLocationDependentInput : LocationDependentInput
     {
-        public void NaturalStoneRevetmentLocationDependentInput(
+        public NaturalStoneRevetmentLocationDependentInput(
                 double x,
                 double initialDamage,
                 double failureNumber,
@@ -32,7 +32,7 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
                 NaturalStoneRevetmentLowerLimitLoading lowerLimitLoading,
                 NaturalStoneRevetmentDistanceMaximumWaveElevation distanceMaximumWaveElevation,
                 NaturalStoneRevetmentNormativeWidthOfWaveImpact normativeWidthOfWaveImpact,
-                NaturalStoneRevetmentWaveAngleImpact waveAngleImpact);
+                NaturalStoneRevetmentWaveAngleImpact waveAngleImpact) {}
 
     public double GetRelativeDensity();
 

@@ -20,7 +20,7 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveImpact
 {
     internal class GrassRevetmentWaveImpactLocationDependentInput : LocationDependentInput
     {
-        public void GrassRevetmentWaveImpactLocationDependentInput(
+        public GrassRevetmentWaveImpactLocationDependentInput(
                 double x,
                 double initialDamage,
                 double failureNumber,
@@ -29,7 +29,7 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveImpact
                 double maximumWaveHeightTemin,
                 GrassRevetmentWaveImpactTimeLine timeLine,
                 double upperLimitLoadingAul,
-                double lowerLimitLoadingAll);
+                double lowerLimitLoadingAll) {}
 
     public GrassRevetmentWaveImpactWaveAngleImpact GetWaveAngleImpact();
 

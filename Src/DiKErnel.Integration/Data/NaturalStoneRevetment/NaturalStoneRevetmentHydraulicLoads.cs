@@ -20,7 +20,7 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
 {
     internal class NaturalStoneRevetmentHydraulicLoads
     {
-        public void NaturalStoneRevetmentHydraulicLoads(
+        public NaturalStoneRevetmentHydraulicLoads(
                 double hydraulicLoadAp,
                 double hydraulicLoadBp,
                 double hydraulicLoadCp,
@@ -29,7 +29,7 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
                 double hydraulicLoadBs,
                 double hydraulicLoadCs,
                 double hydraulicLoadNs,
-                double hydraulicLoadXib);
+                double hydraulicLoadXib) {}
 
         public double GetHydraulicLoadAp();
 
