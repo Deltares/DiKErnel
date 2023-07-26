@@ -20,19 +20,18 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
 {
     internal class NaturalStoneRevetmentLowerLimitLoading
     {
-        public NaturalStoneRevetmentLowerLimitLoading(
-                double lowerLimitAll,
-                double lowerLimitBll,
-                double lowerLimitCll) {}
+        public NaturalStoneRevetmentLowerLimitLoading(double lowerLimitAll, double lowerLimitBll,
+                                                      double lowerLimitCll)
+        {
+            LowerLimitAll = lowerLimitAll;
+            LowerLimitBll = lowerLimitBll;
+            LowerLimitCll = lowerLimitCll;
+        }
 
-        public double GetLowerLimitAll();
+        public double LowerLimitAll { get; }
 
-        public double GetLowerLimitBll();
+        public double LowerLimitBll { get; }
 
-        public double GetLowerLimitCll();
-
-            private double _lowerLimitAll;
-            private double _lowerLimitBll;
-            private double _lowerLimitCll;
+        public double LowerLimitCll { get; }
     }
 }

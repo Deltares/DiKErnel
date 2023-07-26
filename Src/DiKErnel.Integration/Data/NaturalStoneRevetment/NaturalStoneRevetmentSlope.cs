@@ -20,15 +20,14 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
 {
     internal class NaturalStoneRevetmentSlope
     {
-        public NaturalStoneRevetmentSlope(
-                double upperLevelAus,
-                double lowerLevelAls) {}
+        public NaturalStoneRevetmentSlope(double upperLevelAus, double lowerLevelAls)
+        {
+            UpperLevelAus = upperLevelAus;
+            LowerLevelAls = lowerLevelAls;
+        }
 
-        public double GetUpperLevelAus();
+        public double UpperLevelAus { get; }
 
-        public double GetLowerLevelAls();
-
-            private double _upperLevelAus;
-            private double _lowerLevelAls;
+        public double LowerLevelAls { get; }
     }
 }
