@@ -24,7 +24,7 @@ namespace DiKErnel.Integration.Data
 {
     internal abstract class LocationDependentInput : ILocationDependentInput
     {
-        private bool _derivedLocationDependentInputInitialized = false;
+        private bool derivedLocationDependentInputInitialized = false;
 
         protected LocationDependentInput(double x, double initialDamage, double failureNumber)
         {
