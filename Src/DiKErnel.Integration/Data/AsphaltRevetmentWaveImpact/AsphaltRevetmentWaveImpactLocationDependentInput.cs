@@ -45,7 +45,7 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
 
     public AsphaltRevetmentWaveImpactLayer GetUpperLayer();
 
-    public AsphaltRevetmentWaveImpactLayer* GetSubLayer();
+    public AsphaltRevetmentWaveImpactLayer GetSubLayer();
 
     public double GetAverageNumberOfWavesCtm();
 

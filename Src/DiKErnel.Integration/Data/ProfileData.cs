@@ -32,7 +32,7 @@ namespace DiKErnel.Integration.Data
     public double InterpolationHorizontalPosition(
                 double verticalHeight) override;
 
-    public ProfileSegment* GetProfileSegment(
+    public ProfileSegment GetProfileSegment(
                 double horizontalPosition) override;
 
     public IReadOnlyList<ProfileSegment> GetProfileSegments() override;

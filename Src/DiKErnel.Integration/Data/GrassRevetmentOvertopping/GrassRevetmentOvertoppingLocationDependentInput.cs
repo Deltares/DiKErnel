@@ -50,7 +50,7 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
 
     public GrassRevetmentOvertoppingLocationDependentAccelerationAlphaA GetLocationDependentAccelerationAlphaA();
 
-    public double* GetEnforcedDikeHeight();
+    public double? GetEnforcedDikeHeight();
 
     public bool Validate(
                 IReadOnlyList<ITimeDependentInput> timeDependentInputs,
