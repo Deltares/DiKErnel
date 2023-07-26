@@ -64,7 +64,8 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
                                                            NaturalStoneRevetmentLowerLimitLoading lowerLimitLoading,
                                                            NaturalStoneRevetmentDistanceMaximumWaveElevation distanceMaximumWaveElevation,
                                                            NaturalStoneRevetmentNormativeWidthOfWaveImpact normativeWidthOfWaveImpact,
-                                                           NaturalStoneRevetmentWaveAngleImpact waveAngleImpact) {}
+                                                           NaturalStoneRevetmentWaveAngleImpact waveAngleImpact)
+            : base(x, initialDamage, failureNumber) {}
 
         public double GetRelativeDensity();
 

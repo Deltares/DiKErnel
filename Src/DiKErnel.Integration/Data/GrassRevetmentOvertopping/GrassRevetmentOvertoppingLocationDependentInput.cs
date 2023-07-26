@@ -52,7 +52,8 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
                                                                double frontVelocityCwo,
                                                                GrassRevetmentOvertoppingLocationDependentAccelerationAlphaA
                                                                    locationDependentAccelerationAlphaA,
-                                                               double? enforcedDikeHeight) {}
+                                                               double? enforcedDikeHeight)
+            : base(x, initialDamage, failureNumber) {}
 
         public double GetCriticalCumulativeOverload();
 

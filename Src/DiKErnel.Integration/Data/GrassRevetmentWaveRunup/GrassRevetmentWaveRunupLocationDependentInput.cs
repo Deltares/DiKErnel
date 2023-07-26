@@ -39,7 +39,8 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
                                                                 double reducedStrengthTransitionAlphaS,
                                                                 double averageNumberOfWavesCtm,
                                                                 GrassRevetmentWaveRunupRepresentative2P representative2P,
-                                                                GrassRevetmentWaveRunupWaveAngleImpact waveAngleImpact) {}
+                                                                GrassRevetmentWaveRunupWaveAngleImpact waveAngleImpact)
+            : base(x, initialDamage, failureNumber) {}
 
         public double GetOuterSlope();
 

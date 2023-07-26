@@ -44,7 +44,8 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveImpact
                                                               double maximumWaveHeightTemin,
                                                               GrassRevetmentWaveImpactTimeLine timeLine,
                                                               double upperLimitLoadingAul,
-                                                              double lowerLimitLoadingAll) {}
+                                                              double lowerLimitLoadingAll)
+            : base(x, initialDamage, failureNumber) {}
 
         public GrassRevetmentWaveImpactWaveAngleImpact GetWaveAngleImpact();
 

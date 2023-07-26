@@ -53,7 +53,8 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
                                                                 double impactNumberC, double stiffnessRelationNu,
                                                                 IReadOnlyList<(double, double)> widthFactors,
                                                                 IReadOnlyList<(double, double)> depthFactors,
-                                                                IReadOnlyList<(double, double)> impactFactors) {}
+                                                                IReadOnlyList<(double, double)> impactFactors)
+            : base(x, initialDamage, failureNumber) {}
 
         public double GetFailureTension();
 
